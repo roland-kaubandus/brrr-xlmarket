@@ -1,0 +1,33 @@
+# Environment
+.env
+.env.local
+.env.production
+
+# Node
+node_modules/
+.next/
+dist/
+build/
+
+# Data (raw feeds, not in git)
+data/feeds/*.xlsx
+data/feeds/*.xml
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Docker volumes
+pgdata/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Claude Code
+.claude/todos/
+.claude/history.jsonl
