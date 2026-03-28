@@ -10,7 +10,7 @@ export default function ContactPage() {
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
       <nav className="text-sm text-gray-500 mb-6" aria-label="Leheasukoht">
-        <Link href="/" className="hover:text-amber-600">Avaleht</Link>
+        <Link href="/" className="hover:text-brand-600">Avaleht</Link>
         <span className="mx-2">/</span>
         <span className="text-gray-900">Kontakt</span>
       </nav>
@@ -23,7 +23,7 @@ export default function ContactPage() {
             <h2 className="text-xl font-bold mb-3">Ettevõtte andmed</h2>
             <div className="text-sm text-gray-700 space-y-1">
               <p className="font-medium text-gray-900">Roland Kaubandus OÜ</p>
-              <p>E-post: <a href="mailto:info@xlmarket.eu" className="text-amber-600 hover:text-amber-700 underline">info@xlmarket.eu</a></p>
+              <p>E-post: <a href="mailto:info@xlmarket.eu" className="text-brand-600 hover:text-brand-700 underline">info@xlmarket.eu</a></p>
               <p>Veebileht: xlmarket.eu</p>
             </div>
           </div>
@@ -41,11 +41,11 @@ export default function ContactPage() {
             <div className="text-sm text-gray-700 space-y-1">
               <p>
                 Tagastamissoovi või pretensiooni korral kirjutage{" "}
-                <a href="mailto:info@xlmarket.eu" className="text-amber-600 hover:text-amber-700 underline">info@xlmarket.eu</a>,
+                <a href="mailto:info@xlmarket.eu" className="text-brand-600 hover:text-brand-700 underline">info@xlmarket.eu</a>,
                 märkides tellimuse numbri.
               </p>
               <p>
-                <Link href="/tagastamine" className="text-amber-600 hover:text-amber-700 underline">
+                <Link href="/tagastamine" className="text-brand-600 hover:text-brand-700 underline">
                   Tagastamise tingimused
                 </Link>
               </p>
@@ -60,7 +60,7 @@ export default function ContactPage() {
           </p>
           <a
             href="mailto:info@xlmarket.eu"
-            className="inline-block bg-amber-500 text-white px-6 py-3 text-sm font-medium hover:bg-amber-600 transition"
+            className="inline-block bg-brand-500 text-white px-6 py-3 text-sm font-medium hover:bg-brand-600 transition"
           >
             Saada e-kiri
           </a>

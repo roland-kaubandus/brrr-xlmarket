@@ -10,7 +10,7 @@ export default function TermsPage() {
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
       <nav className="text-sm text-gray-500 mb-6" aria-label="Leheasukoht">
-        <Link href="/" className="hover:text-amber-600">Avaleht</Link>
+        <Link href="/" className="hover:text-brand-600">Avaleht</Link>
         <span className="mx-2">/</span>
         <span className="text-gray-900">Müügitingimused</span>
       </nav>
@@ -53,7 +53,7 @@ export default function TermsPage() {
         <h2 className="text-xl font-bold mt-8 mb-3">5. Tarne</h2>
         <p>
           Tarneaeg on 5–15 tööpäeva. Tarne toimub üle Eesti. Täpsem tarneinfo:{" "}
-          <Link href="/tarne" className="text-amber-600 hover:text-amber-700 underline">
+          <Link href="/tarne" className="text-brand-600 hover:text-brand-700 underline">
             Tarneinfo
           </Link>
           .
@@ -63,7 +63,7 @@ export default function TermsPage() {
         <p>
           Tarbijal on õigus kaup tagastada 14 päeva jooksul alates kauba kättesaamisest ilma
           põhjust nimetamata. Täpsem info:{" "}
-          <Link href="/tagastamine" className="text-amber-600 hover:text-amber-700 underline">
+          <Link href="/tagastamine" className="text-brand-600 hover:text-brand-700 underline">
             Tagastamine
           </Link>
           .
@@ -79,14 +79,14 @@ export default function TermsPage() {
         <p>
           Kaebused palume saata aadressile info@xlmarket.eu. Lahendame kaebused 15 päeva jooksul.
           Vaidluse korral on tarbijal õigus pöörduda Tarbijakaitse ja Tehnilise Järelevalve Ameti
-          (TTJA) poole: <a href="https://ttja.ee" target="_blank" rel="noopener noreferrer" className="text-amber-600 hover:text-amber-700 underline">ttja.ee</a>.
+          (TTJA) poole: <a href="https://ttja.ee" target="_blank" rel="noopener noreferrer" className="text-brand-600 hover:text-brand-700 underline">ttja.ee</a>.
         </p>
 
         <h2 className="text-xl font-bold mt-8 mb-3">9. Kontakt</h2>
         <p>
           Roland Kaubandus OÜ<br />
           E-post:{" "}
-          <a href="mailto:info@xlmarket.eu" className="text-amber-600 hover:text-amber-700 underline">
+          <a href="mailto:info@xlmarket.eu" className="text-brand-600 hover:text-brand-700 underline">
             info@xlmarket.eu
           </a>
         </p>

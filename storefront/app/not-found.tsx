@@ -7,7 +7,7 @@ export default function NotFound() {
       <p className="text-xl text-gray-600 mb-8">Lehte ei leitud</p>
       <Link
         href="/"
-        className="inline-block bg-amber-500 text-white px-6 py-3 font-medium hover:bg-amber-600 transition"
+        className="inline-block bg-brand-500 text-white px-6 py-3 font-medium hover:bg-brand-600 transition"
       >
         Tagasi avalehele
       </Link>

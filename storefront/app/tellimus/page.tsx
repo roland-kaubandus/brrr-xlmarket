@@ -226,7 +226,7 @@ export default function CheckoutPage() {
           <p className="text-gray-500 mb-6">Sinu ostukorv on tühi.</p>
           <Link
             href="/"
-            className="inline-block bg-amber-500 text-white px-8 py-3 font-medium hover:bg-amber-600 transition"
+            className="inline-block bg-brand-500 text-white px-8 py-3 font-medium hover:bg-brand-600 transition"
           >
             Vaata tooteid
           </Link>
@@ -253,7 +253,7 @@ export default function CheckoutPage() {
           )}
           <Link
             href="/"
-            className="inline-block bg-amber-500 text-white px-8 py-3 font-medium hover:bg-amber-600 transition"
+            className="inline-block bg-brand-500 text-white px-8 py-3 font-medium hover:bg-brand-600 transition"
           >
             Tagasi avalehele
           </Link>
@@ -268,9 +268,9 @@ export default function CheckoutPage() {
     <div className="max-w-6xl mx-auto px-4 py-8">
       {/* Breadcrumb */}
       <nav className="text-sm text-gray-500 mb-6" aria-label="Leheasukoht">
-        <Link href="/" className="hover:text-amber-600">Avaleht</Link>
+        <Link href="/" className="hover:text-brand-600">Avaleht</Link>
         <span className="mx-2">/</span>
-        <Link href="/ostukorv" className="hover:text-amber-600">Ostukorv</Link>
+        <Link href="/ostukorv" className="hover:text-brand-600">Ostukorv</Link>
         <span className="mx-2">/</span>
         <span className="text-gray-900">Tellimus</span>
       </nav>
@@ -301,7 +301,7 @@ export default function CheckoutPage() {
                     required
                     value={form.first_name}
                     onChange={(e) => updateField("first_name", e.target.value)}
-                    className="w-full border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:border-amber-500"
+                    className="w-full border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:border-brand-500"
                   />
                 </div>
                 <div>
@@ -314,7 +314,7 @@ export default function CheckoutPage() {
                     required
                     value={form.last_name}
                     onChange={(e) => updateField("last_name", e.target.value)}
-                    className="w-full border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:border-amber-500"
+                    className="w-full border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:border-brand-500"
                   />
                 </div>
                 <div>
@@ -327,7 +327,7 @@ export default function CheckoutPage() {
                     required
                     value={form.email}
                     onChange={(e) => updateField("email", e.target.value)}
-                    className="w-full border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:border-amber-500"
+                    className="w-full border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:border-brand-500"
                   />
                 </div>
                 <div>
@@ -340,7 +340,7 @@ export default function CheckoutPage() {
                     required
                     value={form.phone}
                     onChange={(e) => updateField("phone", e.target.value)}
-                    className="w-full border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:border-amber-500"
+                    className="w-full border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:border-brand-500"
                   />
                 </div>
               </div>
@@ -361,7 +361,7 @@ export default function CheckoutPage() {
                     placeholder="Tänav, maja, korter"
                     value={form.address_1}
                     onChange={(e) => updateField("address_1", e.target.value)}
-                    className="w-full border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:border-amber-500"
+                    className="w-full border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:border-brand-500"
                   />
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
@@ -375,7 +375,7 @@ export default function CheckoutPage() {
                       required
                       value={form.city}
                       onChange={(e) => updateField("city", e.target.value)}
-                      className="w-full border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:border-amber-500"
+                      className="w-full border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:border-brand-500"
                     />
                   </div>
                   <div>
@@ -388,7 +388,7 @@ export default function CheckoutPage() {
                       required
                       value={form.postal_code}
                       onChange={(e) => updateField("postal_code", e.target.value)}
-                      className="w-full border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:border-amber-500"
+                      className="w-full border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:border-brand-500"
                     />
                   </div>
                 </div>
@@ -400,7 +400,7 @@ export default function CheckoutPage() {
                     id="country"
                     value={form.country_code}
                     onChange={(e) => updateField("country_code", e.target.value)}
-                    className="w-full border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:border-amber-500 bg-white"
+                    className="w-full border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:border-brand-500 bg-white"
                   >
                     <option value="ee">Eesti</option>
                   </select>
@@ -420,8 +420,8 @@ export default function CheckoutPage() {
                       key={opt.id}
                       className={`flex items-center justify-between p-3 border cursor-pointer transition ${
                         selectedShipping === opt.id
-                          ? "border-amber-500 bg-amber-50"
-                          : "border-gray-200 hover:border-amber-500"
+                          ? "border-brand-500 bg-brand-50"
+                          : "border-gray-200 hover:border-brand-500"
                       }`}
                     >
                       <div className="flex items-center gap-3">
@@ -431,7 +431,7 @@ export default function CheckoutPage() {
                           value={opt.id}
                           checked={selectedShipping === opt.id}
                           onChange={() => setSelectedShipping(opt.id)}
-                          className="text-amber-500"
+                          className="text-brand-500"
                         />
                         <span className="text-sm font-medium">{opt.name}</span>
                       </div>
@@ -509,7 +509,7 @@ export default function CheckoutPage() {
               <div className="border-t border-gray-200 mt-4 pt-4">
                 <div className="flex justify-between font-bold text-lg">
                   <span>Kokku</span>
-                  <span className="text-amber-600">
+                  <span className="text-brand-600">
                     {formatPrice(cart.total, cart.currency_code)}
                   </span>
                 </div>
@@ -518,7 +518,7 @@ export default function CheckoutPage() {
               <button
                 type="submit"
                 disabled={submitting || !selectedShipping}
-                className="w-full mt-6 bg-amber-500 text-white py-3 font-medium hover:bg-amber-600 disabled:bg-gray-300 disabled:cursor-not-allowed transition"
+                className="w-full mt-6 bg-brand-500 text-white py-3 font-medium hover:bg-brand-600 disabled:bg-gray-300 disabled:cursor-not-allowed transition"
               >
                 {submitting ? "Vormistatakse..." : "Kinnita tellimus"}
               </button>

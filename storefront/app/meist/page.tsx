@@ -10,7 +10,7 @@ export default function AboutPage() {
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
       <nav className="text-sm text-gray-500 mb-6" aria-label="Leheasukoht">
-        <Link href="/" className="hover:text-amber-600">Avaleht</Link>
+        <Link href="/" className="hover:text-brand-600">Avaleht</Link>
         <span className="mx-2">/</span>
         <span className="text-gray-900">Meist</span>
       </nav>
@@ -46,7 +46,7 @@ export default function AboutPage() {
         </p>
         <p>
           Küsimused?{" "}
-          <Link href="/kontakt" className="text-amber-600 hover:text-amber-700 underline">
+          <Link href="/kontakt" className="text-brand-600 hover:text-brand-700 underline">
             Võtke meiega ühendust
           </Link>
         </p>

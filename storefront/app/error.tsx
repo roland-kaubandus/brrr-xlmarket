@@ -17,13 +17,13 @@ export default function ErrorPage({
       <div className="flex justify-center gap-4">
         <button
           onClick={reset}
-          className="bg-amber-500 text-white px-6 py-3 font-medium hover:bg-amber-600 transition"
+          className="bg-brand-500 text-white px-6 py-3 font-medium hover:bg-brand-600 transition"
         >
           Proovi uuesti
         </button>
         <Link
           href="/"
-          className="border border-gray-300 px-6 py-3 font-medium hover:border-amber-500 transition"
+          className="border border-gray-300 px-6 py-3 font-medium hover:border-brand-500 transition"
         >
           Avalehele
         </Link>

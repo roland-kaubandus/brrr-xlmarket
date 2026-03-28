@@ -7,7 +7,7 @@ export default function ProductCard({ product }: { product: Product }) {
   return (
     <Link
       href={`/toode/${product.handle}`}
-      className="group border border-gray-200 bg-white hover:border-amber-500 hover:shadow-md transition overflow-hidden"
+      className="group border border-gray-200 bg-white hover:border-brand-500 hover:shadow-md transition overflow-hidden"
     >
       <div className="relative aspect-square bg-gray-50">
         {product.thumbnail ? (
@@ -29,7 +29,7 @@ export default function ProductCard({ product }: { product: Product }) {
           {product.title}
         </h3>
         {price && (
-          <p className="mt-2 text-lg font-bold text-amber-600">
+          <p className="mt-2 text-lg font-bold text-brand-600">
             {formatPrice(price.calculated_amount, price.currency_code)}
           </p>
         )}

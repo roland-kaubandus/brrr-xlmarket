@@ -67,7 +67,7 @@ export default async function SearchPage({ searchParams }: Props) {
           </p>
           <Link
             href="/kategooriad"
-            className="text-amber-600 hover:text-amber-700 font-medium"
+            className="text-brand-600 hover:text-brand-700 font-medium"
           >
             Sirvi kategooriaid &rarr;
           </Link>
@@ -87,7 +87,7 @@ export default async function SearchPage({ searchParams }: Props) {
               {page > 1 && (
                 <Link
                   href={`/otsing?q=${encodeURIComponent(query)}&leht=${page - 1}`}
-                  className="px-4 py-2 border border-gray-200 hover:border-amber-500 text-sm transition"
+                  className="px-4 py-2 border border-gray-200 hover:border-brand-500 text-sm transition"
                 >
                   &larr; Eelmine
                 </Link>
@@ -98,7 +98,7 @@ export default async function SearchPage({ searchParams }: Props) {
               {page < totalPages && (
                 <Link
                   href={`/otsing?q=${encodeURIComponent(query)}&leht=${page + 1}`}
-                  className="px-4 py-2 border border-gray-200 hover:border-amber-500 text-sm transition"
+                  className="px-4 py-2 border border-gray-200 hover:border-brand-500 text-sm transition"
                 >
                   Järgmine &rarr;
                 </Link>

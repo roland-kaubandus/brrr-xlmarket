@@ -31,7 +31,7 @@ export default function CookieConsent() {
         <div className="flex-1 text-sm text-gray-700">
           <p>
             Kasutame küpsiseid veebipoe toimimiseks ja kasutajakogemuse parendamiseks.{" "}
-            <Link href="/kupsised" className="text-amber-600 hover:text-amber-700 underline">
+            <Link href="/kupsised" className="text-brand-600 hover:text-brand-700 underline">
               Loe lähemalt
             </Link>
           </p>
@@ -47,7 +47,7 @@ export default function CookieConsent() {
           <button
             type="button"
             onClick={accept}
-            className="px-4 py-2 text-sm bg-amber-500 text-white font-medium hover:bg-amber-600 transition"
+            className="px-4 py-2 text-sm bg-brand-500 text-white font-medium hover:bg-brand-600 transition"
           >
             Nõustun kõigiga
           </button>

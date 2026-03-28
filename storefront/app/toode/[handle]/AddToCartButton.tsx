@@ -73,7 +73,7 @@ export default function AddToCartButton({ variantId }: { variantId: string }) {
         <button
           onClick={handleAdd}
           disabled={loading}
-          className="flex-1 bg-amber-500 text-white py-3 px-6 font-medium hover:bg-amber-600 disabled:bg-gray-300 transition"
+          className="flex-1 bg-brand-500 text-white py-3 px-6 font-medium hover:bg-brand-600 disabled:bg-gray-300 transition"
         >
           {loading ? "Lisamine..." : added ? "Lisatud!" : "Lisa ostukorvi"}
         </button>

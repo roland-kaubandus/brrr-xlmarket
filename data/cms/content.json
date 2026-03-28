@@ -1,0 +1,30 @@
+{
+  "hero": {
+    "title": "Suur valik, väike hind",
+    "subtitle": "Kvaliteetsed tööriistad, seadmed ja kodukaup soodsa hinnaga. Kiire tarne üle Eesti.",
+    "buttonText": "Vaata tooteid",
+    "buttonLink": "/kategooriad",
+    "visible": true
+  },
+  "announcement": {
+    "text": "",
+    "link": "",
+    "visible": false
+  },
+  "banners": [
+    {
+      "id": "banner-1",
+      "title": "Tasuta tarne üle 99€ tellimustele",
+      "subtitle": "Kiire ja mugav kohaletoimetamine",
+      "buttonText": "Vaata pakkumisi",
+      "buttonLink": "/kategooriad",
+      "bgColor": "#f59e0b",
+      "textColor": "#ffffff",
+      "visible": true,
+      "position": "home-top"
+    }
+  ],
+  "campaigns": [],
+  "updatedAt": "2026-03-28T16:00:00Z",
+  "updatedBy": "system"
+}

@@ -10,7 +10,7 @@ export default function CookiePolicyPage() {
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
       <nav className="text-sm text-gray-500 mb-6" aria-label="Leheasukoht">
-        <Link href="/" className="hover:text-amber-600">Avaleht</Link>
+        <Link href="/" className="hover:text-brand-600">Avaleht</Link>
         <span className="mx-2">/</span>
         <span className="text-gray-900">Küpsiste poliitika</span>
       </nav>
@@ -88,7 +88,7 @@ export default function CookiePolicyPage() {
         <h2 className="text-xl font-bold mt-8 mb-3">Kontakt</h2>
         <p>
           Küsimuste korral kirjutage:{" "}
-          <a href="mailto:info@xlmarket.eu" className="text-amber-600 hover:text-amber-700 underline">
+          <a href="mailto:info@xlmarket.eu" className="text-brand-600 hover:text-brand-700 underline">
             info@xlmarket.eu
           </a>
         </p>
