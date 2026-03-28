@@ -1,20 +1,20 @@
-# Aktiivne WO: WO-XLM-007 (BLOKEERITUD)
+# Aktiivne WO: Kõik põhitöö tehtud — ootab Montonio API võtmeid
 
-## Montonio makselahendus — OOTAB API VÕTMEID
-
-### Mis on tehtud
+## Valmis
 - WO-XLM-001 kuni WO-XLM-006: kõik DONE
-- Checkout leht: /tellimus — kliendi andmed, aadress, tarneviis, kokkuvõte, kinnitus
-- Cart → Order flow töötab (address → shipping → complete)
-- osta.ee XML feed: 10,719 toodet, /feeds/osta-ee.xml (cron iga 4h)
-- sitemap.xml: 10,733 URLi (cron iga 4h)
-- SEO meta tags kõigile lehtedele (OG + Twitter Card)
-- nginx rate limiting konfigureeritud (vajab sudo install)
-- error.tsx + robots.txt
-- Bug fix XLM-19: toote laoseisu kuvamine parandatud (unreachable kood eemaldatud)
-- Bug audit: XLM-17, XLM-20, XLM-21, XLM-23 verifitseeritud kui juba parandatud
+- Õiguslikud lehed: privaatsus, tingimused, tagastamine, tarne, kontakt, meist, küpsised
+- GDPR: küpsiste nõusoleku bänner (CookieConsent)
+- Footer: 4 veergu (firma, pood, info, õiguslik) + copyright
+- Facebook Commerce XML feed: 10,714 toodet (cron iga 4h)
+- Meta Pixel: integratsioon valmis (vajab PIXEL_ID-d .env-s)
+- JSON-LD: Organization, Product, BreadcrumbList
+- Interaktiivne pildigalerii (klikitavad thumbnailid)
+- HTML sanitizer XSS kaitseks
+- SVG favicon
+- osta.ee feed, sitemap, robots.txt, SEO meta tags
+- Bug fixes: XLM-19 parandatud, XLM-17/20/21/23 verifitseeritud
 
-### Mis on järgmine
+## Blokeeritud
 WO-XLM-007: Montonio makselahendus — **BLOKEERITUD**
 - MONTONIO_ACCESS_KEY ja MONTONIO_SECRET_KEY on tühjad .env-s
 - Risto/Tarmo peab andma API võtmed
@@ -24,6 +24,11 @@ WO-XLM-007: Montonio makselahendus — **BLOKEERITUD**
   - Kaardimaksed
   - Payment flow: checkout → Montonio → callback → order complete
   - Montonio webhook handler
+
+## Vajab seadistamist (ei blokeeri)
+- NEXT_PUBLIC_META_PIXEL_ID — Meta Pixel ID .env.local-is
+- nginx rate limiting — vajab sudo installimist
+- XLM-18, XLM-22, XLM-24, XLM-25 — bugid vajavad täpsustamist
 
 ### Installimisel vajalik (sudo)
 ```bash
