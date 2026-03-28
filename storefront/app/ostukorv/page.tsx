@@ -270,16 +270,12 @@ export default function CartPage() {
                   </div>
                 </div>
 
-                <button
-                  disabled
-                  className="w-full mt-6 bg-amber-500 text-white py-3 font-medium hover:bg-amber-600 disabled:bg-gray-300 disabled:cursor-not-allowed transition"
-                  title="Tellimuse vormistamine tuleb peagi"
+                <Link
+                  href="/tellimus"
+                  className="block w-full mt-6 bg-amber-500 text-white py-3 font-medium text-center hover:bg-amber-600 transition"
                 >
                   Vormista tellimus
-                </button>
-                <p className="text-xs text-gray-400 text-center mt-2">
-                  Tellimuse vormistamine on varsti saadaval
-                </p>
+                </Link>
               </div>
             </div>
           )}
