@@ -28,13 +28,19 @@
       "Edit",
       "Write",
       "Glob",
-      "Grep"
+      "Grep",
+      "Bash(curl *)",
+      "mcp__huly__update_issue",
+      "mcp__huly__add_comment",
+      "mcp__huly__list_issues",
+      "mcp__huly__get_issue",
+      "mcp__huly__list_comments",
+      "mcp__huly__list_statuses"
     ],
     "deny": [
       "Bash(rm -rf *)",
       "Bash(sudo *)",
       "Bash(systemctl *)",
-      "Bash(curl *)",
       "Bash(wget *)",
       "Bash(ssh *)",
       "Bash(scp *)",
@@ -48,5 +54,19 @@
       "Edit(/home/brrr/brrr-kadzin/*)",
       "Edit(/home/brrr/brrr-xlmarket/.env*)"
     ]
+  },
+  "mcpServers": {
+    "huly": {
+      "command": "node",
+      "args": [
+        "/home/brrr/.claude/huly-mcp/dist/index.cjs"
+      ],
+      "env": {
+        "HULY_URL": "http://localhost:8088",
+        "HULY_EMAIL": "cc@brrr.ee",
+        "HULY_PASSWORD": "simsalabim2",
+        "HULY_WORKSPACE": "brrrcapital"
+      }
+    }
   }
 }

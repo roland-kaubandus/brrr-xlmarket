@@ -48,25 +48,20 @@ services:
       COOKIE_SECRET: ${COOKIE_SECRET}
       NODE_ENV: production
       STORE_CORS: http://localhost:3030,https://xlmarket.eu
-      ADMIN_CORS: http://localhost:7001,https://admin.xlmarket.eu
+      ADMIN_CORS: http://localhost:3030,http://localhost:9001,https://xlmarket.eu
     depends_on:
       db:
         condition: service_healthy
       redis:
         condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:9000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
 
-  admin:
-    build:
-      context: ./admin
-      dockerfile: Dockerfile
-    container_name: xlmarket-admin
-    restart: unless-stopped
-    ports:
-      - "127.0.0.1:7001:7001"
-    environment:
-      MEDUSA_BACKEND_URL: http://medusa:9000
-    depends_on:
-      - medusa
+  # Medusa 2.0 admin panel is built-in at /app — no separate admin service needed
 
   storefront:
     build:
@@ -77,11 +72,20 @@ services:
     ports:
       - "127.0.0.1:3030:3000"
     environment:
-      NEXT_PUBLIC_MEDUSA_BACKEND_URL: http://medusa:9000
+      NEXT_PUBLIC_MEDUSA_URL: http://medusa:9000
+      NEXT_PUBLIC_MEDUSA_KEY: ${NEXT_PUBLIC_MEDUSA_KEY}
+      NEXT_PUBLIC_REGION_ID: ${NEXT_PUBLIC_REGION_ID}
       NEXT_PUBLIC_BASE_URL: https://xlmarket.eu
       NEXT_PUBLIC_DEFAULT_REGION: ee
     depends_on:
-      - medusa
+      medusa:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:3000/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
 
 volumes:
   xlmarket_pgdata:

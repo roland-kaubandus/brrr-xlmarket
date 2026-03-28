@@ -8,11 +8,11 @@ module.exports = defineConfig({
     redisUrl: process.env.REDIS_URL,
     http: {
       storeCors: process.env.STORE_CORS || "http://localhost:3030",
-      adminCors: process.env.ADMIN_CORS || "http://localhost:7001",
-      authCors: process.env.AUTH_CORS || "http://localhost:3030,http://localhost:7001",
+      adminCors: process.env.ADMIN_CORS || "http://localhost:9001",
+      authCors: process.env.AUTH_CORS || "http://localhost:3030,http://localhost:9001",
     },
   },
   admin: {
-    backendUrl: process.env.MEDUSA_BACKEND_URL || "http://localhost:9000",
+    backendUrl: process.env.MEDUSA_BACKEND_URL || "http://localhost:9001",
   },
 })

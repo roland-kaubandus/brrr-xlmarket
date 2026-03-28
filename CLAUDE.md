@@ -146,3 +146,45 @@ brrr-xlmarket/
 ---
 
 *"XL — suur valik, väike hind!"*
+
+
+-
+---
+
+## HULY INTEGRATSIOON (KOHUSTUSLIK)
+
+Sulle on saadaval Huly MCP (globaalne, xl@brrr.ee konto). Kasuta seda ALATI.
+
+### Toovoo raporteerimine
+1. Alustades WO-d/bugi: mcp__huly__update_issue -> status "In Progress"
+2. Iga oluline samm: mcp__huly__add_comment -> kirjelda mida tegid
+3. Review tulemused: mcp__huly__add_comment -> reviewer nimi + tulemus
+4. Testija tulemused: mcp__huly__add_comment -> PASS/FAIL + detailid
+5. Gatekeeper otsus: mcp__huly__add_comment -> APPROVE/REJECT
+6. Lopetades: mcp__huly__update_issue -> status "Done"
+
+### Huly MCP toolid mida PEAD kasutama
+- mcp__huly__update_issue (project="XLM", identifier="XLM-17", status="In Progress")
+- mcp__huly__add_comment (project="XLM", issueIdentifier="XLM-17", body="Alustasin tooga...")
+- mcp__huly__list_issues (project="XLM") 
+- mcp__huly__get_issue (project="XLM", identifier="XLM-17")
+
+ILMA HULY RAPORTEERIMISETA EI OLE TOO TEHTUD. See on sama oluline kui kood ise.
+
+
+---
+
+---
+
+## HULY (KOHUSTUSLIK)
+
+1. Sessiooni alguses: logi sisse, kontrolli issues, võta töösse (In Progress)
+2. Sessiooni lõpus: uuenda staatust (Done või jäta In Progress)
+3. Kommentaar ainult sisuline info: takistused, otsused, poolelijäänud töö
+4. Ära spämmi — Huly logib staatuse/assignee muutused automaatselt
+
+### Autonoomsus
+- Tööta iseseisvalt — ära oota kinnitusi iga sammu eel
+- Tee commitid ise, liigu järgmise WO peale automaatselt
+- Küsi Ristolt ainult siis kui oled päriselt kinni jäänud
+- Logi progress Huly issue kommentaaridesse

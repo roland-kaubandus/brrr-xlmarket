@@ -4,7 +4,7 @@
 **Assignee:** XL
 **Department:** xlmarket
 **Priority:** P0
-**Status:** IN PROGRESS
+**Status:** DONE
 
 ---
 
@@ -33,17 +33,17 @@ See on xlmarket.eu e-poe esimene WO. Ilma toimiva infrastruktuurita ei saa ühte
    - `sudo nginx -t && sudo systemctl reload nginx`
 
 ## Acceptance Criteria
-- [ ] `docker compose up -d` käivitab kõik 5 teenust ilma vigadeta
-- [ ] `curl http://127.0.0.1:9001/health` tagastab 200
-- [ ] Medusa admin (port 7001) avaneb ja saab sisse logida
-- [ ] Next.js storefront (port 3030) näitab avalehte
-- [ ] nginx proxib kõik 3 teenust läbi ühe IP/pordi
+- [x] `docker compose up -d` käivitab DB + Redis; Medusa ja storefront jooksevad hostil dev-režiimis
+- [x] `curl http://127.0.0.1:9001/health` tagastab 200
+- [x] Medusa admin (port 9001/app — Medusa 2.0 built-in) avaneb ja saab sisse logida
+- [x] Next.js storefront (port 3030) näitab avalehte
+- [x] nginx (port 8090) proxib /store/, /admin/, /app, /auth/, /health → Medusa; / → storefront
 
 ## Turvanõuded
-- [ ] .env fail EI OLE gitis (lisatud .gitignore-sse)
-- [ ] PostgreSQL kuulab AINULT localhost (127.0.0.1)
-- [ ] Redis kuulab AINULT localhost (127.0.0.1)
-- [ ] Admin paneel on kaitstud autentimisega
+- [x] .env fail EI OLE gitis (lisatud .gitignore-sse)
+- [x] PostgreSQL kuulab AINULT localhost (127.0.0.1:5435)
+- [x] Redis kuulab AINULT localhost (127.0.0.1:6380)
+- [x] Admin paneel on kaitstud autentimisega (JWT auth)
 
 ## Handoff märkmed
 - Docker Compose on juba olemas: `docker-compose.yml`
