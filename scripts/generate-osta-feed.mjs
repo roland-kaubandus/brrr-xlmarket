@@ -30,7 +30,10 @@ const PROJECT_ROOT = join(__dirname, "..")
 
 // Configuration
 const MEDUSA_URL = process.env.MEDUSA_URL || "http://127.0.0.1:9001"
-const API_KEY = process.env.MEDUSA_API_KEY || "pk_d8dce98ddbea51a05856fe088fd0af77fab4675ccc4f03773d064dd4f6d203b3"
+const API_KEY = process.env.MEDUSA_API_KEY
+if (!API_KEY) { console.error("MEDUSA_API_KEY env var is required"); process.exit(1) }
+const REGION_ID = process.env.MEDUSA_REGION_ID
+if (!REGION_ID) { console.error("MEDUSA_REGION_ID env var is required"); process.exit(1) }
 const STORE_URL = process.env.STORE_URL || "https://xlmarket.eu"
 const BATCH_SIZE = 200
 const OUTPUT_PATH = join(PROJECT_ROOT, "data", "feeds", "osta-ee.xml")
@@ -83,7 +86,7 @@ async function fetchAllProducts() {
   const fields = "id,title,handle,description,thumbnail,variants.calculated_price,variants.sku,categories.name"
 
   while (offset < total) {
-    const url = `${MEDUSA_URL}/store/products?limit=${BATCH_SIZE}&offset=${offset}&fields=${fields}`
+    const url = `${MEDUSA_URL}/store/products?region_id=${REGION_ID}&limit=${BATCH_SIZE}&offset=${offset}&fields=${fields}`
     const res = await fetch(url, {
       headers: { "x-publishable-api-key": API_KEY },
     })

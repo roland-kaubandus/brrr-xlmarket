@@ -268,6 +268,7 @@ export default function CartPage() {
                       {formatPrice(cart.total, cart.currency_code)}
                     </span>
                   </div>
+                  <p className="text-xs text-gray-400 mt-2">Tarne lisandub tellimuse vormistamisel</p>
                 </div>
 
                 <Link
