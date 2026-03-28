@@ -1,19 +1,26 @@
-# Aktiivne WO: WO-XLM-005
+# Aktiivne WO: WO-XLM-006
 
-## Storefront: avaleht, kategooriad, tooted, otsing
+## Ostukorv ja checkout
 
 ### Mis on tehtud
-- WO-XLM-001: Infra ready (Medusa 9001, Storefront 3030, PG 5435, Redis 6380, nginx 8090)
-- WO-XLM-002: Store config (XLMARKET, Eesti regioon EUR, 22% KM, 11 kategooriat, API key)
-- WO-XLM-003: Feed import (14 280 toodet, 10 719 laos, 0 viga)
-- WO-XLM-004: Kategooriate mapping (60 VEVOR L1 -> 11 ET kategooriat)
+- WO-XLM-001: Infra ready (DONE)
+- WO-XLM-002: Store config (DONE)
+- WO-XLM-003: Feed import (14 280 toodet, 10 719 laos)
+- WO-XLM-004: Kategooriate mapping (DONE)
+- WO-XLM-005: Storefront lehed (DONE — avaleht, kategooriad, tooted, otsing, filtrid)
+
+### Ostukorv seis
+- Ostukorv leht: /ostukorv — DONE (items, qty controls, remove, summary)
+- Lisa korvi nupp: /toode/[handle] — DONE (koguse valik, localStorage cart_id)
+- Cart API routes: /api/cart/* — DONE (create, get, add/update/remove items, checkout, shipping, complete)
+- Checkout nupp on DISABLED — "Tellimuse vormistamine tuleb peagi"
 
 ### Mis on järgmine
-WO-XLM-005: Storefront lehed
-- Avaleht: hero + kategooriate grid + populaarsed tooted
-- Kategooria leht: tooted filtritega (hind, laoseis), pagination
-- Toote leht: pilt, pealkiri, hind, laoseis, kirjeldus, lisa korvi
-- Otsing: toodete otsimine
+WO-XLM-006: Checkout leht
+- Checkout form: nimi, email, aadress, telefon
+- Tarneviisi valik (Medusa shipping options)
+- Makseviisi valik → WO-XLM-007 (Montonio integratsioon)
+- Tellimuse kinnitamise leht
 
 ### Kriitilised andmed
 - **Medusa backend:** http://127.0.0.1:9001
@@ -24,36 +31,22 @@ WO-XLM-005: Storefront lehed
 - **Storefront port:** 3030
 - **nginx port:** 8090
 
-### Store API näited
-```bash
-# Tooted (laos olevad)
-curl -H "x-publishable-api-key: pk_d8dce98d..." "http://127.0.0.1:9001/store/products?limit=20&region_id=reg_01KMRXWSNXSYE4530A3K2BK86W"
-
-# Kategooriad
-curl -H "x-publishable-api-key: pk_d8dce98d..." "http://127.0.0.1:9001/store/product-categories"
-
-# Otsing
-curl -H "x-publishable-api-key: pk_d8dce98d..." "http://127.0.0.1:9001/store/products?q=welder&region_id=reg_01KMRXWSNXSYE4530A3K2BK86W"
+### Cart API routes
+```
+POST   /api/cart           — uus cart
+GET    /api/cart?cart_id=X  — fetch cart
+POST   /api/cart/items     — lisa toode (cart_id, variant_id, quantity)
+PATCH  /api/cart/items     — muuda kogust
+DELETE /api/cart/items     — eemalda toode
+POST   /api/cart/checkout  — set address + email
+GET    /api/cart/shipping  — shipping options
+POST   /api/cart/shipping  — select shipping
+POST   /api/cart/complete  — finalize order
 ```
 
 ### Disaini juhised
 - Font-based logo "XLMARKET" (Inter/Space Grotesk)
-- Ilma ikoonideta, minimalistlik
+- Minimalistlik, ilma ikoonideta
 - Värvid: tume navy/must + valge + amber/oranž CTA
 - Mobile responsive
 - Eestikeelne UI
-
-### Protsessid mis jooksevad
-- Medusa: `npx medusa develop --port 9001` (nohup)
-- Storefront: `npm run start` port 3030 (nohup)
-- PostgreSQL: Docker container xlmarket-db (port 5435)
-- Redis: Docker container xlmarket-redis (port 6380)
-- nginx: port 8090 -> storefront/medusa
-
-### Failid
-- Storefront: `/home/brrr/brrr-xlmarket/storefront/`
-- Layout: `storefront/app/layout.tsx`
-- Avaleht: `storefront/app/page.tsx`
-- Config: `storefront/next.config.ts`
-- Medusa config: `backend/medusa-config.js`
-- Import script: `backend/src/scripts/import-feed.mjs`
