@@ -11,6 +11,8 @@
 - SEO meta tags kõigile lehtedele (OG + Twitter Card)
 - nginx rate limiting konfigureeritud (vajab sudo install)
 - error.tsx + robots.txt
+- Bug fix XLM-19: toote laoseisu kuvamine parandatud (unreachable kood eemaldatud)
+- Bug audit: XLM-17, XLM-20, XLM-21, XLM-23 verifitseeritud kui juba parandatud
 
 ### Mis on järgmine
 WO-XLM-007: Montonio makselahendus — **BLOKEERITUD**
