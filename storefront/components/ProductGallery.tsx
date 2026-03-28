@@ -50,7 +50,7 @@ export default function ProductGallery({ images, title }: Props) {
               aria-pressed={i === activeIndex}
               className={`relative aspect-square bg-white border transition ${
                 i === activeIndex
-                  ? "border-amber-500 ring-1 ring-amber-500"
+                  ? "border-brand-500 ring-1 ring-brand-500"
                   : "border-gray-200 hover:border-gray-400"
               }`}
             >

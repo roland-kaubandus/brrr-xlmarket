@@ -136,6 +136,55 @@ export async function addToCart(cartId: string, variantId: string, quantity: num
   })
 }
 
+// --- CMS ---
+
+export type CmsContent = {
+  hero: {
+    title: string
+    subtitle: string
+    buttonText: string
+    buttonLink: string
+    visible: boolean
+  }
+  announcement: {
+    text: string
+    link: string
+    visible: boolean
+  }
+  banners: Array<{
+    id: string
+    title: string
+    subtitle: string
+    buttonText: string
+    buttonLink: string
+    bgColor: string
+    textColor: string
+    visible: boolean
+    position: string
+  }>
+  campaigns: Array<{
+    id: string
+    title: string
+    description: string
+    link: string
+    visible: boolean
+  }>
+}
+
+export async function getCmsContent(): Promise<CmsContent> {
+  try {
+    const res = await medusaFetch<{ content: CmsContent }>("/store/cms")
+    return res.content
+  } catch {
+    return {
+      hero: { title: "Suur valik, väike hind", subtitle: "", buttonText: "Vaata tooteid", buttonLink: "/kategooriad", visible: true },
+      announcement: { text: "", link: "", visible: false },
+      banners: [],
+      campaigns: [],
+    }
+  }
+}
+
 // --- Helpers ---
 
 export function formatPrice(amount: number, currency = "EUR"): string {

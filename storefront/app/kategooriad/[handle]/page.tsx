@@ -107,9 +107,9 @@ export default async function CategoryPage({ params, searchParams }: Props) {
     <div className="max-w-7xl mx-auto px-4 py-8">
       {/* Breadcrumb */}
       <nav className="text-sm text-gray-500 mb-6">
-        <Link href="/" className="hover:text-amber-600">Avaleht</Link>
+        <Link href="/" className="hover:text-brand-600">Avaleht</Link>
         <span className="mx-2">/</span>
-        <Link href="/kategooriad" className="hover:text-amber-600">Kategooriad</Link>
+        <Link href="/kategooriad" className="hover:text-brand-600">Kategooriad</Link>
         <span className="mx-2">/</span>
         <span className="text-gray-900">{category.name}</span>
       </nav>
@@ -145,7 +145,7 @@ export default async function CategoryPage({ params, searchParams }: Props) {
           {page > 1 && (
             <Link
               href={pageUrl(page - 1)}
-              className="px-4 py-2 border border-gray-200 hover:border-amber-500 text-sm transition"
+              className="px-4 py-2 border border-gray-200 hover:border-brand-500 text-sm transition"
             >
               &larr; Eelmine
             </Link>
@@ -156,7 +156,7 @@ export default async function CategoryPage({ params, searchParams }: Props) {
           {page < totalPages && (
             <Link
               href={pageUrl(page + 1)}
-              className="px-4 py-2 border border-gray-200 hover:border-amber-500 text-sm transition"
+              className="px-4 py-2 border border-gray-200 hover:border-brand-500 text-sm transition"
             >
               Järgmine &rarr;
             </Link>

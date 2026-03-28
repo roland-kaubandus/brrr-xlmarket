@@ -18,7 +18,13 @@
     "@medusajs/framework": "^2.13.5",
     "@medusajs/medusa": "^2.13.5",
     "@medusajs/modules-sdk": "^2.13.5",
+    "@types/nodemailer": "^7.0.11",
     "awilix": "^8.0.1",
-    "exceljs": "^4.4.0"
+    "exceljs": "^4.4.0",
+    "google-translate-api-x": "^10.7.2",
+    "nodemailer": "^8.0.4"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3"
   }
 }

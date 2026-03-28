@@ -71,7 +71,7 @@ export default function CategoryFilters({
             placeholder="Min €"
             value={minPrice}
             onChange={(e) => setMinPrice(e.target.value)}
-            className="w-20 px-2 py-1 text-sm border border-gray-300 focus:outline-none focus:border-amber-500"
+            className="w-20 px-2 py-1 text-sm border border-gray-300 focus:outline-none focus:border-brand-500"
           />
           <span className="text-gray-400">–</span>
           <input
@@ -81,11 +81,11 @@ export default function CategoryFilters({
             placeholder="Max €"
             value={maxPrice}
             onChange={(e) => setMaxPrice(e.target.value)}
-            className="w-20 px-2 py-1 text-sm border border-gray-300 focus:outline-none focus:border-amber-500"
+            className="w-20 px-2 py-1 text-sm border border-gray-300 focus:outline-none focus:border-brand-500"
           />
           <button
             type="submit"
-            className="px-3 py-1 text-sm font-medium bg-amber-500 text-white hover:bg-amber-600 transition"
+            className="px-3 py-1 text-sm font-medium bg-brand-500 text-white hover:bg-brand-600 transition"
           >
             Filtreeri
           </button>
@@ -104,8 +104,8 @@ export default function CategoryFilters({
               onClick={() => handleSort(s.key)}
               className={`px-3 py-1 border text-sm transition ${
                 currentSort === s.key
-                  ? "border-amber-500 bg-amber-50 text-amber-700"
-                  : "border-gray-200 hover:border-amber-500"
+                  ? "border-brand-500 bg-brand-50 text-brand-700"
+                  : "border-gray-200 hover:border-brand-500"
               }`}
             >
               {s.label}
@@ -129,7 +129,7 @@ export default function CategoryFilters({
         {hasFilters && (
           <button
             onClick={handleReset}
-            className="text-amber-600 hover:text-amber-700 underline"
+            className="text-brand-600 hover:text-brand-700 underline"
           >
             Tühista filtrid
           </button>

@@ -1,0 +1,26 @@
+[Unit]
+Description=XLMARKET Medusa Backend
+After=network.target postgresql.service redis.service
+Wants=postgresql.service redis.service
+
+[Service]
+Type=simple
+User=brrr
+WorkingDirectory=/home/brrr/brrr-xlmarket/backend
+Environment=NODE_ENV=production
+Environment=DATABASE_URL=postgres://xlmarket:PG_PASSWORD_REDACTED@localhost:5435/xlmarket
+Environment=REDIS_URL=redis://localhost:6380
+Environment=STORE_CORS=https://xlmarket.eu
+Environment=ADMIN_CORS=https://xlmarket.eu
+Environment=AUTH_CORS=https://xlmarket.eu
+Environment=MEDUSA_BACKEND_URL=https://xlmarket.eu
+EnvironmentFile=-/home/brrr/brrr-xlmarket/.env
+ExecStart=/usr/bin/node node_modules/@medusajs/cli/cli.js start --port 9001
+Restart=unless-stopped
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=xlmarket-medusa
+
+[Install]
+WantedBy=multi-user.target

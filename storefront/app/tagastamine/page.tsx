@@ -10,7 +10,7 @@ export default function ReturnsPage() {
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
       <nav className="text-sm text-gray-500 mb-6" aria-label="Leheasukoht">
-        <Link href="/" className="hover:text-amber-600">Avaleht</Link>
+        <Link href="/" className="hover:text-brand-600">Avaleht</Link>
         <span className="mx-2">/</span>
         <span className="text-gray-900">Tagastamine</span>
       </nav>
@@ -36,7 +36,7 @@ export default function ReturnsPage() {
         <ol className="list-decimal pl-6 space-y-2">
           <li>
             Saatke taganemisavaldus e-postile{" "}
-            <a href="mailto:info@xlmarket.eu" className="text-amber-600 hover:text-amber-700 underline">
+            <a href="mailto:info@xlmarket.eu" className="text-brand-600 hover:text-brand-700 underline">
               info@xlmarket.eu
             </a>{" "}
             hiljemalt 14 päeva jooksul alates kauba kättesaamisest.
@@ -57,7 +57,7 @@ export default function ReturnsPage() {
         <p>
           Kui kaup ei vasta lepingutingimustele (defektne, vigane), on teil õigus esitada
           pretensioon 2 aasta jooksul alates kauba kättesaamisest. Kirjutage aadressile{" "}
-          <a href="mailto:info@xlmarket.eu" className="text-amber-600 hover:text-amber-700 underline">
+          <a href="mailto:info@xlmarket.eu" className="text-brand-600 hover:text-brand-700 underline">
             info@xlmarket.eu
           </a>{" "}
           koos tellimuse numbri ja probleemi kirjeldusega.

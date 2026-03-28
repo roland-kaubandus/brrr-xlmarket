@@ -62,13 +62,13 @@ export default async function ProductPage({ params }: Props) {
 
       {/* Breadcrumb */}
       <nav className="text-sm text-gray-500 mb-6" aria-label="Leheasukoht">
-        <Link href="/" className="hover:text-amber-600">Avaleht</Link>
+        <Link href="/" className="hover:text-brand-600">Avaleht</Link>
         <span className="mx-2">/</span>
         {product.categories?.[0] && (
           <>
             <Link
               href={`/kategooriad/${product.categories[0].handle}`}
-              className="hover:text-amber-600"
+              className="hover:text-brand-600"
             >
               {product.categories[0].name}
             </Link>
@@ -89,7 +89,7 @@ export default async function ProductPage({ params }: Props) {
           </h1>
 
           {price && (
-            <p className="text-3xl font-bold text-amber-600 mb-6">
+            <p className="text-3xl font-bold text-brand-600 mb-6">
               {formatPrice(price.calculated_amount, price.currency_code)}
             </p>
           )}

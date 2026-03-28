@@ -1,0 +1,20 @@
+[Unit]
+Description=XLMARKET Next.js Storefront
+After=network.target xlmarket-medusa.service
+Wants=xlmarket-medusa.service
+
+[Service]
+Type=simple
+User=brrr
+WorkingDirectory=/home/brrr/brrr-xlmarket/storefront
+Environment=NODE_ENV=production
+EnvironmentFile=-/home/brrr/brrr-xlmarket/storefront/.env.local
+ExecStart=/usr/bin/node node_modules/.bin/next start -p 3030
+Restart=unless-stopped
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=xlmarket-storefront
+
+[Install]
+WantedBy=multi-user.target

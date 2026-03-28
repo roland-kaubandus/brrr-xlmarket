@@ -1,9 +1,16 @@
 import type { Metadata } from "next"
+import { Inter } from "next/font/google"
 import Link from "next/link"
 import CookieConsent from "@/components/CookieConsent"
 import MetaPixel from "@/components/MetaPixel"
 import JsonLdOrganization from "@/components/JsonLdOrganization"
 import "./globals.css"
+
+const inter = Inter({
+  subsets: ["latin", "latin-ext"],
+  display: "swap",
+  variable: "--font-inter",
+})
 
 export const metadata: Metadata = {
   title: {
@@ -39,15 +46,16 @@ export default function RootLayout({
 }) {
   return (
     <html lang="et">
-      <body className="font-sans antialiased bg-gray-50 text-gray-900">
+      <body className={`${inter.variable} font-[family-name:var(--font-inter)] antialiased bg-gray-50 text-gray-900`}>
         <JsonLdOrganization />
         <header className="bg-white border-b border-gray-200 sticky top-0 z-50">
           <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
             <Link
               href="/"
-              className="text-2xl font-bold tracking-tight shrink-0"
+              className="shrink-0 flex items-baseline gap-0.5"
             >
-              XLMARKET
+              <span className="text-2xl font-extrabold tracking-tight text-brand-600">XL</span>
+              <span className="text-2xl font-bold tracking-tight text-gray-900">MARKET</span>
             </Link>
 
             {/* Search */}
@@ -60,11 +68,11 @@ export default function RootLayout({
                 type="search"
                 name="q"
                 placeholder="Otsi tooteid..."
-                className="w-full border border-gray-300 px-4 py-2 text-sm focus:outline-none focus:border-amber-500 transition"
+                className="w-full border border-gray-300 px-4 py-2 text-sm focus:outline-none focus:border-brand-500 transition"
               />
               <button
                 type="submit"
-                className="bg-amber-500 text-white px-4 py-2 text-sm font-medium hover:bg-amber-600 transition shrink-0"
+                className="bg-brand-500 text-white px-4 py-2 text-sm font-medium hover:bg-brand-600 transition shrink-0"
               >
                 Otsi
               </button>
@@ -73,11 +81,11 @@ export default function RootLayout({
             <nav className="flex items-center gap-4 text-sm shrink-0">
               <Link
                 href="/kategooriad"
-                className="hover:text-amber-600 hidden md:block"
+                className="hover:text-brand-600 hidden md:block"
               >
                 Kategooriad
               </Link>
-              <Link href="/ostukorv" className="hover:text-amber-600">
+              <Link href="/ostukorv" className="hover:text-brand-600">
                 Ostukorv
               </Link>
             </nav>
@@ -89,11 +97,11 @@ export default function RootLayout({
                 type="search"
                 name="q"
                 placeholder="Otsi tooteid..."
-                className="w-full border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:border-amber-500"
+                className="w-full border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:border-brand-500"
               />
               <button
                 type="submit"
-                className="bg-amber-500 text-white px-3 py-2 text-sm font-medium hover:bg-amber-600 shrink-0"
+                className="bg-brand-500 text-white px-3 py-2 text-sm font-medium hover:bg-brand-600 shrink-0"
               >
                 Otsi
               </button>
@@ -108,10 +116,13 @@ export default function RootLayout({
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 text-sm text-gray-500">
               {/* Company info */}
               <div>
-                <p className="font-bold text-gray-900 text-lg mb-3">XLMARKET</p>
+                <p className="text-lg mb-3">
+                  <span className="font-extrabold text-brand-600">XL</span>
+                  <span className="font-bold text-gray-900">MARKET</span>
+                </p>
                 <p>Roland Kaubandus OÜ</p>
                 <p className="mt-2">
-                  <a href="mailto:info@xlmarket.eu" className="hover:text-amber-600">
+                  <a href="mailto:info@xlmarket.eu" className="hover:text-brand-600">
                     info@xlmarket.eu
                   </a>
                 </p>
@@ -121,9 +132,9 @@ export default function RootLayout({
               <div>
                 <p className="font-medium text-gray-900 mb-3">Pood</p>
                 <nav className="flex flex-col gap-2">
-                  <Link href="/kategooriad" className="hover:text-amber-600">Kategooriad</Link>
-                  <Link href="/otsing" className="hover:text-amber-600">Otsing</Link>
-                  <Link href="/ostukorv" className="hover:text-amber-600">Ostukorv</Link>
+                  <Link href="/kategooriad" className="hover:text-brand-600">Kategooriad</Link>
+                  <Link href="/otsing" className="hover:text-brand-600">Otsing</Link>
+                  <Link href="/ostukorv" className="hover:text-brand-600">Ostukorv</Link>
                 </nav>
               </div>
 
@@ -131,10 +142,10 @@ export default function RootLayout({
               <div>
                 <p className="font-medium text-gray-900 mb-3">Info</p>
                 <nav className="flex flex-col gap-2">
-                  <Link href="/meist" className="hover:text-amber-600">Meist</Link>
-                  <Link href="/tarne" className="hover:text-amber-600">Tarneinfo</Link>
-                  <Link href="/tagastamine" className="hover:text-amber-600">Tagastamine</Link>
-                  <Link href="/kontakt" className="hover:text-amber-600">Kontakt</Link>
+                  <Link href="/meist" className="hover:text-brand-600">Meist</Link>
+                  <Link href="/tarne" className="hover:text-brand-600">Tarneinfo</Link>
+                  <Link href="/tagastamine" className="hover:text-brand-600">Tagastamine</Link>
+                  <Link href="/kontakt" className="hover:text-brand-600">Kontakt</Link>
                 </nav>
               </div>
 
@@ -142,9 +153,9 @@ export default function RootLayout({
               <div>
                 <p className="font-medium text-gray-900 mb-3">Õiguslik</p>
                 <nav className="flex flex-col gap-2">
-                  <Link href="/tingimused" className="hover:text-amber-600">Müügitingimused</Link>
-                  <Link href="/privaatsus" className="hover:text-amber-600">Privaatsuspoliitika</Link>
-                  <Link href="/kupsised" className="hover:text-amber-600">Küpsiste poliitika</Link>
+                  <Link href="/tingimused" className="hover:text-brand-600">Müügitingimused</Link>
+                  <Link href="/privaatsus" className="hover:text-brand-600">Privaatsuspoliitika</Link>
+                  <Link href="/kupsised" className="hover:text-brand-600">Küpsiste poliitika</Link>
                 </nav>
               </div>
             </div>

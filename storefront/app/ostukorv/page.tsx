@@ -129,7 +129,7 @@ export default function CartPage() {
     <div className="max-w-4xl mx-auto px-4 py-8">
       {/* Breadcrumb */}
       <nav className="text-sm text-gray-500 mb-6" aria-label="Leheasukoht">
-        <Link href="/" className="hover:text-amber-600">Avaleht</Link>
+        <Link href="/" className="hover:text-brand-600">Avaleht</Link>
         <span className="mx-2">/</span>
         <span className="text-gray-900">Ostukorv</span>
       </nav>
@@ -149,7 +149,7 @@ export default function CartPage() {
           <p className="text-gray-500 mb-6">Sinu ostukorv on tühi.</p>
           <Link
             href="/"
-            className="inline-block bg-amber-500 text-white px-8 py-3 font-medium hover:bg-amber-600 transition"
+            className="inline-block bg-brand-500 text-white px-8 py-3 font-medium hover:bg-brand-600 transition"
           >
             Vaata tooteid
           </Link>
@@ -187,12 +187,12 @@ export default function CartPage() {
                 <div className="flex-1 min-w-0">
                   <Link
                     href={`/toode/${item.variant?.product?.handle || ""}`}
-                    className="text-sm font-medium text-gray-900 hover:text-amber-600 line-clamp-2"
+                    className="text-sm font-medium text-gray-900 hover:text-brand-600 line-clamp-2"
                   >
                     {item.variant?.product?.title || item.title}
                   </Link>
 
-                  <p className="text-amber-600 font-bold mt-1">
+                  <p className="text-brand-600 font-bold mt-1">
                     {cart && formatPrice(item.unit_price, cart.currency_code)}
                   </p>
 
@@ -264,7 +264,7 @@ export default function CartPage() {
                 <div className="border-t border-gray-200 mt-4 pt-4">
                   <div className="flex justify-between font-bold text-lg">
                     <span>Kokku</span>
-                    <span className="text-amber-600">
+                    <span className="text-brand-600">
                       {formatPrice(cart.total, cart.currency_code)}
                     </span>
                   </div>
@@ -272,7 +272,7 @@ export default function CartPage() {
 
                 <Link
                   href="/tellimus"
-                  className="block w-full mt-6 bg-amber-500 text-white py-3 font-medium text-center hover:bg-amber-600 transition"
+                  className="block w-full mt-6 bg-brand-500 text-white py-3 font-medium text-center hover:bg-brand-600 transition"
                 >
                   Vormista tellimus
                 </Link>

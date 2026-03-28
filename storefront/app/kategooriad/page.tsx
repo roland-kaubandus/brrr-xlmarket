@@ -26,7 +26,7 @@ export default async function CategoriesPage() {
           <Link
             key={cat.id}
             href={`/kategooriad/${cat.handle}`}
-            className="border border-gray-200 bg-white p-8 text-center hover:border-amber-500 hover:shadow-md transition"
+            className="border border-gray-200 bg-white p-8 text-center hover:border-brand-500 hover:shadow-md transition"
           >
             <span className="text-lg font-medium">{cat.name}</span>
           </Link>
