@@ -20,7 +20,7 @@
 
 ## Blokeeritud
 - WO-XLM-007: Montonio makselahendus — BLOKEERITUD (API keys puuduvad)
-- XLM-24: CDN blocked images — low priority
+- XLM-24: CDN blocked images — Done (hotlink protection puudub, OK)
 
 ## Taustal jooksev protsess
 - Tootetõlge: backend/src/scripts/translate-products.mjs (~14K toodet EN→ET)
