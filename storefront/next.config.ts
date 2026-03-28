@@ -10,10 +10,7 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  i18n: {
-    locales: ["et", "lv", "lt"],
-    defaultLocale: "et",
-  },
+  // i18n handled via App Router [locale] segments (WO-XLM-010)
 }
 
 export default nextConfig
