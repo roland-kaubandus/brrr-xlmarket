@@ -1,18 +1,22 @@
-import { NextResponse } from "next/server"
-
-const MEDUSA_URL = process.env.NEXT_PUBLIC_MEDUSA_URL || "http://127.0.0.1:9001"
-const API_KEY = process.env.NEXT_PUBLIC_MEDUSA_KEY || "pk_d8dce98ddbea51a05856fe088fd0af77fab4675ccc4f03773d064dd4f6d203b3"
-const REGION_ID = process.env.NEXT_PUBLIC_REGION_ID || "reg_01KMRXWSNXSYE4530A3K2BK86W"
+import { NextRequest, NextResponse } from "next/server"
+import { medusaProxy, REGION_ID } from "@/lib/medusa-proxy"
 
 export async function POST() {
-  const res = await fetch(`${MEDUSA_URL}/store/carts`, {
+  const res = await medusaProxy("/store/carts", {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "x-publishable-api-key": API_KEY,
-    },
     body: JSON.stringify({ region_id: REGION_ID }),
   })
   const data = await res.json()
-  return NextResponse.json(data)
+  return NextResponse.json(data, { status: res.status })
+}
+
+export async function GET(req: NextRequest) {
+  const cartId = req.nextUrl.searchParams.get("cart_id")
+  if (!cartId) return NextResponse.json({ error: "cart_id required" }, { status: 400 })
+
+  const res = await medusaProxy(
+    `/store/carts/${cartId}?fields=*items,*items.variant,*items.variant.product`
+  )
+  const data = await res.json()
+  return NextResponse.json(data, { status: res.status })
 }
