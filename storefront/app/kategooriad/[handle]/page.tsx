@@ -1,13 +1,14 @@
 import Link from "next/link"
-import { getCategoryByHandle, getProducts } from "@/lib/medusa"
+import { getCategoryByHandle, getProducts, Product } from "@/lib/medusa"
 import ProductCard from "@/components/ProductCard"
+import CategoryFilters from "@/components/CategoryFilters"
 import { notFound } from "next/navigation"
 
 export const revalidate = 300
 
 type Props = {
   params: Promise<{ handle: string }>
-  searchParams: Promise<{ leht?: string; sort?: string }>
+  searchParams: Promise<{ leht?: string; sort?: string; min?: string; max?: string }>
 }
 
 export async function generateMetadata({ params }: Props) {
@@ -22,30 +23,80 @@ export async function generateMetadata({ params }: Props) {
 
 const ITEMS_PER_PAGE = 24
 
+function getPrice(product: Product): number | null {
+  const amount = product.variants?.[0]?.calculated_price?.calculated_amount
+  return typeof amount === "number" ? amount : null
+}
+
+function sortProducts(products: Product[], sort: string): Product[] {
+  if (sort === "odavamad") {
+    return [...products].sort((a, b) => (getPrice(a) ?? Infinity) - (getPrice(b) ?? Infinity))
+  }
+  if (sort === "kallimad") {
+    return [...products].sort((a, b) => (getPrice(b) ?? 0) - (getPrice(a) ?? 0))
+  }
+  // default: newest (API default order)
+  return products
+}
+
 export default async function CategoryPage({ params, searchParams }: Props) {
   const { handle } = await params
-  const { leht, sort } = await searchParams
+  const { leht, sort, min, max } = await searchParams
 
   const category = await getCategoryByHandle(handle)
   if (!category) notFound()
 
   const page = Math.max(1, parseInt(leht || "1", 10) || 1)
-  const offset = (page - 1) * ITEMS_PER_PAGE
+  const hasPriceFilter = !!(min || max)
+  const hasClientSort = sort === "odavamad" || sort === "kallimad"
 
-  const orderMap: Record<string, string> = {
-    uusimad: "-created_at",
-    odavamad: "variants.calculated_price.calculated_amount",
-    kallimad: "-variants.calculated_price.calculated_amount",
-  }
+  // When price filter or price sort is active, fetch larger batch for server-side filtering
+  const fetchLimit = hasPriceFilter || hasClientSort ? 500 : ITEMS_PER_PAGE
+  const fetchOffset = hasPriceFilter || hasClientSort ? 0 : (page - 1) * ITEMS_PER_PAGE
 
   const productsRes = await getProducts({
     category_id: [category.id],
-    limit: ITEMS_PER_PAGE,
-    offset,
-    order: orderMap[sort || ""] || "-created_at",
+    limit: fetchLimit,
+    offset: fetchOffset,
+    order: "-created_at",
   })
 
-  const totalPages = Math.ceil(productsRes.count / ITEMS_PER_PAGE)
+  let products = productsRes.products
+
+  // Apply price filter server-side
+  if (hasPriceFilter) {
+    const minCents = min ? Math.round(parseFloat(min) * 100) : 0
+    const maxCents = max ? Math.round(parseFloat(max) * 100) : Infinity
+    products = products.filter((p) => {
+      const price = getPrice(p)
+      if (price === null) return false
+      return price >= minCents && price <= maxCents
+    })
+  }
+
+  // Apply sort
+  if (sort) {
+    products = sortProducts(products, sort)
+  }
+
+  // Paginate filtered results
+  const totalFiltered = hasPriceFilter || hasClientSort ? products.length : productsRes.count
+  const displayProducts =
+    hasPriceFilter || hasClientSort
+      ? products.slice((page - 1) * ITEMS_PER_PAGE, page * ITEMS_PER_PAGE)
+      : products
+  const totalPages = Math.ceil(totalFiltered / ITEMS_PER_PAGE)
+
+  // Build pagination URL helper
+  function pageUrl(p: number) {
+    const params = new URLSearchParams()
+    if (p > 1) params.set("leht", String(p))
+    if (sort) params.set("sort", sort)
+    if (min) params.set("min", min)
+    if (max) params.set("max", max)
+    const qs = params.toString()
+    return qs ? `/kategooriad/${handle}?${qs}` : `/kategooriad/${handle}`
+  }
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
@@ -58,41 +109,26 @@ export default async function CategoryPage({ params, searchParams }: Props) {
         <span className="text-gray-900">{category.name}</span>
       </nav>
 
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6 gap-4">
-        <h1 className="text-3xl font-bold">{category.name}</h1>
-        <div className="flex items-center gap-2 text-sm">
-          <span className="text-gray-500">Sorteeri:</span>
-          {[
-            { key: "uusimad", label: "Uusimad" },
-            { key: "odavamad", label: "Odavamad" },
-            { key: "kallimad", label: "Kallimad" },
-          ].map((s) => (
-            <Link
-              key={s.key}
-              href={`/kategooriad/${handle}?sort=${s.key}`}
-              className={`px-3 py-1 border transition ${
-                sort === s.key
-                  ? "border-amber-500 bg-amber-50 text-amber-700"
-                  : "border-gray-200 hover:border-amber-500"
-              }`}
-            >
-              {s.label}
-            </Link>
-          ))}
-        </div>
-      </div>
+      <h1 className="text-3xl font-bold mb-6">{category.name}</h1>
 
-      <p className="text-sm text-gray-500 mb-6">
-        {productsRes.count.toLocaleString("et-EE")} toodet
-      </p>
+      {/* Filters */}
+      <CategoryFilters
+        currentSort={sort}
+        currentMin={min}
+        currentMax={max}
+        basePath={`/kategooriad/${handle}`}
+        totalProducts={totalFiltered}
+      />
 
-      {productsRes.products.length === 0 ? (
+      {displayProducts.length === 0 ? (
         <p className="text-gray-500 py-16 text-center">
-          Selles kategoorias pole veel tooteid.
+          {hasPriceFilter
+            ? "Selles hinnavahemikus tooteid ei leitud. Proovi teisi filtreid."
+            : "Selles kategoorias pole veel tooteid."}
         </p>
       ) : (
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-          {productsRes.products.map((product) => (
+          {displayProducts.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
         </div>
@@ -103,7 +139,7 @@ export default async function CategoryPage({ params, searchParams }: Props) {
         <nav className="flex justify-center items-center gap-2 mt-10">
           {page > 1 && (
             <Link
-              href={`/kategooriad/${handle}?leht=${page - 1}${sort ? `&sort=${sort}` : ""}`}
+              href={pageUrl(page - 1)}
               className="px-4 py-2 border border-gray-200 hover:border-amber-500 text-sm transition"
             >
               &larr; Eelmine
@@ -114,7 +150,7 @@ export default async function CategoryPage({ params, searchParams }: Props) {
           </span>
           {page < totalPages && (
             <Link
-              href={`/kategooriad/${handle}?leht=${page + 1}${sort ? `&sort=${sort}` : ""}`}
+              href={pageUrl(page + 1)}
               className="px-4 py-2 border border-gray-200 hover:border-amber-500 text-sm transition"
             >
               Järgmine &rarr;

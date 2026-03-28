@@ -135,9 +135,14 @@ export default async function ProductPage({ params }: Props) {
           {product.description && (
             <div className="mt-10 border-t border-gray-200 pt-8">
               <h2 className="text-lg font-bold mb-4">Kirjeldus</h2>
-              <div className="text-gray-700 text-sm leading-relaxed whitespace-pre-line">
-                {product.description}
-              </div>
+              <div
+                className="text-gray-700 text-sm leading-relaxed [&_br]:block [&_br]:mb-1"
+                dangerouslySetInnerHTML={{
+                  __html: product.description
+                    .replace(/<script[\s\S]*?<\/script>/gi, "")
+                    .replace(/on\w+="[^"]*"/gi, ""),
+                }}
+              />
             </div>
           )}
         </div>
