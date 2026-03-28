@@ -1,26 +1,19 @@
-# Aktiivne WO: WO-XLM-006
+# Aktiivne WO: WO-XLM-007
 
-## Ostukorv ja checkout
+## Montonio makselahendus
 
 ### Mis on tehtud
-- WO-XLM-001: Infra ready (DONE)
-- WO-XLM-002: Store config (DONE)
-- WO-XLM-003: Feed import (14 280 toodet, 10 719 laos)
-- WO-XLM-004: Kategooriate mapping (DONE)
-- WO-XLM-005: Storefront lehed (DONE — avaleht, kategooriad, tooted, otsing, filtrid)
-
-### Ostukorv seis
-- Ostukorv leht: /ostukorv — DONE (items, qty controls, remove, summary)
-- Lisa korvi nupp: /toode/[handle] — DONE (koguse valik, localStorage cart_id)
-- Cart API routes: /api/cart/* — DONE (create, get, add/update/remove items, checkout, shipping, complete)
-- Checkout nupp on DISABLED — "Tellimuse vormistamine tuleb peagi"
+- WO-XLM-001 kuni WO-XLM-006: kõik DONE
+- Checkout leht: /tellimus — kliendi andmed, aadress, tarneviis, kokkuvõte, kinnitus
+- Cart → Order flow töötab (address → shipping → complete)
 
 ### Mis on järgmine
-WO-XLM-006: Checkout leht
-- Checkout form: nimi, email, aadress, telefon
-- Tarneviisi valik (Medusa shipping options)
-- Makseviisi valik → WO-XLM-007 (Montonio integratsioon)
-- Tellimuse kinnitamise leht
+WO-XLM-007: Montonio makselahendus
+- Montonio SDK integratsioon Medusa backendisse
+- Pangalingid: Swedbank, SEB, LHV, Luminor, Coop
+- Kaardimaksed
+- Payment flow: checkout → Montonio → callback → order complete
+- Montonio webhook handler
 
 ### Kriitilised andmed
 - **Medusa backend:** http://127.0.0.1:9001
