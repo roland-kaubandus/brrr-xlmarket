@@ -115,19 +115,13 @@ export default async function ProductPage({ params }: Props) {
             </p>
           )}
 
-          {/* Laoseisu badge — Medusa v2 Store API ei paljasta inventory_quantity't,
-              seega tugineme: published = laos (import script märgib otsas tooted draft'iks) */}
+          {/* Laoseisu badge — Medusa v2 Store API ei paljasta inventory_quantity't.
+              Import script märgib otsas tooted draft'iks, seega kõik published tooted on laos. */}
           <div className="mb-6">
             {variant ? (
-              variant.manage_inventory && !variant.allow_backorder ? (
-                <span className="inline-block px-3 py-1 bg-green-100 text-green-800 text-sm font-medium">
-                  Laos
-                </span>
-              ) : (
-                <span className="inline-block px-3 py-1 bg-amber-100 text-amber-800 text-sm font-medium">
-                  Saadaval
-                </span>
-              )
+              <span className="inline-block px-3 py-1 bg-green-100 text-green-800 text-sm font-medium">
+                Laos
+              </span>
             ) : (
               <span className="inline-block px-3 py-1 bg-red-100 text-red-800 text-sm font-medium">
                 Hetkel ei ole saadaval
