@@ -1,0 +1,23 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "medusa develop",
+    "start": "medusa start",
+    "build": "medusa build",
+    "seed": "medusa exec ./src/scripts/seed.ts",
+    "db:migrate": "medusa db:migrate"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@medusajs/cli": "^2.13.5",
+    "@medusajs/framework": "^2.13.5",
+    "@medusajs/medusa": "^2.13.5",
+    "@medusajs/modules-sdk": "^2.13.5",
+    "awilix": "^8.0.1"
+  }
+}

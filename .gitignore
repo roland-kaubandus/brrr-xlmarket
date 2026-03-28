@@ -31,3 +31,4 @@ npm-debug.log*
 # Claude Code
 .claude/todos/
 .claude/history.jsonl
+node_modules/
