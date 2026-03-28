@@ -30,5 +30,9 @@ export async function DELETE(req: NextRequest) {
     method: "DELETE",
   })
   const data = await res.json()
+  // Medusa DELETE tagastab {id, object, deleted, parent} - teisendame {cart} formaati
+  if (data.parent) {
+    return NextResponse.json({ cart: data.parent }, { status: res.status })
+  }
   return NextResponse.json(data, { status: res.status })
 }

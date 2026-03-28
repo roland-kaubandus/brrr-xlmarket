@@ -21,6 +21,10 @@ Thumbs.db
 .vscode/
 .idea/
 
+# Build artifacts
+tsconfig.tsbuildinfo
+*.tsbuildinfo
+
 # Docker volumes
 pgdata/
 

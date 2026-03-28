@@ -101,7 +101,8 @@ export default function CartPage() {
         body: JSON.stringify({ cart_id: cart.id, item_id: itemId }),
       })
       if (res.ok) {
-        await fetchCart()
+        const data = await res.json()
+        setCart(data.cart)
       } else {
         setError("Toote eemaldamine ebaõnnestus, proovi uuesti")
       }
@@ -138,7 +139,7 @@ export default function CartPage() {
       </h1>
 
       {error && (
-        <div className="mb-4 p-3 bg-red-50 border border-red-200 text-red-700 text-sm">
+        <div className="mb-4 p-3 bg-red-50 border border-red-200 text-red-700 text-sm" role="alert">
           {error}
         </div>
       )}
@@ -210,8 +211,8 @@ export default function CartPage() {
                         {item.quantity}
                       </span>
                       <button
-                        onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                        disabled={updating === item.id}
+                        onClick={() => updateQuantity(item.id, Math.min(99, item.quantity + 1))}
+                        disabled={updating === item.id || item.quantity >= 99}
                         className="px-2 py-1 text-sm hover:bg-gray-100 disabled:text-gray-300 transition"
                         aria-label="Suurenda kogust"
                       >
