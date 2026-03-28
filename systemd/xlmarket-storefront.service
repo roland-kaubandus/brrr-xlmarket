@@ -1,7 +1,7 @@
 [Unit]
 Description=XLMARKET Next.js Storefront
 After=network.target xlmarket-medusa.service
-Wants=xlmarket-medusa.service
+Requires=xlmarket-medusa.service
 
 [Service]
 Type=simple
