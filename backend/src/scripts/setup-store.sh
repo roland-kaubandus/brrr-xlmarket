@@ -1,6 +1,8 @@
 #!/bin/bash
 # WO-XLM-002: Store setup script
 # Seadistab Eesti regiooni, käibemaksu, kategooriad ja API key
+export LANG=et_EE.UTF-8
+export LC_ALL=et_EE.UTF-8
 
 BASE_URL="${MEDUSA_URL:-http://localhost:9001}"
 EMAIL="${ADMIN_EMAIL:-tarmo@xlmarket.eu}"
@@ -94,12 +96,12 @@ CATEGORIES=(
   "Elektroonika"
   "Lemmikloomad"
   "Kontor ja ladustamine"
-  "Meditsiin ja tervishoiu"
+  "Meditsiin ja tervishoid"
 )
 
 for i in "${!CATEGORIES[@]}"; do
   CAT="${CATEGORIES[$i]}"
-  HANDLE=$(echo "$CAT" | tr '[:upper:]' '[:lower:]' | sed 's/ /-/g' | sed 's/ä/a/g; s/ö/o/g; s/ü/u/g; s/õ/o/g')
+  HANDLE=$(echo "$CAT" | tr '[:upper:]' '[:lower:]' | sed 's/ /-/g' | sed 's/ä/a/g; s/ö/o/g; s/ü/u/g; s/õ/o/g; s/ž/z/g; s/š/s/g')
   RANK=$((i + 1))
   RESULT=$(api POST /admin/product-categories "{\"name\":\"$CAT\",\"handle\":\"$HANDLE\",\"is_active\":true,\"is_internal\":false,\"rank\":$RANK}")
   CAT_ID=$(echo $RESULT | python3 -c "import sys,json; print(json.load(sys.stdin).get('product_category',{}).get('id','ERROR'))" 2>/dev/null)
