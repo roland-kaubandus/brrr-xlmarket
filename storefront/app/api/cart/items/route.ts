@@ -1,8 +1,26 @@
 import { NextRequest, NextResponse } from "next/server"
 import { medusaProxy } from "@/lib/medusa-proxy"
+import { isValidId, isValidQuantity } from "@/lib/validation"
 
 export async function POST(req: NextRequest) {
-  const { cart_id, variant_id, quantity } = await req.json()
+  let body: Record<string, unknown>
+  try {
+    body = await req.json()
+  } catch {
+    return NextResponse.json({ error: "Invalid JSON" }, { status: 400 })
+  }
+
+  const { cart_id, variant_id, quantity } = body
+
+  if (!isValidId(cart_id)) {
+    return NextResponse.json({ error: "cart_id is required and must be a valid ID" }, { status: 400 })
+  }
+  if (!isValidId(variant_id)) {
+    return NextResponse.json({ error: "variant_id is required and must be a valid ID" }, { status: 400 })
+  }
+  if (!isValidQuantity(quantity)) {
+    return NextResponse.json({ error: "quantity must be an integer between 1 and 99" }, { status: 400 })
+  }
 
   const res = await medusaProxy(`/store/carts/${cart_id}/line-items`, {
     method: "POST",
@@ -13,7 +31,24 @@ export async function POST(req: NextRequest) {
 }
 
 export async function PATCH(req: NextRequest) {
-  const { cart_id, item_id, quantity } = await req.json()
+  let body: Record<string, unknown>
+  try {
+    body = await req.json()
+  } catch {
+    return NextResponse.json({ error: "Invalid JSON" }, { status: 400 })
+  }
+
+  const { cart_id, item_id, quantity } = body
+
+  if (!isValidId(cart_id)) {
+    return NextResponse.json({ error: "cart_id is required and must be a valid ID" }, { status: 400 })
+  }
+  if (!isValidId(item_id)) {
+    return NextResponse.json({ error: "item_id is required and must be a valid ID" }, { status: 400 })
+  }
+  if (!isValidQuantity(quantity)) {
+    return NextResponse.json({ error: "quantity must be an integer between 1 and 99" }, { status: 400 })
+  }
 
   const res = await medusaProxy(`/store/carts/${cart_id}/line-items/${item_id}`, {
     method: "POST",
@@ -24,7 +59,21 @@ export async function PATCH(req: NextRequest) {
 }
 
 export async function DELETE(req: NextRequest) {
-  const { cart_id, item_id } = await req.json()
+  let body: Record<string, unknown>
+  try {
+    body = await req.json()
+  } catch {
+    return NextResponse.json({ error: "Invalid JSON" }, { status: 400 })
+  }
+
+  const { cart_id, item_id } = body
+
+  if (!isValidId(cart_id)) {
+    return NextResponse.json({ error: "cart_id is required and must be a valid ID" }, { status: 400 })
+  }
+  if (!isValidId(item_id)) {
+    return NextResponse.json({ error: "item_id is required and must be a valid ID" }, { status: 400 })
+  }
 
   const res = await medusaProxy(`/store/carts/${cart_id}/line-items/${item_id}`, {
     method: "DELETE",
