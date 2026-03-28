@@ -25,7 +25,8 @@ const FEED_URL = "https://ads-feed.s3.us-west-2.amazonaws.com/ads/business/132/v
 const PRICE_MARKUP = 1.15
 const MEDUSA_URL = process.env.MEDUSA_URL || "http://127.0.0.1:9001"
 const ADMIN_EMAIL = process.env.ADMIN_EMAIL || "tarmo@xlmarket.eu"
-const ADMIN_PASS = process.env.ADMIN_PASS || "XLmarket2026!secure"
+const ADMIN_PASS = process.env.ADMIN_PASS
+if (!ADMIN_PASS) throw new Error("ADMIN_PASS env variable required")
 const FEED_DIR = path.join(__dirname, "../../data/feeds")
 const BATCH_SIZE = 20 // concurrent API calls per batch
 const SALES_CHANNEL_ID = process.env.SALES_CHANNEL_ID || ""

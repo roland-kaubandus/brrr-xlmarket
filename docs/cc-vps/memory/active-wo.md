@@ -20,7 +20,7 @@ WO-XLM-005: Storefront lehed
 - **Publishable API key:** pk_d8dce98ddbea51a05856fe088fd0af77fab4675ccc4f03773d064dd4f6d203b3
 - **Region ID:** reg_01KMRXWSNXSYE4530A3K2BK86W
 - **Sales channel:** sc_01KMRWP84555JPGA6M0QMG409M
-- **Admin login:** tarmo@xlmarket.eu / XLmarket2026!secure
+- **Admin login:** tarmo@xlmarket.eu / [PAROOL .env FAILIS]
 - **Storefront port:** 3030
 - **nginx port:** 8090
 

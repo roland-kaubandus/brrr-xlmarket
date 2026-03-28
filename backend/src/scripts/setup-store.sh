@@ -2,9 +2,9 @@
 # WO-XLM-002: Store setup script
 # Seadistab Eesti regiooni, käibemaksu, kategooriad ja API key
 
-BASE_URL="http://localhost:9001"
-EMAIL="tarmo@xlmarket.eu"
-PASS="XLmarket2026!secure"
+BASE_URL="${MEDUSA_URL:-http://localhost:9001}"
+EMAIL="${ADMIN_EMAIL:-tarmo@xlmarket.eu}"
+PASS="${ADMIN_PASS:?ADMIN_PASS env variable required}"
 
 echo "=== Authenticating ==="
 TOKEN=$(curl -s -X POST $BASE_URL/auth/user/emailpass \
