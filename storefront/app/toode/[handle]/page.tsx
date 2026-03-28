@@ -14,14 +14,23 @@ export async function generateMetadata({ params }: Props) {
   const { handle } = await params
   const product = await getProduct(handle)
   if (!product) return { title: "Toode — XLMARKET" }
-  const price = product.variants?.[0]?.calculated_price
+  const desc = product.description
+    ? product.description.replace(/<[^>]*>/g, "").substring(0, 160)
+    : product.title
   return {
     title: `${product.title} — XLMARKET`,
-    description: product.description?.substring(0, 160) || product.title,
+    description: desc,
     openGraph: {
       title: product.title,
-      description: product.description?.substring(0, 160) || product.title,
+      description: desc,
       images: product.thumbnail ? [{ url: product.thumbnail }] : [],
+      type: "og:product",
+    },
+    twitter: {
+      card: product.thumbnail ? "summary_large_image" : "summary",
+      title: product.title,
+      description: desc,
+      images: product.thumbnail ? [product.thumbnail] : [],
     },
   }
 }

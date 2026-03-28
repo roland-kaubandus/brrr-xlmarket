@@ -10,8 +10,13 @@ type Props = {
 
 export async function generateMetadata({ searchParams }: Props) {
   const { q } = await searchParams
+  const title = q ? `"${q}" — Otsing — XLMARKET` : "Otsing — XLMARKET"
   return {
-    title: q ? `"${q}" — Otsing — XLMARKET` : "Otsing — XLMARKET",
+    title,
+    description: q
+      ? `Otsi "${q}" XLMARKET toodete hulgast.`
+      : "Otsi XLMARKET toodete hulgast. Üle 10 000 toote soodsa hinnaga.",
+    robots: { index: false, follow: true },
   }
 }
 

@@ -15,9 +15,14 @@ export async function generateMetadata({ params }: Props) {
   const { handle } = await params
   const category = await getCategoryByHandle(handle)
   if (!category) return { title: "Kategooria — XLMARKET" }
+  const desc = `${category.name} tooted soodsa hinnaga. Kiire tarne Eestis.`
   return {
     title: `${category.name} — XLMARKET`,
-    description: `${category.name} tooted soodsa hinnaga. Kiire tarne Eestis.`,
+    description: desc,
+    openGraph: {
+      title: `${category.name} — XLMARKET`,
+      description: desc,
+    },
   }
 }
 

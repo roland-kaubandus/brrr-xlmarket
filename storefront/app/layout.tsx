@@ -3,7 +3,10 @@ import Link from "next/link"
 import "./globals.css"
 
 export const metadata: Metadata = {
-  title: "XLMARKET — Suur valik, väike hind",
+  title: {
+    default: "XLMARKET — Suur valik, väike hind",
+    template: "%s",
+  },
   description:
     "Kvaliteetsed tööriistad, seadmed ja kodukaup soodsa hinnaga. Kiire tarne Eestis.",
   openGraph: {
@@ -12,7 +15,15 @@ export const metadata: Metadata = {
       "Kvaliteetsed tööriistad, seadmed ja kodukaup soodsa hinnaga.",
     locale: "et_EE",
     type: "website",
+    siteName: "XLMARKET",
   },
+  twitter: {
+    card: "summary",
+    title: "XLMARKET",
+    description:
+      "Kvaliteetsed tööriistad, seadmed ja kodukaup soodsa hinnaga.",
+  },
+  metadataBase: new URL("https://xlmarket.eu"),
 }
 
 export default function RootLayout({

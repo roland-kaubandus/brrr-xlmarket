@@ -1,8 +1,29 @@
+import type { Metadata } from "next"
 import Link from "next/link"
 import { getProducts, getCategories } from "@/lib/medusa"
 import ProductCard from "@/components/ProductCard"
 
 export const revalidate = 300 // revalidate every 5 min
+
+export const metadata: Metadata = {
+  title: "XLMARKET — Suur valik, väike hind",
+  description:
+    "Kvaliteetsed tööriistad, seadmed ja kodukaup soodsa hinnaga. Kiire tarne Eestis. Üle 10 000 toote.",
+  openGraph: {
+    title: "XLMARKET — Suur valik, väike hind",
+    description:
+      "Kvaliteetsed tööriistad, seadmed ja kodukaup soodsa hinnaga. Kiire tarne Eestis.",
+    type: "website",
+    locale: "et_EE",
+    siteName: "XLMARKET",
+  },
+  twitter: {
+    card: "summary",
+    title: "XLMARKET — Suur valik, väike hind",
+    description:
+      "Kvaliteetsed tööriistad, seadmed ja kodukaup soodsa hinnaga.",
+  },
+}
 
 export default async function Home() {
   const [productsRes, categories] = await Promise.all([

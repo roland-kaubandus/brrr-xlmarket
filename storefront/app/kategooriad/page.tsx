@@ -1,10 +1,18 @@
+import type { Metadata } from "next"
 import Link from "next/link"
 import { getCategories } from "@/lib/medusa"
 
 export const revalidate = 300
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Kategooriad — XLMARKET",
+  description:
+    "Sirvi XLMARKET tootekategooriaid: tööriistad, kodu ja aed, sport, auto ja palju muud.",
+  openGraph: {
+    title: "Kategooriad — XLMARKET",
+    description:
+      "Sirvi XLMARKET tootekategooriaid: tööriistad, kodu ja aed, sport, auto ja palju muud.",
+  },
 }
 
 export default async function CategoriesPage() {
