@@ -1,0 +1,18 @@
+[Unit]
+Description=XLMARKET Docker Compose (PostgreSQL + Redis)
+After=docker.service
+Requires=docker.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+User=brrr
+WorkingDirectory=/home/brrr/brrr-xlmarket
+ExecStart=/usr/bin/docker compose up -d postgres redis
+ExecStop=/usr/bin/docker compose down
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=xlmarket-docker
+
+[Install]
+WantedBy=multi-user.target

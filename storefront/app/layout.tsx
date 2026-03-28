@@ -26,12 +26,22 @@ export const metadata: Metadata = {
     locale: "et_EE",
     type: "website",
     siteName: "XLMARKET",
+    url: "https://xlmarket.eu",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "XLMARKET — Suur valik, väike hind",
+      },
+    ],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "XLMARKET",
     description:
       "Kvaliteetsed tööriistad, seadmed ja kodukaup soodsa hinnaga.",
+    images: ["/og-image.png"],
   },
   metadataBase: new URL("https://xlmarket.eu"),
   icons: {
