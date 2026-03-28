@@ -1,5 +1,8 @@
 import type { Metadata } from "next"
 import Link from "next/link"
+import CookieConsent from "@/components/CookieConsent"
+import MetaPixel from "@/components/MetaPixel"
+import JsonLdOrganization from "@/components/JsonLdOrganization"
 import "./globals.css"
 
 export const metadata: Metadata = {
@@ -24,6 +27,9 @@ export const metadata: Metadata = {
       "Kvaliteetsed tööriistad, seadmed ja kodukaup soodsa hinnaga.",
   },
   metadataBase: new URL("https://xlmarket.eu"),
+  icons: {
+    icon: "/favicon.svg",
+  },
 }
 
 export default function RootLayout({
@@ -34,6 +40,7 @@ export default function RootLayout({
   return (
     <html lang="et">
       <body className="font-sans antialiased bg-gray-50 text-gray-900">
+        <JsonLdOrganization />
         <header className="bg-white border-b border-gray-200 sticky top-0 z-50">
           <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
             <Link
@@ -97,24 +104,59 @@ export default function RootLayout({
         <main className="min-h-screen">{children}</main>
 
         <footer className="bg-white border-t border-gray-200 mt-16">
-          <div className="max-w-7xl mx-auto px-4 py-8">
-            <div className="flex flex-col sm:flex-row justify-between gap-4 text-sm text-gray-500">
+          <div className="max-w-7xl mx-auto px-4 py-10">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 text-sm text-gray-500">
+              {/* Company info */}
               <div>
-                <p className="font-medium text-gray-900 mb-1">XLMARKET</p>
+                <p className="font-bold text-gray-900 text-lg mb-3">XLMARKET</p>
                 <p>Roland Kaubandus OÜ</p>
-                <p>info@xlmarket.eu</p>
+                <p className="mt-2">
+                  <a href="mailto:info@xlmarket.eu" className="hover:text-amber-600">
+                    info@xlmarket.eu
+                  </a>
+                </p>
               </div>
-              <nav className="flex gap-6">
-                <Link href="/kategooriad" className="hover:text-amber-600">
-                  Kategooriad
-                </Link>
-                <Link href="/ostukorv" className="hover:text-amber-600">
-                  Ostukorv
-                </Link>
-              </nav>
+
+              {/* Shop links */}
+              <div>
+                <p className="font-medium text-gray-900 mb-3">Pood</p>
+                <nav className="flex flex-col gap-2">
+                  <Link href="/kategooriad" className="hover:text-amber-600">Kategooriad</Link>
+                  <Link href="/otsing" className="hover:text-amber-600">Otsing</Link>
+                  <Link href="/ostukorv" className="hover:text-amber-600">Ostukorv</Link>
+                </nav>
+              </div>
+
+              {/* Info links */}
+              <div>
+                <p className="font-medium text-gray-900 mb-3">Info</p>
+                <nav className="flex flex-col gap-2">
+                  <Link href="/meist" className="hover:text-amber-600">Meist</Link>
+                  <Link href="/tarne" className="hover:text-amber-600">Tarneinfo</Link>
+                  <Link href="/tagastamine" className="hover:text-amber-600">Tagastamine</Link>
+                  <Link href="/kontakt" className="hover:text-amber-600">Kontakt</Link>
+                </nav>
+              </div>
+
+              {/* Legal links */}
+              <div>
+                <p className="font-medium text-gray-900 mb-3">Õiguslik</p>
+                <nav className="flex flex-col gap-2">
+                  <Link href="/tingimused" className="hover:text-amber-600">Müügitingimused</Link>
+                  <Link href="/privaatsus" className="hover:text-amber-600">Privaatsuspoliitika</Link>
+                  <Link href="/kupsised" className="hover:text-amber-600">Küpsiste poliitika</Link>
+                </nav>
+              </div>
+            </div>
+
+            <div className="border-t border-gray-200 mt-8 pt-6 text-xs text-gray-400 text-center">
+              &copy; {new Date().getFullYear()} Roland Kaubandus OÜ. Kõik õigused kaitstud.
             </div>
           </div>
         </footer>
+
+        <CookieConsent />
+        <MetaPixel />
       </body>
     </html>
   )

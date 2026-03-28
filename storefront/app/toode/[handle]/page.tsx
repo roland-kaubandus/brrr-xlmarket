@@ -1,8 +1,11 @@
-import Image from "next/image"
 import Link from "next/link"
 import { getProduct, formatPrice } from "@/lib/medusa"
+import { sanitizeHtml } from "@/lib/sanitize"
 import { notFound } from "next/navigation"
 import AddToCartButton from "./AddToCartButton"
+import ProductGallery from "@/components/ProductGallery"
+import JsonLdProduct from "@/components/JsonLdProduct"
+import JsonLdBreadcrumb from "@/components/JsonLdBreadcrumb"
 
 export const revalidate = 300
 
@@ -44,8 +47,19 @@ export default async function ProductPage({ params }: Props) {
   const price = variant?.calculated_price
   const images = product.images?.length ? product.images : product.thumbnail ? [{ id: "thumb", url: product.thumbnail }] : []
 
+  const breadcrumbItems = [
+    { name: "Avaleht", url: "https://xlmarket.eu" },
+    ...(product.categories?.[0]
+      ? [{ name: product.categories[0].name, url: `https://xlmarket.eu/kategooriad/${product.categories[0].handle}` }]
+      : []),
+    { name: product.title, url: `https://xlmarket.eu/toode/${product.handle}` },
+  ]
+
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
+      <JsonLdProduct product={product} price={price} />
+      <JsonLdBreadcrumb items={breadcrumbItems} />
+
       {/* Breadcrumb */}
       <nav className="text-sm text-gray-500 mb-6" aria-label="Leheasukoht">
         <Link href="/" className="hover:text-amber-600">Avaleht</Link>
@@ -65,43 +79,8 @@ export default async function ProductPage({ params }: Props) {
       </nav>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-        {/* Images */}
-        <div>
-          {images.length > 0 ? (
-            <div className="relative aspect-square bg-white border border-gray-200">
-              <Image
-                src={images[0].url}
-                alt={product.title}
-                fill
-                className="object-contain p-4"
-                sizes="(max-width: 1024px) 100vw, 50vw"
-                priority
-              />
-            </div>
-          ) : (
-            <div className="aspect-square bg-gray-100 flex items-center justify-center text-gray-400">
-              Pilt puudub
-            </div>
-          )}
-          {images.length > 1 && (
-            <div className="grid grid-cols-4 gap-2 mt-3">
-              {images.slice(1, 5).map((img) => (
-                <div
-                  key={img.id}
-                  className="relative aspect-square bg-white border border-gray-200"
-                >
-                  <Image
-                    src={img.url}
-                    alt={product.title}
-                    fill
-                    className="object-contain p-1"
-                    sizes="(max-width: 1024px) 25vw, 12vw"
-                  />
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
+        {/* Images - interactive gallery */}
+        <ProductGallery images={images} title={product.title} />
 
         {/* Info */}
         <div>
@@ -141,9 +120,7 @@ export default async function ProductPage({ params }: Props) {
               <div
                 className="text-gray-700 text-sm leading-relaxed [&_br]:block [&_br]:mb-1"
                 dangerouslySetInnerHTML={{
-                  __html: product.description
-                    .replace(/<script[\s\S]*?<\/script>/gi, "")
-                    .replace(/on\w+="[^"]*"/gi, ""),
+                  __html: sanitizeHtml(product.description),
                 }}
               />
             </div>

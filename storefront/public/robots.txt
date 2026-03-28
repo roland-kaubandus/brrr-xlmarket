@@ -1,4 +1,8 @@
 User-agent: *
 Allow: /
+Disallow: /ostukorv
+Disallow: /tellimus
+Disallow: /otsing
+Disallow: /api/
 
 Sitemap: https://xlmarket.eu/sitemap.xml
