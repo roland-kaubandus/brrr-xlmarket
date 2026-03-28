@@ -34,6 +34,16 @@ export async function sendEmail({ to, subject, html }: SendEmailOptions) {
   })
 }
 
+function escapeHtml(str: string | undefined | null): string {
+  if (!str) return ""
+  return str
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;")
+}
+
 function formatPrice(amount: number, currency = "EUR"): string {
   return (amount / 100).toFixed(2).replace(".", ",") + " " + currency
 }
@@ -93,7 +103,7 @@ export async function sendOrderConfirmation(order: OrderData) {
     .map(
       (item) =>
         `<tr>
-          <td style="padding: 8px 0; border-bottom: 1px solid #f3f4f6;">${item.title}</td>
+          <td style="padding: 8px 0; border-bottom: 1px solid #f3f4f6;">${escapeHtml(item.title)}</td>
           <td style="padding: 8px 0; border-bottom: 1px solid #f3f4f6; text-align: center;">${item.quantity}</td>
           <td style="padding: 8px 0; border-bottom: 1px solid #f3f4f6; text-align: right;">${formatPrice(item.unit_price * item.quantity, item.currency_code || order.currency_code)}</td>
         </tr>`
@@ -102,7 +112,7 @@ export async function sendOrderConfirmation(order: OrderData) {
 
   const html = emailWrapper(`
     <h1 style="font-size: 22px; color: #111827; margin: 0 0 20px;">Tellimus kinnitatud</h1>
-    <p style="color: #4b5563; margin: 0 0 20px;">Tere, ${name}! T&auml;name teid tellimuse eest.</p>
+    <p style="color: #4b5563; margin: 0 0 20px;">Tere, ${escapeHtml(name)}! T&auml;name teid tellimuse eest.</p>
     <div style="background: #f9fafb; padding: 15px; margin-bottom: 20px;">
       <p style="margin: 0; font-weight: 600;">Tellimus #${orderNum}</p>
     </div>
@@ -125,10 +135,10 @@ export async function sendOrderConfirmation(order: OrderData) {
         ? `<div style="margin-top: 25px; padding-top: 20px; border-top: 1px solid #e5e7eb;">
           <h2 style="font-size: 16px; color: #111827; margin: 0 0 10px;">Tarneaadress</h2>
           <p style="color: #4b5563; margin: 0; line-height: 1.6;">
-            ${order.shipping_address.first_name || ""} ${order.shipping_address.last_name || ""}<br>
-            ${order.shipping_address.address_1 || ""}<br>
-            ${order.shipping_address.postal_code || ""} ${order.shipping_address.city || ""}
-            ${order.shipping_address.phone ? `<br>Tel: ${order.shipping_address.phone}` : ""}
+            ${escapeHtml(order.shipping_address.first_name)} ${escapeHtml(order.shipping_address.last_name)}<br>
+            ${escapeHtml(order.shipping_address.address_1)}<br>
+            ${escapeHtml(order.shipping_address.postal_code)} ${escapeHtml(order.shipping_address.city)}
+            ${order.shipping_address.phone ? `<br>Tel: ${escapeHtml(order.shipping_address.phone)}` : ""}
           </p>
         </div>`
         : ""
@@ -145,7 +155,7 @@ export async function sendOrderConfirmation(order: OrderData) {
   // Admin notification
   const adminHtml = emailWrapper(`
     <h1 style="font-size: 22px; color: #111827; margin: 0 0 20px;">Uus tellimus #${orderNum}</h1>
-    <p style="color: #4b5563;">Klient: ${name} (${order.email})</p>
+    <p style="color: #4b5563;">Klient: ${escapeHtml(name)} (${escapeHtml(order.email)})</p>
     <p style="color: #4b5563;">Tooted: ${order.items.length} tk</p>
     <p style="font-size: 18px; font-weight: 700; color: #111827;">Kokku: ${formatPrice(order.total, order.currency_code)}</p>
     <p style="margin-top: 20px;"><a href="${process.env.MEDUSA_BACKEND_URL || "http://localhost:9001"}/app/orders/${order.id}" style="background: #f59e0b; color: white; padding: 10px 20px; text-decoration: none; font-weight: 600;">Vaata tellimust</a></p>
@@ -164,8 +174,8 @@ export async function sendShippingConfirmation(order: OrderData, trackingNumber?
 
   const html = emailWrapper(`
     <h1 style="font-size: 22px; color: #111827; margin: 0 0 20px;">Tellimus saadetud</h1>
-    <p style="color: #4b5563; margin: 0 0 20px;">Tere, ${name}! Teie tellimus #${orderNum} on teele pandud.</p>
-    ${trackingNumber ? `<div style="background: #f9fafb; padding: 15px; margin-bottom: 20px;"><p style="margin: 0;">J&auml;lgimisnumber: <strong>${trackingNumber}</strong></p></div>` : ""}
+    <p style="color: #4b5563; margin: 0 0 20px;">Tere, ${escapeHtml(name)}! Teie tellimus #${orderNum} on teele pandud.</p>
+    ${trackingNumber ? `<div style="background: #f9fafb; padding: 15px; margin-bottom: 20px;"><p style="margin: 0;">J&auml;lgimisnumber: <strong>${escapeHtml(trackingNumber)}</strong></p></div>` : ""}
     <p style="color: #6b7280; font-size: 13px;">K&uuml;simuste korral kirjutage <a href="mailto:info@xlmarket.eu" style="color: #d97706;">info@xlmarket.eu</a></p>
   `)
 

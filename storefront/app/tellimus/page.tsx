@@ -95,6 +95,8 @@ export default function CheckoutPage() {
         const options = shipData.shipping_options || []
         setShippingOptions(options)
         if (options.length > 0) setSelectedShipping(options[0].id)
+      } else {
+        setError("Tarneviise ei õnnestunud laadida. Palun proovi lehte uuesti laadida.")
       }
     } catch {
       setError("Ostukorvi laadimine ebaõnnestus")
@@ -115,11 +117,11 @@ export default function CheckoutPage() {
   function validateForm(): string | null {
     if (!form.first_name.trim()) return "Eesnimi on kohustuslik"
     if (!form.last_name.trim()) return "Perekonnanimi on kohustuslik"
-    if (!form.email.trim() || !form.email.includes("@")) return "Kehtiv e-posti aadress on kohustuslik"
-    if (!form.phone.trim()) return "Telefon on kohustuslik"
+    if (!form.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) return "Kehtiv e-posti aadress on kohustuslik"
+    if (!form.phone.trim() || !/^[\d\s+()-]{7,20}$/.test(form.phone.trim())) return "Palun sisestage kehtiv telefoninumber"
     if (!form.address_1.trim()) return "Aadress on kohustuslik"
     if (!form.city.trim()) return "Linn on kohustuslik"
-    if (!form.postal_code.trim()) return "Postiindeks on kohustuslik"
+    if (!form.postal_code.trim() || !/^\d{5}$/.test(form.postal_code.trim())) return "Postiindeks peab olema 5-kohaline number"
     return null
   }
 
@@ -157,8 +159,7 @@ export default function CheckoutPage() {
       })
 
       if (!checkoutRes.ok) {
-        const err = await checkoutRes.json()
-        setError(err.error || err.message || "Kliendi andmete salvestamine ebaõnnestus")
+        setError("Kliendi andmete salvestamine ebaõnnestus")
         setSubmitting(false)
         return
       }
@@ -175,8 +176,7 @@ export default function CheckoutPage() {
         })
 
         if (!shipRes.ok) {
-          const err = await shipRes.json()
-          setError(err.error || err.message || "Tarneviisi valimine ebaõnnestus")
+          setError("Tarneviisi valimine ebaõnnestus")
           setSubmitting(false)
           return
         }
@@ -190,8 +190,7 @@ export default function CheckoutPage() {
       })
 
       if (!completeRes.ok) {
-        const err = await completeRes.json()
-        setError(err.error || err.message || "Tellimuse vormistamine ebaõnnestus")
+        setError("Tellimuse vormistamine ebaõnnestus")
         setSubmitting(false)
         return
       }

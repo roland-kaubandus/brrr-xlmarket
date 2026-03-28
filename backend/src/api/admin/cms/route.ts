@@ -23,6 +23,11 @@ export const GET = async (req: MedusaRequest, res: MedusaResponse) => {
 }
 
 export const POST = async (req: MedusaRequest, res: MedusaResponse) => {
+  if (!(req as any).auth_context?.actor_id) {
+    res.status(401).json({ message: "Autentimine on kohustuslik" })
+    return
+  }
+
   const current = readCms()
   const updates = req.body as Record<string, unknown>
 

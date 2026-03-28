@@ -22,6 +22,7 @@ export async function generateMetadata({ params }: Props) {
     openGraph: {
       title: `${category.name} — XLMARKET`,
       description: desc,
+      type: "website",
     },
   }
 }
