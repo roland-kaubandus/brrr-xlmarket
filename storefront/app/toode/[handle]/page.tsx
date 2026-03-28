@@ -38,7 +38,7 @@ export default async function ProductPage({ params }: Props) {
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
       {/* Breadcrumb */}
-      <nav className="text-sm text-gray-500 mb-6">
+      <nav className="text-sm text-gray-500 mb-6" aria-label="Leheasukoht">
         <Link href="/" className="hover:text-amber-600">Avaleht</Link>
         <span className="mx-2">/</span>
         {product.categories?.[0] && (
@@ -106,14 +106,30 @@ export default async function ProductPage({ params }: Props) {
             </p>
           )}
 
+          {/* Laoseisu badge — Medusa v2 Store API ei paljasta inventory_quantity't,
+              seega tugineme: published = laos (import script märgib otsas tooted draft'iks) */}
           <div className="mb-6">
-            <span className="inline-block px-3 py-1 bg-green-100 text-green-800 text-sm font-medium">
-              Laos
-            </span>
+            {variant ? (
+              variant.manage_inventory && !variant.allow_backorder ? (
+                <span className="inline-block px-3 py-1 bg-green-100 text-green-800 text-sm font-medium">
+                  Laos
+                </span>
+              ) : (
+                <span className="inline-block px-3 py-1 bg-amber-100 text-amber-800 text-sm font-medium">
+                  Saadaval
+                </span>
+              )
+            ) : (
+              <span className="inline-block px-3 py-1 bg-red-100 text-red-800 text-sm font-medium">
+                Hetkel ei ole saadaval
+              </span>
+            )}
           </div>
 
-          {variant && (
+          {variant ? (
             <AddToCartButton variantId={variant.id} />
+          ) : (
+            <p className="text-sm text-gray-500">Seda toodet ei saa hetkel osta.</p>
           )}
 
           {product.description && (

@@ -28,7 +28,8 @@ export type ProductVariant = {
   id: string
   title: string
   calculated_price: MedusaPrice
-  inventory_quantity?: number
+  manage_inventory?: boolean
+  allow_backorder?: boolean
 }
 
 export type ProductImage = {
