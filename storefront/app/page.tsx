@@ -10,6 +10,7 @@ import AnnouncementBar from "@/components/AnnouncementBar"
 import {
   ArrowRight,
   Leaf,
+  Package,
 } from "lucide-react"
 
 export const revalidate = 300
@@ -43,23 +44,6 @@ export const metadata: Metadata = {
   },
 }
 
-// Unique gradient accent per category — no icons, pure color identity
-const categoryColorMap: Record<string, { from: string; to: string; dot: string }> = {
-  "ehitus-ja-remont":        { from: "#C95208", to: "#E8650A", dot: "#E8650A" },
-  "toostus-ja-seadmed":      { from: "#1A3A5C", to: "#2D6A9F", dot: "#2D6A9F" },
-  "kodu-ja-aed":             { from: "#2E7D32", to: "#52B35A", dot: "#52B35A" },
-  "auto-ja-garaaz":          { from: "#37474F", to: "#607D8B", dot: "#607D8B" },
-  "sport-ja-vaba-aeg":       { from: "#AD1457", to: "#E91E63", dot: "#E91E63" },
-  "kunst-ja-kasitoo":        { from: "#6A1B9A", to: "#AB47BC", dot: "#AB47BC" },
-  "toitlustus-ja-kook":      { from: "#BF360C", to: "#FF5722", dot: "#FF5722" },
-  "elektroonika":             { from: "#0D47A1", to: "#1976D2", dot: "#1976D2" },
-  "lemmikloomad":             { from: "#558B2F", to: "#8BC34A", dot: "#8BC34A" },
-  "kontor-ja-ladustamine":    { from: "#4E342E", to: "#795548", dot: "#795548" },
-  "meditsiin-ja-tervishoid":  { from: "#00695C", to: "#26A69A", dot: "#26A69A" },
-}
-
-const defaultColor = { from: "#555555", to: "#888888", dot: "#888888" }
-
 const trustItems = [
   { label: "Tasuta tarne", sub: "alates 50€" },
   { label: "2 aasta garantii", sub: "kõigile toodetele" },
@@ -89,6 +73,16 @@ export default async function Home() {
     handle: c.handle,
     products: bsCatProducts[i]?.products ?? [],
   }))
+
+  // Fetch one product thumbnail per category (parallel, for VEVOR-style cards)
+  const catThumbsRaw = await Promise.all(
+    categories.map((cat) =>
+      getProducts({ limit: 1, category_id: [cat.id] })
+        .then((res) => [cat.id, res.products[0]?.thumbnail ?? null] as const)
+        .catch(() => [cat.id, null] as const)
+    )
+  )
+  const catThumbMap = Object.fromEntries(catThumbsRaw)
 
   const topBanners = cms.banners.filter(
     (b) => b.position === "home-top" && b.visible
@@ -175,10 +169,10 @@ export default async function Home() {
                 )}
 
                 <div className="flex flex-wrap items-center gap-[16px]">
-                  {/* Primary CTA — rounded-[8px] allowed */}
+                  {/* Primary CTA — allowed */}
                   <Link
                     href={cms.hero.buttonLink || "/kategooriad"}
-                    className="group inline-flex items-center gap-[10px] bg-[#E8650A] text-white px-[22px] py-[12px] rounded-[8px] text-[15px] font-[600] font-[family-name:var(--font-poppins)] hover:bg-[#CF5A08] active:scale-[0.98]"
+                    className="group inline-flex items-center gap-[10px] bg-[#E8650A] text-white px-[22px] py-[12px] text-[15px] font-[600] font-[family-name:var(--font-poppins)] hover:bg-[#CF5A08] active:scale-[0.98]"
                     style={{
                       boxShadow: "0 4px 20px rgba(232,101,10,0.28), 0 1px 0 rgba(255,255,255,0.12) inset",
                       transition: "all 0.25s cubic-bezier(0.32,0.72,0,1)",
@@ -202,20 +196,20 @@ export default async function Home() {
                 </div>
               </div>
 
-              {/* Right: decorative sale card — keeps rounded-[16px] as decorative promo element */}
+              {/* Right: decorative sale card — keeps as decorative promo element */}
               <div
                 className="hidden lg:block shrink-0"
                 aria-hidden="true"
               >
                 <div
-                  className="p-[6px] rounded-[30px]"
+                  className="p-[6px]"
                   style={{
                     background: "rgba(232,101,10,0.08)",
                     border: "1px solid rgba(232,101,10,0.16)",
                   }}
                 >
                   <div
-                    className="flex flex-col items-center justify-center gap-[6px] rounded-[24px] text-white"
+                    className="flex flex-col items-center justify-center gap-[6px] text-white"
                     style={{
                       width: "260px",
                       height: "260px",
@@ -305,50 +299,35 @@ export default async function Home() {
           <h2 className="text-[24px] sm:text-[28px] font-[600] font-[family-name:var(--font-poppins)] text-[#1A1A1A] mb-[32px]">
             Kategooriad
           </h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-[16px]">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-[1px] border border-[#E8E8E8]" style={{ background: "#E8E8E8" }}>
             {categories.map((cat) => {
-              const colors = categoryColorMap[cat.handle] ?? defaultColor
+              const thumb = catThumbMap[cat.id] ?? null
               return (
                 <Link
                   key={cat.id}
                   href={"/kategooriad/" + cat.handle}
-                  className="group flex flex-col overflow-hidden rounded-[2px] border border-[#E8E8E8] hover:border-[#E8650A]/40 active:scale-[0.98] bg-white"
-                  style={{ transition: "all 0.22s cubic-bezier(0.32,0.72,0,1)" }}
+                  className="group flex items-center justify-between bg-white hover:bg-[#FFF5EE] overflow-hidden"
+                  style={{ transition: "background-color 0.18s cubic-bezier(0.32,0.72,0,1)" }}
                 >
-                  {/* Gradient swatch — top section, unique per category */}
-                  <div
-                    className="h-[72px] w-full relative overflow-hidden"
-                    style={{
-                      background: `linear-gradient(135deg, ${colors.from} 0%, ${colors.to} 100%)`,
-                    }}
-                  >
-                    {/* Subtle diagonal stripe texture overlay */}
-                    <div
-                      className="absolute inset-0 opacity-[0.08]"
-                      style={{
-                        backgroundImage:
-                          "repeating-linear-gradient(45deg, transparent, transparent 2px, rgba(255,255,255,0.3) 2px, rgba(255,255,255,0.3) 4px)",
-                      }}
-                    />
-                    {/* Subtle white dot accent — bottom-right */}
-                    <div
-                      className="absolute bottom-[8px] right-[10px] w-[6px] h-[6px] rounded-full"
-                      style={{ background: "rgba(255,255,255,0.5)" }}
-                    />
-                  </div>
-                  {/* Name area */}
-                  <div className="px-[14px] py-[12px] flex items-center gap-[8px]">
-                    {/* Color dot accent matching the swatch */}
-                    <div
-                      className="w-[6px] h-[6px] rounded-full shrink-0"
-                      style={{ background: colors.dot }}
-                    />
+                  <div className="px-[14px] py-[14px] flex-1 min-w-0">
                     <span
-                      className="text-[13px] font-[500] font-[family-name:var(--font-poppins)] text-[#333333] leading-[1.35] group-hover:text-[#1A1A1A]"
+                      className="text-[13px] font-[600] font-[family-name:var(--font-poppins)] text-[#1A1A1A] group-hover:text-[#E8650A] leading-[1.4] block"
                       style={{ transition: "color 0.18s" }}
                     >
                       {cat.name}
                     </span>
+                  </div>
+                  <div className="w-[80px] h-[72px] shrink-0 relative bg-[#F7F7F7] flex items-center justify-center overflow-hidden">
+                    {thumb ? (
+                      <img
+                        src={thumb}
+                        alt=""
+                        className="w-full h-full object-contain p-[8px]"
+                        loading="lazy"
+                      />
+                    ) : (
+                      <Package size={26} strokeWidth={1} className="text-[#DDDDDD]" />
+                    )}
                   </div>
                 </Link>
               )
@@ -397,14 +376,14 @@ export default async function Home() {
           </div>
           {/* Promo code banner */}
           <div
-            className="flex items-center gap-[10px] px-[16px] py-[12px] rounded-[8px] mb-[24px]"
+            className="flex items-center gap-[10px] px-[16px] py-[12px] mb-[24px] border-l-[3px] border-[#E8650A]"
             style={{ background: "rgba(232,101,10,0.05)", border: "1px solid rgba(232,101,10,0.14)" }}
           >
             <span className="text-[13px] font-[family-name:var(--font-inter)] text-[#555555]">
               Kasuta allahindlust ostukorvis:
             </span>
             <code
-              className="px-[8px] py-[3px] rounded-[4px] text-[13px] font-[700] font-[family-name:var(--font-poppins)] text-[#E8650A] tracking-[0.08em]"
+              className="px-[8px] py-[3px] text-[13px] font-[700] font-[family-name:var(--font-poppins)] text-[#E8650A] tracking-[0.08em]"
               style={{ background: "rgba(232,101,10,0.10)" }}
             >
               KEVAD25

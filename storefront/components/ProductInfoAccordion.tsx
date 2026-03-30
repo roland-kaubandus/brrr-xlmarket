@@ -95,7 +95,7 @@ export default function ProductInfoAccordion() {
   ]
 
   return (
-    <div className="mt-[24px] border border-[#E8E8E8] rounded-[8px] px-[16px]">
+    <div className="mt-[24px] border border-[#E8E8E8] px-[16px]">
       {items.map((item) => (
         <AccordionRow key={item.id} item={item} />
       ))}

@@ -128,7 +128,7 @@ export default function RootLayout({
                 className="flex-1 max-w-[560px] hidden sm:flex"
                 role="search"
               >
-                <div className="flex w-full rounded-[8px] bg-[#F7F7F7] border border-transparent focus-within:border-[#E8650A] focus-within:bg-white focus-within:shadow-[0_0_0_3px_rgba(232,101,10,0.1)] transition-all">
+                <div className="flex w-full bg-[#F7F7F7] border border-transparent focus-within:border-[#E8650A] focus-within:bg-white focus-within:shadow-[0_0_0_3px_rgba(232,101,10,0.1)] transition-all">
                   <input
                     type="search"
                     name="q"
@@ -137,7 +137,7 @@ export default function RootLayout({
                   />
                   <button
                     type="submit"
-                    className="px-[16px] text-[#999999] hover:text-[#E8650A] rounded-r-[8px]"
+                    className="px-[16px] text-[#999999] hover:text-[#E8650A]"
                     aria-label="Otsi"
                   >
                     <Search size={20} strokeWidth={1.5} />
@@ -149,14 +149,14 @@ export default function RootLayout({
               <nav className="flex items-center gap-[8px] shrink-0" aria-label="Kasutaja toimingud">
                 <Link
                   href="/kontakt"
-                  className="hidden sm:flex items-center justify-center w-[40px] h-[40px] rounded-[8px] text-[#333333] hover:text-[#E8650A] hover:bg-[#FFF5EE] active:scale-95"
+                  className="hidden sm:flex items-center justify-center w-[40px] h-[40px] text-[#333333] hover:text-[#E8650A] hover:bg-[#FFF5EE] active:scale-95"
                   aria-label="Konto"
                 >
                   <User size={20} strokeWidth={1.5} />
                 </Link>
                 <Link
                   href="/lemmikud"
-                  className="hidden sm:flex items-center justify-center w-[40px] h-[40px] rounded-[8px] text-[#333333] hover:text-[#E8650A] hover:bg-[#FFF5EE] active:scale-95"
+                  className="hidden sm:flex items-center justify-center w-[40px] h-[40px] text-[#333333] hover:text-[#E8650A] hover:bg-[#FFF5EE] active:scale-95"
                   aria-label="Lemmikud"
                 >
                   <Heart size={20} strokeWidth={1.5} />
@@ -172,7 +172,7 @@ export default function RootLayout({
                 method="GET"
                 role="search"
               >
-                <div className="flex rounded-[8px] bg-[#F7F7F7] border border-transparent focus-within:border-[#E8650A] focus-within:bg-white focus-within:shadow-[0_0_0_3px_rgba(232,101,10,0.1)] transition-all">
+                <div className="flex bg-[#F7F7F7] border border-transparent focus-within:border-[#E8650A] focus-within:bg-white focus-within:shadow-[0_0_0_3px_rgba(232,101,10,0.1)] transition-all">
                   <input
                     type="search"
                     name="q"
@@ -201,7 +201,7 @@ export default function RootLayout({
                 <Link
                   key={cat.href}
                   href={cat.href}
-                  className="px-[12px] py-[8px] text-[14px] font-[500] font-[family-name:var(--font-poppins)] text-[#333333] hover:text-[#E8650A] border-b-2 border-transparent hover:border-[#E8650A] whitespace-nowrap rounded-t-[4px]"
+                  className="px-[12px] py-[8px] text-[14px] font-[500] font-[family-name:var(--font-poppins)] text-[#333333] hover:text-[#E8650A] border-b-2 border-transparent hover:border-[#E8650A] whitespace-nowrap"
                 >
                   {cat.name}
                 </Link>

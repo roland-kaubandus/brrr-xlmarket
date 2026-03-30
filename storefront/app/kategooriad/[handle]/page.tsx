@@ -151,7 +151,7 @@ export default async function CategoryPage({ params, searchParams }: Props) {
           {page > 1 && (
             <Link
               href={pageUrl(page - 1)}
-              className="px-[16px] py-[9px] rounded-[8px] border border-[#E8E8E8] text-[13px] font-[500] font-[family-name:var(--font-poppins)] text-[#333333] hover:border-[#E8650A] hover:text-[#E8650A] transition-colors"
+              className="px-[16px] py-[9px] border border-[#E8E8E8] text-[13px] font-[500] font-[family-name:var(--font-poppins)] text-[#333333] hover:border-[#E8650A] hover:text-[#E8650A] transition-colors"
             >
               ← Eelmine
             </Link>
@@ -162,7 +162,7 @@ export default async function CategoryPage({ params, searchParams }: Props) {
           {page < totalPages && (
             <Link
               href={pageUrl(page + 1)}
-              className="px-[16px] py-[9px] rounded-[8px] border border-[#E8E8E8] text-[13px] font-[500] font-[family-name:var(--font-poppins)] text-[#333333] hover:border-[#E8650A] hover:text-[#E8650A] transition-colors"
+              className="px-[16px] py-[9px] border border-[#E8E8E8] text-[13px] font-[500] font-[family-name:var(--font-poppins)] text-[#333333] hover:border-[#E8650A] hover:text-[#E8650A] transition-colors"
             >
               Järgmine →
             </Link>

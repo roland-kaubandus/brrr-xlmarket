@@ -14,7 +14,7 @@ export default function ProductReviews() {
         </h2>
         {!submitted && (
           <button
-            className="px-[14px] py-[8px] rounded-[6px] text-[13px] font-[500] font-[family-name:var(--font-poppins)] border border-[#E8650A] text-[#E8650A] hover:bg-[#FFF5EE] transition-colors"
+            className="px-[14px] py-[8px] text-[13px] font-[500] font-[family-name:var(--font-poppins)] border border-[#E8650A] text-[#E8650A] hover:bg-[#FFF5EE] transition-colors"
             type="button"
             onClick={() => setSubmitted(true)}
           >
@@ -24,7 +24,7 @@ export default function ProductReviews() {
       </div>
 
       {submitted ? (
-        <div className="flex flex-col items-center justify-center py-[32px] px-[24px] bg-green-50 rounded-[8px] border border-green-200">
+        <div className="flex flex-col items-center justify-center py-[32px] px-[24px] bg-green-50 border border-green-200">
           <p className="text-[15px] font-[600] font-[family-name:var(--font-poppins)] text-green-700 mb-[4px]">
             Aitäh!
           </p>
@@ -33,7 +33,7 @@ export default function ProductReviews() {
           </p>
         </div>
       ) : (
-        <div className="flex flex-col items-center justify-center py-[48px] px-[24px] bg-[#FAFAFA] rounded-[8px] border border-[#E8E8E8]">
+        <div className="flex flex-col items-center justify-center py-[48px] px-[24px] bg-[#FAFAFA] border border-[#E8E8E8]">
           <div className="flex gap-[4px] mb-[14px]">
             {[1, 2, 3, 4, 5].map((s) => (
               <Star key={s} size={24} strokeWidth={1.5} className="text-[#E8E8E8]" />

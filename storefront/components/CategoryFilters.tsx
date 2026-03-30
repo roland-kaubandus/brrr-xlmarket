@@ -59,7 +59,7 @@ export default function CategoryFilters({
   const hasFilters = !!(currentSort || currentMin || currentMax)
 
   return (
-    <div className="border border-[#E8E8E8] bg-white rounded-[12px] p-[20px] mb-[24px]">
+    <div className="border border-[#E8E8E8] bg-white p-[20px] mb-[24px]">
       <div className="flex flex-col sm:flex-row sm:items-center gap-4">
         {/* Price filter */}
         <form onSubmit={handlePriceFilter} className="flex items-center gap-2">
@@ -71,7 +71,7 @@ export default function CategoryFilters({
             placeholder="Min €"
             value={minPrice}
             onChange={(e) => setMinPrice(e.target.value)}
-            className="rounded-[8px] border border-[#E8E8E8] focus:border-[#E8650A] px-[10px] py-[8px] text-[13px] font-[family-name:var(--font-inter)] text-[#333333] bg-[#F7F7F7] focus:bg-white w-[80px] outline-none transition-colors"
+            className="border border-[#E8E8E8] focus:border-[#E8650A] px-[10px] py-[8px] text-[13px] font-[family-name:var(--font-inter)] text-[#333333] bg-[#F7F7F7] focus:bg-white w-[80px] outline-none transition-colors"
           />
           <span className="text-[#999999] font-[family-name:var(--font-inter)] text-[13px]">–</span>
           <input
@@ -81,11 +81,11 @@ export default function CategoryFilters({
             placeholder="Max €"
             value={maxPrice}
             onChange={(e) => setMaxPrice(e.target.value)}
-            className="rounded-[8px] border border-[#E8E8E8] focus:border-[#E8650A] px-[10px] py-[8px] text-[13px] font-[family-name:var(--font-inter)] text-[#333333] bg-[#F7F7F7] focus:bg-white w-[80px] outline-none transition-colors"
+            className="border border-[#E8E8E8] focus:border-[#E8650A] px-[10px] py-[8px] text-[13px] font-[family-name:var(--font-inter)] text-[#333333] bg-[#F7F7F7] focus:bg-white w-[80px] outline-none transition-colors"
           />
           <button
             type="submit"
-            className="bg-[#E8650A] text-white rounded-[8px] px-[14px] py-[8px] text-[13px] font-[600] font-[family-name:var(--font-poppins)] hover:bg-[#CF5A08] transition-colors"
+            className="bg-[#E8650A] text-white px-[14px] py-[8px] text-[13px] font-[600] font-[family-name:var(--font-poppins)] hover:bg-[#CF5A08] transition-colors"
           >
             Filtreeri
           </button>
@@ -102,7 +102,7 @@ export default function CategoryFilters({
             <button
               key={s.key}
               onClick={() => handleSort(s.key)}
-              className={`px-[12px] py-[7px] border text-[13px] font-[500] font-[family-name:var(--font-poppins)] rounded-[8px] transition-colors ${
+              className={`px-[12px] py-[7px] border text-[13px] font-[500] font-[family-name:var(--font-poppins)] transition-colors ${
                 currentSort === s.key
                   ? "border-[#E8650A] bg-[#FFF5EE] text-[#E8650A]"
                   : "border-[#E8E8E8] text-[#555555] hover:border-[#E8650A] hover:text-[#E8650A]"

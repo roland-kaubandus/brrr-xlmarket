@@ -221,11 +221,11 @@ export default function CheckoutPage() {
     return (
       <div className="max-w-[1280px] mx-auto px-[16px] sm:px-[24px] py-[48px]">
         <h1 className="text-[20px] font-[600] font-[family-name:var(--font-poppins)] text-[#1A1A1A] mb-[24px]">Tellimuse vormistamine</h1>
-        <div className="flex flex-col items-center justify-center py-[64px] border border-[#E8E8E8] rounded-[8px] bg-[#FAFAFA]">
+        <div className="flex flex-col items-center justify-center py-[64px] border border-[#E8E8E8] bg-[#FAFAFA]">
           <p className="text-[14px] font-[family-name:var(--font-inter)] text-[#999999] mb-[28px]">Sinu ostukorv on tühi.</p>
           <Link
             href="/"
-            className="inline-flex items-center bg-[#E8650A] text-white px-[24px] py-[12px] rounded-[8px] text-[15px] font-[600] font-[family-name:var(--font-poppins)] hover:bg-[#CF5A08] transition-colors"
+            className="inline-flex items-center bg-[#E8650A] text-white px-[24px] py-[12px] text-[15px] font-[600] font-[family-name:var(--font-poppins)] hover:bg-[#CF5A08] transition-colors"
           >
             Vaata tooteid
           </Link>
@@ -238,7 +238,7 @@ export default function CheckoutPage() {
   if (step === "done") {
     return (
       <div className="max-w-[720px] mx-auto px-[16px] sm:px-[24px] py-[48px]">
-        <div className="flex flex-col items-center justify-center py-[64px] bg-white border border-[#E8E8E8] rounded-[8px]">
+        <div className="flex flex-col items-center justify-center py-[64px] bg-white border border-[#E8E8E8]">
           <div className="w-[56px] h-[56px] rounded-full bg-green-100 flex items-center justify-center mx-auto mb-[20px]"><span className="text-green-600 text-[28px]">&#10003;</span></div>
           <h1 className="text-[20px] font-[600] font-[family-name:var(--font-poppins)] text-[#1A1A1A] mb-[16px]">Tellimus on vormistatud!</h1>
           <p className="text-[14px] font-[family-name:var(--font-inter)] text-[#555555] mb-[8px]">
@@ -252,7 +252,7 @@ export default function CheckoutPage() {
           )}
           <Link
             href="/"
-            className="inline-flex items-center bg-[#E8650A] text-white px-[24px] py-[12px] rounded-[8px] text-[15px] font-[600] font-[family-name:var(--font-poppins)] hover:bg-[#CF5A08] transition-colors"
+            className="inline-flex items-center bg-[#E8650A] text-white px-[24px] py-[12px] text-[15px] font-[600] font-[family-name:var(--font-poppins)] hover:bg-[#CF5A08] transition-colors"
           >
             Tagasi avalehele
           </Link>
@@ -277,7 +277,7 @@ export default function CheckoutPage() {
       <h1 className="text-[20px] font-[600] font-[family-name:var(--font-poppins)] text-[#1A1A1A] mb-[24px]">Tellimuse vormistamine</h1>
 
       {error && (
-        <div className="mb-[20px] px-[14px] py-[10px] bg-red-50 border border-red-200 text-red-700 text-[13px] font-[family-name:var(--font-inter)] rounded-[6px]" role="alert">
+        <div className="mb-[20px] px-[14px] py-[10px] bg-red-50 border border-red-200 text-red-700 text-[13px] font-[family-name:var(--font-inter)]" role="alert">
           {error}
         </div>
       )}
@@ -300,7 +300,7 @@ export default function CheckoutPage() {
                     required
                     value={form.first_name}
                     onChange={(e) => updateField("first_name", e.target.value)}
-                    className="w-full border border-[#E8E8E8] rounded-[6px] px-[12px] py-[9px] text-[13px] font-[family-name:var(--font-inter)] text-[#333333] focus:outline-none focus:border-[#E8650A] transition-colors"
+                    className="w-full border border-[#E8E8E8] px-[12px] py-[9px] text-[13px] font-[family-name:var(--font-inter)] text-[#333333] focus:outline-none focus:border-[#E8650A] transition-colors"
                   />
                 </div>
                 <div>
@@ -313,7 +313,7 @@ export default function CheckoutPage() {
                     required
                     value={form.last_name}
                     onChange={(e) => updateField("last_name", e.target.value)}
-                    className="w-full border border-[#E8E8E8] rounded-[6px] px-[12px] py-[9px] text-[13px] font-[family-name:var(--font-inter)] text-[#333333] focus:outline-none focus:border-[#E8650A] transition-colors"
+                    className="w-full border border-[#E8E8E8] px-[12px] py-[9px] text-[13px] font-[family-name:var(--font-inter)] text-[#333333] focus:outline-none focus:border-[#E8650A] transition-colors"
                   />
                 </div>
                 <div>
@@ -326,7 +326,7 @@ export default function CheckoutPage() {
                     required
                     value={form.email}
                     onChange={(e) => updateField("email", e.target.value)}
-                    className="w-full border border-[#E8E8E8] rounded-[6px] px-[12px] py-[9px] text-[13px] font-[family-name:var(--font-inter)] text-[#333333] focus:outline-none focus:border-[#E8650A] transition-colors"
+                    className="w-full border border-[#E8E8E8] px-[12px] py-[9px] text-[13px] font-[family-name:var(--font-inter)] text-[#333333] focus:outline-none focus:border-[#E8650A] transition-colors"
                   />
                 </div>
                 <div>
@@ -339,7 +339,7 @@ export default function CheckoutPage() {
                     required
                     value={form.phone}
                     onChange={(e) => updateField("phone", e.target.value)}
-                    className="w-full border border-[#E8E8E8] rounded-[6px] px-[12px] py-[9px] text-[13px] font-[family-name:var(--font-inter)] text-[#333333] focus:outline-none focus:border-[#E8650A] transition-colors"
+                    className="w-full border border-[#E8E8E8] px-[12px] py-[9px] text-[13px] font-[family-name:var(--font-inter)] text-[#333333] focus:outline-none focus:border-[#E8650A] transition-colors"
                   />
                 </div>
               </div>
@@ -360,7 +360,7 @@ export default function CheckoutPage() {
                     placeholder="Tänav, maja, korter"
                     value={form.address_1}
                     onChange={(e) => updateField("address_1", e.target.value)}
-                    className="w-full border border-[#E8E8E8] rounded-[6px] px-[12px] py-[9px] text-[13px] font-[family-name:var(--font-inter)] text-[#333333] focus:outline-none focus:border-[#E8650A] transition-colors"
+                    className="w-full border border-[#E8E8E8] px-[12px] py-[9px] text-[13px] font-[family-name:var(--font-inter)] text-[#333333] focus:outline-none focus:border-[#E8650A] transition-colors"
                   />
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-[16px]">
@@ -374,7 +374,7 @@ export default function CheckoutPage() {
                       required
                       value={form.city}
                       onChange={(e) => updateField("city", e.target.value)}
-                      className="w-full border border-[#E8E8E8] rounded-[6px] px-[12px] py-[9px] text-[13px] font-[family-name:var(--font-inter)] text-[#333333] focus:outline-none focus:border-[#E8650A] transition-colors"
+                      className="w-full border border-[#E8E8E8] px-[12px] py-[9px] text-[13px] font-[family-name:var(--font-inter)] text-[#333333] focus:outline-none focus:border-[#E8650A] transition-colors"
                     />
                   </div>
                   <div>
@@ -387,7 +387,7 @@ export default function CheckoutPage() {
                       required
                       value={form.postal_code}
                       onChange={(e) => updateField("postal_code", e.target.value)}
-                      className="w-full border border-[#E8E8E8] rounded-[6px] px-[12px] py-[9px] text-[13px] font-[family-name:var(--font-inter)] text-[#333333] focus:outline-none focus:border-[#E8650A] transition-colors"
+                      className="w-full border border-[#E8E8E8] px-[12px] py-[9px] text-[13px] font-[family-name:var(--font-inter)] text-[#333333] focus:outline-none focus:border-[#E8650A] transition-colors"
                     />
                   </div>
                 </div>
@@ -399,7 +399,7 @@ export default function CheckoutPage() {
                     id="country"
                     value={form.country_code}
                     onChange={(e) => updateField("country_code", e.target.value)}
-                    className="w-full border border-[#E8E8E8] rounded-[6px] px-[12px] py-[9px] text-[13px] font-[family-name:var(--font-inter)] text-[#333333] bg-white focus:outline-none focus:border-[#E8650A] transition-colors"
+                    className="w-full border border-[#E8E8E8] px-[12px] py-[9px] text-[13px] font-[family-name:var(--font-inter)] text-[#333333] bg-white focus:outline-none focus:border-[#E8650A] transition-colors"
                   >
                     <option value="ee">Eesti</option>
                   </select>
@@ -448,7 +448,7 @@ export default function CheckoutPage() {
 
           {/* Right: Order summary */}
           <div className="lg:col-span-1">
-            <div className="bg-white border border-[#E8E8E8] rounded-[8px] p-[20px] sticky top-[80px]">
+            <div className="bg-white border border-[#E8E8E8] p-[20px] sticky top-[80px]">
               <h2 className="text-[16px] font-[600] font-[family-name:var(--font-poppins)] text-[#1A1A1A] mb-[16px]">Tellimuse kokkuvõte</h2>
 
               {/* Items */}
@@ -517,7 +517,7 @@ export default function CheckoutPage() {
               <button
                 type="submit"
                 disabled={submitting || !selectedShipping}
-                className="w-full mt-[20px] py-[14px] rounded-[8px] bg-[#E8650A] text-white text-[15px] font-[600] font-[family-name:var(--font-poppins)] hover:bg-[#CF5A08] disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+                className="w-full mt-[20px] py-[14px] bg-[#E8650A] text-white text-[15px] font-[600] font-[family-name:var(--font-poppins)] hover:bg-[#CF5A08] disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
               >
                 {submitting ? "Vormistatakse..." : "Kinnita tellimus"}
               </button>

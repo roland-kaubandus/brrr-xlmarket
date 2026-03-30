@@ -44,7 +44,7 @@ export default function BestSellersSection({ tabs }: Props) {
           <button
             key={tab.handle}
             onClick={() => setActive(i)}
-            className="shrink-0 px-[14px] py-[7px] rounded-[6px] text-[13px] font-[500] font-[family-name:var(--font-poppins)] border transition-all duration-[180ms]"
+            className="shrink-0 px-[14px] py-[7px] text-[13px] font-[500] font-[family-name:var(--font-poppins)] border transition-all duration-[180ms]"
             style={
               i === active
                 ? { background: "rgba(232,101,10,0.08)", borderColor: "rgba(232,101,10,0.35)", color: "#E8650A" }

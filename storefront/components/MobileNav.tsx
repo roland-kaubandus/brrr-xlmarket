@@ -36,7 +36,7 @@ export default function MobileNav() {
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className="md:hidden flex items-center justify-center w-[40px] h-[40px] rounded-[8px] text-[#333333] hover:text-[#E8650A] hover:bg-[#FFF5EE]"
+        className="md:hidden flex items-center justify-center w-[40px] h-[40px] text-[#333333] hover:text-[#E8650A] hover:bg-[#FFF5EE]"
         aria-label="Ava menüü"
         aria-expanded={open}
       >

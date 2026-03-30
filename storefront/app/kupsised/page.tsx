@@ -31,7 +31,7 @@ export default function CookiePolicyPage() {
           Need küpsised on e-poe toimimiseks hädavajalikud. Ilma nendeta ei tööta ostukorv
           ega tellimise protsess.
         </p>
-        <div className="border border-[#E8E8E8] rounded-[12px] overflow-hidden">
+        <div className="border border-[#E8E8E8] overflow-hidden">
           <table className="w-full text-left">
             <thead className="bg-[#F7F7F7]">
               <tr>
@@ -60,7 +60,7 @@ export default function CookiePolicyPage() {
           Analüütikaküpsiseid kasutatakse ainult teie nõusolekul. Need aitavad meil mõista,
           kuidas külastajad meie veebilehte kasutavad.
         </p>
-        <div className="border border-[#E8E8E8] rounded-[12px] overflow-hidden">
+        <div className="border border-[#E8E8E8] overflow-hidden">
           <table className="w-full text-left">
             <thead className="bg-[#F7F7F7]">
               <tr>

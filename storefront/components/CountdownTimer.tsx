@@ -38,7 +38,7 @@ export default function CountdownTimer() {
         <div key={u.label} className="flex items-center gap-[6px]">
           <div className="flex flex-col items-center">
             <div
-              className="w-[42px] h-[42px] flex items-center justify-center rounded-[6px] font-[700] font-[family-name:var(--font-poppins)] text-[18px] text-white"
+              className="w-[42px] h-[42px] flex items-center justify-center font-[700] font-[family-name:var(--font-poppins)] text-[18px] text-white"
               style={{ background: "#E8650A" }}
             >
               {pad(u.v)}

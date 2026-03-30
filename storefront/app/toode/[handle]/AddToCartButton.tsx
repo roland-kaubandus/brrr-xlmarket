@@ -65,7 +65,7 @@ export default function AddToCartButton({ variantId }: { variantId: string }) {
     <div>
       <div className="flex items-center gap-[12px]">
         {/* Quantity selector */}
-        <div className="flex border border-[#E8E8E8] rounded-[8px] overflow-hidden">
+        <div className="flex border border-[#E8E8E8] overflow-hidden">
           <button
             onClick={() => setQty(Math.max(1, qty - 1))}
             aria-label="Vähenda kogust"
@@ -90,7 +90,7 @@ export default function AddToCartButton({ variantId }: { variantId: string }) {
           onClick={handleAdd}
           disabled={loading}
           className={
-            "flex-1 flex items-center justify-center gap-[8px] py-[12px] px-[24px] rounded-[8px] font-[600] font-[family-name:var(--font-poppins)] text-[15px] active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed " +
+            "flex-1 flex items-center justify-center gap-[8px] py-[12px] px-[24px] font-[600] font-[family-name:var(--font-poppins)] text-[15px] active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed " +
             (added
               ? "bg-green-600 text-white hover:bg-green-700"
               : "bg-[#E8650A] text-white hover:bg-[#CF5A08] hover:shadow-[0_4px_16px_rgba(232,101,10,0.25)]")
@@ -116,7 +116,7 @@ export default function AddToCartButton({ variantId }: { variantId: string }) {
       </div>
 
       {added && (
-        <p className="mt-[12px] text-[14px] font-[family-name:var(--font-inter)] text-green-700 bg-green-50 px-[12px] py-[8px] rounded-[6px]">
+        <p className="mt-[12px] text-[14px] font-[family-name:var(--font-inter)] text-green-700 bg-green-50 px-[12px] py-[8px]">
           Toode lisatud!{" "}
           <Link
             href="/ostukorv"
@@ -128,7 +128,7 @@ export default function AddToCartButton({ variantId }: { variantId: string }) {
       )}
       {error && (
         <p
-          className="mt-[12px] text-[14px] font-[family-name:var(--font-inter)] text-red-600 bg-red-50 px-[12px] py-[8px] rounded-[6px]"
+          className="mt-[12px] text-[14px] font-[family-name:var(--font-inter)] text-red-600 bg-red-50 px-[12px] py-[8px]"
           role="alert"
         >
           {error}

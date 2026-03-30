@@ -38,7 +38,7 @@ export default function AboutPage() {
           ].map((stat) => (
             <div
               key={stat.label}
-              className="border border-[#E8E8E8] rounded-[12px] p-[20px] text-center"
+              className="border border-[#E8E8E8] p-[20px] text-center"
             >
               <p className="text-[28px] font-[700] font-[family-name:var(--font-poppins)] text-[#E8650A] mb-[4px]">
                 {stat.num}
@@ -82,7 +82,7 @@ export default function AboutPage() {
                 { title: "Lai valik", desc: "Tuhanded tooted ühes kohas." },
                 { title: "Usaldusväärne teenindus", desc: "14-päevane taganemisõigus ja 2 aasta garantii." },
               ].map((v) => (
-                <div key={v.title} className="border border-[#E8E8E8] rounded-[10px] p-[16px]">
+                <div key={v.title} className="border border-[#E8E8E8] p-[16px]">
                   <p className="text-[14px] font-[600] font-[family-name:var(--font-poppins)] text-[#1A1A1A] mb-[4px]">
                     {v.title}
                   </p>

@@ -71,7 +71,7 @@ export default function StickyBuyBar({ variantId, title, price }: Props) {
         <div className="flex items-center gap-[10px] ml-auto">
           <a
             href="/ostukorv"
-            className="px-[16px] py-[10px] rounded-[6px] border border-[#E8650A] text-[#E8650A] text-[13px] font-[600] font-[family-name:var(--font-poppins)] hover:bg-[#FFF5EE] transition-colors"
+            className="px-[16px] py-[10px] border border-[#E8650A] text-[#E8650A] text-[13px] font-[600] font-[family-name:var(--font-poppins)] hover:bg-[#FFF5EE] transition-colors"
           >
             Ostukorv
           </a>
@@ -79,7 +79,7 @@ export default function StickyBuyBar({ variantId, title, price }: Props) {
             onClick={handleAdd}
             disabled={adding}
             className={
-              "flex items-center gap-[8px] px-[20px] py-[10px] rounded-[6px] text-[13px] font-[600] font-[family-name:var(--font-poppins)] transition-colors disabled:opacity-60 " +
+              "flex items-center gap-[8px] px-[20px] py-[10px] text-[13px] font-[600] font-[family-name:var(--font-poppins)] transition-colors disabled:opacity-60 " +
               (added ? "bg-green-600 text-white" : "bg-[#E8650A] text-white hover:bg-[#CF5A08]")
             }
           >

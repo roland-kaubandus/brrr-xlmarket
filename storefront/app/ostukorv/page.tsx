@@ -143,13 +143,13 @@ export default function CartPage() {
       </div>
 
       {error && (
-        <div className="mb-[16px] px-[14px] py-[10px] bg-red-50 border border-red-200 text-red-700 text-[13px] font-[family-name:var(--font-inter)] rounded-[6px]" role="alert">
+        <div className="mb-[16px] px-[14px] py-[10px] bg-red-50 border border-red-200 text-red-700 text-[13px] font-[family-name:var(--font-inter)]" role="alert">
           {error}
         </div>
       )}
 
       {isEmpty ? (
-        <div className="flex flex-col items-center justify-center py-[80px] text-center border border-[#E8E8E8] rounded-[8px] bg-[#FAFAFA]">
+        <div className="flex flex-col items-center justify-center py-[80px] text-center border border-[#E8E8E8] bg-[#FAFAFA]">
           <ShoppingCart size={56} strokeWidth={1} className="text-[#E8E8E8] mb-[20px]" />
           <p className="text-[18px] font-[600] font-[family-name:var(--font-poppins)] text-[#1A1A1A] mb-[6px]">
             Ostukorv on tühi
@@ -159,7 +159,7 @@ export default function CartPage() {
           </p>
           <Link
             href="/kategooriad"
-            className="inline-flex items-center gap-[8px] px-[24px] py-[12px] rounded-[8px] bg-[#E8650A] text-white text-[14px] font-[600] font-[family-name:var(--font-poppins)] hover:bg-[#CF5A08] transition-colors"
+            className="inline-flex items-center gap-[8px] px-[24px] py-[12px] bg-[#E8650A] text-white text-[14px] font-[600] font-[family-name:var(--font-poppins)] hover:bg-[#CF5A08] transition-colors"
           >
             Vaata tooteid
             <ArrowRight size={16} strokeWidth={1.5} />
@@ -171,7 +171,7 @@ export default function CartPage() {
           <div className="lg:col-span-2 flex flex-col gap-[12px]">
             {/* Free shipping progress */}
             {toFreeShipping > 0 && (
-              <div className="flex flex-col gap-[8px] p-[14px] bg-[#FFF5EE] border border-[#E8650A]/15 rounded-[8px] mb-[4px]">
+              <div className="flex flex-col gap-[8px] p-[14px] bg-[#FFF5EE] border border-[#E8650A]/15 mb-[4px]">
                 <div className="flex items-center gap-[6px]">
                   <Truck size={14} strokeWidth={1.5} className="text-[#E8650A] shrink-0" />
                   <span className="text-[13px] font-[family-name:var(--font-inter)] text-[#555555]">
@@ -187,7 +187,7 @@ export default function CartPage() {
               </div>
             )}
             {toFreeShipping === 0 && (
-              <div className="flex items-center gap-[8px] p-[12px] bg-green-50 border border-green-200 rounded-[8px] mb-[4px]">
+              <div className="flex items-center gap-[8px] p-[12px] bg-green-50 border border-green-200 mb-[4px]">
                 <Truck size={14} strokeWidth={1.5} className="text-green-600 shrink-0" />
                 <span className="text-[13px] font-[family-name:var(--font-inter)] text-green-700">
                   Tasuta tarne on lisatud!
@@ -198,7 +198,7 @@ export default function CartPage() {
             {items.map((item) => (
               <div
                 key={item.id}
-                className={"flex gap-[14px] p-[14px] bg-white border border-[#E8E8E8] rounded-[8px] transition-opacity " + (updating === item.id ? "opacity-50" : "")}
+                className={"flex gap-[14px] p-[14px] bg-white border border-[#E8E8E8] transition-opacity " + (updating === item.id ? "opacity-50" : "")}
               >
                 {/* Thumbnail */}
                 <Link href={"/toode/" + (item.variant?.product?.handle ?? "")} className="shrink-0">
@@ -228,7 +228,7 @@ export default function CartPage() {
 
                   <div className="flex items-center justify-between">
                     {/* Quantity */}
-                    <div className="flex items-center border border-[#E8E8E8] rounded-[6px] overflow-hidden">
+                    <div className="flex items-center border border-[#E8E8E8] overflow-hidden">
                       <button
                         onClick={() => updateQuantity(item.id, item.quantity - 1)}
                         disabled={!!updating}
@@ -285,7 +285,7 @@ export default function CartPage() {
           {/* Order summary */}
           {cart && (
             <div className="lg:col-span-1">
-              <div className="bg-white border border-[#E8E8E8] rounded-[8px] p-[20px] sticky top-[80px]">
+              <div className="bg-white border border-[#E8E8E8] p-[20px] sticky top-[80px]">
                 <h2 className="text-[17px] font-[600] font-[family-name:var(--font-poppins)] text-[#1A1A1A] mb-[18px]">
                   Kokkuvõte
                 </h2>
@@ -327,7 +327,7 @@ export default function CartPage() {
 
                 <Link
                   href="/tellimus"
-                  className="block w-full text-center py-[14px] rounded-[8px] bg-[#E8650A] text-white text-[15px] font-[600] font-[family-name:var(--font-poppins)] hover:bg-[#CF5A08] transition-colors"
+                  className="block w-full text-center py-[14px] bg-[#E8650A] text-white text-[15px] font-[600] font-[family-name:var(--font-poppins)] hover:bg-[#CF5A08] transition-colors"
                   style={{ boxShadow: "0 4px 16px rgba(232,101,10,0.25)" }}
                 >
                   Vormista tellimus
