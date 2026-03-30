@@ -37,14 +37,14 @@ export default async function SearchPage({ searchParams }: Props) {
     : 0
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-2">Otsing</h1>
+    <div className="max-w-[1280px] mx-auto px-[16px] sm:px-[24px] py-[32px] sm:py-[48px]">
+      <h1 className="text-[28px] sm:text-[32px] font-[700] font-[family-name:var(--font-poppins)] text-[#1A1A1A] mb-[8px]">Otsing</h1>
 
       {query && (
-        <p className="text-gray-500 mb-8">
+        <p className="text-[14px] font-[family-name:var(--font-inter)] text-[#999999] mb-[32px]">
           {productsRes ? (
             <>
-              <span className="font-medium text-gray-900">"{query}"</span>
+              <span className="font-[600] text-[#1A1A1A]">"{query}"</span>
               {" — "}
               {productsRes.count.toLocaleString("et-EE")} tulemust
             </>
@@ -55,19 +55,19 @@ export default async function SearchPage({ searchParams }: Props) {
       )}
 
       {!query && (
-        <p className="text-gray-500 py-16 text-center">
+        <p className="text-[14px] font-[family-name:var(--font-inter)] text-[#999999] py-[48px] text-center">
           Sisesta otsingusõna päisesse ja vajuta "Otsi".
         </p>
       )}
 
       {productsRes && productsRes.products.length === 0 && (
-        <div className="text-center py-16">
-          <p className="text-gray-500 mb-4">
+        <div className="text-center py-[48px]">
+          <p className="text-[14px] font-[family-name:var(--font-inter)] text-[#999999] mb-[16px]">
             Päringuga "{query}" ei leitud ühtegi toodet.
           </p>
           <Link
             href="/kategooriad"
-            className="text-brand-600 hover:text-brand-700 font-medium"
+            className="text-[#E8650A] hover:text-[#CF5A08] font-[500] font-[family-name:var(--font-poppins)] underline underline-offset-2"
           >
             Sirvi kategooriaid &rarr;
           </Link>
@@ -76,29 +76,29 @@ export default async function SearchPage({ searchParams }: Props) {
 
       {productsRes && productsRes.products.length > 0 && (
         <>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-[16px]">
             {productsRes.products.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}
           </div>
 
           {totalPages > 1 && (
-            <nav className="flex justify-center items-center gap-2 mt-10">
+            <nav className="flex justify-center items-center gap-[8px] mt-[40px]">
               {page > 1 && (
                 <Link
                   href={`/otsing?q=${encodeURIComponent(query)}&leht=${page - 1}`}
-                  className="px-4 py-2 border border-gray-200 hover:border-brand-500 text-sm transition"
+                  className="px-[16px] py-[8px] border border-[#E8E8E8] hover:border-[#E8650A] text-[13px] font-[family-name:var(--font-inter)] text-[#555555] rounded-[6px] transition-colors"
                 >
                   &larr; Eelmine
                 </Link>
               )}
-              <span className="text-sm text-gray-500 px-4">
+              <span className="text-[13px] font-[family-name:var(--font-inter)] text-[#999999] px-[8px]">
                 {page} / {totalPages}
               </span>
               {page < totalPages && (
                 <Link
                   href={`/otsing?q=${encodeURIComponent(query)}&leht=${page + 1}`}
-                  className="px-4 py-2 border border-gray-200 hover:border-brand-500 text-sm transition"
+                  className="px-[16px] py-[8px] border border-[#E8E8E8] hover:border-[#E8650A] text-[13px] font-[family-name:var(--font-inter)] text-[#555555] rounded-[6px] transition-colors"
                 >
                   Järgmine &rarr;
                 </Link>

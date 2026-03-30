@@ -1,20 +1,58 @@
 @import "tailwindcss";
 
 @theme {
-  --color-brand-50: #fffbeb;
-  --color-brand-100: #fef3c7;
-  --color-brand-200: #fde68a;
-  --color-brand-300: #fcd34d;
-  --color-brand-400: #fbbf24;
-  --color-brand-500: #f59e0b;
-  --color-brand-600: #d97706;
-  --color-brand-700: #b45309;
-  --color-brand-800: #92400e;
-  --color-brand-900: #78350f;
+  --color-brand-50: #FFF5EE;
+  --color-brand-100: #FFE8D6;
+  --color-brand-200: #FFD0A8;
+  --color-brand-300: #FFB070;
+  --color-brand-400: #F08A30;
+  --color-brand-500: #E8650A;
+  --color-brand-600: #CF5A08;
+  --color-brand-700: #B04D07;
+  --color-brand-800: #8C3E06;
+  --color-brand-900: #6B3005;
+}
+
+:root {
+  --font-poppins: 'Poppins', sans-serif;
+  --font-inter: 'Inter', sans-serif;
 }
 
 html {
   scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-inter);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-poppins);
+}
+
+/* Accessible focus ring — brand-tinted orange */
+*:focus-visible {
+  outline: 2px solid #E8650A;
+  outline-offset: 2px;
+}
+
+*:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Global smooth transitions on interactive elements */
+a, button, input, select, textarea {
+  transition-property: color, background-color, border-color, box-shadow, transform, opacity;
+  transition-duration: 200ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Brand-tinted selection */
+::selection {
+  background-color: #FFF5EE;
+  color: #1A1A1A;
 }
 
 .line-clamp-2 {

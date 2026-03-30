@@ -8,32 +8,32 @@ export const metadata: Metadata = {
 
 export default function CookiePolicyPage() {
   return (
-    <div className="max-w-4xl mx-auto px-4 py-8">
-      <nav className="text-sm text-gray-500 mb-6" aria-label="Leheasukoht">
-        <Link href="/" className="hover:text-brand-600">Avaleht</Link>
-        <span className="mx-2">/</span>
-        <span className="text-gray-900">Küpsiste poliitika</span>
+    <div className="max-w-[1280px] mx-auto px-[16px] sm:px-[24px] py-[32px] sm:py-[48px]">
+      <nav className="text-[12px] font-[family-name:var(--font-inter)] text-[#999999] mb-[32px]" aria-label="Leheasukoht">
+        <Link href="/" className="hover:text-[#E8650A] transition-colors">Avaleht</Link>
+        <span className="mx-[8px] text-[#E8E8E8]">/</span>
+        <span className="text-[#777777]">Küpsiste poliitika</span>
       </nav>
 
-      <h1 className="text-3xl font-bold mb-8">Küpsiste poliitika</h1>
+      <h1 className="text-[28px] sm:text-[32px] font-[700] font-[family-name:var(--font-poppins)] text-[#1A1A1A] mb-[32px]">Küpsiste poliitika</h1>
 
-      <div className="prose prose-gray max-w-none text-sm leading-relaxed space-y-6">
+      <div className="max-w-[720px] text-[14px] font-[family-name:var(--font-inter)] text-[#555555] leading-relaxed space-y-[16px]">
         <p>Kehtib alates: 28.03.2026</p>
 
-        <h2 className="text-xl font-bold mt-8 mb-3">Mis on küpsised?</h2>
+        <h2 className="text-[18px] font-[600] font-[family-name:var(--font-poppins)] text-[#1A1A1A] mt-[32px] mb-[12px]">Mis on küpsised?</h2>
         <p>
           Küpsised on väikesed tekstifailid, mida veebileht salvestab teie seadmesse. Need
           aitavad meil pakkuda paremat kasutajakogemust.
         </p>
 
-        <h2 className="text-xl font-bold mt-8 mb-3">Vajalikud küpsised</h2>
+        <h2 className="text-[18px] font-[600] font-[family-name:var(--font-poppins)] text-[#1A1A1A] mt-[32px] mb-[12px]">Vajalikud küpsised</h2>
         <p>
           Need küpsised on e-poe toimimiseks hädavajalikud. Ilma nendeta ei tööta ostukorv
           ega tellimise protsess.
         </p>
-        <div className="border border-gray-200 overflow-hidden">
+        <div className="border border-[#E8E8E8] overflow-hidden">
           <table className="w-full text-left">
-            <thead className="bg-gray-50">
+            <thead className="bg-[#F7F7F7]">
               <tr>
                 <th className="px-4 py-3 font-medium">Küpsis</th>
                 <th className="px-4 py-3 font-medium">Eesmärk</th>
@@ -41,12 +41,12 @@ export default function CookiePolicyPage() {
               </tr>
             </thead>
             <tbody>
-              <tr className="border-t border-gray-200">
+              <tr className="border-t border-[#E8E8E8]">
                 <td className="px-4 py-3">xlmarket_cart_id</td>
                 <td className="px-4 py-3">Ostukorvi hoidmine</td>
                 <td className="px-4 py-3">Sessiooni lõpuni</td>
               </tr>
-              <tr className="border-t border-gray-200">
+              <tr className="border-t border-[#E8E8E8]">
                 <td className="px-4 py-3">xlmarket_cookie_consent</td>
                 <td className="px-4 py-3">Küpsiste nõusoleku meelespidamine</td>
                 <td className="px-4 py-3">1 aasta</td>
@@ -55,14 +55,14 @@ export default function CookiePolicyPage() {
           </table>
         </div>
 
-        <h2 className="text-xl font-bold mt-8 mb-3">Analüütikaküpsised</h2>
+        <h2 className="text-[18px] font-[600] font-[family-name:var(--font-poppins)] text-[#1A1A1A] mt-[32px] mb-[12px]">Analüütikaküpsised</h2>
         <p>
           Analüütikaküpsiseid kasutatakse ainult teie nõusolekul. Need aitavad meil mõista,
           kuidas külastajad meie veebilehte kasutavad.
         </p>
-        <div className="border border-gray-200 overflow-hidden">
+        <div className="border border-[#E8E8E8] overflow-hidden">
           <table className="w-full text-left">
-            <thead className="bg-gray-50">
+            <thead className="bg-[#F7F7F7]">
               <tr>
                 <th className="px-4 py-3 font-medium">Küpsis</th>
                 <th className="px-4 py-3 font-medium">Eesmärk</th>
@@ -70,7 +70,7 @@ export default function CookiePolicyPage() {
               </tr>
             </thead>
             <tbody>
-              <tr className="border-t border-gray-200">
+              <tr className="border-t border-[#E8E8E8]">
                 <td className="px-4 py-3">_fbp</td>
                 <td className="px-4 py-3">Meta Pixel — külastajate analüüs</td>
                 <td className="px-4 py-3">3 kuud</td>
@@ -79,16 +79,16 @@ export default function CookiePolicyPage() {
           </table>
         </div>
 
-        <h2 className="text-xl font-bold mt-8 mb-3">Kuidas küpsiseid hallata</h2>
+        <h2 className="text-[18px] font-[600] font-[family-name:var(--font-poppins)] text-[#1A1A1A] mt-[32px] mb-[12px]">Kuidas küpsiseid hallata</h2>
         <p>
           Saate küpsiseid hallata oma veebibrauseri seadetest. Küpsiste blokeerimine võib
           piirata mõningaid e-poe funktsioone (nt ostukorv).
         </p>
 
-        <h2 className="text-xl font-bold mt-8 mb-3">Kontakt</h2>
+        <h2 className="text-[18px] font-[600] font-[family-name:var(--font-poppins)] text-[#1A1A1A] mt-[32px] mb-[12px]">Kontakt</h2>
         <p>
           Küsimuste korral kirjutage:{" "}
-          <a href="mailto:info@xlmarket.eu" className="text-brand-600 hover:text-brand-700 underline">
+          <a href="mailto:info@xlmarket.eu" className="text-[#E8650A] hover:text-[#CF5A08] underline">
             info@xlmarket.eu
           </a>
         </p>

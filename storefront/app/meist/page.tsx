@@ -8,48 +8,107 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <div className="max-w-4xl mx-auto px-4 py-8">
-      <nav className="text-sm text-gray-500 mb-6" aria-label="Leheasukoht">
-        <Link href="/" className="hover:text-brand-600">Avaleht</Link>
-        <span className="mx-2">/</span>
-        <span className="text-gray-900">Meist</span>
+    <div className="max-w-[1280px] mx-auto px-[16px] sm:px-[24px] py-[32px] sm:py-[48px]">
+      {/* Breadcrumb */}
+      <nav
+        className="text-[12px] font-[family-name:var(--font-inter)] text-[#999999] mb-[32px]"
+        aria-label="Leheasukoht"
+      >
+        <Link href="/" className="hover:text-[#E8650A] transition-colors">
+          Avaleht
+        </Link>
+        <span className="mx-[8px] text-[#E8E8E8]">/</span>
+        <span className="text-[#777777]">Meist</span>
       </nav>
 
-      <h1 className="text-3xl font-bold mb-8">Meist</h1>
-
-      <div className="prose prose-gray max-w-none text-sm leading-relaxed space-y-6">
-        <p className="text-base">
+      <div className="max-w-[720px]">
+        <h1 className="text-[28px] sm:text-[32px] font-[700] font-[family-name:var(--font-poppins)] text-[#1A1A1A] mb-[16px]">
+          Meist
+        </h1>
+        <p className="text-[16px] text-[#555555] font-[family-name:var(--font-inter)] leading-relaxed mb-[40px]">
           XLMARKET on Eesti e-pood, mis pakub kvaliteetseid tööriistu, seadmeid ja kodukaupa
           soodsa hinnaga. Meie eesmärk on muuta professionaalsed tööriistad kättesaadavaks igaühele.
         </p>
 
-        <h2 className="text-xl font-bold mt-8 mb-3">Mida me pakume</h2>
-        <ul className="list-disc pl-6 space-y-1">
-          <li>Üle 10 000 toote 11 kategoorias</li>
-          <li>Tööriistad ja seadmed professionaalile ja harrastajale</li>
-          <li>Kodu- ja aiakaup</li>
-          <li>Autovarustus ja garaaži tarvikud</li>
-          <li>Spordi- ja vabaaja tarbed</li>
-          <li>Elektroonika ja tööstusseadmed</li>
-        </ul>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-[16px] mb-[48px]">
+          {[
+            { num: "10 000+", label: "toodet kataloogis" },
+            { num: "11", label: "tootekategooriat" },
+            { num: "2a", label: "garantii kõigile toodetele" },
+          ].map((stat) => (
+            <div
+              key={stat.label}
+              className="border border-[#E8E8E8] rounded-[12px] p-[20px] text-center"
+            >
+              <p className="text-[28px] font-[700] font-[family-name:var(--font-poppins)] text-[#E8650A] mb-[4px]">
+                {stat.num}
+              </p>
+              <p className="text-[13px] text-[#777777] font-[family-name:var(--font-inter)]">
+                {stat.label}
+              </p>
+            </div>
+          ))}
+        </div>
 
-        <h2 className="text-xl font-bold mt-8 mb-3">Meie väärtused</h2>
-        <ul className="list-disc pl-6 space-y-1">
-          <li><strong>Soodne hind</strong> — otsetarnimine tootjalt hoiab hinnad madalana</li>
-          <li><strong>Lai valik</strong> — tuhanded tooted ühes kohas</li>
-          <li><strong>Usaldusväärne teenindus</strong> — 14-päevane taganemisõigus ja 2 aasta garantii</li>
-        </ul>
+        <div className="flex flex-col gap-[32px]">
+          <div>
+            <h2 className="text-[18px] font-[600] font-[family-name:var(--font-poppins)] text-[#1A1A1A] mb-[12px]">
+              Mida me pakume
+            </h2>
+            <ul className="flex flex-col gap-[8px] text-[14px] text-[#555555] font-[family-name:var(--font-inter)]">
+              {[
+                "Üle 10 000 toote 11 kategoorias",
+                "Tööriistad ja seadmed professionaalile ja harrastajale",
+                "Kodu- ja aiakaup",
+                "Autovarustus ja garaaži tarvikud",
+                "Spordi- ja vabaaja tarbed",
+                "Elektroonika ja tööstusseadmed",
+              ].map((item) => (
+                <li key={item} className="flex items-start gap-[8px]">
+                  <span className="text-[#E8650A] shrink-0 mt-[1px]">—</span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
 
-        <h2 className="text-xl font-bold mt-8 mb-3">Ettevõte</h2>
-        <p>
-          XLMARKET on Roland Kaubandus OÜ kaubamärk.
-        </p>
-        <p>
-          Küsimused?{" "}
-          <Link href="/kontakt" className="text-brand-600 hover:text-brand-700 underline">
-            Võtke meiega ühendust
-          </Link>
-        </p>
+          <div>
+            <h2 className="text-[18px] font-[600] font-[family-name:var(--font-poppins)] text-[#1A1A1A] mb-[12px]">
+              Meie väärtused
+            </h2>
+            <div className="flex flex-col gap-[12px]">
+              {[
+                { title: "Soodne hind", desc: "Otsetarnimine tootjalt hoiab hinnad madalana." },
+                { title: "Lai valik", desc: "Tuhanded tooted ühes kohas." },
+                { title: "Usaldusväärne teenindus", desc: "14-päevane taganemisõigus ja 2 aasta garantii." },
+              ].map((v) => (
+                <div key={v.title} className="border border-[#E8E8E8] rounded-[10px] p-[16px]">
+                  <p className="text-[14px] font-[600] font-[family-name:var(--font-poppins)] text-[#1A1A1A] mb-[4px]">
+                    {v.title}
+                  </p>
+                  <p className="text-[13px] text-[#777777] font-[family-name:var(--font-inter)]">
+                    {v.desc}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <h2 className="text-[18px] font-[600] font-[family-name:var(--font-poppins)] text-[#1A1A1A] mb-[12px]">
+              Ettevõte
+            </h2>
+            <p className="text-[14px] text-[#555555] font-[family-name:var(--font-inter)] mb-[8px]">
+              XLMARKET on Roland Kaubandus OÜ kaubamärk.
+            </p>
+            <Link
+              href="/kontakt"
+              className="text-[14px] text-[#E8650A] hover:underline font-[family-name:var(--font-inter)]"
+            >
+              Võtke meiega ühendust →
+            </Link>
+          </div>
+        </div>
       </div>
     </div>
   )
