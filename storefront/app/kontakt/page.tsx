@@ -33,7 +33,7 @@ export default function ContactPage() {
         {/* Left: info */}
         <div className="flex flex-col gap-[24px]">
           {/* Company info */}
-          <div className="border border-[#E8E8E8] rounded-[16px] p-[24px] sm:p-[28px]">
+          <div className="border border-[#E8E8E8] p-[24px] sm:p-[28px]">
             <h2 className="text-[16px] font-[600] font-[family-name:var(--font-poppins)] text-[#1A1A1A] mb-[16px]">
               Ettevõtte andmed
             </h2>
@@ -54,8 +54,8 @@ export default function ContactPage() {
 
           {/* Info cards */}
           <div className="flex flex-col gap-[12px]">
-            <div className="flex items-start gap-[14px] p-[18px] border border-[#E8E8E8] rounded-[12px]">
-              <div className="w-[36px] h-[36px] rounded-[8px] bg-[#FFF5EE] flex items-center justify-center shrink-0">
+            <div className="flex items-start gap-[14px] p-[18px] border border-[#E8E8E8]">
+              <div className="w-[36px] h-[36px] bg-[#FFF5EE] flex items-center justify-center shrink-0">
                 <Clock size={16} strokeWidth={1.5} className="text-[#E8650A]" />
               </div>
               <div>
@@ -71,8 +71,8 @@ export default function ContactPage() {
               </div>
             </div>
 
-            <div className="flex items-start gap-[14px] p-[18px] border border-[#E8E8E8] rounded-[12px]">
-              <div className="w-[36px] h-[36px] rounded-[8px] bg-[#FFF5EE] flex items-center justify-center shrink-0">
+            <div className="flex items-start gap-[14px] p-[18px] border border-[#E8E8E8]">
+              <div className="w-[36px] h-[36px] bg-[#FFF5EE] flex items-center justify-center shrink-0">
                 <RefreshCcw size={16} strokeWidth={1.5} className="text-[#E8650A]" />
               </div>
               <div>
@@ -98,9 +98,9 @@ export default function ContactPage() {
         </div>
 
         {/* Right: CTA card */}
-        <div className="border border-[#E8E8E8] rounded-[16px] p-[28px] sm:p-[36px] flex flex-col justify-between">
+        <div className="border border-[#E8E8E8] p-[28px] sm:p-[36px] flex flex-col justify-between">
           <div>
-            <div className="w-[48px] h-[48px] rounded-[12px] bg-[#FFF5EE] flex items-center justify-center mb-[20px]">
+            <div className="w-[48px] h-[48px] bg-[#FFF5EE] flex items-center justify-center mb-[20px]">
               <Mail size={22} strokeWidth={1.5} className="text-[#E8650A]" />
             </div>
             <h2 className="text-[20px] font-[700] font-[family-name:var(--font-poppins)] text-[#1A1A1A] mb-[10px]">
@@ -113,7 +113,7 @@ export default function ContactPage() {
           </div>
           <a
             href="mailto:info@xlmarket.eu"
-            className="inline-flex items-center justify-center gap-[8px] px-[24px] py-[13px] rounded-[10px] bg-[#E8650A] text-white text-[14px] font-[600] font-[family-name:var(--font-poppins)] hover:bg-[#CF5A08] active:scale-[0.98] transition-all"
+            className="inline-flex items-center justify-center gap-[8px] px-[24px] py-[13px] bg-[#E8650A] text-white text-[14px] font-[600] font-[family-name:var(--font-poppins)] hover:bg-[#CF5A08] active:scale-[0.98] transition-all"
           >
             <Mail size={16} strokeWidth={2} />
             info@xlmarket.eu

@@ -132,7 +132,7 @@ export default function CartSlideOver() {
               </p>
               <button
                 onClick={close}
-                className="mt-[20px] px-[20px] py-[10px] rounded-[6px] bg-[#E8650A] text-white text-[13px] font-[600] font-[family-name:var(--font-poppins)] hover:bg-[#CF5A08] transition-colors"
+                className="mt-[20px] px-[20px] py-[10px] bg-[#E8650A] text-white text-[13px] font-[600] font-[family-name:var(--font-poppins)] hover:bg-[#CF5A08] transition-colors"
               >
                 Jätka ostlemist
               </button>
@@ -189,7 +189,7 @@ export default function CartSlideOver() {
             <Link
               href="/ostukorv"
               onClick={close}
-              className="block w-full text-center py-[13px] rounded-[8px] bg-[#E8650A] text-white text-[15px] font-[600] font-[family-name:var(--font-poppins)] hover:bg-[#CF5A08] transition-colors"
+              className="block w-full text-center py-[13px] bg-[#E8650A] text-white text-[15px] font-[600] font-[family-name:var(--font-poppins)] hover:bg-[#CF5A08] transition-colors"
               style={{ boxShadow: "0 4px 16px rgba(232,101,10,0.25)" }}
             >
               Vaata ostukorvi

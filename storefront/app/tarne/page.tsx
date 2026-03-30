@@ -38,8 +38,8 @@ export default function ShippingPage() {
             { icon: MapPin, title: "Tarne üle Eesti", desc: "Kõik tellimused saadetakse Eesti aadressile." },
             { icon: Package, title: "Jälgimisnumber", desc: "Saadame jälgimisnumbri e-kirjaga." },
           ].map(({ icon: Icon, title, desc }) => (
-            <div key={title} className="flex items-start gap-[14px] p-[18px] border border-[#E8E8E8] rounded-[12px]">
-              <div className="w-[36px] h-[36px] rounded-[8px] bg-[#FFF5EE] flex items-center justify-center shrink-0">
+            <div key={title} className="flex items-start gap-[14px] p-[18px] border border-[#E8E8E8]">
+              <div className="w-[36px] h-[36px] bg-[#FFF5EE] flex items-center justify-center shrink-0">
                 <Icon size={16} strokeWidth={1.5} className="text-[#E8650A]" />
               </div>
               <div>
@@ -59,7 +59,7 @@ export default function ShippingPage() {
           <h2 className="text-[18px] font-[600] font-[family-name:var(--font-poppins)] text-[#1A1A1A] mb-[16px]">
             Tarnehinnad
           </h2>
-          <div className="border border-[#E8E8E8] rounded-[12px] overflow-hidden">
+          <div className="border border-[#E8E8E8] overflow-hidden">
             <div className="grid grid-cols-3 bg-[#F7F7F7] px-[16px] py-[10px] border-b border-[#E8E8E8]">
               <span className="text-[12px] font-[600] font-[family-name:var(--font-poppins)] text-[#777777] uppercase tracking-wide">
                 Tarneviis

@@ -38,7 +38,7 @@ export default function RecentlyViewed({ currentId }: Props) {
           <Link
             key={item.id}
             href={"/toode/" + item.handle}
-            className="group flex flex-col border border-[#E8E8E8] rounded-[6px] overflow-hidden hover:border-[#E8650A]/40 transition-colors bg-white"
+            className="group flex flex-col border border-[#E8E8E8] overflow-hidden hover:border-[#E8650A]/40 transition-colors bg-white"
           >
             <div className="aspect-square bg-[#F7F7F7] overflow-hidden">
               {item.thumbnail ? (

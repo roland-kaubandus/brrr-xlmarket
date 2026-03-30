@@ -14,8 +14,8 @@ export default function NewsletterSection() {
   return (
     <section className="py-[64px] sm:py-[80px]">
       <div
-        className="rounded-[24px] px-[32px] sm:px-[64px] py-[48px] sm:py-[56px] text-center"
-        style={{ background: "linear-gradient(145deg, #1A1A1A 0%, #2D2D2D 100%)" }}
+        className="px-[32px] sm:px-[64px] py-[48px] sm:py-[56px] text-center"
+        style={{ background: "#1A1A1A" }}
       >
         <p className="text-[12px] font-[600] font-[family-name:var(--font-poppins)] text-[#E8650A] tracking-[0.10em] uppercase mb-[12px]">
           Püsi kursis
@@ -44,11 +44,11 @@ export default function NewsletterSection() {
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Teie e-posti aadress"
               required
-              className="flex-1 px-[16px] py-[12px] rounded-[10px] text-[14px] font-[family-name:var(--font-inter)] bg-white/10 text-white placeholder:text-white/40 border border-white/15 focus:outline-none focus:border-[#E8650A]/60"
+              className="flex-1 px-[16px] py-[12px] text-[14px] font-[family-name:var(--font-inter)] bg-white/10 text-white placeholder:text-white/40 border border-white/15 focus:outline-none focus:border-[#E8650A]/60"
             />
             <button
               type="submit"
-              className="px-[24px] py-[12px] rounded-[10px] bg-[#E8650A] text-white text-[14px] font-[600] font-[family-name:var(--font-poppins)] hover:bg-[#CF5A08] active:scale-[0.98] transition-all shrink-0"
+              className="px-[24px] py-[12px] bg-[#E8650A] text-white text-[14px] font-[600] font-[family-name:var(--font-poppins)] hover:bg-[#CF5A08] active:scale-[0.98] transition-all shrink-0"
             >
               Liitu
             </button>

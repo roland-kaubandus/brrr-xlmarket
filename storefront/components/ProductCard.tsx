@@ -124,7 +124,7 @@ export default function ProductCard({ product, isNew }: { product: Product; isNe
           </div>
           <div className="mt-auto pt-[12px]">
             <span
-              className="block w-full text-center py-[10px] rounded-[8px] text-[13px] font-[600] font-[family-name:var(--font-poppins)] border border-[#E8650A] text-[#E8650A] bg-transparent group-hover:bg-[#E8650A] group-hover:text-white"
+              className="block w-full text-center py-[10px] text-[13px] font-[600] font-[family-name:var(--font-poppins)] border border-[#E8650A] text-[#E8650A] bg-transparent group-hover:bg-[#E8650A] group-hover:text-white"
               style={{ transition: "all 0.2s cubic-bezier(0.32,0.72,0,1)" }}
             >
               Lisa ostukorvi

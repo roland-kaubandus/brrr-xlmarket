@@ -18,13 +18,13 @@ export default function NotFound() {
       <div className="flex flex-col sm:flex-row items-center justify-center gap-[12px]">
         <Link
           href="/"
-          className="inline-flex items-center gap-[8px] bg-[#E8650A] text-white px-[24px] py-[12px] rounded-[8px] text-[15px] font-[600] font-[family-name:var(--font-poppins)] hover:bg-[#CF5A08] transition-colors"
+          className="inline-flex items-center gap-[8px] bg-[#E8650A] text-white px-[24px] py-[12px] text-[15px] font-[600] font-[family-name:var(--font-poppins)] hover:bg-[#CF5A08] transition-colors"
         >
           Tagasi avalehele
         </Link>
         <Link
           href="/kategooriad"
-          className="inline-flex items-center gap-[8px] border border-[#E8E8E8] text-[#555555] px-[24px] py-[12px] rounded-[8px] text-[15px] font-[500] font-[family-name:var(--font-poppins)] hover:border-[#E8650A] hover:text-[#E8650A] transition-colors"
+          className="inline-flex items-center gap-[8px] border border-[#E8E8E8] text-[#555555] px-[24px] py-[12px] text-[15px] font-[500] font-[family-name:var(--font-poppins)] hover:border-[#E8650A] hover:text-[#E8650A] transition-colors"
         >
           Vaata kategooriaid
         </Link>

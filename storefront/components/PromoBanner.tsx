@@ -27,7 +27,7 @@ export default function PromoBanner({ banner }: { banner: Banner }) {
       {banner.buttonText && banner.buttonLink && (
         <Link
           href={banner.buttonLink}
-          className="inline-block px-[20px] py-[9px] text-[13px] font-[600] font-[family-name:var(--font-poppins)] border border-current rounded-[8px] hover:opacity-80 transition-opacity"
+          className="inline-block px-[20px] py-[9px] text-[13px] font-[600] font-[family-name:var(--font-poppins)] border border-current hover:opacity-80 transition-opacity"
         >
           {banner.buttonText}
         </Link>

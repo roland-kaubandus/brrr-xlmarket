@@ -53,7 +53,7 @@ export default function WishlistPage() {
           </p>
           <Link
             href="/kategooriad"
-            className="px-[20px] py-[11px] rounded-[8px] bg-[#E8650A] text-white text-[14px] font-[600] font-[family-name:var(--font-poppins)] hover:bg-[#CF5A08] transition-colors"
+            className="px-[20px] py-[11px] bg-[#E8650A] text-white text-[14px] font-[600] font-[family-name:var(--font-poppins)] hover:bg-[#CF5A08] transition-colors"
           >
             Vaata tooteid
           </Link>
@@ -63,7 +63,7 @@ export default function WishlistPage() {
           {items.map((item) => (
             <div
               key={item.id}
-              className="flex gap-[14px] p-[14px] border border-[#E8E8E8] rounded-[8px] bg-white hover:border-[#E8650A]/30 transition-colors"
+              className="flex gap-[14px] p-[14px] border border-[#E8E8E8] bg-white hover:border-[#E8650A]/30 transition-colors"
             >
               <Link href={"/toode/" + item.handle} className="shrink-0">
                 <div className="w-[80px] h-[80px] bg-[#F7F7F7] rounded-[4px] overflow-hidden border border-[#E8E8E8]">

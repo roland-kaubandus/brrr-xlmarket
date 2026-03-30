@@ -40,14 +40,14 @@ export default function CookieConsent() {
           <button
             type="button"
             onClick={acceptNecessary}
-            className="px-[14px] py-[8px] text-[13px] font-[500] font-[family-name:var(--font-poppins)] border border-[#E8E8E8] text-[#555555] hover:border-[#E8650A] hover:text-[#E8650A] rounded-[6px] transition-colors"
+            className="px-[14px] py-[8px] text-[13px] font-[500] font-[family-name:var(--font-poppins)] border border-[#E8E8E8] text-[#555555] hover:border-[#E8650A] hover:text-[#E8650A] transition-colors"
           >
             Ainult vajalikud
           </button>
           <button
             type="button"
             onClick={accept}
-            className="px-[14px] py-[8px] text-[13px] font-[600] font-[family-name:var(--font-poppins)] bg-[#E8650A] text-white hover:bg-[#CF5A08] rounded-[6px] transition-colors"
+            className="px-[14px] py-[8px] text-[13px] font-[600] font-[family-name:var(--font-poppins)] bg-[#E8650A] text-white hover:bg-[#CF5A08] transition-colors"
           >
             Nõustun kõigiga
           </button>

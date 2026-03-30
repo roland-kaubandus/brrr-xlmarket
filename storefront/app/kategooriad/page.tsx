@@ -1,49 +1,39 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import { getCategories } from "@/lib/medusa"
+import { getCategories, getProducts } from "@/lib/medusa"
+import { Package } from "lucide-react"
 
 export const revalidate = 300
 
 export const metadata: Metadata = {
   title: "Kategooriad — XLMARKET",
-  description:
-    "Sirvi XLMARKET tootekategooriaid: tööriistad, kodu ja aed, sport, auto ja palju muud.",
+  description: "Sirvi XLMARKET tootekategooriaid: tööriistad, kodu ja aed, sport, auto ja palju muud.",
   openGraph: {
     title: "Kategooriad — XLMARKET",
-    description:
-      "Sirvi XLMARKET tootekategooriaid: tööriistad, kodu ja aed, sport, auto ja palju muud.",
+    description: "Sirvi XLMARKET tootekategooriaid: tööriistad, kodu ja aed, sport, auto ja palju muud.",
   },
 }
-
-const categoryColorMap: Record<string, { from: string; to: string; label: string }> = {
-  "ehitus-ja-remont":        { from: "#C95208", to: "#E8650A", label: "Ehitus ja remont" },
-  "toostus-ja-seadmed":      { from: "#1A3A5C", to: "#2D6A9F", label: "Tööstus ja seadmed" },
-  "kodu-ja-aed":             { from: "#2E7D32", to: "#52B35A", label: "Kodu ja aed" },
-  "auto-ja-garaaz":          { from: "#37474F", to: "#607D8B", label: "Auto ja garaaž" },
-  "sport-ja-vaba-aeg":       { from: "#AD1457", to: "#E91E63", label: "Sport ja vaba aeg" },
-  "kunst-ja-kasitoo":        { from: "#6A1B9A", to: "#AB47BC", label: "Kunst ja käsitöö" },
-  "toitlustus-ja-kook":      { from: "#BF360C", to: "#FF5722", label: "Toitlustus ja köök" },
-  "elektroonika":             { from: "#0D47A1", to: "#1976D2", label: "Elektroonika" },
-  "lemmikloomad":             { from: "#558B2F", to: "#8BC34A", label: "Lemmikloomad" },
-  "kontor-ja-ladustamine":    { from: "#4E342E", to: "#795548", label: "Kontor ja ladustamine" },
-  "meditsiin-ja-tervishoid":  { from: "#00695C", to: "#26A69A", label: "Meditsiin ja tervishoid" },
-}
-
-const defaultColor = { from: "#555555", to: "#888888" }
 
 export default async function CategoriesPage() {
   const categories = await getCategories()
 
+  // Fetch one product thumbnail per category (parallel)
+  const catThumbsRaw = await Promise.all(
+    categories.map((cat) =>
+      getProducts({ limit: 1, category_id: [cat.id] })
+        .then((res) => [cat.id, res.products[0]?.thumbnail ?? null] as const)
+        .catch(() => [cat.id, null] as const)
+    )
+  )
+  const catThumbMap = Object.fromEntries(catThumbsRaw)
+
   return (
     <div className="max-w-[1280px] mx-auto px-[16px] sm:px-[24px] py-[32px] sm:py-[48px]">
-      {/* Breadcrumb */}
       <nav
         className="text-[12px] font-[family-name:var(--font-inter)] text-[#999999] mb-[32px]"
         aria-label="Leheasukoht"
       >
-        <Link href="/" className="hover:text-[#E8650A] transition-colors">
-          Avaleht
-        </Link>
+        <Link href="/" className="hover:text-[#E8650A] transition-colors">Avaleht</Link>
         <span className="mx-[8px] text-[#E8E8E8]">/</span>
         <span className="text-[#777777]">Kategooriad</span>
       </nav>
@@ -51,45 +41,46 @@ export default async function CategoriesPage() {
       <h1 className="text-[28px] sm:text-[32px] font-[700] font-[family-name:var(--font-poppins)] text-[#1A1A1A] mb-[8px]">
         Kõik kategooriad
       </h1>
-      <p className="text-[14px] text-[#999999] font-[family-name:var(--font-inter)] mb-[32px]">
+      <p className="text-[14px] text-[#999999] font-[family-name:var(--font-inter)] mb-[40px]">
         {categories.length} kategooriat · üle 10 000 toote
       </p>
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-[16px] sm:gap-[20px]">
+      <div
+        className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-[1px] border border-[#E8E8E8]"
+        style={{ background: "#E8E8E8" }}
+      >
         {categories.map((cat) => {
-          const colors = categoryColorMap[cat.handle] ?? defaultColor
+          const thumb = catThumbMap[cat.id] ?? null
           return (
             <Link
               key={cat.id}
               href={`/kategooriad/${cat.handle}`}
-              className="group relative overflow-hidden rounded-[16px] aspect-[4/3] flex flex-col justify-end p-[20px] sm:p-[24px]"
-              style={{
-                background: `linear-gradient(145deg, ${colors.from} 0%, ${colors.to} 100%)`,
-              }}
+              className="group flex items-center justify-between bg-white hover:bg-[#FFF5EE] overflow-hidden"
+              style={{ transition: "background-color 0.18s cubic-bezier(0.32,0.72,0,1)" }}
             >
-              {/* Shine overlay */}
-              <div
-                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                style={{
-                  background:
-                    "linear-gradient(135deg, rgba(255,255,255,0.12) 0%, transparent 60%)",
-                }}
-              />
-              {/* Dot pattern */}
-              <div
-                className="absolute top-[12px] right-[12px] w-[40px] h-[40px] rounded-full opacity-20"
-                style={{ background: "rgba(255,255,255,0.4)" }}
-              />
-              <div
-                className="absolute top-[28px] right-[28px] w-[16px] h-[16px] rounded-full opacity-15"
-                style={{ background: "rgba(255,255,255,0.6)" }}
-              />
-              <p className="relative text-white font-[600] font-[family-name:var(--font-poppins)] text-[15px] sm:text-[16px] leading-snug group-hover:translate-x-[2px] transition-transform duration-200">
-                {cat.name}
-              </p>
-              <p className="relative text-white/60 text-[11px] font-[family-name:var(--font-inter)] mt-[4px] group-hover:text-white/80 transition-colors">
-                Sirvi tooteid →
-              </p>
+              <div className="px-[16px] py-[16px] flex-1 min-w-0">
+                <span
+                  className="text-[14px] font-[600] font-[family-name:var(--font-poppins)] text-[#1A1A1A] group-hover:text-[#E8650A] leading-[1.4] block"
+                  style={{ transition: "color 0.18s" }}
+                >
+                  {cat.name}
+                </span>
+                <span className="text-[12px] font-[family-name:var(--font-inter)] text-[#999999] mt-[2px] group-hover:text-[#E8650A]/70 transition-colors block">
+                  Sirvi tooteid →
+                </span>
+              </div>
+              <div className="w-[96px] h-[80px] shrink-0 bg-[#F7F7F7] flex items-center justify-center overflow-hidden">
+                {thumb ? (
+                  <img
+                    src={thumb}
+                    alt=""
+                    className="w-full h-full object-contain p-[10px]"
+                    loading="lazy"
+                  />
+                ) : (
+                  <Package size={28} strokeWidth={1} className="text-[#DDDDDD]" />
+                )}
+              </div>
             </Link>
           )
         })}

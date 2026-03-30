@@ -212,7 +212,7 @@ export default async function ProductPage({ params }: Props) {
               <AddToCartButton variantId={variant.id} />
               <a
                 href={"/ostukorv"}
-                className="block w-full text-center py-[12px] rounded-[8px] text-[14px] font-[600] font-[family-name:var(--font-poppins)] border border-[#E8650A] text-[#E8650A] bg-transparent hover:bg-[#FFF5EE]"
+                className="block w-full text-center py-[12px] text-[14px] font-[600] font-[family-name:var(--font-poppins)] border border-[#E8650A] text-[#E8650A] bg-transparent hover:bg-[#FFF5EE]"
                 style={{ transition: "all 0.2s ease" }}
               >
                 Osta kohe →
@@ -236,7 +236,7 @@ export default async function ProductPage({ params }: Props) {
                 <h2 className="text-[16px] font-[600] font-[family-name:var(--font-poppins)] text-[#1A1A1A] mb-[14px]">
                   Tehnilised andmed
                 </h2>
-                <div className="rounded-[6px] border border-[#E8E8E8] overflow-hidden">
+                <div className="border border-[#E8E8E8] overflow-hidden">
                   {specs.map((spec, i) => (
                     <div
                       key={spec.key + i}
@@ -297,7 +297,7 @@ export default async function ProductPage({ params }: Props) {
           </h2>
           <div className="flex flex-col sm:flex-row gap-[16px] items-start">
             {/* Main product mini card */}
-            <div className="flex items-center gap-[12px] p-[12px] border border-[#E8E8E8] rounded-[8px] bg-[#FAFAFA] shrink-0">
+            <div className="flex items-center gap-[12px] p-[12px] border border-[#E8E8E8] bg-[#FAFAFA] shrink-0">
               {product.thumbnail && (
                 <div className="w-[60px] h-[60px] bg-white rounded-[4px] border border-[#E8E8E8] overflow-hidden relative shrink-0">
                   <img src={product.thumbnail} alt={product.title} className="w-full h-full object-contain p-[4px]" />
@@ -315,7 +315,7 @@ export default async function ProductPage({ params }: Props) {
                 <span className="text-[20px] text-[#CCCCCC] font-[300] shrink-0">+</span>
                 <a
                   href={"/toode/" + kp.handle}
-                  className="flex items-center gap-[12px] p-[12px] border border-[#E8E8E8] rounded-[8px] bg-white hover:border-[#E8650A]/40 transition-colors shrink-0"
+                  className="flex items-center gap-[12px] p-[12px] border border-[#E8E8E8] bg-white hover:border-[#E8650A]/40 transition-colors shrink-0"
                 >
                   {kp.thumbnail && (
                     <div className="w-[60px] h-[60px] bg-[#FAFAFA] rounded-[4px] overflow-hidden relative shrink-0">

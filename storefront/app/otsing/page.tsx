@@ -87,7 +87,7 @@ export default async function SearchPage({ searchParams }: Props) {
               {page > 1 && (
                 <Link
                   href={`/otsing?q=${encodeURIComponent(query)}&leht=${page - 1}`}
-                  className="px-[16px] py-[8px] border border-[#E8E8E8] hover:border-[#E8650A] text-[13px] font-[family-name:var(--font-inter)] text-[#555555] rounded-[6px] transition-colors"
+                  className="px-[16px] py-[8px] border border-[#E8E8E8] hover:border-[#E8650A] text-[13px] font-[family-name:var(--font-inter)] text-[#555555] transition-colors"
                 >
                   &larr; Eelmine
                 </Link>
@@ -98,7 +98,7 @@ export default async function SearchPage({ searchParams }: Props) {
               {page < totalPages && (
                 <Link
                   href={`/otsing?q=${encodeURIComponent(query)}&leht=${page + 1}`}
-                  className="px-[16px] py-[8px] border border-[#E8E8E8] hover:border-[#E8650A] text-[13px] font-[family-name:var(--font-inter)] text-[#555555] rounded-[6px] transition-colors"
+                  className="px-[16px] py-[8px] border border-[#E8E8E8] hover:border-[#E8650A] text-[13px] font-[family-name:var(--font-inter)] text-[#555555] transition-colors"
                 >
                   Järgmine &rarr;
                 </Link>
