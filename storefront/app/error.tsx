@@ -9,21 +9,29 @@ export default function ErrorPage({
   reset: () => void
 }) {
   return (
-    <div className="max-w-7xl mx-auto px-4 py-24 text-center">
-      <h1 className="text-6xl font-bold text-gray-300 mb-4">Viga</h1>
-      <p className="text-xl text-gray-600 mb-8">
-        Midagi läks valesti. Palun proovi uuesti.
+    <div className="max-w-[1280px] mx-auto px-[16px] sm:px-[24px] py-[80px] sm:py-[120px] text-center">
+      <p className="text-[13px] font-[600] font-[family-name:var(--font-poppins)] text-[#E8650A] tracking-[0.10em] uppercase mb-[16px]">
+        Viga
       </p>
-      <div className="flex justify-center gap-4">
+      <h1 className="text-[64px] sm:text-[96px] font-[800] font-[family-name:var(--font-poppins)] text-[#E8E8E8] leading-none mb-[16px]">
+        Oops
+      </h1>
+      <p className="text-[18px] sm:text-[20px] font-[600] font-[family-name:var(--font-poppins)] text-[#1A1A1A] mb-[8px]">
+        Midagi läks valesti
+      </p>
+      <p className="text-[14px] font-[family-name:var(--font-inter)] text-[#999999] mb-[36px]">
+        Palun proovige uuesti või minge tagasi avalehele.
+      </p>
+      <div className="flex flex-col sm:flex-row items-center justify-center gap-[12px]">
         <button
           onClick={reset}
-          className="bg-brand-500 text-white px-6 py-3 font-medium hover:bg-brand-600 transition"
+          className="inline-flex items-center gap-[8px] bg-[#E8650A] text-white px-[24px] py-[12px] rounded-[8px] text-[15px] font-[600] font-[family-name:var(--font-poppins)] hover:bg-[#CF5A08] transition-colors"
         >
           Proovi uuesti
         </button>
         <Link
           href="/"
-          className="border border-gray-300 px-6 py-3 font-medium hover:border-brand-500 transition"
+          className="inline-flex items-center gap-[8px] border border-[#E8E8E8] text-[#555555] px-[24px] py-[12px] rounded-[8px] text-[15px] font-[500] font-[family-name:var(--font-poppins)] hover:border-[#E8650A] hover:text-[#E8650A] transition-colors"
         >
           Avalehele
         </Link>

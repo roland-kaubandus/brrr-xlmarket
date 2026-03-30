@@ -31,25 +31,25 @@ export default function CookiePolicyPage() {
           Need küpsised on e-poe toimimiseks hädavajalikud. Ilma nendeta ei tööta ostukorv
           ega tellimise protsess.
         </p>
-        <div className="border border-[#E8E8E8] overflow-hidden">
+        <div className="border border-[#E8E8E8] rounded-[12px] overflow-hidden">
           <table className="w-full text-left">
             <thead className="bg-[#F7F7F7]">
               <tr>
-                <th className="px-4 py-3 font-medium">Küpsis</th>
-                <th className="px-4 py-3 font-medium">Eesmärk</th>
-                <th className="px-4 py-3 font-medium">Kehtivus</th>
+                <th className="px-[16px] py-[10px] text-[12px] font-[600] font-[family-name:var(--font-poppins)] text-[#777777] uppercase tracking-wide">Küpsis</th>
+                <th className="px-[16px] py-[10px] text-[12px] font-[600] font-[family-name:var(--font-poppins)] text-[#777777] uppercase tracking-wide">Eesmärk</th>
+                <th className="px-[16px] py-[10px] text-[12px] font-[600] font-[family-name:var(--font-poppins)] text-[#777777] uppercase tracking-wide">Kehtivus</th>
               </tr>
             </thead>
             <tbody>
               <tr className="border-t border-[#E8E8E8]">
-                <td className="px-4 py-3">xlmarket_cart_id</td>
-                <td className="px-4 py-3">Ostukorvi hoidmine</td>
-                <td className="px-4 py-3">Sessiooni lõpuni</td>
+                <td className="px-[16px] py-[10px] text-[13px] font-[family-name:var(--font-inter)] text-[#555555]">xlmarket_cart_id</td>
+                <td className="px-[16px] py-[10px] text-[13px] font-[family-name:var(--font-inter)] text-[#555555]">Ostukorvi hoidmine</td>
+                <td className="px-[16px] py-[10px] text-[13px] font-[family-name:var(--font-inter)] text-[#555555]">Sessiooni lõpuni</td>
               </tr>
               <tr className="border-t border-[#E8E8E8]">
-                <td className="px-4 py-3">xlmarket_cookie_consent</td>
-                <td className="px-4 py-3">Küpsiste nõusoleku meelespidamine</td>
-                <td className="px-4 py-3">1 aasta</td>
+                <td className="px-[16px] py-[10px] text-[13px] font-[family-name:var(--font-inter)] text-[#555555]">xlmarket_cookie_consent</td>
+                <td className="px-[16px] py-[10px] text-[13px] font-[family-name:var(--font-inter)] text-[#555555]">Küpsiste nõusoleku meelespidamine</td>
+                <td className="px-[16px] py-[10px] text-[13px] font-[family-name:var(--font-inter)] text-[#555555]">1 aasta</td>
               </tr>
             </tbody>
           </table>
@@ -60,20 +60,20 @@ export default function CookiePolicyPage() {
           Analüütikaküpsiseid kasutatakse ainult teie nõusolekul. Need aitavad meil mõista,
           kuidas külastajad meie veebilehte kasutavad.
         </p>
-        <div className="border border-[#E8E8E8] overflow-hidden">
+        <div className="border border-[#E8E8E8] rounded-[12px] overflow-hidden">
           <table className="w-full text-left">
             <thead className="bg-[#F7F7F7]">
               <tr>
-                <th className="px-4 py-3 font-medium">Küpsis</th>
-                <th className="px-4 py-3 font-medium">Eesmärk</th>
-                <th className="px-4 py-3 font-medium">Kehtivus</th>
+                <th className="px-[16px] py-[10px] text-[12px] font-[600] font-[family-name:var(--font-poppins)] text-[#777777] uppercase tracking-wide">Küpsis</th>
+                <th className="px-[16px] py-[10px] text-[12px] font-[600] font-[family-name:var(--font-poppins)] text-[#777777] uppercase tracking-wide">Eesmärk</th>
+                <th className="px-[16px] py-[10px] text-[12px] font-[600] font-[family-name:var(--font-poppins)] text-[#777777] uppercase tracking-wide">Kehtivus</th>
               </tr>
             </thead>
             <tbody>
               <tr className="border-t border-[#E8E8E8]">
-                <td className="px-4 py-3">_fbp</td>
-                <td className="px-4 py-3">Meta Pixel — külastajate analüüs</td>
-                <td className="px-4 py-3">3 kuud</td>
+                <td className="px-[16px] py-[10px] text-[13px] font-[family-name:var(--font-inter)] text-[#555555]">_fbp</td>
+                <td className="px-[16px] py-[10px] text-[13px] font-[family-name:var(--font-inter)] text-[#555555]">Meta Pixel — külastajate analüüs</td>
+                <td className="px-[16px] py-[10px] text-[13px] font-[family-name:var(--font-inter)] text-[#555555]">3 kuud</td>
               </tr>
             </tbody>
           </table>
