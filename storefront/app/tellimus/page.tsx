@@ -419,7 +419,7 @@ export default function CheckoutPage() {
                       key={opt.id}
                       className={`flex items-center justify-between p-3 border cursor-pointer transition ${
                         selectedShipping === opt.id
-                          ? "border-[#E8650A] bg-brand-50"
+                          ? "border-[#E8650A] bg-[#FFF5EE]"
                           : "border-[#E8E8E8] hover:border-[#E8650A]"
                       }`}
                     >
