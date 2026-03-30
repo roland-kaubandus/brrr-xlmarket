@@ -222,10 +222,10 @@ export default function CheckoutPage() {
       <div className="max-w-[1280px] mx-auto px-[16px] sm:px-[24px] py-[48px]">
         <h1 className="text-[20px] font-[600] font-[family-name:var(--font-poppins)] text-[#1A1A1A] mb-[24px]">Tellimuse vormistamine</h1>
         <div className="text-center py-16 border border-[#E8E8E8] bg-white">
-          <p className="text-gray-500 mb-[24px]">Sinu ostukorv on tühi.</p>
+          <p className="text-[14px] font-[family-name:var(--font-inter)] text-[#999999] mb-[28px]">Sinu ostukorv on tühi.</p>
           <Link
             href="/"
-            className="inline-block bg-[#E8650A] text-white px-8 py-[12px] font-medium hover:bg-[#CF5A08] transition"
+            className="inline-flex items-center bg-[#E8650A] text-white px-[24px] py-[12px] rounded-[8px] text-[15px] font-[600] font-[family-name:var(--font-poppins)] hover:bg-[#CF5A08] transition-colors"
           >
             Vaata tooteid
           </Link>
@@ -237,22 +237,22 @@ export default function CheckoutPage() {
   // Order completed
   if (step === "done") {
     return (
-      <div className="max-w-2xl mx-auto px-4 py-12">
+      <div className="max-w-[720px] mx-auto px-[16px] sm:px-[24px] py-[48px]">
         <div className="text-center py-16 bg-white border border-[#E8E8E8]">
           <div className="text-4xl mb-[16px]">&#10003;</div>
           <h1 className="text-[20px] font-[600] font-[family-name:var(--font-poppins)] text-[#1A1A1A] mb-[16px]">Tellimus on vormistatud!</h1>
-          <p className="text-gray-600 mb-2">
+          <p className="text-[14px] font-[family-name:var(--font-inter)] text-[#555555] mb-[8px]">
             Täname ostu eest. Saadame kinnituse aadressile{" "}
             <strong>{form.email}</strong>.
           </p>
           {orderId && (
-            <p className="text-sm text-gray-500 mb-[32px]">
+            <p className="text-[14px] font-[family-name:var(--font-inter)] text-[#555555] mb-[32px]">
               Tellimuse number: {orderId}
             </p>
           )}
           <Link
             href="/"
-            className="inline-block bg-[#E8650A] text-white px-8 py-[12px] font-medium hover:bg-[#CF5A08] transition"
+            className="inline-flex items-center bg-[#E8650A] text-white px-[24px] py-[12px] rounded-[8px] text-[15px] font-[600] font-[family-name:var(--font-poppins)] hover:bg-[#CF5A08] transition-colors"
           >
             Tagasi avalehele
           </Link>
@@ -264,20 +264,20 @@ export default function CheckoutPage() {
   const items = cart.items
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-8">
+    <div className="max-w-[1280px] mx-auto px-[16px] sm:px-[24px] py-[32px] sm:py-[48px]">
       {/* Breadcrumb */}
-      <nav className="text-sm text-gray-500 mb-[24px]" aria-label="Leheasukoht">
+      <nav className="text-[12px] font-[family-name:var(--font-inter)] text-[#999999] mb-[28px]" aria-label="Leheasukoht">
         <Link href="/" className="hover:text-[#E8650A]">Avaleht</Link>
-        <span className="mx-2">/</span>
+        <span className="mx-[8px] text-[#E8E8E8]">/</span>
         <Link href="/ostukorv" className="hover:text-[#E8650A]">Ostukorv</Link>
-        <span className="mx-2">/</span>
+        <span className="mx-[8px] text-[#E8E8E8]">/</span>
         <span className="text-[#1A1A1A] font-[family-name:var(--font-poppins)]">Tellimus</span>
       </nav>
 
       <h1 className="text-[20px] font-[600] font-[family-name:var(--font-poppins)] text-[#1A1A1A] mb-[24px]">Tellimuse vormistamine</h1>
 
       {error && (
-        <div className="mb-[24px] p-[16px] bg-red-50 border border-red-200 text-red-700 text-sm" role="alert">
+        <div className="mb-[20px] px-[14px] py-[10px] bg-red-50 border border-red-200 text-red-700 text-[13px] font-[family-name:var(--font-inter)] rounded-[6px]" role="alert">
           {error}
         </div>
       )}
@@ -285,13 +285,13 @@ export default function CheckoutPage() {
       <form onSubmit={handleSubmit}>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-[24px] lg:gap-[32px]">
           {/* Left: Customer form */}
-          <div className="lg:col-span-2 space-y-6">
+          <div className="lg:col-span-2 flex flex-col gap-[20px]">
             {/* Personal info */}
             <div className="bg-white border border-[#E8E8E8] p-[20px]">
-              <h2 className="text-lg font-bold mb-[16px]">Kliendi andmed</h2>
+              <h2 className="text-[16px] font-[600] font-[family-name:var(--font-poppins)] text-[#1A1A1A] mb-[16px]">Kliendi andmed</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-[16px]">
                 <div>
-                  <label htmlFor="first_name" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label htmlFor="first_name" className="block text-[12px] font-[500] font-[family-name:var(--font-poppins)] text-[#555555] mb-[6px]">
                     Eesnimi *
                   </label>
                   <input
@@ -300,11 +300,11 @@ export default function CheckoutPage() {
                     required
                     value={form.first_name}
                     onChange={(e) => updateField("first_name", e.target.value)}
-                    className="w-full border border-[#E8E8E8] px-3 py-[8px] text-sm focus:outline-none focus:border-[#E8650A]"
+                    className="w-full border border-[#E8E8E8] rounded-[6px] px-[12px] py-[9px] text-[13px] font-[family-name:var(--font-inter)] text-[#333333] focus:outline-none focus:border-[#E8650A] transition-colors"
                   />
                 </div>
                 <div>
-                  <label htmlFor="last_name" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label htmlFor="last_name" className="block text-[12px] font-[500] font-[family-name:var(--font-poppins)] text-[#555555] mb-[6px]">
                     Perekonnanimi *
                   </label>
                   <input
@@ -313,11 +313,11 @@ export default function CheckoutPage() {
                     required
                     value={form.last_name}
                     onChange={(e) => updateField("last_name", e.target.value)}
-                    className="w-full border border-[#E8E8E8] px-3 py-[8px] text-sm focus:outline-none focus:border-[#E8650A]"
+                    className="w-full border border-[#E8E8E8] rounded-[6px] px-[12px] py-[9px] text-[13px] font-[family-name:var(--font-inter)] text-[#333333] focus:outline-none focus:border-[#E8650A] transition-colors"
                   />
                 </div>
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label htmlFor="email" className="block text-[12px] font-[500] font-[family-name:var(--font-poppins)] text-[#555555] mb-[6px]">
                     E-post *
                   </label>
                   <input
@@ -326,11 +326,11 @@ export default function CheckoutPage() {
                     required
                     value={form.email}
                     onChange={(e) => updateField("email", e.target.value)}
-                    className="w-full border border-[#E8E8E8] px-3 py-[8px] text-sm focus:outline-none focus:border-[#E8650A]"
+                    className="w-full border border-[#E8E8E8] rounded-[6px] px-[12px] py-[9px] text-[13px] font-[family-name:var(--font-inter)] text-[#333333] focus:outline-none focus:border-[#E8650A] transition-colors"
                   />
                 </div>
                 <div>
-                  <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label htmlFor="phone" className="block text-[12px] font-[500] font-[family-name:var(--font-poppins)] text-[#555555] mb-[6px]">
                     Telefon *
                   </label>
                   <input
@@ -339,7 +339,7 @@ export default function CheckoutPage() {
                     required
                     value={form.phone}
                     onChange={(e) => updateField("phone", e.target.value)}
-                    className="w-full border border-[#E8E8E8] px-3 py-[8px] text-sm focus:outline-none focus:border-[#E8650A]"
+                    className="w-full border border-[#E8E8E8] rounded-[6px] px-[12px] py-[9px] text-[13px] font-[family-name:var(--font-inter)] text-[#333333] focus:outline-none focus:border-[#E8650A] transition-colors"
                   />
                 </div>
               </div>
@@ -347,10 +347,10 @@ export default function CheckoutPage() {
 
             {/* Address */}
             <div className="bg-white border border-[#E8E8E8] p-[20px]">
-              <h2 className="text-lg font-bold mb-[16px]">Tarneaadress</h2>
+              <h2 className="text-[16px] font-[600] font-[family-name:var(--font-poppins)] text-[#1A1A1A] mb-[16px]">Tarneaadress</h2>
               <div className="flex flex-col gap-[16px]">
                 <div>
-                  <label htmlFor="address_1" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label htmlFor="address_1" className="block text-[12px] font-[500] font-[family-name:var(--font-poppins)] text-[#555555] mb-[6px]">
                     Aadress *
                   </label>
                   <input
@@ -360,12 +360,12 @@ export default function CheckoutPage() {
                     placeholder="Tänav, maja, korter"
                     value={form.address_1}
                     onChange={(e) => updateField("address_1", e.target.value)}
-                    className="w-full border border-[#E8E8E8] px-3 py-[8px] text-sm focus:outline-none focus:border-[#E8650A]"
+                    className="w-full border border-[#E8E8E8] rounded-[6px] px-[12px] py-[9px] text-[13px] font-[family-name:var(--font-inter)] text-[#333333] focus:outline-none focus:border-[#E8650A] transition-colors"
                   />
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-[16px]">
                   <div className="sm:col-span-2">
-                    <label htmlFor="city" className="block text-sm font-medium text-gray-700 mb-1">
+                    <label htmlFor="city" className="block text-[12px] font-[500] font-[family-name:var(--font-poppins)] text-[#555555] mb-[6px]">
                       Linn *
                     </label>
                     <input
@@ -374,11 +374,11 @@ export default function CheckoutPage() {
                       required
                       value={form.city}
                       onChange={(e) => updateField("city", e.target.value)}
-                      className="w-full border border-[#E8E8E8] px-3 py-[8px] text-sm focus:outline-none focus:border-[#E8650A]"
+                      className="w-full border border-[#E8E8E8] rounded-[6px] px-[12px] py-[9px] text-[13px] font-[family-name:var(--font-inter)] text-[#333333] focus:outline-none focus:border-[#E8650A] transition-colors"
                     />
                   </div>
                   <div>
-                    <label htmlFor="postal_code" className="block text-sm font-medium text-gray-700 mb-1">
+                    <label htmlFor="postal_code" className="block text-[12px] font-[500] font-[family-name:var(--font-poppins)] text-[#555555] mb-[6px]">
                       Postiindeks *
                     </label>
                     <input
@@ -387,19 +387,19 @@ export default function CheckoutPage() {
                       required
                       value={form.postal_code}
                       onChange={(e) => updateField("postal_code", e.target.value)}
-                      className="w-full border border-[#E8E8E8] px-3 py-[8px] text-sm focus:outline-none focus:border-[#E8650A]"
+                      className="w-full border border-[#E8E8E8] rounded-[6px] px-[12px] py-[9px] text-[13px] font-[family-name:var(--font-inter)] text-[#333333] focus:outline-none focus:border-[#E8650A] transition-colors"
                     />
                   </div>
                 </div>
                 <div>
-                  <label htmlFor="country" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label htmlFor="country" className="block text-[12px] font-[500] font-[family-name:var(--font-poppins)] text-[#555555] mb-[6px]">
                     Riik
                   </label>
                   <select
                     id="country"
                     value={form.country_code}
                     onChange={(e) => updateField("country_code", e.target.value)}
-                    className="w-full border border-[#E8E8E8] px-3 py-[8px] text-sm focus:outline-none focus:border-[#E8650A] bg-white"
+                    className="w-full border border-[#E8E8E8] rounded-[6px] px-[12px] py-[9px] text-[13px] font-[family-name:var(--font-inter)] text-[#333333] bg-white focus:outline-none focus:border-[#E8650A] transition-colors"
                   >
                     <option value="ee">Eesti</option>
                   </select>
@@ -409,7 +409,7 @@ export default function CheckoutPage() {
 
             {/* Shipping */}
             <div className="bg-white border border-[#E8E8E8] p-[20px]">
-              <h2 className="text-lg font-bold mb-[16px]">Tarneviis</h2>
+              <h2 className="text-[16px] font-[600] font-[family-name:var(--font-poppins)] text-[#1A1A1A] mb-[16px]">Tarneviis</h2>
               {shippingOptions.length === 0 ? (
                 <p className="text-[12px] text-[#999999] font-[family-name:var(--font-inter)]">Tarneviisid laaduvad...</p>
               ) : (
@@ -423,7 +423,7 @@ export default function CheckoutPage() {
                           : "border-[#E8E8E8] hover:border-[#E8650A]"
                       }`}
                     >
-                      <div className="flex items-center gap-3">
+                      <div className="flex items-center gap-[12px]">
                         <input
                           type="radio"
                           name="shipping"
@@ -435,7 +435,7 @@ export default function CheckoutPage() {
                         <span className="text-[13px] font-[500] font-[family-name:var(--font-poppins)] text-[#1A1A1A]">{opt.name}</span>
                       </div>
                       {typeof opt.amount === "number" && (
-                        <span className="text-sm font-bold">
+                        <span className="text-[13px] font-[700] font-[family-name:var(--font-poppins)]">
                           {opt.amount === 0 ? "Tasuta" : formatPrice(opt.amount, cart.currency_code)}
                         </span>
                       )}
@@ -448,14 +448,14 @@ export default function CheckoutPage() {
 
           {/* Right: Order summary */}
           <div className="lg:col-span-1">
-            <div className="bg-white border border-[#E8E8E8] p-[20px] sticky top-20">
-              <h2 className="text-lg font-bold mb-[16px]">Tellimuse kokkuvõte</h2>
+            <div className="bg-white border border-[#E8E8E8] rounded-[8px] p-[20px] sticky top-[80px]">
+              <h2 className="text-[16px] font-[600] font-[family-name:var(--font-poppins)] text-[#1A1A1A] mb-[16px]">Tellimuse kokkuvõte</h2>
 
               {/* Items */}
-              <div className="space-y-3 mb-[16px]">
+              <div className="flex flex-col gap-[10px] mb-[16px]">
                 {items.map((item) => (
-                  <div key={item.id} className="flex gap-3">
-                    <div className="relative w-14 h-14 bg-[#FAFAFA] shrink-0">
+                  <div key={item.id} className="flex gap-[12px]">
+                    <div className="relative w-[56px] h-[56px] bg-[#F7F7F7] rounded-[4px] border border-[#E8E8E8] shrink-0 overflow-hidden">
                       {item.variant?.product?.thumbnail ? (
                         <Image
                           src={item.variant.product.thumbnail}
@@ -465,20 +465,20 @@ export default function CheckoutPage() {
                           sizes="56px"
                         />
                       ) : (
-                        <div className="w-full h-full flex items-center justify-center text-gray-300 text-xs">
+                        <div className="w-full h-full flex items-center justify-center text-[#CCCCCC] text-[11px]">
                           -
                         </div>
                       )}
                     </div>
                     <div className="flex-1 min-w-0">
-                      <p className="text-xs text-gray-900 line-clamp-2">
+                      <p className="text-[12px] font-[500] font-[family-name:var(--font-poppins)] text-[#1A1A1A] leading-[1.4] line-clamp-2">
                         {item.variant?.product?.title || item.title}
                       </p>
-                      <p className="text-xs text-gray-500">
+                      <p className="text-[12px] font-[family-name:var(--font-inter)] text-[#999999]">
                         {item.quantity} tk &times; {formatPrice(item.unit_price, cart.currency_code)}
                       </p>
                     </div>
-                    <p className="text-xs font-bold shrink-0">
+                    <p className="text-[13px] font-[700] font-[family-name:var(--font-poppins)] text-[#1A1A1A] shrink-0">
                       {formatPrice(item.total, cart.currency_code)}
                     </p>
                   </div>
@@ -486,7 +486,7 @@ export default function CheckoutPage() {
               </div>
 
               {/* Totals */}
-              <div className="border-t border-[#E8E8E8] pt-4 space-y-2 text-sm">
+              <div className="border-t border-[#E8E8E8] pt-[12px] flex flex-col gap-[8px]">
                 <div className="flex justify-between">
                   <span className="text-[#999999] font-[family-name:var(--font-inter)]">Vahesumma</span>
                   <span>{formatPrice(cart.subtotal, cart.currency_code)}</span>
@@ -506,7 +506,7 @@ export default function CheckoutPage() {
               </div>
 
               <div className="border-t border-[#E8E8E8] mt-[16px] pt-4">
-                <div className="flex justify-between font-bold text-lg">
+                <div className="flex items-center justify-between">
                   <span>Kokku</span>
                   <span className="text-[#E8650A]">
                     {formatPrice(cart.total, cart.currency_code)}
@@ -517,12 +517,12 @@ export default function CheckoutPage() {
               <button
                 type="submit"
                 disabled={submitting || !selectedShipping}
-                className="w-full mt-[24px] bg-[#E8650A] text-white py-[12px] font-medium hover:bg-[#CF5A08] disabled:bg-gray-300 disabled:cursor-not-allowed transition"
+                className="w-full mt-[20px] py-[14px] rounded-[8px] bg-[#E8650A] text-white text-[15px] font-[600] font-[family-name:var(--font-poppins)] hover:bg-[#CF5A08] disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
               >
                 {submitting ? "Vormistatakse..." : "Kinnita tellimus"}
               </button>
 
-              <p className="text-xs text-gray-400 text-center mt-2">
+              <p className="text-[12px] font-[family-name:var(--font-inter)] text-[#999999] text-center mt-[10px]">
                 Maksmine: pangaülekanne (arve saadetakse e-postile)
               </p>
             </div>
