@@ -221,7 +221,7 @@ export default function CheckoutPage() {
     return (
       <div className="max-w-[1280px] mx-auto px-[16px] sm:px-[24px] py-[48px]">
         <h1 className="text-[20px] font-[600] font-[family-name:var(--font-poppins)] text-[#1A1A1A] mb-[24px]">Tellimuse vormistamine</h1>
-        <div className="text-center py-16 border border-[#E8E8E8] bg-white">
+        <div className="flex flex-col items-center justify-center py-[64px] border border-[#E8E8E8] rounded-[8px] bg-[#FAFAFA]">
           <p className="text-[14px] font-[family-name:var(--font-inter)] text-[#999999] mb-[28px]">Sinu ostukorv on tühi.</p>
           <Link
             href="/"
@@ -238,8 +238,8 @@ export default function CheckoutPage() {
   if (step === "done") {
     return (
       <div className="max-w-[720px] mx-auto px-[16px] sm:px-[24px] py-[48px]">
-        <div className="text-center py-16 bg-white border border-[#E8E8E8]">
-          <div className="text-4xl mb-[16px]">&#10003;</div>
+        <div className="flex flex-col items-center justify-center py-[64px] bg-white border border-[#E8E8E8] rounded-[8px]">
+          <div className="w-[56px] h-[56px] rounded-full bg-green-100 flex items-center justify-center mx-auto mb-[20px]"><span className="text-green-600 text-[28px]">&#10003;</span></div>
           <h1 className="text-[20px] font-[600] font-[family-name:var(--font-poppins)] text-[#1A1A1A] mb-[16px]">Tellimus on vormistatud!</h1>
           <p className="text-[14px] font-[family-name:var(--font-inter)] text-[#555555] mb-[8px]">
             Täname ostu eest. Saadame kinnituse aadressile{" "}
