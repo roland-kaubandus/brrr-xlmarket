@@ -1,0 +1,99 @@
+"use client"
+
+import { useState, useEffect } from "react"
+import Link from "next/link"
+import { Heart, Trash2 } from "lucide-react"
+
+type WishItem = {
+  id: string
+  handle: string
+  title: string
+  thumbnail: string | null
+  price: string
+}
+
+export default function WishlistPage() {
+  const [items, setItems] = useState<WishItem[]>([])
+
+  useEffect(() => {
+    try {
+      const raw = localStorage.getItem("xlmarket_wishlist")
+      if (raw) setItems(JSON.parse(raw))
+    } catch {}
+  }, [])
+
+  function remove(id: string) {
+    const next = items.filter((i) => i.id !== id)
+    setItems(next)
+    localStorage.setItem("xlmarket_wishlist", JSON.stringify(next))
+  }
+
+  return (
+    <div className="max-w-[1280px] mx-auto px-[16px] sm:px-[24px] py-[40px]">
+      <div className="flex items-center gap-[10px] mb-[32px]">
+        <Heart size={22} strokeWidth={1.5} className="text-[#E8650A]" />
+        <h1 className="text-[28px] font-[700] font-[family-name:var(--font-poppins)] text-[#1A1A1A]">
+          Lemmikud
+        </h1>
+        {items.length > 0 && (
+          <span className="ml-[4px] text-[15px] font-[family-name:var(--font-inter)] text-[#999999]">
+            ({items.length})
+          </span>
+        )}
+      </div>
+
+      {items.length === 0 ? (
+        <div className="flex flex-col items-center justify-center py-[80px] text-center">
+          <Heart size={56} strokeWidth={1} className="text-[#E8E8E8] mb-[20px]" />
+          <p className="text-[18px] font-[600] font-[family-name:var(--font-poppins)] text-[#1A1A1A] mb-[8px]">
+            Lemmikud on tühjad
+          </p>
+          <p className="text-[14px] font-[family-name:var(--font-inter)] text-[#999999] mb-[24px]">
+            Vajuta südame ikoonil tootekaardil, et lisada lemmikutesse
+          </p>
+          <Link
+            href="/kategooriad"
+            className="px-[20px] py-[11px] rounded-[8px] bg-[#E8650A] text-white text-[14px] font-[600] font-[family-name:var(--font-poppins)] hover:bg-[#CF5A08] transition-colors"
+          >
+            Vaata tooteid
+          </Link>
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[16px]">
+          {items.map((item) => (
+            <div
+              key={item.id}
+              className="flex gap-[14px] p-[14px] border border-[#E8E8E8] rounded-[8px] bg-white hover:border-[#E8650A]/30 transition-colors"
+            >
+              <Link href={"/toode/" + item.handle} className="shrink-0">
+                <div className="w-[80px] h-[80px] bg-[#F7F7F7] rounded-[4px] overflow-hidden border border-[#E8E8E8]">
+                  {item.thumbnail ? (
+                    <img src={item.thumbnail} alt={item.title} className="w-full h-full object-contain p-[6px]" />
+                  ) : null}
+                </div>
+              </Link>
+              <div className="flex-1 min-w-0">
+                <Link href={"/toode/" + item.handle}>
+                  <p className="text-[13px] font-[500] font-[family-name:var(--font-poppins)] text-[#1A1A1A] leading-[1.4] line-clamp-2 hover:text-[#E8650A] transition-colors mb-[6px]">
+                    {item.title}
+                  </p>
+                </Link>
+                <p className="text-[15px] font-[700] font-[family-name:var(--font-poppins)] text-[#E8650A]">
+                  {item.price}
+                </p>
+              </div>
+              <button
+                type="button"
+                onClick={() => remove(item.id)}
+                className="shrink-0 w-[32px] h-[32px] flex items-center justify-center rounded-full hover:bg-red-50 text-[#CCCCCC] hover:text-red-400 transition-colors self-start mt-[-2px]"
+                aria-label="Eemalda lemmikutest"
+              >
+                <Trash2 size={15} strokeWidth={1.5} />
+              </button>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  )
+}

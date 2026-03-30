@@ -21,6 +21,7 @@ async function medusaFetch<T>(path: string, options?: RequestInit): Promise<T> {
 
 export type MedusaPrice = {
   calculated_amount: number
+  original_amount: number
   currency_code: string
 }
 
@@ -177,7 +178,7 @@ export async function getCmsContent(): Promise<CmsContent> {
     return res.content
   } catch {
     return {
-      hero: { title: "Suur valik, väike hind", subtitle: "", buttonText: "Vaata tooteid", buttonLink: "/kategooriad", visible: true },
+      hero: { title: "Mitte see tavaline suur e-pood!", subtitle: "Tuhanded erilised tooted, eriliselt hea hinnaga.", buttonText: "Vaata tooteid", buttonLink: "/kategooriad", visible: true },
       announcement: { text: "", link: "", visible: false },
       banners: [],
       campaigns: [],

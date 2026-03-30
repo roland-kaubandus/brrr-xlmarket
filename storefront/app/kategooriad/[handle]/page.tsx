@@ -105,17 +105,22 @@ export default async function CategoryPage({ params, searchParams }: Props) {
   }
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-8">
+    <div className="max-w-[1280px] mx-auto px-[16px] sm:px-[24px] py-[32px] sm:py-[48px]">
       {/* Breadcrumb */}
-      <nav className="text-sm text-gray-500 mb-6">
-        <Link href="/" className="hover:text-brand-600">Avaleht</Link>
-        <span className="mx-2">/</span>
-        <Link href="/kategooriad" className="hover:text-brand-600">Kategooriad</Link>
-        <span className="mx-2">/</span>
-        <span className="text-gray-900">{category.name}</span>
+      <nav className="text-[12px] font-[family-name:var(--font-inter)] text-[#999999] mb-[32px]" aria-label="Leheasukoht">
+        <Link href="/" className="hover:text-[#E8650A] transition-colors">Avaleht</Link>
+        <span className="mx-[8px] text-[#E8E8E8]">/</span>
+        <Link href="/kategooriad" className="hover:text-[#E8650A] transition-colors">Kategooriad</Link>
+        <span className="mx-[8px] text-[#E8E8E8]">/</span>
+        <span className="text-[#777777]">{category.name}</span>
       </nav>
 
-      <h1 className="text-3xl font-bold mb-6">{category.name}</h1>
+      <h1 className="text-[28px] sm:text-[32px] font-[700] font-[family-name:var(--font-poppins)] text-[#1A1A1A] mb-[8px]">
+        {category.name}
+      </h1>
+      <p className="text-[14px] text-[#999999] font-[family-name:var(--font-inter)] mb-[24px]">
+        {totalFiltered.toLocaleString("et-EE")} toodet
+      </p>
 
       {/* Filters */}
       <CategoryFilters
@@ -127,13 +132,13 @@ export default async function CategoryPage({ params, searchParams }: Props) {
       />
 
       {displayProducts.length === 0 ? (
-        <p className="text-gray-500 py-16 text-center">
-          {hasPriceFilter
-            ? "Selles hinnavahemikus tooteid ei leitud. Proovi teisi filtreid."
-            : "Selles kategoorias pole veel tooteid."}
-        </p>
+        <div className="py-[64px] text-center">
+          <p className="text-[16px] text-[#999999] font-[family-name:var(--font-inter)]">
+            {hasPriceFilter ? "Selles hinnavahemikus tooteid ei leitud." : "Selles kategoorias pole veel tooteid."}
+          </p>
+        </div>
       ) : (
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-[16px] sm:gap-[20px]">
           {displayProducts.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
@@ -142,24 +147,24 @@ export default async function CategoryPage({ params, searchParams }: Props) {
 
       {/* Pagination */}
       {totalPages > 1 && (
-        <nav className="flex justify-center items-center gap-2 mt-10">
+        <nav className="flex justify-center items-center gap-[8px] mt-[48px]" aria-label="Leheküljed">
           {page > 1 && (
             <Link
               href={pageUrl(page - 1)}
-              className="px-4 py-2 border border-gray-200 hover:border-brand-500 text-sm transition"
+              className="px-[16px] py-[9px] rounded-[8px] border border-[#E8E8E8] text-[13px] font-[500] font-[family-name:var(--font-poppins)] text-[#333333] hover:border-[#E8650A] hover:text-[#E8650A] transition-colors"
             >
-              &larr; Eelmine
+              ← Eelmine
             </Link>
           )}
-          <span className="text-sm text-gray-500 px-4">
+          <span className="text-[13px] text-[#999999] font-[family-name:var(--font-inter)] px-[8px]">
             {page} / {totalPages}
           </span>
           {page < totalPages && (
             <Link
               href={pageUrl(page + 1)}
-              className="px-4 py-2 border border-gray-200 hover:border-brand-500 text-sm transition"
+              className="px-[16px] py-[9px] rounded-[8px] border border-[#E8E8E8] text-[13px] font-[500] font-[family-name:var(--font-poppins)] text-[#333333] hover:border-[#E8650A] hover:text-[#E8650A] transition-colors"
             >
-              Järgmine &rarr;
+              Järgmine →
             </Link>
           )}
         </nav>

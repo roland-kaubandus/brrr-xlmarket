@@ -8,35 +8,35 @@ export const metadata: Metadata = {
 
 export default function ReturnsPage() {
   return (
-    <div className="max-w-4xl mx-auto px-4 py-8">
-      <nav className="text-sm text-gray-500 mb-6" aria-label="Leheasukoht">
-        <Link href="/" className="hover:text-brand-600">Avaleht</Link>
-        <span className="mx-2">/</span>
-        <span className="text-gray-900">Tagastamine</span>
+    <div className="max-w-[1280px] mx-auto px-[16px] sm:px-[24px] py-[32px] sm:py-[48px]">
+      <nav className="text-[12px] font-[family-name:var(--font-inter)] text-[#999999] mb-[32px]" aria-label="Leheasukoht">
+        <Link href="/" className="hover:text-[#E8650A] transition-colors">Avaleht</Link>
+        <span className="mx-[8px] text-[#E8E8E8]">/</span>
+        <span className="text-[#777777]">Tagastamine</span>
       </nav>
 
-      <h1 className="text-3xl font-bold mb-8">Tagastamine ja taganemisõigus</h1>
+      <h1 className="text-[28px] sm:text-[32px] font-[700] font-[family-name:var(--font-poppins)] text-[#1A1A1A] mb-[32px]">Tagastamine ja taganemisõigus</h1>
 
-      <div className="prose prose-gray max-w-none text-sm leading-relaxed space-y-6">
-        <h2 className="text-xl font-bold mt-8 mb-3">14-päevane taganemisõigus</h2>
+      <div className="max-w-[720px] text-[14px] font-[family-name:var(--font-inter)] text-[#555555] leading-relaxed space-y-[16px]">
+        <h2 className="text-[18px] font-[600] font-[family-name:var(--font-poppins)] text-[#1A1A1A] mt-[32px] mb-[12px]">14-päevane taganemisõigus</h2>
         <p>
           Vastavalt Eesti Vabariigi tarbijakaitseseadusele on teil õigus e-poest ostetud kaubast
           taganeda 14 päeva jooksul alates kauba kättesaamisest ilma põhjust nimetamata.
         </p>
 
-        <h2 className="text-xl font-bold mt-8 mb-3">Tagastamise tingimused</h2>
-        <ul className="list-disc pl-6 space-y-1">
+        <h2 className="text-[18px] font-[600] font-[family-name:var(--font-poppins)] text-[#1A1A1A] mt-[32px] mb-[12px]">Tagastamise tingimused</h2>
+        <ul className="list-disc pl-[20px] space-y-[6px] text-[14px] text-[#555555] font-[family-name:var(--font-inter)]">
           <li>Kaup peab olema kasutamata ja originaalpakendis</li>
           <li>Toote pakend ei tohi olla kahjustatud (v.a pakendi avamine tutvumise eesmärgil)</li>
           <li>Tagastatav kaup peab olema komplektne</li>
           <li>Kauba tagastamise kulud kannab ostja</li>
         </ul>
 
-        <h2 className="text-xl font-bold mt-8 mb-3">Kuidas tagastada</h2>
-        <ol className="list-decimal pl-6 space-y-2">
+        <h2 className="text-[18px] font-[600] font-[family-name:var(--font-poppins)] text-[#1A1A1A] mt-[32px] mb-[12px]">Kuidas tagastada</h2>
+        <ol className="list-decimal pl-[20px] space-y-[10px] text-[14px] text-[#555555] font-[family-name:var(--font-inter)]">
           <li>
             Saatke taganemisavaldus e-postile{" "}
-            <a href="mailto:info@xlmarket.eu" className="text-brand-600 hover:text-brand-700 underline">
+            <a href="mailto:info@xlmarket.eu" className="text-[#E8650A] hover:text-[#CF5A08] underline">
               info@xlmarket.eu
             </a>{" "}
             hiljemalt 14 päeva jooksul alates kauba kättesaamisest.
@@ -46,26 +46,26 @@ export default function ReturnsPage() {
           <li>Saatke kaup tagasi 14 päeva jooksul alates taganemisavalduse esitamisest.</li>
         </ol>
 
-        <h2 className="text-xl font-bold mt-8 mb-3">Raha tagastamine</h2>
+        <h2 className="text-[18px] font-[600] font-[family-name:var(--font-poppins)] text-[#1A1A1A] mt-[32px] mb-[12px]">Raha tagastamine</h2>
         <p>
           Tagastame kauba eest tasutud summa (sh tarnekulud) 14 päeva jooksul alates kauba
           tagasijõudmisest meieni. Raha tagastatakse sama makseviisiga, mida kasutasite ostu
           sooritamisel.
         </p>
 
-        <h2 className="text-xl font-bold mt-8 mb-3">Pretensiooni esitamine</h2>
+        <h2 className="text-[18px] font-[600] font-[family-name:var(--font-poppins)] text-[#1A1A1A] mt-[32px] mb-[12px]">Pretensiooni esitamine</h2>
         <p>
           Kui kaup ei vasta lepingutingimustele (defektne, vigane), on teil õigus esitada
           pretensioon 2 aasta jooksul alates kauba kättesaamisest. Kirjutage aadressile{" "}
-          <a href="mailto:info@xlmarket.eu" className="text-brand-600 hover:text-brand-700 underline">
+          <a href="mailto:info@xlmarket.eu" className="text-[#E8650A] hover:text-[#CF5A08] underline">
             info@xlmarket.eu
           </a>{" "}
           koos tellimuse numbri ja probleemi kirjeldusega.
         </p>
 
-        <h2 className="text-xl font-bold mt-8 mb-3">Erandid</h2>
+        <h2 className="text-[18px] font-[600] font-[family-name:var(--font-poppins)] text-[#1A1A1A] mt-[32px] mb-[12px]">Erandid</h2>
         <p>Taganemisõigus ei kehti:</p>
-        <ul className="list-disc pl-6 space-y-1">
+        <ul className="list-disc pl-[20px] space-y-[6px] text-[14px] text-[#555555] font-[family-name:var(--font-inter)]">
           <li>Toodetele, mis on valmistatud tarbija erinõuete kohaselt</li>
           <li>Kiirestirikneva kauba puhul</li>
           <li>Suletud pakendiga toodetele, mis ei sobi tagastamiseks tervisekaitse tõttu</li>
