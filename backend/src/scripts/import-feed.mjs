@@ -136,6 +136,7 @@ let globalToken = null
 let stats = { total: 0, created: 0, updated: 0, skipped: 0, errors: 0, unmapped: 0 }
 let categoryIdCache = {}
 let existingProducts = {}
+let existingVariants = {}
 
 async function loadCategoryIds() {
   const resp = await apiCall("GET", "/admin/product-categories?limit=100")
@@ -151,7 +152,7 @@ async function loadExistingProducts() {
   let total = Infinity
 
   while (offset < total) {
-    const resp = await apiCall("GET", `/admin/products?limit=${limit}&offset=${offset}&fields=id,handle,metadata`)
+    const resp = await apiCall("GET", `/admin/products?limit=${limit}&offset=${offset}`)
     total = resp.count || 0
     for (const p of resp.products || []) {
       const sku = p.metadata?.vevor_sku
@@ -258,12 +259,19 @@ async function updateProduct(productId, row) {
         weight_kg: row.weight || 0,
       },
     })
+    // Fetch variant ID and update price
+    const prodResp = await apiCall("GET", `/admin/products/${productId}?fields=id,variants.id`)
+    const variantId = prodResp.product?.variants?.[0]?.id
+    if (variantId) {
+      await apiCall("POST", `/admin/products/${productId}/variants/${variantId}`, {
+        prices: [{ amount: finalPrice, currency_code: "eur" }],
+      })
+    }
     stats.updated++
   } catch (err) {
     stats.errors++
   }
 }
-
 const unmappedCategories = new Set()
 
 async function main() {

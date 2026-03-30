@@ -15,6 +15,25 @@ export default defineConfig({
   admin: {
     backendUrl: process.env.MEDUSA_BACKEND_URL || "http://localhost:9000",
   },
+  plugins: [
+    {
+      resolve: "@rokmohar/medusa-plugin-meilisearch",
+      options: {
+        config: {
+          host: process.env.MEILISEARCH_HOST || "http://127.0.0.1:7700",
+          apiKey: process.env.MEILISEARCH_API_KEY || "MEILI_LEGACY_KEY_REDACTED",
+        },
+        settings: {
+          products: {
+            indexSettings: {
+              searchableAttributes: ["title", "description", "handle"],
+              displayedAttributes: ["id", "title", "description", "handle", "thumbnail", "variants", "options"],
+            },
+          },
+        },
+      },
+    },
+  ],
   modules: [
     {
       resolve: "@medusajs/medusa/payment",

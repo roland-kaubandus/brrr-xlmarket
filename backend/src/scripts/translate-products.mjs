@@ -26,8 +26,8 @@ const LIMIT = args.includes("--limit")
   : 0
 const DRY_RUN = args.includes("--dry-run")
 const TITLES_ONLY = args.includes("--titles-only")
-const BATCH_SIZE = 5 // conservative to avoid rate limits
-const TRANSLATE_DELAY = 1500 // ms between batches
+const BATCH_SIZE = 10 // increased since Google Translate works reliably
+const TRANSLATE_DELAY = 800 // ms between batches
 
 let globalToken = null
 let stats = { total: 0, translated: 0, skipped: 0, errors: 0 }
