@@ -1,5 +1,6 @@
 import Link from "next/link"
 import { getCategoryByHandle, getProducts, Product } from "@/lib/medusa"
+import { searchProducts } from "@/lib/meilisearch"
 import ProductCard from "@/components/ProductCard"
 import CategoryFilters from "@/components/CategoryFilters"
 import { notFound } from "next/navigation"
@@ -8,7 +9,7 @@ export const revalidate = 300
 
 type Props = {
   params: Promise<{ handle: string }>
-  searchParams: Promise<{ leht?: string; sort?: string; min?: string; max?: string }>
+  searchParams: Promise<{ leht?: string; sort?: string; min?: string; max?: string; q?: string }>
 }
 
 export async function generateMetadata({ params }: Props) {
@@ -19,87 +20,103 @@ export async function generateMetadata({ params }: Props) {
   return {
     title: `${category.name} — XLMARKET`,
     description: desc,
-    openGraph: {
-      title: `${category.name} — XLMARKET`,
-      description: desc,
-      type: "website",
-    },
+    openGraph: { title: `${category.name} — XLMARKET`, description: desc, type: "website" },
   }
 }
 
 const ITEMS_PER_PAGE = 24
 
-function getPrice(product: Product): number | null {
-  const amount = product.variants?.[0]?.calculated_price?.calculated_amount
-  return typeof amount === "number" ? amount : null
-}
-
-function sortProducts(products: Product[], sort: string): Product[] {
-  if (sort === "odavamad") {
-    return [...products].sort((a, b) => (getPrice(a) ?? Infinity) - (getPrice(b) ?? Infinity))
-  }
-  if (sort === "kallimad") {
-    return [...products].sort((a, b) => (getPrice(b) ?? 0) - (getPrice(a) ?? 0))
-  }
-  // default: newest (API default order)
-  return products
+const SORT_MAP: Record<string, string[]> = {
+  odavamad: ["price:asc"],
+  kallimad: ["price:desc"],
+  uusimad: ["created_at:desc"],
 }
 
 export default async function CategoryPage({ params, searchParams }: Props) {
   const { handle } = await params
-  const { leht, sort, min, max } = await searchParams
+  const { leht, sort, min, max, q } = await searchParams
 
   const category = await getCategoryByHandle(handle)
   if (!category) notFound()
 
   const page = Math.max(1, parseInt(leht || "1", 10) || 1)
-  const hasPriceFilter = !!(min || max)
-  const hasClientSort = sort === "odavamad" || sort === "kallimad"
+  const offset = (page - 1) * ITEMS_PER_PAGE
+  const currentSort = sort || ""
 
-  // When price filter or price sort is active, fetch larger batch for server-side filtering
-  const fetchLimit = hasPriceFilter || hasClientSort ? 500 : ITEMS_PER_PAGE
-  const fetchOffset = hasPriceFilter || hasClientSort ? 0 : (page - 1) * ITEMS_PER_PAGE
+  let products: any[] = []
+  let totalCount = 0
+  let processingTimeMs = 0
+  let usedMeili = false
+  let facetDistribution: Record<string, Record<string, number>> | undefined
+  let facetStats: Record<string, { min: number; max: number }> | undefined
 
-  const productsRes = await getProducts({
-    category_id: [category.id],
-    limit: fetchLimit,
-    offset: fetchOffset,
-    order: "-created_at",
-  })
+  try {
+    // Build MeiliSearch filter
+    const filters: string[] = [`category_handles = "${handle}"`]
+    if (min) filters.push(`price >= ${parseFloat(min)}`)
+    if (max) filters.push(`price <= ${parseFloat(max)}`)
 
-  let products = productsRes.products
-
-  // Apply price filter server-side
-  if (hasPriceFilter) {
-    const minCents = min ? Math.round(parseFloat(min) * 100) : 0
-    const maxCents = max ? Math.round(parseFloat(max) * 100) : Infinity
-    products = products.filter((p) => {
-      const price = getPrice(p)
-      if (price === null) return false
-      return price >= minCents && price <= maxCents
+    const meiliResult = await searchProducts({
+      q: q || "",
+      limit: ITEMS_PER_PAGE,
+      offset,
+      sort: SORT_MAP[currentSort] || undefined,
+      filter: filters,
+      facets: ["categories", "price"],
     })
+
+    totalCount = meiliResult.totalHits || meiliResult.estimatedTotalHits || 0
+    processingTimeMs = meiliResult.processingTimeMs
+    facetDistribution = meiliResult.facetDistribution
+    facetStats = meiliResult.facetStats
+    usedMeili = true
+
+    products = meiliResult.hits.map(hit => ({
+      id: hit.id,
+      title: hit.title,
+      handle: hit.handle,
+      description: hit.description,
+      thumbnail: hit.thumbnail,
+      images: [],
+      variants: [{
+        id: hit.id + "_v",
+        title: "Default",
+        calculated_price: {
+          calculated_amount: Math.round(hit.price * 100),
+          original_amount: Math.round(hit.price * 100),
+          currency_code: "eur",
+        },
+      }],
+      categories: hit.categories.map((name: string, i: number) => ({
+        id: `cat_${i}`, name, handle: hit.category_handles?.[i] || "", parent_category_id: null,
+      })),
+      created_at: new Date(hit.created_at * 1000).toISOString(),
+    }))
+  } catch {
+    // Fallback to Medusa API
+    const productsRes = await getProducts({
+      category_id: [category.id],
+      limit: ITEMS_PER_PAGE,
+      offset,
+      order: "-created_at",
+    })
+    products = productsRes.products
+    totalCount = productsRes.count
   }
 
-  // Apply sort
-  if (sort) {
-    products = sortProducts(products, sort)
-  }
+  const totalPages = Math.ceil(totalCount / ITEMS_PER_PAGE)
 
-  // Paginate filtered results
-  const totalFiltered = hasPriceFilter || hasClientSort ? products.length : productsRes.count
-  const displayProducts =
-    hasPriceFilter || hasClientSort
-      ? products.slice((page - 1) * ITEMS_PER_PAGE, page * ITEMS_PER_PAGE)
-      : products
-  const totalPages = Math.ceil(totalFiltered / ITEMS_PER_PAGE)
+  const priceRange = facetStats?.price
+    ? { min: Math.floor(facetStats.price.min), max: Math.ceil(facetStats.price.max) }
+    : undefined
 
-  // Build pagination URL helper
   function pageUrl(p: number) {
     const params = new URLSearchParams()
     if (p > 1) params.set("leht", String(p))
-    if (sort) params.set("sort", sort)
+    if (currentSort) params.set("sort", currentSort)
     if (min) params.set("min", min)
     if (max) params.set("max", max)
+    if (q) params.set("q", q)
     const qs = params.toString()
     return qs ? `/kategooriad/${handle}?${qs}` : `/kategooriad/${handle}`
   }
@@ -115,31 +132,41 @@ export default async function CategoryPage({ params, searchParams }: Props) {
         <span className="text-[#777777]">{category.name}</span>
       </nav>
 
-      <h1 className="text-[28px] sm:text-[32px] font-[700] font-[family-name:var(--font-poppins)] text-[#1A1A1A] mb-[8px]">
-        {category.name}
-      </h1>
+      <div className="flex items-baseline justify-between mb-[8px]">
+        <h1 className="text-[28px] sm:text-[32px] font-[700] font-[family-name:var(--font-poppins)] text-[#1A1A1A]">
+          {category.name}
+        </h1>
+        {usedMeili && (
+          <span className="text-[11px] text-[#CCCCCC] font-[family-name:var(--font-inter)]">{processingTimeMs}ms</span>
+        )}
+      </div>
       <p className="text-[14px] text-[#999999] font-[family-name:var(--font-inter)] mb-[24px]">
-        {totalFiltered.toLocaleString("et-EE")} toodet
+        {totalCount.toLocaleString("et-EE")} toodet
+        {priceRange && totalCount > 0 && (
+          <span className="ml-[8px] text-[12px]">
+            ({priceRange.min}€ – {priceRange.max}€)
+          </span>
+        )}
       </p>
 
       {/* Filters */}
       <CategoryFilters
-        currentSort={sort}
+        currentSort={currentSort}
         currentMin={min}
         currentMax={max}
         basePath={`/kategooriad/${handle}`}
-        totalProducts={totalFiltered}
+        totalProducts={totalCount}
       />
 
-      {displayProducts.length === 0 ? (
+      {products.length === 0 ? (
         <div className="py-[64px] text-center">
           <p className="text-[16px] text-[#999999] font-[family-name:var(--font-inter)]">
-            {hasPriceFilter ? "Selles hinnavahemikus tooteid ei leitud." : "Selles kategoorias pole veel tooteid."}
+            {(min || max) ? "Selles hinnavahemikus tooteid ei leitud." : "Selles kategoorias pole veel tooteid."}
           </p>
         </div>
       ) : (
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-[16px] sm:gap-[20px]">
-          {displayProducts.map((product) => (
+          {products.map((product: any) => (
             <ProductCard key={product.id} product={product} />
           ))}
         </div>
@@ -153,7 +180,7 @@ export default async function CategoryPage({ params, searchParams }: Props) {
               href={pageUrl(page - 1)}
               className="px-[16px] py-[9px] border border-[#E8E8E8] text-[13px] font-[500] font-[family-name:var(--font-poppins)] text-[#333333] hover:border-[#E8650A] hover:text-[#E8650A] transition-colors"
             >
-              ← Eelmine
+              &larr; Eelmine
             </Link>
           )}
           <span className="text-[13px] text-[#999999] font-[family-name:var(--font-inter)] px-[8px]">
@@ -164,7 +191,7 @@ export default async function CategoryPage({ params, searchParams }: Props) {
               href={pageUrl(page + 1)}
               className="px-[16px] py-[9px] border border-[#E8E8E8] text-[13px] font-[500] font-[family-name:var(--font-poppins)] text-[#333333] hover:border-[#E8650A] hover:text-[#E8650A] transition-colors"
             >
-              Järgmine →
+              J&auml;rgmine &rarr;
             </Link>
           )}
         </nav>
