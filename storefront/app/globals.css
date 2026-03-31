@@ -16,6 +16,8 @@
 :root {
   --font-poppins: 'Poppins', sans-serif;
   --font-inter: 'Inter', sans-serif;
+  --font-outfit: 'Outfit', sans-serif;
+  --font-jakarta: 'Plus Jakarta Sans', sans-serif;
 }
 
 html {
@@ -23,13 +25,13 @@ html {
 }
 
 body {
-  font-family: var(--font-inter);
+  font-family: var(--font-jakarta);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-poppins);
+  font-family: var(--font-outfit);
 }
 
 /* Accessible focus ring — brand-tinted orange */
@@ -67,4 +69,13 @@ a, button, input, select, textarea {
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }

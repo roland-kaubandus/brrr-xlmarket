@@ -5,6 +5,17 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: "https",
+        hostname: "xlmarket.store",
+        pathname: "/media/**",
+      },
+      {
+        protocol: "http",
+        hostname: "100.93.186.17",
+        port: "8091",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
         hostname: "image.vevor.com",
         pathname: "/**",
       },
