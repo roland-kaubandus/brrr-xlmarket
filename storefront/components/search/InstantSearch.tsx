@@ -37,7 +37,7 @@ export default function InstantSearch({ className = "" }: { className?: string }
     if (!q.trim()) { setResults(null); setIsOpen(false); return }
     setLoading(true)
     try {
-      const res = await fetch(`/api/search?q=${encodeURIComponent(q)}&limit=6`)
+      const res = await fetch(`/api/ai-search?q=${encodeURIComponent(q)}&limit=6`)
       const data: SearchResult = await res.json()
       setResults(data)
       setIsOpen(data.hits.length > 0)
