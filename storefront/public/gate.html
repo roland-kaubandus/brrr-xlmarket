@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>XL Market — Arendus</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{min-height:100vh;display:flex;align-items:center;justify-content:center;font-family:Inter,-apple-system,sans-serif;background:#fafafa;color:#1a1a1a}
+.gate{text-align:center;padding:3rem 2rem}
+.gate h1{font-size:1.25rem;font-weight:600;letter-spacing:-.02em;margin-bottom:.5rem}
+.gate p{font-size:.875rem;color:#666;margin-bottom:2rem}
+.gate form{display:flex;gap:.5rem;justify-content:center;max-width:320px;margin:0 auto}
+.gate input{flex:1;padding:.75rem 1rem;border:1px solid #ddd;border-radius:8px;font-size:.875rem;outline:none;transition:border .2s}
+.gate input:focus{border-color:#f97316}
+.gate button{padding:.75rem 1.5rem;background:#1a1a1a;color:#fff;border:none;border-radius:8px;font-size:.875rem;font-weight:500;cursor:pointer;transition:background .2s}
+.gate button:hover{background:#333}
+.err{color:#ef4444;font-size:.8rem;margin-top:.75rem;display:none}
+</style>
+</head>
+<body>
+<div class="gate">
+<h1>XL Market</h1>
+<p>Arenduskeskkond. Sisesta ligipääsukood.</p>
+<form onsubmit="return check()">
+<input type="text" id="code" placeholder="Kood" autocomplete="off" autofocus>
+<button type="submit">Sisene</button>
+</form>
+<p class="err" id="err">Vale kood</p>
+</div>
+<script>
+function check(){
+var c=document.getElementById("code").value.trim().toLowerCase();
+if(c==="lendame"){
+document.cookie="xlm_gate=lendame2026;path=/;max-age=604800;SameSite=Lax;Secure";
+window.location.reload();
+return false;
+}
+document.getElementById("err").style.display="block";
+document.getElementById("code").value="";
+return false;
+}
+</script>
+</body>
+</html>
