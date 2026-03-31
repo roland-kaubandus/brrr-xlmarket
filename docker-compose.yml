@@ -35,6 +35,11 @@ services:
 
   medusa:
     build:
+      args:
+        NEXT_PUBLIC_MEDUSA_URL: http://medusa:9000
+        NEXT_PUBLIC_MEDUSA_KEY: ${NEXT_PUBLIC_MEDUSA_KEY}
+        NEXT_PUBLIC_REGION_ID: ${NEXT_PUBLIC_REGION_ID}
+        NEXT_PUBLIC_BASE_URL: https://xlmarket.eu
       context: ./backend
       dockerfile: Dockerfile
     container_name: xlmarket-medusa
@@ -65,6 +70,11 @@ services:
 
   storefront:
     build:
+      args:
+        NEXT_PUBLIC_MEDUSA_URL: http://medusa:9000
+        NEXT_PUBLIC_MEDUSA_KEY: ${NEXT_PUBLIC_MEDUSA_KEY}
+        NEXT_PUBLIC_REGION_ID: ${NEXT_PUBLIC_REGION_ID}
+        NEXT_PUBLIC_BASE_URL: https://xlmarket.eu
       context: ./storefront
       dockerfile: Dockerfile
     container_name: xlmarket-storefront

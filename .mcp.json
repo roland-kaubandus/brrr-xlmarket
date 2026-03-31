@@ -1,0 +1,17 @@
+{
+  "mcpServers": {
+    "huly": {
+      "type": "stdio",
+      "command": "node",
+      "args": [
+        "/home/brrr/.claude/huly-mcp/dist/index.cjs"
+      ],
+      "env": {
+        "HULY_URL": "http://localhost:8088",
+        "HULY_EMAIL": "xl@brrr.ee",
+        "HULY_PASSWORD": "XLagent2026!",
+        "HULY_WORKSPACE": "brrrcapital"
+      }
+    }
+  }
+}

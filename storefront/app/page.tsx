@@ -2,65 +2,110 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import { getProducts, getCategories, getCmsContent } from "@/lib/medusa"
 import ProductCard from "@/components/ProductCard"
-import PromoBanner from "@/components/PromoBanner"
 import CountdownTimer from "@/components/CountdownTimer"
 import BestSellersSection from "@/components/BestSellersSection"
 import NewsletterSection from "@/components/NewsletterSection"
-import AnnouncementBar from "@/components/AnnouncementBar"
+import HeroSection from "@/components/HeroSection"
+import TeenindajaSection from "@/components/TeenindajaSection"
 import {
   ArrowRight,
-  Leaf,
+  Truck,
+  ShieldCheck,
+  RotateCcw,
+  Lock,
+  Hammer,
+  Factory,
+  Home as HomeIcon,
+  TreePine,
+  Car,
+  Dumbbell,
+  Zap,
+  ChefHat,
+  PawPrint,
+  Monitor,
+  Palette,
+  Heart,
   Package,
 } from "lucide-react"
+import type { LucideIcon } from "lucide-react"
 
 export const revalidate = 300
-
 export const metadata: Metadata = {
-  title: "XLMARKET — Suur valik, väike hind",
+  title: "XL Market \u2014 Mitte see tavaline e-pood",
   description:
-    "Kvaliteetsed tööriistad, seadmed ja kodukaup soodsa hinnaga. Kiire tarne Eestis. Üle 10 000 toote.",
+    "Kvaliteetsed t\u00f6\u00f6riistad, seadmed ja kodukaup soodsa hinnaga. Kiire tarne Eestis. \u00dcle 14 000 toote.",
   openGraph: {
-    title: "XLMARKET — Suur valik, väike hind",
+    title: "XL Market \u2014 Mitte see tavaline e-pood",
     description:
-      "Kvaliteetsed tööriistad, seadmed ja kodukaup soodsa hinnaga. Kiire tarne Eestis.",
+      "Kvaliteetsed t\u00f6\u00f6riistad, seadmed ja kodukaup soodsa hinnaga. Kiire tarne Eestis.",
     type: "website",
     locale: "et_EE",
-    siteName: "XLMARKET",
+    siteName: "XL Market",
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "XLMARKET — Suur valik, väike hind",
+        alt: "XL Market \u2014 Mitte see tavaline e-pood",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "XLMARKET — Suur valik, väike hind",
+    title: "XL Market \u2014 Mitte see tavaline e-pood",
     description:
-      "Kvaliteetsed tööriistad, seadmed ja kodukaup soodsa hinnaga.",
+      "Kvaliteetsed t\u00f6\u00f6riistad, seadmed ja kodukaup soodsa hinnaga.",
     images: ["/og-image.png"],
   },
 }
 
+const categoryIcons: Record<string, { Icon: LucideIcon; color: string }> = {
+  "ehitus-ja-remont": { Icon: Hammer, color: "#F97316" },
+  "toostus-ja-seadmed": { Icon: Factory, color: "#64748B" },
+  "kodu-ja-aed": { Icon: HomeIcon, color: "#22C55E" },
+  "aed-ja-oueala": { Icon: TreePine, color: "#10B981" },
+  "auto-ja-garaaz": { Icon: Car, color: "#EF4444" },
+  "sport-ja-vaba-aeg": { Icon: Dumbbell, color: "#F43F5E" },
+  "elektroonika": { Icon: Zap, color: "#8B5CF6" },
+  "toitlustus-ja-kook": { Icon: ChefHat, color: "#F59E0B" },
+  "lemmikloomad": { Icon: PawPrint, color: "#14B8A6" },
+  "kontor-ja-ladustamine": { Icon: Monitor, color: "#6B7280" },
+  "kunst-ja-kasitoo": { Icon: Palette, color: "#EC4899" },
+  "meditsiin-ja-tervishoid": { Icon: Heart, color: "#F97316" },
+}
+
+function getCategoryMeta(handle: string): { Icon: LucideIcon; color: string } {
+  return categoryIcons[handle] || { Icon: Package, color: "#999999" }
+}
+
 const trustItems = [
-  { label: "Tasuta tarne", sub: "alates 50€" },
-  { label: "2 aasta garantii", sub: "kõigile toodetele" },
-  { label: "14 päeva tagastus", sub: "probleemivaba" },
-  { label: "Turvaline makse", sub: "krüpteeritud" },
+  { icon: "truck", label: "Tasuta tarne", sub: "alates 50\u20ac" },
+  { icon: "shield", label: "2-aastane garantii", sub: "k\u00f5igile toodetele" },
+  { icon: "rotate", label: "14 p\u00e4eva tagastus", sub: "probleemivaba" },
+  { icon: "lock", label: "Turvaline makse", sub: "kr\u00fcpteeritud" },
 ]
+
+function TrustIcon({ type }: { type: string }) {
+  const props = { size: 22, strokeWidth: 1.5, className: "text-[#E8650A]" }
+  switch (type) {
+    case "truck": return <Truck {...props} />
+    case "shield": return <ShieldCheck {...props} />
+    case "rotate": return <RotateCcw {...props} />
+    case "lock": return <Lock {...props} />
+    default: return <Truck {...props} />
+  }
+}
 
 export default async function Home() {
   const BS_CATS = [
     { label: "Ehitus",    handle: "ehitus-ja-remont",      id: "pcat_01KMRXYCF1PP71JGTD05ANC85T" },
-    { label: "Tööstus",   handle: "toostus-ja-seadmed",    id: "pcat_01KMRXYCGKWBEN1Y4GF0ZJADME" },
+    { label: "T\u00f6\u00f6stus",   handle: "toostus-ja-seadmed",    id: "pcat_01KMRXYCGKWBEN1Y4GF0ZJADME" },
     { label: "Kodu",      handle: "kodu-ja-aed",           id: "pcat_01KMRXYCHX0VNQ283CTP2FTAR1" },
     { label: "Auto",      handle: "auto-ja-garaaz",        id: "pcat_01KMRXYCKA1V998R8RNHJAQV8P" },
     { label: "Sport",     handle: "sport-ja-vaba-aeg",     id: "pcat_01KMRXYCMQFS5M4QEJ8WSWXYSS" },
   ]
 
-  const [dealsRes, latestRes, categories, cms, ...bsCatProducts] = await Promise.all([
+  const [dealsRes, popularRes, categories, cms, ...bsCatProducts] = await Promise.all([
     getProducts({ limit: 8, order: "-created_at" }),
     getProducts({ limit: 8, offset: 8, order: "-created_at" }),
     getCategories(),
@@ -74,7 +119,6 @@ export default async function Home() {
     products: bsCatProducts[i]?.products ?? [],
   }))
 
-  // Fetch one product thumbnail per category (parallel, for VEVOR-style cards)
   const catThumbsRaw = await Promise.all(
     categories.map((cat) =>
       getProducts({ limit: 1, category_id: [cat.id] })
@@ -84,337 +128,148 @@ export default async function Home() {
   )
   const catThumbMap = Object.fromEntries(catThumbsRaw)
 
-  const topBanners = cms.banners.filter(
-    (b) => b.position === "home-top" && b.visible
-  )
-
   return (
     <>
-      <AnnouncementBar
-        text={cms.announcement.text}
-        link={cms.announcement.link}
-        visible={cms.announcement.visible}
-      />
+      {/* 1. Hero */}
+      <HeroSection />
 
-      {/* Promo banners */}
-      {topBanners.length > 0 && (
-        <div className="max-w-[1280px] mx-auto px-[16px] sm:px-[24px] pt-[24px]">
-          {topBanners.map((banner) => (
-            <PromoBanner key={banner.id} banner={banner} />
+      {/* 2. Teenindaja (dark section) */}
+      <TeenindajaSection />
+
+      {/* 3. Categories */}
+      <section className="py-[48px] sm:py-[64px] max-w-[1400px] mx-auto px-[16px] sm:px-[24px]">
+        <div className="flex items-end justify-between mb-[32px]">
+          <div>
+            <h2
+              className="text-[24px] sm:text-[28px] font-[700] text-[#1A1A1A] leading-[1.2]"
+              style={{ fontFamily: "var(--font-outfit)" }}
+            >
+              Kategooriad
+            </h2>
+            <p
+              className="text-[14px] sm:text-[15px] text-[#777777] mt-[6px]"
+              style={{ fontFamily: "var(--font-jakarta)" }}
+            >
+              {"Avasta 14\u00a0000+ toodet 10+ kategoorias"}
+            </p>
+          </div>
+          <Link
+            href="/kategooriad"
+            className="group inline-flex items-center gap-[4px] text-[#E8650A] hover:text-[#CF5A08] text-[14px] font-[500] shrink-0"
+            style={{ fontFamily: "var(--font-poppins)", transition: "color 0.18s" }}
+          >
+            {"Vaata k\u00f5iki"}
+            <ArrowRight
+              size={16}
+              strokeWidth={1.5}
+              className="group-hover:translate-x-[2px] transition-transform"
+            />
+          </Link>
+        </div>
+        <div className="grid grid-cols-2 lg:grid-cols-5 gap-[16px]">
+          {categories.map((cat) => {
+            const meta = getCategoryMeta(cat.handle)
+            return (
+              <Link
+                key={cat.id}
+                href={"/kategooriad/" + cat.handle}
+                className="group bg-white rounded-xl p-[16px] border border-[#F0F0F0] hover:border-[#E8650A]/20 hover:shadow-[0_4px_20px_rgba(0,0,0,0.06)]"
+                style={{ transition: "all 0.22s cubic-bezier(0.32,0.72,0,1)" }}
+              >
+                <div
+                  className="w-[48px] h-[48px] rounded-xl flex items-center justify-center mb-[14px]"
+                  style={{ backgroundColor: meta.color + "15" }}
+                >
+                  <meta.Icon size={24} strokeWidth={1.5} style={{ color: meta.color }} />
+                </div>
+                <p
+                  className="text-[14px] font-[600] text-[#1A1A1A] group-hover:text-[#E8650A] leading-[1.3] mb-[4px]"
+                  style={{ fontFamily: "var(--font-poppins)", transition: "color 0.18s" }}
+                >
+                  {cat.name}
+                </p>
+                <p
+                  className="text-[12px] text-[#999999]"
+                  style={{ fontFamily: "var(--font-jakarta)" }}
+                >
+                  Tooted saadaval
+                </p>
+              </Link>
+            )
+          })}
+        </div>
+      </section>
+
+      {/* 4. Popular Products */}
+      <section className="py-[48px] sm:py-[64px] max-w-[1400px] mx-auto px-[16px] sm:px-[24px]">
+        <div className="flex items-end justify-between mb-[32px]">
+          <div>
+            <h2
+              className="text-[24px] sm:text-[28px] font-[700] text-[#1A1A1A] leading-[1.2]"
+              style={{ fontFamily: "var(--font-outfit)" }}
+            >
+              Populaarsed tooted
+            </h2>
+            <p
+              className="text-[14px] sm:text-[15px] text-[#777777] mt-[6px]"
+              style={{ fontFamily: "var(--font-jakarta)" }}
+            >
+              {"Enim ostetud sel n\u00e4dalal"}
+            </p>
+          </div>
+          <Link
+            href="/kategooriad"
+            className="group inline-flex items-center gap-[4px] text-[#E8650A] hover:text-[#CF5A08] text-[14px] font-[500] shrink-0"
+            style={{ fontFamily: "var(--font-poppins)", transition: "color 0.18s" }}
+          >
+            {"Vaata k\u00f5iki"}
+            <ArrowRight
+              size={16}
+              strokeWidth={1.5}
+              className="group-hover:translate-x-[2px] transition-transform"
+            />
+          </Link>
+        </div>
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-[16px]">
+          {popularRes.products.map((product) => (
+            <ProductCard key={product.id} product={product} />
           ))}
         </div>
-      )}
+      </section>
 
-      {/* Hero section — two-column with integrated trust strip */}
-      {cms.hero.visible && (
-        <section
-          className="relative overflow-hidden"
-          style={{
-            background: "linear-gradient(160deg, #FFF5EE 0%, #FFF9F5 35%, #FFFFFF 65%, #F7F7F7 100%)",
-            backgroundImage: "url('/hero-bg.svg')",
-            backgroundSize: "cover",
-            backgroundPosition: "center right",
-            backgroundRepeat: "no-repeat",
-          }}
-        >
-          {/* Ambient orb top-right */}
-          <div
-            className="absolute top-[-140px] right-[-100px] w-[480px] h-[480px] rounded-full pointer-events-none"
-            style={{
-              background:
-                "radial-gradient(circle, rgba(232,101,10,0.09) 0%, transparent 68%)",
-            }}
-          />
-          {/* Ambient orb bottom-left */}
-          <div
-            className="absolute bottom-[-80px] left-[-60px] w-[300px] h-[300px] rounded-full pointer-events-none"
-            style={{
-              background:
-                "radial-gradient(circle, rgba(232,101,10,0.05) 0%, transparent 70%)",
-            }}
-          />
-
-          {/* Main hero content */}
-          <div className="relative max-w-[1280px] mx-auto px-[16px] sm:px-[24px] pt-[64px] pb-[56px] sm:pt-[80px] sm:pb-[64px] lg:pt-[96px] lg:pb-[72px]">
-            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-[48px] lg:gap-[64px]">
-
-              {/* Left: content */}
-              <div className="max-w-[580px]">
-                {/* Eyebrow badge — rounded-full is OK for pill badges */}
-                <div
-                  className="inline-flex items-center gap-[6px] px-[12px] py-[6px] rounded-full text-[#E8650A] border border-[#E8650A]/20 mb-[20px]"
-                  style={{ background: "rgba(232,101,10,0.06)" }}
-                >
-                  <Leaf size={13} strokeWidth={2} className="shrink-0" />
-                  <span className="text-[12px] font-[600] font-[family-name:var(--font-poppins)] tracking-[0.02em]">
-                    Kevadmüük — kuni −25%
-                  </span>
-                </div>
-
-                <h1
-                  className="font-[800] font-[family-name:var(--font-poppins)] text-[#1A1A1A] leading-[1.1] tracking-[-0.02em] mb-[18px]"
-                  style={{ fontSize: "clamp(32px, 5vw, 52px)", textWrap: "balance" } as React.CSSProperties}
-                >
-                  {cms.hero.title || "Mitte see tavaline suur e-pood!"}
-                </h1>
-
-                {cms.hero.subtitle ? (
-                  <p className="text-[16px] sm:text-[18px] font-[family-name:var(--font-inter)] text-[#555555] leading-[1.7] mb-[36px] max-w-[480px]">
-                    {cms.hero.subtitle}
-                  </p>
-                ) : (
-                  <p className="text-[16px] sm:text-[18px] font-[family-name:var(--font-inter)] text-[#555555] leading-[1.7] mb-[36px] max-w-[480px]">
-                    Tuhanded erilised tooted, eriliselt hea hinnaga.
-                  </p>
-                )}
-
-                <div className="flex flex-wrap items-center gap-[16px]">
-                  {/* Primary CTA — allowed */}
-                  <Link
-                    href={cms.hero.buttonLink || "/kategooriad"}
-                    className="group inline-flex items-center gap-[10px] bg-[#E8650A] text-white px-[22px] py-[12px] text-[15px] font-[600] font-[family-name:var(--font-poppins)] hover:bg-[#CF5A08] active:scale-[0.98]"
-                    style={{
-                      boxShadow: "0 4px 20px rgba(232,101,10,0.28), 0 1px 0 rgba(255,255,255,0.12) inset",
-                      transition: "all 0.25s cubic-bezier(0.32,0.72,0,1)",
-                    }}
-                  >
-                    {cms.hero.buttonText || "Vaata tooteid"}
-                    <span className="inline-flex items-center justify-center w-[22px] h-[22px] rounded-full bg-white/15 group-hover:translate-x-[2px] transition-transform duration-[200ms]">
-                      <ArrowRight size={13} strokeWidth={2} />
-                    </span>
-                  </Link>
-
-                  {/* Secondary link */}
-                  <Link
-                    href="/kategooriad"
-                    className="group inline-flex items-center gap-[6px] text-[14px] font-[500] font-[family-name:var(--font-poppins)] text-[#666666] hover:text-[#E8650A] underline-offset-4 hover:underline"
-                    style={{ transition: "color 0.2s cubic-bezier(0.32,0.72,0,1)" }}
-                  >
-                    Vaata sooduspakkumisi
-                    <ArrowRight size={14} strokeWidth={1.5} className="group-hover:translate-x-[2px] transition-transform duration-[200ms]" />
-                  </Link>
-                </div>
-              </div>
-
-              {/* Right: decorative sale card — keeps as decorative promo element */}
-              <div
-                className="hidden lg:block shrink-0"
-                aria-hidden="true"
-              >
-                <div
-                  className="p-[6px]"
-                  style={{
-                    background: "rgba(232,101,10,0.08)",
-                    border: "1px solid rgba(232,101,10,0.16)",
-                  }}
-                >
-                  <div
-                    className="flex flex-col items-center justify-center gap-[6px] text-white"
-                    style={{
-                      width: "260px",
-                      height: "260px",
-                      background:
-                        "linear-gradient(145deg, #F47C2A 0%, #E8650A 55%, #C95208 100%)",
-                      boxShadow:
-                        "0 20px 48px rgba(232,101,10,0.28), inset 0 1px 1px rgba(255,255,255,0.18)",
-                    }}
-                  >
-                    <span
-                      className="font-[family-name:var(--font-inter)] text-white/60 tracking-[0.14em] uppercase"
-                      style={{ fontSize: "11px", fontWeight: 500 }}
-                    >
-                      Kevadmüük
-                    </span>
-                    <span
-                      className="font-[800] font-[family-name:var(--font-poppins)] text-white leading-none tracking-[-0.04em]"
-                      style={{ fontSize: "76px" }}
-                    >
-                      −25%
-                    </span>
-                    <span
-                      className="font-[family-name:var(--font-inter)] text-white/75"
-                      style={{ fontSize: "13px", fontWeight: 400 }}
-                    >
-                      valitud toodetel
-                    </span>
-                    <div
-                      className="mt-[10px] px-[14px] py-[6px] rounded-full"
-                      style={{
-                        background: "rgba(255,255,255,0.18)",
-                        border: "1px solid rgba(255,255,255,0.28)",
-                      }}
-                    >
-                      <span
-                        className="font-[600] font-[family-name:var(--font-poppins)] text-white tracking-[0.06em]"
-                        style={{ fontSize: "12px" }}
-                      >
-                        Kood: KEVAD25
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Trust strip — inside hero, bottom, text-only, no icons */}
-          <div
-            className="border-t"
-            style={{ borderColor: "rgba(0,0,0,0.07)", background: "rgba(255,255,255,0.60)" }}
-          >
-            <div className="max-w-[1280px] mx-auto px-[16px] sm:px-[24px]">
-              <div className="grid grid-cols-2 sm:grid-cols-4">
-                {trustItems.map((item, i) => (
-                  <div
-                    key={item.label}
-                    className={
-                      "flex flex-col items-center justify-center py-[14px] px-[8px] text-center" +
-                      (i < 3 ? " border-r" : "")
-                    }
-                    style={{ borderColor: "rgba(0,0,0,0.07)" }}
-                  >
-                    <span
-                      className="font-[family-name:var(--font-poppins)] text-[#1A1A1A]"
-                      style={{ fontSize: "13px", fontWeight: 600, lineHeight: "1.3" }}
-                    >
-                      {item.label}
-                    </span>
-                    <span
-                      className="font-[family-name:var(--font-inter)] text-[#999999] mt-[2px]"
-                      style={{ fontSize: "11px", lineHeight: "1.4" }}
-                    >
-                      {item.sub}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-      )}
-
-      <div className="max-w-[1280px] mx-auto px-[16px] sm:px-[24px]">
-        {/* Categories */}
-        <section className="pt-[48px] pb-[48px]">
-          <h2 className="text-[24px] sm:text-[28px] font-[600] font-[family-name:var(--font-poppins)] text-[#1A1A1A] mb-[32px]">
-            Kategooriad
-          </h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-[1px] border border-[#E8E8E8]" style={{ background: "#E8E8E8" }}>
-            {categories.map((cat) => {
-              const thumb = catThumbMap[cat.id] ?? null
-              return (
-                <Link
-                  key={cat.id}
-                  href={"/kategooriad/" + cat.handle}
-                  className="group flex items-center justify-between bg-white hover:bg-[#FFF5EE] overflow-hidden"
-                  style={{ transition: "background-color 0.18s cubic-bezier(0.32,0.72,0,1)" }}
-                >
-                  <div className="px-[14px] py-[14px] flex-1 min-w-0">
-                    <span
-                      className="text-[13px] font-[600] font-[family-name:var(--font-poppins)] text-[#1A1A1A] group-hover:text-[#E8650A] leading-[1.4] block"
-                      style={{ transition: "color 0.18s" }}
-                    >
-                      {cat.name}
-                    </span>
-                  </div>
-                  <div className="w-[80px] h-[72px] shrink-0 relative bg-[#F7F7F7] flex items-center justify-center overflow-hidden">
-                    {thumb ? (
-                      <img
-                        src={thumb}
-                        alt=""
-                        className="w-full h-full object-contain p-[8px]"
-                        loading="lazy"
-                      />
-                    ) : (
-                      <Package size={26} strokeWidth={1} className="text-[#DDDDDD]" />
-                    )}
-                  </div>
-                </Link>
-              )
-            })}
-          </div>
-        </section>
-
-
-        {/* Deals / Pakkumised — XLM-37 */}
-        <section className="pt-[48px] pb-[48px]">
-          {/* Section header */}
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-[16px] mb-[32px]">
-            <div className="flex items-center gap-[14px]">
-              <h2 className="text-[24px] sm:text-[28px] font-[600] font-[family-name:var(--font-poppins)] text-[#1A1A1A]">
-                Pakkumised
-              </h2>
-              {/* Campaign badge */}
-              <span
-                className="inline-flex items-center px-[10px] py-[4px] rounded-full text-[11px] font-[600] font-[family-name:var(--font-poppins)] tracking-[0.04em] text-white"
-                style={{ background: "#E8650A" }}
-              >
-                KEVADMÜÜK
-              </span>
-            </div>
-            {/* Countdown + link */}
-            <div className="flex flex-col sm:flex-row sm:items-center gap-[12px] sm:gap-[24px]">
-              <div className="flex items-center gap-[10px]">
-                <span className="text-[13px] text-[#999999] font-[family-name:var(--font-inter)]">
-                  Lõpeb:
-                </span>
-                <CountdownTimer />
-              </div>
-              <Link
-                href="/kategooriad"
-                className="group inline-flex items-center gap-[4px] text-[#E8650A] hover:text-[#CF5A08] text-[14px] font-[500] font-[family-name:var(--font-poppins)]"
-                style={{ transition: "color 0.18s" }}
-              >
-                Kõik pakkumised
-                <ArrowRight
-                  size={16}
-                  strokeWidth={1.5}
-                  className="group-hover:translate-x-[2px] transition-transform"
-                />
-              </Link>
-            </div>
-          </div>
-          {/* Promo code banner */}
-          <div
-            className="flex items-center gap-[10px] px-[16px] py-[12px] mb-[24px] border-l-[3px] border-[#E8650A]"
-            style={{ background: "rgba(232,101,10,0.05)", border: "1px solid rgba(232,101,10,0.14)" }}
-          >
-            <span className="text-[13px] font-[family-name:var(--font-inter)] text-[#555555]">
-              Kasuta allahindlust ostukorvis:
-            </span>
-            <code
-              className="px-[8px] py-[3px] text-[13px] font-[700] font-[family-name:var(--font-poppins)] text-[#E8650A] tracking-[0.08em]"
-              style={{ background: "rgba(232,101,10,0.10)" }}
+      {/* 5. Spring Deals */}
+      <section className="py-[48px] sm:py-[64px] max-w-[1400px] mx-auto px-[16px] sm:px-[24px]">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-[16px] mb-[32px]">
+          <div className="flex items-center gap-[14px]">
+            <h2
+              className="text-[24px] sm:text-[28px] font-[700] text-[#1A1A1A]"
+              style={{ fontFamily: "var(--font-outfit)" }}
             >
-              KEVAD25
-            </code>
-            <span className="text-[13px] font-[family-name:var(--font-inter)] text-[#999999]">
-              − 25% kõigilt valitud toodetelt
+              Kevadpakkumised
+            </h2>
+            <span
+              className="inline-flex items-center px-[10px] py-[4px] rounded-full text-[11px] font-[600] tracking-[0.04em] text-white"
+              style={{ background: "#E8650A", fontFamily: "var(--font-poppins)" }}
+            >
+              {"KEVADM\u00dc\u00dcK"}
             </span>
           </div>
-          {/* Products grid */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-[16px]">
-            {dealsRes.products.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </div>
-        </section>
-
-        {/* Best Sellers — XLM-38 */}
-        <BestSellersSection tabs={bsTabs} />
-
-        {/* Latest Products */}
-        <section className="pb-[64px]">
-          <div className="flex items-center justify-between mb-[32px]">
-            <h2 className="text-[24px] sm:text-[28px] font-[600] font-[family-name:var(--font-poppins)] text-[#1A1A1A]">
-              Uusimad tooted
-            </h2>
+          <div className="flex flex-col sm:flex-row sm:items-center gap-[12px] sm:gap-[24px]">
+            <div className="flex items-center gap-[10px]">
+              <span
+                className="text-[13px] text-[#999999]"
+                style={{ fontFamily: "var(--font-jakarta)" }}
+              >
+                {"L\u00f5peb:"}
+              </span>
+              <CountdownTimer />
+            </div>
             <Link
               href="/kategooriad"
-              className="group inline-flex items-center gap-[4px] text-[#E8650A] hover:text-[#CF5A08] text-[14px] font-[500] font-[family-name:var(--font-poppins)]"
-              style={{ transition: "color 0.18s" }}
+              className="group inline-flex items-center gap-[4px] text-[#E8650A] hover:text-[#CF5A08] text-[14px] font-[500]"
+              style={{ fontFamily: "var(--font-poppins)", transition: "color 0.18s" }}
             >
-              Vaata kõiki
+              {"K\u00f5ik pakkumised"}
               <ArrowRight
                 size={16}
                 strokeWidth={1.5}
@@ -422,16 +277,80 @@ export default async function Home() {
               />
             </Link>
           </div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-[16px]">
-            {latestRes.products.map((product) => (
-              <ProductCard key={product.id} product={product} isNew />
+        </div>
+        <div
+          className="flex flex-wrap items-center gap-[10px] px-[16px] py-[12px] mb-[24px] rounded-lg"
+          style={{ background: "rgba(232,101,10,0.05)", border: "1px solid rgba(232,101,10,0.14)" }}
+        >
+          <span
+            className="text-[13px] text-[#555555]"
+            style={{ fontFamily: "var(--font-jakarta)" }}
+          >
+            Kasuta allahindlust ostukorvis:
+          </span>
+          <code
+            className="px-[8px] py-[3px] rounded text-[13px] font-[700] text-[#E8650A] tracking-[0.08em]"
+            style={{ background: "rgba(232,101,10,0.10)", fontFamily: "var(--font-poppins)" }}
+          >
+            KEVAD25
+          </code>
+          <span
+            className="text-[13px] text-[#999999]"
+            style={{ fontFamily: "var(--font-jakarta)" }}
+          >
+            {"− 25% k\u00f5igilt valitud toodetelt"}
+          </span>
+        </div>
+
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-[16px]">
+          {dealsRes.products.map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))}
+        </div>
+      </section>
+
+      {/* 6. Best Sellers */}
+      <div className="max-w-[1400px] mx-auto px-[16px] sm:px-[24px]">
+        <BestSellersSection tabs={bsTabs} />
+      </div>
+
+      {/* 7. Trust bar */}
+      <section className="py-[48px] sm:py-[64px] max-w-[1400px] mx-auto px-[16px] sm:px-[24px]">
+        <div
+          className="rounded-2xl border border-[#F0F0F0] bg-white py-[28px] px-[16px]"
+          style={{ boxShadow: "0 2px 12px rgba(0,0,0,0.03)" }}
+        >
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-[24px]">
+            {trustItems.map((item) => (
+              <div key={item.label} className="flex flex-col items-center text-center gap-[8px]">
+                <div
+                  className="w-[48px] h-[48px] rounded-xl flex items-center justify-center"
+                  style={{ background: "rgba(232,101,10,0.06)" }}
+                >
+                  <TrustIcon type={item.icon} />
+                </div>
+                <div>
+                  <p
+                    className="text-[14px] font-[600] text-[#1A1A1A]"
+                    style={{ fontFamily: "var(--font-poppins)" }}
+                  >
+                    {item.label}
+                  </p>
+                  <p
+                    className="text-[12px] text-[#999999] mt-[2px]"
+                    style={{ fontFamily: "var(--font-jakarta)" }}
+                  >
+                    {item.sub}
+                  </p>
+                </div>
+              </div>
             ))}
           </div>
-          <p className="text-center text-[#999999] text-[13px] font-[family-name:var(--font-inter)] mt-[32px]">
-            Kokku {latestRes.count.toLocaleString("et-EE")} toodet
-          </p>
-        </section>
-        {/* Newsletter signup */}
+        </div>
+      </section>
+
+      {/* 8. Newsletter */}
+      <div className="max-w-[1400px] mx-auto px-[16px] sm:px-[24px] pb-[64px]">
         <NewsletterSection />
       </div>
     </>
