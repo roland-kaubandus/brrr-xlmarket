@@ -7,7 +7,8 @@ import NavCartButton from "@/components/NavCartButton"
 import MobileNav from "@/components/MobileNav"
 import MetaPixel from "@/components/MetaPixel"
 import JsonLdOrganization from "@/components/JsonLdOrganization"
-import { User, Search, Heart } from "lucide-react"
+import { User, Heart } from "lucide-react"
+import InstantSearch from "@/components/search/InstantSearch"
 import "./globals.css"
 
 const poppins = Poppins({
@@ -122,28 +123,7 @@ export default function RootLayout({
               </Link>
 
               {/* Search bar */}
-              <form
-                action="/otsing"
-                method="GET"
-                className="flex-1 max-w-[560px] hidden sm:flex"
-                role="search"
-              >
-                <div className="flex w-full bg-[#F7F7F7] border border-transparent focus-within:border-[#E8650A] focus-within:bg-white focus-within:shadow-[0_0_0_3px_rgba(232,101,10,0.1)] transition-all">
-                  <input
-                    type="search"
-                    name="q"
-                    placeholder="Otsi tooteid..."
-                    className="w-full bg-transparent px-[16px] py-[10px] text-[14px] font-[family-name:var(--font-inter)] text-[#333333] placeholder:text-[#999999] focus:outline-none"
-                  />
-                  <button
-                    type="submit"
-                    className="px-[16px] text-[#999999] hover:text-[#E8650A]"
-                    aria-label="Otsi"
-                  >
-                    <Search size={20} strokeWidth={1.5} />
-                  </button>
-                </div>
-              </form>
+              <InstantSearch className="flex-1 max-w-[560px] hidden sm:block" />
 
               {/* Action icons */}
               <nav className="flex items-center gap-[8px] shrink-0" aria-label="Kasutaja toimingud">
@@ -167,27 +147,7 @@ export default function RootLayout({
 
             {/* Mobile search */}
             <div className="sm:hidden px-[16px] pb-[12px]">
-              <form
-                action="/otsing"
-                method="GET"
-                role="search"
-              >
-                <div className="flex bg-[#F7F7F7] border border-transparent focus-within:border-[#E8650A] focus-within:bg-white focus-within:shadow-[0_0_0_3px_rgba(232,101,10,0.1)] transition-all">
-                  <input
-                    type="search"
-                    name="q"
-                    placeholder="Otsi tooteid..."
-                    className="w-full bg-transparent px-[16px] py-[10px] text-[14px] font-[family-name:var(--font-inter)] text-[#333333] placeholder:text-[#999999] focus:outline-none"
-                  />
-                  <button
-                    type="submit"
-                    className="px-[16px] text-[#999999] hover:text-[#E8650A]"
-                    aria-label="Otsi"
-                  >
-                    <Search size={20} strokeWidth={1.5} />
-                  </button>
-                </div>
-              </form>
+              <InstantSearch />
             </div>
           </div>
 
