@@ -12,6 +12,7 @@ import AnnouncementBar from "@/components/AnnouncementBar"
 import InstantSearch from "@/components/search/InstantSearch"
 import LanguageSwitcher from "@/components/LanguageSwitcher"
 import SetHtmlLang from "@/components/SetHtmlLang"
+import MuujaWidget from "@/components/MuujaWidget"
 
 type Props = {
   children: React.ReactNode
@@ -206,6 +207,7 @@ export default async function LocaleLayout({ children, params }: Props) {
 
       <CartSlideOver locale={locale} />
       <CookieConsent locale={locale} />
+      <MuujaWidget />
       <MetaPixel />
     </>
   )

@@ -12,7 +12,7 @@
     "openMenu": "Open menu",
     "close": "Close",
     "categories": "Categories",
-    "allBranches": "All branches",
+    "allBranches": "All fields",
     "navigation": "Navigation"
   },
   "announcement": {
@@ -25,10 +25,10 @@
     "title1": "Work equipment that ",
     "titleHighlight": "works",
     "title2": " with you",
-    "subtitle": "Professional equipment from chef to builder. Each industry branch has its own specialized store.",
-    "ctaBranches": "Explore branches",
+    "subtitle": "Professional equipment from chef to builder. Each field has its own specialized store.",
+    "ctaBranches": "Explore fields",
     "ctaSearch": "Describe what you need",
-    "statBranches": "branches",
+    "statBranches": "fields",
     "statDelivery": "fast delivery",
     "statWarranty": "warranty"
   },
@@ -69,9 +69,9 @@
     "searchTitle": "Search yourself",
     "searchDesc": "Know exactly what you need? Use our fast and precise search. Instant results and smart suggestions.",
     "searchCta": "Open search",
-    "browseTitle": "Browse by branch",
-    "browseDesc": "Explore industry branches with guided selections and filters. Each branch is curated by professionals.",
-    "browseCta": "View branches",
+    "browseTitle": "Browse by field",
+    "browseDesc": "Explore fields with guided selections and filters. Each field is curated by professionals.",
+    "browseCta": "View fields",
     "sellerTitle": "Describe to seller",
     "sellerDesc": "25 years ago, the store came to your door. Now you finally get a salesperson too. Just describe what you need.",
     "sellerCta": "Describe your need"
@@ -95,7 +95,7 @@
     "outOfStock": "Currently unavailable",
     "buyNow": "Buy now",
     "cantBuy": "This product is currently not available for purchase.",
-    "branchFavorites": "Branch favorites",
+    "branchFavorites": "Field favorites",
     "viewAllProducts": "View all products"
   },
   "trust": {
@@ -263,14 +263,14 @@
     "browseProducts": "Browse products"
   },
   "branch": {
-    "eyebrow": "Industry branch",
+    "eyebrow": "Field",
     "subcategories": "Subcategories",
     "chooseDirection": "Choose a direction",
     "popularProducts": "Popular products",
-    "comingSoon": "This branch is coming soon",
-    "comingSoonDesc": "We're working on this branch's selection. Leave your email and we'll notify you when products are available.",
+    "comingSoon": "This field is coming soon",
+    "comingSoonDesc": "We're working on this field's selection. Leave your email and we'll notify you when products are available.",
     "viewOtherCategories": "View other categories",
     "exploreMore": "Explore more",
-    "otherBranches": "Other branches"
+    "otherBranches": "Other fields"
   }
 }
