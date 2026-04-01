@@ -9,6 +9,7 @@ type Props = {
   currentMax?: string
   basePath: string
   totalProducts: number
+  preservedParams?: Record<string, string | undefined>
 }
 
 export default function CategoryFilters({
@@ -17,6 +18,7 @@ export default function CategoryFilters({
   currentMax,
   basePath,
   totalProducts,
+  preservedParams,
 }: Props) {
   const router = useRouter()
   const searchParams = useSearchParams()
@@ -31,6 +33,12 @@ export default function CategoryFilters({
       const min = overrides.min ?? searchParams.get("min") ?? ""
       const max = overrides.max ?? searchParams.get("max") ?? ""
 
+      if (preservedParams) {
+        for (const [key, value] of Object.entries(preservedParams)) {
+          if (value) params.set(key, value)
+        }
+      }
+
       if (sort) params.set("sort", sort)
       if (min) params.set("min", min)
       if (max) params.set("max", max)
@@ -38,7 +46,7 @@ export default function CategoryFilters({
       const qs = params.toString()
       return qs ? `${basePath}?${qs}` : basePath
     },
-    [basePath, searchParams]
+    [basePath, preservedParams, searchParams]
   )
 
   function handleSort(key: string) {
@@ -53,7 +61,7 @@ export default function CategoryFilters({
   function handleReset() {
     setMinPrice("")
     setMaxPrice("")
-    router.push(basePath)
+    router.push(buildUrl({ sort: "", min: "", max: "" }))
   }
 
   const hasFilters = !!(currentSort || currentMin || currentMax)
