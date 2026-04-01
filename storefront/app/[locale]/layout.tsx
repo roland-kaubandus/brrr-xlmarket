@@ -123,8 +123,8 @@ export default async function LocaleLayout({ children, params }: Props) {
             </div>
           </div>
 
-          <nav className="hidden md:block border-t border-soft-border -mx-4 px-4">
-            <div className="flex items-center gap-1 overflow-x-auto py-2 hide-scrollbar">
+          <nav className="hidden md:block border-t border-soft-border -mx-4 px-4 overflow-hidden">
+            <div className="flex items-center gap-1 overflow-x-auto py-2 hide-scrollbar whitespace-nowrap">
               {branchNav.map((b) => (
                 <Link key={b.name} href={lp(b.href)} className="shrink-0 px-3.5 py-2 text-sm font-medium text-muted hover:text-accent hover:bg-accent-light rounded-xl transition-all duration-300">
                   {b.name}

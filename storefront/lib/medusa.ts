@@ -89,7 +89,7 @@ export async function getProducts(params: {
 
 export async function getProduct(handle: string): Promise<Product | null> {
   const res = await medusaFetch<ProductsResponse>(
-    `/store/products?handle=${handle}&region_id=${REGION_ID}`
+    `/store/products?handle=${handle}&region_id=${REGION_ID}&fields=*variants,*variants.calculated_price,+metadata,+images`
   )
   return res.products[0] || null
 }
