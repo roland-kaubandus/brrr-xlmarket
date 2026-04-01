@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useRef, useEffect, useCallback } from "react"
+import { useState, useRef, useEffect } from "react"
 import { useRouter, usePathname } from "next/navigation"
 import Link from "next/link"
 
@@ -19,6 +19,55 @@ type ChatMessage = {
   totalHits?: number
   loading?: boolean
 }
+
+type MuujaLocale = "et" | "en"
+
+const muujaTexts = {
+  et: {
+    greeting: "Tere! Olen sinu müüja. Kirjelda, mida otsid, ja leian sulle sobivad tooted!",
+    redirect: "Suunan sind sinna...",
+    found: (count: string) => "Leidsin sulle " + count + " toodet:",
+    notFound: "Kahjuks ei leidnud sellega midagi. Proovi teiste sõnadega!",
+    error: "Vabandust, tekkis viga. Proovi uuesti!",
+    cheapest: "odavamad",
+    expensive: "kallimad",
+    sortError: "Viga sorteerimisel.",
+    title: "Müüja",
+    thinking: "Müüja mõtleb...",
+    home: "Avalehele",
+    popular: "Populaarsed",
+    deals: "Soodukad",
+    placeholder: "Kirjelda, mida otsid...",
+    askLabel: "Küsi müüjalt",
+    noPrice: "Hind puudub",
+    cheaperFirst: "Odavamad",
+    expensiveFirst: "Kallimad",
+    sortPrefix: "Siin on ",
+    sortSuffix: " esmalt:",
+  },
+  en: {
+    greeting: "Hi! I'm your shop assistant. Describe what you're looking for and I'll find the right products!",
+    redirect: "Redirecting you there...",
+    found: (count: string) => "Found " + count + " products for you:",
+    notFound: "Couldn't find anything with that. Try different words!",
+    error: "Sorry, something went wrong. Try again!",
+    cheapest: "cheapest",
+    expensive: "most expensive",
+    sortError: "Sorting error.",
+    title: "Assistant",
+    thinking: "Thinking...",
+    home: "Home",
+    popular: "Popular",
+    deals: "Deals",
+    placeholder: "Describe what you need...",
+    askLabel: "Ask assistant",
+    noPrice: "No price",
+    cheaperFirst: "Cheapest",
+    expensiveFirst: "Most expensive",
+    sortPrefix: "Here are ",
+    sortSuffix: " first:",
+  }
+} as const
 
 function MuujaBall({
   mouseX,
@@ -99,10 +148,10 @@ function MuujaBall({
   )
 }
 
-function ProductCard({ product, locale }: { product: Product; locale: string }) {
+function ProductCard({ product, locale, noPrice }: { product: Product; locale: string; noPrice: string }) {
   const priceStr = product.price
     ? (product.price / 100).toFixed(2).replace(".", ",") + " \u20AC"
-    : "Hind puudub"
+    : noPrice
 
   return (
     <Link
@@ -131,16 +180,18 @@ export default function MuujaWidget() {
   const router = useRouter()
   const pathname = usePathname()
   const locale = pathname.startsWith("/en") ? "en" : "et"
+  const t = muujaTexts[locale as MuujaLocale] || muujaTexts.et
 
   const [isOpen, setIsOpen] = useState(false)
   const [messages, setMessages] = useState<ChatMessage[]>([
-    { role: "muuja", text: "Tere! Olen sinu m\u00FC\u00FCja. Kirjelda, mida otsid, ja leian sulle sobivad tooted!" },
+    { role: "muuja", text: t.greeting },
   ])
   const [input, setInput] = useState("")
   const [isThinking, setIsThinking] = useState(false)
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
   const [isHover, setIsHover] = useState(false)
   const [winSize, setWinSize] = useState({ w: 0, h: 0 })
+  const [showIntro, setShowIntro] = useState(false)
 
   const [pos, setPos] = useState({ x: -1, y: -1 })
   const [isDragging, setIsDragging] = useState(false)
@@ -159,10 +210,22 @@ export default function MuujaWidget() {
   }, [])
 
   useEffect(() => {
+    if (!localStorage.getItem('muuja_intro_seen')) {
+      const timer = setTimeout(() => setShowIntro(true), 1500)
+      return () => clearTimeout(timer)
+    }
+  }, [])
+
+  const dismissIntro = () => {
+    setShowIntro(false)
+    localStorage.setItem('muuja_intro_seen', 'true')
+  }
+
+  useEffect(() => {
     if (pos.x === -1 && winSize.w > 0) {
       setPos({
         x: 24,
-        y: Math.round(winSize.h * 0.55),
+        y: winSize.h - 100,
       })
     }
   }, [pos.x, winSize])
@@ -181,33 +244,25 @@ export default function MuujaWidget() {
     if (isOpen) setTimeout(() => inputRef.current?.focus(), 100)
   }, [isOpen])
 
-  const onPointerDown = useCallback(
-    (e: React.PointerEvent) => {
-      if (isOpen) return
-      setIsDragging(true)
-      wasDragged.current = false
-      dragStart.current = { x: e.clientX, y: e.clientY, posX: pos.x, posY: pos.y }
-      ;(e.target as HTMLElement).setPointerCapture(e.pointerId)
-    },
-    [isOpen, pos]
-  )
-
-  const onPointerMove = useCallback(
-    (e: React.PointerEvent) => {
-      if (!isDragging) return
+  // FIX 4: Window-level drag listeners to prevent sticking
+  useEffect(() => {
+    if (!isDragging) return
+    const onUp = () => { setIsDragging(false) }
+    const onMove = (e: MouseEvent) => {
       const dx = e.clientX - dragStart.current.x
       const dy = e.clientY - dragStart.current.y
-      if (Math.abs(dx) > 4 || Math.abs(dy) > 4) wasDragged.current = true
+      if (Math.abs(dx) > 8 || Math.abs(dy) > 8) wasDragged.current = true
       const newX = Math.max(0, Math.min(winSize.w - 56, dragStart.current.posX + dx))
       const newY = Math.max(0, Math.min(winSize.h - 56, dragStart.current.posY + dy))
       setPos({ x: newX, y: newY })
-    },
-    [isDragging, winSize]
-  )
-
-  const onPointerUp = useCallback(() => {
-    setIsDragging(false)
-  }, [])
+    }
+    window.addEventListener('mouseup', onUp)
+    window.addEventListener('mousemove', onMove)
+    return () => {
+      window.removeEventListener('mouseup', onUp)
+      window.removeEventListener('mousemove', onMove)
+    }
+  }, [isDragging, winSize])
 
   const sendMessage = async (query: string) => {
     if (!query.trim() || isThinking) return
@@ -227,7 +282,7 @@ export default function MuujaWidget() {
       if (data.action === "navigate") {
         setMessages((prev) => {
           const updated = prev.filter((m) => !m.loading)
-          return [...updated, { role: "muuja" as const, text: "Suunan sind sinna..." }]
+          return [...updated, { role: "muuja" as const, text: t.redirect }]
         })
         setTimeout(() => {
           router.push(data.to.startsWith("/") && !data.to.startsWith("/" + locale) ? "/" + locale + data.to : data.to)
@@ -242,8 +297,8 @@ export default function MuujaWidget() {
       const muujaMsg: ChatMessage = {
         role: "muuja",
         text: hitCount
-          ? "Leidsin sulle " + countText + " toodet:"
-          : "Kahjuks ei leidnud sellega midagi. Proovi teiste s\u00F5nadega!",
+          ? t.found(countText)
+          : t.notFound,
         products: data.hits || [],
         totalHits: total,
       }
@@ -255,7 +310,7 @@ export default function MuujaWidget() {
     } catch {
       setMessages((prev) => {
         const updated = prev.filter((m) => !m.loading)
-        return [...updated, { role: "muuja" as const, text: "Vabandust, tekkis viga. Proovi uuesti!" }]
+        return [...updated, { role: "muuja" as const, text: t.error }]
       })
     } finally {
       setIsThinking(false)
@@ -275,14 +330,14 @@ export default function MuujaWidget() {
         body: JSON.stringify({ query: lastUserMsg.text, filters: { sort } }),
       })
       const data = await res.json()
-      const label = sort === "price_asc" ? "odavamad" : "kallimad"
+      const label = sort === "price_asc" ? t.cheapest : t.expensive
       setMessages((prev) => {
         const updated = prev.filter((m) => !m.loading)
         return [
           ...updated,
           {
             role: "muuja" as const,
-            text: "Siin on " + label + " esmalt:",
+            text: t.sortPrefix + label + t.sortSuffix,
             products: data.hits || [],
             totalHits: data.totalHits,
           },
@@ -291,7 +346,7 @@ export default function MuujaWidget() {
     } catch {
       setMessages((prev) => {
         const updated = prev.filter((m) => !m.loading)
-        return [...updated, { role: "muuja" as const, text: "Viga sorteerimisel." }]
+        return [...updated, { role: "muuja" as const, text: t.sortError }]
       })
     } finally {
       setIsThinking(false)
@@ -318,6 +373,30 @@ export default function MuujaWidget() {
 
   return (
     <>
+      {showIntro && (
+        <div
+          className="fixed inset-0 z-[9997] bg-black/40 backdrop-blur-sm flex items-center justify-center cursor-pointer transition-opacity duration-500"
+          onClick={dismissIntro}
+        >
+          <div className="flex items-center gap-4 max-w-md" onClick={(e) => e.stopPropagation()}>
+            <div className="shrink-0 w-16 h-16 animate-bounce" style={{animationDuration: '2s'}}>
+              <MuujaBall mouseX={0} mouseY={0} ballRect={null} isThinking={false} isHover={true} />
+            </div>
+            <div className="bg-white rounded-2xl p-5 shadow-2xl">
+              <p className="text-sm text-gray-700 leading-relaxed">
+                {locale === "en"
+                  ? "Hi! I'm your shop assistant. Just describe what you need and I'll find the right products. Click me to get started!"
+                  : "Tere! Mina olen sinu m\u00fc\u00fcja. Kirjelda mulle lihtsalt, mida vajad, ja leian sulle sobivad tooted. Kl\u00f5psa minul, et alustada!"
+                }
+              </p>
+              <p className="text-xs text-gray-400 mt-2">
+                {locale === "en" ? "Click anywhere to continue" : "Kl\u00f5psa kuskil, et j\u00e4tkata"}
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
+
       {isOpen && (
         <div
           className="fixed z-[9998] flex flex-col bg-white rounded-2xl overflow-hidden"
@@ -334,7 +413,7 @@ export default function MuujaWidget() {
               <div className="w-7 h-7">
                 <MuujaBall mouseX={0} mouseY={0} ballRect={null} isThinking={false} isHover={false} />
               </div>
-              <span className="font-semibold text-white text-[15px] font-[family-name:var(--font-outfit)]">M{"\u00FC\u00FC"}ja</span>
+              <span className="font-semibold text-white text-[15px] font-[family-name:var(--font-outfit)]">{t.title}</span>
             </div>
             <button
               onClick={() => setIsOpen(false)}
@@ -359,7 +438,7 @@ export default function MuujaWidget() {
                       <div className="w-5 h-5">
                         <MuujaBall mouseX={0} mouseY={0} ballRect={null} isThinking={true} isHover={false} />
                       </div>
-                      <span className="text-sm text-gray-500 italic">M{"\u00FC\u00FC"}ja m{"\u00F5"}tleb...</span>
+                      <span className="text-sm text-gray-500 italic">{t.thinking}</span>
                     </div>
                   ) : (
                     <>
@@ -370,7 +449,7 @@ export default function MuujaWidget() {
                       {msg.products && msg.products.length > 0 && (
                         <div className="space-y-1 mt-1">
                           {msg.products.map((p) => (
-                            <ProductCard key={p.id} product={p} locale={locale} />
+                            <ProductCard key={p.id} product={p} locale={locale} noPrice={t.noPrice} />
                           ))}
                           {(msg.totalHits ?? 0) > 6 && (
                             <div className="flex gap-2 mt-2">
@@ -378,13 +457,13 @@ export default function MuujaWidget() {
                                 onClick={() => handleSortSearch("price_asc")}
                                 className="text-xs px-3 py-1.5 rounded-full bg-orange-50 text-orange-600 hover:bg-orange-100 transition-colors font-medium"
                               >
-                                Odavamad
+                                {t.cheaperFirst}
                               </button>
                               <button
                                 onClick={() => handleSortSearch("price_desc")}
                                 className="text-xs px-3 py-1.5 rounded-full bg-orange-50 text-orange-600 hover:bg-orange-100 transition-colors font-medium"
                               >
-                                Kallimad
+                                {t.expensiveFirst}
                               </button>
                             </div>
                           )}
@@ -400,9 +479,9 @@ export default function MuujaWidget() {
 
           <div className="border-t border-gray-100 px-3 pt-2 pb-3">
             <div className="flex gap-1.5 mb-2">
-              <button onClick={() => quickAction("avaleht")} className="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-600 hover:bg-orange-50 hover:text-orange-600 transition-colors font-medium">Avalehele</button>
-              <button onClick={() => quickAction("populaarsed")} className="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-600 hover:bg-orange-50 hover:text-orange-600 transition-colors font-medium">Populaarsed</button>
-              <button onClick={() => quickAction("soodukad")} className="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-600 hover:bg-orange-50 hover:text-orange-600 transition-colors font-medium">Soodukad</button>
+              <button onClick={() => quickAction("avaleht")} className="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-600 hover:bg-orange-50 hover:text-orange-600 transition-colors font-medium">{t.home}</button>
+              <button onClick={() => quickAction("populaarsed")} className="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-600 hover:bg-orange-50 hover:text-orange-600 transition-colors font-medium">{t.popular}</button>
+              <button onClick={() => quickAction("soodukad")} className="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-600 hover:bg-orange-50 hover:text-orange-600 transition-colors font-medium">{t.deals}</button>
             </div>
             <form
               onSubmit={(e) => {
@@ -416,7 +495,7 @@ export default function MuujaWidget() {
                 type="text"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
-                placeholder="Kirjelda, mida otsid..."
+                placeholder={t.placeholder}
                 className="flex-1 px-3.5 py-2.5 rounded-xl bg-gray-100 text-sm outline-none focus:ring-2 focus:ring-orange-300 transition-all placeholder:text-gray-400"
               />
               <button
@@ -440,9 +519,12 @@ export default function MuujaWidget() {
           width: 56,
           height: 56,
         }}
-        onPointerDown={onPointerDown}
-        onPointerMove={onPointerMove}
-        onPointerUp={onPointerUp}
+        onMouseDown={(e) => {
+          if (isOpen) return
+          setIsDragging(true)
+          wasDragged.current = false
+          dragStart.current = { x: e.clientX, y: e.clientY, posX: pos.x, posY: pos.y }
+        }}
         onMouseEnter={() => setIsHover(true)}
         onMouseLeave={() => setIsHover(false)}
         onClick={() => {
@@ -459,7 +541,7 @@ export default function MuujaWidget() {
         )}
         {!isOpen && (
           <div className="absolute left-[64px] top-1/2 -translate-y-1/2 whitespace-nowrap bg-white/95 backdrop-blur-sm px-3 py-1.5 rounded-xl shadow-[0_2px_12px_rgba(0,0,0,0.08)] text-[13px] font-semibold text-orange-600 pointer-events-none animate-pulse" style={{ animationDuration: "4s" }}>
-            Küsi müüjalt
+            {t.askLabel}
           </div>
         )}
         <MuujaBall

@@ -1,90 +1,66 @@
-import type { Metadata } from "next"
 import Link from "next/link"
-import { getCategories, getProducts } from "@/lib/medusa"
-import { Package } from "lucide-react"
 
-export const revalidate = 300
-
-export const metadata: Metadata = {
-  title: "Kategooriad — XLMARKET",
-  description: "Sirvi XLMARKET tootekategooriaid: tööriistad, kodu ja aed, sport, auto ja palju muud.",
-  openGraph: {
-    title: "Kategooriad — XLMARKET",
-    description: "Sirvi XLMARKET tootekategooriaid: tööriistad, kodu ja aed, sport, auto ja palju muud.",
-  },
-}
+const BRANCHES = [
+  { name: "Suurköögiseadmed", nameEn: "Commercial Kitchen", slug: "suurkoogiseadmed", tagline: "Professionaalne köök algab õigest varustusest", taglineEn: "The professional kitchen starts with the right equipment" },
+  { name: "Merevarustus", nameEn: "Marine", slug: "merevarustus", tagline: "Varustus, mis peab vastu merele", taglineEn: "Equipment that withstands the sea" },
+  { name: "Ehitus ja remont", nameEn: "Construction", slug: "ehitus-ja-remont", tagline: "Ehita nagu profi", taglineEn: "Build like a pro" },
+  { name: "Garaaz ja auto", nameEn: "Garage & Auto", slug: "garaaz-ja-auto", tagline: "Sinu garaaz, sinu reeglid", taglineEn: "Your garage, your rules" },
+  { name: "Aed ja maastik", nameEn: "Garden", slug: "aed-ja-maastik", tagline: "Professionaalne haljastus ja aiandus", taglineEn: "Professional landscaping and gardening" },
+  { name: "Tööstus", nameEn: "Industry", slug: "toostus", tagline: "Tööstuslik võimekus, mõistlik hind", taglineEn: "Industrial capability, sensible price" },
+  { name: "Spordiklubi", nameEn: "Sports Club", slug: "spordiklubi", tagline: "Varusta oma spordiklubi", taglineEn: "Equip your sports club" },
+  { name: "Tervis", nameEn: "Health", slug: "tervis", tagline: "Professionaalne meditsiinivarustus", taglineEn: "Professional medical equipment" },
+  { name: "Kontor", nameEn: "Office", slug: "kontor", tagline: "Kontor ja ladu, targalt sisustatud", taglineEn: "Office and warehouse, smartly furnished" },
+  { name: "Puhastus", nameEn: "Cleaning", slug: "puhastus", tagline: "Puhtus on professionaalsuse alus", taglineEn: "Cleanliness is the foundation of professionalism" },
+  { name: "Käsitöö", nameEn: "Crafts", slug: "kasitoo", tagline: "Loovus kohtub meisterlikkusega", taglineEn: "Creativity meets craftsmanship" },
+  { name: "Toitlustus", nameEn: "Catering", slug: "toitlustus", tagline: "Catering ja toitlustus professionaalile", taglineEn: "Catering for the professional" },
+]
 
 export default async function CategoriesPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
-  const categories = await getCategories()
-
-  // Fetch one product thumbnail per category (parallel)
-  const catThumbsRaw = await Promise.all(
-    categories.map((cat) =>
-      getProducts({ limit: 1, category_id: [cat.id] })
-        .then((res) => [cat.id, res.products[0]?.thumbnail ?? null] as const)
-        .catch(() => [cat.id, null] as const)
-    )
-  )
-  const catThumbMap = Object.fromEntries(catThumbsRaw)
+  const isEn = locale === "en"
 
   return (
-    <div className="max-w-[1280px] mx-auto px-[16px] sm:px-[24px] py-[32px] sm:py-[48px]">
-      <nav
-        className="text-[12px] font-[family-name:var(--font-jakarta)] text-[#999999] mb-[32px]"
-        aria-label="Leheasukoht"
-      >
-        <Link href={`/${locale}`} className="hover:text-[#E8650A] transition-colors">Avaleht</Link>
-        <span className="mx-[8px] text-[#E8E8E8]">/</span>
-        <span className="text-[#777777]">Kategooriad</span>
-      </nav>
+    <div className="min-h-screen bg-off-white">
+      <div className="max-w-[1400px] mx-auto px-4 py-12 md:py-20">
+        <nav className="text-xs text-muted mb-8">
+          <Link href={`/${locale}`} className="hover:text-accent transition-colors">
+            {isEn ? "Home" : "Avaleht"}
+          </Link>
+          <span className="mx-2">/</span>
+          <span className="text-off-black">{isEn ? "All fields" : "Kõik valdkonnad"}</span>
+        </nav>
 
-      <h1 className="text-[28px] sm:text-[32px] font-[700] font-[family-name:var(--font-poppins)] text-[#1A1A1A] mb-[8px]">
-        Kõik kategooriad
-      </h1>
-      <p className="text-[14px] text-[#999999] font-[family-name:var(--font-jakarta)] mb-[40px]">
-        {categories.length} kategooriat · üle 10 000 toote
-      </p>
+        <h1 className="font-[family-name:var(--font-outfit)] font-[800] text-4xl md:text-5xl tracking-tight mb-3">
+          {isEn ? "All fields" : "Kõik valdkonnad"}
+        </h1>
+        <p className="text-muted text-lg mb-12">
+          {isEn ? "12 fields · over 10,000 products" : "12 valdkonda · üle 10 000 toote"}
+        </p>
 
-      <div
-        className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-[1px] border border-[#E8E8E8]"
-        style={{ background: "#E8E8E8" }}
-      >
-        {categories.map((cat) => {
-          const thumb = catThumbMap[cat.id] ?? null
-          return (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {BRANCHES.map((branch) => (
             <Link
-              key={cat.id}
-              href={`/${locale}/kategooriad/${cat.handle}`}
-              className="group flex items-center justify-between bg-white hover:bg-[#FFF5EE] overflow-hidden"
-              style={{ transition: "background-color 0.18s cubic-bezier(0.32,0.72,0,1)" }}
+              key={branch.slug}
+              href={`/${locale}/haru/${branch.slug}`}
+              className="group relative overflow-hidden rounded-2xl h-[220px] card-lift transition-all duration-300"
             >
-              <div className="px-[16px] py-[16px] flex-1 min-w-0">
-                <span
-                  className="text-[14px] font-[600] font-[family-name:var(--font-poppins)] text-[#1A1A1A] group-hover:text-[#E8650A] leading-[1.4] block"
-                  style={{ transition: "color 0.18s" }}
-                >
-                  {cat.name}
-                </span>
-                <span className="text-[12px] font-[family-name:var(--font-jakarta)] text-[#999999] mt-[2px] group-hover:text-[#E8650A]/70 transition-colors block">
-                  Sirvi tooteid →
-                </span>
-              </div>
-              <div className="w-[96px] h-[80px] shrink-0 bg-[#F7F7F7] flex items-center justify-center overflow-hidden">
-                {thumb ? (
-                  <img
-                    src={thumb}
-                    alt=""
-                    className="w-full h-full object-contain p-[10px]"
-                    loading="lazy"
-                  />
-                ) : (
-                  <Package size={28} strokeWidth={1} className="text-[#DDDDDD]" />
-                )}
+              <img
+                src={`/images/branches/${branch.slug}.png`}
+                alt={isEn ? branch.nameEn : branch.name}
+                className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+              <div className="absolute bottom-0 left-0 right-0 p-6">
+                <h2 className="font-[family-name:var(--font-outfit)] font-[700] text-xl text-white mb-1">
+                  {isEn ? branch.nameEn : branch.name}
+                </h2>
+                <p className="text-white/60 text-sm">
+                  {isEn ? branch.taglineEn : branch.tagline}
+                </p>
               </div>
             </Link>
-          )
-        })}
+          ))}
+        </div>
       </div>
     </div>
   )
