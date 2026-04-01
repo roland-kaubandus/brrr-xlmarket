@@ -2,16 +2,15 @@ import Link from "next/link"
 import { getProduct, getProducts, formatPrice } from "@/lib/medusa"
 import { sanitizeHtml } from "@/lib/sanitize"
 import { notFound } from "next/navigation"
-import AddToCartButton from "./AddToCartButton"
 import ProductInfoAccordion from "@/components/ProductInfoAccordion"
 import ProductReviews from "@/components/ProductReviews"
-import StickyBuyBar from "@/components/StickyBuyBar"
 import RecentlyViewed from "@/components/RecentlyViewed"
 import TrackProductView from "@/components/TrackProductView"
 import ProductGallery from "@/components/ProductGallery"
 import ProductCard from "@/components/ProductCard"
 import JsonLdProduct from "@/components/JsonLdProduct"
 import JsonLdBreadcrumb from "@/components/JsonLdBreadcrumb"
+import ProductPurchasePanel from "./ProductPurchasePanel"
 
 
 export const revalidate = 300
@@ -63,6 +62,119 @@ function parseSpecs(description: string): Array<{ key: string; value: string }> 
   return specs.slice(0, 16)
 }
 
+function titleizeKey(key: string): string {
+  return key
+    .replace(/[_-]+/g, " ")
+    .replace(/\b\w/g, (char) => char.toUpperCase())
+}
+
+function metadataLabel(key: string): string {
+  const labels: Record<string, string> = {
+    vevor_sku: "VEVOR SKU",
+    vevor_upc: "UPC",
+    vevor_product_type: "Tooteliik",
+    vevor_link: "Toote algallikas",
+    weight_kg: "Kaal",
+    brand: "Bränd",
+    model: "Mudel",
+  }
+  return labels[key] || titleizeKey(key)
+}
+
+function stringifyScalar(value: unknown): string | null {
+  if (value === null || value === undefined) return null
+  if (typeof value === "string") return value.trim() || null
+  if (typeof value === "number" || typeof value === "boolean") return String(value)
+  return null
+}
+
+function collectKeyValueSpecs(value: unknown): Array<{ key: string; value: string }> {
+  if (!value) return []
+  if (Array.isArray(value)) {
+    return value
+      .map((item) => {
+        if (!item || typeof item !== "object") return null
+        const row = item as Record<string, unknown>
+        const key = stringifyScalar(row.key) || stringifyScalar(row.name) || stringifyScalar(row.label)
+        const cell = stringifyScalar(row.value) || stringifyScalar(row.text)
+        return key && cell ? { key, value: cell } : null
+      })
+      .filter((item): item is { key: string; value: string } => Boolean(item))
+  }
+
+  if (typeof value === "object") {
+    return Object.entries(value as Record<string, unknown>)
+      .map(([key, cell]) => {
+        const normalized = stringifyScalar(cell)
+        return normalized ? { key: metadataLabel(key), value: normalized } : null
+      })
+      .filter((item): item is { key: string; value: string } => Boolean(item))
+  }
+
+  return []
+}
+
+function getProductSpecs(product: Awaited<ReturnType<typeof getProduct>>): Array<{ key: string; value: string }> {
+  if (!product) return []
+  const metadata = product.metadata || {}
+  const likelySpecKeys = ["specs", "specifications", "technical_specs", "technical_data", "attributes", "details", "parameters"]
+
+  for (const key of likelySpecKeys) {
+    const specs = collectKeyValueSpecs(metadata[key])
+    if (specs.length > 0) return specs.slice(0, 24)
+  }
+
+  if (product.description) {
+    return parseSpecs(product.description)
+  }
+
+  return []
+}
+
+function getManualLinks(metadata?: Record<string, unknown>): Array<{ label: string; href: string }> {
+  if (!metadata) return []
+  const candidates = ["manuals", "manual_urls", "pdfs", "pdf_urls", "manual_files"]
+  const links: Array<{ label: string; href: string }> = []
+
+  for (const key of candidates) {
+    const value = metadata[key]
+    if (!value) continue
+
+    if (Array.isArray(value)) {
+      value.forEach((item, index) => {
+        if (typeof item === "string" && item.includes(".pdf")) {
+          links.push({ label: `Manuaal ${index + 1}`, href: item })
+        } else if (item && typeof item === "object") {
+          const row = item as Record<string, unknown>
+          const href = stringifyScalar(row.url) || stringifyScalar(row.href) || stringifyScalar(row.path)
+          if (href) {
+            links.push({ label: stringifyScalar(row.label) || stringifyScalar(row.title) || `Manuaal ${index + 1}`, href })
+          }
+        }
+      })
+    } else if (typeof value === "string" && value.includes(".pdf")) {
+      links.push({ label: "Manuaal", href: value })
+    }
+  }
+
+  return links
+}
+
+function getMetadataHighlights(metadata?: Record<string, unknown>): Array<{ label: string; value: string; href?: string }> {
+  if (!metadata) return []
+  const priorityKeys = ["vevor_sku", "vevor_upc", "weight_kg", "brand", "model", "vevor_product_type", "vevor_link"]
+
+  return priorityKeys
+    .map((key) => {
+      const value = stringifyScalar(metadata[key])
+      if (!value) return null
+      return key === "vevor_link"
+        ? { label: metadataLabel(key), value: "Ava tootja leht", href: value }
+        : { label: metadataLabel(key), value: key === "weight_kg" ? `${value} kg` : value }
+    })
+    .filter((item): item is { label: string; value: string; href?: string } => Boolean(item))
+}
+
 function truncate(str: string, max: number): string {
   if (str.length <= max) return str
   return str.substring(0, max).trimEnd() + "..."
@@ -75,11 +187,19 @@ export default async function ProductPage({ params }: Props) {
 
   const variant = product.variants?.[0]
   const price = variant?.calculated_price
-  const images = product.images?.length
-    ? product.images
-    : product.thumbnail
-      ? [{ id: "thumb", url: product.thumbnail }]
-      : []
+  const images = Array.from(
+    new Map(
+      [
+        ...(product.images || []),
+        ...(product.thumbnail ? [{ id: "thumb", url: product.thumbnail }] : []),
+      ]
+        .filter((image) => Boolean(image?.url))
+        .map((image, index) => [image.url, { id: image.id || `img_${index}`, url: image.url }])
+    ).values()
+  )
+  const specs = getProductSpecs(product)
+  const manualLinks = getManualLinks(product.metadata)
+  const metadataHighlights = getMetadataHighlights(product.metadata)
 
   const categoryId = product.categories?.[0]?.id
   const [similarRes, koosRes] = await Promise.all([
@@ -167,92 +287,86 @@ export default async function ProductPage({ params }: Props) {
             {product.title}
           </h1>
 
-          {price && (
-            <>
-              <div className="h-px bg-soft-border mb-4" />
-              <div className="flex items-center gap-3 mb-6">
-                <p className="text-2xl font-bold font-[family-name:var(--font-outfit)] text-off-black tracking-tight">
-                  {formatPrice(price.calculated_amount, price.currency_code)}
-                </p>
-                {price.original_amount > price.calculated_amount && (
-                  <>
-                    <span className="text-base font-[family-name:var(--font-jakarta)] text-muted line-through">
-                      {formatPrice(price.original_amount, price.currency_code)}
-                    </span>
-                    <span className="bg-red-600 text-white text-xs font-bold font-[family-name:var(--font-outfit)] px-2 py-0.5 rounded-xl">
-                      -{Math.round((1 - price.calculated_amount / price.original_amount) * 100)}%
-                    </span>
-                  </>
-                )}
-              </div>
-            </>
-          )}
-
-          {/* Stock badge */}
-          <div className="mb-6">
-            {variant ? (
-              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-green-50 text-green-700 text-sm font-medium font-[family-name:var(--font-jakarta)] rounded-xl">
-                <span className="w-1.5 h-1.5 rounded-full bg-green-500" />
-                Laos
-              </span>
-            ) : (
-              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-red-50 text-red-700 text-sm font-medium font-[family-name:var(--font-jakarta)] rounded-xl">
-                <span className="w-1.5 h-1.5 rounded-full bg-red-500" />
-                Hetkel ei ole saadaval
-              </span>
-            )}
-          </div>
-
-          {variant ? (
-            <div className="flex flex-col gap-3">
-              <AddToCartButton variantId={variant.id} />
-              <a
-                href={`/${locale}/ostukorv`}
-                className="block w-full text-center py-3 text-sm font-semibold font-[family-name:var(--font-outfit)] border border-accent text-accent bg-transparent hover:bg-accent-light rounded-xl btn-press transition-all duration-300"
-              >
-                Osta kohe &rarr;
-              </a>
-            </div>
-          ) : (
-            <p className="text-sm text-muted font-[family-name:var(--font-jakarta)]">
-              Seda toodet ei saa hetkel osta.
-            </p>
-          )}
+          <ProductPurchasePanel
+            locale={locale}
+            title={product.title}
+            variants={product.variants || []}
+            options={product.options}
+          />
 
           {/* Tarne / Garantii / Tagastus accordion — XLM-31 */}
           <ProductInfoAccordion />
 
-
-          {product.description && (() => {
-            const specs = parseSpecs(product.description)
-            if (specs.length < 3) return null
-            return (
-              <div className="mt-6 border-t border-soft-border pt-6">
-                <h2 className="text-base font-semibold font-[family-name:var(--font-outfit)] text-off-black mb-4">
-                  Tehnilised andmed
-                </h2>
-                <div className="border border-soft-border rounded-xl overflow-hidden">
-                  {specs.map((spec, i) => (
-                    <div
-                      key={spec.key + i}
-                      className={"flex " + (i % 2 === 0 ? "bg-silver" : "bg-white")}
-                    >
-                      <div className="w-[45%] shrink-0 px-4 py-3 border-r border-soft-border">
-                        <span className="text-xs font-medium font-[family-name:var(--font-jakarta)] text-muted">
-                          {spec.key}
-                        </span>
-                      </div>
-                      <div className="flex-1 px-4 py-3">
-                        <span className="text-xs font-[family-name:var(--font-jakarta)] text-off-black">
-                          {spec.value}
-                        </span>
-                      </div>
-                    </div>
-                  ))}
-                </div>
+          {metadataHighlights.length > 0 && (
+            <div className="mt-6 border-t border-soft-border pt-6">
+              <h2 className="text-base font-semibold font-[family-name:var(--font-outfit)] text-off-black mb-4">
+                Toote info
+              </h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {metadataHighlights.map((item) => (
+                  <div key={item.label} className="rounded-2xl border border-soft-border bg-white px-4 py-3">
+                    <p className="text-xs uppercase tracking-[0.12em] text-muted mb-1">{item.label}</p>
+                    {item.href ? (
+                      <a href={item.href} target="_blank" rel="noreferrer" className="text-sm font-medium text-accent hover:text-accent-dark">
+                        {item.value}
+                      </a>
+                    ) : (
+                      <p className="text-sm font-medium text-off-black break-words">{item.value}</p>
+                    )}
+                  </div>
+                ))}
               </div>
-            )
-          })()}
+            </div>
+          )}
+
+          {specs.length > 0 && (
+            <div className="mt-6 border-t border-soft-border pt-6">
+              <h2 className="text-base font-semibold font-[family-name:var(--font-outfit)] text-off-black mb-4">
+                Tehnilised andmed
+              </h2>
+              <div className="border border-soft-border rounded-xl overflow-hidden">
+                {specs.map((spec, i) => (
+                  <div
+                    key={spec.key + i}
+                    className={"flex " + (i % 2 === 0 ? "bg-silver" : "bg-white")}
+                  >
+                    <div className="w-[45%] shrink-0 px-4 py-3 border-r border-soft-border">
+                      <span className="text-xs font-medium font-[family-name:var(--font-jakarta)] text-muted">
+                        {spec.key}
+                      </span>
+                    </div>
+                    <div className="flex-1 px-4 py-3">
+                      <span className="text-xs font-[family-name:var(--font-jakarta)] text-off-black">
+                        {spec.value}
+                      </span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {manualLinks.length > 0 && (
+            <div className="mt-6 border-t border-soft-border pt-6">
+              <h2 className="text-base font-semibold font-[family-name:var(--font-outfit)] text-off-black mb-4">
+                Manuaalid ja failid
+              </h2>
+              <div className="flex flex-wrap gap-3">
+                {manualLinks.map((manual, index) => (
+                  <a
+                    key={`${manual.href}-${index}`}
+                    href={manual.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-2 rounded-xl border border-soft-border bg-white px-4 py-3 text-sm font-medium text-off-black hover:border-accent/40 hover:text-accent transition-all duration-300"
+                  >
+                    <span className="text-accent">PDF</span>
+                    <span>{manual.label}</span>
+                  </a>
+                ))}
+              </div>
+            </div>
+          )}
 
           {product.description && (
             <div className="mt-8 border-t border-soft-border pt-8">
@@ -333,15 +447,6 @@ export default async function ProductPage({ params }: Props) {
 
       {/* Recently viewed — XLM-47 */}
       <RecentlyViewed currentId={product.id} />
-
-      {/* Sticky buy bar — XLM-30 */}
-      {variant && price && (
-        <StickyBuyBar
-          variantId={variant.id}
-          title={product.title}
-          price={formatPrice(price.calculated_amount, price.currency_code)}
-        />
-      )}
     </div>
   )
 }

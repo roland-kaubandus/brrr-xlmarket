@@ -25,12 +25,39 @@ export type MedusaPrice = {
   currency_code: string
 }
 
+export type ProductOptionValue = {
+  id?: string
+  value: string
+}
+
+export type ProductOption = {
+  id: string
+  title: string
+  values: Array<ProductOptionValue | string>
+}
+
+export type ProductVariantOption = {
+  id?: string
+  value?: string
+  option_id?: string
+  option?: {
+    id?: string
+    title?: string
+  } | null
+  option_value?: {
+    value?: string
+  } | null
+}
+
 export type ProductVariant = {
   id: string
   title: string
   calculated_price: MedusaPrice
+  sku?: string | null
   manage_inventory?: boolean
   allow_backorder?: boolean
+  inventory_quantity?: number | null
+  options?: ProductVariantOption[]
 }
 
 export type ProductImage = {
@@ -52,6 +79,7 @@ export type Product = {
   description: string | null
   thumbnail: string | null
   images: ProductImage[]
+  options?: ProductOption[]
   variants: ProductVariant[]
   categories: ProductCategory[]
   created_at: string
@@ -89,7 +117,7 @@ export async function getProducts(params: {
 
 export async function getProduct(handle: string): Promise<Product | null> {
   const res = await medusaFetch<ProductsResponse>(
-    `/store/products?handle=${handle}&region_id=${REGION_ID}&fields=*variants,*variants.calculated_price,+metadata,+images`
+    `/store/products?handle=${handle}&region_id=${REGION_ID}&fields=*variants,*variants.calculated_price,*variants.options,*options,+metadata,+images`
   )
   return res.products[0] || null
 }

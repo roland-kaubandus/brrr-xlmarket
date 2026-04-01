@@ -1,133 +1,42 @@
 import Link from "next/link"
 import { notFound } from "next/navigation"
-import { getProducts, getCategories, getCategoryByHandle, type Product } from "@/lib/medusa"
+import { getProducts, getCategories } from "@/lib/medusa"
 import { searchProducts } from "@/lib/meilisearch"
+import { BRANCHES, getBranchBySlug } from "@/lib/branches"
 import ProductCard from "@/components/ProductCard"
 
 export const revalidate = 300
+const BRANCH_PRODUCTS_PREVIEW = 24
+const SUBCATEGORY_PRODUCTS_PREVIEW = 6
 
-/* Branch definitions */
-
-type BranchDef = {
-  name: string
-  slug: string
-  categoryHandle: string | null
-  tagline: string
-  description: string
-  heroImg: string
-  heroGradient: string
+function mapSearchHitToProduct(hit: any) {
+  return {
+    id: hit.id,
+    title: hit.title,
+    handle: hit.handle,
+    description: hit.description,
+    thumbnail: hit.thumbnail,
+    images: [],
+    variants: [
+      {
+        id: hit.id + "_v",
+        title: "Default",
+        calculated_price: {
+          calculated_amount: Math.round(hit.price * 100),
+          original_amount: Math.round(hit.price * 100),
+          currency_code: "eur",
+        },
+      },
+    ],
+    categories: hit.categories.map((name: string, i: number) => ({
+      id: `cat_${i}`,
+      name,
+      handle: hit.category_handles?.[i] || "",
+      parent_category_id: null,
+    })),
+    created_at: new Date(hit.created_at * 1000).toISOString(),
+  }
 }
-
-const BRANCHES: BranchDef[] = [
-  {
-    name: "Suurköögiseadmed",
-    slug: "suurkoogiseadmed",
-    categoryHandle: "toitlustus-ja-kook",
-    tagline: "Professionaalne köök algab õigest varustusest",
-    description: "Roostevaba terasest tööpinnad, kuumseadmed, külmikud ja kõik muu, mida professionaalne köök vajab. VEVOR kvaliteet, XL Market hinnaga.",
-    heroImg: "/images/branches/suurkoogiseadmed.png",
-    heroGradient: "from-amber-950/80 via-amber-900/40 to-transparent",
-  },
-  {
-    name: "Merevarustus",
-    slug: "merevarustus",
-    categoryHandle: null,
-    tagline: "Varustus, mis peab vastu merele",
-    description: "Kaatritarvikud, paadimootori osad, navigatsioon, päästevarustus ja dekiseadmed. Kõik, mida meremees vajab.",
-    heroImg: "/images/branches/merevarustus.png",
-    heroGradient: "from-blue-950/80 via-blue-900/40 to-transparent",
-  },
-  {
-    name: "Ehitus ja remont",
-    slug: "ehitus-ja-remont",
-    categoryHandle: "ehitus-ja-remont",
-    tagline: "Ehita nagu profi",
-    description: "Lõikurid, tõstukid, tellingud, mõõteriistad ja ehituskeemia. Kõik tööriistad ja seadmed ehitusplatsile.",
-    heroImg: "/images/branches/ehitus.png",
-    heroGradient: "from-stone-950/80 via-stone-900/40 to-transparent",
-  },
-  {
-    name: "Garaaz ja auto",
-    slug: "garaaz-ja-auto",
-    categoryHandle: "auto-ja-garaaz",
-    tagline: "Sinu garaaz, sinu reeglid",
-    description: "Tungrauad, kompressorid, diagnostikaseadmed, tõstukid ja autohoolduse tööriistad. Kõik profi tasemel.",
-    heroImg: "/images/branches/garaaz.png",
-    heroGradient: "from-zinc-950/80 via-zinc-900/40 to-transparent",
-  },
-  {
-    name: "Aed ja maastik",
-    slug: "aed-ja-maastik",
-    categoryHandle: "aed-ja-oueala",
-    tagline: "Professionaalne haljastus ja aiandus",
-    description: "Niidukid, trimmerd, pumpad, kasvuhooned ja maastikuhoolduse seadmed. Sinu aed väärib parimat.",
-    heroImg: "/images/branches/aed.png",
-    heroGradient: "from-emerald-950/80 via-emerald-900/40 to-transparent",
-  },
-  {
-    name: "Tööstus",
-    slug: "toostus",
-    categoryHandle: "toostus-ja-seadmed",
-    tagline: "Tööstuslik võimekus, mõistlik hind",
-    description: "Töökojaseadmed, keevitusmasinad, metalli- ja puidutöötlus, tööstuslikud tööriistad ja varuosad.",
-    heroImg: "/images/branches/toostus.png",
-    heroGradient: "from-slate-950/80 via-slate-900/40 to-transparent",
-  },
-  {
-    name: "Spordiklubi",
-    slug: "spordiklubi",
-    categoryHandle: "sport-ja-vaba-aeg",
-    tagline: "Varusta oma spordiklubi",
-    description: "Jõusaali seadmed, treeningtarvikud, spordivarustus ja vabaaja seadmed. Kommertskvaliteet, mõistlik hind.",
-    heroImg: "/images/branches/spordiklubi.png",
-    heroGradient: "from-red-950/80 via-red-900/40 to-transparent",
-  },
-  {
-    name: "Tervis",
-    slug: "tervis",
-    categoryHandle: "meditsiin-ja-tervishoid",
-    tagline: "Professionaalne meditsiinivarustus",
-    description: "Meditsiiniline mööbel, diagnostikaseadmed, taastusravi ja tervishoiu tarvikud.",
-    heroImg: "/images/branches/tervis.png",
-    heroGradient: "from-teal-950/80 via-teal-900/40 to-transparent",
-  },
-  {
-    name: "Kontor",
-    slug: "kontor",
-    categoryHandle: "kontor-ja-ladustamine",
-    tagline: "Kontor ja ladu, targalt sisustatud",
-    description: "Kontori- ja laomööbel, riiulisüsteemid, organiseerimistarvikud ja ladustamisseadmed.",
-    heroImg: "/images/branches/kontor.png",
-    heroGradient: "from-gray-950/80 via-gray-900/40 to-transparent",
-  },
-  {
-    name: "Puhastus",
-    slug: "puhastus",
-    categoryHandle: null,
-    tagline: "Puhtus on professionaalsuse alus",
-    description: "Professionaalsed pesurid, puhastusmasinad, tolmuimejad ja hooldusvahendid. Tööstuslik puhtus.",
-    heroImg: "/images/branches/puhastus.png",
-    heroGradient: "from-cyan-950/80 via-cyan-900/40 to-transparent",
-  },
-  {
-    name: "Käsitöö",
-    slug: "kasitoo",
-    categoryHandle: "kunst-ja-kasitoo",
-    tagline: "Loovus kohtub meisterlikkusega",
-    description: "Kangasteljed, õmblusmasinad, kunstitarvikud ja käsitööriistad. Professionaalsed töövahendid igale loojale.",
-    heroImg: "/images/branches/kasitoo.png",
-    heroGradient: "from-purple-950/80 via-purple-900/40 to-transparent",
-  },
-  {
-    name: "Toitlustus",
-    slug: "toitlustus",
-    categoryHandle: "toitlustus-ja-kook",
-    tagline: "Catering ja toitlustus professionaalile",
-    description: "Cateringitehnika, serveerimisvahendid, soojendusletid ja kõik vajalik toitlustusäri jaoks.",
-    heroImg: "/images/branches/toitlustus.png",
-    heroGradient: "from-orange-950/80 via-orange-900/40 to-transparent",
-  },
-]
 
 type Props = {
   params: Promise<{ handle: string; locale: string }>
@@ -135,7 +44,7 @@ type Props = {
 
 export async function generateMetadata({ params }: Props) {
   const { handle, locale } = await params
-  const branch = BRANCHES.find((b) => b.slug === handle)
+  const branch = getBranchBySlug(handle)
   if (!branch) return { title: "Haru — XL Market" }
   return {
     title: `${branch.name} — XL Market`,
@@ -155,7 +64,7 @@ export function generateStaticParams() {
 
 export default async function BranchLandingPage({ params }: Props) {
   const { handle, locale } = await params
-  const branch = BRANCHES.find((b) => b.slug === handle)
+  const branch = getBranchBySlug(handle)
   if (!branch) notFound()
 
   const allCategories = await getCategories()
@@ -175,41 +84,16 @@ export default async function BranchLandingPage({ params }: Props) {
     try {
       const meiliResult = await searchProducts({
         q: "",
-        limit: 8,
+        limit: BRANCH_PRODUCTS_PREVIEW,
         offset: 0,
         filter: [`category_handles = "${branch.categoryHandle}"`],
         sort: ["created_at:desc"],
       })
       totalCount = meiliResult.totalHits || meiliResult.estimatedTotalHits || 0
-      products = meiliResult.hits.map((hit) => ({
-        id: hit.id,
-        title: hit.title,
-        handle: hit.handle,
-        description: hit.description,
-        thumbnail: hit.thumbnail,
-        images: [],
-        variants: [
-          {
-            id: hit.id + "_v",
-            title: "Default",
-            calculated_price: {
-              calculated_amount: Math.round(hit.price * 100),
-              original_amount: Math.round(hit.price * 100),
-              currency_code: "eur",
-            },
-          },
-        ],
-        categories: hit.categories.map((name: string, i: number) => ({
-          id: `cat_${i}`,
-          name,
-          handle: hit.category_handles?.[i] || "",
-          parent_category_id: null,
-        })),
-        created_at: new Date(hit.created_at * 1000).toISOString(),
-      }))
+      products = meiliResult.hits.map(mapSearchHitToProduct)
     } catch {
       if (parentCategory) {
-        const res = await getProducts({ category_id: [parentCategory.id], limit: 8, order: "-created_at" })
+        const res = await getProducts({ category_id: [parentCategory.id], limit: BRANCH_PRODUCTS_PREVIEW, order: "-created_at" })
         products = res.products
         totalCount = res.count
       }
@@ -221,36 +105,16 @@ export default async function BranchLandingPage({ params }: Props) {
   const subcategoryProducts: SubcategoryGroup[] = []
 
   if (subcategories.length > 0) {
-    const subFetches = subcategories.slice(0, 8).map(async (sub) => {
+    const subFetches = subcategories.map(async (sub) => {
       try {
         const meiliResult = await searchProducts({
           q: "",
-          limit: 4,
+          limit: SUBCATEGORY_PRODUCTS_PREVIEW,
           offset: 0,
           filter: [`category_handles = "${sub.handle}"`],
           sort: ["created_at:desc"],
         })
-        const subProducts = meiliResult.hits.map((hit: any) => ({
-          id: hit.id,
-          title: hit.title,
-          handle: hit.handle,
-          description: hit.description,
-          thumbnail: hit.thumbnail,
-          images: [],
-          variants: [{
-            id: hit.id + "_v",
-            title: "Default",
-            calculated_price: {
-              calculated_amount: Math.round(hit.price * 100),
-              original_amount: Math.round(hit.price * 100),
-              currency_code: "eur",
-            },
-          }],
-          categories: hit.categories.map((name: string, i: number) => ({
-            id: `cat_${i}`, name, handle: hit.category_handles?.[i] || "", parent_category_id: null,
-          })),
-          created_at: new Date(hit.created_at * 1000).toISOString(),
-        }))
+        const subProducts = meiliResult.hits.map(mapSearchHitToProduct)
         if (subProducts.length > 0) {
           return { category: sub, products: subProducts, count: meiliResult.totalHits || meiliResult.estimatedTotalHits || 0 }
         }
@@ -332,13 +196,27 @@ export default async function BranchLandingPage({ params }: Props) {
       {subcategories.length > 0 && (
         <section className="py-12 md:py-16 bg-white">
           <div className="max-w-[1400px] mx-auto px-4">
-            <h2 className="font-[family-name:var(--font-outfit)] font-[700] text-2xl md:text-3xl tracking-tight mb-8">Kategooriad</h2>
-            <div className="flex gap-3 overflow-x-auto pb-3 hide-scrollbar">
+            <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-8">
+              <div>
+                <h2 className="font-[family-name:var(--font-outfit)] font-[700] text-2xl md:text-3xl tracking-tight">Kategooriad</h2>
+                <p className="text-muted text-sm mt-2">Sirvi kogu valdkonda alamkategooriate kaupa.</p>
+              </div>
+              {branch.categoryHandle && (
+                <Link
+                  href={`/${locale}/kategooriad/${branch.categoryHandle}`}
+                  className="inline-flex items-center gap-2 text-sm font-medium text-accent hover:text-accent-dark transition-colors"
+                >
+                  Vaata kogu valdkonda
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+                </Link>
+              )}
+            </div>
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 gap-3">
               {subcategories.map((sub) => (
                 <Link
                   key={sub.id}
                   href={`/${locale}/kategooriad/${sub.handle}`}
-                  className="shrink-0 group flex flex-col items-center justify-center w-[140px] md:w-[160px] py-6 bg-silver rounded-2xl hover:bg-accent-light border border-transparent hover:border-accent/10 card-lift transition-all duration-300 text-center"
+                  className="group flex min-h-[152px] flex-col items-center justify-center py-6 bg-silver rounded-2xl hover:bg-accent-light border border-transparent hover:border-accent/10 card-lift transition-all duration-300 text-center"
                 >
                   <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center mb-3 shadow-[0_2px_12px_rgba(0,0,0,0.04)] group-hover:shadow-[0_4px_16px_rgba(249,115,22,0.12)] transition-shadow duration-300">
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-muted group-hover:text-accent transition-colors">
@@ -385,11 +263,29 @@ export default async function BranchLandingPage({ params }: Props) {
             </section>
           ))}
         </>
-      ) : products.length > 0 ? (
-        <section className="py-16 md:py-24 bg-white">
+      ) : null}
+
+      {products.length > 0 ? (
+        <section className={`py-16 md:py-24 ${subcategoryProducts.length > 0 ? "bg-white border-t border-soft-border" : "bg-white"}`}>
           <div className="max-w-[1400px] mx-auto px-4">
-            <div className="mb-10">
-              <h2 className="font-[family-name:var(--font-outfit)] font-[700] text-2xl md:text-3xl tracking-tight">Tooted</h2>
+            <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-10">
+              <div>
+                <h2 className="font-[family-name:var(--font-outfit)] font-[700] text-2xl md:text-3xl tracking-tight">
+                  Kõik selle valdkonna tooted
+                </h2>
+                <p className="text-muted text-sm mt-2">
+                  Kuvame siin {products.length} toodet {totalCount.toLocaleString("et-EE")} tootest.
+                </p>
+              </div>
+              {branch.categoryHandle && (
+                <Link
+                  href={`/${locale}/kategooriad/${branch.categoryHandle}`}
+                  className="inline-flex items-center gap-2 px-5 py-3 bg-accent hover:bg-accent-dark text-white text-sm font-semibold rounded-xl btn-press transition-all duration-300"
+                >
+                  Sirvi kõiki tooteid
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                </Link>
+              )}
             </div>
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-5">
               {products.map((product: any) => (

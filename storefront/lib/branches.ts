@@ -1,0 +1,150 @@
+export type BranchDef = {
+  name: string
+  nameEn: string
+  slug: string
+  categoryHandle: string | null
+  tagline: string
+  taglineEn: string
+  description: string
+  heroImg: string
+  heroGradient: string
+}
+
+export const BRANCHES: BranchDef[] = [
+  {
+    name: "Suurköögiseadmed",
+    nameEn: "Commercial Kitchen",
+    slug: "suurkoogiseadmed",
+    categoryHandle: "toitlustus-ja-kook",
+    tagline: "Professionaalne köök algab õigest varustusest",
+    taglineEn: "The professional kitchen starts with the right equipment",
+    description: "Roostevaba terasest tööpinnad, kuumseadmed, külmikud ja kõik muu, mida professionaalne köök vajab. VEVOR kvaliteet, XL Market hinnaga.",
+    heroImg: "/images/branches/suurkoogiseadmed.png",
+    heroGradient: "from-amber-950/80 via-amber-900/40 to-transparent",
+  },
+  {
+    name: "Merevarustus",
+    nameEn: "Marine",
+    slug: "merevarustus",
+    categoryHandle: null,
+    tagline: "Varustus, mis peab vastu merele",
+    taglineEn: "Equipment that withstands the sea",
+    description: "Kaatritarvikud, paadimootori osad, navigatsioon, päästevarustus ja dekiseadmed. Kõik, mida meremees vajab.",
+    heroImg: "/images/branches/merevarustus.png",
+    heroGradient: "from-blue-950/80 via-blue-900/40 to-transparent",
+  },
+  {
+    name: "Ehitus ja remont",
+    nameEn: "Construction",
+    slug: "ehitus-ja-remont",
+    categoryHandle: "ehitus-ja-remont",
+    tagline: "Ehita nagu profi",
+    taglineEn: "Build like a pro",
+    description: "Lõikurid, tõstukid, tellingud, mõõteriistad ja ehituskeemia. Kõik tööriistad ja seadmed ehitusplatsile.",
+    heroImg: "/images/branches/ehitus.png",
+    heroGradient: "from-stone-950/80 via-stone-900/40 to-transparent",
+  },
+  {
+    name: "Garaaz ja auto",
+    nameEn: "Garage & Auto",
+    slug: "garaaz-ja-auto",
+    categoryHandle: "auto-ja-garaaz",
+    tagline: "Sinu garaaz, sinu reeglid",
+    taglineEn: "Your garage, your rules",
+    description: "Tungrauad, kompressorid, diagnostikaseadmed, tõstukid ja autohoolduse tööriistad. Kõik profi tasemel.",
+    heroImg: "/images/branches/garaaz.png",
+    heroGradient: "from-zinc-950/80 via-zinc-900/40 to-transparent",
+  },
+  {
+    name: "Aed ja maastik",
+    nameEn: "Garden",
+    slug: "aed-ja-maastik",
+    categoryHandle: "aed-ja-oueala",
+    tagline: "Professionaalne haljastus ja aiandus",
+    taglineEn: "Professional landscaping and gardening",
+    description: "Niidukid, trimmerd, pumpad, kasvuhooned ja maastikuhoolduse seadmed. Sinu aed väärib parimat.",
+    heroImg: "/images/branches/aed.png",
+    heroGradient: "from-emerald-950/80 via-emerald-900/40 to-transparent",
+  },
+  {
+    name: "Tööstus",
+    nameEn: "Industry",
+    slug: "toostus",
+    categoryHandle: "toostus-ja-seadmed",
+    tagline: "Tööstuslik võimekus, mõistlik hind",
+    taglineEn: "Industrial capability, sensible price",
+    description: "Töökojaseadmed, keevitusmasinad, metalli- ja puidutöötlus, tööstuslikud tööriistad ja varuosad.",
+    heroImg: "/images/branches/toostus.png",
+    heroGradient: "from-slate-950/80 via-slate-900/40 to-transparent",
+  },
+  {
+    name: "Spordiklubi",
+    nameEn: "Sports Club",
+    slug: "spordiklubi",
+    categoryHandle: "sport-ja-vaba-aeg",
+    tagline: "Varusta oma spordiklubi",
+    taglineEn: "Equip your sports club",
+    description: "Jõusaali seadmed, treeningtarvikud, spordivarustus ja vabaaja seadmed. Kommertskvaliteet, mõistlik hind.",
+    heroImg: "/images/branches/spordiklubi.png",
+    heroGradient: "from-red-950/80 via-red-900/40 to-transparent",
+  },
+  {
+    name: "Tervis",
+    nameEn: "Health",
+    slug: "tervis",
+    categoryHandle: "meditsiin-ja-tervishoid",
+    tagline: "Professionaalne meditsiinivarustus",
+    taglineEn: "Professional medical equipment",
+    description: "Meditsiiniline mööbel, diagnostikaseadmed, taastusravi ja tervishoiu tarvikud.",
+    heroImg: "/images/branches/tervis.png",
+    heroGradient: "from-teal-950/80 via-teal-900/40 to-transparent",
+  },
+  {
+    name: "Kontor",
+    nameEn: "Office",
+    slug: "kontor",
+    categoryHandle: "kontor-ja-ladustamine",
+    tagline: "Kontor ja ladu, targalt sisustatud",
+    taglineEn: "Office and warehouse, smartly furnished",
+    description: "Kontori- ja laomööbel, riiulisüsteemid, organiseerimistarvikud ja ladustamisseadmed.",
+    heroImg: "/images/branches/kontor.png",
+    heroGradient: "from-gray-950/80 via-gray-900/40 to-transparent",
+  },
+  {
+    name: "Puhastus",
+    nameEn: "Cleaning",
+    slug: "puhastus",
+    categoryHandle: null,
+    tagline: "Puhtus on professionaalsuse alus",
+    taglineEn: "Cleanliness is the foundation of professionalism",
+    description: "Professionaalsed pesurid, puhastusmasinad, tolmuimejad ja hooldusvahendid. Tööstuslik puhtus.",
+    heroImg: "/images/branches/puhastus.png",
+    heroGradient: "from-cyan-950/80 via-cyan-900/40 to-transparent",
+  },
+  {
+    name: "Käsitöö",
+    nameEn: "Crafts",
+    slug: "kasitoo",
+    categoryHandle: "kunst-ja-kasitoo",
+    tagline: "Loovus kohtub meisterlikkusega",
+    taglineEn: "Creativity meets craftsmanship",
+    description: "Kangasteljed, õmblusmasinad, kunstitarvikud ja käsitööriistad. Professionaalsed töövahendid igale loojale.",
+    heroImg: "/images/branches/kasitoo.png",
+    heroGradient: "from-purple-950/80 via-purple-900/40 to-transparent",
+  },
+  {
+    name: "Toitlustus",
+    nameEn: "Catering",
+    slug: "toitlustus",
+    categoryHandle: "toitlustus-ja-kook",
+    tagline: "Catering ja toitlustus professionaalile",
+    taglineEn: "Catering for the professional",
+    description: "Cateringitehnika, serveerimisvahendid, soojendusletid ja kõik vajalik toitlustusäri jaoks.",
+    heroImg: "/images/branches/toitlustus.png",
+    heroGradient: "from-orange-950/80 via-orange-900/40 to-transparent",
+  },
+]
+
+export function getBranchBySlug(slug: string) {
+  return BRANCHES.find((branch) => branch.slug === slug)
+}

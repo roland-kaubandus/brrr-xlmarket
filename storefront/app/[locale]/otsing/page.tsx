@@ -2,11 +2,12 @@ import Link from "next/link"
 import { searchProducts } from "@/lib/meilisearch"
 import ProductCard from "@/components/ProductCard"
 import { getProducts } from "@/lib/medusa"
+import CategoryFilters from "@/components/CategoryFilters"
 
 export const revalidate = 0
 
 type Props = {
-  searchParams: Promise<{ q?: string; leht?: string; sort?: string }>
+  searchParams: Promise<{ q?: string; leht?: string; sort?: string; min?: string; max?: string }>
 }
 
 export async function generateMetadata({ searchParams }: Props) {
@@ -21,16 +22,15 @@ export async function generateMetadata({ searchParams }: Props) {
 
 const ITEMS_PER_PAGE = 24
 
-const SORT_OPTIONS = [
-  { value: "", label: "Asjakohasus" },
-  { value: "price:asc", label: "Hind: odavaim" },
-  { value: "price:desc", label: "Hind: kalleim" },
-  { value: "created_at:desc", label: "Uusimad" },
-]
+const SORT_MAP: Record<string, string[]> = {
+  odavamad: ["price:asc"],
+  kallimad: ["price:desc"],
+  uusimad: ["created_at:desc"],
+}
 
 export default async function SearchPage({ searchParams, params }: Props & { params: Promise<{ locale: string }> }) {
   const { locale } = await params
-  const { q, leht, sort } = await searchParams
+  const { q, leht, sort, min, max } = await searchParams
   const query = q?.trim() || ""
   const page = Math.max(1, parseInt(leht || "1", 10) || 1)
   const offset = (page - 1) * ITEMS_PER_PAGE
@@ -40,18 +40,25 @@ export default async function SearchPage({ searchParams, params }: Props & { par
   let totalHits = 0
   let processingTimeMs = 0
   let usedMeili = false
+  let facetStats: Record<string, { min: number; max: number }> | undefined
 
   if (query) {
     try {
+      const filters: string[] = []
+      if (min) filters.push(`price >= ${parseFloat(min)}`)
+      if (max) filters.push(`price <= ${parseFloat(max)}`)
+
       const meiliResult = await searchProducts({
         q: query,
         limit: ITEMS_PER_PAGE,
         offset,
-        sort: currentSort ? [currentSort] : undefined,
-        facets: ["categories"],
+        sort: SORT_MAP[currentSort] || undefined,
+        filter: filters.length > 0 ? filters : undefined,
+        facets: ["categories", "price"],
       })
       totalHits = meiliResult.totalHits || meiliResult.estimatedTotalHits || 0
       processingTimeMs = meiliResult.processingTimeMs
+      facetStats = meiliResult.facetStats
       usedMeili = true
 
       // Map MeiliSearch hits to Medusa Product format for ProductCard
@@ -89,6 +96,23 @@ export default async function SearchPage({ searchParams, params }: Props & { par
   }
 
   const totalPages = Math.ceil(totalHits / ITEMS_PER_PAGE)
+  const priceRange = facetStats?.price
+    ? {
+        min: Math.floor(facetStats.price.min),
+        max: Math.ceil(facetStats.price.max),
+      }
+    : undefined
+
+  function pageUrl(targetPage: number) {
+    const params = new URLSearchParams()
+    if (query) params.set("q", query)
+    if (targetPage > 1) params.set("leht", String(targetPage))
+    if (currentSort) params.set("sort", currentSort)
+    if (min) params.set("min", min)
+    if (max) params.set("max", max)
+    const qs = params.toString()
+    return qs ? `/${locale}/otsing?${qs}` : `/${locale}/otsing`
+  }
 
   return (
     <div className="max-w-[1280px] mx-auto px-[16px] sm:px-[24px] py-[32px] sm:py-[48px]">
@@ -100,33 +124,17 @@ export default async function SearchPage({ searchParams, params }: Props & { par
               <span className="font-[600] text-[#1A1A1A]">&quot;{query}&quot;</span>
               {" — "}
               {totalHits.toLocaleString("et-EE")} tulemust
+              {priceRange && totalHits > 0 && (
+                <span className="text-[12px] text-[#CCCCCC] ml-[8px]">
+                  ({priceRange.min}€ – {priceRange.max}€)
+                </span>
+              )}
               {usedMeili && (
                 <span className="text-[12px] text-[#CCCCCC] ml-[8px]">({processingTimeMs}ms)</span>
               )}
             </p>
           )}
         </div>
-
-        {query && totalHits > 0 && (
-          <div className="hidden sm:flex items-center gap-[8px]">
-            <span className="text-[12px] text-[#999999] font-[family-name:var(--font-jakarta)]">Sordi:</span>
-            <div className="flex gap-[4px]">
-              {SORT_OPTIONS.map(opt => (
-                <Link
-                  key={opt.value}
-                  href={`/${locale}/otsing?q=${encodeURIComponent(query)}&sort=${opt.value}`}
-                  className={`px-[10px] py-[4px] text-[12px] font-[family-name:var(--font-jakarta)] transition-colors ${
-                    currentSort === opt.value
-                      ? "bg-[#1A1A1A] text-white"
-                      : "bg-[#F7F7F7] text-[#666666] hover:bg-[#E8E8E8]"
-                  }`}
-                >
-                  {opt.label}
-                </Link>
-              ))}
-            </div>
-          </div>
-        )}
       </div>
 
       {!query && (
@@ -149,6 +157,17 @@ export default async function SearchPage({ searchParams, params }: Props & { par
         </div>
       )}
 
+      {query && totalHits > 0 && (
+        <CategoryFilters
+          currentSort={currentSort}
+          currentMin={min}
+          currentMax={max}
+          basePath={`/${locale}/otsing`}
+          totalProducts={totalHits}
+          preservedParams={{ q: query }}
+        />
+      )}
+
       {products.length > 0 && (
         <>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-[16px]">
@@ -161,7 +180,7 @@ export default async function SearchPage({ searchParams, params }: Props & { par
             <nav className="flex justify-center items-center gap-[8px] mt-[40px]">
               {page > 1 && (
                 <Link
-                  href={`/${locale}/otsing?q=${encodeURIComponent(query)}&leht=${page - 1}${currentSort ? `&sort=${currentSort}` : ""}`}
+                  href={pageUrl(page - 1)}
                   className="px-[16px] py-[8px] border border-[#E8E8E8] hover:border-[#E8650A] text-[13px] font-[family-name:var(--font-jakarta)] text-[#555555] transition-colors"
                 >
                   &larr; Eelmine
@@ -172,7 +191,7 @@ export default async function SearchPage({ searchParams, params }: Props & { par
               </span>
               {page < totalPages && (
                 <Link
-                  href={`/${locale}/otsing?q=${encodeURIComponent(query)}&leht=${page + 1}${currentSort ? `&sort=${currentSort}` : ""}`}
+                  href={pageUrl(page + 1)}
                   className="px-[16px] py-[8px] border border-[#E8E8E8] hover:border-[#E8650A] text-[13px] font-[family-name:var(--font-jakarta)] text-[#555555] transition-colors"
                 >
                   Järgmine &rarr;

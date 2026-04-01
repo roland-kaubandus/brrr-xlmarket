@@ -1,19 +1,5 @@
 import Link from "next/link"
-
-const BRANCHES = [
-  { name: "Suurköögiseadmed", nameEn: "Commercial Kitchen", slug: "suurkoogiseadmed", tagline: "Professionaalne köök algab õigest varustusest", taglineEn: "The professional kitchen starts with the right equipment" },
-  { name: "Merevarustus", nameEn: "Marine", slug: "merevarustus", tagline: "Varustus, mis peab vastu merele", taglineEn: "Equipment that withstands the sea" },
-  { name: "Ehitus ja remont", nameEn: "Construction", slug: "ehitus-ja-remont", tagline: "Ehita nagu profi", taglineEn: "Build like a pro" },
-  { name: "Garaaz ja auto", nameEn: "Garage & Auto", slug: "garaaz-ja-auto", tagline: "Sinu garaaz, sinu reeglid", taglineEn: "Your garage, your rules" },
-  { name: "Aed ja maastik", nameEn: "Garden", slug: "aed-ja-maastik", tagline: "Professionaalne haljastus ja aiandus", taglineEn: "Professional landscaping and gardening" },
-  { name: "Tööstus", nameEn: "Industry", slug: "toostus", tagline: "Tööstuslik võimekus, mõistlik hind", taglineEn: "Industrial capability, sensible price" },
-  { name: "Spordiklubi", nameEn: "Sports Club", slug: "spordiklubi", tagline: "Varusta oma spordiklubi", taglineEn: "Equip your sports club" },
-  { name: "Tervis", nameEn: "Health", slug: "tervis", tagline: "Professionaalne meditsiinivarustus", taglineEn: "Professional medical equipment" },
-  { name: "Kontor", nameEn: "Office", slug: "kontor", tagline: "Kontor ja ladu, targalt sisustatud", taglineEn: "Office and warehouse, smartly furnished" },
-  { name: "Puhastus", nameEn: "Cleaning", slug: "puhastus", tagline: "Puhtus on professionaalsuse alus", taglineEn: "Cleanliness is the foundation of professionalism" },
-  { name: "Käsitöö", nameEn: "Crafts", slug: "kasitoo", tagline: "Loovus kohtub meisterlikkusega", taglineEn: "Creativity meets craftsmanship" },
-  { name: "Toitlustus", nameEn: "Catering", slug: "toitlustus", tagline: "Catering ja toitlustus professionaalile", taglineEn: "Catering for the professional" },
-]
+import { BRANCHES } from "@/lib/branches"
 
 export default async function CategoriesPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
@@ -45,7 +31,7 @@ export default async function CategoriesPage({ params }: { params: Promise<{ loc
               className="group relative overflow-hidden rounded-2xl h-[220px] card-lift transition-all duration-300"
             >
               <img
-                src={`/images/branches/${branch.slug}.png`}
+                src={branch.heroImg}
                 alt={isEn ? branch.nameEn : branch.name}
                 className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
               />
