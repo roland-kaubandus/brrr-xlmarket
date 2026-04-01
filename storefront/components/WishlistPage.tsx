@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import { usePathname } from "next/navigation"
 import Link from "next/link"
 import { Heart, Trash2 } from "lucide-react"
 
@@ -13,6 +14,8 @@ type WishItem = {
 }
 
 export default function WishlistPage() {
+  const pathname = usePathname()
+  const locale = pathname.split('/')[1] === 'en' ? 'en' : 'et'
   const [items, setItems] = useState<WishItem[]>([])
 
   useEffect(() => {
@@ -36,7 +39,7 @@ export default function WishlistPage() {
           Lemmikud
         </h1>
         {items.length > 0 && (
-          <span className="ml-[4px] text-[15px] font-[family-name:var(--font-inter)] text-[#999999]">
+          <span className="ml-[4px] text-[15px] font-[family-name:var(--font-jakarta)] text-[#999999]">
             ({items.length})
           </span>
         )}
@@ -48,11 +51,11 @@ export default function WishlistPage() {
           <p className="text-[18px] font-[600] font-[family-name:var(--font-poppins)] text-[#1A1A1A] mb-[8px]">
             Lemmikud on tühjad
           </p>
-          <p className="text-[14px] font-[family-name:var(--font-inter)] text-[#999999] mb-[24px]">
+          <p className="text-[14px] font-[family-name:var(--font-jakarta)] text-[#999999] mb-[24px]">
             Vajuta südame ikoonil tootekaardil, et lisada lemmikutesse
           </p>
           <Link
-            href="/kategooriad"
+            href={`/${locale}/kategooriad`}
             className="px-[20px] py-[11px] bg-[#E8650A] text-white text-[14px] font-[600] font-[family-name:var(--font-poppins)] hover:bg-[#CF5A08] transition-colors"
           >
             Vaata tooteid
@@ -65,7 +68,7 @@ export default function WishlistPage() {
               key={item.id}
               className="flex gap-[14px] p-[14px] border border-[#E8E8E8] bg-white hover:border-[#E8650A]/30 transition-colors"
             >
-              <Link href={"/toode/" + item.handle} className="shrink-0">
+              <Link href={`/${locale}/toode/${item.handle}`} className="shrink-0">
                 <div className="w-[80px] h-[80px] bg-[#F7F7F7] rounded-[4px] overflow-hidden border border-[#E8E8E8]">
                   {item.thumbnail ? (
                     <img src={item.thumbnail} alt={item.title} className="w-full h-full object-contain p-[6px]" />
@@ -73,7 +76,7 @@ export default function WishlistPage() {
                 </div>
               </Link>
               <div className="flex-1 min-w-0">
-                <Link href={"/toode/" + item.handle}>
+                <Link href={`/${locale}/toode/${item.handle}`}>
                   <p className="text-[13px] font-[500] font-[family-name:var(--font-poppins)] text-[#1A1A1A] leading-[1.4] line-clamp-2 hover:text-[#E8650A] transition-colors mb-[6px]">
                     {item.title}
                   </p>

@@ -18,7 +18,7 @@ const navCategories = [
   { name: "Meditsiin ja tervishoid", href: "/kategooriad/meditsiin-ja-tervishoid" },
 ]
 
-export default function MobileNav() {
+export default function MobileNav({ locale = "et" }: { locale?: string }) {
   const [open, setOpen] = useState(false)
 
   useEffect(() => {
@@ -94,13 +94,13 @@ export default function MobileNav() {
 
             {/* Footer links */}
             <div className="border-t border-[#E8E8E8] px-[20px] py-[16px] flex flex-col gap-[12px]">
-              <Link href="/lemmikud" onClick={() => setOpen(false)} className="text-[13px] font-[family-name:var(--font-inter)] text-[#555555] hover:text-[#E8650A]">
+              <Link href={`/${locale}/lemmikud`} onClick={() => setOpen(false)} className="text-[13px] font-[family-name:var(--font-jakarta)] text-[#555555] hover:text-[#E8650A]">
                 Lemmikud
               </Link>
-              <Link href="/ostukorv" onClick={() => setOpen(false)} className="text-[13px] font-[family-name:var(--font-inter)] text-[#555555] hover:text-[#E8650A]">
+              <Link href={`/${locale}/ostukorv`} onClick={() => setOpen(false)} className="text-[13px] font-[family-name:var(--font-jakarta)] text-[#555555] hover:text-[#E8650A]">
                 Ostukorv
               </Link>
-              <Link href="/kontakt" onClick={() => setOpen(false)} className="text-[13px] font-[family-name:var(--font-inter)] text-[#555555] hover:text-[#E8650A]">
+              <Link href={`/${locale}/kontakt`} onClick={() => setOpen(false)} className="text-[13px] font-[family-name:var(--font-jakarta)] text-[#555555] hover:text-[#E8650A]">
                 Kontakt
               </Link>
             </div>

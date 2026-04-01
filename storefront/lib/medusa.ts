@@ -55,6 +55,7 @@ export type Product = {
   variants: ProductVariant[]
   categories: ProductCategory[]
   created_at: string
+  metadata?: Record<string, unknown>
 }
 
 // --- Products ---
@@ -75,6 +76,7 @@ export async function getProducts(params: {
 } = {}): Promise<ProductsResponse> {
   const search = new URLSearchParams()
   search.set("region_id", REGION_ID)
+  search.set("fields", "*variants,*variants.calculated_price,+metadata")
   search.set("limit", String(params.limit || 20))
   search.set("offset", String(params.offset || 0))
   if (params.q) search.set("q", params.q)

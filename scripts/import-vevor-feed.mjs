@@ -1,0 +1,583 @@
+#!/usr/bin/env node
+/**
+ * VEVOR XLSX Feed Importer for XL Market v2.0
+ *
+ * Reads vevor-latest.xlsx, compares against PostgreSQL,
+ * creates new products via Medusa Admin API, syncs MeiliSearch.
+ *
+ * Usage:
+ *   node import-vevor-feed.mjs                   # DRY RUN (default)
+ *   node import-vevor-feed.mjs --execute          # actual import
+ *   node import-vevor-feed.mjs --execute --limit 50
+ *   node import-vevor-feed.mjs --refresh          # download fresh feed first
+ *   node import-vevor-feed.mjs --execute --update  # also update existing
+ */
+
+import XLSX from "xlsx";
+import pg from "pg";
+import http from "http";
+import https from "https";
+import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+// ── Config ──────────────────────────────────────────────────────────
+const FEED_PATH = path.join(__dirname, "..", "backend", "data", "feeds", "vevor-latest.xlsx");
+const FEED_URL = "https://ads-feed.s3.us-west-2.amazonaws.com/ads/business/571/vevor-571.xlsx";
+const CATEGORY_MAP_PATH = path.join(__dirname, "..", "backend", "src", "scripts", "category-map.json");
+
+const MEDUSA_URL = "http://127.0.0.1:9001";
+const ADMIN_EMAIL = "admin@xlmarket.eu";
+const ADMIN_PASS = "XlmAdmin2026";
+
+const PG_CONFIG = {
+  host: "localhost",
+  port: 5435,
+  user: "xlmarket",
+  password: "xlmarket_pg_2026_secure",
+  database: "xlmarket",
+};
+
+const MEILI_HOST = "http://127.0.0.1:7700";
+const MEILI_KEY = "15d8ff6a218834e151f5f9310da476ac031a825ae21a7a672a6bd3d2eba6b92b";
+const MEILI_INDEX = "products";
+
+const PRICE_MARKUP = 1.15;
+const BATCH_SIZE = 50;
+const API_DELAY_MS = 100;
+const SALES_CHANNEL_ID = "sc_01KMRWP84555JPGA6M0QMG409M";
+
+// ── CLI args ────────────────────────────────────────────────────────
+const args = process.argv.slice(2);
+const EXECUTE = args.includes("--execute");
+const REFRESH = args.includes("--refresh");
+const UPDATE_EXISTING = args.includes("--update");
+const LIMIT = args.includes("--limit")
+  ? parseInt(args[args.indexOf("--limit") + 1])
+  : 0;
+
+// ── Stats ───────────────────────────────────────────────────────────
+const stats = {
+  feedRows: 0,
+  existingInDb: 0,
+  newProducts: 0,
+  toUpdate: 0,
+  created: 0,
+  updated: 0,
+  skipped: 0,
+  errors: 0,
+  unmappedCategories: new Set(),
+};
+
+// ── Helpers ─────────────────────────────────────────────────────────
+
+function log(msg) {
+  const ts = new Date().toISOString().substring(11, 19);
+  console.log("[" + ts + "] " + msg);
+}
+
+function downloadFile(url, dest) {
+  return new Promise((resolve, reject) => {
+    fs.mkdirSync(path.dirname(dest), { recursive: true });
+    const file = fs.createWriteStream(dest);
+    https
+      .get(url, (response) => {
+        if (response.statusCode === 301 || response.statusCode === 302) {
+          file.close();
+          try { fs.unlinkSync(dest); } catch {}
+          return downloadFile(response.headers.location, dest).then(resolve).catch(reject);
+        }
+        if (response.statusCode !== 200) {
+          file.close();
+          try { fs.unlinkSync(dest); } catch {}
+          return reject(new Error("HTTP " + response.statusCode));
+        }
+        response.pipe(file);
+        file.on("finish", () => {
+          file.close();
+          resolve();
+        });
+      })
+      .on("error", (err) => {
+        fs.unlink(dest, () => {});
+        reject(err);
+      });
+  });
+}
+
+function apiCall(method, endpoint, body, token) {
+  return new Promise((resolve, reject) => {
+    const url = new URL(endpoint, MEDUSA_URL);
+    const options = {
+      method,
+      hostname: url.hostname,
+      port: url.port,
+      path: url.pathname + url.search,
+      headers: { "Content-Type": "application/json" },
+    };
+    if (token) {
+      options.headers["Authorization"] = "Bearer " + token;
+    }
+    const req = http.request(options, (res) => {
+      let data = "";
+      res.on("data", (chunk) => (data += chunk));
+      res.on("end", () => {
+        try {
+          resolve({ status: res.statusCode, data: JSON.parse(data) });
+        } catch {
+          resolve({ status: res.statusCode, data: { raw: data } });
+        }
+      });
+    });
+    req.on("error", reject);
+    req.setTimeout(30000, () => {
+      req.destroy(new Error("Request timeout"));
+    });
+    if (body) req.write(JSON.stringify(body));
+    req.end();
+  });
+}
+
+function parsePrice(priceStr) {
+  if (!priceStr) return null;
+  const match = String(priceStr).match(/([\d,.]+)/);
+  if (!match) return null;
+  return parseFloat(match[1].replace(",", ""));
+}
+
+function makeHandle(sku, title) {
+  const cleanSku = (sku || "product")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/-{2,}/g, "-")
+    .replace(/^-|-$/g, "");
+  const base = (title || "product")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/-{2,}/g, "-")
+    .replace(/^-|-$/g, "")
+    .substring(0, 70);
+  return (base + "-" + cleanSku).replace(/-{2,}/g, "-");
+}
+
+function sleep(ms) {
+  return new Promise((r) => setTimeout(r, ms));
+}
+
+// ── Feed parsing ────────────────────────────────────────────────────
+
+function readFeed() {
+  log("Reading XLSX feed...");
+  const wb = XLSX.readFile(FEED_PATH);
+  const ws = wb.Sheets[wb.SheetNames[0]];
+  const raw = XLSX.utils.sheet_to_json(ws);
+
+  log("  Sheet: " + wb.SheetNames[0] + ", raw rows: " + raw.length);
+  log("  Columns: " + Object.keys(raw[0]).join(", "));
+
+  const rows = [];
+  for (const r of raw) {
+    const sku = String(r["SKU"] || "").trim();
+    if (!sku) continue;
+    const price = parsePrice(r["Price"]);
+    if (!price) continue;
+
+    rows.push({
+      sku,
+      title: String(r["Product title"] || "").trim(),
+      description: String(r["Product description"] || "").trim(),
+      link: String(r["Product link"] || "").trim(),
+      upc: String(r["UPC"] || "").trim(),
+      price,
+      availability: String(r["Availability"] || "").trim().toLowerCase(),
+      inventory: parseInt(r["Inventory quantity"]) || 0,
+      weight: parseFloat(r["Product weight(KG)"]) || 0,
+      image: String(r["Image link"] || "").trim(),
+      brand: String(r["Brand"] || "").trim(),
+      productType: String(r["Product type"] || "").trim(),
+    });
+  }
+
+  log("  Valid products: " + rows.length);
+  stats.feedRows = rows.length;
+  return rows;
+}
+
+// ── PostgreSQL dedup ────────────────────────────────────────────────
+
+async function loadExistingSkus() {
+  log("Querying PostgreSQL for existing products...");
+  const client = new pg.Client(PG_CONFIG);
+  await client.connect();
+
+  const result = await client.query(
+    "SELECT metadata->>'vevor_sku' AS sku, id FROM product WHERE metadata->>'vevor_sku' IS NOT NULL AND deleted_at IS NULL"
+  );
+
+  const map = new Map();
+  for (const row of result.rows) {
+    if (row.sku) map.set(row.sku, row.id);
+  }
+
+  await client.end();
+  log("  Found " + map.size + " existing VEVOR products in DB");
+  stats.existingInDb = map.size;
+  return map;
+}
+
+// ── Category mapping ────────────────────────────────────────────────
+
+function loadCategoryMap() {
+  try {
+    return JSON.parse(fs.readFileSync(CATEGORY_MAP_PATH, "utf-8"));
+  } catch {
+    log("  WARNING: category-map.json not found, categories will be skipped");
+    return {};
+  }
+}
+
+async function loadCategoryIds(token) {
+  const resp = await apiCall("GET", "/admin/product-categories?limit=100", null, token);
+  const map = {};
+  for (const cat of resp.data.product_categories || []) {
+    map[cat.handle] = cat.id;
+  }
+  log("  Loaded " + Object.keys(map).length + " category IDs from Medusa");
+  return map;
+}
+
+// ── Product creation ────────────────────────────────────────────────
+
+async function createProduct(row, token, catMap, catIds) {
+  const finalPrice = Math.round(row.price * PRICE_MARKUP * 100); // cents
+  const handle = makeHandle(row.sku, row.title);
+  const isInStock = row.availability === "in stock";
+
+  // Map category
+  const l1 = (row.productType || "").split(">")[0].trim();
+  const categoryHandle = catMap[l1] || null;
+  const categoryId = categoryHandle ? catIds[categoryHandle] : null;
+
+  if (!categoryHandle && l1) {
+    stats.unmappedCategories.add(l1);
+  }
+
+  const productData = {
+    title: row.title,
+    handle: handle,
+    description: row.description || "",
+    status: isInStock ? "published" : "draft",
+    is_giftcard: false,
+    thumbnail: row.image || undefined,
+    external_id: "vevor:" + row.sku,
+    metadata: {
+      vevor_sku: row.sku,
+      vevor_upc: row.upc || "",
+      vevor_link: row.link || "",
+      vevor_product_type: row.productType || "",
+      weight_kg: row.weight || 0,
+      translation_status: "pending",
+      original_language: "en",
+    },
+    images: row.image ? [{ url: row.image }] : [],
+    options: [{ title: "Default", values: ["Default"] }],
+    variants: [
+      {
+        title: "Default",
+        sku: row.sku,
+        barcode: undefined, // UPC stored in metadata to avoid barcode conflicts
+        manage_inventory: true,
+        allow_backorder: false,
+        prices: [{ amount: finalPrice, currency_code: "eur" }],
+        options: { Default: "Default" },
+      },
+    ],
+    sales_channels: [{ id: SALES_CHANNEL_ID }],
+  };
+
+  if (categoryId) {
+    productData.categories = [{ id: categoryId }];
+  }
+
+  const resp = await apiCall("POST", "/admin/products", productData, token);
+
+  if (resp.status >= 200 && resp.status < 300 && resp.data.product) {
+    stats.created++;
+    return resp.data.product.id;
+  } else {
+    const msg = resp.data.message || JSON.stringify(resp.data).substring(0, 200);
+    log("  SKIP reason [" + row.sku + "]: status=" + resp.status + " msg=" + msg);
+      if (msg.includes("already exists") || msg.includes("duplicate") || msg.includes("unique")) {
+      stats.skipped++;
+    } else {
+      stats.errors++;
+      if (stats.errors <= 20) {
+        log("  ERROR [" + row.sku + "]: " + msg);
+      }
+    }
+    return null;
+  }
+}
+
+async function updateProduct(productId, row, token) {
+  const finalPrice = Math.round(row.price * PRICE_MARKUP * 100);
+  const isInStock = row.availability === "in stock";
+
+  try {
+    // Update product status and metadata
+    await apiCall(
+      "POST",
+      "/admin/products/" + productId,
+      {
+        status: isInStock ? "published" : "draft",
+        metadata: {
+          vevor_sku: row.sku,
+          weight_kg: row.weight || 0,
+          translation_status: "pending",
+          original_language: "en",
+        },
+      },
+      token
+    );
+
+    // Get variant ID to update price
+    const prodResp = await apiCall(
+      "GET",
+      "/admin/products/" + productId + "?fields=id,variants.id",
+      null,
+      token
+    );
+    const variantId = prodResp.data.product?.variants?.[0]?.id;
+    if (variantId) {
+      await apiCall(
+        "POST",
+        "/admin/products/" + productId + "/variants/" + variantId,
+        { prices: [{ amount: finalPrice, currency_code: "eur" }] },
+        token
+      );
+    }
+
+    stats.updated++;
+  } catch (err) {
+    stats.errors++;
+    if (stats.errors <= 20) {
+      log("  ERROR updating [" + row.sku + "]: " + err.message);
+    }
+  }
+}
+
+// ── MeiliSearch sync ────────────────────────────────────────────────
+
+async function triggerMeiliSync() {
+  log("Checking MeiliSearch status...");
+
+  try {
+    const url = new URL("/indexes/" + MEILI_INDEX + "/stats", MEILI_HOST);
+    const resp = await new Promise((resolve, reject) => {
+      http
+        .get(
+          {
+            hostname: url.hostname,
+            port: url.port,
+            path: url.pathname,
+            headers: { Authorization: "Bearer " + MEILI_KEY },
+          },
+          (res) => {
+            let data = "";
+            res.on("data", (c) => (data += c));
+            res.on("end", () => resolve(JSON.parse(data)));
+          }
+        )
+        .on("error", reject);
+    });
+
+    log("  MeiliSearch index: " + resp.numberOfDocuments + " documents");
+    log("  NOTE: MeiliSearch sync runs on its own schedule.");
+    log("  If new products are missing from search, check the sync timer/cron.");
+  } catch (err) {
+    log("  WARNING: Could not reach MeiliSearch: " + err.message);
+  }
+}
+
+// ── Main ────────────────────────────────────────────────────────────
+
+async function main() {
+  console.log("");
+  console.log("=======================================================");
+  console.log("  XL Market -- VEVOR Feed Importer v2.0");
+  console.log("=======================================================");
+  console.log("");
+
+  const mode = EXECUTE ? "EXECUTE" : "DRY RUN";
+  log("Mode: " + mode + (UPDATE_EXISTING ? " + UPDATE" : ""));
+  if (LIMIT) log("Limit: " + LIMIT + " products");
+  console.log("");
+
+  // ── Step 0: Optionally refresh feed ──
+  if (REFRESH) {
+    log("Downloading fresh feed from S3...");
+    await downloadFile(FEED_URL, FEED_PATH);
+    const size = (fs.statSync(FEED_PATH).size / 1024 / 1024).toFixed(1);
+    log("  Downloaded: " + size + " MB");
+  }
+
+  // ── Step 1: Read XLSX ──
+  const feedRows = readFeed();
+
+  // ── Step 2: Compare with DB ──
+  const existingSkus = await loadExistingSkus();
+
+  const newRows = [];
+  const updateRows = [];
+  for (const row of feedRows) {
+    const existingId = existingSkus.get(row.sku);
+    if (existingId) {
+      updateRows.push(Object.assign({}, row, { productId: existingId }));
+    } else {
+      newRows.push(row);
+    }
+  }
+
+  stats.newProducts = newRows.length;
+  stats.toUpdate = updateRows.length;
+
+  console.log("");
+  log("=== Analysis ===");
+  log("  Feed total:          " + stats.feedRows);
+  log("  Already in DB:       " + stats.existingInDb);
+  log("  New to import:       " + stats.newProducts);
+  log("  Existing (updatable):" + stats.toUpdate);
+  console.log("");
+
+  // Show category distribution for new products
+  const categoryMap = loadCategoryMap();
+  const catCounts = {};
+  for (const row of newRows) {
+    const l1 = (row.productType || "").split(">")[0].trim();
+    const mapped = categoryMap[l1] || "UNMAPPED";
+    catCounts[mapped] = (catCounts[mapped] || 0) + 1;
+  }
+
+  if (Object.keys(catCounts).length > 0) {
+    log("Category distribution (new products):");
+    for (const [cat, count] of Object.entries(catCounts).sort((a, b) => b[1] - a[1])) {
+      log("  " + cat + ": " + count);
+    }
+    console.log("");
+  }
+
+  // Price stats for new products
+  if (newRows.length > 0) {
+    const prices = newRows.map((r) => r.price * PRICE_MARKUP);
+    log("Price stats (new, after markup):");
+    log("  Min: EUR " + Math.min(...prices).toFixed(2));
+    log("  Max: EUR " + Math.max(...prices).toFixed(2));
+    log("  Avg: EUR " + (prices.reduce((a, b) => a + b, 0) / prices.length).toFixed(2));
+    const inStock = newRows.filter((r) => r.availability === "in stock").length;
+    log("  In stock: " + inStock + "/" + newRows.length + " (" + ((inStock / newRows.length) * 100).toFixed(1) + "%)");
+    console.log("");
+  }
+
+  // ── DRY RUN stops here ──
+  if (!EXECUTE) {
+    console.log("=======================================================");
+    console.log("  DRY RUN complete. No changes made.");
+    console.log("  Run with --execute to import products.");
+    console.log("=======================================================");
+    return;
+  }
+
+  // ── Step 3: Authenticate ──
+  log("Authenticating with Medusa Admin API...");
+  const authResp = await apiCall("POST", "/auth/user/emailpass", {
+    email: ADMIN_EMAIL,
+    password: ADMIN_PASS,
+  });
+  if (!authResp.data.token) {
+    throw new Error("Auth failed: " + JSON.stringify(authResp.data));
+  }
+  const token = authResp.data.token;
+  log("  Authenticated OK");
+
+  // Load category IDs
+  const categoryIds = await loadCategoryIds(token);
+
+  // ── Step 4: Create new products ──
+  const toCreate = LIMIT ? newRows.slice(0, LIMIT) : newRows;
+  if (toCreate.length > 0) {
+    log("Creating " + toCreate.length + " new products (batch delay: " + API_DELAY_MS + "ms)...");
+    const startTime = Date.now();
+
+    for (let i = 0; i < toCreate.length; i++) {
+      const row = toCreate[i];
+      try {
+        await createProduct(row, token, categoryMap, categoryIds);
+      } catch (err) {
+        stats.errors++;
+        if (stats.errors <= 20) {
+          log("  ERROR [" + row.sku + "]: " + err.message);
+        }
+      }
+      await sleep(API_DELAY_MS);
+
+      // Progress every 100 products
+      if ((i + 1) % 100 === 0 || i + 1 === toCreate.length) {
+        const elapsed = ((Date.now() - startTime) / 1000).toFixed(0);
+        const rate = ((i + 1) / ((Date.now() - startTime) / 1000)).toFixed(1);
+        log("  Progress: " + (i + 1) + "/" + toCreate.length + " (" + rate + "/s, " + elapsed + "s) | created: " + stats.created + " errors: " + stats.errors);
+      }
+    }
+  }
+
+  // ── Step 5: Update existing products (if --update) ──
+  if (UPDATE_EXISTING && updateRows.length > 0) {
+    const toUpdate = LIMIT ? updateRows.slice(0, LIMIT) : updateRows;
+    log("Updating " + toUpdate.length + " existing products...");
+    const startTime = Date.now();
+
+    for (let i = 0; i < toUpdate.length; i++) {
+      const row = toUpdate[i];
+      try {
+        await updateProduct(row.productId, row, token);
+      } catch (err) {
+        stats.errors++;
+      }
+      await sleep(API_DELAY_MS);
+
+      if ((i + 1) % 100 === 0 || i + 1 === toUpdate.length) {
+        const elapsed = ((Date.now() - startTime) / 1000).toFixed(0);
+        log("  Update progress: " + (i + 1) + "/" + toUpdate.length + " (" + elapsed + "s) | updated: " + stats.updated + " errors: " + stats.errors);
+      }
+    }
+  }
+
+  // ── Step 6: MeiliSearch sync check ──
+  await triggerMeiliSync();
+
+  // ── Summary ──
+  console.log("");
+  console.log("=======================================================");
+  console.log("  IMPORT COMPLETE");
+  console.log("=======================================================");
+  log("  Feed rows:     " + stats.feedRows);
+  log("  Already in DB: " + stats.existingInDb);
+  log("  New created:   " + stats.created);
+  log("  Updated:       " + stats.updated);
+  log("  Skipped:       " + stats.skipped);
+  log("  Errors:        " + stats.errors);
+
+  if (stats.unmappedCategories.size > 0) {
+    console.log("");
+    log("Unmapped L1 categories:");
+    for (const cat of stats.unmappedCategories) {
+      log("  - " + cat);
+    }
+  }
+}
+
+main().catch((err) => {
+  console.error("FATAL:", err);
+  process.exit(1);
+});

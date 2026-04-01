@@ -14,25 +14,25 @@ function AccordionRow({ item }: { item: AccordionItem }) {
   const [open, setOpen] = useState(false)
   const Icon = item.icon
   return (
-    <div className="border-b border-[#E8E8E8] last:border-b-0">
+    <div className="border-b border-soft-border last:border-b-0">
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
-        className="w-full flex items-center gap-[10px] py-[14px] text-left group"
+        className="w-full flex items-center gap-2.5 py-3.5 text-left group"
         aria-expanded={open}
       >
-        <Icon size={16} strokeWidth={1.5} className="text-[#E8650A] shrink-0" />
-        <span className="flex-1 text-[14px] font-[500] font-[family-name:var(--font-poppins)] text-[#1A1A1A] group-hover:text-[#E8650A] transition-colors">
+        <Icon size={16} strokeWidth={1.5} className="text-accent shrink-0" />
+        <span className="flex-1 text-sm font-medium font-[family-name:var(--font-outfit)] text-off-black group-hover:text-accent transition-all duration-300">
           {item.title}
         </span>
         <ChevronDown
           size={16}
           strokeWidth={1.5}
-          className={"text-[#999999] transition-transform duration-[200ms] " + (open ? "rotate-180" : "")}
+          className={"text-muted transition-transform duration-300 " + (open ? "rotate-180" : "")}
         />
       </button>
       {open && (
-        <div className="pb-[16px] pl-[26px] pr-[4px] text-[13px] font-[family-name:var(--font-inter)] text-[#555555] leading-[1.7]">
+        <div className="pb-4 pl-7 pr-1 text-sm font-[family-name:var(--font-jakarta)] text-muted leading-relaxed">
           {item.content}
         </div>
       )}
@@ -47,11 +47,11 @@ export default function ProductInfoAccordion() {
       icon: Truck,
       title: "Tarne ja tarneaeg",
       content: (
-        <div className="flex flex-col gap-[6px]">
-          <p><strong className="text-[#1A1A1A]">Tasuta tarne</strong> tellimustel alates 50€.</p>
-          <p>Tarne aeg <strong className="text-[#1A1A1A]">5–15 tööpäeva</strong> Eestisse.</p>
-          <p>Saadetakse DPD, Omniva või DHL kaudu. Pakiautomaati saatmine võimalik.</p>
-          <p className="text-[#999999] text-[12px] mt-[4px]">Tellimused töödeldakse 1–2 tööpäeva jooksul.</p>
+        <div className="flex flex-col gap-1.5">
+          <p><strong className="text-off-black">Tasuta tarne</strong>{" tellimustel alates 50\u20AC."}</p>
+          <p>{"Tarne aeg "}<strong className="text-off-black">{"5\u201315 t\u00F6\u00F6p\u00E4eva"}</strong>{" Eestisse."}</p>
+          <p>{"Saadetakse DPD, Omniva v\u00F5i DHL kaudu. Pakiautomaati saatmine v\u00F5imalik."}</p>
+          <p className="text-muted text-xs mt-1">{"Tellimused t\u00F6\u00F6deldakse 1\u20132 t\u00F6\u00F6p\u00E4eva jooksul."}</p>
         </div>
       ),
     },
@@ -60,10 +60,10 @@ export default function ProductInfoAccordion() {
       icon: Shield,
       title: "Garantii ja kvaliteet",
       content: (
-        <div className="flex flex-col gap-[6px]">
-          <p><strong className="text-[#1A1A1A]">2-aastane garantii</strong> kõigile toodetele.</p>
-          <p>Garantii katab tootmisdefektid ja materjalivead. Ei kata mehhaanilisi kahjustusi ega väärkasutust.</p>
-          <p>Garantiinõude esitamiseks võtke ühendust: <a href="mailto:info@xlmarket.eu" className="text-[#E8650A] underline">info@xlmarket.eu</a></p>
+        <div className="flex flex-col gap-1.5">
+          <p><strong className="text-off-black">2-aastane garantii</strong>{" k\u00F5igile toodetele."}</p>
+          <p>{"Garantii katab tootmisdefektid ja materjalivead. Ei kata mehhaanilisi kahjustusi ega v\u00E4\u00E4rkasutust."}</p>
+          <p>{"Garantiin\u00F5ude esitamiseks v\u00F5tke \u00FChendust: "}<a href="mailto:info@xlmarket.eu" className="text-accent underline hover:text-accent-dark">info@xlmarket.eu</a></p>
         </div>
       ),
     },
@@ -72,11 +72,11 @@ export default function ProductInfoAccordion() {
       icon: RotateCcw,
       title: "Tagastamine",
       content: (
-        <div className="flex flex-col gap-[6px]">
-          <p><strong className="text-[#1A1A1A]">14 päeva tagastusõigus</strong> alates kauba kättesaamisest.</p>
-          <p>Toode peab olema kasutamata, originaalpakendis ja täieliku komplektuuriga.</p>
+        <div className="flex flex-col gap-1.5">
+          <p><strong className="text-off-black">{"14 p\u00E4eva tagastus\u00F5igus"}</strong>{" alates kauba k\u00E4ttesaamisest."}</p>
+          <p>{"Toode peab olema kasutamata, originaalpakendis ja t\u00E4ieliku komplektuuriga."}</p>
           <p>Tagastuskulud kannab ostja (v.a. defektse toote puhul).</p>
-          <p>Raha tagastatakse 14 tööpäeva jooksul pärast kauba kättesaamist.</p>
+          <p>{"Raha tagastatakse 14 t\u00F6\u00F6p\u00E4eva jooksul p\u00E4rast kauba k\u00E4ttesaamist."}</p>
         </div>
       ),
     },
@@ -85,17 +85,17 @@ export default function ProductInfoAccordion() {
       icon: CreditCard,
       title: "Makseviisid",
       content: (
-        <div className="flex flex-col gap-[6px]">
-          <p>Aktsepteerime: <strong className="text-[#1A1A1A]">pangakaart, pangalink, järelmaks</strong>.</p>
-          <p>Kõik maksed on krüpteeritud SSL-sertifikaadiga kaitstud.</p>
-          <p>Järelmaksu teenust pakub Indivy (0% intress kuni 12 kuud teatud tingimustel).</p>
+        <div className="flex flex-col gap-1.5">
+          <p>{"Aktsepteerime: "}<strong className="text-off-black">{"pangakaart, pangalink, j\u00E4relmaks"}</strong>.</p>
+          <p>{"K\u00F5ik maksed on kr\u00FCpteeritud SSL-sertifikaadiga kaitstud."}</p>
+          <p>{"J\u00E4relmaksu teenust pakub Indivy (0% intress kuni 12 kuud teatud tingimustel)."}</p>
         </div>
       ),
     },
   ]
 
   return (
-    <div className="mt-[24px] border border-[#E8E8E8] px-[16px]">
+    <div className="mt-6 border border-soft-border rounded-xl px-4">
       {items.map((item) => (
         <AccordionRow key={item.id} item={item} />
       ))}

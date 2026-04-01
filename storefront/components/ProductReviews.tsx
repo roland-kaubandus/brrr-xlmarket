@@ -28,7 +28,7 @@ export default function ProductReviews() {
           <p className="text-[15px] font-[600] font-[family-name:var(--font-poppins)] text-green-700 mb-[4px]">
             Aitäh!
           </p>
-          <p className="text-[13px] font-[family-name:var(--font-inter)] text-green-600 text-center">
+          <p className="text-[13px] font-[family-name:var(--font-jakarta)] text-green-600 text-center">
             Sinu arvustus on saadetud ülevaatusele.
           </p>
         </div>
@@ -42,7 +42,7 @@ export default function ProductReviews() {
           <p className="text-[15px] font-[600] font-[family-name:var(--font-poppins)] text-[#1A1A1A] mb-[6px]">
             Selle toote kohta pole veel arvustusi
           </p>
-          <p className="text-[13px] font-[family-name:var(--font-inter)] text-[#999999] text-center max-w-[280px]">
+          <p className="text-[13px] font-[family-name:var(--font-jakarta)] text-[#999999] text-center max-w-[280px]">
             Ole esimene, kes jagab oma kogemust selle tootega.
           </p>
         </div>

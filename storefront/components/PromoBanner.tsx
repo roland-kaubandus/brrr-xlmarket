@@ -22,7 +22,7 @@ export default function PromoBanner({ banner }: { banner: Banner }) {
     >
       <p className="text-[18px] sm:text-[20px] font-[700] font-[family-name:var(--font-poppins)] mb-[4px]">{banner.title}</p>
       {banner.subtitle && (
-        <p className="text-[14px] font-[family-name:var(--font-inter)] opacity-80 mb-[16px]">{banner.subtitle}</p>
+        <p className="text-[14px] font-[family-name:var(--font-jakarta)] opacity-80 mb-[16px]">{banner.subtitle}</p>
       )}
       {banner.buttonText && banner.buttonLink && (
         <Link

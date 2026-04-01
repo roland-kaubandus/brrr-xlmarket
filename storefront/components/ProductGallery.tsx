@@ -35,7 +35,7 @@ export default function ProductGallery({ images, title }: Props) {
 
   if (images.length === 0) {
     return (
-      <div className="aspect-square bg-[#F7F7F7] rounded-[2px] flex items-center justify-center text-[#999999] text-[14px] font-[family-name:var(--font-inter)]">
+      <div className="aspect-square bg-silver rounded-2xl flex items-center justify-center text-muted text-sm font-[family-name:var(--font-jakarta)]">
         Pilt puudub
       </div>
     )
@@ -47,14 +47,14 @@ export default function ProductGallery({ images, title }: Props) {
   return (
     <>
       {/* Desktop: vertical thumbstrip + main image */}
-      <div className="hidden sm:flex gap-[12px] items-start">
+      <div className="hidden sm:flex gap-3 items-start">
         {images.length > 1 && (
-          <div className="flex flex-col items-center gap-[6px] shrink-0">
+          <div className="flex flex-col items-center gap-1.5 shrink-0">
             <button
               type="button"
               onClick={() => setThumbOffset((o) => Math.max(0, o - 1))}
               disabled={!canUp}
-              className="w-[52px] h-[24px] flex items-center justify-center text-[#CCCCCC] hover:text-[#E8650A] disabled:opacity-20 disabled:cursor-not-allowed transition-colors"
+              className="w-[52px] h-6 flex items-center justify-center text-muted hover:text-accent disabled:opacity-20 disabled:cursor-not-allowed transition-all duration-300"
               aria-label="Kerima"
             >
               <ChevronUp size={16} strokeWidth={2} />
@@ -69,17 +69,17 @@ export default function ProductGallery({ images, title }: Props) {
                   aria-label={"Pilt " + (realIdx + 1)}
                   aria-pressed={realIdx === active}
                   className={
-                    "relative w-[52px] h-[52px] bg-[#F7F7F7] rounded-[4px] border-2 overflow-hidden transition-all duration-[150ms] " +
+                    "relative w-[52px] h-[52px] bg-silver rounded-xl border-2 overflow-hidden transition-all duration-300 " +
                     (realIdx === active
-                      ? "border-[#E8650A] shadow-[0_0_0_1px_rgba(232,101,10,0.20)]"
-                      : "border-[#E8E8E8] hover:border-[#CCCCCC]")
+                      ? "border-accent shadow-[0_0_0_1px_rgba(249,115,22,0.20)]"
+                      : "border-soft-border hover:border-muted")
                   }
                 >
                   <Image
                     src={img.url}
                     alt={title + " " + (realIdx + 1)}
                     fill
-                    className="object-contain p-[4px]"
+                    className="object-contain p-1"
                     sizes="60px"
                   />
                 </button>
@@ -89,7 +89,7 @@ export default function ProductGallery({ images, title }: Props) {
               type="button"
               onClick={() => setThumbOffset((o) => Math.min(images.length - VISIBLE_THUMBS, o + 1))}
               disabled={!canDown}
-              className="w-[52px] h-[24px] flex items-center justify-center text-[#CCCCCC] hover:text-[#E8650A] disabled:opacity-20 disabled:cursor-not-allowed transition-colors"
+              className="w-[52px] h-6 flex items-center justify-center text-muted hover:text-accent disabled:opacity-20 disabled:cursor-not-allowed transition-all duration-300"
               aria-label="Kerima alla"
             >
               <ChevronDown size={16} strokeWidth={2} />
@@ -97,14 +97,14 @@ export default function ProductGallery({ images, title }: Props) {
           </div>
         )}
         <div
-          className="group relative flex-1 aspect-square bg-[#F7F7F7] rounded-[2px] border border-[#E8E8E8] overflow-hidden cursor-zoom-in"
+          className="group relative flex-1 aspect-square bg-silver rounded-2xl border border-soft-border overflow-hidden cursor-zoom-in"
           onClick={() => setLightbox(true)}
           role="button"
           tabIndex={0}
           aria-label="Suurenda pilti"
           onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") setLightbox(true) }}
         >
-          <div className="absolute inset-[16px] transition-transform duration-[300ms] group-hover:scale-[1.03]">
+          <div className="absolute inset-4 transition-transform duration-300 group-hover:scale-[1.03]">
             <Image
               src={images[active].url}
               alt={title}
@@ -114,12 +114,12 @@ export default function ProductGallery({ images, title }: Props) {
               priority
             />
           </div>
-          <div className="absolute bottom-[10px] right-[10px] opacity-0 group-hover:opacity-100 transition-opacity duration-[200ms] flex items-center gap-[5px] bg-black/50 text-white text-[11px] px-[8px] py-[4px] rounded-full backdrop-blur-[2px]">
+          <div className="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center gap-1.5 bg-off-black/50 text-white text-xs px-2.5 py-1 rounded-full backdrop-blur-sm">
             <ZoomIn size={11} strokeWidth={2} />
             Suurenda
           </div>
           {images.length > 1 && (
-            <div className="absolute bottom-[10px] left-[10px] bg-black/40 text-white text-[11px] px-[8px] py-[3px] rounded-full backdrop-blur-[2px]">
+            <div className="absolute bottom-3 left-3 bg-off-black/40 text-white text-xs px-2.5 py-1 rounded-full backdrop-blur-sm">
               {active + 1} / {images.length}
             </div>
           )}
@@ -127,32 +127,32 @@ export default function ProductGallery({ images, title }: Props) {
       </div>
 
       {/* Mobile: stacked */}
-      <div className="flex flex-col gap-[10px] sm:hidden">
+      <div className="flex flex-col gap-2.5 sm:hidden">
         <div
-          className="relative aspect-square bg-[#F7F7F7] rounded-[2px] border border-[#E8E8E8] overflow-hidden cursor-zoom-in"
+          className="relative aspect-square bg-silver rounded-2xl border border-soft-border overflow-hidden cursor-zoom-in"
           onClick={() => setLightbox(true)}
           role="button"
           tabIndex={0}
           aria-label="Suurenda pilti"
           onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") setLightbox(true) }}
         >
-          <div className="absolute inset-[12px]"><Image src={images[active].url} alt={title} fill className="object-contain" sizes="100vw" priority /></div>
+          <div className="absolute inset-3"><Image src={images[active].url} alt={title} fill className="object-contain" sizes="100vw" priority /></div>
           {images.length > 1 && (
-            <div className="absolute bottom-[8px] left-[8px] bg-black/40 text-white text-[11px] px-[7px] py-[3px] rounded-full">
+            <div className="absolute bottom-2 left-2 bg-off-black/40 text-white text-xs px-2 py-1 rounded-full">
               {active + 1} / {images.length}
             </div>
           )}
         </div>
         {images.length > 1 && (
-          <div className="flex gap-[8px] overflow-x-auto pb-[2px] scrollbar-none">
+          <div className="flex gap-2 overflow-x-auto pb-0.5 scrollbar-none">
             {images.slice(0, 10).map((img, i) => (
               <button
                 key={img.id}
                 type="button"
                 onClick={() => setActive(i)}
-                className={"relative shrink-0 w-[52px] h-[52px] bg-[#F7F7F7] rounded-[4px] border-2 overflow-hidden transition-all " + (i === active ? "border-[#E8650A]" : "border-[#E8E8E8]")}
+                className={"relative shrink-0 w-[52px] h-[52px] bg-silver rounded-xl border-2 overflow-hidden transition-all duration-300 " + (i === active ? "border-accent" : "border-soft-border")}
               >
-                <Image src={img.url} alt={title + " " + (i + 1)} fill className="object-contain p-[4px]" sizes="60px" />
+                <Image src={img.url} alt={title + " " + (i + 1)} fill className="object-contain p-1" sizes="60px" />
               </button>
             ))}
           </div>
@@ -162,14 +162,14 @@ export default function ProductGallery({ images, title }: Props) {
       {/* Lightbox */}
       {lightbox && (
         <div
-          className="fixed inset-0 bg-black/85 z-50 flex items-center justify-center backdrop-blur-[4px]"
+          className="fixed inset-0 bg-black/85 z-50 flex items-center justify-center backdrop-blur-sm"
           onClick={close}
           role="dialog"
           aria-modal="true"
         >
           {active > 0 && (
             <button
-              className="absolute left-[16px] sm:left-[32px] top-1/2 -translate-y-1/2 w-[44px] h-[44px] rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-white hover:bg-white/20 transition-colors"
+              className="absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-white hover:bg-white/20 transition-all duration-300"
               onClick={(e) => { e.stopPropagation(); setActive((i) => i - 1) }}
               aria-label="Eelmine"
             >
@@ -178,9 +178,9 @@ export default function ProductGallery({ images, title }: Props) {
           )}
           {active < images.length - 1 && (
             <button
-              className="absolute right-[16px] sm:right-[32px] top-1/2 -translate-y-1/2 w-[44px] h-[44px] rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-white hover:bg-white/20 transition-colors"
+              className="absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-white hover:bg-white/20 transition-all duration-300"
               onClick={(e) => { e.stopPropagation(); setActive((i) => i + 1) }}
-              aria-label="Järgmine"
+              aria-label="Jargmine"
             >
               <ChevronDown size={20} className="-rotate-90" strokeWidth={2} />
             </button>
@@ -192,13 +192,13 @@ export default function ProductGallery({ images, title }: Props) {
             <Image src={images[active].url} alt={title} width={1200} height={1200} className="object-contain max-w-[85vw] max-h-[85vh] w-auto h-auto" />
           </div>
           <button
-            className="absolute top-[16px] right-[16px] w-[40px] h-[40px] rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-white hover:bg-white/20 transition-colors"
+            className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-white hover:bg-white/20 transition-all duration-300"
             onClick={close}
             aria-label="Sulge"
           >
             <X size={18} strokeWidth={2} />
           </button>
-          <div className="absolute bottom-[16px] left-1/2 -translate-x-1/2 text-white/70 text-[13px]">
+          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-white/70 text-sm">
             {active + 1} / {images.length}
           </div>
         </div>

@@ -22,7 +22,7 @@ type SearchResult = {
   processingTimeMs: number
 }
 
-export default function InstantSearch({ className = "" }: { className?: string }) {
+export default function InstantSearch({ className = "", locale = "et" }: { className?: string; locale?: string }) {
   const [query, setQuery] = useState("")
   const [results, setResults] = useState<SearchResult | null>(null)
   const [isOpen, setIsOpen] = useState(false)
@@ -56,13 +56,13 @@ export default function InstantSearch({ className = "" }: { className?: string }
   const goToProduct = (handle: string) => {
     setIsOpen(false)
     setQuery("")
-    router.push(`/toode/${handle}`)
+    router.push(`/${locale}/toode/${handle}`)
   }
 
   const goToResults = () => {
     if (!query.trim()) return
     setIsOpen(false)
-    router.push(`/otsing?q=${encodeURIComponent(query.trim())}`)
+    router.push(`/${locale}/otsing?q=${encodeURIComponent(query.trim())}`)
   }
 
   const handleKey = (e: React.KeyboardEvent) => {
@@ -112,7 +112,7 @@ export default function InstantSearch({ className = "" }: { className?: string }
           onFocus={() => results?.hits.length && setIsOpen(true)}
           onKeyDown={handleKey}
           placeholder="Otsi tooteid..."
-          className="w-full bg-transparent px-[16px] py-[10px] text-[14px] font-[family-name:var(--font-inter)] text-[#333333] placeholder:text-[#999999] focus:outline-none"
+          className="w-full bg-transparent px-[16px] py-[10px] text-[14px] font-[family-name:var(--font-jakarta)] text-[#333333] placeholder:text-[#999999] focus:outline-none"
           autoComplete="off"
         />
         {query && (
@@ -162,14 +162,14 @@ export default function InstantSearch({ className = "" }: { className?: string }
               )}
               <div className="flex-1 min-w-0">
                 <p
-                  className="text-[13px] font-[family-name:var(--font-inter)] text-[#333333] truncate [&>mark]:bg-[#FFF5EE] [&>mark]:text-[#E8650A] [&>mark]:font-[600]"
+                  className="text-[13px] font-[family-name:var(--font-jakarta)] text-[#333333] truncate [&>mark]:bg-[#FFF5EE] [&>mark]:text-[#E8650A] [&>mark]:font-[600]"
                   dangerouslySetInnerHTML={{ __html: hit._formatted?.title || hit.title }}
                 />
                 {hit.categories?.[0] && (
-                  <p className="text-[11px] text-[#999999] font-[family-name:var(--font-inter)]">{hit.categories[0]}</p>
+                  <p className="text-[11px] text-[#999999] font-[family-name:var(--font-jakarta)]">{hit.categories[0]}</p>
                 )}
               </div>
-              <span className="text-[13px] font-[600] font-[family-name:var(--font-inter)] text-[#1A1A1A] whitespace-nowrap">
+              <span className="text-[13px] font-[600] font-[family-name:var(--font-jakarta)] text-[#1A1A1A] whitespace-nowrap">
                 {formatPrice(hit.price)}
               </span>
             </button>
@@ -191,7 +191,7 @@ export default function InstantSearch({ className = "" }: { className?: string }
       {/* Loading indicator */}
       {loading && query && (
         <div className="absolute top-full left-0 right-0 mt-[4px] bg-white border border-[#E8E8E8] shadow-sm z-50 px-[16px] py-[16px] text-center">
-          <span className="text-[13px] text-[#999999] font-[family-name:var(--font-inter)]">Otsin...</span>
+          <span className="text-[13px] text-[#999999] font-[family-name:var(--font-jakarta)]">Otsin...</span>
         </div>
       )}
     </div>
