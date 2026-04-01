@@ -459,7 +459,7 @@ export default function MuujaWidget() {
         )}
         {!isOpen && (
           <div className="absolute left-[64px] top-1/2 -translate-y-1/2 whitespace-nowrap bg-white/95 backdrop-blur-sm px-3 py-1.5 rounded-xl shadow-[0_2px_12px_rgba(0,0,0,0.08)] text-[13px] font-semibold text-orange-600 pointer-events-none animate-pulse" style={{ animationDuration: "4s" }}>
-            K\u00fcsi m\u00fc\u00fcjalt
+            Küsi müüjalt
           </div>
         )}
         <MuujaBall

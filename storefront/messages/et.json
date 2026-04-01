@@ -3,7 +3,7 @@
     "title": "XL Market — Professionaalne varustus",
     "description": "XL Market — Eesti suurim professionaalse varustuse e-pood. Suurköögi-, mere-, ehitus-, aia- ja tööstusseadmed.",
     "ogTitle": "XL Market — Professionaalne varustus",
-    "ogDescription": "Professionaalsed seadmed igale tegevusharule. 14 000+ toodet kiire tarnega üle Eesti."
+    "ogDescription": "Professionaalsed seadmed igale valdkonnale. 14 000+ toodet kiire tarnega üle Eesti."
   },
   "nav": {
     "account": "Konto",
@@ -12,7 +12,7 @@
     "openMenu": "Ava menüü",
     "close": "Sulge",
     "categories": "Kategooriad",
-    "allBranches": "Kõik harud",
+    "allBranches": "Kõik valdkonnad",
     "navigation": "Navigatsioon"
   },
   "announcement": {
@@ -25,10 +25,10 @@
     "title1": "Tööseadmed, mis ",
     "titleHighlight": "töötavad",
     "title2": " sinuga koos",
-    "subtitle": "Professionaalsed seadmed kokast kuni ehitajani. Igale tegevusharule oma spetsialiseeritud pood.",
-    "ctaBranches": "Avasta tegevusharud",
+    "subtitle": "Professionaalsed seadmed kokast kuni ehitajani. Igale valdkonnale oma spetsialiseeritud pood.",
+    "ctaBranches": "Avasta valdkonnad",
     "ctaSearch": "Kirjelda, mida otsid",
-    "statBranches": "tegevusharu",
+    "statBranches": "valdkonda",
     "statDelivery": "kiire tarne",
     "statWarranty": "garantii"
   },
@@ -69,9 +69,9 @@
     "searchTitle": "Otsi ise",
     "searchDesc": "Tead täpselt, mida vajad? Kasuta kiiresti ja täpselt meie otsingut. Kohesed tulemused ja nutikad soovitused.",
     "searchCta": "Ava otsing",
-    "browseTitle": "Avasta haruti",
-    "browseDesc": "Uuri tegevusharusid suunatud valikute ja filtritega. Iga haru on kureeritud professionaalide poolt.",
-    "browseCta": "Vaata harusid",
+    "browseTitle": "Avasta valdkonniti",
+    "browseDesc": "Uuri valdkondi suunatud valikute ja filtritega. Iga valdkond on kureeritud professionaalide poolt.",
+    "browseCta": "Vaata valdkondi",
     "sellerTitle": "Kirjelda müüjale",
     "sellerDesc": "25 aastat tagasi toodi pood sulle koju. Nüüd saad lõpuks teenindaja ka. Kirjelda lihtsalt, mida vajad.",
     "sellerCta": "Kirjelda vajadust"
@@ -95,7 +95,7 @@
     "outOfStock": "Hetkel ei ole saadaval",
     "buyNow": "Osta kohe",
     "cantBuy": "Seda toodet ei saa hetkel osta.",
-    "branchFavorites": "Selle haru lemmikud",
+    "branchFavorites": "Selle valdkonna lemmikud",
     "viewAllProducts": "Vaata kõiki tooteid"
   },
   "trust": {
@@ -122,7 +122,7 @@
     "noSpam": "Ei mingit rämpsposti. Saate uudiskirjast igal ajal loobuda."
   },
   "footer": {
-    "tagline": "Professionaalne varustus igale tegevusharule. Eesti juhtiv profiseadmete e-pood.",
+    "tagline": "Professionaalne varustus igale valdkonnale. Eesti juhtiv profiseadmete e-pood.",
     "company": "Roland Kaubandus OÜ",
     "services": "Teenused",
     "transport": "Transport",
@@ -263,14 +263,14 @@
     "browseProducts": "Sirvi tooteid"
   },
   "branch": {
-    "eyebrow": "Tegevusharu",
+    "eyebrow": "Valdkond",
     "subcategories": "Alamkategooriad",
     "chooseDirection": "Vali täpsem suund",
     "popularProducts": "Populaarsed tooted",
-    "comingSoon": "See haru on tulemas",
-    "comingSoonDesc": "Töötame selle haru sortimendi kallal. Jäta oma e-post ja teavitame, kui tooted on saadaval.",
+    "comingSoon": "See valdkond on tulemas",
+    "comingSoonDesc": "Töötame selle valdkonna sortimendi kallal. Jäta oma e-post ja teavitame, kui tooted on saadaval.",
     "viewOtherCategories": "Vaata teisi kategooriaid",
     "exploreMore": "Avasta veel",
-    "otherBranches": "Teised tegevusharud"
+    "otherBranches": "Teised valdkonnad"
   }
 }
