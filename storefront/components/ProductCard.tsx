@@ -2,22 +2,12 @@
 import { useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { Heart } from "lucide-react"
+import { usePathname } from "next/navigation"
 import { Product, formatPrice } from "@/lib/medusa"
 
-
-// Deterministic pseudo-rating from product ID — consistent across renders
-function productRating(id: string): { stars: number; count: number } {
-  let h = 0
-  for (let i = 0; i < id.length; i++) {
-    h = (h * 31 + id.charCodeAt(i)) & 0xFFFFFFFF
-  }
-  const stars = 3.8 + ((h & 0xFF) / 255) * 1.1  // 3.8 – 4.9
-  const count = 12 + ((h >> 8) & 0xFF) % 180     // 12 – 191
-  return { stars: Math.round(stars * 10) / 10, count }
-}
-
 export default function ProductCard({ product, isNew }: { product: Product; isNew?: boolean }) {
+  const pathname = usePathname()
+  const locale = pathname.split('/')[1] === 'en' ? 'en' : 'et'
   const price = product.variants?.[0]?.calculated_price
   const [wishlisted, setWishlisted] = useState(() => {
     if (typeof window === "undefined") return false
@@ -27,109 +17,120 @@ export default function ProductCard({ product, isNew }: { product: Product; isNe
     } catch {}
     return false
   })
+
   function toggleWishlist(e: React.MouseEvent) {
-    e.preventDefault(); e.stopPropagation()
+    e.preventDefault()
+    e.stopPropagation()
     try {
       const raw = localStorage.getItem("xlmarket_wishlist")
       const items: Array<{ id: string; handle: string; title: string; thumbnail: string | null; price: string }> = raw ? JSON.parse(raw) : []
       const exists = items.some((i) => i.id === product.id)
-      const next = exists ? items.filter((i) => i.id !== product.id) : [...items, {
-        id: product.id, handle: product.handle, title: product.title, thumbnail: product.thumbnail,
-        price: price ? new Intl.NumberFormat("et-EE", { style: "currency", currency: price.currency_code }).format(price.calculated_amount / 100) : ""
-      }]
+      const next = exists
+        ? items.filter((i) => i.id !== product.id)
+        : [...items, {
+            id: product.id, handle: product.handle, title: product.title, thumbnail: product.thumbnail,
+            price: price ? new Intl.NumberFormat("et-EE", { style: "currency", currency: price.currency_code }).format(price.calculated_amount / 100) : ""
+          }]
       localStorage.setItem("xlmarket_wishlist", JSON.stringify(next))
       setWishlisted(!exists)
     } catch {}
   }
+
   const discount = price && price.original_amount > price.calculated_amount
     ? Math.round((1 - price.calculated_amount / price.original_amount) * 100)
     : 0
+
+  const categoryName = product.categories?.[0]?.name || ""
+
   return (
-    <article>
-      <Link
-        href={"/toode/" + product.handle}
-        className="group flex flex-col bg-white rounded-[2px] border border-[#E8E8E8] overflow-hidden hover:-translate-y-[2px] active:translate-y-0 hover:shadow-[0_8px_28px_rgba(232,101,10,0.10)] shadow-[0_1px_3px_rgba(0,0,0,0.04)]"
-        style={{ transition: "all 0.22s cubic-bezier(0.32,0.72,0,1)" }}
-      >
-        <div className="relative aspect-square bg-[#F7F7F7] overflow-hidden">
-          {product.thumbnail ? (
-            <Image
-              src={product.thumbnail}
-              alt={product.title}
-              fill
-              className="object-contain p-[12px] group-hover:scale-[1.04] transition-transform duration-[250ms] ease-out"
-              sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-            />
-          ) : (
-            <div className="flex items-center justify-center h-full text-[#999999] text-[13px] font-[family-name:var(--font-inter)]">
-              Pilt puudub
-            </div>
-          )}
-          {discount > 0 && (
-            <div className="absolute top-[8px] left-[8px] bg-[#EF4444] text-white text-[11px] font-[700] font-[family-name:var(--font-poppins)] px-[6px] py-[3px] rounded-[4px] z-10">
-              -{discount}%
-            </div>
-          )}
-          {isNew && discount === 0 && (
-            <div className="absolute top-[8px] left-[8px] bg-[#1A1A1A] text-white text-[11px] font-[700] font-[family-name:var(--font-poppins)] px-[6px] py-[3px] rounded-[4px] z-10 tracking-[0.04em]">
-              UUS
-            </div>
-          )}
-          <button
-            type="button"
-            aria-label={wishlisted ? "Eemalda lemmikutest" : "Lisa lemmikutesse"}
-            className={"absolute top-[8px] right-[8px] w-[28px] h-[28px] rounded-full bg-white/80 flex items-center justify-center hover:bg-white z-10 opacity-0 group-hover:opacity-100 transition-all " + (wishlisted ? "text-[#EF4444] !opacity-100" : "text-[#999999] hover:text-[#EF4444]")}
-            onClick={toggleWishlist}
-          >
-            <Heart size={14} strokeWidth={1.5} fill={wishlisted ? "#EF4444" : "none"} />
-          </button>
+    <article className="product-card group">
+      <Link href={`/${locale}/toode/${product.handle}`} className="block">
+        {/* Image container */}
+        <div className="bg-silver rounded-2xl p-3 relative overflow-hidden border border-transparent group-hover:border-accent/10 transition-colors duration-300">
+          {/* Badges */}
+          <div className="absolute top-3 left-3 z-10 flex gap-1.5">
+            {discount > 0 && (
+              <span className="px-2.5 py-1 bg-red-500 text-white text-[10px] uppercase tracking-[0.1em] font-bold rounded-lg">
+                -{discount}%
+              </span>
+            )}
+            {isNew && discount === 0 && (
+              <span className="px-2.5 py-1 bg-emerald-600 text-white text-[10px] uppercase tracking-[0.1em] font-bold rounded-lg">
+                Uus
+              </span>
+            )}
+            {product.metadata?.translation_status === "pending" && (
+              <span className="px-2.5 py-1 bg-blue-500/80 text-white text-[10px] uppercase tracking-[0.1em] font-bold rounded-lg flex items-center gap-1">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                EN
+              </span>
+            )}
+          </div>
+
+          {/* Product image */}
+          <div className="aspect-square flex items-center justify-center overflow-hidden rounded-xl">
+            {product.thumbnail ? (
+              <Image
+                src={product.thumbnail}
+                alt={product.title}
+                width={400}
+                height={400}
+                className="max-h-full object-contain product-img"
+                sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+              />
+            ) : (
+              <div className="flex items-center justify-center h-full text-muted text-sm">Pilt puudub</div>
+            )}
+          </div>
+
+          {/* Hover actions */}
+          <div className="product-actions absolute bottom-3 right-3 flex gap-1.5">
+            <button
+              type="button"
+              onClick={toggleWishlist}
+              aria-label={wishlisted ? "Eemalda lemmikutest" : "Lisa lemmikutesse"}
+              className={`w-9 h-9 rounded-xl flex items-center justify-center shadow-[0_2px_12px_rgba(0,0,0,0.04)] transition-all duration-300 ${
+                wishlisted ? "bg-red-500 text-white" : "bg-white/90 backdrop-blur-sm hover:bg-accent hover:text-white"
+              }`}
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill={wishlisted ? "currentColor" : "none"} stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+            </button>
+            <button
+              type="button"
+              aria-label="Lisa ostukorvi"
+              className="w-9 h-9 bg-accent text-white rounded-xl flex items-center justify-center shadow-[0_2px_12px_rgba(0,0,0,0.04)] hover:bg-accent-dark transition-all duration-300"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+            </button>
+          </div>
         </div>
-        <div className="flex flex-col flex-1 p-[16px]">
-          <h3 className="text-[14px] font-[500] font-[family-name:var(--font-poppins)] text-[#333333] leading-[1.45] line-clamp-2 min-h-[2.5rem]">
+
+        {/* Product info */}
+        <div className="mt-3 px-1">
+          {categoryName && (
+            <span className="text-[11px] text-muted uppercase tracking-wider">{categoryName}</span>
+          )}
+          <h3 className="font-[family-name:var(--font-outfit)] font-semibold text-sm tracking-tight mt-1 line-clamp-2 group-hover:text-accent transition-colors duration-300">
             {product.title}
           </h3>
           {price && (
             discount > 0 ? (
-              <div className="mt-[8px] flex items-baseline gap-[8px]">
-                <span className="text-[18px] font-[700] font-[family-name:var(--font-poppins)] text-[#E8650A] tracking-tight">
+              <div className="flex items-baseline gap-2 mt-2">
+                <span className="font-[family-name:var(--font-outfit)] font-bold text-lg text-red-600">
                   {formatPrice(price.calculated_amount, price.currency_code)}
                 </span>
-                <span className="text-[13px] font-[400] font-[family-name:var(--font-inter)] text-[#999999] line-through">
+                <span className="text-xs text-muted line-through">
                   {formatPrice(price.original_amount, price.currency_code)}
                 </span>
               </div>
             ) : (
-              <p className="mt-[8px] text-[18px] font-[700] font-[family-name:var(--font-poppins)] text-[#1A1A1A] tracking-tight">
-                {formatPrice(price.calculated_amount, price.currency_code)}
-              </p>
+              <div className="mt-2">
+                <span className="font-[family-name:var(--font-outfit)] font-bold text-lg text-off-black">
+                  {formatPrice(price.calculated_amount, price.currency_code)}
+                </span>
+              </div>
             )
           )}
-          {/* Stars — XLM-36 */}
-          <div className="flex items-center gap-[5px] mt-[6px] mb-[4px]">
-            <div className="flex gap-[1px]">
-              {[1, 2, 3, 4, 5].map((s) => {
-                const { stars } = productRating(product.id)
-                const filled = s <= Math.floor(stars)
-                const half = !filled && s === Math.ceil(stars) && stars % 1 >= 0.5
-                return (
-                  <svg key={s} width="11" height="11" viewBox="0 0 24 24" fill={filled || half ? "#F59E0B" : "none"} stroke={filled || half ? "#F59E0B" : "#D1D5DB"} strokeWidth="2">
-                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                  </svg>
-                )
-              })}
-            </div>
-            <span className="text-[11px] font-[family-name:var(--font-inter)] text-[#999999]">
-              ({productRating(product.id).count})
-            </span>
-          </div>
-          <div className="mt-auto pt-[12px]">
-            <span
-              className="block w-full text-center py-[10px] text-[13px] font-[600] font-[family-name:var(--font-poppins)] border border-[#E8650A] text-[#E8650A] bg-transparent group-hover:bg-[#E8650A] group-hover:text-white"
-              style={{ transition: "all 0.2s cubic-bezier(0.32,0.72,0,1)" }}
-            >
-              Lisa ostukorvi
-            </span>
-          </div>
         </div>
       </Link>
     </article>

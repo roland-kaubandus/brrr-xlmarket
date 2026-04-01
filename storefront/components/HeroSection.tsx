@@ -1,110 +1,59 @@
 import Link from "next/link"
-import { ArrowRight } from "lucide-react"
-import HeroFloatingProducts from "./HeroFloatingProducts"
+import { getTranslations, localePath } from "@/lib/i18n"
+import type { Locale } from "@/lib/i18n"
 
-export default function HeroSection() {
+export default function HeroSection({ locale = "et" }: { locale?: string }) {
+  const t = getTranslations(locale as Locale)
+  const lp = (path: string) => localePath(locale as Locale, path)
   return (
-    <section
-      className="relative overflow-hidden"
-      style={{
-        background:
-          "linear-gradient(160deg, #FFF5EE 0%, #FFF9F5 35%, #FFFFFF 65%, #F7F7F7 100%)",
-      }}
-    >
-      {/* Ambient orbs */}
-      <div
-        className="absolute top-[-160px] right-[-120px] w-[520px] h-[520px] rounded-full pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(circle, rgba(232,101,10,0.08) 0%, transparent 65%)",
-        }}
-      />
-      <div
-        className="absolute bottom-[-100px] left-[-80px] w-[340px] h-[340px] rounded-full pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(circle, rgba(232,101,10,0.05) 0%, transparent 70%)",
-        }}
-      />
-
-      <div className="relative max-w-[1400px] mx-auto px-[16px] sm:px-[24px] pt-[72px] pb-[64px] sm:pt-[96px] sm:pb-[80px] lg:pt-[112px] lg:pb-[96px]">
-        <div className="flex flex-col lg:flex-row lg:items-center gap-[48px] lg:gap-[64px]">
-          {/* LEFT */}
-          <div className="lg:w-[55%] shrink-0">
-            <h1
-              className="font-[800] font-[family-name:var(--font-outfit)] text-[#1A1A1A] leading-[1.08] tracking-[-0.03em] mb-[20px]"
-              style={{
-                fontSize: "clamp(36px, 5.5vw, 60px)",
-                textWrap: "balance",
-              } as React.CSSProperties}
-            >
-              {"14\u00a0000+ toodet."}
-              <br />
-              <span className="text-[#E8650A]">{"Nagu p\u00e4ris poes,"}</span>
-              <br />
-              {"ainult kiiremini."}
-            </h1>
-
-            <p className="text-[16px] sm:text-[18px] font-[family-name:var(--font-jakarta)] text-[#555555] leading-[1.7] mb-[36px] max-w-[520px]">
-              {"Sirvi kategooriaid, otsi m\u00e4rks\u00f5naga v\u00f5i lase m\u00fc\u00fcjal aidata. Ehitusest elektroonikani, kodust autosse \u2014 k\u00f5ik \u00fchest kohast."}
-            </p>
-
-            <div className="flex flex-wrap gap-[12px]">
-              <Link
-                href="/kategooriad"
-                className="group inline-flex items-center gap-[8px] bg-[#E8650A] text-white px-[24px] py-[14px] text-[15px] font-[600] font-[family-name:var(--font-poppins)] rounded-xl hover:bg-[#CF5A08] active:scale-[0.98]"
-                style={{
-                  boxShadow: "0 4px 20px rgba(232,101,10,0.28), 0 1px 0 rgba(255,255,255,0.12) inset",
-                  transition: "all 0.25s cubic-bezier(0.32,0.72,0,1)",
-                }}
-              >
-                Sirvi tooteid
-                <ArrowRight size={16} strokeWidth={2} className="group-hover:translate-x-[2px] transition-transform duration-[200ms]" />
-              </Link>
-              <Link
-                href="#kuidas-see-tootab"
-                className="group inline-flex items-center gap-[8px] px-[24px] py-[14px] text-[15px] font-[600] font-[family-name:var(--font-poppins)] rounded-xl border border-[#E0E0E0] text-[#555555] hover:border-[#E8650A]/30 hover:text-[#E8650A] hover:bg-[#FFF5EE]"
-                style={{ transition: "all 0.25s cubic-bezier(0.32,0.72,0,1)" }}
-              >
-                {"Kuidas see t\u00f6\u00f6tab?"}
-              </Link>
-            </div>
+    <section className="relative min-h-[100dvh] md:min-h-[85dvh] flex items-center overflow-hidden">
+      <div className="absolute inset-0">
+        <img src="/images/branches/homepage-hero.png" alt="" className="w-full h-full object-cover" />
+        <div className="absolute inset-0 bg-gradient-to-r from-white via-white/95 to-white/40 md:to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent md:hidden" />
+      </div>
+      <div className="relative max-w-[1400px] mx-auto px-4 w-full py-24 md:py-32">
+        <div className="max-w-xl">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-accent-light border border-accent/10 rounded-full mb-6">
+            <span className="w-1.5 h-1.5 bg-accent rounded-full" />
+            <span className="text-[11px] uppercase tracking-[0.15em] font-semibold text-accent">{t.hero.eyebrow}</span>
           </div>
-
-          {/* RIGHT — floating product cards (client-side interactive) */}
-          <div className="hidden lg:flex lg:w-[45%] relative items-center justify-center min-h-[420px]">
-            <div
-              className="absolute top-[20%] left-[10%] w-[200px] h-[200px] rounded-full pointer-events-none"
-              style={{ background: "radial-gradient(circle, rgba(232,101,10,0.12) 0%, transparent 70%)", filter: "blur(40px)" }}
-            />
-            <div
-              className="absolute bottom-[15%] right-[5%] w-[160px] h-[160px] rounded-full pointer-events-none"
-              style={{ background: "radial-gradient(circle, rgba(232,101,10,0.10) 0%, transparent 70%)", filter: "blur(30px)" }}
-            />
-
-            <HeroFloatingProducts />
+          <h1 className="font-[family-name:var(--font-outfit)] font-[800] text-4xl sm:text-5xl md:text-6xl lg:text-7xl tracking-tighter leading-[0.95] text-off-black mb-6">
+            {t.hero.title1}
+            <span className="text-accent">{t.hero.titleHighlight}</span>
+            {t.hero.title2}
+          </h1>
+          <p className="text-lg md:text-xl text-muted leading-relaxed max-w-[50ch] mb-10">{t.hero.subtitle}</p>
+          <div className="flex flex-wrap gap-4">
+            <Link href={lp("/kategooriad")} className="btn-press inline-flex items-center gap-3 bg-off-black text-white px-7 py-4 rounded-2xl font-semibold text-sm hover:bg-accent transition-colors duration-500 group">
+              <span>{t.hero.ctaBranches}</span>
+              <span className="w-8 h-8 bg-white/10 rounded-full flex items-center justify-center group-hover:translate-x-1 group-hover:-translate-y-[1px] transition-transform duration-300">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              </span>
+            </Link>
+            <Link href={lp("/otsing")} className="btn-press inline-flex items-center gap-3 bg-white text-off-black px-7 py-4 rounded-2xl font-semibold text-sm border border-soft-border hover:border-accent/30 hover:bg-accent-light transition-all duration-500">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F97316" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+              <span>{t.hero.ctaSearch}</span>
+            </Link>
+          </div>
+          <div className="flex items-center gap-8 mt-12 pt-8 border-t border-soft-border">
+            <div>
+              <span className="font-[family-name:var(--font-outfit)] font-bold text-2xl text-off-black">12</span>
+              <span className="block text-xs text-muted mt-0.5">{t.hero.statBranches}</span>
+            </div>
+            <div className="w-px h-10 bg-silver-dark" />
+            <div>
+              <span className="font-[family-name:var(--font-outfit)] font-bold text-2xl text-off-black">48h</span>
+              <span className="block text-xs text-muted mt-0.5">{t.hero.statDelivery}</span>
+            </div>
+            <div className="w-px h-10 bg-silver-dark" />
+            <div>
+              <span className="font-[family-name:var(--font-outfit)] font-bold text-2xl text-off-black">2a</span>
+              <span className="block text-xs text-muted mt-0.5">{t.hero.statWarranty}</span>
+            </div>
           </div>
         </div>
       </div>
-
-      <style
-        dangerouslySetInnerHTML={{
-          __html: `
-            @keyframes heroFloat1 {
-              0%, 100% { transform: translateY(0px) rotate(0deg); }
-              50% { transform: translateY(-18px) rotate(1.5deg); }
-            }
-            @keyframes heroFloat2 {
-              0%, 100% { transform: translateY(0px) rotate(0deg); }
-              50% { transform: translateY(-14px) rotate(-1deg); }
-            }
-            @keyframes heroFloat3 {
-              0%, 100% { transform: translateY(0px) rotate(0deg); }
-              50% { transform: translateY(-20px) rotate(0.8deg); }
-            }
-          `,
-        }}
-      />
     </section>
   )
 }

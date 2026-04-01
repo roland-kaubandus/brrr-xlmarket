@@ -16,7 +16,7 @@ type Props = {
   tabs: Tab[]
 }
 
-export default function BestSellersSection({ tabs }: Props) {
+export default function BestSellersSection({ tabs, locale = "et" }: Props & { locale?: string }) {
   const [active, setActive] = useState(0)
 
   const current = tabs[active]
@@ -29,7 +29,7 @@ export default function BestSellersSection({ tabs }: Props) {
           Bestsellerid
         </h2>
         <Link
-          href={current ? "/kategooriad/" + current.handle : "/kategooriad"}
+          href={current ? `/${locale}/kategooriad/${current.handle}` : `/${locale}/kategooriad`}
           className="group inline-flex items-center gap-[4px] text-[#E8650A] hover:text-[#CF5A08] text-[14px] font-[500] font-[family-name:var(--font-poppins)]"
           style={{ transition: "color 0.18s" }}
         >

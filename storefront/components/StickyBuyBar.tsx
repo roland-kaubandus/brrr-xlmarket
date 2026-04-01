@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import { usePathname } from "next/navigation"
 import { ShoppingCart } from "lucide-react"
 
 type Props = {
@@ -10,13 +11,14 @@ type Props = {
 }
 
 export default function StickyBuyBar({ variantId, title, price }: Props) {
+  const pathname = usePathname()
+  const locale = pathname.split('/')[1] === 'en' ? 'en' : 'et'
   const [visible, setVisible] = useState(false)
   const [adding, setAdding] = useState(false)
   const [added, setAdded] = useState(false)
 
   useEffect(() => {
     const handler = () => {
-      // Show sticky bar when user scrolls past ~400px
       setVisible(window.scrollY > 400)
     }
     window.addEventListener("scroll", handler, { passive: true })
@@ -56,22 +58,21 @@ export default function StickyBuyBar({ variantId, title, price }: Props) {
 
   return (
     <div
-      className="fixed bottom-0 left-0 right-0 z-30 bg-white border-t border-[#E8E8E8]"
-      style={{ boxShadow: "0 -4px 20px rgba(0,0,0,0.08)" }}
+      className="fixed bottom-0 left-0 right-0 z-30 bg-white border-t border-soft-border shadow-[0_-4px_20px_rgba(0,0,0,0.08)]"
     >
-      <div className="max-w-[1280px] mx-auto px-[16px] sm:px-[24px] py-[12px] flex items-center justify-between gap-[16px]">
+      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 py-3 flex items-center justify-between gap-4">
         <div className="hidden sm:flex flex-col min-w-0">
-          <p className="text-[14px] font-[600] font-[family-name:var(--font-poppins)] text-[#1A1A1A] truncate max-w-[400px]">
+          <p className="text-sm font-semibold font-[family-name:var(--font-outfit)] text-off-black truncate max-w-[400px]">
             {title}
           </p>
-          <p className="text-[16px] font-[700] font-[family-name:var(--font-poppins)] text-[#E8650A]">
+          <p className="text-base font-bold font-[family-name:var(--font-outfit)] text-accent">
             {price}
           </p>
         </div>
-        <div className="flex items-center gap-[10px] ml-auto">
+        <div className="flex items-center gap-2.5 ml-auto">
           <a
-            href="/ostukorv"
-            className="px-[16px] py-[10px] border border-[#E8650A] text-[#E8650A] text-[13px] font-[600] font-[family-name:var(--font-poppins)] hover:bg-[#FFF5EE] transition-colors"
+            href={`/${locale}/ostukorv`}
+            className="px-4 py-2.5 border border-accent text-accent text-sm font-semibold font-[family-name:var(--font-outfit)] hover:bg-accent-light rounded-xl btn-press transition-all duration-300"
           >
             Ostukorv
           </a>
@@ -79,8 +80,8 @@ export default function StickyBuyBar({ variantId, title, price }: Props) {
             onClick={handleAdd}
             disabled={adding}
             className={
-              "flex items-center gap-[8px] px-[20px] py-[10px] text-[13px] font-[600] font-[family-name:var(--font-poppins)] transition-colors disabled:opacity-60 " +
-              (added ? "bg-green-600 text-white" : "bg-[#E8650A] text-white hover:bg-[#CF5A08]")
+              "flex items-center gap-2 px-5 py-2.5 text-sm font-semibold font-[family-name:var(--font-outfit)] rounded-xl btn-press transition-all duration-300 disabled:opacity-60 " +
+              (added ? "bg-green-600 text-white" : "bg-accent text-white hover:bg-accent-dark")
             }
           >
             <ShoppingCart size={16} strokeWidth={1.5} />

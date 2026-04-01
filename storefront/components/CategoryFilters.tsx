@@ -63,7 +63,7 @@ export default function CategoryFilters({
       <div className="flex flex-col sm:flex-row sm:items-center gap-4">
         {/* Price filter */}
         <form onSubmit={handlePriceFilter} className="flex items-center gap-2">
-          <span className="text-[13px] text-[#555555] font-[family-name:var(--font-inter)] shrink-0">Hind:</span>
+          <span className="text-[13px] text-[#555555] font-[family-name:var(--font-jakarta)] shrink-0">Hind:</span>
           <input
             type="number"
             min="0"
@@ -71,9 +71,9 @@ export default function CategoryFilters({
             placeholder="Min €"
             value={minPrice}
             onChange={(e) => setMinPrice(e.target.value)}
-            className="border border-[#E8E8E8] focus:border-[#E8650A] px-[10px] py-[8px] text-[13px] font-[family-name:var(--font-inter)] text-[#333333] bg-[#F7F7F7] focus:bg-white w-[80px] outline-none transition-colors"
+            className="border border-[#E8E8E8] focus:border-[#E8650A] px-[10px] py-[8px] text-[13px] font-[family-name:var(--font-jakarta)] text-[#333333] bg-[#F7F7F7] focus:bg-white w-[80px] outline-none transition-colors"
           />
-          <span className="text-[#999999] font-[family-name:var(--font-inter)] text-[13px]">–</span>
+          <span className="text-[#999999] font-[family-name:var(--font-jakarta)] text-[13px]">–</span>
           <input
             type="number"
             min="0"
@@ -81,7 +81,7 @@ export default function CategoryFilters({
             placeholder="Max €"
             value={maxPrice}
             onChange={(e) => setMaxPrice(e.target.value)}
-            className="border border-[#E8E8E8] focus:border-[#E8650A] px-[10px] py-[8px] text-[13px] font-[family-name:var(--font-inter)] text-[#333333] bg-[#F7F7F7] focus:bg-white w-[80px] outline-none transition-colors"
+            className="border border-[#E8E8E8] focus:border-[#E8650A] px-[10px] py-[8px] text-[13px] font-[family-name:var(--font-jakarta)] text-[#333333] bg-[#F7F7F7] focus:bg-white w-[80px] outline-none transition-colors"
           />
           <button
             type="submit"
@@ -93,7 +93,7 @@ export default function CategoryFilters({
 
         {/* Sort buttons */}
         <div className="flex items-center gap-2 sm:ml-auto">
-          <span className="text-[13px] text-[#555555] font-[family-name:var(--font-inter)]">Sorteeri:</span>
+          <span className="text-[13px] text-[#555555] font-[family-name:var(--font-jakarta)]">Sorteeri:</span>
           {[
             { key: "uusimad", label: "Uusimad" },
             { key: "odavamad", label: "Odavamad" },
@@ -116,7 +116,7 @@ export default function CategoryFilters({
 
       {/* Active filter info + reset */}
       <div className="flex items-center justify-between mt-[16px]">
-        <span className="text-[12px] text-[#999999] font-[family-name:var(--font-inter)]">
+        <span className="text-[12px] text-[#999999] font-[family-name:var(--font-jakarta)]">
           {totalProducts.toLocaleString("et-EE")} toodet
           {(currentMin || currentMax) && (
             <span>
@@ -129,7 +129,7 @@ export default function CategoryFilters({
         {hasFilters && (
           <button
             onClick={handleReset}
-            className="text-[#E8650A] hover:text-[#CF5A08] underline text-[12px] font-[family-name:var(--font-inter)] transition-colors"
+            className="text-[#E8650A] hover:text-[#CF5A08] underline text-[12px] font-[family-name:var(--font-jakarta)] transition-colors"
           >
             Tühista filtrid
           </button>

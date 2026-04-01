@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 
-export default function NewsletterSection() {
+export default function NewsletterSection({ locale = "et" }: { locale?: string }) {
   const [email, setEmail] = useState("")
   const [submitted, setSubmitted] = useState(false)
 
@@ -23,13 +23,13 @@ export default function NewsletterSection() {
         <h2 className="text-[24px] sm:text-[32px] font-[700] font-[family-name:var(--font-poppins)] text-white mb-[12px] leading-tight">
           Saage pakkumisi enne teisi
         </h2>
-        <p className="text-[14px] sm:text-[15px] text-white/60 font-[family-name:var(--font-inter)] mb-[32px] max-w-[420px] mx-auto leading-relaxed">
+        <p className="text-[14px] sm:text-[15px] text-white/60 font-[family-name:var(--font-jakarta)] mb-[32px] max-w-[420px] mx-auto leading-relaxed">
           Liituge uudiskirjaga ja saage esimesena teada uutest toodetest, eksklusiivsete
           pakkumistest ja allahindluskoodidest.
         </p>
 
         {submitted ? (
-          <div className="flex items-center justify-center gap-[10px] text-white/80 text-[15px] font-[family-name:var(--font-inter)]">
+          <div className="flex items-center justify-center gap-[10px] text-white/80 text-[15px] font-[family-name:var(--font-jakarta)]">
             <span className="text-[#E8650A] text-[20px]">✓</span>
             Suurepärane! Oleme teid kirja pannud.
           </div>
@@ -44,7 +44,7 @@ export default function NewsletterSection() {
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Teie e-posti aadress"
               required
-              className="flex-1 px-[16px] py-[12px] text-[14px] font-[family-name:var(--font-inter)] bg-white/10 text-white placeholder:text-white/40 border border-white/15 focus:outline-none focus:border-[#E8650A]/60"
+              className="flex-1 px-[16px] py-[12px] text-[14px] font-[family-name:var(--font-jakarta)] bg-white/10 text-white placeholder:text-white/40 border border-white/15 focus:outline-none focus:border-[#E8650A]/60"
             />
             <button
               type="submit"
@@ -54,7 +54,7 @@ export default function NewsletterSection() {
             </button>
           </form>
         )}
-        <p className="text-[12px] text-white/30 font-[family-name:var(--font-inter)] mt-[14px]">
+        <p className="text-[12px] text-white/30 font-[family-name:var(--font-jakarta)] mt-[14px]">
           Ei mingit rämpsposti. Saate uudiskirjast igal ajal loobuda.
         </p>
       </div>

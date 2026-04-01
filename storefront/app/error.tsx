@@ -19,7 +19,7 @@ export default function ErrorPage({
       <p className="text-[18px] sm:text-[20px] font-[600] font-[family-name:var(--font-poppins)] text-[#1A1A1A] mb-[8px]">
         Midagi läks valesti
       </p>
-      <p className="text-[14px] font-[family-name:var(--font-inter)] text-[#999999] mb-[36px]">
+      <p className="text-[14px] font-[family-name:var(--font-jakarta)] text-[#999999] mb-[36px]">
         Palun proovige uuesti või minge tagasi avalehele.
       </p>
       <div className="flex flex-col sm:flex-row items-center justify-center gap-[12px]">
@@ -30,7 +30,7 @@ export default function ErrorPage({
           Proovi uuesti
         </button>
         <Link
-          href="/"
+          href="/et/"
           className="inline-flex items-center gap-[8px] border border-[#E8E8E8] text-[#555555] px-[24px] py-[12px] text-[15px] font-[500] font-[family-name:var(--font-poppins)] hover:border-[#E8650A] hover:text-[#E8650A] transition-colors"
         >
           Avalehele

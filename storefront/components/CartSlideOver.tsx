@@ -25,7 +25,7 @@ function formatPrice(amount: number, currency = "EUR"): string {
   return new Intl.NumberFormat("et-EE", { style: "currency", currency }).format(amount / 100)
 }
 
-export default function CartSlideOver() {
+export default function CartSlideOver({ locale = "et" }: { locale?: string }) {
   const [open, setOpen] = useState(false)
   const [cart, setCart] = useState<CartData | null>(null)
   const [loading, setLoading] = useState(false)
@@ -127,7 +127,7 @@ export default function CartSlideOver() {
               <p className="text-[15px] font-[600] font-[family-name:var(--font-poppins)] text-[#1A1A1A] mb-[6px]">
                 Ostukorv on tühi
               </p>
-              <p className="text-[13px] font-[family-name:var(--font-inter)] text-[#999999]">
+              <p className="text-[13px] font-[family-name:var(--font-jakarta)] text-[#999999]">
                 Lisa tooteid, et alustada ostlemist
               </p>
               <button
@@ -162,7 +162,7 @@ export default function CartSlideOver() {
                         <span className="w-[28px] h-[28px] flex items-center justify-center bg-[#FAFAFA] text-[#999999]">
                           <Minus size={12} strokeWidth={2} />
                         </span>
-                        <span className="w-[32px] text-center text-[13px] font-[500] font-[family-name:var(--font-inter)] border-x border-[#E8E8E8]">
+                        <span className="w-[32px] text-center text-[13px] font-[500] font-[family-name:var(--font-jakarta)] border-x border-[#E8E8E8]">
                           {item.quantity}
                         </span>
                         <span className="w-[28px] h-[28px] flex items-center justify-center bg-[#FAFAFA] text-[#999999]">
@@ -181,13 +181,13 @@ export default function CartSlideOver() {
         {!loading && cart && cart.items?.length > 0 && (
           <div className="px-[20px] py-[20px] border-t border-[#E8E8E8] bg-[#FAFAFA]">
             <div className="flex items-center justify-between mb-[16px]">
-              <span className="text-[14px] font-[family-name:var(--font-inter)] text-[#555555]">Kokku</span>
+              <span className="text-[14px] font-[family-name:var(--font-jakarta)] text-[#555555]">Kokku</span>
               <span className="text-[18px] font-[700] font-[family-name:var(--font-poppins)] text-[#1A1A1A]">
                 {formatPrice(cart.total, cart.currency_code)}
               </span>
             </div>
             <Link
-              href="/ostukorv"
+              href={`/${locale}/ostukorv`}
               onClick={close}
               className="block w-full text-center py-[13px] bg-[#E8650A] text-white text-[15px] font-[600] font-[family-name:var(--font-poppins)] hover:bg-[#CF5A08] transition-colors"
               style={{ boxShadow: "0 4px 16px rgba(232,101,10,0.25)" }}
