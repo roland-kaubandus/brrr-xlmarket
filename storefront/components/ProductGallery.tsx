@@ -1,7 +1,6 @@
 "use client"
 
 import { useState, useEffect, useCallback } from "react"
-import Image from "next/image"
 import { X, ZoomIn, ChevronUp, ChevronDown } from "lucide-react"
 
 type GalleryImage = {
@@ -12,6 +11,10 @@ type GalleryImage = {
 type Props = {
   images: GalleryImage[]
   title: string
+}
+
+function decodeImageUrl(url: string): string {
+  try { return decodeURIComponent(url) } catch { return url }
 }
 
 export default function ProductGallery({ images, title }: Props) {
@@ -75,12 +78,10 @@ export default function ProductGallery({ images, title }: Props) {
                       : "border-soft-border hover:border-muted")
                   }
                 >
-                  <Image
-                    src={img.url}
+                  <img
+                    src={decodeImageUrl(img.url)}
                     alt={title + " " + (realIdx + 1)}
-                    fill
-                    className="object-contain p-1"
-                    sizes="60px"
+                    className="object-contain absolute inset-0 w-full h-full p-1"
                   />
                 </button>
               )
@@ -105,13 +106,10 @@ export default function ProductGallery({ images, title }: Props) {
           onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") setLightbox(true) }}
         >
           <div className="absolute inset-4 transition-transform duration-300 group-hover:scale-[1.03]">
-            <Image
-              src={images[active].url}
+            <img
+              src={decodeImageUrl(images[active].url)}
               alt={title}
-              fill
-              className="object-contain"
-              sizes="(max-width: 1024px) 100vw, 45vw"
-              priority
+              className="object-contain absolute inset-0 w-full h-full"
             />
           </div>
           <div className="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center gap-1.5 bg-off-black/50 text-white text-xs px-2.5 py-1 rounded-full backdrop-blur-sm">
@@ -136,7 +134,7 @@ export default function ProductGallery({ images, title }: Props) {
           aria-label="Suurenda pilti"
           onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") setLightbox(true) }}
         >
-          <div className="absolute inset-3"><Image src={images[active].url} alt={title} fill className="object-contain" sizes="100vw" priority /></div>
+          <div className="absolute inset-3"><img src={decodeImageUrl(images[active].url)} alt={title} className="object-contain absolute inset-0 w-full h-full" /></div>
           {images.length > 1 && (
             <div className="absolute bottom-2 left-2 bg-off-black/40 text-white text-xs px-2 py-1 rounded-full">
               {active + 1} / {images.length}
@@ -152,7 +150,7 @@ export default function ProductGallery({ images, title }: Props) {
                 onClick={() => setActive(i)}
                 className={"relative shrink-0 w-[52px] h-[52px] bg-silver rounded-xl border-2 overflow-hidden transition-all duration-300 " + (i === active ? "border-accent" : "border-soft-border")}
               >
-                <Image src={img.url} alt={title + " " + (i + 1)} fill className="object-contain p-1" sizes="60px" />
+                <img src={decodeImageUrl(img.url)} alt={title + " " + (i + 1)} className="object-contain absolute inset-0 w-full h-full p-1" />
               </button>
             ))}
           </div>
@@ -189,7 +187,7 @@ export default function ProductGallery({ images, title }: Props) {
             className="relative max-w-[85vw] max-h-[85vh] w-full h-full flex items-center justify-center"
             onClick={(e) => e.stopPropagation()}
           >
-            <Image src={images[active].url} alt={title} width={1200} height={1200} className="object-contain max-w-[85vw] max-h-[85vh] w-auto h-auto" />
+            <img src={decodeImageUrl(images[active].url)} alt={title} width={1200} height={1200} className="object-contain max-w-[85vw] max-h-[85vh] w-auto h-auto" />
           </div>
           <button
             className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-white hover:bg-white/20 transition-all duration-300"
