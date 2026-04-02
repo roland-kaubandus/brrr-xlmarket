@@ -237,8 +237,13 @@ export default async function BranchLandingPage({ params, searchParams }: Props)
               <SubcategoryGrid
                 subcategories={subcategories.map((s) => ({ id: s.id, name: s.name, handle: s.handle, count: s.count }))}
                 selectedHandle={selectedSubcategory?.handle || null}
-                buildUrl={(h: string) => branchUrl({ cat: h, limit: "" })}
-                clearUrl={branchUrl({ cat: "", limit: "" })}
+                basePath={branchBasePath}
+                queryParams={{
+                  ...(currentSort ? { sort: currentSort } : {}),
+                  ...(min ? { min } : {}),
+                  ...(max ? { max } : {}),
+                  ...(currentInStock ? { in_stock: "1" } : {}),
+                }}
               />
             )}
 
