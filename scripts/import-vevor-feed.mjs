@@ -301,6 +301,7 @@ async function createProduct(row, token, catMap, catIds) {
       vevor_spu: row.spu || "",
       weight_kg: row.weight || 0,
       selling_points: row.sellingPoints || [],
+      rich_description: row.richDescriptionHtml ? row.richDescriptionHtml.substring(0, 15000) : null,
       dimensions: (row.dimensionHigh || row.dimensionWide || row.dimensionLong)
         ? { high: row.dimensionHigh, wide: row.dimensionWide, long: row.dimensionLong, unit: row.dimensionUnit }
         : null,
@@ -369,6 +370,7 @@ async function updateProduct(productId, row, token) {
         vevor_spu: row.spu || "",
         weight_kg: row.weight || 0,
         selling_points: row.sellingPoints || [],
+        rich_description: row.richDescriptionHtml ? row.richDescriptionHtml.substring(0, 15000) : null,
         dimensions: (row.dimensionHigh || row.dimensionWide || row.dimensionLong)
           ? { high: row.dimensionHigh, wide: row.dimensionWide, long: row.dimensionLong, unit: row.dimensionUnit }
           : null,
