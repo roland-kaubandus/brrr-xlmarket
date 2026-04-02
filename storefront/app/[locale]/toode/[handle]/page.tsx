@@ -122,22 +122,6 @@ function collectKeyValueSpecs(value: unknown): Array<{ key: string; value: strin
   return []
 }
 
-function formatAvailability(value?: string | null): string | null {
-  const normalized = stringifyScalar(value)?.toLowerCase()
-  if (!normalized) return null
-  if (normalized === "in stock") return "Laos"
-  if (normalized === "out of stock") return "Läbi müüdud"
-  return titleizeKey(normalized)
-}
-
-function formatCondition(value?: string | null): string | null {
-  const normalized = stringifyScalar(value)?.toLowerCase()
-  if (!normalized) return null
-  if (normalized === "new") return "Uus"
-  if (normalized === "used") return "Kasutatud"
-  if (normalized === "refurbished") return "Taastatud"
-  return titleizeKey(normalized)
-}
 
 function getProductSpecs(product: Awaited<ReturnType<typeof getProduct>>, feedEntry?: VevorFeedEntry | null): Array<{ key: string; value: string }> {
   if (!product) return []
@@ -187,41 +171,6 @@ function getManualLinks(metadata?: Record<string, unknown>): Array<{ label: stri
   }
 
   return links
-}
-
-function getMetadataHighlights(metadata?: Record<string, unknown>, feedEntry?: VevorFeedEntry | null): Array<{ label: string; value: string; href?: string }> {
-  const metadataValue = metadata || {}
-  const rawWeight = stringifyScalar(metadataValue.weight_kg)
-  const weight = feedEntry?.weightKg && feedEntry.weightKg > 0
-    ? `${feedEntry.weightKg} kg`
-    : rawWeight && rawWeight !== "0"
-      ? `${rawWeight} kg`
-      : null
-
-  const candidates = [
-    { label: "VEVOR SKU", value: stringifyScalar(metadataValue.vevor_sku) || feedEntry?.sku || null },
-    { label: "UPC", value: stringifyScalar(metadataValue.vevor_upc) || feedEntry?.upc || null },
-    { label: "Bränd", value: stringifyScalar(metadataValue.brand) || feedEntry?.brand || null },
-    { label: "Mudel", value: stringifyScalar(metadataValue.model) || null },
-    { label: "Kaal", value: weight },
-    { label: "Saadavus", value: formatAvailability(feedEntry?.availability) },
-    {
-      label: "Laoseis feedis",
-      value: typeof feedEntry?.inventoryQuantity === "number" ? `${feedEntry.inventoryQuantity} tk` : null,
-    },
-    { label: "Riik", value: feedEntry?.country || null },
-    { label: "Seisukord", value: formatCondition(feedEntry?.condition) },
-    { label: "Tooteliik", value: stringifyScalar(metadataValue.vevor_product_type) || feedEntry?.productType || null },
-    {
-      label: "Toote algallikas",
-      value: stringifyScalar(metadataValue.vevor_link) || feedEntry?.link || null,
-      href: stringifyScalar(metadataValue.vevor_link) || feedEntry?.link || undefined,
-    },
-  ]
-
-  return candidates
-    .filter((item) => Boolean(item.value))
-    .map((item) => item.href ? { label: item.label, value: "Ava tootja leht", href: item.href } : { label: item.label, value: item.value! })
 }
 
 
@@ -280,7 +229,6 @@ export default async function ProductPage({ params }: Props) {
   const manualLinks = [...media.manuals, ...getManualLinks(product.metadata)].filter(
     (item, index, array) => array.findIndex((candidate) => candidate.href === item.href) === index
   )
-  const metadataHighlights = getMetadataHighlights(product.metadata, feedEntry)
   const productTypeTrail = getProductTypeTrail(metadata, feedEntry)
   const mainDescriptionHtml = product.description || feedEntry?.descriptionHtml || null
 
@@ -558,28 +506,7 @@ export default async function ProductPage({ params }: Props) {
         </section>
       )}
 
-      {/* Metadata highlights */}
-      {metadataHighlights.length > 0 && (
-        <section className="mt-12 pt-10 border-t border-soft-border">
-          <h2 className="text-xl font-semibold font-[family-name:var(--font-outfit)] text-off-black mb-6">
-            Toote info
-          </h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
-            {metadataHighlights.map((item) => (
-              <div key={item.label} className="rounded-2xl border border-soft-border bg-white px-4 py-3">
-                <p className="text-xs uppercase tracking-[0.12em] text-muted mb-1">{item.label}</p>
-                {item.href ? (
-                  <a href={item.href} target="_blank" rel="noreferrer" className="text-sm font-medium text-accent hover:text-accent-dark">
-                    {item.value}
-                  </a>
-                ) : (
-                  <p className="text-sm font-medium text-off-black break-words">{item.value}</p>
-                )}
-              </div>
-            ))}
-          </div>
-        </section>
-      )}
+      {/* Metadata highlights removed — internal data not for customers */}
 
       {/* Sarnased tooted */}
       {similarProducts.length > 0 && (
