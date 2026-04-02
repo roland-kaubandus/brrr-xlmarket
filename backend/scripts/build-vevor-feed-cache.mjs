@@ -76,8 +76,9 @@ function mapRow(headers, row) {
     }
   }
 
-  // Rich description HTML
-  const richDescriptionHtml = normalizeText(values["description_html"])
+  // Rich description HTML — too large for cache, truncate heavily
+  const rawRichHtml = normalizeText(values["description_html"])
+  const richDescriptionHtml = rawRichHtml ? rawRichHtml.substring(0, 500) : null
   const descriptionAd = normalizeText(values["goods_description_ad"])
 
   // Variants/attributes
@@ -160,7 +161,7 @@ async function main() {
     byUpc,
   }
 
-  fs.writeFileSync(OUTPUT_PATH, JSON.stringify(payload, null, 2))
+  fs.writeFileSync(OUTPUT_PATH, JSON.stringify(payload))
   console.log(`Feed cache written: ${OUTPUT_PATH} (${count} products)`)
 }
 
