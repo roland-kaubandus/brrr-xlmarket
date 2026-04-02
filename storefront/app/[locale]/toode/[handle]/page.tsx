@@ -243,17 +243,21 @@ export default async function ProductPage({ params }: Props) {
     ? metadata.rich_description
     : null
 
+  // Find related products from same domain/category
   const categoryId = product.categories?.[0]?.id
+  const productTypeL1 = (stringifyScalar(metadata.vevor_product_type) || feedEntry?.productType || "")
+    .split(">")[0].trim()
+
+  // Build query: prefer category, fallback to product type L1 search
+  const relatedQuery = categoryId
+    ? { category_id: [categoryId] }
+    : productTypeL1
+      ? { q: productTypeL1 }
+      : {}
+
   const [similarRes, koosRes] = await Promise.all([
-    getProducts({
-      limit: 5,
-      ...(categoryId ? { category_id: [categoryId] } : {}),
-    }),
-    getProducts({
-      limit: 4,
-      offset: 5,
-      ...(categoryId ? { category_id: [categoryId] } : {}),
-    }),
+    getProducts({ limit: 5, ...relatedQuery }),
+    getProducts({ limit: 4, offset: 5, ...relatedQuery }),
   ])
   const similarProducts = similarRes.products
     .filter((p) => p.id !== product.id)
