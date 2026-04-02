@@ -256,12 +256,21 @@ export default async function ProductPage({ params }: Props) {
 
   const variant = product.variants?.[0]
   const price = variant?.calculated_price
+
+  // Gallery images from metadata (feed 571 import)
+  const metaGalleryImages: Array<{ id: string; url: string }> = Array.isArray(metadata.gallery_images)
+    ? (metadata.gallery_images as string[])
+        .filter((u): u is string => typeof u === "string" && u.length > 0)
+        .map((url, i) => ({ id: `meta_gallery_${i}`, url: decodeURIComponent(url) }))
+    : []
+
   const images = Array.from(
     new Map(
       [
         ...media.images,
-        ...(product.images || []),
-        ...(product.thumbnail ? [{ id: "thumb", url: product.thumbnail }] : []),
+        ...metaGalleryImages,
+        ...(product.images || []).map((img) => ({ ...img, url: decodeURIComponent(img.url) })),
+        ...(product.thumbnail ? [{ id: "thumb", url: decodeURIComponent(product.thumbnail) }] : []),
       ]
         .filter((image) => Boolean(image?.url))
         .map((image, index) => [image.url, { id: image.id || `img_${index}`, url: image.url }])
@@ -274,6 +283,16 @@ export default async function ProductPage({ params }: Props) {
   const metadataHighlights = getMetadataHighlights(product.metadata, feedEntry)
   const productTypeTrail = getProductTypeTrail(metadata, feedEntry)
   const mainDescriptionHtml = product.description || feedEntry?.descriptionHtml || null
+
+  // Selling points from metadata (feed 571) or feed cache
+  const sellingPoints: string[] = Array.isArray(metadata.selling_points) && metadata.selling_points.length > 0
+    ? (metadata.selling_points as string[])
+    : feedEntry?.sellingPoints || []
+
+  // Dimensions from metadata or feed cache
+  const dimensions = (metadata.dimensions && typeof metadata.dimensions === "object")
+    ? metadata.dimensions as { high?: number; wide?: number; long?: number; unit?: string }
+    : feedEntry?.dimensions || null
 
   const categoryId = product.categories?.[0]?.id
   const [similarRes, koosRes] = await Promise.all([
@@ -412,6 +431,65 @@ export default async function ProductPage({ params }: Props) {
       </div>
 
       {/* ===== FULL-WIDTH SECTIONS BELOW THE FOLD ===== */}
+
+      {/* Feature Highlights — selling points as cards */}
+      {sellingPoints.length > 0 && (
+        <section className="mt-12 pt-10 border-t border-soft-border">
+          <h2 className="text-xl font-semibold font-[family-name:var(--font-outfit)] text-off-black mb-6">
+            Feature Highlights
+          </h2>
+          <div className={`grid gap-4 ${sellingPoints.length >= 5 ? "grid-cols-2 lg:grid-cols-5" : sellingPoints.length >= 3 ? "grid-cols-2 lg:grid-cols-3" : "grid-cols-1 lg:grid-cols-2"}`}>
+            {sellingPoints.map((sp, i) => {
+              const colonIdx = sp.indexOf(":")
+              const title = colonIdx > 0 && colonIdx < 60 ? sp.substring(0, colonIdx).trim() : null
+              const body = title ? sp.substring(colonIdx + 1).trim() : sp
+              return (
+                <div key={i} className="bg-white border border-soft-border rounded-2xl p-5 text-center hover:border-accent/20 hover:-translate-y-0.5 transition-all duration-300">
+                  <div className="w-12 h-12 mx-auto mb-3 bg-accent-light rounded-xl flex items-center justify-center">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E8650A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                  </div>
+                  {title && (
+                    <h3 className="font-[family-name:var(--font-outfit)] font-bold text-sm text-off-black mb-1.5">{title}</h3>
+                  )}
+                  <p className="text-xs text-muted leading-relaxed line-clamp-4">{body}</p>
+                </div>
+              )
+            })}
+          </div>
+        </section>
+      )}
+
+      {/* Quick facts — dimensions + weight */}
+      {dimensions && (
+        <section className="mt-12 pt-10 border-t border-soft-border">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+            {dimensions.long && (
+              <div className="rounded-xl border border-soft-border bg-silver px-4 py-3">
+                <p className="text-[10px] font-semibold uppercase tracking-[0.1em] text-muted mb-1">Pikkus</p>
+                <p className="text-sm font-semibold text-off-black">{dimensions.long} {dimensions.unit || "cm"}</p>
+              </div>
+            )}
+            {dimensions.wide && (
+              <div className="rounded-xl border border-soft-border bg-silver px-4 py-3">
+                <p className="text-[10px] font-semibold uppercase tracking-[0.1em] text-muted mb-1">Laius</p>
+                <p className="text-sm font-semibold text-off-black">{dimensions.wide} {dimensions.unit || "cm"}</p>
+              </div>
+            )}
+            {dimensions.high && (
+              <div className="rounded-xl border border-soft-border bg-silver px-4 py-3">
+                <p className="text-[10px] font-semibold uppercase tracking-[0.1em] text-muted mb-1">K\u00f5rgus</p>
+                <p className="text-sm font-semibold text-off-black">{dimensions.high} {dimensions.unit || "cm"}</p>
+              </div>
+            )}
+            {(feedEntry?.weightKg || metadata.weight_kg) && (
+              <div className="rounded-xl border border-soft-border bg-silver px-4 py-3">
+                <p className="text-[10px] font-semibold uppercase tracking-[0.1em] text-muted mb-1">Kaal</p>
+                <p className="text-sm font-semibold text-off-black">{feedEntry?.weightKg || metadata.weight_kg} kg</p>
+              </div>
+            )}
+          </div>
+        </section>
+      )}
 
       {/* Tehnilised andmed — 2-column specs table */}
       {specs.length > 0 && (

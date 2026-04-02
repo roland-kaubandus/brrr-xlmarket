@@ -95,6 +95,22 @@ export default function ProductPurchasePanel({ locale, title, variants, options 
         </>
       )}
 
+      {/* Trust badges */}
+      <div className="flex flex-wrap gap-4 py-4 mb-4 border-y border-soft-border">
+        <div className="flex items-center gap-1.5 text-xs text-muted">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E8650A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          12 kuu garantii
+        </div>
+        <div className="flex items-center gap-1.5 text-xs text-muted">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E8650A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"/><path d="M21 21v-5h-5"/><path d="M21 12A9 9 0 0 0 12 3a9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+          14 p&auml;eva tagastus
+        </div>
+        <div className="flex items-center gap-1.5 text-xs text-muted">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E8650A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+          Tasuta tarne 200&euro;+
+        </div>
+      </div>
+
       <div className="mb-6">
         {selectedVariant && inStock ? (
           <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-green-50 text-green-700 text-sm font-medium font-[family-name:var(--font-jakarta)] rounded-xl">
