@@ -109,6 +109,7 @@ export default async function BranchLandingPage({ params, searchParams }: Props)
       facetStats = meiliResult.facetStats
       products = meiliResult.hits.map(mapSearchHitToProduct)
     } catch {
+      const parentCategory = allCategories.find((c) => c.handle === branch.categoryHandle)
       if (parentCategory) {
         const res = await getProducts({ category_id: [parentCategory.id], limit: itemsLimit, offset: 0, order: "-created_at" })
         products = res.products
