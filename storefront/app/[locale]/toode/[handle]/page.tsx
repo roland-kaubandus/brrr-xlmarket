@@ -295,7 +295,7 @@ export default async function ProductPage({ params }: Props) {
 
       {/* Breadcrumb */}
       <nav
-        className="text-xs font-[family-name:var(--font-jakarta)] text-muted mb-8"
+        className="text-xs font-[family-name:var(--font-jakarta)] text-muted mb-5"
         aria-label="Leheasukoht"
       >
         <Link
@@ -319,7 +319,7 @@ export default async function ProductPage({ params }: Props) {
         <span className="text-muted">{truncate(product.title, 40)}</span>
       </nav>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 lg:items-start">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10 lg:items-start">
         {/* Images */}
         <ProductGallery images={images} title={product.title} />
 
@@ -338,18 +338,9 @@ export default async function ProductPage({ params }: Props) {
             </div>
           )}
 
-          <h1 className="text-xl md:text-2xl font-bold font-[family-name:var(--font-outfit)] text-off-black leading-tight tracking-tight mb-3">
+          <h1 className="text-xl md:text-2xl font-bold font-[family-name:var(--font-outfit)] text-off-black leading-tight tracking-tight mb-4">
             {product.title}
           </h1>
-
-          {mainDescriptionHtml && (
-            <div
-              className="text-sm text-muted font-[family-name:var(--font-jakarta)] leading-relaxed mb-4 line-clamp-4 [&_br]:hidden [&_p]:inline"
-              dangerouslySetInnerHTML={{
-                __html: sanitizeHtml(mainDescriptionHtml),
-              }}
-            />
-          )}
 
           <ProductPurchasePanel
             locale={locale}
