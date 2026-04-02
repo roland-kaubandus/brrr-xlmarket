@@ -7,6 +7,8 @@ export type VevorFeedEntry = {
   title: string
   descriptionHtml?: string | null
   descriptionText?: string | null
+  richDescriptionHtml?: string | null
+  descriptionAd?: string | null
   link?: string | null
   country?: string | null
   condition?: string | null
@@ -14,9 +16,17 @@ export type VevorFeedEntry = {
   availability?: string | null
   inventoryQuantity?: number | null
   weightKg?: number | null
+  shippingWeightKg?: number | null
   image?: string | null
+  originalImages?: string[]
+  galleryImages?: string[]
+  mainOriginalImage?: string | null
   brand?: string | null
   productType?: string | null
+  sellingPoints?: string[]
+  dimensions?: { high: number | null; wide: number | null; long: number | null; unit: string } | null
+  attributes?: Array<{ name: string; value: string | null }> | null
+  spu?: string | null
 }
 
 type FeedCache = {

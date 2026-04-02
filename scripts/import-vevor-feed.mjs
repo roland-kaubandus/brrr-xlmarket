@@ -24,7 +24,7 @@ import { fileURLToPath } from "url";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // ── Config ──────────────────────────────────────────────────────────
-const FEED_PATH = path.join(__dirname, "..", "backend", "data", "feeds", "vevor-latest.xlsx");
+const FEED_PATH = path.join(__dirname, "..", "backend", "data", "feeds", "vevor-571.xlsx");
 const FEED_URL = "https://ads-feed.s3.us-west-2.amazonaws.com/ads/business/571/vevor-571.xlsx";
 const CATEGORY_MAP_PATH = path.join(__dirname, "..", "backend", "src", "scripts", "category-map.json");
 
@@ -184,10 +184,22 @@ function readFeed() {
     const price = parsePrice(r["Price"]);
     if (!price) continue;
 
+    // Parse selling points
+    const sellingPoints = [];
+    for (let i = 1; i <= 5; i++) {
+      const sp = String(r["Selling point " + i] || "").trim();
+      if (sp) sellingPoints.push(sp);
+    }
+
+    // Parse image galleries
+    const originalImages = String(r["goods_original_picture"] || "").split(",").map(u => u.trim()).filter(Boolean);
+    const galleryImages = String(r["image_link1"] || "").split(",").map(u => u.trim()).filter(Boolean);
+
     rows.push({
       sku,
       title: String(r["Product title"] || "").trim(),
       description: String(r["Product description"] || "").trim(),
+      richDescriptionHtml: String(r["description_html"] || "").trim() || null,
       link: String(r["Product link"] || "").trim(),
       upc: String(r["UPC"] || "").trim(),
       price,
@@ -195,8 +207,17 @@ function readFeed() {
       inventory: parseInt(r["Inventory quantity"]) || 0,
       weight: parseFloat(r["Product weight(KG)"]) || 0,
       image: String(r["Image link"] || "").trim(),
+      originalImages,
+      galleryImages,
+      mainOriginalImage: String(r["goods_main_original_picture"] || "").trim() || null,
       brand: String(r["Brand"] || "").trim(),
       productType: String(r["Product type"] || "").trim(),
+      sellingPoints,
+      dimensionHigh: parseFloat(r["High"]) || null,
+      dimensionWide: parseFloat(r["Wide"]) || null,
+      dimensionLong: parseFloat(r["Long"]) || null,
+      dimensionUnit: String(r["goods_size_unit"] || "cm").trim(),
+      spu: String(r["goods_spu"] || "").trim() || null,
     });
   }
 
@@ -277,11 +298,20 @@ async function createProduct(row, token, catMap, catIds) {
       vevor_upc: row.upc || "",
       vevor_link: row.link || "",
       vevor_product_type: row.productType || "",
+      vevor_spu: row.spu || "",
       weight_kg: row.weight || 0,
+      selling_points: row.sellingPoints || [],
+      dimensions: (row.dimensionHigh || row.dimensionWide || row.dimensionLong)
+        ? { high: row.dimensionHigh, wide: row.dimensionWide, long: row.dimensionLong, unit: row.dimensionUnit }
+        : null,
+      gallery_images: row.originalImages.length > 0 ? row.originalImages : row.galleryImages,
       translation_status: "pending",
       original_language: "en",
     },
-    images: row.image ? [{ url: row.image }] : [],
+    images: [
+      ...(row.mainOriginalImage ? [{ url: row.mainOriginalImage }] : row.image ? [{ url: row.image }] : []),
+      ...row.originalImages.slice(0, 10).map(url => ({ url })),
+    ].filter((img, i, arr) => arr.findIndex(a => a.url === img.url) === i).slice(0, 10),
     options: [{ title: "Default", values: ["Default"] }],
     variants: [
       {
@@ -326,21 +356,32 @@ async function updateProduct(productId, row, token) {
   const isInStock = row.availability === "in stock";
 
   try {
-    // Update product status and metadata
-    await apiCall(
-      "POST",
-      "/admin/products/" + productId,
-      {
-        status: isInStock ? "published" : "draft",
-        metadata: {
-          vevor_sku: row.sku,
-          weight_kg: row.weight || 0,
-          translation_status: "pending",
-          original_language: "en",
-        },
+    // Update product status, metadata, and images
+    const galleryImgs = row.originalImages.length > 0 ? row.originalImages : row.galleryImages;
+    const updateData = {
+      status: isInStock ? "published" : "draft",
+      thumbnail: row.mainOriginalImage || row.image || undefined,
+      metadata: {
+        vevor_sku: row.sku,
+        vevor_upc: row.upc || "",
+        vevor_link: row.link || "",
+        vevor_product_type: row.productType || "",
+        vevor_spu: row.spu || "",
+        weight_kg: row.weight || 0,
+        selling_points: row.sellingPoints || [],
+        dimensions: (row.dimensionHigh || row.dimensionWide || row.dimensionLong)
+          ? { high: row.dimensionHigh, wide: row.dimensionWide, long: row.dimensionLong, unit: row.dimensionUnit }
+          : null,
+        gallery_images: galleryImgs,
+        translation_status: "pending",
+        original_language: "en",
       },
-      token
-    );
+      images: [
+        ...(row.mainOriginalImage ? [{ url: row.mainOriginalImage }] : row.image ? [{ url: row.image }] : []),
+        ...row.originalImages.slice(0, 10).map(url => ({ url })),
+      ].filter((img, i, arr) => arr.findIndex(a => a.url === img.url) === i).slice(0, 10),
+    };
+    await apiCall("POST", "/admin/products/" + productId, updateData, token);
 
     // Get variant ID to update price
     const prodResp = await apiCall(

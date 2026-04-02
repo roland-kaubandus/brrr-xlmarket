@@ -6,7 +6,7 @@ import path from "path"
 import { fileURLToPath } from "url"
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
-const FEED_PATH = path.join(__dirname, "..", "data", "feeds", "vevor-latest.xlsx")
+const FEED_PATH = path.join(__dirname, "..", "data", "feeds", "vevor-571.xlsx")
 const OUTPUT_PATH = path.join(__dirname, "..", "data", "feeds", "vevor-feed-cache.json")
 
 function normalizeText(value) {
@@ -45,12 +45,55 @@ function mapRow(headers, row) {
 
   if (!sku || !title) return null
 
+  // Parse selling points (1-5)
+  const sellingPoints = []
+  for (let i = 1; i <= 5; i++) {
+    const sp = normalizeText(values[`Selling point ${i}`])
+    if (sp) sellingPoints.push(sp)
+  }
+
+  // Parse image galleries (comma-separated URLs)
+  const originalImages = normalizeText(values["goods_original_picture"])
+    ?.split(",").map(u => u.trim()).filter(Boolean) || []
+  const galleryImages = normalizeText(values["image_link1"])
+    ?.split(",").map(u => u.trim()).filter(Boolean) || []
+
+  // Parse dimensions
+  const dimensionHigh = normalizeDecimal(values["High"])
+  const dimensionWide = normalizeDecimal(values["Wide"])
+  const dimensionLong = normalizeDecimal(values["Long"])
+  const dimensionUnit = normalizeText(values["goods_size_unit"]) || "cm"
+
+  // Parse shipping weight JSON
+  let shippingWeightKg = null
+  const shippingRaw = normalizeText(values["Shipping Weight"])
+  if (shippingRaw) {
+    try {
+      const parsed = JSON.parse(shippingRaw)
+      shippingWeightKg = parsed?.value || null
+    } catch {
+      shippingWeightKg = normalizeDecimal(shippingRaw)
+    }
+  }
+
+  // Rich description HTML
+  const richDescriptionHtml = normalizeText(values["description_html"])
+  const descriptionAd = normalizeText(values["goods_description_ad"])
+
+  // Variants/attributes
+  const attributeName1 = normalizeText(values["attribute_name_1"])
+  const attributeValue1 = normalizeText(values["attribute_1"])
+  const attributeName2 = normalizeText(values["attribute_name_2"])
+  const attributeValue2 = normalizeText(values["attribute_2"])
+
   return {
     sku,
     upc,
     title,
     descriptionHtml,
     descriptionText,
+    richDescriptionHtml,
+    descriptionAd,
     link: normalizeText(values["Product link"]),
     country: normalizeText(values["Country"]),
     condition: normalizeText(values["Product condition"]),
@@ -58,9 +101,25 @@ function mapRow(headers, row) {
     availability: normalizeText(values["Availability"])?.toLowerCase() || null,
     inventoryQuantity: normalizeInteger(values["Inventory quantity"]),
     weightKg: normalizeDecimal(values["Product weight(KG)"]),
+    shippingWeightKg,
     image: normalizeText(values["Image link"]),
+    originalImages,
+    galleryImages,
     brand: normalizeText(values["Brand"]),
     productType: normalizeText(values["Product type"]),
+    sellingPoints,
+    dimensions: (dimensionHigh || dimensionWide || dimensionLong) ? {
+      high: dimensionHigh,
+      wide: dimensionWide,
+      long: dimensionLong,
+      unit: dimensionUnit,
+    } : null,
+    attributes: (attributeName1 || attributeName2) ? [
+      ...(attributeName1 ? [{ name: attributeName1, value: attributeValue1 }] : []),
+      ...(attributeName2 ? [{ name: attributeName2, value: attributeValue2 }] : []),
+    ] : null,
+    spu: normalizeText(values["goods_spu"]),
+    mainOriginalImage: normalizeText(values["goods_main_original_picture"]),
   }
 }
 

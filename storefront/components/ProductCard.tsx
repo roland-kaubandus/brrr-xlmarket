@@ -41,6 +41,7 @@ export default function ProductCard({ product, isNew }: { product: Product; isNe
     : 0
 
   const categoryName = product.categories?.[0]?.name || ""
+  const thumbnailUrl = product.thumbnail ? decodeURIComponent(product.thumbnail) : null
 
   return (
     <article className="product-card group">
@@ -69,9 +70,9 @@ export default function ProductCard({ product, isNew }: { product: Product; isNe
 
           {/* Product image */}
           <div className="aspect-square flex items-center justify-center overflow-hidden rounded-xl">
-            {product.thumbnail ? (
+            {thumbnailUrl ? (
               <Image
-                src={product.thumbnail}
+                src={thumbnailUrl}
                 alt={product.title}
                 width={400}
                 height={400}
