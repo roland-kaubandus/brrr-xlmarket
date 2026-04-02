@@ -32,8 +32,8 @@ function readFeedCache(): FeedCache | null {
   if (cachedFeed !== undefined) return cachedFeed
 
   const candidates = [
-    path.resolve(process.cwd(), "../backend/data/feeds/vevor-feed-cache.json"),
-    path.resolve(process.cwd(), "../data/feeds/vevor-feed-cache.json"),
+    path.resolve(/* turbopackIgnore: true */ process.cwd(), "../backend/data/feeds/vevor-feed-cache.json"),
+    path.resolve(/* turbopackIgnore: true */ process.cwd(), "../data/feeds/vevor-feed-cache.json"),
   ]
 
   for (const candidate of candidates) {

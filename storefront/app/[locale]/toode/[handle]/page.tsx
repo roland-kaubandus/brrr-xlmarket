@@ -144,6 +144,15 @@ function formatFeedPrice(value?: number | null): string | null {
   return `${value.toFixed(2)} €`
 }
 
+function formatCondition(value?: string | null): string | null {
+  const normalized = stringifyScalar(value)?.toLowerCase()
+  if (!normalized) return null
+  if (normalized === "new") return "Uus"
+  if (normalized === "used") return "Kasutatud"
+  if (normalized === "refurbished") return "Taastatud"
+  return titleizeKey(normalized)
+}
+
 function getProductSpecs(product: Awaited<ReturnType<typeof getProduct>>, feedEntry?: VevorFeedEntry | null): Array<{ key: string; value: string }> {
   if (!product) return []
   const metadata = product.metadata || {}
@@ -215,7 +224,7 @@ function getMetadataHighlights(metadata?: Record<string, unknown>, feedEntry?: V
       value: typeof feedEntry?.inventoryQuantity === "number" ? `${feedEntry.inventoryQuantity} tk` : null,
     },
     { label: "Riik", value: feedEntry?.country || null },
-    { label: "Seisukord", value: feedEntry?.condition || null },
+    { label: "Seisukord", value: formatCondition(feedEntry?.condition) },
     { label: "Tooteliik", value: stringifyScalar(metadataValue.vevor_product_type) || feedEntry?.productType || null },
     {
       label: "Toote algallikas",
@@ -306,7 +315,7 @@ function getFeedRows(feedEntry?: VevorFeedEntry | null): Array<{ label: string; 
   const rows = [
     { label: "Algne tootenimi", value: feedEntry.title },
     { label: "Riik", value: feedEntry.country || null },
-    { label: "Seisukord", value: feedEntry.condition || null },
+    { label: "Seisukord", value: formatCondition(feedEntry.condition) },
     { label: "Saadavus feedis", value: formatAvailability(feedEntry.availability) },
     {
       label: "Laoseis feedis",
@@ -493,7 +502,7 @@ export default async function ProductPage({ params }: Props) {
           {quickFacts.length > 0 && (
             <div className="mt-6 border-t border-soft-border pt-6">
               <h2 className="text-base font-semibold font-[family-name:var(--font-outfit)] text-off-black mb-4">
-                Kiirulevaade
+                Kiirülevaade
               </h2>
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                 {quickFacts.map((fact) => (
