@@ -122,26 +122,12 @@ function collectKeyValueSpecs(value: unknown): Array<{ key: string; value: strin
   return []
 }
 
-function normalizedHtmlContent(value?: string | null): string {
-  return String(value || "")
-    .replace(/<br\s*\/?>/gi, " ")
-    .replace(/<[^>]+>/g, " ")
-    .replace(/\s+/g, " ")
-    .trim()
-    .toLowerCase()
-}
-
 function formatAvailability(value?: string | null): string | null {
   const normalized = stringifyScalar(value)?.toLowerCase()
   if (!normalized) return null
   if (normalized === "in stock") return "Laos"
   if (normalized === "out of stock") return "Läbi müüdud"
   return titleizeKey(normalized)
-}
-
-function formatFeedPrice(value?: number | null): string | null {
-  if (typeof value !== "number" || !Number.isFinite(value)) return null
-  return `${value.toFixed(2)} €`
 }
 
 function formatCondition(value?: string | null): string | null {
@@ -238,40 +224,6 @@ function getMetadataHighlights(metadata?: Record<string, unknown>, feedEntry?: V
     .map((item) => item.href ? { label: item.label, value: "Ava tootja leht", href: item.href } : { label: item.label, value: item.value! })
 }
 
-function getAdditionalMetadata(metadata?: Record<string, unknown>): Array<{ label: string; value: string }> {
-  if (!metadata) return []
-  const hiddenKeys = new Set([
-    "vevor_sku",
-    "vevor_upc",
-    "weight_kg",
-    "brand",
-    "model",
-    "vevor_product_type",
-    "vevor_link",
-    "manuals",
-    "manual_urls",
-    "pdfs",
-    "pdf_urls",
-    "manual_files",
-    "specs",
-    "specifications",
-    "technical_specs",
-    "technical_data",
-    "attributes",
-    "details",
-    "parameters",
-    "translated",
-    "translation_status",
-  ])
-
-  return Object.entries(metadata)
-    .filter(([key]) => !hiddenKeys.has(key))
-    .map(([key, value]) => {
-      const scalar = stringifyScalar(value)
-      return scalar ? { label: metadataLabel(key), value: scalar } : null
-    })
-    .filter(Boolean) as Array<{ label: string; value: string }>
-}
 
 function getProductTypeTrail(metadata?: Record<string, unknown>, feedEntry?: VevorFeedEntry | null): string[] {
   const raw = stringifyScalar(metadata?.vevor_product_type) || feedEntry?.productType || null
@@ -282,61 +234,6 @@ function getProductTypeTrail(metadata?: Record<string, unknown>, feedEntry?: Vev
     .filter(Boolean)
 }
 
-function getQuickFacts(params: {
-  imageCount: number
-  manualCount: number
-  variantCount: number
-  metadata?: Record<string, unknown>
-  feedEntry?: VevorFeedEntry | null
-}) {
-  const facts: Array<{ label: string; value: string }> = []
-  const weight = params.feedEntry?.weightKg && params.feedEntry.weightKg > 0
-    ? `${params.feedEntry.weightKg} kg`
-    : (() => {
-        const raw = stringifyScalar(params.metadata?.weight_kg)
-        return raw && raw !== "0" ? `${raw} kg` : null
-      })()
-  const translated = params.metadata?.translated === true
-  const inventory = params.feedEntry?.inventoryQuantity
-
-  if (params.imageCount > 0) facts.push({ label: "Pildid", value: String(params.imageCount) })
-  if (params.manualCount > 0) facts.push({ label: "Manuaalid", value: String(params.manualCount) })
-  if (params.variantCount > 1) facts.push({ label: "Variandid", value: String(params.variantCount) })
-  if (weight) facts.push({ label: "Kaal", value: weight })
-  if (typeof inventory === "number") facts.push({ label: "Laoseis", value: `${inventory} tk` })
-  if (translated) facts.push({ label: "Keel", value: "Eesti + algallikas" })
-
-  return facts
-}
-
-function getFeedRows(feedEntry?: VevorFeedEntry | null): Array<{ label: string; value: string; href?: string }> {
-  if (!feedEntry) return []
-
-  const rows = [
-    { label: "Algne tootenimi", value: feedEntry.title },
-    { label: "Riik", value: feedEntry.country || null },
-    { label: "Seisukord", value: formatCondition(feedEntry.condition) },
-    { label: "Saadavus feedis", value: formatAvailability(feedEntry.availability) },
-    {
-      label: "Laoseis feedis",
-      value: typeof feedEntry.inventoryQuantity === "number" ? `${feedEntry.inventoryQuantity} tk` : null,
-    },
-    { label: "Tootja lähtehind", value: formatFeedPrice(feedEntry.priceEur) },
-    { label: "Algne tootja link", value: feedEntry.link || null, href: feedEntry.link || undefined },
-  ]
-
-  return rows
-    .filter((item) => Boolean(item.value))
-    .map((item) => item.href ? { label: item.label, value: "Ava link", href: item.href } : { label: item.label, value: item.value! })
-}
-
-function getSourceDescriptionHtml(currentDescription: string | null, feedEntry?: VevorFeedEntry | null): string | null {
-  if (!feedEntry?.descriptionHtml) return null
-  if (normalizedHtmlContent(currentDescription) === normalizedHtmlContent(feedEntry.descriptionHtml)) {
-    return null
-  }
-  return feedEntry.descriptionHtml
-}
 
 function truncate(str: string, max: number): string {
   if (str.length <= max) return str
@@ -375,20 +272,8 @@ export default async function ProductPage({ params }: Props) {
     (item, index, array) => array.findIndex((candidate) => candidate.href === item.href) === index
   )
   const metadataHighlights = getMetadataHighlights(product.metadata, feedEntry)
-  const additionalMetadata = getAdditionalMetadata(product.metadata)
   const productTypeTrail = getProductTypeTrail(metadata, feedEntry)
-  const originalTitle = stringifyScalar(metadata.original_title)
-  const sourceLink = stringifyScalar(metadata.vevor_link)
-  const feedRows = getFeedRows(feedEntry)
-  const manufacturerDescriptionHtml = getSourceDescriptionHtml(product.description, feedEntry)
   const mainDescriptionHtml = product.description || feedEntry?.descriptionHtml || null
-  const quickFacts = getQuickFacts({
-    imageCount: images.length,
-    manualCount: manualLinks.length,
-    variantCount: product.variants?.length || 0,
-    metadata,
-    feedEntry,
-  })
 
   const categoryId = product.categories?.[0]?.id
   const [similarRes, koosRes] = await Promise.all([
@@ -499,71 +384,8 @@ export default async function ProductPage({ params }: Props) {
           {/* Tarne / Garantii / Tagastus accordion — XLM-31 */}
           <ProductInfoAccordion />
 
-          {quickFacts.length > 0 && (
-            <div className="mt-6 border-t border-soft-border pt-6">
-              <h2 className="text-base font-semibold font-[family-name:var(--font-outfit)] text-off-black mb-4">
-                Kiirülevaade
-              </h2>
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                {quickFacts.map((fact) => (
-                  <div key={fact.label} className="rounded-2xl border border-soft-border bg-silver px-4 py-4">
-                    <p className="text-[11px] uppercase tracking-[0.12em] text-muted mb-1">{fact.label}</p>
-                    <p className="text-base font-semibold text-off-black">{fact.value}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
 
-          {metadataHighlights.length > 0 && (
-            <div className="mt-6 border-t border-soft-border pt-6">
-              <h2 className="text-base font-semibold font-[family-name:var(--font-outfit)] text-off-black mb-4">
-                Toote info
-              </h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {metadataHighlights.map((item) => (
-                  <div key={item.label} className="rounded-2xl border border-soft-border bg-white px-4 py-3">
-                    <p className="text-xs uppercase tracking-[0.12em] text-muted mb-1">{item.label}</p>
-                    {item.href ? (
-                      <a href={item.href} target="_blank" rel="noreferrer" className="text-sm font-medium text-accent hover:text-accent-dark">
-                        {item.value}
-                      </a>
-                    ) : (
-                      <p className="text-sm font-medium text-off-black break-words">{item.value}</p>
-                    )}
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {specs.length > 0 && (
-            <div className="mt-6 border-t border-soft-border pt-6">
-              <h2 className="text-base font-semibold font-[family-name:var(--font-outfit)] text-off-black mb-4">
-                Tehnilised andmed
-              </h2>
-              <div className="border border-soft-border rounded-xl overflow-hidden">
-                {specs.map((spec, i) => (
-                  <div
-                    key={spec.key + i}
-                    className={"flex " + (i % 2 === 0 ? "bg-silver" : "bg-white")}
-                  >
-                    <div className="w-[45%] shrink-0 px-4 py-3 border-r border-soft-border">
-                      <span className="text-xs font-medium font-[family-name:var(--font-jakarta)] text-muted">
-                        {spec.key}
-                      </span>
-                    </div>
-                    <div className="flex-1 px-4 py-3">
-                      <span className="text-xs font-[family-name:var(--font-jakarta)] text-off-black">
-                        {spec.value}
-                      </span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-
+          {/* Manuals in sidebar */}
           {manualLinks.length > 0 && (
             <div className="mt-6 border-t border-soft-border pt-6">
               <h2 className="text-base font-semibold font-[family-name:var(--font-outfit)] text-off-black mb-4">
@@ -578,114 +400,10 @@ export default async function ProductPage({ params }: Props) {
                     rel="noreferrer"
                     className="inline-flex items-center gap-2 rounded-xl border border-soft-border bg-white px-4 py-3 text-sm font-medium text-off-black hover:border-accent/40 hover:text-accent transition-all duration-300"
                   >
-                    <span className="text-accent">PDF</span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E8650A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    <span className="text-accent font-bold">PDF</span>
                     <span>{manual.label}</span>
                   </a>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {additionalMetadata.length > 0 && (
-            <div className="mt-6 border-t border-soft-border pt-6">
-              <h2 className="text-base font-semibold font-[family-name:var(--font-outfit)] text-off-black mb-4">
-                Lisainfo feedist
-              </h2>
-              <div className="border border-soft-border rounded-xl overflow-hidden">
-                {additionalMetadata.map((item, i) => (
-                  <div key={item.label + i} className={"flex " + (i % 2 === 0 ? "bg-silver" : "bg-white")}>
-                    <div className="w-[45%] shrink-0 px-4 py-3 border-r border-soft-border">
-                      <span className="text-xs font-medium font-[family-name:var(--font-jakarta)] text-muted">
-                        {item.label}
-                      </span>
-                    </div>
-                    <div className="flex-1 px-4 py-3">
-                      <span className="text-xs font-[family-name:var(--font-jakarta)] text-off-black break-words">
-                        {item.value}
-                      </span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {mainDescriptionHtml && (
-            <div className="mt-8 border-t border-soft-border pt-8">
-              <h2 className="text-lg font-semibold font-[family-name:var(--font-outfit)] text-off-black mb-4">
-                Kirjeldus
-              </h2>
-              <div
-                className="text-muted text-sm font-[family-name:var(--font-jakarta)] leading-relaxed [&_br]:block [&_br]:mb-1 [&_p]:mb-3 [&_ul]:pl-5 [&_ul]:list-disc [&_li]:mb-1 [&_a]:text-accent [&_a]:underline [&_a:hover]:text-accent-dark"
-                dangerouslySetInnerHTML={{
-                  __html: sanitizeHtml(mainDescriptionHtml),
-                }}
-              />
-
-              {(originalTitle || sourceLink) && (
-                <div className="mt-6 rounded-2xl border border-soft-border bg-silver px-4 py-4">
-                  <h3 className="text-sm font-semibold font-[family-name:var(--font-outfit)] text-off-black mb-2">
-                    Allikainfo
-                  </h3>
-                  {originalTitle && (
-                    <p className="text-sm text-muted leading-relaxed mb-2">
-                      <span className="font-medium text-off-black">Algne nimetus:</span> {originalTitle}
-                    </p>
-                  )}
-                  {sourceLink && (
-                    <a
-                      href={sourceLink}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="text-sm font-medium text-accent hover:text-accent-dark"
-                    >
-                      Ava tootja algne tooteleht
-                    </a>
-                  )}
-                </div>
-              )}
-            </div>
-          )}
-
-          {manufacturerDescriptionHtml && (
-            <div className="mt-6 border-t border-soft-border pt-6">
-              <h2 className="text-base font-semibold font-[family-name:var(--font-outfit)] text-off-black mb-4">
-                Tootja originaalkirjeldus
-              </h2>
-              <div
-                className="rounded-2xl border border-soft-border bg-silver px-4 py-4 text-sm text-muted leading-relaxed [&_br]:block [&_br]:mb-1"
-                dangerouslySetInnerHTML={{
-                  __html: sanitizeHtml(manufacturerDescriptionHtml),
-                }}
-              />
-            </div>
-          )}
-
-          {feedRows.length > 0 && (
-            <div className="mt-6 border-t border-soft-border pt-6">
-              <h2 className="text-base font-semibold font-[family-name:var(--font-outfit)] text-off-black mb-4">
-                VEVOR feedi andmed
-              </h2>
-              <div className="border border-soft-border rounded-xl overflow-hidden">
-                {feedRows.map((item, i) => (
-                  <div key={item.label + i} className={"flex " + (i % 2 === 0 ? "bg-silver" : "bg-white")}>
-                    <div className="w-[45%] shrink-0 px-4 py-3 border-r border-soft-border">
-                      <span className="text-xs font-medium font-[family-name:var(--font-jakarta)] text-muted">
-                        {item.label}
-                      </span>
-                    </div>
-                    <div className="flex-1 px-4 py-3">
-                      {item.href ? (
-                        <a href={item.href} target="_blank" rel="noreferrer" className="text-xs font-[family-name:var(--font-jakarta)] text-accent hover:text-accent-dark break-words">
-                          {item.value}
-                        </a>
-                      ) : (
-                        <span className="text-xs font-[family-name:var(--font-jakarta)] text-off-black break-words">
-                          {item.value}
-                        </span>
-                      )}
-                    </div>
-                  </div>
                 ))}
               </div>
             </div>
@@ -693,9 +411,86 @@ export default async function ProductPage({ params }: Props) {
         </div>
       </div>
 
+      {/* ===== FULL-WIDTH SECTIONS BELOW THE FOLD ===== */}
+
+      {/* Tehnilised andmed — 2-column specs table */}
+      {specs.length > 0 && (
+        <section className="mt-12 pt-10 border-t border-soft-border">
+          <h2 className="text-xl font-semibold font-[family-name:var(--font-outfit)] text-off-black mb-6">
+            Tehnilised andmed
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Split specs into two columns */}
+            {[0, 1].map((col) => {
+              const half = Math.ceil(specs.length / 2)
+              const colSpecs = col === 0 ? specs.slice(0, half) : specs.slice(half)
+              return (
+                <div key={col} className="border border-soft-border rounded-xl overflow-hidden">
+                  {colSpecs.map((spec, i) => (
+                    <div
+                      key={spec.key + i}
+                      className={"flex " + (i % 2 === 0 ? "bg-silver" : "bg-white")}
+                    >
+                      <div className="w-[45%] shrink-0 px-4 py-3 border-r border-soft-border">
+                        <span className="text-xs font-medium font-[family-name:var(--font-jakarta)] text-muted">
+                          {spec.key}
+                        </span>
+                      </div>
+                      <div className="flex-1 px-4 py-3">
+                        <span className="text-xs font-[family-name:var(--font-jakarta)] text-off-black">
+                          {spec.value}
+                        </span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )
+            })}
+          </div>
+        </section>
+      )}
+
+      {/* Kirjeldus — full width */}
+      {mainDescriptionHtml && (
+        <section className="mt-12 pt-10 border-t border-soft-border">
+          <h2 className="text-xl font-semibold font-[family-name:var(--font-outfit)] text-off-black mb-6">
+            Toote kirjeldus
+          </h2>
+          <div
+            className="text-muted text-sm font-[family-name:var(--font-jakarta)] leading-relaxed max-w-3xl [&_br]:block [&_br]:mb-1 [&_p]:mb-3 [&_ul]:pl-5 [&_ul]:list-disc [&_li]:mb-1 [&_a]:text-accent [&_a]:underline [&_a:hover]:text-accent-dark"
+            dangerouslySetInnerHTML={{
+              __html: sanitizeHtml(mainDescriptionHtml),
+            }}
+          />
+        </section>
+      )}
+
+      {/* Metadata highlights */}
+      {metadataHighlights.length > 0 && (
+        <section className="mt-12 pt-10 border-t border-soft-border">
+          <h2 className="text-xl font-semibold font-[family-name:var(--font-outfit)] text-off-black mb-6">
+            Toote info
+          </h2>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+            {metadataHighlights.map((item) => (
+              <div key={item.label} className="rounded-2xl border border-soft-border bg-white px-4 py-3">
+                <p className="text-xs uppercase tracking-[0.12em] text-muted mb-1">{item.label}</p>
+                {item.href ? (
+                  <a href={item.href} target="_blank" rel="noreferrer" className="text-sm font-medium text-accent hover:text-accent-dark">
+                    {item.value}
+                  </a>
+                ) : (
+                  <p className="text-sm font-medium text-off-black break-words">{item.value}</p>
+                )}
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
       {/* Sarnased tooted */}
       {similarProducts.length > 0 && (
-        <section className="mt-16 pt-12 border-t border-soft-border">
+        <section className="mt-12 pt-10 border-t border-soft-border">
           <h2 className="text-xl font-semibold font-[family-name:var(--font-outfit)] text-off-black mb-6">
             Sarnased tooted
           </h2>
@@ -707,13 +502,13 @@ export default async function ProductPage({ params }: Props) {
         </section>
       )}
 
-      {/* Koos ostetud — XLM-44 */}
+      {/* Ostetakse koos — with total price */}
       {koosProducts.length > 0 && (
         <section className="mt-12 pt-10 border-t border-soft-border">
           <h2 className="text-xl font-semibold font-[family-name:var(--font-outfit)] text-off-black mb-5">
             Ostetakse koos
           </h2>
-          <div className="flex flex-col sm:flex-row gap-4 items-start">
+          <div className="flex flex-col sm:flex-row gap-4 items-start flex-wrap">
             {/* Main product mini card */}
             <div className="flex items-center gap-3 p-3 border border-soft-border bg-silver rounded-xl shrink-0">
               {product.thumbnail && (
@@ -724,13 +519,13 @@ export default async function ProductPage({ params }: Props) {
               <div>
                 <p className="text-xs text-muted font-[family-name:var(--font-jakarta)] mb-0.5">See toode</p>
                 <p className="text-sm font-medium font-[family-name:var(--font-outfit)] text-off-black leading-snug line-clamp-2 max-w-[140px]">{product.title.substring(0, 40)}{product.title.length > 40 ? "..." : ""}</p>
-                {price && <p className="text-sm font-semibold text-accent mt-1">{formatPrice(price.calculated_amount, price.currency_code)}</p>}
+                {price && <p className="text-sm font-semibold text-off-black mt-1">{formatPrice(price.calculated_amount, price.currency_code)}</p>}
               </div>
             </div>
             {/* Plus signs + related products */}
-            {koosProducts.map((kp, idx) => (
+            {koosProducts.map((kp) => (
               <div key={kp.id} className="flex items-center gap-4">
-                <span className="text-xl text-muted/40 font-light shrink-0">+</span>
+                <span className="text-xl text-muted/20 font-light shrink-0">+</span>
                 <a
                   href={`/${locale}/toode/` + kp.handle}
                   className="flex items-center gap-3 p-3 border border-soft-border bg-white hover:border-accent/40 rounded-xl transition-all duration-300 shrink-0"
@@ -742,12 +537,32 @@ export default async function ProductPage({ params }: Props) {
                   )}
                   <div>
                     <p className="text-sm font-medium font-[family-name:var(--font-outfit)] text-off-black leading-snug line-clamp-2 max-w-[140px]">{kp.title.substring(0, 40)}{kp.title.length > 40 ? "..." : ""}</p>
-                    {kp.variants?.[0]?.calculated_price && <p className="text-sm font-semibold text-accent mt-1">{formatPrice(kp.variants[0].calculated_price.calculated_amount, kp.variants[0].calculated_price.currency_code)}</p>}
+                    {kp.variants?.[0]?.calculated_price && <p className="text-sm font-semibold text-off-black mt-1">{formatPrice(kp.variants[0].calculated_price.calculated_amount, kp.variants[0].calculated_price.currency_code)}</p>}
                   </div>
                 </a>
               </div>
             ))}
           </div>
+          {/* Total + add all button */}
+          {(() => {
+            const mainPrice = price?.calculated_amount || 0
+            const koosTotal = koosProducts.reduce((sum, kp) => {
+              const kpPrice = kp.variants?.[0]?.calculated_price?.calculated_amount || 0
+              return sum + kpPrice
+            }, mainPrice)
+            const currencyCode = price?.currency_code || "eur"
+            return (
+              <div className="flex items-center justify-between mt-5 p-4 border border-soft-border bg-white rounded-xl">
+                <p className="font-[family-name:var(--font-outfit)] font-bold text-lg text-off-black">
+                  <span className="text-sm font-normal text-muted mr-2">Kokku:</span>
+                  {formatPrice(koosTotal, currencyCode)}
+                </p>
+                <button className="px-6 py-3 bg-accent hover:bg-accent-dark text-white text-sm font-bold font-[family-name:var(--font-outfit)] rounded-xl transition-colors">
+                  Lisa koik ostukorvi
+                </button>
+              </div>
+            )
+          })()}
         </section>
       )}
 
