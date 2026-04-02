@@ -455,53 +455,8 @@ export default async function ProductPage({ params }: Props) {
         </section>
       )}
 
-      {/* Rich description — alternating image+text blocks (kavand style) */}
-      {sellingPoints.length > 0 && images.length > 2 && (
-        <section className="mt-12 pt-10 border-t border-soft-border bg-silver -mx-4 sm:-mx-6 px-4 sm:px-6 py-12">
-          <div className="max-w-[1280px] mx-auto">
-            <h2 className="text-xl font-semibold font-[family-name:var(--font-outfit)] text-off-black mb-10">
-              Toote kirjeldus
-            </h2>
-            <div className="space-y-10">
-              {sellingPoints.map((sp, i) => {
-                const colonIdx = sp.indexOf(":")
-                const spTitle = colonIdx > 0 && colonIdx < 60 ? sp.substring(0, colonIdx).trim() : null
-                const spBody = spTitle ? sp.substring(colonIdx + 1).trim() : sp
-                const img = images[Math.min(i + 1, images.length - 1)]
-                const reversed = i % 2 === 1
-                return (
-                  <div
-                    key={i}
-                    className={`grid grid-cols-1 md:grid-cols-2 gap-8 items-center ${reversed ? "md:[direction:rtl]" : ""}`}
-                  >
-                    <div className="aspect-[4/3] bg-white rounded-2xl border border-soft-border overflow-hidden relative">
-                      <img
-                        src={img.url}
-                        alt={spTitle || product.title}
-                        className="w-full h-full object-contain p-4"
-                        loading="lazy"
-                      />
-                    </div>
-                    <div className={reversed ? "md:[direction:ltr]" : ""}>
-                      {spTitle && (
-                        <h3 className="font-[family-name:var(--font-outfit)] font-bold text-lg text-off-black mb-3 tracking-tight">
-                          {spTitle}
-                        </h3>
-                      )}
-                      <p className="text-sm text-muted font-[family-name:var(--font-jakarta)] leading-relaxed">
-                        {spBody}
-                      </p>
-                    </div>
-                  </div>
-                )
-              })}
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* Plain description fallback — only if no rich blocks */}
-      {mainDescriptionHtml && sellingPoints.length === 0 && (
+      {/* Toote kirjeldus */}
+      {mainDescriptionHtml && (
         <section className="mt-12 pt-10 border-t border-soft-border">
           <h2 className="text-xl font-semibold font-[family-name:var(--font-outfit)] text-off-black mb-6">
             Toote kirjeldus
