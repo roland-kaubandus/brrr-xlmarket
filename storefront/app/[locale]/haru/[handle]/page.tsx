@@ -126,14 +126,15 @@ export default async function BranchLandingPage({ params, searchParams }: Props)
   const categoryCounts = facetDistribution?.category_handles || {}
   const branchBasePath = `/${locale}/haru/${handle}`
 
-  // Build subcategories from facet distribution (no Medusa hierarchy needed)
+  // Build subcategories from facet distribution — use handle as fallback name
   const subcategories = Object.entries(categoryCounts)
     .filter(([h]) => h !== branch.categoryHandle)
     .map(([h, count]) => {
       const catObj = allCategories.find((c) => c.handle === h)
-      return catObj ? { id: catObj.id, name: catObj.name, handle: catObj.handle, count } : null
+      const name = catObj?.name || h.split("-").map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(" ")
+      return { id: catObj?.id || `meili_${h}`, name, handle: h, count }
     })
-    .filter((c): c is { id: string; name: string; handle: string; count: number } => Boolean(c))
+    .filter((c) => c.count > 0)
     .sort((a, b) => b.count - a.count)
   const selectedSubcategory = selectedCatHandle
     ? subcategories.find((s) => s.handle === selectedCatHandle) ?? null
