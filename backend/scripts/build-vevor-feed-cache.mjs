@@ -38,9 +38,10 @@ function mapRow(headers, row) {
   const sku = normalizeText(values["SKU"])
   const upc = normalizeText(values["UPC"])
   const title = normalizeText(values["Product title"])
-  const descriptionHtml = normalizeText(values["Product description"])
-  const descriptionText = descriptionHtml
-    ? descriptionHtml.replace(/<br\s*\/?>/gi, "\n").replace(/<[^>]+>/g, " ").replace(/\s+\n/g, "\n").replace(/\n\s+/g, "\n").replace(/\s{2,}/g, " ").trim()
+  const descriptionRaw = normalizeText(values["Product description"])
+  // Only keep a short plain text version for search/previews
+  const descriptionText = descriptionRaw
+    ? descriptionRaw.replace(/<br\s*\/?>/gi, "\n").replace(/<[^>]+>/g, " ").replace(/\s+\n/g, "\n").replace(/\n\s+/g, "\n").replace(/\s{2,}/g, " ").trim().substring(0, 300)
     : null
 
   if (!sku || !title) return null
@@ -91,12 +92,8 @@ function mapRow(headers, row) {
     sku,
     upc,
     title,
-    descriptionHtml,
     descriptionText,
-    richDescriptionHtml,
-    descriptionAd,
     link: normalizeText(values["Product link"]),
-    country: normalizeText(values["Country"]),
     condition: normalizeText(values["Product condition"]),
     priceEur: normalizeDecimal(values["Price"]),
     availability: normalizeText(values["Availability"])?.toLowerCase() || null,
