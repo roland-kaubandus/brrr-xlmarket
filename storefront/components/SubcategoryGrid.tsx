@@ -13,21 +13,32 @@ type Subcategory = {
 type Props = {
   subcategories: Subcategory[]
   selectedHandle: string | null
-  buildUrl: (handle: string) => string
-  clearUrl: string
+  basePath: string
+  queryParams: Record<string, string>
   initialLimit?: number
+}
+
+function buildCatUrl(basePath: string, queryParams: Record<string, string>, catHandle: string) {
+  const params = new URLSearchParams()
+  for (const [k, v] of Object.entries(queryParams)) {
+    if (k !== "cat" && k !== "limit" && v) params.set(k, v)
+  }
+  if (catHandle) params.set("cat", catHandle)
+  const qs = params.toString()
+  return qs ? `${basePath}?${qs}` : basePath
 }
 
 export default function SubcategoryGrid({
   subcategories,
   selectedHandle,
-  buildUrl,
-  clearUrl,
+  basePath,
+  queryParams,
   initialLimit = 8,
 }: Props) {
   const [expanded, setExpanded] = useState(false)
   const visible = expanded ? subcategories : subcategories.slice(0, initialLimit)
   const hasMore = subcategories.length > initialLimit
+  const clearUrl = buildCatUrl(basePath, queryParams, "")
 
   return (
     <div className="mb-8">
@@ -40,7 +51,7 @@ export default function SubcategoryGrid({
           return (
             <Link
               key={sub.id}
-              href={buildUrl(sub.handle)}
+              href={buildCatUrl(basePath, queryParams, sub.handle)}
               className={`group flex flex-col items-center justify-center rounded-2xl border bg-white px-3 py-5 text-center transition-all duration-300 ${
                 isActive
                   ? "border-accent shadow-[0_8px_24px_rgba(232,101,10,0.08)]"
@@ -111,7 +122,7 @@ export default function SubcategoryGrid({
             className="inline-flex items-center gap-1.5 text-xs text-muted hover:text-accent transition-colors"
           >
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
-            Tühista filter
+            {`T\u00fchista filter`}
           </Link>
         </div>
       )}
