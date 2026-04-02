@@ -160,6 +160,7 @@ export default async function BranchLandingPage({ params, searchParams }: Props)
     : undefined
   const activeBrowseFilters = Boolean(currentSort || min || max || currentInStock || selectedSubcategory || page > 1)
   const categoryCounts = facetDistribution?.category_handles || {}
+  const hasBranchProducts = totalCount > 0
 
   function branchUrl(overrides: Record<string, string>) {
     const params = new URLSearchParams()
@@ -245,6 +246,24 @@ export default async function BranchLandingPage({ params, searchParams }: Props)
         </div>
       )}
 
+      {branch.categoryHandle && hasBranchProducts && (
+        <section className="py-8 md:py-10 bg-white border-b border-soft-border">
+          <div className="max-w-[1400px] mx-auto px-4">
+            <CategoryFilters
+              currentSort={currentSort}
+              currentMin={min}
+              currentMax={max}
+              currentInStock={currentInStock}
+              basePath={`/${locale}/haru/${handle}`}
+              totalProducts={totalCount}
+              heading="Valdkonna filtrid"
+              showInStockToggle
+              preservedParams={selectedSubcategory ? { cat: selectedSubcategory.handle } : undefined}
+            />
+          </div>
+        </section>
+      )}
+
       {/* CATEGORY CARDS */}
       {subcategories.length > 0 && (
         <section className="py-12 md:py-16 bg-white">
@@ -302,6 +321,59 @@ export default async function BranchLandingPage({ params, searchParams }: Props)
                     {sub.name}
                   </span>
                   <span className="text-xs text-muted mt-1">{(categoryCounts[sub.handle] || 0).toLocaleString("et-EE")} toodet</span>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {branch.categoryHandle && hasBranchProducts && subcategories.length === 0 && (
+        <section className="py-12 md:py-16 bg-white">
+          <div className="max-w-[1400px] mx-auto px-4">
+            <div className="mb-8">
+              <h2 className="font-[family-name:var(--font-outfit)] font-[700] text-2xl md:text-3xl tracking-tight">
+                Sirvi valdkonda
+              </h2>
+              <p className="text-muted text-sm mt-2">
+                Selle valdkonna alamkategooriad on alles sidumisel, aga saad juba valikut kiiresti kitsendada.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+              {[
+                {
+                  title: "Kõik tooted",
+                  subtitle: `${totalCount.toLocaleString("et-EE")} toodet`,
+                  href: branchUrl({ cat: "", sort: "", min: "", max: "", in_stock: "", leht: "1" }),
+                },
+                {
+                  title: "Ainult laos",
+                  subtitle: "Näita kohe saadaval valikut",
+                  href: branchUrl({ in_stock: "1", leht: "1" }),
+                },
+                {
+                  title: "Odavamad ees",
+                  subtitle: "Sorteeri hinna järgi kasvavalt",
+                  href: branchUrl({ sort: "odavamad", leht: "1" }),
+                },
+                {
+                  title: "Uusimad ees",
+                  subtitle: "Vaata värskemat valikut",
+                  href: branchUrl({ sort: "uusimad", leht: "1" }),
+                },
+              ].map((item) => (
+                <Link
+                  key={item.title}
+                  href={item.href}
+                  className="group rounded-2xl border border-soft-border bg-silver px-5 py-6 hover:border-accent/30 hover:bg-accent-light transition-all duration-300"
+                >
+                  <h3 className="font-[family-name:var(--font-outfit)] font-[700] text-lg text-off-black group-hover:text-accent transition-colors">
+                    {item.title}
+                  </h3>
+                  <p className="text-sm text-muted mt-2 leading-relaxed">
+                    {item.subtitle}
+                  </p>
                 </Link>
               ))}
             </div>
@@ -368,18 +440,6 @@ export default async function BranchLandingPage({ params, searchParams }: Props)
                 </Link>
               )}
             </div>
-
-            <CategoryFilters
-              currentSort={currentSort}
-              currentMin={min}
-              currentMax={max}
-              currentInStock={currentInStock}
-              basePath={`/${locale}/haru/${handle}`}
-              totalProducts={totalCount}
-              heading="Valdkonna filtrid"
-              showInStockToggle
-              preservedParams={selectedSubcategory ? { cat: selectedSubcategory.handle } : undefined}
-            />
 
             {products.length > 0 ? (
               <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-5">
