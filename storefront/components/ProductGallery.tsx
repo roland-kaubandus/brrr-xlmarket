@@ -1,7 +1,7 @@
 "use client"
 
-import { useState, useEffect, useCallback } from "react"
-import { X, ZoomIn, ChevronUp, ChevronDown } from "lucide-react"
+import { useState, useEffect, useCallback, useRef } from "react"
+import { X, ZoomIn, ChevronLeft, ChevronRight } from "lucide-react"
 
 type GalleryImage = {
   id: string
@@ -17,14 +17,21 @@ function decodeImageUrl(url: string): string {
   try { return decodeURIComponent(url) } catch { return url }
 }
 
-const MAX_VISIBLE_THUMBS = 7
-
 export default function ProductGallery({ images, title }: Props) {
   const [active, setActive] = useState(0)
   const [lightbox, setLightbox] = useState(false)
-  const [showAll, setShowAll] = useState(false)
+  const mainRef = useRef<HTMLDivElement>(null)
+  const [mainH, setMainH] = useState(0)
 
   const close = useCallback(() => setLightbox(false), [])
+
+  // Measure main image height to constrain thumbstrip
+  useEffect(() => {
+    if (!mainRef.current) return
+    const ro = new ResizeObserver(([entry]) => setMainH(entry.contentRect.height))
+    ro.observe(mainRef.current)
+    return () => ro.disconnect()
+  }, [])
 
   useEffect(() => {
     if (!lightbox) return
@@ -45,17 +52,24 @@ export default function ProductGallery({ images, title }: Props) {
     )
   }
 
-  const hasMore = images.length > MAX_VISIBLE_THUMBS
-  const visibleThumbs = showAll ? images : images.slice(0, hasMore ? MAX_VISIBLE_THUMBS - 1 : MAX_VISIBLE_THUMBS)
-  const remaining = images.length - (MAX_VISIBLE_THUMBS - 1)
+  // Calculate how many thumbs fit: each thumb is 64px + 6px gap
+  const thumbSize = 64
+  const thumbGap = 6
+  const thumbsPerCol = mainH > 0 ? Math.floor((mainH + thumbGap) / (thumbSize + thumbGap)) : 6
+  // Reserve 1 slot for "+N" button if we have more
+  const showCount = images.length > thumbsPerCol ? thumbsPerCol - 1 : Math.min(images.length, thumbsPerCol)
+  const remaining = images.length - showCount
 
   return (
     <>
       {/* Desktop: vertical thumbstrip + main image */}
       <div className="hidden sm:flex gap-3 items-start">
         {images.length > 1 && (
-          <div className="flex flex-col gap-1.5 shrink-0 w-[76px]">
-            {visibleThumbs.map((img, i) => (
+          <div
+            className="flex flex-col shrink-0 w-[64px] overflow-hidden"
+            style={{ maxHeight: mainH > 0 ? mainH : undefined, gap: `${thumbGap}px` }}
+          >
+            {images.slice(0, showCount).map((img, i) => (
               <button
                 key={img.id}
                 type="button"
@@ -63,11 +77,12 @@ export default function ProductGallery({ images, title }: Props) {
                 aria-label={"Pilt " + (i + 1)}
                 aria-pressed={i === active}
                 className={
-                  "relative w-[76px] h-[76px] bg-silver rounded-xl border-2 overflow-hidden transition-all duration-300 " +
+                  "relative shrink-0 bg-silver rounded-lg border-2 overflow-hidden transition-all duration-200 " +
                   (i === active
-                    ? "border-accent shadow-[0_0_0_1px_rgba(249,115,22,0.20)]"
-                    : "border-soft-border hover:border-muted")
+                    ? "border-accent"
+                    : "border-transparent hover:border-soft-border")
                 }
+                style={{ width: thumbSize, height: thumbSize }}
               >
                 <img
                   src={decodeImageUrl(img.url)}
@@ -77,49 +92,50 @@ export default function ProductGallery({ images, title }: Props) {
                 />
               </button>
             ))}
-            {hasMore && !showAll && (
+            {remaining > 0 && (
               <button
                 type="button"
-                onClick={() => { setShowAll(true); setActive(MAX_VISIBLE_THUMBS - 1) }}
-                className="w-[76px] h-[76px] rounded-xl border-2 border-soft-border bg-silver hover:border-accent/40 transition-all duration-300 flex flex-col items-center justify-center gap-0.5"
+                onClick={() => setLightbox(true)}
+                className="shrink-0 rounded-lg border-2 border-transparent bg-silver hover:border-soft-border transition-all duration-200 flex flex-col items-center justify-center gap-0"
+                style={{ width: thumbSize, height: thumbSize }}
               >
-                <span className="text-accent font-bold text-sm font-[family-name:var(--font-outfit)]">+{remaining}</span>
-                <span className="text-[10px] text-muted font-medium">More</span>
+                <span className="text-accent font-bold text-xs font-[family-name:var(--font-outfit)]">+{remaining}</span>
               </button>
             )}
           </div>
         )}
         <div
-          className="group relative flex-1 aspect-square bg-silver rounded-2xl border border-soft-border overflow-hidden cursor-zoom-in"
+          ref={mainRef}
+          className="group relative flex-1 aspect-square bg-white rounded-2xl border border-soft-border overflow-hidden cursor-zoom-in"
           onClick={() => setLightbox(true)}
           role="button"
           tabIndex={0}
           aria-label="Suurenda pilti"
           onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") setLightbox(true) }}
         >
-          <div className="absolute inset-4 transition-transform duration-300 group-hover:scale-[1.03]">
+          <div className="absolute inset-4 transition-transform duration-300 group-hover:scale-[1.02]">
             <img
               src={decodeImageUrl(images[active].url)}
               alt={title}
               className="object-contain absolute inset-0 w-full h-full"
             />
           </div>
-          <div className="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center gap-1.5 bg-off-black/50 text-white text-xs px-2.5 py-1 rounded-full backdrop-blur-sm">
+          <div className="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center gap-1.5 bg-off-black/60 text-white text-[11px] px-2.5 py-1 rounded-full backdrop-blur-sm">
             <ZoomIn size={11} strokeWidth={2} />
             Suurenda
           </div>
           {images.length > 1 && (
-            <div className="absolute bottom-3 left-3 bg-off-black/40 text-white text-xs px-2.5 py-1 rounded-full backdrop-blur-sm">
+            <div className="absolute bottom-3 left-3 bg-off-black/50 text-white text-[11px] px-2 py-0.5 rounded-full backdrop-blur-sm">
               {active + 1} / {images.length}
             </div>
           )}
         </div>
       </div>
 
-      {/* Mobile: stacked */}
-      <div className="flex flex-col gap-2.5 sm:hidden">
+      {/* Mobile: horizontal scroll */}
+      <div className="flex flex-col gap-2 sm:hidden">
         <div
-          className="relative aspect-square bg-silver rounded-2xl border border-soft-border overflow-hidden cursor-zoom-in"
+          className="relative aspect-square bg-white rounded-2xl border border-soft-border overflow-hidden cursor-zoom-in"
           onClick={() => setLightbox(true)}
           role="button"
           tabIndex={0}
@@ -128,28 +144,28 @@ export default function ProductGallery({ images, title }: Props) {
         >
           <div className="absolute inset-3"><img src={decodeImageUrl(images[active].url)} alt={title} className="object-contain absolute inset-0 w-full h-full" /></div>
           {images.length > 1 && (
-            <div className="absolute bottom-2 left-2 bg-off-black/40 text-white text-xs px-2 py-1 rounded-full">
+            <div className="absolute bottom-2 left-2 bg-off-black/50 text-white text-[11px] px-2 py-0.5 rounded-full">
               {active + 1} / {images.length}
             </div>
           )}
         </div>
         {images.length > 1 && (
-          <div className="flex gap-2 overflow-x-auto pb-0.5 scrollbar-none">
+          <div className="flex gap-1.5 overflow-x-auto pb-0.5 scrollbar-none">
             {images.slice(0, 8).map((img, i) => (
               <button
                 key={img.id}
                 type="button"
                 onClick={() => setActive(i)}
-                className={"relative shrink-0 w-[60px] h-[60px] bg-silver rounded-xl border-2 overflow-hidden transition-all duration-300 " + (i === active ? "border-accent" : "border-soft-border")}
+                className={"relative shrink-0 w-[52px] h-[52px] bg-silver rounded-lg border-2 overflow-hidden transition-all duration-200 " + (i === active ? "border-accent" : "border-transparent")}
               >
-                <img src={decodeImageUrl(img.url)} alt={title + " " + (i + 1)} className="object-contain absolute inset-0 w-full h-full p-1" loading="lazy" />
+                <img src={decodeImageUrl(img.url)} alt={title + " " + (i + 1)} className="object-contain absolute inset-0 w-full h-full p-0.5" loading="lazy" />
               </button>
             ))}
             {images.length > 8 && (
               <button
                 type="button"
                 onClick={() => setLightbox(true)}
-                className="shrink-0 w-[60px] h-[60px] bg-silver rounded-xl border-2 border-soft-border flex flex-col items-center justify-center"
+                className="shrink-0 w-[52px] h-[52px] bg-silver rounded-lg border-2 border-transparent flex items-center justify-center"
               >
                 <span className="text-accent font-bold text-xs">+{images.length - 8}</span>
               </button>
@@ -161,27 +177,27 @@ export default function ProductGallery({ images, title }: Props) {
       {/* Lightbox */}
       {lightbox && (
         <div
-          className="fixed inset-0 bg-black/85 z-50 flex items-center justify-center backdrop-blur-sm"
+          className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center backdrop-blur-sm"
           onClick={close}
           role="dialog"
           aria-modal="true"
         >
           {active > 0 && (
             <button
-              className="absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-white hover:bg-white/20 transition-all duration-300"
+              className="absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-white hover:bg-white/20 transition-all duration-200"
               onClick={(e) => { e.stopPropagation(); setActive((i) => i - 1) }}
               aria-label="Eelmine"
             >
-              <ChevronUp size={20} className="-rotate-90" strokeWidth={2} />
+              <ChevronLeft size={20} strokeWidth={2} />
             </button>
           )}
           {active < images.length - 1 && (
             <button
-              className="absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-white hover:bg-white/20 transition-all duration-300"
+              className="absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-white hover:bg-white/20 transition-all duration-200"
               onClick={(e) => { e.stopPropagation(); setActive((i) => i + 1) }}
-              aria-label="Jargmine"
+              aria-label="Järgmine"
             >
-              <ChevronDown size={20} className="-rotate-90" strokeWidth={2} />
+              <ChevronRight size={20} strokeWidth={2} />
             </button>
           )}
           <div
@@ -191,14 +207,24 @@ export default function ProductGallery({ images, title }: Props) {
             <img src={decodeImageUrl(images[active].url)} alt={title} width={1200} height={1200} className="object-contain max-w-[85vw] max-h-[85vh] w-auto h-auto" />
           </div>
           <button
-            className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-white hover:bg-white/20 transition-all duration-300"
+            className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-white hover:bg-white/20 transition-all duration-200"
             onClick={close}
             aria-label="Sulge"
           >
             <X size={18} strokeWidth={2} />
           </button>
-          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-white/70 text-sm">
-            {active + 1} / {images.length}
+          {/* Lightbox thumbnail strip */}
+          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1.5 max-w-[80vw] overflow-x-auto scrollbar-none px-2">
+            {images.map((img, i) => (
+              <button
+                key={img.id}
+                type="button"
+                onClick={(e) => { e.stopPropagation(); setActive(i) }}
+                className={"shrink-0 w-12 h-12 rounded-lg overflow-hidden border-2 transition-all duration-200 " + (i === active ? "border-white" : "border-white/20 opacity-50 hover:opacity-80")}
+              >
+                <img src={decodeImageUrl(img.url)} alt="" className="w-full h-full object-contain bg-white/10 p-0.5" loading="lazy" />
+              </button>
+            ))}
           </div>
         </div>
       )}
