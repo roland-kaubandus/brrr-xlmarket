@@ -175,6 +175,41 @@ function getMetadataHighlights(metadata?: Record<string, unknown>): Array<{ labe
     .filter(Boolean) as Array<{ label: string; value: string; href?: string }>
 }
 
+function getAdditionalMetadata(metadata?: Record<string, unknown>): Array<{ label: string; value: string }> {
+  if (!metadata) return []
+  const hiddenKeys = new Set([
+    "vevor_sku",
+    "vevor_upc",
+    "weight_kg",
+    "brand",
+    "model",
+    "vevor_product_type",
+    "vevor_link",
+    "manuals",
+    "manual_urls",
+    "pdfs",
+    "pdf_urls",
+    "manual_files",
+    "specs",
+    "specifications",
+    "technical_specs",
+    "technical_data",
+    "attributes",
+    "details",
+    "parameters",
+    "translated",
+    "translation_status",
+  ])
+
+  return Object.entries(metadata)
+    .filter(([key]) => !hiddenKeys.has(key))
+    .map(([key, value]) => {
+      const scalar = stringifyScalar(value)
+      return scalar ? { label: metadataLabel(key), value: scalar } : null
+    })
+    .filter(Boolean) as Array<{ label: string; value: string }>
+}
+
 function truncate(str: string, max: number): string {
   if (str.length <= max) return str
   return str.substring(0, max).trimEnd() + "..."
@@ -200,6 +235,7 @@ export default async function ProductPage({ params }: Props) {
   const specs = getProductSpecs(product)
   const manualLinks = getManualLinks(product.metadata)
   const metadataHighlights = getMetadataHighlights(product.metadata)
+  const additionalMetadata = getAdditionalMetadata(product.metadata)
 
   const categoryId = product.categories?.[0]?.id
   const [similarRes, koosRes] = await Promise.all([
@@ -363,6 +399,30 @@ export default async function ProductPage({ params }: Props) {
                     <span className="text-accent">PDF</span>
                     <span>{manual.label}</span>
                   </a>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {additionalMetadata.length > 0 && (
+            <div className="mt-6 border-t border-soft-border pt-6">
+              <h2 className="text-base font-semibold font-[family-name:var(--font-outfit)] text-off-black mb-4">
+                Lisainfo feedist
+              </h2>
+              <div className="border border-soft-border rounded-xl overflow-hidden">
+                {additionalMetadata.map((item, i) => (
+                  <div key={item.label + i} className={"flex " + (i % 2 === 0 ? "bg-silver" : "bg-white")}>
+                    <div className="w-[45%] shrink-0 px-4 py-3 border-r border-soft-border">
+                      <span className="text-xs font-medium font-[family-name:var(--font-jakarta)] text-muted">
+                        {item.label}
+                      </span>
+                    </div>
+                    <div className="flex-1 px-4 py-3">
+                      <span className="text-xs font-[family-name:var(--font-jakarta)] text-off-black break-words">
+                        {item.value}
+                      </span>
+                    </div>
+                  </div>
                 ))}
               </div>
             </div>
