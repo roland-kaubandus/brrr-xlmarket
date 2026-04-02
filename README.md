@@ -22,4 +22,5 @@ docker compose up -d
 ## Docs
 
 - [Projekti plaan](docs/PROJECT-PLAN.md)
+- [Deploy juhend](docs/DEPLOY.md)
 - [Work orderid](work-orders/)
