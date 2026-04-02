@@ -217,6 +217,34 @@ function getAdditionalMetadata(metadata?: Record<string, unknown>): Array<{ labe
     .filter(Boolean) as Array<{ label: string; value: string }>
 }
 
+function getProductTypeTrail(metadata?: Record<string, unknown>): string[] {
+  const raw = stringifyScalar(metadata?.vevor_product_type)
+  if (!raw) return []
+  return raw
+    .split(">")
+    .map((segment) => segment.trim())
+    .filter(Boolean)
+}
+
+function getQuickFacts(params: {
+  imageCount: number
+  manualCount: number
+  variantCount: number
+  metadata?: Record<string, unknown>
+}) {
+  const facts: Array<{ label: string; value: string }> = []
+  const weight = stringifyScalar(params.metadata?.weight_kg)
+  const translated = params.metadata?.translated === true
+
+  if (params.imageCount > 0) facts.push({ label: "Pildid", value: String(params.imageCount) })
+  if (params.manualCount > 0) facts.push({ label: "Manuaalid", value: String(params.manualCount) })
+  if (params.variantCount > 1) facts.push({ label: "Variandid", value: String(params.variantCount) })
+  if (weight && weight !== "0") facts.push({ label: "Kaal", value: `${weight} kg` })
+  if (translated) facts.push({ label: "Keel", value: "Eesti + algallikas" })
+
+  return facts
+}
+
 function truncate(str: string, max: number): string {
   if (str.length <= max) return str
   return str.substring(0, max).trimEnd() + "..."
@@ -251,6 +279,15 @@ export default async function ProductPage({ params }: Props) {
   )
   const metadataHighlights = getMetadataHighlights(product.metadata)
   const additionalMetadata = getAdditionalMetadata(product.metadata)
+  const productTypeTrail = getProductTypeTrail(metadata)
+  const originalTitle = stringifyScalar(metadata.original_title)
+  const sourceLink = stringifyScalar(metadata.vevor_link)
+  const quickFacts = getQuickFacts({
+    imageCount: images.length,
+    manualCount: manualLinks.length,
+    variantCount: product.variants?.length || 0,
+    metadata,
+  })
 
   const categoryId = product.categories?.[0]?.id
   const [similarRes, koosRes] = await Promise.all([
@@ -334,6 +371,19 @@ export default async function ProductPage({ params }: Props) {
 
         {/* Info */}
         <div>
+          {productTypeTrail.length > 0 && (
+            <div className="flex flex-wrap gap-2 mb-4">
+              {productTypeTrail.map((segment, index) => (
+                <span
+                  key={`${segment}-${index}`}
+                  className="inline-flex items-center rounded-full bg-silver px-3 py-1 text-[11px] font-medium uppercase tracking-[0.08em] text-muted"
+                >
+                  {segment}
+                </span>
+              ))}
+            </div>
+          )}
+
           <h1 className="text-2xl md:text-3xl font-[800] font-[family-name:var(--font-outfit)] text-off-black leading-tight tracking-tight mb-3">
             {product.title}
           </h1>
@@ -347,6 +397,22 @@ export default async function ProductPage({ params }: Props) {
 
           {/* Tarne / Garantii / Tagastus accordion — XLM-31 */}
           <ProductInfoAccordion />
+
+          {quickFacts.length > 0 && (
+            <div className="mt-6 border-t border-soft-border pt-6">
+              <h2 className="text-base font-semibold font-[family-name:var(--font-outfit)] text-off-black mb-4">
+                Kiirulevaade
+              </h2>
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                {quickFacts.map((fact) => (
+                  <div key={fact.label} className="rounded-2xl border border-soft-border bg-silver px-4 py-4">
+                    <p className="text-[11px] uppercase tracking-[0.12em] text-muted mb-1">{fact.label}</p>
+                    <p className="text-base font-semibold text-off-black">{fact.value}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
 
           {metadataHighlights.length > 0 && (
             <div className="mt-6 border-t border-soft-border pt-6">
@@ -454,6 +520,29 @@ export default async function ProductPage({ params }: Props) {
                   __html: sanitizeHtml(product.description),
                 }}
               />
+
+              {(originalTitle || sourceLink) && (
+                <div className="mt-6 rounded-2xl border border-soft-border bg-silver px-4 py-4">
+                  <h3 className="text-sm font-semibold font-[family-name:var(--font-outfit)] text-off-black mb-2">
+                    Allikainfo
+                  </h3>
+                  {originalTitle && (
+                    <p className="text-sm text-muted leading-relaxed mb-2">
+                      <span className="font-medium text-off-black">Algne nimetus:</span> {originalTitle}
+                    </p>
+                  )}
+                  {sourceLink && (
+                    <a
+                      href={sourceLink}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-sm font-medium text-accent hover:text-accent-dark"
+                    >
+                      Ava tootja algne tooteleht
+                    </a>
+                  )}
+                </div>
+              )}
             </div>
           )}
         </div>
