@@ -237,10 +237,10 @@ export default async function ProductPage({ params }: Props) {
     ? (metadata.selling_points as string[])
     : feedEntry?.sellingPoints || []
 
-  // Dimensions from metadata or feed cache
-  const dimensions = (metadata.dimensions && typeof metadata.dimensions === "object")
-    ? metadata.dimensions as { high?: number; wide?: number; long?: number; unit?: string }
-    : feedEntry?.dimensions || null
+  // Rich description HTML from VEVOR feed (description_html with images)
+  const richDescription = typeof metadata.rich_description === "string" && metadata.rich_description.length > 50
+    ? metadata.rich_description
+    : null
 
   const categoryId = product.categories?.[0]?.id
   const [similarRes, koosRes] = await Promise.all([
@@ -455,8 +455,23 @@ export default async function ProductPage({ params }: Props) {
         </section>
       )}
 
-      {/* Toote kirjeldus */}
-      {mainDescriptionHtml && (
+      {/* Rich description from VEVOR (with images) */}
+      {richDescription && (
+        <section className="mt-12 pt-10 border-t border-soft-border">
+          <h2 className="text-xl font-semibold font-[family-name:var(--font-outfit)] text-off-black mb-6">
+            Toote kirjeldus
+          </h2>
+          <div
+            className="rich-desc text-off-black text-sm font-[family-name:var(--font-jakarta)] leading-relaxed [&_img]:rounded-xl [&_img]:my-6 [&_img]:w-full [&_img]:max-w-4xl [&_h2]:font-[family-name:var(--font-outfit)] [&_h2]:font-bold [&_h2]:text-lg [&_h2]:mt-8 [&_h2]:mb-3 [&_h3]:font-[family-name:var(--font-outfit)] [&_h3]:font-bold [&_h3]:text-base [&_h3]:mt-6 [&_h3]:mb-2 [&_p]:mb-3 [&_p]:text-muted [&_b]:text-off-black [&_strong]:text-off-black [&_ul]:pl-5 [&_ul]:list-disc [&_li]:mb-1 [&_li]:text-muted [&_a]:text-accent [&_a]:underline"
+            dangerouslySetInnerHTML={{
+              __html: sanitizeHtml(richDescription),
+            }}
+          />
+        </section>
+      )}
+
+      {/* Plain description fallback */}
+      {!richDescription && mainDescriptionHtml && (
         <section className="mt-12 pt-10 border-t border-soft-border">
           <h2 className="text-xl font-semibold font-[family-name:var(--font-outfit)] text-off-black mb-6">
             Toote kirjeldus
