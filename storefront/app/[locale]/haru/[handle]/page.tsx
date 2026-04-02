@@ -4,10 +4,12 @@ import { getProducts, getCategories } from "@/lib/medusa"
 import { searchProducts } from "@/lib/meilisearch"
 import { BRANCHES, getBranchBySlug } from "@/lib/branches"
 import ProductCard from "@/components/ProductCard"
+import CategoryFilters from "@/components/CategoryFilters"
 
 export const revalidate = 300
 const BRANCH_PRODUCTS_PREVIEW = 24
 const SUBCATEGORY_PRODUCTS_PREVIEW = 6
+const ITEMS_PER_PAGE = 24
 
 function mapSearchHitToProduct(hit: any) {
   return {
@@ -40,6 +42,7 @@ function mapSearchHitToProduct(hit: any) {
 
 type Props = {
   params: Promise<{ handle: string; locale: string }>
+  searchParams: Promise<{ leht?: string; sort?: string; min?: string; max?: string; cat?: string; in_stock?: string }>
 }
 
 export async function generateMetadata({ params }: Props) {
@@ -62,12 +65,23 @@ export function generateStaticParams() {
   return BRANCHES.map((b) => ({ handle: b.slug }))
 }
 
-export default async function BranchLandingPage({ params }: Props) {
+const SORT_MAP: Record<string, string[]> = {
+  odavamad: ["price:asc"],
+  kallimad: ["price:desc"],
+  uusimad: ["created_at:desc"],
+}
+
+export default async function BranchLandingPage({ params, searchParams }: Props) {
   const { handle, locale } = await params
+  const { leht, sort, min, max, cat, in_stock } = await searchParams
   const branch = getBranchBySlug(handle)
   if (!branch) notFound()
 
   const allCategories = await getCategories()
+  const page = Math.max(1, parseInt(leht || "1", 10) || 1)
+  const offset = (page - 1) * ITEMS_PER_PAGE
+  const currentSort = sort || ""
+  const currentInStock = in_stock === "1"
 
   const parentCategory = branch.categoryHandle
     ? allCategories.find((c) => c.handle === branch.categoryHandle) ?? null
@@ -76,24 +90,37 @@ export default async function BranchLandingPage({ params }: Props) {
   const subcategories = parentCategory
     ? allCategories.filter((c) => c.parent_category_id === parentCategory.id)
     : []
+  const selectedSubcategory = cat
+    ? subcategories.find((subcategory) => subcategory.handle === cat) ?? null
+    : null
+  const branchFilters = [`category_handles = "${branch.categoryHandle}"`]
+  if (selectedSubcategory) branchFilters.push(`category_handles = "${selectedSubcategory.handle}"`)
+  if (min) branchFilters.push(`price >= ${parseFloat(min)}`)
+  if (max) branchFilters.push(`price <= ${parseFloat(max)}`)
+  if (currentInStock) branchFilters.push("in_stock = true")
 
   let products: any[] = []
   let totalCount = 0
+  let facetDistribution: Record<string, Record<string, number>> | undefined
+  let facetStats: Record<string, { min: number; max: number }> | undefined
 
   if (branch.categoryHandle) {
     try {
       const meiliResult = await searchProducts({
         q: "",
-        limit: BRANCH_PRODUCTS_PREVIEW,
-        offset: 0,
-        filter: [`category_handles = "${branch.categoryHandle}"`],
-        sort: ["created_at:desc"],
+        limit: ITEMS_PER_PAGE,
+        offset,
+        filter: branchFilters,
+        sort: SORT_MAP[currentSort] || ["created_at:desc"],
+        facets: ["category_handles", "price", "in_stock"],
       })
       totalCount = meiliResult.totalHits || meiliResult.estimatedTotalHits || 0
+      facetDistribution = meiliResult.facetDistribution
+      facetStats = meiliResult.facetStats
       products = meiliResult.hits.map(mapSearchHitToProduct)
     } catch {
       if (parentCategory) {
-        const res = await getProducts({ category_id: [parentCategory.id], limit: BRANCH_PRODUCTS_PREVIEW, order: "-created_at" })
+        const res = await getProducts({ category_id: [parentCategory.id], limit: ITEMS_PER_PAGE, offset, order: "-created_at" })
         products = res.products
         totalCount = res.count
       }
@@ -127,6 +154,32 @@ export default async function BranchLandingPage({ params }: Props) {
   }
 
   const otherBranches = BRANCHES.filter((b) => b.slug !== handle).slice(0, 5)
+  const totalPages = Math.max(1, Math.ceil(totalCount / ITEMS_PER_PAGE))
+  const priceRange = facetStats?.price
+    ? { min: Math.floor(facetStats.price.min), max: Math.ceil(facetStats.price.max) }
+    : undefined
+  const activeBrowseFilters = Boolean(currentSort || min || max || currentInStock || selectedSubcategory || page > 1)
+  const categoryCounts = facetDistribution?.category_handles || {}
+
+  function branchUrl(overrides: Record<string, string>) {
+    const params = new URLSearchParams()
+    const nextPage = overrides.leht ?? String(page)
+    const nextSort = overrides.sort ?? currentSort
+    const nextMin = overrides.min ?? min ?? ""
+    const nextMax = overrides.max ?? max ?? ""
+    const nextCat = overrides.cat ?? selectedSubcategory?.handle ?? ""
+    const nextInStock = overrides.in_stock ?? (currentInStock ? "1" : "")
+
+    if (nextPage && nextPage !== "1") params.set("leht", nextPage)
+    if (nextSort) params.set("sort", nextSort)
+    if (nextMin) params.set("min", nextMin)
+    if (nextMax) params.set("max", nextMax)
+    if (nextCat) params.set("cat", nextCat)
+    if (nextInStock) params.set("in_stock", nextInStock)
+
+    const query = params.toString()
+    return query ? `/${locale}/haru/${handle}?${query}` : `/${locale}/haru/${handle}`
+  }
 
   return (
     <>
@@ -212,20 +265,43 @@ export default async function BranchLandingPage({ params }: Props) {
               )}
             </div>
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 gap-3">
+              <Link
+                href={branchUrl({ cat: "", leht: "1" })}
+                className={`group flex min-h-[152px] flex-col items-center justify-center py-6 rounded-2xl border card-lift transition-all duration-300 text-center ${
+                  !selectedSubcategory
+                    ? "border-accent bg-accent-light"
+                    : "bg-silver hover:bg-accent-light border-transparent hover:border-accent/10"
+                }`}
+              >
+                <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center mb-3 shadow-[0_2px_12px_rgba(0,0,0,0.04)]">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={!selectedSubcategory ? "text-accent" : "text-muted group-hover:text-accent transition-colors"}>
+                    <path d="M3 12h18"/><path d="M12 3v18"/>
+                  </svg>
+                </div>
+                <span className={`text-sm font-semibold px-2 line-clamp-2 ${!selectedSubcategory ? "text-accent" : "text-off-black group-hover:text-accent transition-colors duration-300"}`}>
+                  Kõik kategooriad
+                </span>
+                <span className="text-xs text-muted mt-1">{totalCount.toLocaleString("et-EE")} toodet</span>
+              </Link>
               {subcategories.map((sub) => (
                 <Link
                   key={sub.id}
-                  href={`/${locale}/kategooriad/${sub.handle}`}
-                  className="group flex min-h-[152px] flex-col items-center justify-center py-6 bg-silver rounded-2xl hover:bg-accent-light border border-transparent hover:border-accent/10 card-lift transition-all duration-300 text-center"
+                  href={branchUrl({ cat: sub.handle, leht: "1" })}
+                  className={`group flex min-h-[152px] flex-col items-center justify-center py-6 rounded-2xl border card-lift transition-all duration-300 text-center ${
+                    selectedSubcategory?.handle === sub.handle
+                      ? "border-accent bg-accent-light"
+                      : "bg-silver hover:bg-accent-light border-transparent hover:border-accent/10"
+                  }`}
                 >
                   <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center mb-3 shadow-[0_2px_12px_rgba(0,0,0,0.04)] group-hover:shadow-[0_4px_16px_rgba(249,115,22,0.12)] transition-shadow duration-300">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-muted group-hover:text-accent transition-colors">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={selectedSubcategory?.handle === sub.handle ? "text-accent" : "text-muted group-hover:text-accent transition-colors"}>
                       <rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 3l-4 4-4-4"/>
                     </svg>
                   </div>
-                  <span className="text-sm font-semibold text-off-black group-hover:text-accent transition-colors duration-300 px-2 line-clamp-2">
+                  <span className={`text-sm font-semibold px-2 line-clamp-2 ${selectedSubcategory?.handle === sub.handle ? "text-accent" : "text-off-black group-hover:text-accent transition-colors duration-300"}`}>
                     {sub.name}
                   </span>
+                  <span className="text-xs text-muted mt-1">{(categoryCounts[sub.handle] || 0).toLocaleString("et-EE")} toodet</span>
                 </Link>
               ))}
             </div>
@@ -234,7 +310,7 @@ export default async function BranchLandingPage({ params }: Props) {
       )}
 
       {/* PRODUCTS BY CATEGORY */}
-      {subcategoryProducts.length > 0 ? (
+      {!activeBrowseFilters && subcategoryProducts.length > 0 ? (
         <>
           {subcategoryProducts.map((catGroup, idx) => (
             <section key={catGroup.category.id} className={`py-16 md:py-24 ${idx % 2 === 0 ? "bg-white" : "bg-off-white"}`}>
@@ -265,16 +341,21 @@ export default async function BranchLandingPage({ params }: Props) {
         </>
       ) : null}
 
-      {products.length > 0 ? (
+      {branch.categoryHandle ? (
         <section className={`py-16 md:py-24 ${subcategoryProducts.length > 0 ? "bg-white border-t border-soft-border" : "bg-white"}`}>
           <div className="max-w-[1400px] mx-auto px-4">
             <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-10">
               <div>
                 <h2 className="font-[family-name:var(--font-outfit)] font-[700] text-2xl md:text-3xl tracking-tight">
-                  Kõik selle valdkonna tooted
+                  {selectedSubcategory ? `${selectedSubcategory.name} tooted` : "Kõik selle valdkonna tooted"}
                 </h2>
                 <p className="text-muted text-sm mt-2">
                   Kuvame siin {products.length} toodet {totalCount.toLocaleString("et-EE")} tootest.
+                  {priceRange && (
+                    <span className="ml-2">
+                      ({priceRange.min}€ – {priceRange.max}€)
+                    </span>
+                  )}
                 </p>
               </div>
               {branch.categoryHandle && (
@@ -287,11 +368,65 @@ export default async function BranchLandingPage({ params }: Props) {
                 </Link>
               )}
             </div>
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-5">
-              {products.map((product: any) => (
-                <ProductCard key={product.id} product={product} />
-              ))}
-            </div>
+
+            <CategoryFilters
+              currentSort={currentSort}
+              currentMin={min}
+              currentMax={max}
+              currentInStock={currentInStock}
+              basePath={`/${locale}/haru/${handle}`}
+              totalProducts={totalCount}
+              heading="Valdkonna filtrid"
+              showInStockToggle
+              preservedParams={selectedSubcategory ? { cat: selectedSubcategory.handle } : undefined}
+            />
+
+            {products.length > 0 ? (
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-5">
+                {products.map((product: any) => (
+                  <ProductCard key={product.id} product={product} />
+                ))}
+              </div>
+            ) : (
+              <div className="rounded-2xl border border-soft-border bg-silver px-6 py-12 text-center">
+                <h3 className="font-[family-name:var(--font-outfit)] font-[700] text-xl text-off-black mb-2">
+                  Selle filtriga tooteid ei leitud
+                </h3>
+                <p className="text-sm text-muted max-w-xl mx-auto mb-5">
+                  Proovi teist alamkategooriat, laiemaid hinnapiire või tühista aktiivsed filtrid.
+                </p>
+                <Link
+                  href={`/${locale}/haru/${handle}`}
+                  className="inline-flex items-center gap-2 px-5 py-3 bg-accent hover:bg-accent-dark text-white text-sm font-semibold rounded-xl btn-press transition-all duration-300"
+                >
+                  Tühista kõik filtrid
+                </Link>
+              </div>
+            )}
+
+            {products.length > 0 && totalPages > 1 && (
+              <nav className="flex justify-center items-center gap-3 mt-10" aria-label="Leheküljed">
+                {page > 1 && (
+                  <Link
+                    href={branchUrl({ leht: String(page - 1) })}
+                    className="px-4 py-2.5 border border-soft-border text-sm font-medium text-off-black hover:border-accent hover:text-accent transition-colors rounded-xl"
+                  >
+                    &larr; Eelmine
+                  </Link>
+                )}
+                <span className="text-sm text-muted">
+                  {page} / {totalPages}
+                </span>
+                {page < totalPages && (
+                  <Link
+                    href={branchUrl({ leht: String(page + 1) })}
+                    className="px-4 py-2.5 border border-soft-border text-sm font-medium text-off-black hover:border-accent hover:text-accent transition-colors rounded-xl"
+                  >
+                    Järgmine &rarr;
+                  </Link>
+                )}
+              </nav>
+            )}
           </div>
         </section>
       ) : (
