@@ -337,9 +337,18 @@ export default async function ProductPage({ params }: Props) {
             </div>
           )}
 
-          <h1 className="text-2xl md:text-3xl font-[800] font-[family-name:var(--font-outfit)] text-off-black leading-tight tracking-tight mb-3">
+          <h1 className="text-xl md:text-2xl font-bold font-[family-name:var(--font-outfit)] text-off-black leading-tight tracking-tight mb-3">
             {product.title}
           </h1>
+
+          {mainDescriptionHtml && (
+            <div
+              className="text-sm text-muted font-[family-name:var(--font-jakarta)] leading-relaxed mb-4 line-clamp-4 [&_br]:hidden [&_p]:inline"
+              dangerouslySetInnerHTML={{
+                __html: sanitizeHtml(mainDescriptionHtml),
+              }}
+            />
+          )}
 
           <ProductPurchasePanel
             locale={locale}
