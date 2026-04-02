@@ -5,6 +5,7 @@ import { searchProducts } from "@/lib/meilisearch"
 import { BRANCHES, getBranchBySlug } from "@/lib/branches"
 import ProductCard from "@/components/ProductCard"
 import BranchFilters from "@/components/BranchFilters"
+import SubcategoryGrid from "@/components/SubcategoryGrid"
 
 export const revalidate = 300
 const DEFAULT_LIMIT = 12
@@ -231,66 +232,14 @@ export default async function BranchLandingPage({ params, searchParams }: Props)
         <section className="py-12 md:py-16 bg-white">
           <div className="max-w-[1400px] mx-auto px-4">
 
-            {/* Tootegrupid (subcategory icon cards) */}
+            {/* Tootegrupid — top 8, expand button for rest */}
             {subcategories.length > 0 && (
-              <div className="mb-8">
-                <h2 className="font-[family-name:var(--font-outfit)] font-[700] text-xl tracking-tight mb-5">
-                  Tootegrupid
-                </h2>
-                <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-3">
-                  <Link
-                    href={branchUrl({ cat: "", limit: "" })}
-                    className={`group flex flex-col items-center justify-center rounded-2xl border bg-white px-3 py-5 text-center transition-all duration-300 ${
-                      !selectedSubcategory
-                        ? "border-accent shadow-[0_8px_24px_rgba(232,101,10,0.08)]"
-                        : "border-soft-border hover:border-accent/30"
-                    }`}
-                  >
-                    <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-3 ${
-                      !selectedSubcategory ? "bg-accent/10" : "bg-silver group-hover:bg-accent/10"
-                    }`}>
-                      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={!selectedSubcategory ? "#E8650A" : "#6B7280"} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                        <rect x="3" y="3" width="7" height="7" rx="1.5" />
-                        <rect x="14" y="3" width="7" height="7" rx="1.5" />
-                        <rect x="3" y="14" width="7" height="7" rx="1.5" />
-                        <rect x="14" y="14" width="7" height="7" rx="1.5" />
-                      </svg>
-                    </div>
-                    <span className={`text-xs font-semibold leading-tight ${!selectedSubcategory ? "text-accent" : "text-off-black group-hover:text-accent"}`}>
-                      Koik kategooriad
-                    </span>
-                    <span className="mt-1.5 text-[10px] text-muted">{totalCount.toLocaleString("et-EE")} toodet</span>
-                  </Link>
-                  {subcategories.map((sub) => {
-                    const isActive = selectedSubcategory?.handle === sub.handle
-                    const count = sub.count
-                    return (
-                      <Link
-                        key={sub.id}
-                        href={branchUrl({ cat: sub.handle, limit: "" })}
-                        className={`group flex flex-col items-center justify-center rounded-2xl border bg-white px-3 py-5 text-center transition-all duration-300 ${
-                          isActive
-                            ? "border-accent shadow-[0_8px_24px_rgba(232,101,10,0.08)]"
-                            : "border-soft-border hover:border-accent/30"
-                        }`}
-                      >
-                        <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-3 ${
-                          isActive ? "bg-accent/10" : "bg-silver group-hover:bg-accent/10"
-                        }`}>
-                          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={isActive ? "#E8650A" : "#6B7280"} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                            <path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z" />
-                            <line x1="7" y1="7" x2="7.01" y2="7" />
-                          </svg>
-                        </div>
-                        <span className={`text-xs font-semibold leading-tight ${isActive ? "text-accent" : "text-off-black group-hover:text-accent"}`}>
-                          {sub.name}
-                        </span>
-                        <span className="mt-1.5 text-[10px] text-muted">{count.toLocaleString("et-EE")} toodet</span>
-                      </Link>
-                    )
-                  })}
-                </div>
-              </div>
+              <SubcategoryGrid
+                subcategories={subcategories.map((s) => ({ id: s.id, name: s.name, handle: s.handle, count: s.count }))}
+                selectedHandle={selectedSubcategory?.handle || null}
+                buildUrl={(h: string) => branchUrl({ cat: h, limit: "" })}
+                clearUrl={branchUrl({ cat: "", limit: "" })}
+              />
             )}
 
             {/* Compact filter bar */}
