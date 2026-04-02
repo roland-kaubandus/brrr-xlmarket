@@ -4,7 +4,6 @@ import { getProducts, getCategories } from "@/lib/medusa"
 import { searchProducts } from "@/lib/meilisearch"
 import { BRANCHES, getBranchBySlug } from "@/lib/branches"
 import ProductCard from "@/components/ProductCard"
-import CategoryFilters from "@/components/CategoryFilters"
 
 export const revalidate = 300
 const BRANCH_PRODUCTS_PREVIEW = 24
@@ -161,6 +160,14 @@ export default async function BranchLandingPage({ params, searchParams }: Props)
   const activeBrowseFilters = Boolean(currentSort || min || max || currentInStock || selectedSubcategory || page > 1)
   const categoryCounts = facetDistribution?.category_handles || {}
   const hasBranchProducts = totalCount > 0
+  const branchBasePath = `/${locale}/haru/${handle}`
+
+  const sortOptions = [
+    { value: "", label: "Uusimad esmalt" },
+    { value: "uusimad", label: "Uusimad" },
+    { value: "odavamad", label: "Odavamad" },
+    { value: "kallimad", label: "Kallimad" },
+  ]
 
   function branchUrl(overrides: Record<string, string>) {
     const params = new URLSearchParams()
@@ -247,136 +254,193 @@ export default async function BranchLandingPage({ params, searchParams }: Props)
       )}
 
       {branch.categoryHandle && hasBranchProducts && (
-        <section className="py-8 md:py-10 bg-white border-b border-soft-border">
-          <div className="max-w-[1400px] mx-auto px-4">
-            <CategoryFilters
-              currentSort={currentSort}
-              currentMin={min}
-              currentMax={max}
-              currentInStock={currentInStock}
-              basePath={`/${locale}/haru/${handle}`}
-              totalProducts={totalCount}
-              heading="Valdkonna filtrid"
-              showInStockToggle
-              preservedParams={selectedSubcategory ? { cat: selectedSubcategory.handle } : undefined}
-            />
-          </div>
-        </section>
-      )}
-
-      {/* CATEGORY CARDS */}
-      {subcategories.length > 0 && (
         <section className="py-12 md:py-16 bg-white">
           <div className="max-w-[1400px] mx-auto px-4">
             <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-8">
               <div>
-                <h2 className="font-[family-name:var(--font-outfit)] font-[700] text-2xl md:text-3xl tracking-tight">Kategooriad</h2>
-                <p className="text-muted text-sm mt-2">Sirvi kogu valdkonda alamkategooriate kaupa.</p>
+                <h2 className="font-[family-name:var(--font-outfit)] font-[700] text-2xl md:text-3xl tracking-tight">
+                  {subcategories.length > 0 ? "Valdkonna kategooriad" : "Valdkonna filtrid"}
+                </h2>
+                <p className="text-muted text-sm mt-2">
+                  {subcategories.length > 0
+                    ? "Sirvi valdkonda alamkategooriate kaupa või kitsenda valikut filtritega."
+                    : "Alamkategooriate puu on veel sidumisel, aga saad juba valiku kiiresti kitsendada."}
+                </p>
               </div>
-              {branch.categoryHandle && (
-                <Link
-                  href={`/${locale}/kategooriad/${branch.categoryHandle}`}
-                  className="inline-flex items-center gap-2 text-sm font-medium text-accent hover:text-accent-dark transition-colors"
+              <form action={branchBasePath} method="get" className="flex flex-wrap items-end gap-3 md:justify-end">
+                {selectedSubcategory && <input type="hidden" name="cat" value={selectedSubcategory.handle} />}
+                <label className="flex flex-col gap-1 text-xs text-muted">
+                  Min hind
+                  <input
+                    type="number"
+                    name="min"
+                    min="0"
+                    defaultValue={min || ""}
+                    placeholder="0"
+                    className="w-24 rounded-xl border border-soft-border bg-white px-3 py-2 text-sm text-off-black outline-none transition-colors focus:border-accent"
+                  />
+                </label>
+                <label className="flex flex-col gap-1 text-xs text-muted">
+                  Max hind
+                  <input
+                    type="number"
+                    name="max"
+                    min="0"
+                    defaultValue={max || ""}
+                    placeholder="9999"
+                    className="w-28 rounded-xl border border-soft-border bg-white px-3 py-2 text-sm text-off-black outline-none transition-colors focus:border-accent"
+                  />
+                </label>
+                <label className="flex flex-col gap-1 text-xs text-muted">
+                  Sorteeri
+                  <select
+                    name="sort"
+                    defaultValue={currentSort}
+                    className="min-w-[150px] rounded-xl border border-soft-border bg-white px-3 py-2 text-sm text-off-black outline-none transition-colors focus:border-accent"
+                  >
+                    {sortOptions.map((option) => (
+                      <option key={option.value || "default"} value={option.value}>
+                        {option.label}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+                <label className="inline-flex items-center gap-2 rounded-xl border border-soft-border px-3 py-2 text-sm text-off-black">
+                  <input
+                    type="checkbox"
+                    name="in_stock"
+                    value="1"
+                    defaultChecked={currentInStock}
+                    className="accent-[#E8650A]"
+                  />
+                  Ainult laos
+                </label>
+                <button
+                  type="submit"
+                  className="inline-flex h-[42px] items-center justify-center rounded-xl bg-accent px-5 text-sm font-semibold text-white transition-colors hover:bg-accent-dark"
                 >
-                  Vaata kogu valdkonda
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6"/></svg>
-                </Link>
-              )}
-            </div>
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 gap-3">
-              <Link
-                href={branchUrl({ cat: "", leht: "1" })}
-                className={`group flex min-h-[152px] flex-col items-center justify-center py-6 rounded-2xl border card-lift transition-all duration-300 text-center ${
-                  !selectedSubcategory
-                    ? "border-accent bg-accent-light"
-                    : "bg-silver hover:bg-accent-light border-transparent hover:border-accent/10"
-                }`}
-              >
-                <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center mb-3 shadow-[0_2px_12px_rgba(0,0,0,0.04)]">
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={!selectedSubcategory ? "text-accent" : "text-muted group-hover:text-accent transition-colors"}>
-                    <path d="M3 12h18"/><path d="M12 3v18"/>
-                  </svg>
-                </div>
-                <span className={`text-sm font-semibold px-2 line-clamp-2 ${!selectedSubcategory ? "text-accent" : "text-off-black group-hover:text-accent transition-colors duration-300"}`}>
-                  Kõik kategooriad
-                </span>
-                <span className="text-xs text-muted mt-1">{totalCount.toLocaleString("et-EE")} toodet</span>
-              </Link>
-              {subcategories.map((sub) => (
+                  Rakenda filtrid
+                </button>
                 <Link
-                  key={sub.id}
-                  href={branchUrl({ cat: sub.handle, leht: "1" })}
+                  href={selectedSubcategory ? branchUrl({ cat: selectedSubcategory.handle, sort: "", min: "", max: "", in_stock: "", leht: "1" }) : branchBasePath}
+                  className="inline-flex h-[42px] items-center justify-center rounded-xl border border-soft-border px-5 text-sm font-medium text-off-black transition-colors hover:border-accent hover:text-accent"
+                >
+                  Tühista filtrid
+                </Link>
+              </form>
+            </div>
+            {subcategories.length > 0 ? (
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 gap-3">
+                <Link
+                  href={branchUrl({ cat: "", leht: "1" })}
                   className={`group flex min-h-[152px] flex-col items-center justify-center py-6 rounded-2xl border card-lift transition-all duration-300 text-center ${
-                    selectedSubcategory?.handle === sub.handle
+                    !selectedSubcategory
                       ? "border-accent bg-accent-light"
                       : "bg-silver hover:bg-accent-light border-transparent hover:border-accent/10"
                   }`}
                 >
-                  <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center mb-3 shadow-[0_2px_12px_rgba(0,0,0,0.04)] group-hover:shadow-[0_4px_16px_rgba(249,115,22,0.12)] transition-shadow duration-300">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={selectedSubcategory?.handle === sub.handle ? "text-accent" : "text-muted group-hover:text-accent transition-colors"}>
-                      <rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 3l-4 4-4-4"/>
+                  <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center mb-3 shadow-[0_2px_12px_rgba(0,0,0,0.04)]">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={!selectedSubcategory ? "text-accent" : "text-muted group-hover:text-accent transition-colors"}>
+                      <path d="M3 12h18"/><path d="M12 3v18"/>
                     </svg>
                   </div>
-                  <span className={`text-sm font-semibold px-2 line-clamp-2 ${selectedSubcategory?.handle === sub.handle ? "text-accent" : "text-off-black group-hover:text-accent transition-colors duration-300"}`}>
-                    {sub.name}
+                  <span className={`text-sm font-semibold px-2 line-clamp-2 ${!selectedSubcategory ? "text-accent" : "text-off-black group-hover:text-accent transition-colors duration-300"}`}>
+                    Kõik kategooriad
                   </span>
-                  <span className="text-xs text-muted mt-1">{(categoryCounts[sub.handle] || 0).toLocaleString("et-EE")} toodet</span>
+                  <span className="text-xs text-muted mt-1">{totalCount.toLocaleString("et-EE")} toodet</span>
                 </Link>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
+                {subcategories.map((sub) => (
+                  <Link
+                    key={sub.id}
+                    href={branchUrl({ cat: sub.handle, leht: "1" })}
+                    className={`group flex min-h-[152px] flex-col items-center justify-center py-6 rounded-2xl border card-lift transition-all duration-300 text-center ${
+                      selectedSubcategory?.handle === sub.handle
+                        ? "border-accent bg-accent-light"
+                        : "bg-silver hover:bg-accent-light border-transparent hover:border-accent/10"
+                    }`}
+                  >
+                    <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center mb-3 shadow-[0_2px_12px_rgba(0,0,0,0.04)] group-hover:shadow-[0_4px_16px_rgba(249,115,22,0.12)] transition-shadow duration-300">
+                      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={selectedSubcategory?.handle === sub.handle ? "text-accent" : "text-muted group-hover:text-accent transition-colors"}>
+                        <rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 3l-4 4-4-4"/>
+                      </svg>
+                    </div>
+                    <span className={`text-sm font-semibold px-2 line-clamp-2 ${selectedSubcategory?.handle === sub.handle ? "text-accent" : "text-off-black group-hover:text-accent transition-colors duration-300"}`}>
+                      {sub.name}
+                    </span>
+                    <span className="text-xs text-muted mt-1">{(categoryCounts[sub.handle] || 0).toLocaleString("et-EE")} toodet</span>
+                  </Link>
+                ))}
+              </div>
+            ) : (
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                {[
+                  {
+                    title: "Kõik tooted",
+                    subtitle: `${totalCount.toLocaleString("et-EE")} toodet`,
+                    href: branchUrl({ cat: "", sort: "", min: "", max: "", in_stock: "", leht: "1" }),
+                  },
+                  {
+                    title: "Ainult laos",
+                    subtitle: "Näita kohe saadaval valikut",
+                    href: branchUrl({ in_stock: "1", leht: "1" }),
+                  },
+                  {
+                    title: "Odavamad ees",
+                    subtitle: "Sorteeri hinna järgi kasvavalt",
+                    href: branchUrl({ sort: "odavamad", leht: "1" }),
+                  },
+                  {
+                    title: "Kallimad ees",
+                    subtitle: "Tõsta premium-valik ettepoole",
+                    href: branchUrl({ sort: "kallimad", leht: "1" }),
+                  },
+                ].map((item) => (
+                  <Link
+                    key={item.title}
+                    href={item.href}
+                    className="group rounded-2xl border border-soft-border bg-silver px-5 py-6 hover:border-accent/30 hover:bg-accent-light transition-all duration-300"
+                  >
+                    <h3 className="font-[family-name:var(--font-outfit)] font-[700] text-lg text-off-black group-hover:text-accent transition-colors">
+                      {item.title}
+                    </h3>
+                    <p className="text-sm text-muted mt-2 leading-relaxed">
+                      {item.subtitle}
+                    </p>
+                  </Link>
+                ))}
+              </div>
+            )}
 
-      {branch.categoryHandle && hasBranchProducts && subcategories.length === 0 && (
-        <section className="py-12 md:py-16 bg-white">
-          <div className="max-w-[1400px] mx-auto px-4">
-            <div className="mb-8">
-              <h2 className="font-[family-name:var(--font-outfit)] font-[700] text-2xl md:text-3xl tracking-tight">
-                Sirvi valdkonda
-              </h2>
-              <p className="text-muted text-sm mt-2">
-                Selle valdkonna alamkategooriad on alles sidumisel, aga saad juba valikut kiiresti kitsendada.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-              {[
-                {
-                  title: "Kõik tooted",
-                  subtitle: `${totalCount.toLocaleString("et-EE")} toodet`,
-                  href: branchUrl({ cat: "", sort: "", min: "", max: "", in_stock: "", leht: "1" }),
-                },
-                {
-                  title: "Ainult laos",
-                  subtitle: "Näita kohe saadaval valikut",
-                  href: branchUrl({ in_stock: "1", leht: "1" }),
-                },
-                {
-                  title: "Odavamad ees",
-                  subtitle: "Sorteeri hinna järgi kasvavalt",
-                  href: branchUrl({ sort: "odavamad", leht: "1" }),
-                },
-                {
-                  title: "Uusimad ees",
-                  subtitle: "Vaata värskemat valikut",
-                  href: branchUrl({ sort: "uusimad", leht: "1" }),
-                },
-              ].map((item) => (
-                <Link
-                  key={item.title}
-                  href={item.href}
-                  className="group rounded-2xl border border-soft-border bg-silver px-5 py-6 hover:border-accent/30 hover:bg-accent-light transition-all duration-300"
-                >
-                  <h3 className="font-[family-name:var(--font-outfit)] font-[700] text-lg text-off-black group-hover:text-accent transition-colors">
-                    {item.title}
-                  </h3>
-                  <p className="text-sm text-muted mt-2 leading-relaxed">
-                    {item.subtitle}
-                  </p>
-                </Link>
-              ))}
-            </div>
+            {(currentSort || min || max || currentInStock || selectedSubcategory) && (
+              <div className="mt-4 flex flex-wrap items-center gap-2">
+                <span className="text-xs uppercase tracking-[0.14em] text-muted">Aktiivsed filtrid</span>
+                {selectedSubcategory && (
+                  <span className="inline-flex items-center rounded-full bg-accent-light px-3 py-1 text-xs font-medium text-accent">
+                    {selectedSubcategory.name}
+                  </span>
+                )}
+                {currentInStock && (
+                  <span className="inline-flex items-center rounded-full bg-accent-light px-3 py-1 text-xs font-medium text-accent">
+                    Laos olemas
+                  </span>
+                )}
+                {currentSort && (
+                  <span className="inline-flex items-center rounded-full bg-silver px-3 py-1 text-xs font-medium text-off-black">
+                    Sorteerimine: {currentSort}
+                  </span>
+                )}
+                {min && (
+                  <span className="inline-flex items-center rounded-full bg-silver px-3 py-1 text-xs font-medium text-off-black">
+                    Hind alates {min}€
+                  </span>
+                )}
+                {max && (
+                  <span className="inline-flex items-center rounded-full bg-silver px-3 py-1 text-xs font-medium text-off-black">
+                    Hind kuni {max}€
+                  </span>
+                )}
+              </div>
+            )}
           </div>
         </section>
       )}
