@@ -127,9 +127,11 @@ export default async function BranchLandingPage({ params, searchParams }: Props)
   const categoryCounts = facetDistribution?.category_handles || {}
   const branchBasePath = `/${locale}/haru/${handle}`
 
-  // Build subcategories from facet distribution — use handle as fallback name
+  // Build subcategories from facet distribution
+  // Exclude all branch-level category handles (L1) — only show L2+ subcategories
+  const branchCategoryHandles = new Set(BRANCHES.map((b) => b.categoryHandle).filter(Boolean))
   const subcategories = Object.entries(categoryCounts)
-    .filter(([h]) => h !== branch.categoryHandle)
+    .filter(([h]) => !branchCategoryHandles.has(h))
     .map(([h, count]) => {
       const catObj = allCategories.find((c) => c.handle === h)
       const name = catObj?.name || h.split("-").map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(" ")
