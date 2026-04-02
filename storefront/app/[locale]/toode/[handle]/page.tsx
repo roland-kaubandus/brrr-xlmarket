@@ -172,7 +172,7 @@ function getMetadataHighlights(metadata?: Record<string, unknown>): Array<{ labe
         ? { label: metadataLabel(key), value: "Ava tootja leht", href: value }
         : { label: metadataLabel(key), value: key === "weight_kg" ? `${value} kg` : value }
     })
-    .filter((item): item is { label: string; value: string; href?: string } => Boolean(item))
+    .filter(Boolean) as Array<{ label: string; value: string; href?: string }>
 }
 
 function truncate(str: string, max: number): string {
