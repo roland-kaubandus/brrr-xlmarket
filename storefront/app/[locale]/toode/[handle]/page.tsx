@@ -481,10 +481,10 @@ export default async function ProductPage({ params }: Props) {
                 <p className="text-sm font-semibold text-off-black">{dimensions.high} {dimensions.unit || "cm"}</p>
               </div>
             )}
-            {(feedEntry?.weightKg || metadata.weight_kg) && (
+            {(feedEntry?.weightKg || stringifyScalar(metadata.weight_kg)) && (
               <div className="rounded-xl border border-soft-border bg-silver px-4 py-3">
                 <p className="text-[10px] font-semibold uppercase tracking-[0.1em] text-muted mb-1">Kaal</p>
-                <p className="text-sm font-semibold text-off-black">{feedEntry?.weightKg || metadata.weight_kg} kg</p>
+                <p className="text-sm font-semibold text-off-black">{feedEntry?.weightKg || stringifyScalar(metadata.weight_kg)} kg</p>
               </div>
             )}
           </div>
