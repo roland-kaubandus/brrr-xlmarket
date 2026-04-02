@@ -59,7 +59,7 @@ export const BRANCHES: BranchDef[] = [
     name: "Aed ja maastik",
     nameEn: "Garden",
     slug: "aed-ja-maastik",
-    categoryHandle: "aed-ja-oueala",
+    categoryHandle: "kodu-ja-aed",
     tagline: "Professionaalne haljastus ja aiandus",
     taglineEn: "Professional landscaping and gardening",
     description: "Niidukid, trimmerd, pumpad, kasvuhooned ja maastikuhoolduse seadmed. Sinu aed väärib parimat.",
