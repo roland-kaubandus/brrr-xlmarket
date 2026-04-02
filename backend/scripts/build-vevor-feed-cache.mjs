@@ -88,6 +88,8 @@ function mapRow(headers, row) {
   const attributeName2 = normalizeText(values["attribute_name_2"])
   const attributeValue2 = normalizeText(values["attribute_2"])
 
+  // Cache stores only what storefront needs for real-time lookups.
+  // Heavy data (images, selling points, dimensions) go into Medusa metadata via import script.
   return {
     sku,
     upc,
@@ -101,8 +103,6 @@ function mapRow(headers, row) {
     weightKg: normalizeDecimal(values["Product weight(KG)"]),
     shippingWeightKg,
     image: normalizeText(values["Image link"]),
-    originalImages,
-    galleryImages,
     brand: normalizeText(values["Brand"]),
     productType: normalizeText(values["Product type"]),
     sellingPoints,
@@ -112,12 +112,7 @@ function mapRow(headers, row) {
       long: dimensionLong,
       unit: dimensionUnit,
     } : null,
-    attributes: (attributeName1 || attributeName2) ? [
-      ...(attributeName1 ? [{ name: attributeName1, value: attributeValue1 }] : []),
-      ...(attributeName2 ? [{ name: attributeName2, value: attributeValue2 }] : []),
-    ] : null,
     spu: normalizeText(values["goods_spu"]),
-    mainOriginalImage: normalizeText(values["goods_main_original_picture"]),
   }
 }
 
