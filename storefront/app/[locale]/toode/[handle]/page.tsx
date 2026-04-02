@@ -11,6 +11,7 @@ import ProductCard from "@/components/ProductCard"
 import JsonLdProduct from "@/components/JsonLdProduct"
 import JsonLdBreadcrumb from "@/components/JsonLdBreadcrumb"
 import ProductPurchasePanel from "./ProductPurchasePanel"
+import { getProductMedia } from "@/lib/product-media"
 
 
 export const revalidate = 300
@@ -23,6 +24,12 @@ export async function generateMetadata({ params }: Props) {
   const { handle, locale } = await params
   const product = await getProduct(handle)
   if (!product) return { title: "Toode — XLMARKET" }
+  const metadata = product.metadata || {}
+  const media = await getProductMedia({
+    vevorUpc: stringifyScalar(metadata.vevor_upc),
+    vevorSku: stringifyScalar(metadata.vevor_sku),
+  })
+  const ogImage = media.images[0]?.url || product.thumbnail
   const desc = product.description
     ? product.description.replace(/<[^>]*>/g, "").substring(0, 160)
     : product.title
@@ -32,14 +39,14 @@ export async function generateMetadata({ params }: Props) {
     openGraph: {
       title: product.title,
       description: desc,
-      images: product.thumbnail ? [{ url: product.thumbnail }] : [],
+      images: ogImage ? [{ url: ogImage }] : [],
       type: "website",
     },
     twitter: {
-      card: product.thumbnail ? "summary_large_image" : "summary",
+      card: ogImage ? "summary_large_image" : "summary",
       title: product.title,
       description: desc,
-      images: product.thumbnail ? [product.thumbnail] : [],
+      images: ogImage ? [ogImage] : [],
     },
   }
 }
@@ -219,12 +226,18 @@ export default async function ProductPage({ params }: Props) {
   const { handle, locale } = await params
   const product = await getProduct(handle)
   if (!product) notFound()
+  const metadata = product.metadata || {}
+  const media = await getProductMedia({
+    vevorUpc: stringifyScalar(metadata.vevor_upc),
+    vevorSku: stringifyScalar(metadata.vevor_sku),
+  })
 
   const variant = product.variants?.[0]
   const price = variant?.calculated_price
   const images = Array.from(
     new Map(
       [
+        ...media.images,
         ...(product.images || []),
         ...(product.thumbnail ? [{ id: "thumb", url: product.thumbnail }] : []),
       ]
@@ -233,7 +246,9 @@ export default async function ProductPage({ params }: Props) {
     ).values()
   )
   const specs = getProductSpecs(product)
-  const manualLinks = getManualLinks(product.metadata)
+  const manualLinks = [...media.manuals, ...getManualLinks(product.metadata)].filter(
+    (item, index, array) => array.findIndex((candidate) => candidate.href === item.href) === index
+  )
   const metadataHighlights = getMetadataHighlights(product.metadata)
   const additionalMetadata = getAdditionalMetadata(product.metadata)
 
