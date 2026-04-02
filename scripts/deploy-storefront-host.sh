@@ -3,6 +3,7 @@ set -euo pipefail
 
 ROOT_DIR="/home/brrr/brrr-xlmarket"
 STOREFRONT_DIR="$ROOT_DIR/storefront"
+FEED_CACHE_SCRIPT="$ROOT_DIR/backend/scripts/build-vevor-feed-cache.mjs"
 LOG_DIR="/home/brrr/logs"
 LOG_FILE="$LOG_DIR/xlmarket-storefront.log"
 PID_FILE="$LOG_DIR/xlmarket-storefront.pid"
@@ -24,6 +25,11 @@ cd "$ROOT_DIR"
 git fetch origin "$BRANCH"
 git checkout "$BRANCH"
 git pull --ff-only origin "$BRANCH"
+
+if [[ -f "$FEED_CACHE_SCRIPT" ]]; then
+  echo "Refreshing VEVOR feed cache..."
+  node "$FEED_CACHE_SCRIPT"
+fi
 
 cd "$STOREFRONT_DIR"
 echo "Building storefront..."

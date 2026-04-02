@@ -12,6 +12,7 @@ import JsonLdProduct from "@/components/JsonLdProduct"
 import JsonLdBreadcrumb from "@/components/JsonLdBreadcrumb"
 import ProductPurchasePanel from "./ProductPurchasePanel"
 import { getProductMedia } from "@/lib/product-media"
+import { getVevorFeedEntry, type VevorFeedEntry } from "@/lib/vevor-feed"
 
 
 export const revalidate = 300
@@ -121,7 +122,29 @@ function collectKeyValueSpecs(value: unknown): Array<{ key: string; value: strin
   return []
 }
 
-function getProductSpecs(product: Awaited<ReturnType<typeof getProduct>>): Array<{ key: string; value: string }> {
+function normalizedHtmlContent(value?: string | null): string {
+  return String(value || "")
+    .replace(/<br\s*\/?>/gi, " ")
+    .replace(/<[^>]+>/g, " ")
+    .replace(/\s+/g, " ")
+    .trim()
+    .toLowerCase()
+}
+
+function formatAvailability(value?: string | null): string | null {
+  const normalized = stringifyScalar(value)?.toLowerCase()
+  if (!normalized) return null
+  if (normalized === "in stock") return "Laos"
+  if (normalized === "out of stock") return "Läbi müüdud"
+  return titleizeKey(normalized)
+}
+
+function formatFeedPrice(value?: number | null): string | null {
+  if (typeof value !== "number" || !Number.isFinite(value)) return null
+  return `${value.toFixed(2)} €`
+}
+
+function getProductSpecs(product: Awaited<ReturnType<typeof getProduct>>, feedEntry?: VevorFeedEntry | null): Array<{ key: string; value: string }> {
   if (!product) return []
   const metadata = product.metadata || {}
   const likelySpecKeys = ["specs", "specifications", "technical_specs", "technical_data", "attributes", "details", "parameters"]
@@ -133,6 +156,10 @@ function getProductSpecs(product: Awaited<ReturnType<typeof getProduct>>): Array
 
   if (product.description) {
     return parseSpecs(product.description)
+  }
+
+  if (feedEntry?.descriptionHtml) {
+    return parseSpecs(feedEntry.descriptionHtml)
   }
 
   return []
@@ -167,19 +194,39 @@ function getManualLinks(metadata?: Record<string, unknown>): Array<{ label: stri
   return links
 }
 
-function getMetadataHighlights(metadata?: Record<string, unknown>): Array<{ label: string; value: string; href?: string }> {
-  if (!metadata) return []
-  const priorityKeys = ["vevor_sku", "vevor_upc", "weight_kg", "brand", "model", "vevor_product_type", "vevor_link"]
+function getMetadataHighlights(metadata?: Record<string, unknown>, feedEntry?: VevorFeedEntry | null): Array<{ label: string; value: string; href?: string }> {
+  const metadataValue = metadata || {}
+  const rawWeight = stringifyScalar(metadataValue.weight_kg)
+  const weight = feedEntry?.weightKg && feedEntry.weightKg > 0
+    ? `${feedEntry.weightKg} kg`
+    : rawWeight && rawWeight !== "0"
+      ? `${rawWeight} kg`
+      : null
 
-  return priorityKeys
-    .map((key) => {
-      const value = stringifyScalar(metadata[key])
-      if (!value) return null
-      return key === "vevor_link"
-        ? { label: metadataLabel(key), value: "Ava tootja leht", href: value }
-        : { label: metadataLabel(key), value: key === "weight_kg" ? `${value} kg` : value }
-    })
-    .filter(Boolean) as Array<{ label: string; value: string; href?: string }>
+  const candidates = [
+    { label: "VEVOR SKU", value: stringifyScalar(metadataValue.vevor_sku) || feedEntry?.sku || null },
+    { label: "UPC", value: stringifyScalar(metadataValue.vevor_upc) || feedEntry?.upc || null },
+    { label: "Bränd", value: stringifyScalar(metadataValue.brand) || feedEntry?.brand || null },
+    { label: "Mudel", value: stringifyScalar(metadataValue.model) || null },
+    { label: "Kaal", value: weight },
+    { label: "Saadavus", value: formatAvailability(feedEntry?.availability) },
+    {
+      label: "Laoseis feedis",
+      value: typeof feedEntry?.inventoryQuantity === "number" ? `${feedEntry.inventoryQuantity} tk` : null,
+    },
+    { label: "Riik", value: feedEntry?.country || null },
+    { label: "Seisukord", value: feedEntry?.condition || null },
+    { label: "Tooteliik", value: stringifyScalar(metadataValue.vevor_product_type) || feedEntry?.productType || null },
+    {
+      label: "Toote algallikas",
+      value: stringifyScalar(metadataValue.vevor_link) || feedEntry?.link || null,
+      href: stringifyScalar(metadataValue.vevor_link) || feedEntry?.link || undefined,
+    },
+  ]
+
+  return candidates
+    .filter((item) => Boolean(item.value))
+    .map((item) => item.href ? { label: item.label, value: "Ava tootja leht", href: item.href } : { label: item.label, value: item.value! })
 }
 
 function getAdditionalMetadata(metadata?: Record<string, unknown>): Array<{ label: string; value: string }> {
@@ -217,8 +264,8 @@ function getAdditionalMetadata(metadata?: Record<string, unknown>): Array<{ labe
     .filter(Boolean) as Array<{ label: string; value: string }>
 }
 
-function getProductTypeTrail(metadata?: Record<string, unknown>): string[] {
-  const raw = stringifyScalar(metadata?.vevor_product_type)
+function getProductTypeTrail(metadata?: Record<string, unknown>, feedEntry?: VevorFeedEntry | null): string[] {
+  const raw = stringifyScalar(metadata?.vevor_product_type) || feedEntry?.productType || null
   if (!raw) return []
   return raw
     .split(">")
@@ -231,18 +278,55 @@ function getQuickFacts(params: {
   manualCount: number
   variantCount: number
   metadata?: Record<string, unknown>
+  feedEntry?: VevorFeedEntry | null
 }) {
   const facts: Array<{ label: string; value: string }> = []
-  const weight = stringifyScalar(params.metadata?.weight_kg)
+  const weight = params.feedEntry?.weightKg && params.feedEntry.weightKg > 0
+    ? `${params.feedEntry.weightKg} kg`
+    : (() => {
+        const raw = stringifyScalar(params.metadata?.weight_kg)
+        return raw && raw !== "0" ? `${raw} kg` : null
+      })()
   const translated = params.metadata?.translated === true
+  const inventory = params.feedEntry?.inventoryQuantity
 
   if (params.imageCount > 0) facts.push({ label: "Pildid", value: String(params.imageCount) })
   if (params.manualCount > 0) facts.push({ label: "Manuaalid", value: String(params.manualCount) })
   if (params.variantCount > 1) facts.push({ label: "Variandid", value: String(params.variantCount) })
-  if (weight && weight !== "0") facts.push({ label: "Kaal", value: `${weight} kg` })
+  if (weight) facts.push({ label: "Kaal", value: weight })
+  if (typeof inventory === "number") facts.push({ label: "Laoseis", value: `${inventory} tk` })
   if (translated) facts.push({ label: "Keel", value: "Eesti + algallikas" })
 
   return facts
+}
+
+function getFeedRows(feedEntry?: VevorFeedEntry | null): Array<{ label: string; value: string; href?: string }> {
+  if (!feedEntry) return []
+
+  const rows = [
+    { label: "Algne tootenimi", value: feedEntry.title },
+    { label: "Riik", value: feedEntry.country || null },
+    { label: "Seisukord", value: feedEntry.condition || null },
+    { label: "Saadavus feedis", value: formatAvailability(feedEntry.availability) },
+    {
+      label: "Laoseis feedis",
+      value: typeof feedEntry.inventoryQuantity === "number" ? `${feedEntry.inventoryQuantity} tk` : null,
+    },
+    { label: "Tootja lähtehind", value: formatFeedPrice(feedEntry.priceEur) },
+    { label: "Algne tootja link", value: feedEntry.link || null, href: feedEntry.link || undefined },
+  ]
+
+  return rows
+    .filter((item) => Boolean(item.value))
+    .map((item) => item.href ? { label: item.label, value: "Ava link", href: item.href } : { label: item.label, value: item.value! })
+}
+
+function getSourceDescriptionHtml(currentDescription: string | null, feedEntry?: VevorFeedEntry | null): string | null {
+  if (!feedEntry?.descriptionHtml) return null
+  if (normalizedHtmlContent(currentDescription) === normalizedHtmlContent(feedEntry.descriptionHtml)) {
+    return null
+  }
+  return feedEntry.descriptionHtml
 }
 
 function truncate(str: string, max: number): string {
@@ -255,6 +339,10 @@ export default async function ProductPage({ params }: Props) {
   const product = await getProduct(handle)
   if (!product) notFound()
   const metadata = product.metadata || {}
+  const feedEntry = getVevorFeedEntry({
+    vevorSku: stringifyScalar(metadata.vevor_sku),
+    vevorUpc: stringifyScalar(metadata.vevor_upc),
+  })
   const media = await getProductMedia({
     vevorUpc: stringifyScalar(metadata.vevor_upc),
     vevorSku: stringifyScalar(metadata.vevor_sku),
@@ -273,20 +361,24 @@ export default async function ProductPage({ params }: Props) {
         .map((image, index) => [image.url, { id: image.id || `img_${index}`, url: image.url }])
     ).values()
   )
-  const specs = getProductSpecs(product)
+  const specs = getProductSpecs(product, feedEntry)
   const manualLinks = [...media.manuals, ...getManualLinks(product.metadata)].filter(
     (item, index, array) => array.findIndex((candidate) => candidate.href === item.href) === index
   )
-  const metadataHighlights = getMetadataHighlights(product.metadata)
+  const metadataHighlights = getMetadataHighlights(product.metadata, feedEntry)
   const additionalMetadata = getAdditionalMetadata(product.metadata)
-  const productTypeTrail = getProductTypeTrail(metadata)
+  const productTypeTrail = getProductTypeTrail(metadata, feedEntry)
   const originalTitle = stringifyScalar(metadata.original_title)
   const sourceLink = stringifyScalar(metadata.vevor_link)
+  const feedRows = getFeedRows(feedEntry)
+  const manufacturerDescriptionHtml = getSourceDescriptionHtml(product.description, feedEntry)
+  const mainDescriptionHtml = product.description || feedEntry?.descriptionHtml || null
   const quickFacts = getQuickFacts({
     imageCount: images.length,
     manualCount: manualLinks.length,
     variantCount: product.variants?.length || 0,
     metadata,
+    feedEntry,
   })
 
   const categoryId = product.categories?.[0]?.id
@@ -509,7 +601,7 @@ export default async function ProductPage({ params }: Props) {
             </div>
           )}
 
-          {product.description && (
+          {mainDescriptionHtml && (
             <div className="mt-8 border-t border-soft-border pt-8">
               <h2 className="text-lg font-semibold font-[family-name:var(--font-outfit)] text-off-black mb-4">
                 Kirjeldus
@@ -517,7 +609,7 @@ export default async function ProductPage({ params }: Props) {
               <div
                 className="text-muted text-sm font-[family-name:var(--font-jakarta)] leading-relaxed [&_br]:block [&_br]:mb-1 [&_p]:mb-3 [&_ul]:pl-5 [&_ul]:list-disc [&_li]:mb-1 [&_a]:text-accent [&_a]:underline [&_a:hover]:text-accent-dark"
                 dangerouslySetInnerHTML={{
-                  __html: sanitizeHtml(product.description),
+                  __html: sanitizeHtml(mainDescriptionHtml),
                 }}
               />
 
@@ -543,6 +635,50 @@ export default async function ProductPage({ params }: Props) {
                   )}
                 </div>
               )}
+            </div>
+          )}
+
+          {manufacturerDescriptionHtml && (
+            <div className="mt-6 border-t border-soft-border pt-6">
+              <h2 className="text-base font-semibold font-[family-name:var(--font-outfit)] text-off-black mb-4">
+                Tootja originaalkirjeldus
+              </h2>
+              <div
+                className="rounded-2xl border border-soft-border bg-silver px-4 py-4 text-sm text-muted leading-relaxed [&_br]:block [&_br]:mb-1"
+                dangerouslySetInnerHTML={{
+                  __html: sanitizeHtml(manufacturerDescriptionHtml),
+                }}
+              />
+            </div>
+          )}
+
+          {feedRows.length > 0 && (
+            <div className="mt-6 border-t border-soft-border pt-6">
+              <h2 className="text-base font-semibold font-[family-name:var(--font-outfit)] text-off-black mb-4">
+                VEVOR feedi andmed
+              </h2>
+              <div className="border border-soft-border rounded-xl overflow-hidden">
+                {feedRows.map((item, i) => (
+                  <div key={item.label + i} className={"flex " + (i % 2 === 0 ? "bg-silver" : "bg-white")}>
+                    <div className="w-[45%] shrink-0 px-4 py-3 border-r border-soft-border">
+                      <span className="text-xs font-medium font-[family-name:var(--font-jakarta)] text-muted">
+                        {item.label}
+                      </span>
+                    </div>
+                    <div className="flex-1 px-4 py-3">
+                      {item.href ? (
+                        <a href={item.href} target="_blank" rel="noreferrer" className="text-xs font-[family-name:var(--font-jakarta)] text-accent hover:text-accent-dark break-words">
+                          {item.value}
+                        </a>
+                      ) : (
+                        <span className="text-xs font-[family-name:var(--font-jakarta)] text-off-black break-words">
+                          {item.value}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           )}
         </div>
