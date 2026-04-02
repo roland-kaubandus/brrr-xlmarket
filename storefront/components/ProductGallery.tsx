@@ -17,11 +17,12 @@ function decodeImageUrl(url: string): string {
   try { return decodeURIComponent(url) } catch { return url }
 }
 
+const MAX_VISIBLE_THUMBS = 7
+
 export default function ProductGallery({ images, title }: Props) {
   const [active, setActive] = useState(0)
   const [lightbox, setLightbox] = useState(false)
-  const [thumbOffset, setThumbOffset] = useState(0)
-  const VISIBLE_THUMBS = 5
+  const [showAll, setShowAll] = useState(false)
 
   const close = useCallback(() => setLightbox(false), [])
 
@@ -44,57 +45,48 @@ export default function ProductGallery({ images, title }: Props) {
     )
   }
 
-  const canUp = thumbOffset > 0
-  const canDown = thumbOffset + VISIBLE_THUMBS < images.length
+  const hasMore = images.length > MAX_VISIBLE_THUMBS
+  const visibleThumbs = showAll ? images : images.slice(0, hasMore ? MAX_VISIBLE_THUMBS - 1 : MAX_VISIBLE_THUMBS)
+  const remaining = images.length - (MAX_VISIBLE_THUMBS - 1)
 
   return (
     <>
       {/* Desktop: vertical thumbstrip + main image */}
       <div className="hidden sm:flex gap-3 items-start">
         {images.length > 1 && (
-          <div className="flex flex-col items-center gap-1.5 shrink-0">
-            <button
-              type="button"
-              onClick={() => setThumbOffset((o) => Math.max(0, o - 1))}
-              disabled={!canUp}
-              className="w-[52px] h-6 flex items-center justify-center text-muted hover:text-accent disabled:opacity-20 disabled:cursor-not-allowed transition-all duration-300"
-              aria-label="Kerima"
-            >
-              <ChevronUp size={16} strokeWidth={2} />
-            </button>
-            {images.slice(thumbOffset, thumbOffset + VISIBLE_THUMBS).map((img, i) => {
-              const realIdx = i + thumbOffset
-              return (
-                <button
-                  key={img.id}
-                  type="button"
-                  onClick={() => setActive(realIdx)}
-                  aria-label={"Pilt " + (realIdx + 1)}
-                  aria-pressed={realIdx === active}
-                  className={
-                    "relative w-[52px] h-[52px] bg-silver rounded-xl border-2 overflow-hidden transition-all duration-300 " +
-                    (realIdx === active
-                      ? "border-accent shadow-[0_0_0_1px_rgba(249,115,22,0.20)]"
-                      : "border-soft-border hover:border-muted")
-                  }
-                >
-                  <img
-                    src={decodeImageUrl(img.url)}
-                    alt={title + " " + (realIdx + 1)}
-                    className="object-contain absolute inset-0 w-full h-full p-1"
-                  />
-                </button>
-              )
-            })}
-            <button
-              type="button"
-              onClick={() => setThumbOffset((o) => Math.min(images.length - VISIBLE_THUMBS, o + 1))}
-              disabled={!canDown}
-              className="w-[52px] h-6 flex items-center justify-center text-muted hover:text-accent disabled:opacity-20 disabled:cursor-not-allowed transition-all duration-300"
-              aria-label="Kerima alla"
-            >
-              <ChevronDown size={16} strokeWidth={2} />
-            </button>
+          <div className="flex flex-col gap-1.5 shrink-0 w-[76px]">
+            {visibleThumbs.map((img, i) => (
+              <button
+                key={img.id}
+                type="button"
+                onClick={() => setActive(i)}
+                aria-label={"Pilt " + (i + 1)}
+                aria-pressed={i === active}
+                className={
+                  "relative w-[76px] h-[76px] bg-silver rounded-xl border-2 overflow-hidden transition-all duration-300 " +
+                  (i === active
+                    ? "border-accent shadow-[0_0_0_1px_rgba(249,115,22,0.20)]"
+                    : "border-soft-border hover:border-muted")
+                }
+              >
+                <img
+                  src={decodeImageUrl(img.url)}
+                  alt={title + " " + (i + 1)}
+                  className="object-contain absolute inset-0 w-full h-full p-1"
+                  loading="lazy"
+                />
+              </button>
+            ))}
+            {hasMore && !showAll && (
+              <button
+                type="button"
+                onClick={() => { setShowAll(true); setActive(MAX_VISIBLE_THUMBS - 1) }}
+                className="w-[76px] h-[76px] rounded-xl border-2 border-soft-border bg-silver hover:border-accent/40 transition-all duration-300 flex flex-col items-center justify-center gap-0.5"
+              >
+                <span className="text-accent font-bold text-sm font-[family-name:var(--font-outfit)]">+{remaining}</span>
+                <span className="text-[10px] text-muted font-medium">More</span>
+              </button>
+            )}
           </div>
         )}
         <div
@@ -143,16 +135,25 @@ export default function ProductGallery({ images, title }: Props) {
         </div>
         {images.length > 1 && (
           <div className="flex gap-2 overflow-x-auto pb-0.5 scrollbar-none">
-            {images.slice(0, 10).map((img, i) => (
+            {images.slice(0, 8).map((img, i) => (
               <button
                 key={img.id}
                 type="button"
                 onClick={() => setActive(i)}
-                className={"relative shrink-0 w-[52px] h-[52px] bg-silver rounded-xl border-2 overflow-hidden transition-all duration-300 " + (i === active ? "border-accent" : "border-soft-border")}
+                className={"relative shrink-0 w-[60px] h-[60px] bg-silver rounded-xl border-2 overflow-hidden transition-all duration-300 " + (i === active ? "border-accent" : "border-soft-border")}
               >
-                <img src={decodeImageUrl(img.url)} alt={title + " " + (i + 1)} className="object-contain absolute inset-0 w-full h-full p-1" />
+                <img src={decodeImageUrl(img.url)} alt={title + " " + (i + 1)} className="object-contain absolute inset-0 w-full h-full p-1" loading="lazy" />
               </button>
             ))}
+            {images.length > 8 && (
+              <button
+                type="button"
+                onClick={() => setLightbox(true)}
+                className="shrink-0 w-[60px] h-[60px] bg-silver rounded-xl border-2 border-soft-border flex flex-col items-center justify-center"
+              >
+                <span className="text-accent font-bold text-xs">+{images.length - 8}</span>
+              </button>
+            )}
           </div>
         )}
       </div>
