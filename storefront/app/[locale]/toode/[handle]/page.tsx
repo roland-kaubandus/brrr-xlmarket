@@ -11,6 +11,7 @@ import ProductCard from "@/components/ProductCard"
 import JsonLdProduct from "@/components/JsonLdProduct"
 import JsonLdBreadcrumb from "@/components/JsonLdBreadcrumb"
 import ProductPurchasePanel from "./ProductPurchasePanel"
+import CollapsibleDescription from "@/components/CollapsibleDescription"
 import { getProductMedia } from "@/lib/product-media"
 import { getVevorFeedEntry, type VevorFeedEntry } from "@/lib/vevor-feed"
 
@@ -455,18 +456,13 @@ export default async function ProductPage({ params }: Props) {
         </section>
       )}
 
-      {/* Rich description from VEVOR (with images) */}
+      {/* Rich description from VEVOR (with images, collapsible) */}
       {richDescription && (
         <section className="mt-12 pt-10 border-t border-soft-border">
           <h2 className="text-xl font-semibold font-[family-name:var(--font-outfit)] text-off-black mb-6">
             Toote kirjeldus
           </h2>
-          <div
-            className="rich-desc text-off-black text-sm font-[family-name:var(--font-jakarta)] leading-relaxed [&_img]:rounded-xl [&_img]:my-6 [&_img]:w-full [&_img]:max-w-4xl [&_h2]:font-[family-name:var(--font-outfit)] [&_h2]:font-bold [&_h2]:text-lg [&_h2]:mt-8 [&_h2]:mb-3 [&_h3]:font-[family-name:var(--font-outfit)] [&_h3]:font-bold [&_h3]:text-base [&_h3]:mt-6 [&_h3]:mb-2 [&_p]:mb-3 [&_p]:text-muted [&_b]:text-off-black [&_strong]:text-off-black [&_ul]:pl-5 [&_ul]:list-disc [&_li]:mb-1 [&_li]:text-muted [&_a]:text-accent [&_a]:underline"
-            dangerouslySetInnerHTML={{
-              __html: sanitizeHtml(richDescription),
-            }}
-          />
+          <CollapsibleDescription html={sanitizeHtml(richDescription)} collapsedHeight={600} />
         </section>
       )}
 
@@ -476,12 +472,7 @@ export default async function ProductPage({ params }: Props) {
           <h2 className="text-xl font-semibold font-[family-name:var(--font-outfit)] text-off-black mb-6">
             Toote kirjeldus
           </h2>
-          <div
-            className="text-muted text-sm font-[family-name:var(--font-jakarta)] leading-relaxed max-w-3xl [&_br]:block [&_br]:mb-1 [&_p]:mb-3 [&_ul]:pl-5 [&_ul]:list-disc [&_li]:mb-1 [&_a]:text-accent [&_a]:underline [&_a:hover]:text-accent-dark"
-            dangerouslySetInnerHTML={{
-              __html: sanitizeHtml(mainDescriptionHtml),
-            }}
-          />
+          <CollapsibleDescription html={sanitizeHtml(mainDescriptionHtml)} collapsedHeight={400} />
         </section>
       )}
 
