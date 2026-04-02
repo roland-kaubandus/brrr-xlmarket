@@ -82,18 +82,9 @@ export default async function BranchLandingPage({ params, searchParams }: Props)
   const currentSort = sort || ""
   const currentInStock = in_stock === "1"
 
-  const parentCategory = branch.categoryHandle
-    ? allCategories.find((c) => c.handle === branch.categoryHandle) ?? null
-    : null
-
-  const subcategories = parentCategory
-    ? allCategories.filter((c) => c.parent_category_id === parentCategory.id)
-    : []
-  const selectedSubcategory = cat
-    ? subcategories.find((subcategory) => subcategory.handle === cat) ?? null
-    : null
+  const selectedCatHandle = cat || null
   const branchFilters = [`category_handles = "${branch.categoryHandle}"`]
-  if (selectedSubcategory) branchFilters.push(`category_handles = "${selectedSubcategory.handle}"`)
+  if (selectedCatHandle) branchFilters.push(`category_handles = "${selectedCatHandle}"`)
   if (min) branchFilters.push(`price >= ${parseFloat(min)}`)
   if (max) branchFilters.push(`price <= ${parseFloat(max)}`)
   if (currentInStock) branchFilters.push("in_stock = true")
@@ -133,6 +124,19 @@ export default async function BranchLandingPage({ params, searchParams }: Props)
     : undefined
   const categoryCounts = facetDistribution?.category_handles || {}
   const branchBasePath = `/${locale}/haru/${handle}`
+
+  // Build subcategories from facet distribution (no Medusa hierarchy needed)
+  const subcategories = Object.entries(categoryCounts)
+    .filter(([h]) => h !== branch.categoryHandle)
+    .map(([h, count]) => {
+      const catObj = allCategories.find((c) => c.handle === h)
+      return catObj ? { id: catObj.id, name: catObj.name, handle: catObj.handle, count } : null
+    })
+    .filter((c): c is { id: string; name: string; handle: string; count: number } => Boolean(c))
+    .sort((a, b) => b.count - a.count)
+  const selectedSubcategory = selectedCatHandle
+    ? subcategories.find((s) => s.handle === selectedCatHandle) ?? null
+    : null
   const hasMoreProducts = totalCount > itemsLimit
   const nextLimit = VALID_LIMITS.find((l) => l > itemsLimit) || VALID_LIMITS[VALID_LIMITS.length - 1]
 
@@ -257,7 +261,7 @@ export default async function BranchLandingPage({ params, searchParams }: Props)
                   </Link>
                   {subcategories.map((sub) => {
                     const isActive = selectedSubcategory?.handle === sub.handle
-                    const count = categoryCounts[sub.handle] || 0
+                    const count = sub.count
                     return (
                       <Link
                         key={sub.id}
