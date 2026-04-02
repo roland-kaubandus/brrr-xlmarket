@@ -432,61 +432,31 @@ export default async function ProductPage({ params }: Props) {
 
       {/* ===== FULL-WIDTH SECTIONS BELOW THE FOLD ===== */}
 
-      {/* Feature Highlights — selling points as cards */}
+      {/* Feature Highlights — selling points as cards (kavand: section-alt) */}
       {sellingPoints.length > 0 && (
-        <section className="mt-12 pt-10 border-t border-soft-border">
-          <h2 className="text-xl font-semibold font-[family-name:var(--font-outfit)] text-off-black mb-6">
-            Feature Highlights
-          </h2>
-          <div className={`grid gap-4 ${sellingPoints.length >= 5 ? "grid-cols-2 lg:grid-cols-5" : sellingPoints.length >= 3 ? "grid-cols-2 lg:grid-cols-3" : "grid-cols-1 lg:grid-cols-2"}`}>
-            {sellingPoints.map((sp, i) => {
-              const colonIdx = sp.indexOf(":")
-              const title = colonIdx > 0 && colonIdx < 60 ? sp.substring(0, colonIdx).trim() : null
-              const body = title ? sp.substring(colonIdx + 1).trim() : sp
-              return (
-                <div key={i} className="bg-white border border-soft-border rounded-2xl p-5 text-center hover:border-accent/20 hover:-translate-y-0.5 transition-all duration-300">
-                  <div className="w-12 h-12 mx-auto mb-3 bg-accent-light rounded-xl flex items-center justify-center">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E8650A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        <section className="mt-12 pt-10 pb-10 border-t border-soft-border bg-silver -mx-4 sm:-mx-6 px-4 sm:px-6">
+          <div className="max-w-[1280px] mx-auto">
+            <h2 className="text-xl font-semibold font-[family-name:var(--font-outfit)] text-off-black mb-6">
+              Feature Highlights
+            </h2>
+            <div className={`grid gap-4 ${sellingPoints.length >= 5 ? "grid-cols-2 lg:grid-cols-5" : sellingPoints.length >= 3 ? "grid-cols-2 lg:grid-cols-3" : "grid-cols-1 lg:grid-cols-2"}`}>
+              {sellingPoints.map((sp, i) => {
+                const colonIdx = sp.indexOf(":")
+                const title = colonIdx > 0 && colonIdx < 60 ? sp.substring(0, colonIdx).trim() : null
+                const body = title ? sp.substring(colonIdx + 1).trim() : sp
+                return (
+                  <div key={i} className="bg-white border border-soft-border rounded-2xl p-5 text-center hover:border-accent/20 hover:-translate-y-0.5 transition-all duration-300">
+                    <div className="w-12 h-12 mx-auto mb-3 bg-accent-light rounded-xl flex items-center justify-center">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E8650A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    </div>
+                    {title && (
+                      <h3 className="font-[family-name:var(--font-outfit)] font-bold text-sm text-off-black mb-1.5">{title}</h3>
+                    )}
+                    <p className="text-xs text-muted leading-relaxed line-clamp-4">{body}</p>
                   </div>
-                  {title && (
-                    <h3 className="font-[family-name:var(--font-outfit)] font-bold text-sm text-off-black mb-1.5">{title}</h3>
-                  )}
-                  <p className="text-xs text-muted leading-relaxed line-clamp-4">{body}</p>
-                </div>
-              )
-            })}
-          </div>
-        </section>
-      )}
-
-      {/* Quick facts — dimensions + weight */}
-      {dimensions && (
-        <section className="mt-12 pt-10 border-t border-soft-border">
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-            {dimensions.long && (
-              <div className="rounded-xl border border-soft-border bg-silver px-4 py-3">
-                <p className="text-[10px] font-semibold uppercase tracking-[0.1em] text-muted mb-1">Pikkus</p>
-                <p className="text-sm font-semibold text-off-black">{dimensions.long} {dimensions.unit || "cm"}</p>
-              </div>
-            )}
-            {dimensions.wide && (
-              <div className="rounded-xl border border-soft-border bg-silver px-4 py-3">
-                <p className="text-[10px] font-semibold uppercase tracking-[0.1em] text-muted mb-1">Laius</p>
-                <p className="text-sm font-semibold text-off-black">{dimensions.wide} {dimensions.unit || "cm"}</p>
-              </div>
-            )}
-            {dimensions.high && (
-              <div className="rounded-xl border border-soft-border bg-silver px-4 py-3">
-                <p className="text-[10px] font-semibold uppercase tracking-[0.1em] text-muted mb-1">K\u00f5rgus</p>
-                <p className="text-sm font-semibold text-off-black">{dimensions.high} {dimensions.unit || "cm"}</p>
-              </div>
-            )}
-            {(feedEntry?.weightKg || stringifyScalar(metadata.weight_kg)) && (
-              <div className="rounded-xl border border-soft-border bg-silver px-4 py-3">
-                <p className="text-[10px] font-semibold uppercase tracking-[0.1em] text-muted mb-1">Kaal</p>
-                <p className="text-sm font-semibold text-off-black">{feedEntry?.weightKg || stringifyScalar(metadata.weight_kg)} kg</p>
-              </div>
-            )}
+                )
+              })}
+            </div>
           </div>
         </section>
       )}
@@ -528,8 +498,53 @@ export default async function ProductPage({ params }: Props) {
         </section>
       )}
 
-      {/* Kirjeldus — full width */}
-      {mainDescriptionHtml && (
+      {/* Rich description — alternating image+text blocks (kavand style) */}
+      {sellingPoints.length > 0 && images.length > 2 && (
+        <section className="mt-12 pt-10 border-t border-soft-border bg-silver -mx-4 sm:-mx-6 px-4 sm:px-6 py-12">
+          <div className="max-w-[1280px] mx-auto">
+            <h2 className="text-xl font-semibold font-[family-name:var(--font-outfit)] text-off-black mb-10">
+              Toote kirjeldus
+            </h2>
+            <div className="space-y-10">
+              {sellingPoints.map((sp, i) => {
+                const colonIdx = sp.indexOf(":")
+                const spTitle = colonIdx > 0 && colonIdx < 60 ? sp.substring(0, colonIdx).trim() : null
+                const spBody = spTitle ? sp.substring(colonIdx + 1).trim() : sp
+                const img = images[Math.min(i + 1, images.length - 1)]
+                const reversed = i % 2 === 1
+                return (
+                  <div
+                    key={i}
+                    className={`grid grid-cols-1 md:grid-cols-2 gap-8 items-center ${reversed ? "md:[direction:rtl]" : ""}`}
+                  >
+                    <div className="aspect-[4/3] bg-white rounded-2xl border border-soft-border overflow-hidden relative">
+                      <img
+                        src={img.url}
+                        alt={spTitle || product.title}
+                        className="w-full h-full object-contain p-4"
+                        loading="lazy"
+                      />
+                    </div>
+                    <div className={reversed ? "md:[direction:ltr]" : ""}>
+                      {spTitle && (
+                        <h3 className="font-[family-name:var(--font-outfit)] font-bold text-lg text-off-black mb-3 tracking-tight">
+                          {spTitle}
+                        </h3>
+                      )}
+                      <p className="text-sm text-muted font-[family-name:var(--font-jakarta)] leading-relaxed">
+                        {spBody}
+                      </p>
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Plain description fallback — only if no rich blocks */}
+      {mainDescriptionHtml && sellingPoints.length === 0 && (
         <section className="mt-12 pt-10 border-t border-soft-border">
           <h2 className="text-xl font-semibold font-[family-name:var(--font-outfit)] text-off-black mb-6">
             Toote kirjeldus
