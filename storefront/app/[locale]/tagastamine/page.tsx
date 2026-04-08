@@ -9,13 +9,13 @@ export const metadata: Metadata = {
 export default async function TagastaminePage({ params }: { params: Promise<{ locale: string }> }) {
   return (
     <div className="max-w-[1280px] mx-auto px-[16px] sm:px-[24px] py-[32px] sm:py-[48px]">
-      <nav className="text-[12px] font-[family-name:var(--font-dm-sans)] text-[#999999] mb-[32px]" aria-label="Leheasukoht">
-        <Link href={`/${(await params).locale}`} className="hover:text-[#D97706] transition-colors">Avaleht</Link>
+      <nav className="text-[12px] font-[family-name:var(--font-dm-sans)] text-[#999999] mb-[32px]" aria-label="Breadcrumb">
+        <Link href={`/${(await params).locale}`} className="hover:text-[#D97706] transition-colors">Home</Link>
         <span className="mx-[8px] text-[#E8E8E8]">/</span>
-        <span className="text-[#777777]">Tagastamine</span>
+        <span className="text-[#777777]">Returns</span>
       </nav>
 
-      <h1 className="text-[28px] sm:text-[32px] font-[700] font-[family-name:var(--font-dm-sans)] text-[#1E293B] mb-[32px]">Tagastamine ja taganemisõigus</h1>
+      <h1 className="text-[28px] sm:text-[32px] font-[700] font-[family-name:var(--font-dm-sans)] text-[#1E293B] mb-[32px]">Returns &amp; Right of Withdrawal</h1>
 
       <div className="max-w-[720px] text-[14px] font-[family-name:var(--font-dm-sans)] text-[#555555] leading-relaxed space-y-[16px]">
         <h2 className="text-[18px] font-[600] font-[family-name:var(--font-dm-sans)] text-[#1E293B] mt-[32px] mb-[12px]">14-päevane taganemisõigus</h2>

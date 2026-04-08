@@ -24,26 +24,26 @@ type MuujaLocale = "et" | "en"
 
 const muujaTexts = {
   et: {
-    greeting: "Tere! Olen sinu müüja. Kirjelda, mida otsid, ja leian sulle sobivad tooted!",
-    redirect: "Suunan sind sinna...",
-    found: (count: string) => "Leidsin sulle " + count + " toodet:",
-    notFound: "Kahjuks ei leidnud sellega midagi. Proovi teiste sõnadega!",
-    error: "Vabandust, tekkis viga. Proovi uuesti!",
-    cheapest: "odavamad",
-    expensive: "kallimad",
-    sortError: "Viga sorteerimisel.",
-    title: "Müüja",
-    thinking: "Müüja mõtleb...",
-    home: "Avalehele",
-    popular: "Populaarsed",
-    deals: "Soodukad",
-    placeholder: "Kirjelda, mida otsid...",
-    askLabel: "Küsi müüjalt",
-    noPrice: "Hind puudub",
-    cheaperFirst: "Odavamad",
-    expensiveFirst: "Kallimad",
-    sortPrefix: "Siin on ",
-    sortSuffix: " esmalt:",
+    greeting: "Hi! I'm your shop assistant. Describe what you're looking for and I'll find the right products!",
+    redirect: "Redirecting you there...",
+    found: (count: string) => "Found " + count + " products for you:",
+    notFound: "Couldn't find anything with that. Try different words!",
+    error: "Sorry, something went wrong. Try again!",
+    cheapest: "cheapest",
+    expensive: "most expensive",
+    sortError: "Sorting error.",
+    title: "Assistant",
+    thinking: "Thinking...",
+    home: "Home",
+    popular: "Popular",
+    deals: "Deals",
+    placeholder: "Describe what you need...",
+    askLabel: "Ask assistant",
+    noPrice: "No price",
+    cheaperFirst: "Cheapest",
+    expensiveFirst: "Most expensive",
+    sortPrefix: "Here are ",
+    sortSuffix: " first:",
   },
   en: {
     greeting: "Hi! I'm your shop assistant. Describe what you're looking for and I'll find the right products!",
@@ -384,13 +384,10 @@ export default function MuujaWidget() {
             </div>
             <div className="bg-white rounded-2xl p-5 shadow-2xl">
               <p className="text-sm text-gray-700 leading-relaxed">
-                {locale === "en"
-                  ? "Hi! I'm your shop assistant. Just describe what you need and I'll find the right products. Click me to get started!"
-                  : "Tere! Mina olen sinu m\u00fc\u00fcja. Kirjelda mulle lihtsalt, mida vajad, ja leian sulle sobivad tooted. Kl\u00f5psa minul, et alustada!"
-                }
+                Hi! I&apos;m your shop assistant. Just describe what you need and I&apos;ll find the right products. Click me to get started!
               </p>
               <p className="text-xs text-gray-400 mt-2">
-                {locale === "en" ? "Click anywhere to continue" : "Kl\u00f5psa kuskil, et j\u00e4tkata"}
+                Click anywhere to continue
               </p>
             </div>
           </div>
@@ -535,7 +532,7 @@ export default function MuujaWidget() {
           <>
             <div className="absolute inset-0 rounded-full bg-orange-400/30 animate-ping" style={{ animationDuration: "3s" }} />
             <div className="absolute left-[64px] top-1/2 -translate-y-1/2 whitespace-nowrap bg-white px-3 py-1.5 rounded-xl shadow-[0_2px_12px_rgba(0,0,0,0.08)] text-sm font-medium text-gray-700 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              Vajuta siia!
+              Click here!
             </div>
           </>
         )}

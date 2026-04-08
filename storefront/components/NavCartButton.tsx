@@ -35,7 +35,7 @@ export default function NavCartButton() {
     <Link
       href="/ostukorv"
       className="relative flex items-center justify-center w-[40px] h-[40px] text-[#1E293B] hover:text-[#D97706] hover:bg-[#FFFBEB] active:scale-95"
-      aria-label="Ostukorv"
+      aria-label="Shopping Cart"
     >
       <ShoppingCart size={20} strokeWidth={1.5} />
       {count > 0 && (

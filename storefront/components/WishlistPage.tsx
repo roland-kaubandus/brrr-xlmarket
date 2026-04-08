@@ -36,7 +36,7 @@ export default function WishlistPage() {
       <div className="flex items-center gap-[10px] mb-[32px]">
         <Heart size={22} strokeWidth={1.5} className="text-[#E8650A]" />
         <h1 className="text-[28px] font-[700] font-[family-name:var(--font-dm-sans)] text-[#1E293B]">
-          Lemmikud
+          Wishlist
         </h1>
         {items.length > 0 && (
           <span className="ml-[4px] text-[15px] font-[family-name:var(--font-dm-sans)] text-[#999999]">
@@ -49,16 +49,16 @@ export default function WishlistPage() {
         <div className="flex flex-col items-center justify-center py-[80px] text-center">
           <Heart size={56} strokeWidth={1} className="text-[#E8E8E8] mb-[20px]" />
           <p className="text-[18px] font-[600] font-[family-name:var(--font-dm-sans)] text-[#1E293B] mb-[8px]">
-            Lemmikud on tühjad
+            Wishlist is empty
           </p>
           <p className="text-[14px] font-[family-name:var(--font-dm-sans)] text-[#999999] mb-[24px]">
-            Vajuta südame ikoonil tootekaardil, et lisada lemmikutesse
+            Click the heart icon on a product card to add it to your wishlist
           </p>
           <Link
             href={`/${locale}/kategooriad`}
             className="px-[20px] py-[11px] bg-[#E8650A] text-white text-[14px] font-[600] font-[family-name:var(--font-dm-sans)] hover:bg-[#CF5A08] transition-colors"
           >
-            Vaata tooteid
+            Browse Products
           </Link>
         </div>
       ) : (
@@ -89,7 +89,7 @@ export default function WishlistPage() {
                 type="button"
                 onClick={() => remove(item.id)}
                 className="shrink-0 w-[32px] h-[32px] flex items-center justify-center rounded-full hover:bg-red-50 text-[#CCCCCC] hover:text-red-400 transition-colors self-start mt-[-2px]"
-                aria-label="Eemalda lemmikutest"
+                aria-label="Remove from wishlist"
               >
                 <Trash2 size={15} strokeWidth={1.5} />
               </button>

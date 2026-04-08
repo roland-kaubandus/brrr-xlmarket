@@ -216,7 +216,7 @@ export async function getCmsContent(): Promise<CmsContent> {
     return res.content
   } catch {
     return {
-      hero: { title: "Mitte see tavaline suur e-pood!", subtitle: "Tuhanded erilised tooted, eriliselt hea hinnaga.", buttonText: "Vaata tooteid", buttonLink: "/kategooriad", visible: true },
+      hero: { title: "Not your ordinary online store!", subtitle: "Thousands of special products at great prices.", buttonText: "Browse Products", buttonLink: "/kategooriad", visible: true },
       announcement: { text: "", link: "", visible: false },
       banners: [],
       campaigns: [],
