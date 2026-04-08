@@ -86,27 +86,27 @@ export default function CartSlideOver({ locale = "et" }: { locale?: string }) {
       />
       {/* Panel */}
       <div
-        className="fixed top-0 right-0 h-full w-full sm:w-[420px] bg-white z-50 flex flex-col shadow-[−4px_0_32px_rgba(0,0,0,0.12)]"
+        className="fixed top-0 right-0 h-full w-full sm:w-[420px] bg-white z-50 flex flex-col shadow-xl"
         role="dialog"
         aria-modal="true"
         aria-label="Ostukorv"
       >
         {/* Header */}
-        <div className="flex items-center justify-between px-[20px] py-[18px] border-b border-[#E8E8E8]">
-          <div className="flex items-center gap-[10px]">
-            <ShoppingCart size={20} strokeWidth={1.5} className="text-[#E8650A]" />
-            <h2 className="text-[17px] font-[600] font-[family-name:var(--font-poppins)] text-[#1A1A1A]">
+        <div className="flex items-center justify-between px-5 py-4 border-b border-[#E5E5E5]">
+          <div className="flex items-center gap-2.5">
+            <ShoppingCart size={20} strokeWidth={1.5} className="text-[#FF6A00]" />
+            <h2 className="text-[17px] font-semibold text-[#222222]">
               Ostukorv
             </h2>
             {itemCount > 0 && (
-              <span className="w-[22px] h-[22px] rounded-full bg-[#E8650A] text-white text-[12px] font-[700] flex items-center justify-center">
+              <span className="w-[22px] h-[22px] rounded-full bg-[#FF6A00] text-white text-xs font-bold flex items-center justify-center">
                 {itemCount}
               </span>
             )}
           </div>
           <button
             onClick={close}
-            className="w-[36px] h-[36px] flex items-center justify-center rounded-full hover:bg-[#F7F7F7] text-[#999999] hover:text-[#1A1A1A] transition-colors"
+            className="w-9 h-9 flex items-center justify-center rounded-lg hover:bg-[#F5F5F5] text-[#999999] hover:text-[#222222] transition-colors"
             aria-label="Sulge"
           >
             <X size={18} strokeWidth={1.5} />
@@ -114,25 +114,25 @@ export default function CartSlideOver({ locale = "et" }: { locale?: string }) {
         </div>
 
         {/* Body */}
-        <div className="flex-1 overflow-y-auto px-[20px] py-[16px]">
+        <div className="flex-1 overflow-y-auto px-5 py-4">
           {loading && (
-            <div className="flex items-center justify-center py-[48px]">
-              <div className="w-[28px] h-[28px] border-2 border-[#E8E8E8] border-t-[#E8650A] rounded-full animate-spin" />
+            <div className="flex items-center justify-center py-12">
+              <div className="w-7 h-7 border-2 border-[#E5E5E5] border-t-[#FF6A00] rounded-full animate-spin" />
             </div>
           )}
 
           {!loading && (!cart || cart.items?.length === 0) && (
-            <div className="flex flex-col items-center justify-center py-[64px] text-center">
-              <ShoppingCart size={48} strokeWidth={1} className="text-[#E8E8E8] mb-[16px]" />
-              <p className="text-[15px] font-[600] font-[family-name:var(--font-poppins)] text-[#1A1A1A] mb-[6px]">
+            <div className="flex flex-col items-center justify-center py-16 text-center">
+              <ShoppingCart size={48} strokeWidth={1} className="text-[#E5E5E5] mb-4" />
+              <p className="text-[15px] font-semibold text-[#222222] mb-1.5">
                 Ostukorv on tühi
               </p>
-              <p className="text-[13px] font-[family-name:var(--font-jakarta)] text-[#999999]">
+              <p className="text-[13px] text-[#666666]">
                 Lisa tooteid, et alustada ostlemist
               </p>
               <button
                 onClick={close}
-                className="mt-[20px] px-[20px] py-[10px] bg-[#E8650A] text-white text-[13px] font-[600] font-[family-name:var(--font-poppins)] hover:bg-[#CF5A08] transition-colors"
+                className="mt-5 px-5 py-2.5 bg-[#FF6A00] text-white text-[13px] font-semibold rounded-lg hover:bg-[#E55F00] transition-colors"
               >
                 Jätka ostlemist
               </button>
@@ -140,32 +140,32 @@ export default function CartSlideOver({ locale = "et" }: { locale?: string }) {
           )}
 
           {!loading && cart && cart.items?.length > 0 && (
-            <div className="flex flex-col gap-[16px]">
+            <div className="flex flex-col gap-4">
               {cart.items.map((item) => (
-                <div key={item.id} className="flex gap-[12px] py-[12px] border-b border-[#F0F0F0] last:border-0">
+                <div key={item.id} className="flex gap-3 py-3 border-b border-[#F0F0F0] last:border-0">
                   {item.thumbnail ? (
-                    <div className="w-[72px] h-[72px] shrink-0 bg-[#F7F7F7] rounded-[4px] overflow-hidden border border-[#E8E8E8]">
-                      <img src={item.thumbnail} alt={item.title} className="w-full h-full object-contain p-[4px]" />
+                    <div className="w-[60px] h-[60px] shrink-0 bg-[#F7F7F7] rounded-lg overflow-hidden border border-[#E5E5E5]">
+                      <img src={item.thumbnail} alt={item.title} className="w-full h-full object-contain p-1" />
                     </div>
                   ) : (
-                    <div className="w-[72px] h-[72px] shrink-0 bg-[#F7F7F7] rounded-[4px] border border-[#E8E8E8]" />
+                    <div className="w-[60px] h-[60px] shrink-0 bg-[#F7F7F7] rounded-lg border border-[#E5E5E5]" />
                   )}
                   <div className="flex-1 min-w-0">
-                    <p className="text-[13px] font-[500] font-[family-name:var(--font-poppins)] text-[#1A1A1A] leading-[1.4] line-clamp-2 mb-[6px]">
+                    <p className="text-[13px] font-medium text-[#222222] leading-[1.4] line-clamp-2 mb-1.5">
                       {item.title}
                     </p>
-                    <p className="text-[14px] font-[700] font-[family-name:var(--font-poppins)] text-[#E8650A]">
+                    <p className="text-[14px] font-bold text-[#FF6A00]">
                       {formatPrice(item.unit_price * item.quantity, item.currency_code)}
                     </p>
-                    <div className="flex items-center gap-[8px] mt-[8px]">
-                      <div className="flex items-center border border-[#E8E8E8] rounded-[4px] overflow-hidden">
-                        <span className="w-[28px] h-[28px] flex items-center justify-center bg-[#FAFAFA] text-[#999999]">
+                    <div className="flex items-center gap-2 mt-2">
+                      <div className="flex items-center border border-[#E5E5E5] rounded-lg overflow-hidden">
+                        <span className="w-7 h-7 flex items-center justify-center bg-[#FAFAFA] text-[#999999]">
                           <Minus size={12} strokeWidth={2} />
                         </span>
-                        <span className="w-[32px] text-center text-[13px] font-[500] font-[family-name:var(--font-jakarta)] border-x border-[#E8E8E8]">
+                        <span className="w-8 text-center text-[13px] font-medium border-x border-[#E5E5E5]">
                           {item.quantity}
                         </span>
-                        <span className="w-[28px] h-[28px] flex items-center justify-center bg-[#FAFAFA] text-[#999999]">
+                        <span className="w-7 h-7 flex items-center justify-center bg-[#FAFAFA] text-[#999999]">
                           <Plus size={12} strokeWidth={2} />
                         </span>
                       </div>
@@ -179,24 +179,24 @@ export default function CartSlideOver({ locale = "et" }: { locale?: string }) {
 
         {/* Footer */}
         {!loading && cart && cart.items?.length > 0 && (
-          <div className="px-[20px] py-[20px] border-t border-[#E8E8E8] bg-[#FAFAFA]">
-            <div className="flex items-center justify-between mb-[16px]">
-              <span className="text-[14px] font-[family-name:var(--font-jakarta)] text-[#555555]">Kokku</span>
-              <span className="text-[18px] font-[700] font-[family-name:var(--font-poppins)] text-[#1A1A1A]">
+          <div className="px-5 py-5 border-t border-[#E5E5E5] bg-[#FAFAFA]">
+            <div className="flex items-center justify-between mb-4">
+              <span className="text-[14px] text-[#666666]">Kokku</span>
+              <span className="text-lg font-bold text-[#222222]">
                 {formatPrice(cart.total, cart.currency_code)}
               </span>
             </div>
             <Link
               href={`/${locale}/ostukorv`}
               onClick={close}
-              className="block w-full text-center py-[13px] bg-[#E8650A] text-white text-[15px] font-[600] font-[family-name:var(--font-poppins)] hover:bg-[#CF5A08] transition-colors"
-              style={{ boxShadow: "0 4px 16px rgba(232,101,10,0.25)" }}
+              className="block w-full text-center py-3.5 bg-[#FF6A00] text-white text-[15px] font-semibold rounded-lg hover:bg-[#E55F00] transition-colors"
+              style={{ boxShadow: "0 4px 16px rgba(255,106,0,0.25)" }}
             >
               Vaata ostukorvi
             </Link>
             <button
               onClick={close}
-              className="block w-full text-center mt-[8px] py-[10px] text-[13px] font-[500] font-[family-name:var(--font-poppins)] text-[#999999] hover:text-[#1A1A1A] transition-colors"
+              className="block w-full text-center mt-2 py-2.5 text-[13px] font-medium text-[#666666] hover:text-[#222222] transition-colors"
             >
               Jätka ostlemist
             </button>

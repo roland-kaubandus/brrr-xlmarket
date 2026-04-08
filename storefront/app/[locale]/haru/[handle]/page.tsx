@@ -3,7 +3,7 @@ import { notFound } from "next/navigation"
 import { getProducts, getCategories } from "@/lib/medusa"
 import { searchProducts } from "@/lib/meilisearch"
 import { BRANCHES, getBranchBySlug } from "@/lib/branches"
-import ProductCard from "@/components/ProductCard"
+import VevorProductCard from "@/components/VevorProductCard"
 import BranchFilters from "@/components/BranchFilters"
 import SubcategoryGrid from "@/components/SubcategoryGrid"
 
@@ -265,7 +265,7 @@ export default async function BranchLandingPage({ params, searchParams }: Props)
             {products.length > 0 ? (
               <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-5">
                 {products.map((product: any) => (
-                  <ProductCard key={product.id} product={product} />
+                  <VevorProductCard key={product.id} product={product} />
                 ))}
               </div>
             ) : (
