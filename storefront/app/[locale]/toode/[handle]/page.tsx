@@ -427,14 +427,23 @@ export default async function ProductPage({ params }: Props) {
         <section className="mt-12 pb-10 bg-[#F8FAFC] -mx-4 sm:-mx-6 px-4 sm:px-6">
           <div className="max-w-[800px] mx-auto">
             <CollapsibleSection title="Features & Details" defaultOpen={true}>
-              <ul className="space-y-2.5">
-                {sellingPoints.slice(0, 6).map((sp, i) => (
-                  <li key={i} className="flex items-start gap-2.5">
-                    <svg className="shrink-0 mt-0.5" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#059669" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                    <span className="text-sm text-[#1E293B]">{sp}</span>
-                  </li>
-                ))}
-              </ul>
+              <div className="space-y-5">
+                {sellingPoints.slice(0, 5).map((sp, i) => {
+                  const colonIdx = sp.indexOf(":")
+                  const hasTitle = colonIdx > 0 && colonIdx < 60
+                  const title = hasTitle ? sp.substring(0, colonIdx).trim() : null
+                  const body = hasTitle ? sp.substring(colonIdx + 1).trim() : sp
+                  return (
+                    <div key={i} className="flex items-start gap-3">
+                      <svg className="shrink-0 mt-1" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#059669" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                      <div>
+                        {title && <p className="text-sm font-semibold text-[#1E293B] mb-0.5">{title}</p>}
+                        <p className="text-sm text-[#475569] leading-relaxed">{body}</p>
+                      </div>
+                    </div>
+                  )
+                })}
+              </div>
             </CollapsibleSection>
           </div>
         </section>
