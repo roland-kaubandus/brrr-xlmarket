@@ -18,10 +18,10 @@ type Props = {
 
 export async function generateMetadata({ searchParams }: Props) {
   const { q } = await searchParams
-  const title = q ? `"${q}" — Otsing — XLMARKET` : "Otsing — XLMARKET"
+  const title = q ? `"${q}" — Search — XLMARKET` : "Search — XLMARKET"
   return {
     title,
-    description: q ? `Otsi "${q}" XLMARKET toodete hulgast.` : "Otsi XLMARKET toodete hulgast.",
+    description: q ? `Search for "${q}" among XLMARKET products.` : "Search XLMARKET products.",
     robots: { index: false, follow: true },
   }
 }
@@ -223,6 +223,27 @@ export default async function SearchPage({ searchParams, params }: Props) {
               buildUrl={buildPageUrl}
             />
           </div>
+        )}
+
+        {/* Recommended Searches */}
+        {query && Object.keys(categoryFacets).length > 0 && (
+          <section className="mt-8">
+            <h2 className="text-lg font-bold text-[#1E293B] mb-4">Recommended Searches</h2>
+            <div className="flex flex-wrap gap-2">
+              {Object.entries(categoryFacets)
+                .sort(([,a], [,b]) => b - a)
+                .slice(0, 8)
+                .map(([cat]) => (
+                  <Link
+                    key={cat}
+                    href={`/${locale}/otsing?q=${encodeURIComponent(cat)}`}
+                    className="px-4 py-2 rounded-full text-sm font-medium bg-white border border-[#E2E8F0] text-[#1E293B] hover:border-[#D97706] hover:text-[#D97706] transition-colors"
+                  >
+                    {cat}
+                  </Link>
+                ))}
+            </div>
+          </section>
         )}
       </div>
     </div>

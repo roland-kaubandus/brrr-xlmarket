@@ -117,6 +117,8 @@ export default function MegaMenu({ categories, locale = "et" }: { categories: Ca
   const [activeL1, setActiveL1] = useState<string | null>(null)
   const [activeL2, setActiveL2] = useState<string | null>(null)
   const hoverTimerRef = useRef<ReturnType<typeof setTimeout>>(undefined)
+  const openTimerRef = useRef<ReturnType<typeof setTimeout>>(undefined)
+  const closeTimerRef = useRef<ReturnType<typeof setTimeout>>(undefined)
   const menuRef = useRef<HTMLDivElement>(null)
 
   const tree = buildCategoryTree(categories)
@@ -151,8 +153,40 @@ export default function MegaMenu({ categories, locale = "et" }: { categories: Ca
     }, 150)
   }, [])
 
-  // Cleanup hover timer on unmount
-  useEffect(() => () => clearTimeout(hoverTimerRef.current), [])
+  // Cleanup timers on unmount
+  useEffect(() => () => {
+    clearTimeout(hoverTimerRef.current)
+    clearTimeout(openTimerRef.current)
+    clearTimeout(closeTimerRef.current)
+  }, [])
+
+  // Hover open/close handlers for the trigger button and menu area
+  const handleTriggerEnter = useCallback(() => {
+    clearTimeout(closeTimerRef.current)
+    openTimerRef.current = setTimeout(() => {
+      setIsOpen(true)
+      if (!activeL1 && l1Mapped.length > 0) {
+        setActiveL1(l1Mapped[0].name)
+      }
+    }, 200)
+  }, [l1Mapped, activeL1])
+
+  const handleTriggerLeave = useCallback(() => {
+    clearTimeout(openTimerRef.current)
+  }, [])
+
+  const handleMenuEnter = useCallback(() => {
+    clearTimeout(closeTimerRef.current)
+  }, [])
+
+  const handleMenuLeave = useCallback(() => {
+    clearTimeout(openTimerRef.current)
+    closeTimerRef.current = setTimeout(() => {
+      setIsOpen(false)
+      setActiveL1(null)
+      setActiveL2(null)
+    }, 200)
+  }, [])
 
   // Close on ESC
   useEffect(() => {
@@ -188,16 +222,18 @@ export default function MegaMenu({ categories, locale = "et" }: { categories: Ca
   }
 
   return (
-    <div ref={menuRef} className="relative">
+    <div ref={menuRef} className="relative" onMouseLeave={handleMenuLeave}>
       {/* Trigger button */}
       <button
         onClick={handleOpen}
+        onMouseEnter={handleTriggerEnter}
+        onMouseLeave={handleTriggerLeave}
         aria-expanded={isOpen}
         aria-haspopup="true"
         className="flex items-center gap-2 px-4 h-[44px] text-white font-bold text-[14px] hover:bg-[#B45309] transition-colors"
       >
         {isOpen ? <X size={18} strokeWidth={2} /> : <Menu size={18} strokeWidth={2} />}
-        <span className="hidden sm:inline">Kategooriad</span>
+        <span className="hidden sm:inline">Categories</span>
       </button>
 
       {/* Overlay */}
@@ -207,12 +243,12 @@ export default function MegaMenu({ categories, locale = "et" }: { categories: Ca
 
       {/* Desktop mega-menu */}
       {isOpen && (
-        <div className="hidden md:block absolute z-50 bg-white shadow-[0_8px_40px_rgba(0,0,0,0.15)]" style={{ top: "100%", left: 0, width: hasL2 ? "auto" : "280px" }}>
+        <div className="hidden md:block absolute z-50 bg-white shadow-[0_8px_40px_rgba(0,0,0,0.15)]" style={{ top: "100%", left: 0, width: hasL2 ? "auto" : "280px" }} onMouseEnter={handleMenuEnter}>
           <div className="flex">
             {/* L1 Panel */}
             <div className="w-[280px] border-r border-[#E2E8F0] py-4 max-h-[calc(100vh-120px)] overflow-y-auto flex-shrink-0">
               <h3 className="px-5 pb-3 text-[13px] font-bold text-[#1E293B] uppercase tracking-wide">
-                Kategooriad
+                Categories
               </h3>
               {l1Mapped.map(({ name, Icon, handle }) => {
                 const isActive = activeL1 === name
@@ -253,7 +289,7 @@ export default function MegaMenu({ categories, locale = "et" }: { categories: Ca
                   onClick={() => setIsOpen(false)}
                   className="flex items-center gap-2 px-5 pb-3 text-[13px] font-bold text-[#D97706] uppercase tracking-wide hover:underline"
                 >
-                  Vaata kogu {activeL1Node.name}
+                  Shop All {activeL1Node.name}
                 </Link>
                 {activeL1Node.children.map(child => {
                   const isActive = activeL2 === child.id
@@ -292,7 +328,7 @@ export default function MegaMenu({ categories, locale = "et" }: { categories: Ca
                   onClick={() => setIsOpen(false)}
                   className="flex items-center gap-2 px-5 pb-3 text-[13px] font-bold text-[#D97706] uppercase tracking-wide hover:underline"
                 >
-                  Vaata kogu {activeL2Node.name}
+                  Shop All {activeL2Node.name}
                 </Link>
                 {activeL2Node.children.map(child => (
                   <Link
@@ -316,7 +352,7 @@ export default function MegaMenu({ categories, locale = "et" }: { categories: Ca
         <div className="md:hidden fixed inset-0 z-50 bg-white flex flex-col">
           {/* Mobile header */}
           <div className="flex items-center justify-between px-4 h-[56px] border-b border-[#E2E8F0] bg-[#1E293B] flex-shrink-0">
-            <span className="text-white font-bold text-[16px]">Kategooriad</span>
+            <span className="text-white font-bold text-[16px]">Categories</span>
             <button onClick={() => setIsOpen(false)} className="w-10 h-10 flex items-center justify-center text-white">
               <X size={20} />
             </button>

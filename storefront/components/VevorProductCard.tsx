@@ -102,7 +102,7 @@ export default function VevorProductCard({ product, locale }: { product: Product
         <button
           type="button"
           onClick={toggleWishlist}
-          aria-label={wishlisted ? "Eemalda lemmikutest" : "Lisa lemmikutesse"}
+          aria-label={wishlisted ? "Remove from Wishlist" : "Add to Wishlist"}
           className="absolute top-2 right-2 z-10 w-8 h-8 rounded-full flex items-center justify-center bg-white/80 hover:bg-white shadow-sm transition-colors"
         >
           <svg width="16" height="16" viewBox="0 0 24 24" fill={wishlisted ? "#DC2626" : "none"} stroke={wishlisted ? "#DC2626" : "#666"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -130,7 +130,7 @@ export default function VevorProductCard({ product, locale }: { product: Product
               sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
             />
           ) : (
-            <div className="flex items-center justify-center h-full text-[#64748B] text-sm">Pilt puudub</div>
+            <div className="flex items-center justify-center h-full text-[#64748B] text-sm">No image</div>
           )}
         </div>
 
@@ -163,10 +163,10 @@ export default function VevorProductCard({ product, locale }: { product: Product
           <div className="mt-2 flex items-center gap-3 text-xs">
             <span className="inline-flex items-center gap-1 text-[#059669]">
               <span className="w-1.5 h-1.5 rounded-full bg-[#059669] inline-block" />
-              Laos
+              In Stock
             </span>
             {freeShipping && (
-              <span className="text-[#D97706] font-medium">Tasuta tarne</span>
+              <span className="text-[#D97706] font-medium">Free Shipping</span>
             )}
           </div>
         </div>

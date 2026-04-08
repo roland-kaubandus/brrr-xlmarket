@@ -2,7 +2,6 @@ import { getProducts, getCategories } from "@/lib/medusa"
 import BannerCarousel from "@/components/BannerCarousel"
 import CategoryExploreGrid from "@/components/CategoryExploreGrid"
 import VevorProductCard from "@/components/VevorProductCard"
-import TrustBadges from "@/components/TrustBadges"
 
 export const revalidate = 300
 
@@ -109,7 +108,6 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
         </div>
       </section>
 
-      <TrustBadges />
     </>
   )
 }

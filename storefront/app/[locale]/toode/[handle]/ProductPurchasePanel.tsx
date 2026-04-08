@@ -142,12 +142,6 @@ export default function ProductPurchasePanel({ locale, title, variants, options 
         </div>
       )}
 
-      {selectedVariant?.sku && (
-        <p className="text-sm text-[#64748B] mb-5">
-          SKU: <span className="text-[#1E293B] font-medium">{selectedVariant.sku}</span>
-        </p>
-      )}
-
       {selectedVariant && inStock ? (
         <div className="flex flex-col gap-3">
           <AddToCartButton variantId={selectedVariant.id} />

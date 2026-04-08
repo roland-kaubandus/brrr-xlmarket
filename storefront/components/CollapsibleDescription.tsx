@@ -43,7 +43,7 @@ export default function CollapsibleDescription({ html, collapsedHeight = 600 }: 
             onClick={() => setExpanded(!expanded)}
             className="inline-flex items-center gap-2 px-8 py-3 border border-[#E2E8F0] bg-white hover:border-[#D97706]/40 rounded-lg text-sm font-semibold text-[#1E293B] transition-colors duration-200"
           >
-            {expanded ? "Näita vähem" : "Vaata rohkem"}
+            {expanded ? "Show Less" : "Show More"}
             <ChevronDown
               size={16}
               strokeWidth={2}

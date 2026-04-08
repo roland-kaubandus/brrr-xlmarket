@@ -160,13 +160,13 @@ export default async function CategoryPage({ params, searchParams }: Props) {
         <div className="mb-5">
           <h1 className="text-[28px] font-bold text-[#1E293B]">{displayName}</h1>
           <p className="text-sm text-[#64748B] mt-1">
-            <span className="font-semibold text-[#1E293B]">{totalCount.toLocaleString("et-EE")}</span> products
+            <span className="font-semibold text-[#1E293B]">{totalCount.toLocaleString("en")}</span> products
           </p>
         </div>
 
-        {/* Subcategory chips from facets */}
+        {/* Subcategory pills from facets */}
         {Object.keys(categoryFacets).length > 1 && (
-          <div className="flex gap-2 flex-wrap mb-5">
+          <div className="flex gap-3 overflow-x-auto pb-2 mb-5 scrollbar-hide">
             {Object.entries(categoryFacets)
               .sort(([,a], [,b]) => b - a)
               .slice(0, 16)
@@ -174,12 +174,19 @@ export default async function CategoryPage({ params, searchParams }: Props) {
                 <Link
                   key={subcat}
                   href={`${categoryBasePath}?categories=${encodeURIComponent(subcat)}`}
-                  className={`px-4 py-2 rounded-lg text-sm font-medium border transition-colors ${
+                  className={`flex-shrink-0 inline-flex items-center gap-2 px-5 rounded-xl text-sm font-medium border transition-all ${
                     selectedCategories.includes(subcat)
-                      ? "bg-[#D97706] text-white border-[#D97706]"
-                      : "bg-white text-[#1E293B] border-[#E2E8F0] hover:border-[#D97706] hover:text-[#D97706]"
+                      ? "bg-[#FFF7ED] text-[#D97706] border-[#D97706] shadow-sm"
+                      : "bg-white text-[#1E293B] border-[#E2E8F0] hover:border-[#D97706] hover:text-[#D97706] hover:shadow-sm"
                   }`}
+                  style={{ height: "48px" }}
                 >
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={selectedCategories.includes(subcat) ? "#D97706" : "#94A3B8"} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="3" y="3" width="7" height="7" rx="1" />
+                    <rect x="14" y="3" width="7" height="7" rx="1" />
+                    <rect x="3" y="14" width="7" height="7" rx="1" />
+                    <rect x="14" y="14" width="7" height="7" rx="1" />
+                  </svg>
                   {subcat} <span className="text-xs opacity-50">({count})</span>
                 </Link>
               ))}

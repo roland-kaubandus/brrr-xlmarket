@@ -52,7 +52,7 @@ export default function CategoryExploreGrid({
               <div
                 className="flex items-center justify-center"
                 style={{
-                  backgroundColor: "#F8FAFC",
+                  backgroundColor: "#FFFFFF",
                   height: "140px",
                 }}
               >
@@ -122,7 +122,7 @@ export default function CategoryExploreGrid({
       {/* Hover styles via global CSS-in-JS workaround for Tailwind */}
       <style>{`
         .category-card:hover {
-          box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+          box-shadow: 0 6px 20px rgba(0,0,0,0.10);
           transform: translateY(-2px);
           border-color: #D97706 !important;
         }

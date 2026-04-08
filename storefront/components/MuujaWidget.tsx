@@ -251,7 +251,7 @@ export default function MuujaWidget() {
     const onMove = (e: MouseEvent) => {
       const dx = e.clientX - dragStart.current.x
       const dy = e.clientY - dragStart.current.y
-      if (Math.abs(dx) > 8 || Math.abs(dy) > 8) wasDragged.current = true
+      if (Math.abs(dx) > 15 || Math.abs(dy) > 15) wasDragged.current = true
       const newX = Math.max(0, Math.min(winSize.w - 56, dragStart.current.posX + dx))
       const newY = Math.max(0, Math.min(winSize.h - 56, dragStart.current.posY + dy))
       setPos({ x: newX, y: newY })

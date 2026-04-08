@@ -43,7 +43,7 @@ export default function SubcategoryGrid({
   return (
     <div className="mb-8">
       <h2 className="font-[family-name:var(--font-dm-sans)] font-[700] text-xl tracking-tight mb-5">
-        Tootegrupid
+        Product Groups
       </h2>
       <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-3">
         {visible.map((sub) => {
@@ -85,14 +85,14 @@ export default function SubcategoryGrid({
                 {sub.name}
               </span>
               <span className="mt-1.5 text-[10px] text-muted">
-                {sub.count.toLocaleString("et-EE")} toodet
+                {sub.count.toLocaleString("en")} products
               </span>
             </Link>
           )
         })}
       </div>
 
-      {/* Vaata kõiki / Peida nupp */}
+      {/* Show all / Hide button */}
       {hasMore && (
         <div className="mt-4 flex justify-center">
           <button
@@ -101,12 +101,12 @@ export default function SubcategoryGrid({
           >
             {expanded ? (
               <>
-                Peida
+                Hide
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="m18 15-6-6-6 6"/></svg>
               </>
             ) : (
               <>
-                {`Vaata k\u00f5iki tootegrupe (${subcategories.length})`}
+                {`View all product groups (${subcategories.length})`}
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="m6 9 6 6 6-6"/></svg>
               </>
             )}
@@ -114,7 +114,7 @@ export default function SubcategoryGrid({
         </div>
       )}
 
-      {/* Aktiivse filtri kustutus */}
+      {/* Clear active filter */}
       {selectedHandle && (
         <div className="mt-3 flex justify-center">
           <Link
@@ -122,7 +122,7 @@ export default function SubcategoryGrid({
             className="inline-flex items-center gap-1.5 text-xs text-muted hover:text-accent transition-colors"
           >
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
-            {`T\u00fchista filter`}
+            Clear filter
           </Link>
         </div>
       )}

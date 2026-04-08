@@ -15,8 +15,11 @@ const ALLOWED_ATTRS: Record<string, Set<string>> = {
  */
 export function sanitizeHtml(html: string): string {
   return html
-    // Remove script/style/iframe blocks entirely
-    .replace(/<(script|style|iframe|object|embed|form|input|textarea|select)[\s\S]*?<\/\1>/gi, "")
+    // Remove script/style/iframe blocks entirely (tag + content + closing tag)
+    .replace(/<style[^>]*>[\s\S]*?<\/style\s*>/gi, "")
+    .replace(/<script[^>]*>[\s\S]*?<\/script\s*>/gi, "")
+    .replace(/<(iframe|object|embed|form|input|textarea|select)[\s\S]*?<\/\1\s*>/gi, "")
+    // Remove any remaining orphan opening/self-closing tags for blocked elements
     .replace(/<(script|style|iframe|object|embed|form|input|textarea|select)[^>]*\/?>/gi, "")
     // Process remaining tags
     .replace(/<\/?([a-zA-Z][a-zA-Z0-9]*)\b([^>]*)>/gi, (match, tag, attrs) => {
