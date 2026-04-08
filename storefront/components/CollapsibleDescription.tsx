@@ -33,7 +33,7 @@ export default function CollapsibleDescription({ html, collapsedHeight = 600 }: 
       </div>
 
       {needsCollapse && !expanded && (
-        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-bg to-transparent pointer-events-none" />
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white to-transparent pointer-events-none" />
       )}
 
       {needsCollapse && (

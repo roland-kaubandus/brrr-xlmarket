@@ -3,6 +3,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import { useEffect, useState, useCallback } from "react"
+import { usePathname } from "next/navigation"
 import { formatPrice } from "@/lib/medusa"
 
 type CartItem = {
@@ -64,6 +65,8 @@ const inputClass = "w-full border border-[#E5E5E5] rounded-lg px-3 py-2.5 text-[
 const labelClass = "block text-[12px] font-medium text-[#666666] mb-1.5"
 
 export default function CheckoutPage() {
+  const pathname = usePathname()
+  const locale = pathname.split('/')[1] === 'en' ? 'en' : 'et'
   const [cart, setCart] = useState<Cart | null>(null)
   const [shippingOptions, setShippingOptions] = useState<ShippingOption[]>([])
   const [selectedShipping, setSelectedShipping] = useState<string>("")
@@ -232,7 +235,7 @@ export default function CheckoutPage() {
           <div className="flex flex-col items-center justify-center py-16 bg-white border border-[#E5E5E5] rounded-lg">
             <p className="text-[14px] text-[#666666] mb-7">Sinu ostukorv on tühi.</p>
             <Link
-              href="/"
+              href={`/${locale}`}
               className="inline-flex items-center bg-[#FF6A00] text-white px-6 py-3 text-[15px] font-semibold rounded-lg hover:bg-[#E55F00] transition-colors"
             >
               Vaata tooteid
@@ -263,7 +266,7 @@ export default function CheckoutPage() {
               </p>
             )}
             <Link
-              href="/"
+              href={`/${locale}`}
               className="inline-flex items-center bg-[#FF6A00] text-white px-6 py-3 text-[15px] font-semibold rounded-lg hover:bg-[#E55F00] transition-colors"
             >
               Tagasi avalehele
@@ -281,9 +284,9 @@ export default function CheckoutPage() {
       <div className="max-w-[1360px] mx-auto px-4 sm:px-6 py-8 sm:py-12">
         {/* Breadcrumb */}
         <nav className="text-[12px] text-[#666666] mb-7" aria-label="Leheasukoht">
-          <Link href="/" className="hover:text-[#FF6A00] transition-colors">Avaleht</Link>
+          <Link href={`/${locale}`} className="hover:text-[#FF6A00] transition-colors">Avaleht</Link>
           <span className="mx-2 text-[#E5E5E5]">/</span>
-          <Link href="/ostukorv" className="hover:text-[#FF6A00] transition-colors">Ostukorv</Link>
+          <Link href={`/${locale}/ostukorv`} className="hover:text-[#FF6A00] transition-colors">Ostukorv</Link>
           <span className="mx-2 text-[#E5E5E5]">/</span>
           <span className="text-[#222222] font-medium">Tellimus</span>
         </nav>

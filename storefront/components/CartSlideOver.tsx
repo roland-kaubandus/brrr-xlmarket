@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react"
 import Link from "next/link"
-import { X, ShoppingCart, Plus, Minus, Trash2 } from "lucide-react"
+import { X, ShoppingCart, Trash2 } from "lucide-react"
 
 type CartItem = {
   id: string
@@ -37,7 +37,7 @@ export default function CartSlideOver({ locale = "et" }: { locale?: string }) {
     if (!cartId) return
     setLoading(true)
     try {
-      const res = await fetch("/api/cart?cart_id=" + cartId)
+      const res = await fetch(`/api/cart?cart_id=${encodeURIComponent(cartId)}`)
       if (res.ok) {
         const data = await res.json()
         setCart(data.cart)
@@ -159,14 +159,8 @@ export default function CartSlideOver({ locale = "et" }: { locale?: string }) {
                     </p>
                     <div className="flex items-center gap-2 mt-2">
                       <div className="flex items-center border border-[#E5E5E5] rounded-lg overflow-hidden">
-                        <span className="w-7 h-7 flex items-center justify-center bg-[#FAFAFA] text-[#999999]">
-                          <Minus size={12} strokeWidth={2} />
-                        </span>
-                        <span className="w-8 text-center text-[13px] font-medium border-x border-[#E5E5E5]">
-                          {item.quantity}
-                        </span>
-                        <span className="w-7 h-7 flex items-center justify-center bg-[#FAFAFA] text-[#999999]">
-                          <Plus size={12} strokeWidth={2} />
+                        <span className="w-8 text-center text-[13px] font-medium px-2 py-1">
+                          {item.quantity} tk
                         </span>
                       </div>
                     </div>

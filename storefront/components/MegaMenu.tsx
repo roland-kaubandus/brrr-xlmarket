@@ -97,6 +97,9 @@ export default function MegaMenu({ categories, locale = "et" }: { categories: Ca
     }, 150)
   }, [])
 
+  // Cleanup hover timer on unmount
+  useEffect(() => () => clearTimeout(hoverTimerRef.current), [])
+
   // Close on ESC
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {

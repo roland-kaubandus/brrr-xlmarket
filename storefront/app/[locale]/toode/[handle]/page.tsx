@@ -609,9 +609,7 @@ export default async function ProductPage({ params }: Props) {
                   <span className="text-sm font-normal text-[#666] mr-2">Kokku:</span>
                   {formatPrice(koosTotal, currencyCode)}
                 </p>
-                <button className="px-6 py-3 bg-[#FF6A00] hover:bg-[#E55F00] text-white text-sm font-bold rounded-lg transition-colors">
-                  Lisa koik ostukorvi
-                </button>
+                {/* TODO: Add all to cart - needs cart API integration */}
               </div>
             )
           })()}
