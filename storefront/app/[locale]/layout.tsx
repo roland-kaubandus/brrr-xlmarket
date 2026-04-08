@@ -3,7 +3,6 @@ import type { Metadata } from "next"
 import { isValidLocale, getTranslations, localePath } from "@/lib/i18n"
 import type { Locale } from "@/lib/i18n"
 import { getCategories } from "@/lib/medusa"
-import { searchProducts } from "@/lib/meilisearch"
 import CookieConsent from "@/components/CookieConsent"
 import CartSlideOver from "@/components/CartSlideOver"
 import MetaPixel from "@/components/MetaPixel"
@@ -72,73 +71,14 @@ export default async function LocaleLayout({ children, params }: Props) {
     children: [] as any[],
   }))
 
-  // Fetch L2 subcategories per L1 from MeiliSearch category_handles facets
-  // Each product has category_handles = [L1_handle, L2_handle, L3_handle]
-  // We get L2 handles by filtering on L1 and looking at facet distribution
-  type SubcatData = { handle: string; name: string; thumbnail: string | null; count: number }
-  type L1SubcatMap = Record<string, SubcatData[]>
-  let l1Subcategories: L1SubcatMap = {}
-  try {
-    const L1_HANDLES = [
-      "kodu-ja-aed", "toostus-ja-seadmed", "toitlustus-ja-kook", "ehitus-ja-remont",
-      "auto-ja-garaaz", "sport-ja-vaba-aeg", "kontor-ja-ladustamine", "elektroonika",
-      "kunst-ja-kasitoo", "meditsiin-ja-tervishoid", "lemmikloomad",
-    ]
-    const results = await Promise.all(
-      L1_HANDLES.map(async (l1Handle) => {
-        try {
-          const res = await searchProducts({
-            q: "",
-            limit: 1,
-            filter: [`category_handles = "${l1Handle}"`],
-            facets: ["category_handles"],
-          })
-          const facets = res.facetDistribution?.category_handles || {}
-          // L2 handles = all facet handles EXCEPT the L1 handle itself
-          const subcats = Object.entries(facets)
-            .filter(([h]) => h !== l1Handle)
-            .sort(([, a], [, b]) => b - a)
-            .slice(0, 12)
-            .map(([handle, count]) => ({
-              handle,
-              name: handle.replace(/-/g, " ").replace(/\b\w/g, c => c.toUpperCase()),
-              thumbnail: null as string | null,
-              count,
-            }))
-          return { l1Handle, subcats }
-        } catch {
-          return { l1Handle, subcats: [] }
-        }
-      })
-    )
-    // Fetch one product thumbnail per top subcategory (top 6 per L1)
-    for (const { l1Handle, subcats } of results) {
-      const withThumbs = await Promise.all(
-        subcats.slice(0, 6).map(async (sc) => {
-          try {
-            const r = await searchProducts({
-              q: "",
-              limit: 1,
-              filter: [`category_handles = "${l1Handle}"`, `category_handles = "${sc.handle}"`],
-            })
-            return { ...sc, thumbnail: r.hits[0]?.thumbnail || null }
-          } catch {
-            return sc
-          }
-        })
-      )
-      // Keep remaining without thumbs
-      l1Subcategories[l1Handle] = [...withThumbs, ...subcats.slice(6)]
-    }
-  } catch {
-    // Fallback: empty subcategories
-  }
+  // No need for MeiliSearch subcategory fetching anymore —
+  // categories now have real parent-child tree from Medusa (3400+ nodes)
 
   return (
     <>
       <SetHtmlLang locale={locale} />
 
-      <VevorHeader categories={categoryNodes} locale={locale} subcategories={l1Subcategories} />
+      <VevorHeader categories={categoryNodes} locale={locale} />
 
       <main className="min-h-[100dvh] bg-[#F8FAFC]">{children}</main>
 
