@@ -3,8 +3,8 @@ import Link from "next/link"
 import { Truck, Clock, MapPin, Package } from "lucide-react"
 
 export const metadata: Metadata = {
-  title: "Tarneinfo — XLMARKET",
-  description: "XLMARKET tarnetingimused. Tarneaeg 5–15 tööpäeva, tarne üle Eesti.",
+  title: "Shipping Info — XLMARKET",
+  description: "XLMARKET shipping terms. Delivery 5-15 business days, shipping across Estonia.",
 }
 
 export default async function TarnePage({ params }: { params: Promise<{ locale: string }> }) {
@@ -13,30 +13,30 @@ export default async function TarnePage({ params }: { params: Promise<{ locale: 
       {/* Breadcrumb */}
       <nav
         className="text-[12px] font-[family-name:var(--font-dm-sans)] text-[#999999] mb-[32px]"
-        aria-label="Leheasukoht"
+        aria-label="Breadcrumb"
       >
         <Link href={`/${(await params).locale}`} className="hover:text-[#D97706] transition-colors">
-          Avaleht
+          Home
         </Link>
         <span className="mx-[8px] text-[#E8E8E8]">/</span>
-        <span className="text-[#777777]">Tarneinfo</span>
+        <span className="text-[#777777]">Shipping Info</span>
       </nav>
 
       <div className="max-w-[720px]">
         <h1 className="text-[28px] sm:text-[32px] font-[700] font-[family-name:var(--font-dm-sans)] text-[#1E293B] mb-[8px]">
-          Tarneinfo
+          Shipping Info
         </h1>
         <p className="text-[14px] text-[#999999] font-[family-name:var(--font-dm-sans)] mb-[40px]">
-          Tarname kaupu üle Eesti. Kiire ja turvaline tarne.
+          We deliver across Estonia. Fast and secure shipping.
         </p>
 
         {/* Info cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-[12px] mb-[40px]">
           {[
-            { icon: Truck, title: "Tasuta tarne alates €50", desc: "Tellimustele üle 50 € on tarne tasuta." },
-            { icon: Clock, title: "Tarneaeg 5–15 tööpäeva", desc: "Alates makse laekumisest." },
-            { icon: MapPin, title: "Tarne üle Eesti", desc: "Kõik tellimused saadetakse Eesti aadressile." },
-            { icon: Package, title: "Jälgimisnumber", desc: "Saadame jälgimisnumbri e-kirjaga." },
+            { icon: Truck, title: "Free shipping from 50 EUR", desc: "Orders over 50 EUR ship for free." },
+            { icon: Clock, title: "Delivery 5-15 business days", desc: "From the date of payment." },
+            { icon: MapPin, title: "Shipping across Estonia", desc: "All orders are delivered to Estonian addresses." },
+            { icon: Package, title: "Tracking number", desc: "We send you a tracking number via email." },
           ].map(({ icon: Icon, title, desc }) => (
             <div key={title} className="flex items-start gap-[14px] p-[18px] border border-[#E8E8E8]">
               <div className="w-[36px] h-[36px] bg-[#FFFBEB] flex items-center justify-center shrink-0">
@@ -57,29 +57,29 @@ export default async function TarnePage({ params }: { params: Promise<{ locale: 
         {/* Pricing table */}
         <div className="mb-[40px]">
           <h2 className="text-[18px] font-[600] font-[family-name:var(--font-dm-sans)] text-[#1E293B] mb-[16px]">
-            Tarnehinnad
+            Shipping Rates
           </h2>
           <div className="border border-[#E8E8E8] overflow-hidden">
             <div className="grid grid-cols-3 bg-[#F7F7F7] px-[16px] py-[10px] border-b border-[#E8E8E8]">
               <span className="text-[12px] font-[600] font-[family-name:var(--font-dm-sans)] text-[#777777] uppercase tracking-wide">
-                Tarneviis
+                Method
               </span>
               <span className="text-[12px] font-[600] font-[family-name:var(--font-dm-sans)] text-[#777777] uppercase tracking-wide">
-                Tarneaeg
+                Delivery Time
               </span>
               <span className="text-[12px] font-[600] font-[family-name:var(--font-dm-sans)] text-[#777777] uppercase tracking-wide">
-                Hind
+                Price
               </span>
             </div>
             <div className="grid grid-cols-3 px-[16px] py-[14px] border-b border-[#E2E8F0]">
-              <span className="text-[14px] text-[#1E293B] font-[family-name:var(--font-dm-sans)]">Standardtarne</span>
-              <span className="text-[14px] text-[#555555] font-[family-name:var(--font-dm-sans)]">5–15 tööpäeva</span>
-              <span className="text-[14px] text-[#555555] font-[family-name:var(--font-dm-sans)]">4,99 €</span>
+              <span className="text-[14px] text-[#1E293B] font-[family-name:var(--font-dm-sans)]">Standard shipping</span>
+              <span className="text-[14px] text-[#555555] font-[family-name:var(--font-dm-sans)]">5-15 business days</span>
+              <span className="text-[14px] text-[#555555] font-[family-name:var(--font-dm-sans)]">4.99 EUR</span>
             </div>
             <div className="grid grid-cols-3 px-[16px] py-[14px]">
-              <span className="text-[14px] text-[#1E293B] font-[family-name:var(--font-dm-sans)]">Alates 50 €</span>
-              <span className="text-[14px] text-[#555555] font-[family-name:var(--font-dm-sans)]">5–15 tööpäeva</span>
-              <span className="text-[14px] font-[600] text-[#2E7D32] font-[family-name:var(--font-dm-sans)]">Tasuta</span>
+              <span className="text-[14px] text-[#1E293B] font-[family-name:var(--font-dm-sans)]">Orders from 50 EUR</span>
+              <span className="text-[14px] text-[#555555] font-[family-name:var(--font-dm-sans)]">5-15 business days</span>
+              <span className="text-[14px] font-[600] text-[#2E7D32] font-[family-name:var(--font-dm-sans)]">Free</span>
             </div>
           </div>
         </div>
@@ -88,16 +88,16 @@ export default async function TarnePage({ params }: { params: Promise<{ locale: 
         <div className="flex flex-col gap-[24px]">
           {[
             {
-              title: "Tarneaeg",
-              text: "Tavaline tarneaeg on 5–15 tööpäeva alates makse laekumisest. Tarneaeg võib varieeruda sõltuvalt toote saadavusest ja asukohast. Suuremõõtmeliste kaupade tarneaeg võib olla pikem.",
+              title: "Delivery Time",
+              text: "Standard delivery time is 5-15 business days from the date of payment. Delivery time may vary depending on product availability and location. Oversized items may take longer.",
             },
             {
-              title: "Tellimuse jälgimine",
-              text: "Saadame teile e-kirjaga jälgimisnumbri, kui kaup on teele pandud. Jälgimisnumbriga saate kontrollida oma paki asukohta.",
+              title: "Order Tracking",
+              text: "We will send you a tracking number via email once your order has been shipped. You can use the tracking number to check your package location.",
             },
             {
-              title: "Probleemid tarnega",
-              text: "Kui kaup ei ole saabunud 20 tööpäeva jooksul, palun võtke meiega ühendust.",
+              title: "Delivery Issues",
+              text: "If your order has not arrived within 20 business days, please contact us.",
               link: { href: "mailto:info@xlmarket.eu", text: "info@xlmarket.eu" },
             },
           ].map((section) => (

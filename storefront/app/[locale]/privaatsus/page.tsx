@@ -9,13 +9,13 @@ export const metadata: Metadata = {
 export default async function PrivaatsusPage({ params }: { params: Promise<{ locale: string }> }) {
   return (
     <div className="max-w-[1280px] mx-auto px-[16px] sm:px-[24px] py-[32px] sm:py-[48px]">
-      <nav className="text-[12px] font-[family-name:var(--font-dm-sans)] text-[#999999] mb-[32px]" aria-label="Leheasukoht">
-        <Link href={`/${(await params).locale}`} className="hover:text-[#D97706] transition-colors">Avaleht</Link>
+      <nav className="text-[12px] font-[family-name:var(--font-dm-sans)] text-[#999999] mb-[32px]" aria-label="Breadcrumb">
+        <Link href={`/${(await params).locale}`} className="hover:text-[#D97706] transition-colors">Home</Link>
         <span className="mx-[8px] text-[#E8E8E8]">/</span>
-        <span className="text-[#777777]">Privaatsuspoliitika</span>
+        <span className="text-[#777777]">Privacy Policy</span>
       </nav>
 
-      <h1 className="text-[28px] sm:text-[32px] font-[700] font-[family-name:var(--font-dm-sans)] text-[#1E293B] mb-[32px]">Privaatsuspoliitika</h1>
+      <h1 className="text-[28px] sm:text-[32px] font-[700] font-[family-name:var(--font-dm-sans)] text-[#1E293B] mb-[32px]">Privacy Policy</h1>
 
       <div className="max-w-[720px] text-[14px] font-[family-name:var(--font-dm-sans)] text-[#555555] leading-relaxed space-y-[16px]">
         <p>Kehtib alates: 28.03.2026</p>

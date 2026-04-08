@@ -55,7 +55,7 @@ export default function CartPage() {
         localStorage.setItem("xlmarket_cart_count", String(cnt))
       }
     } catch {
-      setError("Ostukorvi laadimine ebaõnnestus")
+      setError("Failed to load cart")
     } finally {
       setLoading(false)
     }
@@ -77,10 +77,10 @@ export default function CartPage() {
         const data = await res.json()
         setCart(data.cart)
       } else {
-        setError("Koguse uuendamine ebaõnnestus")
+        setError("Failed to update quantity")
       }
     } catch {
-      setError("Koguse uuendamine ebaõnnestus")
+      setError("Failed to update quantity")
     } finally {
       setUpdating(null)
     }
@@ -99,10 +99,10 @@ export default function CartPage() {
         const data = await res.json()
         setCart(data.cart)
       } else {
-        setError("Toote eemaldamine ebaõnnestus")
+        setError("Failed to remove item")
       }
     } catch {
-      setError("Toote eemaldamine ebaõnnestus")
+      setError("Failed to remove item")
     } finally {
       setUpdating(null)
     }
@@ -130,19 +130,19 @@ export default function CartPage() {
     <div className="min-h-screen bg-[#F8FAFC]">
       <div className="max-w-[1360px] mx-auto px-4 sm:px-6 py-8 sm:py-12">
         {/* Breadcrumb */}
-        <nav className="text-[12px] text-[#64748B] mb-7" aria-label="Leheasukoht">
-          <Link href={`/${locale}`} className="hover:text-[#D97706] transition-colors">Avaleht</Link>
+        <nav className="text-[12px] text-[#64748B] mb-7" aria-label="Breadcrumb">
+          <Link href={`/${locale}`} className="hover:text-[#D97706] transition-colors">Home</Link>
           <span className="mx-2 text-[#E2E8F0]">/</span>
-          <span className="text-[#1E293B] font-medium">Ostukorv</span>
+          <span className="text-[#1E293B] font-medium">Cart</span>
         </nav>
 
         <div className="flex items-center gap-3 mb-8">
           <h1 className="text-[28px] font-bold text-[#1E293B]">
-            Ostukorv
+            Shopping Cart
           </h1>
           {!isEmpty && (
             <span className="text-base text-[#64748B]">
-              ({items.reduce((s, i) => s + i.quantity, 0)} toodet)
+              ({items.reduce((s, i) => s + i.quantity, 0)} items)
             </span>
           )}
         </div>
@@ -157,16 +157,16 @@ export default function CartPage() {
           <div className="flex flex-col items-center justify-center py-20 text-center bg-white border border-[#E2E8F0] rounded-lg">
             <ShoppingCart size={56} strokeWidth={1} className="text-[#E2E8F0] mb-5" />
             <p className="text-lg font-semibold text-[#1E293B] mb-1.5">
-              Ostukorv on tühi
+              Your cart is empty
             </p>
             <p className="text-[14px] text-[#64748B] mb-7">
-              Lisa tooteid, et alustada ostlemist
+              Add products to start shopping
             </p>
             <Link
               href={`/${locale}/kategooriad`}
               className="inline-flex items-center gap-2 px-6 py-3 bg-[#D97706] text-white text-[14px] font-semibold rounded-lg hover:bg-[#B45309] transition-colors"
             >
-              Vaata tooteid
+              Browse Products
               <ArrowRight size={16} strokeWidth={1.5} />
             </Link>
           </div>
@@ -180,7 +180,7 @@ export default function CartPage() {
                   <div className="flex items-center gap-1.5">
                     <Truck size={14} strokeWidth={1.5} className="text-[#D97706] shrink-0" />
                     <span className="text-[13px] text-[#64748B]">
-                      Lisa veel <strong className="text-[#D97706]">{formatPrice(toFreeShipping, cart?.currency_code ?? "EUR")}</strong> tasuta tarne saamiseks
+                      Add <strong className="text-[#D97706]">{formatPrice(toFreeShipping, cart?.currency_code ?? "EUR")}</strong> more for free shipping
                     </span>
                   </div>
                   <div className="h-1 bg-[#E2E8F0] rounded-full overflow-hidden">
@@ -195,17 +195,17 @@ export default function CartPage() {
                 <div className="flex items-center gap-2 p-3 bg-green-50 border border-green-200 rounded-lg mb-1">
                   <Truck size={14} strokeWidth={1.5} className="text-[#059669] shrink-0" />
                   <span className="text-[13px] text-green-700">
-                    Tasuta tarne on lisatud!
+                    Free shipping applied!
                   </span>
                 </div>
               )}
 
               {/* Table header (desktop) */}
               <div className="hidden sm:grid grid-cols-[1fr_100px_140px_100px_40px] gap-4 px-4 py-3 bg-white border border-[#E2E8F0] rounded-lg text-[12px] font-semibold text-[#64748B] uppercase tracking-wide">
-                <span>Toode</span>
-                <span className="text-center">Hind</span>
-                <span className="text-center">Kogus</span>
-                <span className="text-right">Kokku</span>
+                <span>Product</span>
+                <span className="text-center">Price</span>
+                <span className="text-center">Quantity</span>
+                <span className="text-right">Total</span>
                 <span></span>
               </div>
 
@@ -252,7 +252,7 @@ export default function CartPage() {
                           onClick={() => updateQuantity(item.id, item.quantity - 1)}
                           disabled={!!updating}
                           className="w-8 h-8 flex items-center justify-center hover:bg-[#F8FAFC] text-[#64748B] disabled:text-[#CCCCCC] transition-colors"
-                          aria-label="Vähenda"
+                          aria-label="Decrease"
                         >
                           <Minus size={14} strokeWidth={2} />
                         </button>
@@ -263,7 +263,7 @@ export default function CartPage() {
                           onClick={() => updateQuantity(item.id, Math.min(99, item.quantity + 1))}
                           disabled={!!updating || item.quantity >= 99}
                           className="w-8 h-8 flex items-center justify-center hover:bg-[#F8FAFC] text-[#64748B] disabled:text-[#CCCCCC] transition-colors"
-                          aria-label="Suurenda"
+                          aria-label="Increase"
                         >
                           <Plus size={14} strokeWidth={2} />
                         </button>
@@ -283,7 +283,7 @@ export default function CartPage() {
                         onClick={() => removeItem(item.id)}
                         disabled={!!updating}
                         className="w-8 h-8 flex items-center justify-center text-[#CCCCCC] hover:text-[#DC2626] disabled:opacity-40 transition-colors rounded-lg hover:bg-red-50"
-                        aria-label={"Eemalda " + (item.variant?.product?.title ?? item.title)}
+                        aria-label={"Remove " + (item.variant?.product?.title ?? item.title)}
                       >
                         <Trash2 size={16} strokeWidth={1.5} />
                       </button>
@@ -320,7 +320,7 @@ export default function CartPage() {
                             onClick={() => updateQuantity(item.id, item.quantity - 1)}
                             disabled={!!updating}
                             className="w-8 h-8 flex items-center justify-center hover:bg-[#F8FAFC] text-[#64748B] disabled:text-[#CCCCCC] transition-colors"
-                            aria-label="Vähenda"
+                            aria-label="Decrease"
                           >
                             <Minus size={14} strokeWidth={2} />
                           </button>
@@ -331,7 +331,7 @@ export default function CartPage() {
                             onClick={() => updateQuantity(item.id, Math.min(99, item.quantity + 1))}
                             disabled={!!updating || item.quantity >= 99}
                             className="w-8 h-8 flex items-center justify-center hover:bg-[#F8FAFC] text-[#64748B] disabled:text-[#CCCCCC] transition-colors"
-                            aria-label="Suurenda"
+                            aria-label="Increase"
                           >
                             <Plus size={14} strokeWidth={2} />
                           </button>
@@ -340,10 +340,10 @@ export default function CartPage() {
                           onClick={() => removeItem(item.id)}
                           disabled={!!updating}
                           className="flex items-center gap-1 text-[12px] text-[#CCCCCC] hover:text-[#DC2626] disabled:opacity-40 transition-colors"
-                          aria-label={"Eemalda " + (item.variant?.product?.title ?? item.title)}
+                          aria-label={"Remove " + (item.variant?.product?.title ?? item.title)}
                         >
                           <Trash2 size={14} strokeWidth={1.5} />
-                          Eemalda
+                          Remove
                         </button>
                       </div>
                     </div>
@@ -355,7 +355,7 @@ export default function CartPage() {
                 href={`/${locale}/kategooriad`}
                 className="inline-flex items-center gap-1.5 text-[13px] font-medium text-[#D97706] hover:text-[#B45309] mt-1 self-start transition-colors"
               >
-                ← Jätka ostlemist
+                ← Continue Shopping
               </Link>
             </div>
 
@@ -364,25 +364,25 @@ export default function CartPage() {
               <div className="lg:col-span-1">
                 <div className="bg-white border border-[#E2E8F0] rounded-lg p-5 sticky top-20">
                   <h2 className="text-[17px] font-semibold text-[#1E293B] mb-5">
-                    Kokkuvõte
+                    Order Summary
                   </h2>
 
                   <div className="flex flex-col gap-2.5 mb-4">
                     <div className="flex items-center justify-between">
-                      <span className="text-[13px] text-[#64748B]">Vahesumma</span>
+                      <span className="text-[13px] text-[#64748B]">Subtotal</span>
                       <span className="text-[13px] text-[#1E293B]">
                         {formatPrice(cart.subtotal ?? cart.item_total, cart.currency_code)}
                       </span>
                     </div>
                     <div className="flex items-center justify-between">
-                      <span className="text-[13px] text-[#64748B]">Tarne</span>
+                      <span className="text-[13px] text-[#64748B]">Shipping</span>
                       <span className={`text-[13px] ${toFreeShipping === 0 ? "text-[#059669] font-medium" : "text-[#1E293B]"}`}>
-                        {toFreeShipping === 0 ? "Tasuta" : "Arvutatakse tellimisel"}
+                        {toFreeShipping === 0 ? "Free" : "Calculated at checkout"}
                       </span>
                     </div>
                     {cart.tax_total > 0 && (
                       <div className="flex items-center justify-between">
-                        <span className="text-[13px] text-[#64748B]">KM (22%)</span>
+                        <span className="text-[13px] text-[#64748B]">VAT (22%)</span>
                         <span className="text-[13px] text-[#1E293B]">
                           {formatPrice(cart.tax_total, cart.currency_code)}
                         </span>
@@ -392,13 +392,13 @@ export default function CartPage() {
 
                   <div className="border-t border-[#E2E8F0] pt-4 mb-5">
                     <div className="flex items-center justify-between">
-                      <span className="text-[15px] font-semibold text-[#1E293B]">Kokku</span>
+                      <span className="text-[15px] font-semibold text-[#1E293B]">Total</span>
                       <span className="text-xl font-bold text-[#D97706]">
                         {formatPrice(cart.total, cart.currency_code)}
                       </span>
                     </div>
                     <p className="text-[11px] text-[#64748B] mt-1">
-                      Sisaldab KM-i
+                      Includes VAT
                     </p>
                   </div>
 
@@ -407,11 +407,11 @@ export default function CartPage() {
                     className="block w-full text-center py-3.5 bg-[#D97706] text-white text-[15px] font-semibold rounded-lg hover:bg-[#B45309] transition-colors"
                     style={{ boxShadow: "0 4px 16px rgba(255,106,0,0.25)" }}
                   >
-                    Vormista tellimus
+                    Proceed to Checkout
                   </Link>
 
                   <p className="text-[11px] text-[#64748B] text-center mt-2.5">
-                    Turvaline makse · SSL krüpteeritud
+                    Secure payment · SSL encrypted
                   </p>
                 </div>
               </div>

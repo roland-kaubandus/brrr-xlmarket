@@ -102,10 +102,10 @@ export default function CheckoutPage() {
         setShippingOptions(options)
         if (options.length > 0) setSelectedShipping(options[0].id)
       } else {
-        setError("Tarneviise ei õnnestunud laadida. Palun proovi lehte uuesti laadida.")
+        setError("Failed to load shipping options. Please try refreshing the page.")
       }
     } catch {
-      setError("Ostukorvi laadimine ebaõnnestus")
+      setError("Failed to load cart")
     } finally {
       setLoading(false)
     }
@@ -196,7 +196,7 @@ export default function CheckoutPage() {
       })
 
       if (!completeRes.ok) {
-        setError("Tellimuse vormistamine ebaõnnestus")
+        setError("Checkout ebaõnnestus")
         setSubmitting(false)
         return
       }
@@ -206,7 +206,7 @@ export default function CheckoutPage() {
       localStorage.removeItem("xlmarket_cart_id")
       setStep("done")
     } catch {
-      setError("Tellimuse vormistamine ebaõnnestus. Palun proovi uuesti.")
+      setError("Checkout ebaõnnestus. Palun proovi uuesti.")
     } finally {
       setSubmitting(false)
     }
@@ -217,7 +217,7 @@ export default function CheckoutPage() {
     return (
       <div className="min-h-screen bg-[#F8FAFC]">
         <div className="max-w-[1360px] mx-auto px-4 sm:px-6 py-12">
-          <h1 className="text-xl font-semibold text-[#1E293B] mb-6">Tellimuse vormistamine</h1>
+          <h1 className="text-xl font-semibold text-[#1E293B] mb-6">Checkout</h1>
           <div className="flex items-center justify-center py-20">
             <div className="w-8 h-8 border-2 border-[#E2E8F0] border-t-[#D97706] rounded-full animate-spin" />
           </div>
@@ -231,14 +231,14 @@ export default function CheckoutPage() {
     return (
       <div className="min-h-screen bg-[#F8FAFC]">
         <div className="max-w-[1360px] mx-auto px-4 sm:px-6 py-12">
-          <h1 className="text-xl font-semibold text-[#1E293B] mb-6">Tellimuse vormistamine</h1>
+          <h1 className="text-xl font-semibold text-[#1E293B] mb-6">Checkout</h1>
           <div className="flex flex-col items-center justify-center py-16 bg-white border border-[#E2E8F0] rounded-lg">
-            <p className="text-[14px] text-[#64748B] mb-7">Sinu ostukorv on tühi.</p>
+            <p className="text-[14px] text-[#64748B] mb-7">Your cart is empty.</p>
             <Link
               href={`/${locale}`}
               className="inline-flex items-center bg-[#D97706] text-white px-6 py-3 text-[15px] font-semibold rounded-lg hover:bg-[#B45309] transition-colors"
             >
-              Vaata tooteid
+              Browse Products
             </Link>
           </div>
         </div>
@@ -255,21 +255,21 @@ export default function CheckoutPage() {
             <div className="w-14 h-14 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-5">
               <span className="text-[#059669] text-[28px]">&#10003;</span>
             </div>
-            <h1 className="text-xl font-semibold text-[#1E293B] mb-4">Tellimus on vormistatud!</h1>
+            <h1 className="text-xl font-semibold text-[#1E293B] mb-4">Order Confirmed!</h1>
             <p className="text-[14px] text-[#64748B] mb-2">
-              Täname ostu eest. Saadame kinnituse aadressile{" "}
+              Thank you for your purchase. We will send a confirmation to{" "}
               <strong className="text-[#1E293B]">{form.email}</strong>.
             </p>
             {orderId && (
               <p className="text-[14px] text-[#64748B] mb-8">
-                Tellimuse number: <span className="font-medium text-[#1E293B]">{orderId}</span>
+                Order number: <span className="font-medium text-[#1E293B]">{orderId}</span>
               </p>
             )}
             <Link
               href={`/${locale}`}
               className="inline-flex items-center bg-[#D97706] text-white px-6 py-3 text-[15px] font-semibold rounded-lg hover:bg-[#B45309] transition-colors"
             >
-              Tagasi avalehele
+              Back to Home
             </Link>
           </div>
         </div>
@@ -283,15 +283,15 @@ export default function CheckoutPage() {
     <div className="min-h-screen bg-[#F8FAFC]">
       <div className="max-w-[1360px] mx-auto px-4 sm:px-6 py-8 sm:py-12">
         {/* Breadcrumb */}
-        <nav className="text-[12px] text-[#64748B] mb-7" aria-label="Leheasukoht">
-          <Link href={`/${locale}`} className="hover:text-[#D97706] transition-colors">Avaleht</Link>
+        <nav className="text-[12px] text-[#64748B] mb-7" aria-label="Breadcrumb">
+          <Link href={`/${locale}`} className="hover:text-[#D97706] transition-colors">Home</Link>
           <span className="mx-2 text-[#E2E8F0]">/</span>
-          <Link href={`/${locale}/ostukorv`} className="hover:text-[#D97706] transition-colors">Ostukorv</Link>
+          <Link href={`/${locale}/ostukorv`} className="hover:text-[#D97706] transition-colors">Cart</Link>
           <span className="mx-2 text-[#E2E8F0]">/</span>
-          <span className="text-[#1E293B] font-medium">Tellimus</span>
+          <span className="text-[#1E293B] font-medium">Checkout</span>
         </nav>
 
-        <h1 className="text-[28px] font-bold text-[#1E293B] mb-6">Tellimuse vormistamine</h1>
+        <h1 className="text-[28px] font-bold text-[#1E293B] mb-6">Checkout</h1>
 
         {error && (
           <div className="mb-5 px-4 py-3 bg-red-50 border border-red-200 rounded-lg text-[#DC2626] text-[13px]" role="alert">
@@ -305,11 +305,11 @@ export default function CheckoutPage() {
             <div className="lg:col-span-2 flex flex-col gap-5">
               {/* Personal info */}
               <div className="bg-white border border-[#E2E8F0] rounded-lg p-5">
-                <h2 className="text-base font-semibold text-[#1E293B] mb-4">Kliendi andmed</h2>
+                <h2 className="text-base font-semibold text-[#1E293B] mb-4">Customer Details</h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label htmlFor="first_name" className={labelClass}>
-                      Eesnimi *
+                      First Name *
                     </label>
                     <input
                       id="first_name"
@@ -322,7 +322,7 @@ export default function CheckoutPage() {
                   </div>
                   <div>
                     <label htmlFor="last_name" className={labelClass}>
-                      Perekonnanimi *
+                      Last Name *
                     </label>
                     <input
                       id="last_name"
@@ -335,7 +335,7 @@ export default function CheckoutPage() {
                   </div>
                   <div>
                     <label htmlFor="email" className={labelClass}>
-                      E-post *
+                      Email *
                     </label>
                     <input
                       id="email"
@@ -348,7 +348,7 @@ export default function CheckoutPage() {
                   </div>
                   <div>
                     <label htmlFor="phone" className={labelClass}>
-                      Telefon *
+                      Phone *
                     </label>
                     <input
                       id="phone"
@@ -364,17 +364,17 @@ export default function CheckoutPage() {
 
               {/* Address */}
               <div className="bg-white border border-[#E2E8F0] rounded-lg p-5">
-                <h2 className="text-base font-semibold text-[#1E293B] mb-4">Tarneaadress</h2>
+                <h2 className="text-base font-semibold text-[#1E293B] mb-4">Shipping Address</h2>
                 <div className="flex flex-col gap-4">
                   <div>
                     <label htmlFor="address_1" className={labelClass}>
-                      Aadress *
+                      Address *
                     </label>
                     <input
                       id="address_1"
                       type="text"
                       required
-                      placeholder="Tänav, maja, korter"
+                      placeholder="Street, building, apartment"
                       value={form.address_1}
                       onChange={(e) => updateField("address_1", e.target.value)}
                       className={inputClass}
@@ -383,7 +383,7 @@ export default function CheckoutPage() {
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                     <div className="sm:col-span-2">
                       <label htmlFor="city" className={labelClass}>
-                        Linn *
+                        City *
                       </label>
                       <input
                         id="city"
@@ -396,7 +396,7 @@ export default function CheckoutPage() {
                     </div>
                     <div>
                       <label htmlFor="postal_code" className={labelClass}>
-                        Postiindeks *
+                        Postal Code *
                       </label>
                       <input
                         id="postal_code"
@@ -410,7 +410,7 @@ export default function CheckoutPage() {
                   </div>
                   <div>
                     <label htmlFor="country" className={labelClass}>
-                      Riik
+                      Country
                     </label>
                     <select
                       id="country"
@@ -418,7 +418,7 @@ export default function CheckoutPage() {
                       onChange={(e) => updateField("country_code", e.target.value)}
                       className={inputClass}
                     >
-                      <option value="ee">Eesti</option>
+                      <option value="ee">Estonia</option>
                     </select>
                   </div>
                 </div>
@@ -426,9 +426,9 @@ export default function CheckoutPage() {
 
               {/* Shipping */}
               <div className="bg-white border border-[#E2E8F0] rounded-lg p-5">
-                <h2 className="text-base font-semibold text-[#1E293B] mb-4">Tarneviis</h2>
+                <h2 className="text-base font-semibold text-[#1E293B] mb-4">Shipping Method</h2>
                 {shippingOptions.length === 0 ? (
-                  <p className="text-[12px] text-[#64748B]">Tarneviisid laaduvad...</p>
+                  <p className="text-[12px] text-[#64748B]">Loading shipping options...</p>
                 ) : (
                   <div className="flex flex-col gap-2">
                     {shippingOptions.map((opt) => (
@@ -453,7 +453,7 @@ export default function CheckoutPage() {
                         </div>
                         {typeof opt.amount === "number" && (
                           <span className="text-[13px] font-bold text-[#1E293B]">
-                            {opt.amount === 0 ? "Tasuta" : formatPrice(opt.amount, cart.currency_code)}
+                            {opt.amount === 0 ? "Free" : formatPrice(opt.amount, cart.currency_code)}
                           </span>
                         )}
                       </label>
@@ -466,7 +466,7 @@ export default function CheckoutPage() {
             {/* Right: Order summary */}
             <div className="lg:col-span-1">
               <div className="bg-white border border-[#E2E8F0] rounded-lg p-5 sticky top-20">
-                <h2 className="text-base font-semibold text-[#1E293B] mb-4">Tellimuse kokkuvõte</h2>
+                <h2 className="text-base font-semibold text-[#1E293B] mb-4">Order Summary</h2>
 
                 {/* Items */}
                 <div className="flex flex-col gap-2.5 mb-4">
@@ -505,18 +505,18 @@ export default function CheckoutPage() {
                 {/* Totals */}
                 <div className="border-t border-[#E2E8F0] pt-3 flex flex-col gap-2">
                   <div className="flex justify-between text-[13px]">
-                    <span className="text-[#64748B]">Vahesumma</span>
+                    <span className="text-[#64748B]">Subtotal</span>
                     <span className="text-[#1E293B]">{formatPrice(cart.subtotal, cart.currency_code)}</span>
                   </div>
                   {cart.shipping_total > 0 && (
                     <div className="flex justify-between text-[13px]">
-                      <span className="text-[#64748B]">Tarne</span>
+                      <span className="text-[#64748B]">Shipping</span>
                       <span className="text-[#1E293B]">{formatPrice(cart.shipping_total, cart.currency_code)}</span>
                     </div>
                   )}
                   {cart.tax_total > 0 && (
                     <div className="flex justify-between text-[13px]">
-                      <span className="text-[#64748B]">Käibemaks</span>
+                      <span className="text-[#64748B]">VAT</span>
                       <span className="text-[#1E293B]">{formatPrice(cart.tax_total, cart.currency_code)}</span>
                     </div>
                   )}
@@ -524,7 +524,7 @@ export default function CheckoutPage() {
 
                 <div className="border-t border-[#E2E8F0] mt-4 pt-4">
                   <div className="flex items-center justify-between">
-                    <span className="text-[15px] font-semibold text-[#1E293B]">Kokku</span>
+                    <span className="text-[15px] font-semibold text-[#1E293B]">Total</span>
                     <span className="text-xl font-bold text-[#D97706]">
                       {formatPrice(cart.total, cart.currency_code)}
                     </span>
@@ -537,11 +537,11 @@ export default function CheckoutPage() {
                   className="w-full mt-5 py-3.5 bg-[#D97706] text-white text-[15px] font-semibold rounded-lg hover:bg-[#B45309] disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
                   style={{ boxShadow: "0 4px 16px rgba(255,106,0,0.25)" }}
                 >
-                  {submitting ? "Vormistatakse..." : "Kinnita tellimus"}
+                  {submitting ? "Processing..." : "Confirm Order"}
                 </button>
 
                 <p className="text-[12px] text-[#64748B] text-center mt-2.5">
-                  Maksmine: pangaülekanne (arve saadetakse e-postile)
+                  Payment: bank transfer (invoice sent via email)
                 </p>
               </div>
             </div>

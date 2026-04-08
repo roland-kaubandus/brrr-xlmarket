@@ -13,20 +13,20 @@ export default async function KontaktPage({ params }: { params: Promise<{ locale
       {/* Breadcrumb */}
       <nav
         className="text-[12px] font-[family-name:var(--font-dm-sans)] text-[#999999] mb-[32px]"
-        aria-label="Leheasukoht"
+        aria-label="Breadcrumb"
       >
         <Link href={`/${(await params).locale}`} className="hover:text-[#D97706] transition-colors">
-          Avaleht
+          Home
         </Link>
         <span className="mx-[8px] text-[#E8E8E8]">/</span>
-        <span className="text-[#777777]">Kontakt</span>
+        <span className="text-[#777777]">Contact</span>
       </nav>
 
       <h1 className="text-[28px] sm:text-[32px] font-[700] font-[family-name:var(--font-dm-sans)] text-[#1E293B] mb-[8px]">
-        Kontakt
+        Contact
       </h1>
       <p className="text-[14px] text-[#999999] font-[family-name:var(--font-dm-sans)] mb-[40px]">
-        Vastame kõikidele päringutele 1–2 tööpäeva jooksul.
+        We respond to all inquiries within 1-2 business days.
       </p>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-[32px] lg:gap-[48px]">
@@ -60,13 +60,13 @@ export default async function KontaktPage({ params }: { params: Promise<{ locale
               </div>
               <div>
                 <p className="text-[13px] font-[600] font-[family-name:var(--font-dm-sans)] text-[#1E293B] mb-[2px]">
-                  Klienditoe tööaeg
+                  Support Hours
                 </p>
                 <p className="text-[13px] text-[#777777] font-[family-name:var(--font-dm-sans)]">
-                  Esmaspäev–Reede · 9:00–17:00
+                  Monday-Friday · 9:00-17:00
                 </p>
                 <p className="text-[12px] text-[#999999] font-[family-name:var(--font-dm-sans)] mt-[2px]">
-                  Vastame e-kirjadele 1–2 tööpäeva jooksul
+                  We respond to emails within 1-2 business days
                 </p>
               </div>
             </div>
