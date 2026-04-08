@@ -12,10 +12,7 @@ const getNavLinks = (locale: string) => [
   { label: "About Us", href: `/${locale}/meist` },
 ]
 
-type SubcatData = { handle: string; name: string; thumbnail: string | null; count: number }
-type L1SubcatMap = Record<string, SubcatData[]>
-
-export default function VevorHeader({ categories, locale = "et", subcategories = {} }: { categories: CategoryNode[]; locale?: string; subcategories?: L1SubcatMap }) {
+export default function VevorHeader({ categories, locale = "et" }: { categories: CategoryNode[]; locale?: string }) {
   const NAV_LINKS = getNavLinks(locale)
   return (
     <header className="sticky top-0 z-30">
@@ -68,7 +65,7 @@ export default function VevorHeader({ categories, locale = "et", subcategories =
       <div className="bg-[#D97706]">
         <div className="max-w-[1400px] mx-auto px-0 md:px-4 flex items-center h-[44px]">
           {/* Categories button + mega menu */}
-          <MegaMenu categories={categories} locale={locale} subcategories={subcategories} />
+          <MegaMenu categories={categories} locale={locale} />
 
           {/* Nav links — desktop */}
           <nav className="hidden md:flex items-center">
