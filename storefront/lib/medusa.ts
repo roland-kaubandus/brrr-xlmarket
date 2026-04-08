@@ -130,10 +130,18 @@ type CategoriesResponse = {
 }
 
 export async function getCategories(): Promise<ProductCategory[]> {
-  const res = await medusaFetch<CategoriesResponse>(
-    "/store/product-categories?limit=50"
-  )
-  return res.product_categories
+  const all: ProductCategory[] = []
+  let offset = 0
+  const limit = 100
+  while (true) {
+    const res = await medusaFetch<CategoriesResponse>(
+      `/store/product-categories?limit=${limit}&offset=${offset}`
+    )
+    all.push(...res.product_categories)
+    if (all.length >= res.count || res.product_categories.length < limit) break
+    offset += limit
+  }
+  return all
 }
 
 export async function getCategoryByHandle(handle: string): Promise<ProductCategory | null> {

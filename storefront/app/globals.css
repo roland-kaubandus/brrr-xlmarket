@@ -1,18 +1,29 @@
 @import "tailwindcss";
 
 @theme {
-  /* Brand palette */
-  --color-accent: #F97316;
-  --color-accent-dark: #EA580C;
-  --color-accent-light: #FFF7ED;
+  /* VEVOR Brand palette */
+  --color-accent: #FF6A00;
+  --color-accent-dark: #E55F00;
+  --color-accent-light: #FFF5EE;
 
   /* Neutral system */
   --color-off-black: #1A1A1A;
-  --color-off-white: #FAFAFA;
+  --color-off-white: #E8ECF0;
   --color-silver: #F3F4F6;
   --color-silver-dark: #E5E7EB;
-  --color-muted: #6B7280;
-  --color-soft-border: rgba(0,0,0,0.06);
+  --color-muted: #666666;
+  --color-soft-border: #E5E5E5;
+
+  /* VEVOR colors */
+  --color-vevor-orange: #FF6A00;
+  --color-vevor-black: #1A1A1A;
+  --color-vevor-bg: #E8ECF0;
+  --color-vevor-white: #FFFFFF;
+  --color-vevor-text: #222222;
+  --color-vevor-gray: #666666;
+  --color-vevor-deal: #E53E3E;
+  --color-vevor-stock: #16A34A;
+  --color-vevor-border: #E5E5E5;
 
   /* Legacy brand */
   --color-brand-50: #FFF7ED;
@@ -20,14 +31,15 @@
   --color-brand-200: #FED7AA;
   --color-brand-300: #FDBA74;
   --color-brand-400: #FB923C;
-  --color-brand-500: #F97316;
-  --color-brand-600: #EA580C;
+  --color-brand-500: #FF6A00;
+  --color-brand-600: #E55F00;
   --color-brand-700: #C2410C;
   --color-brand-800: #9A3412;
   --color-brand-900: #7C2D12;
 }
 
 :root {
+  --font-inter: 'Inter', system-ui, sans-serif;
   --font-poppins: 'Poppins', sans-serif;
   --font-outfit: 'Outfit', sans-serif;
   --font-jakarta: 'Plus Jakarta Sans', sans-serif;
@@ -37,14 +49,14 @@
 html { scroll-behavior: smooth; }
 
 body {
-  font-family: var(--font-jakarta);
+  font-family: var(--font-inter);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 h1, h2, h3, h4, h5, h6 { font-family: var(--font-outfit); }
 
-*:focus-visible { outline: 2px solid #F97316; outline-offset: 2px; }
+*:focus-visible { outline: 2px solid #FF6A00; outline-offset: 2px; }
 *:focus:not(:focus-visible) { outline: none; }
 
 ::selection { background-color: #FFF7ED; color: #1A1A1A; }
@@ -85,7 +97,7 @@ a, button, input, select, textarea {
 .branch-card-overlay { background: linear-gradient(180deg, transparent 40%, rgba(26,26,26,0.85) 100%); }
 
 .noise-overlay {
-  position: fixed; inset: 0; z-index: 50; pointer-events: none; opacity: 0.025;
+  position: fixed; inset: 0; z-index: 10; pointer-events: none; opacity: 0.025;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
