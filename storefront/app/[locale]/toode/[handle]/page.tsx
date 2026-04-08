@@ -81,11 +81,11 @@ function metadataLabel(key: string): string {
   const labels: Record<string, string> = {
     vevor_sku: "VEVOR SKU",
     vevor_upc: "UPC",
-    vevor_product_type: "Tooteliik",
-    vevor_link: "Toote algallikas",
-    weight_kg: "Kaal",
-    brand: "Bränd",
-    model: "Mudel",
+    vevor_product_type: "Product Type",
+    vevor_link: "Original Source",
+    weight_kg: "Weight",
+    brand: "Brand",
+    model: "Model",
   }
   return labels[key] || titleizeKey(key)
 }
@@ -157,17 +157,17 @@ function getManualLinks(metadata?: Record<string, unknown>): Array<{ label: stri
     if (Array.isArray(value)) {
       value.forEach((item, index) => {
         if (typeof item === "string" && item.includes(".pdf")) {
-          links.push({ label: `Manuaal ${index + 1}`, href: item })
+          links.push({ label: `Manual ${index + 1}`, href: item })
         } else if (item && typeof item === "object") {
           const row = item as Record<string, unknown>
           const href = stringifyScalar(row.url) || stringifyScalar(row.href) || stringifyScalar(row.path)
           if (href) {
-            links.push({ label: stringifyScalar(row.label) || stringifyScalar(row.title) || `Manuaal ${index + 1}`, href })
+            links.push({ label: stringifyScalar(row.label) || stringifyScalar(row.title) || `Manual ${index + 1}`, href })
           }
         }
       })
     } else if (typeof value === "string" && value.includes(".pdf")) {
-      links.push({ label: "Manuaal", href: value })
+      links.push({ label: "Manual", href: value })
     }
   }
 
@@ -255,19 +255,26 @@ export default async function ProductPage({ params }: Props) {
       ? { q: productTypeL1 }
       : {}
 
-  const [similarRes, koosRes] = await Promise.all([
-    getProducts({ limit: 5, ...relatedQuery }),
-    getProducts({ limit: 4, offset: 5, ...relatedQuery }),
+  const [similarRes, koosRes, bestSellersRes] = await Promise.all([
+    getProducts({ limit: 12, ...relatedQuery }),
+    getProducts({ limit: 5, offset: 12, ...relatedQuery }),
+    categoryId
+      ? getProducts({ limit: 6, category_id: [categoryId] })
+      : Promise.resolve({ products: [], count: 0 }),
   ])
   const similarProducts = similarRes.products
     .filter((p) => p.id !== product.id)
-    .slice(0, 5)
+    .slice(0, 10)
   const koosProducts = koosRes.products
     .filter((p) => p.id !== product.id)
     .slice(0, 3)
+  const bestSellers = bestSellersRes.products
+    .filter((p) => p.id !== product.id)
+    .slice(0, 5)
+  const categoryName = product.categories?.[0]?.name || productTypeTrail[0] || "Category"
 
   const breadcrumbItems = [
-    { name: "Avaleht", url: "https://xlmarket.eu" },
+    { name: "Home", url: "https://xlmarket.eu" },
     ...(product.categories?.[0]
       ? [
           {
@@ -278,10 +285,6 @@ export default async function ProductPage({ params }: Props) {
           },
         ]
       : []),
-    {
-      name: product.title,
-      url: "https://xlmarket.eu/toode/" + product.handle,
-    },
   ]
 
   return (
@@ -297,30 +300,28 @@ export default async function ProductPage({ params }: Props) {
         price={price ? formatPrice(price.calculated_amount, price.currency_code) : ""}
       />
 
-      {/* Breadcrumb */}
+      {/* Breadcrumb — path only, no product name */}
       <nav
         className="text-xs text-[#64748B] mb-5"
-        aria-label="Leheasukoht"
+        aria-label="Breadcrumb"
       >
         <Link
           href={`/${locale}`}
           className="hover:text-[#D97706] transition-colors duration-200"
         >
-          Avaleht
+          Home
         </Link>
-        <span className="mx-2 text-[#E2E8F0]">&gt;</span>
         {product.categories?.[0] && (
           <>
+            <span className="mx-2 text-[#E2E8F0]">&gt;</span>
             <Link
               href={`/${locale}/kategooriad/` + product.categories[0].handle}
               className="hover:text-[#D97706] transition-colors duration-200"
             >
               {product.categories[0].name}
             </Link>
-            <span className="mx-2 text-[#E2E8F0]">&gt;</span>
           </>
         )}
-        <span className="text-[#64748B]">{truncate(product.title, 40)}</span>
       </nav>
 
       <div className="grid grid-cols-1 lg:grid-cols-[3fr_2fr] gap-6 lg:gap-10 lg:items-start">
@@ -428,7 +429,7 @@ export default async function ProductPage({ params }: Props) {
           {manualLinks.length > 0 && (
             <div className="mt-5 pt-5 border-t border-[#E2E8F0]">
               <h2 className="text-base font-semibold text-[#1E293B] mb-3">
-                Manuaalid ja failid
+                Manuals & Downloads
               </h2>
               <div className="flex flex-wrap gap-3">
                 {manualLinks.map((manual, index) => (
@@ -452,27 +453,21 @@ export default async function ProductPage({ params }: Props) {
 
       {/* ===== FULL-WIDTH SECTIONS BELOW THE FOLD ===== */}
 
-      {/* Feature Highlights — selling points as cards (kavand: section-alt) */}
+      {/* Feature Highlights — compact 2-col bullet list */}
       {sellingPoints.length > 0 && (
         <section className="mt-12 pt-10 pb-10 bg-[#F8FAFC] -mx-4 sm:-mx-6 px-4 sm:px-6">
           <div className="max-w-[1360px] mx-auto">
             <h2 className="text-[20px] font-bold text-[#1E293B] mb-6">
               Feature Highlights
             </h2>
-            <div className={`grid gap-4 ${sellingPoints.length >= 5 ? "grid-cols-2 lg:grid-cols-5" : sellingPoints.length >= 3 ? "grid-cols-2 lg:grid-cols-3" : "grid-cols-1 lg:grid-cols-2"}`}>
-              {sellingPoints.map((sp, i) => {
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-2.5">
+              {sellingPoints.slice(0, 6).map((sp, i) => {
                 const colonIdx = sp.indexOf(":")
-                const title = colonIdx > 0 && colonIdx < 60 ? sp.substring(0, colonIdx).trim() : null
-                const body = title ? sp.substring(colonIdx + 1).trim() : sp
+                const text = colonIdx > 0 && colonIdx < 60 ? sp.substring(0, colonIdx).trim() : sp
                 return (
-                  <div key={i} className="bg-white border border-[#E2E8F0] rounded-lg p-5 text-center hover:border-[#D97706]/20 hover:-translate-y-0.5 transition-all duration-300">
-                    <div className="w-12 h-12 mx-auto mb-3 bg-[#FFFBEB] rounded-lg flex items-center justify-center">
-                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D97706" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                    </div>
-                    {title && (
-                      <h3 className="font-bold text-sm text-[#1E293B] mb-1.5">{title}</h3>
-                    )}
-                    <p className="text-xs text-[#64748B] leading-relaxed line-clamp-4">{body}</p>
+                  <div key={i} className="flex items-center gap-2.5">
+                    <svg className="shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D97706" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                    <span className="text-sm text-[#1E293B]">{truncate(text, 60)}</span>
                   </div>
                 )
               })}
@@ -485,7 +480,7 @@ export default async function ProductPage({ params }: Props) {
       {specs.length > 0 && (
         <section className="mt-12 pt-10 border-t border-[#E2E8F0]">
           <h2 className="text-[20px] font-bold text-[#1E293B] mb-6">
-            Tehnilised andmed
+            Specifications
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Split specs into two columns */}
@@ -522,7 +517,7 @@ export default async function ProductPage({ params }: Props) {
       {richDescription && (
         <section className="mt-12 pt-10 border-t border-[#E2E8F0]">
           <h2 className="text-[20px] font-bold text-[#1E293B] mb-6">
-            Toote kirjeldus
+            Product Description
           </h2>
           <CollapsibleDescription html={sanitizeHtml(richDescription)} collapsedHeight={600} />
         </section>
@@ -532,7 +527,7 @@ export default async function ProductPage({ params }: Props) {
       {!richDescription && mainDescriptionHtml && (
         <section className="mt-12 pt-10 border-t border-[#E2E8F0]">
           <h2 className="text-[20px] font-bold text-[#1E293B] mb-6">
-            Toote kirjeldus
+            Product Description
           </h2>
           <CollapsibleDescription html={sanitizeHtml(mainDescriptionHtml)} collapsedHeight={400} />
         </section>
@@ -540,13 +535,13 @@ export default async function ProductPage({ params }: Props) {
 
       {/* Metadata highlights removed — internal data not for customers */}
 
-      {/* Sarnased tooted */}
+      {/* Similar Products — 5-col grid */}
       {similarProducts.length > 0 && (
         <section className="mt-12 pt-10 border-t border-[#E2E8F0]">
           <h2 className="text-[20px] font-bold text-[#1E293B] mb-6">
-            Sarnased tooted
+            Similar Products
           </h2>
-          <div className="grid grid-cols-2 lg:grid-cols-5 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
             {similarProducts.map((p) => (
               <VevorProductCard key={p.id} product={p} locale={locale} />
             ))}
@@ -554,65 +549,77 @@ export default async function ProductPage({ params }: Props) {
         </section>
       )}
 
-      {/* Ostetakse koos — with total price */}
+      {/* Frequently Bought Together — VEVOR-style horizontal row */}
       {koosProducts.length > 0 && (
         <section className="mt-12 pt-10 border-t border-[#E2E8F0]">
           <h2 className="text-[20px] font-bold text-[#1E293B] mb-5">
-            Ostetakse koos
+            Frequently Bought Together
           </h2>
-          <div className="flex flex-col sm:flex-row gap-4 items-start flex-wrap">
-            {/* Main product mini card */}
-            <div className="flex items-center gap-3 p-3 border border-[#E2E8F0] bg-[#F1F5F9] rounded-lg shrink-0">
+          <div className="flex items-center gap-3 flex-wrap">
+            {/* Main product */}
+            <a
+              href={`/${locale}/toode/` + product.handle}
+              className="flex flex-col items-center p-3 border border-[#D97706]/30 bg-[#FFFBEB] rounded-lg w-[160px] shrink-0"
+            >
               {product.thumbnail && (
-                <div className="w-[60px] h-[60px] bg-white rounded-lg border border-[#E2E8F0] overflow-hidden relative shrink-0">
+                <div className="w-[80px] h-[80px] bg-white rounded-lg overflow-hidden mb-2 shrink-0">
                   <img src={product.thumbnail} alt={product.title} className="w-full h-full object-contain p-1" />
                 </div>
               )}
-              <div>
-                <p className="text-xs text-[#64748B] mb-0.5">See toode</p>
-                <p className="text-sm font-medium text-[#1E293B] leading-snug line-clamp-2 max-w-[140px]">{product.title.substring(0, 40)}{product.title.length > 40 ? "..." : ""}</p>
-                {price && <p className="text-sm font-semibold text-[#1E293B] mt-1">{formatPrice(price.calculated_amount, price.currency_code)}</p>}
-              </div>
-            </div>
+              <p className="text-xs text-[#64748B] mb-0.5">This item</p>
+              <p className="text-xs font-medium text-[#1E293B] leading-snug line-clamp-2 text-center">{truncate(product.title, 50)}</p>
+              {price && <p className="text-sm font-bold text-[#1E293B] mt-1">{formatPrice(price.calculated_amount, price.currency_code)}</p>}
+            </a>
             {/* Plus signs + related products */}
             {koosProducts.map((kp) => (
-              <div key={kp.id} className="flex items-center gap-4">
-                <span className="text-xl text-[#E2E8F0] font-light shrink-0">+</span>
+              <div key={kp.id} className="flex items-center gap-3">
+                <span className="text-2xl text-[#64748B] font-light shrink-0">+</span>
                 <a
                   href={`/${locale}/toode/` + kp.handle}
-                  className="flex items-center gap-3 p-3 border border-[#E2E8F0] bg-white hover:border-[#D97706]/40 rounded-lg transition-colors duration-200 shrink-0"
+                  className="flex flex-col items-center p-3 border border-[#E2E8F0] bg-white hover:border-[#D97706]/40 rounded-lg transition-colors duration-200 w-[160px] shrink-0"
                 >
                   {kp.thumbnail && (
-                    <div className="w-[60px] h-[60px] bg-[#F1F5F9] rounded-lg overflow-hidden relative shrink-0">
+                    <div className="w-[80px] h-[80px] bg-[#F1F5F9] rounded-lg overflow-hidden mb-2 shrink-0">
                       <img src={kp.thumbnail} alt={kp.title} className="w-full h-full object-contain p-1" />
                     </div>
                   )}
-                  <div>
-                    <p className="text-sm font-medium text-[#1E293B] leading-snug line-clamp-2 max-w-[140px]">{kp.title.substring(0, 40)}{kp.title.length > 40 ? "..." : ""}</p>
-                    {kp.variants?.[0]?.calculated_price && <p className="text-sm font-semibold text-[#1E293B] mt-1">{formatPrice(kp.variants[0].calculated_price.calculated_amount, kp.variants[0].calculated_price.currency_code)}</p>}
-                  </div>
+                  <p className="text-xs font-medium text-[#1E293B] leading-snug line-clamp-2 text-center">{truncate(kp.title, 50)}</p>
+                  {kp.variants?.[0]?.calculated_price && <p className="text-sm font-bold text-[#1E293B] mt-1">{formatPrice(kp.variants[0].calculated_price.calculated_amount, kp.variants[0].calculated_price.currency_code)}</p>}
                 </a>
               </div>
             ))}
+            {/* Total price */}
+            {(() => {
+              const mainPrice = price?.calculated_amount || 0
+              const koosTotal = koosProducts.reduce((sum, kp) => {
+                const kpPrice = kp.variants?.[0]?.calculated_price?.calculated_amount || 0
+                return sum + kpPrice
+              }, mainPrice)
+              const currencyCode = price?.currency_code || "eur"
+              return (
+                <div className="flex flex-col items-center justify-center ml-auto p-4 border border-[#E2E8F0] bg-white rounded-lg min-w-[140px]">
+                  <span className="text-xs text-[#64748B] mb-1">Total:</span>
+                  <p className="font-bold text-xl text-[#1E293B]">
+                    {formatPrice(koosTotal, currencyCode)}
+                  </p>
+                </div>
+              )
+            })()}
           </div>
-          {/* Total + add all button */}
-          {(() => {
-            const mainPrice = price?.calculated_amount || 0
-            const koosTotal = koosProducts.reduce((sum, kp) => {
-              const kpPrice = kp.variants?.[0]?.calculated_price?.calculated_amount || 0
-              return sum + kpPrice
-            }, mainPrice)
-            const currencyCode = price?.currency_code || "eur"
-            return (
-              <div className="flex items-center justify-between mt-5 p-4 border border-[#E2E8F0] bg-white rounded-lg">
-                <p className="font-bold text-lg text-[#1E293B]">
-                  <span className="text-sm font-normal text-[#64748B] mr-2">Kokku:</span>
-                  {formatPrice(koosTotal, currencyCode)}
-                </p>
-                {/* TODO: Add all to cart - needs cart API integration */}
-              </div>
-            )
-          })()}
+        </section>
+      )}
+
+      {/* Best Sellers in Category */}
+      {bestSellers.length > 0 && (
+        <section className="mt-12 pt-10 border-t border-[#E2E8F0]">
+          <h2 className="text-[20px] font-bold text-[#1E293B] mb-6">
+            Best Sellers in {categoryName}
+          </h2>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+            {bestSellers.map((p) => (
+              <VevorProductCard key={p.id} product={p} locale={locale} />
+            ))}
+          </div>
         </section>
       )}
 

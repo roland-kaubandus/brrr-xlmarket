@@ -2,7 +2,41 @@
 
 import { useState, useRef, useEffect, useCallback } from "react"
 import Link from "next/link"
-import { Menu, X, ChevronRight } from "lucide-react"
+import {
+  Menu,
+  X,
+  ChevronRight,
+  Leaf,
+  Wrench,
+  Car,
+  Building2,
+  Cog,
+  Factory,
+  Dumbbell,
+  House,
+  UtensilsCrossed,
+  HeartPulse,
+  Zap,
+  PawPrint,
+  WashingMachine,
+  Pipette,
+  Snowflake,
+  Archive,
+  Armchair,
+  Lightbulb,
+  Sparkles,
+  DoorOpen,
+  Droplets,
+  PaintRoller,
+  ShieldCheck,
+  Layers,
+  Music,
+  Tent,
+  Shirt,
+  Gift,
+  Grid3X3,
+  type LucideIcon,
+} from "lucide-react"
 
 export type CategoryNode = {
   id: string
@@ -13,35 +47,35 @@ export type CategoryNode = {
 }
 
 // L1 categories mapped to Medusa category handles
-const L1_CATEGORIES: { name: string; icon: string; handle: string }[] = [
-  { name: "Lawn & Garden", icon: "🌱", handle: "kodu-ja-aed" },
-  { name: "Tools", icon: "🔧", handle: "toostus-ja-seadmed" },
-  { name: "Automotive", icon: "🚗", handle: "auto-ja-garaaz" },
-  { name: "Building & Construction", icon: "🧱", handle: "ehitus-ja-remont" },
-  { name: "Hardware", icon: "🔨", handle: "ehitus-ja-remont" },
-  { name: "Industrial & Scientific", icon: "🏭", handle: "toostus-ja-seadmed" },
-  { name: "Sports & Outdoors", icon: "⚽", handle: "sport-ja-vaba-aeg" },
-  { name: "Home", icon: "🏠", handle: "kodu-ja-aed" },
-  { name: "Kitchen & Dining", icon: "🍳", handle: "toitlustus-ja-kook" },
-  { name: "Health & Household", icon: "💊", handle: "meditsiin-ja-tervishoid" },
-  { name: "Electrical", icon: "⚡", handle: "elektroonika" },
-  { name: "Pet Supplies", icon: "🐾", handle: "lemmikloomad" },
-  { name: "Appliances", icon: "🏠", handle: "kodu-ja-aed" },
-  { name: "Plumbing", icon: "🔩", handle: "ehitus-ja-remont" },
-  { name: "Heating, Venting & Cooling", icon: "❄️", handle: "kodu-ja-aed" },
-  { name: "Storage & Organization", icon: "📦", handle: "kontor-ja-ladustamine" },
-  { name: "Furniture", icon: "🪑", handle: "kodu-ja-aed" },
-  { name: "Lighting", icon: "💡", handle: "kodu-ja-aed" },
-  { name: "Cleaning", icon: "🧹", handle: "kodu-ja-aed" },
-  { name: "Doors & Windows", icon: "🚪", handle: "ehitus-ja-remont" },
-  { name: "Bath", icon: "🚿", handle: "kodu-ja-aed" },
-  { name: "Paint", icon: "🎨", handle: "ehitus-ja-remont" },
-  { name: "Safety Equipment", icon: "🦺", handle: "toostus-ja-seadmed" },
-  { name: "Flooring", icon: "🏗️", handle: "ehitus-ja-remont" },
-  { name: "Musical Instruments", icon: "🎸", handle: "sport-ja-vaba-aeg" },
-  { name: "Playground Sets", icon: "🎪", handle: "sport-ja-vaba-aeg" },
-  { name: "Workwear", icon: "👷", handle: "toostus-ja-seadmed" },
-  { name: "Holiday Decorations", icon: "🎄", handle: "kodu-ja-aed" },
+const L1_CATEGORIES: { name: string; Icon: LucideIcon; handle: string }[] = [
+  { name: "Lawn & Garden", Icon: Leaf, handle: "kodu-ja-aed" },
+  { name: "Tools", Icon: Wrench, handle: "toostus-ja-seadmed" },
+  { name: "Automotive", Icon: Car, handle: "auto-ja-garaaz" },
+  { name: "Building & Construction", Icon: Building2, handle: "ehitus-ja-remont" },
+  { name: "Hardware", Icon: Cog, handle: "ehitus-ja-remont" },
+  { name: "Industrial & Scientific", Icon: Factory, handle: "toostus-ja-seadmed" },
+  { name: "Sports & Outdoors", Icon: Dumbbell, handle: "sport-ja-vaba-aeg" },
+  { name: "Home", Icon: House, handle: "kodu-ja-aed" },
+  { name: "Kitchen & Dining", Icon: UtensilsCrossed, handle: "toitlustus-ja-kook" },
+  { name: "Health & Household", Icon: HeartPulse, handle: "meditsiin-ja-tervishoid" },
+  { name: "Electrical", Icon: Zap, handle: "elektroonika" },
+  { name: "Pet Supplies", Icon: PawPrint, handle: "lemmikloomad" },
+  { name: "Appliances", Icon: WashingMachine, handle: "kodu-ja-aed" },
+  { name: "Plumbing", Icon: Pipette, handle: "ehitus-ja-remont" },
+  { name: "Heating, Venting & Cooling", Icon: Snowflake, handle: "kodu-ja-aed" },
+  { name: "Storage & Organization", Icon: Archive, handle: "kontor-ja-ladustamine" },
+  { name: "Furniture", Icon: Armchair, handle: "kodu-ja-aed" },
+  { name: "Lighting", Icon: Lightbulb, handle: "kodu-ja-aed" },
+  { name: "Cleaning", Icon: Sparkles, handle: "kodu-ja-aed" },
+  { name: "Doors & Windows", Icon: DoorOpen, handle: "ehitus-ja-remont" },
+  { name: "Bath", Icon: Droplets, handle: "kodu-ja-aed" },
+  { name: "Paint", Icon: PaintRoller, handle: "ehitus-ja-remont" },
+  { name: "Safety Equipment", Icon: ShieldCheck, handle: "toostus-ja-seadmed" },
+  { name: "Flooring", Icon: Layers, handle: "ehitus-ja-remont" },
+  { name: "Musical Instruments", Icon: Music, handle: "sport-ja-vaba-aeg" },
+  { name: "Playground Sets", Icon: Tent, handle: "sport-ja-vaba-aeg" },
+  { name: "Workwear", Icon: Shirt, handle: "toostus-ja-seadmed" },
+  { name: "Holiday Decorations", Icon: Gift, handle: "kodu-ja-aed" },
 ]
 
 function buildCategoryTree(categories: CategoryNode[]): CategoryNode[] {
@@ -58,6 +92,26 @@ function buildCategoryTree(categories: CategoryNode[]): CategoryNode[] {
   return roots
 }
 
+/** Small circle with grid icon used as placeholder thumbnail for L2/L3 items */
+function SubcategoryIcon({ active }: { active?: boolean }) {
+  return (
+    <span
+      className="flex items-center justify-center rounded-full flex-shrink-0"
+      style={{
+        width: 24,
+        height: 24,
+        backgroundColor: active ? "#FFFBEB" : "#F1F5F9",
+      }}
+    >
+      <Grid3X3
+        size={12}
+        strokeWidth={1.5}
+        style={{ color: active ? "#D97706" : "#94A3B8" }}
+      />
+    </span>
+  )
+}
+
 export default function MegaMenu({ categories, locale = "et" }: { categories: CategoryNode[]; locale?: string }) {
   const [isOpen, setIsOpen] = useState(false)
   const [activeL1, setActiveL1] = useState<string | null>(null)
@@ -67,7 +121,7 @@ export default function MegaMenu({ categories, locale = "et" }: { categories: Ca
 
   const tree = buildCategoryTree(categories)
 
-  // Build handle→node lookup from category tree
+  // Build handle->node lookup from category tree
   const handleMap = new Map<string, CategoryNode>()
   tree.forEach(node => handleMap.set(node.handle, node))
 
@@ -160,50 +214,73 @@ export default function MegaMenu({ categories, locale = "et" }: { categories: Ca
               <h3 className="px-5 pb-3 text-[13px] font-bold text-[#1E293B] uppercase tracking-wide">
                 Kategooriad
               </h3>
-              {l1Mapped.map(({ name, icon, handle }) => (
-                <Link
-                  key={name}
-                  href={`/${locale}/kategooriad/${handle}`}
-                  onMouseEnter={() => handleL1Hover(name)}
-                  onClick={() => setIsOpen(false)}
-                  className={`flex items-center justify-between px-5 py-2.5 text-[14px] transition-colors group ${
-                    activeL1 === name ? "bg-[#FFFBEB] text-[#D97706]" : "text-[#1E293B] hover:bg-[#F8FAFC]"
-                  }`}
-                >
-                  <span className="flex items-center gap-3">
-                    <span className="text-[16px] w-5 text-center">{icon}</span>
-                    <span className="font-medium">{name}</span>
-                  </span>
-                </Link>
-              ))}
+              {l1Mapped.map(({ name, Icon, handle }) => {
+                const isActive = activeL1 === name
+                return (
+                  <Link
+                    key={name}
+                    href={`/${locale}/kategooriad/${handle}`}
+                    onMouseEnter={() => handleL1Hover(name)}
+                    onClick={() => setIsOpen(false)}
+                    className={`flex items-center justify-between px-5 py-2.5 text-[14px] transition-colors group ${
+                      isActive ? "bg-[#FFFBEB] text-[#D97706]" : "text-[#1E293B] hover:bg-[#F8FAFC]"
+                    }`}
+                  >
+                    <span className="flex items-center gap-3">
+                      <Icon
+                        size={20}
+                        strokeWidth={1.5}
+                        className="flex-shrink-0 transition-colors"
+                        style={{ color: isActive ? "#D97706" : "#64748B" }}
+                      />
+                      <span className="font-medium">{name}</span>
+                    </span>
+                    <ChevronRight
+                      size={14}
+                      className="flex-shrink-0 transition-colors"
+                      style={{ color: isActive ? "#D97706" : "#CBD5E1" }}
+                    />
+                  </Link>
+                )
+              })}
             </div>
 
-            {/* L2 Panel — only if hovered L1 has children */}
+            {/* L2 Panel -- only if hovered L1 has children */}
             {hasL2 && activeL1Node && (
               <div className="w-[280px] border-r border-[#E2E8F0] py-4 max-h-[calc(100vh-120px)] overflow-y-auto flex-shrink-0">
                 <Link
                   href={`/${locale}/kategooriad/${activeL1Node.handle}`}
                   onClick={() => setIsOpen(false)}
-                  className="px-5 pb-3 text-[13px] font-bold text-[#D97706] uppercase tracking-wide block hover:underline"
+                  className="flex items-center gap-2 px-5 pb-3 text-[13px] font-bold text-[#D97706] uppercase tracking-wide hover:underline"
                 >
-                  {activeL1Node.name}
+                  Vaata kogu {activeL1Node.name}
                 </Link>
-                {activeL1Node.children.map(child => (
-                  <Link
-                    key={child.id}
-                    href={`/${locale}/kategooriad/${child.handle}`}
-                    onMouseEnter={() => handleL2Hover(child.id)}
-                    onClick={() => setIsOpen(false)}
-                    className={`flex items-center justify-between px-5 py-2.5 text-[14px] transition-colors ${
-                      activeL2 === child.id ? "bg-[#FFFBEB] text-[#D97706]" : "text-[#1E293B] hover:bg-[#F8FAFC]"
-                    }`}
-                  >
-                    <span className="font-medium">{child.name}</span>
-                    {child.children.length > 0 && (
-                      <ChevronRight size={14} className={`${activeL2 === child.id ? "text-[#D97706]" : "text-[#CCC]"}`} />
-                    )}
-                  </Link>
-                ))}
+                {activeL1Node.children.map(child => {
+                  const isActive = activeL2 === child.id
+                  return (
+                    <Link
+                      key={child.id}
+                      href={`/${locale}/kategooriad/${child.handle}`}
+                      onMouseEnter={() => handleL2Hover(child.id)}
+                      onClick={() => setIsOpen(false)}
+                      className={`flex items-center justify-between px-5 py-2 text-[14px] transition-colors ${
+                        isActive ? "bg-[#FFFBEB] text-[#D97706]" : "text-[#1E293B] hover:bg-[#F8FAFC]"
+                      }`}
+                    >
+                      <span className="flex items-center gap-2.5">
+                        <SubcategoryIcon active={isActive} />
+                        <span className="font-medium">{child.name}</span>
+                      </span>
+                      {child.children.length > 0 && (
+                        <ChevronRight
+                          size={14}
+                          className="flex-shrink-0"
+                          style={{ color: isActive ? "#D97706" : "#CBD5E1" }}
+                        />
+                      )}
+                    </Link>
+                  )
+                })}
               </div>
             )}
 
@@ -213,18 +290,19 @@ export default function MegaMenu({ categories, locale = "et" }: { categories: Ca
                 <Link
                   href={`/${locale}/kategooriad/${activeL2Node.handle}`}
                   onClick={() => setIsOpen(false)}
-                  className="px-5 pb-3 text-[13px] font-bold text-[#D97706] uppercase tracking-wide block hover:underline"
+                  className="flex items-center gap-2 px-5 pb-3 text-[13px] font-bold text-[#D97706] uppercase tracking-wide hover:underline"
                 >
-                  {activeL2Node.name}
+                  Vaata kogu {activeL2Node.name}
                 </Link>
                 {activeL2Node.children.map(child => (
                   <Link
                     key={child.id}
                     href={`/${locale}/kategooriad/${child.handle}`}
                     onClick={() => setIsOpen(false)}
-                    className="flex items-center px-5 py-2.5 text-[14px] text-[#1E293B] hover:bg-[#F8FAFC] hover:text-[#D97706] font-medium transition-colors"
+                    className="flex items-center gap-2.5 px-5 py-2 text-[14px] text-[#1E293B] hover:bg-[#FFFBEB] hover:text-[#D97706] font-medium transition-colors"
                   >
-                    {child.name}
+                    <SubcategoryIcon />
+                    <span>{child.name}</span>
                   </Link>
                 ))}
               </div>
@@ -246,17 +324,23 @@ export default function MegaMenu({ categories, locale = "et" }: { categories: Ca
 
           {/* Mobile list */}
           <div className="flex-1 overflow-y-auto">
-            {l1Mapped.map(({ name, icon, handle }) => (
+            {l1Mapped.map(({ name, Icon, handle }) => (
               <Link
                 key={name}
                 href={`/${locale}/kategooriad/${handle}`}
                 onClick={() => setIsOpen(false)}
-                className="flex items-center px-4 py-3.5 text-[14px] text-[#1E293B] font-medium border-b border-[#E2E8F0] hover:bg-[#F8FAFC]"
+                className="flex items-center justify-between px-4 py-3.5 text-[14px] text-[#1E293B] font-medium border-b border-[#E2E8F0] hover:bg-[#FFFBEB] hover:text-[#D97706] transition-colors group"
               >
                 <span className="flex items-center gap-3">
-                  <span className="text-[16px] w-5 text-center">{icon}</span>
-                  {name}
+                  <Icon
+                    size={20}
+                    strokeWidth={1.5}
+                    className="flex-shrink-0 transition-colors"
+                    style={{ color: "#64748B" }}
+                  />
+                  <span>{name}</span>
                 </span>
+                <ChevronRight size={14} style={{ color: "#CBD5E1" }} />
               </Link>
             ))}
           </div>
