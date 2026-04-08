@@ -76,50 +76,35 @@ export default function ProductPurchasePanel({ locale, title, variants, options 
     <>
       {price && (
         <>
-          <div className="h-px bg-soft-border mb-4" />
-          <div className="flex flex-wrap items-center gap-3 mb-6">
-            <p className="text-2xl font-bold font-[family-name:var(--font-outfit)] text-off-black tracking-tight">
+          <div className="h-px bg-[#E5E5E5] mb-4" />
+          <div className="flex flex-wrap items-baseline gap-3 mb-1">
+            <p className="text-[32px] font-bold text-[#222] tracking-tight leading-tight">
               {formatPrice(price.calculated_amount, price.currency_code)}
             </p>
             {price.original_amount > price.calculated_amount && (
               <>
-                <span className="text-base font-[family-name:var(--font-jakarta)] text-muted line-through">
+                <span className="text-base text-[#999] line-through">
                   {formatPrice(price.original_amount, price.currency_code)}
                 </span>
-                <span className="bg-red-600 text-white text-xs font-bold font-[family-name:var(--font-outfit)] px-2 py-0.5 rounded-xl">
+                <span className="bg-[#E53E3E] text-white text-xs font-bold px-2 py-0.5 rounded">
                   -{Math.round((1 - price.calculated_amount / price.original_amount) * 100)}%
                 </span>
               </>
             )}
           </div>
+          <p className="text-xs text-[#666] mb-5">Hind sisaldab kaibemaksu</p>
         </>
       )}
 
-      {/* Trust badges */}
-      <div className="flex flex-wrap gap-4 py-4 mb-4 border-y border-soft-border">
-        <div className="flex items-center gap-1.5 text-xs text-muted">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E8650A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          12 kuu garantii
-        </div>
-        <div className="flex items-center gap-1.5 text-xs text-muted">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E8650A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"/><path d="M21 21v-5h-5"/><path d="M21 12A9 9 0 0 0 12 3a9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
-          14 p&auml;eva tagastus
-        </div>
-        <div className="flex items-center gap-1.5 text-xs text-muted">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E8650A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
-          Tasuta tarne 200&euro;+
-        </div>
-      </div>
-
-      <div className="mb-6">
+      <div className="mb-5">
         {selectedVariant && inStock ? (
-          <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-green-50 text-green-700 text-sm font-medium font-[family-name:var(--font-jakarta)] rounded-xl">
-            <span className="w-1.5 h-1.5 rounded-full bg-green-500" />
+          <span className="inline-flex items-center gap-1.5 text-sm font-medium text-[#16A34A]">
+            <span className="w-2 h-2 rounded-full bg-[#16A34A]" />
             Laos
           </span>
         ) : (
-          <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-red-50 text-red-700 text-sm font-medium font-[family-name:var(--font-jakarta)] rounded-xl">
-            <span className="w-1.5 h-1.5 rounded-full bg-red-500" />
+          <span className="inline-flex items-center gap-1.5 text-sm font-medium text-red-600">
+            <span className="w-2 h-2 rounded-full bg-red-500" />
             Hetkel ei ole saadaval
           </span>
         )}
@@ -129,7 +114,7 @@ export default function ProductPurchasePanel({ locale, title, variants, options 
         <div className="space-y-5 mb-6">
           {usableOptions.map((option) => (
             <div key={option.id}>
-              <p className="text-sm font-semibold font-[family-name:var(--font-outfit)] text-off-black mb-2">
+              <p className="text-sm font-semibold text-[#222] mb-2">
                 {option.title}
               </p>
               <div className="flex flex-wrap gap-2">
@@ -141,10 +126,10 @@ export default function ProductPurchasePanel({ locale, title, variants, options 
                       type="button"
                       onClick={() => setSelection((current) => ({ ...current, [option.id]: value }))}
                       className={
-                        "px-3.5 py-2 rounded-xl border text-sm transition-all duration-300 " +
+                        "px-3.5 py-2 rounded-lg border text-sm transition-colors duration-200 " +
                         (isActive
-                          ? "border-accent bg-accent-light text-accent font-semibold"
-                          : "border-soft-border bg-white text-off-black hover:border-accent/40")
+                          ? "border-[#FF6A00] bg-[#FFF5EE] text-[#FF6A00] font-semibold"
+                          : "border-[#E5E5E5] bg-white text-[#222] hover:border-[#FF6A00]/40")
                       }
                     >
                       {value}
@@ -158,8 +143,8 @@ export default function ProductPurchasePanel({ locale, title, variants, options 
       )}
 
       {selectedVariant?.sku && (
-        <p className="text-sm text-muted font-[family-name:var(--font-jakarta)] mb-6">
-          SKU: <span className="text-off-black font-medium">{selectedVariant.sku}</span>
+        <p className="text-sm text-[#666] mb-5">
+          SKU: <span className="text-[#222] font-medium">{selectedVariant.sku}</span>
         </p>
       )}
 
@@ -168,16 +153,22 @@ export default function ProductPurchasePanel({ locale, title, variants, options 
           <AddToCartButton variantId={selectedVariant.id} />
           <Link
             href={`/${locale}/ostukorv`}
-            className="block w-full text-center py-3 text-sm font-semibold font-[family-name:var(--font-outfit)] border border-accent text-accent bg-transparent hover:bg-accent-light rounded-xl btn-press transition-all duration-300"
+            className="block w-full text-center h-12 leading-[48px] text-sm font-bold bg-[#1A1A1A] text-white hover:bg-[#333] rounded-lg transition-colors duration-200"
           >
-            Osta kohe &rarr;
+            Osta kohe
           </Link>
         </div>
       ) : (
-        <p className="text-sm text-muted font-[family-name:var(--font-jakarta)]">
+        <p className="text-sm text-[#666]">
           Seda toodet ei saa hetkel osta.
         </p>
       )}
+
+      {/* Delivery info */}
+      <div className="mt-5 pt-5 border-t border-[#E5E5E5] flex items-center gap-2 text-sm text-[#666]">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FF6A00" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+        <span>Tarne Eestisse. Hinnanguline tarneaeg 5-10 toopaeva</span>
+      </div>
 
       {selectedVariant && price && (
         <StickyBuyBar

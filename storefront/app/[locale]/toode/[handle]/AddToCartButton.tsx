@@ -67,21 +67,21 @@ export default function AddToCartButton({ variantId }: { variantId: string }) {
     <div>
       <div className="flex items-center gap-3">
         {/* Quantity selector */}
-        <div className="flex border border-soft-border rounded-xl overflow-hidden">
+        <div className="flex border border-[#E5E5E5] rounded-lg overflow-hidden">
           <button
             onClick={() => setQty(Math.max(1, qty - 1))}
             aria-label={"V\u00E4henda kogust"}
-            className="w-10 h-11 flex items-center justify-center hover:bg-silver active:bg-silver-dark text-off-black font-[family-name:var(--font-jakarta)] font-medium text-base transition-all duration-300"
+            className="w-10 h-12 flex items-center justify-center hover:bg-[#F5F5F5] active:bg-[#EBEBEB] text-[#222] font-medium text-base transition-colors duration-200"
           >
             -
           </button>
-          <span className="w-12 h-11 flex items-center justify-center border-x border-soft-border text-sm font-[family-name:var(--font-jakarta)] text-off-black font-medium tabular-nums">
+          <span className="w-12 h-12 flex items-center justify-center border-x border-[#E5E5E5] text-sm text-[#222] font-medium tabular-nums">
             {qty}
           </span>
           <button
             onClick={() => setQty(Math.min(99, qty + 1))}
             aria-label="Suurenda kogust"
-            className="w-10 h-11 flex items-center justify-center hover:bg-silver active:bg-silver-dark text-off-black font-[family-name:var(--font-jakarta)] font-medium text-base transition-all duration-300"
+            className="w-10 h-12 flex items-center justify-center hover:bg-[#F5F5F5] active:bg-[#EBEBEB] text-[#222] font-medium text-base transition-colors duration-200"
           >
             +
           </button>
@@ -92,10 +92,10 @@ export default function AddToCartButton({ variantId }: { variantId: string }) {
           onClick={handleAdd}
           disabled={loading}
           className={
-            "flex-1 flex items-center justify-center gap-2 py-3 px-6 font-semibold font-[family-name:var(--font-outfit)] text-base rounded-xl btn-press disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 " +
+            "flex-1 flex items-center justify-center gap-2 h-12 px-6 font-bold text-base rounded-lg disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200 " +
             (added
               ? "bg-green-600 text-white hover:bg-green-700"
-              : "bg-accent text-white hover:bg-accent-dark hover:shadow-[0_4px_16px_rgba(249,115,22,0.25)]")
+              : "bg-[#FF6A00] text-white hover:bg-[#E55F00]")
           }
         >
           {loading ? (
@@ -118,7 +118,7 @@ export default function AddToCartButton({ variantId }: { variantId: string }) {
       </div>
 
       {added && (
-        <p className="mt-3 text-sm font-[family-name:var(--font-jakarta)] text-green-700 bg-green-50 px-3 py-2 rounded-xl">
+        <p className="mt-3 text-sm text-green-700 bg-green-50 px-3 py-2 rounded-lg">
           Toode lisatud!{" "}
           <Link
             href={`/${locale}/ostukorv`}
@@ -130,7 +130,7 @@ export default function AddToCartButton({ variantId }: { variantId: string }) {
       )}
       {error && (
         <p
-          className="mt-3 text-sm font-[family-name:var(--font-jakarta)] text-red-600 bg-red-50 px-3 py-2 rounded-xl"
+          className="mt-3 text-sm text-red-600 bg-red-50 px-3 py-2 rounded-lg"
           role="alert"
         >
           {error}
