@@ -13,7 +13,7 @@ export default function TrustBadges() {
               </svg>
             }
             title="Kiire tarne"
-            description="Kohaletoimetamine 3-7 toopaeva"
+            description="Kohaletoimetamine 3-7 tööpäeva"
           />
           <Badge
             icon={
@@ -23,7 +23,7 @@ export default function TrustBadges() {
               </svg>
             }
             title="2-aastane garantii"
-            description="Koigile toodetele tehasepoolne garantii"
+            description="Kõigile toodetele tehasepoolne garantii"
           />
           <Badge
             icon={
@@ -32,7 +32,7 @@ export default function TrustBadges() {
                 <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10" />
               </svg>
             }
-            title="30 paeva tagastus"
+            title="30 päeva tagastus"
             description="Riskivaba ostlemine tagastusgarantiiga"
           />
           <Badge
