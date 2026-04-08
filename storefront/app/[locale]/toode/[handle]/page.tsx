@@ -12,6 +12,7 @@ import JsonLdProduct from "@/components/JsonLdProduct"
 import JsonLdBreadcrumb from "@/components/JsonLdBreadcrumb"
 import ProductPurchasePanel from "./ProductPurchasePanel"
 import CollapsibleDescription from "@/components/CollapsibleDescription"
+import CollapsibleSection from "@/components/CollapsibleSection"
 import { getProductMedia } from "@/lib/product-media"
 import { getVevorFeedEntry, type VevorFeedEntry } from "@/lib/vevor-feed"
 
@@ -374,6 +375,9 @@ export default async function ProductPage({ params }: Props) {
                 </span>
                 <span className="text-sm font-medium text-[#1E293B]">{rating.toFixed(1)}</span>
                 <span className="text-sm text-[#64748B]">(0 Reviews)</span>
+                <button className="ml-auto" aria-label="Add to Wishlist">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#64748B" strokeWidth="1.5"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+                </button>
               </div>
             )
           })()}
@@ -420,81 +424,77 @@ export default async function ProductPage({ params }: Props) {
 
       {/* Features & Details — simple bullet list */}
       {sellingPoints.length > 0 && (
-        <section className="mt-12 pt-10 pb-10 bg-[#F8FAFC] -mx-4 sm:-mx-6 px-4 sm:px-6">
+        <section className="mt-12 pb-10 bg-[#F8FAFC] -mx-4 sm:-mx-6 px-4 sm:px-6">
           <div className="max-w-[800px] mx-auto">
-            <h2 className="text-[20px] font-bold text-[#1E293B] mb-6">
-              Features &amp; Details
-            </h2>
-            <ul className="space-y-2.5">
-              {sellingPoints.slice(0, 6).map((sp, i) => (
-                <li key={i} className="flex items-start gap-2.5">
-                  <svg className="shrink-0 mt-0.5" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#059669" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                  <span className="text-sm text-[#1E293B]">{sp}</span>
-                </li>
-              ))}
-            </ul>
+            <CollapsibleSection title="Features & Details" defaultOpen={true}>
+              <ul className="space-y-2.5">
+                {sellingPoints.slice(0, 6).map((sp, i) => (
+                  <li key={i} className="flex items-start gap-2.5">
+                    <svg className="shrink-0 mt-0.5" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#059669" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                    <span className="text-sm text-[#1E293B]">{sp}</span>
+                  </li>
+                ))}
+              </ul>
+            </CollapsibleSection>
           </div>
         </section>
       )}
 
       {/* Tehnilised andmed — 2-column specs table */}
       {specs.length > 0 && (
-        <section className="mt-12 pt-10 border-t border-[#E2E8F0]">
-          <h2 className="text-[20px] font-bold text-[#1E293B] mb-6">
-            Specifications
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Split specs into two columns */}
-            {[0, 1].map((col) => {
-              const half = Math.ceil(specs.length / 2)
-              const colSpecs = col === 0 ? specs.slice(0, half) : specs.slice(half)
-              return (
-                <div key={col} className="border border-[#E2E8F0] rounded-lg overflow-hidden">
-                  {colSpecs.map((spec, i) => (
-                    <div
-                      key={spec.key + i}
-                      className={"flex " + (i % 2 === 0 ? "bg-[#F1F5F9]" : "bg-white")}
-                    >
-                      <div className="w-[45%] shrink-0 px-4 py-3 border-r border-[#E2E8F0]">
-                        <span className="text-xs font-medium text-[#64748B]">
-                          {spec.key}
-                        </span>
+        <section className="mt-12">
+          <CollapsibleSection title="Specifications" defaultOpen={false}>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {/* Split specs into two columns */}
+              {[0, 1].map((col) => {
+                const half = Math.ceil(specs.length / 2)
+                const colSpecs = col === 0 ? specs.slice(0, half) : specs.slice(half)
+                return (
+                  <div key={col} className="border border-[#E2E8F0] rounded-lg overflow-hidden">
+                    {colSpecs.map((spec, i) => (
+                      <div
+                        key={spec.key + i}
+                        className={"flex " + (i % 2 === 0 ? "bg-[#F1F5F9]" : "bg-white")}
+                      >
+                        <div className="w-[45%] shrink-0 px-4 py-3 border-r border-[#E2E8F0]">
+                          <span className="text-xs font-medium text-[#64748B]">
+                            {spec.key}
+                          </span>
+                        </div>
+                        <div className="flex-1 px-4 py-3">
+                          <span className="text-xs text-[#1E293B]">
+                            {spec.value}
+                          </span>
+                        </div>
                       </div>
-                      <div className="flex-1 px-4 py-3">
-                        <span className="text-xs text-[#1E293B]">
-                          {spec.value}
-                        </span>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              )
-            })}
-          </div>
+                    ))}
+                  </div>
+                )
+              })}
+            </div>
+          </CollapsibleSection>
         </section>
       )}
 
       {/* Rich description from VEVOR (with images, collapsible) */}
       {richDescription && (
-        <section className="mt-12 pt-10 border-t border-[#E2E8F0]">
-          <h2 className="text-[20px] font-bold text-[#1E293B] mb-6">
-            Product Description
-          </h2>
-          <div className="max-w-[800px] mx-auto">
-            <CollapsibleDescription html={sanitizeHtml(richDescription)} collapsedHeight={600} />
-          </div>
+        <section className="mt-12">
+          <CollapsibleSection title="Product Description" defaultOpen={true}>
+            <div className="max-w-[800px] mx-auto">
+              <CollapsibleDescription html={sanitizeHtml(richDescription)} collapsedHeight={600} />
+            </div>
+          </CollapsibleSection>
         </section>
       )}
 
       {/* Plain description fallback */}
       {!richDescription && mainDescriptionHtml && (
-        <section className="mt-12 pt-10 border-t border-[#E2E8F0]">
-          <h2 className="text-[20px] font-bold text-[#1E293B] mb-6">
-            Product Description
-          </h2>
-          <div className="max-w-[800px] mx-auto">
-            <CollapsibleDescription html={sanitizeHtml(mainDescriptionHtml)} collapsedHeight={400} />
-          </div>
+        <section className="mt-12">
+          <CollapsibleSection title="Product Description" defaultOpen={true}>
+            <div className="max-w-[800px] mx-auto">
+              <CollapsibleDescription html={sanitizeHtml(mainDescriptionHtml)} collapsedHeight={400} />
+            </div>
+          </CollapsibleSection>
         </section>
       )}
 
@@ -524,31 +524,31 @@ export default async function ProductPage({ params }: Props) {
             {/* Main product */}
             <a
               href={`/${locale}/toode/` + product.handle}
-              className="flex flex-col items-center p-3 border border-[#D97706]/30 bg-[#FFFBEB] rounded-lg w-[160px] shrink-0"
+              className="flex flex-col items-center p-4 border border-[#D97706]/30 bg-[#FFFBEB] rounded-lg w-[200px] shrink-0"
             >
               {product.thumbnail && (
-                <div className="w-[80px] h-[80px] bg-white rounded-lg overflow-hidden mb-2 shrink-0">
+                <div className="w-[100px] h-[100px] bg-white rounded-lg overflow-hidden mb-2 shrink-0">
                   <img src={product.thumbnail} alt={product.title} className="w-full h-full object-contain p-1" />
                 </div>
               )}
               <p className="text-xs text-[#64748B] mb-0.5">This item</p>
-              <p className="text-xs font-medium text-[#1E293B] leading-snug line-clamp-2 text-center">{truncate(product.title, 50)}</p>
+              <p className="text-xs font-medium text-[#1E293B] leading-snug line-clamp-2 text-center">{truncate(product.title, 60)}</p>
               {price && <p className="text-sm font-bold text-[#1E293B] mt-1">{formatPrice(price.calculated_amount, price.currency_code)}</p>}
             </a>
             {/* Plus signs + related products */}
             {koosProducts.map((kp) => (
               <div key={kp.id} className="flex items-center gap-3">
-                <span className="text-2xl text-[#64748B] font-light shrink-0">+</span>
+                <span className="text-3xl text-[#64748B] font-light shrink-0">+</span>
                 <a
                   href={`/${locale}/toode/` + kp.handle}
-                  className="flex flex-col items-center p-3 border border-[#E2E8F0] bg-white hover:border-[#D97706]/40 rounded-lg transition-colors duration-200 w-[160px] shrink-0"
+                  className="flex flex-col items-center p-4 border border-[#E2E8F0] bg-white hover:border-[#D97706]/40 rounded-lg transition-colors duration-200 w-[200px] shrink-0"
                 >
                   {kp.thumbnail && (
-                    <div className="w-[80px] h-[80px] bg-[#F1F5F9] rounded-lg overflow-hidden mb-2 shrink-0">
+                    <div className="w-[100px] h-[100px] bg-[#F1F5F9] rounded-lg overflow-hidden mb-2 shrink-0">
                       <img src={kp.thumbnail} alt={kp.title} className="w-full h-full object-contain p-1" />
                     </div>
                   )}
-                  <p className="text-xs font-medium text-[#1E293B] leading-snug line-clamp-2 text-center">{truncate(kp.title, 50)}</p>
+                  <p className="text-xs font-medium text-[#1E293B] leading-snug line-clamp-2 text-center">{truncate(kp.title, 60)}</p>
                   {kp.variants?.[0]?.calculated_price && <p className="text-sm font-bold text-[#1E293B] mt-1">{formatPrice(kp.variants[0].calculated_price.calculated_amount, kp.variants[0].calculated_price.currency_code)}</p>}
                 </a>
               </div>
