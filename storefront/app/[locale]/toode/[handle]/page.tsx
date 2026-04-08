@@ -25,7 +25,7 @@ type Props = {
 export async function generateMetadata({ params }: Props) {
   const { handle, locale } = await params
   const product = await getProduct(handle)
-  if (!product) return { title: "Toode — XLMARKET" }
+  if (!product) return { title: "Product — XLMARKET" }
   const metadata = product.metadata || {}
   const media = await getProductMedia({
     vevorUpc: stringifyScalar(metadata.vevor_upc),
