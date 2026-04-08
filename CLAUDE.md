@@ -42,7 +42,7 @@ Docker Compose — kõik teenused konteinerites
 ```
 
 ### Tootefeed
-- **Allikas:** `https://ads-feed.s3.us-west-2.amazonaws.com/ads/business/132/vevor-132.xlsx`
+- 
 - **Sync:** iga 4 tundi
 - **Hinnavalem:** algne_hind * 1.15 = lõpphind (käibemaksuga)
 - **Tooted:** ~14 356, 1 688 kategooriat
