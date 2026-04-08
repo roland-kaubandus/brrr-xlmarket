@@ -16,10 +16,10 @@ type Props = {
 }
 
 const SORT_OPTIONS = [
-  { value: "", label: "Parim vaste" },
-  { value: "price_asc", label: "Hind: odavamast" },
-  { value: "price_desc", label: "Hind: kallimast" },
-  { value: "newest", label: "Uusimad" },
+  { value: "", label: "Best Match" },
+  { value: "price_asc", label: "Price: Low to High" },
+  { value: "price_desc", label: "Price: High to Low" },
+  { value: "newest", label: "Newest" },
 ]
 
 function Dropdown({ open, onClose, children }: { open: boolean; onClose: () => void; children: React.ReactNode }) {
@@ -97,7 +97,7 @@ export default function VevorSearchFilters({
             onClick={() => toggle("categories")}
             className={`${pillBase} ${currentCategories.length > 0 ? pillActive : pillInactive}`}
           >
-            Kategooriad{currentCategories.length > 0 && ` (${currentCategories.length})`}
+            Categories{currentCategories.length > 0 && ` (${currentCategories.length})`}
             <ChevronDown />
           </button>
           <Dropdown open={openDropdown === "categories"} onClose={() => setOpenDropdown(null)}>
@@ -127,7 +127,7 @@ export default function VevorSearchFilters({
               }}
               className="mt-2 w-full py-1.5 bg-[#D97706] text-white text-sm rounded-lg hover:bg-[#E55E00] transition-colors"
             >
-              Rakenda
+              Apply
             </button>
           </Dropdown>
         </div>
@@ -139,7 +139,7 @@ export default function VevorSearchFilters({
           onClick={() => toggle("price")}
           className={`${pillBase} ${currentMin || currentMax ? pillActive : pillInactive}`}
         >
-          Hind{(currentMin || currentMax) && `: ${currentMin || "0"}–${currentMax || "..."}`}
+          Price{(currentMin || currentMax) && `: ${currentMin || "0"}–${currentMax || "..."}`}
           <ChevronDown />
         </button>
         <Dropdown open={openDropdown === "price"} onClose={() => setOpenDropdown(null)}>
@@ -167,7 +167,7 @@ export default function VevorSearchFilters({
             }}
             className="mt-2 w-full py-1.5 bg-[#D97706] text-white text-sm rounded-lg hover:bg-[#E55E00] transition-colors"
           >
-            Rakenda
+            Apply
           </button>
         </Dropdown>
       </div>
@@ -177,7 +177,7 @@ export default function VevorSearchFilters({
         onClick={() => router.push(buildUrl({ in_stock: currentInStock ? "" : "1" }))}
         className={`${pillBase} ${currentInStock ? pillActive : pillInactive}`}
       >
-        Laos
+        In Stock
         {currentInStock && (
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
         )}
@@ -194,7 +194,7 @@ export default function VevorSearchFilters({
           }}
           className="text-sm text-[#D97706] hover:underline ml-1"
         >
-          Tuhista filtrid
+          Clear filters
         </button>
       )}
 
@@ -207,7 +207,7 @@ export default function VevorSearchFilters({
           onClick={() => toggle("sort")}
           className={`${pillBase} ${pillInactive}`}
         >
-          {SORT_OPTIONS.find(o => o.value === currentSort)?.label || "Parim vaste"}
+          {SORT_OPTIONS.find(o => o.value === currentSort)?.label || "Best Match"}
           <ChevronDown />
         </button>
         <Dropdown open={openDropdown === "sort"} onClose={() => setOpenDropdown(null)}>

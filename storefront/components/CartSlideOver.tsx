@@ -89,14 +89,14 @@ export default function CartSlideOver({ locale = "et" }: { locale?: string }) {
         className="fixed top-0 right-0 h-full w-full sm:w-[420px] bg-white z-50 flex flex-col shadow-xl"
         role="dialog"
         aria-modal="true"
-        aria-label="Ostukorv"
+        aria-label="Shopping Cart"
       >
         {/* Header */}
         <div className="flex items-center justify-between px-5 py-4 border-b border-[#E2E8F0]">
           <div className="flex items-center gap-2.5">
             <ShoppingCart size={20} strokeWidth={1.5} className="text-[#D97706]" />
             <h2 className="text-[17px] font-semibold text-[#1E293B]">
-              Ostukorv
+              Shopping Cart
             </h2>
             {itemCount > 0 && (
               <span className="w-[22px] h-[22px] rounded-full bg-[#D97706] text-white text-xs font-bold flex items-center justify-center">
@@ -107,7 +107,7 @@ export default function CartSlideOver({ locale = "et" }: { locale?: string }) {
           <button
             onClick={close}
             className="w-9 h-9 flex items-center justify-center rounded-lg hover:bg-[#F8FAFC] text-[#999999] hover:text-[#1E293B] transition-colors"
-            aria-label="Sulge"
+            aria-label="Close"
           >
             <X size={18} strokeWidth={1.5} />
           </button>
@@ -125,16 +125,16 @@ export default function CartSlideOver({ locale = "et" }: { locale?: string }) {
             <div className="flex flex-col items-center justify-center py-16 text-center">
               <ShoppingCart size={48} strokeWidth={1} className="text-[#E2E8F0] mb-4" />
               <p className="text-[15px] font-semibold text-[#1E293B] mb-1.5">
-                Ostukorv on tühi
+                Your cart is empty
               </p>
               <p className="text-[13px] text-[#64748B]">
-                Lisa tooteid, et alustada ostlemist
+                Add products to start shopping
               </p>
               <button
                 onClick={close}
                 className="mt-5 px-5 py-2.5 bg-[#D97706] text-white text-[13px] font-semibold rounded-lg hover:bg-[#B45309] transition-colors"
               >
-                Jätka ostlemist
+                Continue Shopping
               </button>
             </div>
           )}
@@ -160,7 +160,7 @@ export default function CartSlideOver({ locale = "et" }: { locale?: string }) {
                     <div className="flex items-center gap-2 mt-2">
                       <div className="flex items-center border border-[#E2E8F0] rounded-lg overflow-hidden">
                         <span className="w-8 text-center text-[13px] font-medium px-2 py-1">
-                          {item.quantity} tk
+                          {item.quantity} pcs
                         </span>
                       </div>
                     </div>
@@ -175,7 +175,7 @@ export default function CartSlideOver({ locale = "et" }: { locale?: string }) {
         {!loading && cart && cart.items?.length > 0 && (
           <div className="px-5 py-5 border-t border-[#E2E8F0] bg-[#FAFAFA]">
             <div className="flex items-center justify-between mb-4">
-              <span className="text-[14px] text-[#64748B]">Kokku</span>
+              <span className="text-[14px] text-[#64748B]">Total</span>
               <span className="text-lg font-bold text-[#1E293B]">
                 {formatPrice(cart.total, cart.currency_code)}
               </span>
@@ -186,13 +186,13 @@ export default function CartSlideOver({ locale = "et" }: { locale?: string }) {
               className="block w-full text-center py-3.5 bg-[#D97706] text-white text-[15px] font-semibold rounded-lg hover:bg-[#B45309] transition-colors"
               style={{ boxShadow: "0 4px 16px rgba(255,106,0,0.25)" }}
             >
-              Vaata ostukorvi
+              View Cart
             </Link>
             <button
               onClick={close}
               className="block w-full text-center mt-2 py-2.5 text-[13px] font-medium text-[#64748B] hover:text-[#1E293B] transition-colors"
             >
-              Jätka ostlemist
+              Continue Shopping
             </button>
           </div>
         )}

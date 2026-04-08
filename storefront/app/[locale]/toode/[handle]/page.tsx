@@ -275,16 +275,10 @@ export default async function ProductPage({ params }: Props) {
 
   const breadcrumbItems = [
     { name: "Home", url: "https://xlmarket.eu" },
-    ...(product.categories?.[0]
-      ? [
-          {
-            name: product.categories[0].name,
-            url:
-              "https://xlmarket.eu/kategooriad/" +
-              product.categories[0].handle,
-          },
-        ]
-      : []),
+    ...productTypeTrail.map((segment) => ({
+      name: segment,
+      url: `https://xlmarket.eu/et/otsing?q=${encodeURIComponent(segment)}`,
+    })),
   ]
 
   return (
@@ -300,7 +294,7 @@ export default async function ProductPage({ params }: Props) {
         price={price ? formatPrice(price.calculated_amount, price.currency_code) : ""}
       />
 
-      {/* Breadcrumb — path only, no product name */}
+      {/* Breadcrumb — category path from productTypeTrail */}
       <nav
         className="text-xs text-[#64748B] mb-5"
         aria-label="Breadcrumb"
@@ -311,17 +305,17 @@ export default async function ProductPage({ params }: Props) {
         >
           Home
         </Link>
-        {product.categories?.[0] && (
-          <>
+        {productTypeTrail.map((segment, index) => (
+          <span key={`bc-${segment}-${index}`}>
             <span className="mx-2 text-[#E2E8F0]">&gt;</span>
             <Link
-              href={`/${locale}/kategooriad/` + product.categories[0].handle}
+              href={`/${locale}/otsing?q=${encodeURIComponent(segment)}`}
               className="hover:text-[#D97706] transition-colors duration-200"
             >
-              {product.categories[0].name}
+              {segment}
             </Link>
-          </>
-        )}
+          </span>
+        ))}
       </nav>
 
       <div className="grid grid-cols-1 lg:grid-cols-[3fr_2fr] gap-6 lg:gap-10 lg:items-start">
@@ -330,20 +324,7 @@ export default async function ProductPage({ params }: Props) {
 
         {/* Info */}
         <div>
-          {productTypeTrail.length > 0 && (
-            <div className="flex flex-wrap gap-2 mb-4">
-              {productTypeTrail.map((segment, index) => (
-                <span
-                  key={`${segment}-${index}`}
-                  className="inline-flex items-center rounded-full bg-[#F1F5F9] px-3 py-1 text-[11px] font-medium uppercase tracking-[0.08em] text-[#64748B]"
-                >
-                  {segment}
-                </span>
-              ))}
-            </div>
-          )}
-
-          <h1 className="text-xl md:text-2xl font-bold text-[#1E293B] leading-tight tracking-tight mb-2">
+          <h1 className="text-lg md:text-xl font-bold text-[#1E293B] leading-tight tracking-tight mb-2">
             {product.title}
           </h1>
 
@@ -453,25 +434,21 @@ export default async function ProductPage({ params }: Props) {
 
       {/* ===== FULL-WIDTH SECTIONS BELOW THE FOLD ===== */}
 
-      {/* Feature Highlights — compact 2-col bullet list */}
+      {/* Features & Details — simple bullet list */}
       {sellingPoints.length > 0 && (
         <section className="mt-12 pt-10 pb-10 bg-[#F8FAFC] -mx-4 sm:-mx-6 px-4 sm:px-6">
-          <div className="max-w-[1360px] mx-auto">
+          <div className="max-w-[800px] mx-auto">
             <h2 className="text-[20px] font-bold text-[#1E293B] mb-6">
-              Feature Highlights
+              Features &amp; Details
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-2.5">
-              {sellingPoints.slice(0, 6).map((sp, i) => {
-                const colonIdx = sp.indexOf(":")
-                const text = colonIdx > 0 && colonIdx < 60 ? sp.substring(0, colonIdx).trim() : sp
-                return (
-                  <div key={i} className="flex items-center gap-2.5">
-                    <svg className="shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D97706" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                    <span className="text-sm text-[#1E293B]">{truncate(text, 60)}</span>
-                  </div>
-                )
-              })}
-            </div>
+            <ul className="space-y-2.5">
+              {sellingPoints.slice(0, 6).map((sp, i) => (
+                <li key={i} className="flex items-start gap-2.5">
+                  <svg className="shrink-0 mt-0.5" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#059669" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span className="text-sm text-[#1E293B]">{sp}</span>
+                </li>
+              ))}
+            </ul>
           </div>
         </section>
       )}
@@ -519,7 +496,9 @@ export default async function ProductPage({ params }: Props) {
           <h2 className="text-[20px] font-bold text-[#1E293B] mb-6">
             Product Description
           </h2>
-          <CollapsibleDescription html={sanitizeHtml(richDescription)} collapsedHeight={600} />
+          <div className="max-w-[800px] mx-auto">
+            <CollapsibleDescription html={sanitizeHtml(richDescription)} collapsedHeight={600} />
+          </div>
         </section>
       )}
 
@@ -529,7 +508,9 @@ export default async function ProductPage({ params }: Props) {
           <h2 className="text-[20px] font-bold text-[#1E293B] mb-6">
             Product Description
           </h2>
-          <CollapsibleDescription html={sanitizeHtml(mainDescriptionHtml)} collapsedHeight={400} />
+          <div className="max-w-[800px] mx-auto">
+            <CollapsibleDescription html={sanitizeHtml(mainDescriptionHtml)} collapsedHeight={400} />
+          </div>
         </section>
       )}
 
