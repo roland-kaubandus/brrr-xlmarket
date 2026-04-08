@@ -112,7 +112,10 @@ function SubcategoryIcon({ active }: { active?: boolean }) {
   )
 }
 
-export default function MegaMenu({ categories, locale = "et" }: { categories: CategoryNode[]; locale?: string }) {
+type SubcatData = { handle: string; name: string; thumbnail: string | null; count: number }
+type L1SubcatMap = Record<string, SubcatData[]>
+
+export default function MegaMenu({ categories, locale = "et", subcategories = {} }: { categories: CategoryNode[]; locale?: string; subcategories?: L1SubcatMap }) {
   const [isOpen, setIsOpen] = useState(false)
   const [activeL1, setActiveL1] = useState<string | null>(null)
   const [activeL2, setActiveL2] = useState<string | null>(null)

@@ -52,7 +52,7 @@ export default function CategoryExploreGrid({
               <div
                 className="flex items-center justify-center"
                 style={{
-                  backgroundColor: "#F1F5F9",
+                  backgroundColor: "#FFFFFF",
                   height: "140px",
                 }}
               >
