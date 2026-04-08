@@ -150,7 +150,7 @@ export default function ProductGallery({ images, title }: Props) {
           )}
         </div>
         {images.length > 1 && (
-          <div className="flex gap-1.5 overflow-x-auto pb-0.5 scrollbar-none">
+          <div className="flex gap-1.5 overflow-x-auto pb-0.5 scrollbar-hide">
             {images.slice(0, 8).map((img, i) => (
               <button
                 key={img.id}
@@ -214,7 +214,7 @@ export default function ProductGallery({ images, title }: Props) {
             <X size={18} strokeWidth={2} />
           </button>
           {/* Lightbox thumbnail strip */}
-          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1.5 max-w-[80vw] overflow-x-auto scrollbar-none px-2">
+          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1.5 max-w-[80vw] overflow-x-auto scrollbar-hide px-2">
             {images.map((img, i) => (
               <button
                 key={img.id}

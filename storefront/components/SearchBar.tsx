@@ -133,8 +133,11 @@ export default function SearchBar({ locale = "et" }: { locale?: string }) {
     return () => document.removeEventListener("mousedown", handler)
   }, [])
 
-  const formatPrice = (cents: number) =>
-    new Intl.NumberFormat("et-EE", { style: "currency", currency: "EUR" }).format(cents / 100)
+  // Cleanup debounce timer on unmount
+  useEffect(() => () => clearTimeout(timerRef.current), [])
+
+  const formatPrice = (price: number) =>
+    new Intl.NumberFormat("et-EE", { style: "currency", currency: "EUR" }).format(price)
 
   const currentPlaceholder = PLACEHOLDER_TEXTS[placeholderIdx]
 

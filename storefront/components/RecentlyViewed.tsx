@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react"
 import Link from "next/link"
+import { usePathname } from "next/navigation"
 
 type RecentItem = {
   id: string
@@ -16,6 +17,8 @@ type Props = {
 }
 
 export default function RecentlyViewed({ currentId }: Props) {
+  const pathname = usePathname()
+  const locale = pathname.split('/')[1] === 'en' ? 'en' : 'et'
   const [items, setItems] = useState<RecentItem[]>([])
 
   useEffect(() => {
@@ -37,7 +40,7 @@ export default function RecentlyViewed({ currentId }: Props) {
         {items.map((item) => (
           <Link
             key={item.id}
-            href={"/toode/" + item.handle}
+            href={`/${locale}/toode/${item.handle}`}
             className="group flex flex-col border border-[#E5E5E5] rounded-lg overflow-hidden hover:border-[#FF6A00]/40 hover:shadow-md transition-all duration-200 bg-white"
           >
             <div className="aspect-square bg-white overflow-hidden">

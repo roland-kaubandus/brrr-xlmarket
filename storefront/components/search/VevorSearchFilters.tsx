@@ -54,6 +54,11 @@ export default function VevorSearchFilters({
   const [maxPrice, setMaxPrice] = useState(currentMax || "")
   const [selectedCats, setSelectedCats] = useState<string[]>(currentCategories)
 
+  // Re-sync selectedCats when URL changes (browser back/forward)
+  useEffect(() => {
+    setSelectedCats(currentCategories || [])
+  }, [currentCategories?.join(',')])
+
   const buildUrl = useCallback((overrides: Record<string, string | undefined>) => {
     const params = new URLSearchParams()
     if (query) params.set("q", query)
