@@ -388,23 +388,7 @@ export default async function ProductPage({ params }: Props) {
           {/* Tarne / Garantii / Tagastus accordion — XLM-31 */}
           <ProductInfoAccordion />
 
-          {/* Selling points summary — bullet list */}
-          {sellingPoints.length > 0 && (
-            <div className="mt-5 pt-5 border-t border-[#E2E8F0]">
-              <ul className="space-y-2">
-                {sellingPoints.map((sp, i) => {
-                  const colonIdx = sp.indexOf(":")
-                  const spTitle = colonIdx > 0 && colonIdx < 60 ? sp.substring(0, colonIdx).trim() : sp.substring(0, 60)
-                  return (
-                    <li key={i} className="flex items-start gap-2.5 text-sm">
-                      <svg className="shrink-0 mt-0.5" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D97706" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                      <span className="text-[#1E293B]">{spTitle}</span>
-                    </li>
-                  )
-                })}
-              </ul>
-            </div>
-          )}
+          {/* Selling points moved to Features & Details section below */}
 
           {/* Manuals in sidebar */}
           {manualLinks.length > 0 && (
