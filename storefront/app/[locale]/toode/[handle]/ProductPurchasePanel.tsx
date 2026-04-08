@@ -92,7 +92,7 @@ export default function ProductPurchasePanel({ locale, title, variants, options 
               </>
             )}
           </div>
-          <p className="text-xs text-[#64748B] mb-5">Hind sisaldab kaibemaksu</p>
+          <p className="text-xs text-[#64748B] mb-5">Price includes VAT</p>
         </>
       )}
 

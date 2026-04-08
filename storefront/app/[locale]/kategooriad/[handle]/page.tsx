@@ -164,6 +164,28 @@ export default async function CategoryPage({ params, searchParams }: Props) {
           </p>
         </div>
 
+        {/* Subcategory chips from facets */}
+        {Object.keys(categoryFacets).length > 1 && (
+          <div className="flex gap-2 flex-wrap mb-5">
+            {Object.entries(categoryFacets)
+              .sort(([,a], [,b]) => b - a)
+              .slice(0, 16)
+              .map(([subcat, count]) => (
+                <Link
+                  key={subcat}
+                  href={`${categoryBasePath}?categories=${encodeURIComponent(subcat)}`}
+                  className={`px-4 py-2 rounded-lg text-sm font-medium border transition-colors ${
+                    selectedCategories.includes(subcat)
+                      ? "bg-[#D97706] text-white border-[#D97706]"
+                      : "bg-white text-[#1E293B] border-[#E2E8F0] hover:border-[#D97706] hover:text-[#D97706]"
+                  }`}
+                >
+                  {subcat} <span className="text-xs opacity-50">({count})</span>
+                </Link>
+              ))}
+          </div>
+        )}
+
         {/* Content card */}
         {totalCount > 0 ? (
           <div className="bg-white rounded-xl p-4 sm:p-6">

@@ -124,27 +124,49 @@ export default async function SearchPage({ searchParams, params }: Props) {
       <div className="max-w-[1360px] mx-auto px-4 sm:px-6 py-6">
         {/* Breadcrumb */}
         <nav className="text-xs text-[#888] mb-4">
-          <Link href={`/${locale}`} className="hover:text-[#D97706]">Avaleht</Link>
+          <Link href={`/${locale}`} className="hover:text-[#D97706]">Home</Link>
           <span className="mx-1.5">&gt;</span>
-          <span className="text-[#555]">Otsingutulemused</span>
+          <span className="text-[#1E293B]">Search Results</span>
         </nav>
 
         {/* Page title */}
         {query && (
           <div className="mb-5">
             <h1 className="text-2xl font-bold text-[#1E293B]">
-              Otsing: &quot;{query}&quot;
+              Search for &quot;{query}&quot;
             </h1>
-            <p className="text-sm text-[#555] mt-1">
-              <span className="font-semibold text-[#1E293B]">{totalHits.toLocaleString("et-EE")}+</span> tulemust
+            <p className="text-sm text-[#64748B] mt-1">
+              <span className="font-semibold text-[#1E293B]">{totalHits.toLocaleString("en")}+</span> Results
             </p>
+          </div>
+        )}
+
+        {/* Category pills from facets */}
+        {query && Object.keys(categoryFacets).length > 0 && (
+          <div className="flex gap-2 overflow-x-auto pb-3 mb-4 scrollbar-hide">
+            {Object.entries(categoryFacets)
+              .sort(([,a], [,b]) => b - a)
+              .slice(0, 12)
+              .map(([cat, count]) => (
+                <Link
+                  key={cat}
+                  href={`/${locale}/otsing?q=${encodeURIComponent(query)}&categories=${encodeURIComponent(cat)}`}
+                  className={`flex-shrink-0 px-4 py-2 rounded-full text-sm font-medium border transition-colors ${
+                    selectedCategories.includes(cat)
+                      ? "bg-[#D97706] text-white border-[#D97706]"
+                      : "bg-white text-[#1E293B] border-[#E2E8F0] hover:border-[#D97706]"
+                  }`}
+                >
+                  {cat} <span className="text-xs opacity-60 ml-1">({count})</span>
+                </Link>
+              ))}
           </div>
         )}
 
         {!query && (
           <div className="bg-white rounded-xl p-12 text-center">
             <p className="text-sm text-[#64748B]">
-              Sisesta otsingusona paisesse ja vajuta &quot;Otsi&quot;.
+              Enter a search term in the header and press &quot;Search&quot;.
             </p>
           </div>
         )}
@@ -152,13 +174,13 @@ export default async function SearchPage({ searchParams, params }: Props) {
         {query && products.length === 0 && (
           <div className="bg-white rounded-xl p-12 text-center">
             <p className="text-sm text-[#64748B] mb-4">
-              Paringuga &quot;{query}&quot; ei leitud uhtegi toodet.
+              No results found for &quot;{query}&quot;.
             </p>
             <Link
               href={`/${locale}/kategooriad`}
               className="text-[#D97706] hover:underline font-medium"
             >
-              Sirvi kategooriaid
+              Browse all categories
             </Link>
           </div>
         )}
@@ -168,7 +190,7 @@ export default async function SearchPage({ searchParams, params }: Props) {
             {/* Sort + Results bar */}
             <div className="flex items-center justify-between mb-4">
               <p className="text-sm text-[#555]">
-                <span className="font-semibold text-[#1E293B]">{totalHits.toLocaleString("et-EE")}</span> tulemust paringule &quot;{query}&quot;
+                <span className="font-semibold text-[#1E293B]">{totalHits.toLocaleString("en")}</span> results for &quot;{query}&quot;
               </p>
             </div>
 

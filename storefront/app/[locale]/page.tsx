@@ -51,6 +51,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
           handle: cat.handle,
           displayName: DISPLAY_NAMES[cat.handle] || cat.name,
           image: res.products[0]?.thumbnail || null,
+          productCount: res.count || 0,
         }
       } catch {
         return {
@@ -58,6 +59,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
           handle: cat.handle,
           displayName: DISPLAY_NAMES[cat.handle] || cat.name,
           image: null,
+          productCount: 0,
         }
       }
     })
