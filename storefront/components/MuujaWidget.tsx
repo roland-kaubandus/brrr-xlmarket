@@ -118,14 +118,14 @@ function MuujaBall({
       <defs>
         <radialGradient id="ballGrad" cx="40%" cy="35%" r="60%">
           <stop offset="0%" stopColor="#FDBA74" />
-          <stop offset="100%" stopColor="#F97316" />
+          <stop offset="100%" stopColor="#D97706" />
         </radialGradient>
         <filter id="ballShadow" x="-20%" y="-20%" width="140%" height="140%">
-          <feDropShadow dx="0" dy="2" stdDeviation="3" floodColor="#F97316" floodOpacity="0.35" />
+          <feDropShadow dx="0" dy="2" stdDeviation="3" floodColor="#D97706" floodOpacity="0.35" />
         </filter>
       </defs>
       <circle cx="28" cy="28" r="26" fill="url(#ballGrad)" filter="url(#ballShadow)" />
-      <text x="28" y="16" textAnchor="middle" fontSize="7" fontWeight="800" fill="white" opacity="0.85" fontFamily="var(--font-poppins), sans-serif">XL</text>
+      <text x="28" y="16" textAnchor="middle" fontSize="7" fontWeight="800" fill="white" opacity="0.85" fontFamily="var(--font-dm-sans), sans-serif">XL</text>
       <g transform={"translate(" + eyeOffsetX + "," + eyeOffsetY + ")"}>
         {isThinking ? (
           <>
@@ -413,7 +413,7 @@ export default function MuujaWidget() {
               <div className="w-7 h-7">
                 <MuujaBall mouseX={0} mouseY={0} ballRect={null} isThinking={false} isHover={false} />
               </div>
-              <span className="font-semibold text-white text-[15px] font-[family-name:var(--font-outfit)]">{t.title}</span>
+              <span className="font-semibold text-white text-[15px] font-[family-name:var(--font-dm-sans)]">{t.title}</span>
             </div>
             <button
               onClick={() => setIsOpen(false)}

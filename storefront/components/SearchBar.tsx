@@ -153,12 +153,12 @@ export default function SearchBar({ locale = "et" }: { locale?: string }) {
             onFocus={() => results?.hits.length && setIsOpen(true)}
             onKeyDown={handleKey}
             placeholder=""
-            className="w-full bg-transparent pl-4 pr-2 py-2 text-[14px] text-[#222] placeholder:text-[#999] focus:outline-none"
+            className="w-full bg-transparent pl-4 pr-2 py-2 text-[14px] text-[#1E293B] placeholder:text-[#64748B] focus:outline-none"
             autoComplete="off"
           />
           {!query && (
             <span
-              className={`absolute left-4 top-1/2 -translate-y-1/2 text-[14px] text-[#999] pointer-events-none transition-opacity duration-300 ${
+              className={`absolute left-4 top-1/2 -translate-y-1/2 text-[14px] text-[#64748B] pointer-events-none transition-opacity duration-300 ${
                 animating ? "opacity-0" : "opacity-100"
               }`}
             >
@@ -170,7 +170,7 @@ export default function SearchBar({ locale = "et" }: { locale?: string }) {
           <button
             type="button"
             onClick={() => { setQuery(""); setResults(null); setIsOpen(false); inputRef.current?.focus() }}
-            className="px-2 text-[#999] hover:text-[#333]"
+            className="px-2 text-[#64748B] hover:text-[#1E293B]"
             aria-label="Clear"
           >
             <X size={16} strokeWidth={1.5} />
@@ -179,7 +179,7 @@ export default function SearchBar({ locale = "et" }: { locale?: string }) {
         <button
           type="button"
           onClick={goToResults}
-          className="h-[40px] w-[48px] bg-[#FF6A00] hover:bg-[#e55f00] flex items-center justify-center rounded-r-full transition-colors"
+          className="h-[40px] w-[48px] bg-[#D97706] hover:bg-[#B45309] flex items-center justify-center rounded-r-full transition-colors"
           aria-label="Search"
         >
           <Search size={18} strokeWidth={2} className="text-white" />
@@ -194,7 +194,7 @@ export default function SearchBar({ locale = "et" }: { locale?: string }) {
               key={hit.id}
               onClick={() => goToProduct(hit.handle)}
               className={`flex items-center gap-3 w-full px-4 py-2.5 text-left transition-colors ${
-                activeIdx === i ? "bg-[#FFF5EE]" : "hover:bg-[#FAFAFA]"
+                activeIdx === i ? "bg-[#FFFBEB]" : "hover:bg-[#FAFAFA]"
               }`}
             >
               {hit.thumbnail ? (
@@ -206,14 +206,14 @@ export default function SearchBar({ locale = "et" }: { locale?: string }) {
               )}
               <div className="flex-1 min-w-0">
                 <p
-                  className="text-[13px] text-[#333] truncate [&>mark]:bg-[#FFF5EE] [&>mark]:text-[#FF6A00] [&>mark]:font-semibold"
+                  className="text-[13px] text-[#1E293B] truncate [&>mark]:bg-[#FFFBEB] [&>mark]:text-[#D97706] [&>mark]:font-semibold"
                   dangerouslySetInnerHTML={{ __html: hit._formatted?.title || hit.title }}
                 />
                 {hit.categories?.[0] && (
-                  <p className="text-[11px] text-[#999]">{hit.categories[0]}</p>
+                  <p className="text-[11px] text-[#64748B]">{hit.categories[0]}</p>
                 )}
               </div>
-              <span className="text-[13px] font-semibold text-[#222] whitespace-nowrap">
+              <span className="text-[13px] font-semibold text-[#1E293B] whitespace-nowrap">
                 {formatPrice(hit.price)}
               </span>
             </button>
@@ -221,8 +221,8 @@ export default function SearchBar({ locale = "et" }: { locale?: string }) {
           {results.totalHits > results.hits.length && (
             <button
               onClick={goToResults}
-              className={`w-full px-4 py-3 text-center text-[13px] font-medium text-[#FF6A00] hover:bg-[#FFF5EE] border-t border-[#F0F0F0] transition-colors ${
-                activeIdx === results.hits.length ? "bg-[#FFF5EE]" : ""
+              className={`w-full px-4 py-3 text-center text-[13px] font-medium text-[#D97706] hover:bg-[#FFFBEB] border-t border-[#E2E8F0] transition-colors ${
+                activeIdx === results.hits.length ? "bg-[#FFFBEB]" : ""
               }`}
             >
               View all results ({results.totalHits.toLocaleString("et-EE")}) &rarr;
@@ -233,7 +233,7 @@ export default function SearchBar({ locale = "et" }: { locale?: string }) {
 
       {loading && query && (
         <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-lg shadow-sm z-50 px-4 py-4 text-center">
-          <span className="text-[13px] text-[#999]">Searching...</span>
+          <span className="text-[13px] text-[#64748B]">Searching...</span>
         </div>
       )}
     </div>

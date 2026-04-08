@@ -299,28 +299,28 @@ export default async function ProductPage({ params }: Props) {
 
       {/* Breadcrumb */}
       <nav
-        className="text-xs text-[#666] mb-5"
+        className="text-xs text-[#64748B] mb-5"
         aria-label="Leheasukoht"
       >
         <Link
           href={`/${locale}`}
-          className="hover:text-[#FF6A00] transition-colors duration-200"
+          className="hover:text-[#D97706] transition-colors duration-200"
         >
           Avaleht
         </Link>
-        <span className="mx-2 text-[#E5E5E5]">&gt;</span>
+        <span className="mx-2 text-[#E2E8F0]">&gt;</span>
         {product.categories?.[0] && (
           <>
             <Link
               href={`/${locale}/kategooriad/` + product.categories[0].handle}
-              className="hover:text-[#FF6A00] transition-colors duration-200"
+              className="hover:text-[#D97706] transition-colors duration-200"
             >
               {product.categories[0].name}
             </Link>
-            <span className="mx-2 text-[#E5E5E5]">&gt;</span>
+            <span className="mx-2 text-[#E2E8F0]">&gt;</span>
           </>
         )}
-        <span className="text-[#666]">{truncate(product.title, 40)}</span>
+        <span className="text-[#64748B]">{truncate(product.title, 40)}</span>
       </nav>
 
       <div className="grid grid-cols-1 lg:grid-cols-[3fr_2fr] gap-6 lg:gap-10 lg:items-start">
@@ -334,7 +334,7 @@ export default async function ProductPage({ params }: Props) {
               {productTypeTrail.map((segment, index) => (
                 <span
                   key={`${segment}-${index}`}
-                  className="inline-flex items-center rounded-full bg-[#F5F5F5] px-3 py-1 text-[11px] font-medium uppercase tracking-[0.08em] text-[#666]"
+                  className="inline-flex items-center rounded-full bg-[#F1F5F9] px-3 py-1 text-[11px] font-medium uppercase tracking-[0.08em] text-[#64748B]"
                 >
                   {segment}
                 </span>
@@ -342,7 +342,7 @@ export default async function ProductPage({ params }: Props) {
             </div>
           )}
 
-          <h1 className="text-xl md:text-2xl font-bold text-[#222] leading-tight tracking-tight mb-2">
+          <h1 className="text-xl md:text-2xl font-bold text-[#1E293B] leading-tight tracking-tight mb-2">
             {product.title}
           </h1>
 
@@ -365,7 +365,7 @@ export default async function ProductPage({ params }: Props) {
                   {Array.from({ length: 5 }, (_, i) => {
                     if (i < full) {
                       return (
-                        <svg key={i} width="18" height="18" viewBox="0 0 24 24" fill="#FF6A00" stroke="none">
+                        <svg key={i} width="18" height="18" viewBox="0 0 24 24" fill="#D97706" stroke="none">
                           <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
                         </svg>
                       )
@@ -375,7 +375,7 @@ export default async function ProductPage({ params }: Props) {
                         <svg key={i} width="18" height="18" viewBox="0 0 24 24" stroke="none">
                           <defs>
                             <linearGradient id={`pdp-half-${i}`}>
-                              <stop offset="50%" stopColor="#FF6A00" />
+                              <stop offset="50%" stopColor="#D97706" />
                               <stop offset="50%" stopColor="#E5E7EB" />
                             </linearGradient>
                           </defs>
@@ -390,8 +390,8 @@ export default async function ProductPage({ params }: Props) {
                     )
                   })}
                 </span>
-                <span className="text-sm font-medium text-[#222]">{rating.toFixed(1)}</span>
-                <span className="text-sm text-[#666]">(0 Reviews)</span>
+                <span className="text-sm font-medium text-[#1E293B]">{rating.toFixed(1)}</span>
+                <span className="text-sm text-[#64748B]">(0 Reviews)</span>
               </div>
             )
           })()}
@@ -408,15 +408,15 @@ export default async function ProductPage({ params }: Props) {
 
           {/* Selling points summary — bullet list */}
           {sellingPoints.length > 0 && (
-            <div className="mt-5 pt-5 border-t border-[#E5E5E5]">
+            <div className="mt-5 pt-5 border-t border-[#E2E8F0]">
               <ul className="space-y-2">
                 {sellingPoints.map((sp, i) => {
                   const colonIdx = sp.indexOf(":")
                   const spTitle = colonIdx > 0 && colonIdx < 60 ? sp.substring(0, colonIdx).trim() : sp.substring(0, 60)
                   return (
                     <li key={i} className="flex items-start gap-2.5 text-sm">
-                      <svg className="shrink-0 mt-0.5" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FF6A00" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                      <span className="text-[#222]">{spTitle}</span>
+                      <svg className="shrink-0 mt-0.5" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D97706" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                      <span className="text-[#1E293B]">{spTitle}</span>
                     </li>
                   )
                 })}
@@ -426,8 +426,8 @@ export default async function ProductPage({ params }: Props) {
 
           {/* Manuals in sidebar */}
           {manualLinks.length > 0 && (
-            <div className="mt-5 pt-5 border-t border-[#E5E5E5]">
-              <h2 className="text-base font-semibold text-[#222] mb-3">
+            <div className="mt-5 pt-5 border-t border-[#E2E8F0]">
+              <h2 className="text-base font-semibold text-[#1E293B] mb-3">
                 Manuaalid ja failid
               </h2>
               <div className="flex flex-wrap gap-3">
@@ -437,10 +437,10 @@ export default async function ProductPage({ params }: Props) {
                     href={manual.href}
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex items-center gap-2 rounded-lg border border-[#E5E5E5] bg-white px-4 py-3 text-sm font-medium text-[#222] hover:border-[#FF6A00]/40 hover:text-[#FF6A00] transition-colors duration-200"
+                    className="inline-flex items-center gap-2 rounded-lg border border-[#E2E8F0] bg-white px-4 py-3 text-sm font-medium text-[#1E293B] hover:border-[#D97706]/40 hover:text-[#D97706] transition-colors duration-200"
                   >
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FF6A00" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                    <span className="text-[#FF6A00] font-bold">PDF</span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D97706" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    <span className="text-[#D97706] font-bold">PDF</span>
                     <span>{manual.label}</span>
                   </a>
                 ))}
@@ -454,9 +454,9 @@ export default async function ProductPage({ params }: Props) {
 
       {/* Feature Highlights — selling points as cards (kavand: section-alt) */}
       {sellingPoints.length > 0 && (
-        <section className="mt-12 pt-10 pb-10 bg-[#E8ECF0] -mx-4 sm:-mx-6 px-4 sm:px-6">
+        <section className="mt-12 pt-10 pb-10 bg-[#F8FAFC] -mx-4 sm:-mx-6 px-4 sm:px-6">
           <div className="max-w-[1360px] mx-auto">
-            <h2 className="text-[20px] font-bold text-[#222] mb-6">
+            <h2 className="text-[20px] font-bold text-[#1E293B] mb-6">
               Feature Highlights
             </h2>
             <div className={`grid gap-4 ${sellingPoints.length >= 5 ? "grid-cols-2 lg:grid-cols-5" : sellingPoints.length >= 3 ? "grid-cols-2 lg:grid-cols-3" : "grid-cols-1 lg:grid-cols-2"}`}>
@@ -465,14 +465,14 @@ export default async function ProductPage({ params }: Props) {
                 const title = colonIdx > 0 && colonIdx < 60 ? sp.substring(0, colonIdx).trim() : null
                 const body = title ? sp.substring(colonIdx + 1).trim() : sp
                 return (
-                  <div key={i} className="bg-white border border-[#E5E5E5] rounded-lg p-5 text-center hover:border-[#FF6A00]/20 hover:-translate-y-0.5 transition-all duration-300">
-                    <div className="w-12 h-12 mx-auto mb-3 bg-[#FFF5EE] rounded-lg flex items-center justify-center">
-                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FF6A00" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                  <div key={i} className="bg-white border border-[#E2E8F0] rounded-lg p-5 text-center hover:border-[#D97706]/20 hover:-translate-y-0.5 transition-all duration-300">
+                    <div className="w-12 h-12 mx-auto mb-3 bg-[#FFFBEB] rounded-lg flex items-center justify-center">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D97706" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
                     </div>
                     {title && (
-                      <h3 className="font-bold text-sm text-[#222] mb-1.5">{title}</h3>
+                      <h3 className="font-bold text-sm text-[#1E293B] mb-1.5">{title}</h3>
                     )}
-                    <p className="text-xs text-[#666] leading-relaxed line-clamp-4">{body}</p>
+                    <p className="text-xs text-[#64748B] leading-relaxed line-clamp-4">{body}</p>
                   </div>
                 )
               })}
@@ -483,8 +483,8 @@ export default async function ProductPage({ params }: Props) {
 
       {/* Tehnilised andmed — 2-column specs table */}
       {specs.length > 0 && (
-        <section className="mt-12 pt-10 border-t border-[#E5E5E5]">
-          <h2 className="text-[20px] font-bold text-[#222] mb-6">
+        <section className="mt-12 pt-10 border-t border-[#E2E8F0]">
+          <h2 className="text-[20px] font-bold text-[#1E293B] mb-6">
             Tehnilised andmed
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -493,19 +493,19 @@ export default async function ProductPage({ params }: Props) {
               const half = Math.ceil(specs.length / 2)
               const colSpecs = col === 0 ? specs.slice(0, half) : specs.slice(half)
               return (
-                <div key={col} className="border border-[#E5E5E5] rounded-lg overflow-hidden">
+                <div key={col} className="border border-[#E2E8F0] rounded-lg overflow-hidden">
                   {colSpecs.map((spec, i) => (
                     <div
                       key={spec.key + i}
-                      className={"flex " + (i % 2 === 0 ? "bg-[#F5F5F5]" : "bg-white")}
+                      className={"flex " + (i % 2 === 0 ? "bg-[#F1F5F9]" : "bg-white")}
                     >
-                      <div className="w-[45%] shrink-0 px-4 py-3 border-r border-[#E5E5E5]">
-                        <span className="text-xs font-medium text-[#666]">
+                      <div className="w-[45%] shrink-0 px-4 py-3 border-r border-[#E2E8F0]">
+                        <span className="text-xs font-medium text-[#64748B]">
                           {spec.key}
                         </span>
                       </div>
                       <div className="flex-1 px-4 py-3">
-                        <span className="text-xs text-[#222]">
+                        <span className="text-xs text-[#1E293B]">
                           {spec.value}
                         </span>
                       </div>
@@ -520,8 +520,8 @@ export default async function ProductPage({ params }: Props) {
 
       {/* Rich description from VEVOR (with images, collapsible) */}
       {richDescription && (
-        <section className="mt-12 pt-10 border-t border-[#E5E5E5]">
-          <h2 className="text-[20px] font-bold text-[#222] mb-6">
+        <section className="mt-12 pt-10 border-t border-[#E2E8F0]">
+          <h2 className="text-[20px] font-bold text-[#1E293B] mb-6">
             Toote kirjeldus
           </h2>
           <CollapsibleDescription html={sanitizeHtml(richDescription)} collapsedHeight={600} />
@@ -530,8 +530,8 @@ export default async function ProductPage({ params }: Props) {
 
       {/* Plain description fallback */}
       {!richDescription && mainDescriptionHtml && (
-        <section className="mt-12 pt-10 border-t border-[#E5E5E5]">
-          <h2 className="text-[20px] font-bold text-[#222] mb-6">
+        <section className="mt-12 pt-10 border-t border-[#E2E8F0]">
+          <h2 className="text-[20px] font-bold text-[#1E293B] mb-6">
             Toote kirjeldus
           </h2>
           <CollapsibleDescription html={sanitizeHtml(mainDescriptionHtml)} collapsedHeight={400} />
@@ -542,8 +542,8 @@ export default async function ProductPage({ params }: Props) {
 
       {/* Sarnased tooted */}
       {similarProducts.length > 0 && (
-        <section className="mt-12 pt-10 border-t border-[#E5E5E5]">
-          <h2 className="text-[20px] font-bold text-[#222] mb-6">
+        <section className="mt-12 pt-10 border-t border-[#E2E8F0]">
+          <h2 className="text-[20px] font-bold text-[#1E293B] mb-6">
             Sarnased tooted
           </h2>
           <div className="grid grid-cols-2 lg:grid-cols-5 gap-4">
@@ -556,40 +556,40 @@ export default async function ProductPage({ params }: Props) {
 
       {/* Ostetakse koos — with total price */}
       {koosProducts.length > 0 && (
-        <section className="mt-12 pt-10 border-t border-[#E5E5E5]">
-          <h2 className="text-[20px] font-bold text-[#222] mb-5">
+        <section className="mt-12 pt-10 border-t border-[#E2E8F0]">
+          <h2 className="text-[20px] font-bold text-[#1E293B] mb-5">
             Ostetakse koos
           </h2>
           <div className="flex flex-col sm:flex-row gap-4 items-start flex-wrap">
             {/* Main product mini card */}
-            <div className="flex items-center gap-3 p-3 border border-[#E5E5E5] bg-[#F5F5F5] rounded-lg shrink-0">
+            <div className="flex items-center gap-3 p-3 border border-[#E2E8F0] bg-[#F1F5F9] rounded-lg shrink-0">
               {product.thumbnail && (
-                <div className="w-[60px] h-[60px] bg-white rounded-lg border border-[#E5E5E5] overflow-hidden relative shrink-0">
+                <div className="w-[60px] h-[60px] bg-white rounded-lg border border-[#E2E8F0] overflow-hidden relative shrink-0">
                   <img src={product.thumbnail} alt={product.title} className="w-full h-full object-contain p-1" />
                 </div>
               )}
               <div>
-                <p className="text-xs text-[#666] mb-0.5">See toode</p>
-                <p className="text-sm font-medium text-[#222] leading-snug line-clamp-2 max-w-[140px]">{product.title.substring(0, 40)}{product.title.length > 40 ? "..." : ""}</p>
-                {price && <p className="text-sm font-semibold text-[#222] mt-1">{formatPrice(price.calculated_amount, price.currency_code)}</p>}
+                <p className="text-xs text-[#64748B] mb-0.5">See toode</p>
+                <p className="text-sm font-medium text-[#1E293B] leading-snug line-clamp-2 max-w-[140px]">{product.title.substring(0, 40)}{product.title.length > 40 ? "..." : ""}</p>
+                {price && <p className="text-sm font-semibold text-[#1E293B] mt-1">{formatPrice(price.calculated_amount, price.currency_code)}</p>}
               </div>
             </div>
             {/* Plus signs + related products */}
             {koosProducts.map((kp) => (
               <div key={kp.id} className="flex items-center gap-4">
-                <span className="text-xl text-[#E5E5E5] font-light shrink-0">+</span>
+                <span className="text-xl text-[#E2E8F0] font-light shrink-0">+</span>
                 <a
                   href={`/${locale}/toode/` + kp.handle}
-                  className="flex items-center gap-3 p-3 border border-[#E5E5E5] bg-white hover:border-[#FF6A00]/40 rounded-lg transition-colors duration-200 shrink-0"
+                  className="flex items-center gap-3 p-3 border border-[#E2E8F0] bg-white hover:border-[#D97706]/40 rounded-lg transition-colors duration-200 shrink-0"
                 >
                   {kp.thumbnail && (
-                    <div className="w-[60px] h-[60px] bg-[#F5F5F5] rounded-lg overflow-hidden relative shrink-0">
+                    <div className="w-[60px] h-[60px] bg-[#F1F5F9] rounded-lg overflow-hidden relative shrink-0">
                       <img src={kp.thumbnail} alt={kp.title} className="w-full h-full object-contain p-1" />
                     </div>
                   )}
                   <div>
-                    <p className="text-sm font-medium text-[#222] leading-snug line-clamp-2 max-w-[140px]">{kp.title.substring(0, 40)}{kp.title.length > 40 ? "..." : ""}</p>
-                    {kp.variants?.[0]?.calculated_price && <p className="text-sm font-semibold text-[#222] mt-1">{formatPrice(kp.variants[0].calculated_price.calculated_amount, kp.variants[0].calculated_price.currency_code)}</p>}
+                    <p className="text-sm font-medium text-[#1E293B] leading-snug line-clamp-2 max-w-[140px]">{kp.title.substring(0, 40)}{kp.title.length > 40 ? "..." : ""}</p>
+                    {kp.variants?.[0]?.calculated_price && <p className="text-sm font-semibold text-[#1E293B] mt-1">{formatPrice(kp.variants[0].calculated_price.calculated_amount, kp.variants[0].calculated_price.currency_code)}</p>}
                   </div>
                 </a>
               </div>
@@ -604,9 +604,9 @@ export default async function ProductPage({ params }: Props) {
             }, mainPrice)
             const currencyCode = price?.currency_code || "eur"
             return (
-              <div className="flex items-center justify-between mt-5 p-4 border border-[#E5E5E5] bg-white rounded-lg">
-                <p className="font-bold text-lg text-[#222]">
-                  <span className="text-sm font-normal text-[#666] mr-2">Kokku:</span>
+              <div className="flex items-center justify-between mt-5 p-4 border border-[#E2E8F0] bg-white rounded-lg">
+                <p className="font-bold text-lg text-[#1E293B]">
+                  <span className="text-sm font-normal text-[#64748B] mr-2">Kokku:</span>
                   {formatPrice(koosTotal, currencyCode)}
                 </p>
                 {/* TODO: Add all to cart - needs cart API integration */}

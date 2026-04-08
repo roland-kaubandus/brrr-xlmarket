@@ -28,7 +28,7 @@ function Stars({ rating, productId }: { rating: number; productId: string }) {
       {Array.from({ length: 5 }, (_, i) => {
         if (i < full) {
           return (
-            <svg key={i} width="14" height="14" viewBox="0 0 24 24" fill="#FF6A00" stroke="none">
+            <svg key={i} width="14" height="14" viewBox="0 0 24 24" fill="#D97706" stroke="none">
               <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
             </svg>
           )
@@ -38,7 +38,7 @@ function Stars({ rating, productId }: { rating: number; productId: string }) {
             <svg key={i} width="14" height="14" viewBox="0 0 24 24" stroke="none">
               <defs>
                 <linearGradient id={`half-${productId}-${i}`}>
-                  <stop offset="50%" stopColor="#FF6A00" />
+                  <stop offset="50%" stopColor="#D97706" />
                   <stop offset="50%" stopColor="#E5E7EB" />
                 </linearGradient>
               </defs>
@@ -52,7 +52,7 @@ function Stars({ rating, productId }: { rating: number; productId: string }) {
           </svg>
         )
       })}
-      <span className="text-xs text-[#666] ml-1">{rating.toFixed(1)}</span>
+      <span className="text-xs text-[#64748B] ml-1">{rating.toFixed(1)}</span>
     </span>
   )
 }
@@ -105,14 +105,14 @@ export default function VevorProductCard({ product, locale }: { product: Product
           aria-label={wishlisted ? "Eemalda lemmikutest" : "Lisa lemmikutesse"}
           className="absolute top-2 right-2 z-10 w-8 h-8 rounded-full flex items-center justify-center bg-white/80 hover:bg-white shadow-sm transition-colors"
         >
-          <svg width="16" height="16" viewBox="0 0 24 24" fill={wishlisted ? "#E53E3E" : "none"} stroke={wishlisted ? "#E53E3E" : "#666"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill={wishlisted ? "#DC2626" : "none"} stroke={wishlisted ? "#DC2626" : "#666"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
           </svg>
         </button>
 
         {/* Discount badge */}
         {discount > 0 && (
-          <span className="absolute top-2 left-2 z-10 px-2 py-0.5 bg-[#E53E3E] text-white text-xs font-bold rounded">
+          <span className="absolute top-2 left-2 z-10 px-2 py-0.5 bg-[#DC2626] text-white text-xs font-bold rounded">
             -{discount}%
           </span>
         )}
@@ -130,13 +130,13 @@ export default function VevorProductCard({ product, locale }: { product: Product
               sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
             />
           ) : (
-            <div className="flex items-center justify-center h-full text-[#999] text-sm">Pilt puudub</div>
+            <div className="flex items-center justify-center h-full text-[#64748B] text-sm">Pilt puudub</div>
           )}
         </div>
 
         {/* Product info */}
         <div className="p-3 pt-2">
-          <h3 className="text-sm text-[#222] line-clamp-2 leading-snug min-h-[2.5em]">
+          <h3 className="text-sm text-[#1E293B] line-clamp-2 leading-snug min-h-[2.5em]">
             {product.title}
           </h3>
 
@@ -148,11 +148,11 @@ export default function VevorProductCard({ product, locale }: { product: Product
           {/* Price */}
           {price && (
             <div className="mt-2 flex items-baseline gap-2 flex-wrap">
-              <span className="font-bold text-lg text-[#222]">
+              <span className="font-bold text-lg text-[#1E293B]">
                 {formatPrice(price.calculated_amount, price.currency_code)}
               </span>
               {discount > 0 && (
-                <span className="text-xs text-[#999] line-through">
+                <span className="text-xs text-[#64748B] line-through">
                   {formatPrice(price.original_amount, price.currency_code)}
                 </span>
               )}
@@ -161,12 +161,12 @@ export default function VevorProductCard({ product, locale }: { product: Product
 
           {/* Badges row */}
           <div className="mt-2 flex items-center gap-3 text-xs">
-            <span className="inline-flex items-center gap-1 text-[#16A34A]">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#16A34A] inline-block" />
+            <span className="inline-flex items-center gap-1 text-[#059669]">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#059669] inline-block" />
               Laos
             </span>
             {freeShipping && (
-              <span className="text-[#FF6A00] font-medium">Tasuta tarne</span>
+              <span className="text-[#D97706] font-medium">Tasuta tarne</span>
             )}
           </div>
         </div>

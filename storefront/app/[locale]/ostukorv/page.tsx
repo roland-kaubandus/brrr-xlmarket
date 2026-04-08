@@ -110,10 +110,10 @@ export default function CartPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#E8ECF0]">
+      <div className="min-h-screen bg-[#F8FAFC]">
         <div className="max-w-[1360px] mx-auto px-4 sm:px-6 py-12">
           <div className="flex items-center justify-center py-20">
-            <div className="w-8 h-8 border-2 border-[#E5E5E5] border-t-[#FF6A00] rounded-full animate-spin" />
+            <div className="w-8 h-8 border-2 border-[#E2E8F0] border-t-[#D97706] rounded-full animate-spin" />
           </div>
         </div>
       </div>
@@ -127,44 +127,44 @@ export default function CartPage() {
   const shippingProgress = cart ? Math.min(100, ((cart.subtotal || cart.item_total || 0) / FREE_SHIPPING_THRESHOLD) * 100) : 0
 
   return (
-    <div className="min-h-screen bg-[#E8ECF0]">
+    <div className="min-h-screen bg-[#F8FAFC]">
       <div className="max-w-[1360px] mx-auto px-4 sm:px-6 py-8 sm:py-12">
         {/* Breadcrumb */}
-        <nav className="text-[12px] text-[#666666] mb-7" aria-label="Leheasukoht">
-          <Link href={`/${locale}`} className="hover:text-[#FF6A00] transition-colors">Avaleht</Link>
-          <span className="mx-2 text-[#E5E5E5]">/</span>
-          <span className="text-[#222222] font-medium">Ostukorv</span>
+        <nav className="text-[12px] text-[#64748B] mb-7" aria-label="Leheasukoht">
+          <Link href={`/${locale}`} className="hover:text-[#D97706] transition-colors">Avaleht</Link>
+          <span className="mx-2 text-[#E2E8F0]">/</span>
+          <span className="text-[#1E293B] font-medium">Ostukorv</span>
         </nav>
 
         <div className="flex items-center gap-3 mb-8">
-          <h1 className="text-[28px] font-bold text-[#222222]">
+          <h1 className="text-[28px] font-bold text-[#1E293B]">
             Ostukorv
           </h1>
           {!isEmpty && (
-            <span className="text-base text-[#666666]">
+            <span className="text-base text-[#64748B]">
               ({items.reduce((s, i) => s + i.quantity, 0)} toodet)
             </span>
           )}
         </div>
 
         {error && (
-          <div className="mb-4 px-4 py-3 bg-red-50 border border-red-200 rounded-lg text-[#E53E3E] text-[13px]" role="alert">
+          <div className="mb-4 px-4 py-3 bg-red-50 border border-red-200 rounded-lg text-[#DC2626] text-[13px]" role="alert">
             {error}
           </div>
         )}
 
         {isEmpty ? (
-          <div className="flex flex-col items-center justify-center py-20 text-center bg-white border border-[#E5E5E5] rounded-lg">
-            <ShoppingCart size={56} strokeWidth={1} className="text-[#E5E5E5] mb-5" />
-            <p className="text-lg font-semibold text-[#222222] mb-1.5">
+          <div className="flex flex-col items-center justify-center py-20 text-center bg-white border border-[#E2E8F0] rounded-lg">
+            <ShoppingCart size={56} strokeWidth={1} className="text-[#E2E8F0] mb-5" />
+            <p className="text-lg font-semibold text-[#1E293B] mb-1.5">
               Ostukorv on tühi
             </p>
-            <p className="text-[14px] text-[#666666] mb-7">
+            <p className="text-[14px] text-[#64748B] mb-7">
               Lisa tooteid, et alustada ostlemist
             </p>
             <Link
               href={`/${locale}/kategooriad`}
-              className="inline-flex items-center gap-2 px-6 py-3 bg-[#FF6A00] text-white text-[14px] font-semibold rounded-lg hover:bg-[#E55F00] transition-colors"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-[#D97706] text-white text-[14px] font-semibold rounded-lg hover:bg-[#B45309] transition-colors"
             >
               Vaata tooteid
               <ArrowRight size={16} strokeWidth={1.5} />
@@ -176,16 +176,16 @@ export default function CartPage() {
             <div className="lg:col-span-2 flex flex-col gap-3">
               {/* Free shipping progress */}
               {toFreeShipping > 0 && (
-                <div className="flex flex-col gap-2 p-4 bg-[#FFF5EE] border border-[#FF6A00]/15 rounded-lg mb-1">
+                <div className="flex flex-col gap-2 p-4 bg-[#FFFBEB] border border-[#D97706]/15 rounded-lg mb-1">
                   <div className="flex items-center gap-1.5">
-                    <Truck size={14} strokeWidth={1.5} className="text-[#FF6A00] shrink-0" />
-                    <span className="text-[13px] text-[#666666]">
-                      Lisa veel <strong className="text-[#FF6A00]">{formatPrice(toFreeShipping, cart?.currency_code ?? "EUR")}</strong> tasuta tarne saamiseks
+                    <Truck size={14} strokeWidth={1.5} className="text-[#D97706] shrink-0" />
+                    <span className="text-[13px] text-[#64748B]">
+                      Lisa veel <strong className="text-[#D97706]">{formatPrice(toFreeShipping, cart?.currency_code ?? "EUR")}</strong> tasuta tarne saamiseks
                     </span>
                   </div>
-                  <div className="h-1 bg-[#E5E5E5] rounded-full overflow-hidden">
+                  <div className="h-1 bg-[#E2E8F0] rounded-full overflow-hidden">
                     <div
-                      className="h-full bg-[#FF6A00] rounded-full transition-all duration-500"
+                      className="h-full bg-[#D97706] rounded-full transition-all duration-500"
                       style={{ width: shippingProgress + "%" }}
                     />
                   </div>
@@ -193,7 +193,7 @@ export default function CartPage() {
               )}
               {toFreeShipping === 0 && (
                 <div className="flex items-center gap-2 p-3 bg-green-50 border border-green-200 rounded-lg mb-1">
-                  <Truck size={14} strokeWidth={1.5} className="text-[#16A34A] shrink-0" />
+                  <Truck size={14} strokeWidth={1.5} className="text-[#059669] shrink-0" />
                   <span className="text-[13px] text-green-700">
                     Tasuta tarne on lisatud!
                   </span>
@@ -201,7 +201,7 @@ export default function CartPage() {
               )}
 
               {/* Table header (desktop) */}
-              <div className="hidden sm:grid grid-cols-[1fr_100px_140px_100px_40px] gap-4 px-4 py-3 bg-white border border-[#E5E5E5] rounded-lg text-[12px] font-semibold text-[#666666] uppercase tracking-wide">
+              <div className="hidden sm:grid grid-cols-[1fr_100px_140px_100px_40px] gap-4 px-4 py-3 bg-white border border-[#E2E8F0] rounded-lg text-[12px] font-semibold text-[#64748B] uppercase tracking-wide">
                 <span>Toode</span>
                 <span className="text-center">Hind</span>
                 <span className="text-center">Kogus</span>
@@ -212,14 +212,14 @@ export default function CartPage() {
               {items.map((item) => (
                 <div
                   key={item.id}
-                  className={"bg-white border border-[#E5E5E5] rounded-lg p-4 transition-opacity " + (updating === item.id ? "opacity-50" : "")}
+                  className={"bg-white border border-[#E2E8F0] rounded-lg p-4 transition-opacity " + (updating === item.id ? "opacity-50" : "")}
                 >
                   {/* Desktop: table row */}
                   <div className="hidden sm:grid grid-cols-[1fr_100px_140px_100px_40px] gap-4 items-center">
                     {/* Product */}
                     <div className="flex gap-3 items-center min-w-0">
                       <Link href={`/${locale}/toode/${item.variant?.product?.handle ?? ""}`} className="shrink-0">
-                        <div className="w-[60px] h-[60px] bg-[#F7F7F7] rounded-lg border border-[#E5E5E5] overflow-hidden">
+                        <div className="w-[60px] h-[60px] bg-[#F7F7F7] rounded-lg border border-[#E2E8F0] overflow-hidden">
                           {item.variant?.product?.thumbnail ? (
                             <Image
                               src={item.variant.product.thumbnail}
@@ -232,7 +232,7 @@ export default function CartPage() {
                         </div>
                       </Link>
                       <Link href={`/${locale}/toode/${item.variant?.product?.handle ?? ""}`} className="min-w-0">
-                        <p className="text-[13px] font-medium text-[#222222] hover:text-[#FF6A00] line-clamp-2 leading-[1.4] transition-colors">
+                        <p className="text-[13px] font-medium text-[#1E293B] hover:text-[#D97706] line-clamp-2 leading-[1.4] transition-colors">
                           {item.variant?.product?.title ?? item.title}
                         </p>
                       </Link>
@@ -240,29 +240,29 @@ export default function CartPage() {
 
                     {/* Unit price */}
                     <div className="text-center">
-                      <span className="text-[14px] font-semibold text-[#222222]">
+                      <span className="text-[14px] font-semibold text-[#1E293B]">
                         {cart && formatPrice(item.unit_price, cart.currency_code)}
                       </span>
                     </div>
 
                     {/* Quantity controls */}
                     <div className="flex justify-center">
-                      <div className="inline-flex items-center border border-[#E5E5E5] rounded-lg overflow-hidden">
+                      <div className="inline-flex items-center border border-[#E2E8F0] rounded-lg overflow-hidden">
                         <button
                           onClick={() => updateQuantity(item.id, item.quantity - 1)}
                           disabled={!!updating}
-                          className="w-8 h-8 flex items-center justify-center hover:bg-[#F5F5F5] text-[#666666] disabled:text-[#CCCCCC] transition-colors"
+                          className="w-8 h-8 flex items-center justify-center hover:bg-[#F8FAFC] text-[#64748B] disabled:text-[#CCCCCC] transition-colors"
                           aria-label="Vähenda"
                         >
                           <Minus size={14} strokeWidth={2} />
                         </button>
-                        <span className="w-10 text-center text-[13px] font-medium border-x border-[#E5E5E5]">
+                        <span className="w-10 text-center text-[13px] font-medium border-x border-[#E2E8F0]">
                           {item.quantity}
                         </span>
                         <button
                           onClick={() => updateQuantity(item.id, Math.min(99, item.quantity + 1))}
                           disabled={!!updating || item.quantity >= 99}
-                          className="w-8 h-8 flex items-center justify-center hover:bg-[#F5F5F5] text-[#666666] disabled:text-[#CCCCCC] transition-colors"
+                          className="w-8 h-8 flex items-center justify-center hover:bg-[#F8FAFC] text-[#64748B] disabled:text-[#CCCCCC] transition-colors"
                           aria-label="Suurenda"
                         >
                           <Plus size={14} strokeWidth={2} />
@@ -272,7 +272,7 @@ export default function CartPage() {
 
                     {/* Line total */}
                     <div className="text-right">
-                      <span className="text-[15px] font-bold text-[#222222]">
+                      <span className="text-[15px] font-bold text-[#1E293B]">
                         {cart && formatPrice(item.total, cart.currency_code)}
                       </span>
                     </div>
@@ -282,7 +282,7 @@ export default function CartPage() {
                       <button
                         onClick={() => removeItem(item.id)}
                         disabled={!!updating}
-                        className="w-8 h-8 flex items-center justify-center text-[#CCCCCC] hover:text-[#E53E3E] disabled:opacity-40 transition-colors rounded-lg hover:bg-red-50"
+                        className="w-8 h-8 flex items-center justify-center text-[#CCCCCC] hover:text-[#DC2626] disabled:opacity-40 transition-colors rounded-lg hover:bg-red-50"
                         aria-label={"Eemalda " + (item.variant?.product?.title ?? item.title)}
                       >
                         <Trash2 size={16} strokeWidth={1.5} />
@@ -293,7 +293,7 @@ export default function CartPage() {
                   {/* Mobile: stacked layout */}
                   <div className="flex sm:hidden gap-3">
                     <Link href={`/${locale}/toode/${item.variant?.product?.handle ?? ""}`} className="shrink-0">
-                      <div className="w-[72px] h-[72px] bg-[#F7F7F7] rounded-lg border border-[#E5E5E5] overflow-hidden">
+                      <div className="w-[72px] h-[72px] bg-[#F7F7F7] rounded-lg border border-[#E2E8F0] overflow-hidden">
                         {item.variant?.product?.thumbnail ? (
                           <Image
                             src={item.variant.product.thumbnail}
@@ -307,30 +307,30 @@ export default function CartPage() {
                     </Link>
                     <div className="flex-1 min-w-0">
                       <Link href={`/${locale}/toode/${item.variant?.product?.handle ?? ""}`}>
-                        <p className="text-[13px] font-medium text-[#222222] hover:text-[#FF6A00] line-clamp-2 leading-[1.4] mb-1 transition-colors">
+                        <p className="text-[13px] font-medium text-[#1E293B] hover:text-[#D97706] line-clamp-2 leading-[1.4] mb-1 transition-colors">
                           {item.variant?.product?.title ?? item.title}
                         </p>
                       </Link>
-                      <p className="text-[15px] font-bold text-[#FF6A00] mb-2.5">
+                      <p className="text-[15px] font-bold text-[#D97706] mb-2.5">
                         {cart && formatPrice(item.total, cart.currency_code)}
                       </p>
                       <div className="flex items-center justify-between">
-                        <div className="inline-flex items-center border border-[#E5E5E5] rounded-lg overflow-hidden">
+                        <div className="inline-flex items-center border border-[#E2E8F0] rounded-lg overflow-hidden">
                           <button
                             onClick={() => updateQuantity(item.id, item.quantity - 1)}
                             disabled={!!updating}
-                            className="w-8 h-8 flex items-center justify-center hover:bg-[#F5F5F5] text-[#666666] disabled:text-[#CCCCCC] transition-colors"
+                            className="w-8 h-8 flex items-center justify-center hover:bg-[#F8FAFC] text-[#64748B] disabled:text-[#CCCCCC] transition-colors"
                             aria-label="Vähenda"
                           >
                             <Minus size={14} strokeWidth={2} />
                           </button>
-                          <span className="w-9 text-center text-[13px] font-medium border-x border-[#E5E5E5]">
+                          <span className="w-9 text-center text-[13px] font-medium border-x border-[#E2E8F0]">
                             {item.quantity}
                           </span>
                           <button
                             onClick={() => updateQuantity(item.id, Math.min(99, item.quantity + 1))}
                             disabled={!!updating || item.quantity >= 99}
-                            className="w-8 h-8 flex items-center justify-center hover:bg-[#F5F5F5] text-[#666666] disabled:text-[#CCCCCC] transition-colors"
+                            className="w-8 h-8 flex items-center justify-center hover:bg-[#F8FAFC] text-[#64748B] disabled:text-[#CCCCCC] transition-colors"
                             aria-label="Suurenda"
                           >
                             <Plus size={14} strokeWidth={2} />
@@ -339,7 +339,7 @@ export default function CartPage() {
                         <button
                           onClick={() => removeItem(item.id)}
                           disabled={!!updating}
-                          className="flex items-center gap-1 text-[12px] text-[#CCCCCC] hover:text-[#E53E3E] disabled:opacity-40 transition-colors"
+                          className="flex items-center gap-1 text-[12px] text-[#CCCCCC] hover:text-[#DC2626] disabled:opacity-40 transition-colors"
                           aria-label={"Eemalda " + (item.variant?.product?.title ?? item.title)}
                         >
                           <Trash2 size={14} strokeWidth={1.5} />
@@ -353,7 +353,7 @@ export default function CartPage() {
 
               <Link
                 href={`/${locale}/kategooriad`}
-                className="inline-flex items-center gap-1.5 text-[13px] font-medium text-[#FF6A00] hover:text-[#E55F00] mt-1 self-start transition-colors"
+                className="inline-flex items-center gap-1.5 text-[13px] font-medium text-[#D97706] hover:text-[#B45309] mt-1 self-start transition-colors"
               >
                 ← Jätka ostlemist
               </Link>
@@ -362,55 +362,55 @@ export default function CartPage() {
             {/* Order summary */}
             {cart && (
               <div className="lg:col-span-1">
-                <div className="bg-white border border-[#E5E5E5] rounded-lg p-5 sticky top-20">
-                  <h2 className="text-[17px] font-semibold text-[#222222] mb-5">
+                <div className="bg-white border border-[#E2E8F0] rounded-lg p-5 sticky top-20">
+                  <h2 className="text-[17px] font-semibold text-[#1E293B] mb-5">
                     Kokkuvõte
                   </h2>
 
                   <div className="flex flex-col gap-2.5 mb-4">
                     <div className="flex items-center justify-between">
-                      <span className="text-[13px] text-[#666666]">Vahesumma</span>
-                      <span className="text-[13px] text-[#222222]">
+                      <span className="text-[13px] text-[#64748B]">Vahesumma</span>
+                      <span className="text-[13px] text-[#1E293B]">
                         {formatPrice(cart.subtotal ?? cart.item_total, cart.currency_code)}
                       </span>
                     </div>
                     <div className="flex items-center justify-between">
-                      <span className="text-[13px] text-[#666666]">Tarne</span>
-                      <span className={`text-[13px] ${toFreeShipping === 0 ? "text-[#16A34A] font-medium" : "text-[#222222]"}`}>
+                      <span className="text-[13px] text-[#64748B]">Tarne</span>
+                      <span className={`text-[13px] ${toFreeShipping === 0 ? "text-[#059669] font-medium" : "text-[#1E293B]"}`}>
                         {toFreeShipping === 0 ? "Tasuta" : "Arvutatakse tellimisel"}
                       </span>
                     </div>
                     {cart.tax_total > 0 && (
                       <div className="flex items-center justify-between">
-                        <span className="text-[13px] text-[#666666]">KM (22%)</span>
-                        <span className="text-[13px] text-[#222222]">
+                        <span className="text-[13px] text-[#64748B]">KM (22%)</span>
+                        <span className="text-[13px] text-[#1E293B]">
                           {formatPrice(cart.tax_total, cart.currency_code)}
                         </span>
                       </div>
                     )}
                   </div>
 
-                  <div className="border-t border-[#E5E5E5] pt-4 mb-5">
+                  <div className="border-t border-[#E2E8F0] pt-4 mb-5">
                     <div className="flex items-center justify-between">
-                      <span className="text-[15px] font-semibold text-[#222222]">Kokku</span>
-                      <span className="text-xl font-bold text-[#FF6A00]">
+                      <span className="text-[15px] font-semibold text-[#1E293B]">Kokku</span>
+                      <span className="text-xl font-bold text-[#D97706]">
                         {formatPrice(cart.total, cart.currency_code)}
                       </span>
                     </div>
-                    <p className="text-[11px] text-[#666666] mt-1">
+                    <p className="text-[11px] text-[#64748B] mt-1">
                       Sisaldab KM-i
                     </p>
                   </div>
 
                   <Link
                     href={`/${locale}/tellimus`}
-                    className="block w-full text-center py-3.5 bg-[#FF6A00] text-white text-[15px] font-semibold rounded-lg hover:bg-[#E55F00] transition-colors"
+                    className="block w-full text-center py-3.5 bg-[#D97706] text-white text-[15px] font-semibold rounded-lg hover:bg-[#B45309] transition-colors"
                     style={{ boxShadow: "0 4px 16px rgba(255,106,0,0.25)" }}
                   >
                     Vormista tellimus
                   </Link>
 
-                  <p className="text-[11px] text-[#666666] text-center mt-2.5">
+                  <p className="text-[11px] text-[#64748B] text-center mt-2.5">
                     Turvaline makse · SSL krüpteeritud
                   </p>
                 </div>

@@ -67,21 +67,21 @@ export default function AddToCartButton({ variantId }: { variantId: string }) {
     <div>
       <div className="flex items-center gap-3">
         {/* Quantity selector */}
-        <div className="flex border border-[#E5E5E5] rounded-lg overflow-hidden">
+        <div className="flex border border-[#E2E8F0] rounded-lg overflow-hidden">
           <button
             onClick={() => setQty(Math.max(1, qty - 1))}
             aria-label={"V\u00E4henda kogust"}
-            className="w-10 h-12 flex items-center justify-center hover:bg-[#F5F5F5] active:bg-[#EBEBEB] text-[#222] font-medium text-base transition-colors duration-200"
+            className="w-10 h-12 flex items-center justify-center hover:bg-[#F8FAFC] active:bg-[#E2E8F0] text-[#1E293B] font-medium text-base transition-colors duration-200"
           >
             -
           </button>
-          <span className="w-12 h-12 flex items-center justify-center border-x border-[#E5E5E5] text-sm text-[#222] font-medium tabular-nums">
+          <span className="w-12 h-12 flex items-center justify-center border-x border-[#E2E8F0] text-sm text-[#1E293B] font-medium tabular-nums">
             {qty}
           </span>
           <button
             onClick={() => setQty(Math.min(99, qty + 1))}
             aria-label="Suurenda kogust"
-            className="w-10 h-12 flex items-center justify-center hover:bg-[#F5F5F5] active:bg-[#EBEBEB] text-[#222] font-medium text-base transition-colors duration-200"
+            className="w-10 h-12 flex items-center justify-center hover:bg-[#F8FAFC] active:bg-[#E2E8F0] text-[#1E293B] font-medium text-base transition-colors duration-200"
           >
             +
           </button>
@@ -95,7 +95,7 @@ export default function AddToCartButton({ variantId }: { variantId: string }) {
             "flex-1 flex items-center justify-center gap-2 h-12 px-6 font-bold text-base rounded-lg disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200 " +
             (added
               ? "bg-green-600 text-white hover:bg-green-700"
-              : "bg-[#FF6A00] text-white hover:bg-[#E55F00]")
+              : "bg-[#D97706] text-white hover:bg-[#B45309]")
           }
         >
           {loading ? (
