@@ -7,26 +7,26 @@ const BANNERS = [
     title: "Kevadine suurpakkumine",
     subtitle: "Kuni -30% valitud toodetelt",
     cta: "Vaata pakkumisi",
-    link: "/en/otsing",
+    link: "/otsing",
     gradient: "from-[#FF6A00] to-[#FF8F3F]",
   },
   {
     title: "Tasuta tarne alates 99\u20AC",
     subtitle: "Kiire kohaletoimetamine kogu Eestisse",
     cta: "Osta kohe",
-    link: "/en/otsing?sort=new",
+    link: "/otsing?sort=new",
     gradient: "from-[#1E40AF] to-[#3B82F6]",
   },
   {
     title: "Uued tooted just saabunud",
     subtitle: "Avasta meie v\u00E4rsket valikut",
     cta: "Avasta uusi tooteid",
-    link: "/en/kategooriad",
+    link: "/kategooriad",
     gradient: "from-[#059669] to-[#34D399]",
   },
 ]
 
-export default function BannerCarousel() {
+export default function BannerCarousel({ locale = "en" }: { locale?: string }) {
   const [current, setCurrent] = useState(0)
   const [paused, setPaused] = useState(false)
 
@@ -66,7 +66,7 @@ export default function BannerCarousel() {
                   {b.title}
                 </h2>
                 <p className="text-white/80 text-sm md:text-base mb-4">{b.subtitle}</p>
-                <Link href={b.link} className="inline-block bg-white text-[#222] font-semibold text-sm px-5 py-2 rounded-lg">
+                <Link href={`/${locale}${b.link}`} className="inline-block bg-white text-[#222] font-semibold text-sm px-5 py-2 rounded-lg">
                   {b.cta}
                 </Link>
               </div>
