@@ -131,6 +131,54 @@ export default async function CategoryPage({ params, searchParams }: Props) {
   const totalPages = Math.ceil(totalCount / ITEMS_PER_PAGE)
   const categoryBasePath = `/${locale}/kategooriad/${handle}`
 
+  // Fetch thumbnails for top subcategories (Issue 2)
+  const topSubcats = Object.entries(categoryFacets)
+    .sort(([,a], [,b]) => b - a)
+    .slice(0, 8)
+  const subcatThumbnails = await Promise.all(
+    topSubcats.map(async ([name]) => {
+      try {
+        const res = await searchProducts({ q: name, limit: 1, filter: [`category_handles = "${handle}"`] })
+        return { name, thumbnail: res.hits[0]?.thumbnail || null }
+      } catch { return { name, thumbnail: null } }
+    })
+  )
+
+  // Fetch "You May Also Like" products from a different category (Issue 3)
+  let youMayAlsoLike: any[] = []
+  try {
+    const allHandles = Object.keys(CATEGORY_NAMES).filter(h => h !== handle)
+    const randomHandle = allHandles[Math.floor(Math.random() * allHandles.length)] || allHandles[0]
+    const randomOffset = Math.floor(Math.random() * 50)
+    const alsoLikeResult = await searchProducts({
+      q: "",
+      limit: 5,
+      offset: randomOffset,
+      filter: [`category_handles = "${randomHandle}"`],
+    })
+    youMayAlsoLike = alsoLikeResult.hits.map(hit => ({
+      id: hit.id,
+      title: hit.title,
+      handle: hit.handle,
+      description: hit.description,
+      thumbnail: hit.thumbnail,
+      images: [],
+      variants: [{
+        id: hit.id + "_v",
+        title: "Default",
+        calculated_price: {
+          calculated_amount: Math.round(hit.price * 100),
+          original_amount: Math.round(hit.price * 100),
+          currency_code: "eur",
+        },
+      }],
+      categories: hit.categories.map((name: string, i: number) => ({
+        id: `cat_${i}`, name, handle: hit.category_handles?.[i] || "", parent_category_id: null,
+      })),
+      created_at: new Date(hit.created_at * 1000).toISOString(),
+    }))
+  } catch { /* ignore */ }
+
   function buildPageUrl(targetPage: number) {
     const p = new URLSearchParams()
     if (targetPage > 1) p.set("page", String(targetPage))
@@ -164,30 +212,65 @@ export default async function CategoryPage({ params, searchParams }: Props) {
           </p>
         </div>
 
-        {/* Subcategory pills from facets */}
-        {Object.keys(categoryFacets).length > 1 && (
-          <div className="flex gap-3 overflow-x-auto pb-2 mb-5 scrollbar-hide">
+        {/* Subcategory visual cards with thumbnails */}
+        {subcatThumbnails.length > 0 && (
+          <div className="flex gap-4 overflow-x-auto pb-3 mb-5 scrollbar-hide">
+            {subcatThumbnails.map(({ name, thumbnail }) => (
+              <Link
+                key={name}
+                href={`${categoryBasePath}?categories=${encodeURIComponent(name)}`}
+                className={`flex-shrink-0 flex flex-col items-center gap-2 w-[100px] group`}
+              >
+                <div className={`w-20 h-20 rounded-xl overflow-hidden border-2 transition-all ${
+                  selectedCategories.includes(name)
+                    ? "border-[#D97706] shadow-md"
+                    : "border-[#E2E8F0] group-hover:border-[#D97706] group-hover:shadow-md"
+                }`}>
+                  {thumbnail ? (
+                    <img
+                      src={thumbnail}
+                      alt={name}
+                      className="w-full h-full object-cover"
+                      loading="lazy"
+                    />
+                  ) : (
+                    <div className="w-full h-full bg-[#F1F5F9] flex items-center justify-center">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                        <rect x="3" y="3" width="7" height="7" rx="1" />
+                        <rect x="14" y="3" width="7" height="7" rx="1" />
+                        <rect x="3" y="14" width="7" height="7" rx="1" />
+                        <rect x="14" y="14" width="7" height="7" rx="1" />
+                      </svg>
+                    </div>
+                  )}
+                </div>
+                <span className={`text-xs text-center font-medium leading-tight line-clamp-2 ${
+                  selectedCategories.includes(name) ? "text-[#D97706]" : "text-[#1E293B] group-hover:text-[#D97706]"
+                }`}>
+                  {name}
+                </span>
+              </Link>
+            ))}
+          </div>
+        )}
+
+        {/* Remaining subcategory pills (overflow beyond top 8) */}
+        {Object.keys(categoryFacets).length > 8 && (
+          <div className="flex gap-2 flex-wrap mb-5">
             {Object.entries(categoryFacets)
               .sort(([,a], [,b]) => b - a)
-              .slice(0, 16)
+              .slice(8, 20)
               .map(([subcat, count]) => (
                 <Link
                   key={subcat}
                   href={`${categoryBasePath}?categories=${encodeURIComponent(subcat)}`}
-                  className={`flex-shrink-0 inline-flex items-center gap-2 px-5 rounded-xl text-sm font-medium border transition-all ${
+                  className={`inline-flex items-center gap-1.5 px-3 h-8 rounded-full text-xs font-medium border transition-all ${
                     selectedCategories.includes(subcat)
-                      ? "bg-[#FFF7ED] text-[#D97706] border-[#D97706] shadow-sm"
-                      : "bg-white text-[#1E293B] border-[#E2E8F0] hover:border-[#D97706] hover:text-[#D97706] hover:shadow-sm"
+                      ? "bg-[#FFF7ED] text-[#D97706] border-[#D97706]"
+                      : "bg-white text-[#64748B] border-[#E2E8F0] hover:border-[#D97706] hover:text-[#D97706]"
                   }`}
-                  style={{ height: "48px" }}
                 >
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={selectedCategories.includes(subcat) ? "#D97706" : "#94A3B8"} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                    <rect x="3" y="3" width="7" height="7" rx="1" />
-                    <rect x="14" y="3" width="7" height="7" rx="1" />
-                    <rect x="3" y="14" width="7" height="7" rx="1" />
-                    <rect x="14" y="14" width="7" height="7" rx="1" />
-                  </svg>
-                  {subcat} <span className="text-xs opacity-50">({count})</span>
+                  {subcat} <span className="opacity-50">({count})</span>
                 </Link>
               ))}
           </div>
@@ -238,6 +321,18 @@ export default async function CategoryPage({ params, searchParams }: Props) {
               Browse all categories
             </Link>
           </div>
+        )}
+
+        {/* You May Also Like */}
+        {youMayAlsoLike.length > 0 && (
+          <section className="mt-10">
+            <h2 className="text-xl font-bold text-[#1E293B] mb-5">You May Also Like</h2>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+              {youMayAlsoLike.map((product: any) => (
+                <VevorProductCard key={product.id} product={product} locale={locale} />
+              ))}
+            </div>
+          </section>
         )}
       </div>
     </div>

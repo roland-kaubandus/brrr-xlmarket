@@ -151,12 +151,18 @@ export default async function SearchPage({ searchParams, params }: Props) {
                 <Link
                   key={cat}
                   href={`/${locale}/otsing?q=${encodeURIComponent(query)}&categories=${encodeURIComponent(cat)}`}
-                  className={`flex-shrink-0 px-4 py-2 rounded-full text-sm font-medium border transition-colors ${
+                  className={`flex-shrink-0 inline-flex items-center gap-2 px-4 h-10 rounded-full text-sm font-medium border transition-colors ${
                     selectedCategories.includes(cat)
                       ? "bg-[#D97706] text-white border-[#D97706]"
                       : "bg-white text-[#1E293B] border-[#E2E8F0] hover:border-[#D97706]"
                   }`}
                 >
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={selectedCategories.includes(cat) ? "#fff" : "#94A3B8"} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="3" y="3" width="7" height="7" rx="1" />
+                    <rect x="14" y="3" width="7" height="7" rx="1" />
+                    <rect x="3" y="14" width="7" height="7" rx="1" />
+                    <rect x="14" y="14" width="7" height="7" rx="1" />
+                  </svg>
                   {cat} <span className="text-xs opacity-60 ml-1">({count})</span>
                 </Link>
               ))}
