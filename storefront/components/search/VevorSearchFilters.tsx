@@ -12,6 +12,7 @@ type Props = {
   currentInStock?: boolean
   categoryFacets?: Record<string, number>
   locale: string
+  basePath?: string
 }
 
 const SORT_OPTIONS = [
@@ -42,6 +43,7 @@ function Dropdown({ open, onClose, children }: { open: boolean; onClose: () => v
 export default function VevorSearchFilters({
   totalHits, query, currentSort, currentMin, currentMax,
   currentCategories = [], currentInStock, categoryFacets = {}, locale,
+  basePath,
 }: Props) {
   const router = useRouter()
   const pathname = usePathname()
@@ -67,8 +69,9 @@ export default function VevorSearchFilters({
     if (inStock) params.set("in_stock", inStock)
     // Always reset to page 1 on filter change
     const qs = params.toString()
-    return `/${locale}/otsing${qs ? `?${qs}` : ""}`
-  }, [query, currentSort, currentMin, currentMax, currentCategories, currentInStock, locale])
+    const base = basePath || `/${locale}/otsing`
+    return `${base}${qs ? `?${qs}` : ""}`
+  }, [query, currentSort, currentMin, currentMax, currentCategories, currentInStock, locale, basePath])
 
   const hasFilters = currentMin || currentMax || currentCategories.length > 0 || currentInStock
 
