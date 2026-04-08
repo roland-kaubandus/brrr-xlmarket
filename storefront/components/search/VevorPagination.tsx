@@ -35,8 +35,8 @@ export default function VevorPagination({ currentPage, totalPages, buildUrl }: P
   const pages = getPageNumbers(currentPage, totalPages)
 
   const linkBase = "inline-flex items-center justify-center min-w-[36px] h-9 px-2 rounded-lg text-sm font-medium transition-colors"
-  const linkActive = "bg-[#FF6A00] text-white"
-  const linkInactive = "border border-[#E5E5E5] text-[#333] hover:border-[#FF6A00] hover:text-[#FF6A00]"
+  const linkActive = "bg-[#D97706] text-white"
+  const linkInactive = "border border-[#E2E8F0] text-[#1E293B] hover:border-[#D97706] hover:text-[#D97706]"
 
   return (
     <nav className="flex justify-center items-center gap-2 mt-10" aria-label="Pagination">
@@ -46,7 +46,7 @@ export default function VevorPagination({ currentPage, totalPages, buildUrl }: P
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6" /></svg>
         </Link>
       ) : (
-        <span className={`${linkBase} border border-[#E5E5E5] text-[#CCC] cursor-not-allowed`}>
+        <span className={`${linkBase} border border-[#E2E8F0] text-[#CCC] cursor-not-allowed`}>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6" /></svg>
         </span>
       )}
@@ -54,7 +54,7 @@ export default function VevorPagination({ currentPage, totalPages, buildUrl }: P
       {/* Page numbers */}
       {pages.map((p, i) =>
         p === "..." ? (
-          <span key={`dots-${i}`} className="px-1 text-[#999] text-sm select-none">...</span>
+          <span key={`dots-${i}`} className="px-1 text-[#64748B] text-sm select-none">...</span>
         ) : (
           <Link
             key={p}
@@ -73,7 +73,7 @@ export default function VevorPagination({ currentPage, totalPages, buildUrl }: P
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 6 15 12 9 18" /></svg>
         </Link>
       ) : (
-        <span className={`${linkBase} border border-[#E5E5E5] text-[#CCC] cursor-not-allowed`}>
+        <span className={`${linkBase} border border-[#E2E8F0] text-[#CCC] cursor-not-allowed`}>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 6 15 12 9 18" /></svg>
         </span>
       )}

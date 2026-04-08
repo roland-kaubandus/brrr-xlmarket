@@ -17,11 +17,11 @@ export default function VevorHeader({ categories, locale = "et" }: { categories:
   return (
     <header className="sticky top-0 z-30">
       {/* Row 1: Black top bar */}
-      <div className="bg-[#1A1A1A] h-[48px] md:h-[56px]">
+      <div className="bg-[#1E293B] h-[48px] md:h-[56px]">
         <div className="max-w-[1400px] mx-auto px-4 h-full flex items-center gap-4">
           {/* Logo */}
           <Link href={`/${locale}`} className="shrink-0 flex items-baseline gap-[2px] mr-4">
-            <span className="text-[24px] md:text-[28px] font-extrabold text-white leading-none tracking-tight">XL</span>
+            <span className="text-[24px] md:text-[28px] font-extrabold text-[#D97706] leading-none tracking-tight">XL</span>
             <span className="text-[24px] md:text-[28px] font-normal text-white leading-none tracking-tight">Market</span>
           </Link>
 
@@ -41,7 +41,7 @@ export default function VevorHeader({ categories, locale = "et" }: { categories:
             </div>
 
             {/* Sign in — desktop */}
-            <Link href={`/${locale}/kontakt`} className="hidden md:flex items-center gap-2 text-white text-[13px] hover:text-[#FF6A00] transition-colors">
+            <Link href={`/${locale}/kontakt`} className="hidden md:flex items-center gap-2 text-white text-[13px] hover:text-[#D97706] transition-colors">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" /><circle cx="12" cy="7" r="4" />
               </svg>
@@ -49,7 +49,7 @@ export default function VevorHeader({ categories, locale = "et" }: { categories:
             </Link>
 
             {/* Cart */}
-            <div className="[&_a]:text-white [&_a]:hover:text-[#FF6A00] [&_a]:hover:bg-transparent">
+            <div className="[&_a]:text-white [&_a]:hover:text-[#D97706] [&_a]:hover:bg-transparent">
               <NavCartButton />
             </div>
           </div>
@@ -57,12 +57,12 @@ export default function VevorHeader({ categories, locale = "et" }: { categories:
       </div>
 
       {/* Mobile search bar */}
-      <div className="md:hidden bg-[#1A1A1A] px-4 pb-3">
+      <div className="md:hidden bg-[#1E293B] px-4 pb-3">
         <SearchBar locale={locale} />
       </div>
 
       {/* Row 2: Orange navigation bar */}
-      <div className="bg-[#FF6A00]">
+      <div className="bg-[#D97706]">
         <div className="max-w-[1400px] mx-auto px-0 md:px-4 flex items-center h-[44px]">
           {/* Categories button + mega menu */}
           <MegaMenu categories={categories} locale={locale} />
@@ -74,7 +74,7 @@ export default function VevorHeader({ categories, locale = "et" }: { categories:
               <Link
                 key={link.label}
                 href={link.href}
-                className="px-4 h-[44px] flex items-center text-white text-[14px] font-semibold hover:bg-[#e55f00] transition-colors whitespace-nowrap"
+                className="px-4 h-[44px] flex items-center text-white text-[14px] font-semibold hover:bg-[#B45309] transition-colors whitespace-nowrap"
               >
                 {link.label}
               </Link>

@@ -120,11 +120,11 @@ export default async function SearchPage({ searchParams, params }: Props) {
   }
 
   return (
-    <div className="bg-[#E8ECF0] min-h-screen">
+    <div className="bg-[#F8FAFC] min-h-screen">
       <div className="max-w-[1360px] mx-auto px-4 sm:px-6 py-6">
         {/* Breadcrumb */}
         <nav className="text-xs text-[#888] mb-4">
-          <Link href={`/${locale}`} className="hover:text-[#FF6A00]">Avaleht</Link>
+          <Link href={`/${locale}`} className="hover:text-[#D97706]">Avaleht</Link>
           <span className="mx-1.5">&gt;</span>
           <span className="text-[#555]">Otsingutulemused</span>
         </nav>
@@ -132,18 +132,18 @@ export default async function SearchPage({ searchParams, params }: Props) {
         {/* Page title */}
         {query && (
           <div className="mb-5">
-            <h1 className="text-2xl font-bold text-[#1A1A1A]">
+            <h1 className="text-2xl font-bold text-[#1E293B]">
               Otsing: &quot;{query}&quot;
             </h1>
             <p className="text-sm text-[#555] mt-1">
-              <span className="font-semibold text-[#1A1A1A]">{totalHits.toLocaleString("et-EE")}+</span> tulemust
+              <span className="font-semibold text-[#1E293B]">{totalHits.toLocaleString("et-EE")}+</span> tulemust
             </p>
           </div>
         )}
 
         {!query && (
           <div className="bg-white rounded-xl p-12 text-center">
-            <p className="text-sm text-[#999]">
+            <p className="text-sm text-[#64748B]">
               Sisesta otsingusona paisesse ja vajuta &quot;Otsi&quot;.
             </p>
           </div>
@@ -151,12 +151,12 @@ export default async function SearchPage({ searchParams, params }: Props) {
 
         {query && products.length === 0 && (
           <div className="bg-white rounded-xl p-12 text-center">
-            <p className="text-sm text-[#999] mb-4">
+            <p className="text-sm text-[#64748B] mb-4">
               Paringuga &quot;{query}&quot; ei leitud uhtegi toodet.
             </p>
             <Link
               href={`/${locale}/kategooriad`}
-              className="text-[#FF6A00] hover:underline font-medium"
+              className="text-[#D97706] hover:underline font-medium"
             >
               Sirvi kategooriaid
             </Link>
@@ -168,7 +168,7 @@ export default async function SearchPage({ searchParams, params }: Props) {
             {/* Sort + Results bar */}
             <div className="flex items-center justify-between mb-4">
               <p className="text-sm text-[#555]">
-                <span className="font-semibold text-[#1A1A1A]">{totalHits.toLocaleString("et-EE")}</span> tulemust paringule &quot;{query}&quot;
+                <span className="font-semibold text-[#1E293B]">{totalHits.toLocaleString("et-EE")}</span> tulemust paringule &quot;{query}&quot;
               </p>
             </div>
 

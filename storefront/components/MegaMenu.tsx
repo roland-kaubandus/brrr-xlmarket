@@ -140,7 +140,7 @@ export default function MegaMenu({ categories, locale = "et" }: { categories: Ca
         onClick={handleOpen}
         aria-expanded={isOpen}
         aria-haspopup="true"
-        className="flex items-center gap-2 px-4 h-[44px] text-white font-bold text-[14px] hover:bg-[#e55f00] transition-colors"
+        className="flex items-center gap-2 px-4 h-[44px] text-white font-bold text-[14px] hover:bg-[#B45309] transition-colors"
       >
         {isOpen ? <X size={18} strokeWidth={2} /> : <Menu size={18} strokeWidth={2} />}
         <span className="hidden sm:inline">Kategooriad</span>
@@ -156,8 +156,8 @@ export default function MegaMenu({ categories, locale = "et" }: { categories: Ca
         <div className="hidden md:block absolute z-50 bg-white shadow-[0_8px_40px_rgba(0,0,0,0.15)]" style={{ top: "100%", left: 0, width: hasL2 ? "auto" : "280px" }}>
           <div className="flex">
             {/* L1 Panel */}
-            <div className="w-[280px] border-r border-[#E5E5E5] py-4 max-h-[calc(100vh-120px)] overflow-y-auto flex-shrink-0">
-              <h3 className="px-5 pb-3 text-[13px] font-bold text-[#222] uppercase tracking-wide">
+            <div className="w-[280px] border-r border-[#E2E8F0] py-4 max-h-[calc(100vh-120px)] overflow-y-auto flex-shrink-0">
+              <h3 className="px-5 pb-3 text-[13px] font-bold text-[#1E293B] uppercase tracking-wide">
                 Kategooriad
               </h3>
               {l1Mapped.map(({ name, icon, handle }) => (
@@ -167,7 +167,7 @@ export default function MegaMenu({ categories, locale = "et" }: { categories: Ca
                   onMouseEnter={() => handleL1Hover(name)}
                   onClick={() => setIsOpen(false)}
                   className={`flex items-center justify-between px-5 py-2.5 text-[14px] transition-colors group ${
-                    activeL1 === name ? "bg-[#FFF5EE] text-[#FF6A00]" : "text-[#333] hover:bg-[#F9F9F9]"
+                    activeL1 === name ? "bg-[#FFFBEB] text-[#D97706]" : "text-[#1E293B] hover:bg-[#F8FAFC]"
                   }`}
                 >
                   <span className="flex items-center gap-3">
@@ -180,11 +180,11 @@ export default function MegaMenu({ categories, locale = "et" }: { categories: Ca
 
             {/* L2 Panel — only if hovered L1 has children */}
             {hasL2 && activeL1Node && (
-              <div className="w-[280px] border-r border-[#E5E5E5] py-4 max-h-[calc(100vh-120px)] overflow-y-auto flex-shrink-0">
+              <div className="w-[280px] border-r border-[#E2E8F0] py-4 max-h-[calc(100vh-120px)] overflow-y-auto flex-shrink-0">
                 <Link
                   href={`/${locale}/kategooriad/${activeL1Node.handle}`}
                   onClick={() => setIsOpen(false)}
-                  className="px-5 pb-3 text-[13px] font-bold text-[#FF6A00] uppercase tracking-wide block hover:underline"
+                  className="px-5 pb-3 text-[13px] font-bold text-[#D97706] uppercase tracking-wide block hover:underline"
                 >
                   {activeL1Node.name}
                 </Link>
@@ -195,12 +195,12 @@ export default function MegaMenu({ categories, locale = "et" }: { categories: Ca
                     onMouseEnter={() => handleL2Hover(child.id)}
                     onClick={() => setIsOpen(false)}
                     className={`flex items-center justify-between px-5 py-2.5 text-[14px] transition-colors ${
-                      activeL2 === child.id ? "bg-[#FFF5EE] text-[#FF6A00]" : "text-[#333] hover:bg-[#F9F9F9]"
+                      activeL2 === child.id ? "bg-[#FFFBEB] text-[#D97706]" : "text-[#1E293B] hover:bg-[#F8FAFC]"
                     }`}
                   >
                     <span className="font-medium">{child.name}</span>
                     {child.children.length > 0 && (
-                      <ChevronRight size={14} className={`${activeL2 === child.id ? "text-[#FF6A00]" : "text-[#CCC]"}`} />
+                      <ChevronRight size={14} className={`${activeL2 === child.id ? "text-[#D97706]" : "text-[#CCC]"}`} />
                     )}
                   </Link>
                 ))}
@@ -213,7 +213,7 @@ export default function MegaMenu({ categories, locale = "et" }: { categories: Ca
                 <Link
                   href={`/${locale}/kategooriad/${activeL2Node.handle}`}
                   onClick={() => setIsOpen(false)}
-                  className="px-5 pb-3 text-[13px] font-bold text-[#FF6A00] uppercase tracking-wide block hover:underline"
+                  className="px-5 pb-3 text-[13px] font-bold text-[#D97706] uppercase tracking-wide block hover:underline"
                 >
                   {activeL2Node.name}
                 </Link>
@@ -222,7 +222,7 @@ export default function MegaMenu({ categories, locale = "et" }: { categories: Ca
                     key={child.id}
                     href={`/${locale}/kategooriad/${child.handle}`}
                     onClick={() => setIsOpen(false)}
-                    className="flex items-center px-5 py-2.5 text-[14px] text-[#333] hover:bg-[#F9F9F9] hover:text-[#FF6A00] font-medium transition-colors"
+                    className="flex items-center px-5 py-2.5 text-[14px] text-[#1E293B] hover:bg-[#F8FAFC] hover:text-[#D97706] font-medium transition-colors"
                   >
                     {child.name}
                   </Link>
@@ -237,7 +237,7 @@ export default function MegaMenu({ categories, locale = "et" }: { categories: Ca
       {isOpen && (
         <div className="md:hidden fixed inset-0 z-50 bg-white flex flex-col">
           {/* Mobile header */}
-          <div className="flex items-center justify-between px-4 h-[56px] border-b border-[#E5E5E5] bg-[#1A1A1A] flex-shrink-0">
+          <div className="flex items-center justify-between px-4 h-[56px] border-b border-[#E2E8F0] bg-[#1E293B] flex-shrink-0">
             <span className="text-white font-bold text-[16px]">Kategooriad</span>
             <button onClick={() => setIsOpen(false)} className="w-10 h-10 flex items-center justify-center text-white">
               <X size={20} />
@@ -251,7 +251,7 @@ export default function MegaMenu({ categories, locale = "et" }: { categories: Ca
                 key={name}
                 href={`/${locale}/kategooriad/${handle}`}
                 onClick={() => setIsOpen(false)}
-                className="flex items-center px-4 py-3.5 text-[14px] text-[#333] font-medium border-b border-[#F0F0F0] hover:bg-[#F9F9F9]"
+                className="flex items-center px-4 py-3.5 text-[14px] text-[#1E293B] font-medium border-b border-[#E2E8F0] hover:bg-[#F8FAFC]"
               >
                 <span className="flex items-center gap-3">
                   <span className="text-[16px] w-5 text-center">{icon}</span>

@@ -75,17 +75,17 @@ export default async function CategoriesPage({ params }: { params: Promise<{ loc
   )
 
   return (
-    <div className="bg-[#E8ECF0] min-h-screen">
+    <div className="bg-[#F8FAFC] min-h-screen">
       <div className="max-w-[1360px] mx-auto px-4 sm:px-6 py-6">
         {/* Breadcrumb */}
         <nav className="text-xs text-[#888] mb-4">
-          <Link href={`/${locale}`} className="hover:text-[#FF6A00]">Home</Link>
+          <Link href={`/${locale}`} className="hover:text-[#D97706]">Home</Link>
           <span className="mx-1.5">&gt;</span>
           <span className="text-[#555]">All Categories</span>
         </nav>
 
         {/* Title */}
-        <h1 className="text-[28px] font-bold text-[#222] mb-6">All Categories</h1>
+        <h1 className="text-[28px] font-bold text-[#1E293B] mb-6">All Categories</h1>
 
         {/* Category grid */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
@@ -101,7 +101,7 @@ export default async function CategoriesPage({ params }: { params: Promise<{ loc
                 className="group bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow duration-300"
               >
                 {/* Thumbnail */}
-                <div className="aspect-[4/3] flex items-center justify-center overflow-hidden bg-[#F5F5F5] p-4">
+                <div className="aspect-[4/3] flex items-center justify-center overflow-hidden bg-[#F1F5F9] p-4">
                   {thumb ? (
                     <Image
                       src={decodeURIComponent(thumb)}
@@ -124,8 +124,8 @@ export default async function CategoriesPage({ params }: { params: Promise<{ loc
                 </div>
 
                 {/* Category info */}
-                <div className="p-4 border-t border-[#E5E5E5]">
-                  <h2 className="text-sm font-semibold text-[#222] group-hover:text-[#FF6A00] transition-colors leading-tight">
+                <div className="p-4 border-t border-[#E2E8F0]">
+                  <h2 className="text-sm font-semibold text-[#1E293B] group-hover:text-[#D97706] transition-colors leading-tight">
                     {displayName}
                   </h2>
                   {count > 0 && (

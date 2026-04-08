@@ -42,7 +42,7 @@ export default function SubcategoryGrid({
 
   return (
     <div className="mb-8">
-      <h2 className="font-[family-name:var(--font-outfit)] font-[700] text-xl tracking-tight mb-5">
+      <h2 className="font-[family-name:var(--font-dm-sans)] font-[700] text-xl tracking-tight mb-5">
         Tootegrupid
       </h2>
       <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-3">

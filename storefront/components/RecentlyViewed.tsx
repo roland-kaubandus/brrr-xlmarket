@@ -32,8 +32,8 @@ export default function RecentlyViewed({ currentId }: Props) {
   if (items.length === 0) return null
 
   return (
-    <section className="mt-12 pt-10 border-t border-[#E5E5E5]">
-      <h2 className="text-[20px] font-bold text-[#222] mb-5">
+    <section className="mt-12 pt-10 border-t border-[#E2E8F0]">
+      <h2 className="text-[20px] font-bold text-[#1E293B] mb-5">
         Viimati vaadatud
       </h2>
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
@@ -41,7 +41,7 @@ export default function RecentlyViewed({ currentId }: Props) {
           <Link
             key={item.id}
             href={`/${locale}/toode/${item.handle}`}
-            className="group flex flex-col border border-[#E5E5E5] rounded-lg overflow-hidden hover:border-[#FF6A00]/40 hover:shadow-md transition-all duration-200 bg-white"
+            className="group flex flex-col border border-[#E2E8F0] rounded-lg overflow-hidden hover:border-[#D97706]/40 hover:shadow-md transition-all duration-200 bg-white"
           >
             <div className="aspect-square bg-white overflow-hidden">
               {item.thumbnail ? (
@@ -53,11 +53,11 @@ export default function RecentlyViewed({ currentId }: Props) {
               ) : null}
             </div>
             <div className="p-2.5">
-              <p className="text-xs font-medium text-[#222] line-clamp-2 leading-snug mb-1">
+              <p className="text-xs font-medium text-[#1E293B] line-clamp-2 leading-snug mb-1">
                 {item.title}
               </p>
               {item.price && (
-                <p className="text-sm font-bold text-[#222]">
+                <p className="text-sm font-bold text-[#1E293B]">
                   {item.price}
                 </p>
               )}

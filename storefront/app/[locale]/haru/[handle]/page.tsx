@@ -185,10 +185,10 @@ export default async function BranchLandingPage({ params, searchParams }: Props)
           </nav>
 
           <span className="inline-block text-[11px] uppercase tracking-[0.2em] font-semibold text-accent mb-3">Valdkond</span>
-          <h1 className="font-[family-name:var(--font-outfit)] font-[800] text-4xl md:text-6xl text-white tracking-tighter leading-[1.05] mb-4">
+          <h1 className="font-[family-name:var(--font-dm-sans)] font-[800] text-4xl md:text-6xl text-white tracking-tighter leading-[1.05] mb-4">
             {branch.name}
           </h1>
-          <p className="font-[family-name:var(--font-outfit)] font-[300] text-xl md:text-2xl text-white/70 tracking-tight mb-2 max-w-2xl">
+          <p className="font-[family-name:var(--font-dm-sans)] font-[300] text-xl md:text-2xl text-white/70 tracking-tight mb-2 max-w-2xl">
             {branch.tagline}
           </p>
           <p className="text-white/50 text-sm md:text-base max-w-xl leading-relaxed">
@@ -270,7 +270,7 @@ export default async function BranchLandingPage({ params, searchParams }: Props)
               </div>
             ) : (
               <div className="rounded-2xl border border-soft-border bg-silver px-6 py-12 text-center">
-                <h3 className="font-[family-name:var(--font-outfit)] font-[700] text-xl text-off-black mb-2">
+                <h3 className="font-[family-name:var(--font-dm-sans)] font-[700] text-xl text-off-black mb-2">
                   Selle filtriga tooteid ei leitud
                 </h3>
                 <p className="text-sm text-muted max-w-xl mx-auto mb-5">
@@ -328,7 +328,7 @@ export default async function BranchLandingPage({ params, searchParams }: Props)
                   <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
                 </svg>
               </div>
-              <h2 className="font-[family-name:var(--font-outfit)] font-[600] text-xl mb-3">Varsti saadaval</h2>
+              <h2 className="font-[family-name:var(--font-dm-sans)] font-[600] text-xl mb-3">Varsti saadaval</h2>
               <p className="text-muted text-sm leading-relaxed mb-6">Sortiment on tulekul. Teavitame, kui tooted on saadaval.</p>
               <Link href={`/${locale}/kategooriad`} className="inline-flex items-center gap-2 px-5 py-2.5 bg-silver hover:bg-accent-light text-sm font-medium rounded-xl transition-all duration-300">
                 Vaata kategooriaid
@@ -343,7 +343,7 @@ export default async function BranchLandingPage({ params, searchParams }: Props)
         <div className="max-w-[1400px] mx-auto px-4">
           <div className="mb-10">
             <span className="inline-block text-[11px] uppercase tracking-[0.2em] font-semibold text-accent mb-3">Avasta veel</span>
-            <h2 className="font-[family-name:var(--font-outfit)] font-[700] text-2xl md:text-3xl tracking-tight">
+            <h2 className="font-[family-name:var(--font-dm-sans)] font-[700] text-2xl md:text-3xl tracking-tight">
               Teised valdkonnad
             </h2>
           </div>
@@ -362,7 +362,7 @@ export default async function BranchLandingPage({ params, searchParams }: Props)
                 />
                 <div className="absolute inset-0 branch-card-overlay" />
                 <div className="absolute bottom-0 left-0 right-0 p-4">
-                  <h3 className="font-[family-name:var(--font-outfit)] font-bold text-base text-white tracking-tight mb-0.5">
+                  <h3 className="font-[family-name:var(--font-dm-sans)] font-bold text-base text-white tracking-tight mb-0.5">
                     {b.name}
                   </h3>
                   <p className="text-white/50 text-xs">{b.tagline}</p>

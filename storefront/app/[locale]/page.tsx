@@ -73,10 +73,10 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
       <section className="bg-white py-8">
         <div className="max-w-[1360px] mx-auto px-4">
           <div className="flex items-center justify-between mb-5">
-            <h2 className="font-[family-name:var(--font-outfit)] font-bold text-xl md:text-2xl text-[#222]">
+            <h2 className="font-[family-name:var(--font-dm-sans)] font-bold text-xl md:text-2xl text-[#1E293B]">
               Best Sellers
             </h2>
-            <a href={`/${locale}/otsing`} className="text-sm font-medium text-[#FF6A00] hover:underline">
+            <a href={`/${locale}/otsing`} className="text-sm font-medium text-[#D97706] hover:underline">
               View All &gt;
             </a>
           </div>
@@ -92,10 +92,10 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
       <section className="bg-white py-8">
         <div className="max-w-[1360px] mx-auto px-4">
           <div className="flex items-center justify-between mb-5">
-            <h2 className="font-[family-name:var(--font-outfit)] font-bold text-xl md:text-2xl text-[#222]">
+            <h2 className="font-[family-name:var(--font-dm-sans)] font-bold text-xl md:text-2xl text-[#1E293B]">
               New Arrivals
             </h2>
-            <a href={`/${locale}/otsing?sort=newest`} className="text-sm font-medium text-[#FF6A00] hover:underline">
+            <a href={`/${locale}/otsing?sort=newest`} className="text-sm font-medium text-[#D97706] hover:underline">
               View All &gt;
             </a>
           </div>

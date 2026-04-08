@@ -17,7 +17,7 @@ export default function CategoryExploreGrid({
 }) {
   return (
     <section className="max-w-[1360px] mx-auto px-4 py-8">
-      <h2 className="font-[family-name:var(--font-outfit)] font-bold text-xl md:text-2xl text-[#222] mb-5">
+      <h2 className="font-[family-name:var(--font-dm-sans)] font-bold text-xl md:text-2xl text-[#1E293B] mb-5">
         Categories to Explore
       </h2>
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
@@ -28,9 +28,9 @@ export default function CategoryExploreGrid({
             <Link
               key={cat.handle}
               href={`/${locale}/kategooriad/${cat.handle}`}
-              className="flex items-center justify-between bg-[#F5F5F5] hover:bg-[#EBEBEB] rounded-lg p-4 transition-colors group"
+              className="flex items-center justify-between bg-[#F1F5F9] hover:bg-[#E2E8F0] rounded-lg p-4 transition-colors group"
             >
-              <span className="text-sm font-medium text-[#222] leading-tight pr-2">
+              <span className="text-sm font-medium text-[#1E293B] leading-tight pr-2">
                 {display}
               </span>
               {imgUrl && (

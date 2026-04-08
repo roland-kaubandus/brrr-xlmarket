@@ -8,21 +8,21 @@ const BANNERS = [
     subtitle: "Kuni -30% valitud toodetelt",
     cta: "Vaata pakkumisi",
     link: "/otsing",
-    gradient: "from-[#FF6A00] to-[#FF8F3F]",
+    gradient: "from-[#D97706] to-[#B45309]",
   },
   {
     title: "Tasuta tarne alates 99\u20AC",
     subtitle: "Kiire kohaletoimetamine kogu Eestisse",
     cta: "Osta kohe",
     link: "/otsing?sort=new",
-    gradient: "from-[#1E40AF] to-[#3B82F6]",
+    gradient: "from-[#1E293B] to-[#334155]",
   },
   {
     title: "Uued tooted just saabunud",
     subtitle: "Avasta meie v\u00E4rsket valikut",
     cta: "Avasta uusi tooteid",
     link: "/kategooriad",
-    gradient: "from-[#059669] to-[#34D399]",
+    gradient: "from-[#0F172A] to-[#1E293B]",
   },
 ]
 
@@ -62,11 +62,11 @@ export default function BannerCarousel({ locale = "en" }: { locale?: string }) {
               className={`w-full flex-shrink-0 bg-gradient-to-r ${b.gradient} h-[180px] md:h-[250px] flex items-center px-8 md:px-16`}
             >
               <div className="text-white max-w-lg">
-                <h2 className="font-[family-name:var(--font-outfit)] font-bold text-2xl md:text-4xl mb-2">
+                <h2 className="font-[family-name:var(--font-dm-sans)] font-bold text-2xl md:text-4xl mb-2">
                   {b.title}
                 </h2>
                 <p className="text-white/80 text-sm md:text-base mb-4">{b.subtitle}</p>
-                <Link href={`/${locale}${b.link}`} className="inline-block bg-white text-[#222] font-semibold text-sm px-5 py-2 rounded-lg">
+                <Link href={`/${locale}${b.link}`} className="inline-block bg-white text-[#1E293B] font-semibold text-sm px-5 py-2 rounded-lg">
                   {b.cta}
                 </Link>
               </div>
