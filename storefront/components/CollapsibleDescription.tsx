@@ -27,7 +27,7 @@ export default function CollapsibleDescription({ html, collapsedHeight = 600 }: 
         style={{ maxHeight: expanded || !needsCollapse ? "none" : `${collapsedHeight}px` }}
       >
         <div
-          className="rich-desc text-off-black text-sm font-[family-name:var(--font-jakarta)] leading-relaxed [&_img]:rounded-xl [&_img]:my-6 [&_img]:w-full [&_img]:max-w-4xl [&_h2]:font-[family-name:var(--font-outfit)] [&_h2]:font-bold [&_h2]:text-lg [&_h2]:mt-8 [&_h2]:mb-3 [&_h3]:font-[family-name:var(--font-outfit)] [&_h3]:font-bold [&_h3]:text-base [&_h3]:mt-6 [&_h3]:mb-2 [&_p]:mb-3 [&_p]:text-muted [&_b]:text-off-black [&_strong]:text-off-black [&_ul]:pl-5 [&_ul]:list-disc [&_li]:mb-1 [&_li]:text-muted [&_a]:text-accent [&_a]:underline"
+          className="rich-desc text-[#222] text-sm leading-relaxed [&_img]:rounded-lg [&_img]:my-6 [&_img]:w-full [&_img]:max-w-4xl [&_h2]:font-bold [&_h2]:text-lg [&_h2]:mt-8 [&_h2]:mb-3 [&_h3]:font-bold [&_h3]:text-base [&_h3]:mt-6 [&_h3]:mb-2 [&_p]:mb-3 [&_p]:text-[#666] [&_b]:text-[#222] [&_strong]:text-[#222] [&_ul]:pl-5 [&_ul]:list-disc [&_li]:mb-1 [&_li]:text-[#666] [&_a]:text-[#FF6A00] [&_a]:underline"
           dangerouslySetInnerHTML={{ __html: html }}
         />
       </div>
@@ -41,7 +41,7 @@ export default function CollapsibleDescription({ html, collapsedHeight = 600 }: 
           <button
             type="button"
             onClick={() => setExpanded(!expanded)}
-            className="inline-flex items-center gap-2 px-8 py-3 border border-soft-border bg-white hover:border-accent/40 rounded-xl text-sm font-semibold font-[family-name:var(--font-outfit)] text-off-black transition-all duration-300"
+            className="inline-flex items-center gap-2 px-8 py-3 border border-[#E5E5E5] bg-white hover:border-[#FF6A00]/40 rounded-lg text-sm font-semibold text-[#222] transition-colors duration-200"
           >
             {expanded ? "Näita vähem" : "Vaata rohkem"}
             <ChevronDown
