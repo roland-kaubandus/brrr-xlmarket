@@ -65,16 +65,21 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
 
   return (
     <>
-      <BannerCarousel />
+      <BannerCarousel locale={locale} />
 
       <CategoryExploreGrid categories={categoryData} locale={locale} />
 
       {/* Best Sellers */}
       <section className="bg-white py-8">
         <div className="max-w-[1360px] mx-auto px-4">
-          <h2 className="font-[family-name:var(--font-outfit)] font-bold text-xl md:text-2xl text-[#222] mb-5">
-            Best Sellers
-          </h2>
+          <div className="flex items-center justify-between mb-5">
+            <h2 className="font-[family-name:var(--font-outfit)] font-bold text-xl md:text-2xl text-[#222]">
+              Best Sellers
+            </h2>
+            <a href={`/${locale}/otsing`} className="text-sm font-medium text-[#FF6A00] hover:underline">
+              View All &gt;
+            </a>
+          </div>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
             {bestSellers.products.map((p) => (
               <VevorProductCard key={p.id} product={p} locale={locale} />
@@ -86,9 +91,14 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
       {/* New Arrivals */}
       <section className="bg-white py-8">
         <div className="max-w-[1360px] mx-auto px-4">
-          <h2 className="font-[family-name:var(--font-outfit)] font-bold text-xl md:text-2xl text-[#222] mb-5">
-            New Arrivals
-          </h2>
+          <div className="flex items-center justify-between mb-5">
+            <h2 className="font-[family-name:var(--font-outfit)] font-bold text-xl md:text-2xl text-[#222]">
+              New Arrivals
+            </h2>
+            <a href={`/${locale}/otsing?sort=newest`} className="text-sm font-medium text-[#FF6A00] hover:underline">
+              View All &gt;
+            </a>
+          </div>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
             {newArrivals.products.map((p) => (
               <VevorProductCard key={p.id} product={p} locale={locale} />
