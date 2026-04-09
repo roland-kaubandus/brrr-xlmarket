@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect, useCallback } from "react"
 import Link from "next/link"
+import categoryImagesData from "@/lib/category-images.json"
 import {
   Menu, X, ChevronRight, ChevronLeft,
   Leaf, Wrench, Car, Building2, Cog, Factory, Dumbbell, House,
@@ -74,6 +75,8 @@ function buildCategoryTree(categories: CategoryNode[]): CategoryNode[] {
   })
   return roots
 }
+
+const catImages: Record<string, string> = categoryImagesData as Record<string, string>
 
 export default function MegaMenu({ categories, locale = "et" }: { categories: CategoryNode[]; locale?: string }) {
   const [isOpen, setIsOpen] = useState(false)
@@ -229,17 +232,21 @@ export default function MegaMenu({ categories, locale = "et" }: { categories: Ca
                 </Link>
                 {activeL1Node.children.map(child => {
                   const isActive = activeL2 === child.id
+                  const thumb = catImages[child.handle]
                   return (
                     <Link
                       key={child.id}
                       href={`/${locale}/kategooriad/${child.handle}`}
                       onMouseEnter={() => handleL2Hover(child.id)}
                       onClick={() => setIsOpen(false)}
-                      className={`flex items-center justify-between px-5 py-2 text-[13px] transition-colors ${
+                      className={`flex items-center gap-2.5 px-5 py-2 text-[13px] transition-colors ${
                         isActive ? "bg-[#FFFBEB] text-[#D97706]" : "text-[#1E293B] hover:bg-[#F8FAFC]"
                       }`}
                     >
-                      <span className="font-medium">{child.name}</span>
+                      {thumb && (
+                        <img src={decodeURIComponent(thumb)} alt="" className="w-8 h-8 object-contain flex-shrink-0" loading="lazy" />
+                      )}
+                      <span className="font-medium flex-1">{child.name}</span>
                       {child.children.length > 0 && (
                         <ChevronRight size={13} style={{ color: isActive ? "#D97706" : "#CBD5E1" }} className="flex-shrink-0" />
                       )}
@@ -259,16 +266,22 @@ export default function MegaMenu({ categories, locale = "et" }: { categories: Ca
                 >
                   Shop All {activeL2Node.name}
                 </Link>
-                {activeL2Node.children.map(child => (
-                  <Link
-                    key={child.id}
-                    href={`/${locale}/kategooriad/${child.handle}`}
-                    onClick={() => setIsOpen(false)}
-                    className="block px-5 py-2 text-[13px] text-[#1E293B] hover:bg-[#FFFBEB] hover:text-[#D97706] font-medium transition-colors"
-                  >
-                    {child.name}
-                  </Link>
-                ))}
+                {activeL2Node.children.map(child => {
+                  const thumb = catImages[child.handle]
+                  return (
+                    <Link
+                      key={child.id}
+                      href={`/${locale}/kategooriad/${child.handle}`}
+                      onClick={() => setIsOpen(false)}
+                      className="flex items-center gap-2.5 px-5 py-2 text-[13px] text-[#1E293B] hover:bg-[#FFFBEB] hover:text-[#D97706] font-medium transition-colors"
+                    >
+                      {thumb && (
+                        <img src={decodeURIComponent(thumb)} alt="" className="w-7 h-7 object-contain flex-shrink-0" loading="lazy" />
+                      )}
+                      <span>{child.name}</span>
+                    </Link>
+                  )
+                })}
               </div>
             )}
           </div>

@@ -397,29 +397,7 @@ export default async function ProductPage({ params }: Props) {
 
           {/* Selling points moved to Features & Details section below */}
 
-          {/* Manuals in sidebar */}
-          {manualLinks.length > 0 && (
-            <div className="mt-5 pt-5 border-t border-[#E2E8F0]">
-              <h2 className="text-base font-semibold text-[#1E293B] mb-3">
-                Manuals & Downloads
-              </h2>
-              <div className="flex flex-wrap gap-3">
-                {manualLinks.map((manual, index) => (
-                  <a
-                    key={`${manual.href}-${index}`}
-                    href={manual.href}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="inline-flex items-center gap-2 rounded-lg border border-[#E2E8F0] bg-white px-4 py-3 text-sm font-medium text-[#1E293B] hover:border-[#D97706]/40 hover:text-[#D97706] transition-colors duration-200"
-                  >
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D97706" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                    <span className="text-[#D97706] font-bold">PDF</span>
-                    <span>{manual.label}</span>
-                  </a>
-                ))}
-              </div>
-            </div>
-          )}
+          {/* Manuals moved below description */}
         </div>
       </div>
 
@@ -510,7 +488,27 @@ export default async function ProductPage({ params }: Props) {
         </section>
       )}
 
-      {/* Metadata highlights removed — internal data not for customers */}
+      {/* Manuals & Downloads — after description, before similar products */}
+      {manualLinks.length > 0 && (
+        <section className="mt-12 pt-10 border-t border-[#E2E8F0]">
+          <h2 className="text-xl font-bold text-[#1E293B] mb-4">Manuals & Downloads</h2>
+          <div className="flex flex-wrap gap-3">
+            {manualLinks.map((manual, index) => (
+              <a
+                key={`${manual.href}-${index}`}
+                href={manual.href}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 rounded-lg border border-[#E2E8F0] bg-white px-4 py-3 text-sm font-medium text-[#1E293B] hover:border-[#D97706]/40 hover:text-[#D97706] transition-colors duration-200"
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D97706" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                <span className="text-[#D97706] font-bold">PDF</span>
+                <span>{manual.label}</span>
+              </a>
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* Similar Products — 5-col grid */}
       {similarProducts.length > 0 && (
