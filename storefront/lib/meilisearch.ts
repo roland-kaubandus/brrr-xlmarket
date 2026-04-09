@@ -4,9 +4,14 @@ const INDEX = "products"
 
 export type MeiliHit = {
   id: string
-  title: string
+  title: string      // originaal EN (display fallback)
+  title_en: string   // otsinguindeks EN
+  title_et: string   // otsinguindeks ET
+  // tulevikus: title_ru, title_fi — sama muster
   handle: string
   description: string
+  description_en: string
+  description_et: string
   thumbnail: string
   sku: string
   price: number
@@ -17,9 +22,26 @@ export type MeiliHit = {
   created_at: number
   _formatted?: {
     title?: string
+    title_et?: string
+    title_en?: string
     description?: string
+    description_et?: string
     [key: string]: unknown
   }
+}
+
+/** Tagastab locale-põhise pealkirja, EN fallback */
+export function getLocalizedTitle(hit: MeiliHit, locale: string): string {
+  if (locale === 'et' && hit.title_et) return hit.title_et
+  if (locale === 'en' && hit.title_en) return hit.title_en
+  return hit.title || hit.title_en || hit.title_et || ''
+}
+
+/** Tagastab locale-põhise kirjelduse, EN fallback */
+export function getLocalizedDescription(hit: MeiliHit, locale: string): string {
+  if (locale === 'et' && hit.description_et) return hit.description_et
+  if (locale === 'en' && hit.description_en) return hit.description_en
+  return hit.description || ''
 }
 
 export type MeiliSearchResult = {
