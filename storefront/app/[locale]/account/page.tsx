@@ -5,6 +5,7 @@ import { useRouter, usePathname } from "next/navigation"
 import Link from "next/link"
 import { getToken, clearToken, getCustomer, getOrders, type Customer } from "@/lib/auth"
 import { formatPrice } from "@/lib/medusa"
+import posthog from "posthog-js"
 
 export default function AccountPage() {
   const router = useRouter()
@@ -36,6 +37,8 @@ export default function AccountPage() {
   }, [locale, router])
 
   function handleLogout() {
+    posthog.capture("user_signed_out")
+    posthog.reset()
     clearToken()
     router.push(`/${locale}`)
   }
