@@ -242,9 +242,27 @@ export default async function ProductPage({ params }: Props) {
     ? (metadata.selling_points as string[])
     : feedEntry?.sellingPoints || []
 
-  // Rich description HTML from VEVOR feed (description_html with images)
-  const richDescription = typeof metadata.rich_description === "string" && metadata.rich_description.length > 50
+  // Rich description: extract product images into gallery, strip from HTML
+  const rawRichDescription = typeof metadata.rich_description === "string" && metadata.rich_description.length > 50
     ? metadata.rich_description
+    : null
+
+  // Rich description images stay in the description section, NOT in gallery
+  // They are marketing/lifestyle shots sized for inline display, not gallery zoom
+
+  // Clean rich description: remove mobile duplicate images, VEVOR banners, and boilerplate text
+  const richDescription = rawRichDescription
+    ? rawRichDescription
+        // Remove mobile duplicate images (same image with -m. suffix)
+        .replace(/<img[^>]*src=["'][^"']*-m\.[^"']*["'][^>]*\/?>/gi, "")
+        // Remove VEVOR boutique banner images
+        .replace(/<img[^>]*src=["'][^"']*vevor-bmp-prm[^"']*["'][^>]*\/?>/gi, "")
+        .replace(/<img[^>]*src=["'][^"']*boutique-banner[^"']*["'][^>]*\/?>/gi, "")
+        // Remove "Why Choose VEVOR" boilerplate blocks (repeated marketing text)
+        .replace(/<div[^>]*>[\s\S]{0,50}Why Choose VEVOR[\s\S]*?(?=<div[^>]*class|$)/gi, "")
+        // Remove VEVOR company intro blocks
+        .replace(/VEVOR is a leading brand[\s\S]*?global members\./gi, "")
+        .replace(/Along with thousands[\s\S]*?global members\./gi, "")
     : null
 
   // Find related products from same domain/category

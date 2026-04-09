@@ -15,12 +15,17 @@ const ALLOWED_ATTRS: Record<string, Set<string>> = {
  */
 export function sanitizeHtml(html: string): string {
   return html
+    // Remove CSS comments that VEVOR includes (/* pc dot样式 */ etc.)
+    .replace(/\/\*[\s\S]*?\*\//g, "")
     // Remove script/style/iframe blocks entirely (tag + content + closing tag)
     .replace(/<style[^>]*>[\s\S]*?<\/style\s*>/gi, "")
     .replace(/<script[^>]*>[\s\S]*?<\/script\s*>/gi, "")
     .replace(/<(iframe|object|embed|form|input|textarea|select)[\s\S]*?<\/\1\s*>/gi, "")
     // Remove any remaining orphan opening/self-closing tags for blocked elements
-    .replace(/<(script|style|iframe|object|embed|form|input|textarea|select)[^>]*\/?>/gi, "")
+    .replace(/<(script|style|iframe|object|embed|form|input|textarea|select|label)[^>]*\/?>/gi, "")
+    // Remove inline CSS rules that leaked out of style blocks
+    .replace(/\.[a-z][\w-]*\s*\{[^}]*\}/gi, "")
+    .replace(/\/\*[^*]*\*\//g, "")
     // Process remaining tags
     .replace(/<\/?([a-zA-Z][a-zA-Z0-9]*)\b([^>]*)>/gi, (match, tag, attrs) => {
       const tagLower = tag.toLowerCase()

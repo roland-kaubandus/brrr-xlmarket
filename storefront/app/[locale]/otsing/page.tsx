@@ -49,59 +49,60 @@ export default async function SearchPage({ searchParams, params }: Props) {
   let usedMeili = false
   let categoryFacets: Record<string, number> = {}
 
-  if (query) {
-    try {
-      const filters: string[] = []
-      if (min) filters.push(`price >= ${parseFloat(min)}`)
-      if (max) filters.push(`price <= ${parseFloat(max)}`)
-      if (inStock) filters.push(`in_stock = true`)
-      if (selectedCategories.length > 0) {
-        const catFilters = selectedCategories.map(c => `categories = "${c.replace(/"/g, '\\"')}"`)
-        filters.push(`(${catFilters.join(" OR ")})`)
-      }
-
-      const meiliResult = await searchProducts({
-        q: query,
-        limit: ITEMS_PER_PAGE,
-        offset,
-        sort: SORT_MAP[currentSort] || undefined,
-        filter: filters.length > 0 ? filters : undefined,
-        facets: ["categories", "price", "in_stock"],
-      })
-      totalHits = meiliResult.totalHits || meiliResult.estimatedTotalHits || 0
-      usedMeili = true
-      categoryFacets = meiliResult.facetDistribution?.categories || {}
-
-      products = meiliResult.hits.map(hit => ({
-        id: hit.id,
-        title: hit._formatted?.title || hit.title,
-        handle: hit.handle,
-        description: hit.description,
-        thumbnail: hit.thumbnail,
-        images: [],
-        variants: [{
-          id: hit.id + "_v",
-          title: "Default",
-          calculated_price: {
-            calculated_amount: Math.round(hit.price * 100),
-            original_amount: Math.round(hit.price * 100),
-            currency_code: "eur",
-          },
-        }],
-        categories: hit.categories.map((name: string, i: number) => ({
-          id: `cat_${i}`,
-          name,
-          handle: hit.category_handles?.[i] || "",
-          parent_category_id: null,
-        })),
-        created_at: new Date(hit.created_at * 1000).toISOString(),
-      }))
-    } catch {
-      // Fallback to Medusa API
-      const res = await getProducts({ q: query, limit: ITEMS_PER_PAGE, offset })
-      products = res.products
-      totalHits = res.count
+  // Always search — empty query returns popular/all products
+  try {
+    const filters: string[] = []
+    if (min) filters.push(`price >= ${parseFloat(min)}`)
+    if (max) filters.push(`price <= ${parseFloat(max)}`)
+    if (inStock) filters.push(`in_stock = true`)
+    if (selectedCategories.length > 0) {
+      const catFilters = selectedCategories.map(c => `categories = "${c.replace(/"/g, '\\"')}"`)
+      filters.push(`(${catFilters.join(" OR ")})`)
     }
+
+    const meiliResult = await searchProducts({
+      q: query,
+      limit: ITEMS_PER_PAGE,
+      offset,
+      sort: SORT_MAP[currentSort] || (!query ? ["created_at:desc"] : undefined),
+      filter: filters.length > 0 ? filters : undefined,
+      facets: ["categories", "price", "in_stock"],
+    })
+    totalHits = meiliResult.totalHits || meiliResult.estimatedTotalHits || 0
+    usedMeili = true
+    categoryFacets = meiliResult.facetDistribution?.categories || {}
+
+    products = meiliResult.hits.map(hit => ({
+      id: hit.id,
+      title: hit._formatted?.title || hit.title,
+      handle: hit.handle,
+      description: hit.description,
+      thumbnail: hit.thumbnail,
+      images: [],
+      variants: [{
+        id: hit.id + "_v",
+        title: "Default",
+        calculated_price: {
+          calculated_amount: Math.round(hit.price * 100),
+          original_amount: Math.round(hit.price * 100),
+          currency_code: "eur",
+        },
+      }],
+      categories: hit.categories.map((name: string, i: number) => ({
+        id: `cat_${i}`,
+        name,
+        handle: hit.category_handles?.[i] || "",
+        parent_category_id: null,
+      })),
+      created_at: new Date(hit.created_at * 1000).toISOString(),
+    }))
+  } catch {
+    // Fallback to Medusa API
+    const res = query
+      ? await getProducts({ q: query, limit: ITEMS_PER_PAGE, offset })
+      : await getProducts({ limit: ITEMS_PER_PAGE, offset, order: "-created_at" })
+    products = res.products
+    totalHits = res.count
   }
 
   const totalPages = Math.ceil(totalHits / ITEMS_PER_PAGE)
@@ -169,10 +170,19 @@ export default async function SearchPage({ searchParams, params }: Props) {
           </div>
         )}
 
-        {!query && (
+        {!query && products.length > 0 && (
+          <div className="mb-5">
+            <h1 className="text-2xl font-bold text-[#1E293B]">Browse All Products</h1>
+            <p className="text-sm text-[#64748B] mt-1">
+              <span className="font-semibold text-[#1E293B]">{totalHits.toLocaleString("en")}</span> products available
+            </p>
+          </div>
+        )}
+
+        {products.length === 0 && !query && (
           <div className="bg-white rounded-xl p-12 text-center">
             <p className="text-sm text-[#64748B]">
-              Enter a search term in the header and press &quot;Search&quot;.
+              No products available yet.
             </p>
           </div>
         )}

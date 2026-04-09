@@ -13,19 +13,7 @@ const CATEGORY_IMAGES: Record<string, string> = categoryImages as Record<string,
 
 export const revalidate = 300
 
-const CATEGORY_NAMES: Record<string, string> = {
-  "ehitus-ja-remont": "Building & Construction",
-  "toostus-ja-seadmed": "Tools & Industrial",
-  "kodu-ja-aed": "Home & Garden",
-  "auto-ja-garaaz": "Automotive & Garage",
-  "sport-ja-vaba-aeg": "Sports & Outdoors",
-  "kunst-ja-kasitoo": "Arts & Crafts",
-  "toitlustus-ja-kook": "Kitchen & Dining",
-  "elektroonika": "Electronics",
-  "lemmikloomad": "Pet Supplies",
-  "kontor-ja-ladustamine": "Storage & Office",
-  "meditsiin-ja-tervishoid": "Health & Wellness",
-}
+const CATEGORY_NAMES: Record<string, string> = {}
 
 type Props = {
   params: Promise<{ handle: string; locale: string }>
@@ -135,17 +123,42 @@ export default async function CategoryPage({ params, searchParams }: Props) {
   const totalPages = Math.ceil(totalCount / ITEMS_PER_PAGE)
   const categoryBasePath = `/${locale}/kategooriad/${handle}`
 
-  // Fetch "You May Also Like" products from a different category
+  // Fetch thumbnail for each subcategory (first product in that category)
+  const subcatThumbs: Record<string, string> = {}
+  if (category.category_children?.length) {
+    const thumbResults = await Promise.all(
+      category.category_children.slice(0, 30).map(async (child) => {
+        if (CATEGORY_IMAGES[child.handle]) return { handle: child.handle, thumb: null }
+        try {
+          // Try MeiliSearch first
+          const res = await searchProducts({
+            q: "",
+            limit: 1,
+            filter: [`category_handles = "${child.handle}"`],
+            attributesToHighlight: [],
+          })
+          if (res.hits[0]?.thumbnail) return { handle: child.handle, thumb: res.hits[0].thumbnail }
+          // Fallback: try Medusa API with category ID
+          const medusaRes = await getProducts({ limit: 1, category_id: [child.id] })
+          return { handle: child.handle, thumb: medusaRes.products[0]?.thumbnail || null }
+        } catch { return { handle: child.handle, thumb: null } }
+      })
+    )
+    for (const r of thumbResults) {
+      if (r.thumb) subcatThumbs[r.handle] = r.thumb
+    }
+  }
+
+  // Fetch "You May Also Like" products from a parent/sibling category
   let youMayAlsoLike: any[] = []
   try {
-    const allHandles = Object.keys(CATEGORY_NAMES).filter(h => h !== handle)
-    const randomHandle = allHandles[Math.floor(Math.random() * allHandles.length)] || allHandles[0]
-    const randomOffset = Math.floor(Math.random() * 50)
+    // Use parent category if available, otherwise same L1 category
+    const parentHandle = category.parent_category?.handle || handle
     const alsoLikeResult = await searchProducts({
       q: "",
       limit: 5,
-      offset: randomOffset,
-      filter: [`category_handles = "${randomHandle}"`],
+      offset: Math.floor(Math.random() * 20),
+      filter: [`category_handles = "${parentHandle}"`, `category_handles != "${handle}"`],
     })
     youMayAlsoLike = alsoLikeResult.hits.map(hit => ({
       id: hit.id,
@@ -217,11 +230,11 @@ export default async function CategoryPage({ params, searchParams }: Props) {
         </div>
 
         {/* Subcategory navigation — single scrollable row with arrow overflow */}
-        {(category.category_children?.length ?? 0) > 0 && (
+        {(category.category_children?.length ?? 0) > 0 && subcatThumbs && (
           <div className="relative mb-6">
             <div className="flex gap-3 overflow-x-auto pb-4 scrollbar-hide">
               {category.category_children!.map((child) => {
-                const thumb = CATEGORY_IMAGES[child.handle] || null
+                const thumb = CATEGORY_IMAGES[child.handle] || subcatThumbs[child.handle] || null
                 return (
                   <Link
                     key={child.id}
