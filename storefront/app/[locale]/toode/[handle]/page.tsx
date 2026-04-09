@@ -314,10 +314,10 @@ export default async function ProductPage({ params }: Props) {
   const categoryName = product.categories?.[0]?.name || productTypeTrail[0] || "Category"
 
   const breadcrumbItems = [
-    { name: "Home", url: "https://xlmarket.eu" },
+    { name: "Home", url: "https://xlmarket.store" },
     ...productTypeTrail.map((segment) => ({
       name: segment,
-      url: `https://xlmarket.eu/et/otsing?q=${encodeURIComponent(segment)}`,
+      url: `https://xlmarket.store/et/otsing?q=${encodeURIComponent(segment)}`,
     })),
   ]
 
