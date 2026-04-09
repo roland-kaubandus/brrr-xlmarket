@@ -209,10 +209,14 @@ export default async function ProductPage({ params }: Props) {
   const price = variant?.calculated_price
 
   // Gallery images from metadata (feed 571 import)
+  // Upgrade goods_img to original_img for higher resolution gallery images
   const metaGalleryImages: Array<{ id: string; url: string }> = Array.isArray(metadata.gallery_images)
     ? (metadata.gallery_images as string[])
         .filter((u): u is string => typeof u === "string" && u.length > 0)
-        .map((url, i) => ({ id: `meta_gallery_${i}`, url: decodeURIComponent(url) }))
+        .map((url, i) => ({
+          id: `meta_gallery_${i}`,
+          url: decodeURIComponent(url).replace(/\/goods_img-/, "/original_img-"),
+        }))
     : []
 
   // Use gallery_images from feed metadata as primary source (best quality)
@@ -250,16 +254,23 @@ export default async function ProductPage({ params }: Props) {
   // Rich description images stay in the description section, NOT in gallery
   // They are marketing/lifestyle shots sized for inline display, not gallery zoom
 
-  // Clean rich description: deduplicate images, remove banners and boilerplate
+  // Clean rich description: remove mobile section, deduplicate images, strip banners
   let richDescription: string | null = null
   if (rawRichDescription) {
     let cleaned = rawRichDescription
+      // Remove mobile section entirely (<!-- h5 --> to end, or h5 div blocks)
+      .replace(/<!--\s*h5\s*-->[\s\S]*$/gi, "")
+      // Remove m-banner divs (mobile banner duplicates)
+      .replace(/<div[^>]*class="m-banner"[^>]*>[\s\S]*?<\/div>\s*<\/div>/gi, "")
       // Remove VEVOR boutique banner images
       .replace(/<img[^>]*src=["'][^"']*vevor-bmp-prm[^"']*["'][^>]*\/?>/gi, "")
       .replace(/<img[^>]*src=["'][^"']*boutique-banner[^"']*["'][^>]*\/?>/gi, "")
       // Remove VEVOR company boilerplate
       .replace(/VEVOR is a leading brand[\s\S]*?global members\./gi, "")
       .replace(/Along with thousands[\s\S]*?global members\./gi, "")
+
+    // Remove mobile image variants (-m.jpg suffix — same image, smaller resolution)
+    cleaned = cleaned.replace(/<img[^>]*src=["'][^"']*-m\.[^"']*["'][^>]*\/?>/gi, "")
 
     // Deduplicate images: keep first occurrence of each URL, remove duplicates
     const seenImgUrls = new Set<string>()
