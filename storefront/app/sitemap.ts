@@ -15,15 +15,15 @@ async function medusaFetch<T>(path: string): Promise<T> {
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const entries: MetadataRoute.Sitemap = [
-    { url: BASE_URL, lastModified: new Date(), changeFrequency: "daily", priority: 1.0 },
-    { url: `${BASE_URL}/kategooriad`, changeFrequency: "daily", priority: 0.8 },
-    { url: `${BASE_URL}/meist`, changeFrequency: "monthly", priority: 0.3 },
-    { url: `${BASE_URL}/kontakt`, changeFrequency: "monthly", priority: 0.3 },
-    { url: `${BASE_URL}/tarne`, changeFrequency: "monthly", priority: 0.3 },
-    { url: `${BASE_URL}/tagastamine`, changeFrequency: "monthly", priority: 0.3 },
-    { url: `${BASE_URL}/tingimused`, changeFrequency: "monthly", priority: 0.3 },
-    { url: `${BASE_URL}/privaatsus`, changeFrequency: "monthly", priority: 0.3 },
-    { url: `${BASE_URL}/kupsised`, changeFrequency: "monthly", priority: 0.3 },
+    { url: `${BASE_URL}/en`, lastModified: new Date(), changeFrequency: "daily", priority: 1.0 },
+    { url: `${BASE_URL}/en/kategooriad`, changeFrequency: "daily", priority: 0.8 },
+    { url: `${BASE_URL}/en/meist`, changeFrequency: "monthly", priority: 0.3 },
+    { url: `${BASE_URL}/en/kontakt`, changeFrequency: "monthly", priority: 0.3 },
+    { url: `${BASE_URL}/en/tarne`, changeFrequency: "monthly", priority: 0.3 },
+    { url: `${BASE_URL}/en/tagastamine`, changeFrequency: "monthly", priority: 0.3 },
+    { url: `${BASE_URL}/en/tingimused`, changeFrequency: "monthly", priority: 0.3 },
+    { url: `${BASE_URL}/en/privaatsus`, changeFrequency: "monthly", priority: 0.3 },
+    { url: `${BASE_URL}/en/kupsised`, changeFrequency: "monthly", priority: 0.3 },
   ]
 
   try {
@@ -37,7 +37,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       )
       for (const cat of catRes.product_categories) {
         entries.push({
-          url: `${BASE_URL}/kategooriad/${cat.handle}`,
+          url: `${BASE_URL}/en/kategooriad/${cat.handle}`,
           changeFrequency: "daily",
           priority: 0.7,
         })
@@ -56,7 +56,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       )
       for (const p of prodRes.products) {
         entries.push({
-          url: `${BASE_URL}/toode/${p.handle}`,
+          url: `${BASE_URL}/en/toode/${p.handle}`,
           lastModified: p.updated_at ? new Date(p.updated_at) : undefined,
           changeFrequency: "weekly",
           priority: 0.6,
