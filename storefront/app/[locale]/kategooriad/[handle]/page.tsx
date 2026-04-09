@@ -229,7 +229,7 @@ export default async function CategoryPage({ params, searchParams }: Props) {
         {/* Subcategory navigation — larger cards with proper spacing */}
         {(category.category_children?.length ?? 0) > 0 && subcatThumbs && (
           <div className="relative mb-8">
-            <div className="flex gap-4 overflow-x-auto pb-5 scrollbar-hide -mx-1 px-1">
+            <div className="flex gap-4 overflow-x-auto pt-2 pb-5 scrollbar-hide -mx-1 px-1">
               {category.category_children!.map((child) => {
                 const thumb = CATEGORY_IMAGES[child.handle] || subcatThumbs[child.handle] || null
                 if (!thumb) return null
