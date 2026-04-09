@@ -10,6 +10,10 @@ const dmSans = DM_Sans({
   variable: "--font-dm-sans",
 })
 
+export const metadata = {
+  verification: { google: "7CAn8vXu2SXJONPYZqctcHXWLFfRulKeyXy5" },
+}
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html className="scroll-smooth" suppressHydrationWarning>
