@@ -1,4 +1,3 @@
-import Image from "next/image"
 import Link from "next/link"
 
 type CategoryItem = {
@@ -42,13 +41,11 @@ export default function CategoryExploreGrid({
                 {/* Image — portrait, bigger */}
                 <div className="w-full aspect-square flex items-center justify-center mb-3">
                   {imgUrl ? (
-                    <Image
+                    <img
                       src={imgUrl}
                       alt={display}
-                      width={200}
-                      height={200}
-                      className="object-contain w-full h-full"
-                      sizes="(max-width: 640px) 40vw, 200px"
+                      className="object-contain w-full h-full max-h-[180px]"
+                      loading="lazy"
                     />
                   ) : (
                     <div className="w-20 h-20 rounded-full flex items-center justify-center bg-gradient-to-br from-[#FEF3C7] to-[#FDE68A]">
