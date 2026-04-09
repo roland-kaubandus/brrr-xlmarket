@@ -226,14 +226,7 @@ export default async function SearchPage({ searchParams, params }: Props) {
         )}
 
         {(query || activeTag || SORT_TITLES[currentSort]) && totalHits > 0 && (
-          <div className="bg-white rounded-xl p-4 sm:p-6">
-            {/* Sort + Results bar */}
-            <div className="flex items-center justify-between mb-4">
-              <p className="text-sm text-[#555]">
-                <span className="font-semibold text-[#1E293B]">{totalHits.toLocaleString("en")}</span> {query ? `results for "${query}"` : "products"}
-              </p>
-            </div>
-
+          <div className="bg-white rounded-xl">
             {/* Filters */}
             <Suspense fallback={null}>
               <VevorSearchFilters
