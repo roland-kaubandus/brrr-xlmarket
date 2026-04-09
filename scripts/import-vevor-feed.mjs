@@ -323,8 +323,169 @@ function cleanRichDescription(html, galleryUrls) {
   return cleaned.length > 50 ? cleaned : null
 }
 
-// ── Product creation ────────────────────────────────────────────────
+// ── SPU Grouping & Variant Extraction (WO-107) ─────────────────────
 
+function groupBySpu(rows) {
+  const groups = new Map()
+  for (const row of rows) {
+    const key = row.spu || `__solo_${row.sku}`
+    if (!groups.has(key)) groups.set(key, [])
+    groups.get(key).push(row)
+  }
+  return groups
+}
+
+function extractOption(rows) {
+  if (rows.length === 1) return { name: "Default", values: [{ label: "Default", row: rows[0] }] }
+
+  const titles = rows.map(r => r.title)
+
+  // Find common prefix
+  let prefix = titles[0]
+  for (const t of titles.slice(1)) {
+    while (prefix.length > 0 && !t.startsWith(prefix)) prefix = prefix.slice(0, -1)
+  }
+  prefix = prefix.replace(/[\s\-,]+$/, "") // trim trailing separators
+
+  // Extract suffix as variant value
+  const values = rows.map(row => {
+    let label = row.title.slice(prefix.length).trim()
+    // Clean common prefix patterns like ", " or " - "
+    label = label.replace(/^[\s,\-–—|]+/, "").trim()
+    return { label: label || "Standard", row }
+  })
+
+  // Detect option name from values
+  const labels = values.map(v => v.label)
+  const optionName = detectOptionName(labels)
+
+  return { name: optionName, values }
+}
+
+function detectOptionName(labels) {
+  // Color patterns
+  const colorWords = ["red", "blue", "green", "black", "white", "grey", "gray", "silver", "gold", "brown", "orange", "yellow", "pink", "purple", "beige", "dark", "light"]
+  const colorCount = labels.filter(l => colorWords.some(c => l.toLowerCase().includes(c))).length
+  if (colorCount >= labels.length * 0.5) return "Color"
+
+  // Size patterns (measurements, dimensions)
+  const sizePatterns = /\d+\s*(x|×|mm|cm|m|in|inch|ft|l|gal|qt|oz)\b/i
+  const sizeCount = labels.filter(l => sizePatterns.test(l)).length
+  if (sizeCount >= labels.length * 0.5) return "Size"
+
+  // Quantity/piece patterns
+  const qtyPatterns = /\d+\s*(pcs?|pieces?|pack|set)/i
+  const qtyCount = labels.filter(l => qtyPatterns.test(l)).length
+  if (qtyCount >= labels.length * 0.5) return "Kit Size"
+
+  // Power/capacity
+  const powerPatterns = /\d+\s*(w|kw|hp|v|a|ah|kwh|btu)\b/i
+  const powerCount = labels.filter(l => powerPatterns.test(l)).length
+  if (powerCount >= labels.length * 0.5) return "Capacity"
+
+  // Weight
+  const weightPatterns = /\d+\s*(kg|lbs?|ton)\b/i
+  const weightCount = labels.filter(l => weightPatterns.test(l)).length
+  if (weightCount >= labels.length * 0.5) return "Weight"
+
+  return "Variant"
+}
+
+// ── Product creation (multi-variant) ────────────────────────────────
+
+async function createProductFromGroup(spuGroup, token, catMap, catIds) {
+  const option = extractOption(spuGroup)
+  const primaryRow = spuGroup[0] // Use first row for shared product data
+  const anyInStock = spuGroup.some(r => r.availability === "in stock")
+  const handle = makeHandle(primaryRow.sku, primaryRow.title)
+
+  // Map category from primary row
+  const l1 = (primaryRow.productType || "").split(">")[0].trim()
+  const categoryHandle = catMap[l1] || null
+  const categoryId = categoryHandle ? catIds[categoryHandle] : null
+  if (!categoryHandle && l1) stats.unmappedCategories.add(l1)
+
+  // Collect all unique gallery images from all variants
+  const allGalleryImages = []
+  const seenGallery = new Set()
+  for (const row of spuGroup) {
+    const imgs = row.originalImages.length > 0 ? row.originalImages : row.galleryImages
+    for (const url of imgs) {
+      const upgraded = upgradeToOriginalImg(url)
+      if (!seenGallery.has(upgraded)) {
+        seenGallery.add(upgraded)
+        allGalleryImages.push(upgraded)
+      }
+    }
+  }
+
+  // Build variants array
+  const variants = option.values.map(v => ({
+    title: v.label,
+    sku: v.row.sku,
+    manage_inventory: true,
+    allow_backorder: false,
+    prices: [{ amount: Math.round(v.row.price * PRICE_MARKUP * 100), currency_code: "eur" }],
+    options: { [option.name]: v.label },
+  }))
+
+  const productData = {
+    title: primaryRow.title,
+    handle,
+    description: primaryRow.description || "",
+    status: anyInStock ? "published" : "draft",
+    is_giftcard: false,
+    thumbnail: primaryRow.image || undefined,
+    external_id: "vevor:" + primaryRow.sku,
+    metadata: {
+      vevor_sku: primaryRow.sku,
+      vevor_upc: primaryRow.upc || "",
+      vevor_link: primaryRow.link || "",
+      vevor_product_type: primaryRow.productType || "",
+      vevor_spu: primaryRow.spu || "",
+      weight_kg: primaryRow.weight || 0,
+      selling_points: primaryRow.sellingPoints || [],
+      rich_description: cleanRichDescription(primaryRow.richDescriptionHtml, allGalleryImages),
+      dimensions: (primaryRow.dimensionHigh || primaryRow.dimensionWide || primaryRow.dimensionLong)
+        ? { high: primaryRow.dimensionHigh, wide: primaryRow.dimensionWide, long: primaryRow.dimensionLong, unit: primaryRow.dimensionUnit }
+        : null,
+      gallery_images: allGalleryImages.slice(0, 20),
+      translation_status: "pending",
+      original_language: "en",
+      variant_skus: spuGroup.map(r => r.sku), // all SKUs for this SPU group
+    },
+    images: [
+      ...(primaryRow.mainOriginalImage ? [{ url: primaryRow.mainOriginalImage }] : primaryRow.image ? [{ url: primaryRow.image }] : []),
+      ...allGalleryImages.slice(0, 10).map(url => ({ url })),
+    ].filter((img, i, arr) => arr.findIndex(a => a.url === img.url) === i).slice(0, 10),
+    options: [{ title: option.name, values: option.values.map(v => v.label) }],
+    variants,
+    sales_channels: [{ id: SALES_CHANNEL_ID }],
+  }
+
+  if (categoryId) {
+    productData.categories = [{ id: categoryId }]
+  }
+
+  const resp = await apiCall("POST", "/admin/products", productData, token)
+  if (resp.status >= 200 && resp.status < 300 && resp.data.product) {
+    stats.created++
+    if (spuGroup.length > 1) stats.variantGroupsCreated = (stats.variantGroupsCreated || 0) + 1
+    return resp.data.product.id
+  } else {
+    const msg = resp.data.message || JSON.stringify(resp.data).substring(0, 200)
+    log("  SKIP reason [" + primaryRow.sku + "]: status=" + resp.status + " msg=" + msg)
+    if (msg.includes("already exists") || msg.includes("duplicate") || msg.includes("unique")) {
+      stats.skipped++
+    } else {
+      stats.errors++
+      if (stats.errors <= 20) log("  ERROR [" + primaryRow.sku + "]: " + msg)
+    }
+    return null
+  }
+}
+
+// Legacy single-product creation (backwards compat)
 async function createProduct(row, token, catMap, catIds) {
   const finalPrice = Math.round(row.price * PRICE_MARKUP * 100); // cents
   const handle = makeHandle(row.sku, row.title);
@@ -527,17 +688,41 @@ async function main() {
   // ── Step 1: Read XLSX ──
   const feedRows = readFeed();
 
-  // ── Step 2: Compare with DB ──
+  // ── Step 2: Group by SPU ──
+  const spuGroups = groupBySpu(feedRows);
+  const multiVariantGroups = [...spuGroups.values()].filter(g => g.length > 1);
+  log("SPU grouping:");
+  log("  Total SPU groups:    " + spuGroups.size);
+  log("  Multi-variant groups:" + multiVariantGroups.length);
+  log("  Products in groups:  " + multiVariantGroups.reduce((s, g) => s + g.length, 0));
+  console.log("");
+
+  // ── Step 3: Compare with DB ──
   const existingSkus = await loadExistingSkus();
 
   const newRows = [];
   const updateRows = [];
-  for (const row of feedRows) {
-    const existingId = existingSkus.get(row.sku);
-    if (existingId) {
-      updateRows.push(Object.assign({}, row, { productId: existingId }));
+  const newSpuGroups = [];
+
+  for (const [spu, group] of spuGroups) {
+    // Check if ANY SKU in the group already exists
+    const existingIds = group.map(r => existingSkus.get(r.sku)).filter(Boolean);
+
+    if (existingIds.length > 0) {
+      // At least one variant exists — mark all as update
+      for (const row of group) {
+        const existingId = existingSkus.get(row.sku);
+        if (existingId) {
+          updateRows.push(Object.assign({}, row, { productId: existingId }));
+        } else {
+          // New variant for existing SPU group — treat as new for now
+          newRows.push(row);
+        }
+      }
     } else {
-      newRows.push(row);
+      // Entirely new SPU group
+      newSpuGroups.push(group);
+      for (const row of group) newRows.push(row);
     }
   }
 
@@ -548,7 +733,7 @@ async function main() {
   log("=== Analysis ===");
   log("  Feed total:          " + stats.feedRows);
   log("  Already in DB:       " + stats.existingInDb);
-  log("  New to import:       " + stats.newProducts);
+  log("  New to import:       " + stats.newProducts + " (in " + newSpuGroups.length + " SPU groups)");
   log("  Existing (updatable):" + stats.toUpdate);
   console.log("");
 
@@ -605,29 +790,28 @@ async function main() {
   // Load category IDs
   const categoryIds = await loadCategoryIds(token);
 
-  // ── Step 4: Create new products ──
-  const toCreate = LIMIT ? newRows.slice(0, LIMIT) : newRows;
-  if (toCreate.length > 0) {
-    log("Creating " + toCreate.length + " new products (batch delay: " + API_DELAY_MS + "ms)...");
+  // ── Step 4: Create new products (SPU-grouped) ──
+  const groupsToCreate = LIMIT ? newSpuGroups.slice(0, LIMIT) : newSpuGroups;
+  if (groupsToCreate.length > 0) {
+    const totalProducts = groupsToCreate.reduce((s, g) => s + g.length, 0);
+    log("Creating " + groupsToCreate.length + " product groups (" + totalProducts + " variants, batch delay: " + API_DELAY_MS + "ms)...");
     const startTime = Date.now();
 
-    for (let i = 0; i < toCreate.length; i++) {
-      const row = toCreate[i];
+    for (let i = 0; i < groupsToCreate.length; i++) {
+      const group = groupsToCreate[i];
       try {
-        await createProduct(row, token, categoryMap, categoryIds);
+        await createProductFromGroup(group, token, categoryMap, categoryIds);
       } catch (err) {
         stats.errors++;
         if (stats.errors <= 20) {
-          log("  ERROR [" + row.sku + "]: " + err.message);
+          log("  ERROR [" + group[0].sku + " SPU=" + group[0].spu + "]: " + err.message);
         }
       }
       await sleep(API_DELAY_MS);
 
-      // Progress every 100 products
-      if ((i + 1) % 100 === 0 || i + 1 === toCreate.length) {
+      if ((i + 1) % 50 === 0 || i + 1 === groupsToCreate.length) {
         const elapsed = ((Date.now() - startTime) / 1000).toFixed(0);
-        const rate = ((i + 1) / ((Date.now() - startTime) / 1000)).toFixed(1);
-        log("  Progress: " + (i + 1) + "/" + toCreate.length + " (" + rate + "/s, " + elapsed + "s) | created: " + stats.created + " errors: " + stats.errors);
+        log("  Progress: " + (i + 1) + "/" + groupsToCreate.length + " groups (" + elapsed + "s) | created: " + stats.created + " errors: " + stats.errors + " variant_groups: " + (stats.variantGroupsCreated || 0));
       }
     }
   }
