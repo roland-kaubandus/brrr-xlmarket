@@ -17,116 +17,64 @@ export default function CategoryExploreGrid({
   locale: string
 }) {
   return (
-    <section className="bg-white py-10 px-4">
-      {/* Section heading with amber left accent */}
-      <div className="flex items-center gap-3 mb-6">
-        <div
-          className="w-1 h-7 rounded-full"
-          style={{ backgroundColor: "#D97706" }}
-        />
-        <h2
-          className="font-[family-name:var(--font-dm-sans)] font-bold text-2xl"
-          style={{ color: "#1E293B" }}
-        >
-          Categories to Explore
-        </h2>
-      </div>
+    <section className="bg-white py-10">
+      <div className="max-w-[1360px] mx-auto px-4">
+        {/* Section heading */}
+        <div className="flex items-center gap-3 mb-6">
+          <div className="w-1 h-7 rounded-full bg-[#D97706]" />
+          <h2 className="font-bold text-2xl text-[#1E293B]">
+            Categories to Explore
+          </h2>
+        </div>
 
-      <div className="max-w-[1360px] mx-auto grid grid-cols-2 md:grid-cols-4 gap-4">
-        {categories.map((cat) => {
-          const display = cat.displayName || cat.name
-          const imgUrl = cat.image ? decodeURIComponent(cat.image) : null
-          const count = cat.productCount || 0
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+          {categories.map((cat) => {
+            const display = cat.displayName || cat.name
+            const imgUrl = cat.image ? decodeURIComponent(cat.image) : null
+            const count = cat.productCount || 0
 
-          return (
-            <Link
-              key={cat.handle}
-              href={`/${locale}/kategooriad/${cat.handle}`}
-              className="category-card group flex flex-col rounded-xl border bg-white overflow-hidden shadow-sm"
-              style={{
-                borderColor: "#E2E8F0",
-                transition: "box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease",
-              }}
-            >
-              {/* Image area */}
-              <div
-                className="flex items-center justify-center"
-                style={{
-                  backgroundColor: "#FFFFFF",
-                  height: "140px",
-                }}
+            return (
+              <Link
+                key={cat.handle}
+                href={`/${locale}/kategooriad/${cat.handle}`}
+                className="category-card group flex flex-col items-center text-center rounded-xl border border-[#E2E8F0] bg-white p-4 transition-all duration-200 hover:shadow-lg hover:-translate-y-1 hover:border-[#D97706]"
               >
-                {imgUrl ? (
-                  <Image
-                    src={imgUrl}
-                    alt={display}
-                    width={120}
-                    height={120}
-                    className="object-contain max-h-[110px]"
-                    sizes="120px"
-                  />
-                ) : (
-                  <div
-                    className="w-16 h-16 rounded-full flex items-center justify-center"
-                    style={{
-                      background: "linear-gradient(135deg, #FEF3C7, #FDE68A)",
-                    }}
-                  >
-                    <svg
-                      width="28"
-                      height="28"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="#D97706"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
-                      <path d="M16 7V5a4 4 0 0 0-8 0v2" />
-                    </svg>
-                  </div>
-                )}
-              </div>
+                {/* Image — portrait, bigger */}
+                <div className="w-full aspect-square flex items-center justify-center mb-3">
+                  {imgUrl ? (
+                    <Image
+                      src={imgUrl}
+                      alt={display}
+                      width={200}
+                      height={200}
+                      className="object-contain w-full h-full"
+                      sizes="(max-width: 640px) 40vw, 200px"
+                    />
+                  ) : (
+                    <div className="w-20 h-20 rounded-full flex items-center justify-center bg-gradient-to-br from-[#FEF3C7] to-[#FDE68A]">
+                      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#D97706" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                        <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
+                        <path d="M16 7V5a4 4 0 0 0-8 0v2" />
+                      </svg>
+                    </div>
+                  )}
+                </div>
 
-              {/* Text area */}
-              <div className="px-3 py-3">
-                <p
-                  className="font-[family-name:var(--font-dm-sans)] font-bold leading-tight"
-                  style={{ fontSize: "15px", color: "#1E293B" }}
-                >
+                {/* Name + count */}
+                <p className="font-bold text-[14px] text-[#1E293B] leading-tight mb-1">
                   {display}
                 </p>
                 {count > 0 && (
-                  <p
-                    className="mt-1 flex items-center gap-1"
-                    style={{ fontSize: "13px", color: "#64748B" }}
-                  >
-                    <span>
-                      {count.toLocaleString()} product{count !== 1 ? "s" : ""}
-                    </span>
-                    <span
-                      className="inline-block transition-transform group-hover:translate-x-0.5"
-                      style={{ color: "#D97706" }}
-                    >
-                      &rarr;
-                    </span>
+                  <p className="text-[12px] text-[#64748B] flex items-center gap-1">
+                    {count.toLocaleString()} products
+                    <span className="text-[#D97706] transition-transform group-hover:translate-x-0.5">&rarr;</span>
                   </p>
                 )}
-              </div>
-            </Link>
-          )
-        })}
+              </Link>
+            )
+          })}
+        </div>
       </div>
-
-      {/* Hover styles via global CSS-in-JS workaround for Tailwind */}
-      <style>{`
-        .category-card:hover {
-          box-shadow: 0 6px 20px rgba(0,0,0,0.10);
-          transform: translateY(-2px);
-          border-color: #D97706 !important;
-        }
-      `}</style>
     </section>
   )
 }
