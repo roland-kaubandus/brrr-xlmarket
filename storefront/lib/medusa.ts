@@ -70,6 +70,8 @@ export type ProductCategory = {
   name: string
   handle: string
   parent_category_id: string | null
+  parent_category?: ProductCategory | null
+  category_children?: ProductCategory[]
 }
 
 export type Product = {
@@ -146,7 +148,7 @@ export async function getCategories(): Promise<ProductCategory[]> {
 
 export async function getCategoryByHandle(handle: string): Promise<ProductCategory | null> {
   const res = await medusaFetch<CategoriesResponse>(
-    `/store/product-categories?handle=${handle}`
+    `/store/product-categories?handle=${handle}&include_ancestors_tree=true&include_descendants_tree=true`
   )
   return res.product_categories[0] || null
 }

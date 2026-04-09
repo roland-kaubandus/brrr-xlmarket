@@ -306,17 +306,20 @@ export default async function ProductPage({ params }: Props) {
         >
           Home
         </Link>
-        {productTypeTrail.map((segment, index) => (
-          <span key={`bc-${segment}-${index}`}>
-            <span className="mx-2 text-[#E2E8F0]">&gt;</span>
-            <Link
-              href={`/${locale}/otsing?q=${encodeURIComponent(segment)}`}
-              className="hover:text-[#D97706] transition-colors duration-200"
-            >
-              {segment}
-            </Link>
-          </span>
-        ))}
+        {productTypeTrail.map((segment, index) => {
+          const slug = segment.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")
+          return (
+            <span key={`bc-${segment}-${index}`}>
+              <span className="mx-2 text-[#E2E8F0]">&gt;</span>
+              <Link
+                href={`/${locale}/kategooriad/${slug}`}
+                className="hover:text-[#D97706] transition-colors duration-200"
+              >
+                {segment}
+              </Link>
+            </span>
+          )
+        })}
       </nav>
 
       <div className="grid grid-cols-1 lg:grid-cols-[3fr_2fr] gap-6 lg:gap-10 lg:items-start">

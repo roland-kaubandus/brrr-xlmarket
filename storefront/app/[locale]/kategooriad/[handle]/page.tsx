@@ -131,20 +131,7 @@ export default async function CategoryPage({ params, searchParams }: Props) {
   const totalPages = Math.ceil(totalCount / ITEMS_PER_PAGE)
   const categoryBasePath = `/${locale}/kategooriad/${handle}`
 
-  // Fetch thumbnails for top subcategories (Issue 2)
-  const topSubcats = Object.entries(categoryFacets)
-    .sort(([,a], [,b]) => b - a)
-    .slice(0, 8)
-  const subcatThumbnails = await Promise.all(
-    topSubcats.map(async ([name]) => {
-      try {
-        const res = await searchProducts({ q: name, limit: 1, filter: [`category_handles = "${handle}"`] })
-        return { name, thumbnail: res.hits[0]?.thumbnail || null }
-      } catch { return { name, thumbnail: null } }
-    })
-  )
-
-  // Fetch "You May Also Like" products from a different category (Issue 3)
+  // Fetch "You May Also Like" products from a different category
   let youMayAlsoLike: any[] = []
   try {
     const allHandles = Object.keys(CATEGORY_NAMES).filter(h => h !== handle)
@@ -195,13 +182,26 @@ export default async function CategoryPage({ params, searchParams }: Props) {
   return (
     <div className="bg-white min-h-screen">
       <div className="max-w-[1360px] mx-auto px-4 sm:px-6 py-6">
-        {/* Breadcrumb */}
-        <nav className="text-xs text-[#888] mb-4">
+        {/* Breadcrumb — full ancestor chain */}
+        <nav className="text-xs text-[#64748B] mb-4">
           <Link href={`/${locale}`} className="hover:text-[#D97706]">Home</Link>
+          {(() => {
+            // Build ancestor chain from parent_category recursion
+            const ancestors: Array<{ name: string; handle: string }> = []
+            let parent = category.parent_category
+            while (parent) {
+              ancestors.unshift({ name: parent.name, handle: parent.handle })
+              parent = (parent as any).parent_category
+            }
+            return ancestors.map((a) => (
+              <span key={a.handle}>
+                <span className="mx-1.5">&gt;</span>
+                <Link href={`/${locale}/kategooriad/${a.handle}`} className="hover:text-[#D97706]">{a.name}</Link>
+              </span>
+            ))
+          })()}
           <span className="mx-1.5">&gt;</span>
-          <Link href={`/${locale}/kategooriad`} className="hover:text-[#D97706]">All Categories</Link>
-          <span className="mx-1.5">&gt;</span>
-          <span className="text-[#555]">{displayName}</span>
+          <span className="text-[#1E293B] font-medium">{category.name}</span>
         </nav>
 
         {/* Title + count */}
@@ -212,47 +212,21 @@ export default async function CategoryPage({ params, searchParams }: Props) {
           </p>
         </div>
 
-        {/* Subcategory visual cards with thumbnails */}
-        {subcatThumbnails.length > 0 && (
-          <div className="flex gap-4 overflow-x-auto pb-3 mb-5 scrollbar-hide">
-            {subcatThumbnails.map(({ name, thumbnail }) => (
+        {/* Subcategory navigation — direct children from Medusa */}
+        {(category.category_children?.length ?? 0) > 0 && (
+          <div className="flex gap-3 overflow-x-auto pb-3 mb-5 scrollbar-hide">
+            {category.category_children!.map((child) => (
               <Link
-                key={name}
-                href={`${categoryBasePath}?categories=${encodeURIComponent(name)}`}
-                className={`flex-shrink-0 flex flex-col items-center gap-2 w-[100px] group`}
+                key={child.id}
+                href={`/${locale}/kategooriad/${child.handle}`}
+                className="flex-shrink-0 px-4 py-2.5 rounded-lg text-sm font-medium border border-[#E2E8F0] bg-white text-[#1E293B] hover:border-[#D97706] hover:text-[#D97706] transition-colors"
               >
-                <div className={`w-20 h-20 rounded-xl overflow-hidden border-2 transition-all ${
-                  selectedCategories.includes(name)
-                    ? "border-[#D97706] shadow-md"
-                    : "border-[#E2E8F0] group-hover:border-[#D97706] group-hover:shadow-md"
-                }`}>
-                  {thumbnail ? (
-                    <img
-                      src={thumbnail}
-                      alt={name}
-                      className="w-full h-full object-cover"
-                      loading="lazy"
-                    />
-                  ) : (
-                    <div className="w-full h-full bg-[#F1F5F9] flex items-center justify-center">
-                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                        <rect x="3" y="3" width="7" height="7" rx="1" />
-                        <rect x="14" y="3" width="7" height="7" rx="1" />
-                        <rect x="3" y="14" width="7" height="7" rx="1" />
-                        <rect x="14" y="14" width="7" height="7" rx="1" />
-                      </svg>
-                    </div>
-                  )}
-                </div>
-                <span className={`text-xs text-center font-medium leading-tight line-clamp-2 ${
-                  selectedCategories.includes(name) ? "text-[#D97706]" : "text-[#1E293B] group-hover:text-[#D97706]"
-                }`}>
-                  {name}
-                </span>
+                {child.name}
               </Link>
             ))}
           </div>
         )}
+
 
         {/* Remaining subcategory pills (overflow beyond top 8) */}
         {Object.keys(categoryFacets).length > 8 && (
