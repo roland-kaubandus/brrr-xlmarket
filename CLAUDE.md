@@ -136,18 +136,31 @@ Formaat: tehti, otsused, probleemid, järgmine kord, õpitud.
 - **Next.js fetch cache:** After updating product metadata via Medusa API, storefront serves stale data. Fix: `rm -rf storefront/.next/cache/fetch-cache && restart next-server`
 - **MeiliSearch facetDistribution:** Returns ALL category_handles across products, not filtered by current domain. Must filter out L1 branch handles manually (see `lib/branches.ts`).
 - **Multiple next-server processes:** After `npm run build`, old process still serves old build. Kill old PID before starting new one. Check with `ss -tlnp | grep 3030`.
+- **Next.js hangib perioodiliselt:** Protsess kuulab pordil aga ei vasta. Fix: `fuser -k 3030/tcp && sleep 3 && nohup npx next start -p 3030 &`
+- **VEVOR CDN %2B:** Mõned failinimed sisaldavad `+` märki (%2B). ÄRA kasuta decodeURIComponent thumbnailidel — CDN nõuab kodeeritud URL-e
+- **Medusa admin (Vite):** Nõuab `allowedHosts: ["xlmarket.store"]` medusa-config.ts/js admin.vite configis + `backendUrl: "https://xlmarket.store"`
+- **nginx /app proxy:** Kasuta `location ^~ /app` (mitte `location /app`) et kõik alamteed proksi'taks
+- **Email subscribers KATKI:** `order-placed.ts` ja `order-shipped.ts` email import ei tööta — kommenteeritud välja kuni parandatud
+- **Medusa CORS:** STORE_CORS, ADMIN_CORS, AUTH_CORS peavad sisaldama `https://xlmarket.store`
+- **PostHog:** NEXT_PUBLIC_POSTHOG_KEY .env.local-is, EU host. MCP config .mcp.json-is
 
 ---
 
 ## Key files
 
-- `backend/src/scripts/import-vevor-feed.mjs` — VEVOR XLSX importer (`--execute --update`)
+- `scripts/import-vevor-feed.mjs` — VEVOR XLSX importer (`--execute --update`) — SPU variant grouping, image dedup
+- `scripts/feed-sync.sh` — Unified feed sync (cron iga 4h): download, cache, reindex, stock, feeds, raport
 - `backend/src/scripts/category-map.json` — VEVOR L1 → Medusa category handle mapping
-- `storefront/components/ProductGallery.tsx` — Image gallery with ResizeObserver thumb fitting + lightbox
-- `storefront/components/CollapsibleDescription.tsx` — Rich HTML description with gradient fade + "Vaata rohkem"
+- `backend/scripts/index-meilisearch.mjs` — MeiliSearch reindex script
+- `storefront/components/ProductGallery.tsx` — Image gallery with lightbox
+- `storefront/components/CollapsibleDescription.tsx` — Rich HTML description with gradient fade
+- `storefront/components/BannerCarousel.tsx` — 4 EN bannerit branch fotodega
 - `storefront/app/[locale]/toode/[handle]/page.tsx` — Product detail page
 - `storefront/app/[locale]/haru/[handle]/page.tsx` — Domain/branch category page
 - `storefront/lib/branches.ts` — Branch definitions with categoryHandle
+- `storefront/lib/auth.ts` — Customer auth helpers (register, login, getCustomer, getOrders)
+- `storefront/lib/sanitize.ts` — HTML sanitizer (strips CSS, scripts, deduplicates images)
+- `storefront/lib/meilisearch.ts` — MeiliSearch client + compound word expansion
 
 ---
 
