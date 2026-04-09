@@ -215,13 +215,16 @@ export default async function ProductPage({ params }: Props) {
         .map((url, i) => ({ id: `meta_gallery_${i}`, url: decodeURIComponent(url) }))
     : []
 
+  // Use gallery_images from feed metadata as primary source (best quality)
+  // Fallback to product.images and thumbnail
   const images = Array.from(
     new Map(
       [
-        ...media.images,
         ...metaGalleryImages,
-        ...(product.images || []).map((img) => ({ ...img, url: decodeURIComponent(img.url) })),
-        ...(product.thumbnail ? [{ id: "thumb", url: decodeURIComponent(product.thumbnail) }] : []),
+        ...(metaGalleryImages.length === 0 ? [
+          ...(product.images || []).map((img) => ({ ...img, url: decodeURIComponent(img.url) })),
+          ...(product.thumbnail ? [{ id: "thumb", url: decodeURIComponent(product.thumbnail) }] : []),
+        ] : []),
       ]
         .filter((image) => Boolean(image?.url))
         .map((image, index) => [image.url, { id: image.id || `img_${index}`, url: image.url }])
@@ -401,60 +404,47 @@ export default async function ProductPage({ params }: Props) {
         </div>
       </div>
 
-      {/* ===== FULL-WIDTH SECTIONS BELOW THE FOLD ===== */}
-
-      {/* Features & Details — simple bullet list */}
-      {sellingPoints.length > 0 && (
-        <section className="mt-12 pb-10 bg-[#F8FAFC] -mx-4 sm:-mx-6 px-4 sm:px-6">
-          <div className="max-w-[800px] mx-auto">
-            <CollapsibleSection title="Features & Details" defaultOpen={true}>
-              <div className="space-y-5">
-                {sellingPoints.slice(0, 5).map((sp, i) => {
-                  const colonIdx = sp.indexOf(":")
-                  const hasTitle = colonIdx > 0 && colonIdx < 60
-                  const title = hasTitle ? sp.substring(0, colonIdx).trim() : null
-                  const body = hasTitle ? sp.substring(colonIdx + 1).trim() : sp
-                  return (
-                    <div key={i} className="flex items-start gap-3">
-                      <svg className="shrink-0 mt-1" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#059669" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                      <div>
-                        {title && <p className="text-sm font-semibold text-[#1E293B] mb-0.5">{title}</p>}
-                        <p className="text-sm text-[#475569] leading-relaxed">{body}</p>
-                      </div>
+      {/* ===== ACCORDION SECTIONS — uniform style, left-aligned titles ===== */}
+      <div className="mt-12 border-t border-[#E2E8F0]">
+        {/* Features & Details */}
+        {sellingPoints.length > 0 && (
+          <CollapsibleSection title="Features & Details" defaultOpen={false}>
+            <div className="space-y-5 max-w-[800px]">
+              {sellingPoints.slice(0, 5).map((sp, i) => {
+                const colonIdx = sp.indexOf(":")
+                const hasTitle = colonIdx > 0 && colonIdx < 60
+                const spTitle = hasTitle ? sp.substring(0, colonIdx).trim() : null
+                const body = hasTitle ? sp.substring(colonIdx + 1).trim() : sp
+                return (
+                  <div key={i} className="flex items-start gap-3">
+                    <svg className="shrink-0 mt-1" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#059669" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                    <div>
+                      {spTitle && <p className="text-sm font-semibold text-[#1E293B] mb-0.5">{spTitle}</p>}
+                      <p className="text-sm text-[#475569] leading-relaxed">{body}</p>
                     </div>
-                  )
-                })}
-              </div>
-            </CollapsibleSection>
-          </div>
-        </section>
-      )}
+                  </div>
+                )
+              })}
+            </div>
+          </CollapsibleSection>
+        )}
 
-      {/* Tehnilised andmed — 2-column specs table */}
-      {specs.length > 0 && (
-        <section className="mt-12">
+        {/* Specifications */}
+        {specs.length > 0 && (
           <CollapsibleSection title="Specifications" defaultOpen={false}>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {/* Split specs into two columns */}
               {[0, 1].map((col) => {
                 const half = Math.ceil(specs.length / 2)
                 const colSpecs = col === 0 ? specs.slice(0, half) : specs.slice(half)
                 return (
                   <div key={col} className="border border-[#E2E8F0] rounded-lg overflow-hidden">
                     {colSpecs.map((spec, i) => (
-                      <div
-                        key={spec.key + i}
-                        className={"flex " + (i % 2 === 0 ? "bg-[#F1F5F9]" : "bg-white")}
-                      >
+                      <div key={spec.key + i} className={"flex " + (i % 2 === 0 ? "bg-[#F1F5F9]" : "bg-white")}>
                         <div className="w-[45%] shrink-0 px-4 py-3 border-r border-[#E2E8F0]">
-                          <span className="text-xs font-medium text-[#64748B]">
-                            {spec.key}
-                          </span>
+                          <span className="text-xs font-medium text-[#64748B]">{spec.key}</span>
                         </div>
                         <div className="flex-1 px-4 py-3">
-                          <span className="text-xs text-[#1E293B]">
-                            {spec.value}
-                          </span>
+                          <span className="text-xs text-[#1E293B]">{spec.value}</span>
                         </div>
                       </div>
                     ))}
@@ -463,52 +453,46 @@ export default async function ProductPage({ params }: Props) {
               })}
             </div>
           </CollapsibleSection>
-        </section>
-      )}
+        )}
 
-      {/* Rich description from VEVOR (with images, collapsible) */}
-      {richDescription && (
-        <section className="mt-12">
-          <CollapsibleSection title="Product Description" defaultOpen={true}>
-            <div className="max-w-[800px] mx-auto">
-              <CollapsibleDescription html={sanitizeHtml(richDescription)} collapsedHeight={600} />
+        {/* Product Description — ONE block, rich or plain fallback */}
+        {(richDescription || mainDescriptionHtml) && (
+          <CollapsibleSection title="Product Description" defaultOpen={false}>
+            <div className="max-w-[800px]">
+              <CollapsibleDescription
+                html={sanitizeHtml(richDescription || mainDescriptionHtml || "")}
+                collapsedHeight={richDescription ? 600 : 400}
+              />
             </div>
           </CollapsibleSection>
-        </section>
-      )}
+        )}
 
-      {/* Plain description fallback */}
-      {!richDescription && mainDescriptionHtml && (
-        <section className="mt-12">
-          <CollapsibleSection title="Product Description" defaultOpen={true}>
-            <div className="max-w-[800px] mx-auto">
-              <CollapsibleDescription html={sanitizeHtml(mainDescriptionHtml)} collapsedHeight={400} />
+        {/* Manuals & Downloads */}
+        {manualLinks.length > 0 && (
+          <CollapsibleSection title="Manuals & Downloads" defaultOpen={false}>
+            <div className="flex flex-wrap gap-3">
+              {manualLinks.map((manual, index) => (
+                <a
+                  key={`${manual.href}-${index}`}
+                  href={manual.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-2 rounded-lg border border-[#E2E8F0] bg-white px-4 py-3 text-sm font-medium text-[#1E293B] hover:border-[#D97706]/40 hover:text-[#D97706] transition-colors duration-200"
+                >
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D97706" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                  <span className="text-[#D97706] font-bold">PDF</span>
+                  <span>{manual.label}</span>
+                </a>
+              ))}
             </div>
           </CollapsibleSection>
-        </section>
-      )}
+        )}
 
-      {/* Manuals & Downloads — after description, before similar products */}
-      {manualLinks.length > 0 && (
-        <section className="mt-12 pt-10 border-t border-[#E2E8F0]">
-          <h2 className="text-xl font-bold text-[#1E293B] mb-4">Manuals & Downloads</h2>
-          <div className="flex flex-wrap gap-3">
-            {manualLinks.map((manual, index) => (
-              <a
-                key={`${manual.href}-${index}`}
-                href={manual.href}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-2 rounded-lg border border-[#E2E8F0] bg-white px-4 py-3 text-sm font-medium text-[#1E293B] hover:border-[#D97706]/40 hover:text-[#D97706] transition-colors duration-200"
-              >
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D97706" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                <span className="text-[#D97706] font-bold">PDF</span>
-                <span>{manual.label}</span>
-              </a>
-            ))}
-          </div>
-        </section>
-      )}
+        {/* Reviews — collapsed by default, before similar products */}
+        <CollapsibleSection title="Reviews" defaultOpen={false}>
+          <ProductReviews />
+        </CollapsibleSection>
+      </div>
 
       {/* Similar Products — 5-col grid */}
       {similarProducts.length > 0 && (
@@ -597,9 +581,6 @@ export default async function ProductPage({ params }: Props) {
           </div>
         </section>
       )}
-
-      {/* Reviews — XLM-28 */}
-      <ProductReviews />
 
       {/* Recently viewed — XLM-47 */}
       <RecentlyViewed currentId={product.id} />
