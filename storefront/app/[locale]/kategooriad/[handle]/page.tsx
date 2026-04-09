@@ -221,53 +221,53 @@ export default async function CategoryPage({ params, searchParams }: Props) {
           <span className="text-[#1E293B] font-medium">{category.name}</span>
         </nav>
 
-        {/* Title + count */}
-        <div className="mb-5">
-          <h1 className="text-[28px] font-bold text-[#1E293B]">{displayName}</h1>
-          <p className="text-sm text-[#64748B] mt-1">
-            <span className="font-semibold text-[#1E293B]">{totalCount.toLocaleString("en")}</span> products
-          </p>
+        {/* Title */}
+        <div className="mb-6">
+          <h1 className="text-[28px] md:text-[34px] font-bold text-[#1E293B] tracking-tight">{displayName}</h1>
         </div>
 
-        {/* Subcategory navigation — single scrollable row with arrow overflow */}
+        {/* Subcategory navigation — larger cards with proper spacing */}
         {(category.category_children?.length ?? 0) > 0 && subcatThumbs && (
-          <div className="relative mb-6">
-            <div className="flex gap-3 overflow-x-auto pb-4 scrollbar-hide">
+          <div className="relative mb-8">
+            <div className="flex gap-4 overflow-x-auto pb-5 scrollbar-hide -mx-1 px-1">
               {category.category_children!.map((child) => {
                 const thumb = CATEGORY_IMAGES[child.handle] || subcatThumbs[child.handle] || null
-                if (!thumb) return null // Hide empty subcategories (no products = no thumbnail)
+                if (!thumb) return null
                 return (
                   <Link
                     key={child.id}
                     href={`/${locale}/kategooriad/${child.handle}`}
-                    className="flex-shrink-0 flex flex-col items-center gap-1.5 w-[110px] group"
+                    className="flex-shrink-0 flex flex-col items-center gap-2 w-[130px] group"
                   >
-                    <div className="w-[90px] h-[90px] rounded-lg bg-white border border-[#E2E8F0] group-hover:border-[#D97706] group-hover:shadow-md transition-all overflow-hidden flex items-center justify-center">
+                    <div className="w-[120px] h-[120px] rounded-xl bg-[#F8FAFC] border border-[#E2E8F0] group-hover:border-[#D97706] group-hover:shadow-lg group-hover:-translate-y-1 transition-all duration-200 overflow-hidden flex items-center justify-center">
                       <Image
                         src={thumb}
                         alt={child.name}
-                        width={90}
-                        height={90}
-                        className="object-contain w-full h-full p-1.5"
+                        width={120}
+                        height={120}
+                        className="object-contain w-full h-full p-2"
                         unoptimized
                       />
                     </div>
-                    <span className="text-[11px] text-center text-[#1E293B] group-hover:text-[#D97706] transition-colors leading-tight line-clamp-2 font-medium">
+                    <span className="text-[12px] text-center text-[#475569] group-hover:text-[#D97706] transition-colors leading-snug line-clamp-2 font-medium">
                       {child.name}
                     </span>
                   </Link>
                 )
               })}
             </div>
-            {/* Separator between categories and products */}
-            <div className="border-b border-[#E2E8F0]" />
           </div>
         )}
 
         {/* Content card */}
         {totalCount > 0 ? (
-          <div className="bg-white rounded-xl p-4 sm:p-6">
-            {/* Filters */}
+          <div className="bg-white rounded-xl">
+            {/* Results count + Filters */}
+            <div className="flex items-center gap-3 mb-4">
+              <p className="text-sm text-[#64748B]">
+                <span className="font-semibold text-[#1E293B]">{totalCount.toLocaleString("en")}</span> products
+              </p>
+            </div>
             <Suspense fallback={null}>
               <VevorSearchFilters
                 totalHits={totalCount}
