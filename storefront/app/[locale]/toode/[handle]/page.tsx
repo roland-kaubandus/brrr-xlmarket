@@ -444,7 +444,7 @@ export default async function ProductPage({ params }: Props) {
       <div className="mt-12 border-t border-[#E2E8F0]">
         {/* Features & Details */}
         {sellingPoints.length > 0 && (
-          <CollapsibleSection title="Features & Details" defaultOpen={false}>
+          <CollapsibleSection title="Features & Details" defaultOpen={true}>
             <div className="space-y-5 max-w-[800px]">
               {sellingPoints.slice(0, 5).map((sp, i) => {
                 const colonIdx = sp.indexOf(":")
