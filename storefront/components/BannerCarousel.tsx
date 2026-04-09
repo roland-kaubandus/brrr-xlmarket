@@ -71,7 +71,7 @@ export default function BannerCarousel({ locale = "en" }: { locale?: string }) {
           {BANNERS.map((b, i) => (
             <div
               key={i}
-              className="w-full flex-shrink-0 relative h-[160px] sm:h-[200px] md:h-[260px] lg:h-[300px]"
+              className="w-full flex-shrink-0 relative h-[180px] sm:h-[220px] md:h-[260px] lg:h-[300px]"
             >
               {/* Background image */}
               <Image
