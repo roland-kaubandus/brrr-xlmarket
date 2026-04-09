@@ -10,7 +10,7 @@ export const revalidate = 0
 
 type Props = {
   searchParams: Promise<{
-    q?: string; page?: string; sort?: string
+    q?: string; page?: string; sort?: string; tag?: string
     min?: string; max?: string; categories?: string; in_stock?: string
   }>
   params: Promise<{ locale: string }>
@@ -44,10 +44,19 @@ const SORT_TITLES: Record<string, string> = {
   clearance: "Clearance — Under 50€",
 }
 
+const TAG_TITLES: Record<string, string> = {
+  deals: "Deals",
+  hot: "Best Sellers",
+  "spring-sale": "Spring Sale",
+  "flash-sale": "Flash Sale — Clearance",
+  promo: "Promotions",
+}
+
 export default async function SearchPage({ searchParams, params }: Props) {
   const { locale } = await params
-  const { q, page: pageParam, sort, min, max, categories, in_stock } = await searchParams
+  const { q, page: pageParam, sort, tag, min, max, categories, in_stock } = await searchParams
   const query = q?.trim() || ""
+  const activeTag = tag?.trim() || ""
   const page = Math.max(1, parseInt(pageParam || "1", 10) || 1)
   const offset = (page - 1) * ITEMS_PER_PAGE
   const currentSort = sort || ""
@@ -62,6 +71,8 @@ export default async function SearchPage({ searchParams, params }: Props) {
   // Always search — empty query returns popular/all products
   try {
     const filters: string[] = []
+    // Tag-based filtering (Deals, Hot, Flash Sale etc from VEVOR feed)
+    if (activeTag) filters.push(`promo_tags = "${activeTag}"`)
     // Clearance: auto-filter under 50€
     if (currentSort === "clearance" && !max) filters.push("price <= 50")
     if (min) filters.push(`price >= ${parseFloat(min)}`)
@@ -139,14 +150,14 @@ export default async function SearchPage({ searchParams, params }: Props) {
         <nav className="text-xs text-[#888] mb-4">
           <Link href={`/${locale}`} className="hover:text-[#D97706]">Home</Link>
           <span className="mx-1.5">&gt;</span>
-          <span className="text-[#1E293B]">{SORT_TITLES[currentSort] || "Search Results"}</span>
+          <span className="text-[#1E293B]">{TAG_TITLES[activeTag] || SORT_TITLES[currentSort] || "Search Results"}</span>
         </nav>
 
-        {/* Page title — sort-based landing page or search query */}
-        {(query || SORT_TITLES[currentSort]) && (
+        {/* Page title — tag/sort landing page or search query */}
+        {(query || TAG_TITLES[activeTag] || SORT_TITLES[currentSort]) && (
           <div className="mb-5">
             <h1 className="text-2xl font-bold text-[#1E293B]">
-              {SORT_TITLES[currentSort] || `Search for "${query}"`}
+              {TAG_TITLES[activeTag] || SORT_TITLES[currentSort] || `Search for "${query}"`}
             </h1>
             <p className="text-sm text-[#64748B] mt-1">
               <span className="font-semibold text-[#1E293B]">{totalHits.toLocaleString("en")}</span> {query ? "results" : "products"}
@@ -182,7 +193,7 @@ export default async function SearchPage({ searchParams, params }: Props) {
           </div>
         )}
 
-        {!query && !SORT_TITLES[currentSort] && products.length > 0 && (
+        {!query && !activeTag && !SORT_TITLES[currentSort] && products.length > 0 && (
           <div className="mb-5">
             <h1 className="text-2xl font-bold text-[#1E293B]">Browse All Products</h1>
             <p className="text-sm text-[#64748B] mt-1">
@@ -213,7 +224,7 @@ export default async function SearchPage({ searchParams, params }: Props) {
           </div>
         )}
 
-        {(query || SORT_TITLES[currentSort]) && totalHits > 0 && (
+        {(query || activeTag || SORT_TITLES[currentSort]) && totalHits > 0 && (
           <div className="bg-white rounded-xl p-4 sm:p-6">
             {/* Sort + Results bar */}
             <div className="flex items-center justify-between mb-4">
