@@ -60,12 +60,12 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
   // These are the main handles from VEVOR taxonomy that map to browseable categories
   const HOMEPAGE_CATEGORIES = [
     "automotive", "tools", "outdoors", "plumbing", "building-materials",
-    "appliances", "kitchen", "flooring", "furniture", "electrical",
-    "sports-outdoors", "industrial-scientific",
+    "appliances", "kitchen", "flooring", "sports-outdoors", "industrial-scientific",
   ]
   const handleSet = new Set(HOMEPAGE_CATEGORIES)
   const topCategories = allCategories
     .filter((c) => !c.parent_category_id && handleSet.has(c.handle))
+    .slice(0, 10)
 
   // Get one product per category for thumbnail
   const categoryData = await Promise.all(
