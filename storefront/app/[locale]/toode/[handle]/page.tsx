@@ -250,20 +250,27 @@ export default async function ProductPage({ params }: Props) {
   // Rich description images stay in the description section, NOT in gallery
   // They are marketing/lifestyle shots sized for inline display, not gallery zoom
 
-  // Clean rich description: remove mobile duplicate images, VEVOR banners, and boilerplate text
-  const richDescription = rawRichDescription
-    ? rawRichDescription
-        // Remove mobile duplicate images (same image with -m. suffix)
-        .replace(/<img[^>]*src=["'][^"']*-m\.[^"']*["'][^>]*\/?>/gi, "")
-        // Remove VEVOR boutique banner images
-        .replace(/<img[^>]*src=["'][^"']*vevor-bmp-prm[^"']*["'][^>]*\/?>/gi, "")
-        .replace(/<img[^>]*src=["'][^"']*boutique-banner[^"']*["'][^>]*\/?>/gi, "")
-        // Remove "Why Choose VEVOR" boilerplate blocks (repeated marketing text)
-        .replace(/<div[^>]*>[\s\S]{0,50}Why Choose VEVOR[\s\S]*?(?=<div[^>]*class|$)/gi, "")
-        // Remove VEVOR company intro blocks
-        .replace(/VEVOR is a leading brand[\s\S]*?global members\./gi, "")
-        .replace(/Along with thousands[\s\S]*?global members\./gi, "")
-    : null
+  // Clean rich description: deduplicate images, remove banners and boilerplate
+  let richDescription: string | null = null
+  if (rawRichDescription) {
+    let cleaned = rawRichDescription
+      // Remove VEVOR boutique banner images
+      .replace(/<img[^>]*src=["'][^"']*vevor-bmp-prm[^"']*["'][^>]*\/?>/gi, "")
+      .replace(/<img[^>]*src=["'][^"']*boutique-banner[^"']*["'][^>]*\/?>/gi, "")
+      // Remove VEVOR company boilerplate
+      .replace(/VEVOR is a leading brand[\s\S]*?global members\./gi, "")
+      .replace(/Along with thousands[\s\S]*?global members\./gi, "")
+
+    // Deduplicate images: keep first occurrence of each URL, remove duplicates
+    const seenImgUrls = new Set<string>()
+    cleaned = cleaned.replace(/<img[^>]*src=["']([^"'>]+)["'][^>]*\/?>/gi, (match, src) => {
+      if (seenImgUrls.has(src)) return "" // duplicate — remove
+      seenImgUrls.add(src)
+      return match // first occurrence — keep
+    })
+
+    richDescription = cleaned
+  }
 
   // Find related products from same domain/category
   const categoryId = product.categories?.[0]?.id
