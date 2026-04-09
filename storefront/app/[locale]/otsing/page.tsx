@@ -120,7 +120,7 @@ export default async function SearchPage({ searchParams, params }: Props) {
   }
 
   return (
-    <div className="bg-[#F8FAFC] min-h-screen">
+    <div className="bg-white min-h-screen">
       <div className="max-w-[1360px] mx-auto px-4 sm:px-6 py-6">
         {/* Breadcrumb */}
         <nav className="text-xs text-[#888] mb-4">

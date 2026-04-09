@@ -17,7 +17,7 @@ export default function CategoryExploreGrid({
   locale: string
 }) {
   return (
-    <section className="max-w-[1360px] mx-auto px-4 py-10">
+    <section className="bg-white py-10 px-4">
       {/* Section heading with amber left accent */}
       <div className="flex items-center gap-3 mb-6">
         <div
@@ -32,7 +32,7 @@ export default function CategoryExploreGrid({
         </h2>
       </div>
 
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div className="max-w-[1360px] mx-auto grid grid-cols-2 md:grid-cols-4 gap-4">
         {categories.map((cat) => {
           const display = cat.displayName || cat.name
           const imgUrl = cat.image ? decodeURIComponent(cat.image) : null
@@ -42,7 +42,7 @@ export default function CategoryExploreGrid({
             <Link
               key={cat.handle}
               href={`/${locale}/kategooriad/${cat.handle}`}
-              className="category-card group flex flex-col rounded-xl border bg-white overflow-hidden"
+              className="category-card group flex flex-col rounded-xl border bg-white overflow-hidden shadow-sm"
               style={{
                 borderColor: "#E2E8F0",
                 transition: "box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease",
