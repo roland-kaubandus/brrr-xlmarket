@@ -73,6 +73,7 @@ export default async function SearchPage({ searchParams, params }: Props) {
     const filters: string[] = []
     // Tag-based filtering (Deals, Hot, Flash Sale etc from VEVOR feed)
     if (activeTag) filters.push(`promo_tags = "${activeTag}"`)
+    // Note: New Arrivals uses sort=newest which sorts by created_at:desc
     // Clearance: auto-filter under 50€
     if (currentSort === "clearance" && !max) filters.push("price <= 50")
     if (min) filters.push(`price >= ${parseFloat(min)}`)
