@@ -6,7 +6,7 @@ import type { CategoryNode } from "@/components/MegaMenu"
 
 const getNavLinks = (locale: string) => [
   { label: "Deals", href: `/${locale}/otsing?sort=deals` },
-  { label: "New", href: `/${locale}/otsing?sort=new` },
+  { label: "New", href: `/${locale}/otsing?sort=newest` },
   { label: "Best Sellers", href: `/${locale}/otsing?sort=best` },
   { label: "Clearance", href: `/${locale}/otsing?sort=clearance` },
   { label: "About Us", href: `/${locale}/meist` },

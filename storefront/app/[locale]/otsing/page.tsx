@@ -32,6 +32,16 @@ const SORT_MAP: Record<string, string[]> = {
   price_asc: ["price:asc"],
   price_desc: ["price:desc"],
   newest: ["created_at:desc"],
+  deals: ["price:asc"],
+  best: ["price:desc"],
+  clearance: ["price:asc"],
+}
+
+const SORT_TITLES: Record<string, string> = {
+  deals: "Deals — Best Prices",
+  newest: "New Arrivals",
+  best: "Best Sellers",
+  clearance: "Clearance — Under 50€",
 }
 
 export default async function SearchPage({ searchParams, params }: Props) {
@@ -52,6 +62,8 @@ export default async function SearchPage({ searchParams, params }: Props) {
   // Always search — empty query returns popular/all products
   try {
     const filters: string[] = []
+    // Clearance: auto-filter under 50€
+    if (currentSort === "clearance" && !max) filters.push("price <= 50")
     if (min) filters.push(`price >= ${parseFloat(min)}`)
     if (max) filters.push(`price <= ${parseFloat(max)}`)
     if (inStock) filters.push(`in_stock = true`)
@@ -127,17 +139,17 @@ export default async function SearchPage({ searchParams, params }: Props) {
         <nav className="text-xs text-[#888] mb-4">
           <Link href={`/${locale}`} className="hover:text-[#D97706]">Home</Link>
           <span className="mx-1.5">&gt;</span>
-          <span className="text-[#1E293B]">Search Results</span>
+          <span className="text-[#1E293B]">{SORT_TITLES[currentSort] || "Search Results"}</span>
         </nav>
 
-        {/* Page title */}
-        {query && (
+        {/* Page title — sort-based landing page or search query */}
+        {(query || SORT_TITLES[currentSort]) && (
           <div className="mb-5">
             <h1 className="text-2xl font-bold text-[#1E293B]">
-              Search for &quot;{query}&quot;
+              {SORT_TITLES[currentSort] || `Search for "${query}"`}
             </h1>
             <p className="text-sm text-[#64748B] mt-1">
-              <span className="font-semibold text-[#1E293B]">{totalHits.toLocaleString("en")}+</span> Results
+              <span className="font-semibold text-[#1E293B]">{totalHits.toLocaleString("en")}</span> {query ? "results" : "products"}
             </p>
           </div>
         )}
@@ -170,7 +182,7 @@ export default async function SearchPage({ searchParams, params }: Props) {
           </div>
         )}
 
-        {!query && products.length > 0 && (
+        {!query && !SORT_TITLES[currentSort] && products.length > 0 && (
           <div className="mb-5">
             <h1 className="text-2xl font-bold text-[#1E293B]">Browse All Products</h1>
             <p className="text-sm text-[#64748B] mt-1">
@@ -201,12 +213,12 @@ export default async function SearchPage({ searchParams, params }: Props) {
           </div>
         )}
 
-        {query && totalHits > 0 && (
+        {(query || SORT_TITLES[currentSort]) && totalHits > 0 && (
           <div className="bg-white rounded-xl p-4 sm:p-6">
             {/* Sort + Results bar */}
             <div className="flex items-center justify-between mb-4">
               <p className="text-sm text-[#555]">
-                <span className="font-semibold text-[#1E293B]">{totalHits.toLocaleString("en")}</span> results for &quot;{query}&quot;
+                <span className="font-semibold text-[#1E293B]">{totalHits.toLocaleString("en")}</span> {query ? `results for "${query}"` : "products"}
               </p>
             </div>
 
