@@ -96,29 +96,29 @@ export default function VevorProductCard({ product, locale }: { product: Product
   const freeShipping = price && price.calculated_amount >= 9900
 
   return (
-    <article className="bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow duration-300 relative group">
+    <article className="bg-white rounded-xl overflow-hidden border border-transparent hover:border-[#E2E8F0] hover:shadow-[0_4px_20px_rgba(0,0,0,0.06)] transition-all duration-300 relative group">
       <Link href={`/${resolvedLocale}/toode/${product.handle}`} className="block">
         {/* Wishlist heart */}
         <button
           type="button"
           onClick={toggleWishlist}
           aria-label={wishlisted ? "Remove from Wishlist" : "Add to Wishlist"}
-          className="absolute top-2 right-2 z-10 w-8 h-8 rounded-full flex items-center justify-center bg-white/80 hover:bg-white shadow-sm transition-colors"
+          className="absolute top-3 right-3 z-10 w-8 h-8 rounded-full flex items-center justify-center bg-white/90 hover:bg-white shadow-sm opacity-0 group-hover:opacity-100 transition-all duration-200"
         >
-          <svg width="16" height="16" viewBox="0 0 24 24" fill={wishlisted ? "#DC2626" : "none"} stroke={wishlisted ? "#DC2626" : "#666"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill={wishlisted ? "#DC2626" : "none"} stroke={wishlisted ? "#DC2626" : "#94A3B8"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
           </svg>
         </button>
 
         {/* Discount badge */}
         {discount > 0 && (
-          <span className="absolute top-2 left-2 z-10 px-2 py-0.5 bg-[#DC2626] text-white text-xs font-bold rounded">
+          <span className="absolute top-3 left-3 z-10 px-2.5 py-1 bg-[#DC2626] text-white text-[11px] font-bold rounded-md">
             -{discount}%
           </span>
         )}
 
         {/* Product image — 1:1 */}
-        <div className="aspect-square flex items-center justify-center overflow-hidden bg-white p-3">
+        <div className="aspect-square flex items-center justify-center overflow-hidden bg-[#FAFAFA] p-4">
           {thumbnailUrl ? (
             <Image
               src={thumbnailUrl}
@@ -126,33 +126,33 @@ export default function VevorProductCard({ product, locale }: { product: Product
               width={300}
               height={300}
               loading="lazy"
-              className="max-h-full object-contain transition-transform duration-300 group-hover:scale-105"
+              className="max-h-full object-contain transition-transform duration-500 ease-out group-hover:scale-[1.06]"
               sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
             />
           ) : (
-            <div className="flex items-center justify-center h-full text-[#64748B] text-sm">No image</div>
+            <div className="flex items-center justify-center h-full text-[#CBD5E1] text-sm">No image</div>
           )}
         </div>
 
         {/* Product info */}
-        <div className="p-3 pt-2">
-          <h3 className="text-sm text-[#1E293B] line-clamp-2 leading-snug min-h-[2.5em]">
+        <div className="p-3.5 pt-3">
+          <h3 className="text-[13px] text-[#334155] line-clamp-2 leading-snug min-h-[2.5em] group-hover:text-[#1E293B] transition-colors">
             {product.title}
           </h3>
 
           {/* Star rating */}
-          <div className="mt-1">
+          <div className="mt-1.5">
             <Stars rating={rating} productId={product.id} />
           </div>
 
           {/* Price */}
           {price && (
             <div className="mt-2 flex items-baseline gap-2 flex-wrap">
-              <span className="font-bold text-lg text-[#1E293B]">
+              <span className="font-bold text-[17px] text-[#1E293B]">
                 {formatPrice(price.calculated_amount, price.currency_code)}
               </span>
               {discount > 0 && (
-                <span className="text-xs text-[#64748B] line-through">
+                <span className="text-xs text-[#94A3B8] line-through">
                   {formatPrice(price.original_amount, price.currency_code)}
                 </span>
               )}
@@ -160,14 +160,11 @@ export default function VevorProductCard({ product, locale }: { product: Product
           )}
 
           {/* Badges row */}
-          <div className="mt-2 flex items-center gap-3 text-xs">
+          <div className="mt-2 flex items-center gap-2.5 text-[11px]">
             <span className="inline-flex items-center gap-1 text-[#059669]">
               <span className="w-1.5 h-1.5 rounded-full bg-[#059669] inline-block" />
               In Stock
             </span>
-            {freeShipping && (
-              <span className="text-[#D97706] font-medium">Free Shipping</span>
-            )}
           </div>
         </div>
       </Link>
