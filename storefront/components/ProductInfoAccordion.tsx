@@ -14,25 +14,25 @@ function AccordionRow({ item }: { item: AccordionItem }) {
   const [open, setOpen] = useState(false)
   const Icon = item.icon
   return (
-    <div className="border-b border-soft-border last:border-b-0">
+    <div className="border-b border-[#E2E8F0] last:border-b-0">
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
         className="w-full flex items-center gap-2.5 py-3.5 text-left group"
         aria-expanded={open}
       >
-        <Icon size={16} strokeWidth={1.5} className="text-accent shrink-0" />
-        <span className="flex-1 text-sm font-medium font-[family-name:var(--font-outfit)] text-off-black group-hover:text-accent transition-all duration-300">
+        <Icon size={16} strokeWidth={1.5} className="text-[#D97706] shrink-0" />
+        <span className="flex-1 text-sm font-medium text-[#1E293B] group-hover:text-[#D97706] transition-colors duration-200">
           {item.title}
         </span>
         <ChevronDown
           size={16}
           strokeWidth={1.5}
-          className={"text-muted transition-transform duration-300 " + (open ? "rotate-180" : "")}
+          className={"text-[#64748B] transition-transform duration-300 " + (open ? "rotate-180" : "")}
         />
       </button>
       {open && (
-        <div className="pb-4 pl-7 pr-1 text-sm font-[family-name:var(--font-jakarta)] text-muted leading-relaxed">
+        <div className="pb-4 pl-7 pr-1 text-sm text-[#64748B] leading-relaxed">
           {item.content}
         </div>
       )}
@@ -43,59 +43,59 @@ function AccordionRow({ item }: { item: AccordionItem }) {
 export default function ProductInfoAccordion() {
   const items: AccordionItem[] = [
     {
-      id: "tarne",
+      id: "shipping",
       icon: Truck,
-      title: "Tarne ja tarneaeg",
+      title: "Shipping & Delivery",
       content: (
         <div className="flex flex-col gap-1.5">
-          <p><strong className="text-off-black">Tasuta tarne</strong>{" tellimustel alates 50\u20AC."}</p>
-          <p>{"Tarne aeg "}<strong className="text-off-black">{"5\u201315 t\u00F6\u00F6p\u00E4eva"}</strong>{" Eestisse."}</p>
-          <p>{"Saadetakse DPD, Omniva v\u00F5i DHL kaudu. Pakiautomaati saatmine v\u00F5imalik."}</p>
-          <p className="text-muted text-xs mt-1">{"Tellimused t\u00F6\u00F6deldakse 1\u20132 t\u00F6\u00F6p\u00E4eva jooksul."}</p>
+          <p><strong className="text-[#1E293B]">Free shipping</strong> on orders over 50&#8364;.</p>
+          <p>Estimated delivery <strong className="text-[#1E293B]">5&#8211;15 business days</strong> to Estonia.</p>
+          <p>Shipped via DPD, Omniva or DHL. Parcel locker delivery available.</p>
+          <p className="text-[#64748B] text-xs mt-1">Orders are processed within 1&#8211;2 business days.</p>
         </div>
       ),
     },
     {
-      id: "garantii",
+      id: "warranty",
       icon: Shield,
-      title: "Garantii ja kvaliteet",
+      title: "Warranty & Quality",
       content: (
         <div className="flex flex-col gap-1.5">
-          <p><strong className="text-off-black">2-aastane garantii</strong>{" k\u00F5igile toodetele."}</p>
-          <p>{"Garantii katab tootmisdefektid ja materjalivead. Ei kata mehhaanilisi kahjustusi ega v\u00E4\u00E4rkasutust."}</p>
-          <p>{"Garantiin\u00F5ude esitamiseks v\u00F5tke \u00FChendust: "}<a href="mailto:info@xlmarket.eu" className="text-accent underline hover:text-accent-dark">info@xlmarket.eu</a></p>
+          <p><strong className="text-[#1E293B]">2-year warranty</strong> on all products.</p>
+          <p>Warranty covers manufacturing defects and material faults. Does not cover mechanical damage or misuse.</p>
+          <p>To file a warranty claim, contact us at <a href="mailto:info@xlmarket.eu" className="text-[#D97706] underline hover:text-[#B45309]">info@xlmarket.eu</a></p>
         </div>
       ),
     },
     {
-      id: "tagastus",
+      id: "returns",
       icon: RotateCcw,
-      title: "Tagastamine",
+      title: "Returns",
       content: (
         <div className="flex flex-col gap-1.5">
-          <p><strong className="text-off-black">{"14 p\u00E4eva tagastus\u00F5igus"}</strong>{" alates kauba k\u00E4ttesaamisest."}</p>
-          <p>{"Toode peab olema kasutamata, originaalpakendis ja t\u00E4ieliku komplektuuriga."}</p>
-          <p>Tagastuskulud kannab ostja (v.a. defektse toote puhul).</p>
-          <p>{"Raha tagastatakse 14 t\u00F6\u00F6p\u00E4eva jooksul p\u00E4rast kauba k\u00E4ttesaamist."}</p>
+          <p><strong className="text-[#1E293B]">14-day return policy</strong> from the date of delivery.</p>
+          <p>Product must be unused, in original packaging and with all accessories included.</p>
+          <p>Return shipping costs are covered by the buyer (except for defective products).</p>
+          <p>Refunds are processed within 14 business days after receiving the returned item.</p>
         </div>
       ),
     },
     {
-      id: "makse",
+      id: "payment",
       icon: CreditCard,
-      title: "Makseviisid",
+      title: "Payment Methods",
       content: (
         <div className="flex flex-col gap-1.5">
-          <p>{"Aktsepteerime: "}<strong className="text-off-black">{"pangakaart, pangalink, j\u00E4relmaks"}</strong>.</p>
-          <p>{"K\u00F5ik maksed on kr\u00FCpteeritud SSL-sertifikaadiga kaitstud."}</p>
-          <p>{"J\u00E4relmaksu teenust pakub Indivy (0% intress kuni 12 kuud teatud tingimustel)."}</p>
+          <p>We accept: <strong className="text-[#1E293B]">credit/debit card, bank link, buy now pay later</strong>.</p>
+          <p>All payments are encrypted and secured with SSL certificate.</p>
+          <p>Buy now pay later provided by Indivy (0% interest up to 12 months on selected terms).</p>
         </div>
       ),
     },
   ]
 
   return (
-    <div className="mt-6 border border-soft-border rounded-xl px-4">
+    <div className="mt-6 border border-[#E2E8F0] rounded-lg px-4">
       {items.map((item) => (
         <AccordionRow key={item.id} item={item} />
       ))}

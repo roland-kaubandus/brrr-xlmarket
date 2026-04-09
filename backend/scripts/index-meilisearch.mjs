@@ -24,13 +24,13 @@ async function configureIndex() {
   try { await meili("/indexes", "POST", { uid: INDEX, primaryKey: "id" }) } catch {}
   // All settings in one call
   await meili("/indexes/" + INDEX + "/settings", "PATCH", {
-    searchableAttributes: ["title", "description", "categories", "sku", "handle"],
-    filterableAttributes: ["categories", "category_handles", "price", "in_stock", "translated"],
-    sortableAttributes: ["price", "created_at", "title"],
+    searchableAttributes: ["title_et", "title_en", "description_et", "description_en", "categories", "sku", "handle"],
+    filterableAttributes: ["categories", "category_handles", "subcategory", "price", "in_stock", "translated"],
+    sortableAttributes: ["price", "created_at", "title_en"],
     displayedAttributes: ["*"],
     rankingRules: ["words", "typo", "proximity", "attribute", "sort", "exactness"],
     typoTolerance: { enabled: true, minWordSizeForTypos: { oneTypo: 4, twoTypos: 8 } },
-    faceting: { maxValuesPerFacet: 100 },
+    faceting: { maxValuesPerFacet: 500 },
     pagination: { maxTotalHits: 5000 },
   })
   console.log("✅ Seaded konfigureeritud")
@@ -58,18 +58,49 @@ async function fetchProducts(client) {
   return rows
 }
 
+function slugify(str) {
+  return str.toLowerCase().trim().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
+}
+
 function transform(row) {
   const meta = row.metadata || {}
+  const categoryHandles = [...(row.category_handles || [])]
+  
+  // Extract ALL levels from vevor_product_type and add as category_handles
+  const productType = meta.vevor_product_type || ''
+  const parts = productType.split('>').map(s => s.trim()).filter(Boolean)
+  let subcategory = ''
+  for (let i = 0; i < parts.length; i++) {
+    const slug = slugify(parts[i])
+    if (slug && !categoryHandles.includes(slug)) categoryHandles.push(slug)
+    if (i === 1) subcategory = parts[i]
+  }
+  
+  const cleanDesc = (row.description || '').replace(/<[^>]*>/g, ' ').slice(0, 2000)
+
+  // title_en = always the original English title
+  // title_et = Estonian translation (stored in metadata after translate scripts run)
+  const title_en = meta.original_title || (meta.translated ? '' : row.title) || ''
+  const title_et = meta.translated ? (meta.title_et || row.title) : (meta.title_et || '')
+  const description_en = meta.original_description || (meta.translated ? '' : cleanDesc) || ''
+  const description_et = meta.translated ? (meta.description_et || cleanDesc) : (meta.description_et || '')
+
   return {
     id: row.id,
-    title: row.title || "",
-    handle: row.handle || "",
-    description: (row.description || "").replace(/<[^>]*>/g, " ").slice(0, 2000),
-    thumbnail: row.thumbnail || "",
-    sku: row.sku || "",
+    title: row.title || '',        // display field (current active title)
+    title_en,                       // search: English
+    title_et,                       // search: Estonian
+    // future: title_ru, title_fi — same pattern
+    handle: row.handle || '',
+    description: cleanDesc,
+    description_en,
+    description_et,
+    thumbnail: row.thumbnail || '',
+    sku: row.sku || '',
     price: row.price_cents ? Math.round(row.price_cents) / 100 : 0,
     categories: row.categories || [],
-    category_handles: row.category_handles || [],
+    category_handles: categoryHandles,
+    subcategory: subcategory,
     in_stock: true,
     translated: meta.translated === true,
     created_at: Math.floor(new Date(row.created_at).getTime() / 1000),

@@ -9,12 +9,12 @@ export async function POST() {
       body: JSON.stringify({ region_id: REGION_ID }),
     })
     if (!res.ok) {
-      return NextResponse.json({ error: "Ostukorvi loomine ebaõnnestus" }, { status: res.status })
+      return NextResponse.json({ error: "Failed to create cart" }, { status: res.status })
     }
     const data = await res.json()
     return NextResponse.json(data, { status: res.status })
   } catch {
-    return NextResponse.json({ error: "Serveriga ühenduse loomine ebaõnnestus" }, { status: 503 })
+    return NextResponse.json({ error: "Failed to connect to server" }, { status: 503 })
   }
 }
 

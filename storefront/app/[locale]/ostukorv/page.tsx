@@ -55,7 +55,7 @@ export default function CartPage() {
         localStorage.setItem("xlmarket_cart_count", String(cnt))
       }
     } catch {
-      setError("Ostukorvi laadimine ebaõnnestus")
+      setError("Failed to load cart")
     } finally {
       setLoading(false)
     }
@@ -77,10 +77,10 @@ export default function CartPage() {
         const data = await res.json()
         setCart(data.cart)
       } else {
-        setError("Koguse uuendamine ebaõnnestus")
+        setError("Failed to update quantity")
       }
     } catch {
-      setError("Koguse uuendamine ebaõnnestus")
+      setError("Failed to update quantity")
     } finally {
       setUpdating(null)
     }
@@ -99,10 +99,10 @@ export default function CartPage() {
         const data = await res.json()
         setCart(data.cart)
       } else {
-        setError("Toote eemaldamine ebaõnnestus")
+        setError("Failed to remove item")
       }
     } catch {
-      setError("Toote eemaldamine ebaõnnestus")
+      setError("Failed to remove item")
     } finally {
       setUpdating(null)
     }
@@ -110,9 +110,11 @@ export default function CartPage() {
 
   if (loading) {
     return (
-      <div className="max-w-[1280px] mx-auto px-[16px] sm:px-[24px] py-[48px]">
-        <div className="flex items-center justify-center py-[80px]">
-          <div className="w-[32px] h-[32px] border-2 border-[#E8E8E8] border-t-[#E8650A] rounded-full animate-spin" />
+      <div className="min-h-screen bg-white">
+        <div className="max-w-[1360px] mx-auto px-4 sm:px-6 py-12">
+          <div className="flex items-center justify-center py-20">
+            <div className="w-8 h-8 border-2 border-[#E2E8F0] border-t-[#D97706] rounded-full animate-spin" />
+          </div>
         </div>
       </div>
     )
@@ -120,230 +122,303 @@ export default function CartPage() {
 
   const items = cart?.items ?? []
   const isEmpty = items.length === 0
-  const FREE_SHIPPING_THRESHOLD = 5000 // €50 in cents
+  const FREE_SHIPPING_THRESHOLD = 9900 // 99 EUR in cents
   const toFreeShipping = cart ? Math.max(0, FREE_SHIPPING_THRESHOLD - (cart.subtotal || cart.item_total || 0)) : FREE_SHIPPING_THRESHOLD
   const shippingProgress = cart ? Math.min(100, ((cart.subtotal || cart.item_total || 0) / FREE_SHIPPING_THRESHOLD) * 100) : 0
 
   return (
-    <div className="max-w-[1280px] mx-auto px-[16px] sm:px-[24px] py-[32px] sm:py-[48px]">
-      {/* Breadcrumb */}
-      <nav className="text-[12px] font-[family-name:var(--font-jakarta)] text-[#999999] mb-[28px]" aria-label="Leheasukoht">
-        <Link href={`/${locale}`} className="hover:text-[#E8650A]">Avaleht</Link>
-        <span className="mx-[8px] text-[#E8E8E8]">/</span>
-        <span className="text-[#777777]">Ostukorv</span>
-      </nav>
+    <div className="min-h-screen bg-white">
+      <div className="max-w-[1360px] mx-auto px-4 sm:px-6 py-8 sm:py-12">
+        {/* Breadcrumb */}
+        <nav className="text-[12px] text-[#64748B] mb-7" aria-label="Breadcrumb">
+          <Link href={`/${locale}`} className="hover:text-[#D97706] transition-colors">Home</Link>
+          <span className="mx-2 text-[#E2E8F0]">/</span>
+          <span className="text-[#1E293B] font-medium">Cart</span>
+        </nav>
 
-      <div className="flex items-center gap-[12px] mb-[32px]">
-        <ShoppingCart size={24} strokeWidth={1.5} className="text-[#E8650A]" />
-        <h1 className="text-[28px] font-[700] font-[family-name:var(--font-poppins)] text-[#1A1A1A]">
-          Ostukorv
-        </h1>
-        {!isEmpty && (
-          <span className="text-[16px] font-[400] font-[family-name:var(--font-jakarta)] text-[#999999]">
-            ({items.reduce((s, i) => s + i.quantity, 0)} toodet)
-          </span>
-        )}
-      </div>
-
-      {error && (
-        <div className="mb-[16px] px-[14px] py-[10px] bg-red-50 border border-red-200 text-red-700 text-[13px] font-[family-name:var(--font-jakarta)]" role="alert">
-          {error}
-        </div>
-      )}
-
-      {isEmpty ? (
-        <div className="flex flex-col items-center justify-center py-[80px] text-center border border-[#E8E8E8] bg-[#FAFAFA]">
-          <ShoppingCart size={56} strokeWidth={1} className="text-[#E8E8E8] mb-[20px]" />
-          <p className="text-[18px] font-[600] font-[family-name:var(--font-poppins)] text-[#1A1A1A] mb-[6px]">
-            Ostukorv on tühi
-          </p>
-          <p className="text-[14px] font-[family-name:var(--font-jakarta)] text-[#999999] mb-[28px]">
-            Lisa tooteid, et alustada ostlemist
-          </p>
-          <Link
-            href={`/${locale}/kategooriad`}
-            className="inline-flex items-center gap-[8px] px-[24px] py-[12px] bg-[#E8650A] text-white text-[14px] font-[600] font-[family-name:var(--font-poppins)] hover:bg-[#CF5A08] transition-colors"
-          >
-            Vaata tooteid
-            <ArrowRight size={16} strokeWidth={1.5} />
-          </Link>
-        </div>
-      ) : (
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-[24px] lg:gap-[32px]">
-          {/* Items list */}
-          <div className="lg:col-span-2 flex flex-col gap-[12px]">
-            {/* Free shipping progress */}
-            {toFreeShipping > 0 && (
-              <div className="flex flex-col gap-[8px] p-[14px] bg-[#FFF5EE] border border-[#E8650A]/15 mb-[4px]">
-                <div className="flex items-center gap-[6px]">
-                  <Truck size={14} strokeWidth={1.5} className="text-[#E8650A] shrink-0" />
-                  <span className="text-[13px] font-[family-name:var(--font-jakarta)] text-[#555555]">
-                    Lisa veel <strong className="text-[#E8650A]">{formatPrice(toFreeShipping, cart?.currency_code ?? "EUR")}</strong> tasuta tarne saamiseks
-                  </span>
-                </div>
-                <div className="h-[4px] bg-[#E8E8E8] rounded-full overflow-hidden">
-                  <div
-                    className="h-full bg-[#E8650A] rounded-full transition-all duration-[500ms]"
-                    style={{ width: shippingProgress + "%" }}
-                  />
-                </div>
-              </div>
-            )}
-            {toFreeShipping === 0 && (
-              <div className="flex items-center gap-[8px] p-[12px] bg-green-50 border border-green-200 mb-[4px]">
-                <Truck size={14} strokeWidth={1.5} className="text-green-600 shrink-0" />
-                <span className="text-[13px] font-[family-name:var(--font-jakarta)] text-green-700">
-                  Tasuta tarne on lisatud!
-                </span>
-              </div>
-            )}
-
-            {items.map((item) => (
-              <div
-                key={item.id}
-                className={"flex gap-[14px] p-[14px] bg-white border border-[#E8E8E8] transition-opacity " + (updating === item.id ? "opacity-50" : "")}
-              >
-                {/* Thumbnail */}
-                <Link href={`/${locale}/toode/${item.variant?.product?.handle ?? ""}`} className="shrink-0">
-                  <div className="w-[80px] h-[80px] sm:w-[96px] sm:h-[96px] bg-[#F7F7F7] rounded-[4px] border border-[#E8E8E8] overflow-hidden">
-                    {item.variant?.product?.thumbnail ? (
-                      <Image
-                        src={item.variant.product.thumbnail}
-                        alt={item.variant?.product?.title ?? item.title}
-                        width={96}
-                        height={96}
-                        className="w-full h-full object-contain p-[6px]"
-                      />
-                    ) : null}
-                  </div>
-                </Link>
-
-                {/* Details */}
-                <div className="flex-1 min-w-0">
-                  <Link href={`/${locale}/toode/${item.variant?.product?.handle ?? ""}`}>
-                    <p className="text-[13px] sm:text-[14px] font-[500] font-[family-name:var(--font-poppins)] text-[#1A1A1A] hover:text-[#E8650A] line-clamp-2 leading-[1.4] mb-[4px] transition-colors">
-                      {item.variant?.product?.title ?? item.title}
-                    </p>
-                  </Link>
-                  <p className="text-[15px] font-[700] font-[family-name:var(--font-poppins)] text-[#E8650A] mb-[10px]">
-                    {cart && formatPrice(item.unit_price, cart.currency_code)}
-                  </p>
-
-                  <div className="flex items-center justify-between">
-                    {/* Quantity */}
-                    <div className="flex items-center border border-[#E8E8E8] overflow-hidden">
-                      <button
-                        onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                        disabled={!!updating}
-                        className="w-[32px] h-[32px] flex items-center justify-center hover:bg-[#F7F7F7] text-[#555555] disabled:text-[#CCCCCC] transition-colors"
-                        aria-label="Vähenda"
-                      >
-                        <Minus size={14} strokeWidth={2} />
-                      </button>
-                      <span className="w-[36px] text-center text-[13px] font-[500] font-[family-name:var(--font-jakarta)] border-x border-[#E8E8E8]">
-                        {item.quantity}
-                      </span>
-                      <button
-                        onClick={() => updateQuantity(item.id, Math.min(99, item.quantity + 1))}
-                        disabled={!!updating || item.quantity >= 99}
-                        className="w-[32px] h-[32px] flex items-center justify-center hover:bg-[#F7F7F7] text-[#555555] disabled:text-[#CCCCCC] transition-colors"
-                        aria-label="Suurenda"
-                      >
-                        <Plus size={14} strokeWidth={2} />
-                      </button>
-                    </div>
-
-                    <button
-                      onClick={() => removeItem(item.id)}
-                      disabled={!!updating}
-                      className="flex items-center gap-[4px] text-[12px] font-[family-name:var(--font-jakarta)] text-[#CCCCCC] hover:text-red-400 disabled:opacity-40 transition-colors"
-                      aria-label={"Eemalda " + (item.variant?.product?.title ?? item.title)}
-                    >
-                      <Trash2 size={14} strokeWidth={1.5} />
-                      Eemalda
-                    </button>
-                  </div>
-                </div>
-
-                {/* Line total */}
-                <div className="shrink-0 text-right hidden sm:block">
-                  <p className="text-[15px] font-[700] font-[family-name:var(--font-poppins)] text-[#1A1A1A]">
-                    {cart && formatPrice(item.total, cart.currency_code)}
-                  </p>
-                  <p className="text-[11px] text-[#999999] font-[family-name:var(--font-jakarta)] mt-[2px]">
-                    {item.quantity} × {cart && formatPrice(item.unit_price, cart.currency_code)}
-                  </p>
-                </div>
-              </div>
-            ))}
-
-            <Link
-              href={`/${locale}/kategooriad`}
-              className="inline-flex items-center gap-[6px] text-[13px] font-[500] font-[family-name:var(--font-poppins)] text-[#E8650A] hover:text-[#CF5A08] mt-[4px] self-start transition-colors"
-            >
-              ← Jätka ostlemist
-            </Link>
-          </div>
-
-          {/* Order summary */}
-          {cart && (
-            <div className="lg:col-span-1">
-              <div className="bg-white border border-[#E8E8E8] p-[20px] sticky top-[80px]">
-                <h2 className="text-[17px] font-[600] font-[family-name:var(--font-poppins)] text-[#1A1A1A] mb-[18px]">
-                  Kokkuvõte
-                </h2>
-
-                <div className="flex flex-col gap-[10px] mb-[16px]">
-                  <div className="flex items-center justify-between">
-                    <span className="text-[13px] font-[family-name:var(--font-jakarta)] text-[#555555]">Vahesumma</span>
-                    <span className="text-[13px] font-[family-name:var(--font-jakarta)] text-[#1A1A1A]">
-                      {formatPrice(cart.subtotal ?? cart.item_total, cart.currency_code)}
-                    </span>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-[13px] font-[family-name:var(--font-jakarta)] text-[#555555]">Tarne</span>
-                    <span className="text-[13px] font-[family-name:var(--font-jakarta)] text-[toFreeShipping === 0 ? 'green-600' : '#1A1A1A']">
-                      {toFreeShipping === 0 ? "Tasuta" : "Arvutatakse tellimisel"}
-                    </span>
-                  </div>
-                  {cart.tax_total > 0 && (
-                    <div className="flex items-center justify-between">
-                      <span className="text-[13px] font-[family-name:var(--font-jakarta)] text-[#555555]">KM (20%)</span>
-                      <span className="text-[13px] font-[family-name:var(--font-jakarta)] text-[#1A1A1A]">
-                        {formatPrice(cart.tax_total, cart.currency_code)}
-                      </span>
-                    </div>
-                  )}
-                </div>
-
-                <div className="border-t border-[#E8E8E8] pt-[14px] mb-[20px]">
-                  <div className="flex items-center justify-between">
-                    <span className="text-[15px] font-[600] font-[family-name:var(--font-poppins)] text-[#1A1A1A]">Kokku</span>
-                    <span className="text-[20px] font-[700] font-[family-name:var(--font-poppins)] text-[#E8650A]">
-                      {formatPrice(cart.total, cart.currency_code)}
-                    </span>
-                  </div>
-                  <p className="text-[11px] text-[#999999] font-[family-name:var(--font-jakarta)] mt-[4px]">
-                    Sisaldab KM-i
-                  </p>
-                </div>
-
-                <Link
-                  href={`/${locale}/tellimus`}
-                  className="block w-full text-center py-[14px] bg-[#E8650A] text-white text-[15px] font-[600] font-[family-name:var(--font-poppins)] hover:bg-[#CF5A08] transition-colors"
-                  style={{ boxShadow: "0 4px 16px rgba(232,101,10,0.25)" }}
-                >
-                  Vormista tellimus
-                </Link>
-
-                <p className="text-[11px] text-[#999999] font-[family-name:var(--font-jakarta)] text-center mt-[10px]">
-                  Turvaline makse · SSL krüpteeritud
-                </p>
-              </div>
-            </div>
+        <div className="flex items-center gap-3 mb-8">
+          <h1 className="text-[28px] font-bold text-[#1E293B]">
+            Shopping Cart
+          </h1>
+          {!isEmpty && (
+            <span className="text-base text-[#64748B]">
+              ({items.reduce((s, i) => s + i.quantity, 0)} items)
+            </span>
           )}
         </div>
-      )}
+
+        {error && (
+          <div className="mb-4 px-4 py-3 bg-red-50 border border-red-200 rounded-lg text-[#DC2626] text-[13px]" role="alert">
+            {error}
+          </div>
+        )}
+
+        {isEmpty ? (
+          <div className="flex flex-col items-center justify-center py-20 text-center bg-white border border-[#E2E8F0] rounded-lg">
+            <ShoppingCart size={56} strokeWidth={1} className="text-[#E2E8F0] mb-5" />
+            <p className="text-lg font-semibold text-[#1E293B] mb-1.5">
+              Your cart is empty
+            </p>
+            <p className="text-[14px] text-[#64748B] mb-7">
+              Add products to start shopping
+            </p>
+            <Link
+              href={`/${locale}/kategooriad`}
+              className="inline-flex items-center gap-2 px-6 py-3 bg-[#D97706] text-white text-[14px] font-semibold rounded-lg hover:bg-[#B45309] transition-colors"
+            >
+              Browse Products
+              <ArrowRight size={16} strokeWidth={1.5} />
+            </Link>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
+            {/* Items list */}
+            <div className="lg:col-span-2 flex flex-col gap-3">
+              {/* Free shipping progress */}
+              {toFreeShipping > 0 && (
+                <div className="flex flex-col gap-2 p-4 bg-[#FFFBEB] border border-[#D97706]/15 rounded-lg mb-1">
+                  <div className="flex items-center gap-1.5">
+                    <Truck size={14} strokeWidth={1.5} className="text-[#D97706] shrink-0" />
+                    <span className="text-[13px] text-[#64748B]">
+                      Add <strong className="text-[#D97706]">{formatPrice(toFreeShipping, cart?.currency_code ?? "EUR")}</strong> more for free shipping
+                    </span>
+                  </div>
+                  <div className="h-1 bg-[#E2E8F0] rounded-full overflow-hidden">
+                    <div
+                      className="h-full bg-[#D97706] rounded-full transition-all duration-500"
+                      style={{ width: shippingProgress + "%" }}
+                    />
+                  </div>
+                </div>
+              )}
+              {toFreeShipping === 0 && (
+                <div className="flex items-center gap-2 p-3 bg-green-50 border border-green-200 rounded-lg mb-1">
+                  <Truck size={14} strokeWidth={1.5} className="text-[#059669] shrink-0" />
+                  <span className="text-[13px] text-green-700">
+                    Free shipping applied!
+                  </span>
+                </div>
+              )}
+
+              {/* Table header (desktop) */}
+              <div className="hidden sm:grid grid-cols-[1fr_100px_140px_100px_40px] gap-4 px-4 py-3 bg-white border border-[#E2E8F0] rounded-lg text-[12px] font-semibold text-[#64748B] uppercase tracking-wide">
+                <span>Product</span>
+                <span className="text-center">Price</span>
+                <span className="text-center">Quantity</span>
+                <span className="text-right">Total</span>
+                <span></span>
+              </div>
+
+              {items.map((item) => (
+                <div
+                  key={item.id}
+                  className={"bg-white border border-[#E2E8F0] rounded-lg p-4 transition-opacity " + (updating === item.id ? "opacity-50" : "")}
+                >
+                  {/* Desktop: table row */}
+                  <div className="hidden sm:grid grid-cols-[1fr_100px_140px_100px_40px] gap-4 items-center">
+                    {/* Product */}
+                    <div className="flex gap-3 items-center min-w-0">
+                      <Link href={`/${locale}/toode/${item.variant?.product?.handle ?? ""}`} className="shrink-0">
+                        <div className="w-[60px] h-[60px] bg-[#F7F7F7] rounded-lg border border-[#E2E8F0] overflow-hidden">
+                          {item.variant?.product?.thumbnail ? (
+                            <Image
+                              src={item.variant.product.thumbnail}
+                              alt={item.variant?.product?.title ?? item.title}
+                              width={60}
+                              height={60}
+                              className="w-full h-full object-contain p-1"
+                            />
+                          ) : null}
+                        </div>
+                      </Link>
+                      <Link href={`/${locale}/toode/${item.variant?.product?.handle ?? ""}`} className="min-w-0">
+                        <p className="text-[13px] font-medium text-[#1E293B] hover:text-[#D97706] line-clamp-2 leading-[1.4] transition-colors">
+                          {item.variant?.product?.title ?? item.title}
+                        </p>
+                      </Link>
+                    </div>
+
+                    {/* Unit price */}
+                    <div className="text-center">
+                      <span className="text-[14px] font-semibold text-[#1E293B]">
+                        {cart && formatPrice(item.unit_price, cart.currency_code)}
+                      </span>
+                    </div>
+
+                    {/* Quantity controls */}
+                    <div className="flex justify-center">
+                      <div className="inline-flex items-center border border-[#E2E8F0] rounded-lg overflow-hidden">
+                        <button
+                          onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                          disabled={!!updating}
+                          className="w-8 h-8 flex items-center justify-center hover:bg-[#F8FAFC] text-[#64748B] disabled:text-[#CCCCCC] transition-colors"
+                          aria-label="Decrease"
+                        >
+                          <Minus size={14} strokeWidth={2} />
+                        </button>
+                        <span className="w-10 text-center text-[13px] font-medium border-x border-[#E2E8F0]">
+                          {item.quantity}
+                        </span>
+                        <button
+                          onClick={() => updateQuantity(item.id, Math.min(99, item.quantity + 1))}
+                          disabled={!!updating || item.quantity >= 99}
+                          className="w-8 h-8 flex items-center justify-center hover:bg-[#F8FAFC] text-[#64748B] disabled:text-[#CCCCCC] transition-colors"
+                          aria-label="Increase"
+                        >
+                          <Plus size={14} strokeWidth={2} />
+                        </button>
+                      </div>
+                    </div>
+
+                    {/* Line total */}
+                    <div className="text-right">
+                      <span className="text-[15px] font-bold text-[#1E293B]">
+                        {cart && formatPrice(item.total, cart.currency_code)}
+                      </span>
+                    </div>
+
+                    {/* Delete */}
+                    <div className="flex justify-center">
+                      <button
+                        onClick={() => removeItem(item.id)}
+                        disabled={!!updating}
+                        className="w-8 h-8 flex items-center justify-center text-[#CCCCCC] hover:text-[#DC2626] disabled:opacity-40 transition-colors rounded-lg hover:bg-red-50"
+                        aria-label={"Remove " + (item.variant?.product?.title ?? item.title)}
+                      >
+                        <Trash2 size={16} strokeWidth={1.5} />
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Mobile: stacked layout */}
+                  <div className="flex sm:hidden gap-3">
+                    <Link href={`/${locale}/toode/${item.variant?.product?.handle ?? ""}`} className="shrink-0">
+                      <div className="w-[72px] h-[72px] bg-[#F7F7F7] rounded-lg border border-[#E2E8F0] overflow-hidden">
+                        {item.variant?.product?.thumbnail ? (
+                          <Image
+                            src={item.variant.product.thumbnail}
+                            alt={item.variant?.product?.title ?? item.title}
+                            width={72}
+                            height={72}
+                            className="w-full h-full object-contain p-1.5"
+                          />
+                        ) : null}
+                      </div>
+                    </Link>
+                    <div className="flex-1 min-w-0">
+                      <Link href={`/${locale}/toode/${item.variant?.product?.handle ?? ""}`}>
+                        <p className="text-[13px] font-medium text-[#1E293B] hover:text-[#D97706] line-clamp-2 leading-[1.4] mb-1 transition-colors">
+                          {item.variant?.product?.title ?? item.title}
+                        </p>
+                      </Link>
+                      <p className="text-[15px] font-bold text-[#D97706] mb-2.5">
+                        {cart && formatPrice(item.total, cart.currency_code)}
+                      </p>
+                      <div className="flex items-center justify-between">
+                        <div className="inline-flex items-center border border-[#E2E8F0] rounded-lg overflow-hidden">
+                          <button
+                            onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                            disabled={!!updating}
+                            className="w-8 h-8 flex items-center justify-center hover:bg-[#F8FAFC] text-[#64748B] disabled:text-[#CCCCCC] transition-colors"
+                            aria-label="Decrease"
+                          >
+                            <Minus size={14} strokeWidth={2} />
+                          </button>
+                          <span className="w-9 text-center text-[13px] font-medium border-x border-[#E2E8F0]">
+                            {item.quantity}
+                          </span>
+                          <button
+                            onClick={() => updateQuantity(item.id, Math.min(99, item.quantity + 1))}
+                            disabled={!!updating || item.quantity >= 99}
+                            className="w-8 h-8 flex items-center justify-center hover:bg-[#F8FAFC] text-[#64748B] disabled:text-[#CCCCCC] transition-colors"
+                            aria-label="Increase"
+                          >
+                            <Plus size={14} strokeWidth={2} />
+                          </button>
+                        </div>
+                        <button
+                          onClick={() => removeItem(item.id)}
+                          disabled={!!updating}
+                          className="flex items-center gap-1 text-[12px] text-[#CCCCCC] hover:text-[#DC2626] disabled:opacity-40 transition-colors"
+                          aria-label={"Remove " + (item.variant?.product?.title ?? item.title)}
+                        >
+                          <Trash2 size={14} strokeWidth={1.5} />
+                          Remove
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+
+              <Link
+                href={`/${locale}/kategooriad`}
+                className="inline-flex items-center gap-1.5 text-[13px] font-medium text-[#D97706] hover:text-[#B45309] mt-1 self-start transition-colors"
+              >
+                ← Continue Shopping
+              </Link>
+            </div>
+
+            {/* Order summary */}
+            {cart && (
+              <div className="lg:col-span-1">
+                <div className="bg-white border border-[#E2E8F0] rounded-lg p-5 sticky top-20">
+                  <h2 className="text-[17px] font-semibold text-[#1E293B] mb-5">
+                    Order Summary
+                  </h2>
+
+                  <div className="flex flex-col gap-2.5 mb-4">
+                    <div className="flex items-center justify-between">
+                      <span className="text-[13px] text-[#64748B]">Subtotal</span>
+                      <span className="text-[13px] text-[#1E293B]">
+                        {formatPrice(cart.subtotal ?? cart.item_total, cart.currency_code)}
+                      </span>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-[13px] text-[#64748B]">Shipping</span>
+                      <span className={`text-[13px] ${toFreeShipping === 0 ? "text-[#059669] font-medium" : "text-[#1E293B]"}`}>
+                        {toFreeShipping === 0 ? "Free" : "Calculated at checkout"}
+                      </span>
+                    </div>
+                    {cart.tax_total > 0 && (
+                      <div className="flex items-center justify-between">
+                        <span className="text-[13px] text-[#64748B]">VAT (22%)</span>
+                        <span className="text-[13px] text-[#1E293B]">
+                          {formatPrice(cart.tax_total, cart.currency_code)}
+                        </span>
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="border-t border-[#E2E8F0] pt-4 mb-5">
+                    <div className="flex items-center justify-between">
+                      <span className="text-[15px] font-semibold text-[#1E293B]">Total</span>
+                      <span className="text-xl font-bold text-[#D97706]">
+                        {formatPrice(cart.total, cart.currency_code)}
+                      </span>
+                    </div>
+                    <p className="text-[11px] text-[#64748B] mt-1">
+                      Includes VAT
+                    </p>
+                  </div>
+
+                  <Link
+                    href={`/${locale}/tellimus`}
+                    className="block w-full text-center py-3.5 bg-[#D97706] text-white text-[15px] font-semibold rounded-lg hover:bg-[#B45309] transition-colors"
+                    style={{ boxShadow: "0 4px 16px rgba(255,106,0,0.25)" }}
+                  >
+                    Proceed to Checkout
+                  </Link>
+
+                  <p className="text-[11px] text-[#64748B] text-center mt-2.5">
+                    Secure payment · SSL encrypted
+                  </p>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+      </div>
     </div>
   )
 }

@@ -60,32 +60,32 @@ export default function StickyBuyBar({ variantId, title, price }: Props) {
     <div
       className="fixed bottom-0 left-0 right-0 z-30 bg-white border-t border-soft-border shadow-[0_-4px_20px_rgba(0,0,0,0.08)]"
     >
-      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 py-3 flex items-center justify-between gap-4">
+      <div className="max-w-[1360px] mx-auto px-4 sm:px-6 py-3 flex items-center justify-between gap-4">
         <div className="hidden sm:flex flex-col min-w-0">
-          <p className="text-sm font-semibold font-[family-name:var(--font-outfit)] text-off-black truncate max-w-[400px]">
+          <p className="text-sm font-semibold text-[#1E293B] truncate max-w-[400px]">
             {title}
           </p>
-          <p className="text-base font-bold font-[family-name:var(--font-outfit)] text-accent">
+          <p className="text-base font-bold text-[#D97706]">
             {price}
           </p>
         </div>
         <div className="flex items-center gap-2.5 ml-auto">
           <a
             href={`/${locale}/ostukorv`}
-            className="px-4 py-2.5 border border-accent text-accent text-sm font-semibold font-[family-name:var(--font-outfit)] hover:bg-accent-light rounded-xl btn-press transition-all duration-300"
+            className="px-4 py-2.5 border border-[#D97706] text-[#D97706] text-sm font-semibold hover:bg-[#FFFBEB] rounded-lg transition-colors duration-200"
           >
-            Ostukorv
+            Cart
           </a>
           <button
             onClick={handleAdd}
             disabled={adding}
             className={
-              "flex items-center gap-2 px-5 py-2.5 text-sm font-semibold font-[family-name:var(--font-outfit)] rounded-xl btn-press transition-all duration-300 disabled:opacity-60 " +
-              (added ? "bg-green-600 text-white" : "bg-accent text-white hover:bg-accent-dark")
+              "flex items-center gap-2 px-5 py-2.5 text-sm font-semibold rounded-lg transition-colors duration-200 disabled:opacity-60 " +
+              (added ? "bg-green-600 text-white" : "bg-[#D97706] text-white hover:bg-[#B45309]")
             }
           >
             <ShoppingCart size={16} strokeWidth={1.5} />
-            {added ? "Lisatud!" : adding ? "Lisamine..." : "Lisa ostukorvi"}
+            {added ? "Added!" : adding ? "Adding..." : "Add to Cart"}
           </button>
         </div>
       </div>

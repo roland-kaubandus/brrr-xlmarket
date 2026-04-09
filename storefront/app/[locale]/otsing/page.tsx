@@ -1,21 +1,27 @@
 import Link from "next/link"
+import { Suspense } from "react"
 import { searchProducts } from "@/lib/meilisearch"
-import ProductCard from "@/components/ProductCard"
 import { getProducts } from "@/lib/medusa"
-import CategoryFilters from "@/components/CategoryFilters"
+import VevorProductCard from "@/components/VevorProductCard"
+import VevorSearchFilters from "@/components/search/VevorSearchFilters"
+import VevorPagination from "@/components/search/VevorPagination"
 
 export const revalidate = 0
 
 type Props = {
-  searchParams: Promise<{ q?: string; leht?: string; sort?: string; min?: string; max?: string }>
+  searchParams: Promise<{
+    q?: string; page?: string; sort?: string; tag?: string
+    min?: string; max?: string; categories?: string; in_stock?: string
+  }>
+  params: Promise<{ locale: string }>
 }
 
 export async function generateMetadata({ searchParams }: Props) {
   const { q } = await searchParams
-  const title = q ? `"${q}" — Otsing — XLMARKET` : "Otsing — XLMARKET"
+  const title = q ? `"${q}" — Search — XLMARKET` : "Search — XLMARKET"
   return {
     title,
-    description: q ? `Otsi "${q}" XLMARKET toodete hulgast.` : "Otsi XLMARKET toodete hulgast.",
+    description: q ? `Search for "${q}" among XLMARKET products.` : "Search XLMARKET products.",
     robots: { index: false, follow: true },
   }
 }
@@ -23,184 +29,256 @@ export async function generateMetadata({ searchParams }: Props) {
 const ITEMS_PER_PAGE = 24
 
 const SORT_MAP: Record<string, string[]> = {
-  odavamad: ["price:asc"],
-  kallimad: ["price:desc"],
-  uusimad: ["created_at:desc"],
+  price_asc: ["price:asc"],
+  price_desc: ["price:desc"],
+  newest: ["created_at:desc"],
+  deals: ["price:asc"],
+  best: ["price:desc"],
+  clearance: ["price:asc"],
 }
 
-export default async function SearchPage({ searchParams, params }: Props & { params: Promise<{ locale: string }> }) {
+const SORT_TITLES: Record<string, string> = {
+  deals: "Deals — Best Prices",
+  newest: "New Arrivals",
+  best: "Best Sellers",
+  clearance: "Clearance — Under 50€",
+}
+
+const TAG_TITLES: Record<string, string> = {
+  deals: "Deals",
+  hot: "Best Sellers",
+  "spring-sale": "Spring Sale",
+  "flash-sale": "Flash Sale — Clearance",
+  promo: "Promotions",
+}
+
+export default async function SearchPage({ searchParams, params }: Props) {
   const { locale } = await params
-  const { q, leht, sort, min, max } = await searchParams
+  const { q, page: pageParam, sort, tag, min, max, categories, in_stock } = await searchParams
   const query = q?.trim() || ""
-  const page = Math.max(1, parseInt(leht || "1", 10) || 1)
+  const activeTag = tag?.trim() || ""
+  const page = Math.max(1, parseInt(pageParam || "1", 10) || 1)
   const offset = (page - 1) * ITEMS_PER_PAGE
   const currentSort = sort || ""
+  const selectedCategories = categories ? categories.split(",").filter(Boolean) : []
+  const inStock = in_stock === "1"
 
   let products: any[] = []
   let totalHits = 0
-  let processingTimeMs = 0
   let usedMeili = false
-  let facetStats: Record<string, { min: number; max: number }> | undefined
+  let categoryFacets: Record<string, number> = {}
 
-  if (query) {
-    try {
-      const filters: string[] = []
-      if (min) filters.push(`price >= ${parseFloat(min)}`)
-      if (max) filters.push(`price <= ${parseFloat(max)}`)
-
-      const meiliResult = await searchProducts({
-        q: query,
-        limit: ITEMS_PER_PAGE,
-        offset,
-        sort: SORT_MAP[currentSort] || undefined,
-        filter: filters.length > 0 ? filters : undefined,
-        facets: ["categories", "price"],
-      })
-      totalHits = meiliResult.totalHits || meiliResult.estimatedTotalHits || 0
-      processingTimeMs = meiliResult.processingTimeMs
-      facetStats = meiliResult.facetStats
-      usedMeili = true
-
-      // Map MeiliSearch hits to Medusa Product format for ProductCard
-      products = meiliResult.hits.map(hit => ({
-        id: hit.id,
-        title: hit.title,
-        handle: hit.handle,
-        description: hit.description,
-        thumbnail: hit.thumbnail,
-        images: [],
-        variants: [{
-          id: hit.id + "_v",
-          title: "Default",
-          calculated_price: {
-            calculated_amount: Math.round(hit.price * 100),
-            original_amount: Math.round(hit.price * 100),
-            currency_code: "eur",
-          },
-        }],
-        categories: hit.categories.map((name: string, i: number) => ({
-          id: `cat_${i}`,
-          name,
-          handle: hit.category_handles?.[i] || "",
-          parent_category_id: null,
-        })),
-        created_at: new Date(hit.created_at * 1000).toISOString(),
-        _highlightTitle: hit._formatted?.title,
-      }))
-    } catch (e) {
-      // Fallback to Medusa API
-      const res = await getProducts({ q: query, limit: ITEMS_PER_PAGE, offset })
-      products = res.products
-      totalHits = res.count
+  // Always search — empty query returns popular/all products
+  try {
+    const filters: string[] = []
+    // Tag-based filtering (Deals, Hot, Flash Sale etc from VEVOR feed)
+    if (activeTag) filters.push(`promo_tags = "${activeTag}"`)
+    // Note: New Arrivals uses sort=newest which sorts by created_at:desc
+    // Clearance: auto-filter under 50€
+    if (currentSort === "clearance" && !max) filters.push("price <= 50")
+    if (min) filters.push(`price >= ${parseFloat(min)}`)
+    if (max) filters.push(`price <= ${parseFloat(max)}`)
+    if (inStock) filters.push(`in_stock = true`)
+    if (selectedCategories.length > 0) {
+      const catFilters = selectedCategories.map(c => `categories = "${c.replace(/"/g, '\\"')}"`)
+      filters.push(`(${catFilters.join(" OR ")})`)
     }
+
+    const meiliResult = await searchProducts({
+      q: query,
+      limit: ITEMS_PER_PAGE,
+      offset,
+      sort: SORT_MAP[currentSort] || (!query ? ["created_at:desc"] : undefined),
+      filter: filters.length > 0 ? filters : undefined,
+      facets: ["categories", "price", "in_stock"],
+    })
+    totalHits = meiliResult.totalHits || meiliResult.estimatedTotalHits || 0
+    usedMeili = true
+    categoryFacets = meiliResult.facetDistribution?.categories || {}
+
+    products = meiliResult.hits.map(hit => ({
+      id: hit.id,
+      title: hit._formatted?.title || hit.title,
+      handle: hit.handle,
+      description: hit.description,
+      thumbnail: hit.thumbnail,
+      images: [],
+      variants: [{
+        id: hit.id + "_v",
+        title: "Default",
+        calculated_price: {
+          calculated_amount: Math.round(hit.price * 100),
+          original_amount: Math.round(hit.price * 100),
+          currency_code: "eur",
+        },
+      }],
+      categories: hit.categories.map((name: string, i: number) => ({
+        id: `cat_${i}`,
+        name,
+        handle: hit.category_handles?.[i] || "",
+        parent_category_id: null,
+      })),
+      created_at: new Date(hit.created_at * 1000).toISOString(),
+    }))
+  } catch {
+    // Fallback to Medusa API
+    const res = query
+      ? await getProducts({ q: query, limit: ITEMS_PER_PAGE, offset })
+      : await getProducts({ limit: ITEMS_PER_PAGE, offset, order: "-created_at" })
+    products = res.products
+    totalHits = res.count
   }
 
   const totalPages = Math.ceil(totalHits / ITEMS_PER_PAGE)
-  const priceRange = facetStats?.price
-    ? {
-        min: Math.floor(facetStats.price.min),
-        max: Math.ceil(facetStats.price.max),
-      }
-    : undefined
 
-  function pageUrl(targetPage: number) {
-    const params = new URLSearchParams()
-    if (query) params.set("q", query)
-    if (targetPage > 1) params.set("leht", String(targetPage))
-    if (currentSort) params.set("sort", currentSort)
-    if (min) params.set("min", min)
-    if (max) params.set("max", max)
-    const qs = params.toString()
-    return qs ? `/${locale}/otsing?${qs}` : `/${locale}/otsing`
+  function buildPageUrl(targetPage: number) {
+    const p = new URLSearchParams()
+    if (query) p.set("q", query)
+    if (targetPage > 1) p.set("page", String(targetPage))
+    if (currentSort) p.set("sort", currentSort)
+    if (min) p.set("min", min)
+    if (max) p.set("max", max)
+    if (categories) p.set("categories", categories)
+    if (inStock) p.set("in_stock", "1")
+    const qs = p.toString()
+    return `/${locale}/otsing${qs ? `?${qs}` : ""}`
   }
 
   return (
-    <div className="max-w-[1280px] mx-auto px-[16px] sm:px-[24px] py-[32px] sm:py-[48px]">
-      <div className="flex items-baseline justify-between mb-[24px]">
-        <div>
-          <h1 className="text-[28px] sm:text-[32px] font-[700] font-[family-name:var(--font-poppins)] text-[#1A1A1A] mb-[4px]">Otsing</h1>
-          {query && (
-            <p className="text-[14px] font-[family-name:var(--font-jakarta)] text-[#999999]">
-              <span className="font-[600] text-[#1A1A1A]">&quot;{query}&quot;</span>
-              {" — "}
-              {totalHits.toLocaleString("et-EE")} tulemust
-              {priceRange && totalHits > 0 && (
-                <span className="text-[12px] text-[#CCCCCC] ml-[8px]">
-                  ({priceRange.min}€ – {priceRange.max}€)
-                </span>
-              )}
-              {usedMeili && (
-                <span className="text-[12px] text-[#CCCCCC] ml-[8px]">({processingTimeMs}ms)</span>
-              )}
+    <div className="bg-white min-h-screen">
+      <div className="max-w-[1360px] mx-auto px-4 sm:px-6 py-6">
+        {/* Breadcrumb */}
+        <nav className="text-xs text-[#888] mb-4">
+          <Link href={`/${locale}`} className="hover:text-[#D97706]">Home</Link>
+          <span className="mx-1.5">&gt;</span>
+          <span className="text-[#1E293B]">{TAG_TITLES[activeTag] || SORT_TITLES[currentSort] || "Search Results"}</span>
+        </nav>
+
+        {/* Page title — tag/sort landing page or search query */}
+        {(query || TAG_TITLES[activeTag] || SORT_TITLES[currentSort]) && (
+          <div className="mb-5">
+            <h1 className="text-2xl font-bold text-[#1E293B]">
+              {TAG_TITLES[activeTag] || SORT_TITLES[currentSort] || `Search for "${query}"`}
+            </h1>
+            <p className="text-sm text-[#64748B] mt-1">
+              <span className="font-semibold text-[#1E293B]">{totalHits.toLocaleString("en")}</span> {query ? "results" : "products"}
             </p>
-          )}
-        </div>
-      </div>
-
-      {!query && (
-        <p className="text-[14px] font-[family-name:var(--font-jakarta)] text-[#999999] py-[48px] text-center">
-          Sisesta otsingusõna päisesse ja vajuta &quot;Otsi&quot;.
-        </p>
-      )}
-
-      {query && products.length === 0 && (
-        <div className="text-center py-[48px]">
-          <p className="text-[14px] font-[family-name:var(--font-jakarta)] text-[#999999] mb-[16px]">
-            Päringuga &quot;{query}&quot; ei leitud ühtegi toodet.
-          </p>
-          <Link
-            href={`/${locale}/kategooriad`}
-            className="text-[#E8650A] hover:text-[#CF5A08] font-[500] font-[family-name:var(--font-poppins)] underline underline-offset-2"
-          >
-            Sirvi kategooriaid &rarr;
-          </Link>
-        </div>
-      )}
-
-      {query && totalHits > 0 && (
-        <CategoryFilters
-          currentSort={currentSort}
-          currentMin={min}
-          currentMax={max}
-          basePath={`/${locale}/otsing`}
-          totalProducts={totalHits}
-          preservedParams={{ q: query }}
-        />
-      )}
-
-      {products.length > 0 && (
-        <>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-[16px]">
-            {products.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
           </div>
+        )}
 
-          {totalPages > 1 && (
-            <nav className="flex justify-center items-center gap-[8px] mt-[40px]">
-              {page > 1 && (
+        {/* Category pills from facets */}
+        {query && Object.keys(categoryFacets).length > 0 && (
+          <div className="flex gap-2 overflow-x-auto pb-3 mb-4 scrollbar-hide">
+            {Object.entries(categoryFacets)
+              .sort(([,a], [,b]) => b - a)
+              .slice(0, 12)
+              .map(([cat, count]) => (
                 <Link
-                  href={pageUrl(page - 1)}
-                  className="px-[16px] py-[8px] border border-[#E8E8E8] hover:border-[#E8650A] text-[13px] font-[family-name:var(--font-jakarta)] text-[#555555] transition-colors"
+                  key={cat}
+                  href={`/${locale}/otsing?q=${encodeURIComponent(query)}&categories=${encodeURIComponent(cat)}`}
+                  className={`flex-shrink-0 inline-flex items-center gap-2 px-4 h-10 rounded-full text-sm font-medium border transition-colors ${
+                    selectedCategories.includes(cat)
+                      ? "bg-[#D97706] text-white border-[#D97706]"
+                      : "bg-white text-[#1E293B] border-[#E2E8F0] hover:border-[#D97706]"
+                  }`}
                 >
-                  &larr; Eelmine
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={selectedCategories.includes(cat) ? "#fff" : "#94A3B8"} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="3" y="3" width="7" height="7" rx="1" />
+                    <rect x="14" y="3" width="7" height="7" rx="1" />
+                    <rect x="3" y="14" width="7" height="7" rx="1" />
+                    <rect x="14" y="14" width="7" height="7" rx="1" />
+                  </svg>
+                  {cat} <span className="text-xs opacity-60 ml-1">({count})</span>
                 </Link>
-              )}
-              <span className="text-[13px] font-[family-name:var(--font-jakarta)] text-[#999999] px-[8px]">
-                {page} / {totalPages}
-              </span>
-              {page < totalPages && (
-                <Link
-                  href={pageUrl(page + 1)}
-                  className="px-[16px] py-[8px] border border-[#E8E8E8] hover:border-[#E8650A] text-[13px] font-[family-name:var(--font-jakarta)] text-[#555555] transition-colors"
-                >
-                  Järgmine &rarr;
-                </Link>
-              )}
-            </nav>
-          )}
-        </>
-      )}
+              ))}
+          </div>
+        )}
+
+        {!query && !activeTag && !SORT_TITLES[currentSort] && products.length > 0 && (
+          <div className="mb-5">
+            <h1 className="text-2xl font-bold text-[#1E293B]">Browse All Products</h1>
+            <p className="text-sm text-[#64748B] mt-1">
+              <span className="font-semibold text-[#1E293B]">{totalHits.toLocaleString("en")}</span> products available
+            </p>
+          </div>
+        )}
+
+        {products.length === 0 && !query && (
+          <div className="bg-white rounded-xl p-12 text-center">
+            <p className="text-sm text-[#64748B]">
+              No products available yet.
+            </p>
+          </div>
+        )}
+
+        {query && products.length === 0 && (
+          <div className="bg-white rounded-xl p-12 text-center">
+            <p className="text-sm text-[#64748B] mb-4">
+              No results found for &quot;{query}&quot;.
+            </p>
+            <Link
+              href={`/${locale}/kategooriad`}
+              className="text-[#D97706] hover:underline font-medium"
+            >
+              Browse all categories
+            </Link>
+          </div>
+        )}
+
+        {(query || activeTag || SORT_TITLES[currentSort]) && totalHits > 0 && (
+          <div className="bg-white rounded-xl">
+            {/* Filters */}
+            <Suspense fallback={null}>
+              <VevorSearchFilters
+                totalHits={totalHits}
+                query={query}
+                currentSort={currentSort}
+                currentMin={min}
+                currentMax={max}
+                currentCategories={selectedCategories}
+                currentInStock={inStock}
+                categoryFacets={categoryFacets}
+                locale={locale}
+              />
+            </Suspense>
+
+            {/* Product grid — 5 col desktop, 3 tablet, 2 mobile */}
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+              {products.map((product) => (
+                <VevorProductCard key={product.id} product={product} locale={locale} />
+              ))}
+            </div>
+
+            {/* Pagination */}
+            <VevorPagination
+              currentPage={page}
+              totalPages={totalPages}
+              buildUrl={buildPageUrl}
+            />
+          </div>
+        )}
+
+        {/* Recommended Searches */}
+        {query && Object.keys(categoryFacets).length > 0 && (
+          <section className="mt-8">
+            <h2 className="text-lg font-bold text-[#1E293B] mb-4">Recommended Searches</h2>
+            <div className="flex flex-wrap gap-2">
+              {Object.entries(categoryFacets)
+                .sort(([,a], [,b]) => b - a)
+                .slice(0, 8)
+                .map(([cat]) => (
+                  <Link
+                    key={cat}
+                    href={`/${locale}/otsing?q=${encodeURIComponent(cat)}`}
+                    className="px-4 py-2 rounded-full text-sm font-medium bg-white border border-[#E2E8F0] text-[#1E293B] hover:border-[#D97706] hover:text-[#D97706] transition-colors"
+                  >
+                    {cat}
+                  </Link>
+                ))}
+            </div>
+          </section>
+        )}
+      </div>
     </div>
   )
 }

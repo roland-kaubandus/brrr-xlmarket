@@ -46,7 +46,7 @@ export default function ProductGallery({ images, title }: Props) {
 
   if (images.length === 0) {
     return (
-      <div className="aspect-square bg-silver rounded-2xl flex items-center justify-center text-muted text-sm font-[family-name:var(--font-jakarta)]">
+      <div className="aspect-square bg-silver rounded-2xl flex items-center justify-center text-muted text-sm font-[family-name:var(--font-dm-sans)]">
         Pilt puudub
       </div>
     )
@@ -79,7 +79,7 @@ export default function ProductGallery({ images, title }: Props) {
                 className={
                   "relative shrink-0 bg-silver rounded-lg border-2 overflow-hidden transition-all duration-200 " +
                   (i === active
-                    ? "border-accent"
+                    ? "border-[#D97706]"
                     : "border-transparent hover:border-soft-border")
                 }
                 style={{ width: thumbSize, height: thumbSize }}
@@ -99,7 +99,7 @@ export default function ProductGallery({ images, title }: Props) {
                 className="shrink-0 rounded-lg border-2 border-transparent bg-silver hover:border-soft-border transition-all duration-200 flex flex-col items-center justify-center gap-0"
                 style={{ width: thumbSize, height: thumbSize }}
               >
-                <span className="text-accent font-bold text-xs font-[family-name:var(--font-outfit)]">+{remaining}</span>
+                <span className="text-[#D97706] font-bold text-xs font-[family-name:var(--font-dm-sans)]">+{remaining}</span>
               </button>
             )}
           </div>
@@ -150,13 +150,13 @@ export default function ProductGallery({ images, title }: Props) {
           )}
         </div>
         {images.length > 1 && (
-          <div className="flex gap-1.5 overflow-x-auto pb-0.5 scrollbar-none">
+          <div className="flex gap-1.5 overflow-x-auto pb-0.5 scrollbar-hide">
             {images.slice(0, 8).map((img, i) => (
               <button
                 key={img.id}
                 type="button"
                 onClick={() => setActive(i)}
-                className={"relative shrink-0 w-[52px] h-[52px] bg-silver rounded-lg border-2 overflow-hidden transition-all duration-200 " + (i === active ? "border-accent" : "border-transparent")}
+                className={"relative shrink-0 w-[52px] h-[52px] bg-silver rounded-lg border-2 overflow-hidden transition-all duration-200 " + (i === active ? "border-[#D97706]" : "border-transparent")}
               >
                 <img src={decodeImageUrl(img.url)} alt={title + " " + (i + 1)} className="object-contain absolute inset-0 w-full h-full p-0.5" loading="lazy" />
               </button>
@@ -167,7 +167,7 @@ export default function ProductGallery({ images, title }: Props) {
                 onClick={() => setLightbox(true)}
                 className="shrink-0 w-[52px] h-[52px] bg-silver rounded-lg border-2 border-transparent flex items-center justify-center"
               >
-                <span className="text-accent font-bold text-xs">+{images.length - 8}</span>
+                <span className="text-[#D97706] font-bold text-xs">+{images.length - 8}</span>
               </button>
             )}
           </div>
@@ -214,7 +214,7 @@ export default function ProductGallery({ images, title }: Props) {
             <X size={18} strokeWidth={2} />
           </button>
           {/* Lightbox thumbnail strip */}
-          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1.5 max-w-[80vw] overflow-x-auto scrollbar-none px-2">
+          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1.5 max-w-[80vw] overflow-x-auto scrollbar-hide px-2">
             {images.map((img, i) => (
               <button
                 key={img.id}

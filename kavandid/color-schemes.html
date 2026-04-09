@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>XL Market — Color Scheme Options</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
+      background: #E2E8F0;
+      color: #1E293B;
+      line-height: 1.5;
+    }
+
+    .page-title {
+      text-align: center;
+      padding: 48px 24px 16px;
+      font-size: 32px;
+      font-weight: 700;
+      color: #0F172A;
+      letter-spacing: -0.5px;
+    }
+
+    .page-subtitle {
+      text-align: center;
+      padding: 0 24px 40px;
+      font-size: 16px;
+      color: #64748B;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    .schemes-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 32px 64px;
+    }
+
+    @media (max-width: 1200px) {
+      .schemes-grid { grid-template-columns: 1fr; max-width: 480px; }
+    }
+
+    .scheme {
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.12), 0 1px 4px rgba(0,0,0,0.08);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .scheme:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 40px rgba(0,0,0,0.18), 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .scheme-label {
+      padding: 16px 24px;
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      text-align: center;
+      background: #0F172A;
+      color: #F8FAFC;
+    }
+
+    /* ---- HEADER ---- */
+    .mini-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 20px;
+    }
+    .logo {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+    .logo span { color: #fff; }
+    .nav { display: flex; gap: 20px; }
+    .nav a {
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      transition: color 0.15s;
+    }
+    .nav a:hover { color: #fff; }
+
+    /* ---- BODY ---- */
+    .mini-body {
+      padding: 24px 20px;
+    }
+
+    /* ---- PRODUCT CARD ---- */
+    .product-card {
+      background: #fff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+    }
+    .product-img-wrap {
+      position: relative;
+      background: #F1F5F9;
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .product-img-wrap img {
+      width: 100%;
+      max-width: 260px;
+      height: auto;
+      display: block;
+      border-radius: 4px;
+    }
+    .product-info {
+      padding: 16px 18px 20px;
+    }
+    .product-title {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: inherit;
+    }
+    .stars {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      margin-bottom: 10px;
+    }
+    .stars svg { width: 16px; height: 16px; }
+    .stars .count {
+      font-size: 12px;
+      color: #94A3B8;
+      margin-left: 6px;
+    }
+    .price-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+    .price {
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+    .stock-badge {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 20px;
+      letter-spacing: 0.3px;
+    }
+    .cta-btn {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 600;
+      color: #fff;
+      cursor: pointer;
+      transition: filter 0.15s, transform 0.1s;
+      letter-spacing: 0.2px;
+    }
+    .cta-btn:hover { filter: brightness(1.08); }
+    .cta-btn:active { transform: scale(0.98); }
+
+    /* ---- TRUST BADGES ---- */
+    .trust-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      margin-top: 20px;
+    }
+    .trust-badge {
+      flex: 1;
+      text-align: center;
+      padding: 12px 6px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+    }
+    .trust-badge svg {
+      width: 22px;
+      height: 22px;
+      margin-bottom: 4px;
+    }
+    .trust-badge .trust-label {
+      font-size: 10px;
+      font-weight: 600;
+      line-height: 1.3;
+      letter-spacing: 0.2px;
+    }
+
+    /* ---- FOOTER ---- */
+    .mini-footer {
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .footer-brand {
+      font-size: 14px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.9);
+    }
+    .footer-brand span { opacity: 0.5; font-weight: 400; font-size: 12px; }
+    .footer-links {
+      display: flex;
+      gap: 16px;
+    }
+    .footer-links a {
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 500;
+    }
+    .footer-links a:hover { color: rgba(255,255,255,0.8); }
+
+    /* ======= SCHEME A: Deep Navy + Amber ======= */
+    .scheme-a .mini-header { background: #1E293B; }
+    .scheme-a .logo .accent { color: #D97706; }
+    .scheme-a .mini-body { background: #F8FAFC; }
+    .scheme-a .product-title { color: #1E293B; }
+    .scheme-a .price { color: #1E293B; }
+    .scheme-a .stars svg { fill: #D97706; }
+    .scheme-a .stock-badge { background: #FEF3C7; color: #92400E; }
+    .scheme-a .cta-btn { background: #D97706; }
+    .scheme-a .trust-badge svg { color: #D97706; }
+    .scheme-a .trust-badge .trust-label { color: #475569; }
+    .scheme-a .mini-footer { background: #1E293B; }
+
+    /* ======= SCHEME B: Slate + Warm Orange ======= */
+    .scheme-b .mini-header { background: #18181B; }
+    .scheme-b .logo .accent { color: #EA580C; }
+    .scheme-b .mini-body { background: #FAFAF9; }
+    .scheme-b .product-title { color: #18181B; }
+    .scheme-b .price { color: #18181B; }
+    .scheme-b .stars svg { fill: #EA580C; }
+    .scheme-b .stock-badge { background: #CCFBF1; color: #0D9488; }
+    .scheme-b .cta-btn { background: #EA580C; }
+    .scheme-b .trust-badge svg { color: #0D9488; }
+    .scheme-b .trust-badge .trust-label { color: #44403C; }
+    .scheme-b .mini-footer { background: #18181B; }
+
+    /* ======= SCHEME C: Forest Green + Copper ======= */
+    .scheme-c .mini-header { background: #14532D; }
+    .scheme-c .logo .accent { color: #C2410C; }
+    .scheme-c .mini-body { background: #FEFCE8; }
+    .scheme-c .product-title { color: #14532D; }
+    .scheme-c .price { color: #14532D; }
+    .scheme-c .stars svg { fill: #C2410C; }
+    .scheme-c .stock-badge { background: #DCFCE7; color: #166534; }
+    .scheme-c .cta-btn { background: #C2410C; }
+    .scheme-c .trust-badge svg { color: #C2410C; }
+    .scheme-c .trust-badge .trust-label { color: #3F6212; }
+    .scheme-c .mini-footer { background: #14532D; }
+
+    /* Color swatch row */
+    .swatches {
+      display: flex;
+      gap: 6px;
+      padding: 12px 20px;
+      background: rgba(0,0,0,0.03);
+      justify-content: center;
+    }
+    .swatch {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 2px solid rgba(0,0,0,0.08);
+      position: relative;
+    }
+    .swatch::after {
+      content: attr(data-hex);
+      position: absolute;
+      bottom: -18px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 8px;
+      color: #94A3B8;
+      white-space: nowrap;
+      font-weight: 500;
+    }
+
+    .scheme-desc {
+      padding: 10px 20px 4px;
+      font-size: 12px;
+      color: #64748B;
+      text-align: center;
+      font-style: italic;
+      background: rgba(0,0,0,0.03);
+    }
+  </style>
+</head>
+<body>
+
+  <h1 class="page-title">XL Market -- Color Scheme Options</h1>
+  <p class="page-subtitle">Three color palette proposals for xlmarket.eu. Each is designed to complement VEVOR's orange product branding while giving the store its own identity.</p>
+
+  <div class="schemes-grid">
+
+    <!-- ======================== SCHEME A ======================== -->
+    <div class="scheme scheme-a">
+      <div class="scheme-label">A / Deep Navy + Amber</div>
+      <div class="scheme-desc">Premium tool catalog feel -- warm amber complements VEVOR orange without clashing</div>
+      <div class="swatches" style="padding-top:20px;">
+        <div class="swatch" style="background:#1E293B" data-hex="#1E293B"></div>
+        <div class="swatch" style="background:#D97706" data-hex="#D97706"></div>
+        <div class="swatch" style="background:#F8FAFC" data-hex="#F8FAFC"></div>
+        <div class="swatch" style="background:#FFFFFF; border-color:#E2E8F0" data-hex="#FFFFFF"></div>
+      </div>
+
+      <header class="mini-header">
+        <div class="logo"><span class="accent">XL</span><span> Market</span></div>
+        <nav class="nav">
+          <a href="#">Tooted</a>
+          <a href="#">Kategooriad</a>
+          <a href="#">Kontakt</a>
+        </nav>
+      </header>
+
+      <div class="mini-body">
+        <div class="product-card">
+          <div class="product-img-wrap">
+            <img src="https://ve-vevor.oss-us-west-1.aliyuncs.com/media/catalog/product/3/0/300w_mini_metal_lathe_7_x_14_550w_variable_speed_2250_rpm_0_001_precision-1.jpg" alt="VEVOR Mini Metal Lathe" loading="lazy">
+          </div>
+          <div class="product-info">
+            <div class="product-title">VEVOR Mini Metal Lathe 7x14</div>
+            <div class="stars">
+              <svg viewBox="0 0 20 20"><path d="M10 1l2.39 5.64L18 7.24l-4 4.36.94 6.4L10 15.27 5.06 18l.94-6.4-4-4.36 5.61-.6z"/></svg>
+              <svg viewBox="0 0 20 20"><path d="M10 1l2.39 5.64L18 7.24l-4 4.36.94 6.4L10 15.27 5.06 18l.94-6.4-4-4.36 5.61-.6z"/></svg>
+              <svg viewBox="0 0 20 20"><path d="M10 1l2.39 5.64L18 7.24l-4 4.36.94 6.4L10 15.27 5.06 18l.94-6.4-4-4.36 5.61-.6z"/></svg>
+              <svg viewBox="0 0 20 20"><path d="M10 1l2.39 5.64L18 7.24l-4 4.36.94 6.4L10 15.27 5.06 18l.94-6.4-4-4.36 5.61-.6z"/></svg>
+              <svg viewBox="0 0 20 20" style="fill:#CBD5E1 !important"><path d="M10 1l2.39 5.64L18 7.24l-4 4.36.94 6.4L10 15.27 5.06 18l.94-6.4-4-4.36 5.61-.6z"/></svg>
+              <span class="count">(47)</span>
+            </div>
+            <div class="price-row">
+              <div class="price">822,24</div>
+              <div class="stock-badge">Laos</div>
+            </div>
+            <button class="cta-btn">Lisa ostukorvi</button>
+          </div>
+        </div>
+
+        <div class="trust-row">
+          <div class="trust-badge">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0H21a.75.75 0 00.75-.75v-3.375a3 3 0 00-.876-2.122l-2.55-2.55A3 3 0 0016.2 9H14.25m-4.5 9V5.625A1.125 1.125 0 0110.875 4.5h3.375c.621 0 1.125.504 1.125 1.125v4.125"/></svg>
+            <div class="trust-label">Tasuta<br>tarne</div>
+          </div>
+          <div class="trust-badge">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg>
+            <div class="trust-label">2 aastat<br>garantiid</div>
+          </div>
+          <div class="trust-badge">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182"/></svg>
+            <div class="trust-label">30 paeva<br>tagastus</div>
+          </div>
+        </div>
+      </div>
+
+      <footer class="mini-footer">
+        <div class="footer-brand">XL Market <span>| Roland Kaubandus OU</span></div>
+        <div class="footer-links">
+          <a href="#">Tingimused</a>
+          <a href="#">Privaatsus</a>
+        </div>
+      </footer>
+    </div>
+
+    <!-- ======================== SCHEME B ======================== -->
+    <div class="scheme scheme-b">
+      <div class="scheme-label">B / Slate + Warm Orange</div>
+      <div class="scheme-desc">Closest to VEVOR branding with teal accents for trust signals -- own personality</div>
+      <div class="swatches" style="padding-top:20px;">
+        <div class="swatch" style="background:#18181B" data-hex="#18181B"></div>
+        <div class="swatch" style="background:#EA580C" data-hex="#EA580C"></div>
+        <div class="swatch" style="background:#0D9488" data-hex="#0D9488"></div>
+        <div class="swatch" style="background:#FAFAF9" data-hex="#FAFAF9"></div>
+      </div>
+
+      <header class="mini-header">
+        <div class="logo"><span class="accent">XL</span><span> Market</span></div>
+        <nav class="nav">
+          <a href="#">Tooted</a>
+          <a href="#">Kategooriad</a>
+          <a href="#">Kontakt</a>
+        </nav>
+      </header>
+
+      <div class="mini-body">
+        <div class="product-card">
+          <div class="product-img-wrap">
+            <img src="https://ve-vevor.oss-us-west-1.aliyuncs.com/media/catalog/product/3/0/300w_mini_metal_lathe_7_x_14_550w_variable_speed_2250_rpm_0_001_precision-1.jpg" alt="VEVOR Mini Metal Lathe" loading="lazy">
+          </div>
+          <div class="product-info">
+            <div class="product-title">VEVOR Mini Metal Lathe 7x14</div>
+            <div class="stars">
+              <svg viewBox="0 0 20 20"><path d="M10 1l2.39 5.64L18 7.24l-4 4.36.94 6.4L10 15.27 5.06 18l.94-6.4-4-4.36 5.61-.6z"/></svg>
+              <svg viewBox="0 0 20 20"><path d="M10 1l2.39 5.64L18 7.24l-4 4.36.94 6.4L10 15.27 5.06 18l.94-6.4-4-4.36 5.61-.6z"/></svg>
+              <svg viewBox="0 0 20 20"><path d="M10 1l2.39 5.64L18 7.24l-4 4.36.94 6.4L10 15.27 5.06 18l.94-6.4-4-4.36 5.61-.6z"/></svg>
+              <svg viewBox="0 0 20 20"><path d="M10 1l2.39 5.64L18 7.24l-4 4.36.94 6.4L10 15.27 5.06 18l.94-6.4-4-4.36 5.61-.6z"/></svg>
+              <svg viewBox="0 0 20 20" style="fill:#D6D3D1 !important"><path d="M10 1l2.39 5.64L18 7.24l-4 4.36.94 6.4L10 15.27 5.06 18l.94-6.4-4-4.36 5.61-.6z"/></svg>
+              <span class="count">(47)</span>
+            </div>
+            <div class="price-row">
+              <div class="price">822,24</div>
+              <div class="stock-badge">Laos</div>
+            </div>
+            <button class="cta-btn">Lisa ostukorvi</button>
+          </div>
+        </div>
+
+        <div class="trust-row">
+          <div class="trust-badge">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0H21a.75.75 0 00.75-.75v-3.375a3 3 0 00-.876-2.122l-2.55-2.55A3 3 0 0016.2 9H14.25m-4.5 9V5.625A1.125 1.125 0 0110.875 4.5h3.375c.621 0 1.125.504 1.125 1.125v4.125"/></svg>
+            <div class="trust-label">Tasuta<br>tarne</div>
+          </div>
+          <div class="trust-badge">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg>
+            <div class="trust-label">2 aastat<br>garantiid</div>
+          </div>
+          <div class="trust-badge">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182"/></svg>
+            <div class="trust-label">30 paeva<br>tagastus</div>
+          </div>
+        </div>
+      </div>
+
+      <footer class="mini-footer">
+        <div class="footer-brand">XL Market <span>| Roland Kaubandus OU</span></div>
+        <div class="footer-links">
+          <a href="#">Tingimused</a>
+          <a href="#">Privaatsus</a>
+        </div>
+      </footer>
+    </div>
+
+    <!-- ======================== SCHEME C ======================== -->
+    <div class="scheme scheme-c">
+      <div class="scheme-label">C / Forest Green + Copper</div>
+      <div class="scheme-desc">Unique earthy European identity -- forest green stands apart from competitors</div>
+      <div class="swatches" style="padding-top:20px;">
+        <div class="swatch" style="background:#14532D" data-hex="#14532D"></div>
+        <div class="swatch" style="background:#C2410C" data-hex="#C2410C"></div>
+        <div class="swatch" style="background:#FEFCE8" data-hex="#FEFCE8"></div>
+        <div class="swatch" style="background:#FFFFFF; border-color:#E2E8F0" data-hex="#FFFFFF"></div>
+      </div>
+
+      <header class="mini-header">
+        <div class="logo"><span class="accent">XL</span><span> Market</span></div>
+        <nav class="nav">
+          <a href="#">Tooted</a>
+          <a href="#">Kategooriad</a>
+          <a href="#">Kontakt</a>
+        </nav>
+      </header>
+
+      <div class="mini-body">
+        <div class="product-card">
+          <div class="product-img-wrap">
+            <img src="https://ve-vevor.oss-us-west-1.aliyuncs.com/media/catalog/product/3/0/300w_mini_metal_lathe_7_x_14_550w_variable_speed_2250_rpm_0_001_precision-1.jpg" alt="VEVOR Mini Metal Lathe" loading="lazy">
+          </div>
+          <div class="product-info">
+            <div class="product-title">VEVOR Mini Metal Lathe 7x14</div>
+            <div class="stars">
+              <svg viewBox="0 0 20 20"><path d="M10 1l2.39 5.64L18 7.24l-4 4.36.94 6.4L10 15.27 5.06 18l.94-6.4-4-4.36 5.61-.6z"/></svg>
+              <svg viewBox="0 0 20 20"><path d="M10 1l2.39 5.64L18 7.24l-4 4.36.94 6.4L10 15.27 5.06 18l.94-6.4-4-4.36 5.61-.6z"/></svg>
+              <svg viewBox="0 0 20 20"><path d="M10 1l2.39 5.64L18 7.24l-4 4.36.94 6.4L10 15.27 5.06 18l.94-6.4-4-4.36 5.61-.6z"/></svg>
+              <svg viewBox="0 0 20 20"><path d="M10 1l2.39 5.64L18 7.24l-4 4.36.94 6.4L10 15.27 5.06 18l.94-6.4-4-4.36 5.61-.6z"/></svg>
+              <svg viewBox="0 0 20 20" style="fill:#BEF264 !important"><path d="M10 1l2.39 5.64L18 7.24l-4 4.36.94 6.4L10 15.27 5.06 18l.94-6.4-4-4.36 5.61-.6z"/></svg>
+              <span class="count">(47)</span>
+            </div>
+            <div class="price-row">
+              <div class="price">822,24</div>
+              <div class="stock-badge">Laos</div>
+            </div>
+            <button class="cta-btn">Lisa ostukorvi</button>
+          </div>
+        </div>
+
+        <div class="trust-row">
+          <div class="trust-badge">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0H21a.75.75 0 00.75-.75v-3.375a3 3 0 00-.876-2.122l-2.55-2.55A3 3 0 0016.2 9H14.25m-4.5 9V5.625A1.125 1.125 0 0110.875 4.5h3.375c.621 0 1.125.504 1.125 1.125v4.125"/></svg>
+            <div class="trust-label">Tasuta<br>tarne</div>
+          </div>
+          <div class="trust-badge">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg>
+            <div class="trust-label">2 aastat<br>garantiid</div>
+          </div>
+          <div class="trust-badge">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182"/></svg>
+            <div class="trust-label">30 paeva<br>tagastus</div>
+          </div>
+        </div>
+      </div>
+
+      <footer class="mini-footer">
+        <div class="footer-brand">XL Market <span>| Roland Kaubandus OU</span></div>
+        <div class="footer-links">
+          <a href="#">Tingimused</a>
+          <a href="#">Privaatsus</a>
+        </div>
+      </footer>
+    </div>
+
+  </div>
+
+</body>
+</html>

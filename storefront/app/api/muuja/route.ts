@@ -97,7 +97,7 @@ export async function POST(request: NextRequest) {
     if (!res.ok) {
       console.error("MeiliSearch error", res.status, await res.text())
       return NextResponse.json(
-        { hits: [], totalHits: 0, error: "Otsing eba\u00F5nnestus" },
+        { hits: [], totalHits: 0, error: "Search failed" },
         { status: 500 }
       )
     }

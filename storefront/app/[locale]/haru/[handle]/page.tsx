@@ -3,7 +3,7 @@ import { notFound } from "next/navigation"
 import { getProducts, getCategories } from "@/lib/medusa"
 import { searchProducts } from "@/lib/meilisearch"
 import { BRANCHES, getBranchBySlug } from "@/lib/branches"
-import ProductCard from "@/components/ProductCard"
+import VevorProductCard from "@/components/VevorProductCard"
 import BranchFilters from "@/components/BranchFilters"
 import SubcategoryGrid from "@/components/SubcategoryGrid"
 
@@ -178,17 +178,17 @@ export default async function BranchLandingPage({ params, searchParams }: Props)
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
 
         <div className="relative z-10 max-w-[1400px] mx-auto px-4 h-full flex flex-col justify-end pb-12 md:pb-16">
-          <nav className="text-[12px] text-white/50 mb-6" aria-label="Leheasukoht">
-            <Link href={`/${locale}`} className="hover:text-white transition-colors">Avaleht</Link>
+          <nav className="text-[12px] text-white/50 mb-6" aria-label="Breadcrumb">
+            <Link href={`/${locale}`} className="hover:text-white transition-colors">Home</Link>
             <span className="mx-2">/</span>
             <span className="text-white/80">{branch.name}</span>
           </nav>
 
-          <span className="inline-block text-[11px] uppercase tracking-[0.2em] font-semibold text-accent mb-3">Valdkond</span>
-          <h1 className="font-[family-name:var(--font-outfit)] font-[800] text-4xl md:text-6xl text-white tracking-tighter leading-[1.05] mb-4">
+          <span className="inline-block text-[11px] uppercase tracking-[0.2em] font-semibold text-accent mb-3">Department</span>
+          <h1 className="font-[family-name:var(--font-dm-sans)] font-[800] text-4xl md:text-6xl text-white tracking-tighter leading-[1.05] mb-4">
             {branch.name}
           </h1>
-          <p className="font-[family-name:var(--font-outfit)] font-[300] text-xl md:text-2xl text-white/70 tracking-tight mb-2 max-w-2xl">
+          <p className="font-[family-name:var(--font-dm-sans)] font-[300] text-xl md:text-2xl text-white/70 tracking-tight mb-2 max-w-2xl">
             {branch.tagline}
           </p>
           <p className="text-white/50 text-sm md:text-base max-w-xl leading-relaxed">
@@ -201,10 +201,10 @@ export default async function BranchLandingPage({ params, searchParams }: Props)
                 href={`/${locale}/kategooriad/${branch.categoryHandle}`}
                 className="inline-flex items-center gap-2 px-6 py-3 bg-accent hover:bg-accent-dark text-white text-sm font-semibold rounded-xl btn-press transition-all duration-300"
               >
-                {"Vaata k\u00f5iki tooteid"}
+                {"View all products"}
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
               </Link>
-              <span className="text-white/40 text-sm">{totalCount.toLocaleString("et-EE")} toodet</span>
+              <span className="text-white/40 text-sm">{totalCount.toLocaleString("en")} products</span>
             </div>
           )}
         </div>
@@ -215,10 +215,10 @@ export default async function BranchLandingPage({ params, searchParams }: Props)
         <div className="bg-white border-b border-soft-border">
           <div className="max-w-[1400px] mx-auto px-4 py-5 flex flex-wrap items-center justify-center gap-6 md:gap-10">
             {[
-              { icon: "\u2713", text: "Professionaalne kvaliteet" },
-              { icon: "\u26A1", text: "Kiire tarne" },
-              { icon: "\u2699", text: "Varuosad saadaval" },
-              { icon: "\u260E", text: "Eksperdi n\u00f5uanne" },
+              { icon: "\u2713", text: "Professional quality" },
+              { icon: "\u26A1", text: "Fast delivery" },
+              { icon: "\u2699", text: "Spare parts available" },
+              { icon: "\u260E", text: "Expert advice" },
             ].map((badge) => (
               <div key={badge.text} className="flex items-center gap-2 text-sm text-muted">
                 <span className="w-5 h-5 bg-accent/10 rounded-full flex items-center justify-center text-accent text-xs">{badge.icon}</span>
@@ -265,22 +265,22 @@ export default async function BranchLandingPage({ params, searchParams }: Props)
             {products.length > 0 ? (
               <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-5">
                 {products.map((product: any) => (
-                  <ProductCard key={product.id} product={product} />
+                  <VevorProductCard key={product.id} product={product} />
                 ))}
               </div>
             ) : (
               <div className="rounded-2xl border border-soft-border bg-silver px-6 py-12 text-center">
-                <h3 className="font-[family-name:var(--font-outfit)] font-[700] text-xl text-off-black mb-2">
-                  Selle filtriga tooteid ei leitud
+                <h3 className="font-[family-name:var(--font-dm-sans)] font-[700] text-xl text-off-black mb-2">
+                  No products found with this filter
                 </h3>
                 <p className="text-sm text-muted max-w-xl mx-auto mb-5">
-                  Proovi teist tootegruppi, laiemaid hinnapiire voi tuhista aktiivsed filtrid.
+                  Try a different product group, wider price range, or clear active filters.
                 </p>
                 <Link
                   href={`/${locale}/haru/${handle}`}
                   className="inline-flex items-center gap-2 px-5 py-3 bg-accent hover:bg-accent-dark text-white text-sm font-semibold rounded-xl btn-press transition-all duration-300"
                 >
-                  Tuhista koik filtrid
+                  Clear all filters
                 </Link>
               </div>
             )}
@@ -293,14 +293,14 @@ export default async function BranchLandingPage({ params, searchParams }: Props)
                     href={branchUrl({ limit: String(nextLimit) })}
                     className="inline-flex items-center gap-2 px-8 py-3 border border-soft-border text-sm font-semibold text-off-black hover:border-accent hover:text-accent rounded-xl transition-all duration-300"
                   >
-                    Naita rohkem tooteid
+                    Show more products
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="m6 9 6 6 6-6"/></svg>
                   </Link>
                 ) : (
-                  <span className="text-sm text-muted">Koik {totalCount} toodet on naidata</span>
+                  <span className="text-sm text-muted">All {totalCount} products shown</span>
                 )}
                 <div className="flex items-center gap-2 text-xs text-muted">
-                  <span>Lehel:</span>
+                  <span>Per page:</span>
                   {VALID_LIMITS.map((l) => (
                     <Link
                       key={l}
@@ -328,10 +328,10 @@ export default async function BranchLandingPage({ params, searchParams }: Props)
                   <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
                 </svg>
               </div>
-              <h2 className="font-[family-name:var(--font-outfit)] font-[600] text-xl mb-3">Varsti saadaval</h2>
-              <p className="text-muted text-sm leading-relaxed mb-6">Sortiment on tulekul. Teavitame, kui tooted on saadaval.</p>
+              <h2 className="font-[family-name:var(--font-dm-sans)] font-[600] text-xl mb-3">Coming Soon</h2>
+              <p className="text-muted text-sm leading-relaxed mb-6">Products are on their way. We will notify you when they are available.</p>
               <Link href={`/${locale}/kategooriad`} className="inline-flex items-center gap-2 px-5 py-2.5 bg-silver hover:bg-accent-light text-sm font-medium rounded-xl transition-all duration-300">
-                Vaata kategooriaid
+                Browse Categories
               </Link>
             </div>
           </div>
@@ -342,9 +342,9 @@ export default async function BranchLandingPage({ params, searchParams }: Props)
       <section className="py-16 md:py-24 bg-silver">
         <div className="max-w-[1400px] mx-auto px-4">
           <div className="mb-10">
-            <span className="inline-block text-[11px] uppercase tracking-[0.2em] font-semibold text-accent mb-3">Avasta veel</span>
-            <h2 className="font-[family-name:var(--font-outfit)] font-[700] text-2xl md:text-3xl tracking-tight">
-              Teised valdkonnad
+            <span className="inline-block text-[11px] uppercase tracking-[0.2em] font-semibold text-accent mb-3">Explore More</span>
+            <h2 className="font-[family-name:var(--font-dm-sans)] font-[700] text-2xl md:text-3xl tracking-tight">
+              Other Departments
             </h2>
           </div>
 
@@ -362,7 +362,7 @@ export default async function BranchLandingPage({ params, searchParams }: Props)
                 />
                 <div className="absolute inset-0 branch-card-overlay" />
                 <div className="absolute bottom-0 left-0 right-0 p-4">
-                  <h3 className="font-[family-name:var(--font-outfit)] font-bold text-base text-white tracking-tight mb-0.5">
+                  <h3 className="font-[family-name:var(--font-dm-sans)] font-bold text-base text-white tracking-tight mb-0.5">
                     {b.name}
                   </h3>
                   <p className="text-white/50 text-xs">{b.tagline}</p>

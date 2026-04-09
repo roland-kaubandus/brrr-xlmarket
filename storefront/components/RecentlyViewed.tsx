@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react"
 import Link from "next/link"
+import { usePathname } from "next/navigation"
 
 type RecentItem = {
   id: string
@@ -16,6 +17,8 @@ type Props = {
 }
 
 export default function RecentlyViewed({ currentId }: Props) {
+  const pathname = usePathname()
+  const locale = pathname.split('/')[1] === 'en' ? 'en' : 'et'
   const [items, setItems] = useState<RecentItem[]>([])
 
   useEffect(() => {
@@ -29,32 +32,32 @@ export default function RecentlyViewed({ currentId }: Props) {
   if (items.length === 0) return null
 
   return (
-    <section className="mt-[48px] pt-[40px] border-t border-[#E8E8E8]">
-      <h2 className="text-[20px] font-[600] font-[family-name:var(--font-poppins)] text-[#1A1A1A] mb-[20px]">
-        Viimati vaadatud
+    <section className="mt-12 pt-10 border-t border-[#E2E8F0]">
+      <h2 className="text-[20px] font-bold text-[#1E293B] mb-5">
+        Recently Viewed
       </h2>
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-[12px]">
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
         {items.map((item) => (
           <Link
             key={item.id}
-            href={"/toode/" + item.handle}
-            className="group flex flex-col border border-[#E8E8E8] overflow-hidden hover:border-[#E8650A]/40 transition-colors bg-white"
+            href={`/${locale}/toode/${item.handle}`}
+            className="group flex flex-col border border-[#E2E8F0] rounded-lg overflow-hidden hover:border-[#D97706]/40 hover:shadow-md transition-all duration-200 bg-white"
           >
-            <div className="aspect-square bg-[#F7F7F7] overflow-hidden">
+            <div className="aspect-square bg-white overflow-hidden">
               {item.thumbnail ? (
                 <img
                   src={item.thumbnail}
                   alt={item.title}
-                  className="w-full h-full object-contain p-[8px] group-hover:scale-[1.03] transition-transform duration-[250ms]"
+                  className="w-full h-full object-contain p-2 group-hover:scale-105 transition-transform duration-300"
                 />
               ) : null}
             </div>
-            <div className="p-[10px]">
-              <p className="text-[12px] font-[500] font-[family-name:var(--font-poppins)] text-[#1A1A1A] line-clamp-2 leading-[1.4] mb-[4px]">
+            <div className="p-2.5">
+              <p className="text-xs font-medium text-[#1E293B] line-clamp-2 leading-snug mb-1">
                 {item.title}
               </p>
               {item.price && (
-                <p className="text-[13px] font-[700] font-[family-name:var(--font-poppins)] text-[#E8650A]">
+                <p className="text-sm font-bold text-[#1E293B]">
                   {item.price}
                 </p>
               )}

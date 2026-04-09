@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react"
 import Link from "next/link"
-import { X, ShoppingCart, Plus, Minus, Trash2 } from "lucide-react"
+import { X, ShoppingCart, Trash2 } from "lucide-react"
 
 type CartItem = {
   id: string
@@ -37,7 +37,7 @@ export default function CartSlideOver({ locale = "et" }: { locale?: string }) {
     if (!cartId) return
     setLoading(true)
     try {
-      const res = await fetch("/api/cart?cart_id=" + cartId)
+      const res = await fetch(`/api/cart?cart_id=${encodeURIComponent(cartId)}`)
       if (res.ok) {
         const data = await res.json()
         setCart(data.cart)
@@ -86,87 +86,81 @@ export default function CartSlideOver({ locale = "et" }: { locale?: string }) {
       />
       {/* Panel */}
       <div
-        className="fixed top-0 right-0 h-full w-full sm:w-[420px] bg-white z-50 flex flex-col shadow-[−4px_0_32px_rgba(0,0,0,0.12)]"
+        className="fixed top-0 right-0 h-full w-full sm:w-[420px] bg-white z-50 flex flex-col shadow-xl"
         role="dialog"
         aria-modal="true"
-        aria-label="Ostukorv"
+        aria-label="Shopping Cart"
       >
         {/* Header */}
-        <div className="flex items-center justify-between px-[20px] py-[18px] border-b border-[#E8E8E8]">
-          <div className="flex items-center gap-[10px]">
-            <ShoppingCart size={20} strokeWidth={1.5} className="text-[#E8650A]" />
-            <h2 className="text-[17px] font-[600] font-[family-name:var(--font-poppins)] text-[#1A1A1A]">
-              Ostukorv
+        <div className="flex items-center justify-between px-5 py-4 border-b border-[#E2E8F0]">
+          <div className="flex items-center gap-2.5">
+            <ShoppingCart size={20} strokeWidth={1.5} className="text-[#D97706]" />
+            <h2 className="text-[17px] font-semibold text-[#1E293B]">
+              Shopping Cart
             </h2>
             {itemCount > 0 && (
-              <span className="w-[22px] h-[22px] rounded-full bg-[#E8650A] text-white text-[12px] font-[700] flex items-center justify-center">
+              <span className="w-[22px] h-[22px] rounded-full bg-[#D97706] text-white text-xs font-bold flex items-center justify-center">
                 {itemCount}
               </span>
             )}
           </div>
           <button
             onClick={close}
-            className="w-[36px] h-[36px] flex items-center justify-center rounded-full hover:bg-[#F7F7F7] text-[#999999] hover:text-[#1A1A1A] transition-colors"
-            aria-label="Sulge"
+            className="w-9 h-9 flex items-center justify-center rounded-lg hover:bg-[#F8FAFC] text-[#999999] hover:text-[#1E293B] transition-colors"
+            aria-label="Close"
           >
             <X size={18} strokeWidth={1.5} />
           </button>
         </div>
 
         {/* Body */}
-        <div className="flex-1 overflow-y-auto px-[20px] py-[16px]">
+        <div className="flex-1 overflow-y-auto px-5 py-4">
           {loading && (
-            <div className="flex items-center justify-center py-[48px]">
-              <div className="w-[28px] h-[28px] border-2 border-[#E8E8E8] border-t-[#E8650A] rounded-full animate-spin" />
+            <div className="flex items-center justify-center py-12">
+              <div className="w-7 h-7 border-2 border-[#E2E8F0] border-t-[#D97706] rounded-full animate-spin" />
             </div>
           )}
 
           {!loading && (!cart || cart.items?.length === 0) && (
-            <div className="flex flex-col items-center justify-center py-[64px] text-center">
-              <ShoppingCart size={48} strokeWidth={1} className="text-[#E8E8E8] mb-[16px]" />
-              <p className="text-[15px] font-[600] font-[family-name:var(--font-poppins)] text-[#1A1A1A] mb-[6px]">
-                Ostukorv on tühi
+            <div className="flex flex-col items-center justify-center py-16 text-center">
+              <ShoppingCart size={48} strokeWidth={1} className="text-[#E2E8F0] mb-4" />
+              <p className="text-[15px] font-semibold text-[#1E293B] mb-1.5">
+                Your cart is empty
               </p>
-              <p className="text-[13px] font-[family-name:var(--font-jakarta)] text-[#999999]">
-                Lisa tooteid, et alustada ostlemist
+              <p className="text-[13px] text-[#64748B]">
+                Add products to start shopping
               </p>
               <button
                 onClick={close}
-                className="mt-[20px] px-[20px] py-[10px] bg-[#E8650A] text-white text-[13px] font-[600] font-[family-name:var(--font-poppins)] hover:bg-[#CF5A08] transition-colors"
+                className="mt-5 px-5 py-2.5 bg-[#D97706] text-white text-[13px] font-semibold rounded-lg hover:bg-[#B45309] transition-colors"
               >
-                Jätka ostlemist
+                Continue Shopping
               </button>
             </div>
           )}
 
           {!loading && cart && cart.items?.length > 0 && (
-            <div className="flex flex-col gap-[16px]">
+            <div className="flex flex-col gap-4">
               {cart.items.map((item) => (
-                <div key={item.id} className="flex gap-[12px] py-[12px] border-b border-[#F0F0F0] last:border-0">
+                <div key={item.id} className="flex gap-3 py-3 border-b border-[#E2E8F0] last:border-0">
                   {item.thumbnail ? (
-                    <div className="w-[72px] h-[72px] shrink-0 bg-[#F7F7F7] rounded-[4px] overflow-hidden border border-[#E8E8E8]">
-                      <img src={item.thumbnail} alt={item.title} className="w-full h-full object-contain p-[4px]" />
+                    <div className="w-[60px] h-[60px] shrink-0 bg-[#F7F7F7] rounded-lg overflow-hidden border border-[#E2E8F0]">
+                      <img src={item.thumbnail} alt={item.title} className="w-full h-full object-contain p-1" />
                     </div>
                   ) : (
-                    <div className="w-[72px] h-[72px] shrink-0 bg-[#F7F7F7] rounded-[4px] border border-[#E8E8E8]" />
+                    <div className="w-[60px] h-[60px] shrink-0 bg-[#F7F7F7] rounded-lg border border-[#E2E8F0]" />
                   )}
                   <div className="flex-1 min-w-0">
-                    <p className="text-[13px] font-[500] font-[family-name:var(--font-poppins)] text-[#1A1A1A] leading-[1.4] line-clamp-2 mb-[6px]">
+                    <p className="text-[13px] font-medium text-[#1E293B] leading-[1.4] line-clamp-2 mb-1.5">
                       {item.title}
                     </p>
-                    <p className="text-[14px] font-[700] font-[family-name:var(--font-poppins)] text-[#E8650A]">
+                    <p className="text-[14px] font-bold text-[#D97706]">
                       {formatPrice(item.unit_price * item.quantity, item.currency_code)}
                     </p>
-                    <div className="flex items-center gap-[8px] mt-[8px]">
-                      <div className="flex items-center border border-[#E8E8E8] rounded-[4px] overflow-hidden">
-                        <span className="w-[28px] h-[28px] flex items-center justify-center bg-[#FAFAFA] text-[#999999]">
-                          <Minus size={12} strokeWidth={2} />
-                        </span>
-                        <span className="w-[32px] text-center text-[13px] font-[500] font-[family-name:var(--font-jakarta)] border-x border-[#E8E8E8]">
-                          {item.quantity}
-                        </span>
-                        <span className="w-[28px] h-[28px] flex items-center justify-center bg-[#FAFAFA] text-[#999999]">
-                          <Plus size={12} strokeWidth={2} />
+                    <div className="flex items-center gap-2 mt-2">
+                      <div className="flex items-center border border-[#E2E8F0] rounded-lg overflow-hidden">
+                        <span className="w-8 text-center text-[13px] font-medium px-2 py-1">
+                          {item.quantity} pcs
                         </span>
                       </div>
                     </div>
@@ -179,26 +173,26 @@ export default function CartSlideOver({ locale = "et" }: { locale?: string }) {
 
         {/* Footer */}
         {!loading && cart && cart.items?.length > 0 && (
-          <div className="px-[20px] py-[20px] border-t border-[#E8E8E8] bg-[#FAFAFA]">
-            <div className="flex items-center justify-between mb-[16px]">
-              <span className="text-[14px] font-[family-name:var(--font-jakarta)] text-[#555555]">Kokku</span>
-              <span className="text-[18px] font-[700] font-[family-name:var(--font-poppins)] text-[#1A1A1A]">
+          <div className="px-5 py-5 border-t border-[#E2E8F0] bg-[#FAFAFA]">
+            <div className="flex items-center justify-between mb-4">
+              <span className="text-[14px] text-[#64748B]">Total</span>
+              <span className="text-lg font-bold text-[#1E293B]">
                 {formatPrice(cart.total, cart.currency_code)}
               </span>
             </div>
             <Link
               href={`/${locale}/ostukorv`}
               onClick={close}
-              className="block w-full text-center py-[13px] bg-[#E8650A] text-white text-[15px] font-[600] font-[family-name:var(--font-poppins)] hover:bg-[#CF5A08] transition-colors"
-              style={{ boxShadow: "0 4px 16px rgba(232,101,10,0.25)" }}
+              className="block w-full text-center py-3.5 bg-[#D97706] text-white text-[15px] font-semibold rounded-lg hover:bg-[#B45309] transition-colors"
+              style={{ boxShadow: "0 4px 16px rgba(255,106,0,0.25)" }}
             >
-              Vaata ostukorvi
+              View Cart
             </Link>
             <button
               onClick={close}
-              className="block w-full text-center mt-[8px] py-[10px] text-[13px] font-[500] font-[family-name:var(--font-poppins)] text-[#999999] hover:text-[#1A1A1A] transition-colors"
+              className="block w-full text-center mt-2 py-2.5 text-[13px] font-medium text-[#64748B] hover:text-[#1E293B] transition-colors"
             >
-              Jätka ostlemist
+              Continue Shopping
             </button>
           </div>
         )}
