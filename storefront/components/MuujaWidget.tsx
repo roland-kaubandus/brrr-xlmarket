@@ -191,7 +191,7 @@ export default function MuujaWidget() {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
   const [isHover, setIsHover] = useState(false)
   const [winSize, setWinSize] = useState({ w: 0, h: 0 })
-  const [showIntro, setShowIntro] = useState(false)
+  const [showIntro, setShowIntro] = useState(false) // disabled: intro overlay blocks page
 
   const [pos, setPos] = useState({ x: -1, y: -1 })
   const [isDragging, setIsDragging] = useState(false)
@@ -211,7 +211,9 @@ export default function MuujaWidget() {
 
   useEffect(() => {
     if (!localStorage.getItem('muuja_intro_seen')) {
-      const timer = setTimeout(() => setShowIntro(true), 1500)
+      // Disabled: intro overlay blocks page interaction
+      // const timer = setTimeout(() => setShowIntro(true), 1500)
+      const timer = setTimeout(() => {}, 0)
       return () => clearTimeout(timer)
     }
   }, [])
