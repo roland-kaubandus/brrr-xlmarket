@@ -216,60 +216,41 @@ export default async function CategoryPage({ params, searchParams }: Props) {
           </p>
         </div>
 
-        {/* Subcategory navigation — visual thumbnails like VEVOR */}
+        {/* Subcategory navigation — single scrollable row with arrow overflow */}
         {(category.category_children?.length ?? 0) > 0 && (
-          <div className="flex gap-4 overflow-x-auto pb-4 mb-5 scrollbar-hide">
-            {category.category_children!.map((child) => {
-              const thumb = CATEGORY_IMAGES[child.handle] || null
-              return (
-                <Link
-                  key={child.id}
-                  href={`/${locale}/kategooriad/${child.handle}`}
-                  className="flex-shrink-0 flex flex-col items-center gap-2 w-[100px] group"
-                >
-                  <div className="w-20 h-20 rounded-xl bg-[#F8FAFC] border border-[#E2E8F0] group-hover:border-[#D97706] transition-colors overflow-hidden flex items-center justify-center">
-                    {thumb ? (
-                      <Image
-                        src={thumb}
-                        alt={child.name}
-                        width={80}
-                        height={80}
-                        className="object-contain w-full h-full p-1"
-                        unoptimized
-                      />
-                    ) : (
-                      <span className="text-2xl text-[#CBD5E1]">&#9633;</span>
-                    )}
-                  </div>
-                  <span className="text-xs text-center text-[#1E293B] group-hover:text-[#D97706] transition-colors leading-tight line-clamp-2">
-                    {child.name}
-                  </span>
-                </Link>
-              )
-            })}
-          </div>
-        )}
-
-
-        {/* Remaining subcategory pills (overflow beyond top 8) */}
-        {Object.keys(categoryFacets).length > 8 && (
-          <div className="flex gap-2 flex-wrap mb-5">
-            {Object.entries(categoryFacets)
-              .sort(([,a], [,b]) => b - a)
-              .slice(8, 20)
-              .map(([subcat, count]) => (
-                <Link
-                  key={subcat}
-                  href={`${categoryBasePath}?categories=${encodeURIComponent(subcat)}`}
-                  className={`inline-flex items-center gap-1.5 px-3 h-8 rounded-full text-xs font-medium border transition-all ${
-                    selectedCategories.includes(subcat)
-                      ? "bg-[#FFF7ED] text-[#D97706] border-[#D97706]"
-                      : "bg-white text-[#64748B] border-[#E2E8F0] hover:border-[#D97706] hover:text-[#D97706]"
-                  }`}
-                >
-                  {subcat} <span className="opacity-50">({count})</span>
-                </Link>
-              ))}
+          <div className="relative mb-6">
+            <div className="flex gap-3 overflow-x-auto pb-4 scrollbar-hide">
+              {category.category_children!.map((child) => {
+                const thumb = CATEGORY_IMAGES[child.handle] || null
+                return (
+                  <Link
+                    key={child.id}
+                    href={`/${locale}/kategooriad/${child.handle}`}
+                    className="flex-shrink-0 flex flex-col items-center gap-1.5 w-[110px] group"
+                  >
+                    <div className="w-[90px] h-[90px] rounded-lg bg-white border border-[#E2E8F0] group-hover:border-[#D97706] group-hover:shadow-md transition-all overflow-hidden flex items-center justify-center">
+                      {thumb ? (
+                        <Image
+                          src={thumb}
+                          alt={child.name}
+                          width={90}
+                          height={90}
+                          className="object-contain w-full h-full p-1.5"
+                          unoptimized
+                        />
+                      ) : (
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#CBD5E1" strokeWidth="1.5"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+                      )}
+                    </div>
+                    <span className="text-[11px] text-center text-[#1E293B] group-hover:text-[#D97706] transition-colors leading-tight line-clamp-2 font-medium">
+                      {child.name}
+                    </span>
+                  </Link>
+                )
+              })}
+            </div>
+            {/* Separator between categories and products */}
+            <div className="border-b border-[#E2E8F0]" />
           </div>
         )}
 
