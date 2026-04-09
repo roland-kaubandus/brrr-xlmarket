@@ -235,6 +235,7 @@ export default async function CategoryPage({ params, searchParams }: Props) {
             <div className="flex gap-3 overflow-x-auto pb-4 scrollbar-hide">
               {category.category_children!.map((child) => {
                 const thumb = CATEGORY_IMAGES[child.handle] || subcatThumbs[child.handle] || null
+                if (!thumb) return null // Hide empty subcategories (no products = no thumbnail)
                 return (
                   <Link
                     key={child.id}
@@ -242,18 +243,14 @@ export default async function CategoryPage({ params, searchParams }: Props) {
                     className="flex-shrink-0 flex flex-col items-center gap-1.5 w-[110px] group"
                   >
                     <div className="w-[90px] h-[90px] rounded-lg bg-white border border-[#E2E8F0] group-hover:border-[#D97706] group-hover:shadow-md transition-all overflow-hidden flex items-center justify-center">
-                      {thumb ? (
-                        <Image
-                          src={thumb}
-                          alt={child.name}
-                          width={90}
-                          height={90}
-                          className="object-contain w-full h-full p-1.5"
-                          unoptimized
-                        />
-                      ) : (
-                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#CBD5E1" strokeWidth="1.5"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
-                      )}
+                      <Image
+                        src={thumb}
+                        alt={child.name}
+                        width={90}
+                        height={90}
+                        className="object-contain w-full h-full p-1.5"
+                        unoptimized
+                      />
                     </div>
                     <span className="text-[11px] text-center text-[#1E293B] group-hover:text-[#D97706] transition-colors leading-tight line-clamp-2 font-medium">
                       {child.name}
