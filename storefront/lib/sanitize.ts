@@ -15,9 +15,16 @@ const ALLOWED_ATTRS: Record<string, Set<string>> = {
  */
 export function sanitizeHtml(html: string): string {
   return html
-    // Remove script/style/iframe blocks entirely
-    .replace(/<(script|style|iframe|object|embed|form|input|textarea|select)[\s\S]*?<\/\1>/gi, "")
-    .replace(/<(script|style|iframe|object|embed|form|input|textarea|select)[^>]*\/?>/gi, "")
+    // Remove entire CSS blocks — VEVOR dumps raw CSS outside <style> tags
+    // Match everything from "/* " comment or ".class-name {" up to the last "}" before next HTML tag
+    .replace(/\/\*[\s\S]*?\*\//g, "")
+    .replace(/\.[a-z][\w-]*(?:\s+[\w.#:\[\]=~^|*>,+\s-]*)*\s*\{[^}]*\}/gi, "")
+    // Remove script/style/iframe blocks entirely (tag + content + closing tag)
+    .replace(/<style[^>]*>[\s\S]*?<\/style\s*>/gi, "")
+    .replace(/<script[^>]*>[\s\S]*?<\/script\s*>/gi, "")
+    .replace(/<(iframe|object|embed|form|input|textarea|select)[\s\S]*?<\/\1\s*>/gi, "")
+    // Remove any remaining orphan opening/self-closing tags for blocked elements
+    .replace(/<(script|style|iframe|object|embed|form|input|textarea|select|label)[^>]*\/?>/gi, "")
     // Process remaining tags
     .replace(/<\/?([a-zA-Z][a-zA-Z0-9]*)\b([^>]*)>/gi, (match, tag, attrs) => {
       const tagLower = tag.toLowerCase()

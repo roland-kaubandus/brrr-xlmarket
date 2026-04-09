@@ -24,26 +24,26 @@ type MuujaLocale = "et" | "en"
 
 const muujaTexts = {
   et: {
-    greeting: "Tere! Olen sinu müüja. Kirjelda, mida otsid, ja leian sulle sobivad tooted!",
-    redirect: "Suunan sind sinna...",
-    found: (count: string) => "Leidsin sulle " + count + " toodet:",
-    notFound: "Kahjuks ei leidnud sellega midagi. Proovi teiste sõnadega!",
-    error: "Vabandust, tekkis viga. Proovi uuesti!",
-    cheapest: "odavamad",
-    expensive: "kallimad",
-    sortError: "Viga sorteerimisel.",
-    title: "Müüja",
-    thinking: "Müüja mõtleb...",
-    home: "Avalehele",
-    popular: "Populaarsed",
-    deals: "Soodukad",
-    placeholder: "Kirjelda, mida otsid...",
-    askLabel: "Küsi müüjalt",
-    noPrice: "Hind puudub",
-    cheaperFirst: "Odavamad",
-    expensiveFirst: "Kallimad",
-    sortPrefix: "Siin on ",
-    sortSuffix: " esmalt:",
+    greeting: "Hi! I'm your shop assistant. Describe what you're looking for and I'll find the right products!",
+    redirect: "Redirecting you there...",
+    found: (count: string) => "Found " + count + " products for you:",
+    notFound: "Couldn't find anything with that. Try different words!",
+    error: "Sorry, something went wrong. Try again!",
+    cheapest: "cheapest",
+    expensive: "most expensive",
+    sortError: "Sorting error.",
+    title: "Assistant",
+    thinking: "Thinking...",
+    home: "Home",
+    popular: "Popular",
+    deals: "Deals",
+    placeholder: "Describe what you need...",
+    askLabel: "Ask assistant",
+    noPrice: "No price",
+    cheaperFirst: "Cheapest",
+    expensiveFirst: "Most expensive",
+    sortPrefix: "Here are ",
+    sortSuffix: " first:",
   },
   en: {
     greeting: "Hi! I'm your shop assistant. Describe what you're looking for and I'll find the right products!",
@@ -118,14 +118,14 @@ function MuujaBall({
       <defs>
         <radialGradient id="ballGrad" cx="40%" cy="35%" r="60%">
           <stop offset="0%" stopColor="#FDBA74" />
-          <stop offset="100%" stopColor="#F97316" />
+          <stop offset="100%" stopColor="#D97706" />
         </radialGradient>
         <filter id="ballShadow" x="-20%" y="-20%" width="140%" height="140%">
-          <feDropShadow dx="0" dy="2" stdDeviation="3" floodColor="#F97316" floodOpacity="0.35" />
+          <feDropShadow dx="0" dy="2" stdDeviation="3" floodColor="#D97706" floodOpacity="0.35" />
         </filter>
       </defs>
       <circle cx="28" cy="28" r="26" fill="url(#ballGrad)" filter="url(#ballShadow)" />
-      <text x="28" y="16" textAnchor="middle" fontSize="7" fontWeight="800" fill="white" opacity="0.85" fontFamily="var(--font-poppins), sans-serif">XL</text>
+      <text x="28" y="16" textAnchor="middle" fontSize="7" fontWeight="800" fill="white" opacity="0.85" fontFamily="var(--font-dm-sans), sans-serif">XL</text>
       <g transform={"translate(" + eyeOffsetX + "," + eyeOffsetY + ")"}>
         {isThinking ? (
           <>
@@ -191,7 +191,7 @@ export default function MuujaWidget() {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
   const [isHover, setIsHover] = useState(false)
   const [winSize, setWinSize] = useState({ w: 0, h: 0 })
-  const [showIntro, setShowIntro] = useState(false)
+  const [showIntro, setShowIntro] = useState(false) // disabled: intro overlay blocks page
 
   const [pos, setPos] = useState({ x: -1, y: -1 })
   const [isDragging, setIsDragging] = useState(false)
@@ -211,7 +211,9 @@ export default function MuujaWidget() {
 
   useEffect(() => {
     if (!localStorage.getItem('muuja_intro_seen')) {
-      const timer = setTimeout(() => setShowIntro(true), 1500)
+      // Disabled: intro overlay blocks page interaction
+      // const timer = setTimeout(() => setShowIntro(true), 1500)
+      const timer = setTimeout(() => {}, 0)
       return () => clearTimeout(timer)
     }
   }, [])
@@ -251,7 +253,7 @@ export default function MuujaWidget() {
     const onMove = (e: MouseEvent) => {
       const dx = e.clientX - dragStart.current.x
       const dy = e.clientY - dragStart.current.y
-      if (Math.abs(dx) > 8 || Math.abs(dy) > 8) wasDragged.current = true
+      if (Math.abs(dx) > 15 || Math.abs(dy) > 15) wasDragged.current = true
       const newX = Math.max(0, Math.min(winSize.w - 56, dragStart.current.posX + dx))
       const newY = Math.max(0, Math.min(winSize.h - 56, dragStart.current.posY + dy))
       setPos({ x: newX, y: newY })
@@ -384,13 +386,10 @@ export default function MuujaWidget() {
             </div>
             <div className="bg-white rounded-2xl p-5 shadow-2xl">
               <p className="text-sm text-gray-700 leading-relaxed">
-                {locale === "en"
-                  ? "Hi! I'm your shop assistant. Just describe what you need and I'll find the right products. Click me to get started!"
-                  : "Tere! Mina olen sinu m\u00fc\u00fcja. Kirjelda mulle lihtsalt, mida vajad, ja leian sulle sobivad tooted. Kl\u00f5psa minul, et alustada!"
-                }
+                Hi! I&apos;m your shop assistant. Just describe what you need and I&apos;ll find the right products. Click me to get started!
               </p>
               <p className="text-xs text-gray-400 mt-2">
-                {locale === "en" ? "Click anywhere to continue" : "Kl\u00f5psa kuskil, et j\u00e4tkata"}
+                Click anywhere to continue
               </p>
             </div>
           </div>
@@ -413,7 +412,7 @@ export default function MuujaWidget() {
               <div className="w-7 h-7">
                 <MuujaBall mouseX={0} mouseY={0} ballRect={null} isThinking={false} isHover={false} />
               </div>
-              <span className="font-semibold text-white text-[15px] font-[family-name:var(--font-outfit)]">{t.title}</span>
+              <span className="font-semibold text-white text-[15px] font-[family-name:var(--font-dm-sans)]">{t.title}</span>
             </div>
             <button
               onClick={() => setIsOpen(false)}
@@ -496,7 +495,8 @@ export default function MuujaWidget() {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 placeholder={t.placeholder}
-                className="flex-1 px-3.5 py-2.5 rounded-xl bg-gray-100 text-sm outline-none focus:ring-2 focus:ring-orange-300 transition-all placeholder:text-gray-400"
+                autoFocus
+                className="flex-1 px-3.5 py-2.5 rounded-xl bg-gray-100 text-sm outline-none focus:ring-2 focus:ring-[#D97706]/30 transition-all placeholder:text-gray-400"
               />
               <button
                 type="submit"
@@ -519,23 +519,15 @@ export default function MuujaWidget() {
           width: 56,
           height: 56,
         }}
-        onMouseDown={(e) => {
-          if (isOpen) return
-          setIsDragging(true)
-          wasDragged.current = false
-          dragStart.current = { x: e.clientX, y: e.clientY, posX: pos.x, posY: pos.y }
-        }}
         onMouseEnter={() => setIsHover(true)}
         onMouseLeave={() => setIsHover(false)}
-        onClick={() => {
-          if (!wasDragged.current) setIsOpen((o) => !o)
-        }}
+        onClick={() => setIsOpen((o) => !o)}
       >
         {!isOpen && !isDragging && (
           <>
             <div className="absolute inset-0 rounded-full bg-orange-400/30 animate-ping" style={{ animationDuration: "3s" }} />
             <div className="absolute left-[64px] top-1/2 -translate-y-1/2 whitespace-nowrap bg-white px-3 py-1.5 rounded-xl shadow-[0_2px_12px_rgba(0,0,0,0.08)] text-sm font-medium text-gray-700 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              Vajuta siia!
+              Click here!
             </div>
           </>
         )}

@@ -1,49 +1,52 @@
 "use client"
 
 import { useState } from "react"
-import { Star } from "lucide-react"
+// Star icons rendered inline as SVG
 
 export default function ProductReviews() {
   const [submitted, setSubmitted] = useState(false)
 
   return (
-    <section className="mt-[48px] pt-[40px] border-t border-[#E8E8E8]">
-      <div className="flex items-center justify-between mb-[24px]">
-        <h2 className="text-[20px] font-[600] font-[family-name:var(--font-poppins)] text-[#1A1A1A]">
-          Arvustused
+    <section className="mt-12 pt-10 border-t border-[#E2E8F0]">
+      <div className="flex items-center justify-between mb-6">
+        <h2 className="text-[20px] font-bold text-[#1E293B]">
+          Reviews
         </h2>
         {!submitted && (
           <button
-            className="px-[14px] py-[8px] text-[13px] font-[500] font-[family-name:var(--font-poppins)] border border-[#E8650A] text-[#E8650A] hover:bg-[#FFF5EE] transition-colors"
+            className="px-4 py-2 text-sm font-medium border border-[#D97706] text-[#D97706] hover:bg-[#FFFBEB] rounded-lg transition-colors duration-200"
             type="button"
             onClick={() => setSubmitted(true)}
           >
-            Lisa arvustus
+            Write a Review
           </button>
         )}
       </div>
 
       {submitted ? (
-        <div className="flex flex-col items-center justify-center py-[32px] px-[24px] bg-green-50 border border-green-200">
-          <p className="text-[15px] font-[600] font-[family-name:var(--font-poppins)] text-green-700 mb-[4px]">
-            Aitäh!
+        <div className="flex flex-col items-center justify-center py-8 px-6 bg-green-50 border border-green-200 rounded-lg">
+          <p className="text-[15px] font-bold text-green-700 mb-1">
+            Thank you!
           </p>
-          <p className="text-[13px] font-[family-name:var(--font-jakarta)] text-green-600 text-center">
-            Sinu arvustus on saadetud ülevaatusele.
+          <p className="text-sm text-green-600 text-center">
+            Your review has been submitted for approval.
           </p>
         </div>
       ) : (
-        <div className="flex flex-col items-center justify-center py-[48px] px-[24px] bg-[#FAFAFA] border border-[#E8E8E8]">
-          <div className="flex gap-[4px] mb-[14px]">
+        <div className="flex flex-col items-center justify-center py-12 px-6 bg-[#F1F5F9] border border-[#E2E8F0] rounded-lg">
+          {/* Rating summary stars */}
+          <div className="flex gap-1 mb-3">
             {[1, 2, 3, 4, 5].map((s) => (
-              <Star key={s} size={24} strokeWidth={1.5} className="text-[#E8E8E8]" />
+              <svg key={s} width="28" height="28" viewBox="0 0 24 24" fill="#E2E8F0" stroke="none">
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+              </svg>
             ))}
           </div>
-          <p className="text-[15px] font-[600] font-[family-name:var(--font-poppins)] text-[#1A1A1A] mb-[6px]">
-            Selle toote kohta pole veel arvustusi
+          <p className="text-[15px] font-bold text-[#1E293B] mb-1.5">
+            No reviews yet for this product
           </p>
-          <p className="text-[13px] font-[family-name:var(--font-jakarta)] text-[#999999] text-center max-w-[280px]">
-            Ole esimene, kes jagab oma kogemust selle tootega.
+          <p className="text-sm text-[#64748B] text-center max-w-[320px]">
+            Be the first to share your experience with this product.
           </p>
         </div>
       )}

@@ -11,39 +11,39 @@ export default async function MeistPage({ params }: { params: Promise<{ locale: 
     <div className="max-w-[1280px] mx-auto px-[16px] sm:px-[24px] py-[32px] sm:py-[48px]">
       {/* Breadcrumb */}
       <nav
-        className="text-[12px] font-[family-name:var(--font-jakarta)] text-[#999999] mb-[32px]"
-        aria-label="Leheasukoht"
+        className="text-[12px] font-[family-name:var(--font-dm-sans)] text-[#999999] mb-[32px]"
+        aria-label="Breadcrumb"
       >
-        <Link href={`/${(await params).locale}`} className="hover:text-[#E8650A] transition-colors">
-          Avaleht
+        <Link href={`/${(await params).locale}`} className="hover:text-[#D97706] transition-colors">
+          Home
         </Link>
         <span className="mx-[8px] text-[#E8E8E8]">/</span>
-        <span className="text-[#777777]">Meist</span>
+        <span className="text-[#777777]">About Us</span>
       </nav>
 
       <div className="max-w-[720px]">
-        <h1 className="text-[28px] sm:text-[32px] font-[700] font-[family-name:var(--font-poppins)] text-[#1A1A1A] mb-[16px]">
-          Meist
+        <h1 className="text-[28px] sm:text-[32px] font-[700] font-[family-name:var(--font-dm-sans)] text-[#1E293B] mb-[16px]">
+          About Us
         </h1>
-        <p className="text-[16px] text-[#555555] font-[family-name:var(--font-jakarta)] leading-relaxed mb-[40px]">
-          XLMARKET on Eesti e-pood, mis pakub kvaliteetseid tööriistu, seadmeid ja kodukaupa
-          soodsa hinnaga. Meie eesmärk on muuta professionaalsed tööriistad kättesaadavaks igaühele.
+        <p className="text-[16px] text-[#555555] font-[family-name:var(--font-dm-sans)] leading-relaxed mb-[40px]">
+          XLMARKET is an Estonian online store offering quality tools, equipment, and home goods
+          at affordable prices. Our goal is to make professional tools accessible to everyone.
         </p>
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-[16px] mb-[48px]">
           {[
-            { num: "10 000+", label: "toodet kataloogis" },
-            { num: "11", label: "tootekategooriat" },
-            { num: "2a", label: "garantii kõigile toodetele" },
+            { num: "10,000+", label: "products in catalog" },
+            { num: "11", label: "product categories" },
+            { num: "2yr", label: "warranty on all products" },
           ].map((stat) => (
             <div
               key={stat.label}
               className="border border-[#E8E8E8] p-[20px] text-center"
             >
-              <p className="text-[28px] font-[700] font-[family-name:var(--font-poppins)] text-[#E8650A] mb-[4px]">
+              <p className="text-[28px] font-[700] font-[family-name:var(--font-dm-sans)] text-[#E8650A] mb-[4px]">
                 {stat.num}
               </p>
-              <p className="text-[13px] text-[#777777] font-[family-name:var(--font-jakarta)]">
+              <p className="text-[13px] text-[#777777] font-[family-name:var(--font-dm-sans)]">
                 {stat.label}
               </p>
             </div>
@@ -52,10 +52,10 @@ export default async function MeistPage({ params }: { params: Promise<{ locale: 
 
         <div className="flex flex-col gap-[32px]">
           <div>
-            <h2 className="text-[18px] font-[600] font-[family-name:var(--font-poppins)] text-[#1A1A1A] mb-[12px]">
+            <h2 className="text-[18px] font-[600] font-[family-name:var(--font-dm-sans)] text-[#1E293B] mb-[12px]">
               Mida me pakume
             </h2>
-            <ul className="flex flex-col gap-[8px] text-[14px] text-[#555555] font-[family-name:var(--font-jakarta)]">
+            <ul className="flex flex-col gap-[8px] text-[14px] text-[#555555] font-[family-name:var(--font-dm-sans)]">
               {[
                 "Üle 10 000 toote 11 kategoorias",
                 "Tööriistad ja seadmed professionaalile ja harrastajale",
@@ -73,20 +73,20 @@ export default async function MeistPage({ params }: { params: Promise<{ locale: 
           </div>
 
           <div>
-            <h2 className="text-[18px] font-[600] font-[family-name:var(--font-poppins)] text-[#1A1A1A] mb-[12px]">
-              Meie väärtused
+            <h2 className="text-[18px] font-[600] font-[family-name:var(--font-dm-sans)] text-[#1E293B] mb-[12px]">
+              Our Values
             </h2>
             <div className="flex flex-col gap-[12px]">
               {[
-                { title: "Soodne hind", desc: "Otsetarnimine tootjalt hoiab hinnad madalana." },
-                { title: "Lai valik", desc: "Tuhanded tooted ühes kohas." },
-                { title: "Usaldusväärne teenindus", desc: "14-päevane taganemisõigus ja 2 aasta garantii." },
+                { title: "Affordable prices", desc: "Direct sourcing from manufacturers keeps prices low." },
+                { title: "Wide selection", desc: "Thousands of products in one place." },
+                { title: "Reliable service", desc: "14-day return policy and 2-year warranty." },
               ].map((v) => (
                 <div key={v.title} className="border border-[#E8E8E8] p-[16px]">
-                  <p className="text-[14px] font-[600] font-[family-name:var(--font-poppins)] text-[#1A1A1A] mb-[4px]">
+                  <p className="text-[14px] font-[600] font-[family-name:var(--font-dm-sans)] text-[#1E293B] mb-[4px]">
                     {v.title}
                   </p>
-                  <p className="text-[13px] text-[#777777] font-[family-name:var(--font-jakarta)]">
+                  <p className="text-[13px] text-[#777777] font-[family-name:var(--font-dm-sans)]">
                     {v.desc}
                   </p>
                 </div>
@@ -95,15 +95,15 @@ export default async function MeistPage({ params }: { params: Promise<{ locale: 
           </div>
 
           <div>
-            <h2 className="text-[18px] font-[600] font-[family-name:var(--font-poppins)] text-[#1A1A1A] mb-[12px]">
+            <h2 className="text-[18px] font-[600] font-[family-name:var(--font-dm-sans)] text-[#1E293B] mb-[12px]">
               Ettevõte
             </h2>
-            <p className="text-[14px] text-[#555555] font-[family-name:var(--font-jakarta)] mb-[8px]">
+            <p className="text-[14px] text-[#555555] font-[family-name:var(--font-dm-sans)] mb-[8px]">
               XLMARKET on Roland Kaubandus OÜ kaubamärk.
             </p>
             <Link
               href={`/${(await params).locale}/kontakt`}
-              className="text-[14px] text-[#E8650A] hover:underline font-[family-name:var(--font-jakarta)]"
+              className="text-[14px] text-[#E8650A] hover:underline font-[family-name:var(--font-dm-sans)]"
             >
               Võtke meiega ühendust →
             </Link>

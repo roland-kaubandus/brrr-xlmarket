@@ -1,35 +1,26 @@
-import { Poppins, Outfit, Plus_Jakarta_Sans } from "next/font/google"
+import { DM_Sans } from "next/font/google"
 import JsonLdOrganization from "@/components/JsonLdOrganization"
+import PostHogProvider from "@/components/PostHogProvider"
 import "./globals.css"
 
-const poppins = Poppins({
+const dmSans = DM_Sans({
   subsets: ["latin", "latin-ext"],
-  weight: ["400", "500", "600", "700", "800"],
+  weight: ["300", "400", "500", "600", "700", "800"],
   display: "swap",
-  variable: "--font-poppins",
+  variable: "--font-dm-sans",
 })
 
-const outfit = Outfit({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800", "900"],
-  display: "swap",
-  variable: "--font-outfit",
-})
-
-const plusJakarta = Plus_Jakarta_Sans({
-  subsets: ["latin", "latin-ext"],
-  weight: ["300", "400", "500", "600", "700"],
-  display: "swap",
-  variable: "--font-jakarta",
-})
+export const metadata = {
+  verification: { google: "7CAn8vXu2SXJONPYZqctcHXWLFfRulKeyXy5" },
+}
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html className="scroll-smooth" suppressHydrationWarning>
-      <body className={poppins.variable + " " + outfit.variable + " " + plusJakarta.variable + " font-[family-name:var(--font-jakarta)] antialiased bg-off-white text-off-black"}>
+      <body className={dmSans.variable + " font-[family-name:var(--font-dm-sans)] antialiased bg-off-white text-off-black"}>
         <JsonLdOrganization />
         <div className="noise-overlay" />
-        {children}
+        <PostHogProvider>{children}</PostHogProvider>
       </body>
     </html>
   )

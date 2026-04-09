@@ -12,8 +12,21 @@ import { join } from "path"
 
 const { Client } = pg
 const DB_URL = process.env.DATABASE_URL || "postgres://xlmarket:PG_PASSWORD_REDACTED@localhost:5435/xlmarket"
+const MEILI_HOST = process.env.MEILISEARCH_HOST || "http://127.0.0.1:7700"
+const MEILI_KEY = process.env.MEILISEARCH_API_KEY || "MEILI_LEGACY_KEY_REDACTED"
+const MEILI_INDEX = "products"
 const args = process.argv.slice(2)
 const LIMIT = args.includes("--limit") ? parseInt(args[args.indexOf("--limit") + 1]) : 50
+
+async function meiliUpdate(docs) {
+  if (!docs.length) return
+  const res = await fetch(`${MEILI_HOST}/indexes/${MEILI_INDEX}/documents`, {
+    method: "POST",
+    headers: { "Authorization": `Bearer ${MEILI_KEY}`, "Content-Type": "application/json" },
+    body: JSON.stringify(docs),
+  })
+  if (!res.ok) console.warn("⚠️  MeiliSearch uuendus ebaõnnestus:", res.status)
+}
 
 async function main() {
   const client = new Client({ connectionString: DB_URL })
@@ -27,7 +40,6 @@ async function main() {
     ORDER BY created_at ASC
     LIMIT $1
   `, [LIMIT])
-
   if (products.length === 0) {
     console.log("✅ Kõik tooted on tõlgitud!")
     await client.end()
@@ -94,25 +106,44 @@ Tõlgi KÕIK ${products.length} toodet. Ära lisa kommentaare.`
   console.log(`✅ Saadud ${translations.length} tõlget`)
 
   let updated = 0
+  const meiliDocs = []
   for (const t of translations) {
     if (!t.id || !t.title_et) continue
     try {
+      // KRIITILINE: title väli EI muutu — originaal EN jääb alles!
+      // Tõlge läheb metadata-sse: title_et + description_et
       await client.query(`
         UPDATE product
         SET
-          title = $1,
-          description = COALESCE($2, description),
-          metadata = COALESCE(metadata, '{}'::jsonb) || '{"translated":true}'::jsonb,
+          metadata = COALESCE(metadata, '{}'::jsonb) || jsonb_build_object(
+            'translated', true,
+            'title_et', $1::text,
+            'description_et', COALESCE($2::text, metadata->>'description_et'),
+            'original_title', title,
+            'original_description', LEFT(COALESCE(description, ''), 500)
+          ),
           updated_at = NOW()
         WHERE id = $3
       `, [t.title_et, t.description_et || null, t.id])
       updated++
+      // MeiliSearch partial update — ainult tõlkeväljad
+      meiliDocs.push({
+        id: t.id,
+        title_et: t.title_et,
+        description_et: t.description_et || '',
+        translated: true,
+      })
     } catch (e) {
       console.error(`Viga ${t.id}:`, e.message)
     }
   }
 
   console.log(`💾 Uuendatud ${updated} toodet DB-s`)
+
+  // Uuenda MeiliSearch — partial update (ainult tõlkeväljad, title_en jääb puutumata)
+  await meiliUpdate(meiliDocs)
+  if (meiliDocs.length) console.log(`🔍 MeiliSearch uuendatud: ${meiliDocs.length} dokumenti`)
+
   try { unlinkSync(inputFile) } catch {}
   try { unlinkSync(outputFile) } catch {}
   await client.end()

@@ -25,7 +25,7 @@ export default function AddToCartButton({ variantId }: { variantId: string }) {
       if (!cartId) {
         const res = await fetch("/api/cart", { method: "POST" })
         if (!res.ok) {
-          setError("Ostukorvi loomine eba\u00F5nnestus")
+          setError("Failed to create cart")
           return
         }
         const data = await res.json()
@@ -44,7 +44,7 @@ export default function AddToCartButton({ variantId }: { variantId: string }) {
       })
 
       if (!addRes.ok) {
-        setError("Toote lisamine ostukorvi eba\u00F5nnestus")
+        setError("Failed to add product to cart")
         return
       }
 
@@ -56,7 +56,7 @@ export default function AddToCartButton({ variantId }: { variantId: string }) {
       } catch {}
       window.dispatchEvent(new CustomEvent("cart:open"))
     } catch {
-      setError("Toote lisamine ostukorvi eba\u00F5nnestus")
+      setError("Failed to add product to cart")
     } finally {
       setLoading(false)
       addingRef.current = false
@@ -67,21 +67,21 @@ export default function AddToCartButton({ variantId }: { variantId: string }) {
     <div>
       <div className="flex items-center gap-3">
         {/* Quantity selector */}
-        <div className="flex border border-soft-border rounded-xl overflow-hidden">
+        <div className="flex border border-[#E2E8F0] rounded-lg overflow-hidden">
           <button
             onClick={() => setQty(Math.max(1, qty - 1))}
-            aria-label={"V\u00E4henda kogust"}
-            className="w-10 h-11 flex items-center justify-center hover:bg-silver active:bg-silver-dark text-off-black font-[family-name:var(--font-jakarta)] font-medium text-base transition-all duration-300"
+            aria-label="Decrease quantity"
+            className="w-10 h-12 flex items-center justify-center hover:bg-[#F8FAFC] active:bg-[#E2E8F0] text-[#1E293B] font-medium text-base transition-colors duration-200"
           >
             -
           </button>
-          <span className="w-12 h-11 flex items-center justify-center border-x border-soft-border text-sm font-[family-name:var(--font-jakarta)] text-off-black font-medium tabular-nums">
+          <span className="w-12 h-12 flex items-center justify-center border-x border-[#E2E8F0] text-sm text-[#1E293B] font-medium tabular-nums">
             {qty}
           </span>
           <button
             onClick={() => setQty(Math.min(99, qty + 1))}
-            aria-label="Suurenda kogust"
-            className="w-10 h-11 flex items-center justify-center hover:bg-silver active:bg-silver-dark text-off-black font-[family-name:var(--font-jakarta)] font-medium text-base transition-all duration-300"
+            aria-label="Increase quantity"
+            className="w-10 h-12 flex items-center justify-center hover:bg-[#F8FAFC] active:bg-[#E2E8F0] text-[#1E293B] font-medium text-base transition-colors duration-200"
           >
             +
           </button>
@@ -92,45 +92,45 @@ export default function AddToCartButton({ variantId }: { variantId: string }) {
           onClick={handleAdd}
           disabled={loading}
           className={
-            "flex-1 flex items-center justify-center gap-2 py-3 px-6 font-semibold font-[family-name:var(--font-outfit)] text-base rounded-xl btn-press disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 " +
+            "flex-1 flex items-center justify-center gap-2 h-12 px-6 font-bold text-base rounded-lg disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200 " +
             (added
               ? "bg-green-600 text-white hover:bg-green-700"
-              : "bg-accent text-white hover:bg-accent-dark hover:shadow-[0_4px_16px_rgba(249,115,22,0.25)]")
+              : "bg-[#D97706] text-white hover:bg-[#B45309]")
           }
         >
           {loading ? (
             <>
               <span className="w-[18px] h-[18px] border-2 border-white/30 border-t-white rounded-full animate-spin" />
-              Lisamine...
+              Adding...
             </>
           ) : added ? (
             <>
               <Check size={18} strokeWidth={2} />
-              Lisatud!
+              Added!
             </>
           ) : (
             <>
               <ShoppingCart size={18} strokeWidth={1.5} />
-              Lisa ostukorvi
+              Add to Cart
             </>
           )}
         </button>
       </div>
 
       {added && (
-        <p className="mt-3 text-sm font-[family-name:var(--font-jakarta)] text-green-700 bg-green-50 px-3 py-2 rounded-xl">
-          Toode lisatud!{" "}
+        <p className="mt-3 text-sm text-green-700 bg-green-50 px-3 py-2 rounded-lg">
+          Product added!{" "}
           <Link
             href={`/${locale}/ostukorv`}
             className="font-medium underline underline-offset-2 hover:text-green-900"
           >
-            Vaata ostukorvi
+            View Cart
           </Link>
         </p>
       )}
       {error && (
         <p
-          className="mt-3 text-sm font-[family-name:var(--font-jakarta)] text-red-600 bg-red-50 px-3 py-2 rounded-xl"
+          className="mt-3 text-sm text-red-600 bg-red-50 px-3 py-2 rounded-lg"
           role="alert"
         >
           {error}

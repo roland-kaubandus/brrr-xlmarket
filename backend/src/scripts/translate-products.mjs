@@ -20,6 +20,20 @@ const ADMIN_EMAIL = process.env.ADMIN_EMAIL || "tarmo@xlmarket.eu"
 const ADMIN_PASS = process.env.ADMIN_PASS
 if (!ADMIN_PASS) throw new Error("ADMIN_PASS env variable required")
 
+const MEILI_HOST = process.env.MEILISEARCH_HOST || "http://127.0.0.1:7700"
+const MEILI_KEY = process.env.MEILISEARCH_API_KEY || "MEILI_LEGACY_KEY_REDACTED"
+const MEILI_INDEX = "products"
+
+async function meiliUpdate(docs) {
+  if (!docs.length) return
+  const res = await fetch(`${MEILI_HOST}/indexes/${MEILI_INDEX}/documents`, {
+    method: "POST",
+    headers: { "Authorization": `Bearer ${MEILI_KEY}`, "Content-Type": "application/json" },
+    body: JSON.stringify(docs),
+  })
+  if (!res.ok) console.warn("⚠️  MeiliSearch uuendus ebaõnnestus:", res.status)
+}
+
 const args = process.argv.slice(2)
 const LIMIT = args.includes("--limit")
   ? parseInt(args[args.indexOf("--limit") + 1])
@@ -198,11 +212,13 @@ async function main() {
           continue
         }
 
+        // KRIITILINE: title väli EI muutu — originaal EN jääb Medusas alles!
+        // Tõlge läheb metadata-sse: title_et + description_et
         const updateData = {
-          title: translatedTitle,
           metadata: {
             ...product.metadata,
             translated: true,
+            title_et: translatedTitle,
             original_title: product.title,
           },
         }
@@ -210,7 +226,7 @@ async function main() {
         if (!TITLES_ONLY && product.description && isEnglish(product.description)) {
           const translatedDesc = await translateText(product.description)
           if (translatedDesc) {
-            updateData.description = translatedDesc
+            updateData.metadata.description_et = translatedDesc
             updateData.metadata.original_description = stripHtml(product.description).substring(0, 500)
           }
         }
@@ -223,6 +239,13 @@ async function main() {
 
         if (resp.product) {
           stats.translated++
+          // Partial MeiliSearch update — ainult tõlkeväljad
+          await meiliUpdate([{
+            id: product.id,
+            title_et: translatedTitle,
+            description_et: updateData.metadata.description_et || '',
+            translated: true,
+          }])
         } else {
           stats.errors++
           if (stats.errors <= 5) {

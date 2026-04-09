@@ -4,9 +4,14 @@ const INDEX = "products"
 
 export type MeiliHit = {
   id: string
-  title: string
+  title: string      // originaal EN (display fallback)
+  title_en: string   // otsinguindeks EN
+  title_et: string   // otsinguindeks ET
+  // tulevikus: title_ru, title_fi — sama muster
   handle: string
   description: string
+  description_en: string
+  description_et: string
   thumbnail: string
   sku: string
   price: number
@@ -17,9 +22,26 @@ export type MeiliHit = {
   created_at: number
   _formatted?: {
     title?: string
+    title_et?: string
+    title_en?: string
     description?: string
+    description_et?: string
     [key: string]: unknown
   }
+}
+
+/** Tagastab locale-põhise pealkirja, EN fallback */
+export function getLocalizedTitle(hit: MeiliHit, locale: string): string {
+  if (locale === 'et' && hit.title_et) return hit.title_et
+  if (locale === 'en' && hit.title_en) return hit.title_en
+  return hit.title || hit.title_en || hit.title_et || ''
+}
+
+/** Tagastab locale-põhise kirjelduse, EN fallback */
+export function getLocalizedDescription(hit: MeiliHit, locale: string): string {
+  if (locale === 'et' && hit.description_et) return hit.description_et
+  if (locale === 'en' && hit.description_en) return hit.description_en
+  return hit.description || ''
 }
 
 export type MeiliSearchResult = {
@@ -44,9 +66,31 @@ export type SearchOptions = {
   highlightPostTag?: string
 }
 
+// Split compound words that users commonly type without spaces
+function expandCompoundWords(q: string): string {
+  // Match camelCase or long lowercase words that look like compounds
+  const compounds: Record<string, string> = {
+    powertools: "power tools", powertool: "power tool",
+    drillpress: "drill press", heatgun: "heat gun",
+    aircompressor: "air compressor", pressurewasher: "pressure washer",
+    meatgrinder: "meat grinder", tablesaw: "table saw",
+    bandsaw: "band saw", poolpump: "pool pump",
+    waterpump: "water pump", gardenhose: "garden hose",
+    solarpanel: "solar panel", lawnmower: "lawn mower",
+    icemaker: "ice maker", boatcover: "boat cover",
+    workbench: "work bench", snowblower: "snow blower",
+    chestfreezer: "chest freezer", woodlathe: "wood lathe",
+    metallathe: "metal lathe", weldinghelmets: "welding helmets",
+    weldinghelmet: "welding helmet", anglegrinder: "angle grinder",
+    chainsaws: "chain saws", chainsaw: "chain saw",
+    floorjack: "floor jack", carjack: "car jack",
+  }
+  return q.split(/\s+/).map(w => compounds[w.toLowerCase()] || w).join(" ")
+}
+
 export async function searchProducts(options: SearchOptions): Promise<MeiliSearchResult> {
   const body: Record<string, unknown> = {
-    q: options.q,
+    q: expandCompoundWords(options.q),
     limit: options.limit || 24,
     offset: options.offset || 0,
     attributesToHighlight: options.attributesToHighlight || ["title"],
