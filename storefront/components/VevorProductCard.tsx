@@ -92,7 +92,8 @@ export default function VevorProductCard({ product, locale }: { product: Product
     : 0
 
   const rating = getStarRating(product.id)
-  const thumbnailUrl = product.thumbnail ? decodeURIComponent(product.thumbnail) : null
+  // Don't decodeURIComponent — VEVOR CDN requires encoded paths (%2F, %2B etc.)
+  const thumbnailUrl = product.thumbnail || null
   const freeShipping = price && price.calculated_amount >= 9900
 
   return (
