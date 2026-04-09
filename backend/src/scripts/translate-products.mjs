@@ -101,6 +101,28 @@ function stripHtml(html) {
   return (html || "").replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim()
 }
 
+function getSellingPoints(metadata) {
+  const direct = []
+  for (let index = 1; index <= 5; index++) {
+    const value = metadata?.[`selling_point_${index}`]
+    if (typeof value === "string" && value.trim()) {
+      direct.push(value.trim())
+    }
+  }
+
+  if (direct.length > 0) return direct.slice(0, 5)
+
+  if (Array.isArray(metadata?.selling_points)) {
+    return metadata.selling_points
+      .filter((item) => typeof item === "string")
+      .map((item) => item.trim())
+      .filter(Boolean)
+      .slice(0, 5)
+  }
+
+  return []
+}
+
 async function translateText(text, maxLen = 0) {
   if (!text) return text
   try {
@@ -212,13 +234,21 @@ async function main() {
           continue
         }
 
-        // KRIITILINE: title väli EI muutu — originaal EN jääb Medusas alles!
-        // Tõlge läheb metadata-sse: title_et + description_et
+        const currentSellingPoints = getSellingPoints(product.metadata)
+        const translatedSellingPoints = []
+        for (const sellingPoint of currentSellingPoints) {
+          const translatedPoint = await translateText(sellingPoint)
+          translatedSellingPoints.push(translatedPoint || "")
+        }
+
+        // WO-CODEX-001 andmemudel:
+        // aktiivne ET sisu kirjutatakse product.title / product.description peale
+        // originaal EN salvestatakse metadata.original_* alla
         const updateData = {
+          title: translatedTitle,
           metadata: {
             ...product.metadata,
             translated: true,
-            title_et: translatedTitle,
             original_title: product.title,
           },
         }
@@ -226,9 +256,23 @@ async function main() {
         if (!TITLES_ONLY && product.description && isEnglish(product.description)) {
           const translatedDesc = await translateText(product.description)
           if (translatedDesc) {
-            updateData.metadata.description_et = translatedDesc
-            updateData.metadata.original_description = stripHtml(product.description).substring(0, 500)
+            updateData.description = translatedDesc
+            updateData.metadata.original_description = product.description
           }
+        }
+
+        for (let index = 0; index < 5; index++) {
+          const translatedPoint = translatedSellingPoints[index] || ""
+          const originalPoint = currentSellingPoints[index] || ""
+          updateData.metadata[`selling_point_${index + 1}`] = translatedPoint
+          if (originalPoint) {
+            updateData.metadata[`original_selling_point_${index + 1}`] = originalPoint
+          }
+        }
+
+        updateData.metadata.selling_points = translatedSellingPoints.filter(Boolean)
+        if (currentSellingPoints.length > 0) {
+          updateData.metadata.original_selling_points = currentSellingPoints
         }
 
         const resp = await apiCall(
@@ -239,11 +283,22 @@ async function main() {
 
         if (resp.product) {
           stats.translated++
-          // Partial MeiliSearch update — ainult tõlkeväljad
+          // Partial MeiliSearch update — uus mudel + legacy otsinguväljad
           await meiliUpdate([{
             id: product.id,
+            title: translatedTitle,
+            original_title: product.title,
             title_et: translatedTitle,
-            description_et: updateData.metadata.description_et || '',
+            title_en: product.title,
+            description: updateData.description || "",
+            original_description: updateData.metadata.original_description || "",
+            description_et: updateData.description || "",
+            description_en: updateData.metadata.original_description || "",
+            selling_point_1: updateData.metadata.selling_point_1 || "",
+            selling_point_2: updateData.metadata.selling_point_2 || "",
+            selling_point_3: updateData.metadata.selling_point_3 || "",
+            selling_point_4: updateData.metadata.selling_point_4 || "",
+            selling_point_5: updateData.metadata.selling_point_5 || "",
             translated: true,
           }])
         } else {
