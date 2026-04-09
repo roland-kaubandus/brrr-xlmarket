@@ -636,8 +636,19 @@ async function updateProduct(productId, skuRows) {
   const anyInStock = skuRows.some((r) => r.availability === "in stock")
 
   try {
+    // Collect all unique images from all SKU rows (original pictures are best quality)
+    const allImages = new Set()
+    for (const row of skuRows) {
+      for (const url of row.originalPictures) allImages.add(url)
+      for (const url of row.galleryImages) allImages.add(url)
+      if (row.imageLink) allImages.add(row.imageLink)
+    }
+    const imageUrls = [...allImages].filter(Boolean).slice(0, 20)
+
     await apiCallWithRetry("POST", `/admin/products/${productId}`, {
       status: anyInStock ? "published" : "draft",
+      thumbnail: first.mainOriginalPicture || first.imageLink || "",
+      images: imageUrls.map((url) => ({ url })),
       metadata: {
         vevor_sku: first.sku,
         vevor_spu: first.spu,
