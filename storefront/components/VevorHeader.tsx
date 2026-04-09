@@ -2,6 +2,7 @@ import Link from "next/link"
 import NavCartButton from "@/components/NavCartButton"
 import SearchBar from "@/components/SearchBar"
 import MegaMenu from "@/components/MegaMenu"
+import AuthButton from "@/components/AuthButton"
 import type { CategoryNode } from "@/components/MegaMenu"
 
 const getNavLinks = (locale: string) => [
@@ -40,13 +41,8 @@ export default function VevorHeader({ categories, locale = "et" }: { categories:
               <span className="text-white/70">Delivery to <strong className="text-white">Estonia</strong></span>
             </div>
 
-            {/* Sign in — desktop */}
-            <Link href={`/${locale}/kontakt`} className="hidden md:flex items-center gap-2 text-white text-[13px] hover:text-[#D97706] transition-colors">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" /><circle cx="12" cy="7" r="4" />
-              </svg>
-              <span className="text-white/70">Hello, <strong className="text-white">Sign In</strong></span>
-            </Link>
+            {/* Sign in / Account — desktop */}
+            <AuthButton />
 
             {/* Cart */}
             <div className="[&_a]:text-white [&_a]:hover:text-[#D97706] [&_a]:hover:bg-transparent">
