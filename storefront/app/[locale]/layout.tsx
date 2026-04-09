@@ -80,7 +80,7 @@ export default async function LocaleLayout({ children, params }: Props) {
 
       <VevorHeader categories={categoryNodes} locale={locale} />
 
-      <main className="min-h-[100dvh] bg-[#F8FAFC]">{children}</main>
+      <main className="min-h-[100dvh] bg-white">{children}</main>
 
       <VevorFooter locale={locale} />
 

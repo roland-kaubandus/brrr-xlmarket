@@ -215,7 +215,7 @@ export default function CheckoutPage() {
   // Loading state
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#F8FAFC]">
+      <div className="min-h-screen bg-white">
         <div className="max-w-[1360px] mx-auto px-4 sm:px-6 py-12">
           <h1 className="text-xl font-semibold text-[#1E293B] mb-6">Checkout</h1>
           <div className="flex items-center justify-center py-20">
@@ -229,7 +229,7 @@ export default function CheckoutPage() {
   // Empty cart
   if (!cart || cart.items.length === 0) {
     return (
-      <div className="min-h-screen bg-[#F8FAFC]">
+      <div className="min-h-screen bg-white">
         <div className="max-w-[1360px] mx-auto px-4 sm:px-6 py-12">
           <h1 className="text-xl font-semibold text-[#1E293B] mb-6">Checkout</h1>
           <div className="flex flex-col items-center justify-center py-16 bg-white border border-[#E2E8F0] rounded-lg">
@@ -249,7 +249,7 @@ export default function CheckoutPage() {
   // Order completed
   if (step === "done") {
     return (
-      <div className="min-h-screen bg-[#F8FAFC]">
+      <div className="min-h-screen bg-white">
         <div className="max-w-[720px] mx-auto px-4 sm:px-6 py-12">
           <div className="flex flex-col items-center justify-center py-16 bg-white border border-[#E2E8F0] rounded-lg">
             <div className="w-14 h-14 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-5">
@@ -280,7 +280,7 @@ export default function CheckoutPage() {
   const items = cart.items
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC]">
+    <div className="min-h-screen bg-white">
       <div className="max-w-[1360px] mx-auto px-4 sm:px-6 py-8 sm:py-12">
         {/* Breadcrumb */}
         <nav className="text-[12px] text-[#64748B] mb-7" aria-label="Breadcrumb">
