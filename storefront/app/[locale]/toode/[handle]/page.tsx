@@ -226,8 +226,8 @@ export default async function ProductPage({ params }: Props) {
       [
         ...metaGalleryImages,
         ...(metaGalleryImages.length === 0 ? [
-          ...(product.images || []).map((img) => ({ ...img, url: decodeURIComponent(img.url) })),
-          ...(product.thumbnail ? [{ id: "thumb", url: decodeURIComponent(product.thumbnail) }] : []),
+          ...(product.images || []).map((img) => ({ ...img, url: decodeURIComponent(img.url).replace(/\/goods_img-/, "/original_img-") })),
+          ...(product.thumbnail ? [{ id: "thumb", url: decodeURIComponent(product.thumbnail).replace(/\/goods_img-/, "/original_img-") }] : []),
         ] : []),
       ]
         .filter((image) => Boolean(image?.url))
