@@ -4,6 +4,7 @@ import { useState } from "react"
 import { useRouter, usePathname } from "next/navigation"
 import Link from "next/link"
 import { login, setToken, getCustomer } from "@/lib/auth"
+import posthog from "posthog-js"
 
 export default function LoginPage() {
   const router = useRouter()
@@ -26,6 +27,8 @@ export default function LoginPage() {
       // Verify token works
       const customer = await getCustomer(token)
       if (!customer) throw new Error("Could not load account")
+      posthog.identify(customer.email, { email: customer.email })
+      posthog.capture("user_signed_in", { email: customer.email })
       router.push(`/${locale}/account`)
     } catch (err: any) {
       setError(err.message || "Login failed")

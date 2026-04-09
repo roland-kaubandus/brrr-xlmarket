@@ -4,6 +4,7 @@ import { useState } from "react"
 import { useRouter, usePathname } from "next/navigation"
 import Link from "next/link"
 import { register, createCustomerProfile, setToken } from "@/lib/auth"
+import posthog from "posthog-js"
 
 export default function RegisterPage() {
   const router = useRouter()
@@ -28,6 +29,8 @@ export default function RegisterPage() {
       const { token } = await register(email, password)
       setToken(token)
       await createCustomerProfile(token, { email, first_name: firstName, last_name: lastName })
+      posthog.identify(email, { email, first_name: firstName, last_name: lastName })
+      posthog.capture("user_registered", { email })
       router.push(`/${locale}/account`)
     } catch (err: any) {
       setError(err.message || "Registration failed")
