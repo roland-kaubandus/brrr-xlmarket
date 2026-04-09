@@ -269,6 +269,60 @@ async function loadCategoryIds(token) {
   return map;
 }
 
+// ── Image & rich description cleanup ────────────────────────────────
+
+function normalizeImageUrl(url) {
+  if (!url) return ""
+  return decodeURIComponent(url.trim()).replace(/^https?:\/\//, "").replace(/[?#].*$/, "").replace(/\/+$/, "").toLowerCase()
+}
+
+function upgradeToOriginalImg(url) {
+  // VEVOR goods_img are thumbnails; original_img are full resolution
+  return url.replace(/\/goods_img-/, "/original_img-")
+}
+
+function cleanRichDescription(html, galleryUrls) {
+  if (!html) return null
+
+  // Normalize gallery URLs for comparison
+  const gallerySet = new Set((galleryUrls || []).map(normalizeImageUrl))
+
+  let cleaned = html
+    // Remove mobile section entirely (<!-- h5 --> to end)
+    .replace(/<!--\s*h5\s*-->[\s\S]*$/gi, "")
+    // Remove m-banner divs (mobile duplicates)
+    .replace(/<div[^>]*class="m-banner"[^>]*>[\s\S]*?<\/div>\s*<\/div>/gi, "")
+    // Remove VEVOR boutique banner images
+    .replace(/<img[^>]*src=["'][^"']*vevor-bmp-prm[^"']*["'][^>]*\/?>/gi, "")
+    .replace(/<img[^>]*src=["'][^"']*boutique-banner[^"']*["'][^>]*\/?>/gi, "")
+    // Remove mobile image variants (-m.jpg suffix)
+    .replace(/<img[^>]*src=["'][^"']*-m\.[^"']*["'][^>]*\/?>/gi, "")
+    // Remove VEVOR company boilerplate text
+    .replace(/VEVOR is a leading brand[\s\S]*?global members\./gi, "")
+    .replace(/Along with thousands[\s\S]*?global members\./gi, "")
+    // Remove raw CSS (outside <style> tags)
+    .replace(/\/\*[\s\S]*?\*\//g, "")
+    .replace(/\.[a-z][\w-]*(?:\s+[\w.#:\[\]=~^|*>,+\s-]*)*\s*\{[^}]*\}/gi, "")
+    // Remove style/script/input tags
+    .replace(/<style[^>]*>[\s\S]*?<\/style\s*>/gi, "")
+    .replace(/<script[^>]*>[\s\S]*?<\/script\s*>/gi, "")
+    .replace(/<(input|label|iframe|object|embed|form|textarea|select)[^>]*\/?>/gi, "")
+
+  // Deduplicate images by URL + remove images that are already in gallery
+  const seenUrls = new Set()
+  cleaned = cleaned.replace(/<img[^>]*src=["']([^"'>]+)["'][^>]*\/?>/gi, (match, src) => {
+    const norm = normalizeImageUrl(src)
+    if (seenUrls.has(norm) || gallerySet.has(norm)) return "" // duplicate or in gallery
+    seenUrls.add(norm)
+    return match
+  })
+
+  // Trim empty whitespace
+  cleaned = cleaned.replace(/\n\s*\n\s*\n/g, "\n\n").trim()
+
+  return cleaned.length > 50 ? cleaned : null
+}
+
 // ── Product creation ────────────────────────────────────────────────
 
 async function createProduct(row, token, catMap, catIds) {
@@ -301,11 +355,15 @@ async function createProduct(row, token, catMap, catIds) {
       vevor_spu: row.spu || "",
       weight_kg: row.weight || 0,
       selling_points: row.sellingPoints || [],
-      rich_description: row.richDescriptionHtml ? row.richDescriptionHtml.substring(0, 15000) : null,
+      rich_description: cleanRichDescription(
+        row.richDescriptionHtml,
+        row.originalImages.length > 0 ? row.originalImages : row.galleryImages
+      ),
       dimensions: (row.dimensionHigh || row.dimensionWide || row.dimensionLong)
         ? { high: row.dimensionHigh, wide: row.dimensionWide, long: row.dimensionLong, unit: row.dimensionUnit }
         : null,
-      gallery_images: row.originalImages.length > 0 ? row.originalImages : row.galleryImages,
+      gallery_images: (row.originalImages.length > 0 ? row.originalImages : row.galleryImages)
+        .map(upgradeToOriginalImg),
       translation_status: "pending",
       original_language: "en",
     },
