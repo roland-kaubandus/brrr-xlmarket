@@ -86,7 +86,7 @@ export default async function LocaleLayout({ children, params }: Props) {
 
       <CartSlideOver locale={locale} />
       <CookieConsent locale={locale} />
-      <MuujaWidget />
+      {/* MuujaWidget disabled — not smart enough yet, re-enable when AI search works */}
       <MetaPixel />
     </>
   )
