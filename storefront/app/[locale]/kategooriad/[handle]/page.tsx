@@ -7,6 +7,7 @@ import VevorProductCard from "@/components/VevorProductCard"
 import VevorSearchFilters from "@/components/search/VevorSearchFilters"
 import VevorPagination from "@/components/search/VevorPagination"
 import { notFound } from "next/navigation"
+import JsonLdCategory from "@/components/JsonLdCategory"
 import categoryImages from "@/lib/category-images.json"
 
 const CATEGORY_IMAGES: Record<string, string> = categoryImages as Record<string, string>
@@ -198,6 +199,11 @@ export default async function CategoryPage({ params, searchParams }: Props) {
 
   return (
     <div className="bg-white min-h-screen">
+      <JsonLdCategory
+        name={displayName}
+        url={`https://xlmarket.store/${locale}/kategooriad/${handle}`}
+        productCount={totalCount}
+      />
       <div className="max-w-[1360px] mx-auto px-4 sm:px-6 py-6">
         {/* Breadcrumb — full ancestor chain */}
         <nav className="text-xs text-[#64748B] mb-4">

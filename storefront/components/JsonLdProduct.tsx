@@ -10,7 +10,7 @@ export default function JsonLdProduct({ product, price }: Props) {
     "@context": "https://schema.org",
     "@type": "Product",
     name: product.title,
-    url: `https://xlmarket.eu/toode/${product.handle}`,
+    url: `https://xlmarket.store/en/toode/${product.handle}`,
     description: product.description
       ? product.description.replace(/<[^>]*>/g, "").substring(0, 500)
       : product.title,

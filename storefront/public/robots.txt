@@ -2,7 +2,9 @@ User-agent: *
 Allow: /
 Disallow: /ostukorv
 Disallow: /tellimus
-Disallow: /otsing
 Disallow: /api/
+Disallow: /login
+Disallow: /register
+Disallow: /account
 
-Sitemap: https://xlmarket.eu/sitemap.xml
+Sitemap: https://xlmarket.store/sitemap.xml
