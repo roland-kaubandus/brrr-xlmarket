@@ -9,7 +9,7 @@ const BANNERS = [
     subtitle:
       "Professionaalsed köögiseadmed restoranidele, hotellidele ja cateringfirmadele. Tööstuslik kvaliteet, taskukohane hind.",
     cta: "Vaata seadmeid",
-    link: "/haru/suurkoogiseadmed",
+    link: "/kategooriad/toitlustus-ja-kook",
     image: "/images/branches/suurkoogiseadmed.png",
     align: "left" as const,
     overlay: "from-black/80 via-black/50 to-transparent",
@@ -19,7 +19,7 @@ const BANNERS = [
     subtitle:
       "Kõik catering-ürituste korraldamiseks — soojendusnõud, serveerimislauad, jäämasinad ja palju muud.",
     cta: "Avasta valik",
-    link: "/haru/toitlustus",
+    link: "/kategooriad/toitlustus-ja-kook",
     image: "/images/branches/toitlustus.png",
     align: "right" as const,
     overlay: "from-transparent via-black/40 to-black/80",
@@ -29,7 +29,7 @@ const BANNERS = [
     subtitle:
       "Päikesepaneelid, tuulegeneraatorid, inverterid ja energiasalvestus. Säästa elektriarvelt juba täna.",
     cta: "Vaata lahendusi",
-    link: "/haru/energia",
+    link: "/kategooriad/renewable-energy",
     image: "/images/branches/energia.png",
     align: "left" as const,
     overlay: "from-black/80 via-black/50 to-transparent",

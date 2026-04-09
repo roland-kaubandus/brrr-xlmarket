@@ -143,6 +143,17 @@ export const BRANCHES: BranchDef[] = [
     heroImg: "/images/branches/toitlustus.png",
     heroGradient: "from-orange-950/80 via-orange-900/40 to-transparent",
   },
+  {
+    name: "Energia & Salvestus",
+    nameEn: "Energy & Storage",
+    slug: "energia",
+    categoryHandle: "renewable-energy",
+    tagline: "Rohelisem tulevik algab täna",
+    taglineEn: "A greener future starts today",
+    description: "Päikesepaneelid, tuulegeneraatorid, inverterid, akusalvestus ja laadijad. Professionaalsed energialahendused mõistliku hinnaga.",
+    heroImg: "/images/branches/energia.png",
+    heroGradient: "from-yellow-950/80 via-yellow-900/40 to-transparent",
+  },
 ]
 
 export function getBranchBySlug(slug: string) {
