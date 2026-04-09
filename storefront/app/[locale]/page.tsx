@@ -19,6 +19,21 @@ const DISPLAY_NAMES: Record<string, string> = {
   "meditsiin-ja-tervishoid": "Health & Wellness",
 }
 
+// Curated category images — iconic, instantly recognizable products
+const CATEGORY_IMAGES: Record<string, string> = {
+  "ehitus-ja-remont": "https://image.vevor.com/us%2FCZQGJ800MMSDSGL05V0%2Fgoods_img-v12%2Ftile-cutter-m100-1.2.jpg?timestamp=1668765407000",
+  "toostus-ja-seadmed": "https://image.vevor.com/us%2F1.5KWTSSGJ0000001V2%2Fgoods_img-v5%2Fbelt-sander-m100-1.2.jpg?timestamp=1628146296000",
+  "kodu-ja-aed": "https://image.vevor.com/us%2FGLBXXCZBXS53L3J5ZV2%2Fgoods_img-v2%2Fcar-refrigerator-m100-1.2.jpg?timestamp=1730369590000",
+  "auto-ja-garaaz": "https://image.vevor.com/us%2FKCTJBZDS20075OZ3EV0%2Fgoods_img-v1%2Ftruck-running-boards-m100-1.2.jpg?timestamp=1710741270000",
+  "sport-ja-vaba-aeg": "https://image.vevor.com/us%2FCKDDHSJ251212BWPIV0%2Fgoods_img-v2%2Fgarage-floor-mat-m100-1.2.jpg?timestamp=1712717361000",
+  "kunst-ja-kasitoo": "https://image.vevor.com/us%2FKZJ720MMSJBS00001V2%2Fgoods_img-v5%2Fvinyl-cutter-m100-1.2.jpg?timestamp=1628146296000",
+  "toitlustus-ja-kook": "https://image.vevor.com/us%2FTSBXGQPJYSBXZDJ9FV2%2Fgoods_img-v1%2Fmeat-cutter-machine-m100-1.2.jpg?timestamp=1738987630000",
+  "elektroonika": "https://image.vevor.com/us%2FKFSJJH20U2340PHVWV0%2Fgoods_img-v5%2Fserver-rack-m100-1.2.jpg?timestamp=1685347798000",
+  "lemmikloomad": "https://image.vevor.com/us%2FBPQXJ6L0000000001V2%2Fgoods_img-v7%2Fm100-1.2.jpg?timestamp=1730439574000",
+  "kontor-ja-ladustamine": "https://image.vevor.com/us%2FSJZDZDDJ2J703SIXNV2%2Fgoods_img-v1%2Fstanding-desk-frame-m100-1.2.jpg?timestamp=1715650905000",
+  "meditsiin-ja-tervishoid": "https://image.vevor.com/us%2FDDXNQFTSDBHSYUFQFV2%2Fgoods_img-v1%2Felectric-breast-pump-m100-1.2.jpg?timestamp=1700808374000",
+}
+
 export default async function Home({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
 
@@ -49,7 +64,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
           name: cat.name,
           handle: cat.handle,
           displayName: DISPLAY_NAMES[cat.handle] || cat.name,
-          image: res.products[0]?.thumbnail || null,
+          image: CATEGORY_IMAGES[cat.handle] || res.products[0]?.thumbnail || null,
           productCount: res.count || 0,
         }
       } catch {
