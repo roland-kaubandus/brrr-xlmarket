@@ -66,18 +66,14 @@ function transform(row) {
   const meta = row.metadata || {}
   const categoryHandles = [...(row.category_handles || [])]
   
-  // Extract subcategories from vevor_product_type (Level1 > Level2 > Level3)
+  // Extract ALL levels from vevor_product_type and add as category_handles
   const productType = meta.vevor_product_type || ''
   const parts = productType.split('>').map(s => s.trim()).filter(Boolean)
   let subcategory = ''
-  if (parts.length >= 2) {
-    const subSlug = slugify(parts[1])
-    if (subSlug && !categoryHandles.includes(subSlug)) categoryHandles.push(subSlug)
-    subcategory = parts[1]
-  }
-  if (parts.length >= 3) {
-    const subSubSlug = slugify(parts[2])
-    if (subSubSlug && !categoryHandles.includes(subSubSlug)) categoryHandles.push(subSubSlug)
+  for (let i = 0; i < parts.length; i++) {
+    const slug = slugify(parts[i])
+    if (slug && !categoryHandles.includes(slug)) categoryHandles.push(slug)
+    if (i === 1) subcategory = parts[i]
   }
   
   return {
