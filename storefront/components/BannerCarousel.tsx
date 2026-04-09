@@ -1,32 +1,42 @@
 "use client"
 import { useState, useEffect, useCallback } from "react"
 import Link from "next/link"
+import Image from "next/image"
 
 const BANNERS = [
   {
-    title: "Professional Tools & Equipment",
-    subtitle: "Industrial-grade tools for workshops, garages, and construction sites",
-    cta: "Shop Tools",
-    link: "/kategooriad/tools",
-    gradient: "from-[#1E293B] via-[#1E293B] to-[#334155]",
+    title: "Suurköögiseadmed",
+    subtitle:
+      "Professionaalsed köögiseadmed restoranidele, hotellidele ja cateringfirmadele. Tööstuslik kvaliteet, taskukohane hind.",
+    cta: "Vaata seadmeid",
+    link: "/haru/suurkoogiseadmed",
+    image: "/images/branches/suurkoogiseadmed.png",
+    align: "left" as const,
+    overlay: "from-black/80 via-black/50 to-transparent",
   },
   {
-    title: "Free Shipping from 99\u20AC",
-    subtitle: "Fast delivery across Estonia \u2022 2-year warranty on all products",
-    cta: "Shop Now",
-    link: "/otsing?sort=newest",
-    gradient: "from-[#D97706] via-[#D97706] to-[#B45309]",
+    title: "Toitlustus & Catering",
+    subtitle:
+      "Kõik catering-ürituste korraldamiseks — soojendusnõud, serveerimislauad, jäämasinad ja palju muud.",
+    cta: "Avasta valik",
+    link: "/haru/toitlustus",
+    image: "/images/branches/toitlustus.png",
+    align: "right" as const,
+    overlay: "from-transparent via-black/40 to-black/80",
   },
   {
-    title: "Outdoor & Garden",
-    subtitle: "Everything for your yard, patio, and outdoor cooking",
-    cta: "Explore",
-    link: "/kategooriad/outdoors",
-    gradient: "from-[#0F172A] via-[#1E293B] to-[#334155]",
+    title: "Energia & Salvestus",
+    subtitle:
+      "Päikesepaneelid, tuulegeneraatorid, inverterid ja energiasalvestus. Säästa elektriarvelt juba täna.",
+    cta: "Vaata lahendusi",
+    link: "/haru/energia",
+    image: "/images/branches/toostus.png", // TODO: asenda energia/solar pildiga (tee Nanoga)
+    align: "left" as const,
+    overlay: "from-black/80 via-black/50 to-transparent",
   },
 ]
 
-export default function BannerCarousel({ locale = "en" }: { locale?: string }) {
+export default function BannerCarousel({ locale = "et" }: { locale?: string }) {
   const [current, setCurrent] = useState(0)
   const [paused, setPaused] = useState(false)
 
@@ -34,9 +44,13 @@ export default function BannerCarousel({ locale = "en" }: { locale?: string }) {
     setCurrent((c) => (c + 1) % BANNERS.length)
   }, [])
 
+  const prev = useCallback(() => {
+    setCurrent((c) => (c - 1 + BANNERS.length) % BANNERS.length)
+  }, [])
+
   useEffect(() => {
     if (paused) return
-    const id = setInterval(next, 5000)
+    const id = setInterval(next, 6000)
     return () => clearInterval(id)
   }, [paused, next])
 
@@ -46,48 +60,115 @@ export default function BannerCarousel({ locale = "en" }: { locale?: string }) {
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
-      <div className="relative overflow-hidden rounded-xl">
+      <div className="relative overflow-hidden rounded-xl group">
+        {/* Slides */}
         <div
-          className="flex transition-transform duration-500 ease-out"
+          className="flex transition-transform duration-700 ease-out"
           style={{ transform: `translateX(-${current * 100}%)` }}
         >
           {BANNERS.map((b, i) => (
             <div
               key={i}
-              className={`w-full flex-shrink-0 bg-gradient-to-r ${b.gradient} h-[180px] md:h-[280px] flex items-center justify-center px-8 md:px-16 relative overflow-hidden`}
+              className="w-full flex-shrink-0 relative h-[200px] sm:h-[260px] md:h-[340px] lg:h-[400px]"
             >
-              {/* Text — centered */}
-              <div className="text-white max-w-lg relative z-10 mx-auto text-center">
-                <h2 className="font-bold text-xl md:text-3xl lg:text-4xl mb-2 leading-tight">
-                  {b.title}
-                </h2>
-                <p className="text-white/70 text-xs md:text-sm mb-4 leading-relaxed max-w-[400px] mx-auto">
-                  {b.subtitle}
-                </p>
-                <Link
-                  href={`/${locale}${b.link}`}
-                  className="inline-block bg-white text-[#1E293B] font-semibold text-sm px-6 py-2.5 rounded-lg hover:bg-white/90 transition-colors"
+              {/* Background image */}
+              <Image
+                src={b.image}
+                alt={b.title}
+                fill
+                className="object-cover"
+                sizes="(max-width: 1360px) 100vw, 1360px"
+                priority={i === 0}
+              />
+
+              {/* Gradient overlay */}
+              <div
+                className={`absolute inset-0 bg-gradient-to-r ${b.overlay}`}
+              />
+
+              {/* Content */}
+              <div
+                className={`absolute inset-0 flex items-center ${
+                  b.align === "right" ? "justify-end" : "justify-start"
+                }`}
+              >
+                <div
+                  className={`relative z-10 px-8 sm:px-12 md:px-16 max-w-lg ${
+                    b.align === "right" ? "text-right" : "text-left"
+                  }`}
                 >
-                  {b.cta}
-                </Link>
+                  <h2 className="font-bold text-white text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-2 md:mb-3 leading-tight drop-shadow-lg">
+                    {b.title}
+                  </h2>
+                  <p className="text-white/85 text-xs sm:text-sm md:text-base mb-4 md:mb-6 leading-relaxed max-w-[400px] drop-shadow-md">
+                    {b.subtitle}
+                  </p>
+                  <Link
+                    href={`/${locale}${b.link}`}
+                    className="inline-block bg-[#D97706] hover:bg-[#B45309] text-white font-semibold text-sm md:text-base px-6 md:px-8 py-2.5 md:py-3 rounded-lg transition-colors shadow-lg"
+                  >
+                    {b.cta} &rarr;
+                  </Link>
+                </div>
               </div>
-              {/* Subtle pattern overlay */}
-              <div className="absolute inset-0 opacity-5" style={{
-                backgroundImage: "radial-gradient(circle at 1px 1px, white 1px, transparent 0)",
-                backgroundSize: "24px 24px",
-              }} />
             </div>
           ))}
         </div>
 
+        {/* Arrow buttons (visible on hover) */}
+        <button
+          onClick={prev}
+          className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/30 hover:bg-black/50 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity backdrop-blur-sm"
+          aria-label="Eelmine"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={2.5}
+            stroke="currentColor"
+            className="w-5 h-5"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M15.75 19.5L8.25 12l7.5-7.5"
+            />
+          </svg>
+        </button>
+        <button
+          onClick={next}
+          className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/30 hover:bg-black/50 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity backdrop-blur-sm"
+          aria-label="Järgmine"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={2.5}
+            stroke="currentColor"
+            className="w-5 h-5"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M8.25 4.5l7.5 7.5-7.5 7.5"
+            />
+          </svg>
+        </button>
+
         {/* Dot indicators */}
-        <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2">
+        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
           {BANNERS.map((_, i) => (
-            <div
+            <button
               key={i}
-              className={`w-2.5 h-2.5 rounded-full transition-all ${
-                i === current ? "bg-white w-6" : "bg-white/40"
+              onClick={() => setCurrent(i)}
+              className={`h-2.5 rounded-full transition-all duration-300 ${
+                i === current
+                  ? "bg-white w-8"
+                  : "bg-white/40 hover:bg-white/60 w-2.5"
               }`}
+              aria-label={`Slide ${i + 1}`}
             />
           ))}
         </div>
