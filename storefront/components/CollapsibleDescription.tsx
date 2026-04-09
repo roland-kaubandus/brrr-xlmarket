@@ -27,7 +27,7 @@ export default function CollapsibleDescription({ html, collapsedHeight = 600 }: 
         style={{ maxHeight: expanded || !needsCollapse ? "none" : `${collapsedHeight}px` }}
       >
         <div
-          className="rich-desc text-[#1E293B] text-sm leading-relaxed [&_img]:rounded-lg [&_img]:my-6 [&_img]:w-full [&_img]:max-w-4xl [&_h2]:font-bold [&_h2]:text-lg [&_h2]:mt-8 [&_h2]:mb-3 [&_h3]:font-bold [&_h3]:text-base [&_h3]:mt-6 [&_h3]:mb-2 [&_p]:mb-3 [&_p]:text-[#64748B] [&_b]:text-[#1E293B] [&_strong]:text-[#1E293B] [&_ul]:pl-5 [&_ul]:list-disc [&_li]:mb-1 [&_li]:text-[#64748B] [&_a]:text-[#D97706] [&_a]:underline"
+          className="rich-desc text-[#1E293B] text-sm leading-relaxed [&_img]:rounded-lg [&_img]:my-4 [&_img]:max-w-full [&_img]:h-auto [&_img]:max-h-[500px] [&_img]:object-contain [&_img]:mx-auto [&_img]:block [&_h2]:font-bold [&_h2]:text-lg [&_h2]:mt-8 [&_h2]:mb-3 [&_h3]:font-bold [&_h3]:text-base [&_h3]:mt-6 [&_h3]:mb-2 [&_p]:mb-3 [&_p]:text-[#64748B] [&_b]:text-[#1E293B] [&_strong]:text-[#1E293B] [&_ul]:pl-5 [&_ul]:list-disc [&_li]:mb-1 [&_li]:text-[#64748B] [&_a]:text-[#D97706] [&_a]:underline"
           dangerouslySetInnerHTML={{ __html: html }}
         />
       </div>
