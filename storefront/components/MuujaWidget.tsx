@@ -495,7 +495,8 @@ export default function MuujaWidget() {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 placeholder={t.placeholder}
-                className="flex-1 px-3.5 py-2.5 rounded-xl bg-gray-100 text-sm outline-none focus:ring-2 focus:ring-orange-300 transition-all placeholder:text-gray-400"
+                autoFocus
+                className="flex-1 px-3.5 py-2.5 rounded-xl bg-gray-100 text-sm outline-none focus:ring-2 focus:ring-[#D97706]/30 transition-all placeholder:text-gray-400"
               />
               <button
                 type="submit"
@@ -518,17 +519,9 @@ export default function MuujaWidget() {
           width: 56,
           height: 56,
         }}
-        onMouseDown={(e) => {
-          if (isOpen) return
-          setIsDragging(true)
-          wasDragged.current = false
-          dragStart.current = { x: e.clientX, y: e.clientY, posX: pos.x, posY: pos.y }
-        }}
         onMouseEnter={() => setIsHover(true)}
         onMouseLeave={() => setIsHover(false)}
-        onClick={() => {
-          if (!wasDragged.current) setIsOpen((o) => !o)
-        }}
+        onClick={() => setIsOpen((o) => !o)}
       >
         {!isOpen && !isDragging && (
           <>
