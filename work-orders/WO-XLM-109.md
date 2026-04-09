@@ -1,6 +1,6 @@
 # WO-XLM-109 — MeiliSearch mitmekeelne indeks
 
-**Staatus:** VALMIS
+**Staatus:** DEPLOYED ✅
 **Prioriteet:** KRIITILINE — otsing katkine tõlgitud toodete jaoks
 **Täitja:** Claudia
 **Kuupäev:** 2026-04-09
