@@ -5,47 +5,49 @@ import Image from "next/image"
 
 const BANNERS = [
   {
-    title: "Suurköögiseadmed",
-    subtitle:
-      "Professionaalsed köögiseadmed restoranidele, hotellidele ja cateringfirmadele. Tööstuslik kvaliteet, taskukohane hind.",
-    cta: "Vaata seadmeid",
+    title: "Professional Tools & Equipment",
+    subtitle: "Industrial-grade machinery, power tools, and workshop equipment. Built to last, priced to compete.",
+    cta: "Shop Tools",
+    link: "/kategooriad/tools",
+    image: "/images/branches/toostus.png",
+    align: "left" as const,
+    overlay: "from-[#0F172A]/90 via-[#0F172A]/50 to-transparent",
+  },
+  {
+    title: "Commercial Kitchen",
+    subtitle: "Stainless steel worktables, warming equipment, refrigeration, and everything a professional kitchen demands.",
+    cta: "Explore Kitchen",
     link: "/kategooriad/toitlustus-ja-kook",
     image: "/images/branches/suurkoogiseadmed.png",
-    align: "left" as const,
-    overlay: "from-black/80 via-black/50 to-transparent",
-  },
-  {
-    title: "Toitlustus & Catering",
-    subtitle:
-      "Kõik catering-ürituste korraldamiseks — soojendusnõud, serveerimislauad, jäämasinad ja palju muud.",
-    cta: "Avasta valik",
-    link: "/kategooriad/toitlustus-ja-kook",
-    image: "/images/branches/toitlustus.png",
     align: "right" as const,
-    overlay: "from-transparent via-black/40 to-black/80",
+    overlay: "from-transparent via-[#0F172A]/40 to-[#0F172A]/90",
   },
   {
-    title: "Energia & Salvestus",
-    subtitle:
-      "Päikesepaneelid, tuulegeneraatorid, inverterid ja energiasalvestus. Säästa elektriarvelt juba täna.",
-    cta: "Vaata lahendusi",
-    link: "/kategooriad/renewable-energy",
-    image: "/images/branches/energia.png",
+    title: "Garage & Automotive",
+    subtitle: "Hydraulic jacks, compressors, diagnostics, lifts, and everything for the serious gearhead.",
+    cta: "Shop Garage",
+    link: "/kategooriad/auto-ja-garaaz",
+    image: "/images/branches/garaaz.png",
     align: "left" as const,
-    overlay: "from-black/80 via-black/50 to-transparent",
+    overlay: "from-[#0F172A]/90 via-[#0F172A]/50 to-transparent",
+  },
+  {
+    title: "Outdoor & Garden",
+    subtitle: "Mowers, trimmers, pumps, greenhouses, and landscaping equipment for every season.",
+    cta: "View Outdoor",
+    link: "/kategooriad/outdoors",
+    image: "/images/branches/aed.png",
+    align: "right" as const,
+    overlay: "from-transparent via-[#0F172A]/40 to-[#0F172A]/90",
   },
 ]
 
-export default function BannerCarousel({ locale = "et" }: { locale?: string }) {
+export default function BannerCarousel({ locale = "en" }: { locale?: string }) {
   const [current, setCurrent] = useState(0)
   const [paused, setPaused] = useState(false)
 
   const next = useCallback(() => {
     setCurrent((c) => (c + 1) % BANNERS.length)
-  }, [])
-
-  const prev = useCallback(() => {
-    setCurrent((c) => (c - 1 + BANNERS.length) % BANNERS.length)
   }, [])
 
   useEffect(() => {
@@ -60,7 +62,7 @@ export default function BannerCarousel({ locale = "et" }: { locale?: string }) {
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
-      <div className="relative overflow-hidden rounded-xl group">
+      <div className="relative overflow-hidden rounded-2xl group">
         {/* Slides */}
         <div
           className="flex transition-transform duration-700 ease-out"
@@ -69,7 +71,7 @@ export default function BannerCarousel({ locale = "et" }: { locale?: string }) {
           {BANNERS.map((b, i) => (
             <div
               key={i}
-              className="w-full flex-shrink-0 relative h-[200px] sm:h-[260px] md:h-[340px] lg:h-[400px]"
+              className="w-full flex-shrink-0 relative h-[200px] sm:h-[280px] md:h-[360px] lg:h-[420px]"
             >
               {/* Background image */}
               <Image
@@ -82,9 +84,7 @@ export default function BannerCarousel({ locale = "et" }: { locale?: string }) {
               />
 
               {/* Gradient overlay */}
-              <div
-                className={`absolute inset-0 bg-gradient-to-r ${b.overlay}`}
-              />
+              <div className={`absolute inset-0 bg-gradient-to-r ${b.overlay}`} />
 
               {/* Content */}
               <div
@@ -93,21 +93,22 @@ export default function BannerCarousel({ locale = "et" }: { locale?: string }) {
                 }`}
               >
                 <div
-                  className={`relative z-10 px-8 sm:px-12 md:px-16 max-w-lg ${
+                  className={`relative z-10 px-8 sm:px-12 md:px-16 lg:px-20 max-w-xl ${
                     b.align === "right" ? "text-right" : "text-left"
                   }`}
                 >
-                  <h2 className="font-bold text-white text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-2 md:mb-3 leading-tight drop-shadow-lg">
+                  <h2 className="font-extrabold text-white text-xl sm:text-2xl md:text-[36px] lg:text-[42px] mb-2 md:mb-4 leading-[1.1] tracking-tight drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)]">
                     {b.title}
                   </h2>
-                  <p className="text-white/85 text-xs sm:text-sm md:text-base mb-4 md:mb-6 leading-relaxed max-w-[400px] drop-shadow-md">
+                  <p className="text-white/80 text-xs sm:text-sm md:text-[15px] mb-5 md:mb-7 leading-relaxed max-w-[420px] drop-shadow-md">
                     {b.subtitle}
                   </p>
                   <Link
                     href={`/${locale}${b.link}`}
-                    className="inline-block bg-[#D97706] hover:bg-[#B45309] text-white font-semibold text-sm md:text-base px-6 md:px-8 py-2.5 md:py-3 rounded-lg transition-colors shadow-lg"
+                    className="inline-flex items-center gap-2 bg-[#D97706] hover:bg-[#B45309] text-white font-semibold text-sm md:text-[15px] px-7 md:px-9 py-3 md:py-3.5 rounded-xl transition-all duration-200 shadow-[0_4px_16px_rgba(217,119,6,0.3)] hover:shadow-[0_6px_24px_rgba(217,119,6,0.4)] hover:-translate-y-0.5"
                   >
-                    {b.cta} &rarr;
+                    {b.cta}
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6"/></svg>
                   </Link>
                 </div>
               </div>
@@ -115,58 +116,16 @@ export default function BannerCarousel({ locale = "et" }: { locale?: string }) {
           ))}
         </div>
 
-        {/* Arrow buttons (visible on hover) */}
-        <button
-          onClick={prev}
-          className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/30 hover:bg-black/50 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity backdrop-blur-sm"
-          aria-label="Eelmine"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={2.5}
-            stroke="currentColor"
-            className="w-5 h-5"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M15.75 19.5L8.25 12l7.5-7.5"
-            />
-          </svg>
-        </button>
-        <button
-          onClick={next}
-          className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/30 hover:bg-black/50 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity backdrop-blur-sm"
-          aria-label="Järgmine"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={2.5}
-            stroke="currentColor"
-            className="w-5 h-5"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M8.25 4.5l7.5 7.5-7.5 7.5"
-            />
-          </svg>
-        </button>
-
         {/* Dot indicators */}
-        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+        <div className="absolute bottom-5 left-1/2 -translate-x-1/2 flex gap-2">
           {BANNERS.map((_, i) => (
             <button
               key={i}
               onClick={() => setCurrent(i)}
-              className={`h-2.5 rounded-full transition-all duration-300 ${
+              className={`h-[3px] rounded-full transition-all duration-500 ${
                 i === current
-                  ? "bg-white w-8"
-                  : "bg-white/40 hover:bg-white/60 w-2.5"
+                  ? "bg-white w-10"
+                  : "bg-white/30 hover:bg-white/50 w-5"
               }`}
               aria-label={`Slide ${i + 1}`}
             />
