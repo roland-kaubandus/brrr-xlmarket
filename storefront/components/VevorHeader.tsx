@@ -59,7 +59,7 @@ export default function VevorHeader({ categories, locale = "et" }: { categories:
 
       {/* Row 2: Orange navigation bar */}
       <div className="bg-[#D97706]">
-        <div className="max-w-[1400px] mx-auto px-0 md:px-4 flex items-center h-[44px]">
+        <div className="max-w-[1400px] mx-auto px-2 md:px-4 flex items-center h-[44px]">
           {/* Categories button + mega menu */}
           <MegaMenu categories={categories} locale={locale} />
 

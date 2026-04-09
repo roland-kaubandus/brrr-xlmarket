@@ -14,8 +14,8 @@ export default function VevorFooter({ locale = "et" }: { locale?: string }) {
                 </svg>
               </div>
               <div>
-                <p className="text-white text-[13px] font-semibold">Free Shipping</p>
-                <p className="text-white/50 text-[12px]">Orders over 99 EUR</p>
+                <p className="text-white text-[14px] font-semibold">Free Shipping</p>
+                <p className="text-white/50 text-[13px]">Orders over 99 EUR</p>
               </div>
             </div>
             <div className="flex items-center gap-3">
@@ -25,8 +25,8 @@ export default function VevorFooter({ locale = "et" }: { locale?: string }) {
                 </svg>
               </div>
               <div>
-                <p className="text-white text-[13px] font-semibold">30-Day Returns</p>
-                <p className="text-white/50 text-[12px]">Hassle-free returns</p>
+                <p className="text-white text-[14px] font-semibold">30-Day Returns</p>
+                <p className="text-white/50 text-[13px]">Hassle-free returns</p>
               </div>
             </div>
             <div className="flex items-center gap-3">
@@ -36,8 +36,8 @@ export default function VevorFooter({ locale = "et" }: { locale?: string }) {
                 </svg>
               </div>
               <div>
-                <p className="text-white text-[13px] font-semibold">2-Year Warranty</p>
-                <p className="text-white/50 text-[12px]">Quality guaranteed</p>
+                <p className="text-white text-[14px] font-semibold">2-Year Warranty</p>
+                <p className="text-white/50 text-[13px]">Quality guaranteed</p>
               </div>
             </div>
             <div className="flex items-center gap-3">
@@ -47,8 +47,8 @@ export default function VevorFooter({ locale = "et" }: { locale?: string }) {
                 </svg>
               </div>
               <div>
-                <p className="text-white text-[13px] font-semibold">24/7 Support</p>
-                <p className="text-white/50 text-[12px]">Always here to help</p>
+                <p className="text-white text-[14px] font-semibold">24/7 Support</p>
+                <p className="text-white/50 text-[13px]">Always here to help</p>
               </div>
             </div>
           </div>
