@@ -30,7 +30,7 @@ const BANNERS = [
       "Päikesepaneelid, tuulegeneraatorid, inverterid ja energiasalvestus. Säästa elektriarvelt juba täna.",
     cta: "Vaata lahendusi",
     link: "/haru/energia",
-    image: "/images/branches/toostus.png", // TODO: asenda energia/solar pildiga (tee Nanoga)
+    image: "/images/branches/energia.png",
     align: "left" as const,
     overlay: "from-black/80 via-black/50 to-transparent",
   },
