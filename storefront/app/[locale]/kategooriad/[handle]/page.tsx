@@ -1,4 +1,5 @@
 import Link from "next/link"
+import Image from "next/image"
 import { Suspense } from "react"
 import { getCategoryByHandle, getProducts } from "@/lib/medusa"
 import { searchProducts } from "@/lib/meilisearch"
@@ -6,6 +7,9 @@ import VevorProductCard from "@/components/VevorProductCard"
 import VevorSearchFilters from "@/components/search/VevorSearchFilters"
 import VevorPagination from "@/components/search/VevorPagination"
 import { notFound } from "next/navigation"
+import categoryImages from "@/lib/category-images.json"
+
+const CATEGORY_IMAGES: Record<string, string> = categoryImages as Record<string, string>
 
 export const revalidate = 300
 
@@ -212,18 +216,37 @@ export default async function CategoryPage({ params, searchParams }: Props) {
           </p>
         </div>
 
-        {/* Subcategory navigation — direct children from Medusa */}
+        {/* Subcategory navigation — visual thumbnails like VEVOR */}
         {(category.category_children?.length ?? 0) > 0 && (
-          <div className="flex gap-3 overflow-x-auto pb-3 mb-5 scrollbar-hide">
-            {category.category_children!.map((child) => (
-              <Link
-                key={child.id}
-                href={`/${locale}/kategooriad/${child.handle}`}
-                className="flex-shrink-0 px-4 py-2.5 rounded-lg text-sm font-medium border border-[#E2E8F0] bg-white text-[#1E293B] hover:border-[#D97706] hover:text-[#D97706] transition-colors"
-              >
-                {child.name}
-              </Link>
-            ))}
+          <div className="flex gap-4 overflow-x-auto pb-4 mb-5 scrollbar-hide">
+            {category.category_children!.map((child) => {
+              const thumb = CATEGORY_IMAGES[child.handle] || null
+              return (
+                <Link
+                  key={child.id}
+                  href={`/${locale}/kategooriad/${child.handle}`}
+                  className="flex-shrink-0 flex flex-col items-center gap-2 w-[100px] group"
+                >
+                  <div className="w-20 h-20 rounded-xl bg-[#F8FAFC] border border-[#E2E8F0] group-hover:border-[#D97706] transition-colors overflow-hidden flex items-center justify-center">
+                    {thumb ? (
+                      <Image
+                        src={thumb}
+                        alt={child.name}
+                        width={80}
+                        height={80}
+                        className="object-contain w-full h-full p-1"
+                        unoptimized
+                      />
+                    ) : (
+                      <span className="text-2xl text-[#CBD5E1]">&#9633;</span>
+                    )}
+                  </div>
+                  <span className="text-xs text-center text-[#1E293B] group-hover:text-[#D97706] transition-colors leading-tight line-clamp-2">
+                    {child.name}
+                  </span>
+                </Link>
+              )
+            })}
           </div>
         )}
 
