@@ -44,6 +44,9 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     },
     metadataBase: new URL("https://xlmarket.store"),
     icons: { icon: "/favicon.svg" },
+    verification: {
+      google: "7CAn8vXu2SXJONPYZqctcHXWLFfRulKeyXy5",
+    },
   }
 }
 
