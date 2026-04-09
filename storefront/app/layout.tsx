@@ -1,5 +1,6 @@
 import { DM_Sans } from "next/font/google"
 import JsonLdOrganization from "@/components/JsonLdOrganization"
+import PostHogProvider from "@/components/PostHogProvider"
 import "./globals.css"
 
 const dmSans = DM_Sans({
@@ -15,7 +16,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className={dmSans.variable + " font-[family-name:var(--font-dm-sans)] antialiased bg-off-white text-off-black"}>
         <JsonLdOrganization />
         <div className="noise-overlay" />
-        {children}
+        <PostHogProvider>{children}</PostHogProvider>
       </body>
     </html>
   )
