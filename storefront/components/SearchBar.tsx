@@ -143,7 +143,7 @@ export default function SearchBar({ locale = "et" }: { locale?: string }) {
 
   return (
     <div ref={wrapperRef} className="relative flex-1 max-w-[600px]">
-      <div className="flex items-center bg-white rounded-full overflow-hidden h-[40px]">
+      <div className="flex items-center bg-white rounded-full overflow-hidden h-[34px] md:h-[40px]">
         <div className="relative flex-1">
           <input
             ref={inputRef}
@@ -153,16 +153,17 @@ export default function SearchBar({ locale = "et" }: { locale?: string }) {
             onFocus={() => results?.hits.length && setIsOpen(true)}
             onKeyDown={handleKey}
             placeholder=""
-            className="w-full bg-transparent pl-4 pr-2 py-2 text-[14px] text-[#1E293B] placeholder:text-[#64748B] focus:outline-none"
+            className="w-full bg-transparent pl-3 md:pl-4 pr-2 py-1.5 md:py-2 text-[13px] md:text-[14px] text-[#1E293B] placeholder:text-[#64748B] focus:outline-none"
             autoComplete="off"
           />
           {!query && (
             <span
-              className={`absolute left-4 top-1/2 -translate-y-1/2 text-[14px] text-[#64748B] pointer-events-none transition-opacity duration-300 ${
+              className={`absolute left-3 md:left-4 top-1/2 -translate-y-1/2 text-[12px] md:text-[14px] text-[#64748B] pointer-events-none transition-opacity duration-300 ${
                 animating ? "opacity-0" : "opacity-100"
               }`}
             >
-              Search for &quot;{currentPlaceholder}&quot;
+              <span className="hidden sm:inline">Search for &quot;{currentPlaceholder}&quot;</span>
+              <span className="sm:hidden">Search...</span>
             </span>
           )}
         </div>

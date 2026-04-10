@@ -100,12 +100,12 @@ export default function BannerCarousel({ locale = "en" }: { locale?: string }) {
                   <h2 className="font-extrabold text-white text-xl sm:text-2xl md:text-[36px] lg:text-[42px] mb-2 md:mb-4 leading-[1.1] tracking-tight drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)]">
                     {b.title}
                   </h2>
-                  <p className="text-white/80 text-xs sm:text-sm md:text-[15px] mb-5 md:mb-7 leading-relaxed max-w-[420px] drop-shadow-md">
+                  <p className="hidden sm:block text-white/80 text-sm md:text-[15px] mb-5 md:mb-7 leading-relaxed max-w-[420px] drop-shadow-md">
                     {b.subtitle}
                   </p>
                   <Link
                     href={`/${locale}${b.link}`}
-                    className="inline-flex items-center gap-2 bg-[#D97706] hover:bg-[#B45309] text-white font-semibold text-sm md:text-[15px] px-7 md:px-9 py-3 md:py-3.5 rounded-xl transition-all duration-200 shadow-[0_4px_16px_rgba(217,119,6,0.3)] hover:shadow-[0_6px_24px_rgba(217,119,6,0.4)] hover:-translate-y-0.5"
+                    className="inline-flex items-center gap-1.5 bg-[#D97706] hover:bg-[#B45309] text-white font-semibold text-xs md:text-[15px] px-4 md:px-9 py-2 md:py-3.5 rounded-lg md:rounded-xl transition-all duration-200 shadow-[0_4px_16px_rgba(217,119,6,0.3)]"
                   >
                     {b.cta}
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6"/></svg>
