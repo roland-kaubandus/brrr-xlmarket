@@ -530,13 +530,24 @@ export default async function ProductPage({ params }: Props) {
         </CollapsibleSection>
       </div>
 
-      {/* Similar Products — 5-col grid */}
+      {/* Similar Products — horizontal scroll on mobile */}
       {similarProducts.length > 0 && (
-        <section className="mt-12 pt-10 border-t border-[#E2E8F0]">
-          <h2 className="text-[20px] font-bold text-[#1E293B] mb-6">
+        <section className="mt-8 md:mt-12 pt-6 md:pt-10 border-t border-[#E2E8F0]">
+          <h2 className="text-[15px] md:text-[20px] font-bold text-[#1E293B] mb-3 md:mb-6 px-0">
             Similar Products
           </h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+          {/* Mobile: horizontal scroll */}
+          <div className="md:hidden overflow-x-auto scrollbar-hide -mx-4 px-4">
+            <div className="flex gap-3" style={{ width: "max-content" }}>
+              {similarProducts.map((p) => (
+                <div key={p.id} className="w-[150px] shrink-0">
+                  <VevorProductCard product={p} locale={locale} />
+                </div>
+              ))}
+            </div>
+          </div>
+          {/* Desktop: grid */}
+          <div className="hidden md:grid grid-cols-3 lg:grid-cols-5 gap-4">
             {similarProducts.map((p) => (
               <VevorProductCard key={p.id} product={p} locale={locale} />
             ))}
@@ -544,13 +555,13 @@ export default async function ProductPage({ params }: Props) {
         </section>
       )}
 
-      {/* Frequently Bought Together — VEVOR-style horizontal row */}
+      {/* Frequently Bought Together */}
       {koosProducts.length > 0 && (
-        <section className="mt-12 pt-10 border-t border-[#E2E8F0]">
-          <h2 className="text-[20px] font-bold text-[#1E293B] mb-5">
+        <section className="mt-8 md:mt-12 pt-6 md:pt-10 border-t border-[#E2E8F0]">
+          <h2 className="text-[15px] md:text-[20px] font-bold text-[#1E293B] mb-3 md:mb-5">
             Frequently Bought Together
           </h2>
-          <div className="flex items-center gap-3 flex-wrap">
+          <div className="flex items-center gap-3 overflow-x-auto scrollbar-hide -mx-4 px-4 md:mx-0 md:px-0 md:flex-wrap">
             {/* Main product */}
             <a
               href={`/${locale}/toode/` + product.handle}
@@ -604,13 +615,22 @@ export default async function ProductPage({ params }: Props) {
         </section>
       )}
 
-      {/* Best Sellers in Category */}
+      {/* Best Sellers in Category — horizontal scroll mobile */}
       {bestSellers.length > 0 && (
-        <section className="mt-12 pt-10 border-t border-[#E2E8F0]">
-          <h2 className="text-[20px] font-bold text-[#1E293B] mb-6">
-            Best Sellers in {categoryName}
+        <section className="mt-8 md:mt-12 pt-6 md:pt-10 border-t border-[#E2E8F0]">
+          <h2 className="text-[15px] md:text-[20px] font-bold text-[#1E293B] mb-3 md:mb-6">
+            Best in {categoryName}
           </h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+          <div className="md:hidden overflow-x-auto scrollbar-hide -mx-4 px-4">
+            <div className="flex gap-3" style={{ width: "max-content" }}>
+              {bestSellers.map((p) => (
+                <div key={p.id} className="w-[150px] shrink-0">
+                  <VevorProductCard product={p} locale={locale} />
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="hidden md:grid grid-cols-3 lg:grid-cols-5 gap-4">
             {bestSellers.map((p) => (
               <VevorProductCard key={p.id} product={p} locale={locale} />
             ))}
