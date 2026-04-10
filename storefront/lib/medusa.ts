@@ -2,14 +2,16 @@ const MEDUSA_URL = process.env.NEXT_PUBLIC_MEDUSA_URL!
 const API_KEY = process.env.NEXT_PUBLIC_MEDUSA_KEY!
 const REGION_ID = process.env.NEXT_PUBLIC_REGION_ID!
 
-async function medusaFetch<T>(path: string, options?: RequestInit): Promise<T> {
+async function medusaFetch<T>(path: string, options?: RequestInit & { revalidate?: number }): Promise<T> {
+  const { revalidate, ...fetchOptions } = options || {}
   const res = await fetch(`${MEDUSA_URL}${path}`, {
-    ...options,
+    ...fetchOptions,
     headers: {
       "x-publishable-api-key": API_KEY,
       "Content-Type": "application/json",
-      ...options?.headers,
+      ...fetchOptions?.headers,
     },
+    next: revalidate !== undefined ? { revalidate } : undefined,
   })
   if (!res.ok) {
     throw new Error(`Medusa API error: ${res.status} ${res.statusText}`)
@@ -114,12 +116,13 @@ export async function getProducts(params: {
   if (params.category_id) {
     params.category_id.forEach(id => search.append("category_id[]", id))
   }
-  return medusaFetch<ProductsResponse>(`/store/products?${search}`)
+  return medusaFetch<ProductsResponse>(`/store/products?${search}`, { revalidate: 120 }) // cache 2 min
 }
 
 export async function getProduct(handle: string): Promise<Product | null> {
   const res = await medusaFetch<ProductsResponse>(
-    `/store/products?handle=${handle}&region_id=${REGION_ID}&fields=*variants,*variants.calculated_price,*variants.options,*options,+metadata,+images`
+    `/store/products?handle=${handle}&region_id=${REGION_ID}&fields=*variants,*variants.calculated_price,*variants.options,*options,+metadata,+images`,
+    { revalidate: 300 } // cache 5 min
   )
   return res.products[0] || null
 }
@@ -137,7 +140,8 @@ export async function getCategories(): Promise<ProductCategory[]> {
   const limit = 100
   while (true) {
     const res = await medusaFetch<CategoriesResponse>(
-      `/store/product-categories?limit=${limit}&offset=${offset}`
+      `/store/product-categories?limit=${limit}&offset=${offset}`,
+      { revalidate: 300 } // cache 5 min — mega menu doesn't change often
     )
     all.push(...res.product_categories)
     if (all.length >= res.count || res.product_categories.length < limit) break
