@@ -18,21 +18,21 @@ export default function VevorHeader({ categories, locale = "et" }: { categories:
   return (
     <header className="sticky top-0 z-30">
       {/* Row 1: Black top bar */}
-      <div className="bg-[#1E293B] h-[48px] md:h-[56px]">
-        <div className="max-w-[1400px] mx-auto px-4 h-full flex items-center gap-4">
+      <div className="bg-[#1E293B]">
+        <div className="max-w-[1400px] mx-auto px-3 md:px-4 h-[48px] md:h-[56px] flex items-center gap-2 md:gap-4">
           {/* Logo */}
-          <Link href={`/${locale}`} className="shrink-0 flex items-baseline gap-[2px] mr-4">
-            <span className="text-[24px] md:text-[28px] font-extrabold text-[#D97706] leading-none tracking-tight">XL</span>
-            <span className="text-[24px] md:text-[28px] font-normal text-white leading-none tracking-tight">Market</span>
+          <Link href={`/${locale}`} className="shrink-0 flex items-baseline gap-[2px]">
+            <span className="text-[20px] md:text-[28px] font-extrabold text-[#D97706] leading-none tracking-tight">XL</span>
+            <span className="text-[20px] md:text-[28px] font-normal text-white leading-none tracking-tight">Market</span>
           </Link>
 
-          {/* Search bar — desktop */}
-          <div className="hidden md:flex flex-1 justify-center">
+          {/* Search bar — inline on all sizes */}
+          <div className="flex-1 min-w-0">
             <SearchBar locale={locale} />
           </div>
 
           {/* Right side */}
-          <div className="flex items-center gap-2 md:gap-4 ml-auto">
+          <div className="flex items-center gap-1.5 md:gap-4 shrink-0">
             {/* Delivery indicator — desktop */}
             <div className="hidden lg:flex items-center gap-2 text-white text-[13px]">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-white/70">
@@ -50,11 +50,6 @@ export default function VevorHeader({ categories, locale = "et" }: { categories:
             </div>
           </div>
         </div>
-      </div>
-
-      {/* Mobile search bar */}
-      <div className="md:hidden bg-[#1E293B] px-4 pb-3">
-        <SearchBar locale={locale} />
       </div>
 
       {/* Row 2: Orange navigation bar */}
