@@ -109,7 +109,7 @@ export async function searchProducts(options: SearchOptions): Promise<MeiliSearc
       "Content-Type": "application/json",
     },
     body: JSON.stringify(body),
-    cache: "no-store",
+    next: { revalidate: 60 }, // cache 1 min — MeiliSearch results don't change per-second
   })
 
   if (!res.ok) {

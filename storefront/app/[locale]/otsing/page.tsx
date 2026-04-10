@@ -6,7 +6,7 @@ import VevorProductCard from "@/components/VevorProductCard"
 import VevorSearchFilters from "@/components/search/VevorSearchFilters"
 import VevorPagination from "@/components/search/VevorPagination"
 
-export const revalidate = 0
+export const revalidate = 60 // cache search results 1 min
 
 type Props = {
   searchParams: Promise<{
