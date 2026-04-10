@@ -8,7 +8,7 @@
  */
 
 import pg from "pg"
-import { execFileSync, execSync } from "child_process"
+import { execFileSync } from "child_process"
 import { existsSync, mkdirSync, readFileSync, unlinkSync, writeFileSync } from "fs"
 import { tmpdir } from "os"
 import path from "path"
@@ -43,7 +43,9 @@ const OUTPUT_FILE = path.resolve(getArg("--output", path.join(OUTPUT_DIR, `${BAT
 const DRY_RUN = hasFlag("--dry-run")
 const SOURCE = getArg("--source", "db")
 const FEED_CACHE_PATH = path.resolve(getArg("--feed-cache", DEFAULT_FEED_CACHE))
-const TRANSLATOR_BIN = process.env.TRANSLATOR_BIN || (process.platform === "win32" ? "claude.cmd" : "claude")
+const OPENAI_API_KEY = process.env.OPENAI_API_KEY || ""
+const OPENAI_BASE_URL = (process.env.OPENAI_BASE_URL || "https://api.openai.com/v1").replace(/\/$/, "")
+const OPENAI_MODEL = process.env.OPENAI_MODEL || "gpt-5.4-mini"
 let feedCacheBySku = null
 
 function normalizeText(value) {
@@ -218,11 +220,7 @@ function codexResponseSchema() {
   }
 }
 
-function makePrompt(chunk, mode) {
-  const responseInstruction = mode === "codex"
-    ? 'Vasta ainult kehtiva JSON objektina kujul {"translations":[...]} ilma lisaselgitusteta.'
-    : "Vasta ainult kehtiva JSON massiivina. Ära lisa selgitusi."
-
+function makePrompt(chunk) {
   return [
     "Tõlgi järgmised VEVOR tooted inglise keelest eesti keelde.",
     "",
@@ -245,7 +243,7 @@ function makePrompt(chunk, mode) {
     "- Welding Machine -> Keevitusaparaat",
     "- Chainsaw -> Kettsaag",
     "",
-    responseInstruction,
+    'Vasta ainult kehtiva JSON objektina kujul {"translations":[...]} ilma lisaselgitusteta.',
     JSON.stringify(chunk, null, 2),
   ].join("\n")
 }
@@ -320,6 +318,71 @@ function mergeSourceAndTranslation(sourceChunk, translatedChunk) {
   })
 }
 
+function extractResponseText(response) {
+  if (typeof response.output_text === "string" && response.output_text.trim()) {
+    return response.output_text
+  }
+
+  const texts = []
+  for (const item of response.output || []) {
+    for (const content of item.content || []) {
+      if (content.type === "output_text" && typeof content.text === "string") {
+        texts.push(content.text)
+      }
+      if (content.type === "refusal" && typeof content.refusal === "string") {
+        throw new Error(`OpenAI keeldus tõlkest: ${content.refusal}`)
+      }
+    }
+  }
+
+  return texts.join("\n").trim()
+}
+
+async function runOpenAiTranslation(chunk) {
+  if (!OPENAI_API_KEY) {
+    throw new Error("OPENAI_API_KEY puudub")
+  }
+
+  const prompt = makePrompt(chunk)
+  const response = await fetch(`${OPENAI_BASE_URL}/responses`, {
+    method: "POST",
+    headers: {
+      "Authorization": `Bearer ${OPENAI_API_KEY}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      model: OPENAI_MODEL,
+      input: prompt,
+      text: {
+        format: {
+          type: "json_schema",
+          name: "translation_batch",
+          strict: true,
+          schema: codexResponseSchema(),
+        },
+      },
+    }),
+  })
+
+  if (!response.ok) {
+    const body = await response.text()
+    throw new Error(`OpenAI Responses API ${response.status}: ${body.slice(0, 400)}`)
+  }
+
+  const data = await response.json()
+  const rawText = extractResponseText(data)
+  if (!rawText) {
+    throw new Error("OpenAI vastusest ei leitud struktureeritud sisu")
+  }
+
+  const parsed = JSON.parse(rawText)
+  if (!parsed || !Array.isArray(parsed.translations)) {
+    throw new Error("OpenAI vastus ei sisaldanud translations massiivi")
+  }
+
+  return parsed.translations
+}
+
 function parseCodexTranslationFile(outputFile) {
   if (!existsSync(outputFile)) {
     throw new Error("Codex ei loonud väljundfaili")
@@ -333,58 +396,53 @@ function parseCodexTranslationFile(outputFile) {
   return parsed.translations
 }
 
-function runTranslation(chunk) {
-  const translatorName = path.basename(TRANSLATOR_BIN).toLowerCase()
-  const isCodex = translatorName === "codex" || translatorName === "codex.exe" || translatorName === "codex.cmd"
-  const prompt = makePrompt(chunk, isCodex ? "codex" : "claude")
+function runCodexTranslation(chunk) {
+  const workspace = path.resolve(__dirname, "../../..")
+  const stamp = `${Date.now()}-${Math.random().toString(16).slice(2)}`
+  const outputFile = path.join(tmpdir(), `xlm-codex-translation-${stamp}.json`)
+  const schemaFile = path.join(tmpdir(), `xlm-codex-schema-${stamp}.json`)
+  const prompt = makePrompt(chunk)
 
-  if (isCodex) {
-    const outputFile = path.join(tmpdir(), `xlm-codex-translation-${Date.now()}.json`)
-    const schemaFile = path.join(tmpdir(), `xlm-codex-schema-${Date.now()}.json`)
+  try {
+    writeFileSync(schemaFile, JSON.stringify(codexResponseSchema(), null, 2), "utf8")
 
-    try {
-      const workspace = path.resolve(__dirname, "../../..")
-      writeFileSync(schemaFile, JSON.stringify(codexResponseSchema(), null, 2), "utf8")
-
-      const command = process.platform === "win32"
-        ? `codex exec -C "${workspace}" --skip-git-repo-check --dangerously-bypass-approvals-and-sandbox --output-schema "${schemaFile}" -o "${outputFile}"`
-        : `${TRANSLATOR_BIN} exec -C "${workspace}" --skip-git-repo-check --dangerously-bypass-approvals-and-sandbox --output-schema "${schemaFile}" -o "${outputFile}"`
-
-      execSync(command, {
+    execFileSync(
+      "codex",
+      [
+        "exec",
+        "-C",
+        workspace,
+        "--skip-git-repo-check",
+        "--dangerously-bypass-approvals-and-sandbox",
+        "-m",
+        OPENAI_MODEL,
+        "--output-schema",
+        schemaFile,
+        "-o",
+        outputFile,
+        "-",
+      ],
+      {
         input: prompt,
         encoding: "utf8",
         timeout: 10 * 60 * 1000,
         maxBuffer: 20 * 1024 * 1024,
-        shell: true,
-      })
+        shell: process.platform === "win32",
+      }
+    )
 
-      return parseCodexTranslationFile(outputFile)
-    } finally {
-      try { unlinkSync(outputFile) } catch {}
-      try { unlinkSync(schemaFile) } catch {}
-    }
+    return parseCodexTranslationFile(outputFile)
+  } finally {
+    try { unlinkSync(outputFile) } catch {}
+    try { unlinkSync(schemaFile) } catch {}
   }
+}
 
-  const raw = execFileSync(
-    TRANSLATOR_BIN,
-    [
-      "--dangerously-skip-permissions",
-      "--output-format",
-      "json",
-      "--json-schema",
-      JSON.stringify(translationArraySchema()),
-      "-p",
-      prompt,
-    ],
-    {
-      encoding: "utf8",
-      timeout: 10 * 60 * 1000,
-      maxBuffer: 20 * 1024 * 1024,
-      shell: process.platform === "win32",
-    }
-  )
-
-  return JSON.parse(raw)
+async function runTranslation(chunk) {
+  if (OPENAI_API_KEY) {
+    return runOpenAiTranslation(chunk)
+  }
+  return runCodexTranslation(chunk)
 }
 
 function sortProducts(products) {
@@ -554,7 +612,7 @@ async function main() {
       }))
 
       console.log(`🔄 Tõlgin chunk ${index + 1}/${chunks.length} (${chunk.length} toodet)`)
-      const translatedChunk = runTranslation(chunk)
+      const translatedChunk = await runTranslation(chunk)
       validateChunkTranslations(chunk, translatedChunk)
       mergedTranslations.push(...mergeSourceAndTranslation(chunk, translatedChunk))
     }
