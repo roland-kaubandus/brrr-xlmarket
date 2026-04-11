@@ -547,7 +547,7 @@ function buildProductPayload(spu, skuRows, productTypeCategoryMap, salesChannelI
     title: groupTitle,
     handle,
     description,
-    status: anyInStock ? "published" : "draft",
+    status: "published",
     is_giftcard: false,
     metadata: {
       vevor_sku: first.sku,
@@ -646,7 +646,7 @@ async function updateProduct(productId, skuRows) {
     const imageUrls = [...allImages].filter(Boolean).slice(0, 20)
 
     await apiCallWithRetry("POST", `/admin/products/${productId}`, {
-      status: anyInStock ? "published" : "draft",
+      status: "published",
       thumbnail: first.mainOriginalPicture || first.imageLink || "",
       images: imageUrls.map((url) => ({ url })),
       metadata: {
