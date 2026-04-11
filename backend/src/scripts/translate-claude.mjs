@@ -19,7 +19,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const DEFAULT_DB_URL = "postgres://xlmarket:PG_PASSWORD_REDACTED@localhost:5435/xlmarket"
 const DEFAULT_OUTPUT_DIR = path.resolve(__dirname, "../../data/translation-batches")
 const DEFAULT_BATCH_ID = "wo-codex-001-batch-001"
-const DEFAULT_CHUNK_SIZE = 10
+const DEFAULT_CHUNK_SIZE = 20
 const DEFAULT_FEED_CACHE = path.resolve(__dirname, "../../data/feeds/vevor-feed-cache.json")
 
 function getArg(name, fallback = null) {
@@ -456,20 +456,9 @@ function sortProducts(products) {
 }
 
 function buildChunks(products) {
-  const groups = new Map()
-
-  for (const product of products) {
-    const key = product.product_type || "Muu"
-    if (!groups.has(key)) groups.set(key, [])
-    groups.get(key).push(product)
-  }
-
   const chunks = []
-  for (const groupKey of [...groups.keys()].sort((a, b) => a.localeCompare(b))) {
-    const groupProducts = groups.get(groupKey)
-    for (let index = 0; index < groupProducts.length; index += CHUNK_SIZE) {
-      chunks.push(groupProducts.slice(index, index + CHUNK_SIZE))
-    }
+  for (let index = 0; index < products.length; index += CHUNK_SIZE) {
+    chunks.push(products.slice(index, index + CHUNK_SIZE))
   }
 
   return chunks
