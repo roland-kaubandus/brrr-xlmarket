@@ -40,7 +40,12 @@ const CHUNK_SIZE = Number.parseInt(getArg("--chunk-size", String(DEFAULT_CHUNK_S
 const BATCH_ID = getArg("--batch-id", DEFAULT_BATCH_ID)
 const OUTPUT_DIR = path.resolve(getArg("--output-dir", DEFAULT_OUTPUT_DIR))
 const OUTPUT_FILE = path.resolve(getArg("--output", path.join(OUTPUT_DIR, `${BATCH_ID}.json`)))
+const PARTIAL_FILE = path.resolve(getArg(
+  "--partial-output",
+  OUTPUT_FILE.endsWith(".json") ? OUTPUT_FILE.replace(/\.json$/i, ".partial.json") : `${OUTPUT_FILE}.partial.json`
+))
 const DRY_RUN = hasFlag("--dry-run")
+const COMPACT_OUTPUT = hasFlag("--compact-output")
 const SOURCE = getArg("--source", "db")
 const FEED_CACHE_PATH = path.resolve(getArg("--feed-cache", DEFAULT_FEED_CACHE))
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY || ""
@@ -56,6 +61,10 @@ function normalizeText(value) {
 
 function normalizeHtml(value) {
   return normalizeText(value).replace(/\r\n/g, "\n")
+}
+
+function compoundKey(item) {
+  return `${normalizeText(item?.id)}::${normalizeText(item?.sku)}`
 }
 
 function stripTags(value) {
@@ -297,24 +306,38 @@ function mergeSourceAndTranslation(sourceChunk, translatedChunk) {
   const byKey = new Map(translatedChunk.map((item) => [`${item.id}::${item.sku}`, item]))
   return sourceChunk.map((source) => {
     const translated = byKey.get(`${source.id}::${source.sku}`)
+    const compact = {
+      id: source.id,
+      sku: source.sku,
+      title_et: translated.title_et.trim(),
+      description_et: translated.description_et.trim(),
+      selling_point_1_et: translated.selling_point_1_et.trim(),
+      selling_point_2_et: translated.selling_point_2_et.trim(),
+      selling_point_3_et: translated.selling_point_3_et.trim(),
+      selling_point_4_et: translated.selling_point_4_et.trim(),
+      selling_point_5_et: translated.selling_point_5_et.trim(),
+    }
+
+    if (COMPACT_OUTPUT) return compact
+
     return {
       id: source.id,
       sku: source.sku,
       product_type: source.product_type,
       original_title: source.title,
-      title_et: translated.title_et.trim(),
+      title_et: compact.title_et,
       original_description: source.description,
-      description_et: translated.description_et.trim(),
+      description_et: compact.description_et,
       original_selling_point_1: source.selling_point_1,
-      selling_point_1_et: translated.selling_point_1_et.trim(),
+      selling_point_1_et: compact.selling_point_1_et,
       original_selling_point_2: source.selling_point_2,
-      selling_point_2_et: translated.selling_point_2_et.trim(),
+      selling_point_2_et: compact.selling_point_2_et,
       original_selling_point_3: source.selling_point_3,
-      selling_point_3_et: translated.selling_point_3_et.trim(),
+      selling_point_3_et: compact.selling_point_3_et,
       original_selling_point_4: source.selling_point_4,
-      selling_point_4_et: translated.selling_point_4_et.trim(),
+      selling_point_4_et: compact.selling_point_4_et,
       original_selling_point_5: source.selling_point_5,
-      selling_point_5_et: translated.selling_point_5_et.trim(),
+      selling_point_5_et: compact.selling_point_5_et,
     }
   })
 }
@@ -371,6 +394,14 @@ async function runOpenAiTranslation(chunk) {
   }
 
   const data = await response.json()
+  if (data.usage) {
+    const inputTokens = data.usage.input_tokens ?? 0
+    const outputTokens = data.usage.output_tokens ?? 0
+    const totalTokens = data.usage.total_tokens ?? inputTokens + outputTokens
+    const cachedTokens = data.usage.input_tokens_details?.cached_tokens ?? 0
+    console.log(`TOKENS model=${OPENAI_MODEL} input=${inputTokens} output=${outputTokens} total=${totalTokens} cached=${cachedTokens}`)
+  }
+
   const rawText = extractResponseText(data)
   if (!rawText) {
     throw new Error("OpenAI vastusest ei leitud struktureeritud sisu")
@@ -546,6 +577,29 @@ function loadProductsFromFeedCache() {
   }))).slice(OFFSET, OFFSET + LIMIT)
 }
 
+function loadPartialTranslations() {
+  if (!existsSync(PARTIAL_FILE)) return []
+
+  const parsed = JSON.parse(readFileSync(PARTIAL_FILE, "utf8"))
+  if (!Array.isArray(parsed)) {
+    throw new Error(`Partial fail ei olnud JSON massiiv: ${PARTIAL_FILE}`)
+  }
+
+  const byKey = new Map()
+  for (const item of parsed) {
+    const key = compoundKey(item)
+    if (key === "::") continue
+    byKey.set(key, item)
+  }
+
+  return [...byKey.values()]
+}
+
+function writePartialTranslations(translations) {
+  mkdirSync(path.dirname(PARTIAL_FILE), { recursive: true })
+  writeFileSync(PARTIAL_FILE, JSON.stringify(translations, null, 2) + "\n", "utf8")
+}
+
 async function main() {
   if (!Number.isFinite(LIMIT) || LIMIT <= 0) {
     throw new Error("--limit peab olema positiivne arv")
@@ -587,9 +641,21 @@ async function main() {
 
     if (DRY_RUN) return
 
-    const mergedTranslations = []
+    const productIndexByKey = new Map(products.map((item, index) => [compoundKey(item), index]))
+    const mergedTranslations = loadPartialTranslations().filter((item) => productIndexByKey.has(compoundKey(item)))
+    const completedKeys = new Set(mergedTranslations.map((item) => compoundKey(item)))
+    if (mergedTranslations.length > 0) {
+      console.log(`↩️  Resume: partial failist leitud ${mergedTranslations.length}/${products.length} tõlget`)
+    }
+
     for (let index = 0; index < chunks.length; index++) {
-      const chunk = chunks[index].map((item) => ({
+      const pendingProducts = chunks[index].filter((item) => !completedKeys.has(compoundKey(item)))
+      if (pendingProducts.length === 0) {
+        console.log(`⏭️  Chunk ${index + 1}/${chunks.length} juba partial failis olemas`)
+        continue
+      }
+
+      const chunk = pendingProducts.map((item) => ({
         id: item.id,
         sku: item.sku,
         title: item.title,
@@ -605,11 +671,22 @@ async function main() {
       console.log(`🔄 Tõlgin chunk ${index + 1}/${chunks.length} (${chunk.length} toodet)`)
       const translatedChunk = await runTranslation(chunk)
       validateChunkTranslations(chunk, translatedChunk)
-      mergedTranslations.push(...mergeSourceAndTranslation(chunk, translatedChunk))
+      const mergedChunk = mergeSourceAndTranslation(chunk, translatedChunk)
+      mergedTranslations.push(...mergedChunk)
+      for (const item of mergedChunk) {
+        completedKeys.add(compoundKey(item))
+      }
+      writePartialTranslations(mergedTranslations)
+      console.log(`💾 Partial salvestatud: ${mergedTranslations.length}/${products.length}`)
     }
 
+    const finalTranslations = [...mergedTranslations].sort((a, b) => {
+      return productIndexByKey.get(compoundKey(a)) - productIndexByKey.get(compoundKey(b))
+    })
+
     mkdirSync(path.dirname(OUTPUT_FILE), { recursive: true })
-    writeFileSync(OUTPUT_FILE, JSON.stringify(mergedTranslations, null, 2) + "\n", "utf8")
+    writeFileSync(OUTPUT_FILE, JSON.stringify(finalTranslations, null, 2) + "\n", "utf8")
+    try { unlinkSync(PARTIAL_FILE) } catch {}
     console.log(`✅ Batch kirjutatud faili ${OUTPUT_FILE}`)
   } finally {
     if (client) await client.end()
