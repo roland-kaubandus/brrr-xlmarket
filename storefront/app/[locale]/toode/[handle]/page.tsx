@@ -210,12 +210,13 @@ export default async function ProductPage({ params }: Props) {
 
   // Gallery images from metadata (feed 571 import)
   // Upgrade goods_img to original_img for higher resolution gallery images
+  // NB: Do NOT use decodeURIComponent — VEVOR CDN requires encoded URLs (%2B stays %2B)
   const metaGalleryImages: Array<{ id: string; url: string }> = Array.isArray(metadata.gallery_images)
     ? (metadata.gallery_images as string[])
         .filter((u): u is string => typeof u === "string" && u.length > 0)
         .map((url, i) => ({
           id: `meta_gallery_${i}`,
-          url: decodeURIComponent(url).replace(/\/goods_img-/, "/original_img-"),
+          url: url.replace(/\/goods_img-/, "/original_img-"),
         }))
     : []
 
@@ -226,8 +227,8 @@ export default async function ProductPage({ params }: Props) {
       [
         ...metaGalleryImages,
         ...(metaGalleryImages.length === 0 ? [
-          ...(product.images || []).map((img) => ({ ...img, url: decodeURIComponent(img.url).replace(/\/goods_img-/, "/original_img-") })),
-          ...(product.thumbnail ? [{ id: "thumb", url: decodeURIComponent(product.thumbnail).replace(/\/goods_img-/, "/original_img-") }] : []),
+          ...(product.images || []).map((img) => ({ ...img, url: img.url.replace(/\/goods_img-/, "/original_img-") })),
+          ...(product.thumbnail ? [{ id: "thumb", url: product.thumbnail.replace(/\/goods_img-/, "/original_img-") }] : []),
         ] : []),
       ]
         .filter((image) => Boolean(image?.url))
@@ -314,10 +315,10 @@ export default async function ProductPage({ params }: Props) {
   const categoryName = product.categories?.[0]?.name || productTypeTrail[0] || "Category"
 
   const breadcrumbItems = [
-    { name: "Home", url: "https://xlmarket.store" },
+    { name: locale === "et" ? "Avaleht" : "Home", url: `https://xlmarket.store/${locale}` },
     ...productTypeTrail.map((segment) => ({
       name: segment,
-      url: `https://xlmarket.store/et/otsing?q=${encodeURIComponent(segment)}`,
+      url: `https://xlmarket.store/${locale}/otsing?q=${encodeURIComponent(segment)}`,
     })),
   ]
 
@@ -343,22 +344,19 @@ export default async function ProductPage({ params }: Props) {
           href={`/${locale}`}
           className="hover:text-[#D97706] transition-colors duration-200"
         >
-          Home
+          {locale === "et" ? "Avaleht" : "Home"}
         </Link>
-        {productTypeTrail.map((segment, index) => {
-          const slug = segment.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")
-          return (
-            <span key={`bc-${segment}-${index}`}>
-              <span className="mx-2 text-[#E2E8F0]">&gt;</span>
-              <Link
-                href={`/${locale}/kategooriad/${slug}`}
-                className="hover:text-[#D97706] transition-colors duration-200"
-              >
-                {segment}
-              </Link>
-            </span>
-          )
-        })}
+        {productTypeTrail.map((segment, index) => (
+          <span key={`bc-${segment}-${index}`}>
+            <span className="mx-2 text-[#E2E8F0]">&gt;</span>
+            <Link
+              href={`/${locale}/otsing?q=${encodeURIComponent(segment)}`}
+              className="hover:text-[#D97706] transition-colors duration-200"
+            >
+              {segment}
+            </Link>
+          </span>
+        ))}
       </nav>
 
       <div className="grid grid-cols-1 lg:grid-cols-[3fr_2fr] gap-6 lg:gap-10 lg:items-start">

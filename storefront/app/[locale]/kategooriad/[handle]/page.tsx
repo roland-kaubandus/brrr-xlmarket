@@ -222,7 +222,7 @@ export default async function CategoryPage({ params, searchParams }: Props) {
       <div className="max-w-[1360px] mx-auto px-4 sm:px-6 py-6">
         {/* Breadcrumb — full ancestor chain (if Medusa category exists) */}
         <nav className="text-xs text-[#64748B] mb-4">
-          <Link href={`/${locale}`} className="hover:text-[#D97706]">Home</Link>
+          <Link href={`/${locale}`} className="hover:text-[#D97706]">{locale === "et" ? "Avaleht" : "Home"}</Link>
           {category && (() => {
             const ancestors: Array<{ name: string; handle: string }> = []
             let parent = category.parent_category
