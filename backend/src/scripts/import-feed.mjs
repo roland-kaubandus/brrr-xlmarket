@@ -192,7 +192,7 @@ async function createProduct(row, salesChannelId) {
     title: title,
     handle: handle,
     description: description || "",
-    status: isInStock ? "published" : "draft",
+    status: "published",
     is_giftcard: false,
     metadata: {
       vevor_sku: sku,
@@ -253,7 +253,7 @@ async function updateProduct(productId, row) {
 
   try {
     await apiCall("POST", `/admin/products/${productId}`, {
-      status: isInStock ? "published" : "draft",
+      status: "published",
       metadata: {
         vevor_sku: row.sku,
         weight_kg: row.weight || 0,

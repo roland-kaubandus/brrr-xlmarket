@@ -24,11 +24,18 @@ type Props = {
   }>
 }
 
+function humanize(handle: string): string {
+  return handle
+    .replace(/-/g, " ")
+    .replace(/\b\w/g, (c) => c.toUpperCase())
+}
+
 export async function generateMetadata({ params }: Props) {
   const { handle } = await params
   const category = await getCategoryByHandle(handle)
-  if (!category) return { title: "Category — XLMARKET" }
-  const displayName = CATEGORY_NAMES[handle] || category.name
+  const displayName = category
+    ? (CATEGORY_NAMES[handle] || category.name)
+    : humanize(handle)
   const desc = `${displayName} products at great prices. Fast delivery in Estonia.`
   return {
     title: `${displayName} — XLMARKET`,
@@ -49,10 +56,9 @@ export default async function CategoryPage({ params, searchParams }: Props) {
   const { handle, locale } = await params
   const { page: pageParam, sort, min, max, q, categories, in_stock } = await searchParams
 
+  // Try Medusa category first (for subcategories, ancestors, etc.)
   const category = await getCategoryByHandle(handle)
-  if (!category) notFound()
 
-  const displayName = CATEGORY_NAMES[handle] || category.name
   const page = Math.max(1, parseInt(pageParam || "1", 10) || 1)
   const offset = (page - 1) * ITEMS_PER_PAGE
   const currentSort = sort || ""
@@ -64,8 +70,8 @@ export default async function CategoryPage({ params, searchParams }: Props) {
   let usedMeili = false
   let categoryFacets: Record<string, number> = {}
 
+  // Primary: MeiliSearch — works for ALL category handles (Medusa + auto-generated)
   try {
-    // Build MeiliSearch filter
     const filters: string[] = [`category_handles = "${handle}"`]
     if (min) filters.push(`price >= ${parseFloat(min)}`)
     if (max) filters.push(`price <= ${parseFloat(max)}`)
@@ -110,23 +116,32 @@ export default async function CategoryPage({ params, searchParams }: Props) {
       created_at: new Date(hit.created_at * 1000).toISOString(),
     }))
   } catch {
-    // Fallback to Medusa API
-    const productsRes = await getProducts({
-      category_id: [category.id],
-      limit: ITEMS_PER_PAGE,
-      offset,
-      order: "-created_at",
-    })
-    products = productsRes.products
-    totalCount = productsRes.count
+    // Fallback to Medusa API (only works if Medusa category exists)
+    if (category) {
+      const productsRes = await getProducts({
+        category_id: [category.id],
+        limit: ITEMS_PER_PAGE,
+        offset,
+        order: "-created_at",
+      })
+      products = productsRes.products
+      totalCount = productsRes.count
+    }
   }
+
+  // No products found AND no Medusa category → 404
+  if (totalCount === 0 && !category) notFound()
+
+  const displayName = category
+    ? (CATEGORY_NAMES[handle] || category.name)
+    : humanize(handle)
 
   const totalPages = Math.ceil(totalCount / ITEMS_PER_PAGE)
   const categoryBasePath = `/${locale}/kategooriad/${handle}`
 
   // Fetch thumbnail for each subcategory (first product in that category)
   const subcatThumbs: Record<string, string> = {}
-  if (category.category_children?.length) {
+  if (category?.category_children?.length) {
     const thumbResults = await Promise.all(
       category.category_children.slice(0, 30).map(async (child) => {
         if (CATEGORY_IMAGES[child.handle]) return { handle: child.handle, thumb: null }
@@ -154,7 +169,7 @@ export default async function CategoryPage({ params, searchParams }: Props) {
   let youMayAlsoLike: any[] = []
   try {
     // Use parent category if available, otherwise same L1 category
-    const parentHandle = category.parent_category?.handle || handle
+    const parentHandle = category?.parent_category?.handle || handle
     const alsoLikeResult = await searchProducts({
       q: "",
       limit: 5,
@@ -205,11 +220,10 @@ export default async function CategoryPage({ params, searchParams }: Props) {
         productCount={totalCount}
       />
       <div className="max-w-[1360px] mx-auto px-4 sm:px-6 py-6">
-        {/* Breadcrumb — full ancestor chain */}
+        {/* Breadcrumb — full ancestor chain (if Medusa category exists) */}
         <nav className="text-xs text-[#64748B] mb-4">
           <Link href={`/${locale}`} className="hover:text-[#D97706]">Home</Link>
-          {(() => {
-            // Build ancestor chain from parent_category recursion
+          {category && (() => {
             const ancestors: Array<{ name: string; handle: string }> = []
             let parent = category.parent_category
             while (parent) {
@@ -224,7 +238,7 @@ export default async function CategoryPage({ params, searchParams }: Props) {
             ))
           })()}
           <span className="mx-1.5">&gt;</span>
-          <span className="text-[#1E293B] font-medium">{category.name}</span>
+          <span className="text-[#1E293B] font-medium">{displayName}</span>
         </nav>
 
         {/* Title */}
@@ -233,7 +247,7 @@ export default async function CategoryPage({ params, searchParams }: Props) {
         </div>
 
         {/* Subcategory navigation — larger cards with proper spacing */}
-        {(category.category_children?.length ?? 0) > 0 && subcatThumbs && (
+        {category && (category.category_children?.length ?? 0) > 0 && subcatThumbs && (
           <div className="relative mb-8">
             <div className="flex gap-4 overflow-x-auto pt-2 pb-5 scrollbar-hide -mx-1 px-1">
               {category.category_children!.map((child) => {
@@ -309,7 +323,7 @@ export default async function CategoryPage({ params, searchParams }: Props) {
               No products found in this category.
             </p>
             <Link
-              href={`/${locale}/kategooriad`}
+              href={`/${locale}`}
               className="text-[#D97706] hover:underline font-medium"
             >
               Browse all categories
