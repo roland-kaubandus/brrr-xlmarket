@@ -8,9 +8,7 @@
  */
 
 import pg from "pg"
-import { execFileSync } from "child_process"
-import { existsSync, mkdirSync, readFileSync, unlinkSync, writeFileSync } from "fs"
-import { tmpdir } from "os"
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "fs"
 import path from "path"
 import { fileURLToPath } from "url"
 
@@ -383,66 +381,8 @@ async function runOpenAiTranslation(chunk) {
   return parsed.translations
 }
 
-function parseCodexTranslationFile(outputFile) {
-  if (!existsSync(outputFile)) {
-    throw new Error("Codex ei loonud väljundfaili")
-  }
-
-  const parsed = JSON.parse(readFileSync(outputFile, "utf8"))
-  if (!parsed || !Array.isArray(parsed.translations)) {
-    throw new Error("Codex väljund ei sisaldanud translations massiivi")
-  }
-
-  return parsed.translations
-}
-
-function runCodexTranslation(chunk) {
-  const workspace = path.resolve(__dirname, "../../..")
-  const stamp = `${Date.now()}-${Math.random().toString(16).slice(2)}`
-  const outputFile = path.join(tmpdir(), `xlm-codex-translation-${stamp}.json`)
-  const schemaFile = path.join(tmpdir(), `xlm-codex-schema-${stamp}.json`)
-  const prompt = makePrompt(chunk)
-
-  try {
-    writeFileSync(schemaFile, JSON.stringify(codexResponseSchema(), null, 2), "utf8")
-
-    execFileSync(
-      "codex",
-      [
-        "exec",
-        "-C",
-        workspace,
-        "--skip-git-repo-check",
-        "--dangerously-bypass-approvals-and-sandbox",
-        "-m",
-        OPENAI_MODEL,
-        "--output-schema",
-        schemaFile,
-        "-o",
-        outputFile,
-        "-",
-      ],
-      {
-        input: prompt,
-        encoding: "utf8",
-        timeout: 10 * 60 * 1000,
-        maxBuffer: 20 * 1024 * 1024,
-        shell: process.platform === "win32",
-      }
-    )
-
-    return parseCodexTranslationFile(outputFile)
-  } finally {
-    try { unlinkSync(outputFile) } catch {}
-    try { unlinkSync(schemaFile) } catch {}
-  }
-}
-
 async function runTranslation(chunk) {
-  if (OPENAI_API_KEY) {
-    return runOpenAiTranslation(chunk)
-  }
-  return runCodexTranslation(chunk)
+  return runOpenAiTranslation(chunk)
 }
 
 function sortProducts(products) {
@@ -552,7 +492,7 @@ function loadProductsFromFeedCache() {
       description: row.descriptionText || "",
       product_type: row.productType || "",
     }),
-  }))).slice(0, LIMIT)
+  }))).slice(OFFSET, OFFSET + LIMIT)
 }
 
 async function main() {
