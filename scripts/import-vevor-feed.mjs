@@ -433,7 +433,7 @@ async function createProductFromGroup(spuGroup, token, catMap, catIds) {
     title: primaryRow.title,
     handle,
     description: primaryRow.description || "",
-    status: anyInStock ? "published" : "draft",
+    status: "published",
     is_giftcard: false,
     thumbnail: primaryRow.image || undefined,
     external_id: "vevor:" + primaryRow.sku,
@@ -504,7 +504,7 @@ async function createProduct(row, token, catMap, catIds) {
     title: row.title,
     handle: handle,
     description: row.description || "",
-    status: isInStock ? "published" : "draft",
+    status: "published",
     is_giftcard: false,
     thumbnail: row.image || undefined,
     external_id: "vevor:" + row.sku,
@@ -579,7 +579,7 @@ async function updateProduct(productId, row, token) {
     // Update product status, metadata, and images
     const galleryImgs = row.originalImages.length > 0 ? row.originalImages : row.galleryImages;
     const updateData = {
-      status: isInStock ? "published" : "draft",
+      status: "published",
       thumbnail: row.mainOriginalImage || row.image || undefined,
       metadata: {
         vevor_sku: row.sku,
