@@ -38,16 +38,16 @@ node scripts/build-vevor-feed-cache.mjs 2>&1 | tail -3
 AFTER_CACHE=$(python3 -c "import json;d=json.load(open('$FEED_DIR/vevor-feed-cache.json'));print(d['count'])" 2>/dev/null || echo 0)
 echo "  Products in cache: $BEFORE_CACHE -> $AFTER_CACHE"
 
-# ── Step 3: Import new products + update stock ──
-echo "[3/6] Importing to Medusa (dry run first)..."
+# ── Step 3: Import new products + update existing ──
+echo "[3/6] Importing to Medusa (--execute --update)..."
 cd "$REPO"
-IMPORT_OUTPUT=$(node scripts/import-vevor-feed.mjs 2>&1 | tail -20)
-echo "$IMPORT_OUTPUT" | tail -5
+IMPORT_OUTPUT=$(node scripts/import-vevor-feed.mjs --execute --update 2>&1 | tail -30)
+echo "$IMPORT_OUTPUT" | tail -10
 
-# Count new/updated from dry run output
-NEW_COUNT=$(echo "$IMPORT_OUTPUT" | grep -oP '\d+ new' | head -1 || echo "0 new")
-UPDATE_COUNT=$(echo "$IMPORT_OUTPUT" | grep -oP '\d+ updat' | head -1 || echo "0 updat")
-echo "  Dry run: $NEW_COUNT, $UPDATE_COUNT"
+# Count created/updated from output
+NEW_COUNT=$(echo "$IMPORT_OUTPUT" | grep -oP 'created:\s*\d+' | head -1 || echo "created: 0")
+UPDATE_COUNT=$(echo "$IMPORT_OUTPUT" | grep -oP 'updated:\s*\d+' | head -1 || echo "updated: 0")
+echo "  Result: $NEW_COUNT, $UPDATE_COUNT"
 
 # ── Step 4: MeiliSearch reindex ──
 echo "[4/6] Reindexing MeiliSearch..."

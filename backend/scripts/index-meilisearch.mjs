@@ -1,5 +1,8 @@
 #!/usr/bin/env node
 import pg from "pg"
+import fs from "fs"
+import path from "path"
+import { fileURLToPath } from "url"
 
 const DB_URL = process.env.DATABASE_URL || "postgres://xlmarket:xlmarket_pg_2026_secure@localhost:5435/xlmarket"
 const MEILI_HOST = process.env.MEILISEARCH_HOST || "http://127.0.0.1:7700"
@@ -7,13 +10,13 @@ const MEILI_KEY = process.env.MEILISEARCH_API_KEY || "xlmarket2024_secure_key"
 const INDEX = "products"
 const BATCH = 500
 
-async function meili(path, method = "GET", body = null) {
+async function meili(endpoint, method = "GET", body = null) {
   const opts = { method, headers: { "Authorization": "Bearer " + MEILI_KEY, "Content-Type": "application/json" } }
   if (body) opts.body = JSON.stringify(body)
-  const r = await fetch(MEILI_HOST + path, opts)
+  const r = await fetch(MEILI_HOST + endpoint, opts)
   const text = await r.text()
   if (!r.ok && r.status !== 202 && r.status !== 201) {
-    throw new Error("MeiliSearch " + r.status + " " + method + " " + path + ": " + text.slice(0, 200))
+    throw new Error("MeiliSearch " + r.status + " " + method + " " + endpoint + ": " + text.slice(0, 200))
   }
   return text ? JSON.parse(text) : {}
 }
@@ -34,6 +37,26 @@ async function configureIndex() {
     pagination: { maxTotalHits: 5000 },
   })
   console.log("✅ Seaded konfigureeritud")
+}
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
+
+function loadFeedStockStatus() {
+  try {
+    const cachePath = path.join(__dirname, "..", "data", "feeds", "vevor-feed-cache.json")
+    const data = JSON.parse(fs.readFileSync(cachePath, "utf8"))
+    const oosSkus = new Set()
+    for (const [sku, entry] of Object.entries(data.bySku || {})) {
+      if (entry.availability !== "in stock" || (entry.inventoryQuantity || 0) === 0) {
+        oosSkus.add(sku)
+      }
+    }
+    console.log("📦 Feed cache: " + oosSkus.size + " out-of-stock SKUs")
+    return oosSkus
+  } catch (err) {
+    console.log("⚠️  Feed cache not found, defaulting in_stock=true: " + err.message)
+    return new Set()
+  }
 }
 
 async function fetchProducts(client) {
@@ -62,7 +85,7 @@ function slugify(str) {
   return str.toLowerCase().trim().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
 }
 
-function transform(row) {
+function transform(row, oosSkus) {
   const meta = row.metadata || {}
   const categoryHandles = [...(row.category_handles || [])]
   
@@ -101,7 +124,7 @@ function transform(row) {
     categories: row.categories || [],
     category_handles: categoryHandles,
     subcategory: subcategory,
-    in_stock: true,
+    in_stock: !oosSkus.has(row.sku),
     translated: meta.translated === true,
     created_at: Math.floor(new Date(row.created_at).getTime() / 1000),
   }
@@ -134,8 +157,9 @@ async function main() {
   await client.connect()
   try {
     await configureIndex()
+    const oosSkus = loadFeedStockStatus()
     const rows = await fetchProducts(client)
-    const docs = rows.map(transform)
+    const docs = rows.map(row => transform(row, oosSkus))
     await indexDocs(docs)
     await waitDone()
     const stats = await meili("/indexes/" + INDEX + "/stats")
