@@ -50,6 +50,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   }
 }
 
+export const dynamicParams = true
+
 export function generateStaticParams() {
   return [{ locale: "et" }, { locale: "en" }]
 }
