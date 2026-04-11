@@ -13,10 +13,6 @@ type Props = {
   title: string
 }
 
-function decodeImageUrl(url: string): string {
-  try { return decodeURIComponent(url) } catch { return url }
-}
-
 export default function ProductGallery({ images, title }: Props) {
   const [active, setActive] = useState(0)
   const [lightbox, setLightbox] = useState(false)
@@ -85,7 +81,7 @@ export default function ProductGallery({ images, title }: Props) {
                 style={{ width: thumbSize, height: thumbSize }}
               >
                 <img
-                  src={decodeImageUrl(img.url)}
+                  src={img.url}
                   alt={title + " " + (i + 1)}
                   className="object-contain absolute inset-0 w-full h-full p-1"
                   loading="lazy"
@@ -115,7 +111,7 @@ export default function ProductGallery({ images, title }: Props) {
         >
           <div className="absolute inset-4 transition-transform duration-300 group-hover:scale-[1.02]">
             <img
-              src={decodeImageUrl(images[active].url)}
+              src={images[active].url}
               alt={title}
               className="object-contain absolute inset-0 w-full h-full"
             />
@@ -142,7 +138,7 @@ export default function ProductGallery({ images, title }: Props) {
           aria-label="Suurenda pilti"
           onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") setLightbox(true) }}
         >
-          <div className="absolute inset-3"><img src={decodeImageUrl(images[active].url)} alt={title} className="object-contain absolute inset-0 w-full h-full" /></div>
+          <div className="absolute inset-3"><img src={images[active].url} alt={title} className="object-contain absolute inset-0 w-full h-full" /></div>
           {images.length > 1 && (
             <div className="absolute bottom-2 left-2 bg-off-black/50 text-white text-[11px] px-2 py-0.5 rounded-full">
               {active + 1} / {images.length}
@@ -158,7 +154,7 @@ export default function ProductGallery({ images, title }: Props) {
                 onClick={() => setActive(i)}
                 className={"relative shrink-0 w-[52px] h-[52px] bg-silver rounded-lg border-2 overflow-hidden transition-all duration-200 " + (i === active ? "border-[#D97706]" : "border-transparent")}
               >
-                <img src={decodeImageUrl(img.url)} alt={title + " " + (i + 1)} className="object-contain absolute inset-0 w-full h-full p-0.5" loading="lazy" />
+                <img src={img.url} alt={title + " " + (i + 1)} className="object-contain absolute inset-0 w-full h-full p-0.5" loading="lazy" />
               </button>
             ))}
             {images.length > 8 && (
@@ -204,7 +200,7 @@ export default function ProductGallery({ images, title }: Props) {
             className="relative max-w-[85vw] max-h-[85vh] w-full h-full flex items-center justify-center"
             onClick={(e) => e.stopPropagation()}
           >
-            <img src={decodeImageUrl(images[active].url)} alt={title} width={1200} height={1200} className="object-contain max-w-[85vw] max-h-[85vh] w-auto h-auto" />
+            <img src={images[active].url} alt={title} width={1200} height={1200} className="object-contain max-w-[85vw] max-h-[85vh] w-auto h-auto" />
           </div>
           <button
             className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-white hover:bg-white/20 transition-all duration-200"
@@ -222,7 +218,7 @@ export default function ProductGallery({ images, title }: Props) {
                 onClick={(e) => { e.stopPropagation(); setActive(i) }}
                 className={"shrink-0 w-12 h-12 rounded-lg overflow-hidden border-2 transition-all duration-200 " + (i === active ? "border-white" : "border-white/20 opacity-50 hover:opacity-80")}
               >
-                <img src={decodeImageUrl(img.url)} alt="" className="w-full h-full object-contain bg-white/10 p-0.5" loading="lazy" />
+                <img src={img.url} alt="" className="w-full h-full object-contain bg-white/10 p-0.5" loading="lazy" />
               </button>
             ))}
           </div>

@@ -2,9 +2,12 @@
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
+import { usePathname } from "next/navigation"
 import { ShoppingCart } from "lucide-react"
 
 export default function NavCartButton() {
+  const pathname = usePathname()
+  const locale = pathname.split("/")[1] === "en" ? "en" : "et"
   const [count, setCount] = useState(0)
 
   function updateCount() {
@@ -33,7 +36,7 @@ export default function NavCartButton() {
 
   return (
     <Link
-      href="/ostukorv"
+      href={`/${locale}/ostukorv`}
       className="relative flex items-center justify-center w-[40px] h-[40px] text-[#1E293B] hover:text-[#D97706] hover:bg-[#FFFBEB] active:scale-95"
       aria-label="Shopping Cart"
     >
