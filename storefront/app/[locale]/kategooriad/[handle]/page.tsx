@@ -14,7 +14,27 @@ const CATEGORY_IMAGES: Record<string, string> = categoryImages as Record<string,
 
 export const revalidate = 300
 
-const CATEGORY_NAMES: Record<string, string> = {}
+const CATEGORY_NAMES: Record<string, string> = {
+  // L1 VEVOR categories → Estonian
+  "automotive": "Auto ja garaaž",
+  "tools": "Tööriistad",
+  "outdoors": "Aed ja õu",
+  "plumbing": "Torutööd ja sanitaar",
+  "building-materials": "Ehitus ja remont",
+  "appliances": "Kodumasinad",
+  "kitchen": "Köök ja toitlustus",
+  "flooring": "Põrandad ja plaatimine",
+  "sports-outdoors": "Sport ja vaba aeg",
+  "industrial-scientific": "Tööstus ja labor",
+  "electrical": "Elektroonika",
+  "hardware": "Riistvara ja tööriistad",
+  "lawn-garden": "Aed ja muru",
+  "heating-cooling": "Küte ja jahutus",
+  "health-wellness": "Tervis ja heaolu",
+  "arts-crafts": "Kunst ja käsitöö",
+  "building-construction": "Ehitus ja remont",
+  "kitchen-catering": "Köök ja toitlustus",
+}
 
 type Props = {
   params: Promise<{ handle: string; locale: string }>
