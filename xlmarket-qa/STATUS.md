@@ -1,39 +1,42 @@
 # XLMarket QA Status
-Viimane kontroll: 2026-04-12T14:30Z
+Viimane kontroll: 2026-04-12T15:45Z
 Tervis: 5/10
 
-## Parandatud selles tsyklis
-- [storefront] BannerCarousel: koik 4 banneri slaid tolkitud eesti keelde
-- [storefront] CategoryExploreGrid: "Categories" -> "Kategooriad", "products" -> "toodet"
-- [storefront] Homepage DISPLAY_NAMES: koik 11 kategooria nime eesti keeles
-- [storefront] Homepage: "Best Sellers" -> "Enimmuudud", "New Arrivals" -> "Uued tooted"
-- [storefront] VevorSearchFilters: hinna filtri Apply nupp lokaalne, sort fallback lokaalne
-- [storefront] Otsinguleht: SORT_TITLES ja TAG_TITLES tolkitud eesti keelde
-- [storefront] Otsinguleht: breadcrumb, pealkiri, tulemuste arv, tyhjad seisundid eesti keeles
-- [storefront] Otsinguleht: generateMetadata tolkitud eesti keelde
+## Parandatud selles tsüklis
+- [homepage] MeiliSearch fallback: Enimmüüdud ja Uued tooted sektsioonid
+  kasutavad nüüd MeiliSearchi (Medusa API ei tagasta tooteid ilma filtrita)
+- [homepage] 16 VEVOR EN kategooria handle → eestikeelne nimi
+- [homepage] Sektsiooni pealkirjad locale-teadlikud (ET/EN)
+- [kategooriad] 18 L1 kategooria eestikeelne nimi lisatud
 
-## Eelmises tsyklis parandatud (repos, pole deployitud)
-- VevorHeader nav lingid tolkitud
-- VevorProductCard: In Stock -> Laos, No image -> Pilt puudub
-- Kategoorialeht: tootepeakirjad, loendur, tyhja kategooria tekst tolkitud
-- ProductPurchasePanel: hind, laoseis, nupp, tarne info tolkitud- ProductInfoAccordion: koik 4 sektsiooni tolkitud
-- Toote leht: koik sektsioonipealkirjad tolkitud
-- AddToCartButton, StickyBuyBar tolkitud
-- VevorFooter: trust badged, jaluse lingid tolkitud
-- VevorSearchFilters: sorteerimise valikud, filtrid tolkitud
-- BranchFilters: In Stock -> Laos
+## Eelmistes tsüklites parandatud (repos, pole deployitud)
+- VevorHeader nav lingid tõlgitud
+- VevorProductCard: In Stock → Laos, No image → Pilt puudub
+- Kategoorialeht: tootepealkirjad, loendur, tühja kategooria tekst
+- ProductPurchasePanel: hind, laoseis, nupp, tarne info
+- ProductInfoAccordion: kõik 4 sektsiooni tõlgitud
+- Toote leht: kõik sektsioonipealkirjad tõlgitud
+- AddToCartButton, StickyBuyBar tõlgitud
+- VevorFooter: trust badge'd, jaluse lingid tõlgitud
+- VevorSearchFilters: sorteerimise valikud, filtrid tõlgitud
+- BranchFilters: In Stock → Laos
+- BannerCarousel: 4 banneri slaidi tõlgitud
+- Homepage DISPLAY_NAMES: 11 kategoorianime
+- Otsinguleht: breadcrumb, pealkiri, tulemused, tühjad seisundid
 
 ## Teadaolevad probleemid
-- KRIITILINE: VPS vajab redeploymenti! Koik tolkeed on repos aga pole live lehel.
-- KRIITILINE: Tootepildid kategoorialehtedel — Next.js Image proxy probleem (VEVOR CDN blokeerib)
-- KRIITILINE: Homepage Enimmuudud/Uued tooted sektsioonid tyhjad — getProducts() ei tagasta tooteid
-- KESKMINE: Moned tootekirjeldused inglise keeles — tuleb VEVOR feedist
-- KESKMINE: Subcategory nimed inglise keeles — data-tasandi probleem
-- MADAL: xlmarket.ee SSL sertifikaat puudub. xlmarket.eu suunab VEVOR.com-i.
+- KRIITILINE: VPS vajab redeploymenti! Kõik tõlked + MeiliSearch fix
+  on repos aga pole live lehel.
+- KRIITILINE: Tootepildid kategoorialehtedel — Next.js Image proxy
+  probleem (VEVOR CDN blokeerib) — osaliselt lahendatud unoptimized propiga
+- KESKMINE: L2/L3 subcategory nimed inglise keeles — data-tasandi probleem
+- KESKMINE: Breadcrumb kategooria nimed inglise keeles — Medusa data
+- KESKMINE: Mõned tootekirjeldused inglise keeles — VEVOR feedist
+- MADAL: xlmarket.ee SSL sertifikaat puudub. xlmarket.eu → VEVOR redirect.
 - MADAL: Tarne/tagastamise lehed inglise keeles
 
 ## Statistika
-- Kontrollitud lehti: 4 (avaleht, kategooria, toode, otsing)
-- Leitud vigu: 12+ uut tolkeviga
-- Parandatud: 12 tolkeparandust 5 failis
-- Kogu tolkeparandusi kahe tsykli peale: 26+ parandust 15+ failis
+- Kontrollitud lehti: 4 (avaleht, kategooria, toode, footer)
+- Leitud vigu: 8
+- Parandatud: 4 koodiparandust 2 failis
+- Kogu parandusi kolme tsükli peale: 30+ parandust 17+ failis
