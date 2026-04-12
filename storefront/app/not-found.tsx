@@ -10,23 +10,23 @@ export default function NotFound() {
         404
       </h1>
       <p className="text-[18px] sm:text-[20px] font-[600] font-[family-name:var(--font-dm-sans)] text-[#1E293B] mb-[8px]">
-        Page Not Found
+        Lehte ei leitud
       </p>
       <p className="text-[14px] font-[family-name:var(--font-dm-sans)] text-[#999999] mb-[36px]">
-        The page you are looking for has been removed or the address has changed.
+        Otsitud lehte ei eksisteeri või on aadress muutunud.
       </p>
       <div className="flex flex-col sm:flex-row items-center justify-center gap-[12px]">
         <Link
           href="/et/"
           className="inline-flex items-center gap-[8px] bg-[#E8650A] text-white px-[24px] py-[12px] text-[15px] font-[600] font-[family-name:var(--font-dm-sans)] hover:bg-[#CF5A08] transition-colors"
         >
-          Back to Home
+          Avalehele
         </Link>
         <Link
           href="/et/kategooriad"
           className="inline-flex items-center gap-[8px] border border-[#E8E8E8] text-[#555555] px-[24px] py-[12px] text-[15px] font-[500] font-[family-name:var(--font-dm-sans)] hover:border-[#E8650A] hover:text-[#D97706] transition-colors"
         >
-          Browse Categories
+          Sirvi kategooriaid
         </Link>
       </div>
     </div>
