@@ -5,6 +5,7 @@ import Link from "next/link"
 import { useEffect, useState, useCallback } from "react"
 import { usePathname } from "next/navigation"
 import { formatPrice } from "@/lib/medusa"
+import posthog from "posthog-js"
 
 type CartItem = {
   id: string
@@ -143,6 +144,12 @@ export default function CheckoutPage() {
 
     setSubmitting(true)
     setError(null)
+    posthog.capture("checkout_started", {
+      cart_id: cart.id,
+      item_count: cart.items.length,
+      total: cart.total,
+      currency: cart.currency_code,
+    })
 
     try {
       // Step 1: Set customer info + address
@@ -165,6 +172,7 @@ export default function CheckoutPage() {
       })
 
       if (!checkoutRes.ok) {
+        posthog.capture("checkout_failed", { step: "customer_info", cart_id: cart.id })
         setError("Kliendi andmete salvestamine ebaõnnestus")
         setSubmitting(false)
         return
@@ -182,6 +190,7 @@ export default function CheckoutPage() {
         })
 
         if (!shipRes.ok) {
+          posthog.capture("checkout_failed", { step: "shipping", cart_id: cart.id })
           setError("Tarneviisi valimine ebaõnnestus")
           setSubmitting(false)
           return
@@ -196,16 +205,36 @@ export default function CheckoutPage() {
       })
 
       if (!completeRes.ok) {
+        posthog.capture("checkout_failed", { step: "complete", cart_id: cart.id })
         setError("Checkout ebaõnnestus")
         setSubmitting(false)
         return
       }
 
       const orderData = await completeRes.json()
-      setOrderId(orderData.order?.id || orderData.id || null)
+
+      // Medusa returns type:"order" on success, type:"cart" on failure
+      if (orderData.type === "cart" || (!orderData.order && !orderData.id)) {
+        posthog.capture("checkout_failed", { step: "complete_type_cart", cart_id: cart.id })
+        setError("Tellimuse kinnitamine ebaõnnestus. Palun proovige uuesti.")
+        setSubmitting(false)
+        return
+      }
+
+      const resolvedOrderId = orderData.order?.id || orderData.id || null
+      setOrderId(resolvedOrderId)
+      posthog.capture("order_completed", {
+        order_id: resolvedOrderId,
+        cart_id: cart.id,
+        total: cart.total,
+        currency: cart.currency_code,
+        item_count: cart.items.length,
+        email: form.email,
+      })
       localStorage.removeItem("xlmarket_cart_id")
       setStep("done")
-    } catch {
+    } catch (err) {
+      posthog.captureException(err)
       setError("Checkout ebaõnnestus. Palun proovi uuesti.")
     } finally {
       setSubmitting(false)

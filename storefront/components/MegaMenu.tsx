@@ -20,39 +20,40 @@ export type CategoryNode = {
   children: CategoryNode[]
 }
 
-// Icon mapping by L1 handle (VEVOR English handles)
+// Icon mapping by L1 handle — only these appear in mega menu
 const ICON_MAP: Record<string, LucideIcon> = {
+  "restaurant-food-service": UtensilsCrossed,
+  "lawn-garden": Leaf,
   "automotive": Car,
-  "tools": Wrench,
-  "outdoors": Leaf,
-  "plumbing": Pipette,
-  "building-materials": Building2,
-  "industrial-scientific": Factory,
-  "sports-outdoors": Dumbbell,
-  "appliances": WashingMachine,
-  "kitchen": UtensilsCrossed,
-  "health-and-wellness": HeartPulse,
-  "electrical": Zap,
-  "furniture": Armchair,
-  "flooring": Layers,
-  "heating-venting-cooling": Snowflake,
-  "storage-organization": Archive,
-  "doors-windows": DoorOpen,
-  "bath": Droplets,
-  "paint": PaintRoller,
-  "cleaning": Sparkles,
+  "sports-recreation": Dumbbell,
+  "material-handling": Package,
+  "building-construction": Building2,
   "hardware": Cog,
+  "electrical": Zap,
+  "agriculture-forestry-equipment": Leaf,
+  "arts-crafts-sewing": Sparkles,
+  "health-wellness": HeartPulse,
+  "heating-cooling": Snowflake,
+  "cleaning-janitorial-supplies": Sparkles,
+  "pumps": Droplets,
+  "lab": Pipette,
+  "welding": Wrench,
+  "security": ShieldCheck,
+  "machining": Factory,
+  "plumbing": Pipette,
+  "safety": ShieldCheck,
+  "hydraulics": Cog,
+  "tool-storage-organization": Archive,
+  "decor-furniture": Armchair,
   "lighting": Lightbulb,
-  "safety-equipment": ShieldCheck,
-  "lumber-composites": Building2,
-  "home-decor": Home,
-  "musical-instruments": Music,
-  "playground-sets": Tent,
-  "workwear": Shirt,
-  "holiday-decorations": Gift,
-  "smart-home": Zap,
-  "window-treatments": DoorOpen,
-  "other": Package,
+  "air-tools-compressors": Wrench,
+  "alternative-renewable-energy": Zap,
+  "engines-motors": Cog,
+  "painting": PaintRoller,
+  "office-supplies": Archive,
+  "pet-supplies": PawPrint,
+  "hand-tools": Wrench,
+  "power-tools": Wrench,
 }
 
 // Old Estonian L1 handles to skip in mega menu
@@ -90,10 +91,46 @@ export default function MegaMenu({ categories, locale = "et" }: { categories: Ca
 
   const tree = buildCategoryTree(categories)
 
-  // Filter: only VEVOR EN root categories (skip old Estonian ones)
+  // VEVOR menu order — same sequence as vevor.com
+  const MENU_ORDER = [
+    "lawn-garden",
+    "hand-tools",
+    "power-tools",
+    "automotive",
+    "decor-furniture",
+    "plumbing",
+    "restaurant-food-service",
+    "building-construction",
+    "heating-cooling",
+    "electrical",
+    "sports-recreation",
+    "material-handling",
+    "hardware",
+    "lighting",
+    "painting",
+    "agriculture-forestry-equipment",
+    "arts-crafts-sewing",
+    "health-wellness",
+    "cleaning-janitorial-supplies",
+    "pumps",
+    "lab",
+    "welding",
+    "security",
+    "machining",
+    "safety",
+    "hydraulics",
+    "tool-storage-organization",
+    "air-tools-compressors",
+    "alternative-renewable-energy",
+    "engines-motors",
+    "office-supplies",
+    "pet-supplies",
+  ]
+  const orderMap = new Map(MENU_ORDER.map((h, i) => [h, i]))
+
   const l1Roots = tree
-    .filter(c => !LEGACY_ET_HANDLES.has(c.handle))
-    .sort((a, b) => a.name.localeCompare(b.name))
+    .filter(c => c.handle in ICON_MAP)
+    .sort((a, b) => (orderMap.get(a.handle) ?? 999) - (orderMap.get(b.handle) ?? 999))
 
   const activeL1Node = l1Roots.find(c => c.id === activeL1) || null
   const activeL2Node = activeL1Node?.children.find(c => c.id === activeL2) || null
@@ -244,7 +281,7 @@ export default function MegaMenu({ categories, locale = "et" }: { categories: Ca
                       }`}
                     >
                       {thumb && (
-                        <img src={decodeURIComponent(thumb)} alt="" className="w-8 h-8 object-contain flex-shrink-0" loading="lazy" />
+                        <img src={thumb} alt="" className="w-8 h-8 object-contain flex-shrink-0" loading="lazy" />
                       )}
                       <span className="font-medium flex-1">{child.name}</span>
                       {child.children.length > 0 && (
@@ -276,7 +313,7 @@ export default function MegaMenu({ categories, locale = "et" }: { categories: Ca
                       className="flex items-center gap-2.5 px-5 py-2 text-[13px] text-[#1E293B] hover:bg-[#FFFBEB] hover:text-[#D97706] font-medium transition-colors"
                     >
                       {thumb && (
-                        <img src={decodeURIComponent(thumb)} alt="" className="w-7 h-7 object-contain flex-shrink-0" loading="lazy" />
+                        <img src={thumb} alt="" className="w-7 h-7 object-contain flex-shrink-0" loading="lazy" />
                       )}
                       <span>{child.name}</span>
                     </Link>

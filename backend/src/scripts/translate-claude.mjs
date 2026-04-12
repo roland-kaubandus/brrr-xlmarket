@@ -8,13 +8,15 @@
  */
 
 import pg from "pg"
-import { execFileSync } from "child_process"
+import { execFile } from "child_process"
 import { existsSync, mkdirSync, readFileSync, unlinkSync, writeFileSync } from "fs"
 import { tmpdir } from "os"
 import path from "path"
 import { fileURLToPath } from "url"
+import { promisify } from "util"
 
 const { Client } = pg
+const execFileAsync = promisify(execFile)
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const DEFAULT_DB_URL = "postgres://xlmarket:xlmarket_pg_2026_secure@localhost:5435/xlmarket"
 const DEFAULT_OUTPUT_DIR = path.resolve(__dirname, "../../data/translation-batches")
@@ -46,12 +48,13 @@ const PARTIAL_FILE = path.resolve(getArg(
 ))
 const DRY_RUN = hasFlag("--dry-run")
 const COMPACT_OUTPUT = hasFlag("--compact-output")
+const CONCURRENCY = Number.parseInt(getArg("--concurrency", "5"), 10)
 const SOURCE = getArg("--source", "db")
 const FEED_CACHE_PATH = path.resolve(getArg("--feed-cache", DEFAULT_FEED_CACHE))
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY || ""
 const OPENAI_BASE_URL = (process.env.OPENAI_BASE_URL || "https://api.openai.com/v1").replace(/\/$/, "")
 const OPENAI_MODEL = process.env.OPENAI_MODEL || "gpt-5.4-mini"
-const CODEX_BIN = process.env.CODEX_BIN || "codex"
+const CODEX_BIN = process.env.CODEX_BIN || (process.platform === "win32" ? "codex.exe" : "codex")
 let feedCacheBySku = null
 
 function normalizeText(value) {
@@ -415,12 +418,8 @@ async function runOpenAiTranslation(chunk) {
   return parsed.translations
 }
 
-function parseCodexTranslationFile(outputFile) {
-  if (!existsSync(outputFile)) {
-    throw new Error("Codex ei loonud väljundfaili")
-  }
-
-  const parsed = JSON.parse(readFileSync(outputFile, "utf8"))
+function parseCodexTranslationText(outputText) {
+  const parsed = JSON.parse(outputText)
   if (!parsed || !Array.isArray(parsed.translations)) {
     throw new Error("Codex väljund ei sisaldanud translations massiivi")
   }
@@ -428,17 +427,16 @@ function parseCodexTranslationFile(outputFile) {
   return parsed.translations
 }
 
-function runCodexTranslation(chunk) {
+async function runCodexTranslation(chunk) {
   const workspace = path.resolve(__dirname, "../../..")
   const stamp = `${Date.now()}-${Math.random().toString(16).slice(2)}`
-  const outputFile = path.join(tmpdir(), `xlm-codex-translation-${stamp}.json`)
   const schemaFile = path.join(tmpdir(), `xlm-codex-schema-${stamp}.json`)
   const prompt = makePrompt(chunk)
 
   try {
     writeFileSync(schemaFile, JSON.stringify(codexResponseSchema(), null, 2), "utf8")
 
-    execFileSync(
+    const { stdout } = await execFileAsync(
       CODEX_BIN,
       [
         "exec",
@@ -450,8 +448,6 @@ function runCodexTranslation(chunk) {
         OPENAI_MODEL,
         "--output-schema",
         schemaFile,
-        "-o",
-        outputFile,
         "-",
       ],
       {
@@ -460,13 +456,11 @@ function runCodexTranslation(chunk) {
         timeout: 10 * 60 * 1000,
         maxBuffer: 20 * 1024 * 1024,
         shell: process.platform === "win32",
-        stdio: ["pipe", "ignore", "pipe"],
       }
     )
 
-    return parseCodexTranslationFile(outputFile)
+    return parseCodexTranslationText(stdout)
   } finally {
-    try { unlinkSync(outputFile) } catch {}
     try { unlinkSync(schemaFile) } catch {}
   }
 }
@@ -607,6 +601,9 @@ async function main() {
   if (!Number.isFinite(CHUNK_SIZE) || CHUNK_SIZE <= 0) {
     throw new Error("--chunk-size peab olema positiivne arv")
   }
+  if (!Number.isFinite(CONCURRENCY) || CONCURRENCY <= 0) {
+    throw new Error("--concurrency peab olema positiivne arv")
+  }
 
   let client = null
 
@@ -648,6 +645,7 @@ async function main() {
       console.log(`↩️  Resume: partial failist leitud ${mergedTranslations.length}/${products.length} tõlget`)
     }
 
+    const workItems = []
     for (let index = 0; index < chunks.length; index++) {
       const pendingProducts = chunks[index].filter((item) => !completedKeys.has(compoundKey(item)))
       if (pendingProducts.length === 0) {
@@ -655,29 +653,68 @@ async function main() {
         continue
       }
 
-      const chunk = pendingProducts.map((item) => ({
-        id: item.id,
-        sku: item.sku,
-        title: item.title,
-        description: item.description,
-        product_type: item.product_type,
-        selling_point_1: item.selling_point_1,
-        selling_point_2: item.selling_point_2,
-        selling_point_3: item.selling_point_3,
-        selling_point_4: item.selling_point_4,
-        selling_point_5: item.selling_point_5,
-      }))
+      workItems.push({
+        index,
+        chunk: pendingProducts.map((item) => ({
+          id: item.id,
+          sku: item.sku,
+          title: item.title,
+          description: item.description,
+          product_type: item.product_type,
+          selling_point_1: item.selling_point_1,
+          selling_point_2: item.selling_point_2,
+          selling_point_3: item.selling_point_3,
+          selling_point_4: item.selling_point_4,
+          selling_point_5: item.selling_point_5,
+        })),
+      })
+    }
 
-      console.log(`🔄 Tõlgin chunk ${index + 1}/${chunks.length} (${chunk.length} toodet)`)
-      const translatedChunk = await runTranslation(chunk)
-      validateChunkTranslations(chunk, translatedChunk)
-      const mergedChunk = mergeSourceAndTranslation(chunk, translatedChunk)
-      mergedTranslations.push(...mergedChunk)
-      for (const item of mergedChunk) {
-        completedKeys.add(compoundKey(item))
+    console.log(`🚦 Paralleelsus: ${Math.min(CONCURRENCY, Math.max(workItems.length, 1))}`)
+
+    let nextWorkIndex = 0
+    let firstError = null
+
+    async function worker(workerNumber) {
+      while (true) {
+        if (firstError) return
+
+        const workIndex = nextWorkIndex
+        nextWorkIndex += 1
+        if (workIndex >= workItems.length) return
+
+        const workItem = workItems[workIndex]
+        const chunkNumber = workItem.index + 1
+        console.log(`🔄 Tõlgin chunk ${chunkNumber}/${chunks.length} (${workItem.chunk.length} toodet) [worker ${workerNumber}/${Math.min(CONCURRENCY, workItems.length)}]`)
+
+        try {
+          const translatedChunk = await runTranslation(workItem.chunk)
+          validateChunkTranslations(workItem.chunk, translatedChunk)
+          const mergedChunk = mergeSourceAndTranslation(workItem.chunk, translatedChunk)
+          mergedTranslations.push(...mergedChunk)
+          for (const item of mergedChunk) {
+            completedKeys.add(compoundKey(item))
+          }
+          writePartialTranslations(mergedTranslations)
+          console.log(`💾 Partial salvestatud: ${mergedTranslations.length}/${products.length}`)
+        } catch (error) {
+          firstError = error
+          console.error(`❌ Chunk ${chunkNumber}/${chunks.length} ebaõnnestus: ${error.message}`)
+          return
+        }
       }
-      writePartialTranslations(mergedTranslations)
-      console.log(`💾 Partial salvestatud: ${mergedTranslations.length}/${products.length}`)
+    }
+
+    const workers = []
+    const workerCount = Math.min(CONCURRENCY, workItems.length)
+    for (let workerNumber = 1; workerNumber <= workerCount; workerNumber++) {
+      workers.push(worker(workerNumber))
+    }
+
+    await Promise.all(workers)
+
+    if (firstError) {
+      throw firstError
     }
 
     const finalTranslations = [...mergedTranslations].sort((a, b) => {

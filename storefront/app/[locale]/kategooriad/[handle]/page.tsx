@@ -270,13 +270,14 @@ export default async function CategoryPage({ params, searchParams }: Props) {
           <h1 className="text-[28px] md:text-[34px] font-bold text-[#1E293B] tracking-tight">{displayName}</h1>
         </div>
 
-        {/* Subcategory navigation — larger cards with proper spacing */}
-        {category && (category.category_children?.length ?? 0) > 0 && subcatThumbs && (
+        {/* Subcategory navigation — scrollable with fade arrow */}
+        {category && (category.category_children?.length ?? 0) > 0 && (
           <div className="relative mb-8">
-            <div className="flex gap-4 overflow-x-auto pt-2 pb-5 scrollbar-hide -mx-1 px-1">
-              {category.category_children!.map((child) => {
-                const thumb = CATEGORY_IMAGES[child.handle] || subcatThumbs[child.handle] || null
-                if (!thumb) return null
+            <div className="flex gap-4 overflow-x-auto pt-2 pb-5 scrollbar-hide -mx-1 px-1 pr-12">
+              {category.category_children!
+                .filter((child) => CATEGORY_IMAGES[child.handle] || subcatThumbs[child.handle])
+                .map((child) => {
+                const thumb = CATEGORY_IMAGES[child.handle] || subcatThumbs[child.handle]
                 return (
                   <Link
                     key={child.id}
@@ -284,14 +285,16 @@ export default async function CategoryPage({ params, searchParams }: Props) {
                     className="flex-shrink-0 flex flex-col items-center gap-2 w-[130px] group"
                   >
                     <div className="w-[120px] h-[120px] rounded-xl bg-[#F8FAFC] border border-[#E2E8F0] group-hover:border-[#D97706] group-hover:shadow-lg group-hover:-translate-y-1 transition-all duration-200 overflow-hidden flex items-center justify-center">
-                      <Image
-                        src={thumb}
-                        alt={child.name}
-                        width={120}
-                        height={120}
-                        className="object-contain w-full h-full p-2"
-                        unoptimized
-                      />
+                      {thumb ? (
+                        <Image
+                          src={thumb}
+                          alt={child.name}
+                          width={120}
+                          height={120}
+                          className="object-contain w-full h-full p-2"
+                          unoptimized
+                        />
+                      ) : null}
                     </div>
                     <span className="text-[12px] text-center text-[#475569] group-hover:text-[#D97706] transition-colors leading-snug line-clamp-2 font-medium">
                       {child.name}
@@ -299,6 +302,12 @@ export default async function CategoryPage({ params, searchParams }: Props) {
                   </Link>
                 )
               })}
+            </div>
+            {/* Right fade + scroll arrow */}
+            <div className="hidden md:flex absolute right-0 top-0 bottom-5 w-16 bg-gradient-to-l from-white to-transparent pointer-events-none items-center justify-end pr-1">
+              <div className="w-8 h-8 rounded-full bg-white/90 border border-[#E2E8F0] shadow-sm flex items-center justify-center">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#64748B" strokeWidth="2.5" strokeLinecap="round"><path d="m9 18 6-6-6-6"/></svg>
+              </div>
             </div>
           </div>
         )}

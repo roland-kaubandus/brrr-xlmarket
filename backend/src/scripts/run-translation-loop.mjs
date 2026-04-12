@@ -103,7 +103,7 @@ function killProcessTree(pid) {
   }
 }
 
-function runBatch({ batchId, offset, limit, source, chunkSize, timeoutMs }) {
+function runBatch({ batchId, offset, limit, source, chunkSize, concurrency, timeoutMs }) {
   return new Promise((resolve) => {
     const args = [
       TRANSLATE_SCRIPT,
@@ -117,6 +117,8 @@ function runBatch({ batchId, offset, limit, source, chunkSize, timeoutMs }) {
       source,
       "--chunk-size",
       String(chunkSize),
+      "--concurrency",
+      String(concurrency),
       "--compact-output",
     ]
 
@@ -162,6 +164,7 @@ async function main() {
   const startOffset = numberArg("--start-offset", 0)
   const source = getArg("--source", "feed-cache")
   const chunkSize = numberArg("--chunk-size", process.env.OPENAI_API_KEY ? 20 : 5)
+  const concurrency = numberArg("--concurrency", 5)
   const retryDelaySeconds = numberArg("--retry-delay-seconds", 60)
   const maxRetries = numberArg("--max-retries", 999999)
   const timeoutMinutes = numberArg("--timeout-minutes", process.env.OPENAI_API_KEY ? 90 : 180)
@@ -173,7 +176,7 @@ async function main() {
   mkdirSync(BATCH_DIR, { recursive: true })
   appendLog(`LOOP START ${new Date().toISOString()}`)
   appendLog(`OPENAI_API_KEY=${process.env.OPENAI_API_KEY ? "present" : "missing"} model=${process.env.OPENAI_MODEL || "gpt-5.4-mini"}`)
-  appendLog(`CONFIG source=${source} limit=${limit} chunkSize=${chunkSize} startBatch=${startBatch} endBatch=${endBatch}`)
+  appendLog(`CONFIG source=${source} limit=${limit} chunkSize=${chunkSize} concurrency=${concurrency} startBatch=${startBatch} endBatch=${endBatch}`)
 
   for (let batchNumber = startBatch; batchNumber <= endBatch; batchNumber++) {
     const batchIndex = batchNumber - startBatch
@@ -197,6 +200,7 @@ async function main() {
         limit,
         source,
         chunkSize,
+        concurrency,
         timeoutMs: timeoutMinutes * 60 * 1000,
       })
 

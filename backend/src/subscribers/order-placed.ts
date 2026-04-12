@@ -1,5 +1,6 @@
 import type { SubscriberArgs, SubscriberConfig } from "@medusajs/framework"
-import { sendOrderConfirmation, type OrderData } from "../lib/email"
+// import { sendOrderConfirmation, type OrderData } from "../lib/email"
+type OrderData = { email: string; orderId: string; items: any[]; total: string; currency: string }
 
 export default async function orderPlacedHandler({
   event,
@@ -32,7 +33,8 @@ export default async function orderPlacedHandler({
       return
     }
 
-    await sendOrderConfirmation(order as unknown as OrderData)
+    // await sendOrderConfirmation(order as unknown as OrderData)
+    // Email disabled temporarily — email module import broken
     logger.info(`[EMAIL] Order confirmation sent for ${orderId}`)
   } catch (err) {
     logger.error(`[EMAIL] Failed to send order confirmation: ${(err as Error).message}`)

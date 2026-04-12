@@ -30,7 +30,7 @@ export default function CategoryExploreGrid({
         <div className="flex flex-col gap-2 sm:hidden">
           {categories.map((cat) => {
             const display = cat.displayName || cat.name
-            const imgUrl = cat.image ? decodeURIComponent(cat.image) : null
+            const imgUrl = cat.image || null
             const count = cat.productCount || 0
 
             return (
@@ -58,7 +58,7 @@ export default function CategoryExploreGrid({
         <div className="hidden sm:grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-5">
           {categories.map((cat) => {
             const display = cat.displayName || cat.name
-            const imgUrl = cat.image ? decodeURIComponent(cat.image) : null
+            const imgUrl = cat.image || null
             const count = cat.productCount || 0
 
             return (

@@ -4,6 +4,7 @@ import { useState, useRef } from "react"
 import { usePathname } from "next/navigation"
 import Link from "next/link"
 import { ShoppingCart, Check } from "lucide-react"
+import posthog from "posthog-js"
 
 export default function AddToCartButton({ variantId }: { variantId: string }) {
   const pathname = usePathname()
@@ -54,6 +55,10 @@ export default function AddToCartButton({ variantId }: { variantId: string }) {
         const cur = parseInt(localStorage.getItem("xlmarket_cart_count") || "0", 10)
         localStorage.setItem("xlmarket_cart_count", String(cur + qty))
       } catch {}
+      posthog.capture("add_to_cart", {
+        variant_id: variantId,
+        quantity: qty,
+      })
       window.dispatchEvent(new CustomEvent("cart:open"))
     } catch {
       setError("Failed to add product to cart")
