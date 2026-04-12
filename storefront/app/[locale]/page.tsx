@@ -8,17 +8,17 @@ import categoryImages from "@/lib/category-images.json"
 export const revalidate = 300
 
 const DISPLAY_NAMES: Record<string, string> = {
-  "ehitus-ja-remont": "Building & Construction",
-  "toostus-ja-seadmed": "Tools & Industrial",
-  "kodu-ja-aed": "Home & Garden",
-  "auto-ja-garaaz": "Automotive & Garage",
-  "sport-ja-vaba-aeg": "Sports & Outdoors",
-  "kunst-ja-kasitoo": "Arts & Crafts",
-  "toitlustus-ja-kook": "Kitchen & Dining",
-  "elektroonika": "Electronics",
-  "lemmikloomad": "Pet Supplies",
-  "kontor-ja-ladustamine": "Storage & Office",
-  "meditsiin-ja-tervishoid": "Health & Wellness",
+  "ehitus-ja-remont": "Ehitus ja remont",
+  "toostus-ja-seadmed": "Tööriistad ja tööstus",
+  "kodu-ja-aed": "Kodu ja aed",
+  "auto-ja-garaaz": "Auto ja garaaž",
+  "sport-ja-vaba-aeg": "Sport ja vaba aeg",
+  "kunst-ja-kasitoo": "Kunst ja käsitöö",
+  "toitlustus-ja-kook": "Köök ja toitlustus",
+  "elektroonika": "Elektroonika",
+  "lemmikloomad": "Lemmikloomad",
+  "kontor-ja-ladustamine": "Kontor ja ladustamine",
+  "meditsiin-ja-tervishoid": "Meditsiin ja tervishoid",
 }
 
 const CATEGORY_IMAGES_JSON: Record<string, string> = categoryImages as Record<string, string>
@@ -96,8 +96,8 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
 
       <CategoryExploreGrid categories={categoryData} locale={locale} />
 
-      <HorizontalProductRow title="Best Sellers" products={bestSellers.products} locale={locale} />
-      <HorizontalProductRow title="New Arrivals" products={newArrivals.products} locale={locale} />
+      <HorizontalProductRow title="Enimmüüdud" products={bestSellers.products} locale={locale} />
+      <HorizontalProductRow title="Uued tooted" products={newArrivals.products} locale={locale} />
 
     </>
   )
