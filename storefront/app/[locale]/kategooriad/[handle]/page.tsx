@@ -2,7 +2,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { Suspense } from "react"
 import { getCategoryByHandle, getProducts } from "@/lib/medusa"
-import { searchProducts } from "@/lib/meilisearch"
+import { searchProducts, getLocalizedTitle } from "@/lib/meilisearch"
 import VevorProductCard from "@/components/VevorProductCard"
 import VevorSearchFilters from "@/components/search/VevorSearchFilters"
 import VevorPagination from "@/components/search/VevorPagination"
@@ -36,7 +36,10 @@ export async function generateMetadata({ params }: Props) {
   const displayName = category
     ? (CATEGORY_NAMES[handle] || category.name)
     : humanize(handle)
-  const desc = `${displayName} products at great prices. Fast delivery in Estonia.`
+  const { locale } = await params
+  const desc = locale === "et"
+    ? `${displayName} tooted soodsa hinnaga. Kiire tarne üle Eesti.`
+    : `${displayName} products at great prices. Fast delivery in Estonia.`
   return {
     title: `${displayName} — XLMARKET`,
     description: desc,
@@ -96,7 +99,7 @@ export default async function CategoryPage({ params, searchParams }: Props) {
 
     products = meiliResult.hits.map(hit => ({
       id: hit.id,
-      title: hit.title,
+      title: getLocalizedTitle(hit, locale),
       handle: hit.handle,
       description: hit.description,
       thumbnail: hit.thumbnail,
@@ -178,7 +181,7 @@ export default async function CategoryPage({ params, searchParams }: Props) {
     })
     youMayAlsoLike = alsoLikeResult.hits.map(hit => ({
       id: hit.id,
-      title: hit.title,
+      title: getLocalizedTitle(hit, locale),
       handle: hit.handle,
       description: hit.description,
       thumbnail: hit.thumbnail,
@@ -285,7 +288,7 @@ export default async function CategoryPage({ params, searchParams }: Props) {
             {/* Results count + Filters */}
             <div className="flex items-center gap-3 mb-4">
               <p className="text-sm text-[#64748B]">
-                <span className="font-semibold text-[#1E293B]">{totalCount.toLocaleString("en")}</span> products
+                <span className="font-semibold text-[#1E293B]">{totalCount.toLocaleString("et")}</span> {locale === "et" ? "toodet" : "products"}
               </p>
             </div>
             <Suspense fallback={null}>
@@ -320,13 +323,13 @@ export default async function CategoryPage({ params, searchParams }: Props) {
         ) : (
           <div className="bg-white rounded-xl p-12 text-center">
             <p className="text-sm text-[#64748B] mb-4">
-              No products found in this category.
+              {locale === "et" ? "Selles kategoorias tooteid ei leitud." : "No products found in this category."}
             </p>
             <Link
               href={`/${locale}`}
               className="text-[#D97706] hover:underline font-medium"
             >
-              Browse all categories
+              {locale === "et" ? "Sirvi kategooriaid" : "Browse all categories"}
             </Link>
           </div>
         )}
@@ -334,7 +337,7 @@ export default async function CategoryPage({ params, searchParams }: Props) {
         {/* You May Also Like */}
         {youMayAlsoLike.length > 0 && (
           <section className="mt-10">
-            <h2 className="text-xl font-bold text-[#1E293B] mb-5">You May Also Like</h2>
+            <h2 className="text-xl font-bold text-[#1E293B] mb-5">{locale === "et" ? "Sulle võib meeldida ka" : "You May Also Like"}</h2>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
               {youMayAlsoLike.map((product: any) => (
                 <VevorProductCard key={product.id} product={product} locale={locale} />

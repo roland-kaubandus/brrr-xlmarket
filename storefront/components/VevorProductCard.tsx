@@ -131,7 +131,7 @@ export default function VevorProductCard({ product, locale }: { product: Product
               sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
             />
           ) : (
-            <div className="flex items-center justify-center h-full text-[#CBD5E1] text-sm">No image</div>
+            <div className="flex items-center justify-center h-full text-[#CBD5E1] text-sm">{resolvedLocale === "et" ? "Pilt puudub" : "No image"}</div>
           )}
         </div>
 
@@ -164,7 +164,7 @@ export default function VevorProductCard({ product, locale }: { product: Product
           <div className="mt-2 flex items-center gap-2.5 text-[11px]">
             <span className="inline-flex items-center gap-1 text-[#059669]">
               <span className="w-1.5 h-1.5 rounded-full bg-[#059669] inline-block" />
-              In Stock
+              {resolvedLocale === "et" ? "Laos" : "In Stock"}
             </span>
           </div>
         </div>

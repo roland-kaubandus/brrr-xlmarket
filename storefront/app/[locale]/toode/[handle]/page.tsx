@@ -430,7 +430,7 @@ export default async function ProductPage({ params }: Props) {
           />
 
           {/* Tarne / Garantii / Tagastus accordion — XLM-31 */}
-          <ProductInfoAccordion />
+          <ProductInfoAccordion locale={locale} />
 
           {/* Selling points moved to Features & Details section below */}
 
@@ -442,7 +442,7 @@ export default async function ProductPage({ params }: Props) {
       <div className="mt-12 border-t border-[#E2E8F0]">
         {/* Features & Details */}
         {sellingPoints.length > 0 && (
-          <CollapsibleSection title="Features & Details" defaultOpen={true}>
+          <CollapsibleSection title={locale === "et" ? "Omadused ja detailid" : "Features & Details"} defaultOpen={true}>
             <div className="space-y-5 max-w-[800px]">
               {sellingPoints.slice(0, 5).map((sp, i) => {
                 const colonIdx = sp.indexOf(":")
@@ -465,7 +465,7 @@ export default async function ProductPage({ params }: Props) {
 
         {/* Specifications */}
         {specs.length > 0 && (
-          <CollapsibleSection title="Specifications" defaultOpen={false}>
+          <CollapsibleSection title={locale === "et" ? "Tehnilised andmed" : "Specifications"} defaultOpen={false}>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {[0, 1].map((col) => {
                 const half = Math.ceil(specs.length / 2)
@@ -491,7 +491,7 @@ export default async function ProductPage({ params }: Props) {
 
         {/* Product Description — ONE block, rich or plain fallback */}
         {(richDescription || mainDescriptionHtml) && (
-          <CollapsibleSection title="Product Description" defaultOpen={false}>
+          <CollapsibleSection title={locale === "et" ? "Tootekirjeldus" : "Product Description"} defaultOpen={false}>
             <div className="max-w-[800px]">
               <CollapsibleDescription
                 html={sanitizeHtml(richDescription || mainDescriptionHtml || "")}
@@ -503,7 +503,7 @@ export default async function ProductPage({ params }: Props) {
 
         {/* Manuals & Downloads */}
         {manualLinks.length > 0 && (
-          <CollapsibleSection title="Manuals & Downloads" defaultOpen={false}>
+          <CollapsibleSection title={locale === "et" ? "Juhendid ja allalaadimised" : "Manuals & Downloads"} defaultOpen={false}>
             <div className="flex flex-wrap gap-3">
               {manualLinks.map((manual, index) => (
                 <a
@@ -523,7 +523,7 @@ export default async function ProductPage({ params }: Props) {
         )}
 
         {/* Reviews — collapsed by default, before similar products */}
-        <CollapsibleSection title="Reviews" defaultOpen={false}>
+        <CollapsibleSection title={locale === "et" ? "Arvustused" : "Reviews"} defaultOpen={false}>
           <ProductReviews />
         </CollapsibleSection>
       </div>
@@ -532,7 +532,7 @@ export default async function ProductPage({ params }: Props) {
       {similarProducts.length > 0 && (
         <section className="mt-8 md:mt-12 pt-6 md:pt-10 border-t border-[#E2E8F0]">
           <h2 className="text-[15px] md:text-[20px] font-bold text-[#1E293B] mb-3 md:mb-6 px-0">
-            Similar Products
+            {locale === "et" ? "Sarnased tooted" : "Similar Products"}
           </h2>
           {/* Mobile: horizontal scroll */}
           <div className="md:hidden overflow-x-auto scrollbar-hide -mx-4 px-4">
