@@ -9,6 +9,7 @@ import categoryImages from "@/lib/category-images.json"
 export const revalidate = 300
 
 const DISPLAY_NAMES: Record<string, string> = {
+  // Estonian handles
   "ehitus-ja-remont": "Ehitus ja remont",
   "toostus-ja-seadmed": "Tööriistad ja tööstus",
   "kodu-ja-aed": "Kodu ja aed",
@@ -20,6 +21,23 @@ const DISPLAY_NAMES: Record<string, string> = {
   "lemmikloomad": "Lemmikloomad",
   "kontor-ja-ladustamine": "Kontor ja ladustamine",
   "meditsiin-ja-tervishoid": "Meditsiin ja tervishoid",
+  // VEVOR EN handles (used by HOMEPAGE_CATEGORIES)
+  "automotive": "Auto ja garaaž",
+  "tools": "Tööriistad",
+  "outdoors": "Aed ja õu",
+  "plumbing": "Torutööd ja sanitaar",
+  "building-materials": "Ehitus ja remont",
+  "appliances": "Kodumasinad",
+  "kitchen": "Köök ja toitlustus",
+  "flooring": "Põrandad ja plaatimine",
+  "sports-outdoors": "Sport ja vaba aeg",
+  "industrial-scientific": "Tööstus ja labor",
+  "electrical": "Elektroonika",
+  "hardware": "Riistvara ja tööriistad",
+  "lawn-garden": "Aed ja muru",
+  "heating-cooling": "Küte ja jahutus",
+  "health-wellness": "Tervis ja heaolu",
+  "arts-crafts": "Kunst ja käsitöö",
 }
 
 const CATEGORY_IMAGES_JSON: Record<string, string> = categoryImages as Record<string, string>
