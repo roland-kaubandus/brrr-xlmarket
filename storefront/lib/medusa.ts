@@ -135,18 +135,23 @@ type CategoriesResponse = {
 }
 
 export async function getCategories(): Promise<ProductCategory[]> {
+  // Fetch only root categories (L1) with their full descendant tree
+  // This avoids loading all 3400+ categories individually
+  const res = await medusaFetch<CategoriesResponse>(
+    `/store/product-categories?limit=100&parent_category_id=null&include_descendants_tree=true`,
+    { revalidate: 300 }
+  )
+  // Flatten the tree into a flat list (MegaMenu buildCategoryTree re-builds it)
   const all: ProductCategory[] = []
-  let offset = 0
-  const limit = 500
-  while (true) {
-    const res = await medusaFetch<CategoriesResponse>(
-      `/store/product-categories?limit=${limit}&offset=${offset}`,
-      { revalidate: 300 } // cache 5 min — mega menu doesn't change often
-    )
-    all.push(...res.product_categories)
-    if (all.length >= res.count || res.product_categories.length < limit) break
-    offset += limit
+  function flatten(cats: ProductCategory[]) {
+    for (const cat of cats) {
+      all.push(cat)
+      if (cat.category_children?.length) {
+        flatten(cat.category_children)
+      }
+    }
   }
+  flatten(res.product_categories)
   return all
 }
 
