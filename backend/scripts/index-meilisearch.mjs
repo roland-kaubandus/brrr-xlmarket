@@ -49,7 +49,7 @@ async function fetchProducts(client) {
     "LEFT JOIN price_set ps ON ps.id = pvps.price_set_id " +
     "LEFT JOIN price pp ON pp.price_set_id = ps.id AND pp.currency_code = 'eur' " +
     "LEFT JOIN product_category_product pcp ON pcp.product_id = p.id " +
-    "LEFT JOIN product_category c ON c.id = pcp.product_category_id " +
+    "LEFT JOIN product_category c ON c.id = pcp.product_category_id AND c.deleted_at IS NULL " +
     "WHERE p.status = 'published' AND p.deleted_at IS NULL " +
     "GROUP BY p.id, p.title, p.handle, p.description, p.thumbnail, " +
     "p.status, p.created_at, p.metadata, v.sku, pp.amount"
