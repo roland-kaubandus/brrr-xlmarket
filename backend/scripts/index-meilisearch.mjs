@@ -36,24 +36,62 @@ async function configureIndex() {
   console.log("✅ Seaded konfigureeritud")
 }
 
+// Build category ID → ancestor handles map (for adding all ancestor handles to products)
+let categoryAncestorMap = {}
+
+async function buildCategoryAncestorMap(client) {
+  console.log("🗂  Laen kategooriapuud...")
+  const { rows } = await client.query(
+    "SELECT id, handle, name, parent_category_id FROM product_category WHERE deleted_at IS NULL"
+  )
+  const byId = {}
+  for (const r of rows) byId[r.id] = r
+
+  // For each category, collect all ancestor handles (including self)
+  for (const r of rows) {
+    const handles = []
+    const names = []
+    let current = r
+    while (current) {
+      handles.push(current.handle)
+      names.push(current.name)
+      current = current.parent_category_id ? byId[current.parent_category_id] : null
+    }
+    categoryAncestorMap[r.id] = { handles, names }
+  }
+  console.log(`🗂  ${rows.length} kategooriat, ancestor map valmis`)
+}
+
 async function fetchProducts(client) {
   console.log("📦 Laen tooteid...")
   const { rows } = await client.query(
     "SELECT p.id, p.title, p.handle, p.description, p.thumbnail, p.status, p.created_at, p.metadata, " +
     "v.sku, COALESCE(pp.amount, 0) as price_cents, " +
-    "array_agg(DISTINCT c.name) FILTER (WHERE c.name IS NOT NULL) as categories, " +
-    "array_agg(DISTINCT c.handle) FILTER (WHERE c.handle IS NOT NULL) as category_handles " +
+    "array_agg(DISTINCT pcp.product_category_id) FILTER (WHERE pcp.product_category_id IS NOT NULL) as category_ids " +
     "FROM product p " +
     "LEFT JOIN product_variant v ON v.product_id = p.id AND v.deleted_at IS NULL " +
     "LEFT JOIN product_variant_price_set pvps ON pvps.variant_id = v.id " +
     "LEFT JOIN price_set ps ON ps.id = pvps.price_set_id " +
     "LEFT JOIN price pp ON pp.price_set_id = ps.id AND pp.currency_code = 'eur' " +
     "LEFT JOIN product_category_product pcp ON pcp.product_id = p.id " +
-    "LEFT JOIN product_category c ON c.id = pcp.product_category_id AND c.deleted_at IS NULL " +
     "WHERE p.status = 'published' AND p.deleted_at IS NULL " +
     "GROUP BY p.id, p.title, p.handle, p.description, p.thumbnail, " +
     "p.status, p.created_at, p.metadata, v.sku, pp.amount"
   )
+  // Resolve category IDs to handles + ancestor handles
+  for (const row of rows) {
+    const allHandles = new Set()
+    const allNames = new Set()
+    for (const catId of (row.category_ids || [])) {
+      const ancestor = categoryAncestorMap[catId]
+      if (ancestor) {
+        for (const h of ancestor.handles) allHandles.add(h)
+        for (const n of ancestor.names) allNames.add(n)
+      }
+    }
+    row.category_handles = [...allHandles]
+    row.categories = [...allNames]
+  }
   console.log("📦 " + rows.length + " toodet")
   return rows
 }
@@ -134,6 +172,7 @@ async function main() {
   await client.connect()
   try {
     await configureIndex()
+    await buildCategoryAncestorMap(client)
     const rows = await fetchProducts(client)
     const docs = rows.map(transform)
     await indexDocs(docs)
