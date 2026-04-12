@@ -4,6 +4,7 @@ type Props = {
   currentPage: number
   totalPages: number
   buildUrl: (page: number) => string
+  locale?: string
 }
 
 function getPageNumbers(current: number, total: number): (number | "...")[] {
@@ -29,7 +30,7 @@ function getPageNumbers(current: number, total: number): (number | "...")[] {
   return pages
 }
 
-export default function VevorPagination({ currentPage, totalPages, buildUrl }: Props) {
+export default function VevorPagination({ currentPage, totalPages, buildUrl, locale = "et" }: Props) {
   if (totalPages <= 1) return null
 
   const pages = getPageNumbers(currentPage, totalPages)
@@ -42,7 +43,7 @@ export default function VevorPagination({ currentPage, totalPages, buildUrl }: P
     <nav className="flex justify-center items-center gap-2 mt-10" aria-label="Pagination">
       {/* Previous */}
       {currentPage > 1 ? (
-        <Link href={buildUrl(currentPage - 1)} className={`${linkBase} ${linkInactive}`} aria-label="Eelmine leht">
+        <Link href={buildUrl(currentPage - 1)} className={`${linkBase} ${linkInactive}`} aria-label={locale === "en" ? "Previous page" : "Eelmine leht"}>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6" /></svg>
         </Link>
       ) : (
@@ -69,7 +70,7 @@ export default function VevorPagination({ currentPage, totalPages, buildUrl }: P
 
       {/* Next */}
       {currentPage < totalPages ? (
-        <Link href={buildUrl(currentPage + 1)} className={`${linkBase} ${linkInactive}`} aria-label="Jargmine leht">
+        <Link href={buildUrl(currentPage + 1)} className={`${linkBase} ${linkInactive}`} aria-label={locale === "en" ? "Next page" : "Järgmine leht"}>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 6 15 12 9 18" /></svg>
         </Link>
       ) : (

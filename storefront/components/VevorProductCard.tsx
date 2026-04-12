@@ -103,7 +103,9 @@ export default function VevorProductCard({ product, locale }: { product: Product
         <button
           type="button"
           onClick={toggleWishlist}
-          aria-label={wishlisted ? "Remove from Wishlist" : "Add to Wishlist"}
+          aria-label={wishlisted
+            ? (resolvedLocale === "en" ? "Remove from Wishlist" : "Eemalda soovinimekirjast")
+            : (resolvedLocale === "en" ? "Add to Wishlist" : "Lisa soovinimekirja")}
           className="absolute top-3 right-3 z-10 w-8 h-8 rounded-full flex items-center justify-center bg-white/90 hover:bg-white shadow-sm opacity-0 group-hover:opacity-100 transition-all duration-200"
         >
           <svg width="15" height="15" viewBox="0 0 24 24" fill={wishlisted ? "#DC2626" : "none"} stroke={wishlisted ? "#DC2626" : "#94A3B8"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
