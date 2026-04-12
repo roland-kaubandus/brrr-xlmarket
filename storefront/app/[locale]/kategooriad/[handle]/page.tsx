@@ -8,6 +8,7 @@ import VevorSearchFilters from "@/components/search/VevorSearchFilters"
 import VevorPagination from "@/components/search/VevorPagination"
 import { notFound } from "next/navigation"
 import JsonLdCategory from "@/components/JsonLdCategory"
+import SubcategoryScroller from "@/components/SubcategoryScroller"
 import categoryImages from "@/lib/category-images.json"
 
 const CATEGORY_IMAGES: Record<string, string> = categoryImages as Record<string, string>
@@ -15,27 +16,38 @@ const CATEGORY_IMAGES: Record<string, string> = categoryImages as Record<string,
 export const revalidate = 300
 
 const CATEGORY_NAMES: Record<string, Record<string, string>> = {
-  // L1 VEVOR categories → ET + EN
+  // L1 VEVOR categories → ET + EN (matches XLSX product_type taxonomy)
   "automotive": { et: "Auto ja garaaž", en: "Automotive" },
+  "plumbing": { et: "Torutööd ja sanitaar", en: "Plumbing" },
+  "sports-outdoors": { et: "Sport ja vaba aeg", en: "Sports & Outdoors" },
   "tools": { et: "Tööriistad", en: "Tools" },
   "outdoors": { et: "Aed ja õu", en: "Outdoors" },
-  "plumbing": { et: "Torutööd ja sanitaar", en: "Plumbing" },
   "building-materials": { et: "Ehitus ja remont", en: "Building Materials" },
+  "industrial-scientific": { et: "Tööstus ja labor", en: "Industrial & Scientific" },
+  "doors-windows": { et: "Uksed ja aknad", en: "Doors & Windows" },
   "appliances": { et: "Kodumasinad", en: "Appliances" },
   "kitchen": { et: "Köök ja toitlustus", en: "Kitchen" },
+  "home-decor": { et: "Kodukaunistus", en: "Home Decor" },
   "flooring": { et: "Põrandad ja plaatimine", en: "Flooring" },
-  "sports-outdoors": { et: "Sport ja vaba aeg", en: "Sports & Outdoors" },
-  "industrial-scientific": { et: "Tööstus ja labor", en: "Industrial & Scientific" },
+  "furniture": { et: "Mööbel", en: "Furniture" },
+  "bath": { et: "Vannituba", en: "Bath" },
+  "storage-organization": { et: "Ladustamine ja kontor", en: "Storage & Organization" },
+  "lumber-composites": { et: "Puitmaterjalid", en: "Lumber & Composites" },
+  "heating-venting-cooling": { et: "Küte ja jahutus", en: "Heating, Venting & Cooling" },
   "electrical": { et: "Elektroonika", en: "Electrical" },
-  "hardware": { et: "Riistvara ja tööriistad", en: "Hardware" },
-  "lawn-garden": { et: "Aed ja muru", en: "Lawn & Garden" },
-  "heating-cooling": { et: "Küte ja jahutus", en: "Heating & Cooling" },
-  "health-wellness": { et: "Tervis ja heaolu", en: "Health & Wellness" },
-  "arts-crafts": { et: "Kunst ja käsitöö", en: "Arts & Crafts" },
-  "building-construction": { et: "Ehitus ja remont", en: "Building & Construction" },
-  "kitchen-catering": { et: "Köök ja toitlustus", en: "Kitchen & Catering" },
-  "restaurant-food-service": { et: "Toitlustus ja teenindus", en: "Restaurant & Food Service" },
-  "sports-recreation": { et: "Sport ja vaba aeg", en: "Sports & Recreation" },
+  "musical-instruments": { et: "Muusikainstrumendid", en: "Musical Instruments" },
+  "paint": { et: "Värvid", en: "Paint" },
+  "cleaning": { et: "Puhastus", en: "Cleaning" },
+  "hardware": { et: "Riistvara", en: "Hardware" },
+  "safety-equipment": { et: "Tööohutus", en: "Safety Equipment" },
+  "health-and-wellness": { et: "Tervis ja heaolu", en: "Health & Wellness" },
+  "lighting": { et: "Valgustus", en: "Lighting" },
+  "window-treatments": { et: "Aknalahendused", en: "Window Treatments" },
+  "playground-sets": { et: "Mänguväljakud", en: "Playground Sets" },
+  "holiday-decorations": { et: "Pühadedekoratsioonid", en: "Holiday Decorations" },
+  "workwear": { et: "Tööriided", en: "Workwear" },
+  "smart-home": { et: "Nutikas kodu", en: "Smart Home" },
+  "other": { et: "Muu", en: "Other" },
 }
 
 type Props = {
@@ -270,46 +282,38 @@ export default async function CategoryPage({ params, searchParams }: Props) {
           <h1 className="text-[28px] md:text-[34px] font-bold text-[#1E293B] tracking-tight">{displayName}</h1>
         </div>
 
-        {/* Subcategory navigation — scrollable with fade arrow */}
+        {/* Subcategory navigation — scrollable with hover arrows */}
         {category && (category.category_children?.length ?? 0) > 0 && (
-          <div className="relative mb-8">
-            <div className="flex gap-4 overflow-x-auto pt-2 pb-5 scrollbar-hide -mx-1 px-1 pr-12">
-              {category.category_children!
-                .filter((child) => CATEGORY_IMAGES[child.handle] || subcatThumbs[child.handle])
-                .map((child) => {
-                const thumb = CATEGORY_IMAGES[child.handle] || subcatThumbs[child.handle]
-                return (
-                  <Link
-                    key={child.id}
-                    href={`/${locale}/kategooriad/${child.handle}`}
-                    className="flex-shrink-0 flex flex-col items-center gap-2 w-[130px] group"
-                  >
-                    <div className="w-[120px] h-[120px] rounded-xl bg-[#F8FAFC] border border-[#E2E8F0] group-hover:border-[#D97706] group-hover:shadow-lg group-hover:-translate-y-1 transition-all duration-200 overflow-hidden flex items-center justify-center">
-                      {thumb ? (
-                        <Image
-                          src={thumb}
-                          alt={child.name}
-                          width={120}
-                          height={120}
-                          className="object-contain w-full h-full p-2"
-                          unoptimized
-                        />
-                      ) : null}
-                    </div>
-                    <span className="text-[12px] text-center text-[#475569] group-hover:text-[#D97706] transition-colors leading-snug line-clamp-2 font-medium">
-                      {child.name}
-                    </span>
-                  </Link>
-                )
-              })}
-            </div>
-            {/* Right fade + scroll arrow */}
-            <div className="hidden md:flex absolute right-0 top-0 bottom-5 w-16 bg-gradient-to-l from-white to-transparent pointer-events-none items-center justify-end pr-1">
-              <div className="w-8 h-8 rounded-full bg-white/90 border border-[#E2E8F0] shadow-sm flex items-center justify-center">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#64748B" strokeWidth="2.5" strokeLinecap="round"><path d="m9 18 6-6-6-6"/></svg>
-              </div>
-            </div>
-          </div>
+          <SubcategoryScroller>
+            {category.category_children!
+              .filter((child) => CATEGORY_IMAGES[child.handle] || subcatThumbs[child.handle])
+              .map((child) => {
+              const thumb = CATEGORY_IMAGES[child.handle] || subcatThumbs[child.handle]
+              return (
+                <Link
+                  key={child.id}
+                  href={`/${locale}/kategooriad/${child.handle}`}
+                  className="flex-shrink-0 flex flex-col items-center gap-2 w-[130px] group"
+                >
+                  <div className="w-[120px] h-[120px] rounded-xl bg-[#F8FAFC] border border-[#E2E8F0] group-hover:border-[#D97706] group-hover:shadow-lg group-hover:-translate-y-1 transition-all duration-200 overflow-hidden flex items-center justify-center">
+                    {thumb ? (
+                      <Image
+                        src={thumb}
+                        alt={child.name}
+                        width={120}
+                        height={120}
+                        className="object-contain w-full h-full p-2"
+                        unoptimized
+                      />
+                    ) : null}
+                  </div>
+                  <span className="text-[12px] text-center text-[#475569] group-hover:text-[#D97706] transition-colors leading-snug line-clamp-2 font-medium">
+                    {child.name}
+                  </span>
+                </Link>
+              )
+            })}
+          </SubcategoryScroller>
         )}
 
         {/* Content card */}

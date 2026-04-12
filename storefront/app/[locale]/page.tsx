@@ -9,42 +9,43 @@ import categoryImages from "@/lib/category-images.json"
 export const revalidate = 300
 
 const DISPLAY_NAMES: Record<string, string> = {
-  "restaurant-food-service": "Kitchen & Catering",
-  "lawn-garden": "Lawn & Garden",
+  "outdoors": "Outdoors",
+  "tools": "Tools",
   "automotive": "Automotive",
-  "sports-recreation": "Sports & Recreation",
-  "building-construction": "Building & Construction",
-  "hardware": "Hardware",
-  "electrical": "Electrical",
-  "arts-crafts-sewing": "Arts & Crafts",
-  "health-wellness": "Health & Wellness",
-  "heating-cooling": "Heating & Cooling",
-  "material-handling": "Material Handling",
-  "agriculture-forestry-equipment": "Agriculture & Forestry",
-  "cleaning-janitorial-supplies": "Cleaning",
-  "pumps": "Pumps",
-  "welding": "Welding",
-  "security": "Security",
-  "machining": "Machining",
+  "kitchen": "Kitchen",
+  "building-materials": "Building Materials",
   "plumbing": "Plumbing",
-  "safety": "Safety Equipment",
-  "lab": "Lab Equipment",
+  "sports-outdoors": "Sports & Outdoors",
+  "industrial-scientific": "Industrial & Scientific",
+  "electrical": "Electrical",
+  "heating-venting-cooling": "Heating & Cooling",
+  "hardware": "Hardware",
+  "furniture": "Furniture",
+  "appliances": "Appliances",
+  "flooring": "Flooring",
+  "home-decor": "Home Decor",
+  "bath": "Bath",
+  "storage-organization": "Storage & Organization",
+  "lighting": "Lighting",
+  "cleaning": "Cleaning",
+  "health-and-wellness": "Health & Wellness",
+  "safety-equipment": "Safety Equipment",
+  "paint": "Paint",
 }
 
 const CATEGORY_IMAGES_JSON: Record<string, string> = categoryImages as Record<string, string>
 
-// Live product thumbnails per category — fetched from MeiliSearch, original quality
+// Live product thumbnails per category (new L1 handles)
 const HOMEPAGE_IMAGES: Record<string, string> = {
   "automotive": "https://image.vevor.com/us%2FQTSTCTTSDNQONMY7J001V0%2Foriginal_img-v2%2Ftrailer-coupler-lock-m100-1.2.jpg?timestamp=1700000000000",
-  "restaurant-food-service": "https://image.vevor.com/us%2F1100WJRJ90800X001V2%2Foriginal_img-v10%2Fcommercial-meat-grinder-m100-1.2.jpg?timestamp=1730432819000",
-  "lawn-garden": "https://image.vevor.com/us%2FPZSHLK37INCH5XEW0001V2%2Foriginal_img-v1%2Frotisserie-grill-m100-1.2.jpg?timestamp=1700000000000",
-  "sports-recreation": "https://image.vevor.com/us%2FZDJSCCZPDBKDQ5ELZV9%2Foriginal_img-v1%2Fexercise-bike-m100-1.2.jpg?timestamp=1700000000000",
-  "building-construction": "https://image.vevor.com/us%2FDGNZDTLHJ3JPBIFH9V0%2Foriginal_img-v1%2Fmulti-purpose-folding-ladder-m100-1.2.jpg?timestamp=1700000000000",
+  "kitchen": "https://image.vevor.com/us%2F1100WJRJ90800X001V2%2Foriginal_img-v10%2Fcommercial-meat-grinder-m100-1.2.jpg?timestamp=1730432819000",
+  "outdoors": "https://image.vevor.com/us%2FPZSHLK37INCH5XEW0001V2%2Foriginal_img-v1%2Frotisserie-grill-m100-1.2.jpg?timestamp=1700000000000",
+  "sports-outdoors": "https://image.vevor.com/us%2FZDJSCCZPDBKDQ5ELZV9%2Foriginal_img-v1%2Fexercise-bike-m100-1.2.jpg?timestamp=1700000000000",
+  "building-materials": "https://image.vevor.com/us%2FDGNZDTLHJ3JPBIFH9V0%2Foriginal_img-v1%2Fmulti-purpose-folding-ladder-m100-1.2.jpg?timestamp=1700000000000",
   "hardware": "https://image.vevor.com/us%2F0618-3BMNCC000001V2%2Foriginal_img-v9%2Fmetal-lathe-m100-1.2.jpg?timestamp=1652168143000",
   "electrical": "https://image.vevor.com/us%2FSMXWJ3.5X-90XTS01V0%2Foriginal_img-v4%2Fstereo-microscope-m100-1.2.jpg?timestamp=1628592013000",
-  "arts-crafts-sewing": "https://image.vevor.com/us%2FNGZLQ70L000000001V2%2Foriginal_img-v8%2Fmoonshine-still-m100-1.2.jpg?timestamp=1629787429000",
-  "health-wellness": "https://image.vevor.com/us%2F3CFM1-3HPZKBOC001V2%2Foriginal_img-v10%2Fvacuum-pump-m100-1.2.jpg?timestamp=1700096920000",
-  "heating-cooling": "https://image.vevor.com/us%2F120CMCZQGJ0000001V0%2Foriginal_img-v8%2Ftile-cutter-m100-1.2.jpg?timestamp=1751451233000",
+  "health-and-wellness": "https://image.vevor.com/us%2F3CFM1-3HPZKBOC001V2%2Foriginal_img-v10%2Fvacuum-pump-m100-1.2.jpg?timestamp=1700096920000",
+  "heating-venting-cooling": "https://image.vevor.com/us%2F120CMCZQGJ0000001V0%2Foriginal_img-v8%2Ftile-cutter-m100-1.2.jpg?timestamp=1751451233000",
 }
 
 const CATEGORY_IMAGES: Record<string, string> = { ...CATEGORY_IMAGES_JSON, ...HOMEPAGE_IMAGES }
@@ -110,12 +111,12 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
     allCategories = []
   }
 
-  // L1 categories — English VEVOR taxonomy handles
+  // L1 categories — new VEVOR XLSX taxonomy handles
   const HOMEPAGE_CATEGORIES = [
-    "restaurant-food-service", "lawn-garden", "automotive",
-    "sports-recreation", "building-construction", "hardware",
-    "electrical", "arts-crafts-sewing", "health-wellness",
-    "heating-cooling",
+    "outdoors", "tools", "automotive",
+    "kitchen", "building-materials", "plumbing",
+    "sports-outdoors", "electrical", "hardware",
+    "industrial-scientific",
   ]
   const handleSet = new Set(HOMEPAGE_CATEGORIES)
   const topCategories = allCategories
