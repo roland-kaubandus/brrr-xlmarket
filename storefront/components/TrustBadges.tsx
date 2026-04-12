@@ -1,4 +1,5 @@
-export default function TrustBadges() {
+export default function TrustBadges({ locale = "et" }: { locale?: string }) {
+  const et = locale === "et"
   return (
     <section className="bg-white py-10">
       <div className="max-w-[1360px] mx-auto px-4">
@@ -12,8 +13,8 @@ export default function TrustBadges() {
                 <circle cx="18.5" cy="18.5" r="2.5" />
               </svg>
             }
-            title="Fast Delivery"
-            description="Delivery in 3-7 business days"
+            title={et ? "Kiire tarne" : "Fast Delivery"}
+            description={et ? "Tarne 3–7 tööpäevaga" : "Delivery in 3-7 business days"}
           />
           <Badge
             icon={
@@ -22,8 +23,8 @@ export default function TrustBadges() {
                 <polyline points="9 12 11 14 15 10" />
               </svg>
             }
-            title="2-Year Warranty"
-            description="Factory warranty on all products"
+            title={et ? "2-aastane garantii" : "2-Year Warranty"}
+            description={et ? "Tehasegarantii kõigil toodetel" : "Factory warranty on all products"}
           />
           <Badge
             icon={
@@ -32,8 +33,8 @@ export default function TrustBadges() {
                 <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10" />
               </svg>
             }
-            title="30-Day Returns"
-            description="Risk-free shopping with return guarantee"
+            title={et ? "30-päevane tagastus" : "30-Day Returns"}
+            description={et ? "Riskivaba ostlemine tagastusgarantiiga" : "Risk-free shopping with return guarantee"}
           />
           <Badge
             icon={
@@ -41,8 +42,8 @@ export default function TrustBadges() {
                 <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
               </svg>
             }
-            title="Customer Support"
-            description="Quick response via email"
+            title={et ? "Klienditugi" : "Customer Support"}
+            description={et ? "Kiire vastus e-posti teel" : "Quick response via email"}
           />
         </div>
       </div>

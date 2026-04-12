@@ -22,7 +22,7 @@ type SearchResult = {
   processingTimeMs: number
 }
 
-const PLACEHOLDER_TEXTS = [
+const PLACEHOLDER_TEXTS_EN = [
   "welding helmet",
   "lathe",
   "kitchen sink",
@@ -37,6 +37,21 @@ const PLACEHOLDER_TEXTS = [
   "garden hose",
 ]
 
+const PLACEHOLDER_TEXTS_ET = [
+  "keevituskiiver",
+  "treipink",
+  "kraanikauss",
+  "trenažöör",
+  "paadikate",
+  "survepesur",
+  "tööpink",
+  "jäämasin",
+  "basseinipump",
+  "käsipuu",
+  "puurpink",
+  "aiavolik",
+]
+
 export default function SearchBar({ locale = "et" }: { locale?: string }) {
   const [query, setQuery] = useState("")
   const [results, setResults] = useState<SearchResult | null>(null)
@@ -49,6 +64,8 @@ export default function SearchBar({ locale = "et" }: { locale?: string }) {
   const wrapperRef = useRef<HTMLDivElement>(null)
   const timerRef = useRef<ReturnType<typeof setTimeout>>(undefined)
   const router = useRouter()
+
+  const PLACEHOLDER_TEXTS = locale === "et" ? PLACEHOLDER_TEXTS_ET : PLACEHOLDER_TEXTS_EN
 
   // Rotate placeholder text
   useEffect(() => {
@@ -162,8 +179,8 @@ export default function SearchBar({ locale = "et" }: { locale?: string }) {
                 animating ? "opacity-0" : "opacity-100"
               }`}
             >
-              <span className="hidden sm:inline">Search for &quot;{currentPlaceholder}&quot;</span>
-              <span className="sm:hidden">Search...</span>
+              <span className="hidden sm:inline">{locale === "et" ? "Otsi" : "Search for"} &quot;{currentPlaceholder}&quot;</span>
+              <span className="sm:hidden">{locale === "et" ? "Otsi..." : "Search..."}</span>
             </span>
           )}
         </div>

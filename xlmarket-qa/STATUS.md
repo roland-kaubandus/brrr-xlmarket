@@ -1,13 +1,12 @@
 # XLMarket QA Status
-Viimane kontroll: 2026-04-12T15:45Z
+Viimane kontroll: 2026-04-12T17:30Z
 Tervis: 5/10
 
 ## Parandatud selles tsüklis
-- [homepage] MeiliSearch fallback: Enimmüüdud ja Uued tooted sektsioonid
-  kasutavad nüüd MeiliSearchi (Medusa API ei tagasta tooteid ilma filtrita)
-- [homepage] 16 VEVOR EN kategooria handle → eestikeelne nimi
-- [homepage] Sektsiooni pealkirjad locale-teadlikud (ET/EN)
-- [kategooriad] 18 L1 kategooria eestikeelne nimi lisatud
+- [storefront] AuthButton: "Hello, Sign In" → "Tere, Logi sisse" (locale-aware)
+- [storefront] SearchBar: placeholder tekst eesti keeles (12 terminit + "Otsi")
+- [storefront] MegaMenu: 7 ingliskeelset stringi → eesti (nupp, paneelid, mobiil)
+- [storefront] TrustBadges: locale prop + 4 badge'i tõlgitud eesti keelde
 
 ## Eelmistes tsüklites parandatud (repos, pole deployitud)
 - VevorHeader nav lingid tõlgitud
@@ -21,8 +20,11 @@ Tervis: 5/10
 - VevorSearchFilters: sorteerimise valikud, filtrid tõlgitud
 - BranchFilters: In Stock → Laos
 - BannerCarousel: 4 banneri slaidi tõlgitud
-- Homepage DISPLAY_NAMES: 11 kategoorianime
+- Homepage DISPLAY_NAMES: 11+ kategoorianime
 - Otsinguleht: breadcrumb, pealkiri, tulemused, tühjad seisundid
+- CategoryExploreGrid: "Kategooriad" pealkiri, "toodet" loendur
+- Homepage sektsioonid: "Enimmüüdud", "Uued tooted"
+- MeiliSearch fallback homepage sektsioonidele
 
 ## Teadaolevad probleemid
 - KRIITILINE: VPS vajab redeploymenti! Kõik tõlked + MeiliSearch fix
@@ -36,7 +38,6 @@ Tervis: 5/10
 - MADAL: Tarne/tagastamise lehed inglise keeles
 
 ## Statistika
-- Kontrollitud lehti: 4 (avaleht, kategooria, toode, footer)
-- Leitud vigu: 8
-- Parandatud: 4 koodiparandust 2 failis
-- Kogu parandusi kolme tsükli peale: 30+ parandust 17+ failis
+- Kontrollitud lehti: 4+ (avaleht, kategooria, toode, footer)
+- Leitud vigu: 12+
+- Parandatud: 35+ parandust 20+ failis (4 tsükliga)
