@@ -8,10 +8,10 @@ export default function NotFound() {
         404
       </h1>
       <p className="text-[18px] sm:text-[20px] font-[600] font-[family-name:var(--font-dm-sans)] text-[#1E293B] mb-[8px]">
-        Page Not Found
+        Lehte ei leitud
       </p>
       <p className="text-[14px] font-[family-name:var(--font-dm-sans)] text-[#999999] mb-[36px]">
-        The page you are looking for has been removed or the address has changed.
+        Otsitud lehte ei eksisteeri või on aadress muutunud.
       </p>
     </div>
   )

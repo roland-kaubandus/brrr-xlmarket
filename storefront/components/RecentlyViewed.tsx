@@ -34,7 +34,7 @@ export default function RecentlyViewed({ currentId }: Props) {
   return (
     <section className="mt-12 pt-10 border-t border-[#E2E8F0]">
       <h2 className="text-[20px] font-bold text-[#1E293B] mb-5">
-        Recently Viewed
+        Hiljuti vaadatud
       </h2>
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
         {items.map((item) => (
