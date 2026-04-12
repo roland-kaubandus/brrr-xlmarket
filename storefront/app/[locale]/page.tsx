@@ -1,4 +1,5 @@
 import { getProducts, getCategories } from "@/lib/medusa"
+import { searchProducts, getLocalizedTitle } from "@/lib/meilisearch"
 import BannerCarousel from "@/components/BannerCarousel"
 import CategoryExploreGrid from "@/components/CategoryExploreGrid"
 import VevorProductCard from "@/components/VevorProductCard"
@@ -39,24 +40,68 @@ const HOMEPAGE_IMAGES: Record<string, string> = {
 
 const CATEGORY_IMAGES: Record<string, string> = { ...CATEGORY_IMAGES_JSON, ...HOMEPAGE_IMAGES }
 
+/** Map MeiliSearch hit to Product shape (same pattern as category page) */
+function meiliHitToProduct(hit: any, locale: string) {
+  return {
+    id: hit.id,
+    title: getLocalizedTitle(hit, locale),
+    handle: hit.handle,
+    description: hit.description,
+    thumbnail: hit.thumbnail,
+    images: [],
+    variants: [{
+      id: hit.id + "_v",
+      title: "Default",
+      calculated_price: {
+        calculated_amount: Math.round(hit.price * 100),
+        original_amount: Math.round(hit.price * 100),
+        currency_code: "eur",
+      },
+    }],
+    categories: (hit.categories || []).map((name: string, i: number) => ({
+      id: `cat_${i}`, name, handle: hit.category_handles?.[i] || "", parent_category_id: null,
+    })),
+    created_at: new Date((hit.created_at || 0) * 1000).toISOString(),
+  }
+}
+
 export default async function Home({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
 
-  let bestSellers, newArrivals, allCategories
+  let bestSellers: any[] = []
+  let newArrivals: any[] = []
+  let allCategories: any[] = []
+
+  // 1) Try MeiliSearch first for product sections (proven to work on category pages)
   try {
-    [bestSellers, newArrivals, allCategories] = await Promise.all([
-      getProducts({ limit: 10 }),
-      getProducts({ limit: 10, order: "-created_at" }),
-      getCategories(),
+    const [bestResult, newResult] = await Promise.all([
+      searchProducts({ q: "", limit: 10, sort: ["price:desc"] }),
+      searchProducts({ q: "", limit: 10, sort: ["created_at:desc"] }),
     ])
+    bestSellers = bestResult.hits.map(hit => meiliHitToProduct(hit, locale))
+    newArrivals = newResult.hits.map(hit => meiliHitToProduct(hit, locale))
   } catch {
-    bestSellers = { products: [], count: 0, offset: 0, limit: 10 }
-    newArrivals = { products: [], count: 0, offset: 0, limit: 10 }
+    // MeiliSearch failed — try Medusa API as fallback
+    try {
+      const [bestRes, newRes] = await Promise.all([
+        getProducts({ limit: 10 }),
+        getProducts({ limit: 10, order: "-created_at" }),
+      ])
+      bestSellers = bestRes.products
+      newArrivals = newRes.products
+    } catch {
+      // Both failed — sections will be empty (HorizontalProductRow handles this)
+    }
+  }
+
+  // 2) Fetch categories
+  try {
+    allCategories = await getCategories()
+  } catch {
     allCategories = []
   }
 
   // Curated L1 categories for homepage — VEVOR EN handles that have real products
-  // These are the main handles from VEVOR taxonomy that map to browseable categories
   const HOMEPAGE_CATEGORIES = [
     "automotive", "tools", "outdoors", "plumbing", "building-materials",
     "appliances", "kitchen", "flooring", "sports-outdoors", "industrial-scientific",
@@ -96,8 +141,8 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
 
       <CategoryExploreGrid categories={categoryData} locale={locale} />
 
-      <HorizontalProductRow title="Enimmüüdud" products={bestSellers.products} locale={locale} />
-      <HorizontalProductRow title="Uued tooted" products={newArrivals.products} locale={locale} />
+      <HorizontalProductRow title={locale === "et" ? "Enimmüüdud" : "Best Sellers"} products={bestSellers} locale={locale} />
+      <HorizontalProductRow title={locale === "et" ? "Uued tooted" : "New Arrivals"} products={newArrivals} locale={locale} />
 
     </>
   )
