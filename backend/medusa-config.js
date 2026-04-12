@@ -13,8 +13,32 @@ exports.default = (0, utils_1.defineConfig)({
         },
     },
     admin: {
-        backendUrl: process.env.MEDUSA_BACKEND_URL || "http://localhost:9000",
+        backendUrl: process.env.MEDUSA_BACKEND_URL || "https://xlmarket.store",
+        vite: () => ({
+            server: {
+                allowedHosts: ["xlmarket.store", "localhost", "100.93.186.17"],
+            },
+        }),
     },
+    plugins: [
+        {
+            resolve: "@rokmohar/medusa-plugin-meilisearch",
+            options: {
+                config: {
+                    host: process.env.MEILISEARCH_HOST || "http://127.0.0.1:7700",
+                    apiKey: process.env.MEILISEARCH_API_KEY || "MEILI_LEGACY_KEY_REDACTED",
+                },
+                settings: {
+                    products: {
+                        indexSettings: {
+                            searchableAttributes: ["title", "description", "handle"],
+                            displayedAttributes: ["id", "title", "description", "handle", "thumbnail", "variants", "options"],
+                        },
+                    },
+                },
+            },
+        },
+    ],
     modules: [
         {
             resolve: "@medusajs/medusa/payment",

@@ -6,6 +6,7 @@ import { useEffect, useState, useCallback } from "react"
 import { usePathname } from "next/navigation"
 import { formatPrice } from "@/lib/medusa"
 import { ShoppingCart, Plus, Minus, Trash2, ArrowRight, Truck } from "lucide-react"
+import posthog from "posthog-js"
 
 type CartItem = {
   id: string
@@ -97,6 +98,13 @@ export default function CartPage() {
       })
       if (res.ok) {
         const data = await res.json()
+        const removedItem = cart.items.find((i) => i.id === itemId)
+        posthog.capture("cart_item_removed", {
+          item_id: itemId,
+          variant_id: removedItem?.variant?.id,
+          product_title: removedItem?.variant?.product?.title,
+          quantity: removedItem?.quantity,
+        })
         setCart(data.cart)
       } else {
         setError("Failed to remove item")

@@ -14,7 +14,7 @@ type Props = {
   locale?: string
 }
 
-export default function ProductGallery({ images, title, locale = "et" }: Props) {
+export default function ProductGallery({ images, title, locale = "en" }: Props) {
   const en = locale === "en"
   const [active, setActive] = useState(0)
   const [lightbox, setLightbox] = useState(false)

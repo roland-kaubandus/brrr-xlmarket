@@ -483,7 +483,10 @@ function buildProductPayload(spu, skuRows, productTypeCategoryMap, salesChannelI
 
     // Collect all option values
     const values1 = [...new Set(skuRows.map((r) => r.attribute1 || "Default").filter(Boolean))]
-    const values2 = optName2 ? [...new Set(skuRows.map((r) => r.attribute2 || "").filter(Boolean))] : []
+    const values2Raw = optName2 ? [...new Set(skuRows.map((r) => r.attribute2 || "").filter(Boolean))] : []
+    // If some rows lack attribute2 but others have it, add "Default" as fallback
+    const hasEmptyAttr2 = optName2 && skuRows.some((r) => !r.attribute2)
+    const values2 = hasEmptyAttr2 && values2Raw.length > 0 ? [...new Set([...values2Raw, "Default"])] : values2Raw
 
     options.push({ title: optName1, values: values1.length > 0 ? values1 : ["Default"] })
     if (optName2 && values2.length > 0) {
@@ -499,7 +502,7 @@ function buildProductPayload(spu, skuRows, productTypeCategoryMap, salesChannelI
       const variantTitle = optName2 && val2 ? `${val1} / ${val2}` : val1
 
       const optionsMap = { [optName1]: val1 }
-      if (optName2 && val2) optionsMap[optName2] = val2
+      if (optName2 && values2.length > 0) optionsMap[optName2] = val2 || "Default"
 
       variants.push({
         title: variantTitle,
@@ -613,14 +616,12 @@ async function createProduct(productData) {
       stats.variantsCreated += (resp.product.variants || []).length
       return resp.product.id
     } else {
-      const msg = resp.message || JSON.stringify(resp).substring(0, 200)
+      const msg = resp.message || JSON.stringify(resp).substring(0, 300)
+      console.log(`\n  FAIL creating "${productData.title?.substring(0, 50)}": ${msg}`)
       if (msg.includes("already exists") || msg.includes("duplicate")) {
         stats.skipped++
       } else {
         stats.errors++
-        if (stats.errors <= 20) {
-          console.log(`\n  ERROR creating "${productData.title?.substring(0, 50)}": ${msg}`)
-        }
       }
       return null
     }

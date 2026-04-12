@@ -5,6 +5,7 @@ import { useMemo, useState } from "react"
 import AddToCartButton from "./AddToCartButton"
 import StickyBuyBar from "@/components/StickyBuyBar"
 import { formatPrice, type ProductOption, type ProductVariant } from "@/lib/medusa"
+import posthog from "posthog-js"
 
 type Props = {
   locale: string
@@ -124,7 +125,10 @@ export default function ProductPurchasePanel({ locale, title, variants, options 
                     <button
                       key={value}
                       type="button"
-                      onClick={() => setSelection((current) => ({ ...current, [option.id]: value }))}
+                      onClick={() => {
+                      setSelection((current) => ({ ...current, [option.id]: value }))
+                      posthog.capture("variant_selected", { option: option.title, value })
+                    }}
                       className={
                         "px-3.5 py-2 rounded-lg border text-sm transition-colors duration-200 " +
                         (isActive

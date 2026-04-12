@@ -181,13 +181,18 @@ function getManualLinks(metadata?: Record<string, unknown>): Array<{ label: stri
 }
 
 
-function getProductTypeTrail(metadata?: Record<string, unknown>, feedEntry?: VevorFeedEntry | null): string[] {
+function slugify(str: string): string {
+  return str.toLowerCase().trim().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")
+}
+
+function getProductTypeTrail(metadata?: Record<string, unknown>, feedEntry?: VevorFeedEntry | null): Array<{ name: string; handle: string }> {
   const raw = stringifyScalar(metadata?.vevor_product_type) || feedEntry?.productType || null
   if (!raw) return []
   return raw
     .split(">")
     .map((segment) => segment.trim())
     .filter(Boolean)
+    .map((name) => ({ name, handle: slugify(name) }))
 }
 
 
@@ -320,13 +325,13 @@ export default async function ProductPage({ params }: Props) {
   const bestSellers = bestSellersRes.products
     .filter((p) => p.id !== product.id)
     .slice(0, 5)
-  const categoryName = product.categories?.[0]?.name || productTypeTrail[0] || "Category"
+  const categoryName = product.categories?.[0]?.name || productTypeTrail[0]?.name || "Category"
 
   const breadcrumbItems = [
     { name: locale === "et" ? "Avaleht" : "Home", url: `https://xlmarket.store/${locale}` },
-    ...productTypeTrail.map((segment) => ({
-      name: segment,
-      url: `https://xlmarket.store/${locale}/otsing?q=${encodeURIComponent(segment)}`,
+    ...productTypeTrail.map((seg) => ({
+      name: seg.name,
+      url: `https://xlmarket.store/${locale}/kategooriad/${seg.handle}`,
     })),
   ]
 
@@ -354,14 +359,14 @@ export default async function ProductPage({ params }: Props) {
         >
           {locale === "et" ? "Avaleht" : "Home"}
         </Link>
-        {productTypeTrail.map((segment, index) => (
-          <span key={`bc-${segment}-${index}`}>
+        {productTypeTrail.map((seg, index) => (
+          <span key={`bc-${seg.handle}-${index}`}>
             <span className="mx-2 text-[#E2E8F0]">&gt;</span>
             <Link
-              href={`/${locale}/otsing?q=${encodeURIComponent(segment)}`}
+              href={`/${locale}/kategooriad/${seg.handle}`}
               className="hover:text-[#D97706] transition-colors duration-200"
             >
-              {segment}
+              {seg.name}
             </Link>
           </span>
         ))}

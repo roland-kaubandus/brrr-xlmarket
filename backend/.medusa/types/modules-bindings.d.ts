@@ -1,3 +1,4 @@
+import type Meilisearch from '@rokmohar/medusa-plugin-meilisearch/.medusa/server/src/modules/meilisearch'
 import type { IStockLocationService } from '@medusajs/framework/types'
 import type { IInventoryService } from '@medusajs/framework/types'
 import type { IProductModuleService } from '@medusajs/framework/types'
@@ -26,6 +27,7 @@ import type { IFileModuleService } from '@medusajs/framework/types'
 
 declare module '@medusajs/framework/types' {
   interface ModuleImplementations {
+    'meilisearch': InstanceType<(typeof Meilisearch)['service']>,
     'stock_location': IStockLocationService,
     'inventory': IInventoryService,
     'product': IProductModuleService,

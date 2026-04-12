@@ -1,5 +1,14 @@
 {
   "mcpServers": {
+    "posthog": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "@anthropic-ai/mcp-posthog"],
+      "env": {
+        "POSTHOG_API_KEY": "phx_LvT8ckjJf6uXLguACkaiSjQNuvaQigT7BqWMXCo9UbBp8esu",
+        "POSTHOG_HOST": "https://eu.i.posthog.com"
+      }
+    },
     "huly": {
       "type": "stdio",
       "command": "node",

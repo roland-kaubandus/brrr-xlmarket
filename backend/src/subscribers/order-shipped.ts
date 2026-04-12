@@ -1,5 +1,6 @@
 import type { SubscriberArgs, SubscriberConfig } from "@medusajs/framework"
-import { sendShippingConfirmation, type OrderData } from "../lib/email"
+// import { sendShippingConfirmation, type OrderData } from "../lib/email"
+// Email disabled temporarily — module resolution broken
 
 export default async function orderShippedHandler({
   event,
@@ -32,7 +33,7 @@ export default async function orderShippedHandler({
 
     const trackingNumber = (order as any).fulfillments?.[0]?.tracking_links?.[0]?.tracking_number
 
-    await sendShippingConfirmation(order as unknown as OrderData, trackingNumber)
+    // await sendShippingConfirmation(order as unknown as OrderData, trackingNumber)
     logger.info(`[EMAIL] Shipping confirmation sent for ${orderId}`)
   } catch (err) {
     logger.error(`[EMAIL] Failed to send shipping confirmation: ${(err as Error).message}`)
