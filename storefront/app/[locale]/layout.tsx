@@ -10,6 +10,8 @@ import SetHtmlLang from "@/components/SetHtmlLang"
 import MuujaWidget from "@/components/MuujaWidget"
 import VevorHeader from "@/components/VevorHeader"
 import VevorFooter from "@/components/VevorFooter"
+import { CompareProvider } from "@/components/CompareContext"
+import CompareBar from "@/components/CompareBar"
 
 type Props = {
   children: React.ReactNode
@@ -79,7 +81,7 @@ export default async function LocaleLayout({ children, params }: Props) {
   // categories now have real parent-child tree from Medusa (3400+ nodes)
 
   return (
-    <>
+    <CompareProvider>
       <SetHtmlLang locale={locale} />
 
       <VevorHeader categories={categoryNodes} locale={locale} />
@@ -89,9 +91,10 @@ export default async function LocaleLayout({ children, params }: Props) {
       <VevorFooter locale={locale} />
 
       <CartSlideOver locale={locale} />
+      <CompareBar />
       <CookieConsent locale={locale} />
       {/* MuujaWidget disabled — not smart enough yet, re-enable when AI search works */}
       <MetaPixel />
-    </>
+    </CompareProvider>
   )
 }

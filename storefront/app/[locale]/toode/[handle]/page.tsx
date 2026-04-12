@@ -16,6 +16,7 @@ import CollapsibleSection from "@/components/CollapsibleSection"
 import { getProductMedia } from "@/lib/product-media"
 import { getVevorFeedEntry, type VevorFeedEntry } from "@/lib/vevor-feed"
 import { getMeiliProductByHandle, getLocalizedTitle } from "@/lib/meilisearch"
+import AddToCompareButton from "@/components/AddToCompareButton"
 
 
 export const revalidate = 300
@@ -428,6 +429,20 @@ export default async function ProductPage({ params }: Props) {
               </div>
             )
           })()}
+
+          <div className="mb-4">
+            <AddToCompareButton
+              item={{
+                id: product.id,
+                handle: product.handle,
+                title: localizedTitle,
+                thumbnail: product.thumbnail || null,
+                price: price ? formatPrice(price.calculated_amount, price.currency_code) : "",
+                specs: Object.fromEntries(specs.map(s => [s.key, s.value])),
+              }}
+              locale={locale}
+            />
+          </div>
 
           <ProductPurchasePanel
             locale={locale}
