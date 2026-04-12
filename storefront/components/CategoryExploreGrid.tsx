@@ -38,7 +38,7 @@ export default function CategoryExploreGrid({
                 href={`/${locale}/kategooriad/${cat.handle}`}
                 className="flex-shrink-0 flex flex-col items-center gap-1.5 w-[100px] md:w-[120px] group"
               >
-                <div className="w-[80px] h-[80px] md:w-[100px] md:h-[100px] rounded-xl bg-white border border-[#E2E8F0] group-hover:border-[#D97706] group-hover:shadow-md group-hover:-translate-y-0.5 transition-all duration-200 overflow-hidden flex items-center justify-center">
+                <div className="w-[80px] h-[80px] md:w-[100px] md:h-[100px] rounded-xl bg-white border border-[#E2E8F0] group-hover:border-[#D97706] group-hover:shadow-md transition-all duration-200 overflow-hidden flex items-center justify-center">
                   {imgUrl ? (
                     <img
                       src={imgUrl}
