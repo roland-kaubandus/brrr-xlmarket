@@ -177,7 +177,7 @@ export default function MegaMenu({ categories, locale = "et" }: { categories: Ca
         className="flex items-center gap-2 px-4 h-[44px] text-white font-bold text-[14px] hover:bg-[#B45309] transition-colors"
       >
         {isOpen ? <X size={18} strokeWidth={2} /> : <Menu size={18} strokeWidth={2} />}
-        <span className="hidden sm:inline">Categories</span>
+        <span className="hidden sm:inline">{locale === "et" ? "Kategooriad" : "Categories"}</span>
       </button>
 
       {isOpen && <div className="fixed inset-0 bg-black/30 z-40" onClick={() => setIsOpen(false)} />}
@@ -193,7 +193,7 @@ export default function MegaMenu({ categories, locale = "et" }: { categories: Ca
             {/* L1 Panel */}
             <div className="w-[280px] border-r border-[#E2E8F0] py-3 max-h-[calc(100vh-120px)] overflow-y-auto flex-shrink-0">
               <h3 className="px-5 pb-2 text-[11px] font-bold text-[#64748B] uppercase tracking-wider">
-                Shop by Categories
+                {locale === "et" ? "Kategooriad" : "Shop by Categories"}
               </h3>
               {l1Roots.map((cat) => {
                 const isActive = activeL1 === cat.id
@@ -228,7 +228,7 @@ export default function MegaMenu({ categories, locale = "et" }: { categories: Ca
                   onClick={() => setIsOpen(false)}
                   className="block px-5 pb-2 text-[11px] font-bold text-[#D97706] uppercase tracking-wider hover:underline"
                 >
-                  Shop All {activeL1Node.name}
+                  {locale === "et" ? `Kõik: ${activeL1Node.name}` : `Shop All ${activeL1Node.name}`}
                 </Link>
                 {activeL1Node.children.map(child => {
                   const isActive = activeL2 === child.id
@@ -264,7 +264,7 @@ export default function MegaMenu({ categories, locale = "et" }: { categories: Ca
                   onClick={() => setIsOpen(false)}
                   className="block px-5 pb-2 text-[11px] font-bold text-[#D97706] uppercase tracking-wider hover:underline"
                 >
-                  Shop All {activeL2Node.name}
+                  {locale === "et" ? `Kõik: ${activeL2Node.name}` : `Shop All ${activeL2Node.name}`}
                 </Link>
                 {activeL2Node.children.map(child => {
                   const thumb = catImages[child.handle]
@@ -295,10 +295,10 @@ export default function MegaMenu({ categories, locale = "et" }: { categories: Ca
             {mobileStack.length > 0 ? (
               <button onClick={() => setMobileStack(s => s.slice(0, -1))} className="flex items-center gap-1.5 text-white font-medium text-[14px]">
                 <ChevronLeft size={18} />
-                Back
+                {locale === "et" ? "Tagasi" : "Back"}
               </button>
             ) : (
-              <span className="text-white font-bold text-[15px]">Categories</span>
+              <span className="text-white font-bold text-[15px]">{locale === "et" ? "Kategooriad" : "Categories"}</span>
             )}
             <button onClick={() => { setIsOpen(false); setMobileStack([]) }} className="w-9 h-9 flex items-center justify-center text-white">
               <X size={18} />
@@ -311,7 +311,7 @@ export default function MegaMenu({ categories, locale = "et" }: { categories: Ca
               onClick={() => { setIsOpen(false); setMobileStack([]) }}
               className="block px-4 py-2.5 text-[13px] font-bold text-[#D97706] border-b border-[#E2E8F0] bg-[#FFFBEB]"
             >
-              View All {mobileCurrentNode.name} &rarr;
+              {locale === "et" ? `Kõik: ${mobileCurrentNode.name}` : `View All ${mobileCurrentNode.name}`} &rarr;
             </Link>
           )}
 
