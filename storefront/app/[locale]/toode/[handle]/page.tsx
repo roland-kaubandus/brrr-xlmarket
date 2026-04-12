@@ -15,6 +15,7 @@ import CollapsibleDescription from "@/components/CollapsibleDescription"
 import CollapsibleSection from "@/components/CollapsibleSection"
 import { getProductMedia } from "@/lib/product-media"
 import { getVevorFeedEntry, type VevorFeedEntry } from "@/lib/vevor-feed"
+import { getMeiliProductByHandle, getLocalizedTitle } from "@/lib/meilisearch"
 
 
 export const revalidate = 300
@@ -28,6 +29,9 @@ export async function generateMetadata({ params }: Props) {
   const product = await getProduct(handle)
   if (!product) return { title: "Product — XLMARKET" }
   const metadata = product.metadata || {}
+  // Locale-aware title for metadata
+  const meiliHitMeta = locale === "en" ? await getMeiliProductByHandle(handle) : null
+  const metaTitle = meiliHitMeta ? getLocalizedTitle(meiliHitMeta, locale) : product.title
   const media = await getProductMedia({
     vevorUpc: stringifyScalar(metadata.vevor_upc),
     vevorSku: stringifyScalar(metadata.vevor_sku),
@@ -35,12 +39,12 @@ export async function generateMetadata({ params }: Props) {
   const ogImage = media.images[0]?.url || product.thumbnail
   const desc = product.description
     ? product.description.replace(/<[^>]*>/g, "").substring(0, 160)
-    : product.title
+    : metaTitle
   return {
-    title: product.title + " — XLMARKET",
+    title: metaTitle + " — XLMARKET",
     description: desc,
     openGraph: {
-      title: product.title,
+      title: metaTitle,
       description: desc,
       images: ogImage ? [{ url: ogImage }] : [],
       type: "website",
@@ -195,6 +199,9 @@ export default async function ProductPage({ params }: Props) {
   const { handle, locale } = await params
   const product = await getProduct(handle)
   if (!product) notFound()
+  // Locale-aware title: MeiliSearch stores title_en + title_et
+  const meiliHit = locale === "en" ? await getMeiliProductByHandle(handle) : null
+  const localizedTitle = meiliHit ? getLocalizedTitle(meiliHit, locale) : product.title
   const metadata = product.metadata || {}
   const feedEntry = getVevorFeedEntry({
     vevorSku: stringifyScalar(metadata.vevor_sku),
@@ -330,7 +337,7 @@ export default async function ProductPage({ params }: Props) {
       <TrackProductView
         id={product.id}
         handle={product.handle}
-        title={product.title}
+        title={localizedTitle}
         thumbnail={product.thumbnail}
         price={price ? formatPrice(price.calculated_amount, price.currency_code) : ""}
       />
@@ -361,12 +368,12 @@ export default async function ProductPage({ params }: Props) {
 
       <div className="grid grid-cols-1 lg:grid-cols-[3fr_2fr] gap-6 lg:gap-10 lg:items-start">
         {/* Images */}
-        <ProductGallery images={images} title={product.title} />
+        <ProductGallery images={images} title={localizedTitle} />
 
         {/* Info */}
         <div>
           <h1 className="text-lg md:text-xl font-bold text-[#1E293B] leading-tight tracking-tight mb-2">
-            {product.title}
+            {localizedTitle}
           </h1>
 
           {/* Star rating */}
@@ -424,7 +431,7 @@ export default async function ProductPage({ params }: Props) {
 
           <ProductPurchasePanel
             locale={locale}
-            title={product.title}
+            title={localizedTitle}
             variants={product.variants || []}
             options={product.options}
           />
@@ -557,7 +564,7 @@ export default async function ProductPage({ params }: Props) {
       {koosProducts.length > 0 && (
         <section className="mt-8 md:mt-12 pt-6 md:pt-10 border-t border-[#E2E8F0]">
           <h2 className="text-[15px] md:text-[20px] font-bold text-[#1E293B] mb-3 md:mb-5">
-            Frequently Bought Together
+            {locale === "en" ? "Frequently Bought Together" : "Sageli koos ostetud"}
           </h2>
           <div className="flex items-center gap-3 overflow-x-auto scrollbar-hide -mx-4 px-4 md:mx-0 md:px-0 md:flex-wrap">
             {/* Main product */}
@@ -567,11 +574,11 @@ export default async function ProductPage({ params }: Props) {
             >
               {product.thumbnail && (
                 <div className="w-[100px] h-[100px] bg-white rounded-lg overflow-hidden mb-2 shrink-0">
-                  <img src={product.thumbnail} alt={product.title} className="w-full h-full object-contain p-1" />
+                  <img src={product.thumbnail} alt={localizedTitle} className="w-full h-full object-contain p-1" />
                 </div>
               )}
-              <p className="text-xs text-[#64748B] mb-0.5">This item</p>
-              <p className="text-xs font-medium text-[#1E293B] leading-snug line-clamp-2 text-center">{truncate(product.title, 60)}</p>
+              <p className="text-xs text-[#64748B] mb-0.5">{locale === "en" ? "This item" : "See toode"}</p>
+              <p className="text-xs font-medium text-[#1E293B] leading-snug line-clamp-2 text-center">{truncate(localizedTitle, 60)}</p>
               {price && <p className="text-sm font-bold text-[#1E293B] mt-1">{formatPrice(price.calculated_amount, price.currency_code)}</p>}
             </a>
             {/* Plus signs + related products */}
@@ -602,7 +609,7 @@ export default async function ProductPage({ params }: Props) {
               const currencyCode = price?.currency_code || "eur"
               return (
                 <div className="flex flex-col items-center justify-center ml-auto p-4 border border-[#E2E8F0] bg-white rounded-lg min-w-[140px]">
-                  <span className="text-xs text-[#64748B] mb-1">Total:</span>
+                  <span className="text-xs text-[#64748B] mb-1">{locale === "en" ? "Total:" : "Kokku:"}</span>
                   <p className="font-bold text-xl text-[#1E293B]">
                     {formatPrice(koosTotal, currencyCode)}
                   </p>
@@ -617,7 +624,7 @@ export default async function ProductPage({ params }: Props) {
       {bestSellers.length > 0 && (
         <section className="mt-8 md:mt-12 pt-6 md:pt-10 border-t border-[#E2E8F0]">
           <h2 className="text-[15px] md:text-[20px] font-bold text-[#1E293B] mb-3 md:mb-6">
-            Best in {categoryName}
+            {locale === "en" ? `Best in ${categoryName}` : `Parimad kategoorias ${categoryName}`}
           </h2>
           <div className="md:hidden overflow-x-auto scrollbar-hide -mx-4 px-4">
             <div className="flex gap-3" style={{ width: "max-content" }}>

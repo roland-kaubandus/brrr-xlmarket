@@ -14,26 +14,28 @@ const CATEGORY_IMAGES: Record<string, string> = categoryImages as Record<string,
 
 export const revalidate = 300
 
-const CATEGORY_NAMES: Record<string, string> = {
-  // L1 VEVOR categories → Estonian
-  "automotive": "Auto ja garaaž",
-  "tools": "Tööriistad",
-  "outdoors": "Aed ja õu",
-  "plumbing": "Torutööd ja sanitaar",
-  "building-materials": "Ehitus ja remont",
-  "appliances": "Kodumasinad",
-  "kitchen": "Köök ja toitlustus",
-  "flooring": "Põrandad ja plaatimine",
-  "sports-outdoors": "Sport ja vaba aeg",
-  "industrial-scientific": "Tööstus ja labor",
-  "electrical": "Elektroonika",
-  "hardware": "Riistvara ja tööriistad",
-  "lawn-garden": "Aed ja muru",
-  "heating-cooling": "Küte ja jahutus",
-  "health-wellness": "Tervis ja heaolu",
-  "arts-crafts": "Kunst ja käsitöö",
-  "building-construction": "Ehitus ja remont",
-  "kitchen-catering": "Köök ja toitlustus",
+const CATEGORY_NAMES: Record<string, Record<string, string>> = {
+  // L1 VEVOR categories → ET + EN
+  "automotive": { et: "Auto ja garaaž", en: "Automotive" },
+  "tools": { et: "Tööriistad", en: "Tools" },
+  "outdoors": { et: "Aed ja õu", en: "Outdoors" },
+  "plumbing": { et: "Torutööd ja sanitaar", en: "Plumbing" },
+  "building-materials": { et: "Ehitus ja remont", en: "Building Materials" },
+  "appliances": { et: "Kodumasinad", en: "Appliances" },
+  "kitchen": { et: "Köök ja toitlustus", en: "Kitchen" },
+  "flooring": { et: "Põrandad ja plaatimine", en: "Flooring" },
+  "sports-outdoors": { et: "Sport ja vaba aeg", en: "Sports & Outdoors" },
+  "industrial-scientific": { et: "Tööstus ja labor", en: "Industrial & Scientific" },
+  "electrical": { et: "Elektroonika", en: "Electrical" },
+  "hardware": { et: "Riistvara ja tööriistad", en: "Hardware" },
+  "lawn-garden": { et: "Aed ja muru", en: "Lawn & Garden" },
+  "heating-cooling": { et: "Küte ja jahutus", en: "Heating & Cooling" },
+  "health-wellness": { et: "Tervis ja heaolu", en: "Health & Wellness" },
+  "arts-crafts": { et: "Kunst ja käsitöö", en: "Arts & Crafts" },
+  "building-construction": { et: "Ehitus ja remont", en: "Building & Construction" },
+  "kitchen-catering": { et: "Köök ja toitlustus", en: "Kitchen & Catering" },
+  "restaurant-food-service": { et: "Toitlustus ja teenindus", en: "Restaurant & Food Service" },
+  "sports-recreation": { et: "Sport ja vaba aeg", en: "Sports & Recreation" },
 }
 
 type Props = {
@@ -51,12 +53,11 @@ function humanize(handle: string): string {
 }
 
 export async function generateMetadata({ params }: Props) {
-  const { handle } = await params
+  const { handle, locale } = await params
   const category = await getCategoryByHandle(handle)
   const displayName = category
-    ? (CATEGORY_NAMES[handle] || category.name)
+    ? (CATEGORY_NAMES[handle]?.[locale] || category.name)
     : humanize(handle)
-  const { locale } = await params
   const desc = locale === "et"
     ? `${displayName} tooted soodsa hinnaga. Kiire tarne üle Eesti.`
     : `${displayName} products at great prices. Fast delivery in Estonia.`
@@ -156,7 +157,7 @@ export default async function CategoryPage({ params, searchParams }: Props) {
   if (totalCount === 0 && !category) notFound()
 
   const displayName = category
-    ? (CATEGORY_NAMES[handle] || category.name)
+    ? (CATEGORY_NAMES[handle]?.[locale] || category.name)
     : humanize(handle)
 
   const totalPages = Math.ceil(totalCount / ITEMS_PER_PAGE)
@@ -338,6 +339,7 @@ export default async function CategoryPage({ params, searchParams }: Props) {
               currentPage={page}
               totalPages={totalPages}
               buildUrl={buildPageUrl}
+              locale={locale}
             />
           </div>
         ) : (

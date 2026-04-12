@@ -88,6 +88,24 @@ function expandCompoundWords(q: string): string {
   return q.split(/\s+/).map(w => compounds[w.toLowerCase()] || w).join(" ")
 }
 
+/** Look up a single product by handle to get localized title/description */
+export async function getMeiliProductByHandle(handle: string): Promise<MeiliHit | null> {
+  try {
+    const res = await fetch(`${MEILI_HOST}/indexes/${INDEX}/search`, {
+      method: "POST",
+      headers: {
+        "Authorization": `Bearer ${MEILI_KEY}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ q: "", limit: 1, filter: [`handle = "${handle}"`] }),
+      next: { revalidate: 300 },
+    })
+    if (!res.ok) return null
+    const data = await res.json()
+    return data.hits?.[0] || null
+  } catch { return null }
+}
+
 export async function searchProducts(options: SearchOptions): Promise<MeiliSearchResult> {
   const body: Record<string, unknown> = {
     q: expandCompoundWords(options.q),
