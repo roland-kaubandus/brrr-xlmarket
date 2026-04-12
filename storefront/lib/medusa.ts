@@ -137,7 +137,7 @@ type CategoriesResponse = {
 export async function getCategories(): Promise<ProductCategory[]> {
   const all: ProductCategory[] = []
   let offset = 0
-  const limit = 100
+  const limit = 500
   while (true) {
     const res = await medusaFetch<CategoriesResponse>(
       `/store/product-categories?limit=${limit}&offset=${offset}`,
