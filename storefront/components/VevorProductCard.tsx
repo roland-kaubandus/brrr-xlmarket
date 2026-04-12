@@ -4,6 +4,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { Product, formatPrice } from "@/lib/medusa"
+import { useCompare } from "./CompareContext"
 
 function hashCode(str: string): number {
   let hash = 0
@@ -62,6 +63,8 @@ export default function VevorProductCard({ product, locale }: { product: Product
   const resolvedLocale = locale || (pathname.split("/")[1] === "en" ? "en" : "et")
   const price = product.variants?.[0]?.calculated_price
   const [wishlisted, setWishlisted] = useState(false)
+  const compare = useCompare()
+  const isCompared = compare.has(product.id)
   useEffect(() => {
     try {
       const raw = localStorage.getItem("xlmarket_wishlist")
@@ -168,6 +171,34 @@ export default function VevorProductCard({ product, locale }: { product: Product
               <span className="w-1.5 h-1.5 rounded-full bg-[#059669] inline-block" />
               {resolvedLocale === "et" ? "Laos" : "In Stock"}
             </span>
+            <button
+              type="button"
+              onClick={(e) => {
+                e.preventDefault()
+                e.stopPropagation()
+                if (isCompared) { compare.remove(product.id) } else {
+                  compare.add({
+                    id: product.id, handle: product.handle, title: product.title,
+                    thumbnail: product.thumbnail || null,
+                    price: price ? formatPrice(price.calculated_amount, price.currency_code) : "",
+                    specs: {},
+                  })
+                }
+              }}
+              className={`ml-auto inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[10px] font-medium transition-colors ${
+                isCompared
+                  ? "bg-[#D97706]/10 text-[#D97706]"
+                  : "text-[#94A3B8] hover:text-[#D97706]"
+              }`}
+              aria-label={isCompared
+                ? (resolvedLocale === "en" ? "Remove from compare" : "Eemalda võrdlusest")
+                : (resolvedLocale === "en" ? "Add to compare" : "Lisa võrdlusse")}
+            >
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>
+              </svg>
+              {isCompared ? (resolvedLocale === "en" ? "Added" : "Lisatud") : (resolvedLocale === "en" ? "Compare" : "Võrdle")}
+            </button>
           </div>
         </div>
       </Link>

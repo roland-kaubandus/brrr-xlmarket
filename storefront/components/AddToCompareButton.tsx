@@ -1,0 +1,30 @@
+"use client"
+import { useCompare, type CompareItem } from "./CompareContext"
+
+type Props = {
+  item: CompareItem
+  locale?: string
+}
+
+export default function AddToCompareButton({ item, locale = "et" }: Props) {
+  const { add, remove, has } = useCompare()
+  const isCompared = has(item.id)
+
+  return (
+    <button
+      onClick={() => isCompared ? remove(item.id) : add(item)}
+      className={`inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium border transition-colors ${
+        isCompared
+          ? "bg-[#D97706]/10 border-[#D97706] text-[#D97706]"
+          : "border-[#E2E8F0] text-[#64748B] hover:border-[#D97706] hover:text-[#D97706]"
+      }`}
+    >
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>
+      </svg>
+      {isCompared
+        ? (locale === "en" ? "Added to Compare" : "Lisatud võrdlusse")
+        : (locale === "en" ? "Add to Compare" : "Lisa võrdlusse")}
+    </button>
+  )
+}
