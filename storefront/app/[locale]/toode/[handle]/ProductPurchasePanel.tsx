@@ -92,7 +92,7 @@ export default function ProductPurchasePanel({ locale, title, variants, options 
               </>
             )}
           </div>
-          <p className="text-xs text-[#64748B] mb-5">Price includes VAT</p>
+          <p className="text-xs text-[#64748B] mb-5">{locale === "et" ? "Hind sisaldab käibemaksu" : "Price includes VAT"}</p>
         </>
       )}
 
@@ -100,12 +100,12 @@ export default function ProductPurchasePanel({ locale, title, variants, options 
         {selectedVariant && inStock ? (
           <span className="inline-flex items-center gap-1.5 text-sm font-medium text-[#059669]">
             <span className="w-2 h-2 rounded-full bg-[#059669]" />
-            In Stock
+            {locale === "et" ? "Laos" : "In Stock"}
           </span>
         ) : (
           <span className="inline-flex items-center gap-1.5 text-sm font-medium text-red-600">
             <span className="w-2 h-2 rounded-full bg-red-500" />
-            Currently Unavailable
+            {locale === "et" ? "Hetkel ei ole saadaval" : "Currently Unavailable"}
           </span>
         )}
       </div>
@@ -149,19 +149,19 @@ export default function ProductPurchasePanel({ locale, title, variants, options 
             href={`/${locale}/ostukorv`}
             className="block w-full text-center h-12 leading-[48px] text-sm font-bold bg-[#1E293B] text-white hover:bg-[#0F172A] rounded-lg transition-colors duration-200"
           >
-            Buy Now
+            {locale === "et" ? "Osta kohe" : "Buy Now"}
           </Link>
         </div>
       ) : (
         <p className="text-sm text-[#64748B]">
-          This product is currently unavailable.
+          {locale === "et" ? "See toode ei ole hetkel saadaval." : "This product is currently unavailable."}
         </p>
       )}
 
       {/* Delivery info */}
       <div className="mt-5 pt-5 border-t border-[#E2E8F0] flex items-center gap-2 text-sm text-[#64748B]">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D97706" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
-        <span>Delivery to Estonia. Estimated delivery 5-10 business days</span>
+        <span>{locale === "et" ? "Tarne Eestisse. Eeldatav tarneaeg 5–10 tööpäeva" : "Delivery to Estonia. Estimated delivery 5-10 business days"}</span>
       </div>
 
       {selectedVariant && price && (

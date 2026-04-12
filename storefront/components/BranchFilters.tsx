@@ -120,7 +120,7 @@ export default function BranchFilters({
             currentInStock ? "text-accent bg-accent-light" : "text-off-black hover:bg-silver"
           }`}
         >
-          In Stock
+          {locale === "et" ? "Laos" : "In Stock"}
         </button>
 
         {/* More filters toggle */}
@@ -202,7 +202,7 @@ export default function BranchFilters({
               )}
               {currentInStock && (
                 <span className="inline-flex items-center rounded-full bg-accent-light px-3 py-1 text-xs font-medium text-accent">
-                  In Stock
+                  {locale === "et" ? "Laos" : "In Stock"}
                 </span>
               )}
               {(currentMin || currentMax) && (

@@ -5,7 +5,13 @@ import MegaMenu from "@/components/MegaMenu"
 import AuthButton from "@/components/AuthButton"
 import type { CategoryNode } from "@/components/MegaMenu"
 
-const getNavLinks = (locale: string) => [
+const getNavLinks = (locale: string) => locale === "et" ? [
+  { label: "Sooduspakkumised", href: `/${locale}/otsing?tag=deals` },
+  { label: "Uued", href: `/${locale}/otsing?sort=newest` },
+  { label: "Bestsellerid", href: `/${locale}/otsing?tag=hot` },
+  { label: "Allahindlus", href: `/${locale}/otsing?tag=flash-sale` },
+  { label: "Meist", href: `/${locale}/meist` },
+] : [
   { label: "Deals", href: `/${locale}/otsing?tag=deals` },
   { label: "New", href: `/${locale}/otsing?sort=newest` },
   { label: "Best Sellers", href: `/${locale}/otsing?tag=hot` },
@@ -38,7 +44,7 @@ export default function VevorHeader({ categories, locale = "et" }: { categories:
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-white/70">
                 <rect x="1" y="3" width="15" height="13" /><polygon points="16 8 20 8 23 11 23 16 16 16 16 8" /><circle cx="5.5" cy="18.5" r="2.5" /><circle cx="18.5" cy="18.5" r="2.5" />
               </svg>
-              <span className="text-white/70">Delivery to <strong className="text-white">Estonia</strong></span>
+              <span className="text-white/70">{locale === "et" ? "Tarne" : "Delivery to"} <strong className="text-white">{locale === "et" ? "Eestisse" : "Estonia"}</strong></span>
             </div>
 
             {/* Sign in / Account — desktop */}

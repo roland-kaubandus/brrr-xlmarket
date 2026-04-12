@@ -14,8 +14,8 @@ export default function VevorFooter({ locale = "et" }: { locale?: string }) {
                 </svg>
               </div>
               <div>
-                <p className="text-white text-[14px] font-semibold">Free Shipping</p>
-                <p className="text-white/50 text-[13px]">Orders over 99 EUR</p>
+                <p className="text-white text-[14px] font-semibold">{locale === "et" ? "Tasuta tarne" : "Free Shipping"}</p>
+                <p className="text-white/50 text-[13px]">{locale === "et" ? "Alates 99 EUR" : "Orders over 99 EUR"}</p>
               </div>
             </div>
             <div className="flex items-center gap-3">
@@ -25,8 +25,8 @@ export default function VevorFooter({ locale = "et" }: { locale?: string }) {
                 </svg>
               </div>
               <div>
-                <p className="text-white text-[14px] font-semibold">30-Day Returns</p>
-                <p className="text-white/50 text-[13px]">Hassle-free returns</p>
+                <p className="text-white text-[14px] font-semibold">{locale === "et" ? "30-päevane tagastus" : "30-Day Returns"}</p>
+                <p className="text-white/50 text-[13px]">{locale === "et" ? "Lihtne tagastamine" : "Hassle-free returns"}</p>
               </div>
             </div>
             <div className="flex items-center gap-3">
@@ -36,8 +36,8 @@ export default function VevorFooter({ locale = "et" }: { locale?: string }) {
                 </svg>
               </div>
               <div>
-                <p className="text-white text-[14px] font-semibold">2-Year Warranty</p>
-                <p className="text-white/50 text-[13px]">Quality guaranteed</p>
+                <p className="text-white text-[14px] font-semibold">{locale === "et" ? "2-aastane garantii" : "2-Year Warranty"}</p>
+                <p className="text-white/50 text-[13px]">{locale === "et" ? "Kvaliteet tagatud" : "Quality guaranteed"}</p>
               </div>
             </div>
             <div className="flex items-center gap-3">
@@ -47,8 +47,8 @@ export default function VevorFooter({ locale = "et" }: { locale?: string }) {
                 </svg>
               </div>
               <div>
-                <p className="text-white text-[14px] font-semibold">24/7 Support</p>
-                <p className="text-white/50 text-[13px]">Always here to help</p>
+                <p className="text-white text-[14px] font-semibold">{locale === "et" ? "Klienditugi" : "24/7 Support"}</p>
+                <p className="text-white/50 text-[13px]">{locale === "et" ? "Alati abiks" : "Always here to help"}</p>
               </div>
             </div>
           </div>
@@ -66,47 +66,47 @@ export default function VevorFooter({ locale = "et" }: { locale?: string }) {
                 <span className="text-[22px] font-normal text-white leading-none">Market</span>
               </Link>
               <p className="text-white/40 text-[13px] leading-relaxed max-w-[240px]">
-                Your trusted source for tools, equipment, and home improvement products.
+                {locale === "et" ? "Professionaalne varustus igale valdkonnale. Eesti juhtiv profiseadmete e-pood." : "Your trusted source for tools, equipment, and home improvement products."}
               </p>
             </div>
 
             {/* Customer Service */}
             <div>
-              <h4 className="text-[12px] font-bold text-white/50 uppercase tracking-wider mb-4">Customer Service</h4>
+              <h4 className="text-[12px] font-bold text-white/50 uppercase tracking-wider mb-4">{locale === "et" ? "Teenused" : "Customer Service"}</h4>
               <div className="space-y-2.5">
-                <Link href={`/${locale}/kontakt`} className="block text-[13px] text-white/60 hover:text-[#D97706] transition-colors">Contact Us</Link>
-                <Link href={`/${locale}/tarne`} className="block text-[13px] text-white/60 hover:text-[#D97706] transition-colors">Shipping Info</Link>
-                <Link href={`/${locale}/tagastamine`} className="block text-[13px] text-white/60 hover:text-[#D97706] transition-colors">Returns &amp; Refunds</Link>
-                <Link href={`/${locale}/kontakt`} className="block text-[13px] text-white/60 hover:text-[#D97706] transition-colors">FAQ</Link>
+                <Link href={`/${locale}/kontakt`} className="block text-[13px] text-white/60 hover:text-[#D97706] transition-colors">{locale === "et" ? "Kontakt" : "Contact Us"}</Link>
+                <Link href={`/${locale}/tarne`} className="block text-[13px] text-white/60 hover:text-[#D97706] transition-colors">{locale === "et" ? "Tarne info" : "Shipping Info"}</Link>
+                <Link href={`/${locale}/tagastamine`} className="block text-[13px] text-white/60 hover:text-[#D97706] transition-colors">{locale === "et" ? "Tagastamine" : "Returns & Refunds"}</Link>
+                <Link href={`/${locale}/kontakt`} className="block text-[13px] text-white/60 hover:text-[#D97706] transition-colors">{locale === "et" ? "KKK" : "FAQ"}</Link>
               </div>
             </div>
 
             {/* About */}
             <div>
-              <h4 className="text-[12px] font-bold text-white/50 uppercase tracking-wider mb-4">About</h4>
+              <h4 className="text-[12px] font-bold text-white/50 uppercase tracking-wider mb-4">{locale === "et" ? "Info" : "About"}</h4>
               <div className="space-y-2.5">
-                <Link href={`/${locale}/meist`} className="block text-[13px] text-white/60 hover:text-[#D97706] transition-colors">About XL Market</Link>
-                <Link href={`/${locale}/kategooriad`} className="block text-[13px] text-white/60 hover:text-[#D97706] transition-colors">All Categories</Link>
+                <Link href={`/${locale}/meist`} className="block text-[13px] text-white/60 hover:text-[#D97706] transition-colors">{locale === "et" ? "Meist" : "About XL Market"}</Link>
+                <Link href={`/${locale}/kategooriad`} className="block text-[13px] text-white/60 hover:text-[#D97706] transition-colors">{locale === "et" ? "Kõik kategooriad" : "All Categories"}</Link>
               </div>
             </div>
 
             {/* Legal */}
             <div>
-              <h4 className="text-[12px] font-bold text-white/50 uppercase tracking-wider mb-4">Legal</h4>
+              <h4 className="text-[12px] font-bold text-white/50 uppercase tracking-wider mb-4">{locale === "et" ? "Juriidiline" : "Legal"}</h4>
               <div className="space-y-2.5">
-                <Link href={`/${locale}/privaatsus`} className="block text-[13px] text-white/60 hover:text-[#D97706] transition-colors">Privacy Policy</Link>
-                <Link href={`/${locale}/tingimused`} className="block text-[13px] text-white/60 hover:text-[#D97706] transition-colors">Terms &amp; Conditions</Link>
-                <Link href={`/${locale}/kupsised`} className="block text-[13px] text-white/60 hover:text-[#D97706] transition-colors">Cookie Policy</Link>
+                <Link href={`/${locale}/privaatsus`} className="block text-[13px] text-white/60 hover:text-[#D97706] transition-colors">{locale === "et" ? "Privaatsuspoliitika" : "Privacy Policy"}</Link>
+                <Link href={`/${locale}/tingimused`} className="block text-[13px] text-white/60 hover:text-[#D97706] transition-colors">{locale === "et" ? "Kasutustingimused" : "Terms & Conditions"}</Link>
+                <Link href={`/${locale}/kupsised`} className="block text-[13px] text-white/60 hover:text-[#D97706] transition-colors">{locale === "et" ? "Küpsised" : "Cookie Policy"}</Link>
               </div>
             </div>
 
             {/* Contact */}
             <div>
-              <h4 className="text-[12px] font-bold text-white/50 uppercase tracking-wider mb-4">Contact</h4>
+              <h4 className="text-[12px] font-bold text-white/50 uppercase tracking-wider mb-4">{locale === "et" ? "Kontakt" : "Contact"}</h4>
               <div className="space-y-2.5">
                 <a href="mailto:info@xlmarket.eu" className="block text-[13px] text-white/60 hover:text-[#D97706] transition-colors">info@xlmarket.eu</a>
                 <span className="block text-[13px] text-white/60">+372 5123 4567</span>
-                <span className="block text-[13px] text-white/60">Mon-Fri 9:00-17:00</span>
+                <span className="block text-[13px] text-white/60">{locale === "et" ? "E–R 9:00–17:00" : "Mon-Fri 9:00-17:00"}</span>
               </div>
             </div>
           </div>
@@ -114,7 +114,7 @@ export default function VevorFooter({ locale = "et" }: { locale?: string }) {
           {/* Bottom bar */}
           <div className="border-t border-white/10 mt-10 pt-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
             <span className="text-[12px] text-white/30">
-              &copy; 2026 XL Market. All rights reserved. Roland Kaubandus OU
+              &copy; 2026 XL Market. {locale === "et" ? "Kõik õigused kaitstud." : "All rights reserved."} Roland Kaubandus OÜ
             </span>
             <div className="flex items-center gap-2">
               <div className="h-[28px] px-3 bg-white/10 rounded flex items-center justify-center text-[10px] font-bold text-white/50">VISA</div>

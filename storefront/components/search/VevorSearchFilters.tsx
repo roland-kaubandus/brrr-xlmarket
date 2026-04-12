@@ -15,7 +15,13 @@ type Props = {
   basePath?: string
 }
 
-const SORT_OPTIONS = [
+const SORT_OPTIONS_ET = [
+  { value: "", label: "Parim vaste" },
+  { value: "price_asc", label: "Hind: odavaim" },
+  { value: "price_desc", label: "Hind: kalleim" },
+  { value: "newest", label: "Uusimad" },
+]
+const SORT_OPTIONS_EN = [
   { value: "", label: "Best Match" },
   { value: "price_asc", label: "Price: Low to High" },
   { value: "price_desc", label: "Price: High to Low" },
@@ -78,6 +84,8 @@ export default function VevorSearchFilters({
     return `${base}${qs ? `?${qs}` : ""}`
   }, [query, currentSort, currentMin, currentMax, currentCategories, currentInStock, locale, basePath])
 
+  const et = locale === "et"
+  const SORT_OPTIONS = et ? SORT_OPTIONS_ET : SORT_OPTIONS_EN
   const hasFilters = currentMin || currentMax || currentCategories.length > 0 || currentInStock
 
   const toggle = (key: string) => setOpenDropdown(prev => prev === key ? null : key)
@@ -97,7 +105,7 @@ export default function VevorSearchFilters({
             onClick={() => toggle("categories")}
             className={`${pillBase} ${currentCategories.length > 0 ? pillActive : pillInactive}`}
           >
-            Categories{currentCategories.length > 0 && ` (${currentCategories.length})`}
+            {et ? "Kategooriad" : "Categories"}{currentCategories.length > 0 && ` (${currentCategories.length})`}
             <ChevronDown />
           </button>
           <Dropdown open={openDropdown === "categories"} onClose={() => setOpenDropdown(null)}>
@@ -127,7 +135,7 @@ export default function VevorSearchFilters({
               }}
               className="mt-2 w-full py-1.5 bg-[#D97706] text-white text-sm rounded-lg hover:bg-[#E55E00] transition-colors"
             >
-              Apply
+              {et ? "Rakenda" : "Apply"}
             </button>
           </Dropdown>
         </div>
@@ -139,7 +147,7 @@ export default function VevorSearchFilters({
           onClick={() => toggle("price")}
           className={`${pillBase} ${currentMin || currentMax ? pillActive : pillInactive}`}
         >
-          Price{(currentMin || currentMax) && `: ${currentMin || "0"}–${currentMax || "..."}`}
+          {et ? "Hind" : "Price"}{(currentMin || currentMax) && `: ${currentMin || "0"}–${currentMax || "..."}`}
           <ChevronDown />
         </button>
         <Dropdown open={openDropdown === "price"} onClose={() => setOpenDropdown(null)}>
@@ -177,7 +185,7 @@ export default function VevorSearchFilters({
         onClick={() => router.push(buildUrl({ in_stock: currentInStock ? "" : "1" }))}
         className={`${pillBase} ${currentInStock ? pillActive : pillInactive}`}
       >
-        In Stock
+        {et ? "Laos" : "In Stock"}
         {currentInStock && (
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
         )}
@@ -194,7 +202,7 @@ export default function VevorSearchFilters({
           }}
           className="text-sm text-[#D97706] hover:underline ml-1"
         >
-          Clear filters
+          {et ? "Tühjenda filtrid" : "Clear filters"}
         </button>
       )}
 
