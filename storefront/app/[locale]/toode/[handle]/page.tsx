@@ -369,7 +369,7 @@ export default async function ProductPage({ params }: Props) {
 
       <div className="grid grid-cols-1 lg:grid-cols-[3fr_2fr] gap-6 lg:gap-10 lg:items-start">
         {/* Images */}
-        <ProductGallery images={images} title={localizedTitle} />
+        <ProductGallery images={images} title={localizedTitle} locale={locale} />
 
         {/* Info */}
         <div>

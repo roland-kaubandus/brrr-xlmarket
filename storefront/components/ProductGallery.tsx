@@ -11,9 +11,11 @@ type GalleryImage = {
 type Props = {
   images: GalleryImage[]
   title: string
+  locale?: string
 }
 
-export default function ProductGallery({ images, title }: Props) {
+export default function ProductGallery({ images, title, locale = "et" }: Props) {
+  const en = locale === "en"
   const [active, setActive] = useState(0)
   const [lightbox, setLightbox] = useState(false)
   const mainRef = useRef<HTMLDivElement>(null)
@@ -43,7 +45,7 @@ export default function ProductGallery({ images, title }: Props) {
   if (images.length === 0) {
     return (
       <div className="aspect-square bg-silver rounded-2xl flex items-center justify-center text-muted text-sm font-[family-name:var(--font-dm-sans)]">
-        Pilt puudub
+        {en ? "No image" : "Pilt puudub"}
       </div>
     )
   }
@@ -70,7 +72,7 @@ export default function ProductGallery({ images, title }: Props) {
                 key={img.id}
                 type="button"
                 onClick={() => setActive(i)}
-                aria-label={"Pilt " + (i + 1)}
+                aria-label={(en ? "Image " : "Pilt ") + (i + 1)}
                 aria-pressed={i === active}
                 className={
                   "relative shrink-0 bg-silver rounded-lg border-2 overflow-hidden transition-all duration-200 " +
@@ -106,7 +108,7 @@ export default function ProductGallery({ images, title }: Props) {
           onClick={() => setLightbox(true)}
           role="button"
           tabIndex={0}
-          aria-label="Suurenda pilti"
+          aria-label={en ? "Zoom image" : "Suurenda pilti"}
           onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") setLightbox(true) }}
         >
           <div className="absolute inset-4 transition-transform duration-300 group-hover:scale-[1.02]">
@@ -118,7 +120,7 @@ export default function ProductGallery({ images, title }: Props) {
           </div>
           <div className="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center gap-1.5 bg-off-black/60 text-white text-[11px] px-2.5 py-1 rounded-full backdrop-blur-sm">
             <ZoomIn size={11} strokeWidth={2} />
-            Suurenda
+            {en ? "Zoom" : "Suurenda"}
           </div>
           {images.length > 1 && (
             <div className="absolute bottom-3 left-3 bg-off-black/50 text-white text-[11px] px-2 py-0.5 rounded-full backdrop-blur-sm">
@@ -135,7 +137,7 @@ export default function ProductGallery({ images, title }: Props) {
           onClick={() => setLightbox(true)}
           role="button"
           tabIndex={0}
-          aria-label="Suurenda pilti"
+          aria-label={en ? "Zoom image" : "Suurenda pilti"}
           onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") setLightbox(true) }}
         >
           <div className="absolute inset-3"><img src={images[active].url} alt={title} className="object-contain absolute inset-0 w-full h-full" /></div>
@@ -182,7 +184,7 @@ export default function ProductGallery({ images, title }: Props) {
             <button
               className="absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-white hover:bg-white/20 transition-all duration-200"
               onClick={(e) => { e.stopPropagation(); setActive((i) => i - 1) }}
-              aria-label="Eelmine"
+              aria-label={en ? "Previous" : "Eelmine"}
             >
               <ChevronLeft size={20} strokeWidth={2} />
             </button>
@@ -191,7 +193,7 @@ export default function ProductGallery({ images, title }: Props) {
             <button
               className="absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-white hover:bg-white/20 transition-all duration-200"
               onClick={(e) => { e.stopPropagation(); setActive((i) => i + 1) }}
-              aria-label="Järgmine"
+              aria-label={en ? "Next" : "Järgmine"}
             >
               <ChevronRight size={20} strokeWidth={2} />
             </button>
@@ -205,7 +207,7 @@ export default function ProductGallery({ images, title }: Props) {
           <button
             className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-white hover:bg-white/20 transition-all duration-200"
             onClick={close}
-            aria-label="Sulge"
+            aria-label={en ? "Close" : "Sulge"}
           >
             <X size={18} strokeWidth={2} />
           </button>

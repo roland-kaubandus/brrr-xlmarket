@@ -8,36 +8,36 @@ import categoryImages from "@/lib/category-images.json"
 
 export const revalidate = 300
 
-const DISPLAY_NAMES: Record<string, string> = {
+const DISPLAY_NAMES: Record<string, { et: string; en: string }> = {
   // Estonian handles
-  "ehitus-ja-remont": "Ehitus ja remont",
-  "toostus-ja-seadmed": "Tööriistad ja tööstus",
-  "kodu-ja-aed": "Kodu ja aed",
-  "auto-ja-garaaz": "Auto ja garaaž",
-  "sport-ja-vaba-aeg": "Sport ja vaba aeg",
-  "kunst-ja-kasitoo": "Kunst ja käsitöö",
-  "toitlustus-ja-kook": "Köök ja toitlustus",
-  "elektroonika": "Elektroonika",
-  "lemmikloomad": "Lemmikloomad",
-  "kontor-ja-ladustamine": "Kontor ja ladustamine",
-  "meditsiin-ja-tervishoid": "Meditsiin ja tervishoid",
+  "ehitus-ja-remont": { et: "Ehitus ja remont", en: "Building & Renovation" },
+  "toostus-ja-seadmed": { et: "Tööriistad ja tööstus", en: "Tools & Industrial" },
+  "kodu-ja-aed": { et: "Kodu ja aed", en: "Home & Garden" },
+  "auto-ja-garaaz": { et: "Auto ja garaaž", en: "Automotive" },
+  "sport-ja-vaba-aeg": { et: "Sport ja vaba aeg", en: "Sports & Outdoors" },
+  "kunst-ja-kasitoo": { et: "Kunst ja käsitöö", en: "Arts & Crafts" },
+  "toitlustus-ja-kook": { et: "Köök ja toitlustus", en: "Kitchen & Catering" },
+  "elektroonika": { et: "Elektroonika", en: "Electronics" },
+  "lemmikloomad": { et: "Lemmikloomad", en: "Pets" },
+  "kontor-ja-ladustamine": { et: "Kontor ja ladustamine", en: "Office & Storage" },
+  "meditsiin-ja-tervishoid": { et: "Meditsiin ja tervishoid", en: "Medical & Health" },
   // VEVOR EN handles (used by HOMEPAGE_CATEGORIES)
-  "automotive": "Auto ja garaaž",
-  "tools": "Tööriistad",
-  "outdoors": "Aed ja õu",
-  "plumbing": "Torutööd ja sanitaar",
-  "building-materials": "Ehitus ja remont",
-  "appliances": "Kodumasinad",
-  "kitchen": "Köök ja toitlustus",
-  "flooring": "Põrandad ja plaatimine",
-  "sports-outdoors": "Sport ja vaba aeg",
-  "industrial-scientific": "Tööstus ja labor",
-  "electrical": "Elektroonika",
-  "hardware": "Riistvara ja tööriistad",
-  "lawn-garden": "Aed ja muru",
-  "heating-cooling": "Küte ja jahutus",
-  "health-wellness": "Tervis ja heaolu",
-  "arts-crafts": "Kunst ja käsitöö",
+  "automotive": { et: "Auto ja garaaž", en: "Automotive" },
+  "tools": { et: "Tööriistad", en: "Tools" },
+  "outdoors": { et: "Aed ja õu", en: "Outdoors" },
+  "plumbing": { et: "Torutööd ja sanitaar", en: "Plumbing" },
+  "building-materials": { et: "Ehitus ja remont", en: "Building Materials" },
+  "appliances": { et: "Kodumasinad", en: "Appliances" },
+  "kitchen": { et: "Köök ja toitlustus", en: "Kitchen & Catering" },
+  "flooring": { et: "Põrandad ja plaatimine", en: "Flooring" },
+  "sports-outdoors": { et: "Sport ja vaba aeg", en: "Sports & Outdoors" },
+  "industrial-scientific": { et: "Tööstus ja labor", en: "Industrial & Scientific" },
+  "electrical": { et: "Elektroonika", en: "Electrical" },
+  "hardware": { et: "Riistvara ja tööriistad", en: "Hardware & Tools" },
+  "lawn-garden": { et: "Aed ja muru", en: "Lawn & Garden" },
+  "heating-cooling": { et: "Küte ja jahutus", en: "Heating & Cooling" },
+  "health-wellness": { et: "Tervis ja heaolu", en: "Health & Wellness" },
+  "arts-crafts": { et: "Kunst ja käsitöö", en: "Arts & Crafts" },
 }
 
 const CATEGORY_IMAGES_JSON: Record<string, string> = categoryImages as Record<string, string>
@@ -137,7 +137,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
         return {
           name: cat.name,
           handle: cat.handle,
-          displayName: DISPLAY_NAMES[cat.handle] || cat.name,
+          displayName: DISPLAY_NAMES[cat.handle]?.[locale] || DISPLAY_NAMES[cat.handle]?.et || cat.name,
           image: CATEGORY_IMAGES[cat.handle] || res.products[0]?.thumbnail || null,
           productCount: res.count || 0,
         }
@@ -145,7 +145,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
         return {
           name: cat.name,
           handle: cat.handle,
-          displayName: DISPLAY_NAMES[cat.handle] || cat.name,
+          displayName: DISPLAY_NAMES[cat.handle]?.[locale] || DISPLAY_NAMES[cat.handle]?.et || cat.name,
           image: null,
           productCount: 0,
         }

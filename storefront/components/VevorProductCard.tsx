@@ -58,6 +58,38 @@ function Stars({ rating, productId }: { rating: number; productId: string }) {
   )
 }
 
+/** Extract basic specs from product description text for compare feature */
+function extractCardSpecs(product: Product): Record<string, string> {
+  const specs: Record<string, string> = {}
+  // Try metadata selling points first
+  const meta = product.metadata as Record<string, unknown> | undefined
+  if (meta) {
+    for (let i = 1; i <= 5; i++) {
+      const sp = meta[`selling_point_${i}`]
+      if (typeof sp === "string" && sp.includes(":")) {
+        const [key, ...rest] = sp.split(":")
+        if (key.trim()) specs[key.trim()] = rest.join(":").trim()
+      }
+    }
+  }
+  // Fallback: parse comma-separated "Key: Value" from description
+  if (Object.keys(specs).length === 0 && product.description) {
+    const text = product.description.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim()
+    const parts = text.split(",")
+    for (const part of parts.slice(0, 8)) {
+      const idx = part.indexOf(":")
+      if (idx > 2 && idx < 40) {
+        const key = part.substring(0, idx).trim()
+        const value = part.substring(idx + 1).trim()
+        if (key.split(" ").length <= 4 && value.length > 0 && value.length < 80) {
+          specs[key] = value
+        }
+      }
+    }
+  }
+  return specs
+}
+
 export default function VevorProductCard({ product, locale }: { product: Product; locale?: string }) {
   const pathname = usePathname()
   const resolvedLocale = locale || (pathname.split("/")[1] === "en" ? "en" : "et")
@@ -181,7 +213,7 @@ export default function VevorProductCard({ product, locale }: { product: Product
                     id: product.id, handle: product.handle, title: product.title,
                     thumbnail: product.thumbnail || null,
                     price: price ? formatPrice(price.calculated_amount, price.currency_code) : "",
-                    specs: {},
+                    specs: extractCardSpecs(product),
                   })
                 }
               }}
