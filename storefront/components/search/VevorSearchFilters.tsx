@@ -175,7 +175,7 @@ export default function VevorSearchFilters({
             }}
             className="mt-2 w-full py-1.5 bg-[#D97706] text-white text-sm rounded-lg hover:bg-[#E55E00] transition-colors"
           >
-            Apply
+            {et ? "Rakenda" : "Apply"}
           </button>
         </Dropdown>
       </div>
@@ -215,7 +215,7 @@ export default function VevorSearchFilters({
           onClick={() => toggle("sort")}
           className={`${pillBase} ${pillInactive}`}
         >
-          {SORT_OPTIONS.find(o => o.value === currentSort)?.label || "Best Match"}
+          {SORT_OPTIONS.find(o => o.value === currentSort)?.label || SORT_OPTIONS[0].label}
           <ChevronDown />
         </button>
         <Dropdown open={openDropdown === "sort"} onClose={() => setOpenDropdown(null)}>
