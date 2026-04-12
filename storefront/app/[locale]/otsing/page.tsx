@@ -154,7 +154,7 @@ export default async function SearchPage({ searchParams, params }: Props) {
     <div className="bg-white min-h-screen">
       <div className="max-w-[1360px] mx-auto px-4 sm:px-6 py-6">
         {/* Breadcrumb */}
-        <nav className="text-xs text-[#888] mb-4">
+        <nav className="text-xs text-[#888] mb-4 min-h-[20px]">
           <Link href={`/${locale}`} className="hover:text-[#D97706]">{locale === "en" ? "Home" : "Avaleht"}</Link>
           <span className="mx-1.5">&gt;</span>
           <span className="text-[#1E293B]">{TAG_TITLES[activeTag]?.[locale] || SORT_TITLES[currentSort]?.[locale] || (locale === "en" ? "Search Results" : "Otsingutulemused")}</span>

@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { getProduct, getProducts, formatPrice } from "@/lib/medusa"
+import { getProduct, getProducts, getCategoryByHandle, formatPrice } from "@/lib/medusa"
 import { sanitizeHtml } from "@/lib/sanitize"
 import { notFound } from "next/navigation"
 import ProductInfoAccordion from "@/components/ProductInfoAccordion"
@@ -252,7 +252,24 @@ export default async function ProductPage({ params }: Props) {
   const manualLinks = [...media.manuals, ...getManualLinks(product.metadata)].filter(
     (item, index, array) => array.findIndex((candidate) => candidate.href === item.href) === index
   )
-  const productTypeTrail = getProductTypeTrail(metadata, feedEntry)
+  const productTypeTrailFallback = getProductTypeTrail(metadata, feedEntry)
+
+  // Build breadcrumb from Medusa category ancestor tree (preferred) or metadata fallback
+  let productTypeTrail = productTypeTrailFallback
+  const linkedCategory = product.categories?.[0]
+  if (linkedCategory?.handle) {
+    const catWithAncestors = await getCategoryByHandle(linkedCategory.handle)
+    if (catWithAncestors) {
+      const trail: Array<{ name: string; handle: string }> = []
+      let parent = catWithAncestors.parent_category
+      while (parent) {
+        trail.unshift({ name: parent.name, handle: parent.handle })
+        parent = (parent as any).parent_category
+      }
+      trail.push({ name: catWithAncestors.name, handle: catWithAncestors.handle })
+      productTypeTrail = trail
+    }
+  }
   const mainDescriptionHtml = product.description || feedEntry?.descriptionHtml || null
 
   // Selling points from metadata (feed 571) or feed cache
@@ -348,9 +365,9 @@ export default async function ProductPage({ params }: Props) {
         price={price ? formatPrice(price.calculated_amount, price.currency_code) : ""}
       />
 
-      {/* Breadcrumb — category path from productTypeTrail */}
+      {/* Breadcrumb — category ancestor chain */}
       <nav
-        className="text-xs text-[#64748B] mb-5"
+        className="text-xs text-[#64748B] mb-5 min-h-[20px]"
         aria-label="Breadcrumb"
       >
         <Link

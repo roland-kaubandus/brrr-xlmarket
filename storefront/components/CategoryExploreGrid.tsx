@@ -1,4 +1,5 @@
 import Link from "next/link"
+import SubcategoryScroller from "@/components/SubcategoryScroller"
 
 type CategoryItem = {
   name: string
@@ -26,8 +27,7 @@ export default function CategoryExploreGrid({
           </h2>
         </div>
 
-        {/* Compact horizontal scroll on all sizes */}
-        <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-hide -mx-1 px-1">
+        <SubcategoryScroller>
           {categories.map((cat) => {
             const display = cat.displayName || cat.name
             const imgUrl = cat.image || null
@@ -58,7 +58,7 @@ export default function CategoryExploreGrid({
               </Link>
             )
           })}
-        </div>
+        </SubcategoryScroller>
       </div>
     </section>
   )
