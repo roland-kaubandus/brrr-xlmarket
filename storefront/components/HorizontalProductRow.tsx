@@ -13,17 +13,20 @@ export default function HorizontalProductRow({ title, products, locale }: Props)
   if (products.length === 0) return null
 
   return (
-    <section className="py-4 md:py-8">
-      <div className="max-w-[1360px] mx-auto px-3 md:px-4">
-        <h2 className="font-bold text-[15px] md:text-xl text-[#1E293B] mb-3 md:mb-5">
-          {title}
-        </h2>
+    <section className="py-5 md:py-8">
+      <div className="max-w-[1360px] mx-auto px-4">
+        <div className="flex items-center gap-2 mb-3 md:mb-5">
+          <div className="w-1 h-5 rounded-full bg-[#D97706]" />
+          <h2 className="font-bold text-[17px] md:text-xl text-[#1E293B] tracking-tight">
+            {title}
+          </h2>
+        </div>
       </div>
-      {/* Mobile: horizontal scroll */}
-      <div className="md:hidden overflow-x-auto scrollbar-hide pl-3">
-        <div className="flex gap-3 pr-3" style={{ width: "max-content" }}>
+      {/* Mobile: horizontal scroll with bigger cards */}
+      <div className="md:hidden overflow-x-auto scrollbar-hide pl-4">
+        <div className="flex gap-3 pr-4" style={{ width: "max-content" }}>
           {products.map((p) => (
-            <div key={p.id} className="w-[160px] shrink-0">
+            <div key={p.id} className="w-[185px] shrink-0">
               <VevorProductCard product={p} locale={locale} />
             </div>
           ))}

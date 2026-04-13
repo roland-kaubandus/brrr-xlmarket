@@ -35,13 +35,13 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       type: "website",
       siteName: "XL Market",
       url: "https://xlmarket.store",
-      images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "XL Market" }],
+      images: [{ url: "https://xlmarket.store/og-image.png", width: 1200, height: 630, alt: "XL Market" }],
     },
     alternates: {
-      canonical: `/${locale}`,
+      canonical: `https://xlmarket.store/${locale}`,
       languages: {
-        et: "/et",
-        en: "/en",
+        et: "https://xlmarket.store/et",
+        en: "https://xlmarket.store/en",
       },
     },
     metadataBase: new URL("https://xlmarket.store"),

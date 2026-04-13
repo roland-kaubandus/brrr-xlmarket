@@ -62,7 +62,7 @@ export default function BannerCarousel({ locale = "en" }: { locale?: string }) {
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
-      <div className="relative overflow-hidden rounded-2xl group">
+      <div className="relative overflow-hidden rounded-xl md:rounded-2xl group">
         {/* Slides */}
         <div
           className="flex transition-transform duration-700 ease-out"
@@ -71,7 +71,7 @@ export default function BannerCarousel({ locale = "en" }: { locale?: string }) {
           {BANNERS.map((b, i) => (
             <div
               key={i}
-              className="w-full flex-shrink-0 relative h-[180px] sm:h-[220px] md:h-[260px] lg:h-[300px]"
+              className="w-full flex-shrink-0 relative h-[200px] sm:h-[220px] md:h-[260px] lg:h-[300px]"
             >
               {/* Background image */}
               <Image
@@ -83,21 +83,22 @@ export default function BannerCarousel({ locale = "en" }: { locale?: string }) {
                 priority={i === 0}
               />
 
-              {/* Gradient overlay */}
+              {/* Gradient overlay — stronger on mobile for readability */}
               <div className={`absolute inset-0 bg-gradient-to-r ${b.overlay}`} />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent md:hidden" />
 
               {/* Content */}
               <div
-                className={`absolute inset-0 flex items-center ${
+                className={`absolute inset-0 flex items-end pb-6 md:items-center md:pb-0 ${
                   b.align === "right" ? "justify-end" : "justify-start"
                 }`}
               >
                 <div
-                  className={`relative z-10 px-8 sm:px-12 md:px-16 lg:px-20 max-w-xl ${
-                    b.align === "right" ? "text-right" : "text-left"
+                  className={`relative z-10 px-5 sm:px-12 md:px-16 lg:px-20 max-w-xl ${
+                    b.align === "right" ? "md:text-right" : "text-left"
                   }`}
                 >
-                  <h2 className="font-extrabold text-white text-xl sm:text-2xl md:text-[36px] lg:text-[42px] mb-2 md:mb-4 leading-[1.1] tracking-tight drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)]">
+                  <h2 className="font-extrabold text-white text-[22px] sm:text-2xl md:text-[36px] lg:text-[42px] mb-2 md:mb-4 leading-[1.1] tracking-tight drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)]">
                     {b.title}
                   </h2>
                   <p className="hidden sm:block text-white/80 text-sm md:text-[15px] mb-5 md:mb-7 leading-relaxed max-w-[420px] drop-shadow-md">
@@ -105,10 +106,10 @@ export default function BannerCarousel({ locale = "en" }: { locale?: string }) {
                   </p>
                   <Link
                     href={`/${locale}${b.link}`}
-                    className="inline-flex items-center gap-1.5 bg-[#D97706] hover:bg-[#B45309] text-white font-semibold text-xs md:text-[15px] px-4 md:px-9 py-2 md:py-3.5 rounded-lg md:rounded-xl transition-all duration-200 shadow-[0_4px_16px_rgba(217,119,6,0.3)]"
+                    className="inline-flex items-center gap-1.5 bg-[#D97706] hover:bg-[#B45309] text-white font-semibold text-[13px] md:text-[15px] px-5 md:px-9 py-2.5 md:py-3.5 rounded-lg md:rounded-xl transition-all duration-200 shadow-[0_4px_16px_rgba(217,119,6,0.3)]"
                   >
                     {b.cta}
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><path d="m9 18 6-6-6-6"/></svg>
                   </Link>
                 </div>
               </div>
@@ -117,15 +118,15 @@ export default function BannerCarousel({ locale = "en" }: { locale?: string }) {
         </div>
 
         {/* Dot indicators */}
-        <div className="absolute bottom-5 left-1/2 -translate-x-1/2 flex gap-2">
+        <div className="absolute bottom-2.5 md:bottom-5 left-1/2 -translate-x-1/2 flex gap-2">
           {BANNERS.map((_, i) => (
             <button
               key={i}
               onClick={() => setCurrent(i)}
               className={`h-[3px] rounded-full transition-all duration-500 ${
                 i === current
-                  ? "bg-white w-10"
-                  : "bg-white/30 hover:bg-white/50 w-5"
+                  ? "bg-white w-8 md:w-10"
+                  : "bg-white/30 hover:bg-white/50 w-4 md:w-5"
               }`}
               aria-label={`Slide ${i + 1}`}
             />

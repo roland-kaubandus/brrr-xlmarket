@@ -14,17 +14,30 @@ async function medusaFetch<T>(path: string): Promise<T> {
 }
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const entries: MetadataRoute.Sitemap = [
-    { url: `${BASE_URL}/en`, lastModified: new Date(), changeFrequency: "daily", priority: 1.0 },
-    { url: `${BASE_URL}/en/kategooriad`, changeFrequency: "daily", priority: 0.8 },
-    { url: `${BASE_URL}/en/meist`, changeFrequency: "monthly", priority: 0.3 },
-    { url: `${BASE_URL}/en/kontakt`, changeFrequency: "monthly", priority: 0.3 },
-    { url: `${BASE_URL}/en/tarne`, changeFrequency: "monthly", priority: 0.3 },
-    { url: `${BASE_URL}/en/tagastamine`, changeFrequency: "monthly", priority: 0.3 },
-    { url: `${BASE_URL}/en/tingimused`, changeFrequency: "monthly", priority: 0.3 },
-    { url: `${BASE_URL}/en/privaatsus`, changeFrequency: "monthly", priority: 0.3 },
-    { url: `${BASE_URL}/en/kupsised`, changeFrequency: "monthly", priority: 0.3 },
+  const LOCALES = ["en", "et"]
+  const STATIC_PAGES = [
+    { path: "", changeFrequency: "daily" as const, priority: 1.0 },
+    { path: "/kategooriad", changeFrequency: "daily" as const, priority: 0.8 },
+    { path: "/meist", changeFrequency: "monthly" as const, priority: 0.3 },
+    { path: "/kontakt", changeFrequency: "monthly" as const, priority: 0.3 },
+    { path: "/tarne", changeFrequency: "monthly" as const, priority: 0.3 },
+    { path: "/tagastamine", changeFrequency: "monthly" as const, priority: 0.3 },
+    { path: "/tingimused", changeFrequency: "monthly" as const, priority: 0.3 },
+    { path: "/privaatsus", changeFrequency: "monthly" as const, priority: 0.3 },
+    { path: "/kupsised", changeFrequency: "monthly" as const, priority: 0.3 },
   ]
+
+  const entries: MetadataRoute.Sitemap = []
+  for (const locale of LOCALES) {
+    for (const page of STATIC_PAGES) {
+      entries.push({
+        url: `${BASE_URL}/${locale}${page.path}`,
+        lastModified: page.path === "" ? new Date() : undefined,
+        changeFrequency: page.changeFrequency,
+        priority: page.priority,
+      })
+    }
+  }
 
   try {
     // Categories (fetch in batches)
@@ -36,11 +49,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         `/store/product-categories?limit=${catLimit}&offset=${catOffset}`
       )
       for (const cat of catRes.product_categories) {
-        entries.push({
-          url: `${BASE_URL}/en/kategooriad/${cat.handle}`,
-          changeFrequency: "daily",
-          priority: 0.7,
-        })
+        for (const locale of LOCALES) {
+          entries.push({
+            url: `${BASE_URL}/${locale}/kategooriad/${cat.handle}`,
+            changeFrequency: "daily",
+            priority: 0.7,
+          })
+        }
       }
       catOffset += catLimit
       catHasMore = catOffset < catRes.count
@@ -55,12 +70,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         `/store/products?region_id=${REGION_ID}&limit=${limit}&offset=${offset}&fields=handle,updated_at`
       )
       for (const p of prodRes.products) {
-        entries.push({
-          url: `${BASE_URL}/en/toode/${p.handle}`,
-          lastModified: p.updated_at ? new Date(p.updated_at) : undefined,
-          changeFrequency: "weekly",
-          priority: 0.6,
-        })
+        for (const locale of LOCALES) {
+          entries.push({
+            url: `${BASE_URL}/${locale}/toode/${p.handle}`,
+            lastModified: p.updated_at ? new Date(p.updated_at) : undefined,
+            changeFrequency: "weekly",
+            priority: 0.6,
+          })
+        }
       }
       offset += limit
       hasMore = offset < prodRes.count

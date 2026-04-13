@@ -354,7 +354,7 @@ export default async function ProductPage({ params }: Props) {
 
   return (
     <div className="max-w-[1360px] mx-auto px-4 sm:px-6 py-8 sm:py-12">
-      <JsonLdProduct product={product} price={price} />
+      <JsonLdProduct product={product} price={price} locale={locale} />
       <JsonLdBreadcrumb items={breadcrumbItems} />
       {/* Track view — XLM-47 */}
       <TrackProductView

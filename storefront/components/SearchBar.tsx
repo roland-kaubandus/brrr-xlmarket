@@ -159,8 +159,8 @@ export default function SearchBar({ locale = "et" }: { locale?: string }) {
   const currentPlaceholder = PLACEHOLDER_TEXTS[placeholderIdx]
 
   return (
-    <div ref={wrapperRef} className="relative flex-1 max-w-[600px]">
-      <div className="flex items-center bg-white rounded-full overflow-hidden h-[34px] md:h-[40px]">
+    <div ref={wrapperRef} className="relative w-full md:max-w-[600px]">
+      <div className="flex items-center bg-white rounded-full overflow-hidden h-[44px] md:h-[40px]">
         <div className="relative flex-1">
           <input
             ref={inputRef}
@@ -170,12 +170,12 @@ export default function SearchBar({ locale = "et" }: { locale?: string }) {
             onFocus={() => results?.hits.length && setIsOpen(true)}
             onKeyDown={handleKey}
             placeholder=""
-            className="w-full bg-transparent pl-3 md:pl-4 pr-2 py-1.5 md:py-2 text-[13px] md:text-[14px] text-[#1E293B] placeholder:text-[#64748B] focus:outline-none"
+            className="w-full bg-transparent pl-4 pr-2 py-2.5 md:py-2 text-[15px] md:text-[14px] text-[#1E293B] placeholder:text-[#64748B] focus:outline-none"
             autoComplete="off"
           />
           {!query && (
             <span
-              className={`absolute left-3 md:left-4 top-1/2 -translate-y-1/2 text-[12px] md:text-[14px] text-[#64748B] pointer-events-none transition-opacity duration-300 ${
+              className={`absolute left-4 top-1/2 -translate-y-1/2 text-[14px] md:text-[14px] text-[#64748B] pointer-events-none transition-opacity duration-300 ${
                 animating ? "opacity-0" : "opacity-100"
               }`}
             >
@@ -188,19 +188,19 @@ export default function SearchBar({ locale = "et" }: { locale?: string }) {
           <button
             type="button"
             onClick={() => { setQuery(""); setResults(null); setIsOpen(false); inputRef.current?.focus() }}
-            className="px-2 text-[#64748B] hover:text-[#1E293B]"
+            className="px-3 text-[#64748B] hover:text-[#1E293B]"
             aria-label="Clear"
           >
-            <X size={16} strokeWidth={1.5} />
+            <X size={18} strokeWidth={1.5} />
           </button>
         )}
         <button
           type="button"
           onClick={goToResults}
-          className="h-[40px] w-[48px] bg-[#D97706] hover:bg-[#B45309] flex items-center justify-center rounded-r-full transition-colors"
+          className="h-[44px] md:h-[40px] w-[52px] bg-[#D97706] hover:bg-[#B45309] flex items-center justify-center rounded-r-full transition-colors"
           aria-label="Search"
         >
-          <Search size={18} strokeWidth={2} className="text-white" />
+          <Search size={20} strokeWidth={2} className="text-white" />
         </button>
       </div>
 
@@ -211,27 +211,27 @@ export default function SearchBar({ locale = "et" }: { locale?: string }) {
             <button
               key={hit.id}
               onClick={() => goToProduct(hit.handle)}
-              className={`flex items-center gap-3 w-full px-4 py-2.5 text-left transition-colors ${
+              className={`flex items-center gap-3 w-full px-4 py-3 text-left transition-colors ${
                 activeIdx === i ? "bg-[#FFFBEB]" : "hover:bg-[#FAFAFA]"
               }`}
             >
               {hit.thumbnail ? (
-                <div className="w-10 h-10 flex-shrink-0 bg-[#F7F7F7] rounded overflow-hidden">
-                  <Image src={hit.thumbnail} alt="" width={40} height={40} className="w-full h-full object-contain" unoptimized />
+                <div className="w-12 h-12 flex-shrink-0 bg-[#F7F7F7] rounded overflow-hidden">
+                  <Image src={hit.thumbnail} alt="" width={48} height={48} className="w-full h-full object-contain" unoptimized />
                 </div>
               ) : (
-                <div className="w-10 h-10 flex-shrink-0 bg-[#F7F7F7] rounded" />
+                <div className="w-12 h-12 flex-shrink-0 bg-[#F7F7F7] rounded" />
               )}
               <div className="flex-1 min-w-0">
                 <p
-                  className="text-[13px] text-[#1E293B] truncate [&>mark]:bg-[#FFFBEB] [&>mark]:text-[#D97706] [&>mark]:font-semibold"
+                  className="text-[14px] text-[#1E293B] truncate [&>mark]:bg-[#FFFBEB] [&>mark]:text-[#D97706] [&>mark]:font-semibold"
                   dangerouslySetInnerHTML={{ __html: hit._formatted?.title || hit.title }}
                 />
                 {hit.categories?.[0] && (
-                  <p className="text-[11px] text-[#64748B]">{hit.categories[0]}</p>
+                  <p className="text-[12px] text-[#64748B] mt-0.5">{hit.categories[0]}</p>
                 )}
               </div>
-              <span className="text-[13px] font-semibold text-[#1E293B] whitespace-nowrap">
+              <span className="text-[14px] font-semibold text-[#1E293B] whitespace-nowrap">
                 {formatPrice(hit.price)}
               </span>
             </button>
@@ -239,7 +239,7 @@ export default function SearchBar({ locale = "et" }: { locale?: string }) {
           {results.totalHits > results.hits.length && (
             <button
               onClick={goToResults}
-              className={`w-full px-4 py-3 text-center text-[13px] font-medium text-[#D97706] hover:bg-[#FFFBEB] border-t border-[#E2E8F0] transition-colors ${
+              className={`w-full px-4 py-3.5 text-center text-[14px] font-medium text-[#D97706] hover:bg-[#FFFBEB] border-t border-[#E2E8F0] transition-colors ${
                 activeIdx === results.hits.length ? "bg-[#FFFBEB]" : ""
               }`}
             >
@@ -251,7 +251,7 @@ export default function SearchBar({ locale = "et" }: { locale?: string }) {
 
       {loading && query && (
         <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-lg shadow-sm z-50 px-4 py-4 text-center">
-          <span className="text-[13px] text-[#64748B]">Searching...</span>
+          <span className="text-[14px] text-[#64748B]">Searching...</span>
         </div>
       )}
     </div>

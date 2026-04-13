@@ -23,22 +23,22 @@ export default function VevorHeader({ categories, locale = "et" }: { categories:
   const NAV_LINKS = getNavLinks(locale)
   return (
     <header className="sticky top-0 z-30">
-      {/* Row 1: Black top bar */}
+      {/* Row 1: Dark top bar — logo + auth + cart */}
       <div className="bg-[#1E293B]">
-        <div className="max-w-[1400px] mx-auto px-3 md:px-4 h-[48px] md:h-[56px] flex items-center gap-2 md:gap-4">
+        <div className="max-w-[1400px] mx-auto px-4 h-[52px] md:h-[56px] flex items-center gap-3 md:gap-4">
           {/* Logo */}
           <Link href={`/${locale}`} className="shrink-0 flex items-baseline gap-[2px]">
-            <span className="text-[20px] md:text-[28px] font-extrabold text-[#D97706] leading-none tracking-tight">XL</span>
-            <span className="text-[20px] md:text-[28px] font-normal text-white leading-none tracking-tight">Market</span>
+            <span className="text-[22px] md:text-[28px] font-extrabold text-[#D97706] leading-none tracking-tight">XL</span>
+            <span className="text-[22px] md:text-[28px] font-normal text-white leading-none tracking-tight">Market</span>
           </Link>
 
-          {/* Search bar — inline on all sizes */}
-          <div className="flex-1 min-w-0">
+          {/* Search bar — desktop inline, hidden on mobile (shown in row 2) */}
+          <div className="hidden md:block flex-1 min-w-0">
             <SearchBar locale={locale} />
           </div>
 
           {/* Right side */}
-          <div className="flex items-center gap-1.5 md:gap-4 shrink-0">
+          <div className="flex items-center gap-3 md:gap-4 shrink-0 ml-auto">
             {/* Delivery indicator — desktop */}
             <div className="hidden lg:flex items-center gap-2 text-white text-[13px]">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-white/70">
@@ -47,7 +47,7 @@ export default function VevorHeader({ categories, locale = "et" }: { categories:
               <span className="text-white/70">{locale === "et" ? "Tarne" : "Delivery to"} <strong className="text-white">{locale === "et" ? "Eestisse" : "Estonia"}</strong></span>
             </div>
 
-            {/* Sign in / Account — desktop */}
+            {/* Sign in / Account */}
             <AuthButton />
 
             {/* Cart */}
@@ -58,9 +58,14 @@ export default function VevorHeader({ categories, locale = "et" }: { categories:
         </div>
       </div>
 
-      {/* Row 2: Orange navigation bar */}
+      {/* Row 2: Mobile search bar — full width */}
+      <div className="md:hidden bg-[#1E293B] pb-2.5 px-4">
+        <SearchBar locale={locale} />
+      </div>
+
+      {/* Row 3: Orange navigation bar */}
       <div className="bg-[#D97706]">
-        <div className="max-w-[1400px] mx-auto px-2 md:px-4 flex items-center h-[36px] md:h-[44px]">
+        <div className="max-w-[1400px] mx-auto px-2 md:px-4 flex items-center h-[40px] md:h-[44px]">
           {/* Categories button + mega menu */}
           <MegaMenu categories={categories} locale={locale} />
 

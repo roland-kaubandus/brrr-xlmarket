@@ -3,14 +3,15 @@ import type { Product } from "@/lib/medusa"
 type Props = {
   product: Product
   price?: { calculated_amount: number; currency_code: string }
+  locale?: string
 }
 
-export default function JsonLdProduct({ product, price }: Props) {
+export default function JsonLdProduct({ product, price, locale = "en" }: Props) {
   const jsonLd: Record<string, any> = {
     "@context": "https://schema.org",
     "@type": "Product",
     name: product.title,
-    url: `https://xlmarket.store/en/toode/${product.handle}`,
+    url: `https://xlmarket.store/${locale}/toode/${product.handle}`,
     description: product.description
       ? product.description.replace(/<[^>]*>/g, "").substring(0, 500)
       : product.title,
