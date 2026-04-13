@@ -7,6 +7,7 @@ set -e
 echo "=== XLMARKET systemd teenuste installimine ==="
 
 # Kopeeri unit failid
+cp /home/brrr/brrr-xlmarket/systemd/xlmarket-docker.service /etc/systemd/system/
 cp /home/brrr/brrr-xlmarket/systemd/xlmarket-medusa.service /etc/systemd/system/
 cp /home/brrr/brrr-xlmarket/systemd/xlmarket-storefront.service /etc/systemd/system/
 
@@ -19,11 +20,14 @@ systemctl enable xlmarket-storefront.service
 
 echo ""
 echo "Teenused installitud. Kasutamine:"
+echo "  sudo systemctl start xlmarket-docker"
 echo "  sudo systemctl start xlmarket-medusa"
 echo "  sudo systemctl start xlmarket-storefront"
+echo "  sudo systemctl status xlmarket-docker"
 echo "  sudo systemctl status xlmarket-medusa"
 echo "  sudo journalctl -u xlmarket-medusa -f"
 echo ""
 echo "NB: Enne käivitamist peata nohup protsessid:"
+echo "  pkill -f 'docker compose up -d db redis'"
 echo "  pkill -f 'medusa.*start.*9001'"
 echo "  pkill -f 'next start.*3030'"

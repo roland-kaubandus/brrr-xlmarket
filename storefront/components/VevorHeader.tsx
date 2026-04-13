@@ -3,7 +3,6 @@ import NavCartButton from "@/components/NavCartButton"
 import SearchBar from "@/components/SearchBar"
 import MegaMenu from "@/components/MegaMenu"
 import AuthButton from "@/components/AuthButton"
-import type { CategoryNode } from "@/components/MegaMenu"
 
 const getNavLinks = (locale: string) => locale === "et" ? [
   { label: "Sooduspakkumised", href: `/${locale}/otsing?tag=deals` },
@@ -19,7 +18,7 @@ const getNavLinks = (locale: string) => locale === "et" ? [
   { label: "About Us", href: `/${locale}/meist` },
 ]
 
-export default function VevorHeader({ categories, locale = "et" }: { categories: CategoryNode[]; locale?: string }) {
+export default function VevorHeader({ locale = "et" }: { locale?: string }) {
   const NAV_LINKS = getNavLinks(locale)
   return (
     <header className="sticky top-0 z-30">
@@ -67,7 +66,7 @@ export default function VevorHeader({ categories, locale = "et" }: { categories:
       <div className="bg-[#D97706]">
         <div className="max-w-[1400px] mx-auto px-2 md:px-4 flex items-center h-[40px] md:h-[44px]">
           {/* Categories button + mega menu */}
-          <MegaMenu categories={categories} locale={locale} />
+          <MegaMenu locale={locale} />
 
           {/* Nav links — desktop */}
           <nav className="hidden md:flex items-center">

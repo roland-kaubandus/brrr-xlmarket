@@ -55,6 +55,8 @@ const OPENAI_API_KEY = process.env.OPENAI_API_KEY || ""
 const OPENAI_BASE_URL = (process.env.OPENAI_BASE_URL || "https://api.openai.com/v1").replace(/\/$/, "")
 const OPENAI_MODEL = process.env.OPENAI_MODEL || "gpt-5.4-mini"
 const CODEX_BIN = process.env.CODEX_BIN || (process.platform === "win32" ? "codex.exe" : "codex")
+const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY || ""
+const ANTHROPIC_MODEL = process.env.ANTHROPIC_MODEL || "claude-haiku-4-5-20251001"
 let feedCacheBySku = null
 
 function normalizeText(value) {
@@ -465,7 +467,61 @@ async function runCodexTranslation(chunk) {
   }
 }
 
+async function runAnthropicTranslation(chunk) {
+  if (!ANTHROPIC_API_KEY) {
+    throw new Error("ANTHROPIC_API_KEY puudub")
+  }
+
+  const prompt = makePrompt(chunk)
+  const response = await fetch("https://api.anthropic.com/v1/messages", {
+    method: "POST",
+    headers: {
+      "x-api-key": ANTHROPIC_API_KEY,
+      "anthropic-version": "2023-06-01",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      model: ANTHROPIC_MODEL,
+      max_tokens: 8192,
+      messages: [{ role: "user", content: prompt }],
+    }),
+  })
+
+  if (!response.ok) {
+    const body = await response.text()
+    throw new Error(`Anthropic API ${response.status}: ${body.slice(0, 400)}`)
+  }
+
+  const data = await response.json()
+  if (data.usage) {
+    const inputTokens = data.usage.input_tokens ?? 0
+    const outputTokens = data.usage.output_tokens ?? 0
+    console.log(`TOKENS model=${ANTHROPIC_MODEL} input=${inputTokens} output=${outputTokens} total=${inputTokens + outputTokens}`)
+  }
+
+  const rawText = data.content?.[0]?.text || ""
+  if (!rawText) {
+    throw new Error("Anthropic vastusest ei leitud teksti")
+  }
+
+  // Extract JSON from response (may contain markdown code block)
+  const jsonMatch = rawText.match(/\{[\s\S]*"translations"[\s\S]*\}/)
+  if (!jsonMatch) {
+    throw new Error("Anthropic vastus ei sisaldanud translations JSON-i")
+  }
+
+  const parsed = JSON.parse(jsonMatch[0])
+  if (!parsed || !Array.isArray(parsed.translations)) {
+    throw new Error("Anthropic vastus ei sisaldanud translations massiivi")
+  }
+
+  return parsed.translations
+}
+
 async function runTranslation(chunk) {
+  if (ANTHROPIC_API_KEY) {
+    return runAnthropicTranslation(chunk)
+  }
   if (OPENAI_API_KEY) {
     return runOpenAiTranslation(chunk)
   }

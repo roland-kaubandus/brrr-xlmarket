@@ -1,17 +1,27 @@
 import nodemailer from "nodemailer"
 
+const SMTP_HOST = process.env.SMTP_HOST || "127.0.0.1"
+const SMTP_PORT = parseInt(process.env.SMTP_PORT || "25", 10)
+const SMTP_USER = process.env.SMTP_USER || ""
+const SMTP_PASSWORD = process.env.SMTP_PASSWORD || ""
+
 const transporter = nodemailer.createTransport({
-  host: process.env.SMTP_HOST || "smtp.sendgrid.net",
-  port: parseInt(process.env.SMTP_PORT || "587"),
+  host: SMTP_HOST,
+  port: SMTP_PORT,
   secure: false,
-  auth: {
-    user: process.env.SMTP_USER || "apikey",
-    pass: process.env.SMTP_PASSWORD || "",
-  },
+  ...(SMTP_PASSWORD
+    ? {
+        auth: {
+          user: SMTP_USER || "apikey",
+          pass: SMTP_PASSWORD,
+        },
+      }
+    : {}),
 })
 
 const EMAIL_FROM = process.env.EMAIL_FROM || "info@xlmarket.eu"
 const EMAIL_ADMIN = process.env.EMAIL_ADMIN || "tarmo@xlmarket.eu"
+const EMAIL_INVOICE = process.env.EMAIL_INVOICE || "risto.oitmaa@gmail.com"
 const STORE_URL = process.env.STORE_URL || "https://xlmarket.eu"
 
 interface SendEmailOptions {
@@ -21,11 +31,6 @@ interface SendEmailOptions {
 }
 
 export async function sendEmail({ to, subject, html }: SendEmailOptions) {
-  if (!process.env.SMTP_PASSWORD) {
-    console.log(`[EMAIL SKIP] SMTP not configured. Would send to ${to}: ${subject}`)
-    return
-  }
-
   await transporter.sendMail({
     from: `"XLMARKET" <${EMAIL_FROM}>`,
     to,
@@ -86,6 +91,9 @@ export interface OrderData {
   tax_total?: number
   currency_code: string
   items: OrderItem[]
+  payment_collections?: {
+    status?: string
+  }[]
   shipping_address?: {
     first_name?: string
     last_name?: string
@@ -99,20 +107,11 @@ export interface OrderData {
 export async function sendOrderConfirmation(order: OrderData) {
   const name = order.shipping_address?.first_name || "Klient"
   const orderNum = order.display_id || order.id.slice(-8)
-  const itemsHtml = order.items
-    .map(
-      (item) =>
-        `<tr>
-          <td style="padding: 8px 0; border-bottom: 1px solid #f3f4f6;">${escapeHtml(item.title)}</td>
-          <td style="padding: 8px 0; border-bottom: 1px solid #f3f4f6; text-align: center;">${item.quantity}</td>
-          <td style="padding: 8px 0; border-bottom: 1px solid #f3f4f6; text-align: right;">${formatPrice(item.unit_price * item.quantity, item.currency_code || order.currency_code)}</td>
-        </tr>`
-    )
-    .join("")
+  const itemsHtml = renderOrderItems(order)
 
   const html = emailWrapper(`
-    <h1 style="font-size: 22px; color: #111827; margin: 0 0 20px;">Tellimus kinnitatud</h1>
-    <p style="color: #4b5563; margin: 0 0 20px;">Tere, ${escapeHtml(name)}! T&auml;name teid tellimuse eest.</p>
+    <h1 style="font-size: 22px; color: #111827; margin: 0 0 20px;">Aitäh tellimuse eest</h1>
+    <p style="color: #4b5563; margin: 0 0 20px;">Tere, ${escapeHtml(name)}! Oleme teie tellimuse vastu võtnud.</p>
     <div style="background: #f9fafb; padding: 15px; margin-bottom: 20px;">
       <p style="margin: 0; font-weight: 600;">Tellimus #${orderNum}</p>
     </div>
@@ -148,7 +147,7 @@ export async function sendOrderConfirmation(order: OrderData) {
 
   await sendEmail({
     to: order.email,
-    subject: `Tellimus #${orderNum} kinnitatud — XLMARKET`,
+    subject: `Aitäh tellimuse eest #${orderNum} — XLMARKET`,
     html,
   })
 
@@ -168,6 +167,57 @@ export async function sendOrderConfirmation(order: OrderData) {
   })
 }
 
+export async function sendInvoice(order: OrderData) {
+  const name = order.shipping_address?.first_name || "Klient"
+  const orderNum = order.display_id || order.id.slice(-8)
+  const itemsHtml = renderOrderItems(order)
+
+  const html = emailWrapper(`
+    <h1 style="font-size: 22px; color: #111827; margin: 0 0 20px;">Arve</h1>
+    <p style="color: #4b5563; margin: 0 0 20px;">Tere, ${escapeHtml(name)}! Teie makse on kinnitatud. Allpool on arve teie tellimusele #${orderNum}.</p>
+    <div style="background: #f9fafb; padding: 15px; margin-bottom: 20px;">
+      <p style="margin: 0; font-weight: 600;">Arve #${orderNum}</p>
+      <p style="margin: 6px 0 0; color: #6b7280;">Makse on kinnitatud</p>
+    </div>
+    <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
+      <thead>
+        <tr style="border-bottom: 2px solid #e5e7eb;">
+          <th style="text-align: left; padding: 8px 0;">Toode</th>
+          <th style="text-align: center; padding: 8px 0;">Kogus</th>
+          <th style="text-align: right; padding: 8px 0;">Hind</th>
+        </tr>
+      </thead>
+      <tbody>${itemsHtml}</tbody>
+    </table>
+    <div style="margin-top: 20px; padding-top: 15px; border-top: 2px solid #e5e7eb; text-align: right;">
+      ${order.subtotal ? `<p style="margin: 5px 0; color: #6b7280;">Vahesumma: ${formatPrice(order.subtotal, order.currency_code)}</p>` : ""}
+      ${order.shipping_total ? `<p style="margin: 5px 0; color: #6b7280;">Tarne: ${formatPrice(order.shipping_total, order.currency_code)}</p>` : ""}
+      ${order.tax_total ? `<p style="margin: 5px 0; color: #6b7280;">KM: ${formatPrice(order.tax_total, order.currency_code)}</p>` : ""}
+      <p style="margin: 5px 0; font-size: 18px; font-weight: 700; color: #111827;">Kokku tasutud: ${formatPrice(order.total, order.currency_code)}</p>
+    </div>
+    ${
+      order.shipping_address
+        ? `<div style="margin-top: 25px; padding-top: 20px; border-top: 1px solid #e5e7eb;">
+          <h2 style="font-size: 16px; color: #111827; margin: 0 0 10px;">Tarneaadress</h2>
+          <p style="color: #4b5563; margin: 0; line-height: 1.6;">
+            ${escapeHtml(order.shipping_address.first_name)} ${escapeHtml(order.shipping_address.last_name)}<br>
+            ${escapeHtml(order.shipping_address.address_1)}<br>
+            ${escapeHtml(order.shipping_address.postal_code)} ${escapeHtml(order.shipping_address.city)}
+            ${order.shipping_address.phone ? `<br>Tel: ${escapeHtml(order.shipping_address.phone)}` : ""}
+          </p>
+        </div>`
+        : ""
+    }
+    <p style="color: #6b7280; margin-top: 25px; font-size: 13px;">K&uuml;simuste korral kirjutage <a href="mailto:info@xlmarket.eu" style="color: #d97706;">info@xlmarket.eu</a></p>
+  `)
+
+  await sendEmail({
+    to: EMAIL_INVOICE,
+    subject: `Arve #${orderNum} — XLMARKET`,
+    html,
+  })
+}
+
 export async function sendShippingConfirmation(order: OrderData, trackingNumber?: string) {
   const name = order.shipping_address?.first_name || "Klient"
   const orderNum = order.display_id || order.id.slice(-8)
@@ -184,4 +234,17 @@ export async function sendShippingConfirmation(order: OrderData, trackingNumber?
     subject: `Tellimus #${orderNum} saadetud — XLMARKET`,
     html,
   })
+}
+
+function renderOrderItems(order: OrderData): string {
+  return order.items
+    .map(
+      (item) =>
+        `<tr>
+          <td style="padding: 8px 0; border-bottom: 1px solid #f3f4f6;">${escapeHtml(item.title)}</td>
+          <td style="padding: 8px 0; border-bottom: 1px solid #f3f4f6; text-align: center;">${item.quantity}</td>
+          <td style="padding: 8px 0; border-bottom: 1px solid #f3f4f6; text-align: right;">${formatPrice(item.unit_price * item.quantity, item.currency_code || order.currency_code)}</td>
+        </tr>`
+    )
+    .join("")
 }

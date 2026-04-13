@@ -6,7 +6,7 @@ Requires=xlmarket-docker.service
 [Service]
 Type=simple
 User=brrr
-WorkingDirectory=/home/brrr/brrr-xlmarket/backend
+WorkingDirectory=/home/brrr/brrr-xlmarket/backend/dist
 Environment=NODE_ENV=production
 Environment=NODE_OPTIONS=--max-old-space-size=1536
 Environment=DATABASE_URL=postgres://xlmarket:PG_PASSWORD_REDACTED@localhost:5435/xlmarket
@@ -16,7 +16,7 @@ Environment=ADMIN_CORS=https://xlmarket.eu
 Environment=AUTH_CORS=https://xlmarket.eu
 Environment=MEDUSA_BACKEND_URL=https://xlmarket.eu
 EnvironmentFile=-/home/brrr/brrr-xlmarket/.env
-ExecStart=/usr/bin/node node_modules/@medusajs/cli/cli.js start --port 9001
+ExecStart=/usr/bin/node /home/brrr/brrr-xlmarket/backend/node_modules/@medusajs/cli/cli.js start --port 9001
 Restart=unless-stopped
 RestartSec=10
 StandardOutput=journal

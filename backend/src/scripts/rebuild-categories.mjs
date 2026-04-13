@@ -120,6 +120,24 @@ function slugify(str) {
     .replace(/^-|-$/g, "")
 }
 
+function normalizeProductTypePath(rawPath) {
+  const parts = String(rawPath || "")
+    .split(">")
+    .map((p) => p.trim())
+    .filter(Boolean)
+
+  const normalized = []
+  let previousHandle = null
+  for (const part of parts) {
+    const handle = slugify(part)
+    if (handle && handle === previousHandle) continue
+    normalized.push(part)
+    previousHandle = handle
+  }
+
+  return normalized.join(" > ")
+}
+
 // ── Phase 1: Parse XLSX ──
 
 async function parseXlsx() {
@@ -156,7 +174,7 @@ function buildCategoryTree(pathSet) {
   const tree = new Map()
 
   for (const fullPath of pathSet) {
-    const parts = fullPath.split(">").map((p) => p.trim()).filter(Boolean)
+    const parts = normalizeProductTypePath(fullPath).split(">").map((p) => p.trim()).filter(Boolean)
     let currentLevel = tree
     for (let i = 0; i < parts.length; i++) {
       const name = parts[i]
@@ -329,7 +347,7 @@ async function buildSkuToProductType() {
     const sku = String(row.getCell(skuCol).value || "").trim().toUpperCase()
     const pt = String(row.getCell(ptCol).value || "").trim()
     if (sku && pt) {
-      skuMap[sku] = pt.split(">").map((p) => p.trim()).filter(Boolean).join(" > ")
+      skuMap[sku] = normalizeProductTypePath(pt)
     }
   })
 
@@ -378,7 +396,7 @@ async function relinkProducts(categoryIdMap, skuMap) {
       if (!productTypePath) {
         const pt = product.metadata?.vevor_product_type
         if (pt) {
-          productTypePath = pt.split(">").map((p) => p.trim()).filter(Boolean).join(" > ")
+          productTypePath = normalizeProductTypePath(pt)
         }
       }
 

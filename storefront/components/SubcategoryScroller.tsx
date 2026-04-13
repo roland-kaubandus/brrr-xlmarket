@@ -40,13 +40,13 @@ export default function SubcategoryScroller({ children }: Props) {
 
   return (
     <div
-      className="relative mb-8"
+      className="relative mb-4 md:mb-5"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       <div
         ref={scrollRef}
-        className="flex gap-4 overflow-x-auto pt-2 pb-5 scrollbar-hide -mx-1 px-1"
+        className="flex gap-2.5 md:gap-3 overflow-x-auto pt-1 pb-2.5 scrollbar-hide -mx-1 px-1"
       >
         {children}
       </div>

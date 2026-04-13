@@ -47,7 +47,7 @@ export default function CategoryExploreGrid({
                       loading="lazy"
                     />
                   ) : (
-                    <div className="w-10 h-10 rounded-full flex items-center justify-center bg-gradient-to-br from-[#FEF3C7] to-[#FDE68A]">
+                    <div className="w-12 h-12 rounded-full flex items-center justify-center bg-gradient-to-br from-[#FEF3C7] to-[#FDE68A]">
                       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D97706" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2" /><path d="M16 7V5a4 4 0 0 0-8 0v2" /></svg>
                     </div>
                   )}

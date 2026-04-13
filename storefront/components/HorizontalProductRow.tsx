@@ -34,7 +34,7 @@ export default function HorizontalProductRow({ title, products, locale }: Props)
       </div>
       {/* Desktop: grid */}
       <div className="hidden md:block max-w-[1360px] mx-auto px-4">
-        <div className="grid grid-cols-3 lg:grid-cols-5 gap-4">
+        <div className="grid grid-cols-3 lg:grid-cols-5 gap-4 rounded-3xl border border-[#E2E8F0] bg-white p-4 shadow-sm">
           {products.map((p) => (
             <VevorProductCard key={p.id} product={p} locale={locale} />
           ))}

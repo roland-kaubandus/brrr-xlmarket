@@ -1,6 +1,7 @@
 "use client"
-import { useRouter, usePathname, useSearchParams } from "next/navigation"
+import { useRouter } from "next/navigation"
 import { useState, useRef, useEffect, useCallback } from "react"
+import type { QuickFilter } from "@/lib/quick-filters"
 
 type Props = {
   totalHits: number
@@ -11,6 +12,8 @@ type Props = {
   currentCategories?: string[]
   currentInStock?: boolean
   categoryFacets?: Record<string, number>
+  quickFilters?: QuickFilter[]
+  currentQuickFilter?: string
   locale: string
   basePath?: string
 }
@@ -49,11 +52,10 @@ function Dropdown({ open, onClose, children }: { open: boolean; onClose: () => v
 export default function VevorSearchFilters({
   totalHits, query, currentSort, currentMin, currentMax,
   currentCategories = [], currentInStock, categoryFacets = {}, locale,
+  quickFilters = [], currentQuickFilter = "",
   basePath,
 }: Props) {
   const router = useRouter()
-  const pathname = usePathname()
-  const searchParams = useSearchParams()
 
   const [openDropdown, setOpenDropdown] = useState<string | null>(null)
   const [minPrice, setMinPrice] = useState(currentMin || "")
@@ -78,15 +80,17 @@ export default function VevorSearchFilters({
     if (cats) params.set("categories", cats)
     const inStock = overrides.in_stock !== undefined ? overrides.in_stock : (currentInStock ? "1" : "")
     if (inStock) params.set("in_stock", inStock)
+    const filters = overrides.filters !== undefined ? overrides.filters : currentQuickFilter
+    if (filters) params.set("filters", filters)
     // Always reset to page 1 on filter change
     const qs = params.toString()
     const base = basePath || `/${locale}/otsing`
     return `${base}${qs ? `?${qs}` : ""}`
-  }, [query, currentSort, currentMin, currentMax, currentCategories, currentInStock, locale, basePath])
+  }, [query, currentSort, currentMin, currentMax, currentCategories, currentInStock, currentQuickFilter, locale, basePath])
 
   const et = locale === "et"
   const SORT_OPTIONS = et ? SORT_OPTIONS_ET : SORT_OPTIONS_EN
-  const hasFilters = currentMin || currentMax || currentCategories.length > 0 || currentInStock
+  const hasFilters = currentMin || currentMax || currentCategories.length > 0 || currentInStock || currentQuickFilter
 
   const toggle = (key: string) => setOpenDropdown(prev => prev === key ? null : key)
 
@@ -191,6 +195,26 @@ export default function VevorSearchFilters({
         )}
       </button>
 
+      {/* Dynamic quick filters */}
+      {quickFilters.length > 0 && (
+        <div className="flex flex-wrap items-center gap-2">
+          {quickFilters.map((filter) => {
+            const active = currentQuickFilter === filter.token
+            return (
+              <button
+                key={filter.token}
+                onClick={() => router.push(buildUrl({ filters: active ? undefined : filter.token }))}
+                className={`${pillBase} ${active ? pillActive : pillInactive}`}
+                title={`${filter.count} products`}
+              >
+                {filter.label}
+                <span className="text-xs opacity-60">({filter.count})</span>
+              </button>
+            )
+          })}
+        </div>
+      )}
+
       {/* Clear all */}
       {hasFilters && (
         <button
@@ -198,7 +222,7 @@ export default function VevorSearchFilters({
             setSelectedCats([])
             setMinPrice("")
             setMaxPrice("")
-            router.push(buildUrl({ min: undefined, max: undefined, categories: undefined, in_stock: undefined }))
+            router.push(buildUrl({ min: undefined, max: undefined, categories: undefined, in_stock: undefined, filters: undefined }))
           }}
           className="text-sm text-[#D97706] hover:underline ml-1"
         >

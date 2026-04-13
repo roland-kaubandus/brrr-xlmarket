@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import fs from "fs"
 import pg from "pg"
 
 const DB_URL = process.env.DATABASE_URL || "postgres://xlmarket:PG_PASSWORD_REDACTED@localhost:5435/xlmarket"
@@ -6,6 +7,10 @@ const MEILI_HOST = process.env.MEILISEARCH_HOST || "http://127.0.0.1:7700"
 const MEILI_KEY = process.env.MEILISEARCH_API_KEY || "MEILI_LEGACY_KEY_REDACTED"
 const INDEX = "products"
 const BATCH = 500
+const FEED_CACHE_PATH = new URL("../data/feeds/vevor-feed-cache.json", import.meta.url)
+
+let feedCacheBySku = null
+let feedCacheByUpc = null
 
 async function meili(path, method = "GET", body = null) {
   const opts = { method, headers: { "Authorization": "Bearer " + MEILI_KEY, "Content-Type": "application/json" } }
@@ -25,7 +30,7 @@ async function configureIndex() {
   // All settings in one call
   await meili("/indexes/" + INDEX + "/settings", "PATCH", {
     searchableAttributes: ["title_et", "title_en", "description_et", "description_en", "categories", "sku", "handle"],
-    filterableAttributes: ["categories", "category_handles", "subcategory", "price", "in_stock", "translated"],
+    filterableAttributes: ["categories", "category_handles", "subcategory", "price", "in_stock", "translated", "filter_tokens"],
     sortableAttributes: ["price", "created_at", "title_en"],
     displayedAttributes: ["*"],
     rankingRules: ["words", "typo", "proximity", "attribute", "sort", "exactness"],
@@ -60,6 +65,26 @@ async function buildCategoryAncestorMap(client) {
     categoryAncestorMap[r.id] = { handles, names }
   }
   console.log(`🗂  ${rows.length} kategooriat, ancestor map valmis`)
+}
+
+function loadFeedCache() {
+  if (feedCacheBySku !== null && feedCacheByUpc !== null) {
+    return { bySku: feedCacheBySku, byUpc: feedCacheByUpc }
+  }
+
+  feedCacheBySku = {}
+  feedCacheByUpc = {}
+
+  try {
+    const raw = fs.readFileSync(FEED_CACHE_PATH, "utf8")
+    const cache = JSON.parse(raw)
+    feedCacheBySku = cache.bySku || {}
+    feedCacheByUpc = cache.byUpc || {}
+  } catch (error) {
+    console.log("⚠️  VEVOR feed cache puudub või on katki, jätkan metadata põhjal")
+  }
+
+  return { bySku: feedCacheBySku, byUpc: feedCacheByUpc }
 }
 
 async function fetchProducts(client) {
@@ -100,9 +125,157 @@ function slugify(str) {
   return str.toLowerCase().trim().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
 }
 
+function normalizeFilterValue(value) {
+  return slugify(String(value)).replace(/^-|-$/g, "")
+}
+
+function addFilterToken(tokens, token) {
+  if (!token) return
+  const normalized = String(token).trim()
+  if (!normalized) return
+  tokens.add(normalized)
+}
+
+function toNumber(value) {
+  if (value === null || value === undefined) return null
+  const parsed = Number.parseFloat(String(value).replace(",", ".").match(/-?\d+(?:\.\d+)?/)?.[0] || "")
+  return Number.isFinite(parsed) ? parsed : null
+}
+
+function bucketRange(value, ranges) {
+  for (const range of ranges) {
+    if (value < range.max) return range.label
+  }
+  return ranges[ranges.length - 1].overflow
+}
+
+function convertToCm(value, unit) {
+  const normalizedUnit = String(unit || "cm").toLowerCase()
+  if (normalizedUnit === "mm") return value / 10
+  if (normalizedUnit === "m") return value * 100
+  return value
+}
+
+function formatRangeLabel(label, unit) {
+  return `${label} ${unit}`.replace(/\s+/g, " ").trim()
+}
+
+function bucketWeightKg(value) {
+  return bucketRange(value, [
+    { max: 2, label: "under-2kg", overflow: "2kg+" },
+    { max: 5, label: "2-5kg", overflow: "5kg+" },
+    { max: 10, label: "5-10kg", overflow: "10kg+" },
+    { max: 25, label: "10-25kg", overflow: "25kg+" },
+    { max: 50, label: "25-50kg", overflow: "50kg+" },
+  ])
+}
+
+function bucketLengthCm(value, unit) {
+  const cm = convertToCm(value, unit)
+  return bucketRange(cm, [
+    { max: 20, label: "0-20cm", overflow: "20cm+" },
+    { max: 50, label: "20-50cm", overflow: "50cm+" },
+    { max: 100, label: "50-100cm", overflow: "100cm+" },
+    { max: 200, label: "100-200cm", overflow: "200cm+" },
+  ])
+}
+
+function bucketPower(value, unit) {
+  const normalizedUnit = String(unit || "w").toLowerCase()
+  const watts = normalizedUnit === "kw" ? value * 1000 : normalizedUnit === "hp" ? value * 745.7 : value
+  return bucketRange(watts, [
+    { max: 250, label: "0-250w", overflow: "250w+" },
+    { max: 500, label: "250-500w", overflow: "500w+" },
+    { max: 1000, label: "500-1000w", overflow: "1kw+" },
+    { max: 2000, label: "1-2kw", overflow: "2kw+" },
+    { max: 5000, label: "2-5kw", overflow: "5kw+" },
+  ])
+}
+
+function bucketCapacity(value, unit) {
+  const normalizedUnit = String(unit || "l").toLowerCase()
+  let liters = value
+  if (normalizedUnit === "ml") liters = value / 1000
+  return bucketRange(liters, [
+    { max: 1, label: "0-1l", overflow: "1l+" },
+    { max: 5, label: "1-5l", overflow: "5l+" },
+    { max: 10, label: "5-10l", overflow: "10l+" },
+    { max: 20, label: "10-20l", overflow: "20l+" },
+    { max: 50, label: "20-50l", overflow: "50l+" },
+  ])
+}
+
+function detectColor(text) {
+  const haystack = String(text || "").toLowerCase()
+  const colors = [
+    "black", "white", "gray", "grey", "silver", "red", "blue", "green",
+    "orange", "yellow", "brown", "pink", "purple", "gold", "beige",
+  ]
+  for (const color of colors) {
+    if (new RegExp(`\\b${color}\\b`, "i").test(haystack)) return color
+  }
+  return null
+}
+
+function extractFilterTokens(meta, cleanDesc, feedEntry) {
+  const tokens = new Set()
+  const weight = toNumber(meta?.weight_kg ?? feedEntry?.weightKg ?? feedEntry?.shippingWeightKg)
+  if (weight !== null) {
+    addFilterToken(tokens, `weight:${bucketWeightKg(weight)}`)
+  }
+
+  const dims = meta?.dimensions && typeof meta.dimensions === "object" ? meta.dimensions : feedEntry?.dimensions
+  if (dims && typeof dims === "object") {
+    const long = toNumber(dims.long)
+    const wide = toNumber(dims.wide)
+    const high = toNumber(dims.high)
+    const unit = String(dims.unit || "cm")
+
+    if (long !== null) addFilterToken(tokens, `length:${bucketLengthCm(long, unit)}`)
+    const maxDim = [long, wide, high].filter((v) => v !== null && Number.isFinite(v))
+    if (maxDim.length > 0) {
+      addFilterToken(tokens, `size:${bucketLengthCm(Math.max(...maxDim), unit)}`)
+    }
+  }
+
+  const text = `${cleanDesc || ""} ${feedEntry?.title || ""} ${meta?.goods_description_ad || ""}`
+  const powerMatch = text.match(/(\d+(?:\.\d+)?)\s?(kw|w|hp)\b/i)
+  if (powerMatch) {
+    const rawValue = Number.parseFloat(powerMatch[1])
+    const unit = powerMatch[2].toLowerCase()
+    if (Number.isFinite(rawValue)) {
+      addFilterToken(tokens, `power:${bucketPower(rawValue, unit)}`)
+    }
+  }
+
+  const capacityMatch = text.match(/(\d+(?:\.\d+)?)\s?(ml|l)\b/i)
+  if (capacityMatch) {
+    const rawValue = Number.parseFloat(capacityMatch[1])
+    const unit = capacityMatch[2].toLowerCase()
+    if (Number.isFinite(rawValue)) {
+      addFilterToken(tokens, `capacity:${bucketCapacity(rawValue, unit)}`)
+    }
+  }
+
+  const color = detectColor(text)
+  if (color) addFilterToken(tokens, `color:${color}`)
+
+  return [...tokens]
+}
+
+function resolveFeedEntry(row) {
+  const cache = loadFeedCache()
+  const sku = String(row.sku || "").trim()
+  if (sku && cache.bySku?.[sku]) return cache.bySku[sku]
+  const upc = String(row.metadata?.vevor_upc || "").trim()
+  if (upc && cache.byUpc?.[upc]) return cache.byUpc[upc]
+  return null
+}
+
 function transform(row) {
   const meta = row.metadata || {}
   const categoryHandles = [...(row.category_handles || [])]
+  const feedEntry = resolveFeedEntry(row)
   
   // Extract ALL levels from vevor_product_type and add as category_handles
   const productType = meta.vevor_product_type || ''
@@ -122,6 +295,7 @@ function transform(row) {
   const title_et = meta.translated ? (meta.title_et || row.title) : (meta.title_et || '')
   const description_en = meta.original_description || (meta.translated ? '' : cleanDesc) || ''
   const description_et = meta.translated ? (meta.description_et || cleanDesc) : (meta.description_et || '')
+  const filter_tokens = extractFilterTokens(meta, cleanDesc, feedEntry)
 
   return {
     id: row.id,
@@ -139,6 +313,7 @@ function transform(row) {
     categories: row.categories || [],
     category_handles: categoryHandles,
     subcategory: subcategory,
+    filter_tokens,
     in_stock: true,
     translated: meta.translated === true,
     created_at: Math.floor(new Date(row.created_at).getTime() / 1000),

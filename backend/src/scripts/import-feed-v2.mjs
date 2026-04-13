@@ -147,6 +147,24 @@ function slugify(str) {
     .replace(/^-|-$/g, "")
 }
 
+function normalizeProductTypePath(rawPath) {
+  const parts = String(rawPath || "")
+    .split(">")
+    .map((p) => p.trim())
+    .filter(Boolean)
+
+  const normalized = []
+  let previousHandle = null
+  for (const part of parts) {
+    const handle = slugify(part)
+    if (handle && handle === previousHandle) continue
+    normalized.push(part)
+    previousHandle = handle
+  }
+
+  return normalized.join(" > ")
+}
+
 function makeHandle(sku, title) {
   const cleanSku = slugify(sku || "product")
   const base = slugify(title || "product").substring(0, 70)
@@ -258,7 +276,7 @@ function buildCategoryTree(rows) {
   const tree = new Map() // L1 name -> node
 
   for (const fullPath of pathSet) {
-    const parts = fullPath
+    const parts = normalizeProductTypePath(fullPath)
       .split(">")
       .map((p) => p.trim())
       .filter(Boolean)
@@ -405,7 +423,7 @@ function buildProductTypeToCategoryId(rows, categoryIdMap) {
   const map = {}
   for (const row of rows) {
     if (!row.productType || map[row.productType]) continue
-    const parts = row.productType
+    const parts = normalizeProductTypePath(row.productType)
       .split(">")
       .map((p) => p.trim())
       .filter(Boolean)

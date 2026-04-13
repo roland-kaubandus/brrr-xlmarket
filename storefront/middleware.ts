@@ -7,20 +7,6 @@ const defaultLocale = 'et'
 const PUBLIC_FILE = /\.(.*)$/
 const EXCLUDED = ['/api/', '/_next/', '/favicon', '/images/', '/media/', '/og-image', '/robots', '/sitemap']
 
-function getLocaleFromHeaders(request: NextRequest): string {
-  const acceptLang = request.headers.get('accept-language') || ''
-  const langs = acceptLang.split(',').map(l => {
-    const [lang, q] = l.trim().split(';q=')
-    return { lang: lang.split('-')[0].toLowerCase(), q: q ? parseFloat(q) : 1 }
-  })
-  langs.sort((a, b) => b.q - a.q)
-
-  for (const { lang } of langs) {
-    if (locales.includes(lang)) return lang
-  }
-  return defaultLocale
-}
-
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
 
@@ -48,11 +34,11 @@ export function middleware(request: NextRequest) {
     return response
   }
 
-  // Determine locale: cookie > accept-language > default
+  // Determine locale: cookie > default
   const cookieLocale = request.cookies.get('NEXT_LOCALE')?.value
   const locale = (cookieLocale && locales.includes(cookieLocale))
     ? cookieLocale
-    : getLocaleFromHeaders(request)
+    : defaultLocale
 
   // Redirect to locale-prefixed path
   const url = request.nextUrl.clone()

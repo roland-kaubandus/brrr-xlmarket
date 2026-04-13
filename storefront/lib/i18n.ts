@@ -31,7 +31,23 @@ export function t(translations: Record<string, any>, key: string): string {
 
 // Build localized href - prepends /{locale} to path
 export function localePath(locale: Locale, path: string): string {
-  // Strip any existing locale prefix
-  const clean = path.replace(/^\/(et|en)(\/|$)/, '/')
-  return '/' + locale + (clean === '/' ? '' : clean)
+  const clean = translateLocalePath(path, locale)
+  return clean
+}
+
+const CATEGORY_SEGMENT: Record<Locale, string> = {
+  et: "kategooriad",
+  en: "categories",
+}
+
+export function categoryPath(locale: Locale, handle?: string): string {
+  return `/${locale}/${CATEGORY_SEGMENT[locale]}${handle ? `/${handle}` : ""}`
+}
+
+export function translateLocalePath(path: string, locale: Locale): string {
+  const withoutLocale = path.replace(/^\/(et|en)(?=\/|$)/, "")
+  const translated = withoutLocale
+    .replace(/^\/categories(?=\/|$)/, `/${CATEGORY_SEGMENT[locale]}`)
+    .replace(/^\/kategooriad(?=\/|$)/, `/${CATEGORY_SEGMENT[locale]}`)
+  return `/${locale}${translated || ""}`
 }

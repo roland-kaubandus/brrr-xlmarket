@@ -134,19 +134,52 @@ export default function VevorProductCard({ product, locale }: { product: Product
   return (
     <article className="bg-white rounded-xl overflow-hidden border border-transparent hover:border-[#E2E8F0] hover:shadow-[0_4px_20px_rgba(0,0,0,0.06)] transition-all duration-300 relative group">
       <Link href={`/${resolvedLocale}/toode/${product.handle}`} className="block">
-        {/* Wishlist heart */}
-        <button
-          type="button"
-          onClick={toggleWishlist}
-          aria-label={wishlisted
-            ? (resolvedLocale === "en" ? "Remove from Wishlist" : "Eemalda soovinimekirjast")
-            : (resolvedLocale === "en" ? "Add to Wishlist" : "Lisa soovinimekirja")}
-          className="absolute top-3 right-3 z-10 w-8 h-8 rounded-full flex items-center justify-center bg-white/90 hover:bg-white shadow-sm opacity-0 group-hover:opacity-100 transition-all duration-200"
-        >
-          <svg width="15" height="15" viewBox="0 0 24 24" fill={wishlisted ? "#DC2626" : "none"} stroke={wishlisted ? "#DC2626" : "#94A3B8"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
-          </svg>
-        </button>
+        <div className="absolute top-3 right-3 z-10 flex items-center gap-1">
+          {/* Compare */}
+          <button
+            type="button"
+            onClick={(e) => {
+              e.preventDefault()
+              e.stopPropagation()
+              if (isCompared) {
+                compare.remove(product.id)
+              } else {
+                compare.add({
+                  id: product.id,
+                  handle: product.handle,
+                  title: product.title,
+                  thumbnail: product.thumbnail || null,
+                  price: price ? formatPrice(price.calculated_amount, price.currency_code) : "",
+                  specs: extractCardSpecs(product),
+                })
+              }
+            }}
+            aria-label={isCompared
+              ? (resolvedLocale === "en" ? "Remove from compare" : "Eemalda võrdlusest")
+              : (resolvedLocale === "en" ? "Add to compare" : "Lisa võrdlusse")}
+            className={`w-8 h-8 rounded-full flex items-center justify-center shadow-sm opacity-0 group-hover:opacity-100 transition-all duration-200 ${
+              isCompared ? "bg-[#D97706] text-white" : "bg-white/90 hover:bg-white text-[#64748B]"
+            }`}
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <line x1="18" y1="20" x2="18" y2="10" /><line x1="12" y1="20" x2="12" y2="4" /><line x1="6" y1="20" x2="6" y2="14" />
+            </svg>
+          </button>
+
+          {/* Wishlist heart */}
+          <button
+            type="button"
+            onClick={toggleWishlist}
+            aria-label={wishlisted
+              ? (resolvedLocale === "en" ? "Remove from Wishlist" : "Eemalda soovinimekirjast")
+              : (resolvedLocale === "en" ? "Add to Wishlist" : "Lisa soovinimekirja")}
+            className="w-8 h-8 rounded-full flex items-center justify-center bg-white/90 hover:bg-white shadow-sm opacity-0 group-hover:opacity-100 transition-all duration-200"
+          >
+            <svg width="15" height="15" viewBox="0 0 24 24" fill={wishlisted ? "#DC2626" : "none"} stroke={wishlisted ? "#DC2626" : "#94A3B8"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
+            </svg>
+          </button>
+        </div>
 
         {/* Discount badge */}
         {discount > 0 && (
@@ -203,34 +236,14 @@ export default function VevorProductCard({ product, locale }: { product: Product
               <span className="w-1.5 h-1.5 rounded-full bg-[#059669] inline-block" />
               {resolvedLocale === "et" ? "Laos" : "In Stock"}
             </span>
-            <button
-              type="button"
-              onClick={(e) => {
-                e.preventDefault()
-                e.stopPropagation()
-                if (isCompared) { compare.remove(product.id) } else {
-                  compare.add({
-                    id: product.id, handle: product.handle, title: product.title,
-                    thumbnail: product.thumbnail || null,
-                    price: price ? formatPrice(price.calculated_amount, price.currency_code) : "",
-                    specs: extractCardSpecs(product),
-                  })
-                }
-              }}
-              className={`ml-auto inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[10px] font-medium transition-colors ${
-                isCompared
-                  ? "bg-[#D97706]/10 text-[#D97706]"
-                  : "text-[#94A3B8] hover:text-[#D97706]"
-              }`}
-              aria-label={isCompared
-                ? (resolvedLocale === "en" ? "Remove from compare" : "Eemalda võrdlusest")
-                : (resolvedLocale === "en" ? "Add to compare" : "Lisa võrdlusse")}
-            >
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>
-              </svg>
-              {isCompared ? (resolvedLocale === "en" ? "Added" : "Lisatud") : (resolvedLocale === "en" ? "Compare" : "Võrdle")}
-            </button>
+            {isCompared && (
+              <span className="ml-auto inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[10px] font-medium bg-[#D97706]/10 text-[#D97706]">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>
+                </svg>
+                {resolvedLocale === "en" ? "In Compare" : "Võrdluses"}
+              </span>
+            )}
           </div>
         </div>
       </Link>

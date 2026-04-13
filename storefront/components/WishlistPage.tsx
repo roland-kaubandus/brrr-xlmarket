@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import { usePathname } from "next/navigation"
 import Link from "next/link"
 import { Heart, Trash2 } from "lucide-react"
+import { categoryPath } from "@/lib/i18n"
 
 type WishItem = {
   id: string
@@ -55,7 +56,7 @@ export default function WishlistPage() {
             Klõpsa tootekaardil südameikoonile, et lisada toode soovinimekirja
           </p>
           <Link
-            href={`/${locale}/kategooriad`}
+            href={categoryPath(locale as "et" | "en")}
             className="px-[20px] py-[11px] bg-[#E8650A] text-white text-[14px] font-[600] font-[family-name:var(--font-dm-sans)] hover:bg-[#CF5A08] transition-colors"
           >
             Sirvi tooteid
