@@ -38,3 +38,4 @@ npm-debug.log*
 node_modules/
 data/feeds/*.xlsx
 .dmux/
+.claude/worktrees/

@@ -8,7 +8,7 @@ import VevorPagination from "@/components/search/VevorPagination"
 import { categoryPath } from "@/lib/i18n"
 import { buildQuickFilters } from "@/lib/quick-filters"
 
-export const revalidate = 60 // cache search results 1 min
+export const revalidate = 3600 // cache search results 1 min
 
 type Props = {
   searchParams: Promise<{

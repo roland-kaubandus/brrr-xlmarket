@@ -1,7 +1,7 @@
 const MEDUSA_URL = process.env.NEXT_PUBLIC_MEDUSA_URL!
 const API_KEY = process.env.NEXT_PUBLIC_MEDUSA_KEY!
 const REGION_ID = process.env.NEXT_PUBLIC_REGION_ID!
-const FETCH_TIMEOUT_MS = 8000
+const FETCH_TIMEOUT_MS = 3000
 
 async function medusaFetch<T>(path: string, options?: RequestInit & { revalidate?: number }): Promise<T> {
   const { revalidate, ...fetchOptions } = options || {}
@@ -120,13 +120,13 @@ export async function getProducts(params: {
   if (params.category_id) {
     params.category_id.forEach(id => search.append("category_id[]", id))
   }
-  return medusaFetch<ProductsResponse>(`/store/products?${search}`, { revalidate: 120 }) // cache 2 min
+  return medusaFetch<ProductsResponse>(`/store/products?${search}`, { revalidate: 3600 }) // cache 2 min
 }
 
 export async function getProduct(handle: string): Promise<Product | null> {
   const res = await medusaFetch<ProductsResponse>(
     `/store/products?handle=${handle}&region_id=${REGION_ID}&fields=*variants,*variants.calculated_price,*variants.options,*options,+metadata,+images`,
-    { revalidate: 300 } // cache 5 min
+    { revalidate: 3600 } // cache 5 min
   )
   return res.products[0] || null
 }
@@ -150,7 +150,7 @@ export async function getCategories(): Promise<ProductCategory[]> {
   let total = Number.POSITIVE_INFINITY
 
   while (offset < total) {
-    const res = await medusaFetch<CategoriesResponse>(buildCategoryQuery(offset), { revalidate: 300 })
+    const res = await medusaFetch<CategoriesResponse>(buildCategoryQuery(offset), { revalidate: 3600 })
     const page = res.product_categories || []
     all.push(...page)
     total = res.count ?? all.length

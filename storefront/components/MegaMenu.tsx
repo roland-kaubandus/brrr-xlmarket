@@ -119,12 +119,12 @@ export default function MegaMenu({ locale = "et" }: { locale?: string }) {
     hoverTimerRef.current = setTimeout(() => {
       setActiveL1(id)
       setActiveL2(null)
-    }, 150)
+    }, 60)
   }, [])
 
   const handleL2Hover = useCallback((id: string) => {
     clearTimeout(hoverTimerRef.current)
-    hoverTimerRef.current = setTimeout(() => setActiveL2(id), 150)
+    hoverTimerRef.current = setTimeout(() => setActiveL2(id), 60)
   }, [])
 
   useEffect(() => () => {
@@ -139,7 +139,7 @@ export default function MegaMenu({ locale = "et" }: { locale?: string }) {
     openTimerRef.current = setTimeout(() => {
       setIsOpen(true)
       if (!activeL1 && l1Roots.length > 0) setActiveL1(l1Roots[0].id)
-    }, 200)
+    }, 100)
   }, [l1Roots, activeL1, loadCategories])
 
   const handleTriggerLeave = useCallback(() => {
@@ -156,7 +156,7 @@ export default function MegaMenu({ locale = "et" }: { locale?: string }) {
       setIsOpen(false)
       setActiveL1(null)
       setActiveL2(null)
-    }, 200)
+    }, 250)
   }, [])
 
   useEffect(() => {
@@ -198,7 +198,7 @@ export default function MegaMenu({ locale = "et" }: { locale?: string }) {
         onMouseLeave={handleTriggerLeave}
         aria-expanded={isOpen}
         aria-haspopup="true"
-        className="flex items-center gap-2 px-4 h-[44px] text-white font-bold text-[14px] hover:bg-[#B45309] transition-colors"
+        className="flex items-center gap-2 px-3 py-1.5 text-[#0F172A] font-bold text-[14px] rounded-md hover:bg-black/10 transition-colors"
       >
         {isOpen ? <X size={18} strokeWidth={2} /> : <Menu size={18} strokeWidth={2} />}
         <span className="hidden sm:inline">{locale === "et" ? "Kategooriad" : "Categories"}</span>
@@ -210,7 +210,7 @@ export default function MegaMenu({ locale = "et" }: { locale?: string }) {
       {isOpen && (
         <div
           className="hidden md:block absolute z-50 bg-white shadow-[0_8px_40px_rgba(0,0,0,0.15)] rounded-b-lg"
-          style={{ top: "100%", left: 0, width: hasL3 ? "840px" : hasL2 ? "560px" : "280px" }}
+          style={{ top: "100%", left: 0, width: hasL3 ? "920px" : hasL2 ? "600px" : "280px" }}
           onMouseEnter={handleMenuEnter}
         >
           {!isTreeReady ? (
@@ -271,11 +271,11 @@ export default function MegaMenu({ locale = "et" }: { locale?: string }) {
 
               {/* L2 Panel */}
               {hasL2 && activeL1Node && (
-                <div className="w-[280px] border-r border-[#E2E8F0] py-3 max-h-[calc(100vh-120px)] overflow-y-auto flex-shrink-0">
+                <div className="w-[320px] border-r border-[#E2E8F0] py-3 max-h-[calc(100vh-120px)] overflow-y-auto flex-shrink-0">
                   <Link
                     href={categoryPath(locale as "et" | "en", activeL1Node.handle)}
                     onClick={() => setIsOpen(false)}
-                    className="block px-5 pb-2 text-[11px] font-bold text-[#D97706] uppercase tracking-wider hover:underline"
+                    className="block px-5 py-2.5 text-[11px] font-bold text-[#D97706] uppercase tracking-wider border-b border-[#E2E8F0] hover:underline"
                   >
                     {locale === "et" ? `Kõik: ${activeL1Node.name}` : `Shop All ${activeL1Node.name}`}
                   </Link>
@@ -288,12 +288,12 @@ export default function MegaMenu({ locale = "et" }: { locale?: string }) {
                         href={categoryPath(locale as "et" | "en", child.handle)}
                         onMouseEnter={() => handleL2Hover(child.id)}
                         onClick={() => setIsOpen(false)}
-                        className={`flex items-center gap-2.5 px-5 py-2 text-[13px] transition-colors ${
+                        className={`flex items-center gap-3 px-5 py-2.5 text-[13px] transition-colors ${
                           isActive ? "bg-[#FFFBEB] text-[#D97706]" : "text-[#1E293B] hover:bg-[#F8FAFC]"
                         }`}
                       >
                         {thumb && (
-                          <img src={thumb} alt="" className="w-8 h-8 object-contain flex-shrink-0" loading="lazy" />
+                          <img src={thumb} alt="" className="w-10 h-10 rounded object-contain bg-[#F8FAFC] p-0.5 flex-shrink-0" loading="lazy" />
                         )}
                         <span className="font-medium flex-1">{child.name}</span>
                         {child.children.length > 0 && (
@@ -307,11 +307,11 @@ export default function MegaMenu({ locale = "et" }: { locale?: string }) {
 
               {/* L3 Panel */}
               {hasL3 && activeL2Node && (
-                <div className="w-[280px] py-3 max-h-[calc(100vh-120px)] overflow-y-auto flex-shrink-0">
+                <div className="w-[320px] py-3 max-h-[calc(100vh-120px)] overflow-y-auto flex-shrink-0">
                   <Link
                     href={categoryPath(locale as "et" | "en", activeL2Node.handle)}
                     onClick={() => setIsOpen(false)}
-                    className="block px-5 pb-2 text-[11px] font-bold text-[#D97706] uppercase tracking-wider hover:underline"
+                    className="block px-5 py-2.5 text-[11px] font-bold text-[#D97706] uppercase tracking-wider border-b border-[#E2E8F0] hover:underline"
                   >
                     {locale === "et" ? `Kõik: ${activeL2Node.name}` : `Shop All ${activeL2Node.name}`}
                   </Link>
@@ -322,10 +322,10 @@ export default function MegaMenu({ locale = "et" }: { locale?: string }) {
                         key={child.id}
                         href={categoryPath(locale as "et" | "en", child.handle)}
                         onClick={() => setIsOpen(false)}
-                        className="flex items-center gap-2.5 px-5 py-2 text-[13px] text-[#1E293B] hover:bg-[#FFFBEB] hover:text-[#D97706] font-medium transition-colors"
+                        className="flex items-center gap-3 px-5 py-2.5 text-[13px] text-[#1E293B] hover:bg-[#FFFBEB] hover:text-[#D97706] font-medium transition-colors"
                       >
                         {thumb && (
-                          <img src={thumb} alt="" className="w-7 h-7 object-contain flex-shrink-0" loading="lazy" />
+                          <img src={thumb} alt="" className="w-9 h-9 rounded object-contain bg-[#F8FAFC] p-0.5 flex-shrink-0" loading="lazy" />
                         )}
                         <span>{child.name}</span>
                       </Link>

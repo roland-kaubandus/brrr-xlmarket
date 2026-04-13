@@ -1,0 +1,1964 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>XLMarket.eu — Mockup A2 Enhanced Homepage</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #1E293B;
+    --navy-deep: #0F172A;
+    --navy-light: #334155;
+    --amber: #D97706;
+    --amber-light: #F59E0B;
+    --amber-dark: #B45309;
+    --amber-glow: rgba(217, 119, 6, 0.15);
+    --surface: #F8FAFC;
+    --surface-alt: #F1F5F9;
+    --white: #FFFFFF;
+    --text-primary: #0F172A;
+    --text-secondary: #475569;
+    --text-muted: #94A3B8;
+    --border: #E2E8F0;
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+    --shadow-sm: 0 1px 3px rgba(15,23,42,0.06);
+    --shadow-md: 0 4px 12px rgba(15,23,42,0.08);
+    --shadow-lg: 0 8px 30px rgba(15,23,42,0.12);
+    --shadow-lift: 0 12px 40px rgba(15,23,42,0.16);
+    --duration-fast: 150ms;
+    --duration-normal: 250ms;
+    --duration-slow: 400ms;
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    --header-height: 96px;
+    --space-xs: 4px;
+    --space-sm: 8px;
+    --space-md: 16px;
+    --space-lg: 24px;
+    --space-xl: 40px;
+    --space-2xl: 64px;
+    --space-section: clamp(48px, 4vw, 80px);
+    --text-xs: 0.75rem;
+    --text-sm: 0.875rem;
+    --text-base: 1rem;
+    --text-lg: 1.125rem;
+    --text-xl: 1.25rem;
+    --text-2xl: 1.5rem;
+    --text-3xl: clamp(1.5rem, 1rem + 2vw, 2rem);
+    --text-4xl: clamp(2rem, 1.2rem + 3vw, 3rem);
+    --text-hero: clamp(2.5rem, 1rem + 5vw, 4.5rem);
+    --max-w: 1280px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
+    color: var(--text-primary);
+    background: var(--white);
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.5;
+  }
+
+  img { display: block; max-width: 100%; height: auto; }
+  a { text-decoration: none; color: inherit; }
+  button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+  .container { max-width: var(--max-w); margin: 0 auto; padding: 0 var(--space-lg); }
+
+  /* ============================================
+     HEADER
+  ============================================ */
+  .header { position: sticky; top: 0; z-index: 100; }
+
+  .header-top {
+    background: var(--navy-deep);
+    height: 56px;
+    display: flex;
+    align-items: center;
+  }
+
+  .header-top .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .logo {
+    font-size: var(--text-xl);
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    display: flex;
+    align-items: baseline;
+    gap: 1px;
+  }
+
+  .logo-xl { color: var(--amber); }
+  .logo-market { color: var(--white); font-weight: 500; }
+
+  .header-search {
+    flex: 1;
+    max-width: 480px;
+    margin: 0 var(--space-xl);
+    position: relative;
+  }
+
+  .header-search input {
+    width: 100%;
+    height: 36px;
+    border-radius: 8px;
+    border: 1px solid var(--navy-light);
+    background: rgba(255,255,255,0.06);
+    color: var(--white);
+    padding: 0 36px 0 14px;
+    font-size: var(--text-sm);
+    font-family: inherit;
+    outline: none;
+    transition: border-color var(--duration-fast), background var(--duration-fast);
+  }
+
+  .header-search input::placeholder { color: var(--text-muted); }
+  .header-search input:focus {
+    border-color: var(--amber);
+    background: rgba(255,255,255,0.1);
+  }
+
+  .header-search svg {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+    width: 18px;
+    height: 18px;
+    pointer-events: none;
+  }
+
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+  }
+
+  .header-btn {
+    color: rgba(255,255,255,0.7);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: var(--text-sm);
+    padding: 6px 8px;
+    border-radius: var(--radius-sm);
+    transition: color var(--duration-fast), background var(--duration-fast);
+    position: relative;
+  }
+
+  .header-btn:hover, .header-btn:focus-visible {
+    color: var(--white);
+    background: rgba(255,255,255,0.08);
+  }
+
+  .header-btn svg { width: 20px; height: 20px; }
+
+  .cart-badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: var(--amber);
+    color: var(--navy-deep);
+    font-size: 10px;
+    font-weight: 700;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Language dropdown */
+  .lang-dropdown { position: relative; }
+  .lang-menu {
+    display: none;
+    position: absolute;
+    top: calc(100% + 6px);
+    right: 0;
+    background: var(--navy-deep);
+    border: 1px solid var(--navy-light);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    min-width: 140px;
+    box-shadow: var(--shadow-lg);
+    z-index: 200;
+  }
+  .lang-menu.open { display: block; }
+  .lang-menu a {
+    display: block;
+    padding: 10px 16px;
+    font-size: var(--text-sm);
+    color: rgba(255,255,255,0.7);
+    transition: background var(--duration-fast), color var(--duration-fast);
+  }
+  .lang-menu a:hover { background: rgba(255,255,255,0.08); color: var(--white); }
+  .lang-menu a.active { color: var(--amber); font-weight: 600; }
+
+  /* Nav bar */
+  .header-nav {
+    background: var(--amber);
+    height: 40px;
+    display: flex;
+    align-items: center;
+  }
+
+  .header-nav .container {
+    display: flex;
+    align-items: center;
+    gap: var(--space-lg);
+    width: 100%;
+  }
+
+  .nav-categories-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: var(--text-sm);
+    font-weight: 700;
+    color: var(--navy-deep);
+    padding: 6px 12px;
+    border-radius: var(--radius-sm);
+    transition: background var(--duration-fast);
+  }
+
+  .nav-categories-btn:hover { background: rgba(0,0,0,0.1); }
+  .nav-categories-btn svg { width: 18px; height: 18px; }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--navy-deep);
+    padding: 4px 8px;
+    border-radius: var(--radius-sm);
+    transition: background var(--duration-fast);
+  }
+
+  .nav-links a:hover { background: rgba(0,0,0,0.1); }
+
+  /* Mobile hamburger */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    padding: 8px;
+    margin-right: -8px;
+  }
+  .hamburger span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--white);
+    border-radius: 2px;
+    transition: transform var(--duration-normal) var(--ease-out), opacity var(--duration-fast);
+  }
+  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    top: var(--header-height);
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--navy-deep);
+    z-index: 99;
+    overflow-y: auto;
+    padding: var(--space-lg);
+  }
+  .mobile-menu.open { display: block; }
+  .mobile-menu a {
+    display: block;
+    padding: 14px 0;
+    font-size: var(--text-lg);
+    color: rgba(255,255,255,0.8);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    transition: color var(--duration-fast);
+  }
+  .mobile-menu a:hover { color: var(--amber); }
+
+  /* ============================================
+     HERO — CAMPAIGN BANNER
+  ============================================ */
+  .hero {
+    background: var(--navy-deep);
+    position: relative;
+    overflow: hidden;
+    height: clamp(260px, 32vw, 400px);
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -10%;
+    width: 70%;
+    height: 200%;
+    background: radial-gradient(ellipse at center, rgba(217,119,6,0.12) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--amber), transparent);
+  }
+
+  .hero .container {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-content {
+    flex: 1;
+    padding-right: var(--space-xl);
+  }
+
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(217,119,6,0.15);
+    color: var(--amber-light);
+    font-size: var(--text-xs);
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 100px;
+    margin-bottom: var(--space-md);
+  }
+
+  .hero-tag::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    background: var(--amber-light);
+    border-radius: 50%;
+    animation: pulse-dot 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  .hero-title {
+    font-size: var(--text-hero);
+    font-weight: 800;
+    color: var(--white);
+    line-height: 1.05;
+    letter-spacing: -1.5px;
+    margin-bottom: var(--space-md);
+  }
+
+  .hero-title em {
+    font-style: normal;
+    color: var(--amber);
+  }
+
+  .hero-subtitle {
+    font-size: var(--text-lg);
+    color: rgba(255,255,255,0.6);
+    margin-bottom: var(--space-lg);
+    max-width: 440px;
+  }
+
+  .hero-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-lg);
+    flex-wrap: wrap;
+  }
+
+  .btn-amber {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--amber);
+    color: var(--navy-deep);
+    font-size: var(--text-base);
+    font-weight: 700;
+    padding: 14px 28px;
+    border-radius: var(--radius-md);
+    transition: background var(--duration-fast), transform var(--duration-normal) var(--ease-out), box-shadow var(--duration-normal);
+    box-shadow: 0 2px 12px rgba(217,119,6,0.3);
+  }
+
+  .btn-amber:hover {
+    background: var(--amber-light);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 20px rgba(217,119,6,0.4);
+  }
+
+  .btn-amber:active { transform: translateY(0); }
+
+  .btn-amber svg { width: 18px; height: 18px; }
+
+  .hero-countdown {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: rgba(255,255,255,0.5);
+    font-size: var(--text-sm);
+    font-weight: 500;
+  }
+
+  .countdown-label { margin-right: 4px; }
+
+  .countdown-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: var(--radius-sm);
+    padding: 6px 10px;
+    min-width: 48px;
+  }
+
+  .countdown-num {
+    font-size: var(--text-xl);
+    font-weight: 700;
+    color: var(--white);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .countdown-unit {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: rgba(255,255,255,0.4);
+  }
+
+  .countdown-sep {
+    font-size: var(--text-xl);
+    color: rgba(255,255,255,0.2);
+    font-weight: 300;
+    align-self: flex-start;
+    margin-top: 6px;
+  }
+
+  .hero-visual {
+    flex: 0 0 auto;
+    width: clamp(200px, 28vw, 380px);
+    height: clamp(200px, 28vw, 380px);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hero-visual::before {
+    content: '';
+    position: absolute;
+    inset: -10%;
+    background: radial-gradient(circle, rgba(217,119,6,0.1) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  .hero-visual img {
+    width: 85%;
+    height: 85%;
+    object-fit: contain;
+    filter: drop-shadow(0 8px 30px rgba(0,0,0,0.4));
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ============================================
+     SECTION LABELS
+  ============================================ */
+  .variant-label {
+    text-align: center;
+    padding: var(--space-xl) 0 var(--space-md);
+  }
+
+  .variant-label h2 {
+    font-size: var(--text-2xl);
+    font-weight: 700;
+    color: var(--navy);
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .variant-label h2::before,
+  .variant-label h2::after {
+    content: '';
+    width: 40px;
+    height: 2px;
+    background: var(--amber);
+    border-radius: 2px;
+  }
+
+  .variant-label p {
+    color: var(--text-secondary);
+    font-size: var(--text-sm);
+    margin-top: 6px;
+  }
+
+  .section-divider {
+    border: none;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border), transparent);
+    margin: var(--space-2xl) 0;
+  }
+
+  /* ============================================
+     SECTION HEADER (shared)
+  ============================================ */
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: var(--space-lg);
+  }
+
+  .section-title {
+    font-size: var(--text-3xl);
+    font-weight: 800;
+    color: var(--navy);
+    letter-spacing: -0.5px;
+  }
+
+  .section-link {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--amber-dark);
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 6px 12px;
+    border-radius: var(--radius-sm);
+    transition: background var(--duration-fast), color var(--duration-fast);
+  }
+
+  .section-link:hover { background: var(--amber-glow); color: var(--amber); }
+  .section-link svg { width: 16px; height: 16px; }
+
+  /* ============================================
+     VARIANT 1: BENTO GRID
+  ============================================ */
+  .bento-section {
+    padding: var(--space-section) 0;
+    background: var(--white);
+  }
+
+  .bento-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 260px 220px;
+    gap: var(--space-md);
+  }
+
+  .bento-card {
+    position: relative;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform var(--duration-normal) var(--ease-out), box-shadow var(--duration-normal);
+  }
+
+  .bento-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lift);
+  }
+
+  .bento-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--duration-slow) var(--ease-out);
+  }
+
+  .bento-card:hover img { transform: scale(1.06); }
+
+  .bento-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(15,23,42,0.85) 0%, rgba(15,23,42,0.2) 50%, rgba(15,23,42,0.05) 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: var(--space-lg);
+    transition: background var(--duration-normal);
+  }
+
+  .bento-card:hover .bento-overlay {
+    background: linear-gradient(to top, rgba(15,23,42,0.9) 0%, rgba(15,23,42,0.3) 50%, rgba(15,23,42,0.1) 100%);
+  }
+
+  .bento-name {
+    font-size: var(--text-xl);
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 4px;
+  }
+
+  .bento-count {
+    font-size: var(--text-sm);
+    color: rgba(255,255,255,0.6);
+  }
+
+  .bento-arrow {
+    position: absolute;
+    top: var(--space-md);
+    right: var(--space-md);
+    width: 36px;
+    height: 36px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    opacity: 0;
+    transform: translate(-4px, 4px);
+    transition: opacity var(--duration-normal), transform var(--duration-normal) var(--ease-out);
+  }
+
+  .bento-card:hover .bento-arrow {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+
+  .bento-arrow svg { width: 18px; height: 18px; }
+
+  .bento-card.large { grid-column: span 2; }
+
+  .bento-card.view-all {
+    background: var(--navy);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .bento-card.view-all:hover { background: var(--navy-light); }
+
+  .view-all-text {
+    font-size: var(--text-lg);
+    font-weight: 700;
+    color: var(--white);
+  }
+
+  .view-all-count {
+    font-size: var(--text-sm);
+    color: rgba(255,255,255,0.5);
+  }
+
+  .view-all-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 2px solid rgba(255,255,255,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--amber);
+    margin-bottom: 4px;
+    transition: border-color var(--duration-normal), transform var(--duration-normal);
+  }
+
+  .bento-card.view-all:hover .view-all-icon {
+    border-color: var(--amber);
+    transform: scale(1.08);
+  }
+
+  .view-all-icon svg { width: 24px; height: 24px; }
+
+  /* ============================================
+     VARIANT 2: EDITORIAL CARDS
+  ============================================ */
+  .editorial-section {
+    padding: var(--space-section) 0;
+    background: var(--surface);
+  }
+
+  .editorial-hero-card {
+    position: relative;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    height: 300px;
+    margin-bottom: var(--space-lg);
+    cursor: pointer;
+    transition: transform var(--duration-normal) var(--ease-out);
+  }
+
+  .editorial-hero-card:hover { transform: translateY(-3px); }
+
+  .editorial-hero-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--duration-slow) var(--ease-out);
+  }
+
+  .editorial-hero-card:hover img { transform: scale(1.04); }
+
+  .editorial-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(15,23,42,0.92) 0%, rgba(15,23,42,0.4) 60%, transparent 100%);
+    padding: var(--space-xl);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 50%;
+  }
+
+  .editorial-tag {
+    display: inline-block;
+    font-size: var(--text-xs);
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: var(--space-sm);
+  }
+
+  .editorial-hero-overlay h3 {
+    font-size: var(--text-4xl);
+    font-weight: 800;
+    color: var(--white);
+    line-height: 1.1;
+    letter-spacing: -1px;
+    margin-bottom: var(--space-sm);
+  }
+
+  .editorial-hero-overlay p {
+    font-size: var(--text-base);
+    color: rgba(255,255,255,0.6);
+    margin-bottom: var(--space-md);
+  }
+
+  .editorial-hero-overlay .btn-amber { font-size: var(--text-sm); padding: 10px 22px; }
+
+  .editorial-medium-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-md);
+    margin-bottom: var(--space-lg);
+  }
+
+  .editorial-medium-card {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 180px;
+    cursor: pointer;
+    transition: transform var(--duration-normal) var(--ease-out), box-shadow var(--duration-normal);
+  }
+
+  .editorial-medium-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .editorial-medium-text {
+    padding: var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .editorial-medium-text .editorial-tag { color: var(--amber-dark); }
+
+  .editorial-medium-text h4 {
+    font-size: var(--text-xl);
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 6px;
+    line-height: 1.2;
+  }
+
+  .editorial-medium-text p {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    margin-bottom: var(--space-md);
+  }
+
+  .editorial-medium-text .text-link {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--amber-dark);
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    transition: color var(--duration-fast);
+  }
+
+  .editorial-medium-text .text-link:hover { color: var(--amber); }
+  .editorial-medium-text .text-link svg { width: 14px; height: 14px; }
+
+  .editorial-medium-img {
+    overflow: hidden;
+  }
+
+  .editorial-medium-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--duration-slow) var(--ease-out);
+  }
+
+  .editorial-medium-card:hover .editorial-medium-img img { transform: scale(1.06); }
+
+  .editorial-small-row {
+    display: flex;
+    gap: var(--space-md);
+    overflow-x: auto;
+    padding-bottom: 4px;
+    scrollbar-width: none;
+  }
+
+  .editorial-small-row::-webkit-scrollbar { display: none; }
+
+  .editorial-small-card {
+    flex: 0 0 auto;
+    width: 140px;
+    text-align: center;
+    cursor: pointer;
+    transition: transform var(--duration-normal) var(--ease-out);
+  }
+
+  .editorial-small-card:hover { transform: translateY(-3px); }
+
+  .editorial-small-thumb {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto var(--space-sm);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    background: var(--white);
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: box-shadow var(--duration-normal);
+  }
+
+  .editorial-small-card:hover .editorial-small-thumb { box-shadow: var(--shadow-md); }
+
+  .editorial-small-thumb img {
+    width: 80%;
+    height: 80%;
+    object-fit: contain;
+  }
+
+  .editorial-small-card span {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--navy);
+  }
+
+  /* ============================================
+     VARIANT 3: HORIZONTAL SHOWCASE
+  ============================================ */
+  .showcase-section {
+    padding: var(--space-section) 0;
+    background: var(--white);
+  }
+
+  .showcase-strip {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: var(--space-xl);
+    align-items: center;
+    padding: var(--space-xl) 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .showcase-strip:last-child { border-bottom: none; }
+
+  .showcase-strip.alt { background: var(--surface); margin: 0 calc(-1 * var(--space-lg)); padding-left: var(--space-lg); padding-right: var(--space-lg); border-radius: var(--radius-lg); border-bottom: none; }
+
+  .showcase-info h3 {
+    font-size: var(--text-2xl);
+    font-weight: 800;
+    color: var(--navy);
+    margin-bottom: 4px;
+    letter-spacing: -0.3px;
+  }
+
+  .showcase-info .showcase-count {
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+    margin-bottom: var(--space-md);
+  }
+
+  .showcase-link {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--amber-dark);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    border: 1.5px solid var(--amber);
+    border-radius: var(--radius-md);
+    transition: background var(--duration-fast), color var(--duration-fast);
+  }
+
+  .showcase-link:hover {
+    background: var(--amber);
+    color: var(--navy-deep);
+  }
+
+  .showcase-link svg { width: 14px; height: 14px; }
+
+  .showcase-images {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-md);
+  }
+
+  .showcase-img-card {
+    aspect-ratio: 1;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    background: var(--surface);
+    cursor: pointer;
+    transition: transform var(--duration-normal) var(--ease-out), box-shadow var(--duration-normal);
+  }
+
+  .showcase-img-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .showcase-img-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 12px;
+    transition: transform var(--duration-slow) var(--ease-out);
+  }
+
+  .showcase-img-card:hover img { transform: scale(1.08); }
+
+  /* ============================================
+     PRODUCT GRID (Best Sellers / New Arrivals)
+  ============================================ */
+  .products-section {
+    padding: var(--space-section) 0;
+  }
+
+  .products-section.alt-bg { background: var(--surface); }
+
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: var(--space-md);
+  }
+
+  .product-card {
+    background: var(--white);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform var(--duration-normal) var(--ease-out), box-shadow var(--duration-normal);
+    border: 1px solid var(--border);
+  }
+
+  .product-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+    border-color: transparent;
+  }
+
+  .product-card-img {
+    aspect-ratio: 1;
+    background: var(--surface);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-md);
+  }
+
+  .product-card-img img {
+    width: 85%;
+    height: 85%;
+    object-fit: contain;
+    transition: transform var(--duration-slow) var(--ease-out);
+  }
+
+  .product-card:hover .product-card-img img { transform: scale(1.06); }
+
+  .product-card-body {
+    padding: var(--space-md);
+  }
+
+  .product-card-title {
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: var(--text-primary);
+    line-height: 1.4;
+    margin-bottom: 8px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .product-card-price {
+    font-size: var(--text-lg);
+    font-weight: 700;
+    color: var(--navy);
+  }
+
+  .product-card-price .old-price {
+    font-size: var(--text-sm);
+    font-weight: 400;
+    color: var(--text-muted);
+    text-decoration: line-through;
+    margin-left: 8px;
+  }
+
+  /* ============================================
+     FOOTER
+  ============================================ */
+  .footer {
+    background: var(--navy-deep);
+    color: rgba(255,255,255,0.6);
+    padding: var(--space-2xl) 0 var(--space-lg);
+  }
+
+  .trust-bar {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-lg);
+    padding-bottom: var(--space-xl);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    margin-bottom: var(--space-xl);
+  }
+
+  .trust-item {
+    text-align: center;
+  }
+
+  .trust-icon {
+    width: 40px;
+    height: 40px;
+    margin: 0 auto var(--space-sm);
+    border-radius: var(--radius-md);
+    background: rgba(255,255,255,0.06);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--amber);
+  }
+
+  .trust-icon svg { width: 20px; height: 20px; }
+
+  .trust-item h4 {
+    font-size: var(--text-sm);
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 2px;
+  }
+
+  .trust-item p { font-size: var(--text-xs); }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: var(--space-xl);
+    margin-bottom: var(--space-xl);
+  }
+
+  .footer-brand .logo { font-size: var(--text-2xl); margin-bottom: var(--space-md); }
+
+  .footer-brand p {
+    font-size: var(--text-sm);
+    line-height: 1.6;
+    margin-bottom: var(--space-md);
+    max-width: 280px;
+  }
+
+  .footer-col h4 {
+    font-size: var(--text-sm);
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: var(--space-md);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .footer-col a {
+    display: block;
+    font-size: var(--text-sm);
+    padding: 4px 0;
+    transition: color var(--duration-fast);
+  }
+
+  .footer-col a:hover { color: var(--amber); }
+
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding-top: var(--space-lg);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+  }
+
+  .footer-bottom p { font-size: var(--text-xs); }
+
+  .payment-badges {
+    display: flex;
+    gap: var(--space-sm);
+  }
+
+  .payment-badge {
+    background: rgba(255,255,255,0.08);
+    border-radius: var(--radius-sm);
+    padding: 4px 10px;
+    font-size: 11px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.5);
+  }
+
+  /* ============================================
+     RESPONSIVE
+  ============================================ */
+  @media (max-width: 1024px) {
+    .bento-grid {
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: auto;
+    }
+    .bento-card.large { grid-column: span 2; }
+    .product-grid { grid-template-columns: repeat(3, 1fr); }
+    .showcase-strip { grid-template-columns: 1fr; gap: var(--space-md); }
+    .footer-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 768px) {
+    .header-search { display: none; }
+    .header-actions .header-btn span { display: none; }
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+
+    .hero .container { flex-direction: column; text-align: center; padding-top: var(--space-lg); padding-bottom: var(--space-lg); }
+    .hero-content { padding-right: 0; }
+    .hero-visual { width: 160px; height: 160px; }
+    .hero-actions { justify-content: center; }
+    .hero-subtitle { margin-left: auto; margin-right: auto; }
+    .editorial-hero-overlay { max-width: 100%; }
+
+    .bento-grid {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto;
+    }
+    .bento-card.large { grid-column: span 2; height: 200px; }
+    .bento-card:not(.large):not(.view-all) { height: 180px; }
+
+    .editorial-medium-grid { grid-template-columns: 1fr; }
+    .editorial-medium-card { grid-template-columns: 1fr; }
+    .editorial-medium-img { height: 180px; }
+
+    .product-grid { grid-template-columns: repeat(2, 1fr); }
+    .trust-bar { grid-template-columns: repeat(2, 1fr); }
+    .footer-grid { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 480px) {
+    .hero { height: auto; min-height: 260px; }
+    .hero-title { font-size: clamp(1.8rem, 6vw, 2.5rem); }
+    .countdown-block { min-width: 40px; padding: 4px 6px; }
+    .countdown-num { font-size: var(--text-base); }
+    .bento-card.large { height: 160px; }
+    .bento-card:not(.large):not(.view-all) { height: 140px; }
+    .editorial-hero-card { height: 220px; }
+    .editorial-hero-overlay h3 { font-size: var(--text-2xl); }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================================
+     HEADER
+============================================ -->
+<header class="header">
+  <div class="header-top">
+    <div class="container">
+      <a href="/" class="logo">
+        <span class="logo-xl">XL</span><span class="logo-market">Market</span>
+      </a>
+
+      <div class="header-search">
+        <input type="text" placeholder="Search 16,000+ products...">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      </div>
+
+      <div class="header-actions">
+        <!-- Language -->
+        <div class="lang-dropdown">
+          <button class="header-btn" id="langToggle" aria-label="Language">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            <span>EN</span>
+          </button>
+          <div class="lang-menu" id="langMenu">
+            <a href="#" class="active">English</a>
+            <a href="#">Eesti</a>
+            <a href="#">Espanol</a>
+          </div>
+        </div>
+
+        <!-- Auth -->
+        <button class="header-btn" aria-label="Account">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          <span>Sign in</span>
+        </button>
+
+        <!-- Cart -->
+        <button class="header-btn" aria-label="Cart">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+          <span class="cart-badge">3</span>
+        </button>
+
+        <!-- Hamburger (mobile) -->
+        <button class="hamburger" id="hamburgerBtn" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <nav class="header-nav">
+    <div class="container">
+      <button class="nav-categories-btn">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        All Categories
+      </button>
+      <ul class="nav-links">
+        <li><a href="#">Best Sellers</a></li>
+        <li><a href="#">New Arrivals</a></li>
+        <li><a href="#">Deals</a></li>
+        <li><a href="#">Tools</a></li>
+        <li><a href="#">Kitchen</a></li>
+        <li><a href="#">Automotive</a></li>
+        <li><a href="#">Outdoors</a></li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+<!-- Mobile menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#">All Categories</a>
+  <a href="#">Best Sellers</a>
+  <a href="#">New Arrivals</a>
+  <a href="#">Deals</a>
+  <a href="#">Tools</a>
+  <a href="#">Kitchen</a>
+  <a href="#">Automotive</a>
+  <a href="#">Outdoors</a>
+  <a href="#">Building Materials</a>
+  <a href="#">Sports &amp; Outdoors</a>
+  <a href="#">Hardware</a>
+  <a href="#">Electrical</a>
+</div>
+
+<!-- ============================================
+     HERO — CAMPAIGN BANNER
+============================================ -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-tag">Live Now</div>
+      <h1 class="hero-title">Summer Workshop Sale<br><em>Up to 40% Off</em></h1>
+      <p class="hero-subtitle">Professional-grade tools and equipment for your workshop, kitchen, and outdoor projects.</p>
+      <div class="hero-actions">
+        <a href="#" class="btn-amber">
+          Shop the Sale
+          <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <div class="hero-countdown">
+          <span class="countdown-label">Ends in</span>
+          <div class="countdown-block">
+            <span class="countdown-num" id="cd-days">3</span>
+            <span class="countdown-unit">Days</span>
+          </div>
+          <span class="countdown-sep">:</span>
+          <div class="countdown-block">
+            <span class="countdown-num" id="cd-hours">14</span>
+            <span class="countdown-unit">Hrs</span>
+          </div>
+          <span class="countdown-sep">:</span>
+          <div class="countdown-block">
+            <span class="countdown-num" id="cd-mins">22</span>
+            <span class="countdown-unit">Min</span>
+          </div>
+          <span class="countdown-sep">:</span>
+          <div class="countdown-block">
+            <span class="countdown-num" id="cd-secs">47</span>
+            <span class="countdown-unit">Sec</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <img src="https://image.vevor.com/us%2F0618-3BMNCC000001V2%2Foriginal_img-v9%2Fmetal-lathe-m100-1.2.jpg?timestamp=1652168143000" alt="Metal Lathe — featured product" loading="eager">
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     VARIANT 1: BENTO GRID
+============================================ -->
+<section class="bento-section">
+  <div class="container">
+    <div class="variant-label">
+      <h2>Variant 1: Bento Grid</h2>
+      <p>Dense, visual category exploration with hierarchy through card sizing</p>
+    </div>
+
+    <div class="section-header">
+      <h2 class="section-title">Shop by Category</h2>
+      <a href="#" class="section-link">
+        View All
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+
+    <div class="bento-grid">
+      <!-- Row 1 -->
+      <div class="bento-card large">
+        <img src="https://image.vevor.com/us%2F0618-3BMNCC000001V2%2Foriginal_img-v9%2Fmetal-lathe-m100-1.2.jpg?timestamp=1652168143000" alt="Tools">
+        <div class="bento-overlay">
+          <span class="bento-name">Tools</span>
+          <span class="bento-count">2,400+ products</span>
+        </div>
+        <div class="bento-arrow"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div>
+      </div>
+      <div class="bento-card">
+        <img src="https://image.vevor.com/us%2F1100WJRJ90800X001V2%2Foriginal_img-v10%2Fcommercial-meat-grinder-m100-1.2.jpg?timestamp=1730432819000" alt="Kitchen">
+        <div class="bento-overlay">
+          <span class="bento-name">Kitchen</span>
+          <span class="bento-count">1,600+ products</span>
+        </div>
+        <div class="bento-arrow"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div>
+      </div>
+      <div class="bento-card">
+        <img src="https://image.vevor.com/us%2FQTSTCTTSDNQONMY7J001V0%2Foriginal_img-v2%2Ftrailer-coupler-lock-m100-1.2.jpg?timestamp=1700000000000" alt="Automotive">
+        <div class="bento-overlay">
+          <span class="bento-name">Automotive</span>
+          <span class="bento-count">1,800+ products</span>
+        </div>
+        <div class="bento-arrow"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div>
+      </div>
+
+      <!-- Row 2 -->
+      <div class="bento-card">
+        <img src="https://image.vevor.com/us%2FPZSHLK37INCH5XEW0001V2%2Foriginal_img-v1%2Frotisserie-grill-m100-1.2.jpg?timestamp=1700000000000" alt="Outdoors">
+        <div class="bento-overlay">
+          <span class="bento-name">Outdoors</span>
+          <span class="bento-count">1,200+ products</span>
+        </div>
+        <div class="bento-arrow"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div>
+      </div>
+      <div class="bento-card">
+        <img src="https://image.vevor.com/us%2FDGNZDTLHJ3JPBIFH9V0%2Foriginal_img-v1%2Fmulti-purpose-folding-ladder-m100-1.2.jpg?timestamp=1700000000000" alt="Building Materials">
+        <div class="bento-overlay">
+          <span class="bento-name">Building Materials</span>
+          <span class="bento-count">980+ products</span>
+        </div>
+        <div class="bento-arrow"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div>
+      </div>
+      <div class="bento-card">
+        <img src="https://image.vevor.com/us%2FZDJSCCZPDBKDQ5ELZV9%2Foriginal_img-v1%2Fexercise-bike-m100-1.2.jpg?timestamp=1700000000000" alt="Sports & Outdoors">
+        <div class="bento-overlay">
+          <span class="bento-name">Sports &amp; Outdoors</span>
+          <span class="bento-count">850+ products</span>
+        </div>
+        <div class="bento-arrow"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div>
+      </div>
+      <div class="bento-card view-all">
+        <div class="view-all-icon">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </div>
+        <span class="view-all-text">View All</span>
+        <span class="view-all-count">16,000+ products</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- ============================================
+     VARIANT 2: EDITORIAL CARDS
+============================================ -->
+<section class="editorial-section">
+  <div class="container">
+    <div class="variant-label">
+      <h2>Variant 2: Editorial Cards</h2>
+      <p>Magazine-style layout with hierarchy through scale and composition</p>
+    </div>
+
+    <div class="section-header">
+      <h2 class="section-title">Explore Categories</h2>
+      <a href="#" class="section-link">
+        Browse All
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+
+    <!-- Hero card -->
+    <div class="editorial-hero-card">
+      <img src="https://image.vevor.com/us%2F0618-3BMNCC000001V2%2Foriginal_img-v9%2Fmetal-lathe-m100-1.2.jpg?timestamp=1652168143000" alt="Tools">
+      <div class="editorial-hero-overlay">
+        <span class="editorial-tag">Featured Collection</span>
+        <h3>Professional Tools</h3>
+        <p>From precision lathes to heavy-duty cutting machines. 2,400+ products for every workshop.</p>
+        <a href="#" class="btn-amber">
+          Explore Tools
+          <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Medium cards -->
+    <div class="editorial-medium-grid">
+      <div class="editorial-medium-card">
+        <div class="editorial-medium-text">
+          <span class="editorial-tag">Commercial Grade</span>
+          <h4>Kitchen Equipment</h4>
+          <p>Commercial grinders, ovens, and prep stations. Built for serious kitchens.</p>
+          <a href="#" class="text-link">
+            Shop Kitchen
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+        <div class="editorial-medium-img">
+          <img src="https://image.vevor.com/us%2F1100WJRJ90800X001V2%2Foriginal_img-v10%2Fcommercial-meat-grinder-m100-1.2.jpg?timestamp=1730432819000" alt="Kitchen">
+        </div>
+      </div>
+
+      <div class="editorial-medium-card">
+        <div class="editorial-medium-text">
+          <span class="editorial-tag">Road Ready</span>
+          <h4>Automotive Parts</h4>
+          <p>Trailer locks, lifts, jacks, and diagnostics. Everything for the garage.</p>
+          <a href="#" class="text-link">
+            Shop Automotive
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+        <div class="editorial-medium-img">
+          <img src="https://image.vevor.com/us%2FQTSTCTTSDNQONMY7J001V0%2Foriginal_img-v2%2Ftrailer-coupler-lock-m100-1.2.jpg?timestamp=1700000000000" alt="Automotive">
+        </div>
+      </div>
+
+      <div class="editorial-medium-card">
+        <div class="editorial-medium-text">
+          <span class="editorial-tag">Open Air</span>
+          <h4>Outdoors &amp; Grilling</h4>
+          <p>Rotisserie grills, camping gear, and garden equipment for every season.</p>
+          <a href="#" class="text-link">
+            Shop Outdoors
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+        <div class="editorial-medium-img">
+          <img src="https://image.vevor.com/us%2FPZSHLK37INCH5XEW0001V2%2Foriginal_img-v1%2Frotisserie-grill-m100-1.2.jpg?timestamp=1700000000000" alt="Outdoors">
+        </div>
+      </div>
+
+      <div class="editorial-medium-card">
+        <div class="editorial-medium-text">
+          <span class="editorial-tag">Build It</span>
+          <h4>Building Materials</h4>
+          <p>Ladders, scaffolding, tile cutters, and structural supplies.</p>
+          <a href="#" class="text-link">
+            Shop Building
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+        <div class="editorial-medium-img">
+          <img src="https://image.vevor.com/us%2FDGNZDTLHJ3JPBIFH9V0%2Foriginal_img-v1%2Fmulti-purpose-folding-ladder-m100-1.2.jpg?timestamp=1700000000000" alt="Building Materials">
+        </div>
+      </div>
+    </div>
+
+    <!-- Small row -->
+    <div class="editorial-small-row">
+      <div class="editorial-small-card">
+        <div class="editorial-small-thumb">
+          <img src="https://image.vevor.com/us%2FZDJSCCZPDBKDQ5ELZV9%2Foriginal_img-v1%2Fexercise-bike-m100-1.2.jpg?timestamp=1700000000000" alt="Sports">
+        </div>
+        <span>Sports</span>
+      </div>
+      <div class="editorial-small-card">
+        <div class="editorial-small-thumb">
+          <img src="https://image.vevor.com/us%2F0618-3BMNCC000001V2%2Foriginal_img-v9%2Fmetal-lathe-m100-1.2.jpg?timestamp=1652168143000" alt="Hardware">
+        </div>
+        <span>Hardware</span>
+      </div>
+      <div class="editorial-small-card">
+        <div class="editorial-small-thumb">
+          <img src="https://image.vevor.com/us%2FSMXWJ3.5X-90XTS01V0%2Foriginal_img-v4%2Fstereo-microscope-m100-1.2.jpg?timestamp=1628592013000" alt="Electrical">
+        </div>
+        <span>Electrical</span>
+      </div>
+      <div class="editorial-small-card">
+        <div class="editorial-small-thumb">
+          <img src="https://image.vevor.com/us%2F3CFM1-3HPZKBOC001V2%2Foriginal_img-v10%2Fvacuum-pump-m100-1.2.jpg?timestamp=1700096920000" alt="HVAC">
+        </div>
+        <span>HVAC</span>
+      </div>
+      <div class="editorial-small-card">
+        <div class="editorial-small-thumb">
+          <img src="https://image.vevor.com/us%2F120CMCZQGJ0000001V0%2Foriginal_img-v8%2Ftile-cutter-m100-1.2.jpg?timestamp=1751451233000" alt="Tiling">
+        </div>
+        <span>Tiling</span>
+      </div>
+      <div class="editorial-small-card">
+        <div class="editorial-small-thumb">
+          <img src="https://image.vevor.com/us%2FPZSHLK37INCH5XEW0001V2%2Foriginal_img-v1%2Frotisserie-grill-m100-1.2.jpg?timestamp=1700000000000" alt="Grilling">
+        </div>
+        <span>Grilling</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- ============================================
+     VARIANT 3: HORIZONTAL SHOWCASE
+============================================ -->
+<section class="showcase-section">
+  <div class="container">
+    <div class="variant-label">
+      <h2>Variant 3: Horizontal Showcase</h2>
+      <p>Apple-store inspired strips with generous whitespace and product focus</p>
+    </div>
+
+    <div class="section-header">
+      <h2 class="section-title">Browse Departments</h2>
+    </div>
+
+    <!-- Strip 1: Tools -->
+    <div class="showcase-strip">
+      <div class="showcase-info">
+        <h3>Tools</h3>
+        <div class="showcase-count">2,400+ products</div>
+        <a href="#" class="showcase-link">
+          Shop Now
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+      <div class="showcase-images">
+        <div class="showcase-img-card">
+          <img src="https://image.vevor.com/us%2F0618-3BMNCC000001V2%2Foriginal_img-v9%2Fmetal-lathe-m100-1.2.jpg?timestamp=1652168143000" alt="Metal Lathe">
+        </div>
+        <div class="showcase-img-card">
+          <img src="https://image.vevor.com/us%2F120CMCZQGJ0000001V0%2Foriginal_img-v8%2Ftile-cutter-m100-1.2.jpg?timestamp=1751451233000" alt="Tile Cutter">
+        </div>
+        <div class="showcase-img-card">
+          <img src="https://image.vevor.com/us%2F3CFM1-3HPZKBOC001V2%2Foriginal_img-v10%2Fvacuum-pump-m100-1.2.jpg?timestamp=1700096920000" alt="Vacuum Pump">
+        </div>
+      </div>
+    </div>
+
+    <!-- Strip 2: Kitchen (alt bg) -->
+    <div class="showcase-strip alt">
+      <div class="showcase-info">
+        <h3>Kitchen</h3>
+        <div class="showcase-count">1,600+ products</div>
+        <a href="#" class="showcase-link">
+          Shop Now
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+      <div class="showcase-images">
+        <div class="showcase-img-card">
+          <img src="https://image.vevor.com/us%2F1100WJRJ90800X001V2%2Foriginal_img-v10%2Fcommercial-meat-grinder-m100-1.2.jpg?timestamp=1730432819000" alt="Meat Grinder">
+        </div>
+        <div class="showcase-img-card">
+          <img src="https://image.vevor.com/us%2FPZSHLK37INCH5XEW0001V2%2Foriginal_img-v1%2Frotisserie-grill-m100-1.2.jpg?timestamp=1700000000000" alt="Rotisserie Grill">
+        </div>
+        <div class="showcase-img-card">
+          <img src="https://image.vevor.com/us%2FSMXWJ3.5X-90XTS01V0%2Foriginal_img-v4%2Fstereo-microscope-m100-1.2.jpg?timestamp=1628592013000" alt="Microscope">
+        </div>
+      </div>
+    </div>
+
+    <!-- Strip 3: Automotive -->
+    <div class="showcase-strip">
+      <div class="showcase-info">
+        <h3>Automotive</h3>
+        <div class="showcase-count">1,800+ products</div>
+        <a href="#" class="showcase-link">
+          Shop Now
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+      <div class="showcase-images">
+        <div class="showcase-img-card">
+          <img src="https://image.vevor.com/us%2FQTSTCTTSDNQONMY7J001V0%2Foriginal_img-v2%2Ftrailer-coupler-lock-m100-1.2.jpg?timestamp=1700000000000" alt="Trailer Lock">
+        </div>
+        <div class="showcase-img-card">
+          <img src="https://image.vevor.com/us%2F3CFM1-3HPZKBOC001V2%2Foriginal_img-v10%2Fvacuum-pump-m100-1.2.jpg?timestamp=1700096920000" alt="Vacuum Pump">
+        </div>
+        <div class="showcase-img-card">
+          <img src="https://image.vevor.com/us%2F0618-3BMNCC000001V2%2Foriginal_img-v9%2Fmetal-lathe-m100-1.2.jpg?timestamp=1652168143000" alt="Metal Lathe">
+        </div>
+      </div>
+    </div>
+
+    <!-- Strip 4: Outdoors (alt bg) -->
+    <div class="showcase-strip alt">
+      <div class="showcase-info">
+        <h3>Outdoors</h3>
+        <div class="showcase-count">1,200+ products</div>
+        <a href="#" class="showcase-link">
+          Shop Now
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+      <div class="showcase-images">
+        <div class="showcase-img-card">
+          <img src="https://image.vevor.com/us%2FPZSHLK37INCH5XEW0001V2%2Foriginal_img-v1%2Frotisserie-grill-m100-1.2.jpg?timestamp=1700000000000" alt="Rotisserie Grill">
+        </div>
+        <div class="showcase-img-card">
+          <img src="https://image.vevor.com/us%2FZDJSCCZPDBKDQ5ELZV9%2Foriginal_img-v1%2Fexercise-bike-m100-1.2.jpg?timestamp=1700000000000" alt="Exercise Bike">
+        </div>
+        <div class="showcase-img-card">
+          <img src="https://image.vevor.com/us%2FDGNZDTLHJ3JPBIFH9V0%2Foriginal_img-v1%2Fmulti-purpose-folding-ladder-m100-1.2.jpg?timestamp=1700000000000" alt="Folding Ladder">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- ============================================
+     BEST SELLERS
+============================================ -->
+<section class="products-section">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">Best Sellers</h2>
+      <a href="#" class="section-link">
+        View All
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+
+    <div class="product-grid">
+      <div class="product-card">
+        <div class="product-card-img">
+          <img src="https://image.vevor.com/us%2F0618-3BMNCC000001V2%2Foriginal_img-v9%2Fmetal-lathe-m100-1.2.jpg?timestamp=1652168143000" alt="Metal Lathe Machine 7x14">
+        </div>
+        <div class="product-card-body">
+          <div class="product-card-title">Metal Lathe Machine 7x14 Precision Metalworking</div>
+          <div class="product-card-price">EUR 549.99 <span class="old-price">EUR 899.99</span></div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-card-img">
+          <img src="https://image.vevor.com/us%2F1100WJRJ90800X001V2%2Foriginal_img-v10%2Fcommercial-meat-grinder-m100-1.2.jpg?timestamp=1730432819000" alt="Commercial Meat Grinder 1100W">
+        </div>
+        <div class="product-card-body">
+          <div class="product-card-title">Commercial Electric Meat Grinder 1100W Stainless Steel</div>
+          <div class="product-card-price">EUR 189.99</div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-card-img">
+          <img src="https://image.vevor.com/us%2FPZSHLK37INCH5XEW0001V2%2Foriginal_img-v1%2Frotisserie-grill-m100-1.2.jpg?timestamp=1700000000000" alt="Rotisserie Grill 37 Inch">
+        </div>
+        <div class="product-card-body">
+          <div class="product-card-title">Outdoor Rotisserie Grill 37" Heavy Duty BBQ</div>
+          <div class="product-card-price">EUR 329.99 <span class="old-price">EUR 479.99</span></div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-card-img">
+          <img src="https://image.vevor.com/us%2FQTSTCTTSDNQONMY7J001V0%2Foriginal_img-v2%2Ftrailer-coupler-lock-m100-1.2.jpg?timestamp=1700000000000" alt="Trailer Coupler Lock">
+        </div>
+        <div class="product-card-body">
+          <div class="product-card-title">Heavy Duty Trailer Coupler Lock Anti-Theft</div>
+          <div class="product-card-price">EUR 39.99</div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-card-img">
+          <img src="https://image.vevor.com/us%2FDGNZDTLHJ3JPBIFH9V0%2Foriginal_img-v1%2Fmulti-purpose-folding-ladder-m100-1.2.jpg?timestamp=1700000000000" alt="Multi-Purpose Folding Ladder">
+        </div>
+        <div class="product-card-body">
+          <div class="product-card-title">Multi-Purpose Folding Ladder Aluminium 4.7m</div>
+          <div class="product-card-price">EUR 119.99</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     NEW ARRIVALS
+============================================ -->
+<section class="products-section alt-bg">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">New Arrivals</h2>
+      <a href="#" class="section-link">
+        View All
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+
+    <div class="product-grid">
+      <div class="product-card">
+        <div class="product-card-img">
+          <img src="https://image.vevor.com/us%2FZDJSCCZPDBKDQ5ELZV9%2Foriginal_img-v1%2Fexercise-bike-m100-1.2.jpg?timestamp=1700000000000" alt="Exercise Bike">
+        </div>
+        <div class="product-card-body">
+          <div class="product-card-title">Indoor Cycling Exercise Bike Adjustable Resistance</div>
+          <div class="product-card-price">EUR 259.99</div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-card-img">
+          <img src="https://image.vevor.com/us%2FSMXWJ3.5X-90XTS01V0%2Foriginal_img-v4%2Fstereo-microscope-m100-1.2.jpg?timestamp=1628592013000" alt="Stereo Microscope">
+        </div>
+        <div class="product-card-body">
+          <div class="product-card-title">Stereo Microscope 3.5X-90X LED Illuminated</div>
+          <div class="product-card-price">EUR 449.99 <span class="old-price">EUR 599.99</span></div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-card-img">
+          <img src="https://image.vevor.com/us%2F120CMCZQGJ0000001V0%2Foriginal_img-v8%2Ftile-cutter-m100-1.2.jpg?timestamp=1751451233000" alt="Tile Cutter 120cm">
+        </div>
+        <div class="product-card-body">
+          <div class="product-card-title">Manual Tile Cutter 120cm Professional Grade</div>
+          <div class="product-card-price">EUR 89.99</div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-card-img">
+          <img src="https://image.vevor.com/us%2F3CFM1-3HPZKBOC001V2%2Foriginal_img-v10%2Fvacuum-pump-m100-1.2.jpg?timestamp=1700096920000" alt="Vacuum Pump">
+        </div>
+        <div class="product-card-body">
+          <div class="product-card-title">3CFM 1/3HP Vacuum Pump HVAC Refrigeration</div>
+          <div class="product-card-price">EUR 79.99</div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-card-img">
+          <img src="https://image.vevor.com/us%2F0618-3BMNCC000001V2%2Foriginal_img-v9%2Fmetal-lathe-m100-1.2.jpg?timestamp=1652168143000" alt="Mini Metal Lathe">
+        </div>
+        <div class="product-card-body">
+          <div class="product-card-title">Mini Metal Lathe Variable Speed 550W Bench Top</div>
+          <div class="product-card-price">EUR 389.99 <span class="old-price">EUR 549.99</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     FOOTER
+============================================ -->
+<footer class="footer">
+  <div class="container">
+    <!-- Trust badges -->
+    <div class="trust-bar">
+      <div class="trust-item">
+        <div class="trust-icon">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg>
+        </div>
+        <h4>Free Shipping</h4>
+        <p>On orders over EUR 99</p>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h4>Secure Payment</h4>
+        <p>Montonio bank links &amp; cards</p>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M3 21v-5h5"/></svg>
+        </div>
+        <h4>14-Day Returns</h4>
+        <p>Hassle-free return policy</p>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </div>
+        <h4>Expert Support</h4>
+        <p>info@xlmarket.eu</p>
+      </div>
+    </div>
+
+    <!-- Footer grid -->
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo">
+          <span class="logo-xl">XL</span><span class="logo-market">Market</span>
+        </div>
+        <p>Your European destination for professional tools, kitchen equipment, and industrial supplies. Powered by VEVOR.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Shop</h4>
+        <a href="#">All Products</a>
+        <a href="#">Best Sellers</a>
+        <a href="#">New Arrivals</a>
+        <a href="#">Deals &amp; Offers</a>
+        <a href="#">Gift Cards</a>
+      </div>
+      <div class="footer-col">
+        <h4>Support</h4>
+        <a href="#">Contact Us</a>
+        <a href="#">Shipping Info</a>
+        <a href="#">Returns &amp; Refunds</a>
+        <a href="#">FAQ</a>
+        <a href="#">Track Order</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="#">About XLMarket</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Cookie Policy</a>
+      </div>
+    </div>
+
+    <!-- Bottom -->
+    <div class="footer-bottom">
+      <p>2026 XLMarket.eu (Roland Kaubandus OU). All rights reserved.</p>
+      <div class="payment-badges">
+        <span class="payment-badge">Swedbank</span>
+        <span class="payment-badge">SEB</span>
+        <span class="payment-badge">LHV</span>
+        <span class="payment-badge">Luminor</span>
+        <span class="payment-badge">Coop</span>
+        <span class="payment-badge">Visa</span>
+        <span class="payment-badge">MC</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ==========================================
+  // Countdown timer
+  // ==========================================
+  (function() {
+    let total = 3 * 86400 + 14 * 3600 + 22 * 60 + 47;
+    const daysEl = document.getElementById('cd-days');
+    const hoursEl = document.getElementById('cd-hours');
+    const minsEl = document.getElementById('cd-mins');
+    const secsEl = document.getElementById('cd-secs');
+
+    function pad(n) { return n < 10 ? '0' + n : String(n); }
+
+    function tick() {
+      if (total <= 0) return;
+      total--;
+      const d = Math.floor(total / 86400);
+      const h = Math.floor((total % 86400) / 3600);
+      const m = Math.floor((total % 3600) / 60);
+      const s = total % 60;
+      daysEl.textContent = d;
+      hoursEl.textContent = pad(h);
+      minsEl.textContent = pad(m);
+      secsEl.textContent = pad(s);
+    }
+
+    setInterval(tick, 1000);
+  })();
+
+  // ==========================================
+  // Language dropdown
+  // ==========================================
+  (function() {
+    const toggle = document.getElementById('langToggle');
+    const menu = document.getElementById('langMenu');
+
+    toggle.addEventListener('click', function(e) {
+      e.stopPropagation();
+      menu.classList.toggle('open');
+    });
+
+    document.addEventListener('click', function() {
+      menu.classList.remove('open');
+    });
+
+    menu.addEventListener('click', function(e) {
+      if (e.target.tagName === 'A') {
+        e.preventDefault();
+        menu.querySelectorAll('a').forEach(function(a) { a.classList.remove('active'); });
+        e.target.classList.add('active');
+        toggle.querySelector('span').textContent = e.target.textContent.substring(0, 2).toUpperCase();
+        menu.classList.remove('open');
+      }
+    });
+  })();
+
+  // ==========================================
+  // Mobile hamburger menu
+  // ==========================================
+  (function() {
+    const btn = document.getElementById('hamburgerBtn');
+    const menu = document.getElementById('mobileMenu');
+
+    btn.addEventListener('click', function() {
+      btn.classList.toggle('open');
+      menu.classList.toggle('open');
+      document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : '';
+    });
+  })();
+</script>
+</body>
+</html>
