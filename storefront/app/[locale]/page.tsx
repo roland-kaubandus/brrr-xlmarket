@@ -1,3 +1,4 @@
+import type { Metadata } from "next"
 import { getProducts, getCategories } from "@/lib/medusa"
 import { searchProducts, getLocalizedTitle } from "@/lib/meilisearch"
 import BannerCarousel from "@/components/BannerCarousel"
@@ -7,6 +8,26 @@ import HorizontalProductRow from "@/components/HorizontalProductRow"
 import categoryImages from "@/lib/category-images.json"
 
 export const revalidate = 300
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params
+  const isEt = locale === "et"
+  return {
+    title: isEt
+      ? "XLMARKET — Professionaalsed tööriistad ja seadmed"
+      : "XLMARKET — Professional Tools & Equipment",
+    description: isEt
+      ? "Üle 10 000 toote: tööriistad, seadmed, köögivarustus, autovarustus. Soodne hind, 2-aastane garantii, tarne üle Eesti."
+      : "Over 10,000 products: tools, equipment, kitchen, automotive. Affordable prices, 2-year warranty, delivery across Estonia.",
+    alternates: {
+      canonical: `https://xlmarket.store/${locale}`,
+      languages: {
+        et: "https://xlmarket.store/et",
+        en: "https://xlmarket.store/en",
+      },
+    },
+  }
+}
 
 const DISPLAY_NAMES: Record<string, string> = {
   "outdoors": "Outdoors",

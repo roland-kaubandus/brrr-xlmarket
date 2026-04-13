@@ -2,15 +2,17 @@ import type { Metadata } from "next"
 import Link from "next/link"
 
 export const metadata: Metadata = {
-  title: "Küpsiste poliitika — XLMARKET",
-  description: "XLMARKET küpsiste poliitika. Milliseid küpsiseid kasutame ja kuidas saate oma eelistusi hallata.",
+  title: "Cookie Policy — XLMARKET",
+  description: "XLMARKET cookie policy. What cookies we use and how you can manage your preferences.",
 }
 
-export default async function KupsisedPage({ params }: { params: Promise<{ locale: string }> }) {
+export default async function CookiePolicyPage({ params }: { params: Promise<{ locale: string }> }) {
+  const locale = (await params).locale
+
   return (
     <div className="max-w-[1280px] mx-auto px-[16px] sm:px-[24px] py-[32px] sm:py-[48px]">
       <nav className="text-[12px] font-[family-name:var(--font-dm-sans)] text-[#999999] mb-[32px]" aria-label="Breadcrumb">
-        <Link href={`/${(await params).locale}`} className="hover:text-[#D97706] transition-colors">Home</Link>
+        <Link href={`/${locale}`} className="hover:text-[#D97706] transition-colors">Home</Link>
         <span className="mx-[8px] text-[#E8E8E8]">/</span>
         <span className="text-[#777777]">Cookie Policy</span>
       </nav>
@@ -18,26 +20,26 @@ export default async function KupsisedPage({ params }: { params: Promise<{ local
       <h1 className="text-[28px] sm:text-[32px] font-[700] font-[family-name:var(--font-dm-sans)] text-[#1E293B] mb-[32px]">Cookie Policy</h1>
 
       <div className="max-w-[720px] text-[14px] font-[family-name:var(--font-dm-sans)] text-[#555555] leading-relaxed space-y-[16px]">
-        <p>Kehtib alates: 28.03.2026</p>
+        <p>Effective from: 28 March 2026</p>
 
-        <h2 className="text-[18px] font-[600] font-[family-name:var(--font-dm-sans)] text-[#1E293B] mt-[32px] mb-[12px]">Mis on küpsised?</h2>
+        <h2 className="text-[18px] font-[600] font-[family-name:var(--font-dm-sans)] text-[#1E293B] mt-[32px] mb-[12px]">What Are Cookies?</h2>
         <p>
-          Küpsised on väikesed tekstifailid, mida veebileht salvestab teie seadmesse. Need
-          aitavad meil pakkuda paremat kasutajakogemust.
+          Cookies are small text files that a website stores on your device. They help us
+          provide a better user experience.
         </p>
 
-        <h2 className="text-[18px] font-[600] font-[family-name:var(--font-dm-sans)] text-[#1E293B] mt-[32px] mb-[12px]">Vajalikud küpsised</h2>
+        <h2 className="text-[18px] font-[600] font-[family-name:var(--font-dm-sans)] text-[#1E293B] mt-[32px] mb-[12px]">Essential Cookies</h2>
         <p>
-          Need küpsised on e-poe toimimiseks hädavajalikud. Ilma nendeta ei tööta ostukorv
-          ega tellimise protsess.
+          These cookies are necessary for the online store to function. Without them, the
+          shopping cart and checkout process will not work.
         </p>
         <div className="border border-[#E8E8E8] overflow-hidden">
           <table className="w-full text-left">
             <thead className="bg-[#F7F7F7]">
               <tr>
-                <th className="px-[16px] py-[10px] text-[12px] font-[600] font-[family-name:var(--font-dm-sans)] text-[#777777] uppercase tracking-wide">Küpsis</th>
-                <th className="px-[16px] py-[10px] text-[12px] font-[600] font-[family-name:var(--font-dm-sans)] text-[#777777] uppercase tracking-wide">Eesmärk</th>
-                <th className="px-[16px] py-[10px] text-[12px] font-[600] font-[family-name:var(--font-dm-sans)] text-[#777777] uppercase tracking-wide">Kehtivus</th>
+                <th className="px-[16px] py-[10px] text-[12px] font-[600] font-[family-name:var(--font-dm-sans)] text-[#777777] uppercase tracking-wide">Cookie</th>
+                <th className="px-[16px] py-[10px] text-[12px] font-[600] font-[family-name:var(--font-dm-sans)] text-[#777777] uppercase tracking-wide">Purpose</th>
+                <th className="px-[16px] py-[10px] text-[12px] font-[600] font-[family-name:var(--font-dm-sans)] text-[#777777] uppercase tracking-wide">Duration</th>
               </tr>
             </thead>
             <tbody>
@@ -55,39 +57,39 @@ export default async function KupsisedPage({ params }: { params: Promise<{ local
           </table>
         </div>
 
-        <h2 className="text-[18px] font-[600] font-[family-name:var(--font-dm-sans)] text-[#1E293B] mt-[32px] mb-[12px]">Analüütikaküpsised</h2>
+        <h2 className="text-[18px] font-[600] font-[family-name:var(--font-dm-sans)] text-[#1E293B] mt-[32px] mb-[12px]">Analytics Cookies</h2>
         <p>
-          Analüütikaküpsiseid kasutatakse ainult teie nõusolekul. Need aitavad meil mõista,
-          kuidas külastajad meie veebilehte kasutavad.
+          Analytics cookies are used only with your consent. They help us understand
+          how visitors use our website.
         </p>
         <div className="border border-[#E8E8E8] overflow-hidden">
           <table className="w-full text-left">
             <thead className="bg-[#F7F7F7]">
               <tr>
-                <th className="px-[16px] py-[10px] text-[12px] font-[600] font-[family-name:var(--font-dm-sans)] text-[#777777] uppercase tracking-wide">Küpsis</th>
-                <th className="px-[16px] py-[10px] text-[12px] font-[600] font-[family-name:var(--font-dm-sans)] text-[#777777] uppercase tracking-wide">Eesmärk</th>
-                <th className="px-[16px] py-[10px] text-[12px] font-[600] font-[family-name:var(--font-dm-sans)] text-[#777777] uppercase tracking-wide">Kehtivus</th>
+                <th className="px-[16px] py-[10px] text-[12px] font-[600] font-[family-name:var(--font-dm-sans)] text-[#777777] uppercase tracking-wide">Cookie</th>
+                <th className="px-[16px] py-[10px] text-[12px] font-[600] font-[family-name:var(--font-dm-sans)] text-[#777777] uppercase tracking-wide">Purpose</th>
+                <th className="px-[16px] py-[10px] text-[12px] font-[600] font-[family-name:var(--font-dm-sans)] text-[#777777] uppercase tracking-wide">Duration</th>
               </tr>
             </thead>
             <tbody>
               <tr className="border-t border-[#E8E8E8]">
                 <td className="px-[16px] py-[10px] text-[13px] font-[family-name:var(--font-dm-sans)] text-[#555555]">_fbp</td>
-                <td className="px-[16px] py-[10px] text-[13px] font-[family-name:var(--font-dm-sans)] text-[#555555]">Meta Pixel — külastajate analüüs</td>
-                <td className="px-[16px] py-[10px] text-[13px] font-[family-name:var(--font-dm-sans)] text-[#555555]">3 kuud</td>
+                <td className="px-[16px] py-[10px] text-[13px] font-[family-name:var(--font-dm-sans)] text-[#555555]">Meta Pixel — visitor analytics</td>
+                <td className="px-[16px] py-[10px] text-[13px] font-[family-name:var(--font-dm-sans)] text-[#555555]">3 months</td>
               </tr>
             </tbody>
           </table>
         </div>
 
-        <h2 className="text-[18px] font-[600] font-[family-name:var(--font-dm-sans)] text-[#1E293B] mt-[32px] mb-[12px]">Kuidas küpsiseid hallata</h2>
+        <h2 className="text-[18px] font-[600] font-[family-name:var(--font-dm-sans)] text-[#1E293B] mt-[32px] mb-[12px]">How to Manage Cookies</h2>
         <p>
-          Saate küpsiseid hallata oma veebibrauseri seadetest. Küpsiste blokeerimine võib
-          piirata mõningaid e-poe funktsioone (nt ostukorv).
+          You can manage cookies through your web browser settings. Blocking cookies may
+          limit some store features (e.g. the shopping cart).
         </p>
 
-        <h2 className="text-[18px] font-[600] font-[family-name:var(--font-dm-sans)] text-[#1E293B] mt-[32px] mb-[12px]">Kontakt</h2>
+        <h2 className="text-[18px] font-[600] font-[family-name:var(--font-dm-sans)] text-[#1E293B] mt-[32px] mb-[12px]">Contact</h2>
         <p>
-          Küsimuste korral kirjutage:{" "}
+          For questions, write to:{" "}
           <a href="mailto:info@xlmarket.eu" className="text-[#E8650A] hover:text-[#CF5A08] underline">
             info@xlmarket.eu
           </a>

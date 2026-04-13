@@ -319,17 +319,17 @@ export default function MegaMenu({ categories, locale = "et" }: { categories: Ca
       {/* Mobile full-screen menu with drill-down */}
       {isOpen && (
         <div className="md:hidden fixed inset-0 z-50 bg-white flex flex-col">
-          <div className="flex items-center justify-between px-4 h-[48px] border-b border-[#E2E8F0] bg-[#1E293B] flex-shrink-0">
+          <div className="flex items-center justify-between px-4 h-[56px] border-b border-[#E2E8F0] bg-[#1E293B] flex-shrink-0">
             {mobileStack.length > 0 ? (
-              <button onClick={() => setMobileStack(s => s.slice(0, -1))} className="flex items-center gap-1.5 text-white font-medium text-[14px]">
-                <ChevronLeft size={18} />
+              <button onClick={() => setMobileStack(s => s.slice(0, -1))} className="flex items-center gap-2 text-white font-medium text-[15px] min-h-[44px]">
+                <ChevronLeft size={20} />
                 {locale === "et" ? "Tagasi" : "Back"}
               </button>
             ) : (
-              <span className="text-white font-bold text-[15px]">{locale === "et" ? "Kategooriad" : "Categories"}</span>
+              <span className="text-white font-bold text-[16px]">{locale === "et" ? "Kategooriad" : "Categories"}</span>
             )}
-            <button onClick={() => { setIsOpen(false); setMobileStack([]) }} className="w-9 h-9 flex items-center justify-center text-white">
-              <X size={18} />
+            <button onClick={() => { setIsOpen(false); setMobileStack([]) }} className="w-11 h-11 flex items-center justify-center text-white">
+              <X size={20} />
             </button>
           </div>
 
@@ -337,7 +337,7 @@ export default function MegaMenu({ categories, locale = "et" }: { categories: Ca
             <Link
               href={`/${locale}/kategooriad/${mobileCurrentNode.handle}`}
               onClick={() => { setIsOpen(false); setMobileStack([]) }}
-              className="block px-4 py-2.5 text-[13px] font-bold text-[#D97706] border-b border-[#E2E8F0] bg-[#FFFBEB]"
+              className="block px-4 py-3.5 text-[14px] font-bold text-[#D97706] border-b border-[#E2E8F0] bg-[#FFFBEB]"
             >
               {locale === "et" ? `Kõik: ${mobileCurrentNode.name}` : `View All ${mobileCurrentNode.name}`} &rarr;
             </Link>
@@ -349,36 +349,35 @@ export default function MegaMenu({ categories, locale = "et" }: { categories: Ca
               const hasKids = cat.children.length > 0
               const depth = mobileStack.length
               const thumb = catImages[cat.handle]
-              const fontSize = depth === 0 ? "text-[14px]" : depth === 1 ? "text-[13px]" : "text-[13px]"
-              const paddingLeft = depth === 0 ? "pl-4" : depth === 1 ? "pl-6" : "pl-8"
+              const paddingLeft = depth === 0 ? "pl-4" : depth === 1 ? "pl-5" : "pl-6"
 
               return hasKids ? (
                 <button
                   key={cat.id}
                   onClick={() => setMobileStack(s => [...s, cat])}
-                  className={`w-full flex items-center justify-between ${paddingLeft} pr-4 py-3 ${fontSize} text-[#1E293B] font-medium shadow-[0_1px_0_#F1F5F9] active:bg-[#FFFBEB] transition-colors`}
+                  className={`w-full flex items-center justify-between ${paddingLeft} pr-4 min-h-[52px] text-[15px] text-[#1E293B] font-medium border-b border-[#F1F5F9] active:bg-[#FFFBEB] transition-colors`}
                 >
                   <span className="flex items-center gap-3">
                     {depth === 0 && thumb ? (
-                      <img src={thumb} alt="" className="w-9 h-9 rounded-lg object-contain bg-[#F8FAFC] p-0.5" />
+                      <img src={thumb} alt="" className="w-10 h-10 rounded-lg object-contain bg-[#F8FAFC] p-0.5" />
                     ) : depth === 0 ? (
-                      <Icon size={18} strokeWidth={1.5} className="text-[#94A3B8]" />
+                      <Icon size={20} strokeWidth={1.5} className="text-[#94A3B8]" />
                     ) : null}
                     <span>{cat.name}</span>
                   </span>
-                  <ChevronRight size={14} className="text-[#CBD5E1]" />
+                  <ChevronRight size={16} className="text-[#CBD5E1]" />
                 </button>
               ) : (
                 <Link
                   key={cat.id}
                   href={`/${locale}/kategooriad/${cat.handle}`}
                   onClick={() => { setIsOpen(false); setMobileStack([]) }}
-                  className={`flex items-center gap-3 ${paddingLeft} pr-4 py-3 ${fontSize} text-[#1E293B] font-medium shadow-[0_1px_0_#F1F5F9] active:bg-[#FFFBEB] active:text-[#D97706] transition-colors`}
+                  className={`flex items-center gap-3 ${paddingLeft} pr-4 min-h-[52px] text-[15px] text-[#1E293B] font-medium border-b border-[#F1F5F9] active:bg-[#FFFBEB] active:text-[#D97706] transition-colors`}
                 >
                   {depth === 0 && thumb ? (
-                    <img src={thumb} alt="" className="w-9 h-9 rounded-lg object-contain bg-[#F8FAFC] p-0.5" />
+                    <img src={thumb} alt="" className="w-10 h-10 rounded-lg object-contain bg-[#F8FAFC] p-0.5" />
                   ) : depth === 0 ? (
-                    <Icon size={18} strokeWidth={1.5} className="text-[#94A3B8]" />
+                    <Icon size={20} strokeWidth={1.5} className="text-[#94A3B8]" />
                   ) : null}
                   <span>{cat.name}</span>
                 </Link>

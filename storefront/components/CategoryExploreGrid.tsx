@@ -17,12 +17,12 @@ export default function CategoryExploreGrid({
   locale: string
 }) {
   return (
-    <section className="bg-[#F8FAFC] py-4 md:py-6">
-      <div className="max-w-[1360px] mx-auto px-3 md:px-4">
+    <section className="bg-[#F8FAFC] py-5 md:py-6">
+      <div className="max-w-[1360px] mx-auto px-4">
         {/* Section heading */}
-        <div className="flex items-center gap-2 mb-3 md:mb-4">
+        <div className="flex items-center gap-2 mb-4">
           <div className="w-1 h-5 rounded-full bg-[#D97706]" />
-          <h2 className="font-bold text-[15px] md:text-[20px] text-[#1E293B] tracking-tight">
+          <h2 className="font-bold text-[17px] md:text-[20px] text-[#1E293B] tracking-tight">
             {locale === "en" ? "Categories" : "Kategooriad"}
           </h2>
         </div>
@@ -36,14 +36,14 @@ export default function CategoryExploreGrid({
               <Link
                 key={cat.handle}
                 href={`/${locale}/kategooriad/${cat.handle}`}
-                className="flex-shrink-0 flex flex-col items-center gap-1.5 w-[100px] md:w-[120px] group"
+                className="flex-shrink-0 flex flex-col items-center gap-2 w-[110px] md:w-[120px] group"
               >
-                <div className="w-[80px] h-[80px] md:w-[100px] md:h-[100px] rounded-xl bg-white border border-[#E2E8F0] group-hover:border-[#D97706] group-hover:shadow-md transition-all duration-200 overflow-hidden flex items-center justify-center">
+                <div className="w-[90px] h-[90px] md:w-[100px] md:h-[100px] rounded-xl bg-white border border-[#E2E8F0] group-hover:border-[#D97706] group-hover:shadow-md transition-all duration-200 overflow-hidden flex items-center justify-center">
                   {imgUrl ? (
                     <img
                       src={imgUrl}
                       alt={display}
-                      className="object-contain w-full h-full p-2"
+                      className="object-contain w-full h-full p-2.5"
                       loading="lazy"
                     />
                   ) : (
@@ -52,7 +52,7 @@ export default function CategoryExploreGrid({
                     </div>
                   )}
                 </div>
-                <span className="text-[11px] md:text-[12px] text-center text-[#475569] group-hover:text-[#D97706] transition-colors leading-snug line-clamp-2 font-medium">
+                <span className="text-[12px] md:text-[12px] text-center text-[#475569] group-hover:text-[#D97706] transition-colors leading-snug line-clamp-2 font-medium">
                   {display}
                 </span>
               </Link>

@@ -173,8 +173,8 @@ export default function VevorProductCard({ product, locale }: { product: Product
         </div>
 
         {/* Product info */}
-        <div className="p-3.5 pt-3">
-          <h3 className="text-[13px] text-[#334155] line-clamp-2 leading-snug min-h-[2.5em] group-hover:text-[#1E293B] transition-colors">
+        <div className="p-3 sm:p-3.5 pt-2.5 sm:pt-3">
+          <h3 className="text-[13px] sm:text-[13px] text-[#334155] line-clamp-2 leading-snug min-h-[2.5em] group-hover:text-[#1E293B] transition-colors">
             {product.title}
           </h3>
 
@@ -186,11 +186,11 @@ export default function VevorProductCard({ product, locale }: { product: Product
           {/* Price */}
           {price && (
             <div className="mt-2 flex items-baseline gap-2 flex-wrap">
-              <span className="font-bold text-[17px] text-[#1E293B]">
+              <span className="font-bold text-[16px] sm:text-[17px] text-[#1E293B]">
                 {formatPrice(price.calculated_amount, price.currency_code)}
               </span>
               {discount > 0 && (
-                <span className="text-xs text-[#94A3B8] line-through">
+                <span className="text-[11px] sm:text-xs text-[#94A3B8] line-through">
                   {formatPrice(price.original_amount, price.currency_code)}
                 </span>
               )}

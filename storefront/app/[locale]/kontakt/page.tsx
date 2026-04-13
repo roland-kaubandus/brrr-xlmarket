@@ -3,11 +3,13 @@ import Link from "next/link"
 import { Mail, Clock, RefreshCcw } from "lucide-react"
 
 export const metadata: Metadata = {
-  title: "Kontakt — XLMARKET",
-  description: "XLMARKET kontaktandmed. Kirjutage meile ja vastame esimesel võimalusel.",
+  title: "Contact — XLMARKET",
+  description: "XLMARKET contact information. Reach out to us and we will respond within 1-2 business days.",
 }
 
-export default async function KontaktPage({ params }: { params: Promise<{ locale: string }> }) {
+export default async function ContactPage({ params }: { params: Promise<{ locale: string }> }) {
+  const locale = (await params).locale
+
   return (
     <div className="max-w-[1280px] mx-auto px-[16px] sm:px-[24px] py-[32px] sm:py-[48px]">
       {/* Breadcrumb */}
@@ -15,7 +17,7 @@ export default async function KontaktPage({ params }: { params: Promise<{ locale
         className="text-[12px] font-[family-name:var(--font-dm-sans)] text-[#999999] mb-[32px]"
         aria-label="Breadcrumb"
       >
-        <Link href={`/${(await params).locale}`} className="hover:text-[#D97706] transition-colors">
+        <Link href={`/${locale}`} className="hover:text-[#D97706] transition-colors">
           Home
         </Link>
         <span className="mx-[8px] text-[#E8E8E8]">/</span>
@@ -35,12 +37,12 @@ export default async function KontaktPage({ params }: { params: Promise<{ locale
           {/* Company info */}
           <div className="border border-[#E8E8E8] p-[24px] sm:p-[28px]">
             <h2 className="text-[16px] font-[600] font-[family-name:var(--font-dm-sans)] text-[#1E293B] mb-[16px]">
-              Ettevõtte andmed
+              Company Details
             </h2>
             <div className="flex flex-col gap-[10px] text-[14px] font-[family-name:var(--font-dm-sans)]">
-              <p className="font-[600] text-[#1E293B]">Roland Kaubandus OÜ</p>
+              <p className="font-[600] text-[#1E293B]">Roland Kaubandus OU</p>
               <p className="text-[#555555]">
-                E-post:{" "}
+                Email:{" "}
                 <a
                   href="mailto:info@xlmarket.eu"
                   className="text-[#E8650A] hover:underline"
@@ -48,7 +50,7 @@ export default async function KontaktPage({ params }: { params: Promise<{ locale
                   info@xlmarket.eu
                 </a>
               </p>
-              <p className="text-[#555555]">Veebileht: xlmarket.eu</p>
+              <p className="text-[#555555]">Website: xlmarket.eu</p>
             </div>
           </div>
 
@@ -63,7 +65,7 @@ export default async function KontaktPage({ params }: { params: Promise<{ locale
                   Support Hours
                 </p>
                 <p className="text-[13px] text-[#777777] font-[family-name:var(--font-dm-sans)]">
-                  Monday-Friday · 9:00-17:00
+                  Monday-Friday &middot; 9:00-17:00
                 </p>
                 <p className="text-[12px] text-[#999999] font-[family-name:var(--font-dm-sans)] mt-[2px]">
                   We respond to emails within 1-2 business days
@@ -77,20 +79,20 @@ export default async function KontaktPage({ params }: { params: Promise<{ locale
               </div>
               <div>
                 <p className="text-[13px] font-[600] font-[family-name:var(--font-dm-sans)] text-[#1E293B] mb-[2px]">
-                  Tagastamine ja pretensioonid
+                  Returns &amp; Complaints
                 </p>
                 <p className="text-[13px] text-[#777777] font-[family-name:var(--font-dm-sans)]">
-                  Kirjutage{" "}
+                  Email{" "}
                   <a href="mailto:info@xlmarket.eu" className="text-[#E8650A] hover:underline">
                     info@xlmarket.eu
                   </a>
-                  , märkige tellimuse number.
+                  {" "}with your order number.
                 </p>
                 <Link
-                  href={`/${(await params).locale}/tagastamine`}
+                  href={`/${locale}/tagastamine`}
                   className="text-[12px] text-[#E8650A] hover:underline font-[family-name:var(--font-dm-sans)] mt-[4px] inline-block"
                 >
-                  Tagastamise tingimused →
+                  Return policy &rarr;
                 </Link>
               </div>
             </div>
@@ -104,11 +106,11 @@ export default async function KontaktPage({ params }: { params: Promise<{ locale
               <Mail size={22} strokeWidth={1.5} className="text-[#E8650A]" />
             </div>
             <h2 className="text-[20px] font-[700] font-[family-name:var(--font-dm-sans)] text-[#1E293B] mb-[10px]">
-              Saatke meile sõnum
+              Send Us a Message
             </h2>
             <p className="text-[14px] text-[#777777] font-[family-name:var(--font-dm-sans)] leading-relaxed mb-[28px]">
-              Küsimused toote, tellimuse või tarne kohta? Kirjutage meile — vastame
-              esimesel võimalusel.
+              Questions about a product, order, or delivery? Drop us a line and
+              we will get back to you as soon as possible.
             </p>
           </div>
           <a

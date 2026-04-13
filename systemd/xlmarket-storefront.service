@@ -8,10 +8,14 @@ Type=simple
 User=brrr
 WorkingDirectory=/home/brrr/brrr-xlmarket/storefront
 Environment=NODE_ENV=production
+Environment=NODE_OPTIONS=--max-old-space-size=1024
 EnvironmentFile=-/home/brrr/brrr-xlmarket/storefront/.env.local
 ExecStart=/usr/bin/node node_modules/.bin/next start -p 3030
-Restart=unless-stopped
+Restart=on-failure
 RestartSec=10
+StartLimitIntervalSec=300
+StartLimitBurst=5
+WatchdogSec=120
 StandardOutput=journal
 StandardError=journal
 SyslogIdentifier=xlmarket-storefront
