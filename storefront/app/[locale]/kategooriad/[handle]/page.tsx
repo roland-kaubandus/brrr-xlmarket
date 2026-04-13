@@ -15,7 +15,7 @@ import { buildQuickFilters } from "@/lib/quick-filters"
 
 const CATEGORY_IMAGES: Record<string, string> = categoryImages as Record<string, string>
 
-export const revalidate = 300
+export const revalidate = 3600
 
 const CATEGORY_NAMES: Record<string, Record<string, string>> = {
   // L1 VEVOR categories → ET + EN (matches XLSX product_type taxonomy)

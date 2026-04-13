@@ -3,6 +3,7 @@ import NavCartButton from "@/components/NavCartButton"
 import SearchBar from "@/components/SearchBar"
 import MegaMenu from "@/components/MegaMenu"
 import AuthButton from "@/components/AuthButton"
+import LocaleSwitcher from "@/components/LocaleSwitcher"
 
 const getNavLinks = (locale: string) => locale === "et" ? [
   { label: "Sooduspakkumised", href: `/${locale}/otsing?tag=deals` },
@@ -21,7 +22,7 @@ const getNavLinks = (locale: string) => locale === "et" ? [
 export default function VevorHeader({ locale = "et" }: { locale?: string }) {
   const NAV_LINKS = getNavLinks(locale)
   return (
-    <header className="sticky top-0 z-30">
+    <header className="sticky top-0 z-30 shadow-[0_2px_16px_-2px_rgba(15,23,42,0.12)]">
       {/* Row 1: Dark top bar — logo + auth + cart */}
       <div className="bg-[#1E293B]">
         <div className="max-w-[1400px] mx-auto px-4 h-[52px] md:h-[56px] flex items-center gap-3 md:gap-4">
@@ -38,6 +39,9 @@ export default function VevorHeader({ locale = "et" }: { locale?: string }) {
 
           {/* Right side */}
           <div className="flex items-center gap-3 md:gap-4 shrink-0 ml-auto">
+            {/* Language switcher */}
+            <LocaleSwitcher locale={locale} />
+
             {/* Delivery indicator — desktop */}
             <div className="hidden lg:flex items-center gap-2 text-white text-[13px]">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-white/70">
@@ -64,18 +68,18 @@ export default function VevorHeader({ locale = "et" }: { locale?: string }) {
 
       {/* Row 3: Orange navigation bar */}
       <div className="bg-[#D97706]">
-        <div className="max-w-[1400px] mx-auto px-2 md:px-4 flex items-center h-[40px] md:h-[44px]">
+        <div className="max-w-[1400px] mx-auto px-2 md:px-4 flex items-center h-[40px]">
           {/* Categories button + mega menu */}
           <MegaMenu locale={locale} />
 
           {/* Nav links — desktop */}
           <nav className="hidden md:flex items-center">
-            <div className="w-px h-[24px] bg-white/30 mx-1" />
+            <div className="w-px h-5 bg-black/20 mx-2" />
             {NAV_LINKS.map(link => (
               <Link
                 key={link.label}
                 href={link.href}
-                className="px-4 h-[44px] flex items-center text-white text-[14px] font-semibold hover:bg-[#B45309] transition-colors whitespace-nowrap"
+                className="px-3 py-1.5 flex items-center text-[#0F172A] text-[14px] font-semibold rounded-md hover:bg-black/10 transition-colors whitespace-nowrap"
               >
                 {link.label}
               </Link>

@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>XLMarket.eu — Category: Tools (Editorial Style)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['DM Sans', 'system-ui', 'sans-serif'] },
+          colors: {
+            navy: { DEFAULT: '#1E293B', light: '#334155', dark: '#0F172A' },
+            amber: { DEFAULT: '#D97706', light: '#F59E0B', dark: '#B45309' },
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    :root {
+      --color-navy: #1E293B;
+      --color-navy-light: #334155;
+      --color-navy-dark: #0F172A;
+      --color-amber: #D97706;
+      --color-amber-light: #F59E0B;
+      --color-amber-dark: #B45309;
+      --color-surface: #FFFFFF;
+      --color-surface-warm: #FAFAF9;
+      --color-text: #1E293B;
+      --color-text-muted: #64748B;
+      --duration-fast: 150ms;
+      --duration-normal: 250ms;
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', system-ui, sans-serif; color: var(--color-text); background: var(--color-surface); -webkit-font-smoothing: antialiased; }
+
+    /* ---- HEADER ---- */
+    .header-top { background: var(--color-navy); height: 56px; }
+    .header-nav { background: var(--color-amber); height: 40px; }
+
+    /* ---- SEARCH ---- */
+    .search-bar {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      transition: background var(--duration-fast) ease, border-color var(--duration-fast) ease;
+    }
+    .search-bar:focus-within {
+      background: rgba(255,255,255,0.18);
+      border-color: var(--color-amber);
+    }
+    .search-bar input::placeholder { color: rgba(255,255,255,0.5); }
+    .search-bar input { color: #fff; }
+    .search-bar input:focus { outline: none; }
+
+    /* ---- LANGUAGE DROPDOWN ---- */
+    .lang-dropdown {
+      position: absolute; top: calc(100% + 6px); right: 0;
+      background: #fff; border-radius: 8px;
+      box-shadow: 0 8px 30px -4px rgba(30,41,59,0.18);
+      min-width: 160px; overflow: hidden;
+      opacity: 0; visibility: hidden; transform: translateY(-6px);
+      transition: opacity var(--duration-fast) ease, transform var(--duration-fast) var(--ease-out), visibility 0s var(--duration-fast);
+      z-index: 100;
+    }
+    .lang-dropdown.open {
+      opacity: 1; visibility: visible; transform: translateY(0);
+      transition: opacity var(--duration-fast) ease, transform var(--duration-fast) var(--ease-out), visibility 0s 0s;
+    }
+    .lang-dropdown button {
+      display: flex; align-items: center; gap: 10px; width: 100%;
+      padding: 10px 14px; font-size: 0.88rem; color: var(--color-navy);
+      background: none; border: none; cursor: pointer; font-family: inherit;
+      transition: background var(--duration-fast) ease;
+    }
+    .lang-dropdown button:hover { background: #F8FAFC; }
+    .lang-dropdown button.selected { font-weight: 600; color: var(--color-amber-dark); }
+
+    /* ---- MOBILE MENU ---- */
+    .mobile-menu {
+      display: none; position: absolute; top: 100%; left: 0; right: 0;
+      background: var(--color-navy-dark); z-index: 90;
+      max-height: 0; overflow: hidden;
+      transition: max-height 350ms var(--ease-out);
+    }
+    .mobile-menu.open { max-height: 400px; }
+    .mobile-menu a {
+      display: block; padding: 14px 20px; color: #fff; text-decoration: none; font-size: 0.95rem; font-weight: 500;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      transition: background var(--duration-fast) ease;
+    }
+    .mobile-menu a:hover { background: rgba(255,255,255,0.06); }
+
+    /* ---- CATEGORY HERO ---- */
+    .category-hero {
+      background: var(--color-navy);
+      position: relative;
+      overflow: hidden;
+    }
+    .category-hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 600px 300px at 20% 80%, rgba(217,119,6,0.08) 0%, transparent 70%),
+        radial-gradient(ellipse 400px 400px at 85% 20%, rgba(255,255,255,0.03) 0%, transparent 60%);
+    }
+    .category-hero::after {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.02'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      opacity: 0.6;
+    }
+
+    /* ---- SUBCATEGORY CHIPS ---- */
+    .chip-scroll {
+      overflow-x: auto;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+    .chip-scroll::-webkit-scrollbar { display: none; }
+
+    .sub-chip {
+      display: inline-flex; align-items: center;
+      padding: 8px 18px; border-radius: 100px;
+      font-size: 0.85rem; font-weight: 500;
+      white-space: nowrap; cursor: pointer;
+      background: #fff; color: var(--color-navy);
+      border: 1.5px solid #E2E8F0;
+      transition: all var(--duration-fast) ease;
+      flex-shrink: 0;
+    }
+    .sub-chip:hover {
+      border-color: var(--color-amber);
+      color: var(--color-amber-dark);
+    }
+    .sub-chip:focus-visible {
+      outline: 2px solid var(--color-amber);
+      outline-offset: 2px;
+    }
+    .sub-chip.active {
+      background: var(--color-amber);
+      color: #fff;
+      border-color: var(--color-amber);
+    }
+    .sub-chip.active:hover {
+      background: var(--color-amber-dark);
+      border-color: var(--color-amber-dark);
+      color: #fff;
+    }
+
+    /* ---- FILTER BAR ---- */
+    .filter-bar select, .filter-bar input {
+      height: 38px; border-radius: 6px; font-family: inherit; font-size: 0.85rem;
+    }
+    .filter-bar select {
+      border: 1px solid #E2E8F0; padding: 0 32px 0 10px; background: #fff; appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748B' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right 10px center; cursor: pointer;
+    }
+    .filter-bar select:focus { outline: 2px solid var(--color-amber); outline-offset: -1px; border-color: transparent; }
+    .filter-bar input[type="number"] { border: 1px solid #E2E8F0; padding: 0 10px; width: 90px; }
+    .filter-bar input[type="number"]:focus { outline: 2px solid var(--color-amber); outline-offset: -1px; border-color: transparent; }
+
+    /* Toggle */
+    .toggle-track {
+      width: 38px; height: 22px; border-radius: 11px; background: #CBD5E1;
+      position: relative; cursor: pointer;
+      transition: background var(--duration-fast) ease;
+    }
+    .toggle-track.active { background: var(--color-amber); }
+    .toggle-dot {
+      width: 16px; height: 16px; border-radius: 50%; background: #fff;
+      position: absolute; top: 3px; left: 3px;
+      transition: transform var(--duration-fast) var(--ease-out);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+    }
+    .toggle-track.active .toggle-dot { transform: translateX(16px); }
+
+    /* ---- SIDEBAR ---- */
+    .sidebar-section {
+      border-bottom: 1px solid #F1F5F9;
+      padding-bottom: 20px;
+      margin-bottom: 20px;
+    }
+    .sidebar-section:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+    .sidebar-section h4 {
+      font-size: 0.82rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.06em; color: var(--color-text-muted);
+      margin-bottom: 14px;
+    }
+    .cat-tree-item {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 6px 0; font-size: 0.88rem; color: var(--color-navy);
+      cursor: pointer; transition: color var(--duration-fast) ease;
+    }
+    .cat-tree-item:hover { color: var(--color-amber); }
+    .cat-tree-item.active { color: var(--color-amber); font-weight: 600; }
+    .cat-tree-item .count {
+      font-size: 0.78rem; color: var(--color-text-muted); font-weight: 400;
+    }
+
+    /* Price range slider */
+    .range-track {
+      position: relative; height: 4px; background: #E2E8F0; border-radius: 2px;
+      margin: 16px 0 8px;
+    }
+    .range-fill {
+      position: absolute; height: 100%; background: var(--color-amber);
+      border-radius: 2px; left: 5%; right: 30%;
+    }
+    .range-thumb {
+      width: 18px; height: 18px; border-radius: 50%;
+      background: #fff; border: 2px solid var(--color-amber);
+      position: absolute; top: 50%; transform: translateY(-50%);
+      cursor: grab; box-shadow: 0 1px 4px rgba(0,0,0,0.12);
+      transition: box-shadow var(--duration-fast) ease;
+    }
+    .range-thumb:hover { box-shadow: 0 2px 8px rgba(217,119,6,0.3); }
+    .range-thumb.left { left: 5%; transform: translate(-50%, -50%); }
+    .range-thumb.right { right: 30%; transform: translate(50%, -50%); }
+
+    /* Checkbox */
+    .filter-check {
+      display: flex; align-items: center; gap: 8px;
+      padding: 5px 0; font-size: 0.88rem; cursor: pointer;
+    }
+    .filter-check input[type="checkbox"] {
+      width: 16px; height: 16px; accent-color: var(--color-amber);
+      cursor: pointer;
+    }
+    .filter-check span { color: var(--color-navy); }
+
+    /* Star rating filter */
+    .star-row {
+      display: flex; align-items: center; gap: 6px;
+      padding: 5px 0; cursor: pointer;
+      transition: opacity var(--duration-fast) ease;
+    }
+    .star-row:hover { opacity: 0.7; }
+    .star-row .stars { display: flex; gap: 1px; }
+    .star-row .star { color: #D97706; font-size: 0.9rem; }
+    .star-row .star.empty { color: #CBD5E1; }
+    .star-row .label { font-size: 0.82rem; color: var(--color-text-muted); }
+
+    /* ---- PRODUCT CARD ---- */
+    .product-card {
+      background: #fff;
+      border: 1px solid #F1F5F9;
+      border-radius: 10px;
+      overflow: hidden;
+      transition: transform var(--duration-normal) var(--ease-out), box-shadow var(--duration-normal) var(--ease-out), border-color var(--duration-fast) ease;
+    }
+    .product-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 32px -8px rgba(30,41,59,0.12);
+      border-color: var(--color-amber);
+    }
+    .product-card .img-wrap {
+      aspect-ratio: 1; overflow: hidden; background: #F8FAFC;
+      position: relative;
+    }
+    .product-card .img-wrap img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 500ms var(--ease-out);
+    }
+    .product-card:hover .img-wrap img { transform: scale(1.04); }
+    .product-card .card-body { padding: 14px 16px 16px; }
+    .product-card .card-title {
+      font-size: 0.88rem; font-weight: 500; line-height: 1.35; color: var(--color-navy);
+      display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+      min-height: 2.4em;
+    }
+    .product-card .card-price {
+      font-size: 1.1rem; font-weight: 700; color: var(--color-navy-dark);
+      margin-top: 8px;
+    }
+    .product-card .card-price .currency {
+      font-size: 0.82rem; font-weight: 500; color: var(--color-text-muted);
+    }
+
+    /* ---- PAGINATION ---- */
+    .page-btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      min-width: 38px; height: 38px; padding: 0 6px;
+      border-radius: 8px; font-size: 0.88rem; font-weight: 500;
+      color: var(--color-navy); background: #fff;
+      border: 1px solid #E2E8F0; cursor: pointer;
+      transition: all var(--duration-fast) ease;
+      font-family: inherit;
+    }
+    .page-btn:hover:not(.active):not(:disabled) {
+      border-color: var(--color-amber);
+      color: var(--color-amber);
+    }
+    .page-btn:focus-visible {
+      outline: 2px solid var(--color-amber);
+      outline-offset: 2px;
+    }
+    .page-btn.active {
+      background: var(--color-amber);
+      color: #fff;
+      border-color: var(--color-amber);
+    }
+    .page-btn:disabled {
+      opacity: 0.4; cursor: not-allowed;
+    }
+    .page-dots {
+      display: inline-flex; align-items: center; justify-content: center;
+      min-width: 38px; height: 38px; font-size: 0.88rem;
+      color: var(--color-text-muted);
+    }
+
+    /* ---- FOOTER ---- */
+    footer a {
+      color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.85rem; line-height: 2;
+      transition: color var(--duration-fast) ease;
+    }
+    footer a:hover { color: var(--color-amber-light); }
+
+    .trust-badge {
+      display: flex; align-items: center; gap: 8px;
+      padding: 10px 18px; background: rgba(255,255,255,0.05); border-radius: 8px;
+      color: rgba(255,255,255,0.75); font-size: 0.82rem; font-weight: 500;
+      white-space: nowrap;
+    }
+    .trust-badge svg { flex-shrink: 0; }
+
+    .pay-badge {
+      display: inline-flex; align-items: center; justify-content: center;
+      padding: 5px 12px; background: rgba(255,255,255,0.1); border-radius: 4px;
+      color: #fff; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.04em;
+    }
+
+    /* ---- MOBILE FILTER BUTTON ---- */
+    .mobile-filter-btn {
+      display: none;
+      width: 100%; padding: 12px; border-radius: 8px;
+      font-size: 0.9rem; font-weight: 600; font-family: inherit;
+      background: var(--color-navy); color: #fff;
+      border: none; cursor: pointer;
+      transition: background var(--duration-fast) ease;
+    }
+    .mobile-filter-btn:hover { background: var(--color-navy-light); }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #94A3B8; }
+
+    @media (max-width: 768px) {
+      .header-top { height: 52px; }
+      .header-nav { height: 36px; }
+      .mobile-filter-btn { display: flex; align-items: center; justify-content: center; gap: 8px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ====== HEADER ====== -->
+  <header class="sticky top-0 z-50" style="box-shadow: 0 2px 16px -2px rgba(15,23,42,0.12);">
+    <!-- Row 1: Navy bar -->
+    <div class="header-top">
+      <div class="max-w-7xl mx-auto h-full px-4 lg:px-6 flex items-center justify-between gap-4">
+        <!-- Logo -->
+        <a href="#" class="flex items-center gap-0.5 flex-shrink-0">
+          <span class="text-2xl font-extrabold tracking-tight" style="color: var(--color-amber);">XL</span>
+          <span class="text-lg font-normal text-white tracking-tight" style="margin-top: 2px;">Market</span>
+        </a>
+
+        <!-- Search (desktop) -->
+        <div class="search-bar hidden md:flex items-center flex-1 max-w-md mx-6 rounded-lg px-3 py-1.5">
+          <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          <input type="text" placeholder="Search 16,000+ products..." class="flex-1 bg-transparent text-sm ml-2 py-1 border-none">
+        </div>
+
+        <!-- Right icons -->
+        <div class="flex items-center gap-2">
+          <!-- Language switcher -->
+          <div class="relative" id="langWrapper">
+            <button onclick="toggleLang()" class="flex items-center gap-1.5 px-2 py-1.5 rounded-md text-white/70 hover:text-white hover:bg-white/10 transition-colors" aria-label="Language" title="Language">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10A15.3 15.3 0 0 1 12 2z"/></svg>
+              <span class="text-xs font-medium hidden sm:inline">EN</span>
+              <svg class="w-3 h-3 opacity-50" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="lang-dropdown" id="langDropdown">
+              <button onclick="selectLang('et')">
+                <span style="font-size:1.15rem;">&#127466;&#127466;</span>
+                <span>Eesti</span>
+              </button>
+              <button class="selected" onclick="selectLang('en')">
+                <span style="font-size:1.15rem;">&#127468;&#127463;</span>
+                <span>English</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Auth -->
+          <button class="p-2 rounded-md text-white/70 hover:text-white hover:bg-white/10 transition-colors" aria-label="Account">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </button>
+
+          <!-- Cart -->
+          <button class="relative p-2 rounded-md text-white/70 hover:text-white hover:bg-white/10 transition-colors" aria-label="Cart">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            <span class="absolute -top-0.5 -right-0.5 w-4 h-4 rounded-full text-[10px] font-bold flex items-center justify-center" style="background: var(--color-amber); color: #fff;">3</span>
+          </button>
+
+          <!-- Mobile hamburger -->
+          <button onclick="toggleMobileMenu()" class="md:hidden p-2 rounded-md text-white/70 hover:text-white hover:bg-white/10 transition-colors" aria-label="Menu" id="hamburgerBtn">
+            <svg class="w-5 h-5" id="hamburgerIcon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+            <svg class="w-5 h-5 hidden" id="closeIcon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile search -->
+      <div class="md:hidden px-4 pb-2">
+        <div class="search-bar flex items-center rounded-lg px-3 py-1.5">
+          <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          <input type="text" placeholder="Search products..." class="flex-1 bg-transparent text-sm ml-2 py-1 border-none">
+        </div>
+      </div>
+
+      <!-- Mobile menu -->
+      <nav class="mobile-menu" id="mobileMenu">
+        <a href="#">Tools</a>
+        <a href="#">Kitchen</a>
+        <a href="#">Outdoor</a>
+        <a href="#">Fitness</a>
+        <a href="#">Industrial</a>
+        <a href="#">All Categories</a>
+      </nav>
+    </div>
+
+    <!-- Row 2: Amber nav -->
+    <nav class="header-nav hidden md:block">
+      <div class="max-w-7xl mx-auto h-full px-4 lg:px-6 flex items-center gap-1">
+        <a href="#" class="px-3 py-1.5 text-sm font-semibold text-white/90 hover:text-white rounded transition-colors bg-white/15">Tools</a>
+        <a href="#" class="px-3 py-1.5 text-sm font-medium text-white/80 hover:text-white rounded transition-colors hover:bg-white/10">Kitchen</a>
+        <a href="#" class="px-3 py-1.5 text-sm font-medium text-white/80 hover:text-white rounded transition-colors hover:bg-white/10">Outdoor</a>
+        <a href="#" class="px-3 py-1.5 text-sm font-medium text-white/80 hover:text-white rounded transition-colors hover:bg-white/10">Fitness</a>
+        <a href="#" class="px-3 py-1.5 text-sm font-medium text-white/80 hover:text-white rounded transition-colors hover:bg-white/10">Industrial</a>
+        <a href="#" class="px-3 py-1.5 text-sm font-medium text-white/80 hover:text-white rounded transition-colors hover:bg-white/10">All Categories</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ====== BREADCRUMBS ====== -->
+  <nav aria-label="Breadcrumb" class="bg-white border-b border-gray-100">
+    <div class="max-w-7xl mx-auto px-4 lg:px-6 py-3">
+      <ol class="flex items-center gap-2 text-sm">
+        <li><a href="#" class="text-gray-400 hover:text-amber transition-colors">Home</a></li>
+        <li class="text-gray-300">/</li>
+        <li class="font-semibold text-navy">Tools</li>
+      </ol>
+    </div>
+  </nav>
+
+  <!-- ====== CATEGORY HERO ====== -->
+  <section class="category-hero">
+    <div class="max-w-7xl mx-auto px-4 lg:px-6 py-10 md:py-14 relative z-10">
+      <h1 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white tracking-tight" style="letter-spacing: -0.03em;">Tools</h1>
+      <p class="mt-3 text-white/50 text-base md:text-lg font-medium max-w-lg">2,400+ professional tools for every project</p>
+    </div>
+  </section>
+
+  <!-- ====== SUBCATEGORY CHIPS ====== -->
+  <div class="bg-white border-b border-gray-100 sticky top-[96px] md:top-[96px] z-30">
+    <div class="max-w-7xl mx-auto px-4 lg:px-6 py-3">
+      <div class="chip-scroll flex gap-2" id="chipScroll">
+        <button class="sub-chip active" data-chip="metal-lathes">Metal Lathes</button>
+        <button class="sub-chip" data-chip="drill-presses">Drill Presses</button>
+        <button class="sub-chip" data-chip="welding-equipment">Welding Equipment</button>
+        <button class="sub-chip" data-chip="air-compressors">Air Compressors</button>
+        <button class="sub-chip" data-chip="table-saws">Table Saws</button>
+        <button class="sub-chip" data-chip="band-saws">Band Saws</button>
+        <button class="sub-chip" data-chip="sanders-polishers">Sanders & Polishers</button>
+        <button class="sub-chip" data-chip="woodworking-tools">Woodworking Tools</button>
+        <button class="sub-chip" data-chip="measuring-tools">Measuring Tools</button>
+        <button class="sub-chip" data-chip="power-tools">Power Tools</button>
+        <button class="sub-chip" data-chip="hand-tools">Hand Tools</button>
+        <button class="sub-chip" data-chip="tool-storage">Tool Storage</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====== MAIN CONTENT ====== -->
+  <main class="max-w-7xl mx-auto px-4 lg:px-6 py-6 lg:py-8">
+
+    <!-- Mobile: Filter & Sort button -->
+    <div class="md:hidden mb-4">
+      <button class="mobile-filter-btn" onclick="alert('Filter sheet would open here')">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 4h18M7 8h10M10 12h4"/></svg>
+        Filter & Sort
+      </button>
+    </div>
+
+    <div class="flex gap-8">
+
+      <!-- ====== SIDEBAR (Desktop only) ====== -->
+      <aside class="hidden lg:block flex-shrink-0" style="width: 240px;">
+        <div class="sticky top-[160px]">
+
+          <!-- Category tree -->
+          <div class="sidebar-section">
+            <h4>Category</h4>
+            <div class="cat-tree-item active" style="font-weight: 700; font-size: 0.92rem;">
+              <span>Tools</span>
+            </div>
+            <div class="pl-3">
+              <div class="cat-tree-item active">
+                <span>Metal Lathes</span>
+                <span class="count">12</span>
+              </div>
+              <div class="cat-tree-item">
+                <span>Drill Presses</span>
+                <span class="count">8</span>
+              </div>
+              <div class="cat-tree-item">
+                <span>Welding Equipment</span>
+                <span class="count">24</span>
+              </div>
+              <div class="cat-tree-item">
+                <span>Air Compressors</span>
+                <span class="count">15</span>
+              </div>
+              <div class="cat-tree-item">
+                <span>Table Saws</span>
+                <span class="count">6</span>
+              </div>
+              <div class="cat-tree-item">
+                <span>Band Saws</span>
+                <span class="count">4</span>
+              </div>
+              <div class="cat-tree-item">
+                <span>Power Tools</span>
+                <span class="count">45</span>
+              </div>
+              <div class="cat-tree-item">
+                <span>Hand Tools</span>
+                <span class="count">32</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Price Range -->
+          <div class="sidebar-section">
+            <h4>Price Range</h4>
+            <div class="range-track">
+              <div class="range-fill"></div>
+              <div class="range-thumb left"></div>
+              <div class="range-thumb right"></div>
+            </div>
+            <div class="flex items-center justify-between mt-2">
+              <span class="text-xs font-medium text-gray-500">39 EUR</span>
+              <span class="text-xs font-medium text-gray-500">899 EUR</span>
+            </div>
+          </div>
+
+          <!-- Brand -->
+          <div class="sidebar-section">
+            <h4>Brand</h4>
+            <label class="filter-check">
+              <input type="checkbox" checked>
+              <span>VEVOR</span>
+            </label>
+          </div>
+
+          <!-- Rating -->
+          <div class="sidebar-section">
+            <h4>Rating</h4>
+            <div class="star-row">
+              <div class="stars">
+                <span class="star">&#9733;</span>
+                <span class="star">&#9733;</span>
+                <span class="star">&#9733;</span>
+                <span class="star">&#9733;</span>
+                <span class="star">&#9733;</span>
+              </div>
+              <span class="label">5 stars</span>
+            </div>
+            <div class="star-row">
+              <div class="stars">
+                <span class="star">&#9733;</span>
+                <span class="star">&#9733;</span>
+                <span class="star">&#9733;</span>
+                <span class="star">&#9733;</span>
+                <span class="star empty">&#9733;</span>
+              </div>
+              <span class="label">4+ stars</span>
+            </div>
+            <div class="star-row">
+              <div class="stars">
+                <span class="star">&#9733;</span>
+                <span class="star">&#9733;</span>
+                <span class="star">&#9733;</span>
+                <span class="star empty">&#9733;</span>
+                <span class="star empty">&#9733;</span>
+              </div>
+              <span class="label">3+ stars</span>
+            </div>
+          </div>
+
+        </div>
+      </aside>
+
+      <!-- ====== PRODUCTS AREA ====== -->
+      <div class="flex-1 min-w-0">
+
+        <!-- Filter bar (Desktop) -->
+        <div class="filter-bar hidden md:flex items-center gap-4 mb-6 pb-4 border-b border-gray-100">
+          <select id="sortSelect" onchange="handleSort()">
+            <option>Sort: Recommended</option>
+            <option>Price: Low to High</option>
+            <option>Price: High to Low</option>
+            <option>Newest</option>
+          </select>
+
+          <div class="flex items-center gap-2">
+            <span class="text-sm text-gray-500">Price:</span>
+            <input type="number" placeholder="Min" min="0">
+            <span class="text-xs text-gray-400">-</span>
+            <input type="number" placeholder="Max" min="0">
+            <span class="text-sm text-gray-500">EUR</span>
+          </div>
+
+          <div class="flex items-center gap-2">
+            <span class="text-sm text-gray-500">In Stock</span>
+            <div class="toggle-track" id="stockToggle">
+              <div class="toggle-dot"></div>
+            </div>
+          </div>
+
+          <div class="ml-auto flex items-center gap-3">
+            <span class="text-sm font-medium text-navy" id="resultCount">248 products</span>
+            <button class="text-xs text-amber hover:text-amber-dark font-medium transition-colors hidden" id="clearFilters" onclick="clearAllFilters()">Clear All</button>
+          </div>
+        </div>
+
+        <!-- Product Grid -->
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4" id="productGrid">
+
+          <!-- Product 1 -->
+          <a href="#" class="product-card block">
+            <div class="img-wrap">
+              <img src="https://image.vevor.com/us%2F0618-3BMNCC000001V2%2Foriginal_img-v9%2Fmetal-lathe-m100-1.2.jpg?timestamp=1652168143000" alt="VEVOR Metal Lathe 7x14 550W" loading="eager" width="300" height="300">
+            </div>
+            <div class="card-body">
+              <div class="card-title">VEVOR Metal Lathe 7x14 550W</div>
+              <div class="card-price">899.99 <span class="currency">EUR</span></div>
+            </div>
+          </a>
+
+          <!-- Product 2 -->
+          <a href="#" class="product-card block">
+            <div class="img-wrap">
+              <img src="https://image.vevor.com/us%2F1100WJRJ90800X001V2%2Foriginal_img-v10%2Fcommercial-meat-grinder-m100-1.2.jpg?timestamp=1730432819000" alt="Commercial Meat Grinder 1100W Stainless" loading="eager" width="300" height="300">
+            </div>
+            <div class="card-body">
+              <div class="card-title">Commercial Meat Grinder 1100W Stainless</div>
+              <div class="card-price">189.99 <span class="currency">EUR</span></div>
+            </div>
+          </a>
+
+          <!-- Product 3 -->
+          <a href="#" class="product-card block">
+            <div class="img-wrap">
+              <img src="https://image.vevor.com/us%2FPZSHLK37INCH5XEW0001V2%2Foriginal_img-v1%2Frotisserie-grill-m100-1.2.jpg?timestamp=1700000000000" alt="Outdoor Rotisserie Grill BBQ 37-Inch" loading="eager" width="300" height="300">
+            </div>
+            <div class="card-body">
+              <div class="card-title">Outdoor Rotisserie Grill BBQ 37-Inch</div>
+              <div class="card-price">319.99 <span class="currency">EUR</span></div>
+            </div>
+          </a>
+
+          <!-- Product 4 -->
+          <a href="#" class="product-card block">
+            <div class="img-wrap">
+              <img src="https://image.vevor.com/us%2FDGNZDTLHJ3JPBIFH9V0%2Foriginal_img-v1%2Fmulti-purpose-folding-ladder-m100-1.2.jpg?timestamp=1700000000000" alt="Multi-Purpose Folding Ladder Aluminium" loading="eager" width="300" height="300">
+            </div>
+            <div class="card-body">
+              <div class="card-title">Multi-Purpose Folding Ladder Aluminium</div>
+              <div class="card-price">89.99 <span class="currency">EUR</span></div>
+            </div>
+          </a>
+
+          <!-- Product 5 -->
+          <a href="#" class="product-card block">
+            <div class="img-wrap">
+              <img src="https://image.vevor.com/us%2FZDJSCCZPDBKDQ5ELZV9%2Foriginal_img-v1%2Fexercise-bike-m100-1.2.jpg?timestamp=1700000000000" alt="Exercise Bike Indoor Cycling Stationary" loading="lazy" width="300" height="300">
+            </div>
+            <div class="card-body">
+              <div class="card-title">Exercise Bike Indoor Cycling Stationary</div>
+              <div class="card-price">249.99 <span class="currency">EUR</span></div>
+            </div>
+          </a>
+
+          <!-- Product 6 -->
+          <a href="#" class="product-card block">
+            <div class="img-wrap">
+              <img src="https://image.vevor.com/us%2FSMXWJ3.5X-90XTS01V0%2Foriginal_img-v4%2Fstereo-microscope-m100-1.2.jpg?timestamp=1628592013000" alt="Stereo Microscope 3.5X-90X Trinocular" loading="lazy" width="300" height="300">
+            </div>
+            <div class="card-body">
+              <div class="card-title">Stereo Microscope 3.5X-90X Trinocular</div>
+              <div class="card-price">459.99 <span class="currency">EUR</span></div>
+            </div>
+          </a>
+
+          <!-- Product 7 -->
+          <a href="#" class="product-card block">
+            <div class="img-wrap">
+              <img src="https://image.vevor.com/us%2F120CMCZQGJ0000001V0%2Foriginal_img-v8%2Ftile-cutter-m100-1.2.jpg?timestamp=1751451233000" alt="Manual Tile Cutter 120cm Professional" loading="lazy" width="300" height="300">
+            </div>
+            <div class="card-body">
+              <div class="card-title">Manual Tile Cutter 120cm Professional</div>
+              <div class="card-price">129.99 <span class="currency">EUR</span></div>
+            </div>
+          </a>
+
+          <!-- Product 8 -->
+          <a href="#" class="product-card block">
+            <div class="img-wrap">
+              <img src="https://image.vevor.com/us%2FQTSTCTTSDNQONMY7J001V0%2Foriginal_img-v2%2Ftrailer-coupler-lock-m100-1.2.jpg?timestamp=1700000000000" alt="Trailer Coupler Lock Heavy Duty Anti-Theft" loading="lazy" width="300" height="300">
+            </div>
+            <div class="card-body">
+              <div class="card-title">Trailer Coupler Lock Heavy Duty Anti-Theft</div>
+              <div class="card-price">39.99 <span class="currency">EUR</span></div>
+            </div>
+          </a>
+
+          <!-- Product 9 -->
+          <a href="#" class="product-card block">
+            <div class="img-wrap">
+              <img src="https://image.vevor.com/us%2F3CFM1-3HPZKBOC001V2%2Foriginal_img-v10%2Fvacuum-pump-m100-1.2.jpg?timestamp=1700096920000" alt="Vacuum Pump 3CFM 1/4HP HVAC" loading="lazy" width="300" height="300">
+            </div>
+            <div class="card-body">
+              <div class="card-title">Vacuum Pump 3CFM 1/4HP HVAC</div>
+              <div class="card-price">74.99 <span class="currency">EUR</span></div>
+            </div>
+          </a>
+
+          <!-- Product 10 -->
+          <a href="#" class="product-card block">
+            <div class="img-wrap">
+              <img src="https://image.vevor.com/us%2F120CMCZQGJ0000001V0%2Foriginal_img-v8%2Ftile-cutter-m100-1.2.jpg?timestamp=1751451233000" alt="Heating Venting Cooling Unit 2500W" loading="lazy" width="300" height="300">
+            </div>
+            <div class="card-body">
+              <div class="card-title">Heating Venting Cooling Unit 2500W</div>
+              <div class="card-price">349.99 <span class="currency">EUR</span></div>
+            </div>
+          </a>
+
+          <!-- Product 11 -->
+          <a href="#" class="product-card block">
+            <div class="img-wrap">
+              <img src="https://image.vevor.com/us%2F0618-3BMNCC000001V2%2Foriginal_img-v9%2Fmetal-lathe-m100-1.2.jpg?timestamp=1652168143000" alt="Professional Welding Helmet Auto-Darkening" loading="lazy" width="300" height="300">
+            </div>
+            <div class="card-body">
+              <div class="card-title">Professional Welding Helmet Auto-Darkening</div>
+              <div class="card-price">54.99 <span class="currency">EUR</span></div>
+            </div>
+          </a>
+
+          <!-- Product 12 -->
+          <a href="#" class="product-card block">
+            <div class="img-wrap">
+              <img src="https://image.vevor.com/us%2FSMXWJ3.5X-90XTS01V0%2Foriginal_img-v4%2Fstereo-microscope-m100-1.2.jpg?timestamp=1628592013000" alt="Bench Drill Press 750W 12-Speed" loading="lazy" width="300" height="300">
+            </div>
+            <div class="card-body">
+              <div class="card-title">Bench Drill Press 750W 12-Speed</div>
+              <div class="card-price">249.99 <span class="currency">EUR</span></div>
+            </div>
+          </a>
+
+        </div>
+
+        <!-- Pagination -->
+        <div class="mt-8 pt-6 border-t border-gray-100">
+          <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p class="text-sm text-gray-500">Showing 1-12 of 248 products</p>
+            <nav aria-label="Pagination" class="flex items-center gap-1.5" id="pagination">
+              <button class="page-btn" disabled aria-label="Previous page">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+              </button>
+              <button class="page-btn active" data-page="1">1</button>
+              <button class="page-btn" data-page="2">2</button>
+              <button class="page-btn" data-page="3">3</button>
+              <span class="page-dots">...</span>
+              <button class="page-btn" data-page="21">21</button>
+              <button class="page-btn" aria-label="Next page">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+              </button>
+            </nav>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- ====== FOOTER ====== -->
+  <footer style="background: var(--color-navy-dark);">
+    <!-- Trust badges -->
+    <div class="border-b border-white/5">
+      <div class="max-w-7xl mx-auto px-4 lg:px-6 py-6 flex flex-wrap justify-center gap-4 md:gap-6">
+        <div class="trust-badge">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z"/></svg>
+          Secure Payments
+        </div>
+        <div class="trust-badge">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M8.25 18.75a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 0 1-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 0 0-3.213-9.193 2.056 2.056 0 0 0-1.58-.86H14.25m-2.25 0h-2.25m0 0V3.375c0-.621-.504-1.125-1.125-1.125H4.875c-.621 0-1.125.504-1.125 1.125v11.25"/></svg>
+          EU Shipping
+        </div>
+        <div class="trust-badge">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182"/></svg>
+          14-Day Returns
+        </div>
+        <div class="trust-badge">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 0 1-.825-.242m9.345-8.334a2.126 2.126 0 0 0-.476-.095 48.64 48.64 0 0 0-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0 0 11.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155"/></svg>
+          Customer Support
+        </div>
+      </div>
+    </div>
+
+    <!-- Links -->
+    <div class="max-w-7xl mx-auto px-4 lg:px-6 py-10">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-6">
+        <div>
+          <h4 class="text-white font-semibold text-sm mb-4">Services</h4>
+          <a href="#">Delivery Info</a>
+          <a href="#">Returns & Refunds</a>
+          <a href="#">Warranty</a>
+          <a href="#">Order Tracking</a>
+          <a href="#">Bulk Orders</a>
+        </div>
+        <div>
+          <h4 class="text-white font-semibold text-sm mb-4">About</h4>
+          <a href="#">About XL Market</a>
+          <a href="#">Our Brands</a>
+          <a href="#">Blog</a>
+          <a href="#">Careers</a>
+        </div>
+        <div>
+          <h4 class="text-white font-semibold text-sm mb-4">Legal</h4>
+          <a href="#">Terms & Conditions</a>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Cookie Policy</a>
+          <a href="#">Right of Withdrawal</a>
+        </div>
+        <div>
+          <h4 class="text-white font-semibold text-sm mb-4">Contact</h4>
+          <a href="#">info@xlmarket.eu</a>
+          <a href="#">+372 5XXX XXXX</a>
+          <a href="#">Mon-Fri 9:00-17:00</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Payment methods + copyright -->
+    <div class="border-t border-white/5">
+      <div class="max-w-7xl mx-auto px-4 lg:px-6 py-5 flex flex-col md:flex-row items-center justify-between gap-4">
+        <div class="flex flex-wrap items-center gap-2">
+          <span class="pay-badge" style="background: #1A1F71; color: #fff;">VISA</span>
+          <span class="pay-badge" style="background: #EB001B; color: #fff;">MC</span>
+          <span class="pay-badge" style="background: #003087; color: #fff;">SEB</span>
+          <span class="pay-badge" style="background: #FF6600; color: #fff;">SWED</span>
+          <span class="pay-badge" style="background: #502B82; color: #fff;">LHV</span>
+          <span class="pay-badge" style="background: #009FDF; color: #fff;">LUMINOR</span>
+          <span class="pay-badge" style="background: #00843D; color: #fff;">COOP</span>
+        </div>
+        <p class="text-xs text-white/30">2026 Roland Kaubandus OU. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ====== JAVASCRIPT ====== -->
+  <script>
+    // Language dropdown
+    function toggleLang() {
+      document.getElementById('langDropdown').classList.toggle('open');
+    }
+    function selectLang(lang) {
+      document.getElementById('langDropdown').classList.remove('open');
+      var btn = document.querySelector('#langWrapper > button');
+      var label = btn.querySelector('span.text-xs');
+      if (label) label.textContent = lang.toUpperCase();
+      document.querySelectorAll('.lang-dropdown button').forEach(function(b) { b.classList.remove('selected'); });
+      event.target.closest('button').classList.add('selected');
+    }
+    document.addEventListener('click', function(e) {
+      if (!document.getElementById('langWrapper').contains(e.target)) {
+        document.getElementById('langDropdown').classList.remove('open');
+      }
+    });
+
+    // Mobile menu
+    function toggleMobileMenu() {
+      var menu = document.getElementById('mobileMenu');
+      var hamburger = document.getElementById('hamburgerIcon');
+      var close = document.getElementById('closeIcon');
+      var isOpen = menu.classList.toggle('open');
+      menu.style.display = isOpen ? 'block' : '';
+      hamburger.classList.toggle('hidden', isOpen);
+      close.classList.toggle('hidden', !isOpen);
+      if (!isOpen) {
+        setTimeout(function() { menu.style.display = ''; }, 350);
+      }
+    }
+
+    // Subcategory chips
+    document.querySelectorAll('.sub-chip').forEach(function(chip) {
+      chip.addEventListener('click', function() {
+        document.querySelectorAll('.sub-chip').forEach(function(c) { c.classList.remove('active'); });
+        this.classList.add('active');
+      });
+    });
+
+    // Toggle for in-stock filter
+    document.querySelectorAll('.toggle-track').forEach(function(track) {
+      track.addEventListener('click', function(e) {
+        e.stopPropagation();
+        this.classList.toggle('active');
+        // Show/hide clear filters button
+        updateClearButton();
+      });
+    });
+
+    // Sort dropdown
+    function handleSort() {
+      var val = document.getElementById('sortSelect').value;
+      updateClearButton();
+    }
+
+    // Clear all filters
+    function clearAllFilters() {
+      document.getElementById('sortSelect').selectedIndex = 0;
+      document.querySelectorAll('.toggle-track').forEach(function(t) { t.classList.remove('active'); });
+      document.querySelectorAll('.filter-bar input[type="number"]').forEach(function(i) { i.value = ''; });
+      updateClearButton();
+    }
+
+    function updateClearButton() {
+      var sortChanged = document.getElementById('sortSelect').selectedIndex !== 0;
+      var stockActive = document.querySelector('.toggle-track.active') !== null;
+      var priceSet = Array.from(document.querySelectorAll('.filter-bar input[type="number"]')).some(function(i) { return i.value !== ''; });
+      var btn = document.getElementById('clearFilters');
+      if (sortChanged || stockActive || priceSet) {
+        btn.classList.remove('hidden');
+      } else {
+        btn.classList.add('hidden');
+      }
+    }
+
+    // Price inputs trigger clear button
+    document.querySelectorAll('.filter-bar input[type="number"]').forEach(function(input) {
+      input.addEventListener('input', updateClearButton);
+    });
+
+    // Pagination
+    document.querySelectorAll('#pagination .page-btn[data-page]').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        document.querySelectorAll('#pagination .page-btn').forEach(function(b) { b.classList.remove('active'); });
+        this.classList.add('active');
+        // Enable/disable prev/next
+        var page = parseInt(this.dataset.page);
+        var prevBtn = document.querySelector('#pagination .page-btn:first-child');
+        var nextBtn = document.querySelector('#pagination .page-btn:last-child');
+        prevBtn.disabled = page === 1;
+        nextBtn.disabled = page === 21;
+      });
+    });
+
+    // Sidebar category tree items
+    document.querySelectorAll('.cat-tree-item').forEach(function(item) {
+      item.addEventListener('click', function() {
+        document.querySelectorAll('.cat-tree-item').forEach(function(i) { i.classList.remove('active'); });
+        this.classList.add('active');
+        // Keep parent bold
+        document.querySelector('.sidebar-section .cat-tree-item:first-child').style.fontWeight = '700';
+      });
+    });
+  </script>
+</body>
+</html>

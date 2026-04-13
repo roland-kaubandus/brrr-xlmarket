@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { notFound } from "next/navigation"
-import { getProducts, getCategories } from "@/lib/medusa"
+import { getProducts } from "@/lib/medusa"
+import { getCategoriesCached } from "@/lib/category-cache"
 import { searchProducts } from "@/lib/meilisearch"
 import { BRANCHES, getBranchBySlug } from "@/lib/branches"
 import VevorProductCard from "@/components/VevorProductCard"
@@ -8,7 +9,7 @@ import BranchFilters from "@/components/BranchFilters"
 import SubcategoryGrid from "@/components/SubcategoryGrid"
 import { categoryPath } from "@/lib/i18n"
 
-export const revalidate = 300
+export const revalidate = 3600
 const DEFAULT_LIMIT = 12
 const VALID_LIMITS = [12, 24, 48, 100]
 
@@ -78,7 +79,7 @@ export default async function BranchLandingPage({ params, searchParams }: Props)
   const branch = getBranchBySlug(handle)
   if (!branch) notFound()
 
-  const allCategories = await getCategories()
+  const allCategories = await getCategoriesCached()
   const parsedLimit = parseInt(limitParam || "", 10)
   const itemsLimit = VALID_LIMITS.includes(parsedLimit) ? parsedLimit : DEFAULT_LIMIT
   const currentSort = sort || ""

@@ -21,7 +21,7 @@ import ProductWishlistButton from "@/components/ProductWishlistButton"
 import { categoryPath } from "@/lib/i18n"
 
 
-export const revalidate = 300
+export const revalidate = 3600
 
 type Props = {
   params: Promise<{ handle: string; locale: string }>

@@ -8,7 +8,7 @@ import HorizontalProductRow from "@/components/HorizontalProductRow"
 import categoryImages from "@/lib/category-images.json"
 import { MENU_ORDER } from "@/lib/menu-order"
 
-export const revalidate = 300
+export const revalidate = 3600
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params
