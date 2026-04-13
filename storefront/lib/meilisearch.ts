@@ -1,6 +1,7 @@
 const MEILI_HOST = process.env.MEILISEARCH_HOST || "http://127.0.0.1:7700"
 const MEILI_KEY = process.env.MEILISEARCH_KEY || "xlmarket2024_secure_key"
 const INDEX = "products"
+const FETCH_TIMEOUT_MS = 8000
 
 export type MeiliHit = {
   id: string
@@ -17,6 +18,8 @@ export type MeiliHit = {
   price: number
   categories: string[]
   category_handles: string[]
+  spec_filters?: string[]
+  filter_tokens?: string[]
   in_stock: boolean
   translated: boolean
   created_at: number
@@ -91,15 +94,18 @@ function expandCompoundWords(q: string): string {
 /** Look up a single product by handle to get localized title/description */
 export async function getMeiliProductByHandle(handle: string): Promise<MeiliHit | null> {
   try {
+    const controller = new AbortController()
+    const timeout = setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS)
     const res = await fetch(`${MEILI_HOST}/indexes/${INDEX}/search`, {
       method: "POST",
+      signal: controller.signal,
       headers: {
         "Authorization": `Bearer ${MEILI_KEY}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ q: "", limit: 1, filter: [`handle = "${handle}"`] }),
       next: { revalidate: 300 },
-    })
+    }).finally(() => clearTimeout(timeout))
     if (!res.ok) return null
     const data = await res.json()
     return data.hits?.[0] || null
@@ -120,15 +126,18 @@ export async function searchProducts(options: SearchOptions): Promise<MeiliSearc
   if (options.filter) body.filter = options.filter
   if (options.facets?.length) body.facets = options.facets
 
+  const controller = new AbortController()
+  const timeout = setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS)
   const res = await fetch(`${MEILI_HOST}/indexes/${INDEX}/search`, {
     method: "POST",
+    signal: controller.signal,
     headers: {
       "Authorization": `Bearer ${MEILI_KEY}`,
       "Content-Type": "application/json",
     },
     body: JSON.stringify(body),
     next: { revalidate: 60 }, // cache 1 min — MeiliSearch results don't change per-second
-  })
+  }).finally(() => clearTimeout(timeout))
 
   if (!res.ok) {
     throw new Error(`MeiliSearch error: ${res.status}`)

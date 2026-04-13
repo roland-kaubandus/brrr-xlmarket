@@ -6,6 +6,7 @@ import { BRANCHES, getBranchBySlug } from "@/lib/branches"
 import VevorProductCard from "@/components/VevorProductCard"
 import BranchFilters from "@/components/BranchFilters"
 import SubcategoryGrid from "@/components/SubcategoryGrid"
+import { categoryPath } from "@/lib/i18n"
 
 export const revalidate = 300
 const DEFAULT_LIMIT = 12
@@ -198,7 +199,7 @@ export default async function BranchLandingPage({ params, searchParams }: Props)
           {branch.categoryHandle && totalCount > 0 && (
             <div className="mt-6 flex items-center gap-4">
               <Link
-                href={`/${locale}/kategooriad/${branch.categoryHandle}`}
+                href={categoryPath(locale as "et" | "en", branch.categoryHandle)}
                 className="inline-flex items-center gap-2 px-6 py-3 bg-accent hover:bg-accent-dark text-white text-sm font-semibold rounded-xl btn-press transition-all duration-300"
               >
                 {locale === "en" ? "View all products" : "Vaata kõiki tooteid"}
@@ -335,7 +336,7 @@ export default async function BranchLandingPage({ params, searchParams }: Props)
               </div>
               <h2 className="font-[family-name:var(--font-dm-sans)] font-[600] text-xl mb-3">{locale === "en" ? "Coming Soon" : "Tulekul"}</h2>
               <p className="text-muted text-sm leading-relaxed mb-6">{locale === "en" ? "Products are on their way. We will notify you when they are available." : "Tooted on teel. Teavitame teid, kui need on saadaval."}</p>
-              <Link href={`/${locale}/kategooriad`} className="inline-flex items-center gap-2 px-5 py-2.5 bg-silver hover:bg-accent-light text-sm font-medium rounded-xl transition-all duration-300">
+              <Link href={categoryPath(locale as "et" | "en")} className="inline-flex items-center gap-2 px-5 py-2.5 bg-silver hover:bg-accent-light text-sm font-medium rounded-xl transition-all duration-300">
                 {locale === "en" ? "Browse Categories" : "Sirvi kategooriaid"}
               </Link>
             </div>

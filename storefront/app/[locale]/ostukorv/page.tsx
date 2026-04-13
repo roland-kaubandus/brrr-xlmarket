@@ -5,6 +5,7 @@ import Link from "next/link"
 import { useEffect, useState, useCallback } from "react"
 import { usePathname } from "next/navigation"
 import { formatPrice } from "@/lib/medusa"
+import { categoryPath } from "@/lib/i18n"
 import { ShoppingCart, Plus, Minus, Trash2, ArrowRight, Truck } from "lucide-react"
 import posthog from "posthog-js"
 
@@ -138,9 +139,9 @@ export default function CartPage() {
     <div className="min-h-screen bg-white">
       <div className="max-w-[1360px] mx-auto px-4 sm:px-6 py-8 sm:py-12">
         {/* Breadcrumb */}
-        <nav className="text-[12px] text-[#64748B] mb-7" aria-label="Breadcrumb">
-          <Link href={`/${locale}`} className="hover:text-[#D97706] transition-colors">{locale === "et" ? "Avaleht" : "Home"}</Link>
-          <span className="mx-2 text-[#E2E8F0]">/</span>
+        <nav className="text-[12px] text-[#64748B] mb-7 flex items-center" aria-label="Breadcrumb">
+          <Link href={`/${locale}`} className="text-[#64748B] hover:text-[#D97706] transition-colors">{locale === "et" ? "Avaleht" : "Home"}</Link>
+          <span className="mx-2 text-[#CBD5E1]">/</span>
           <span className="text-[#1E293B] font-medium">{locale === "et" ? "Ostukorv" : "Cart"}</span>
         </nav>
 
@@ -171,7 +172,7 @@ export default function CartPage() {
               Add products to start shopping
             </p>
             <Link
-              href={`/${locale}/kategooriad`}
+              href={categoryPath(locale as "et" | "en")}
               className="inline-flex items-center gap-2 px-6 py-3 bg-[#D97706] text-white text-[14px] font-semibold rounded-lg hover:bg-[#B45309] transition-colors"
             >
               Browse Products
@@ -360,7 +361,7 @@ export default function CartPage() {
               ))}
 
               <Link
-                href={`/${locale}/kategooriad`}
+                href={categoryPath(locale as "et" | "en")}
                 className="inline-flex items-center gap-1.5 text-[13px] font-medium text-[#D97706] hover:text-[#B45309] mt-1 self-start transition-colors"
               >
                 ← Continue Shopping

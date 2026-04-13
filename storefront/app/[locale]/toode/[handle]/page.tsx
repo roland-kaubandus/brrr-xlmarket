@@ -16,7 +16,9 @@ import CollapsibleSection from "@/components/CollapsibleSection"
 import { getProductMedia } from "@/lib/product-media"
 import { getVevorFeedEntry, type VevorFeedEntry } from "@/lib/vevor-feed"
 import { getMeiliProductByHandle, getLocalizedTitle } from "@/lib/meilisearch"
-import AddToCompareButton from "@/components/AddToCompareButton"
+import ProductCompareActions from "@/components/ProductCompareActions"
+import ProductWishlistButton from "@/components/ProductWishlistButton"
+import { categoryPath } from "@/lib/i18n"
 
 
 export const revalidate = 300
@@ -348,7 +350,7 @@ export default async function ProductPage({ params }: Props) {
     { name: locale === "et" ? "Avaleht" : "Home", url: `https://xlmarket.store/${locale}` },
     ...productTypeTrail.map((seg) => ({
       name: seg.name,
-      url: `https://xlmarket.store/${locale}/kategooriad/${seg.handle}`,
+      url: `https://xlmarket.store${categoryPath(locale as "et" | "en", seg.handle)}`,
     })),
   ]
 
@@ -367,21 +369,21 @@ export default async function ProductPage({ params }: Props) {
 
       {/* Breadcrumb — category ancestor chain */}
       <nav
-        className="text-xs text-[#64748B] mb-5 min-h-[20px]"
+        className="text-xs text-[#64748B] mb-5 min-h-[24px] flex items-center flex-wrap gap-y-1 transition-opacity duration-200"
         aria-label="Breadcrumb"
       >
         <Link
           href={`/${locale}`}
-          className="hover:text-[#D97706] transition-colors duration-200"
+          className="text-[#64748B] hover:text-[#D97706] transition-colors duration-200"
         >
           {locale === "et" ? "Avaleht" : "Home"}
         </Link>
         {productTypeTrail.map((seg, index) => (
           <span key={`bc-${seg.handle}-${index}`}>
-            <span className="mx-2 text-[#E2E8F0]">&gt;</span>
+            <span className="mx-2 text-[#CBD5E1]">&gt;</span>
             <Link
-              href={`/${locale}/kategooriad/${seg.handle}`}
-              className="hover:text-[#D97706] transition-colors duration-200"
+              href={categoryPath(locale as "et" | "en", seg.handle)}
+              className="text-[#64748B] hover:text-[#D97706] transition-colors duration-200"
             >
               {seg.name}
             </Link>
@@ -445,15 +447,23 @@ export default async function ProductPage({ params }: Props) {
                 </span>
                 <span className="text-sm font-medium text-[#1E293B]">{rating.toFixed(1)}</span>
                 <span className="text-sm text-[#64748B]">(0 Reviews)</span>
-                <button className="ml-auto" aria-label="Add to Wishlist">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#64748B" strokeWidth="1.5"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
-                </button>
+                <ProductWishlistButton
+                  locale={locale}
+                  item={{
+                    id: product.id,
+                    handle: product.handle,
+                    title: localizedTitle,
+                    thumbnail: product.thumbnail || null,
+                    price: price ? formatPrice(price.calculated_amount, price.currency_code) : "",
+                    specs: Object.fromEntries(specs.map(s => [s.key, s.value])),
+                  }}
+                />
               </div>
             )
           })()}
 
           <div className="mb-4">
-            <AddToCompareButton
+            <ProductCompareActions
               item={{
                 id: product.id,
                 handle: product.handle,

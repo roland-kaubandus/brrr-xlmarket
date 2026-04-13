@@ -15,5 +15,5 @@ export default async function syncVevorFeed(_container: MedusaContainer) {
 
 export const config = {
   name: "sync-vevor-feed",
-  schedule: "0 0 31 2 *", // Disabled — will never fire (Feb 31)
+  schedule: "0 0 1 1 *", // Harmless placeholder; job body is a no-op
 }

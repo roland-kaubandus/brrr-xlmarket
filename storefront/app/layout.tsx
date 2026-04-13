@@ -17,7 +17,7 @@ export const metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html className="scroll-smooth" suppressHydrationWarning>
-      <body className={dmSans.variable + " font-[family-name:var(--font-dm-sans)] antialiased bg-off-white text-off-black"}>
+      <body className={dmSans.variable + " min-h-screen flex flex-col font-[family-name:var(--font-dm-sans)] antialiased bg-off-white text-off-black"}>
         <JsonLdOrganization />
         <div className="noise-overlay" />
         <PostHogProvider>{children}</PostHogProvider>

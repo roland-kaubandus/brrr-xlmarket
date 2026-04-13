@@ -5,13 +5,15 @@ import { getProducts } from "@/lib/medusa"
 import VevorProductCard from "@/components/VevorProductCard"
 import VevorSearchFilters from "@/components/search/VevorSearchFilters"
 import VevorPagination from "@/components/search/VevorPagination"
+import { categoryPath } from "@/lib/i18n"
+import { buildQuickFilters } from "@/lib/quick-filters"
 
 export const revalidate = 60 // cache search results 1 min
 
 type Props = {
   searchParams: Promise<{
     q?: string; page?: string; sort?: string; tag?: string
-    min?: string; max?: string; categories?: string; in_stock?: string
+    min?: string; max?: string; categories?: string; in_stock?: string; filters?: string
   }>
   params: Promise<{ locale: string }>
 }
@@ -60,7 +62,7 @@ const TAG_TITLES: Record<string, Record<string, string>> = {
 
 export default async function SearchPage({ searchParams, params }: Props) {
   const { locale } = await params
-  const { q, page: pageParam, sort, tag, min, max, categories, in_stock } = await searchParams
+  const { q, page: pageParam, sort, tag, min, max, categories, in_stock, filters } = await searchParams
   const query = q?.trim() || ""
   const activeTag = tag?.trim() || ""
   const page = Math.max(1, parseInt(pageParam || "1", 10) || 1)
@@ -68,39 +70,42 @@ export default async function SearchPage({ searchParams, params }: Props) {
   const currentSort = sort || ""
   const selectedCategories = categories ? categories.split(",").filter(Boolean) : []
   const inStock = in_stock === "1"
+  const currentQuickFilter = filters?.trim() || ""
 
   let products: any[] = []
   let totalHits = 0
-  let usedMeili = false
   let categoryFacets: Record<string, number> = {}
+  let quickFilterFacets: Record<string, number> = {}
 
   // Always search — empty query returns popular/all products
   try {
-    const filters: string[] = []
+    const searchFilters: string[] = []
     // Tag-based filtering (Deals, Hot, Flash Sale etc from VEVOR feed)
-    if (activeTag) filters.push(`promo_tags = "${activeTag}"`)
+    if (activeTag) searchFilters.push(`promo_tags = "${activeTag}"`)
     // Note: New Arrivals uses sort=newest which sorts by created_at:desc
     // Clearance: auto-filter under 50€
-    if (currentSort === "clearance" && !max) filters.push("price <= 50")
-    if (min) filters.push(`price >= ${parseFloat(min)}`)
-    if (max) filters.push(`price <= ${parseFloat(max)}`)
-    if (inStock) filters.push(`in_stock = true`)
+    if (currentSort === "clearance" && !max) searchFilters.push("price <= 50")
+    if (min) searchFilters.push(`price >= ${parseFloat(min)}`)
+    if (max) searchFilters.push(`price <= ${parseFloat(max)}`)
+    if (inStock) searchFilters.push(`in_stock = true`)
     if (selectedCategories.length > 0) {
       const catFilters = selectedCategories.map(c => `categories = "${c.replace(/"/g, '\\"')}"`)
-      filters.push(`(${catFilters.join(" OR ")})`)
+      searchFilters.push(`(${catFilters.join(" OR ")})`)
     }
-
+    if (currentQuickFilter) {
+      searchFilters.push(`filter_tokens = "${currentQuickFilter.replace(/"/g, '\\"')}"`)
+    }
     const meiliResult = await searchProducts({
       q: query,
       limit: ITEMS_PER_PAGE,
       offset,
       sort: SORT_MAP[currentSort] || (!query ? ["created_at:desc"] : undefined),
-      filter: filters.length > 0 ? filters : undefined,
-      facets: ["categories", "price", "in_stock"],
+      filter: searchFilters.length > 0 ? searchFilters : undefined,
+      facets: ["categories", "price", "in_stock", "filter_tokens"],
     })
     totalHits = meiliResult.totalHits || meiliResult.estimatedTotalHits || 0
-    usedMeili = true
     categoryFacets = meiliResult.facetDistribution?.categories || {}
+    quickFilterFacets = meiliResult.facetDistribution?.filter_tokens || {}
 
     products = meiliResult.hits.map(hit => ({
       id: hit.id,
@@ -136,6 +141,7 @@ export default async function SearchPage({ searchParams, params }: Props) {
   }
 
   const totalPages = Math.ceil(totalHits / ITEMS_PER_PAGE)
+  const quickFilters = buildQuickFilters(quickFilterFacets, totalHits)
 
   function buildPageUrl(targetPage: number) {
     const p = new URLSearchParams()
@@ -146,144 +152,160 @@ export default async function SearchPage({ searchParams, params }: Props) {
     if (max) p.set("max", max)
     if (categories) p.set("categories", categories)
     if (inStock) p.set("in_stock", "1")
+    if (currentQuickFilter) p.set("filters", currentQuickFilter)
     const qs = p.toString()
     return `/${locale}/otsing${qs ? `?${qs}` : ""}`
   }
 
   return (
-    <div className="bg-white min-h-screen">
-      <div className="max-w-[1360px] mx-auto px-4 sm:px-6 py-6">
-        {/* Breadcrumb */}
-        <nav className="text-xs text-[#888] mb-4 min-h-[20px]">
-          <Link href={`/${locale}`} className="hover:text-[#D97706]">{locale === "en" ? "Home" : "Avaleht"}</Link>
-          <span className="mx-1.5">&gt;</span>
-          <span className="text-[#1E293B]">{TAG_TITLES[activeTag]?.[locale] || SORT_TITLES[currentSort]?.[locale] || (locale === "en" ? "Search Results" : "Otsingutulemused")}</span>
+    <div className="bg-[#F8FAFC]">
+      <div className="max-w-[1360px] mx-auto px-4 sm:px-6 py-7 sm:py-10">
+        <nav className="text-xs text-[#64748B] mb-4 min-h-[24px] flex items-center">
+          <Link href={`/${locale}`} className="text-[#64748B] hover:text-[#D97706] transition-colors duration-200">{locale === "en" ? "Home" : "Avaleht"}</Link>
+          <span className="mx-1.5 text-[#CBD5E1]">&gt;</span>
+          <span className="text-[#1E293B] transition-opacity duration-200">
+            {TAG_TITLES[activeTag]?.[locale] || SORT_TITLES[currentSort]?.[locale] || (locale === "en" ? "Search Results" : "Otsingutulemused")}
+          </span>
         </nav>
 
-        {/* Page title — tag/sort landing page or search query */}
-        {(query || TAG_TITLES[activeTag]?.[locale] || SORT_TITLES[currentSort]?.[locale]) && (
-          <div className="mb-5">
-            <h1 className="text-2xl font-bold text-[#1E293B]">
-              {TAG_TITLES[activeTag]?.[locale] || SORT_TITLES[currentSort]?.[locale] || (locale === "en" ? `Search: "${query}"` : `Otsing: "${query}"`)}
-            </h1>
-            <p className="text-sm text-[#64748B] mt-1">
-              <span className="font-semibold text-[#1E293B]">{totalHits.toLocaleString(locale === "en" ? "en-GB" : "et")}</span> {locale === "en" ? (query ? "results" : "products") : (query ? "tulemust" : "toodet")}
-            </p>
+        <div className="mb-5 rounded-3xl border border-[#E2E8F0] bg-white shadow-sm px-4 py-4 sm:px-6 sm:py-5">
+          <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+            <div>
+              <div className="text-[11px] uppercase tracking-[0.18em] text-[#94A3B8] mb-2">
+                {locale === "en" ? "Search results" : "Otsingutulemused"}
+              </div>
+              <h1 className="text-2xl md:text-[30px] font-bold text-[#1E293B] tracking-tight">
+                {TAG_TITLES[activeTag]?.[locale] || SORT_TITLES[currentSort]?.[locale] || (query ? (locale === "en" ? `Search: "${query}"` : `Otsing: "${query}"`) : (locale === "en" ? "All Products" : "Kõik tooted"))}
+              </h1>
+              <p className="text-sm text-[#64748B] mt-2">
+                {query
+                  ? (locale === "en" ? `Results for “${query}”` : `Tulemused päringule “${query}”`)
+                  : (locale === "en" ? "Browse, refine and compare products." : "Sirvi, filtreeri ja võrdle tooteid.")}
+              </p>
+            </div>
+            <div className="inline-flex items-center gap-2 self-start md:self-auto rounded-full border border-[#E2E8F0] bg-[#F8FAFC] px-4 py-2">
+              <span className="text-xs text-[#64748B]">
+                {locale === "en" ? "Products" : "Tooteid"}
+              </span>
+              <span className="text-lg font-bold text-[#1E293B]">{totalHits.toLocaleString(locale === "en" ? "en-GB" : "et")}</span>
+            </div>
           </div>
-        )}
+        </div>
 
-        {/* Category pills from facets */}
-        {query && Object.keys(categoryFacets).length > 0 && (
-          <div className="flex gap-2 overflow-x-auto pb-3 mb-4 scrollbar-hide">
-            {Object.entries(categoryFacets)
-              .sort(([,a], [,b]) => b - a)
-              .slice(0, 12)
-              .map(([cat, count]) => (
-                <Link
-                  key={cat}
-                  href={`/${locale}/otsing?q=${encodeURIComponent(query)}&categories=${encodeURIComponent(cat)}`}
-                  className={`flex-shrink-0 inline-flex items-center gap-2 px-4 h-10 rounded-full text-sm font-medium border transition-colors ${
-                    selectedCategories.includes(cat)
-                      ? "bg-[#D97706] text-white border-[#D97706]"
-                      : "bg-white text-[#1E293B] border-[#E2E8F0] hover:border-[#D97706]"
-                  }`}
-                >
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={selectedCategories.includes(cat) ? "#fff" : "#94A3B8"} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                    <rect x="3" y="3" width="7" height="7" rx="1" />
-                    <rect x="14" y="3" width="7" height="7" rx="1" />
-                    <rect x="3" y="14" width="7" height="7" rx="1" />
-                    <rect x="14" y="14" width="7" height="7" rx="1" />
-                  </svg>
-                  {cat} <span className="text-xs opacity-60 ml-1">({count})</span>
-                </Link>
-              ))}
-          </div>
-        )}
-
-        {!query && !activeTag && !SORT_TITLES[currentSort]?.[locale] && products.length > 0 && (
-          <div className="mb-5">
-            <h1 className="text-2xl font-bold text-[#1E293B]">{locale === "en" ? "All Products" : "Kõik tooted"}</h1>
-            <p className="text-sm text-[#64748B] mt-1">
-              <span className="font-semibold text-[#1E293B]">{totalHits.toLocaleString(locale === "en" ? "en-GB" : "et")}</span> {locale === "en" ? "products available" : "toodet saadaval"}
-            </p>
-          </div>
-        )}
-
-        {products.length === 0 && !query && (
-          <div className="bg-white rounded-xl p-12 text-center">
+        {products.length === 0 && !query ? (
+          <div className="bg-white rounded-3xl border border-[#E2E8F0] shadow-sm p-12 text-center">
             <p className="text-sm text-[#64748B]">
               {locale === "en" ? "No products available yet." : "Tooteid pole veel saadaval."}
             </p>
           </div>
-        )}
-
-        {query && products.length === 0 && (
-          <div className="bg-white rounded-xl p-12 text-center">
+        ) : products.length === 0 && query ? (
+          <div className="bg-white rounded-3xl border border-[#E2E8F0] shadow-sm p-12 text-center">
             <p className="text-sm text-[#64748B] mb-4">
               {locale === "en" ? `No results found for "${query}".` : `Päringule "${query}" tulemusi ei leitud.`}
             </p>
-            <Link
-              href={`/${locale}/kategooriad`}
-              className="text-[#D97706] hover:underline font-medium"
-            >
+            <Link href={categoryPath(locale as "et" | "en")} className="text-[#D97706] hover:underline font-medium">
               {locale === "en" ? "Browse all categories" : "Sirvi kõiki kategooriaid"}
             </Link>
           </div>
-        )}
+        ) : (
+          <div className="space-y-5">
+            <div className="rounded-3xl border border-[#E2E8F0] bg-white shadow-sm p-4 sm:p-5">
+              <Suspense fallback={null}>
+                <VevorSearchFilters
+                  totalHits={totalHits}
+                  query={query}
+                  currentSort={currentSort}
+                  currentMin={min}
+                  currentMax={max}
+                  currentCategories={selectedCategories}
+                  currentInStock={inStock}
+                  categoryFacets={categoryFacets}
+                  quickFilters={quickFilters}
+                  currentQuickFilter={currentQuickFilter}
+                  locale={locale}
+                />
+              </Suspense>
 
-        {(query || activeTag || SORT_TITLES[currentSort]?.[locale]) && totalHits > 0 && (
-          <div className="bg-white rounded-xl">
-            {/* Filters */}
-            <Suspense fallback={null}>
-              <VevorSearchFilters
-                totalHits={totalHits}
-                query={query}
-                currentSort={currentSort}
-                currentMin={min}
-                currentMax={max}
-                currentCategories={selectedCategories}
-                currentInStock={inStock}
-                categoryFacets={categoryFacets}
-                locale={locale}
-              />
-            </Suspense>
-
-            {/* Product grid — 5 col desktop, 3 tablet, 2 mobile */}
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-              {products.map((product) => (
-                <VevorProductCard key={product.id} product={product} locale={locale} />
-              ))}
+              {query && Object.keys(categoryFacets).length > 0 && (
+                <div className="mt-3 pt-4 border-t border-[#E2E8F0]">
+                  <div className="flex items-center justify-between mb-3">
+                    <h2 className="text-sm font-semibold text-[#1E293B]">
+                      {locale === "en" ? "Popular categories" : "Populaarsed kategooriad"}
+                    </h2>
+                    <span className="text-xs text-[#94A3B8]">
+                      {locale === "en" ? "Refine by category" : "Täpsusta kategooria järgi"}
+                    </span>
+                  </div>
+                  <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-hide">
+                    {Object.entries(categoryFacets)
+                      .sort(([,a], [,b]) => b - a)
+                      .slice(0, 12)
+                      .map(([cat, count]) => (
+                        <Link
+                          key={cat}
+                          href={`/${locale}/otsing?q=${encodeURIComponent(query)}&categories=${encodeURIComponent(cat)}${currentQuickFilter ? `&filters=${encodeURIComponent(currentQuickFilter)}` : ""}`}
+                          className={`flex-shrink-0 inline-flex items-center gap-2 px-4 h-10 rounded-full text-sm font-medium border transition-colors ${
+                            selectedCategories.includes(cat)
+                              ? "bg-[#D97706] text-white border-[#D97706]"
+                              : "bg-[#F8FAFC] text-[#1E293B] border-[#E2E8F0] hover:border-[#D97706]"
+                          }`}
+                        >
+                          {cat} <span className="text-xs opacity-60">({count})</span>
+                        </Link>
+                      ))}
+                  </div>
+                </div>
+              )}
             </div>
 
-            {/* Pagination */}
-            <VevorPagination
-              currentPage={page}
-              totalPages={totalPages}
-              buildUrl={buildPageUrl}
-              locale={locale}
-            />
+            <div className="rounded-3xl border border-[#E2E8F0] bg-white shadow-sm overflow-hidden">
+              <div className="p-4 sm:p-5 border-b border-[#E2E8F0] flex items-center justify-between">
+                <div className="text-sm text-[#64748B]">
+                  {locale === "en" ? "Results" : "Tulemused"}
+                </div>
+                <div className="text-xs text-[#94A3B8]">
+                  {locale === "en" ? "Use filters above to narrow down products." : "Kasuta ülalolevaid filtreid tulemuste täpsustamiseks."}
+                </div>
+              </div>
+              <div className="p-4 sm:p-5">
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+                  {products.map((product) => (
+                    <VevorProductCard key={product.id} product={product} locale={locale} />
+                  ))}
+                </div>
+              </div>
+              <div className="px-4 sm:px-5 pb-4 sm:pb-5">
+                <VevorPagination
+                  currentPage={page}
+                  totalPages={totalPages}
+                  buildUrl={buildPageUrl}
+                  locale={locale}
+                />
+              </div>
+            </div>
+
+            {query && Object.keys(categoryFacets).length > 0 && (
+              <section className="rounded-3xl border border-[#E2E8F0] bg-white shadow-sm p-4 sm:p-5">
+                <h2 className="text-sm font-semibold text-[#1E293B] mb-3">
+                  {locale === "en" ? "Recommended searches" : "Soovitatud otsingud"}
+                </h2>
+                <div className="flex flex-wrap gap-2">
+                  {Object.entries(categoryFacets)
+                    .sort(([,a], [,b]) => b - a)
+                    .slice(0, 8)
+                    .map(([cat]) => (
+                      <Link
+                        key={cat}
+                        href={`/${locale}/otsing?q=${encodeURIComponent(cat)}${currentQuickFilter ? `&filters=${encodeURIComponent(currentQuickFilter)}` : ""}`}
+                        className="px-4 py-2 rounded-full text-sm font-medium bg-[#F8FAFC] border border-[#E2E8F0] text-[#1E293B] hover:border-[#D97706] hover:text-[#D97706] transition-colors"
+                      >
+                        {cat}
+                      </Link>
+                    ))}
+                </div>
+              </section>
+            )}
           </div>
-        )}
-
-        {/* Recommended Searches */}
-        {query && Object.keys(categoryFacets).length > 0 && (
-          <section className="mt-8">
-            <h2 className="text-lg font-bold text-[#1E293B] mb-4">{locale === "en" ? "Recommended Searches" : "Soovitatud otsingud"}</h2>
-            <div className="flex flex-wrap gap-2">
-              {Object.entries(categoryFacets)
-                .sort(([,a], [,b]) => b - a)
-                .slice(0, 8)
-                .map(([cat]) => (
-                  <Link
-                    key={cat}
-                    href={`/${locale}/otsing?q=${encodeURIComponent(cat)}`}
-                    className="px-4 py-2 rounded-full text-sm font-medium bg-white border border-[#E2E8F0] text-[#1E293B] hover:border-[#D97706] hover:text-[#D97706] transition-colors"
-                  >
-                    {cat}
-                  </Link>
-                ))}
-            </div>
-          </section>
         )}
       </div>
     </div>

@@ -197,7 +197,21 @@ export default function CheckoutPage() {
         }
       }
 
-      // Step 3: Complete order
+      // Step 3: Create payment collection/session
+      const paymentRes = await fetch("/api/cart/payment", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ cart_id: cart.id }),
+      })
+
+      if (!paymentRes.ok) {
+        posthog.capture("checkout_failed", { step: "payment", cart_id: cart.id })
+        setError("Makse ettevalmistamine ebaõnnestus")
+        setSubmitting(false)
+        return
+      }
+
+      // Step 4: Complete order
       const completeRes = await fetch("/api/cart/complete", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -312,11 +326,11 @@ export default function CheckoutPage() {
     <div className="min-h-screen bg-white">
       <div className="max-w-[1360px] mx-auto px-4 sm:px-6 py-8 sm:py-12">
         {/* Breadcrumb */}
-        <nav className="text-[12px] text-[#64748B] mb-7" aria-label="Breadcrumb">
-          <Link href={`/${locale}`} className="hover:text-[#D97706] transition-colors">Home</Link>
-          <span className="mx-2 text-[#E2E8F0]">/</span>
-          <Link href={`/${locale}/ostukorv`} className="hover:text-[#D97706] transition-colors">Cart</Link>
-          <span className="mx-2 text-[#E2E8F0]">/</span>
+        <nav className="text-[12px] text-[#64748B] mb-7 flex items-center" aria-label="Breadcrumb">
+          <Link href={`/${locale}`} className="text-[#64748B] hover:text-[#D97706] transition-colors">Home</Link>
+          <span className="mx-2 text-[#CBD5E1]">/</span>
+          <Link href={`/${locale}/ostukorv`} className="text-[#64748B] hover:text-[#D97706] transition-colors">Cart</Link>
+          <span className="mx-2 text-[#CBD5E1]">/</span>
           <span className="text-[#1E293B] font-medium">Checkout</span>
         </nav>
 

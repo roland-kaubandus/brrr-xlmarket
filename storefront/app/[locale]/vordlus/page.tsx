@@ -35,11 +35,11 @@ export default function ComparePage() {
   return (
     <div className="max-w-[1360px] mx-auto px-4 py-8">
       {/* Breadcrumb */}
-      <nav className="text-xs text-[#64748B] mb-4">
-        <Link href={`/${locale}`} className="hover:text-[#D97706]">
+      <nav className="text-xs text-[#64748B] mb-4 flex items-center">
+        <Link href={`/${locale}`} className="text-[#64748B] hover:text-[#D97706]">
           {locale === "en" ? "Home" : "Avaleht"}
         </Link>
-        <span className="mx-1.5">&gt;</span>
+        <span className="mx-1.5 text-[#CBD5E1]">&gt;</span>
         <span className="text-[#1E293B] font-medium">
           {locale === "en" ? "Compare Products" : "Toodete võrdlus"}
         </span>

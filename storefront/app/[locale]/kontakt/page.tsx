@@ -14,14 +14,14 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
     <div className="max-w-[1280px] mx-auto px-[16px] sm:px-[24px] py-[32px] sm:py-[48px]">
       {/* Breadcrumb */}
       <nav
-        className="text-[12px] font-[family-name:var(--font-dm-sans)] text-[#999999] mb-[32px]"
+        className="text-[12px] font-[family-name:var(--font-dm-sans)] text-[#64748B] mb-[32px] flex items-center"
         aria-label="Breadcrumb"
       >
         <Link href={`/${locale}`} className="hover:text-[#D97706] transition-colors">
           Home
         </Link>
-        <span className="mx-[8px] text-[#E8E8E8]">/</span>
-        <span className="text-[#777777]">Contact</span>
+        <span className="mx-[8px] text-[#CBD5E1]">/</span>
+        <span className="text-[#1E293B]">Contact</span>
       </nav>
 
       <h1 className="text-[28px] sm:text-[32px] font-[700] font-[family-name:var(--font-dm-sans)] text-[#1E293B] mb-[8px]">

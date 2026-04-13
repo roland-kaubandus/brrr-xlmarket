@@ -3,7 +3,7 @@
     "lib": ["es2021"],
     "target": "es2021",
     "outDir": "./dist",
-    "rootDir": "./src",
+    "rootDir": ".",
     "esModuleInterop": true,
     "declaration": true,
     "module": "NodeNext",

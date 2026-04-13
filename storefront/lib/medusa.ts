@@ -1,18 +1,22 @@
 const MEDUSA_URL = process.env.NEXT_PUBLIC_MEDUSA_URL!
 const API_KEY = process.env.NEXT_PUBLIC_MEDUSA_KEY!
 const REGION_ID = process.env.NEXT_PUBLIC_REGION_ID!
+const FETCH_TIMEOUT_MS = 8000
 
 async function medusaFetch<T>(path: string, options?: RequestInit & { revalidate?: number }): Promise<T> {
   const { revalidate, ...fetchOptions } = options || {}
+  const controller = new AbortController()
+  const timeout = setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS)
   const res = await fetch(`${MEDUSA_URL}${path}`, {
     ...fetchOptions,
+    signal: fetchOptions.signal ?? controller.signal,
     headers: {
       "x-publishable-api-key": API_KEY,
       "Content-Type": "application/json",
       ...fetchOptions?.headers,
     },
     next: revalidate !== undefined ? { revalidate } : undefined,
-  })
+  }).finally(() => clearTimeout(timeout))
   if (!res.ok) {
     throw new Error(`Medusa API error: ${res.status} ${res.statusText}`)
   }
@@ -134,24 +138,26 @@ type CategoriesResponse = {
   count: number
 }
 
+const CATEGORY_PAGE_SIZE = 500
+
+function buildCategoryQuery(offset: number) {
+  return `/store/product-categories?limit=${CATEGORY_PAGE_SIZE}&offset=${offset}&fields=id,name,handle,parent_category_id`
+}
+
 export async function getCategories(): Promise<ProductCategory[]> {
-  // Fetch only root categories (L1) with their full descendant tree
-  // This avoids loading all 3400+ categories individually
-  const res = await medusaFetch<CategoriesResponse>(
-    `/store/product-categories?limit=100&parent_category_id=null&include_descendants_tree=true`,
-    { revalidate: 300 }
-  )
-  // Flatten the tree into a flat list (MegaMenu buildCategoryTree re-builds it)
   const all: ProductCategory[] = []
-  function flatten(cats: ProductCategory[]) {
-    for (const cat of cats) {
-      all.push(cat)
-      if (cat.category_children?.length) {
-        flatten(cat.category_children)
-      }
-    }
+  let offset = 0
+  let total = Number.POSITIVE_INFINITY
+
+  while (offset < total) {
+    const res = await medusaFetch<CategoriesResponse>(buildCategoryQuery(offset), { revalidate: 300 })
+    const page = res.product_categories || []
+    all.push(...page)
+    total = res.count ?? all.length
+    if (page.length === 0 || page.length < CATEGORY_PAGE_SIZE) break
+    offset += page.length
   }
-  flatten(res.product_categories)
+
   return all
 }
 

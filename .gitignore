@@ -37,3 +37,4 @@ npm-debug.log*
 .claude/history.jsonl
 node_modules/
 data/feeds/*.xlsx
+.dmux/

@@ -1,39 +1,21 @@
-# CLAUDE.md — XL: BRRR xlmarket.eu e-pood
+# CLAUDE.md — XL: xlmarket.eu e-pood
 
-> Viimati uuendatud: 2026-04-09
-> SEDA FAILI MUUDAVAD AINULT RISTO JA CLAUDIA!
+> Viimati uuendatud: 2026-04-14
 
 ---
 
 ## Kes sa oled
 
-Sa oled **XL (Claude Code)** — xlmarket.eu e-poe arendusagent.
-Sa töötad otse **Risto ja Claudiaga**.
-
-**Boss:** Risto (lõplik autoriteet)
-**Sinu ülemus:** Claudia (arhitekt, planeerija)
-**Tellija:** Roland Kaubandus OÜ (kontakt: Tarmo)
-**Asukoht:** VPS — `/home/brrr/brrr-xlmarket/`
+**XL** — xlmarket.eu e-poe arendusagent.
+Huly projekt: **XLM** | Konto: xl@brrr.ee
 
 ---
 
-## Mis sa teed
-
-Sa ehitad ja haldad **xlmarket.eu** e-poodi:
-- Medusa.js 2.0 backend + Next.js storefront
-- Tootefeedi import (VEVOR XLSX → Medusa)
-- Montonio makselahendus
-- Integratsioonid (osta.ee, Facebook, X)
-- CMS haldus ja sisuhaldus
-- Jõudluse ja SEO optimeerimine
-
----
-
-## Tehniline stack
+## Stack
 
 ```
 Medusa.js 2.0  — e-poe backend (port 9001)
-Next.js 15     — storefront (port 3030)
+Next.js 16     — storefront (port 3030)
 PostgreSQL 16  — andmebaas (port 5435)
 Redis 7        — cache/sessions (port 6380)
 MeiliSearch    — full-text search + facets (port 7700)
@@ -43,183 +25,68 @@ Docker Compose — kõik teenused konteinerites
 ```
 
 ### Tootefeed
-- 
 - **Sync:** iga 4 tundi
-- **Hinnavalem:** algne_hind * 1.15 = lõpphind (käibemaksuga)
+- **Hinnavalem:** algne_hind * 1.15 = lõpphind (käibemaksuga, erandit ei ole)
 - **Tooted:** ~16 046, 1 688 kategooriat
 
 ### Makselahendus
-- **Montonio** — pangalingid (Swedbank, SEB, LHV, Luminor, Coop) + kaardimaksed
+- **Montonio** — pangalingid + kaardimaksed
 
 ### Integratsioonid
-- **osta.ee** — XML feed (`/feeds/osta-ee.xml`)
-- **Facebook** — Commerce feed + Meta Pixel
-- **X** — Twitter Card meta tags
-
-### Email
-- info@xlmarket.eu — tellimuse teavitused
-- tarmo@xlmarket.eu — admin teavitused
-
----
-
-## Delegeerimise loop
-
-```
-KANBAN (Huly) → ülesanne
-       ↓
-  SA — hindad ülesannet
-       │
-       ├── Alla 5 min? ──→ Teed ISE ──→ GATEKEEPER ──→ Done
-       │
-       ▼ Üle 5 min? Delegeerid:
-  KIRJUTAJAD (kuni 4 tk)
-       │◄──── Tagasi? = algusesse!
-       ▼
-  REVIEW 1 (funktsionaalsus) + REVIEW 2 (UI vastavus)
-  VASTANDLIKUD — vaatavad ERI asju! Konsensus kohustuslik.
-       │◄──── Üks lükkab tagasi? = algusesse!
-       ▼
-  TESTIJA
-       │◄──── Fail? = algusesse!
-       ▼
-  GATEKEEPER (Risto/Claudia)
-       │◄──── Tagasi? = algusesse!
-       ▼
-  KANBAN → Done
-```
-
----
-
-## Lühiajaline mälu
-
-### 90% reegel
-90% tokeneid kasutatud → peata + kirjuta logi.
-
-### Päevalogi
-Salvesta: `docs/cc-vps/memory/YYYY-MM-DD.md`
-Formaat: tehti, otsused, probleemid, järgmine kord, õpitud.
-
-### Sessiooni ALGUS
-1. Kontrolli Huly todo töid
-2. Loe `docs/cc-vps/memory/` kaustast tänane ja eilne logi
-3. Aktiivne WO: loe `docs/cc-vps/memory/active-wo.md`
-
-### Sessiooni LÕPP
-1. Kirjuta päevalogi: `docs/cc-vps/memory/YYYY-MM-DD.md`
-2. Kui WO on pooleli: uuenda `docs/cc-vps/memory/active-wo.md`
-3. `git add . && git commit -m "Memory: YYYY-MM-DD" && git push`
+- osta.ee (XML feed), Facebook Commerce + Pixel, X Twitter Cards
 
 ---
 
 ## Commands
 
-### Storefront (Next.js)
-- `npm run dev` — dev server (port 3000)
-- `npm run build && npm run start` — production build (port 3030)
+```bash
+# Storefront
+npm run dev                     # dev (port 3000)
+npm run build && npm run start  # prod (port 3030)
 
-### Backend (Medusa)
-- `npm run dev` — medusa dev server (port 9001)
-- `npm run build && npm run start` — production
-- `npm run seed` — seed database
+# Backend
+cd backend && npm run dev       # medusa (port 9001)
 
-### Import
-- `node backend/src/scripts/import-vevor-feed.mjs --execute --update` — full VEVOR import (16K products)
+# VEVOR import
+node backend/src/scripts/import-vevor-feed.mjs --execute --update
 
-### VPS Deploy
-- `ssh brrr` then `cd /home/brrr/brrr-xlmarket/storefront && npm run build && sudo systemctl restart xlmarket-storefront`
-- Clear stale cache: `rm -rf .next/cache/fetch-cache`
+# VPS deploy
+rm -rf storefront/.next/cache/fetch-cache
+cd storefront && npm run build
+fuser -k 3030/tcp && nohup npx next start -p 3030 &
+```
 
 ---
 
 ## Gotchas
 
-- **Next.js fetch cache:** After updating product metadata via Medusa API, storefront serves stale data. Fix: `rm -rf storefront/.next/cache/fetch-cache && restart next-server`
-- **MeiliSearch facetDistribution:** Returns ALL category_handles across products, not filtered by current domain. Must filter out L1 branch handles manually (see `lib/branches.ts`).
-- **Multiple next-server processes:** After `npm run build`, old process still serves old build. Kill old PID before starting new one. Check with `ss -tlnp | grep 3030`.
-- **Next.js hangib perioodiliselt:** Protsess kuulab pordil aga ei vasta. Fix: `fuser -k 3030/tcp && sleep 3 && nohup npx next start -p 3030 &`
-- **VEVOR CDN %2B:** Mõned failinimed sisaldavad `+` märki (%2B). ÄRA kasuta decodeURIComponent thumbnailidel — CDN nõuab kodeeritud URL-e
-- **Medusa admin (Vite):** Nõuab `allowedHosts: ["xlmarket.store"]` medusa-config.ts/js admin.vite configis + `backendUrl: "https://xlmarket.store"`
-- **nginx /app proxy:** Kasuta `location ^~ /app` (mitte `location /app`) et kõik alamteed proksi'taks
-- **Email subscribers KATKI:** `order-placed.ts` ja `order-shipped.ts` email import ei tööta — kommenteeritud välja kuni parandatud
-- **Medusa CORS:** STORE_CORS, ADMIN_CORS, AUTH_CORS peavad sisaldama `https://xlmarket.store`
-- **PostHog:** NEXT_PUBLIC_POSTHOG_KEY .env.local-is, EU host. MCP config .mcp.json-is
+- **Next.js fetch cache:** Medusa API update jarelt storefront serveerib vana data. Fix: `rm -rf .next/cache/fetch-cache` + restart
+- **MeiliSearch facetDistribution:** Tagastab KOIK category_handles. Filtreeri L1 branch handles manuaalselt (`lib/branches.ts`)
+- **Multiple next-server protsessid:** Vana protsess jaab kuulama. `ss -tlnp | grep 3030` ja kill vana PID
+- **Next.js hangib perioodiliselt:** Kuulab pordil aga ei vasta. Fix: `fuser -k 3030/tcp && sleep 3 && nohup npx next start -p 3030 &`
+- **VEVOR CDN %2B:** Moned failinimed sisaldavad `+` (%2B). ARA decodeURIComponent — CDN nouab kodeeritud URL-e
+- **Medusa admin (Vite):** `allowedHosts: ["xlmarket.store"]` + `backendUrl: "https://xlmarket.store"`
+- **nginx /app proxy:** `location ^~` (mitte `location /`)
+- **Email subscribers KATKI:** `order-placed.ts` ja `order-shipped.ts` kommenteeritud valja
+- **CORS:** STORE_CORS, ADMIN_CORS, AUTH_CORS peavad sisaldama `https://xlmarket.store`
 
 ---
 
 ## Key files
 
-- `scripts/import-vevor-feed.mjs` — VEVOR XLSX importer (`--execute --update`) — SPU variant grouping, image dedup
-- `scripts/feed-sync.sh` — Unified feed sync (cron iga 4h): download, cache, reindex, stock, feeds, raport
-- `backend/src/scripts/category-map.json` — VEVOR L1 → Medusa category handle mapping
-- `backend/scripts/index-meilisearch.mjs` — MeiliSearch reindex script
-- `storefront/components/ProductGallery.tsx` — Image gallery with lightbox
-- `storefront/components/CollapsibleDescription.tsx` — Rich HTML description with gradient fade
-- `storefront/components/BannerCarousel.tsx` — 4 EN bannerit branch fotodega
-- `storefront/app/[locale]/toode/[handle]/page.tsx` — Product detail page
-- `storefront/app/[locale]/haru/[handle]/page.tsx` — Domain/branch category page
-- `storefront/lib/branches.ts` — Branch definitions with categoryHandle
-- `storefront/lib/auth.ts` — Customer auth helpers (register, login, getCustomer, getOrders)
-- `storefront/lib/sanitize.ts` — HTML sanitizer (strips CSS, scripts, deduplicates images)
+- `scripts/import-vevor-feed.mjs` — VEVOR XLSX importer (SPU grouping, image dedup)
+- `scripts/feed-sync.sh` — Cron sync (4h): download, cache, reindex, stock, feeds
+- `storefront/components/ProductGallery.tsx` — Image gallery + lightbox
+- `storefront/components/BannerCarousel.tsx` — Branch fotod bannerid
+- `storefront/app/[locale]/toode/[handle]/page.tsx` — Toote detail
+- `storefront/app/[locale]/haru/[handle]/page.tsx` — Kategooria leht
+- `storefront/lib/branches.ts` — Branch definitsioonid
 - `storefront/lib/meilisearch.ts` — MeiliSearch client + compound word expansion
-
----
-
-## VEVOR feed metadata (product.metadata)
-
-- `selling_point_1` … `selling_point_5` — Feature bullet points (title: description format)
-- `rich_description` — Full HTML with embedded images (max 15KB), collapsible on frontend
-- `vevor_product_type` — L1 > L2 > L3 hierarchy string
-- `gallery_images` — Additional product images beyond thumbnail
-- `vevor_sku`, `vevor_model`, `item_dimensions`, `item_weight`, `upc`
 
 ---
 
 ## Reeglid
 
-- **Git:** single-line commits, no force push, no direct push to main
-- **MOCK data KEELATUD.**
-- **Käsud ALATI koos täis path'iga**
-- **"Low priority" = ei tehta kunagi.**
-- **Tarmole peab admin paneel olema lihtne ja eestikeelne**
-- **Tootehinnad ALATI * 1.15 — erandit ei ole**
-- **Pildid: kasuta VEVOR CDN URL-e, ära kopeeri pilte oma serverisse (v.a kui CDN blokeerib)**
-
----
-
-## Repo struktuur
-
-```
-brrr-xlmarket/
-├── CLAUDE.md              ← sina oled siin
-├── docker-compose.yml
-├── backend/               ← Medusa.js projekt
-├── storefront/            ← Next.js storefront
-├── data/
-│   └── feeds/             ← XLSX feedid, XML eksport
-├── docs/
-│   └── cc-vps/
-│       └── memory/        ← päevalogid
-├── kavandid/              ← UI mockupid (HTML)
-├── nginx/                 ← reverse proxy config
-├── scripts/               ← utility scripts
-├── systemd/               ← service unit failid
-├── work-orders/           ← WO failid
-└── templates/
-```
-
----
-
-*"XL — suur valik, väike hind!"*
-
----
-
-## HULY (KOHUSTUSLIK)
-
-Project: **XLM** | Konto: xl@brrr.ee
-
-1. Sessiooni algus: `list_issues` → võta töösse (`update_issue` → "In Progress")
-2. Olulised sammud: `add_comment` → sisuline progress
-3. Sessiooni lõpp: `update_issue` → "Done" või jäta "In Progress"
-4. Ära spämmi — Huly logib staatuse muutused automaatselt
-
-Tööta iseseisvalt, küsi ainult kui päriselt kinni.
+- Pildid: kasuta VEVOR CDN URL-e, ara kopeeri serverisse
+- Tarmole peab admin olema lihtne ja eestikeelne
+- Tootehinnad ALATI * 1.15

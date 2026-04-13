@@ -2,7 +2,6 @@ import { notFound } from "next/navigation"
 import type { Metadata } from "next"
 import { isValidLocale, getTranslations, localePath } from "@/lib/i18n"
 import type { Locale } from "@/lib/i18n"
-import { getCategories } from "@/lib/medusa"
 import CookieConsent from "@/components/CookieConsent"
 import CartSlideOver from "@/components/CartSlideOver"
 import MetaPixel from "@/components/MetaPixel"
@@ -60,33 +59,13 @@ export default async function LocaleLayout({ children, params }: Props) {
   const { locale } = await params
   if (!isValidLocale(locale)) notFound()
 
-  // Fetch all categories for mega-menu
-  let categories: Awaited<ReturnType<typeof getCategories>> = []
-  try {
-    categories = await getCategories()
-  } catch {
-    // Fallback to empty if Medusa is unreachable
-  }
-
-  // Map to CategoryNode shape
-  const categoryNodes = categories.map(c => ({
-    id: c.id,
-    name: c.name,
-    handle: c.handle,
-    parent_category_id: c.parent_category_id,
-    children: [] as any[],
-  }))
-
-  // No need for MeiliSearch subcategory fetching anymore —
-  // categories now have real parent-child tree from Medusa (3400+ nodes)
-
   return (
     <CompareProvider>
       <SetHtmlLang locale={locale} />
 
-      <VevorHeader categories={categoryNodes} locale={locale} />
+      <VevorHeader locale={locale} />
 
-      <main className="min-h-[100dvh] bg-white">{children}</main>
+      <main className="flex-1 bg-white">{children}</main>
 
       <VevorFooter locale={locale} />
 

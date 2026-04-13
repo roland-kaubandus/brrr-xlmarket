@@ -6,6 +6,7 @@ import CategoryExploreGrid from "@/components/CategoryExploreGrid"
 import VevorProductCard from "@/components/VevorProductCard"
 import HorizontalProductRow from "@/components/HorizontalProductRow"
 import categoryImages from "@/lib/category-images.json"
+import { MENU_ORDER } from "@/lib/menu-order"
 
 export const revalidate = 300
 
@@ -101,7 +102,6 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
 
   let bestSellers: any[] = []
   let newArrivals: any[] = []
-  let allCategories: any[] = []
 
   // 1) Try MeiliSearch first for product sections (proven to work on category pages)
   try {
@@ -125,48 +125,12 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
     }
   }
 
-  // 2) Fetch categories
-  try {
-    allCategories = await getCategories()
-  } catch {
-    allCategories = []
-  }
-
-  // L1 categories — new VEVOR XLSX taxonomy handles
-  const HOMEPAGE_CATEGORIES = [
-    "outdoors", "tools", "automotive",
-    "kitchen", "building-materials", "plumbing",
-    "sports-outdoors", "electrical", "hardware",
-    "industrial-scientific",
-  ]
-  const handleSet = new Set(HOMEPAGE_CATEGORIES)
-  const topCategories = allCategories
-    .filter((c) => !c.parent_category_id && handleSet.has(c.handle))
-    .slice(0, 10)
-
-  // Get one product per category for thumbnail
-  const categoryData = await Promise.all(
-    topCategories.map(async (cat) => {
-      try {
-        const res = await getProducts({ limit: 1, category_id: [cat.id] })
-        return {
-          name: cat.name,
-          handle: cat.handle,
-          displayName: DISPLAY_NAMES[cat.handle] || cat.name,
-          image: CATEGORY_IMAGES[cat.handle] || res.products[0]?.thumbnail || null,
-          productCount: res.count || 0,
-        }
-      } catch {
-        return {
-          name: cat.name,
-          handle: cat.handle,
-          displayName: DISPLAY_NAMES[cat.handle] || cat.name,
-          image: null,
-          productCount: 0,
-        }
-      }
-    })
-  )
+  const categoryData = MENU_ORDER.map((handle) => ({
+    name: DISPLAY_NAMES[handle] || handle.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase()),
+    handle,
+    displayName: DISPLAY_NAMES[handle] || handle.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase()),
+    image: CATEGORY_IMAGES[handle] || null,
+  }))
 
   return (
     <>

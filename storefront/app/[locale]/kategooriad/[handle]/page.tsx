@@ -10,6 +10,8 @@ import { notFound } from "next/navigation"
 import JsonLdCategory from "@/components/JsonLdCategory"
 import SubcategoryScroller from "@/components/SubcategoryScroller"
 import categoryImages from "@/lib/category-images.json"
+import { categoryPath } from "@/lib/i18n"
+import { buildQuickFilters } from "@/lib/quick-filters"
 
 const CATEGORY_IMAGES: Record<string, string> = categoryImages as Record<string, string>
 
@@ -54,7 +56,7 @@ type Props = {
   params: Promise<{ handle: string; locale: string }>
   searchParams: Promise<{
     page?: string; sort?: string; min?: string; max?: string
-    q?: string; categories?: string; in_stock?: string
+    q?: string; categories?: string; in_stock?: string; filters?: string
   }>
 }
 
@@ -62,6 +64,16 @@ function humanize(handle: string): string {
   return handle
     .replace(/-/g, " ")
     .replace(/\b\w/g, (c) => c.toUpperCase())
+}
+
+function collectDescendantIds(node: { id: string; category_children?: Array<any> } | null | undefined): string[] {
+  if (!node?.category_children?.length) return []
+  const ids: string[] = []
+  for (const child of node.category_children) {
+    ids.push(child.id)
+    ids.push(...collectDescendantIds(child))
+  }
+  return ids
 }
 
 export async function generateMetadata({ params }: Props) {
@@ -90,7 +102,7 @@ const SORT_MAP: Record<string, string[]> = {
 
 export default async function CategoryPage({ params, searchParams }: Props) {
   const { handle, locale } = await params
-  const { page: pageParam, sort, min, max, q, categories, in_stock } = await searchParams
+  const { page: pageParam, sort, min, max, q, categories, in_stock, filters } = await searchParams
 
   // Try Medusa category first (for subcategories, ancestors, etc.)
   const category = await getCategoryByHandle(handle)
@@ -100,35 +112,38 @@ export default async function CategoryPage({ params, searchParams }: Props) {
   const currentSort = sort || ""
   const selectedCategories = categories ? categories.split(",").filter(Boolean) : []
   const inStock = in_stock === "1"
+  const currentQuickFilter = filters?.trim() || ""
 
   let products: any[] = []
   let totalCount = 0
-  let usedMeili = false
   let categoryFacets: Record<string, number> = {}
+  let quickFilterFacets: Record<string, number> = {}
 
   // Primary: MeiliSearch — works for ALL category handles (Medusa + auto-generated)
   try {
-    const filters: string[] = [`category_handles = "${handle}"`]
-    if (min) filters.push(`price >= ${parseFloat(min)}`)
-    if (max) filters.push(`price <= ${parseFloat(max)}`)
-    if (inStock) filters.push("in_stock = true")
+    const searchFilters: string[] = [`category_handles = "${handle}"`]
+    if (min) searchFilters.push(`price >= ${parseFloat(min)}`)
+    if (max) searchFilters.push(`price <= ${parseFloat(max)}`)
+    if (inStock) searchFilters.push("in_stock = true")
     if (selectedCategories.length > 0) {
       const catFilters = selectedCategories.map(c => `categories = "${c.replace(/"/g, '\\"')}"`)
-      filters.push(`(${catFilters.join(" OR ")})`)
+      searchFilters.push(`(${catFilters.join(" OR ")})`)
     }
-
+    if (currentQuickFilter) {
+      searchFilters.push(`filter_tokens = "${currentQuickFilter.replace(/"/g, '\\"')}"`)
+    }
     const meiliResult = await searchProducts({
       q: q || "",
       limit: ITEMS_PER_PAGE,
       offset,
       sort: SORT_MAP[currentSort] || undefined,
-      filter: filters,
-      facets: ["categories", "price", "in_stock"],
+      filter: searchFilters,
+      facets: ["categories", "price", "in_stock", "filter_tokens"],
     })
 
     totalCount = meiliResult.totalHits || meiliResult.estimatedTotalHits || 0
-    usedMeili = true
     categoryFacets = meiliResult.facetDistribution?.categories || {}
+    quickFilterFacets = meiliResult.facetDistribution?.filter_tokens || {}
 
     products = meiliResult.hits.map(hit => ({
       id: hit.id,
@@ -154,14 +169,37 @@ export default async function CategoryPage({ params, searchParams }: Props) {
   } catch {
     // Fallback to Medusa API (only works if Medusa category exists)
     if (category) {
+      const descendantIds = collectDescendantIds(category)
       const productsRes = await getProducts({
-        category_id: [category.id],
+        category_id: [category.id, ...descendantIds],
         limit: ITEMS_PER_PAGE,
         offset,
         order: "-created_at",
       })
       products = productsRes.products
       totalCount = productsRes.count
+    }
+  }
+
+  // Safety net: if Meili returned no products but Medusa category exists,
+  // try the descendant-tree category IDs before showing an empty state.
+  if (totalCount === 0 && category) {
+    try {
+      const descendantIds = collectDescendantIds(category)
+      if (descendantIds.length > 0) {
+        const productsRes = await getProducts({
+          category_id: [category.id, ...descendantIds],
+          limit: ITEMS_PER_PAGE,
+          offset,
+          order: "-created_at",
+        })
+        if (productsRes.count > 0) {
+          products = productsRes.products
+          totalCount = productsRes.count
+        }
+      }
+    } catch {
+      // Leave the empty state in place if Medusa is also unavailable.
     }
   }
 
@@ -173,33 +211,8 @@ export default async function CategoryPage({ params, searchParams }: Props) {
     : humanize(handle)
 
   const totalPages = Math.ceil(totalCount / ITEMS_PER_PAGE)
-  const categoryBasePath = `/${locale}/kategooriad/${handle}`
-
-  // Fetch thumbnail for each subcategory (first product in that category)
-  const subcatThumbs: Record<string, string> = {}
-  if (category?.category_children?.length) {
-    const thumbResults = await Promise.all(
-      category.category_children.slice(0, 30).map(async (child) => {
-        if (CATEGORY_IMAGES[child.handle]) return { handle: child.handle, thumb: null }
-        try {
-          // Try MeiliSearch first
-          const res = await searchProducts({
-            q: "",
-            limit: 1,
-            filter: [`category_handles = "${child.handle}"`],
-            attributesToHighlight: [],
-          })
-          if (res.hits[0]?.thumbnail) return { handle: child.handle, thumb: res.hits[0].thumbnail }
-          // Fallback: try Medusa API with category ID
-          const medusaRes = await getProducts({ limit: 1, category_id: [child.id] })
-          return { handle: child.handle, thumb: medusaRes.products[0]?.thumbnail || null }
-        } catch { return { handle: child.handle, thumb: null } }
-      })
-    )
-    for (const r of thumbResults) {
-      if (r.thumb) subcatThumbs[r.handle] = r.thumb
-    }
-  }
+  const categoryBasePath = categoryPath(locale as "et" | "en", handle)
+  const quickFilters = buildQuickFilters(quickFilterFacets, totalCount)
 
   // Fetch "You May Also Like" products from a parent/sibling category
   let youMayAlsoLike: any[] = []
@@ -244,21 +257,22 @@ export default async function CategoryPage({ params, searchParams }: Props) {
     if (q) p.set("q", q)
     if (categories) p.set("categories", categories)
     if (inStock) p.set("in_stock", "1")
+    if (currentQuickFilter) p.set("filters", currentQuickFilter)
     const qs = p.toString()
     return `${categoryBasePath}${qs ? `?${qs}` : ""}`
   }
 
   return (
-    <div className="bg-white min-h-screen">
+    <div className="bg-white">
       <JsonLdCategory
         name={displayName}
-        url={`https://xlmarket.store/${locale}/kategooriad/${handle}`}
+        url={`https://xlmarket.store${categoryPath(locale as "et" | "en", handle)}`}
         productCount={totalCount}
       />
-      <div className="max-w-[1360px] mx-auto px-4 sm:px-6 py-6">
+      <div className="max-w-[1360px] mx-auto px-4 sm:px-6 py-7 sm:py-10">
         {/* Breadcrumb — full ancestor chain (if Medusa category exists) */}
-        <nav className="text-xs text-[#64748B] mb-4">
-          <Link href={`/${locale}`} className="hover:text-[#D97706]">{locale === "et" ? "Avaleht" : "Home"}</Link>
+        <nav className="text-xs text-[#64748B] mb-4 min-h-[24px] flex items-center flex-wrap gap-y-1 transition-opacity duration-200">
+          <Link href={`/${locale}`} className="text-[#64748B] hover:text-[#D97706] transition-colors duration-200">{locale === "et" ? "Avaleht" : "Home"}</Link>
           {category && (() => {
             const ancestors: Array<{ name: string; handle: string }> = []
             let parent = category.parent_category
@@ -268,12 +282,12 @@ export default async function CategoryPage({ params, searchParams }: Props) {
             }
             return ancestors.map((a) => (
               <span key={a.handle}>
-                <span className="mx-1.5">&gt;</span>
-                <Link href={`/${locale}/kategooriad/${a.handle}`} className="hover:text-[#D97706]">{a.name}</Link>
+                <span className="mx-1.5 text-[#CBD5E1]">&gt;</span>
+                <Link href={categoryPath(locale as "et" | "en", a.handle)} className="text-[#64748B] hover:text-[#D97706] transition-colors duration-200">{a.name}</Link>
               </span>
             ))
           })()}
-          <span className="mx-1.5">&gt;</span>
+          <span className="mx-1.5 text-[#CBD5E1]">&gt;</span>
           <span className="text-[#1E293B] font-medium">{displayName}</span>
         </nav>
 
@@ -285,14 +299,12 @@ export default async function CategoryPage({ params, searchParams }: Props) {
         {/* Subcategory navigation — scrollable with hover arrows */}
         {category && (category.category_children?.length ?? 0) > 0 && (
           <SubcategoryScroller>
-            {category.category_children!
-              .filter((child) => CATEGORY_IMAGES[child.handle] || subcatThumbs[child.handle])
-              .map((child) => {
-              const thumb = CATEGORY_IMAGES[child.handle] || subcatThumbs[child.handle]
+            {category.category_children!.map((child) => {
+              const thumb = CATEGORY_IMAGES[child.handle] || null
               return (
                 <Link
                   key={child.id}
-                  href={`/${locale}/kategooriad/${child.handle}`}
+                  href={categoryPath(locale as "et" | "en", child.handle)}
                   className="flex-shrink-0 flex flex-col items-center gap-2 w-[130px] group"
                 >
                   <div className="w-[120px] h-[120px] rounded-xl bg-[#F8FAFC] border border-[#E2E8F0] group-hover:border-[#D97706] group-hover:shadow-lg group-hover:-translate-y-1 transition-all duration-200 overflow-hidden flex items-center justify-center">
@@ -305,7 +317,11 @@ export default async function CategoryPage({ params, searchParams }: Props) {
                         className="object-contain w-full h-full p-2"
                         unoptimized
                       />
-                    ) : null}
+                    ) : (
+                      <div className="w-12 h-12 rounded-full bg-[#FEF3C7] flex items-center justify-center">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D97706" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2" /><path d="M16 7V5a4 4 0 0 0-8 0v2" /></svg>
+                      </div>
+                    )}
                   </div>
                   <span className="text-[12px] text-center text-[#475569] group-hover:text-[#D97706] transition-colors leading-snug line-clamp-2 font-medium">
                     {child.name}
@@ -326,18 +342,20 @@ export default async function CategoryPage({ params, searchParams }: Props) {
               </p>
             </div>
             <Suspense fallback={null}>
-              <VevorSearchFilters
-                totalHits={totalCount}
-                query={q || ""}
-                currentSort={currentSort}
-                currentMin={min}
-                currentMax={max}
-                currentCategories={selectedCategories}
-                currentInStock={inStock}
-                categoryFacets={categoryFacets}
-                locale={locale}
-                basePath={categoryBasePath}
-              />
+            <VevorSearchFilters
+              totalHits={totalCount}
+              query={q || ""}
+              currentSort={currentSort}
+              currentMin={min}
+              currentMax={max}
+              currentCategories={selectedCategories}
+              currentInStock={inStock}
+              categoryFacets={categoryFacets}
+              quickFilters={quickFilters}
+              currentQuickFilter={currentQuickFilter}
+              locale={locale}
+              basePath={categoryBasePath}
+            />
             </Suspense>
 
             {/* Product grid — 5 col desktop, 3 tablet, 2 mobile */}
