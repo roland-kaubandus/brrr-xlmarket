@@ -285,7 +285,7 @@ function sanitizeHtml(html) {
   if (!html) return ""
   return html
     .replace(/\/\*[\s\S]*?\*\//g, "")
-    .replace(/\.[a-z][\w-]*(?:\s+[\w.#:\[\]=~^|*>,+\s-]*)*\s*\{[^}]*\}/gi, "")
+    .replace(/\.[a-z][\w-]{0,50}[^{}]{0,300}\{[^}]{0,5000}\}/gi, "")
     .replace(/<style[^>]*>[\s\S]*?<\/style\s*>/gi, "")
     .replace(/<script[^>]*>[\s\S]*?<\/script\s*>/gi, "")
     .replace(/<(iframe|object|embed|form|input|textarea|select)[\s\S]*?<\/\1\s*>/gi, "")
@@ -348,7 +348,7 @@ function cleanRichDescription(html, galleryUrls) {
     .replace(/Along with thousands[\s\S]*?global members\./gi, "")
     // Remove raw CSS (outside <style> tags)
     .replace(/\/\*[\s\S]*?\*\//g, "")
-    .replace(/\.[a-z][\w-]*(?:\s+[\w.#:\[\]=~^|*>,+\s-]*)*\s*\{[^}]*\}/gi, "")
+    .replace(/\.[a-z][\w-]{0,50}[^{}]{0,300}\{[^}]{0,5000}\}/gi, "")
     // Remove style/script/input tags
     .replace(/<style[^>]*>[\s\S]*?<\/style\s*>/gi, "")
     .replace(/<script[^>]*>[\s\S]*?<\/script\s*>/gi, "")

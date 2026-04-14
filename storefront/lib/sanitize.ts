@@ -18,7 +18,7 @@ export function sanitizeHtml(html: string): string {
     // Remove entire CSS blocks — VEVOR dumps raw CSS outside <style> tags
     // Match everything from "/* " comment or ".class-name {" up to the last "}" before next HTML tag
     .replace(/\/\*[\s\S]*?\*\//g, "")
-    .replace(/\.[a-z][\w-]*(?:\s+[\w.#:\[\]=~^|*>,+\s-]*)*\s*\{[^}]*\}/gi, "")
+    .replace(/\.[a-z][\w-]{0,50}[^{}]{0,300}\{[^}]{0,5000}\}/gi, "")
     // Remove script/style/iframe blocks entirely (tag + content + closing tag)
     .replace(/<style[^>]*>[\s\S]*?<\/style\s*>/gi, "")
     .replace(/<script[^>]*>[\s\S]*?<\/script\s*>/gi, "")
