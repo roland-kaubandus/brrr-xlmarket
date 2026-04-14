@@ -1,8 +1,7 @@
 import Link from "@/components/SafeLink"
 import { Suspense } from "react"
-import { searchProducts, getLocalizedTitle } from "@/lib/meilisearch"
-import { getProducts } from "@/lib/medusa"
-import VevorProductCard from "@/components/VevorProductCard"
+import { searchProducts } from "@/lib/meilisearch"
+import ProductGrid from "@/components/ProductGrid"
 import VevorSearchFilters from "@/components/search/VevorSearchFilters"
 import VevorPagination from "@/components/search/VevorPagination"
 import SortSelect from "@/components/search/SortSelect"
@@ -73,73 +72,44 @@ export default async function SearchPage({ searchParams, params }: Props) {
   const inStock = in_stock === "1"
   const currentQuickFilter = filters?.trim() || ""
 
-  let products: any[] = []
   let totalHits = 0
   let categoryFacets: Record<string, number> = {}
   let quickFilterFacets: Record<string, number> = {}
 
-  // Always search — empty query returns popular/all products
+  // Build search filters
+  const searchFilters: string[] = []
+  if (activeTag) searchFilters.push(`promo_tags = "${activeTag}"`)
+  if (currentSort === "clearance" && !max) searchFilters.push("price <= 50")
+  if (min) searchFilters.push(`price >= ${parseFloat(min)}`)
+  if (max) searchFilters.push(`price <= ${parseFloat(max)}`)
+  if (inStock) searchFilters.push(`in_stock = true`)
+  if (selectedCategories.length > 0) {
+    const catFilters = selectedCategories.map(c => `categories = "${c.replace(/"/g, '\\"')}"`)
+    searchFilters.push(`(${catFilters.join(" OR ")})`)
+  }
+  if (currentQuickFilter) {
+    searchFilters.push(`filter_tokens = "${currentQuickFilter.replace(/"/g, '\\"')}"`)
+  }
+
+  // Fetch ONLY facets + totalHits (no products — client fetches those via /api/products)
   try {
-    const searchFilters: string[] = []
-    // Tag-based filtering (Deals, Hot, Flash Sale etc from VEVOR feed)
-    if (activeTag) searchFilters.push(`promo_tags = "${activeTag}"`)
-    // Note: New Arrivals uses sort=newest which sorts by created_at:desc
-    // Clearance: auto-filter under 50€
-    if (currentSort === "clearance" && !max) searchFilters.push("price <= 50")
-    if (min) searchFilters.push(`price >= ${parseFloat(min)}`)
-    if (max) searchFilters.push(`price <= ${parseFloat(max)}`)
-    if (inStock) searchFilters.push(`in_stock = true`)
-    if (selectedCategories.length > 0) {
-      const catFilters = selectedCategories.map(c => `categories = "${c.replace(/"/g, '\\"')}"`)
-      searchFilters.push(`(${catFilters.join(" OR ")})`)
-    }
-    if (currentQuickFilter) {
-      searchFilters.push(`filter_tokens = "${currentQuickFilter.replace(/"/g, '\\"')}"`)
-    }
     const meiliResult = await searchProducts({
       q: query,
-      limit: ITEMS_PER_PAGE,
-      offset,
-      sort: SORT_MAP[currentSort] || (!query ? ["created_at:desc"] : undefined),
+      limit: 0,
+      offset: 0,
       filter: searchFilters.length > 0 ? searchFilters : undefined,
       facets: ["categories", "price", "in_stock", "filter_tokens"],
     })
     totalHits = meiliResult.totalHits || meiliResult.estimatedTotalHits || 0
     categoryFacets = meiliResult.facetDistribution?.categories || {}
     quickFilterFacets = meiliResult.facetDistribution?.filter_tokens || {}
-
-    products = meiliResult.hits.map(hit => ({
-      id: hit.id,
-      title: getLocalizedTitle(hit, locale),
-      handle: hit.handle,
-      description: hit.description,
-      thumbnail: hit.thumbnail,
-      images: [],
-      variants: [{
-        id: hit.id + "_v",
-        title: "Default",
-        calculated_price: {
-          calculated_amount: Math.round(hit.price * 100),
-          original_amount: Math.round(hit.price * 100),
-          currency_code: "eur",
-        },
-      }],
-      categories: hit.categories.map((name: string, i: number) => ({
-        id: `cat_${i}`,
-        name,
-        handle: hit.category_handles?.[i] || "",
-        parent_category_id: null,
-      })),
-      created_at: new Date(hit.created_at * 1000).toISOString(),
-    }))
   } catch {
-    // Fallback to Medusa API
-    const res = query
-      ? await getProducts({ q: query, limit: ITEMS_PER_PAGE, offset })
-      : await getProducts({ limit: ITEMS_PER_PAGE, offset, order: "-created_at" })
-    products = res.products
-    totalHits = res.count
+    // MeiliSearch failed — totals will be 0, client-side fetch may still work
   }
+
+  // Build filter string for client-side ProductGrid fetch
+  const searchFilterStr = searchFilters.join(";")
+  const sortStr = (SORT_MAP[currentSort] || (!query ? ["created_at:desc"] : []))[0] || ""
 
   const totalPages = Math.ceil(totalHits / ITEMS_PER_PAGE)
   const quickFilters = buildQuickFilters(quickFilterFacets, totalHits)
@@ -216,13 +186,13 @@ export default async function SearchPage({ searchParams, params }: Props) {
           </div>
         </div>
 
-        {products.length === 0 && !query ? (
+        {totalHits === 0 && !query ? (
           <div className="bg-white rounded-3xl border border-[#E2E8F0] shadow-sm p-12 text-center">
             <p className="text-sm text-[#64748B]">
               {locale === "en" ? "No products available yet." : "Tooteid pole veel saadaval."}
             </p>
           </div>
-        ) : products.length === 0 && query ? (
+        ) : totalHits === 0 && query ? (
           <div className="bg-white rounded-3xl border border-[#E2E8F0] shadow-sm p-12 text-center">
             <p className="text-sm text-[#64748B] mb-4">
               {locale === "en" ? `No results found for "${query}".` : `Päringule "${query}" tulemusi ei leitud.`}
@@ -291,11 +261,17 @@ export default async function SearchPage({ searchParams, params }: Props) {
               {/* Product grid */}
               <div className="bg-white rounded-2xl border border-[#E2E8F0] shadow-sm overflow-hidden">
                 <div className="p-4 sm:p-5">
-                  <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-                    {products.map((product) => (
-                      <VevorProductCard key={product.id} product={product} locale={locale} />
-                    ))}
-                  </div>
+                  <ProductGrid
+                    fetchParams={{
+                      q: query,
+                      filter: searchFilterStr,
+                      sort: sortStr,
+                      limit: ITEMS_PER_PAGE,
+                      offset,
+                      locale,
+                    }}
+                    locale={locale}
+                  />
                 </div>
                 <div className="px-4 sm:px-5 pb-4 sm:pb-5">
                   <VevorPagination

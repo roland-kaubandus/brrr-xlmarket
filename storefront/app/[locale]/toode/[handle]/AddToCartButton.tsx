@@ -2,7 +2,7 @@
 
 import { useState, useRef } from "react"
 import { usePathname } from "next/navigation"
-import Link from "next/link"
+import Link from "@/components/SafeLink"
 import { ShoppingCart, Check } from "lucide-react"
 import posthog from "posthog-js"
 

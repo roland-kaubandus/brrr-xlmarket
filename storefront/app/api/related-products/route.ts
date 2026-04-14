@@ -1,35 +1,50 @@
 import { NextRequest, NextResponse } from "next/server"
-import { getProducts } from "@/lib/medusa"
+import { searchProducts } from "@/lib/meilisearch"
+import { mapMeiliHitToProduct } from "@/lib/map-meili-hit"
 
 export async function GET(req: NextRequest) {
   const productId = req.nextUrl.searchParams.get("product_id") || ""
-  const categoryId = req.nextUrl.searchParams.get("category_id") || ""
+  const categoryHandle = req.nextUrl.searchParams.get("category_handle") || ""
   const q = req.nextUrl.searchParams.get("q") || ""
+  const locale = req.nextUrl.searchParams.get("locale") || "et"
 
-  const relatedQuery = categoryId
-    ? { category_id: [categoryId] }
-    : q
-      ? { q }
-      : {}
+  const categoryFilter = categoryHandle
+    ? [`category_handles = "${categoryHandle}"`]
+    : undefined
 
-  const empty = { products: [], count: 0 }
-  const safeFetch = (p: Promise<typeof empty>) => p.catch(() => empty)
+  const safeSearch = (p: Promise<any>) => p.catch(() => ({ hits: [] }))
 
   try {
     const [similarRes, koosRes, bestRes] = await Promise.all([
-      safeFetch(getProducts({ limit: 12, ...relatedQuery })),
-      safeFetch(getProducts({ limit: 5, offset: 12, ...relatedQuery })),
-      categoryId
-        ? safeFetch(getProducts({ limit: 6, category_id: [categoryId] }))
-        : Promise.resolve(empty),
+      safeSearch(searchProducts({
+        q: q || "",
+        limit: 12,
+        filter: categoryFilter,
+        sort: ["created_at:desc"],
+      })),
+      safeSearch(searchProducts({
+        q: q || "",
+        limit: 5,
+        offset: 12,
+        filter: categoryFilter,
+      })),
+      categoryHandle
+        ? safeSearch(searchProducts({
+            q: "",
+            limit: 6,
+            filter: [`category_handles = "${categoryHandle}"`],
+            sort: ["price:desc"],
+          }))
+        : Promise.resolve({ hits: [] }),
     ])
 
+    const map = (hits: any[]) => hits.map(h => mapMeiliHitToProduct(h, locale))
     const filter = (arr: any[]) => arr.filter((p: any) => p.id !== productId)
 
     return NextResponse.json({
-      similar: filter(similarRes.products).slice(0, 10),
-      koos: filter(koosRes.products).slice(0, 3),
-      best: filter(bestRes.products).slice(0, 5),
+      similar: filter(map(similarRes.hits)).slice(0, 10),
+      koos: filter(map(koosRes.hits)).slice(0, 3),
+      best: filter(map(bestRes.hits)).slice(0, 5),
     }, {
       headers: { "Cache-Control": "public, s-maxage=300, stale-while-revalidate=600" },
     })

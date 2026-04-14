@@ -1,0 +1,105 @@
+"use client"
+
+import { useEffect, useState } from "react"
+import VevorProductCard from "@/components/VevorProductCard"
+import { mapMeiliHitToProduct } from "@/lib/map-meili-hit"
+
+type ProductGridProps = {
+  /** Pre-loaded products (renders immediately, no fetch) */
+  initialProducts?: any[]
+  /** OR: fetch products client-side via /api/products */
+  fetchParams?: {
+    q?: string
+    filter?: string
+    sort?: string
+    limit?: number
+    offset?: number
+    locale?: string
+    facets?: string
+  }
+  locale: string
+  columns?: "2-3-4" | "2-3-5"
+  className?: string
+}
+
+function SkeletonCard() {
+  return (
+    <div className="bg-white rounded-xl overflow-hidden border border-[#E2E8F0] animate-pulse">
+      <div className="aspect-square bg-[#F1F5F9]" />
+      <div className="p-3 space-y-2">
+        <div className="h-3 bg-[#F1F5F9] rounded w-full" />
+        <div className="h-3 bg-[#F1F5F9] rounded w-3/4" />
+        <div className="h-3 bg-[#F1F5F9] rounded w-1/2 mt-3" />
+        <div className="h-4 bg-[#F1F5F9] rounded w-1/3 mt-2" />
+      </div>
+    </div>
+  )
+}
+
+export function ProductGridSkeleton({ count = 24, columns = "2-3-4" }: { count?: number; columns?: "2-3-4" | "2-3-5" }) {
+  const gridClass = columns === "2-3-5"
+    ? "grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4"
+    : "grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4"
+  return (
+    <div className={gridClass}>
+      {Array.from({ length: count }, (_, i) => (
+        <SkeletonCard key={i} />
+      ))}
+    </div>
+  )
+}
+
+export default function ProductGrid({ initialProducts, fetchParams, locale, columns = "2-3-4", className }: ProductGridProps) {
+  const [products, setProducts] = useState<any[]>(initialProducts || [])
+  const [loading, setLoading] = useState(!initialProducts && !!fetchParams)
+
+  useEffect(() => {
+    if (initialProducts || !fetchParams) return
+    const controller = new AbortController()
+    setLoading(true)
+
+    const body: Record<string, unknown> = {
+      q: fetchParams.q || "",
+      limit: fetchParams.limit || 24,
+      offset: fetchParams.offset || 0,
+    }
+    if (fetchParams.sort) body.sort = fetchParams.sort.split(",")
+    if (fetchParams.filter) body.filter = fetchParams.filter.split(";")
+    if (fetchParams.facets) body.facets = fetchParams.facets.split(",")
+
+    fetch("/meili/indexes/products/search", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+      signal: controller.signal,
+    })
+      .then((r) => r.ok ? r.json() : null)
+      .then((data) => {
+        if (data?.hits) {
+          const loc = fetchParams.locale || "et"
+          setProducts(data.hits.map((hit: any) => mapMeiliHitToProduct(hit, loc)))
+        }
+        setLoading(false)
+      })
+      .catch((e) => {
+        if (e.name !== "AbortError") setLoading(false)
+      })
+
+    return () => controller.abort()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [initialProducts, JSON.stringify(fetchParams)])
+
+  const gridClass = columns === "2-3-5"
+    ? "grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4"
+    : "grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4"
+
+  if (loading) return <ProductGridSkeleton count={fetchParams?.limit || 24} columns={columns} />
+
+  return (
+    <div className={`${gridClass}${className ? ` ${className}` : ""}`}>
+      {products.map((product) => (
+        <VevorProductCard key={product.id} product={product} locale={locale} />
+      ))}
+    </div>
+  )
+}

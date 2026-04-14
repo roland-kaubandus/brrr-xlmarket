@@ -1,9 +1,9 @@
 import Link from "@/components/SafeLink"
 import Image from "next/image"
 import { Suspense } from "react"
-import { getCategoryByHandle, getProducts } from "@/lib/medusa"
-import { searchProducts, getLocalizedTitle } from "@/lib/meilisearch"
-import VevorProductCard from "@/components/VevorProductCard"
+import { getCategoryByHandle } from "@/lib/medusa"
+import { searchProducts } from "@/lib/meilisearch"
+import ProductGrid from "@/components/ProductGrid"
 import VevorSearchFilters from "@/components/search/VevorSearchFilters"
 import VevorPagination from "@/components/search/VevorPagination"
 import SortSelect from "@/components/search/SortSelect"
@@ -67,16 +67,6 @@ function humanize(handle: string): string {
     .replace(/\b\w/g, (c) => c.toUpperCase())
 }
 
-function collectDescendantIds(node: { id: string; category_children?: Array<any> } | null | undefined): string[] {
-  if (!node?.category_children?.length) return []
-  const ids: string[] = []
-  for (const child of node.category_children) {
-    ids.push(child.id)
-    ids.push(...collectDescendantIds(child))
-  }
-  return ids
-}
-
 export async function generateMetadata({ params }: Props) {
   const { handle, locale } = await params
   const category = await getCategoryByHandle(handle)
@@ -115,28 +105,31 @@ export default async function CategoryPage({ params, searchParams }: Props) {
   const inStock = in_stock === "1"
   const currentQuickFilter = filters?.trim() || ""
 
-  let products: any[] = []
   let totalCount = 0
   let categoryFacets: Record<string, number> = {}
   let quickFilterFacets: Record<string, number> = {}
 
-  // Primary: MeiliSearch — works for ALL category handles (Medusa + auto-generated)
+  // Build search filters for MeiliSearch
+  const searchFilters: string[] = [`category_handles = "${handle}"`]
+  if (min) searchFilters.push(`price >= ${parseFloat(min)}`)
+  if (max) searchFilters.push(`price <= ${parseFloat(max)}`)
+  if (inStock) searchFilters.push("in_stock = true")
+  if (selectedCategories.length > 0) {
+    const catFilters = selectedCategories.map(c => `categories = "${c.replace(/"/g, '\\"')}"`)
+    searchFilters.push(`(${catFilters.join(" OR ")})`)
+  }
+  if (currentQuickFilter) {
+    searchFilters.push(`filter_tokens = "${currentQuickFilter.replace(/"/g, '\\"')}"`)
+  }
+  const searchFilterStr = searchFilters.join(";")
+  const sortStr = (SORT_MAP[currentSort] || [])[0] || ""
+
+  // MeiliSearch — facets + totalHits only (products fetched client-side)
   try {
-    const searchFilters: string[] = [`category_handles = "${handle}"`]
-    if (min) searchFilters.push(`price >= ${parseFloat(min)}`)
-    if (max) searchFilters.push(`price <= ${parseFloat(max)}`)
-    if (inStock) searchFilters.push("in_stock = true")
-    if (selectedCategories.length > 0) {
-      const catFilters = selectedCategories.map(c => `categories = "${c.replace(/"/g, '\\"')}"`)
-      searchFilters.push(`(${catFilters.join(" OR ")})`)
-    }
-    if (currentQuickFilter) {
-      searchFilters.push(`filter_tokens = "${currentQuickFilter.replace(/"/g, '\\"')}"`)
-    }
     const meiliResult = await searchProducts({
       q: q || "",
-      limit: ITEMS_PER_PAGE,
-      offset,
+      limit: 0,
+      offset: 0,
       sort: SORT_MAP[currentSort] || undefined,
       filter: searchFilters,
       facets: ["categories", "price", "in_stock", "filter_tokens"],
@@ -145,63 +138,8 @@ export default async function CategoryPage({ params, searchParams }: Props) {
     totalCount = meiliResult.totalHits || meiliResult.estimatedTotalHits || 0
     categoryFacets = meiliResult.facetDistribution?.categories || {}
     quickFilterFacets = meiliResult.facetDistribution?.filter_tokens || {}
-
-    products = meiliResult.hits.map(hit => ({
-      id: hit.id,
-      title: getLocalizedTitle(hit, locale),
-      handle: hit.handle,
-      description: hit.description,
-      thumbnail: hit.thumbnail,
-      images: [],
-      variants: [{
-        id: hit.id + "_v",
-        title: "Default",
-        calculated_price: {
-          calculated_amount: Math.round(hit.price * 100),
-          original_amount: Math.round(hit.price * 100),
-          currency_code: "eur",
-        },
-      }],
-      categories: hit.categories.map((name: string, i: number) => ({
-        id: `cat_${i}`, name, handle: hit.category_handles?.[i] || "", parent_category_id: null,
-      })),
-      created_at: new Date(hit.created_at * 1000).toISOString(),
-    }))
   } catch {
-    // Fallback to Medusa API (only works if Medusa category exists)
-    if (category) {
-      const descendantIds = collectDescendantIds(category)
-      const productsRes = await getProducts({
-        category_id: [category.id, ...descendantIds],
-        limit: ITEMS_PER_PAGE,
-        offset,
-        order: "-created_at",
-      })
-      products = productsRes.products
-      totalCount = productsRes.count
-    }
-  }
-
-  // Safety net: if Meili returned no products but Medusa category exists,
-  // try the descendant-tree category IDs before showing an empty state.
-  if (totalCount === 0 && category) {
-    try {
-      const descendantIds = collectDescendantIds(category)
-      if (descendantIds.length > 0) {
-        const productsRes = await getProducts({
-          category_id: [category.id, ...descendantIds],
-          limit: ITEMS_PER_PAGE,
-          offset,
-          order: "-created_at",
-        })
-        if (productsRes.count > 0) {
-          products = productsRes.products
-          totalCount = productsRes.count
-        }
-      }
-    } catch {
-      // Leave the empty state in place if Medusa is also unavailable.
-    }
+    // MeiliSearch unavailable — leave totalCount as 0
   }
 
   // No products found AND no Medusa category → 404
@@ -214,40 +152,6 @@ export default async function CategoryPage({ params, searchParams }: Props) {
   const totalPages = Math.ceil(totalCount / ITEMS_PER_PAGE)
   const categoryBasePath = categoryPath(locale as "et" | "en", handle)
   const quickFilters = buildQuickFilters(quickFilterFacets, totalCount)
-
-  // Fetch "You May Also Like" products from a parent/sibling category
-  let youMayAlsoLike: any[] = []
-  try {
-    // Use parent category if available, otherwise same L1 category
-    const parentHandle = category?.parent_category?.handle || handle
-    const alsoLikeResult = await searchProducts({
-      q: "",
-      limit: 5,
-      offset: Math.floor(Math.random() * 20),
-      filter: [`category_handles = "${parentHandle}"`, `category_handles != "${handle}"`],
-    })
-    youMayAlsoLike = alsoLikeResult.hits.map(hit => ({
-      id: hit.id,
-      title: getLocalizedTitle(hit, locale),
-      handle: hit.handle,
-      description: hit.description,
-      thumbnail: hit.thumbnail,
-      images: [],
-      variants: [{
-        id: hit.id + "_v",
-        title: "Default",
-        calculated_price: {
-          calculated_amount: Math.round(hit.price * 100),
-          original_amount: Math.round(hit.price * 100),
-          currency_code: "eur",
-        },
-      }],
-      categories: hit.categories.map((name: string, i: number) => ({
-        id: `cat_${i}`, name, handle: hit.category_handles?.[i] || "", parent_category_id: null,
-      })),
-      created_at: new Date(hit.created_at * 1000).toISOString(),
-    }))
-  } catch { /* ignore */ }
 
   function buildPageUrl(targetPage: number) {
     const p = new URLSearchParams()
@@ -402,11 +306,17 @@ export default async function CategoryPage({ params, searchParams }: Props) {
             {/* Main content */}
             <main className="flex-1 min-w-0">
               {/* Product grid — 2 mobile, 3 tablet, 4 desktop (sidebar takes 1 col worth) */}
-              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-                {products.map((product: any) => (
-                  <VevorProductCard key={product.id} product={product} locale={locale} />
-                ))}
-              </div>
+              <ProductGrid
+                fetchParams={{
+                  q: q || "",
+                  filter: searchFilterStr,
+                  sort: sortStr,
+                  limit: ITEMS_PER_PAGE,
+                  offset,
+                  locale,
+                }}
+                locale={locale}
+              />
 
               {/* Pagination */}
               <VevorPagination
@@ -432,16 +342,20 @@ export default async function CategoryPage({ params, searchParams }: Props) {
         )}
 
         {/* You May Also Like */}
-        {youMayAlsoLike.length > 0 && (
-          <section className="mt-10">
-            <h2 className="text-xl font-bold text-[#1E293B] mb-5">{locale === "et" ? "Sulle võib meeldida ka" : "You May Also Like"}</h2>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-              {youMayAlsoLike.map((product: any) => (
-                <VevorProductCard key={product.id} product={product} locale={locale} />
-              ))}
-            </div>
-          </section>
-        )}
+        <section className="mt-10">
+          <h2 className="text-xl font-bold text-[#1E293B] mb-5">{locale === "et" ? "Sulle võib meeldida ka" : "You May Also Like"}</h2>
+          <ProductGrid
+            fetchParams={{
+              q: "",
+              filter: `category_handles = "${category?.parent_category?.handle || handle}";category_handles != "${handle}"`,
+              limit: 5,
+              offset: 0,
+              locale,
+            }}
+            locale={locale}
+            columns="2-3-5"
+          />
+        </section>
       </div>
     </div>
   )
