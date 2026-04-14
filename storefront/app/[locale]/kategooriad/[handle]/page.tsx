@@ -6,6 +6,7 @@ import { searchProducts, getLocalizedTitle } from "@/lib/meilisearch"
 import VevorProductCard from "@/components/VevorProductCard"
 import VevorSearchFilters from "@/components/search/VevorSearchFilters"
 import VevorPagination from "@/components/search/VevorPagination"
+import SortSelect from "@/components/search/SortSelect"
 import { notFound } from "next/navigation"
 import JsonLdCategory from "@/components/JsonLdCategory"
 import SubcategoryScroller from "@/components/SubcategoryScroller"
@@ -291,87 +292,128 @@ export default async function CategoryPage({ params, searchParams }: Props) {
           <span className="text-[#1E293B] font-medium">{displayName}</span>
         </nav>
 
-        {/* Title */}
-        <div className="mb-6">
-          <h1 className="text-[28px] md:text-[34px] font-bold text-[#1E293B] tracking-tight">{displayName}</h1>
-        </div>
-
-        {/* Subcategory navigation — scrollable with hover arrows */}
-        {category && (category.category_children?.length ?? 0) > 0 && (
-          <SubcategoryScroller>
-            {category.category_children!.map((child) => {
-              const thumb = CATEGORY_IMAGES[child.handle] || null
-              return (
-                <Link
-                  key={child.id}
-                  href={categoryPath(locale as "et" | "en", child.handle)}
-                  className="flex-shrink-0 flex flex-col items-center gap-2 w-[130px] group"
-                >
-                  <div className="w-[120px] h-[120px] rounded-xl bg-[#F8FAFC] border border-[#E2E8F0] group-hover:border-[#D97706] group-hover:shadow-lg group-hover:-translate-y-1 transition-all duration-200 overflow-hidden flex items-center justify-center">
-                    {thumb ? (
-                      <Image
-                        src={thumb}
-                        alt={child.name}
-                        width={120}
-                        height={120}
-                        className="object-contain w-full h-full p-2"
-                        unoptimized
-                      />
-                    ) : (
-                      <div className="w-12 h-12 rounded-full bg-[#FEF3C7] flex items-center justify-center">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D97706" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2" /><path d="M16 7V5a4 4 0 0 0-8 0v2" /></svg>
-                      </div>
-                    )}
-                  </div>
-                  <span className="text-[12px] text-center text-[#475569] group-hover:text-[#D97706] transition-colors leading-snug line-clamp-2 font-medium">
-                    {child.name}
-                  </span>
-                </Link>
-              )
-            })}
-          </SubcategoryScroller>
-        )}
-
-        {/* Content card */}
-        {totalCount > 0 ? (
-          <div className="bg-white rounded-xl">
-            {/* Results count + Filters */}
-            <div className="flex items-center gap-3 mb-4">
-              <p className="text-sm text-[#64748B]">
-                <span className="font-semibold text-[#1E293B]">{totalCount.toLocaleString("et")}</span> {locale === "et" ? "toodet" : "products"}
-              </p>
+        {/* Title row: name + result count + sort + mobile filter button */}
+        <div className="flex items-start md:items-center justify-between gap-3 mb-6 flex-wrap">
+          <div className="flex items-baseline gap-3 flex-wrap">
+            <h1 className="text-[28px] md:text-[34px] font-bold text-[#1E293B] tracking-tight">{displayName}</h1>
+            <span className="text-sm text-[#64748B]">
+              <span className="font-semibold text-[#1E293B]">{totalCount.toLocaleString("et")}</span> {locale === "et" ? "toodet" : "products"}
+            </span>
+          </div>
+          <div className="flex items-center gap-2">
+            {/* Mobile filter button */}
+            <div className="md:hidden">
+              <Suspense fallback={null}>
+                <VevorSearchFilters
+                  totalHits={totalCount}
+                  query={q || ""}
+                  currentSort={currentSort}
+                  currentMin={min}
+                  currentMax={max}
+                  currentCategories={selectedCategories}
+                  currentInStock={inStock}
+                  categoryFacets={categoryFacets}
+                  quickFilters={quickFilters}
+                  currentQuickFilter={currentQuickFilter}
+                  locale={locale}
+                  basePath={categoryBasePath}
+                />
+              </Suspense>
             </div>
-            <Suspense fallback={null}>
-            <VevorSearchFilters
-              totalHits={totalCount}
-              query={q || ""}
+            <SortSelect
               currentSort={currentSort}
+              locale={locale}
+              query={q || ""}
               currentMin={min}
               currentMax={max}
               currentCategories={selectedCategories}
               currentInStock={inStock}
-              categoryFacets={categoryFacets}
-              quickFilters={quickFilters}
               currentQuickFilter={currentQuickFilter}
-              locale={locale}
               basePath={categoryBasePath}
             />
-            </Suspense>
+          </div>
+        </div>
 
-            {/* Product grid — 5 col desktop, 3 tablet, 2 mobile */}
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-              {products.map((product: any) => (
-                <VevorProductCard key={product.id} product={product} locale={locale} />
-              ))}
-            </div>
+        {/* Subcategory navigation — visual shelf */}
+        {category && (category.category_children?.length ?? 0) > 0 && (
+          <div className="bg-[#F8FAFC] -mx-4 px-4 sm:-mx-6 sm:px-6 py-4 mb-6 border-b border-[#E2E8F0]">
+            <SubcategoryScroller>
+              {category.category_children!.map((child) => {
+                const thumb = CATEGORY_IMAGES[child.handle] || null
+                return (
+                  <Link
+                    key={child.id}
+                    href={categoryPath(locale as "et" | "en", child.handle)}
+                    className="flex-shrink-0 flex flex-col items-center gap-2 w-[130px] group"
+                  >
+                    <div className="w-[120px] h-[120px] rounded-xl bg-white border border-[#E2E8F0] group-hover:border-[#D97706] group-hover:shadow-lg group-hover:-translate-y-1 transition-all duration-200 overflow-hidden flex items-center justify-center">
+                      {thumb ? (
+                        <Image
+                          src={thumb}
+                          alt={child.name}
+                          width={120}
+                          height={120}
+                          className="object-contain w-full h-full p-2"
+                          unoptimized
+                        />
+                      ) : (
+                        <div className="w-12 h-12 rounded-full bg-[#FEF3C7] flex items-center justify-center">
+                          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D97706" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2" /><path d="M16 7V5a4 4 0 0 0-8 0v2" /></svg>
+                        </div>
+                      )}
+                    </div>
+                    <span className="text-[12px] text-center text-[#475569] group-hover:text-[#D97706] transition-colors leading-snug line-clamp-2 font-medium">
+                      {child.name}
+                    </span>
+                  </Link>
+                )
+              })}
+            </SubcategoryScroller>
+          </div>
+        )}
 
-            {/* Pagination */}
-            <VevorPagination
-              currentPage={page}
-              totalPages={totalPages}
-              buildUrl={buildPageUrl}
-              locale={locale}
-            />
+        {/* Content area */}
+        {totalCount > 0 ? (
+          <div className="flex gap-8">
+            {/* Desktop sidebar */}
+            <aside className="hidden md:block w-[240px] flex-shrink-0">
+              <div className="sticky top-4">
+                <Suspense fallback={null}>
+                  <VevorSearchFilters
+                    totalHits={totalCount}
+                    query={q || ""}
+                    currentSort={currentSort}
+                    currentMin={min}
+                    currentMax={max}
+                    currentCategories={selectedCategories}
+                    currentInStock={inStock}
+                    categoryFacets={categoryFacets}
+                    quickFilters={quickFilters}
+                    currentQuickFilter={currentQuickFilter}
+                    locale={locale}
+                    basePath={categoryBasePath}
+                  />
+                </Suspense>
+              </div>
+            </aside>
+
+            {/* Main content */}
+            <main className="flex-1 min-w-0">
+              {/* Product grid — 2 mobile, 3 tablet, 4 desktop (sidebar takes 1 col worth) */}
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+                {products.map((product: any) => (
+                  <VevorProductCard key={product.id} product={product} locale={locale} />
+                ))}
+              </div>
+
+              {/* Pagination */}
+              <VevorPagination
+                currentPage={page}
+                totalPages={totalPages}
+                buildUrl={buildPageUrl}
+                locale={locale}
+              />
+            </main>
           </div>
         ) : (
           <div className="bg-white rounded-xl p-12 text-center">

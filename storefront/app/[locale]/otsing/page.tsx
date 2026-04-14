@@ -5,6 +5,7 @@ import { getProducts } from "@/lib/medusa"
 import VevorProductCard from "@/components/VevorProductCard"
 import VevorSearchFilters from "@/components/search/VevorSearchFilters"
 import VevorPagination from "@/components/search/VevorPagination"
+import SortSelect from "@/components/search/SortSelect"
 import { categoryPath } from "@/lib/i18n"
 import { buildQuickFilters } from "@/lib/quick-filters"
 
@@ -157,6 +158,8 @@ export default async function SearchPage({ searchParams, params }: Props) {
     return `/${locale}/otsing${qs ? `?${qs}` : ""}`
   }
 
+  const pageTitle = TAG_TITLES[activeTag]?.[locale] || SORT_TITLES[currentSort]?.[locale] || (query ? (locale === "en" ? `Search: "${query}"` : `Otsing: "${query}"`) : (locale === "en" ? "All Products" : "Kõik tooted"))
+
   return (
     <div className="bg-[#F8FAFC]">
       <div className="max-w-[1360px] mx-auto px-4 sm:px-6 py-7 sm:py-10">
@@ -168,27 +171,48 @@ export default async function SearchPage({ searchParams, params }: Props) {
           </span>
         </nav>
 
-        <div className="mb-5 rounded-3xl border border-[#E2E8F0] bg-white shadow-sm px-4 py-4 sm:px-6 sm:py-5">
-          <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
-            <div>
-              <div className="text-[11px] uppercase tracking-[0.18em] text-[#94A3B8] mb-2">
-                {locale === "en" ? "Search results" : "Otsingutulemused"}
-              </div>
-              <h1 className="text-2xl md:text-[30px] font-bold text-[#1E293B] tracking-tight">
-                {TAG_TITLES[activeTag]?.[locale] || SORT_TITLES[currentSort]?.[locale] || (query ? (locale === "en" ? `Search: "${query}"` : `Otsing: "${query}"`) : (locale === "en" ? "All Products" : "Kõik tooted"))}
-              </h1>
-              <p className="text-sm text-[#64748B] mt-2">
-                {query
-                  ? (locale === "en" ? `Results for “${query}”` : `Tulemused päringule “${query}”`)
-                  : (locale === "en" ? "Browse, refine and compare products." : "Sirvi, filtreeri ja võrdle tooteid.")}
-              </p>
+        {/* Title row: heading + result count + sort + mobile filter button */}
+        <div className="flex items-start md:items-center justify-between gap-3 mb-6 flex-wrap">
+          <div>
+            <h1 className="text-2xl md:text-[30px] font-bold text-[#1E293B] tracking-tight">
+              {pageTitle}
+            </h1>
+            <p className="text-sm text-[#64748B] mt-1">
+              <span className="font-semibold text-[#1E293B]">{totalHits.toLocaleString(locale === "en" ? "en-GB" : "et")}</span> {locale === "en" ? "products" : "toodet"}
+              {query && (
+                <span> {locale === "en" ? `for "${query}"` : `päringule "${query}"`}</span>
+              )}
+            </p>
+          </div>
+          <div className="flex items-center gap-2">
+            {/* Mobile filter button */}
+            <div className="md:hidden">
+              <Suspense fallback={null}>
+                <VevorSearchFilters
+                  totalHits={totalHits}
+                  query={query}
+                  currentSort={currentSort}
+                  currentMin={min}
+                  currentMax={max}
+                  currentCategories={selectedCategories}
+                  currentInStock={inStock}
+                  categoryFacets={categoryFacets}
+                  quickFilters={quickFilters}
+                  currentQuickFilter={currentQuickFilter}
+                  locale={locale}
+                />
+              </Suspense>
             </div>
-            <div className="inline-flex items-center gap-2 self-start md:self-auto rounded-full border border-[#E2E8F0] bg-[#F8FAFC] px-4 py-2">
-              <span className="text-xs text-[#64748B]">
-                {locale === "en" ? "Products" : "Tooteid"}
-              </span>
-              <span className="text-lg font-bold text-[#1E293B]">{totalHits.toLocaleString(locale === "en" ? "en-GB" : "et")}</span>
-            </div>
+            <SortSelect
+              currentSort={currentSort}
+              locale={locale}
+              query={query}
+              currentMin={min}
+              currentMax={max}
+              currentCategories={selectedCategories}
+              currentInStock={inStock}
+              currentQuickFilter={currentQuickFilter}
+            />
           </div>
         </div>
 
@@ -208,26 +232,33 @@ export default async function SearchPage({ searchParams, params }: Props) {
             </Link>
           </div>
         ) : (
-          <div className="space-y-5">
-            <div className="rounded-3xl border border-[#E2E8F0] bg-white shadow-sm p-4 sm:p-5">
-              <Suspense fallback={null}>
-                <VevorSearchFilters
-                  totalHits={totalHits}
-                  query={query}
-                  currentSort={currentSort}
-                  currentMin={min}
-                  currentMax={max}
-                  currentCategories={selectedCategories}
-                  currentInStock={inStock}
-                  categoryFacets={categoryFacets}
-                  quickFilters={quickFilters}
-                  currentQuickFilter={currentQuickFilter}
-                  locale={locale}
-                />
-              </Suspense>
+          <div className="flex gap-8">
+            {/* Desktop sidebar */}
+            <aside className="hidden md:block w-[240px] flex-shrink-0">
+              <div className="sticky top-4 bg-white rounded-2xl border border-[#E2E8F0] shadow-sm p-5">
+                <Suspense fallback={null}>
+                  <VevorSearchFilters
+                    totalHits={totalHits}
+                    query={query}
+                    currentSort={currentSort}
+                    currentMin={min}
+                    currentMax={max}
+                    currentCategories={selectedCategories}
+                    currentInStock={inStock}
+                    categoryFacets={categoryFacets}
+                    quickFilters={quickFilters}
+                    currentQuickFilter={currentQuickFilter}
+                    locale={locale}
+                  />
+                </Suspense>
+              </div>
+            </aside>
 
+            {/* Main content */}
+            <main className="flex-1 min-w-0 space-y-5">
+              {/* Popular categories (search page only, when query present) */}
               {query && Object.keys(categoryFacets).length > 0 && (
-                <div className="mt-3 pt-4 border-t border-[#E2E8F0]">
+                <div className="bg-white rounded-2xl border border-[#E2E8F0] shadow-sm p-4 sm:p-5">
                   <div className="flex items-center justify-between mb-3">
                     <h2 className="text-sm font-semibold text-[#1E293B]">
                       {locale === "en" ? "Popular categories" : "Populaarsed kategooriad"}
@@ -256,55 +287,49 @@ export default async function SearchPage({ searchParams, params }: Props) {
                   </div>
                 </div>
               )}
-            </div>
 
-            <div className="rounded-3xl border border-[#E2E8F0] bg-white shadow-sm overflow-hidden">
-              <div className="p-4 sm:p-5 border-b border-[#E2E8F0] flex items-center justify-between">
-                <div className="text-sm text-[#64748B]">
-                  {locale === "en" ? "Results" : "Tulemused"}
-                </div>
-                <div className="text-xs text-[#94A3B8]">
-                  {locale === "en" ? "Use filters above to narrow down products." : "Kasuta ülalolevaid filtreid tulemuste täpsustamiseks."}
-                </div>
-              </div>
-              <div className="p-4 sm:p-5">
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-                  {products.map((product) => (
-                    <VevorProductCard key={product.id} product={product} locale={locale} />
-                  ))}
-                </div>
-              </div>
-              <div className="px-4 sm:px-5 pb-4 sm:pb-5">
-                <VevorPagination
-                  currentPage={page}
-                  totalPages={totalPages}
-                  buildUrl={buildPageUrl}
-                  locale={locale}
-                />
-              </div>
-            </div>
-
-            {query && Object.keys(categoryFacets).length > 0 && (
-              <section className="rounded-3xl border border-[#E2E8F0] bg-white shadow-sm p-4 sm:p-5">
-                <h2 className="text-sm font-semibold text-[#1E293B] mb-3">
-                  {locale === "en" ? "Recommended searches" : "Soovitatud otsingud"}
-                </h2>
-                <div className="flex flex-wrap gap-2">
-                  {Object.entries(categoryFacets)
-                    .sort(([,a], [,b]) => b - a)
-                    .slice(0, 8)
-                    .map(([cat]) => (
-                      <Link
-                        key={cat}
-                        href={`/${locale}/otsing?q=${encodeURIComponent(cat)}${currentQuickFilter ? `&filters=${encodeURIComponent(currentQuickFilter)}` : ""}`}
-                        className="px-4 py-2 rounded-full text-sm font-medium bg-[#F8FAFC] border border-[#E2E8F0] text-[#1E293B] hover:border-[#D97706] hover:text-[#D97706] transition-colors"
-                      >
-                        {cat}
-                      </Link>
+              {/* Product grid */}
+              <div className="bg-white rounded-2xl border border-[#E2E8F0] shadow-sm overflow-hidden">
+                <div className="p-4 sm:p-5">
+                  <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+                    {products.map((product) => (
+                      <VevorProductCard key={product.id} product={product} locale={locale} />
                     ))}
+                  </div>
                 </div>
-              </section>
-            )}
+                <div className="px-4 sm:px-5 pb-4 sm:pb-5">
+                  <VevorPagination
+                    currentPage={page}
+                    totalPages={totalPages}
+                    buildUrl={buildPageUrl}
+                    locale={locale}
+                  />
+                </div>
+              </div>
+
+              {/* Recommended searches */}
+              {query && Object.keys(categoryFacets).length > 0 && (
+                <section className="bg-white rounded-2xl border border-[#E2E8F0] shadow-sm p-4 sm:p-5">
+                  <h2 className="text-sm font-semibold text-[#1E293B] mb-3">
+                    {locale === "en" ? "Recommended searches" : "Soovitatud otsingud"}
+                  </h2>
+                  <div className="flex flex-wrap gap-2">
+                    {Object.entries(categoryFacets)
+                      .sort(([,a], [,b]) => b - a)
+                      .slice(0, 8)
+                      .map(([cat]) => (
+                        <Link
+                          key={cat}
+                          href={`/${locale}/otsing?q=${encodeURIComponent(cat)}${currentQuickFilter ? `&filters=${encodeURIComponent(currentQuickFilter)}` : ""}`}
+                          className="px-4 py-2 rounded-full text-sm font-medium bg-[#F8FAFC] border border-[#E2E8F0] text-[#1E293B] hover:border-[#D97706] hover:text-[#D97706] transition-colors"
+                        >
+                          {cat}
+                        </Link>
+                      ))}
+                  </div>
+                </section>
+              )}
+            </main>
           </div>
         )}
       </div>
