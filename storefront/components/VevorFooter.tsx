@@ -1,128 +1,93 @@
 import Link from "@/components/SafeLink"
 
 export default function VevorFooter({ locale = "et" }: { locale?: string }) {
+  const isEt = locale === "et"
   return (
-    <footer>
-      {/* Trust / Benefits bar */}
-      <div className="bg-[#334155]">
-        <div className="max-w-[1400px] mx-auto px-4 py-5 md:py-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-5 md:gap-6">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-[#D97706]/10 flex items-center justify-center flex-shrink-0">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D97706" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                  <rect x="1" y="3" width="15" height="13" /><polygon points="16 8 20 8 23 11 23 16 16 16 16 8" /><circle cx="5.5" cy="18.5" r="2.5" /><circle cx="18.5" cy="18.5" r="2.5" />
-                </svg>
-              </div>
-              <div>
-                <p className="text-white text-[13px] md:text-[14px] font-semibold leading-tight">{locale === "et" ? "Tasuta tarne" : "Free Shipping"}</p>
-                <p className="text-white/50 text-[12px] md:text-[13px]">{locale === "et" ? "Alates 99 EUR" : "Orders over 99 EUR"}</p>
-              </div>
-            </div>
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-[#D97706]/10 flex items-center justify-center flex-shrink-0">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D97706" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                  <polyline points="1 4 1 10 7 10" /><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10" />
-                </svg>
-              </div>
-              <div>
-                <p className="text-white text-[13px] md:text-[14px] font-semibold leading-tight">{locale === "et" ? "30-päevane tagastus" : "30-Day Returns"}</p>
-                <p className="text-white/50 text-[12px] md:text-[13px]">{locale === "et" ? "Lihtne tagastamine" : "Hassle-free returns"}</p>
-              </div>
-            </div>
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-[#D97706]/10 flex items-center justify-center flex-shrink-0">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D97706" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                </svg>
-              </div>
-              <div>
-                <p className="text-white text-[13px] md:text-[14px] font-semibold leading-tight">{locale === "et" ? "2-aastane garantii" : "2-Year Warranty"}</p>
-                <p className="text-white/50 text-[12px] md:text-[13px]">{locale === "et" ? "Kvaliteet tagatud" : "Quality guaranteed"}</p>
-              </div>
-            </div>
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-[#D97706]/10 flex items-center justify-center flex-shrink-0">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D97706" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-                </svg>
-              </div>
-              <div>
-                <p className="text-white text-[13px] md:text-[14px] font-semibold leading-tight">{locale === "et" ? "Klienditugi" : "Customer Support"}</p>
-                <p className="text-white/50 text-[12px] md:text-[13px]">{locale === "et" ? "E-R 9-17" : "Mon-Fri 9-17"}</p>
-              </div>
-            </div>
+    <footer className="mt-20 bg-[#1E293B] text-[#CBD5E1]" style={{ padding: "64px 0 32px" }}>
+      <div className="max-w-[1320px] mx-auto px-6">
+        {/* Top grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr_1.2fr] gap-10 mb-12">
+          {/* Brand */}
+          <div>
+            <Link href={`/${locale}`} className="inline-block mb-4" style={{ fontSize: "32px", fontWeight: 700, letterSpacing: "-0.5px", lineHeight: 1 }}>
+              <span className="text-[#D97706]">XL</span><span className="text-white">Market</span>
+            </Link>
+            <p className="text-[14px] text-[#94A3B8] leading-relaxed max-w-[260px]">
+              {isEt
+                ? "Professionaalne varustus igale valdkonnale. Eesti juhtiv profiseadmete e-pood."
+                : "Your trusted source for professional tools, equipment, and home improvement products across Europe."}
+            </p>
+          </div>
+
+          {/* Shop */}
+          <div>
+            <h4 className="text-[12px] font-bold text-[#64748B] uppercase tracking-[1.5px] mb-4">
+              {isEt ? "Pood" : "Shop"}
+            </h4>
+            <ul className="flex flex-col gap-2.5">
+              <li><Link href={`/${locale}/kategooriad`} className="text-[14px] text-[#94A3B8] hover:text-white transition-colors">{isEt ? "Kõik kategooriad" : "All Categories"}</Link></li>
+              <li><Link href={`/${locale}/otsing?sort=newest`} className="text-[14px] text-[#94A3B8] hover:text-white transition-colors">{isEt ? "Uued tooted" : "New Arrivals"}</Link></li>
+              <li><Link href={`/${locale}/otsing?tag=hot`} className="text-[14px] text-[#94A3B8] hover:text-white transition-colors">{isEt ? "Bestsellerid" : "Best Sellers"}</Link></li>
+              <li><Link href={`/${locale}/otsing?tag=deals`} className="text-[14px] text-[#94A3B8] hover:text-white transition-colors">{isEt ? "Pakkumised" : "Deals"}</Link></li>
+            </ul>
+          </div>
+
+          {/* Support */}
+          <div>
+            <h4 className="text-[12px] font-bold text-[#64748B] uppercase tracking-[1.5px] mb-4">
+              {isEt ? "Tugi" : "Support"}
+            </h4>
+            <ul className="flex flex-col gap-2.5">
+              <li><Link href={`/${locale}/kontakt`} className="text-[14px] text-[#94A3B8] hover:text-white transition-colors">{isEt ? "Kontakt" : "Contact Us"}</Link></li>
+              <li><Link href={`/${locale}/tarne`} className="text-[14px] text-[#94A3B8] hover:text-white transition-colors">{isEt ? "Tarne info" : "Shipping Info"}</Link></li>
+              <li><Link href={`/${locale}/tagastamine`} className="text-[14px] text-[#94A3B8] hover:text-white transition-colors">{isEt ? "Tagastamine" : "Returns"}</Link></li>
+              <li><Link href={`/${locale}/kontakt`} className="text-[14px] text-[#94A3B8] hover:text-white transition-colors">{isEt ? "KKK" : "FAQ"}</Link></li>
+            </ul>
+          </div>
+
+          {/* Company */}
+          <div>
+            <h4 className="text-[12px] font-bold text-[#64748B] uppercase tracking-[1.5px] mb-4">
+              {isEt ? "Ettevõte" : "Company"}
+            </h4>
+            <ul className="flex flex-col gap-2.5">
+              <li><Link href={`/${locale}/meist`} className="text-[14px] text-[#94A3B8] hover:text-white transition-colors">{isEt ? "Meist" : "About Us"}</Link></li>
+            </ul>
+          </div>
+
+          {/* Newsletter */}
+          <div>
+            <h4 className="text-[12px] font-bold text-[#64748B] uppercase tracking-[1.5px] mb-4">
+              {isEt ? "Uudiskiri" : "Newsletter"}
+            </h4>
+            <p className="text-[13px] text-[#94A3B8] leading-relaxed mb-3.5">
+              {isEt
+                ? "Saa teada parimatest pakkumistest ja uutest toodetest."
+                : "Stay updated with the best deals and new product launches."}
+            </p>
+            <form className="flex gap-2" action="#">
+              <input
+                type="email"
+                placeholder={isEt ? "sinu@email.ee" : "your@email.com"}
+                className="flex-1 px-4 py-2.5 rounded-full border border-[#334155] bg-[#0F172A] text-white text-[13px] outline-none placeholder:text-[#475569] focus:border-[#D97706] min-w-0"
+              />
+              <button
+                type="submit"
+                className="px-5 py-2.5 rounded-full bg-[#D97706] hover:bg-[#F59E0B] text-white text-[13px] font-semibold shrink-0 transition-colors"
+              >
+                {isEt ? "Telli" : "Subscribe"}
+              </button>
+            </form>
           </div>
         </div>
-      </div>
 
-      {/* Main footer */}
-      <div className="bg-[#1E293B]">
-        <div className="max-w-[1400px] mx-auto px-4 py-10 md:py-12">
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-8">
-            {/* Brand column */}
-            <div className="sm:col-span-2 md:col-span-1">
-              <Link href={`/${locale}`} className="inline-flex items-baseline gap-[2px] mb-4">
-                <span className="text-[22px] font-extrabold text-[#D97706] leading-none">XL</span>
-                <span className="text-[22px] font-normal text-white leading-none">Market</span>
-              </Link>
-              <p className="text-white/40 text-[13px] leading-relaxed max-w-[280px]">
-                {locale === "et" ? "Professionaalne varustus igale valdkonnale. Eesti juhtiv profiseadmete e-pood." : "Your trusted source for tools, equipment, and home improvement products."}
-              </p>
-            </div>
-
-            {/* Customer Service */}
-            <div>
-              <h4 className="text-[12px] font-bold text-white/50 uppercase tracking-wider mb-4">{locale === "et" ? "Teenused" : "Customer Service"}</h4>
-              <div className="space-y-3">
-                <Link href={`/${locale}/kontakt`} className="block text-[14px] text-white/60 hover:text-[#D97706] transition-colors">{locale === "et" ? "Kontakt" : "Contact Us"}</Link>
-                <Link href={`/${locale}/tarne`} className="block text-[14px] text-white/60 hover:text-[#D97706] transition-colors">{locale === "et" ? "Tarne info" : "Shipping Info"}</Link>
-                <Link href={`/${locale}/tagastamine`} className="block text-[14px] text-white/60 hover:text-[#D97706] transition-colors">{locale === "et" ? "Tagastamine" : "Returns & Refunds"}</Link>
-                <Link href={`/${locale}/kontakt`} className="block text-[14px] text-white/60 hover:text-[#D97706] transition-colors">{locale === "et" ? "KKK" : "FAQ"}</Link>
-              </div>
-            </div>
-
-            {/* About */}
-            <div>
-              <h4 className="text-[12px] font-bold text-white/50 uppercase tracking-wider mb-4">{locale === "et" ? "Info" : "About"}</h4>
-              <div className="space-y-3">
-                <Link href={`/${locale}/meist`} className="block text-[14px] text-white/60 hover:text-[#D97706] transition-colors">{locale === "et" ? "Meist" : "About XL Market"}</Link>
-                <Link href={`/${locale}/kategooriad`} className="block text-[14px] text-white/60 hover:text-[#D97706] transition-colors">{locale === "et" ? "Kõik kategooriad" : "All Categories"}</Link>
-              </div>
-            </div>
-
-            {/* Legal */}
-            <div>
-              <h4 className="text-[12px] font-bold text-white/50 uppercase tracking-wider mb-4">{locale === "et" ? "Juriidiline" : "Legal"}</h4>
-              <div className="space-y-3">
-                <Link href={`/${locale}/privaatsus`} className="block text-[14px] text-white/60 hover:text-[#D97706] transition-colors">{locale === "et" ? "Privaatsuspoliitika" : "Privacy Policy"}</Link>
-                <Link href={`/${locale}/tingimused`} className="block text-[14px] text-white/60 hover:text-[#D97706] transition-colors">{locale === "et" ? "Kasutustingimused" : "Terms & Conditions"}</Link>
-                <Link href={`/${locale}/kupsised`} className="block text-[14px] text-white/60 hover:text-[#D97706] transition-colors">{locale === "et" ? "Küpsised" : "Cookie Policy"}</Link>
-              </div>
-            </div>
-
-            {/* Contact */}
-            <div>
-              <h4 className="text-[12px] font-bold text-white/50 uppercase tracking-wider mb-4">{locale === "et" ? "Kontakt" : "Contact"}</h4>
-              <div className="space-y-3">
-                <a href="mailto:info@xlmarket.eu" className="block text-[14px] text-white/60 hover:text-[#D97706] transition-colors">info@xlmarket.eu</a>
-                <span className="block text-[14px] text-white/60">{locale === "et" ? "E-R 9:00-17:00" : "Mon-Fri 9:00-17:00"}</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Bottom bar */}
-          <div className="border-t border-white/10 mt-10 pt-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-            <span className="text-[12px] text-white/30">
-              &copy; 2026 XL Market. {locale === "et" ? "Kõik õigused kaitstud." : "All rights reserved."} Roland Kaubandus OU
-            </span>
-            <div className="flex items-center gap-2 flex-wrap">
-              <div className="h-[28px] px-3 bg-white/10 rounded flex items-center justify-center text-[10px] font-bold text-white/50">VISA</div>
-              <div className="h-[28px] px-3 bg-white/10 rounded flex items-center justify-center text-[10px] font-bold text-white/50">MC</div>
-              <div className="h-[28px] px-3 bg-white/10 rounded flex items-center justify-center text-[10px] font-bold text-white/50">SEB</div>
-              <div className="h-[28px] px-3 bg-white/10 rounded flex items-center justify-center text-[10px] font-bold text-white/50">LHV</div>
-              <div className="h-[28px] px-3 bg-white/10 rounded flex items-center justify-center text-[10px] font-bold text-white/50">SWED</div>
-              <div className="h-[28px] px-3 bg-white/10 rounded flex items-center justify-center text-[10px] font-bold text-white/50">LUM</div>
-            </div>
+        {/* Bottom bar */}
+        <div className="border-t border-white/[.06] pt-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 text-[12px] text-[#475569]">
+          <span>&copy; 2026 Roland Kaubandus OÜ. {isEt ? "Kõik õigused kaitstud." : "All rights reserved."}</span>
+          <div className="flex gap-5">
+            <Link href={`/${locale}/privaatsus`} className="text-[#64748B] hover:text-[#94A3B8] transition-colors">{isEt ? "Privaatsus" : "Privacy"}</Link>
+            <Link href={`/${locale}/tingimused`} className="text-[#64748B] hover:text-[#94A3B8] transition-colors">{isEt ? "Tingimused" : "Terms"}</Link>
+            <Link href={`/${locale}/kupsised`} className="text-[#64748B] hover:text-[#94A3B8] transition-colors">{isEt ? "Küpsised" : "Cookies"}</Link>
           </div>
         </div>
       </div>
