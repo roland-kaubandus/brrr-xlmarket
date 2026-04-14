@@ -2,42 +2,42 @@
 import { useState, useEffect, useCallback } from "react"
 import Link from "next/link"
 import Image from "next/image"
+import posthog from "posthog-js"
+
+function trackEvent(event: string, properties: Record<string, unknown>) {
+  try {
+    if (typeof window !== "undefined" && typeof posthog?.capture === "function") {
+      posthog.capture(event, properties)
+    }
+  } catch {
+    // PostHog not initialized — silently skip
+  }
+}
+
 const BANNERS = [
   {
-    title: "Professional Tools",
-    subtitle: "Industrial-grade machines, power tools and workshop equipment. Built to last, priced to sell.",
-    cta: "Shop Tools",
-    link: "/kategooriad/tools",
+    title: "Grand Opening Sale",
+    titleEt: "Avamismüük",
+    subtitle: "15% off everything with code XLOPEN. Free shipping on orders over 99€.",
+    subtitleEt: "15% soodsamalt koodiga XLOPEN. Tasuta tarne alates 99€.",
+    cta: "Shop the Sale",
+    ctaEt: "Vaata pakkumisi",
+    link: "/otsing?tag=deals",
     image: "/images/branches/toostus.png",
     align: "left" as const,
-    overlay: "from-[#0F172A]/90 via-[#0F172A]/50 to-transparent",
+    overlay: "from-[#0F172A]/92 via-[#0F172A]/60 to-transparent",
   },
   {
-    title: "Commercial Kitchen",
-    subtitle: "Stainless steel worktables, heating, cooling and kitchen equipment for the professional kitchen.",
-    cta: "Shop Kitchen",
-    link: "/kategooriad/kitchen",
-    image: "/images/branches/suurkoogiseadmed.png",
-    align: "right" as const,
-    overlay: "from-transparent via-[#0F172A]/40 to-[#0F172A]/90",
-  },
-  {
-    title: "Garage & Automotive",
-    subtitle: "Hydraulic jacks, compressors, diagnostics, lifts — everything for the car enthusiast.",
-    cta: "Shop Automotive",
-    link: "/kategooriad/automotive",
+    title: "16,000+ Professional Products",
+    titleEt: "16 000+ profitoodet",
+    subtitle: "Tools, kitchen, automotive, outdoors. 2-year warranty on everything.",
+    subtitleEt: "Tööriistad, köök, auto, aed. 2-aastane garantii kõigele.",
+    cta: "Browse Categories",
+    ctaEt: "Vaata kategooriaid",
+    link: "/kategooriad/tools",
     image: "/images/branches/garaaz.png",
-    align: "left" as const,
-    overlay: "from-[#0F172A]/90 via-[#0F172A]/50 to-transparent",
-  },
-  {
-    title: "Garden & Outdoors",
-    subtitle: "Lawn mowers, trimmers, pumps, greenhouses and landscaping equipment for every season.",
-    cta: "Shop Outdoors",
-    link: "/kategooriad/outdoors",
-    image: "/images/branches/aed.png",
     align: "right" as const,
-    overlay: "from-transparent via-[#0F172A]/40 to-[#0F172A]/90",
+    overlay: "from-transparent via-[#0F172A]/50 to-[#0F172A]/92",
   },
 ]
 
@@ -46,7 +46,14 @@ export default function BannerCarousel({ locale = "en" }: { locale?: string }) {
   const [paused, setPaused] = useState(false)
 
   const next = useCallback(() => {
-    setCurrent((c) => (c + 1) % BANNERS.length)
+    setCurrent((c) => {
+      const newIndex = (c + 1) % BANNERS.length
+      trackEvent("banner_impression", {
+        banner_index: newIndex,
+        banner_title: BANNERS[newIndex].title,
+      })
+      return newIndex
+    })
   }, [])
 
   useEffect(() => {
@@ -98,16 +105,23 @@ export default function BannerCarousel({ locale = "en" }: { locale?: string }) {
                   }`}
                 >
                   <h2 className="font-extrabold text-white text-[22px] sm:text-2xl md:text-[36px] lg:text-[42px] mb-2 md:mb-4 leading-[1.1] tracking-tight drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)]">
-                    {b.title}
+                    {locale === "et" ? b.titleEt : b.title}
                   </h2>
                   <p className="hidden sm:block text-white/80 text-sm md:text-[15px] mb-5 md:mb-7 leading-relaxed max-w-[420px] drop-shadow-md">
-                    {b.subtitle}
+                    {locale === "et" ? b.subtitleEt : b.subtitle}
                   </p>
                   <Link
                     href={`/${locale}${b.link}`}
                     className="inline-flex items-center gap-1.5 bg-[#D97706] hover:bg-[#B45309] text-white font-semibold text-[13px] md:text-[15px] px-5 md:px-9 py-2.5 md:py-3.5 rounded-lg md:rounded-xl transition-all duration-200 shadow-[0_4px_16px_rgba(217,119,6,0.3)]"
+                    onClick={() =>
+                      trackEvent("banner_cta_clicked", {
+                        banner_index: current,
+                        banner_title: b.title,
+                        link: b.link,
+                      })
+                    }
                   >
-                    {b.cta}
+                    {locale === "et" ? b.ctaEt : b.cta}
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><path d="m9 18 6-6-6-6"/></svg>
                   </Link>
                 </div>
