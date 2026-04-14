@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>XLMarket — A2 Header + B1 Body</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════════════════════════
+   TOKENS
+   ═══════════════════════════════════════════════════════════════ */
+:root {
+  --navy: #1E293B;
+  --navy-deep: #0F172A;
+  --navy-light: #334155;
+  --amber: #D97706;
+  --amber-light: #F59E0B;
+  --amber-glow: rgba(217,119,6,.10);
+  --bg: #FFFFFF;
+  --surface: #F8FAFC;
+  --card-border: #F1F5F9;
+  --border: #E2E8F0;
+  --text: #0F172A;
+  --text-2: #475569;
+  --text-3: #94A3B8;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-pill: 100px;
+  --shadow-card: 0 1px 3px rgba(15,23,42,.04), 0 1px 2px rgba(15,23,42,.06);
+  --shadow-lift: 0 8px 25px rgba(15,23,42,.08), 0 2px 6px rgba(15,23,42,.04);
+  --ease: cubic-bezier(.16,1,.3,1);
+  --fast: 150ms;
+  --normal: 280ms;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   RESET
+   ═══════════════════════════════════════════════════════════════ */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+body{font-family:'DM Sans',system-ui,sans-serif;color:var(--text);background:var(--bg);line-height:1.5;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%;height:auto}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+input{font-family:inherit}
+.container{width:100%;max-width:1320px;margin:0 auto;padding:0 24px}
+
+/* ═══════════════════════════════════════════════════════════════
+   HEADER — A2 STYLE: DARK COMPACT INDUSTRIAL BAR
+   ═══════════════════════════════════════════════════════════════ */
+.header{
+  position:sticky;top:0;z-index:100;
+  background:#fff;
+  border-bottom:1px solid var(--border);
+}
+.header__inner{
+  max-width:1320px;margin:0 auto;
+  height:56px;
+  display:flex;align-items:center;
+  padding:0 24px;gap:12px;
+}
+.header__logo{
+  font-size:1.2rem;font-weight:700;color:var(--navy);
+  letter-spacing:-.03em;white-space:nowrap;
+}
+.header__logo .mark{color:var(--amber);font-weight:800}
+.header__logo .wordmark{color:var(--navy);font-weight:600}
+
+/* Nav links (left side) */
+.header__nav-left{
+  display:flex;align-items:center;gap:2px;
+}
+.header__nav-link{
+  padding:6px 10px;color:var(--text-2);
+  font-size:.8rem;font-weight:600;border-radius:6px;
+  transition:all var(--fast) var(--ease);white-space:nowrap;
+}
+.header__nav-link:hover{color:var(--navy);background:var(--surface)}
+
+/* Search — centered real input */
+.header__search{flex:1;max-width:520px;position:relative;display:flex;align-items:center;gap:6px}
+.header__search-input-wrap{
+  flex:1;display:flex;align-items:center;
+  background:var(--surface);border:1.5px solid var(--border);
+  border-radius:8px;padding:0 12px;height:36px;
+  transition:all var(--fast) var(--ease);
+}
+.header__search-input-wrap:focus-within{
+  background:#fff;border-color:var(--amber);box-shadow:0 0 0 3px var(--amber-glow);
+}
+.header__search-input-wrap svg{width:15px;height:15px;stroke:var(--text-3);fill:none;stroke-width:2;flex-shrink:0;margin-right:8px}
+.header__search-input{
+  flex:1;border:none;outline:none;background:transparent;
+  color:var(--text);font-size:.82rem;font-weight:500;min-width:0;
+}
+.header__search-input::placeholder{color:var(--text-3)}
+.header__ai-btn{
+  flex-shrink:0;display:flex;align-items:center;gap:4px;
+  padding:6px 12px;border-radius:8px;
+  background:linear-gradient(135deg,var(--amber),#E8910A);
+  color:#fff;font-size:.7rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;
+  transition:transform var(--fast) var(--ease),box-shadow var(--fast) ease;
+}
+.header__ai-btn:hover{transform:scale(1.04);box-shadow:0 2px 12px rgba(217,119,6,.35)}
+.header__ai-btn svg{width:14px;height:14px}
+
+/* Right side actions */
+.header__right{display:flex;align-items:center;gap:4px;margin-left:auto;flex-shrink:0}
+.header__cart{
+  position:relative;padding:6px 10px;
+  color:var(--text-2);display:flex;align-items:center;gap:5px;
+  font-size:.78rem;font-weight:600;border-radius:6px;
+  transition:all var(--fast) var(--ease);
+}
+.header__cart:hover{color:var(--navy);background:var(--surface)}
+.header__cart svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.8}
+.header__cart-badge{
+  position:absolute;top:2px;right:4px;
+  width:14px;height:14px;background:var(--amber);border-radius:50%;
+  font-size:.6rem;font-weight:700;color:#fff;
+  display:flex;align-items:center;justify-content:center;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   COMMAND PALETTE (AI search)
+   ═══════════════════════════════════════════════════════════════ */
+.palette-overlay{
+  display:none;position:fixed;inset:0;
+  background:rgba(0,0,0,.4);backdrop-filter:blur(4px);
+  z-index:200;
+}
+.palette-overlay.open{display:flex;align-items:flex-start;justify-content:center;padding-top:100px}
+.palette{
+  width:90%;max-width:620px;background:#fff;
+  border-radius:var(--radius-lg);box-shadow:0 24px 80px rgba(0,0,0,.18);
+  overflow:hidden;
+}
+.palette__input-row{
+  display:flex;align-items:center;gap:10px;
+  padding:16px 20px;border-bottom:1px solid var(--card-border);
+}
+.palette__input-row svg{width:20px;height:20px;color:var(--text-3);flex-shrink:0}
+.palette__input{
+  flex:1;border:none;outline:none;font-size:16px;color:var(--text);background:transparent;
+}
+.palette__input::placeholder{color:var(--text-3)}
+.palette__ai-badge{
+  padding:4px 10px;border-radius:6px;
+  background:linear-gradient(135deg,var(--amber),#E8910A);
+  color:#fff;font-size:.65rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;
+  flex-shrink:0;
+}
+.palette__body{padding:16px 20px}
+.palette__hint{font-size:12px;color:var(--text-3);margin-bottom:12px}
+.palette__actions{display:flex;flex-direction:column;gap:4px}
+.palette__action{
+  display:flex;align-items:center;gap:10px;
+  padding:8px 10px;border-radius:8px;
+  font-size:13px;font-weight:500;color:var(--text-2);
+  transition:background var(--fast) ease;
+}
+.palette__action:hover{background:var(--surface)}
+.palette__action .icon{
+  width:28px;height:28px;border-radius:6px;background:var(--surface);
+  display:flex;align-items:center;justify-content:center;color:var(--text-3);flex-shrink:0;
+}
+.palette__action .icon svg{width:14px;height:14px}
+/* AI chat within palette */
+.palette__chat{display:none;padding:16px 20px;border-top:1px solid var(--card-border)}
+.palette__chat.show{display:block}
+.palette__chat-msg{
+  padding:10px 14px;border-radius:10px 10px 10px 2px;
+  background:var(--surface);font-size:13px;color:var(--text-2);line-height:1.5;
+  max-width:85%;margin-bottom:8px;
+}
+.palette__chat-msg.user{
+  background:rgba(217,119,6,.08);border-radius:10px 10px 2px 10px;
+  margin-left:auto;color:var(--text);
+}
+.palette__chat-input{
+  display:flex;gap:8px;margin-top:12px;
+}
+.palette__chat-input input{
+  flex:1;padding:8px 14px;border:1.5px solid var(--card-border);border-radius:var(--radius-pill);
+  font-size:13px;outline:none;
+}
+.palette__chat-input input:focus{border-color:var(--amber)}
+.palette__chat-input button{
+  padding:8px 16px;border-radius:var(--radius-pill);
+  background:var(--amber);color:#fff;font-size:12px;font-weight:600;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   HERO — SLIM INFO BAR
+   ═══════════════════════════════════════════════════════════════ */
+.hero{
+  background:linear-gradient(135deg,var(--navy) 0%,var(--navy-deep) 60%,var(--navy-light) 100%);
+  border-top:1px solid rgba(255,255,255,.06);
+}
+.hero__inner{
+  max-width:1320px;margin:0 auto;padding:14px 24px;
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+}
+.hero__text{color:#fff}
+.hero__text h2{font-size:1.05rem;font-weight:700;letter-spacing:-.02em}
+.hero__text h2 span{color:var(--amber-light)}
+.hero__text p{font-size:.78rem;color:var(--text-3);margin-top:2px}
+.hero__stats{display:flex;gap:28px}
+.hero__stat{text-align:right}
+.hero__stat-val{font-size:1.1rem;font-weight:800;color:var(--amber-light);font-variant-numeric:tabular-nums}
+.hero__stat-label{font-size:.6rem;color:var(--text-3);text-transform:uppercase;letter-spacing:.06em;margin-top:1px}
+
+/* ═══════════════════════════════════════════════════════════════
+   BENTO GRID — CATEGORIES (B1 style)
+   White cards, white-bg images blend naturally.
+   Card border + subtle shadow define the card, not background color.
+   ═══════════════════════════════════════════════════════════════ */
+.section-label{
+  font-size:13px;font-weight:600;color:var(--text-3);
+  text-transform:uppercase;letter-spacing:1.5px;margin-bottom:20px;
+}
+.bento-section{padding:48px 0 0}
+.bento-grid{
+  display:grid;
+  grid-template-columns:repeat(6,1fr);
+  gap:12px;
+}
+.bento-card{
+  background:#fff;
+  border:1px solid var(--card-border);
+  border-radius:var(--radius-lg);
+  overflow:hidden;position:relative;
+  transition:transform var(--normal) var(--ease),box-shadow var(--normal) var(--ease),border-color var(--normal) ease;
+  cursor:pointer;
+}
+.bento-card:hover{
+  transform:translateY(-4px);
+  box-shadow:var(--shadow-lift);
+  border-color:var(--border);
+}
+.bento-card.large{grid-column:span 2;grid-row:span 2}
+
+/* Explicit grid placement */
+.bento-card.large:nth-child(1){grid-column:1/3;grid-row:1/3}
+.bento-card:nth-child(2){grid-column:3;grid-row:1}
+.bento-card.large:nth-child(3){grid-column:4/6;grid-row:1/3}
+.bento-card:nth-child(4){grid-column:6;grid-row:1}
+.bento-card:nth-child(5){grid-column:3;grid-row:2}
+.bento-card:nth-child(6){grid-column:6;grid-row:2}
+.bento-card.large:nth-child(7){grid-column:1/3;grid-row:3/5}
+.bento-card:nth-child(8){grid-column:3;grid-row:3}
+.bento-card.large:nth-child(9){grid-column:4/6;grid-row:3/5}
+.bento-card:nth-child(10){grid-column:6;grid-row:3}
+.bento-card:nth-child(11){grid-column:3;grid-row:4}
+.bento-card:nth-child(12){grid-column:6;grid-row:4}
+
+.bento-inner{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:16px;height:100%;min-height:150px;text-align:center;
+}
+.bento-card.large .bento-inner{min-height:280px;padding:20px}
+
+/* Image: clean, no shadow, generous sizing */
+.bento-img{
+  width:100%;max-width:96px;aspect-ratio:1;object-fit:contain;
+  margin-bottom:10px;
+  transition:transform var(--normal) var(--ease);
+}
+.bento-card:hover .bento-img{transform:scale(1.04)}
+.bento-card.large .bento-img{max-width:240px;margin-bottom:16px}
+
+.bento-name{font-size:14px;font-weight:600;color:var(--text);margin-bottom:3px}
+.bento-card.large .bento-name{font-size:18px}
+.bento-count{font-size:12px;color:var(--text-3);font-weight:500}
+
+/* ═══════════════════════════════════════════════════════════════
+   SUBCATEGORY PILLS (horizontal scroll)
+   ═══════════════════════════════════════════════════════════════ */
+.subcats-section{padding:40px 0 0}
+.subcats-scroll{
+  display:flex;gap:10px;overflow-x:auto;padding-bottom:8px;
+  scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;
+  scrollbar-width:none;
+}
+.subcats-scroll::-webkit-scrollbar{display:none}
+.subcat-pill{
+  display:flex;align-items:center;gap:8px;
+  padding:8px 18px 8px 8px;
+  border-radius:var(--radius-pill);background:var(--surface);
+  border:1px solid var(--card-border);
+  white-space:nowrap;scroll-snap-align:start;flex-shrink:0;
+  transition:background var(--fast) ease,border-color var(--fast) ease,transform var(--fast) var(--ease);
+}
+.subcat-pill:hover{background:#fff;border-color:var(--amber);transform:translateY(-2px)}
+.subcat-pill img{
+  width:36px;height:36px;border-radius:50%;object-fit:contain;
+  background:#fff;border:1px solid var(--card-border);
+}
+.subcat-pill span{font-size:13px;font-weight:500;color:var(--text)}
+
+/* ═══════════════════════════════════════════════════════════════
+   PRODUCT SECTIONS
+   ═══════════════════════════════════════════════════════════════ */
+.product-section{padding:48px 0 0}
+.product-section+.product-section{border-top:1px solid var(--card-border);margin-top:48px}
+.section-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px}
+.section-header h2{font-size:22px;font-weight:700;color:var(--text);letter-spacing:-.3px}
+.section-header .see-all{
+  font-size:13px;font-weight:600;color:var(--amber);
+  display:flex;align-items:center;gap:4px;transition:gap var(--fast) ease;
+}
+.section-header .see-all:hover{gap:8px}
+.section-header .see-all svg{width:14px;height:14px}
+
+/* Flash timer */
+.flash-timer{display:flex;align-items:center;gap:8px;margin-left:16px}
+.flash-timer .t-block{
+  padding:4px 8px;border-radius:6px;background:var(--navy);color:#fff;
+  font-size:14px;font-weight:700;font-variant-numeric:tabular-nums;min-width:34px;text-align:center;
+}
+.flash-timer .t-sep{color:var(--navy);font-weight:700;font-size:16px}
+
+.product-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.product-card{
+  background:#fff;border:1px solid var(--card-border);
+  border-radius:var(--radius-md);overflow:hidden;
+  transition:transform var(--normal) var(--ease),box-shadow var(--normal) var(--ease);
+  cursor:pointer;
+}
+.product-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lift)}
+.product-img-wrap{
+  position:relative;aspect-ratio:1;background:var(--surface);
+  display:flex;align-items:center;justify-content:center;overflow:hidden;
+}
+.product-img-wrap img{
+  width:80%;height:80%;object-fit:contain;
+  transition:transform var(--normal) var(--ease);
+}
+.product-card:hover .product-img-wrap img{transform:scale(1.05)}
+.product-badge{
+  position:absolute;top:10px;left:10px;
+  padding:3px 10px;border-radius:var(--radius-pill);
+  font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;
+}
+.badge-new{background:var(--navy);color:#fff}
+.badge-best{background:var(--amber);color:#fff}
+.badge-deal{background:#059669;color:#fff}
+.badge-flash{background:#DC2626;color:#fff}
+.product-info{padding:14px}
+.product-name{
+  font-size:13px;font-weight:500;color:var(--text);line-height:1.4;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+  margin-bottom:8px;min-height:36px;
+}
+.product-price{display:flex;align-items:baseline;gap:6px}
+.price-now{font-size:18px;font-weight:700;color:var(--text)}
+.price-old{font-size:13px;color:var(--text-3);text-decoration:line-through}
+.price-off{font-size:11px;font-weight:700;color:#DC2626;padding:2px 6px;background:#FEF2F2;border-radius:4px}
+.product-stars{display:flex;align-items:center;gap:4px;margin-top:6px}
+.stars{color:var(--amber);font-size:12px;letter-spacing:1px}
+.stars-count{font-size:11px;color:var(--text-3)}
+
+/* ═══════════════════════════════════════════════════════════════
+   FOOTER — EDITORIAL (B1 style)
+   ═══════════════════════════════════════════════════════════════ */
+.footer{margin-top:80px;background:var(--navy);color:#CBD5E1;padding:64px 0 32px}
+.footer-top{display:grid;grid-template-columns:1.4fr repeat(3,1fr) 1.2fr;gap:40px;margin-bottom:48px}
+.footer-brand{font-size:32px;font-weight:700;color:var(--amber);letter-spacing:-.5px;line-height:1;margin-bottom:16px}
+.footer-brand span{color:#fff}
+.footer-tagline{font-size:14px;color:#94A3B8;line-height:1.6;max-width:260px}
+.footer-col h4{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:#64748B;margin-bottom:16px}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+.footer-col li a{font-size:14px;color:#94A3B8;transition:color var(--fast) ease}
+.footer-col li a:hover{color:#fff}
+.footer-newsletter h4{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:#64748B;margin-bottom:16px}
+.footer-newsletter p{font-size:13px;color:#94A3B8;margin-bottom:14px;line-height:1.5}
+.newsletter-form{display:flex;gap:8px}
+.newsletter-form input{
+  flex:1;padding:10px 16px;border-radius:var(--radius-pill);
+  border:1px solid #334155;background:#0F172A;color:#fff;font-size:13px;outline:none;min-width:0;
+}
+.newsletter-form input::placeholder{color:#475569}
+.newsletter-form input:focus{border-color:var(--amber)}
+.newsletter-form button{
+  padding:10px 20px;border-radius:var(--radius-pill);
+  background:var(--amber);color:#fff;font-size:13px;font-weight:600;flex-shrink:0;
+}
+.newsletter-form button:hover{background:var(--amber-light)}
+.footer-bottom{
+  border-top:1px solid rgba(255,255,255,.06);padding-top:24px;
+  display:flex;align-items:center;justify-content:space-between;font-size:12px;color:#475569;
+}
+.footer-legal{display:flex;gap:20px}
+.footer-legal a{color:#64748B;transition:color var(--fast) ease}
+.footer-legal a:hover{color:#94A3B8}
+
+/* ═══════════════════════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════════════════════ */
+@media(max-width:1200px){
+  .bento-grid{grid-template-columns:repeat(4,1fr)}
+  .bento-card.large:nth-child(1){grid-column:1/3;grid-row:1/3}
+  .bento-card:nth-child(2){grid-column:3;grid-row:1}
+  .bento-card.large:nth-child(3){grid-column:3/5;grid-row:2/4}
+  .bento-card:nth-child(4){grid-column:4;grid-row:1}
+  .bento-card:nth-child(5){grid-column:3;grid-row:auto}
+  .bento-card:nth-child(6){grid-column:4;grid-row:auto}
+  .bento-card.large:nth-child(7){grid-column:1/3;grid-row:auto/span 2}
+  .bento-card:nth-child(8){grid-column:3;grid-row:auto}
+  .bento-card.large:nth-child(9){grid-column:3/5;grid-row:auto/span 2}
+  .bento-card:nth-child(10){grid-column:1;grid-row:auto}
+  .bento-card:nth-child(11){grid-column:2;grid-row:auto}
+  .bento-card:nth-child(12){grid-column:auto;grid-row:auto}
+  .product-grid{grid-template-columns:repeat(4,1fr)}
+  .footer-top{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:900px){
+  .bento-grid{grid-template-columns:repeat(3,1fr)}
+  .bento-card.large{grid-column:span 2!important;grid-row:span 2!important}
+  .bento-card.normal{grid-column:span 1!important;grid-row:span 1!important}
+  .product-grid{grid-template-columns:repeat(3,1fr)}
+  .footer-top{grid-template-columns:repeat(2,1fr)}
+  .footer-brand{font-size:28px}
+}
+@media(max-width:680px){
+  .container{padding:0 16px}
+  .header__inner{padding:0 12px;gap:8px}
+  .header__nav-left{display:none}
+  .hero__stats{display:none}
+  .hero__inner{padding:10px 16px}
+  .bento-grid{grid-template-columns:repeat(2,1fr);gap:10px}
+  .bento-card.large{grid-column:span 2!important;grid-row:span 1!important}
+  .bento-card.large .bento-inner{min-height:180px}
+  .bento-card.large .bento-img{max-width:160px}
+  .product-grid{grid-template-columns:repeat(2,1fr);gap:10px}
+  .section-header h2{font-size:18px}
+  .footer-top{grid-template-columns:1fr;gap:32px}
+  .footer-brand{font-size:24px}
+  .flash-timer{margin-left:8px}
+  .flash-timer .t-block{font-size:12px;padding:3px 6px;min-width:28px}
+}
+@media(max-width:440px){
+  .header__ai-btn span{display:none}
+  .header__ai-btn{padding:6px 8px}
+  .header__cart{padding:5px 8px;font-size:.7rem}
+  .header__right .header__nav-link{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ HEADER ═══ -->
+<header class="header">
+  <div class="header__inner">
+    <a href="/" class="header__logo">
+      <span class="mark">XL</span><span class="wordmark">Market</span>
+    </a>
+
+    <nav class="header__nav-left">
+      <a href="#" class="header__nav-link"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:4px;vertical-align:-2px"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>Categories</a>
+      <a href="#" class="header__nav-link">Deals</a>
+      <a href="#" class="header__nav-link">New</a>
+      <a href="#" class="header__nav-link">Best Sellers</a>
+    </nav>
+
+    <div class="header__search">
+      <div class="header__search-input-wrap">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input class="header__search-input" placeholder="Search 16,000+ products…" id="searchInput">
+      </div>
+      <button class="header__ai-btn" id="searchTrigger">
+        <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+        AI
+      </button>
+    </div>
+
+    <div class="header__right">
+      <button class="header__nav-link">EN</button>
+      <button class="header__nav-link" aria-label="Account"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></button>
+      <button class="header__cart">
+        <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+        <span class="header__cart-badge">2</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ═══ HERO (slim info bar) ═══ -->
+<div class="hero">
+  <div class="hero__inner">
+    <div class="hero__text">
+      <h2>Professional Tools, <span>Half the Price</span></h2>
+      <p>Europe's VEVOR authorized dealer &mdash; direct from factory</p>
+    </div>
+    <div class="hero__stats">
+      <div class="hero__stat"><div class="hero__stat-val">16K+</div><div class="hero__stat-label">Products</div></div>
+      <div class="hero__stat"><div class="hero__stat-val">1,688</div><div class="hero__stat-label">Categories</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ COMMAND PALETTE (AI search overlay) ═══ -->
+<div class="palette-overlay" id="paletteOverlay">
+  <div class="palette">
+    <div class="palette__input-row">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input class="palette__input" placeholder="Search products or ask AI…" autofocus>
+      <span class="palette__ai-badge">AI</span>
+    </div>
+    <div class="palette__body">
+      <div class="palette__hint">Quick actions</div>
+      <div class="palette__actions">
+        <a href="#" class="palette__action"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></span>Today's Deals</a>
+        <a href="#" class="palette__action"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20"/></svg></span>New Arrivals</a>
+        <a href="#" class="palette__action"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></span>Best Sellers</a>
+      </div>
+    </div>
+    <div class="palette__chat show">
+      <div class="palette__chat-msg">Hi! I can help you find the right tool for your project. Try: "What drill do I need for concrete?" or "Best welder under €200"</div>
+      <div class="palette__chat-input">
+        <input placeholder="Ask about any product…">
+        <button>Send</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ BENTO CATEGORIES (starts immediately after header) ═══ -->
+<section class="bento-section">
+  <div class="container">
+    <div class="section-label">Shop by Category</div>
+    <div class="bento-grid">
+      <!-- 1. Tools — LARGE -->
+      <a href="#" class="bento-card large">
+        <div class="bento-inner">
+          <img src="/cat-icons/400/tools.webp" alt="Tools" class="bento-img" loading="eager">
+          <div class="bento-name">Tools & Machinery</div>
+          <div class="bento-count">2,400+ products</div>
+        </div>
+      </a>
+      <!-- 2. Automotive -->
+      <a href="#" class="bento-card normal">
+        <div class="bento-inner">
+          <img src="/cat-icons/80/automotive.webp" alt="Automotive" class="bento-img">
+          <div class="bento-name">Automotive</div>
+          <div class="bento-count">1,840</div>
+        </div>
+      </a>
+      <!-- 3. Kitchen — LARGE -->
+      <a href="#" class="bento-card large">
+        <div class="bento-inner">
+          <img src="/cat-icons/400/kitchen.webp" alt="Kitchen" class="bento-img">
+          <div class="bento-name">Kitchen & Catering</div>
+          <div class="bento-count">820+ products</div>
+        </div>
+      </a>
+      <!-- 4. Building Materials -->
+      <a href="#" class="bento-card normal">
+        <div class="bento-inner">
+          <img src="/cat-icons/80/building-materials.webp" alt="Building Materials" class="bento-img">
+          <div class="bento-name">Building Materials</div>
+          <div class="bento-count">1,100</div>
+        </div>
+      </a>
+      <!-- 5. Outdoors -->
+      <a href="#" class="bento-card normal">
+        <div class="bento-inner">
+          <img src="/cat-icons/80/outdoors.webp" alt="Outdoors" class="bento-img">
+          <div class="bento-name">Outdoors</div>
+          <div class="bento-count">950</div>
+        </div>
+      </a>
+      <!-- 6. Sports -->
+      <a href="#" class="bento-card normal">
+        <div class="bento-inner">
+          <img src="/cat-icons/80/sports-outdoors.webp" alt="Sports" class="bento-img">
+          <div class="bento-name">Sports & Fitness</div>
+          <div class="bento-count">780</div>
+        </div>
+      </a>
+      <!-- 7. Plumbing — LARGE -->
+      <a href="#" class="bento-card large">
+        <div class="bento-inner">
+          <img src="/cat-icons/400/plumbing.webp" alt="Plumbing" class="bento-img">
+          <div class="bento-name">Plumbing</div>
+          <div class="bento-count">380+ products</div>
+        </div>
+      </a>
+      <!-- 8. Industrial -->
+      <a href="#" class="bento-card normal">
+        <div class="bento-inner">
+          <img src="/cat-icons/80/industrial-scientific.webp" alt="Industrial" class="bento-img">
+          <div class="bento-name">Industrial</div>
+          <div class="bento-count">520</div>
+        </div>
+      </a>
+      <!-- 9. Electrical — LARGE -->
+      <a href="#" class="bento-card large">
+        <div class="bento-inner">
+          <img src="/cat-icons/400/electrical.webp" alt="Electrical" class="bento-img">
+          <div class="bento-name">Electrical</div>
+          <div class="bento-count">460+ products</div>
+        </div>
+      </a>
+      <!-- 10. Hardware -->
+      <a href="#" class="bento-card normal">
+        <div class="bento-inner">
+          <img src="/cat-icons/80/hardware.webp" alt="Hardware" class="bento-img">
+          <div class="bento-name">Hardware</div>
+          <div class="bento-count">340</div>
+        </div>
+      </a>
+      <!-- 11. Furniture -->
+      <a href="#" class="bento-card normal">
+        <div class="bento-inner">
+          <img src="/cat-icons/80/furniture.webp" alt="Furniture" class="bento-img">
+          <div class="bento-name">Furniture</div>
+          <div class="bento-count">290</div>
+        </div>
+      </a>
+      <!-- 12. HVAC -->
+      <a href="#" class="bento-card normal">
+        <div class="bento-inner">
+          <img src="/cat-icons/80/heating-venting-cooling.webp" alt="HVAC" class="bento-img">
+          <div class="bento-name">Heating & Cooling</div>
+          <div class="bento-count">410</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ POPULAR SUBCATEGORIES ═══ -->
+<section class="subcats-section">
+  <div class="container">
+    <div class="section-label">Popular Subcategories</div>
+    <div class="subcats-scroll">
+      <a href="#" class="subcat-pill"><img src="/cat-icons/80/angle-grinder.webp" alt=""><span>Angle Grinders</span></a>
+      <a href="#" class="subcat-pill"><img src="/cat-icons/80/chainsaws.webp" alt=""><span>Chainsaws</span></a>
+      <a href="#" class="subcat-pill"><img src="/cat-icons/80/car-jacks.webp" alt=""><span>Car Jacks</span></a>
+      <a href="#" class="subcat-pill"><img src="/cat-icons/80/blenders.webp" alt=""><span>Blenders</span></a>
+      <a href="#" class="subcat-pill"><img src="/cat-icons/80/band-saws.webp" alt=""><span>Band Saws</span></a>
+      <a href="#" class="subcat-pill"><img src="/cat-icons/80/bottle-jacks.webp" alt=""><span>Bottle Jacks</span></a>
+      <a href="#" class="subcat-pill"><img src="/cat-icons/80/adirondack-chairs.webp" alt=""><span>Adirondack Chairs</span></a>
+      <a href="#" class="subcat-pill"><img src="/cat-icons/80/above-ground-pools.webp" alt=""><span>Above Ground Pools</span></a>
+      <a href="#" class="subcat-pill"><img src="/cat-icons/80/acoustic-foam-panels.webp" alt=""><span>Acoustic Foam</span></a>
+      <a href="#" class="subcat-pill"><img src="/cat-icons/80/air-compressor-parts-accessories.webp" alt=""><span>Compressor Parts</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ NEW ARRIVALS ═══ -->
+<section class="product-section">
+  <div class="container">
+    <div class="section-header">
+      <h2>New Arrivals</h2>
+      <a href="#" class="see-all">See All <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    </div>
+    <div class="product-grid">
+      <div class="product-card"><div class="product-img-wrap"><img src="/cat-icons/400/angle-grinder.webp" alt=""><span class="product-badge badge-new">New</span></div><div class="product-info"><div class="product-name">Brushless Angle Grinder 125mm 1200W Variable Speed</div><div class="product-price"><span class="price-now">&euro;69.99</span></div><div class="product-stars"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="stars-count">(12)</span></div></div></div>
+      <div class="product-card"><div class="product-img-wrap"><img src="/cat-icons/400/chainsaws.webp" alt=""><span class="product-badge badge-new">New</span></div><div class="product-info"><div class="product-name">Electric Chainsaw 16" 2200W with Auto-Oiler</div><div class="product-price"><span class="price-now">&euro;89.90</span></div><div class="product-stars"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span><span class="stars-count">(8)</span></div></div></div>
+      <div class="product-card"><div class="product-img-wrap"><img src="/cat-icons/400/blenders.webp" alt=""><span class="product-badge badge-new">New</span></div><div class="product-info"><div class="product-name">Commercial Blender 2200W Heavy Duty Smoothie Maker</div><div class="product-price"><span class="price-now">&euro;54.90</span></div><div class="product-stars"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="stars-count">(24)</span></div></div></div>
+      <div class="product-card"><div class="product-img-wrap"><img src="/cat-icons/400/above-ground-pools.webp" alt=""><span class="product-badge badge-new">New</span></div><div class="product-info"><div class="product-name">Steel Frame Swimming Pool 4.5m x 2.2m x 0.84m</div><div class="product-price"><span class="price-now">&euro;189.00</span></div><div class="product-stars"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span><span class="stars-count">(6)</span></div></div></div>
+      <div class="product-card"><div class="product-img-wrap"><img src="/cat-icons/400/acoustic-foam-panels.webp" alt=""><span class="product-badge badge-new">New</span></div><div class="product-info"><div class="product-name">Acoustic Foam Panels 12-Pack Studio Sound Dampening</div><div class="product-price"><span class="price-now">&euro;34.50</span></div><div class="product-stars"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="stars-count">(31)</span></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ BEST SELLERS ═══ -->
+<section class="product-section">
+  <div class="container">
+    <div class="section-header">
+      <h2>Best Sellers</h2>
+      <a href="#" class="see-all">See All <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    </div>
+    <div class="product-grid">
+      <div class="product-card"><div class="product-img-wrap"><img src="/cat-icons/400/car-jacks.webp" alt=""><span class="product-badge badge-best">Best</span></div><div class="product-info"><div class="product-name">Hydraulic Floor Jack 3 Ton Low Profile Steel</div><div class="product-price"><span class="price-now">&euro;49.90</span></div><div class="product-stars"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="stars-count">(156)</span></div></div></div>
+      <div class="product-card"><div class="product-img-wrap"><img src="/cat-icons/400/band-saws.webp" alt=""><span class="product-badge badge-best">Best</span></div><div class="product-info"><div class="product-name">Benchtop Band Saw 9" 550W with LED Work Light</div><div class="product-price"><span class="price-now">&euro;129.00</span></div><div class="product-stars"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="stars-count">(89)</span></div></div></div>
+      <div class="product-card"><div class="product-img-wrap"><img src="/cat-icons/400/bottle-jacks.webp" alt=""><span class="product-badge badge-best">Best</span></div><div class="product-info"><div class="product-name">Hydraulic Bottle Jack 20 Ton Heavy Duty</div><div class="product-price"><span class="price-now">&euro;28.90</span></div><div class="product-stars"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span><span class="stars-count">(67)</span></div></div></div>
+      <div class="product-card"><div class="product-img-wrap"><img src="/cat-icons/400/adirondack-chairs.webp" alt=""><span class="product-badge badge-best">Best</span></div><div class="product-info"><div class="product-name">Adirondack Chair HDPE Weather Resistant</div><div class="product-price"><span class="price-now">&euro;79.90</span></div><div class="product-stars"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="stars-count">(203)</span></div></div></div>
+      <div class="product-card"><div class="product-img-wrap"><img src="/cat-icons/400/air-compressor-parts-accessories.webp" alt=""><span class="product-badge badge-best">Best</span></div><div class="product-info"><div class="product-name">Air Compressor Accessory Kit 20-Piece Professional</div><div class="product-price"><span class="price-now">&euro;39.90</span></div><div class="product-stars"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="stars-count">(44)</span></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ DEALS ═══ -->
+<section class="product-section">
+  <div class="container">
+    <div class="section-header">
+      <h2>Deals of the Week</h2>
+      <a href="#" class="see-all">See All <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    </div>
+    <div class="product-grid">
+      <div class="product-card"><div class="product-img-wrap"><img src="/cat-icons/400/accent-cabinets.webp" alt=""><span class="product-badge badge-deal">-36%</span></div><div class="product-info"><div class="product-name">Storage Cabinet Industrial Metal 3-Door</div><div class="product-price"><span class="price-now">&euro;159.99</span><span class="price-old">&euro;249.99</span></div></div></div>
+      <div class="product-card"><div class="product-img-wrap"><img src="/cat-icons/400/ab-machine.webp" alt=""><span class="product-badge badge-deal">-44%</span></div><div class="product-info"><div class="product-name">Ab Roller Machine Foldable Core Trainer</div><div class="product-price"><span class="price-now">&euro;44.99</span><span class="price-old">&euro;79.99</span></div></div></div>
+      <div class="product-card"><div class="product-img-wrap"><img src="/cat-icons/400/accent-lighting.webp" alt=""><span class="product-badge badge-deal">-38%</span></div><div class="product-info"><div class="product-name">LED Accent Light Strip 5m RGBW Smart WiFi</div><div class="product-price"><span class="price-now">&euro;24.99</span><span class="price-old">&euro;39.99</span></div></div></div>
+      <div class="product-card"><div class="product-img-wrap"><img src="/cat-icons/400/acoustic-guitar.webp" alt=""><span class="product-badge badge-deal">-50%</span></div><div class="product-info"><div class="product-name">Acoustic Guitar 41" Full Size Beginner Set</div><div class="product-price"><span class="price-now">&euro;49.99</span><span class="price-old">&euro;99.99</span></div></div></div>
+      <div class="product-card"><div class="product-img-wrap"><img src="/cat-icons/400/address-signs.webp" alt=""><span class="product-badge badge-deal">-54%</span></div><div class="product-info"><div class="product-name">LED Address Sign Solar Powered Illuminated</div><div class="product-price"><span class="price-now">&euro;22.99</span><span class="price-old">&euro;49.99</span></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FLASH SALE ═══ -->
+<section class="product-section">
+  <div class="container">
+    <div class="section-header">
+      <h2>Flash Sale</h2>
+      <div class="flash-timer">
+        <span class="t-block" id="fh">04</span><span class="t-sep">:</span>
+        <span class="t-block" id="fm">32</span><span class="t-sep">:</span>
+        <span class="t-block" id="fs">17</span>
+      </div>
+      <a href="#" class="see-all" style="margin-left:auto">See All <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    </div>
+    <div class="product-grid">
+      <div class="product-card"><div class="product-img-wrap"><img src="/cat-icons/400/chainsaw-sharpeners.webp" alt=""><span class="product-badge badge-flash">-54%</span></div><div class="product-info"><div class="product-name">Chainsaw Sharpener Electric Bench Mount</div><div class="product-price"><span class="price-now">&euro;29.99</span><span class="price-old">&euro;64.99</span></div></div></div>
+      <div class="product-card"><div class="product-img-wrap"><img src="/cat-icons/400/brake-tools.webp" alt=""><span class="product-badge badge-flash">-56%</span></div><div class="product-info"><div class="product-name">Brake Caliper Piston Rewind Tool Set 24pc</div><div class="product-price"><span class="price-now">&euro;19.99</span><span class="price-old">&euro;44.99</span></div></div></div>
+      <div class="product-card"><div class="product-img-wrap"><img src="/cat-icons/400/adhesives-tape.webp" alt=""><span class="product-badge badge-flash">-50%</span></div><div class="product-info"><div class="product-name">Industrial Adhesive Tape Dispenser Gun</div><div class="product-price"><span class="price-now">&euro;14.99</span><span class="price-old">&euro;29.99</span></div></div></div>
+      <div class="product-card"><div class="product-img-wrap"><img src="/cat-icons/400/air-blow-guns.webp" alt=""><span class="product-badge badge-flash">-58%</span></div><div class="product-info"><div class="product-name">Air Blow Gun Kit 5pc Pneumatic Set</div><div class="product-price"><span class="price-now">&euro;8.99</span><span class="price-old">&euro;21.99</span></div></div></div>
+      <div class="product-card"><div class="product-img-wrap"><img src="/cat-icons/400/abrasives.webp" alt=""><span class="product-badge badge-flash">-60%</span></div><div class="product-info"><div class="product-name">Sanding Disc Set 125mm 80-800 Grit 100pcs</div><div class="product-price"><span class="price-now">&euro;11.99</span><span class="price-old">&euro;29.99</span></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ RECENTLY VIEWED ═══ -->
+<section class="product-section">
+  <div class="container">
+    <div class="section-header">
+      <h2>Recently Viewed</h2>
+      <a href="#" class="see-all">Clear <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg></a>
+    </div>
+    <div class="product-grid">
+      <div class="product-card"><div class="product-img-wrap"><img src="/cat-icons/400/access-doors.webp" alt=""></div><div class="product-info"><div class="product-name">Access Door Panel 12x12" Drywall</div><div class="product-price"><span class="price-now">&euro;18.99</span></div></div></div>
+      <div class="product-card"><div class="product-img-wrap"><img src="/cat-icons/400/active-seating.webp" alt=""></div><div class="product-info"><div class="product-name">Wobble Stool Active Sitting Balance Chair</div><div class="product-price"><span class="price-now">&euro;54.99</span></div></div></div>
+      <div class="product-card"><div class="product-img-wrap"><img src="/cat-icons/400/agility-course-kits.webp" alt=""></div><div class="product-info"><div class="product-name">Dog Agility Course Kit 9 Obstacles</div><div class="product-price"><span class="price-now">&euro;74.99</span></div></div></div>
+      <div class="product-card"><div class="product-img-wrap"><img src="/cat-icons/400/air-compressor-head-pump.webp" alt=""></div><div class="product-info"><div class="product-name">Air Compressor Head Pump Replacement</div><div class="product-price"><span class="price-now">&euro;89.90</span></div></div></div>
+      <div class="product-card"><div class="product-img-wrap"><img src="/cat-icons/400/acoustic-slat-wall-panels.webp" alt=""></div><div class="product-info"><div class="product-name">Acoustic Slat Wall Panels Natural Oak 6-Pack</div><div class="product-price"><span class="price-now">&euro;119.00</span></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER (editorial B1 style) ═══ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand">XL<span>Market</span></div>
+        <p class="footer-tagline">Europe's authorized VEVOR dealer. Professional tools and equipment at factory-direct prices. Based in Estonia, shipping across the EU.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Shop</h4>
+        <ul><li><a href="#">All Categories</a></li><li><a href="#">New Arrivals</a></li><li><a href="#">Best Sellers</a></li><li><a href="#">Deals</a></li></ul>
+      </div>
+      <div class="footer-col">
+        <h4>Support</h4>
+        <ul><li><a href="#">Contact Us</a></li><li><a href="#">Shipping Info</a></li><li><a href="#">Returns</a></li><li><a href="#">FAQ</a></li></ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul><li><a href="#">About Us</a></li><li><a href="#">Blog</a></li></ul>
+      </div>
+      <div class="footer-newsletter">
+        <h4>Newsletter</h4>
+        <p>Get deals and product updates. No spam.</p>
+        <div class="newsletter-form">
+          <input placeholder="your@email.com">
+          <button>Subscribe</button>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Roland Kaubandus O&Uuml;. All rights reserved.</span>
+      <div class="footer-legal">
+        <a href="#">Privacy</a><a href="#">Terms</a><a href="#">Cookies</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Command palette toggle
+const trigger = document.getElementById('searchTrigger');
+const overlay = document.getElementById('paletteOverlay');
+trigger.addEventListener('click', () => overlay.classList.add('open'));
+overlay.addEventListener('click', (e) => { if (e.target === overlay) overlay.classList.remove('open'); });
+document.addEventListener('keydown', (e) => {
+  if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); overlay.classList.toggle('open'); }
+  if (e.key === 'Escape') overlay.classList.remove('open');
+});
+
+// Flash sale timer
+let total = 4*3600 + 32*60 + 17;
+function tick() {
+  if (total <= 0) return;
+  total--;
+  const h = Math.floor(total/3600);
+  const m = Math.floor((total%3600)/60);
+  const s = total%60;
+  document.getElementById('fh').textContent = String(h).padStart(2,'0');
+  document.getElementById('fm').textContent = String(m).padStart(2,'0');
+  document.getElementById('fs').textContent = String(s).padStart(2,'0');
+}
+setInterval(tick, 1000);
+</script>
+</body>
+</html>
