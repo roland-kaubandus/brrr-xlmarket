@@ -263,8 +263,10 @@ export default async function ProductPage({ params }: Props) {
     const catWithAncestors = await getCategoryByHandle(linkedCategory.handle)
     if (catWithAncestors) {
       const trail: Array<{ name: string; handle: string }> = []
+      const visited = new Set<string>()
       let parent = catWithAncestors.parent_category
-      while (parent) {
+      while (parent && !visited.has((parent as any).id) && trail.length < 20) {
+        visited.add((parent as any).id)
         trail.unshift({ name: parent.name, handle: parent.handle })
         parent = (parent as any).parent_category
       }

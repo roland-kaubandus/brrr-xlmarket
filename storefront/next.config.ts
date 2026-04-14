@@ -22,6 +22,12 @@ const nextConfig: NextConfig = {
     ],
   },
   // i18n handled via App Router [locale] segments (WO-XLM-010)
+  async redirects() {
+    return [
+      { source: "/:locale/cart", destination: "/:locale/ostukorv", permanent: true },
+      { source: "/:locale/tarnetingimused", destination: "/:locale/tarne", permanent: true },
+    ]
+  },
 }
 
 export default nextConfig
