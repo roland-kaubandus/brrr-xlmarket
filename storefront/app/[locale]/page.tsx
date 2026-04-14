@@ -1,12 +1,9 @@
 import type { Metadata } from "next"
-import { getProducts, getCategories } from "@/lib/medusa"
+import { getProducts } from "@/lib/medusa"
 import { searchProducts, getLocalizedTitle } from "@/lib/meilisearch"
 import BannerCarousel from "@/components/BannerCarousel"
-import CategoryExploreGrid from "@/components/CategoryExploreGrid"
-import VevorProductCard from "@/components/VevorProductCard"
+import CategoryBentoGrid from "@/components/CategoryBentoGrid"
 import HorizontalProductRow from "@/components/HorizontalProductRow"
-import categoryImages from "@/lib/category-images.json"
-import { MENU_ORDER } from "@/lib/menu-order"
 
 export const revalidate = 3600
 
@@ -29,48 +26,6 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     },
   }
 }
-
-const DISPLAY_NAMES: Record<string, string> = {
-  "outdoors": "Outdoors",
-  "tools": "Tools",
-  "automotive": "Automotive",
-  "kitchen": "Kitchen",
-  "building-materials": "Building Materials",
-  "plumbing": "Plumbing",
-  "sports-outdoors": "Sports & Outdoors",
-  "industrial-scientific": "Industrial & Scientific",
-  "electrical": "Electrical",
-  "heating-venting-cooling": "Heating & Cooling",
-  "hardware": "Hardware",
-  "furniture": "Furniture",
-  "appliances": "Appliances",
-  "flooring": "Flooring",
-  "home-decor": "Home Decor",
-  "bath": "Bath",
-  "storage-organization": "Storage & Organization",
-  "lighting": "Lighting",
-  "cleaning": "Cleaning",
-  "health-and-wellness": "Health & Wellness",
-  "safety-equipment": "Safety Equipment",
-  "paint": "Paint",
-}
-
-const CATEGORY_IMAGES_JSON: Record<string, string> = categoryImages as Record<string, string>
-
-// Live product thumbnails per category (new L1 handles)
-const HOMEPAGE_IMAGES: Record<string, string> = {
-  "automotive": "https://image.vevor.com/us%2FQTSTCTTSDNQONMY7J001V0%2Foriginal_img-v2%2Ftrailer-coupler-lock-m100-1.2.jpg?timestamp=1700000000000",
-  "kitchen": "https://image.vevor.com/us%2F1100WJRJ90800X001V2%2Foriginal_img-v10%2Fcommercial-meat-grinder-m100-1.2.jpg?timestamp=1730432819000",
-  "outdoors": "https://image.vevor.com/us%2FPZSHLK37INCH5XEW0001V2%2Foriginal_img-v1%2Frotisserie-grill-m100-1.2.jpg?timestamp=1700000000000",
-  "sports-outdoors": "https://image.vevor.com/us%2FZDJSCCZPDBKDQ5ELZV9%2Foriginal_img-v1%2Fexercise-bike-m100-1.2.jpg?timestamp=1700000000000",
-  "building-materials": "https://image.vevor.com/us%2FDGNZDTLHJ3JPBIFH9V0%2Foriginal_img-v1%2Fmulti-purpose-folding-ladder-m100-1.2.jpg?timestamp=1700000000000",
-  "hardware": "https://image.vevor.com/us%2F0618-3BMNCC000001V2%2Foriginal_img-v9%2Fmetal-lathe-m100-1.2.jpg?timestamp=1652168143000",
-  "electrical": "https://image.vevor.com/us%2FSMXWJ3.5X-90XTS01V0%2Foriginal_img-v4%2Fstereo-microscope-m100-1.2.jpg?timestamp=1628592013000",
-  "health-and-wellness": "https://image.vevor.com/us%2F3CFM1-3HPZKBOC001V2%2Foriginal_img-v10%2Fvacuum-pump-m100-1.2.jpg?timestamp=1700096920000",
-  "heating-venting-cooling": "https://image.vevor.com/us%2F120CMCZQGJ0000001V0%2Foriginal_img-v8%2Ftile-cutter-m100-1.2.jpg?timestamp=1751451233000",
-}
-
-const CATEGORY_IMAGES: Record<string, string> = { ...CATEGORY_IMAGES_JSON, ...HOMEPAGE_IMAGES }
 
 /** Map MeiliSearch hit to Product shape (same pattern as category page) */
 function meiliHitToProduct(hit: any, locale: string) {
@@ -125,18 +80,11 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
     }
   }
 
-  const categoryData = MENU_ORDER.map((handle) => ({
-    name: DISPLAY_NAMES[handle] || handle.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase()),
-    handle,
-    displayName: DISPLAY_NAMES[handle] || handle.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase()),
-    image: CATEGORY_IMAGES[handle] || null,
-  }))
-
   return (
     <>
       <BannerCarousel locale={locale} />
 
-      <CategoryExploreGrid categories={categoryData} locale={locale} />
+      <CategoryBentoGrid locale={locale} />
 
       <HorizontalProductRow title={locale === "et" ? "Enimmüüdud" : "Best Sellers"} products={bestSellers} locale={locale} />
       <HorizontalProductRow title={locale === "et" ? "Uued tooted" : "New Arrivals"} products={newArrivals} locale={locale} />
