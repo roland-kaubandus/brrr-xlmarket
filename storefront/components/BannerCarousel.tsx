@@ -16,11 +16,11 @@ function trackEvent(event: string, properties: Record<string, unknown>) {
 
 const BANNERS = [
   {
-    title: "Grand Opening Sale",
-    titleEt: "Avamismüük",
-    subtitle: "15% off everything with code XLOPEN. Free shipping on orders over 99€.",
-    subtitleEt: "15% soodsamalt koodiga XLOPEN. Tasuta tarne alates 99€.",
-    cta: "Shop the Sale",
+    title: "Professional Tools, Half the Price",
+    titleEt: "Profitööriistad poole hinnaga",
+    subtitle: "Industrial-grade equipment direct from the manufacturer. Free shipping on orders over 99€.",
+    subtitleEt: "Tööstuslik kvaliteet otse tootjalt. Tasuta tarne alates 99€.",
+    cta: "Shop Now",
     ctaEt: "Vaata pakkumisi",
     link: "/otsing?tag=deals",
     image: "/images/branches/toostus.png",
