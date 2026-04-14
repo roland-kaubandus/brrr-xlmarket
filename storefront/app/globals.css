@@ -95,3 +95,9 @@ a, button, input, select, textarea {
 .product-tab.active { color: #D97706; border-bottom-color: #D97706; }
 .tab-panel { display: none; }
 .tab-panel.active { display: block; }
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.search-dropdown { animation: slideDown 200ms cubic-bezier(0.32, 0.72, 0, 1) forwards; }

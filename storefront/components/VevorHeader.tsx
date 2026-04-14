@@ -4,6 +4,7 @@ import SearchBar from "@/components/SearchBar"
 import MegaMenu from "@/components/MegaMenu"
 import AuthButton from "@/components/AuthButton"
 import LocaleSwitcher from "@/components/LocaleSwitcher"
+import MobileSearchToggle from "@/components/MobileSearchToggle"
 
 const getNavLinks = (locale: string) => locale === "et" ? [
   { label: "Sooduspakkumised", href: `/${locale}/otsing?tag=deals` },
@@ -23,8 +24,8 @@ export default function VevorHeader({ locale = "et" }: { locale?: string }) {
   const NAV_LINKS = getNavLinks(locale)
   return (
     <header className="sticky top-0 z-30 shadow-[0_2px_16px_-2px_rgba(15,23,42,0.12)]">
-      {/* Row 1: Dark top bar — logo + auth + cart */}
-      <div className="bg-[#1E293B]">
+      {/* Row 1: Dark top bar — logo + search + auth + cart */}
+      <div className="relative bg-[#1E293B]">
         <div className="max-w-[1400px] mx-auto px-4 h-[52px] md:h-[56px] flex items-center gap-3 md:gap-4">
           {/* Logo */}
           <Link href={`/${locale}`} className="shrink-0 flex items-baseline gap-[2px]">
@@ -32,8 +33,8 @@ export default function VevorHeader({ locale = "et" }: { locale?: string }) {
             <span className="text-[22px] md:text-[28px] font-normal text-white leading-none tracking-tight">Market</span>
           </Link>
 
-          {/* Search bar — desktop inline, hidden on mobile (shown in row 2) */}
-          <div className="hidden md:block flex-1 min-w-0">
+          {/* Search bar — desktop only, capped width */}
+          <div className="hidden md:block flex-1 min-w-0 max-w-md">
             <SearchBar locale={locale} />
           </div>
 
@@ -42,12 +43,9 @@ export default function VevorHeader({ locale = "et" }: { locale?: string }) {
             {/* Language switcher */}
             <LocaleSwitcher locale={locale} />
 
-            {/* Delivery indicator — desktop */}
-            <div className="hidden lg:flex items-center gap-2 text-white text-[13px]">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-white/70">
-                <rect x="1" y="3" width="15" height="13" /><polygon points="16 8 20 8 23 11 23 16 16 16 16 8" /><circle cx="5.5" cy="18.5" r="2.5" /><circle cx="18.5" cy="18.5" r="2.5" />
-              </svg>
-              <span className="text-white/70">{locale === "et" ? "Tarne" : "Delivery to"} <strong className="text-white">{locale === "et" ? "Eestisse" : "Estonia"}</strong></span>
+            {/* Search toggle — mobile only */}
+            <div className="md:hidden">
+              <MobileSearchToggle locale={locale} />
             </div>
 
             {/* Sign in / Account */}
@@ -61,12 +59,7 @@ export default function VevorHeader({ locale = "et" }: { locale?: string }) {
         </div>
       </div>
 
-      {/* Row 2: Mobile search bar — full width */}
-      <div className="md:hidden bg-[#1E293B] pb-2.5 px-4">
-        <SearchBar locale={locale} />
-      </div>
-
-      {/* Row 3: Orange navigation bar */}
+      {/* Row 2: Orange navigation bar */}
       <div className="bg-[#D97706]">
         <div className="max-w-[1400px] mx-auto px-2 md:px-4 flex items-center h-[40px]">
           {/* Categories button + mega menu */}
