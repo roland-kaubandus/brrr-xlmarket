@@ -1,4 +1,4 @@
-import Link from "next/link"
+import Link from "@/components/SafeLink"
 
 type Props = {
   currentPage: number

@@ -1,5 +1,6 @@
-import Link from "next/link"
-import { getProduct, getProducts, getCategoryByHandle, formatPrice } from "@/lib/medusa"
+import Link from "@/components/SafeLink"
+import { getProduct, getCategoryByHandle, formatPrice } from "@/lib/medusa"
+import RelatedProducts from "./RelatedProducts"
 import { sanitizeHtml } from "@/lib/sanitize"
 import { notFound } from "next/navigation"
 import ProductInfoAccordion from "@/components/ProductInfoAccordion"
@@ -14,7 +15,7 @@ import ProductPurchasePanel from "./ProductPurchasePanel"
 import CollapsibleDescription from "@/components/CollapsibleDescription"
 import CollapsibleSection from "@/components/CollapsibleSection"
 import { getProductMedia } from "@/lib/product-media"
-import { getVevorFeedEntry, type VevorFeedEntry } from "@/lib/vevor-feed"
+import { getVevorFeedEntryAsync, type VevorFeedEntry } from "@/lib/vevor-feed"
 import { getMeiliProductByHandle, getLocalizedTitle } from "@/lib/meilisearch"
 import ProductCompareActions from "@/components/ProductCompareActions"
 import ProductWishlistButton from "@/components/ProductWishlistButton"
@@ -211,7 +212,7 @@ export default async function ProductPage({ params }: Props) {
   const meiliHit = locale === "en" ? await getMeiliProductByHandle(handle) : null
   const localizedTitle = meiliHit ? getLocalizedTitle(meiliHit, locale) : product.title
   const metadata = product.metadata || {}
-  const feedEntry = getVevorFeedEntry({
+  const feedEntry = await getVevorFeedEntryAsync({
     vevorSku: stringifyScalar(metadata.vevor_sku),
     vevorUpc: stringifyScalar(metadata.vevor_upc),
   })
@@ -318,34 +319,11 @@ export default async function ProductPage({ params }: Props) {
     richDescription = cleaned
   }
 
-  // Find related products from same domain/category
-  const categoryId = product.categories?.[0]?.id
+  // Related products data — loaded client-side to keep SSR fast
+  const categoryId = product.categories?.[0]?.id || null
   const productTypeL1 = (stringifyScalar(metadata.vevor_product_type) || feedEntry?.productType || "")
     .split(">")[0].trim()
-
-  // Build query: prefer category, fallback to product type L1 search
-  const relatedQuery = categoryId
-    ? { category_id: [categoryId] }
-    : productTypeL1
-      ? { q: productTypeL1 }
-      : {}
-
-  const [similarRes, koosRes, bestSellersRes] = await Promise.all([
-    getProducts({ limit: 12, ...relatedQuery }),
-    getProducts({ limit: 5, offset: 12, ...relatedQuery }),
-    categoryId
-      ? getProducts({ limit: 6, category_id: [categoryId] })
-      : Promise.resolve({ products: [], count: 0 }),
-  ])
-  const similarProducts = similarRes.products
-    .filter((p) => p.id !== product.id)
-    .slice(0, 10)
-  const koosProducts = koosRes.products
-    .filter((p) => p.id !== product.id)
-    .slice(0, 3)
-  const bestSellers = bestSellersRes.products
-    .filter((p) => p.id !== product.id)
-    .slice(0, 5)
+  const relatedSearchQuery = categoryId ? "" : productTypeL1
   const categoryName = product.categories?.[0]?.name || productTypeTrail[0]?.name || "Category"
 
   const breadcrumbItems = [
@@ -585,113 +563,18 @@ export default async function ProductPage({ params }: Props) {
         </CollapsibleSection>
       </div>
 
-      {/* Similar Products — horizontal scroll on mobile */}
-      {similarProducts.length > 0 && (
-        <section className="mt-8 md:mt-12 pt-6 md:pt-10 border-t border-[#E2E8F0]">
-          <h2 className="text-[15px] md:text-[20px] font-bold text-[#1E293B] mb-3 md:mb-6 px-0">
-            {locale === "et" ? "Sarnased tooted" : "Similar Products"}
-          </h2>
-          {/* Mobile: horizontal scroll */}
-          <div className="md:hidden overflow-x-auto scrollbar-hide -mx-4 px-4">
-            <div className="flex gap-3" style={{ width: "max-content" }}>
-              {similarProducts.map((p) => (
-                <div key={p.id} className="w-[150px] shrink-0">
-                  <VevorProductCard product={p} locale={locale} />
-                </div>
-              ))}
-            </div>
-          </div>
-          {/* Desktop: grid */}
-          <div className="hidden md:grid grid-cols-3 lg:grid-cols-5 gap-4">
-            {similarProducts.map((p) => (
-              <VevorProductCard key={p.id} product={p} locale={locale} />
-            ))}
-          </div>
-        </section>
-      )}
-
-      {/* Frequently Bought Together */}
-      {koosProducts.length > 0 && (
-        <section className="mt-8 md:mt-12 pt-6 md:pt-10 border-t border-[#E2E8F0]">
-          <h2 className="text-[15px] md:text-[20px] font-bold text-[#1E293B] mb-3 md:mb-5">
-            {locale === "en" ? "Frequently Bought Together" : "Sageli koos ostetud"}
-          </h2>
-          <div className="flex items-center gap-3 overflow-x-auto scrollbar-hide -mx-4 px-4 md:mx-0 md:px-0 md:flex-wrap">
-            {/* Main product */}
-            <a
-              href={`/${locale}/toode/` + product.handle}
-              className="flex flex-col items-center p-4 border border-[#D97706]/30 bg-[#FFFBEB] rounded-lg w-[200px] shrink-0"
-            >
-              {product.thumbnail && (
-                <div className="w-[100px] h-[100px] bg-white rounded-lg overflow-hidden mb-2 shrink-0">
-                  <img src={product.thumbnail} alt={localizedTitle} className="w-full h-full object-contain p-1" />
-                </div>
-              )}
-              <p className="text-xs text-[#64748B] mb-0.5">{locale === "en" ? "This item" : "See toode"}</p>
-              <p className="text-xs font-medium text-[#1E293B] leading-snug line-clamp-2 text-center">{truncate(localizedTitle, 60)}</p>
-              {price && <p className="text-sm font-bold text-[#1E293B] mt-1">{formatPrice(price.calculated_amount, price.currency_code)}</p>}
-            </a>
-            {/* Plus signs + related products */}
-            {koosProducts.map((kp) => (
-              <div key={kp.id} className="flex items-center gap-3">
-                <span className="text-3xl text-[#64748B] font-light shrink-0">+</span>
-                <a
-                  href={`/${locale}/toode/` + kp.handle}
-                  className="flex flex-col items-center p-4 border border-[#E2E8F0] bg-white hover:border-[#D97706]/40 rounded-lg transition-colors duration-200 w-[200px] shrink-0"
-                >
-                  {kp.thumbnail && (
-                    <div className="w-[100px] h-[100px] bg-[#F1F5F9] rounded-lg overflow-hidden mb-2 shrink-0">
-                      <img src={kp.thumbnail} alt={kp.title} className="w-full h-full object-contain p-1" />
-                    </div>
-                  )}
-                  <p className="text-xs font-medium text-[#1E293B] leading-snug line-clamp-2 text-center">{truncate(kp.title, 60)}</p>
-                  {kp.variants?.[0]?.calculated_price && <p className="text-sm font-bold text-[#1E293B] mt-1">{formatPrice(kp.variants[0].calculated_price.calculated_amount, kp.variants[0].calculated_price.currency_code)}</p>}
-                </a>
-              </div>
-            ))}
-            {/* Total price */}
-            {(() => {
-              const mainPrice = price?.calculated_amount || 0
-              const koosTotal = koosProducts.reduce((sum, kp) => {
-                const kpPrice = kp.variants?.[0]?.calculated_price?.calculated_amount || 0
-                return sum + kpPrice
-              }, mainPrice)
-              const currencyCode = price?.currency_code || "eur"
-              return (
-                <div className="flex flex-col items-center justify-center ml-auto p-4 border border-[#E2E8F0] bg-white rounded-lg min-w-[140px]">
-                  <span className="text-xs text-[#64748B] mb-1">{locale === "en" ? "Total:" : "Kokku:"}</span>
-                  <p className="font-bold text-xl text-[#1E293B]">
-                    {formatPrice(koosTotal, currencyCode)}
-                  </p>
-                </div>
-              )
-            })()}
-          </div>
-        </section>
-      )}
-
-      {/* Best Sellers in Category — horizontal scroll mobile */}
-      {bestSellers.length > 0 && (
-        <section className="mt-8 md:mt-12 pt-6 md:pt-10 border-t border-[#E2E8F0]">
-          <h2 className="text-[15px] md:text-[20px] font-bold text-[#1E293B] mb-3 md:mb-6">
-            {locale === "en" ? `Best in ${categoryName}` : `Parimad kategoorias ${categoryName}`}
-          </h2>
-          <div className="md:hidden overflow-x-auto scrollbar-hide -mx-4 px-4">
-            <div className="flex gap-3" style={{ width: "max-content" }}>
-              {bestSellers.map((p) => (
-                <div key={p.id} className="w-[150px] shrink-0">
-                  <VevorProductCard product={p} locale={locale} />
-                </div>
-              ))}
-            </div>
-          </div>
-          <div className="hidden md:grid grid-cols-3 lg:grid-cols-5 gap-4">
-            {bestSellers.map((p) => (
-              <VevorProductCard key={p.id} product={p} locale={locale} />
-            ))}
-          </div>
-        </section>
-      )}
+      {/* Related products — loaded client-side to keep SSR fast */}
+      <RelatedProducts
+        productId={product.id}
+        categoryId={categoryId}
+        searchQuery={relatedSearchQuery}
+        locale={locale}
+        categoryName={categoryName}
+        productTitle={localizedTitle}
+        productThumbnail={product.thumbnail}
+        productHandle={product.handle}
+        productPrice={price}
+      />
 
       {/* Recently viewed — XLM-47 */}
       <RecentlyViewed currentId={product.id} />

@@ -1,4 +1,4 @@
-import Link from "next/link"
+import Link from "@/components/SafeLink"
 import Image from "next/image"
 import { Suspense } from "react"
 import { getCategoryByHandle, getProducts } from "@/lib/medusa"
@@ -276,8 +276,10 @@ export default async function CategoryPage({ params, searchParams }: Props) {
           <Link href={`/${locale}`} className="text-[#64748B] hover:text-[#D97706] transition-colors duration-200">{locale === "et" ? "Avaleht" : "Home"}</Link>
           {category && (() => {
             const ancestors: Array<{ name: string; handle: string }> = []
+            const visited = new Set<string>()
             let parent = category.parent_category
-            while (parent) {
+            while (parent && !visited.has((parent as any).id) && ancestors.length < 20) {
+              visited.add((parent as any).id)
               ancestors.unshift({ name: parent.name, handle: parent.handle })
               parent = (parent as any).parent_category
             }

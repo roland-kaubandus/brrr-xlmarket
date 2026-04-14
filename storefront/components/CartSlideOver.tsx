@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect, useCallback } from "react"
-import Link from "next/link"
+import Link from "@/components/SafeLink"
 import { X, ShoppingCart, Trash2 } from "lucide-react"
 
 type CartItem = {

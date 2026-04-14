@@ -1,4 +1,4 @@
-import fs from "fs"
+import { readFile } from "node:fs/promises"
 import path from "path"
 
 export type VevorFeedEntry = {
@@ -37,10 +37,12 @@ type FeedCache = {
 }
 
 let cachedFeed: FeedCache | null | undefined
+let feedLoadInflight: Promise<FeedCache | null> | null = null
 
-function readFeedCache(): FeedCache | null {
-  if (cachedFeed !== undefined) return cachedFeed
+const FEED_CACHE_TTL_MS = 10 * 60 * 1000 // 10 min
+let feedCachedAt = 0
 
+async function loadFeedCache(): Promise<FeedCache | null> {
   const candidates = [
     path.resolve(/* turbopackIgnore: true */ process.cwd(), "../backend/data/feeds/vevor-feed-cache.json"),
     path.resolve(/* turbopackIgnore: true */ process.cwd(), "../data/feeds/vevor-feed-cache.json"),
@@ -48,20 +50,65 @@ function readFeedCache(): FeedCache | null {
 
   for (const candidate of candidates) {
     try {
-      const raw = fs.readFileSync(candidate, "utf-8")
-      cachedFeed = JSON.parse(raw) as FeedCache
-      return cachedFeed
+      const raw = await readFile(candidate, "utf-8")
+      return JSON.parse(raw) as FeedCache
     } catch {
       continue
     }
   }
 
-  cachedFeed = null
-  return cachedFeed
+  return null
+}
+
+async function readFeedCacheAsync(): Promise<FeedCache | null> {
+  const now = Date.now()
+  if (cachedFeed !== undefined && cachedFeed !== null && now - feedCachedAt < FEED_CACHE_TTL_MS) {
+    return cachedFeed
+  }
+
+  if (feedLoadInflight) return feedLoadInflight
+
+  feedLoadInflight = Promise.race([
+    loadFeedCache(),
+    new Promise<null>((resolve) => setTimeout(() => resolve(null), 1000)),
+  ])
+    .then((result) => {
+      cachedFeed = result
+      feedCachedAt = Date.now()
+      feedLoadInflight = null
+      return result
+    })
+    .catch(() => {
+      feedLoadInflight = null
+      return cachedFeed ?? null
+    })
+
+  return feedLoadInflight
+}
+
+// Sync wrapper kept for backward compat — returns cached data only, never blocks
+function readFeedCache(): FeedCache | null {
+  if (cachedFeed !== undefined) return cachedFeed
+  // Trigger async load for next call
+  readFeedCacheAsync()
+  return null
 }
 
 function normalizeLookup(value?: string | null) {
   return String(value || "").trim()
+}
+
+export async function getVevorFeedEntryAsync(params: { vevorSku?: string | null; vevorUpc?: string | null }): Promise<VevorFeedEntry | null> {
+  const feed = await readFeedCacheAsync()
+  if (!feed) return null
+
+  const sku = normalizeLookup(params.vevorSku)
+  if (sku && feed.bySku[sku]) return feed.bySku[sku]
+
+  const upc = normalizeLookup(params.vevorUpc)
+  if (upc && feed.byUpc[upc]) return feed.byUpc[upc]
+
+  return null
 }
 
 export function getVevorFeedEntry(params: { vevorSku?: string | null; vevorUpc?: string | null }): VevorFeedEntry | null {

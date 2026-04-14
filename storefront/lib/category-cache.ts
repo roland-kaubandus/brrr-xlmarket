@@ -10,6 +10,8 @@ let inflight: Promise<ProductCategory[]> | null = null
  * Returns all categories from a shared in-memory cache.
  * Deduplicates concurrent requests so only one Medusa fetch runs at a time.
  */
+const INFLIGHT_TIMEOUT_MS = 5000
+
 export async function getCategoriesCached(): Promise<ProductCategory[]> {
   const now = Date.now()
   if (cached && now - cachedAt < CACHE_TTL_MS) {
@@ -18,7 +20,12 @@ export async function getCategoriesCached(): Promise<ProductCategory[]> {
 
   if (inflight) return inflight
 
-  inflight = getCategories()
+  inflight = Promise.race([
+    getCategories(),
+    new Promise<never>((_, reject) =>
+      setTimeout(() => reject(new Error("Category fetch timeout")), INFLIGHT_TIMEOUT_MS)
+    ),
+  ])
     .then((cats) => {
       cached = cats
       cachedAt = Date.now()

@@ -1,6 +1,6 @@
 "use client"
 import { useState, useEffect, useCallback } from "react"
-import Link from "next/link"
+import Link from "@/components/SafeLink"
 import Image from "next/image"
 import posthog from "posthog-js"
 

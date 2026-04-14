@@ -1,7 +1,7 @@
 "use client"
 
 import Image from "next/image"
-import Link from "next/link"
+import Link from "@/components/SafeLink"
 import { useEffect, useState, useCallback } from "react"
 import { usePathname } from "next/navigation"
 import { formatPrice } from "@/lib/medusa"

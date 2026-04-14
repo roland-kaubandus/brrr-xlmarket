@@ -1,16 +1,26 @@
 import type { MetadataRoute } from "next"
 
+export const revalidate = 3600 // regenerate sitemap at most every 1 hour
+export const dynamic = "force-static"
+
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://xlmarket.store"
 const MEDUSA_URL = process.env.NEXT_PUBLIC_MEDUSA_URL!
 const API_KEY = process.env.NEXT_PUBLIC_MEDUSA_KEY!
 const REGION_ID = process.env.NEXT_PUBLIC_REGION_ID!
 
 async function medusaFetch<T>(path: string): Promise<T> {
-  const res = await fetch(`${MEDUSA_URL}${path}`, {
-    headers: { "x-publishable-api-key": API_KEY },
-  })
-  if (!res.ok) throw new Error(`Medusa ${res.status}`)
-  return res.json()
+  const controller = new AbortController()
+  const timeout = setTimeout(() => controller.abort(), 3000)
+  try {
+    const res = await fetch(`${MEDUSA_URL}${path}`, {
+      headers: { "x-publishable-api-key": API_KEY },
+      signal: controller.signal,
+    })
+    if (!res.ok) throw new Error(`Medusa ${res.status}`)
+    return res.json()
+  } finally {
+    clearTimeout(timeout)
+  }
 }
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
@@ -39,12 +49,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }
   }
 
+  const deadline = Date.now() + 15_000 // 15s max for entire sitemap generation
+
   try {
     // Categories (fetch in batches)
     let catOffset = 0
     const catLimit = 200
     let catHasMore = true
-    while (catHasMore) {
+    while (catHasMore && Date.now() < deadline) {
       const catRes = await medusaFetch<{ product_categories: Array<{ handle: string }>; count: number }>(
         `/store/product-categories?limit=${catLimit}&offset=${catOffset}`
       )
@@ -65,7 +77,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     let offset = 0
     const limit = 500
     let hasMore = true
-    while (hasMore) {
+    while (hasMore && Date.now() < deadline) {
       const prodRes = await medusaFetch<{ products: Array<{ handle: string; updated_at?: string }>; count: number }>(
         `/store/products?region_id=${REGION_ID}&limit=${limit}&offset=${offset}&fields=handle,updated_at`
       )
@@ -83,7 +95,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       hasMore = offset < prodRes.count
     }
   } catch {
-    // If Medusa is unavailable, return static pages only
+    // If Medusa is unavailable or times out, return whatever entries we have so far
   }
 
   return entries

@@ -1,6 +1,6 @@
 "use client"
 
-import Link from "next/link"
+import Link from "@/components/SafeLink"
 import { usePathname } from "next/navigation"
 import { translateLocalePath, type Locale } from "@/lib/i18n"
 

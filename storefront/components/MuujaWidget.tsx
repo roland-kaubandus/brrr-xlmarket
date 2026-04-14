@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react"
 import { useRouter, usePathname } from "next/navigation"
-import Link from "next/link"
+import Link from "@/components/SafeLink"
 
 type Product = {
   id: string

@@ -24,9 +24,13 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ error: "cart_id is required and must be a valid ID" }, { status: 400 })
   }
 
-  const res = await medusaProxy(
-    `/store/carts/${cartId}?fields=*items,*items.variant,*items.variant.product`
-  )
-  const data = await res.json()
-  return NextResponse.json(data, { status: res.status })
+  try {
+    const res = await medusaProxy(
+      `/store/carts/${cartId}?fields=*items,*items.variant,*items.variant.product`
+    )
+    const data = await res.json()
+    return NextResponse.json(data, { status: res.status })
+  } catch {
+    return NextResponse.json({ error: "Failed to connect to server" }, { status: 503 })
+  }
 }

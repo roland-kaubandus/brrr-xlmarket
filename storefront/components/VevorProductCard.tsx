@@ -1,7 +1,7 @@
 "use client"
 import { useState, useEffect } from "react"
 import Image from "next/image"
-import Link from "next/link"
+import Link from "@/components/SafeLink"
 import { usePathname } from "next/navigation"
 import { Product, formatPrice } from "@/lib/medusa"
 import { useCompare } from "./CompareContext"
@@ -133,7 +133,7 @@ export default function VevorProductCard({ product, locale }: { product: Product
 
   return (
     <article className="bg-white rounded-xl overflow-hidden border border-transparent hover:border-[#E2E8F0] hover:shadow-[0_4px_20px_rgba(0,0,0,0.06)] transition-all duration-300 relative group">
-      <Link href={`/${resolvedLocale}/toode/${product.handle}`} className="block">
+      <Link href={`/${resolvedLocale}/toode/${product.handle}`} prefetch={false} className="block">
         <div className="absolute top-3 right-3 z-10 flex items-center gap-1">
           {/* Compare */}
           <button

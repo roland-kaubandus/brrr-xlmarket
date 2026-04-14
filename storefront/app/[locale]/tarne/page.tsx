@@ -1,5 +1,5 @@
 import type { Metadata } from "next"
-import Link from "next/link"
+import Link from "@/components/SafeLink"
 import { Truck, Clock, MapPin, Package } from "lucide-react"
 
 export const metadata: Metadata = {
