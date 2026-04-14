@@ -48,40 +48,55 @@ npm run build && npm run start  # prod (port 3030)
 cd backend && npm run dev       # medusa (port 9001)
 
 # VEVOR import
-node backend/src/scripts/import-vevor-feed.mjs --execute --update
+node scripts/import-vevor-feed.mjs --execute --update
+
+# Backfill sanitized HTML (kiire, ilma XLSX-ita)
+node scripts/backfill-sanitized-html.mjs --execute
 
 # VPS deploy
-rm -rf storefront/.next/cache/fetch-cache
 cd storefront && npm run build
-fuser -k 3030/tcp && nohup npx next start -p 3030 &
+cp -r .next/static .next/standalone/.next/static
+pm2 reload xlmarket-storefront
 ```
 
 ---
 
 ## Gotchas
 
-- **Next.js fetch cache:** Medusa API update jarelt storefront serveerib vana data. Fix: `rm -rf .next/cache/fetch-cache` + restart
-- **MeiliSearch facetDistribution:** Tagastab KOIK category_handles. Filtreeri L1 branch handles manuaalselt (`lib/branches.ts`)
-- **Multiple next-server protsessid:** Vana protsess jaab kuulama. `ss -tlnp | grep 3030` ja kill vana PID
-- **Next.js hangib perioodiliselt:** Kuulab pordil aga ei vasta. Fix: `fuser -k 3030/tcp && sleep 3 && nohup npx next start -p 3030 &`
-- **VEVOR CDN %2B:** Moned failinimed sisaldavad `+` (%2B). ARA decodeURIComponent — CDN nouab kodeeritud URL-e
+- **sanitizeHtml regex:** PEAB kasutama bounded quantifiers! `{0,50}[^{}]{0,300}\{[^}]{0,5000}\}`. Vana nested regex `(?:\s+[charclass]*)*` põhjustas catastrophic backtracking ja kogu serveri hangumise.
+- **MeiliSearch otse brauserist:** ProductGrid küsib `/meili/indexes/products/search` (nginx proxy). Ära kunagi tõsta MeiliSearch päringuid tagasi Next.js API route'i — see oli hangumise põhjus.
+- **sanitizeHtml pre-compute:** Feed import salvestab `sanitized_description` + `sanitized_rich_description` Medusa metadata'sse. Product API route loeb neid, fallback runtime sanitize'ile.
+- **Standalone build static copy:** `npm run build` järel PEAB tegema `cp -r .next/static .next/standalone/.next/static` — muidu CSS puudub!
+- **PM2 deploy:** Kasuta `pm2 reload xlmarket-storefront`, mitte `fuser -k`. 5 cluster workerit, graceful reload.
+- **Next.js fetch cache:** Medusa API update järelt storefront serveerib vana data. Fix: `rm -rf .next/cache/fetch-cache` + rebuild
+- **MeiliSearch facetDistribution:** Tagastab KÕIK category_handles. Filtreeri L1 branch handles manuaalselt (`lib/branches.ts`)
+- **VEVOR CDN %2B:** Mõned failinimed sisaldavad `+` (%2B). ÄRA decodeURIComponent — CDN nõuab kodeeritud URL-e
 - **Medusa admin (Vite):** `allowedHosts: ["xlmarket.store"]` + `backendUrl: "https://xlmarket.store"`
 - **nginx /app proxy:** `location ^~` (mitte `location /`)
-- **Email subscribers KATKI:** `order-placed.ts` ja `order-shipped.ts` kommenteeritud valja
+- **Email subscribers KATKI:** `order-placed.ts` ja `order-shipped.ts` kommenteeritud välja
 - **CORS:** STORE_CORS, ADMIN_CORS, AUTH_CORS peavad sisaldama `https://xlmarket.store`
 
 ---
 
 ## Key files
 
-- `scripts/import-vevor-feed.mjs` — VEVOR XLSX importer (SPU grouping, image dedup)
+- `scripts/import-vevor-feed.mjs` — VEVOR XLSX importer (SPU grouping, image dedup, sanitizeHtml pre-compute)
+- `scripts/backfill-sanitized-html.mjs` — Kerge backfill: sanitized HTML kõigile toodetele (ilma XLSX-ita)
 - `scripts/feed-sync.sh` — Cron sync (4h): download, cache, reindex, stock, feeds
-- `storefront/components/ProductGallery.tsx` — Image gallery + lightbox
-- `storefront/components/BannerCarousel.tsx` — Branch fotod bannerid
-- `storefront/app/[locale]/toode/[handle]/page.tsx` — Toote detail
+- `storefront/lib/sanitize.ts` — HTML sanitizer (KRIITLINE: bounded quantifiers regex!)
+- `storefront/lib/meilisearch.ts` — MeiliSearch client + compound word expansion
+- `storefront/lib/map-meili-hit.ts` — MeiliSearch hit → Product mapper (shared)
+- `storefront/components/ProductGrid.tsx` — Client-side tooteloend, küsib MeiliSearch'i otse brauserist
+- `storefront/components/SafeLink.tsx` — Link wrapper, prefetch=false + 300ms throttle
+- `storefront/app/api/product/[handle]/route.ts` — Toote andmete koondamine (Medusa + MeiliSearch + sanitizeHtml)
+- `storefront/app/api/products/route.ts` — Toote otsingu API (fallback)
+- `storefront/app/[locale]/toode/[handle]/page.tsx` — Toote detail (kerge SSR shell)
+- `storefront/app/[locale]/toode/[handle]/ProductPageClient.tsx` — Bridge: fetchib API, renderdab client-side
+- `storefront/app/[locale]/toode/[handle]/ProductContent.tsx` — Toote UI (client-only)
 - `storefront/app/[locale]/haru/[handle]/page.tsx` — Kategooria leht
 - `storefront/lib/branches.ts` — Branch definitsioonid
-- `storefront/lib/meilisearch.ts` — MeiliSearch client + compound word expansion
+- `storefront/ecosystem.config.js` — PM2 cluster config (5 workerit)
+- `nginx/microcache.conf` — nginx microcache konfiguratsioon
 
 ---
 
