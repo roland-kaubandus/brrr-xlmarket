@@ -488,35 +488,35 @@ export default async function ProductPage({ params }: Props) {
           {/* Tarne / Garantii / Tagastus accordion — XLM-31 */}
           <ProductInfoAccordion locale={locale} />
 
-          {/* Key Features — always visible in info panel */}
-          {sellingPoints.length > 0 && (
-            <div className="mt-6">
-              <h3 className="text-sm font-bold text-[#1E293B] uppercase tracking-wider mb-3">
-                {locale === "et" ? "Omadused" : "Key Features"}
-              </h3>
-              <div className="space-y-3">
-                {sellingPoints.slice(0, 5).map((sp, i) => {
-                  const colonIdx = sp.indexOf(":")
-                  const hasTitle = colonIdx > 0 && colonIdx < 60
-                  const spTitle = hasTitle ? sp.substring(0, colonIdx).trim() : null
-                  const body = hasTitle ? sp.substring(colonIdx + 1).trim() : sp
-                  return (
-                    <div key={i} className="flex items-start gap-3">
-                      <svg className="shrink-0 mt-1" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#059669" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                      <div>
-                        {spTitle && <p className="text-sm font-semibold text-[#1E293B] mb-0.5">{spTitle}</p>}
-                        <p className="text-sm text-[#475569] leading-relaxed">{body}</p>
-                      </div>
-                    </div>
-                  )
-                })}
-              </div>
-            </div>
-          )}
-
           {/* Manuals moved below description */}
         </div>
       </div>
+
+      {/* Key Features — full width below gallery, not in sidebar */}
+      {sellingPoints.length > 0 && (
+        <div className="mt-6 lg:max-w-[60%]">
+          <h3 className="text-sm font-bold text-[#1E293B] uppercase tracking-wider mb-3">
+            {locale === "et" ? "Omadused" : "Key Features"}
+          </h3>
+          <div className="space-y-3">
+            {sellingPoints.slice(0, 5).map((sp, i) => {
+              const colonIdx = sp.indexOf(":")
+              const hasTitle = colonIdx > 0 && colonIdx < 60
+              const spTitle = hasTitle ? sp.substring(0, colonIdx).trim() : null
+              const body = hasTitle ? sp.substring(colonIdx + 1).trim() : sp
+              return (
+                <div key={i} className="flex items-start gap-3">
+                  <svg className="shrink-0 mt-1" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#059669" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  <div>
+                    {spTitle && <p className="text-sm font-semibold text-[#1E293B] mb-0.5">{spTitle}</p>}
+                    <p className="text-sm text-[#475569] leading-relaxed">{body}</p>
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+        </div>
+      )}
 
       {/* ===== ACCORDION SECTIONS — uniform style, left-aligned titles ===== */}
       <div className="mt-12">
@@ -552,7 +552,7 @@ export default async function ProductPage({ params }: Props) {
             <div className="max-w-[800px]">
               <CollapsibleDescription
                 html={sanitizeHtml(richDescription || mainDescriptionHtml || "")}
-                collapsedHeight={richDescription ? 800 : 600}
+                collapsedHeight={richDescription ? 500 : 300}
               />
             </div>
           </CollapsibleSection>
