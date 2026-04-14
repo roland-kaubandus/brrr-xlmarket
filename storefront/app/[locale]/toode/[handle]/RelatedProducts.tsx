@@ -22,6 +22,7 @@ type RelatedProduct = {
 type Props = {
   productId: string
   categoryId: string | null
+  categoryHandle: string | null
   searchQuery: string
   locale: string
   categoryName: string
@@ -40,7 +41,7 @@ function truncate(s: string, n: number) {
 }
 
 export default function RelatedProducts({
-  productId, categoryId, searchQuery, locale, categoryName,
+  productId, categoryId, categoryHandle, searchQuery, locale, categoryName,
   productTitle, productThumbnail, productHandle, productPrice,
 }: Props) {
   const [similar, setSimilar] = useState<RelatedProduct[]>([])
@@ -52,7 +53,8 @@ export default function RelatedProducts({
     const controller = new AbortController()
     const params = new URLSearchParams()
     params.set("product_id", productId)
-    if (categoryId) params.set("category_id", categoryId)
+    if (categoryHandle) params.set("category_handle", categoryHandle)
+    if (locale) params.set("locale", locale)
     if (searchQuery) params.set("q", searchQuery)
 
     fetch(`/api/related-products?${params}`, { signal: controller.signal })

@@ -1,6 +1,6 @@
 "use client"
 
-import Link from "next/link"
+import Link from "@/components/SafeLink"
 import { useMemo, useState } from "react"
 import AddToCartButton from "./AddToCartButton"
 import StickyBuyBar from "@/components/StickyBuyBar"

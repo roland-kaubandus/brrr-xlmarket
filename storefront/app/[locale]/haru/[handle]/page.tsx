@@ -1,10 +1,9 @@
 import Link from "@/components/SafeLink"
 import { notFound } from "next/navigation"
-import { getProducts } from "@/lib/medusa"
 import { getCategoriesCached } from "@/lib/category-cache"
 import { searchProducts } from "@/lib/meilisearch"
 import { BRANCHES, getBranchBySlug } from "@/lib/branches"
-import VevorProductCard from "@/components/VevorProductCard"
+import ProductGrid from "@/components/ProductGrid"
 import BranchFilters from "@/components/BranchFilters"
 import SubcategoryGrid from "@/components/SubcategoryGrid"
 import { categoryPath } from "@/lib/i18n"
@@ -13,34 +12,6 @@ export const revalidate = 3600
 const DEFAULT_LIMIT = 12
 const VALID_LIMITS = [12, 24, 48, 100]
 
-function mapSearchHitToProduct(hit: any) {
-  return {
-    id: hit.id,
-    title: hit.title,
-    handle: hit.handle,
-    description: hit.description,
-    thumbnail: hit.thumbnail,
-    images: [],
-    variants: [
-      {
-        id: hit.id + "_v",
-        title: "Default",
-        calculated_price: {
-          calculated_amount: Math.round(hit.price * 100),
-          original_amount: Math.round(hit.price * 100),
-          currency_code: "eur",
-        },
-      },
-    ],
-    categories: hit.categories.map((name: string, i: number) => ({
-      id: `cat_${i}`,
-      name,
-      handle: hit.category_handles?.[i] || "",
-      parent_category_id: null,
-    })),
-    created_at: new Date(hit.created_at * 1000).toISOString(),
-  }
-}
 
 type Props = {
   params: Promise<{ handle: string; locale: string }>
@@ -92,7 +63,6 @@ export default async function BranchLandingPage({ params, searchParams }: Props)
   if (max) branchFilters.push(`price <= ${parseFloat(max)}`)
   if (currentInStock) branchFilters.push("in_stock = true")
 
-  let products: any[] = []
   let totalCount = 0
   let facetDistribution: Record<string, Record<string, number>> | undefined
   let facetStats: Record<string, { min: number; max: number }> | undefined
@@ -101,7 +71,7 @@ export default async function BranchLandingPage({ params, searchParams }: Props)
     try {
       const meiliResult = await searchProducts({
         q: "",
-        limit: itemsLimit,
+        limit: 0,
         offset: 0,
         filter: branchFilters,
         sort: SORT_MAP[currentSort] || ["created_at:desc"],
@@ -110,14 +80,8 @@ export default async function BranchLandingPage({ params, searchParams }: Props)
       totalCount = meiliResult.totalHits || meiliResult.estimatedTotalHits || 0
       facetDistribution = meiliResult.facetDistribution
       facetStats = meiliResult.facetStats
-      products = meiliResult.hits.map(mapSearchHitToProduct)
     } catch {
-      const parentCategory = allCategories.find((c) => c.handle === branch.categoryHandle)
-      if (parentCategory) {
-        const res = await getProducts({ category_id: [parentCategory.id], limit: itemsLimit, offset: 0, order: "-created_at" })
-        products = res.products
-        totalCount = res.count
-      }
+      // MeiliSearch unavailable — facets and counts will be empty
     }
   }
 
@@ -146,6 +110,8 @@ export default async function BranchLandingPage({ params, searchParams }: Props)
     : null
   const hasMoreProducts = totalCount > itemsLimit
   const nextLimit = VALID_LIMITS.find((l) => l > itemsLimit) || VALID_LIMITS[VALID_LIMITS.length - 1]
+  const clientFilterStr = branchFilters.join(";")
+  const clientSortStr = (SORT_MAP[currentSort] || ["created_at:desc"])[0]
 
   function branchUrl(overrides: Record<string, string>) {
     const params = new URLSearchParams()
@@ -269,12 +235,19 @@ export default async function BranchLandingPage({ params, searchParams }: Props)
             />
 
             {/* Product grid */}
-            {products.length > 0 ? (
-              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-5">
-                {products.map((product: any) => (
-                  <VevorProductCard key={product.id} product={product} />
-                ))}
-              </div>
+            {totalCount > 0 ? (
+              <ProductGrid
+                fetchParams={{
+                  q: "",
+                  filter: clientFilterStr,
+                  sort: clientSortStr,
+                  limit: itemsLimit,
+                  offset: 0,
+                  locale,
+                }}
+                locale={locale}
+                className="sm:gap-5"
+              />
             ) : (
               <div className="rounded-2xl border border-soft-border bg-silver px-6 py-12 text-center">
                 <h3 className="font-[family-name:var(--font-dm-sans)] font-[700] text-xl text-off-black mb-2">
@@ -293,7 +266,7 @@ export default async function BranchLandingPage({ params, searchParams }: Props)
             )}
 
             {/* Näita rohkem + lehel selector */}
-            {products.length > 0 && (
+            {totalCount > 0 && (
               <div className="flex flex-col sm:flex-row items-center justify-between mt-10 gap-4">
                 {hasMoreProducts ? (
                   <Link

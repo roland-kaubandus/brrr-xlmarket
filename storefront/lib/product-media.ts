@@ -1,5 +1,6 @@
 import { readdir } from "node:fs/promises"
 import path from "node:path"
+import { cache } from "react"
 
 type ProductMedia = {
   images: Array<{ id: string; url: string }>
@@ -21,7 +22,7 @@ async function safeReadDir(targetPath: string) {
   }
 }
 
-export async function getProductMedia(params: {
+export const getProductMedia = cache(async function getProductMedia(params: {
   vevorUpc?: string | null
   vevorSku?: string | null
 }): Promise<ProductMedia> {
@@ -54,4 +55,4 @@ export async function getProductMedia(params: {
     }))
 
   return { images, manuals }
-}
+})

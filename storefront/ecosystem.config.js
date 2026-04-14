@@ -3,7 +3,7 @@ module.exports = {
     name: "xlmarket-storefront",
     script: ".next/standalone/server.js",
     cwd: "/home/brrr/brrr-xlmarket/storefront",
-    instances: 3,
+    instances: 5,
     exec_mode: "cluster",
     env: {
       NODE_ENV: "production",

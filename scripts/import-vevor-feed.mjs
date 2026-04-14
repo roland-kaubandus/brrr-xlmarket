@@ -269,6 +269,52 @@ async function loadCategoryIds(token) {
   return map;
 }
 
+// ── HTML sanitization (pre-computed at import time) ─────────────────
+
+const ALLOWED_TAGS = new Set([
+  "br", "p", "strong", "em", "b", "i", "ul", "ol", "li", "h1", "h2", "h3",
+  "h4", "h5", "h6", "span", "div", "table", "tr", "td", "th", "thead",
+  "tbody", "a", "img",
+])
+const ALLOWED_ATTRS = {
+  a: new Set(["href"]),
+  img: new Set(["src", "alt", "width", "height"]),
+}
+
+function sanitizeHtml(html) {
+  if (!html) return ""
+  return html
+    .replace(/\/\*[\s\S]*?\*\//g, "")
+    .replace(/\.[a-z][\w-]*(?:\s+[\w.#:\[\]=~^|*>,+\s-]*)*\s*\{[^}]*\}/gi, "")
+    .replace(/<style[^>]*>[\s\S]*?<\/style\s*>/gi, "")
+    .replace(/<script[^>]*>[\s\S]*?<\/script\s*>/gi, "")
+    .replace(/<(iframe|object|embed|form|input|textarea|select)[\s\S]*?<\/\1\s*>/gi, "")
+    .replace(/<(script|style|iframe|object|embed|form|input|textarea|select|label)[^>]*\/?>/gi, "")
+    .replace(/<\/?([a-zA-Z][a-zA-Z0-9]*)\b([^>]*)>/gi, (match, tag, attrs) => {
+      const tagLower = tag.toLowerCase()
+      if (!ALLOWED_TAGS.has(tagLower)) return ""
+      const isClosing = match.startsWith("</")
+      if (isClosing) return `</${tagLower}>`
+      const allowedAttrs = ALLOWED_ATTRS[tagLower]
+      if (!allowedAttrs) return `<${tagLower}>`
+      const safeAttrs = []
+      const attrRegex = /([a-zA-Z-]+)\s*=\s*(?:"([^"]*)"|'([^']*)'|(\S+))/g
+      let attrMatch
+      while ((attrMatch = attrRegex.exec(attrs)) !== null) {
+        const attrName = attrMatch[1].toLowerCase()
+        const attrValue = attrMatch[2] ?? attrMatch[3] ?? attrMatch[4] ?? ""
+        if (!allowedAttrs.has(attrName)) continue
+        if ((attrName === "href" || attrName === "src") && /^\s*javascript:/i.test(attrValue)) continue
+        safeAttrs.push(`${attrName}="${attrValue.replace(/"/g, "&quot;")}"`)
+      }
+      if (tagLower === "a") {
+        safeAttrs.push('rel="noopener noreferrer nofollow"', 'target="_blank"')
+      }
+      const attrStr = safeAttrs.length ? " " + safeAttrs.join(" ") : ""
+      return `<${tagLower}${attrStr}>`
+    })
+}
+
 // ── Image & rich description cleanup ────────────────────────────────
 
 function normalizeImageUrl(url) {
@@ -429,6 +475,9 @@ async function createProductFromGroup(spuGroup, token, catMap, catIds) {
     options: { [option.name]: v.label },
   }))
 
+  // Pre-compute sanitized HTML (avoids CPU-bound regex at request time)
+  const cleanedRich = cleanRichDescription(primaryRow.richDescriptionHtml, allGalleryImages)
+
   const productData = {
     title: primaryRow.title,
     handle,
@@ -445,7 +494,9 @@ async function createProductFromGroup(spuGroup, token, catMap, catIds) {
       vevor_spu: primaryRow.spu || "",
       weight_kg: primaryRow.weight || 0,
       selling_points: primaryRow.sellingPoints || [],
-      rich_description: cleanRichDescription(primaryRow.richDescriptionHtml, allGalleryImages),
+      rich_description: cleanedRich,
+      sanitized_description: sanitizeHtml(primaryRow.description || ""),
+      sanitized_rich_description: cleanedRich ? sanitizeHtml(cleanedRich) : "",
       dimensions: (primaryRow.dimensionHigh || primaryRow.dimensionWide || primaryRow.dimensionLong)
         ? { high: primaryRow.dimensionHigh, wide: primaryRow.dimensionWide, long: primaryRow.dimensionLong, unit: primaryRow.dimensionUnit }
         : null,
@@ -500,6 +551,10 @@ async function createProduct(row, token, catMap, catIds) {
     stats.unmappedCategories.add(l1);
   }
 
+  // Pre-compute sanitized HTML (avoids CPU-bound regex at request time)
+  const galleryImgsForClean = row.originalImages.length > 0 ? row.originalImages : row.galleryImages;
+  const cleanedRichLegacy = cleanRichDescription(row.richDescriptionHtml, galleryImgsForClean);
+
   const productData = {
     title: row.title,
     handle: handle,
@@ -516,10 +571,9 @@ async function createProduct(row, token, catMap, catIds) {
       vevor_spu: row.spu || "",
       weight_kg: row.weight || 0,
       selling_points: row.sellingPoints || [],
-      rich_description: cleanRichDescription(
-        row.richDescriptionHtml,
-        row.originalImages.length > 0 ? row.originalImages : row.galleryImages
-      ),
+      rich_description: cleanedRichLegacy,
+      sanitized_description: sanitizeHtml(row.description || ""),
+      sanitized_rich_description: cleanedRichLegacy ? sanitizeHtml(cleanedRichLegacy) : "",
       dimensions: (row.dimensionHigh || row.dimensionWide || row.dimensionLong)
         ? { high: row.dimensionHigh, wide: row.dimensionWide, long: row.dimensionLong, unit: row.dimensionUnit }
         : null,
@@ -578,6 +632,8 @@ async function updateProduct(productId, row, token) {
   try {
     // Update product status, metadata, and images
     const galleryImgs = row.originalImages.length > 0 ? row.originalImages : row.galleryImages;
+    // Pre-compute sanitized HTML (avoids CPU-bound regex at request time)
+    const cleanedRichUpdate = cleanRichDescription(row.richDescriptionHtml, galleryImgs);
     const updateData = {
       status: "published",
       thumbnail: row.mainOriginalImage || row.image || undefined,
@@ -589,7 +645,9 @@ async function updateProduct(productId, row, token) {
         vevor_spu: row.spu || "",
         weight_kg: row.weight || 0,
         selling_points: row.sellingPoints || [],
-        rich_description: row.richDescriptionHtml ? row.richDescriptionHtml.substring(0, 15000) : null,
+        rich_description: cleanedRichUpdate,
+        sanitized_description: sanitizeHtml(row.description || ""),
+        sanitized_rich_description: cleanedRichUpdate ? sanitizeHtml(cleanedRichUpdate) : "",
         dimensions: (row.dimensionHigh || row.dimensionWide || row.dimensionLong)
           ? { high: row.dimensionHigh, wide: row.dimensionWide, long: row.dimensionLong, unit: row.dimensionUnit }
           : null,

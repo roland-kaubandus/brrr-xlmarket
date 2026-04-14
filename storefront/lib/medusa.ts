@@ -1,3 +1,5 @@
+import { cache } from "react"
+
 const MEDUSA_URL = process.env.NEXT_PUBLIC_MEDUSA_URL!
 const API_KEY = process.env.NEXT_PUBLIC_MEDUSA_KEY!
 const REGION_ID = process.env.NEXT_PUBLIC_REGION_ID!
@@ -8,12 +10,22 @@ const MAX_CONCURRENT_FETCHES = 3
 let activeFetches = 0
 const waitQueue: Array<() => void> = []
 
+const SEMAPHORE_TIMEOUT_MS = 5000
+
 function acquireSlot(): Promise<void> {
   if (activeFetches < MAX_CONCURRENT_FETCHES) {
     activeFetches++
     return Promise.resolve()
   }
-  return new Promise((resolve) => waitQueue.push(resolve))
+  return new Promise((resolve, reject) => {
+    const timer = setTimeout(() => {
+      const idx = waitQueue.indexOf(entry)
+      if (idx >= 0) waitQueue.splice(idx, 1)
+      reject(new Error("Medusa semaphore timeout"))
+    }, SEMAPHORE_TIMEOUT_MS)
+    const entry = () => { clearTimeout(timer); activeFetches++; resolve() }
+    waitQueue.push(entry)
+  })
 }
 
 function releaseSlot() {
@@ -152,13 +164,13 @@ export async function getProducts(params: {
   return medusaFetch<ProductsResponse>(`/store/products?${search}`, { revalidate: 3600 }) // cache 2 min
 }
 
-export async function getProduct(handle: string): Promise<Product | null> {
+export const getProduct = cache(async function getProduct(handle: string): Promise<Product | null> {
   const res = await medusaFetch<ProductsResponse>(
     `/store/products?handle=${handle}&region_id=${REGION_ID}&fields=*variants,*variants.calculated_price,*variants.options,*options,+metadata,+images`,
     { revalidate: 3600 } // cache 5 min
   )
   return res.products[0] || null
-}
+})
 
 // --- Categories ---
 
@@ -191,8 +203,6 @@ export async function getCategories(): Promise<ProductCategory[]> {
 
   return all
 }
-
-import { cache } from "react"
 
 export const getCategoryByHandle = cache(async (handle: string): Promise<ProductCategory | null> => {
   const res = await medusaFetch<CategoriesResponse>(
