@@ -16,30 +16,31 @@ export default function LocaleSwitcher({ locale }: { locale: string }) {
   const enHref = withQuery(switchLocale(pathname, "en"))
 
   return (
-    <div className="flex items-center gap-1 rounded-full border border-white/15 bg-white/5 p-1 text-[12px] font-semibold">
+    <div className="flex items-center gap-0 text-[11px] font-semibold tracking-wide">
       <Link
         href={etHref}
-        className={`px-2.5 py-1 rounded-full transition-colors ${
+        className={`px-1.5 py-1 rounded-l transition-colors ${
           locale === "et"
-            ? "bg-white text-[#1E293B] shadow-sm"
-            : "text-white/75 hover:text-white hover:bg-white/10"
+            ? "text-[#D97706]"
+            : "text-white/50 hover:text-white"
         }`}
         aria-current={locale === "et" ? "page" : undefined}
         aria-label="Switch to Estonian"
       >
-        Eesti
+        ET
       </Link>
+      <span className="text-white/25">|</span>
       <Link
         href={enHref}
-        className={`px-2.5 py-1 rounded-full transition-colors ${
+        className={`px-1.5 py-1 rounded-r transition-colors ${
           locale === "en"
-            ? "bg-white text-[#1E293B] shadow-sm"
-            : "text-white/75 hover:text-white hover:bg-white/10"
+            ? "text-[#D97706]"
+            : "text-white/50 hover:text-white"
         }`}
         aria-current={locale === "en" ? "page" : undefined}
         aria-label="Switch to English"
       >
-        English
+        EN
       </Link>
     </div>
   )

@@ -160,7 +160,7 @@ export default function SearchBar({ locale = "et" }: { locale?: string }) {
 
   return (
     <div ref={wrapperRef} className="relative w-full md:max-w-[600px]">
-      <div className="flex items-center bg-white rounded-full overflow-hidden h-[44px] md:h-[40px]">
+      <div className="flex items-center bg-white/10 border border-white/20 rounded-full overflow-hidden h-[44px] md:h-[40px] transition-colors focus-within:bg-white/[0.18] focus-within:border-[#D97706]">
         <div className="relative flex-1">
           <input
             ref={inputRef}
@@ -170,12 +170,12 @@ export default function SearchBar({ locale = "et" }: { locale?: string }) {
             onFocus={() => results?.hits.length && setIsOpen(true)}
             onKeyDown={handleKey}
             placeholder=""
-            className="w-full bg-transparent pl-4 pr-2 py-2.5 md:py-2 text-[15px] md:text-[14px] text-[#1E293B] placeholder:text-[#64748B] focus:outline-none"
+            className="w-full bg-transparent pl-4 pr-2 py-2.5 md:py-2 text-[15px] md:text-[14px] text-white placeholder:text-white/50 focus:outline-none"
             autoComplete="off"
           />
           {!query && (
             <span
-              className={`absolute left-4 top-1/2 -translate-y-1/2 text-[14px] md:text-[14px] text-[#64748B] pointer-events-none transition-opacity duration-300 ${
+              className={`absolute left-4 top-1/2 -translate-y-1/2 text-[14px] md:text-[14px] text-white/50 pointer-events-none transition-opacity duration-300 ${
                 animating ? "opacity-0" : "opacity-100"
               }`}
             >
@@ -188,7 +188,7 @@ export default function SearchBar({ locale = "et" }: { locale?: string }) {
           <button
             type="button"
             onClick={() => { setQuery(""); setResults(null); setIsOpen(false); inputRef.current?.focus() }}
-            className="px-3 text-[#64748B] hover:text-[#1E293B]"
+            className="px-3 text-white/50 hover:text-white"
             aria-label="Clear"
           >
             <X size={18} strokeWidth={1.5} />
