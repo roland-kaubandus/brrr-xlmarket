@@ -36,20 +36,20 @@ function CategoryCard({
         className="absolute inset-0"
         style={{
           background:
-            "linear-gradient(to top, rgba(15,23,42,0.82) 0%, rgba(15,23,42,0.2) 60%, rgba(15,23,42,0.05) 100%)",
+            "linear-gradient(to top, rgba(15,23,42,0.75) 0%, rgba(15,23,42,0.08) 40%, transparent 100%)",
         }}
       />
 
       {/* Label */}
       <div className="absolute bottom-0 left-0 right-0 p-4">
         <h3
-          className={`font-semibold text-white leading-tight ${
-            isFeature ? "text-xl" : "text-base"
+          className={`font-bold text-white leading-tight drop-shadow-[0_1px_3px_rgba(0,0,0,0.5)] ${
+            isFeature ? "text-2xl md:text-3xl" : "text-lg md:text-xl"
           }`}
         >
           {label}
         </h3>
-        <p className="text-xs text-white/65 mt-0.5">
+        <p className="text-[13px] text-white/75 mt-1 drop-shadow-[0_1px_2px_rgba(0,0,0,0.4)]">
           {cat.productCount} {locale === "et" ? "toodet" : "products"}
         </p>
       </div>
