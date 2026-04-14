@@ -6,6 +6,18 @@
 set -euo pipefail
 
 REPO="/home/brrr/brrr-xlmarket"
+
+# Load environment variables
+if [ -f "$REPO/.env" ]; then
+  set -a
+  source "$REPO/.env"
+  set +a
+fi
+
+# Validate required environment variables
+: "${MEILISEARCH_API_KEY:?Missing MEILISEARCH_API_KEY}"
+: "${MEDUSA_PUBLISHABLE_KEY:?Missing MEDUSA_PUBLISHABLE_KEY}"
+: "${MEDUSA_REGION_ID:?Missing MEDUSA_REGION_ID}"
 FEED_DIR="$REPO/backend/data/feeds"
 LOG_DIR="$REPO/data/feeds/sync-reports"
 FEED_URL="https://ads-feed.s3.us-west-2.amazonaws.com/ads/business/571/vevor-571.xlsx"
@@ -59,7 +71,7 @@ echo "  $MEILI_DOCS"
 # ── Step 5: Update MeiliSearch stock status from feed ──
 echo "[5/6] Syncing stock status to MeiliSearch..."
 STOCK_UPDATED=$(node -e "
-const fs=require('fs'),MEILI='http://127.0.0.1:7700',KEY='MEILI_LEGACY_KEY_REDACTED';
+const fs=require('fs'),MEILI='http://127.0.0.1:7700',KEY='${MEILISEARCH_API_KEY}';
 async function main(){
   const feed=JSON.parse(fs.readFileSync('$FEED_DIR/vevor-feed-cache.json','utf8'));
   const oos=new Set();
@@ -94,9 +106,9 @@ echo "  Stock updated: $STOCK_UPDATED products"
 # ── Step 6: Generate outgoing feeds ──
 echo "[6/6] Generating outgoing feeds (osta.ee, Facebook, sitemap)..."
 cd "$REPO"
-export MEDUSA_API_KEY="pk_d8dce98ddbea51a05856fe088fd0af77fab4675ccc4f03773d064dd4f6d203b3"
+export MEDUSA_API_KEY="${MEDUSA_PUBLISHABLE_KEY}"
 export MEDUSA_URL="http://127.0.0.1:9001"
-export MEDUSA_REGION_ID="reg_01KMRXWSNXSYE4530A3K2BK86W"
+export MEDUSA_REGION_ID="${MEDUSA_REGION_ID}"
 node scripts/generate-osta-feed.mjs 2>&1 | tail -2
 node scripts/generate-sitemap.mjs 2>&1 | tail -2
 node scripts/generate-facebook-feed.mjs 2>&1 | tail -2
