@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { usePathname } from "next/navigation"
-import Link from "next/link"
+import Link from "@/components/SafeLink"
 import { Heart, Trash2 } from "lucide-react"
 import { categoryPath } from "@/lib/i18n"
 

@@ -2,25 +2,54 @@ const MEDUSA_URL = process.env.NEXT_PUBLIC_MEDUSA_URL!
 const API_KEY = process.env.NEXT_PUBLIC_MEDUSA_KEY!
 const REGION_ID = process.env.NEXT_PUBLIC_REGION_ID!
 const FETCH_TIMEOUT_MS = 3000
+const MAX_CONCURRENT_FETCHES = 3
+
+// Semaphore to limit concurrent Medusa API calls
+let activeFetches = 0
+const waitQueue: Array<() => void> = []
+
+function acquireSlot(): Promise<void> {
+  if (activeFetches < MAX_CONCURRENT_FETCHES) {
+    activeFetches++
+    return Promise.resolve()
+  }
+  return new Promise((resolve) => waitQueue.push(resolve))
+}
+
+function releaseSlot() {
+  const next = waitQueue.shift()
+  if (next) {
+    next() // hand slot to next waiter
+  } else {
+    activeFetches--
+  }
+}
 
 async function medusaFetch<T>(path: string, options?: RequestInit & { revalidate?: number }): Promise<T> {
+  await acquireSlot()
   const { revalidate, ...fetchOptions } = options || {}
   const controller = new AbortController()
   const timeout = setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS)
-  const res = await fetch(`${MEDUSA_URL}${path}`, {
-    ...fetchOptions,
-    signal: fetchOptions.signal ?? controller.signal,
-    headers: {
-      "x-publishable-api-key": API_KEY,
-      "Content-Type": "application/json",
-      ...fetchOptions?.headers,
-    },
-    next: revalidate !== undefined ? { revalidate } : undefined,
-  }).finally(() => clearTimeout(timeout))
-  if (!res.ok) {
-    throw new Error(`Medusa API error: ${res.status} ${res.statusText}`)
+  try {
+    const res = await fetch(`${MEDUSA_URL}${path}`, {
+      ...fetchOptions,
+      signal: fetchOptions.signal ?? controller.signal,
+      headers: {
+        "x-publishable-api-key": API_KEY,
+        "Content-Type": "application/json",
+        ...fetchOptions?.headers,
+      },
+      next: revalidate !== undefined ? { revalidate } : undefined,
+    })
+    clearTimeout(timeout)
+    if (!res.ok) {
+      throw new Error(`Medusa API error: ${res.status} ${res.statusText}`)
+    }
+    return res.json()
+  } finally {
+    clearTimeout(timeout)
+    releaseSlot()
   }
-  return res.json()
 }
 
 // --- Types ---
@@ -148,8 +177,10 @@ export async function getCategories(): Promise<ProductCategory[]> {
   const all: ProductCategory[] = []
   let offset = 0
   let total = Number.POSITIVE_INFINITY
+  const deadline = Date.now() + 10000
 
   while (offset < total) {
+    if (Date.now() > deadline) break
     const res = await medusaFetch<CategoriesResponse>(buildCategoryQuery(offset), { revalidate: 3600 })
     const page = res.product_categories || []
     all.push(...page)
@@ -161,12 +192,14 @@ export async function getCategories(): Promise<ProductCategory[]> {
   return all
 }
 
-export async function getCategoryByHandle(handle: string): Promise<ProductCategory | null> {
+import { cache } from "react"
+
+export const getCategoryByHandle = cache(async (handle: string): Promise<ProductCategory | null> => {
   const res = await medusaFetch<CategoriesResponse>(
-    `/store/product-categories?handle=${handle}&include_ancestors_tree=true&include_descendants_tree=true`
+    `/store/product-categories?handle=${handle}&include_ancestors_tree=true`
   )
   return res.product_categories[0] || null
-}
+})
 
 // --- Cart ---
 

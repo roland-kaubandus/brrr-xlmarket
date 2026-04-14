@@ -15,9 +15,10 @@ echo "[$(date '+%Y-%m-%d %H:%M:%S')] Healthcheck starting..."
 
 # Check if port is listening at all
 if ! fuser ${PORT}/tcp >/dev/null 2>&1; then
-    echo "[$(date '+%Y-%m-%d %H:%M:%S')] Port ${PORT} not listening — starting storefront"
+    echo "[$(date '+%Y-%m-%d %H:%M:%S')] Port ${PORT} not listening — starting storefront via PM2"
     cd "$STOREFRONT_DIR"
-    NODE_ENV=production nohup node node_modules/.bin/next start -p ${PORT} > "$LOG" 2>&1 &
+    pm2 delete xlmarket-storefront 2>/dev/null
+    pm2 start ecosystem.config.js
     sleep 5
     STATUS=$(check_health)
     echo "[$(date '+%Y-%m-%d %H:%M:%S')] Started, health: HTTP ${STATUS}"
@@ -45,16 +46,13 @@ for i in $(seq 1 $MAX_RETRIES); do
     echo "[$(date '+%Y-%m-%d %H:%M:%S')] Retry $i failed (HTTP ${STATUS})"
 done
 
-# Still unhealthy — restart
-echo "[$(date '+%Y-%m-%d %H:%M:%S')] Restarting storefront..."
-fuser -k ${PORT}/tcp 2>/dev/null
-sleep 2
-
-# Clear stale fetch cache
-find "${STOREFRONT_DIR}/.next/cache/fetch-cache" -type f -delete 2>/dev/null
-
+# Still unhealthy — restart via PM2
+echo "[$(date '+%Y-%m-%d %H:%M:%S')] Restarting storefront via PM2..."
 cd "$STOREFRONT_DIR"
-NODE_ENV=production nohup node node_modules/.bin/next start -p ${PORT} > "$LOG" 2>&1 &
+pm2 reload xlmarket-storefront 2>/dev/null || {
+    pm2 delete xlmarket-storefront 2>/dev/null
+    pm2 start ecosystem.config.js
+}
 sleep 5
 
 STATUS=$(check_health)

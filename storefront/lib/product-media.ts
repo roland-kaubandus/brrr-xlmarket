@@ -12,7 +12,10 @@ const MANUAL_MEDIA_BASE = "/media/manuals"
 
 async function safeReadDir(targetPath: string) {
   try {
-    return await readdir(targetPath, { withFileTypes: true })
+    return await Promise.race([
+      readdir(targetPath, { withFileTypes: true }),
+      new Promise<never>((_, reject) => setTimeout(() => reject(new Error("readdir timeout")), 2000)),
+    ])
   } catch {
     return []
   }

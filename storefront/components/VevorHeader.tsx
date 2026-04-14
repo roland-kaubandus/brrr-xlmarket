@@ -1,4 +1,4 @@
-import Link from "next/link"
+import Link from "@/components/SafeLink"
 import NavCartButton from "@/components/NavCartButton"
 import SearchBar from "@/components/SearchBar"
 import MegaMenu from "@/components/MegaMenu"

@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react"
 import { useRouter, usePathname } from "next/navigation"
-import Link from "next/link"
+import Link from "@/components/SafeLink"
 import { getToken, clearToken, getCustomer, getOrders, type Customer } from "@/lib/auth"
 import { formatPrice } from "@/lib/medusa"
 import posthog from "posthog-js"

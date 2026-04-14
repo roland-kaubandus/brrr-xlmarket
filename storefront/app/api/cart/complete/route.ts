@@ -16,9 +16,14 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "cart_id is required and must be a valid ID" }, { status: 400 })
   }
 
-  const res = await medusaProxy(`/store/carts/${cart_id}/complete`, {
-    method: "POST",
-  })
-  const data = await res.json()
-  return NextResponse.json(data, { status: res.status })
+  try {
+    const res = await medusaProxy(`/store/carts/${cart_id}/complete`, {
+      method: "POST",
+      timeoutMs: 10000, // payment completion needs more time
+    })
+    const data = await res.json()
+    return NextResponse.json(data, { status: res.status })
+  } catch {
+    return NextResponse.json({ error: "Failed to connect to server" }, { status: 503 })
+  }
 }

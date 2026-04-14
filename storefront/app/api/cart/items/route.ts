@@ -22,12 +22,16 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "quantity must be an integer between 1 and 99" }, { status: 400 })
   }
 
-  const res = await medusaProxy(`/store/carts/${cart_id}/line-items`, {
-    method: "POST",
-    body: JSON.stringify({ variant_id, quantity }),
-  })
-  const data = await res.json()
-  return NextResponse.json(data, { status: res.status })
+  try {
+    const res = await medusaProxy(`/store/carts/${cart_id}/line-items`, {
+      method: "POST",
+      body: JSON.stringify({ variant_id, quantity }),
+    })
+    const data = await res.json()
+    return NextResponse.json(data, { status: res.status })
+  } catch {
+    return NextResponse.json({ error: "Failed to connect to server" }, { status: 503 })
+  }
 }
 
 export async function PATCH(req: NextRequest) {
@@ -50,12 +54,16 @@ export async function PATCH(req: NextRequest) {
     return NextResponse.json({ error: "quantity must be an integer between 1 and 99" }, { status: 400 })
   }
 
-  const res = await medusaProxy(`/store/carts/${cart_id}/line-items/${item_id}`, {
-    method: "POST",
-    body: JSON.stringify({ quantity }),
-  })
-  const data = await res.json()
-  return NextResponse.json(data, { status: res.status })
+  try {
+    const res = await medusaProxy(`/store/carts/${cart_id}/line-items/${item_id}`, {
+      method: "POST",
+      body: JSON.stringify({ quantity }),
+    })
+    const data = await res.json()
+    return NextResponse.json(data, { status: res.status })
+  } catch {
+    return NextResponse.json({ error: "Failed to connect to server" }, { status: 503 })
+  }
 }
 
 export async function DELETE(req: NextRequest) {
@@ -75,13 +83,17 @@ export async function DELETE(req: NextRequest) {
     return NextResponse.json({ error: "item_id is required and must be a valid ID" }, { status: 400 })
   }
 
-  const res = await medusaProxy(`/store/carts/${cart_id}/line-items/${item_id}`, {
-    method: "DELETE",
-  })
-  const data = await res.json()
-  // Medusa DELETE tagastab {id, object, deleted, parent} - teisendame {cart} formaati
-  if (data.parent) {
-    return NextResponse.json({ cart: data.parent }, { status: res.status })
+  try {
+    const res = await medusaProxy(`/store/carts/${cart_id}/line-items/${item_id}`, {
+      method: "DELETE",
+    })
+    const data = await res.json()
+    // Medusa DELETE tagastab {id, object, deleted, parent} - teisendame {cart} formaati
+    if (data.parent) {
+      return NextResponse.json({ cart: data.parent }, { status: res.status })
+    }
+    return NextResponse.json(data, { status: res.status })
+  } catch {
+    return NextResponse.json({ error: "Failed to connect to server" }, { status: 503 })
   }
-  return NextResponse.json(data, { status: res.status })
 }

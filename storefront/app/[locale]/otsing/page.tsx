@@ -1,4 +1,4 @@
-import Link from "next/link"
+import Link from "@/components/SafeLink"
 import { Suspense } from "react"
 import { searchProducts, getLocalizedTitle } from "@/lib/meilisearch"
 import { getProducts } from "@/lib/medusa"

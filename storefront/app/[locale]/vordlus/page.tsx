@@ -1,7 +1,7 @@
 "use client"
 import { useCompare } from "@/components/CompareContext"
 import { usePathname } from "next/navigation"
-import Link from "next/link"
+import Link from "@/components/SafeLink"
 
 export default function ComparePage() {
   const { items, remove, clear } = useCompare()

@@ -22,20 +22,24 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "shipping_address is required" }, { status: 400 })
   }
 
-  // Update cart with customer info
-  const updateRes = await medusaProxy(`/store/carts/${cart_id}`, {
-    method: "POST",
-    body: JSON.stringify({
-      email,
-      shipping_address,
-      billing_address: billing_address || shipping_address,
-    }),
-  })
+  try {
+    // Update cart with customer info
+    const updateRes = await medusaProxy(`/store/carts/${cart_id}`, {
+      method: "POST",
+      body: JSON.stringify({
+        email,
+        shipping_address,
+        billing_address: billing_address || shipping_address,
+      }),
+    })
 
-  if (!updateRes.ok) {
-    const err = await updateRes.json()
-    return NextResponse.json(err, { status: updateRes.status })
+    if (!updateRes.ok) {
+      const err = await updateRes.json()
+      return NextResponse.json(err, { status: updateRes.status })
+    }
+
+    return NextResponse.json(await updateRes.json())
+  } catch {
+    return NextResponse.json({ error: "Failed to connect to server" }, { status: 503 })
   }
-
-  return NextResponse.json(await updateRes.json())
 }

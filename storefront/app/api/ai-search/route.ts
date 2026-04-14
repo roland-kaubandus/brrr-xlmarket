@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server"
 import { searchProducts } from "@/lib/meilisearch"
-import { execFileSync } from "child_process"
-import { writeFileSync, readFileSync, unlinkSync, existsSync } from "fs"
+import { spawn } from "child_process"
+import { writeFile, readFile, unlink } from "fs/promises"
 import { tmpdir } from "os"
 import { join } from "path"
 
@@ -43,21 +43,38 @@ async function decomposeIntent(query: string): Promise<DecomposedIntent> {
   const tmpOut = join(tmpdir(), "xlm-ai-out-" + Date.now() + ".txt")
 
   try {
-    writeFileSync(tmpIn, systemPrompt)
-    execFileSync("claude", [
-      "--dangerously-skip-permissions",
-      "-p",
-      "Loe fail " + tmpIn + " ja kirjuta vastus (ainult JSON objekt) faili " + tmpOut,
-      "--max-turns",
-      "3",
-    ], {
-      timeout: 30000,
-      stdio: ["ignore", "pipe", "pipe"],
-      cwd: "/home/brrr",
+    await writeFile(tmpIn, systemPrompt)
+
+    await new Promise<void>((resolve, reject) => {
+      const timeout = setTimeout(() => {
+        child.kill("SIGKILL")
+        reject(new Error("claude CLI timed out after 5s"))
+      }, 5000)
+
+      const child = spawn("claude", [
+        "--dangerously-skip-permissions",
+        "-p",
+        "Loe fail " + tmpIn + " ja kirjuta vastus (ainult JSON objekt) faili " + tmpOut,
+        "--max-turns",
+        "3",
+      ], {
+        stdio: ["ignore", "pipe", "pipe"],
+        cwd: "/home/brrr",
+      })
+
+      child.on("close", (code) => {
+        clearTimeout(timeout)
+        if (code === 0) resolve()
+        else reject(new Error("claude CLI exited with code " + code))
+      })
+
+      child.on("error", (err) => {
+        clearTimeout(timeout)
+        reject(err)
+      })
     })
 
-    if (!existsSync(tmpOut)) throw new Error("No output file")
-    const raw = readFileSync(tmpOut, "utf8")
+    const raw = await readFile(tmpOut, "utf8")
     const match = raw.match(/\{[\s\S]*?\}/)
     if (!match) throw new Error("No JSON found in output")
     return JSON.parse(match[0])
@@ -69,8 +86,8 @@ async function decomposeIntent(query: string): Promise<DecomposedIntent> {
       explanation: "",
     }
   } finally {
-    try { unlinkSync(tmpIn) } catch {}
-    try { unlinkSync(tmpOut) } catch {}
+    await unlink(tmpIn).catch(() => {})
+    await unlink(tmpOut).catch(() => {})
   }
 }
 

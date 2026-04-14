@@ -1,7 +1,9 @@
 import type { NextConfig } from "next"
 
 const nextConfig: NextConfig = {
+  output: "standalone",
   images: {
+    unoptimized: true,
     remotePatterns: [
       {
         protocol: "https",
@@ -26,6 +28,8 @@ const nextConfig: NextConfig = {
     return [
       { source: "/:locale/cart", destination: "/:locale/ostukorv", permanent: true },
       { source: "/:locale/tarnetingimused", destination: "/:locale/tarne", permanent: true },
+      { source: "/:locale/categories/:handle", destination: "/:locale/kategooriad/:handle", permanent: true },
+      { source: "/:locale/categories", destination: "/:locale/kategooriad", permanent: true },
     ]
   },
 }

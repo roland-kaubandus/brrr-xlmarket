@@ -1,6 +1,6 @@
 "use client"
 
-import Link from "next/link"
+import Link from "@/components/SafeLink"
 import { useCompare, type CompareItem } from "./CompareContext"
 
 type Props = {

@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import Link from "next/link"
+import Link from "@/components/SafeLink"
 
 export default function CookieConsent({ locale = "et" }: { locale?: string }) {
   const [visible, setVisible] = useState(false)

@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { useRouter, usePathname } from "next/navigation"
-import Link from "next/link"
+import Link from "@/components/SafeLink"
 import { register, createCustomerProfile, setToken } from "@/lib/auth"
 import posthog from "posthog-js"
 

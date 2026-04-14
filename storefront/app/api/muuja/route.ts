@@ -85,14 +85,23 @@ export async function POST(request: NextRequest) {
     }
     if (sortRules.length) meiliBody.sort = sortRules
 
-    const res = await fetch(MEILI_HOST + "/indexes/" + INDEX + "/search", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + MEILI_KEY,
-      },
-      body: JSON.stringify(meiliBody),
-    })
+    const controller = new AbortController()
+    const timer = setTimeout(() => controller.abort(), 3000)
+
+    let res: Response
+    try {
+      res = await fetch(MEILI_HOST + "/indexes/" + INDEX + "/search", {
+        method: "POST",
+        signal: controller.signal,
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + MEILI_KEY,
+        },
+        body: JSON.stringify(meiliBody),
+      })
+    } finally {
+      clearTimeout(timer)
+    }
 
     if (!res.ok) {
       console.error("MeiliSearch error", res.status, await res.text())

@@ -1,4 +1,4 @@
-import Link from "next/link"
+import Link from "@/components/SafeLink"
 import { FEATURED_CATEGORIES, type FeaturedCategory } from "@/lib/featured-categories"
 
 function CategoryCard({
@@ -14,6 +14,7 @@ function CategoryCard({
   return (
     <Link
       href={`/${locale}/kategooriad/${cat.handle}`}
+      prefetch={false}
       className={`
         group relative overflow-hidden rounded-xl
         transition-all duration-500
