@@ -9,6 +9,7 @@ module.exports = {
       NODE_ENV: "production",
       PORT: 3030,
       HOSTNAME: "0.0.0.0",
+      ANTHROPIC_API_KEY: process.env.ANTHROPIC_API_KEY || "",
     },
     max_memory_restart: "512M",
     restart_delay: 1000,
