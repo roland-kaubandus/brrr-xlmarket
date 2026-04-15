@@ -5,9 +5,9 @@ export default function SubcategoryPills({ locale }: { locale: string }) {
   return (
     <section className="pt-10">
       <div className="max-w-[1320px] mx-auto px-6">
-        <div className="text-[13px] font-semibold text-[#94A3B8] uppercase tracking-[1.5px] mb-5">
+        <h2 className="text-[22px] font-bold text-[#0F172A] tracking-tight mb-6" style={{ letterSpacing: "-0.3px" }}>
           {locale === "et" ? "Populaarsed alamkategooriad" : "Popular Subcategories"}
-        </div>
+        </h2>
         <div className="flex gap-2.5 overflow-x-auto pb-2 scrollbar-hide" style={{ scrollSnapType: "x proximity", WebkitOverflowScrolling: "touch" }}>
           {SUBCATEGORY_PILLS.map(pill => (
             <Link

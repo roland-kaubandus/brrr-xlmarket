@@ -48,9 +48,9 @@ export default function HomeBentoGrid({ locale }: { locale: string }) {
       <div className="max-w-[1320px] mx-auto px-6">
         {/* Section header */}
         <div className="flex items-center justify-between mb-5">
-          <span className="text-[13px] font-semibold text-[#94A3B8] uppercase tracking-[1.5px]">
+          <h2 className="text-[22px] font-bold text-[#0F172A] tracking-tight" style={{ letterSpacing: "-0.3px" }}>
             {locale === "et" ? "Kategooriad" : "Shop by Category"}
-          </span>
+          </h2>
           <Link
             href={`/${locale}/kategooriad`}
             className="text-[13px] font-semibold text-[#D97706] flex items-center gap-1 hover:gap-2 transition-all"

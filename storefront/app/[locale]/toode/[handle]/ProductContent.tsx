@@ -36,6 +36,7 @@ export type ProductContentProps = {
   breadcrumbItems: Array<{ name: string; url: string }>
   categoryId: string | null
   categoryHandle: string | null
+  categoryHandles?: string[]
   categoryName: string
   relatedSearchQuery: string
   priceFormatted: string
@@ -101,7 +102,7 @@ export default function ProductContent(props: ProductContentProps) {
   const {
     locale, product, localizedTitle, images, specs, sellingPoints,
     mainDescriptionHtml, richDescription, manualLinks, productTypeTrail,
-    categoryId, categoryHandle, categoryName, relatedSearchQuery,
+    categoryId, categoryHandle, categoryHandles, categoryName, relatedSearchQuery,
     priceFormatted, priceAmount, priceCurrency, originalAmount,
     compareItem, _categoryPathFn,
   } = props
@@ -190,8 +191,22 @@ export default function ProductContent(props: ProductContentProps) {
         </div>
       )}
 
-      {/* Accordion sections */}
+      {/* Description + Specs */}
       <div className="mt-12">
+        {(richDescription || mainDescriptionHtml) && (
+          <div className="border-b border-[#E2E8F0] pb-6 mb-0">
+            <h2 className="text-[17px] font-bold text-[#1E293B] mb-4">
+              {locale === "et" ? "Tootekirjeldus" : "Product Description"}
+            </h2>
+            <div className="max-w-[800px]">
+              <CollapsibleDescription
+                html={richDescription || mainDescriptionHtml || ""}
+                defaultExpanded={true}
+              />
+            </div>
+          </div>
+        )}
+
         {specs.length > 0 && (
           <CollapsibleSection title={locale === "et" ? "Tehnilised andmed" : "Specifications"} defaultOpen={false}>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -213,17 +228,6 @@ export default function ProductContent(props: ProductContentProps) {
                   </div>
                 )
               })}
-            </div>
-          </CollapsibleSection>
-        )}
-
-        {(richDescription || mainDescriptionHtml) && (
-          <CollapsibleSection title={locale === "et" ? "Tootekirjeldus" : "Product Description"} defaultOpen={true}>
-            <div className="max-w-[800px]">
-              <CollapsibleDescription
-                html={richDescription || mainDescriptionHtml || ""}
-                collapsedHeight={richDescription ? 500 : 300}
-              />
             </div>
           </CollapsibleSection>
         )}
@@ -257,6 +261,7 @@ export default function ProductContent(props: ProductContentProps) {
         productId={product.id}
         categoryId={categoryId}
         categoryHandle={categoryHandle}
+        categoryHandles={categoryHandles || []}
         searchQuery={relatedSearchQuery}
         locale={locale}
         categoryName={categoryName}
