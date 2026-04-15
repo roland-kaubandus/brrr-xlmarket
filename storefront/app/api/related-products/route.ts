@@ -2,53 +2,62 @@ import { NextRequest, NextResponse } from "next/server"
 import { searchProducts } from "@/lib/meilisearch"
 import { mapMeiliHitToProduct } from "@/lib/map-meili-hit"
 
+const MIN_RESULTS = 5
+
 export async function GET(req: NextRequest) {
   const productId = req.nextUrl.searchParams.get("product_id") || ""
-  const categoryHandle = req.nextUrl.searchParams.get("category_handle") || ""
-  const q = req.nextUrl.searchParams.get("q") || ""
+  const handlesRaw = req.nextUrl.searchParams.get("category_handles") || ""
   const locale = req.nextUrl.searchParams.get("locale") || "et"
 
-  const categoryFilter = categoryHandle
-    ? [`category_handles = "${categoryHandle}"`]
-    : undefined
+  const handles = handlesRaw.split(",").filter(Boolean)
 
   const safeSearch = (p: Promise<any>) => p.catch(() => ({ hits: [] }))
+  const map = (hits: any[]) => hits.map(h => mapMeiliHitToProduct(h, locale))
+  const exclude = (arr: any[]) => arr.filter((p: any) => p.id !== productId)
 
   try {
-    const [similarRes, koosRes, bestRes] = await Promise.all([
-      safeSearch(searchProducts({
-        q: q || "",
-        limit: 12,
-        filter: categoryFilter,
-        sort: ["created_at:desc"],
-      })),
-      safeSearch(searchProducts({
-        q: q || "",
-        limit: 5,
-        offset: 12,
-        filter: categoryFilter,
-      })),
-      categoryHandle
-        ? safeSearch(searchProducts({
-            q: "",
-            limit: 6,
-            filter: [`category_handles = "${categoryHandle}"`],
-            sort: ["price:desc"],
-          }))
-        : Promise.resolve({ hits: [] }),
-    ])
+    // Try categories from narrowest to broadest until we get enough results
+    let similarHits: any[] = []
+    let bestHandle = handles[0] || ""
 
-    const map = (hits: any[]) => hits.map(h => mapMeiliHitToProduct(h, locale))
-    const filter = (arr: any[]) => arr.filter((p: any) => p.id !== productId)
+    for (const handle of handles) {
+      const res = await safeSearch(searchProducts({
+        q: "",
+        limit: 15,
+        filter: [`category_handles = "${handle}"`],
+        sort: ["created_at:desc"],
+      }))
+      const filtered = (res.hits || []).filter((h: any) => h.id !== productId)
+      if (filtered.length >= MIN_RESULTS) {
+        similarHits = filtered
+        bestHandle = handle
+        break
+      }
+      // Keep widening — use best result so far if it has more
+      if (filtered.length > similarHits.length) {
+        similarHits = filtered
+        bestHandle = handle
+      }
+    }
+
+    // Best in category — use the same handle that gave us enough similar results
+    const bestRes = bestHandle
+      ? await safeSearch(searchProducts({
+          q: "",
+          limit: 15,
+          filter: [`category_handles = "${bestHandle}"`],
+          sort: ["price:desc"],
+        }))
+      : { hits: [] }
 
     return NextResponse.json({
-      similar: filter(map(similarRes.hits)).slice(0, 10),
-      koos: filter(map(koosRes.hits)).slice(0, 3),
-      best: filter(map(bestRes.hits)).slice(0, 5),
+      similar: exclude(map(similarHits)).slice(0, 10),
+      best: exclude(map(bestRes.hits || [])).slice(0, 10),
+      categoryUsed: bestHandle,
     }, {
       headers: { "Cache-Control": "public, s-maxage=300, stale-while-revalidate=600" },
     })
   } catch {
-    return NextResponse.json({ similar: [], koos: [], best: [] }, { status: 200 })
+    return NextResponse.json({ similar: [], best: [] }, { status: 200 })
   }
 }

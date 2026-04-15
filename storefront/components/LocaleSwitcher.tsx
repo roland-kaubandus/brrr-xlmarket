@@ -22,20 +22,20 @@ export default function LocaleSwitcher({ locale }: { locale: string }) {
         className={`px-1.5 py-1 rounded-l transition-colors ${
           locale === "et"
             ? "text-[#D97706]"
-            : "text-white/50 hover:text-white"
+            : "text-[#94A3B8] hover:text-[#1E293B]"
         }`}
         aria-current={locale === "et" ? "page" : undefined}
         aria-label="Switch to Estonian"
       >
         ET
       </Link>
-      <span className="text-white/25">|</span>
+      <span className="text-[#CBD5E1]">|</span>
       <Link
         href={enHref}
         className={`px-1.5 py-1 rounded-r transition-colors ${
           locale === "en"
             ? "text-[#D97706]"
-            : "text-white/50 hover:text-white"
+            : "text-[#94A3B8] hover:text-[#1E293B]"
         }`}
         aria-current={locale === "en" ? "page" : undefined}
         aria-label="Switch to English"
