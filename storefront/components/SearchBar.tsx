@@ -168,7 +168,7 @@ export default function SearchBar({ locale = "et", variant = "dark" }: { locale?
   useEffect(() => () => clearTimeout(timerRef.current), [])
 
   const formatPrice = (price: number) =>
-    new Intl.NumberFormat("et-EE", { style: "currency", currency: "EUR" }).format(price)
+    new Intl.NumberFormat(locale === "en" ? "en-IE" : "et-EE", { style: "currency", currency: "EUR" }).format(price)
 
   const currentPlaceholder = PLACEHOLDER_TEXTS[placeholderIdx]
 
@@ -257,7 +257,7 @@ export default function SearchBar({ locale = "et", variant = "dark" }: { locale?
                 activeIdx === results.hits.length ? "bg-[#FFFBEB]" : ""
               }`}
             >
-              View all results ({results.totalHits.toLocaleString("et-EE")}) &rarr;
+              {locale === "en" ? "View all results" : "Kõik tulemused"} ({results.totalHits.toLocaleString(locale === "en" ? "en-IE" : "et-EE")}) &rarr;
             </button>
           )}
         </div>

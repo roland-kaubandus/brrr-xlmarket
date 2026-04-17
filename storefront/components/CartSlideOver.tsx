@@ -21,8 +21,8 @@ type CartData = {
   currency_code: string
 }
 
-function formatPrice(amount: number, currency = "EUR"): string {
-  return new Intl.NumberFormat("et-EE", { style: "currency", currency }).format(amount / 100)
+function formatPrice(amount: number, currency = "EUR", locale = "et"): string {
+  return new Intl.NumberFormat(locale === "en" ? "en-IE" : "et-EE", { style: "currency", currency }).format(amount / 100)
 }
 
 export default function CartSlideOver({ locale = "et" }: { locale?: string }) {
@@ -157,7 +157,7 @@ export default function CartSlideOver({ locale = "et" }: { locale?: string }) {
                       {item.title}
                     </p>
                     <p className="text-[14px] font-bold text-[#D97706]">
-                      {formatPrice(item.unit_price * item.quantity, item.currency_code)}
+                      {formatPrice(item.unit_price * item.quantity, item.currency_code, locale)}
                     </p>
                     <div className="flex items-center gap-2 mt-2">
                       <div className="flex items-center border border-[#E2E8F0] rounded-lg overflow-hidden">
@@ -179,7 +179,7 @@ export default function CartSlideOver({ locale = "et" }: { locale?: string }) {
             <div className="flex items-center justify-between mb-4">
               <span className="text-[14px] text-[#64748B]">{en ? "Total" : "Kokku"}</span>
               <span className="text-lg font-bold text-[#1E293B]">
-                {formatPrice(cart.total, cart.currency_code)}
+                {formatPrice(cart.total, cart.currency_code, locale)}
               </span>
             </div>
             <Link

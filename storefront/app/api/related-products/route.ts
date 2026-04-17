@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server"
-import { searchProducts } from "@/lib/meilisearch"
+import { searchProducts, isSafeHandleToken, escapeMeiliFilterValue } from "@/lib/meilisearch"
 import { mapMeiliHitToProduct } from "@/lib/map-meili-hit"
 
 const MIN_RESULTS = 5
@@ -9,7 +9,7 @@ export async function GET(req: NextRequest) {
   const handlesRaw = req.nextUrl.searchParams.get("category_handles") || ""
   const locale = req.nextUrl.searchParams.get("locale") || "et"
 
-  const handles = handlesRaw.split(",").filter(Boolean)
+  const handles = handlesRaw.split(",").filter(Boolean).filter(isSafeHandleToken)
 
   const safeSearch = (p: Promise<any>) => p.catch(() => ({ hits: [] }))
   const map = (hits: any[]) => hits.map(h => mapMeiliHitToProduct(h, locale))
@@ -24,7 +24,7 @@ export async function GET(req: NextRequest) {
       const res = await safeSearch(searchProducts({
         q: "",
         limit: 15,
-        filter: [`category_handles = "${handle}"`],
+        filter: [`category_handles = "${escapeMeiliFilterValue(handle)}"`],
         sort: ["created_at:desc"],
       }))
       const filtered = (res.hits || []).filter((h: any) => h.id !== productId)

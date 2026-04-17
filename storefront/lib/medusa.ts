@@ -286,8 +286,13 @@ export async function getCmsContent(): Promise<CmsContent> {
 
 // --- Helpers ---
 
-export function formatPrice(amount: number, currency = "EUR"): string {
-  return new Intl.NumberFormat("et-EE", {
+/** Map our app locales to BCP-47 number-format tags. */
+export function intlLocale(locale?: string): string {
+  return locale === "en" ? "en-IE" : "et-EE"
+}
+
+export function formatPrice(amount: number, currency = "EUR", locale?: string): string {
+  return new Intl.NumberFormat(intlLocale(locale), {
     style: "currency",
     currency,
   }).format(amount / 100)

@@ -115,7 +115,7 @@ export default function VevorProductCard({ product, locale }: { product: Product
         ? items.filter((i) => i.id !== product.id)
         : [...items, {
             id: product.id, handle: product.handle, title: product.title, thumbnail: product.thumbnail,
-            price: price ? new Intl.NumberFormat("et-EE", { style: "currency", currency: price.currency_code }).format(price.calculated_amount / 100) : ""
+            price: price ? new Intl.NumberFormat(resolvedLocale === "en" ? "en-IE" : "et-EE", { style: "currency", currency: price.currency_code }).format(price.calculated_amount / 100) : ""
           }]
       localStorage.setItem("xlmarket_wishlist", JSON.stringify(next))
       setWishlisted(!exists)
@@ -189,41 +189,41 @@ export default function VevorProductCard({ product, locale }: { product: Product
         )}
 
         {/* Product image — 1:1 */}
-        <div className="aspect-square flex items-center justify-center overflow-hidden bg-[#FAFAFA] p-4">
+        <div className="aspect-square flex items-center justify-center overflow-hidden bg-[#FAFAFA] p-4 md:p-6">
           {thumbnailUrl ? (
             <Image
               src={thumbnailUrl}
               alt={product.title}
-              width={300}
-              height={300}
+              width={400}
+              height={400}
               loading="lazy"
               className="max-h-full object-contain transition-transform duration-500 ease-out group-hover:scale-[1.06]"
               sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
             />
           ) : (
-            <div className="flex items-center justify-center h-full text-[#CBD5E1] text-sm">{resolvedLocale === "et" ? "Pilt puudub" : "No image"}</div>
+            <div className="flex items-center justify-center h-full text-[#CBD5E1] text-sm md:text-base">{resolvedLocale === "et" ? "Pilt puudub" : "No image"}</div>
           )}
         </div>
 
         {/* Product info */}
-        <div className="p-3 sm:p-3.5 pt-2.5 sm:pt-3">
-          <h3 className="text-[13px] sm:text-[13px] text-[#334155] line-clamp-2 leading-snug min-h-[2.5em] group-hover:text-[#1E293B] transition-colors">
+        <div className="p-3 sm:p-3.5 md:p-5 pt-2.5 sm:pt-3 md:pt-4">
+          <h3 className="text-[13px] md:text-[16px] text-[#334155] line-clamp-2 leading-snug min-h-[2.5em] group-hover:text-[#1E293B] transition-colors">
             {product.title}
           </h3>
 
           {/* Star rating */}
-          <div className="mt-1.5">
+          <div className="mt-1.5 md:mt-2.5">
             <Stars rating={rating} productId={product.id} />
           </div>
 
           {/* Price */}
           {price && (
-            <div className="mt-2 flex items-baseline gap-2 flex-wrap">
-              <span className="font-bold text-[16px] sm:text-[17px] text-[#1E293B]">
+            <div className="mt-2 md:mt-3 flex items-baseline gap-2 flex-wrap">
+              <span className="font-bold text-[16px] sm:text-[17px] md:text-[22px] text-[#1E293B]">
                 {formatPrice(price.calculated_amount, price.currency_code)}
               </span>
               {discount > 0 && (
-                <span className="text-[11px] sm:text-xs text-[#94A3B8] line-through">
+                <span className="text-[11px] sm:text-xs md:text-sm text-[#94A3B8] line-through">
                   {formatPrice(price.original_amount, price.currency_code)}
                 </span>
               )}
@@ -231,7 +231,7 @@ export default function VevorProductCard({ product, locale }: { product: Product
           )}
 
           {/* Badges row */}
-          <div className="mt-2 flex items-center gap-2.5 text-[11px]">
+          <div className="mt-2 md:mt-3 flex items-center gap-2.5 text-[11px] md:text-[14px]">
             <span className="inline-flex items-center gap-1 text-[#059669]">
               <span className="w-1.5 h-1.5 rounded-full bg-[#059669] inline-block" />
               {resolvedLocale === "et" ? "Laos" : "In Stock"}

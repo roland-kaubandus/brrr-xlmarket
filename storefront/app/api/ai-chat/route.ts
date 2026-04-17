@@ -140,7 +140,34 @@ function detectEscalation(text: string): { shouldEscalate: boolean; reason: stri
   return { shouldEscalate: false, reason: "" }
 }
 
+const RATE_LIMIT = new Map<string, { count: number; resetAt: number }>()
+const RATE_WINDOW_MS = 60_000
+const RATE_MAX = 20
+
+function checkRateLimit(ip: string): boolean {
+  const now = Date.now()
+  const entry = RATE_LIMIT.get(ip)
+  if (!entry || entry.resetAt < now) {
+    RATE_LIMIT.set(ip, { count: 1, resetAt: now + RATE_WINDOW_MS })
+    return true
+  }
+  if (entry.count >= RATE_MAX) return false
+  entry.count++
+  return true
+}
+
 export async function POST(request: Request): Promise<Response> {
+  const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim()
+    || request.headers.get("x-real-ip")
+    || "unknown"
+
+  if (!checkRateLimit(ip)) {
+    return new Response(
+      JSON.stringify({ error: "Too many requests" }),
+      { status: 429, headers: { "Content-Type": "application/json", "Retry-After": "60" } }
+    )
+  }
+
   let body: { messages: Array<{ role: string; content: string }>; locale?: string }
 
   try {
@@ -198,7 +225,13 @@ export async function POST(request: Request): Promise<Response> {
 
         controller.enqueue(encodeEvent({ type: "done" }))
       } catch (err: unknown) {
-        const message = err instanceof Error ? err.message : "Internal server error"
+        const raw = err instanceof Error ? err.message : ""
+        const message = raw === "AI_UNAVAILABLE"
+          ? "AI assistant is temporarily unavailable."
+          : "Something went wrong. Please try again."
+        if (err instanceof Error && raw !== "AI_UNAVAILABLE") {
+          console.error("[ai-chat]", err)
+        }
         controller.enqueue(encodeEvent({ type: "error", message }))
       } finally {
         controller.close()

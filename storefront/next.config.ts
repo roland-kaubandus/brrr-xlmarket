@@ -26,10 +26,11 @@ const nextConfig: NextConfig = {
   // i18n handled via App Router [locale] segments (WO-XLM-010)
   async redirects() {
     return [
-      { source: "/:locale/cart", destination: "/:locale/ostukorv", permanent: true },
-      { source: "/:locale/tarnetingimused", destination: "/:locale/tarne", permanent: true },
-      { source: "/:locale/categories/:handle", destination: "/:locale/kategooriad/:handle", permanent: true },
-      { source: "/:locale/categories", destination: "/:locale/kategooriad", permanent: true },
+      { source: "/:locale(et|en)/cart", destination: "/:locale/ostukorv", permanent: true },
+      { source: "/:locale(et|en)/checkout", destination: "/:locale/tellimus", permanent: true },
+      { source: "/:locale(et|en)/tarnetingimused", destination: "/:locale/tarne", permanent: true },
+      { source: "/:locale(et|en)/categories/:handle", destination: "/:locale/kategooriad/:handle", permanent: true },
+      { source: "/:locale(et|en)/categories", destination: "/:locale/kategooriad", permanent: true },
     ]
   },
 }
