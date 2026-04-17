@@ -5,7 +5,7 @@ import Link from "@/components/SafeLink"
 import { usePathname } from "next/navigation"
 import { ShoppingCart } from "lucide-react"
 
-export default function NavCartButton() {
+export default function NavCartButton({ variant = "light" }: { variant?: "light" | "dark" }) {
   const pathname = usePathname()
   const locale = pathname.split("/")[1] === "en" ? "en" : "et"
   const [count, setCount] = useState(0)
@@ -14,7 +14,6 @@ export default function NavCartButton() {
     try {
       const cartId = localStorage.getItem("xlmarket_cart_id")
       if (!cartId) { setCount(0); return }
-      // Read count from localStorage cache
       const raw = localStorage.getItem("xlmarket_cart_count")
       if (raw) setCount(parseInt(raw, 10) || 0)
     } catch {}
@@ -22,9 +21,8 @@ export default function NavCartButton() {
 
   useEffect(() => {
     updateCount()
-    // Listen for cart updates
     const handler = () => {
-      setTimeout(updateCount, 800) // slight delay to let cart fetch complete
+      setTimeout(updateCount, 800)
     }
     window.addEventListener("cart:open", handler)
     window.addEventListener("storage", updateCount)
@@ -34,10 +32,16 @@ export default function NavCartButton() {
     }
   }, [])
 
+  const isDark = variant === "dark"
+
   return (
     <Link
       href={`/${locale}/ostukorv`}
-      className="relative flex items-center justify-center w-[40px] h-[40px] text-[#1E293B] hover:text-[#D97706] hover:bg-[#FFFBEB] active:scale-95"
+      className={`relative flex items-center justify-center w-[40px] h-[40px] active:scale-95 ${
+        isDark
+          ? "text-white/80 hover:text-[#D97706] hover:bg-white/10"
+          : "text-[#1E293B] hover:text-[#D97706] hover:bg-[#FFFBEB]"
+      }`}
       aria-label="Ostukorv"
     >
       <ShoppingCart size={20} strokeWidth={1.5} />

@@ -1,0 +1,1909 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>XLMarket.eu — B1v2 Bento Heatmap</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   DESIGN TOKENS
+   ============================================================ */
+:root {
+  --navy: #1E293B;
+  --navy-light: #334155;
+  --amber: #D97706;
+  --amber-light: #F59E0B;
+  --amber-glow: rgba(217, 119, 6, 0.12);
+  --bg: #FFFFFF;
+  --card-bg: #FFFFFF;
+  --card-border: #F1F5F9;
+  --text-primary: #0F172A;
+  --text-secondary: #64748B;
+  --text-muted: #94A3B8;
+  --surface-subtle: #F8FAFC;
+  --divider: #E2E8F0;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-pill: 100px;
+  --shadow-card: 0 1px 3px rgba(15,23,42,0.04), 0 1px 2px rgba(15,23,42,0.06);
+  --shadow-lift: 0 8px 25px rgba(15,23,42,0.08), 0 2px 6px rgba(15,23,42,0.04);
+  --shadow-hero: 0 20px 60px rgba(15,23,42,0.1);
+  --duration-fast: 150ms;
+  --duration-normal: 280ms;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --warm-cream: #FFFBEB;
+  --warm-cream-border: #FEF3C7;
+}
+
+/* ============================================================
+   RESET + BASE
+   ============================================================ */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+body {
+  font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
+  color: var(--text-primary);
+  background: var(--bg);
+  line-height: 1.5;
+  overflow-x: hidden;
+}
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; height: auto; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; }
+input { font-family: inherit; }
+
+/* ============================================================
+   LAYOUT
+   ============================================================ */
+.container {
+  width: 100%;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 1px solid var(--card-border);
+  backdrop-filter: blur(12px);
+  background: rgba(255,255,255,0.92);
+}
+.header-inner {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  height: 60px;
+}
+.logo {
+  display: flex;
+  align-items: baseline;
+  gap: 2px;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--navy);
+  letter-spacing: -0.5px;
+  flex-shrink: 0;
+}
+.logo span { color: var(--amber); }
+.logo small {
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--text-muted);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-left: 4px;
+}
+.cat-dropdown {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  background: var(--surface-subtle);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-primary);
+  transition: background var(--duration-fast) ease;
+  flex-shrink: 0;
+}
+.cat-dropdown:hover { background: var(--divider); }
+.cat-dropdown svg { width: 16px; height: 16px; opacity: 0.5; }
+
+/* Search bar */
+.search-wrap {
+  flex: 1;
+  position: relative;
+  min-width: 0;
+}
+.search-bar {
+  display: flex;
+  align-items: center;
+  background: var(--surface-subtle);
+  border: 1.5px solid transparent;
+  border-radius: var(--radius-pill);
+  padding: 0 6px 0 16px;
+  height: 40px;
+  transition: border-color var(--duration-fast) ease, box-shadow var(--duration-fast) ease;
+}
+.search-bar:focus-within {
+  border-color: var(--amber);
+  box-shadow: 0 0 0 3px var(--amber-glow);
+  background: var(--bg);
+}
+.search-bar input {
+  flex: 1;
+  border: none;
+  background: none;
+  outline: none;
+  font-size: 14px;
+  color: var(--text-primary);
+  min-width: 0;
+}
+.search-bar input::placeholder { color: var(--text-muted); }
+.search-bar .search-icon {
+  width: 18px;
+  height: 18px;
+  margin-right: 10px;
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+.ai-btn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 5px 12px;
+  border-radius: var(--radius-pill);
+  background: linear-gradient(135deg, var(--amber), #E8910A);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  flex-shrink: 0;
+  transition: transform var(--duration-fast) var(--ease-out), box-shadow var(--duration-fast) ease;
+}
+.ai-btn:hover {
+  transform: scale(1.04);
+  box-shadow: 0 2px 12px rgba(217,119,6,0.35);
+}
+.ai-btn svg { width: 12px; height: 12px; }
+
+/* Header actions */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+.header-action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  transition: background var(--duration-fast) ease, color var(--duration-fast) ease;
+}
+.header-action:hover {
+  background: var(--surface-subtle);
+  color: var(--text-primary);
+}
+.header-action svg { width: 20px; height: 20px; }
+.cart-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px 6px 10px;
+  border-radius: var(--radius-pill);
+  background: var(--navy);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  transition: background var(--duration-fast) ease;
+}
+.cart-btn:hover { background: var(--navy-light); }
+.cart-btn svg { width: 18px; height: 18px; }
+.cart-badge {
+  position: absolute;
+  top: -4px;
+  right: -2px;
+  min-width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--amber);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--bg);
+}
+
+/* ============================================================
+   HERO STRIP
+   ============================================================ */
+.hero-strip {
+  height: 72px;
+  background: linear-gradient(135deg, var(--navy) 0%, #0F172A 60%, var(--navy-light) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  overflow: hidden;
+  position: relative;
+}
+.hero-strip::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent 120px,
+    rgba(217,119,6,0.03) 120px,
+    rgba(217,119,6,0.03) 121px
+  );
+}
+.hero-slogan {
+  font-size: clamp(14px, 2.2vw, 20px);
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: -0.3px;
+  position: relative;
+  z-index: 1;
+}
+.hero-slogan em {
+  font-style: normal;
+  color: var(--amber-light);
+}
+.hero-cta {
+  position: relative;
+  z-index: 1;
+  padding: 7px 20px;
+  border-radius: var(--radius-pill);
+  background: var(--amber);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  transition: transform var(--duration-fast) var(--ease-out), box-shadow var(--duration-fast) ease;
+}
+.hero-cta:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(217,119,6,0.4);
+}
+.hero-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.2);
+  flex-shrink: 0;
+}
+
+/* ============================================================
+   BENTO GRID — REVISED CATEGORY CARDS
+   ============================================================ */
+.section-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 20px;
+}
+.bento-section {
+  padding: 48px 0 0;
+}
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: auto;
+  gap: 14px;
+}
+/* Card base — Option C: image fills, name overlaid at bottom */
+.bento-card {
+  background: var(--warm-cream);
+  border: 1px solid var(--warm-cream-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  position: relative;
+  transition: transform var(--duration-normal) var(--ease-out), box-shadow var(--duration-normal) var(--ease-out);
+  cursor: pointer;
+}
+.bento-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lift);
+}
+.bento-card.large {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+.bento-card.normal {
+  grid-column: span 1;
+}
+/* Explicit grid placement */
+.bento-card.large:nth-child(1) { grid-column: 1 / 3; grid-row: 1 / 3; }
+.bento-card:nth-child(2) { grid-column: 3; grid-row: 1; }
+.bento-card.large:nth-child(3) { grid-column: 4 / 6; grid-row: 1 / 3; }
+.bento-card:nth-child(4) { grid-column: 6; grid-row: 1; }
+.bento-card:nth-child(5) { grid-column: 3; grid-row: 2; }
+.bento-card:nth-child(6) { grid-column: 6; grid-row: 2; }
+.bento-card.large:nth-child(7) { grid-column: 1 / 3; grid-row: 3 / 5; }
+.bento-card:nth-child(8) { grid-column: 3; grid-row: 3; }
+.bento-card.large:nth-child(9) { grid-column: 4 / 6; grid-row: 3 / 5; }
+.bento-card:nth-child(10) { grid-column: 6; grid-row: 3; }
+.bento-card:nth-child(11) { grid-column: 3; grid-row: 4; }
+.bento-card:nth-child(12) { grid-column: 6; grid-row: 4; }
+
+/* Card inner — image fills top, label overlaid at bottom */
+.bento-card-inner {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 160px;
+  position: relative;
+}
+.bento-card.large .bento-card-inner {
+  min-height: 320px;
+}
+
+/* Image area — fills the card, product photo on warm cream bg */
+.bento-img-area {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  position: relative;
+  /* Radial vignette to soften white product edges into warm bg */
+  background: radial-gradient(ellipse 70% 70% at center, #FFFFFF 30%, var(--warm-cream) 100%);
+}
+.bento-card.large .bento-img-area {
+  padding: 24px 24px 8px;
+}
+.bento-img {
+  width: 100%;
+  max-width: 72px;
+  aspect-ratio: 1;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.05));
+  transition: transform var(--duration-normal) var(--ease-out);
+}
+.bento-card:hover .bento-img { transform: scale(1.06); }
+.bento-card.large .bento-img {
+  max-width: 180px;
+}
+
+/* Label overlay at bottom with gradient fade */
+.bento-label {
+  position: relative;
+  padding: 10px 14px 12px;
+  background: linear-gradient(to top, rgba(30,41,59,0.88) 0%, rgba(30,41,59,0.55) 60%, transparent 100%);
+  margin-top: -32px;
+  z-index: 2;
+}
+.bento-card.large .bento-label {
+  padding: 16px 20px 18px;
+  margin-top: -56px;
+}
+.bento-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 1px;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+.bento-card.large .bento-name { font-size: 17px; }
+.bento-count {
+  font-size: 11px;
+  color: rgba(255,255,255,0.7);
+  font-weight: 500;
+}
+
+/* ============================================================
+   SUBCATEGORY PILLS + HEATMAP
+   ============================================================ */
+.subcats-section {
+  padding: 40px 0 0;
+}
+.subcats-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+.subcats-scroll {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  scroll-snap-type: x proximity;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.subcats-scroll::-webkit-scrollbar { display: none; }
+.subcat-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px 8px 8px;
+  border-radius: var(--radius-pill);
+  background: var(--surface-subtle);
+  border: 1px solid var(--card-border);
+  white-space: nowrap;
+  scroll-snap-align: start;
+  transition: background var(--duration-fast) ease, border-color var(--duration-fast) ease, transform var(--duration-fast) var(--ease-out);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.subcat-pill:hover {
+  background: var(--bg);
+  border-color: var(--amber);
+  transform: translateY(-2px);
+}
+.subcat-pill img {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: contain;
+  background: var(--warm-cream);
+  border: 1px solid var(--warm-cream-border);
+}
+.subcat-pill span {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+/* View More button inline with pills */
+.view-more-pill {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 20px;
+  border-radius: var(--radius-pill);
+  background: var(--navy);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: background var(--duration-fast) ease, transform var(--duration-fast) var(--ease-out);
+  cursor: pointer;
+  border: none;
+}
+.view-more-pill:hover {
+  background: var(--navy-light);
+  transform: translateY(-2px);
+}
+.view-more-pill svg {
+  width: 14px;
+  height: 14px;
+  transition: transform var(--duration-normal) var(--ease-out);
+}
+.view-more-pill.expanded svg {
+  transform: rotate(180deg);
+}
+
+/* ============================================================
+   HEATMAP GRID
+   ============================================================ */
+.heatmap-wrap {
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 500ms var(--ease-out), opacity 350ms ease, margin 350ms ease;
+  margin-top: 0;
+}
+.heatmap-wrap.open {
+  max-height: 600px;
+  opacity: 1;
+  margin-top: 20px;
+}
+.heatmap-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 24px;
+  background: var(--surface-subtle);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-lg);
+}
+.heatmap-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: var(--radius-pill);
+  border: 1px solid transparent;
+  cursor: pointer;
+  white-space: nowrap;
+  font-weight: 500;
+  transition: transform var(--duration-fast) var(--ease-out), box-shadow var(--duration-fast) ease, border-color var(--duration-fast) ease;
+  line-height: 1.3;
+}
+.heatmap-tag:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  border-color: var(--amber);
+}
+.heatmap-tag .ht-count {
+  font-weight: 700;
+  opacity: 0.7;
+  font-size: 0.85em;
+}
+
+/* Size tiers */
+.heatmap-tag.tier-xl {
+  padding: 10px 22px;
+  font-size: 15px;
+}
+.heatmap-tag.tier-lg {
+  padding: 8px 18px;
+  font-size: 14px;
+}
+.heatmap-tag.tier-md {
+  padding: 7px 14px;
+  font-size: 13px;
+}
+.heatmap-tag.tier-sm {
+  padding: 5px 12px;
+  font-size: 12px;
+}
+.heatmap-tag.tier-xs {
+  padding: 4px 10px;
+  font-size: 11px;
+}
+
+/* Color intensity tiers — amber heatmap */
+.heatmap-tag.heat-5 {
+  background: #D97706;
+  color: #fff;
+  border-color: #B45309;
+}
+.heatmap-tag.heat-5 .ht-count { opacity: 0.85; }
+.heatmap-tag.heat-4 {
+  background: #F59E0B;
+  color: #78350F;
+  border-color: #D97706;
+}
+.heatmap-tag.heat-3 {
+  background: #FCD34D;
+  color: #78350F;
+  border-color: #F59E0B;
+}
+.heatmap-tag.heat-2 {
+  background: #FEF3C7;
+  color: #92400E;
+  border-color: #FDE68A;
+}
+.heatmap-tag.heat-1 {
+  background: #F8FAFC;
+  color: var(--text-secondary);
+  border-color: var(--divider);
+}
+
+/* Heatmap legend */
+.heatmap-legend {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 14px;
+  padding: 0 24px;
+}
+.heatmap-legend-label {
+  font-size: 11px;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+.heatmap-legend-bar {
+  display: flex;
+  gap: 2px;
+  align-items: center;
+}
+.heatmap-legend-bar span {
+  width: 24px;
+  height: 10px;
+  border-radius: 3px;
+}
+
+/* ============================================================
+   PRODUCT SECTIONS
+   ============================================================ */
+.product-section {
+  padding: 48px 0 0;
+}
+.product-section + .product-section {
+  border-top: 1px solid var(--card-border);
+  margin-top: 48px;
+}
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+.section-header h2 {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.3px;
+}
+.section-header .see-all {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--amber);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: gap var(--duration-fast) ease;
+}
+.section-header .see-all:hover { gap: 8px; }
+.section-header .see-all svg { width: 14px; height: 14px; }
+
+/* Flash timer */
+.flash-timer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: 16px;
+}
+.flash-timer .timer-block {
+  padding: 4px 8px;
+  border-radius: 6px;
+  background: var(--navy);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  min-width: 34px;
+  text-align: center;
+}
+.flash-timer .timer-sep {
+  color: var(--navy);
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 14px;
+}
+.product-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transition: transform var(--duration-normal) var(--ease-out), box-shadow var(--duration-normal) var(--ease-out);
+  cursor: pointer;
+}
+.product-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lift);
+}
+.product-img-wrap {
+  position: relative;
+  aspect-ratio: 1;
+  background: var(--surface-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.product-img-wrap img {
+  width: 80%;
+  height: 80%;
+  object-fit: contain;
+  transition: transform var(--duration-normal) var(--ease-out);
+}
+.product-card:hover .product-img-wrap img { transform: scale(1.05); }
+.product-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  padding: 3px 10px;
+  border-radius: var(--radius-pill);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+.badge-new { background: var(--navy); color: #fff; }
+.badge-best { background: var(--amber); color: #fff; }
+.badge-deal { background: #059669; color: #fff; }
+.badge-flash { background: #DC2626; color: #fff; }
+.product-info {
+  padding: 14px;
+}
+.product-name {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-primary);
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin-bottom: 8px;
+  min-height: 36px;
+}
+.product-price {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+.price-current {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.price-old {
+  font-size: 13px;
+  color: var(--text-muted);
+  text-decoration: line-through;
+}
+.price-discount {
+  font-size: 11px;
+  font-weight: 700;
+  color: #DC2626;
+  padding: 2px 6px;
+  background: #FEF2F2;
+  border-radius: 4px;
+}
+.product-rating {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 6px;
+}
+.stars {
+  color: var(--amber);
+  font-size: 12px;
+  letter-spacing: 1px;
+}
+.rating-count {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+/* ============================================================
+   FOOTER — EDITORIAL
+   ============================================================ */
+.footer {
+  margin-top: 80px;
+  background: var(--navy);
+  color: #CBD5E1;
+  padding: 64px 0 32px;
+}
+.footer-top {
+  display: grid;
+  grid-template-columns: 1.4fr repeat(3, 1fr) 1.2fr;
+  gap: 40px;
+  margin-bottom: 48px;
+}
+.footer-brand {
+  font-size: 56px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -2px;
+  line-height: 1;
+  margin-bottom: 16px;
+}
+.footer-brand span { color: var(--amber); }
+.footer-tagline {
+  font-size: 14px;
+  color: #94A3B8;
+  line-height: 1.6;
+  max-width: 260px;
+}
+.footer-col h4 {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: #64748B;
+  margin-bottom: 16px;
+}
+.footer-col ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.footer-col li a {
+  font-size: 14px;
+  color: #94A3B8;
+  transition: color var(--duration-fast) ease;
+}
+.footer-col li a:hover { color: #fff; }
+.footer-newsletter h4 {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: #64748B;
+  margin-bottom: 16px;
+}
+.footer-newsletter p {
+  font-size: 13px;
+  color: #94A3B8;
+  margin-bottom: 14px;
+  line-height: 1.5;
+}
+.newsletter-form {
+  display: flex;
+  gap: 8px;
+}
+.newsletter-form input {
+  flex: 1;
+  padding: 10px 16px;
+  border-radius: var(--radius-pill);
+  border: 1px solid #334155;
+  background: #0F172A;
+  color: #fff;
+  font-size: 13px;
+  outline: none;
+  min-width: 0;
+  transition: border-color var(--duration-fast) ease;
+}
+.newsletter-form input::placeholder { color: #475569; }
+.newsletter-form input:focus { border-color: var(--amber); }
+.newsletter-form button {
+  padding: 10px 20px;
+  border-radius: var(--radius-pill);
+  background: var(--amber);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  flex-shrink: 0;
+  transition: background var(--duration-fast) ease;
+}
+.newsletter-form button:hover { background: var(--amber-light); }
+.footer-bottom {
+  border-top: 1px solid #1E293B;
+  padding-top: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #475569;
+}
+.footer-bottom a { color: #64748B; transition: color var(--duration-fast) ease; }
+.footer-bottom a:hover { color: #94A3B8; }
+.footer-legal {
+  display: flex;
+  gap: 20px;
+}
+
+/* ============================================================
+   AI OVERLAY
+   ============================================================ */
+.ai-overlay {
+  display: none;
+  position: fixed;
+  top: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 640px;
+  background: var(--bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-hero);
+  padding: 20px;
+  z-index: 200;
+}
+.ai-overlay.open { display: block; }
+.ai-overlay-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+.ai-overlay-header span {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+.ai-overlay-close {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: var(--text-muted);
+  transition: background var(--duration-fast) ease;
+}
+.ai-overlay-close:hover { background: var(--surface-subtle); }
+.ai-messages {
+  min-height: 80px;
+  max-height: 200px;
+  overflow-y: auto;
+  margin-bottom: 12px;
+  padding: 12px;
+  background: var(--surface-subtle);
+  border-radius: var(--radius-sm);
+}
+.ai-messages p {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+.ai-input-row {
+  display: flex;
+  gap: 8px;
+}
+.ai-input-row input {
+  flex: 1;
+  padding: 10px 16px;
+  border: 1.5px solid var(--card-border);
+  border-radius: var(--radius-pill);
+  font-size: 14px;
+  outline: none;
+  transition: border-color var(--duration-fast) ease;
+}
+.ai-input-row input:focus { border-color: var(--amber); }
+.ai-input-row button {
+  padding: 10px 20px;
+  border-radius: var(--radius-pill);
+  background: var(--amber);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 1200px) {
+  .bento-grid { grid-template-columns: repeat(4, 1fr); }
+  .bento-card.large:nth-child(1) { grid-column: 1 / 3; grid-row: 1 / 3; }
+  .bento-card:nth-child(2) { grid-column: 3; grid-row: 1; }
+  .bento-card.large:nth-child(3) { grid-column: 3 / 5; grid-row: 2 / 4; }
+  .bento-card:nth-child(4) { grid-column: 4; grid-row: 1; }
+  .bento-card:nth-child(5) { grid-column: 3; grid-row: auto; }
+  .bento-card:nth-child(6) { grid-column: 4; grid-row: auto; }
+  .bento-card.large:nth-child(7) { grid-column: 1 / 3; grid-row: auto / span 2; }
+  .bento-card:nth-child(8) { grid-column: 3; grid-row: auto; }
+  .bento-card.large:nth-child(9) { grid-column: 3 / 5; grid-row: auto / span 2; }
+  .bento-card:nth-child(10) { grid-column: 1; grid-row: auto; }
+  .bento-card:nth-child(11) { grid-column: 2; grid-row: auto; }
+  .bento-card:nth-child(12) { grid-column: auto; grid-row: auto; }
+  .product-grid { grid-template-columns: repeat(4, 1fr); }
+  .footer-top { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 900px) {
+  .bento-grid { grid-template-columns: repeat(3, 1fr); }
+  .bento-card.large { grid-column: span 2 !important; grid-row: span 2 !important; }
+  .bento-card.normal { grid-column: span 1 !important; grid-row: span 1 !important; }
+  .product-grid { grid-template-columns: repeat(3, 1fr); }
+  .footer-top { grid-template-columns: repeat(2, 1fr); }
+  .footer-brand { font-size: 40px; }
+}
+
+@media (max-width: 680px) {
+  .container { padding: 0 16px; }
+  .header-inner { gap: 8px; }
+  .cat-dropdown span { display: none; }
+  .logo small { display: none; }
+  .bento-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  .bento-card.large {
+    grid-column: span 2 !important;
+    grid-row: span 1 !important;
+  }
+  .bento-card.large .bento-card-inner { min-height: 200px; }
+  .bento-card.large .bento-img { max-width: 120px; }
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  .section-header h2 { font-size: 18px; }
+  .footer-top {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .footer-brand { font-size: 36px; }
+  .hero-cta { display: none; }
+  .flash-timer { margin-left: 8px; }
+  .flash-timer .timer-block { font-size: 12px; padding: 3px 6px; min-width: 28px; }
+  .heatmap-wrap.open { max-height: 800px; }
+}
+
+@media (max-width: 440px) {
+  .search-bar { height: 36px; padding: 0 4px 0 12px; }
+  .ai-btn { padding: 4px 8px; font-size: 10px; }
+  .header-actions .header-action:not(:last-child) { display: none; }
+  .cart-btn { padding: 5px 10px 5px 8px; font-size: 12px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     HEADER
+     ============================================================ -->
+<header class="header">
+  <div class="container header-inner">
+    <a href="/" class="logo">XL<span>Market</span><small>.eu</small></a>
+
+    <button class="cat-dropdown" aria-label="Categories">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      <span>Categories</span>
+    </button>
+
+    <div class="search-wrap">
+      <div class="search-bar">
+        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" placeholder="Search 16,000+ professional tools...">
+        <button class="ai-btn" id="aiToggle">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+          AI
+        </button>
+      </div>
+    </div>
+
+    <div class="header-actions">
+      <button class="header-action" aria-label="Language">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10A15.3 15.3 0 0112 2z"/></svg>
+      </button>
+      <button class="header-action" aria-label="Account">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      </button>
+      <button class="cart-btn" aria-label="Cart">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+        Cart
+        <span class="cart-badge">3</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- AI Chat Overlay -->
+<div class="ai-overlay" id="aiOverlay">
+  <div class="ai-overlay-header">
+    <span>AI Shopping Assistant</span>
+    <button class="ai-overlay-close" id="aiClose">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <div class="ai-messages">
+    <p>Hi! I can help you find the right tool for your project. Try asking: "What drill do I need for concrete walls?" or "Best angle grinder under 100 EUR"</p>
+  </div>
+  <div class="ai-input-row">
+    <input type="text" placeholder="Ask about any product...">
+    <button>Send</button>
+  </div>
+</div>
+
+<!-- ============================================================
+     HERO STRIP
+     ============================================================ -->
+<div class="hero-strip">
+  <span class="hero-dot"></span>
+  <span class="hero-slogan">Professional Tools, <em>Half the Price</em></span>
+  <span class="hero-dot"></span>
+  <a href="#" class="hero-cta">Shop Now</a>
+</div>
+
+<!-- ============================================================
+     BENTO GRID — CATEGORIES (REVISED: warm bg + overlaid labels)
+     ============================================================ -->
+<section class="bento-section">
+  <div class="container">
+    <div class="section-title">Shop by Category</div>
+    <div class="bento-grid">
+      <!-- 1. Tools — LARGE -->
+      <a href="#" class="bento-card large">
+        <div class="bento-card-inner">
+          <div class="bento-img-area">
+            <img src="/cat-icons/400/tools.webp" alt="Tools" class="bento-img" loading="eager">
+          </div>
+          <div class="bento-label">
+            <div class="bento-name">Tools</div>
+            <div class="bento-count">3,240 products</div>
+          </div>
+        </div>
+      </a>
+      <!-- 2. Automotive -->
+      <a href="#" class="bento-card normal">
+        <div class="bento-card-inner">
+          <div class="bento-img-area">
+            <img src="/cat-icons/80/automotive.webp" alt="Automotive" class="bento-img" loading="lazy">
+          </div>
+          <div class="bento-label">
+            <div class="bento-name">Automotive</div>
+            <div class="bento-count">1,420</div>
+          </div>
+        </div>
+      </a>
+      <!-- 3. Kitchen — LARGE -->
+      <a href="#" class="bento-card large">
+        <div class="bento-card-inner">
+          <div class="bento-img-area">
+            <img src="/cat-icons/400/kitchen.webp" alt="Kitchen" class="bento-img" loading="lazy">
+          </div>
+          <div class="bento-label">
+            <div class="bento-name">Kitchen</div>
+            <div class="bento-count">2,180 products</div>
+          </div>
+        </div>
+      </a>
+      <!-- 4. Building Materials -->
+      <a href="#" class="bento-card normal">
+        <div class="bento-card-inner">
+          <div class="bento-img-area">
+            <img src="/cat-icons/80/building-materials.webp" alt="Building Materials" class="bento-img" loading="lazy">
+          </div>
+          <div class="bento-label">
+            <div class="bento-name">Building Materials</div>
+            <div class="bento-count">890</div>
+          </div>
+        </div>
+      </a>
+      <!-- 5. Outdoors -->
+      <a href="#" class="bento-card normal">
+        <div class="bento-card-inner">
+          <div class="bento-img-area">
+            <img src="/cat-icons/80/outdoors.webp" alt="Outdoors" class="bento-img" loading="lazy">
+          </div>
+          <div class="bento-label">
+            <div class="bento-name">Outdoors</div>
+            <div class="bento-count">1,050</div>
+          </div>
+        </div>
+      </a>
+      <!-- 6. Sports & Outdoors -->
+      <a href="#" class="bento-card normal">
+        <div class="bento-card-inner">
+          <div class="bento-img-area">
+            <img src="/cat-icons/80/sports-outdoors.webp" alt="Sports & Outdoors" class="bento-img" loading="lazy">
+          </div>
+          <div class="bento-label">
+            <div class="bento-name">Sports & Outdoors</div>
+            <div class="bento-count">760</div>
+          </div>
+        </div>
+      </a>
+      <!-- 7. Plumbing — LARGE -->
+      <a href="#" class="bento-card large">
+        <div class="bento-card-inner">
+          <div class="bento-img-area">
+            <img src="/cat-icons/400/plumbing.webp" alt="Plumbing" class="bento-img" loading="lazy">
+          </div>
+          <div class="bento-label">
+            <div class="bento-name">Plumbing</div>
+            <div class="bento-count">1,340 products</div>
+          </div>
+        </div>
+      </a>
+      <!-- 8. Industrial & Scientific -->
+      <a href="#" class="bento-card normal">
+        <div class="bento-card-inner">
+          <div class="bento-img-area">
+            <img src="/cat-icons/80/industrial-scientific.webp" alt="Industrial & Scientific" class="bento-img" loading="lazy">
+          </div>
+          <div class="bento-label">
+            <div class="bento-name">Industrial & Scientific</div>
+            <div class="bento-count">680</div>
+          </div>
+        </div>
+      </a>
+      <!-- 9. Electrical — LARGE -->
+      <a href="#" class="bento-card large">
+        <div class="bento-card-inner">
+          <div class="bento-img-area">
+            <img src="/cat-icons/400/electrical.webp" alt="Electrical" class="bento-img" loading="lazy">
+          </div>
+          <div class="bento-label">
+            <div class="bento-name">Electrical</div>
+            <div class="bento-count">1,560 products</div>
+          </div>
+        </div>
+      </a>
+      <!-- 10. Hardware -->
+      <a href="#" class="bento-card normal">
+        <div class="bento-card-inner">
+          <div class="bento-img-area">
+            <img src="/cat-icons/80/hardware.webp" alt="Hardware" class="bento-img" loading="lazy">
+          </div>
+          <div class="bento-label">
+            <div class="bento-name">Hardware</div>
+            <div class="bento-count">920</div>
+          </div>
+        </div>
+      </a>
+      <!-- 11. Furniture -->
+      <a href="#" class="bento-card normal">
+        <div class="bento-card-inner">
+          <div class="bento-img-area">
+            <img src="/cat-icons/80/furniture.webp" alt="Furniture" class="bento-img" loading="lazy">
+          </div>
+          <div class="bento-label">
+            <div class="bento-name">Furniture</div>
+            <div class="bento-count">540</div>
+          </div>
+        </div>
+      </a>
+      <!-- 12. Heating & Cooling -->
+      <a href="#" class="bento-card normal">
+        <div class="bento-card-inner">
+          <div class="bento-img-area">
+            <img src="/cat-icons/80/heating-venting-cooling.webp" alt="Heating & Cooling" class="bento-img" loading="lazy">
+          </div>
+          <div class="bento-label">
+            <div class="bento-name">Heating & Cooling</div>
+            <div class="bento-count">480</div>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     POPULAR SUBCATEGORIES — PILLS + HEATMAP EXPANSION
+     ============================================================ -->
+<section class="subcats-section">
+  <div class="container">
+    <div class="section-title">Popular Subcategories</div>
+    <div class="subcats-scroll" id="subcatScroll">
+      <a href="#" class="subcat-pill">
+        <img src="/cat-icons/80/agriculture-forestry-equipment.webp" alt="Agriculture & Forestry">
+        <span>Agriculture & Forestry</span>
+      </a>
+      <a href="#" class="subcat-pill">
+        <img src="/cat-icons/80/arts-crafts-sewing.webp" alt="Arts, Crafts & Sewing">
+        <span>Arts, Crafts & Sewing</span>
+      </a>
+      <a href="#" class="subcat-pill">
+        <img src="/cat-icons/80/beverage-equipment.webp" alt="Beverage Equipment">
+        <span>Beverage Equipment</span>
+      </a>
+      <a href="#" class="subcat-pill">
+        <img src="/cat-icons/80/bathroom-supplies.webp" alt="Bathroom Supplies">
+        <span>Bathroom Supplies</span>
+      </a>
+      <a href="#" class="subcat-pill">
+        <img src="/cat-icons/80/automotive-accessories.webp" alt="Automotive Accessories">
+        <span>Automotive Accessories</span>
+      </a>
+      <a href="#" class="subcat-pill">
+        <img src="/cat-icons/80/boat-parts-accessories.webp" alt="Boat Parts">
+        <span>Boat Parts & Accessories</span>
+      </a>
+      <a href="#" class="subcat-pill">
+        <img src="/cat-icons/80/chainsaws.webp" alt="Chainsaws">
+        <span>Chainsaws</span>
+      </a>
+      <a href="#" class="subcat-pill">
+        <img src="/cat-icons/80/car-jacks.webp" alt="Car Jacks">
+        <span>Car Jacks</span>
+      </a>
+      <a href="#" class="subcat-pill">
+        <img src="/cat-icons/80/blenders.webp" alt="Blenders">
+        <span>Blenders</span>
+      </a>
+      <a href="#" class="subcat-pill">
+        <img src="/cat-icons/80/angle-grinder.webp" alt="Angle Grinders">
+        <span>Angle Grinders</span>
+      </a>
+      <!-- View More toggle -->
+      <button class="view-more-pill" id="heatmapToggle">
+        View All 30
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+    </div>
+
+    <!-- HEATMAP EXPANSION -->
+    <div class="heatmap-wrap" id="heatmapWrap">
+      <div class="heatmap-grid" id="heatmapGrid">
+        <!-- JS-generated heatmap tags -->
+      </div>
+      <div class="heatmap-legend">
+        <span class="heatmap-legend-label">Fewer products</span>
+        <div class="heatmap-legend-bar">
+          <span style="background:#F8FAFC; border:1px solid #E2E8F0;"></span>
+          <span style="background:#FEF3C7;"></span>
+          <span style="background:#FCD34D;"></span>
+          <span style="background:#F59E0B;"></span>
+          <span style="background:#D97706;"></span>
+        </div>
+        <span class="heatmap-legend-label">More products</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     PRODUCT SECTION: NEW ARRIVALS
+     ============================================================ -->
+<section class="product-section">
+  <div class="container">
+    <div class="section-header">
+      <h2>New Arrivals</h2>
+      <a href="#" class="see-all">See All <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    </div>
+    <div class="product-grid">
+      <div class="product-card">
+        <div class="product-img-wrap">
+          <img src="/cat-icons/400/angle-grinder.webp" alt="Brushless Angle Grinder 125mm" loading="lazy">
+          <span class="product-badge badge-new">New</span>
+        </div>
+        <div class="product-info">
+          <div class="product-name">Brushless Angle Grinder 125mm 1200W Variable Speed</div>
+          <div class="product-price"><span class="price-current">69.99</span></div>
+          <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(12)</span></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img-wrap">
+          <img src="/cat-icons/400/chainsaws.webp" alt="Electric Chainsaw 16 inch" loading="lazy">
+          <span class="product-badge badge-new">New</span>
+        </div>
+        <div class="product-info">
+          <div class="product-name">Electric Chainsaw 16" 2200W with Auto-Oiler</div>
+          <div class="product-price"><span class="price-current">89.90</span></div>
+          <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span><span class="rating-count">(8)</span></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img-wrap">
+          <img src="/cat-icons/400/blenders.webp" alt="Commercial Blender" loading="lazy">
+          <span class="product-badge badge-new">New</span>
+        </div>
+        <div class="product-info">
+          <div class="product-name">Commercial Blender 2200W Heavy Duty Smoothie Maker</div>
+          <div class="product-price"><span class="price-current">54.90</span></div>
+          <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(24)</span></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img-wrap">
+          <img src="/cat-icons/400/automotive.webp" alt="Steel Frame Pool" loading="lazy">
+          <span class="product-badge badge-new">New</span>
+        </div>
+        <div class="product-info">
+          <div class="product-name">Steel Frame Swimming Pool 4.5m x 2.2m x 0.84m</div>
+          <div class="product-price"><span class="price-current">189.00</span></div>
+          <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span><span class="rating-count">(6)</span></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img-wrap">
+          <img src="/cat-icons/400/furniture.webp" alt="Acoustic Foam Panels" loading="lazy">
+          <span class="product-badge badge-new">New</span>
+        </div>
+        <div class="product-info">
+          <div class="product-name">Acoustic Foam Panels 12-Pack Studio Sound Dampening</div>
+          <div class="product-price"><span class="price-current">34.50</span></div>
+          <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(31)</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     PRODUCT SECTION: BEST SELLERS
+     ============================================================ -->
+<section class="product-section">
+  <div class="container">
+    <div class="section-header">
+      <h2>Best Sellers</h2>
+      <a href="#" class="see-all">See All <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    </div>
+    <div class="product-grid">
+      <div class="product-card">
+        <div class="product-img-wrap">
+          <img src="/cat-icons/400/car-jacks.webp" alt="Hydraulic Floor Jack" loading="lazy">
+          <span class="product-badge badge-best">Best</span>
+        </div>
+        <div class="product-info">
+          <div class="product-name">Hydraulic Floor Jack 3 Ton Low Profile Steel</div>
+          <div class="product-price"><span class="price-current">49.90</span></div>
+          <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(156)</span></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img-wrap">
+          <img src="/cat-icons/400/band-saws.webp" alt="Benchtop Band Saw" loading="lazy">
+          <span class="product-badge badge-best">Best</span>
+        </div>
+        <div class="product-info">
+          <div class="product-name">Benchtop Band Saw 9" 550W with LED Work Light</div>
+          <div class="product-price"><span class="price-current">129.00</span></div>
+          <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(89)</span></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img-wrap">
+          <img src="/cat-icons/400/bottle-jacks.webp" alt="Hydraulic Bottle Jack" loading="lazy">
+          <span class="product-badge badge-best">Best</span>
+        </div>
+        <div class="product-info">
+          <div class="product-name">Hydraulic Bottle Jack 20 Ton Heavy Duty</div>
+          <div class="product-price"><span class="price-current">32.90</span></div>
+          <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span><span class="rating-count">(203)</span></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img-wrap">
+          <img src="/cat-icons/400/tools.webp" alt="HDPE Adirondack Chair" loading="lazy">
+          <span class="product-badge badge-best">Best</span>
+        </div>
+        <div class="product-info">
+          <div class="product-name">HDPE Adirondack Chair Weather-Resistant Garden</div>
+          <div class="product-price"><span class="price-current">79.90</span></div>
+          <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(74)</span></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img-wrap">
+          <img src="/cat-icons/400/industrial-scientific.webp" alt="Air Compressor Kit" loading="lazy">
+          <span class="product-badge badge-best">Best</span>
+        </div>
+        <div class="product-info">
+          <div class="product-name">Air Compressor 50L Oilless Ultra-Quiet 65dB</div>
+          <div class="product-price"><span class="price-current">149.00</span></div>
+          <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(112)</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     PRODUCT SECTION: DEALS
+     ============================================================ -->
+<section class="product-section">
+  <div class="container">
+    <div class="section-header">
+      <h2>Deals of the Week</h2>
+      <a href="#" class="see-all">See All <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    </div>
+    <div class="product-grid">
+      <div class="product-card">
+        <div class="product-img-wrap">
+          <img src="/cat-icons/400/tools.webp" alt="Cordless Drill Set" loading="lazy">
+          <span class="product-badge badge-deal">-35%</span>
+        </div>
+        <div class="product-info">
+          <div class="product-name">20V Cordless Drill Driver Set with 2 Batteries</div>
+          <div class="product-price">
+            <span class="price-current">45.90</span>
+            <span class="price-old">69.90</span>
+            <span class="price-discount">-35%</span>
+          </div>
+          <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(67)</span></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img-wrap">
+          <img src="/cat-icons/400/kitchen.webp" alt="Electric Pasta Maker" loading="lazy">
+          <span class="product-badge badge-deal">-28%</span>
+        </div>
+        <div class="product-info">
+          <div class="product-name">Electric Pasta Maker Machine Stainless Steel</div>
+          <div class="product-price">
+            <span class="price-current">64.90</span>
+            <span class="price-old">89.90</span>
+            <span class="price-discount">-28%</span>
+          </div>
+          <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span><span class="rating-count">(43)</span></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img-wrap">
+          <img src="/cat-icons/400/plumbing.webp" alt="Pipe Wrench Set" loading="lazy">
+          <span class="product-badge badge-deal">-40%</span>
+        </div>
+        <div class="product-info">
+          <div class="product-name">Heavy Duty Pipe Wrench Set 3-Piece (10"+14"+18")</div>
+          <div class="product-price">
+            <span class="price-current">29.90</span>
+            <span class="price-old">49.90</span>
+            <span class="price-discount">-40%</span>
+          </div>
+          <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(91)</span></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img-wrap">
+          <img src="/cat-icons/400/electrical.webp" alt="Digital Multimeter" loading="lazy">
+          <span class="product-badge badge-deal">-25%</span>
+        </div>
+        <div class="product-info">
+          <div class="product-name">Digital Multimeter Auto-Ranging 6000 Count True RMS</div>
+          <div class="product-price">
+            <span class="price-current">22.50</span>
+            <span class="price-old">29.90</span>
+            <span class="price-discount">-25%</span>
+          </div>
+          <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(128)</span></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img-wrap">
+          <img src="/cat-icons/400/furniture.webp" alt="Standing Desk Frame" loading="lazy">
+          <span class="product-badge badge-deal">-30%</span>
+        </div>
+        <div class="product-info">
+          <div class="product-name">Electric Standing Desk Frame Dual Motor Height Adjust</div>
+          <div class="product-price">
+            <span class="price-current">139.00</span>
+            <span class="price-old">199.00</span>
+            <span class="price-discount">-30%</span>
+          </div>
+          <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span><span class="rating-count">(55)</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     PRODUCT SECTION: FLASH SALE
+     ============================================================ -->
+<section class="product-section">
+  <div class="container">
+    <div class="section-header">
+      <div style="display:flex;align-items:center;">
+        <h2>Flash Sale</h2>
+        <div class="flash-timer">
+          <span class="timer-block" id="hours">04</span>
+          <span class="timer-sep">:</span>
+          <span class="timer-block" id="minutes">32</span>
+          <span class="timer-sep">:</span>
+          <span class="timer-block" id="seconds">17</span>
+        </div>
+      </div>
+      <a href="#" class="see-all">See All <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    </div>
+    <div class="product-grid">
+      <div class="product-card">
+        <div class="product-img-wrap">
+          <img src="/cat-icons/400/automotive.webp" alt="OBD2 Scanner" loading="lazy">
+          <span class="product-badge badge-flash">Flash</span>
+        </div>
+        <div class="product-info">
+          <div class="product-name">OBD2 Scanner Professional Full-System Diagnostic</div>
+          <div class="product-price">
+            <span class="price-current">39.90</span>
+            <span class="price-old">79.90</span>
+            <span class="price-discount">-50%</span>
+          </div>
+          <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(234)</span></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img-wrap">
+          <img src="/cat-icons/400/hardware.webp" alt="Socket Set" loading="lazy">
+          <span class="product-badge badge-flash">Flash</span>
+        </div>
+        <div class="product-info">
+          <div class="product-name">216-Piece Socket Set Chrome Vanadium with Case</div>
+          <div class="product-price">
+            <span class="price-current">59.90</span>
+            <span class="price-old">119.90</span>
+            <span class="price-discount">-50%</span>
+          </div>
+          <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(178)</span></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img-wrap">
+          <img src="/cat-icons/400/building-materials.webp" alt="Concrete Mixer" loading="lazy">
+          <span class="product-badge badge-flash">Flash</span>
+        </div>
+        <div class="product-info">
+          <div class="product-name">Electric Concrete Mixer 140L Portable with Wheels</div>
+          <div class="product-price">
+            <span class="price-current">99.00</span>
+            <span class="price-old">189.00</span>
+            <span class="price-discount">-48%</span>
+          </div>
+          <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span><span class="rating-count">(45)</span></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img-wrap">
+          <img src="/cat-icons/400/heating-venting-cooling.webp" alt="Diesel Heater" loading="lazy">
+          <span class="product-badge badge-flash">Flash</span>
+        </div>
+        <div class="product-info">
+          <div class="product-name">Diesel Air Heater 8KW All-in-One LCD Remote</div>
+          <div class="product-price">
+            <span class="price-current">89.90</span>
+            <span class="price-old">169.90</span>
+            <span class="price-discount">-47%</span>
+          </div>
+          <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(312)</span></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img-wrap">
+          <img src="/cat-icons/400/industrial-scientific.webp" alt="Laser Level" loading="lazy">
+          <span class="product-badge badge-flash">Flash</span>
+        </div>
+        <div class="product-info">
+          <div class="product-name">360 Cross-Line Laser Level Self-Leveling Green Beam</div>
+          <div class="product-price">
+            <span class="price-current">44.90</span>
+            <span class="price-old">89.90</span>
+            <span class="price-discount">-50%</span>
+          </div>
+          <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(167)</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     PRODUCT SECTION: RECENTLY VIEWED
+     ============================================================ -->
+<section class="product-section" style="padding-bottom: 48px;">
+  <div class="container">
+    <div class="section-header">
+      <h2>Recently Viewed</h2>
+      <a href="#" class="see-all">See All <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    </div>
+    <div class="product-grid">
+      <div class="product-card">
+        <div class="product-img-wrap">
+          <img src="/cat-icons/400/outdoors.webp" alt="Portable Generator" loading="lazy">
+        </div>
+        <div class="product-info">
+          <div class="product-name">Portable Inverter Generator 3500W Ultra Quiet</div>
+          <div class="product-price"><span class="price-current">329.00</span></div>
+          <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(48)</span></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img-wrap">
+          <img src="/cat-icons/400/sports-outdoors.webp" alt="Rowing Machine" loading="lazy">
+        </div>
+        <div class="product-info">
+          <div class="product-name">Magnetic Rowing Machine Foldable with LCD Display</div>
+          <div class="product-price"><span class="price-current">199.00</span></div>
+          <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span><span class="rating-count">(33)</span></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img-wrap">
+          <img src="/cat-icons/400/angle-grinder.webp" alt="Angle Grinder Discs" loading="lazy">
+        </div>
+        <div class="product-info">
+          <div class="product-name">Cutting Disc Set 125mm 50-Pack for Metal and Stone</div>
+          <div class="product-price"><span class="price-current">18.90</span></div>
+          <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(89)</span></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img-wrap">
+          <img src="/cat-icons/400/chainsaws.webp" alt="Chainsaw Chain" loading="lazy">
+        </div>
+        <div class="product-info">
+          <div class="product-name">Chainsaw Chain 16" .325 Pitch Oregon-Compatible</div>
+          <div class="product-price"><span class="price-current">12.90</span></div>
+          <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span><span class="rating-count">(56)</span></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img-wrap">
+          <img src="/cat-icons/400/car-jacks.webp" alt="Jack Stands" loading="lazy">
+        </div>
+        <div class="product-info">
+          <div class="product-name">Jack Stands 3 Ton Pair Heavy Duty Ratchet Style</div>
+          <div class="product-price"><span class="price-current">34.90</span></div>
+          <div class="product-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rating-count">(142)</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FOOTER — EDITORIAL
+     ============================================================ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand">XL<span>Market</span></div>
+        <p class="footer-tagline">Professional-grade tools and equipment at wholesale prices. Official VEVOR distributor for Estonia and Spain.</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="#">All Categories</a></li>
+          <li><a href="#">New Arrivals</a></li>
+          <li><a href="#">Best Sellers</a></li>
+          <li><a href="#">Deals</a></li>
+          <li><a href="#">Flash Sale</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Support</h4>
+        <ul>
+          <li><a href="#">Help Center</a></li>
+          <li><a href="#">Shipping Info</a></li>
+          <li><a href="#">Returns</a></li>
+          <li><a href="#">Track Order</a></li>
+          <li><a href="#">Contact Us</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Roland Kaubandus OU</a></li>
+          <li><a href="#">Terms of Service</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Cookies</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-newsletter">
+        <h4>Stay Updated</h4>
+        <p>Get exclusive deals and new product alerts straight to your inbox.</p>
+        <form class="newsletter-form" onsubmit="return false;">
+          <input type="email" placeholder="Your email address">
+          <button type="submit">Subscribe</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>&copy; 2026 XLMarket.eu &mdash; Roland Kaubandus OU. All rights reserved.</span>
+      <div class="footer-legal">
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+        <a href="#">Cookies</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ============================================================
+     SCRIPTS
+     ============================================================ -->
+<script>
+// AI overlay toggle
+const aiToggle = document.getElementById('aiToggle');
+const aiOverlay = document.getElementById('aiOverlay');
+const aiClose = document.getElementById('aiClose');
+
+aiToggle.addEventListener('click', (e) => {
+  e.stopPropagation();
+  aiOverlay.classList.toggle('open');
+});
+aiClose.addEventListener('click', () => aiOverlay.classList.remove('open'));
+document.addEventListener('click', (e) => {
+  if (!aiOverlay.contains(e.target) && !aiToggle.contains(e.target)) {
+    aiOverlay.classList.remove('open');
+  }
+});
+
+// Flash sale countdown timer
+(function() {
+  let totalSeconds = 4 * 3600 + 32 * 60 + 17;
+  const hEl = document.getElementById('hours');
+  const mEl = document.getElementById('minutes');
+  const sEl = document.getElementById('seconds');
+
+  function pad(n) { return String(n).padStart(2, '0'); }
+
+  function tick() {
+    if (totalSeconds <= 0) return;
+    totalSeconds--;
+    const h = Math.floor(totalSeconds / 3600);
+    const m = Math.floor((totalSeconds % 3600) / 60);
+    const s = totalSeconds % 60;
+    hEl.textContent = pad(h);
+    mEl.textContent = pad(m);
+    sEl.textContent = pad(s);
+  }
+
+  setInterval(tick, 1000);
+})();
+
+// Heatmap toggle + generation
+(function() {
+  const subcats = [
+    { name: 'Agriculture & Forestry Equipment', slug: 'agriculture-forestry-equipment', count: 471 },
+    { name: 'Arts, Crafts & Sewing', slug: 'arts-crafts-sewing', count: 447 },
+    { name: 'Beverage Equipment', slug: 'beverage-equipment', count: 272 },
+    { name: 'Bathroom Supplies', slug: 'bathroom-supplies', count: 217 },
+    { name: 'Automotive Accessories', slug: 'automotive-accessories', count: 201 },
+    { name: 'Boat Parts & Accessories', slug: 'boat-parts-accessories', count: 167 },
+    { name: 'Boating', slug: 'boating', count: 125 },
+    { name: 'Access Barriers & Crowd Control', slug: 'access-barriers-crowd-control', count: 123 },
+    { name: 'Artificial Plants', slug: 'artificial-plants', count: 103 },
+    { name: 'Air Compressor Tools', slug: 'air-compressor-tools', count: 96 },
+    { name: 'Air Conditioning & Heat', slug: 'air-conditioning-heat', count: 89 },
+    { name: 'Bathroom Faucets', slug: 'bathroom-faucets', count: 77 },
+    { name: 'Bedroom Furniture', slug: 'bedroom-furniture', count: 70 },
+    { name: 'Air Tools & Compressors', slug: 'air-tools-compressors', count: 68 },
+    { name: 'Alternative & Renewable Energy', slug: 'alternative-renewable-energy', count: 59 },
+    { name: 'Artificial Boxwood Panel', slug: 'artificial-boxwood-panel', count: 58 },
+    { name: 'Bedding', slug: 'bedding', count: 52 },
+    { name: 'Baby Activities & Gear', slug: 'baby-activities-gear', count: 50 },
+    { name: 'Appliance Parts', slug: 'appliance-parts', count: 49 },
+    { name: 'Bathroom Safety', slug: 'bathroom-safety', count: 44 },
+    { name: 'Automotive Electrical', slug: 'automotive-electrical', count: 43 },
+    { name: 'Air Compressors', slug: 'air-compressors', count: 40 },
+    { name: 'Awnings', slug: 'awnings', count: 40 },
+    { name: 'Baseball Equipment', slug: 'baseball-equipment', count: 40 },
+    { name: 'Angle Grinder', slug: 'angle-grinder', count: 35 },
+    { name: 'Chainsaws', slug: 'chainsaws', count: 30 },
+    { name: 'Car Jacks', slug: 'car-jacks', count: 28 },
+    { name: 'Blenders', slug: 'blenders', count: 25 },
+    { name: 'Band Saws', slug: 'band-saws', count: 22 },
+    { name: 'Bottle Jacks', slug: 'bottle-jacks', count: 18 },
+  ];
+
+  const maxCount = Math.max(...subcats.map(s => s.count));
+  const grid = document.getElementById('heatmapGrid');
+
+  // Sort by count desc for visual impact
+  const sorted = [...subcats].sort((a, b) => b.count - a.count);
+
+  sorted.forEach(sub => {
+    const ratio = sub.count / maxCount;
+
+    // Size tier
+    let sizeTier;
+    if (ratio > 0.75) sizeTier = 'tier-xl';
+    else if (ratio > 0.5) sizeTier = 'tier-lg';
+    else if (ratio > 0.3) sizeTier = 'tier-md';
+    else if (ratio > 0.15) sizeTier = 'tier-sm';
+    else sizeTier = 'tier-xs';
+
+    // Heat tier (color intensity)
+    let heatTier;
+    if (ratio > 0.75) heatTier = 'heat-5';
+    else if (ratio > 0.5) heatTier = 'heat-4';
+    else if (ratio > 0.3) heatTier = 'heat-3';
+    else if (ratio > 0.15) heatTier = 'heat-2';
+    else heatTier = 'heat-1';
+
+    const tag = document.createElement('a');
+    tag.href = '#';
+    tag.className = `heatmap-tag ${sizeTier} ${heatTier}`;
+    tag.innerHTML = `${sub.name} <span class="ht-count">${sub.count}</span>`;
+    grid.appendChild(tag);
+  });
+
+  // Toggle
+  const toggleBtn = document.getElementById('heatmapToggle');
+  const heatmapWrap = document.getElementById('heatmapWrap');
+
+  toggleBtn.addEventListener('click', () => {
+    const isOpen = heatmapWrap.classList.toggle('open');
+    toggleBtn.classList.toggle('expanded', isOpen);
+    toggleBtn.childNodes[0].textContent = isOpen ? 'Show Less ' : 'View All 30 ';
+  });
+})();
+</script>
+</body>
+</html>

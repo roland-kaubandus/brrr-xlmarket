@@ -25,19 +25,19 @@ export default function HomeProductSection({
   title, seeAllHref, seeAllLabel, locale, fetchParams, timer, clearable,
 }: Props) {
   return (
-    <section className="pt-12 [&+&]:border-t [&+&]:border-[#F1F5F9] [&+&]:mt-12">
-      <div className="max-w-[1320px] mx-auto px-6">
+    <section className="pt-8 sm:pt-12 md:pt-16 [&+&]:border-t [&+&]:border-[#F1F5F9] [&+&]:mt-8 sm:[&+&]:mt-12 md:[&+&]:mt-16">
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-8">
         {/* Section header */}
-        <div className="flex items-center justify-between mb-6">
-          <div className="flex items-center gap-4">
-            <h2 className="text-[22px] font-bold text-[#0F172A] tracking-tight" style={{ letterSpacing: "-0.3px" }}>
+        <div className="flex items-center justify-between mb-4 sm:mb-6 md:mb-8">
+          <div className="flex items-center gap-2 sm:gap-4">
+            <h2 className="text-[18px] sm:text-[22px] md:text-[32px] font-bold text-[#0F172A] tracking-tight" style={{ letterSpacing: "-0.3px" }}>
               {title}
             </h2>
             {timer}
           </div>
           <Link
             href={seeAllHref}
-            className="text-[13px] font-semibold text-[#D97706] flex items-center gap-1 hover:gap-2 transition-all"
+            className="text-[13px] md:text-[16px] font-semibold text-[#D97706] flex items-center gap-1 hover:gap-2 transition-all"
           >
             {clearable
               ? (locale === "et" ? "Tühjenda" : "Clear")
@@ -50,7 +50,7 @@ export default function HomeProductSection({
           </Link>
         </div>
 
-        {/* Product grid — fetches from MeiliSearch client-side */}
+        {/* Product grid */}
         <ProductGrid
           fetchParams={fetchParams}
           locale={locale}

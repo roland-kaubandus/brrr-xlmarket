@@ -37,6 +37,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
 h1, h2, h3, h4, h5, h6 { font-family: var(--font-dm-sans); }
@@ -112,14 +113,14 @@ a, button, input, select, textarea {
 .bento-grid {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  gap: 12px;
+  gap: 20px;
 }
 
 @media (max-width: 1200px) {
-  .bento-grid { grid-template-columns: repeat(4, 1fr); }
+  .bento-grid { grid-template-columns: repeat(4, 1fr); gap: 16px; }
 }
 @media (max-width: 900px) {
-  .bento-grid { grid-template-columns: repeat(3, 1fr); }
+  .bento-grid { grid-template-columns: repeat(3, 1fr); gap: 14px; }
 }
 @media (max-width: 680px) {
   .bento-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }

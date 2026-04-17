@@ -1,0 +1,1216 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<!-- v1776273611 --><title>XLMarket.eu — Professional Tools, Half the Price</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz@9..40&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   XLMarket v5 — K-rauta exact proportions
+   Header: 212px total (32 + 80 + 56 + 44)
+   Sidebar: 52px icon column
+   Category left panel: 280px
+   Category right: 3x2 grid, 1px gap
+   Max-width: 1280px (K-rauta uses ~1260-1280)
+   ============================================================ */
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
+  background: #fff;
+  color: #1E293B;
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+button { cursor: pointer; font-family: inherit; }
+ul { list-style: none; }
+
+/* ============================================================
+   ROW 1 — TOP UTILITY BAR (32px) — matches K-rauta .site-top__menu
+   ============================================================ */
+.topbar {
+  background: #F8FAFC;
+  border-bottom: 1px solid #E2E8F0;
+  height: 32px;
+  font-size: 12px;
+  color: #64748B;
+  position: relative;
+  z-index: 101;
+}
+.topbar-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 20px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.topbar-left, .topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.topbar a {
+  color: #64748B;
+  font-size: 12px;
+  transition: color .15s;
+}
+.topbar a:hover { color: #1E293B; }
+.topbar-right a { font-weight: 500; }
+
+/* ============================================================
+   ROW 2 — MAIN HEADER (80px) — logo + search + account/wishlist/cart
+   ============================================================ */
+.header {
+  background: #fff;
+  border-bottom: 1px solid #E2E8F0;
+  height: 80px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.header-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 20px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+/* Logo — text only, no box */
+.logo {
+  font-size: 30px;
+  letter-spacing: -.03em;
+  flex-shrink: 0;
+  line-height: 1;
+  white-space: nowrap;
+}
+.logo b { color: #D97706; font-weight: 800; }
+.logo span { color: #1E293B; font-weight: 600; }
+
+/* Search — centered, large */
+.search {
+  flex: 1;
+  max-width: 580px;
+  margin: 0 auto;
+  position: relative;
+}
+.search input {
+  width: 100%;
+  height: 44px;
+  border: 2px solid #E2E8F0;
+  border-radius: 8px;
+  padding: 0 48px 0 16px;
+  font: inherit;
+  font-size: 14px;
+  outline: none;
+  transition: border-color .15s;
+  background: #F8FAFC;
+}
+.search input:focus {
+  border-color: #D97706;
+  background: #fff;
+}
+.search-btn {
+  position: absolute;
+  right: 3px;
+  top: 3px;
+  width: 38px;
+  height: 38px;
+  background: #D97706;
+  border: none;
+  border-radius: 6px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background .15s;
+}
+.search-btn:hover { background: #B45309; }
+.search-btn svg { width: 18px; height: 18px; }
+
+/* Header action buttons */
+.hdr-actions {
+  display: flex;
+  gap: 4px;
+  flex-shrink: 0;
+}
+.hdr-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 10px;
+  font-weight: 500;
+  color: #64748B;
+  border: none;
+  background: none;
+  transition: all .15s;
+}
+.hdr-btn:hover { background: #F1F5F9; color: #1E293B; }
+.hdr-btn svg { width: 22px; height: 22px; }
+
+/* ============================================================
+   ROW 3 — PROMO STRIP (56px) — K-rauta has campaign/promo bar
+   ============================================================ */
+.promo {
+  background: #1E293B;
+  color: rgba(255,255,255,.85);
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: .01em;
+}
+.promo strong { color: #F59E0B; }
+
+/* ============================================================
+   ROW 4 — CATEGORY NAV BAR (44px) — K-rauta colored tabs
+   ============================================================ */
+.navbar {
+  background: #1E293B;
+  border-top: 1px solid rgba(255,255,255,.06);
+  height: 44px;
+}
+.navbar-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 20px;
+  height: 100%;
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+}
+.nav-tab {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 16px;
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(255,255,255,.6);
+  white-space: nowrap;
+  border: none;
+  background: none;
+  transition: all .15s;
+  position: relative;
+}
+.nav-tab:hover {
+  color: #fff;
+  background: rgba(255,255,255,.05);
+}
+.nav-tab::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 16px; right: 16px;
+  height: 2px;
+  background: #D97706;
+  transform: scaleX(0);
+  transition: transform .2s;
+}
+.nav-tab:hover::after { transform: scaleX(1); }
+.nav-tab.primary {
+  background: #D97706;
+  color: #fff;
+}
+.nav-tab.primary:hover { background: #B45309; }
+.nav-tab.primary::after { display: none; }
+.nav-tab svg { width: 16px; height: 16px; }
+
+/* ============================================================
+   MAIN LAYOUT — sidebar + content (K-rauta pattern)
+   ============================================================ */
+.layout {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0;
+  display: flex;
+}
+
+/* ============================================================
+   SIDEBAR — 52px icon column, sticky (K-rauta exact)
+   ============================================================ */
+.sidebar {
+  width: 52px;
+  flex-shrink: 0;
+  border-right: 1px solid #E2E8F0;
+  padding: 10px 0;
+  position: sticky;
+  top: 80px; /* below header only */
+  height: calc(100vh - 80px);
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+.sidebar::-webkit-scrollbar { display: none; }
+
+.sidebar-icon {
+  width: 40px;
+  height: 40px;
+  margin: 0 auto 3px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all .15s;
+  border: 2px solid transparent;
+  position: relative;
+}
+.sidebar-icon:hover {
+  background: #F8FAFC;
+  border-color: #E2E8F0;
+}
+.sidebar-icon.active {
+  background: #FEF3C7;
+  border-color: #D97706;
+}
+.sidebar-icon img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  border-radius: 3px;
+}
+.sidebar-icon svg {
+  width: 22px;
+  height: 22px;
+  stroke: #475569;
+  stroke-width: 1.5;
+  fill: none;
+}
+.sidebar-icon.active svg { stroke: #D97706; }
+.sidebar-icon:hover svg { stroke: #1E293B; }
+/* Tooltip on hover */
+.sidebar-icon .tip {
+  display: none;
+  position: absolute;
+  left: 48px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #1E293B;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 5px 10px;
+  border-radius: 6px;
+  white-space: nowrap;
+  z-index: 10;
+  pointer-events: none;
+}
+.sidebar-icon .tip::before {
+  content: '';
+  position: absolute;
+  left: -4px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 4px solid transparent;
+  border-right-color: #1E293B;
+}
+.sidebar-icon:hover .tip { display: block; }
+
+/* ============================================================
+   MAIN CONTENT
+   ============================================================ */
+.main {
+  flex: 1;
+  min-width: 0;
+  padding: 20px 20px 48px 20px;
+}
+
+/* ============================================================
+   HERO BANNER — full-width within main, dark bg
+   ============================================================ */
+.hero {
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  background: linear-gradient(135deg, #1E293B 0%, #0F172A 100%);
+  display: flex;
+  min-height: 300px;
+  margin-bottom: 20px;
+}
+.hero-text {
+  flex: 1;
+  padding: 40px 44px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 20px;
+  padding: 5px 14px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #F59E0B;
+  width: fit-content;
+  margin-bottom: 16px;
+  letter-spacing: .02em;
+}
+.hero h1 {
+  font-size: 34px;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.1;
+  letter-spacing: -.025em;
+  margin-bottom: 12px;
+}
+.hero h1 em { color: #F59E0B; font-style: normal; }
+.hero p {
+  font-size: 15px;
+  color: rgba(255,255,255,.5);
+  margin-bottom: 24px;
+  max-width: 380px;
+  line-height: 1.5;
+}
+.hero-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #D97706;
+  color: #fff;
+  font-weight: 700;
+  font-size: 14px;
+  padding: 12px 28px;
+  border-radius: 8px;
+  width: fit-content;
+  transition: background .15s;
+}
+.hero-cta:hover { background: #B45309; }
+.hero-cta svg { width: 16px; height: 16px; }
+.hero-image {
+  width: 420px;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+.hero-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ============================================================
+   TRUST BAR
+   ============================================================ */
+.trust {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 36px;
+  padding: 16px 0;
+  margin-bottom: 20px;
+  border: 1px solid #E2E8F0;
+  border-radius: 10px;
+}
+.trust-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #475569;
+}
+.trust-item svg {
+  width: 18px;
+  height: 18px;
+  color: #D97706;
+  flex-shrink: 0;
+}
+
+/* ============================================================
+   CATEGORY SECTION — K-rauta / Kesko exact pattern
+   280px left panel + flex:1 right grid (3 cols x 2 rows)
+   1px border gaps between subcards
+   ============================================================ */
+.cat-section {
+  margin-bottom: 16px;
+  border: 1px solid #E2E8F0;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* Section header bar */
+.cat-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: #FAFAFA;
+  border-bottom: 1px solid #E2E8F0;
+}
+.cat-header-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+.cat-header-icon svg {
+  width: 20px;
+  height: 20px;
+  stroke: #64748B;
+  stroke-width: 1.5;
+  fill: none;
+}
+.cat-name {
+  font-size: 13px;
+  font-weight: 600;
+  flex: 1;
+  color: #475569;
+}
+.cat-link {
+  font-size: 11px;
+  font-weight: 600;
+  color: #D97706;
+  transition: color .15s;
+  white-space: nowrap;
+}
+.cat-link:hover { color: #B45309; }
+
+/* Section body */
+/* Section body — fixed height like K-rauta */
+.cat-body {
+  display: flex;
+  height: 530px;
+}
+
+/* Left panel — 280px */
+.cat-left {
+  width: 280px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #E2E8F0;
+}
+.cat-hero {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+  background: #F1F5F9;
+}
+.cat-hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.cat-hero-label {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  background: #D97706;
+  padding: 10px 14px;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+}
+.cat-sublinks {
+  padding: 10px 14px;
+  flex: 1;
+  overflow: hidden;
+}
+.cat-sublinks a {
+  display: block;
+  padding: 3px 0;
+  font-size: 12px;
+  color: #475569;
+  transition: color .12s;
+}
+.cat-sublinks a:hover { color: #D97706; }
+
+/* Right panel — 3x2 grid, 1px borders */
+.cat-grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 1fr 1fr;
+  gap: 1px;
+  background: #E2E8F0;
+}
+.subcard {
+  background: #fff;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  cursor: pointer;
+  transition: background .15s;
+}
+.subcard:hover { background: #FAFAFA; }
+.subcard img {
+  width: 110px;
+  height: 110px;
+  object-fit: contain;
+  margin-bottom: 6px;
+}
+.subcard span {
+  font-size: 12px;
+  font-weight: 500;
+  color: #475569;
+  line-height: 1.25;
+}
+
+/* ============================================================
+   FOOTER — dark, K-rauta style
+   ============================================================ */
+.footer {
+  background: #1E293B;
+  color: rgba(255,255,255,.7);
+  padding: 48px 0 0;
+  margin-top: 40px;
+}
+.footer-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  gap: 40px;
+}
+.footer-title {
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 14px;
+  color: #fff;
+  letter-spacing: .02em;
+}
+.footer-links {
+  columns: 2;
+  column-gap: 20px;
+}
+.footer-links li { margin-bottom: 5px; }
+.footer-links a {
+  font-size: 12px;
+  color: rgba(255,255,255,.5);
+  transition: color .15s;
+}
+.footer-links a:hover { color: #F59E0B; }
+.footer-links-single li { margin-bottom: 5px; }
+.footer-links-single a {
+  font-size: 12px;
+  color: rgba(255,255,255,.5);
+  transition: color .15s;
+}
+.footer-links-single a:hover { color: #F59E0B; }
+
+.footer-bottom {
+  max-width: 1280px;
+  margin: 24px auto 0;
+  padding: 16px 20px;
+  border-top: 1px solid rgba(255,255,255,.08);
+  font-size: 11px;
+  color: rgba(255,255,255,.3);
+  display: flex;
+  justify-content: space-between;
+}
+.footer-bottom a {
+  color: rgba(255,255,255,.3);
+  transition: color .15s;
+}
+.footer-bottom a:hover { color: rgba(255,255,255,.6); }
+
+/* ============================================================
+   SCROLL REVEAL ANIMATION
+   ============================================================ */
+.cat-section {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity .45s cubic-bezier(.16,1,.3,1), transform .45s cubic-bezier(.16,1,.3,1);
+}
+.cat-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+</style>
+</head>
+<body>
+
+<!-- === ROW 1: TOP UTILITY BAR === -->
+<div class="topbar"><div class="topbar-inner">
+  <div class="topbar-left">
+    <a href="#">B2B Solutions</a>
+    <a href="#">Shipping Info</a>
+    <a href="#">Help & FAQ</a>
+    <a href="#">Services</a>
+  </div>
+  <div class="topbar-right">
+    <a href="#">Contact</a>
+    <a href="#">ET | EN</a>
+    <a href="#"><strong>Log In</strong></a>
+  </div>
+</div></div>
+
+<!-- === ROW 2: MAIN HEADER === -->
+<header class="header"><div class="header-inner">
+  <a href="#" class="logo"><b>XL</b><span>Market</span></a>
+  <div class="search">
+    <input type="text" placeholder="Search 16,000+ products...">
+    <button class="search-btn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+    </button>
+  </div>
+  <div class="hdr-actions">
+    <button class="hdr-btn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      Account
+    </button>
+    <button class="hdr-btn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0016.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 002 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+      Wishlist
+    </button>
+    <button class="hdr-btn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg>
+      Cart
+    </button>
+  </div>
+</div></header>
+
+<!-- === ROW 3: PROMO STRIP === -->
+<div class="promo">
+  <strong>VEVOR Authorized Dealer</strong>&nbsp;&mdash;&nbsp;Professional Tools, Half the Price. 2-Year EU Warranty on All Products.
+</div>
+
+<!-- === ROW 4: CATEGORY NAV BAR === -->
+<nav class="navbar"><div class="navbar-inner">
+  <button class="nav-tab primary">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    All Products
+  </button>
+  <a class="nav-tab" href="#">Deals</a>
+  <a class="nav-tab" href="#">New Arrivals</a>
+  <a class="nav-tab" href="#">Best Sellers</a>
+  <a class="nav-tab" href="#">B2B</a>
+  <a class="nav-tab" href="#">HoReCa</a>
+  <a class="nav-tab" href="#">Tools</a>
+  <a class="nav-tab" href="#">Workshop</a>
+  <a class="nav-tab" href="#">Building</a>
+</div></nav>
+
+<!-- === MAIN LAYOUT === -->
+<div class="layout">
+
+<!-- SIDEBAR -->
+<aside class="sidebar" id="sidebar"></aside>
+
+<!-- MAIN CONTENT -->
+<main class="main">
+
+<!-- HERO BANNER -->
+<div class="hero">
+  <div class="hero-text">
+    <div class="hero-badge">VEVOR Authorized Dealer</div>
+    <h1>Professional Tools,<br><em>Half the Price</em></h1>
+    <p>16,000+ products direct from the factory. Up to 70% savings compared to traditional retail.</p>
+    <a href="#" class="hero-cta">
+      Browse All Products
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+  <div class="hero-image" id="hero-main-img"></div>
+</div>
+
+<!-- TRUST BAR -->
+<div class="trust">
+  <div class="trust-item">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    2-Year EU Warranty
+  </div>
+  <div class="trust-item">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+    EU Warehouse Shipping
+  </div>
+  <div class="trust-item">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+    Secure Payments
+  </div>
+  <div class="trust-item">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+    Customer Support
+  </div>
+</div>
+
+<!-- ALL 24 CATEGORY SECTIONS -->
+<div id="categories"></div>
+
+</main>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+<div class="footer-inner">
+  <div>
+    <div class="footer-title">Product Categories</div>
+    <ul class="footer-links" id="footer-cats"></ul>
+  </div>
+  <div>
+    <div class="footer-title">Customer Service</div>
+    <ul class="footer-links-single">
+      <li><a href="#">Shipping Info</a></li>
+      <li><a href="#">Returns & Refunds</a></li>
+      <li><a href="#">Warranty</a></li>
+      <li><a href="#">Payment Methods</a></li>
+      <li><a href="#">FAQ</a></li>
+    </ul>
+  </div>
+  <div>
+    <div class="footer-title">Company</div>
+    <ul class="footer-links-single">
+      <li><a href="#">About Us</a></li>
+      <li><a href="#">B2B Cooperation</a></li>
+      <li><a href="#">Blog</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </div>
+  <div>
+    <div class="footer-title">Contact</div>
+    <ul class="footer-links-single">
+      <li><a href="#">info@xlmarket.eu</a></li>
+      <li><a href="#">+372 5xx xxxx</a></li>
+      <li style="margin-top:12px;font-size:11px;color:rgba(255,255,255,.3)">Roland Kaubandus OU</li>
+      <li style="font-size:11px;color:rgba(255,255,255,.3)">Reg: 16XXXXXXX</li>
+    </ul>
+  </div>
+</div>
+<div class="footer-bottom">
+  <span>&copy; 2026 Roland Kaubandus OU &mdash; VEVOR Authorized Dealer</span>
+  <span><a href="#">Privacy Policy</a> &middot; <a href="#">Terms</a></span>
+</div>
+</footer>
+
+<script>
+// =====================================================
+// 24 CATEGORIES — each with hero image + 6 subcategories
+// Images use existing /cat-icons/400/ product photos
+// Hero banners will be replaced with nano-banana generated images
+// =====================================================
+const CATEGORIES = [
+  {
+    id: "kitchen", name: "Kitchen & Catering Equipment",
+    icon: "commercial-ovens", hero: "v5-heroes/kitchen.png",
+    subs: [
+      {n: "Commercial Cooking", img: "commercial-ovens"},
+      {n: "Food Preparation", img: "meat-slicers"},
+      {n: "Refrigeration & Ice", img: "ice-maker-with-water-dispenser"},
+      {n: "Beverage Equipment", img: "espresso-machines"},
+      {n: "Restaurant Furniture", img: "bar-stools"},
+      {n: "Kitchen Infrastructure", img: "stainless-steel-commercial-sink"}
+    ]
+  },
+  {
+    id: "tools", name: "Hand & Power Tools",
+    icon: "power-tools", hero: "hero-banners/tools-v2.png",
+    subs: [
+      {n: "Power Tools", img: "power-tools"},
+      {n: "Hand Tools", img: "specialty-hand-tools"},
+      {n: "Woodworking", img: "table-saw-stand"},
+      {n: "Air Compressors", img: "vertical-air-compressors"},
+      {n: "Tool Accessories", img: "drill-bit-combination-sets"},
+      {n: "Measuring & Layout", img: "laser-level"}
+    ]
+  },
+  {
+    id: "automotive", name: "Automotive & Workshop",
+    icon: "electric-car-jacks", hero: "hero-banners/automotive-v2.png",
+    subs: [
+      {n: "Vehicle Lifts & Jacks", img: "electric-car-jacks"},
+      {n: "Workshop Equipment", img: "engine-stands"},
+      {n: "Mechanics Tools", img: "ratchet-socket-sets"},
+      {n: "Towing & Hauling", img: "electric-winch"},
+      {n: "Truck Tool Boxes", img: "chest-truck-tool-boxes"},
+      {n: "Diagnostics", img: "12-volt-dc-automotive-circuit-tester"}
+    ]
+  },
+  {
+    id: "welding", name: "Welding & Metalworking",
+    icon: "mig-welders", hero: "hero-banners/welding-v2.png",
+    subs: [
+      {n: "Welding Machines", img: "mig-welders"},
+      {n: "Metal Lathes", img: "bench-metal-lathe"},
+      {n: "Welding Protection", img: "welding-helmet"},
+      {n: "Soldering", img: "soldering-parts-accessories"},
+      {n: "Plasma Cutters", img: "plasma-cutters"},
+      {n: "Bench Grinders", img: "bench-grinders"}
+    ]
+  },
+  {
+    id: "laser", name: "Laser, CNC & Digital Fabrication",
+    icon: "laser-engraver-enclosure", hero: "hero-banners/laser-v2.png",
+    subs: [
+      {n: "Laser Engravers", img: "laser-engraver-enclosure"},
+      {n: "CNC Routers", img: "cnc-router-machine"},
+      {n: "3D Printing", img: "3d-printer-cover"},
+      {n: "Vinyl Cutters", img: "vertical-vinyl-cutter"},
+      {n: "Heat Press", img: "heat-press-machines"},
+      {n: "Screen Printing", img: "screen-printing-press"}
+    ]
+  },
+  {
+    id: "packaging", name: "Printing, Packaging & Production",
+    icon: "paste-liquid-filling-machine", hero: "hero-banners/packaging-v2.png",
+    subs: [
+      {n: "Filling Machines", img: "paste-liquid-filling-machine"},
+      {n: "Label Printers", img: "label-printer"},
+      {n: "Paper Cutters", img: "electric-paper-cutter"},
+      {n: "Scales & Weighing", img: "bench-scales"},
+      {n: "Vacuum Sealers", img: "commercial-vacuum-sealers"},
+      {n: "Bill Counters", img: "bill-counters"}
+    ]
+  },
+  {
+    id: "building", name: "Building & Construction",
+    icon: "concrete-drilling-tools", hero: "hero-banners/building-v2.png",
+    subs: [
+      {n: "Concrete & Masonry", img: "concrete-drilling-tools"},
+      {n: "Scaffolding", img: "scaffolding-sets"},
+      {n: "Roofing", img: "roofing-tools"},
+      {n: "Fencing & Decking", img: "vinyl-fence-panels"},
+      {n: "Doors & Windows", img: "garage-door-springs"},
+      {n: "Hardware & Fasteners", img: "cabinet-hardware"}
+    ]
+  },
+  {
+    id: "electrical", name: "Electrical, Lighting & Solar",
+    icon: "commercial-lighting", hero: "hero-banners/electrical.png",
+    subs: [
+      {n: "Commercial Lighting", img: "commercial-lighting"},
+      {n: "Wiring & Conduit", img: "electrical-boxes-conduit-fittings"},
+      {n: "Batteries & Charging", img: "car-battery-chargers"},
+      {n: "Solar & Renewable", img: "portable-solar-panels"},
+      {n: "Security Lights", img: "security-lights"},
+      {n: "Motors & Drives", img: "electric-motors"}
+    ]
+  },
+  {
+    id: "plumbing", name: "Plumbing, Pumps & Water",
+    icon: "water-pumps", hero: "hero-banners/plumbing-v2.png",
+    subs: [
+      {n: "Water Pumps", img: "water-pumps"},
+      {n: "Hydraulic Systems", img: "hydraulic-pump"},
+      {n: "Pipes & Fittings", img: "pex-pipes-fittings"},
+      {n: "Water Heaters", img: "tankless-water-heaters"},
+      {n: "Bathroom Fixtures", img: "bathroom-faucets"},
+      {n: "Plumbing Tools", img: "pipe-cutters"}
+    ]
+  },
+  {
+    id: "hvac", name: "HVAC & Climate Control",
+    icon: "mini-split-air-conditioners", hero: "hero-banners/hvac.png",
+    subs: [
+      {n: "Heating", img: "space-heaters"},
+      {n: "Air Conditioning", img: "mini-split-air-conditioners"},
+      {n: "Ventilation", img: "inline-duct-fans"},
+      {n: "Air Quality", img: "air-purifiers"},
+      {n: "Dehumidifiers", img: "dehumidifiers"},
+      {n: "Infrared Heating", img: "infrared-heaters"}
+    ]
+  },
+  {
+    id: "handling", name: "Material Handling & Lifting",
+    icon: "electric-chain-hoists", hero: "hero-banners/handling.png",
+    subs: [
+      {n: "Hoists & Cranes", img: "electric-chain-hoists"},
+      {n: "Pallet Equipment", img: "pallet-jack-truck"},
+      {n: "Lifting Magnets", img: "lifting-magnet"},
+      {n: "Conveyors", img: "belt-conveyors"},
+      {n: "Forklifts", img: "forklifts-attachments"},
+      {n: "Engine Hoists", img: "engine-hoists"}
+    ]
+  },
+  {
+    id: "storage", name: "Storage & Warehouse",
+    icon: "freestanding-shelving-units", hero: "hero-banners/storage.png",
+    subs: [
+      {n: "Industrial Shelving", img: "freestanding-shelving-units"},
+      {n: "Garage Cabinets", img: "garage-cabinets"},
+      {n: "Closet Systems", img: "closet-organizers"},
+      {n: "Storage Bins", img: "storage-bins"},
+      {n: "Wall Organization", img: "garage-wall-organization"},
+      {n: "Lockers", img: "metal-locker"}
+    ]
+  },
+  {
+    id: "safety", name: "Safety, PPE & Security",
+    icon: "safety-harnesses", hero: "hero-banners/safety.png",
+    subs: [
+      {n: "Work Boots", img: "work-boots"},
+      {n: "Hard Hats", img: "hard-hats"},
+      {n: "Padlocks & Locks", img: "padlocks"},
+      {n: "Workwear", img: "workwear"},
+      {n: "Gun Safes", img: "gun-safes"},
+      {n: "Fall Protection", img: "fall-protection-equipment"}
+    ]
+  },
+  {
+    id: "outdoor", name: "Outdoor Power & Agriculture",
+    icon: "lawn-mowers", hero: "hero-banners/outdoor-v2.png",
+    subs: [
+      {n: "Chainsaws", img: "chainsaws"},
+      {n: "Pressure Washers", img: "pressure-washers"},
+      {n: "Irrigation", img: "drip-irrigation"},
+      {n: "Leaf Blowers", img: "leaf-blowers"},
+      {n: "Wood Chippers", img: "wood-chippers"},
+      {n: "Hedge Trimmers", img: "hedge-trimmers"}
+    ]
+  },
+  {
+    id: "cleaning", name: "Cleaning & Janitorial",
+    icon: "floor-scrubbers-buffers", hero: "hero-banners/cleaning.png",
+    subs: [
+      {n: "Industrial Vacuums", img: "backpack-vacuums"},
+      {n: "Carpet Cleaners", img: "carpet-cleaners"},
+      {n: "Steam Cleaners", img: "steam-mops-steam-cleaners"},
+      {n: "Janitorial Carts", img: "janitorial-carts"},
+      {n: "Power Scrubbers", img: "power-scrubbers"},
+      {n: "Mop Systems", img: "mop-buckets-with-wringer"}
+    ]
+  },
+  {
+    id: "salon", name: "Salon, Spa & Wellness",
+    icon: "salon-barber-chair", hero: "hero-banners/salon-v2.png",
+    subs: [
+      {n: "Salon Chairs", img: "salon-barber-chair"},
+      {n: "Massage Tables", img: "massage-tables"},
+      {n: "Massage Chairs", img: "massage-chairs"},
+      {n: "Medical Equipment", img: "medical-exam-table"},
+      {n: "Manicure Tables", img: "manicure-table"},
+      {n: "Hair Styling Tools", img: "hair-styling-tools"}
+    ]
+  },
+  {
+    id: "furniture", name: "Furniture & Home",
+    icon: "height-adjustable-standing-desk", hero: "hero-banners/furniture-v2.png",
+    subs: [
+      {n: "Office Desks", img: "height-adjustable-standing-desk"},
+      {n: "Dining Tables", img: "kitchen-dining-tables"},
+      {n: "Bar Furniture", img: "bar-furniture"},
+      {n: "Beds & Frames", img: "beds"},
+      {n: "TV Stands", img: "tv-stands-tv-cabinet"},
+      {n: "Bookcases", img: "bookcases-bookshelves"}
+    ]
+  },
+  {
+    id: "sports", name: "Sports, Fitness & Recreation",
+    icon: "squat-racks", hero: "hero-banners/sports-v2.png",
+    subs: [
+      {n: "Exercise Bikes", img: "exercise-bikes"},
+      {n: "Playground Sets", img: "playground-sets"},
+      {n: "Treadmills", img: "treadmills"},
+      {n: "Basketball", img: "basketball-hoop-goal"},
+      {n: "Trampolines", img: "trampolines"},
+      {n: "Boxing Equipment", img: "boxing-equipment"}
+    ]
+  },
+  {
+    id: "patio", name: "Outdoor Living & Patio",
+    icon: "patio-furniture", hero: "hero-banners/patio-v2.png",
+    subs: [
+      {n: "Grills & BBQ", img: "grills"},
+      {n: "Pools", img: "above-ground-pools"},
+      {n: "Patio Umbrellas", img: "patio-umbrellas"},
+      {n: "Outdoor Heating", img: "outdoor-heaters"},
+      {n: "Gazebos", img: "gazebos"},
+      {n: "Fire Pits", img: "fire-pits"}
+    ]
+  },
+  {
+    id: "pets", name: "Pet Supplies & Animal Care",
+    icon: "cat-trees-scratch-posts", hero: "hero-banners/pets.png",
+    subs: [
+      {n: "Cat Trees", img: "cat-trees-scratch-posts"},
+      {n: "Aquarium", img: "aquarium-filter"},
+      {n: "Dog Crates", img: "dog-crates-crate-pads"},
+      {n: "Chicken Coops", img: "chicken-coops"},
+      {n: "Pet Grooming", img: "pet-grooming-table"},
+      {n: "Bird Cages", img: "bird-cages-carriers"}
+    ]
+  },
+  {
+    id: "boating", name: "Boating & Marine",
+    icon: "boats", hero: "hero-banners/boating-v2.png",
+    subs: [
+      {n: "Boat Parts", img: "boat-parts-accessories"},
+      {n: "Docks & Hardware", img: "boat-docks-hardware"},
+      {n: "Kayaks", img: "kayaks"},
+      {n: "Inflatable Boats", img: "inflatable-boats"},
+      {n: "Trolling Motors", img: "electric-trolling-motor"},
+      {n: "Paddleboards", img: "stand-up-paddleboards"}
+    ]
+  },
+  {
+    id: "camping", name: "Camping & Outdoor Recreation",
+    icon: "camping-tents", hero: "hero-banners/camping.png",
+    subs: [
+      {n: "Fishing Gear", img: "fishing-gear"},
+      {n: "Hunting Gear", img: "hunting-gear"},
+      {n: "Coolers", img: "coolers"},
+      {n: "Rooftop Tents", img: "rooftop-tent"},
+      {n: "Hammocks", img: "camping-hammocks"},
+      {n: "Camping Furniture", img: "camping-furniture"}
+    ]
+  },
+  {
+    id: "music", name: "Musical Instruments & Entertainment",
+    icon: "drum-sets-set-components", hero: "hero-banners/music-v2.png",
+    subs: [
+      {n: "Drums", img: "drum-sets-set-components"},
+      {n: "Guitars", img: "acoustic-guitar"},
+      {n: "Keyboards", img: "electronic-keyboards"},
+      {n: "Billiard Tables", img: "billiard-table"},
+      {n: "Foosball", img: "foosball-table"},
+      {n: "Air Hockey", img: "air-hockey-table"}
+    ]
+  },
+  {
+    id: "generators", name: "Generators & Portable Power",
+    icon: "generators", hero: "hero-banners/generators.png",
+    subs: [
+      {n: "Solar Generators", img: "solar-generators"},
+      {n: "Power Inverters", img: "power-inverters"},
+      {n: "EV Chargers", img: "ev-chargers"},
+      {n: "Battery Generators", img: "battery-generators"},
+      {n: "Solar Panel Kits", img: "solar-panel-kits"},
+      {n: "Jump Starters", img: "jump-starters"}
+    ]
+  }
+];
+
+// =====================================================
+// SVG ICONS — clean line-art like K-rauta
+// =====================================================
+const ICONS = {
+  kitchen:    `<svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="3" x2="9" y2="9"/><circle cx="15" cy="6" r="1"/><line x1="8" y1="14" x2="8" y2="17"/><line x1="12" y1="14" x2="12" y2="17"/><line x1="16" y1="14" x2="16" y2="17"/></svg>`,
+  tools:      `<svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>`,
+  automotive: `<svg viewBox="0 0 24 24"><path d="M5 17h2m10 0h2M5 17a2 2 0 01-2-2V9a2 2 0 012-2h1l2-3h8l2 3h1a2 2 0 012 2v6a2 2 0 01-2 2"/><circle cx="7.5" cy="17" r="2.5"/><circle cx="16.5" cy="17" r="2.5"/></svg>`,
+  welding:    `<svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>`,
+  laser:      `<svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="1"/><path d="M4 12h4l2-3 3 6 2-3h5"/><circle cx="12" cy="12" r="1"/></svg>`,
+  packaging:  `<svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>`,
+  building:   `<svg viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="1"/><line x1="9" y1="22" x2="9" y2="16"/><line x1="15" y1="22" x2="15" y2="16"/><rect x="7" y="5" width="3" height="3"/><rect x="14" y="5" width="3" height="3"/><rect x="7" y="11" width="3" height="3"/><rect x="14" y="11" width="3" height="3"/></svg>`,
+  electrical: `<svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>`,
+  plumbing:   `<svg viewBox="0 0 24 24"><path d="M12 2v6m0 0a4 4 0 014 4v1a4 4 0 01-4 4 4 4 0 01-4-4v-1a4 4 0 014-4z"/><path d="M6 19v3h12v-3"/></svg>`,
+  hvac:       `<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3c-2 4-2 8 0 12s-2 8 0 12" opacity=".5"/><path d="M3 12c4-2 8-2 12 0s8-2 12 0" opacity=".5"/></svg>`,
+  handling:   `<svg viewBox="0 0 24 24"><path d="M12 2l-2 7h4l-2 7"/><rect x="5" y="16" width="14" height="6" rx="1"/><line x1="9" y1="16" x2="9" y2="22"/><line x1="15" y1="16" x2="15" y2="22"/></svg>`,
+  storage:    `<svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="6" rx="1"/><rect x="3" y="11" width="18" height="6" rx="1"/><line x1="7" y1="6" x2="7" y2="6.01"/><line x1="7" y1="14" x2="7" y2="14.01"/><rect x="3" y="19" width="18" height="3" rx="1"/></svg>`,
+  safety:     `<svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>`,
+  outdoor:    `<svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0110 10c0 8-10 12-10 12S2 20 2 12A10 10 0 0112 2z"/><path d="M8 11h8M8 15h8M10 7h4"/></svg>`,
+  cleaning:   `<svg viewBox="0 0 24 24"><path d="M12 2v8"/><path d="M4.93 10.93l2.83 2.83"/><path d="M2 18h20"/><path d="M4 22h16"/><circle cx="12" cy="14" r="4"/></svg>`,
+  salon:      `<svg viewBox="0 0 24 24"><path d="M5 21V5a2 2 0 012-2h10a2 2 0 012 2v16"/><path d="M3 21h18"/><line x1="9" y1="7" x2="15" y2="7"/><path d="M8 11c0 2 1.5 4 4 4s4-2 4-4"/></svg>`,
+  furniture:  `<svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="8" rx="2"/><path d="M5 16v4M19 16v4M5 8V6a2 2 0 012-2h10a2 2 0 012 2v2"/></svg>`,
+  sports:     `<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2a15 15 0 014 10 15 15 0 01-4 10"/><path d="M12 2a15 15 0 00-4 10 15 15 0 004 10"/><line x1="2" y1="12" x2="22" y2="12"/></svg>`,
+  patio:      `<svg viewBox="0 0 24 24"><path d="M2 12h20"/><path d="M12 2v10"/><path d="M4 12l-2 10"/><path d="M20 12l2 10"/><path d="M9 12l-1 10"/><path d="M15 12l1 10"/></svg>`,
+  pets:       `<svg viewBox="0 0 24 24"><path d="M12 21c-1.5 0-5-2.5-5-6 0-2 1-3 2.5-3.5C11 11 12 9 12 9s1 2 2.5 2.5C16 12 17 13 17 15c0 3.5-3.5 6-5 6z"/><circle cx="8" cy="6" r="2"/><circle cx="16" cy="6" r="2"/><circle cx="5" cy="11" r="1.5"/><circle cx="19" cy="11" r="1.5"/></svg>`,
+  boating:    `<svg viewBox="0 0 24 24"><path d="M2 20l.8-2.2C4 14 8 12 12 12s8 2 9.2 5.8L22 20"/><path d="M12 12V4"/><path d="M12 4l6 8"/><line x1="2" y1="20" x2="22" y2="20"/></svg>`,
+  camping:    `<svg viewBox="0 0 24 24"><path d="M12 2L2 22h20L12 2z"/><path d="M12 14l-4 8"/><path d="M12 14l4 8"/></svg>`,
+  music:      `<svg viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>`,
+  generators: `<svg viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="2"/><line x1="6" y1="6" x2="6" y2="18"/><line x1="18" y1="6" x2="18" y2="18"/><polygon points="13 10 10 14 13 14 10 18" fill="currentColor" stroke="none"/></svg>`
+};
+
+// =====================================================
+// RENDER SIDEBAR ICONS
+// =====================================================
+const sidebar = document.getElementById('sidebar');
+CATEGORIES.forEach(cat => {
+  const a = document.createElement('a');
+  a.href = '#s-' + cat.id;
+  a.className = 'sidebar-icon';
+  a.innerHTML = `
+    ${ICONS[cat.id] || '<span>' + cat.name[0] + '</span>'}
+    <span class="tip">${cat.name}</span>
+  `;
+  sidebar.appendChild(a);
+});
+
+// =====================================================
+// RENDER CATEGORY SECTIONS
+// =====================================================
+const container = document.getElementById('categories');
+CATEGORIES.forEach(cat => {
+  const subLinks = cat.subs.map(s => s.n);
+  const gridCards = cat.subs.slice(0, 6).map(s =>
+    `<div class="subcard">
+      <img src="/cat-icons/400/${s.img}.webp" alt="${s.n}"
+           onerror="this.style.opacity='.2'">
+      <span>${s.n}</span>
+    </div>`
+  ).join('');
+
+  // Pad to 6 cards
+  const remaining = 6 - Math.min(cat.subs.length, 6);
+  const emptyCards = '<div class="subcard"></div>'.repeat(remaining);
+
+  container.innerHTML += `
+  <div class="cat-section" id="s-${cat.id}">
+    <div class="cat-header">
+      <div class="cat-header-icon">${ICONS[cat.id] || ''}</div>
+      <div class="cat-name">${cat.name}</div>
+      <a href="#" class="cat-link">View all &rarr;</a>
+    </div>
+    <div class="cat-body">
+      <div class="cat-left">
+        <div class="cat-hero">
+          <img src="${cat.hero}" alt="${cat.name}"
+               onerror="this.src='/cat-icons/400/${cat.icon}.webp'">
+          <div class="cat-hero-label">${cat.name}</div>
+        </div>
+        <div class="cat-sublinks">
+          ${subLinks.map(s => `<a href="#">${s}</a>`).join('')}
+        </div>
+      </div>
+      <div class="cat-grid">
+        ${gridCards}${emptyCards}
+      </div>
+    </div>
+  </div>`;
+});
+
+// =====================================================
+// RENDER FOOTER CATEGORIES
+// =====================================================
+const footerCats = document.getElementById('footer-cats');
+CATEGORIES.forEach(cat => {
+  footerCats.innerHTML += `<li><a href="#">${cat.name}</a></li>`;
+});
+
+// =====================================================
+// SCROLL SPY — highlight active sidebar icon
+// =====================================================
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      document.querySelectorAll('.sidebar-icon').forEach(icon => {
+        icon.classList.toggle('active',
+          icon.getAttribute('href') === '#' + entry.target.id);
+      });
+      // Also reveal the section
+      entry.target.classList.add('visible');
+    }
+  });
+}, { rootMargin: '-100px 0px -60% 0px' });
+
+document.querySelectorAll('[id^="s-"]').forEach(el => observer.observe(el));
+
+// =====================================================
+// SMOOTH SCROLL
+// =====================================================
+document.querySelectorAll('.sidebar-icon').forEach(icon => {
+  icon.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(icon.getAttribute('href'));
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+</script>
+</body>
+</html>

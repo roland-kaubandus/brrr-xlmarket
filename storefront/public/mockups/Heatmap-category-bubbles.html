@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Category Explorer — xlmarket.eu</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+  :root {
+    --navy: #1E293B;
+    --amber: #D97706;
+    --bg: #FAFAFA;
+    --surface: #FFFFFF;
+    --text: #1E293B;
+    --text-muted: #64748B;
+    --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  html { font-size: 16px; }
+
+  body {
+    font-family: 'DM Sans', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--navy);
+    color: #fff;
+    padding: 0 clamp(1rem, 3vw, 2.5rem);
+    height: 56px;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    box-shadow: 0 2px 12px rgba(0,0,0,.18);
+  }
+  .header-logo {
+    font-weight: 700;
+    font-size: 1.15rem;
+    letter-spacing: -.02em;
+    color: var(--amber);
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+  .header-sep {
+    width: 1px;
+    height: 24px;
+    background: rgba(255,255,255,.18);
+    flex-shrink: 0;
+  }
+  .header-title {
+    font-size: .95rem;
+    font-weight: 500;
+    opacity: .85;
+  }
+  .header-spacer { flex: 1; }
+  .header-back {
+    font-size: .82rem;
+    color: rgba(255,255,255,.7);
+    text-decoration: none;
+    transition: color .2s;
+  }
+  .header-back:hover { color: #fff; }
+
+  /* ── BREADCRUMB ── */
+  .breadcrumb-bar {
+    padding: .65rem clamp(1rem, 3vw, 2.5rem);
+    background: var(--surface);
+    border-bottom: 1px solid #E2E8F0;
+    font-size: .82rem;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: .45rem;
+    min-height: 40px;
+  }
+  .breadcrumb-bar a {
+    color: var(--amber);
+    text-decoration: none;
+    font-weight: 500;
+    cursor: pointer;
+  }
+  .breadcrumb-bar a:hover { text-decoration: underline; }
+  .breadcrumb-bar .sep { opacity: .4; }
+  .breadcrumb-bar .current { color: var(--text); font-weight: 600; }
+
+  /* ── LAYOUT ── */
+  .layout {
+    display: flex;
+    min-height: calc(100vh - 96px);
+  }
+
+  /* ── SIDEBAR ── */
+  .sidebar {
+    width: 220px;
+    flex-shrink: 0;
+    background: var(--surface);
+    border-right: 1px solid #E2E8F0;
+    padding: 1.2rem 0;
+    overflow-y: auto;
+    max-height: calc(100vh - 96px);
+    position: sticky;
+    top: 96px;
+  }
+  .sidebar-heading {
+    font-size: .7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    color: var(--text-muted);
+    padding: 0 1rem .6rem;
+  }
+  .sidebar-item {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    padding: .4rem 1rem;
+    font-size: .8rem;
+    cursor: pointer;
+    transition: background .15s, color .15s;
+    color: var(--text);
+    text-decoration: none;
+    border: none;
+    background: none;
+    width: 100%;
+    text-align: left;
+  }
+  .sidebar-item:hover { background: #F1F5F9; }
+  .sidebar-item.active {
+    background: #FEF3C7;
+    color: var(--amber);
+    font-weight: 600;
+  }
+  .sidebar-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .sidebar-count {
+    margin-left: auto;
+    font-size: .7rem;
+    color: var(--text-muted);
+    font-weight: 400;
+  }
+
+  /* ── MAIN CANVAS ── */
+  .canvas {
+    flex: 1;
+    padding: clamp(1.5rem, 4vw, 3rem);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .canvas-title {
+    font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+    font-weight: 700;
+    letter-spacing: -.02em;
+    margin-bottom: .25rem;
+    text-align: center;
+  }
+  .canvas-subtitle {
+    font-size: .85rem;
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+
+  /* ── BUBBLE MAP ── */
+  .bubble-map {
+    position: relative;
+    width: 100%;
+    max-width: 1100px;
+    min-height: 700px;
+    transition: all .6s var(--ease-out-expo);
+  }
+
+  .bubble-map.zoomed-in .l1-group:not(.active-group) {
+    opacity: .08;
+    pointer-events: none;
+    transform: scale(.6);
+  }
+  .bubble-map.zoomed-in .l1-group.active-group {
+    transform: translate(-50%, 0) !important;
+    left: 50% !important;
+    top: 1rem !important;
+  }
+  .bubble-map.zoomed-in .l1-group.active-group .l2-orbit {
+    opacity: 1;
+    pointer-events: auto;
+    transform: scale(1);
+  }
+
+  /* ── L1 GROUP ── */
+  .l1-group {
+    position: absolute;
+    transition: all .6s var(--ease-out-expo);
+  }
+
+  /* ── BUBBLE (shared) ── */
+  .bubble {
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform .35s var(--ease-out-expo), box-shadow .35s var(--ease-out-expo), opacity .35s;
+    position: relative;
+    text-align: center;
+    overflow: hidden;
+  }
+  .bubble::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    opacity: 0;
+    transition: opacity .25s;
+    background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.35), transparent 60%);
+  }
+  .bubble:hover::before { opacity: 1; }
+  .bubble:hover {
+    transform: scale(1.1);
+    z-index: 10;
+  }
+
+  .bubble-icon {
+    width: 40%;
+    height: 40%;
+    max-width: 56px;
+    max-height: 56px;
+    object-fit: contain;
+    filter: drop-shadow(0 1px 2px rgba(0,0,0,.15));
+    pointer-events: none;
+  }
+  .bubble-label {
+    font-size: .62rem;
+    font-weight: 600;
+    line-height: 1.15;
+    margin-top: 2px;
+    max-width: 85%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    pointer-events: none;
+    text-shadow: 0 1px 2px rgba(0,0,0,.15);
+  }
+  .bubble-count {
+    font-size: .55rem;
+    opacity: .75;
+    font-weight: 400;
+    pointer-events: none;
+  }
+
+  /* L1 bubble */
+  .bubble-l1 {
+    z-index: 5;
+    box-shadow: 0 4px 24px rgba(0,0,0,.12), 0 1px 4px rgba(0,0,0,.06);
+    color: #fff;
+  }
+  .bubble-l1:hover {
+    box-shadow: 0 8px 40px rgba(0,0,0,.2), 0 2px 8px rgba(0,0,0,.1);
+  }
+  .bubble-l1 .bubble-label { font-size: .72rem; }
+  .bubble-l1 .bubble-count { font-size: .6rem; }
+
+  /* L2 orbit container */
+  .l2-orbit {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity .5s var(--ease-out-expo), transform .5s var(--ease-out-expo);
+    transform: scale(.5);
+  }
+
+  .bubble-l2 {
+    position: absolute;
+    z-index: 3;
+    color: #fff;
+    box-shadow: 0 2px 12px rgba(0,0,0,.1);
+  }
+  .bubble-l2:hover {
+    box-shadow: 0 4px 20px rgba(0,0,0,.16);
+  }
+  .bubble-l2 .bubble-icon {
+    max-width: 28px;
+    max-height: 28px;
+  }
+
+  /* ── ZOOMED VIEW ── */
+  .zoom-children-container {
+    display: none;
+    width: 100%;
+    max-width: 1000px;
+    margin-top: 2rem;
+  }
+  .zoom-children-container.visible {
+    display: block;
+  }
+  .zoom-children-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    padding: 1rem 0;
+  }
+  .zoom-child-card {
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+    padding: .75rem 1.1rem;
+    border-radius: 14px;
+    background: var(--surface);
+    border: 1px solid #E2E8F0;
+    cursor: pointer;
+    transition: transform .2s var(--ease-out-expo), box-shadow .2s, border-color .2s;
+    min-width: 200px;
+    max-width: 280px;
+    flex: 1 1 200px;
+  }
+  .zoom-child-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0,0,0,.08);
+  }
+  .zoom-child-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+  .zoom-child-info { display: flex; flex-direction: column; min-width: 0; }
+  .zoom-child-name {
+    font-size: .82rem;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .zoom-child-count {
+    font-size: .72rem;
+    color: var(--text-muted);
+  }
+  .zoom-child-bar {
+    height: 3px;
+    border-radius: 2px;
+    margin-top: 4px;
+    transition: width .4s var(--ease-out-expo);
+  }
+
+  /* ── TOOLTIP ── */
+  .tooltip {
+    position: fixed;
+    z-index: 200;
+    background: var(--navy);
+    color: #fff;
+    padding: .5rem .85rem;
+    border-radius: 8px;
+    font-size: .78rem;
+    pointer-events: none;
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity .2s, transform .2s;
+    white-space: nowrap;
+    box-shadow: 0 4px 16px rgba(0,0,0,.2);
+  }
+  .tooltip.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .tooltip-count {
+    font-weight: 700;
+    color: var(--amber);
+  }
+
+  /* ── MOBILE ── */
+  @media (max-width: 768px) {
+    .sidebar { display: none; }
+    .bubble-map { display: none; }
+    .mobile-list { display: block !important; }
+  }
+
+  .mobile-list {
+    display: none;
+    width: 100%;
+    max-width: 600px;
+  }
+  .mobile-l1 {
+    margin-bottom: 1.2rem;
+  }
+  .mobile-l1-header {
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+    padding: .85rem 1rem;
+    background: var(--surface);
+    border-radius: 12px;
+    border: 1px solid #E2E8F0;
+    cursor: pointer;
+    transition: background .15s;
+  }
+  .mobile-l1-header:hover { background: #F8FAFC; }
+  .mobile-l1-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  .mobile-l1-info { flex: 1; min-width: 0; }
+  .mobile-l1-name {
+    font-size: .9rem;
+    font-weight: 600;
+  }
+  .mobile-l1-count {
+    font-size: .75rem;
+    color: var(--text-muted);
+  }
+  .mobile-size-bar {
+    width: 60px;
+    height: 8px;
+    border-radius: 4px;
+    background: #E2E8F0;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+  .mobile-size-fill {
+    height: 100%;
+    border-radius: 4px;
+    transition: width .4s var(--ease-out-expo);
+  }
+  .mobile-l2-list {
+    display: none;
+    padding: .5rem 0 0 3.25rem;
+  }
+  .mobile-l1.expanded .mobile-l2-list { display: block; }
+  .mobile-l2-item {
+    display: flex;
+    align-items: center;
+    gap: .6rem;
+    padding: .35rem 0;
+    font-size: .8rem;
+    color: var(--text-muted);
+  }
+  .mobile-l2-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .mobile-l2-count {
+    margin-left: auto;
+    font-size: .72rem;
+  }
+  .mobile-chevron {
+    width: 20px;
+    height: 20px;
+    transition: transform .25s;
+    flex-shrink: 0;
+  }
+  .mobile-l1.expanded .mobile-chevron { transform: rotate(90deg); }
+
+  /* ── PULSE ANIMATION ── */
+  @keyframes gentle-pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <a class="header-logo" href="#">XLmarket</a>
+  <span class="header-sep"></span>
+  <span class="header-title">Category Explorer</span>
+  <span class="header-spacer"></span>
+  <a class="header-back" href="#">&larr; Back to store</a>
+</header>
+
+<!-- BREADCRUMB -->
+<nav class="breadcrumb-bar" id="breadcrumb">
+  <span class="current">All Categories</span>
+</nav>
+
+<!-- LAYOUT -->
+<div class="layout">
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar"></aside>
+
+  <!-- MAIN CANVAS -->
+  <main class="canvas">
+    <h1 class="canvas-title">Explore by Category</h1>
+    <p class="canvas-subtitle">Circle size = number of products. Click a category to zoom in.</p>
+
+    <!-- BUBBLE MAP (desktop) -->
+    <div class="bubble-map" id="bubbleMap"></div>
+
+    <!-- ZOOMED CHILDREN -->
+    <div class="zoom-children-container" id="zoomChildren">
+      <div class="zoom-children-grid" id="zoomChildrenGrid"></div>
+    </div>
+
+    <!-- MOBILE LIST -->
+    <div class="mobile-list" id="mobileList"></div>
+  </main>
+</div>
+
+<!-- TOOLTIP -->
+<div class="tooltip" id="tooltip"></div>
+
+<script>
+// ── DATA ──
+const COLOR_FAMILIES = {
+  'tools':                    { dark: '#B45309', mid: '#D97706', light: '#FEF3C7', bg: '#FFFBEB' },
+  'automotive':               { dark: '#1D4ED8', mid: '#2563EB', light: '#BFDBFE', bg: '#EFF6FF' },
+  'kitchen':                  { dark: '#B91C1C', mid: '#DC2626', light: '#FECACA', bg: '#FEF2F2' },
+  'building-materials':       { dark: '#57534E', mid: '#78716C', light: '#D6D3D1', bg: '#F5F5F4' },
+  'outdoors':                 { dark: '#047857', mid: '#059669', light: '#A7F3D0', bg: '#ECFDF5' },
+  'appliances':               { dark: '#6D28D9', mid: '#7C3AED', light: '#C4B5FD', bg: '#F5F3FF' },
+  'furniture':                { dark: '#0F766E', mid: '#0D9488', light: '#99F6E4', bg: '#F0FDFA' },
+  'bath':                     { dark: '#0E7490', mid: '#0891B2', light: '#A5F3FC', bg: '#ECFEFF' },
+  'sports-outdoors':          { dark: '#C2410C', mid: '#EA580C', light: '#FED7AA', bg: '#FFF7ED' },
+  'industrial-scientific':    { dark: '#334155', mid: '#475569', light: '#CBD5E1', bg: '#F8FAFC' },
+  'plumbing':                 { dark: '#0369A1', mid: '#0284C7', light: '#BAE6FD', bg: '#F0F9FF' },
+  'electrical':               { dark: '#A16207', mid: '#CA8A04', light: '#FDE68A', bg: '#FEFCE8' },
+  'hardware':                 { dark: '#4338CA', mid: '#4F46E5', light: '#C7D2FE', bg: '#EEF2FF' },
+  'heating-venting-cooling':  { dark: '#9F1239', mid: '#E11D48', light: '#FECDD3', bg: '#FFF1F2' },
+  'home-decor':               { dark: '#9D174D', mid: '#DB2777', light: '#FBCFE8', bg: '#FDF2F8' },
+  'storage-organization':     { dark: '#3F6212', mid: '#65A30D', light: '#BEF264', bg: '#F7FEE7' },
+  'lighting':                 { dark: '#92400E', mid: '#D97706', light: '#FDE68A', bg: '#FFFBEB' },
+  'cleaning':                 { dark: '#155E75', mid: '#0891B2', light: '#A5F3FC', bg: '#ECFEFF' },
+  'health-and-wellness':      { dark: '#065F46', mid: '#059669', light: '#A7F3D0', bg: '#ECFDF5' },
+  'safety-equipment':         { dark: '#7C2D12', mid: '#EA580C', light: '#FED7AA', bg: '#FFF7ED' },
+  'flooring':                 { dark: '#78716C', mid: '#A8A29E', light: '#E7E5E4', bg: '#FAFAF9' },
+  'paint':                    { dark: '#6D28D9', mid: '#8B5CF6', light: '#DDD6FE', bg: '#F5F3FF' },
+};
+
+const L1_CATEGORIES = [
+  { handle: 'automotive',              name: 'Automotive',                count: 1840 },
+  { handle: 'appliances',              name: 'Appliances',               count: 1119 },
+  { handle: 'building-materials',      name: 'Building Materials',       count: 530 },
+  { handle: 'kitchen',                 name: 'Kitchen',                  count: 500 },
+  { handle: 'tools',                   name: 'Tools',                    count: 480 },
+  { handle: 'outdoors',               name: 'Outdoors',                 count: 450 },
+  { handle: 'sports-outdoors',        name: 'Sports & Outdoors',        count: 400 },
+  { handle: 'industrial-scientific',  name: 'Industrial & Scientific',  count: 350 },
+  { handle: 'furniture',              name: 'Furniture',                count: 300 },
+  { handle: 'bath',                   name: 'Bath',                     count: 285 },
+  { handle: 'plumbing',               name: 'Plumbing',                 count: 250 },
+  { handle: 'electrical',             name: 'Electrical',               count: 230 },
+  { handle: 'hardware',               name: 'Hardware',                 count: 200 },
+  { handle: 'heating-venting-cooling', name: 'HVAC',                    count: 180 },
+  { handle: 'home-decor',             name: 'Home Decor',               count: 150 },
+  { handle: 'storage-organization',   name: 'Storage',                  count: 140 },
+  { handle: 'lighting',               name: 'Lighting',                 count: 120 },
+  { handle: 'cleaning',               name: 'Cleaning',                 count: 100 },
+  { handle: 'health-and-wellness',    name: 'Health & Wellness',        count: 90 },
+  { handle: 'safety-equipment',       name: 'Safety Equipment',         count: 80 },
+  { handle: 'flooring',               name: 'Flooring',                 count: 70 },
+  { handle: 'paint',                  name: 'Paint',                    count: 50 },
+];
+
+const L2_CATEGORIES = [
+  { handle: 'automotive-accessories',            name: 'Automotive Accessories',         count: 201, parent: 'automotive' },
+  { handle: 'auto-parts',                        name: 'Auto Parts',                     count: 136, parent: 'automotive' },
+  { handle: 'boat-parts-accessories',            name: 'Boat Parts & Accessories',       count: 167, parent: 'automotive' },
+  { handle: 'agriculture-forestry-equipment',    name: 'Agriculture & Forestry',         count: 471, parent: 'tools' },
+  { handle: 'air-compressor-tools',              name: 'Air Compressor Tools',           count: 96,  parent: 'tools' },
+  { handle: 'air-tools-compressors',             name: 'Air Tools & Compressors',        count: 68,  parent: 'tools' },
+  { handle: 'angle-grinder',                     name: 'Angle Grinder',                  count: 35,  parent: 'tools' },
+  { handle: 'chainsaws',                         name: 'Chainsaws',                      count: 30,  parent: 'tools' },
+  { handle: 'band-saws',                         name: 'Band Saws',                      count: 22,  parent: 'tools' },
+  { handle: 'beverage-equipment',                name: 'Beverage Equipment',             count: 272, parent: 'kitchen' },
+  { handle: 'blenders',                          name: 'Blenders',                       count: 25,  parent: 'kitchen' },
+  { handle: 'bathroom-supplies',                 name: 'Bathroom Supplies',              count: 217, parent: 'bath' },
+  { handle: 'bathroom-faucets',                  name: 'Bathroom Faucets',               count: 77,  parent: 'bath' },
+  { handle: 'bathroom-safety',                   name: 'Bathroom Safety',                count: 44,  parent: 'bath' },
+  { handle: 'bedroom-furniture',                 name: 'Bedroom Furniture',              count: 70,  parent: 'furniture' },
+  { handle: 'artificial-plants',                 name: 'Artificial Plants',              count: 103, parent: 'outdoors' },
+  { handle: 'awnings',                           name: 'Awnings',                        count: 40,  parent: 'outdoors' },
+  { handle: 'artificial-boxwood-panel',          name: 'Boxwood Panels',                 count: 58,  parent: 'outdoors' },
+  { handle: 'air-conditioning-heat',             name: 'AC & Heating',                   count: 89,  parent: 'heating-venting-cooling' },
+  { handle: 'alternative-renewable-energy',      name: 'Renewable Energy',               count: 59,  parent: 'electrical' },
+  { handle: 'access-barriers-crowd-control',     name: 'Access Barriers',                count: 123, parent: 'industrial-scientific' },
+  { handle: 'arts-crafts-sewing',                name: 'Arts, Crafts & Sewing',          count: 447, parent: 'home-decor' },
+  { handle: 'bedding',                           name: 'Bedding',                        count: 52,  parent: 'home-decor' },
+  { handle: 'baby-activities-gear',              name: 'Baby Activities & Gear',         count: 50,  parent: 'sports-outdoors' },
+  { handle: 'baseball-equipment',                name: 'Baseball Equipment',             count: 40,  parent: 'sports-outdoors' },
+];
+
+const maxCount = Math.max(...L1_CATEGORIES.map(c => c.count));
+
+function getColor(handle) {
+  return COLOR_FAMILIES[handle] || { dark: '#475569', mid: '#64748B', light: '#CBD5E1', bg: '#F8FAFC' };
+}
+
+function bubbleSize(count, min, max) {
+  const ratio = Math.sqrt(count / maxCount);
+  return min + ratio * (max - min);
+}
+
+function prettyName(name) {
+  return name.length > 16 ? name.substring(0, 14) + '..' : name;
+}
+
+// ── SIDEBAR ──
+function buildSidebar() {
+  const el = document.getElementById('sidebar');
+  let html = '<div class="sidebar-heading">Categories</div>';
+  L1_CATEGORIES.forEach(cat => {
+    const c = getColor(cat.handle);
+    html += `<button class="sidebar-item" data-handle="${cat.handle}">
+      <span class="sidebar-dot" style="background:${c.mid}"></span>
+      ${cat.name}
+      <span class="sidebar-count">${cat.count}</span>
+    </button>`;
+  });
+  el.innerHTML = html;
+  el.querySelectorAll('.sidebar-item').forEach(btn => {
+    btn.addEventListener('click', () => zoomTo(btn.dataset.handle));
+  });
+}
+
+// ── BUBBLE MAP (pack layout via simple algorithm) ──
+function buildBubbleMap() {
+  const map = document.getElementById('bubbleMap');
+  const mapW = map.offsetWidth || 1000;
+  const mapH = 700;
+  map.style.height = mapH + 'px';
+
+  // Simple grid-ish placement with some organic offset
+  const cols = Math.ceil(Math.sqrt(L1_CATEGORIES.length * (mapW / mapH)));
+  const rows = Math.ceil(L1_CATEGORIES.length / cols);
+  const cellW = mapW / cols;
+  const cellH = mapH / rows;
+
+  // Sort by count descending, place larger ones more centrally
+  const sorted = [...L1_CATEGORIES].sort((a, b) => b.count - a.count);
+
+  // Spiral placement from center
+  const positions = spiralPositions(sorted.length, mapW, mapH);
+
+  sorted.forEach((cat, i) => {
+    const size = bubbleSize(cat.count, 72, 140);
+    const color = getColor(cat.handle);
+    const children = L2_CATEGORIES.filter(c => c.parent === cat.handle);
+    const pos = positions[i];
+
+    const group = document.createElement('div');
+    group.className = 'l1-group';
+    group.dataset.handle = cat.handle;
+    group.style.left = pos.x + 'px';
+    group.style.top = pos.y + 'px';
+    group.style.width = size + 'px';
+    group.style.height = size + 'px';
+
+    // L1 bubble
+    const bubble = document.createElement('div');
+    bubble.className = 'bubble bubble-l1';
+    bubble.style.width = size + 'px';
+    bubble.style.height = size + 'px';
+    bubble.style.background = `radial-gradient(circle at 35% 35%, ${color.light}, ${color.mid} 60%, ${color.dark})`;
+    bubble.innerHTML = `
+      <img class="bubble-icon" src="/cat-icons/80/${cat.handle}.webp" alt="" onerror="this.style.display='none'">
+      <span class="bubble-label">${prettyName(cat.name)}</span>
+      <span class="bubble-count">${cat.count}</span>
+    `;
+    bubble.addEventListener('click', () => zoomTo(cat.handle));
+    bubble.addEventListener('mouseenter', e => showTooltip(e, `${cat.name} — ${cat.count} products`));
+    bubble.addEventListener('mouseleave', hideTooltip);
+    group.appendChild(bubble);
+
+    // L2 orbit
+    if (children.length > 0) {
+      const orbit = document.createElement('div');
+      orbit.className = 'l2-orbit';
+
+      children.forEach((child, ci) => {
+        const cSize = bubbleSize(child.count, 32, 64);
+        const angle = (ci / children.length) * Math.PI * 2 - Math.PI / 2;
+        const radius = size * 0.8 + cSize * 0.5 + 10;
+        const cx = (size / 2) + Math.cos(angle) * radius - cSize / 2;
+        const cy = (size / 2) + Math.sin(angle) * radius - cSize / 2;
+
+        const cBubble = document.createElement('div');
+        cBubble.className = 'bubble bubble-l2';
+        cBubble.style.width = cSize + 'px';
+        cBubble.style.height = cSize + 'px';
+        cBubble.style.left = cx + 'px';
+        cBubble.style.top = cy + 'px';
+        cBubble.style.background = `radial-gradient(circle at 35% 35%, ${color.bg}, ${color.light} 70%, ${color.mid})`;
+        cBubble.style.color = color.dark;
+        cBubble.innerHTML = `
+          <img class="bubble-icon" src="/cat-icons/80/${child.handle}.webp" alt="" onerror="this.style.display='none'">
+          <span class="bubble-label" style="font-size:.52rem">${prettyName(child.name)}</span>
+        `;
+        cBubble.addEventListener('mouseenter', e => showTooltip(e, `${child.name} — ${child.count} products`));
+        cBubble.addEventListener('mouseleave', hideTooltip);
+        orbit.appendChild(cBubble);
+      });
+
+      group.appendChild(orbit);
+    }
+
+    map.appendChild(group);
+  });
+}
+
+// Spiral placement: center-out distribution
+function spiralPositions(n, w, h) {
+  const cx = w / 2;
+  const cy = h / 2;
+  const positions = [];
+
+  // First item at center
+  positions.push({ x: cx - 70, y: cy - 70 });
+
+  for (let i = 1; i < n; i++) {
+    const angle = i * 0.85 + Math.PI / 4;
+    const r = 55 + i * 32;
+    const jitterX = (Math.sin(i * 3.7) * 15);
+    const jitterY = (Math.cos(i * 2.3) * 15);
+    let x = cx + Math.cos(angle) * r + jitterX - 50;
+    let y = cy + Math.sin(angle) * r * 0.7 + jitterY - 50;
+
+    // Clamp to bounds
+    x = Math.max(20, Math.min(w - 160, x));
+    y = Math.max(20, Math.min(h - 160, y));
+
+    positions.push({ x, y });
+  }
+  return positions;
+}
+
+// ── ZOOM ──
+let currentZoom = null;
+
+function zoomTo(handle) {
+  const map = document.getElementById('bubbleMap');
+  const zoomEl = document.getElementById('zoomChildren');
+  const grid = document.getElementById('zoomChildrenGrid');
+  const cat = L1_CATEGORIES.find(c => c.handle === handle);
+  if (!cat) return;
+
+  if (currentZoom === handle) {
+    zoomOut();
+    return;
+  }
+
+  currentZoom = handle;
+  const color = getColor(handle);
+  const children = L2_CATEGORIES.filter(c => c.parent === handle);
+  const maxChildCount = Math.max(...children.map(c => c.count), 1);
+
+  // Update breadcrumb
+  document.getElementById('breadcrumb').innerHTML = `
+    <a onclick="zoomOut()">All Categories</a>
+    <span class="sep">/</span>
+    <span class="current">${cat.name}</span>
+  `;
+
+  // Update sidebar
+  document.querySelectorAll('.sidebar-item').forEach(el => {
+    el.classList.toggle('active', el.dataset.handle === handle);
+  });
+
+  // Fade bubbles
+  map.classList.add('zoomed-in');
+  document.querySelectorAll('.l1-group').forEach(g => {
+    g.classList.toggle('active-group', g.dataset.handle === handle);
+  });
+
+  // Build children grid
+  grid.innerHTML = '';
+  children.sort((a, b) => b.count - a.count).forEach(child => {
+    const pct = Math.round((child.count / maxChildCount) * 100);
+    const card = document.createElement('div');
+    card.className = 'zoom-child-card';
+    card.style.borderColor = color.light;
+    card.innerHTML = `
+      <img class="zoom-child-icon" src="/cat-icons/80/${child.handle}.webp" alt="" style="background:${color.bg}" onerror="this.style.background='${color.light}'">
+      <div class="zoom-child-info">
+        <span class="zoom-child-name">${child.name}</span>
+        <span class="zoom-child-count">${child.count} products</span>
+        <div class="zoom-child-bar" style="width:${pct}%;background:${color.mid}"></div>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+
+  if (children.length === 0) {
+    grid.innerHTML = `<p style="color:var(--text-muted);font-size:.85rem;padding:2rem">No subcategories loaded for this demo.</p>`;
+  }
+
+  zoomEl.classList.add('visible');
+}
+
+function zoomOut() {
+  currentZoom = null;
+  const map = document.getElementById('bubbleMap');
+  map.classList.remove('zoomed-in');
+  document.querySelectorAll('.l1-group').forEach(g => g.classList.remove('active-group'));
+
+  document.getElementById('breadcrumb').innerHTML = '<span class="current">All Categories</span>';
+  document.getElementById('zoomChildren').classList.remove('visible');
+
+  document.querySelectorAll('.sidebar-item').forEach(el => el.classList.remove('active'));
+}
+
+// ── TOOLTIP ──
+const tooltipEl = document.getElementById('tooltip');
+function showTooltip(e, text) {
+  const parts = text.split(' — ');
+  tooltipEl.innerHTML = `${parts[0]} &mdash; <span class="tooltip-count">${parts[1]}</span>`;
+  tooltipEl.classList.add('visible');
+  positionTooltip(e);
+}
+function hideTooltip() {
+  tooltipEl.classList.remove('visible');
+}
+document.addEventListener('mousemove', e => {
+  if (tooltipEl.classList.contains('visible')) positionTooltip(e);
+});
+function positionTooltip(e) {
+  tooltipEl.style.left = (e.clientX + 14) + 'px';
+  tooltipEl.style.top = (e.clientY - 10) + 'px';
+}
+
+// ── MOBILE LIST ──
+function buildMobileList() {
+  const el = document.getElementById('mobileList');
+  let html = '';
+  L1_CATEGORIES.forEach(cat => {
+    const color = getColor(cat.handle);
+    const children = L2_CATEGORIES.filter(c => c.parent === cat.handle);
+    const barPct = Math.round((cat.count / maxCount) * 100);
+
+    let childrenHtml = '';
+    children.sort((a, b) => b.count - a.count).forEach(child => {
+      childrenHtml += `
+        <div class="mobile-l2-item">
+          <span class="mobile-l2-dot" style="background:${color.mid}"></span>
+          ${child.name}
+          <span class="mobile-l2-count">${child.count}</span>
+        </div>`;
+    });
+
+    html += `
+      <div class="mobile-l1" onclick="this.classList.toggle('expanded')">
+        <div class="mobile-l1-header">
+          <img class="mobile-l1-icon" src="/cat-icons/80/${cat.handle}.webp" alt="" style="background:${color.bg}" onerror="this.style.background='${color.light}'">
+          <div class="mobile-l1-info">
+            <div class="mobile-l1-name">${cat.name}</div>
+            <div class="mobile-l1-count">${cat.count} products</div>
+          </div>
+          <div class="mobile-size-bar">
+            <div class="mobile-size-fill" style="width:${barPct}%;background:${color.mid}"></div>
+          </div>
+          <svg class="mobile-chevron" viewBox="0 0 24 24" fill="none" stroke="${color.mid}" stroke-width="2" stroke-linecap="round">
+            <polyline points="9,6 15,12 9,18"/>
+          </svg>
+        </div>
+        <div class="mobile-l2-list">${childrenHtml}</div>
+      </div>`;
+  });
+  el.innerHTML = html;
+}
+
+// ── INIT ──
+document.addEventListener('DOMContentLoaded', () => {
+  buildSidebar();
+  buildBubbleMap();
+  buildMobileList();
+
+  // Rebuild on resize
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      if (window.innerWidth > 768) {
+        const map = document.getElementById('bubbleMap');
+        map.innerHTML = '';
+        zoomOut();
+        buildBubbleMap();
+      }
+    }, 300);
+  });
+});
+</script>
+</body>
+</html>
