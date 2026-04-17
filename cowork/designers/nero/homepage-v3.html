@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>XLMarket — Dark Bento</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --ink: #0c1119;
+    --ink-2: #161c27;
+    --paper: #fcfcfc;
+    --bone: #e9e4d8;
+    --amber: #f59e0b;
+    --orange: #f97316;
+    --cyan: #06b6d4;
+    --mute: #8a8f99;
+    --line-dim: rgba(255,255,255,0.12);
+    --border-paper: 2.5px solid var(--paper);
+    --border-ink: 2.5px solid var(--ink);
+    --shadow-pop: 6px 6px 0 0 var(--amber);
+    --shadow-pop-sm: 4px 4px 0 0 var(--amber);
+  }
+  html, body { background: var(--ink); color: var(--paper); font-family: 'DM Sans', sans-serif; -webkit-font-smoothing: antialiased; }
+  body { overflow-x: hidden; }
+  a { color: inherit; text-decoration: none; }
+  .mono { font-family: 'JetBrains Mono', monospace; font-variant-numeric: tabular-nums; }
+
+  /* ======== BAND ======== */
+  .band {
+    background: var(--paper);
+    color: var(--ink);
+    padding: 10px 32px;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 12px; font-weight: 600;
+    border-bottom: var(--border-paper);
+  }
+  .band strong { color: var(--orange); }
+
+  /* ======== HEADER ======== */
+  header.site {
+    border-bottom: var(--border-paper);
+    padding: 18px 32px;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 32px;
+  }
+  .logo {
+    font-weight: 900; font-size: 26px; letter-spacing: -0.04em;
+  }
+  .logo em { color: var(--amber); font-style: normal; }
+  .nav { display: flex; gap: 28px; justify-content: center; }
+  .nav a {
+    font-size: 13px; font-weight: 700; letter-spacing: -0.01em;
+    position: relative; padding: 10px 0;
+    color: rgba(255,255,255,0.85);
+  }
+  .nav a::after {
+    content: ''; position: absolute; left: 0; right: 0; bottom: 4px;
+    height: 3px; background: var(--amber);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 200ms cubic-bezier(0.2,0.8,0.2,1);
+  }
+  .nav a:hover { color: var(--paper); }
+  .nav a:hover::after { transform: scaleX(1); }
+  .header-right { display: flex; gap: 10px; align-items: center; }
+  .header-right .icon {
+    width: 40px; height: 40px;
+    border: var(--border-paper);
+    display: inline-flex; align-items: center; justify-content: center;
+    transition: transform 140ms, box-shadow 140ms;
+  }
+  .header-right .icon:hover { transform: translate(-2px,-2px); box-shadow: 4px 4px 0 0 var(--amber); }
+  .btn-quote {
+    background: var(--amber); color: var(--ink);
+    border: var(--border-ink);
+    padding: 10px 18px;
+    font-weight: 800; font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em;
+    box-shadow: 4px 4px 0 0 var(--paper);
+    transition: transform 140ms, box-shadow 140ms;
+  }
+  .btn-quote:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 0 var(--paper); }
+
+  /* ======== HERO BAND ======== */
+  .hero {
+    padding: 56px 32px 40px;
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 48px;
+    align-items: end;
+    border-bottom: var(--border-paper);
+  }
+  .hero h1 {
+    font-weight: 900;
+    font-size: clamp(48px, 8vw, 120px);
+    line-height: 0.82;
+    letter-spacing: -0.06em;
+  }
+  .hero h1 .ghost { color: var(--ink-2); -webkit-text-stroke: 2px var(--paper); }
+  .hero h1 em {
+    font-style: normal;
+    background: var(--amber); color: var(--ink);
+    padding: 0 10px;
+    display: inline-block;
+    transform: translateY(-4px);
+    box-shadow: 4px 4px 0 0 var(--paper);
+  }
+  .hero .right {
+    display: flex; flex-direction: column; gap: 16px;
+  }
+  .hero .right p {
+    font-size: 15px; font-weight: 500; color: var(--mute); max-width: 42ch; line-height: 1.5;
+  }
+  .hero-stats { display: flex; gap: 18px; margin-top: 12px; }
+  .hero-stats .s {
+    border: var(--border-paper);
+    padding: 14px;
+    flex: 1;
+  }
+  .hero-stats .s strong {
+    font-weight: 900; font-size: 30px; letter-spacing: -0.03em; display: block; line-height: 1;
+  }
+  .hero-stats .s small { font-size: 11px; color: var(--mute); font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
+
+  /* ======== BENTO ======== */
+  .bento-wrap { padding: 32px; }
+  .section-label {
+    display: flex; align-items: baseline; gap: 18px;
+    margin-bottom: 18px;
+    padding-bottom: 12px;
+    border-bottom: 1.5px solid var(--line-dim);
+  }
+  .section-label h2 {
+    font-size: 36px; font-weight: 900; letter-spacing: -0.04em; line-height: 1;
+  }
+  .section-label span {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.12em;
+    color: var(--mute); text-transform: uppercase;
+  }
+  .bento {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-auto-rows: 140px;
+    gap: 14px;
+  }
+  .t {
+    border: var(--border-paper);
+    background: var(--ink);
+    position: relative;
+    overflow: hidden;
+    padding: 18px;
+    display: flex; flex-direction: column; justify-content: space-between;
+    cursor: pointer;
+    transition: transform 180ms cubic-bezier(0.2,0.8,0.2,1), box-shadow 180ms;
+  }
+  .t:hover { transform: translate(-3px,-3px); box-shadow: 6px 6px 0 0 var(--amber); z-index: 2; }
+  .t:active { transform: translate(0,0); box-shadow: var(--shadow-pop-sm); }
+  .t__num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; font-weight: 700; letter-spacing: 0.08em;
+    color: var(--mute);
+  }
+  .t__title {
+    font-weight: 900; letter-spacing: -0.03em; line-height: 0.95;
+    font-size: 22px;
+  }
+  .t__meta {
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 11px; font-weight: 600;
+    color: var(--mute);
+  }
+  .t__meta .c { font-family: 'JetBrains Mono', monospace; color: var(--paper); }
+  .t__arr {
+    width: 30px; height: 30px;
+    border: 2px solid var(--paper);
+    display: inline-flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    color: var(--paper);
+    transition: background 140ms, color 140ms;
+  }
+  .t:hover .t__arr { background: var(--amber); color: var(--ink); border-color: var(--amber); }
+
+  /* spans */
+  .c2 { grid-column: span 2; } .c3 { grid-column: span 3; } .c4 { grid-column: span 4; }
+  .c5 { grid-column: span 5; } .c6 { grid-column: span 6; }
+  .r2 { grid-row: span 2; }
+
+  /* photo tiles — navy tint */
+  .t--photo { padding: 0; }
+  .t--photo img {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover;
+    filter: grayscale(0.35) contrast(1.1) brightness(0.75);
+    transition: transform 500ms cubic-bezier(0.2,0.8,0.2,1), filter 300ms;
+  }
+  .t--photo:hover img { transform: scale(1.06); filter: grayscale(0) contrast(1.05) brightness(0.82); }
+  .t--photo::before {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(12,17,25,0.05) 0%, rgba(12,17,25,0.85) 100%),
+                linear-gradient(0deg, rgba(30,41,59,0.6), rgba(30,41,59,0.2));
+    mix-blend-mode: multiply;
+    pointer-events: none;
+  }
+  .t--photo .inner {
+    position: absolute; inset: 0;
+    padding: 20px;
+    display: flex; flex-direction: column; justify-content: space-between;
+    z-index: 2;
+  }
+  .t--photo .t__title { font-size: 30px; max-width: 14ch; }
+
+  /* typographic stark tiles */
+  .t--stark {
+    background: var(--paper);
+    color: var(--ink);
+    border: 2.5px solid var(--paper);
+  }
+  .t--stark .t__num { color: rgba(12,17,25,0.5); }
+  .t--stark .t__meta { color: rgba(12,17,25,0.6); }
+  .t--stark .t__meta .c { color: var(--ink); }
+  .t--stark .t__arr { border-color: var(--ink); color: var(--ink); }
+  .t--stark:hover .t__arr { background: var(--ink); color: var(--amber); border-color: var(--ink); }
+
+  .t--amber { background: var(--amber); color: var(--ink); border-color: var(--amber); }
+  .t--amber .t__num { color: rgba(12,17,25,0.65); }
+  .t--amber .t__meta { color: var(--ink); }
+  .t--amber .t__arr { border-color: var(--ink); color: var(--ink); }
+
+  .t--orange { background: var(--orange); color: var(--paper); border-color: var(--orange); }
+  .t--cyan { background: var(--cyan); color: var(--ink); border-color: var(--cyan); }
+  .t--cyan .t__num, .t--cyan .t__meta { color: var(--ink); }
+  .t--cyan .t__arr { border-color: var(--ink); color: var(--ink); }
+
+  .badge {
+    display: inline-flex; align-items: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
+    padding: 3px 6px;
+    background: var(--amber); color: var(--ink);
+    text-transform: uppercase;
+  }
+  .badge--paper { background: var(--paper); color: var(--ink); }
+  .badge--cyan  { background: var(--cyan); color: var(--ink); }
+
+  /* B2B promo block */
+  .t--b2b {
+    background: var(--amber);
+    color: var(--ink);
+    padding: 22px;
+    grid-column: span 6;
+    grid-row: span 2;
+    border-color: var(--amber);
+  }
+  .t--b2b .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.12em;
+    color: rgba(12,17,25,0.6);
+  }
+  .t--b2b h3 {
+    font-size: clamp(32px, 4vw, 52px); font-weight: 900; letter-spacing: -0.04em; line-height: 0.9;
+    margin-top: 10px; max-width: 14ch;
+  }
+  .t--b2b ul {
+    margin-top: 20px; display: flex; flex-direction: column; gap: 4px;
+  }
+  .t--b2b li {
+    list-style: none; display: flex; justify-content: space-between;
+    padding: 10px 0; font-weight: 600; font-size: 13px;
+    border-top: 2px solid var(--ink);
+  }
+  .t--b2b li:last-child { border-bottom: 2px solid var(--ink); }
+  .t--b2b li span:last-child { font-family: 'JetBrains Mono', monospace; font-weight: 800; }
+  .t--b2b .cta {
+    margin-top: 16px;
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--ink); color: var(--amber);
+    padding: 12px 16px;
+    font-weight: 800; font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em;
+    border: var(--border-ink);
+    align-self: start;
+    transition: transform 140ms, box-shadow 140ms;
+  }
+  .t--b2b .cta:hover { transform: translate(-2px,-2px); box-shadow: 4px 4px 0 0 var(--paper); }
+
+  footer.strip {
+    margin-top: 0;
+    padding: 28px 32px;
+    border-top: var(--border-paper);
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 13px; font-weight: 500; color: var(--mute);
+  }
+  footer.strip strong { color: var(--amber); }
+
+  @media (max-width: 1100px) {
+    .hero { grid-template-columns: 1fr; }
+    .bento { grid-template-columns: repeat(6, 1fr); }
+    .c5, .c6 { grid-column: span 6; }
+    .c4 { grid-column: span 4; }
+    .c3 { grid-column: span 3; }
+    .nav { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="band">
+  <div><strong>NET-30 · VOLUME PRICING · DEDICATED MANAGER</strong> — B2B since 2021</div>
+  <div>Shipping from ES &amp; EE · 24h quote · 16,046 SKUs live</div>
+</div>
+
+<header class="site">
+  <a href="#" class="logo">XL<em>Market</em></a>
+  <nav class="nav">
+    <a href="#catalog">Catalog</a>
+    <a href="#kits">Starter Kits</a>
+    <a href="#b2b">For Business</a>
+    <a href="#deals">Deals</a>
+    <a href="#blog">Journal</a>
+  </nav>
+  <div class="header-right">
+    <a href="#search" class="icon" aria-label="Search"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></a>
+    <a href="#account" class="icon" aria-label="Account"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a8 8 0 0 1 16 0v1"/></svg></a>
+    <a href="#cart" class="icon" aria-label="Cart"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg></a>
+    <a href="#quote" class="btn-quote">Request Quote</a>
+  </div>
+</header>
+
+<section class="hero">
+  <h1>
+    Professional <span class="ghost">tools.</span><br>
+    <em>Half the</em> price.
+  </h1>
+  <div class="right">
+    <p>XLMarket is the VEVOR-authorised B2B supplier for Estonia and Spain. Twenty-two trades, one invoice, a human on the other end of the phone.</p>
+    <div class="hero-stats">
+      <div class="s"><strong class="mono">16,046</strong><small>SKUs in stock</small></div>
+      <div class="s"><strong class="mono">1,688</strong><small>Subcategories</small></div>
+      <div class="s"><strong class="mono">48<span style="color:var(--amber);">h</span></strong><small>Ship ready</small></div>
+    </div>
+  </div>
+</section>
+
+<div class="bento-wrap">
+
+  <div class="section-label">
+    <h2>The 22 trades.</h2>
+    <span>— Choose a lane. Drill into 6 subs. Ship by Friday.</span>
+  </div>
+
+  <section class="bento" aria-label="22 categories">
+
+    <!-- Row 1: big photo HoReCa (6x2) + two stark tiles + B2B strip -->
+    <a href="/haru/horeca-food-service" class="t t--photo c5 r2">
+      <img src="../../images/cat-01-horeca-food-service.png" alt="">
+      <div class="inner">
+        <div style="display:flex; justify-content: space-between;">
+          <span class="t__num" style="color:rgba(255,255,255,0.85);">01 / 22</span>
+          <span class="badge">TOP</span>
+        </div>
+        <div>
+          <div class="t__title">HoReCa &amp; Food Service</div>
+          <div class="t__meta" style="margin-top:14px; color: rgba(255,255,255,0.75);">
+            <span>6 subs · Commercial kitchens, fridges, prep, bars</span>
+            <span class="t__arr"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+          </div>
+        </div>
+      </div>
+    </a>
+
+    <a href="/haru/laser-cnc-digital-fabrication" class="t t--stark c3">
+      <div><span class="t__num">02 / 22</span></div>
+      <div class="t__title">Laser, CNC &<br>Digital Fabrication</div>
+      <div class="t__meta"><span class="c">724 SKUs</span><span class="t__arr"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></div>
+    </a>
+
+    <a href="/haru/welding-metalworking" class="t c2">
+      <div><span class="t__num">03 / 22</span></div>
+      <div class="t__title">Welding &<br>Metalwork</div>
+      <div class="t__meta"><span class="c">612</span><span class="t__arr"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></div>
+    </a>
+
+    <a href="/haru/printing-packaging-signage" class="t t--cyan c2">
+      <div style="display:flex; justify-content:space-between;"><span class="t__num">04 / 22</span><span class="badge badge--paper">NEW</span></div>
+      <div class="t__title">Printing &<br>Signage</div>
+      <div class="t__meta"><span class="c">489</span><span class="t__arr"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></div>
+    </a>
+
+    <!-- Row 2 -->
+    <a href="/haru/electrical-energy" class="t t--stark c3">
+      <div><span class="t__num">05 / 22</span></div>
+      <div class="t__title">Electrical<br>& Energy</div>
+      <div class="t__meta"><span class="c">1,104 SKUs</span><span class="t__arr"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></div>
+    </a>
+
+    <a href="/haru/woodworking-carpentry" class="t t--amber c2">
+      <div><span class="t__num">06 / 22</span></div>
+      <div class="t__title">Woodworking</div>
+      <div class="t__meta"><span class="c">567</span><span class="t__arr"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></div>
+    </a>
+
+    <a href="/haru/construction-building" class="t t--photo c2">
+      <img src="../../images/cat-02-construction-building.png" alt="">
+      <div class="inner">
+        <span class="t__num" style="color:rgba(255,255,255,0.85);">07</span>
+        <div>
+          <div class="t__title" style="font-size:18px;">Construction</div>
+          <div class="t__meta" style="color:rgba(255,255,255,0.7);"><span>1,245</span><span class="t__arr"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></div>
+        </div>
+      </div>
+    </a>
+
+    <!-- Row 3 — B2B big promo (6x2) -->
+    <div class="t--b2b t" role="link" tabindex="0" onclick="location.href='#starter-kits'">
+      <div>
+        <div class="label">STARTER KITS</div>
+        <h3>Open the whole business, on one invoice.</h3>
+      </div>
+      <ul>
+        <li><span>Café Complete — 5 machines, full bar</span><span>from €2,799</span></li>
+        <li><span>Bakery Starter — oven, mixer, proofer</span><span>from €4,190</span></li>
+        <li><span>Auto-Shop Base — lift, compressor, scanner</span><span>from €6,340</span></li>
+        <li><span>Cleaning Crew — 3 machines + consumables</span><span>from €1,899</span></li>
+      </ul>
+      <a href="#starter-kits" class="cta">
+        Browse 12 starter kits
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+
+    <a href="/haru/cleaning-janitorial" class="t c3">
+      <div><span class="t__num">08 / 22</span></div>
+      <div class="t__title">Cleaning &<br>Janitorial</div>
+      <div class="t__meta"><span class="c">398</span><span class="t__arr"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></div>
+    </a>
+
+    <a href="/haru/hand-power-tools" class="t t--orange c3">
+      <div><span class="t__num">09 / 22</span></div>
+      <div class="t__title">Hand &<br>Power Tools</div>
+      <div class="t__meta" style="color:rgba(252,252,252,0.85);"><span class="c" style="color:var(--paper);">2,145</span><span class="t__arr" style="border-color:var(--paper); color:var(--paper);"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></div>
+    </a>
+
+    <!-- Row 4 -->
+    <a href="/haru/fuel-lubrication-fluid" class="t c3">
+      <div><span class="t__num">10 / 22</span></div>
+      <div class="t__title">Fuel, Lubrication<br>& Fluid</div>
+      <div class="t__meta"><span class="c">312</span><span class="t__arr"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></div>
+    </a>
+
+    <a href="/haru/outdoor-power-landscaping" class="t t--photo c3">
+      <img src="../../images/cat-13-outdoor-power-landscaping.png" alt="">
+      <div class="inner">
+        <span class="t__num" style="color:rgba(255,255,255,0.85);">11 / 22</span>
+        <div>
+          <div class="t__title" style="font-size:22px;">Outdoor Power &amp; Landscaping</div>
+          <div class="t__meta" style="color:rgba(255,255,255,0.7); margin-top:8px;"><span>678 SKUs</span><span class="t__arr"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></div>
+        </div>
+      </div>
+    </a>
+
+    <a href="/haru/warehousing-material-handling" class="t t--stark c2">
+      <div><span class="t__num">12 / 22</span></div>
+      <div class="t__title">Warehousing</div>
+      <div class="t__meta"><span class="c">445</span><span class="t__arr"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></div>
+    </a>
+
+    <a href="/haru/hvac-climate-control" class="t c2">
+      <div><span class="t__num">13 / 22</span></div>
+      <div class="t__title">HVAC</div>
+      <div class="t__meta"><span class="c">523</span><span class="t__arr"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></div>
+    </a>
+
+    <a href="/haru/plumbing-water-systems" class="t t--amber c2">
+      <div><span class="t__num">14 / 22</span></div>
+      <div class="t__title">Plumbing</div>
+      <div class="t__meta"><span class="c">289</span><span class="t__arr"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></div>
+    </a>
+
+    <!-- Row 5 -->
+    <a href="/haru/safety-security-workwear" class="t t--orange c3">
+      <div><span class="t__num">15 / 22</span></div>
+      <div class="t__title">Safety, Security<br>& Workwear</div>
+      <div class="t__meta" style="color:rgba(252,252,252,0.85);"><span class="c" style="color:var(--paper);">634</span><span class="t__arr" style="border-color:var(--paper); color:var(--paper);"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></div>
+    </a>
+
+    <a href="/haru/automotive-workshop" class="t t--photo c3">
+      <img src="../../images/cat-12-automotive-workshop.png" alt="">
+      <div class="inner">
+        <span class="t__num" style="color:rgba(255,255,255,0.85);">16 / 22</span>
+        <div>
+          <div class="t__title" style="font-size:22px;">Automotive &amp; Workshop</div>
+          <div class="t__meta" style="color:rgba(255,255,255,0.7); margin-top:8px;"><span>892 SKUs</span><span class="t__arr"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></div>
+        </div>
+      </div>
+    </a>
+
+    <a href="/haru/salon-spa-wellness" class="t t--cyan c3">
+      <div style="display:flex; justify-content:space-between;"><span class="t__num">17 / 22</span><span class="badge badge--paper">NEW</span></div>
+      <div class="t__title">Salon, Spa<br>&amp; Wellness</div>
+      <div class="t__meta"><span class="c">223</span><span class="t__arr"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></div>
+    </a>
+
+    <a href="/haru/office-commercial-interiors" class="t t--stark c3">
+      <div><span class="t__num">18 / 22</span></div>
+      <div class="t__title">Office<br>Interiors</div>
+      <div class="t__meta"><span class="c">387</span><span class="t__arr"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></div>
+    </a>
+
+    <!-- Row 6 -->
+    <a href="/haru/health-medical-supply" class="t c2">
+      <div><span class="t__num">19 / 22</span></div>
+      <div class="t__title">Health &<br>Medical</div>
+      <div class="t__meta"><span class="c">156</span><span class="t__arr"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></div>
+    </a>
+
+    <a href="/haru/fitness-sports-recreation" class="t t--amber c3">
+      <div><span class="t__num">20 / 22</span></div>
+      <div class="t__title">Fitness &<br>Sports</div>
+      <div class="t__meta"><span class="c">298</span><span class="t__arr"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></div>
+    </a>
+
+    <a href="/haru/boating-camping-outdoor" class="t c3">
+      <div><span class="t__num">21 / 22</span></div>
+      <div class="t__title">Boating, Camping<br>&amp; Outdoor</div>
+      <div class="t__meta"><span class="c">412</span><span class="t__arr"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></div>
+    </a>
+
+    <a href="/haru/music-entertainment" class="t t--stark c4">
+      <div><span class="t__num">22 / 22</span></div>
+      <div class="t__title">Music &<br>Entertainment</div>
+      <div class="t__meta"><span class="c">178</span><span class="t__arr"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></div>
+    </a>
+
+  </section>
+</div>
+
+<footer class="strip">
+  <div>Roland Kaubandus OÜ · VEVOR authorised partner · <strong>xlmarket.eu</strong></div>
+  <div>EE &amp; ES · Built for entrepreneurs since 2021</div>
+</footer>
+
+</body>
+</html>
