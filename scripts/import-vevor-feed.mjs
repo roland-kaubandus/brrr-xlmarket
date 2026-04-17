@@ -20,13 +20,13 @@ import https from "https";
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
+import { loadV3Map, resolveV3Slug } from "../backend/src/scripts/resolve-v3-category.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // ── Config ──────────────────────────────────────────────────────────
 const FEED_PATH = path.join(__dirname, "..", "backend", "data", "feeds", "vevor-571.xlsx");
 const FEED_URL = "https://ads-feed.s3.us-west-2.amazonaws.com/ads/business/571/vevor-571.xlsx";
-const CATEGORY_MAP_PATH = path.join(__dirname, "..", "backend", "src", "scripts", "category-map.json");
 
 const MEDUSA_URL = "http://127.0.0.1:9001";
 const ADMIN_EMAIL = "admin@xlmarket.eu";
@@ -248,19 +248,22 @@ async function loadExistingSkus() {
   return map;
 }
 
-// ── Category mapping ────────────────────────────────────────────────
+// ── Category mapping (v3 taxonomy via shared resolver) ─────────────
 
 function loadCategoryMap() {
+  // Returns the full v3 map object. Consumers use resolveV3Slug() to map
+  // a productType → taxonomy-v3 L1 slug.
   try {
-    return JSON.parse(fs.readFileSync(CATEGORY_MAP_PATH, "utf-8"));
-  } catch {
-    log("  WARNING: category-map.json not found, categories will be skipped");
-    return {};
+    return loadV3Map();
+  } catch (e) {
+    log("  WARNING: vevor-to-v3.json not loadable (" + e.message + "), categories will be skipped");
+    return null;
   }
 }
 
 async function loadCategoryIds(token) {
-  const resp = await apiCall("GET", "/admin/product-categories?limit=100", null, token);
+  // Fetch v3 L1 handles only — ignore Medusa's legacy category tree.
+  const resp = await apiCall("GET", "/admin/product-categories?limit=500", null, token);
   const map = {};
   for (const cat of resp.data.product_categories || []) {
     map[cat.handle] = cat.id;
@@ -445,11 +448,12 @@ async function createProductFromGroup(spuGroup, token, catMap, catIds) {
   const anyInStock = spuGroup.some(r => r.availability === "in stock")
   const handle = makeHandle(primaryRow.sku, primaryRow.title)
 
-  // Map category from primary row
-  const l1 = (primaryRow.productType || "").split(">")[0].trim()
-  const categoryHandle = catMap[l1] || null
+  // Map category from primary row → v3 L1 slug → Medusa category id
+  const categoryHandle = resolveV3Slug(primaryRow.productType || "", catMap)
   const categoryId = categoryHandle ? catIds[categoryHandle] : null
-  if (!categoryHandle && l1) stats.unmappedCategories.add(l1)
+  if (!categoryHandle && primaryRow.productType) {
+    stats.unmappedCategories.add(primaryRow.productType.split(">")[0].trim())
+  }
 
   // Collect all unique gallery images from all variants
   const allGalleryImages = []
@@ -542,13 +546,12 @@ async function createProduct(row, token, catMap, catIds) {
   const handle = makeHandle(row.sku, row.title);
   const isInStock = row.availability === "in stock";
 
-  // Map category
-  const l1 = (row.productType || "").split(">")[0].trim();
-  const categoryHandle = catMap[l1] || null;
+  // Map category → v3 L1 slug → Medusa category id
+  const categoryHandle = resolveV3Slug(row.productType || "", catMap);
   const categoryId = categoryHandle ? catIds[categoryHandle] : null;
 
-  if (!categoryHandle && l1) {
-    stats.unmappedCategories.add(l1);
+  if (!categoryHandle && row.productType) {
+    stats.unmappedCategories.add(row.productType.split(">")[0].trim());
   }
 
   // Pre-compute sanitized HTML (avoids CPU-bound regex at request time)
@@ -795,12 +798,11 @@ async function main() {
   log("  Existing (updatable):" + stats.toUpdate);
   console.log("");
 
-  // Show category distribution for new products
+  // Show category distribution for new products (using v3 resolver)
   const categoryMap = loadCategoryMap();
   const catCounts = {};
   for (const row of newRows) {
-    const l1 = (row.productType || "").split(">")[0].trim();
-    const mapped = categoryMap[l1] || "UNMAPPED";
+    const mapped = resolveV3Slug(row.productType || "", categoryMap) || "UNMAPPED";
     catCounts[mapped] = (catCounts[mapped] || 0) + 1;
   }
 
