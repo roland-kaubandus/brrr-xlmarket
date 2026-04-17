@@ -1,0 +1,1683 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>XLMarket.eu — Strateegiline Plaan 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --navy: #1E293B;
+  --navy-light: #334155;
+  --navy-muted: #64748B;
+  --amber: #D97706;
+  --amber-light: #F59E0B;
+  --amber-bg: #FEF3C7;
+  --amber-surface: #FFFBEB;
+  --bg-white: #FFFFFF;
+  --bg-alt: #F8FAFC;
+  --bg-code: #F1F5F9;
+  --border: #E2E8F0;
+  --border-light: #F1F5F9;
+  --text-primary: #1E293B;
+  --text-secondary: #475569;
+  --text-muted: #94A3B8;
+  --success: #059669;
+  --danger: #DC2626;
+}
+
+html { font-size: 16px; scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  color: var(--text-primary);
+  background: var(--bg-white);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Header ── */
+.report-header {
+  background: var(--navy);
+  color: white;
+  padding: 3rem 2rem;
+  text-align: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.report-header h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  margin-bottom: 0.25rem;
+}
+.report-header .date {
+  font-size: 0.85rem;
+  color: var(--amber-light);
+  font-weight: 500;
+}
+
+/* ── Tabs ── */
+.tab-bar {
+  display: flex;
+  justify-content: center;
+  gap: 0;
+  background: var(--navy-light);
+  border-bottom: 2px solid rgba(255,255,255,0.1);
+}
+.tab-btn {
+  background: none;
+  border: none;
+  color: rgba(255,255,255,0.5);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-bottom: 2px solid transparent;
+  position: relative;
+  top: 2px;
+  letter-spacing: -0.01em;
+}
+.tab-btn:hover { color: rgba(255,255,255,0.8); }
+.tab-btn.active {
+  color: white;
+  border-bottom-color: var(--amber);
+}
+@media (max-width: 600px) {
+  .tab-btn { font-size: 0.72rem; padding: 0.6rem 0.8rem; }
+}
+
+/* ── Layout ── */
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+
+.content-wrapper {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  gap: 0;
+}
+.sidebar {
+  width: 240px;
+  flex-shrink: 0;
+  padding: 2rem 1.5rem 2rem 1.5rem;
+  position: sticky;
+  top: 130px;
+  align-self: flex-start;
+  max-height: calc(100vh - 150px);
+  overflow-y: auto;
+  border-right: 1px solid var(--border-light);
+}
+.sidebar-title {
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  margin-bottom: 0.75rem;
+}
+.sidebar a {
+  display: block;
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  text-decoration: none;
+  padding: 0.3rem 0;
+  line-height: 1.4;
+  transition: color 0.15s;
+}
+.sidebar a:hover { color: var(--amber); }
+.sidebar a.depth-2 { padding-left: 0.75rem; font-size: 0.73rem; color: var(--text-muted); }
+
+.main-content {
+  flex: 1;
+  min-width: 0;
+  padding: 2.5rem 3rem 4rem;
+}
+
+@media (max-width: 900px) {
+  .content-wrapper { flex-direction: column; }
+  .sidebar {
+    width: 100%;
+    position: static;
+    max-height: none;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem 1rem;
+    align-items: center;
+  }
+  .sidebar-title { margin-bottom: 0; margin-right: 0.5rem; }
+  .sidebar a.depth-2 { padding-left: 0; }
+  .main-content { padding: 1.5rem; }
+}
+
+/* ── Typography ── */
+.main-content h2 {
+  font-size: 1.6rem;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  color: var(--navy);
+  margin: 3rem 0 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--border);
+}
+.main-content h2:first-child { margin-top: 0; }
+
+.main-content h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--navy);
+  margin: 2rem 0 0.75rem;
+}
+.main-content h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--navy-light);
+  margin: 1.5rem 0 0.5rem;
+}
+.main-content p {
+  margin-bottom: 1rem;
+  color: var(--text-secondary);
+}
+.main-content strong { color: var(--text-primary); font-weight: 600; }
+.main-content ul, .main-content ol {
+  margin: 0.5rem 0 1rem 1.25rem;
+  color: var(--text-secondary);
+}
+.main-content li { margin-bottom: 0.35rem; }
+
+/* ── Section backgrounds ── */
+.section-alt { background: var(--bg-alt); margin: 0 -3rem; padding: 2rem 3rem; }
+@media (max-width: 900px) {
+  .section-alt { margin: 0 -1.5rem; padding: 1.5rem; }
+}
+
+/* ── Tables ── */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0 1.5rem;
+  font-size: 0.85rem;
+}
+thead th {
+  background: var(--navy);
+  color: white;
+  font-weight: 600;
+  text-align: left;
+  padding: 0.6rem 0.75rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.01em;
+}
+thead th:first-child { border-radius: 4px 0 0 0; }
+thead th:last-child { border-radius: 0 4px 0 0; }
+
+tbody td {
+  padding: 0.55rem 0.75rem;
+  border-bottom: 1px solid var(--border-light);
+  vertical-align: top;
+}
+tbody tr:nth-child(even) { background: var(--bg-alt); }
+tbody tr:hover { background: var(--amber-surface); }
+
+/* Amber-header tables */
+table.amber thead th { background: var(--amber); }
+
+/* Comparison tables */
+td.advantage { color: var(--success); font-weight: 600; }
+td.disadvantage { color: var(--danger); font-weight: 600; }
+
+/* Responsive tables */
+.table-wrap { overflow-x: auto; margin: 1rem 0 1.5rem; -webkit-overflow-scrolling: touch; }
+.table-wrap table { margin: 0; min-width: 600px; }
+
+/* ── Callouts ── */
+.callout {
+  border-left: 3px solid var(--amber);
+  background: var(--amber-surface);
+  padding: 1rem 1.25rem;
+  margin: 1rem 0 1.5rem;
+  font-size: 0.9rem;
+  border-radius: 0 4px 4px 0;
+}
+.callout strong { color: var(--amber); }
+.callout-negative {
+  border-left-color: var(--danger);
+  background: #FEF2F2;
+}
+.callout-negative strong { color: var(--danger); }
+.callout-positive {
+  border-left-color: var(--success);
+  background: #F0FDF4;
+}
+.callout-positive strong { color: var(--success); }
+
+/* ── Score badges ── */
+.score {
+  display: inline-block;
+  font-weight: 700;
+  font-size: 0.85rem;
+  padding: 0.15rem 0.5rem;
+  border-radius: 3px;
+}
+.score-high { background: #D1FAE5; color: #065F46; }
+.score-mid { background: var(--amber-bg); color: #92400E; }
+.score-low { background: #FEE2E2; color: #991B1B; }
+
+/* ── Code blocks ── */
+pre {
+  background: var(--bg-code);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1rem 1.25rem;
+  overflow-x: auto;
+  font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', Consolas, monospace;
+  font-size: 0.8rem;
+  line-height: 1.6;
+  margin: 1rem 0 1.5rem;
+  color: var(--navy);
+}
+code {
+  font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', Consolas, monospace;
+  font-size: 0.85em;
+  background: var(--bg-code);
+  padding: 0.15em 0.35em;
+  border-radius: 3px;
+}
+
+/* ── Key metrics row ── */
+.metrics-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+.metric-card {
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 1rem 1.25rem;
+  text-align: center;
+}
+.metric-value {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--amber);
+  letter-spacing: -0.03em;
+}
+.metric-label {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-top: 0.2rem;
+}
+
+/* ── Priority badges ── */
+.priority-badge {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.2rem 0.6rem;
+  border-radius: 3px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.priority-1 { background: #D1FAE5; color: #065F46; }
+.priority-2 { background: #DBEAFE; color: #1E40AF; }
+.priority-3 { background: var(--amber-bg); color: #92400E; }
+
+/* ── Architecture diagram ── */
+.arch-diagram {
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 0.78rem;
+  line-height: 1.5;
+  overflow-x: auto;
+  white-space: pre;
+  color: var(--navy);
+}
+
+/* ── HR ── */
+.section-divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 2.5rem 0;
+}
+
+/* ── Footer ── */
+.report-footer {
+  text-align: center;
+  padding: 2rem;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border);
+  margin-top: 3rem;
+}
+
+/* ── Print ── */
+@media print {
+  .report-header { position: static; }
+  .tab-bar { display: none; }
+  .sidebar { display: none; }
+  .tab-content { display: block !important; page-break-before: always; }
+  .tab-content:first-of-type { page-break-before: auto; }
+  .main-content { padding: 0 1rem; }
+  .section-alt { margin: 0; padding: 1rem 0; }
+  body { font-size: 11pt; }
+  table { font-size: 9pt; }
+  .report-header { padding: 1.5rem; }
+}
+</style>
+</head>
+<body>
+
+<header class="report-header">
+  <h1>XLMarket.eu &mdash; Strateegiline Plaan 2026</h1>
+  <div class="date">15. aprill 2026 &middot; Konfidentsiaalne</div>
+  <nav class="tab-bar">
+    <button class="tab-btn active" data-tab="research">Turu-uuring</button>
+    <button class="tab-btn" data-tab="workforce">AI T&ouml;&ouml;tajaskond</button>
+    <button class="tab-btn" data-tab="agents">AI M&uuml;&uuml;giagendid</button>
+  </nav>
+</header>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!--  TAB 1: B2B TURU-UURING                                -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div class="tab-content active" id="tab-research">
+<div class="content-wrapper">
+  <aside class="sidebar">
+    <div class="sidebar-title">Sisukord</div>
+    <a href="#r-summary">1. Juhtivkokkuv&otilde;te</a>
+    <a href="#r-assortment">2. Sortimendi anal&uuml;&uuml;s</a>
+    <a class="depth-2" href="#r-assortment-stats">&Uuml;ldstatistika</a>
+    <a class="depth-2" href="#r-assortment-sectors">Sektorip&otilde;hine grupeerimine</a>
+    <a href="#r-sectors">3. Turukaardistus sektorite kaupa</a>
+    <a class="depth-2" href="#r-horeca">HoReCa</a>
+    <a class="depth-2" href="#r-construction">Ehitus ja remont</a>
+    <a class="depth-2" href="#r-metalwork">Metallit&ouml;&ouml; ja keevitus</a>
+    <a class="depth-2" href="#r-auto">Autohooldus</a>
+    <a class="depth-2" href="#r-warehouse">Laondus ja logistika</a>
+    <a class="depth-2" href="#r-agriculture">P&otilde;llumajandus ja aiatehnika</a>
+    <a class="depth-2" href="#r-cleaning">Puhastusteenused</a>
+    <a class="depth-2" href="#r-beauty">Ilut&ouml;&ouml;stus</a>
+    <a class="depth-2" href="#r-extra">Lisasektorid</a>
+    <a href="#r-ranking">4. Potentsiaali edetabel</a>
+    <a href="#r-competition">5. Konkurentsianaluus</a>
+    <a href="#r-recommendations">6. Soovitused</a>
+    <a href="#r-risks">7. Riskid ja hoiatused</a>
+  </aside>
+  <main class="main-content">
+
+    <!-- 1. Executive Summary -->
+    <h2 id="r-summary">1. Juhtivkokkuv&otilde;te</h2>
+
+    <div class="metrics-row">
+      <div class="metric-card">
+        <div class="metric-value">14 310</div>
+        <div class="metric-label">Toodet kataloogis</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value">235</div>
+        <div class="metric-label">Alamkategooriat</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value">&euro;189</div>
+        <div class="metric-label">Keskmine hind</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value">60+</div>
+        <div class="metric-label">Allikat anal&uuml;&uuml;situd</div>
+      </div>
+    </div>
+
+    <p>XLMarket.eu m&uuml;&uuml;b ~14 310 VEVOR toodet 235 alamkategoorias. Keskmine hind &euro;189, mediaan &euro;113. VEVOR USP on &ldquo;professional tools, half the price&rdquo; &mdash; ja see lubadus peab enamikus sektorites paika (40&ndash;73% soodsam).</p>
+
+    <h3>Top 3 prioriteetsektorit</h3>
+    <ol>
+      <li><strong>Catering / HoReCa</strong> &mdash; suurim potentsiaal. 554 toodet, hinnaeelis 60&ndash;73% (j&auml;&auml;masinad), ~3000&ndash;4000 toitlustusettev&otilde;tet + 915 majutusettev&otilde;tet sihtgrupina. E-ostud kasvamas.</li>
+      <li><strong>Laser-graveerijad ja hobi-metallit&ouml;&ouml;</strong> &mdash; ni&scaron;iturg ilma kohalike tarnijateteta. 31 laser-graveerijat (avg &euro;1072) + 39 treipinki. Kohalikud alternatiivid algavad &euro;5000+.</li>
+      <li><strong>Tr&uuml;kiseadmed ja pakkimismasinad</strong> &mdash; madal konkurents Eestis. 115+29 toodet. Mikroettev&otilde;tted ja hobistid.</li>
+    </ol>
+
+    <div class="callout-negative callout">
+      <strong>Sektorid mida MITTE sihtida:</strong> Kontorimoobel (IKEA/JYSK domineerimine), laonduse kahvelk&auml;rud (VEVOR 2x KALLIM kui kohalik), professionaalne ehitus (br&auml;ndiusaldus, teenindus kriitilised).
+    </div>
+
+    <h3>Eesti kontekst</h3>
+    <ul>
+      <li>~160 000 aktiivset ettev&otilde;tet</li>
+      <li>E-kaubanduse kogumaht 2025: &euro;5,76 miljardit (+11%)</li>
+      <li>Piiri&uuml;lene kaubandus kasvab 30&ndash;40% aastas (Temu &euro;93M)</li>
+      <li>VEVOR on Hiina br&auml;nd &mdash; m&otilde;nel sektoril eelis (hind), m&otilde;nel takistus (usaldus)</li>
+    </ul>
+
+    <hr class="section-divider">
+
+    <!-- 2. Assortment Analysis -->
+    <h2 id="r-assortment">2. Sortimendi anal&uuml;&uuml;s</h2>
+
+    <h3 id="r-assortment-stats">2.1 &Uuml;ldstatistika</h3>
+
+    <table class="amber">
+      <thead><tr><th>N&auml;itaja</th><th>V&auml;&auml;rtus</th></tr></thead>
+      <tbody>
+        <tr><td>Tooteid kokku</td><td><strong>14 310</strong></td></tr>
+        <tr><td>Alamkategooriaid</td><td>235</td></tr>
+        <tr><td>Hinnavahemik</td><td>&euro;10 &mdash; &euro;7 682</td></tr>
+        <tr><td>Keskmine hind</td><td>&euro;189</td></tr>
+        <tr><td>Mediaan hind</td><td>&euro;113</td></tr>
+      </tbody>
+    </table>
+
+    <h3>2.2 Suurimad alamkategooriad (tootearvult)</h3>
+
+    <div class="table-wrap">
+    <table>
+      <thead><tr><th>Alamkategooria</th><th>Tooteid</th><th>Keskm. hind</th><th>Hinnavahemik</th></tr></thead>
+      <tbody>
+        <tr><td>Landscaping & Shade</td><td>157</td><td>&euro;109</td><td>&euro;21&ndash;&euro;623</td></tr>
+        <tr><td>Building Supplies</td><td>132</td><td>&euro;105</td><td>&euro;21&ndash;&euro;552</td></tr>
+        <tr><td>Beverage Equipment</td><td>129</td><td>&euro;290</td><td>&euro;38&ndash;&euro;2 233</td></tr>
+        <tr><td>Food Preparation Equipment</td><td>125</td><td>&euro;265</td><td>&euro;25&ndash;&euro;1 542</td></tr>
+        <tr><td>Printmaking</td><td>115</td><td>&euro;259</td><td>&euro;34&ndash;&euro;798</td></tr>
+        <tr><td>Patio Furniture & Accessories</td><td>110</td><td>&euro;180</td><td>&euro;34&ndash;&euro;1 495</td></tr>
+        <tr><td>Restaurant Furniture</td><td>96</td><td>&euro;147</td><td>&euro;30&ndash;&euro;724</td></tr>
+        <tr><td>Outdoor Sports</td><td>93</td><td>&euro;110</td><td>&euro;31&ndash;&euro;475</td></tr>
+        <tr><td>Boat Parts & Accessories</td><td>91</td><td>&euro;194</td><td>&euro;23&ndash;&euro;807</td></tr>
+        <tr><td>Refrigeration & Ice Equipment</td><td>90</td><td>&euro;627</td><td>&euro;22&ndash;&euro;3 987</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <h3>2.3 Kallimad alamkategooriad (B2B potentsiaal)</h3>
+
+    <div class="table-wrap">
+    <table>
+      <thead><tr><th>Alamkategooria</th><th>Tooteid</th><th>Keskm. hind</th><th>Max hind</th></tr></thead>
+      <tbody>
+        <tr><td>Engraving (laser-graveerijad)</td><td>31</td><td>&euro;1 072</td><td>&euro;5 192</td></tr>
+        <tr><td>Cutting & Measuring Devices</td><td>8</td><td>&euro;1 102</td><td>&euro;6 019</td></tr>
+        <tr><td>Safety Storage</td><td>4</td><td>&euro;711</td><td>&euro;1 352</td></tr>
+        <tr><td>Refrigeration & Ice Equipment</td><td>90</td><td>&euro;627</td><td>&euro;3 987</td></tr>
+        <tr><td>Stage Lighting & Effects</td><td>6</td><td>&euro;587</td><td>&euro;1 051</td></tr>
+        <tr><td>Lathe Machines & Accessories</td><td>39</td><td>&euro;394</td><td>&euro;1 621</td></tr>
+        <tr><td>Leisure Sports</td><td>38</td><td>&euro;354</td><td>&euro;1 035</td></tr>
+        <tr><td>Pet Supplies</td><td>71</td><td>&euro;350</td><td>&euro;1 746</td></tr>
+        <tr><td>Salon & Spa Equipment</td><td>17</td><td>&euro;347</td><td>&euro;1 406</td></tr>
+        <tr><td>Fuel Transfer & Lubrication</td><td>44</td><td>&euro;324</td><td>&euro;1 144</td></tr>
+        <tr><td>Filling & Sealing Machine</td><td>29</td><td>&euro;315</td><td>&euro;1 055</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <h3 id="r-assortment-sectors">2.4 Sektorip&otilde;hine gruppeerimine</h3>
+
+    <div class="table-wrap">
+    <table>
+      <thead><tr><th>Sektor</th><th>Tooteid</th><th>Keskm. hind</th><th>Hinnavahemik</th><th>Top alamkategooriad</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Catering / HoReCa</strong></td><td>554</td><td>&euro;302</td><td>&euro;22&ndash;&euro;3 987</td><td>Beverage (129), Food Prep (125), Restaurant Furniture (96), Refrigeration (90), Cooking (66)</td></tr>
+        <tr><td><strong>Ehitus ja remont</strong></td><td>406</td><td>&euro;146</td><td>&euro;17&ndash;&euro;6 019</td><td>Building Supplies (132), Door Hardware (73), Ventilation (44), Hydraulic (41)</td></tr>
+        <tr><td><strong>Laondus ja logistika</strong></td><td>289</td><td>&euro;164</td><td>&euro;23&ndash;&euro;1 352</td><td>Hoists & Winches (68), Storage (49), Carts & Trucks (47), Retail Supplies (44)</td></tr>
+        <tr><td><strong>Autohooldus</strong></td><td>266</td><td>&euro;158</td><td>&euro;22&ndash;&euro;1 046</td><td>Automotive Acc. (76), Lifts & Jacks (51), Towing (43), Cargo (42)</td></tr>
+        <tr><td><strong>P&otilde;llumajandus</strong></td><td>234</td><td>&euro;130</td><td>&euro;21&ndash;&euro;1 133</td><td>Landscaping (157), Outdoor Power (39), Water Pumps (38)</td></tr>
+        <tr><td><strong>Metallit&ouml;&ouml; ja keevitus</strong></td><td>117</td><td>&euro;528</td><td>&euro;16&ndash;&euro;6 019</td><td>Lathe Machines (39), Welding Safety (34), Engraving (31)</td></tr>
+        <tr><td><strong>Puhastusteenused</strong></td><td>79</td><td>&euro;140</td><td>&euro;34&ndash;&euro;593</td><td>Ventilation (44), Cleaning (35)</td></tr>
+        <tr><td><strong>Ilut&ouml;&ouml;stus</strong></td><td>17</td><td>&euro;347</td><td>&euro;22&ndash;&euro;1 406</td><td>Salon & Spa Equipment (17)</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <h4>Lisasektorid (tuvastatud anal&uuml;&uuml;si k&auml;igus)</h4>
+
+    <div class="table-wrap">
+    <table>
+      <thead><tr><th>Sektor</th><th>Tooteid</th><th>Keskm. hind</th><th>M&auml;rkus</th></tr></thead>
+      <tbody>
+        <tr><td>Tr&uuml;kiseadmed (Printmaking)</td><td>115</td><td>&euro;259</td><td>Vin&uuml;&uuml;ll&otilde;ikurid, siiditr&uuml;ki pressid</td></tr>
+        <tr><td>K&uuml;tuse- ja &otilde;liseadmed</td><td>44</td><td>&euro;324</td><td>Diiselpumbad, tankla varustus</td></tr>
+        <tr><td>T&auml;itmis/pakkimismasinad</td><td>29</td><td>&euro;315</td><td>Toidut&ouml;&ouml;stus, kosmeetika</td></tr>
+        <tr><td>Kontorimoobel</td><td>130</td><td>&euro;150</td><td>Kontoritoolid, lauad</td></tr>
+        <tr><td>Loomakasvatustarvikud</td><td>30</td><td>&euro;256</td><td>Aiad, s&ouml;&ouml;tjad</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <hr class="section-divider">
+
+    <!-- 3. Sector Deep-Dives -->
+    <h2 id="r-sectors">3. Turukaardistus sektorite kaupa</h2>
+
+    <!-- 3.1 HoReCa -->
+    <h3 id="r-horeca">3.1 Catering / HoReCa</h3>
+    <p><strong>Sihtgrupp:</strong> ~3 000&ndash;4 000 toitlustusettev&otilde;tet (EMTAK 56xx) + 915 majutusettev&otilde;tet (stat.ee, 2025)</p>
+
+    <h4>Peamised konkurendid Eestis</h4>
+    <div class="table-wrap">
+    <table>
+      <thead><tr><th>Ettev&otilde;te</th><th>Profiil</th><th>Br&auml;ndid</th></tr></thead>
+      <tbody>
+        <tr><td>Farwell</td><td>Electrolux Professional ametlik import&ouml;&ouml;r</td><td>Electrolux Professional</td></tr>
+        <tr><td>Haktek</td><td>Suurim suork&ouml;&ouml;giseadmete hooldus+m&uuml;&uuml;k (al. 1997), ~10 000 toodet</td><td>Metose, Electrolux</td></tr>
+        <tr><td>Asitek</td><td>E-pood avalike hindadega</td><td>Aristarco, Hendi, M-ICE</td></tr>
+        <tr><td>Horeca Seadmed</td><td>M&uuml;&uuml;k + hooldus + remont</td><td>GGM, Pyralis</td></tr>
+        <tr><td>Gastro Suork&ouml;&ouml;gid</td><td>HENDI edasim&uuml;&uuml;ja</td><td>HENDI</td></tr>
+        <tr><td>Maxima (NL)</td><td>Hollandi e-pood, tarnib Eestisse</td><td>HENDI, Maxima</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <h4>Hinnav&otilde;rdlus</h4>
+    <div class="table-wrap">
+    <table class="amber">
+      <thead><tr><th>Toode</th><th>Eesti tarnija</th><th>Hind</th><th>VEVOR</th><th>Vahe</th></tr></thead>
+      <tbody>
+        <tr><td>J&auml;&auml;masin ~45 kg/24h</td><td>Asitek M-ICE45</td><td>&euro;770</td><td>&euro;275</td><td class="advantage"><strong>-64%</strong></td></tr>
+        <tr><td>J&auml;&auml;masin ~60 kg/24h</td><td>Asitek M-ICE60</td><td>&euro;850</td><td>&euro;326</td><td class="advantage"><strong>-62%</strong></td></tr>
+        <tr><td>J&auml;&auml;masin ~100 kg/24h</td><td>Asitek M-ICE100</td><td>&euro;1 490</td><td>&euro;403</td><td class="advantage"><strong>-73%</strong></td></tr>
+        <tr><td>S&uuml;gavk&uuml;lmkapp 200L</td><td>Gastro Budget</td><td>&euro;492</td><td>~&euro;250&ndash;350</td><td class="advantage"><strong>-40%</strong></td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <p><strong>Ostuharjumused:</strong> Traditsiooniline kanal on m&uuml;&uuml;giesindaja + showroom. V&auml;iksemaid seadmeid (j&auml;&auml;masinad, fryturid) ostetakse &uuml;ha enam e-poest.</p>
+    <p><strong>Hooajalisus:</strong> K&otilde;rghooaeg mai&ndash;september (turism, terrassid). Renoveerimise hooaeg jaanuar&ndash;m&auml;rts.</p>
+
+    <h4>Barj&auml;&auml;rid</h4>
+    <ol>
+      <li>Garantii ja hooldus &mdash; kohalikud tarnijad pakuvad kohapealset teenindust</li>
+      <li>HACCP-n&otilde;uded &mdash; m&otilde;nedel seadmetel vajalik spetsiifiline sertifikaat</li>
+      <li>Br&auml;ndi usaldus &mdash; Electrolux/Rational on tuntud, VEVOR tundmatu</li>
+      <li>Paigaldusteenus &mdash; suuremad seadmed vajavad professionaalset paigaldust</li>
+      <li>Tarneaeg &mdash; kohalik tarnija tarnib samal p&auml;eval, VEVOR 3&ndash;7 p&auml;eva</li>
+    </ol>
+
+    <div class="callout-positive callout">
+      <strong>Strateegiline j&auml;reldus:</strong> Suurim potentsiaal on <strong>v&auml;iksemates seadmetes</strong> (j&auml;&auml;masinad, fryturid, restoranimoobel), kus paigaldust ei vajata ja hinnaeelis on drastiline (60&ndash;73%).
+    </div>
+
+    <hr class="section-divider">
+
+    <!-- 3.2 Ehitus -->
+    <h3 id="r-construction">3.2 Ehitus ja remont</h3>
+    <p><strong>Sihtgrupp:</strong> ~11 000 ehitusettev&otilde;tet (EMTAK 41&ndash;43xx), 58 000&ndash;60 000 t&ouml;&ouml;tajat. Ehitussektor 2024: &euro;3,9 miljardit (6% langus). Langeb 4. aastat j&auml;rjest.</p>
+
+    <h4>Peamised konkurendid</h4>
+    <div class="table-wrap">
+    <table>
+      <thead><tr><th>Ettev&otilde;te</th><th>Profiil</th></tr></thead>
+      <tbody>
+        <tr><td>Bauhof</td><td>Suurim ehituskaupade kett, e-pood, 4h kiirtarne</td></tr>
+        <tr><td>K-rauta</td><td>Kesko kontsern</td></tr>
+        <tr><td>Stokker</td><td>Professionaalsed t&ouml;&ouml;riistad, 30+ aastat</td></tr>
+        <tr><td>W&uuml;rth</td><td>Paigaldus- ja kinnitustarvikud, B2B</td></tr>
+        <tr><td>Hilti / Makita / Bosch / Festool</td><td>Professionaalsed br&auml;ndid kohaliku teenindusega</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <h4>Hinnav&otilde;rdlus</h4>
+    <div class="table-wrap">
+    <table class="amber">
+      <thead><tr><th>Toode</th><th>Eesti tarnija</th><th>Hind</th><th>VEVOR</th><th>Vahe</th></tr></thead>
+      <tbody>
+        <tr><td>Kompressor 50L</td><td>Scheppach (Bauhof)</td><td>&euro;191</td><td>~&euro;100&ndash;146</td><td class="advantage"><strong>-30&ndash;50%</strong></td></tr>
+        <tr><td>Survepesur (kodune)</td><td>K&auml;rcher K3</td><td>&euro;170&ndash;179</td><td>&euro;70&ndash;93</td><td class="advantage"><strong>-50%</strong></td></tr>
+        <tr><td>Generaator 2500W</td><td>Scheppach</td><td>&euro;559&ndash;932</td><td colspan="2">puudub VEVOR EU-st</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <div class="callout">
+      <strong>Strateegiline j&auml;reldus:</strong> Potentsiaal on <strong>DIY/koduremondi segmendis</strong>, mitte professionaalide seas. Kompressorid ja survepesurid on hea sissep&auml;&auml;supunkt hinnaga.
+    </div>
+
+    <hr class="section-divider">
+
+    <!-- 3.3 Metallitöö -->
+    <h3 id="r-metalwork">3.3 Metallit&ouml;&ouml; ja keevitus</h3>
+    <p><strong>Sihtgrupp:</strong> Masina- ja metallit&ouml;&ouml;stuses t&ouml;&ouml;tab <strong>25 840 inimest</strong>, kogu sektoris 44 000 &mdash; moodustab <strong>38% Eesti t&ouml;&ouml;tleva t&ouml;&ouml;stuse t&ouml;&ouml;j&otilde;ust</strong> ja ~1/6 &auml;riekspordi mahust.</p>
+
+    <h4>Peamised konkurendid</h4>
+    <div class="table-wrap">
+    <table>
+      <thead><tr><th>Ettev&otilde;te</th><th>Profiil</th></tr></thead>
+      <tbody>
+        <tr><td>Abplanalp Estee</td><td>CNC-masinad (Haas, Kitamura), 200+ masinat m&uuml;&uuml;dud</td></tr>
+        <tr><td>Keevitus.ee</td><td>ESAB, Kemppi, Lincoln Electric</td></tr>
+        <tr><td>Gitana</td><td>GYS, ESAB keevitusseadmed</td></tr>
+        <tr><td>Lasermeister</td><td>100% laserl&otilde;ikuspinkidele spetsialiseerunud</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <h4>Hinnav&otilde;rdlus</h4>
+    <div class="table-wrap">
+    <table class="amber">
+      <thead><tr><th>Toode</th><th>Eesti tarnija</th><th>Hind</th><th>VEVOR</th><th>Vahe</th></tr></thead>
+      <tbody>
+        <tr><td>MIG keevitusaparaat 200A</td><td>Weldman</td><td>&euro;275</td><td>&euro;253&ndash;264</td><td>V&otilde;rdne</td></tr>
+        <tr><td>MIG keevitusaparaat 200A</td><td>ESAB Rogue 210 Pro</td><td>&euro;800+</td><td>&euro;253&ndash;264</td><td class="advantage"><strong>-68%</strong></td></tr>
+        <tr><td>Laser-graveerija 20W</td><td>Epilog (prof.)</td><td>&euro;5 000+</td><td>&euro;489&ndash;600</td><td class="advantage"><strong>-88%</strong></td></tr>
+        <tr><td>Mini treipink (hobi)</td><td>Kasutatud Euroopa</td><td>&euro;1 600+</td><td>&euro;300&ndash;500</td><td class="advantage"><strong>-69&ndash;81%</strong></td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <div class="callout-positive callout">
+      <strong>Oluline leid &mdash; laser-graveerijad:</strong> VEVOR t&auml;idab turuni&scaron;&scaron;i, kus kohalikud tarnijad praktiliselt puuduvad. Lasermeister m&uuml;&uuml;b professionaalseid &euro;5000+ seadmeid. VEVOR pakub hobi/v&auml;ikeettev&otilde;tte tasemel seadmeid &euro;489&ndash;1276 &mdash; sellele alternatiivi Eesti turul pole.
+    </div>
+
+    <hr class="section-divider">
+
+    <!-- 3.4 Auto -->
+    <h3 id="r-auto">3.4 Autohooldus ja -remont</h3>
+    <p><strong>Sihtgrupp:</strong> Autoremondikojad (EMTAK 4520), rehvit&ouml;&ouml;kojad, autopesulad.</p>
+
+    <h4>Hinnav&otilde;rdlus</h4>
+    <div class="table-wrap">
+    <table class="amber">
+      <thead><tr><th>Toode</th><th>Eesti turg</th><th>VEVOR</th><th>M&auml;rkus</th></tr></thead>
+      <tbody>
+        <tr><td>Tungraud</td><td>&euro;13&ndash;&euro;2 200</td><td>&euro;22&ndash;&euro;310</td><td>Konkurentsiv&otilde;imeline madalamas segmendis</td></tr>
+        <tr><td>Torustiku kaamera</td><td>&euro;11&ndash;&euro;777</td><td>&euro;140&ndash;&euro;350</td><td>Hea hinnasuhe</td></tr>
+        <tr><td>2-post autot&otilde;stuk</td><td>&euro;1 100&ndash;&euro;3 180+</td><td>puudub</td><td>VEVOR ei konkureeri</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <div class="callout">
+      <strong>Strateegiline j&auml;reldus:</strong> Tugev <strong>madalamas segmendis</strong> (tungrauad, inspektsioonikaamera). Professionaalsete autot&otilde;stukite segment on suletud.
+    </div>
+
+    <hr class="section-divider">
+
+    <!-- 3.5 Laondus -->
+    <h3 id="r-warehouse">3.5 Laondus ja logistika</h3>
+    <p><strong>Sihtgrupp:</strong> ~860&ndash;1210 logistikaettev&otilde;tet. Logistika turu maht &euro;3,02 miljardit.</p>
+
+    <div class="callout-negative callout">
+      <strong>KRIITILINE LEID:</strong> K&auml;sikahvelk&auml;ru 2.5T &mdash; Balti Laomeister &euro;322&ndash;&euro;375 vs VEVOR <strong>&euro;813</strong>. VEVOR on <strong>2x KALLIM</strong>. Laonduse p&otilde;hitooted on VEVORil hinnapositsioonilt probleemsed.
+    </div>
+
+    <hr class="section-divider">
+
+    <!-- 3.6 Põllumajandus -->
+    <h3 id="r-agriculture">3.6 P&otilde;llumajandus ja aiatehnika</h3>
+    <p><strong>Sihtgrupp:</strong> ~6 720 p&otilde;llumajandusettev&otilde;tet + ~154 000 eramaja aiaga.</p>
+
+    <div class="table-wrap">
+    <table class="amber">
+      <thead><tr><th>Toode</th><th>Eesti tarnija</th><th>Hind</th><th>VEVOR</th><th>Vahe</th></tr></thead>
+      <tbody>
+        <tr><td>Survepesur (kodune)</td><td>Husqvarna PW 235</td><td>&euro;179&ndash;209</td><td>&euro;70&ndash;93</td><td class="advantage"><strong>-50&ndash;65%</strong></td></tr>
+        <tr><td>Survepesur (bensiini)</td><td>&mdash;</td><td>&mdash;</td><td>&euro;255&ndash;352</td><td>K&otilde;rgem v&otilde;imsus</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <p><strong>Hooajalisus:</strong> <strong>~70% aasta k&auml;ibest</strong> tehakse m&auml;rts&ndash;mais. Kriitiline: kui toodet pole kevadel saadaval, on j&auml;rgmine v&otilde;imalus aasta p&auml;rast.</p>
+
+    <hr class="section-divider">
+
+    <!-- 3.7 Puhastusteenused -->
+    <h3 id="r-cleaning">3.7 Puhastusteenused</h3>
+    <p>Peamised konkurendid: K&auml;rcher (turuliider, 531 toodet Eesti turul), Nilfisk (72 toodet).</p>
+
+    <div class="table-wrap">
+    <table class="amber">
+      <thead><tr><th>Toode</th><th>K&auml;rcher/Nilfisk</th><th>VEVOR</th><th>Vahe</th></tr></thead>
+      <tbody>
+        <tr><td>Survepesur kodune</td><td>K&auml;rcher K2: &euro;80&ndash;120, K5: &euro;241</td><td>&euro;70&ndash;93</td><td class="advantage"><strong>-15&ndash;60%</strong></td></tr>
+        <tr><td>Survepesur bensiini</td><td>&euro;500&ndash;&euro;2 000+</td><td>&euro;255&ndash;&euro;846</td><td class="advantage"><strong>-30&ndash;60%</strong></td></tr>
+        <tr><td>T&ouml;&ouml;stuslik tolmuimeja</td><td>Nilfisk al. &euro;185, prof. &euro;1 005+</td><td>~&euro;80&ndash;200</td><td class="advantage"><strong>-50&ndash;80%</strong></td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <div class="callout">
+      <strong>Strateegiline j&auml;reldus:</strong> K&auml;rcher on &ldquo;de facto standard&rdquo;. Potentsiaal on bensiini survepesuritel ja t&ouml;&ouml;stuslikel ventilaatoritel, kus K&auml;rcher ei domineeri.
+    </div>
+
+    <hr class="section-divider">
+
+    <!-- 3.8 Ilutööstus -->
+    <h3 id="r-beauty">3.8 Ilut&ouml;&ouml;stus (Salon & Spa)</h3>
+    <p><strong>Sihtgrupp:</strong> ~2 000&ndash;3 000 ilusalongi. Turu maht ~&euro;185M (Statista, 2027 prognoos).</p>
+    <p>Juuksuritool (h&uuml;drauliline): Eesti &euro;350&ndash;500 vs VEVOR &euro;189&ndash;322 (<strong>-36&ndash;62%</strong>).</p>
+
+    <div class="callout">
+      <strong>Strateegiline j&auml;reldus:</strong> Sortiment liiga v&auml;ike (17 toodet vs BeautyFor 847). Kui sortiment kasvab 50+ tooteni, muutub atraktiivseks.
+    </div>
+
+    <hr class="section-divider">
+
+    <!-- 3.9 Lisasektorid -->
+    <h3 id="r-extra">3.9 Lisasektorid</h3>
+    <ul>
+      <li><strong>Tr&uuml;kiseadmed (115 toodet, avg &euro;259):</strong> Madal konkurents Eestis. Vin&uuml;&uuml;ll&otilde;ikurid ja siiditr&uuml;ki pressid sobivad mikroettev&otilde;tetele ja hobistidele.</li>
+      <li><strong>K&uuml;tuse- ja &otilde;liseadmed (44 toodet, avg &euro;324):</strong> Peamine konkurent Tankler O&Uuml;. Hinnad v&otilde;rdv&auml;&auml;rsed.</li>
+      <li><strong>T&auml;itmis- ja pakkimismasinad (29 toodet, avg &euro;315):</strong> VEVOR manuaalsed/poolautomaatsed masinad sobivad v&auml;iketootjatele (mesi, kosmeetika).</li>
+      <li><strong>Kontorimoobel (130 toodet, avg &euro;150):</strong> IKEA ja JYSK domineerimine. <strong>Ei soovita sihtida.</strong></li>
+    </ul>
+
+    <hr class="section-divider">
+
+    <!-- 4. Ranking -->
+    <h2 id="r-ranking">4. Potentsiaali edetabel</h2>
+
+    <h3>Hindamiskriteeriumid</h3>
+    <table>
+      <thead><tr><th>Kriteerium</th><th>Kaal</th><th>Selgitus</th></tr></thead>
+      <tbody>
+        <tr><td>Turu suurus Eestis</td><td>25%</td><td>Potentsiaalsete klientettev&otilde;tete arv</td></tr>
+        <tr><td>VEVOR sortimendi tugevus</td><td>25%</td><td>Tootevalik + hinnaeelis</td></tr>
+        <tr><td>Konkurentsi intensiivsus</td><td>20%</td><td>V&auml;hem = parem</td></tr>
+        <tr><td>Keskmine tellimuse v&auml;&auml;rtus</td><td>15%</td><td>Keskmise toote hind &times; t&uuml;&uuml;piline kogus</td></tr>
+        <tr><td>Korduvostude t&otilde;en&auml;osus</td><td>15%</td><td>Kas klient tuleb tagasi?</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Sektorite skoorid</h3>
+    <div class="table-wrap">
+    <table>
+      <thead><tr><th>Sektor</th><th>Turu suurus (25%)</th><th>Sortiment (25%)</th><th>Konkurents (20%)</th><th>Tell. v&auml;&auml;rtus (15%)</th><th>Korduvost (15%)</th><th>Kaalutud skoor</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Catering / HoReCa</strong></td><td>8</td><td>9</td><td>5</td><td>8</td><td>7</td><td><span class="score score-high">7.55</span></td></tr>
+        <tr><td><strong>Laser + hobi-metallit&ouml;&ouml;</strong></td><td>4</td><td>9</td><td>9</td><td>9</td><td>4</td><td><span class="score score-high">7.00</span></td></tr>
+        <tr><td><strong>Tr&uuml;kiseadmed</strong></td><td>3</td><td>7</td><td>8</td><td>7</td><td>5</td><td><span class="score score-mid">5.85</span></td></tr>
+        <tr><td><strong>Autohooldus (madalam)</strong></td><td>6</td><td>6</td><td>5</td><td>5</td><td>6</td><td><span class="score score-mid">5.70</span></td></tr>
+        <tr><td><strong>Pakkimismasinad</strong></td><td>3</td><td>6</td><td>8</td><td>8</td><td>4</td><td><span class="score score-mid">5.60</span></td></tr>
+        <tr><td><strong>K&uuml;tuse-/&otilde;liseadmed</strong></td><td>4</td><td>5</td><td>6</td><td>7</td><td>4</td><td><span class="score score-mid">5.05</span></td></tr>
+        <tr><td><strong>P&otilde;llumajandus / aiatehnika</strong></td><td>7</td><td>5</td><td>3</td><td>4</td><td>5</td><td><span class="score score-mid">5.00</span></td></tr>
+        <tr><td><strong>Ehitus (DIY/koduremont)</strong></td><td>7</td><td>5</td><td>2</td><td>4</td><td>5</td><td><span class="score score-mid">4.80</span></td></tr>
+        <tr><td><strong>Puhastusteenused</strong></td><td>5</td><td>4</td><td>3</td><td>5</td><td>7</td><td><span class="score score-low">4.65</span></td></tr>
+        <tr><td><strong>Ilut&ouml;&ouml;stus</strong></td><td>5</td><td>2</td><td>5</td><td>6</td><td>3</td><td><span class="score score-low">3.95</span></td></tr>
+        <tr><td><strong>Kontorimoobel</strong></td><td>6</td><td>3</td><td>1</td><td>3</td><td>3</td><td><span class="score score-low">3.40</span></td></tr>
+        <tr><td><strong>Laondus (kahvelk&auml;rud)</strong></td><td>5</td><td>1</td><td>3</td><td>5</td><td>4</td><td><span class="score score-low">3.35</span></td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <hr class="section-divider">
+
+    <!-- 5. Competition -->
+    <h2 id="r-competition">5. Konkurentsianaluus (Top 5 sektorit)</h2>
+
+    <h3>5.1 HoReCa &mdash; XLMarket vs Asitek/Haktek/Farwell</h3>
+    <div class="table-wrap">
+    <table>
+      <thead><tr><th>Kriteerium</th><th>XLMarket (VEVOR)</th><th>Kohalikud tarnijad</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Hind</strong></td><td class="advantage">60&ndash;73% soodsam</td><td>K&otilde;rgem, aga sisaldab teenust</td></tr>
+        <tr><td><strong>Valik</strong></td><td>554 toodet</td><td>Haktek ~10 000 toodet</td></tr>
+        <tr><td><strong>Teenindus</strong></td><td class="disadvantage">Puudub</td><td>Kohapealne hooldus, remont, paigaldus</td></tr>
+        <tr><td><strong>Tarne</strong></td><td>3&ndash;7 p&auml;eva</td><td>Laost samal/j&auml;rgmisel p&auml;eval</td></tr>
+        <tr><td><strong>Garantii</strong></td><td>EU 2 aastat (kuid raske realiseerida)</td><td>Kohalik, lihtne</td></tr>
+        <tr><td><strong>Br&auml;nd</strong></td><td class="disadvantage">Tundmatu</td><td>Electrolux, Rational, HENDI &mdash; tuntud</td></tr>
+        <tr><td><strong>Keel</strong></td><td>Inglise</td><td>Eesti</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p><strong>XLMarketi tugevus:</strong> hind, hind, hind. <strong>N&otilde;rkus:</strong> k&otilde;ik muu.</p>
+
+    <h3>5.2 Laser-graveerijad &mdash; XLMarket vs Lasermeister</h3>
+    <div class="table-wrap">
+    <table>
+      <thead><tr><th>Kriteerium</th><th>XLMarket (VEVOR)</th><th>Lasermeister</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Hind</strong></td><td class="advantage">&euro;489&ndash;5 192</td><td>&euro;5 000+ (professionaalsed)</td></tr>
+        <tr><td><strong>Sihtgrupp</strong></td><td>Hobistid, v&auml;ikeettev&otilde;tted</td><td>Professionaalne tootmine</td></tr>
+        <tr><td><strong>Teenindus</strong></td><td>Piiratud</td><td>Kohapealne</td></tr>
+        <tr><td><strong>Valik</strong></td><td>31 toodet</td><td>Kitsas, kuid kvaliteetne</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p><strong>J&auml;reldus:</strong> Otsene konkurents puudub &mdash; erinevad hinnasegmendid. VEVOR teenindab turgu, mida Lasermeister ei kata.</p>
+
+    <h3>5.3 Ehitus &mdash; XLMarket vs Bauhof/Stokker</h3>
+    <div class="table-wrap">
+    <table>
+      <thead><tr><th>Kriteerium</th><th>XLMarket (VEVOR)</th><th>Bauhof / Stokker</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Hind</strong></td><td class="advantage">30&ndash;50% soodsam</td><td>K&otilde;rgem, kuid tuntud br&auml;ndid</td></tr>
+        <tr><td><strong>Valik</strong></td><td>406 toodet</td><td>K&uuml;mned tuhanded</td></tr>
+        <tr><td><strong>Teenindus</strong></td><td class="disadvantage">Puudub</td><td>Kohapealne, 4h tarne (Bauhof)</td></tr>
+        <tr><td><strong>Br&auml;nd</strong></td><td class="disadvantage">Tundmatu</td><td>Makita, Bosch, Festool, Hilti</td></tr>
+        <tr><td><strong>Tagastus</strong></td><td>14 p&auml;eva</td><td>60 p&auml;eva (Bauhof)</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <hr class="section-divider">
+
+    <!-- 6. Recommendations -->
+    <h2 id="r-recommendations">6. Soovitused ja j&auml;rgmised sammud</h2>
+
+    <h3><span class="priority-badge priority-1">Prioriteet 1</span> Catering / HoReCa</h3>
+    <p><strong>Sihtgrupp:</strong> V&auml;ikeste ja keskmiste toitlustusettev&otilde;tete omanikud/juhid, kes avavad uut kohta v&otilde;i uuendavad seadmeid. Kohvikupidajad, v&auml;ikerestoranide omanikud, cateringifirmad.</p>
+    <p><strong>Miks:</strong> Suurim potentsiaalne kliendibaas (3000+ ettev&otilde;tet), dramaatiline hinnaeelis (60&ndash;73%), e-ostude trend kasvab.</p>
+    <h4>Esimesed sammud</h4>
+    <ol>
+      <li>Landing page &ldquo;HoReCa seadmed&rdquo; &mdash; j&auml;&auml;masinad, restoranimoobel, toiduvalmistusseadmed</li>
+      <li>Hinnav&otilde;rdlustabel: VEVOR vs Asitek/Haktek/Maxima</li>
+      <li>3&ndash;5 tootearvustust/case study-t</li>
+      <li>Garantii- ja tagastuspoliitika selge kommunikatsioon</li>
+    </ol>
+
+    <h3><span class="priority-badge priority-1">Prioriteet 2</span> Laser-graveerijad ja hobi-metallit&ouml;&ouml;</h3>
+    <p><strong>Sihtgrupp:</strong> Hobimeistrid, FIE-d (ehtesepad, puut&ouml;&ouml;lised, personaliseerimisteenused), v&auml;ikeettev&otilde;tted. Maker-kogukond.</p>
+    <p><strong>Miks:</strong> Kohalikke tarnijaid praktiliselt pole. Hinnaeelis 69&ndash;88%. K&otilde;rge keskmine tellimus (&euro;500&ndash;2000).</p>
+    <h4>Esimesed sammud</h4>
+    <ol>
+      <li>Landing page &ldquo;Laser-graveerijad&rdquo; ja &ldquo;Metallit&ouml;&ouml; seadmed&rdquo;</li>
+      <li>YouTube videod: VEVOR laser vs profiseadmed</li>
+      <li>Koost&ouml;&ouml; Eesti maker-space&rsquo;idega (Protolab, K-space)</li>
+    </ol>
+
+    <h3><span class="priority-badge priority-2">Prioriteet 3</span> Tr&uuml;kiseadmed + pakkimismasinad</h3>
+    <p><strong>Sihtgrupp:</strong> Mikroettev&otilde;tted, kes vajavad vin&uuml;&uuml;ll&otilde;ikurit, siiditr&uuml;ki pressi, pakkimismasinat.</p>
+    <h4>Esimesed sammud</h4>
+    <ol>
+      <li>Landing page &ldquo;Tr&uuml;kiseadmed&rdquo; ja &ldquo;Pakkimismasinad&rdquo;</li>
+      <li>Blog: &ldquo;Kuidas alustada T-s&auml;rkide tr&uuml;kkimise &auml;ri&rdquo; &mdash; SEO sisu</li>
+    </ol>
+
+    <h3><span class="priority-badge priority-2">Prioriteet 4</span> Autohooldus &mdash; DIY ja v&auml;iket&ouml;&ouml;kojad</h3>
+    <p><strong>Sihtgrupp:</strong> V&auml;iksed autoremondikojad (1&ndash;5 t&ouml;&ouml;tajat), garaa&zcaron;i-t&uuml;&uuml;pi ettev&otilde;tted, DIY autohooldajad.</p>
+    <h4>Esimesed sammud</h4>
+    <ol>
+      <li>Landing page &ldquo;Autoremondiseadmed&rdquo; &mdash; tungrauad, kaameraid, rehvit&ouml;&ouml;riistad</li>
+      <li>Hinnav&otilde;rdlustabel: VEVOR tungraud vs Stokker/RPARTS</li>
+      <li>YouTube videod: torustiku kaamera kasutamine</li>
+    </ol>
+
+    <h3><span class="priority-badge priority-3">Prioriteet 5</span> P&otilde;llumajandus ja aiatehnika</h3>
+    <p><strong>Sihtgrupp:</strong> ~6 720 p&otilde;llumajandusettev&otilde;tet + <strong>154 000+ eramajaomanikku</strong>.</p>
+    <p><strong>Kriitiline:</strong> 70% k&auml;ibest tehakse m&auml;rts&ndash;mais. Kevadkampaania ettevalmistus peab algama jaanuaris.</p>
+
+    <h3><span class="priority-badge priority-3">Prioriteet 6</span> K&uuml;tuse- ja &otilde;liseadmed</h3>
+    <p><strong>Sihtgrupp:</strong> V&auml;iksed autoremondikojad, p&otilde;llumajandusettev&otilde;tted, ehitusettev&otilde;tted. Peamine konkurent: Tankler O&Uuml;.</p>
+
+    <h3><span class="priority-badge priority-3">Prioriteet 7</span> Puhastusteenused</h3>
+    <p>Fookus professionaalsele ja bensiinisegmendile &mdash; seal K&auml;rcher/Nilfisk ei domineeri.</p>
+
+    <h3>Potentsiaali koondtabel</h3>
+    <div class="table-wrap">
+    <table class="amber">
+      <thead><tr><th>#</th><th>Sektor</th><th>Skoor</th><th>Tooteid</th><th>Hinnaeelis</th><th>Raskus</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td><strong>Catering / HoReCa</strong></td><td><span class="score score-high">7.55</span></td><td>554</td><td>60&ndash;73%</td><td>Keskmine</td></tr>
+        <tr><td>2</td><td><strong>Laser + hobi-metallit&ouml;&ouml;</strong></td><td><span class="score score-high">7.00</span></td><td>70</td><td>69&ndash;88%</td><td>Madal</td></tr>
+        <tr><td>3</td><td><strong>Tr&uuml;kiseadmed + pakkimine</strong></td><td><span class="score score-mid">5.85</span></td><td>144</td><td>Madal konkurents</td><td>Madal</td></tr>
+        <tr><td>4</td><td><strong>Autohooldus (DIY/v&auml;ike)</strong></td><td><span class="score score-mid">5.70</span></td><td>266</td><td>30&ndash;50%</td><td>Keskmine</td></tr>
+        <tr><td>5</td><td><strong>P&otilde;llumajandus / aiatehnika</strong></td><td><span class="score score-mid">5.00</span></td><td>234</td><td>50&ndash;65%</td><td>K&otilde;rge (hooajalisus)</td></tr>
+        <tr><td>6</td><td><strong>K&uuml;tuse-/&otilde;liseadmed</strong></td><td><span class="score score-mid">5.05</span></td><td>44</td><td>V&otilde;rdne</td><td>Madal</td></tr>
+        <tr><td>7</td><td><strong>Puhastus (bensiini/t&ouml;&ouml;stus)</strong></td><td><span class="score score-low">4.65</span></td><td>79</td><td>30&ndash;60%</td><td>Keskmine</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <h3>Sektorid mida MITTE sihtida</h3>
+    <table>
+      <thead><tr><th>Sektor</th><th>Miks mitte</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Kontorimoobel</strong></td><td>IKEA/JYSK domineerimine, marginaalne hinnaeelis, f&uuml;&uuml;silise poe vajadus</td></tr>
+        <tr><td><strong>Laonduse kahvelk&auml;rud</strong></td><td>VEVOR 2x KALLIM kui kohalikud tarnijad</td></tr>
+        <tr><td><strong>Professionaalne ehitus</strong></td><td>Hilti/Makita/Bosch br&auml;ndiusaldus, kohalik teenindus kriitiliselt vajalik</td></tr>
+        <tr><td><strong>Professionaalne metallit&ouml;&ouml;</strong></td><td>CNC masinad &euro;20 000+, VEVOR ei konkureeri kvaliteedis</td></tr>
+        <tr><td><strong>Ilut&ouml;&ouml;stus (praegu)</strong></td><td>Sortiment liiga v&auml;ike (17 toodet vs BeautyFor 847)</td></tr>
+      </tbody>
+    </table>
+
+    <hr class="section-divider">
+
+    <!-- 7. Risks -->
+    <h2 id="r-risks">7. Riskid ja hoiatused</h2>
+    <ol>
+      <li><strong>Garantii on suurim barj&auml;&auml;r k&otilde;igis sektorites.</strong> Lahendus: selge garantiipoliitika + kohalik kontaktpunkt (kas v&otilde;i e-mail/telefon eesti keeles)</li>
+      <li><strong>CE-m&auml;rgistuse usaldusvaarjasus:</strong> TTJA on tuvastanud probleeme Hiina toodete CE-n&otilde;uetele mittevastavusega. Risk: toode ei vasta deklareeritud n&otilde;uetele</li>
+      <li><strong>Br&auml;ndi usaldus:</strong> VEVOR on Eestis tundmatu. Vajalik: arvustused, case study-d, referentskliendid</li>
+      <li><strong>Logistika:</strong> Kohalikud tarnijad tarnivad samal p&auml;eval. VEVOR 3&ndash;7 p&auml;eva. Lahendus: kohalik laovaru populaarsemate toodete jaoks</li>
+      <li><strong>Keelebarj&auml;&auml;r:</strong> Tootejuhendid inglise/hiina keeles. Lahendus: t&otilde;lgitud kasutusjuhendid top toodetele</li>
+    </ol>
+
+    <div class="callout" style="margin-top: 2rem; border-left-color: var(--navy-muted); background: var(--bg-alt);">
+      <strong style="color: var(--navy-muted);">Allikad:</strong> 60+ allikat anal&uuml;&uuml;situd (Statistikaamet, E-kaubanduse Liit, Creditinfo, OSKA/Kutsekoda, METK, Mordor Intelligence, Statista, konkurentide e-poed, VEVOR EU, Trustpilot jm). T&auml;isloend saadaval n&otilde;udmisel.
+    </div>
+
+  </main>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!--  TAB 2: AI TÖÖTAJASKOND                                -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div class="tab-content" id="tab-workforce">
+<div class="content-wrapper">
+  <aside class="sidebar">
+    <div class="sidebar-title">Sisukord</div>
+    <a href="#w-summary">Juhtivkokkuv&otilde;te</a>
+    <a href="#w-tech">Tehniline alus</a>
+    <a href="#w-dept1">Osk. 1: Klienditeenindus</a>
+    <a href="#w-dept2">Osk. 2: Klienditugi</a>
+    <a href="#w-dept3">Osk. 3: M&uuml;&uuml;k (B2B)</a>
+    <a href="#w-dept4">Osk. 4: Anal&uuml;&uuml;tika</a>
+    <a href="#w-dept5">Osk. 5: Turundus ja sisu</a>
+    <a href="#w-dept6">Osk. 6: Operatsioonid</a>
+    <a href="#w-dashboard">Juhtpaneel</a>
+    <a href="#w-triggers">K&auml;ivitajad</a>
+    <a href="#w-deps">S&otilde;ltuvused</a>
+    <a href="#w-human">Inimene otsustab</a>
+    <a href="#w-next">J&auml;rgmised sammud</a>
+  </aside>
+  <main class="main-content">
+
+    <h2 id="w-summary">Juhtivkokkuv&otilde;te</h2>
+
+    <p>XLMarket.eu on 16 000 tootega e-pood, mida opereeritakse ilma palgaliste t&ouml;&ouml;tajateta. AI agendid t&auml;idavad k&otilde;ik e-poe p&otilde;hifunktsioonid &mdash; klienditeenindusest turunduseni.</p>
+
+    <div class="metrics-row">
+      <div class="metric-card">
+        <div class="metric-value">13</div>
+        <div class="metric-label">AI rolli</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value">6</div>
+        <div class="metric-label">Osakonda</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value">~3 FTE</div>
+        <div class="metric-label">Asendatav t&ouml;&ouml;j&otilde;ud</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value">~&euro;5 400</div>
+        <div class="metric-label">Palgakulu ekvivalent/kuu</div>
+      </div>
+    </div>
+
+    <p>Agendid jagunevad kahte gruppi:</p>
+    <ul>
+      <li><strong>Kliendile suunatud</strong> (chat, email) &mdash; Anthropic API, per-token billing, reaalajas</li>
+      <li><strong>Sisemised</strong> (anal&uuml;&uuml;tika, turundus, operatsioonid) &mdash; Claude Max plaan, cron/n&otilde;udmisel</li>
+    </ul>
+
+    <h3>Faasid</h3>
+    <table class="amber">
+      <thead><tr><th>Faas</th><th>Osakonnad</th><th>Eeldus</th></tr></thead>
+      <tbody>
+        <tr><td><strong>1</strong> (praegu)</td><td>Klienditeenindus, Anal&uuml;&uuml;tika (alus)</td><td>Olemasolev infrastruktuur</td></tr>
+        <tr><td><strong>2</strong> (p&auml;rast turu-uuringut)</td><td>Klienditugi, B2B m&uuml;&uuml;k, Anal&uuml;&uuml;tika (t&auml;is)</td><td>Turu-uuringu tulemused, emaili infrastruktuur</td></tr>
+        <tr><td><strong>3</strong> (stabiilne k&auml;ive)</td><td>Turundus, Operatsioonid</td><td>Piisav andmemaht raportiteks ja optimeerimiseks</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Inimt&ouml;&ouml;j&otilde;u v&otilde;rdlus</h3>
+    <div class="table-wrap">
+    <table>
+      <thead><tr><th>Osakond</th><th>AI rollid</th><th>FTE ekvivalent</th><th>Palgakulu ekv./kuu</th></tr></thead>
+      <tbody>
+        <tr><td>Klienditeenindus</td><td>2</td><td>0.5</td><td>~&euro;800</td></tr>
+        <tr><td>Klienditugi</td><td>2</td><td>0.3</td><td>~&euro;500</td></tr>
+        <tr><td>M&uuml;&uuml;k (B2B)</td><td>2</td><td>1.0</td><td>~&euro;2 000</td></tr>
+        <tr><td>Anal&uuml;&uuml;tika</td><td>2</td><td>0.3</td><td>~&euro;600</td></tr>
+        <tr><td>Turundus</td><td>3</td><td>0.5</td><td>~&euro;1 000</td></tr>
+        <tr><td>Operatsioonid</td><td>3</td><td>0.3</td><td>~&euro;500</td></tr>
+        <tr style="font-weight: 700; background: var(--amber-surface);">
+          <td><strong>Kokku</strong></td><td><strong>13</strong></td><td><strong>~3 FTE</strong></td><td><strong>~&euro;5 400/kuu</strong></td>
+        </tr>
+        <tr><td colspan="3" style="text-align:right"><strong>AI kulu</strong></td><td>Max plaan + ~$30&ndash;300 API</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <hr class="section-divider">
+
+    <!-- Tech Foundation -->
+    <h2 id="w-tech">Tehniline alus</h2>
+
+    <h3>Infrastruktuur (juba olemas)</h3>
+    <table>
+      <thead><tr><th>Komponent</th><th>Staatus</th><th>Otstarve</th></tr></thead>
+      <tbody>
+        <tr><td>MeiliSearch</td><td>T&ouml;&ouml;tab</td><td>Tooteotsing, kategooriad, facets (~5ms)</td></tr>
+        <tr><td>Medusa.js 2.0</td><td>T&ouml;&ouml;tab</td><td>Tellimused, inventuur, kliendid, maksed</td></tr>
+        <tr><td>PostHog</td><td>Integreeritud</td><td>9 event'i, sessioonisalvestused, dashboardid</td></tr>
+        <tr><td>nginx + PM2</td><td>T&ouml;&ouml;tab</td><td>Reverse proxy, 5 cluster workerit</td></tr>
+        <tr><td>nodemailer</td><td>T&ouml;&ouml;tab</td><td>Transaktsioonimeilid</td></tr>
+        <tr><td>Feed sync</td><td>Cron iga 4h</td><td>VEVOR tootefeedi uuendamine</td></tr>
+        <tr><td>osta.ee feed</td><td>T&ouml;&ouml;tab</td><td>XML feed, 10 700+ toodet</td></tr>
+        <tr><td>Facebook Commerce</td><td>T&ouml;&ouml;tab</td><td>Feed, 10 700+ toodet</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Puudu (ehitatav)</h3>
+    <table>
+      <thead><tr><th>Komponent</th><th>Vajab</th><th>Faas</th></tr></thead>
+      <tbody>
+        <tr><td><code>/api/ai-chat</code> route</td><td>Anthropic SDK, SSE streaming</td><td>1</td></tr>
+        <tr><td>AiSearchPalette UI</td><td>Vestlusaken, tootekaardid</td><td>1</td></tr>
+        <tr><td>Emaili monitooring</td><td>IMAP polling v&otilde;i webhook</td><td>2</td></tr>
+        <tr><td>Juhtpaneel (dashboard)</td><td>Osakondade &uuml;levaade</td><td>2</td></tr>
+        <tr><td>Kliendiajaloo API</td><td>Medusa kliendi + tellimuste koondamine</td><td>2</td></tr>
+        <tr><td>Pakkumiss&uuml;steem</td><td>Hinnapakkumise genereerimine B2B-le</td><td>2</td></tr>
+        <tr><td>Blogi/sisu infrastruktuur</td><td>CMS v&otilde;i markdown-p&otilde;hine blogi</td><td>3</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Kulustruktuur</h3>
+    <h4>API (per-token) &mdash; kliendile suunatud agendid</h4>
+    <table>
+      <thead><tr><th>Komponent</th><th>Mudel</th><th>Tokenit/vestlus</th><th>Hind/vestlus</th></tr></thead>
+      <tbody>
+        <tr><td>Claudia</td><td>Haiku 4.5</td><td>~2 500</td><td>~$0.002</td></tr>
+        <tr><td>Tootespetsialist</td><td>Sonnet 4.6</td><td>~4 800</td><td>~$0.02</td></tr>
+        <tr><td>Tugiagent (email)</td><td>Sonnet 4.6</td><td>~3 000</td><td>~$0.015</td></tr>
+        <tr><td>&Auml;rikliendihaldur</td><td>Sonnet 4.6</td><td>~5 000</td><td>~$0.025</td></tr>
+      </tbody>
+    </table>
+
+    <table class="amber">
+      <thead><tr><th>Stsenaarium</th><th>Vestlusi/p&auml;ev</th><th>API kulu/kuu</th></tr></thead>
+      <tbody>
+        <tr><td>Algus</td><td>10&ndash;20</td><td>~$30</td></tr>
+        <tr><td>Keskmine</td><td>50&ndash;100</td><td>~$100</td></tr>
+        <tr><td>K&otilde;rghooaeg</td><td>200&ndash;500</td><td>~$300</td></tr>
+      </tbody>
+    </table>
+
+    <hr class="section-divider">
+
+    <!-- Dept 1 -->
+    <h2 id="w-dept1">Osakond 1: Klienditeenindus</h2>
+    <p><span class="priority-badge priority-1">Faas 1</span> &mdash; juba detailselt disainitud</p>
+
+    <h3>1.1 Claudia &mdash; poe infopunkt</h3>
+    <table>
+      <tbody>
+        <tr><td><strong>Roll</strong></td><td>Poe sissep&auml;&auml;su s&otilde;bralik inimene, kes teab kus miski asub</td></tr>
+        <tr><td><strong>Mudel</strong></td><td>Haiku 4.5 (API)</td></tr>
+        <tr><td><strong>K&auml;ivitaja</strong></td><td>Reaalaeg &mdash; AiSearchPalette vestlusaken (Ctrl+K)</td></tr>
+        <tr><td><strong>Toon</strong></td><td>S&otilde;bralik, tagasihoidlik, eestip&auml;rane. EI m&uuml;&uuml;. Ei ole entusiastlik</td></tr>
+      </tbody>
+    </table>
+    <p><strong>Mida teab:</strong> kategooriapuu, poe &uuml;ldinfo (tarne, tagastus, hinnad), populaarsed tooted</p>
+    <p><strong>Mida ei tea:</strong> toodete spetsifikatsioone (watt, materjal, m&otilde;&otilde;dud)</p>
+    <p><strong>Eskaleerimine:</strong> tehniline k&uuml;simus &rarr; Tootespetsialist (automaatne); B2B kontekst &rarr; &Auml;rikliendihaldur</p>
+
+    <h3>1.2 Tootespetsialist &mdash; osakonna ekspert</h3>
+    <table>
+      <tbody>
+        <tr><td><strong>Roll</strong></td><td>Kategooriap&otilde;hine tehniline ekspert, teab spece, oskab v&otilde;rrelda</td></tr>
+        <tr><td><strong>Mudel</strong></td><td>Sonnet 4.6 (API)</td></tr>
+        <tr><td><strong>K&auml;ivitaja</strong></td><td>Eskaleerimine Claudialt</td></tr>
+        <tr><td><strong>Toon</strong></td><td>Tehniline, aus, konkreetne. V&otilde;rdleb numbreid, mitte ebam&auml;&auml;raselt</td></tr>
+      </tbody>
+    </table>
+
+    <hr class="section-divider">
+
+    <!-- Dept 2 -->
+    <h2 id="w-dept2">Osakond 2: Klienditugi</h2>
+    <p><span class="priority-badge priority-2">Faas 1&ndash;2</span></p>
+
+    <h3>2.1 Tugiagent &mdash; emailidele vastaja</h3>
+    <p>Monitoorib info@xlmarket.eu ja vastab klientide p&auml;ringutele. Emailide klassifitseerimine:</p>
+    <ol>
+      <li><strong>Tellimusep&auml;ring</strong> &rarr; kontrollib Medusa API-st, vastab automaatselt</li>
+      <li><strong>Tootek&uuml;simus</strong> &rarr; suunab Tootespetsialistile</li>
+      <li><strong>Tagastus/pretensioon</strong> &rarr; suunab Tagastuste haldurile</li>
+      <li><strong>B2B p&auml;ring</strong> &rarr; suunab &Auml;rikliendihaldurile</li>
+      <li><strong>Lihtne k&uuml;simus</strong> &rarr; vastab ise</li>
+      <li><strong>Keeruline/viha</strong> &rarr; koostab draft'i, saadab Slacki kinnitamiseks</li>
+      <li><strong>Spam</strong> &rarr; ignoreerib</li>
+    </ol>
+
+    <h3>2.2 Tagastuste haldur</h3>
+    <p>Tagastusavalduste t&ouml;&ouml;tlemine vastavalt poliitikale (30 p&auml;eva tagastus&otilde;igus, originaalpakendis). Defektsed tooted ja garantiipretens. &rarr; Slacki kinnitamiseks.</p>
+
+    <hr class="section-divider">
+
+    <!-- Dept 3 -->
+    <h2 id="w-dept3">Osakond 3: M&uuml;&uuml;k (B2B)</h2>
+    <p><span class="priority-badge priority-2">Faas 2</span> &mdash; p&auml;rast turu-uuringut</p>
+
+    <h3>3.1 &Auml;rikliendihaldur(id) &mdash; sektorip&otilde;hised m&uuml;&uuml;gijuhid</h3>
+    <p>Isiklik m&uuml;&uuml;gihaldur B2B klientidele, &uuml;ks per prioriteetsektor. Turu-uuring tuvastab prioriteetsektorid. Iga sektori haldur tunneb sektori terminoloogiat, ostutsuklit ja VEVOR sortimendi tugevusi.</p>
+    <p><strong>Faasiline laienemine:</strong></p>
+    <ul>
+      <li><strong>Faas 2:</strong> reageeriv &mdash; vastab p&auml;ringutele, koostab pakkumisi</li>
+      <li><strong>Faas 3:</strong> proaktiivne &mdash; uued tooted, kampaaniad, hooajalised pakkumised, outreach</li>
+    </ul>
+
+    <h3>3.2 Turu-uurija</h3>
+    <p>Sektorianalaus, konkurentsij&auml;lgimine, uute v&otilde;imaluste tuvastamine. Regulaarne t&ouml;&ouml; kord kvartalis.</p>
+
+    <hr class="section-divider">
+
+    <!-- Dept 4 -->
+    <h2 id="w-dept4">Osakond 4: Anal&uuml;&uuml;tika</h2>
+    <p><span class="priority-badge priority-1">Faas 1 (alus)</span> &rarr; <span class="priority-badge priority-2">Faas 2 (t&auml;is)</span></p>
+
+    <h3>4.1 PostHog anal&uuml;&uuml;tik</h3>
+    <p>Igap&auml;evane raport (&rarr; Slack): k&uuml;lastajad, bounce rate, konversioonilehter, top otsinguterminid. Proaktiivsed alarmid kui konversioon langeb &gt;20% v&otilde;i checkout veam&auml;&auml;r t&otilde;useb.</p>
+
+    <h3>4.2 &Auml;riraporteerija</h3>
+    <p>Iganadalane raport: k&auml;ive, tellimuste arv, top tooted, tagastused, laoseis. Igakuine raport: KPI-d, ROAS per kanal, kliendisegmendid, soovitused.</p>
+
+    <hr class="section-divider">
+
+    <!-- Dept 5 -->
+    <h2 id="w-dept5">Osakond 5: Turundus ja sisu</h2>
+    <p><span class="priority-badge priority-3">Faas 2&ndash;3</span></p>
+
+    <h3>5.1 Sisulooja</h3>
+    <p>Blogi artiklid 2x n&auml;dalas (ostujuhendid, tootev&otilde;rdlused, sektorip&otilde;hised), tootekirjelduste rikastamine, sotsiaalmeedia sisu.</p>
+
+    <h3>5.2 SEO spetsialist</h3>
+    <p>Tehniline SEO audit, m&auml;rks&otilde;nade j&auml;lgimine, kategoorialehtede optimeerimine, internal linking, konkurentide anal&uuml;&uuml;s.</p>
+
+    <h3>5.3 Kampaaniahaldur</h3>
+    <p>Google Ads ja Facebook Ads j&auml;lgimine ja optimeerimine. Igap&auml;evane bid'ide optimeerimine + eelarve monitooring. Hooajalised kampaaniad (j&otilde;ulud, suvehooaeg, Black Friday).</p>
+
+    <hr class="section-divider">
+
+    <!-- Dept 6 -->
+    <h2 id="w-dept6">Osakond 6: Operatsioonid</h2>
+    <p><span class="priority-badge priority-3">Faas 2&ndash;3</span></p>
+
+    <h3>6.1 Laohaldur</h3>
+    <p>Iga 4h (p&auml;rast feed synci): uute toodete tuvastamine, laost otsa saanud toodete m&auml;rgistamine, hinnamuutuste tuvastamine, vigaste andmete tuvastamine.</p>
+
+    <h3>6.2 Kvaliteedikontroll</h3>
+    <p>Tooteandmete audit (puuduvad pildid, valed hinnad, topelt-listingud) + saidi tervisekontroll (404-d, LCP &gt; 2.5s, mobiilivaate probleemid, SSL kehtivus).</p>
+
+    <h3>6.3 Tootehaldur</h3>
+    <p>Toodete t&otilde;lkimine eesti keelde (~14K toodet), tootekirjelduste parandamine, populaarsete toodete esilet&otilde;stmine, uute VEVOR toodete hindamine.</p>
+
+    <hr class="section-divider">
+
+    <!-- Dashboard -->
+    <h2 id="w-dashboard">Juhtpaneel (Dashboard)</h2>
+    <p>K&otilde;igi osakondade kohal on juhtpaneel &mdash; &uuml;ks koht kust n&auml;eb kogu AI meeskonna t&ouml;&ouml;d.</p>
+    <h4>Vaated</h4>
+    <ul>
+      <li><strong>&Uuml;levaade:</strong> 6 osakonna kaardid &mdash; staatus, viimane tegevus, p&otilde;hinumber</li>
+      <li><strong>Osakonna detailvaade:</strong> agendid, raportid, manuaalne k&auml;ivitamine, logid</li>
+      <li><strong>Kulud:</strong> API tokenid per osakond (p&auml;ev/n&auml;dal/kuu), Max plaani kasutus, trend</li>
+    </ul>
+
+    <hr class="section-divider">
+
+    <!-- Triggers -->
+    <h2 id="w-triggers">K&auml;ivitajate kokkuv&otilde;te</h2>
+    <div class="table-wrap">
+    <table>
+      <thead><tr><th>K&auml;ivitaja</th><th>Agendid</th><th>Sagedus</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Reaalaeg (chat)</strong></td><td>Claudia, Tootespetsialist, &Auml;rikliendihaldur</td><td>Iga kliendi s&otilde;num</td></tr>
+        <tr><td><strong>Reaalaeg (email)</strong></td><td>Tugiagent, Tagastuste haldur</td><td>Iga sissetulev email</td></tr>
+        <tr><td><strong>Cron iga 4h</strong></td><td>Laohaldur</td><td>Feed synciga s&uuml;nkroonis</td></tr>
+        <tr><td><strong>Cron igap&auml;evane</strong></td><td>PostHog anal&uuml;&uuml;tik, Kvaliteedikontroll</td><td>Hommikul</td></tr>
+        <tr><td><strong>Cron 2x n&auml;dalas</strong></td><td>Sisulooja</td><td>E, N</td></tr>
+        <tr><td><strong>Cron igan&auml;dalane</strong></td><td>&Auml;riraporteerija, SEO, Tootehaldur, Kampaaniahaldur</td><td>Esmasp&auml;ev hommik</td></tr>
+        <tr><td><strong>Cron igakuine</strong></td><td>&Auml;riraporteerija (laiendatud)</td><td>Kuu 1. kuup&auml;ev</td></tr>
+        <tr><td><strong>Cron kvartaalne</strong></td><td>Turu-uurija</td><td>Kvartali algus</td></tr>
+        <tr><td><strong>N&otilde;udmisel</strong></td><td>K&otilde;ik agendid</td><td>Dashboardist v&otilde;i Slackist</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <hr class="section-divider">
+
+    <!-- Dependencies -->
+    <h2 id="w-deps">S&otilde;ltuvused ja eeldused</h2>
+    <h3>Tehniline</h3>
+    <table>
+      <thead><tr><th>S&otilde;ltuvus</th><th>Staatus</th><th>Vajalik faasis</th></tr></thead>
+      <tbody>
+        <tr><td>Anthropic API (Haiku + Sonnet)</td><td>Seadistatav</td><td>1</td></tr>
+        <tr><td>Claude Max plaan</td><td>Aktiivne</td><td>1</td></tr>
+        <tr><td>MeiliSearch</td><td>T&ouml;&ouml;tab</td><td>1</td></tr>
+        <tr><td>Medusa API</td><td>T&ouml;&ouml;tab</td><td>1</td></tr>
+        <tr><td>PostHog API</td><td>Integreeritud, API ligip&auml;&auml;s vajab seadistust</td><td>1</td></tr>
+        <tr><td>Emaili monitooring (IMAP/webhook)</td><td>Puudub</td><td>2</td></tr>
+        <tr><td>Google Ads API</td><td>Puudub</td><td>3</td></tr>
+        <tr><td>Facebook Ads API</td><td>Puudub</td><td>3</td></tr>
+        <tr><td>Blogi infrastruktuur</td><td>Puudub</td><td>3</td></tr>
+      </tbody>
+    </table>
+
+    <h3>&Auml;riline</h3>
+    <ul>
+      <li><strong>Turu-uuring</strong> (Faas 2 eeldus) &mdash; B2B sektorite prioriteerimine, prompti valmis</li>
+      <li><strong>Tagastuspoliitika</strong> dokumenteerimine</li>
+      <li><strong>B2B hinnapoliitika</strong> &mdash; hulgiallahindlused, arvelduskontod? (Tarmo otsustab)</li>
+      <li><strong>Sisuloome suunised</strong> &mdash; mis toon, mis teemad, mis keeles</li>
+      <li><strong>Reklaamieelarved</strong> &mdash; turundusplaanist: ~&euro;800 kuu 1, ~&euro;1500&ndash;3000 kuu 2+</li>
+    </ul>
+
+    <hr class="section-divider">
+
+    <!-- Human decides -->
+    <h2 id="w-human">Mida AI EI tee (inimene otsustab)</h2>
+    <ul>
+      <li>Raha tagastamine (agent valmistab ette, inimene kinnitab)</li>
+      <li>Hinnastrateegia muutmine</li>
+      <li>Turunduseelarve suurendamine</li>
+      <li>Uute sektorite avamine B2B-s</li>
+      <li>Garantiipretensioonide l&otilde;plik lahendamine</li>
+      <li>Tarnija vahetamine</li>
+      <li>Juriidilised k&uuml;simused</li>
+    </ul>
+    <div class="callout">
+      Iga otsus mis puudutab raha v&auml;ljaminekut, lubadusi kliendile, v&otilde;i strateegilist suunda &mdash; agent valmistab ette ja saadab Slacki kinnitamiseks.
+    </div>
+
+    <hr class="section-divider">
+
+    <h2 id="w-next">J&auml;rgmised sammud</h2>
+    <ol>
+      <li><strong>Kohe:</strong> turu-uuring (prompt valmis, eraldi sessioon)</li>
+      <li><strong>Faas 1:</strong> Claudia + Tootespetsialist implementeerimine (spec olemas)</li>
+      <li><strong>Faas 1:</strong> PostHog anal&uuml;&uuml;tiku seadistamine (API + cron + Slack raportid)</li>
+      <li><strong>P&auml;rast turu-uuringut:</strong> Faas 2 planeerimine &mdash; B2B sektorid, Tugiagent, Dashboard</li>
+      <li><strong>Tarmo kinnitab:</strong> B2B hinnapoliitika, reklaamieelarved, tagastuspoliitika detailid</li>
+    </ol>
+
+  </main>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!--  TAB 3: AI MÜÜGIAGENDID                                -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div class="tab-content" id="tab-agents">
+<div class="content-wrapper">
+  <aside class="sidebar">
+    <div class="sidebar-title">Sisukord</div>
+    <a href="#a-goal">Eesm&auml;rk</a>
+    <a href="#a-arch">Arhitektuur</a>
+    <a href="#a-claudia">Tase 1: Claudia</a>
+    <a href="#a-specialist">Tase 2: Tootespetsialist</a>
+    <a href="#a-bizdev">Tase 3: &Auml;rikliendihaldur</a>
+    <a href="#a-api">API: /api/ai-chat</a>
+    <a href="#a-ui">UI: AiSearchPalette</a>
+    <a href="#a-tools">MeiliSearch tools</a>
+    <a href="#a-prompt">System prompt (n&auml;ide)</a>
+    <a href="#a-auth">Autentimine</a>
+    <a href="#a-volume">Mahukalkulatsioon</a>
+    <a href="#a-scope">Sessiooni skoop</a>
+    <a href="#a-deps">S&otilde;ltuvused</a>
+  </aside>
+  <main class="main-content">
+
+    <h2 id="a-goal">Eesm&auml;rk</h2>
+    <p>Lisada XLMarket e-poele kolmetasemeline AI-assistentide s&uuml;steem, mis aitab klientidel tooteid leida ja otsustada. S&uuml;steem t&ouml;&ouml;tab AiSearchPalette vestlusaknas (Ctrl+K).</p>
+
+    <hr class="section-divider">
+
+    <h2 id="a-arch">Arhitektuur</h2>
+    <div class="arch-diagram">Kasutaja &rarr; AiSearchPalette (UI, vestlusaken)
+              &darr;
+         /api/ai-chat (POST, streaming)
+              &darr;
+         Router (valib agendi konteksti p&otilde;hjal)
+              &darr;
+    &boxdr;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxcross;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxdl;
+ Claudia    Spetsialist   Kliendihaldur
+ (Haiku)    (Sonnet)      (Sonnet, Phase 2)
+    &boxv;           &boxv;              &boxv;
+ MeiliSearch  MeiliSearch   MeiliSearch
+ kategooriad  + specs       + kliendi ajalugu</div>
+
+    <h3>Eraldusjooned</h3>
+    <ul>
+      <li><strong>SearchBar</strong> j&auml;&auml;b muutmata &mdash; kiire MeiliSearch typeahead (~5ms), eraldi kogemus</li>
+      <li><strong>AiSearchPalette</strong> on vestlusaken &mdash; AI agentide &uuml;hine liidesepind</li>
+      <li><strong>&Uuml;ks API route</strong> (<code>/api/ai-chat</code>) haldab vestlusajalugu ja agentide vahetust</li>
+      <li>Eskaleerimine on sujuv, kasutaja n&auml;eb m&auml;rget (&ldquo;Tootespetsialist vastab&rdquo;)</li>
+    </ul>
+
+    <hr class="section-divider">
+
+    <h2 id="a-claudia">Tase 1: Claudia &mdash; poe infopunkt</h2>
+    <table>
+      <tbody>
+        <tr><td><strong>Roll</strong></td><td>Poe sissep&auml;&auml;su juures seisev s&otilde;bralik inimene, kes teab kus miski asub, aga ei tea toodete spetsifikatsioone</td></tr>
+        <tr><td><strong>Mudel</strong></td><td><code>claude-haiku-4-5-20251001</code> &mdash; kiire, odav</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Kontekst (system prompt)</h3>
+    <ul>
+      <li>Kategooriapuu (1688 kategooriat, ~15KB kompaktne JSON)</li>
+      <li>Poe &uuml;ldinfo: tarne (4.99 EUR), tagastuspoliitika, hinnapoliitika</li>
+      <li>5&ndash;10 populaarset toodet per L1 kategooria (nimed + handles)</li>
+    </ul>
+
+    <h3>Tool</h3>
+    <p><code>search_products</code> &mdash; MeiliSearch p&auml;ring, tagastab nimed + lingid + hinnad + thumbnailid (max 6 tulemust)</p>
+
+    <h3>Toon ja k&auml;itumine</h3>
+    <ul>
+      <li>S&otilde;bralik, tagasihoidlik, eestip&auml;rane</li>
+      <li><strong>EI m&uuml;&uuml;.</strong> Ei ole entusiastlik. Ei kasuta emojisid &uuml;lem&auml;&auml;ra. Ei &uuml;tle &ldquo;suurep&auml;rane valik!&rdquo;</li>
+      <li>Aitab kui k&uuml;sid. Ei tule ise peale soovitustega</li>
+      <li>Kui keegi teeb nalja, l&auml;heb kaasa. Ise huumorit ei otsi</li>
+      <li>Kui ei tea &mdash; &uuml;tleb ausalt</li>
+      <li>K&uuml;sib tagasi ainult kui k&uuml;simus on ebaselge</li>
+    </ul>
+
+    <h3>Eskaleerimine</h3>
+    <ul>
+      <li><strong>Tootespetsialistile</strong> (automaatne v&otilde;i k&uuml;sides): spetsifikatsioonide k&uuml;simus, toodete v&otilde;rdlus, tehniline n&otilde;uanne</li>
+      <li><strong>Kliendihaldurile</strong> (automaatne): projektim&uuml;&uuml;k, hulgiost, B2B kontekst</li>
+    </ul>
+
+    <hr class="section-divider">
+
+    <h2 id="a-specialist">Tase 2: Tootespetsialist &mdash; osakonna ekspert</h2>
+    <table>
+      <tbody>
+        <tr><td><strong>Roll</strong></td><td>Kategooriap&otilde;hine tehniline ekspert. Teab oma osakonna toodete spetsifikatsioone, oskab v&otilde;rrelda.</td></tr>
+        <tr><td><strong>Mudel</strong></td><td><code>claude-sonnet-4-6</code> &mdash; targem, aeglasem</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Kontekst</h3>
+    <ul>
+      <li>Claudia vestlusajalugu (et teab mida klient k&uuml;sis)</li>
+      <li>Konkreetse kategooria toodete specs (t&otilde;mmatakse p&auml;ringuga)</li>
+      <li>Max 5&ndash;10 toote t&auml;isandmed korraga</li>
+    </ul>
+
+    <h3>Tools</h3>
+    <ul>
+      <li><code>search_products</code> &mdash; MeiliSearch p&auml;ring (sama mis Claudial)</li>
+      <li><code>get_product_details</code> &mdash; toote t&auml;isandmed Medusa API-st, sisaldab specs, features, m&otilde;&otilde;tmed</li>
+    </ul>
+
+    <h3>Toon</h3>
+    <p>&ldquo;Selle keevitusaparaadi MIG-re&zcaron;iim t&ouml;&ouml;tab kuni 200A, 0.8&ndash;1.0mm traat&rdquo; &mdash; mitte &ldquo;see on super aparaat!&rdquo;</p>
+
+    <hr class="section-divider">
+
+    <h2 id="a-bizdev">Tase 3: &Auml;rikliendihaldur</h2>
+    <div class="callout">
+      <strong>Phase 2 &mdash; EI EHITATA praegu.</strong> Claudia system prompt mainib kliendihalduri olemasolu. Kui vestlus l&auml;heb B2B suunas, Claudia &uuml;tleb: &ldquo;Projektim&uuml;&uuml;giks saad isikliku kliendihalduri &mdash; see on hetkel ettevalmistamisel, aga saan juba aidata toodete leidmisel.&rdquo;
+    </div>
+
+    <hr class="section-divider">
+
+    <h2 id="a-api">API: <code>/api/ai-chat</code></h2>
+
+    <h3>Endpoint</h3>
+    <pre>POST /api/ai-chat
+Content-Type: application/json
+
+{
+  "messages": [
+    { "role": "user", "content": "Millist puuri betoonile vaja?" }
+  ],
+  "locale": "et",
+  "sessionId": "uuid"
+}</pre>
+
+    <h3>Response (streaming)</h3>
+    <pre>data: {"type":"agent","agent":"claudia"}
+data: {"type":"text","content":"Betoonile sobivad..."}
+data: {"type":"products","items":[{handle,title,price,thumbnail}]}
+data: {"type":"escalation","from":"claudia","to":"specialist","reason":"tech_compare"}
+data: {"type":"agent","agent":"specialist"}
+data: {"type":"text","content":"Vaatasin m&otilde;lema spetsifikatsioonid..."}
+data: {"type":"done"}</pre>
+
+    <h3>Streaming protokoll</h3>
+    <ul>
+      <li>Server-Sent Events (SSE) &mdash; lihtne, natiivne brauseri tugi</li>
+      <li>Toodete kaardid renderdatakse inline vestlusesse</li>
+      <li>Agendi vahetus n&auml;idatakse v&auml;ikese m&auml;rkega</li>
+    </ul>
+
+    <h3>Vestlusajalugu</h3>
+    <ul>
+      <li>Hoitakse client-side (React state) sessiooni jooksul</li>
+      <li>Saadetakse iga p&auml;ringuga kaasa (viimased 20 s&otilde;numit max)</li>
+      <li>Ei salvestata serveris (Phase 1)</li>
+    </ul>
+
+    <hr class="section-divider">
+
+    <h2 id="a-ui">UI: AiSearchPalette muudatused</h2>
+    <h3>Uus struktuur</h3>
+    <div class="arch-diagram" style="font-size: 0.72rem;">&boxdr;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxdl;
+&boxv; [&#x1f50d;] Otsi tooteid v&otilde;i k&uuml;si AI-lt...  [AI] &boxv;  &larr; input, Enter saadab
+&boxgr;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxe;
+&boxv;                                       &boxv;
+&boxv;  Claudia: Tere! Saan aidata...       &boxv;  &larr; vestlus
+&boxv;                                       &boxv;
+&boxv;  Sina: Vajan puuri betoonile          &boxv;
+&boxv;                                       &boxv;
+&boxv;  Claudia: Betoonile sobivad...       &boxv;
+&boxv;  &boxdr;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxdl; &boxdr;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxdl; &boxdr;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxdl;         &boxv;  &larr; tootekaardid
+&boxv;  &boxv;Puur 1&boxv; &boxv;Puur 2&boxv; &boxv;Puur 3&boxv;         &boxv;
+&boxv;  &boxdr;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxdl; &boxdr;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxdl; &boxdr;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxdl;         &boxv;
+&boxv;                                       &boxv;
+&boxv;  &mdash; Tootespetsialist vastab &mdash;         &boxv;  &larr; eskaleerimine
+&boxv;                                       &boxv;
+&boxv;  Spets: Vaatasin m&otilde;lemat...          &boxv;
+&boxv;                                       &boxv;
+&boxgr;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxe;
+&boxv; [&#x1f4ac; K&uuml;si toote kohta...        ] [Saada]&boxv;  &larr; aktiivne input
+&boxdr;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxdl;</div>
+
+    <h3>Quick actions</h3>
+    <ul>
+      <li>&ldquo;T&auml;nased pakkumised&rdquo; &rarr; navigeerib <code>/{locale}/otsing?filter=deals</code></li>
+      <li>&ldquo;Uued tooted&rdquo; &rarr; navigeerib <code>/{locale}/otsing?sort=uusimad</code></li>
+      <li>&ldquo;Bestsellerid&rdquo; &rarr; navigeerib <code>/{locale}/otsing?sort=bestsellerid</code></li>
+    </ul>
+    <p>Quick actions kaovad p&auml;rast esimest s&otilde;numit (vestlus asendab).</p>
+
+    <h3>Tootekaardid vestluses</h3>
+    <p>Kompaktsed horisontaalsed kaardid: thumbnail (40x40) + nimi + hind. Klikk &rarr; navigeerib tootelehele. Max 6 toodet korraga.</p>
+
+    <hr class="section-divider">
+
+    <h2 id="a-tools">MeiliSearch tool implementatsioon</h2>
+
+    <h3><code>search_products</code> (m&otilde;lema agendi jaoks)</h3>
+    <pre>{
+  name: "search_products",
+  description: "Search XLMarket product catalog.",
+  input_schema: {
+    type: "object",
+    properties: {
+      query: { type: "string", description: "Search keywords" },
+      category: { type: "string", description: "Filter by category handle" },
+      limit: { type: "number", description: "Max results (default 6, max 10)" },
+      sort: {
+        type: "string",
+        enum: ["relevance","price_asc","price_desc","newest"]
+      }
+    },
+    required: ["query"]
+  }
+}</pre>
+
+    <h3><code>get_product_details</code> (ainult spetsialist)</h3>
+    <pre>{
+  name: "get_product_details",
+  description: "Get full product details incl. specs, features, dimensions.",
+  input_schema: {
+    type: "object",
+    properties: {
+      handle: { type: "string", description: "Product URL handle" }
+    },
+    required: ["handle"]
+  }
+}</pre>
+
+    <hr class="section-divider">
+
+    <h2 id="a-prompt">Claudia system prompt (l&uuml;hendatud n&auml;ide)</h2>
+    <pre>Sa oled Claudia, XLMarket.eu e-poe infopunkti t&ouml;&ouml;taja.
+
+KUIDAS SA K&Auml;ITUD:
+- Sa oled s&otilde;bralik ja tagasihoidlik. Sa ei ole Ameerika m&uuml;&uuml;gimees.
+- Sa ei m&uuml;&uuml; midagi. Sa aitad leida.
+- Kui keegi teeb nalja, mine kaasa. Ise nalja ei otsi.
+- Kui ei tea &mdash; &uuml;tle ausalt. &Auml;ra genereeri fakte.
+- &Auml;ra kasuta &uuml;lem&auml;&auml;ra emojisid ega h&uuml;&uuml;um&auml;rke.
+
+MIDA SA TEAD:
+- Poe kategooriad ja kus tooted asuvad
+- Saad otsida tooteid nime, kategooria, hinna j&auml;rgi
+- Tarne: 4.99&euro;, tasuta alates 99&euro;. Tagastus: 30 p&auml;eva.
+
+MIDA SA EI TEA:
+- Toodete spetsifikatsioone (watt, materjal, m&otilde;&otilde;dud)
+- Kui keegi k&uuml;sib spece &rarr; kutsu tootespetsialist
+
+ESKALEERIMINE:
+- Tehniline k&uuml;simus &rarr; tootespetsialist
+- Projektim&uuml;&uuml;k (k&ouml;&ouml;k, kontor, hulgiost) &rarr; kliendihaldur
+
+POE INFO:
+- XLMarket.eu &mdash; professionaalsed t&ouml;&ouml;riistad poole hinnaga
+- ~16 000 toodet, 1688 kategooriat</pre>
+
+    <hr class="section-divider">
+
+    <h2 id="a-auth">Autentimine</h2>
+    <p><strong>Claude Max tellimus</strong> &mdash; k&otilde;ik AI agendid jooksevad Max plaani peal. Kuumaks, mitte per-token billing.</p>
+
+    <hr class="section-divider">
+
+    <h2 id="a-volume">Mahu ja rate limit'ide kalkulatsioon</h2>
+
+    <h3>Token'id per vestlus</h3>
+    <div class="table-wrap">
+    <table>
+      <thead><tr><th>Komponent</th><th>Input tokens</th><th>Output tokens</th><th>Kokku</th></tr></thead>
+      <tbody>
+        <tr><td>Claudia (Haiku) &mdash; 1 s&otilde;num</td><td>~2000</td><td>~500</td><td>~2500</td></tr>
+        <tr><td>Claudia &mdash; vestlus 3 s&otilde;numit</td><td>~6000</td><td>~1500</td><td>~7500</td></tr>
+        <tr><td>Spetsialist (Sonnet) &mdash; 1 eskaleerimine</td><td>~4000</td><td>~800</td><td>~4800</td></tr>
+        <tr><td>Tool call: search_products</td><td>~100 in + ~600 out</td><td>&mdash;</td><td>~700</td></tr>
+        <tr><td>Tool call: get_product_details</td><td>~100 in + ~2000 out</td><td>&mdash;</td><td>~2100</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p><strong>T&uuml;&uuml;piline vestlus (3&ndash;4 s&otilde;numit, 1 eskaleerimine):</strong> ~15 000 tokenit kokku</p>
+
+    <h3>Mahuprognoos</h3>
+    <div class="table-wrap">
+    <table class="amber">
+      <thead><tr><th>Stsenaarium</th><th>Vestlusi/p&auml;ev</th><th>Tokenit/p&auml;ev</th><th>Tokenit/kuu</th></tr></thead>
+      <tbody>
+        <tr><td>Algus (v&auml;he liiklust)</td><td>10&ndash;20</td><td>150K&ndash;300K</td><td>4.5M&ndash;9M</td></tr>
+        <tr><td>Keskmine</td><td>50&ndash;100</td><td>750K&ndash;1.5M</td><td>22M&ndash;45M</td></tr>
+        <tr><td>K&otilde;rghooaeg</td><td>200&ndash;500</td><td>3M&ndash;7.5M</td><td>90M&ndash;225M</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <h3>Kuluefektiivsus</h3>
+    <ul>
+      <li>Max kuumaks vs API hinnad: kui &gt;50 vestlust/p&auml;evas, on Max selgelt soodsam</li>
+      <li>Haiku esimene tase hoiab Sonnet'i kasutuse madalal</li>
+      <li>Kliendihaldur (Phase 2) ja turundusosakond (tulevikus) mahuvad samasse plaani</li>
+    </ul>
+
+    <hr class="section-divider">
+
+    <h2 id="a-scope">Selle sessiooni skoop</h2>
+    <h3>Ehitatakse</h3>
+    <ol>
+      <li><code>/api/ai-chat</code> route &mdash; SSE streaming, Anthropic SDK, tool use</li>
+      <li>Claudia agent &mdash; system prompt, MeiliSearch tool, eskaleerimisloogika</li>
+      <li>Tootespetsialist agent &mdash; system prompt, specs tool, kategooria kontekst</li>
+      <li>AiSearchPalette UI &mdash; vestlus, streaming, tootekaardid, agendi vahetus</li>
+      <li>Quick actions t&ouml;&ouml;le</li>
+    </ol>
+
+    <h3>EI ehitata</h3>
+    <ul>
+      <li>&Auml;rikliendihaldur (Phase 2)</li>
+      <li>Vestlusajaloo salvestamine serveris</li>
+      <li>Kasutaja autentimine AI vestluses</li>
+    </ul>
+
+    <hr class="section-divider">
+
+    <h2 id="a-deps">S&otilde;ltuvused</h2>
+    <ul>
+      <li><code>@anthropic-ai/sdk</code> &mdash; Anthropic TypeScript SDK</li>
+      <li>Claude Max tellimuse auth token &mdash; seadistada .env ja PM2 ecosystem config</li>
+      <li>Olemasolev MeiliSearch infrastruktuur (juba t&ouml;&ouml;tab)</li>
+      <li>Olemasolev <code>/api/product/[handle]</code> route (juba t&ouml;&ouml;tab)</li>
+    </ul>
+
+  </main>
+</div>
+</div>
+
+<!-- Footer -->
+<footer class="report-footer">
+  Konfidentsiaalne &mdash; Roland Kaubandus O&Uuml; &middot; 15. aprill 2026
+</footer>
+
+<script>
+(function() {
+  const tabs = document.querySelectorAll('.tab-btn');
+  const contents = document.querySelectorAll('.tab-content');
+
+  tabs.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      const target = btn.getAttribute('data-tab');
+
+      tabs.forEach(function(t) { t.classList.remove('active'); });
+      btn.classList.add('active');
+
+      contents.forEach(function(c) { c.classList.remove('active'); });
+      document.getElementById('tab-' + target).classList.add('active');
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+
+  // Smooth scroll for sidebar links
+  document.querySelectorAll('.sidebar a').forEach(function(link) {
+    link.addEventListener('click', function(e) {
+      var href = link.getAttribute('href');
+      if (href && href.charAt(0) === '#') {
+        e.preventDefault();
+        var el = document.getElementById(href.substring(1));
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
+    });
+  });
+})();
+</script>
+
+</body>
+</html>

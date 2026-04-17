@@ -38,8 +38,8 @@ function SkeletonCard() {
 
 export function ProductGridSkeleton({ count = 24, columns = "2-3-4" }: { count?: number; columns?: "2-3-4" | "2-3-5" }) {
   const gridClass = columns === "2-3-5"
-    ? "grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4"
-    : "grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4"
+    ? "grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2.5 sm:gap-4 md:gap-6"
+    : "grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2.5 sm:gap-4 md:gap-6"
   return (
     <div className={gridClass}>
       {Array.from({ length: count }, (_, i) => (
@@ -90,8 +90,8 @@ export default function ProductGrid({ initialProducts, fetchParams, locale, colu
   }, [initialProducts, JSON.stringify(fetchParams)])
 
   const gridClass = columns === "2-3-5"
-    ? "grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4"
-    : "grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4"
+    ? "grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2.5 sm:gap-4 md:gap-6"
+    : "grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2.5 sm:gap-4 md:gap-6"
 
   if (loading) return <ProductGridSkeleton count={fetchParams?.limit || 24} columns={columns} />
 

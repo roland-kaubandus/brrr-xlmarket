@@ -1,0 +1,1874 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>XLMarket.eu — B2 Marketplace Mosaic</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+<style>
+/* ================================================
+   TOKENS
+   ================================================ */
+:root {
+  --primary: #1E293B;
+  --accent: #D97706;
+  --accent-light: #F59E0B;
+  --accent-glow: rgba(217, 119, 6, 0.12);
+  --bg: #F8FAFC;
+  --card: #FFFFFF;
+  --text: #1E293B;
+  --text-muted: #64748B;
+  --text-light: #94A3B8;
+  --border: #E2E8F0;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+  --shadow-lg: 0 8px 30px rgba(0,0,0,0.1);
+  --shadow-hover: 0 12px 40px rgba(0,0,0,0.12);
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --duration-fast: 150ms;
+  --duration-normal: 280ms;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ================================================
+   RESET + BASE
+   ================================================ */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+body {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+  overflow-x: hidden;
+}
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; }
+img { display: block; max-width: 100%; height: auto; }
+
+/* ================================================
+   HEADER — STICKY, SINGLE ROW
+   ================================================ */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--card);
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(12px);
+  background: rgba(255,255,255,0.95);
+}
+.header-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 24px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+.logo {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  color: var(--primary);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.logo-mark {
+  width: 32px;
+  height: 32px;
+  background: var(--accent);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 700;
+  font-size: 16px;
+}
+.nav-links {
+  display: flex;
+  gap: 4px;
+  flex-shrink: 0;
+}
+.nav-links a {
+  padding: 8px 14px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-muted);
+  border-radius: var(--radius-sm);
+  transition: all var(--duration-fast) ease;
+}
+.nav-links a:hover {
+  color: var(--text);
+  background: var(--bg);
+}
+.nav-links a.hot {
+  color: var(--accent);
+}
+.nav-links a.hot::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background: #EF4444;
+  border-radius: 50%;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+/* Search in header */
+.header-search {
+  flex: 1;
+  max-width: 560px;
+  position: relative;
+}
+.header-search-input {
+  width: 100%;
+  height: 42px;
+  padding: 0 100px 0 42px;
+  border: 1.5px solid var(--border);
+  border-radius: 100px;
+  font-size: 14px;
+  font-family: inherit;
+  color: var(--text);
+  background: var(--bg);
+  transition: all var(--duration-normal) var(--ease);
+  outline: none;
+}
+.header-search-input::placeholder { color: var(--text-light); }
+.header-search-input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-glow);
+  background: white;
+}
+.header-search-icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-light);
+  pointer-events: none;
+}
+.header-search-ai-btn {
+  position: absolute;
+  right: 4px;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 34px;
+  padding: 0 14px;
+  background: var(--primary);
+  color: white;
+  border-radius: 100px;
+  font-size: 12px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all var(--duration-fast) ease;
+  letter-spacing: 0.3px;
+}
+.header-search-ai-btn:hover {
+  background: var(--accent);
+}
+.header-search-ai-btn svg { width: 14px; height: 14px; }
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+.header-btn {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  color: var(--text-muted);
+  transition: all var(--duration-fast) ease;
+  position: relative;
+}
+.header-btn:hover {
+  background: var(--bg);
+  color: var(--text);
+}
+.header-btn .badge {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 16px;
+  height: 16px;
+  background: var(--accent);
+  color: white;
+  font-size: 10px;
+  font-weight: 700;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ================================================
+   AI CHAT PANEL
+   ================================================ */
+.ai-panel {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border: 1.5px solid var(--border);
+  border-top: none;
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s var(--ease), opacity 0.3s ease;
+  opacity: 0;
+  z-index: 10;
+}
+.ai-panel.open {
+  max-height: 420px;
+  opacity: 1;
+}
+.ai-panel-inner {
+  padding: 20px;
+}
+.ai-msg {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.ai-msg:last-child { margin-bottom: 0; }
+.ai-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+}
+.ai-avatar.user { background: var(--bg); color: var(--text-muted); }
+.ai-avatar.bot { background: var(--accent); color: white; }
+.ai-bubble {
+  flex: 1;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text);
+}
+.ai-bubble p { margin-bottom: 8px; }
+.ai-bubble p:last-child { margin-bottom: 0; }
+.ai-bubble .product-suggestion {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--accent-glow);
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-weight: 500;
+  color: var(--accent);
+  font-size: 13px;
+  margin-top: 4px;
+}
+.ai-typing {
+  display: flex;
+  gap: 4px;
+  padding: 8px 0;
+}
+.ai-typing span {
+  width: 6px;
+  height: 6px;
+  background: var(--text-light);
+  border-radius: 50%;
+  animation: bounce 1.4s infinite both;
+}
+.ai-typing span:nth-child(2) { animation-delay: 0.2s; }
+.ai-typing span:nth-child(3) { animation-delay: 0.4s; }
+@keyframes bounce {
+  0%, 80%, 100% { transform: scale(0.7); opacity: 0.4; }
+  40% { transform: scale(1); opacity: 1; }
+}
+
+/* ================================================
+   HERO — AMBER BAR WITH SEARCH
+   ================================================ */
+.hero {
+  background: linear-gradient(135deg, var(--accent) 0%, #B45309 100%);
+  padding: 28px 24px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+.hero-inner {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+.hero-slogan {
+  font-size: clamp(14px, 2vw, 16px);
+  font-weight: 500;
+  color: rgba(255,255,255,0.85);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.hero-search {
+  position: relative;
+  max-width: 640px;
+  margin: 0 auto;
+}
+.hero-search-input {
+  width: 100%;
+  height: 52px;
+  padding: 0 120px 0 50px;
+  border: none;
+  border-radius: 100px;
+  font-size: 16px;
+  font-family: inherit;
+  color: var(--text);
+  background: white;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  outline: none;
+  transition: box-shadow var(--duration-normal) var(--ease);
+}
+.hero-search-input::placeholder { color: var(--text-light); }
+.hero-search-input:focus {
+  box-shadow: 0 4px 30px rgba(0,0,0,0.2);
+}
+.hero-search-icon {
+  position: absolute;
+  left: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-light);
+  pointer-events: none;
+}
+.hero-search-ai {
+  position: absolute;
+  right: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 42px;
+  padding: 0 20px;
+  background: var(--primary);
+  color: white;
+  border-radius: 100px;
+  font-size: 14px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all var(--duration-fast) ease;
+}
+.hero-search-ai:hover {
+  background: #0F172A;
+}
+.hero-search-ai svg { width: 16px; height: 16px; }
+.hero-tags {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 14px;
+  flex-wrap: wrap;
+}
+.hero-tag {
+  font-size: 12px;
+  color: rgba(255,255,255,0.7);
+  background: rgba(255,255,255,0.15);
+  padding: 4px 12px;
+  border-radius: 100px;
+  transition: all var(--duration-fast) ease;
+}
+.hero-tag:hover {
+  background: rgba(255,255,255,0.25);
+  color: white;
+}
+
+/* ================================================
+   SECTION SCAFFOLDING
+   ================================================ */
+.section {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 48px 24px;
+}
+.section-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  gap: 16px;
+}
+.section-title {
+  font-size: clamp(22px, 3vw, 28px);
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  color: var(--primary);
+}
+.section-subtitle {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+.section-link {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+  transition: gap var(--duration-fast) ease;
+}
+.section-link:hover { gap: 8px; }
+
+/* ================================================
+   CATEGORY MOSAIC — MASONRY
+   ================================================ */
+.mosaic {
+  columns: 4;
+  column-gap: 20px;
+}
+.mosaic-card {
+  break-inside: avoid;
+  background: var(--card);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  margin-bottom: 20px;
+  border: 1px solid var(--border);
+  transition: all var(--duration-normal) var(--ease);
+  position: relative;
+}
+.mosaic-card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--accent);
+  opacity: 0;
+  transition: opacity var(--duration-normal) var(--ease);
+  border-radius: 3px 0 0 3px;
+  z-index: 2;
+}
+.mosaic-card:hover {
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-2px);
+}
+.mosaic-card:hover::before {
+  opacity: 1;
+}
+.mosaic-card-img {
+  width: 100%;
+  aspect-ratio: auto;
+  background: #FAFBFC;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  position: relative;
+}
+.mosaic-card-img.tall { min-height: 280px; }
+.mosaic-card-img.short { min-height: 180px; }
+.mosaic-card-img img {
+  max-height: 220px;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.08));
+}
+.mosaic-card-img.short img { max-height: 140px; }
+.mosaic-card-body {
+  padding: 16px 20px 20px;
+}
+.mosaic-card-count {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin-bottom: 4px;
+}
+.mosaic-card-name {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 10px;
+  letter-spacing: -0.3px;
+}
+.mosaic-card-subs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.mosaic-card-sub {
+  font-size: 12px;
+  color: var(--text-muted);
+  background: var(--bg);
+  padding: 4px 10px;
+  border-radius: 100px;
+  transition: all var(--duration-fast) ease;
+}
+.mosaic-card-sub:hover {
+  color: var(--accent);
+  background: var(--accent-glow);
+}
+.mosaic-hidden { display: none; }
+.mosaic-hidden.show { display: block; }
+
+.mosaic-expand {
+  text-align: center;
+  margin-top: 32px;
+}
+.btn-expand {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 32px;
+  background: white;
+  border: 1.5px solid var(--border);
+  border-radius: 100px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--primary);
+  transition: all var(--duration-normal) var(--ease);
+}
+.btn-expand:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  box-shadow: var(--shadow-md);
+}
+.btn-expand svg {
+  width: 16px;
+  height: 16px;
+  transition: transform var(--duration-normal) var(--ease);
+}
+.btn-expand.expanded svg {
+  transform: rotate(180deg);
+}
+
+/* ================================================
+   HORIZONTAL CAROUSEL
+   ================================================ */
+.carousel-wrap {
+  position: relative;
+}
+.carousel {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding-bottom: 4px;
+}
+.carousel::-webkit-scrollbar { display: none; }
+
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text);
+  box-shadow: var(--shadow-md);
+  z-index: 5;
+  transition: all var(--duration-fast) ease;
+  opacity: 0;
+}
+.carousel-wrap:hover .carousel-arrow { opacity: 1; }
+.carousel-arrow:hover {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+.carousel-arrow.left { left: -12px; }
+.carousel-arrow.right { right: -12px; }
+
+/* Product card — landscape */
+.product-card {
+  flex-shrink: 0;
+  width: 280px;
+  background: var(--card);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  scroll-snap-align: start;
+  transition: all var(--duration-normal) var(--ease);
+}
+.product-card:hover {
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-3px);
+}
+.product-card-img {
+  height: 180px;
+  background: #FAFBFC;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  position: relative;
+}
+.product-card-img img {
+  max-height: 140px;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.06));
+}
+.product-card-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  padding: 3px 10px;
+  border-radius: 100px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.badge-new { background: #DBEAFE; color: #1D4ED8; }
+.badge-sale { background: #FEE2E2; color: #DC2626; }
+.badge-best { background: #FEF3C7; color: #92400E; }
+.product-card-body { padding: 14px 16px 16px; }
+.product-card-cat {
+  font-size: 11px;
+  color: var(--text-light);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+.product-card-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--primary);
+  margin-bottom: 8px;
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.product-card-pricing {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+.product-card-price {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--primary);
+}
+.product-card-was {
+  font-size: 13px;
+  color: var(--text-light);
+  text-decoration: line-through;
+}
+.product-card-stars {
+  display: flex;
+  gap: 2px;
+  margin-top: 6px;
+}
+.star { color: var(--accent-light); font-size: 12px; }
+.star.empty { color: var(--border); }
+.product-card-reviews {
+  font-size: 11px;
+  color: var(--text-light);
+  margin-left: 4px;
+}
+
+/* ================================================
+   FLASH SALE — DARK SECTION
+   ================================================ */
+.flash-sale {
+  background: var(--primary);
+  padding: 48px 0;
+  margin: 0;
+  overflow: hidden;
+}
+.flash-sale .section {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+.flash-sale .section-title {
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.flash-sale .section-title .flash-icon {
+  display: inline-flex;
+  width: 32px;
+  height: 32px;
+  background: var(--accent);
+  border-radius: 8px;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+}
+.flash-sale .section-subtitle { color: rgba(255,255,255,0.5); }
+.flash-sale .section-link { color: var(--accent-light); }
+.flash-sale .product-card {
+  border-color: rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.04);
+}
+.flash-sale .product-card:hover {
+  background: rgba(255,255,255,0.08);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+}
+.flash-sale .product-card-img {
+  background: rgba(255,255,255,0.03);
+}
+.flash-sale .product-card-cat { color: rgba(255,255,255,0.4); }
+.flash-sale .product-card-title { color: white; }
+.flash-sale .product-card-price { color: var(--accent-light); }
+.flash-sale .product-card-was { color: rgba(255,255,255,0.35); }
+.flash-timer {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+.flash-timer-block {
+  background: rgba(255,255,255,0.1);
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--accent-light);
+  font-variant-numeric: tabular-nums;
+}
+.flash-timer-sep {
+  color: rgba(255,255,255,0.3);
+  font-weight: 700;
+}
+.flash-sale .carousel-arrow {
+  background: rgba(255,255,255,0.1);
+  border-color: rgba(255,255,255,0.15);
+  color: white;
+}
+.flash-sale .carousel-arrow:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+/* ================================================
+   VALUE PROPOSITION BAR
+   ================================================ */
+.value-bar {
+  background: white;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 32px 24px;
+}
+.value-bar-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+}
+.value-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.value-icon {
+  width: 48px;
+  height: 48px;
+  background: var(--accent-glow);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--accent);
+}
+.value-text h4 {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 2px;
+}
+.value-text p {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* ================================================
+   FOOTER — DARK
+   ================================================ */
+.footer {
+  background: var(--primary);
+  color: rgba(255,255,255,0.6);
+  padding: 48px 24px 32px;
+}
+.footer-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 48px;
+  margin-bottom: 40px;
+}
+.footer-brand h3 {
+  font-size: 20px;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 12px;
+}
+.footer-brand p {
+  font-size: 14px;
+  line-height: 1.7;
+  max-width: 300px;
+}
+.footer-col h4 {
+  font-size: 13px;
+  font-weight: 700;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 16px;
+}
+.footer-col a {
+  display: block;
+  font-size: 14px;
+  padding: 4px 0;
+  transition: color var(--duration-fast) ease;
+}
+.footer-col a:hover { color: var(--accent-light); }
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding-top: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+}
+.footer-payments {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+.footer-pay-icon {
+  width: 40px;
+  height: 26px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 9px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.5);
+}
+
+/* ================================================
+   RESPONSIVE
+   ================================================ */
+@media (max-width: 1100px) {
+  .mosaic { columns: 3; }
+}
+@media (max-width: 900px) {
+  .mosaic { columns: 2; }
+  .value-bar-inner { grid-template-columns: repeat(2, 1fr); }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+  .nav-links { display: none; }
+}
+@media (max-width: 640px) {
+  .mosaic { columns: 1; }
+  .header-inner { gap: 12px; padding: 0 16px; }
+  .header-search { max-width: none; }
+  .section { padding: 32px 16px; }
+  .hero { padding: 24px 16px; }
+  .product-card { width: 240px; }
+  .value-bar-inner { grid-template-columns: 1fr; gap: 20px; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header class="header">
+  <div class="header-inner">
+    <a href="/" class="logo">
+      <span class="logo-mark">XL</span>
+      Market
+    </a>
+    <nav class="nav-links">
+      <a href="#" class="hot">Deals</a>
+      <a href="#">New</a>
+      <a href="#">Best Sellers</a>
+      <a href="#">Categories</a>
+    </nav>
+    <div class="header-search">
+      <svg class="header-search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+      <input class="header-search-input" type="text" placeholder="Search 16,000+ products...">
+      <button class="header-search-ai-btn" onclick="toggleAiPanel()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a4 4 0 0 1 4 4v2a4 4 0 0 1-8 0V6a4 4 0 0 1 4-4z"/><path d="M12 12v6"/><circle cx="12" cy="21" r="1"/><path d="M8 12h8"/></svg>
+        Ask AI
+      </button>
+      <div class="ai-panel" id="aiPanel">
+        <div class="ai-panel-inner">
+          <div class="ai-msg">
+            <div class="ai-avatar user">U</div>
+            <div class="ai-bubble">
+              <p>I need a good pressure washer for my driveway, budget around 200 euros</p>
+            </div>
+          </div>
+          <div class="ai-msg">
+            <div class="ai-avatar bot">AI</div>
+            <div class="ai-bubble">
+              <p>Great choice for driveway cleaning! I'd recommend these two options based on your budget:</p>
+              <div class="product-suggestion">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                2000 PSI Electric Pressure Washer &mdash; &euro;189.99
+              </div>
+              <div class="product-suggestion" style="margin-left: 0; margin-top: 6px;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                1800 PSI Compact Washer &mdash; &euro;149.99
+              </div>
+              <p style="margin-top: 10px; color: var(--text-muted); font-size: 13px;">The 2000 PSI model is ideal for concrete driveways. Want me to compare their features?</p>
+            </div>
+          </div>
+          <div class="ai-msg">
+            <div class="ai-avatar bot">AI</div>
+            <div class="ai-bubble">
+              <div class="ai-typing">
+                <span></span><span></span><span></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="header-actions">
+      <button class="header-btn" title="Account">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      </button>
+      <button class="header-btn" title="Cart">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+        <span class="badge">3</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ============ HERO — AMBER BAR ============ -->
+<section class="hero">
+  <div class="hero-inner">
+    <p class="hero-slogan">Professional Tools, Half the Price</p>
+    <div class="hero-search">
+      <svg class="hero-search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+      <input class="hero-search-input" type="text" placeholder="What are you looking for?">
+      <button class="hero-search-ai">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 1 1 7.072 0l-.548.547A3.374 3.374 0 0 0 14 18.469V19a2 2 0 1 1-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+        Ask AI
+      </button>
+    </div>
+    <div class="hero-tags">
+      <a href="#" class="hero-tag">Pressure Washers</a>
+      <a href="#" class="hero-tag">Table Saws</a>
+      <a href="#" class="hero-tag">Pizza Ovens</a>
+      <a href="#" class="hero-tag">Ice Makers</a>
+      <a href="#" class="hero-tag">Welding</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CATEGORY MOSAIC ============ -->
+<section class="section">
+  <div class="section-header">
+    <div>
+      <h2 class="section-title">Explore Categories</h2>
+      <p class="section-subtitle">1,688 categories across tools, kitchen, outdoor and more</p>
+    </div>
+    <a href="#" class="section-link">View All <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+  </div>
+
+  <div class="mosaic" id="mosaicGrid">
+    <!-- TOOLS — tall -->
+    <div class="mosaic-card">
+      <div class="mosaic-card-img tall">
+        <img src="/cat-icons/400/tools.webp" alt="Tools">
+      </div>
+      <div class="mosaic-card-body">
+        <div class="mosaic-card-count">2,340 products</div>
+        <div class="mosaic-card-name">Tools</div>
+        <div class="mosaic-card-subs">
+          <a href="#" class="mosaic-card-sub">Power Tools</a>
+          <a href="#" class="mosaic-card-sub">Hand Tools</a>
+          <a href="#" class="mosaic-card-sub">Welding</a>
+          <a href="#" class="mosaic-card-sub">Tool Storage</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- AUTOMOTIVE — short -->
+    <div class="mosaic-card">
+      <div class="mosaic-card-img short">
+        <img src="/cat-icons/400/automotive.webp" alt="Automotive">
+      </div>
+      <div class="mosaic-card-body">
+        <div class="mosaic-card-count">890 products</div>
+        <div class="mosaic-card-name">Automotive</div>
+        <div class="mosaic-card-subs">
+          <a href="#" class="mosaic-card-sub">Floor Mats</a>
+          <a href="#" class="mosaic-card-sub">Diagnostics</a>
+          <a href="#" class="mosaic-card-sub">Brake Parts</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- KITCHEN — tall -->
+    <div class="mosaic-card">
+      <div class="mosaic-card-img tall">
+        <img src="/cat-icons/400/kitchen.webp" alt="Kitchen">
+      </div>
+      <div class="mosaic-card-body">
+        <div class="mosaic-card-count">1,920 products</div>
+        <div class="mosaic-card-name">Kitchen</div>
+        <div class="mosaic-card-subs">
+          <a href="#" class="mosaic-card-sub">Prep Tables</a>
+          <a href="#" class="mosaic-card-sub">Sinks</a>
+          <a href="#" class="mosaic-card-sub">Storage</a>
+          <a href="#" class="mosaic-card-sub">Faucets</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- BUILDING MATERIALS — short -->
+    <div class="mosaic-card">
+      <div class="mosaic-card-img short">
+        <img src="/cat-icons/400/building-materials.webp" alt="Building Materials">
+      </div>
+      <div class="mosaic-card-body">
+        <div class="mosaic-card-count">620 products</div>
+        <div class="mosaic-card-name">Building Materials</div>
+        <div class="mosaic-card-subs">
+          <a href="#" class="mosaic-card-sub">Panels</a>
+          <a href="#" class="mosaic-card-sub">Insulation</a>
+          <a href="#" class="mosaic-card-sub">Fasteners</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- OUTDOORS — short -->
+    <div class="mosaic-card">
+      <div class="mosaic-card-img short">
+        <img src="/cat-icons/400/outdoors.webp" alt="Outdoors">
+      </div>
+      <div class="mosaic-card-body">
+        <div class="mosaic-card-count">1,150 products</div>
+        <div class="mosaic-card-name">Outdoors</div>
+        <div class="mosaic-card-subs">
+          <a href="#" class="mosaic-card-sub">Fire Pits</a>
+          <a href="#" class="mosaic-card-sub">Outdoor Cooking</a>
+          <a href="#" class="mosaic-card-sub">Storage</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- SPORTS & OUTDOORS — tall -->
+    <div class="mosaic-card">
+      <div class="mosaic-card-img tall">
+        <img src="/cat-icons/400/sports-outdoors.webp" alt="Sports & Outdoors">
+      </div>
+      <div class="mosaic-card-body">
+        <div class="mosaic-card-count">780 products</div>
+        <div class="mosaic-card-name">Sports &amp; Outdoors</div>
+        <div class="mosaic-card-subs">
+          <a href="#" class="mosaic-card-sub">Fitness</a>
+          <a href="#" class="mosaic-card-sub">Camping</a>
+          <a href="#" class="mosaic-card-sub">Water Sports</a>
+          <a href="#" class="mosaic-card-sub">Climbing</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- PLUMBING — short -->
+    <div class="mosaic-card">
+      <div class="mosaic-card-img short">
+        <img src="/cat-icons/400/plumbing.webp" alt="Plumbing">
+      </div>
+      <div class="mosaic-card-body">
+        <div class="mosaic-card-count">430 products</div>
+        <div class="mosaic-card-name">Plumbing</div>
+        <div class="mosaic-card-subs">
+          <a href="#" class="mosaic-card-sub">Pumps</a>
+          <a href="#" class="mosaic-card-sub">Pipe Fittings</a>
+          <a href="#" class="mosaic-card-sub">Drain Cleaning</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- INDUSTRIAL & SCIENTIFIC — short -->
+    <div class="mosaic-card">
+      <div class="mosaic-card-img short">
+        <img src="/cat-icons/400/industrial-scientific.webp" alt="Industrial & Scientific">
+      </div>
+      <div class="mosaic-card-body">
+        <div class="mosaic-card-count">560 products</div>
+        <div class="mosaic-card-name">Industrial &amp; Scientific</div>
+        <div class="mosaic-card-subs">
+          <a href="#" class="mosaic-card-sub">Fans</a>
+          <a href="#" class="mosaic-card-sub">Ultrasonic Cleaners</a>
+          <a href="#" class="mosaic-card-sub">Heat Presses</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hidden extra categories -->
+  <div class="mosaic mosaic-hidden" id="mosaicExtra">
+    <div class="mosaic-card">
+      <div class="mosaic-card-img short">
+        <img src="/cat-icons/400/kitchenware.webp" alt="Kitchenware">
+      </div>
+      <div class="mosaic-card-body">
+        <div class="mosaic-card-count">340 products</div>
+        <div class="mosaic-card-name">Kitchenware</div>
+        <div class="mosaic-card-subs">
+          <a href="#" class="mosaic-card-sub">Blenders</a>
+          <a href="#" class="mosaic-card-sub">Juicers</a>
+          <a href="#" class="mosaic-card-sub">Mixers</a>
+        </div>
+      </div>
+    </div>
+    <div class="mosaic-card">
+      <div class="mosaic-card-img tall">
+        <img src="/cat-icons/400/power-tools.webp" alt="Power Tools">
+      </div>
+      <div class="mosaic-card-body">
+        <div class="mosaic-card-count">1,280 products</div>
+        <div class="mosaic-card-name">Power Tools</div>
+        <div class="mosaic-card-subs">
+          <a href="#" class="mosaic-card-sub">Drills</a>
+          <a href="#" class="mosaic-card-sub">Saws</a>
+          <a href="#" class="mosaic-card-sub">Sanders</a>
+          <a href="#" class="mosaic-card-sub">Routers</a>
+        </div>
+      </div>
+    </div>
+    <div class="mosaic-card">
+      <div class="mosaic-card-img short">
+        <img src="/cat-icons/400/hand-tools.webp" alt="Hand Tools">
+      </div>
+      <div class="mosaic-card-body">
+        <div class="mosaic-card-count">960 products</div>
+        <div class="mosaic-card-name">Hand Tools</div>
+        <div class="mosaic-card-subs">
+          <a href="#" class="mosaic-card-sub">Wrenches</a>
+          <a href="#" class="mosaic-card-sub">Pliers</a>
+          <a href="#" class="mosaic-card-sub">Screwdrivers</a>
+        </div>
+      </div>
+    </div>
+    <div class="mosaic-card">
+      <div class="mosaic-card-img short">
+        <img src="/cat-icons/400/abrasives.webp" alt="Abrasives">
+      </div>
+      <div class="mosaic-card-body">
+        <div class="mosaic-card-count">210 products</div>
+        <div class="mosaic-card-name">Abrasives</div>
+        <div class="mosaic-card-subs">
+          <a href="#" class="mosaic-card-sub">Grinding Discs</a>
+          <a href="#" class="mosaic-card-sub">Sandpaper</a>
+          <a href="#" class="mosaic-card-sub">Wire Wheels</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mosaic-expand">
+    <button class="btn-expand" id="expandBtn" onclick="toggleMosaic()">
+      Explore All Categories
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+    </button>
+  </div>
+</section>
+
+<!-- ============ NEW ARRIVALS CAROUSEL ============ -->
+<section class="section" style="padding-top: 0;">
+  <div class="section-header">
+    <div>
+      <h2 class="section-title">New Arrivals</h2>
+      <p class="section-subtitle">Fresh stock added this week</p>
+    </div>
+    <a href="#" class="section-link">See All <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+  </div>
+  <div class="carousel-wrap">
+    <button class="carousel-arrow left" onclick="scrollCarousel(this, -1)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button>
+    <div class="carousel">
+      <div class="product-card">
+        <div class="product-card-img">
+          <span class="product-card-badge badge-new">New</span>
+          <img src="/cat-icons/400/laser-level.webp" alt="Laser Level">
+        </div>
+        <div class="product-card-body">
+          <div class="product-card-cat">Tools</div>
+          <div class="product-card-title">360-Degree Self-Leveling Rotary Laser Level</div>
+          <div class="product-card-pricing">
+            <span class="product-card-price">&euro;89.99</span>
+          </div>
+          <div class="product-card-stars"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="product-card-reviews">(24)</span></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-card-img">
+          <span class="product-card-badge badge-new">New</span>
+          <img src="/cat-icons/400/espresso-machines.webp" alt="Espresso Machine">
+        </div>
+        <div class="product-card-body">
+          <div class="product-card-cat">Kitchen</div>
+          <div class="product-card-title">15-Bar Professional Espresso Machine Stainless Steel</div>
+          <div class="product-card-pricing">
+            <span class="product-card-price">&euro;179.99</span>
+          </div>
+          <div class="product-card-stars"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star empty">&#9733;</span><span class="product-card-reviews">(18)</span></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-card-img">
+          <span class="product-card-badge badge-new">New</span>
+          <img src="/cat-icons/400/soldering-stations.webp" alt="Soldering Station">
+        </div>
+        <div class="product-card-body">
+          <div class="product-card-cat">Tools</div>
+          <div class="product-card-title">Digital Soldering Station 60W with Temperature Control</div>
+          <div class="product-card-pricing">
+            <span class="product-card-price">&euro;49.99</span>
+          </div>
+          <div class="product-card-stars"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="product-card-reviews">(42)</span></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-card-img">
+          <span class="product-card-badge badge-new">New</span>
+          <img src="/cat-icons/400/pizza-ovens.webp" alt="Pizza Oven">
+        </div>
+        <div class="product-card-body">
+          <div class="product-card-cat">Outdoors</div>
+          <div class="product-card-title">Portable Wood-Fired Pizza Oven 16-inch</div>
+          <div class="product-card-pricing">
+            <span class="product-card-price">&euro;249.99</span>
+          </div>
+          <div class="product-card-stars"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="product-card-reviews">(67)</span></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-card-img">
+          <span class="product-card-badge badge-new">New</span>
+          <img src="/cat-icons/400/multimeters.webp" alt="Multimeter">
+        </div>
+        <div class="product-card-body">
+          <div class="product-card-cat">Tools</div>
+          <div class="product-card-title">True RMS Digital Multimeter Auto-Ranging 6000 Counts</div>
+          <div class="product-card-pricing">
+            <span class="product-card-price">&euro;34.99</span>
+          </div>
+          <div class="product-card-stars"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star empty">&#9733;</span><span class="product-card-reviews">(31)</span></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-card-img">
+          <span class="product-card-badge badge-new">New</span>
+          <img src="/cat-icons/400/stand-mixer.webp" alt="Stand Mixer">
+        </div>
+        <div class="product-card-body">
+          <div class="product-card-cat">Kitchen</div>
+          <div class="product-card-title">660W Stand Mixer 6-Speed with 5.5L Bowl</div>
+          <div class="product-card-pricing">
+            <span class="product-card-price">&euro;129.99</span>
+          </div>
+          <div class="product-card-stars"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="product-card-reviews">(53)</span></div>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-arrow right" onclick="scrollCarousel(this, 1)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></button>
+  </div>
+</section>
+
+<!-- ============ BEST SELLERS CAROUSEL ============ -->
+<section class="section" style="padding-top: 0;">
+  <div class="section-header">
+    <div>
+      <h2 class="section-title">Best Sellers</h2>
+      <p class="section-subtitle">Top picks from our community</p>
+    </div>
+    <a href="#" class="section-link">See All <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+  </div>
+  <div class="carousel-wrap">
+    <button class="carousel-arrow left" onclick="scrollCarousel(this, -1)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button>
+    <div class="carousel">
+      <div class="product-card">
+        <div class="product-card-img">
+          <span class="product-card-badge badge-best">#1</span>
+          <img src="/cat-icons/400/electric-pressure-washers.webp" alt="Pressure Washer">
+        </div>
+        <div class="product-card-body">
+          <div class="product-card-cat">Outdoors</div>
+          <div class="product-card-title">2000 PSI Electric Pressure Washer Portable</div>
+          <div class="product-card-pricing">
+            <span class="product-card-price">&euro;189.99</span>
+          </div>
+          <div class="product-card-stars"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="product-card-reviews">(312)</span></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-card-img">
+          <span class="product-card-badge badge-best">#2</span>
+          <img src="/cat-icons/400/table-saws.webp" alt="Table Saw">
+        </div>
+        <div class="product-card-body">
+          <div class="product-card-cat">Tools</div>
+          <div class="product-card-title">10-inch Table Saw with Stand 15A Motor</div>
+          <div class="product-card-pricing">
+            <span class="product-card-price">&euro;329.99</span>
+          </div>
+          <div class="product-card-stars"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="product-card-reviews">(289)</span></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-card-img">
+          <span class="product-card-badge badge-best">#3</span>
+          <img src="/cat-icons/400/ice-makers.webp" alt="Ice Maker">
+        </div>
+        <div class="product-card-body">
+          <div class="product-card-cat">Kitchen</div>
+          <div class="product-card-title">Countertop Ice Maker Machine 26lbs/24H</div>
+          <div class="product-card-pricing">
+            <span class="product-card-price">&euro;119.99</span>
+          </div>
+          <div class="product-card-stars"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star empty">&#9733;</span><span class="product-card-reviews">(198)</span></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-card-img">
+          <span class="product-card-badge badge-best">#4</span>
+          <img src="/cat-icons/400/air-compressors.webp" alt="Air Compressor">
+        </div>
+        <div class="product-card-body">
+          <div class="product-card-cat">Tools</div>
+          <div class="product-card-title">6-Gallon Oil-Free Air Compressor 150 PSI</div>
+          <div class="product-card-pricing">
+            <span class="product-card-price">&euro;159.99</span>
+          </div>
+          <div class="product-card-stars"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="product-card-reviews">(176)</span></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-card-img">
+          <span class="product-card-badge badge-best">#5</span>
+          <img src="/cat-icons/400/fire-pits.webp" alt="Fire Pit">
+        </div>
+        <div class="product-card-body">
+          <div class="product-card-cat">Outdoors</div>
+          <div class="product-card-title">36-inch Outdoor Fire Pit with Spark Screen</div>
+          <div class="product-card-pricing">
+            <span class="product-card-price">&euro;149.99</span>
+          </div>
+          <div class="product-card-stars"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="product-card-reviews">(221)</span></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-card-img">
+          <span class="product-card-badge badge-best">#6</span>
+          <img src="/cat-icons/400/tool-chests.webp" alt="Tool Chest">
+        </div>
+        <div class="product-card-body">
+          <div class="product-card-cat">Tools</div>
+          <div class="product-card-title">20-inch 5-Drawer Rolling Tool Chest Cabinet</div>
+          <div class="product-card-pricing">
+            <span class="product-card-price">&euro;219.99</span>
+          </div>
+          <div class="product-card-stars"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star empty">&#9733;</span><span class="product-card-reviews">(145)</span></div>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-arrow right" onclick="scrollCarousel(this, 1)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></button>
+  </div>
+</section>
+
+<!-- ============ DEALS CAROUSEL ============ -->
+<section class="section" style="padding-top: 0;">
+  <div class="section-header">
+    <div>
+      <h2 class="section-title">Deals of the Week</h2>
+      <p class="section-subtitle">Save up to 40% on selected items</p>
+    </div>
+    <a href="#" class="section-link">All Deals <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+  </div>
+  <div class="carousel-wrap">
+    <button class="carousel-arrow left" onclick="scrollCarousel(this, -1)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button>
+    <div class="carousel">
+      <div class="product-card">
+        <div class="product-card-img">
+          <span class="product-card-badge badge-sale">-30%</span>
+          <img src="/cat-icons/400/angle-grinder.webp" alt="Angle Grinder">
+        </div>
+        <div class="product-card-body">
+          <div class="product-card-cat">Tools</div>
+          <div class="product-card-title">4.5-inch Angle Grinder 11,000 RPM 7.5A</div>
+          <div class="product-card-pricing">
+            <span class="product-card-price">&euro;34.99</span>
+            <span class="product-card-was">&euro;49.99</span>
+          </div>
+          <div class="product-card-stars"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="product-card-reviews">(89)</span></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-card-img">
+          <span class="product-card-badge badge-sale">-25%</span>
+          <img src="/cat-icons/400/dehydrators.webp" alt="Dehydrator">
+        </div>
+        <div class="product-card-body">
+          <div class="product-card-cat">Kitchen</div>
+          <div class="product-card-title">6-Tray Food Dehydrator with Digital Timer</div>
+          <div class="product-card-pricing">
+            <span class="product-card-price">&euro;59.99</span>
+            <span class="product-card-was">&euro;79.99</span>
+          </div>
+          <div class="product-card-stars"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star empty">&#9733;</span><span class="product-card-reviews">(56)</span></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-card-img">
+          <span class="product-card-badge badge-sale">-35%</span>
+          <img src="/cat-icons/400/router-tables.webp" alt="Router Table">
+        </div>
+        <div class="product-card-body">
+          <div class="product-card-cat">Tools</div>
+          <div class="product-card-title">Benchtop Router Table with Aluminum Fence</div>
+          <div class="product-card-pricing">
+            <span class="product-card-price">&euro;84.99</span>
+            <span class="product-card-was">&euro;129.99</span>
+          </div>
+          <div class="product-card-stars"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="product-card-reviews">(72)</span></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-card-img">
+          <span class="product-card-badge badge-sale">-40%</span>
+          <img src="/cat-icons/400/leaf-blowers.webp" alt="Leaf Blower">
+        </div>
+        <div class="product-card-body">
+          <div class="product-card-cat">Outdoors</div>
+          <div class="product-card-title">Cordless Leaf Blower 20V with Variable Speed</div>
+          <div class="product-card-pricing">
+            <span class="product-card-price">&euro;47.99</span>
+            <span class="product-card-was">&euro;79.99</span>
+          </div>
+          <div class="product-card-stars"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star empty">&#9733;</span><span class="product-card-reviews">(104)</span></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-card-img">
+          <span class="product-card-badge badge-sale">-20%</span>
+          <img src="/cat-icons/400/heat-guns.webp" alt="Heat Gun">
+        </div>
+        <div class="product-card-body">
+          <div class="product-card-cat">Tools</div>
+          <div class="product-card-title">1800W Heat Gun with LCD Display Dual Speed</div>
+          <div class="product-card-pricing">
+            <span class="product-card-price">&euro;27.99</span>
+            <span class="product-card-was">&euro;34.99</span>
+          </div>
+          <div class="product-card-stars"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="product-card-reviews">(63)</span></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-card-img">
+          <span class="product-card-badge badge-sale">-30%</span>
+          <img src="/cat-icons/400/meat-grinders.webp" alt="Meat Grinder">
+        </div>
+        <div class="product-card-body">
+          <div class="product-card-cat">Kitchen</div>
+          <div class="product-card-title">Heavy Duty Electric Meat Grinder 2000W</div>
+          <div class="product-card-pricing">
+            <span class="product-card-price">&euro;69.99</span>
+            <span class="product-card-was">&euro;99.99</span>
+          </div>
+          <div class="product-card-stars"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star empty">&#9733;</span><span class="product-card-reviews">(47)</span></div>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-arrow right" onclick="scrollCarousel(this, 1)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></button>
+  </div>
+</section>
+
+<!-- ============ FLASH SALE — DARK ============ -->
+<section class="flash-sale">
+  <div class="section">
+    <div class="section-header">
+      <div>
+        <h2 class="section-title">
+          <span class="flash-icon">&#9889;</span>
+          Flash Sale
+        </h2>
+        <p class="section-subtitle" style="display: flex; align-items: center; gap: 16px; margin-top: 8px;">
+          Ends in
+          <span class="flash-timer">
+            <span class="flash-timer-block" id="flashH">04</span>
+            <span class="flash-timer-sep">:</span>
+            <span class="flash-timer-block" id="flashM">32</span>
+            <span class="flash-timer-sep">:</span>
+            <span class="flash-timer-block" id="flashS">17</span>
+          </span>
+        </p>
+      </div>
+      <a href="#" class="section-link">View Flash Sale <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    </div>
+    <div class="carousel-wrap">
+      <button class="carousel-arrow left" onclick="scrollCarousel(this, -1)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button>
+      <div class="carousel">
+        <div class="product-card">
+          <div class="product-card-img">
+            <span class="product-card-badge badge-sale">-50%</span>
+            <img src="/cat-icons/400/drill-press.webp" alt="Drill Press">
+          </div>
+          <div class="product-card-body">
+            <div class="product-card-cat">Tools</div>
+            <div class="product-card-title">10-inch Floor Standing Drill Press 12-Speed</div>
+            <div class="product-card-pricing">
+              <span class="product-card-price">&euro;179.99</span>
+              <span class="product-card-was">&euro;359.99</span>
+            </div>
+            <div class="product-card-stars"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="product-card-reviews">(94)</span></div>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-card-img">
+            <span class="product-card-badge badge-sale">-45%</span>
+            <img src="/cat-icons/400/coffee-makers.webp" alt="Coffee Maker">
+          </div>
+          <div class="product-card-body">
+            <div class="product-card-cat">Kitchen</div>
+            <div class="product-card-title">12-Cup Programmable Coffee Maker with Grinder</div>
+            <div class="product-card-pricing">
+              <span class="product-card-price">&euro;54.99</span>
+              <span class="product-card-was">&euro;99.99</span>
+            </div>
+            <div class="product-card-stars"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star empty">&#9733;</span><span class="product-card-reviews">(127)</span></div>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-card-img">
+            <span class="product-card-badge badge-sale">-55%</span>
+            <img src="/cat-icons/400/socket-sets.webp" alt="Socket Set">
+          </div>
+          <div class="product-card-body">
+            <div class="product-card-cat">Tools</div>
+            <div class="product-card-title">216-Piece Mechanics Tool Set Chrome Vanadium</div>
+            <div class="product-card-pricing">
+              <span class="product-card-price">&euro;44.99</span>
+              <span class="product-card-was">&euro;99.99</span>
+            </div>
+            <div class="product-card-stars"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="product-card-reviews">(231)</span></div>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-card-img">
+            <span class="product-card-badge badge-sale">-40%</span>
+            <img src="/cat-icons/400/band-saws.webp" alt="Band Saw">
+          </div>
+          <div class="product-card-body">
+            <div class="product-card-cat">Tools</div>
+            <div class="product-card-title">9-inch Benchtop Band Saw with Light</div>
+            <div class="product-card-pricing">
+              <span class="product-card-price">&euro;149.99</span>
+              <span class="product-card-was">&euro;249.99</span>
+            </div>
+            <div class="product-card-stars"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star empty">&#9733;</span><span class="product-card-reviews">(78)</span></div>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-card-img">
+            <span class="product-card-badge badge-sale">-50%</span>
+            <img src="/cat-icons/400/waffle-makers.webp" alt="Waffle Maker">
+          </div>
+          <div class="product-card-body">
+            <div class="product-card-cat">Kitchen</div>
+            <div class="product-card-title">Double Belgian Waffle Maker Non-Stick Plates</div>
+            <div class="product-card-pricing">
+              <span class="product-card-price">&euro;24.99</span>
+              <span class="product-card-was">&euro;49.99</span>
+            </div>
+            <div class="product-card-stars"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="product-card-reviews">(156)</span></div>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-card-img">
+            <span class="product-card-badge badge-sale">-45%</span>
+            <img src="/cat-icons/400/torque-wrenches.webp" alt="Torque Wrench">
+          </div>
+          <div class="product-card-body">
+            <div class="product-card-cat">Automotive</div>
+            <div class="product-card-title">1/2-inch Drive Click Torque Wrench 10-150 ft-lbs</div>
+            <div class="product-card-pricing">
+              <span class="product-card-price">&euro;32.99</span>
+              <span class="product-card-was">&euro;59.99</span>
+            </div>
+            <div class="product-card-stars"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="product-card-reviews">(183)</span></div>
+          </div>
+        </div>
+      </div>
+      <button class="carousel-arrow right" onclick="scrollCarousel(this, 1)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RECENTLY VIEWED CAROUSEL ============ -->
+<section class="section">
+  <div class="section-header">
+    <div>
+      <h2 class="section-title">Recently Viewed</h2>
+      <p class="section-subtitle">Pick up where you left off</p>
+    </div>
+    <a href="#" class="section-link">View History <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+  </div>
+  <div class="carousel-wrap">
+    <button class="carousel-arrow left" onclick="scrollCarousel(this, -1)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button>
+    <div class="carousel">
+      <div class="product-card">
+        <div class="product-card-img">
+          <img src="/cat-icons/400/chainsaws.webp" alt="Chainsaw">
+        </div>
+        <div class="product-card-body">
+          <div class="product-card-cat">Outdoors</div>
+          <div class="product-card-title">62cc Gas Chainsaw 20-inch Bar Professional</div>
+          <div class="product-card-pricing">
+            <span class="product-card-price">&euro;139.99</span>
+          </div>
+          <div class="product-card-stars"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star empty">&#9733;</span><span class="product-card-reviews">(88)</span></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-card-img">
+          <img src="/cat-icons/400/blenders.webp" alt="Blender">
+        </div>
+        <div class="product-card-body">
+          <div class="product-card-cat">Kitchen</div>
+          <div class="product-card-title">Professional Countertop Blender 2200W 2L Jar</div>
+          <div class="product-card-pricing">
+            <span class="product-card-price">&euro;79.99</span>
+          </div>
+          <div class="product-card-stars"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="product-card-reviews">(134)</span></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-card-img">
+          <img src="/cat-icons/400/lawn-mowers.webp" alt="Lawn Mower">
+        </div>
+        <div class="product-card-body">
+          <div class="product-card-cat">Outdoors</div>
+          <div class="product-card-title">Self-Propelled Electric Lawn Mower 21-inch</div>
+          <div class="product-card-pricing">
+            <span class="product-card-price">&euro;269.99</span>
+          </div>
+          <div class="product-card-stars"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star empty">&#9733;</span><span class="product-card-reviews">(67)</span></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-card-img">
+          <img src="/cat-icons/400/ratchet-socket-sets.webp" alt="Ratchet Socket Set">
+        </div>
+        <div class="product-card-body">
+          <div class="product-card-cat">Automotive</div>
+          <div class="product-card-title">46-Piece Ratchet Socket Set with Carrying Case</div>
+          <div class="product-card-pricing">
+            <span class="product-card-price">&euro;29.99</span>
+          </div>
+          <div class="product-card-stars"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="product-card-reviews">(201)</span></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-card-img">
+          <img src="/cat-icons/400/juicers.webp" alt="Juicer">
+        </div>
+        <div class="product-card-body">
+          <div class="product-card-cat">Kitchen</div>
+          <div class="product-card-title">Cold Press Masticating Juicer Slow Speed</div>
+          <div class="product-card-pricing">
+            <span class="product-card-price">&euro;89.99</span>
+          </div>
+          <div class="product-card-stars"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star empty">&#9733;</span><span class="product-card-reviews">(92)</span></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-card-img">
+          <img src="/cat-icons/400/drills.webp" alt="Drill">
+        </div>
+        <div class="product-card-body">
+          <div class="product-card-cat">Tools</div>
+          <div class="product-card-title">20V Cordless Drill Driver Kit with 2 Batteries</div>
+          <div class="product-card-pricing">
+            <span class="product-card-price">&euro;64.99</span>
+          </div>
+          <div class="product-card-stars"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="product-card-reviews">(278)</span></div>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-arrow right" onclick="scrollCarousel(this, 1)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></button>
+  </div>
+</section>
+
+<!-- ============ VALUE PROPOSITION BAR ============ -->
+<div class="value-bar">
+  <div class="value-bar-inner">
+    <div class="value-item">
+      <div class="value-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4l3 5v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+      </div>
+      <div class="value-text">
+        <h4>Free Shipping over &euro;99</h4>
+        <p>Fast delivery across Europe</p>
+      </div>
+    </div>
+    <div class="value-item">
+      <div class="value-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <div class="value-text">
+        <h4>2-Year Warranty</h4>
+        <p>Full manufacturer coverage</p>
+      </div>
+    </div>
+    <div class="value-item">
+      <div class="value-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 12l-2.44-2.78.34-3.68-3.61-.82L15.4 1.5 12 2.96 8.6 1.5 6.71 4.72 3.1 5.54l.34 3.68L1 12l2.44 2.78-.34 3.68 3.61.82 1.89 3.22L12 21.04l3.4 1.46 1.89-3.22 3.61-.82-.34-3.68L23 12z"/><path d="M9 12l2 2 4-4"/></svg>
+      </div>
+      <div class="value-text">
+        <h4>Professional Grade</h4>
+        <p>VEVOR authorized dealer</p>
+      </div>
+    </div>
+    <div class="value-item">
+      <div class="value-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10z"/></svg>
+      </div>
+      <div class="value-text">
+        <h4>AI Shopping Assistant</h4>
+        <p>Find the right product instantly</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h3>XLMarket.eu</h3>
+        <p>Professional tools and equipment at half the price. Official VEVOR distributor for Estonia and Spain. 16,000+ products for workshop, kitchen, and outdoor.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Shop</h4>
+        <a href="#">All Categories</a>
+        <a href="#">New Arrivals</a>
+        <a href="#">Best Sellers</a>
+        <a href="#">Deals</a>
+        <a href="#">Flash Sale</a>
+      </div>
+      <div class="footer-col">
+        <h4>Support</h4>
+        <a href="#">Contact Us</a>
+        <a href="#">Shipping Info</a>
+        <a href="#">Returns & Refunds</a>
+        <a href="#">Warranty</a>
+        <a href="#">FAQ</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="#">About Us</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Cookie Policy</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Roland Kaubandus O&Uuml; &mdash; XLMarket.eu. All rights reserved.</span>
+      <div class="footer-payments">
+        <div class="footer-pay-icon">VISA</div>
+        <div class="footer-pay-icon">MC</div>
+        <div class="footer-pay-icon">SEB</div>
+        <div class="footer-pay-icon">LHV</div>
+        <div class="footer-pay-icon">SWED</div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ SCRIPTS ============ -->
+<script>
+// AI Panel toggle
+function toggleAiPanel() {
+  document.getElementById('aiPanel').classList.toggle('open');
+}
+
+// Mosaic expand/collapse
+function toggleMosaic() {
+  const extra = document.getElementById('mosaicExtra');
+  const btn = document.getElementById('expandBtn');
+  extra.classList.toggle('show');
+  btn.classList.toggle('expanded');
+  btn.querySelector('span') || null;
+  if (extra.classList.contains('show')) {
+    btn.innerHTML = 'Show Less <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" width="16" height="16"><path d="M6 9l6 6 6-6"/></svg>';
+  } else {
+    btn.innerHTML = 'Explore All Categories <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" width="16" height="16"><path d="M6 9l6 6 6-6"/></svg>';
+  }
+}
+
+// Carousel scroll
+function scrollCarousel(btn, direction) {
+  const wrap = btn.closest('.carousel-wrap');
+  const carousel = wrap.querySelector('.carousel');
+  const cardWidth = carousel.querySelector('.product-card').offsetWidth + 16;
+  carousel.scrollBy({ left: cardWidth * 2 * direction, behavior: 'smooth' });
+}
+
+// Flash sale countdown
+(function() {
+  let total = 4 * 3600 + 32 * 60 + 17;
+  function tick() {
+    if (total <= 0) return;
+    total--;
+    const h = Math.floor(total / 3600);
+    const m = Math.floor((total % 3600) / 60);
+    const s = total % 60;
+    document.getElementById('flashH').textContent = String(h).padStart(2, '0');
+    document.getElementById('flashM').textContent = String(m).padStart(2, '0');
+    document.getElementById('flashS').textContent = String(s).padStart(2, '0');
+  }
+  setInterval(tick, 1000);
+})();
+</script>
+</body>
+</html>
