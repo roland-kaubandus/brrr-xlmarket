@@ -6,13 +6,15 @@ import LocaleSwitcher from "@/components/LocaleSwitcher"
 import MobileSearchToggle from "@/components/MobileSearchToggle"
 
 const getNavLinks = (locale: string) => locale === "et" ? [
+  { label: "Alusta ettevõtet", href: `/${locale}/alustajale`, highlight: true },
+  { label: "Ärikliendile", href: `/${locale}/arikliendile` },
+  { label: "Hooldus", href: `/${locale}/hooldus` },
   { label: "Pakkumised", href: `/${locale}/otsing?tag=deals` },
-  { label: "Uued tooted", href: `/${locale}/otsing?sort=newest` },
-  { label: "Bestsellerid", href: `/${locale}/otsing?tag=hot` },
 ] : [
+  { label: "Starter kits", href: `/${locale}/alustajale`, highlight: true },
+  { label: "B2B", href: `/${locale}/arikliendile` },
+  { label: "Service", href: `/${locale}/hooldus` },
   { label: "Deals", href: `/${locale}/otsing?tag=deals` },
-  { label: "New Arrivals", href: `/${locale}/otsing?sort=newest` },
-  { label: "Best Sellers", href: `/${locale}/otsing?tag=hot` },
 ]
 
 export default function VevorHeader({ locale = "et" }: { locale?: string }) {
@@ -71,7 +73,11 @@ export default function VevorHeader({ locale = "et" }: { locale?: string }) {
               <Link
                 key={link.label}
                 href={link.href}
-                className="px-4 py-1.5 text-[0.95rem] font-semibold text-[#94A3B8] rounded-md hover:text-white hover:bg-white/10 transition-colors whitespace-nowrap"
+                className={`px-4 py-1.5 text-[0.95rem] font-semibold rounded-md transition-colors whitespace-nowrap ${
+                  link.highlight
+                    ? "text-[#D97706] hover:text-[#F59E0B] hover:bg-white/10"
+                    : "text-[#94A3B8] hover:text-white hover:bg-white/10"
+                }`}
               >
                 {link.label}
               </Link>
