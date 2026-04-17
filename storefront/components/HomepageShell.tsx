@@ -25,45 +25,45 @@ interface HomepageShellProps {
 }
 
 /* ═══════════════════════════════════════════════
-   CAROUSEL SLIDES
+   CAROUSEL SLIDES — entrepreneur vibe
    ═══════════════════════════════════════════════ */
 const SLIDES = [
   {
-    badge: "Catalog",
-    title: "Over 16,000 Tools & Equipment",
-    text: "Professional-grade products in stock, ready to ship across Europe.",
-    cta: "Browse Catalog",
-    ctaHref: "LOCALE/kategooriad",
+    badge: "Starter Kits",
+    title: "Six businesses. Six turnkey kits.",
+    text: "Caf\u00e9, auto shop, barber, print, bakery, cleaning. One order, one invoice, one delivery. \u20AC2,799 \u2013 \u20AC12,900, VAT incl.",
+    cta: "See starter kits",
+    ctaHref: "LOCALE/alustajale",
     bg: "/images/hero-1.png",
   },
   {
-    badge: "Deals",
-    title: "Up to 40% Off Selected Equipment",
-    text: "Welding machines, laser engravers, CNC routers and more at monthly sale prices.",
-    cta: "Shop Deals",
-    ctaHref: "LOCALE/otsing?tag=deals",
+    badge: "B2B Account",
+    title: "Net-30, volume pricing, real humans.",
+    text: "Dedicated account manager, custom equipment bundles, priority shipping, 2-year extended warranty.",
+    cta: "Request a quote",
+    ctaHref: "LOCALE/arikliendile",
     bg: "/images/hero-2.png",
   },
   {
-    badge: "Free Shipping",
-    title: "Free Delivery on Orders Over \u20AC100",
-    text: "Fast, reliable shipping across Estonia and the EU. Two-year warranty on every product.",
-    cta: "Start Shopping",
-    ctaHref: "LOCALE/otsing?sort=newest",
+    badge: "Service",
+    title: "Your machines should last a decade.",
+    text: "Basic, Pro, Enterprise plans. Quarterly maintenance, 48h priority repair, replacement units while we fix yours.",
+    cta: "Choose a service plan",
+    ctaHref: "LOCALE/hooldus",
     bg: "/images/hero-3.png",
   },
 ]
 
 /* ═══════════════════════════════════════════════
-   PROMO CARDS
+   PROMO CARDS — six starter kits
    ═══════════════════════════════════════════════ */
 const PROMOS = [
-  { tag: "New Arrival", title: "Fiber Laser Engravers", sub: "From \u20AC1,299 \u2014 Pro models in stock", gradient: "linear-gradient(135deg, #0F1B2D, #1a3a5c)", href: "LOCALE/otsing?q=fiber+laser+engraver" },
-  { tag: "-30%", title: "MIG/TIG Welding Machines", sub: "Professional series \u2014 limited time", gradient: "linear-gradient(135deg, #D97706, #c74d00)", href: "LOCALE/otsing?q=mig+tig+welder" },
-  { tag: "Best Seller", title: "Hydraulic Vehicle Lifts", sub: "2-post & 4-post \u2014 delivery 3\u20135 days", gradient: "linear-gradient(135deg, #c74d00, #D97706)", href: "LOCALE/otsing?q=vehicle+lift" },
-  { tag: "Volume", title: "Steel Shelving Systems", sub: "Buy 10+ units, 15% off automatically", gradient: "linear-gradient(135deg, #1a3a5c, #2a5a7c)", href: "LOCALE/otsing?q=steel+shelving" },
-  { tag: "Trending", title: "Solar Panel Kits", sub: "Off-grid kits from \u20AC899", gradient: "linear-gradient(135deg, #0F1B2D, #243b55)", href: "LOCALE/otsing?q=solar+panel+kit" },
-  { tag: "Free Ship", title: "Industrial Air Compressors", sub: "50L\u2013300L \u2014 ships free EU-wide", gradient: "linear-gradient(135deg, #2a5a7c, #0F1B2D)", href: "LOCALE/otsing?q=air+compressor" },
+  { tag: "Starter Kit", title: "Caf\u00e9 & Coffee Shop", sub: "From \u20AC8,499 \u2014 espresso, fridge, prep, shelving", gradient: "linear-gradient(135deg, #0F1B2D, #1a3a5c)", href: "LOCALE/alustajale#cafe" },
+  { tag: "Starter Kit", title: "Auto Workshop", sub: "From \u20AC12,900 \u2014 lift, compressor, tool chest, scanner", gradient: "linear-gradient(135deg, #D97706, #c74d00)", href: "LOCALE/alustajale#auto" },
+  { tag: "Starter Kit", title: "Barber Shop", sub: "From \u20AC3,499 \u2014 chairs, mirrors, tools, sterilizer", gradient: "linear-gradient(135deg, #c74d00, #D97706)", href: "LOCALE/alustajale#barber" },
+  { tag: "Starter Kit", title: "Print & Sign Shop", sub: "From \u20AC5,999 \u2014 heat press, cutter, DTF, inks", gradient: "linear-gradient(135deg, #1a3a5c, #2a5a7c)", href: "LOCALE/alustajale#print" },
+  { tag: "Starter Kit", title: "Bakery & Pastry", sub: "From \u20AC7,499 \u2014 oven, proofer, mixer, display", gradient: "linear-gradient(135deg, #0F1B2D, #243b55)", href: "LOCALE/alustajale#bakery" },
+  { tag: "Starter Kit", title: "Cleaning Service", sub: "From \u20AC2,799 \u2014 scrubber, vacuum, pressure washer", gradient: "linear-gradient(135deg, #2a5a7c, #0F1B2D)", href: "LOCALE/alustajale#cleaning" },
 ]
 
 /* ═══════════════════════════════════════════════
