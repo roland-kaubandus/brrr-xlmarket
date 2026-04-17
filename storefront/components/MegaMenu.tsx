@@ -5,6 +5,151 @@ import Link from "@/components/SafeLink"
 import { categoryPath } from "@/lib/i18n"
 import { Menu, X, ChevronRight, ChevronLeft } from "lucide-react"
 import { TAXONOMY_V3, V3_ICONS, type TaxonomyL1 } from "@/lib/taxonomy-v3"
+import categoryImagesData from "@/lib/category-images.json"
+
+const CAT_THUMBS = categoryImagesData as Record<string, string>
+
+// Fallback thumbs for v3 curated subSlugs that don't have exact matches in the 3247-image library.
+// Values are slugs into CAT_THUMBS.
+const THUMB_OVERRIDES: Record<string, string> = {
+  // v3 subSlugs missing direct matches
+  "3d-printers": "cnc-milling-cutter",
+  "metal-lathe": "lathes",
+  "hydraulic-press": "hydraulic-pumps",
+  "banner-display": "label-printer",
+  "portable-power-stations": "solar-generators",
+  "belt-sander": "belt-sanders",
+  "chemical-transfer": "ac-fuel-transfer-pumps",
+  "industrial-shelving": "shelving",
+  "pipes-and-fittings": "pipe-fittings",
+  "personal-protective-equipment": "disposable-protective-clothing",
+  "safety-glasses": "safety-equipment",
+  "facial-steamers": "personal-care-appliances",
+  "lobby-furniture": "office-chairs",
+  "interior-lighting": "lamps",
+  "sports-equipment": "exercise-equipment",
+  "cycling": "cycling-gear",
+  "canopy-tents": "canopy-tent",
+  "stage-lighting": "lamps",
+  // v3 extras (slugified names)
+  "cash-handling": "money-counter",
+  "shrink-wrap-machines": "food-vacuum-sealers",
+  "strapping-machines": "strapping-band",
+  "carton-sealers": "continuous-sealing-machines",
+  "badge-makers": "label-makers",
+  "restaurant-furniture": "restaurant-shelving",
+  "kitchen-hvac-and-air-curtains": "kitchen",
+  "ice-machines": "refrigerators",
+  "display-cases": "refrigerators",
+  "bain-maries": "commercial-ovens",
+  "cnc-spindles": "cnc-milling-cutter",
+  "stepper-motors": "motors-parts",
+  "controller-boards": "cnc-milling-cutter",
+  "dust-collection": "vacuum-cleaners",
+  "honeycomb-tables": "co2-laser-engraving-machine",
+  "welding-wire-and-rods": "welding-kits",
+  "sheet-metal-brakes": "hydraulic-pumps",
+  "milling-machines": "cnc-milling-cutter",
+  "deburring-tools": "angle-grinder",
+  "metal-bandsaw": "saw-blades",
+  "networking-and-electronics": "batteries",
+  "distribution-boards": "electrical",
+  "cable-management": "wiring-devices-light-controls",
+  "transformers": "electrical",
+  "inverters": "solar-generators",
+  "table-saws": "woodworking-table-saws",
+  "band-saws": "saw-blades",
+  "planers": "routers-bits-accessories",
+  "scroll-saws": "saw-blades",
+  "doweling-jigs": "drill-press",
+  "door-hardware-and-garage-doors": "door-hardware",
+  "tile-cutters": "concrete-cement-masonry",
+  "surveying-equipment": "measuring-rods",
+  "safety-netting": "safety-equipment",
+  "formwork": "concrete-cement-masonry",
+  "sweepers": "vacuum-cleaners",
+  "sanitizer-dispensers": "hand-dryers",
+  "mop-systems": "floor-care",
+  "window-cleaning": "floor-care",
+  "air-fresheners": "hand-dryers",
+  "impact-wrenches": "power-tools",
+  "heat-guns": "power-tools",
+  "rotary-tools": "power-tools",
+  "clamps-and-vises": "hand-tools",
+  "riveting-tools": "hand-tools",
+  "flow-meters": "measuring-rods",
+  "grease-guns": "oil-drains",
+  "spill-containment": "drum-handling-equipment",
+  "fuel-tanks": "ac-fuel-transfer-pumps",
+  "hose-reels": "pressure-washers",
+  "pet-and-livestock-supplies": "garden-fork",
+  "log-splitters": "outdoor-power-equipment",
+  "stump-grinders": "outdoor-power-equipment",
+  "irrigation-systems": "garden-fork",
+  "atv-accessories": "truck-accessories",
+  "outdoor-and-yard-storage": "outdoor-decor",
+  "winches": "engine-hoists",
+  "lift-tables": "forklifts-attachments",
+  "drum-handlers": "drum-handling-equipment",
+  "conveyor-rollers": "industrial-shelving",
+  "fireplaces-and-heating-appliances": "heaters",
+  "thermostats": "heaters",
+  "heat-exchangers": "heaters",
+  "radiant-heaters": "heaters",
+  "ceiling-fans": "fans",
+  "kitchen-plumbing": "plumbing",
+  "drain-cleaners": "plumbing",
+  "water-tanks": "water-pumps",
+  "pressure-regulators": "pipe-fittings",
+  "expansion-vessels": "water-heaters",
+  "ear-protection": "safety-equipment",
+  "respiratory-masks": "safety-equipment",
+  "first-aid-kits": "safety-equipment",
+  "fire-extinguishers": "safety-equipment",
+  "lockout-tagout": "door-locks",
+  "rv-and-specialty-vehicle-supplies": "truck-accessories",
+  "car-detailing-and-care": "truck-accessories",
+  "tire-changers": "car-lifts",
+  "wheel-balancers": "car-lifts",
+  "brake-tools": "mechanics-tools",
+  "waxing-equipment": "facial-steamers",
+  "salon-trolleys": "barber-chairs",
+  "towel-warmers": "personal-care-appliances",
+  "sterilizers": "personal-care-appliances",
+  "pedicure-chairs": "barber-chairs",
+  "tv-mounts": "home-decor",
+  "monitor-arms": "home-office-furniture",
+  "desk-organizers": "home-office-furniture",
+  "filing-cabinets": "home-office-furniture",
+  "walkers-and-rollators": "mobility-aids",
+  "hospital-beds": "medical-chairs",
+  "exam-tables": "medical-chairs",
+  "grab-bars": "bathroom-safety",
+  "shower-seats": "bathroom-safety",
+  "hunting-fishing-and-archery": "outdoor-hobbies",
+  "bounce-houses": "trampolines",
+  "dance-poles": "exercise-equipment",
+  "boxing-bags": "exercise-equipment",
+  "climbing-walls": "playground-sets",
+  "marine-electronics": "boat-hardware",
+  "boat-covers": "boat-hardware",
+  "anchor-systems": "boat-hardware",
+  "navigation-lights": "boat-hardware",
+  "fishing-rod-holders": "outdoor-hobbies",
+  "pa-systems": "stage-lighting",
+  "dj-equipment": "stage-lighting",
+  "microphones": "stage-lighting",
+  "lighting-effects": "stage-lighting",
+  "pool-tables": "game-room",
+}
+
+function thumbFor(slug: string): string | null {
+  const direct = CAT_THUMBS[slug]
+  if (direct) return direct
+  const override = THUMB_OVERRIDES[slug]
+  if (override && CAT_THUMBS[override]) return CAT_THUMBS[override]
+  return null
+}
 
 interface DbCategory {
   id: string
@@ -22,7 +167,8 @@ interface TreeNode {
 // L2 node built from v3 taxonomy (subs + extra merged)
 interface L2Node {
   name: string
-  slug: string
+  slug: string         // used for hover drill + thumb lookup
+  href: string         // navigation target (category page or search fallback)
   emphasized: boolean  // true for subs (top 6), false for extra
 }
 
@@ -80,16 +226,27 @@ export default function MegaMenu({ locale = "et" }: { locale?: string; variant?:
     if (!activeL1) return []
     const out: L2Node[] = []
     activeL1.subs.forEach((name, idx) => {
-      out.push({ name, slug: activeL1.subSlugs[idx] ?? activeL1.slug, emphasized: true })
+      const slug = activeL1.subSlugs[idx] ?? activeL1.slug
+      out.push({
+        name,
+        slug,
+        href: categoryPath(locale as "et" | "en", slug),
+        emphasized: true,
+      })
     })
     activeL1.extra.forEach((name) => {
-      // extra items don't have curated slugs — slugify + lookup
+      // extras don't have curated slugs — slugify for drill/thumb lookup
       const candidate = name.toLowerCase().replace(/&/g, "and").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")
-      const slug = treeBySlug.has(candidate) ? candidate : activeL1.slug
-      out.push({ name, slug, emphasized: false })
+      const hasDbNode = treeBySlug.has(candidate)
+      const slug = hasDbNode ? candidate : (thumbFor(candidate) ? candidate : activeL1.slug)
+      // If DB-backed → category page; otherwise search page with the exact extra name as query
+      const href = hasDbNode
+        ? categoryPath(locale as "et" | "en", candidate)
+        : `/${locale}/otsing?q=${encodeURIComponent(name)}`
+      out.push({ name, slug, href, emphasized: false })
     })
     return out
-  }, [activeL1, treeBySlug])
+  }, [activeL1, treeBySlug, locale])
 
   // Panels for desktop drill: [L2 from v3, then L3+ from DB via hoverPath]
   const drillPanels: TreeNode[][] = useMemo(() => {
@@ -109,21 +266,31 @@ export default function MegaMenu({ locale = "et" }: { locale?: string; variant?:
     }, 60)
   }, [])
 
+  // Suppress noise panels: a drill that would show a single leaf child is redundant with the parent link
+  const shouldDrill = useCallback((node: TreeNode): boolean => {
+    if (node.children.length === 0) return false
+    if (node.children.length === 1 && node.children[0].children.length === 0) return false
+    return true
+  }, [])
+
   const handleL2Hover = useCallback((slug: string) => {
     clearTimeout(hoverTimerRef.current)
     hoverTimerRef.current = setTimeout(() => {
       const node = treeBySlug.get(slug)
-      setHoverPath(node && node.children.length > 0 ? [node] : [])
+      setHoverPath(node && shouldDrill(node) ? [node] : [])
     }, 80)
-  }, [treeBySlug])
+  }, [treeBySlug, shouldDrill])
 
   const handleDeepHover = useCallback((node: TreeNode, depth: number) => {
-    // depth = index in hoverPath where this node currently sits
     clearTimeout(hoverTimerRef.current)
     hoverTimerRef.current = setTimeout(() => {
+      if (!shouldDrill(node)) {
+        setHoverPath((prev) => prev.slice(0, depth + 1))
+        return
+      }
       setHoverPath((prev) => [...prev.slice(0, depth + 1), node])
     }, 80)
-  }, [])
+  }, [shouldDrill])
 
   useEffect(() => () => {
     clearTimeout(hoverTimerRef.current)
@@ -171,30 +338,57 @@ export default function MegaMenu({ locale = "et" }: { locale?: string; variant?:
   }, [isOpen])
 
   const mobileTop = mobileStack.length > 0 ? mobileStack[mobileStack.length - 1] : null
-  const mobileChildren: Array<{ name: string; slug: string; hasKids: boolean; emphasized?: boolean }> = (() => {
+  const mobileChildren: Array<{ name: string; slug: string; href: string; hasKids: boolean; emphasized?: boolean }> = (() => {
     if (!mobileTop) {
-      return TAXONOMY_V3.map((l1) => ({ name: l1.name, slug: l1.slug, hasKids: true, emphasized: true }))
+      return TAXONOMY_V3.map((l1) => ({
+        name: l1.name,
+        slug: l1.slug,
+        href: categoryPath(locale as "et" | "en", l1.slug),
+        hasKids: true,
+        emphasized: true,
+      }))
     }
     if (mobileTop.kind === "l1") {
       const l1 = mobileTop.node
-      const items: Array<{ name: string; slug: string; hasKids: boolean; emphasized: boolean }> = []
+      const items: Array<{ name: string; slug: string; href: string; hasKids: boolean; emphasized: boolean }> = []
       l1.subs.forEach((n, i) => {
         const slug = l1.subSlugs[i] ?? l1.slug
         const node = treeBySlug.get(slug)
-        items.push({ name: n, slug, hasKids: !!(node && node.children.length > 0), emphasized: true })
+        items.push({
+          name: n,
+          slug,
+          href: categoryPath(locale as "et" | "en", slug),
+          hasKids: !!(node && node.children.length > 0),
+          emphasized: true,
+        })
       })
       l1.extra.forEach((n) => {
         const candidate = n.toLowerCase().replace(/&/g, "and").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")
         const node = treeBySlug.get(candidate)
-        items.push({ name: n, slug: node ? candidate : l1.slug, hasKids: !!(node && node.children.length > 0), emphasized: false })
+        const slug = node ? candidate : (thumbFor(candidate) ? candidate : l1.slug)
+        const href = node
+          ? categoryPath(locale as "et" | "en", candidate)
+          : `/${locale}/otsing?q=${encodeURIComponent(n)}`
+        items.push({
+          name: n,
+          slug,
+          href,
+          hasKids: !!(node && node.children.length > 0),
+          emphasized: false,
+        })
       })
       return items
     }
-    return mobileTop.node.children.map((c) => ({ name: c.name, slug: c.handle, hasKids: c.children.length > 0 }))
+    return mobileTop.node.children.map((c) => ({
+      name: c.name,
+      slug: c.handle,
+      href: categoryPath(locale as "et" | "en", c.handle),
+      hasKids: c.children.length > 0,
+    }))
   })()
 
-  const panelWidth = 260
-  const totalWidth = 320 + (activeL1 ? 320 : 0) + drillPanels.length * panelWidth
+  const panelWidth = 280
+  const totalWidth = 320 + (activeL1 ? 340 : 0) + drillPanels.length * panelWidth
 
   return (
     <div ref={menuRef} className="relative" onMouseLeave={handleMenuLeave}>
@@ -253,9 +447,9 @@ export default function MegaMenu({ locale = "et" }: { locale?: string; variant?:
               })}
             </div>
 
-            {/* L2 column (v3 subs + extra, no images) */}
+            {/* L2 column (v3 subs + extra, with thumbnails) */}
             {activeL1 && (
-              <div className="w-[320px] py-3 max-h-[calc(100vh-140px)] overflow-y-auto flex-shrink-0 border-r border-[#ECEEF1]">
+              <div className="w-[340px] py-3 max-h-[calc(100vh-140px)] overflow-y-auto flex-shrink-0 border-r border-[#ECEEF1]">
                 <Link
                   href={categoryPath(locale as "et" | "en", activeL1.slug)}
                   onClick={() => setIsOpen(false)}
@@ -264,25 +458,27 @@ export default function MegaMenu({ locale = "et" }: { locale?: string; variant?:
                   {locale === "et" ? `Kõik: ${activeL1.name}` : `Shop All ${activeL1.name}`}
                 </Link>
                 {activeL2Nodes.map((l2) => {
-                  const node = treeBySlug.get(l2.slug)
-                  const hasKids = !!(node && node.children.length > 0)
                   const isActive = hoverPath[0]?.handle === l2.slug
+                  const thumb = thumbFor(l2.slug)
                   return (
                     <Link
                       key={l2.name}
-                      href={categoryPath(locale as "et" | "en", l2.slug)}
+                      href={l2.href}
                       onMouseEnter={() => handleL2Hover(l2.slug)}
                       onClick={() => setIsOpen(false)}
-                      className={`flex items-center justify-between px-5 py-[7px] transition-colors ${
+                      className={`flex items-center gap-3 px-5 py-[7px] transition-colors ${
                         isActive ? "bg-[#FFF8F3] text-[#D97706]" : "text-[#1E293B] hover:bg-[#F8FAFC]"
                       }`}
                     >
-                      <span className={`flex-1 leading-tight ${l2.emphasized ? "text-[14px] font-semibold" : "text-[13px] font-normal text-[#64748B]"}`}>
+                      <span className="flex-shrink-0 w-8 h-8 rounded-md bg-[#F8FAFC] border border-[#ECEEF1] overflow-hidden flex items-center justify-center">
+                        {thumb ? (
+                          <img src={decodeURIComponent(thumb)} alt="" className="w-full h-full object-contain" loading="lazy" />
+                        ) : null}
+                      </span>
+                      <span className="flex-1 leading-tight text-[13px] font-medium">
                         {l2.name}
                       </span>
-                      {hasKids && (
-                        <ChevronRight size={12} style={{ color: isActive ? "#D97706" : "#CBD5E1" }} className="flex-shrink-0 ml-2" />
-                      )}
+                      <ChevronRight size={12} style={{ color: isActive ? "#D97706" : "#CBD5E1" }} className="flex-shrink-0" />
                     </Link>
                   )
                 })}
@@ -310,21 +506,24 @@ export default function MegaMenu({ locale = "et" }: { locale?: string; variant?:
                   )}
                   {nodes.map((node) => {
                     const isActive = hoverPath[panelIdx + 1]?.handle === node.handle
-                    const hasKids = node.children.length > 0
+                    const thumb = thumbFor(node.handle)
                     return (
                       <Link
                         key={node.handle}
                         href={categoryPath(locale as "et" | "en", node.handle)}
                         onMouseEnter={() => handleDeepHover(node, panelIdx)}
                         onClick={() => setIsOpen(false)}
-                        className={`flex items-center justify-between px-5 py-[7px] text-[13px] transition-colors ${
+                        className={`flex items-center gap-3 px-5 py-[7px] text-[13px] transition-colors ${
                           isActive ? "bg-[#FFF8F3] text-[#D97706]" : "text-[#1E293B] hover:bg-[#F8FAFC]"
                         }`}
                       >
+                        <span className="flex-shrink-0 w-7 h-7 rounded-md bg-[#F8FAFC] border border-[#ECEEF1] overflow-hidden flex items-center justify-center">
+                          {thumb ? (
+                            <img src={decodeURIComponent(thumb)} alt="" className="w-full h-full object-contain" loading="lazy" />
+                          ) : null}
+                        </span>
                         <span className="font-medium flex-1 truncate">{node.name}</span>
-                        {hasKids && (
-                          <ChevronRight size={12} style={{ color: isActive ? "#D97706" : "#CBD5E1" }} className="flex-shrink-0 ml-2" />
-                        )}
+                        <ChevronRight size={12} style={{ color: isActive ? "#D97706" : "#CBD5E1" }} className="flex-shrink-0" />
                       </Link>
                     )
                   })}
@@ -383,8 +582,15 @@ export default function MegaMenu({ locale = "et" }: { locale?: string; variant?:
             })}
 
             {mobileTop && mobileChildren.map((child) => {
+              const thumb = thumbFor(child.slug)
+              const thumbEl = (
+                <span className="flex-shrink-0 w-9 h-9 rounded-md bg-[#F8FAFC] border border-[#ECEEF1] overflow-hidden flex items-center justify-center mr-3">
+                  {thumb ? (
+                    <img src={decodeURIComponent(thumb)} alt="" className="w-full h-full object-contain" loading="lazy" />
+                  ) : null}
+                </span>
+              )
               if (child.hasKids) {
-                // Find the node to drill into
                 const l1Match = TAXONOMY_V3.find((l) => l.slug === child.slug)
                 let nextNode: { kind: "l1"; node: TaxonomyL1 } | { kind: "sub"; node: TreeNode } | null = null
                 if (l1Match) {
@@ -397,11 +603,12 @@ export default function MegaMenu({ locale = "et" }: { locale?: string; variant?:
                   <button
                     key={child.slug + child.name}
                     onClick={() => { if (nextNode) setMobileStack((s) => [...s, nextNode!]) }}
-                    className={`w-full flex items-center justify-between pl-5 pr-4 min-h-[48px] text-[14px] text-[#1E293B] border-b border-[#F1F5F9] active:bg-[#FFFBEB] transition-colors ${
-                      child.emphasized === false ? "font-normal text-[#64748B]" : "font-semibold"
-                    }`}
+                    className="w-full flex items-center justify-between pl-4 pr-4 min-h-[56px] text-[14px] font-medium text-[#1E293B] border-b border-[#F1F5F9] active:bg-[#FFFBEB] transition-colors"
                   >
-                    <span className="text-left flex-1">{child.name}</span>
+                    <span className="flex items-center flex-1 text-left">
+                      {thumbEl}
+                      <span className="flex-1">{child.name}</span>
+                    </span>
                     <ChevronRight size={16} className="text-[#CBD5E1] flex-shrink-0 ml-2" />
                   </button>
                 )
@@ -409,13 +616,12 @@ export default function MegaMenu({ locale = "et" }: { locale?: string; variant?:
               return (
                 <Link
                   key={child.slug + child.name}
-                  href={categoryPath(locale as "et" | "en", child.slug)}
+                  href={child.href}
                   onClick={() => { setIsOpen(false); setMobileStack([]) }}
-                  className={`block pl-5 pr-4 min-h-[48px] text-[14px] text-[#1E293B] border-b border-[#F1F5F9] active:bg-[#FFFBEB] active:text-[#D97706] transition-colors flex items-center ${
-                    child.emphasized === false ? "font-normal text-[#64748B]" : "font-semibold"
-                  }`}
+                  className="pl-4 pr-4 min-h-[56px] text-[14px] font-medium text-[#1E293B] border-b border-[#F1F5F9] active:bg-[#FFFBEB] active:text-[#D97706] transition-colors flex items-center"
                 >
-                  {child.name}
+                  {thumbEl}
+                  <span className="flex-1">{child.name}</span>
                 </Link>
               )
             })}
