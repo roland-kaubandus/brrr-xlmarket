@@ -26,7 +26,8 @@ const CATEGORY_V3_REDIRECTS: Record<string, string> = {
   "musical-instruments": "music-entertainment",
   outdoors: "outdoor-power-landscaping",
   paint: "construction-building",
-  "playground-sets": "fitness-sports-recreation",
+  // NB: "playground-sets" eemaldatud 2026-04-18 — see on nüüd v3 subSlug
+  // (taxonomy-v3.ts) ja redirect tekitas kollisiooni (MegaMenu → 308 → vale L1).
   plumbing: "plumbing-water-systems",
   "safety-equipment": "safety-security-workwear",
   "smart-home": "electrical-energy",

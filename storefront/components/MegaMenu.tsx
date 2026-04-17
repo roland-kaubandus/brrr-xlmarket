@@ -130,7 +130,7 @@ const THUMB_OVERRIDES: Record<string, string> = {
   "bounce-houses": "trampolines",
   "dance-poles": "exercise-equipment",
   "boxing-bags": "exercise-equipment",
-  "climbing-walls": "playground-sets",
+  "climbing-walls": "playground-outdoor-play",
   "marine-electronics": "boat-hardware",
   "boat-covers": "boat-hardware",
   "anchor-systems": "boat-hardware",

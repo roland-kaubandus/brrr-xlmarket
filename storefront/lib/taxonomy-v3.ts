@@ -116,7 +116,7 @@ export const TAXONOMY_V3: TaxonomyL1[] = [
     meiliQuery: "wheelchair walker grab bar medical exam table" },
   { id: 19, prodNum: 18, slug: "fitness-sports-recreation", name: "Fitness, Sports & Recreation",
     subs: ["Gym Equipment","Team Sports Equipment","Gym Flooring & Mats","Trampolines","Playground & Outdoor Play","Cycling"],
-    subSlugs: ["gym-mats","sports-equipment","gym-flooring","trampolines","playground-sets","cycling"],
+    subSlugs: ["gym-mats","sports-equipment","gym-flooring","trampolines","playground-outdoor-play","cycling"],
     extra: ["Hunting, Fishing & Archery","Bounce Houses","Dance Poles","Boxing Bags","Climbing Walls"],
     meiliQuery: "gym equipment trampoline dumbbell treadmill bike" },
   { id: 20, prodNum: 21, slug: "boating-camping-outdoor", name: "Boating, Camping & Outdoor Adventure",
