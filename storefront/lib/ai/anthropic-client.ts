@@ -6,7 +6,7 @@ export function getAnthropicClient(): Anthropic {
   if (!client) {
     const apiKey = process.env.ANTHROPIC_API_KEY
     if (!apiKey) {
-      throw new Error("ANTHROPIC_API_KEY environment variable is not set")
+      throw new Error("AI_UNAVAILABLE")
     }
     client = new Anthropic({ apiKey })
   }

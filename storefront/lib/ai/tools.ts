@@ -1,4 +1,4 @@
-import { searchProducts, type MeiliHit } from "@/lib/meilisearch"
+import { searchProducts, isSafeHandleToken, escapeMeiliFilterValue, type MeiliHit } from "@/lib/meilisearch"
 
 export type ProductResult = {
   handle: string
@@ -26,7 +26,9 @@ export async function toolSearchProducts(args: {
 }): Promise<ProductResult[]> {
   const limit = Math.min(args.limit ?? 6, 10)
   const sort = args.sort ? SORT_MAP[args.sort] : undefined
-  const filter = args.category ? `category_handles = "${args.category}"` : undefined
+  const filter = args.category && isSafeHandleToken(args.category)
+    ? `category_handles = "${escapeMeiliFilterValue(args.category)}"`
+    : undefined
 
   const result = await searchProducts({
     q: args.query,

@@ -26,8 +26,8 @@ function generateId(): string {
   return Math.random().toString(36).slice(2, 9)
 }
 
-function formatPrice(price: number): string {
-  return (price / 100).toLocaleString("et-EE", { style: "currency", currency: "EUR" })
+function formatPrice(price: number, locale = "et"): string {
+  return (price / 100).toLocaleString(locale === "en" ? "en-IE" : "et-EE", { style: "currency", currency: "EUR" })
 }
 
 const GREETINGS = {
@@ -99,7 +99,7 @@ function ProductCard({ item, locale, onClick }: { item: ProductItem; locale: str
       </div>
       <div className="px-2 py-1.5">
         <p className="text-[11px] text-[#475569] leading-tight line-clamp-2 mb-1">{item.title}</p>
-        <p className="text-[12px] font-semibold text-[#D97706]">{formatPrice(item.price)}</p>
+        <p className="text-[12px] font-semibold text-[#D97706]">{formatPrice(item.price, locale)}</p>
       </div>
     </button>
   )

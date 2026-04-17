@@ -47,6 +47,16 @@ export function getLocalizedDescription(hit: MeiliHit, locale: string): string {
   return hit.description || ''
 }
 
+/** Escape a value for safe inclusion in a MeiliSearch filter string */
+export function escapeMeiliFilterValue(v: string): string {
+  return String(v).replace(/\\/g, "\\\\").replace(/"/g, '\\"')
+}
+
+/** Whitelist-validate a handle-like token (alnum + dash + underscore). */
+export function isSafeHandleToken(v: string): boolean {
+  return typeof v === "string" && /^[a-z0-9][a-z0-9_-]{0,127}$/i.test(v)
+}
+
 export type MeiliSearchResult = {
   hits: MeiliHit[]
   query: string
@@ -93,6 +103,7 @@ function expandCompoundWords(q: string): string {
 
 /** Look up a single product by handle to get localized title/description */
 export async function getMeiliProductByHandle(handle: string): Promise<MeiliHit | null> {
+  if (!isSafeHandleToken(handle)) return null
   try {
     const controller = new AbortController()
     const timeout = setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS)
@@ -103,7 +114,7 @@ export async function getMeiliProductByHandle(handle: string): Promise<MeiliHit 
         "Authorization": `Bearer ${MEILI_KEY}`,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ q: "", limit: 1, filter: [`handle = "${handle}"`] }),
+      body: JSON.stringify({ q: "", limit: 1, filter: [`handle = "${escapeMeiliFilterValue(handle)}"`] }),
       next: { revalidate: 300 },
     }).finally(() => clearTimeout(timeout))
     if (!res.ok) return null
