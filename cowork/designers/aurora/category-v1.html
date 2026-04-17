@@ -1,0 +1,620 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>HoReCa &amp; Food Service — XLMarket / cat v1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=IBM+Plex+Serif:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --paper:#fafaf7;
+    --paper-2:#efede5;
+    --ink:#0a0a0a;
+    --ink-2:#2a2a28;
+    --mute:#6b6a63;
+    --hair:rgba(10,10,10,0.14);
+    --accent:#D97706;
+    --max:1440px;
+    --gutter:clamp(16px,3vw,40px);
+  }
+  *,*::before,*::after{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{background:var(--paper);color:var(--ink);font-family:"DM Sans",system-ui,sans-serif;font-size:15px;line-height:1.45;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  .caps{font-size:11px;letter-spacing:0.16em;text-transform:uppercase;font-weight:500}
+  .num{font-variant-numeric:tabular-nums;font-feature-settings:"tnum"}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 var(--gutter)}
+
+  /* Utility bar */
+  .util{background:var(--ink);color:var(--paper);font-size:12px;letter-spacing:0.06em}
+  .util .r{display:flex;justify-content:space-between;align-items:center;padding:9px 0;gap:20px;flex-wrap:wrap}
+  .util ul{list-style:none;margin:0;padding:0;display:flex;gap:26px}
+  .util li::before{content:"";display:inline-block;width:5px;height:5px;background:var(--accent);margin-right:10px;vertical-align:middle}
+  .util .q{padding:4px 12px;border:1px solid rgba(255,255,255,0.35);transition:background .2s}
+  .util .q:hover{background:var(--accent);border-color:var(--accent)}
+
+  /* Header */
+  header{position:sticky;top:0;z-index:30;background:var(--paper);border-bottom:1px solid var(--hair)}
+  .topbar{display:grid;grid-template-columns:auto 1fr auto;gap:36px;align-items:center;padding:18px 0}
+  .logo{font-family:"IBM Plex Serif";font-weight:500;font-size:24px;letter-spacing:-0.02em}
+  .logo span{color:var(--accent)}
+  nav ul{list-style:none;margin:0;padding:0;display:flex;gap:30px;justify-content:center}
+  nav a{font-size:13px;color:var(--ink-2);padding:4px 0;border-bottom:1px solid transparent;transition:border-color .2s}
+  nav a:hover,nav a.on{border-color:var(--ink)}
+  .topright{display:flex;gap:16px;font-size:13px;align-items:center}
+  .search{display:inline-flex;align-items:center;gap:10px;border:1px solid var(--hair);padding:8px 12px;width:260px;background:var(--paper-2)}
+  .search input{border:0;background:transparent;outline:0;font:inherit;flex:1;color:var(--ink)}
+
+  /* Breadcrumb + head */
+  .crumbs{padding:18px 0 0;font-size:12px;color:var(--mute);letter-spacing:0.08em}
+  .crumbs a{border-bottom:1px solid transparent}
+  .crumbs a:hover{border-color:var(--mute)}
+  .crumbs .sep{margin:0 10px;color:var(--hair)}
+  .crumbs .here{color:var(--ink)}
+
+  /* Small atmosphere strip */
+  .strip{
+    margin:16px 0 0;height:156px;overflow:hidden;border:1px solid var(--hair);
+    position:relative;background:#eee;
+  }
+  .strip img{
+    width:100%;height:100%;object-fit:cover;display:block;
+    filter:grayscale(0.08) contrast(1.05);
+  }
+  .strip .overlay{
+    position:absolute;inset:0;
+    background:linear-gradient(90deg, rgba(10,10,10,0.55), rgba(10,10,10,0.08) 60%, transparent);
+    display:flex;align-items:center;padding:0 40px;
+  }
+  .strip .title{color:var(--paper);max-width:720px}
+  .strip .title .tag{font-size:11px;letter-spacing:0.22em;opacity:0.85}
+  .strip h1{
+    font-family:"IBM Plex Serif";font-weight:400;
+    font-size:clamp(32px,5vw,58px);line-height:1;letter-spacing:-0.025em;
+    margin:10px 0 0;
+  }
+  .strip h1 em{font-style:italic;color:var(--accent);font-weight:300}
+
+  /* Discipline meta row */
+  .meta{
+    display:grid;grid-template-columns:2fr 1fr 1fr 1fr auto;gap:20px;align-items:baseline;
+    padding:22px 0 0;
+  }
+  .meta h2{margin:0;font-family:"IBM Plex Serif";font-size:18px;font-weight:400;letter-spacing:-0.01em;color:var(--mute)}
+  .meta h2 b{color:var(--ink);font-weight:500}
+  .meta .stat{color:var(--mute);font-size:12px;letter-spacing:0.08em}
+  .meta .stat b{display:block;color:var(--ink);font-family:"IBM Plex Serif";font-size:22px;font-weight:400;margin-top:4px}
+  .meta .kit-cta{white-space:nowrap;border:1px solid var(--ink);padding:12px 18px;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;transition:background .2s,color .2s}
+  .meta .kit-cta:hover{background:var(--ink);color:var(--paper)}
+
+  /* Sub-category table */
+  .sec-h{display:flex;justify-content:space-between;align-items:flex-end;padding:52px 0 14px;border-bottom:2px solid var(--ink);gap:24px}
+  .sec-h h3{font-family:"IBM Plex Serif";font-weight:400;font-size:26px;letter-spacing:-0.015em;margin:0}
+  .sec-h .eyebrow{color:var(--mute);font-size:11px;letter-spacing:0.16em;text-transform:uppercase}
+  .sec-h .viewall{font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink);border-bottom:1px solid var(--ink);padding-bottom:3px}
+
+  table.subs{width:100%;border-collapse:collapse;margin-top:6px}
+  table.subs thead th{
+    text-align:left;padding:16px 12px;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;
+    color:var(--mute);font-weight:500;border-bottom:1px solid var(--hair);
+  }
+  table.subs tbody tr{
+    border-bottom:1px solid var(--hair);
+    transition:background .25s ease;
+  }
+  table.subs tbody tr:hover{background:var(--paper-2)}
+  table.subs td{padding:22px 12px;vertical-align:middle}
+  table.subs td.idx{color:var(--mute);font-family:"IBM Plex Serif";font-weight:300;font-size:26px;width:60px}
+  table.subs td.name{font-family:"IBM Plex Serif";font-size:22px;font-weight:400;letter-spacing:-0.015em}
+  table.subs td.name a{position:relative;display:inline-flex;align-items:center;gap:10px}
+  table.subs td.name a::after{
+    content:"";position:absolute;left:0;right:100%;bottom:-3px;height:1px;background:var(--ink);
+    transition:right .3s cubic-bezier(.16,1,.3,1);
+  }
+  table.subs tbody tr:hover td.name a::after{right:0}
+  table.subs td.desc{color:var(--mute);font-size:13px;max-width:44ch}
+  table.subs td.count{text-align:right;font-variant-numeric:tabular-nums;font-size:15px;color:var(--ink);width:110px}
+  table.subs td.count small{display:block;color:var(--mute);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;margin-top:3px}
+  table.subs td.chev{width:40px;text-align:right}
+  table.subs .bar{display:inline-block;width:24px;height:1px;background:var(--ink);transition:width .3s cubic-bezier(.16,1,.3,1)}
+  table.subs tbody tr:hover .bar{width:44px;background:var(--accent)}
+
+  /* Products grid with filter rail */
+  .split{
+    display:grid;grid-template-columns:260px 1fr;gap:40px;
+    margin-top:60px;
+  }
+  .split .rail{
+    position:sticky;top:86px;align-self:start;
+    border-right:1px solid var(--hair);padding-right:28px;
+  }
+  .rail h4{font-family:"IBM Plex Serif";font-size:22px;font-weight:400;letter-spacing:-0.015em;margin:0 0 8px}
+  .rail .sub{color:var(--mute);font-size:12px;margin:0 0 22px}
+  .rail .group{margin-bottom:28px;padding-bottom:18px;border-bottom:1px solid var(--hair)}
+  .rail .group:last-child{border-bottom:0}
+  .rail .label{font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--mute);margin-bottom:12px;display:flex;justify-content:space-between}
+  .rail .label .clear{color:var(--accent);border-bottom:1px solid transparent;cursor:pointer}
+  .rail .label .clear:hover{border-color:var(--accent)}
+  .rail label.check{
+    display:flex;align-items:center;gap:10px;padding:6px 0;
+    font-size:13px;color:var(--ink-2);cursor:pointer;
+  }
+  .rail label.check input{accent-color:var(--accent);margin:0}
+  .rail label.check .c{margin-left:auto;color:var(--mute);font-variant-numeric:tabular-nums;font-size:12px}
+  .rail .range{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
+  .rail .range input{
+    font:inherit;border:1px solid var(--hair);background:var(--paper);padding:8px 10px;width:100%;
+  }
+  .rail .slider{height:1px;background:var(--hair);position:relative;margin:16px 4px}
+  .rail .slider .fill{position:absolute;left:20%;right:10%;top:-1px;height:3px;background:var(--accent)}
+  .rail .slider .dot{position:absolute;top:-5px;width:11px;height:11px;border-radius:50%;background:var(--ink)}
+  .rail .slider .dot.a{left:calc(20% - 5px)}
+  .rail .slider .dot.b{right:calc(10% - 5px)}
+
+  /* Products */
+  .prod-head{
+    display:flex;justify-content:space-between;align-items:flex-end;
+    padding-bottom:14px;border-bottom:2px solid var(--ink);margin-bottom:1px;
+  }
+  .prod-head h3{font-family:"IBM Plex Serif";font-size:26px;font-weight:400;letter-spacing:-0.015em;margin:0}
+  .prod-head .tools{display:flex;gap:16px;align-items:center;font-size:12px;color:var(--mute)}
+  .prod-head select{font:inherit;border:1px solid var(--hair);background:var(--paper);padding:8px 12px;color:var(--ink);letter-spacing:0.06em}
+  .prod-head .view{display:inline-flex;gap:0;border:1px solid var(--hair)}
+  .prod-head .view button{background:transparent;border:0;padding:8px 12px;font:inherit;color:var(--mute);cursor:pointer;border-right:1px solid var(--hair)}
+  .prod-head .view button:last-child{border-right:0}
+  .prod-head .view button.on{color:var(--ink);background:var(--paper-2)}
+
+  .products{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--hair);
+    border-bottom:1px solid var(--hair);border-top:1px solid var(--hair);margin-top:0;
+  }
+  .card{
+    background:var(--paper);padding:20px 18px;display:flex;flex-direction:column;gap:12px;
+    position:relative;transition:background .25s ease;
+  }
+  .card:hover{background:#f3f1e9}
+  .card .ph{
+    aspect-ratio:4/3;background:var(--paper-2);border:1px solid var(--hair);
+    display:flex;align-items:center;justify-content:center;
+    overflow:hidden;position:relative;
+  }
+  .card .ph svg{width:48%;height:48%;color:var(--mute);opacity:0.6}
+  .card .tag{
+    position:absolute;top:12px;left:12px;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;
+    padding:4px 8px;background:var(--paper);color:var(--ink);border:1px solid var(--hair);
+  }
+  .card .tag.sale{background:var(--accent);color:var(--ink);border-color:var(--accent)}
+  .card .brand{color:var(--mute);font-size:11px;letter-spacing:0.14em;text-transform:uppercase}
+  .card .title{font-family:"IBM Plex Serif";font-size:17px;line-height:1.2;margin:0;letter-spacing:-0.01em}
+  .card .sku{color:var(--mute);font-size:11px;letter-spacing:0.1em;text-transform:uppercase}
+  .card .price-row{display:flex;justify-content:space-between;align-items:baseline;margin-top:auto;padding-top:10px;border-top:1px solid var(--hair)}
+  .card .price{font-family:"IBM Plex Serif";font-size:22px;line-height:1;font-variant-numeric:tabular-nums}
+  .card .price small{font-size:11px;color:var(--mute);margin-left:4px;font-family:"DM Sans";letter-spacing:0.1em}
+  .card .was{color:var(--mute);font-size:12px;text-decoration:line-through;margin-right:8px;font-variant-numeric:tabular-nums}
+  .card .b2b{font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent)}
+  .card .add{
+    border:1px solid var(--ink);padding:8px 14px;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;
+    transition:background .2s,color .2s;background:transparent;color:var(--ink);cursor:pointer;font:inherit;
+  }
+  .card .add:hover{background:var(--ink);color:var(--paper)}
+
+  .pagination{
+    display:flex;justify-content:space-between;align-items:center;padding:26px 0 60px;color:var(--mute);font-size:12px;
+  }
+  .pagination nav{display:flex;gap:10px}
+  .pagination nav a{
+    padding:8px 12px;border:1px solid var(--hair);
+    font-variant-numeric:tabular-nums;min-width:36px;text-align:center;
+    transition:border-color .2s,background .2s;
+  }
+  .pagination nav a.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+  .pagination nav a:hover:not(.on){border-color:var(--ink)}
+
+  @media (max-width:980px){
+    nav.primary, .search{display:none}
+    .meta{grid-template-columns:1fr;gap:10px}
+    .split{grid-template-columns:1fr}
+    .split .rail{position:static;border:0;padding:0;margin-bottom:30px}
+    .products{grid-template-columns:repeat(2,1fr)}
+    table.subs td.desc{display:none}
+  }
+  @media (max-width:640px){
+    .products{grid-template-columns:1fr}
+    table.subs td.idx{display:none}
+  }
+</style>
+</head>
+<body>
+
+<div class="util">
+  <div class="wrap r">
+    <ul>
+      <li>Net-30 on approval</li>
+      <li>Volume pricing · 3+ units</li>
+      <li>Dedicated manager</li>
+    </ul>
+    <a class="q" href="#quote">Request B2B quote →</a>
+  </div>
+</div>
+
+<header>
+  <div class="wrap topbar">
+    <a class="logo" href="/">XLMarket<span>.</span></a>
+    <nav class="primary">
+      <ul>
+        <li><a href="#" class="on">Catalogue</a></li>
+        <li><a href="#">Starter kits</a></li>
+        <li><a href="#">Industries</a></li>
+        <li><a href="#">Trade desk</a></li>
+        <li><a href="#">Journal</a></li>
+      </ul>
+    </nav>
+    <div class="topright">
+      <label class="search">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.3-4.3"/></svg>
+        <input placeholder="Search HoReCa…" />
+      </label>
+      <a class="caps" href="#">Account</a>
+      <a class="caps" href="#">Basket (0)</a>
+    </div>
+  </div>
+</header>
+
+<!-- Breadcrumbs + small atmosphere strip + head -->
+<div class="wrap">
+  <div class="crumbs caps">
+    <a href="/">Catalogue</a><span class="sep">/</span>
+    <a href="/">Disciplines</a><span class="sep">/</span>
+    <span class="here">HoReCa &amp; Food Service</span>
+  </div>
+  <div class="strip">
+    <img src="../../images/cat-01-horeca-food-service.png" alt="HoReCa kitchen" />
+    <div class="overlay">
+      <div class="title">
+        <span class="tag caps">Discipline 01 · Of 22</span>
+        <h1>HoReCa &amp; <em>Food Service.</em></h1>
+      </div>
+    </div>
+  </div>
+  <div class="meta">
+    <h2><b>612</b> working-grade products — refrigeration, cooking, prep &amp; service.</h2>
+    <div class="stat caps">Sub-cats<b>6</b></div>
+    <div class="stat caps">In stock<b>574</b></div>
+    <div class="stat caps">VAT incl.<b>24%</b></div>
+    <a class="kit-cta" href="#">The Café Opening Kit →</a>
+  </div>
+</div>
+
+<!-- Sub-category editorial table -->
+<section class="wrap">
+  <div class="sec-h">
+    <div>
+      <span class="eyebrow">§ I · Sub-categories</span>
+      <h3>Six disciplines within HoReCa</h3>
+    </div>
+    <a class="viewall" href="#">Open all 6 &nbsp;→</a>
+  </div>
+
+  <table class="subs">
+    <thead>
+      <tr>
+        <th style="width:60px">N<sup>o</sup></th>
+        <th style="min-width:240px">Sub-category</th>
+        <th>What it contains</th>
+        <th style="text-align:right">Products</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="idx num">01</td>
+        <td class="name"><a href="/haru/horeca-food-service/refrigerators">Commercial Refrigeration</a></td>
+        <td class="desc">Under-counter, upright, walk-in &amp; blast chillers. Display cases, bottle coolers, ice machines.</td>
+        <td class="count">138<small>prod</small></td>
+        <td class="chev"><span class="bar"></span></td>
+      </tr>
+      <tr>
+        <td class="idx num">02</td>
+        <td class="name"><a href="/haru/horeca-food-service/commercial-ovens">Commercial Cooking Equipment</a></td>
+        <td class="desc">Ranges, combi ovens, deep fryers, pasta cookers, salamanders, induction hobs.</td>
+        <td class="count">142<small>prod</small></td>
+        <td class="chev"><span class="bar"></span></td>
+      </tr>
+      <tr>
+        <td class="idx num">03</td>
+        <td class="name"><a href="/haru/horeca-food-service/food-preparation">Food Preparation Equipment</a></td>
+        <td class="desc">Mixers, slicers, food processors, dough sheeters, vacuum sealers, meat grinders.</td>
+        <td class="count">126<small>prod</small></td>
+        <td class="chev"><span class="bar"></span></td>
+      </tr>
+      <tr>
+        <td class="idx num">04</td>
+        <td class="name"><a href="/haru/horeca-food-service/espresso-machines">Bar &amp; Beverage Service</a></td>
+        <td class="desc">Espresso machines, grinders, frozen drink dispensers, draft beer, blenders.</td>
+        <td class="count">89<small>prod</small></td>
+        <td class="chev"><span class="bar"></span></td>
+      </tr>
+      <tr>
+        <td class="idx num">05</td>
+        <td class="name"><a href="/haru/horeca-food-service/commercial-sinks">Commercial Sinks &amp; Washdown</a></td>
+        <td class="desc">Stainless two- and three-compartment sinks, handwash stations, drying racks, glass washers.</td>
+        <td class="count">64<small>prod</small></td>
+        <td class="chev"><span class="bar"></span></td>
+      </tr>
+      <tr>
+        <td class="idx num">06</td>
+        <td class="name"><a href="/haru/horeca-food-service/restaurant-shelving">Restaurant Storage &amp; Shelving</a></td>
+        <td class="desc">Stainless work tables, wire shelving, dunnage racks, ingredient bins, POS shelving.</td>
+        <td class="count">53<small>prod</small></td>
+        <td class="chev"><span class="bar"></span></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- Products: filter rail + grid -->
+<section class="wrap split">
+  <aside class="rail" aria-label="Filters">
+    <h4>Refine</h4>
+    <p class="sub">612 products · 574 in stock</p>
+
+    <div class="group">
+      <div class="label"><span>Sub-category</span><span class="clear">Reset</span></div>
+      <label class="check"><input type="checkbox" /> Refrigeration<span class="c num">138</span></label>
+      <label class="check"><input type="checkbox" checked /> Cooking<span class="c num">142</span></label>
+      <label class="check"><input type="checkbox" /> Food Prep<span class="c num">126</span></label>
+      <label class="check"><input type="checkbox" /> Bar &amp; Beverage<span class="c num">89</span></label>
+      <label class="check"><input type="checkbox" /> Sinks<span class="c num">64</span></label>
+      <label class="check"><input type="checkbox" /> Shelving<span class="c num">53</span></label>
+    </div>
+
+    <div class="group">
+      <div class="label"><span>Price · VAT incl.</span></div>
+      <div class="range">
+        <input type="text" value="€249" />
+        <input type="text" value="€3,499" />
+      </div>
+      <div class="slider"><div class="fill"></div><div class="dot a"></div><div class="dot b"></div></div>
+    </div>
+
+    <div class="group">
+      <div class="label"><span>Brand</span></div>
+      <label class="check"><input type="checkbox" checked /> VEVOR<span class="c num">537</span></label>
+      <label class="check"><input type="checkbox" /> Master Chef<span class="c num">42</span></label>
+      <label class="check"><input type="checkbox" /> PrimePro<span class="c num">33</span></label>
+    </div>
+
+    <div class="group">
+      <div class="label"><span>Availability</span></div>
+      <label class="check"><input type="checkbox" checked /> In stock<span class="c num">574</span></label>
+      <label class="check"><input type="checkbox" /> Pre-order<span class="c num">38</span></label>
+    </div>
+
+    <div class="group">
+      <div class="label"><span>B2B</span></div>
+      <label class="check"><input type="checkbox" /> Volume pricing<span class="c num">412</span></label>
+      <label class="check"><input type="checkbox" /> Net-30 eligible<span class="c num">612</span></label>
+    </div>
+  </aside>
+
+  <div>
+    <div class="prod-head">
+      <div>
+        <span class="caps" style="color:var(--mute)">§ II · Products</span>
+        <h3 style="margin-top:6px">1–12 of 612</h3>
+      </div>
+      <div class="tools">
+        <label class="caps">Sort
+          <select>
+            <option>Recommended</option>
+            <option>Price · low to high</option>
+            <option>Price · high to low</option>
+            <option>Newest</option>
+          </select>
+        </label>
+        <div class="view">
+          <button class="on" aria-label="Grid view">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+          </button>
+          <button aria-label="List view">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="products">
+      <!-- 12 cards -->
+      <article class="card">
+        <div class="ph">
+          <span class="tag sale caps">−14%</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.8"><rect x="5" y="3" width="14" height="18" rx="1"/><path d="M5 12h14M8 7h8M8 17h8"/></svg>
+        </div>
+        <span class="brand">VEVOR</span>
+        <h4 class="title">2-Door Under-Counter Commercial Refrigerator, 134 L</h4>
+        <span class="sku caps">SKU VR-134</span>
+        <div class="price-row">
+          <div><span class="was num">€1,099</span><span class="price num">€949<small>VAT incl.</small></span></div>
+          <button class="add caps">Add</button>
+        </div>
+        <span class="b2b caps">Net-30 eligible · −6% at 3+</span>
+      </article>
+
+      <article class="card">
+        <div class="ph">
+          <span class="tag caps">New</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.8"><rect x="4" y="6" width="16" height="12" rx="1"/><circle cx="8" cy="12" r="2"/><circle cx="14" cy="12" r="2"/><path d="M4 3h16M4 21h16"/></svg>
+        </div>
+        <span class="brand">VEVOR</span>
+        <h4 class="title">Double-Burner Induction Range 3500 W</h4>
+        <span class="sku caps">SKU VI-3500</span>
+        <div class="price-row">
+          <div><span class="price num">€619<small>VAT incl.</small></span></div>
+          <button class="add caps">Add</button>
+        </div>
+        <span class="b2b caps">B2B −8% at 6+</span>
+      </article>
+
+      <article class="card">
+        <div class="ph">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.8"><path d="M5 3h14v6H5z"/><path d="M6 9v12h12V9"/><circle cx="12" cy="15" r="2.5"/></svg>
+        </div>
+        <span class="brand">VEVOR</span>
+        <h4 class="title">Commercial Espresso Machine, 2 Group, 11 L</h4>
+        <span class="sku caps">SKU VE-211</span>
+        <div class="price-row">
+          <div><span class="was num">€1,899</span><span class="price num">€1,649<small>incl.</small></span></div>
+          <button class="add caps">Add</button>
+        </div>
+        <span class="b2b caps">Net-30 eligible</span>
+      </article>
+
+      <article class="card">
+        <div class="ph">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.8"><rect x="3" y="5" width="18" height="14" rx="1"/><path d="M7 9h10M7 12h10M7 15h6"/></svg>
+        </div>
+        <span class="brand">VEVOR</span>
+        <h4 class="title">20 L Planetary Dough Mixer with Stainless Bowl</h4>
+        <span class="sku caps">SKU VD-20P</span>
+        <div class="price-row">
+          <div><span class="price num">€549<small>VAT incl.</small></span></div>
+          <button class="add caps">Add</button>
+        </div>
+        <span class="b2b caps">In stock · ships 24h</span>
+      </article>
+
+      <article class="card">
+        <div class="ph">
+          <span class="tag sale caps">−22%</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.8"><rect x="4" y="4" width="16" height="16" rx="1"/><path d="M8 4v16M16 4v16M4 12h16"/></svg>
+        </div>
+        <span class="brand">VEVOR</span>
+        <h4 class="title">Gas Deep Fryer 2 × 10 L with Double Basket</h4>
+        <span class="sku caps">SKU VG-210</span>
+        <div class="price-row">
+          <div><span class="was num">€489</span><span class="price num">€379<small>incl.</small></span></div>
+          <button class="add caps">Add</button>
+        </div>
+        <span class="b2b caps">B2B −10% at 6+</span>
+      </article>
+
+      <article class="card">
+        <div class="ph">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.8"><rect x="4" y="3" width="16" height="18" rx="1"/><path d="M9 7h6M9 11h6M9 15h3"/></svg>
+        </div>
+        <span class="brand">VEVOR</span>
+        <h4 class="title">Upright Display Refrigerator, Glass Door, 280 L</h4>
+        <span class="sku caps">SKU VU-280</span>
+        <div class="price-row">
+          <div><span class="price num">€879<small>VAT incl.</small></span></div>
+          <button class="add caps">Add</button>
+        </div>
+        <span class="b2b caps">Net-30 · free delivery</span>
+      </article>
+
+      <article class="card">
+        <div class="ph">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.8"><path d="M4 8h16l-2 12H6z"/><path d="M9 8V5a3 3 0 0 1 6 0v3"/></svg>
+        </div>
+        <span class="brand">VEVOR</span>
+        <h4 class="title">Stainless Steel Stock Pot 40 L with Lid</h4>
+        <span class="sku caps">SKU VSP-40</span>
+        <div class="price-row">
+          <div><span class="price num">€129<small>VAT incl.</small></span></div>
+          <button class="add caps">Add</button>
+        </div>
+        <span class="b2b caps">Volume −14% at 12+</span>
+      </article>
+
+      <article class="card">
+        <div class="ph">
+          <span class="tag caps">Bestseller</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.8"><rect x="3" y="7" width="18" height="14" rx="1"/><path d="M6 7V5a3 3 0 0 1 3-3h6a3 3 0 0 1 3 3v2"/><path d="M9 11v6M15 11v6"/></svg>
+        </div>
+        <span class="brand">VEVOR</span>
+        <h4 class="title">2-Door Wine Cellar &amp; Bottle Cooler, 210 L</h4>
+        <span class="sku caps">SKU VW-210</span>
+        <div class="price-row">
+          <div><span class="was num">€859</span><span class="price num">€749<small>incl.</small></span></div>
+          <button class="add caps">Add</button>
+        </div>
+        <span class="b2b caps">Net-30 eligible</span>
+      </article>
+
+      <article class="card">
+        <div class="ph">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.8"><rect x="3" y="5" width="18" height="12" rx="1"/><rect x="3" y="17" width="18" height="3"/><path d="M7 9v4M12 9v4M17 9v4"/></svg>
+        </div>
+        <span class="brand">VEVOR</span>
+        <h4 class="title">Three-Compartment Sink, Stainless 18/10, 180 cm</h4>
+        <span class="sku caps">SKU VS-3-180</span>
+        <div class="price-row">
+          <div><span class="price num">€429<small>VAT incl.</small></span></div>
+          <button class="add caps">Add</button>
+        </div>
+        <span class="b2b caps">In stock</span>
+      </article>
+
+      <article class="card">
+        <div class="ph">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.8"><rect x="4" y="4" width="16" height="12" rx="1"/><path d="M4 8h16M9 12h6"/><path d="M6 16v4M18 16v4"/></svg>
+        </div>
+        <span class="brand">VEVOR</span>
+        <h4 class="title">Combination Convection Steam Oven, 10-Tray</h4>
+        <span class="sku caps">SKU VC-10S</span>
+        <div class="price-row">
+          <div><span class="price num">€3,199<small>incl.</small></span></div>
+          <button class="add caps">Add</button>
+        </div>
+        <span class="b2b caps">B2B −12% at 3+</span>
+      </article>
+
+      <article class="card">
+        <div class="ph">
+          <span class="tag sale caps">−18%</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.8"><circle cx="12" cy="12" r="8"/><path d="M12 6v6l4 2"/></svg>
+        </div>
+        <span class="brand">VEVOR</span>
+        <h4 class="title">Commercial Ice Machine 50 kg / 24 h, Nugget Ice</h4>
+        <span class="sku caps">SKU VIM-50</span>
+        <div class="price-row">
+          <div><span class="was num">€1,299</span><span class="price num">€1,069<small>incl.</small></span></div>
+          <button class="add caps">Add</button>
+        </div>
+        <span class="b2b caps">Net-30 eligible</span>
+      </article>
+
+      <article class="card">
+        <div class="ph">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.8"><rect x="3" y="6" width="18" height="12" rx="1"/><path d="M3 10h18"/><circle cx="18" cy="14" r="1.5"/></svg>
+        </div>
+        <span class="brand">VEVOR</span>
+        <h4 class="title">Countertop Food Dehydrator, 10-Tray, 1000 W</h4>
+        <span class="sku caps">SKU VFD-10</span>
+        <div class="price-row">
+          <div><span class="price num">€229<small>VAT incl.</small></span></div>
+          <button class="add caps">Add</button>
+        </div>
+        <span class="b2b caps">Volume −8% at 3+</span>
+      </article>
+
+    </div>
+
+    <div class="pagination">
+      <span class="caps">Showing 1–12 of 612</span>
+      <nav>
+        <a href="#" class="on num">1</a>
+        <a href="#" class="num">2</a>
+        <a href="#" class="num">3</a>
+        <a href="#" class="num">…</a>
+        <a href="#" class="num">51</a>
+        <a href="#" class="caps">Next →</a>
+      </nav>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
