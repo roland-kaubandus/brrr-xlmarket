@@ -46,7 +46,8 @@ const CATEGORY_NAMES: Record<string, Record<string, string>> = {
   "health-and-wellness": { et: "Tervis ja heaolu", en: "Health & Wellness" },
   "lighting": { et: "Valgustus", en: "Lighting" },
   "window-treatments": { et: "Aknalahendused", en: "Window Treatments" },
-  "playground-sets": { et: "Mänguväljakud", en: "Playground Sets" },
+  "playground-sets": { et: "Mänguväljakud", en: "Playground Sets" }, // legacy v2 L1, jääb redirect tabeliks
+  "playground-outdoor-play": { et: "Mänguväljakud ja välimängud", en: "Playground & Outdoor Play" },
   "holiday-decorations": { et: "Pühadedekoratsioonid", en: "Holiday Decorations" },
   "workwear": { et: "Tööriided", en: "Workwear" },
   "smart-home": { et: "Nutikas kodu", en: "Smart Home" },
@@ -67,6 +68,13 @@ function humanize(handle: string): string {
     .replace(/\b\w/g, (c) => c.toUpperCase())
 }
 
+// Category handles that should never be indexed (legacy dump categories,
+// artificial VEVOR shells). 2026-04-18 taxonomy audit §1.3 — /et/kategooriad/other
+// was serving 200 as an empty page.
+const NOINDEX_HANDLES = new Set<string>([
+  "other",
+])
+
 export async function generateMetadata({ params }: Props) {
   const { handle, locale } = await params
   const category = await getCategoryByHandle(handle)
@@ -76,10 +84,12 @@ export async function generateMetadata({ params }: Props) {
   const desc = locale === "et"
     ? `${displayName} tooted soodsa hinnaga. Kiire tarne üle Eesti.`
     : `${displayName} products at great prices. Fast delivery in Estonia.`
+  const shouldNoindex = NOINDEX_HANDLES.has(handle)
   return {
     title: `${displayName} — XLMARKET`,
     description: desc,
     openGraph: { title: `${displayName} — XLMARKET`, description: desc, type: "website" },
+    robots: shouldNoindex ? { index: false, follow: false } : undefined,
   }
 }
 
