@@ -1,0 +1,14 @@
+{
+  "_doc": "S2 — substring match on VEVOR productType path (first match wins). Narrowest business rules: steer specific product classes away from the broad L1 default. Migrated from backend/src/scripts/vevor-to-v3.json path_contains. Value format: 'l1-slug' or 'l1-slug/l2-slug'. Confidence 0.95.",
+  "_version": 1,
+  "_updated": "2026-04-18",
+  "rules": {
+    "Laser Engraving": "laser-cnc-digital-fabrication/co2-laser-engravers-cutters",
+    "CNC Router": "laser-cnc-digital-fabrication/cnc-routers-mills",
+    "Engraving & Cutting": "laser-cnc-digital-fabrication",
+    "3D Printer": "laser-cnc-digital-fabrication/3d-printers",
+    "Heat Press": "printing-packaging-signage/screen-printing-heat-press",
+    "Vinyl Cutter": "printing-packaging-signage/vinyl-cutters-plotters",
+    "Screen Printing": "printing-packaging-signage/screen-printing-heat-press"
+  }
+}
