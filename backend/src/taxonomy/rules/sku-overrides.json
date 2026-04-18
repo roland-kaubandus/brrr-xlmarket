@@ -1,0 +1,6 @@
+{
+  "_doc": "Manual SKU-level overrides (S1). Highest precedence, confidence=1.00. Populate from admin UI when a product is manually classified.",
+  "_version": 1,
+  "_updated": "2026-04-18",
+  "overrides": {}
+}

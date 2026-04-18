@@ -1,0 +1,201 @@
+{
+  "_doc": "S5 — per L1, per L2 keyword scoring. Applied to title + description + selling_points + VEVOR L2 name (lowercased). Fields: required_any (at least one must match to be a candidate), required_none (any match disqualifies), boost (tokens that add weight), weight (base candidate weight). Case-insensitive substring match, word-boundary-preferred. Missing L1 = S5 is a pure l1_defaults pass-through (L2=null).",
+  "_version": 1,
+  "_updated": "2026-04-18",
+  "l1": {
+    "horeca-food-service": {
+      "commercial-refrigeration": { "required_any": ["refrigerat", "freezer", "chiller", "ice machine", "ice maker", "bain marie", "bain-marie", "display case", "cooler"], "boost": ["commercial", "restaurant", "ice", "stainless"], "weight": 1.0 },
+      "commercial-cooking-equipment": { "required_any": ["oven", "fryer", "deep fryer", "cooker", "grill", "griddle", "salamander", "pizza", "induction", "combi"], "boost": ["commercial", "restaurant", "gas", "electric"], "weight": 1.0 },
+      "food-preparation-equipment": { "required_any": ["mixer", "slicer", "dough", "food processor", "meat grinder", "peeler", "vegetable cutter", "bread maker", "sausage"], "boost": ["commercial", "restaurant"], "weight": 1.0 },
+      "bar-beverage-service": { "required_any": ["espresso", "coffee", "blender", "juicer", "bar ", "cocktail", "dispenser", "beer", "draft"], "boost": ["barista", "cafe", "commercial"], "weight": 1.0 },
+      "commercial-sinks-washdown": { "required_any": ["sink", "dishwash", "glass washer", "washdown", "prep sink", "hand wash"], "boost": ["stainless", "commercial"], "weight": 1.0 },
+      "restaurant-storage-shelving": { "required_any": ["shelving", "rack", "storage", "kitchen cart", "chafing"], "boost": ["stainless"], "weight": 0.8 },
+      "restaurant-furniture": { "required_any": ["table", "chair", "booth", "bar stool", "banquette"], "boost": ["restaurant", "cafe"], "weight": 0.9 },
+      "kitchen-hvac-air-curtains": { "required_any": ["air curtain", "hood", "extractor", "kitchen vent", "exhaust hood"], "boost": ["kitchen", "commercial"], "weight": 1.0 }
+    },
+
+    "laser-cnc-digital-fabrication": {
+      "co2-laser-engravers-cutters": { "required_any": ["co2 laser", "laser engrav", "laser cutter", "laser cutt"], "required_none": ["diode"], "boost": ["100w", "80w", "40w", "ruida"], "weight": 1.1 },
+      "diode-laser-engravers": { "required_any": ["diode laser", "blue laser", "desktop laser"], "boost": ["class 1", "10w", "20w"], "weight": 1.0 },
+      "cnc-routers-mills": { "required_any": ["cnc router", "cnc mill", "desktop cnc", "cnc engrav"], "boost": ["3 axis", "4 axis", "spindle"], "weight": 1.0 },
+      "3d-printers": { "required_any": ["3d printer", "fdm", "sla printer", "resin printer"], "boost": ["filament", "bed"], "weight": 1.1 },
+      "laser-cnc-accessories": { "required_any": ["laser accessor", "laser tube", "laser mirror", "cnc bit", "cnc accessor"], "weight": 0.7 }
+    },
+
+    "welding-metalworking": {
+      "welding-cutting": { "required_any": ["mig", "tig", "mma", "stick weld", "plasma cut", "welder", "welding machine", "arc weld"], "boost": ["inverter", "amp"], "weight": 1.1 },
+      "metal-lathes-mills": { "required_any": ["metal lathe", "mill drill", "milling machine", "lathe"], "required_none": ["wood"], "boost": ["bench", "variable speed"], "weight": 1.0 },
+      "angle-grinders-metal-cutting": { "required_any": ["angle grinder", "cut-off saw", "metal chop saw", "abrasive cut"], "boost": ["disc"], "weight": 0.9 },
+      "hydraulic-press-equipment": { "required_any": ["hydraulic press", "shop press", "metal bender", "pipe bender"], "boost": ["ton", "tonnage"], "weight": 1.0 },
+      "welding-safety-apparel": { "required_any": ["welding helmet", "welding mask", "welding jacket", "welding glove", "auto darkening"], "boost": ["leather"], "weight": 0.9 },
+      "motors-drives-parts": { "required_any": ["ac motor", "servo motor", "stepper motor", "vfd", "frequency drive"], "boost": ["3 phase"], "weight": 0.8 }
+    },
+
+    "printing-packaging-signage": {
+      "screen-printing-heat-press": { "required_any": ["heat press", "screen print", "sublimation press", "t-shirt press"], "boost": ["swing away", "clamshell"], "weight": 1.0 },
+      "vinyl-cutters-plotters": { "required_any": ["vinyl cutter", "plotter", "cutting plotter", "sign plotter"], "weight": 1.0 },
+      "packaging-sealing": { "required_any": ["sealer", "shrink wrap", "vacuum pack", "bag sealer", "impulse sealer", "strapping"], "boost": ["packag"], "weight": 1.0 },
+      "label-makers-printers": { "required_any": ["label maker", "label printer", "barcode printer", "thermal printer"], "weight": 0.9 },
+      "signage-display": { "required_any": ["sign display", "light box", "signage", "led sign", "banner stand", "poster stand"], "weight": 0.8 },
+      "paper-document-handling": { "required_any": ["paper shredd", "laminator", "binding machine", "document"], "weight": 0.7 }
+    },
+
+    "electrical-energy": {
+      "generators-portable-power": { "required_any": ["generator", "inverter generator", "portable power", "power station"], "boost": ["kw", "kva", "gasoline", "diesel"], "weight": 1.1 },
+      "solar-renewable-energy": { "required_any": ["solar panel", "solar kit", "wind turbine", "mppt", "pv module"], "boost": ["watt", "monocrystalline"], "weight": 1.0 },
+      "electrical-tools-testing": { "required_any": ["multimeter", "clamp meter", "insulation tester", "circuit tester", "cable tester"], "weight": 0.9 },
+      "wiring-conduit-enclosures": { "required_any": ["conduit", "wiring", "enclosure", "cable tray", "junction box", "wire duct"], "weight": 0.8 },
+      "commercial-industrial-lighting": { "required_any": ["led high bay", "flood light", "work light", "street light", "industrial light"], "boost": ["lumen", "watt"], "weight": 0.9 },
+      "batteries-charging": { "required_any": ["battery charger", "lithium battery", "lead acid", "deep cycle", "battery pack"], "boost": ["ah", "12v", "24v"], "weight": 0.9 }
+    },
+
+    "woodworking-carpentry": {
+      "stationary-woodworking-machines": { "required_any": ["planer", "jointer", "table saw", "band saw", "mortiser", "thicknesser"], "boost": ["woodworking"], "weight": 1.0 },
+      "routers-shaping": { "required_any": ["wood router", "router table", "shaper", "wood plan"], "required_none": ["cnc"], "weight": 0.9 },
+      "woodworking-benches-clamps": { "required_any": ["workbench", "clamp", "vice", "bench dog"], "boost": ["wood"], "weight": 0.8 },
+      "drill-presses-boring": { "required_any": ["drill press", "radial drill", "boring machine", "mortise"], "weight": 0.9 },
+      "saw-accessories-blades": { "required_any": ["saw blade", "circular blade", "band saw blade", "router bit"], "weight": 0.7 },
+      "finishing-sanding": { "required_any": ["belt sander", "random orbit", "disc sander", "drum sander", "spindle sander"], "weight": 0.9 }
+    },
+
+    "construction-building": {
+      "concrete-masonry-drywall": { "required_any": ["concrete mixer", "cement mixer", "mortar", "drywall", "trowel", "rebar", "tile cutter", "wet saw"], "boost": ["construction"], "weight": 1.0 },
+      "ladders-scaffolding": { "required_any": ["ladder", "scaffold", "step ladder", "extension ladder"], "weight": 1.0 },
+      "roofing-insulation": { "required_any": ["roofing", "shingle", "insulation", "tar kettle", "roof"], "weight": 0.8 },
+      "flooring-installation": { "required_any": ["flooring", "laminate", "vinyl floor", "tile install", "nail gun", "floor scraper"], "weight": 0.8 },
+      "decking-fencing-hardware": { "required_any": ["decking", "fence", "fencing", "post driver", "deck screw"], "weight": 0.8 },
+      "paint-caulk-finishing": { "required_any": ["paint sprayer", "airless sprayer", "caulk gun", "paint gun"], "weight": 0.9 }
+    },
+
+    "cleaning-janitorial": {
+      "floor-care-equipment": { "required_any": ["floor scrubber", "floor buffer", "auto scrubber", "floor polisher", "sweeper"], "weight": 1.0 },
+      "janitorial-supplies-carts": { "required_any": ["janitor cart", "cleaning cart", "mop bucket", "utility cart"], "weight": 0.8 },
+      "hand-dryers-washroom": { "required_any": ["hand dryer", "soap dispenser", "paper towel dispenser", "washroom"], "weight": 0.9 },
+      "waste-recycling": { "required_any": ["trash can", "waste bin", "dumpster", "recycling bin", "compactor"], "weight": 0.8 },
+      "industrial-vacuums": { "required_any": ["wet dry vac", "industrial vacuum", "shop vac", "backpack vacuum"], "weight": 1.0 },
+      "carpet-extractors": { "required_any": ["carpet extractor", "carpet cleaner", "upholstery cleaner"], "weight": 1.0 }
+    },
+
+    "hand-power-tools": {
+      "power-tools": { "required_any": ["drill", "impact driver", "impact wrench", "circular saw", "jigsaw", "reciprocating saw", "angle grinder", "heat gun", "rotary hammer"], "boost": ["cordless", "lithium", "brushless"], "weight": 1.0 },
+      "hand-tools": { "required_any": ["wrench set", "socket set", "screwdriver set", "plier set", "hand tool set", "ratchet"], "weight": 0.8 }
+    },
+
+    "fuel-lubrication-fluid": {
+      "fuel-transfer-pumps": { "required_any": ["fuel transfer", "diesel pump", "fuel pump", "transfer pump"], "weight": 1.0 },
+      "oil-lubrication": { "required_any": ["grease gun", "oil pump", "lubricator", "oil drain", "oil extractor"], "weight": 0.9 },
+      "drum-container-handling": { "required_any": ["drum dolly", "drum lifter", "drum handler", "ibc tote"], "weight": 0.9 },
+      "dewatering-industrial-pumps": { "required_any": ["dewatering", "submersible pump", "trash pump", "sump pump"], "weight": 1.0 },
+      "chemical-transfer": { "required_any": ["chemical pump", "chemical transfer", "diaphragm pump"], "weight": 0.9 },
+      "fuel-nozzles": { "required_any": ["fuel nozzle", "fuel gun", "dispensing nozzle"], "weight": 0.9 }
+    },
+
+    "outdoor-power-landscaping": {
+      "outdoor-power-equipment": { "required_any": ["chainsaw", "leaf blower", "hedge trimmer", "string trimmer", "brush cutter", "lawn mower", "lawnmower"], "boost": ["gas", "cordless"], "weight": 1.0 },
+      "pressure-washers": { "required_any": ["pressure washer", "power washer", "jet washer"], "boost": ["psi", "bar"], "weight": 1.1 },
+      "garden-tools-landscaping": { "required_any": ["garden tool", "wheelbarrow", "shovel", "rake", "landscape"], "weight": 0.7 },
+      "outdoor-cooking-grilling": { "required_any": ["grill", "bbq", "smoker", "pizza oven outdoor", "fire pit"], "weight": 0.9 },
+      "outdoor-heating": { "required_any": ["patio heater", "outdoor heater", "propane heater"], "weight": 0.9 },
+      "outdoor-decor-structures": { "required_any": ["gazebo", "pergola", "arbor", "outdoor shed"], "weight": 0.8 }
+    },
+
+    "warehousing-material-handling": {
+      "hoists-cranes-lifting": { "required_any": ["hoist", "crane", "chain block", "winch", "lifting jack"], "boost": ["ton"], "weight": 1.0 },
+      "forklifts-pallet-equipment": { "required_any": ["forklift", "pallet jack", "pallet truck", "stacker"], "weight": 1.0 },
+      "carts-dollies-hand-trucks": { "required_any": ["hand truck", "dolly", "platform cart", "utility dolly"], "weight": 0.8 },
+      "industrial-shelving-racking": { "required_any": ["pallet rack", "industrial shelving", "boltless rack", "heavy duty shelf"], "weight": 0.9 },
+      "workbenches-storage": { "required_any": ["workbench", "tool chest", "tool cabinet", "garage cabinet"], "weight": 0.8 },
+      "strapping-chains-securing": { "required_any": ["strapping", "ratchet strap", "tie down", "cargo net", "load chain"], "weight": 0.8 }
+    },
+
+    "hvac-climate-control": {
+      "air-conditioners-mini-splits": { "required_any": ["air conditioner", "mini split", "portable ac", "window ac"], "boost": ["btu"], "weight": 1.0 },
+      "heaters": { "required_any": ["space heater", "infrared heater", "electric heater", "kerosene heater"], "required_none": ["water heater"], "weight": 0.9 },
+      "fans-ventilation": { "required_any": ["exhaust fan", "industrial fan", "ceiling fan", "pedestal fan", "ventilation fan"], "weight": 0.9 },
+      "ducting-grilles-hvac-supplies": { "required_any": ["duct ", "ducting", "grille", "hvac supply", "register"], "weight": 0.7 },
+      "air-quality-purification": { "required_any": ["air purifier", "air scrubber", "air filter", "hepa"], "weight": 0.9 },
+      "dehumidifiers-evaporative-coolers": { "required_any": ["dehumidifier", "evaporative cooler", "swamp cooler"], "weight": 1.0 }
+    },
+
+    "plumbing-water-systems": {
+      "water-pumps": { "required_any": ["water pump", "booster pump", "well pump", "jet pump", "pressure pump"], "required_none": ["fuel", "chemical"], "weight": 1.0 },
+      "pipes-fittings-valves": { "required_any": ["pipe fitting", "pex pipe", "copper pipe", "ball valve", "brass fitting"], "weight": 0.8 },
+      "plumbing-tools": { "required_any": ["drain cleaner", "drain snake", "pipe threader", "pipe cutter", "plumbing tool"], "weight": 0.9 },
+      "water-heaters": { "required_any": ["water heater", "tankless", "storage heater"], "weight": 1.0 },
+      "water-filtration-softening": { "required_any": ["water filter", "reverse osmosis", "water softener", "ro system"], "weight": 0.9 },
+      "bathroom-fixtures": { "required_any": ["faucet", "shower head", "toilet", "urinal", "bidet", "sink faucet"], "weight": 0.8 }
+    },
+
+    "safety-security-workwear": {
+      "personal-protective-equipment": { "required_any": ["ppe", "hard hat", "safety helmet", "face shield", "respirator", "dust mask"], "weight": 1.0 },
+      "traffic-site-safety": { "required_any": ["traffic cone", "safety barrier", "delineator", "road sign", "safety vest"], "weight": 0.9 },
+      "locks-safes-access-control": { "required_any": ["safe box", "padlock", "keypad lock", "access control"], "weight": 0.8 },
+      "work-boots-footwear": { "required_any": ["work boot", "steel toe", "safety boot", "safety shoe"], "weight": 0.9 },
+      "work-clothing-outerwear": { "required_any": ["coverall", "work jacket", "workwear", "safety jacket", "hi vis"], "weight": 0.8 },
+      "safety-glasses": { "required_any": ["safety glass", "safety goggle", "eye protection"], "weight": 0.9 }
+    },
+
+    "automotive-workshop": {
+      "vehicle-lifts-shop-equipment": { "required_any": ["car lift", "vehicle lift", "two post lift", "four post lift", "motorcycle lift", "wheel alignment"], "weight": 1.0 },
+      "mechanics-diagnostic-tools": { "required_any": ["obd", "diagnostic scanner", "automotive diagnostic", "scan tool"], "weight": 1.0 },
+      "jacks-lifting": { "required_any": ["floor jack", "bottle jack", "scissor jack", "jack stand", "transmission jack"], "weight": 0.9 },
+      "towing-recovery": { "required_any": ["tow strap", "recovery", "tow hitch", "trailer hitch", "tow dolly"], "weight": 0.8 },
+      "truck-cargo-accessories": { "required_any": ["truck bed", "cargo cover", "bed liner", "roof rack", "cargo carrier"], "weight": 0.8 },
+      "auto-parts-replacement": { "required_any": ["brake pad", "alternator", "radiator", "suspension", "oem part", "replacement part"], "weight": 0.6 }
+    },
+
+    "salon-spa-wellness": {
+      "barber-salon-chairs": { "required_any": ["barber chair", "salon chair", "styling chair"], "weight": 1.0 },
+      "shampoo-stations-salon-furniture": { "required_any": ["shampoo station", "shampoo bowl", "salon furniture", "reception desk salon"], "weight": 1.0 },
+      "massage-tables-spa-equipment": { "required_any": ["massage table", "spa bed", "facial bed", "spa equipment", "massage chair"], "weight": 1.0 },
+      "personal-care-appliances": { "required_any": ["hair dryer", "clipper", "trimmer", "curling iron", "flat iron"], "weight": 0.9 },
+      "manicure-nail-equipment": { "required_any": ["manicure", "nail table", "pedicure", "nail lamp", "nail drill"], "weight": 1.0 },
+      "facial-steamers": { "required_any": ["facial steamer", "facial machine", "microdermabrasion"], "weight": 0.9 }
+    },
+
+    "office-commercial-interiors": {
+      "office-furniture": { "required_any": ["office desk", "office chair", "ergonomic chair", "filing cabinet", "cubicle"], "weight": 1.0 },
+      "meeting-lobby-furniture": { "required_any": ["conference table", "reception desk", "lobby sofa", "meeting room"], "weight": 0.9 },
+      "door-cabinet-hardware": { "required_any": ["door handle", "cabinet hardware", "cabinet hinge", "drawer slide"], "weight": 0.7 },
+      "interior-lighting": { "required_any": ["pendant light", "chandelier", "wall sconce", "decorative lamp"], "required_none": ["industrial", "high bay"], "weight": 0.7 },
+      "bathroom-accessories": { "required_any": ["towel rack", "toilet paper holder", "bathroom shelf"], "weight": 0.6 },
+      "home-decor-window-treatments": { "required_any": ["curtain", "blind", "window treatment", "drapery", "shade"], "weight": 0.7 }
+    },
+
+    "health-medical-supply": {
+      "medical-equipment-furniture": { "required_any": ["medical bed", "examination table", "hospital bed", "medical cart", "iv stand"], "weight": 1.0 },
+      "mobility-aids": { "required_any": ["walker", "rollator", "crutches", "mobility scooter", "walking aid"], "weight": 1.0 },
+      "bathroom-safety": { "required_any": ["grab bar", "shower chair", "bath bench", "raised toilet seat"], "weight": 0.9 },
+      "teaching-demonstration-models": { "required_any": ["anatomy model", "teaching model", "skeleton model", "cpr manikin"], "weight": 1.0 },
+      "wellness-skin-care": { "required_any": ["wellness", "pet supply", "pet carrier", "pet bed"], "weight": 0.5 },
+      "wheelchairs": { "required_any": ["wheelchair", "transport chair"], "weight": 1.0 }
+    },
+
+    "fitness-sports-recreation": {
+      "gym-equipment": { "required_any": ["treadmill", "elliptical", "exercise bike", "rowing machine", "dumbbell", "barbell", "weight bench", "squat rack"], "boost": ["commercial", "home gym"], "weight": 1.0 },
+      "team-sports-equipment": { "required_any": ["basketball hoop", "soccer", "goal net", "volleyball", "tennis"], "weight": 0.9 },
+      "gym-flooring-mats": { "required_any": ["gym flooring", "rubber mat", "exercise mat", "yoga mat"], "weight": 0.9 },
+      "trampolines": { "required_any": ["trampoline", "rebounder"], "weight": 1.0 },
+      "playground-outdoor-play": { "required_any": ["playground", "swing set", "slide set", "play structure"], "weight": 1.0 },
+      "cycling": { "required_any": ["bicycle", "bike rack", "cycling"], "weight": 0.8 }
+    },
+
+    "boating-camping-outdoor": {
+      "boat-parts-marine-hardware": { "required_any": ["boat anchor", "boat cleat", "marine hardware", "propeller", "outboard"], "weight": 1.0 },
+      "inflatable-boats-kayaks": { "required_any": ["inflatable boat", "kayak", "dinghy", "sup ", "paddle board"], "weight": 1.0 },
+      "water-sports": { "required_any": ["water ski", "wakeboard", "tube water", "towable"], "weight": 0.9 },
+      "camping-gear": { "required_any": ["tent", "sleeping bag", "camping", "camp stove", "cooler chest"], "weight": 1.0 },
+      "canopy-tents-event-shelters": { "required_any": ["canopy", "event tent", "gazebo tent", "pop up tent", "party tent"], "weight": 1.0 },
+      "outdoor-hobbies": { "required_any": ["archery", "bow", "hunting blind", "fishing"], "weight": 0.8 }
+    },
+
+    "music-entertainment": {
+      "guitars-string-instruments": { "required_any": ["guitar", "bass guitar", "violin", "ukulele"], "weight": 1.0 },
+      "keyboards-electronic-instruments": { "required_any": ["keyboard piano", "digital piano", "synthesizer", "midi controller"], "weight": 1.0 },
+      "drums-percussion": { "required_any": ["drum kit", "drum set", "cajon", "electronic drum"], "weight": 1.0 },
+      "stage-dance-performance": { "required_any": ["stage light", "dj equipment", "fog machine", "dance floor"], "weight": 0.9 },
+      "game-room-entertainment": { "required_any": ["pool table", "foosball", "arcade", "air hockey"], "weight": 0.9 },
+      "instrument-storage-cases": { "required_any": ["guitar case", "instrument case", "rack case"], "weight": 0.7 }
+    }
+  }
+}
