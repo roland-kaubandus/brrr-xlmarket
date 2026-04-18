@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next"
+import { allVerticalSlugs } from "@/lib/verticals"
 
 export const revalidate = 3600 // regenerate sitemap at most every 1 hour
 export const dynamic = "force-static"
@@ -28,6 +29,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const STATIC_PAGES = [
     { path: "", changeFrequency: "daily" as const, priority: 1.0 },
     { path: "/kategooriad", changeFrequency: "daily" as const, priority: 0.8 },
+    { path: "/alustajale", changeFrequency: "weekly" as const, priority: 0.8 },
+    { path: "/arikliendile", changeFrequency: "weekly" as const, priority: 0.7 },
+    { path: "/hooldus", changeFrequency: "weekly" as const, priority: 0.6 },
     { path: "/meist", changeFrequency: "monthly" as const, priority: 0.3 },
     { path: "/kontakt", changeFrequency: "monthly" as const, priority: 0.3 },
     { path: "/tarne", changeFrequency: "monthly" as const, priority: 0.3 },
@@ -45,6 +49,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         lastModified: page.path === "" ? new Date() : undefined,
         changeFrequency: page.changeFrequency,
         priority: page.priority,
+      })
+    }
+    // Verticals (Faas 4): /alustajale/{slug}
+    for (const v of allVerticalSlugs()) {
+      entries.push({
+        url: `${BASE_URL}/${locale}/${v.mode}/${v.slug}`,
+        changeFrequency: "weekly",
+        priority: 0.8,
       })
     }
   }

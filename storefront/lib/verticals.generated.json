@@ -1,0 +1,625 @@
+{
+  "generated_at": "2026-04-18T02:32:40.108Z",
+  "verticals": [
+    {
+      "slug": "kohvik",
+      "mode": "alustajale",
+      "name_et": "Kohviku avamine",
+      "name_en": "Opening a Café",
+      "tagline_et": "Avad kohviku. Siit saad köögiseadmed, mööbli ja tarvikud.",
+      "tagline_en": "Opening a café. Everything from espresso machine to chairs, one order.",
+      "description_et": "Täiskomplekt kohviku avamiseks: espressomasin, jahutid, mööbel, nõud. Üks arve, üks tarne, üks kontaktisik. Käibemaks 24% sisaldub.",
+      "description_en": "Complete kit to open a café: espresso machine, refrigeration, furniture, service items. One invoice, one delivery. VAT 24% included.",
+      "meta_title_et": "Kohviku avamise täiskomplekt — XLMarket",
+      "meta_description_et": "Kõik alustaval kohvikupidajal vajalik: espressomasin, jahutid, lett, lauad-toolid, nõud. Hind alates €8499. Käibemaks 24% sisaldub.",
+      "hero_img": "/images/verticals/kohvik-hero.png",
+      "hero_gradient": "from-amber-950/80 via-amber-900/40 to-transparent",
+      "emtak_codes": [
+        "56101",
+        "56102",
+        "56103"
+      ],
+      "include_nodes": [
+        "horeca-food-service",
+        "commercial-refrigeration",
+        "commercial-cooking-equipment",
+        "bar-beverage-service",
+        "food-preparation-equipment",
+        "commercial-sinks-washdown",
+        "restaurant-furniture",
+        "restaurant-storage-shelving"
+      ],
+      "exclude_nodes": [],
+      "kits": [
+        {
+          "tier": "starter",
+          "name_et": "Alustaja komplekt",
+          "name_en": "Starter Kit",
+          "price_from": 8499,
+          "items": [
+            {
+              "label_et": "2-grupi espressomasin",
+              "label_en": "2-group espresso machine",
+              "l2_slug": "bar-beverage-service",
+              "l3_slug": null
+            },
+            {
+              "label_et": "Kohviveski",
+              "label_en": "Coffee grinder",
+              "l2_slug": "bar-beverage-service",
+              "l3_slug": null
+            },
+            {
+              "label_et": "Külmik + vitriin",
+              "label_en": "Refrigerator + display case",
+              "l2_slug": "commercial-refrigeration",
+              "l3_slug": null
+            },
+            {
+              "label_et": "Ettevalmistuslaud valamuga",
+              "label_en": "Prep table with sink",
+              "l2_slug": "commercial-sinks-washdown",
+              "l3_slug": null
+            },
+            {
+              "label_et": "Jäämasin",
+              "label_en": "Ice machine",
+              "l2_slug": "commercial-refrigeration",
+              "l3_slug": null
+            },
+            {
+              "label_et": "Nõud: tassid, kannud, kandikud",
+              "label_en": "Cups, carafes, trays",
+              "l2_slug": "bar-beverage-service",
+              "l3_slug": null
+            }
+          ]
+        },
+        {
+          "tier": "pro",
+          "name_et": "Profi komplekt",
+          "name_en": "Pro Kit",
+          "price_from": 14900,
+          "items": [
+            {
+              "label_et": "3-grupi espressomasin + kaks veskit",
+              "label_en": "3-group espresso + two grinders",
+              "l2_slug": "bar-beverage-service",
+              "l3_slug": null
+            },
+            {
+              "label_et": "Soojaturuklaas-vitriin",
+              "label_en": "Heated display case",
+              "l2_slug": "commercial-cooking-equipment",
+              "l3_slug": null
+            },
+            {
+              "label_et": "Kombi-ahi (saiade jaoks)",
+              "label_en": "Combi oven (for pastries)",
+              "l2_slug": "commercial-cooking-equipment",
+              "l3_slug": null
+            },
+            {
+              "label_et": "Tööstuslik nõudepesumasin",
+              "label_en": "Commercial dishwasher",
+              "l2_slug": "commercial-sinks-washdown",
+              "l3_slug": null
+            },
+            {
+              "label_et": "Lett + baaritoolid + lauad (12 kohta)",
+              "label_en": "Counter, bar stools, tables (12 seats)",
+              "l2_slug": "restaurant-furniture",
+              "l3_slug": null
+            },
+            {
+              "label_et": "Külmkapp + sügavkülmik tagaruumi",
+              "label_en": "Reach-in fridge + freezer",
+              "l2_slug": "commercial-refrigeration",
+              "l3_slug": null
+            }
+          ]
+        },
+        {
+          "tier": "enterprise",
+          "name_et": "Täiskohvik",
+          "name_en": "Full Café",
+          "price_from": 24500,
+          "items": [
+            {
+              "label_et": "Professionaalne espressomasin + kaks veskit + filtrikohvimasin",
+              "label_en": "Pro espresso + grinders + filter machine",
+              "l2_slug": "bar-beverage-service",
+              "l3_slug": null
+            },
+            {
+              "label_et": "Mitmerealiseeritud külmlett (2m)",
+              "label_en": "Multi-deck refrigerated counter (2m)",
+              "l2_slug": "commercial-refrigeration",
+              "l3_slug": null
+            },
+            {
+              "label_et": "Kombi-ahi + pitsaahi",
+              "label_en": "Combi oven + pizza oven",
+              "l2_slug": "commercial-cooking-equipment",
+              "l3_slug": null
+            },
+            {
+              "label_et": "Hood + ventilatsioon",
+              "label_en": "Hood + ventilation",
+              "l2_slug": "kitchen-hvac-air-curtains",
+              "l3_slug": null
+            },
+            {
+              "label_et": "Saali sisustus (20-30 kohta)",
+              "label_en": "Dining room furniture (20-30 seats)",
+              "l2_slug": "restaurant-furniture",
+              "l3_slug": null
+            },
+            {
+              "label_et": "Riiulid laos",
+              "label_en": "Back-of-house shelving",
+              "l2_slug": "restaurant-storage-shelving",
+              "l3_slug": null
+            }
+          ]
+        }
+      ],
+      "faq": [
+        {
+          "q_et": "Kas Vevor espressomasinad on HoReCa-kõlblikud?",
+          "a_et": "Jah. Vevor 2- ja 3-grupi masinad on CE-sertifitseeritud äriks. Paigaldame 3-faasi 400V nõuetega, vajalik sobiv elektrikilp. Garantii 24 kuud.",
+          "q_en": null,
+          "a_en": null
+        },
+        {
+          "q_et": "Mis on 3-faasi nõuded?",
+          "a_et": "Enamus professionaalsest kuumseadmest (espressomasin 3+, ahi, nõudepesumasin) vajab 3-faasi 400V, 16A või 32A pistikut. Kontrolli oma lepingut Eleringiga enne avamist. Meie saadame tehnilise specifikatsiooni ette.",
+          "q_en": null,
+          "a_en": null
+        },
+        {
+          "q_et": "HACCP — mida peab kohvikus jälgima?",
+          "a_et": "HACCP nõuab roostevaba teras pinnad, pestavad põrandad, eraldi käte pesu, toidutemperatuuri monitoring. Meie külmikud ja letid vastavad EL 852/2004. HACCP plaani koostamine jääb sulle või konsultandile.",
+          "q_en": null,
+          "a_en": null
+        },
+        {
+          "q_et": "Kas tarnite + paigaldate?",
+          "a_et": "Tarne kogu Eesti mandril 3-7 tööpäeva. Paigaldame ise ainult Tallinna linnas. Mujal: toome kohale, juhendi + telefonitoe; elektriku + santehnika vajad eraldi tellida.",
+          "q_en": null,
+          "a_en": null
+        },
+        {
+          "q_et": "Millal tasub alustada enterprise-kit'iga?",
+          "a_et": "Kui prognoosid >100 klienti/päev, avatud 12+ tundi, või pakud ka saiu/toitu. Alla selle: pro-kit on ülepakkumine. Võta ühendust, teeme custom quote'i.",
+          "q_en": null,
+          "a_en": null
+        },
+        {
+          "q_et": "Kas käibemaks on hinnas sisse arvestatud?",
+          "a_et": "Jah, kõik hinnad sisaldavad Eesti käibemaksu 24%. Ettevõtetele: saad selle tagasi järgmises KMD'is (standardne korraldus).",
+          "q_en": null,
+          "a_en": null
+        },
+        {
+          "q_et": "Kas saan kasutada KredEx-i või MAK-i toetust?",
+          "a_et": "KredEx stardilaen ja MAK Leader-meetmed on enamus algajate kohvikute puhul rakendatavad. Arve ja toote-specifikatsioon sobivad mõlemale. Vajadusel saadame lisaandmeid.",
+          "q_en": null,
+          "a_en": null
+        }
+      ],
+      "delivery_note_et": "Tavaline tarne Eestis: 4.99€ (vajab lisaks eriveerit raskete seadmete puhul). Paigaldame Tallinnas, mujal juhendame. Tagastamine 14 päeva, ainult avamata.",
+      "delivery_note_en": null,
+      "financing_note_et": "Kõik hinnad sisaldavad käibemaksu 24%. Ärikliendile net-30 pärast kinnitamist (vaata /arikliendile). KredEx + MAK dokumendid saadame e-mailiga, kui vaja.",
+      "financing_note_en": null
+    },
+    {
+      "slug": "haljastus",
+      "mode": "alustajale",
+      "name_et": "Haljastusettevõtte alustamine",
+      "name_en": "Starting a Landscaping Business",
+      "tagline_et": "Alustad haljastuse teenuseettevõtet. Siit saad kogu tehnika.",
+      "tagline_en": "Starting a landscaping service. Every machine and tool, one order.",
+      "description_et": "Niidukid, trimmerid, survepesurid, saed ja haljastustööriistad alustava haljastusettevõtte jaoks. Üks arve, üks tarne. Käibemaks 24% sisaldub.",
+      "description_en": "Mowers, trimmers, pressure washers, saws — everything a new landscaping service needs. One invoice, one delivery. VAT 24% included.",
+      "meta_title_et": "Haljastusettevõtte stardikomplekt — XLMarket",
+      "meta_description_et": "Niidukid, trimmerid, survepesurid, aiatööriistad alustavale haljastajale. Hind alates €4499. Käibemaks 24% sisaldub.",
+      "hero_img": "/images/verticals/haljastus-hero.png",
+      "hero_gradient": "from-emerald-950/80 via-emerald-900/40 to-transparent",
+      "emtak_codes": [
+        "81300"
+      ],
+      "include_nodes": [
+        "outdoor-power-landscaping",
+        "outdoor-power-equipment",
+        "garden-tools-landscaping",
+        "pressure-washers"
+      ],
+      "exclude_nodes": [
+        "outdoor-cooking-grilling",
+        "outdoor-heating",
+        "outdoor-decor-structures"
+      ],
+      "kits": [
+        {
+          "tier": "starter",
+          "name_et": "Alustaja komplekt",
+          "name_en": "Starter Kit",
+          "price_from": 4499,
+          "items": [
+            {
+              "label_et": "Bensiini-muruniiduk (iseliikuv)",
+              "label_en": "Self-propelled petrol mower",
+              "l2_slug": "outdoor-power-equipment",
+              "l3_slug": null
+            },
+            {
+              "label_et": "Trimmer + murulõikur",
+              "label_en": "Trimmer + brushcutter",
+              "l2_slug": "outdoor-power-equipment",
+              "l3_slug": null
+            },
+            {
+              "label_et": "Kettsaag (40 cm latt)",
+              "label_en": "Chainsaw (40cm bar)",
+              "l2_slug": "outdoor-power-equipment",
+              "l3_slug": null
+            },
+            {
+              "label_et": "Survepesur 180 bar",
+              "label_en": "Pressure washer 180 bar",
+              "l2_slug": "pressure-washers",
+              "l3_slug": null
+            },
+            {
+              "label_et": "Aiatööriistade komplekt",
+              "label_en": "Hand tool set",
+              "l2_slug": "garden-tools-landscaping",
+              "l3_slug": null
+            },
+            {
+              "label_et": "PPE: kiiver, prillid, kindad, kõrvaklapid",
+              "label_en": "PPE: helmet, glasses, gloves, ear protection",
+              "l2_slug": "garden-tools-landscaping",
+              "l3_slug": null
+            }
+          ]
+        },
+        {
+          "tier": "pro",
+          "name_et": "Profi komplekt",
+          "name_en": "Pro Kit",
+          "price_from": 9900,
+          "items": [
+            {
+              "label_et": "Rider-muruniiduk (istme peal)",
+              "label_en": "Ride-on mower",
+              "l2_slug": "outdoor-power-equipment",
+              "l3_slug": null
+            },
+            {
+              "label_et": "Professionaalne trimmer + hekipügaja",
+              "label_en": "Pro trimmer + hedge cutter",
+              "l2_slug": "outdoor-power-equipment",
+              "l3_slug": null
+            },
+            {
+              "label_et": "Kettsaag (50 cm latt) + oksalõikur-saag",
+              "label_en": "Chainsaw (50cm) + pole saw",
+              "l2_slug": "outdoor-power-equipment",
+              "l3_slug": null
+            },
+            {
+              "label_et": "Kõrge surve pesur 250 bar + pinnapuhastaja",
+              "label_en": "High-pressure washer 250 bar + surface cleaner",
+              "l2_slug": "pressure-washers",
+              "l3_slug": null
+            },
+            {
+              "label_et": "Lehepuhur + oksapurusti",
+              "label_en": "Leaf blower + wood chipper",
+              "l2_slug": "outdoor-power-equipment",
+              "l3_slug": null
+            },
+            {
+              "label_et": "Haagis tööriistadele",
+              "label_en": "Trailer for equipment",
+              "l2_slug": "garden-tools-landscaping",
+              "l3_slug": null
+            }
+          ]
+        },
+        {
+          "tier": "enterprise",
+          "name_et": "Täis-brigaad",
+          "name_en": "Full Crew",
+          "price_from": 18500,
+          "items": [
+            {
+              "label_et": "Kaks rider-niidukit",
+              "label_en": "Two ride-on mowers",
+              "l2_slug": "outdoor-power-equipment",
+              "l3_slug": null
+            },
+            {
+              "label_et": "Professionaalsed trimmerid (3 tk)",
+              "label_en": "Pro trimmers (3 units)",
+              "l2_slug": "outdoor-power-equipment",
+              "l3_slug": null
+            },
+            {
+              "label_et": "Kettsaega komplekt (2 saagi + varu)",
+              "label_en": "Chainsaw set (2 saws + backup)",
+              "l2_slug": "outdoor-power-equipment",
+              "l3_slug": null
+            },
+            {
+              "label_et": "Surveveepesurid (2 tk)",
+              "label_en": "Pressure washers (2 units)",
+              "l2_slug": "pressure-washers",
+              "l3_slug": null
+            },
+            {
+              "label_et": "Oksapurusti + mullafrees",
+              "label_en": "Wood chipper + rototiller",
+              "l2_slug": "outdoor-power-equipment",
+              "l3_slug": null
+            },
+            {
+              "label_et": "Täielik käsi-tööriistakomplekt 3-le brigaadiliikmele",
+              "label_en": "Full hand tool kit for 3-person crew",
+              "l2_slug": "garden-tools-landscaping",
+              "l3_slug": null
+            }
+          ]
+        }
+      ],
+      "faq": [
+        {
+          "q_et": "Kas kütus ja õli on hinnas?",
+          "a_et": "Ei. Masinad tarnitakse ilma kütuseta (transpordi-ohutus). Esimese paagi õli ja kütus: loe kasutusjuhendist või küsi meilt, saadame soovitused.",
+          "q_en": null,
+          "a_en": null
+        },
+        {
+          "q_et": "Bensiini- või elektri-tööriistad?",
+          "a_et": "Alustajale: bensiin (suurem võimsus, raadius, tarnitav tööaeg). Kui teenindad linna piirkonda ilma müratõrje-probleemide, ka aku-tööriistad on ok. Meil on mõlemad.",
+          "q_en": null,
+          "a_en": null
+        },
+        {
+          "q_et": "Garantii profi-tööriistadele?",
+          "a_et": "Meie müüdud Vevor seadmete garantii 24 kuud. Ühendust võtmisel: saadame diagnostika + varuosa 48h jooksul. Kallimad masinad (rider-niiduk, oksapurusti) lisab 12 kuu pikendatud garantii võimalus.",
+          "q_en": null,
+          "a_en": null
+        },
+        {
+          "q_et": "Kas on koolitust?",
+          "a_et": "Kettsae + rider-niiduki soovitame PlanProfi koolituse (eraldi, mitte meie teenus). Muude masinate kasutusjuhendid eesti keeles kaasas.",
+          "q_en": null,
+          "a_en": null
+        },
+        {
+          "q_et": "EMTAK kood 81300?",
+          "a_et": "Jah — 'Maastikuhoolduse ja haljastuse teenused'. See kood registreeritakse ettevõtte asutamisel. Meie arve + tootespec sobib MAK stardi-toetuse taotluseks.",
+          "q_en": null,
+          "a_en": null
+        },
+        {
+          "q_et": "Kas tarnite haagisega?",
+          "a_et": "Ei, tarnime paki-teenusega (Itella/Omniva). Raskemad seadmed (rider-niiduk, haagis) saadame eri-tarnega kuller-autoga, tavaliselt 3-5 päeva.",
+          "q_en": null,
+          "a_en": null
+        }
+      ],
+      "delivery_note_et": "Tarne: väiksed seadmed 4.99€, rider-niidukid ja haagised eritarne (kokkuleppel). Eesti mandril 3-7 tööpäeva.",
+      "delivery_note_en": null,
+      "financing_note_et": "Hinnad sisaldavad käibemaksu 24%. MAK Leader stardi-toetus tihti rakendatav haljastusettevõttele — küsi detaile.",
+      "financing_note_en": null
+    },
+    {
+      "slug": "autopesula",
+      "mode": "alustajale",
+      "name_et": "Autopesula avamine",
+      "name_en": "Opening a Car Wash",
+      "tagline_et": "Avad autopesula. Siit saad survepesurid, tolmuimejad ja kemikaalid.",
+      "tagline_en": "Opening a car wash. Pressure washers, vacuums, chemicals — one order.",
+      "description_et": "Kõrge rõhu survepesurid, tööstuslikud tolmuimejad, autopesu kemikaalid ja tarvikud. Täiskomplekt self-service või assistent-pesula avamiseks.",
+      "description_en": "High-pressure washers, industrial vacuums, car wash chemicals and accessories. Full kit to open self-service or staffed wash.",
+      "meta_title_et": "Autopesula avamise täiskomplekt — XLMarket",
+      "meta_description_et": "Survepesurid 250+ bar, tolmuimejad, pesukemikaalid, autopesula tarvikud. Hind alates €5999. Käibemaks 24% sisaldub.",
+      "hero_img": "/images/verticals/autopesula-hero.png",
+      "hero_gradient": "from-sky-950/80 via-sky-900/40 to-transparent",
+      "emtak_codes": [
+        "45201"
+      ],
+      "include_nodes": [
+        "pressure-washers",
+        "cleaning-janitorial",
+        "floor-care-equipment",
+        "automotive-workshop"
+      ],
+      "exclude_nodes": [
+        "vehicle-lifts-shop-equipment",
+        "mechanics-diagnostic-tools",
+        "towing-recovery"
+      ],
+      "kits": [
+        {
+          "tier": "starter",
+          "name_et": "Self-service alustaja",
+          "name_en": "Self-service Starter",
+          "price_from": 5999,
+          "items": [
+            {
+              "label_et": "Kõrge surve pesur 250 bar",
+              "label_en": "High-pressure washer 250 bar",
+              "l2_slug": "pressure-washers",
+              "l3_slug": null
+            },
+            {
+              "label_et": "Vahtuaerul (foam gun)",
+              "label_en": "Foam cannon",
+              "l2_slug": "pressure-washers",
+              "l3_slug": null
+            },
+            {
+              "label_et": "Tööstuslik tolmuimeja 80L",
+              "label_en": "Industrial wet/dry vacuum 80L",
+              "l2_slug": "cleaning-janitorial",
+              "l3_slug": null
+            },
+            {
+              "label_et": "Autopesu kemikaalid (starter-pakk)",
+              "label_en": "Car wash chemicals (starter pack)",
+              "l2_slug": "cleaning-janitorial",
+              "l3_slug": null
+            },
+            {
+              "label_et": "Mikrofiiberlapid, harjad, ämbrid",
+              "label_en": "Microfiber, brushes, buckets",
+              "l2_slug": "cleaning-janitorial",
+              "l3_slug": null
+            },
+            {
+              "label_et": "Veetõkke-matt",
+              "label_en": "Water containment mat",
+              "l2_slug": "cleaning-janitorial",
+              "l3_slug": null
+            }
+          ]
+        },
+        {
+          "tier": "pro",
+          "name_et": "Profi autopesula",
+          "name_en": "Pro Car Wash",
+          "price_from": 11900,
+          "items": [
+            {
+              "label_et": "Kuum-vee survepesur 350 bar",
+              "label_en": "Hot water pressure washer 350 bar",
+              "l2_slug": "pressure-washers",
+              "l3_slug": null
+            },
+            {
+              "label_et": "2 vaht-aerut + pindade pesujaam",
+              "label_en": "2 foam guns + washing station",
+              "l2_slug": "pressure-washers",
+              "l3_slug": null
+            },
+            {
+              "label_et": "Tolmuimeja + vaibakuiveti",
+              "label_en": "Vacuum + carpet extractor",
+              "l2_slug": "cleaning-janitorial",
+              "l3_slug": null
+            },
+            {
+              "label_et": "Põranda pesumasin",
+              "label_en": "Floor scrubber",
+              "l2_slug": "floor-care-equipment",
+              "l3_slug": null
+            },
+            {
+              "label_et": "Polieerimismasin + polieeri-pastade komplekt",
+              "label_en": "Polishing machine + polish set",
+              "l2_slug": "automotive-workshop",
+              "l3_slug": null
+            },
+            {
+              "label_et": "Täiskomplekt kemikaale (vaht, vaha, plasti-hooldus)",
+              "label_en": "Full chemical set (foam, wax, plastic care)",
+              "l2_slug": "cleaning-janitorial",
+              "l3_slug": null
+            }
+          ]
+        },
+        {
+          "tier": "enterprise",
+          "name_et": "Täis-pesula (3 boksi)",
+          "name_en": "Full Wash (3 bays)",
+          "price_from": 22500,
+          "items": [
+            {
+              "label_et": "3 x kuum-vee survepesurit",
+              "label_en": "3 × hot water pressure washers",
+              "l2_slug": "pressure-washers",
+              "l3_slug": null
+            },
+            {
+              "label_et": "Tsentraalne vaht-süsteem",
+              "label_en": "Centralized foam system",
+              "l2_slug": "pressure-washers",
+              "l3_slug": null
+            },
+            {
+              "label_et": "Tööstuslik tolmuimeja-keskus (kõigile boksidele)",
+              "label_en": "Central vacuum system (all bays)",
+              "l2_slug": "cleaning-janitorial",
+              "l3_slug": null
+            },
+            {
+              "label_et": "Põranda-hooldus + kuivatusmasin",
+              "label_en": "Floor care + dryer",
+              "l2_slug": "floor-care-equipment",
+              "l3_slug": null
+            },
+            {
+              "label_et": "Detailing: polieerimine, keraamiline katmine",
+              "label_en": "Detailing: polish, ceramic coating",
+              "l2_slug": "automotive-workshop",
+              "l3_slug": null
+            },
+            {
+              "label_et": "Kemikaalide laosüsteem (50L kanistrid)",
+              "label_en": "Chemical stock system (50L drums)",
+              "l2_slug": "cleaning-janitorial",
+              "l3_slug": null
+            }
+          ]
+        }
+      ],
+      "faq": [
+        {
+          "q_et": "Kas vajan vee- ja kanalisatsiooni-luba?",
+          "a_et": "Jah. Enamik omavalitsusi nõuab eri-luba veepõhjaloma (õli-lõks) ja kanalisatsiooni ühendusele. Kontrolli enne ruumi üürimist. Meie arved ja tootespec sobib loa taotluseks.",
+          "q_en": null,
+          "a_en": null
+        },
+        {
+          "q_et": "Mis on 3-faasi nõuded?",
+          "a_et": "Kuum-vee pesurid ja keskvakuum vajavad 3-faasi 400V. Kontrolli elekter-lepingut enne masinate ostmist. Starter-kit (külm vesi, mobile vakuum) läheb 220V-ga.",
+          "q_en": null,
+          "a_en": null
+        },
+        {
+          "q_et": "Kemikaalid ja keskkond?",
+          "a_et": "Kasutame biolagunevaid EU-sertifitseeritud kemikaale. Need on ohutud kanalisatsioonile (õli-lõksuga). Loetelu + MSDS-lehed saadame eraldi.",
+          "q_en": null,
+          "a_en": null
+        },
+        {
+          "q_et": "Kas sobib self-service või assistent-pesulaks?",
+          "a_et": "Starter-kit on pigem assistent-pesulaks (töötaja pesun). Self-service vajab münti/krediitkaardi-süsteeme — need pole meie valikus, aga soovitame koostööpartnerit.",
+          "q_en": null,
+          "a_en": null
+        },
+        {
+          "q_et": "Soojaveekatel — miks nii oluline?",
+          "a_et": "Kuum vesi (60-80°C) puhastab 3-4 korda paremini kui külm. Eelistus talvel Eestis (lumi + sool). Profi-kit sisaldab kuum-vee pesuri.",
+          "q_en": null,
+          "a_en": null
+        },
+        {
+          "q_et": "Kui kaua masinad kestavad?",
+          "a_et": "Vevor profi-pesurid 3000-5000 tundi pideval kasutusel (st 3-5 aastat päevas 4-6h). Garantii 24 kuud, varuosad saadaval.",
+          "q_en": null,
+          "a_en": null
+        }
+      ],
+      "delivery_note_et": "Tarne 3-7 tööpäeva. Raskemad masinad (3-boksi süsteem) eritarne kuller-autoga. Paigaldust Tallinnas.",
+      "delivery_note_en": null,
+      "financing_note_et": "Hinnad sisaldavad käibemaksu 24%. Ärikliendile net-30 pärast kinnitamist.",
+      "financing_note_en": null
+    }
+  ]
+}
