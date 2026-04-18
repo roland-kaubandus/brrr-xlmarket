@@ -741,9 +741,15 @@ async function createProduct(row, token, catMap, catIds, pgClient) {
   }
 }
 
-async function updateProduct(productId, row, token) {
+async function updateProduct(productId, row, token, catIds, auditPg) {
   const finalPrice = Math.round(row.price * PRICE_MARKUP * 100);
   const isInStock = row.availability === "in stock";
+
+  // Reclassify on every sync so productType / SKU drifts re-bind to the
+  // correct deepest leaf (L3 > L2 > L1). Without this, existing products
+  // stay on whatever node they were first bound to even if VEVOR changes
+  // the path or rules evolve.
+  const { classification, categoryId } = classifyRow(row, catIds || {});
 
   try {
     // Update product status, metadata, and images
@@ -776,7 +782,17 @@ async function updateProduct(productId, row, token) {
         ...row.originalImages.slice(0, 10).map(url => ({ url })),
       ].filter((img, i, arr) => arr.findIndex(a => a.url === img.url) === i).slice(0, 10),
     };
+    if (categoryId) {
+      // Replace category bindings with the deepest leaf. Medusa treats
+      // `categories` as the full set, so this keeps the product on exactly
+      // one v3 node per sync.
+      updateData.categories = [{ id: categoryId }];
+    }
     await apiCall("POST", "/admin/products/" + productId, updateData, token);
+
+    if (auditPg && classification) {
+      await writeAuditRow(auditPg, productId, classification);
+    }
 
     // Get variant ID to update price
     const prodResp = await apiCall(
@@ -1022,7 +1038,7 @@ async function main() {
     for (let i = 0; i < toUpdate.length; i++) {
       const row = toUpdate[i];
       try {
-        await updateProduct(row.productId, row, token);
+        await updateProduct(row.productId, row, token, categoryIds, auditPg);
       } catch (err) {
         stats.errors++;
       }

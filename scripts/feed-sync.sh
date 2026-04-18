@@ -16,8 +16,6 @@ fi
 
 # Validate required environment variables
 : "${MEILISEARCH_API_KEY:?Missing MEILISEARCH_API_KEY}"
-: "${MEDUSA_PUBLISHABLE_KEY:?Missing MEDUSA_PUBLISHABLE_KEY}"
-: "${MEDUSA_REGION_ID:?Missing MEDUSA_REGION_ID}"
 FEED_DIR="$REPO/backend/data/feeds"
 LOG_DIR="$REPO/data/feeds/sync-reports"
 FEED_URL="https://ads-feed.s3.us-west-2.amazonaws.com/ads/business/571/vevor-571.xlsx"
