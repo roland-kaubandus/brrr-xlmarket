@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>XLMarket — Category Mapper (500 → 22)</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Inter', system-ui, sans-serif; background: #f4f5f7; color: #1a1a1a; height: 100vh; overflow: hidden; }
+
+/* Header */
+.hdr { background: #0F1B2D; color: #fff; padding: 10px 20px; display: flex; align-items: center; gap: 16px; }
+.hdr h1 { font-size: 1rem; font-weight: 700; flex-shrink: 0; }
+.hdr h1 span { color: #E8650A; }
+.hdr .pills { display: flex; gap: 6px; flex: 1; flex-wrap: wrap; }
+.pill { font-size: 0.7rem; padding: 3px 10px; border-radius: 4px; }
+.pill-ok { background: #065f46; color: #6ee7b7; }
+.pill-todo { background: #92400e; color: #fcd34d; }
+.pill-total { background: rgba(255,255,255,0.1); color: #94a3b8; }
+.hdr-btns { display: flex; gap: 6px; flex-shrink: 0; }
+.hdr-btns button { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); color: #e2e8f0; padding: 5px 12px; border-radius: 5px; cursor: pointer; font-size: 0.75rem; font-family: inherit; }
+.hdr-btns button:hover { background: rgba(255,255,255,0.15); }
+.hdr-btns button.primary { background: #E8650A; border-color: #E8650A; color: #fff; font-weight: 600; }
+
+/* Layout */
+.layout { display: flex; height: calc(100vh - 44px); }
+
+/* Left — unsorted */
+.left { width: 340px; flex-shrink: 0; background: #fff; border-right: 1px solid #e5e7eb; display: flex; flex-direction: column; }
+.left-top { padding: 12px 14px 8px; border-bottom: 1px solid #f0f0f0; }
+.left-top h2 { font-size: 0.82rem; font-weight: 700; color: #0F1B2D; }
+.left-top .sub { font-size: 0.7rem; color: #999; margin-top: 2px; }
+.search { width: 100%; padding: 7px 10px; border: 1px solid #e5e7eb; border-radius: 5px; font-size: 0.8rem; font-family: inherit; margin-top: 8px; }
+.search:focus { outline: none; border-color: #E8650A; }
+.left-list { flex: 1; overflow-y: auto; padding: 6px 10px; }
+
+/* Right — categories */
+.right { flex: 1; overflow-y: auto; padding: 12px; }
+.cat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 10px; align-content: start; }
+
+/* Item chip */
+.chip {
+  display: flex; align-items: center; gap: 6px; padding: 5px 10px; margin-bottom: 4px;
+  background: #fff; border: 1px solid #e8e8e8; border-radius: 5px; font-size: 0.78rem;
+  cursor: grab; user-select: none; transition: border-color 0.1s, box-shadow 0.1s;
+}
+.chip:hover { border-color: #E8650A; }
+.chip.dragging { opacity: 0.3; }
+.chip .grip { color: #d0d0d0; font-size: 0.65rem; cursor: grab; }
+.chip .cn { flex: 1; font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.chip .cc { font-size: 0.68rem; color: #999; background: #f5f5f5; padding: 1px 5px; border-radius: 3px; flex-shrink: 0; }
+.chip .xx { color: #ccc; cursor: pointer; padding: 0 3px; font-size: 0.8rem; flex-shrink: 0; }
+.chip .xx:hover { color: #ef4444; }
+.chip.auto { border-left: 3px solid #22c55e; }
+
+/* Category card */
+.ccard { background: #fff; border: 2px solid #e5e7eb; border-radius: 8px; overflow: hidden; }
+.ccard.drag-over { border-color: #E8650A; background: #fffaf5; }
+.ccard-head { padding: 8px 12px; background: #fafbfc; border-bottom: 1px solid #f0f0f0; display: flex; align-items: center; gap: 6px; }
+.ccard-head .cnum { font-size: 0.65rem; color: #bbb; font-weight: 700; }
+.ccard-head .cname { font-size: 0.82rem; font-weight: 700; color: #0F1B2D; flex: 1; }
+.ccard-head .cbadge { font-size: 0.65rem; background: #E8650A; color: #fff; padding: 1px 7px; border-radius: 3px; font-weight: 600; }
+.ccard-head .cprods { font-size: 0.65rem; color: #999; }
+.ccard-body { padding: 6px 8px; min-height: 40px; max-height: 300px; overflow-y: auto; }
+.ccard-body:empty::after { content: 'Lohista siia'; color: #d0d0d0; font-size: 0.75rem; display: block; text-align: center; padding: 10px; }
+
+/* Toast */
+.toast { position: fixed; bottom: 16px; left: 50%; transform: translateX(-50%); background: #0F1B2D; color: #fff; padding: 8px 20px; border-radius: 6px; font-size: 0.82rem; z-index: 999; opacity: 0; transition: opacity 0.2s; pointer-events: none; }
+.toast.show { opacity: 1; }
+</style>
+</head>
+<body>
+
+<div class="hdr">
+  <h1><span>XL</span> Category Mapper</h1>
+  <div class="pills">
+    <span class="pill pill-ok" id="pOk">0 mapped</span>
+    <span class="pill pill-todo" id="pTodo">0 unmapped</span>
+    <span class="pill pill-total" id="pProds">0 products</span>
+  </div>
+  <div class="hdr-btns">
+    <button onclick="autoMap()">Auto-map</button>
+    <button onclick="clearAll()">Clear all</button>
+    <button class="primary" onclick="exportMapping()">Export JSON</button>
+  </div>
+</div>
+
+<div class="layout">
+  <div class="left">
+    <div class="left-top">
+      <h2>Medusa categories <span id="leftCount"></span></h2>
+      <div class="sub">500 alamkategooriat MeiliSearch'ist. Lohista paremale.</div>
+      <input class="search" type="text" placeholder="Otsi..." id="searchBox" oninput="renderLeft()">
+    </div>
+    <div class="left-list" id="leftList"></div>
+  </div>
+  <div class="right">
+    <div class="cat-grid" id="catGrid"></div>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+// 22 L1 categories
+const L1 = [
+  {id:1,name:"HoReCa & Food Service"},
+  {id:2,name:"Construction & Building"},
+  {id:3,name:"Hand & Power Tools"},
+  {id:4,name:"Welding & Metalworking"},
+  {id:5,name:"Laser, CNC & Digital Fab."},
+  {id:6,name:"Woodworking & Carpentry"},
+  {id:7,name:"Printing, Packaging & Signage"},
+  {id:8,name:"Electrical & Energy"},
+  {id:9,name:"HVAC & Climate Control"},
+  {id:10,name:"Plumbing & Water Systems"},
+  {id:11,name:"Warehousing & Handling"},
+  {id:12,name:"Automotive & Workshop"},
+  {id:13,name:"Outdoor Power & Landscaping"},
+  {id:14,name:"Fuel, Lubrication & Fluid"},
+  {id:15,name:"Cleaning & Janitorial"},
+  {id:16,name:"Safety, Security & Workwear"},
+  {id:17,name:"Office & Commercial Interiors"},
+  {id:18,name:"Salon, Spa & Wellness"},
+  {id:19,name:"Fitness, Sports & Recreation"},
+  {id:20,name:"Boating, Camping & Outdoor"},
+  {id:21,name:"Health & Medical Supply"},
+  {id:22,name:"Music & Entertainment"}
+];
+
+// All Medusa categories with counts — loaded from MeiliSearch export
+const ALL_CATS = [["Automotive",1425],["Appliances",1119],["Building Materials",529],["Bath",285],["Auto Parts",136],["Camping Gear",129],["Boating",125],["Boats",124],["Cargo Carriers",112],["Car Jacks",107],["Artificial Plants",103],["Air Compressor Tools",96],["Cabinet Hardware",91],["Boat Parts & Accessories",89],["Carts & Utility Tables",84],["Bathroom Faucets",77],["Cat Supplies",73],["Camping Tents",70],["Bedroom Furniture",61],["Car Ramps",54],["Bedding",50],["Buffet Servers",50],["Canopies",50],["Appliance Parts",49],["Carpet",48],["Bathroom Safety",44],["Car Refrigerator",44],["Access Doors",42],["Brewing Equipment",42],["Air Conditioning Vacuum Pumps",40],["Awnings",40],["Baseball Equipment",40],["Building Hardware",40],["Chains & Ropes",39],["Bathroom Accessories",37],["Ceramic & Pottery Supplies",37],["Bathroom Storage",36],["Camping Furniture",36],["Bar Accessories",35],["Auto Repairing Puller",33],["Cable Management",33],["Cable Protector Ramp",33],["Air Compressors",31],["Beverage Dispensers",31],["Carts",30],["Arts & Crafts Supplies",29],["Bird & Wildlife Supplies",29],["Car Lift Accessories",29],["Barn Door Hardware",28],["Artificial Hedges",27],["Auto Body Parts",27],["Bakeware",27],["Bathroom Mirrors",27],["Accent Tables",26],["Air Tools",26],["Boat Awning",26],["Bathroom Hardware",25],["Chainsaws",25],["Battery Charging Systems",24],["Cabinet & Furniture Drawer Slides",24],["Camera & Photo",24],["Cat Houses",24],["Chafing Dish",24],["Augers",23],["Beverage Coolers",23],["Air Compressor Parts & Accessories",22],["Belt Pottery Wheel",22],["Cardio Equipment",22],["Air Conditioners",21],["Baby Care",21],["Button Maker",21],["Alloy Toe Boots",20],["Alloy Toe Shoes",20],["Balusters & Spindles",20],["Bar Furniture",20],["Brazing & Soldering Equipment",20],["Bumper Bubble",20],["Attic Fans",19],["Baby Furniture",19],["Bike Racks",19],["Boat Docks & Hardware",19],["Ceiling Mounted Dual Shower Head",19],["AC Deep Well Pumps",18],["Air Conditioner Supplies",18],["Anvil",18],["Automatic Gate Openers",18],["Ball Mounts",18],["Bar Shelves",18],["Bathroom Sink Faucets",18],["Bathtub Faucets",18],["Canopy Parts",18],["Carport Replacement Cover",18],["Above Ground Pool Liners",17],["Air Conditioner Covers",17],["Artificial Flowers",17],["Bathroom Cabinets",17],["Bookcases & Bookshelves",17],["Cat Litter & Accessories",17],["Airless Paint Sprayers",16],["Auger Drill Bits",16],["Auto Body Dent Puller",16],["Bar Tools",16],["Bottom Wear",16],["Casters",16],["Air Impact Wrenches",15],["Air Quality Parts & Accessories",15],["Area Rugs",15],["Artificial Topiaries",15],["Bench Metal Lathe",15],["Carpet Tile",15],["Accent Cabinets",14],["Boxing Equipment",14],["Breaker Box Parts",14],["Bucket Bale Spear",14],["Acoustic Foam Panels",13],["Acoustic Slat Wall Panels",13],["Air Jacks",13],["Arbors",13],["Artificial Tropical Plants",13],["Band Saws",13],["Bed Lift Mechanism",13],["Beverage Jug Coolers",13],["Bottle Jacks",13],["Bubble Tent",13],["Camping Gear Accessories",13],["Car Cell Phone Accessories",13],["Car Seats & Strollers",13],["Cargo Boxes & Bags",13],["Air Purifier Accessories",12],["Akro Storage Bin",12],["Aluminum Extrusion Linear Rail",12],["Aquarium Decorations",12],["Artificial Trees",12],["Backdrop Stand",12],["Barn Doors",12],["Beds",12],["Beverage Servers",12],["Boat Seat and Pedestals",12],["Boat Trailer Guide",12],["Bone Saw Machine",12],["Camping & Hiking",12],["Car Power Inverters",12],["Chain Link Fencing",12],["12 Volt Potable Water Pump",11],["Accent Chairs",11],["Adirondack Chairs",11],["Air Conditioner Copper Pipe",11],["Airbrush Compressor Combo Kit",11],["Bathroom Wall Cabinets",11],["Bead Seaters",11],["Bedroom Benches",11],["Bikes",11],["Blankets",11],["Cabinet Hinges",11],["Cargo Nets",11],["Cat Toys",11],["Acrylic Table",10],["Appliance & Specialty Extension Cords",10],["Automotive Floor Mats",10],["Bags & Cases",10],["Baking Supplies",10],["Band & Orchestra",10],["Bearing and Seal Driver Set",10],["Boat Covers",10],["Boat Tubes",10],["Brake Tools",10],["Camping Sleeping Gear",10],["Car Battery Chargers",10],["Car Suspension Parts",10],["Acoustic Guitar",9],["Address Signs",9],["Air Tool Fittings",9],["ATV & Motorcycle Lifts",9],["Balance Trainer Ball",9],["Bi-Fold Door Locks",9],["Boards & Easels",9],["Boat Anchors",9],["Cabinet style Garment Rack",9],["Cargo Rack",9],["Carpet Padding",9],["Chain",9],["Chainsaw Sawmills",9],["AC Fuel Transfer Pumps",8],["Active Seating",8],["Agility Course Kits",8],["Air Bag Suspension Kit",8],["Air Hydraulic Pump",8],["Appliance Vents",8],["Artificial Flowers Bulk",8],["Artificial Garlands",8],["Baby Crawling Mat",8],["Ball Mount Hitches",8],["Bar Stools",8],["Baseboard Heater Cover Replacement",8],["Basketball Equipment",8],["Bed Handle",8],["Bike Rack",8],["Bike Storage Shelters",8],["Billiard Equipment",8],["Billiard Table",8],["Blenders",8],["Boat Flooring",8],["Book Carts",8],["Borescope",8],["Bridle Chain",8],["Bungee Cords",8],["Cajon",8],["Car Seat Accessories",8],["Car Seat Covers",8],["Cat Furniture",8],["Ceiling Tiles",8],["Ceilings",8],["Chain Link Fence Slats",8],["A Frame Extension Ladder",7],["Above Ground Fish Pond",7],["Adirondack Ottoman",7],["Air Hockey Table",7],["All Terrain Remote Control Off-Road Truck",7],["Alternators",7],["Aquarium Filter",7],["Attic Ladders",7],["ATV Winches",7],["Audio & Video Cables",7],["Auto Exhaust Silencer System",7],["Automotive Smoke Machine Leak Detector",7],["Axes",7],["Bakeware Sets",7],["Baseball Practice Net",7],["Bean Bag Chairs",7],["Belt Sanders",7],["Bifold Sliding Barn Door Hardware Kit",7],["Blueprint Storage Rack",7],["Boat Hardware",7],["Boat Throttle Control",7],["Bowling Bags",7],["Bowling Equipment",7],["Bucket Tooth Bar",7],["Burlap Fabric Roll",7],["Cabinet Knobs",7],["Cables",7],["Camping Gazebo Screen Tent",7],["Cartridge Pool Filters",7],["Cat Beds",7],["Category 1 Blades & Scrapers",7],["Ceramic Fire Balls",7],["3D Printer Filament Storage",6],["Adult Diaper",6],["Air Curtain",6],["AL PEX Tube",6],["Alcove Shower Doors",6],["Amethyst Heating Pad",6],["Arched Ramps",6],["Archery Bows set",6],["Archery Supplies",6],["Art Photography",6],["Artificial Christmas Trees",6],["Audio Component Stand & Cabinet",6],["Auto Desktop Cutter Machine",6],["Axe Throwing Set",6],["Backwash Hose",6],["Badminton Equipment",6],["Badminton Net",6],["Balance Beam",6],["Balcony Railing Table",6],["Ballet Barre",6],["Bamboo Fences",6],["Baseball Batting Cage",6],["Baseball Rebounders",6],["Bathroom Organizers",6],["Bathroom Scales",6],["Bathroom Storage Containers",6],["Bed Backrest",6],["Bed Gap Filler",6],["Bed Tent",6],["Bedding & Bath",6],["Beds & Cages",6],["Bellman Cart",6],["Bicycle Cargo Trailer",6],["Bike Chain Locks",6],["Bike Repair Stand",6],["Bird Houses",6],["Blinds",6],["Brake Bleeding System",6],["Bread Boxes",6],["Button Up Shirts",6],["Cable Railings",6],["Cake Decorating Coating Machine",6],["Cam Kit",6],["Canes",6],["Canopy Beds",6],["Car Air Mattress",6],["Ceiling Fans",6],["Ceiling Fans Without Lights",6],["Ceiling Speakers",6],["Chair Mats",6],["12-Volt DC Automotive Circuit Tester",5],["2 wheel garden cart",5],["3-Point Trailer Receiver",5],["A-Frame Swing Set",5],["Abrasive Blaster Tank",5],["Abrasives",5],["Air Compressor Head Pump",5],["Air Hammers",5],["Air Purifiers",5],["Air Topcoat Spray Gun",5],["Animal Feed",5],["Arbor Presses",5],["Area Lights",5],["Arm Jack",5],["Artificial Ferns",5],["Artificial Grass",5],["Automotive Electrical Tools",5],["Baby & Toddler Bed Rails & Rail Guards",5],["Baby Play Gym Mat",5],["Baby Playpen",5],["Barbell",5],["Basketball Hoop & Goal",5],["Bathroom Hardware Sets",5],["Bathroom Sinks",5],["Bead Breakers",5],["Bed Bumpers For Toddlers",5],["Bed Trapeze Bar",5],["Bee Hive",5],["Bidet Attachments",5],["Bidet Self Cleaning Nozzle",5],["Bidets",5],["Binding Machine",5],["Bird Cages & Carriers",5],["Bird Feeders",5],["Bird Feeders Pole",5],["BMX Bike",5],["Boat Fenders",5],["Boat Livewell Aerator Pump",5],["Bollard Lights",5],["Bounce Houses",5],["Boxes & Brackets",5],["Bunkie Board",5],["Burger Machine",5],["Burger Presses",5],["Button Maker Accessories",5],["Can Openers",5],["Candle Making Supplies",5],["Canning Supplies",5],["Canning Supplies Starter Kit",5],["Car Canopies",5],["Car CarPlay Screen",5],["Cart Spreaders",5],["Chair Pockets",5],["Ab Machine",4],["Accent Lighting",4],["Air Blow Guns",4],["Air Conditioning Tools",4],["Animal Traps",4],["Aquarium Gravel Cleaner",4],["Archery Target",4],["Art Drying Rack",4],["ATV/UTV  Storage Box",4],["Auto Darkening Welding Lens",4],["Automatic Pipe Cutting Machine",4],["Automatic Pool Cleaners",4],["Automotive Parts",4],["Baby Bouncer",4],["Baby Scale",4],["Baby Swings",4],["Backpacks, Bags & Accessories",4],["Balance Beam Stepping Stone",4],["Baseball & Softball Pitching Trainers",4],["Baseball Pitching Pocket",4],["Basketball Hoop Arcade Game",4],["Bathtub Doors",4],["Bathtubs",4],["Battery Powered Backpack Sprayer",4],["Beach Cart",4],["Bed Sheets",4],["Beer Brewing Barrel",4],["Beer Mini Keg",4],["Beer Pong Table",4],["Blower Fans",4],["Boat Propeller",4],["Bocce Ball",4],["Building & Construction Toys",4],["Car Side Awning",4],["Cargo Mats",4],["Carry Clamps",4],["Cast Iron Circulator Pump",4],["Caulk & Sealants",4],["Caulk Gun",4],["Chain Link Fence Gates",4],["12V Volt Bilge Pumps",3],["Adult's Bean Bag Chairs",3],["Air Gun Pump",3],["Air Hose Reels",3],["Air Quality Testers",3],["Air Scrubber Replacement Filter",3],["Airbrush Spray Booth",3],["Anemometer",3],["Angle Grinder",3],["Aquarium Light",3],["Arm Support Crutches",3],["Auto Heat Press",3],["Auto Mug Heat Press",3],["Automotive Brake Rotor Replacement Kit",3],["Baby Nests",3],["Bakery Display Case",3],["Ball Lock Keg",3],["Bar Tables",3],["Barbed Wire Fences",3],["Barware Tool Sets",3],["Basketball Rim",3],["Battle Ropes",3],["Belt Conveyors",3],["Bench Grinder Pedestal",3],["Beverage Refrigerators",3],["Bike Parts & Accessories",3],["Bill Counter",3],["Boat Launching Wheels",3],["Bowls",3],["Bowls Set",3],["Box Springs",3],["Brake Parts",3],["Camping Beds",3],["Camping Portable Air Conditioner",3],["Canopy Light",3],["Car Air Conditioner Compressor",3],["Car Cleaning Supplies",3],["Car Cooling Systems",3],["Car Lifts",3],["Car Washing Supplies",3],["Cases & Storage",3],["Cat Cage",3],["Catalytic Converters",3],["CB Radios",3],["Cell Phone Storage Cabinet",3],["Centrifuges",3],["20V Power Tool Batteries",2],["AC Gauge Set",2],["Air Shock Controller Kit",2],["Air Suspension Strut",2],["Arched Floor Mirror",2],["Arched Pergola",2],["Ash Vacuum",2],["Baby Stationary Activity Centers",2],["Balance Stepping Stones For Kids",2],["Barber Chairs",2],["Bathroom Wheelchairs",2],["Batteries",2],["Battery Box",2],["BBQ Grill Playset",2],["Beach Umbrellas",2],["Beach Wheels",2],["Bed Pillows",2],["Bladeless Table Fan",2],["Blast Chiller",2],["Bolt Cutters",2],["Brew Kettle",2],["Built-in Ice Maker Machine",2],["Bun Pan Rack",2],["Burnishing Polishing Machine",2],["C-Table",2],["Cabinet hardware jig",2],["Cable Cutters",2],["Camping Hammocks",2],["Canister Steam Cleaner",2],["Canopy Tent",2],["Car Covers",2],["Cargo Bars",2],["Cargo Door Lock & Truck Tailgate Lock",2],["Above Ground Pools",1],["Adhesives & Tape",1],["Air Conditioner Sleeves",1],["Air Rivet Guns",1],["Air Sanders & Polishers",1],["Aluminum Cylinder",1],["Aquarium Water Chiller",1],["Asphalt Rake",1],["ATV Sprayers",1],["Automobile Hub Assemblies",1],["Backpack Vacuums",1],["Backpacking Instant Tent",1],["Baking Dishes",1],["Bar Carts",1],["Barn Lights",1],["Barrel Planters",1],["Bathtub Lifts",1],["Battery Sprayers",1],["Belt Disc Sander",1],["Bike Resistance Trainers",1],["Bow and Arrow Sets for Kids",1],["Box Style Cat Trees",1],["Breakfast Tray",1],["Camping Folding Chair",1],["Canister Vacuums",1],["Carpet Cleaners",1],["Carpet Tools",1],["Carpet Trimmers",1],["Cat Drinking Fountains & Water Dishes",1],["Cat Feeding Supplies",1],["Cat Trees & Scratch Posts",1],["Chainsaw Accessories",1],["Chainsaw Sharpeners",1]];
+
+// State: categoryName -> l1Id or null
+let mapping = {};
+
+// Auto-map rules
+const autoRules = [
+  [1, /restaurant|commercial (refriger|cook|sink|dish)|food prep|beverage|chafing|bain|buffet|ice machine|warming cabinet|bakery|bakeware|bread|catering|bar (accessor|shelv|furniture|tool)|brewing|canning|blender|can opener|burger|bun pan|bowls? set|beverage (cooler|dispen|jug|server|refriger)/i],
+  [2, /building (hard|supply|material)|concrete|masonry|drywall|scaffold|ladder|roofing|insulation|^flooring|carpet(?! extrac)|decking|fencing|lumber|^door|^window|paint|caulk|stair|baseboard|balusters|ceiling tile|^barn door|attic (ladder|fan)|awning|access door/i],
+  [3, /^air (compressor|tool|impact|hammer|blow|hose)|drill bit|wrench|socket set|screwdriver|plier|rivet|measur|^level|tape measure|caliper|stud finder|tool (bag|belt|case)|hand tool|bolt cutter|carry clamp|bearing.*set/i],
+  [4, /weld|plasma cut|metal lathe|anvil|forge|angle grinder|deburr|metal band|hydraulic press|sheet metal|motor.*drive|variable frequency|bench grinder|brazing|soldering|burnishing|rolling mill|spot weld/i],
+  [5, /laser (engrav|cut|tube|enclos|air assist|power supply)|cnc (router|mill|cutting|spindle)|3d print|vinyl cut|stepper motor|controller board|rotary attach|honeycomb/i],
+  [6, /woodwork|carpentry|table saw|band saw|planer|jointer|scroll saw|router|lathe.*wood|dowel|mortis|chisel|carving|belt.*sand|orbital sand|drum sand|spindle sand/i],
+  [7, /print(mak|ing)|heat press|screen print|vinyl|label (print|maker)|packag|seal.*machine|shrink wrap|laminator|paper (cut|shred)|binding|button maker|cash (handling|register)|bill counter|coin sort|sign(age| board)|banner|poster|flash dryer|silk screen|craft|pottery|ceramic|jewelry|candle|leather work|airbrush|soap (cut|mold)|etching|emboss|hot foil|die cut|^art /i],
+  [8, /^generator|solar|^inverter|battery (charg|bank)|power station|^electrical|wiring|conduit|breaker|junction box|led (panel|strip|high bay|flood)|^lighting|emergency light|flashlight|work light|cable management|network|server rack|extension cord|ev charg|area light|^batteries|power tool batter|circuit tester|bollard light|^accent light/i],
+  [9, /air condition|hvac|^heater|^fan|ventilat|ducting|grille|dehumidif|evaporat|cooler|fireplace|wood stove|propane heat|infrared heat|kerosene|air purif|humidif|thermostat|blower fan|bladeless fan|air curtain|ceiling fan(?! without)/i],
+  [10, /plumb|water (pump|heater|filter|soften)|pipe (wrench|cutter|thread)|faucet|shower|toilet|bidet|drain|^sump pump|centrifug|booster pump|well pump|bathroom (faucet|sink|mirror|cabinet|hardware|storage|organiz|scale|wall cab|accessor|safety)|backwash|potable water/i],
+  [11, /hoist|crane|gantry|jib|pallet jack|forklift|stacker|shelving|racking|workbench|tool (cabinet|chest)|cart[s ]|dolly|hand truck|strap|binder|cargo net|chain sling|wire rope|^shed|storage (bin|container)|cantilever|chain[s ]|rope[s ]|caster[s ]|book cart|bellman|cell phone storage|blueprint|akro/i],
+  [12, /^auto|vehicle lift|car lift|mechanic|diagnostic|obd|floor jack|bottle jack|engine hoist|transmission|tow (bar|hitch)|winch|recovery|truck|cargo (carrier|rack|mat|bar|box|bag|door lock)|car (seat|cover|refriger|air|cell|battery|suspension|brake|clean|wash|power inverter|canop|carplay|floor mat|cool)|ball mount|bead (seat|break)|tire|wheel balanc|alternator|catalytic|hub assembl|^rv |^atv|^utv|motorcycle|car ramp|auto (body|repai|exhaust|smoke|darken)|cable protector ramp|cam kit/i],
+  [13, /outdoor (power|cooking|grill|heat|decor|structure|light)|pressure wash|chainsaw|trimmer|mower|snow blow|log split|garden|landscap|wheelbarrow|spreader|hose(?! reel)|lawn|pergola|gazebo|artificial (hedge|grass|plant|topiar|tree|flower|fern|garland|christmas)|patio|fire pit|chimini|pet |dog |cat (tree|house|litter|toy|bed|cage|furniture|drink|feed|scratch)|kennel|chicken|aquarium|bird|pet groom|heated pet|animal|bee hive|fence.*post|bamboo|arched ramp|umbrella.*patio/i],
+  [14, /fuel (transfer|pump|tank|nozzle)|oil drain|grease gun|lubrication|drum (dolly|faucet|handler)|ibc tote|spill contain|safety can|flow meter|^ac fuel/i],
+  [15, /clean(?!.*car)|vacuum(?! cast)|scrubber|burnish|mop|sweep|janitor|hand dryer|soap dispenser|paper towel|trash|recycl|waste|ash vacuum|canister (steam|vacuum)|backpack vacuum/i],
+  [16, /safety (harness|glass|sign|helmet|equipment|storage)|hard hat|ear protect|respirat|ppe|hi.vis|coverall|rain gear|work (boot|shoe|cloth)|alloy toe|traffic (cone|safety)|speed bump|lockout|padlock|safe[s ](?!ty)|security camera|barrier tape|bollard(?! light)/i],
+  [17, /office|standing desk|filing|reception|conference|lobby|coat rack|curtain rod|blind[s ]|desk (lamp|organiz)|pendant|accent (table|chair|cabinet)|bookcase|^bed[s ]?$|bedroom|mattress|pillow|^sheet|blanket|bunkie|baby|stroller|toddler|canopy bed|cabinet (hinge|knob|slide|hardware|jig)|drawer slide|door (handle|closer)|^chair mat|^chair pocket|art (drying|photography)|^boards|floor mirror|^home decor|^window treat|^area rug|c-table|acrylic table|balcony.*table|bean bag|^bed (back|gap|handle|lift|tent|bumper|trapeze)|bread box|ironing/i],
+  [18, /salon|barber|shampoo|styling|massage table|facial steam|hot towel|ipl|hair clip|wax warm|manicure|pedicure|nail (table|dust|lamp)|^spa|amethyst/i],
+  [19, /gym|fitness|exercise|treadmill|dumbbell|barbell|power rack|rowing|boxing|punching|dance pole|ballet|soccer|basketball|volleyball|baseball|tennis|badminton|trampoline|bounce house|swing set|climb.*kid|slide.*kid|playground|paddleboard|^bike[s ]?$|cycling|bmx|archery|bow.*arrow|hunting|fishing|bocce|bowling|agility|balance (beam|trainer|stepping)|yoga|gymnast|ab machine|battle rope|^cardio|football|axe throw|lacrosse|^weight/i],
+  [20, /boat|kayak|canoe|marine|anchor|bilge|trolling motor|navigation|dock|paddle(?!board)|inflatable.*boat|camping|canopy(?! bed)|carport|pop.up|^tent|cooler.*ice|metal detector|telescope|rc.*vehicle|binocular|^cb radio/i],
+  [21, /medical|mobility|wheelchair|walker|rollator|crutch|^cane[s ]|knee scooter|grab bar|shower chair|toilet.*safety|bath.*lift|anatomic|cpr|skeleton|tens unit|blood pressure|adult diaper|bed (trapeze|handle)|stethoscop|^bathroom safety/i],
+  [22, /guitar|keyboard|piano|drum|percussion|cajon|music|instrument|ukulel|synthesiz|midi|stage light|fog machine|pool table|foosball|air hockey|dart|arcade|billiard|karaoke|dj |audio|^speaker|amplifier|microphone|^acoustic (guitar|slat)|^electric guitar|^band /i],
+];
+
+function autoSuggest(name) {
+  for (const [catId, regex] of autoRules) {
+    if (regex.test(name)) return catId;
+  }
+  return null;
+}
+
+function autoMap() {
+  let count = 0;
+  for (const [name] of ALL_CATS) {
+    if (!mapping[name]) {
+      const s = autoSuggest(name);
+      if (s) { mapping[name] = s; count++; }
+    }
+  }
+  toast(count + ' auto-mapped');
+  save(); renderAll();
+}
+
+function clearAll() {
+  if (!confirm('Tühjendada kõik mappingud?')) return;
+  mapping = {};
+  save(); renderAll();
+}
+
+// Drag state
+let dragName = null;
+
+function renderLeft() {
+  const q = document.getElementById('searchBox').value.toLowerCase();
+  const unmapped = ALL_CATS.filter(([name]) => !mapping[name] && name.toLowerCase().includes(q));
+  document.getElementById('leftCount').textContent = `(${unmapped.length})`;
+  const el = document.getElementById('leftList');
+  el.innerHTML = unmapped.map(([name, count]) => {
+    const sug = autoSuggest(name);
+    return `<div class="chip${sug ? ' auto' : ''}" draggable="true" data-name="${esc(name)}">
+      <span class="grip">⠿</span>
+      <span class="cn" title="${esc(name)}">${esc(name)}</span>
+      <span class="cc">${count}</span>
+    </div>`;
+  }).join('');
+  attachLeftDrag();
+}
+
+function renderRight() {
+  const el = document.getElementById('catGrid');
+  el.innerHTML = L1.map(cat => {
+    const items = ALL_CATS.filter(([name]) => mapping[name] === cat.id);
+    const prodCount = items.reduce((s, [, c]) => s + c, 0);
+    return `<div class="ccard" data-cat="${cat.id}">
+      <div class="ccard-head">
+        <span class="cnum">${String(cat.id).padStart(2,'0')}</span>
+        <span class="cname">${cat.name}</span>
+        ${items.length ? `<span class="cbadge">${items.length}</span>` : ''}
+        ${prodCount ? `<span class="cprods">${prodCount} prod</span>` : ''}
+      </div>
+      <div class="ccard-body" data-cat="${cat.id}">
+        ${items.map(([name, count]) => `<div class="chip" draggable="true" data-name="${esc(name)}">
+          <span class="grip">⠿</span>
+          <span class="cn" title="${esc(name)}">${esc(name)}</span>
+          <span class="cc">${count}</span>
+          <span class="xx" onclick="unmap('${esc(name)}')">×</span>
+        </div>`).join('')}
+      </div>
+    </div>`;
+  }).join('');
+  attachRightDrag();
+}
+
+function renderStats() {
+  const mapped = ALL_CATS.filter(([n]) => mapping[n]).length;
+  const unmapped = ALL_CATS.length - mapped;
+  const prods = ALL_CATS.filter(([n]) => mapping[n]).reduce((s, [, c]) => s + c, 0);
+  document.getElementById('pOk').textContent = mapped + ' mapped';
+  document.getElementById('pTodo').textContent = unmapped + ' unmapped';
+  document.getElementById('pProds').textContent = prods + ' products';
+}
+
+function renderAll() { renderLeft(); renderRight(); renderStats(); }
+
+function unmap(name) { delete mapping[name]; save(); renderAll(); }
+
+function attachLeftDrag() {
+  document.querySelectorAll('.left-list .chip').forEach(el => {
+    el.addEventListener('dragstart', e => { dragName = e.target.dataset.name; e.target.classList.add('dragging'); });
+    el.addEventListener('dragend', e => { e.target.classList.remove('dragging'); clearDragOver(); });
+  });
+}
+
+function attachRightDrag() {
+  // Items in categories — draggable back or to other cats
+  document.querySelectorAll('.ccard-body .chip').forEach(el => {
+    el.addEventListener('dragstart', e => { dragName = e.target.dataset.name; e.target.classList.add('dragging'); });
+    el.addEventListener('dragend', e => { e.target.classList.remove('dragging'); clearDragOver(); });
+  });
+  // Drop zones
+  document.querySelectorAll('.ccard-body').forEach(el => {
+    el.addEventListener('dragover', e => { e.preventDefault(); el.parentElement.classList.add('drag-over'); });
+    el.addEventListener('dragleave', () => { el.parentElement.classList.remove('drag-over'); });
+    el.addEventListener('drop', e => {
+      e.preventDefault(); el.parentElement.classList.remove('drag-over');
+      if (dragName) { mapping[dragName] = parseInt(el.dataset.cat); dragName = null; save(); renderAll(); }
+    });
+  });
+  // Drop back to unsorted
+  document.getElementById('leftList').addEventListener('dragover', e => e.preventDefault());
+  document.getElementById('leftList').addEventListener('drop', e => {
+    e.preventDefault();
+    if (dragName) { delete mapping[dragName]; dragName = null; save(); renderAll(); }
+  });
+}
+
+function clearDragOver() { document.querySelectorAll('.ccard').forEach(c => c.classList.remove('drag-over')); }
+
+function exportMapping() {
+  const result = {};
+  for (const cat of L1) {
+    result[cat.name] = ALL_CATS.filter(([n]) => mapping[n] === cat.id).map(([n, c]) => ({ name: n, products: c }));
+  }
+  result._unmapped = ALL_CATS.filter(([n]) => !mapping[n]).map(([n, c]) => ({ name: n, products: c }));
+  result._stats = {
+    totalCategories: ALL_CATS.length,
+    mapped: ALL_CATS.filter(([n]) => mapping[n]).length,
+    unmapped: ALL_CATS.filter(([n]) => !mapping[n]).length,
+    totalProducts: ALL_CATS.reduce((s, [, c]) => s + c, 0),
+    mappedProducts: ALL_CATS.filter(([n]) => mapping[n]).reduce((s, [, c]) => s + c, 0),
+  };
+  const blob = new Blob([JSON.stringify(result, null, 2)], { type: 'application/json' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'xlmarket-category-mapping.json';
+  a.click();
+  toast('JSON exported');
+}
+
+function save() { try { localStorage.setItem('xlm-mapping', JSON.stringify(mapping)); } catch(e) {} }
+function load() { try { const s = localStorage.getItem('xlm-mapping'); if (s) mapping = JSON.parse(s); } catch(e) {} }
+
+function toast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+function esc(s) { return s.replace(/'/g, '&#39;').replace(/"/g, '&quot;'); }
+
+// Boot
+load();
+renderAll();
+</script>
+
+<!-- Inject real MeiliSearch data -->
+<script>
+// This will be replaced with actual data
+</script>
+</body>
+</html>

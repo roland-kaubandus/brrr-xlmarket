@@ -1,0 +1,1071 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>XLMarket — The Catalogue, Spring 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --paper: #f6f1e8;
+    --paper-2: #efe8d9;
+    --paper-3: #e6decb;
+    --ink: #1a1a1a;
+    --ink-2: #2d2a26;
+    --mute: #7a716a;
+    --rule: #d8cfbf;
+    --amber: #b05410;
+    --amber-soft: #d97f40;
+    --sage: #6b7a5b;
+
+    --serif: "Fraunces", Georgia, serif;
+    --sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 15px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  a { color: inherit; text-decoration: none; }
+  img { display: block; max-width: 100%; }
+
+  /* --- Header --- */
+  .top {
+    border-bottom: 1px solid var(--rule);
+  }
+  .top-inner {
+    max-width: 1480px;
+    margin: 0 auto;
+    padding: 16px 48px;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 24px;
+  }
+  .brand {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: 22px;
+    letter-spacing: -0.01em;
+  }
+  .brand em { font-style: italic; color: var(--amber); font-weight: 300; }
+  .top-nav {
+    display: flex;
+    gap: 28px;
+    font-size: 13.5px;
+    letter-spacing: 0.02em;
+    color: var(--ink-2);
+  }
+  .top-nav a { position: relative; padding: 4px 0; }
+  .top-nav a::after {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    height: 1px;
+    background: var(--amber);
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 220ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .top-nav a:hover::after { transform: scaleX(1); }
+  .top-nav a:hover { color: var(--amber); }
+  .top-util {
+    justify-self: end;
+    display: flex;
+    gap: 12px;
+    color: var(--ink-2);
+  }
+  .util-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    border: 1px solid var(--rule);
+    border-radius: 999px;
+    font-size: 13px;
+    background: transparent;
+    color: var(--ink-2);
+    cursor: pointer;
+    transition: border-color 180ms, color 180ms;
+  }
+  .util-btn:hover { border-color: var(--ink); color: var(--ink); }
+  .util-btn svg { width: 14px; height: 14px; }
+
+  /* --- Page layout with typographic side rail --- */
+  .page {
+    max-width: 1480px;
+    margin: 0 auto;
+    padding: 36px 48px 0;
+    display: grid;
+    grid-template-columns: 96px 1fr;
+    gap: 40px;
+  }
+
+  .rail {
+    position: sticky;
+    top: 32px;
+    height: fit-content;
+    border-left: 1px solid var(--rule);
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .rail-label {
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--mute);
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    margin-bottom: 12px;
+  }
+  .rail-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .rail-list a {
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--mute);
+    line-height: 1.2;
+    padding: 4px 0;
+    border-bottom: 1px dotted transparent;
+    transition: color 180ms, border-color 180ms;
+  }
+  .rail-list a span {
+    font-family: var(--serif);
+    font-weight: 300;
+    letter-spacing: 0;
+    text-transform: none;
+    color: var(--ink-2);
+    margin-right: 6px;
+    font-variant-numeric: tabular-nums;
+  }
+  .rail-list a:hover {
+    color: var(--amber);
+    border-bottom-color: var(--amber);
+  }
+  .rail-list a:hover span { color: var(--amber); }
+
+  /* --- Main content --- */
+  main { min-width: 0; }
+
+  .masthead {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    gap: 32px;
+    padding-bottom: 18px;
+    border-bottom: 2px solid var(--ink);
+    margin-bottom: 12px;
+  }
+  .masthead h1 {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(40px, 5vw, 72px);
+    line-height: 0.98;
+    letter-spacing: -0.02em;
+    margin: 0;
+  }
+  .masthead h1 em {
+    font-style: italic;
+    color: var(--amber);
+    font-weight: 300;
+  }
+  .masthead .issue {
+    font-size: 12.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--mute);
+    text-align: right;
+  }
+  .masthead .issue strong {
+    font-family: var(--serif);
+    font-weight: 400;
+    letter-spacing: 0;
+    text-transform: none;
+    color: var(--ink);
+    font-size: 15px;
+    display: block;
+    margin-top: 4px;
+  }
+
+  .dek {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr 1fr;
+    gap: 40px;
+    padding: 18px 0 32px;
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 48px;
+  }
+  .dek .lead {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 1.35;
+    color: var(--ink-2);
+  }
+  .dek .lead::first-letter {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-style: italic;
+    font-size: 52px;
+    float: left;
+    line-height: 0.95;
+    padding: 6px 10px 0 0;
+    color: var(--amber);
+  }
+  .dek .stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px 28px;
+    align-content: end;
+  }
+  .dek .stats div .k {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--mute);
+    margin-bottom: 4px;
+  }
+  .dek .stats div .v {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: 22px;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+  .dek .stats div .v em { font-style: italic; color: var(--amber); font-weight: 300; }
+  .dek .services {
+    padding: 12px 16px;
+    border: 1px solid var(--rule);
+    background: var(--paper-2);
+    align-self: end;
+  }
+  .dek .services .h {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 15px;
+    margin-bottom: 8px;
+  }
+  .dek .services ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-size: 13px;
+    color: var(--ink-2);
+  }
+  .dek .services li { display: flex; gap: 8px; align-items: center; }
+  .dek .services li svg { width: 12px; height: 12px; color: var(--amber); flex: 0 0 auto; }
+
+  /* --- Department dividers --- */
+  .department {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 20px;
+    align-items: center;
+    padding: 48px 0 24px;
+    border-top: 1px solid var(--ink);
+    margin-top: 40px;
+  }
+  .department:first-of-type { border-top-color: var(--ink); margin-top: 0; padding-top: 28px; }
+  .department .tag {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--mute);
+  }
+  .department h2 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(22px, 2.2vw, 32px);
+    letter-spacing: -0.01em;
+    margin: 0;
+    text-align: center;
+    white-space: nowrap;
+  }
+  .department h2 em { font-style: italic; color: var(--amber); font-weight: 300; }
+  .department .tag.right { text-align: right; }
+
+  /* --- Catalog grid --- */
+  .catalog {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 48px 40px;
+  }
+  .entry { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+  .entry .photo {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    background: var(--paper-2);
+  }
+  .entry .photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .entry:hover .photo img { transform: scale(1.025); }
+  .entry .photo .badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: var(--paper);
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 13px;
+    color: var(--ink);
+    padding: 4px 10px;
+    letter-spacing: 0.01em;
+  }
+  .entry .photo .badge em { color: var(--amber); font-weight: 400; }
+  .entry .head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+    border-bottom: 1px solid var(--ink);
+    padding-bottom: 8px;
+  }
+  .entry h3 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 1.15;
+    letter-spacing: -0.005em;
+    margin: 0;
+  }
+  .entry h3 em { font-style: italic; color: var(--amber); font-weight: 400; }
+  .entry .count {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 13.5px;
+    color: var(--mute);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+  .entry .caption {
+    font-size: 13.5px;
+    color: var(--ink-2);
+    letter-spacing: 0.005em;
+  }
+  .entry .subs {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px dotted var(--rule);
+  }
+  .entry .subs a {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 9px 0;
+    border-bottom: 1px dotted var(--rule);
+    font-size: 13.5px;
+    color: var(--ink-2);
+    transition: padding-left 220ms cubic-bezier(0.16, 1, 0.3, 1), color 180ms;
+  }
+  .entry .subs a .arrow {
+    opacity: 0;
+    transform: translateX(-4px);
+    transition: opacity 180ms, transform 180ms;
+    color: var(--amber);
+  }
+  .entry .subs a:hover {
+    color: var(--amber);
+    padding-left: 6px;
+  }
+  .entry .subs a:hover .arrow {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  .entry .view {
+    margin-top: 8px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink);
+    padding-bottom: 2px;
+    border-bottom: 1px solid var(--ink);
+    align-self: flex-start;
+    transition: color 180ms, border-color 180ms;
+  }
+  .entry .view svg { width: 12px; height: 12px; transition: transform 200ms; }
+  .entry .view:hover { color: var(--amber); border-color: var(--amber); }
+  .entry .view:hover svg { transform: translateX(3px); }
+
+  /* --- B2B band --- */
+  .b2b {
+    margin-top: 80px;
+    border-top: 2px solid var(--ink);
+    padding: 44px 0 72px;
+  }
+  .b2b-inner {
+    display: grid;
+    grid-template-columns: 1.1fr 1.4fr;
+    gap: 48px;
+    align-items: start;
+  }
+  .b2b h2 {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(30px, 3vw, 44px);
+    line-height: 1.05;
+    letter-spacing: -0.015em;
+    margin: 0 0 14px;
+  }
+  .b2b h2 em { font-style: italic; color: var(--amber); font-weight: 300; }
+  .b2b p {
+    font-size: 15px;
+    color: var(--ink-2);
+    max-width: 52ch;
+    margin: 0 0 24px;
+  }
+  .b2b-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 22px;
+    background: var(--ink);
+    color: var(--paper);
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    border: 1px solid var(--ink);
+    transition: background 180ms, color 180ms;
+  }
+  .btn-primary:hover { background: var(--amber); border-color: var(--amber); }
+  .btn-primary svg { width: 14px; height: 14px; }
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 22px;
+    border: 1px solid var(--ink);
+    color: var(--ink);
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transition: background 180ms, color 180ms;
+  }
+  .btn-ghost:hover { background: var(--ink); color: var(--paper); }
+
+  .b2b-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border: 1px solid var(--rule);
+    background: var(--paper);
+  }
+  .b2b-grid div {
+    padding: 22px 20px;
+    border-right: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+  }
+  .b2b-grid div:nth-child(3n) { border-right: none; }
+  .b2b-grid div:nth-child(n+4) { border-bottom: none; }
+  .b2b-grid .k {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--mute);
+    margin-bottom: 8px;
+  }
+  .b2b-grid .v {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: 26px;
+    line-height: 1;
+    letter-spacing: -0.005em;
+    font-variant-numeric: tabular-nums;
+  }
+  .b2b-grid .v em { font-style: italic; color: var(--amber); font-weight: 300; }
+  .b2b-grid .c {
+    margin-top: 10px;
+    font-size: 12.5px;
+    color: var(--ink-2);
+  }
+
+  footer.colophon {
+    border-top: 1px solid var(--rule);
+    padding: 22px 48px;
+    max-width: 1480px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--mute);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  footer.colophon .l {
+    font-family: var(--serif);
+    font-style: italic;
+    text-transform: none;
+    letter-spacing: 0.005em;
+    font-size: 14px;
+    color: var(--ink-2);
+  }
+
+  /* --- Responsive --- */
+  @media (max-width: 1180px) {
+    .catalog { grid-template-columns: repeat(2, 1fr); gap: 44px 32px; }
+    .dek { grid-template-columns: 1fr; }
+    .b2b-inner { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 820px) {
+    .page { grid-template-columns: 1fr; padding: 28px 24px 0; }
+    .rail { display: none; }
+    .top-inner { padding: 14px 24px; grid-template-columns: auto auto; }
+    .top-nav { display: none; }
+    .catalog { grid-template-columns: 1fr; gap: 40px; }
+    .department h2 { white-space: normal; }
+    .department { grid-template-columns: 1fr; text-align: left; }
+    .department .tag, .department .tag.right { text-align: left; }
+    footer.colophon { padding: 18px 24px; flex-direction: column; gap: 8px; align-items: flex-start; }
+    .b2b { padding: 36px 0 48px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="top">
+  <div class="top-inner">
+    <a class="brand" href="#">XL<em>Market</em></a>
+    <nav class="top-nav" aria-label="Primary">
+      <a href="#">The catalogue</a>
+      <a href="#">Starter kits</a>
+      <a href="#">Trade desk</a>
+      <a href="#">Journal</a>
+      <a href="#">About</a>
+    </nav>
+    <div class="top-util">
+      <button class="util-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>Search the floor</button>
+      <button class="util-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18l-2 13H5L3 6Z"/><path d="M8 6V4a4 4 0 0 1 8 0v2"/></svg>Basket</button>
+    </div>
+  </div>
+</header>
+
+<!-- PAGE with typographic rail -->
+<div class="page">
+
+  <!-- TYPOGRAPHIC RAIL: vertical index -->
+  <aside class="rail" aria-label="All disciplines">
+    <div class="rail-label">The Index · 22 Trades</div>
+    <div class="rail-list" id="rail-list"></div>
+  </aside>
+
+  <main>
+    <!-- MASTHEAD -->
+    <div class="masthead">
+      <h1>The <em>Catalogue</em>, <br/>Spring 2026.</h1>
+      <div class="issue">
+        Volume 01 · Number 07
+        <strong>Twenty-two trades, one desk</strong>
+      </div>
+    </div>
+
+    <!-- DEK -->
+    <div class="dek">
+      <div class="lead">XLMarket sits somewhere between a tool merchant and a trade contractor — a single desk that outfits the small businesses of Estonia and Spain, from a new village café to a print-shop in Santa Cruz.</div>
+      <div class="stats">
+        <div><div class="k">Disciplines</div><div class="v">22</div></div>
+        <div><div class="k">SKUs</div><div class="v"><em>16,046</em></div></div>
+        <div><div class="k">Trade accounts</div><div class="v">1,847</div></div>
+        <div><div class="k">Starter kits</div><div class="v">From €<em>2,799</em></div></div>
+      </div>
+      <div class="services">
+        <div class="h">At the trade desk</div>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Net-30 terms</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Volume pricing</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Dedicated manager</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Quote in under 4h</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- DEPARTMENT 01 — HORECA & FOOD -->
+    <div class="department">
+      <div class="tag">Department one</div>
+      <h2>HoReCa <em>&amp;</em> Food</h2>
+      <div class="tag right">Pages 01 — 02</div>
+    </div>
+    <section class="catalog" data-dept="horeca-food">
+      <!-- HoReCa -->
+      <a class="entry" href="/en/categories/horeca-food-service">
+        <div class="photo"><span class="badge"><em>01</em> · HoReCa</span><img src="../../images/cat-01-horeca-food-service.png" alt="Restaurant kitchen" width="640" height="800" loading="lazy" /></div>
+        <div class="head"><h3>HoReCa <em>&amp;</em> Food Service</h3><span class="count">612 SKUs</span></div>
+        <p class="caption">Equipment for restaurants, cafés and catering kitchens — refrigeration through to the last sink.</p>
+        <div class="subs">
+          <a>Commercial Refrigeration<span class="arrow">→</span></a>
+          <a>Commercial Cooking Equipment<span class="arrow">→</span></a>
+          <a>Food Preparation Equipment<span class="arrow">→</span></a>
+          <a>Bar &amp; Beverage Service<span class="arrow">→</span></a>
+          <a>Commercial Sinks &amp; Washdown<span class="arrow">→</span></a>
+          <a>Restaurant Storage &amp; Shelving<span class="arrow">→</span></a>
+        </div>
+        <span class="view">Enter discipline <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 5 7 7-7 7"/></svg></span>
+      </a>
+    </section>
+
+    <!-- DEPARTMENT 02 — WORKSHOP & FABRICATION -->
+    <div class="department">
+      <div class="tag">Department two</div>
+      <h2>Workshop <em>&amp;</em> Fabrication</h2>
+      <div class="tag right">Pages 03 — 08</div>
+    </div>
+    <section class="catalog" data-dept="workshop">
+      <!-- Laser / CNC -->
+      <a class="entry" href="/en/categories/laser-cnc-digital-fabrication">
+        <div class="photo"><span class="badge"><em>02</em> · Laser &amp; CNC</span><img src="../../images/cat-05-laser-cnc-digital-fabrication.png" alt="Laser CNC workshop" width="640" height="800" loading="lazy" /></div>
+        <div class="head"><h3>Laser, CNC <em>&amp;</em> Digital Fabrication</h3><span class="count">487 SKUs</span></div>
+        <p class="caption">Diode engravers, CO₂ cutters, CNC routers and 3D printers for small fab-shops.</p>
+        <div class="subs">
+          <a>CO₂ Laser Engravers &amp; Cutters<span class="arrow">→</span></a>
+          <a>Diode Laser Engravers<span class="arrow">→</span></a>
+          <a>CNC Routers &amp; Mills<span class="arrow">→</span></a>
+          <a>3D Printers<span class="arrow">→</span></a>
+          <a>Laser &amp; CNC Accessories<span class="arrow">→</span></a>
+          <a>Rotary Attachments<span class="arrow">→</span></a>
+        </div>
+        <span class="view">Enter discipline <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 5 7 7-7 7"/></svg></span>
+      </a>
+      <!-- Welding -->
+      <a class="entry" href="/en/categories/welding-metalworking">
+        <div class="photo"><span class="badge"><em>03</em> · Welding</span><img src="../../images/cat-04-welding-metalworking.png" alt="Welding shop" width="640" height="800" loading="lazy" /></div>
+        <div class="head"><h3>Welding <em>&amp;</em> Metalworking</h3><span class="count">524 SKUs</span></div>
+        <p class="caption">MIG, TIG, plasma — and the metal shop floor that surrounds them.</p>
+        <div class="subs">
+          <a>Welding &amp; Cutting<span class="arrow">→</span></a>
+          <a>Metal Lathes &amp; Mills<span class="arrow">→</span></a>
+          <a>Angle Grinders &amp; Metal Cutting<span class="arrow">→</span></a>
+          <a>Hydraulic &amp; Press Equipment<span class="arrow">→</span></a>
+          <a>Welding Safety &amp; Apparel<span class="arrow">→</span></a>
+          <a>Motors, Drives &amp; Parts<span class="arrow">→</span></a>
+        </div>
+        <span class="view">Enter discipline <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 5 7 7-7 7"/></svg></span>
+      </a>
+      <!-- Woodworking -->
+      <a class="entry" href="/en/categories/woodworking-carpentry">
+        <div class="photo"><span class="badge"><em>04</em> · Woodworking</span><img src="../../images/cat-06-woodworking-carpentry.png" alt="Woodworking shop" width="640" height="800" loading="lazy" /></div>
+        <div class="head"><h3>Woodworking <em>&amp;</em> Carpentry</h3><span class="count">356 SKUs</span></div>
+        <p class="caption">Stationary saws, routers, presses, benches — the quiet return of the small joiner.</p>
+        <div class="subs">
+          <a>Stationary Woodworking Machines<span class="arrow">→</span></a>
+          <a>Routers &amp; Shaping<span class="arrow">→</span></a>
+          <a>Woodworking Benches &amp; Clamps<span class="arrow">→</span></a>
+          <a>Drill Presses &amp; Boring<span class="arrow">→</span></a>
+          <a>Saw Accessories &amp; Blades<span class="arrow">→</span></a>
+          <a>Finishing &amp; Sanding Tools<span class="arrow">→</span></a>
+        </div>
+        <span class="view">Enter discipline <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 5 7 7-7 7"/></svg></span>
+      </a>
+      <!-- Hand & Power -->
+      <a class="entry" href="/en/categories/hand-power-tools">
+        <div class="photo"><span class="badge"><em>05</em> · Tools</span><img src="../../images/cat-03-hand-power-tools.png" alt="Hand and power tools" width="640" height="800" loading="lazy" /></div>
+        <div class="head"><h3>Hand <em>&amp;</em> Power Tools</h3><span class="count">734 SKUs</span></div>
+        <p class="caption">Drills, impact drivers, compressors, measuring kit — the tools in the van.</p>
+        <div class="subs">
+          <a>Power Tools<span class="arrow">→</span></a>
+          <a>Hand Tools<span class="arrow">→</span></a>
+          <a>Air Compressors &amp; Pneumatic<span class="arrow">→</span></a>
+          <a>Measuring &amp; Layout<span class="arrow">→</span></a>
+          <a>Accessories &amp; Bits<span class="arrow">→</span></a>
+          <a>Tool Storage &amp; Cases<span class="arrow">→</span></a>
+        </div>
+        <span class="view">Enter discipline <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 5 7 7-7 7"/></svg></span>
+      </a>
+      <!-- Printing -->
+      <a class="entry" href="/en/categories/printing-packaging-signage">
+        <div class="photo"><span class="badge"><em>06</em> · Printing</span><img src="../../images/cat-07-printing-packaging-signage.png" alt="Printing workshop" width="640" height="800" loading="lazy" /></div>
+        <div class="head"><h3>Printing, Packaging <em>&amp;</em> Signage</h3><span class="count">392 SKUs</span></div>
+        <p class="caption">Heat presses, vinyl cutters, sealers, labels — the everyday economy of custom.</p>
+        <div class="subs">
+          <a>Screen Printing &amp; Heat Press<span class="arrow">→</span></a>
+          <a>Vinyl Cutters &amp; Plotters<span class="arrow">→</span></a>
+          <a>Packaging &amp; Sealing<span class="arrow">→</span></a>
+          <a>Label Makers &amp; Printers<span class="arrow">→</span></a>
+          <a>Signage &amp; Display<span class="arrow">→</span></a>
+          <a>Paper &amp; Document Handling<span class="arrow">→</span></a>
+        </div>
+        <span class="view">Enter discipline <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 5 7 7-7 7"/></svg></span>
+      </a>
+      <!-- Automotive -->
+      <a class="entry" href="/en/categories/automotive-workshop">
+        <div class="photo"><span class="badge"><em>07</em> · Automotive</span><img src="../../images/cat-12-automotive-workshop.png" alt="Auto workshop" width="640" height="800" loading="lazy" /></div>
+        <div class="head"><h3>Automotive <em>&amp;</em> Workshop</h3><span class="count">445 SKUs</span></div>
+        <p class="caption">Vehicle lifts, diagnostic kit, jacks, towing — for the independent garage.</p>
+        <div class="subs">
+          <a>Vehicle Lifts &amp; Shop Equipment<span class="arrow">→</span></a>
+          <a>Mechanics &amp; Diagnostic Tools<span class="arrow">→</span></a>
+          <a>Jacks &amp; Lifting<span class="arrow">→</span></a>
+          <a>Towing &amp; Recovery<span class="arrow">→</span></a>
+          <a>Truck &amp; Cargo Accessories<span class="arrow">→</span></a>
+          <a>Auto Parts &amp; Replacement<span class="arrow">→</span></a>
+        </div>
+        <span class="view">Enter discipline <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 5 7 7-7 7"/></svg></span>
+      </a>
+    </section>
+
+    <!-- DEPARTMENT 03 — BUILDING & GROUNDS -->
+    <div class="department">
+      <div class="tag">Department three</div>
+      <h2>Building <em>&amp;</em> Grounds</h2>
+      <div class="tag right">Pages 09 — 13</div>
+    </div>
+    <section class="catalog" data-dept="building">
+      <a class="entry" href="/en/categories/construction-building">
+        <div class="photo"><span class="badge"><em>08</em> · Construction</span><img src="../../images/cat-02-construction-building.png" alt="Construction site" width="640" height="800" loading="lazy" /></div>
+        <div class="head"><h3>Construction <em>&amp;</em> Building</h3><span class="count">688 SKUs</span></div>
+        <p class="caption">Concrete, scaffolding, roofing, paint — the daily infrastructure.</p>
+        <div class="subs">
+          <a>Concrete, Masonry &amp; Drywall<span class="arrow">→</span></a>
+          <a>Ladders, Scaffolding &amp; Platforms<span class="arrow">→</span></a>
+          <a>Roofing &amp; Insulation<span class="arrow">→</span></a>
+          <a>Flooring Installation<span class="arrow">→</span></a>
+          <a>Decking, Fencing &amp; Structural<span class="arrow">→</span></a>
+          <a>Paint, Caulk &amp; Finishing<span class="arrow">→</span></a>
+        </div>
+        <span class="view">Enter discipline <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 5 7 7-7 7"/></svg></span>
+      </a>
+      <a class="entry" href="/en/categories/electrical-energy">
+        <div class="photo"><span class="badge"><em>09</em> · Electrical</span><img src="../../images/cat-08-electrical-energy.png" alt="Electrical and solar" width="640" height="800" loading="lazy" /></div>
+        <div class="head"><h3>Electrical <em>&amp;</em> Energy</h3><span class="count">411 SKUs</span></div>
+        <p class="caption">Generators, solar, testing, lighting — from mains to mesh.</p>
+        <div class="subs">
+          <a>Generators &amp; Portable Power<span class="arrow">→</span></a>
+          <a>Solar &amp; Renewable Energy<span class="arrow">→</span></a>
+          <a>Electrical Tools &amp; Testing<span class="arrow">→</span></a>
+          <a>Wiring, Conduit &amp; Enclosures<span class="arrow">→</span></a>
+          <a>Commercial Lighting<span class="arrow">→</span></a>
+          <a>Batteries &amp; Charging<span class="arrow">→</span></a>
+        </div>
+        <span class="view">Enter discipline <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 5 7 7-7 7"/></svg></span>
+      </a>
+      <a class="entry" href="/en/categories/hvac-climate-control">
+        <div class="photo"><span class="badge"><em>10</em> · HVAC</span><img src="../../images/cat-09-hvac-climate-control.png" alt="HVAC" width="640" height="800" loading="lazy" /></div>
+        <div class="head"><h3>HVAC <em>&amp;</em> Climate Control</h3><span class="count">241 SKUs</span></div>
+        <p class="caption">Mini splits, heaters, ventilation, air quality — the mechanical lungs.</p>
+        <div class="subs">
+          <a>Air Conditioners &amp; Mini Splits<span class="arrow">→</span></a>
+          <a>Heaters<span class="arrow">→</span></a>
+          <a>Fans &amp; Ventilation<span class="arrow">→</span></a>
+          <a>Ducting &amp; HVAC Supplies<span class="arrow">→</span></a>
+          <a>Air Quality &amp; Purification<span class="arrow">→</span></a>
+          <a>Dehumidifiers &amp; Coolers<span class="arrow">→</span></a>
+        </div>
+        <span class="view">Enter discipline <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 5 7 7-7 7"/></svg></span>
+      </a>
+      <a class="entry" href="/en/categories/plumbing-water-systems">
+        <div class="photo"><span class="badge"><em>11</em> · Plumbing</span><img src="../../images/cat-10-plumbing-water-systems.png" alt="Plumbing" width="640" height="800" loading="lazy" /></div>
+        <div class="head"><h3>Plumbing <em>&amp;</em> Water Systems</h3><span class="count">356 SKUs</span></div>
+        <p class="caption">Pumps, pipes, heaters, filtration, fixtures — unseen until it fails.</p>
+        <div class="subs">
+          <a>Water Pumps<span class="arrow">→</span></a>
+          <a>Pipes, Fittings &amp; Valves<span class="arrow">→</span></a>
+          <a>Plumbing Tools<span class="arrow">→</span></a>
+          <a>Water Heaters<span class="arrow">→</span></a>
+          <a>Filtration &amp; Softening<span class="arrow">→</span></a>
+          <a>Bathroom Fixtures<span class="arrow">→</span></a>
+        </div>
+        <span class="view">Enter discipline <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 5 7 7-7 7"/></svg></span>
+      </a>
+      <a class="entry" href="/en/categories/outdoor-power-landscaping">
+        <div class="photo"><span class="badge"><em>12</em> · Outdoor</span><img src="../../images/cat-13-outdoor-power-landscaping.png" alt="Outdoor power" width="640" height="800" loading="lazy" /></div>
+        <div class="head"><h3>Outdoor Power <em>&amp;</em> Landscaping</h3><span class="count">322 SKUs</span></div>
+        <p class="caption">Chainsaws, pressure washers, mowers, outdoor heat — the grounds crew.</p>
+        <div class="subs">
+          <a>Outdoor Power Equipment<span class="arrow">→</span></a>
+          <a>Pressure Washers<span class="arrow">→</span></a>
+          <a>Garden Tools &amp; Supplies<span class="arrow">→</span></a>
+          <a>Outdoor Cooking &amp; Grilling<span class="arrow">→</span></a>
+          <a>Outdoor Heating<span class="arrow">→</span></a>
+          <a>Outdoor Decor &amp; Structures<span class="arrow">→</span></a>
+        </div>
+        <span class="view">Enter discipline <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 5 7 7-7 7"/></svg></span>
+      </a>
+    </section>
+
+    <!-- DEPARTMENT 04 — OPERATIONS & SAFETY -->
+    <div class="department">
+      <div class="tag">Department four</div>
+      <h2>Operations <em>&amp;</em> Safety</h2>
+      <div class="tag right">Pages 14 — 18</div>
+    </div>
+    <section class="catalog" data-dept="ops">
+      <a class="entry" href="/en/categories/warehousing-material-handling">
+        <div class="photo"><span class="badge"><em>13</em> · Warehouse</span><img src="../../images/cat-11-warehousing-material-handling.png" alt="Warehousing" width="640" height="800" loading="lazy" /></div>
+        <div class="head"><h3>Warehousing <em>&amp;</em> Material Handling</h3><span class="count">287 SKUs</span></div>
+        <p class="caption">Hoists, pallet jacks, shelving, workbenches — the skeleton behind the logistics.</p>
+        <div class="subs">
+          <a>Hoists, Cranes &amp; Lifting<span class="arrow">→</span></a>
+          <a>Forklifts &amp; Pallet Equipment<span class="arrow">→</span></a>
+          <a>Carts, Dollies &amp; Hand Trucks<span class="arrow">→</span></a>
+          <a>Industrial Shelving &amp; Racking<span class="arrow">→</span></a>
+          <a>Workbenches &amp; Tool Storage<span class="arrow">→</span></a>
+          <a>Strapping, Chains &amp; Securing<span class="arrow">→</span></a>
+        </div>
+        <span class="view">Enter discipline <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 5 7 7-7 7"/></svg></span>
+      </a>
+      <a class="entry" href="/en/categories/cleaning-janitorial">
+        <div class="photo"><span class="badge"><em>14</em> · Cleaning</span><img src="../../images/cat-15-cleaning-janitorial.png" alt="Cleaning" width="640" height="800" loading="lazy" /></div>
+        <div class="head"><h3>Cleaning <em>&amp;</em> Janitorial</h3><span class="count">268 SKUs</span></div>
+        <p class="caption">Floor scrubbers, hand dryers, vacuums — the invisible work that keeps the floor clean.</p>
+        <div class="subs">
+          <a>Floor Care Equipment<span class="arrow">→</span></a>
+          <a>Janitorial Supplies &amp; Carts<span class="arrow">→</span></a>
+          <a>Hand Dryers &amp; Washroom<span class="arrow">→</span></a>
+          <a>Waste &amp; Recycling<span class="arrow">→</span></a>
+          <a>Industrial Vacuums<span class="arrow">→</span></a>
+          <a>Carpet Extractors<span class="arrow">→</span></a>
+        </div>
+        <span class="view">Enter discipline <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 5 7 7-7 7"/></svg></span>
+      </a>
+      <a class="entry" href="/en/categories/safety-security-workwear">
+        <div class="photo"><span class="badge"><em>15</em> · Safety</span><img src="../../images/cat-16-safety-security-workwear.png" alt="Safety workwear" width="640" height="800" loading="lazy" /></div>
+        <div class="head"><h3>Safety, Security <em>&amp;</em> Workwear</h3><span class="count">298 SKUs</span></div>
+        <p class="caption">PPE, traffic, locks, boots — the moral baseline of a workplace.</p>
+        <div class="subs">
+          <a>Personal Protective Equipment<span class="arrow">→</span></a>
+          <a>Traffic &amp; Site Safety<span class="arrow">→</span></a>
+          <a>Locks, Safes &amp; Access Control<span class="arrow">→</span></a>
+          <a>Work Boots &amp; Footwear<span class="arrow">→</span></a>
+          <a>Work Clothing &amp; Outerwear<span class="arrow">→</span></a>
+          <a>Safety Glasses<span class="arrow">→</span></a>
+        </div>
+        <span class="view">Enter discipline <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 5 7 7-7 7"/></svg></span>
+      </a>
+      <a class="entry" href="/en/categories/fuel-lubrication-fluid">
+        <div class="photo"><span class="badge"><em>16</em> · Fluid</span><img src="../../images/cat-14-fuel-lubrication-fluid.png" alt="Fuel and fluid" width="640" height="800" loading="lazy" /></div>
+        <div class="head"><h3>Fuel, Lubrication <em>&amp;</em> Fluid</h3><span class="count">198 SKUs</span></div>
+        <p class="caption">Transfer pumps, oil rigs, drums, chemical handling — the unseen utility.</p>
+        <div class="subs">
+          <a>Fuel Transfer Pumps<span class="arrow">→</span></a>
+          <a>Oil &amp; Lubrication Equipment<span class="arrow">→</span></a>
+          <a>Drum &amp; Container Handling<span class="arrow">→</span></a>
+          <a>Dewatering &amp; Industrial Pumps<span class="arrow">→</span></a>
+          <a>Chemical Transfer<span class="arrow">→</span></a>
+          <a>Fuel Nozzles<span class="arrow">→</span></a>
+        </div>
+        <span class="view">Enter discipline <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 5 7 7-7 7"/></svg></span>
+      </a>
+      <a class="entry" href="/en/categories/office-commercial-interiors">
+        <div class="photo"><span class="badge"><em>17</em> · Office</span><img src="../../images/cat-17-office-commercial-interiors.png" alt="Office interiors" width="640" height="800" loading="lazy" /></div>
+        <div class="head"><h3>Office <em>&amp;</em> Commercial Interiors</h3><span class="count">312 SKUs</span></div>
+        <p class="caption">Office furniture, lobby, door hardware, interior lighting — the return to the desk.</p>
+        <div class="subs">
+          <a>Office Furniture<span class="arrow">→</span></a>
+          <a>Meeting &amp; Lobby Furniture<span class="arrow">→</span></a>
+          <a>Door &amp; Cabinet Hardware<span class="arrow">→</span></a>
+          <a>Interior Lighting<span class="arrow">→</span></a>
+          <a>Bathroom Accessories<span class="arrow">→</span></a>
+          <a>Home Decor<span class="arrow">→</span></a>
+        </div>
+        <span class="view">Enter discipline <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 5 7 7-7 7"/></svg></span>
+      </a>
+    </section>
+
+    <!-- DEPARTMENT 05 — SERVICES & LEISURE -->
+    <div class="department">
+      <div class="tag">Department five</div>
+      <h2>Services <em>&amp;</em> Leisure</h2>
+      <div class="tag right">Pages 19 — 22</div>
+    </div>
+    <section class="catalog" data-dept="services">
+      <a class="entry" href="/en/categories/salon-spa-wellness">
+        <div class="photo"><span class="badge"><em>18</em> · Salon</span><img src="../../images/cat-18-salon-spa-wellness.png" alt="Salon and spa" width="640" height="800" loading="lazy" /></div>
+        <div class="head"><h3>Salon, Spa <em>&amp;</em> Wellness</h3><span class="count">176 SKUs</span></div>
+        <p class="caption">Barber chairs, massage tables, shampoo stations — one of the most regulated trades we equip.</p>
+        <div class="subs">
+          <a>Barber &amp; Salon Chairs<span class="arrow">→</span></a>
+          <a>Shampoo Stations<span class="arrow">→</span></a>
+          <a>Massage Tables &amp; Spa<span class="arrow">→</span></a>
+          <a>Personal Care Appliances<span class="arrow">→</span></a>
+          <a>Manicure &amp; Nail<span class="arrow">→</span></a>
+          <a>Facial Steamers<span class="arrow">→</span></a>
+        </div>
+        <span class="view">Enter discipline <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 5 7 7-7 7"/></svg></span>
+      </a>
+      <a class="entry" href="/en/categories/health-medical-supply">
+        <div class="photo"><span class="badge"><em>19</em> · Health</span><img src="../../images/cat-21-health-medical-supply.png" alt="Health and medical" width="640" height="800" loading="lazy" /></div>
+        <div class="head"><h3>Health <em>&amp;</em> Medical Supply</h3><span class="count">164 SKUs</span></div>
+        <p class="caption">Medical furniture, mobility aids, bathroom safety — care homes and clinics.</p>
+        <div class="subs">
+          <a>Medical Equipment &amp; Furniture<span class="arrow">→</span></a>
+          <a>Mobility Aids<span class="arrow">→</span></a>
+          <a>Bathroom Safety<span class="arrow">→</span></a>
+          <a>Teaching Models<span class="arrow">→</span></a>
+          <a>Wellness &amp; Skin Care<span class="arrow">→</span></a>
+          <a>Wheelchairs<span class="arrow">→</span></a>
+        </div>
+        <span class="view">Enter discipline <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 5 7 7-7 7"/></svg></span>
+      </a>
+      <a class="entry" href="/en/categories/fitness-sports-recreation">
+        <div class="photo"><span class="badge"><em>20</em> · Fitness</span><img src="../../images/cat-19-fitness-sports-recreation.png" alt="Fitness and sports" width="640" height="800" loading="lazy" /></div>
+        <div class="head"><h3>Fitness, Sports <em>&amp;</em> Recreation</h3><span class="count">201 SKUs</span></div>
+        <p class="caption">Gym equipment, team sports, flooring, cycling — private gyms and public pitches.</p>
+        <div class="subs">
+          <a>Gym Equipment<span class="arrow">→</span></a>
+          <a>Team Sports Equipment<span class="arrow">→</span></a>
+          <a>Gym Flooring &amp; Mats<span class="arrow">→</span></a>
+          <a>Trampolines<span class="arrow">→</span></a>
+          <a>Playground &amp; Outdoor Play<span class="arrow">→</span></a>
+          <a>Cycling<span class="arrow">→</span></a>
+        </div>
+        <span class="view">Enter discipline <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 5 7 7-7 7"/></svg></span>
+      </a>
+      <a class="entry" href="/en/categories/boating-camping-outdoor">
+        <div class="photo"><span class="badge"><em>21</em> · Outdoor</span><img src="../../images/cat-20-boating-camping-outdoor.png" alt="Boating and camping" width="640" height="800" loading="lazy" /></div>
+        <div class="head"><h3>Boating, Camping <em>&amp;</em> Outdoor</h3><span class="count">188 SKUs</span></div>
+        <p class="caption">Inflatables, kayaks, tents, canopies — seasonal, but disciplined.</p>
+        <div class="subs">
+          <a>Boat Parts &amp; Marine Hardware<span class="arrow">→</span></a>
+          <a>Inflatable Boats &amp; Kayaks<span class="arrow">→</span></a>
+          <a>Water Sports<span class="arrow">→</span></a>
+          <a>Camping Gear<span class="arrow">→</span></a>
+          <a>Canopy Tents &amp; Event Shelters<span class="arrow">→</span></a>
+          <a>Outdoor Hobbies<span class="arrow">→</span></a>
+        </div>
+        <span class="view">Enter discipline <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 5 7 7-7 7"/></svg></span>
+      </a>
+      <a class="entry" href="/en/categories/music-entertainment">
+        <div class="photo"><span class="badge"><em>22</em> · Music</span><img src="../../images/cat-22-music-entertainment.png" alt="Music and entertainment" width="640" height="800" loading="lazy" /></div>
+        <div class="head"><h3>Music <em>&amp;</em> Entertainment</h3><span class="count">142 SKUs</span></div>
+        <p class="caption">Guitars, keyboards, drums, stage — rehearsal rooms and village festivals.</p>
+        <div class="subs">
+          <a>Guitars &amp; String Instruments<span class="arrow">→</span></a>
+          <a>Keyboards &amp; Electronic<span class="arrow">→</span></a>
+          <a>Drums &amp; Percussion<span class="arrow">→</span></a>
+          <a>Stage &amp; Performance<span class="arrow">→</span></a>
+          <a>Game Room &amp; Entertainment<span class="arrow">→</span></a>
+          <a>Instrument Storage &amp; Cases<span class="arrow">→</span></a>
+        </div>
+        <span class="view">Enter discipline <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 5 7 7-7 7"/></svg></span>
+      </a>
+    </section>
+
+    <!-- B2B BAND -->
+    <section class="b2b">
+      <div class="b2b-inner">
+        <div>
+          <h2>The desk is <em>open</em>. <br/>So is the floor.</h2>
+          <p>XLMarket is a trade desk as much as a catalogue. Ask us to price out a full fit-out, a replenishment order, a Net-30 line — or a starter kit for a café or print-shop you are about to open. A real person replies within four hours.</p>
+          <div class="b2b-actions">
+            <a class="btn-primary" href="#quote">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+              Request a B2B quote
+            </a>
+            <a class="btn-ghost" href="#starter-kits">Starter kits from €2,799</a>
+          </div>
+        </div>
+        <div class="b2b-grid">
+          <div>
+            <div class="k">Terms</div>
+            <div class="v"><em>Net-30</em></div>
+            <div class="c">Standard for verified trade accounts.</div>
+          </div>
+          <div>
+            <div class="k">Volume pricing</div>
+            <div class="v">From €<em>2,500</em></div>
+            <div class="c">Tiered discount above the first order threshold.</div>
+          </div>
+          <div>
+            <div class="k">Manager</div>
+            <div class="v"><em>1 : 1</em></div>
+            <div class="c">Dedicated to your account, not a support queue.</div>
+          </div>
+          <div>
+            <div class="k">Quote response</div>
+            <div class="v">under <em>4 h</em></div>
+            <div class="c">Monday–Friday, real person.</div>
+          </div>
+          <div>
+            <div class="k">Delivery</div>
+            <div class="v">EE · ES · <em>EU</em></div>
+            <div class="c">Door-to-floor, installed where relevant.</div>
+          </div>
+          <div>
+            <div class="k">VAT</div>
+            <div class="v">24<em>%</em></div>
+            <div class="c">All prices are tax-inclusive, confirmed at checkout.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<footer class="colophon">
+  <div>© 2026 XLMarket · Roland Kaubandus OÜ</div>
+  <div class="l">Set in DM Sans &amp; Fraunces. Printed on warm paper.</div>
+  <div>VAT 24% tax-inclusive · prices in €</div>
+</footer>
+
+<script>
+  // Rail list — 22 disciplines
+  const RAIL = [
+    ["01","HoReCa &amp; Food","horeca-food-service"],
+    ["02","Laser &amp; CNC","laser-cnc-digital-fabrication"],
+    ["03","Welding","welding-metalworking"],
+    ["04","Woodworking","woodworking-carpentry"],
+    ["05","Tools","hand-power-tools"],
+    ["06","Printing","printing-packaging-signage"],
+    ["07","Automotive","automotive-workshop"],
+    ["08","Construction","construction-building"],
+    ["09","Electrical","electrical-energy"],
+    ["10","HVAC","hvac-climate-control"],
+    ["11","Plumbing","plumbing-water-systems"],
+    ["12","Outdoor Power","outdoor-power-landscaping"],
+    ["13","Warehouse","warehousing-material-handling"],
+    ["14","Cleaning","cleaning-janitorial"],
+    ["15","Safety","safety-security-workwear"],
+    ["16","Fluid","fuel-lubrication-fluid"],
+    ["17","Office","office-commercial-interiors"],
+    ["18","Salon &amp; Spa","salon-spa-wellness"],
+    ["19","Health","health-medical-supply"],
+    ["20","Fitness","fitness-sports-recreation"],
+    ["21","Outdoor","boating-camping-outdoor"],
+    ["22","Music","music-entertainment"],
+  ];
+  const rail = document.getElementById("rail-list");
+  rail.innerHTML = RAIL.map(([n, name, slug]) =>
+    `<a href="/en/categories/${slug}"><span>${n}</span>${name}</a>`
+  ).join("");
+</script>
+
+</body>
+</html>

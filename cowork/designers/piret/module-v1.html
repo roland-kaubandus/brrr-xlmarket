@@ -1,0 +1,857 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>XLMarket — Contents · Volume 01</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --paper: #f6f1e8;
+    --paper-2: #efe8d9;
+    --ink: #1a1a1a;
+    --ink-2: #2d2a26;
+    --mute: #7a716a;
+    --rule: #d8cfbf;
+    --amber: #b05410;
+    --amber-soft: #d97f40;
+    --sage: #6b7a5b;
+
+    --serif: "Fraunces", Georgia, serif;
+    --sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 15px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    font-feature-settings: "ss01", "cv11";
+  }
+  a { color: inherit; text-decoration: none; }
+  img { display: block; max-width: 100%; }
+
+  /* --- Header --- */
+  .top {
+    border-bottom: 1px solid var(--rule);
+    background: var(--paper);
+  }
+  .top-inner {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 16px 40px;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 24px;
+  }
+  .brand {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: 22px;
+    letter-spacing: -0.01em;
+    justify-self: start;
+  }
+  .brand em {
+    font-style: italic;
+    color: var(--amber);
+    font-weight: 300;
+  }
+  .top-nav {
+    display: flex;
+    gap: 28px;
+    font-size: 13.5px;
+    letter-spacing: 0.02em;
+    color: var(--ink-2);
+  }
+  .top-nav a { position: relative; padding: 4px 0; }
+  .top-nav a:hover { color: var(--amber); }
+  .top-nav a::after {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    height: 1px;
+    background: var(--amber);
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 220ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .top-nav a:hover::after { transform: scaleX(1); }
+  .top-util {
+    justify-self: end;
+    display: flex;
+    gap: 14px;
+    align-items: center;
+    color: var(--ink-2);
+  }
+  .util-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    border: 1px solid var(--rule);
+    border-radius: 999px;
+    font-size: 13px;
+    letter-spacing: 0.02em;
+    background: transparent;
+    color: var(--ink-2);
+    cursor: pointer;
+    transition: border-color 180ms, color 180ms;
+  }
+  .util-btn:hover { border-color: var(--ink); color: var(--ink); }
+  .util-btn svg { width: 14px; height: 14px; }
+
+  /* --- Masthead --- */
+  .masthead {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 44px 40px 24px;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: end;
+    border-bottom: 1px solid var(--rule);
+  }
+  .masthead-l {
+    font-family: var(--sans);
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-size: 11.5px;
+    color: var(--mute);
+  }
+  .masthead-c {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(36px, 4.2vw, 60px);
+    line-height: 1;
+    letter-spacing: -0.015em;
+    text-align: center;
+  }
+  .masthead-c em {
+    font-style: italic;
+    color: var(--amber);
+    font-weight: 300;
+  }
+  .masthead-r {
+    text-align: right;
+    font-size: 13px;
+    color: var(--mute);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .dek {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 18px 40px 0;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 24px;
+    font-size: 13px;
+    color: var(--mute);
+    letter-spacing: 0.02em;
+  }
+  .dek .center {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 15px;
+    color: var(--ink-2);
+  }
+
+  /* --- Contents spread --- */
+  .spread {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 48px 40px 80px;
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) 1px minmax(0, 1fr);
+    gap: 56px;
+  }
+  .gutter {
+    width: 1px;
+    background: var(--rule);
+  }
+
+  .section-label {
+    font-size: 11.5px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--mute);
+    margin-bottom: 28px;
+  }
+
+  .toc {
+    display: flex;
+    flex-direction: column;
+  }
+  .toc-row {
+    display: grid;
+    grid-template-columns: 44px 1fr auto;
+    gap: 20px;
+    align-items: baseline;
+    padding: 14px 2px 14px;
+    border-bottom: 1px dotted var(--rule);
+    cursor: pointer;
+    position: relative;
+    transition: padding-left 220ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .toc-row:first-child { border-top: 1px solid var(--ink); }
+  .toc-row:last-child { border-bottom: 1px solid var(--ink); }
+  .toc-row .num {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-variant-numeric: lining-nums;
+    font-size: 18px;
+    color: var(--mute);
+    letter-spacing: 0.02em;
+  }
+  .toc-row .name {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 1.2;
+    letter-spacing: -0.005em;
+    color: var(--ink);
+  }
+  .toc-row .caption {
+    font-family: var(--sans);
+    font-size: 13px;
+    color: var(--mute);
+    margin-top: 4px;
+    letter-spacing: 0.005em;
+  }
+  .toc-row .count {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 15px;
+    color: var(--mute);
+    font-variant-numeric: tabular-nums;
+  }
+  .toc-row[data-active="true"] {
+    padding-left: 14px;
+  }
+  .toc-row[data-active="true"]::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 6px;
+    height: 1px;
+    background: var(--amber);
+    transform: translateY(-50%);
+  }
+  .toc-row[data-active="true"] .name {
+    color: var(--amber);
+  }
+  .toc-row[data-active="true"] .num {
+    color: var(--amber);
+  }
+  .toc-row:hover .name {
+    color: var(--amber);
+  }
+
+  /* --- Feature panel --- */
+  .feature {
+    position: sticky;
+    top: 32px;
+    align-self: start;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  .feature-meta {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    font-size: 11.5px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--mute);
+  }
+  .feature-meta .right {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 14px;
+    letter-spacing: 0.02em;
+    color: var(--ink-2);
+    text-transform: none;
+  }
+  .feature-image {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    background: var(--paper-2);
+    position: relative;
+  }
+  .feature-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 400ms ease, transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
+    opacity: 0;
+  }
+  .feature-image img.is-ready { opacity: 1; }
+  .feature-caption {
+    font-family: var(--sans);
+    font-size: 12.5px;
+    letter-spacing: 0.02em;
+    color: var(--mute);
+    text-transform: uppercase;
+  }
+  .feature-title {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: 40px;
+    line-height: 1.05;
+    letter-spacing: -0.015em;
+    margin: 0;
+  }
+  .feature-title em { font-style: italic; color: var(--amber); font-weight: 300; }
+  .feature-pull {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 300;
+    font-size: 17px;
+    line-height: 1.5;
+    color: var(--ink-2);
+    border-left: 2px solid var(--amber);
+    padding: 2px 0 2px 18px;
+    margin: 0;
+  }
+
+  .feature-subs {
+    margin-top: 8px;
+    border-top: 1px solid var(--rule);
+  }
+  .feature-subs a {
+    display: grid;
+    grid-template-columns: 28px 1fr auto;
+    gap: 12px;
+    align-items: baseline;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--rule);
+    font-size: 14px;
+    letter-spacing: 0.005em;
+    color: var(--ink-2);
+    transition: color 180ms, padding-left 220ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .feature-subs a:hover {
+    color: var(--amber);
+    padding-left: 8px;
+  }
+  .feature-subs a span.n {
+    font-family: var(--serif);
+    font-weight: 300;
+    color: var(--mute);
+    font-variant-numeric: tabular-nums;
+  }
+  .feature-subs a span.c {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 400;
+    color: var(--mute);
+    font-size: 13.5px;
+    font-variant-numeric: tabular-nums;
+  }
+  .feature-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 6px;
+  }
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 20px;
+    background: var(--ink);
+    color: var(--paper);
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    border: 1px solid var(--ink);
+    transition: background 180ms, color 180ms;
+  }
+  .btn-primary:hover { background: var(--amber); border-color: var(--amber); }
+  .btn-primary svg { width: 14px; height: 14px; }
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 20px;
+    border: 1px solid var(--rule);
+    color: var(--ink-2);
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: border-color 180ms, color 180ms;
+  }
+  .btn-ghost:hover { border-color: var(--ink); color: var(--ink); }
+
+  /* --- B2B strip --- */
+  .b2b {
+    background: var(--ink);
+    color: var(--paper);
+    margin-top: 0;
+  }
+  .b2b-inner {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 44px 40px;
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 48px;
+    align-items: center;
+  }
+  .b2b h2 {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(28px, 3vw, 42px);
+    line-height: 1.08;
+    margin: 0 0 12px;
+    letter-spacing: -0.015em;
+  }
+  .b2b h2 em { font-style: italic; color: var(--amber-soft); font-weight: 300; }
+  .b2b p {
+    font-size: 14.5px;
+    color: rgba(246, 241, 232, 0.72);
+    max-width: 48ch;
+    margin: 0 0 20px;
+  }
+  .b2b-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .b2b-chips span {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    border: 1px solid rgba(246, 241, 232, 0.18);
+    border-radius: 999px;
+    font-size: 12.5px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: rgba(246, 241, 232, 0.85);
+  }
+  .b2b-chips svg { width: 13px; height: 13px; color: var(--amber-soft); }
+  .b2b-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 24px;
+  }
+  .b2b .btn-primary {
+    background: var(--amber);
+    border-color: var(--amber);
+    color: var(--paper);
+  }
+  .b2b .btn-primary:hover { background: var(--amber-soft); border-color: var(--amber-soft); }
+  .b2b .btn-ghost {
+    border-color: rgba(246, 241, 232, 0.28);
+    color: var(--paper);
+  }
+  .b2b .btn-ghost:hover { border-color: var(--paper); }
+
+  .b2b-specs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border-top: 1px solid rgba(246, 241, 232, 0.14);
+    border-bottom: 1px solid rgba(246, 241, 232, 0.14);
+  }
+  .b2b-specs div {
+    padding: 22px 20px;
+    border-right: 1px solid rgba(246, 241, 232, 0.14);
+  }
+  .b2b-specs div:last-child { border-right: none; }
+  .b2b-specs .k {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(246, 241, 232, 0.5);
+    margin-bottom: 6px;
+  }
+  .b2b-specs .v {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-variant-numeric: tabular-nums;
+    font-size: 28px;
+    line-height: 1;
+  }
+  .b2b-specs .v em { font-style: italic; color: var(--amber-soft); font-weight: 300; }
+
+  /* --- Foot --- */
+  .colophon {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 22px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--mute);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .colophon .l { font-family: var(--serif); font-style: italic; text-transform: none; letter-spacing: 0.005em; }
+
+  /* --- Responsive --- */
+  @media (max-width: 1080px) {
+    .spread { grid-template-columns: 1fr; gap: 40px; }
+    .gutter { display: none; }
+    .feature { position: static; }
+    .masthead { padding: 36px 24px 20px; }
+    .masthead-c { text-align: left; }
+    .masthead { grid-template-columns: 1fr; gap: 10px; align-items: start; text-align: left; }
+    .masthead-r { text-align: left; }
+    .dek { padding: 16px 24px 0; grid-template-columns: 1fr; gap: 6px; }
+    .top-inner { padding: 14px 24px; grid-template-columns: auto auto; }
+    .top-nav { display: none; }
+    .spread { padding: 32px 24px 60px; }
+    .b2b-inner { grid-template-columns: 1fr; padding: 32px 24px; gap: 28px; }
+    .colophon { padding: 18px 24px; flex-direction: column; gap: 8px; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="top">
+  <div class="top-inner">
+    <a class="brand" href="#">XL<em>Market</em></a>
+    <nav class="top-nav" aria-label="Primary">
+      <a href="#">Disciplines</a>
+      <a href="#">Starter kits</a>
+      <a href="#">Trade desk</a>
+      <a href="#">Journal</a>
+    </nav>
+    <div class="top-util">
+      <button class="util-btn" aria-label="Search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        Search
+      </button>
+      <button class="util-btn" aria-label="Account">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a7 7 0 0 1 16 0v1"/></svg>
+        Account
+      </button>
+      <button class="util-btn" aria-label="Basket">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18l-2 13H5L3 6Z"/><path d="M8 6V4a4 4 0 0 1 8 0v2"/></svg>
+        Basket
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- MASTHEAD -->
+<section class="masthead">
+  <div class="masthead-l">Vol. 01 · The Contents Page</div>
+  <h1 class="masthead-c">A working catalogue of <em>twenty-two</em> trades</h1>
+  <div class="masthead-r">No. 18 · April 2026 · Tallinn / Santa Cruz</div>
+</section>
+<div class="dek">
+  <div>Tools, plant, and rooms for people who open businesses.</div>
+  <div class="center">Hover a discipline to turn the page.</div>
+  <div style="text-align: right;">16,046 SKUs · 1,847 trade accounts</div>
+</div>
+
+<!-- CONTENTS SPREAD -->
+<section class="spread">
+  <!-- LEFT: 22-discipline contents list -->
+  <div>
+    <div class="section-label">I. Contents</div>
+    <div class="toc" id="toc">
+      <!-- ROW template -->
+    </div>
+  </div>
+
+  <div class="gutter"></div>
+
+  <!-- RIGHT: feature-of-the-week panel, swaps on hover -->
+  <aside class="feature" id="feature">
+    <div class="feature-meta">
+      <span>Feature of the week</span>
+      <span class="right">Pg. <span id="f-num">01</span></span>
+    </div>
+    <figure class="feature-image">
+      <img id="f-img" alt="" width="640" height="800" />
+    </figure>
+    <div class="feature-caption" id="f-caption">Discipline 01 · A complete fit-out</div>
+    <h2 class="feature-title" id="f-title">HoReCa <em>&amp;</em> Food Service</h2>
+    <p class="feature-pull" id="f-pull">"Cafés, bakeries, small kitchens. Everything from the refrigeration down to the sink, ordered once and delivered together."</p>
+
+    <nav class="feature-subs" id="f-subs" aria-label="Sub-disciplines">
+      <!-- populated by JS -->
+    </nav>
+
+    <div class="feature-actions">
+      <a class="btn-primary" href="#">Enter discipline
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 5 7 7-7 7"/></svg>
+      </a>
+      <a class="btn-ghost" href="#quote">Request a B2B quote</a>
+    </div>
+  </aside>
+</section>
+
+<!-- B2B STRIP -->
+<section class="b2b">
+  <div class="b2b-specs">
+    <div><div class="k">Active trade accounts</div><div class="v"><em>1,847</em></div></div>
+    <div><div class="k">SKUs on the floor</div><div class="v"><em>16,046</em></div></div>
+    <div><div class="k">Quote response</div><div class="v">under <em>4h</em></div></div>
+  </div>
+  <div class="b2b-inner">
+    <div>
+      <h2>A trade desk, not a <em>checkout</em>.</h2>
+      <p>Net-30 terms. Dedicated account managers. Volume pricing on orders over €2,500. Starter kits for cafés, print-shops, workshops and salons — delivered, installed, and followed-up.</p>
+      <div class="b2b-actions">
+        <a class="btn-primary" href="#quote">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          Request a B2B quote
+        </a>
+        <a class="btn-ghost" href="#starter-kits">Starter kits from €2,799</a>
+      </div>
+    </div>
+    <div class="b2b-chips">
+      <span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+        Net-30 terms
+      </span>
+      <span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h18"/><path d="M12 3v18"/></svg>
+        Volume pricing
+      </span>
+      <span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a7 7 0 0 1 16 0v1"/></svg>
+        Dedicated manager
+      </span>
+      <span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18"/></svg>
+        Starter kits · €2,799
+      </span>
+      <span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-7 8-13A8 8 0 0 0 4 9c0 6 8 13 8 13z"/><circle cx="12" cy="9" r="2.5"/></svg>
+        Estonia · Spain · EU
+      </span>
+    </div>
+  </div>
+</section>
+
+<footer class="colophon">
+  <div>© 2026 XLMarket · Roland Kaubandus OÜ</div>
+  <div class="l">Set in DM Sans & Fraunces. Printed on warm paper.</div>
+  <div>VAT 24% tax-inclusive · prices in €</div>
+</footer>
+
+<script>
+  // Data — 22 disciplines from TAXONOMY_V3
+  const DISCIPLINES = [
+    { n: "01", name: "HoReCa & Food Service", slug: "horeca-food-service",
+      caption: "Equipment for restaurants, cafés and catering kitchens.",
+      image: "./images/feature-horeca.png",
+      pull: "Cafés, bakeries, small kitchens. Everything from the refrigeration down to the sink, ordered once and delivered together.",
+      count: 612, subCount: 6,
+      subs: ["Commercial Refrigeration","Commercial Cooking","Food Preparation","Bar & Beverage Service","Commercial Sinks","Restaurant Shelving"] },
+    { n: "02", name: "Laser, CNC & Digital Fabrication", slug: "laser-cnc-digital-fabrication",
+      caption: "From diode engravers to CO₂ cutters and 3D printing.",
+      image: "../../images/cat-05-laser-cnc-digital-fabrication.png",
+      pull: "A quiet corner of the economy — small fab-shops, sign-makers, model-makers — runs on these machines.",
+      count: 487, subCount: 6,
+      subs: ["CO₂ Laser Engravers","Diode Laser Engravers","CNC Routers & Mills","3D Printers","Laser & CNC Accessories","Rotary Attachments"] },
+    { n: "03", name: "Welding & Metalworking", slug: "welding-metalworking",
+      caption: "MIG, TIG, plasma, and the shop floor that surrounds them.",
+      image: "../../images/cat-04-welding-metalworking.png",
+      pull: "The oldest trade we carry. Still the most satisfying when the bead sits flush.",
+      count: 524, subCount: 6,
+      subs: ["Welding & Cutting","Metal Lathes & Mills","Angle Grinders","Hydraulic & Press","Welding Safety & Apparel","Motors, Drives & Parts"] },
+    { n: "04", name: "Printing, Packaging & Signage", slug: "printing-packaging-signage",
+      caption: "Heat presses, vinyl cutters, sealers, label makers.",
+      image: "../../images/cat-07-printing-packaging-signage.png",
+      pull: "The everyday economy of custom: mugs, t-shirts, shop signs, product labels.",
+      count: 392, subCount: 6,
+      subs: ["Screen Printing & Heat Press","Vinyl Cutters","Packaging & Sealing","Label Makers","Signage & Display","Paper & Document Handling"] },
+    { n: "05", name: "Electrical & Energy", slug: "electrical-energy",
+      caption: "Generators, solar, testing, lighting — from mains to mesh.",
+      image: "../../images/cat-08-electrical-energy.png",
+      pull: "Power infrastructure for small industry — increasingly more solar than diesel.",
+      count: 411, subCount: 6,
+      subs: ["Generators & Portable Power","Solar & Renewable","Electrical Tools & Testing","Wiring & Enclosures","Commercial Lighting","Batteries & Charging"] },
+    { n: "06", name: "Woodworking & Carpentry", slug: "woodworking-carpentry",
+      caption: "Stationary saws, routers, benches, presses.",
+      image: "../../images/cat-06-woodworking-carpentry.png",
+      pull: "Furniture-makers, joiners, and the slow return of the small workshop.",
+      count: 356, subCount: 6,
+      subs: ["Stationary Woodworking Machines","Routers & Shaping","Benches & Clamps","Drill Presses","Saw Blades","Finishing & Sanding"] },
+    { n: "07", name: "Construction & Building", slug: "construction-building",
+      caption: "Concrete, scaffolding, roofing, paint — the job site.",
+      image: "../../images/cat-02-construction-building.png",
+      pull: "Not the glamorous end of the trade. But the one that keeps the country standing.",
+      count: 688, subCount: 6,
+      subs: ["Concrete, Masonry & Drywall","Ladders & Scaffolding","Roofing & Insulation","Flooring","Decking & Structural","Paint & Finishing"] },
+    { n: "08", name: "Cleaning & Janitorial", slug: "cleaning-janitorial",
+      caption: "Floor scrubbers, hand dryers, industrial vacuums.",
+      image: "../../images/cat-15-cleaning-janitorial.png",
+      pull: "Someone has to clean the showroom floor before the press shoot.",
+      count: 268, subCount: 6,
+      subs: ["Floor Care","Janitorial Supplies","Hand Dryers","Waste & Recycling","Industrial Vacuums","Carpet Extractors"] },
+    { n: "09", name: "Hand & Power Tools", slug: "hand-power-tools",
+      caption: "Drills, impact drivers, compressors, measuring kit.",
+      image: "../../images/cat-03-hand-power-tools.png",
+      pull: "The tools that go in and out of the van every day.",
+      count: 734, subCount: 6,
+      subs: ["Power Tools","Hand Tools","Air Compressors","Measuring & Layout","Accessories & Bits","Tool Storage"] },
+    { n: "10", name: "Fuel, Lubrication & Fluid", slug: "fuel-lubrication-fluid",
+      caption: "Transfer pumps, oil rigs, drums, chemical handling.",
+      image: "../../images/cat-14-fuel-lubrication-fluid.png",
+      pull: "Nobody thinks about fluid handling until the bill for a spill comes in.",
+      count: 198, subCount: 6,
+      subs: ["Fuel Transfer Pumps","Oil & Lubrication","Drum Handling","Dewatering Pumps","Chemical Transfer","Fuel Nozzles"] },
+    { n: "11", name: "Outdoor Power & Landscaping", slug: "outdoor-power-landscaping",
+      caption: "Chainsaws, pressure washers, mowers, outdoor heat.",
+      image: "../../images/cat-13-outdoor-power-landscaping.png",
+      pull: "The groundskeepers of hotels, estates, and municipalities.",
+      count: 322, subCount: 6,
+      subs: ["Outdoor Power","Pressure Washers","Garden Tools","Outdoor Cooking","Outdoor Heating","Outdoor Decor"] },
+    { n: "12", name: "Warehousing & Material Handling", slug: "warehousing-material-handling",
+      caption: "Hoists, pallet jacks, shelving, workbenches.",
+      image: "../../images/cat-11-warehousing-material-handling.png",
+      pull: "The skeleton of every logistics operation, quietly lifting everything else.",
+      count: 287, subCount: 6,
+      subs: ["Hoists, Cranes & Lifting","Forklifts & Pallets","Carts, Dollies & Hand Trucks","Industrial Shelving","Workbenches","Strapping & Securing"] },
+    { n: "13", name: "HVAC & Climate Control", slug: "hvac-climate-control",
+      caption: "Mini splits, heaters, ventilation, air quality.",
+      image: "../../images/cat-09-hvac-climate-control.png",
+      pull: "The mechanical lungs of the building — increasingly where the comfort lives.",
+      count: 241, subCount: 6,
+      subs: ["Air Conditioners","Heaters","Fans & Ventilation","Ducting & Grilles","Air Quality","Dehumidifiers"] },
+    { n: "14", name: "Plumbing & Water Systems", slug: "plumbing-water-systems",
+      caption: "Pumps, pipes, water heaters, filtration, fixtures.",
+      image: "../../images/cat-10-plumbing-water-systems.png",
+      pull: "Unseen until it fails; then suddenly the only thing that matters.",
+      count: 356, subCount: 6,
+      subs: ["Water Pumps","Pipes, Fittings & Valves","Plumbing Tools","Water Heaters","Filtration","Bathroom Fixtures"] },
+    { n: "15", name: "Safety, Security & Workwear", slug: "safety-security-workwear",
+      caption: "PPE, site traffic, locks and safes, boots, workwear.",
+      image: "../../images/cat-16-safety-security-workwear.png",
+      pull: "The moral baseline of any workplace we supply.",
+      count: 298, subCount: 6,
+      subs: ["Personal Protective","Traffic & Site Safety","Locks, Safes & Access","Work Boots","Work Clothing","Safety Glasses"] },
+    { n: "16", name: "Automotive & Workshop", slug: "automotive-workshop",
+      caption: "Vehicle lifts, diagnostic kit, jacks, towing.",
+      image: "../../images/cat-12-automotive-workshop.png",
+      pull: "Independent garages and the specialists they depend on.",
+      count: 445, subCount: 6,
+      subs: ["Vehicle Lifts","Mechanics & Diagnostic","Jacks & Lifting","Towing & Recovery","Truck Accessories","Auto Parts"] },
+    { n: "17", name: "Salon, Spa & Wellness", slug: "salon-spa-wellness",
+      caption: "Barber chairs, massage tables, shampoo stations.",
+      image: "../../images/cat-18-salon-spa-wellness.png",
+      pull: "Quietly one of the most regulated trades we equip.",
+      count: 176, subCount: 6,
+      subs: ["Barber & Salon Chairs","Shampoo Stations","Massage Tables","Personal Care","Manicure & Nail","Facial Steamers"] },
+    { n: "18", name: "Office & Commercial Interiors", slug: "office-commercial-interiors",
+      caption: "Office furniture, lobby, hardware, interior lighting.",
+      image: "../../images/cat-17-office-commercial-interiors.png",
+      pull: "The move back to real offices — quietly a growth segment again.",
+      count: 312, subCount: 6,
+      subs: ["Office Furniture","Meeting & Lobby","Door & Cabinet Hardware","Interior Lighting","Bathroom Accessories","Home Decor"] },
+    { n: "19", name: "Health & Medical Supply", slug: "health-medical-supply",
+      caption: "Medical furniture, mobility aids, bathroom safety.",
+      image: "../../images/cat-21-health-medical-supply.png",
+      pull: "Care homes, clinics, and the ageing demographic behind them.",
+      count: 164, subCount: 6,
+      subs: ["Medical Furniture","Mobility Aids","Bathroom Safety","Teaching Models","Wellness","Wheelchairs"] },
+    { n: "20", name: "Fitness, Sports & Recreation", slug: "fitness-sports-recreation",
+      caption: "Gym equipment, team sports, flooring, cycling.",
+      image: "../../images/cat-19-fitness-sports-recreation.png",
+      pull: "The private gym economy and the public pitches it sits between.",
+      count: 201, subCount: 6,
+      subs: ["Gym Equipment","Team Sports","Gym Flooring","Trampolines","Playground","Cycling"] },
+    { n: "21", name: "Boating, Camping & Outdoor", slug: "boating-camping-outdoor",
+      caption: "Inflatables, kayaks, tents, camping and event shelters.",
+      image: "../../images/cat-20-boating-camping-outdoor.png",
+      pull: "Seasonal, but a surprisingly disciplined set of buyers.",
+      count: 188, subCount: 6,
+      subs: ["Boat Hardware","Inflatable Boats","Water Sports","Camping Gear","Canopy Tents","Outdoor Hobbies"] },
+    { n: "22", name: "Music & Entertainment", slug: "music-entertainment",
+      caption: "Guitars, keyboards, drums, stage lighting, game room.",
+      image: "../../images/cat-22-music-entertainment.png",
+      pull: "Rehearsal rooms, small stages, village festivals. Still a real business.",
+      count: 142, subCount: 6,
+      subs: ["Guitars & Strings","Keyboards","Drums & Percussion","Stage & Performance","Game Room","Instrument Storage"] },
+  ];
+
+  const toc = document.getElementById("toc");
+  const feature = {
+    num: document.getElementById("f-num"),
+    img: document.getElementById("f-img"),
+    caption: document.getElementById("f-caption"),
+    title: document.getElementById("f-title"),
+    pull: document.getElementById("f-pull"),
+    subs: document.getElementById("f-subs"),
+  };
+
+  DISCIPLINES.forEach((d, i) => {
+    const row = document.createElement("a");
+    row.className = "toc-row";
+    row.href = "/en/categories/" + d.slug;
+    row.setAttribute("data-index", i);
+    const italicisedName = d.name.split(" & ").join(' <em>&amp;</em> ');
+    row.innerHTML = `
+      <span class="num">${d.n}</span>
+      <div>
+        <div class="name">${italicisedName}</div>
+        <div class="caption">${d.caption}</div>
+      </div>
+      <span class="count">${d.count} SKUs</span>
+    `;
+    row.addEventListener("mouseenter", () => activate(i));
+    row.addEventListener("focus", () => activate(i));
+    toc.appendChild(row);
+  });
+
+  function renderSubs(d) {
+    feature.subs.innerHTML = d.subs.map((s, i) => {
+      const n = String(i + 1).padStart(2, "0");
+      return `<a href="#"><span class="n">${n}</span><span>${s}</span><span class="c">View</span></a>`;
+    }).join("");
+  }
+
+  function activate(i) {
+    document.querySelectorAll(".toc-row").forEach(el => el.removeAttribute("data-active"));
+    const row = document.querySelector('.toc-row[data-index="' + i + '"]');
+    if (row) row.setAttribute("data-active", "true");
+
+    const d = DISCIPLINES[i];
+    feature.num.textContent = d.n;
+    feature.caption.textContent = "Discipline " + d.n + " · " + d.caption;
+    // Title: split on " & " to italicise the ampersand
+    feature.title.innerHTML = d.name.split(" & ").join(' <em>&amp;</em> ');
+    feature.pull.textContent = "\u201C" + d.pull + "\u201D";
+    renderSubs(d);
+    feature.img.classList.remove("is-ready");
+    const next = new Image();
+    next.onload = () => {
+      feature.img.src = d.image;
+      requestAnimationFrame(() => feature.img.classList.add("is-ready"));
+    };
+    next.onerror = () => {
+      feature.img.src = d.image;
+      feature.img.classList.add("is-ready");
+    };
+    next.src = d.image;
+  }
+
+  // Initialise with the first discipline
+  activate(0);
+</script>
+
+</body>
+</html>

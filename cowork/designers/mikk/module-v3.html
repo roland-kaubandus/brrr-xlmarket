@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>XLMarket — Kanban Shelves</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Archivo:wght@500;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --paper:#f4efe6;
+    --paper-deep:#e6dfcf;
+    --paper-line:#d0c5ae;
+    --ink:#17171a;
+    --ink-2:#2c3540;
+    --muted:#706a5c;
+    --amber:#d97706;
+    --amber-tint:#f7e8d3;
+    --hair:1px solid #d0c5ae;
+    --hair-2:2px solid #17171a;
+    --hair-sh:2px solid #17171a;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--paper);color:var(--ink);font-family:'DM Sans',system-ui,sans-serif;font-feature-settings:"tnum","ss01";-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  body{min-height:100vh}
+  .num{font-variant-numeric:tabular-nums}
+  .mono{font-family:'JetBrains Mono',monospace;font-variant-numeric:tabular-nums}
+  .display{font-family:'Archivo',sans-serif;letter-spacing:-0.025em;line-height:0.92}
+
+  /* ===== HEADER ===== */
+  .topbar{background:var(--ink);color:var(--paper);font-size:11.5px;letter-spacing:0.1em;text-transform:uppercase}
+  .topbar-inner{max-width:1440px;margin:0 auto;padding:9px 28px;display:flex;justify-content:space-between;gap:20px}
+  .topbar-inner span{opacity:0.78}
+  .topbar-inner strong{color:var(--amber);font-weight:600}
+
+  header.site{border-bottom:var(--hair-2);background:var(--paper)}
+  .header-inner{max-width:1440px;margin:0 auto;padding:20px 28px;display:grid;grid-template-columns:auto 1fr auto;gap:32px;align-items:center}
+  .logo{font-family:'Archivo',sans-serif;font-weight:900;font-size:26px;letter-spacing:-0.03em}
+  .logo em{color:var(--amber);font-style:normal}
+  .search{display:flex;align-items:center;gap:10px;background:transparent;border:var(--hair-2);padding:0 14px;height:46px}
+  .search:focus-within{border-color:var(--amber)}
+  .search input{border:0;background:transparent;outline:0;flex:1;font-family:inherit;font-size:14.5px}
+  .search kbd{font-size:10.5px;padding:3px 6px;border:var(--hair);color:var(--muted);letter-spacing:0.05em}
+  .nav-actions{display:flex;align-items:center;gap:18px;font-size:14px;font-weight:500}
+  .nav-actions a:hover{color:var(--amber)}
+  .cta-quote{background:var(--ink);color:var(--paper);padding:11px 18px;font-weight:600;letter-spacing:0.02em;transition:background .18s}
+  .cta-quote:hover{background:var(--amber);color:var(--ink)}
+
+  /* ===== MASTHEAD + CHIP CLOUD ===== */
+  .masthead{max-width:1440px;margin:0 auto;padding:48px 28px 26px;border-bottom:var(--hair-2)}
+  .masthead .row{display:grid;grid-template-columns:1.2fr 1fr;gap:48px;align-items:end}
+  .masthead h1{font-family:'Archivo',sans-serif;font-weight:900;font-size:clamp(48px,6.6vw,92px);letter-spacing:-0.04em;line-height:0.88}
+  .masthead h1 em{color:var(--amber);font-style:normal}
+  .masthead .sub{margin-top:14px;font-size:15.5px;line-height:1.5;max-width:520px;color:var(--ink-2)}
+  .masthead .totals{display:flex;gap:28px;padding-bottom:6px}
+  .masthead .totals div{display:flex;flex-direction:column;gap:2px}
+  .masthead .totals span{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted)}
+  .masthead .totals strong{font-family:'Archivo',sans-serif;font-weight:800;font-size:26px;letter-spacing:-0.02em;font-variant-numeric:tabular-nums}
+
+  /* Chip cloud */
+  .chipcloud{max-width:1440px;margin:0 auto;padding:20px 28px 30px;display:flex;flex-wrap:wrap;gap:6px 6px;align-items:center;border-bottom:var(--hair)}
+  .chipcloud .cloudlbl{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);margin-right:10px;font-weight:500}
+  .chipcloud a{padding:7px 12px;border:1px solid var(--ink);font-size:12.5px;font-weight:500;letter-spacing:-0.005em;color:var(--ink);background:transparent;transition:all .18s;display:inline-flex;align-items:center;gap:6px}
+  .chipcloud a .n{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:0.04em}
+  .chipcloud a:hover{background:var(--ink);color:var(--paper)}
+  .chipcloud a:hover .n{color:var(--amber)}
+
+  /* ===== SHELF ===== */
+  .shelves{max-width:1440px;margin:0 auto;padding:28px 28px 40px;display:flex;flex-direction:column;gap:30px}
+
+  .shelf{display:grid;grid-template-columns:240px 1fr;gap:28px;align-items:start}
+  .shelf-head{position:sticky;top:16px;padding-right:8px}
+  .shelf-head .meta{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--amber);font-weight:600;margin-bottom:6px}
+  .shelf-head .label{font-family:'Archivo',sans-serif;font-weight:900;font-size:34px;letter-spacing:-0.03em;line-height:0.96}
+  .shelf-head .tagline{margin-top:10px;font-size:13px;line-height:1.45;color:var(--ink-2);max-width:200px}
+  .shelf-head .rule{margin-top:14px;width:60px;height:2px;background:var(--ink)}
+  .shelf-head .count{margin-top:10px;font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--muted);letter-spacing:0.02em}
+
+  .shelf-row{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(248px,1fr);gap:2px;overflow-x:auto;padding:2px;background:var(--ink);scrollbar-color:var(--ink) var(--paper);scrollbar-width:thin}
+  .shelf-row::-webkit-scrollbar{height:6px}
+  .shelf-row::-webkit-scrollbar-track{background:var(--paper-deep)}
+  .shelf-row::-webkit-scrollbar-thumb{background:var(--ink)}
+
+  .shelf-card{background:var(--paper);display:grid;grid-template-rows:128px 1fr;min-height:268px;position:relative;transition:transform .18s;cursor:pointer;overflow:hidden}
+  .shelf-card:hover{background:var(--paper-deep)}
+  .shelf-card .thumb{background-size:cover;background-position:center;position:relative;filter:saturate(0.88) contrast(1.02)}
+  .shelf-card .thumb::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(23,23,26,0) 50%,rgba(23,23,26,0.28) 100%);transition:opacity .2s}
+  .shelf-card:hover .thumb{filter:saturate(1) contrast(1.05)}
+  .shelf-card .thumb .badge{position:absolute;top:10px;left:10px;background:rgba(244,239,230,0.94);color:var(--ink);font-family:'JetBrains Mono',monospace;font-size:10.5px;padding:3px 8px;letter-spacing:0.04em;font-weight:500}
+  .shelf-card .body{padding:14px 16px 16px;display:flex;flex-direction:column;gap:10px}
+  .shelf-card .title{font-family:'Archivo',sans-serif;font-weight:800;font-size:18px;letter-spacing:-0.015em;line-height:1.05}
+  .shelf-card .stats{display:flex;gap:10px;font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--muted);letter-spacing:0.02em}
+  .shelf-card .stats strong{color:var(--ink);font-weight:600}
+  .shelf-card .chips{display:flex;flex-wrap:wrap;gap:4px;margin-top:auto}
+  .shelf-card .chip{font-size:10.5px;padding:3px 7px;border:1px solid var(--paper-line);color:var(--muted);letter-spacing:0.01em;transition:all .18s}
+  .shelf-card:hover .chip{border-color:var(--ink);color:var(--ink)}
+  .shelf-card .arrow{position:absolute;top:10px;right:10px;width:26px;height:26px;border:1px solid rgba(244,239,230,0.6);background:rgba(23,23,26,0.4);color:var(--paper);display:flex;align-items:center;justify-content:center;transition:all .18s;backdrop-filter:blur(2px)}
+  .shelf-card:hover .arrow{background:var(--amber);color:var(--ink);border-color:var(--amber)}
+
+  /* ===== B2B STRIP ===== */
+  .b2b{max-width:1440px;margin:56px auto 0;padding:0 28px}
+  .b2b-inner{border:var(--hair-2);background:var(--paper);display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr}
+  .b2b-inner > div{padding:28px 26px;border-right:var(--hair)}
+  .b2b-inner > div:last-child{border-right:0}
+  .b2b-lead{background:var(--ink);color:var(--paper)}
+  .b2b-lead .kicker{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:var(--amber);font-weight:600}
+  .b2b-lead .title{margin-top:8px;font-family:'Archivo',sans-serif;font-weight:900;font-size:34px;letter-spacing:-0.025em;line-height:0.95}
+  .b2b-lead .title em{font-style:normal;color:var(--amber)}
+  .b2b-lead .p{margin-top:10px;font-size:13px;line-height:1.5;opacity:0.78;max-width:300px}
+  .b2b-lead .btn{display:inline-flex;align-items:center;gap:8px;margin-top:16px;padding:10px 14px;background:var(--amber);color:var(--ink);font-size:12px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase}
+  .b2b-col .lbl{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);font-weight:500}
+  .b2b-col .val{font-family:'Archivo',sans-serif;font-weight:800;font-size:26px;letter-spacing:-0.02em;margin-top:6px;font-variant-numeric:tabular-nums}
+  .b2b-col .note{font-size:12.5px;margin-top:4px;color:var(--ink-2);line-height:1.45}
+  .b2b-col .lnk{margin-top:14px;display:inline-flex;align-items:center;gap:6px;font-size:11.5px;letter-spacing:0.1em;text-transform:uppercase;font-weight:600;border-bottom:1px solid var(--ink);padding-bottom:2px}
+  .b2b-col .lnk:hover{color:var(--amber);border-color:var(--amber)}
+
+  .foot{max-width:1440px;margin:28px auto 0;padding:18px 28px 64px;color:var(--muted);font-size:12px;letter-spacing:0.06em;text-transform:uppercase;border-top:var(--hair);display:flex;justify-content:space-between;gap:12px}
+  .foot strong{color:var(--ink);font-weight:600}
+
+  @media (max-width:1100px){
+    .masthead .row{grid-template-columns:1fr;gap:20px}
+    .shelf{grid-template-columns:1fr;gap:16px}
+    .shelf-head{position:static}
+    .b2b-inner{grid-template-columns:1fr 1fr}
+    .b2b-inner > div{border-right:0;border-bottom:var(--hair)}
+    .b2b-inner > div:last-child{border-bottom:0}
+  }
+</style>
+</head>
+<body>
+
+<!-- Topbar -->
+<div class="topbar">
+  <div class="topbar-inner">
+    <span>B2B reseller of VEVOR · Tallinn + Tenerife · VAT 24% included</span>
+    <span><strong>Net-30</strong> · Volume pricing · Dedicated manager</span>
+  </div>
+</div>
+
+<!-- Header -->
+<header class="site">
+  <div class="header-inner">
+    <a href="/" class="logo">XL<em>market</em></a>
+    <label class="search" aria-label="Search">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      <input type="search" placeholder="Search products, part numbers, brands" />
+      <kbd>⌘ K</kbd>
+    </label>
+    <div class="nav-actions">
+      <a href="#starter-kits">Starter kits</a>
+      <a href="#quote" class="cta-quote">Request B2B quote</a>
+      <a href="#account" aria-label="Account">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      </a>
+      <a href="#cart" aria-label="Cart">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- Masthead -->
+<section class="masthead">
+  <div class="row">
+    <div>
+      <h1 class="display">Shelved by<br/><em>trade</em>, not alphabet.</h1>
+      <p class="sub">Don't know the exact category name? Good. Start with what kind of business you're running. Scroll the shelf, pick the discipline, open a quote.</p>
+    </div>
+    <div class="totals">
+      <div><span>Shelves</span><strong class="num">04</strong></div>
+      <div><span>Disciplines</span><strong class="num">22</strong></div>
+      <div><span>SKUs</span><strong class="num">16,046</strong></div>
+    </div>
+  </div>
+</section>
+
+<!-- Chip cloud (filter) -->
+<div class="chipcloud" id="chipcloud">
+  <span class="cloudlbl">Jump to</span>
+  <!-- 22 chips added via JS -->
+</div>
+
+<!-- Shelves -->
+<section class="shelves" id="shelves"></section>
+
+<!-- B2B strip -->
+<section class="b2b">
+  <div class="b2b-inner">
+    <div class="b2b-lead">
+      <div class="kicker">Trade desk</div>
+      <div class="title">Buy like a workshop,<br/>not a <em>consumer</em>.</div>
+      <div class="p">Net-30 terms, dedicated B2B manager, 24h quote turnaround. Eighteen complete business-startup kits from €2,799.</div>
+      <a href="#starter-kits" class="btn">See starter kits
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </a>
+    </div>
+    <div class="b2b-col">
+      <div class="lbl">Terms</div>
+      <div class="val">Net-30</div>
+      <div class="note">Standard for registered companies in EE & ES.</div>
+      <a href="#quote" class="lnk">Open account →</a>
+    </div>
+    <div class="b2b-col">
+      <div class="lbl">Kit ladder</div>
+      <div class="val">€2,799 – €6,340</div>
+      <div class="note">Café · Auto-shop · Barber · Bakery · Print · Cleaning.</div>
+      <a href="#starter-kits" class="lnk">See kits →</a>
+    </div>
+    <div class="b2b-col">
+      <div class="lbl">Quote turnaround</div>
+      <div class="val">&lt; 24 h</div>
+      <div class="note">Business hours Tallinn & Tenerife. Custom freight on request.</div>
+      <a href="#quote" class="lnk">Request quote →</a>
+    </div>
+  </div>
+</section>
+
+<footer class="foot">
+  <div>Indexed 2026-04-18 · <strong>16,046</strong> active SKUs · 132 L2 sub-cats · 22 L1</div>
+  <div>VAT 24% included · Priced in €</div>
+</footer>
+
+<script>
+// === DATA ===
+const C = {
+  1:{slug:"horeca-food-service", name:"HoReCa & Food Service", count:1907, img:"cat-01-horeca-food-service.png", subs:["Refrigeration","Cooking","Food Prep"]},
+  2:{slug:"laser-cnc-digital-fabrication", name:"Laser, CNC & Fabrication", count:1204, img:"cat-05-laser-cnc-digital-fabrication.png", subs:["CO2 Laser","Diode Laser","CNC Routers"]},
+  3:{slug:"welding-metalworking", name:"Welding & Metalworking", count:1082, img:"cat-04-welding-metalworking.png", subs:["Welding","Metal Lathes","Grinders"]},
+  4:{slug:"printing-packaging-signage", name:"Printing, Packaging & Signage", count:964, img:"cat-07-printing-packaging-signage.png", subs:["Screen Print","Vinyl Cutters","Sealing"]},
+  5:{slug:"electrical-energy", name:"Electrical & Energy", count:812, img:"cat-08-electrical-energy.png", subs:["Generators","Solar","Batteries"]},
+  6:{slug:"woodworking-carpentry", name:"Woodworking & Carpentry", count:744, img:"cat-06-woodworking-carpentry.png", subs:["Stationary","Routers","Benches"]},
+  7:{slug:"construction-building", name:"Construction & Building", count:682, img:"cat-02-construction-building.png", subs:["Concrete","Ladders","Roofing"]},
+  8:{slug:"cleaning-janitorial", name:"Cleaning & Janitorial", count:532, img:"cat-15-cleaning-janitorial.png", subs:["Floor Care","Carts","Vacuums"]},
+  9:{slug:"hand-power-tools", name:"Hand & Power Tools", count:498, img:"cat-03-hand-power-tools.png", subs:["Power Tools","Hand Tools","Compressors"]},
+  10:{slug:"fuel-lubrication-fluid", name:"Fuel & Lubrication", count:432, img:"cat-14-fuel-lubrication-fluid.png", subs:["Fuel Pumps","Oil","Drum Handling"]},
+  11:{slug:"outdoor-power-landscaping", name:"Outdoor Power & Landscaping", count:394, img:"cat-13-outdoor-power-landscaping.png", subs:["Power Equipment","Pressure Wash","Garden"]},
+  12:{slug:"warehousing-material-handling", name:"Warehousing & Handling", count:360, img:"cat-11-warehousing-material-handling.png", subs:["Hoists","Forklifts","Carts"]},
+  13:{slug:"hvac-climate-control", name:"HVAC & Climate", count:312, img:"cat-09-hvac-climate-control.png", subs:["AC Units","Heaters","Fans"]},
+  14:{slug:"plumbing-water-systems", name:"Plumbing & Water", count:288, img:"cat-10-plumbing-water-systems.png", subs:["Water Pumps","Pipes","Water Heaters"]},
+  15:{slug:"safety-security-workwear", name:"Safety & Workwear", count:262, img:"cat-16-safety-security-workwear.png", subs:["PPE","Traffic","Work Boots"]},
+  16:{slug:"automotive-workshop", name:"Automotive & Workshop", count:240, img:"cat-12-automotive-workshop.png", subs:["Vehicle Lifts","Mechanic","Jacks"]},
+  17:{slug:"salon-spa-wellness", name:"Salon, Spa & Wellness", count:212, img:"cat-18-salon-spa-wellness.png", subs:["Barber Chairs","Shampoo","Massage Tables"]},
+  18:{slug:"office-commercial-interiors", name:"Office & Interiors", count:194, img:"cat-17-office-commercial-interiors.png", subs:["Office Furniture","Lighting","Hardware"]},
+  19:{slug:"health-medical-supply", name:"Health & Medical", count:168, img:"cat-21-health-medical-supply.png", subs:["Medical Equipment","Mobility","Wheelchairs"]},
+  20:{slug:"fitness-sports-recreation", name:"Fitness & Sports", count:112, img:"cat-19-fitness-sports-recreation.png", subs:["Gym","Team Sports","Trampolines"]},
+  21:{slug:"boating-camping-outdoor", name:"Boating & Camping", count:84, img:"cat-20-boating-camping-outdoor.png", subs:["Boat Hardware","Inflatables","Camping"]},
+  22:{slug:"music-entertainment", name:"Music & Entertainment", count:9, img:"cat-22-music-entertainment.png", subs:["Guitars","Keyboards","Drums"]},
+};
+
+// === SHELVES (supergroups) ===
+const SHELVES = [
+  { num:"01", label:"Kitchen & Hospitality", tagline:"Cafés, restaurants, bakeries, salons — serving people.",
+    ids:[1, 17, 18, 19, 20] },
+  { num:"02", label:"Workshop & Fabrication", tagline:"Making, cutting, welding, milling — production floors.",
+    ids:[2, 3, 6, 9, 16] },
+  { num:"03", label:"Building & Infrastructure", tagline:"Sites, shells, power, water, climate — scaffold work.",
+    ids:[7, 13, 14, 5, 12, 10] },
+  { num:"04", label:"Service, Safety & Leisure", tagline:"Maintenance, grounds, outdoor, retail, print.",
+    ids:[8, 11, 15, 4, 21, 22] },
+];
+
+// === Chip cloud ===
+const cloud = document.getElementById('chipcloud');
+Object.keys(C).forEach(k => {
+  const c = C[k];
+  const a = document.createElement('a');
+  a.href = `/en/categories/${c.slug}`;
+  a.innerHTML = `<span class="n">${String(k).padStart(2,'0')}</span> ${c.name}`;
+  cloud.appendChild(a);
+});
+
+// === Shelves ===
+const container = document.getElementById('shelves');
+SHELVES.forEach(shelf => {
+  const ids = shelf.ids;
+  const total = ids.reduce((s,id)=>s + C[id].count, 0);
+
+  const el = document.createElement('section');
+  el.className = 'shelf';
+  el.innerHTML = `
+    <div class="shelf-head">
+      <div class="meta">Shelf ${shelf.num} · ${ids.length} disciplines</div>
+      <div class="label">${shelf.label}</div>
+      <p class="tagline">${shelf.tagline}</p>
+      <div class="rule"></div>
+      <div class="count">${total.toLocaleString('en-US')} products</div>
+    </div>
+    <div class="shelf-row" role="list"></div>
+  `;
+  const row = el.querySelector('.shelf-row');
+  ids.forEach(id => {
+    const c = C[id];
+    const card = document.createElement('a');
+    card.className = 'shelf-card';
+    card.href = `/en/categories/${c.slug}`;
+    card.innerHTML = `
+      <div class="thumb" style="background-image:url('../../images/${c.img}')">
+        <span class="badge">${String(id).padStart(2,'0')}</span>
+        <div class="arrow">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+        </div>
+      </div>
+      <div class="body">
+        <div class="title">${c.name}</div>
+        <div class="stats"><span><strong>${c.count.toLocaleString('en-US')}</strong> SKU</span><span>·</span><span>6 sub-cats</span></div>
+        <div class="chips">${c.subs.map(s=>`<span class="chip">${s}</span>`).join('')}</div>
+      </div>
+    `;
+    row.appendChild(card);
+  });
+  container.appendChild(el);
+});
+</script>
+
+</body>
+</html>
