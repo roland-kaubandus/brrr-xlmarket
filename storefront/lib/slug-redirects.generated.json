@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-04-18T01:01:08.875Z",
-  "count": 40,
+  "generatedAt": "2026-04-18T01:19:20.320Z",
+  "count": 42,
   "redirects": {
     "appliances": "horeca-food-service",
     "auto-ja-garaaz": "automotive-workshop",
@@ -29,8 +29,10 @@
     "lumber-composites": "construction-building",
     "meditsiin-ja-tervishoid": "health-medical-supply",
     "musical-instruments": "music-entertainment",
+    "other": "hand-power-tools",
     "outdoors": "outdoor-power-landscaping",
     "paint": "construction-building",
+    "playground-sets": "fitness-sports-recreation",
     "plumbing": "plumbing-water-systems",
     "safety-equipment": "safety-security-workwear",
     "smart-home": "electrical-energy",
