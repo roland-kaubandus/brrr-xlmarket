@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-18T09:54:13.148Z",
+  "generated_at": "2026-04-18T10:34:50.475Z",
   "nodes": {
     "commercial-refrigeration": {
       "handle": "commercial-refrigeration",
@@ -12,7 +12,9 @@
         "ice-machines",
         "display-cases",
         "bain-maries"
-      ]
+      ],
+      "image_path": "/cat-thumbs/refrigerators.webp",
+      "image_source": "alias"
     },
     "commercial-refrigerators": {
       "handle": "commercial-refrigerators",
@@ -20,7 +22,9 @@
       "name_et": "Commercial Refrigerators",
       "level": 3,
       "parent_handle": "commercial-refrigeration",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/commercial-refrigerators.webp",
+      "image_source": "direct"
     },
     "ice-machines": {
       "handle": "ice-machines",
@@ -28,7 +32,9 @@
       "name_et": "Ice Machines",
       "level": 3,
       "parent_handle": "commercial-refrigeration",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/commercial-ice-cream-freezer-display-case.webp",
+      "image_source": "alias"
     },
     "display-cases": {
       "handle": "display-cases",
@@ -36,7 +42,9 @@
       "name_et": "Display Cases",
       "level": 3,
       "parent_handle": "commercial-refrigeration",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/bakery-display-case.webp",
+      "image_source": "alias"
     },
     "bain-maries": {
       "handle": "bain-maries",
@@ -44,7 +52,9 @@
       "name_et": "Bain Maries",
       "level": 3,
       "parent_handle": "commercial-refrigeration",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/electric-food-warmer.webp",
+      "image_source": "alias"
     },
     "commercial-cooking-equipment": {
       "handle": "commercial-cooking-equipment",
@@ -58,7 +68,9 @@
         "pizza-ovens",
         "deep-fryers",
         "induction-cookers"
-      ]
+      ],
+      "image_path": "/cat-thumbs/commercial-ovens.webp",
+      "image_source": "alias"
     },
     "commercial-ovens": {
       "handle": "commercial-ovens",
@@ -66,7 +78,9 @@
       "name_et": "Commercial Ovens",
       "level": 3,
       "parent_handle": "commercial-cooking-equipment",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/commercial-ovens.webp",
+      "image_source": "direct"
     },
     "combi-ovens": {
       "handle": "combi-ovens",
@@ -74,7 +88,9 @@
       "name_et": "Combi Ovens",
       "level": 3,
       "parent_handle": "commercial-cooking-equipment",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/commercial-ovens.webp",
+      "image_source": "alias"
     },
     "pizza-ovens": {
       "handle": "pizza-ovens",
@@ -82,7 +98,9 @@
       "name_et": "Pizza Ovens",
       "level": 3,
       "parent_handle": "commercial-cooking-equipment",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/pizza-ovens.webp",
+      "image_source": "direct"
     },
     "deep-fryers": {
       "handle": "deep-fryers",
@@ -90,7 +108,9 @@
       "name_et": "Deep Fryers",
       "level": 3,
       "parent_handle": "commercial-cooking-equipment",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/deep-fryers.webp",
+      "image_source": "direct"
     },
     "induction-cookers": {
       "handle": "induction-cookers",
@@ -98,7 +118,9 @@
       "name_et": "Induction Cookers",
       "level": 3,
       "parent_handle": "commercial-cooking-equipment",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/countertop-induction-cooktop.webp",
+      "image_source": "alias"
     },
     "food-preparation-equipment": {
       "handle": "food-preparation-equipment",
@@ -106,7 +128,9 @@
       "name_et": "Toiduvalmistamine",
       "level": 2,
       "parent_handle": "horeca-food-service",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/food-preparation.webp",
+      "image_source": "alias"
     },
     "bar-beverage-service": {
       "handle": "bar-beverage-service",
@@ -119,7 +143,9 @@
         "coffee-grinders",
         "blenders",
         "juicers"
-      ]
+      ],
+      "image_path": "/cat-thumbs/beverage-dispensers.webp",
+      "image_source": "alias"
     },
     "espresso-machines": {
       "handle": "espresso-machines",
@@ -127,7 +153,9 @@
       "name_et": "Espresso Machines",
       "level": 3,
       "parent_handle": "bar-beverage-service",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/espresso-machines.webp",
+      "image_source": "direct"
     },
     "coffee-grinders": {
       "handle": "coffee-grinders",
@@ -135,7 +163,9 @@
       "name_et": "Coffee Grinders",
       "level": 3,
       "parent_handle": "bar-beverage-service",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/coffee-makers.webp",
+      "image_source": "alias"
     },
     "blenders": {
       "handle": "blenders",
@@ -143,7 +173,9 @@
       "name_et": "Blenders",
       "level": 3,
       "parent_handle": "bar-beverage-service",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/blenders.webp",
+      "image_source": "direct"
     },
     "juicers": {
       "handle": "juicers",
@@ -151,7 +183,9 @@
       "name_et": "Juicers",
       "level": 3,
       "parent_handle": "bar-beverage-service",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/juicers.webp",
+      "image_source": "direct"
     },
     "commercial-sinks-washdown": {
       "handle": "commercial-sinks-washdown",
@@ -159,7 +193,9 @@
       "name_et": "Valamud ja nõudepesu",
       "level": 2,
       "parent_handle": "horeca-food-service",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/commercial-sinks.webp",
+      "image_source": "alias"
     },
     "restaurant-storage-shelving": {
       "handle": "restaurant-storage-shelving",
@@ -167,7 +203,9 @@
       "name_et": "Restorani riiulid ja hoiustus",
       "level": 2,
       "parent_handle": "horeca-food-service",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/restaurant-shelving.webp",
+      "image_source": "alias"
     },
     "restaurant-furniture": {
       "handle": "restaurant-furniture",
@@ -175,7 +213,9 @@
       "name_et": "Restorani mööbel",
       "level": 2,
       "parent_handle": "horeca-food-service",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/bar-furniture.webp",
+      "image_source": "alias"
     },
     "kitchen-hvac-air-curtains": {
       "handle": "kitchen-hvac-air-curtains",
@@ -183,7 +223,9 @@
       "name_et": "Köögi ventilatsioon",
       "level": 2,
       "parent_handle": "horeca-food-service",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/kitchen.webp",
+      "image_source": "alias"
     },
     "horeca-food-service": {
       "handle": "horeca-food-service",
@@ -200,7 +242,9 @@
         "restaurant-storage-shelving",
         "restaurant-furniture",
         "kitchen-hvac-air-curtains"
-      ]
+      ],
+      "image_path": "/cat-thumbs/commercial-ovens.webp",
+      "image_source": "alias"
     },
     "co2-laser-engravers-cutters": {
       "handle": "co2-laser-engravers-cutters",
@@ -208,7 +252,9 @@
       "name_et": "CO2 lasergraveerijad ja -lõikurid",
       "level": 2,
       "parent_handle": "laser-cnc-digital-fabrication",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/co2-laser-engraving-machine.webp",
+      "image_source": "alias"
     },
     "diode-laser-engravers": {
       "handle": "diode-laser-engravers",
@@ -216,7 +262,9 @@
       "name_et": "Dioodlaser-graveerijad",
       "level": 2,
       "parent_handle": "laser-cnc-digital-fabrication",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/two-axis-diode-laser-engraving-machine.webp",
+      "image_source": "alias"
     },
     "cnc-routers-mills": {
       "handle": "cnc-routers-mills",
@@ -224,7 +272,9 @@
       "name_et": "CNC-freesid",
       "level": 2,
       "parent_handle": "laser-cnc-digital-fabrication",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/cnc-milling-cutter.webp",
+      "image_source": "alias"
     },
     "3d-printers": {
       "handle": "3d-printers",
@@ -232,7 +282,9 @@
       "name_et": "3D-printerid",
       "level": 2,
       "parent_handle": "laser-cnc-digital-fabrication",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/cnc-milling-cutter.webp",
+      "image_source": "alias"
     },
     "laser-cnc-accessories": {
       "handle": "laser-cnc-accessories",
@@ -244,7 +296,9 @@
         "rotary-attachments",
         "honeycomb-tables",
         "cnc-spindles"
-      ]
+      ],
+      "image_path": "/cat-thumbs/laser-engraving-machine-accessories.webp",
+      "image_source": "fuzzy"
     },
     "rotary-attachments": {
       "handle": "rotary-attachments",
@@ -252,7 +306,9 @@
       "name_et": "Rotary Attachments",
       "level": 3,
       "parent_handle": "laser-cnc-accessories",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/exercise-machine-attachments.webp",
+      "image_source": "alias"
     },
     "honeycomb-tables": {
       "handle": "honeycomb-tables",
@@ -260,7 +316,9 @@
       "name_et": "Honeycomb Tables",
       "level": 3,
       "parent_handle": "laser-cnc-accessories",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/co2-laser-engraving-machine.webp",
+      "image_source": "alias"
     },
     "cnc-spindles": {
       "handle": "cnc-spindles",
@@ -268,7 +326,9 @@
       "name_et": "Cnc Spindles",
       "level": 3,
       "parent_handle": "laser-cnc-accessories",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/cnc-milling-cutter.webp",
+      "image_source": "alias"
     },
     "laser-cnc-digital-fabrication": {
       "handle": "laser-cnc-digital-fabrication",
@@ -282,7 +342,9 @@
         "cnc-routers-mills",
         "3d-printers",
         "laser-cnc-accessories"
-      ]
+      ],
+      "image_path": "/cat-thumbs/co2-laser-engraving-machine.webp",
+      "image_source": "alias"
     },
     "welding-cutting": {
       "handle": "welding-cutting",
@@ -290,7 +352,9 @@
       "name_et": "Keevitus ja lõikamine",
       "level": 2,
       "parent_handle": "welding-metalworking",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/welding-kits.webp",
+      "image_source": "alias"
     },
     "metal-lathes-mills": {
       "handle": "metal-lathes-mills",
@@ -298,7 +362,9 @@
       "name_et": "Metallitreipingid ja -freesid",
       "level": 2,
       "parent_handle": "welding-metalworking",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/bench-metal-lathe.webp",
+      "image_source": "alias"
     },
     "angle-grinders-metal-cutting": {
       "handle": "angle-grinders-metal-cutting",
@@ -306,7 +372,9 @@
       "name_et": "Nurklihvijad ja metallilõikurid",
       "level": 2,
       "parent_handle": "welding-metalworking",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/angle-grinder.webp",
+      "image_source": "alias"
     },
     "hydraulic-press-equipment": {
       "handle": "hydraulic-press-equipment",
@@ -314,7 +382,9 @@
       "name_et": "Hüdraulika ja pressid",
       "level": 2,
       "parent_handle": "welding-metalworking",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/hydraulic-pumps.webp",
+      "image_source": "alias"
     },
     "welding-safety-apparel": {
       "handle": "welding-safety-apparel",
@@ -322,7 +392,9 @@
       "name_et": "Keevitaja ohutusvarustus",
       "level": 2,
       "parent_handle": "welding-metalworking",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/welding-safety-apparel.webp",
+      "image_source": "direct"
     },
     "motors-drives-parts": {
       "handle": "motors-drives-parts",
@@ -330,7 +402,9 @@
       "name_et": "Mootorid ja ajamid",
       "level": 2,
       "parent_handle": "welding-metalworking",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/motors-parts.webp",
+      "image_source": "alias"
     },
     "welding-metalworking": {
       "handle": "welding-metalworking",
@@ -345,7 +419,9 @@
         "hydraulic-press-equipment",
         "welding-safety-apparel",
         "motors-drives-parts"
-      ]
+      ],
+      "image_path": "/cat-thumbs/welding-kits.webp",
+      "image_source": "alias"
     },
     "screen-printing-heat-press": {
       "handle": "screen-printing-heat-press",
@@ -353,7 +429,9 @@
       "name_et": "Siiditrükk ja kuumpress",
       "level": 2,
       "parent_handle": "printing-packaging-signage",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/screen-printing-machine.webp",
+      "image_source": "alias"
     },
     "vinyl-cutters-plotters": {
       "handle": "vinyl-cutters-plotters",
@@ -361,7 +439,9 @@
       "name_et": "Vinüül-lõikurid",
       "level": 2,
       "parent_handle": "printing-packaging-signage",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/dough-cutters.webp",
+      "image_source": "alias"
     },
     "packaging-sealing": {
       "handle": "packaging-sealing",
@@ -369,7 +449,9 @@
       "name_et": "Pakendamine ja tihendamine",
       "level": 2,
       "parent_handle": "printing-packaging-signage",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/continuous-sealing-machines.webp",
+      "image_source": "alias"
     },
     "label-makers-printers": {
       "handle": "label-makers-printers",
@@ -377,7 +459,9 @@
       "name_et": "Sildi- ja trükiseadmed",
       "level": 2,
       "parent_handle": "printing-packaging-signage",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/label-makers.webp",
+      "image_source": "alias"
     },
     "signage-display": {
       "handle": "signage-display",
@@ -385,7 +469,9 @@
       "name_et": "Sildid ja väljapanekud",
       "level": 2,
       "parent_handle": "printing-packaging-signage",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/display-frame.webp",
+      "image_source": "alias"
     },
     "paper-document-handling": {
       "handle": "paper-document-handling",
@@ -393,7 +479,9 @@
       "name_et": "Paber ja dokumendikäitlus",
       "level": 2,
       "parent_handle": "printing-packaging-signage",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/electric-paper-cutter.webp",
+      "image_source": "alias"
     },
     "printing-packaging-signage": {
       "handle": "printing-packaging-signage",
@@ -408,7 +496,9 @@
         "label-makers-printers",
         "signage-display",
         "paper-document-handling"
-      ]
+      ],
+      "image_path": "/cat-thumbs/screen-printing-machine.webp",
+      "image_source": "alias"
     },
     "generators-portable-power": {
       "handle": "generators-portable-power",
@@ -416,7 +506,9 @@
       "name_et": "Generaatorid ja varutoide",
       "level": 2,
       "parent_handle": "electrical-energy",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/solar-generators.webp",
+      "image_source": "alias"
     },
     "solar-renewable-energy": {
       "handle": "solar-renewable-energy",
@@ -424,7 +516,9 @@
       "name_et": "Päikese- ja taastuvenergia",
       "level": 2,
       "parent_handle": "electrical-energy",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/monocrystalline-solar-panel.webp",
+      "image_source": "alias"
     },
     "electrical-tools-testing": {
       "handle": "electrical-tools-testing",
@@ -432,7 +526,9 @@
       "name_et": "Elektritööriistad ja testimine",
       "level": 2,
       "parent_handle": "electrical-energy",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/electrical-hand-tools.webp",
+      "image_source": "alias"
     },
     "wiring-conduit-enclosures": {
       "handle": "wiring-conduit-enclosures",
@@ -440,7 +536,9 @@
       "name_et": "Juhtmestik ja kilbid",
       "level": 2,
       "parent_handle": "electrical-energy",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/electrical-enclosures.webp",
+      "image_source": "alias"
     },
     "commercial-industrial-lighting": {
       "handle": "commercial-industrial-lighting",
@@ -448,7 +546,9 @@
       "name_et": "Tööstus- ja ärivalgustid",
       "level": 2,
       "parent_handle": "electrical-energy",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/commercial-lighting.webp",
+      "image_source": "alias"
     },
     "batteries-charging": {
       "handle": "batteries-charging",
@@ -456,7 +556,9 @@
       "name_et": "Akud ja laadimine",
       "level": 2,
       "parent_handle": "electrical-energy",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/batteries.webp",
+      "image_source": "alias"
     },
     "electrical-energy": {
       "handle": "electrical-energy",
@@ -471,7 +573,9 @@
         "wiring-conduit-enclosures",
         "commercial-industrial-lighting",
         "batteries-charging"
-      ]
+      ],
+      "image_path": "/cat-thumbs/electrical.webp",
+      "image_source": "alias"
     },
     "stationary-woodworking-machines": {
       "handle": "stationary-woodworking-machines",
@@ -479,7 +583,9 @@
       "name_et": "Statsionaarsed puidutöömasinad",
       "level": 2,
       "parent_handle": "woodworking-carpentry",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/woodworking-bandsaw.webp",
+      "image_source": "alias"
     },
     "routers-shaping": {
       "handle": "routers-shaping",
@@ -487,7 +593,9 @@
       "name_et": "Freesid ja profileerimine",
       "level": 2,
       "parent_handle": "woodworking-carpentry",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/routers-bits-accessories.webp",
+      "image_source": "alias"
     },
     "woodworking-benches-clamps": {
       "handle": "woodworking-benches-clamps",
@@ -495,7 +603,9 @@
       "name_et": "Tööpingid ja pitskruvid",
       "level": 2,
       "parent_handle": "woodworking-carpentry",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/woodworking-benches.webp",
+      "image_source": "alias"
     },
     "drill-presses-boring": {
       "handle": "drill-presses-boring",
@@ -503,7 +613,9 @@
       "name_et": "Puurpingid",
       "level": 2,
       "parent_handle": "woodworking-carpentry",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/milling-machines-drill-presses.webp",
+      "image_source": "alias"
     },
     "saw-accessories-blades": {
       "handle": "saw-accessories-blades",
@@ -511,7 +623,9 @@
       "name_et": "Saekettad ja tarvikud",
       "level": 2,
       "parent_handle": "woodworking-carpentry",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/saw-blades.webp",
+      "image_source": "alias"
     },
     "finishing-sanding": {
       "handle": "finishing-sanding",
@@ -519,7 +633,9 @@
       "name_et": "Viimistlus ja lihvimine",
       "level": 2,
       "parent_handle": "woodworking-carpentry",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/sanding-belts.webp",
+      "image_source": "alias"
     },
     "woodworking-carpentry": {
       "handle": "woodworking-carpentry",
@@ -534,7 +650,9 @@
         "drill-presses-boring",
         "saw-accessories-blades",
         "finishing-sanding"
-      ]
+      ],
+      "image_path": "/cat-thumbs/woodworking-benches.webp",
+      "image_source": "alias"
     },
     "concrete-masonry-drywall": {
       "handle": "concrete-masonry-drywall",
@@ -542,7 +660,9 @@
       "name_et": "Betoon, müüritis ja kipsplaat",
       "level": 2,
       "parent_handle": "construction-building",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/concrete-cement-masonry.webp",
+      "image_source": "alias"
     },
     "ladders-scaffolding": {
       "handle": "ladders-scaffolding",
@@ -550,7 +670,9 @@
       "name_et": "Redelid ja tellingud",
       "level": 2,
       "parent_handle": "construction-building",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/extension-ladders.webp",
+      "image_source": "alias"
     },
     "roofing-insulation": {
       "handle": "roofing-insulation",
@@ -558,7 +680,9 @@
       "name_et": "Katus ja soojustus",
       "level": 2,
       "parent_handle": "construction-building",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/roofing.webp",
+      "image_source": "alias"
     },
     "flooring-installation": {
       "handle": "flooring-installation",
@@ -566,7 +690,9 @@
       "name_et": "Põrandakatted",
       "level": 2,
       "parent_handle": "construction-building",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/flooring.webp",
+      "image_source": "alias"
     },
     "decking-fencing-hardware": {
       "handle": "decking-fencing-hardware",
@@ -574,7 +700,9 @@
       "name_et": "Terrassid ja aiad",
       "level": 2,
       "parent_handle": "construction-building",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/door-hardware.webp",
+      "image_source": "alias"
     },
     "paint-caulk-finishing": {
       "handle": "paint-caulk-finishing",
@@ -582,7 +710,9 @@
       "name_et": "Värv ja viimistlus",
       "level": 2,
       "parent_handle": "construction-building",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/paint.webp",
+      "image_source": "alias"
     },
     "construction-building": {
       "handle": "construction-building",
@@ -597,7 +727,9 @@
         "flooring-installation",
         "decking-fencing-hardware",
         "paint-caulk-finishing"
-      ]
+      ],
+      "image_path": "/cat-thumbs/concrete-cement-masonry.webp",
+      "image_source": "alias"
     },
     "floor-care-equipment": {
       "handle": "floor-care-equipment",
@@ -605,7 +737,9 @@
       "name_et": "Põrandahooldusmasinad",
       "level": 2,
       "parent_handle": "cleaning-janitorial",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/floor-care.webp",
+      "image_source": "alias"
     },
     "janitorial-supplies-carts": {
       "handle": "janitorial-supplies-carts",
@@ -613,7 +747,9 @@
       "name_et": "Koristusvahendid ja -käru",
       "level": 2,
       "parent_handle": "cleaning-janitorial",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/floor-care.webp",
+      "image_source": "alias"
     },
     "hand-dryers-washroom": {
       "handle": "hand-dryers-washroom",
@@ -621,7 +757,9 @@
       "name_et": "Käte kuivatid ja sanitaarruumid",
       "level": 2,
       "parent_handle": "cleaning-janitorial",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/hand-dryers.webp",
+      "image_source": "alias"
     },
     "waste-recycling": {
       "handle": "waste-recycling",
@@ -629,7 +767,9 @@
       "name_et": "Jäätmed ja taaskasutus",
       "level": 2,
       "parent_handle": "cleaning-janitorial",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/drum-handling-equipment.webp",
+      "image_source": "alias"
     },
     "industrial-vacuums": {
       "handle": "industrial-vacuums",
@@ -637,7 +777,9 @@
       "name_et": "Tööstuslikud tolmuimejad",
       "level": 2,
       "parent_handle": "cleaning-janitorial",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/vacuum-cleaners.webp",
+      "image_source": "alias"
     },
     "carpet-extractors": {
       "handle": "carpet-extractors",
@@ -645,7 +787,9 @@
       "name_et": "Vaibapesemine",
       "level": 2,
       "parent_handle": "cleaning-janitorial",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/vacuum-cleaners.webp",
+      "image_source": "alias"
     },
     "cleaning-janitorial": {
       "handle": "cleaning-janitorial",
@@ -660,7 +804,9 @@
         "waste-recycling",
         "industrial-vacuums",
         "carpet-extractors"
-      ]
+      ],
+      "image_path": "/cat-thumbs/floor-care.webp",
+      "image_source": "alias"
     },
     "power-tools": {
       "handle": "power-tools",
@@ -673,7 +819,9 @@
         "grinders",
         "sanders",
         "saws"
-      ]
+      ],
+      "image_path": "/cat-thumbs/power-tools.webp",
+      "image_source": "direct"
     },
     "drills": {
       "handle": "drills",
@@ -681,7 +829,9 @@
       "name_et": "Drills",
       "level": 3,
       "parent_handle": "power-tools",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/drills.webp",
+      "image_source": "direct"
     },
     "grinders": {
       "handle": "grinders",
@@ -689,7 +839,9 @@
       "name_et": "Grinders",
       "level": 3,
       "parent_handle": "power-tools",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/grinders.webp",
+      "image_source": "direct"
     },
     "sanders": {
       "handle": "sanders",
@@ -697,7 +849,9 @@
       "name_et": "Sanders",
       "level": 3,
       "parent_handle": "power-tools",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/sanders.webp",
+      "image_source": "direct"
     },
     "saws": {
       "handle": "saws",
@@ -705,7 +859,9 @@
       "name_et": "Saws",
       "level": 3,
       "parent_handle": "power-tools",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/saws.webp",
+      "image_source": "direct"
     },
     "hand-tools": {
       "handle": "hand-tools",
@@ -713,7 +869,9 @@
       "name_et": "Käsitööriistad",
       "level": 2,
       "parent_handle": "hand-power-tools",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/hand-tools.webp",
+      "image_source": "direct"
     },
     "air-compressors-pneumatic": {
       "handle": "air-compressors-pneumatic",
@@ -721,7 +879,9 @@
       "name_et": "Kompressorid ja pneumaatika",
       "level": 2,
       "parent_handle": "hand-power-tools",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/air-compressors.webp",
+      "image_source": "alias"
     },
     "measuring-layout-tools": {
       "handle": "measuring-layout-tools",
@@ -729,7 +889,9 @@
       "name_et": "Mõõteriistad",
       "level": 2,
       "parent_handle": "hand-power-tools",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/measuring-rods.webp",
+      "image_source": "alias"
     },
     "power-tool-accessories": {
       "handle": "power-tool-accessories",
@@ -737,7 +899,9 @@
       "name_et": "Tööriistatarvikud",
       "level": 2,
       "parent_handle": "hand-power-tools",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/power-tool-accessories.webp",
+      "image_source": "direct"
     },
     "tool-storage-cases": {
       "handle": "tool-storage-cases",
@@ -745,7 +909,9 @@
       "name_et": "Tööriistakastid ja hoiustus",
       "level": 2,
       "parent_handle": "hand-power-tools",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/tool-chests.webp",
+      "image_source": "alias"
     },
     "workbenches": {
       "handle": "workbenches",
@@ -753,7 +919,9 @@
       "name_et": "Tööpingid",
       "level": 2,
       "parent_handle": "hand-power-tools",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/workbenches.webp",
+      "image_source": "direct"
     },
     "hand-power-tools": {
       "handle": "hand-power-tools",
@@ -769,7 +937,9 @@
         "power-tool-accessories",
         "tool-storage-cases",
         "workbenches"
-      ]
+      ],
+      "image_path": "/cat-thumbs/power-tools.webp",
+      "image_source": "alias"
     },
     "fuel-transfer-pumps": {
       "handle": "fuel-transfer-pumps",
@@ -777,7 +947,9 @@
       "name_et": "Kütusepumpad",
       "level": 2,
       "parent_handle": "fuel-lubrication-fluid",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/ac-fuel-transfer-pumps.webp",
+      "image_source": "alias"
     },
     "oil-lubrication": {
       "handle": "oil-lubrication",
@@ -785,7 +957,9 @@
       "name_et": "Õlitus ja määrimine",
       "level": 2,
       "parent_handle": "fuel-lubrication-fluid",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/lubrication-tools.webp",
+      "image_source": "fuzzy"
     },
     "drum-container-handling": {
       "handle": "drum-container-handling",
@@ -793,7 +967,9 @@
       "name_et": "Vaatide käitlus",
       "level": 2,
       "parent_handle": "fuel-lubrication-fluid",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/drum-handling-equipment.webp",
+      "image_source": "alias"
     },
     "dewatering-industrial-pumps": {
       "handle": "dewatering-industrial-pumps",
@@ -801,7 +977,9 @@
       "name_et": "Drenaažipumbad",
       "level": 2,
       "parent_handle": "fuel-lubrication-fluid",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/water-pumps.webp",
+      "image_source": "alias"
     },
     "chemical-transfer": {
       "handle": "chemical-transfer",
@@ -809,7 +987,9 @@
       "name_et": "Kemikaalide käitlus",
       "level": 2,
       "parent_handle": "fuel-lubrication-fluid",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/ac-fuel-transfer-pumps.webp",
+      "image_source": "alias"
     },
     "fuel-nozzles": {
       "handle": "fuel-nozzles",
@@ -817,7 +997,9 @@
       "name_et": "Kütusepüstolid",
       "level": 2,
       "parent_handle": "fuel-lubrication-fluid",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/ac-fuel-transfer-pumps.webp",
+      "image_source": "alias"
     },
     "fuel-lubrication-fluid": {
       "handle": "fuel-lubrication-fluid",
@@ -832,7 +1014,9 @@
         "dewatering-industrial-pumps",
         "chemical-transfer",
         "fuel-nozzles"
-      ]
+      ],
+      "image_path": "/cat-thumbs/ac-fuel-transfer-pumps.webp",
+      "image_source": "alias"
     },
     "outdoor-power-equipment": {
       "handle": "outdoor-power-equipment",
@@ -840,7 +1024,9 @@
       "name_et": "Õuetehnika",
       "level": 2,
       "parent_handle": "outdoor-power-landscaping",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/outdoor-power-equipment.webp",
+      "image_source": "direct"
     },
     "pressure-washers": {
       "handle": "pressure-washers",
@@ -848,7 +1034,9 @@
       "name_et": "Survepesurid",
       "level": 2,
       "parent_handle": "outdoor-power-landscaping",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/pressure-washers.webp",
+      "image_source": "direct"
     },
     "garden-tools-landscaping": {
       "handle": "garden-tools-landscaping",
@@ -856,7 +1044,9 @@
       "name_et": "Aiatööriistad ja haljastus",
       "level": 2,
       "parent_handle": "outdoor-power-landscaping",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/garden-fork.webp",
+      "image_source": "alias"
     },
     "outdoor-cooking-grilling": {
       "handle": "outdoor-cooking-grilling",
@@ -864,7 +1054,9 @@
       "name_et": "Õuegrill ja -köök",
       "level": 2,
       "parent_handle": "outdoor-power-landscaping",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/grill-accessories.webp",
+      "image_source": "alias"
     },
     "outdoor-heating": {
       "handle": "outdoor-heating",
@@ -872,7 +1064,9 @@
       "name_et": "Terrassisoojendid",
       "level": 2,
       "parent_handle": "outdoor-power-landscaping",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/outdoor-heating.webp",
+      "image_source": "direct"
     },
     "outdoor-decor-structures": {
       "handle": "outdoor-decor-structures",
@@ -880,7 +1074,9 @@
       "name_et": "Välisdekoor",
       "level": 2,
       "parent_handle": "outdoor-power-landscaping",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/outdoor-decor.webp",
+      "image_source": "alias"
     },
     "outdoor-power-landscaping": {
       "handle": "outdoor-power-landscaping",
@@ -895,7 +1091,9 @@
         "outdoor-cooking-grilling",
         "outdoor-heating",
         "outdoor-decor-structures"
-      ]
+      ],
+      "image_path": "/cat-thumbs/outdoor-power-equipment.webp",
+      "image_source": "alias"
     },
     "hoists-cranes-lifting": {
       "handle": "hoists-cranes-lifting",
@@ -903,7 +1101,9 @@
       "name_et": "Tõstukid ja kraanad",
       "level": 2,
       "parent_handle": "warehousing-material-handling",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/engine-hoists.webp",
+      "image_source": "alias"
     },
     "forklifts-pallet-equipment": {
       "handle": "forklifts-pallet-equipment",
@@ -911,7 +1111,9 @@
       "name_et": "Kahveltõstukid",
       "level": 2,
       "parent_handle": "warehousing-material-handling",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/forklifts-attachments.webp",
+      "image_source": "alias"
     },
     "carts-dollies-hand-trucks": {
       "handle": "carts-dollies-hand-trucks",
@@ -919,7 +1121,9 @@
       "name_et": "Käru ja veod",
       "level": 2,
       "parent_handle": "warehousing-material-handling",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/industrial-hand-truck.webp",
+      "image_source": "alias"
     },
     "industrial-shelving-racking": {
       "handle": "industrial-shelving-racking",
@@ -927,7 +1131,9 @@
       "name_et": "Tööstusriiulid",
       "level": 2,
       "parent_handle": "warehousing-material-handling",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/restaurant-shelving.webp",
+      "image_source": "alias"
     },
     "workbenches-storage": {
       "handle": "workbenches-storage",
@@ -935,7 +1141,9 @@
       "name_et": "Tööpingid ja hoiustus",
       "level": 2,
       "parent_handle": "warehousing-material-handling",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/workbenches.webp",
+      "image_source": "alias"
     },
     "strapping-chains-securing": {
       "handle": "strapping-chains-securing",
@@ -943,7 +1151,9 @@
       "name_et": "Rihmad ja ketid",
       "level": 2,
       "parent_handle": "warehousing-material-handling",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/strapping-band.webp",
+      "image_source": "alias"
     },
     "warehousing-material-handling": {
       "handle": "warehousing-material-handling",
@@ -958,7 +1168,9 @@
         "industrial-shelving-racking",
         "workbenches-storage",
         "strapping-chains-securing"
-      ]
+      ],
+      "image_path": "/cat-thumbs/restaurant-shelving.webp",
+      "image_source": "alias"
     },
     "air-conditioners-mini-splits": {
       "handle": "air-conditioners-mini-splits",
@@ -966,7 +1178,9 @@
       "name_et": "Kliimaseadmed",
       "level": 2,
       "parent_handle": "hvac-climate-control",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/air-conditioners.webp",
+      "image_source": "alias"
     },
     "heaters": {
       "handle": "heaters",
@@ -974,7 +1188,9 @@
       "name_et": "Soojendid",
       "level": 2,
       "parent_handle": "hvac-climate-control",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/heaters.webp",
+      "image_source": "direct"
     },
     "fans-ventilation": {
       "handle": "fans-ventilation",
@@ -982,7 +1198,9 @@
       "name_et": "Ventilaatorid",
       "level": 2,
       "parent_handle": "hvac-climate-control",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/fans.webp",
+      "image_source": "alias"
     },
     "ducting-grilles-hvac-supplies": {
       "handle": "ducting-grilles-hvac-supplies",
@@ -990,7 +1208,9 @@
       "name_et": "Ventilatsioonikanalid",
       "level": 2,
       "parent_handle": "hvac-climate-control",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/ducting-venting.webp",
+      "image_source": "alias"
     },
     "air-quality-purification": {
       "handle": "air-quality-purification",
@@ -998,7 +1218,9 @@
       "name_et": "Õhupuhastus",
       "level": 2,
       "parent_handle": "hvac-climate-control",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/commercial-air-purifiers.webp",
+      "image_source": "alias"
     },
     "dehumidifiers-evaporative-coolers": {
       "handle": "dehumidifiers-evaporative-coolers",
@@ -1006,7 +1228,9 @@
       "name_et": "Niiskuse eemaldajad",
       "level": 2,
       "parent_handle": "hvac-climate-control",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/dehumidifiers.webp",
+      "image_source": "alias"
     },
     "hvac-climate-control": {
       "handle": "hvac-climate-control",
@@ -1021,7 +1245,9 @@
         "ducting-grilles-hvac-supplies",
         "air-quality-purification",
         "dehumidifiers-evaporative-coolers"
-      ]
+      ],
+      "image_path": "/cat-thumbs/heaters.webp",
+      "image_source": "alias"
     },
     "water-pumps": {
       "handle": "water-pumps",
@@ -1029,7 +1255,9 @@
       "name_et": "Veepumbad",
       "level": 2,
       "parent_handle": "plumbing-water-systems",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/water-pumps.webp",
+      "image_source": "direct"
     },
     "pipes-fittings-valves": {
       "handle": "pipes-fittings-valves",
@@ -1037,7 +1265,9 @@
       "name_et": "Torud ja liitmikud",
       "level": 2,
       "parent_handle": "plumbing-water-systems",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/pipe-fittings.webp",
+      "image_source": "alias"
     },
     "plumbing-tools": {
       "handle": "plumbing-tools",
@@ -1045,7 +1275,9 @@
       "name_et": "Santehniku tööriistad",
       "level": 2,
       "parent_handle": "plumbing-water-systems",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/plumbing-tools.webp",
+      "image_source": "direct"
     },
     "water-heaters": {
       "handle": "water-heaters",
@@ -1053,7 +1285,9 @@
       "name_et": "Veeboilerid",
       "level": 2,
       "parent_handle": "plumbing-water-systems",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/water-heaters.webp",
+      "image_source": "direct"
     },
     "water-filtration-softening": {
       "handle": "water-filtration-softening",
@@ -1061,7 +1295,9 @@
       "name_et": "Veefiltrid ja pehmendajad",
       "level": 2,
       "parent_handle": "plumbing-water-systems",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/water-filters.webp",
+      "image_source": "alias"
     },
     "bathroom-fixtures": {
       "handle": "bathroom-fixtures",
@@ -1069,7 +1305,9 @@
       "name_et": "Vannitoa sisseseade",
       "level": 2,
       "parent_handle": "plumbing-water-systems",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/bathroom-sinks.webp",
+      "image_source": "alias"
     },
     "plumbing-water-systems": {
       "handle": "plumbing-water-systems",
@@ -1084,7 +1322,9 @@
         "water-heaters",
         "water-filtration-softening",
         "bathroom-fixtures"
-      ]
+      ],
+      "image_path": "/cat-thumbs/plumbing.webp",
+      "image_source": "alias"
     },
     "personal-protective-equipment": {
       "handle": "personal-protective-equipment",
@@ -1092,7 +1332,9 @@
       "name_et": "Isikukaitsevahendid",
       "level": 2,
       "parent_handle": "safety-security-workwear",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/disposable-protective-clothing.webp",
+      "image_source": "alias"
     },
     "traffic-site-safety": {
       "handle": "traffic-site-safety",
@@ -1100,7 +1342,9 @@
       "name_et": "Liiklus- ja objektiohutus",
       "level": 2,
       "parent_handle": "safety-security-workwear",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/safety-equipment.webp",
+      "image_source": "alias"
     },
     "locks-safes-access-control": {
       "handle": "locks-safes-access-control",
@@ -1108,7 +1352,9 @@
       "name_et": "Lukud ja seifid",
       "level": 2,
       "parent_handle": "safety-security-workwear",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/door-locks.webp",
+      "image_source": "alias"
     },
     "work-boots-footwear": {
       "handle": "work-boots-footwear",
@@ -1116,7 +1362,9 @@
       "name_et": "Tööjalatsid",
       "level": 2,
       "parent_handle": "safety-security-workwear",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/safety-equipment.webp",
+      "image_source": "alias"
     },
     "work-clothing-outerwear": {
       "handle": "work-clothing-outerwear",
@@ -1124,7 +1372,9 @@
       "name_et": "Tööriided",
       "level": 2,
       "parent_handle": "safety-security-workwear",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/safety-equipment.webp",
+      "image_source": "alias"
     },
     "safety-glasses": {
       "handle": "safety-glasses",
@@ -1132,7 +1382,9 @@
       "name_et": "Kaitseprillid",
       "level": 2,
       "parent_handle": "safety-security-workwear",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/safety-equipment.webp",
+      "image_source": "alias"
     },
     "safety-security-workwear": {
       "handle": "safety-security-workwear",
@@ -1147,7 +1399,9 @@
         "work-boots-footwear",
         "work-clothing-outerwear",
         "safety-glasses"
-      ]
+      ],
+      "image_path": "/cat-thumbs/safety-equipment.webp",
+      "image_source": "alias"
     },
     "vehicle-lifts-shop-equipment": {
       "handle": "vehicle-lifts-shop-equipment",
@@ -1155,7 +1409,9 @@
       "name_et": "Autotõstukid ja töökojatehnika",
       "level": 2,
       "parent_handle": "automotive-workshop",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/car-lifts.webp",
+      "image_source": "alias"
     },
     "mechanics-diagnostic-tools": {
       "handle": "mechanics-diagnostic-tools",
@@ -1163,7 +1419,9 @@
       "name_et": "Mehaaniku ja diagnostikavahendid",
       "level": 2,
       "parent_handle": "automotive-workshop",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/mechanics-tools.webp",
+      "image_source": "alias"
     },
     "jacks-lifting": {
       "handle": "jacks-lifting",
@@ -1171,7 +1429,9 @@
       "name_et": "Tungrauad",
       "level": 2,
       "parent_handle": "automotive-workshop",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/hydraulic-pumps.webp",
+      "image_source": "alias"
     },
     "towing-recovery": {
       "handle": "towing-recovery",
@@ -1179,7 +1439,9 @@
       "name_et": "Pukseerimine",
       "level": 2,
       "parent_handle": "automotive-workshop",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/truck-accessories.webp",
+      "image_source": "alias"
     },
     "truck-cargo-accessories": {
       "handle": "truck-cargo-accessories",
@@ -1187,7 +1449,9 @@
       "name_et": "Veoauto- ja lasttarvikud",
       "level": 2,
       "parent_handle": "automotive-workshop",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/truck-accessories.webp",
+      "image_source": "alias"
     },
     "auto-parts-replacement": {
       "handle": "auto-parts-replacement",
@@ -1195,7 +1459,9 @@
       "name_et": "Autoosad",
       "level": 2,
       "parent_handle": "automotive-workshop",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/car-lifts.webp",
+      "image_source": "alias"
     },
     "automotive-workshop": {
       "handle": "automotive-workshop",
@@ -1210,7 +1476,9 @@
         "towing-recovery",
         "truck-cargo-accessories",
         "auto-parts-replacement"
-      ]
+      ],
+      "image_path": "/cat-thumbs/car-lifts.webp",
+      "image_source": "alias"
     },
     "barber-salon-chairs": {
       "handle": "barber-salon-chairs",
@@ -1218,7 +1486,9 @@
       "name_et": "Juuksuri- ja salongi toolid",
       "level": 2,
       "parent_handle": "salon-spa-wellness",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/barber-chairs.webp",
+      "image_source": "alias"
     },
     "shampoo-stations-salon-furniture": {
       "handle": "shampoo-stations-salon-furniture",
@@ -1226,7 +1496,9 @@
       "name_et": "Pesupunktid ja salongi mööbel",
       "level": 2,
       "parent_handle": "salon-spa-wellness",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/barber-chairs.webp",
+      "image_source": "alias"
     },
     "massage-tables-spa-equipment": {
       "handle": "massage-tables-spa-equipment",
@@ -1234,7 +1506,9 @@
       "name_et": "Massaažilauad ja spaavarustus",
       "level": 2,
       "parent_handle": "salon-spa-wellness",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/massage-chairs.webp",
+      "image_source": "alias"
     },
     "personal-care-appliances": {
       "handle": "personal-care-appliances",
@@ -1242,7 +1516,9 @@
       "name_et": "Isikliku hoolduse seadmed",
       "level": 2,
       "parent_handle": "salon-spa-wellness",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/personal-care-appliances.webp",
+      "image_source": "direct"
     },
     "manicure-nail-equipment": {
       "handle": "manicure-nail-equipment",
@@ -1250,7 +1526,9 @@
       "name_et": "Maniküürivarustus",
       "level": 2,
       "parent_handle": "salon-spa-wellness",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/personal-care-appliances.webp",
+      "image_source": "alias"
     },
     "facial-steamers": {
       "handle": "facial-steamers",
@@ -1258,7 +1536,9 @@
       "name_et": "Näoaurutid",
       "level": 2,
       "parent_handle": "salon-spa-wellness",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/salon-barber-chair.webp",
+      "image_source": "alias"
     },
     "salon-spa-wellness": {
       "handle": "salon-spa-wellness",
@@ -1273,7 +1553,9 @@
         "personal-care-appliances",
         "manicure-nail-equipment",
         "facial-steamers"
-      ]
+      ],
+      "image_path": "/cat-thumbs/barber-chairs.webp",
+      "image_source": "alias"
     },
     "office-furniture": {
       "handle": "office-furniture",
@@ -1281,7 +1563,9 @@
       "name_et": "Kontorimööbel",
       "level": 2,
       "parent_handle": "office-commercial-interiors",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/home-office-furniture.webp",
+      "image_source": "fuzzy"
     },
     "meeting-lobby-furniture": {
       "handle": "meeting-lobby-furniture",
@@ -1289,7 +1573,9 @@
       "name_et": "Fuajee- ja koosolekumööbel",
       "level": 2,
       "parent_handle": "office-commercial-interiors",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/office-chairs.webp",
+      "image_source": "alias"
     },
     "door-cabinet-hardware": {
       "handle": "door-cabinet-hardware",
@@ -1297,7 +1583,9 @@
       "name_et": "Ukse- ja kapisisustus",
       "level": 2,
       "parent_handle": "office-commercial-interiors",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/door-hardware.webp",
+      "image_source": "alias"
     },
     "interior-lighting": {
       "handle": "interior-lighting",
@@ -1305,7 +1593,9 @@
       "name_et": "Sisevalgustus",
       "level": 2,
       "parent_handle": "office-commercial-interiors",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/lamps.webp",
+      "image_source": "alias"
     },
     "bathroom-accessories": {
       "handle": "bathroom-accessories",
@@ -1313,7 +1603,9 @@
       "name_et": "Vannitoa aksessuaarid",
       "level": 2,
       "parent_handle": "office-commercial-interiors",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/bathroom-accessories.webp",
+      "image_source": "direct"
     },
     "home-decor-window-treatments": {
       "handle": "home-decor-window-treatments",
@@ -1321,7 +1613,9 @@
       "name_et": "Kodudekoor ja aknakatted",
       "level": 2,
       "parent_handle": "office-commercial-interiors",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/home-decor.webp",
+      "image_source": "alias"
     },
     "office-commercial-interiors": {
       "handle": "office-commercial-interiors",
@@ -1336,7 +1630,9 @@
         "interior-lighting",
         "bathroom-accessories",
         "home-decor-window-treatments"
-      ]
+      ],
+      "image_path": "/cat-thumbs/office-chairs.webp",
+      "image_source": "alias"
     },
     "medical-equipment-furniture": {
       "handle": "medical-equipment-furniture",
@@ -1344,7 +1640,9 @@
       "name_et": "Meditsiinivarustus ja -mööbel",
       "level": 2,
       "parent_handle": "health-medical-supply",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/medical-chairs.webp",
+      "image_source": "alias"
     },
     "mobility-aids": {
       "handle": "mobility-aids",
@@ -1352,7 +1650,9 @@
       "name_et": "Liikumisabivahendid",
       "level": 2,
       "parent_handle": "health-medical-supply",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/mobility-aids.webp",
+      "image_source": "direct"
     },
     "bathroom-safety": {
       "handle": "bathroom-safety",
@@ -1360,7 +1660,9 @@
       "name_et": "Vannitoa ohutus",
       "level": 2,
       "parent_handle": "health-medical-supply",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/bathroom-safety.webp",
+      "image_source": "direct"
     },
     "teaching-demonstration-models": {
       "handle": "teaching-demonstration-models",
@@ -1368,7 +1670,9 @@
       "name_et": "Õppe- ja demomudelid",
       "level": 2,
       "parent_handle": "health-medical-supply",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/medical-chairs.webp",
+      "image_source": "alias"
     },
     "wellness-skin-care": {
       "handle": "wellness-skin-care",
@@ -1376,7 +1680,9 @@
       "name_et": "Nahahooldus",
       "level": 2,
       "parent_handle": "health-medical-supply",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/personal-care-appliances.webp",
+      "image_source": "alias"
     },
     "wheelchairs": {
       "handle": "wheelchairs",
@@ -1384,7 +1690,9 @@
       "name_et": "Ratastoolid",
       "level": 2,
       "parent_handle": "health-medical-supply",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/wheelchairs.webp",
+      "image_source": "direct"
     },
     "health-medical-supply": {
       "handle": "health-medical-supply",
@@ -1399,7 +1707,9 @@
         "teaching-demonstration-models",
         "wellness-skin-care",
         "wheelchairs"
-      ]
+      ],
+      "image_path": "/cat-thumbs/medical-chairs.webp",
+      "image_source": "alias"
     },
     "gym-equipment": {
       "handle": "gym-equipment",
@@ -1407,7 +1717,9 @@
       "name_et": "Jõusaaliseadmed",
       "level": 2,
       "parent_handle": "fitness-sports-recreation",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/exercise-equipment.webp",
+      "image_source": "alias"
     },
     "team-sports-equipment": {
       "handle": "team-sports-equipment",
@@ -1415,7 +1727,9 @@
       "name_et": "Meeskonnaspordi varustus",
       "level": 2,
       "parent_handle": "fitness-sports-recreation",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/exercise-equipment.webp",
+      "image_source": "alias"
     },
     "gym-flooring-mats": {
       "handle": "gym-flooring-mats",
@@ -1423,7 +1737,9 @@
       "name_et": "Jõusaali põrand ja matid",
       "level": 2,
       "parent_handle": "fitness-sports-recreation",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/gym-mats.webp",
+      "image_source": "alias"
     },
     "trampolines": {
       "handle": "trampolines",
@@ -1431,7 +1747,9 @@
       "name_et": "Trampoliinid",
       "level": 2,
       "parent_handle": "fitness-sports-recreation",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/trampolines.webp",
+      "image_source": "direct"
     },
     "playground-outdoor-play": {
       "handle": "playground-outdoor-play",
@@ -1439,7 +1757,9 @@
       "name_et": "Mänguväljakud",
       "level": 2,
       "parent_handle": "fitness-sports-recreation",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/playground-outdoor-play.webp",
+      "image_source": "direct"
     },
     "cycling": {
       "handle": "cycling",
@@ -1447,7 +1767,9 @@
       "name_et": "Jalgrattad",
       "level": 2,
       "parent_handle": "fitness-sports-recreation",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/cycling-gear.webp",
+      "image_source": "alias"
     },
     "fitness-sports-recreation": {
       "handle": "fitness-sports-recreation",
@@ -1462,7 +1784,9 @@
         "trampolines",
         "playground-outdoor-play",
         "cycling"
-      ]
+      ],
+      "image_path": "/cat-thumbs/exercise-equipment.webp",
+      "image_source": "alias"
     },
     "boat-parts-marine-hardware": {
       "handle": "boat-parts-marine-hardware",
@@ -1470,7 +1794,9 @@
       "name_et": "Paadivarustus",
       "level": 2,
       "parent_handle": "boating-camping-outdoor",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/boat-hardware.webp",
+      "image_source": "alias"
     },
     "inflatable-boats-kayaks": {
       "handle": "inflatable-boats-kayaks",
@@ -1478,7 +1804,9 @@
       "name_et": "Paisutatavad paadid ja kajakid",
       "level": 2,
       "parent_handle": "boating-camping-outdoor",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/boat-hardware.webp",
+      "image_source": "alias"
     },
     "water-sports": {
       "handle": "water-sports",
@@ -1486,7 +1814,9 @@
       "name_et": "Veesport",
       "level": 2,
       "parent_handle": "boating-camping-outdoor",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/water-sports.webp",
+      "image_source": "direct"
     },
     "camping-gear": {
       "handle": "camping-gear",
@@ -1494,7 +1824,9 @@
       "name_et": "Matkavarustus",
       "level": 2,
       "parent_handle": "boating-camping-outdoor",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/camping-gear.webp",
+      "image_source": "direct"
     },
     "canopy-tents-event-shelters": {
       "handle": "canopy-tents-event-shelters",
@@ -1502,7 +1834,9 @@
       "name_et": "Varjualused ja telgid",
       "level": 2,
       "parent_handle": "boating-camping-outdoor",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/canopy-tent.webp",
+      "image_source": "alias"
     },
     "outdoor-hobbies": {
       "handle": "outdoor-hobbies",
@@ -1510,7 +1844,9 @@
       "name_et": "Välihobid",
       "level": 2,
       "parent_handle": "boating-camping-outdoor",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/outdoor-hobbies.webp",
+      "image_source": "direct"
     },
     "boating-camping-outdoor": {
       "handle": "boating-camping-outdoor",
@@ -1525,7 +1861,9 @@
         "camping-gear",
         "canopy-tents-event-shelters",
         "outdoor-hobbies"
-      ]
+      ],
+      "image_path": "/cat-thumbs/boat-hardware.webp",
+      "image_source": "alias"
     },
     "guitars-string-instruments": {
       "handle": "guitars-string-instruments",
@@ -1533,7 +1871,9 @@
       "name_et": "Kitarrid ja keelpillid",
       "level": 2,
       "parent_handle": "music-entertainment",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/acoustic-guitar.webp",
+      "image_source": "alias"
     },
     "keyboards-electronic-instruments": {
       "handle": "keyboards-electronic-instruments",
@@ -1541,7 +1881,9 @@
       "name_et": "Klahvpillid",
       "level": 2,
       "parent_handle": "music-entertainment",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/digital-pianos.webp",
+      "image_source": "alias"
     },
     "drums-percussion": {
       "handle": "drums-percussion",
@@ -1549,7 +1891,9 @@
       "name_et": "Trummid",
       "level": 2,
       "parent_handle": "music-entertainment",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/drums-percussion.webp",
+      "image_source": "direct"
     },
     "stage-dance-performance": {
       "handle": "stage-dance-performance",
@@ -1557,7 +1901,9 @@
       "name_et": "Lava- ja esinemisvarustus",
       "level": 2,
       "parent_handle": "music-entertainment",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/area-lights.webp",
+      "image_source": "alias"
     },
     "game-room-entertainment": {
       "handle": "game-room-entertainment",
@@ -1565,7 +1911,9 @@
       "name_et": "Mängutuba",
       "level": 2,
       "parent_handle": "music-entertainment",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/game-room.webp",
+      "image_source": "alias"
     },
     "instrument-storage-cases": {
       "handle": "instrument-storage-cases",
@@ -1573,7 +1921,9 @@
       "name_et": "Pilli-kotid ja -kastid",
       "level": 2,
       "parent_handle": "music-entertainment",
-      "child_handles": []
+      "child_handles": [],
+      "image_path": "/cat-thumbs/tool-chests.webp",
+      "image_source": "alias"
     },
     "music-entertainment": {
       "handle": "music-entertainment",
@@ -1588,7 +1938,9 @@
         "stage-dance-performance",
         "game-room-entertainment",
         "instrument-storage-cases"
-      ]
+      ],
+      "image_path": "/cat-thumbs/musical-instruments.webp",
+      "image_source": "alias"
     }
   },
   "order": [

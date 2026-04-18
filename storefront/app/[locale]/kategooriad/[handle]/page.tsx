@@ -1,5 +1,4 @@
 import Link from "@/components/SafeLink"
-import Image from "next/image"
 import { Suspense } from "react"
 import { getCategoryByHandle } from "@/lib/medusa"
 import { searchProducts } from "@/lib/meilisearch"
@@ -9,8 +8,7 @@ import VevorPagination from "@/components/search/VevorPagination"
 import SortSelect from "@/components/search/SortSelect"
 import { notFound } from "next/navigation"
 import JsonLdCategory from "@/components/JsonLdCategory"
-import SubcategoryScroller from "@/components/SubcategoryScroller"
-import categoryImages from "@/lib/category-images.json"
+import CategoryThumb from "@/components/CategoryThumb"
 import { categoryPath } from "@/lib/i18n"
 import { buildQuickFilters } from "@/lib/quick-filters"
 import {
@@ -21,8 +19,6 @@ import {
   nodeName,
   type Locale as TaxLocale,
 } from "@/lib/category-tree"
-
-const CATEGORY_IMAGES: Record<string, string> = categoryImages as Record<string, string>
 
 export const revalidate = 3600
 
@@ -239,46 +235,9 @@ export default async function CategoryPage({ params, searchParams }: Props) {
           </div>
         </div>
 
-        {/* Subcategory navigation — direct children (L2 row on L1, L3 row on L2) */}
-        {children.length > 0 && (
-          <div className="bg-[#F8FAFC] -mx-4 px-4 sm:-mx-6 sm:px-6 py-4 mb-6 border-b border-[#E2E8F0]">
-            <SubcategoryScroller>
-              {children.map((child) => {
-                const thumb = CATEGORY_IMAGES[child.handle] || null
-                const childName = nodeName(child, locale as TaxLocale)
-                return (
-                  <Link
-                    key={child.handle}
-                    href={categoryPath(locale as "et" | "en", child.handle)}
-                    className="flex-shrink-0 flex flex-col items-center gap-2 w-[130px] group"
-                  >
-                    <div className="w-[120px] h-[120px] rounded-xl bg-white border border-[#E2E8F0] group-hover:border-[#D97706] group-hover:shadow-lg group-hover:-translate-y-1 transition-all duration-200 overflow-hidden flex items-center justify-center">
-                      {thumb ? (
-                        <Image
-                          src={thumb}
-                          alt={childName}
-                          width={120}
-                          height={120}
-                          className="object-contain w-full h-full p-2"
-                          unoptimized
-                        />
-                      ) : (
-                        <div className="w-12 h-12 rounded-full bg-[#FEF3C7] flex items-center justify-center">
-                          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D97706" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2" /><path d="M16 7V5a4 4 0 0 0-8 0v2" /></svg>
-                        </div>
-                      )}
-                    </div>
-                    <span className="text-[12px] text-center text-[#475569] group-hover:text-[#D97706] transition-colors leading-snug line-clamp-2 font-medium">
-                      {childName}
-                    </span>
-                  </Link>
-                )
-              })}
-            </SubcategoryScroller>
-          </div>
-        )}
-
-        {/* Content area */}
+        {/* Content area — spec §3.5:
+            sidebar vasakul, main paremal = subcategory grid + products.
+            Mobile: sidebar annab drawer, subcategory + products virnas. */}
         {totalCount > 0 ? (
           <div className="flex gap-8">
             {/* Desktop sidebar */}
@@ -294,7 +253,7 @@ export default async function CategoryPage({ params, searchParams }: Props) {
                     currentCategories={selectedCategories}
                     currentInStock={inStock}
                     categoryFacets={categoryFacets}
-                  categoryLabels={categoryLabels}
+                    categoryLabels={categoryLabels}
                     quickFilters={quickFilters}
                     currentQuickFilter={currentQuickFilter}
                     locale={locale}
@@ -306,6 +265,39 @@ export default async function CategoryPage({ params, searchParams }: Props) {
 
             {/* Main content */}
             <main className="flex-1 min-w-0">
+              {/* Subcategory grid — direct children (L2 row on L1, L3 row on L2).
+                  Responsive grid: 2/3/4/6 cols. Shown above products, same column. */}
+              {children.length > 0 && (
+                <div className="mb-8">
+                  <h2 className="text-[13px] font-semibold text-[#64748B] uppercase tracking-wider mb-3">
+                    {locale === "et" ? "Alamkategooriad" : "Subcategories"}
+                  </h2>
+                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3">
+                    {children.map((child) => {
+                      const childName = nodeName(child, locale as TaxLocale)
+                      return (
+                        <Link
+                          key={child.handle}
+                          href={categoryPath(locale as "et" | "en", child.handle)}
+                          className="group flex flex-col items-center gap-2 p-3 rounded-xl bg-white border border-[#E2E8F0] hover:border-[#D97706] hover:shadow-md transition-all duration-200"
+                        >
+                          <CategoryThumb
+                            handle={child.handle}
+                            node={child}
+                            size={72}
+                            alt={childName}
+                            className="!rounded-lg"
+                          />
+                          <span className="text-[12px] text-center text-[#475569] group-hover:text-[#D97706] transition-colors leading-snug line-clamp-2 font-medium">
+                            {childName}
+                          </span>
+                        </Link>
+                      )
+                    })}
+                  </div>
+                </div>
+              )}
+
               {/* Product grid — 2 mobile, 3 tablet, 4 desktop (sidebar takes 1 col worth) */}
               <ProductGrid
                 fetchParams={{
@@ -329,17 +321,41 @@ export default async function CategoryPage({ params, searchParams }: Props) {
             </main>
           </div>
         ) : (
-          <div className="bg-white rounded-xl p-12 text-center">
-            <p className="text-sm text-[#64748B] mb-4">
-              {locale === "et" ? "Selles kategoorias tooteid ei leitud." : "No products found in this category."}
-            </p>
-            <Link
-              href={`/${locale}`}
-              className="text-[#D97706] hover:underline font-medium"
-            >
-              {locale === "et" ? "Sirvi kategooriaid" : "Browse all categories"}
-            </Link>
-          </div>
+          <>
+            {/* No products — but show subcategory grid if children exist */}
+            {children.length > 0 && (
+              <div className="mb-8">
+                <h2 className="text-[13px] font-semibold text-[#64748B] uppercase tracking-wider mb-3">
+                  {locale === "et" ? "Alamkategooriad" : "Subcategories"}
+                </h2>
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3">
+                  {children.map((child) => {
+                    const childName = nodeName(child, locale as TaxLocale)
+                    return (
+                      <Link
+                        key={child.handle}
+                        href={categoryPath(locale as "et" | "en", child.handle)}
+                        className="group flex flex-col items-center gap-2 p-3 rounded-xl bg-white border border-[#E2E8F0] hover:border-[#D97706] hover:shadow-md transition-all duration-200"
+                      >
+                        <CategoryThumb handle={child.handle} node={child} size={72} alt={childName} className="!rounded-lg" />
+                        <span className="text-[12px] text-center text-[#475569] group-hover:text-[#D97706] transition-colors leading-snug line-clamp-2 font-medium">
+                          {childName}
+                        </span>
+                      </Link>
+                    )
+                  })}
+                </div>
+              </div>
+            )}
+            <div className="bg-white rounded-xl p-12 text-center">
+              <p className="text-sm text-[#64748B] mb-4">
+                {locale === "et" ? "Selles kategoorias tooteid ei leitud." : "No products found in this category."}
+              </p>
+              <Link href={`/${locale}`} className="text-[#D97706] hover:underline font-medium">
+                {locale === "et" ? "Sirvi kategooriaid" : "Browse all categories"}
+              </Link>
+            </div>
+          </>
         )}
 
         {/* You May Also Like */}

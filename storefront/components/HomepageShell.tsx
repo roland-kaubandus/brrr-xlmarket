@@ -3,11 +3,9 @@
 import { useEffect, useState, useRef, useCallback } from "react"
 import SafeLink from "@/components/SafeLink"
 import { categoryPath, branchPath, type Locale } from "@/lib/i18n"
-import categoryImagesData from "@/lib/category-images.json"
 import { TAXONOMY_V3 as CATEGORIES, V3_ICONS } from "@/lib/taxonomy-v3"
 import { getChildren, nodeName } from "@/lib/category-tree"
 
-const catImages: Record<string, string> = categoryImagesData as Record<string, string>
 
 /* ═══════════════════════════════════════════════
    TYPES
@@ -369,7 +367,7 @@ export default function HomepageShell({ locale }: HomepageShellProps) {
                         const realChildren = getChildren(cat.slug).slice(0, 6)
                         const pad = String(cat.prodNum).padStart(2, "0")
                         return realChildren.map((child, n) => {
-                          const subThumb = catImages[child.handle]
+                          const subThumb = child.image_path
                           const imgSrc = subThumb ?? `/images/mockup-prods/prod-${pad}-${String(n + 1).padStart(2, "0")}.jpg`
                           const subName = nodeName(child, loc)
                           return (

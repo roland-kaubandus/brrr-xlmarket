@@ -5,6 +5,7 @@ import { getVevorFeedEntryAsync } from "@/lib/vevor-feed"
 import { getMeiliProductByHandle, getLocalizedTitle } from "@/lib/meilisearch"
 import { sanitizeHtml } from "@/lib/sanitize"
 import { categoryPath } from "@/lib/i18n"
+import { firstKnownHandle, getBreadcrumbTrail, type Locale as TaxLocale } from "@/lib/category-tree"
 
 function stringifyScalar(value: unknown): string | null {
   if (value === null || value === undefined) return null
@@ -67,9 +68,11 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
     if (!product) return NextResponse.json({ error: "Not found" }, { status: 404 })
 
     const metadata = product.metadata || {}
-    const linkedCategory = product.categories?.[0]
 
-    const [meiliHit, feedEntry, media, catWithAncestors] = await Promise.all([
+    // Removed the per-request getCategoryByHandle call that used
+    // include_ancestors_tree=true. Breadcrumb now comes from the SSoT
+    // (category-tree.generated.json) and costs 0ms instead of a Medusa round-trip.
+    const [meiliHit, feedEntry, media] = await Promise.all([
       getMeiliProductByHandle(handle),
       getVevorFeedEntryAsync({
         vevorSku: stringifyScalar(metadata.vevor_sku),
@@ -79,7 +82,6 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
         vevorUpc: stringifyScalar(metadata.vevor_upc),
         vevorSku: stringifyScalar(metadata.vevor_sku),
       }),
-      linkedCategory?.handle ? getCategoryByHandle(linkedCategory.handle) : Promise.resolve(null),
     ])
 
     const localizedTitle = meiliHit ? getLocalizedTitle(meiliHit, locale) : product.title
@@ -119,8 +121,8 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
 
     // Manuals
     const manualLinks = [...media.manuals]
-    const candidates = ["manuals", "manual_urls", "pdfs", "pdf_urls", "manual_files"]
-    for (const key of candidates) {
+    const manualKeys = ["manuals", "manual_urls", "pdfs", "pdf_urls", "manual_files"]
+    for (const key of manualKeys) {
       const value = metadata[key]
       if (Array.isArray(value)) {
         value.forEach((item, index) => {
@@ -138,22 +140,31 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
       array.findIndex((c) => c.href === item.href) === index
     )
 
-    // Breadcrumb
-    const rawType = stringifyScalar(metadata.vevor_product_type) || feedEntry?.productType || null
-    let productTypeTrail = rawType
-      ? rawType.split(">").map(s => s.trim()).filter(Boolean).map(name => ({ name, handle: slugify(name) }))
-      : []
-    if (catWithAncestors) {
-      const trail: Array<{ name: string; handle: string }> = []
-      const visited = new Set<string>()
-      let parent = catWithAncestors.parent_category
-      while (parent && !visited.has((parent as any).id) && trail.length < 20) {
-        visited.add((parent as any).id)
-        trail.unshift({ name: parent.name, handle: parent.handle })
-        parent = (parent as any).parent_category
-      }
-      trail.push({ name: catWithAncestors.name, handle: catWithAncestors.handle })
-      productTypeTrail = trail
+    // Breadcrumb — spec §3.5: autoritatiivne allikas on taxonomy SSoT
+    // (category-tree.generated.json), mitte Medusa parent_category walk.
+    // Põhjus: Medusa DB sisaldab 53 L1 (31 legacy + 22 v3) — parent_category
+    // ahel võib lõppeda legacy rootis → drift. SSoT puu teab ainult 22 v3 L1.
+    //
+    // Valime esimese handle'i mis eksisteerib SSoT-s:
+    //   1. meiliCategoryHandles (Meili doc, tavaliselt sorteeritud leaf→root)
+    //   2. product.categories[].handle (Medusa links, järjekord juhuslik)
+    const meiliCandidates: string[] = meiliHit?.category_handles || []
+    const medusaCandidates: string[] = (product.categories || []).map((c) => c.handle).filter(Boolean)
+    const candidates = [...meiliCandidates, ...medusaCandidates]
+    const canonicalNode = firstKnownHandle(candidates)
+
+    let productTypeTrail: Array<{ name: string; handle: string }> = []
+    if (canonicalNode) {
+      productTypeTrail = getBreadcrumbTrail(canonicalNode.handle, locale as TaxLocale)
+    } else {
+      // Fallback: no v3 category known — derive display trail from VEVOR
+      // productType string so tooteleht isn't breadcrumb-less. Handles are
+      // slugified but won't link to a real category page (that's the point —
+      // the product needs review-queue attention).
+      const rawType = stringifyScalar(metadata.vevor_product_type) || feedEntry?.productType || null
+      productTypeTrail = rawType
+        ? rawType.split(">").map((s) => s.trim()).filter(Boolean).map((name) => ({ name, handle: slugify(name) }))
+        : []
     }
 
     // Descriptions — prefer pre-computed sanitized HTML from feed import
