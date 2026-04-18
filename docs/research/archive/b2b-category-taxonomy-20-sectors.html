@@ -1,0 +1,2263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>XLMarket B2B Category Taxonomy — 20 Industry Sectors</title>
+<style>
+  :root {
+    --surface: #0f1117;
+    --surface-2: #1a1d27;
+    --surface-3: #252836;
+    --surface-4: #2e3244;
+    --accent: #f59e0b;
+    --accent-dim: #92400e;
+    --text: #e2e8f0;
+    --text-muted: #94a3b8;
+    --text-dim: #64748b;
+    --border: #2d3451;
+    --l1-color: #f59e0b;
+    --l2-color: #38bdf8;
+    --l3-color: #86efac;
+    --l4-color: #c4b5fd;
+    --tag-bg: #1e2a3a;
+    --tag-text: #7dd3fc;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--surface);
+    color: var(--text);
+    font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+    padding: 2rem 1rem 6rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  header {
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 2.5rem;
+    padding-bottom: 1.5rem;
+  }
+
+  h1 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: -0.02em;
+  }
+
+  .meta {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    margin-top: 0.4rem;
+  }
+
+  .legend {
+    display: flex;
+    gap: 1.5rem;
+    margin: 1.2rem 0;
+    flex-wrap: wrap;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+  }
+
+  .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .dot-l1 { background: var(--l1-color); }
+  .dot-l2 { background: var(--l2-color); }
+  .dot-l3 { background: var(--l3-color); }
+  .dot-l4 { background: var(--l4-color); }
+
+  /* L1 sector */
+  details.l1 {
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin-bottom: 0.6rem;
+    overflow: hidden;
+    transition: border-color 0.15s;
+  }
+
+  details.l1[open] {
+    border-color: var(--accent-dim);
+  }
+
+  details.l1 > summary {
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+    padding: 0.85rem 1.1rem;
+    cursor: pointer;
+    user-select: none;
+    list-style: none;
+  }
+
+  details.l1 > summary::-webkit-details-marker { display: none; }
+
+  details.l1 > summary::before {
+    content: '▶';
+    color: var(--accent);
+    font-size: 0.65rem;
+    flex-shrink: 0;
+    transition: transform 0.15s;
+    margin-right: 0.1rem;
+  }
+
+  details.l1[open] > summary::before {
+    transform: rotate(90deg);
+  }
+
+  .l1-num {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--accent);
+    background: rgba(245,158,11,0.12);
+    border: 1px solid rgba(245,158,11,0.25);
+    border-radius: 4px;
+    padding: 0.1rem 0.45rem;
+    letter-spacing: 0.03em;
+    flex-shrink: 0;
+  }
+
+  .l1-name {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text);
+    flex: 1;
+  }
+
+  .l1-desc {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    font-style: italic;
+    text-align: right;
+    flex-shrink: 0;
+  }
+
+  .absorbs {
+    font-size: 0.72rem;
+    color: var(--text-dim);
+    padding: 0.4rem 1.1rem 0.75rem 2.8rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .absorbs strong {
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  .tag {
+    display: inline-block;
+    background: var(--tag-bg);
+    color: var(--tag-text);
+    border-radius: 3px;
+    padding: 0.05rem 0.4rem;
+    margin: 0.1rem 0.15rem 0.1rem 0;
+    font-size: 0.7rem;
+    white-space: nowrap;
+  }
+
+  /* L2 */
+  .l2-list {
+    padding: 0.6rem 0.8rem 0.8rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  details.l2 {
+    background: var(--surface-3);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  details.l2 > summary {
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+    padding: 0.55rem 0.9rem;
+    cursor: pointer;
+    user-select: none;
+    list-style: none;
+  }
+
+  details.l2 > summary::-webkit-details-marker { display: none; }
+
+  details.l2 > summary::before {
+    content: '▶';
+    color: var(--l2-color);
+    font-size: 0.58rem;
+    flex-shrink: 0;
+    transition: transform 0.15s;
+  }
+
+  details.l2[open] > summary::before {
+    transform: rotate(90deg);
+  }
+
+  .l2-name {
+    font-size: 0.87rem;
+    font-weight: 600;
+    color: var(--l2-color);
+    flex: 1;
+  }
+
+  .l2-note {
+    font-size: 0.72rem;
+    color: var(--text-dim);
+    font-style: italic;
+  }
+
+  /* L3 */
+  .l3-list {
+    padding: 0.4rem 0.7rem 0.6rem 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  details.l3 {
+    background: var(--surface-4);
+    border: 1px solid rgba(45,52,81,0.7);
+    border-radius: 5px;
+  }
+
+  details.l3 > summary {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    padding: 0.4rem 0.75rem;
+    cursor: pointer;
+    user-select: none;
+    list-style: none;
+    font-size: 0.82rem;
+  }
+
+  details.l3 > summary::-webkit-details-marker { display: none; }
+
+  details.l3 > summary::before {
+    content: '▶';
+    color: var(--l3-color);
+    font-size: 0.52rem;
+    flex-shrink: 0;
+    transition: transform 0.15s;
+  }
+
+  details.l3[open] > summary::before {
+    transform: rotate(90deg);
+  }
+
+  .l3-name {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--l3-color);
+    flex: 1;
+  }
+
+  /* L4 */
+  .l4-list {
+    padding: 0.3rem 0.6rem 0.45rem 1.1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+
+  .l4-item {
+    font-size: 0.75rem;
+    color: var(--l4-color);
+    padding: 0.2rem 0.6rem;
+    border-left: 2px solid rgba(196,181,253,0.2);
+  }
+
+  .l4-item::before {
+    content: '·  ';
+    color: var(--l4-color);
+    opacity: 0.5;
+  }
+
+  /* no-children L3 (no further detail) */
+  .l3-leaf {
+    font-size: 0.8rem;
+    color: var(--l3-color);
+    padding: 0.35rem 0.75rem;
+    background: var(--surface-4);
+    border: 1px solid rgba(45,52,81,0.6);
+    border-radius: 5px;
+    opacity: 0.85;
+  }
+
+  /* no-children L2 */
+  .l2-leaf {
+    font-size: 0.87rem;
+    color: var(--l2-color);
+    padding: 0.5rem 0.9rem;
+    background: var(--surface-3);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    opacity: 0.8;
+  }
+
+  .count-badge {
+    font-size: 0.65rem;
+    background: rgba(255,255,255,0.06);
+    border-radius: 10px;
+    padding: 0.05rem 0.4rem;
+    color: var(--text-dim);
+    margin-left: auto;
+    flex-shrink: 0;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>XLMarket B2B Industry Sector Taxonomy</h1>
+  <p class="meta">20 L1 sectors · ~250 L2 · ~940 L3 · Replaces 31-category flat structure · Audience: B2B buyers</p>
+  <div class="legend">
+    <div class="legend-item"><span class="dot dot-l1"></span> L1 Industry sector</div>
+    <div class="legend-item"><span class="dot dot-l2"></span> L2 Product family</div>
+    <div class="legend-item"><span class="dot dot-l3"></span> L3 Product type</div>
+    <div class="legend-item"><span class="dot dot-l4"></span> L4 SKU variant / spec</div>
+  </div>
+</header>
+
+<!-- ═══════════════════════════════════════════════════════════
+     1. HoReCa & Food Service
+═══════════════════════════════════════════════════════════ -->
+<details class="l1">
+  <summary>
+    <span class="l1-num">01</span>
+    <span class="l1-name">HoReCa &amp; Food Service</span>
+    <span class="l1-desc">Hotels, restaurants, catering, bars</span>
+  </summary>
+  <div class="absorbs">
+    <strong>Absorbs from:</strong>
+    <span class="tag">Appliances → Ice Makers</span>
+    <span class="tag">Appliances → Freezers</span>
+    <span class="tag">Appliances → Refrigerators</span>
+    <span class="tag">Appliances → Wall Ovens</span>
+    <span class="tag">Appliances → Beverage Coolers</span>
+    <span class="tag">Appliances → Cooktops</span>
+    <span class="tag">Kitchen → Commercial Sinks</span>
+    <span class="tag">Kitchen → Kitchenware</span>
+    <span class="tag">Kitchen → Tableware &amp; Bar</span>
+    <span class="tag">Kitchen → Water Dispensers</span>
+    <span class="tag">Furniture → Salon &amp; Spa Equipment</span>
+    <span class="tag">Storage → Restaurant Shelving</span>
+    <span class="tag">Heating → Air Curtain</span>
+    <span class="tag">Cleaning → Janitorial Supplies</span>
+  </div>
+  <div class="l2-list">
+
+    <details class="l2">
+      <summary><span class="l2-name">Commercial Refrigeration</span><span class="l2-note">cold chain for kitchens</span></summary>
+      <div class="l3-list">
+        <details class="l3"><summary><span class="l3-name">Reach-in Refrigerators &amp; Freezers</span></summary>
+          <div class="l4-list">
+            <div class="l4-item">Commercial Refrigerators (upright, glass-door)</div>
+            <div class="l4-item">Commercial Freezers (chest, upright)</div>
+            <div class="l4-item">Blast Chillers</div>
+          </div>
+        </details>
+        <details class="l3"><summary><span class="l3-name">Ice Machines</span></summary>
+          <div class="l4-list">
+            <div class="l4-item">Countertop Ice Makers</div>
+            <div class="l4-item">Freestanding Commercial Ice Machine</div>
+            <div class="l4-item">Snowflake / Nugget Ice Machine</div>
+            <div class="l4-item">Split Industrial Ice Machine</div>
+          </div>
+        </details>
+        <details class="l3"><summary><span class="l3-name">Beverage Cooling</span></summary>
+          <div class="l4-list">
+            <div class="l4-item">Kegerators</div>
+            <div class="l4-item">Beverage Refrigerators</div>
+            <div class="l4-item">Wine Coolers</div>
+            <div class="l4-item">Ice Cream Display Freezers</div>
+          </div>
+        </details>
+        <div class="l3-leaf">Display Cases</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Commercial Cooking Equipment</span></summary>
+      <div class="l3-list">
+        <details class="l3"><summary><span class="l3-name">Ovens &amp; Ranges</span></summary>
+          <div class="l4-list">
+            <div class="l4-item">Commercial Convection Ovens</div>
+            <div class="l4-item">Pizza Ovens</div>
+            <div class="l4-item">Induction Cooktops (commercial)</div>
+            <div class="l4-item">Gas Cooktops</div>
+          </div>
+        </details>
+        <details class="l3"><summary><span class="l3-name">Countertop Cooking Appliances</span></summary>
+          <div class="l4-list">
+            <div class="l4-item">Electric Skillets &amp; Indoor Grills</div>
+            <div class="l4-item">Griddles</div>
+            <div class="l4-item">Warmers &amp; Holding Drawers</div>
+          </div>
+        </details>
+        <div class="l3-leaf">Deep Fryers</div>
+        <div class="l3-leaf">Outdoor Cookers &amp; Grills</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Food Prep Equipment</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Meat &amp; Poultry Tools (grinders, slicers)</div>
+        <div class="l3-leaf">Mixers &amp; Blenders</div>
+        <div class="l3-leaf">Juicers &amp; Squeeze Machines</div>
+        <div class="l3-leaf">Dessert Makers (ice cream, waffle)</div>
+        <div class="l3-leaf">Cookware &amp; Bakeware</div>
+        <div class="l3-leaf">Kitchen Knives &amp; Cutlery</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Bar &amp; Beverage Service</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Bar Accessories &amp; Tools</div>
+        <div class="l3-leaf">Brewing Equipment</div>
+        <div class="l3-leaf">Water Dispensers &amp; Filters</div>
+        <div class="l3-leaf">Serveware &amp; Drinkware</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Commercial Sinks &amp; Washdown</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">3-Compartment &amp; Prep Sinks</div>
+        <div class="l3-leaf">Pre-Rinse Faucets</div>
+        <div class="l3-leaf">Grease Traps &amp; Drainage</div>
+        <div class="l3-leaf">Hand Dryers</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Restaurant Storage &amp; Shelving</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Wire Shelving Units</div>
+        <div class="l3-leaf">Food Storage Containers</div>
+        <div class="l3-leaf">Kitchen Carts &amp; Utility Tables</div>
+        <div class="l3-leaf">Food Storage Organizers</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Restaurant Furniture</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Bar Stools &amp; Bar Tables</div>
+        <div class="l3-leaf">Dining Tables &amp; Chairs</div>
+        <div class="l3-leaf">Patio Dining Sets</div>
+        <div class="l3-leaf">Folding Tables &amp; Chairs (catering)</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">HVAC &amp; Air Management for Kitchens</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Concession &amp; Range Hoods</div>
+        <div class="l3-leaf">Air Curtains</div>
+        <div class="l3-leaf">Industrial Fans &amp; Ventilation</div>
+      </div>
+    </details>
+
+  </div>
+</details>
+
+<!-- ═══════════════════════════════════════════════════════════
+     2. Construction & Civil Works
+═══════════════════════════════════════════════════════════ -->
+<details class="l1">
+  <summary>
+    <span class="l1-num">02</span>
+    <span class="l1-name">Construction &amp; Civil Works</span>
+    <span class="l1-desc">Contractors, builders, site managers</span>
+  </summary>
+  <div class="absorbs">
+    <strong>Absorbs from:</strong>
+    <span class="tag">Building Materials (full)</span>
+    <span class="tag">Tools → Power Tools</span>
+    <span class="tag">Tools → Hand Tools</span>
+    <span class="tag">Tools → Air Compressor Tools</span>
+    <span class="tag">Tools → Woodworking</span>
+    <span class="tag">Plumbing → Hydraulic Pumps</span>
+    <span class="tag">Lumber &amp; Composites (full)</span>
+    <span class="tag">Flooring (full)</span>
+    <span class="tag">Paint (full)</span>
+    <span class="tag">Safety Equipment (full)</span>
+  </div>
+  <div class="l2-list">
+
+    <details class="l2">
+      <summary><span class="l2-name">Power Tools</span></summary>
+      <div class="l3-list">
+        <details class="l3"><summary><span class="l3-name">Drills &amp; Drivers</span></summary>
+          <div class="l4-list">
+            <div class="l4-item">Hammer Drills</div>
+            <div class="l4-item">Impact Drivers</div>
+            <div class="l4-item">Right-Angle Drills</div>
+          </div>
+        </details>
+        <details class="l3"><summary><span class="l3-name">Saws</span></summary>
+          <div class="l4-list">
+            <div class="l4-item">Circular Saws</div>
+            <div class="l4-item">Reciprocating Saws</div>
+            <div class="l4-item">Jigsaws</div>
+            <div class="l4-item">Miter Saws</div>
+            <div class="l4-item">Table Saws</div>
+          </div>
+        </details>
+        <div class="l3-leaf">Grinders &amp; Sanders</div>
+        <div class="l3-leaf">Rotary Hammers &amp; Chisels</div>
+        <div class="l3-leaf">Nailers &amp; Staplers</div>
+        <div class="l3-leaf">Power Crimpers &amp; Cutters</div>
+        <div class="l3-leaf">Power Tool Accessories &amp; Bits</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Hand Tools</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Hand Tool Sets</div>
+        <div class="l3-leaf">Pliers, Wrenches &amp; Clamps</div>
+        <div class="l3-leaf">Hammers &amp; Striking Tools</div>
+        <div class="l3-leaf">Measuring &amp; Layout Tools</div>
+        <div class="l3-leaf">Fastening Tools</div>
+        <div class="l3-leaf">Specialty Hand Tools</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Air Compressors &amp; Pneumatic Tools</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Air Compressors (portable, stationary)</div>
+        <div class="l3-leaf">Air Tools (impact, ratchets, grinders)</div>
+        <div class="l3-leaf">Pneumatic Staplers &amp; Nailers</div>
+        <div class="l3-leaf">Inflators</div>
+        <div class="l3-leaf">Air Compressor Parts &amp; Accessories</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Concrete, Masonry &amp; Drywall</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Concrete Tools (mixers, vibrators, floats)</div>
+        <div class="l3-leaf">Concrete Forms &amp; Rebar</div>
+        <div class="l3-leaf">Drywall Tools</div>
+        <div class="l3-leaf">Drywall Board, Tape &amp; Bead</div>
+        <div class="l3-leaf">Decorative Concrete</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Ladders, Scaffolding &amp; Work Platforms</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Extension Ladders</div>
+        <div class="l3-leaf">Step Ladders</div>
+        <div class="l3-leaf">Attic Ladders</div>
+        <div class="l3-leaf">Scaffolding Sets &amp; Planks</div>
+        <div class="l3-leaf">Work Platforms</div>
+        <div class="l3-leaf">Ladder Accessories</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Roofing &amp; Insulation</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Roof Panels &amp; Roll Roofing</div>
+        <div class="l3-leaf">Roof Flashing &amp; Vents</div>
+        <div class="l3-leaf">Roofing Tools</div>
+        <div class="l3-leaf">Insulation &amp; Radiant Barriers</div>
+        <div class="l3-leaf">Gutter Guards</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Flooring Installation</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Flooring Tools &amp; Surface Prep</div>
+        <div class="l3-leaf">Vinyl &amp; Laminate Flooring</div>
+        <div class="l3-leaf">Carpet &amp; Carpet Tiles</div>
+        <div class="l3-leaf">Garage Flooring (tiles, rolls)</div>
+        <div class="l3-leaf">Floor Protection Materials</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Decking, Fencing &amp; Structural Hardware</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Deck Posts, Railings &amp; Hardware</div>
+        <div class="l3-leaf">Metal, Vinyl &amp; Wire Fencing</div>
+        <div class="l3-leaf">Gates &amp; Gate Openers</div>
+        <div class="l3-leaf">Post Brackets, Corner Braces, Jack Posts</div>
+        <div class="l3-leaf">Fasteners &amp; Anchors</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Paint, Caulk &amp; Surface Finishing</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Paint Applicators &amp; Rollers</div>
+        <div class="l3-leaf">Sanding Supplies</div>
+        <div class="l3-leaf">Caulk, Sealants &amp; Adhesives</div>
+        <div class="l3-leaf">Inflatable Paint Booths &amp; Tents</div>
+        <div class="l3-leaf">Surface Prep &amp; Grinding</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Site Safety &amp; Fall Protection</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Hard Hats &amp; Head Protection</div>
+        <div class="l3-leaf">Safety Harnesses &amp; Self-Retracting Lifelines</div>
+        <div class="l3-leaf">Traffic Cones &amp; Delineators</div>
+        <div class="l3-leaf">Disposable Protective Clothing</div>
+        <div class="l3-leaf">Emergency Eye Wash Stations</div>
+      </div>
+    </details>
+
+  </div>
+</details>
+
+<!-- ═══════════════════════════════════════════════════════════
+     3. Automotive & Fleet Service
+═══════════════════════════════════════════════════════════ -->
+<details class="l1">
+  <summary>
+    <span class="l1-num">03</span>
+    <span class="l1-name">Automotive &amp; Fleet Service</span>
+    <span class="l1-desc">Auto shops, fleet managers, car dealers</span>
+  </summary>
+  <div class="absorbs">
+    <strong>Absorbs from:</strong>
+    <span class="tag">Automotive (full — all 14 L2)</span>
+    <span class="tag">Tools → Mechanics Tools</span>
+    <span class="tag">Workwear → Footwear + Outerwear</span>
+  </div>
+  <div class="l2-list">
+
+    <details class="l2">
+      <summary><span class="l2-name">Vehicle Lifts &amp; Shop Equipment</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Car Lifts &amp; Accessories</div>
+        <div class="l3-leaf">Mechanics Creepers &amp; Stools</div>
+        <div class="l3-leaf">Engine Hoists &amp; Stands</div>
+        <div class="l3-leaf">Wheel Dollies &amp; Positioning Tools</div>
+        <div class="l3-leaf">Fluid Transfer &amp; Drain Equipment</div>
+        <div class="l3-leaf">Tire Changers &amp; Balancers</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Mechanics &amp; Diagnostic Tools</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Socket &amp; Wrench Sets</div>
+        <div class="l3-leaf">Brake Tools</div>
+        <div class="l3-leaf">Engine Tools &amp; Pullers</div>
+        <div class="l3-leaf">AC &amp; Refrigerant Tools</div>
+        <div class="l3-leaf">Steering &amp; Suspension Tools</div>
+        <div class="l3-leaf">Oil Change Tools</div>
+        <div class="l3-leaf">Fuel System Tools</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Jacks, Hoists &amp; Lifting</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Floor Jacks &amp; Jack Stands</div>
+        <div class="l3-leaf">Hydraulic Bottle Jacks</div>
+        <div class="l3-leaf">Air Hydraulic Jacks</div>
+        <div class="l3-leaf">Transmission Jacks</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Towing &amp; Recovery</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Trailer Hitches &amp; Balls</div>
+        <div class="l3-leaf">Tow Ropes, Chains &amp; Cables</div>
+        <div class="l3-leaf">Trailer Parts &amp; Accessories</div>
+        <div class="l3-leaf">Wheel Chocks &amp; Tie-Downs</div>
+        <div class="l3-leaf">Winches &amp; Accessories</div>
+        <div class="l3-leaf">Towing Mirrors</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Battery, Electrical &amp; Starting</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Battery Chargers &amp; Maintainers</div>
+        <div class="l3-leaf">Jump Starters</div>
+        <div class="l3-leaf">Car Power Inverters</div>
+        <div class="l3-leaf">Powersports Batteries</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Truck &amp; Cargo Accessories</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Truck Tool Boxes</div>
+        <div class="l3-leaf">Truck Bed Accessories &amp; Mats</div>
+        <div class="l3-leaf">Tonneau Covers</div>
+        <div class="l3-leaf">Running Boards</div>
+        <div class="l3-leaf">Hitch Cargo Carriers &amp; Roof Racks</div>
+        <div class="l3-leaf">Bike &amp; Motorcycle Carriers</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Auto Parts &amp; Replacement</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Engine Parts</div>
+        <div class="l3-leaf">Fuel Systems &amp; Filters</div>
+        <div class="l3-leaf">Suspension &amp; Steering Parts</div>
+        <div class="l3-leaf">Auto Body Parts</div>
+        <div class="l3-leaf">Exhaust &amp; Air Horns</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">RV &amp; Specialty Vehicle Supplies</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">RV Accessories &amp; Parts</div>
+        <div class="l3-leaf">RV Covers</div>
+        <div class="l3-leaf">RV Macerator Pumps</div>
+        <div class="l3-leaf">UTV Accessories</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Car Detailing &amp; Cleaning</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Pressure Washers (vehicle use)</div>
+        <div class="l3-leaf">Car Washing Supplies</div>
+        <div class="l3-leaf">Polishers &amp; Buffers</div>
+        <div class="l3-leaf">Car Covers</div>
+      </div>
+    </details>
+
+  </div>
+</details>
+
+<!-- ═══════════════════════════════════════════════════════════
+     4. Warehousing & Material Handling
+═══════════════════════════════════════════════════════════ -->
+<details class="l1">
+  <summary>
+    <span class="l1-num">04</span>
+    <span class="l1-name">Warehousing &amp; Material Handling</span>
+    <span class="l1-desc">Logistics, distribution, storage facilities</span>
+  </summary>
+  <div class="absorbs">
+    <strong>Absorbs from:</strong>
+    <span class="tag">Building Materials → Material Handling Equipment</span>
+    <span class="tag">Storage → Garage Storage (industrial)</span>
+    <span class="tag">Storage → Shelving</span>
+    <span class="tag">Hardware → Chains &amp; Ropes</span>
+    <span class="tag">Hardware → Tie-Down Straps</span>
+    <span class="tag">Tools → Tool Storage</span>
+  </div>
+  <div class="l2-list">
+
+    <details class="l2">
+      <summary><span class="l2-name">Hoists, Cranes &amp; Lifting</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Electric Chain Hoists</div>
+        <div class="l3-leaf">Manual Chain Blocks</div>
+        <div class="l3-leaf">Lever Hoists &amp; Come-Alongs</div>
+        <div class="l3-leaf">Gantry Cranes &amp; Jib Cranes</div>
+        <div class="l3-leaf">Lifting Slings &amp; Rigging</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Forklifts &amp; Pallet Equipment</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Pallet Jacks (manual, electric)</div>
+        <div class="l3-leaf">Forklift Attachments</div>
+        <div class="l3-leaf">Pallet Stackers</div>
+        <div class="l3-leaf">Drum Handling Equipment</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Carts, Dollies &amp; Hand Trucks</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Platform Trucks &amp; Dollies</div>
+        <div class="l3-leaf">Hand Trucks &amp; Sack Trolleys</div>
+        <div class="l3-leaf">Utility Carts</div>
+        <div class="l3-leaf">Appliance Dollies</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Industrial Shelving &amp; Racking</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Boltless Shelving Units</div>
+        <div class="l3-leaf">Heavy-Duty Steel Racking</div>
+        <div class="l3-leaf">Wire Shelving</div>
+        <div class="l3-leaf">Shelf Bins &amp; Bin Racks</div>
+        <div class="l3-leaf">Garage Cabinets &amp; Wall Organization</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Workbenches &amp; Tool Storage</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Steel Workbenches</div>
+        <div class="l3-leaf">Tool Cabinets &amp; Carts</div>
+        <div class="l3-leaf">Tool Bags &amp; Portable Boxes</div>
+        <div class="l3-leaf">Tool Belts</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Strapping, Chains &amp; Securing</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Ratchet Straps &amp; Tie-Downs</div>
+        <div class="l3-leaf">Chains &amp; Chain Hooks</div>
+        <div class="l3-leaf">Wire Rope &amp; Rope</div>
+        <div class="l3-leaf">Bungee Cords</div>
+        <div class="l3-leaf">Packing &amp; Moving Supplies</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Outdoor &amp; Yard Storage</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Storage Sheds</div>
+        <div class="l3-leaf">Shade Structures &amp; Canopies</div>
+        <div class="l3-leaf">Outdoor Car Storage</div>
+        <div class="l3-leaf">Patio Storage Boxes</div>
+      </div>
+    </details>
+
+  </div>
+</details>
+
+<!-- ═══════════════════════════════════════════════════════════
+     5. Metalworking & Fabrication
+═══════════════════════════════════════════════════════════ -->
+<details class="l1">
+  <summary>
+    <span class="l1-num">05</span>
+    <span class="l1-name">Metalworking &amp; Fabrication</span>
+    <span class="l1-desc">Metal shops, fabricators, CNC operators</span>
+  </summary>
+  <div class="absorbs">
+    <strong>Absorbs from:</strong>
+    <span class="tag">Tools → Welding &amp; Soldering</span>
+    <span class="tag">Tools → Power Tools (metalworking subset)</span>
+    <span class="tag">Tools → Woodworking Tools (lathes)</span>
+    <span class="tag">Appliances → Crafts &amp; Sewing (engraving)</span>
+    <span class="tag">Electrical → Motors &amp; Parts</span>
+  </div>
+  <div class="l2-list">
+
+    <details class="l2">
+      <summary><span class="l2-name">Welding &amp; Cutting</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">MIG, TIG &amp; Stick Welders</div>
+        <div class="l3-leaf">Plasma Cutters</div>
+        <div class="l3-leaf">Brazing &amp; Soldering Equipment</div>
+        <div class="l3-leaf">Welding Supplies (rods, wire, gas)</div>
+        <div class="l3-leaf">Welding Safety Apparel &amp; Helmets</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Metal Lathes &amp; Mills</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Metal Lathes</div>
+        <div class="l3-leaf">Milling Machines</div>
+        <div class="l3-leaf">Drill Presses</div>
+        <div class="l3-leaf">Machine Tool Accessories</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Angle Grinders &amp; Metal Tools</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Angle Grinders</div>
+        <div class="l3-leaf">Die Grinders</div>
+        <div class="l3-leaf">Metal Cutting Saws</div>
+        <div class="l3-leaf">Grinding &amp; Cutting Discs</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Engraving &amp; Laser Marking</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">CO2 Laser Engravers</div>
+        <div class="l3-leaf">Diode Laser Engravers</div>
+        <div class="l3-leaf">Rotary Engravers</div>
+        <div class="l3-leaf">Laser Cutting Machines</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Hydraulic &amp; Press Equipment</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Hydraulic Shop Presses</div>
+        <div class="l3-leaf">Air Hydraulic Pumps</div>
+        <div class="l3-leaf">Hydraulic Electric Pumps</div>
+        <div class="l3-leaf">Hydraulic Gear Pumps</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Motors, Drives &amp; Parts</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Electric Motors</div>
+        <div class="l3-leaf">Variable Frequency Drives</div>
+        <div class="l3-leaf">Motor Mounts &amp; Couplings</div>
+      </div>
+    </details>
+
+  </div>
+</details>
+
+<!-- ═══════════════════════════════════════════════════════════
+     6. Woodworking & Carpentry
+═══════════════════════════════════════════════════════════ -->
+<details class="l1">
+  <summary>
+    <span class="l1-num">06</span>
+    <span class="l1-name">Woodworking &amp; Carpentry</span>
+    <span class="l1-desc">Cabinet makers, furniture workshops, joiners</span>
+  </summary>
+  <div class="absorbs">
+    <strong>Absorbs from:</strong>
+    <span class="tag">Tools → Woodworking Tools (full)</span>
+    <span class="tag">Tools → Power Tool Accessories</span>
+    <span class="tag">Lumber &amp; Composites → Decking (partial)</span>
+  </div>
+  <div class="l2-list">
+
+    <details class="l2">
+      <summary><span class="l2-name">Stationary Woodworking Machines</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Table Saws</div>
+        <div class="l3-leaf">Band Saws</div>
+        <div class="l3-leaf">Scroll Saws</div>
+        <div class="l3-leaf">Jointers &amp; Planers</div>
+        <div class="l3-leaf">Wood Lathes</div>
+        <div class="l3-leaf">Mortising Machines</div>
+        <div class="l3-leaf">Spindle Sanders</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Routers &amp; Shaping</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Routers &amp; Router Tables</div>
+        <div class="l3-leaf">Router Bits &amp; Accessories</div>
+        <div class="l3-leaf">Shapers</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Woodworking Benches &amp; Clamps</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Woodworking Benches</div>
+        <div class="l3-leaf">Bar Clamps &amp; F-Clamps</div>
+        <div class="l3-leaf">Pipe Clamps</div>
+        <div class="l3-leaf">Spring Clamps &amp; Corner Clamps</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Saw Accessories &amp; Blades</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Circular Saw Blades</div>
+        <div class="l3-leaf">Jigsaw Blades</div>
+        <div class="l3-leaf">Dado Sets</div>
+        <div class="l3-leaf">Miter Saw Stands</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Drill Presses &amp; Boring</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Floor Drill Presses</div>
+        <div class="l3-leaf">Benchtop Drill Presses</div>
+        <div class="l3-leaf">Drill Bits (wood, forstner, spade)</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Finishing &amp; Painting Tools</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Orbital Sanders</div>
+        <div class="l3-leaf">Belt Sanders</div>
+        <div class="l3-leaf">Paint Sprayers</div>
+        <div class="l3-leaf">Air Sanders</div>
+      </div>
+    </details>
+
+  </div>
+</details>
+
+<!-- ═══════════════════════════════════════════════════════════
+     7. Electrical & Energy
+═══════════════════════════════════════════════════════════ -->
+<details class="l1">
+  <summary>
+    <span class="l1-num">07</span>
+    <span class="l1-name">Electrical &amp; Energy</span>
+    <span class="l1-desc">Electricians, energy installers, facility managers</span>
+  </summary>
+  <div class="absorbs">
+    <strong>Absorbs from:</strong>
+    <span class="tag">Electrical (full — all 13 L2)</span>
+    <span class="tag">Lighting (full)</span>
+    <span class="tag">Heating → Generators (subset)</span>
+  </div>
+  <div class="l2-list">
+
+    <details class="l2">
+      <summary><span class="l2-name">Generators &amp; Portable Power</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Petrol &amp; Diesel Generators</div>
+        <div class="l3-leaf">Inverter Generators</div>
+        <div class="l3-leaf">Power Stations &amp; Battery Banks</div>
+        <div class="l3-leaf">Extension Cords &amp; Power Cords</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Solar &amp; Renewable Energy</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Solar Panels</div>
+        <div class="l3-leaf">Solar Charge Controllers</div>
+        <div class="l3-leaf">Solar Batteries &amp; Inverters</div>
+        <div class="l3-leaf">Wind Generators</div>
+        <div class="l3-leaf">EV Chargers</div>
+        <div class="l3-leaf">Solar Water Heaters</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Electrical Tools &amp; Testing</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Wire Strippers &amp; Crimpers</div>
+        <div class="l3-leaf">Electrical Testers &amp; Multimeters</div>
+        <div class="l3-leaf">Wire &amp; Conduit Tools</div>
+        <div class="l3-leaf">Cable Management</div>
+        <div class="l3-leaf">Stripping Machines</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Wiring, Conduit &amp; Enclosures</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Electrical Conduit</div>
+        <div class="l3-leaf">Boxes &amp; Brackets</div>
+        <div class="l3-leaf">Electrical Enclosures &amp; Panels</div>
+        <div class="l3-leaf">Voltage Transformers</div>
+        <div class="l3-leaf">Timers &amp; Light Controls</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Commercial &amp; Industrial Lighting</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">High Bay &amp; Industrial Lights</div>
+        <div class="l3-leaf">Work Lights &amp; Flood Lights</div>
+        <div class="l3-leaf">Emergency &amp; Exit Lights</div>
+        <div class="l3-leaf">Strip Light Fixtures</div>
+        <div class="l3-leaf">LED Grow Lights</div>
+        <div class="l3-leaf">Security &amp; Outdoor Lighting</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Batteries &amp; Charging</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Rechargeable Battery Chargers</div>
+        <div class="l3-leaf">Powersports Batteries</div>
+        <div class="l3-leaf">Battery Boxes &amp; Holders</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Networking &amp; Electronics</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">WiFi &amp; Networking Devices</div>
+        <div class="l3-leaf">Two-Way Radios &amp; Intercoms</div>
+        <div class="l3-leaf">Pagers</div>
+        <div class="l3-leaf">TV Mounts &amp; AV Accessories</div>
+        <div class="l3-leaf">Smart Devices</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Flashlights &amp; Work Lighting</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Lantern Flashlights</div>
+        <div class="l3-leaf">Headlamps</div>
+        <div class="l3-leaf">Inspection Lights</div>
+      </div>
+    </details>
+
+  </div>
+</details>
+
+<!-- ═══════════════════════════════════════════════════════════
+     8. HVAC & Building Climate
+═══════════════════════════════════════════════════════════ -->
+<details class="l1">
+  <summary>
+    <span class="l1-num">08</span>
+    <span class="l1-name">HVAC &amp; Building Climate</span>
+    <span class="l1-desc">HVAC installers, facility engineers, property managers</span>
+  </summary>
+  <div class="absorbs">
+    <strong>Absorbs from:</strong>
+    <span class="tag">Heating, Venting &amp; Cooling (full — all 13 L2)</span>
+    <span class="tag">Plumbing → Vacuum Pump (AC pumps)</span>
+    <span class="tag">Building Materials → Ventilation</span>
+  </div>
+  <div class="l2-list">
+
+    <details class="l2">
+      <summary><span class="l2-name">Air Conditioners</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Portable Air Conditioners</div>
+        <div class="l3-leaf">Mini Split Systems</div>
+        <div class="l3-leaf">Mini Split Parts</div>
+        <div class="l3-leaf">AC Vacuum Pumps &amp; Tools</div>
+        <div class="l3-leaf">Air Conditioner Supplies</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Heaters</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Space Heaters (electric)</div>
+        <div class="l3-leaf">Wall Heaters</div>
+        <div class="l3-leaf">Infrared Heaters</div>
+        <div class="l3-leaf">Heater Accessories</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Fans &amp; Ventilation</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Industrial &amp; Commercial Fans</div>
+        <div class="l3-leaf">Blower Fans</div>
+        <div class="l3-leaf">Tube Axial Exhaust Fans</div>
+        <div class="l3-leaf">Wall Mounted Fans</div>
+        <div class="l3-leaf">Attic &amp; Roof Fans</div>
+        <div class="l3-leaf">Ceiling Fans</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Ducting, Grilles &amp; HVAC Supplies</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Flexible &amp; Rigid Ducting</div>
+        <div class="l3-leaf">Registers &amp; Grilles</div>
+        <div class="l3-leaf">HVAC Tools</div>
+        <div class="l3-leaf">HVAC Accessories</div>
+        <div class="l3-leaf">Roof Vents</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Air Quality &amp; Purification</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Commercial Air Purifiers</div>
+        <div class="l3-leaf">Ozone Generators</div>
+        <div class="l3-leaf">Air Quality Testers</div>
+        <div class="l3-leaf">Air Purifier Accessories &amp; Filters</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Evaporative Coolers &amp; Humidifiers</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Portable Evaporative Coolers</div>
+        <div class="l3-leaf">Evaporative Cooler Parts</div>
+        <div class="l3-leaf">Evaporative Humidifiers</div>
+        <div class="l3-leaf">Misting Fans</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Dehumidifiers &amp; Thermostats</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Commercial &amp; Crawl Space Dehumidifiers</div>
+        <div class="l3-leaf">Programmable Thermostats</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Fireplaces &amp; Heating Appliances</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Freestanding Stoves</div>
+        <div class="l3-leaf">Electric Fireplaces</div>
+        <div class="l3-leaf">Fireplace Accessories &amp; Doors</div>
+        <div class="l3-leaf">Fireplace Grates &amp; Logs</div>
+      </div>
+    </details>
+
+  </div>
+</details>
+
+<!-- ═══════════════════════════════════════════════════════════
+     9. Plumbing & Water Systems
+═══════════════════════════════════════════════════════════ -->
+<details class="l1">
+  <summary>
+    <span class="l1-num">09</span>
+    <span class="l1-name">Plumbing &amp; Water Systems</span>
+    <span class="l1-desc">Plumbers, property developers, facility maintenance</span>
+  </summary>
+  <div class="absorbs">
+    <strong>Absorbs from:</strong>
+    <span class="tag">Plumbing (full — all 14 L2)</span>
+    <span class="tag">Bath → Bathroom Faucets</span>
+    <span class="tag">Bath → Showers</span>
+    <span class="tag">Bath → Toilets</span>
+    <span class="tag">Kitchen → Kitchen Sinks + Faucets</span>
+  </div>
+  <div class="l2-list">
+
+    <details class="l2">
+      <summary><span class="l2-name">Water Pumps</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Well Pumps</div>
+        <div class="l3-leaf">Utility &amp; Transfer Pumps</div>
+        <div class="l3-leaf">Sewage &amp; Sludge Pumps</div>
+        <div class="l3-leaf">Macerator Pumps</div>
+        <div class="l3-leaf">Magnetic Drive Pumps</div>
+        <div class="l3-leaf">Pump Accessories</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Pipes, Fittings &amp; Valves</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Pipe (PVC, copper, steel)</div>
+        <div class="l3-leaf">Fittings &amp; Connectors</div>
+        <div class="l3-leaf">Water Pressure Regulators</div>
+        <div class="l3-leaf">Yard Hydrants</div>
+        <div class="l3-leaf">Pipe Insulation &amp; Heating Cable</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Plumbing Tools</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Pipe Threaders</div>
+        <div class="l3-leaf">Pipe &amp; Tube Cutters</div>
+        <div class="l3-leaf">Pipe Benders</div>
+        <div class="l3-leaf">Pipe Inspection Cameras</div>
+        <div class="l3-leaf">Pipe Fitting Tools</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Water Heaters</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Tank Water Heaters</div>
+        <div class="l3-leaf">Solar Water Heaters</div>
+        <div class="l3-leaf">Tankless Water Heaters</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Water Filtration &amp; Softening</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Whole House Water Filters</div>
+        <div class="l3-leaf">Under Sink Filters</div>
+        <div class="l3-leaf">Water Softeners</div>
+        <div class="l3-leaf">Faucet Filters</div>
+        <div class="l3-leaf">Gravity Fed Systems</div>
+        <div class="l3-leaf">Water Testing Kits</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Drainage &amp; Grease Management</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Channel Drains</div>
+        <div class="l3-leaf">Grease Traps</div>
+        <div class="l3-leaf">Drain Parts &amp; Trim Kits</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Bathroom Fixtures</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Shower Systems &amp; Heads</div>
+        <div class="l3-leaf">Bathtub Faucets</div>
+        <div class="l3-leaf">Bathroom Sink Faucets</div>
+        <div class="l3-leaf">Shower Doors &amp; Enclosures</div>
+        <div class="l3-leaf">Toilets &amp; Bidets</div>
+        <div class="l3-leaf">Steam Showers</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Kitchen Plumbing</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Kitchen Faucets</div>
+        <div class="l3-leaf">Pre-Rinse Faucets</div>
+        <div class="l3-leaf">Kitchen Soap Dispensers</div>
+        <div class="l3-leaf">Garbage Disposals</div>
+      </div>
+    </details>
+
+  </div>
+</details>
+
+<!-- ═══════════════════════════════════════════════════════════
+     10. Outdoor Power & Landscaping
+═══════════════════════════════════════════════════════════ -->
+<details class="l1">
+  <summary>
+    <span class="l1-num">10</span>
+    <span class="l1-name">Outdoor Power &amp; Landscaping</span>
+    <span class="l1-desc">Landscapers, groundskeepers, municipalities</span>
+  </summary>
+  <div class="absorbs">
+    <strong>Absorbs from:</strong>
+    <span class="tag">Outdoors → Outdoor Power Equipment</span>
+    <span class="tag">Outdoors → Garden Center</span>
+    <span class="tag">Outdoors → Outdoor Heating</span>
+    <span class="tag">Outdoors → Outdoor Cooking</span>
+    <span class="tag">Outdoors → Pools</span>
+    <span class="tag">Outdoors → Home Spas</span>
+    <span class="tag">Outdoors → Patio Furniture</span>
+  </div>
+  <div class="l2-list">
+
+    <details class="l2">
+      <summary><span class="l2-name">Outdoor Power Equipment</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Lawn Mowers (ride-on, push, zero-turn)</div>
+        <div class="l3-leaf">Chainsaws</div>
+        <div class="l3-leaf">Trimmers &amp; Edgers</div>
+        <div class="l3-leaf">Leaf Blowers</div>
+        <div class="l3-leaf">Pressure Washers</div>
+        <div class="l3-leaf">Wood Chippers &amp; Shredders</div>
+        <div class="l3-leaf">Snow Blowers</div>
+        <div class="l3-leaf">Outdoor Power Equipment Parts</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Garden Tools &amp; Landscaping Supplies</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Hand Garden Tools</div>
+        <div class="l3-leaf">Landscaping Supplies</div>
+        <div class="l3-leaf">Garden Fencing &amp; Borders</div>
+        <div class="l3-leaf">Pest Control</div>
+        <div class="l3-leaf">Irrigation &amp; Watering</div>
+        <div class="l3-leaf">Planters &amp; Raised Beds</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Outdoor Cooking &amp; Grilling</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Gas Grills</div>
+        <div class="l3-leaf">Charcoal &amp; Wood Pellet Grills</div>
+        <div class="l3-leaf">Outdoor Cookers (turkey fryers, wok burners)</div>
+        <div class="l3-leaf">Outdoor Kitchens</div>
+        <div class="l3-leaf">Grill Accessories &amp; Replacement Parts</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Outdoor Heating</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Fire Pits &amp; Fire Glass</div>
+        <div class="l3-leaf">Patio Heaters</div>
+        <div class="l3-leaf">Firewood Racks</div>
+        <div class="l3-leaf">Ceramic Fire Balls</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Pools, Hot Tubs &amp; Saunas</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Above Ground Pools</div>
+        <div class="l3-leaf">Pool Supplies &amp; Accessories</div>
+        <div class="l3-leaf">Hot Tubs &amp; Accessories</div>
+        <div class="l3-leaf">Saunas &amp; Accessories</div>
+        <div class="l3-leaf">Cold Plunge Tubs</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Patio &amp; Outdoor Furniture</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Patio Dining Sets</div>
+        <div class="l3-leaf">Patio Chairs &amp; Loungers</div>
+        <div class="l3-leaf">Patio Umbrellas &amp; Shade</div>
+        <div class="l3-leaf">Hammocks</div>
+        <div class="l3-leaf">Patio Chair Covers</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Outdoor Decor &amp; Structures</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Pergolas &amp; Gazebos</div>
+        <div class="l3-leaf">Outdoor Decor &amp; Garden Art</div>
+        <div class="l3-leaf">Artificial Hedges &amp; Plants</div>
+        <div class="l3-leaf">Landscape Lighting</div>
+        <div class="l3-leaf">Outdoor Wall Lighting</div>
+      </div>
+    </details>
+
+  </div>
+</details>
+
+<!-- ═══════════════════════════════════════════════════════════
+     11. Printing, Packaging & Signage
+═══════════════════════════════════════════════════════════ -->
+<details class="l1">
+  <summary>
+    <span class="l1-num">11</span>
+    <span class="l1-name">Printing, Packaging &amp; Signage</span>
+    <span class="l1-desc">Print shops, packaging lines, marketing services</span>
+  </summary>
+  <div class="absorbs">
+    <strong>Absorbs from:</strong>
+    <span class="tag">Appliances → Crafts &amp; Sewing (cutting machines)</span>
+    <span class="tag">Storage → Office Supplies (labeling, bill counters)</span>
+    <span class="tag">Electrical → Electronics (cable management)</span>
+    <span class="tag">Home Decor → Picture Frames / Display</span>
+  </div>
+  <div class="l2-list">
+
+    <details class="l2">
+      <summary><span class="l2-name">Label Makers &amp; Printers</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Industrial Label Printers</div>
+        <div class="l3-leaf">Label &amp; Barcode Printers</div>
+        <div class="l3-leaf">Receipt Printers</div>
+        <div class="l3-leaf">Labeling Supplies</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Craft &amp; Vinyl Cutting Machines</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Vinyl Cutters / Plotters</div>
+        <div class="l3-leaf">Crafting Machines</div>
+        <div class="l3-leaf">Sublimation Equipment</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Packaging Equipment</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Heat Sealers</div>
+        <div class="l3-leaf">Shrink Wrap Machines</div>
+        <div class="l3-leaf">Strapping &amp; Banding Machines</div>
+        <div class="l3-leaf">Packing Supplies</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Signage &amp; Display</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Restaurant Signs</div>
+        <div class="l3-leaf">A-Frame Signs</div>
+        <div class="l3-leaf">Display Frames &amp; Stands</div>
+        <div class="l3-leaf">Memo Boards</div>
+        <div class="l3-leaf">Traffic &amp; Safety Signs</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Cash Handling</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Bill &amp; Money Counters</div>
+        <div class="l3-leaf">Coin Sorters</div>
+        <div class="l3-leaf">Cash Drawers</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Paper &amp; Document Handling</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Paper Cutters &amp; Guillotines</div>
+        <div class="l3-leaf">Laminators</div>
+        <div class="l3-leaf">Shredders</div>
+        <div class="l3-leaf">File Cabinets &amp; Organizers</div>
+      </div>
+    </details>
+
+  </div>
+</details>
+
+<!-- ═══════════════════════════════════════════════════════════
+     12. Fuel, Lubrication & Fluid Management
+═══════════════════════════════════════════════════════════ -->
+<details class="l1">
+  <summary>
+    <span class="l1-num">12</span>
+    <span class="l1-name">Fuel, Lubrication &amp; Fluid Management</span>
+    <span class="l1-desc">Fuel stations, machinery ops, industrial maintenance</span>
+  </summary>
+  <div class="absorbs">
+    <strong>Absorbs from:</strong>
+    <span class="tag">Automotive → Shop Equipment (fluid transfer)</span>
+    <span class="tag">Plumbing → Driven Pumps</span>
+    <span class="tag">Plumbing → Dewatering Pump</span>
+    <span class="tag">Plumbing → Hydraulic Pumps</span>
+  </div>
+  <div class="l2-list">
+
+    <details class="l2">
+      <summary><span class="l2-name">Fuel Transfer Pumps</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">12V Diesel Transfer Pumps</div>
+        <div class="l3-leaf">Hand Pumps &amp; Siphons</div>
+        <div class="l3-leaf">Chemical Transfer Pumps</div>
+        <div class="l3-leaf">Drum Pumps</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Oil &amp; Lubrication Equipment</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Oil Drain Pans &amp; Extractors</div>
+        <div class="l3-leaf">Grease Guns</div>
+        <div class="l3-leaf">Oil Can Dispensers</div>
+        <div class="l3-leaf">Oil Change Equipment</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Drum &amp; Container Handling</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Drum Dollies &amp; Carriers</div>
+        <div class="l3-leaf">Drum Handling Equipment</div>
+        <div class="l3-leaf">IBC Container Accessories</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Dewatering &amp; Industrial Pumps</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Submersible Dewatering Pumps</div>
+        <div class="l3-leaf">Sump Pumps</div>
+        <div class="l3-leaf">Magnetic Drive Pumps</div>
+        <div class="l3-leaf">Vacuum Pumps</div>
+      </div>
+    </details>
+
+  </div>
+</details>
+
+<!-- ═══════════════════════════════════════════════════════════
+     13. Safety, Security & Workwear
+═══════════════════════════════════════════════════════════ -->
+<details class="l1">
+  <summary>
+    <span class="l1-num">13</span>
+    <span class="l1-name">Safety, Security &amp; Workwear</span>
+    <span class="l1-desc">EHS managers, security integrators, HR procurement</span>
+  </summary>
+  <div class="absorbs">
+    <strong>Absorbs from:</strong>
+    <span class="tag">Safety Equipment (full)</span>
+    <span class="tag">Workwear (full)</span>
+    <span class="tag">Tools → Safety &amp; Security</span>
+    <span class="tag">Electrical → Fire Safety</span>
+    <span class="tag">Doors &amp; Windows → Garage Door (security subset)</span>
+  </div>
+  <div class="l2-list">
+
+    <details class="l2">
+      <summary><span class="l2-name">Personal Protective Equipment (PPE)</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Hard Hats</div>
+        <div class="l3-leaf">Safety Harnesses &amp; Lanyards</div>
+        <div class="l3-leaf">Self-Retracting Lifelines</div>
+        <div class="l3-leaf">Disposable Protective Clothing</div>
+        <div class="l3-leaf">Disposable Shoe Covers</div>
+        <div class="l3-leaf">Eye &amp; Face Protection</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Traffic &amp; Site Safety</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Traffic Cones</div>
+        <div class="l3-leaf">Delineator Posts</div>
+        <div class="l3-leaf">Safety Signs</div>
+        <div class="l3-leaf">Radon &amp; Gas Detectors</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Locks, Safes &amp; Access Control</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Padlocks</div>
+        <div class="l3-leaf">Gun &amp; Valuables Safes</div>
+        <div class="l3-leaf">Home Safety Devices</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Work Boots &amp; Footwear</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Steel-Toe Work Boots</div>
+        <div class="l3-leaf">Rubber Boots</div>
+        <div class="l3-leaf">Tactical Boots</div>
+        <div class="l3-leaf">Work Shoes</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Work Clothing &amp; Outerwear</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Work Jackets &amp; Coats</div>
+        <div class="l3-leaf">Heated Jackets &amp; Vests</div>
+        <div class="l3-leaf">Heated Sweatshirts &amp; Socks</div>
+        <div class="l3-leaf">Work Pants</div>
+        <div class="l3-leaf">T-Shirts &amp; Collared Shirts</div>
+        <div class="l3-leaf">Hoodies</div>
+      </div>
+    </details>
+
+  </div>
+</details>
+
+<!-- ═══════════════════════════════════════════════════════════
+     14. Cleaning & Janitorial
+═══════════════════════════════════════════════════════════ -->
+<details class="l1">
+  <summary>
+    <span class="l1-num">14</span>
+    <span class="l1-name">Cleaning &amp; Janitorial</span>
+    <span class="l1-desc">Cleaning companies, property management, facilities</span>
+  </summary>
+  <div class="absorbs">
+    <strong>Absorbs from:</strong>
+    <span class="tag">Cleaning (full)</span>
+    <span class="tag">Appliances → Floor Care</span>
+    <span class="tag">Appliances → Washers &amp; Dryers</span>
+    <span class="tag">Outdoors → Pressure Washers (facility cleaning)</span>
+  </div>
+  <div class="l2-list">
+
+    <details class="l2">
+      <summary><span class="l2-name">Floor Care Equipment</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Floor Scrubbers &amp; Buffers</div>
+        <div class="l3-leaf">Steam Mops &amp; Steam Cleaners</div>
+        <div class="l3-leaf">Carpet Cleaners</div>
+        <div class="l3-leaf">Sweepers</div>
+        <div class="l3-leaf">Backpack &amp; Canister Vacuums</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Janitorial Supplies &amp; Carts</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Cleaning Carts</div>
+        <div class="l3-leaf">Mop Buckets &amp; Mops</div>
+        <div class="l3-leaf">Squeegees &amp; Scrubbers</div>
+        <div class="l3-leaf">Cleaning Caddies</div>
+        <div class="l3-leaf">Spill Absorbers</div>
+        <div class="l3-leaf">Outdoor Ashtrays</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Hand Dryers &amp; Washroom Equipment</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Commercial Hand Dryers</div>
+        <div class="l3-leaf">Soap Dispensers</div>
+        <div class="l3-leaf">Bathroom Hardware</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Waste &amp; Recycling</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Commercial Trash Cans &amp; Accessories</div>
+        <div class="l3-leaf">Recycling Bins</div>
+        <div class="l3-leaf">Laundry Hampers &amp; Sorters</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Pressure Washing</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Electric Pressure Washers</div>
+        <div class="l3-leaf">Gas Pressure Washers</div>
+        <div class="l3-leaf">Pressure Washer Accessories</div>
+      </div>
+    </details>
+
+  </div>
+</details>
+
+<!-- ═══════════════════════════════════════════════════════════
+     15. Lab, Science & Measurement
+═══════════════════════════════════════════════════════════ -->
+<details class="l1">
+  <summary>
+    <span class="l1-num">15</span>
+    <span class="l1-name">Lab, Science &amp; Measurement</span>
+    <span class="l1-desc">Labs, QA departments, research facilities, inspectors</span>
+  </summary>
+  <div class="absorbs">
+    <strong>Absorbs from:</strong>
+    <span class="tag">Industrial &amp; Scientific (full)</span>
+    <span class="tag">Storage → Office Supplies (lab instruments)</span>
+    <span class="tag">Plumbing → Water Testing Equipment</span>
+    <span class="tag">Electrical → Power Distribution (testing)</span>
+  </div>
+  <div class="l2-list">
+
+    <details class="l2">
+      <summary><span class="l2-name">Lab Instruments &amp; Equipment</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Balances &amp; Scales</div>
+        <div class="l3-leaf">Centrifuges</div>
+        <div class="l3-leaf">Magnetic Stirrers &amp; Hotplates</div>
+        <div class="l3-leaf">Distillation Apparatus</div>
+        <div class="l3-leaf">Spectroscopy &amp; Analysis Instruments</div>
+        <div class="l3-leaf">Dewar Liquid Nitrogen Tanks</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Test, Measure &amp; Inspect</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Multimeters &amp; Electrical Testers</div>
+        <div class="l3-leaf">Substance Analysis Instruments</div>
+        <div class="l3-leaf">Dissolved Oxygen Meters</div>
+        <div class="l3-leaf">Water Testing Kits</div>
+        <div class="l3-leaf">Measuring Tools (calipers, micrometers)</div>
+        <div class="l3-leaf">Laser Distance Meters</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Lab Furniture</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Lab Benches &amp; Tables</div>
+        <div class="l3-leaf">Lab Chairs &amp; Stools</div>
+        <div class="l3-leaf">Storage Cabinets</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Teaching &amp; Demonstration Models</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Human Body Teaching Models</div>
+        <div class="l3-leaf">Telescopes</div>
+        <div class="l3-leaf">Globe Models</div>
+      </div>
+    </details>
+
+  </div>
+</details>
+
+<!-- ═══════════════════════════════════════════════════════════
+     16. Office & Commercial Interiors
+═══════════════════════════════════════════════════════════ -->
+<details class="l1">
+  <summary>
+    <span class="l1-num">16</span>
+    <span class="l1-name">Office &amp; Commercial Interiors</span>
+    <span class="l1-desc">Office fit-outs, co-working spaces, retail, salons</span>
+  </summary>
+  <div class="absorbs">
+    <strong>Absorbs from:</strong>
+    <span class="tag">Furniture → Home Office Furniture</span>
+    <span class="tag">Furniture → Salon &amp; Spa Equipment</span>
+    <span class="tag">Storage → Office Supplies</span>
+    <span class="tag">Storage → Office Storage</span>
+    <span class="tag">Lighting → Lamps</span>
+    <span class="tag">Lighting → Accent Lighting</span>
+    <span class="tag">Doors &amp; Windows → Interior Doors</span>
+    <span class="tag">Home Decor → Room Dividers</span>
+    <span class="tag">Bath → Bathroom Accessories</span>
+    <span class="tag">Hardware → Door Hardware</span>
+    <span class="tag">Hardware → Cabinet Hardware</span>
+    <span class="tag">Hardware → Mailboxes</span>
+  </div>
+  <div class="l2-list">
+
+    <details class="l2">
+      <summary><span class="l2-name">Office Furniture</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Desks &amp; Standing Desks</div>
+        <div class="l3-leaf">Office Chairs</div>
+        <div class="l3-leaf">Bookcases &amp; Shelving</div>
+        <div class="l3-leaf">File Cabinets</div>
+        <div class="l3-leaf">Office Room Dividers</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Meeting &amp; Lobby Furniture</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Conference Tables</div>
+        <div class="l3-leaf">Reception Chairs</div>
+        <div class="l3-leaf">Folding Tables &amp; Chairs</div>
+        <div class="l3-leaf">Coat Racks &amp; Hall Trees</div>
+        <div class="l3-leaf">Accent Tables</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Salon &amp; Spa Equipment</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Barber &amp; Salon Chairs</div>
+        <div class="l3-leaf">Shampoo Sinks</div>
+        <div class="l3-leaf">Salon Stations &amp; Mirrors</div>
+        <div class="l3-leaf">Massage Tables</div>
+        <div class="l3-leaf">Salon Carts</div>
+        <div class="l3-leaf">Manicure Tables</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Door Hardware &amp; Access</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Door Handles &amp; Handlesets</div>
+        <div class="l3-leaf">Barn Door Hardware</div>
+        <div class="l3-leaf">Garage Door Springs &amp; Openers</div>
+        <div class="l3-leaf">Locks &amp; Door Seals</div>
+        <div class="l3-leaf">Strip Curtains</div>
+        <div class="l3-leaf">Closet Doors</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Cabinet Hardware &amp; Fixtures</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Drawer Slides</div>
+        <div class="l3-leaf">Drawer Pulls &amp; Knobs</div>
+        <div class="l3-leaf">Cabinet Hinges</div>
+        <div class="l3-leaf">Casters &amp; Furniture Feet</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Office Supplies &amp; Stationery Equipment</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Paper Cutters</div>
+        <div class="l3-leaf">Laminators</div>
+        <div class="l3-leaf">Shredders</div>
+        <div class="l3-leaf">Labeling Equipment</div>
+        <div class="l3-leaf">Magnifying Glasses &amp; Memo Boards</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Interior Lighting</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Desk Lamps</div>
+        <div class="l3-leaf">Under Cabinet Lighting</div>
+        <div class="l3-leaf">Fiber Optic &amp; Accent Lighting</div>
+        <div class="l3-leaf">Cordless Table Lamps</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Bathroom Accessories &amp; Safety</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Bathroom Hardware &amp; Organizers</div>
+        <div class="l3-leaf">Grab Bars</div>
+        <div class="l3-leaf">Shower Seats &amp; Benches</div>
+        <div class="l3-leaf">Medicine Cabinets</div>
+        <div class="l3-leaf">Makeup &amp; Bathroom Mirrors</div>
+      </div>
+    </details>
+
+  </div>
+</details>
+
+<!-- ═══════════════════════════════════════════════════════════
+     17. Fitness, Sports & Recreation
+═══════════════════════════════════════════════════════════ -->
+<details class="l1">
+  <summary>
+    <span class="l1-num">17</span>
+    <span class="l1-name">Fitness, Sports &amp; Recreation</span>
+    <span class="l1-desc">Gyms, sports clubs, camps, recreation facilities</span>
+  </summary>
+  <div class="absorbs">
+    <strong>Absorbs from:</strong>
+    <span class="tag">Sports &amp; Outdoors → Exercise Equipment</span>
+    <span class="tag">Sports &amp; Outdoors → Outdoor Sports</span>
+    <span class="tag">Sports &amp; Outdoors → Gymnastics</span>
+    <span class="tag">Sports &amp; Outdoors → Field Equipment</span>
+    <span class="tag">Sports &amp; Outdoors → Water Sports</span>
+    <span class="tag">Sports &amp; Outdoors → Boxing</span>
+    <span class="tag">Sports &amp; Outdoors → Yoga</span>
+    <span class="tag">Flooring → Gym Flooring</span>
+    <span class="tag">Playground Sets (full)</span>
+  </div>
+  <div class="l2-list">
+
+    <details class="l2">
+      <summary><span class="l2-name">Gym Equipment</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Weight Lifting &amp; Barbells</div>
+        <div class="l3-leaf">Cardio Equipment (treadmills, rowers, bikes)</div>
+        <div class="l3-leaf">Fitness Accessories</div>
+        <div class="l3-leaf">Punching Bags &amp; Boxing Equipment</div>
+        <div class="l3-leaf">Yoga &amp; Pilates Equipment</div>
+        <div class="l3-leaf">Gymnastics &amp; Tumbling Equipment</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Team Sports Equipment</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Soccer, Volleyball, Basketball Equipment</div>
+        <div class="l3-leaf">Baseball &amp; Softball Equipment</div>
+        <div class="l3-leaf">Golf Equipment</div>
+        <div class="l3-leaf">Sports Ball Storage Carts</div>
+        <div class="l3-leaf">Playing Field Benches &amp; Stadium Seats</div>
+        <div class="l3-leaf">Gym Wall Padding</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Gym Flooring</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Rubber Gym Mats &amp; Tiles</div>
+        <div class="l3-leaf">Interlocking Foam Mats</div>
+        <div class="l3-leaf">Tumbling Track Mats</div>
+        <div class="l3-leaf">Balance Beam</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Trampolines</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Kids Trampolines</div>
+        <div class="l3-leaf">Standard &amp; Water Trampolines</div>
+        <div class="l3-leaf">Fitness Trampolines (rebounders)</div>
+        <div class="l3-leaf">Trampoline Parts &amp; Accessories</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Water &amp; Aquatic Recreation</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Stand Up Paddleboards</div>
+        <div class="l3-leaf">Kayaks &amp; Seats</div>
+        <div class="l3-leaf">Life Jackets &amp; Safety</div>
+        <div class="l3-leaf">Water Skis &amp; Boat Tubes</div>
+        <div class="l3-leaf">Paddling &amp; Row Equipment</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Playground &amp; Outdoor Play</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Swing Sets &amp; Accessories</div>
+        <div class="l3-leaf">Playground Slides</div>
+        <div class="l3-leaf">Bounce Houses &amp; Inflatables</div>
+        <div class="l3-leaf">Commercial Playground Equipment</div>
+        <div class="l3-leaf">Climbing Frames &amp; Bars</div>
+        <div class="l3-leaf">Park Benches</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Cycling</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Adult Bikes (road, mountain, cruiser)</div>
+        <div class="l3-leaf">Electric Bicycles</div>
+        <div class="l3-leaf">Folding Bikes</div>
+        <div class="l3-leaf">Bike Parts &amp; Accessories</div>
+        <div class="l3-leaf">Bike Racks &amp; Storage</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Hunting &amp; Fishing</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Hunting Blinds &amp; Decoys</div>
+        <div class="l3-leaf">Archery Supplies</div>
+        <div class="l3-leaf">Hunting Game Carts</div>
+        <div class="l3-leaf">Fishing Rods, Reels &amp; Holders</div>
+        <div class="l3-leaf">Targets &amp; Throwers</div>
+      </div>
+    </details>
+
+  </div>
+</details>
+
+<!-- ═══════════════════════════════════════════════════════════
+     18. Music & Entertainment Equipment
+═══════════════════════════════════════════════════════════ -->
+<details class="l1">
+  <summary>
+    <span class="l1-num">18</span>
+    <span class="l1-name">Music &amp; Entertainment Equipment</span>
+    <span class="l1-desc">Music schools, venues, recording studios, event rental</span>
+  </summary>
+  <div class="absorbs">
+    <strong>Absorbs from:</strong>
+    <span class="tag">Musical Instruments (full — all 7 L2)</span>
+    <span class="tag">Sports → Games → Game Room</span>
+    <span class="tag">Sports → Dance Equipment</span>
+    <span class="tag">Furniture → Bar Furniture (partial)</span>
+  </div>
+  <div class="l2-list">
+
+    <details class="l2">
+      <summary><span class="l2-name">Guitars &amp; String Instruments</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Acoustic Guitars</div>
+        <div class="l3-leaf">Classical Guitars</div>
+        <div class="l3-leaf">Violins &amp; Cellos</div>
+        <div class="l3-leaf">Saxophones</div>
+        <div class="l3-leaf">Guitar Stands &amp; Cases</div>
+        <div class="l3-leaf">Guitar Pedal Boards</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Keyboards &amp; Electronic Instruments</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Electronic Keyboards &amp; MIDI Controllers</div>
+        <div class="l3-leaf">Keyboard Stands &amp; Benches</div>
+        <div class="l3-leaf">Roll-Up Electric Drum Kits</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Drums &amp; Percussion</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Drum Sets &amp; Components</div>
+        <div class="l3-leaf">Cymbals</div>
+        <div class="l3-leaf">Drum Stools</div>
+        <div class="l3-leaf">Cajons</div>
+        <div class="l3-leaf">Glockenspiel &amp; Xylophone</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Instrument Storage &amp; Cases</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Rack Cases</div>
+        <div class="l3-leaf">Guitar Hard Cases &amp; Bags</div>
+        <div class="l3-leaf">Violin &amp; Cello Cases</div>
+        <div class="l3-leaf">General Instrument Bags</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Dance &amp; Performance</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Dance Poles</div>
+        <div class="l3-leaf">Ballet Barres</div>
+        <div class="l3-leaf">Stage &amp; Event Flooring</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Game Room &amp; Entertainment</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Pool Tables &amp; Accessories</div>
+        <div class="l3-leaf">Foosball &amp; Air Hockey</div>
+        <div class="l3-leaf">Yard Games</div>
+        <div class="l3-leaf">Wine Racks &amp; Bar Carts</div>
+      </div>
+    </details>
+
+  </div>
+</details>
+
+<!-- ═══════════════════════════════════════════════════════════
+     19. Health, Wellness & Medical Supply
+═══════════════════════════════════════════════════════════ -->
+<details class="l1">
+  <summary>
+    <span class="l1-num">19</span>
+    <span class="l1-name">Health, Wellness &amp; Medical Supply</span>
+    <span class="l1-desc">Clinics, pharmacies, care homes, wellness centres</span>
+  </summary>
+  <div class="absorbs">
+    <strong>Absorbs from:</strong>
+    <span class="tag">Health And Wellness (full)</span>
+    <span class="tag">Bath → Bathroom Safety</span>
+    <span class="tag">Outdoors → Home Spas (partial)</span>
+  </div>
+  <div class="l2-list">
+
+    <details class="l2">
+      <summary><span class="l2-name">Medical Equipment &amp; Furniture</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Overbed Tables</div>
+        <div class="l3-leaf">Bed Handles</div>
+        <div class="l3-leaf">Patient Transport Equipment</div>
+        <div class="l3-leaf">Medical Auxiliary Supplies</div>
+        <div class="l3-leaf">Human Body Teaching Models</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Mobility Aids</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Wheelchairs</div>
+        <div class="l3-leaf">Walkers &amp; Rollators</div>
+        <div class="l3-leaf">Walking Canes</div>
+        <div class="l3-leaf">Mobility Equipment Accessories</div>
+        <div class="l3-leaf">Tub Transfer Benches</div>
+        <div class="l3-leaf">Toilet Seat Risers</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Personal Care Appliances</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">IPL Laser Hair Removers</div>
+        <div class="l3-leaf">Hair Styling Tools</div>
+        <div class="l3-leaf">Hair Clippers &amp; Trimmers</div>
+        <div class="l3-leaf">Massagers &amp; Heat Therapy</div>
+        <div class="l3-leaf">Nail Tools</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Wellness &amp; Skin Care</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Skin Care Products</div>
+        <div class="l3-leaf">Wellness &amp; Relaxation Products</div>
+        <div class="l3-leaf">Piercing &amp; Tattoo Supplies</div>
+        <div class="l3-leaf">Maternal &amp; Baby Care</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Bathroom Safety Equipment</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Grab Bars</div>
+        <div class="l3-leaf">Shower Seats</div>
+        <div class="l3-leaf">Bathroom Scales</div>
+        <div class="l3-leaf">Composting &amp; Portable Toilets</div>
+      </div>
+    </details>
+
+  </div>
+</details>
+
+<!-- ═══════════════════════════════════════════════════════════
+     20. Camping, Adventure & Pet Supplies
+═══════════════════════════════════════════════════════════ -->
+<details class="l1">
+  <summary>
+    <span class="l1-num">20</span>
+    <span class="l1-name">Camping, Adventure &amp; Pet Supplies</span>
+    <span class="l1-desc">Outdoor retailers, camp operators, pet businesses</span>
+  </summary>
+  <div class="absorbs">
+    <strong>Absorbs from:</strong>
+    <span class="tag">Sports &amp; Outdoors → Camping Gear</span>
+    <span class="tag">Sports &amp; Outdoors → Tailgating Gear</span>
+    <span class="tag">Sports &amp; Outdoors → Boating</span>
+    <span class="tag">Sports &amp; Outdoors → Outdoor Recreation</span>
+    <span class="tag">Sports &amp; Outdoors → Outdoor Hobbies</span>
+    <span class="tag">Outdoors → Pet Supplies &amp; Wildlife</span>
+    <span class="tag">Sports → Recreational Vehicles (UTV)</span>
+  </div>
+  <div class="l2-list">
+
+    <details class="l2">
+      <summary><span class="l2-name">Camping Gear</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Tents &amp; Shelters</div>
+        <div class="l3-leaf">Sleeping Bags &amp; Pads</div>
+        <div class="l3-leaf">Camping Furniture (chairs, cots, tables)</div>
+        <div class="l3-leaf">Camping Gear Accessories</div>
+        <div class="l3-leaf">Coolers &amp; Ice Chests</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Canopy Tents &amp; Event Shelters</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Pop-Up Canopy Tents</div>
+        <div class="l3-leaf">Heavy-Duty Event Tents</div>
+        <div class="l3-leaf">Awnings (fixed, retractable)</div>
+        <div class="l3-leaf">Shade Sails</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Boating &amp; Water Adventure</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Boats (inflatable, fishing)</div>
+        <div class="l3-leaf">Paddleboards &amp; Kayaks</div>
+        <div class="l3-leaf">Dock Ladders &amp; Boat Hardware</div>
+        <div class="l3-leaf">Boat Tubes &amp; Water Toys</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Pet Supplies</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Dog Supplies &amp; Kennels</div>
+        <div class="l3-leaf">Cat Supplies</div>
+        <div class="l3-leaf">Farm &amp; Livestock Supplies</div>
+        <div class="l3-leaf">Small Animal &amp; Reptile Supplies</div>
+        <div class="l3-leaf">Wild Bird Feeders &amp; Accessories</div>
+        <div class="l3-leaf">Aquarium Supplies</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Off-Road &amp; UTV</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">UTV Accessories</div>
+        <div class="l3-leaf">Motorcycle Accessories</div>
+        <div class="l3-leaf">Recreational Vehicle Covers</div>
+      </div>
+    </details>
+
+    <details class="l2">
+      <summary><span class="l2-name">Outdoor Hobbies</span></summary>
+      <div class="l3-list">
+        <div class="l3-leaf">Metal Detectors</div>
+        <div class="l3-leaf">Telescopes &amp; Stargazing</div>
+        <div class="l3-leaf">Kids Outdoor Toys &amp; Ride-Ons</div>
+        <div class="l3-leaf">Children's Play Tents</div>
+        <div class="l3-leaf">Rocking Horses</div>
+      </div>
+    </details>
+
+  </div>
+</details>
+
+</body>
+</html>
