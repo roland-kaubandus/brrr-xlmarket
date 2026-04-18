@@ -35,6 +35,12 @@ l1:
     show_in_mega_menu: true
     research_priority: 1
     meili_query: "commercial refrigeration ice machine restaurant"
+    short_slug: horeca
+    tagline_et: "Professionaalne köök algab õigest varustusest"
+    tagline_en: "The professional kitchen starts with the right equipment"
+    description_et: "Roostevaba terasest tööpinnad, kuumseadmed, külmikud, cateringitehnika ja serveerimisvahendid professionaalsele köögile ja toitlustusettevõttele."
+    hero_img: /images/branches/horeca.png
+    hero_gradient: "from-amber-950/80 via-amber-900/40 to-transparent"
     subs:
       - slug: commercial-refrigeration
         name_en: "Commercial Refrigeration"
@@ -75,6 +81,12 @@ l1:
     show_in_mega_menu: true
     research_priority: 2
     meili_query: "laser engraver CNC router 3D printer"
+    short_slug: laser-cnc
+    tagline_et: "Täppistootmine uuel tasemel"
+    tagline_en: "Precision manufacturing, next level"
+    description_et: "Lasergraveerijad, CNC-freesid, 3D-printerid ja digitaaltootmise seadmed täppistöödeks ja prototüüpimiseks."
+    hero_img: /images/branches/laser-cnc.png
+    hero_gradient: "from-violet-950/80 via-violet-900/40 to-transparent"
     subs:
       - slug: co2-laser-engravers-cutters
         name_en: "CO2 Laser Engravers & Cutters"
@@ -104,6 +116,12 @@ l1:
     class: null
     show_in_mega_menu: true
     meili_query: "welding machine MIG TIG lathe grinder"
+    short_slug: keevitus
+    tagline_et: "Metallist meistritööd"
+    tagline_en: "Masterwork in metal"
+    description_et: "Keevitusaparaadid, lõikurid, painutuspingid ja metallitöötluse seadmed. Professionaalsed lahendused metallitöökojale."
+    hero_img: /images/branches/keevitus.png
+    hero_gradient: "from-red-950/80 via-red-900/40 to-transparent"
     subs:
       - slug: welding-cutting
         name_en: "Welding & Cutting"
@@ -135,6 +153,12 @@ l1:
     show_in_mega_menu: true
     research_priority: 3
     meili_query: "heat press vinyl cutter screen printing"
+    short_slug: trukk-pakendamine
+    tagline_et: "Sinu bränd, sinu visuaal"
+    tagline_en: "Your brand, your visual"
+    description_et: "Trükimasinad, pakendamisseadmed, vinüülilõikurid ja reklaamtehnika. Professionaalsed lahendused brändingu ja reklaami jaoks."
+    hero_img: /images/branches/trukk-pakendamine.png
+    hero_gradient: "from-fuchsia-950/80 via-fuchsia-900/40 to-transparent"
     subs:
       - slug: screen-printing-heat-press
         name_en: "Screen Printing & Heat Press"
@@ -164,6 +188,12 @@ l1:
     class: null
     show_in_mega_menu: true
     meili_query: "generator solar panel inverter battery charger"
+    short_slug: elekter-energia
+    tagline_et: "Energia igale vajadusele"
+    tagline_en: "Power for every need"
+    description_et: "Generaatorid, inverterid, päikesepaneelid, akud ja elektripaigaldustarvikud. Energialahendused igale vajadusele."
+    hero_img: /images/branches/elekter-energia.png
+    hero_gradient: "from-blue-950/80 via-blue-900/40 to-transparent"
     subs:
       - slug: generators-portable-power
         name_en: "Generators & Portable Power"
@@ -194,6 +224,12 @@ l1:
     class: B
     show_in_mega_menu: true
     meili_query: "table saw band saw planer router woodworking"
+    short_slug: puidutoo
+    tagline_et: "Puit väärib parimat töötlust"
+    tagline_en: "Wood deserves the finest craftsmanship"
+    description_et: "Höövlid, saepingid, freesid ja puidutöötlemise seadmed. Kõik vajalik kvaliteetseks tisleritööks ja puusepatöökojale."
+    hero_img: /images/branches/puidutoo.png
+    hero_gradient: "from-yellow-950/80 via-yellow-900/40 to-transparent"
     subs:
       - slug: stationary-woodworking-machines
         name_en: "Stationary Woodworking Machines"
@@ -223,6 +259,12 @@ l1:
     class: null
     show_in_mega_menu: true
     meili_query: "scaffold ladder tile cutter concrete mixer"
+    short_slug: ehitus
+    tagline_et: "Ehita nagu profi"
+    tagline_en: "Build like a pro"
+    description_et: "Lõikurid, tõstukid, tellingud, mõõteriistad ja ehituskeemia. Kõik tööriistad ja seadmed ehitusplatsile ning renoveerimistöödeks."
+    hero_img: /images/branches/ehitus.png
+    hero_gradient: "from-stone-950/80 via-stone-900/40 to-transparent"
     subs:
       - slug: concrete-masonry-drywall
         name_en: "Concrete, Masonry & Drywall"
@@ -252,6 +294,12 @@ l1:
     class: null
     show_in_mega_menu: true
     meili_query: "industrial vacuum floor scrubber hand dryer"
+    short_slug: puhastus
+    tagline_et: "Puhtus on professionaalsuse alus"
+    tagline_en: "Cleanliness is the foundation of professionalism"
+    description_et: "Professionaalsed survepesured, põrandahooldusmasinad, tolmuimejad ja puhastusvahendid. Tööstuslik puhtus mõistliku hinnaga."
+    hero_img: /images/branches/puhastus.png
+    hero_gradient: "from-teal-950/80 via-teal-900/40 to-transparent"
     subs:
       - slug: floor-care-equipment
         name_en: "Floor Care Equipment"
@@ -281,6 +329,12 @@ l1:
     class: null
     show_in_mega_menu: true
     meili_query: "drill impact wrench air compressor tool"
+    short_slug: tooriistad
+    tagline_et: "Igale tööle õige tööriist"
+    tagline_en: "The right tool for every job"
+    description_et: "Akutrellid, lihvmasinad, saed, mutrivõtmed ja muud käsi- ning elektritööriistad igapäevaseks ja professionaalseks kasutamiseks."
+    hero_img: /images/branches/tooriistad.png
+    hero_gradient: "from-orange-950/80 via-orange-900/40 to-transparent"
     subs:
       - slug: power-tools
         name_en: "Power Tools"
@@ -314,6 +368,12 @@ l1:
     class: null
     show_in_mega_menu: true
     meili_query: "fuel transfer pump oil lubrication drum"
+    short_slug: kutus-vedelikud
+    tagline_et: "Vedelike käitlemine turvaliselt"
+    tagline_en: "Fluid management done safely"
+    description_et: "Kütuseülekande pumbad, määrdepressid, vedelike kogumisseadmed ja mahutid. Turvaline ja efektiivne vedelike käitlemine."
+    hero_img: /images/branches/kutus-vedelikud.png
+    hero_gradient: "from-amber-950/80 via-amber-900/40 to-transparent"
     subs:
       - slug: fuel-transfer-pumps
         name_en: "Fuel Transfer Pumps"
@@ -343,6 +403,12 @@ l1:
     class: null
     show_in_mega_menu: true
     meili_query: "pressure washer chainsaw lawn mower garden"
+    short_slug: aiatehnika
+    tagline_et: "Professionaalne haljastus ja aiandus"
+    tagline_en: "Professional landscaping and gardening"
+    description_et: "Niidukid, trimmerd, pumpad, kasvuhooned ja maastikuhoolduse seadmed. Professionaalne varustus aia ja haljasalade hoolduseks."
+    hero_img: /images/branches/aiatehnika.png
+    hero_gradient: "from-emerald-950/80 via-emerald-900/40 to-transparent"
     subs:
       - slug: outdoor-power-equipment
         name_en: "Outdoor Power Equipment"
@@ -372,6 +438,12 @@ l1:
     class: null
     show_in_mega_menu: true
     meili_query: "hoist crane pallet jack shelving workbench"
+    short_slug: laondus
+    tagline_et: "Ladu korras, töö sujub"
+    tagline_en: "Organized warehouse, smooth operations"
+    description_et: "Riiulisüsteemid, tõstukid, kärud ja ladustamisseadmed. Kõik vajalik lao efektiivseks haldamiseks ja materjalide käitlemiseks."
+    hero_img: /images/branches/laondus.png
+    hero_gradient: "from-slate-950/80 via-slate-900/40 to-transparent"
     subs:
       - slug: hoists-cranes-lifting
         name_en: "Hoists, Cranes & Lifting"
@@ -401,6 +473,12 @@ l1:
     class: null
     show_in_mega_menu: true
     meili_query: "air conditioner mini split heater fan ventilation"
+    short_slug: kliima
+    tagline_et: "Mugav kliima igas ruumis"
+    tagline_en: "Comfortable climate in every room"
+    description_et: "Konditsioneerid, soojuspumbad, ventilaatorid ja õhukvaliteedi seadmed. Mugav sisekliima nii kodus kui kontoris."
+    hero_img: /images/branches/kliima.png
+    hero_gradient: "from-sky-950/80 via-sky-900/40 to-transparent"
     subs:
       - slug: air-conditioners-mini-splits
         name_en: "Air Conditioners & Mini Splits"
@@ -430,6 +508,12 @@ l1:
     class: null
     show_in_mega_menu: true
     meili_query: "water pump pipe fitting water heater filter"
+    short_slug: torustik
+    tagline_et: "Vesi voolab sinna, kuhu vaja"
+    tagline_en: "Water flows where it's needed"
+    description_et: "Torupressid, pumpad, filtrid ja torustiku paigaldustarvikud. Professionaalsed lahendused veevarustuse ja kanalisatsiooni jaoks."
+    hero_img: /images/branches/torustik.png
+    hero_gradient: "from-cyan-950/80 via-cyan-900/40 to-transparent"
     subs:
       - slug: water-pumps
         name_en: "Water Pumps"
@@ -459,6 +543,12 @@ l1:
     class: null
     show_in_mega_menu: true
     meili_query: "safety boots helmet gloves safe lock PPE"
+    short_slug: ohutus
+    tagline_et: "Kaitse ennast ja oma meeskonda"
+    tagline_en: "Protect yourself and your team"
+    description_et: "Isikukaitsevahendid, turvavarustus, tööriietus ja ohutustehnika. Kõik vajalik töökoha ohutuse tagamiseks."
+    hero_img: /images/branches/ohutus.png
+    hero_gradient: "from-rose-950/80 via-rose-900/40 to-transparent"
     subs:
       - slug: personal-protective-equipment
         name_en: "Personal Protective Equipment"
@@ -488,6 +578,12 @@ l1:
     class: null
     show_in_mega_menu: true
     meili_query: "car jack vehicle lift tire changer mechanic tool"
+    short_slug: auto
+    tagline_et: "Sinu garaaz, sinu reeglid"
+    tagline_en: "Your garage, your rules"
+    description_et: "Tungrauad, kompressorid, diagnostikaseadmed ja autohoolduse tööriistad. Kõik profi tasemel garaazi ja töökoja jaoks."
+    hero_img: /images/branches/auto.png
+    hero_gradient: "from-zinc-950/80 via-zinc-900/40 to-transparent"
     subs:
       - slug: vehicle-lifts-shop-equipment
         name_en: "Vehicle Lifts & Shop Equipment"
@@ -519,6 +615,12 @@ l1:
     show_in_mega_menu: false
     audit_at: "2026-07-18"   # 3 months from now (§3.1.1)
     meili_query: "barber chair massage table salon shampoo station"
+    short_slug: salong
+    tagline_et: "Ilu ja heaolu professionaalile"
+    tagline_en: "Beauty and wellness for the professional"
+    description_et: "Juuksuritoolid, massaažilauad, spa-seadmed ja iluteeninduse tarvikud. Professionaalne varustus salongidele ja spa-dele."
+    hero_img: /images/branches/salong.png
+    hero_gradient: "from-pink-950/80 via-pink-900/40 to-transparent"
     subs:
       - slug: barber-salon-chairs
         name_en: "Barber & Salon Chairs"
@@ -548,6 +650,12 @@ l1:
     class: null
     show_in_mega_menu: true
     meili_query: "office chair desk TV mount cabinet furniture"
+    short_slug: kontor
+    tagline_et: "Kontor ja äripind, targalt sisustatud"
+    tagline_en: "Office and commercial space, smartly furnished"
+    description_et: "Kontorimööbel, esitlustehnika, organiseerimissüsteemid ja äripinna sisustus. Funktsionaalne ja esinduslik töökeskkond."
+    hero_img: /images/branches/kontor.png
+    hero_gradient: "from-gray-950/80 via-gray-900/40 to-transparent"
     subs:
       - slug: office-furniture
         name_en: "Office Furniture"
@@ -577,6 +685,12 @@ l1:
     class: null
     show_in_mega_menu: true
     meili_query: "wheelchair walker grab bar medical exam table"
+    short_slug: tervis
+    tagline_et: "Professionaalne meditsiinivarustus"
+    tagline_en: "Professional medical equipment"
+    description_et: "Meditsiiniline mööbel, diagnostikaseadmed, taastusravi vahendid ja tervishoiu tarvikud professionaalseks kasutamiseks."
+    hero_img: /images/branches/tervis.png
+    hero_gradient: "from-green-950/80 via-green-900/40 to-transparent"
     subs:
       - slug: medical-equipment-furniture
         name_en: "Medical Equipment & Furniture"
@@ -606,6 +720,12 @@ l1:
     class: null
     show_in_mega_menu: true
     meili_query: "gym equipment trampoline dumbbell treadmill bike"
+    short_slug: sport
+    tagline_et: "Varusta oma spordiklubi"
+    tagline_en: "Equip your sports club"
+    description_et: "Jõusaali seadmed, treeningtarvikud, spordivarustus ja vabaaja seadmed. Kommertskvaliteet spordiklubidele ja kodujõusaalidele."
+    hero_img: /images/branches/sport.png
+    hero_gradient: "from-red-950/80 via-red-900/40 to-transparent"
     subs:
       - slug: gym-equipment
         name_en: "Gym Equipment"
@@ -635,6 +755,12 @@ l1:
     class: null
     show_in_mega_menu: true
     meili_query: "inflatable boat kayak canopy tent camping"
+    short_slug: paadindus-matk
+    tagline_et: "Seiklus algab õigest varustusest"
+    tagline_en: "Adventure starts with the right gear"
+    description_et: "Kaatritarvikud, telgid, matkavarustus ja välivarustus. Kõik vajalik merel, metsas ja mägedes seiklemiseks."
+    hero_img: /images/branches/paadindus-matk.png
+    hero_gradient: "from-indigo-950/80 via-indigo-900/40 to-transparent"
     subs:
       - slug: boat-parts-marine-hardware
         name_en: "Boat Parts & Marine Hardware"
@@ -666,6 +792,12 @@ l1:
     show_in_mega_menu: false
     audit_at: "2026-07-18"
     meili_query: "guitar keyboard drum stage lighting pool table"
+    short_slug: muusika
+    tagline_et: "Muusika ja meelelahutus"
+    tagline_en: "Music and entertainment for every venue"
+    description_et: "Helitehnika, valgustus, DJ-seadmed ja lavavarustus. Professionaalsed lahendused üritustele ja meelelahutuskohtadele."
+    hero_img: /images/branches/muusika.png
+    hero_gradient: "from-purple-950/80 via-purple-900/40 to-transparent"
     subs:
       - slug: guitars-string-instruments
         name_en: "Guitars & String Instruments"
