@@ -1,0 +1,26 @@
+{
+  "_doc": "Edge-case tie-breakers when a product's title/keywords match multiple L1s. Applied before S5 keyword scoring if the title contains the trigger phrase. Format: trigger phrase (case-insensitive) → l1_slug (optional l1-slug/l2-slug path). Confidence 0.90.",
+  "_version": 1,
+  "_updated": "2026-04-18",
+  "rules": {
+    "pressure washer": "outdoor-power-landscaping/pressure-washers",
+    "power washer": "outdoor-power-landscaping/pressure-washers",
+    "generator": "electrical-energy/generators-portable-power",
+    "inverter generator": "electrical-energy/generators-portable-power",
+    "pool heater": "outdoor-power-landscaping",
+    "patio heater": "outdoor-power-landscaping/outdoor-heating",
+    "water heater": "plumbing-water-systems/water-heaters",
+    "space heater": "hvac-climate-control/heaters",
+    "pizza oven": "horeca-food-service/commercial-cooking-equipment",
+    "outdoor pizza oven": "outdoor-power-landscaping/outdoor-cooking-grilling",
+    "salon chair": "salon-spa-wellness/barber-salon-chairs",
+    "office chair": "office-commercial-interiors/office-furniture",
+    "welding helmet": "welding-metalworking/welding-safety-apparel",
+    "safety helmet": "safety-security-workwear/personal-protective-equipment",
+    "dish washer": "horeca-food-service/commercial-sinks-washdown",
+    "commercial dishwasher": "horeca-food-service/commercial-sinks-washdown",
+    "carpet extractor": "cleaning-janitorial/carpet-extractors",
+    "carpet cleaner": "cleaning-janitorial/carpet-extractors",
+    "wet dry vacuum": "cleaning-janitorial/industrial-vacuums"
+  }
+}

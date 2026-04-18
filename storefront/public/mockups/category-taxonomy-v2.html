@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>XLMarket Category Taxonomy v2</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #1E293B;
+      --navy-deep: #0F172A;
+      --navy-mid: #334155;
+      --navy-light: #475569;
+      --amber: #D97706;
+      --amber-light: #F59E0B;
+      --amber-pale: #FEF3C7;
+      --amber-dim: rgba(217, 119, 6, 0.12);
+      --surface: #F8FAFC;
+      --card: #FFFFFF;
+      --border: #E2E8F0;
+      --text-primary: #0F172A;
+      --text-secondary: #64748B;
+      --text-muted: #94A3B8;
+      --l2-border: #CBD5E1;
+      --l3-border: #E2E8F0;
+      --shadow-sm: 0 1px 3px rgba(15,23,42,0.08);
+      --shadow-md: 0 4px 12px rgba(15,23,42,0.1);
+      --shadow-lg: 0 8px 24px rgba(15,23,42,0.12);
+    }
+
+    body {
+      font-family: 'DM Sans', system-ui, sans-serif;
+      background: var(--surface);
+      color: var(--text-primary);
+      line-height: 1.5;
+      min-height: 100vh;
+    }
+
+    /* Header */
+    header {
+      background: var(--navy-deep);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      padding: 0 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-text {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #FFFFFF;
+      letter-spacing: -0.02em;
+    }
+
+    .logo-text span {
+      color: var(--amber-light);
+    }
+
+    .logo-badge {
+      font-size: 0.65rem;
+      font-weight: 600;
+      background: var(--amber-dim);
+      color: var(--amber-light);
+      border: 1px solid rgba(217, 119, 6, 0.3);
+      padding: 2px 7px;
+      border-radius: 4px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .header-meta {
+      font-size: 0.8rem;
+      color: var(--navy-light);
+    }
+
+    /* Main content */
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2.5rem 2rem 4rem;
+    }
+
+    /* Page intro */
+    .intro {
+      margin-bottom: 2rem;
+    }
+
+    .intro h1 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: -0.03em;
+      margin-bottom: 0.4rem;
+    }
+
+    .intro p {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+
+    /* Stats bar */
+    .stats-bar {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0.9rem 1.25rem;
+      margin-bottom: 1.5rem;
+      box-shadow: var(--shadow-sm);
+      flex-wrap: wrap;
+    }
+
+    .stat-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .stat-num {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--navy);
+      letter-spacing: -0.04em;
+    }
+
+    .stat-label {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .stat-divider {
+      width: 1px;
+      height: 28px;
+      background: var(--border);
+    }
+
+    .stat-item.amber .stat-num { color: var(--amber); }
+
+    /* Controls */
+    .controls {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-left: auto;
+    }
+
+    .btn {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 0.45rem 1rem;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .btn-primary {
+      background: var(--navy);
+      color: #FFFFFF;
+    }
+
+    .btn-primary:hover {
+      background: var(--navy-mid);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--text-secondary);
+      border: 1px solid var(--border);
+    }
+
+    .btn-ghost:hover {
+      background: var(--border);
+      color: var(--text-primary);
+    }
+
+    /* Search */
+    .search-wrap {
+      position: relative;
+      margin-bottom: 1.25rem;
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 0.9rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      pointer-events: none;
+    }
+
+    .search-input {
+      width: 100%;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      padding: 0.7rem 1rem 0.7rem 2.5rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--card);
+      color: var(--text-primary);
+      outline: none;
+      transition: border-color 0.15s;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .search-input:focus {
+      border-color: var(--amber);
+    }
+
+    .search-input::placeholder {
+      color: var(--text-muted);
+    }
+
+    /* Category cards */
+    .category-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .cat-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+      transition: box-shadow 0.15s;
+    }
+
+    .cat-card:hover {
+      box-shadow: var(--shadow-md);
+    }
+
+    .cat-card.hidden {
+      display: none;
+    }
+
+    /* L1 header */
+    .l1-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.85rem 1.1rem;
+      cursor: pointer;
+      user-select: none;
+      border-left: 3px solid var(--amber);
+      transition: background 0.12s;
+    }
+
+    .l1-header:hover {
+      background: var(--amber-dim);
+    }
+
+    .l1-num {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--amber);
+      min-width: 22px;
+      text-align: right;
+    }
+
+    .l1-icon {
+      font-size: 1.15rem;
+      line-height: 1;
+    }
+
+    .l1-title {
+      font-size: 0.97rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      flex: 1;
+      letter-spacing: -0.01em;
+    }
+
+    .absorbs {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+
+    .badge {
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+
+    .badge-amber {
+      background: var(--amber-pale);
+      color: var(--amber);
+    }
+
+    .badge-navy {
+      background: rgba(30,41,59,0.08);
+      color: var(--navy-light);
+    }
+
+    .chevron {
+      color: var(--text-muted);
+      transition: transform 0.2s ease;
+      flex-shrink: 0;
+    }
+
+    .chevron svg {
+      display: block;
+    }
+
+    .l1-header[aria-expanded="true"] .chevron {
+      transform: rotate(180deg);
+    }
+
+    /* L1 body */
+    .l1-body {
+      display: none;
+      padding: 0.5rem 1.1rem 0.9rem 1.1rem;
+      border-top: 1px solid var(--border);
+      background: #FAFBFC;
+    }
+
+    .l1-body.open {
+      display: block;
+    }
+
+    /* L2 items */
+    .l2-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      margin-top: 0.5rem;
+    }
+
+    .l2-item {
+      border-left: 2px solid var(--l2-border);
+      padding-left: 0.85rem;
+      margin-left: 0.5rem;
+    }
+
+    .l2-header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.35rem 0.6rem;
+      cursor: pointer;
+      border-radius: 6px;
+      user-select: none;
+      transition: background 0.1s;
+    }
+
+    .l2-header:hover {
+      background: rgba(30,41,59,0.04);
+    }
+
+    .l2-title {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--navy);
+      flex: 1;
+    }
+
+    .l2-chevron {
+      color: var(--text-muted);
+      transition: transform 0.15s;
+    }
+
+    .l2-header[aria-expanded="true"] .l2-chevron {
+      transform: rotate(180deg);
+    }
+
+    /* L3 items */
+    .l3-body {
+      display: none;
+      padding: 0.25rem 0 0.1rem 0.5rem;
+      border-left: 1px dashed var(--l3-border);
+      margin-left: 0.35rem;
+      margin-top: 0.15rem;
+    }
+
+    .l3-body.open {
+      display: block;
+    }
+
+    .l3-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem 0.5rem;
+      padding: 0.3rem 0 0.2rem 0.5rem;
+    }
+
+    .l3-tag {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 2px 8px;
+      white-space: nowrap;
+      transition: border-color 0.1s, color 0.1s;
+    }
+
+    .l3-tag:hover {
+      border-color: var(--amber-light);
+      color: var(--amber);
+    }
+
+    /* Highlight for search */
+    .highlight {
+      background: #FEF08A;
+      border-radius: 2px;
+    }
+
+    /* No results */
+    .no-results {
+      text-align: center;
+      padding: 3rem;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    /* Footer note */
+    .footer-note {
+      margin-top: 2.5rem;
+      text-align: center;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    @media (max-width: 640px) {
+      main { padding: 1.5rem 1rem 3rem; }
+      .stats-bar { gap: 0.75rem; }
+      .stat-divider { display: none; }
+      .controls { width: 100%; }
+      .btn { flex: 1; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="logo">
+      <div class="logo-text">XL<span>Market</span></div>
+      <div class="logo-badge">B2B</div>
+    </div>
+    <div class="header-meta">Category Taxonomy v2 &mdash; 2026-04-15</div>
+  </div>
+</header>
+
+<main>
+  <div class="intro">
+    <h1>Category Taxonomy v2</h1>
+    <p>Final synthesized taxonomy for XLMarket.eu — ~16,000 VEVOR products across 24 top-level categories.</p>
+  </div>
+
+  <div class="stats-bar">
+    <div class="stat-item">
+      <span class="stat-num">24</span>
+      <span class="stat-label">L1 Categories</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item amber">
+      <span class="stat-num">118</span>
+      <span class="stat-label">L2 Subcategories</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+      <span class="stat-num">~16k</span>
+      <span class="stat-label">Products</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+      <span class="stat-num">1,688</span>
+      <span class="stat-label">Source Categories</span>
+    </div>
+    <div class="controls">
+      <button class="btn btn-ghost" id="btn-collapse">Collapse All</button>
+      <button class="btn btn-primary" id="btn-expand">Expand All</button>
+    </div>
+  </div>
+
+  <div class="search-wrap">
+    <span class="search-icon">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    </span>
+    <input class="search-input" id="search" type="text" placeholder="Search categories, subcategories, products…" autocomplete="off" />
+  </div>
+
+  <div class="category-list" id="category-list"></div>
+  <div class="no-results" id="no-results" style="display:none;">No categories match your search.</div>
+
+  <div class="footer-note">XLMarket.eu &mdash; Roland Kaubandus OÜ &mdash; Professional Tools, Half the Price</div>
+</main>
+
+<script>
+const TAXONOMY = [
+  {
+    num: 1,
+    icon: "🍳",
+    title: "Kitchen & Catering Equipment",
+    absorbs: "Kitchen, Appliances (kitchen subset)",
+    l2: [
+      { title: "Commercial Cooking", l3: ["ovens", "ranges", "fryers", "griddles", "induction cooktops"] },
+      { title: "Food Preparation", l3: ["slicers", "mixers", "blenders", "food processors"] },
+      { title: "Refrigeration & Ice", l3: ["commercial freezers", "ice machines", "beverage coolers", "kegerators"] },
+      { title: "Beverage Equipment", l3: ["coffee machines", "water dispensers", "beer taps", "juice extractors"] },
+      { title: "Restaurant Furniture & Tableware", l3: ["restaurant tables", "bar stools", "serving ware", "bar tools"] },
+      { title: "Commercial Kitchen Infrastructure", l3: ["commercial sinks", "shelving", "grease traps", "range hoods"] },
+    ]
+  },
+  {
+    num: 2,
+    icon: "🔧",
+    title: "Hand & Power Tools",
+    absorbs: "Tools",
+    l2: [
+      { title: "Power Tools", l3: ["drills", "grinders", "saws", "sanders", "routers", "heat guns"] },
+      { title: "Hand Tools", l3: ["wrenches", "screwdrivers", "pliers", "hammers", "chisels", "clamps"] },
+      { title: "Woodworking Machinery", l3: ["table saws", "band saws", "wood lathes", "planers", "jointers"] },
+      { title: "Air Compressors & Pneumatic Tools", l3: ["compressors", "air nailers", "air impact wrenches"] },
+      { title: "Power Tool Accessories", l3: ["drill bits", "saw blades", "grinding discs", "sanding sheets"] },
+      { title: "Measuring & Layout", l3: ["tape measures", "laser levels", "calipers", "inspection cameras"] },
+      { title: "Tool Storage", l3: ["tool chests", "tool bags", "wall-mount organizers", "tool carts"] },
+    ]
+  },
+  {
+    num: 3,
+    icon: "🚗",
+    title: "Automotive & Workshop",
+    absorbs: "Automotive",
+    l2: [
+      { title: "Vehicle Lifts & Jacks", l3: ["car lifts", "floor jacks", "motorcycle lifts", "jack stands"] },
+      { title: "Workshop Equipment", l3: ["engine stands", "tire changers", "battery chargers", "oil drain"] },
+      { title: "Mechanics Tools", l3: ["socket sets", "torque wrenches", "diagnostic tools", "pullers"] },
+      { title: "Towing & Hauling", l3: ["winches", "hitches", "cargo carriers", "tie-down straps"] },
+      { title: "Truck & Vehicle Accessories", l3: ["toolboxes", "roof racks", "running boards", "RV supplies"] },
+      { title: "Auto Parts", l3: ["brake parts", "suspension", "electrical", "fuel system"] },
+    ]
+  },
+  {
+    num: 4,
+    icon: "⚡",
+    title: "Welding & Metalworking",
+    absorbs: "Promoted from Tools",
+    l2: [
+      { title: "Welding Machines", l3: ["MIG welders", "TIG welders", "stick welders", "plasma cutters"] },
+      { title: "Metal Lathes & Milling", l3: ["metal lathes", "milling machines", "drill presses", "bench grinders"] },
+      { title: "Welding Accessories", l3: ["helmets", "gloves", "welding tables", "wire", "rods"] },
+      { title: "Soldering & Brazing", l3: ["soldering stations", "brazing equipment"] },
+    ]
+  },
+  {
+    num: 5,
+    icon: "🔴",
+    title: "Laser, CNC & Digital Fabrication",
+    absorbs: "Promoted from Appliances / Industrial",
+    l2: [
+      { title: "Laser Engravers & Cutters", l3: ["diode lasers", "CO2 lasers", "fiber markers"] },
+      { title: "CNC Routers & Mills", l3: ["desktop CNC", "CNC spindles", "bits & collets"] },
+      { title: "3D Printing", l3: ["FDM printers", "resin printers", "filaments"] },
+      { title: "Vinyl & Sign Making", l3: ["vinyl cutters", "heat presses", "sublimation", "screen printing"] },
+    ]
+  },
+  {
+    num: 6,
+    icon: "📦",
+    title: "Printing, Packaging & Production",
+    absorbs: "Industrial (subset), Storage (office)",
+    l2: [
+      { title: "Filling & Sealing Machines", l3: ["liquid fillers", "vacuum sealers", "heat sealers", "shrink wrap"] },
+      { title: "Labeling & Coding", l3: ["label applicators", "thermal printers", "barcode equipment"] },
+      { title: "Office & Document Equipment", l3: ["binding machines", "paper cutters", "whiteboards", "bill counters"] },
+      { title: "Scales & Weighing", l3: ["floor scales", "bench scales", "postal scales", "crane scales"] },
+    ]
+  },
+  {
+    num: 7,
+    icon: "🏗️",
+    title: "Building & Construction",
+    absorbs: "Building Materials, Hardware, Lumber, Doors & Windows, Paint, Flooring",
+    l2: [
+      { title: "Concrete, Masonry & Drywall", l3: ["mixers", "forms", "masonry tools", "drywall tools"] },
+      { title: "Scaffolding & Access", l3: ["scaffolding", "ladders", "work platforms"] },
+      { title: "Roofing & Structural", l3: ["roofing panels", "gutters", "insulation", "connectors"] },
+      { title: "Fencing, Decking & Gates", l3: ["chain-link", "electric fencing", "deck railings", "gate hardware"] },
+      { title: "Doors & Window Hardware", l3: ["garage door openers", "barn door hardware", "awnings", "door locks"] },
+      { title: "Flooring", l3: ["garage flooring", "gym mats", "carpet", "vinyl", "flooring tools"] },
+      { title: "Paint & Surface Prep", l3: ["spray booths", "HVLP sprayers", "rollers", "abrasives"] },
+      { title: "Hardware & Fasteners", l3: ["cabinet hardware", "fasteners", "chains", "ropes", "adhesives"] },
+    ]
+  },
+  {
+    num: 8,
+    icon: "💡",
+    title: "Electrical, Lighting & Solar",
+    absorbs: "Electrical, Lighting, Smart Home",
+    l2: [
+      { title: "Commercial & Industrial Lighting", l3: ["high bay LED", "work lights", "grow lights", "emergency lights"] },
+      { title: "Electrical Wiring & Distribution", l3: ["enclosures", "conduit", "extension cords", "transformers"] },
+      { title: "Motors & Drives", l3: ["electric motors", "VFDs", "couplings"] },
+      { title: "Batteries & Charging", l3: ["deep cycle", "battery chargers", "lithium banks"] },
+      { title: "Solar & Renewable Energy", l3: ["solar panels", "charge controllers", "EV chargers", "inverters"] },
+      { title: "Electronics & Communication", l3: ["security cameras", "intercoms", "smart devices"] },
+    ]
+  },
+  {
+    num: 9,
+    icon: "💧",
+    title: "Plumbing, Pumps & Water Systems",
+    absorbs: "Plumbing, Bath",
+    l2: [
+      { title: "Water Pumps", l3: ["utility pumps", "submersible", "sewage", "booster", "macerator"] },
+      { title: "Hydraulic Systems", l3: ["hydraulic pumps", "cylinders", "hoses", "power units"] },
+      { title: "Pipes, Valves & Fittings", l3: ["pipe", "ball valves", "compression fittings", "regulators"] },
+      { title: "Water Heaters & Treatment", l3: ["tankless", "tank", "filters", "softeners", "UV sterilizers"] },
+      { title: "Bathroom Fixtures", l3: ["toilets", "showers", "faucets", "bathroom accessories", "safety rails"] },
+    ]
+  },
+  {
+    num: 10,
+    icon: "🌡️",
+    title: "HVAC & Climate Control",
+    absorbs: "Heating, Venting & Cooling",
+    l2: [
+      { title: "Heating", l3: ["industrial heaters", "infrared", "radiant floor", "thermostats"] },
+      { title: "Air Conditioning", l3: ["portable AC", "mini-split", "evaporative coolers"] },
+      { title: "Ventilation & Fans", l3: ["industrial fans", "blowers", "air curtains", "ducting"] },
+      { title: "Air Quality", l3: ["dehumidifiers", "air purifiers", "humidifiers"] },
+    ]
+  },
+  {
+    num: 11,
+    icon: "🏋️",
+    title: "Material Handling & Lifting",
+    absorbs: "Promoted from Building Materials",
+    l2: [
+      { title: "Hoists & Cranes", l3: ["electric chain hoists", "manual blocks", "gantry cranes"] },
+      { title: "Forklifts & Pallet Equipment", l3: ["pallet jacks", "stackers", "hand trucks", "dollies"] },
+      { title: "Rigging & Lifting", l3: ["chain slings", "shackles", "lifting magnets", "load binders"] },
+      { title: "Conveyors & Dock Equipment", l3: ["conveyor belts", "scissor lift tables", "dock ramps"] },
+    ]
+  },
+  {
+    num: 12,
+    icon: "🗄️",
+    title: "Storage & Warehouse",
+    absorbs: "Storage & Organization",
+    l2: [
+      { title: "Industrial Shelving & Racking", l3: ["heavy-duty shelving", "pallet racking", "wire shelving"] },
+      { title: "Garage Storage", l3: ["wall-mount", "overhead storage", "garage cabinets", "workbenches"] },
+      { title: "Closet & Wardrobe Systems", l3: ["clothes racks", "closet organizers", "shoe racks"] },
+      { title: "Bins, Containers & Moving Supplies", l3: ["storage containers", "moving blankets", "packing supplies"] },
+    ]
+  },
+  {
+    num: 13,
+    icon: "🦺",
+    title: "Safety, PPE & Security",
+    absorbs: "Safety Equipment, Workwear",
+    l2: [
+      { title: "Personal Protective Equipment", l3: ["hard hats", "safety glasses", "respirators", "hi-vis"] },
+      { title: "Fall Protection", l3: ["harnesses", "lanyards", "lifelines", "anchor points"] },
+      { title: "Traffic & Site Safety", l3: ["cones", "barriers", "signs", "warning lights"] },
+      { title: "Fire Safety & Emergency", l3: ["extinguisher cabinets", "eyewash stations", "first aid"] },
+      { title: "Workwear & Footwear", l3: ["work boots", "jackets", "heated clothing", "work pants"] },
+      { title: "Locks, Safes & Security", l3: ["padlocks", "safes", "surveillance cameras"] },
+    ]
+  },
+  {
+    num: 14,
+    icon: "🌿",
+    title: "Outdoor Power & Agriculture",
+    absorbs: "Outdoors (power), part of Sports",
+    l2: [
+      { title: "Lawn & Garden Power", l3: ["mowers", "trimmers", "leaf blowers", "tillers"] },
+      { title: "Chainsaws & Tree Care", l3: ["chainsaws", "log splitters", "wood chippers"] },
+      { title: "Pressure Washers", l3: ["electric", "gas", "accessories", "surface cleaners"] },
+      { title: "Irrigation & Greenhouses", l3: ["sprinklers", "drip kits", "greenhouses", "composters"] },
+      { title: "Snow Removal", l3: ["snow blowers", "plows", "salt spreaders"] },
+      { title: "Farm & Animal Supplies", l3: ["poultry equipment", "livestock", "electric fencing", "animal shelters"] },
+    ]
+  },
+  {
+    num: 15,
+    icon: "🧹",
+    title: "Cleaning & Janitorial",
+    absorbs: "Cleaning, Appliances (floor care)",
+    l2: [
+      { title: "Industrial Vacuums & Floor Care", l3: ["wet/dry vacs", "floor scrubbers", "steam cleaners"] },
+      { title: "Janitorial Supplies", l3: ["mops", "brooms", "dispensers", "trash cans"] },
+      { title: "Laundry Equipment", l3: ["commercial washers", "ironing", "drying racks", "laundry carts"] },
+    ]
+  },
+  {
+    num: 16,
+    icon: "💆",
+    title: "Salon, Spa & Wellness",
+    absorbs: "Health & Wellness, Furniture (salon)",
+    l2: [
+      { title: "Salon & Barber Equipment", l3: ["salon chairs", "shampoo stations", "nail stations", "clippers"] },
+      { title: "Massage & Spa", l3: ["massage tables", "hot tubs", "saunas", "cold plunge"] },
+      { title: "Medical & Mobility", l3: ["wheelchairs", "walkers", "medical tables", "grab bars"] },
+    ]
+  },
+  {
+    num: 17,
+    icon: "🪑",
+    title: "Furniture & Home",
+    absorbs: "Furniture, Home Decor, Window Treatments, Holiday Decorations",
+    l2: [
+      { title: "Office Furniture", l3: ["desks", "office chairs", "file cabinets", "reception"] },
+      { title: "Dining & Bar Furniture", l3: ["dining sets", "bar stools", "folding tables"] },
+      { title: "Living Room & Bedroom", l3: ["sofas", "beds", "TV stands", "wardrobes"] },
+      { title: "Kids Furniture", l3: ["bunk beds", "kids desks", "cribs", "toy storage"] },
+      { title: "Home Decor & Accents", l3: ["mirrors", "artificial plants", "rugs", "curtain rods", "seasonal decor"] },
+    ]
+  },
+  {
+    num: 18,
+    icon: "🏋️",
+    title: "Sports, Fitness & Recreation",
+    absorbs: "Sports & Outdoors, Playground Sets",
+    l2: [
+      { title: "Fitness & Gym Equipment", l3: ["cardio", "weight benches", "free weights", "cable machines", "yoga"] },
+      { title: "Team & Court Sports", l3: ["basketball hoops", "volleyball nets", "golf", "table tennis"] },
+      { title: "Playground & Kids Outdoor", l3: ["swing sets", "bounce houses", "climbing structures", "trampolines"] },
+      { title: "Combat & Martial Arts", l3: ["boxing bags", "MMA equipment", "dance poles"] },
+      { title: "Bikes & Cycling", l3: ["e-bikes", "mountain bikes", "folding bikes", "bike accessories"] },
+    ]
+  },
+  {
+    num: 19,
+    icon: "🌅",
+    title: "Outdoor Living & Patio",
+    absorbs: "Outdoors (patio, pools, cooking)",
+    l2: [
+      { title: "Patio Furniture", l3: ["dining sets", "loungers", "hammocks", "umbrellas"] },
+      { title: "Outdoor Cooking", l3: ["grills", "smokers", "pizza ovens", "outdoor kitchens"] },
+      { title: "Outdoor Heating", l3: ["fire pits", "patio heaters", "firewood racks"] },
+      { title: "Pools & Water Features", l3: ["above-ground pools", "pool supplies", "fountains"] },
+    ]
+  },
+  {
+    num: 20,
+    icon: "🐾",
+    title: "Pet Supplies & Animal Care",
+    absorbs: "Split from Outdoors",
+    l2: [
+      { title: "Dog Supplies", l3: ["kennels", "grooming", "feeders", "training"] },
+      { title: "Cat Supplies", l3: ["cat trees", "enclosures", "feeders"] },
+      { title: "Aquarium & Fish", l3: ["tanks", "filters", "lighting", "pond supplies"] },
+      { title: "Bird & Small Animal", l3: ["cages", "aviaries", "small animal habitats"] },
+    ]
+  },
+  {
+    num: 21,
+    icon: "⛵",
+    title: "Boating & Marine",
+    absorbs: "Split from Outdoor Living & Patio",
+    l2: [
+      { title: "Boats & Watercraft", l3: ["inflatable boats", "kayaks", "canoes", "paddle boards"] },
+      { title: "Marine Engines & Motors", l3: ["outboard motors", "trolling motors", "engine parts"] },
+      { title: "Boat Docks & Hardware", l3: ["dock floats", "mooring cleats", "dock lines", "anchors"] },
+      { title: "Marine Safety & Navigation", l3: ["life jackets", "marine electronics"] },
+      { title: "Water Sports Equipment", l3: ["towable tubes", "wakeboards", "water trampolines"] },
+    ]
+  },
+  {
+    num: 22,
+    icon: "🏕️",
+    title: "Camping & Outdoor Recreation",
+    absorbs: "Split from Outdoor Living & Patio",
+    l2: [
+      { title: "Camping Gear", l3: ["tents", "shelters", "sleeping bags", "camping furniture", "cots"] },
+      { title: "Coolers & Portable Food", l3: ["coolers", "ice chests", "portable grills"] },
+      { title: "Fishing Gear", l3: ["rods", "reels", "tackle", "fish finders"] },
+      { title: "Hunting & Archery", l3: ["archery equipment", "hunting accessories", "optics"] },
+    ]
+  },
+  {
+    num: 23,
+    icon: "🎵",
+    title: "Musical Instruments & Entertainment",
+    absorbs: "Split from Outdoor Living & Patio",
+    l2: [
+      { title: "Drums & Percussion", l3: ["drum sets", "electronic kits", "cymbals"] },
+      { title: "Guitars & String Instruments", l3: ["acoustic", "classical", "violin", "cello"] },
+      { title: "Keyboards & Wind Instruments", l3: ["keyboards", "MIDI", "saxophone", "flute"] },
+      { title: "Stage Lighting & DJ Equipment", l3: ["stage lights", "DJ controllers", "fog machines"] },
+      { title: "Game Room", l3: ["pool tables", "foosball", "air hockey", "arcade machines"] },
+      { title: "Karaoke Systems", l3: ["karaoke machines", "microphones"] },
+    ]
+  },
+  {
+    num: 24,
+    icon: "🔋",
+    title: "Generators & Portable Power",
+    absorbs: "Split from HVAC & Climate Control",
+    l2: [
+      { title: "Gasoline & Diesel Generators", l3: ["portable", "standby", "industrial"] },
+      { title: "Inverter Generators", l3: ["quiet", "camping-friendly"] },
+      { title: "Solar Power Systems", l3: ["solar panels", "charge controllers", "solar kits"] },
+      { title: "Power Inverters & UPS", l3: ["DC-AC inverters", "UPS systems", "surge protection"] },
+      { title: "EV Chargers", l3: ["home EV chargers", "commercial charging stations"] },
+    ]
+  },
+];
+
+function escHtml(s) {
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+function buildCard(cat, expanded) {
+  const l2Count = cat.l2.length;
+  const l3Count = cat.l2.reduce((a, l2) => a + l2.l3.length, 0);
+  const cardId = `cat-${cat.num}`;
+  const bodyId = `body-${cat.num}`;
+
+  let l2Html = cat.l2.map((l2, i) => {
+    const l2Id = `l2-${cat.num}-${i}`;
+    const l3BodyId = `l3b-${cat.num}-${i}`;
+    const l3Tags = l2.l3.map(t => `<span class="l3-tag">${escHtml(t)}</span>`).join('');
+    const hasL3 = l2.l3.length > 0;
+    return `
+      <div class="l2-item" data-l2="${escHtml(l2.title.toLowerCase())}">
+        <div class="l2-header" id="${l2Id}" aria-expanded="${expanded ? 'true' : 'false'}" aria-controls="${l3BodyId}" onclick="toggleL2(this,'${l3BodyId}')">
+          <span class="l2-title">${escHtml(l2.title)}</span>
+          <span class="badge badge-navy">${l2.l3.length}</span>
+          ${hasL3 ? `<span class="l2-chevron"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>` : ''}
+        </div>
+        ${hasL3 ? `<div class="l3-body ${expanded ? 'open' : ''}" id="${l3BodyId}"><div class="l3-list">${l3Tags}</div></div>` : ''}
+      </div>`;
+  }).join('');
+
+  return `
+    <div class="cat-card" id="${cardId}" data-title="${escHtml(cat.title.toLowerCase())}" data-absorbs="${escHtml(cat.absorbs.toLowerCase())}">
+      <div class="l1-header" aria-expanded="${expanded ? 'true' : 'false'}" aria-controls="${bodyId}" onclick="toggleL1(this,'${bodyId}')">
+        <span class="l1-num">${String(cat.num).padStart(2,'0')}</span>
+        <span class="l1-icon">${cat.icon}</span>
+        <div style="flex:1;min-width:0;">
+          <div class="l1-title">${escHtml(cat.title)}</div>
+          <div class="absorbs">Absorbs: ${escHtml(cat.absorbs)}</div>
+        </div>
+        <span class="badge badge-amber">${l2Count} L2</span>
+        <span class="badge badge-navy" style="margin-left:4px;">${l3Count} L3</span>
+        <span class="chevron"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+      </div>
+      <div class="l1-body ${expanded ? 'open' : ''}" id="${bodyId}">
+        <div class="l2-list">${l2Html}</div>
+      </div>
+    </div>`;
+}
+
+function toggleL1(header, bodyId) {
+  const body = document.getElementById(bodyId);
+  const isOpen = body.classList.contains('open');
+  body.classList.toggle('open', !isOpen);
+  header.setAttribute('aria-expanded', String(!isOpen));
+}
+
+function toggleL2(header, bodyId) {
+  const body = document.getElementById(bodyId);
+  if (!body) return;
+  const isOpen = body.classList.contains('open');
+  body.classList.toggle('open', !isOpen);
+  header.setAttribute('aria-expanded', String(!isOpen));
+}
+
+function renderAll(expanded) {
+  const list = document.getElementById('category-list');
+  list.innerHTML = TAXONOMY.map(cat => buildCard(cat, expanded)).join('');
+}
+
+function expandAll() {
+  document.querySelectorAll('.l1-body').forEach(b => b.classList.add('open'));
+  document.querySelectorAll('.l1-header').forEach(h => h.setAttribute('aria-expanded','true'));
+  document.querySelectorAll('.l3-body').forEach(b => b.classList.add('open'));
+  document.querySelectorAll('.l2-header').forEach(h => h.setAttribute('aria-expanded','true'));
+}
+
+function collapseAll() {
+  document.querySelectorAll('.l1-body').forEach(b => b.classList.remove('open'));
+  document.querySelectorAll('.l1-header').forEach(h => h.setAttribute('aria-expanded','false'));
+  document.querySelectorAll('.l3-body').forEach(b => b.classList.remove('open'));
+  document.querySelectorAll('.l2-header').forEach(h => h.setAttribute('aria-expanded','false'));
+}
+
+function doSearch(q) {
+  const noRes = document.getElementById('no-results');
+  if (!q.trim()) {
+    document.querySelectorAll('.cat-card').forEach(c => c.classList.remove('hidden'));
+    noRes.style.display = 'none';
+    collapseAll();
+    return;
+  }
+  const lq = q.toLowerCase();
+  let anyVisible = false;
+  document.querySelectorAll('.cat-card').forEach(card => {
+    const titleMatch = card.dataset.title.includes(lq);
+    const absorbsMatch = card.dataset.absorbs.includes(lq);
+    const l2Matches = [...card.querySelectorAll('.l2-item')].some(l2 => {
+      const l2Title = l2.dataset.l2 || '';
+      const l3Text = [...l2.querySelectorAll('.l3-tag')].map(t => t.textContent.toLowerCase()).join(' ');
+      return l2Title.includes(lq) || l3Text.includes(lq);
+    });
+    if (titleMatch || absorbsMatch || l2Matches) {
+      card.classList.remove('hidden');
+      anyVisible = true;
+      // expand card
+      const body = card.querySelector('.l1-body');
+      const header = card.querySelector('.l1-header');
+      if (body) body.classList.add('open');
+      if (header) header.setAttribute('aria-expanded','true');
+      // expand matching L2
+      card.querySelectorAll('.l2-item').forEach(l2 => {
+        const l2Title = l2.dataset.l2 || '';
+        const l3Text = [...l2.querySelectorAll('.l3-tag')].map(t => t.textContent.toLowerCase()).join(' ');
+        if (l2Title.includes(lq) || l3Text.includes(lq)) {
+          const l3b = l2.querySelector('.l3-body');
+          const l2h = l2.querySelector('.l2-header');
+          if (l3b) l3b.classList.add('open');
+          if (l2h) l2h.setAttribute('aria-expanded','true');
+        }
+      });
+    } else {
+      card.classList.add('hidden');
+    }
+  });
+  noRes.style.display = anyVisible ? 'none' : 'block';
+}
+
+// Init
+renderAll(false);
+
+document.getElementById('btn-expand').addEventListener('click', expandAll);
+document.getElementById('btn-collapse').addEventListener('click', collapseAll);
+
+let searchTimer;
+document.getElementById('search').addEventListener('input', e => {
+  clearTimeout(searchTimer);
+  searchTimer = setTimeout(() => doSearch(e.target.value), 120);
+});
+</script>
+</body>
+</html>

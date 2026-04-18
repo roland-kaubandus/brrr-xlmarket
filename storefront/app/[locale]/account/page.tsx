@@ -128,7 +128,7 @@ export default function AccountPage() {
                     Tellimus #{order.display_id}
                   </p>
                   <p className="text-xs text-[#64748B]">
-                    {new Date(order.created_at).toLocaleDateString("et-EE")}
+                    {new Date(order.created_at).toLocaleDateString(locale === "en" ? "en-IE" : "et-EE")}
                   </p>
                 </div>
                 <div className="text-right">

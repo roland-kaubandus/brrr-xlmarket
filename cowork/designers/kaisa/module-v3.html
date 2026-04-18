@@ -1,0 +1,880 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>XLMarket — Ledger</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #faf7f2;
+    --paper-2: #f2ede3;
+    --ink: #0a0a0a;
+    --ink-70: #1c1c1c;
+    --ink-50: #55534e;
+    --ink-30: #8b8880;
+    --rule: #d8d2c4;
+    --rule-strong: #201d17;
+    --amber: #b8560e;
+    --amber-soft: #e7b37a;
+    --serif: "Fraunces", "Times New Roman", Georgia, serif;
+    --mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--paper); color: var(--ink); font-family: "DM Sans", system-ui, sans-serif; font-size: 16px; line-height: 1.5; -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-decoration: none; }
+  ::selection { background: var(--amber); color: var(--paper); }
+
+  /* ---------- header ---------- */
+  header.top { border-bottom: 1px solid var(--rule-strong); background: var(--paper); position: sticky; top: 0; z-index: 10; }
+  .top-inner {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 20px 48px;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 40px;
+  }
+  .logo { font-weight: 700; font-size: 22px; letter-spacing: -0.02em; }
+  .logo .mark { color: var(--amber); font-family: var(--serif); font-style: italic; font-weight: 400; }
+  nav.main ul { list-style: none; padding: 0; margin: 0; display: flex; gap: 30px; font-size: 14px; font-weight: 500; }
+  nav.main a { padding-bottom: 3px; border-bottom: 1px solid transparent; transition: border-color 150ms; }
+  nav.main a:hover { border-color: var(--amber); color: var(--amber); }
+  .top-tools { display: flex; gap: 10px; align-items: center; }
+  .search { display: flex; align-items: center; gap: 8px; border: 1px solid var(--rule); padding: 8px 12px; width: 280px; }
+  .search input { border: 0; background: transparent; font-family: inherit; font-size: 13px; outline: none; width: 100%; color: var(--ink); }
+  .search .kbd { font-family: var(--mono); font-size: 11px; color: var(--ink-30); border: 1px solid var(--rule); padding: 1px 5px; }
+  .iconbtn { width: 38px; height: 38px; display: inline-flex; align-items: center; justify-content: center; border: 1px solid var(--rule); background: transparent; cursor: pointer; transition: background 150ms, border-color 150ms; }
+  .iconbtn:hover { background: var(--paper-2); border-color: var(--ink); }
+  .iconbtn svg { width: 18px; height: 18px; stroke: var(--ink); stroke-width: 1.4; fill: none; }
+  .basket-badge { position: relative; }
+  .basket-badge::after { content: "3"; position: absolute; top: -6px; right: -6px; background: var(--amber); color: var(--paper); font-family: var(--mono); font-size: 10px; min-width: 18px; height: 18px; display: grid; place-items: center; padding: 0 4px; }
+
+  /* ---------- masthead ---------- */
+  .masthead {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 56px 48px 24px 48px;
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    align-items: end;
+    gap: 48px;
+    border-bottom: 1px solid var(--rule-strong);
+  }
+  .masthead h1 {
+    font-family: var(--serif);
+    font-size: clamp(54px, 6vw, 92px);
+    line-height: 0.92;
+    letter-spacing: -0.03em;
+    margin: 0;
+    font-weight: 300;
+    font-variation-settings: "opsz" 120;
+  }
+  .masthead h1 em {
+    font-style: italic;
+    color: var(--amber);
+    font-weight: 300;
+  }
+  .masthead .dek {
+    font-size: 16px;
+    line-height: 1.45;
+    color: var(--ink-50);
+    max-width: 52ch;
+    margin: 0 0 12px 0;
+  }
+  .masthead .stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    border-top: 1px solid var(--rule);
+    padding-top: 18px;
+  }
+  .masthead .stats div {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-50);
+  }
+  .masthead .stats b {
+    display: block;
+    font-family: var(--serif);
+    font-size: 32px;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    font-weight: 400;
+    font-variation-settings: "opsz" 60;
+    font-variant-numeric: tabular-nums;
+    margin-bottom: 4px;
+    text-transform: none;
+  }
+
+  /* ---------- ledger layout ---------- */
+  main {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 48px 60px 48px;
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 0;
+    position: relative;
+  }
+
+  /* ---------- left rail ---------- */
+  aside.rail {
+    border-right: 1px solid var(--rule);
+    padding: 36px 32px 36px 0;
+    position: sticky;
+    top: 78px;
+    align-self: start;
+    max-height: calc(100vh - 78px);
+    overflow-y: auto;
+  }
+  .rail-hdr {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-50);
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 6px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--rule-strong);
+    margin-bottom: 12px;
+  }
+  .rail-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    counter-reset: rail;
+  }
+  .rail-list li {
+    counter-increment: rail;
+    border-bottom: 1px dotted var(--rule);
+  }
+  .rail-list li:last-child { border-bottom: 0; }
+  .rail-list a {
+    display: grid;
+    grid-template-columns: 32px 1fr auto;
+    gap: 8px;
+    align-items: baseline;
+    padding: 10px 0;
+    font-family: var(--serif);
+    font-size: 17px;
+    font-weight: 300;
+    letter-spacing: -0.01em;
+    color: var(--ink-70);
+    transition: color 120ms, padding-left 180ms ease;
+  }
+  .rail-list a::before {
+    content: counter(rail, decimal-leading-zero);
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--ink-30);
+    letter-spacing: 0.04em;
+    padding-top: 4px;
+    font-variant-numeric: tabular-nums;
+  }
+  .rail-list a .count {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--ink-30);
+    font-variant-numeric: tabular-nums;
+  }
+  .rail-list a:hover,
+  .rail-list a.active {
+    color: var(--amber);
+    padding-left: 4px;
+  }
+  .rail-list a:hover::before,
+  .rail-list a.active::before { color: var(--amber); }
+  .rail-list a:hover .count,
+  .rail-list a.active .count { color: var(--amber); }
+
+  .rail-foot {
+    margin-top: 28px;
+    padding: 18px 0 0 0;
+    border-top: 1px solid var(--rule);
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-50);
+    line-height: 1.7;
+  }
+  .rail-foot b { color: var(--ink); font-weight: 500; }
+
+  /* ---------- ledger ---------- */
+  section.ledger {
+    padding: 0 0 0 48px;
+  }
+  .row {
+    display: grid;
+    grid-template-columns: 60px 1fr 240px;
+    gap: 28px;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--rule);
+    align-items: center;
+    position: relative;
+    transition: background 180ms ease;
+  }
+  .row:hover { background: linear-gradient(to right, rgba(184,86,14,0.04), transparent 70%); }
+  .row::before {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; top: 0;
+    height: 1px;
+    background: var(--amber);
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 260ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .row:hover::before { transform: scaleX(1); }
+
+  .row .num {
+    font-family: var(--serif);
+    font-size: 44px;
+    line-height: 1;
+    color: var(--ink-30);
+    letter-spacing: -0.02em;
+    font-weight: 300;
+    font-variation-settings: "opsz" 144;
+    font-variant-numeric: tabular-nums;
+    transition: color 180ms ease;
+  }
+  .row:hover .num { color: var(--amber); }
+
+  .row .body { min-width: 0; }
+  .row h3 {
+    font-family: var(--serif);
+    font-size: 30px;
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    font-weight: 400;
+    margin: 0 0 8px 0;
+    font-variation-settings: "opsz" 96;
+    transition: color 150ms ease;
+  }
+  .row h3 a { color: inherit; }
+  .row:hover h3 { color: var(--ink); }
+
+  .row .subs {
+    list-style: none;
+    padding: 0;
+    margin: 6px 0 0 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 0;
+  }
+  .row .subs li {
+    font-size: 13px;
+    color: var(--ink-70);
+    padding-right: 14px;
+    margin-right: 14px;
+    border-right: 1px solid var(--rule);
+    line-height: 1.1;
+  }
+  .row .subs li:last-child { border-right: 0; padding-right: 0; margin-right: 0; }
+  .row .subs li a { transition: color 120ms; }
+  .row .subs li a:hover { color: var(--amber); }
+
+  .row .meta {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ink-50);
+    letter-spacing: 0.04em;
+    font-variant-numeric: tabular-nums;
+    margin-top: 8px;
+    display: flex;
+    gap: 16px;
+  }
+  .row .meta b { color: var(--ink); font-weight: 500; }
+
+  .row .thumb {
+    width: 240px;
+    height: 150px;
+    overflow: hidden;
+    justify-self: end;
+    filter: grayscale(0.4) contrast(1.02);
+    transition: filter 300ms ease;
+  }
+  .row:hover .thumb { filter: grayscale(0) contrast(1.03); }
+  .row .thumb img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 800ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .row:hover .thumb img { transform: scale(1.04); }
+
+  /* ---------- b2b strip (inline in ledger) ---------- */
+  .trade-row {
+    margin-top: 48px;
+    background: var(--ink);
+    color: var(--paper);
+    padding: 40px 40px;
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr auto;
+    gap: 32px;
+    align-items: center;
+  }
+  .trade-row h4 {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin: 0 0 8px 0;
+    color: var(--amber-soft);
+  }
+  .trade-row .headline {
+    font-family: var(--serif);
+    font-size: 26px;
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+    margin: 0;
+    font-weight: 400;
+    font-variation-settings: "opsz" 96;
+  }
+  .trade-row .headline em { color: var(--amber-soft); font-style: italic; }
+  .trade-row .spec {
+    font-size: 13px;
+    line-height: 1.45;
+    color: rgba(250,247,242,0.75);
+    margin: 0;
+  }
+  .trade-row .big {
+    font-family: var(--serif);
+    font-size: 30px;
+    line-height: 1;
+    font-weight: 400;
+    color: var(--paper);
+    margin: 0 0 4px 0;
+    font-variant-numeric: tabular-nums;
+  }
+  .btn-amber {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px 24px;
+    background: var(--amber);
+    color: var(--paper);
+    font-size: 14px;
+    font-weight: 500;
+    transition: background 150ms;
+  }
+  .btn-amber:hover { background: var(--amber-soft); color: var(--ink); }
+  .btn-amber svg { width: 14px; height: 14px; stroke: currentColor; stroke-width: 1.6; fill: none; }
+
+  .legal {
+    max-width: 1440px;
+    margin: 32px auto 40px auto;
+    padding: 0 48px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: var(--ink-30);
+    display: flex;
+    justify-content: space-between;
+  }
+
+  @media (max-width: 1100px) {
+    main { grid-template-columns: 1fr; }
+    aside.rail { display: none; }
+    section.ledger { padding-left: 0; }
+    .row { grid-template-columns: 48px 1fr; }
+    .row .thumb { display: none; }
+    .trade-row { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="top-inner">
+    <a href="/" class="logo">XL<span class="mark">Market</span></a>
+    <nav class="main" aria-label="Main navigation">
+      <ul>
+        <li><a href="/">Ledger</a></li>
+        <li><a href="#starter-kits">Starter kits</a></li>
+        <li><a href="#quote">Trade desk</a></li>
+        <li><a href="#">Journal</a></li>
+        <li><a href="#">Support</a></li>
+      </ul>
+    </nav>
+    <div class="top-tools">
+      <div class="search" role="search">
+        <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="1.6" fill="none"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        <input type="text" placeholder="Search 16,046 SKUs">
+        <span class="kbd">/</span>
+      </div>
+      <button class="iconbtn" aria-label="Account">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
+      </button>
+      <button class="iconbtn basket-badge" aria-label="Basket">
+        <svg viewBox="0 0 24 24"><path d="M3 6h18l-2 12H5L3 6zM8 6V4a4 4 0 0 1 8 0v2"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<section class="masthead" aria-labelledby="led-title">
+  <h1 id="led-title">The&nbsp;<em>ledger</em><br>of trades.</h1>
+  <div>
+    <p class="dek">A working register of every discipline XLMarket stocks — twenty-two trades, one hundred and thirty-four sub-classes, sixteen thousand forty-six SKUs. Read it like a trade book, jump with the rail on the left.</p>
+    <div class="stats">
+      <div><b>22</b>Disciplines</div>
+      <div><b>134</b>Sub-classes</div>
+      <div><b>16,046</b>SKUs</div>
+      <div><b>Net-30</b>For trade</div>
+    </div>
+  </div>
+</section>
+
+<main>
+  <aside class="rail" aria-label="Jump to discipline">
+    <div class="rail-hdr">
+      <span>Index</span>
+      <span style="text-align:right;">SKUs</span>
+    </div>
+    <ol class="rail-list">
+      <li><a href="#r01"><span>HoReCa &amp; Food</span><span class="count">1,907</span></a></li>
+      <li><a href="#r02"><span>Laser &amp; CNC</span><span class="count">892</span></a></li>
+      <li><a href="#r03"><span>Welding &amp; Metal</span><span class="count">1,214</span></a></li>
+      <li><a href="#r04"><span>Printing &amp; Signage</span><span class="count">768</span></a></li>
+      <li><a href="#r05"><span>Electrical &amp; Energy</span><span class="count">1,103</span></a></li>
+      <li><a href="#r06"><span>Woodworking</span><span class="count">634</span></a></li>
+      <li><a href="#r07"><span>Construction</span><span class="count">1,542</span></a></li>
+      <li><a href="#r08"><span>Cleaning</span><span class="count">421</span></a></li>
+      <li><a href="#r09"><span>Hand &amp; Power Tools</span><span class="count">2,104</span></a></li>
+      <li><a href="#r10"><span>Fuel &amp; Lubrication</span><span class="count">286</span></a></li>
+      <li><a href="#r11"><span>Landscaping</span><span class="count">712</span></a></li>
+      <li><a href="#r12"><span>Warehousing</span><span class="count">508</span></a></li>
+      <li><a href="#r13"><span>HVAC</span><span class="count">486</span></a></li>
+      <li><a href="#r14"><span>Plumbing</span><span class="count">392</span></a></li>
+      <li><a href="#r15"><span>Safety &amp; Workwear</span><span class="count">548</span></a></li>
+      <li><a href="#r16"><span>Automotive</span><span class="count">1,287</span></a></li>
+      <li><a href="#r17"><span>Salon &amp; Spa</span><span class="count">318</span></a></li>
+      <li><a href="#r18"><span>Office Interiors</span><span class="count">437</span></a></li>
+      <li><a href="#r19"><span>Medical Supply</span><span class="count">246</span></a></li>
+      <li><a href="#r20"><span>Fitness &amp; Sports</span><span class="count">394</span></a></li>
+      <li><a href="#r21"><span>Marine &amp; Camping</span><span class="count">362</span></a></li>
+      <li><a href="#r22"><span>Music &amp; Stage</span><span class="count">275</span></a></li>
+    </ol>
+    <div class="rail-foot">
+      Updated 04:00 CET<br>
+      <b>18 April 2026</b>
+    </div>
+  </aside>
+
+  <section class="ledger" aria-label="Discipline ledger">
+
+    <article class="row" id="r01">
+      <div class="num">01</div>
+      <div class="body">
+        <h3><a href="/en/categories/horeca-food-service">HoReCa &amp; Food Service</a></h3>
+        <ul class="subs">
+          <li><a href="#">Refrigeration</a></li>
+          <li><a href="#">Cooking equipment</a></li>
+          <li><a href="#">Food preparation</a></li>
+          <li><a href="#">Bar &amp; beverage</a></li>
+          <li><a href="#">Sinks &amp; washdown</a></li>
+          <li><a href="#">Storage &amp; shelving</a></li>
+        </ul>
+        <div class="meta"><span><b>1,907</b> SKUs</span><span><b>6</b> sub-classes</span><span>Starter kit from <b>€8,499</b></span></div>
+      </div>
+      <a class="thumb" href="/en/categories/horeca-food-service"><img src="../../images/cat-01-horeca-food-service.png" alt="" width="480" height="300" loading="lazy"></a>
+    </article>
+
+    <article class="row" id="r02">
+      <div class="num">02</div>
+      <div class="body">
+        <h3><a href="/en/categories/laser-cnc-digital-fabrication">Laser, CNC &amp; Digital Fabrication</a></h3>
+        <ul class="subs">
+          <li><a href="#">CO₂ lasers</a></li>
+          <li><a href="#">Diode lasers</a></li>
+          <li><a href="#">CNC routers</a></li>
+          <li><a href="#">3D printers</a></li>
+          <li><a href="#">Accessories</a></li>
+          <li><a href="#">Rotary attach.</a></li>
+        </ul>
+        <div class="meta"><span><b>892</b> SKUs</span><span><b>6</b> sub-classes</span><span>Starter kit from <b>€3,199</b></span></div>
+      </div>
+      <a class="thumb" href="/en/categories/laser-cnc-digital-fabrication"><img src="../../images/cat-05-laser-cnc-digital-fabrication.png" alt="" width="480" height="300" loading="lazy"></a>
+    </article>
+
+    <article class="row" id="r03">
+      <div class="num">03</div>
+      <div class="body">
+        <h3><a href="/en/categories/welding-metalworking">Welding &amp; Metalworking</a></h3>
+        <ul class="subs">
+          <li><a href="#">Welding &amp; cutting</a></li>
+          <li><a href="#">Lathes &amp; mills</a></li>
+          <li><a href="#">Angle grinders</a></li>
+          <li><a href="#">Hydraulic press</a></li>
+          <li><a href="#">Welder safety</a></li>
+          <li><a href="#">Motors &amp; drives</a></li>
+        </ul>
+        <div class="meta"><span><b>1,214</b> SKUs</span><span><b>6</b> sub-classes</span><span>Starter kit from <b>€2,799</b></span></div>
+      </div>
+      <a class="thumb" href="/en/categories/welding-metalworking"><img src="../../images/cat-04-welding-metalworking.png" alt="" width="480" height="300" loading="lazy"></a>
+    </article>
+
+    <article class="row" id="r04">
+      <div class="num">04</div>
+      <div class="body">
+        <h3><a href="/en/categories/printing-packaging-signage">Printing, Packaging &amp; Signage</a></h3>
+        <ul class="subs">
+          <li><a href="#">Screen &amp; heat press</a></li>
+          <li><a href="#">Vinyl cutters</a></li>
+          <li><a href="#">Sealers</a></li>
+          <li><a href="#">Label makers</a></li>
+          <li><a href="#">Signage</a></li>
+          <li><a href="#">Paper handling</a></li>
+        </ul>
+        <div class="meta"><span><b>768</b> SKUs</span><span><b>6</b> sub-classes</span><span>Starter kit from <b>€1,899</b></span></div>
+      </div>
+      <a class="thumb" href="/en/categories/printing-packaging-signage"><img src="../../images/cat-07-printing-packaging-signage.png" alt="" width="480" height="300" loading="lazy"></a>
+    </article>
+
+    <article class="row" id="r05">
+      <div class="num">05</div>
+      <div class="body">
+        <h3><a href="/en/categories/electrical-energy">Electrical &amp; Energy</a></h3>
+        <ul class="subs">
+          <li><a href="#">Generators</a></li>
+          <li><a href="#">Solar &amp; renewable</a></li>
+          <li><a href="#">Testing tools</a></li>
+          <li><a href="#">Wiring &amp; conduit</a></li>
+          <li><a href="#">Industrial lighting</a></li>
+          <li><a href="#">Batteries</a></li>
+        </ul>
+        <div class="meta"><span><b>1,103</b> SKUs</span><span><b>6</b> sub-classes</span><span>Quotes available</span></div>
+      </div>
+      <a class="thumb" href="/en/categories/electrical-energy"><img src="../../images/cat-08-electrical-energy.png" alt="" width="480" height="300" loading="lazy"></a>
+    </article>
+
+    <article class="row" id="r06">
+      <div class="num">06</div>
+      <div class="body">
+        <h3><a href="/en/categories/woodworking-carpentry">Woodworking &amp; Carpentry</a></h3>
+        <ul class="subs">
+          <li><a href="#">Stationary machines</a></li>
+          <li><a href="#">Routers &amp; shaping</a></li>
+          <li><a href="#">Benches &amp; clamps</a></li>
+          <li><a href="#">Drill presses</a></li>
+          <li><a href="#">Saw accessories</a></li>
+          <li><a href="#">Finishing &amp; sanding</a></li>
+        </ul>
+        <div class="meta"><span><b>634</b> SKUs</span><span><b>6</b> sub-classes</span><span>Starter kit from <b>€2,499</b></span></div>
+      </div>
+      <a class="thumb" href="/en/categories/woodworking-carpentry"><img src="../../images/cat-06-woodworking-carpentry.png" alt="" width="480" height="300" loading="lazy"></a>
+    </article>
+
+    <article class="row" id="r07">
+      <div class="num">07</div>
+      <div class="body">
+        <h3><a href="/en/categories/construction-building">Construction &amp; Building</a></h3>
+        <ul class="subs">
+          <li><a href="#">Concrete &amp; drywall</a></li>
+          <li><a href="#">Ladders &amp; scaffolding</a></li>
+          <li><a href="#">Roofing</a></li>
+          <li><a href="#">Flooring</a></li>
+          <li><a href="#">Decking</a></li>
+          <li><a href="#">Paint &amp; finishing</a></li>
+        </ul>
+        <div class="meta"><span><b>1,542</b> SKUs</span><span><b>6</b> sub-classes</span><span>Volume pricing</span></div>
+      </div>
+      <a class="thumb" href="/en/categories/construction-building"><img src="../../images/cat-02-construction-building.png" alt="" width="480" height="300" loading="lazy"></a>
+    </article>
+
+    <article class="row" id="r08">
+      <div class="num">08</div>
+      <div class="body">
+        <h3><a href="/en/categories/cleaning-janitorial">Cleaning &amp; Janitorial</a></h3>
+        <ul class="subs">
+          <li><a href="#">Floor care</a></li>
+          <li><a href="#">Janitorial carts</a></li>
+          <li><a href="#">Hand dryers</a></li>
+          <li><a href="#">Waste</a></li>
+          <li><a href="#">Industrial vacuums</a></li>
+          <li><a href="#">Carpet extractors</a></li>
+        </ul>
+        <div class="meta"><span><b>421</b> SKUs</span><span><b>6</b> sub-classes</span><span>Starter kit from <b>€1,499</b></span></div>
+      </div>
+      <a class="thumb" href="/en/categories/cleaning-janitorial"><img src="../../images/cat-15-cleaning-janitorial.png" alt="" width="480" height="300" loading="lazy"></a>
+    </article>
+
+    <article class="row" id="r09">
+      <div class="num">09</div>
+      <div class="body">
+        <h3><a href="/en/categories/hand-power-tools">Hand &amp; Power Tools</a></h3>
+        <ul class="subs">
+          <li><a href="#">Power tools</a></li>
+          <li><a href="#">Hand tools</a></li>
+          <li><a href="#">Air compressors</a></li>
+          <li><a href="#">Measuring</a></li>
+          <li><a href="#">Bits &amp; accessories</a></li>
+          <li><a href="#">Tool storage</a></li>
+        </ul>
+        <div class="meta"><span><b>2,104</b> SKUs</span><span><b>6</b> sub-classes</span><span>Largest catalogue</span></div>
+      </div>
+      <a class="thumb" href="/en/categories/hand-power-tools"><img src="../../images/cat-03-hand-power-tools.png" alt="" width="480" height="300" loading="lazy"></a>
+    </article>
+
+    <article class="row" id="r10">
+      <div class="num">10</div>
+      <div class="body">
+        <h3><a href="/en/categories/fuel-lubrication-fluid">Fuel, Lubrication &amp; Fluid Management</a></h3>
+        <ul class="subs">
+          <li><a href="#">Fuel transfer</a></li>
+          <li><a href="#">Oil &amp; lube</a></li>
+          <li><a href="#">Drum handling</a></li>
+          <li><a href="#">Industrial pumps</a></li>
+          <li><a href="#">Chemical transfer</a></li>
+          <li><a href="#">Fuel nozzles</a></li>
+        </ul>
+        <div class="meta"><span><b>286</b> SKUs</span><span><b>6</b> sub-classes</span><span>Specialist line</span></div>
+      </div>
+      <a class="thumb" href="/en/categories/fuel-lubrication-fluid"><img src="../../images/cat-14-fuel-lubrication-fluid.png" alt="" width="480" height="300" loading="lazy"></a>
+    </article>
+
+    <article class="row" id="r11">
+      <div class="num">11</div>
+      <div class="body">
+        <h3><a href="/en/categories/outdoor-power-landscaping">Outdoor Power &amp; Landscaping</a></h3>
+        <ul class="subs">
+          <li><a href="#">Outdoor power</a></li>
+          <li><a href="#">Pressure washers</a></li>
+          <li><a href="#">Garden tools</a></li>
+          <li><a href="#">Outdoor cooking</a></li>
+          <li><a href="#">Outdoor heating</a></li>
+          <li><a href="#">Decor</a></li>
+        </ul>
+        <div class="meta"><span><b>712</b> SKUs</span><span><b>6</b> sub-classes</span><span>Seasonal</span></div>
+      </div>
+      <a class="thumb" href="/en/categories/outdoor-power-landscaping"><img src="../../images/cat-13-outdoor-power-landscaping.png" alt="" width="480" height="300" loading="lazy"></a>
+    </article>
+
+    <article class="row" id="r12">
+      <div class="num">12</div>
+      <div class="body">
+        <h3><a href="/en/categories/warehousing-material-handling">Warehousing &amp; Material Handling</a></h3>
+        <ul class="subs">
+          <li><a href="#">Hoists &amp; lifting</a></li>
+          <li><a href="#">Forklifts &amp; pallet</a></li>
+          <li><a href="#">Carts &amp; dollies</a></li>
+          <li><a href="#">Shelving</a></li>
+          <li><a href="#">Workbenches</a></li>
+          <li><a href="#">Strapping</a></li>
+        </ul>
+        <div class="meta"><span><b>508</b> SKUs</span><span><b>6</b> sub-classes</span><span>Volume pricing</span></div>
+      </div>
+      <a class="thumb" href="/en/categories/warehousing-material-handling"><img src="../../images/cat-11-warehousing-material-handling.png" alt="" width="480" height="300" loading="lazy"></a>
+    </article>
+
+    <article class="row" id="r13">
+      <div class="num">13</div>
+      <div class="body">
+        <h3><a href="/en/categories/hvac-climate-control">HVAC &amp; Climate Control</a></h3>
+        <ul class="subs">
+          <li><a href="#">Mini-splits</a></li>
+          <li><a href="#">Heaters</a></li>
+          <li><a href="#">Fans</a></li>
+          <li><a href="#">Ducting</a></li>
+          <li><a href="#">Air quality</a></li>
+          <li><a href="#">Dehumidifiers</a></li>
+        </ul>
+        <div class="meta"><span><b>486</b> SKUs</span><span><b>6</b> sub-classes</span><span>Certified installers</span></div>
+      </div>
+      <a class="thumb" href="/en/categories/hvac-climate-control"><img src="../../images/cat-09-hvac-climate-control.png" alt="" width="480" height="300" loading="lazy"></a>
+    </article>
+
+    <article class="row" id="r14">
+      <div class="num">14</div>
+      <div class="body">
+        <h3><a href="/en/categories/plumbing-water-systems">Plumbing &amp; Water Systems</a></h3>
+        <ul class="subs">
+          <li><a href="#">Water pumps</a></li>
+          <li><a href="#">Pipes &amp; fittings</a></li>
+          <li><a href="#">Plumbing tools</a></li>
+          <li><a href="#">Water heaters</a></li>
+          <li><a href="#">Filtration</a></li>
+          <li><a href="#">Bathroom fixtures</a></li>
+        </ul>
+        <div class="meta"><span><b>392</b> SKUs</span><span><b>6</b> sub-classes</span><span>Trade stock</span></div>
+      </div>
+      <a class="thumb" href="/en/categories/plumbing-water-systems"><img src="../../images/cat-10-plumbing-water-systems.png" alt="" width="480" height="300" loading="lazy"></a>
+    </article>
+
+    <article class="row" id="r15">
+      <div class="num">15</div>
+      <div class="body">
+        <h3><a href="/en/categories/safety-security-workwear">Safety, Security &amp; Workwear</a></h3>
+        <ul class="subs">
+          <li><a href="#">PPE</a></li>
+          <li><a href="#">Traffic control</a></li>
+          <li><a href="#">Locks &amp; safes</a></li>
+          <li><a href="#">Work boots</a></li>
+          <li><a href="#">Workwear</a></li>
+          <li><a href="#">Safety glasses</a></li>
+        </ul>
+        <div class="meta"><span><b>548</b> SKUs</span><span><b>6</b> sub-classes</span><span>EN standards</span></div>
+      </div>
+      <a class="thumb" href="/en/categories/safety-security-workwear"><img src="../../images/cat-16-safety-security-workwear.png" alt="" width="480" height="300" loading="lazy"></a>
+    </article>
+
+    <article class="row" id="r16">
+      <div class="num">16</div>
+      <div class="body">
+        <h3><a href="/en/categories/automotive-workshop">Automotive &amp; Workshop</a></h3>
+        <ul class="subs">
+          <li><a href="#">Vehicle lifts</a></li>
+          <li><a href="#">Diagnostic tools</a></li>
+          <li><a href="#">Jacks &amp; lifting</a></li>
+          <li><a href="#">Towing</a></li>
+          <li><a href="#">Truck accessories</a></li>
+          <li><a href="#">Auto parts</a></li>
+        </ul>
+        <div class="meta"><span><b>1,287</b> SKUs</span><span><b>6</b> sub-classes</span><span>Starter kit from <b>€5,999</b></span></div>
+      </div>
+      <a class="thumb" href="/en/categories/automotive-workshop"><img src="../../images/cat-12-automotive-workshop.png" alt="" width="480" height="300" loading="lazy"></a>
+    </article>
+
+    <article class="row" id="r17">
+      <div class="num">17</div>
+      <div class="body">
+        <h3><a href="/en/categories/salon-spa-wellness">Salon, Spa &amp; Wellness</a></h3>
+        <ul class="subs">
+          <li><a href="#">Barber chairs</a></li>
+          <li><a href="#">Shampoo stations</a></li>
+          <li><a href="#">Massage tables</a></li>
+          <li><a href="#">Personal care</a></li>
+          <li><a href="#">Manicure</a></li>
+          <li><a href="#">Facial steamers</a></li>
+        </ul>
+        <div class="meta"><span><b>318</b> SKUs</span><span><b>6</b> sub-classes</span><span>Starter kit from <b>€3,499</b></span></div>
+      </div>
+      <a class="thumb" href="/en/categories/salon-spa-wellness"><img src="../../images/cat-18-salon-spa-wellness.png" alt="" width="480" height="300" loading="lazy"></a>
+    </article>
+
+    <article class="row" id="r18">
+      <div class="num">18</div>
+      <div class="body">
+        <h3><a href="/en/categories/office-commercial-interiors">Office &amp; Commercial Interiors</a></h3>
+        <ul class="subs">
+          <li><a href="#">Office furniture</a></li>
+          <li><a href="#">Meeting &amp; lobby</a></li>
+          <li><a href="#">Door hardware</a></li>
+          <li><a href="#">Interior lighting</a></li>
+          <li><a href="#">Bathroom</a></li>
+          <li><a href="#">Decor</a></li>
+        </ul>
+        <div class="meta"><span><b>437</b> SKUs</span><span><b>6</b> sub-classes</span><span>Office kit from <b>€1,999</b></span></div>
+      </div>
+      <a class="thumb" href="/en/categories/office-commercial-interiors"><img src="../../images/cat-17-office-commercial-interiors.png" alt="" width="480" height="300" loading="lazy"></a>
+    </article>
+
+    <article class="row" id="r19">
+      <div class="num">19</div>
+      <div class="body">
+        <h3><a href="/en/categories/health-medical-supply">Health &amp; Medical Supply</a></h3>
+        <ul class="subs">
+          <li><a href="#">Medical equipment</a></li>
+          <li><a href="#">Mobility aids</a></li>
+          <li><a href="#">Bathroom safety</a></li>
+          <li><a href="#">Teaching models</a></li>
+          <li><a href="#">Wellness</a></li>
+          <li><a href="#">Wheelchairs</a></li>
+        </ul>
+        <div class="meta"><span><b>246</b> SKUs</span><span><b>6</b> sub-classes</span><span>CE-marked</span></div>
+      </div>
+      <a class="thumb" href="/en/categories/health-medical-supply"><img src="../../images/cat-21-health-medical-supply.png" alt="" width="480" height="300" loading="lazy"></a>
+    </article>
+
+    <article class="row" id="r20">
+      <div class="num">20</div>
+      <div class="body">
+        <h3><a href="/en/categories/fitness-sports-recreation">Fitness, Sports &amp; Recreation</a></h3>
+        <ul class="subs">
+          <li><a href="#">Gym equipment</a></li>
+          <li><a href="#">Team sports</a></li>
+          <li><a href="#">Gym flooring</a></li>
+          <li><a href="#">Trampolines</a></li>
+          <li><a href="#">Playground</a></li>
+          <li><a href="#">Cycling</a></li>
+        </ul>
+        <div class="meta"><span><b>394</b> SKUs</span><span><b>6</b> sub-classes</span><span>Gym fit-out</span></div>
+      </div>
+      <a class="thumb" href="/en/categories/fitness-sports-recreation"><img src="../../images/cat-19-fitness-sports-recreation.png" alt="" width="480" height="300" loading="lazy"></a>
+    </article>
+
+    <article class="row" id="r21">
+      <div class="num">21</div>
+      <div class="body">
+        <h3><a href="/en/categories/boating-camping-outdoor">Boating, Camping &amp; Outdoor Adventure</a></h3>
+        <ul class="subs">
+          <li><a href="#">Marine hardware</a></li>
+          <li><a href="#">Inflatable boats</a></li>
+          <li><a href="#">Water sports</a></li>
+          <li><a href="#">Camping gear</a></li>
+          <li><a href="#">Canopy tents</a></li>
+          <li><a href="#">Outdoor hobbies</a></li>
+        </ul>
+        <div class="meta"><span><b>362</b> SKUs</span><span><b>6</b> sub-classes</span><span>Outfitter lines</span></div>
+      </div>
+      <a class="thumb" href="/en/categories/boating-camping-outdoor"><img src="../../images/cat-20-boating-camping-outdoor.png" alt="" width="480" height="300" loading="lazy"></a>
+    </article>
+
+    <article class="row" id="r22">
+      <div class="num">22</div>
+      <div class="body">
+        <h3><a href="/en/categories/music-entertainment">Music &amp; Entertainment</a></h3>
+        <ul class="subs">
+          <li><a href="#">Guitars</a></li>
+          <li><a href="#">Keyboards</a></li>
+          <li><a href="#">Drums</a></li>
+          <li><a href="#">Stage &amp; lighting</a></li>
+          <li><a href="#">Game room</a></li>
+          <li><a href="#">Cases</a></li>
+        </ul>
+        <div class="meta"><span><b>275</b> SKUs</span><span><b>6</b> sub-classes</span><span>Venue fit-out</span></div>
+      </div>
+      <a class="thumb" href="/en/categories/music-entertainment"><img src="../../images/cat-22-music-entertainment.png" alt="" width="480" height="300" loading="lazy"></a>
+    </article>
+
+    <aside class="trade-row" id="quote">
+      <div>
+        <h4>Trade desk</h4>
+        <p class="headline">Twenty-two disciplines, <em>one account manager.</em></p>
+      </div>
+      <div>
+        <h4>Starter kits</h4>
+        <p class="big">€2,799+</p>
+        <p class="spec">Café, auto-shop, barber, print, bakery.</p>
+      </div>
+      <div>
+        <h4>Net terms</h4>
+        <p class="big">Net-30</p>
+        <p class="spec">Approved trade accounts, EU-wide.</p>
+      </div>
+      <a href="#quote" class="btn-amber">
+        Request a quote
+        <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </aside>
+
+  </section>
+</main>
+
+<div class="legal">
+  <span>© 2026 Roland Kaubandus OÜ &nbsp;/&nbsp; Tallinn, Estonia</span>
+  <span>VAT 24% incl. &nbsp;/&nbsp; Prices in EUR</span>
+</div>
+
+</body>
+</html>

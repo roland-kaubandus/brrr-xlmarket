@@ -1,0 +1,876 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>XLMarket — The Journal of Trades</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400;1,9..144,500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --paper: #f8f4ec;
+    --paper-2: #efe8d9;
+    --paper-3: #e6decb;
+    --ink: #1a1a1a;
+    --ink-2: #2d2a26;
+    --mute: #7a716a;
+    --rule: #d8cfbf;
+    --rule-2: #bfb39c;
+    --amber: #b05410;
+    --amber-soft: #d97f40;
+
+    --serif: "Fraunces", Georgia, serif;
+    --sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 15px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  a { color: inherit; text-decoration: none; }
+  img { display: block; max-width: 100%; }
+
+  /* --- Header --- */
+  .top {
+    border-bottom: 1px solid var(--rule);
+    background: var(--paper);
+  }
+  .top-inner {
+    max-width: 1480px;
+    margin: 0 auto;
+    padding: 14px 48px;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 24px;
+  }
+  .brand {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: 22px;
+    letter-spacing: -0.01em;
+  }
+  .brand em { font-style: italic; color: var(--amber); font-weight: 300; }
+  .top-nav {
+    display: flex;
+    gap: 28px;
+    font-size: 13.5px;
+    letter-spacing: 0.02em;
+    color: var(--ink-2);
+  }
+  .top-nav a { position: relative; padding: 4px 0; }
+  .top-nav a::after {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    height: 1px;
+    background: var(--amber);
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 220ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .top-nav a:hover::after { transform: scaleX(1); }
+  .top-nav a:hover { color: var(--amber); }
+  .top-util {
+    justify-self: end;
+    display: flex;
+    gap: 12px;
+    color: var(--ink-2);
+  }
+  .util-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    border: 1px solid var(--rule);
+    border-radius: 999px;
+    font-size: 13px;
+    background: transparent;
+    color: var(--ink-2);
+    cursor: pointer;
+    transition: border-color 180ms, color 180ms;
+  }
+  .util-btn:hover { border-color: var(--ink); color: var(--ink); }
+  .util-btn svg { width: 14px; height: 14px; }
+
+  /* --- Journal masthead (broadsheet) --- */
+  .journal {
+    max-width: 1480px;
+    margin: 0 auto;
+    padding: 32px 48px 12px;
+    border-bottom: 3px solid var(--ink);
+  }
+  .journal-meta {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: baseline;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--rule-2);
+    gap: 20px;
+  }
+  .journal-meta .l,
+  .journal-meta .r {
+    font-size: 11.5px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--mute);
+  }
+  .journal-meta .r { text-align: right; }
+  .journal-meta .c {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+  .journal-title {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(56px, 8vw, 124px);
+    line-height: 0.92;
+    letter-spacing: -0.03em;
+    margin: 12px 0 6px;
+    text-align: center;
+  }
+  .journal-title em { font-style: italic; color: var(--amber); font-weight: 300; }
+  .journal-subtitle {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(16px, 1.35vw, 20px);
+    text-align: center;
+    color: var(--ink-2);
+    padding-bottom: 14px;
+  }
+  .journal-motto {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    border-top: 1px solid var(--ink);
+    padding-top: 10px;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--mute);
+  }
+  .journal-motto .c {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+    text-transform: none;
+    color: var(--ink-2);
+    font-size: 14px;
+  }
+  .journal-motto .r { text-align: right; }
+
+  /* --- Front page --- */
+  .front {
+    max-width: 1480px;
+    margin: 0 auto;
+    padding: 28px 48px 32px;
+  }
+
+  /* Lead + mid grid */
+  .topgrid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+    gap: 44px;
+    border-bottom: 1px solid var(--ink);
+    padding-bottom: 48px;
+  }
+
+  /* LEAD */
+  .lead {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 24px;
+    align-items: start;
+  }
+  .lead-text { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+  .lead-tag {
+    font-size: 11.5px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--amber);
+    font-weight: 500;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--amber);
+    display: inline-flex;
+    gap: 10px;
+    align-items: center;
+    align-self: flex-start;
+  }
+  .lead-headline {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(40px, 4.4vw, 72px);
+    line-height: 0.96;
+    letter-spacing: -0.025em;
+    margin: 0;
+  }
+  .lead-headline em { font-style: italic; color: var(--amber); font-weight: 300; }
+  .lead-dek {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 300;
+    font-size: 19px;
+    line-height: 1.42;
+    color: var(--ink-2);
+    margin: 0;
+  }
+  .lead-body {
+    font-family: var(--sans);
+    font-size: 14.5px;
+    line-height: 1.65;
+    color: var(--ink-2);
+    columns: 2;
+    column-gap: 28px;
+    column-rule: 1px solid var(--rule);
+  }
+  .lead-body::first-letter {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-style: italic;
+    font-size: 64px;
+    float: left;
+    line-height: 0.9;
+    padding: 10px 12px 0 0;
+    color: var(--amber);
+  }
+  .lead-subs {
+    margin-top: 10px;
+    border-top: 1px solid var(--ink);
+  }
+  .lead-subs a {
+    display: grid;
+    grid-template-columns: 36px 1fr auto;
+    gap: 12px;
+    align-items: baseline;
+    padding: 10px 0;
+    border-bottom: 1px dotted var(--rule);
+    font-size: 14px;
+    color: var(--ink-2);
+    transition: padding-left 220ms cubic-bezier(0.16, 1, 0.3, 1), color 180ms;
+  }
+  .lead-subs a .n {
+    font-family: var(--serif);
+    font-weight: 300;
+    color: var(--mute);
+    font-variant-numeric: tabular-nums;
+  }
+  .lead-subs a .c {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--mute);
+    font-size: 13px;
+    font-variant-numeric: tabular-nums;
+  }
+  .lead-subs a:hover { color: var(--amber); padding-left: 6px; }
+  .lead-subs a:hover .n { color: var(--amber); }
+  .lead-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 6px;
+  }
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 20px;
+    background: var(--ink);
+    color: var(--paper);
+    font-size: 12.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border: 1px solid var(--ink);
+    transition: background 180ms, color 180ms, border-color 180ms;
+  }
+  .btn-primary:hover { background: var(--amber); border-color: var(--amber); }
+  .btn-primary svg { width: 14px; height: 14px; }
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 20px;
+    border: 1px solid var(--ink);
+    color: var(--ink);
+    font-size: 12.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: background 180ms, color 180ms;
+  }
+  .btn-ghost:hover { background: var(--ink); color: var(--paper); }
+
+  .lead-photo {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    background: var(--paper-2);
+  }
+  .lead-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .lead-photo .cap {
+    position: absolute;
+    left: 0; bottom: 0;
+    right: 0;
+    background: var(--paper);
+    padding: 10px 14px;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 12.5px;
+    color: var(--ink-2);
+    border-top: 1px solid var(--rule);
+  }
+  .lead-photo .cap span {
+    font-family: var(--sans);
+    font-style: normal;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--mute);
+    margin-right: 8px;
+  }
+
+  /* MID stack on the right of the lead */
+  .mid-stack {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 18px;
+    min-width: 0;
+  }
+  .mid-stack .section-label {
+    font-size: 11.5px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--mute);
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--ink);
+  }
+  .mid-card {
+    display: grid;
+    grid-template-columns: 104px 1fr;
+    gap: 14px;
+    padding: 14px 0;
+    border-bottom: 1px dotted var(--rule);
+    min-width: 0;
+    transition: padding-left 220ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .mid-card:hover { padding-left: 8px; }
+  .mid-card:hover h3 { color: var(--amber); }
+  .mid-card:hover .thumb img { transform: scale(1.04); }
+  .mid-card .thumb {
+    width: 104px;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    background: var(--paper-2);
+  }
+  .mid-card .thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .mid-card .body { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+  .mid-card .over {
+    font-size: 10.5px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--mute);
+    font-family: var(--sans);
+  }
+  .mid-card h3 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: 19px;
+    line-height: 1.15;
+    margin: 0;
+    letter-spacing: -0.005em;
+    transition: color 180ms;
+  }
+  .mid-card h3 em { font-style: italic; color: var(--amber); font-weight: 400; }
+  .mid-card .c {
+    font-size: 13px;
+    color: var(--ink-2);
+  }
+  .mid-card .meta {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 12.5px;
+    color: var(--mute);
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Below the fold — the 15 "other sections" entries */
+  .below {
+    margin-top: 48px;
+  }
+  .below-header {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 20px;
+    padding-bottom: 18px;
+  }
+  .below-header .tag {
+    font-size: 11.5px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--mute);
+  }
+  .below-header h2 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(22px, 2.2vw, 32px);
+    letter-spacing: -0.01em;
+    margin: 0;
+    text-align: center;
+  }
+  .below-header h2 em { font-style: italic; color: var(--amber); font-weight: 300; }
+  .below-header .tag.r { text-align: right; }
+
+  .other-sections {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0 32px;
+    border-top: 1px solid var(--ink);
+  }
+  .other-sections a.ent {
+    display: grid;
+    grid-template-columns: 64px 1fr auto;
+    gap: 14px;
+    align-items: center;
+    padding: 14px 0;
+    border-bottom: 1px dotted var(--rule);
+    color: var(--ink-2);
+    min-width: 0;
+    transition: padding-left 220ms cubic-bezier(0.16, 1, 0.3, 1), color 180ms;
+  }
+  .other-sections a.ent .thumb {
+    width: 64px;
+    height: 64px;
+    overflow: hidden;
+    background: var(--paper-2);
+  }
+  .other-sections a.ent .thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 500ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .other-sections a.ent:hover .thumb img { transform: scale(1.06); }
+  .other-sections a.ent .body { min-width: 0; }
+  .other-sections a.ent .n {
+    font-family: var(--serif);
+    font-weight: 300;
+    color: var(--mute);
+    font-size: 12.5px;
+    letter-spacing: 0.02em;
+    margin-right: 6px;
+    font-variant-numeric: tabular-nums;
+  }
+  .other-sections a.ent .name {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: 16px;
+    letter-spacing: -0.005em;
+    transition: color 180ms;
+  }
+  .other-sections a.ent .name em { font-style: italic; color: var(--amber); font-weight: 400; }
+  .other-sections a.ent .cap {
+    font-size: 12.5px;
+    color: var(--mute);
+    margin-top: 2px;
+    line-height: 1.35;
+  }
+  .other-sections a.ent .count {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 12.5px;
+    color: var(--mute);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+  .other-sections a.ent:hover { padding-left: 6px; color: var(--amber); }
+  .other-sections a.ent:hover .name { color: var(--amber); }
+  .other-sections a.ent:hover .n { color: var(--amber); }
+
+  /* --- B2B strip (trade desk notice) --- */
+  .tradenotice {
+    margin-top: 56px;
+    border-top: 3px solid var(--ink);
+    border-bottom: 3px solid var(--ink);
+    background: var(--paper-2);
+  }
+  .tradenotice-inner {
+    max-width: 1480px;
+    margin: 0 auto;
+    padding: 36px 48px;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 40px;
+    align-items: center;
+  }
+  .tradenotice .stamp {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 13px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--amber);
+    border: 1.5px solid var(--amber);
+    padding: 10px 14px;
+    transform: rotate(-2deg);
+  }
+  .tradenotice .middle h2 {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(26px, 2.6vw, 38px);
+    line-height: 1.05;
+    letter-spacing: -0.015em;
+    margin: 0 0 8px;
+  }
+  .tradenotice .middle h2 em { font-style: italic; color: var(--amber); font-weight: 300; }
+  .tradenotice .middle p {
+    font-size: 14px;
+    color: var(--ink-2);
+    max-width: 64ch;
+    margin: 0;
+  }
+  .tradenotice .middle .chips {
+    margin-top: 14px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-2);
+  }
+  .tradenotice .middle .chips span {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .tradenotice .middle .chips svg { width: 12px; height: 12px; color: var(--amber); }
+  .tradenotice .actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  /* --- Colophon --- */
+  footer.colophon {
+    border-top: 1px solid var(--rule);
+    padding: 22px 48px;
+    max-width: 1480px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--mute);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  footer.colophon .l {
+    font-family: var(--serif);
+    font-style: italic;
+    text-transform: none;
+    letter-spacing: 0.005em;
+    font-size: 14px;
+    color: var(--ink-2);
+  }
+
+  /* --- Responsive --- */
+  @media (max-width: 1200px) {
+    .topgrid { grid-template-columns: 1fr; gap: 36px; }
+    .lead { grid-template-columns: 1fr; }
+    .other-sections { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 820px) {
+    .top-inner { padding: 12px 24px; grid-template-columns: auto auto; }
+    .top-nav { display: none; }
+    .journal { padding: 28px 24px 10px; }
+    .front { padding: 24px 24px 28px; }
+    .lead-body { columns: 1; }
+    .other-sections { grid-template-columns: 1fr; gap: 0; }
+    .tradenotice-inner { grid-template-columns: 1fr; padding: 28px 24px; gap: 20px; }
+    .tradenotice .actions { flex-direction: row; }
+    footer.colophon { padding: 18px 24px; flex-direction: column; gap: 8px; align-items: flex-start; }
+    .below-header { grid-template-columns: 1fr; text-align: left; }
+    .below-header .tag, .below-header .tag.r { text-align: left; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="top">
+  <div class="top-inner">
+    <a class="brand" href="#">XL<em>Market</em></a>
+    <nav class="top-nav" aria-label="Primary">
+      <a href="#">Front page</a>
+      <a href="#">Disciplines</a>
+      <a href="#">Starter kits</a>
+      <a href="#">Trade desk</a>
+      <a href="#">Journal</a>
+    </nav>
+    <div class="top-util">
+      <button class="util-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>Search</button>
+      <button class="util-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18l-2 13H5L3 6Z"/><path d="M8 6V4a4 4 0 0 1 8 0v2"/></svg>Basket</button>
+    </div>
+  </div>
+</header>
+
+<!-- JOURNAL MASTHEAD -->
+<section class="journal">
+  <div class="journal-meta">
+    <div class="l">Volume 01 · Number 07</div>
+    <div class="c">Spring 2026</div>
+    <div class="r">Tallinn · Santa Cruz · €0,00</div>
+  </div>
+  <h1 class="journal-title">The <em>Journal</em> of Trades</h1>
+  <div class="journal-subtitle">Twenty-two disciplines, one trade desk — a working catalogue for small industry.</div>
+  <div class="journal-motto">
+    <div class="l">Est. 2018</div>
+    <div class="c">"The right kit, ordered once, delivered together."</div>
+    <div class="r">16,046 SKUs on the floor</div>
+  </div>
+</section>
+
+<!-- FRONT PAGE -->
+<section class="front">
+
+  <div class="topgrid">
+
+    <!-- LEAD STORY -->
+    <article class="lead">
+      <div class="lead-text">
+        <span class="lead-tag">
+          <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/></svg>
+          Lead · Discipline No. 01
+        </span>
+        <h2 class="lead-headline">HoReCa <em>&amp;</em> Food Service.</h2>
+        <p class="lead-dek">Cafés, bakeries, small kitchens — everything from the refrigeration down to the sink, ordered once and delivered together.</p>
+        <div class="lead-body">
+          Most people opening a café in Tallinn or a neighbourhood bakery in Santa Cruz do not need fifty suppliers. They need one that understands refrigeration, cooking, preparation and the awkward bit in between — the sinks, the shelving, the bar kit, the ice machine. That is the discipline we put on the front page this issue: twelve sub-categories, six of them on the table below, six more a click away. Equipment that earns its keep on the first service.
+        </div>
+        <nav class="lead-subs" aria-label="HoReCa sub-disciplines">
+          <a href="#"><span class="n">01</span><span>Commercial Refrigeration</span><span class="c">148 SKUs</span></a>
+          <a href="#"><span class="n">02</span><span>Commercial Cooking Equipment</span><span class="c">132 SKUs</span></a>
+          <a href="#"><span class="n">03</span><span>Food Preparation Equipment</span><span class="c">86 SKUs</span></a>
+          <a href="#"><span class="n">04</span><span>Bar &amp; Beverage Service</span><span class="c">94 SKUs</span></a>
+          <a href="#"><span class="n">05</span><span>Commercial Sinks &amp; Washdown</span><span class="c">62 SKUs</span></a>
+          <a href="#"><span class="n">06</span><span>Restaurant Storage &amp; Shelving</span><span class="c">90 SKUs</span></a>
+        </nav>
+        <div class="lead-actions">
+          <a class="btn-primary" href="/en/categories/horeca-food-service">Enter discipline
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 5 7 7-7 7"/></svg>
+          </a>
+          <a class="btn-ghost" href="#starter-kits">Café kit · €2,799</a>
+        </div>
+      </div>
+      <figure class="lead-photo">
+        <img src="./images/lead-horeca.png" alt="Chef plating food in a professional restaurant kitchen" width="720" height="900" loading="eager" fetchpriority="high" />
+        <figcaption class="cap"><span>Plate I</span>A café fit-out in Kadriorg, photographed before opening service.</figcaption>
+      </figure>
+    </article>
+
+    <!-- MID STACK — six secondary disciplines -->
+    <aside class="mid-stack" aria-label="Secondary disciplines">
+      <div class="section-label">Also on the front page</div>
+
+      <a class="mid-card" href="/en/categories/automotive-workshop">
+        <div class="thumb"><img src="../../images/cat-12-automotive-workshop.png" alt="Auto workshop" width="208" height="260" loading="lazy" /></div>
+        <div class="body">
+          <div class="over">Story No. 02</div>
+          <h3>Automotive <em>&amp;</em> Workshop</h3>
+          <div class="c">Vehicle lifts, diagnostic kit, jacks, towing — the independent garage.</div>
+          <div class="meta">445 SKUs · 6 sub-cats</div>
+        </div>
+      </a>
+      <a class="mid-card" href="/en/categories/hand-power-tools">
+        <div class="thumb"><img src="../../images/cat-03-hand-power-tools.png" alt="Power tools" width="208" height="260" loading="lazy" /></div>
+        <div class="body">
+          <div class="over">Story No. 03</div>
+          <h3>Hand <em>&amp;</em> Power Tools</h3>
+          <div class="c">Drills, impacts, compressors — the tools in and out of the van.</div>
+          <div class="meta">734 SKUs · 6 sub-cats</div>
+        </div>
+      </a>
+      <a class="mid-card" href="/en/categories/construction-building">
+        <div class="thumb"><img src="../../images/cat-02-construction-building.png" alt="Construction" width="208" height="260" loading="lazy" /></div>
+        <div class="body">
+          <div class="over">Story No. 04</div>
+          <h3>Construction <em>&amp;</em> Building</h3>
+          <div class="c">Scaffolding, concrete, roofing, paint — the daily infrastructure.</div>
+          <div class="meta">688 SKUs · 6 sub-cats</div>
+        </div>
+      </a>
+      <a class="mid-card" href="/en/categories/welding-metalworking">
+        <div class="thumb"><img src="../../images/cat-04-welding-metalworking.png" alt="Welding" width="208" height="260" loading="lazy" /></div>
+        <div class="body">
+          <div class="over">Story No. 05</div>
+          <h3>Welding <em>&amp;</em> Metalworking</h3>
+          <div class="c">MIG, TIG, plasma — and the shop floor that surrounds them.</div>
+          <div class="meta">524 SKUs · 6 sub-cats</div>
+        </div>
+      </a>
+      <a class="mid-card" href="/en/categories/outdoor-power-landscaping">
+        <div class="thumb"><img src="../../images/cat-13-outdoor-power-landscaping.png" alt="Outdoor power" width="208" height="260" loading="lazy" /></div>
+        <div class="body">
+          <div class="over">Story No. 06</div>
+          <h3>Outdoor Power <em>&amp;</em> Landscaping</h3>
+          <div class="c">Pressure washers, chainsaws, garden kit — the grounds crew.</div>
+          <div class="meta">322 SKUs · 6 sub-cats</div>
+        </div>
+      </a>
+      <a class="mid-card" href="/en/categories/cleaning-janitorial">
+        <div class="thumb"><img src="../../images/cat-15-cleaning-janitorial.png" alt="Cleaning" width="208" height="260" loading="lazy" /></div>
+        <div class="body">
+          <div class="over">Story No. 07</div>
+          <h3>Cleaning <em>&amp;</em> Janitorial</h3>
+          <div class="c">Floor scrubbers, hand dryers, vacuums — the work that keeps the floor clean.</div>
+          <div class="meta">268 SKUs · 6 sub-cats</div>
+        </div>
+      </a>
+    </aside>
+  </div>
+
+  <!-- BELOW THE FOLD — 15 remaining disciplines -->
+  <div class="below">
+    <div class="below-header">
+      <div class="tag">Lower fold</div>
+      <h2>Other <em>sections</em> of this issue</h2>
+      <div class="tag r">Fifteen more disciplines</div>
+    </div>
+
+    <nav class="other-sections" aria-label="Other disciplines">
+      <a class="ent" href="/en/categories/laser-cnc-digital-fabrication">
+        <div class="thumb"><img src="../../images/cat-05-laser-cnc-digital-fabrication.png" alt="" width="128" height="128" loading="lazy" /></div>
+        <div class="body"><div><span class="n">08</span><span class="name">Laser, CNC <em>&amp;</em> Digital Fabrication</span></div><div class="cap">Diode, CO₂, CNC, 3D — for small fab-shops.</div></div>
+        <span class="count">487</span>
+      </a>
+      <a class="ent" href="/en/categories/printing-packaging-signage">
+        <div class="thumb"><img src="../../images/cat-07-printing-packaging-signage.png" alt="" width="128" height="128" loading="lazy" /></div>
+        <div class="body"><div><span class="n">09</span><span class="name">Printing, Packaging <em>&amp;</em> Signage</span></div><div class="cap">Heat presses, vinyl, labels — custom everyday.</div></div>
+        <span class="count">392</span>
+      </a>
+      <a class="ent" href="/en/categories/electrical-energy">
+        <div class="thumb"><img src="../../images/cat-08-electrical-energy.png" alt="" width="128" height="128" loading="lazy" /></div>
+        <div class="body"><div><span class="n">10</span><span class="name">Electrical <em>&amp;</em> Energy</span></div><div class="cap">Generators, solar, testing — mains to mesh.</div></div>
+        <span class="count">411</span>
+      </a>
+      <a class="ent" href="/en/categories/woodworking-carpentry">
+        <div class="thumb"><img src="../../images/cat-06-woodworking-carpentry.png" alt="" width="128" height="128" loading="lazy" /></div>
+        <div class="body"><div><span class="n">11</span><span class="name">Woodworking <em>&amp;</em> Carpentry</span></div><div class="cap">Saws, routers, presses — the small joiner returns.</div></div>
+        <span class="count">356</span>
+      </a>
+      <a class="ent" href="/en/categories/fuel-lubrication-fluid">
+        <div class="thumb"><img src="../../images/cat-14-fuel-lubrication-fluid.png" alt="" width="128" height="128" loading="lazy" /></div>
+        <div class="body"><div><span class="n">12</span><span class="name">Fuel, Lubrication <em>&amp;</em> Fluid</span></div><div class="cap">Transfer pumps, oil rigs, drum handling.</div></div>
+        <span class="count">198</span>
+      </a>
+      <a class="ent" href="/en/categories/warehousing-material-handling">
+        <div class="thumb"><img src="../../images/cat-11-warehousing-material-handling.png" alt="" width="128" height="128" loading="lazy" /></div>
+        <div class="body"><div><span class="n">13</span><span class="name">Warehousing <em>&amp;</em> Material Handling</span></div><div class="cap">Hoists, pallet jacks, shelving, workbenches.</div></div>
+        <span class="count">287</span>
+      </a>
+      <a class="ent" href="/en/categories/hvac-climate-control">
+        <div class="thumb"><img src="../../images/cat-09-hvac-climate-control.png" alt="" width="128" height="128" loading="lazy" /></div>
+        <div class="body"><div><span class="n">14</span><span class="name">HVAC <em>&amp;</em> Climate Control</span></div><div class="cap">Splits, heaters, ventilation, air quality.</div></div>
+        <span class="count">241</span>
+      </a>
+      <a class="ent" href="/en/categories/plumbing-water-systems">
+        <div class="thumb"><img src="../../images/cat-10-plumbing-water-systems.png" alt="" width="128" height="128" loading="lazy" /></div>
+        <div class="body"><div><span class="n">15</span><span class="name">Plumbing <em>&amp;</em> Water Systems</span></div><div class="cap">Pumps, pipes, heaters, filtration, fixtures.</div></div>
+        <span class="count">356</span>
+      </a>
+      <a class="ent" href="/en/categories/safety-security-workwear">
+        <div class="thumb"><img src="../../images/cat-16-safety-security-workwear.png" alt="" width="128" height="128" loading="lazy" /></div>
+        <div class="body"><div><span class="n">16</span><span class="name">Safety, Security <em>&amp;</em> Workwear</span></div><div class="cap">PPE, traffic, locks, boots, workwear.</div></div>
+        <span class="count">298</span>
+      </a>
+      <a class="ent" href="/en/categories/salon-spa-wellness">
+        <div class="thumb"><img src="../../images/cat-18-salon-spa-wellness.png" alt="" width="128" height="128" loading="lazy" /></div>
+        <div class="body"><div><span class="n">17</span><span class="name">Salon, Spa <em>&amp;</em> Wellness</span></div><div class="cap">Barber chairs, massage tables, stations.</div></div>
+        <span class="count">176</span>
+      </a>
+      <a class="ent" href="/en/categories/office-commercial-interiors">
+        <div class="thumb"><img src="../../images/cat-17-office-commercial-interiors.png" alt="" width="128" height="128" loading="lazy" /></div>
+        <div class="body"><div><span class="n">18</span><span class="name">Office <em>&amp;</em> Commercial Interiors</span></div><div class="cap">Office furniture, lobby, hardware, lighting.</div></div>
+        <span class="count">312</span>
+      </a>
+      <a class="ent" href="/en/categories/health-medical-supply">
+        <div class="thumb"><img src="../../images/cat-21-health-medical-supply.png" alt="" width="128" height="128" loading="lazy" /></div>
+        <div class="body"><div><span class="n">19</span><span class="name">Health <em>&amp;</em> Medical Supply</span></div><div class="cap">Medical furniture, mobility, bathroom safety.</div></div>
+        <span class="count">164</span>
+      </a>
+      <a class="ent" href="/en/categories/fitness-sports-recreation">
+        <div class="thumb"><img src="../../images/cat-19-fitness-sports-recreation.png" alt="" width="128" height="128" loading="lazy" /></div>
+        <div class="body"><div><span class="n">20</span><span class="name">Fitness, Sports <em>&amp;</em> Recreation</span></div><div class="cap">Gym equipment, team sports, flooring, cycling.</div></div>
+        <span class="count">201</span>
+      </a>
+      <a class="ent" href="/en/categories/boating-camping-outdoor">
+        <div class="thumb"><img src="../../images/cat-20-boating-camping-outdoor.png" alt="" width="128" height="128" loading="lazy" /></div>
+        <div class="body"><div><span class="n">21</span><span class="name">Boating, Camping <em>&amp;</em> Outdoor</span></div><div class="cap">Inflatables, kayaks, tents, canopies.</div></div>
+        <span class="count">188</span>
+      </a>
+      <a class="ent" href="/en/categories/music-entertainment">
+        <div class="thumb"><img src="../../images/cat-22-music-entertainment.png" alt="" width="128" height="128" loading="lazy" /></div>
+        <div class="body"><div><span class="n">22</span><span class="name">Music <em>&amp;</em> Entertainment</span></div><div class="cap">Guitars, keyboards, drums, stage, game room.</div></div>
+        <span class="count">142</span>
+      </a>
+    </nav>
+  </div>
+
+</section>
+
+<!-- TRADE DESK NOTICE -->
+<section class="tradenotice">
+  <div class="tradenotice-inner">
+    <div class="stamp">Trade Desk · Open</div>
+    <div class="middle">
+      <h2>Net-30, a real manager, <em>four-hour</em> quote response.</h2>
+      <p>XLMarket is a single desk for the small industry of Estonia and Spain. Price out a full fit-out, a replenishment order, or a starter kit for a café, a print-shop, or a salon. A person replies within four hours — not a ticket system.</p>
+      <div class="chips">
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Net-30 terms</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Volume pricing</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Dedicated manager</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>VAT 24% tax-incl.</span>
+      </div>
+    </div>
+    <div class="actions">
+      <a class="btn-primary" href="#quote">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        Request B2B quote
+      </a>
+      <a class="btn-ghost" href="#starter-kits">Starter kits · from €2,799</a>
+    </div>
+  </div>
+</section>
+
+<!-- COLOPHON -->
+<footer class="colophon">
+  <div>© 2026 XLMarket · Roland Kaubandus OÜ</div>
+  <div class="l">Set in DM Sans &amp; Fraunces. Printed on warm paper.</div>
+  <div>VAT 24% tax-inclusive · prices in €</div>
+</footer>
+
+</body>
+</html>

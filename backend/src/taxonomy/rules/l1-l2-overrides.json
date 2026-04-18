@@ -1,0 +1,65 @@
+{
+  "_doc": "S4 — exact 'L1|L2' VEVOR pair → v3 slug path. Migrated from backend/src/scripts/vevor-to-v3.json l1_l2_overrides. Confidence 0.85 (L1 locked, L2/L3 continues via keyword).",
+  "_version": 1,
+  "_updated": "2026-04-18",
+  "overrides": {
+    "Appliances|Crafts & Sewing": "printing-packaging-signage",
+    "Appliances|Garbage Disposal": "cleaning-janitorial",
+    "Appliances|Vacuum Cleaners": "cleaning-janitorial",
+
+    "Flooring|Gym Flooring": "fitness-sports-recreation",
+
+    "Furniture|Kitchen & Dining Room Furniture": "horeca-food-service",
+    "Furniture|Bar Furniture": "horeca-food-service",
+    "Furniture|Salon & Spa Equipment": "salon-spa-wellness",
+
+    "Health And Wellness|Personal Care Appliances": "salon-spa-wellness",
+    "Health And Wellness|Personal Care": "salon-spa-wellness",
+
+    "Outdoors|Outdoor Cooking": "horeca-food-service",
+    "Outdoors|Home Spas": "salon-spa-wellness",
+    "Outdoors|Outdoor Heating": "hvac-climate-control",
+    "Outdoors|Patio Furniture": "office-commercial-interiors",
+    "Outdoors|Pet Supplies & Wildlife": "health-medical-supply",
+
+    "Plumbing|Hydraulic Pumps": "fuel-lubrication-fluid",
+    "Plumbing|Vacuum Pump": "fuel-lubrication-fluid",
+    "Plumbing|Dewatering Pump": "fuel-lubrication-fluid",
+
+    "Sports & Outdoors|Boating": "boating-camping-outdoor",
+    "Sports & Outdoors|Camping Gear": "boating-camping-outdoor",
+    "Sports & Outdoors|Hunting Gear": "boating-camping-outdoor",
+    "Sports & Outdoors|Tailgating Gear": "boating-camping-outdoor",
+    "Sports & Outdoors|Water Sports": "boating-camping-outdoor",
+
+    "Sports & Recreation|Boating": "boating-camping-outdoor",
+    "Sports & Recreation|Camping": "boating-camping-outdoor",
+    "Sports & Recreation|Camping Gear": "boating-camping-outdoor",
+    "Sports & Recreation|Hunting": "boating-camping-outdoor",
+    "Sports & Recreation|Hunting Gear": "boating-camping-outdoor",
+    "Sports & Recreation|Water Sports": "boating-camping-outdoor",
+    "Sports & Recreation|Watercraft": "boating-camping-outdoor",
+
+    "Lawn & Garden|Outdoor Cooking": "horeca-food-service",
+    "Lawn & Garden|Pools & Spas": "outdoor-power-landscaping",
+    "Lawn & Garden|Patio Furniture & Accessories": "office-commercial-interiors",
+    "Lawn & Garden|Outdoor Heating": "hvac-climate-control",
+
+    "Agriculture & Forestry Equipment|Pet Supplies": "health-medical-supply",
+
+    "Restaurant & Food Service|Restaurant Furniture": "horeca-food-service",
+
+    "Cleaning & Janitorial Supplies|Bathroom Supplies": "plumbing-water-systems",
+
+    "Office Supplies|Office Storage & Organization": "office-commercial-interiors",
+
+    "Storage & Organization|Garage Storage": "warehousing-material-handling",
+    "Storage & Organization|Laundry Room Storage": "cleaning-janitorial",
+    "Storage & Organization|Office Storage & Organization": "office-commercial-interiors",
+    "Storage & Organization|Office Supplies": "office-commercial-interiors",
+    "Storage & Organization|Outdoor Storage": "warehousing-material-handling",
+
+    "Tools|Welding & Soldering": "welding-metalworking",
+    "Tools|Woodworking Tools": "woodworking-carpentry"
+  }
+}

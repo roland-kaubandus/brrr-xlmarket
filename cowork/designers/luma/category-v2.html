@@ -1,0 +1,450 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Automotive &amp; Workshop — XLMarket</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#090c12; --ink-2:#0d1320; --ink-3:#141b2a;
+    --text:#e7ecf2; --text-2:#98a2b3; --text-3:#6c7689;
+    --edge:rgba(255,255,255,.06); --edge-hi:rgba(255,255,255,.18); --edge-amber:rgba(212,165,116,.5);
+    --amber:#b45309; --amber-hi:#d4a574; --amber-glow:rgba(180,83,9,.18);
+    --surface:rgba(255,255,255,.035); --surface-hi:rgba(255,255,255,.08);
+    --blur:saturate(140%) blur(14px);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;background:var(--ink);color:var(--text);font-family:'DM Sans',sans-serif;font-size:15px;-webkit-font-smoothing:antialiased;}
+  body{
+    background:
+      radial-gradient(1400px 600px at 70% -100px, rgba(212,165,116,.05), transparent 60%),
+      linear-gradient(#080a10, #090c12 60%, #070a10);
+    min-height:100vh;
+  }
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:1;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .05 0'/></filter><rect width='200' height='200' filter='url(%23n)'/></svg>");
+    mix-blend-mode:overlay;opacity:.4;}
+  a{color:inherit;text-decoration:none;}
+  .tabnum{font-variant-numeric:tabular-nums;letter-spacing:.01em;}
+  .serif-i{font-family:'Fraunces';font-style:italic;font-weight:300;}
+
+  /* top bar + nav */
+  .top{position:relative;z-index:5;border-bottom:1px solid var(--edge);background:rgba(9,12,18,.7);backdrop-filter:var(--blur);font-size:12px;color:var(--text-3);letter-spacing:.04em;}
+  .top-row{max-width:1440px;margin:0 auto;padding:10px 32px;display:flex;justify-content:space-between;}
+  .top-row .l{display:flex;gap:22px;}
+  .top-row .l span{display:flex;align-items:center;gap:7px;}
+  .dot{width:5px;height:5px;border-radius:50%;background:var(--amber-hi);box-shadow:0 0 8px var(--amber-hi);}
+  .top-row .r{display:flex;gap:20px;} .top-row a{color:var(--text-3);}
+
+  .nav-outer{position:sticky;top:0;z-index:10;background:rgba(9,12,18,.78);backdrop-filter:var(--blur);border-bottom:1px solid var(--edge);}
+  .nav{max-width:1440px;margin:0 auto;padding:18px 32px;display:flex;justify-content:space-between;align-items:center;gap:24px;}
+  .brand{font-weight:600;font-size:21px;}
+  .brand em{font-family:'Fraunces';font-style:italic;font-weight:300;color:var(--amber-hi);}
+  .nav-links{display:flex;gap:26px;font-size:13.5px;color:var(--text-2);}
+  .nav-links a.active{color:var(--amber-hi);border-bottom:1px solid var(--amber-hi);padding-bottom:4px;}
+  .pill{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;font-size:12.5px;background:var(--surface);border:1px solid var(--edge);color:var(--text);transition:all .25s;backdrop-filter:var(--blur);}
+  .pill:hover{border-color:var(--edge-hi);}
+  .pill.amber{border-color:var(--edge-amber);color:var(--amber-hi);}
+  .pill.amber:hover{background:rgba(180,83,9,.14);box-shadow:0 6px 24px -6px var(--amber-glow);}
+
+  /* breadcrumb + title compact */
+  .head{max-width:1440px;margin:30px auto 12px;padding:0 32px;display:flex;justify-content:space-between;align-items:flex-end;gap:20px;}
+  .crumb{font-size:12.5px;color:var(--text-3);letter-spacing:.04em;display:flex;gap:8px;margin-bottom:8px;}
+  .crumb a:hover{color:var(--amber-hi);}
+  .crumb .sep{opacity:.5;}
+  .head h1{font-family:'Fraunces';font-weight:300;font-size:40px;margin:0;letter-spacing:-.025em;}
+  .head h1 em{font-style:italic;color:var(--amber-hi);}
+  .head .r{display:flex;gap:18px;align-items:baseline;font-size:13px;color:var(--text-2);}
+  .head .r strong{font-family:'Fraunces';font-weight:300;font-size:20px;color:var(--text);font-variant-numeric:tabular-nums;letter-spacing:-.01em;}
+
+  /* sub-cats pill row */
+  .subpills{max-width:1440px;margin:22px auto 0;padding:0 32px;display:flex;gap:10px;overflow-x:auto;scrollbar-width:none;}
+  .subpills::-webkit-scrollbar{display:none;}
+  .sp{display:inline-flex;align-items:center;gap:8px;padding:9px 16px;border-radius:999px;background:var(--surface);border:1px solid var(--edge);font-size:13px;color:var(--text);transition:all .25s;white-space:nowrap;backdrop-filter:var(--blur);}
+  .sp .count{color:var(--text-3);font-variant-numeric:tabular-nums;font-size:11.5px;}
+  .sp:hover{border-color:var(--edge-hi);background:var(--surface-hi);}
+  .sp.on{border-color:var(--edge-amber);background:rgba(180,83,9,.12);color:var(--amber-hi);}
+  .sp.on .count{color:var(--amber-hi);opacity:.8;}
+
+  /* filter bar (dark glass pill row) */
+  .filter-bar{
+    max-width:1440px;margin:22px auto 22px;padding:10px 14px;border-radius:999px;
+    background:rgba(255,255,255,.03);border:1px solid var(--edge);backdrop-filter:var(--blur);
+    display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+    margin-left:32px;margin-right:32px;
+  }
+  .fb{display:inline-flex;align-items:center;gap:7px;padding:7px 13px;border-radius:999px;font-size:12.5px;color:var(--text-2);border:1px solid transparent;transition:all .2s;cursor:pointer;}
+  .fb:hover{background:rgba(255,255,255,.03);color:var(--text);}
+  .fb.on{background:rgba(180,83,9,.14);border-color:var(--edge-amber);color:var(--amber-hi);}
+  .fb svg{opacity:.7;}
+  .fb .x{color:var(--amber-hi);margin-left:4px;font-size:13px;}
+  .fb-sep{width:1px;height:16px;background:var(--edge);margin:0 6px;}
+  .fb-sort{margin-left:auto;display:flex;align-items:center;gap:10px;font-size:12.5px;color:var(--text-3);}
+  .fb-sort select{background:rgba(255,255,255,.02);border:1px solid var(--edge);color:var(--text);padding:5px 8px;border-radius:8px;font-family:'DM Sans';font-size:12.5px;}
+
+  /* product grid */
+  .grid-wrap{max-width:1440px;margin:0 auto 60px;padding:0 32px;}
+  .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
+  @media(max-width:1100px){.grid{grid-template-columns:repeat(3,1fr);}}
+  @media(max-width:720px){.grid{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:460px){.grid{grid-template-columns:1fr;}}
+
+  .card{
+    position:relative;border-radius:12px;overflow:hidden;
+    background:linear-gradient(180deg, rgba(255,255,255,.028), rgba(255,255,255,.005));
+    border:1px solid var(--edge);backdrop-filter:var(--blur);
+    transition:all .3s;display:flex;flex-direction:column;isolation:isolate;
+  }
+  .card::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+    background:radial-gradient(400px 200px at 50% 0%, rgba(212,165,116,0), transparent 70%);transition:background .3s;}
+  .card:hover{border-color:var(--edge-amber);transform:translateY(-2px);}
+  .card:hover::before{background:radial-gradient(400px 200px at 50% 0%, rgba(212,165,116,.08), transparent 70%);}
+  .card .thumb{position:relative;aspect-ratio:1;background:rgba(255,255,255,.02);border-bottom:1px solid var(--edge);display:flex;align-items:center;justify-content:center;overflow:hidden;}
+  .card .thumb svg{width:75%;transition:transform .6s cubic-bezier(.16,1,.3,1);}
+  .card:hover .thumb svg{transform:scale(1.04);}
+  .card .stock{position:absolute;top:9px;left:9px;font-size:10.5px;color:var(--text-2);display:flex;align-items:center;gap:5px;background:rgba(11,14,20,.6);padding:3px 8px;border-radius:999px;border:1px solid var(--edge);backdrop-filter:var(--blur);}
+  .card .stock .d{width:5px;height:5px;border-radius:50%;background:#6fd38a;box-shadow:0 0 6px rgba(111,211,138,.7);}
+  .card .badge{position:absolute;top:9px;right:9px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;padding:3px 8px;border-radius:999px;background:rgba(11,14,20,.6);border:1px solid var(--edge-amber);color:var(--amber-hi);backdrop-filter:var(--blur);}
+  .card .info{padding:12px 14px 14px;display:flex;flex-direction:column;gap:4px;flex:1;}
+  .card .brand-r{display:flex;justify-content:space-between;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-3);}
+  .card .name{font-size:13.5px;font-weight:500;line-height:1.3;color:var(--text);min-height:34px;}
+  .card .price-r{display:flex;justify-content:space-between;align-items:flex-end;margin-top:auto;padding-top:8px;border-top:1px solid var(--edge);}
+  .card .price{font-family:'Fraunces';font-weight:300;font-size:19px;color:var(--amber-hi);letter-spacing:-.01em;font-variant-numeric:tabular-nums;}
+  .card .price small{font-family:'DM Sans';font-size:9.5px;color:var(--text-3);letter-spacing:.08em;text-transform:uppercase;display:block;}
+  .card .add{padding:6px 10px;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid var(--edge);color:var(--text-2);font-size:11px;display:inline-flex;align-items:center;gap:5px;transition:all .25s;}
+  .card:hover .add{border-color:var(--edge-amber);color:var(--amber-hi);background:rgba(180,83,9,.1);}
+  .card .stars{color:var(--amber-hi);letter-spacing:-1px;font-size:11px;}
+
+  /* pagination bar */
+  .pag{display:flex;justify-content:space-between;align-items:center;margin-top:30px;padding:14px 16px;border-radius:12px;background:rgba(255,255,255,.025);border:1px solid var(--edge);backdrop-filter:var(--blur);font-size:13px;color:var(--text-2);}
+  .pag-pages{display:flex;gap:6px;}
+  .pag-pages a{padding:5px 10px;border-radius:8px;border:1px solid var(--edge);color:var(--text-2);font-variant-numeric:tabular-nums;font-size:12.5px;}
+  .pag-pages a.on{color:var(--amber-hi);border-color:var(--edge-amber);background:rgba(180,83,9,.1);}
+
+  /* B2B strip at bottom */
+  .b2b{max-width:1440px;margin:0 auto 80px;padding:0 32px;}
+  .b2b-card{border-radius:16px;padding:28px 32px;border:1px solid var(--edge);background:
+      radial-gradient(500px 250px at 90% 50%, rgba(212,165,116,.08), transparent 70%),
+      linear-gradient(135deg, rgba(255,255,255,.03), rgba(255,255,255,.005));
+      backdrop-filter:var(--blur);display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center;}
+  .b2b-card h3{font-family:'Fraunces';font-weight:300;font-size:22px;letter-spacing:-.015em;margin:0 0 6px;}
+  .b2b-card p{margin:0;color:var(--text-2);font-size:13.5px;max-width:560px;line-height:1.5;}
+  .b2b-card h3 em{font-style:italic;color:var(--amber-hi);}
+
+  footer{border-top:1px solid var(--edge);max-width:1440px;margin:0 auto;padding:30px 32px;display:flex;justify-content:space-between;font-size:12.5px;color:var(--text-3);}
+</style>
+</head>
+<body>
+
+<div class="top">
+  <div class="top-row">
+    <div class="l">
+      <span><span class="dot"></span>Net-30 · verified businesses</span>
+      <span>Volume pricing · 10+ units</span>
+      <span>Dedicated manager</span>
+    </div>
+    <div class="r"><a href="#">EN / ES / EE</a><a href="#">B2B portal</a></div>
+  </div>
+</div>
+
+<header class="nav-outer">
+  <nav class="nav">
+    <a href="/" class="brand">XL<em>Market</em></a>
+    <div class="nav-links">
+      <a href="#" class="active">Catalog</a>
+      <a href="#">Starter kits</a>
+      <a href="#">For business</a>
+      <a href="#">Service plans</a>
+      <a href="#">Journal</a>
+    </div>
+    <div style="display:flex;gap:10px;">
+      <a href="#" class="pill">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        Search 16,046
+      </a>
+      <a href="#" class="pill amber">Request quote</a>
+    </div>
+  </nav>
+</header>
+
+<!-- compact head (no hero) -->
+<div class="head">
+  <div>
+    <div class="crumb">
+      <a href="/">Home</a><span class="sep">/</span>
+      <a href="#">Catalog</a><span class="sep">/</span>
+      <span style="color:var(--text);">Automotive &amp; Workshop</span>
+    </div>
+    <h1>Automotive &amp; <em>Workshop</em></h1>
+  </div>
+  <div class="r">
+    <span><strong class="tabnum">1,290</strong> SKUs</span>
+    <span style="opacity:.4;">·</span>
+    <span>6 sub-categories</span>
+    <span style="opacity:.4;">·</span>
+    <span>Starter kit <strong class="tabnum">€14,500</strong></span>
+  </div>
+</div>
+
+<!-- sub-cats as horizontal pill row -->
+<div class="subpills">
+  <a class="sp on" href="#">All <span class="count">1,290</span></a>
+  <a class="sp" href="#">Lifts &amp; Hoists <span class="count">184</span></a>
+  <a class="sp" href="#">Tyre Service <span class="count">226</span></a>
+  <a class="sp" href="#">AC &amp; Refrigerant <span class="count">98</span></a>
+  <a class="sp" href="#">Diagnostics <span class="count">142</span></a>
+  <a class="sp" href="#">Body &amp; Paint <span class="count">310</span></a>
+  <a class="sp" href="#">Workshop Storage <span class="count">330</span></a>
+</div>
+
+<!-- dark glass filter pill bar -->
+<div class="filter-bar">
+  <span class="fb on">Price <span class="x">€300–€12k</span> ×</span>
+  <span class="fb on">VEVOR <span class="x">812</span> ×</span>
+  <div class="fb-sep"></div>
+  <span class="fb">
+    Brand
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="m6 9 6 6 6-6"/></svg>
+  </span>
+  <span class="fb">
+    Power supply
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="m6 9 6 6 6-6"/></svg>
+  </span>
+  <span class="fb">
+    Availability
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="m6 9 6 6 6-6"/></svg>
+  </span>
+  <span class="fb">
+    Rating
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="m6 9 6 6 6-6"/></svg>
+  </span>
+  <span class="fb">
+    Certification
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="m6 9 6 6 6-6"/></svg>
+  </span>
+  <div class="fb-sort">
+    <span>Sort</span>
+    <select>
+      <option>Relevance</option>
+      <option>Price — low</option>
+      <option>Price — high</option>
+      <option>Top-rated</option>
+      <option>Newest</option>
+    </select>
+  </div>
+</div>
+
+<!-- product grid -->
+<div class="grid-wrap">
+  <div class="grid">
+    <!-- 12 product cards -->
+    <a class="card" href="#">
+      <div class="thumb">
+        <span class="stock"><span class="d"></span>In stock</span><span class="badge">Bestseller</span>
+        <svg viewBox="0 0 160 140"><rect x="10" y="50" width="140" height="70" rx="8" fill="#1a2334" stroke="#2a3652"/><rect x="25" y="60" width="110" height="55" fill="#0f1624" stroke="#2a3652"/><circle cx="55" cy="105" r="18" fill="#0a0e18" stroke="#3a4566"/><circle cx="105" cy="105" r="18" fill="#0a0e18" stroke="#3a4566"/><path d="M45 45l8-18h54l8 18z" fill="#d4a574" opacity=".4"/></svg>
+      </div>
+      <div class="info">
+        <div class="brand-r"><span>VEVOR</span><span class="stars">★★★★★</span></div>
+        <div class="name">Two-Post Lift 4T, 400V CE</div>
+        <div class="price-r">
+          <div><div class="price">€2,199</div><small>VAT 24% incl.</small></div>
+          <a class="add" href="#">Add</a>
+        </div>
+      </div>
+    </a>
+
+    <a class="card" href="#">
+      <div class="thumb">
+        <span class="stock"><span class="d"></span>In stock</span><span class="badge">B2B</span>
+        <svg viewBox="0 0 160 140"><rect x="20" y="35" width="120" height="80" rx="10" fill="#1a2334" stroke="#2a3652"/><circle cx="80" cy="75" r="30" fill="#0a0e18" stroke="#3a4566"/><circle cx="80" cy="75" r="14" fill="#d4a574" opacity=".5"/></svg>
+      </div>
+      <div class="info">
+        <div class="brand-r"><span>VEVOR</span><span class="stars">★★★★<span style="color:var(--text-3);">★</span></span></div>
+        <div class="name">Tyre Changer 26", Semi-Auto</div>
+        <div class="price-r">
+          <div><div class="price">€1,649</div><small>VAT incl.</small></div>
+          <a class="add" href="#">Add</a>
+        </div>
+      </div>
+    </a>
+
+    <a class="card" href="#">
+      <div class="thumb">
+        <span class="stock"><span class="d"></span>In stock</span><span class="badge">New</span>
+        <svg viewBox="0 0 160 140"><rect x="30" y="25" width="100" height="70" rx="6" fill="#1a2334" stroke="#2a3652"/><rect x="42" y="37" width="76" height="40" fill="#0f1624" stroke="#2a3652"/><rect x="50" y="45" width="60" height="24" fill="#d4a574" opacity=".35"/><rect x="60" y="100" width="40" height="20" rx="2" fill="#1a2334"/></svg>
+      </div>
+      <div class="info">
+        <div class="brand-r"><span>VEVOR</span><span class="stars">★★★★★</span></div>
+        <div class="name">AC Recovery Station R134a/R1234yf</div>
+        <div class="price-r">
+          <div><div class="price">€3,490</div><small>VAT incl.</small></div>
+          <a class="add" href="#">Add</a>
+        </div>
+      </div>
+    </a>
+
+    <a class="card" href="#">
+      <div class="thumb">
+        <span class="stock"><span class="d"></span>In stock</span>
+        <svg viewBox="0 0 160 140"><rect x="40" y="25" width="80" height="90" rx="6" fill="#1a2334" stroke="#2a3652"/><rect x="52" y="37" width="56" height="34" fill="#0f1624" stroke="#2a3652"/><rect x="58" y="43" width="44" height="22" fill="#d4a574" opacity=".35"/><rect x="55" y="81" width="50" height="6" rx="1" fill="#0f1624"/><rect x="55" y="91" width="50" height="6" rx="1" fill="#0f1624"/></svg>
+      </div>
+      <div class="info">
+        <div class="brand-r"><span>VEVOR</span><span class="stars">★★★★<span style="color:var(--text-3);">★</span></span></div>
+        <div class="name">OBD-II Diagnostic Scanner, All-Sys</div>
+        <div class="price-r">
+          <div><div class="price">€890</div><small>VAT incl.</small></div>
+          <a class="add" href="#">Add</a>
+        </div>
+      </div>
+    </a>
+
+    <a class="card" href="#">
+      <div class="thumb">
+        <span class="stock"><span class="d"></span>In stock</span><span class="badge">Bestseller</span>
+        <svg viewBox="0 0 160 140"><rect x="30" y="45" width="100" height="60" rx="4" fill="#1a2334" stroke="#2a3652"/><rect x="40" y="55" width="80" height="40" fill="#0f1624" stroke="#2a3652"/><circle cx="80" cy="75" r="14" fill="#d4a574" opacity=".4"/></svg>
+      </div>
+      <div class="info">
+        <div class="brand-r"><span>VEVOR</span><span class="stars">★★★★★</span></div>
+        <div class="name">Wheel Balancer, Digital</div>
+        <div class="price-r">
+          <div><div class="price">€1,120</div><small>VAT incl.</small></div>
+          <a class="add" href="#">Add</a>
+        </div>
+      </div>
+    </a>
+
+    <a class="card" href="#">
+      <div class="thumb">
+        <span class="stock"><span class="d"></span>In stock</span>
+        <svg viewBox="0 0 160 140"><path d="M25 100h110v-10H25z" fill="#1a2334" stroke="#2a3652"/><rect x="35" y="55" width="20" height="45" fill="#1a2334" stroke="#2a3652"/><rect x="105" y="55" width="20" height="45" fill="#1a2334" stroke="#2a3652"/><path d="M45 55v-20h70v20" fill="none" stroke="#2a3652" stroke-width="2"/><rect x="55" y="65" width="50" height="30" fill="#d4a574" opacity=".25"/></svg>
+      </div>
+      <div class="info">
+        <div class="brand-r"><span>VEVOR</span><span class="stars">★★★★<span style="color:var(--text-3);">★</span></span></div>
+        <div class="name">Scissor Lift 3.5T, Mid-Rise</div>
+        <div class="price-r">
+          <div><div class="price">€1,790</div><small>VAT incl.</small></div>
+          <a class="add" href="#">Add</a>
+        </div>
+      </div>
+    </a>
+
+    <a class="card" href="#">
+      <div class="thumb">
+        <span class="stock"><span class="d"></span>In stock</span><span class="badge">B2B</span>
+        <svg viewBox="0 0 160 140"><rect x="40" y="30" width="80" height="80" rx="8" fill="#1a2334" stroke="#2a3652"/><rect x="52" y="44" width="56" height="10" rx="2" fill="#0f1624"/><rect x="52" y="60" width="56" height="10" rx="2" fill="#0f1624"/><rect x="52" y="76" width="56" height="10" rx="2" fill="#d4a574" opacity=".3"/><rect x="52" y="92" width="56" height="10" rx="2" fill="#0f1624"/></svg>
+      </div>
+      <div class="info">
+        <div class="brand-r"><span>VEVOR</span><span class="stars">★★★★★</span></div>
+        <div class="name">Tool Cabinet 7-Drawer, 1.5 m</div>
+        <div class="price-r">
+          <div><div class="price">€640</div><small>VAT incl.</small></div>
+          <a class="add" href="#">Add</a>
+        </div>
+      </div>
+    </a>
+
+    <a class="card" href="#">
+      <div class="thumb">
+        <span class="stock"><span class="d"></span>In stock</span>
+        <svg viewBox="0 0 160 140"><circle cx="80" cy="70" r="38" fill="#1a2334" stroke="#2a3652"/><circle cx="80" cy="70" r="26" fill="#0f1624" stroke="#2a3652"/><rect x="78" y="45" width="4" height="25" fill="#d4a574"/><rect x="50" y="100" width="60" height="15" fill="#1a2334"/></svg>
+      </div>
+      <div class="info">
+        <div class="brand-r"><span>VEVOR</span><span class="stars">★★★★★</span></div>
+        <div class="name">Air Compressor 300 L, Belt Drive</div>
+        <div class="price-r">
+          <div><div class="price">€1,290</div><small>VAT incl.</small></div>
+          <a class="add" href="#">Add</a>
+        </div>
+      </div>
+    </a>
+
+    <a class="card" href="#">
+      <div class="thumb">
+        <span class="stock"><span class="d"></span>In stock</span>
+        <svg viewBox="0 0 160 140"><rect x="30" y="40" width="100" height="70" rx="4" fill="#1a2334" stroke="#2a3652"/><rect x="42" y="52" width="76" height="36" fill="#0f1624"/><rect x="52" y="59" width="56" height="22" fill="#d4a574" opacity=".3"/><circle cx="80" cy="100" r="6" fill="#d4a574"/></svg>
+      </div>
+      <div class="info">
+        <div class="brand-r"><span>VEVOR</span><span class="stars">★★★★<span style="color:var(--text-3);">★</span></span></div>
+        <div class="name">Paint Booth Fan Set, 4 m + Filters</div>
+        <div class="price-r">
+          <div><div class="price">€2,340</div><small>VAT incl.</small></div>
+          <a class="add" href="#">Add</a>
+        </div>
+      </div>
+    </a>
+
+    <a class="card" href="#">
+      <div class="thumb">
+        <span class="stock"><span class="d"></span>In stock</span><span class="badge">B2B</span>
+        <svg viewBox="0 0 160 140"><rect x="30" y="45" width="100" height="50" rx="6" fill="#1a2334" stroke="#2a3652"/><circle cx="55" cy="70" r="14" fill="#0f1624" stroke="#3a4566"/><circle cx="105" cy="70" r="14" fill="#0f1624" stroke="#3a4566"/><rect x="75" y="60" width="20" height="20" fill="#d4a574" opacity=".4"/></svg>
+      </div>
+      <div class="info">
+        <div class="brand-r"><span>VEVOR</span><span class="stars">★★★★★</span></div>
+        <div class="name">Transmission Jack 1 Ton</div>
+        <div class="price-r">
+          <div><div class="price">€480</div><small>VAT incl.</small></div>
+          <a class="add" href="#">Add</a>
+        </div>
+      </div>
+    </a>
+
+    <a class="card" href="#">
+      <div class="thumb">
+        <span class="stock"><span class="d"></span>In stock</span>
+        <svg viewBox="0 0 160 140"><path d="M30 35h100v60H30z" fill="#1a2334" stroke="#2a3652"/><rect x="40" y="47" width="80" height="36" fill="#0f1624"/><rect x="50" y="55" width="60" height="20" fill="#d4a574" opacity=".3"/><path d="M30 95h100l-10 15H40z" fill="#1a2334"/></svg>
+      </div>
+      <div class="info">
+        <div class="brand-r"><span>VEVOR</span><span class="stars">★★★★<span style="color:var(--text-3);">★</span></span></div>
+        <div class="name">Brake Lathe On-Car, Disc Resurfacer</div>
+        <div class="price-r">
+          <div><div class="price">€2,980</div><small>VAT incl.</small></div>
+          <a class="add" href="#">Add</a>
+        </div>
+      </div>
+    </a>
+
+    <a class="card" href="#">
+      <div class="thumb">
+        <span class="stock"><span class="d"></span>In stock</span><span class="badge">New</span>
+        <svg viewBox="0 0 160 140"><rect x="40" y="40" width="80" height="70" rx="4" fill="#1a2334" stroke="#2a3652"/><rect x="52" y="53" width="56" height="36" fill="#0f1624"/><circle cx="80" cy="71" r="12" fill="#d4a574" opacity=".4"/></svg>
+      </div>
+      <div class="info">
+        <div class="brand-r"><span>VEVOR</span><span class="stars">★★★★★</span></div>
+        <div class="name">Headlight Restoration Kit, Pro</div>
+        <div class="price-r">
+          <div><div class="price">€320</div><small>VAT incl.</small></div>
+          <a class="add" href="#">Add</a>
+        </div>
+      </div>
+    </a>
+  </div>
+
+  <div class="pag">
+    <span>Page 1 of 108</span>
+    <div class="pag-pages">
+      <a class="on">1</a><a>2</a><a>3</a><a>4</a><a>…</a><a>108</a>
+    </div>
+    <span class="tabnum">12 of 1,290 shown</span>
+  </div>
+</div>
+
+<div class="b2b" id="quote">
+  <div class="b2b-card">
+    <div>
+      <h3>Outfitting a <em>full workshop?</em></h3>
+      <p>Starter kits from €14,500. Net-30 for verified businesses, volume pricing on 3+ lifts, dedicated account manager, delivered on one truck.</p>
+    </div>
+    <a href="#" class="pill amber">Request a B2B quote →</a>
+  </div>
+</div>
+
+<footer>
+  <div>© 2026 Roland Kaubandus OÜ · VEVOR authorised dealer EE+ES</div>
+  <div class="serif-i" style="color:var(--amber-hi);">Professional tools, half the price.</div>
+</footer>
+
+</body>
+</html>

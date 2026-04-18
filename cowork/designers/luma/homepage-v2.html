@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>XLMarket — Flagship Disciplines</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink:#090c12; --ink-2:#0d1320; --ink-3:#141b2a;
+    --text:#e7ecf2; --text-2:#98a2b3; --text-3:#6c7689;
+    --edge:rgba(255,255,255,.06); --edge-hi:rgba(255,255,255,.16); --edge-amber:rgba(212,165,116,.45);
+    --amber:#b45309; --amber-hi:#d4a574; --amber-glow:rgba(180,83,9,.18);
+    --surface:rgba(255,255,255,.035); --surface-hi:rgba(255,255,255,.075);
+    --blur:saturate(140%) blur(14px);
+  }
+  * { box-sizing:border-box; }
+  html,body { margin:0; background:var(--ink); color:var(--text); font-family:'DM Sans',sans-serif; font-size:15px; -webkit-font-smoothing:antialiased; }
+  body {
+    background:
+      radial-gradient(1400px 700px at 50% -150px, rgba(212,165,116,.08), transparent 65%),
+      radial-gradient(900px 600px at 90% 60%, rgba(80,110,190,.04), transparent 70%),
+      linear-gradient(#080a10, #090c12 60%, #070a0f);
+    min-height:100vh;
+  }
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:1;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .055 0'/></filter><rect width='200' height='200' filter='url(%23n)'/></svg>");
+    mix-blend-mode:overlay;opacity:.5;}
+  a{color:inherit;text-decoration:none;}
+  .tabnum{font-variant-numeric:tabular-nums;letter-spacing:.01em;}
+  .serif{font-family:'Fraunces',serif;font-weight:300;letter-spacing:-.02em;}
+  .serif-i{font-family:'Fraunces',serif;font-style:italic;font-weight:300;}
+
+  /* ---------- Glowing dark service strip ---------- */
+  .service-strip {
+    position:relative;z-index:5;
+    background:linear-gradient(180deg, rgba(11,14,20,.92), rgba(13,19,32,.78));
+    backdrop-filter:var(--blur);
+    border-bottom:1px solid var(--edge-amber);
+    overflow:hidden;
+  }
+  .service-strip::before {
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background:
+      radial-gradient(600px 60px at 20% 50%, rgba(212,165,116,.12), transparent 70%),
+      radial-gradient(600px 60px at 80% 50%, rgba(212,165,116,.1), transparent 70%);
+  }
+  .service-strip .row {
+    position:relative; max-width:1440px;margin:0 auto;padding:12px 32px;
+    display:flex;justify-content:space-between;align-items:center;gap:32px;
+    font-size:12.5px;color:var(--text-2);letter-spacing:.04em;
+  }
+  .service-strip .left{display:flex;gap:28px;flex-wrap:wrap;}
+  .service-strip .left span{display:flex;align-items:center;gap:8px;}
+  .service-strip .dot{width:5px;height:5px;border-radius:50%;background:var(--amber-hi);box-shadow:0 0 12px var(--amber-hi);}
+  .service-strip .right{display:flex;gap:22px;}
+  .service-strip a{color:var(--text-2);transition:color .2s;} .service-strip a:hover{color:var(--amber-hi);}
+
+  /* ---------- Nav ---------- */
+  .nav-outer{position:sticky;top:0;z-index:10;background:rgba(9,12,18,.72);backdrop-filter:var(--blur);border-bottom:1px solid var(--edge);}
+  .nav{max-width:1440px;margin:0 auto;padding:20px 32px;display:flex;align-items:center;justify-content:space-between;gap:28px;}
+  .brand{font-weight:600;font-size:22px;letter-spacing:-.01em;}
+  .brand em{font-family:'Fraunces';font-style:italic;font-weight:300;color:var(--amber-hi);}
+  .nav-links{display:flex;gap:30px;font-size:14px;color:var(--text-2);}
+  .nav-links a{padding:6px 0;transition:color .2s;}
+  .nav-links a:hover{color:var(--text);}
+  .nav-links a.active{color:var(--text);border-bottom:1px solid var(--amber-hi);padding-bottom:5px;}
+  .pill{display:inline-flex;align-items:center;gap:9px;padding:9px 16px;border-radius:999px;font-size:13px;background:var(--surface);border:1px solid var(--edge);color:var(--text);transition:all .25s;backdrop-filter:var(--blur);}
+  .pill:hover{border-color:var(--edge-hi);background:var(--surface-hi);transform:translateY(-1px);}
+  .pill.amber{border-color:var(--edge-amber);color:var(--amber-hi);}
+  .pill.amber:hover{background:rgba(180,83,9,.14);box-shadow:0 6px 24px -6px var(--amber-glow);}
+
+  /* ---------- Hero ---------- */
+  .hero{max-width:1440px;margin:0 auto;padding:90px 32px 10px;position:relative;z-index:2;}
+  .hero .kicker{font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--text-3);display:flex;align-items:center;gap:10px;margin-bottom:26px;}
+  .hero .kicker::before{content:"";width:32px;height:1px;background:var(--amber-hi);}
+  .hero h1{font-family:'Fraunces';font-weight:300;font-size:clamp(42px,5.6vw,74px);letter-spacing:-.028em;line-height:1;margin:0 0 22px;max-width:1000px;}
+  .hero h1 em{font-style:italic;color:var(--amber-hi);}
+  .hero .split{display:grid;grid-template-columns:1.4fr 1fr;gap:40px;align-items:end;margin-top:20px;}
+  .hero .lede{font-size:16px;line-height:1.6;color:var(--text-2);max-width:520px;}
+  .hero .meta{display:flex;flex-direction:column;gap:10px;align-items:flex-end;}
+  .hero .meta-row{display:flex;gap:14px;align-items:center;font-size:12.5px;color:var(--text-3);letter-spacing:.05em;text-transform:uppercase;}
+  .hero .meta-row strong{font-family:'Fraunces';font-weight:300;font-size:28px;color:var(--text);text-transform:none;letter-spacing:-.01em;}
+
+  /* ---------- Section title ---------- */
+  .section-title{max-width:1440px;margin:80px auto 28px;padding:0 32px;display:flex;justify-content:space-between;align-items:flex-end;gap:32px;}
+  .section-title h2{font-family:'Fraunces';font-weight:300;font-size:36px;margin:0;letter-spacing:-.02em;}
+  .section-title .sub{font-size:13px;color:var(--text-3);letter-spacing:.04em;text-transform:uppercase;}
+
+  /* ---------- Flagship wide cards ---------- */
+  .flagships{max-width:1440px;margin:0 auto;padding:0 32px;display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  @media (max-width:900px){.flagships{grid-template-columns:1fr;}}
+  .flag{
+    position:relative;min-height:280px;border-radius:18px;overflow:hidden;
+    border:1px solid var(--edge);isolation:isolate;
+    display:flex;align-items:flex-end;
+    transition:transform .5s cubic-bezier(.16,1,.3,1), border-color .3s;
+  }
+  .flag-img{position:absolute;inset:0;z-index:0;background-size:cover;background-position:center;filter:grayscale(.1) brightness(.62) contrast(1.1);transition:transform .9s cubic-bezier(.16,1,.3,1), filter .5s;}
+  .flag-fade{position:absolute;inset:0;z-index:1;background:
+    linear-gradient(90deg, rgba(9,12,18,.95) 0%, rgba(9,12,18,.55) 55%, rgba(9,12,18,0) 100%),
+    linear-gradient(180deg, rgba(9,12,18,0) 55%, rgba(9,12,18,.85) 100%);
+  }
+  .flag-body{position:relative;z-index:2;padding:28px 32px 26px;width:100%;display:grid;grid-template-columns:1fr auto;gap:24px;align-items:end;}
+  .flag .tag{font-size:11.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--amber-hi);}
+  .flag h3{font-family:'Fraunces';font-weight:300;font-size:32px;line-height:1.02;margin:10px 0 10px;letter-spacing:-.02em;color:#fff;max-width:360px;}
+  .flag p{font-size:14px;line-height:1.5;color:var(--text-2);margin:0;max-width:380px;}
+  .flag-cta{
+    display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:999px;
+    border:1px solid var(--edge-amber);background:rgba(11,14,20,.4);backdrop-filter:var(--blur);
+    color:var(--amber-hi);font-size:12.5px;letter-spacing:.05em;white-space:nowrap;transition:all .25s;
+  }
+  .flag:hover{border-color:var(--edge-amber);transform:translateY(-2px);}
+  .flag:hover .flag-img{transform:scale(1.04);filter:grayscale(0) brightness(.72) contrast(1.15);}
+  .flag:hover .flag-cta{background:rgba(180,83,9,.2);box-shadow:0 8px 28px -8px var(--amber-glow);}
+
+  /* ---------- Compact chips grid ---------- */
+  .chips-head{max-width:1440px;margin:72px auto 22px;padding:0 32px;display:flex;justify-content:space-between;align-items:flex-end;gap:32px;}
+  .chips-head h3{font-family:'Fraunces';font-weight:300;font-size:28px;margin:0;letter-spacing:-.02em;}
+  .chips-head .sub{font-size:12.5px;color:var(--text-3);letter-spacing:.06em;text-transform:uppercase;}
+
+  .chips-grid{
+    max-width:1440px;margin:0 auto;padding:0 32px 60px;
+    display:grid;grid-template-columns:repeat(3,1fr);gap:12px;
+  }
+  @media(max-width:1000px){.chips-grid{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:640px){.chips-grid{grid-template-columns:1fr;}}
+  .chip-card{
+    position:relative;padding:18px 18px 16px 62px;border-radius:12px;
+    background:var(--surface);border:1px solid var(--edge);backdrop-filter:var(--blur);
+    display:flex;flex-direction:column;gap:3px;
+    transition:all .3s;overflow:hidden;isolation:isolate;min-height:94px;
+  }
+  .chip-thumb{
+    position:absolute;left:10px;top:10px;width:40px;height:72px;border-radius:8px;
+    background-size:cover;background-position:center;filter:grayscale(.15) brightness(.85) contrast(1.05);
+    border:1px solid var(--edge);
+    transition:filter .4s;
+  }
+  .chip-name{font-size:14px;font-weight:500;color:var(--text);line-height:1.25;letter-spacing:-.005em;}
+  .chip-meta{font-size:11.5px;color:var(--text-3);letter-spacing:.04em;margin-top:auto;display:flex;justify-content:space-between;}
+  .chip-meta .count{color:var(--text-2);font-variant-numeric:tabular-nums;}
+  .chip-card:hover{border-color:var(--edge-amber);background:var(--surface-hi);transform:translateY(-1px);}
+  .chip-card:hover .chip-name{color:#fff;}
+  .chip-card:hover .chip-thumb{filter:grayscale(0) brightness(1) contrast(1.1);}
+  .chip-card::after{content:"";position:absolute;right:14px;top:14px;width:16px;height:16px;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236c7689' stroke-width='1.5'><path d='M7 17 17 7M9 7h8v8'/></svg>");
+    transition:all .4s cubic-bezier(.16,1,.3,1);}
+  .chip-card:hover::after{transform:translate(3px,-3px);background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23d4a574' stroke-width='1.5'><path d='M7 17 17 7M9 7h8v8'/></svg>");}
+
+  /* ---------- Starter kit strip ---------- */
+  .kits{max-width:1440px;margin:0 auto 100px;padding:0 32px;}
+  .kits-card{
+    position:relative;border-radius:20px;padding:42px 44px;overflow:hidden;
+    border:1px solid var(--edge);
+    background:
+      radial-gradient(700px 360px at 10% 20%, rgba(212,165,116,.09), transparent 70%),
+      linear-gradient(135deg, rgba(255,255,255,.03), rgba(255,255,255,.005));
+    backdrop-filter:var(--blur);
+  }
+  .kits-card h3{font-family:'Fraunces';font-weight:300;font-size:34px;margin:0 0 12px;letter-spacing:-.02em;}
+  .kits-card h3 em{font-style:italic;color:var(--amber-hi);}
+  .kits-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:24px;}
+  @media(max-width:900px){.kits-grid{grid-template-columns:repeat(2,1fr);}}
+  .kit{padding:16px;border-radius:12px;background:rgba(255,255,255,.025);border:1px solid var(--edge);transition:all .3s;}
+  .kit:hover{border-color:var(--edge-amber);background:rgba(255,255,255,.045);transform:translateY(-2px);}
+  .kit .price{font-family:'Fraunces';font-weight:300;font-size:22px;color:var(--amber-hi);letter-spacing:-.01em;font-variant-numeric:tabular-nums;}
+  .kit .name{font-size:14.5px;font-weight:500;margin:2px 0 4px;}
+  .kit .desc{font-size:12.5px;color:var(--text-3);line-height:1.45;}
+
+  footer{border-top:1px solid var(--edge);max-width:1440px;margin:0 auto;padding:40px 32px;font-size:13px;color:var(--text-3);display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;}
+</style>
+</head>
+<body>
+
+<div class="service-strip">
+  <div class="row">
+    <div class="left">
+      <span><span class="dot"></span> Net-30 · verified businesses</span>
+      <span>Volume pricing · 10+ units</span>
+      <span>Dedicated account manager</span>
+      <span>VAT 24% included in all prices</span>
+    </div>
+    <div class="right">
+      <a href="#">EN / ES / EE</a>
+      <a href="#">B2B portal</a>
+    </div>
+  </div>
+</div>
+
+<header class="nav-outer">
+  <nav class="nav">
+    <a href="/" class="brand">XL<em>Market</em></a>
+    <div class="nav-links">
+      <a href="#" class="active">Disciplines</a>
+      <a href="#">Starter kits</a>
+      <a href="#">For business</a>
+      <a href="#">Service plans</a>
+      <a href="#">Journal</a>
+    </div>
+    <div style="display:flex;gap:10px;">
+      <a href="#" class="pill">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        Search 16,046
+      </a>
+      <a href="#quote" class="pill amber">Request quote</a>
+    </div>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="kicker">22 disciplines · 16,046 SKUs · curated, not dumped</div>
+  <h1>The equipment of<br/>working <em>professions</em>.</h1>
+  <div class="split">
+    <p class="lede">Four flagship disciplines run the floor — the rest fit around them. Browse the catalog like a library: one buyer, one account manager, one invoice, thirty days to pay.</p>
+    <div class="meta">
+      <div class="meta-row"><strong class="tabnum">1,847</strong><span>active B2B customers</span></div>
+      <div class="meta-row"><strong class="tabnum">&lt; 4 h</strong><span>average quote response</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="section-title">
+  <h2>Flagship disciplines</h2>
+  <div class="sub">01 — 04 · curated from 16,046 SKUs</div>
+</div>
+
+<section class="flagships">
+  <a class="flag" href="#">
+    <div class="flag-img" style="background-image:url('../../images/cat-01-horeca-food-service.png');"></div>
+    <div class="flag-fade"></div>
+    <div class="flag-body">
+      <div>
+        <span class="tag">01 · Flagship</span>
+        <h3 class="serif">HoReCa &amp; <em>Food Service</em></h3>
+        <p>From a two-stool espresso bar to a full commercial kitchen — refrigeration, cooking, bar, prep. Starter kits from €2,799.</p>
+      </div>
+      <span class="flag-cta">Enter →</span>
+    </div>
+  </a>
+
+  <a class="flag" href="#">
+    <div class="flag-img" style="background-image:url('../../images/cat-05-laser-cnc-digital-fabrication.png');"></div>
+    <div class="flag-fade"></div>
+    <div class="flag-body">
+      <div>
+        <span class="tag">02 · Flagship</span>
+        <h3 class="serif">Laser, CNC &amp; <em>Digital Fabrication</em></h3>
+        <p>Fibre lasers, CO₂ engravers, CNC routers. Specified for small studios and full fab-shops. Fast quote for 3+ machines.</p>
+      </div>
+      <span class="flag-cta">Enter →</span>
+    </div>
+  </a>
+
+  <a class="flag" href="#">
+    <div class="flag-img" style="background-image:url('../../images/cat-04-welding-metalworking.png');"></div>
+    <div class="flag-fade"></div>
+    <div class="flag-body">
+      <div>
+        <span class="tag">03 · Flagship</span>
+        <h3 class="serif">Welding &amp; <em>Metalworking</em></h3>
+        <p>MIG, TIG, plasma, cold-saws, press brakes. From the first workshop MIG to a production weld cell — with service plans.</p>
+      </div>
+      <span class="flag-cta">Enter →</span>
+    </div>
+  </a>
+
+  <a class="flag" href="#">
+    <div class="flag-img" style="background-image:url('../../images/cat-12-automotive-workshop.png');"></div>
+    <div class="flag-fade"></div>
+    <div class="flag-body">
+      <div>
+        <span class="tag">04 · Flagship</span>
+        <h3 class="serif">Automotive &amp; <em>Workshop</em></h3>
+        <p>Two-post lifts, tyre machines, AC stations, diagnostics. Outfitting a full garage bay — hardware, tooling, and service.</p>
+      </div>
+      <span class="flag-cta">Enter →</span>
+    </div>
+  </a>
+</section>
+
+<div class="chips-head">
+  <h3>The supporting eighteen</h3>
+  <div class="sub">05 — 22 · tap to enter</div>
+</div>
+
+<section class="chips-grid">
+  <a class="chip-card" href="#"><div class="chip-thumb" style="background-image:url('../../images/cat-07-printing-packaging-signage.png');"></div><div class="chip-name">Printing, Packaging &amp; Signage</div><div class="chip-meta"><span>05 · 6 subs</span><span class="count">760 SKU</span></div></a>
+  <a class="chip-card" href="#"><div class="chip-thumb" style="background-image:url('../../images/cat-08-electrical-energy.png');"></div><div class="chip-name">Electrical &amp; Energy</div><div class="chip-meta"><span>06 · 6 subs</span><span class="count">1,210 SKU</span></div></a>
+  <a class="chip-card" href="#"><div class="chip-thumb" style="background-image:url('../../images/cat-06-woodworking-carpentry.png');"></div><div class="chip-name">Woodworking &amp; Carpentry</div><div class="chip-meta"><span>07 · 6 subs</span><span class="count">840 SKU</span></div></a>
+  <a class="chip-card" href="#"><div class="chip-thumb" style="background-image:url('../../images/cat-02-construction-building.png');"></div><div class="chip-name">Construction &amp; Building</div><div class="chip-meta"><span>08 · 6 subs</span><span class="count">1,860 SKU</span></div></a>
+  <a class="chip-card" href="#"><div class="chip-thumb" style="background-image:url('../../images/cat-15-cleaning-janitorial.png');"></div><div class="chip-name">Cleaning &amp; Janitorial</div><div class="chip-meta"><span>09 · 6 subs</span><span class="count">540 SKU</span></div></a>
+  <a class="chip-card" href="#"><div class="chip-thumb" style="background-image:url('../../images/cat-03-hand-power-tools.png');"></div><div class="chip-name">Hand &amp; Power Tools</div><div class="chip-meta"><span>10 · 6 subs</span><span class="count">3,210 SKU</span></div></a>
+  <a class="chip-card" href="#"><div class="chip-thumb" style="background-image:url('../../images/cat-14-fuel-lubrication-fluid.png');"></div><div class="chip-name">Fuel, Lubrication &amp; Fluid</div><div class="chip-meta"><span>11 · 6 subs</span><span class="count">420 SKU</span></div></a>
+  <a class="chip-card" href="#"><div class="chip-thumb" style="background-image:url('../../images/cat-13-outdoor-power-landscaping.png');"></div><div class="chip-name">Outdoor Power &amp; Landscaping</div><div class="chip-meta"><span>12 · 6 subs</span><span class="count">910 SKU</span></div></a>
+  <a class="chip-card" href="#"><div class="chip-thumb" style="background-image:url('../../images/cat-11-warehousing-material-handling.png');"></div><div class="chip-name">Warehousing &amp; Material Handling</div><div class="chip-meta"><span>13 · 6 subs</span><span class="count">680 SKU</span></div></a>
+  <a class="chip-card" href="#"><div class="chip-thumb" style="background-image:url('../../images/cat-09-hvac-climate-control.png');"></div><div class="chip-name">HVAC &amp; Climate Control</div><div class="chip-meta"><span>14 · 6 subs</span><span class="count">770 SKU</span></div></a>
+  <a class="chip-card" href="#"><div class="chip-thumb" style="background-image:url('../../images/cat-10-plumbing-water-systems.png');"></div><div class="chip-name">Plumbing &amp; Water Systems</div><div class="chip-meta"><span>15 · 6 subs</span><span class="count">540 SKU</span></div></a>
+  <a class="chip-card" href="#"><div class="chip-thumb" style="background-image:url('../../images/cat-16-safety-security-workwear.png');"></div><div class="chip-name">Safety, Security &amp; Workwear</div><div class="chip-meta"><span>16 · 6 subs</span><span class="count">980 SKU</span></div></a>
+  <a class="chip-card" href="#"><div class="chip-thumb" style="background-image:url('../../images/cat-18-salon-spa-wellness.png');"></div><div class="chip-name">Salon, Spa &amp; Wellness</div><div class="chip-meta"><span>17 · 6 subs</span><span class="count">470 SKU</span></div></a>
+  <a class="chip-card" href="#"><div class="chip-thumb" style="background-image:url('../../images/cat-17-office-commercial-interiors.png');"></div><div class="chip-name">Office &amp; Commercial Interiors</div><div class="chip-meta"><span>18 · 6 subs</span><span class="count">620 SKU</span></div></a>
+  <a class="chip-card" href="#"><div class="chip-thumb" style="background-image:url('../../images/cat-21-health-medical-supply.png');"></div><div class="chip-name">Health &amp; Medical Supply</div><div class="chip-meta"><span>19 · 6 subs</span><span class="count">310 SKU</span></div></a>
+  <a class="chip-card" href="#"><div class="chip-thumb" style="background-image:url('../../images/cat-19-fitness-sports-recreation.png');"></div><div class="chip-name">Fitness, Sports &amp; Recreation</div><div class="chip-meta"><span>20 · 6 subs</span><span class="count">580 SKU</span></div></a>
+  <a class="chip-card" href="#"><div class="chip-thumb" style="background-image:url('../../images/cat-20-boating-camping-outdoor.png');"></div><div class="chip-name">Boating, Camping &amp; Outdoor</div><div class="chip-meta"><span>21 · 6 subs</span><span class="count">390 SKU</span></div></a>
+  <a class="chip-card" href="#"><div class="chip-thumb" style="background-image:url('../../images/cat-22-music-entertainment.png');"></div><div class="chip-name">Music &amp; Entertainment</div><div class="chip-meta"><span>22 · 6 subs</span><span class="count">240 SKU</span></div></a>
+</section>
+
+<section class="kits" id="starter-kits">
+  <div class="kits-card">
+    <span class="kicker" style="font-size:11.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--text-3);display:block;margin-bottom:8px;">Starter kits</span>
+    <h3>Open <em>ready</em>, not half-stocked.</h3>
+    <p style="color:var(--text-2);max-width:620px;margin:0;font-size:15px;line-height:1.55;">Assembled by specialists who have run the trade themselves. One invoice, one delivery window, full VAT-inclusive pricing, Net-30 on request.</p>
+    <div class="kits-grid">
+      <a class="kit" href="#">
+        <div class="price tabnum">€2,799</div>
+        <div class="name">Espresso Bar — Starter</div>
+        <div class="desc">La Marzocco-class machine · grinder · 2-group setup · shelving · POS terminal</div>
+      </a>
+      <a class="kit" href="#">
+        <div class="price tabnum">€6,450</div>
+        <div class="name">Barber Shop — Two Chairs</div>
+        <div class="desc">Chairs · mirrors · sterilisers · clipper sets · salon lighting · till</div>
+      </a>
+      <a class="kit" href="#">
+        <div class="price tabnum">€9,200</div>
+        <div class="name">Print Workshop — Entry</div>
+        <div class="desc">DTF printer · heat press · cutting plotter · drying rack · workbench</div>
+      </a>
+      <a class="kit" href="#">
+        <div class="price tabnum">€14,500</div>
+        <div class="name">Auto Workshop — One Bay</div>
+        <div class="desc">Two-post lift · tyre machine · balancer · AC station · starter diagnostics</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div>© 2026 Roland Kaubandus OÜ · VAT EE102xxxxx · VEVOR authorised dealer EE+ES</div>
+  <div class="serif-i">Professional tools, half the price.</div>
+</footer>
+
+</body>
+</html>

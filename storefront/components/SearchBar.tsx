@@ -52,7 +52,7 @@ const PLACEHOLDER_TEXTS_ET = [
   "aiavolik",
 ]
 
-export default function SearchBar({ locale = "et" }: { locale?: string }) {
+export default function SearchBar({ locale = "et", variant = "dark" }: { locale?: string; variant?: "light" | "dark" }) {
   const [query, setQuery] = useState("")
   const [results, setResults] = useState<SearchResult | null>(null)
   const [isOpen, setIsOpen] = useState(false)
@@ -66,6 +66,20 @@ export default function SearchBar({ locale = "et" }: { locale?: string }) {
   const router = useRouter()
 
   const PLACEHOLDER_TEXTS = locale === "et" ? PLACEHOLDER_TEXTS_ET : PLACEHOLDER_TEXTS_EN
+
+  // Variant-based styling
+  const wrapperCls = variant === "light"
+    ? "flex items-center bg-[#F8FAFC] border-[1.5px] border-[#E2E8F0] rounded-lg overflow-hidden h-[36px] transition-colors focus-within:bg-white focus-within:border-[#D97706] focus-within:shadow-[0_0_0_3px_rgba(217,119,6,0.10)]"
+    : "flex items-center bg-white/10 border border-white/20 rounded-full overflow-hidden h-[44px] md:h-[40px] transition-colors focus-within:bg-white/[0.18] focus-within:border-[#D97706]"
+  const inputCls = variant === "light"
+    ? "w-full bg-transparent pl-4 pr-2 py-2.5 md:py-2 text-[15px] md:text-[14px] text-[#0F172A] placeholder:text-[#94A3B8] focus:outline-none"
+    : "w-full bg-transparent pl-4 pr-2 py-2.5 md:py-2 text-[15px] md:text-[14px] text-white placeholder:text-white/50 focus:outline-none"
+  const placeholderCls = variant === "light" ? "text-[#94A3B8]" : "text-white/50"
+  const clearBtnCls = variant === "light" ? "px-3 text-[#94A3B8] hover:text-[#0F172A]" : "px-3 text-white/50 hover:text-white"
+  const searchBtnCls = variant === "light"
+    ? "h-[36px] w-[52px] bg-transparent hover:bg-[#E2E8F0] flex items-center justify-center rounded-r-lg transition-colors"
+    : "h-[44px] md:h-[40px] w-[52px] bg-[#D97706] hover:bg-[#B45309] flex items-center justify-center rounded-r-full transition-colors"
+  const searchIconCls = variant === "light" ? "text-[#94A3B8]" : "text-white"
 
   // Rotate placeholder text
   useEffect(() => {
@@ -154,13 +168,13 @@ export default function SearchBar({ locale = "et" }: { locale?: string }) {
   useEffect(() => () => clearTimeout(timerRef.current), [])
 
   const formatPrice = (price: number) =>
-    new Intl.NumberFormat("et-EE", { style: "currency", currency: "EUR" }).format(price)
+    new Intl.NumberFormat(locale === "en" ? "en-IE" : "et-EE", { style: "currency", currency: "EUR" }).format(price)
 
   const currentPlaceholder = PLACEHOLDER_TEXTS[placeholderIdx]
 
   return (
     <div ref={wrapperRef} className="relative w-full md:max-w-[600px]">
-      <div className="flex items-center bg-white/10 border border-white/20 rounded-full overflow-hidden h-[44px] md:h-[40px] transition-colors focus-within:bg-white/[0.18] focus-within:border-[#D97706]">
+      <div className={wrapperCls}>
         <div className="relative flex-1">
           <input
             ref={inputRef}
@@ -170,12 +184,12 @@ export default function SearchBar({ locale = "et" }: { locale?: string }) {
             onFocus={() => results?.hits.length && setIsOpen(true)}
             onKeyDown={handleKey}
             placeholder=""
-            className="w-full bg-transparent pl-4 pr-2 py-2.5 md:py-2 text-[15px] md:text-[14px] text-white placeholder:text-white/50 focus:outline-none"
+            className={inputCls}
             autoComplete="off"
           />
           {!query && (
             <span
-              className={`absolute left-4 top-1/2 -translate-y-1/2 text-[14px] md:text-[14px] text-white/50 pointer-events-none transition-opacity duration-300 ${
+              className={`absolute left-4 top-1/2 -translate-y-1/2 text-[14px] md:text-[14px] ${placeholderCls} pointer-events-none transition-opacity duration-300 ${
                 animating ? "opacity-0" : "opacity-100"
               }`}
             >
@@ -188,7 +202,7 @@ export default function SearchBar({ locale = "et" }: { locale?: string }) {
           <button
             type="button"
             onClick={() => { setQuery(""); setResults(null); setIsOpen(false); inputRef.current?.focus() }}
-            className="px-3 text-white/50 hover:text-white"
+            className={clearBtnCls}
             aria-label="Clear"
           >
             <X size={18} strokeWidth={1.5} />
@@ -197,10 +211,10 @@ export default function SearchBar({ locale = "et" }: { locale?: string }) {
         <button
           type="button"
           onClick={goToResults}
-          className="h-[44px] md:h-[40px] w-[52px] bg-[#D97706] hover:bg-[#B45309] flex items-center justify-center rounded-r-full transition-colors"
+          className={searchBtnCls}
           aria-label="Search"
         >
-          <Search size={20} strokeWidth={2} className="text-white" />
+          <Search size={20} strokeWidth={2} className={searchIconCls} />
         </button>
       </div>
 
@@ -243,7 +257,7 @@ export default function SearchBar({ locale = "et" }: { locale?: string }) {
                 activeIdx === results.hits.length ? "bg-[#FFFBEB]" : ""
               }`}
             >
-              View all results ({results.totalHits.toLocaleString("et-EE")}) &rarr;
+              {locale === "en" ? "View all results" : "Kõik tulemused"} ({results.totalHits.toLocaleString(locale === "en" ? "en-IE" : "et-EE")}) &rarr;
             </button>
           )}
         </div>

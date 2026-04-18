@@ -6,10 +6,11 @@ import { ChevronDown } from "lucide-react"
 type Props = {
   html: string
   collapsedHeight?: number
+  defaultExpanded?: boolean
 }
 
-export default function CollapsibleDescription({ html, collapsedHeight = 600 }: Props) {
-  const [expanded, setExpanded] = useState(false)
+export default function CollapsibleDescription({ html, collapsedHeight = 600, defaultExpanded = false }: Props) {
+  const [expanded, setExpanded] = useState(defaultExpanded)
   const [needsCollapse, setNeedsCollapse] = useState(false)
   const contentRef = useRef<HTMLDivElement>(null)
 

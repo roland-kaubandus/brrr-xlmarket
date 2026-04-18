@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Laser, CNC & Digital Fabrication — XLMarket</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --ink: #0c1119;
+    --paper: #fcfcfc;
+    --sand: #ede8dd;
+    --amber: #f59e0b;
+    --orange: #f97316;
+    --cyan: #06b6d4;
+    --lime: #d9f99d;
+    --mute: #6b6b6b;
+    --rose: #e11d48;
+    --border: 2.5px solid var(--ink);
+    --border-thick: 3px solid var(--ink);
+    --shadow: 6px 6px 0 0 var(--ink);
+    --shadow-sm: 4px 4px 0 0 var(--ink);
+  }
+  html, body { background: var(--sand); color: var(--ink); font-family: 'DM Sans', sans-serif; -webkit-font-smoothing: antialiased; }
+  body { overflow-x: hidden; }
+  a { color: inherit; text-decoration: none; }
+  .mono { font-family: 'JetBrains Mono', monospace; font-variant-numeric: tabular-nums; }
+
+  .band {
+    background: var(--ink); color: var(--paper);
+    padding: 10px 32px;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 12px; font-weight: 500;
+    border-bottom: var(--border);
+  }
+  .band strong { color: var(--amber); }
+
+  header.site {
+    background: var(--paper);
+    border-bottom: var(--border);
+    padding: 16px 32px;
+    display: grid;
+    grid-template-columns: auto auto 1fr auto;
+    align-items: center;
+    gap: 20px;
+  }
+  .logo { font-weight: 900; font-size: 26px; letter-spacing: -0.04em; }
+  .logo em { color: var(--orange); font-style: normal; }
+  .mega-btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--ink); color: var(--paper);
+    padding: 10px 16px;
+    font-weight: 800; font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em;
+    border: var(--border);
+    box-shadow: var(--shadow-sm);
+    cursor: pointer;
+    transition: transform 140ms, box-shadow 140ms;
+  }
+  .mega-btn:hover { transform: translate(-2px,-2px); box-shadow: var(--shadow); }
+  .search {
+    display: flex; align-items: center; gap: 10px;
+    background: var(--paper);
+    border: var(--border);
+    padding: 10px 16px;
+    max-width: 480px;
+    margin: 0 auto;
+    width: 100%;
+  }
+  .search input { flex: 1; border: 0; outline: 0; background: transparent; font-size: 13px; font-weight: 500; }
+  .header-right { display: flex; gap: 10px; align-items: center; }
+  .btn-quote {
+    background: var(--amber); border: var(--border);
+    padding: 10px 16px;
+    font-weight: 800; font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .breadcrumb {
+    padding: 14px 32px;
+    display: flex; align-items: center; gap: 10px;
+    font-size: 12px; font-weight: 600;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--mute);
+    border-bottom: 1.5px solid var(--ink);
+    background: var(--paper);
+  }
+  .breadcrumb a { color: var(--ink); }
+  .breadcrumb a:hover { color: var(--orange); }
+  .breadcrumb span.sep { color: rgba(12,17,25,0.3); }
+  .breadcrumb strong { color: var(--ink); }
+
+  /* ======== ATMOSPHERE STRIP ======== */
+  .atmo {
+    padding: 20px 32px;
+    background: var(--ink); color: var(--paper);
+    display: grid;
+    grid-template-columns: 120px 1fr auto;
+    gap: 24px;
+    align-items: center;
+    border-bottom: var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+  .atmo__num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 50px; font-weight: 700;
+    color: var(--amber);
+    letter-spacing: -0.03em;
+    line-height: 1;
+  }
+  .atmo__title {
+    font-weight: 900; font-size: clamp(26px, 4vw, 42px); letter-spacing: -0.04em; line-height: 0.95;
+    max-width: 22ch;
+  }
+  .atmo__title small { display: block; font-size: 11px; font-weight: 700; color: var(--amber); letter-spacing: 0.1em; margin-bottom: 6px; text-transform: uppercase; }
+  .atmo__chips { display: flex; gap: 8px; }
+  .atmo__chips .chip {
+    border: 2px solid var(--paper);
+    padding: 6px 12px;
+    font-size: 11px;
+    font-weight: 700; letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .atmo__chips .chip strong { color: var(--amber); }
+
+  /* ======== B2B AMBER BAND ======== */
+  .b2b-band {
+    background: var(--amber);
+    padding: 16px 32px;
+    border-bottom: var(--border);
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 20px;
+  }
+  .b2b-band .msg { display: flex; align-items: center; gap: 18px; font-weight: 800; font-size: 14px; }
+  .b2b-band .msg svg { flex-shrink: 0; }
+  .b2b-band .msg strong { text-decoration: underline; text-decoration-thickness: 3px; text-underline-offset: 4px; }
+  .b2b-band .cta {
+    background: var(--ink); color: var(--paper);
+    padding: 10px 16px;
+    font-weight: 800; font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em;
+    border: var(--border);
+    box-shadow: 4px 4px 0 0 var(--paper);
+    transition: transform 140ms, box-shadow 140ms;
+  }
+  .b2b-band .cta:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 0 var(--paper); }
+
+  /* ======== MAIN LAYOUT ======== */
+  .main {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 20px;
+    padding: 24px 32px;
+  }
+
+  /* Left rail: numbered subcategory blocks */
+  .rail {
+    display: flex; flex-direction: column; gap: 10px;
+    position: sticky; top: 20px;
+    align-self: start;
+  }
+  .rail__label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.12em;
+    color: var(--mute); text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .rail-block {
+    display: grid;
+    grid-template-columns: 52px 1fr;
+    border: var(--border);
+    background: var(--paper);
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 150ms, box-shadow 150ms;
+  }
+  .rail-block:hover { transform: translate(-2px,-2px); box-shadow: var(--shadow-sm); }
+  .rail-block.active { background: var(--ink); color: var(--paper); }
+  .rail-block__num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 22px; font-weight: 700;
+    background: var(--amber);
+    display: flex; align-items: center; justify-content: center;
+    border-right: var(--border);
+  }
+  .rail-block.active .rail-block__num { background: var(--amber); color: var(--ink); }
+  .rail-block__body { padding: 10px 12px; display: flex; flex-direction: column; gap: 2px; }
+  .rail-block__title { font-weight: 800; font-size: 13px; line-height: 1.15; letter-spacing: -0.01em; }
+  .rail-block__meta { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--mute); font-weight: 700; }
+  .rail-block.active .rail-block__meta { color: rgba(255,255,255,0.6); }
+
+  .rail-filter {
+    margin-top: 12px;
+    border: var(--border);
+    background: var(--paper);
+    padding: 14px;
+  }
+  .rail-filter h4 {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--mute);
+    margin-bottom: 10px;
+  }
+  .rail-filter label {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 6px 0;
+    font-size: 13px; font-weight: 600;
+    cursor: pointer;
+  }
+  .rail-filter label input { margin-right: 8px; }
+  .rail-filter label span.n { font-family: 'JetBrains Mono', monospace; color: var(--mute); font-size: 11px; }
+  .rail-filter .group + .group { margin-top: 14px; padding-top: 14px; border-top: 1.5px solid var(--ink); }
+  .rail-filter .range {
+    display: flex; gap: 8px; margin-top: 4px;
+  }
+  .rail-filter .range input {
+    width: 100%; border: 2px solid var(--ink); padding: 6px 8px;
+    font-family: inherit; font-weight: 600; font-size: 12px;
+  }
+
+  /* Right side product area */
+  .content { min-width: 0; }
+  .controls {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 14px 16px;
+    border: var(--border);
+    background: var(--paper);
+    box-shadow: var(--shadow-sm);
+    margin-bottom: 16px;
+  }
+  .controls h3 { font-size: 20px; font-weight: 900; letter-spacing: -0.03em; }
+  .controls h3 span { color: var(--mute); font-weight: 500; font-size: 14px; }
+  .controls .sort { display: flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 600; }
+  .controls .sort select {
+    border: 2px solid var(--ink); padding: 6px 10px;
+    font-weight: 700; font-size: 13px;
+    background: var(--paper); cursor: pointer;
+  }
+
+  /* Bento product grid */
+  .products {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: auto;
+    gap: 14px;
+  }
+  .prod {
+    border: var(--border);
+    background: var(--paper);
+    overflow: hidden;
+    display: flex; flex-direction: column;
+    position: relative;
+    cursor: pointer;
+    transition: transform 180ms cubic-bezier(0.2,0.8,0.2,1), box-shadow 180ms;
+  }
+  .prod:hover { transform: translate(-3px,-3px); box-shadow: var(--shadow); z-index: 2; }
+  .prod__img {
+    aspect-ratio: 1 / 1;
+    background: var(--sand);
+    border-bottom: var(--border);
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .prod__img svg { width: 48%; height: 48%; color: var(--mute); opacity: 0.7; }
+  .prod__badges { position: absolute; top: 10px; left: 10px; display: flex; flex-direction: column; gap: 4px; }
+  .prod__wish { position: absolute; top: 10px; right: 10px; width: 32px; height: 32px; border: 2px solid var(--ink); background: var(--paper); display: inline-flex; align-items: center; justify-content: center; cursor: pointer; transition: background 140ms; }
+  .prod__wish:hover { background: var(--rose); color: var(--paper); }
+  .prod__body { padding: 14px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+  .prod__brand { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; color: var(--mute); text-transform: uppercase; }
+  .prod__title { font-weight: 800; font-size: 14px; letter-spacing: -0.01em; line-height: 1.15; flex: 1; }
+  .prod__price-row {
+    display: flex; align-items: baseline; justify-content: space-between;
+    padding-top: 8px; border-top: 1.5px solid var(--ink);
+    margin-top: auto;
+  }
+  .prod__price { font-weight: 900; font-size: 18px; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+  .prod__price small { font-weight: 500; font-size: 10px; color: var(--mute); display: block; margin-top: -2px; }
+  .prod__stock { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700; }
+  .prod__stock.ok { color: #059669; }
+  .prod__stock.low { color: var(--orange); }
+  .prod__actions { display: grid; grid-template-columns: 1fr 36px; border-top: var(--border); }
+  .prod__cart { background: var(--paper); border: 0; padding: 10px; font-family: inherit; font-weight: 800; font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; cursor: pointer; transition: background 140ms; }
+  .prod__cart:hover { background: var(--amber); }
+  .prod__quick { background: var(--ink); color: var(--paper); border: 0; border-left: var(--border); display: inline-flex; align-items: center; justify-content: center; cursor: pointer; }
+  .prod__quick:hover { background: var(--orange); }
+
+  /* Featured products — break the grid */
+  .prod--feat {
+    grid-column: span 2;
+    grid-row: span 2;
+    border: var(--border-thick);
+    background: var(--paper);
+    box-shadow: var(--shadow-sm);
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    grid-template-rows: 1fr auto;
+  }
+  .prod--feat .prod__img { border-right: var(--border); border-bottom: 0; aspect-ratio: auto; grid-row: 1 / 3; }
+  .prod--feat .prod__body { padding: 20px; }
+  .prod--feat .prod__title { font-size: 22px; font-weight: 900; letter-spacing: -0.03em; line-height: 0.95; }
+  .prod--feat .prod__price { font-size: 30px; }
+  .prod--feat .prod__actions { grid-column: 2; border-top: var(--border); }
+  .prod--feat .feat-specs {
+    display: flex; flex-direction: column; gap: 4px;
+    margin-top: 10px;
+  }
+  .prod--feat .feat-specs li {
+    list-style: none; font-size: 12px; font-weight: 500; color: var(--mute);
+    display: flex; gap: 6px; align-items: center;
+  }
+  .prod--feat .feat-specs li::before {
+    content: ''; width: 8px; height: 8px; background: var(--amber); flex-shrink: 0;
+    border: 1.5px solid var(--ink);
+  }
+
+  .badge {
+    display: inline-flex; align-items: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; font-weight: 700; letter-spacing: 0.08em;
+    padding: 3px 6px;
+    background: var(--ink); color: var(--paper);
+    text-transform: uppercase;
+  }
+  .badge--amber { background: var(--amber); color: var(--ink); }
+  .badge--orange { background: var(--orange); color: var(--paper); }
+  .badge--cyan { background: var(--cyan); color: var(--ink); }
+  .badge--lime { background: var(--lime); color: var(--ink); }
+
+  /* Pagination */
+  .pagination {
+    margin-top: 24px;
+    display: flex; justify-content: center; align-items: center; gap: 8px;
+  }
+  .pagination a {
+    display: inline-flex; align-items: center; justify-content: center;
+    min-width: 40px; height: 40px;
+    border: 2px solid var(--ink);
+    font-weight: 800; font-size: 14px;
+    font-variant-numeric: tabular-nums;
+    padding: 0 12px;
+    background: var(--paper);
+    transition: background 140ms, transform 140ms, box-shadow 140ms;
+  }
+  .pagination a:hover { transform: translate(-2px,-2px); box-shadow: 3px 3px 0 0 var(--ink); }
+  .pagination a.current { background: var(--ink); color: var(--amber); }
+
+  footer.strip {
+    margin-top: 32px;
+    background: var(--ink); color: var(--paper);
+    padding: 20px 32px;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 13px; font-weight: 500;
+  }
+  footer.strip strong { color: var(--amber); }
+
+  @media (max-width: 1100px) {
+    .main { grid-template-columns: 1fr; }
+    .rail { position: static; flex-direction: row; overflow-x: auto; }
+    .rail-block { flex: 0 0 240px; }
+    .rail-filter { display: none; }
+    .products { grid-template-columns: repeat(2, 1fr); }
+    .prod--feat { grid-column: span 2; }
+  }
+</style>
+</head>
+<body>
+
+<div class="band">
+  <div><strong>NET-30 · VOLUME PRICING · DEDICATED MANAGER</strong> — Free delivery in EE &amp; ES</div>
+  <div>Laser &amp; CNC specialists · +372 5XX XXXX</div>
+</div>
+
+<header class="site">
+  <a href="/" class="logo">XL<em>Market</em></a>
+  <button class="mega-btn">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    22 Categories
+  </button>
+  <label class="search">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+    <input type="search" placeholder="Search 16,046 SKUs…">
+  </label>
+  <div class="header-right">
+    <a href="#quote" class="btn-quote">Request Quote</a>
+  </div>
+</header>
+
+<nav class="breadcrumb">
+  <a href="/">Home</a>
+  <span class="sep">/</span>
+  <a href="#">Catalog</a>
+  <span class="sep">/</span>
+  <strong>Laser, CNC &amp; Digital Fabrication</strong>
+</nav>
+
+<!-- Compact atmosphere strip -->
+<section class="atmo">
+  <div class="atmo__num">02</div>
+  <div>
+    <div class="atmo__title">
+      <small>DIGITAL FABRICATION</small>
+      Laser, CNC &amp; Digital Fabrication
+    </div>
+  </div>
+  <div class="atmo__chips">
+    <span class="chip"><strong>724</strong> SKUs</span>
+    <span class="chip"><strong>6</strong> subs</span>
+    <span class="chip"><strong style="color:var(--amber);">48h</strong> ship</span>
+  </div>
+</section>
+
+<!-- B2B amber band -->
+<div class="b2b-band">
+  <div class="msg">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 12V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v14l4-4h12a2 2 0 0 0 2-2z"/></svg>
+    <span><strong>Buying 3+ machines?</strong> Volume pricing kicks in from unit 3. Net-30 terms &amp; training bundle included for workshops opening in Estonia or Spain.</span>
+  </div>
+  <a href="#quote" class="cta">Request volume quote →</a>
+</div>
+
+<div class="main">
+
+  <!-- LEFT RAIL -->
+  <aside class="rail" aria-label="Subcategories & filters">
+    <div class="rail__label">SUBCATEGORIES · 6</div>
+
+    <a href="#" class="rail-block">
+      <div class="rail-block__num">01</div>
+      <div class="rail-block__body">
+        <div class="rail-block__title">CO2 Laser Engravers &amp; Cutters</div>
+        <div class="rail-block__meta">186 SKUs · from €1,149</div>
+      </div>
+    </a>
+    <a href="#" class="rail-block active">
+      <div class="rail-block__num">02</div>
+      <div class="rail-block__body">
+        <div class="rail-block__title">Diode Laser Engravers</div>
+        <div class="rail-block__meta">142 SKUs · from €189</div>
+      </div>
+    </a>
+    <a href="#" class="rail-block">
+      <div class="rail-block__num">03</div>
+      <div class="rail-block__body">
+        <div class="rail-block__title">CNC Routers &amp; Mills</div>
+        <div class="rail-block__meta">178 SKUs · from €829</div>
+      </div>
+    </a>
+    <a href="#" class="rail-block">
+      <div class="rail-block__num">04</div>
+      <div class="rail-block__body">
+        <div class="rail-block__title">3D Printers</div>
+        <div class="rail-block__meta">94 SKUs · from €269</div>
+      </div>
+    </a>
+    <a href="#" class="rail-block">
+      <div class="rail-block__num">05</div>
+      <div class="rail-block__body">
+        <div class="rail-block__title">Laser &amp; CNC Accessories</div>
+        <div class="rail-block__meta">89 SKUs · from €29</div>
+      </div>
+    </a>
+    <a href="#" class="rail-block">
+      <div class="rail-block__num">06</div>
+      <div class="rail-block__body">
+        <div class="rail-block__title">Rotary Attachments</div>
+        <div class="rail-block__meta">35 SKUs · from €99</div>
+      </div>
+    </a>
+
+    <!-- Filters -->
+    <div class="rail-filter">
+      <div class="group">
+        <h4>Price</h4>
+        <div class="range"><input type="text" placeholder="€0"><input type="text" placeholder="€10,000"></div>
+      </div>
+      <div class="group">
+        <h4>Brand</h4>
+        <label><span><input type="checkbox" checked> VEVOR</span><span class="n">612</span></label>
+        <label><span><input type="checkbox"> VEVOR Pro</span><span class="n">74</span></label>
+        <label><span><input type="checkbox"> VEVOR Industrial</span><span class="n">38</span></label>
+      </div>
+      <div class="group">
+        <h4>Stock</h4>
+        <label><span><input type="checkbox" checked> In stock</span><span class="n">687</span></label>
+        <label><span><input type="checkbox"> Back-order (48h)</span><span class="n">37</span></label>
+      </div>
+      <div class="group">
+        <h4>Rating</h4>
+        <label><span><input type="checkbox"> ★★★★★ (5)</span><span class="n">148</span></label>
+        <label><span><input type="checkbox"> ★★★★ &amp; up</span><span class="n">512</span></label>
+        <label><span><input type="checkbox"> ★★★ &amp; up</span><span class="n">698</span></label>
+      </div>
+    </div>
+  </aside>
+
+  <!-- RIGHT CONTENT -->
+  <main class="content">
+
+    <div class="controls">
+      <h3>Diode Laser Engravers <span>· 142 of 724</span></h3>
+      <div class="sort">
+        <span style="color: var(--mute); font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.1em;">SORT</span>
+        <select>
+          <option>Relevance</option>
+          <option>Price ↑</option>
+          <option>Price ↓</option>
+          <option>Best-seller</option>
+          <option>Newest</option>
+        </select>
+      </div>
+    </div>
+
+    <section class="products" aria-label="Products">
+
+      <!-- Featured #1 — 2x2 big -->
+      <div class="prod prod--feat">
+        <div class="prod__img">
+          <div class="prod__badges">
+            <span class="badge badge--amber">FEATURED</span>
+            <span class="badge badge--orange">-22%</span>
+          </div>
+          <button class="prod__wish"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.8 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg></button>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 6h16v2H4zm0 4h16v4H4zm2 6h12v2H6z"/><circle cx="18" cy="9" r="1.5" fill="#06b6d4"/></svg>
+        </div>
+        <div class="prod__body">
+          <span class="prod__brand">VEVOR · DL-20W PRO</span>
+          <div class="prod__title">Diode Laser Engraver 20W Pro with Air Assist &amp; Enclosure</div>
+          <ul class="feat-specs">
+            <li>400×400mm work area, 0.08×0.1mm spot</li>
+            <li>Wi-Fi + USB + SD offline cutting</li>
+            <li>Bundled Lightburn licence (€89 value)</li>
+            <li>2-year B2B warranty, EE/ES service</li>
+          </ul>
+          <div class="prod__price-row">
+            <div>
+              <div class="prod__price">€699<small>was €899 · VAT incl</small></div>
+            </div>
+            <span class="prod__stock ok">IN STOCK 24</span>
+          </div>
+        </div>
+        <div class="prod__actions">
+          <button class="prod__cart">Add to cart — save €200</button>
+          <button class="prod__quick"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="3"/><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/></svg></button>
+        </div>
+      </div>
+
+      <!-- Standard products -->
+      <div class="prod">
+        <div class="prod__img">
+          <div class="prod__badges"><span class="badge">BEST SELLER</span></div>
+          <button class="prod__wish"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.8 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg></button>
+          <svg viewBox="0 0 24 24" fill="currentColor"><rect x="4" y="6" width="16" height="12" rx="1"/></svg>
+        </div>
+        <div class="prod__body">
+          <span class="prod__brand">VEVOR · DL-10W</span>
+          <div class="prod__title">Diode Laser Engraver 10W Portable, 300×300mm</div>
+          <div class="prod__price-row">
+            <div><div class="prod__price">€389<small>VAT incl</small></div></div>
+            <span class="prod__stock ok">IN STOCK 42</span>
+          </div>
+        </div>
+        <div class="prod__actions"><button class="prod__cart">Add to cart</button><button class="prod__quick"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="3"/><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/></svg></button></div>
+      </div>
+
+      <div class="prod">
+        <div class="prod__img">
+          <div class="prod__badges"><span class="badge badge--cyan">NEW 2026</span></div>
+          <button class="prod__wish"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.8 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg></button>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 12l8-8 8 8-8 8z"/></svg>
+        </div>
+        <div class="prod__body">
+          <span class="prod__brand">VEVOR · DL-33W</span>
+          <div class="prod__title">Diode Laser 33W Double-Beam High-Power Desktop</div>
+          <div class="prod__price-row">
+            <div><div class="prod__price">€1,089<small>VAT incl</small></div></div>
+            <span class="prod__stock ok">IN STOCK 8</span>
+          </div>
+        </div>
+        <div class="prod__actions"><button class="prod__cart">Add to cart</button><button class="prod__quick"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="3"/><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/></svg></button></div>
+      </div>
+
+      <!-- Row 3 — second featured + 2 -->
+      <div class="prod prod--feat">
+        <div class="prod__img">
+          <div class="prod__badges">
+            <span class="badge badge--lime">B2B BUNDLE</span>
+          </div>
+          <button class="prod__wish"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.8 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg></button>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M2 6h20v4H2zm0 8h20v4H2z"/><circle cx="6" cy="8" r="1" fill="#f59e0b"/></svg>
+        </div>
+        <div class="prod__body">
+          <span class="prod__brand">VEVOR · DL-BUNDLE-3X</span>
+          <div class="prod__title">Workshop Bundle: 3× Diode 20W + Enclosure + Rotary</div>
+          <ul class="feat-specs">
+            <li>3× DL-20W Pro units (€699 each)</li>
+            <li>3× fire-safe enclosure (€149 each)</li>
+            <li>2× rotary attachment (€99 each)</li>
+            <li>Single invoice · Net-30 eligible</li>
+          </ul>
+          <div class="prod__price-row">
+            <div>
+              <div class="prod__price">€2,849<small>save €415 vs individual · VAT incl</small></div>
+            </div>
+            <span class="prod__stock ok">READY 48H</span>
+          </div>
+        </div>
+        <div class="prod__actions">
+          <button class="prod__cart">Request bundle quote</button>
+          <button class="prod__quick"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="3"/><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/></svg></button>
+        </div>
+      </div>
+
+      <div class="prod">
+        <div class="prod__img">
+          <button class="prod__wish"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.8 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg></button>
+          <svg viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="18" height="18"/><circle cx="12" cy="12" r="4" fill="var(--sand)"/></svg>
+        </div>
+        <div class="prod__body">
+          <span class="prod__brand">VEVOR · ENC-20</span>
+          <div class="prod__title">Fire-Safe Laser Enclosure with Fume Exhaust Port</div>
+          <div class="prod__price-row">
+            <div><div class="prod__price">€149<small>VAT incl</small></div></div>
+            <span class="prod__stock ok">IN STOCK 38</span>
+          </div>
+        </div>
+        <div class="prod__actions"><button class="prod__cart">Add to cart</button><button class="prod__quick"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="3"/><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/></svg></button></div>
+      </div>
+
+      <div class="prod">
+        <div class="prod__img">
+          <div class="prod__badges"><span class="badge badge--orange">-15%</span></div>
+          <button class="prod__wish"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.8 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg></button>
+          <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="8"/><path d="M8 12h8M12 8v8" stroke="var(--paper)" stroke-width="2"/></svg>
+        </div>
+        <div class="prod__body">
+          <span class="prod__brand">VEVOR · ROT-80</span>
+          <div class="prod__title">Rotary Attachment 80mm 360° Chuck for Diode &amp; CO2</div>
+          <div class="prod__price-row">
+            <div><div class="prod__price">€99<small>was €119 · VAT incl</small></div></div>
+            <span class="prod__stock ok">IN STOCK 67</span>
+          </div>
+        </div>
+        <div class="prod__actions"><button class="prod__cart">Add to cart</button><button class="prod__quick"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="3"/><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/></svg></button></div>
+      </div>
+
+      <!-- More standard -->
+      <div class="prod">
+        <div class="prod__img">
+          <button class="prod__wish"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.8 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg></button>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 3h12v4H6zm0 6h12v12H6z"/></svg>
+        </div>
+        <div class="prod__body">
+          <span class="prod__brand">VEVOR · DL-5W</span>
+          <div class="prod__title">Entry Diode Laser 5W for Hobby/Starter Workshops</div>
+          <div class="prod__price-row">
+            <div><div class="prod__price">€189<small>VAT incl</small></div></div>
+            <span class="prod__stock ok">IN STOCK 94</span>
+          </div>
+        </div>
+        <div class="prod__actions"><button class="prod__cart">Add to cart</button><button class="prod__quick"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="3"/><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/></svg></button></div>
+      </div>
+
+      <div class="prod">
+        <div class="prod__img">
+          <button class="prod__wish"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.8 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg></button>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l10 5v10l-10 5L2 17V7z"/></svg>
+        </div>
+        <div class="prod__body">
+          <span class="prod__brand">VEVOR · DL-40W</span>
+          <div class="prod__title">Diode Laser 40W Industrial-Grade with Auto Focus</div>
+          <div class="prod__price-row">
+            <div><div class="prod__price">€1,489<small>VAT incl</small></div></div>
+            <span class="prod__stock low">ONLY 2 LEFT</span>
+          </div>
+        </div>
+        <div class="prod__actions"><button class="prod__cart">Add to cart</button><button class="prod__quick"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="3"/><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/></svg></button></div>
+      </div>
+
+      <div class="prod">
+        <div class="prod__img">
+          <div class="prod__badges"><span class="badge">VEVOR PRO</span></div>
+          <button class="prod__wish"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.8 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg></button>
+          <svg viewBox="0 0 24 24" fill="currentColor"><rect x="2" y="6" width="20" height="12" rx="2"/></svg>
+        </div>
+        <div class="prod__body">
+          <span class="prod__brand">VEVOR · AIR-30L</span>
+          <div class="prod__title">Air Assist Pump 30L/min with Silent Mode &amp; Pressure Display</div>
+          <div class="prod__price-row">
+            <div><div class="prod__price">€79<small>VAT incl</small></div></div>
+            <span class="prod__stock ok">IN STOCK 120</span>
+          </div>
+        </div>
+        <div class="prod__actions"><button class="prod__cart">Add to cart</button><button class="prod__quick"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="3"/><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/></svg></button></div>
+      </div>
+
+      <div class="prod">
+        <div class="prod__img">
+          <button class="prod__wish"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.8 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg></button>
+          <svg viewBox="0 0 24 24" fill="currentColor"><rect x="4" y="4" width="16" height="16"/><path d="M8 8h8v8H8z" fill="var(--sand)"/></svg>
+        </div>
+        <div class="prod__body">
+          <span class="prod__brand">VEVOR · HC-400</span>
+          <div class="prod__title">Honeycomb Cutting Table 400×400mm Aluminium</div>
+          <div class="prod__price-row">
+            <div><div class="prod__price">€69<small>VAT incl</small></div></div>
+            <span class="prod__stock ok">IN STOCK 140</span>
+          </div>
+        </div>
+        <div class="prod__actions"><button class="prod__cart">Add to cart</button><button class="prod__quick"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="3"/><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/></svg></button></div>
+      </div>
+
+      <div class="prod">
+        <div class="prod__img">
+          <div class="prod__badges"><span class="badge badge--amber">POPULAR</span></div>
+          <button class="prod__wish"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.8 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg></button>
+          <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="9"/></svg>
+        </div>
+        <div class="prod__body">
+          <span class="prod__brand">VEVOR · LEN-SET</span>
+          <div class="prod__title">Replacement Lens Kit (10.6µm/1.06µm) 3-pack</div>
+          <div class="prod__price-row">
+            <div><div class="prod__price">€49<small>VAT incl</small></div></div>
+            <span class="prod__stock ok">IN STOCK 210</span>
+          </div>
+        </div>
+        <div class="prod__actions"><button class="prod__cart">Add to cart</button><button class="prod__quick"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="3"/><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/></svg></button></div>
+      </div>
+
+      <div class="prod">
+        <div class="prod__img">
+          <button class="prod__wish"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.8 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg></button>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 4h16v16H4z"/><circle cx="12" cy="12" r="3" fill="var(--amber)"/></svg>
+        </div>
+        <div class="prod__body">
+          <span class="prod__brand">VEVOR · FUME-60</span>
+          <div class="prod__title">Fume Extractor 3-Stage HEPA + Carbon for Laser Studio</div>
+          <div class="prod__price-row">
+            <div><div class="prod__price">€219<small>VAT incl</small></div></div>
+            <span class="prod__stock ok">IN STOCK 54</span>
+          </div>
+        </div>
+        <div class="prod__actions"><button class="prod__cart">Add to cart</button><button class="prod__quick"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="3"/><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/></svg></button></div>
+      </div>
+
+    </section>
+
+    <nav class="pagination" aria-label="Pagination">
+      <a href="#" aria-label="Previous"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M15 18l-6-6 6-6"/></svg></a>
+      <a href="#" class="current">1</a>
+      <a href="#">2</a>
+      <a href="#">3</a>
+      <a href="#">…</a>
+      <a href="#">12</a>
+      <a href="#" aria-label="Next"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M9 18l6-6-6-6"/></svg></a>
+    </nav>
+
+  </main>
+</div>
+
+<footer class="strip">
+  <div>Roland Kaubandus OÜ · VEVOR authorised partner · <strong>xlmarket.eu</strong></div>
+  <div>EE &amp; ES · Net-30 for B2B</div>
+</footer>
+
+</body>
+</html>

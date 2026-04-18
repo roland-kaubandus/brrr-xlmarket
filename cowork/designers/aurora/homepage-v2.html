@@ -1,0 +1,600 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>XLMarket — Index / v2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=IBM+Plex+Serif:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --paper:#f4f4f0;
+    --paper-soft:#edeae0;
+    --ink:#0a0a0a;
+    --ink-2:#2b2b28;
+    --mute:#6b6a63;
+    --hair:rgba(10,10,10,0.16);
+    --accent:#D97706;
+    --max:1440px;
+    --gutter:clamp(16px,3vw,48px);
+  }
+  *,*::before,*::after{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    background:var(--paper);color:var(--ink);
+    font-family:"DM Sans",system-ui,sans-serif;font-size:15px;line-height:1.45;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none}
+  .serif{font-family:"IBM Plex Serif",Georgia,serif;font-weight:400}
+  .caps{font-size:11px;letter-spacing:0.16em;text-transform:uppercase;font-weight:500}
+  .num{font-variant-numeric:tabular-nums;font-feature-settings:"tnum"}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 var(--gutter)}
+  hr.hair{border:0;border-top:1px solid var(--hair);margin:0}
+
+  /* B2B Ribbon */
+  .ribbon{
+    background:var(--ink);color:var(--paper);
+    border-bottom:1px solid rgba(255,255,255,0.08);
+  }
+  .ribbon .row{
+    display:grid;grid-template-columns:auto 1fr auto auto auto auto;
+    gap:28px;align-items:center;padding:10px 0;font-size:12px;letter-spacing:0.06em;
+  }
+  .ribbon .label{color:var(--accent)}
+  .ribbon .pill{
+    display:inline-flex;gap:8px;align-items:center;
+    font-variant-numeric:tabular-nums;
+  }
+  .ribbon .pill svg{width:10px;height:10px}
+  .ribbon .quote{
+    display:inline-flex;gap:10px;align-items:center;
+    border:1px solid rgba(255,255,255,0.3);padding:6px 12px;
+    transition:background .2s ease;
+  }
+  .ribbon .quote:hover{background:var(--accent);border-color:var(--accent)}
+
+  /* Header */
+  header{position:sticky;top:0;z-index:20;background:var(--paper);border-bottom:1px solid var(--hair)}
+  .topbar{
+    display:grid;grid-template-columns:auto 1fr auto;align-items:center;
+    padding:20px 0;gap:40px;
+  }
+  .logo{font-family:"IBM Plex Serif";font-weight:500;font-size:26px;letter-spacing:-0.02em}
+  .logo span{color:var(--accent)}
+  nav ul{list-style:none;margin:0;padding:0;display:flex;gap:34px;justify-content:center}
+  nav a{font-size:13px;color:var(--ink-2);border-bottom:1px solid transparent;padding-bottom:3px;transition:border-color .2s}
+  nav a:hover,nav a.active{border-color:var(--ink)}
+  .topright{display:flex;gap:16px;font-size:13px;align-items:center}
+  .search{
+    display:inline-flex;align-items:center;gap:10px;
+    border:1px solid var(--hair);padding:8px 14px;min-width:280px;
+    background:var(--paper-soft);
+  }
+  .search input{border:0;background:transparent;outline:0;font:inherit;flex:1;color:var(--ink)}
+  .search .kbd{color:var(--mute);font-size:11px;border:1px solid var(--hair);padding:1px 5px;border-radius:2px}
+
+  /* Hero index header */
+  .mast{padding:90px 0 44px;position:relative}
+  .mast .kicker{display:flex;gap:20px;align-items:baseline;color:var(--mute);margin-bottom:30px}
+  .mast .kicker em{color:var(--accent);font-style:normal}
+  .mast h1{
+    font-family:"IBM Plex Serif";font-weight:400;
+    font-size:clamp(56px,9vw,148px);
+    line-height:0.92;letter-spacing:-0.04em;margin:0;max-width:16ch;
+  }
+  .mast h1 .it{font-style:italic;font-weight:300;color:var(--ink-2)}
+  .mast .rule{
+    display:grid;grid-template-columns:1fr auto;gap:24px;margin-top:44px;
+    padding-top:24px;border-top:1px solid var(--hair);align-items:end;
+  }
+  .mast .rule p{margin:0;max-width:58ch;color:var(--ink-2);font-size:16px}
+  .mast .rule .tag{color:var(--accent);font-size:12px;letter-spacing:0.22em;white-space:nowrap}
+
+  /* Section heading */
+  .sec{padding:60px 0 8px}
+  .sec .hdr{
+    display:grid;grid-template-columns:auto 1fr auto;gap:32px;align-items:baseline;
+    padding-bottom:20px;border-bottom:2px solid var(--ink);
+  }
+  .sec .hdr .eyebrow{color:var(--mute)}
+  .sec .hdr h2{
+    font-family:"IBM Plex Serif";font-weight:400;font-size:28px;
+    margin:0;letter-spacing:-0.015em;
+  }
+  .sec .hdr .totals{color:var(--mute);font-size:12px;letter-spacing:0.14em}
+  .sec .hdr .totals b{color:var(--ink);font-weight:500;font-variant-numeric:tabular-nums}
+
+  /* Index list */
+  ul.index{list-style:none;margin:0;padding:0}
+  ul.index li{
+    border-bottom:1px solid var(--hair);
+    position:relative;
+  }
+  ul.index a.row{
+    display:grid;
+    grid-template-columns:110px 1fr auto 40px;
+    gap:32px;align-items:center;
+    padding:22px 0;
+    transition:padding .35s cubic-bezier(.16,1,.3,1), background .25s ease;
+  }
+  ul.index a.row:hover{
+    padding-left:14px;
+    background:linear-gradient(90deg, rgba(217,119,6,0.06), transparent 60%);
+  }
+  ul.index .no{
+    font-family:"IBM Plex Serif";font-weight:300;
+    font-size:clamp(36px,5vw,64px);
+    color:var(--ink);letter-spacing:-0.03em;line-height:1;
+    font-variant-numeric:tabular-nums;
+  }
+  ul.index .name{
+    font-family:"IBM Plex Serif";font-weight:400;
+    font-size:clamp(22px,2.4vw,34px);
+    letter-spacing:-0.02em;line-height:1.1;color:var(--ink);
+  }
+  ul.index .name em{color:var(--accent);font-style:italic;font-weight:300}
+  ul.index .desc{
+    color:var(--mute);font-size:13px;margin-top:6px;
+    max-height:0;overflow:hidden;opacity:0;
+    transition:max-height .35s ease,opacity .35s ease,margin-top .35s ease;
+  }
+  ul.index a.row:hover .desc{
+    max-height:60px;opacity:1;margin-top:10px;
+  }
+  ul.index .meta{display:flex;gap:24px;color:var(--mute);font-size:12px;letter-spacing:0.12em;text-transform:uppercase}
+  ul.index .meta .count{color:var(--ink);font-variant-numeric:tabular-nums}
+  ul.index .chev{
+    justify-self:end;display:flex;align-items:center;gap:6px;color:var(--ink);
+  }
+  ul.index .chev .bar{
+    width:26px;height:1px;background:var(--ink);
+    transition:width .35s cubic-bezier(.16,1,.3,1);
+  }
+  ul.index a.row:hover .chev .bar{width:50px;background:var(--accent)}
+  ul.index .chev svg{stroke:var(--ink);transition:stroke .25s ease}
+  ul.index a.row:hover .chev svg{stroke:var(--accent)}
+
+  /* Occasional accent row — a "featured" one with a thumbnail */
+  ul.index li.feat a.row{grid-template-columns:110px 200px 1fr auto 40px}
+  ul.index li.feat .thumb{
+    height:96px;width:200px;overflow:hidden;
+    border:1px solid var(--hair);
+  }
+  ul.index li.feat .thumb img{
+    width:100%;height:100%;object-fit:cover;display:block;
+    filter:grayscale(0.1) contrast(1.02);
+    transition:transform 1s cubic-bezier(.16,1,.3,1);
+  }
+  ul.index li.feat a.row:hover .thumb img{transform:scale(1.05)}
+
+  /* B2B service block */
+  .b2b{
+    margin-top:80px;padding:60px 0 80px;background:var(--ink);color:var(--paper);
+  }
+  .b2b .grid{
+    display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:1px;
+    background:rgba(255,255,255,0.1);
+    border-top:1px solid rgba(255,255,255,0.1);
+    border-bottom:1px solid rgba(255,255,255,0.1);
+    margin-top:40px;
+  }
+  .b2b .grid > div{background:var(--ink);padding:28px 26px}
+  .b2b .grid > div:first-child{background:#0f0f0d}
+  .b2b h2{
+    font-family:"IBM Plex Serif";font-weight:400;font-size:44px;
+    letter-spacing:-0.025em;margin:0;line-height:1.02;
+  }
+  .b2b h2 em{font-style:italic;color:var(--accent);font-weight:300}
+  .b2b .lead{color:rgba(255,255,255,0.7);max-width:60ch;margin-top:14px;font-size:17px}
+  .b2b .label{color:var(--accent);font-size:11px;letter-spacing:0.18em;text-transform:uppercase}
+  .b2b .num{
+    font-family:"IBM Plex Serif";font-weight:300;font-size:44px;
+    line-height:1;margin:12px 0 10px;letter-spacing:-0.02em;
+  }
+  .b2b .note{color:rgba(255,255,255,0.6);font-size:12px;line-height:1.5;margin:0}
+  .b2b .cta{
+    display:inline-flex;align-items:center;gap:12px;margin-top:32px;
+    padding:16px 22px;border:1px solid var(--paper);color:var(--paper);
+    font-size:12px;letter-spacing:0.18em;text-transform:uppercase;
+    transition:background .2s ease,border-color .2s ease,color .2s ease;
+  }
+  .b2b .cta:hover{background:var(--accent);border-color:var(--accent);color:var(--ink)}
+
+  /* Footer sliver */
+  footer{padding:36px 0;color:var(--mute);font-size:12px;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;border-top:1px solid var(--hair)}
+
+  @media (max-width:900px){
+    .topbar{grid-template-columns:auto auto;gap:16px}
+    nav, .search{display:none}
+    .ribbon .row{grid-template-columns:1fr auto;gap:12px}
+    .ribbon .pill{display:none}
+    ul.index a.row{grid-template-columns:54px 1fr auto;padding:18px 0;gap:16px}
+    ul.index li.feat a.row{grid-template-columns:54px 1fr auto}
+    ul.index li.feat .thumb{display:none}
+    ul.index .chev{display:none}
+    .b2b .grid{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+
+<!-- B2B Ribbon at top -->
+<div class="ribbon">
+  <div class="wrap row">
+    <span class="label caps">B2B Desk</span>
+    <div class="pill">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 12h8"/></svg>
+      Net-30 on approval
+    </div>
+    <span class="pill">Volume pricing · 3+ units</span>
+    <span class="pill">Dedicated manager</span>
+    <span class="pill">VAT 24% incl.</span>
+    <a class="quote" href="#quote">Request B2B quote
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+</div>
+
+<header>
+  <div class="wrap topbar">
+    <a class="logo" href="/">XLMarket<span>.</span></a>
+    <nav>
+      <ul>
+        <li><a href="#" class="active">The Index</a></li>
+        <li><a href="#">Starter kits</a></li>
+        <li><a href="#">Industries</a></li>
+        <li><a href="#">Trade desk</a></li>
+        <li><a href="#">Journal</a></li>
+      </ul>
+    </nav>
+    <div class="topright">
+      <label class="search">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.3-4.3"/></svg>
+        <input type="search" placeholder="Search 16,046 products" />
+        <span class="kbd">⌘K</span>
+      </label>
+      <a class="caps" href="#">Account</a>
+      <a class="caps" href="#">Basket&nbsp;(0)</a>
+    </div>
+  </div>
+</header>
+
+<!-- Hero / index masthead -->
+<section class="mast">
+  <div class="wrap">
+    <div class="kicker caps">
+      <span>The Index · Volume&nbsp;2026</span>
+      <span>·</span>
+      <span>Issue 07 · Spring</span>
+      <span>·</span>
+      <em>Professional tools, half the price.</em>
+    </div>
+    <h1>Twenty&#8209;two<br/>disciplines.<br/><span class="it">One catalogue.</span></h1>
+    <div class="rule">
+      <p>Every line of business XLMarket covers is listed below — in order of how often owners buy complete kits from it. Hover a line to read what lives inside. Click to open the discipline.</p>
+      <span class="tag caps">§ Begin reading ↓</span>
+    </div>
+  </div>
+</section>
+
+<section class="sec wrap">
+  <div class="hdr">
+    <span class="eyebrow caps">§ I</span>
+    <h2>Disciplines, ranked by trade demand</h2>
+    <span class="totals caps">Totals · <b>16,046</b>&nbsp;products · <b>1,688</b>&nbsp;sub-cats</span>
+  </div>
+
+  <ul class="index">
+
+    <li class="feat">
+      <a class="row" href="/haru/horeca-food-service">
+        <span class="no">01</span>
+        <span class="thumb"><img src="../../images/cat-01-horeca-food-service.png" alt="" /></span>
+        <span>
+          <span class="name">HoReCa &amp; Food Service <em>— from café to full restaurant fit-out</em></span>
+          <span class="desc">Commercial refrigeration, cooking equipment, food prep, bar &amp; beverage, sinks &amp; washdown, shelving — 612 SKUs, one manager.</span>
+        </span>
+        <span class="meta"><span class="count num">612</span>&nbsp;prod · <span>6</span>&nbsp;sub-cats</span>
+        <span class="chev"><span class="bar"></span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+      </a>
+    </li>
+
+    <li>
+      <a class="row" href="/haru/laser-cnc-digital-fabrication">
+        <span class="no">02</span>
+        <span>
+          <span class="name">Laser, CNC &amp; Digital Fabrication</span>
+          <span class="desc">CO2 lasers, diode engravers, CNC routers &amp; mills, 3D printers, accessories, rotary attachments.</span>
+        </span>
+        <span class="meta"><span class="count num">844</span>&nbsp;prod · 6&nbsp;sub-cats</span>
+        <span class="chev"><span class="bar"></span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+      </a>
+    </li>
+
+    <li>
+      <a class="row" href="/haru/welding-metalworking">
+        <span class="no">03</span>
+        <span>
+          <span class="name">Welding &amp; Metalworking</span>
+          <span class="desc">MIG / TIG / plasma, lathes, grinders, hydraulic presses, welding safety, motors &amp; drives.</span>
+        </span>
+        <span class="meta"><span class="count num">1,204</span>&nbsp;prod · 6&nbsp;sub-cats</span>
+        <span class="chev"><span class="bar"></span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+      </a>
+    </li>
+
+    <li class="feat">
+      <a class="row" href="/haru/printing-packaging-signage">
+        <span class="no">04</span>
+        <span class="thumb"><img src="../../images/cat-07-printing-packaging-signage.png" alt="" /></span>
+        <span>
+          <span class="name">Printing, Packaging &amp; Signage</span>
+          <span class="desc">Heat presses, vinyl cutters, sealers, label makers, banner displays, paper handling.</span>
+        </span>
+        <span class="meta"><span class="count num">578</span>&nbsp;prod · 6&nbsp;sub-cats</span>
+        <span class="chev"><span class="bar"></span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+      </a>
+    </li>
+
+    <li>
+      <a class="row" href="/haru/electrical-energy">
+        <span class="no">05</span>
+        <span>
+          <span class="name">Electrical &amp; Energy</span>
+          <span class="desc">Generators, solar, inverters, wiring &amp; enclosures, commercial lighting, batteries.</span>
+        </span>
+        <span class="meta"><span class="count num">921</span>&nbsp;prod · 6&nbsp;sub-cats</span>
+        <span class="chev"><span class="bar"></span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+      </a>
+    </li>
+
+    <li>
+      <a class="row" href="/haru/woodworking-carpentry">
+        <span class="no">06</span>
+        <span>
+          <span class="name">Woodworking &amp; Carpentry</span>
+          <span class="desc">Table saws, band saws, planers, routers, drill presses, clamps, sanders.</span>
+        </span>
+        <span class="meta"><span class="count num">703</span>&nbsp;prod · 6&nbsp;sub-cats</span>
+        <span class="chev"><span class="bar"></span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+      </a>
+    </li>
+
+    <li>
+      <a class="row" href="/haru/construction-building">
+        <span class="no">07</span>
+        <span>
+          <span class="name">Construction &amp; Building</span>
+          <span class="desc">Concrete mixers, rebar cutters, scaffolding, site gear and surveying instruments.</span>
+        </span>
+        <span class="meta"><span class="count num">1,380</span>&nbsp;prod · 6&nbsp;sub-cats</span>
+        <span class="chev"><span class="bar"></span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+      </a>
+    </li>
+
+    <li>
+      <a class="row" href="/haru/cleaning-janitorial">
+        <span class="no">08</span>
+        <span>
+          <span class="name">Cleaning &amp; Janitorial</span>
+          <span class="desc">Pressure washers, industrial vacuums, floor scrubbers, cleaning chemicals.</span>
+        </span>
+        <span class="meta"><span class="count num">512</span>&nbsp;prod · 6&nbsp;sub-cats</span>
+        <span class="chev"><span class="bar"></span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+      </a>
+    </li>
+
+    <li>
+      <a class="row" href="/haru/hand-power-tools">
+        <span class="no">09</span>
+        <span>
+          <span class="name">Hand &amp; Power Tools</span>
+          <span class="desc">Drills, grinders, impact wrenches, measuring tools and hand tool sets.</span>
+        </span>
+        <span class="meta"><span class="count num">1,802</span>&nbsp;prod · 6&nbsp;sub-cats</span>
+        <span class="chev"><span class="bar"></span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+      </a>
+    </li>
+
+    <li>
+      <a class="row" href="/haru/fuel-lubrication-fluid">
+        <span class="no">10</span>
+        <span>
+          <span class="name">Fuel, Lubrication &amp; Fluid Management</span>
+          <span class="desc">Transfer pumps, fuel tanks, grease equipment, hose reels.</span>
+        </span>
+        <span class="meta"><span class="count num">321</span>&nbsp;prod · 6&nbsp;sub-cats</span>
+        <span class="chev"><span class="bar"></span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+      </a>
+    </li>
+
+    <li>
+      <a class="row" href="/haru/outdoor-power-landscaping">
+        <span class="no">11</span>
+        <span>
+          <span class="name">Outdoor Power &amp; Landscaping</span>
+          <span class="desc">Mowers, chainsaws, trimmers, leaf blowers, log splitters.</span>
+        </span>
+        <span class="meta"><span class="count num">644</span>&nbsp;prod · 6&nbsp;sub-cats</span>
+        <span class="chev"><span class="bar"></span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+      </a>
+    </li>
+
+    <li class="feat">
+      <a class="row" href="/haru/warehousing-material-handling">
+        <span class="no">12</span>
+        <span class="thumb"><img src="../../images/cat-11-warehousing-material-handling.png" alt="" /></span>
+        <span>
+          <span class="name">Warehousing &amp; Material Handling</span>
+          <span class="desc">Pallet jacks, hand trucks, lifts, storage shelving, conveyors.</span>
+        </span>
+        <span class="meta"><span class="count num">489</span>&nbsp;prod · 6&nbsp;sub-cats</span>
+        <span class="chev"><span class="bar"></span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+      </a>
+    </li>
+
+    <li>
+      <a class="row" href="/haru/hvac-climate-control">
+        <span class="no">13</span>
+        <span>
+          <span class="name">HVAC &amp; Climate Control</span>
+          <span class="desc">Ductless mini-splits, industrial ventilation, space heaters, humidifiers.</span>
+        </span>
+        <span class="meta"><span class="count num">287</span>&nbsp;prod · 6&nbsp;sub-cats</span>
+        <span class="chev"><span class="bar"></span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+      </a>
+    </li>
+
+    <li>
+      <a class="row" href="/haru/plumbing-water-systems">
+        <span class="no">14</span>
+        <span>
+          <span class="name">Plumbing &amp; Water Systems</span>
+          <span class="desc">Booster pumps, tankless heaters, water treatment, drain equipment.</span>
+        </span>
+        <span class="meta"><span class="count num">356</span>&nbsp;prod · 6&nbsp;sub-cats</span>
+        <span class="chev"><span class="bar"></span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+      </a>
+    </li>
+
+    <li>
+      <a class="row" href="/haru/safety-security-workwear">
+        <span class="no">15</span>
+        <span>
+          <span class="name">Safety, Security &amp; Workwear</span>
+          <span class="desc">PPE, CCTV, access control, site signage, hi-vis apparel.</span>
+        </span>
+        <span class="meta"><span class="count num">604</span>&nbsp;prod · 6&nbsp;sub-cats</span>
+        <span class="chev"><span class="bar"></span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+      </a>
+    </li>
+
+    <li>
+      <a class="row" href="/haru/automotive-workshop">
+        <span class="no">16</span>
+        <span>
+          <span class="name">Automotive &amp; Workshop</span>
+          <span class="desc">Two-post lifts, diagnostic scanners, tyre changers, body shop gear.</span>
+        </span>
+        <span class="meta"><span class="count num">1,112</span>&nbsp;prod · 6&nbsp;sub-cats</span>
+        <span class="chev"><span class="bar"></span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+      </a>
+    </li>
+
+    <li>
+      <a class="row" href="/haru/salon-spa-wellness">
+        <span class="no">17</span>
+        <span>
+          <span class="name">Salon, Spa &amp; Wellness</span>
+          <span class="desc">Barber chairs, hood dryers, tanning beds, facial equipment.</span>
+        </span>
+        <span class="meta"><span class="count num">298</span>&nbsp;prod · 6&nbsp;sub-cats</span>
+        <span class="chev"><span class="bar"></span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+      </a>
+    </li>
+
+    <li>
+      <a class="row" href="/haru/office-commercial-interiors">
+        <span class="no">18</span>
+        <span>
+          <span class="name">Office &amp; Commercial Interiors</span>
+          <span class="desc">Desks, task chairs, partitions, display fixtures, reception gear.</span>
+        </span>
+        <span class="meta"><span class="count num">412</span>&nbsp;prod · 6&nbsp;sub-cats</span>
+        <span class="chev"><span class="bar"></span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+      </a>
+    </li>
+
+    <li>
+      <a class="row" href="/haru/health-medical-supply">
+        <span class="no">19</span>
+        <span>
+          <span class="name">Health &amp; Medical Supply</span>
+          <span class="desc">Exam tables, sterilisation, mobility aids, lab equipment.</span>
+        </span>
+        <span class="meta"><span class="count num">188</span>&nbsp;prod · 6&nbsp;sub-cats</span>
+        <span class="chev"><span class="bar"></span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+      </a>
+    </li>
+
+    <li>
+      <a class="row" href="/haru/fitness-sports-recreation">
+        <span class="no">20</span>
+        <span>
+          <span class="name">Fitness, Sports &amp; Recreation</span>
+          <span class="desc">Gym racks, cardio machines, team sports equipment.</span>
+        </span>
+        <span class="meta"><span class="count num">276</span>&nbsp;prod · 6&nbsp;sub-cats</span>
+        <span class="chev"><span class="bar"></span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+      </a>
+    </li>
+
+    <li>
+      <a class="row" href="/haru/boating-camping-outdoor">
+        <span class="no">21</span>
+        <span>
+          <span class="name">Boating, Camping &amp; Outdoor</span>
+          <span class="desc">Marine gear, tents, grilling, pool &amp; patio.</span>
+        </span>
+        <span class="meta"><span class="count num">241</span>&nbsp;prod · 6&nbsp;sub-cats</span>
+        <span class="chev"><span class="bar"></span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+      </a>
+    </li>
+
+    <li>
+      <a class="row" href="/haru/music-entertainment">
+        <span class="no">22</span>
+        <span>
+          <span class="name">Music &amp; Entertainment</span>
+          <span class="desc">PA systems, stage lighting, karaoke &amp; DJ booths.</span>
+        </span>
+        <span class="meta"><span class="count num">167</span>&nbsp;prod · 6&nbsp;sub-cats</span>
+        <span class="chev"><span class="bar"></span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+      </a>
+    </li>
+
+  </ul>
+</section>
+
+<!-- B2B service block -->
+<section class="b2b" id="quote">
+  <div class="wrap">
+    <span class="caps" style="color:var(--accent)">§ II · Trade Desk</span>
+    <h2 style="margin-top:16px">For people who buy<br/><em>by the pallet</em>, not the piece.</h2>
+    <p class="lead">Open a trade account and get volume pricing, Net-30 terms, and a named manager on every invoice over €1&thinsp;500. EU-wide freight from Tallinn and Tenerife warehouses.</p>
+
+    <div class="grid">
+      <div>
+        <span class="label">Starter kits</span>
+        <div class="num">€2,799</div>
+        <p class="note">From — café, auto-shop, print-studio, barber, bakery and cleaning. Configure, quote, deliver.</p>
+        <a class="cta" href="#starter-kits">Browse kits →</a>
+      </div>
+      <div>
+        <span class="label">Payment</span>
+        <div class="num">Net-30</div>
+        <p class="note">On approval. 3.49% early-payment discount on invoices cleared within 7 days.</p>
+      </div>
+      <div>
+        <span class="label">Volume</span>
+        <div class="num">−6 to −14%</div>
+        <p class="note">Off list price on orders of 3, 6 or 12+ units. Custom scale on request.</p>
+      </div>
+      <div>
+        <span class="label">Support</span>
+        <div class="num">1 : 1</div>
+        <p class="note">Dedicated account manager. Real human replies — not a ticket queue.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="wrap">
+  <span>© 2026 Roland Kaubandus OÜ · XLMarket.eu · VAT EE102873651</span>
+  <span class="caps">Colophon · Set in IBM Plex Serif &amp; DM Sans</span>
+</footer>
+
+</body>
+</html>

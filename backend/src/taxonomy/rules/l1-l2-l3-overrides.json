@@ -1,0 +1,6 @@
+{
+  "_doc": "S3 — exact 'L1|L2|L3' VEVOR triple → v3 slug path. Format: { 'L1|L2|L3': 'l1-slug/l2-slug' or 'l1-slug/l2-slug/l3-slug' }. Confidence 0.95.",
+  "_version": 1,
+  "_updated": "2026-04-18",
+  "overrides": {}
+}

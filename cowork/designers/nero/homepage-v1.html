@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>XLMarket — True Bento, 22 Categories</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --ink: #0c1119;
+    --paper: #fcfcfc;
+    --paper-2: #f2efe9;
+    --amber: #f59e0b;
+    --orange: #f97316;
+    --cyan: #06b6d4;
+    --lime: #d9f99d;
+    --line: #0c1119;
+    --mute: #6b6b6b;
+    --border: 2.5px solid var(--line);
+    --shadow-hard: 6px 6px 0 0 var(--ink);
+    --shadow-hard-sm: 4px 4px 0 0 var(--ink);
+  }
+  html, body { background: var(--paper-2); color: var(--ink); font-family: 'DM Sans', sans-serif; -webkit-font-smoothing: antialiased; }
+  body { overflow-x: hidden; }
+  a { color: inherit; text-decoration: none; }
+  button, input, select { font-family: inherit; }
+  .mono { font-family: 'JetBrains Mono', monospace; font-variant-numeric: tabular-nums; }
+  .tabular { font-variant-numeric: tabular-nums; }
+
+  /* =================== B2B PRICE BAND =================== */
+  .pricing-band {
+    background: var(--ink);
+    color: var(--paper);
+    border-bottom: var(--border);
+    overflow: hidden;
+  }
+  .pricing-band__track {
+    display: flex;
+    gap: 48px;
+    padding: 10px 32px;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+    animation: slide 32s linear infinite;
+  }
+  .pricing-band__item { display: inline-flex; align-items: center; gap: 10px; }
+  .pricing-band__item strong { color: var(--amber); font-weight: 700; }
+  .pricing-band__item svg { flex-shrink: 0; }
+  @keyframes slide {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  /* =================== HEADER =================== */
+  header.site {
+    background: var(--paper);
+    border-bottom: var(--border);
+    padding: 20px 32px;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 32px;
+  }
+  .logo {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 900;
+    font-size: 28px;
+    letter-spacing: -0.04em;
+    line-height: 1;
+  }
+  .logo span { color: var(--orange); }
+  .nav { display: flex; gap: 32px; justify-content: center; }
+  .nav a {
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: -0.01em;
+    padding: 10px 0;
+    position: relative;
+  }
+  .nav a::after {
+    content: '';
+    position: absolute;
+    left: 0; right: 0; bottom: 4px;
+    height: 3px; background: var(--ink);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 200ms cubic-bezier(0.2,0.8,0.2,1);
+  }
+  .nav a:hover::after { transform: scaleX(1); }
+  .header-actions { display: flex; gap: 10px; align-items: center; }
+  .search-pill {
+    display: flex; align-items: center; gap: 8px;
+    border: var(--border);
+    background: var(--paper);
+    padding: 8px 14px;
+    font-weight: 500;
+    font-size: 13px;
+    min-width: 220px;
+    transition: box-shadow 160ms, transform 160ms;
+  }
+  .search-pill:hover { box-shadow: var(--shadow-hard-sm); transform: translate(-2px,-2px); }
+  .search-pill input { border: 0; outline: 0; background: transparent; width: 100%; font-size: 13px; }
+  .btn-quote {
+    background: var(--amber);
+    border: var(--border);
+    padding: 10px 18px;
+    font-weight: 700;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    box-shadow: var(--shadow-hard-sm);
+    transition: transform 140ms, box-shadow 140ms;
+    cursor: pointer;
+  }
+  .btn-quote:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 0 var(--ink); }
+  .btn-quote:active  { transform: translate(0,0); box-shadow: 2px 2px 0 0 var(--ink); }
+
+  /* =================== INTRO STRIP =================== */
+  .intro {
+    padding: 40px 32px 28px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    gap: 32px;
+  }
+  .intro h1 {
+    font-weight: 900;
+    font-size: clamp(40px, 6vw, 84px);
+    line-height: 0.88;
+    letter-spacing: -0.05em;
+    max-width: 14ch;
+  }
+  .intro h1 em {
+    font-style: normal;
+    background: var(--amber);
+    padding: 0 8px;
+    box-shadow: 4px 4px 0 0 var(--ink);
+    display: inline-block;
+    transform: rotate(-1deg);
+  }
+  .intro p {
+    font-size: 15px;
+    max-width: 32ch;
+    font-weight: 500;
+    color: var(--mute);
+    line-height: 1.4;
+  }
+  .intro-meta {
+    display: flex;
+    gap: 24px;
+    text-align: right;
+  }
+  .intro-meta .cell {
+    border-left: var(--border);
+    padding-left: 16px;
+  }
+  .intro-meta .cell strong {
+    font-size: 32px;
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    display: block;
+    line-height: 1;
+  }
+  .intro-meta .cell span { font-size: 12px; color: var(--mute); font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; }
+
+  /* =================== BENTO GRID =================== */
+  .bento {
+    padding: 0 32px 64px;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-auto-rows: 128px;
+    gap: 14px;
+  }
+  .tile {
+    border: var(--border);
+    background: var(--paper);
+    position: relative;
+    overflow: hidden;
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 180ms cubic-bezier(0.2,0.8,0.2,1), box-shadow 180ms;
+    cursor: pointer;
+  }
+  .tile:hover { transform: translate(-3px,-3px); box-shadow: var(--shadow-hard); z-index: 2; }
+  .tile:active { transform: translate(0,0); box-shadow: 2px 2px 0 0 var(--ink); }
+  .tile__num {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    font-size: 10px;
+    opacity: 0.55;
+    letter-spacing: 0.08em;
+  }
+  .tile__title {
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    line-height: 0.95;
+    font-size: 20px;
+  }
+  .tile__meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+  .tile__meta .count { font-family: 'JetBrains Mono', monospace; }
+  .tile__icon {
+    position: absolute;
+    bottom: 14px; right: 14px;
+    width: 36px; height: 36px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  /* size variants */
+  .span-2 { grid-column: span 2; }
+  .span-3 { grid-column: span 3; }
+  .span-4 { grid-column: span 4; }
+  .span-5 { grid-column: span 5; }
+  .span-6 { grid-column: span 6; }
+  .row-2 { grid-row: span 2; }
+  .row-3 { grid-row: span 3; }
+
+  /* featured photo tiles */
+  .tile--photo {
+    color: var(--paper);
+    padding: 0;
+    background: var(--ink);
+  }
+  .tile--photo img {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    filter: grayscale(0.15) contrast(1.05);
+    transition: transform 400ms cubic-bezier(0.2,0.8,0.2,1);
+  }
+  .tile--photo:hover img { transform: scale(1.06); }
+  .tile--photo::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(12,17,25,0.15) 0%, rgba(12,17,25,0.85) 100%);
+  }
+  .tile--photo .inner {
+    position: absolute; inset: 0;
+    padding: 22px;
+    display: flex; flex-direction: column; justify-content: space-between;
+    z-index: 2;
+  }
+  .tile--photo .tile__title { font-size: 30px; max-width: 12ch; }
+  .tile--photo .tile__meta  { color: rgba(255,255,255,0.85); }
+  .tile--photo .tile__num   { color: rgba(255,255,255,0.7); }
+
+  /* solid-color bold tiles */
+  .tile--amber { background: var(--amber); }
+  .tile--orange { background: var(--orange); color: var(--paper); }
+  .tile--ink { background: var(--ink); color: var(--paper); }
+  .tile--cyan { background: var(--cyan); color: var(--paper); }
+  .tile--lime { background: var(--lime); }
+
+  /* special cells */
+  .tile--starter {
+    background: var(--lime);
+    grid-column: span 4;
+    grid-row: span 2;
+    padding: 22px;
+  }
+  .tile--starter h3 {
+    font-size: 26px;
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    line-height: 0.95;
+    margin-bottom: 8px;
+  }
+  .tile--starter .kit-list {
+    margin-top: 14px;
+    display: flex; flex-direction: column; gap: 6px;
+  }
+  .tile--starter .kit-row {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 8px 0;
+    border-top: 2px solid var(--ink);
+    font-weight: 700;
+    font-size: 13px;
+  }
+  .tile--starter .kit-row:last-child { border-bottom: 2px solid var(--ink); }
+  .tile--starter .kit-price { font-family: 'JetBrains Mono', monospace; font-size: 14px; }
+  .tile--starter .kit-cta {
+    margin-top: 12px;
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--ink);
+    color: var(--paper);
+    padding: 10px 14px;
+    font-weight: 700;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    box-shadow: var(--shadow-hard-sm);
+    align-self: flex-start;
+    transition: transform 140ms, box-shadow 140ms;
+  }
+  .tile--starter .kit-cta:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 0 var(--ink); }
+
+  .tile--newsletter {
+    background: var(--ink);
+    color: var(--paper);
+    grid-column: span 4;
+    padding: 22px;
+  }
+  .tile--newsletter h3 {
+    font-size: 22px;
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    max-width: 16ch;
+    line-height: 0.95;
+    margin-bottom: 8px;
+  }
+  .tile--newsletter .sub { font-size: 12px; color: rgba(255,255,255,0.7); margin-bottom: 14px; }
+  .tile--newsletter .form-row { display: flex; border: 2.5px solid var(--paper); }
+  .tile--newsletter input {
+    flex: 1; background: transparent; border: 0; outline: 0; color: var(--paper);
+    padding: 10px 12px; font-size: 13px;
+  }
+  .tile--newsletter button {
+    background: var(--amber); color: var(--ink);
+    border: 0; border-left: 2.5px solid var(--paper);
+    padding: 0 16px;
+    font-weight: 800; font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em;
+    cursor: pointer;
+  }
+
+  /* badges */
+  .badge {
+    display: inline-flex; align-items: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    padding: 3px 6px;
+    background: var(--ink);
+    color: var(--paper);
+    text-transform: uppercase;
+  }
+  .badge--cyan { background: var(--cyan); color: var(--ink); }
+  .badge--amber { background: var(--amber); color: var(--ink); }
+
+  /* footer strip */
+  .footer-strip {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 20px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    font-weight: 500;
+    border-top: var(--border);
+  }
+  .footer-strip strong { color: var(--amber); }
+
+  @media (max-width: 900px) {
+    .bento { grid-template-columns: repeat(6, 1fr); grid-auto-rows: 110px; }
+    .span-3, .span-4, .span-5, .span-6 { grid-column: span 3; }
+    .span-2 { grid-column: span 2; }
+    .nav { display: none; }
+    .intro { grid-template-columns: 1fr; }
+    .intro-meta { justify-content: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<!-- B2B pricing band -->
+<div class="pricing-band" aria-label="B2B value propositions">
+  <div class="pricing-band__track">
+    <span class="pricing-band__item">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+      <strong>Net-30</strong> payment for registered businesses
+    </span>
+    <span class="pricing-band__item">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2L2 7v10l10 5 10-5V7L12 2z"/></svg>
+      <strong>Volume pricing</strong> from 3 units
+    </span>
+    <span class="pricing-band__item">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      <strong>Dedicated manager</strong> for every B2B account
+    </span>
+    <span class="pricing-band__item">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+      <strong>24h quote turnaround</strong> — weekdays
+    </span>
+    <!-- duplicate for infinite scroll -->
+    <span class="pricing-band__item">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+      <strong>Net-30</strong> payment for registered businesses
+    </span>
+    <span class="pricing-band__item">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2L2 7v10l10 5 10-5V7L12 2z"/></svg>
+      <strong>Volume pricing</strong> from 3 units
+    </span>
+    <span class="pricing-band__item">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      <strong>Dedicated manager</strong> for every B2B account
+    </span>
+    <span class="pricing-band__item">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+      <strong>24h quote turnaround</strong> — weekdays
+    </span>
+  </div>
+</div>
+
+<!-- Header -->
+<header class="site">
+  <a href="#" class="logo">XL<span>Market</span></a>
+  <nav class="nav" aria-label="Primary">
+    <a href="#catalog">Catalog</a>
+    <a href="#kits">Starter Kits</a>
+    <a href="#b2b">B2B</a>
+    <a href="#deals">Deals</a>
+    <a href="#support">Support</a>
+  </nav>
+  <div class="header-actions">
+    <label class="search-pill">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+      <input type="search" placeholder="Search 16,046 products…" aria-label="Search">
+    </label>
+    <a href="#quote" class="btn-quote">Request Quote</a>
+  </div>
+</header>
+
+<!-- Intro strip -->
+<section class="intro">
+  <div>
+    <h1>Twenty-two trades. <em>One invoice.</em></h1>
+    <p style="margin-top: 16px;">Professional-grade VEVOR equipment for the entrepreneurs building Estonia's and Spain's small business backbone. Pick a trade below.</p>
+  </div>
+  <div class="intro-meta">
+    <div class="cell">
+      <strong class="tabular">16,046</strong>
+      <span>SKUs in stock</span>
+    </div>
+    <div class="cell">
+      <strong class="tabular">1.15×</strong>
+      <span>Flat markup, no hidden fees</span>
+    </div>
+  </div>
+</section>
+
+<!-- Bento grid -->
+<section class="bento" id="catalog" aria-label="22 categories">
+
+  <!-- Row 1 -->
+  <!-- 1. HoReCa — feature photo, 4x2 -->
+  <a href="/haru/horeca-food-service" class="tile tile--photo span-4 row-2">
+    <img src="../../images/cat-01-horeca-food-service.png" alt="">
+    <div class="inner">
+      <div>
+        <span class="tile__num">01 / 22</span>
+        <div style="margin-top:6px;"><span class="badge badge--amber">Popular</span></div>
+      </div>
+      <div>
+        <div class="tile__title">HoReCa & Food Service</div>
+        <div class="tile__meta" style="margin-top:10px;">
+          <span>6 subcategories</span>
+          <span class="count">1,842 SKUs →</span>
+        </div>
+      </div>
+    </div>
+  </a>
+
+  <!-- 2. Laser CNC — solid amber, span 3 -->
+  <a href="/haru/laser-cnc-digital-fabrication" class="tile tile--amber span-3">
+    <span class="tile__num">02 / 22</span>
+    <div class="tile__title">Laser, CNC &<br>Digital Fabrication</div>
+    <div class="tile__meta"><span>6 subs</span><span class="count">724 SKUs</span></div>
+    <div class="tile__icon">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="var(--ink)"><path d="M3 3h8v8H3V3zm10 0h8v8h-8V3zm0 10h8v8h-8v-8zM3 13h8v8H3v-8z"/></svg>
+    </div>
+  </a>
+
+  <!-- 3. Welding — ink -->
+  <a href="/haru/welding-metalworking" class="tile tile--ink span-2">
+    <span class="tile__num">03 / 22</span>
+    <div class="tile__title">Welding &<br>Metalwork</div>
+    <div class="tile__meta"><span>6 subs</span><span class="count">612</span></div>
+    <div class="tile__icon">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="var(--amber)"><path d="M12 2l3 7h7l-5.5 4.5L18 22l-6-4-6 4 1.5-8.5L2 9h7z"/></svg>
+    </div>
+  </a>
+
+  <!-- 4. Printing — cyan new -->
+  <a href="/haru/printing-packaging-signage" class="tile tile--cyan span-3">
+    <span class="tile__num">04 / 22</span>
+    <div><span class="badge">NEW 2026</span></div>
+    <div class="tile__title">Printing, Packaging<br>& Signage</div>
+    <div class="tile__meta"><span>6 subs</span><span class="count">489 SKUs</span></div>
+  </a>
+
+  <!-- Row 2 (continues: HoReCa still spans) -->
+  <!-- 5. Electrical — amber -->
+  <a href="/haru/electrical-energy" class="tile tile--amber span-2">
+    <span class="tile__num">05 / 22</span>
+    <div class="tile__title">Electrical<br>& Energy</div>
+    <div class="tile__meta"><span>6 subs</span><span class="count">1,104</span></div>
+  </a>
+
+  <!-- 6. Woodworking — photo -->
+  <a href="/haru/woodworking-carpentry" class="tile tile--photo span-3">
+    <img src="../../images/cat-06-woodworking-carpentry.png" alt="">
+    <div class="inner">
+      <span class="tile__num">06 / 22</span>
+      <div>
+        <div class="tile__title" style="font-size:22px;">Woodworking & Carpentry</div>
+        <div class="tile__meta" style="margin-top:8px;"><span>6 subs</span><span class="count">567 SKUs →</span></div>
+      </div>
+    </div>
+  </a>
+
+  <!-- 7. Construction — ink -->
+  <a href="/haru/construction-building" class="tile tile--ink span-3">
+    <span class="tile__num">07 / 22</span>
+    <div class="tile__title">Construction & Building</div>
+    <div class="tile__meta"><span>6 subs</span><span class="count">1,245 SKUs</span></div>
+    <div class="tile__icon">
+      <svg width="30" height="30" viewBox="0 0 24 24" fill="var(--amber)"><path d="M4 21V9l8-6 8 6v12h-6v-7h-4v7H4z"/></svg>
+    </div>
+  </a>
+
+  <!-- Row 3 -->
+  <!-- STARTER KITS block (lime, feature 4x2) -->
+  <div class="tile--starter tile">
+    <span class="tile__num">B2B STARTER KITS</span>
+    <h3>Open a café.<br>Open a bakery.<br>One invoice.</h3>
+    <div class="kit-list">
+      <div class="kit-row"><span>Café Complete</span><span class="kit-price">€2,799</span></div>
+      <div class="kit-row"><span>Bakery Starter</span><span class="kit-price">€4,190</span></div>
+      <div class="kit-row"><span>Auto-Shop Base</span><span class="kit-price">€6,340</span></div>
+    </div>
+    <a href="#starter-kits" class="kit-cta">
+      See all 12 kits
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+
+  <!-- 8. Cleaning -->
+  <a href="/haru/cleaning-janitorial" class="tile span-2">
+    <span class="tile__num">08 / 22</span>
+    <div class="tile__title">Cleaning<br>& Janitorial</div>
+    <div class="tile__meta"><span>6 subs</span><span class="count">398</span></div>
+    <div class="tile__icon">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="var(--ink)"><path d="M19 11h-7V3H8v8H5l7 10 7-10z"/></svg>
+    </div>
+  </a>
+
+  <!-- 9. Hand & Power Tools — orange -->
+  <a href="/haru/hand-power-tools" class="tile tile--orange span-3">
+    <span class="tile__num">09 / 22</span>
+    <div class="tile__title">Hand &<br>Power Tools</div>
+    <div class="tile__meta"><span>6 subs</span><span class="count">2,145 SKUs</span></div>
+    <div class="tile__icon">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="var(--paper)"><path d="M14 6l6 6-3 3-6-6 3-3zm-4 4L3 17l4 4 7-7-4-4z"/></svg>
+    </div>
+  </a>
+
+  <!-- 10. Fuel -->
+  <a href="/haru/fuel-lubrication-fluid" class="tile span-3">
+    <span class="tile__num">10 / 22</span>
+    <div class="tile__title">Fuel, Lubrication<br>& Fluid Management</div>
+    <div class="tile__meta"><span>6 subs</span><span class="count">312</span></div>
+  </a>
+
+  <!-- Row 4 -->
+  <!-- 11. Outdoor Power — photo -->
+  <a href="/haru/outdoor-power-landscaping" class="tile tile--photo span-4">
+    <img src="../../images/cat-13-outdoor-power-landscaping.png" alt="">
+    <div class="inner">
+      <span class="tile__num">11 / 22</span>
+      <div>
+        <div class="tile__title" style="font-size:22px;">Outdoor Power & Landscaping</div>
+        <div class="tile__meta" style="margin-top:8px;"><span>6 subs</span><span class="count">678 SKUs →</span></div>
+      </div>
+    </div>
+  </a>
+
+  <!-- 12. Warehousing -->
+  <a href="/haru/warehousing-material-handling" class="tile tile--ink span-2">
+    <span class="tile__num">12 / 22</span>
+    <div class="tile__title">Warehousing</div>
+    <div class="tile__meta"><span>6 subs</span><span class="count">445</span></div>
+  </a>
+
+  <!-- 13. HVAC -->
+  <a href="/haru/hvac-climate-control" class="tile tile--amber span-3">
+    <span class="tile__num">13 / 22</span>
+    <div class="tile__title">HVAC &<br>Climate Control</div>
+    <div class="tile__meta"><span>6 subs</span><span class="count">523 SKUs</span></div>
+  </a>
+
+  <!-- 14. Plumbing -->
+  <a href="/haru/plumbing-water-systems" class="tile span-3">
+    <span class="tile__num">14 / 22</span>
+    <div class="tile__title">Plumbing &<br>Water Systems</div>
+    <div class="tile__meta"><span>6 subs</span><span class="count">289</span></div>
+  </a>
+
+  <!-- Row 5 -->
+  <!-- 15. Safety -->
+  <a href="/haru/safety-security-workwear" class="tile tile--orange span-2">
+    <span class="tile__num">15 / 22</span>
+    <div class="tile__title">Safety &<br>Workwear</div>
+    <div class="tile__meta"><span>6 subs</span><span class="count">634</span></div>
+  </a>
+
+  <!-- 16. Automotive — photo -->
+  <a href="/haru/automotive-workshop" class="tile tile--photo span-4">
+    <img src="../../images/cat-12-automotive-workshop.png" alt="">
+    <div class="inner">
+      <span class="tile__num">16 / 22</span>
+      <div>
+        <div class="tile__title" style="font-size:22px;">Automotive & Workshop</div>
+        <div class="tile__meta" style="margin-top:8px;"><span>6 subs</span><span class="count">892 SKUs →</span></div>
+      </div>
+    </div>
+  </a>
+
+  <!-- 17. Salon -->
+  <a href="/haru/salon-spa-wellness" class="tile tile--cyan span-3">
+    <span class="tile__num">17 / 22</span>
+    <div><span class="badge">NEW 2026</span></div>
+    <div class="tile__title">Salon, Spa<br>& Wellness</div>
+    <div class="tile__meta"><span>6 subs</span><span class="count">223</span></div>
+  </a>
+
+  <!-- 18. Office -->
+  <a href="/haru/office-commercial-interiors" class="tile span-3">
+    <span class="tile__num">18 / 22</span>
+    <div class="tile__title">Office & Commercial Interiors</div>
+    <div class="tile__meta"><span>6 subs</span><span class="count">387</span></div>
+  </a>
+
+  <!-- Row 6 -->
+  <!-- 19. Health -->
+  <a href="/haru/health-medical-supply" class="tile tile--ink span-3">
+    <span class="tile__num">19 / 22</span>
+    <div class="tile__title">Health & Medical Supply</div>
+    <div class="tile__meta"><span>6 subs</span><span class="count">156</span></div>
+  </a>
+
+  <!-- 20. Fitness -->
+  <a href="/haru/fitness-sports-recreation" class="tile tile--amber span-2">
+    <span class="tile__num">20 / 22</span>
+    <div class="tile__title">Fitness &<br>Sports</div>
+    <div class="tile__meta"><span>6 subs</span><span class="count">298</span></div>
+  </a>
+
+  <!-- 21. Boating/Camping -->
+  <a href="/haru/boating-camping-outdoor" class="tile span-3">
+    <span class="tile__num">21 / 22</span>
+    <div class="tile__title">Boating, Camping<br>& Outdoor</div>
+    <div class="tile__meta"><span>6 subs</span><span class="count">412</span></div>
+    <div class="tile__icon">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="var(--ink)"><path d="M3 18h18l-2-8H5l-2 8zM10 2h4v6h-4z"/></svg>
+    </div>
+  </a>
+
+  <!-- Newsletter block -->
+  <div class="tile tile--newsletter">
+    <span class="tile__num">STAY IN THE LOOP</span>
+    <h3>Weekly B2B drops &amp; price alerts.</h3>
+    <div class="sub">Fridays. No fluff. Unsub in one click.</div>
+    <form class="form-row" onsubmit="event.preventDefault();">
+      <input type="email" placeholder="you@company.ee" required>
+      <button type="submit">Join</button>
+    </form>
+  </div>
+
+  <!-- 22. Music -->
+  <a href="/haru/music-entertainment" class="tile tile--lime span-4">
+    <span class="tile__num">22 / 22</span>
+    <div class="tile__title">Music & Entertainment</div>
+    <div class="tile__meta"><span>6 subs</span><span class="count">178 SKUs</span></div>
+    <div class="tile__icon">
+      <svg width="34" height="34" viewBox="0 0 24 24" fill="var(--ink)"><path d="M9 18V5l12-2v13M9 18a3 3 0 11-6 0 3 3 0 016 0zm12-2a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+    </div>
+  </a>
+
+  <!-- Final CTA block -->
+  <a href="#quote" class="tile tile--orange span-8" style="padding:28px;">
+    <span class="tile__num">NEXT STEP</span>
+    <div style="display:flex; justify-content: space-between; align-items: flex-end; gap: 20px;">
+      <div class="tile__title" style="font-size:38px; max-width:18ch;">Tell us what you're opening. We'll ship the whole shop in 48h.</div>
+      <div style="display:flex; align-items:center; gap:8px; font-weight:800; font-size:14px; text-transform:uppercase; letter-spacing:0.05em;">
+        Start B2B quote
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </div>
+    </div>
+  </a>
+
+</section>
+
+<footer class="footer-strip">
+  <div>Roland Kaubandus OÜ · Est. 2021 · Estonia &amp; Spain · VEVOR authorised partner</div>
+  <div><strong>xl@xlmarket.eu</strong> · +372 5XX XXXX</div>
+</footer>
+
+</body>
+</html>
