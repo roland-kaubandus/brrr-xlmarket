@@ -12,6 +12,14 @@ build/
 # Data (raw feeds, not in git)
 data/feeds/*.xlsx
 data/feeds/*.xml
+data/feeds/sitemap.xml.stale*
+data/feeds/sync-reports/
+
+# Category-icon scraper runtime state (regenerated per run)
+data/category-icons/retry-queue.json
+data/category-icons/review-results.json
+data/category-icons/search-queue-*.json
+data/category-icons/search-results-*.json
 
 # OS
 .DS_Store
