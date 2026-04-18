@@ -1,0 +1,1683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>XLMarket.eu — A2v2 Header Slogan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   DESIGN TOKENS
+   ============================================================ */
+:root {
+  --navy: #1E293B;
+  --navy-90: rgba(30,41,59,.9);
+  --navy-70: rgba(30,41,59,.7);
+  --navy-50: rgba(30,41,59,.5);
+  --navy-20: rgba(30,41,59,.2);
+  --navy-08: rgba(30,41,59,.08);
+  --navy-04: rgba(30,41,59,.04);
+  --amber: #D97706;
+  --amber-light: #F59E0B;
+  --amber-10: rgba(217,119,6,.1);
+  --amber-20: rgba(217,119,6,.2);
+  --bg: #FAFAFA;
+  --white: #FFFFFF;
+  --border: #E2E8F0;
+  --border-light: #F1F5F9;
+  --text-primary: #1E293B;
+  --text-secondary: #475569;
+  --text-tertiary: #94A3B8;
+  --red: #DC2626;
+  --green: #16A34A;
+
+  --font: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  --ease: cubic-bezier(.16,1,.3,1);
+  --duration: 200ms;
+
+  --topbar-h: 28px;
+  --header-h: 56px;
+  --sidebar-w: 320px;
+}
+
+/* ============================================================
+   RESET
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 15px; -webkit-font-smoothing: antialiased; scroll-behavior: smooth; }
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text-primary);
+  line-height: 1.5;
+  overflow-x: hidden;
+}
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; }
+img { display: block; max-width: 100%; }
+ul, ol { list-style: none; }
+
+/* ============================================================
+   TOPBAR — THIN AMBER ACCENT STRIP WITH SLOGAN
+   ============================================================ */
+.topbar {
+  height: var(--topbar-h);
+  background: var(--amber);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  padding: 0 20px;
+  position: relative;
+  overflow: hidden;
+}
+.topbar::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(255,255,255,.08) 20%,
+    rgba(255,255,255,.15) 50%,
+    rgba(255,255,255,.08) 80%,
+    transparent 100%
+  );
+  pointer-events: none;
+}
+.topbar__slogan {
+  font-size: .72rem;
+  font-weight: 600;
+  color: var(--white);
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.topbar__sep {
+  width: 3px;
+  height: 3px;
+  background: rgba(255,255,255,.5);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.topbar__info {
+  font-size: .65rem;
+  font-weight: 500;
+  color: rgba(255,255,255,.85);
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.topbar__info svg {
+  width: 12px;
+  height: 12px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+}
+
+/* ============================================================
+   HEADER — COMPACT INDUSTRIAL BAR
+   ============================================================ */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--navy);
+  display: flex;
+  flex-direction: column;
+}
+.header__topbar-wrap {
+  /* topbar scrolls away, header sticks */
+}
+.header__main {
+  height: var(--header-h);
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  gap: 12px;
+}
+
+.header__logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.header__logo-mark {
+  width: 28px;
+  height: 28px;
+  background: var(--amber);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: .8rem;
+  font-weight: 800;
+  color: var(--white);
+  letter-spacing: -.03em;
+}
+.header__logo-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+}
+.header__logo-name {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: -.02em;
+}
+.header__logo-tagline {
+  font-size: .58rem;
+  font-weight: 500;
+  color: rgba(255,255,255,.45);
+  letter-spacing: .02em;
+}
+
+/* Categories button */
+.header__cat-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 6px;
+  color: rgba(255,255,255,.85);
+  font-size: .8rem;
+  font-weight: 500;
+  transition: background var(--duration) var(--ease);
+}
+.header__cat-btn:hover {
+  background: rgba(255,255,255,.14);
+}
+.header__cat-btn svg {
+  width: 16px;
+  height: 16px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+}
+
+/* Search bar (Ctrl+K style) */
+.header__search {
+  flex: 1;
+  max-width: 480px;
+  position: relative;
+}
+.header__search-trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 12px;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 8px;
+  color: rgba(255,255,255,.4);
+  font-size: .8rem;
+  transition: all var(--duration) var(--ease);
+}
+.header__search-trigger:hover {
+  background: rgba(255,255,255,.1);
+  border-color: rgba(255,255,255,.16);
+}
+.header__search-trigger svg {
+  width: 15px;
+  height: 15px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+  flex-shrink: 0;
+}
+.header__search-trigger .kbd {
+  margin-left: auto;
+  padding: 2px 6px;
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 4px;
+  font-size: .65rem;
+  font-weight: 600;
+  letter-spacing: .03em;
+}
+
+/* Right side nav */
+.header__nav {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: auto;
+}
+.header__nav-link {
+  padding: 6px 10px;
+  color: rgba(255,255,255,.65);
+  font-size: .78rem;
+  font-weight: 500;
+  border-radius: 6px;
+  transition: all var(--duration) var(--ease);
+  white-space: nowrap;
+}
+.header__nav-link:hover {
+  color: var(--white);
+  background: rgba(255,255,255,.08);
+}
+.header__cart {
+  position: relative;
+  padding: 6px 10px;
+  color: rgba(255,255,255,.75);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: .78rem;
+  font-weight: 500;
+  border-radius: 6px;
+  transition: all var(--duration) var(--ease);
+}
+.header__cart:hover {
+  color: var(--white);
+  background: rgba(255,255,255,.08);
+}
+.header__cart svg {
+  width: 18px;
+  height: 18px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.8;
+}
+.header__cart-badge {
+  position: absolute;
+  top: 2px;
+  right: 4px;
+  width: 14px;
+  height: 14px;
+  background: var(--amber);
+  border-radius: 50%;
+  font-size: .6rem;
+  font-weight: 700;
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ============================================================
+   SIDEBAR — CATEGORY FLYOUT
+   ============================================================ */
+.sidebar-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.3);
+  z-index: 90;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 300ms var(--ease);
+}
+.sidebar-overlay.open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: var(--sidebar-w);
+  background: var(--white);
+  z-index: 95;
+  transform: translateX(-100%);
+  transition: transform 300ms var(--ease);
+  overflow-y: auto;
+  border-right: 1px solid var(--border);
+  padding: 16px 0;
+}
+.sidebar.open {
+  transform: translateX(0);
+}
+
+.sidebar__title {
+  padding: 0 20px 12px;
+  font-size: .7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: var(--text-tertiary);
+}
+
+.sidebar__item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 20px;
+  transition: background var(--duration) var(--ease);
+}
+.sidebar__item:hover {
+  background: var(--navy-04);
+}
+.sidebar__item img {
+  width: 32px;
+  height: 32px;
+  border-radius: 4px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+.sidebar__item-text {
+  flex: 1;
+  font-size: .82rem;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+.sidebar__item-count {
+  font-size: .7rem;
+  color: var(--text-tertiary);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ============================================================
+   DENSE CATEGORY GRID — STARTS IMMEDIATELY BELOW HEADER
+   ============================================================ */
+.cat-section {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px 24px 16px;
+}
+.cat-section__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+.cat-section__title {
+  font-size: .7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: var(--text-tertiary);
+}
+.cat-section__link {
+  font-size: .72rem;
+  color: var(--amber);
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.cat-section__link:hover {
+  text-decoration: underline;
+}
+
+.cat-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.cat-grid__item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  background: var(--white);
+  transition: background var(--duration) var(--ease);
+  cursor: pointer;
+}
+.cat-grid__item:hover {
+  background: var(--amber-10);
+}
+.cat-grid__item img {
+  width: 40px;
+  height: 40px;
+  border-radius: 4px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+.cat-grid__item-info {
+  flex: 1;
+  min-width: 0;
+}
+.cat-grid__item-name {
+  font-size: .78rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.cat-grid__item-count {
+  font-size: .65rem;
+  color: var(--text-tertiary);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ============================================================
+   PRODUCT SECTION — COMPACT HORIZONTAL SCROLL
+   ============================================================ */
+.prod-section {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 24px 24px 8px;
+}
+.prod-section__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 14px;
+  gap: 12px;
+}
+.prod-section__title {
+  font-size: .95rem;
+  font-weight: 700;
+  color: var(--navy);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.prod-section__badge {
+  font-size: .6rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+.prod-section__badge--new {
+  background: var(--amber-10);
+  color: var(--amber);
+}
+.prod-section__badge--sale {
+  background: rgba(220,38,38,.08);
+  color: var(--red);
+}
+.prod-section__badge--hot {
+  background: rgba(234,88,12,.08);
+  color: #EA580C;
+}
+.prod-section__link {
+  font-size: .72rem;
+  color: var(--amber);
+  font-weight: 500;
+  flex-shrink: 0;
+}
+.prod-section__link:hover {
+  text-decoration: underline;
+}
+
+/* Flash sale countdown */
+.flash-countdown {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: .75rem;
+  font-weight: 600;
+  color: var(--red);
+}
+.flash-countdown__block {
+  background: rgba(220,38,38,.06);
+  border: 1px solid rgba(220,38,38,.12);
+  border-radius: 4px;
+  padding: 2px 6px;
+  font-variant-numeric: tabular-nums;
+  font-size: .72rem;
+}
+.flash-countdown__sep {
+  color: rgba(220,38,38,.3);
+}
+
+/* Scroll row */
+.prod-scroll {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding-bottom: 16px;
+  scroll-snap-type: x mandatory;
+  -ms-overflow-style: none;
+  scrollbar-width: thin;
+  scrollbar-color: var(--navy-20) transparent;
+}
+.prod-scroll::-webkit-scrollbar { height: 4px; }
+.prod-scroll::-webkit-scrollbar-track { background: transparent; }
+.prod-scroll::-webkit-scrollbar-thumb { background: var(--navy-20); border-radius: 2px; }
+
+/* Compact product card */
+.prod-card {
+  flex: 0 0 200px;
+  scroll-snap-align: start;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: all var(--duration) var(--ease);
+  cursor: pointer;
+}
+.prod-card:hover {
+  border-color: var(--navy-20);
+  box-shadow: 0 4px 12px rgba(30,41,59,.06);
+  transform: translateY(-2px);
+}
+.prod-card__img-wrap {
+  position: relative;
+  aspect-ratio: 1;
+  background: var(--navy-04);
+  overflow: hidden;
+}
+.prod-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 400ms var(--ease);
+}
+.prod-card:hover .prod-card__img {
+  transform: scale(1.04);
+}
+.prod-card__discount {
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  padding: 2px 6px;
+  background: var(--red);
+  color: var(--white);
+  font-size: .6rem;
+  font-weight: 700;
+  border-radius: 3px;
+}
+.prod-card__body {
+  padding: 10px;
+}
+.prod-card__name {
+  font-size: .72rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  line-height: 1.35;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin-bottom: 6px;
+}
+.prod-card__price-row {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+.prod-card__price {
+  font-size: .85rem;
+  font-weight: 700;
+  color: var(--navy);
+}
+.prod-card__price--old {
+  font-size: .68rem;
+  font-weight: 400;
+  color: var(--text-tertiary);
+  text-decoration: line-through;
+}
+.prod-card__rating {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  margin-top: 4px;
+  font-size: .62rem;
+  color: var(--text-tertiary);
+}
+.prod-card__stars {
+  color: var(--amber);
+  letter-spacing: 1px;
+  font-size: .6rem;
+}
+
+/* ============================================================
+   RECENTLY VIEWED
+   ============================================================ */
+.recent-section {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px 24px;
+}
+.recent-scroll {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding-bottom: 12px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--navy-20) transparent;
+}
+.recent-card {
+  flex: 0 0 140px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all var(--duration) var(--ease);
+}
+.recent-card:hover {
+  border-color: var(--navy-20);
+}
+.recent-card__img {
+  aspect-ratio: 1;
+  background: var(--navy-04);
+}
+.recent-card__img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.recent-card__body {
+  padding: 8px;
+}
+.recent-card__name {
+  font-size: .65rem;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.recent-card__price {
+  font-size: .72rem;
+  font-weight: 700;
+  color: var(--navy);
+  margin-top: 2px;
+}
+
+/* ============================================================
+   FOOTER — MINIMAL SINGLE ROW
+   ============================================================ */
+.footer {
+  border-top: 1px solid var(--border);
+  background: var(--white);
+  margin-top: 24px;
+}
+.footer__inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.footer__copy {
+  font-size: .7rem;
+  color: var(--text-tertiary);
+}
+.footer__links {
+  display: flex;
+  gap: 20px;
+}
+.footer__link {
+  font-size: .7rem;
+  color: var(--text-secondary);
+  transition: color var(--duration) var(--ease);
+}
+.footer__link:hover {
+  color: var(--amber);
+}
+.footer__payment {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: .65rem;
+  color: var(--text-tertiary);
+}
+.footer__payment-icon {
+  width: 32px;
+  height: 20px;
+  background: var(--navy-08);
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: .5rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+
+/* ============================================================
+   COMMAND PALETTE (Ctrl+K AI SEARCH)
+   ============================================================ */
+.cmd-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.5);
+  z-index: 200;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 12vh;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 200ms var(--ease);
+}
+.cmd-overlay.open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.cmd-palette {
+  width: 580px;
+  max-width: calc(100vw - 32px);
+  background: var(--white);
+  border-radius: 12px;
+  box-shadow: 0 24px 80px rgba(0,0,0,.2), 0 0 0 1px rgba(0,0,0,.05);
+  overflow: hidden;
+  transform: scale(.97) translateY(-8px);
+  transition: transform 200ms var(--ease);
+}
+.cmd-overlay.open .cmd-palette {
+  transform: scale(1) translateY(0);
+}
+
+.cmd-palette__input-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--border);
+}
+.cmd-palette__input-wrap svg {
+  width: 18px;
+  height: 18px;
+  stroke: var(--text-tertiary);
+  fill: none;
+  stroke-width: 2;
+  flex-shrink: 0;
+}
+.cmd-palette__input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-family: var(--font);
+  font-size: .9rem;
+  color: var(--text-primary);
+  background: transparent;
+}
+.cmd-palette__input::placeholder {
+  color: var(--text-tertiary);
+}
+.cmd-palette__close {
+  padding: 4px 8px;
+  background: var(--navy-08);
+  border-radius: 4px;
+  font-size: .6rem;
+  font-weight: 600;
+  color: var(--text-tertiary);
+}
+
+.cmd-palette__body {
+  padding: 8px;
+  max-height: 360px;
+  overflow-y: auto;
+}
+.cmd-palette__group-title {
+  padding: 8px 10px 4px;
+  font-size: .6rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: var(--text-tertiary);
+}
+.cmd-palette__item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background var(--duration) var(--ease);
+}
+.cmd-palette__item:hover, .cmd-palette__item--active {
+  background: var(--navy-04);
+}
+.cmd-palette__item-icon {
+  width: 32px;
+  height: 32px;
+  background: var(--amber-10);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cmd-palette__item-icon svg {
+  width: 16px;
+  height: 16px;
+  stroke: var(--amber);
+  fill: none;
+  stroke-width: 2;
+}
+.cmd-palette__item-text {
+  flex: 1;
+}
+.cmd-palette__item-title {
+  font-size: .8rem;
+  font-weight: 500;
+}
+.cmd-palette__item-desc {
+  font-size: .65rem;
+  color: var(--text-tertiary);
+}
+.cmd-palette__item-shortcut {
+  font-size: .6rem;
+  color: var(--text-tertiary);
+}
+
+.cmd-palette__ai-hint {
+  padding: 10px 18px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: .65rem;
+  color: var(--text-tertiary);
+}
+.cmd-palette__ai-dot {
+  width: 6px;
+  height: 6px;
+  background: var(--amber);
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: .3; }
+}
+
+/* ============================================================
+   SECTION DIVIDER
+   ============================================================ */
+.divider {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+.divider__line {
+  height: 1px;
+  background: var(--border);
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 1024px) {
+  .cat-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .prod-card { flex: 0 0 180px; }
+}
+
+@media (max-width: 768px) {
+  :root { --sidebar-w: 280px; }
+  .cat-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .prod-card { flex: 0 0 160px; }
+  .header__nav-link { display: none; }
+  .topbar__info { display: none; }
+  .topbar { justify-content: center; }
+  .topbar__sep { display: none; }
+  .cat-section, .prod-section, .recent-section, .divider {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  .footer__inner { padding: 14px 16px; }
+  .header__logo-tagline { display: none; }
+}
+
+@media (max-width: 480px) {
+  .cat-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .cat-grid__item { padding: 8px 10px; gap: 8px; }
+  .cat-grid__item img { width: 32px; height: 32px; }
+  .prod-card { flex: 0 0 148px; }
+  .recent-card { flex: 0 0 120px; }
+  .header__search { display: none; }
+  .header__search-mobile {
+    display: flex;
+  }
+  .topbar__slogan { font-size: .62rem; letter-spacing: .02em; }
+}
+@media (min-width: 481px) {
+  .header__search-mobile { display: none; }
+}
+
+.header__search-mobile {
+  padding: 6px;
+  color: rgba(255,255,255,.7);
+  border-radius: 6px;
+}
+.header__search-mobile svg {
+  width: 18px;
+  height: 18px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     TOPBAR — AMBER ACCENT STRIP WITH SLOGAN
+     ============================================================ -->
+<div class="topbar">
+  <span class="topbar__slogan">Professional Tools, Half the Price</span>
+  <span class="topbar__sep"></span>
+  <span class="topbar__info">
+    <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+    EU Warehouse
+  </span>
+  <span class="topbar__sep"></span>
+  <span class="topbar__info">
+    <svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="8.5" cy="7" r="4"/><polyline points="17 11 19 13 23 9"/></svg>
+    16,046 Products
+  </span>
+  <span class="topbar__sep"></span>
+  <span class="topbar__info">
+    <svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+    Free Shipping 99&euro;+
+  </span>
+</div>
+
+<!-- ============================================================
+     HEADER
+     ============================================================ -->
+<header class="header">
+  <div class="header__main">
+    <div class="header__logo">
+      <div class="header__logo-mark">XL</div>
+      <div class="header__logo-text">
+        <span class="header__logo-name">XLMarket</span>
+        <span class="header__logo-tagline">Professional Tools, Half the Price</span>
+      </div>
+    </div>
+
+    <button class="header__cat-btn" id="catBtn" onclick="toggleSidebar()">
+      <svg viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      Categories
+    </button>
+
+    <div class="header__search">
+      <button class="header__search-trigger" onclick="openCmd()">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        Search 16,000+ products...
+        <span class="kbd">Ctrl K</span>
+      </button>
+    </div>
+
+    <button class="header__search-mobile" onclick="openCmd()">
+      <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    </button>
+
+    <nav class="header__nav">
+      <a href="#" class="header__nav-link">Deals</a>
+      <a href="#" class="header__nav-link">New</a>
+      <a href="#" class="header__nav-link">Account</a>
+      <button class="header__cart">
+        <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+        <span class="header__cart-badge">3</span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<!-- ============================================================
+     SIDEBAR FLYOUT
+     ============================================================ -->
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar__title">All Categories</div>
+  <a href="#" class="sidebar__item"><img src="/cat-icons/80/outdoors.webp" alt=""><span class="sidebar__item-text">Outdoors</span><span class="sidebar__item-count">1,240</span></a>
+  <a href="#" class="sidebar__item"><img src="/cat-icons/80/tools.webp" alt=""><span class="sidebar__item-text">Tools</span><span class="sidebar__item-count">2,180</span></a>
+  <a href="#" class="sidebar__item"><img src="/cat-icons/80/automotive.webp" alt=""><span class="sidebar__item-text">Automotive</span><span class="sidebar__item-count">890</span></a>
+  <a href="#" class="sidebar__item"><img src="/cat-icons/80/kitchen.webp" alt=""><span class="sidebar__item-text">Kitchen</span><span class="sidebar__item-count">1,540</span></a>
+  <a href="#" class="sidebar__item"><img src="/cat-icons/80/building-materials.webp" alt=""><span class="sidebar__item-text">Building Materials</span><span class="sidebar__item-count">760</span></a>
+  <a href="#" class="sidebar__item"><img src="/cat-icons/80/plumbing.webp" alt=""><span class="sidebar__item-text">Plumbing</span><span class="sidebar__item-count">480</span></a>
+  <a href="#" class="sidebar__item"><img src="/cat-icons/80/sports-outdoors.webp" alt=""><span class="sidebar__item-text">Sports &amp; Outdoors</span><span class="sidebar__item-count">920</span></a>
+  <a href="#" class="sidebar__item"><img src="/cat-icons/80/industrial-scientific.webp" alt=""><span class="sidebar__item-text">Industrial &amp; Scientific</span><span class="sidebar__item-count">610</span></a>
+  <a href="#" class="sidebar__item"><img src="/cat-icons/80/electrical.webp" alt=""><span class="sidebar__item-text">Electrical</span><span class="sidebar__item-count">340</span></a>
+  <a href="#" class="sidebar__item"><img src="/cat-icons/80/heating-venting-cooling.webp" alt=""><span class="sidebar__item-text">HVAC</span><span class="sidebar__item-count">290</span></a>
+  <a href="#" class="sidebar__item"><img src="/cat-icons/80/hardware.webp" alt=""><span class="sidebar__item-text">Hardware</span><span class="sidebar__item-count">1,890</span></a>
+  <a href="#" class="sidebar__item"><img src="/cat-icons/80/furniture.webp" alt=""><span class="sidebar__item-text">Furniture</span><span class="sidebar__item-count">1,120</span></a>
+  <a href="#" class="sidebar__item"><img src="/cat-icons/80/appliances.webp" alt=""><span class="sidebar__item-text">Appliances</span><span class="sidebar__item-count">450</span></a>
+  <a href="#" class="sidebar__item"><img src="/cat-icons/80/flooring.webp" alt=""><span class="sidebar__item-text">Flooring</span><span class="sidebar__item-count">310</span></a>
+  <a href="#" class="sidebar__item"><img src="/cat-icons/80/home-decor.webp" alt=""><span class="sidebar__item-text">Home Decor</span><span class="sidebar__item-count">680</span></a>
+  <a href="#" class="sidebar__item"><img src="/cat-icons/80/bath.webp" alt=""><span class="sidebar__item-text">Bath</span><span class="sidebar__item-count">370</span></a>
+  <a href="#" class="sidebar__item"><img src="/cat-icons/80/storage-organization.webp" alt=""><span class="sidebar__item-text">Storage &amp; Organization</span><span class="sidebar__item-count">520</span></a>
+  <a href="#" class="sidebar__item"><img src="/cat-icons/80/lighting.webp" alt=""><span class="sidebar__item-text">Lighting</span><span class="sidebar__item-count">430</span></a>
+  <a href="#" class="sidebar__item"><img src="/cat-icons/80/cleaning.webp" alt=""><span class="sidebar__item-text">Cleaning</span><span class="sidebar__item-count">260</span></a>
+  <a href="#" class="sidebar__item"><img src="/cat-icons/80/health-and-wellness.webp" alt=""><span class="sidebar__item-text">Health &amp; Wellness</span><span class="sidebar__item-count">190</span></a>
+  <a href="#" class="sidebar__item"><img src="/cat-icons/80/safety-equipment.webp" alt=""><span class="sidebar__item-text">Safety Equipment</span><span class="sidebar__item-count">210</span></a>
+  <a href="#" class="sidebar__item"><img src="/cat-icons/80/paint.webp" alt=""><span class="sidebar__item-text">Paint</span><span class="sidebar__item-count">170</span></a>
+</aside>
+
+<!-- ============================================================
+     DENSE CATEGORY GRID — STARTS IMMEDIATELY
+     ============================================================ -->
+<section class="cat-section">
+  <div class="cat-section__header">
+    <h2 class="cat-section__title">Shop by Department</h2>
+    <a href="#" class="cat-section__link">View all 1,688 categories &rarr;</a>
+  </div>
+  <div class="cat-grid">
+    <a href="#" class="cat-grid__item">
+      <img src="/cat-icons/80/tools.webp" alt="Tools">
+      <div class="cat-grid__item-info"><div class="cat-grid__item-name">Tools</div><div class="cat-grid__item-count">2,180 products</div></div>
+    </a>
+    <a href="#" class="cat-grid__item">
+      <img src="/cat-icons/80/hardware.webp" alt="Hardware">
+      <div class="cat-grid__item-info"><div class="cat-grid__item-name">Hardware</div><div class="cat-grid__item-count">1,890 products</div></div>
+    </a>
+    <a href="#" class="cat-grid__item">
+      <img src="/cat-icons/80/kitchen.webp" alt="Kitchen">
+      <div class="cat-grid__item-info"><div class="cat-grid__item-name">Kitchen</div><div class="cat-grid__item-count">1,540 products</div></div>
+    </a>
+    <a href="#" class="cat-grid__item">
+      <img src="/cat-icons/80/outdoors.webp" alt="Outdoors">
+      <div class="cat-grid__item-info"><div class="cat-grid__item-name">Outdoors</div><div class="cat-grid__item-count">1,240 products</div></div>
+    </a>
+    <a href="#" class="cat-grid__item">
+      <img src="/cat-icons/80/furniture.webp" alt="Furniture">
+      <div class="cat-grid__item-info"><div class="cat-grid__item-name">Furniture</div><div class="cat-grid__item-count">1,120 products</div></div>
+    </a>
+    <a href="#" class="cat-grid__item">
+      <img src="/cat-icons/80/sports-outdoors.webp" alt="Sports">
+      <div class="cat-grid__item-info"><div class="cat-grid__item-name">Sports &amp; Outdoors</div><div class="cat-grid__item-count">920 products</div></div>
+    </a>
+    <a href="#" class="cat-grid__item">
+      <img src="/cat-icons/80/automotive.webp" alt="Automotive">
+      <div class="cat-grid__item-info"><div class="cat-grid__item-name">Automotive</div><div class="cat-grid__item-count">890 products</div></div>
+    </a>
+    <a href="#" class="cat-grid__item">
+      <img src="/cat-icons/80/building-materials.webp" alt="Building Materials">
+      <div class="cat-grid__item-info"><div class="cat-grid__item-name">Building Materials</div><div class="cat-grid__item-count">760 products</div></div>
+    </a>
+    <a href="#" class="cat-grid__item">
+      <img src="/cat-icons/80/home-decor.webp" alt="Home Decor">
+      <div class="cat-grid__item-info"><div class="cat-grid__item-name">Home Decor</div><div class="cat-grid__item-count">680 products</div></div>
+    </a>
+    <a href="#" class="cat-grid__item">
+      <img src="/cat-icons/80/industrial-scientific.webp" alt="Industrial">
+      <div class="cat-grid__item-info"><div class="cat-grid__item-name">Industrial &amp; Scientific</div><div class="cat-grid__item-count">610 products</div></div>
+    </a>
+    <a href="#" class="cat-grid__item">
+      <img src="/cat-icons/80/storage-organization.webp" alt="Storage">
+      <div class="cat-grid__item-info"><div class="cat-grid__item-name">Storage &amp; Organization</div><div class="cat-grid__item-count">520 products</div></div>
+    </a>
+    <a href="#" class="cat-grid__item">
+      <img src="/cat-icons/80/plumbing.webp" alt="Plumbing">
+      <div class="cat-grid__item-info"><div class="cat-grid__item-name">Plumbing</div><div class="cat-grid__item-count">480 products</div></div>
+    </a>
+    <a href="#" class="cat-grid__item">
+      <img src="/cat-icons/80/appliances.webp" alt="Appliances">
+      <div class="cat-grid__item-info"><div class="cat-grid__item-name">Appliances</div><div class="cat-grid__item-count">450 products</div></div>
+    </a>
+    <a href="#" class="cat-grid__item">
+      <img src="/cat-icons/80/lighting.webp" alt="Lighting">
+      <div class="cat-grid__item-info"><div class="cat-grid__item-name">Lighting</div><div class="cat-grid__item-count">430 products</div></div>
+    </a>
+    <a href="#" class="cat-grid__item">
+      <img src="/cat-icons/80/bath.webp" alt="Bath">
+      <div class="cat-grid__item-info"><div class="cat-grid__item-name">Bath</div><div class="cat-grid__item-count">370 products</div></div>
+    </a>
+    <a href="#" class="cat-grid__item">
+      <img src="/cat-icons/80/electrical.webp" alt="Electrical">
+      <div class="cat-grid__item-info"><div class="cat-grid__item-name">Electrical</div><div class="cat-grid__item-count">340 products</div></div>
+    </a>
+    <a href="#" class="cat-grid__item">
+      <img src="/cat-icons/80/flooring.webp" alt="Flooring">
+      <div class="cat-grid__item-info"><div class="cat-grid__item-name">Flooring</div><div class="cat-grid__item-count">310 products</div></div>
+    </a>
+    <a href="#" class="cat-grid__item">
+      <img src="/cat-icons/80/heating-venting-cooling.webp" alt="HVAC">
+      <div class="cat-grid__item-info"><div class="cat-grid__item-name">Heating, Venting &amp; Cooling</div><div class="cat-grid__item-count">290 products</div></div>
+    </a>
+    <a href="#" class="cat-grid__item">
+      <img src="/cat-icons/80/cleaning.webp" alt="Cleaning">
+      <div class="cat-grid__item-info"><div class="cat-grid__item-name">Cleaning</div><div class="cat-grid__item-count">260 products</div></div>
+    </a>
+    <a href="#" class="cat-grid__item">
+      <img src="/cat-icons/80/safety-equipment.webp" alt="Safety">
+      <div class="cat-grid__item-info"><div class="cat-grid__item-name">Safety Equipment</div><div class="cat-grid__item-count">210 products</div></div>
+    </a>
+    <a href="#" class="cat-grid__item">
+      <img src="/cat-icons/80/health-and-wellness.webp" alt="Health">
+      <div class="cat-grid__item-info"><div class="cat-grid__item-name">Health &amp; Wellness</div><div class="cat-grid__item-count">190 products</div></div>
+    </a>
+    <a href="#" class="cat-grid__item">
+      <img src="/cat-icons/80/paint.webp" alt="Paint">
+      <div class="cat-grid__item-info"><div class="cat-grid__item-name">Paint</div><div class="cat-grid__item-count">170 products</div></div>
+    </a>
+  </div>
+</section>
+
+<div class="divider"><div class="divider__line"></div></div>
+
+<!-- ============================================================
+     NEW ARRIVALS
+     ============================================================ -->
+<section class="prod-section">
+  <div class="prod-section__header">
+    <h2 class="prod-section__title">New Arrivals <span class="prod-section__badge prod-section__badge--new">New</span></h2>
+    <a href="#" class="prod-section__link">View all &rarr;</a>
+  </div>
+  <div class="prod-scroll">
+    <div class="prod-card">
+      <div class="prod-card__img-wrap"><img class="prod-card__img" src="/cat-icons/400/tools.webp" alt="Product"></div>
+      <div class="prod-card__body">
+        <div class="prod-card__name">20V Cordless Impact Wrench Kit</div>
+        <div class="prod-card__price-row"><span class="prod-card__price">&euro;89.99</span></div>
+        <div class="prod-card__rating"><span class="prod-card__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span> 4.8 (124)</div>
+      </div>
+    </div>
+    <div class="prod-card">
+      <div class="prod-card__img-wrap"><img class="prod-card__img" src="/cat-icons/400/automotive.webp" alt="Product"></div>
+      <div class="prod-card__body">
+        <div class="prod-card__name">Portable Car Lift Jack 3T</div>
+        <div class="prod-card__price-row"><span class="prod-card__price">&euro;149.99</span></div>
+        <div class="prod-card__rating"><span class="prod-card__stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span> 4.5 (67)</div>
+      </div>
+    </div>
+    <div class="prod-card">
+      <div class="prod-card__img-wrap"><img class="prod-card__img" src="/cat-icons/400/kitchen.webp" alt="Product"></div>
+      <div class="prod-card__body">
+        <div class="prod-card__name">Commercial Stainless Steel Prep Table</div>
+        <div class="prod-card__price-row"><span class="prod-card__price">&euro;124.99</span></div>
+        <div class="prod-card__rating"><span class="prod-card__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span> 4.9 (203)</div>
+      </div>
+    </div>
+    <div class="prod-card">
+      <div class="prod-card__img-wrap"><img class="prod-card__img" src="/cat-icons/400/outdoors.webp" alt="Product"></div>
+      <div class="prod-card__body">
+        <div class="prod-card__name">Heavy-Duty Garden Cart 400kg</div>
+        <div class="prod-card__price-row"><span class="prod-card__price">&euro;79.99</span></div>
+        <div class="prod-card__rating"><span class="prod-card__stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span> 4.3 (89)</div>
+      </div>
+    </div>
+    <div class="prod-card">
+      <div class="prod-card__img-wrap"><img class="prod-card__img" src="/cat-icons/400/furniture.webp" alt="Product"></div>
+      <div class="prod-card__body">
+        <div class="prod-card__name">Adjustable Standing Desk Frame</div>
+        <div class="prod-card__price-row"><span class="prod-card__price">&euro;199.99</span></div>
+        <div class="prod-card__rating"><span class="prod-card__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span> 4.7 (156)</div>
+      </div>
+    </div>
+    <div class="prod-card">
+      <div class="prod-card__img-wrap"><img class="prod-card__img" src="/cat-icons/400/industrial-scientific.webp" alt="Product"></div>
+      <div class="prod-card__body">
+        <div class="prod-card__name">Industrial Ultrasonic Cleaner 15L</div>
+        <div class="prod-card__price-row"><span class="prod-card__price">&euro;169.99</span></div>
+        <div class="prod-card__rating"><span class="prod-card__stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span> 4.4 (42)</div>
+      </div>
+    </div>
+    <div class="prod-card">
+      <div class="prod-card__img-wrap"><img class="prod-card__img" src="/cat-icons/400/electrical.webp" alt="Product"></div>
+      <div class="prod-card__body">
+        <div class="prod-card__name">Solar Panel Kit 200W Mono</div>
+        <div class="prod-card__price-row"><span class="prod-card__price">&euro;139.99</span></div>
+        <div class="prod-card__rating"><span class="prod-card__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span> 4.6 (91)</div>
+      </div>
+    </div>
+    <div class="prod-card">
+      <div class="prod-card__img-wrap"><img class="prod-card__img" src="/cat-icons/400/plumbing.webp" alt="Product"></div>
+      <div class="prod-card__body">
+        <div class="prod-card__name">Submersible Water Pump 1100W</div>
+        <div class="prod-card__price-row"><span class="prod-card__price">&euro;64.99</span></div>
+        <div class="prod-card__rating"><span class="prod-card__stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span> 4.2 (78)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     BEST SELLERS
+     ============================================================ -->
+<section class="prod-section">
+  <div class="prod-section__header">
+    <h2 class="prod-section__title">Best Sellers <span class="prod-section__badge prod-section__badge--hot">Popular</span></h2>
+    <a href="#" class="prod-section__link">View all &rarr;</a>
+  </div>
+  <div class="prod-scroll">
+    <div class="prod-card">
+      <div class="prod-card__img-wrap"><img class="prod-card__img" src="/cat-icons/400/hardware.webp" alt="Product"></div>
+      <div class="prod-card__body">
+        <div class="prod-card__name">Stainless Steel Workbench 150cm</div>
+        <div class="prod-card__price-row"><span class="prod-card__price">&euro;229.99</span></div>
+        <div class="prod-card__rating"><span class="prod-card__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span> 4.9 (412)</div>
+      </div>
+    </div>
+    <div class="prod-card">
+      <div class="prod-card__img-wrap"><img class="prod-card__img" src="/cat-icons/400/storage-organization.webp" alt="Product"></div>
+      <div class="prod-card__body">
+        <div class="prod-card__name">Heavy-Duty Shelving Unit 5-Tier</div>
+        <div class="prod-card__price-row"><span class="prod-card__price">&euro;59.99</span></div>
+        <div class="prod-card__rating"><span class="prod-card__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span> 4.8 (687)</div>
+      </div>
+    </div>
+    <div class="prod-card">
+      <div class="prod-card__img-wrap"><img class="prod-card__img" src="/cat-icons/400/lighting.webp" alt="Product"></div>
+      <div class="prod-card__body">
+        <div class="prod-card__name">LED Workshop Light 100W</div>
+        <div class="prod-card__price-row"><span class="prod-card__price">&euro;34.99</span></div>
+        <div class="prod-card__rating"><span class="prod-card__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span> 4.7 (523)</div>
+      </div>
+    </div>
+    <div class="prod-card">
+      <div class="prod-card__img-wrap"><img class="prod-card__img" src="/cat-icons/400/sports-outdoors.webp" alt="Product"></div>
+      <div class="prod-card__body">
+        <div class="prod-card__name">Foldable Camping Table Aluminium</div>
+        <div class="prod-card__price-row"><span class="prod-card__price">&euro;44.99</span></div>
+        <div class="prod-card__rating"><span class="prod-card__stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span> 4.5 (298)</div>
+      </div>
+    </div>
+    <div class="prod-card">
+      <div class="prod-card__img-wrap"><img class="prod-card__img" src="/cat-icons/400/building-materials.webp" alt="Product"></div>
+      <div class="prod-card__body">
+        <div class="prod-card__name">Welding Machine MIG/TIG 200A</div>
+        <div class="prod-card__price-row"><span class="prod-card__price">&euro;279.99</span></div>
+        <div class="prod-card__rating"><span class="prod-card__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span> 4.8 (189)</div>
+      </div>
+    </div>
+    <div class="prod-card">
+      <div class="prod-card__img-wrap"><img class="prod-card__img" src="/cat-icons/400/cleaning.webp" alt="Product"></div>
+      <div class="prod-card__body">
+        <div class="prod-card__name">Commercial Vacuum Cleaner 30L</div>
+        <div class="prod-card__price-row"><span class="prod-card__price">&euro;94.99</span></div>
+        <div class="prod-card__rating"><span class="prod-card__stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span> 4.4 (231)</div>
+      </div>
+    </div>
+    <div class="prod-card">
+      <div class="prod-card__img-wrap"><img class="prod-card__img" src="/cat-icons/400/bath.webp" alt="Product"></div>
+      <div class="prod-card__body">
+        <div class="prod-card__name">Rain Shower Set Stainless Steel</div>
+        <div class="prod-card__price-row"><span class="prod-card__price">&euro;74.99</span></div>
+        <div class="prod-card__rating"><span class="prod-card__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span> 4.6 (167)</div>
+      </div>
+    </div>
+    <div class="prod-card">
+      <div class="prod-card__img-wrap"><img class="prod-card__img" src="/cat-icons/400/appliances.webp" alt="Product"></div>
+      <div class="prod-card__body">
+        <div class="prod-card__name">Countertop Ice Maker Machine</div>
+        <div class="prod-card__price-row"><span class="prod-card__price">&euro;109.99</span></div>
+        <div class="prod-card__rating"><span class="prod-card__stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span> 4.3 (145)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"><div class="divider__line"></div></div>
+
+<!-- ============================================================
+     DEALS
+     ============================================================ -->
+<section class="prod-section">
+  <div class="prod-section__header">
+    <h2 class="prod-section__title">Deals</h2>
+    <a href="#" class="prod-section__link">View all deals &rarr;</a>
+  </div>
+  <div class="prod-scroll">
+    <div class="prod-card">
+      <div class="prod-card__img-wrap">
+        <img class="prod-card__img" src="/cat-icons/400/heating-venting-cooling.webp" alt="Product">
+        <span class="prod-card__discount">-25%</span>
+      </div>
+      <div class="prod-card__body">
+        <div class="prod-card__name">Portable Air Conditioner 9000BTU</div>
+        <div class="prod-card__price-row"><span class="prod-card__price">&euro;224.99</span><span class="prod-card__price--old">&euro;299.99</span></div>
+        <div class="prod-card__rating"><span class="prod-card__stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span> 4.4 (88)</div>
+      </div>
+    </div>
+    <div class="prod-card">
+      <div class="prod-card__img-wrap">
+        <img class="prod-card__img" src="/cat-icons/400/flooring.webp" alt="Product">
+        <span class="prod-card__discount">-30%</span>
+      </div>
+      <div class="prod-card__body">
+        <div class="prod-card__name">Vinyl Plank Flooring 20m&sup2; Pack</div>
+        <div class="prod-card__price-row"><span class="prod-card__price">&euro;69.99</span><span class="prod-card__price--old">&euro;99.99</span></div>
+        <div class="prod-card__rating"><span class="prod-card__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span> 4.7 (56)</div>
+      </div>
+    </div>
+    <div class="prod-card">
+      <div class="prod-card__img-wrap">
+        <img class="prod-card__img" src="/cat-icons/400/home-decor.webp" alt="Product">
+        <span class="prod-card__discount">-20%</span>
+      </div>
+      <div class="prod-card__body">
+        <div class="prod-card__name">Bamboo Room Divider 4-Panel</div>
+        <div class="prod-card__price-row"><span class="prod-card__price">&euro;55.99</span><span class="prod-card__price--old">&euro;69.99</span></div>
+        <div class="prod-card__rating"><span class="prod-card__stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span> 4.3 (34)</div>
+      </div>
+    </div>
+    <div class="prod-card">
+      <div class="prod-card__img-wrap">
+        <img class="prod-card__img" src="/cat-icons/400/safety-equipment.webp" alt="Product">
+        <span class="prod-card__discount">-15%</span>
+      </div>
+      <div class="prod-card__body">
+        <div class="prod-card__name">Welding Helmet Auto-Darkening</div>
+        <div class="prod-card__price-row"><span class="prod-card__price">&euro;42.49</span><span class="prod-card__price--old">&euro;49.99</span></div>
+        <div class="prod-card__rating"><span class="prod-card__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span> 4.8 (112)</div>
+      </div>
+    </div>
+    <div class="prod-card">
+      <div class="prod-card__img-wrap">
+        <img class="prod-card__img" src="/cat-icons/400/paint.webp" alt="Product">
+        <span class="prod-card__discount">-35%</span>
+      </div>
+      <div class="prod-card__body">
+        <div class="prod-card__name">HVLP Spray Gun Kit Professional</div>
+        <div class="prod-card__price-row"><span class="prod-card__price">&euro;38.99</span><span class="prod-card__price--old">&euro;59.99</span></div>
+        <div class="prod-card__rating"><span class="prod-card__stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span> 4.5 (76)</div>
+      </div>
+    </div>
+    <div class="prod-card">
+      <div class="prod-card__img-wrap">
+        <img class="prod-card__img" src="/cat-icons/400/health-and-wellness.webp" alt="Product">
+        <span class="prod-card__discount">-20%</span>
+      </div>
+      <div class="prod-card__body">
+        <div class="prod-card__name">Massage Gun Professional 30-Speed</div>
+        <div class="prod-card__price-row"><span class="prod-card__price">&euro;47.99</span><span class="prod-card__price--old">&euro;59.99</span></div>
+        <div class="prod-card__rating"><span class="prod-card__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span> 4.6 (203)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FLASH SALE
+     ============================================================ -->
+<section class="prod-section">
+  <div class="prod-section__header">
+    <h2 class="prod-section__title">
+      Flash Sale <span class="prod-section__badge prod-section__badge--sale">Limited</span>
+      <div class="flash-countdown">
+        <span class="flash-countdown__block" id="fc-h">04</span>
+        <span class="flash-countdown__sep">:</span>
+        <span class="flash-countdown__block" id="fc-m">23</span>
+        <span class="flash-countdown__sep">:</span>
+        <span class="flash-countdown__block" id="fc-s">17</span>
+      </div>
+    </h2>
+    <a href="#" class="prod-section__link">View all &rarr;</a>
+  </div>
+  <div class="prod-scroll">
+    <div class="prod-card">
+      <div class="prod-card__img-wrap">
+        <img class="prod-card__img" src="/cat-icons/400/tools.webp" alt="Product">
+        <span class="prod-card__discount">-40%</span>
+      </div>
+      <div class="prod-card__body">
+        <div class="prod-card__name">Bench Drill Press 750W</div>
+        <div class="prod-card__price-row"><span class="prod-card__price">&euro;119.99</span><span class="prod-card__price--old">&euro;199.99</span></div>
+        <div class="prod-card__rating"><span class="prod-card__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span> 4.9 (89)</div>
+      </div>
+    </div>
+    <div class="prod-card">
+      <div class="prod-card__img-wrap">
+        <img class="prod-card__img" src="/cat-icons/400/automotive.webp" alt="Product">
+        <span class="prod-card__discount">-45%</span>
+      </div>
+      <div class="prod-card__body">
+        <div class="prod-card__name">Engine Hoist Crane 2-Ton</div>
+        <div class="prod-card__price-row"><span class="prod-card__price">&euro;164.99</span><span class="prod-card__price--old">&euro;299.99</span></div>
+        <div class="prod-card__rating"><span class="prod-card__stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span> 4.5 (54)</div>
+      </div>
+    </div>
+    <div class="prod-card">
+      <div class="prod-card__img-wrap">
+        <img class="prod-card__img" src="/cat-icons/400/furniture.webp" alt="Product">
+        <span class="prod-card__discount">-50%</span>
+      </div>
+      <div class="prod-card__body">
+        <div class="prod-card__name">Ergonomic Office Chair Mesh</div>
+        <div class="prod-card__price-row"><span class="prod-card__price">&euro;99.99</span><span class="prod-card__price--old">&euro;199.99</span></div>
+        <div class="prod-card__rating"><span class="prod-card__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span> 4.7 (321)</div>
+      </div>
+    </div>
+    <div class="prod-card">
+      <div class="prod-card__img-wrap">
+        <img class="prod-card__img" src="/cat-icons/400/kitchen.webp" alt="Product">
+        <span class="prod-card__discount">-35%</span>
+      </div>
+      <div class="prod-card__body">
+        <div class="prod-card__name">Commercial Meat Grinder 1100W</div>
+        <div class="prod-card__price-row"><span class="prod-card__price">&euro;84.99</span><span class="prod-card__price--old">&euro;129.99</span></div>
+        <div class="prod-card__rating"><span class="prod-card__stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span> 4.4 (98)</div>
+      </div>
+    </div>
+    <div class="prod-card">
+      <div class="prod-card__img-wrap">
+        <img class="prod-card__img" src="/cat-icons/400/hardware.webp" alt="Product">
+        <span class="prod-card__discount">-40%</span>
+      </div>
+      <div class="prod-card__body">
+        <div class="prod-card__name">Tool Chest Rolling Cabinet 7-Drawer</div>
+        <div class="prod-card__price-row"><span class="prod-card__price">&euro;179.99</span><span class="prod-card__price--old">&euro;299.99</span></div>
+        <div class="prod-card__rating"><span class="prod-card__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span> 4.8 (167)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"><div class="divider__line"></div></div>
+
+<!-- ============================================================
+     RECENTLY VIEWED
+     ============================================================ -->
+<section class="recent-section">
+  <div class="prod-section__header" style="margin-bottom:12px">
+    <h2 class="cat-section__title">Recently Viewed</h2>
+    <a href="#" class="prod-section__link">Clear &times;</a>
+  </div>
+  <div class="recent-scroll">
+    <div class="recent-card">
+      <div class="recent-card__img"><img src="/cat-icons/400/outdoors.webp" alt=""></div>
+      <div class="recent-card__body"><div class="recent-card__name">Garden Cart 400kg</div><div class="recent-card__price">&euro;79.99</div></div>
+    </div>
+    <div class="recent-card">
+      <div class="recent-card__img"><img src="/cat-icons/400/tools.webp" alt=""></div>
+      <div class="recent-card__body"><div class="recent-card__name">Impact Wrench 20V</div><div class="recent-card__price">&euro;89.99</div></div>
+    </div>
+    <div class="recent-card">
+      <div class="recent-card__img"><img src="/cat-icons/400/lighting.webp" alt=""></div>
+      <div class="recent-card__body"><div class="recent-card__name">LED Workshop Light</div><div class="recent-card__price">&euro;34.99</div></div>
+    </div>
+    <div class="recent-card">
+      <div class="recent-card__img"><img src="/cat-icons/400/storage-organization.webp" alt=""></div>
+      <div class="recent-card__body"><div class="recent-card__name">Shelving Unit 5-Tier</div><div class="recent-card__price">&euro;59.99</div></div>
+    </div>
+    <div class="recent-card">
+      <div class="recent-card__img"><img src="/cat-icons/400/plumbing.webp" alt=""></div>
+      <div class="recent-card__body"><div class="recent-card__name">Water Pump 1100W</div><div class="recent-card__price">&euro;64.99</div></div>
+    </div>
+    <div class="recent-card">
+      <div class="recent-card__img"><img src="/cat-icons/400/electrical.webp" alt=""></div>
+      <div class="recent-card__body"><div class="recent-card__name">Solar Panel 200W</div><div class="recent-card__price">&euro;139.99</div></div>
+    </div>
+    <div class="recent-card">
+      <div class="recent-card__img"><img src="/cat-icons/400/furniture.webp" alt=""></div>
+      <div class="recent-card__body"><div class="recent-card__name">Standing Desk Frame</div><div class="recent-card__price">&euro;199.99</div></div>
+    </div>
+    <div class="recent-card">
+      <div class="recent-card__img"><img src="/cat-icons/400/automotive.webp" alt=""></div>
+      <div class="recent-card__body"><div class="recent-card__name">Car Lift Jack 3T</div><div class="recent-card__price">&euro;149.99</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FOOTER — MINIMAL
+     ============================================================ -->
+<footer class="footer">
+  <div class="footer__inner">
+    <span class="footer__copy">&copy; 2026 XLMarket.eu &middot; Roland Kaubandus O&Uuml;</span>
+    <nav class="footer__links">
+      <a href="#" class="footer__link">About</a>
+      <a href="#" class="footer__link">Contact</a>
+      <a href="#" class="footer__link">Shipping</a>
+      <a href="#" class="footer__link">Returns</a>
+      <a href="#" class="footer__link">Privacy</a>
+      <a href="#" class="footer__link">Terms</a>
+    </nav>
+    <div class="footer__payment">
+      <div class="footer__payment-icon">VISA</div>
+      <div class="footer__payment-icon">MC</div>
+      <div class="footer__payment-icon">LINK</div>
+      Montonio
+    </div>
+  </div>
+</footer>
+
+<!-- ============================================================
+     COMMAND PALETTE (AI SEARCH)
+     ============================================================ -->
+<div class="cmd-overlay" id="cmdOverlay" onclick="closeCmd(event)">
+  <div class="cmd-palette" onclick="event.stopPropagation()">
+    <div class="cmd-palette__input-wrap">
+      <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input class="cmd-palette__input" id="cmdInput" type="text" placeholder="Search products, categories, or ask AI..." autofocus>
+      <button class="cmd-palette__close" onclick="closeCmdForce()">ESC</button>
+    </div>
+    <div class="cmd-palette__body">
+      <div class="cmd-palette__group-title">Quick Actions</div>
+      <div class="cmd-palette__item cmd-palette__item--active">
+        <div class="cmd-palette__item-icon">
+          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </div>
+        <div class="cmd-palette__item-text">
+          <div class="cmd-palette__item-title">Search Products</div>
+          <div class="cmd-palette__item-desc">Find across 16,000+ products</div>
+        </div>
+        <span class="cmd-palette__item-shortcut">Enter</span>
+      </div>
+      <div class="cmd-palette__item">
+        <div class="cmd-palette__item-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        </div>
+        <div class="cmd-palette__item-text">
+          <div class="cmd-palette__item-title">Browse Categories</div>
+          <div class="cmd-palette__item-desc">Navigate 1,688 departments</div>
+        </div>
+      </div>
+      <div class="cmd-palette__item">
+        <div class="cmd-palette__item-icon">
+          <svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        </div>
+        <div class="cmd-palette__item-text">
+          <div class="cmd-palette__item-title">Flash Deals</div>
+          <div class="cmd-palette__item-desc">Time-limited offers, up to 50% off</div>
+        </div>
+      </div>
+
+      <div class="cmd-palette__group-title">Popular Searches</div>
+      <div class="cmd-palette__item">
+        <div class="cmd-palette__item-icon">
+          <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <div class="cmd-palette__item-text">
+          <div class="cmd-palette__item-title">welding machine</div>
+          <div class="cmd-palette__item-desc">342 results</div>
+        </div>
+      </div>
+      <div class="cmd-palette__item">
+        <div class="cmd-palette__item-icon">
+          <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <div class="cmd-palette__item-text">
+          <div class="cmd-palette__item-title">standing desk</div>
+          <div class="cmd-palette__item-desc">128 results</div>
+        </div>
+      </div>
+      <div class="cmd-palette__item">
+        <div class="cmd-palette__item-icon">
+          <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <div class="cmd-palette__item-text">
+          <div class="cmd-palette__item-title">solar panel</div>
+          <div class="cmd-palette__item-desc">95 results</div>
+        </div>
+      </div>
+    </div>
+    <div class="cmd-palette__ai-hint">
+      <span class="cmd-palette__ai-dot"></span>
+      AI-powered search &mdash; try natural language like "best drill for concrete walls under 100 euros"
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     SCRIPTS
+     ============================================================ -->
+<script>
+// Sidebar toggle
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('open');
+  document.getElementById('sidebarOverlay').classList.toggle('open');
+}
+
+// Command palette
+function openCmd() {
+  document.getElementById('cmdOverlay').classList.add('open');
+  setTimeout(() => document.getElementById('cmdInput').focus(), 100);
+}
+function closeCmd(e) {
+  if (e.target === document.getElementById('cmdOverlay')) {
+    closeCmdForce();
+  }
+}
+function closeCmdForce() {
+  document.getElementById('cmdOverlay').classList.remove('open');
+  document.getElementById('cmdInput').value = '';
+}
+
+// Ctrl+K shortcut
+document.addEventListener('keydown', (e) => {
+  if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+    e.preventDefault();
+    const overlay = document.getElementById('cmdOverlay');
+    if (overlay.classList.contains('open')) {
+      closeCmdForce();
+    } else {
+      openCmd();
+    }
+  }
+  if (e.key === 'Escape') {
+    closeCmdForce();
+    const sidebar = document.getElementById('sidebar');
+    if (sidebar.classList.contains('open')) {
+      toggleSidebar();
+    }
+  }
+});
+
+// Flash sale countdown
+(function() {
+  let total = 4 * 3600 + 23 * 60 + 17;
+  function update() {
+    if (total <= 0) return;
+    total--;
+    const h = Math.floor(total / 3600);
+    const m = Math.floor((total % 3600) / 60);
+    const s = total % 60;
+    document.getElementById('fc-h').textContent = String(h).padStart(2, '0');
+    document.getElementById('fc-m').textContent = String(m).padStart(2, '0');
+    document.getElementById('fc-s').textContent = String(s).padStart(2, '0');
+  }
+  setInterval(update, 1000);
+})();
+
+// Topbar scrolls away, header sticks
+// The topbar is ABOVE the sticky header, so it naturally scrolls out of view
+// while the header stays sticky at top:0
+</script>
+</body>
+</html>

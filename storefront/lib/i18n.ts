@@ -44,6 +44,10 @@ export function categoryPath(locale: Locale, handle?: string): string {
   return `/${locale}/${CATEGORY_SEGMENT[locale]}${handle ? `/${handle}` : ""}`
 }
 
+export function branchPath(locale: Locale, slug: string): string {
+  return `/${locale}/haru/${slug}`
+}
+
 export function translateLocalePath(path: string, locale: Locale): string {
   const withoutLocale = path.replace(/^\/(et|en)(?=\/|$)/, "")
   const translated = withoutLocale

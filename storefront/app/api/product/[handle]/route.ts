@@ -70,7 +70,7 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
     const linkedCategory = product.categories?.[0]
 
     const [meiliHit, feedEntry, media, catWithAncestors] = await Promise.all([
-      locale === "en" ? getMeiliProductByHandle(handle) : Promise.resolve(null),
+      getMeiliProductByHandle(handle),
       getVevorFeedEntryAsync({
         vevorSku: stringifyScalar(metadata.vevor_sku),
         vevorUpc: stringifyScalar(metadata.vevor_upc),
@@ -192,7 +192,8 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
     }
 
     const categoryId = product.categories?.[0]?.id || null
-    const categoryHandle = product.categories?.[0]?.handle || null
+    const meiliCategoryHandles: string[] = meiliHit?.category_handles || []
+    const categoryHandle = product.categories?.[0]?.handle || meiliCategoryHandles[0] || null
     const productTypeL1 = (stringifyScalar(metadata.vevor_product_type) || feedEntry?.productType || "")
       .split(">")[0].trim()
 
@@ -218,6 +219,7 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
       productTypeTrail,
       categoryId,
       categoryHandle,
+      categoryHandles: meiliCategoryHandles,
       categoryName: product.categories?.[0]?.name || productTypeTrail[0]?.name || "Category",
       relatedSearchQuery: categoryId ? "" : productTypeL1,
       priceFormatted,

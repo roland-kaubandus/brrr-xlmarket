@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>XLMarket.eu — K-Rauta Style Homepage v4</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',system-ui,sans-serif;background:#fff;color:#1E293B;font-size:14px;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{display:block}
+
+/* === TOP UTILITY BAR === */
+.topbar{background:#F8FAFC;border-bottom:1px solid #E2E8F0;font-size:12px;color:#64748B}
+.topbar-in{max-width:1320px;margin:0 auto;padding:0 24px;height:32px;display:flex;align-items:center;justify-content:space-between}
+.topbar a{color:#64748B;transition:color .15s}.topbar a:hover{color:#1E293B}
+.topbar-l,.topbar-r{display:flex;gap:16px;align-items:center}
+.topbar-r a{font-weight:500}
+
+/* === MAIN HEADER === */
+.header{background:#fff;border-bottom:1px solid #E2E8F0;position:sticky;top:0;z-index:100}
+.header-in{max-width:1320px;margin:0 auto;padding:0 24px;height:64px;display:flex;align-items:center;gap:24px}
+.logo{font-size:28px;letter-spacing:-.03em;flex-shrink:0;line-height:1}
+.logo b{color:#D97706;font-weight:800}
+.logo span{color:#1E293B;font-weight:600}
+
+.search{flex:1;max-width:560px;margin:0 auto;position:relative}
+.search input{width:100%;height:42px;border:2px solid #E2E8F0;border-radius:8px;padding:0 46px 0 16px;font:inherit;font-size:14px;outline:none;transition:border-color .15s}
+.search input:focus{border-color:#D97706}
+.search button{position:absolute;right:3px;top:3px;width:36px;height:36px;background:#D97706;border:none;border-radius:6px;color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s}
+.search button:hover{background:#B45309}
+
+.hdr-actions{display:flex;gap:2px;flex-shrink:0}
+.hdr-btn{display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px 12px;border-radius:6px;font-size:10px;font-weight:500;color:#64748B;cursor:pointer;border:none;background:none;transition:all .15s}
+.hdr-btn:hover{background:#F1F5F9;color:#1E293B}
+.hdr-btn svg{width:20px;height:20px}
+
+/* === PROMO STRIP === */
+.promo{background:#1E293B;color:rgba(255,255,255,.85);text-align:center;padding:8px 24px;font-size:13px;font-weight:500;letter-spacing:.01em}
+.promo strong{color:#F59E0B}
+
+/* === CATEGORY NAV BAR === */
+.navbar{background:#1E293B;border-top:1px solid rgba(255,255,255,.06)}
+.navbar-in{max-width:1320px;margin:0 auto;padding:0 24px;display:flex;height:44px;gap:0}
+.ntab{display:flex;align-items:center;gap:6px;padding:0 16px;font-size:13px;font-weight:600;color:rgba(255,255,255,.6);white-space:nowrap;cursor:pointer;border:none;background:none;transition:all .15s;position:relative}
+.ntab:hover{color:#fff;background:rgba(255,255,255,.05)}
+.ntab::after{content:'';position:absolute;bottom:0;left:16px;right:16px;height:2px;background:#D97706;transform:scaleX(0);transition:transform .2s}
+.ntab:hover::after{transform:scaleX(1)}
+.ntab.pri{background:#D97706;color:#fff}
+.ntab.pri:hover{background:#B45309}
+.ntab.pri::after{display:none}
+
+/* === MAIN LAYOUT === */
+.layout{max-width:1320px;margin:0 auto;padding:0;display:flex}
+
+/* === SIDEBAR ICON COLUMN === */
+.sidebar{width:56px;flex-shrink:0;border-right:1px solid #E2E8F0;padding:10px 0;position:sticky;top:64px;height:calc(100vh - 64px);overflow-y:auto;scrollbar-width:none}
+.sidebar::-webkit-scrollbar{display:none}
+.si{width:42px;height:42px;margin:0 auto 2px;border-radius:10px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .15s;border:2px solid transparent;position:relative}
+.si:hover{background:#F8FAFC;border-color:#E2E8F0}
+.si.active{background:#FEF3C7;border-color:#D97706}
+.si img{width:26px;height:26px;object-fit:contain;border-radius:4px}
+.si-tip{display:none;position:absolute;left:52px;top:50%;transform:translateY(-50%);background:#1E293B;color:#fff;font-size:11px;font-weight:600;padding:4px 10px;border-radius:6px;white-space:nowrap;z-index:10;pointer-events:none}
+.si-tip::before{content:'';position:absolute;left:-4px;top:50%;transform:translateY(-50%);border:4px solid transparent;border-right-color:#1E293B}
+.si:hover .si-tip{display:block}
+
+/* === MAIN CONTENT === */
+.main{flex:1;min-width:0;padding:24px 24px 48px 24px}
+
+/* === HERO BANNER === */
+.hero{width:100%;border-radius:14px;overflow:hidden;background:#1E293B;display:flex;margin-bottom:24px;min-height:300px;position:relative}
+.hero-txt{flex:1;padding:40px 44px;display:flex;flex-direction:column;justify-content:center;position:relative;z-index:2}
+.hero-tag{display:inline-flex;align-items:center;gap:6px;border:1px solid rgba(255,255,255,.15);border-radius:20px;padding:4px 14px;font-size:11px;font-weight:600;color:#F59E0B;width:fit-content;margin-bottom:16px;letter-spacing:.02em}
+.hero h1{font-size:32px;font-weight:800;color:#fff;line-height:1.12;letter-spacing:-.025em;margin-bottom:12px}
+.hero h1 em{color:#F59E0B;font-style:normal}
+.hero p{font-size:14px;color:rgba(255,255,255,.5);margin-bottom:22px;max-width:380px;line-height:1.5}
+.hero-cta{display:inline-flex;align-items:center;gap:8px;background:#D97706;color:#fff;font-weight:700;font-size:14px;padding:12px 28px;border-radius:8px;width:fit-content;transition:background .15s}
+.hero-cta:hover{background:#B45309}
+.hero-img{width:400px;flex-shrink:0;position:relative;overflow:hidden}
+.hero-img img{width:100%;height:100%;object-fit:cover}
+
+/* === TRUST BAR === */
+.trust{display:flex;align-items:center;justify-content:center;gap:40px;padding:18px 0;margin-bottom:24px;border:1px solid #E2E8F0;border-radius:10px}
+.trust-item{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:#475569}
+.trust-item svg{width:18px;height:18px;color:#D97706;flex-shrink:0}
+
+/* === CATEGORY SECTION (K-Rauta / Kesko Pattern) === */
+.catsec{margin-bottom:20px;border:1px solid #E2E8F0;border-radius:10px;overflow:hidden}
+
+.catsec-hdr{display:flex;align-items:center;gap:12px;padding:14px 18px;background:#FAFAFA;border-bottom:1px solid #E2E8F0}
+.catsec-icon{width:38px;height:38px;border-radius:50%;background:#1E293B;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.catsec-icon img{width:22px;height:22px;object-fit:contain;filter:brightness(0) invert(1);border-radius:3px}
+.catsec-name{font-size:17px;font-weight:700;flex:1;letter-spacing:-.01em}
+.catsec-link{font-size:12px;font-weight:600;color:#D97706;transition:color .15s}
+.catsec-link:hover{color:#B45309}
+
+.catsec-body{display:flex;min-height:290px}
+
+/* Left panel */
+.catsec-left{width:280px;flex-shrink:0;display:flex;flex-direction:column;border-right:1px solid #E2E8F0}
+.catsec-hero{height:190px;overflow:hidden;position:relative;background:#F1F5F9}
+.catsec-hero img{width:100%;height:100%;object-fit:cover;transition:transform .4s cubic-bezier(.16,1,.3,1)}
+.catsec-hero:hover img{transform:scale(1.04)}
+.catsec-hero-label{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,.7));padding:28px 16px 12px;color:#fff;font-size:14px;font-weight:700;letter-spacing:.01em}
+.catsec-subs{padding:12px 16px;flex:1}
+.catsec-subs a{display:block;padding:4px 0;font-size:12px;color:#475569;transition:color .12s}
+.catsec-subs a:hover{color:#D97706}
+
+/* Right panel: 3x2 grid */
+.catsec-grid{flex:1;display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:1fr 1fr;gap:1px;background:#E2E8F0}
+.subcard{background:#fff;padding:14px 10px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;cursor:pointer;transition:background .15s}
+.subcard:hover{background:#FAFAFA}
+.subcard img{width:88px;height:88px;object-fit:contain;margin-bottom:8px}
+.subcard span{font-size:11px;font-weight:500;color:#475569;line-height:1.25}
+
+/* === FOOTER === */
+.footer{background:#1E293B;color:rgba(255,255,255,.7);padding:48px 0 0;margin-top:40px}
+.footer-in{max-width:1320px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:40px}
+.ftitle{font-size:13px;font-weight:700;margin-bottom:14px;color:#fff;letter-spacing:.02em}
+.flinks{list-style:none;columns:2;column-gap:20px}
+.flinks li{margin-bottom:6px}
+.flinks a{font-size:12px;color:rgba(255,255,255,.5);transition:color .15s}
+.flinks a:hover{color:#F59E0B}
+.flinks1{list-style:none}
+.flinks1 li{margin-bottom:6px}
+.flinks1 a{font-size:12px;color:rgba(255,255,255,.5);transition:color .15s}
+.flinks1 a:hover{color:#F59E0B}
+.fbottom{max-width:1320px;margin:24px auto 0;padding:16px 24px;border-top:1px solid rgba(255,255,255,.08);font-size:11px;color:rgba(255,255,255,.3);display:flex;justify-content:space-between}
+.fbottom a{color:rgba(255,255,255,.3);transition:color .15s}
+.fbottom a:hover{color:rgba(255,255,255,.6)}
+
+/* === SCROLL ANIMATION === */
+.catsec{opacity:0;transform:translateY(16px);transition:opacity .5s cubic-bezier(.16,1,.3,1),transform .5s cubic-bezier(.16,1,.3,1)}
+.catsec.visible{opacity:1;transform:translateY(0)}
+</style>
+</head>
+<body>
+
+<!-- TOP UTILITY BAR -->
+<div class="topbar"><div class="topbar-in">
+  <div class="topbar-l">
+    <a href="#">B2B Solutions</a>
+    <a href="#">Shipping Info</a>
+    <a href="#">Help & FAQ</a>
+  </div>
+  <div class="topbar-r">
+    <a href="#">Contact</a>
+    <a href="#">ET | EN</a>
+    <a href="#"><b>Log In</b></a>
+  </div>
+</div></div>
+
+<!-- MAIN HEADER -->
+<header class="header"><div class="header-in">
+  <a href="#" class="logo"><b>XL</b><span>Market</span></a>
+  <div class="search">
+    <input type="text" placeholder="Search products, e.g. welder, ice machine, laser...">
+    <button><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg></button>
+  </div>
+  <div class="hdr-actions">
+    <button class="hdr-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Account</button>
+    <button class="hdr-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0016.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 002 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>Wishlist</button>
+    <button class="hdr-btn" style="position:relative"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg>Cart</button>
+  </div>
+</div></header>
+
+<!-- PROMO STRIP -->
+<div class="promo"><strong>VEVOR Authorized Dealer</strong> — Professional Tools, Half the Price. 2-Year EU Warranty on All Products.</div>
+
+<!-- CATEGORY NAV BAR -->
+<nav class="navbar"><div class="navbar-in">
+  <button class="ntab pri"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>All Products</button>
+  <a class="ntab" href="#">Deals</a>
+  <a class="ntab" href="#">New Arrivals</a>
+  <a class="ntab" href="#">Best Sellers</a>
+  <a class="ntab" href="#">B2B</a>
+  <a class="ntab" href="#">HoReCa</a>
+  <a class="ntab" href="#">Tools</a>
+  <a class="ntab" href="#">Workshop</a>
+  <a class="ntab" href="#">Building</a>
+</div></nav>
+
+<div class="layout">
+<!-- SIDEBAR -->
+<aside class="sidebar" id="sb"></aside>
+
+<!-- MAIN CONTENT -->
+<main class="main">
+
+<!-- HERO BANNER -->
+<div class="hero">
+  <div class="hero-txt">
+    <div class="hero-tag">VEVOR Authorized Dealer</div>
+    <h1>Professional Tools,<br><em>Half the Price</em></h1>
+    <p>16,000+ products direct from the factory. Up to 70% savings compared to traditional retail.</p>
+    <a href="#" class="hero-cta">Browse All Products <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+  </div>
+  <div class="hero-img" id="hero-banner"></div>
+</div>
+
+<!-- TRUST BAR -->
+<div class="trust">
+  <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>2-Year EU Warranty</div>
+  <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>EU Warehouse Shipping</div>
+  <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>Secure Payments</div>
+  <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>Customer Support</div>
+</div>
+
+<!-- ALL 24 CATEGORY SECTIONS -->
+<div id="catsections"></div>
+
+</main>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+<div class="footer-in">
+  <div><div class="ftitle">Product Categories</div><ul class="flinks" id="fcats"></ul></div>
+  <div><div class="ftitle">Customer Service</div><ul class="flinks1"><li><a href="#">Shipping Info</a></li><li><a href="#">Returns</a></li><li><a href="#">Warranty</a></li><li><a href="#">Payment Methods</a></li><li><a href="#">FAQ</a></li></ul></div>
+  <div><div class="ftitle">Company</div><ul class="flinks1"><li><a href="#">About Us</a></li><li><a href="#">B2B Cooperation</a></li><li><a href="#">Blog</a></li><li><a href="#">Contact</a></li></ul></div>
+  <div><div class="ftitle">Contact</div><ul class="flinks1"><li><a href="#">info@xlmarket.eu</a></li><li><a href="#">+372 5xx xxxx</a></li><li style="margin-top:12px;font-size:11px;color:rgba(255,255,255,.3)">Roland Kaubandus OU</li><li style="font-size:11px;color:rgba(255,255,255,.3)">Reg: 16XXXXXXX</li></ul></div>
+</div>
+<div class="fbottom"><span>&copy; 2026 Roland Kaubandus OU &mdash; VEVOR Authorized Dealer</span><span><a href="#">Privacy Policy</a> &middot; <a href="#">Terms</a></span></div>
+</footer>
+
+<script>
+// =====================================================
+// ALL 24 CATEGORIES WITH CAREFULLY SELECTED IMAGES
+// =====================================================
+const C = [
+  {
+    id: "kitchen", name: "Kitchen & Catering Equipment",
+    icon: "commercial-ovens",
+    heroImg: "commercial-ovens",
+    subs: [
+      {n: "Commercial Cooking", img: "commercial-ovens"},
+      {n: "Food Preparation", img: "meat-slicers"},
+      {n: "Refrigeration & Ice", img: "ice-maker-with-water-dispenser"},
+      {n: "Beverage Equipment", img: "espresso-machines"},
+      {n: "Restaurant Furniture", img: "bar-stools"},
+      {n: "Kitchen Infrastructure", img: "stainless-steel-commercial-sink"}
+    ]
+  },
+  {
+    id: "tools", name: "Hand & Power Tools",
+    icon: "power-tools",
+    heroImg: "power-tools",
+    subs: [
+      {n: "Power Tools", img: "power-tools"},
+      {n: "Hand Tools", img: "specialty-hand-tools"},
+      {n: "Woodworking", img: "table-saw-stand"},
+      {n: "Air Compressors", img: "vertical-air-compressors"},
+      {n: "Tool Accessories", img: "drill-bit-combination-sets"},
+      {n: "Measuring & Layout", img: "laser-level"}
+    ]
+  },
+  {
+    id: "automotive", name: "Automotive & Workshop",
+    icon: "electric-car-jacks",
+    heroImg: "engine-stands",
+    subs: [
+      {n: "Vehicle Lifts & Jacks", img: "electric-car-jacks"},
+      {n: "Workshop Equipment", img: "engine-stands"},
+      {n: "Mechanics Tools", img: "ratchet-socket-sets"},
+      {n: "Towing & Hauling", img: "electric-winch"},
+      {n: "Truck Tool Boxes", img: "chest-truck-tool-boxes"},
+      {n: "Diagnostics", img: "12-volt-dc-automotive-circuit-tester"}
+    ]
+  },
+  {
+    id: "welding", name: "Welding & Metalworking",
+    icon: "mig-welders",
+    heroImg: "mig-welders",
+    subs: [
+      {n: "Welding Machines", img: "mig-welders"},
+      {n: "Metal Lathes", img: "bench-metal-lathe"},
+      {n: "Welding Protection", img: "welding-helmet"},
+      {n: "Soldering", img: "soldering-parts-accessories"},
+      {n: "Plasma Cutters", img: "plasma-cutters"},
+      {n: "Bench Grinders", img: "bench-grinders"}
+    ]
+  },
+  {
+    id: "laser", name: "Laser, CNC & Digital Fabrication",
+    icon: "laser-engraver-enclosure",
+    heroImg: "cnc-router-machine",
+    subs: [
+      {n: "Laser Engravers", img: "laser-engraver-enclosure"},
+      {n: "CNC Routers", img: "cnc-router-machine"},
+      {n: "3D Printing", img: "3d-printer-cover"},
+      {n: "Vinyl Cutters", img: "vertical-vinyl-cutter"},
+      {n: "Heat Press", img: "heat-press-machines"},
+      {n: "Screen Printing", img: "screen-printing-press"}
+    ]
+  },
+  {
+    id: "packaging", name: "Printing, Packaging & Production",
+    icon: "paste-liquid-filling-machine",
+    heroImg: "paste-liquid-filling-machine",
+    subs: [
+      {n: "Filling Machines", img: "paste-liquid-filling-machine"},
+      {n: "Label Printers", img: "label-printer"},
+      {n: "Paper Cutters", img: "electric-paper-cutter"},
+      {n: "Scales & Weighing", img: "bench-scales"},
+      {n: "Vacuum Sealers", img: "commercial-vacuum-sealers"},
+      {n: "Bill Counters", img: "bill-counters"}
+    ]
+  },
+  {
+    id: "building", name: "Building & Construction",
+    icon: "scaffolding-sets",
+    heroImg: "scaffolding-sets",
+    subs: [
+      {n: "Concrete & Masonry", img: "concrete-drilling-tools"},
+      {n: "Scaffolding", img: "scaffolding-sets"},
+      {n: "Roofing Tools", img: "roofing-tools"},
+      {n: "Fencing & Decking", img: "vinyl-fence-panels"},
+      {n: "Doors & Hardware", img: "garage-door-springs"},
+      {n: "Cabinet Hardware", img: "cabinet-hardware"}
+    ]
+  },
+  {
+    id: "electrical", name: "Electrical, Lighting & Solar",
+    icon: "commercial-lighting",
+    heroImg: "commercial-lighting",
+    subs: [
+      {n: "Commercial Lighting", img: "commercial-lighting"},
+      {n: "Wiring & Conduit", img: "electrical-boxes-conduit-fittings"},
+      {n: "Battery Chargers", img: "car-battery-chargers"},
+      {n: "Solar Panels", img: "portable-solar-panels"},
+      {n: "Security Lighting", img: "security-lights"},
+      {n: "Electric Motors", img: "electric-motors"}
+    ]
+  },
+  {
+    id: "plumbing", name: "Plumbing, Pumps & Water Systems",
+    icon: "deep-well-pump",
+    heroImg: "water-heaters",
+    subs: [
+      {n: "Water Pumps", img: "deep-well-pump"},
+      {n: "Hydraulic Systems", img: "hydraulic-cylinders"},
+      {n: "Pipes & Fittings", img: "pipe-fittings"},
+      {n: "Water Heaters", img: "water-heaters"},
+      {n: "Bathroom Faucets", img: "bathroom-faucets"},
+      {n: "Shower Systems", img: "alcove-shower-doors"}
+    ]
+  },
+  {
+    id: "hvac", name: "HVAC & Climate Control",
+    icon: "air-conditioners",
+    heroImg: "air-conditioners",
+    subs: [
+      {n: "Space Heaters", img: "space-heaters"},
+      {n: "Air Conditioners", img: "air-conditioners"},
+      {n: "Ventilation Fans", img: "attic-fans"},
+      {n: "Dehumidifiers", img: "crawl-space-commercial-dehumidifier"},
+      {n: "Wall Heaters", img: "wall-heaters"},
+      {n: "Infrared Heaters", img: "infrared-heaters"}
+    ]
+  },
+  {
+    id: "handling", name: "Material Handling & Lifting",
+    icon: "electric-chain-hoists",
+    heroImg: "electric-chain-hoists",
+    subs: [
+      {n: "Hoists & Cranes", img: "electric-chain-hoists"},
+      {n: "Pallet Equipment", img: "pallet-stackers-lifters"},
+      {n: "Rigging & Pulleys", img: "pulley-hoists"},
+      {n: "Belt Conveyors", img: "belt-conveyors"},
+      {n: "Forklifts", img: "forklifts-attachments"},
+      {n: "Hand Trucks", img: "industrial-hand-truck"}
+    ]
+  },
+  {
+    id: "storage", name: "Storage & Warehouse",
+    icon: "garage-cabinets",
+    heroImg: "restaurant-stainless-steel-shelving",
+    subs: [
+      {n: "Industrial Shelving", img: "restaurant-stainless-steel-shelving"},
+      {n: "Garage Storage", img: "garage-cabinets"},
+      {n: "Closet Systems", img: "closet-organizers"},
+      {n: "Tool Boxes", img: "chest-truck-tool-boxes"},
+      {n: "Workbenches", img: "floor-standing-workbench"},
+      {n: "Metal Lockers", img: "metal-locker"}
+    ]
+  },
+  {
+    id: "safety", name: "Safety, PPE & Security",
+    icon: "hard-hats",
+    heroImg: "fall-protection-equipment",
+    subs: [
+      {n: "Hard Hats & PPE", img: "hard-hats"},
+      {n: "Fall Protection", img: "fall-protection-equipment"},
+      {n: "Safety Harnesses", img: "safety-harnesses"},
+      {n: "Fire Safety", img: "fire-safety"},
+      {n: "First Aid", img: "first-aid-kits"},
+      {n: "Safes & Security", img: "gun-safes"}
+    ]
+  },
+  {
+    id: "outdoor", name: "Outdoor Power & Agriculture",
+    icon: "chainsaws",
+    heroImg: "chainsaws",
+    subs: [
+      {n: "Chainsaws", img: "chainsaws"},
+      {n: "Pressure Washers", img: "electric-pressure-washers"},
+      {n: "Garden Carts", img: "garden-carts"},
+      {n: "Irrigation", img: "drip-irrigation"},
+      {n: "Hedge Trimmers", img: "electric-hedge-trimmer"},
+      {n: "Garden Equipment", img: "garden-center"}
+    ]
+  },
+  {
+    id: "cleaning", name: "Cleaning & Janitorial",
+    icon: "canister-vacuums",
+    heroImg: "canister-vacuums",
+    subs: [
+      {n: "Industrial Vacuums", img: "backpack-vacuums"},
+      {n: "Steam Cleaners", img: "canister-steam-cleaner"},
+      {n: "Carpet Cleaners", img: "carpet-cleaners"},
+      {n: "Cleaning Carts", img: "cleaning-carts"},
+      {n: "Floor Care", img: "canister-vacuums"},
+      {n: "Car Cleaning", img: "car-cleaning-supplies"}
+    ]
+  },
+  {
+    id: "salon", name: "Salon, Spa & Wellness",
+    icon: "barber-chairs",
+    heroImg: "barber-chairs",
+    subs: [
+      {n: "Barber Chairs", img: "barber-chairs"},
+      {n: "Massage Equipment", img: "foam-roller-body-massager"},
+      {n: "Hair Styling", img: "hair-styling-tools"},
+      {n: "Medical Tables", img: "medical-exam-table"},
+      {n: "Hospital Beds", img: "hospital-beds"},
+      {n: "Mobility Aids", img: "enclosed-mobility-scooter"}
+    ]
+  },
+  {
+    id: "furniture", name: "Furniture & Home",
+    icon: "standing-desks",
+    heroImg: "standing-desks",
+    subs: [
+      {n: "Standing Desks", img: "standing-desks"},
+      {n: "Dining Tables", img: "kitchen-dining-tables"},
+      {n: "Bar Stools", img: "bar-stools"},
+      {n: "Platform Beds", img: "platform-beds"},
+      {n: "Bookcases", img: "bookcases-bookshelves"},
+      {n: "Executive Chairs", img: "executive-chairs"}
+    ]
+  },
+  {
+    id: "sports", name: "Sports, Fitness & Recreation",
+    icon: "exercise-bikes",
+    heroImg: "exercise-equipment",
+    subs: [
+      {n: "Exercise Bikes", img: "exercise-bikes"},
+      {n: "Exercise Equipment", img: "exercise-equipment"},
+      {n: "Boxing", img: "boxing-equipment"},
+      {n: "Basketball", img: "basketball-hoop-goal"},
+      {n: "Playground Sets", img: "commercial-playground-equipment"},
+      {n: "Swing Sets", img: "a-frame-swing-set"}
+    ]
+  },
+  {
+    id: "patio", name: "Outdoor Living & Patio",
+    icon: "patio-chairs",
+    heroImg: "above-ground-pools",
+    subs: [
+      {n: "Patio Furniture", img: "patio-chairs"},
+      {n: "Charcoal Grills", img: "charcoal-grills"},
+      {n: "Swimming Pools", img: "above-ground-pools"},
+      {n: "Fire Pits", img: "fire-pits"},
+      {n: "Pergolas", img: "arched-pergola"},
+      {n: "Porch Swings", img: "porch-swings"}
+    ]
+  },
+  {
+    id: "pets", name: "Pet Supplies & Animal Care",
+    icon: "dog-houses",
+    heroImg: "cat-trees-scratch-posts",
+    subs: [
+      {n: "Dog Houses", img: "dog-houses"},
+      {n: "Cat Trees", img: "cat-trees-scratch-posts"},
+      {n: "Aquarium Filters", img: "aquarium-filter"},
+      {n: "Bird Cages", img: "bird-cages-carriers"},
+      {n: "Chicken Coops", img: "chicken-coops"},
+      {n: "Dog Crates", img: "dog-crates-crate-pads"}
+    ]
+  },
+  {
+    id: "boating", name: "Boating & Marine",
+    icon: "boats",
+    heroImg: "boats",
+    subs: [
+      {n: "Boats", img: "boats"},
+      {n: "Boat Parts", img: "boat-parts-accessories"},
+      {n: "Dock Hardware", img: "boat-docks-hardware"},
+      {n: "Bilge Pumps", img: "12v-volt-bilge-pumps"},
+      {n: "Boat Seats", img: "boat-seat-and-pedestals"},
+      {n: "Marine Covers", img: "boat-covers"}
+    ]
+  },
+  {
+    id: "camping", name: "Camping & Outdoor Recreation",
+    icon: "camping-gear-accessories",
+    heroImg: "backpacking-instant-tent",
+    subs: [
+      {n: "Camping Tents", img: "backpacking-instant-tent"},
+      {n: "Camping Furniture", img: "camping-furniture"},
+      {n: "Ice Fishing", img: "ice-fishing"},
+      {n: "Coolers", img: "beverage-coolers"},
+      {n: "Hunting Blinds", img: "hunting-blinds"},
+      {n: "Backpacks", img: "backpacks-bags-accessories"}
+    ]
+  },
+  {
+    id: "music", name: "Musical Instruments & Entertainment",
+    icon: "drum-sets-set-components",
+    heroImg: "drum-sets-set-components",
+    subs: [
+      {n: "Drum Kits", img: "drum-sets-set-components"},
+      {n: "Acoustic Guitars", img: "acoustic-guitar"},
+      {n: "Classical Guitars", img: "classical-guitar"},
+      {n: "DJ Equipment", img: "dj-facade-table-station"},
+      {n: "Billiard Tables", img: "billiard-table"},
+      {n: "Game Room", img: "game-room"}
+    ]
+  },
+  {
+    id: "generators", name: "Generators & Portable Power",
+    icon: "generators",
+    heroImg: "generators",
+    subs: [
+      {n: "Gas Generators", img: "generators"},
+      {n: "Battery Generators", img: "battery-generators"},
+      {n: "Solar Panels", img: "monocrystalline-solar-panel"},
+      {n: "EV Chargers", img: "ev-chargers"},
+      {n: "Power Inverters", img: "car-power-inverters"},
+      {n: "Solar Systems", img: "off-grid-solar-systems"}
+    ]
+  }
+];
+
+// =====================================================
+// RENDER SIDEBAR ICONS
+// =====================================================
+const sb = document.getElementById("sb");
+C.forEach((c, i) => {
+  const d = document.createElement("a");
+  d.href = "#s-" + c.id;
+  d.className = "si";
+  d.innerHTML = `<img src="/cat-icons/80/${c.icon}.webp" alt="${c.name}" onerror="this.parentElement.textContent='${c.name[0]}'"><span class="si-tip">${c.name}</span>`;
+  sb.appendChild(d);
+});
+
+// =====================================================
+// RENDER ALL 24 CATEGORY SECTIONS (Full Kesko pattern)
+// =====================================================
+const cs = document.getElementById("catsections");
+C.forEach((c, idx) => {
+  const subs = c.subs;
+  const top6 = subs.slice(0, 6);
+  const subLinks = subs.map(s => s.n);
+
+  let gridHTML = '';
+  top6.forEach(s => {
+    gridHTML += `<div class="subcard">
+      <img src="/cat-icons/400/${s.img}.webp" alt="${s.n}" onerror="this.style.opacity='.2'">
+      <span>${s.n}</span>
+    </div>`;
+  });
+  // Fill to 6 if needed
+  for (let i = top6.length; i < 6; i++) gridHTML += '<div class="subcard"></div>';
+
+  // Use generated nano-banana hero banners (v2 for improved versions)
+  const v2cats = ['kitchen','tools','automotive','welding','laser','packaging','building','plumbing','outdoor','salon','furniture','sports','patio','boating','music'];
+  const bannerFile = v2cats.includes(c.id) ? `${c.id}-v2` : c.id;
+  const heroImg = `/mockups/hero-banners/${bannerFile}.png`;
+
+  cs.innerHTML += `
+  <div class="catsec" id="s-${c.id}">
+    <div class="catsec-hdr">
+      <div class="catsec-icon"><img src="/cat-icons/80/${c.icon}.webp" onerror="this.parentElement.textContent='${c.name[0]}'"></div>
+      <div class="catsec-name">${c.name}</div>
+      <a href="#" class="catsec-link">View all &rarr;</a>
+    </div>
+    <div class="catsec-body">
+      <div class="catsec-left">
+        <div class="catsec-hero">
+          <img src="${heroImg}" alt="${c.name}" onerror="this.parentElement.style.background='#E2E8F0'">
+          <div class="catsec-hero-label">${c.name}</div>
+        </div>
+        <div class="catsec-subs">${subLinks.map(s => '<a href="#">' + s + '</a>').join('')}</div>
+      </div>
+      <div class="catsec-grid">${gridHTML}</div>
+    </div>
+  </div>`;
+});
+
+// =====================================================
+// FOOTER CATEGORIES
+// =====================================================
+const fc = document.getElementById("fcats");
+C.forEach(c => { fc.innerHTML += `<li><a href="#">${c.name}</a></li>`; });
+
+// =====================================================
+// SCROLL ANIMATION (reveal on scroll)
+// =====================================================
+const revealObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add("visible");
+      revealObs.unobserve(e.target);
+    }
+  });
+}, { rootMargin: "-40px 0px", threshold: 0.05 });
+document.querySelectorAll(".catsec").forEach(el => revealObs.observe(el));
+
+// =====================================================
+// SIDEBAR SCROLL SPY
+// =====================================================
+const spyObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      document.querySelectorAll(".si").forEach(s => {
+        s.classList.toggle("active", s.getAttribute("href") === "#" + e.target.id);
+      });
+    }
+  });
+}, { rootMargin: "-80px 0px -60% 0px" });
+document.querySelectorAll("[id^='s-']").forEach(el => spyObs.observe(el));
+
+// =====================================================
+// SMOOTH SCROLL ON SIDEBAR CLICK
+// =====================================================
+document.querySelectorAll(".si").forEach(i => {
+  i.onclick = e => {
+    e.preventDefault();
+    const t = document.querySelector(i.getAttribute("href"));
+    if (t) t.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>XLMarket — A1: Swiss/Industrial Clean Grid</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'DM Sans',system-ui,sans-serif; color:#1E293B; background:#FAFAFA; -webkit-font-smoothing:antialiased; }
+a { text-decoration:none; color:inherit; }
+
+/* ── HEADER ── */
+.header { position:sticky; top:0; z-index:50; background:#fff; border-bottom:1px solid #E2E8F0; }
+.header-inner { max-width:1360px; margin:0 auto; padding:0 20px; height:56px; display:flex; align-items:center; gap:16px; }
+.logo { font-weight:800; font-size:22px; letter-spacing:-0.5px; flex-shrink:0; }
+.logo span { color:#D97706; }
+
+/* Search */
+.search-wrap { flex:1; max-width:560px; position:relative; }
+.search-bar { width:100%; height:40px; border:2px solid #E2E8F0; border-radius:10px; padding:0 44px 0 14px; font:400 14px/1 'DM Sans',sans-serif; transition:border .2s; background:#F8FAFC; }
+.search-bar:focus { outline:none; border-color:#D97706; background:#fff; }
+.search-icon { position:absolute; right:12px; top:50%; transform:translateY(-50%); color:#94A3B8; pointer-events:none; }
+.ai-btn { position:absolute; right:44px; top:50%; transform:translateY(-50%); background:linear-gradient(135deg,#D97706,#F59E0B); color:#fff; border:none; border-radius:6px; padding:4px 10px; font:600 11px/1 'DM Sans',sans-serif; cursor:pointer; letter-spacing:0.3px; display:flex; align-items:center; gap:4px; }
+.ai-btn svg { width:12px; height:12px; }
+
+/* AI Chat expanded (mockup) */
+.ai-chat-overlay { display:none; position:absolute; top:calc(100% + 4px); left:0; right:0; background:#fff; border:2px solid #D97706; border-radius:14px; box-shadow:0 20px 60px rgba(0,0,0,.12); z-index:100; overflow:hidden; }
+.search-wrap.ai-open .ai-chat-overlay { display:block; }
+.ai-chat-header { padding:12px 16px; background:linear-gradient(135deg,#FFFBEB,#FEF3C7); display:flex; align-items:center; gap:8px; border-bottom:1px solid #FDE68A; }
+.ai-chat-header .dot { width:8px; height:8px; border-radius:50%; background:#D97706; animation:pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
+.ai-chat-header span { font:600 13px/1 'DM Sans',sans-serif; color:#92400E; }
+.ai-chat-messages { padding:16px; min-height:140px; }
+.ai-msg { background:#F1F5F9; border-radius:10px 10px 10px 2px; padding:10px 14px; font-size:13px; line-height:1.5; color:#475569; max-width:80%; margin-bottom:8px; }
+.ai-msg.user { background:#FFFBEB; border-radius:10px 10px 2px 10px; margin-left:auto; color:#1E293B; }
+.ai-chat-input { display:flex; gap:8px; padding:12px 16px; border-top:1px solid #E2E8F0; }
+.ai-chat-input input { flex:1; border:1px solid #E2E8F0; border-radius:8px; padding:8px 12px; font:400 13px/1 'DM Sans',sans-serif; }
+.ai-chat-input button { background:#D97706; color:#fff; border:none; border-radius:8px; padding:8px 16px; font:600 12px/1 'DM Sans',sans-serif; cursor:pointer; }
+
+.header-actions { display:flex; align-items:center; gap:12px; flex-shrink:0; }
+.header-btn { background:none; border:none; color:#64748B; cursor:pointer; display:flex; align-items:center; gap:4px; font:500 13px/1 'DM Sans',sans-serif; }
+.header-btn:hover { color:#1E293B; }
+.cart-badge { background:#D97706; color:#fff; font-size:10px; font-weight:700; border-radius:50%; width:18px; height:18px; display:flex; align-items:center; justify-content:center; }
+.cat-btn { background:#1E293B; color:#fff; border:none; border-radius:8px; padding:8px 14px; font:600 13px/1 'DM Sans',sans-serif; cursor:pointer; display:flex; align-items:center; gap:6px; }
+.cat-btn:hover { background:#334155; }
+
+/* ── HERO (compact) ── */
+.hero { background:#1E293B; color:#fff; }
+.hero-inner { max-width:1360px; margin:0 auto; padding:20px 20px; display:flex; align-items:center; justify-content:space-between; gap:24px; }
+.hero-text h1 { font-size:20px; font-weight:700; letter-spacing:-0.3px; }
+.hero-text h1 span { color:#D97706; }
+.hero-text p { font-size:13px; color:#94A3B8; margin-top:4px; }
+.hero-stats { display:flex; gap:32px; }
+.hero-stat { text-align:center; }
+.hero-stat .num { font-size:22px; font-weight:800; color:#D97706; }
+.hero-stat .label { font-size:11px; color:#94A3B8; margin-top:2px; }
+
+/* ── CATEGORIES SECTION ── */
+.section { max-width:1360px; margin:0 auto; padding:24px 20px; }
+.section-head { display:flex; align-items:center; justify-content:space-between; margin-bottom:16px; }
+.section-title { font-size:16px; font-weight:700; letter-spacing:-0.3px; }
+.section-link { font-size:13px; color:#D97706; font-weight:600; cursor:pointer; }
+.section-link:hover { text-decoration:underline; }
+
+/* Category grid — swiss style */
+.cat-grid { display:grid; grid-template-columns:repeat(6,1fr); gap:2px; background:#E2E8F0; border:1px solid #E2E8F0; border-radius:12px; overflow:hidden; }
+.cat-card { background:#fff; padding:16px 12px; display:flex; flex-direction:column; align-items:center; gap:8px; cursor:pointer; transition:background .15s; }
+.cat-card:hover { background:#FFFBEB; }
+.cat-card img { width:64px; height:64px; object-fit:contain; border-radius:8px; }
+.cat-card .cat-name { font-size:12px; font-weight:600; text-align:center; line-height:1.3; color:#1E293B; }
+.cat-card .cat-count { font-size:11px; color:#94A3B8; }
+
+/* Hidden rows */
+.cat-grid-hidden { display:none; }
+.cat-grid-hidden.show { display:contents; }
+.show-more-row { grid-column:1/-1; background:#F8FAFC; padding:12px; text-align:center; }
+.show-more-btn { background:none; border:1px solid #D97706; color:#D97706; border-radius:8px; padding:8px 24px; font:600 13px/1 'DM Sans',sans-serif; cursor:pointer; transition:all .15s; }
+.show-more-btn:hover { background:#D97706; color:#fff; }
+
+/* Divider */
+.divider { height:1px; background:#E2E8F0; max-width:1360px; margin:0 auto; }
+
+/* ── PRODUCT SECTIONS ── */
+.product-row { display:grid; grid-template-columns:repeat(5,1fr); gap:12px; }
+.product-card { background:#fff; border:1px solid #F1F5F9; border-radius:10px; padding:12px; cursor:pointer; transition:all .2s; }
+.product-card:hover { border-color:#E2E8F0; box-shadow:0 4px 20px rgba(0,0,0,.06); transform:translateY(-2px); }
+.product-img { width:100%; aspect-ratio:1; background:#F8FAFC; border-radius:8px; display:flex; align-items:center; justify-content:center; overflow:hidden; margin-bottom:10px; }
+.product-img img { width:80%; height:80%; object-fit:contain; }
+.product-title { font-size:12px; font-weight:500; line-height:1.4; color:#1E293B; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; margin-bottom:6px; }
+.product-price { font-size:15px; font-weight:700; color:#1E293B; }
+.product-price .old { font-size:12px; color:#94A3B8; text-decoration:line-through; font-weight:400; margin-left:6px; }
+.product-badge { display:inline-block; background:#ECFDF5; color:#059669; font-size:10px; font-weight:600; padding:2px 6px; border-radius:4px; margin-top:4px; }
+
+/* ── FOOTER ── */
+.footer-benefits { background:#F1F5F9; border-top:1px solid #E2E8F0; }
+.footer-benefits-inner { max-width:1360px; margin:0 auto; padding:16px 20px; display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
+.benefit { display:flex; align-items:center; gap:10px; }
+.benefit-icon { width:36px; height:36px; border-radius:50%; background:#FFFBEB; display:flex; align-items:center; justify-content:center; flex-shrink:0; color:#D97706; }
+.benefit-text .b-title { font-size:12px; font-weight:600; }
+.benefit-text .b-sub { font-size:11px; color:#64748B; }
+
+.footer { background:#1E293B; color:#CBD5E1; }
+.footer-inner { max-width:1360px; margin:0 auto; padding:40px 20px 24px; display:grid; grid-template-columns:1.5fr 1fr 1fr 1fr 1fr; gap:32px; }
+.footer-col h4 { color:#fff; font-size:13px; font-weight:700; margin-bottom:12px; text-transform:uppercase; letter-spacing:0.5px; }
+.footer-col a { display:block; font-size:12px; color:#94A3B8; margin-bottom:8px; transition:color .15s; }
+.footer-col a:hover { color:#D97706; }
+.footer-brand p { font-size:12px; line-height:1.6; color:#64748B; margin-top:8px; }
+.footer-bottom { max-width:1360px; margin:0 auto; padding:16px 20px; border-top:1px solid #334155; display:flex; justify-content:space-between; align-items:center; }
+.footer-bottom span { font-size:11px; color:#64748B; }
+.payment-icons { display:flex; gap:8px; }
+.payment-icon { background:#334155; border-radius:4px; padding:4px 8px; font-size:10px; font-weight:600; color:#94A3B8; }
+
+/* ── RESPONSIVE ── */
+@media(max-width:1024px) {
+  .cat-grid { grid-template-columns:repeat(4,1fr); }
+  .product-row { grid-template-columns:repeat(3,1fr); }
+  .hero-stats { gap:20px; }
+  .footer-inner { grid-template-columns:repeat(3,1fr); }
+}
+@media(max-width:768px) {
+  .cat-grid { grid-template-columns:repeat(3,1fr); }
+  .product-row { grid-template-columns:repeat(2,1fr); }
+  .hero-inner { flex-direction:column; text-align:center; }
+  .hero-stats { justify-content:center; }
+  .footer-benefits-inner { grid-template-columns:repeat(2,1fr); }
+  .footer-inner { grid-template-columns:1fr 1fr; }
+}
+@media(max-width:480px) {
+  .cat-grid { grid-template-columns:repeat(3,1fr); }
+  .cat-card img { width:48px; height:48px; }
+  .cat-card .cat-name { font-size:11px; }
+  .product-row { grid-template-columns:repeat(2,1fr); }
+  .header-inner { padding:0 12px; gap:8px; }
+  .search-bar { height:36px; font-size:13px; }
+}
+
+/* mobile AI chat */
+@media(max-width:640px) {
+  .ai-chat-overlay { position:fixed; top:56px; left:0; right:0; bottom:0; border-radius:0; border:none; border-top:2px solid #D97706; }
+  .ai-chat-messages { min-height:calc(100vh - 200px); }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ HEADER ═══ -->
+<header class="header">
+  <div class="header-inner">
+    <div class="logo"><span>XL</span>Market</div>
+    <button class="cat-btn">
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4h12M2 8h12M2 12h12"/></svg>
+      Categories
+    </button>
+    <div class="search-wrap" id="searchWrap">
+      <input class="search-bar" placeholder="Search 16,000+ products..." />
+      <button class="ai-btn" onclick="document.getElementById('searchWrap').classList.toggle('ai-open')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a4 4 0 014 4v2a4 4 0 01-8 0V6a4 4 0 014-4zM5 10a7 7 0 0014 0M8 18h8M12 18v4"/></svg>
+        AI
+      </button>
+      <span class="search-icon"><svg width="18" height="18" fill="none" stroke="#94A3B8" stroke-width="2"><circle cx="8" cy="8" r="6"/><path d="m13 13 4 4"/></svg></span>
+      <!-- AI Chat overlay -->
+      <div class="ai-chat-overlay">
+        <div class="ai-chat-header"><div class="dot"></div><span>XL AI Shopping Assistant</span></div>
+        <div class="ai-chat-messages">
+          <div class="ai-msg">Hi! I can help you find the right tools and equipment. What are you looking for today?</div>
+          <div class="ai-msg user">I need a welder for thin sheet metal, around 200€ budget</div>
+          <div class="ai-msg">For thin sheet metal I'd recommend a MIG welder with adjustable amperage. Here are 3 options within your budget:</div>
+        </div>
+        <div class="ai-chat-input">
+          <input placeholder="Ask about products, compare, get recommendations..." />
+          <button>Send</button>
+        </div>
+      </div>
+    </div>
+    <div class="header-actions">
+      <button class="header-btn">🌐 EN</button>
+      <button class="header-btn">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="9" cy="5" r="3.5"/><path d="M1.5 16.5c0-3.3 3.4-6 7.5-6s7.5 2.7 7.5 6"/></svg>
+      </button>
+      <button class="header-btn">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 3h1.5l1 9h9l1.5-6H6"/><circle cx="7" cy="15" r="1"/><circle cx="13" cy="15" r="1"/></svg>
+        <span class="cart-badge">2</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ═══ HERO (compact info strip) ═══ -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <h1>Professional Tools, <span>Half the Price</span></h1>
+      <p>Europe's VEVOR authorized dealer — direct from factory</p>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="num">16K+</div><div class="label">Products</div></div>
+      <div class="hero-stat"><div class="num">1,688</div><div class="label">Categories</div></div>
+      <div class="hero-stat"><div class="num">€4.99</div><div class="label">Flat shipping</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ CATEGORIES ═══ -->
+<div class="section">
+  <div class="section-head">
+    <div class="section-title">Shop by Category</div>
+    <a class="section-link">All 1,688 categories →</a>
+  </div>
+  <div class="cat-grid" id="catGrid">
+    <!-- Row 1-2: visible (12 items for 6-col) -->
+    <div class="cat-card"><img src="/cat-icons/80/tools.webp" alt="Tools"><div class="cat-name">Tools</div><div class="cat-count">2,400+</div></div>
+    <div class="cat-card"><img src="/cat-icons/80/automotive.webp" alt="Automotive"><div class="cat-name">Automotive</div><div class="cat-count">640+</div></div>
+    <div class="cat-card"><img src="/cat-icons/80/kitchen.webp" alt="Kitchen"><div class="cat-name">Kitchen</div><div class="cat-count">820+</div></div>
+    <div class="cat-card"><img src="/cat-icons/80/building-materials.webp" alt="Building"><div class="cat-name">Building Materials</div><div class="cat-count">1,100+</div></div>
+    <div class="cat-card"><img src="/cat-icons/80/outdoors.webp" alt="Outdoors"><div class="cat-name">Outdoors</div><div class="cat-count">950+</div></div>
+    <div class="cat-card"><img src="/cat-icons/80/sports-outdoors.webp" alt="Sports"><div class="cat-name">Sports & Fitness</div><div class="cat-count">780+</div></div>
+    <div class="cat-card"><img src="/cat-icons/80/plumbing.webp" alt="Plumbing"><div class="cat-name">Plumbing</div><div class="cat-count">380+</div></div>
+    <div class="cat-card"><img src="/cat-icons/80/industrial-scientific.webp" alt="Industrial"><div class="cat-name">Industrial</div><div class="cat-count">520+</div></div>
+    <div class="cat-card"><img src="/cat-icons/80/electrical.webp" alt="Electrical"><div class="cat-name">Electrical</div><div class="cat-count">460+</div></div>
+    <div class="cat-card"><img src="/cat-icons/80/hardware.webp" alt="Hardware"><div class="cat-name">Hardware</div><div class="cat-count">340+</div></div>
+    <div class="cat-card"><img src="/cat-icons/80/furniture.webp" alt="Furniture"><div class="cat-name">Furniture</div><div class="cat-count">290+</div></div>
+    <div class="cat-card"><img src="/cat-icons/80/heating-venting-cooling.webp" alt="HVAC"><div class="cat-name">HVAC</div><div class="cat-count">410+</div></div>
+
+    <!-- Hidden rows -->
+    <div class="cat-grid-hidden" id="catHidden">
+      <div class="cat-card"><img src="/cat-icons/80/appliances.webp" alt="Appliances"><div class="cat-name">Appliances</div><div class="cat-count">180+</div></div>
+      <div class="cat-card"><img src="/cat-icons/80/flooring.webp" alt="Flooring"><div class="cat-name">Flooring</div><div class="cat-count">150+</div></div>
+      <div class="cat-card"><img src="/cat-icons/80/home-decor.webp" alt="Home Decor"><div class="cat-name">Home Decor</div><div class="cat-count">220+</div></div>
+      <div class="cat-card"><img src="/cat-icons/80/bath.webp" alt="Bath"><div class="cat-name">Bath</div><div class="cat-count">190+</div></div>
+      <div class="cat-card"><img src="/cat-icons/80/storage-organization.webp" alt="Storage"><div class="cat-name">Storage</div><div class="cat-count">170+</div></div>
+      <div class="cat-card"><img src="/cat-icons/80/lighting.webp" alt="Lighting"><div class="cat-name">Lighting</div><div class="cat-count">130+</div></div>
+      <div class="cat-card"><img src="/cat-icons/80/cleaning.webp" alt="Cleaning"><div class="cat-name">Cleaning</div><div class="cat-count">90+</div></div>
+      <div class="cat-card"><img src="/cat-icons/80/health-and-wellness.webp" alt="Health"><div class="cat-name">Health</div><div class="cat-count">120+</div></div>
+      <div class="cat-card"><img src="/cat-icons/80/safety-equipment.webp" alt="Safety"><div class="cat-name">Safety Equipment</div><div class="cat-count">80+</div></div>
+      <div class="cat-card"><img src="/cat-icons/80/paint.webp" alt="Paint"><div class="cat-name">Paint</div><div class="cat-count">60+</div></div>
+    </div>
+
+    <div class="show-more-row">
+      <button class="show-more-btn" onclick="document.getElementById('catHidden').classList.toggle('show'); this.textContent = this.textContent === 'Show More Categories' ? 'Show Less' : 'Show More Categories'">Show More Categories</button>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══ NEW ARRIVALS ═══ -->
+<div class="section">
+  <div class="section-head">
+    <div class="section-title">🆕 New Arrivals</div>
+    <a class="section-link">View all →</a>
+  </div>
+  <div class="product-row">
+    <div class="product-card"><div class="product-img"><img src="/cat-icons/400/angle-grinder.webp" alt=""></div><div class="product-title">Professional Angle Grinder 850W Variable Speed</div><div class="product-price">€89.99 <span class="old">€129.99</span></div><div class="product-badge">New</div></div>
+    <div class="product-card"><div class="product-img"><img src="/cat-icons/400/bench-grinder-pedestal.webp" alt=""></div><div class="product-title">Heavy Duty Bench Grinder 200mm Pedestal</div><div class="product-price">€124.99</div><div class="product-badge">New</div></div>
+    <div class="product-card"><div class="product-img"><img src="/cat-icons/400/air-impact-wrenches.webp" alt=""></div><div class="product-title">Air Impact Wrench 1/2" Drive 680Nm</div><div class="product-price">€67.99 <span class="old">€89.99</span></div><div class="product-badge">New</div></div>
+    <div class="product-card"><div class="product-img"><img src="/cat-icons/400/chainsaws.webp" alt=""></div><div class="product-title">Chainsaw 20" Bar 58cc 2-Stroke Engine</div><div class="product-price">€149.99</div><div class="product-badge">New</div></div>
+    <div class="product-card"><div class="product-img"><img src="/cat-icons/400/bottle-jacks.webp" alt=""></div><div class="product-title">Hydraulic Bottle Jack 20 Ton Heavy Duty</div><div class="product-price">€34.99</div><div class="product-badge">New</div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══ BEST SELLERS ═══ -->
+<div class="section">
+  <div class="section-head">
+    <div class="section-title">🔥 Best Sellers</div>
+    <a class="section-link">View all →</a>
+  </div>
+  <div class="product-row">
+    <div class="product-card"><div class="product-img"><img src="/cat-icons/400/band-saws.webp" alt=""></div><div class="product-title">Band Saw 14" Floor Standing Woodworking</div><div class="product-price">€289.99 <span class="old">€399.99</span></div><div class="product-badge">-28%</div></div>
+    <div class="product-card"><div class="product-img"><img src="/cat-icons/400/car-jacks.webp" alt=""></div><div class="product-title">Low Profile Floor Jack 3 Ton Aluminum</div><div class="product-price">€79.99</div></div>
+    <div class="product-card"><div class="product-img"><img src="/cat-icons/400/blenders.webp" alt=""></div><div class="product-title">Commercial Blender 2200W Heavy Duty</div><div class="product-price">€94.99 <span class="old">€139.99</span></div><div class="product-badge">-32%</div></div>
+    <div class="product-card"><div class="product-img"><img src="/cat-icons/400/abrasives.webp" alt=""></div><div class="product-title">Sanding Disc Set 125mm 80-800 Grit 100pcs</div><div class="product-price">€19.99</div></div>
+    <div class="product-card"><div class="product-img"><img src="/cat-icons/400/above-ground-pools.webp" alt=""></div><div class="product-title">Above Ground Pool 366cm Round Frame</div><div class="product-price">€199.99 <span class="old">€299.99</span></div><div class="product-badge">-33%</div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══ DEALS ═══ -->
+<div class="section">
+  <div class="section-head">
+    <div class="section-title">💰 Today's Deals</div>
+    <a class="section-link">View all →</a>
+  </div>
+  <div class="product-row">
+    <div class="product-card"><div class="product-img"><img src="/cat-icons/400/adirondack-chairs.webp" alt=""></div><div class="product-title">Adirondack Chair HDPE Weather Resistant</div><div class="product-price">€69.99 <span class="old">€119.99</span></div><div class="product-badge">-42%</div></div>
+    <div class="product-card"><div class="product-img"><img src="/cat-icons/400/acoustic-foam-panels.webp" alt=""></div><div class="product-title">Acoustic Foam Panels 24 Pack Studio</div><div class="product-price">€29.99 <span class="old">€49.99</span></div><div class="product-badge">-40%</div></div>
+    <div class="product-card"><div class="product-img"><img src="/cat-icons/400/accent-cabinets.webp" alt=""></div><div class="product-title">Storage Cabinet Industrial Metal 3-Door</div><div class="product-price">€159.99 <span class="old">€249.99</span></div><div class="product-badge">-36%</div></div>
+    <div class="product-card"><div class="product-img"><img src="/cat-icons/400/ab-machine.webp" alt=""></div><div class="product-title">Ab Roller Machine Foldable Core Trainer</div><div class="product-price">€44.99 <span class="old">€79.99</span></div><div class="product-badge">-44%</div></div>
+    <div class="product-card"><div class="product-img"><img src="/cat-icons/400/accent-lighting.webp" alt=""></div><div class="product-title">LED Accent Light Strip 5m RGBW Smart WiFi</div><div class="product-price">€24.99 <span class="old">€39.99</span></div><div class="product-badge">-38%</div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══ FLASH SALE ═══ -->
+<div class="section">
+  <div class="section-head">
+    <div class="section-title">⚡ Flash Sale — ends in <span style="color:#D97706;font-weight:800">02:34:17</span></div>
+    <a class="section-link">View all →</a>
+  </div>
+  <div class="product-row">
+    <div class="product-card" style="border-color:#FDE68A"><div class="product-img" style="background:#FFFBEB"><img src="/cat-icons/400/chainsaw-sharpeners.webp" alt=""></div><div class="product-title">Chainsaw Sharpener Electric Bench Mount</div><div class="product-price">€29.99 <span class="old">€64.99</span></div><div class="product-badge" style="background:#FEF3C7;color:#92400E">⚡ -54%</div></div>
+    <div class="product-card" style="border-color:#FDE68A"><div class="product-img" style="background:#FFFBEB"><img src="/cat-icons/400/brake-tools.webp" alt=""></div><div class="product-title">Brake Caliper Piston Rewind Tool Set 24pc</div><div class="product-price">€19.99 <span class="old">€44.99</span></div><div class="product-badge" style="background:#FEF3C7;color:#92400E">⚡ -56%</div></div>
+    <div class="product-card" style="border-color:#FDE68A"><div class="product-img" style="background:#FFFBEB"><img src="/cat-icons/400/acoustic-guitar.webp" alt=""></div><div class="product-title">Acoustic Guitar 41" Full Size Beginner Set</div><div class="product-price">€49.99 <span class="old">€99.99</span></div><div class="product-badge" style="background:#FEF3C7;color:#92400E">⚡ -50%</div></div>
+    <div class="product-card" style="border-color:#FDE68A"><div class="product-img" style="background:#FFFBEB"><img src="/cat-icons/400/address-signs.webp" alt=""></div><div class="product-title">LED Address Sign Solar Powered Illuminated</div><div class="product-price">€22.99 <span class="old">€49.99</span></div><div class="product-badge" style="background:#FEF3C7;color:#92400E">⚡ -54%</div></div>
+    <div class="product-card" style="border-color:#FDE68A"><div class="product-img" style="background:#FFFBEB"><img src="/cat-icons/400/adhesives-tape.webp" alt=""></div><div class="product-title">Industrial Adhesive Tape Dispenser Gun</div><div class="product-price">€14.99 <span class="old">€29.99</span></div><div class="product-badge" style="background:#FEF3C7;color:#92400E">⚡ -50%</div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══ RECENTLY VIEWED (mockup) ═══ -->
+<div class="section">
+  <div class="section-head">
+    <div class="section-title">🕐 Recently Viewed</div>
+    <a class="section-link">Clear history</a>
+  </div>
+  <div class="product-row">
+    <div class="product-card"><div class="product-img"><img src="/cat-icons/400/air-compressor-parts-accessories.webp" alt=""></div><div class="product-title">Air Compressor Parts & Accessories Kit</div><div class="product-price">€39.99</div></div>
+    <div class="product-card"><div class="product-img"><img src="/cat-icons/400/access-doors.webp" alt=""></div><div class="product-title">Access Door Panel 12x12" Drywall</div><div class="product-price">€18.99</div></div>
+    <div class="product-card"><div class="product-img"><img src="/cat-icons/400/active-seating.webp" alt=""></div><div class="product-title">Wobble Stool Active Sitting Balance</div><div class="product-price">€54.99</div></div>
+    <div class="product-card"><div class="product-img"><img src="/cat-icons/400/agility-course-kits.webp" alt=""></div><div class="product-title">Dog Agility Course Kit 9 Obstacles</div><div class="product-price">€74.99</div></div>
+    <div class="product-card"><div class="product-img"><img src="/cat-icons/400/air-blow-guns.webp" alt=""></div><div class="product-title">Air Blow Gun Kit 5pc Pneumatic Set</div><div class="product-price">€12.99</div></div>
+  </div>
+</div>
+
+<!-- ═══ FOOTER ═══ -->
+<div class="footer-benefits">
+  <div class="footer-benefits-inner">
+    <div class="benefit"><div class="benefit-icon">🚚</div><div class="benefit-text"><div class="b-title">Free Shipping €99+</div><div class="b-sub">All orders over €99</div></div></div>
+    <div class="benefit"><div class="benefit-icon">↩️</div><div class="benefit-text"><div class="b-title">30-Day Returns</div><div class="b-sub">Hassle-free returns</div></div></div>
+    <div class="benefit"><div class="benefit-icon">🛡️</div><div class="benefit-text"><div class="b-title">2-Year Warranty</div><div class="b-sub">On all products</div></div></div>
+    <div class="benefit"><div class="benefit-icon">💬</div><div class="benefit-text"><div class="b-title">Customer Support</div><div class="b-sub">Mon-Fri 9-17</div></div></div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-col footer-brand">
+      <div class="logo" style="font-size:28px"><span>XL</span>Market</div>
+      <p>Europe's authorized VEVOR dealer. Professional tools and equipment at factory-direct prices. Based in Estonia, shipping across the EU.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Customer Service</h4>
+      <a href="#">Contact Us</a><a href="#">Shipping Info</a><a href="#">Returns & Refunds</a><a href="#">FAQ</a>
+    </div>
+    <div class="footer-col">
+      <h4>About</h4>
+      <a href="#">About XLMarket</a><a href="#">All Categories</a><a href="#">Blog</a>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <a href="#">Privacy Policy</a><a href="#">Terms of Service</a><a href="#">Cookie Policy</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <a href="#">info@xlmarket.eu</a>
+      <a href="#">Mon-Fri 9:00-17:00 EET</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Roland Kaubandus OÜ. All rights reserved.</span>
+    <div class="payment-icons">
+      <div class="payment-icon">VISA</div>
+      <div class="payment-icon">MC</div>
+      <div class="payment-icon">SEB</div>
+      <div class="payment-icon">LHV</div>
+      <div class="payment-icon">SWED</div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

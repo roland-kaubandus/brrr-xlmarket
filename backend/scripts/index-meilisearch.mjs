@@ -30,13 +30,18 @@ async function configureIndex() {
   // All settings in one call
   await meili("/indexes/" + INDEX + "/settings", "PATCH", {
     searchableAttributes: ["title_et", "title_en", "description_et", "description_en", "categories", "sku", "handle"],
-    filterableAttributes: ["categories", "category_handles", "subcategory", "price", "in_stock", "translated", "filter_tokens"],
+    filterableAttributes: [
+      "categories", "category_handles", "subcategory", "price", "in_stock", "translated", "filter_tokens",
+      // Taxonomy v3 SSoT fields (F2.8). See docs/superpowers/specs/2026-04-18-taxonomy-final-design.md §6.
+      "taxonomy.l1_slug", "taxonomy.l2_slug", "taxonomy.l3_slug", "taxonomy.ancestors",
+      "vertical_slugs",
+    ],
     sortableAttributes: ["price", "created_at", "title_en"],
     displayedAttributes: ["*"],
     rankingRules: ["words", "typo", "proximity", "attribute", "sort", "exactness"],
     typoTolerance: { enabled: true, minWordSizeForTypos: { oneTypo: 4, twoTypos: 8 } },
     faceting: { maxValuesPerFacet: 500 },
-    pagination: { maxTotalHits: 5000 },
+    pagination: { maxTotalHits: 20000 },
   })
   console.log("✅ Seaded konfigureeritud")
 }
@@ -47,22 +52,36 @@ let categoryAncestorMap = {}
 async function buildCategoryAncestorMap(client) {
   console.log("🗂  Laen kategooriapuud...")
   const { rows } = await client.query(
-    "SELECT id, handle, name, parent_category_id FROM product_category WHERE deleted_at IS NULL"
+    "SELECT pc.id, pc.handle, pc.name, pc.parent_category_id, tnm.level " +
+    "FROM product_category pc " +
+    "LEFT JOIN taxonomy_node_meta tnm ON tnm.node_id = pc.id " +
+    "WHERE pc.deleted_at IS NULL"
   )
   const byId = {}
   for (const r of rows) byId[r.id] = r
 
-  // For each category, collect all ancestor handles (including self)
+  // For each category, collect all ancestor handles (including self) plus
+  // the L1/L2/L3 slug at the corresponding depth (SSoT-registered only).
   for (const r of rows) {
     const handles = []
     const names = []
+    const byLevel = { 1: null, 2: null, 3: null }
     let current = r
     while (current) {
       handles.push(current.handle)
       names.push(current.name)
+      if (current.level === 1) byLevel[1] = current.handle
+      else if (current.level === 2) byLevel[2] = current.handle
+      else if (current.level === 3) byLevel[3] = current.handle
       current = current.parent_category_id ? byId[current.parent_category_id] : null
     }
-    categoryAncestorMap[r.id] = { handles, names }
+    categoryAncestorMap[r.id] = {
+      handles,
+      names,
+      l1_slug: byLevel[1],
+      l2_slug: byLevel[2],
+      l3_slug: byLevel[3],
+    }
   }
   console.log(`🗂  ${rows.length} kategooriat, ancestor map valmis`)
 }
@@ -103,19 +122,32 @@ async function fetchProducts(client) {
     "GROUP BY p.id, p.title, p.handle, p.description, p.thumbnail, " +
     "p.status, p.created_at, p.metadata, v.sku, pp.amount"
   )
-  // Resolve category IDs to handles + ancestor handles
+  // Resolve category IDs to handles + ancestor handles + taxonomy L1/L2/L3.
+  // If a product sits under multiple leaves, we prefer the deepest L3 (then L2
+  // then L1) seen. In practice post-F2.6 cleanup each product hits one branch.
   for (const row of rows) {
     const allHandles = new Set()
     const allNames = new Set()
+    let bestL1 = null
+    let bestL2 = null
+    let bestL3 = null
     for (const catId of (row.category_ids || [])) {
       const ancestor = categoryAncestorMap[catId]
-      if (ancestor) {
-        for (const h of ancestor.handles) allHandles.add(h)
-        for (const n of ancestor.names) allNames.add(n)
-      }
+      if (!ancestor) continue
+      for (const h of ancestor.handles) allHandles.add(h)
+      for (const n of ancestor.names) allNames.add(n)
+      if (ancestor.l3_slug && !bestL3) bestL3 = ancestor.l3_slug
+      if (ancestor.l2_slug && !bestL2) bestL2 = ancestor.l2_slug
+      if (ancestor.l1_slug && !bestL1) bestL1 = ancestor.l1_slug
     }
     row.category_handles = [...allHandles]
     row.categories = [...allNames]
+    row.taxonomy = {
+      l1_slug: bestL1,
+      l2_slug: bestL2,
+      l3_slug: bestL3,
+      ancestors: [...allHandles],
+    }
   }
   console.log("📦 " + rows.length + " toodet")
   return rows
@@ -317,6 +349,9 @@ function transform(row) {
     in_stock: true,
     translated: meta.translated === true,
     created_at: Math.floor(new Date(row.created_at).getTime() / 1000),
+    // Taxonomy v3 SSoT fields (F2.8). vertical_slugs populated by F4 materializer.
+    taxonomy: row.taxonomy || { l1_slug: null, l2_slug: null, l3_slug: null, ancestors: [] },
+    vertical_slugs: [],
   }
 }
 

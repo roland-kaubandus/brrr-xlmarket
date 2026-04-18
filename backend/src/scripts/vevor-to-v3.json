@@ -1,0 +1,139 @@
+{
+  "_doc": "VEVOR productType → taxonomy-v3 L1 slug. Key precedence (first match wins): path_contains → l1_l2_l3 → l1_l2 → l1_default. Unknown paths log to stats.unmappedCategories.",
+  "_version": 1,
+  "_updated": "2026-04-17",
+
+  "l1_defaults": {
+    "Abrasive & Sand Blasters": "hand-power-tools",
+    "Agriculture & Forestry Equipment": "outdoor-power-landscaping",
+    "Air Tools & Compressors": "hand-power-tools",
+    "Alternative & Renewable Energy": "electrical-energy",
+    "Appliances": "horeca-food-service",
+    "Arts & Crafts & Sewing": "printing-packaging-signage",
+    "Automotive": "automotive-workshop",
+    "Bath": "plumbing-water-systems",
+    "Building & Construction": "construction-building",
+    "Building Materials": "construction-building",
+    "Cleaning": "cleaning-janitorial",
+    "Cleaning & Janitorial Supplies": "cleaning-janitorial",
+    "Decor & Furniture": "office-commercial-interiors",
+    "Doors & Windows": "construction-building",
+    "Electrical": "electrical-energy",
+    "Engines & Motors": "automotive-workshop",
+    "Flooring": "construction-building",
+    "Furniture": "office-commercial-interiors",
+    "Hand Tools": "hand-power-tools",
+    "Hardware": "hand-power-tools",
+    "Health & Wellness": "health-medical-supply",
+    "Health And Wellness": "health-medical-supply",
+    "Heating & Cooling": "hvac-climate-control",
+    "Heating, Venting & Cooling": "hvac-climate-control",
+    "Holiday Decorations": "office-commercial-interiors",
+    "Home Decor": "office-commercial-interiors",
+    "Hydraulics": "fuel-lubrication-fluid",
+    "Industrial & Scientific": "hand-power-tools",
+    "Kitchen": "horeca-food-service",
+    "Lab": "hand-power-tools",
+    "Lawn & Garden": "outdoor-power-landscaping",
+    "Lighting": "electrical-energy",
+    "Lumber & Composites": "construction-building",
+    "Machining": "welding-metalworking",
+    "Material Handling": "warehousing-material-handling",
+    "Musical Instruments": "music-entertainment",
+    "Office Supplies": "office-commercial-interiors",
+    "Outdoors": "outdoor-power-landscaping",
+    "Paint": "construction-building",
+    "Painting": "construction-building",
+    "Pet Supplies": "health-medical-supply",
+    "Playground Sets": "fitness-sports-recreation",
+    "Plumbing": "plumbing-water-systems",
+    "Power Tools": "hand-power-tools",
+    "Pumps": "plumbing-water-systems",
+    "Restaurant & Food Service": "horeca-food-service",
+    "Safety": "safety-security-workwear",
+    "Safety Equipment": "safety-security-workwear",
+    "Security": "safety-security-workwear",
+    "Smart Home": "electrical-energy",
+    "Sports & Outdoors": "fitness-sports-recreation",
+    "Sports & Recreation": "fitness-sports-recreation",
+    "Storage & Organization": "warehousing-material-handling",
+    "Tool Storage & Organization": "hand-power-tools",
+    "Tools": "hand-power-tools",
+    "Welding": "welding-metalworking",
+    "Window Treatments": "office-commercial-interiors",
+    "Workwear": "safety-security-workwear"
+  },
+
+  "l1_l2_overrides": {
+    "Appliances|Crafts & Sewing": "printing-packaging-signage",
+    "Appliances|Garbage Disposal": "cleaning-janitorial",
+    "Appliances|Vacuum Cleaners": "cleaning-janitorial",
+
+    "Flooring|Gym Flooring": "fitness-sports-recreation",
+
+    "Furniture|Kitchen & Dining Room Furniture": "horeca-food-service",
+    "Furniture|Bar Furniture": "horeca-food-service",
+    "Furniture|Salon & Spa Equipment": "salon-spa-wellness",
+
+    "Health And Wellness|Personal Care Appliances": "salon-spa-wellness",
+    "Health And Wellness|Personal Care": "salon-spa-wellness",
+
+    "Outdoors|Outdoor Cooking": "horeca-food-service",
+    "Outdoors|Home Spas": "salon-spa-wellness",
+    "Outdoors|Outdoor Heating": "hvac-climate-control",
+    "Outdoors|Patio Furniture": "office-commercial-interiors",
+    "Outdoors|Pet Supplies & Wildlife": "health-medical-supply",
+
+    "Plumbing|Hydraulic Pumps": "fuel-lubrication-fluid",
+    "Plumbing|Vacuum Pump": "fuel-lubrication-fluid",
+    "Plumbing|Dewatering Pump": "fuel-lubrication-fluid",
+
+    "Sports & Outdoors|Boating": "boating-camping-outdoor",
+    "Sports & Outdoors|Camping Gear": "boating-camping-outdoor",
+    "Sports & Outdoors|Hunting Gear": "boating-camping-outdoor",
+    "Sports & Outdoors|Tailgating Gear": "boating-camping-outdoor",
+    "Sports & Outdoors|Water Sports": "boating-camping-outdoor",
+
+    "Sports & Recreation|Boating": "boating-camping-outdoor",
+    "Sports & Recreation|Camping": "boating-camping-outdoor",
+    "Sports & Recreation|Camping Gear": "boating-camping-outdoor",
+    "Sports & Recreation|Hunting": "boating-camping-outdoor",
+    "Sports & Recreation|Hunting Gear": "boating-camping-outdoor",
+    "Sports & Recreation|Water Sports": "boating-camping-outdoor",
+    "Sports & Recreation|Watercraft": "boating-camping-outdoor",
+
+    "Lawn & Garden|Outdoor Cooking": "horeca-food-service",
+    "Lawn & Garden|Pools & Spas": "outdoor-power-landscaping",
+    "Lawn & Garden|Patio Furniture & Accessories": "office-commercial-interiors",
+    "Lawn & Garden|Outdoor Heating": "hvac-climate-control",
+
+    "Agriculture & Forestry Equipment|Pet Supplies": "health-medical-supply",
+
+    "Restaurant & Food Service|Restaurant Furniture": "horeca-food-service",
+
+    "Cleaning & Janitorial Supplies|Bathroom Supplies": "plumbing-water-systems",
+
+    "Office Supplies|Office Storage & Organization": "office-commercial-interiors",
+
+    "Storage & Organization|Garage Storage": "warehousing-material-handling",
+    "Storage & Organization|Laundry Room Storage": "cleaning-janitorial",
+    "Storage & Organization|Office Storage & Organization": "office-commercial-interiors",
+    "Storage & Organization|Office Supplies": "office-commercial-interiors",
+    "Storage & Organization|Outdoor Storage": "warehousing-material-handling",
+
+    "Tools|Welding & Soldering": "welding-metalworking",
+    "Tools|Woodworking Tools": "woodworking-carpentry"
+  },
+
+  "skip": ["Other"],
+
+  "path_contains": {
+    "Laser Engraving": "laser-cnc-digital-fabrication",
+    "CNC Router": "laser-cnc-digital-fabrication",
+    "Engraving & Cutting": "laser-cnc-digital-fabrication",
+    "3D Printer": "laser-cnc-digital-fabrication",
+    "Heat Press": "printing-packaging-signage",
+    "Vinyl Cutter": "printing-packaging-signage",
+    "Screen Printing": "printing-packaging-signage"
+  }
+}

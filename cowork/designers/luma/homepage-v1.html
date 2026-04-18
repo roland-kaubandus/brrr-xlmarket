@@ -1,0 +1,503 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>XLMarket — Industrial Equipment, Curated</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink:           #0b0e14;
+    --ink-2:         #0f1420;
+    --ink-3:         #141a28;
+    --edge:          rgba(255,255,255,0.06);
+    --edge-hi:       rgba(255,255,255,0.14);
+    --edge-amber:    rgba(212,165,116,0.45);
+    --text:          #e7ecf2;
+    --text-2:        #9aa3b2;
+    --text-3:        #6b7486;
+    --amber:         #b45309;
+    --amber-hi:      #d4a574;
+    --amber-glow:    rgba(180,83,9,0.18);
+    --surface:       rgba(255,255,255,0.035);
+    --surface-hi:    rgba(255,255,255,0.07);
+    --blur:          saturate(140%) blur(14px);
+  }
+  *,*::before,*::after { box-sizing:border-box; }
+  html,body { margin:0; padding:0; background:var(--ink); color:var(--text); font-family:'DM Sans',system-ui,sans-serif; font-size:15px; -webkit-font-smoothing:antialiased; }
+  body {
+    background:
+      radial-gradient(1200px 700px at 80% -200px, rgba(212,165,116,0.06), transparent 60%),
+      radial-gradient(900px 500px at 10% 10%, rgba(90,120,200,0.05), transparent 60%),
+      linear-gradient(#0a0d13 0%, #0b0e14 60%, #090c11 100%);
+    min-height:100vh;
+  }
+  /* grain */
+  body::before {
+    content:""; position:fixed; inset:0; pointer-events:none; z-index:1;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.06 0'/></filter><rect width='200' height='200' filter='url(%23n)'/></svg>");
+    mix-blend-mode:overlay; opacity:.45;
+  }
+  a { color:inherit; text-decoration:none; }
+  .tabnum { font-variant-numeric:tabular-nums; letter-spacing:.01em; }
+  .serif { font-family:'Fraunces', serif; font-weight:400; letter-spacing:-.02em; }
+
+  /* ---------- B2B service strip ---------- */
+  .service-strip {
+    position:relative; z-index:5;
+    background:rgba(9,12,18,.6); backdrop-filter:var(--blur);
+    border-bottom:1px solid var(--edge);
+    font-size:12.5px; color:var(--text-2); letter-spacing:.04em;
+  }
+  .service-strip .row {
+    max-width:1400px; margin:0 auto; padding:10px 32px;
+    display:flex; justify-content:space-between; align-items:center; gap:24px;
+  }
+  .service-strip .left { display:flex; gap:26px; align-items:center; }
+  .service-strip .left span { display:flex; align-items:center; gap:7px; }
+  .service-strip .dot { width:5px; height:5px; border-radius:50%; background:var(--amber-hi); box-shadow:0 0 10px var(--amber-glow); }
+  .service-strip .right { display:flex; gap:22px; }
+  .service-strip a { color:var(--text-2); transition:color .2s; }
+  .service-strip a:hover { color:var(--amber-hi); }
+
+  /* ---------- Nav ---------- */
+  .nav-outer { position:relative; z-index:5; border-bottom:1px solid var(--edge); background:linear-gradient(180deg, rgba(9,12,18,.85), rgba(9,12,18,.55)); backdrop-filter:var(--blur); }
+  .nav {
+    max-width:1400px; margin:0 auto; padding:22px 32px;
+    display:flex; align-items:center; justify-content:space-between; gap:28px;
+  }
+  .brand { font-family:'DM Sans'; font-weight:600; font-size:22px; letter-spacing:-.01em; color:var(--text); }
+  .brand em { font-family:'Fraunces'; font-style:italic; font-weight:300; color:var(--amber-hi); }
+  .nav-links { display:flex; gap:28px; font-size:14px; color:var(--text-2); }
+  .nav-links a { position:relative; padding:6px 0; transition:color .2s; }
+  .nav-links a:hover { color:var(--text); }
+  .nav-links a.active { color:var(--text); }
+  .nav-links a.active::after {
+    content:""; position:absolute; bottom:-24px; left:0; right:0; height:1px; background:var(--amber-hi);
+  }
+  .nav-cta { display:flex; gap:10px; align-items:center; }
+  .pill {
+    display:inline-flex; align-items:center; gap:9px;
+    padding:9px 16px; border-radius:999px;
+    font-size:13px; letter-spacing:.01em;
+    background:var(--surface); border:1px solid var(--edge);
+    color:var(--text); transition:all .25s ease;
+    backdrop-filter:var(--blur);
+  }
+  .pill:hover { border-color:var(--edge-hi); background:var(--surface-hi); transform:translateY(-1px); }
+  .pill.amber { border-color:var(--edge-amber); color:var(--amber-hi); }
+  .pill.amber:hover { background:rgba(180,83,9,.12); box-shadow:0 0 0 1px var(--edge-amber), 0 6px 24px -6px var(--amber-glow); }
+
+  /* ---------- Hero headline ---------- */
+  .hero {
+    position:relative; z-index:2;
+    max-width:1400px; margin:0 auto; padding:110px 32px 50px;
+  }
+  .hero .eyebrow {
+    display:inline-flex; align-items:center; gap:10px;
+    font-size:12px; letter-spacing:.22em; text-transform:uppercase;
+    color:var(--text-3); margin-bottom:28px;
+  }
+  .hero .eyebrow::before { content:""; width:28px; height:1px; background:var(--amber-hi); }
+  .hero h1 {
+    font-family:'Fraunces'; font-weight:300; letter-spacing:-.028em;
+    font-size:clamp(44px, 6vw, 84px); line-height:.98; margin:0 0 24px;
+    color:var(--text);
+    max-width:1000px;
+  }
+  .hero h1 em { font-style:italic; color:var(--amber-hi); font-weight:300; }
+  .hero p.lede {
+    max-width:560px; font-size:17px; line-height:1.55; color:var(--text-2);
+    margin:0 0 36px;
+  }
+  .hero .actions { display:flex; gap:12px; flex-wrap:wrap; }
+
+  /* ---------- Categories header ---------- */
+  .cat-header {
+    max-width:1400px; margin:70px auto 24px; padding:0 32px;
+    display:flex; justify-content:space-between; align-items:flex-end; gap:32px;
+  }
+  .cat-header h2 {
+    font-family:'Fraunces'; font-weight:300; font-size:40px; letter-spacing:-.02em; margin:0;
+  }
+  .cat-header .sub { color:var(--text-3); font-size:13.5px; max-width:420px; text-align:right; line-height:1.55; }
+
+  /* ---------- Category grid ---------- */
+  .cat-grid {
+    max-width:1400px; margin:0 auto; padding:0 32px 100px;
+    display:grid; grid-template-columns:repeat(4, 1fr); gap:14px;
+  }
+  @media (max-width:1100px) { .cat-grid { grid-template-columns:repeat(3,1fr); } }
+  @media (max-width:780px)  { .cat-grid { grid-template-columns:repeat(2,1fr); } }
+
+  .tile {
+    position:relative; aspect-ratio:5/6; border-radius:14px; overflow:hidden;
+    background:var(--ink-2); border:1px solid var(--edge);
+    transition:transform .5s cubic-bezier(.16,1,.3,1), border-color .3s;
+    isolation:isolate;
+    cursor:pointer;
+  }
+  .tile-img {
+    position:absolute; inset:0; z-index:0;
+    background-size:cover; background-position:center;
+    transition:transform .9s cubic-bezier(.16,1,.3,1), filter .5s;
+    filter:grayscale(.15) brightness(.72) contrast(1.05);
+  }
+  .tile::after {
+    content:""; position:absolute; inset:0; z-index:1;
+    background:
+      linear-gradient(180deg, rgba(11,14,20,.1) 0%, rgba(11,14,20,.35) 55%, rgba(11,14,20,.95) 100%);
+    transition:opacity .3s;
+  }
+  .tile:hover { border-color:var(--edge-amber); transform:translateY(-2px); }
+  .tile:hover .tile-img { transform:scale(1.04); filter:grayscale(0) brightness(.8) contrast(1.1); }
+  .tile:hover .tile-num { color:var(--amber-hi); }
+  .tile:hover .tile-arrow { transform:translate(4px,-4px); color:var(--amber-hi); }
+  .tile:hover .tile-edge { opacity:1; }
+  .tile-edge {
+    position:absolute; inset:0; border-radius:14px; z-index:3; pointer-events:none;
+    box-shadow: inset 0 0 0 1px rgba(212,165,116,.35), 0 20px 60px -20px rgba(212,165,116,.25);
+    opacity:0; transition:opacity .3s;
+  }
+  .tile-body {
+    position:absolute; inset:0; z-index:2; padding:18px 18px 18px; display:flex; flex-direction:column; justify-content:space-between;
+  }
+  .tile-top { display:flex; justify-content:space-between; align-items:flex-start; }
+  .tile-num { font-family:'Fraunces'; font-style:italic; font-weight:300; font-size:13px; color:var(--text-3); transition:color .3s; letter-spacing:.05em; }
+  .tile-arrow { color:var(--text-2); transition:all .4s cubic-bezier(.16,1,.3,1); }
+  .tile-name {
+    font-family:'DM Sans'; font-weight:500; font-size:16px; color:#fff;
+    line-height:1.25; letter-spacing:-.005em;
+  }
+  .tile-meta {
+    display:flex; justify-content:space-between; align-items:center;
+    margin-top:10px; font-size:11.5px; color:var(--text-3); letter-spacing:.05em; text-transform:uppercase;
+  }
+  .tile-meta .count { color:var(--text-2); }
+
+  /* ---------- B2B strip below ---------- */
+  .b2b-strip {
+    max-width:1400px; margin:0 auto 80px; padding:0 32px;
+  }
+  .b2b-card {
+    position:relative; border-radius:18px; padding:40px 44px;
+    border:1px solid var(--edge);
+    background:
+      radial-gradient(600px 300px at 85% 50%, rgba(212,165,116,.08), transparent 70%),
+      linear-gradient(135deg, rgba(255,255,255,0.025), rgba(255,255,255,0.005));
+    backdrop-filter:var(--blur);
+    display:grid; grid-template-columns:1.2fr .8fr; gap:40px; align-items:center;
+    overflow:hidden;
+  }
+  .b2b-card::before {
+    content:""; position:absolute; inset:0; pointer-events:none;
+    background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence baseFrequency='.8' numOctaves='2'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .04 0'/></filter><rect width='200' height='200' filter='url(%23n)'/></svg>");
+    mix-blend-mode:overlay;
+  }
+  .b2b-card h3 { font-family:'Fraunces'; font-weight:300; font-size:32px; margin:0 0 12px; letter-spacing:-.02em; }
+  .b2b-card h3 em { font-style:italic; color:var(--amber-hi); }
+  .b2b-card p { color:var(--text-2); font-size:15px; line-height:1.55; margin:0 0 20px; max-width:480px; }
+  .b2b-chips { display:flex; flex-wrap:wrap; gap:8px; }
+  .chip {
+    font-size:12px; color:var(--text); letter-spacing:.04em;
+    padding:7px 13px; border-radius:999px;
+    background:rgba(255,255,255,.03); border:1px solid var(--edge);
+  }
+  .b2b-right { display:flex; flex-direction:column; gap:14px; }
+  .b2b-stat { display:flex; justify-content:space-between; align-items:baseline; padding:14px 0; border-top:1px solid var(--edge); font-size:13.5px; color:var(--text-2); }
+  .b2b-stat:last-child { border-bottom:1px solid var(--edge); }
+  .b2b-stat strong { font-family:'Fraunces'; font-weight:300; font-size:22px; color:var(--text); letter-spacing:-.01em; }
+
+  /* ---------- Footer ---------- */
+  footer {
+    border-top:1px solid var(--edge); color:var(--text-3); font-size:13px;
+    padding:40px 32px; max-width:1400px; margin:0 auto; display:flex; justify-content:space-between;
+  }
+</style>
+</head>
+<body>
+
+<div class="service-strip">
+  <div class="row">
+    <div class="left">
+      <span><span class="dot"></span> Net-30 for verified businesses</span>
+      <span>Volume pricing from 10+ units</span>
+      <span>Dedicated account manager</span>
+      <span>Free EU delivery over €1,500</span>
+    </div>
+    <div class="right">
+      <a href="#">Track order</a>
+      <a href="#">EN / ES / EE</a>
+      <a href="#">B2B login</a>
+    </div>
+  </div>
+</div>
+
+<header class="nav-outer">
+  <nav class="nav">
+    <a href="/" class="brand">XL<em>Market</em></a>
+    <div class="nav-links">
+      <a href="#" class="active">Catalog</a>
+      <a href="#">Starter kits</a>
+      <a href="#">For business</a>
+      <a href="#">Service plans</a>
+      <a href="#">Journal</a>
+    </div>
+    <div class="nav-cta">
+      <a href="#" class="pill">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        Search
+      </a>
+      <a href="#quote" class="pill amber">Request quote</a>
+    </div>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="eyebrow">A curated catalog for working businesses</div>
+  <h1>Industrial equipment,<br/>selected like <em>a library</em>.</h1>
+  <p class="lede">22 disciplines. One buyer. Net-30 terms, volume pricing, and starter kits assembled by specialists who have stood behind the counter themselves.</p>
+  <div class="actions">
+    <a href="#cats" class="pill">Browse the 22 disciplines</a>
+    <a href="#starter-kits" class="pill amber">Starter kits from €2,799</a>
+  </div>
+</section>
+
+<div class="cat-header" id="cats">
+  <h2>The <em class="serif" style="font-style:italic;color:var(--amber-hi);">twenty-two</em> disciplines</h2>
+  <div class="sub">Each tile is a complete category — sub-categories, specialist advice, volume quotes, and starter kits tailored to its trade.</div>
+</div>
+
+<section class="cat-grid">
+  <!-- 22 tiles -->
+  <a class="tile" href="/en/branch/horeca-food-service">
+    <div class="tile-img" style="background-image:url('../../images/cat-01-horeca-food-service.png');"></div>
+    <div class="tile-edge"></div>
+    <div class="tile-body">
+      <div class="tile-top"><span class="tile-num tabnum">I · 01</span><svg class="tile-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17 17 7M9 7h8v8"/></svg></div>
+      <div><div class="tile-name">HoReCa &amp;<br/>Food Service</div><div class="tile-meta"><span>6 subs</span><span class="count tabnum">2,140 SKU</span></div></div>
+    </div>
+  </a>
+
+  <a class="tile" href="#">
+    <div class="tile-img" style="background-image:url('../../images/cat-05-laser-cnc-digital-fabrication.png');"></div>
+    <div class="tile-edge"></div>
+    <div class="tile-body">
+      <div class="tile-top"><span class="tile-num tabnum">I · 02</span><svg class="tile-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17 17 7M9 7h8v8"/></svg></div>
+      <div><div class="tile-name">Laser, CNC &amp;<br/>Digital Fabrication</div><div class="tile-meta"><span>6 subs</span><span class="count tabnum">980 SKU</span></div></div>
+    </div>
+  </a>
+
+  <a class="tile" href="#">
+    <div class="tile-img" style="background-image:url('../../images/cat-04-welding-metalworking.png');"></div>
+    <div class="tile-edge"></div>
+    <div class="tile-body">
+      <div class="tile-top"><span class="tile-num tabnum">I · 03</span><svg class="tile-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17 17 7M9 7h8v8"/></svg></div>
+      <div><div class="tile-name">Welding &amp;<br/>Metalworking</div><div class="tile-meta"><span>6 subs</span><span class="count tabnum">1,430 SKU</span></div></div>
+    </div>
+  </a>
+
+  <a class="tile" href="#">
+    <div class="tile-img" style="background-image:url('../../images/cat-07-printing-packaging-signage.png');"></div>
+    <div class="tile-edge"></div>
+    <div class="tile-body">
+      <div class="tile-top"><span class="tile-num tabnum">I · 04</span><svg class="tile-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17 17 7M9 7h8v8"/></svg></div>
+      <div><div class="tile-name">Printing, Packaging<br/>&amp; Signage</div><div class="tile-meta"><span>6 subs</span><span class="count tabnum">760 SKU</span></div></div>
+    </div>
+  </a>
+
+  <a class="tile" href="#">
+    <div class="tile-img" style="background-image:url('../../images/cat-08-electrical-energy.png');"></div>
+    <div class="tile-edge"></div>
+    <div class="tile-body">
+      <div class="tile-top"><span class="tile-num tabnum">II · 05</span><svg class="tile-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17 17 7M9 7h8v8"/></svg></div>
+      <div><div class="tile-name">Electrical &amp; Energy</div><div class="tile-meta"><span>6 subs</span><span class="count tabnum">1,210 SKU</span></div></div>
+    </div>
+  </a>
+
+  <a class="tile" href="#">
+    <div class="tile-img" style="background-image:url('../../images/cat-06-woodworking-carpentry.png');"></div>
+    <div class="tile-edge"></div>
+    <div class="tile-body">
+      <div class="tile-top"><span class="tile-num tabnum">II · 06</span><svg class="tile-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17 17 7M9 7h8v8"/></svg></div>
+      <div><div class="tile-name">Woodworking &amp; Carpentry</div><div class="tile-meta"><span>6 subs</span><span class="count tabnum">840 SKU</span></div></div>
+    </div>
+  </a>
+
+  <a class="tile" href="#">
+    <div class="tile-img" style="background-image:url('../../images/cat-02-construction-building.png');"></div>
+    <div class="tile-edge"></div>
+    <div class="tile-body">
+      <div class="tile-top"><span class="tile-num tabnum">II · 07</span><svg class="tile-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17 17 7M9 7h8v8"/></svg></div>
+      <div><div class="tile-name">Construction &amp; Building</div><div class="tile-meta"><span>6 subs</span><span class="count tabnum">1,860 SKU</span></div></div>
+    </div>
+  </a>
+
+  <a class="tile" href="#">
+    <div class="tile-img" style="background-image:url('../../images/cat-15-cleaning-janitorial.png');"></div>
+    <div class="tile-edge"></div>
+    <div class="tile-body">
+      <div class="tile-top"><span class="tile-num tabnum">II · 08</span><svg class="tile-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17 17 7M9 7h8v8"/></svg></div>
+      <div><div class="tile-name">Cleaning &amp; Janitorial</div><div class="tile-meta"><span>6 subs</span><span class="count tabnum">540 SKU</span></div></div>
+    </div>
+  </a>
+
+  <a class="tile" href="#">
+    <div class="tile-img" style="background-image:url('../../images/cat-03-hand-power-tools.png');"></div>
+    <div class="tile-edge"></div>
+    <div class="tile-body">
+      <div class="tile-top"><span class="tile-num tabnum">III · 09</span><svg class="tile-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17 17 7M9 7h8v8"/></svg></div>
+      <div><div class="tile-name">Hand &amp; Power Tools</div><div class="tile-meta"><span>6 subs</span><span class="count tabnum">3,210 SKU</span></div></div>
+    </div>
+  </a>
+
+  <a class="tile" href="#">
+    <div class="tile-img" style="background-image:url('../../images/cat-14-fuel-lubrication-fluid.png');"></div>
+    <div class="tile-edge"></div>
+    <div class="tile-body">
+      <div class="tile-top"><span class="tile-num tabnum">III · 10</span><svg class="tile-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17 17 7M9 7h8v8"/></svg></div>
+      <div><div class="tile-name">Fuel, Lubrication<br/>&amp; Fluid</div><div class="tile-meta"><span>6 subs</span><span class="count tabnum">420 SKU</span></div></div>
+    </div>
+  </a>
+
+  <a class="tile" href="#">
+    <div class="tile-img" style="background-image:url('../../images/cat-13-outdoor-power-landscaping.png');"></div>
+    <div class="tile-edge"></div>
+    <div class="tile-body">
+      <div class="tile-top"><span class="tile-num tabnum">III · 11</span><svg class="tile-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17 17 7M9 7h8v8"/></svg></div>
+      <div><div class="tile-name">Outdoor Power<br/>&amp; Landscaping</div><div class="tile-meta"><span>6 subs</span><span class="count tabnum">910 SKU</span></div></div>
+    </div>
+  </a>
+
+  <a class="tile" href="#">
+    <div class="tile-img" style="background-image:url('../../images/cat-11-warehousing-material-handling.png');"></div>
+    <div class="tile-edge"></div>
+    <div class="tile-body">
+      <div class="tile-top"><span class="tile-num tabnum">III · 12</span><svg class="tile-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17 17 7M9 7h8v8"/></svg></div>
+      <div><div class="tile-name">Warehousing &amp;<br/>Material Handling</div><div class="tile-meta"><span>6 subs</span><span class="count tabnum">680 SKU</span></div></div>
+    </div>
+  </a>
+
+  <a class="tile" href="#">
+    <div class="tile-img" style="background-image:url('../../images/cat-09-hvac-climate-control.png');"></div>
+    <div class="tile-edge"></div>
+    <div class="tile-body">
+      <div class="tile-top"><span class="tile-num tabnum">IV · 13</span><svg class="tile-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17 17 7M9 7h8v8"/></svg></div>
+      <div><div class="tile-name">HVAC &amp; Climate Control</div><div class="tile-meta"><span>6 subs</span><span class="count tabnum">770 SKU</span></div></div>
+    </div>
+  </a>
+
+  <a class="tile" href="#">
+    <div class="tile-img" style="background-image:url('../../images/cat-10-plumbing-water-systems.png');"></div>
+    <div class="tile-edge"></div>
+    <div class="tile-body">
+      <div class="tile-top"><span class="tile-num tabnum">IV · 14</span><svg class="tile-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17 17 7M9 7h8v8"/></svg></div>
+      <div><div class="tile-name">Plumbing &amp;<br/>Water Systems</div><div class="tile-meta"><span>6 subs</span><span class="count tabnum">540 SKU</span></div></div>
+    </div>
+  </a>
+
+  <a class="tile" href="#">
+    <div class="tile-img" style="background-image:url('../../images/cat-16-safety-security-workwear.png');"></div>
+    <div class="tile-edge"></div>
+    <div class="tile-body">
+      <div class="tile-top"><span class="tile-num tabnum">IV · 15</span><svg class="tile-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17 17 7M9 7h8v8"/></svg></div>
+      <div><div class="tile-name">Safety, Security<br/>&amp; Workwear</div><div class="tile-meta"><span>6 subs</span><span class="count tabnum">980 SKU</span></div></div>
+    </div>
+  </a>
+
+  <a class="tile" href="#">
+    <div class="tile-img" style="background-image:url('../../images/cat-12-automotive-workshop.png');"></div>
+    <div class="tile-edge"></div>
+    <div class="tile-body">
+      <div class="tile-top"><span class="tile-num tabnum">IV · 16</span><svg class="tile-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17 17 7M9 7h8v8"/></svg></div>
+      <div><div class="tile-name">Automotive &amp; Workshop</div><div class="tile-meta"><span>6 subs</span><span class="count tabnum">1,290 SKU</span></div></div>
+    </div>
+  </a>
+
+  <a class="tile" href="#">
+    <div class="tile-img" style="background-image:url('../../images/cat-18-salon-spa-wellness.png');"></div>
+    <div class="tile-edge"></div>
+    <div class="tile-body">
+      <div class="tile-top"><span class="tile-num tabnum">V · 17</span><svg class="tile-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17 17 7M9 7h8v8"/></svg></div>
+      <div><div class="tile-name">Salon, Spa &amp; Wellness</div><div class="tile-meta"><span>6 subs</span><span class="count tabnum">470 SKU</span></div></div>
+    </div>
+  </a>
+
+  <a class="tile" href="#">
+    <div class="tile-img" style="background-image:url('../../images/cat-17-office-commercial-interiors.png');"></div>
+    <div class="tile-edge"></div>
+    <div class="tile-body">
+      <div class="tile-top"><span class="tile-num tabnum">V · 18</span><svg class="tile-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17 17 7M9 7h8v8"/></svg></div>
+      <div><div class="tile-name">Office &amp; Commercial<br/>Interiors</div><div class="tile-meta"><span>6 subs</span><span class="count tabnum">620 SKU</span></div></div>
+    </div>
+  </a>
+
+  <a class="tile" href="#">
+    <div class="tile-img" style="background-image:url('../../images/cat-21-health-medical-supply.png');"></div>
+    <div class="tile-edge"></div>
+    <div class="tile-body">
+      <div class="tile-top"><span class="tile-num tabnum">V · 19</span><svg class="tile-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17 17 7M9 7h8v8"/></svg></div>
+      <div><div class="tile-name">Health &amp;<br/>Medical Supply</div><div class="tile-meta"><span>6 subs</span><span class="count tabnum">310 SKU</span></div></div>
+    </div>
+  </a>
+
+  <a class="tile" href="#">
+    <div class="tile-img" style="background-image:url('../../images/cat-19-fitness-sports-recreation.png');"></div>
+    <div class="tile-edge"></div>
+    <div class="tile-body">
+      <div class="tile-top"><span class="tile-num tabnum">VI · 20</span><svg class="tile-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17 17 7M9 7h8v8"/></svg></div>
+      <div><div class="tile-name">Fitness, Sports<br/>&amp; Recreation</div><div class="tile-meta"><span>6 subs</span><span class="count tabnum">580 SKU</span></div></div>
+    </div>
+  </a>
+
+  <a class="tile" href="#">
+    <div class="tile-img" style="background-image:url('../../images/cat-20-boating-camping-outdoor.png');"></div>
+    <div class="tile-edge"></div>
+    <div class="tile-body">
+      <div class="tile-top"><span class="tile-num tabnum">VI · 21</span><svg class="tile-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17 17 7M9 7h8v8"/></svg></div>
+      <div><div class="tile-name">Boating, Camping<br/>&amp; Outdoor</div><div class="tile-meta"><span>6 subs</span><span class="count tabnum">390 SKU</span></div></div>
+    </div>
+  </a>
+
+  <a class="tile" href="#">
+    <div class="tile-img" style="background-image:url('../../images/cat-22-music-entertainment.png');"></div>
+    <div class="tile-edge"></div>
+    <div class="tile-body">
+      <div class="tile-top"><span class="tile-num tabnum">VI · 22</span><svg class="tile-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17 17 7M9 7h8v8"/></svg></div>
+      <div><div class="tile-name">Music &amp; Entertainment</div><div class="tile-meta"><span>6 subs</span><span class="count tabnum">240 SKU</span></div></div>
+    </div>
+  </a>
+
+</section>
+
+<div class="b2b-strip" id="quote">
+  <div class="b2b-card">
+    <div>
+      <h3>Built for the buyer <em>behind the counter.</em></h3>
+      <p>Net-30 terms for verified businesses, volume pricing from ten units, a dedicated account manager, and starter kits assembled by trade specialists. Tell us what you open, we quote the floor.</p>
+      <div class="b2b-chips">
+        <span class="chip">Net-30 terms</span>
+        <span class="chip">Volume pricing</span>
+        <span class="chip">Dedicated manager</span>
+        <span class="chip">Starter kits from €2,799</span>
+        <span class="chip">VAT 24% included</span>
+      </div>
+    </div>
+    <div class="b2b-right">
+      <div class="b2b-stat"><span>Active B2B customers</span><strong class="tabnum">1,847</strong></div>
+      <div class="b2b-stat"><span>Catalog SKUs</span><strong class="tabnum">16,046</strong></div>
+      <div class="b2b-stat"><span>Avg. quote response</span><strong class="tabnum">&lt; 4 h</strong></div>
+      <a href="#" class="pill amber" style="align-self:flex-start;margin-top:6px;">Request a B2B quote  →</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div>© 2026 Roland Kaubandus OÜ · VAT EE102xxxxx · VEVOR authorised dealer EE+ES</div>
+  <div>XLMarket — <em class="serif" style="font-style:italic;color:var(--amber-hi);">Professional tools, half the price.</em></div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>XLMarket.eu — C1 App-Like Compact</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300..800;1,9..40,300..800&display=swap" rel="stylesheet">
+<style>
+/* ===== RESET + TOKENS ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --primary: #1E293B;
+  --accent: #D97706;
+  --accent-light: #FEF3C7;
+  --bg: #FFFFFF;
+  --surface: #F8FAFC;
+  --border: #E2E8F0;
+  --border-hover: #D97706;
+  --text: #1E293B;
+  --text-secondary: #64748B;
+  --text-muted: #94A3B8;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+  --shadow-lg: 0 8px 24px rgba(0,0,0,0.12);
+  --duration: 200ms;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+html { font-family: 'DM Sans', system-ui, sans-serif; color: var(--text); background: var(--bg); -webkit-font-smoothing: antialiased; scroll-behavior: smooth; }
+body { min-height: 100vh; }
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; }
+
+/* ===== HEADER ===== */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  height: 48px;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  transition: box-shadow var(--duration) var(--ease);
+}
+.header.scrolled { box-shadow: var(--shadow-sm); }
+
+.header-logo {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  color: var(--primary);
+}
+.header-logo span { color: var(--accent); }
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.header-btn {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-full);
+  transition: background var(--duration);
+  position: relative;
+  color: var(--text);
+}
+.header-btn:hover { background: var(--surface); }
+.header-btn svg { width: 20px; height: 20px; }
+
+.cart-badge {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  width: 16px;
+  height: 16px;
+  background: var(--accent);
+  color: white;
+  font-size: 10px;
+  font-weight: 700;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lang-toggle {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  transition: all var(--duration);
+}
+.lang-toggle:hover { border-color: var(--accent); color: var(--accent); }
+
+/* Mini search in header (appears on scroll) */
+.header-mini-search {
+  flex: 1;
+  max-width: 320px;
+  margin: 0 12px;
+  height: 32px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  gap: 8px;
+  opacity: 0;
+  transform: translateY(-8px);
+  pointer-events: none;
+  transition: all var(--duration) var(--ease);
+  cursor: pointer;
+}
+.header-mini-search svg { width: 14px; height: 14px; color: var(--text-muted); flex-shrink: 0; }
+.header-mini-search span { font-size: 13px; color: var(--text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.header.scrolled .header-mini-search { opacity: 1; transform: translateY(0); pointer-events: auto; }
+
+/* ===== SEARCH HERO ===== */
+.search-hero {
+  padding: 32px 16px 24px;
+  text-align: center;
+}
+.search-hero h1 {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 16px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.search-bar-wrap {
+  position: relative;
+  max-width: 600px;
+  margin: 0 auto;
+}
+.search-bar {
+  width: 100%;
+  height: 50px;
+  background: var(--bg);
+  border: 2px solid var(--border);
+  border-radius: var(--radius-full);
+  padding: 0 52px 0 20px;
+  font-size: 16px;
+  font-family: inherit;
+  color: var(--text);
+  transition: border-color var(--duration);
+  outline: none;
+}
+.search-bar::placeholder { color: var(--text-muted); }
+.search-bar:focus { border-color: var(--accent); }
+
+.search-icon {
+  position: absolute;
+  left: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  pointer-events: none;
+  display: none;
+}
+
+.ai-btn {
+  position: absolute;
+  right: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 38px;
+  height: 38px;
+  background: linear-gradient(135deg, var(--accent), #B45309);
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  transition: transform var(--duration) var(--ease), box-shadow var(--duration);
+}
+.ai-btn:hover { transform: translateY(-50%) scale(1.08); box-shadow: 0 2px 12px rgba(217,119,6,0.4); }
+.ai-btn svg { width: 18px; height: 18px; }
+
+.search-pills {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 14px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.pill {
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  transition: all var(--duration);
+  white-space: nowrap;
+}
+.pill:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-light); }
+
+/* ===== AI CHAT OVERLAY ===== */
+.ai-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(0,0,0,0.5);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 300ms var(--ease);
+}
+.ai-overlay.active { opacity: 1; pointer-events: auto; }
+
+.ai-chat {
+  width: 100%;
+  max-width: 600px;
+  max-height: 80vh;
+  background: var(--bg);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transform: translateY(20px) scale(0.96);
+  transition: transform 300ms var(--ease);
+  margin: 16px;
+}
+.ai-overlay.active .ai-chat { transform: translateY(0) scale(1); }
+
+.ai-chat-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border);
+}
+.ai-chat-header h3 {
+  font-size: 15px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.ai-chat-header h3 span {
+  width: 8px;
+  height: 8px;
+  background: #22C55E;
+  border-radius: var(--radius-full);
+  display: inline-block;
+}
+.ai-close {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  transition: background var(--duration);
+}
+.ai-close:hover { background: var(--surface); }
+
+.ai-chat-body {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+  min-height: 200px;
+}
+.ai-msg {
+  background: var(--surface);
+  border-radius: var(--radius-md);
+  padding: 12px 16px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  max-width: 85%;
+}
+
+.ai-chat-input {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  border-top: 1px solid var(--border);
+}
+.ai-chat-input input {
+  flex: 1;
+  height: 40px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  padding: 0 16px;
+  font-size: 14px;
+  font-family: inherit;
+  outline: none;
+  transition: border-color var(--duration);
+}
+.ai-chat-input input:focus { border-color: var(--accent); }
+.ai-chat-input button {
+  width: 40px;
+  height: 40px;
+  background: var(--accent);
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  flex-shrink: 0;
+  transition: transform var(--duration);
+}
+.ai-chat-input button:hover { transform: scale(1.06); }
+
+/* ===== CATEGORIES ===== */
+.categories {
+  padding: 0 16px 24px;
+}
+.section-label {
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+}
+
+.cat-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px 8px;
+}
+
+.cat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  cursor: pointer;
+}
+.cat-circle {
+  width: 60px;
+  height: 60px;
+  border-radius: var(--radius-full);
+  background: var(--surface);
+  border: 2px solid transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: all var(--duration) var(--ease);
+}
+.cat-circle img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: var(--radius-full);
+}
+.cat-item:hover .cat-circle {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(217,119,6,0.15);
+  transform: translateY(-2px);
+}
+.cat-name {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-align: center;
+  line-height: 1.2;
+  max-width: 72px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.cat-item:hover .cat-name { color: var(--accent); }
+
+.cat-separator {
+  height: 1px;
+  background: var(--border);
+  margin: 12px 0;
+  opacity: 0.5;
+}
+
+.cat-hidden { display: none; }
+.cat-hidden.show { display: flex; }
+
+.more-btn-wrap {
+  text-align: center;
+  margin-top: 12px;
+}
+.more-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 20px;
+  border-radius: var(--radius-full);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  transition: all var(--duration);
+}
+.more-btn:hover { border-color: var(--accent); color: var(--accent); }
+.more-btn svg { width: 14px; height: 14px; transition: transform var(--duration); }
+.more-btn.expanded svg { transform: rotate(180deg); }
+
+/* ===== PRODUCT SECTIONS ===== */
+.product-section {
+  padding: 0 16px 28px;
+}
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+.section-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text);
+}
+.section-link {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.section-link svg { width: 14px; height: 14px; }
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.product-card {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transition: all var(--duration) var(--ease);
+  cursor: pointer;
+}
+.product-card:hover {
+  border-color: var(--accent);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+.product-card-img {
+  width: 100%;
+  aspect-ratio: 1;
+  background: var(--surface);
+  position: relative;
+  overflow: hidden;
+}
+.product-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 400ms var(--ease);
+}
+.product-card:hover .product-card-img img { transform: scale(1.04); }
+
+.product-card-body {
+  padding: 8px 10px 10px;
+}
+.product-card-title {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text);
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin-bottom: 4px;
+  height: 31px;
+}
+.product-card-price {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--primary);
+}
+.product-card-price .original {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--text-muted);
+  text-decoration: line-through;
+  margin-left: 6px;
+}
+
+/* ===== FLASH SALE ===== */
+.flash-section {
+  padding: 0 0 28px;
+}
+.flash-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 16px;
+  margin-bottom: 12px;
+}
+.flash-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.flash-icon {
+  width: 20px;
+  height: 20px;
+  color: var(--accent);
+}
+.flash-timer {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.flash-timer-unit {
+  background: var(--primary);
+  color: white;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 3px 6px;
+  border-radius: 4px;
+  min-width: 28px;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+.flash-timer-sep {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.flash-scroll {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding: 0 16px;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.flash-scroll::-webkit-scrollbar { display: none; }
+
+.flash-card {
+  flex-shrink: 0;
+  width: 140px;
+  scroll-snap-align: start;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transition: all var(--duration) var(--ease);
+  cursor: pointer;
+}
+.flash-card:hover {
+  border-color: var(--accent);
+  box-shadow: var(--shadow-md);
+}
+.flash-card-img {
+  width: 100%;
+  aspect-ratio: 1;
+  background: var(--surface);
+  overflow: hidden;
+}
+.flash-card-img img { width: 100%; height: 100%; object-fit: cover; }
+.flash-card-body { padding: 6px 8px 8px; }
+.flash-card-title {
+  font-size: 11px;
+  color: var(--text);
+  line-height: 1.25;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin-bottom: 4px;
+  height: 28px;
+}
+.flash-card-price { font-size: 14px; font-weight: 700; color: #DC2626; }
+.flash-card-price .original { font-size: 11px; font-weight: 400; color: var(--text-muted); text-decoration: line-through; margin-left: 4px; }
+.flash-badge {
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  background: #DC2626;
+  color: white;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: var(--radius-sm);
+}
+.flash-card-img { position: relative; }
+
+/* ===== FOOTER ===== */
+.footer {
+  background: var(--primary);
+  color: #CBD5E1;
+  padding: 16px;
+  max-height: 100px;
+}
+.footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.footer-logo {
+  font-size: 16px;
+  font-weight: 700;
+  color: white;
+}
+.footer-logo span { color: var(--accent); }
+
+.footer-links {
+  display: flex;
+  gap: 20px;
+}
+.footer-link-group {
+  display: flex;
+  gap: 8px;
+}
+.footer-link-group a {
+  font-size: 12px;
+  color: #94A3B8;
+  transition: color var(--duration);
+}
+.footer-link-group a:hover { color: white; }
+.footer-link-sep { color: #475569; font-size: 12px; }
+
+.footer-payments {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.payment-icon {
+  width: 36px;
+  height: 22px;
+  background: #334155;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 9px;
+  font-weight: 700;
+  color: #94A3B8;
+}
+
+/* ===== DESKTOP ===== */
+@media (min-width: 640px) {
+  .cat-grid { grid-template-columns: repeat(6, 1fr); gap: 16px 12px; }
+  .cat-circle { width: 80px; height: 80px; }
+  .cat-name { font-size: 12px; max-width: 90px; }
+  .product-grid { grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .flash-card { width: 160px; }
+  .search-hero { padding: 48px 24px 32px; }
+  .search-hero h1 { font-size: 16px; }
+  .search-bar { height: 54px; font-size: 17px; }
+}
+
+@media (min-width: 1024px) {
+  .header { padding: 0 32px; }
+  .categories, .product-section { padding-left: 32px; padding-right: 32px; max-width: 1280px; margin-left: auto; margin-right: auto; }
+  .flash-header { padding-left: 32px; }
+  .flash-scroll { padding: 0 32px; }
+  .product-grid { grid-template-columns: repeat(6, 1fr); }
+  .cat-grid { grid-template-columns: repeat(11, 1fr); }
+  .cat-circle { width: 80px; height: 80px; }
+}
+
+/* ===== MOBILE AI OVERLAY FULLSCREEN ===== */
+@media (max-width: 639px) {
+  .ai-chat {
+    max-width: 100%;
+    max-height: 100%;
+    height: 100%;
+    border-radius: 0;
+    margin: 0;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header" id="header">
+  <div class="header-logo">XL<span>Market</span></div>
+
+  <div class="header-mini-search" onclick="document.getElementById('searchInput').focus(); window.scrollTo({top:0,behavior:'smooth'})">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    <span>Search products...</span>
+  </div>
+
+  <div class="header-actions">
+    <button class="lang-toggle">EN</button>
+    <button class="header-btn" aria-label="Account">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    </button>
+    <button class="header-btn" aria-label="Cart">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+      <span class="cart-badge">2</span>
+    </button>
+  </div>
+</header>
+
+<!-- SEARCH HERO -->
+<section class="search-hero">
+  <h1>Professional Tools, Half the Price</h1>
+  <div class="search-bar-wrap">
+    <input type="text" class="search-bar" id="searchInput" placeholder="What are you looking for?">
+    <button class="ai-btn" id="aiBtn" aria-label="AI Assistant">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a4 4 0 014 4v1H8V6a4 4 0 014-4z"/><rect x="4" y="7" width="16" height="12" rx="2"/><circle cx="9" cy="13" r="1" fill="currentColor"/><circle cx="15" cy="13" r="1" fill="currentColor"/><path d="M9 17h6"/></svg>
+    </button>
+  </div>
+  <div class="search-pills">
+    <button class="pill">Power Tools</button>
+    <button class="pill">Kitchen</button>
+    <button class="pill">Automotive</button>
+    <button class="pill">Outdoor Furniture</button>
+    <button class="pill">Deals</button>
+  </div>
+</section>
+
+<!-- AI CHAT OVERLAY -->
+<div class="ai-overlay" id="aiOverlay">
+  <div class="ai-chat">
+    <div class="ai-chat-header">
+      <h3><span></span> XL Shopping Assistant</h3>
+      <button class="ai-close" id="aiClose" aria-label="Close">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div class="ai-chat-body">
+      <div class="ai-msg">Hi! I can help you find the right product. Try asking me things like "best drill under 100 euros" or "what do I need to tile a bathroom?"</div>
+    </div>
+    <div class="ai-chat-input">
+      <input type="text" placeholder="Ask anything about our products...">
+      <button aria-label="Send">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- CATEGORIES -->
+<section class="categories">
+  <div class="section-label">Browse Categories</div>
+  <div class="cat-grid" id="catGrid">
+    <!-- Row 1: items 1-6 on desktop, 1-4 on mobile shown always -->
+  </div>
+  <div class="more-btn-wrap">
+    <button class="more-btn" id="moreBtn" onclick="toggleMore()">
+      Show More
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+    </button>
+  </div>
+</section>
+
+<!-- NEW ARRIVALS -->
+<section class="product-section">
+  <div class="section-header">
+    <h2 class="section-title">New Arrivals</h2>
+    <a href="#" class="section-link">View All <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+  </div>
+  <div class="product-grid" id="gridNew"></div>
+</section>
+
+<!-- BEST SELLERS -->
+<section class="product-section">
+  <div class="section-header">
+    <h2 class="section-title">Best Sellers</h2>
+    <a href="#" class="section-link">View All <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+  </div>
+  <div class="product-grid" id="gridBest"></div>
+</section>
+
+<!-- FLASH SALE -->
+<section class="flash-section">
+  <div class="flash-header">
+    <div class="flash-title">
+      <svg class="flash-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+      Flash Sale
+    </div>
+    <div class="flash-timer">
+      <span class="flash-timer-unit" id="fh">04</span>
+      <span class="flash-timer-sep">:</span>
+      <span class="flash-timer-unit" id="fm">32</span>
+      <span class="flash-timer-sep">:</span>
+      <span class="flash-timer-unit" id="fs">17</span>
+    </div>
+  </div>
+  <div class="flash-scroll" id="flashScroll"></div>
+</section>
+
+<!-- DEALS -->
+<section class="product-section">
+  <div class="section-header">
+    <h2 class="section-title">Top Deals</h2>
+    <a href="#" class="section-link">View All <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+  </div>
+  <div class="product-grid" id="gridDeals"></div>
+</section>
+
+<!-- RECENTLY VIEWED -->
+<section class="product-section">
+  <div class="section-header">
+    <h2 class="section-title">Recently Viewed</h2>
+  </div>
+  <div class="product-grid" id="gridRecent"></div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-logo">XL<span>Market</span></div>
+    <div class="footer-links">
+      <div class="footer-link-group">
+        <a href="#">About</a>
+        <span class="footer-link-sep">|</span>
+        <a href="#">Shipping</a>
+        <span class="footer-link-sep">|</span>
+        <a href="#">Returns</a>
+      </div>
+      <div class="footer-link-group">
+        <a href="#">Contact</a>
+        <span class="footer-link-sep">|</span>
+        <a href="#">Privacy</a>
+        <span class="footer-link-sep">|</span>
+        <a href="#">Terms</a>
+      </div>
+    </div>
+    <div class="footer-payments">
+      <div class="payment-icon">VISA</div>
+      <div class="payment-icon">MC</div>
+      <div class="payment-icon">SEB</div>
+      <div class="payment-icon">LHV</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// === DATA ===
+const categories = [
+  { handle: 'tools', name: 'Tools' },
+  { handle: 'kitchen', name: 'Kitchen' },
+  { handle: 'automotive', name: 'Automotive' },
+  { handle: 'outdoors', name: 'Outdoors' },
+  { handle: 'furniture', name: 'Furniture' },
+  { handle: 'electrical', name: 'Electrical' },
+  { handle: 'plumbing', name: 'Plumbing' },
+  { handle: 'building-materials', name: 'Building' },
+  { handle: 'hardware', name: 'Hardware' },
+  { handle: 'sports-outdoors', name: 'Sports' },
+  { handle: 'industrial-scientific', name: 'Industrial' },
+  { handle: 'appliances', name: 'Appliances' },
+  // --- hidden by default below ---
+  { handle: 'heating-venting-cooling', name: 'HVAC' },
+  { handle: 'flooring', name: 'Flooring' },
+  { handle: 'home-decor', name: 'Home Decor' },
+  { handle: 'bath', name: 'Bath' },
+  { handle: 'storage-organization', name: 'Storage' },
+  { handle: 'lighting', name: 'Lighting' },
+  { handle: 'cleaning', name: 'Cleaning' },
+  { handle: 'health-and-wellness', name: 'Wellness' },
+  { handle: 'safety-equipment', name: 'Safety' },
+  { handle: 'paint', name: 'Paint' },
+];
+
+const VISIBLE_COUNT = 12; // first 12 always visible
+
+// Product placeholders (using category images as stand-ins)
+const productNames = [
+  'Professional Cordless Drill 20V', 'Stainless Steel Kitchen Mixer', 'LED Work Light 100W',
+  'Hydraulic Floor Jack 3T', 'Bamboo Cutting Board Set', 'Industrial Pressure Washer',
+  'Ceramic Tile Cutter 600mm', 'Welding Helmet Auto-Dark', 'Outdoor Gas BBQ Grill',
+  'Air Compressor 50L', 'Electric Chainsaw 2200W', 'Portable Generator 3500W',
+  'Standing Desk Frame', 'Smart Thermostat WiFi', 'Laser Level 360 Green',
+  'Workshop Storage Cabinet', 'Impact Wrench 1/2"', 'Garden Hose Reel 30m',
+  'Tool Chest Rolling', 'Battery Charger 12V', 'Table Saw 10" 2000W', 'Angle Grinder 125mm',
+  'Paint Sprayer HVLP', 'Socket Set 216pc',
+];
+
+const catHandles = ['tools', 'kitchen', 'electrical', 'automotive', 'outdoors', 'furniture',
+  'plumbing', 'hardware', 'building-materials', 'appliances', 'sports-outdoors', 'industrial-scientific'];
+
+function randPrice() { return (Math.random() * 200 + 29.99).toFixed(2); }
+function randOriginal(price) { return (parseFloat(price) * (1.15 + Math.random() * 0.3)).toFixed(2); }
+
+// === RENDER CATEGORIES ===
+const catGrid = document.getElementById('catGrid');
+categories.forEach((cat, i) => {
+  const hidden = i >= VISIBLE_COUNT;
+  const sep = (i === 4 || i === 8 || i === 12 || i === 16) && !hidden;
+  // Add separator row (spans full grid) before certain rows on mobile
+  const item = document.createElement('a');
+  item.className = 'cat-item' + (hidden ? ' cat-hidden' : '');
+  item.href = '#';
+  item.innerHTML = `
+    <div class="cat-circle">
+      <img src="/cat-icons/80/${cat.handle}.webp" alt="${cat.name}" loading="lazy" width="80" height="80">
+    </div>
+    <span class="cat-name">${cat.name}</span>
+  `;
+  catGrid.appendChild(item);
+});
+
+// === TOGGLE MORE ===
+function toggleMore() {
+  const btn = document.getElementById('moreBtn');
+  const hidden = document.querySelectorAll('.cat-hidden');
+  const isExpanded = btn.classList.toggle('expanded');
+  hidden.forEach(el => el.classList.toggle('show'));
+  btn.firstChild.textContent = isExpanded ? 'Show Less ' : 'Show More ';
+}
+
+// === RENDER PRODUCT GRIDS ===
+function renderProductGrid(containerId, count, showOriginal) {
+  const container = document.getElementById(containerId);
+  let html = '';
+  for (let i = 0; i < count; i++) {
+    const name = productNames[(i + Math.floor(Math.random() * productNames.length)) % productNames.length];
+    const handle = catHandles[i % catHandles.length];
+    const price = randPrice();
+    const orig = showOriginal ? `<span class="original">${randOriginal(price)}</span>` : '';
+    html += `
+      <div class="product-card">
+        <div class="product-card-img">
+          <img src="/cat-icons/400/${handle}.webp" alt="${name}" loading="lazy" width="160" height="160">
+        </div>
+        <div class="product-card-body">
+          <div class="product-card-title">${name}</div>
+          <div class="product-card-price">&euro;${price}${orig}</div>
+        </div>
+      </div>
+    `;
+  }
+  container.innerHTML = html;
+}
+
+renderProductGrid('gridNew', 8, false);
+renderProductGrid('gridBest', 8, false);
+renderProductGrid('gridDeals', 8, true);
+renderProductGrid('gridRecent', 4, false);
+
+// === FLASH SALE SCROLL ===
+const flashScroll = document.getElementById('flashScroll');
+let flashHtml = '';
+for (let i = 0; i < 10; i++) {
+  const name = productNames[i % productNames.length];
+  const handle = catHandles[i % catHandles.length];
+  const price = (Math.random() * 80 + 14.99).toFixed(2);
+  const orig = (parseFloat(price) * 1.4).toFixed(2);
+  const pct = Math.floor(20 + Math.random() * 30);
+  flashHtml += `
+    <div class="flash-card">
+      <div class="flash-card-img">
+        <img src="/cat-icons/400/${handle}.webp" alt="${name}" loading="lazy" width="140" height="140">
+        <span class="flash-badge">-${pct}%</span>
+      </div>
+      <div class="flash-card-body">
+        <div class="flash-card-title">${name}</div>
+        <div class="flash-card-price">&euro;${price}<span class="original">&euro;${orig}</span></div>
+      </div>
+    </div>
+  `;
+}
+flashScroll.innerHTML = flashHtml;
+
+// === FLASH TIMER ===
+let totalSec = 4 * 3600 + 32 * 60 + 17;
+function tickTimer() {
+  if (totalSec <= 0) return;
+  totalSec--;
+  const h = Math.floor(totalSec / 3600);
+  const m = Math.floor((totalSec % 3600) / 60);
+  const s = totalSec % 60;
+  document.getElementById('fh').textContent = String(h).padStart(2, '0');
+  document.getElementById('fm').textContent = String(m).padStart(2, '0');
+  document.getElementById('fs').textContent = String(s).padStart(2, '0');
+}
+setInterval(tickTimer, 1000);
+
+// === HEADER SCROLL ===
+const header = document.getElementById('header');
+let ticking = false;
+window.addEventListener('scroll', () => {
+  if (!ticking) {
+    requestAnimationFrame(() => {
+      header.classList.toggle('scrolled', window.scrollY > 120);
+      ticking = false;
+    });
+    ticking = true;
+  }
+});
+
+// === AI OVERLAY ===
+document.getElementById('aiBtn').addEventListener('click', () => {
+  document.getElementById('aiOverlay').classList.add('active');
+});
+document.getElementById('aiClose').addEventListener('click', () => {
+  document.getElementById('aiOverlay').classList.remove('active');
+});
+document.getElementById('aiOverlay').addEventListener('click', (e) => {
+  if (e.target === e.currentTarget) {
+    e.currentTarget.classList.remove('active');
+  }
+});
+</script>
+</body>
+</html>

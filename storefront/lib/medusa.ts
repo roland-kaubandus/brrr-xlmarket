@@ -166,7 +166,7 @@ export async function getProducts(params: {
 
 export const getProduct = cache(async function getProduct(handle: string): Promise<Product | null> {
   const res = await medusaFetch<ProductsResponse>(
-    `/store/products?handle=${handle}&region_id=${REGION_ID}&fields=*variants,*variants.calculated_price,*variants.options,*options,+metadata,+images`,
+    `/store/products?handle=${handle}&region_id=${REGION_ID}&fields=*variants,*variants.calculated_price,*variants.options,*options,+metadata,+images,+categories`,
     { revalidate: 3600 } // cache 5 min
   )
   return res.products[0] || null
@@ -286,8 +286,13 @@ export async function getCmsContent(): Promise<CmsContent> {
 
 // --- Helpers ---
 
-export function formatPrice(amount: number, currency = "EUR"): string {
-  return new Intl.NumberFormat("et-EE", {
+/** Map our app locales to BCP-47 number-format tags. */
+export function intlLocale(locale?: string): string {
+  return locale === "en" ? "en-IE" : "et-EE"
+}
+
+export function formatPrice(amount: number, currency = "EUR", locale?: string): string {
+  return new Intl.NumberFormat(intlLocale(locale), {
     style: "currency",
     currency,
   }).format(amount / 100)

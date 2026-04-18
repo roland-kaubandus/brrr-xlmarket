@@ -1,0 +1,807 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>XLMarket — Disciplines Grid</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #faf7f2;
+    --paper-2: #f2ede3;
+    --paper-3: #ebe5d6;
+    --ink: #0a0a0a;
+    --ink-70: #1c1c1c;
+    --ink-50: #55534e;
+    --ink-30: #8b8880;
+    --rule: #d8d2c4;
+    --rule-strong: #201d17;
+    --amber: #b8560e;
+    --amber-soft: #e7b37a;
+    --mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--paper); color: var(--ink); font-family: "DM Sans", system-ui, sans-serif; font-size: 16px; line-height: 1.5; -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-decoration: none; }
+  ::selection { background: var(--amber); color: var(--paper); }
+
+  /* ---------- header ---------- */
+  header.top { border-bottom: 1px solid var(--rule-strong); }
+  .top-inner {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 20px 48px;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 40px;
+  }
+  .logo { font-weight: 700; font-size: 22px; letter-spacing: -0.02em; }
+  .logo .mark { color: var(--amber); font-style: italic; font-weight: 500; }
+  nav.main ul { list-style: none; padding: 0; margin: 0; display: flex; gap: 30px; font-size: 14px; font-weight: 500; }
+  nav.main a { padding-bottom: 3px; border-bottom: 1px solid transparent; transition: border-color 150ms; }
+  nav.main a:hover { border-color: var(--amber); color: var(--amber); }
+  .top-tools { display: flex; gap: 10px; align-items: center; }
+  .search { display: flex; align-items: center; gap: 8px; border: 1px solid var(--rule); padding: 8px 12px; width: 280px; }
+  .search input { border: 0; background: transparent; font-family: inherit; font-size: 13px; outline: none; width: 100%; color: var(--ink); }
+  .search .kbd { font-family: var(--mono); font-size: 11px; color: var(--ink-30); border: 1px solid var(--rule); padding: 1px 5px; }
+  .iconbtn { width: 38px; height: 38px; display: inline-flex; align-items: center; justify-content: center; border: 1px solid var(--rule); background: transparent; cursor: pointer; transition: background 150ms, border-color 150ms; }
+  .iconbtn:hover { background: var(--paper-2); border-color: var(--ink); }
+  .iconbtn svg { width: 18px; height: 18px; stroke: var(--ink); stroke-width: 1.4; fill: none; }
+  .basket-badge { position: relative; }
+  .basket-badge::after { content: "3"; position: absolute; top: -6px; right: -6px; background: var(--amber); color: var(--paper); font-family: var(--mono); font-size: 10px; min-width: 18px; height: 18px; display: grid; place-items: center; padding: 0 4px; }
+
+  /* ---------- chip bar (replaces side rail) ---------- */
+  .chipbar {
+    border-bottom: 1px solid var(--rule);
+    background: var(--paper);
+    overflow: hidden;
+  }
+  .chipbar-inner {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 12px 48px;
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .chipbar .label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-50);
+    margin-right: 10px;
+  }
+  .chip {
+    font-size: 12px;
+    padding: 6px 10px;
+    border: 1px solid var(--rule);
+    color: var(--ink-70);
+    background: transparent;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all 150ms ease;
+    font-variant-numeric: tabular-nums;
+  }
+  .chip:hover {
+    border-color: var(--ink);
+    color: var(--ink);
+  }
+  .chip.active {
+    border-color: var(--ink);
+    background: var(--ink);
+    color: var(--paper);
+  }
+  .chip .n {
+    font-family: var(--mono);
+    font-size: 10px;
+    margin-left: 6px;
+    color: var(--ink-30);
+  }
+  .chip.active .n { color: var(--amber-soft); }
+
+  /* ---------- hero title bar ---------- */
+  .bar {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 44px 48px 28px 48px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    gap: 32px;
+  }
+  .bar h1 {
+    font-size: clamp(40px, 4.8vw, 62px);
+    line-height: 1;
+    letter-spacing: -0.035em;
+    margin: 0;
+    font-weight: 600;
+  }
+  .bar h1 em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--amber);
+  }
+  .bar p {
+    font-size: 13px;
+    font-family: var(--mono);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-50);
+    margin: 0;
+    text-align: right;
+    line-height: 1.7;
+  }
+  .bar p b { color: var(--ink); font-weight: 500; }
+
+  /* ---------- the irregular grid ---------- */
+  .grid-wrap {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 48px 40px 48px;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-auto-rows: 200px;
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+  }
+
+  /* cell base */
+  .cell {
+    background: var(--paper);
+    position: relative;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 0;
+    overflow: hidden;
+    transition: background 180ms ease, color 180ms ease;
+  }
+  .cell .num {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ink-30);
+    letter-spacing: 0.06em;
+    font-variant-numeric: tabular-nums;
+  }
+  .cell h3 {
+    font-size: 22px;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    font-weight: 500;
+    margin: 0;
+    transition: color 150ms ease;
+  }
+  .cell .count {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ink-50);
+    letter-spacing: 0.04em;
+    font-variant-numeric: tabular-nums;
+    margin-top: 6px;
+  }
+  .cell .count::after {
+    content: " →";
+    opacity: 0;
+    color: var(--amber);
+    transition: opacity 150ms ease, transform 150ms ease;
+  }
+  .cell:hover .count::after { opacity: 1; }
+  .cell:hover h3 { color: var(--amber); }
+
+  /* hero (photo) cells — 2x2 */
+  .cell.hero {
+    grid-column: span 2;
+    grid-row: span 2;
+    padding: 0;
+    color: var(--paper);
+    background: var(--ink);
+  }
+  .cell.hero .img-wrap {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+  }
+  .cell.hero .img-wrap img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: grayscale(0.15) contrast(1.02) brightness(0.72);
+    transition: filter 300ms ease, transform 600ms ease;
+  }
+  .cell.hero:hover .img-wrap img { filter: grayscale(0) contrast(1.04) brightness(0.78); transform: scale(1.03); }
+  .cell.hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(160deg, transparent 30%, rgba(0,0,0,0.65) 100%);
+    pointer-events: none;
+  }
+  .cell.hero .hero-body {
+    position: absolute;
+    inset: 0;
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: 2;
+  }
+  .cell.hero .num { color: rgba(250, 247, 242, 0.7); }
+  .cell.hero h3 { color: var(--paper); font-size: 30px; max-width: 10ch; }
+  .cell.hero:hover h3 { color: var(--amber-soft); }
+  .cell.hero .count { color: rgba(250, 247, 242, 0.75); }
+  .cell.hero .count::after { color: var(--amber-soft); }
+
+  /* text cell sizing variants */
+  .cell.w2 { grid-column: span 2; }
+  .cell.w3 { grid-column: span 3; }
+
+  /* text-only cells reveal sub-cats on hover */
+  .cell .subs {
+    list-style: none;
+    padding: 0;
+    margin: 8px 0 0 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 16px;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 220ms ease, opacity 200ms ease;
+  }
+  .cell:not(.hero):hover .subs {
+    max-height: 220px;
+    opacity: 1;
+  }
+  .cell .subs li {
+    font-size: 12px;
+    color: var(--ink-70);
+    padding: 2px 0;
+    border-top: 1px solid var(--rule);
+  }
+  .cell .subs li:hover { color: var(--amber); }
+  .cell .subs li a { display: block; padding: 2px 0; }
+
+  .cell.accent { background: var(--paper-2); }
+  .cell.dark {
+    background: var(--ink);
+    color: var(--paper);
+  }
+  .cell.dark h3 { color: var(--paper); }
+  .cell.dark .num { color: rgba(250,247,242,0.5); }
+  .cell.dark .count { color: rgba(250,247,242,0.7); }
+  .cell.dark .subs li { color: rgba(250,247,242,0.8); border-top-color: rgba(250,247,242,0.15); }
+  .cell.dark:hover h3 { color: var(--amber-soft); }
+
+  /* ---------- b2b strip ---------- */
+  .b2b {
+    max-width: 1440px;
+    margin: 0 auto 48px auto;
+    padding: 0 48px;
+  }
+  .b2b-inner {
+    display: grid;
+    grid-template-columns: 1.5fr repeat(3, 1fr) auto;
+    align-items: center;
+    gap: 32px;
+    border-top: 1px solid var(--rule-strong);
+    border-bottom: 1px solid var(--rule-strong);
+    padding: 28px 0;
+  }
+  .b2b-inner h4 {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-50);
+    margin: 0 0 6px 0;
+  }
+  .b2b-inner .lead {
+    font-size: 18px;
+    color: var(--ink);
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+  }
+  .b2b-inner .big {
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+  }
+  .b2b-inner p {
+    font-size: 13px;
+    color: var(--ink-50);
+    margin: 0;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 22px;
+    background: var(--ink);
+    color: var(--paper);
+    font-size: 14px;
+    font-weight: 500;
+    transition: background 150ms;
+  }
+  .btn:hover { background: var(--amber); }
+  .btn svg { width: 14px; height: 14px; stroke: currentColor; stroke-width: 1.6; fill: none; }
+
+  .legal {
+    max-width: 1440px;
+    margin: 0 auto 40px auto;
+    padding: 0 48px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: var(--ink-30);
+    display: flex;
+    justify-content: space-between;
+  }
+
+  @media (max-width: 1200px) {
+    .grid { grid-template-columns: repeat(4, 1fr); }
+    .cell.hero { grid-column: span 2; grid-row: span 2; }
+    .cell.w3 { grid-column: span 2; }
+    .cell .subs { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 800px) {
+    .grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 160px; }
+    .cell.hero { grid-column: span 2; grid-row: span 2; }
+    .cell.w2, .cell.w3 { grid-column: span 2; }
+    .b2b-inner { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="top-inner">
+    <a href="/" class="logo">XL<span class="mark">Market</span></a>
+    <nav class="main" aria-label="Main navigation">
+      <ul>
+        <li><a href="/">Catalogue</a></li>
+        <li><a href="#starter-kits">Starter kits</a></li>
+        <li><a href="#quote">Trade desk</a></li>
+        <li><a href="#">Journal</a></li>
+        <li><a href="#">Support</a></li>
+      </ul>
+    </nav>
+    <div class="top-tools">
+      <div class="search" role="search">
+        <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="1.6" fill="none"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        <input type="text" placeholder="Search 16,046 SKUs">
+        <span class="kbd">/</span>
+      </div>
+      <button class="iconbtn" aria-label="Account">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
+      </button>
+      <button class="iconbtn basket-badge" aria-label="Basket">
+        <svg viewBox="0 0 24 24"><path d="M3 6h18l-2 12H5L3 6zM8 6V4a4 4 0 0 1 8 0v2"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<nav class="chipbar" aria-label="Disciplines quick jump">
+  <div class="chipbar-inner">
+    <span class="label">22 Disciplines</span>
+    <button class="chip active">All <span class="n">22</span></button>
+    <button class="chip">HoReCa <span class="n">1907</span></button>
+    <button class="chip">Laser &amp; CNC <span class="n">892</span></button>
+    <button class="chip">Welding <span class="n">1214</span></button>
+    <button class="chip">Printing <span class="n">768</span></button>
+    <button class="chip">Electrical <span class="n">1103</span></button>
+    <button class="chip">Woodworking <span class="n">634</span></button>
+    <button class="chip">Construction <span class="n">1542</span></button>
+    <button class="chip">Cleaning <span class="n">421</span></button>
+    <button class="chip">Hand &amp; Power <span class="n">2104</span></button>
+    <button class="chip">Fuel &amp; Lube <span class="n">286</span></button>
+    <button class="chip">Landscaping <span class="n">712</span></button>
+    <button class="chip">Warehousing <span class="n">508</span></button>
+    <button class="chip">HVAC <span class="n">486</span></button>
+    <button class="chip">Plumbing <span class="n">392</span></button>
+    <button class="chip">Safety <span class="n">548</span></button>
+    <button class="chip">Automotive <span class="n">1287</span></button>
+    <button class="chip">Salon &amp; Spa <span class="n">318</span></button>
+    <button class="chip">Office <span class="n">437</span></button>
+    <button class="chip">Medical <span class="n">246</span></button>
+    <button class="chip">Fitness <span class="n">394</span></button>
+    <button class="chip">Marine <span class="n">362</span></button>
+    <button class="chip">Music <span class="n">275</span></button>
+  </div>
+</nav>
+
+<div class="bar">
+  <h1>Disciplines, <em>not a catalogue.</em></h1>
+  <p><b>22</b> disciplines &nbsp;·&nbsp; <b>134</b> sub-classes<br><b>16,046</b> SKUs &nbsp;·&nbsp; All VAT 24% incl.</p>
+</div>
+
+<section class="grid-wrap" aria-labelledby="grid-title">
+  <h2 id="grid-title" style="position:absolute;left:-9999px;">Category grid</h2>
+  <div class="grid">
+
+    <!-- row 1-2 : HoReCa hero + text cells -->
+    <a class="cell hero" href="/en/categories/horeca-food-service">
+      <div class="img-wrap"><img src="../../images/cat-01-horeca-food-service.png" alt="" width="640" height="480" loading="lazy"></div>
+      <div class="hero-body">
+        <span class="num">01 · HERO</span>
+        <div>
+          <h3>HoReCa &amp; Food Service</h3>
+          <p class="count">1,907 SKUs &nbsp;/&nbsp; 6 sub-classes</p>
+        </div>
+      </div>
+    </a>
+
+    <a class="cell w2" href="/en/categories/woodworking-carpentry">
+      <span class="num">06</span>
+      <div>
+        <h3>Woodworking &amp; Carpentry</h3>
+        <p class="count">634 SKUs &nbsp;/&nbsp; 6 sub-classes</p>
+      </div>
+      <ul class="subs">
+        <li><a href="#">Stationary machines</a></li>
+        <li><a href="#">Routers</a></li>
+        <li><a href="#">Benches &amp; clamps</a></li>
+        <li><a href="#">Drill presses</a></li>
+        <li><a href="#">Saw blades</a></li>
+        <li><a href="#">Finishing</a></li>
+      </ul>
+    </a>
+
+    <a class="cell w2" href="/en/categories/printing-packaging-signage">
+      <span class="num">04</span>
+      <div>
+        <h3>Printing, Packaging &amp; Signage</h3>
+        <p class="count">768 SKUs &nbsp;/&nbsp; 6 sub-classes</p>
+      </div>
+      <ul class="subs">
+        <li><a href="#">Heat press</a></li>
+        <li><a href="#">Vinyl cutters</a></li>
+        <li><a href="#">Sealers</a></li>
+        <li><a href="#">Label makers</a></li>
+        <li><a href="#">Signage</a></li>
+        <li><a href="#">Paper handling</a></li>
+      </ul>
+    </a>
+
+    <a class="cell w2 accent" href="/en/categories/electrical-energy">
+      <span class="num">05</span>
+      <div>
+        <h3>Electrical &amp; Energy</h3>
+        <p class="count">1,103 SKUs &nbsp;/&nbsp; 6 sub-classes</p>
+      </div>
+      <ul class="subs">
+        <li><a href="#">Generators</a></li>
+        <li><a href="#">Solar panels</a></li>
+        <li><a href="#">Testing tools</a></li>
+        <li><a href="#">Wiring</a></li>
+        <li><a href="#">Lighting</a></li>
+        <li><a href="#">Batteries</a></li>
+      </ul>
+    </a>
+
+    <a class="cell w2" href="/en/categories/cleaning-janitorial">
+      <span class="num">08</span>
+      <div>
+        <h3>Cleaning &amp; Janitorial</h3>
+        <p class="count">421 SKUs &nbsp;/&nbsp; 6 sub-classes</p>
+      </div>
+      <ul class="subs">
+        <li><a href="#">Floor care</a></li>
+        <li><a href="#">Janitorial carts</a></li>
+        <li><a href="#">Hand dryers</a></li>
+        <li><a href="#">Waste</a></li>
+        <li><a href="#">Vacuums</a></li>
+        <li><a href="#">Carpet extractors</a></li>
+      </ul>
+    </a>
+
+    <!-- row 3-4 : text cell, Hand & Power hero, text cell, Welding hero -->
+    <a class="cell hero" href="/en/categories/hand-power-tools">
+      <div class="img-wrap"><img src="../../images/cat-03-hand-power-tools.png" alt="" width="640" height="480" loading="lazy"></div>
+      <div class="hero-body">
+        <span class="num">09 · HERO</span>
+        <div>
+          <h3>Hand &amp; Power Tools</h3>
+          <p class="count">2,104 SKUs &nbsp;/&nbsp; 6 sub-classes</p>
+        </div>
+      </div>
+    </a>
+
+    <a class="cell w2 dark" href="/en/categories/laser-cnc-digital-fabrication">
+      <span class="num">02</span>
+      <div>
+        <h3>Laser, CNC &amp; Digital Fabrication</h3>
+        <p class="count">892 SKUs &nbsp;/&nbsp; 6 sub-classes</p>
+      </div>
+      <ul class="subs">
+        <li><a href="#">CO₂ lasers</a></li>
+        <li><a href="#">Diode lasers</a></li>
+        <li><a href="#">CNC routers</a></li>
+        <li><a href="#">3D printers</a></li>
+        <li><a href="#">Accessories</a></li>
+        <li><a href="#">Rotary attach.</a></li>
+      </ul>
+    </a>
+
+    <a class="cell w2" href="/en/categories/plumbing-water-systems">
+      <span class="num">14</span>
+      <div>
+        <h3>Plumbing &amp; Water Systems</h3>
+        <p class="count">392 SKUs &nbsp;/&nbsp; 6 sub-classes</p>
+      </div>
+      <ul class="subs">
+        <li><a href="#">Water pumps</a></li>
+        <li><a href="#">Pipes &amp; fittings</a></li>
+        <li><a href="#">Plumbing tools</a></li>
+        <li><a href="#">Water heaters</a></li>
+        <li><a href="#">Filtration</a></li>
+        <li><a href="#">Bathroom</a></li>
+      </ul>
+    </a>
+
+    <a class="cell hero" href="/en/categories/welding-metalworking">
+      <div class="img-wrap"><img src="../../images/cat-04-welding-metalworking.png" alt="" width="640" height="480" loading="lazy"></div>
+      <div class="hero-body">
+        <span class="num">03 · HERO</span>
+        <div>
+          <h3>Welding &amp; Metalworking</h3>
+          <p class="count">1,214 SKUs &nbsp;/&nbsp; 6 sub-classes</p>
+        </div>
+      </div>
+    </a>
+
+    <a class="cell w2" href="/en/categories/hvac-climate-control">
+      <span class="num">13</span>
+      <div>
+        <h3>HVAC &amp; Climate Control</h3>
+        <p class="count">486 SKUs &nbsp;/&nbsp; 6 sub-classes</p>
+      </div>
+      <ul class="subs">
+        <li><a href="#">Mini-splits</a></li>
+        <li><a href="#">Heaters</a></li>
+        <li><a href="#">Fans</a></li>
+        <li><a href="#">Ducting</a></li>
+        <li><a href="#">Air quality</a></li>
+        <li><a href="#">Dehumidifiers</a></li>
+      </ul>
+    </a>
+
+    <a class="cell w2 accent" href="/en/categories/warehousing-material-handling">
+      <span class="num">12</span>
+      <div>
+        <h3>Warehousing &amp; Material Handling</h3>
+        <p class="count">508 SKUs &nbsp;/&nbsp; 6 sub-classes</p>
+      </div>
+      <ul class="subs">
+        <li><a href="#">Hoists &amp; lifting</a></li>
+        <li><a href="#">Forklifts</a></li>
+        <li><a href="#">Carts &amp; dollies</a></li>
+        <li><a href="#">Shelving</a></li>
+        <li><a href="#">Workbenches</a></li>
+        <li><a href="#">Strapping</a></li>
+      </ul>
+    </a>
+
+    <!-- row 5-6 : Construction hero + text cells + Automotive hero -->
+    <a class="cell hero" href="/en/categories/construction-building">
+      <div class="img-wrap"><img src="../../images/cat-02-construction-building.png" alt="" width="640" height="480" loading="lazy"></div>
+      <div class="hero-body">
+        <span class="num">07 · HERO</span>
+        <div>
+          <h3>Construction &amp; Building</h3>
+          <p class="count">1,542 SKUs &nbsp;/&nbsp; 6 sub-classes</p>
+        </div>
+      </div>
+    </a>
+
+    <a class="cell w2" href="/en/categories/fuel-lubrication-fluid">
+      <span class="num">10</span>
+      <div>
+        <h3>Fuel, Lubrication &amp; Fluid</h3>
+        <p class="count">286 SKUs &nbsp;/&nbsp; 6 sub-classes</p>
+      </div>
+      <ul class="subs">
+        <li><a href="#">Fuel transfer</a></li>
+        <li><a href="#">Oil &amp; lube</a></li>
+        <li><a href="#">Drum handling</a></li>
+        <li><a href="#">Industrial pumps</a></li>
+        <li><a href="#">Chemical</a></li>
+        <li><a href="#">Nozzles</a></li>
+      </ul>
+    </a>
+
+    <a class="cell w2" href="/en/categories/outdoor-power-landscaping">
+      <span class="num">11</span>
+      <div>
+        <h3>Outdoor Power &amp; Landscaping</h3>
+        <p class="count">712 SKUs &nbsp;/&nbsp; 6 sub-classes</p>
+      </div>
+      <ul class="subs">
+        <li><a href="#">Outdoor power</a></li>
+        <li><a href="#">Pressure washers</a></li>
+        <li><a href="#">Garden tools</a></li>
+        <li><a href="#">Outdoor cooking</a></li>
+        <li><a href="#">Outdoor heating</a></li>
+        <li><a href="#">Decor</a></li>
+      </ul>
+    </a>
+
+    <a class="cell w2" href="/en/categories/safety-security-workwear">
+      <span class="num">15</span>
+      <div>
+        <h3>Safety, Security &amp; Workwear</h3>
+        <p class="count">548 SKUs &nbsp;/&nbsp; 6 sub-classes</p>
+      </div>
+      <ul class="subs">
+        <li><a href="#">PPE</a></li>
+        <li><a href="#">Traffic control</a></li>
+        <li><a href="#">Locks &amp; safes</a></li>
+        <li><a href="#">Work boots</a></li>
+        <li><a href="#">Workwear</a></li>
+        <li><a href="#">Safety glasses</a></li>
+      </ul>
+    </a>
+
+    <a class="cell hero" href="/en/categories/automotive-workshop">
+      <div class="img-wrap"><img src="../../images/cat-12-automotive-workshop.png" alt="" width="640" height="480" loading="lazy"></div>
+      <div class="hero-body">
+        <span class="num">16 · HERO</span>
+        <div>
+          <h3>Automotive &amp; Workshop</h3>
+          <p class="count">1,287 SKUs &nbsp;/&nbsp; 6 sub-classes</p>
+        </div>
+      </div>
+    </a>
+
+    <a class="cell w2 accent" href="/en/categories/salon-spa-wellness">
+      <span class="num">17</span>
+      <div>
+        <h3>Salon, Spa &amp; Wellness</h3>
+        <p class="count">318 SKUs &nbsp;/&nbsp; 6 sub-classes</p>
+      </div>
+      <ul class="subs">
+        <li><a href="#">Barber chairs</a></li>
+        <li><a href="#">Shampoo stations</a></li>
+        <li><a href="#">Massage tables</a></li>
+        <li><a href="#">Personal care</a></li>
+        <li><a href="#">Manicure</a></li>
+        <li><a href="#">Facial steamers</a></li>
+      </ul>
+    </a>
+
+    <a class="cell w2" href="/en/categories/office-commercial-interiors">
+      <span class="num">18</span>
+      <div>
+        <h3>Office &amp; Commercial Interiors</h3>
+        <p class="count">437 SKUs &nbsp;/&nbsp; 6 sub-classes</p>
+      </div>
+      <ul class="subs">
+        <li><a href="#">Office furniture</a></li>
+        <li><a href="#">Meeting &amp; lobby</a></li>
+        <li><a href="#">Door hardware</a></li>
+        <li><a href="#">Lighting</a></li>
+        <li><a href="#">Bathroom</a></li>
+        <li><a href="#">Decor</a></li>
+      </ul>
+    </a>
+
+    <!-- row 7-8 : trailing text cells -->
+    <a class="cell w2" href="/en/categories/health-medical-supply">
+      <span class="num">19</span>
+      <div>
+        <h3>Health &amp; Medical Supply</h3>
+        <p class="count">246 SKUs &nbsp;/&nbsp; 6 sub-classes</p>
+      </div>
+      <ul class="subs">
+        <li><a href="#">Medical equipment</a></li>
+        <li><a href="#">Mobility aids</a></li>
+        <li><a href="#">Bathroom safety</a></li>
+        <li><a href="#">Teaching</a></li>
+        <li><a href="#">Wellness</a></li>
+        <li><a href="#">Wheelchairs</a></li>
+      </ul>
+    </a>
+
+    <a class="cell w2" href="/en/categories/fitness-sports-recreation">
+      <span class="num">20</span>
+      <div>
+        <h3>Fitness, Sports &amp; Recreation</h3>
+        <p class="count">394 SKUs &nbsp;/&nbsp; 6 sub-classes</p>
+      </div>
+      <ul class="subs">
+        <li><a href="#">Gym equipment</a></li>
+        <li><a href="#">Team sports</a></li>
+        <li><a href="#">Gym flooring</a></li>
+        <li><a href="#">Trampolines</a></li>
+        <li><a href="#">Playground</a></li>
+        <li><a href="#">Cycling</a></li>
+      </ul>
+    </a>
+
+    <a class="cell w2 accent" href="/en/categories/boating-camping-outdoor">
+      <span class="num">21</span>
+      <div>
+        <h3>Boating, Camping &amp; Outdoor</h3>
+        <p class="count">362 SKUs &nbsp;/&nbsp; 6 sub-classes</p>
+      </div>
+      <ul class="subs">
+        <li><a href="#">Marine hardware</a></li>
+        <li><a href="#">Inflatable boats</a></li>
+        <li><a href="#">Water sports</a></li>
+        <li><a href="#">Camping gear</a></li>
+        <li><a href="#">Canopy tents</a></li>
+        <li><a href="#">Outdoor hobbies</a></li>
+      </ul>
+    </a>
+
+    <a class="cell w3 dark" href="/en/categories/music-entertainment">
+      <span class="num">22</span>
+      <div>
+        <h3>Music &amp; Entertainment</h3>
+        <p class="count">275 SKUs &nbsp;/&nbsp; 6 sub-classes</p>
+      </div>
+      <ul class="subs">
+        <li><a href="#">Guitars</a></li>
+        <li><a href="#">Keyboards</a></li>
+        <li><a href="#">Drums</a></li>
+        <li><a href="#">Stage lighting</a></li>
+        <li><a href="#">Game room</a></li>
+        <li><a href="#">Cases</a></li>
+      </ul>
+    </a>
+
+    <a class="cell w3" href="#quote">
+      <span class="num" style="color: var(--amber);">TRADE</span>
+      <div>
+        <h3 style="color: var(--amber);">Not sure which discipline? Call the trade desk.</h3>
+        <p class="count">Volume pricing &nbsp;·&nbsp; Net-30 &nbsp;·&nbsp; Dedicated manager</p>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<section class="b2b" id="quote">
+  <div class="b2b-inner">
+    <div>
+      <h4>Trade desk</h4>
+      <p class="lead">Volume pricing, Net-30 terms and a dedicated manager for registered businesses.</p>
+    </div>
+    <div>
+      <h4>Starter kits</h4>
+      <p class="big">From €2,799</p>
+      <p>Café, auto-shop, barber, print, bakery.</p>
+    </div>
+    <div>
+      <h4>Net terms</h4>
+      <p class="big">Net-30</p>
+      <p>Invoice on delivery, approved accounts.</p>
+    </div>
+    <div>
+      <h4>Manager</h4>
+      <p class="big">Direct line</p>
+      <p>One account manager, one email thread.</p>
+    </div>
+    <a href="#quote" class="btn">
+      Request a quote
+      <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+  </div>
+</section>
+
+<div class="legal">
+  <span>© 2026 Roland Kaubandus OÜ &nbsp;/&nbsp; Tallinn, Estonia</span>
+  <span>VAT 24% incl. &nbsp;/&nbsp; Prices in EUR</span>
+</div>
+
+</body>
+</html>
