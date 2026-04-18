@@ -1,0 +1,408 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>XLMarket — Weighted Atlas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Archivo:wght@500;700;800;900&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --paper:#f4efe6;
+    --paper-deep:#ebe6db;
+    --paper-line:#d9d1c2;
+    --ink:#17171a;
+    --ink-2:#2c3540;
+    --muted:#6b6558;
+    --amber:#d97706;
+    --amber-tint:#f7eadb;
+    --hair:1px solid #d2c9b8;
+    --hair-2:2px solid #17171a;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--paper);color:var(--ink);font-family:'DM Sans',system-ui,sans-serif;font-feature-settings:"ss01","tnum";-webkit-font-smoothing:antialiased}
+  body{min-height:100vh;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  .num{font-variant-numeric:tabular-nums}
+  .display{font-family:'Archivo',sans-serif;letter-spacing:-0.02em;line-height:0.92}
+  .mono-label{font-family:'DM Sans',sans-serif;font-weight:500;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted)}
+
+  /* ================ HEADER ================ */
+  .topbar{background:var(--ink);color:var(--paper);font-size:12px;letter-spacing:0.08em;text-transform:uppercase}
+  .topbar-inner{max-width:1440px;margin:0 auto;padding:10px 32px;display:flex;justify-content:space-between;gap:24px;align-items:center}
+  .topbar-inner span{opacity:0.72}
+  .topbar-inner strong{color:var(--amber);font-weight:600;letter-spacing:0.12em}
+
+  header.site{border-bottom:var(--hair);background:var(--paper)}
+  .header-inner{max-width:1440px;margin:0 auto;padding:22px 32px;display:grid;grid-template-columns:auto 1fr auto;gap:36px;align-items:center}
+  .logo{font-family:'Archivo',sans-serif;font-weight:900;font-size:26px;letter-spacing:-0.03em}
+  .logo em{color:var(--amber);font-style:normal}
+  .search{display:flex;border:var(--hair-2);background:var(--paper);height:46px;align-items:center;padding:0 16px;gap:12px;transition:border-color .18s}
+  .search:focus-within{border-color:var(--amber)}
+  .search svg{flex:0 0 18px}
+  .search input{border:0;outline:0;background:transparent;flex:1;font-family:inherit;font-size:15px;color:var(--ink)}
+  .search input::placeholder{color:var(--muted)}
+  .search kbd{font-family:inherit;font-size:11px;padding:3px 7px;border:var(--hair);color:var(--muted);letter-spacing:0.05em}
+  .nav-actions{display:flex;align-items:center;gap:24px;font-size:14px;font-weight:500}
+  .nav-actions a{display:flex;align-items:center;gap:8px}
+  .nav-actions a:hover{color:var(--amber)}
+  .cta-quote{background:var(--ink);color:var(--paper);padding:12px 18px;font-weight:600;letter-spacing:0.02em;transition:background .18s}
+  .cta-quote:hover{background:var(--amber);color:var(--ink)}
+
+  /* ================ LAYOUT ================ */
+  .main{max-width:1440px;margin:0 auto;padding:56px 32px 96px;display:grid;grid-template-columns:240px 1fr;gap:48px}
+
+  /* ------ Side index ------ */
+  .aside-title{display:flex;justify-content:space-between;align-items:baseline;padding-bottom:12px;border-bottom:var(--hair-2)}
+  .aside-title h3{font-family:'Archivo',sans-serif;font-weight:800;font-size:14px;letter-spacing:0.02em;text-transform:uppercase}
+  .aside-title span{font-size:11px;letter-spacing:0.12em;color:var(--muted)}
+  .idx{list-style:none;margin-top:4px}
+  .idx li a{display:grid;grid-template-columns:28px 1fr auto;gap:10px;align-items:center;padding:9px 0;border-bottom:1px dashed #d9d1c2;font-size:13.5px;transition:padding .18s, color .18s;position:relative}
+  .idx li a::before{content:"";position:absolute;left:-14px;top:50%;width:8px;height:1px;background:var(--amber);transform:scaleX(0);transform-origin:left;transition:transform .18s}
+  .idx li a:hover{color:var(--amber);padding-left:4px}
+  .idx li a:hover::before{transform:scaleX(1)}
+  .idx li a.active{color:var(--ink);font-weight:600}
+  .idx li a.active::before{transform:scaleX(1);background:var(--ink);width:20px}
+  .idx .n{font-family:'Archivo',sans-serif;font-weight:700;font-size:11px;letter-spacing:0.08em;color:var(--muted)}
+  .idx .c{font-size:11px;color:var(--muted);font-variant-numeric:tabular-nums}
+
+  .aside-foot{margin-top:32px;padding:18px;background:var(--ink);color:var(--paper)}
+  .aside-foot h4{font-family:'Archivo',sans-serif;font-weight:800;font-size:15px;letter-spacing:-0.01em;margin-bottom:6px}
+  .aside-foot p{font-size:12.5px;line-height:1.55;opacity:0.82;margin-bottom:12px}
+  .aside-foot a.pill{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;background:var(--amber);color:var(--ink);font-size:12px;font-weight:600;letter-spacing:0.04em;text-transform:uppercase}
+
+  /* ------ Heading ------ */
+  .masthead{display:grid;grid-template-columns:1fr auto;gap:20px;align-items:end;border-bottom:var(--hair-2);padding-bottom:28px;margin-bottom:28px}
+  .masthead h1{font-family:'Archivo',sans-serif;font-weight:900;font-size:clamp(44px,6vw,78px);letter-spacing:-0.04em;line-height:0.9}
+  .masthead h1 em{font-style:normal;color:var(--amber)}
+  .masthead-meta{display:flex;gap:28px;align-items:baseline;padding-bottom:4px}
+  .masthead-meta .kv{display:flex;flex-direction:column;gap:2px;min-width:78px}
+  .masthead-meta .kv span{font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted)}
+  .masthead-meta .kv strong{font-family:'Archivo',sans-serif;font-weight:800;font-size:22px;font-variant-numeric:tabular-nums;color:var(--ink)}
+
+  .sub-legend{display:flex;gap:18px;margin-bottom:24px;font-size:11.5px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);align-items:center}
+  .legend-swatch{display:inline-flex;align-items:center;gap:6px}
+  .legend-swatch i{display:block;width:10px;height:10px;background:var(--ink);border:1px solid var(--ink)}
+  .legend-swatch.xl i{width:18px;height:12px}
+  .legend-swatch.l i{width:14px;height:10px}
+  .legend-swatch.m i{width:10px;height:9px}
+  .legend-swatch.s i{width:7px;height:7px}
+
+  /* ------ Atlas grid ------ */
+  .atlas{display:grid;grid-template-columns:repeat(12,1fr);grid-auto-rows:128px;gap:12px}
+
+  .tile{position:relative;border:var(--hair-2);background:var(--paper);display:flex;flex-direction:column;transition:transform .18s ease,background .18s,color .18s;overflow:hidden;cursor:pointer}
+  .tile:hover{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+  .tile:hover .tile-chip{background:var(--amber);color:var(--ink);border-color:var(--amber)}
+  .tile:hover .tile-name{color:var(--paper)}
+  .tile:hover .tile-num{color:var(--amber)}
+  .tile:hover .tile-arrow{transform:translate(4px,-4px);color:var(--amber)}
+
+  .tile-head{display:flex;justify-content:space-between;align-items:flex-start;padding:14px 14px 0}
+  .tile-num{font-family:'Archivo',sans-serif;font-weight:800;font-size:11px;letter-spacing:0.12em;color:var(--muted)}
+  .tile-arrow{font-family:'Archivo',sans-serif;font-weight:800;font-size:18px;line-height:1;transition:transform .18s,color .18s}
+  .tile-name{margin-top:auto;padding:12px 14px;font-family:'Archivo',sans-serif;font-weight:700;line-height:1}
+  .tile-meta{padding:0 14px 12px;display:flex;justify-content:space-between;align-items:flex-end;gap:8px}
+  .tile-count{font-family:'Archivo',sans-serif;font-weight:500;font-size:11px;letter-spacing:0.06em;color:var(--muted);font-variant-numeric:tabular-nums}
+  .tile-chips{display:flex;flex-wrap:wrap;gap:5px;padding:0 14px 12px;margin-top:2px}
+  .tile-chip{font-size:10.5px;padding:3px 8px;border:1px solid var(--paper-line);color:var(--muted);letter-spacing:0.02em;transition:all .18s}
+
+  /* ---- Sizes ---- */
+  /* XL: 6 col, 3 rows, atmosphere photo + 6 chips */
+  .size-xl{grid-column:span 6;grid-row:span 3}
+  .size-xl .photo{position:absolute;inset:0;background-size:cover;background-position:center;filter:saturate(0.82) contrast(1.02)}
+  .size-xl .photo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(23,23,26,0) 0%,rgba(23,23,26,0) 45%,rgba(23,23,26,0.78) 100%)}
+  .size-xl .tile-head, .size-xl .tile-name, .size-xl .tile-meta, .size-xl .tile-chips{position:relative;z-index:2;color:var(--paper)}
+  .size-xl .tile-num, .size-xl .tile-arrow{color:rgba(244,239,230,0.78)}
+  .size-xl .tile-name{font-size:32px;letter-spacing:-0.025em;line-height:0.96}
+  .size-xl .tile-count{color:rgba(244,239,230,0.68)}
+  .size-xl .tile-chip{border-color:rgba(244,239,230,0.32);color:rgba(244,239,230,0.88);background:rgba(23,23,26,0.18);backdrop-filter:blur(2px)}
+  .size-xl:hover{background:var(--ink)}
+  .size-xl:hover .photo{filter:saturate(0.4) contrast(1.02) brightness(0.7)}
+  .size-xl:hover .tile-chip{background:var(--amber);color:var(--ink);border-color:var(--amber)}
+
+  /* L: 4 col, 2 rows, smaller photo + 3 chips */
+  .size-l{grid-column:span 4;grid-row:span 2}
+  .size-l .photo-band{height:84px;background-size:cover;background-position:center;margin:0;filter:saturate(0.85) contrast(1.02)}
+  .size-l .tile-name{font-size:22px;letter-spacing:-0.02em;padding-top:14px}
+
+  /* M: 3 col, 2 rows, text-heavy, 6 sub-links */
+  .size-m{grid-column:span 3;grid-row:span 2}
+  .size-m .tile-name{font-size:19px;letter-spacing:-0.015em;padding-bottom:6px}
+  .size-m .sub-list{padding:0 14px 12px;display:flex;flex-direction:column;gap:2px}
+  .size-m .sub-list a{font-size:11.5px;color:var(--muted);padding:1px 0;display:flex;justify-content:space-between;gap:8px;border-bottom:1px dashed transparent;transition:all .18s}
+  .size-m .sub-list a:hover{color:var(--amber);border-bottom-color:var(--amber)}
+  .size-m:hover .sub-list a{color:rgba(244,239,230,0.86)}
+  .size-m:hover .sub-list a:hover{color:var(--amber);border-bottom-color:var(--amber)}
+
+  /* S: 2 col, 1 row, compact */
+  .size-s{grid-column:span 2;grid-row:span 1}
+  .size-s .tile-name{font-size:14.5px;letter-spacing:-0.01em;padding:10px 12px}
+  .size-s .tile-head{padding:10px 12px 0}
+  .size-s .tile-meta{padding:0 12px 10px}
+  .size-s .tile-count{font-size:10px}
+  .size-s .tile-arrow{font-size:14px}
+
+  /* ------ B2B Strip ------ */
+  .b2b{margin-top:56px;border:var(--hair-2);background:var(--ink);color:var(--paper);display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:0}
+  .b2b > div{padding:26px 28px;border-right:1px solid #2c3540}
+  .b2b > div:last-child{border-right:0}
+  .b2b-title{font-family:'Archivo',sans-serif;font-weight:900;font-size:36px;letter-spacing:-0.025em;line-height:0.96}
+  .b2b-title em{font-style:normal;color:var(--amber)}
+  .b2b-desc{margin-top:8px;font-size:13px;line-height:1.5;opacity:0.78;max-width:320px}
+  .b2b-col .lbl{font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:var(--amber);font-weight:600}
+  .b2b-col .val{font-family:'Archivo',sans-serif;font-weight:800;font-size:26px;letter-spacing:-0.02em;margin-top:6px;font-variant-numeric:tabular-nums}
+  .b2b-col .note{font-size:11.5px;opacity:0.62;margin-top:4px}
+  .b2b-col .lnk{margin-top:14px;display:inline-flex;align-items:center;gap:6px;font-size:11.5px;letter-spacing:0.1em;text-transform:uppercase;font-weight:600;color:var(--amber)}
+  .b2b-col .lnk:hover{text-decoration:underline}
+
+  /* ---- responsive ---- */
+  @media (max-width:1200px){
+    .main{grid-template-columns:200px 1fr;gap:32px;padding:40px 24px 72px}
+    .size-xl{grid-column:span 8}
+    .size-l{grid-column:span 4}
+    .size-m{grid-column:span 4}
+    .size-s{grid-column:span 4;grid-row:span 1}
+  }
+  @media (max-width:880px){
+    .main{grid-template-columns:1fr;gap:0}
+    aside{display:none}
+    .atlas{grid-template-columns:repeat(6,1fr);grid-auto-rows:110px}
+    .size-xl{grid-column:span 6;grid-row:span 3}
+    .size-l{grid-column:span 3;grid-row:span 2}
+    .size-m{grid-column:span 3;grid-row:span 2}
+    .size-s{grid-column:span 3;grid-row:span 1}
+    .b2b{grid-template-columns:1fr 1fr}
+    .b2b > div{border-right:0;border-bottom:1px solid #2c3540}
+  }
+</style>
+</head>
+<body>
+
+<!-- Topbar -->
+<div class="topbar">
+  <div class="topbar-inner">
+    <span>B2B reseller of VEVOR · Warehouse Tallinn + Tenerife · VAT 24% included</span>
+    <span><strong>Net-30</strong> · Volume pricing · Dedicated manager</span>
+  </div>
+</div>
+
+<!-- Header -->
+<header class="site">
+  <div class="header-inner">
+    <a href="/" class="logo">XL<em>market</em></a>
+    <label class="search" aria-label="Search XLMarket">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      <input type="search" placeholder="Search 16,046 tools, machines, supplies" />
+      <kbd>⌘ K</kbd>
+    </label>
+    <nav class="nav-actions">
+      <a href="#quote" class="cta-quote">Request B2B quote</a>
+      <a href="#account" aria-label="Account">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      </a>
+      <a href="#cart" aria-label="Cart">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+      </a>
+    </nav>
+  </div>
+</header>
+
+<main class="main">
+
+  <!-- Side index -->
+  <aside>
+    <div class="aside-title">
+      <h3>Disciplines</h3>
+      <span>22 · A–Z</span>
+    </div>
+    <ol class="idx" id="sideIdx">
+      <!-- populated via JS -->
+    </ol>
+
+    <div class="aside-foot">
+      <h4>Starter kits from €2,799</h4>
+      <p>Complete, VAT-inclusive packages for café, auto-shop, barber, print-shop, bakery and cleaning.</p>
+      <a href="#starter-kits" class="pill">Browse 18 kits
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </a>
+    </div>
+  </aside>
+
+  <!-- Atlas -->
+  <section>
+
+    <div class="masthead">
+      <h1>Catalogue,<br/>weighted by <em>reality</em>.</h1>
+      <div class="masthead-meta">
+        <div class="kv"><span>Disciplines</span><strong class="num">22</strong></div>
+        <div class="kv"><span>Sub-categories</span><strong class="num">132</strong></div>
+        <div class="kv"><span>SKUs</span><strong class="num">16,046</strong></div>
+        <div class="kv"><span>Updated</span><strong class="num">04 · 18</strong></div>
+      </div>
+    </div>
+
+    <div class="sub-legend">
+      <span>Tile sizes express product count</span>
+      <span class="legend-swatch xl"><i></i>1,500+</span>
+      <span class="legend-swatch l"><i></i>700+</span>
+      <span class="legend-swatch m"><i></i>200+</span>
+      <span class="legend-swatch s"><i></i>under 100</span>
+    </div>
+
+    <div class="atlas" id="atlas"></div>
+
+    <!-- B2B strip -->
+    <div class="b2b">
+      <div class="b2b-col">
+        <div class="b2b-title">Buy like a<br/>workshop, not a <em>consumer</em>.</div>
+        <p class="b2b-desc">Net-30 terms, dedicated B2B manager, volume pricing from 3 units and a 24-hour quote turnaround.</p>
+      </div>
+      <div class="b2b-col">
+        <div class="lbl">Terms</div>
+        <div class="val">Net-30</div>
+        <div class="note">Standard for registered companies</div>
+        <a href="#quote" class="lnk">Open account →</a>
+      </div>
+      <div class="b2b-col">
+        <div class="lbl">Kit ladder</div>
+        <div class="val">€2,799 – €6,340</div>
+        <div class="note">Café · Barber · Auto-shop · Bakery</div>
+        <a href="#starter-kits" class="lnk">See kits →</a>
+      </div>
+      <div class="b2b-col">
+        <div class="lbl">Quote turnaround</div>
+        <div class="val">&lt; 24 h</div>
+        <div class="note">Tallinn · Tenerife business hours</div>
+        <a href="#quote" class="lnk">Request quote →</a>
+      </div>
+    </div>
+
+  </section>
+</main>
+
+<script>
+// ==== DATA ====
+const CATS = [
+  {n:1, slug:"horeca-food-service", name:"HoReCa & Food Service", count:1907, img:"cat-01-horeca-food-service.png",
+   subs:["Commercial Refrigeration","Cooking Equipment","Food Preparation","Bar & Beverage","Commercial Sinks","Restaurant Shelving"]},
+  {n:2, slug:"laser-cnc-digital-fabrication", name:"Laser, CNC & Fabrication", count:1204, img:"cat-05-laser-cnc-digital-fabrication.png",
+   subs:["CO2 Laser","Diode Laser","CNC Routers","3D Printers","Laser Accessories","Rotary Attachments"]},
+  {n:3, slug:"welding-metalworking", name:"Welding & Metalworking", count:1082, img:"cat-04-welding-metalworking.png",
+   subs:["Welding & Cutting","Metal Lathes","Angle Grinders","Hydraulic Press","Welding Safety","Motors & Drives"]},
+  {n:4, slug:"printing-packaging-signage", name:"Printing, Packaging & Signage", count:964, img:"cat-07-printing-packaging-signage.png",
+   subs:["Screen Printing","Vinyl Cutters","Packaging & Sealing","Label Makers","Signage","Paper Handling"]},
+  {n:5, slug:"electrical-energy", name:"Electrical & Energy", count:812, img:"cat-08-electrical-energy.png",
+   subs:["Generators","Solar Energy","Electrical Tools","Wiring","Commercial Lighting","Batteries"]},
+  {n:6, slug:"woodworking-carpentry", name:"Woodworking & Carpentry", count:744, img:"cat-06-woodworking-carpentry.png",
+   subs:["Stationary Machines","Routers","Benches & Clamps","Drill Presses","Saw Blades","Finishing & Sanding"]},
+  {n:7, slug:"construction-building", name:"Construction & Building", count:682, img:"cat-02-construction-building.png",
+   subs:["Concrete & Masonry","Ladders & Scaffolding","Roofing","Flooring","Decking","Paint & Finishing"]},
+  {n:8, slug:"cleaning-janitorial", name:"Cleaning & Janitorial", count:532, img:"cat-15-cleaning-janitorial.png",
+   subs:["Floor Care","Janitorial Carts","Hand Dryers","Waste & Recycling","Industrial Vacuums","Carpet Extractors"]},
+  {n:9, slug:"hand-power-tools", name:"Hand & Power Tools", count:498, img:"cat-03-hand-power-tools.png",
+   subs:["Power Tools","Hand Tools","Air Compressors","Measuring Tools","Accessories & Bits","Tool Storage"]},
+  {n:10, slug:"fuel-lubrication-fluid", name:"Fuel & Lubrication", count:432, img:"cat-14-fuel-lubrication-fluid.png",
+   subs:["Fuel Transfer Pumps","Oil Equipment","Drum Handling","Dewatering Pumps","Chemical Transfer","Fuel Nozzles"]},
+  {n:11, slug:"outdoor-power-landscaping", name:"Outdoor Power & Landscaping", count:394,
+   subs:["Outdoor Power Equipment","Pressure Washers","Garden Tools","Outdoor Cooking","Outdoor Heating","Outdoor Decor"]},
+  {n:12, slug:"warehousing-material-handling", name:"Warehousing & Handling", count:360,
+   subs:["Hoists & Cranes","Forklifts & Pallet","Carts & Dollies","Shelving","Workbenches","Strapping & Chains"]},
+  {n:13, slug:"hvac-climate-control", name:"HVAC & Climate", count:312,
+   subs:["Air Conditioners","Heaters","Fans","Ducting","Air Quality","Dehumidifiers"]},
+  {n:14, slug:"plumbing-water-systems", name:"Plumbing & Water Systems", count:288,
+   subs:["Water Pumps","Pipes & Fittings","Plumbing Tools","Water Heaters","Filtration","Bathroom Fixtures"]},
+  {n:15, slug:"safety-security-workwear", name:"Safety & Workwear", count:262,
+   subs:["PPE","Traffic Safety","Locks & Safes","Work Boots","Work Clothing","Safety Glasses"]},
+  {n:16, slug:"automotive-workshop", name:"Automotive & Workshop", count:240,
+   subs:["Vehicle Lifts","Mechanics Tools","Jacks","Towing","Cargo Accessories","Auto Parts"]},
+  {n:17, slug:"salon-spa-wellness", name:"Salon, Spa & Wellness", count:212,
+   subs:["Barber Chairs","Shampoo Stations","Massage Tables","Personal Care","Manicure","Facial Steamers"]},
+  {n:18, slug:"office-commercial-interiors", name:"Office & Interiors", count:194,
+   subs:["Office Furniture","Meeting Furniture","Hardware","Interior Lighting","Bath Accessories","Decor"]},
+  {n:19, slug:"health-medical-supply", name:"Health & Medical", count:168,
+   subs:["Medical Equipment","Mobility Aids","Bathroom Safety","Demo Models","Wellness","Wheelchairs"]},
+  {n:20, slug:"fitness-sports-recreation", name:"Fitness & Sports", count:112,
+   subs:["Gym Equipment","Team Sports","Gym Flooring","Trampolines","Playground","Cycling"]},
+  {n:21, slug:"boating-camping-outdoor", name:"Boating & Camping", count:84,
+   subs:["Boat Hardware","Inflatable Boats","Water Sports","Camping Gear","Canopy Tents","Outdoor Hobbies"]},
+  {n:22, slug:"music-entertainment", name:"Music & Entertainment", count:9,
+   subs:["Guitars","Keyboards","Drums","Stage Lighting","Game Room","Instrument Cases"]},
+];
+
+// cat-img filename helper (pad number)
+const imgFor = (c) => c.img || `cat-${String(c.n).padStart(2,'0')}-${c.slug}.png`;
+
+// === Populate side index ===
+const idx = document.getElementById('sideIdx');
+CATS.forEach((c,i) => {
+  const li = document.createElement('li');
+  const active = i === 0 ? ' class="active"' : '';
+  li.innerHTML = `<a href="/en/categories/${c.slug}"${active}>
+    <span class="n">${String(c.n).padStart(2,'0')}</span>
+    <span>${c.name}</span>
+    <span class="c">${c.count.toLocaleString('en-US')}</span>
+  </a>`;
+  idx.appendChild(li);
+});
+
+// === Build atlas ===
+// Size classification by product count
+function sizeFor(count){
+  if(count >= 900) return 'xl';
+  if(count >= 400) return 'l';
+  if(count >= 150) return 'm';
+  return 's';
+}
+const atlas = document.getElementById('atlas');
+CATS.forEach(c => {
+  const size = sizeFor(c.count);
+  const el = document.createElement('a');
+  el.href = `/en/categories/${c.slug}`;
+  el.className = `tile size-${size}`;
+
+  const nn = String(c.n).padStart(2,'0');
+  const cCount = c.count.toLocaleString('en-US');
+
+  if(size === 'xl'){
+    const img = `../../images/${imgFor(c)}`;
+    el.innerHTML = `
+      <div class="photo" style="background-image:url('${img}')"></div>
+      <div class="tile-head"><span class="tile-num">${nn} · DISCIPLINE</span><span class="tile-arrow">↗</span></div>
+      <div class="tile-name">${c.name}</div>
+      <div class="tile-chips">${c.subs.map(s=>`<span class="tile-chip">${s}</span>`).join('')}</div>
+      <div class="tile-meta"><span class="tile-count">${cCount} products · 6 sub-categories</span></div>
+    `;
+  } else if(size === 'l'){
+    const img = `../../images/${imgFor(c)}`;
+    el.innerHTML = `
+      <div class="photo-band" style="background-image:url('${img}')"></div>
+      <div class="tile-head"><span class="tile-num">${nn}</span><span class="tile-arrow">↗</span></div>
+      <div class="tile-name">${c.name}</div>
+      <div class="tile-chips">${c.subs.slice(0,3).map(s=>`<span class="tile-chip">${s}</span>`).join('')}</div>
+      <div class="tile-meta"><span class="tile-count">${cCount} products</span></div>
+    `;
+  } else if(size === 'm'){
+    el.innerHTML = `
+      <div class="tile-head"><span class="tile-num">${nn}</span><span class="tile-arrow">↗</span></div>
+      <div class="tile-name">${c.name}</div>
+      <div class="sub-list">
+        ${c.subs.map(s=>`<a href="#"><span>${s}</span></a>`).join('')}
+      </div>
+      <div class="tile-meta"><span class="tile-count">${cCount} products · 6 sub-cats</span></div>
+    `;
+  } else {
+    el.innerHTML = `
+      <div class="tile-head"><span class="tile-num">${nn}</span><span class="tile-arrow">↗</span></div>
+      <div class="tile-name">${c.name}</div>
+      <div class="tile-meta"><span class="tile-count">${cCount} products</span></div>
+    `;
+  }
+
+  atlas.appendChild(el);
+});
+</script>
+
+</body>
+</html>
