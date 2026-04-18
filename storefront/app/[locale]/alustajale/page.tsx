@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import Link from "@/components/SafeLink"
 import { Coffee, Wrench, Scissors, Printer, UtensilsCrossed, Sparkles, CheckCircle2, ArrowRight } from "lucide-react"
+import { listVerticalsByMode, localisedVertical } from "@/lib/verticals"
 
 export const metadata: Metadata = {
   title: "Starter Kits — Everything Your New Business Needs | XL Market",
@@ -167,6 +168,51 @@ export default async function AlustajalePage({ params }: { params: Promise<{ loc
               See all six kits
             </a>
           </div>
+        </div>
+      </section>
+
+      {/* Live verticals (F4 pilots) */}
+      <section className="max-w-[1280px] mx-auto px-[16px] sm:px-[24px] pt-[48px] sm:pt-[64px] pb-[16px]">
+        <div className="flex items-end justify-between mb-[24px] flex-wrap gap-[12px]">
+          <div>
+            <p className="text-[11px] uppercase tracking-[0.14em] text-[#D97706] font-[700] mb-[6px] font-[family-name:var(--font-dm-sans)]">
+              Now live · 3 vertikaali
+            </p>
+            <h2 className="text-[24px] sm:text-[32px] font-[800] text-[#1E293B] font-[family-name:var(--font-dm-sans)]">
+              Alusta oma äri ühe lehega
+            </h2>
+          </div>
+          <p className="text-[13px] text-[#64748B] max-w-[360px] font-[family-name:var(--font-dm-sans)]">
+            Iga vertikaal: 3 taseme stardikomplekt, FAQ, tarne-realiteet, rahastuse-info.
+          </p>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-[16px]">
+          {listVerticalsByMode("alustajale").map((v) => {
+            const l = localisedVertical(v, locale)
+            return (
+              <Link
+                key={v.slug}
+                href={`/${locale}/alustajale/${v.slug}`}
+                className="group border border-[#1E293B] bg-[#0F172A] text-white hover:bg-[#1E293B] transition-colors p-[22px] flex flex-col"
+              >
+                <div className="flex items-start justify-between mb-[12px]">
+                  <span className="inline-block bg-[#D97706] text-white text-[10px] font-bold uppercase tracking-[0.12em] px-[8px] py-[3px]">
+                    Vertikaal
+                  </span>
+                  <ArrowRight size={16} strokeWidth={2.2} className="text-white/40 group-hover:text-[#D97706] group-hover:translate-x-[2px] transition-all" />
+                </div>
+                <h3 className="text-[20px] font-[800] mb-[8px] font-[family-name:var(--font-dm-sans)]">
+                  {l.name}
+                </h3>
+                <p className="text-[13px] text-white/70 leading-relaxed font-[family-name:var(--font-dm-sans)] flex-1">
+                  {l.tagline}
+                </p>
+                <div className="mt-[16px] pt-[14px] border-t border-white/10 text-[11px] text-white/50 font-[family-name:var(--font-dm-sans)]">
+                  3 taset · KKK · Tarne · Rahastus
+                </div>
+              </Link>
+            )
+          })}
         </div>
       </section>
 
