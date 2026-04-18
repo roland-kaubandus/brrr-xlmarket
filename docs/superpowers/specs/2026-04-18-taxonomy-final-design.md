@@ -234,23 +234,161 @@ Muidu L3 elab ainult `taxonomy.yaml`-is + Meili `taxonomy.l3_slug`-is, aga ei sa
 5. **Stabiilsus:** kui slug on avalik, rename = 301 + permanent `slug_redirect` kirje.
 6. **Reserveeritud prefix'id:** `/alustajale/`, `/hooldus/`, `/arikliendile/`, `/toode/`, `/haru/` — ära kasuta kategooria-slugina.
 
-### 3.5 Category page UX (lisatud post-Faas 5, 2026-04-18 öö)
+### 3.5 Category page UX (lõplik, 2026-04-18 — kasutaja ülevaatlik spetsifikatsioon)
 
-Iga kategoorialeht (`/{locale}/kategooriad/{handle}`) — sõltumata kas L1, L2 või L3 — peab renderdama sama struktuuri:
+Iga kategoorialeht (`/{locale}/kategooriad/{handle}`) — sõltumata kas L1, L2, L3 või Ln — peab renderdama **täpselt sama struktuuri**. Ainus erinevus sõltuvalt tasemest on see, **mida karusellile kuvatakse** (järgmise taseme lapsed).
 
-| Element | Allikas | Eeldus |
-|---------|---------|--------|
-| **Breadcrumb** Home › L1 › L2 (› L3) | `category-tree.generated.json` `getAncestors()` | SSoT puu, mitte Medusa parent walk |
-| **H1** + total count | `getNode(handle).name_{locale}` + Meili `estimatedTotalHits` | F1.3 — ei Hardcoded `CATEGORY_NAMES` |
-| **Subcategory thumbnail row** (L1 → L2 row, L2 → L3 row) | `getChildren(handle)` + `category-images.json` | Kuvatakse ainult kui children > 0 |
-| **Sidebar — sibling/child filter** | `category_handles` Meili facet, **filter'itud** `getSiblings(handle) ∪ getChildren(handle)` kaudu | Mitte VEVOR `categories` array |
-| **ProductGrid** | Meili filter `category_handles = "{handle}"` (jätkuvalt) | Töötab, sest reassign-categories-to-leaves.mjs sidus tooted leaf'idele |
+#### 3.5.0 Terminoloogia ja üks tõde
+
+- **Ainus taksonoomia portaalis:** `backend/src/data/taxonomy.yaml` (SSoT). Kõik lehed, menüüd, breadcrumbid, karussellid, sidebaril, tootekaart, SEO lugevad **ainult** `category-tree.generated.json` (YAML-ist tuletatud) kaudu.
+- **VEVOR taksonoomiat portaali ei tooda kunagi.** VEVOR path kasutab ainult Resolver v2 (§5) sisendina, et paigutada toode meie taksonoomiasse. VEVOR slug'e, nimesid ega kategooriaid ei kuvata kunagi.
+- **L1 kuni Ln:** "leht" tähendab taksonoomia sõlme mis tahes sügavusel. Reeglid on identsed igal tasemel; erinevus on ainult "millised lapsed on karusellil" ja "millal toode avaneb" (vt §3.5.2).
+
+#### 3.5.1 Lehe struktuur (top → bottom)
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│ HEADER (logo + MegaMenu + search + cart)                    │ ← site-wide
+├─────────────────────────────────────────────────────────────┤
+│ BREADCRUMB:  Avaleht › L1 [ › L2 [ › L3 [ ... [ › Ln ]]]]   │ ← §3.5.3
+├─────────────────────────────────────────────────────────────┤
+│ ALAMKATEGOORIATE KARUSELL (FULL WIDTH, ühe tulbaga)         │ ← §3.5.4
+│  [pilt] [pilt] [pilt] [pilt] [pilt] [pilt] › › › ›          │
+├─────────────────────────────────────────────────────────────┤
+│ H1 {kategooria nimi}  ·  {N} toodet                         │
+├──────────────┬──────────────────────────────────────────────┤
+│              │                                              │
+│   FILTRID    │    PRODUCT GRID (4 veergu)                   │ ← §3.5.5 + §3.5.6
+│  (adaptiivsed│                                              │
+│   Meili      │    [prd] [prd] [prd] [prd]                   │
+│   facets)    │    [prd] [prd] [prd] [prd]                   │
+│              │    ...                                       │
+│              │    Pagination                                │
+├──────────────┴──────────────────────────────────────────────┤
+│ HISTORY (hiljuti vaadatud, sama L1 seest)                   │ ← §3.5.7
+├─────────────────────────────────────────────────────────────┤
+│ DEALS (sama L1 seest, kõrgeima allahindlusega)              │ ← §3.5.7
+├─────────────────────────────────────────────────────────────┤
+│ BEST SELLERS (sama L1 seest, popularity desc)               │ ← §3.5.7
+├─────────────────────────────────────────────────────────────┤
+│ FOOTER                                                       │
+└─────────────────────────────────────────────────────────────┘
+```
+
+#### 3.5.2 Millal avaneb tooteleht vs kategooria leht
+
+- **Kui praegusel sõlmel on ≥1 laps, millel on ≥1 toode** → kuvatakse kategooria-leht (karusell + grid).
+- **Kui praegusel sõlmel pole ühtegi last toodetega** → karusell peidetakse, kuvatakse ainult grid (leaf-käitumine). Sõlm ise on leaf.
+- **Kui kasutaja klikib karusellil lapse-sõlmel ja selle lapsel on omakorda lapsed toodetega** → edasi sama malli järgi (drill-down). Breadcrumb kasvab ühe sammu võrra. See jätkub kuni leaf-tasemeni.
+- **Karussellist kaob sõlm, millel on 0 toodet praeguse päringu kontekstis.** Vt §3.5.4.
+
+#### 3.5.3 Breadcrumb invariants
+
+1. **Vorm:** `Avaleht › L1 › L2 › … › Ln` — praegune sõlm on **alati viimane** ja kuvatud tekstina (non-link või `aria-current="page"`).
+2. **Ei kuva kunagi toote nime.** Breadcrumb lõppeb kategooria viimase astmega. Toote detail-lehel (§ `/toode/{handle}`) breadcrumb näitab tootega seotud kategooriaketti (vt Faas 5b F5b.7); see on eraldi spec.
+3. **Iga link on klikitav ja navigeerib tagasi sellesse sõlme** — kasutaja saab vabalt üles liikuda.
+4. **Allikas:** `getBreadcrumbTrail(handle)` + `getAncestors(handle)` `category-tree.generated.json`-ist. **Mitte** Medusa `parent_category` walk. **Mitte** VEVOR path.
+5. **Locale:** kuvatav nimi tuleb `nodeName(node, locale)` kaudu (`name_et` / `name_en` / `name_es`). Slug on stabiilne ingliskeelne identifikaator.
+6. **Tase-õigsus:** `trail.length === depth(handle) + 1` (Avaleht + iga sõlm juureni). INV-24 kontrollib seda iga URL-i jaoks smoke-testis.
+
+#### 3.5.4 Alamkategooriate karusell (full-width)
+
+| Nõue | Detail |
+|------|--------|
+| **Laius** | 100% sisu-konteineri laiusest. Scroll horizontally, snap-to-item. |
+| **Asukoht** | Breadcrumb'i all, H1 ja grid'i kohal. **Enne filtreid ja toote-grid'i.** |
+| **Sisu L1 lehel** | Kõik `getChildren(L1)` = L2 sõlmed, millel on **≥1 toode kättesaadav** |
+| **Sisu L2 lehel** | Kõik `getChildren(L2)` = L3 sõlmed, millel on **≥1 toode kättesaadav** |
+| **Sisu Ln lehel** | Kõik `getChildren(Ln)` = L(n+1) sõlmed, millel on **≥1 toode kättesaadav** |
+| **Leaf lehel** | Karusell peidetakse täielikult (ei pilu-containerit, ei tühja ruumi) |
+| **Kaart** | Pilt (`CategoryThumb`, §Faas 5b) + nimi. Klikk → `/{locale}/kategooriad/{child.handle}`. |
+| **Pildid** | **Kõikidel kategooriatel on pilt**, kasutades `image_path` SSoT'ist + alias-map + L1-SVG fallback (§Faas 5b). Kaart ilma pildita on invariant-rikkumine. |
+| **Tühjad peidetakse** | Alamkategooria, mille tootearv (pärast stock-filtrit) = 0, **ei kuvata karusellil**. INV-25. |
+| **Sort** | `sortOrder` `taxonomy.yaml`-ist; tie-break tootearvu järgi desc. |
+| **Tagasiliikumine** | Kui praegu oleme L3-l ja kasutaja klikib breadcrumb'is "L2", siis L2 karusell peab näitama sama L3 sõlme, kust tulime, **esmase positsioonina** (scroll-into-view + accent-state). |
+| **Keyboard** | `aria-label`, `role="list"`, arrow keys scroll, Enter avab. |
+
+**Andmeallikas:** ühine päring `getChildrenWithProductCounts(handle)`:
+- Sisendiks kasutatakse Meili `taxonomy.ancestors` facet'it: üks päring tagastab kõigi alamsõlmede tootearvud koos.
+- Päring kaasab `in_stock = true` filtri (tühjade peitmine vastab spec-nõudele "kategooriaid, millel ei ole ühtegi toodet, ei kuvata").
+
+#### 3.5.5 Filtrid (sidebar, vasakul)
+
+| Nõue | Detail |
+|------|--------|
+| **Asukoht** | Vasak veerg, karuselli all (H1 kõrval, grid'i kõrval). Sticky desktop-is, drawer mobiilis. |
+| **Adaptiivsus** | Facetid tuletatakse **elavalt praeguse päringu tulemusest** (Meili `facetDistribution`). Mitte staatilist listi. Tüüp-põhised facetid: hind, saadavus, brändid, whitelisted `attributes.*` (voltage, power_kw, …). |
+| **Sõltuvalt tasemest** | L1 lehel: laiem facet-set (L2, bränd, hind, atribuudid). L2/L3 lehel: kitsam (ainult relevantsed atribuudid). Alamkategooria-filter **ei dubleeri karuselli** — kui karusell katab ühe tasme, ei ole facet'is sama tasme. |
+| **URL state** | Kõik filtrid persistitakse query-parameetritesse (`?brand=bosch&min=100&max=500`). Tagasi-nupp taastab. |
+| **Reset** | Eraldi "Tühjenda filtrid" nupp. Karusellil olev sõlme valimine = navigeerimine lapse lehele (mitte facet-filter). |
+
+#### 3.5.6 Product grid
+
+| Nõue | Detail |
+|------|--------|
+| **Veerud** | **4 veergu desktop-is** (≥1280px). 3 veergu 1024–1279px. 2 veergu tabletil. 1 veerg mobiilis. |
+| **Leheküljel** | 24 toodet per lehekülg (`ITEMS_PER_PAGE = 24`). |
+| **Päring** | Meili `filter: taxonomy.ancestors = "{handle}" AND in_stock = true` + sort + facetid. `taxonomy.ancestors` võimaldab ühe filtriga kaasata kogu sõlme alampuu. |
+| **Sort** | SortSelect: relevance (vaikimisi), hind ↑/↓, uusim, popularity. |
+| **Pagination** | Tagasi-edasi + lehenumbrid. URL `?page=N`. |
+
+#### 3.5.7 Lehe jaluseelsed ribad (history / deals / best sellers)
+
+Kõik kolm on **sama L1 kontekstis** — st päring kasutab `taxonomy.ancestors = "{currentL1}"`. L1 tuvastatakse `getL1Ancestor(handle)` kaudu (praeguse sõlme esivanem juurtasandil).
+
+| Riba | Allikas | Sort | Limit |
+|------|---------|------|-------|
+| **History** (hiljuti vaadatud) | Kliendi local-storage `xl.recently_viewed[]` (product id + vaatamise aeg); Meili `filter: id IN (...) AND taxonomy.ancestors = currentL1` | Vaatamise aeg desc | 12 |
+| **Deals** | Meili `filter: taxonomy.ancestors = currentL1 AND discount_pct > 0 AND in_stock = true` | `discount_pct:desc` | 12 |
+| **Best sellers** | Meili `filter: taxonomy.ancestors = currentL1 AND in_stock = true` | `popularity:desc` | 12 |
+
+- Kui riba oleks tühi (nt uus kasutaja ilma history'ta), riba **peidetakse täielikult**.
+- Cursor-karusellid (sama UI pattern nagu §3.5.4, aga väiksemad kaardid).
+- `currentL1 === handle` (st kasutaja on juba L1-l) ei muuda midagi — päring on siiski `taxonomy.ancestors = handle`.
+
+#### 3.5.8 Andmeallikas (kokkuvõte)
+
+Lehe rendereerimiseks tarvis olev info tuleb **ühest** SSoT'ist + Meili päringutest. Mitte kunagi Medusa `parent_category`-walk, mitte kunagi hardcoded nimestik, mitte kunagi VEVOR array.
+
+| Vajadus | Allikas |
+|---------|---------|
+| Sõlme metadata (nimi, slug, ikoon, image_path) | `category-tree.generated.json` → `getNode(handle)` |
+| Breadcrumb | `getBreadcrumbTrail(handle)` |
+| Karuselli lapsed | `getChildren(handle)` + Meili fact count (tühjade filter) |
+| Filtrite facet-list | Meili `search(..., { facets: [...] })` sama päringust |
+| Product grid | Meili `search` + `filter: taxonomy.ancestors = handle` |
+| L1 root history/deals/best sellers | `getL1Ancestor(handle)` + Meili päringud |
+
+#### 3.5.9 Invariants (täiendab §8)
+
+| ID | Invariant | Check |
+|----|-----------|-------|
+| INV-24 | Kõigil 22 L1 URL-il `getBreadcrumbTrail()` lõppeb kategooriaga, mitte tootega | smoke-test |
+| INV-25 | Kategoorialeht ei kuva karussellil 0-toote alamsõlmi | UI smoke + Meili count diff |
+| INV-26 | Iga karuselli-kaardil on `image_path` resolveeritud (direct/alias/none ≠ missing) | INV-20 laiendus |
+| INV-27 | Breadcrumb `trail.length === depth(handle) + 1` iga URL-i kohta (22 L1 smoke) | JSON compare |
+| INV-28 | Product grid päring kasutab `taxonomy.ancestors`, mitte `category_handles` (vältimaks legacy drift) | source scan CI |
+| INV-29 | 4-veeruline grid ≥1280px viewport'il (Playwright visual invariant) | E2E regression |
 
 **Marsruut deduplication:** `/haru/{slug}` 301 → `/kategooriad/{slug}` (middleware.ts, spec F4.8). `/haru/` route fail jääb alles ainult tagasiühilduvuseks; kogu UI ja sisemised lingid kasutavad `/kategooriad/`.
 
 **Esilehe (HomepageShell) lingid** käivad samuti SSoT'ist (`getChildren(L1.slug)`), mitte hardcoded `subSlugs[]` massiividest. See garanteerib et igal homepage'i L2 lingil on tegelik DB L2 vaste.
 
-**Põhjus miks see ei olnud algselt §3-s:** Faas 1-5 keskendusid andmete konsolidatsioonile (DB seosed, Meili facetid, vertikaalid). UX eeldas et `/kategooriad/[handle]/page.tsx` on juba terve, aga see leht oli tegelikult MVP dump-leht ilma hierarhia tugiteta. Avastatud 2026-04-18 öösel kasutaja screenshot'iga kus L2 link viis 2-toote dump-lehele. Parandus: `storefront/lib/category-tree.ts` + `gen-category-tree.mjs` (SSoT YAML → JSON snapshot) + `kategooriad/[handle]/page.tsx` ümber-juhtmestik.
+**Põhjus miks see ei olnud algselt §3-s:** Faas 1-5 keskendusid andmete konsolidatsioonile (DB seosed, Meili facetid, vertikaalid). UX eeldas et `/kategooriad/[handle]/page.tsx` on juba terve, aga see leht oli tegelikult MVP dump-leht ilma hierarhia tugiteta. Avastatud 2026-04-18 öösel kasutaja screenshot'iga, kus L2 link viis 2-toote dump-lehele. Parandus: `storefront/lib/category-tree.ts` + `gen-category-tree.mjs` (SSoT YAML → JSON snapshot) + `kategooriad/[handle]/page.tsx` ümber-juhtmestik. **Post-Faas 5b audit (2026-04-18 öö, kasutaja QA):** 10/10 linki ei teinud õiget asja → seetõttu kirjutatud §3.5 täielikult lahti (§3.5.0–§3.5.9).
+
+### 3.6 MegaMenu (lõplik, N-level SSoT)
+
+| Nõue | Detail |
+|------|--------|
+| **Sügavus** | **L1 kuni Ln** — rekursiivne drill. Mitte ainult L2. Iga sõlm, millel on lapsi (≥1 toode), saab sublevel'i. |
+| **Pildid** | **Alates L2-st kuvatakse iga kategooria pilt** (`image_path` SSoT + alias + L1-SVG fallback). L1 ikoonid on SVG (header compact). |
+| **Käitumine** | Hover/focus L1-l → L2 paneel. Hover L2-l → L3 paneel kõrvale. Jne. Mobiilis accordion-drawer samas loogikas. |
+| **Sisu** | Ainult sõlmed, mille tootearv ≥1 (tühjad peidetakse, vastab §3.5.4 reeglile). |
+| **Allikas** | `category-tree.generated.json` → `getChildren(currentHandle)` rekursiivselt. Mitte `subSlugs[]`. Mitte `THUMB_OVERRIDES`. Mitte `/api/header-categories`. |
+| **Eelrenderdatud** | Kogu menüü-puu serialiseeritakse build-time `category-tree.generated.json`-ist — runtime API fetchi pole. |
+| **Klaviatuur / A11y** | `role="menubar"`, arrow keys nav, Escape sulgeb, focus-trap. |
+
+Implementeeritud Faas 5b F5b.5-s (commit `b06e8b0`). Spec-formaliseering lisatud siia, et invariant INV-30 saaks "MegaMenu drillib Ln-ni" automaatselt kontrollida.
 
 ---
 
@@ -603,6 +741,14 @@ CREATE INDEX idx_slug_redirect_to ON slug_redirect(to_slug);
 | INV-21 | Every `image_path` file exists on disk | Faas 5b |
 | INV-22 | `taxonomy-image-aliases.yaml` targets all valid | Faas 5b |
 | INV-23 | Parent-handle chains end at an L1 root, no cycles | Faas 5b |
+| INV-24 | Kõigi 22 L1 URL-i breadcrumb lõppeb kategooriaga, mitte tootega | smoke + JSON diff |
+| INV-25 | Kategoorialeht ei näita karussellil 0-tootearvuga alamsõlme | UI smoke + Meili count |
+| INV-26 | Iga karuselli-kaart resolveerib `image_path` (ei missing) | INV-20 laiendus |
+| INV-27 | Breadcrumb trail.length === depth(handle)+1 iga URL-i kohta | Playwright + JSON |
+| INV-28 | Product grid kasutab `taxonomy.ancestors`, mitte `category_handles` | CI source scan |
+| INV-29 | 4-veeruline grid ≥1280px viewport'il | Playwright visual |
+| INV-30 | MegaMenu drillib L1→Ln (mitte ainult L2) | Playwright keyboard nav |
+| INV-31 | VEVOR slug/name ei leki kunagi UI-sse (kategoorialehed, breadcrumb, karusell) | CI grep scan |
 
 ### 8.3 Dashboard
 
@@ -814,6 +960,31 @@ ES subdirectory (`/es/`) esialgu, mitte eraldi domeen. Migreerida `xlmarket.es`-
 
 **Exit criteria:** Kõik 19 invariants rohelised. Google Rich Results Test pass 10 juhuslikul PDP-l.
 
+### Faas 5c — Category page UX täielik implementatsioon (2026-04-18+, kasutaja QA-põhine)
+
+**Eesmärk:** kasutaja audit leidis, et 10/10 linki ei tööta õigesti. §3.5 (uus) defineerib täpse layouti. See faas viib selle tootmisse convergence-loopiga (§15 Santa Method laiendus).
+
+- [ ] F5c.1: `storefront/lib/category-tree.ts` — lisa `getChildrenWithProductCounts(handle)` (Meili batch facet-count)
+- [ ] F5c.2: `storefront/components/category/SubcategoryCarousel.tsx` — full-width horisontaalne karusell, pildid kohustuslikud, snap-to-item, keyboard a11y
+- [ ] F5c.3: `storefront/app/[locale]/kategooriad/[handle]/page.tsx` — layout ümber spec §3.5.1 järgi (breadcrumb → karusell → H1 → sidebar+grid → history/deals/best-sellers)
+- [ ] F5c.4: Filter sidebar — adaptiivsed facetid ainult, vasak veerg; alamkategooria-filter **eemaldatakse** kui karusell katab sama tasme
+- [ ] F5c.5: Product grid — 4 veergu ≥1280px (CSS grid-template-columns: repeat(4, 1fr))
+- [ ] F5c.6: Breadcrumb — kasutab `getBreadcrumbTrail()` SSoT-ist; kõik sõlmed klikitavad; ei kuva toote nime kunagi
+- [ ] F5c.7: Päring — kasutab `taxonomy.ancestors` asemel `category_handles` (migration toote-indekseerimise ajal, §6)
+- [ ] F5c.8: Tühjade peitmine — karusell ei näita 0-tootearvuga sõlmi; L1-ikooni fallback kunagi hüpoteetilise sõlme jaoks
+- [ ] F5c.9: `storefront/components/category/CategoryBottomRibbons.tsx` — History + Deals + Best sellers kolm karusellit, sama L1 seest (`getL1Ancestor(handle)`)
+- [ ] F5c.10: Recently viewed — client-side local-storage hook `useRecentlyViewed()` + ID-list fetch Meili'st
+- [ ] F5c.11: INV-24 kuni INV-31 — kirjuta check-taxonomy-invariants.mjs laiendused + 22 L1 Playwright smoke-suite
+- [ ] F5c.12: E2E — Playwright test iga 22 L1 kohta: karusell kuvab, klikk drillib, breadcrumb kasvab, tagasi klikk lühendab
+- [ ] F5c.13: MegaMenu — veenda, et L1→Ln drill töötab (Faas 5b juba tegi, aga INV-30 smoke validation)
+- [ ] F5c.14: Santa convergence loop (§15) — ebakõlad liiguvad tagasi algusesse, seni kuni kõik 0
+
+**Exit criteria:**
+- 23 vana + 8 uut invariants (kokku 31) kõik green
+- Playwright smoke 22/22 L1 kohta pass (4-col grid, karusell, breadcrumb, bottom ribbons)
+- Santa-method dual review 2 korda järjest PASS (§15)
+- Kasutaja (Risto) manuaalse 10-lingi sanity-testi kõik 10/10 õiged
+
 ### Faas 6 — Laienemine (6-8 nädalat)
 
 **Eesmärk:** ülejäänud 21 vertikaali (3-4 per nädal), ES i18n valmidus, L3 kaetus kus >50 toodet.
@@ -918,6 +1089,115 @@ ES subdirectory (`/es/`) esialgu, mitte eraldi domeen. Migreerida `xlmarket.es`-
 
 ---
 
-## 15. Kokkuvõte (üks lõik)
+## 15. Multi-agent workflow + convergence loop (Faas 5c täideviimiseks)
 
-Säilita v3 22-L1 struktuurselt, tee `taxonomy.yaml`-st üks tõe allikas ja genereeri sealt kõik: DB, `branches.ts`, sitemap, Meili indeks, redirect'id. Paiguta iga toode täpselt ühte kanoonilisse rada 8-etapilise determineerituga resolveri kaudu (override → path → keyword → NN → [later LLM] → review bucket), logi kõik `categorization_audit`-i. Ehita paralleelne vertikaalide kiht (`/alustajale/{vertikaal}`) rule-based `vertical_collection` tabeli peal — tooteid ei dubleerita, lihtsalt päringud eri nurgast. Redirect'id tabelist, mitte käsitsi config'ist. Iga invariant CI/cron-iga kontrollitud, rikkumised Slack'i. Käivita 3 pilot vertikaali (kohvik, haljastus, autopesula), veendu et muster töötab, skaleeri ülejäänud 21-le. 6 faasi, iga iseseisvalt revertitav. 3 kuu pärast: 8+ vertikaali live, top-3 Google rank 3+ L1 keyword'ile, review queue <100 stabiilne.
+Kasutaja nõudis laia meeskonda ja loopi, mis saadab workflow algusesse tagasi, kuni puudusi enam pole. See §15 defineerib selle orkestratsiooni.
+
+### 15.1 Rollid ja agendid (7 rolli, paralleelsed kus võimalik)
+
+| # | Roll | Agent (subagent_type) | Vastutus |
+|---|------|------------------------|----------|
+| 1 | **Architect** | `code-architect` | Defineerib struktuuri: mis faile luua, andmevoog §3.5 põhjal, interface'id |
+| 2 | **Code Explorer** | `code-explorer` | Mappeerib olemasoleva koodi (category-tree, MegaMenu, page.tsx, Meili), väldib rekonstrueerimist |
+| 3 | **Implementer** | `general-purpose` (2 paralleelselt, eri skoop) | Kirjutab F5c.1–F5c.10 vastavalt architect'i blueprint-ile |
+| 4 | **Frontend Reviewer** | `typescript-reviewer` + `frontend-design` skill | Vaatab UI/UX, spec §3.5 vastavus, 4-col grid, karuselli pildid, a11y |
+| 5 | **Functional Reviewer** | `code-reviewer` | Äriloogika, Meili päringud, SSoT-põhisus, INV-28 (pole VEVOR lekkeid) |
+| 6 | **E2E Tester** | `e2e-runner` | Playwright smoke: 22 L1 URL-i, karusell, breadcrumb, drill, bottom ribbons |
+| 7 | **Invariants Tester** | `general-purpose` | Käivitab `check-taxonomy-invariants.mjs`, kõik 31 INV peavad green olema |
+| 8 | **Gatekeeper** | `gatekeeper` | Lõplik kvaliteedikontroll enne "Done". Blokeerib kui kasvõi üks INV punane või review leidis CRITICAL/HIGH |
+
+### 15.2 Convergence loop (Santa Method laiendus)
+
+```
+┌───────────────────────────────────────────────────────────────┐
+│ ROUND N (start N=1)                                            │
+├───────────────────────────────────────────────────────────────┤
+│                                                                 │
+│  Step A — ARCHITECT                                            │
+│    code-architect reads §3.5 + §15.3 + olemasolev kood        │
+│    → blueprint.md (faili-list, interfaces, data flow)          │
+│                                                                 │
+│  Step B — EXPLORE (parallel with A, feeds A)                   │
+│    code-explorer mappib category-tree, MegaMenu, page.tsx      │
+│    → inventory.md (mis on olemas, mis vaja muuta)              │
+│                                                                 │
+│  Step C — IMPLEMENT                                            │
+│    2× general-purpose implementer paralleelselt:               │
+│      - Implementer-A: F5c.1–F5c.6 (andmed + karusell + grid)  │
+│      - Implementer-B: F5c.7–F5c.10 (päring, ribbons, history) │
+│                                                                 │
+│  Step D — BUILD                                                │
+│    npm run build storefront'is; kui fail → Implementer fix     │
+│                                                                 │
+│  Step E — DUAL REVIEW (paralleelne, isolated context)          │
+│    Reviewer-UI (typescript-reviewer + frontend-design):        │
+│      Rubric: §3.5 + §3.6 + design-quality.md                   │
+│    Reviewer-Func (code-reviewer):                              │
+│      Rubric: §3.5.8 (SSoT), §3.5.9 INV-24..31, Meili query    │
+│                                                                 │
+│  Step F — INVARIANT + E2E                                      │
+│    Invariants-Tester: node scripts/check-taxonomy-invariants   │
+│    E2E: Playwright smoke 22 L1 URL                             │
+│                                                                 │
+│  Step G — GATEKEEPER VERDICT                                   │
+│    Sisend: 2 review-i + invariants + E2E                       │
+│                                                                 │
+│    ALL of:                                                     │
+│      - Reviewer-UI: PASS                                       │
+│      - Reviewer-Func: PASS                                     │
+│      - Invariants: 31/31 GREEN                                 │
+│      - E2E: 22/22 L1 pass                                      │
+│      - Zero CRITICAL, zero HIGH                                │
+│                                                                 │
+│    ⇒ NICE → deploy + commit + PR                               │
+│                                                                 │
+│    Muidu → NAUGHTY → kogu leidmised → Step A (Round N+1)       │
+│                                                                 │
+└───────────────────────────────────────────────────────────────┘
+
+Max iterations: 5. Kui 5-ga mitte convergent → eskaleeri Ristole.
+Iga round kasutab **värskeid review-agente** (context isolation).
+```
+
+### 15.3 Review rubrics (igal reviewer'il identne)
+
+**UI rubric (Reviewer-UI):**
+- [ ] Breadcrumb vastab §3.5.3 (Avaleht › L1 › … › Ln, ei toote nime)
+- [ ] Karusell full-width, pildid igal kaardil, tühjad peidetud (§3.5.4)
+- [ ] Filtrid vasakus veerus, adaptiivsed (§3.5.5)
+- [ ] Grid 4 veergu ≥1280px (§3.5.6)
+- [ ] Bottom ribbons: history + deals + best sellers sama L1 seest (§3.5.7)
+- [ ] MegaMenu drillib Ln-ni, mitte ainult L2 (§3.6)
+- [ ] Ei kasuta VEVOR nimesid/slug'e UI-s (INV-31)
+- [ ] Design-quality: pole generic template look (web/design-quality.md)
+
+**Functional rubric (Reviewer-Func):**
+- [ ] Ainus SSoT: `category-tree.generated.json` (§3.5.8). Ei Medusa parent walk. Ei hardcoded list.
+- [ ] Meili päring kasutab `taxonomy.ancestors` (§3.5.6, INV-28)
+- [ ] 0-toote alamsõlmed filtreeritakse karuselliast välja (§3.5.4, INV-25)
+- [ ] `getL1Ancestor()` kasutusel bottom ribbons jaoks (§3.5.7)
+- [ ] Build edukas, TypeScript types ok
+- [ ] Invariants INV-24..31 kirjutatud `check-taxonomy-invariants.mjs`-i
+- [ ] Recently-viewed elab localStorage'is, mitte cookies (§3.5.7)
+
+### 15.4 Orchestration command
+
+XL (orchestrator) käivitab ühe käsuga:
+
+```
+invoke santa-method with spec=§3.5+§3.6+§15.3, rounds_max=5
+```
+
+Iga round logib Sleak `#xl`-i digesti: "Round N, issues: X, converged: no/yes".
+
+### 15.5 Stop conditions
+
+- **Convergence (NICE):** kõik 4 sisendit PASS 1 roundis järjest.
+- **Escalation:** 5 rounds ei convergent → Slack `@risto` + Huly issue (blockers list).
+- **Emergency halt:** Risto sõnum "STOP" → kogu loop peatub, state commit'itakse WIP-branch'i.
+
+---
+
+## 16. Kokkuvõte (üks lõik)
+
+Säilita v3 22-L1 struktuurselt, tee `taxonomy.yaml`-st üks ainus tõe allikas (portaalis on täpselt üks taksonoomia; VEVOR oma portaali ei tooda) ja genereeri sealt kõik: DB, `branches.ts`, sitemap, Meili indeks, redirect'id, MegaMenu (L1→Ln piltidega), kategooria-leht (breadcrumb + full-width alamkat-karusell + vasakul filtrid + 4-veeruline grid + history/deals/best-sellers L1 seest). Paiguta iga toode täpselt ühte kanoonilisse rada 8-etapilise determineerituga resolveri kaudu (override → path → keyword → NN → [later LLM] → review bucket), logi kõik `categorization_audit`-i. Ehita paralleelne vertikaalide kiht (`/alustajale/{vertikaal}`) rule-based `vertical_collection` tabeli peal — tooteid ei dubleerita, lihtsalt päringud eri nurgast. Redirect'id tabelist, mitte käsitsi config'ist. Iga invariant CI/cron-iga kontrollitud, rikkumised Slack'i. Käivita 3 pilot vertikaali (kohvik, haljastus, autopesula), veendu et muster töötab, skaleeri ülejäänud 21-le. 6 faasi, iga iseseisvalt revertitav. 3 kuu pärast: 8+ vertikaali live, top-3 Google rank 3+ L1 keyword'ile, review queue <100 stabiilne.
