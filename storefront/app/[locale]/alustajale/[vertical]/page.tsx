@@ -56,7 +56,7 @@ export default async function VerticalPage(
     ...v.kits.map((kit) => getKitItemProducts(kit, locale)),
   ])
 
-  // JSON-LD for FAQ (SEO)
+  // JSON-LD (SEO)
   const faqJsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -66,14 +66,44 @@ export default async function VerticalPage(
       acceptedAnswer: { "@type": "Answer", text: f.a_et },
     })),
   }
+  const collectionJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: loc.name,
+    description: loc.description,
+    url: `https://xlmarket.store/${locale}/alustajale/${vertical}`,
+    mainEntity: {
+      "@type": "ItemList",
+      numberOfItems: products.length,
+      itemListElement: products.slice(0, 12).map((p, i) => ({
+        "@type": "ListItem",
+        position: i + 1,
+        url: `https://xlmarket.store/${locale}/toode/${p.handle}`,
+        name: p.title,
+      })),
+    },
+    provider: {
+      "@type": "Organization",
+      name: "XLMARKET",
+      url: "https://xlmarket.store",
+    },
+  }
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: locale === "et" ? "Avaleht" : "Home", item: `https://xlmarket.store/${locale}` },
+      { "@type": "ListItem", position: 2, name: locale === "et" ? "Alustajale" : "Getting Started", item: `https://xlmarket.store/${locale}/alustajale` },
+      { "@type": "ListItem", position: 3, name: loc.name, item: `https://xlmarket.store/${locale}/alustajale/${vertical}` },
+    ],
+  }
 
   return (
     <div>
       {/* JSON-LD */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
-      />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
 
       {/* Hero */}
       <section

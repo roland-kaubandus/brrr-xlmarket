@@ -6,7 +6,7 @@ const defaultLocale = 'et'
 
 // Paths that should NOT be locale-prefixed
 const PUBLIC_FILE = /\.(.*)$/
-const EXCLUDED = ['/api/', '/_next/', '/favicon', '/images/', '/media/', '/og-image', '/robots', '/sitemap']
+const EXCLUDED = ['/api/', '/_next/', '/favicon', '/images/', '/media/', '/og-image', '/robots', '/sitemap', '/xl-admin']
 
 // Category URL segments where slug_redirect applies.
 // Extend if new category URL prefixes are introduced.

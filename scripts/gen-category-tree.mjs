@@ -81,25 +81,26 @@ function loadThumbFiles() {
 }
 
 function pickImage(handle, aliasHint, legacyKeys, thumbFiles) {
+  // Only accept keys that are BOTH in legacy map AND have a file on disk
+  // (or just have a file on disk, if legacy map is absent). This prevents
+  // pointers to non-existent files, which is what INV-21 catches.
+  const exists = (key) => thumbFiles.has(key)
+
   // 1. direct match on disk
-  if (thumbFiles.has(handle)) {
-    return { image_path: `/cat-thumbs/${handle}.webp`, image_source: "direct" }
-  }
-  if (legacyKeys.has(handle)) {
+  if (exists(handle)) {
     return { image_path: `/cat-thumbs/${handle}.webp`, image_source: "direct" }
   }
 
   // 2. explicit alias from yaml
-  if (aliasHint && (thumbFiles.has(aliasHint) || legacyKeys.has(aliasHint))) {
+  if (aliasHint && exists(aliasHint)) {
     return { image_path: `/cat-thumbs/${aliasHint}.webp`, image_source: "alias" }
   }
 
-  // 3. fuzzy single-hit match
+  // 3. fuzzy single-hit match (only against files actually on disk)
   const words = handle.split("-").filter((w) => w.length >= 4)
-  if (words.length > 0) {
+  if (words.length > 0 && thumbFiles.size > 0) {
     const candidates = []
-    const pool = thumbFiles.size > 0 ? thumbFiles : legacyKeys
-    for (const k of pool) {
+    for (const k of thumbFiles) {
       if (words.every((w) => k.includes(w))) candidates.push(k)
     }
     if (candidates.length === 1) {
@@ -107,6 +108,8 @@ function pickImage(handle, aliasHint, legacyKeys, thumbFiles) {
     }
   }
 
+  // Suppress unused param lint
+  void legacyKeys
   return { image_path: null, image_source: "none" }
 }
 
@@ -139,6 +142,8 @@ function buildTree(doc) {
         level: 2,
         parent_handle: l1Handle,
         child_handles: l3Handles,
+        description_et: l2.description_et || null,
+        description_en: l2.description_en || null,
         ...l2Img,
       })
 
@@ -170,6 +175,10 @@ function buildTree(doc) {
       level: 1,
       parent_handle: null,
       child_handles: l2Handles,
+      description_et: l1.description_et || null,
+      description_en: l1.description_en || null,
+      tagline_et: l1.tagline_et || null,
+      tagline_en: l1.tagline_en || null,
       ...l1Img,
     })
   }
@@ -210,8 +219,12 @@ function main() {
   const json = JSON.stringify(tree, null, 2) + "\n"
 
   if (process.argv.includes("--check")) {
-    const existing = readFileSync(OUT_PATH, "utf8")
-    if (existing !== json) {
+    // Compare structural content only (ignore generated_at timestamp).
+    const existingRaw = readFileSync(OUT_PATH, "utf8")
+    const existing = JSON.parse(existingRaw)
+    const { generated_at: _a, ...existingCore } = existing
+    const { generated_at: _b, ...generatedCore } = tree
+    if (JSON.stringify(existingCore) !== JSON.stringify(generatedCore)) {
       console.error("DRIFT: " + OUT_PATH + " out of sync with " + YAML_PATH)
       process.exit(1)
     }

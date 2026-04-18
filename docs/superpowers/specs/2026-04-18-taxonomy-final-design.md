@@ -599,12 +599,18 @@ CREATE INDEX idx_slug_redirect_to ON slug_redirect(to_slug);
 | INV-17 | `vertical_collection` materialization ≤ 26h old | `materialize-verticals.mjs` SLA |
 | INV-18 | `needs-review-bucket` size <500 (warn); <2000 (alert) | SQL |
 | INV-19 | Unmapped VEVOR path count last import ≤10 new | diff `imports/<ts>/summary.json` |
+| INV-20 | 100% v3 nodes have resolvable `image_path` | Faas 5b |
+| INV-21 | Every `image_path` file exists on disk | Faas 5b |
+| INV-22 | `taxonomy-image-aliases.yaml` targets all valid | Faas 5b |
+| INV-23 | Parent-handle chains end at an L1 root, no cycles | Faas 5b |
 
 ### 8.3 Dashboard
 
-`/admin/taxonomy-health` renders latest row from `monitoring.taxonomy_health`. Green on all-pass. Tarmo vaatab igal hommikul.
+`/xl-admin/taxonomy-health` renders live invariant results via `scripts/check-taxonomy-invariants.mjs --json`. Green on all-pass. Tarmo vaatab igal hommikul.
 
 Alerts posts to `#xl` Slack with rule ID + offending rows. Repeat failures of same ID → auto-Huly-issue.
+
+Runbook per invariant: [docs/runbooks/taxonomy-invariant-failures.md](../../runbooks/taxonomy-invariant-failures.md).
 
 ---
 
@@ -780,15 +786,31 @@ ES subdirectory (`/es/`) esialgu, mitte eraldi domeen. Migreerida `xlmarket.es`-
 
 **Eesmärk:** JSON-LD kõigil lehetüüpidel + invariants live + health dashboard.
 
-- [ ] F5.1: Product JSON-LD `/toode/[handle]` (14 841 toodet saavad rich results eligible'iks)
-- [ ] F5.2: CollectionPage + BreadcrumbList `/kategooriad/[handle]`
-- [ ] F5.3: CollectionPage + ItemList `/alustajale/[vertical]`
-- [ ] F5.4: WebSite + SearchAction homepage'il
-- [ ] F5.5: Meta descriptions dünaamiliselt per L1/L2
-- [ ] F5.6: `monitoring.taxonomy_health` tabel loo + 19 invariant checker
-- [ ] F5.7: `/admin/taxonomy-health` dashboard (green/red rida per INV)
-- [ ] F5.8: Slack `#xl` alerting per failing INV
-- [ ] F5.9: Runbook: `docs/runbooks/taxonomy-invariant-failures.md` — "mis teha kui INV-XX kukub"
+- [x] F5.1: Product JSON-LD `/toode/[handle]` (sku + hasMerchantReturnPolicy + shippingDetails)
+- [x] F5.2: CollectionPage + BreadcrumbList `/kategooriad/[handle]`
+- [x] F5.3: CollectionPage + ItemList `/alustajale/[vertical]`
+- [x] F5.4: WebSite + SearchAction homepage'il
+- [x] F5.5: Meta descriptions dünaamiliselt per L1/L2 (taxonomy.yaml description_et/en)
+- [x] F5.6: 23 invariant checker `scripts/check-taxonomy-invariants.mjs` (CLI + --json output)
+- [x] F5.7: `/xl-admin/taxonomy-health` dashboard (live re-run, green/red rida per INV)
+- [ ] F5.8: Slack `#xl` alerting per failing INV (deferred — hook when ops-cron wired)
+- [x] F5.9: Runbook: `docs/runbooks/taxonomy-invariant-failures.md` — "mis teha kui INV-XX kukub"
+
+### Faas 5b — Category UX + SSoT enforcement (2026-04-18 õhtu)
+
+**Eesmärk:** kasutaja raporteeritud 4 drift-punkti (MegaMenu L2-only, L1 layout, breadcrumb drift, pildid kadunud) — kõik taandusid ühele juurpõhjusele: 3 paralleelset andmeallikat. Fix: ainult `category-tree.generated.json` loeb midagi.
+
+- [x] F5b.1: `gen-category-tree.mjs` laiendus — `image_path` + `image_source` iga sõlme kohta, resolveerimine direct→alias→fuzzy→none
+- [x] F5b.2: `backend/src/data/taxonomy-image-aliases.yaml` — manuaalne editorial image map v3 handle → legacy slug. 176/176 kate
+- [x] F5b.3: `storefront/lib/category-tree.ts` laiendus — `getL1Ancestor`, `getBreadcrumbTrail`, `firstKnownHandle` helpers
+- [x] F5b.4: `storefront/components/CategoryThumb.tsx` — ühtne thumb-komponent (image_path → SVG L1-ikooni fallback)
+- [x] F5b.5: MegaMenu täielikult ümber — SSoT-põhine N-level rekursioon, eemaldatud subSlugs + THUMB_OVERRIDES + /api/header-categories fetch
+- [x] F5b.6: Kategoorialeht layout — subcategory grid viidud main-veergu (spec §3.5), filter sidebar sticky vasakul
+- [x] F5b.7: Tooteleht breadcrumb SSoT-ist — `firstKnownHandle(meili.category_handles ∪ medusa.categories)` + `getBreadcrumbTrail()`, eemaldatud Medusa `parent_category` walk
+- [x] F5b.8: HomepageShell L2 thumb lookup — `child.image_path` otse, mitte category-images.json
+- [x] F5b.9: INV-20/21/22/23 — image coverage + file existence + alias integrity + parent chain validity
+
+**Exit criteria:** kõik 23 invariants green, MegaMenu avaneb L3-ni piltidega, category page `/kategooriad/{l1}` näitab L2-grid + filter + tooted kõrvuti, tooteleht breadcrumb lõppeb alati v3 L1-s.
 
 **Exit criteria:** Kõik 19 invariants rohelised. Google Rich Results Test pass 10 juhuslikul PDP-l.
 

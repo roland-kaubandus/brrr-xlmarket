@@ -93,7 +93,17 @@ pm2 reload xlmarket-storefront
 - `storefront/app/[locale]/toode/[handle]/page.tsx` — Toote detail (kerge SSR shell)
 - `storefront/app/[locale]/toode/[handle]/ProductPageClient.tsx` — Bridge: fetchib API, renderdab client-side
 - `storefront/app/[locale]/toode/[handle]/ProductContent.tsx` — Toote UI (client-only)
-- `storefront/app/[locale]/haru/[handle]/page.tsx` — Kategooria leht
+- `storefront/app/[locale]/kategooriad/[handle]/page.tsx` — Kategooria leht (L1/L2/L3, spec §3.5)
+- `storefront/app/xl-admin/taxonomy-health/page.tsx` — Live invariants dashboard (F5.7)
+- `storefront/app/xl-admin/categorization-queue/page.tsx` — Review queue UI (F3.5)
+- `storefront/components/CategoryThumb.tsx` — Ühtne kategooria pilt/SVG fallback (F5b)
+- `storefront/components/MegaMenu.tsx` — N-level SSoT drill (F5b)
+- `storefront/lib/category-tree.ts` — SSoT helpers (getBreadcrumbTrail, firstKnownHandle, getL1Ancestor)
+- `backend/src/data/taxonomy.yaml` — SSoT (F2.1)
+- `backend/src/data/taxonomy-image-aliases.yaml` — Image alias map (F5b, 176/176 kate)
+- `scripts/gen-category-tree.mjs` — YAML → JSON snapshot (`--check`, `--report`)
+- `scripts/check-taxonomy-invariants.mjs` — 23 invariants, `--json` CI mode
+- `docs/runbooks/taxonomy-invariant-failures.md` — per-INV remediation steps
 - `storefront/lib/branches.ts` — Branch definitsioonid
 - `storefront/ecosystem.config.js` — PM2 cluster config (5 workerit)
 - `nginx/microcache.conf` — nginx microcache konfiguratsioon

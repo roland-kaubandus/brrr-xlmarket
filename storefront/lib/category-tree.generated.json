@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-18T10:34:50.475Z",
+  "generated_at": "2026-04-18T10:50:01.301Z",
   "nodes": {
     "commercial-refrigeration": {
       "handle": "commercial-refrigeration",
@@ -13,6 +13,8 @@
         "display-cases",
         "bain-maries"
       ],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/refrigerators.webp",
       "image_source": "alias"
     },
@@ -69,6 +71,8 @@
         "deep-fryers",
         "induction-cookers"
       ],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/commercial-ovens.webp",
       "image_source": "alias"
     },
@@ -129,6 +133,8 @@
       "level": 2,
       "parent_handle": "horeca-food-service",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/food-preparation.webp",
       "image_source": "alias"
     },
@@ -144,6 +150,8 @@
         "blenders",
         "juicers"
       ],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/beverage-dispensers.webp",
       "image_source": "alias"
     },
@@ -194,6 +202,8 @@
       "level": 2,
       "parent_handle": "horeca-food-service",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/commercial-sinks.webp",
       "image_source": "alias"
     },
@@ -204,6 +214,8 @@
       "level": 2,
       "parent_handle": "horeca-food-service",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/restaurant-shelving.webp",
       "image_source": "alias"
     },
@@ -214,6 +226,8 @@
       "level": 2,
       "parent_handle": "horeca-food-service",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/bar-furniture.webp",
       "image_source": "alias"
     },
@@ -224,6 +238,8 @@
       "level": 2,
       "parent_handle": "horeca-food-service",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/kitchen.webp",
       "image_source": "alias"
     },
@@ -243,6 +259,10 @@
         "restaurant-furniture",
         "kitchen-hvac-air-curtains"
       ],
+      "description_et": "Roostevaba terasest tööpinnad, kuumseadmed, külmikud, cateringitehnika ja serveerimisvahendid professionaalsele köögile ja toitlustusettevõttele.",
+      "description_en": null,
+      "tagline_et": "Professionaalne köök algab õigest varustusest",
+      "tagline_en": "The professional kitchen starts with the right equipment",
       "image_path": "/cat-thumbs/commercial-ovens.webp",
       "image_source": "alias"
     },
@@ -253,6 +273,8 @@
       "level": 2,
       "parent_handle": "laser-cnc-digital-fabrication",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/co2-laser-engraving-machine.webp",
       "image_source": "alias"
     },
@@ -263,6 +285,8 @@
       "level": 2,
       "parent_handle": "laser-cnc-digital-fabrication",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/two-axis-diode-laser-engraving-machine.webp",
       "image_source": "alias"
     },
@@ -273,6 +297,8 @@
       "level": 2,
       "parent_handle": "laser-cnc-digital-fabrication",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/cnc-milling-cutter.webp",
       "image_source": "alias"
     },
@@ -283,6 +309,8 @@
       "level": 2,
       "parent_handle": "laser-cnc-digital-fabrication",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/cnc-milling-cutter.webp",
       "image_source": "alias"
     },
@@ -297,6 +325,8 @@
         "honeycomb-tables",
         "cnc-spindles"
       ],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/laser-engraving-machine-accessories.webp",
       "image_source": "fuzzy"
     },
@@ -343,6 +373,10 @@
         "3d-printers",
         "laser-cnc-accessories"
       ],
+      "description_et": "Lasergraveerijad, CNC-freesid, 3D-printerid ja digitaaltootmise seadmed täppistöödeks ja prototüüpimiseks.",
+      "description_en": null,
+      "tagline_et": "Täppistootmine uuel tasemel",
+      "tagline_en": "Precision manufacturing, next level",
       "image_path": "/cat-thumbs/co2-laser-engraving-machine.webp",
       "image_source": "alias"
     },
@@ -353,6 +387,8 @@
       "level": 2,
       "parent_handle": "welding-metalworking",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/welding-kits.webp",
       "image_source": "alias"
     },
@@ -363,6 +399,8 @@
       "level": 2,
       "parent_handle": "welding-metalworking",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/bench-metal-lathe.webp",
       "image_source": "alias"
     },
@@ -373,6 +411,8 @@
       "level": 2,
       "parent_handle": "welding-metalworking",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/angle-grinder.webp",
       "image_source": "alias"
     },
@@ -383,6 +423,8 @@
       "level": 2,
       "parent_handle": "welding-metalworking",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/hydraulic-pumps.webp",
       "image_source": "alias"
     },
@@ -393,6 +435,8 @@
       "level": 2,
       "parent_handle": "welding-metalworking",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/welding-safety-apparel.webp",
       "image_source": "direct"
     },
@@ -403,6 +447,8 @@
       "level": 2,
       "parent_handle": "welding-metalworking",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/motors-parts.webp",
       "image_source": "alias"
     },
@@ -420,6 +466,10 @@
         "welding-safety-apparel",
         "motors-drives-parts"
       ],
+      "description_et": "Keevitusaparaadid, lõikurid, painutuspingid ja metallitöötluse seadmed. Professionaalsed lahendused metallitöökojale.",
+      "description_en": null,
+      "tagline_et": "Metallist meistritööd",
+      "tagline_en": "Masterwork in metal",
       "image_path": "/cat-thumbs/welding-kits.webp",
       "image_source": "alias"
     },
@@ -430,6 +480,8 @@
       "level": 2,
       "parent_handle": "printing-packaging-signage",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/screen-printing-machine.webp",
       "image_source": "alias"
     },
@@ -440,6 +492,8 @@
       "level": 2,
       "parent_handle": "printing-packaging-signage",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/dough-cutters.webp",
       "image_source": "alias"
     },
@@ -450,6 +504,8 @@
       "level": 2,
       "parent_handle": "printing-packaging-signage",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/continuous-sealing-machines.webp",
       "image_source": "alias"
     },
@@ -460,6 +516,8 @@
       "level": 2,
       "parent_handle": "printing-packaging-signage",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/label-makers.webp",
       "image_source": "alias"
     },
@@ -470,6 +528,8 @@
       "level": 2,
       "parent_handle": "printing-packaging-signage",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/display-frame.webp",
       "image_source": "alias"
     },
@@ -480,6 +540,8 @@
       "level": 2,
       "parent_handle": "printing-packaging-signage",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/electric-paper-cutter.webp",
       "image_source": "alias"
     },
@@ -497,6 +559,10 @@
         "signage-display",
         "paper-document-handling"
       ],
+      "description_et": "Trükimasinad, pakendamisseadmed, vinüülilõikurid ja reklaamtehnika. Professionaalsed lahendused brändingu ja reklaami jaoks.",
+      "description_en": null,
+      "tagline_et": "Sinu bränd, sinu visuaal",
+      "tagline_en": "Your brand, your visual",
       "image_path": "/cat-thumbs/screen-printing-machine.webp",
       "image_source": "alias"
     },
@@ -507,6 +573,8 @@
       "level": 2,
       "parent_handle": "electrical-energy",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/solar-generators.webp",
       "image_source": "alias"
     },
@@ -517,6 +585,8 @@
       "level": 2,
       "parent_handle": "electrical-energy",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/monocrystalline-solar-panel.webp",
       "image_source": "alias"
     },
@@ -527,6 +597,8 @@
       "level": 2,
       "parent_handle": "electrical-energy",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/electrical-hand-tools.webp",
       "image_source": "alias"
     },
@@ -537,6 +609,8 @@
       "level": 2,
       "parent_handle": "electrical-energy",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/electrical-enclosures.webp",
       "image_source": "alias"
     },
@@ -547,6 +621,8 @@
       "level": 2,
       "parent_handle": "electrical-energy",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/commercial-lighting.webp",
       "image_source": "alias"
     },
@@ -557,6 +633,8 @@
       "level": 2,
       "parent_handle": "electrical-energy",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/batteries.webp",
       "image_source": "alias"
     },
@@ -574,6 +652,10 @@
         "commercial-industrial-lighting",
         "batteries-charging"
       ],
+      "description_et": "Generaatorid, inverterid, päikesepaneelid, akud ja elektripaigaldustarvikud. Energialahendused igale vajadusele.",
+      "description_en": null,
+      "tagline_et": "Energia igale vajadusele",
+      "tagline_en": "Power for every need",
       "image_path": "/cat-thumbs/electrical.webp",
       "image_source": "alias"
     },
@@ -584,6 +666,8 @@
       "level": 2,
       "parent_handle": "woodworking-carpentry",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/woodworking-bandsaw.webp",
       "image_source": "alias"
     },
@@ -594,6 +678,8 @@
       "level": 2,
       "parent_handle": "woodworking-carpentry",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/routers-bits-accessories.webp",
       "image_source": "alias"
     },
@@ -604,6 +690,8 @@
       "level": 2,
       "parent_handle": "woodworking-carpentry",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/woodworking-benches.webp",
       "image_source": "alias"
     },
@@ -614,6 +702,8 @@
       "level": 2,
       "parent_handle": "woodworking-carpentry",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/milling-machines-drill-presses.webp",
       "image_source": "alias"
     },
@@ -624,6 +714,8 @@
       "level": 2,
       "parent_handle": "woodworking-carpentry",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/saw-blades.webp",
       "image_source": "alias"
     },
@@ -634,6 +726,8 @@
       "level": 2,
       "parent_handle": "woodworking-carpentry",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/sanding-belts.webp",
       "image_source": "alias"
     },
@@ -651,6 +745,10 @@
         "saw-accessories-blades",
         "finishing-sanding"
       ],
+      "description_et": "Höövlid, saepingid, freesid ja puidutöötlemise seadmed. Kõik vajalik kvaliteetseks tisleritööks ja puusepatöökojale.",
+      "description_en": null,
+      "tagline_et": "Puit väärib parimat töötlust",
+      "tagline_en": "Wood deserves the finest craftsmanship",
       "image_path": "/cat-thumbs/woodworking-benches.webp",
       "image_source": "alias"
     },
@@ -661,6 +759,8 @@
       "level": 2,
       "parent_handle": "construction-building",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/concrete-cement-masonry.webp",
       "image_source": "alias"
     },
@@ -671,6 +771,8 @@
       "level": 2,
       "parent_handle": "construction-building",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/extension-ladders.webp",
       "image_source": "alias"
     },
@@ -681,6 +783,8 @@
       "level": 2,
       "parent_handle": "construction-building",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/roofing.webp",
       "image_source": "alias"
     },
@@ -691,6 +795,8 @@
       "level": 2,
       "parent_handle": "construction-building",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/flooring.webp",
       "image_source": "alias"
     },
@@ -701,6 +807,8 @@
       "level": 2,
       "parent_handle": "construction-building",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/door-hardware.webp",
       "image_source": "alias"
     },
@@ -711,6 +819,8 @@
       "level": 2,
       "parent_handle": "construction-building",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/paint.webp",
       "image_source": "alias"
     },
@@ -728,6 +838,10 @@
         "decking-fencing-hardware",
         "paint-caulk-finishing"
       ],
+      "description_et": "Lõikurid, tõstukid, tellingud, mõõteriistad ja ehituskeemia. Kõik tööriistad ja seadmed ehitusplatsile ning renoveerimistöödeks.",
+      "description_en": null,
+      "tagline_et": "Ehita nagu profi",
+      "tagline_en": "Build like a pro",
       "image_path": "/cat-thumbs/concrete-cement-masonry.webp",
       "image_source": "alias"
     },
@@ -738,6 +852,8 @@
       "level": 2,
       "parent_handle": "cleaning-janitorial",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/floor-care.webp",
       "image_source": "alias"
     },
@@ -748,6 +864,8 @@
       "level": 2,
       "parent_handle": "cleaning-janitorial",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/floor-care.webp",
       "image_source": "alias"
     },
@@ -758,6 +876,8 @@
       "level": 2,
       "parent_handle": "cleaning-janitorial",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/hand-dryers.webp",
       "image_source": "alias"
     },
@@ -768,6 +888,8 @@
       "level": 2,
       "parent_handle": "cleaning-janitorial",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/drum-handling-equipment.webp",
       "image_source": "alias"
     },
@@ -778,6 +900,8 @@
       "level": 2,
       "parent_handle": "cleaning-janitorial",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/vacuum-cleaners.webp",
       "image_source": "alias"
     },
@@ -788,6 +912,8 @@
       "level": 2,
       "parent_handle": "cleaning-janitorial",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/vacuum-cleaners.webp",
       "image_source": "alias"
     },
@@ -805,6 +931,10 @@
         "industrial-vacuums",
         "carpet-extractors"
       ],
+      "description_et": "Professionaalsed survepesured, põrandahooldusmasinad, tolmuimejad ja puhastusvahendid. Tööstuslik puhtus mõistliku hinnaga.",
+      "description_en": null,
+      "tagline_et": "Puhtus on professionaalsuse alus",
+      "tagline_en": "Cleanliness is the foundation of professionalism",
       "image_path": "/cat-thumbs/floor-care.webp",
       "image_source": "alias"
     },
@@ -820,6 +950,8 @@
         "sanders",
         "saws"
       ],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/power-tools.webp",
       "image_source": "direct"
     },
@@ -870,6 +1002,8 @@
       "level": 2,
       "parent_handle": "hand-power-tools",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/hand-tools.webp",
       "image_source": "direct"
     },
@@ -880,6 +1014,8 @@
       "level": 2,
       "parent_handle": "hand-power-tools",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/air-compressors.webp",
       "image_source": "alias"
     },
@@ -890,6 +1026,8 @@
       "level": 2,
       "parent_handle": "hand-power-tools",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/measuring-rods.webp",
       "image_source": "alias"
     },
@@ -900,6 +1038,8 @@
       "level": 2,
       "parent_handle": "hand-power-tools",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/power-tool-accessories.webp",
       "image_source": "direct"
     },
@@ -910,6 +1050,8 @@
       "level": 2,
       "parent_handle": "hand-power-tools",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/tool-chests.webp",
       "image_source": "alias"
     },
@@ -920,6 +1062,8 @@
       "level": 2,
       "parent_handle": "hand-power-tools",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/workbenches.webp",
       "image_source": "direct"
     },
@@ -938,6 +1082,10 @@
         "tool-storage-cases",
         "workbenches"
       ],
+      "description_et": "Akutrellid, lihvmasinad, saed, mutrivõtmed ja muud käsi- ning elektritööriistad igapäevaseks ja professionaalseks kasutamiseks.",
+      "description_en": null,
+      "tagline_et": "Igale tööle õige tööriist",
+      "tagline_en": "The right tool for every job",
       "image_path": "/cat-thumbs/power-tools.webp",
       "image_source": "alias"
     },
@@ -948,6 +1096,8 @@
       "level": 2,
       "parent_handle": "fuel-lubrication-fluid",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/ac-fuel-transfer-pumps.webp",
       "image_source": "alias"
     },
@@ -958,6 +1108,8 @@
       "level": 2,
       "parent_handle": "fuel-lubrication-fluid",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/lubrication-tools.webp",
       "image_source": "fuzzy"
     },
@@ -968,6 +1120,8 @@
       "level": 2,
       "parent_handle": "fuel-lubrication-fluid",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/drum-handling-equipment.webp",
       "image_source": "alias"
     },
@@ -978,6 +1132,8 @@
       "level": 2,
       "parent_handle": "fuel-lubrication-fluid",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/water-pumps.webp",
       "image_source": "alias"
     },
@@ -988,6 +1144,8 @@
       "level": 2,
       "parent_handle": "fuel-lubrication-fluid",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/ac-fuel-transfer-pumps.webp",
       "image_source": "alias"
     },
@@ -998,6 +1156,8 @@
       "level": 2,
       "parent_handle": "fuel-lubrication-fluid",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/ac-fuel-transfer-pumps.webp",
       "image_source": "alias"
     },
@@ -1015,6 +1175,10 @@
         "chemical-transfer",
         "fuel-nozzles"
       ],
+      "description_et": "Kütuseülekande pumbad, määrdepressid, vedelike kogumisseadmed ja mahutid. Turvaline ja efektiivne vedelike käitlemine.",
+      "description_en": null,
+      "tagline_et": "Vedelike käitlemine turvaliselt",
+      "tagline_en": "Fluid management done safely",
       "image_path": "/cat-thumbs/ac-fuel-transfer-pumps.webp",
       "image_source": "alias"
     },
@@ -1025,6 +1189,8 @@
       "level": 2,
       "parent_handle": "outdoor-power-landscaping",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/outdoor-power-equipment.webp",
       "image_source": "direct"
     },
@@ -1035,6 +1201,8 @@
       "level": 2,
       "parent_handle": "outdoor-power-landscaping",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/pressure-washers.webp",
       "image_source": "direct"
     },
@@ -1045,6 +1213,8 @@
       "level": 2,
       "parent_handle": "outdoor-power-landscaping",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/garden-fork.webp",
       "image_source": "alias"
     },
@@ -1055,6 +1225,8 @@
       "level": 2,
       "parent_handle": "outdoor-power-landscaping",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/grill-accessories.webp",
       "image_source": "alias"
     },
@@ -1065,6 +1237,8 @@
       "level": 2,
       "parent_handle": "outdoor-power-landscaping",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/outdoor-heating.webp",
       "image_source": "direct"
     },
@@ -1075,6 +1249,8 @@
       "level": 2,
       "parent_handle": "outdoor-power-landscaping",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/outdoor-decor.webp",
       "image_source": "alias"
     },
@@ -1092,6 +1268,10 @@
         "outdoor-heating",
         "outdoor-decor-structures"
       ],
+      "description_et": "Niidukid, trimmerd, pumpad, kasvuhooned ja maastikuhoolduse seadmed. Professionaalne varustus aia ja haljasalade hoolduseks.",
+      "description_en": null,
+      "tagline_et": "Professionaalne haljastus ja aiandus",
+      "tagline_en": "Professional landscaping and gardening",
       "image_path": "/cat-thumbs/outdoor-power-equipment.webp",
       "image_source": "alias"
     },
@@ -1102,6 +1282,8 @@
       "level": 2,
       "parent_handle": "warehousing-material-handling",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/engine-hoists.webp",
       "image_source": "alias"
     },
@@ -1112,6 +1294,8 @@
       "level": 2,
       "parent_handle": "warehousing-material-handling",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/forklifts-attachments.webp",
       "image_source": "alias"
     },
@@ -1122,6 +1306,8 @@
       "level": 2,
       "parent_handle": "warehousing-material-handling",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/industrial-hand-truck.webp",
       "image_source": "alias"
     },
@@ -1132,6 +1318,8 @@
       "level": 2,
       "parent_handle": "warehousing-material-handling",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/restaurant-shelving.webp",
       "image_source": "alias"
     },
@@ -1142,6 +1330,8 @@
       "level": 2,
       "parent_handle": "warehousing-material-handling",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/workbenches.webp",
       "image_source": "alias"
     },
@@ -1152,6 +1342,8 @@
       "level": 2,
       "parent_handle": "warehousing-material-handling",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/strapping-band.webp",
       "image_source": "alias"
     },
@@ -1169,6 +1361,10 @@
         "workbenches-storage",
         "strapping-chains-securing"
       ],
+      "description_et": "Riiulisüsteemid, tõstukid, kärud ja ladustamisseadmed. Kõik vajalik lao efektiivseks haldamiseks ja materjalide käitlemiseks.",
+      "description_en": null,
+      "tagline_et": "Ladu korras, töö sujub",
+      "tagline_en": "Organized warehouse, smooth operations",
       "image_path": "/cat-thumbs/restaurant-shelving.webp",
       "image_source": "alias"
     },
@@ -1179,6 +1375,8 @@
       "level": 2,
       "parent_handle": "hvac-climate-control",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/air-conditioners.webp",
       "image_source": "alias"
     },
@@ -1189,6 +1387,8 @@
       "level": 2,
       "parent_handle": "hvac-climate-control",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/heaters.webp",
       "image_source": "direct"
     },
@@ -1199,6 +1399,8 @@
       "level": 2,
       "parent_handle": "hvac-climate-control",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/fans.webp",
       "image_source": "alias"
     },
@@ -1209,6 +1411,8 @@
       "level": 2,
       "parent_handle": "hvac-climate-control",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/ducting-venting.webp",
       "image_source": "alias"
     },
@@ -1219,6 +1423,8 @@
       "level": 2,
       "parent_handle": "hvac-climate-control",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/commercial-air-purifiers.webp",
       "image_source": "alias"
     },
@@ -1229,6 +1435,8 @@
       "level": 2,
       "parent_handle": "hvac-climate-control",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/dehumidifiers.webp",
       "image_source": "alias"
     },
@@ -1246,6 +1454,10 @@
         "air-quality-purification",
         "dehumidifiers-evaporative-coolers"
       ],
+      "description_et": "Konditsioneerid, soojuspumbad, ventilaatorid ja õhukvaliteedi seadmed. Mugav sisekliima nii kodus kui kontoris.",
+      "description_en": null,
+      "tagline_et": "Mugav kliima igas ruumis",
+      "tagline_en": "Comfortable climate in every room",
       "image_path": "/cat-thumbs/heaters.webp",
       "image_source": "alias"
     },
@@ -1256,6 +1468,8 @@
       "level": 2,
       "parent_handle": "plumbing-water-systems",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/water-pumps.webp",
       "image_source": "direct"
     },
@@ -1266,6 +1480,8 @@
       "level": 2,
       "parent_handle": "plumbing-water-systems",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/pipe-fittings.webp",
       "image_source": "alias"
     },
@@ -1276,6 +1492,8 @@
       "level": 2,
       "parent_handle": "plumbing-water-systems",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/plumbing-tools.webp",
       "image_source": "direct"
     },
@@ -1286,6 +1504,8 @@
       "level": 2,
       "parent_handle": "plumbing-water-systems",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/water-heaters.webp",
       "image_source": "direct"
     },
@@ -1296,6 +1516,8 @@
       "level": 2,
       "parent_handle": "plumbing-water-systems",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/water-filters.webp",
       "image_source": "alias"
     },
@@ -1306,6 +1528,8 @@
       "level": 2,
       "parent_handle": "plumbing-water-systems",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/bathroom-sinks.webp",
       "image_source": "alias"
     },
@@ -1323,6 +1547,10 @@
         "water-filtration-softening",
         "bathroom-fixtures"
       ],
+      "description_et": "Torupressid, pumpad, filtrid ja torustiku paigaldustarvikud. Professionaalsed lahendused veevarustuse ja kanalisatsiooni jaoks.",
+      "description_en": null,
+      "tagline_et": "Vesi voolab sinna, kuhu vaja",
+      "tagline_en": "Water flows where it's needed",
       "image_path": "/cat-thumbs/plumbing.webp",
       "image_source": "alias"
     },
@@ -1333,6 +1561,8 @@
       "level": 2,
       "parent_handle": "safety-security-workwear",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/disposable-protective-clothing.webp",
       "image_source": "alias"
     },
@@ -1343,6 +1573,8 @@
       "level": 2,
       "parent_handle": "safety-security-workwear",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/safety-equipment.webp",
       "image_source": "alias"
     },
@@ -1353,6 +1585,8 @@
       "level": 2,
       "parent_handle": "safety-security-workwear",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/door-locks.webp",
       "image_source": "alias"
     },
@@ -1363,6 +1597,8 @@
       "level": 2,
       "parent_handle": "safety-security-workwear",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/safety-equipment.webp",
       "image_source": "alias"
     },
@@ -1373,6 +1609,8 @@
       "level": 2,
       "parent_handle": "safety-security-workwear",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/safety-equipment.webp",
       "image_source": "alias"
     },
@@ -1383,6 +1621,8 @@
       "level": 2,
       "parent_handle": "safety-security-workwear",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/safety-equipment.webp",
       "image_source": "alias"
     },
@@ -1400,6 +1640,10 @@
         "work-clothing-outerwear",
         "safety-glasses"
       ],
+      "description_et": "Isikukaitsevahendid, turvavarustus, tööriietus ja ohutustehnika. Kõik vajalik töökoha ohutuse tagamiseks.",
+      "description_en": null,
+      "tagline_et": "Kaitse ennast ja oma meeskonda",
+      "tagline_en": "Protect yourself and your team",
       "image_path": "/cat-thumbs/safety-equipment.webp",
       "image_source": "alias"
     },
@@ -1410,6 +1654,8 @@
       "level": 2,
       "parent_handle": "automotive-workshop",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/car-lifts.webp",
       "image_source": "alias"
     },
@@ -1420,6 +1666,8 @@
       "level": 2,
       "parent_handle": "automotive-workshop",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/mechanics-tools.webp",
       "image_source": "alias"
     },
@@ -1430,6 +1678,8 @@
       "level": 2,
       "parent_handle": "automotive-workshop",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/hydraulic-pumps.webp",
       "image_source": "alias"
     },
@@ -1440,6 +1690,8 @@
       "level": 2,
       "parent_handle": "automotive-workshop",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/truck-accessories.webp",
       "image_source": "alias"
     },
@@ -1450,6 +1702,8 @@
       "level": 2,
       "parent_handle": "automotive-workshop",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/truck-accessories.webp",
       "image_source": "alias"
     },
@@ -1460,6 +1714,8 @@
       "level": 2,
       "parent_handle": "automotive-workshop",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/car-lifts.webp",
       "image_source": "alias"
     },
@@ -1477,6 +1733,10 @@
         "truck-cargo-accessories",
         "auto-parts-replacement"
       ],
+      "description_et": "Tungrauad, kompressorid, diagnostikaseadmed ja autohoolduse tööriistad. Kõik profi tasemel garaazi ja töökoja jaoks.",
+      "description_en": null,
+      "tagline_et": "Sinu garaaz, sinu reeglid",
+      "tagline_en": "Your garage, your rules",
       "image_path": "/cat-thumbs/car-lifts.webp",
       "image_source": "alias"
     },
@@ -1487,6 +1747,8 @@
       "level": 2,
       "parent_handle": "salon-spa-wellness",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/barber-chairs.webp",
       "image_source": "alias"
     },
@@ -1497,6 +1759,8 @@
       "level": 2,
       "parent_handle": "salon-spa-wellness",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/barber-chairs.webp",
       "image_source": "alias"
     },
@@ -1507,6 +1771,8 @@
       "level": 2,
       "parent_handle": "salon-spa-wellness",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/massage-chairs.webp",
       "image_source": "alias"
     },
@@ -1517,6 +1783,8 @@
       "level": 2,
       "parent_handle": "salon-spa-wellness",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/personal-care-appliances.webp",
       "image_source": "direct"
     },
@@ -1527,6 +1795,8 @@
       "level": 2,
       "parent_handle": "salon-spa-wellness",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/personal-care-appliances.webp",
       "image_source": "alias"
     },
@@ -1537,6 +1807,8 @@
       "level": 2,
       "parent_handle": "salon-spa-wellness",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/salon-barber-chair.webp",
       "image_source": "alias"
     },
@@ -1554,6 +1826,10 @@
         "manicure-nail-equipment",
         "facial-steamers"
       ],
+      "description_et": "Juuksuritoolid, massaažilauad, spa-seadmed ja iluteeninduse tarvikud. Professionaalne varustus salongidele ja spa-dele.",
+      "description_en": null,
+      "tagline_et": "Ilu ja heaolu professionaalile",
+      "tagline_en": "Beauty and wellness for the professional",
       "image_path": "/cat-thumbs/barber-chairs.webp",
       "image_source": "alias"
     },
@@ -1564,6 +1840,8 @@
       "level": 2,
       "parent_handle": "office-commercial-interiors",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/home-office-furniture.webp",
       "image_source": "fuzzy"
     },
@@ -1574,6 +1852,8 @@
       "level": 2,
       "parent_handle": "office-commercial-interiors",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/office-chairs.webp",
       "image_source": "alias"
     },
@@ -1584,6 +1864,8 @@
       "level": 2,
       "parent_handle": "office-commercial-interiors",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/door-hardware.webp",
       "image_source": "alias"
     },
@@ -1594,6 +1876,8 @@
       "level": 2,
       "parent_handle": "office-commercial-interiors",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/lamps.webp",
       "image_source": "alias"
     },
@@ -1604,6 +1888,8 @@
       "level": 2,
       "parent_handle": "office-commercial-interiors",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/bathroom-accessories.webp",
       "image_source": "direct"
     },
@@ -1614,6 +1900,8 @@
       "level": 2,
       "parent_handle": "office-commercial-interiors",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/home-decor.webp",
       "image_source": "alias"
     },
@@ -1631,6 +1919,10 @@
         "bathroom-accessories",
         "home-decor-window-treatments"
       ],
+      "description_et": "Kontorimööbel, esitlustehnika, organiseerimissüsteemid ja äripinna sisustus. Funktsionaalne ja esinduslik töökeskkond.",
+      "description_en": null,
+      "tagline_et": "Kontor ja äripind, targalt sisustatud",
+      "tagline_en": "Office and commercial space, smartly furnished",
       "image_path": "/cat-thumbs/office-chairs.webp",
       "image_source": "alias"
     },
@@ -1641,6 +1933,8 @@
       "level": 2,
       "parent_handle": "health-medical-supply",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/medical-chairs.webp",
       "image_source": "alias"
     },
@@ -1651,6 +1945,8 @@
       "level": 2,
       "parent_handle": "health-medical-supply",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/mobility-aids.webp",
       "image_source": "direct"
     },
@@ -1661,6 +1957,8 @@
       "level": 2,
       "parent_handle": "health-medical-supply",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/bathroom-safety.webp",
       "image_source": "direct"
     },
@@ -1671,6 +1969,8 @@
       "level": 2,
       "parent_handle": "health-medical-supply",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/medical-chairs.webp",
       "image_source": "alias"
     },
@@ -1681,6 +1981,8 @@
       "level": 2,
       "parent_handle": "health-medical-supply",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/personal-care-appliances.webp",
       "image_source": "alias"
     },
@@ -1691,6 +1993,8 @@
       "level": 2,
       "parent_handle": "health-medical-supply",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/wheelchairs.webp",
       "image_source": "direct"
     },
@@ -1708,6 +2012,10 @@
         "wellness-skin-care",
         "wheelchairs"
       ],
+      "description_et": "Meditsiiniline mööbel, diagnostikaseadmed, taastusravi vahendid ja tervishoiu tarvikud professionaalseks kasutamiseks.",
+      "description_en": null,
+      "tagline_et": "Professionaalne meditsiinivarustus",
+      "tagline_en": "Professional medical equipment",
       "image_path": "/cat-thumbs/medical-chairs.webp",
       "image_source": "alias"
     },
@@ -1718,6 +2026,8 @@
       "level": 2,
       "parent_handle": "fitness-sports-recreation",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/exercise-equipment.webp",
       "image_source": "alias"
     },
@@ -1728,6 +2038,8 @@
       "level": 2,
       "parent_handle": "fitness-sports-recreation",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/exercise-equipment.webp",
       "image_source": "alias"
     },
@@ -1738,6 +2050,8 @@
       "level": 2,
       "parent_handle": "fitness-sports-recreation",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/gym-mats.webp",
       "image_source": "alias"
     },
@@ -1748,6 +2062,8 @@
       "level": 2,
       "parent_handle": "fitness-sports-recreation",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/trampolines.webp",
       "image_source": "direct"
     },
@@ -1758,8 +2074,10 @@
       "level": 2,
       "parent_handle": "fitness-sports-recreation",
       "child_handles": [],
-      "image_path": "/cat-thumbs/playground-outdoor-play.webp",
-      "image_source": "direct"
+      "description_et": null,
+      "description_en": null,
+      "image_path": "/cat-thumbs/trampolines.webp",
+      "image_source": "alias"
     },
     "cycling": {
       "handle": "cycling",
@@ -1768,6 +2086,8 @@
       "level": 2,
       "parent_handle": "fitness-sports-recreation",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/cycling-gear.webp",
       "image_source": "alias"
     },
@@ -1785,6 +2105,10 @@
         "playground-outdoor-play",
         "cycling"
       ],
+      "description_et": "Jõusaali seadmed, treeningtarvikud, spordivarustus ja vabaaja seadmed. Kommertskvaliteet spordiklubidele ja kodujõusaalidele.",
+      "description_en": null,
+      "tagline_et": "Varusta oma spordiklubi",
+      "tagline_en": "Equip your sports club",
       "image_path": "/cat-thumbs/exercise-equipment.webp",
       "image_source": "alias"
     },
@@ -1795,6 +2119,8 @@
       "level": 2,
       "parent_handle": "boating-camping-outdoor",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/boat-hardware.webp",
       "image_source": "alias"
     },
@@ -1805,6 +2131,8 @@
       "level": 2,
       "parent_handle": "boating-camping-outdoor",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/boat-hardware.webp",
       "image_source": "alias"
     },
@@ -1815,6 +2143,8 @@
       "level": 2,
       "parent_handle": "boating-camping-outdoor",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/water-sports.webp",
       "image_source": "direct"
     },
@@ -1825,6 +2155,8 @@
       "level": 2,
       "parent_handle": "boating-camping-outdoor",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/camping-gear.webp",
       "image_source": "direct"
     },
@@ -1835,6 +2167,8 @@
       "level": 2,
       "parent_handle": "boating-camping-outdoor",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/canopy-tent.webp",
       "image_source": "alias"
     },
@@ -1845,6 +2179,8 @@
       "level": 2,
       "parent_handle": "boating-camping-outdoor",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/outdoor-hobbies.webp",
       "image_source": "direct"
     },
@@ -1862,6 +2198,10 @@
         "canopy-tents-event-shelters",
         "outdoor-hobbies"
       ],
+      "description_et": "Kaatritarvikud, telgid, matkavarustus ja välivarustus. Kõik vajalik merel, metsas ja mägedes seiklemiseks.",
+      "description_en": null,
+      "tagline_et": "Seiklus algab õigest varustusest",
+      "tagline_en": "Adventure starts with the right gear",
       "image_path": "/cat-thumbs/boat-hardware.webp",
       "image_source": "alias"
     },
@@ -1872,6 +2212,8 @@
       "level": 2,
       "parent_handle": "music-entertainment",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/acoustic-guitar.webp",
       "image_source": "alias"
     },
@@ -1882,6 +2224,8 @@
       "level": 2,
       "parent_handle": "music-entertainment",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/digital-pianos.webp",
       "image_source": "alias"
     },
@@ -1892,6 +2236,8 @@
       "level": 2,
       "parent_handle": "music-entertainment",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/drums-percussion.webp",
       "image_source": "direct"
     },
@@ -1902,6 +2248,8 @@
       "level": 2,
       "parent_handle": "music-entertainment",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/area-lights.webp",
       "image_source": "alias"
     },
@@ -1912,6 +2260,8 @@
       "level": 2,
       "parent_handle": "music-entertainment",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/game-room.webp",
       "image_source": "alias"
     },
@@ -1922,6 +2272,8 @@
       "level": 2,
       "parent_handle": "music-entertainment",
       "child_handles": [],
+      "description_et": null,
+      "description_en": null,
       "image_path": "/cat-thumbs/tool-chests.webp",
       "image_source": "alias"
     },
@@ -1939,6 +2291,10 @@
         "game-room-entertainment",
         "instrument-storage-cases"
       ],
+      "description_et": "Helitehnika, valgustus, DJ-seadmed ja lavavarustus. Professionaalsed lahendused üritustele ja meelelahutuskohtadele.",
+      "description_en": null,
+      "tagline_et": "Muusika ja meelelahutus",
+      "tagline_en": "Music and entertainment for every venue",
       "image_path": "/cat-thumbs/musical-instruments.webp",
       "image_source": "alias"
     }

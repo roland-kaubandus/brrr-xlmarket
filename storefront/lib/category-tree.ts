@@ -26,6 +26,10 @@ export interface CategoryNode {
   child_handles: string[]
   image_path: string | null
   image_source: "direct" | "alias" | "fuzzy" | "none"
+  description_et?: string | null
+  description_en?: string | null
+  tagline_et?: string | null
+  tagline_en?: string | null
 }
 
 interface TreeData {

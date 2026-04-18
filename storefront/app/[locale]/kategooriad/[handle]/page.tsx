@@ -8,6 +8,7 @@ import VevorPagination from "@/components/search/VevorPagination"
 import SortSelect from "@/components/search/SortSelect"
 import { notFound } from "next/navigation"
 import JsonLdCategory from "@/components/JsonLdCategory"
+import JsonLdBreadcrumb from "@/components/JsonLdBreadcrumb"
 import CategoryThumb from "@/components/CategoryThumb"
 import { categoryPath } from "@/lib/i18n"
 import { buildQuickFilters } from "@/lib/quick-filters"
@@ -50,9 +51,17 @@ export async function generateMetadata({ params }: Props) {
   const displayName = node
     ? nodeName(node, locale as TaxLocale)
     : (category?.name || humanize(handle))
-  const desc = locale === "et"
-    ? `${displayName} tooted soodsa hinnaga. Kiire tarne üle Eesti.`
-    : `${displayName} products at great prices. Fast delivery in Estonia.`
+  // Meta description — spec F5.5:
+  //   1. Node-specific description_et/en if provided in taxonomy.yaml
+  //   2. Node tagline if present
+  //   3. Templated fallback
+  const nodeDesc =
+    locale === "et" ? node?.description_et ?? node?.tagline_et : node?.description_en ?? node?.tagline_en
+  const desc =
+    nodeDesc ||
+    (locale === "et"
+      ? `${displayName} — professionaalne varustus soodsa hinnaga. Kiire tarne üle Eesti.`
+      : `${displayName} — professional equipment at great prices. Fast delivery in Estonia.`)
   const shouldNoindex = NOINDEX_HANDLES.has(handle)
   return {
     title: `${displayName} — XLMARKET`,
@@ -177,6 +186,19 @@ export default async function CategoryPage({ params, searchParams }: Props) {
         name={displayName}
         url={`https://xlmarket.store${categoryPath(locale as "et" | "en", handle)}`}
         productCount={totalCount}
+      />
+      <JsonLdBreadcrumb
+        items={[
+          { name: locale === "et" ? "Avaleht" : "Home", url: `https://xlmarket.store/${locale}` },
+          ...ancestors.map((a) => ({
+            name: nodeName(a, locale as TaxLocale),
+            url: `https://xlmarket.store${categoryPath(locale as "et" | "en", a.handle)}`,
+          })),
+          {
+            name: displayName,
+            url: `https://xlmarket.store${categoryPath(locale as "et" | "en", handle)}`,
+          },
+        ]}
       />
       <div className="max-w-[1360px] mx-auto px-4 sm:px-6 py-7 sm:py-10">
         {/* Breadcrumb — Home > L1 > L2 (> L3) from taxonomy SSoT */}

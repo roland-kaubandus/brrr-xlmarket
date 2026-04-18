@@ -1,5 +1,6 @@
 import { DM_Sans } from "next/font/google"
 import JsonLdOrganization from "@/components/JsonLdOrganization"
+import JsonLdWebsite from "@/components/JsonLdWebsite"
 import PostHogProvider from "@/components/PostHogProvider"
 import "./globals.css"
 
@@ -19,6 +20,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html className="scroll-smooth" suppressHydrationWarning>
       <body className={dmSans.variable + " min-h-screen flex flex-col font-[family-name:var(--font-dm-sans)] antialiased bg-off-white text-off-black"}>
         <JsonLdOrganization />
+        <JsonLdWebsite />
         <div className="noise-overlay" />
         <PostHogProvider>{children}</PostHogProvider>
       </body>

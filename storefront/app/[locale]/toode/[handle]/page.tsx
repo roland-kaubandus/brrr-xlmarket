@@ -1,7 +1,10 @@
 import { getProduct } from "@/lib/medusa"
 import { notFound } from "next/navigation"
 import JsonLdProduct from "@/components/JsonLdProduct"
+import JsonLdBreadcrumb from "@/components/JsonLdBreadcrumb"
 import ProductPageClient from "./ProductPageClient"
+import { firstKnownHandle, getBreadcrumbTrail, type Locale as TaxLocale } from "@/lib/category-tree"
+import { categoryPath } from "@/lib/i18n"
 
 export const revalidate = 3600
 
@@ -43,9 +46,28 @@ export default async function ProductPage({ params }: Props) {
   const variant = product.variants?.[0]
   const price = variant?.calculated_price
 
+  // BreadcrumbList JSON-LD — derive from SSoT category-tree.
+  // Uses same firstKnownHandle logic as /api/product route for visible breadcrumb.
+  const medusaHandles = (product.categories || []).map((c) => c.handle).filter(Boolean) as string[]
+  const canonicalNode = firstKnownHandle(medusaHandles)
+  const breadcrumbItems = [
+    { name: locale === "et" ? "Avaleht" : "Home", url: `https://xlmarket.store/${locale}` },
+    ...(canonicalNode
+      ? getBreadcrumbTrail(canonicalNode.handle, locale as TaxLocale).map((item) => ({
+          name: item.name,
+          url: `https://xlmarket.store${categoryPath(locale as "et" | "en", item.handle)}`,
+        }))
+      : []),
+    {
+      name: product.title,
+      url: `https://xlmarket.store/${locale}/toode/${product.handle}`,
+    },
+  ]
+
   return (
     <div className="max-w-[1360px] mx-auto px-4 sm:px-6 py-8 sm:py-12">
       <JsonLdProduct product={product} price={price} locale={locale} />
+      <JsonLdBreadcrumb items={breadcrumbItems} />
       <ProductPageClient handle={handle} locale={locale} />
     </div>
   )
