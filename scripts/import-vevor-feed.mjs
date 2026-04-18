@@ -21,6 +21,11 @@ import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
 import { loadV3Map, resolveV3Slug } from "../backend/src/scripts/resolve-v3-category.mjs";
+import { classifyProductSync, loadRules } from "../backend/src/taxonomy/resolver.mjs";
+
+// Rollback switch (spec §10 rollback) — set USE_LEGACY_RESOLVER=1 to fall back
+// to the v1 map-based resolver. Defaults to v2 (resolver-v2 pipeline).
+const USE_LEGACY_RESOLVER = process.env.USE_LEGACY_RESOLVER === "1";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -69,6 +74,12 @@ const stats = {
   skipped: 0,
   errors: 0,
   unmappedCategories: new Set(),
+  // Resolver-v2 telemetry (F3.4)
+  classifyMethods: {},       // S1_sku_override: N, S2_path_contains: N, ...
+  classifyBuckets: 0,        // products landing in needs-review-bucket (S8)
+  classifyNeedsReview: 0,    // 0.60 ≤ conf < 0.85
+  classifyAuto: 0,           // conf ≥ 0.85
+  unmappedPaths: new Map(),  // raw_path → count (review-bucket paths)
 };
 
 // ── Helpers ─────────────────────────────────────────────────────────
@@ -262,14 +273,112 @@ function loadCategoryMap() {
 }
 
 async function loadCategoryIds(token) {
-  // Fetch v3 L1 handles only — ignore Medusa's legacy category tree.
-  const resp = await apiCall("GET", "/admin/product-categories?limit=500", null, token);
+  // Fetch ALL active category handles → id map (includes L1 + L2 + L3 + review bucket).
+  // Resolver v2 may emit L2 handles; we look up the deepest available category that
+  // exists in Medusa and attach the product to it.
+  const resp = await apiCall("GET", "/admin/product-categories?limit=1000&include_descendants_tree=false", null, token);
   const map = {};
   for (const cat of resp.data.product_categories || []) {
     map[cat.handle] = cat.id;
   }
-  log("  Loaded " + Object.keys(map).length + " category IDs from Medusa");
+  log("  Loaded " + Object.keys(map).length + " category IDs from Medusa (incl. L2/L3 + review bucket)");
   return map;
+}
+
+// ── Resolver v2 integration (F3.4) ─────────────────────────────────
+// Preload rules on import to fail fast if a rules file is malformed.
+if (!USE_LEGACY_RESOLVER) {
+  try { loadRules() } catch (e) {
+    console.error("  FATAL: resolver-v2 rules failed to load: " + e.message)
+    process.exit(1)
+  }
+}
+
+/**
+ * Run resolver-v2 on a VEVOR row and pick the best categoryId to attach.
+ * Returns { classification, categoryId, categoryHandle }.
+ *
+ * categoryHandle preference order: L2 (if exists in DB) > L1 > review-bucket.
+ * We skip L3 for now because most L3 categories are not yet seeded.
+ */
+function classifyRow(row, catIds) {
+  if (USE_LEGACY_RESOLVER) {
+    const legacyL1 = resolveV3Slug(row.productType || "", loadCategoryMap())
+    return {
+      classification: {
+        l1_slug: legacyL1,
+        l2_slug: null,
+        l3_slug: null,
+        confidence: legacyL1 ? 0.85 : 0,
+        method: legacyL1 ? "legacy_v1" : "legacy_unmapped",
+        needs_review: !legacyL1,
+        review_bucket: !legacyL1,
+        raw_path: row.productType || "",
+      },
+      categoryId: legacyL1 ? (catIds[legacyL1] || null) : null,
+      categoryHandle: legacyL1 || null,
+    }
+  }
+
+  const c = classifyProductSync(row)
+
+  // Telemetry
+  stats.classifyMethods[c.method] = (stats.classifyMethods[c.method] || 0) + 1
+  if (c.review_bucket) stats.classifyBuckets++
+  else if (c.needs_review) stats.classifyNeedsReview++
+  else stats.classifyAuto++
+  if (c.review_bucket && c.raw_path) {
+    stats.unmappedPaths.set(c.raw_path, (stats.unmappedPaths.get(c.raw_path) || 0) + 1)
+  }
+  if (c.review_bucket && row.productType) {
+    stats.unmappedCategories.add(row.productType.split(">")[0].trim())
+  }
+
+  // Pick deepest category that actually exists in Medusa.
+  let chosenHandle = null
+  if (c.review_bucket) {
+    chosenHandle = "needs-review-bucket"
+  } else if (c.l3_slug && catIds[c.l3_slug]) {
+    chosenHandle = c.l3_slug
+  } else if (c.l2_slug && catIds[c.l2_slug]) {
+    chosenHandle = c.l2_slug
+  } else if (c.l1_slug && catIds[c.l1_slug]) {
+    chosenHandle = c.l1_slug
+  }
+
+  return {
+    classification: c,
+    categoryId: chosenHandle ? (catIds[chosenHandle] || null) : null,
+    categoryHandle: chosenHandle,
+  }
+}
+
+/**
+ * Persist a resolver classification to category_classification_audit.
+ * Best-effort: failures are logged and do not block product creation.
+ */
+async function writeAuditRow(pgClient, productId, cls) {
+  try {
+    await pgClient.query(
+      `INSERT INTO category_classification_audit
+         (product_id, action, method, confidence, l1_slug, l2_slug, l3_slug,
+          raw_path, needs_review, reason)
+       VALUES ($1, 'resolver_classified', $2, $3, $4, $5, $6, $7, $8, $9)`,
+      [
+        productId,
+        cls.method,
+        cls.confidence,
+        cls.l1_slug,
+        cls.l2_slug,
+        cls.l3_slug,
+        cls.raw_path || null,
+        cls.needs_review === true,
+        cls.method,
+      ]
+    )
+  } catch (e) {
+    log("  WARN: audit write failed for " + productId + ": " + e.message)
+  }
 }
 
 // ── HTML sanitization (pre-computed at import time) ─────────────────
@@ -442,18 +551,14 @@ function detectOptionName(labels) {
 
 // ── Product creation (multi-variant) ────────────────────────────────
 
-async function createProductFromGroup(spuGroup, token, catMap, catIds) {
+async function createProductFromGroup(spuGroup, token, catMap, catIds, pgClient) {
   const option = extractOption(spuGroup)
   const primaryRow = spuGroup[0] // Use first row for shared product data
   const anyInStock = spuGroup.some(r => r.availability === "in stock")
   const handle = makeHandle(primaryRow.sku, primaryRow.title)
 
-  // Map category from primary row → v3 L1 slug → Medusa category id
-  const categoryHandle = resolveV3Slug(primaryRow.productType || "", catMap)
-  const categoryId = categoryHandle ? catIds[categoryHandle] : null
-  if (!categoryHandle && primaryRow.productType) {
-    stats.unmappedCategories.add(primaryRow.productType.split(">")[0].trim())
-  }
+  // Resolver v2 — classify the primary row (spec §F3.4)
+  const { classification, categoryId, categoryHandle } = classifyRow(primaryRow, catIds)
 
   // Collect all unique gallery images from all variants
   const allGalleryImages = []
@@ -522,10 +627,17 @@ async function createProductFromGroup(spuGroup, token, catMap, catIds) {
     productData.categories = [{ id: categoryId }]
   }
 
+  // If review bucket, force status=draft so the product is never publicly visible
+  // (spec §5.3 — conf <0.60 must not appear on storefront).
+  if (classification.review_bucket) {
+    productData.status = "draft"
+  }
+
   const resp = await apiCall("POST", "/admin/products", productData, token)
   if (resp.status >= 200 && resp.status < 300 && resp.data.product) {
     stats.created++
     if (spuGroup.length > 1) stats.variantGroupsCreated = (stats.variantGroupsCreated || 0) + 1
+    if (pgClient) await writeAuditRow(pgClient, resp.data.product.id, classification)
     return resp.data.product.id
   } else {
     const msg = resp.data.message || JSON.stringify(resp.data).substring(0, 200)
@@ -541,18 +653,13 @@ async function createProductFromGroup(spuGroup, token, catMap, catIds) {
 }
 
 // Legacy single-product creation (backwards compat)
-async function createProduct(row, token, catMap, catIds) {
+async function createProduct(row, token, catMap, catIds, pgClient) {
   const finalPrice = Math.round(row.price * PRICE_MARKUP * 100); // cents
   const handle = makeHandle(row.sku, row.title);
   const isInStock = row.availability === "in stock";
 
-  // Map category → v3 L1 slug → Medusa category id
-  const categoryHandle = resolveV3Slug(row.productType || "", catMap);
-  const categoryId = categoryHandle ? catIds[categoryHandle] : null;
-
-  if (!categoryHandle && row.productType) {
-    stats.unmappedCategories.add(row.productType.split(">")[0].trim());
-  }
+  // Resolver v2 — classify the row (spec §F3.4)
+  const { classification, categoryId, categoryHandle } = classifyRow(row, catIds);
 
   // Pre-compute sanitized HTML (avoids CPU-bound regex at request time)
   const galleryImgsForClean = row.originalImages.length > 0 ? row.originalImages : row.galleryImages;
@@ -608,10 +715,16 @@ async function createProduct(row, token, catMap, catIds) {
     productData.categories = [{ id: categoryId }];
   }
 
+  // Force draft for review-bucket products
+  if (classification.review_bucket) {
+    productData.status = "draft";
+  }
+
   const resp = await apiCall("POST", "/admin/products", productData, token);
 
   if (resp.status >= 200 && resp.status < 300 && resp.data.product) {
     stats.created++;
+    if (pgClient) await writeAuditRow(pgClient, resp.data.product.id, classification);
     return resp.data.product.id;
   } else {
     const msg = resp.data.message || JSON.stringify(resp.data).substring(0, 200);
@@ -798,12 +911,31 @@ async function main() {
   log("  Existing (updatable):" + stats.toUpdate);
   console.log("");
 
-  // Show category distribution for new products (using v3 resolver)
+  // Show category distribution for new products
+  // Resolver v2: deepest-available slug per product; legacy: L1 only.
   const categoryMap = loadCategoryMap();
   const catCounts = {};
+  const methodCounts = {};
   for (const row of newRows) {
-    const mapped = resolveV3Slug(row.productType || "", categoryMap) || "UNMAPPED";
-    catCounts[mapped] = (catCounts[mapped] || 0) + 1;
+    if (USE_LEGACY_RESOLVER) {
+      const mapped = resolveV3Slug(row.productType || "", categoryMap) || "UNMAPPED";
+      catCounts[mapped] = (catCounts[mapped] || 0) + 1;
+    } else {
+      const c = classifyProductSync(row);
+      const key = c.review_bucket
+        ? "needs-review-bucket"
+        : (c.l2_slug ? c.l1_slug + "/" + c.l2_slug : c.l1_slug || "UNKNOWN");
+      catCounts[key] = (catCounts[key] || 0) + 1;
+      methodCounts[c.method] = (methodCounts[c.method] || 0) + 1;
+    }
+  }
+
+  if (!USE_LEGACY_RESOLVER && Object.keys(methodCounts).length > 0) {
+    log("Resolver v2 methods (new products):");
+    for (const [m, n] of Object.entries(methodCounts).sort((a, b) => b[1] - a[1])) {
+      log("  " + m.padEnd(32) + " " + n);
+    }
+    console.log("");
   }
 
   if (Object.keys(catCounts).length > 0) {
@@ -850,6 +982,11 @@ async function main() {
   // Load category IDs
   const categoryIds = await loadCategoryIds(token);
 
+  // Shared pg client for audit log writes
+  const auditPg = new pg.Client(PG_CONFIG);
+  await auditPg.connect();
+  log("  Resolver: " + (USE_LEGACY_RESOLVER ? "LEGACY v1 (USE_LEGACY_RESOLVER=1)" : "v2 (8-stage pipeline)"));
+
   // ── Step 4: Create new products (SPU-grouped) ──
   const groupsToCreate = LIMIT ? newSpuGroups.slice(0, LIMIT) : newSpuGroups;
   if (groupsToCreate.length > 0) {
@@ -860,7 +997,7 @@ async function main() {
     for (let i = 0; i < groupsToCreate.length; i++) {
       const group = groupsToCreate[i];
       try {
-        await createProductFromGroup(group, token, categoryMap, categoryIds);
+        await createProductFromGroup(group, token, categoryMap, categoryIds, auditPg);
       } catch (err) {
         stats.errors++;
         if (stats.errors <= 20) {
@@ -920,6 +1057,25 @@ async function main() {
       log("  - " + cat);
     }
   }
+
+  // Resolver v2 classification summary
+  if (!USE_LEGACY_RESOLVER && (stats.classifyAuto + stats.classifyNeedsReview + stats.classifyBuckets) > 0) {
+    console.log("");
+    log("Resolver v2 classification:");
+    log("  auto-assigned (conf>=0.85):    " + stats.classifyAuto);
+    log("  needs review (0.60-0.84):       " + stats.classifyNeedsReview);
+    log("  review bucket (<0.60):          " + stats.classifyBuckets);
+    log("  by method:");
+    const entries = Object.entries(stats.classifyMethods).sort((a, b) => b[1] - a[1]);
+    for (const [m, n] of entries) log("    " + m.padEnd(32) + " " + n);
+    if (stats.unmappedPaths.size > 0) {
+      log("  top unmapped paths (review bucket):");
+      const paths = [...stats.unmappedPaths.entries()].sort((a, b) => b[1] - a[1]).slice(0, 10);
+      for (const [p, n] of paths) log("    [" + n + "] " + p);
+    }
+  }
+
+  try { await auditPg.end(); } catch {}
 }
 
 main().catch((err) => {
