@@ -51,9 +51,9 @@ AFTER_CACHE=$(python3 -c "import json;d=json.load(open('$FEED_DIR/vevor-feed-cac
 echo "  Products in cache: $BEFORE_CACHE -> $AFTER_CACHE"
 
 # ── Step 3: Import new products + update stock ──
-echo "[3/6] Importing to Medusa (dry run first)..."
+echo "[3/6] Importing to Medusa (--execute --update)..."
 cd "$REPO"
-IMPORT_OUTPUT=$(node scripts/import-vevor-feed.mjs 2>&1 | tail -20)
+IMPORT_OUTPUT=$(node scripts/import-vevor-feed.mjs --execute --update 2>&1 | tail -30)
 echo "$IMPORT_OUTPUT" | tail -5
 
 # Count new/updated from dry run output
