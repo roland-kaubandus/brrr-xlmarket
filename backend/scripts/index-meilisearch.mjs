@@ -106,6 +106,17 @@ function loadFeedCache() {
   return { bySku: feedCacheBySku, byUpc: feedCacheByUpc }
 }
 
+// PR #3: derive stock status from VEVOR feed cache (availability + inventoryQuantity)
+function isOosFromFeed(sku) {
+  if (!sku) return false
+  const cache = loadFeedCache()
+  const entry = cache.bySku?.[String(sku).trim()]
+  if (!entry) return false
+  if (entry.availability && entry.availability !== "in stock") return true
+  if ((entry.inventoryQuantity || 0) === 0) return true
+  return false
+}
+
 async function fetchProducts(client) {
   console.log("📦 Laen tooteid...")
   const { rows } = await client.query(
@@ -346,7 +357,7 @@ function transform(row) {
     category_handles: categoryHandles,
     subcategory: subcategory,
     filter_tokens,
-    in_stock: true,
+    in_stock: !isOosFromFeed(row.sku),
     translated: meta.translated === true,
     created_at: Math.floor(new Date(row.created_at).getTime() / 1000),
     // Taxonomy v3 SSoT fields (F2.8). vertical_slugs populated by F4 materializer.
