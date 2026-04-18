@@ -65,6 +65,16 @@ export function middleware(request: NextRequest) {
     return NextResponse.redirect(url, 301)
   }
 
+  // Spec F4.8 — /haru/ is a duplicate of /kategooriad/. Permanently redirect.
+  for (const locale of locales) {
+    const haruPrefix = `/${locale}/haru/`
+    if (pathname.startsWith(haruPrefix) || pathname === `/${locale}/haru`) {
+      const url = request.nextUrl.clone()
+      url.pathname = pathname.replace(`/${locale}/haru`, `/${locale}/kategooriad`)
+      return NextResponse.redirect(url, 301)
+    }
+  }
+
   // Check if pathname already has a locale
   const pathnameHasLocale = locales.some(
     locale => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`

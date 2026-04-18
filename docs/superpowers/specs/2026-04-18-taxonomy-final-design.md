@@ -234,6 +234,24 @@ Muidu L3 elab ainult `taxonomy.yaml`-is + Meili `taxonomy.l3_slug`-is, aga ei sa
 5. **Stabiilsus:** kui slug on avalik, rename = 301 + permanent `slug_redirect` kirje.
 6. **Reserveeritud prefix'id:** `/alustajale/`, `/hooldus/`, `/arikliendile/`, `/toode/`, `/haru/` — ära kasuta kategooria-slugina.
 
+### 3.5 Category page UX (lisatud post-Faas 5, 2026-04-18 öö)
+
+Iga kategoorialeht (`/{locale}/kategooriad/{handle}`) — sõltumata kas L1, L2 või L3 — peab renderdama sama struktuuri:
+
+| Element | Allikas | Eeldus |
+|---------|---------|--------|
+| **Breadcrumb** Home › L1 › L2 (› L3) | `category-tree.generated.json` `getAncestors()` | SSoT puu, mitte Medusa parent walk |
+| **H1** + total count | `getNode(handle).name_{locale}` + Meili `estimatedTotalHits` | F1.3 — ei Hardcoded `CATEGORY_NAMES` |
+| **Subcategory thumbnail row** (L1 → L2 row, L2 → L3 row) | `getChildren(handle)` + `category-images.json` | Kuvatakse ainult kui children > 0 |
+| **Sidebar — sibling/child filter** | `category_handles` Meili facet, **filter'itud** `getSiblings(handle) ∪ getChildren(handle)` kaudu | Mitte VEVOR `categories` array |
+| **ProductGrid** | Meili filter `category_handles = "{handle}"` (jätkuvalt) | Töötab, sest reassign-categories-to-leaves.mjs sidus tooted leaf'idele |
+
+**Marsruut deduplication:** `/haru/{slug}` 301 → `/kategooriad/{slug}` (middleware.ts, spec F4.8). `/haru/` route fail jääb alles ainult tagasiühilduvuseks; kogu UI ja sisemised lingid kasutavad `/kategooriad/`.
+
+**Esilehe (HomepageShell) lingid** käivad samuti SSoT'ist (`getChildren(L1.slug)`), mitte hardcoded `subSlugs[]` massiividest. See garanteerib et igal homepage'i L2 lingil on tegelik DB L2 vaste.
+
+**Põhjus miks see ei olnud algselt §3-s:** Faas 1-5 keskendusid andmete konsolidatsioonile (DB seosed, Meili facetid, vertikaalid). UX eeldas et `/kategooriad/[handle]/page.tsx` on juba terve, aga see leht oli tegelikult MVP dump-leht ilma hierarhia tugiteta. Avastatud 2026-04-18 öösel kasutaja screenshot'iga kus L2 link viis 2-toote dump-lehele. Parandus: `storefront/lib/category-tree.ts` + `gen-category-tree.mjs` (SSoT YAML → JSON snapshot) + `kategooriad/[handle]/page.tsx` ümber-juhtmestik.
+
 ---
 
 ## 4. Vertikaalid (`/alustajale/`) — paralleelne kihistus

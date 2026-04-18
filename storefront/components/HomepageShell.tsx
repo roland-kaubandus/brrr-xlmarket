@@ -5,6 +5,7 @@ import SafeLink from "@/components/SafeLink"
 import { categoryPath, branchPath, type Locale } from "@/lib/i18n"
 import categoryImagesData from "@/lib/category-images.json"
 import { TAXONOMY_V3 as CATEGORIES, V3_ICONS } from "@/lib/taxonomy-v3"
+import { getChildren, nodeName } from "@/lib/category-tree"
 
 const catImages: Record<string, string> = categoryImagesData as Record<string, string>
 
@@ -312,37 +313,24 @@ export default function HomepageShell({ locale }: HomepageShellProps) {
                 data-cat-id={cat.id}
                 ref={(el) => { sectionRefs.current[cat.id] = el }}
               >
-                {/* COL 1 — name + subcategories */}
+                {/* COL 1 — name + subcategories (real L2 children from SSoT) */}
                 <div className="hp-category-header">
                   <div className="hp-category-title-bar">
                     <h2 className="hp-category-title">{cat.name}</h2>
                   </div>
                   <div className="hp-subcategory-list">
-                    {cat.subs.map((sub, idx) => {
-                      const subHandle = cat.subSlugs[idx]
-                      const href = subHandle ? categoryPath(loc, subHandle) : branchPath(loc, cat.slug)
-                      return (
-                        <SafeLink
-                          key={sub}
-                          href={href}
-                          className="hp-subcategory-link"
-                        >
-                          {sub}
-                        </SafeLink>
-                      )
-                    })}
-                    {cat.extra.slice(0, 5).map((sub) => (
+                    {getChildren(cat.slug).slice(0, 8).map((child) => (
                       <SafeLink
-                        key={sub}
-                        href={branchPath(loc, cat.slug)}
-                        className="hp-subcategory-link hp-subcategory-extra"
+                        key={child.handle}
+                        href={categoryPath(loc, child.handle)}
+                        className="hp-subcategory-link"
                       >
-                        {sub}
+                        {nodeName(child, loc)}
                       </SafeLink>
                     ))}
                   </div>
                   <SafeLink
-                    href={branchPath(loc, cat.slug)}
+                    href={categoryPath(loc, cat.slug)}
                     className="hp-cat-view-all"
                   >
                     View All &rarr;
@@ -377,31 +365,29 @@ export default function HomepageShell({ locale }: HomepageShellProps) {
                           </div>
                         </SafeLink>
                       ))
-                    : [0,1,2,3,4,5].map((n) => {
+                    : (() => {
+                        const realChildren = getChildren(cat.slug).slice(0, 6)
                         const pad = String(cat.prodNum).padStart(2, "0")
-                        const pn = String(n + 1).padStart(2, "0")
-                        const subSlug = cat.subSlugs[n]
-                        const subThumb = subSlug ? catImages[subSlug] : undefined
-                        const imgSrc = subThumb ?? `/images/mockup-prods/prod-${pad}-${pn}.jpg`
-                        const subName = cat.subs[n] || ""
-                        const href = subSlug
-                          ? categoryPath(loc, subSlug)
-                          : branchPath(loc, cat.slug)
-                        return (
-                          <SafeLink key={n} href={href} className="hp-product-card">
-                            <div className="hp-product-image">
-                              <img
-                                src={imgSrc}
-                                alt={subName || cat.name}
-                                loading="lazy"
-                              />
-                            </div>
-                            <div className="hp-product-info">
-                              <div className="hp-product-name">{subName}</div>
-                            </div>
-                          </SafeLink>
-                        )
-                      })}
+                        return realChildren.map((child, n) => {
+                          const subThumb = catImages[child.handle]
+                          const imgSrc = subThumb ?? `/images/mockup-prods/prod-${pad}-${String(n + 1).padStart(2, "0")}.jpg`
+                          const subName = nodeName(child, loc)
+                          return (
+                            <SafeLink
+                              key={child.handle}
+                              href={categoryPath(loc, child.handle)}
+                              className="hp-product-card"
+                            >
+                              <div className="hp-product-image">
+                                <img src={imgSrc} alt={subName} loading="lazy" />
+                              </div>
+                              <div className="hp-product-info">
+                                <div className="hp-product-name">{subName}</div>
+                              </div>
+                            </SafeLink>
+                          )
+                        })
+                      })()}
                 </div>
               </div>
             )

@@ -1,0 +1,1772 @@
+{
+  "generated_at": "2026-04-18T09:54:13.148Z",
+  "nodes": {
+    "commercial-refrigeration": {
+      "handle": "commercial-refrigeration",
+      "name_en": "Commercial Refrigeration",
+      "name_et": "Tööstuslik külmutustehnika",
+      "level": 2,
+      "parent_handle": "horeca-food-service",
+      "child_handles": [
+        "commercial-refrigerators",
+        "ice-machines",
+        "display-cases",
+        "bain-maries"
+      ]
+    },
+    "commercial-refrigerators": {
+      "handle": "commercial-refrigerators",
+      "name_en": "Commercial Refrigerators",
+      "name_et": "Commercial Refrigerators",
+      "level": 3,
+      "parent_handle": "commercial-refrigeration",
+      "child_handles": []
+    },
+    "ice-machines": {
+      "handle": "ice-machines",
+      "name_en": "Ice Machines",
+      "name_et": "Ice Machines",
+      "level": 3,
+      "parent_handle": "commercial-refrigeration",
+      "child_handles": []
+    },
+    "display-cases": {
+      "handle": "display-cases",
+      "name_en": "Display Cases",
+      "name_et": "Display Cases",
+      "level": 3,
+      "parent_handle": "commercial-refrigeration",
+      "child_handles": []
+    },
+    "bain-maries": {
+      "handle": "bain-maries",
+      "name_en": "Bain Maries",
+      "name_et": "Bain Maries",
+      "level": 3,
+      "parent_handle": "commercial-refrigeration",
+      "child_handles": []
+    },
+    "commercial-cooking-equipment": {
+      "handle": "commercial-cooking-equipment",
+      "name_en": "Commercial Cooking Equipment",
+      "name_et": "Köögiseadmed",
+      "level": 2,
+      "parent_handle": "horeca-food-service",
+      "child_handles": [
+        "commercial-ovens",
+        "combi-ovens",
+        "pizza-ovens",
+        "deep-fryers",
+        "induction-cookers"
+      ]
+    },
+    "commercial-ovens": {
+      "handle": "commercial-ovens",
+      "name_en": "Commercial Ovens",
+      "name_et": "Commercial Ovens",
+      "level": 3,
+      "parent_handle": "commercial-cooking-equipment",
+      "child_handles": []
+    },
+    "combi-ovens": {
+      "handle": "combi-ovens",
+      "name_en": "Combi Ovens",
+      "name_et": "Combi Ovens",
+      "level": 3,
+      "parent_handle": "commercial-cooking-equipment",
+      "child_handles": []
+    },
+    "pizza-ovens": {
+      "handle": "pizza-ovens",
+      "name_en": "Pizza Ovens",
+      "name_et": "Pizza Ovens",
+      "level": 3,
+      "parent_handle": "commercial-cooking-equipment",
+      "child_handles": []
+    },
+    "deep-fryers": {
+      "handle": "deep-fryers",
+      "name_en": "Deep Fryers",
+      "name_et": "Deep Fryers",
+      "level": 3,
+      "parent_handle": "commercial-cooking-equipment",
+      "child_handles": []
+    },
+    "induction-cookers": {
+      "handle": "induction-cookers",
+      "name_en": "Induction Cookers",
+      "name_et": "Induction Cookers",
+      "level": 3,
+      "parent_handle": "commercial-cooking-equipment",
+      "child_handles": []
+    },
+    "food-preparation-equipment": {
+      "handle": "food-preparation-equipment",
+      "name_en": "Food Preparation Equipment",
+      "name_et": "Toiduvalmistamine",
+      "level": 2,
+      "parent_handle": "horeca-food-service",
+      "child_handles": []
+    },
+    "bar-beverage-service": {
+      "handle": "bar-beverage-service",
+      "name_en": "Bar & Beverage Service",
+      "name_et": "Baar ja joogitarbed",
+      "level": 2,
+      "parent_handle": "horeca-food-service",
+      "child_handles": [
+        "espresso-machines",
+        "coffee-grinders",
+        "blenders",
+        "juicers"
+      ]
+    },
+    "espresso-machines": {
+      "handle": "espresso-machines",
+      "name_en": "Espresso Machines",
+      "name_et": "Espresso Machines",
+      "level": 3,
+      "parent_handle": "bar-beverage-service",
+      "child_handles": []
+    },
+    "coffee-grinders": {
+      "handle": "coffee-grinders",
+      "name_en": "Coffee Grinders",
+      "name_et": "Coffee Grinders",
+      "level": 3,
+      "parent_handle": "bar-beverage-service",
+      "child_handles": []
+    },
+    "blenders": {
+      "handle": "blenders",
+      "name_en": "Blenders",
+      "name_et": "Blenders",
+      "level": 3,
+      "parent_handle": "bar-beverage-service",
+      "child_handles": []
+    },
+    "juicers": {
+      "handle": "juicers",
+      "name_en": "Juicers",
+      "name_et": "Juicers",
+      "level": 3,
+      "parent_handle": "bar-beverage-service",
+      "child_handles": []
+    },
+    "commercial-sinks-washdown": {
+      "handle": "commercial-sinks-washdown",
+      "name_en": "Commercial Sinks & Washdown",
+      "name_et": "Valamud ja nõudepesu",
+      "level": 2,
+      "parent_handle": "horeca-food-service",
+      "child_handles": []
+    },
+    "restaurant-storage-shelving": {
+      "handle": "restaurant-storage-shelving",
+      "name_en": "Restaurant Storage & Shelving",
+      "name_et": "Restorani riiulid ja hoiustus",
+      "level": 2,
+      "parent_handle": "horeca-food-service",
+      "child_handles": []
+    },
+    "restaurant-furniture": {
+      "handle": "restaurant-furniture",
+      "name_en": "Restaurant Furniture",
+      "name_et": "Restorani mööbel",
+      "level": 2,
+      "parent_handle": "horeca-food-service",
+      "child_handles": []
+    },
+    "kitchen-hvac-air-curtains": {
+      "handle": "kitchen-hvac-air-curtains",
+      "name_en": "Kitchen HVAC & Air Curtains",
+      "name_et": "Köögi ventilatsioon",
+      "level": 2,
+      "parent_handle": "horeca-food-service",
+      "child_handles": []
+    },
+    "horeca-food-service": {
+      "handle": "horeca-food-service",
+      "name_en": "HoReCa & Food Service",
+      "name_et": "Suurköök ja Toitlustus",
+      "level": 1,
+      "parent_handle": null,
+      "child_handles": [
+        "commercial-refrigeration",
+        "commercial-cooking-equipment",
+        "food-preparation-equipment",
+        "bar-beverage-service",
+        "commercial-sinks-washdown",
+        "restaurant-storage-shelving",
+        "restaurant-furniture",
+        "kitchen-hvac-air-curtains"
+      ]
+    },
+    "co2-laser-engravers-cutters": {
+      "handle": "co2-laser-engravers-cutters",
+      "name_en": "CO2 Laser Engravers & Cutters",
+      "name_et": "CO2 lasergraveerijad ja -lõikurid",
+      "level": 2,
+      "parent_handle": "laser-cnc-digital-fabrication",
+      "child_handles": []
+    },
+    "diode-laser-engravers": {
+      "handle": "diode-laser-engravers",
+      "name_en": "Diode Laser Engravers",
+      "name_et": "Dioodlaser-graveerijad",
+      "level": 2,
+      "parent_handle": "laser-cnc-digital-fabrication",
+      "child_handles": []
+    },
+    "cnc-routers-mills": {
+      "handle": "cnc-routers-mills",
+      "name_en": "CNC Routers & Mills",
+      "name_et": "CNC-freesid",
+      "level": 2,
+      "parent_handle": "laser-cnc-digital-fabrication",
+      "child_handles": []
+    },
+    "3d-printers": {
+      "handle": "3d-printers",
+      "name_en": "3D Printers",
+      "name_et": "3D-printerid",
+      "level": 2,
+      "parent_handle": "laser-cnc-digital-fabrication",
+      "child_handles": []
+    },
+    "laser-cnc-accessories": {
+      "handle": "laser-cnc-accessories",
+      "name_en": "Laser & CNC Accessories",
+      "name_et": "Laser- ja CNC-lisad",
+      "level": 2,
+      "parent_handle": "laser-cnc-digital-fabrication",
+      "child_handles": [
+        "rotary-attachments",
+        "honeycomb-tables",
+        "cnc-spindles"
+      ]
+    },
+    "rotary-attachments": {
+      "handle": "rotary-attachments",
+      "name_en": "Rotary Attachments",
+      "name_et": "Rotary Attachments",
+      "level": 3,
+      "parent_handle": "laser-cnc-accessories",
+      "child_handles": []
+    },
+    "honeycomb-tables": {
+      "handle": "honeycomb-tables",
+      "name_en": "Honeycomb Tables",
+      "name_et": "Honeycomb Tables",
+      "level": 3,
+      "parent_handle": "laser-cnc-accessories",
+      "child_handles": []
+    },
+    "cnc-spindles": {
+      "handle": "cnc-spindles",
+      "name_en": "Cnc Spindles",
+      "name_et": "Cnc Spindles",
+      "level": 3,
+      "parent_handle": "laser-cnc-accessories",
+      "child_handles": []
+    },
+    "laser-cnc-digital-fabrication": {
+      "handle": "laser-cnc-digital-fabrication",
+      "name_en": "Laser, CNC & Digital Fabrication",
+      "name_et": "Laser-, CNC- ja digitaaltootmine",
+      "level": 1,
+      "parent_handle": null,
+      "child_handles": [
+        "co2-laser-engravers-cutters",
+        "diode-laser-engravers",
+        "cnc-routers-mills",
+        "3d-printers",
+        "laser-cnc-accessories"
+      ]
+    },
+    "welding-cutting": {
+      "handle": "welding-cutting",
+      "name_en": "Welding & Cutting",
+      "name_et": "Keevitus ja lõikamine",
+      "level": 2,
+      "parent_handle": "welding-metalworking",
+      "child_handles": []
+    },
+    "metal-lathes-mills": {
+      "handle": "metal-lathes-mills",
+      "name_en": "Metal Lathes & Mills",
+      "name_et": "Metallitreipingid ja -freesid",
+      "level": 2,
+      "parent_handle": "welding-metalworking",
+      "child_handles": []
+    },
+    "angle-grinders-metal-cutting": {
+      "handle": "angle-grinders-metal-cutting",
+      "name_en": "Angle Grinders & Metal Cutting Tools",
+      "name_et": "Nurklihvijad ja metallilõikurid",
+      "level": 2,
+      "parent_handle": "welding-metalworking",
+      "child_handles": []
+    },
+    "hydraulic-press-equipment": {
+      "handle": "hydraulic-press-equipment",
+      "name_en": "Hydraulic & Press Equipment",
+      "name_et": "Hüdraulika ja pressid",
+      "level": 2,
+      "parent_handle": "welding-metalworking",
+      "child_handles": []
+    },
+    "welding-safety-apparel": {
+      "handle": "welding-safety-apparel",
+      "name_en": "Welding Safety & Apparel",
+      "name_et": "Keevitaja ohutusvarustus",
+      "level": 2,
+      "parent_handle": "welding-metalworking",
+      "child_handles": []
+    },
+    "motors-drives-parts": {
+      "handle": "motors-drives-parts",
+      "name_en": "Motors, Drives & Parts",
+      "name_et": "Mootorid ja ajamid",
+      "level": 2,
+      "parent_handle": "welding-metalworking",
+      "child_handles": []
+    },
+    "welding-metalworking": {
+      "handle": "welding-metalworking",
+      "name_en": "Welding & Metalworking",
+      "name_et": "Keevitus ja metallitööd",
+      "level": 1,
+      "parent_handle": null,
+      "child_handles": [
+        "welding-cutting",
+        "metal-lathes-mills",
+        "angle-grinders-metal-cutting",
+        "hydraulic-press-equipment",
+        "welding-safety-apparel",
+        "motors-drives-parts"
+      ]
+    },
+    "screen-printing-heat-press": {
+      "handle": "screen-printing-heat-press",
+      "name_en": "Screen Printing & Heat Press",
+      "name_et": "Siiditrükk ja kuumpress",
+      "level": 2,
+      "parent_handle": "printing-packaging-signage",
+      "child_handles": []
+    },
+    "vinyl-cutters-plotters": {
+      "handle": "vinyl-cutters-plotters",
+      "name_en": "Vinyl Cutters & Plotters",
+      "name_et": "Vinüül-lõikurid",
+      "level": 2,
+      "parent_handle": "printing-packaging-signage",
+      "child_handles": []
+    },
+    "packaging-sealing": {
+      "handle": "packaging-sealing",
+      "name_en": "Packaging & Sealing Equipment",
+      "name_et": "Pakendamine ja tihendamine",
+      "level": 2,
+      "parent_handle": "printing-packaging-signage",
+      "child_handles": []
+    },
+    "label-makers-printers": {
+      "handle": "label-makers-printers",
+      "name_en": "Label Makers & Printers",
+      "name_et": "Sildi- ja trükiseadmed",
+      "level": 2,
+      "parent_handle": "printing-packaging-signage",
+      "child_handles": []
+    },
+    "signage-display": {
+      "handle": "signage-display",
+      "name_en": "Signage & Display",
+      "name_et": "Sildid ja väljapanekud",
+      "level": 2,
+      "parent_handle": "printing-packaging-signage",
+      "child_handles": []
+    },
+    "paper-document-handling": {
+      "handle": "paper-document-handling",
+      "name_en": "Paper & Document Handling",
+      "name_et": "Paber ja dokumendikäitlus",
+      "level": 2,
+      "parent_handle": "printing-packaging-signage",
+      "child_handles": []
+    },
+    "printing-packaging-signage": {
+      "handle": "printing-packaging-signage",
+      "name_en": "Printing, Packaging & Signage",
+      "name_et": "Trükk, pakendamine ja silt",
+      "level": 1,
+      "parent_handle": null,
+      "child_handles": [
+        "screen-printing-heat-press",
+        "vinyl-cutters-plotters",
+        "packaging-sealing",
+        "label-makers-printers",
+        "signage-display",
+        "paper-document-handling"
+      ]
+    },
+    "generators-portable-power": {
+      "handle": "generators-portable-power",
+      "name_en": "Generators & Portable Power",
+      "name_et": "Generaatorid ja varutoide",
+      "level": 2,
+      "parent_handle": "electrical-energy",
+      "child_handles": []
+    },
+    "solar-renewable-energy": {
+      "handle": "solar-renewable-energy",
+      "name_en": "Solar & Renewable Energy",
+      "name_et": "Päikese- ja taastuvenergia",
+      "level": 2,
+      "parent_handle": "electrical-energy",
+      "child_handles": []
+    },
+    "electrical-tools-testing": {
+      "handle": "electrical-tools-testing",
+      "name_en": "Electrical Tools & Testing",
+      "name_et": "Elektritööriistad ja testimine",
+      "level": 2,
+      "parent_handle": "electrical-energy",
+      "child_handles": []
+    },
+    "wiring-conduit-enclosures": {
+      "handle": "wiring-conduit-enclosures",
+      "name_en": "Wiring, Conduit & Enclosures",
+      "name_et": "Juhtmestik ja kilbid",
+      "level": 2,
+      "parent_handle": "electrical-energy",
+      "child_handles": []
+    },
+    "commercial-industrial-lighting": {
+      "handle": "commercial-industrial-lighting",
+      "name_en": "Commercial & Industrial Lighting",
+      "name_et": "Tööstus- ja ärivalgustid",
+      "level": 2,
+      "parent_handle": "electrical-energy",
+      "child_handles": []
+    },
+    "batteries-charging": {
+      "handle": "batteries-charging",
+      "name_en": "Batteries & Charging",
+      "name_et": "Akud ja laadimine",
+      "level": 2,
+      "parent_handle": "electrical-energy",
+      "child_handles": []
+    },
+    "electrical-energy": {
+      "handle": "electrical-energy",
+      "name_en": "Electrical & Energy",
+      "name_et": "Elekter ja energia",
+      "level": 1,
+      "parent_handle": null,
+      "child_handles": [
+        "generators-portable-power",
+        "solar-renewable-energy",
+        "electrical-tools-testing",
+        "wiring-conduit-enclosures",
+        "commercial-industrial-lighting",
+        "batteries-charging"
+      ]
+    },
+    "stationary-woodworking-machines": {
+      "handle": "stationary-woodworking-machines",
+      "name_en": "Stationary Woodworking Machines",
+      "name_et": "Statsionaarsed puidutöömasinad",
+      "level": 2,
+      "parent_handle": "woodworking-carpentry",
+      "child_handles": []
+    },
+    "routers-shaping": {
+      "handle": "routers-shaping",
+      "name_en": "Routers & Shaping",
+      "name_et": "Freesid ja profileerimine",
+      "level": 2,
+      "parent_handle": "woodworking-carpentry",
+      "child_handles": []
+    },
+    "woodworking-benches-clamps": {
+      "handle": "woodworking-benches-clamps",
+      "name_en": "Woodworking Benches & Clamps",
+      "name_et": "Tööpingid ja pitskruvid",
+      "level": 2,
+      "parent_handle": "woodworking-carpentry",
+      "child_handles": []
+    },
+    "drill-presses-boring": {
+      "handle": "drill-presses-boring",
+      "name_en": "Drill Presses & Boring",
+      "name_et": "Puurpingid",
+      "level": 2,
+      "parent_handle": "woodworking-carpentry",
+      "child_handles": []
+    },
+    "saw-accessories-blades": {
+      "handle": "saw-accessories-blades",
+      "name_en": "Saw Accessories & Blades",
+      "name_et": "Saekettad ja tarvikud",
+      "level": 2,
+      "parent_handle": "woodworking-carpentry",
+      "child_handles": []
+    },
+    "finishing-sanding": {
+      "handle": "finishing-sanding",
+      "name_en": "Finishing & Sanding Tools",
+      "name_et": "Viimistlus ja lihvimine",
+      "level": 2,
+      "parent_handle": "woodworking-carpentry",
+      "child_handles": []
+    },
+    "woodworking-carpentry": {
+      "handle": "woodworking-carpentry",
+      "name_en": "Woodworking & Carpentry",
+      "name_et": "Puidutöö ja tisler",
+      "level": 1,
+      "parent_handle": null,
+      "child_handles": [
+        "stationary-woodworking-machines",
+        "routers-shaping",
+        "woodworking-benches-clamps",
+        "drill-presses-boring",
+        "saw-accessories-blades",
+        "finishing-sanding"
+      ]
+    },
+    "concrete-masonry-drywall": {
+      "handle": "concrete-masonry-drywall",
+      "name_en": "Concrete, Masonry & Drywall",
+      "name_et": "Betoon, müüritis ja kipsplaat",
+      "level": 2,
+      "parent_handle": "construction-building",
+      "child_handles": []
+    },
+    "ladders-scaffolding": {
+      "handle": "ladders-scaffolding",
+      "name_en": "Ladders, Scaffolding & Work Platforms",
+      "name_et": "Redelid ja tellingud",
+      "level": 2,
+      "parent_handle": "construction-building",
+      "child_handles": []
+    },
+    "roofing-insulation": {
+      "handle": "roofing-insulation",
+      "name_en": "Roofing & Insulation",
+      "name_et": "Katus ja soojustus",
+      "level": 2,
+      "parent_handle": "construction-building",
+      "child_handles": []
+    },
+    "flooring-installation": {
+      "handle": "flooring-installation",
+      "name_en": "Flooring Installation",
+      "name_et": "Põrandakatted",
+      "level": 2,
+      "parent_handle": "construction-building",
+      "child_handles": []
+    },
+    "decking-fencing-hardware": {
+      "handle": "decking-fencing-hardware",
+      "name_en": "Decking, Fencing & Structural Hardware",
+      "name_et": "Terrassid ja aiad",
+      "level": 2,
+      "parent_handle": "construction-building",
+      "child_handles": []
+    },
+    "paint-caulk-finishing": {
+      "handle": "paint-caulk-finishing",
+      "name_en": "Paint, Caulk & Surface Finishing",
+      "name_et": "Värv ja viimistlus",
+      "level": 2,
+      "parent_handle": "construction-building",
+      "child_handles": []
+    },
+    "construction-building": {
+      "handle": "construction-building",
+      "name_en": "Construction & Building",
+      "name_et": "Ehitus",
+      "level": 1,
+      "parent_handle": null,
+      "child_handles": [
+        "concrete-masonry-drywall",
+        "ladders-scaffolding",
+        "roofing-insulation",
+        "flooring-installation",
+        "decking-fencing-hardware",
+        "paint-caulk-finishing"
+      ]
+    },
+    "floor-care-equipment": {
+      "handle": "floor-care-equipment",
+      "name_en": "Floor Care Equipment",
+      "name_et": "Põrandahooldusmasinad",
+      "level": 2,
+      "parent_handle": "cleaning-janitorial",
+      "child_handles": []
+    },
+    "janitorial-supplies-carts": {
+      "handle": "janitorial-supplies-carts",
+      "name_en": "Janitorial Supplies & Carts",
+      "name_et": "Koristusvahendid ja -käru",
+      "level": 2,
+      "parent_handle": "cleaning-janitorial",
+      "child_handles": []
+    },
+    "hand-dryers-washroom": {
+      "handle": "hand-dryers-washroom",
+      "name_en": "Hand Dryers & Washroom Equipment",
+      "name_et": "Käte kuivatid ja sanitaarruumid",
+      "level": 2,
+      "parent_handle": "cleaning-janitorial",
+      "child_handles": []
+    },
+    "waste-recycling": {
+      "handle": "waste-recycling",
+      "name_en": "Waste & Recycling",
+      "name_et": "Jäätmed ja taaskasutus",
+      "level": 2,
+      "parent_handle": "cleaning-janitorial",
+      "child_handles": []
+    },
+    "industrial-vacuums": {
+      "handle": "industrial-vacuums",
+      "name_en": "Industrial Vacuums",
+      "name_et": "Tööstuslikud tolmuimejad",
+      "level": 2,
+      "parent_handle": "cleaning-janitorial",
+      "child_handles": []
+    },
+    "carpet-extractors": {
+      "handle": "carpet-extractors",
+      "name_en": "Carpet Extractors",
+      "name_et": "Vaibapesemine",
+      "level": 2,
+      "parent_handle": "cleaning-janitorial",
+      "child_handles": []
+    },
+    "cleaning-janitorial": {
+      "handle": "cleaning-janitorial",
+      "name_en": "Cleaning & Janitorial",
+      "name_et": "Puhastus ja hoolduskemia",
+      "level": 1,
+      "parent_handle": null,
+      "child_handles": [
+        "floor-care-equipment",
+        "janitorial-supplies-carts",
+        "hand-dryers-washroom",
+        "waste-recycling",
+        "industrial-vacuums",
+        "carpet-extractors"
+      ]
+    },
+    "power-tools": {
+      "handle": "power-tools",
+      "name_en": "Power Tools",
+      "name_et": "Elektritööriistad",
+      "level": 2,
+      "parent_handle": "hand-power-tools",
+      "child_handles": [
+        "drills",
+        "grinders",
+        "sanders",
+        "saws"
+      ]
+    },
+    "drills": {
+      "handle": "drills",
+      "name_en": "Drills",
+      "name_et": "Drills",
+      "level": 3,
+      "parent_handle": "power-tools",
+      "child_handles": []
+    },
+    "grinders": {
+      "handle": "grinders",
+      "name_en": "Grinders",
+      "name_et": "Grinders",
+      "level": 3,
+      "parent_handle": "power-tools",
+      "child_handles": []
+    },
+    "sanders": {
+      "handle": "sanders",
+      "name_en": "Sanders",
+      "name_et": "Sanders",
+      "level": 3,
+      "parent_handle": "power-tools",
+      "child_handles": []
+    },
+    "saws": {
+      "handle": "saws",
+      "name_en": "Saws",
+      "name_et": "Saws",
+      "level": 3,
+      "parent_handle": "power-tools",
+      "child_handles": []
+    },
+    "hand-tools": {
+      "handle": "hand-tools",
+      "name_en": "Hand Tools",
+      "name_et": "Käsitööriistad",
+      "level": 2,
+      "parent_handle": "hand-power-tools",
+      "child_handles": []
+    },
+    "air-compressors-pneumatic": {
+      "handle": "air-compressors-pneumatic",
+      "name_en": "Air Compressors & Pneumatic Tools",
+      "name_et": "Kompressorid ja pneumaatika",
+      "level": 2,
+      "parent_handle": "hand-power-tools",
+      "child_handles": []
+    },
+    "measuring-layout-tools": {
+      "handle": "measuring-layout-tools",
+      "name_en": "Measuring & Layout Tools",
+      "name_et": "Mõõteriistad",
+      "level": 2,
+      "parent_handle": "hand-power-tools",
+      "child_handles": []
+    },
+    "power-tool-accessories": {
+      "handle": "power-tool-accessories",
+      "name_en": "Power Tool Accessories & Bits",
+      "name_et": "Tööriistatarvikud",
+      "level": 2,
+      "parent_handle": "hand-power-tools",
+      "child_handles": []
+    },
+    "tool-storage-cases": {
+      "handle": "tool-storage-cases",
+      "name_en": "Tool Storage & Cases",
+      "name_et": "Tööriistakastid ja hoiustus",
+      "level": 2,
+      "parent_handle": "hand-power-tools",
+      "child_handles": []
+    },
+    "workbenches": {
+      "handle": "workbenches",
+      "name_en": "Workbenches",
+      "name_et": "Tööpingid",
+      "level": 2,
+      "parent_handle": "hand-power-tools",
+      "child_handles": []
+    },
+    "hand-power-tools": {
+      "handle": "hand-power-tools",
+      "name_en": "Hand & Power Tools",
+      "name_et": "Käsi- ja elektritööriistad",
+      "level": 1,
+      "parent_handle": null,
+      "child_handles": [
+        "power-tools",
+        "hand-tools",
+        "air-compressors-pneumatic",
+        "measuring-layout-tools",
+        "power-tool-accessories",
+        "tool-storage-cases",
+        "workbenches"
+      ]
+    },
+    "fuel-transfer-pumps": {
+      "handle": "fuel-transfer-pumps",
+      "name_en": "Fuel Transfer Pumps",
+      "name_et": "Kütusepumpad",
+      "level": 2,
+      "parent_handle": "fuel-lubrication-fluid",
+      "child_handles": []
+    },
+    "oil-lubrication": {
+      "handle": "oil-lubrication",
+      "name_en": "Oil & Lubrication Equipment",
+      "name_et": "Õlitus ja määrimine",
+      "level": 2,
+      "parent_handle": "fuel-lubrication-fluid",
+      "child_handles": []
+    },
+    "drum-container-handling": {
+      "handle": "drum-container-handling",
+      "name_en": "Drum & Container Handling",
+      "name_et": "Vaatide käitlus",
+      "level": 2,
+      "parent_handle": "fuel-lubrication-fluid",
+      "child_handles": []
+    },
+    "dewatering-industrial-pumps": {
+      "handle": "dewatering-industrial-pumps",
+      "name_en": "Dewatering & Industrial Pumps",
+      "name_et": "Drenaažipumbad",
+      "level": 2,
+      "parent_handle": "fuel-lubrication-fluid",
+      "child_handles": []
+    },
+    "chemical-transfer": {
+      "handle": "chemical-transfer",
+      "name_en": "Chemical Transfer Equipment",
+      "name_et": "Kemikaalide käitlus",
+      "level": 2,
+      "parent_handle": "fuel-lubrication-fluid",
+      "child_handles": []
+    },
+    "fuel-nozzles": {
+      "handle": "fuel-nozzles",
+      "name_en": "Fuel Nozzles",
+      "name_et": "Kütusepüstolid",
+      "level": 2,
+      "parent_handle": "fuel-lubrication-fluid",
+      "child_handles": []
+    },
+    "fuel-lubrication-fluid": {
+      "handle": "fuel-lubrication-fluid",
+      "name_en": "Fuel, Lubrication & Fluid Management",
+      "name_et": "Kütus ja määrdeained",
+      "level": 1,
+      "parent_handle": null,
+      "child_handles": [
+        "fuel-transfer-pumps",
+        "oil-lubrication",
+        "drum-container-handling",
+        "dewatering-industrial-pumps",
+        "chemical-transfer",
+        "fuel-nozzles"
+      ]
+    },
+    "outdoor-power-equipment": {
+      "handle": "outdoor-power-equipment",
+      "name_en": "Outdoor Power Equipment",
+      "name_et": "Õuetehnika",
+      "level": 2,
+      "parent_handle": "outdoor-power-landscaping",
+      "child_handles": []
+    },
+    "pressure-washers": {
+      "handle": "pressure-washers",
+      "name_en": "Pressure Washers",
+      "name_et": "Survepesurid",
+      "level": 2,
+      "parent_handle": "outdoor-power-landscaping",
+      "child_handles": []
+    },
+    "garden-tools-landscaping": {
+      "handle": "garden-tools-landscaping",
+      "name_en": "Garden Tools & Landscaping Supplies",
+      "name_et": "Aiatööriistad ja haljastus",
+      "level": 2,
+      "parent_handle": "outdoor-power-landscaping",
+      "child_handles": []
+    },
+    "outdoor-cooking-grilling": {
+      "handle": "outdoor-cooking-grilling",
+      "name_en": "Outdoor Cooking & Grilling",
+      "name_et": "Õuegrill ja -köök",
+      "level": 2,
+      "parent_handle": "outdoor-power-landscaping",
+      "child_handles": []
+    },
+    "outdoor-heating": {
+      "handle": "outdoor-heating",
+      "name_en": "Outdoor Heating",
+      "name_et": "Terrassisoojendid",
+      "level": 2,
+      "parent_handle": "outdoor-power-landscaping",
+      "child_handles": []
+    },
+    "outdoor-decor-structures": {
+      "handle": "outdoor-decor-structures",
+      "name_en": "Outdoor Decor & Structures",
+      "name_et": "Välisdekoor",
+      "level": 2,
+      "parent_handle": "outdoor-power-landscaping",
+      "child_handles": []
+    },
+    "outdoor-power-landscaping": {
+      "handle": "outdoor-power-landscaping",
+      "name_en": "Outdoor Power & Landscaping",
+      "name_et": "Haljastus ja õuetehnika",
+      "level": 1,
+      "parent_handle": null,
+      "child_handles": [
+        "outdoor-power-equipment",
+        "pressure-washers",
+        "garden-tools-landscaping",
+        "outdoor-cooking-grilling",
+        "outdoor-heating",
+        "outdoor-decor-structures"
+      ]
+    },
+    "hoists-cranes-lifting": {
+      "handle": "hoists-cranes-lifting",
+      "name_en": "Hoists, Cranes & Lifting",
+      "name_et": "Tõstukid ja kraanad",
+      "level": 2,
+      "parent_handle": "warehousing-material-handling",
+      "child_handles": []
+    },
+    "forklifts-pallet-equipment": {
+      "handle": "forklifts-pallet-equipment",
+      "name_en": "Forklifts & Pallet Equipment",
+      "name_et": "Kahveltõstukid",
+      "level": 2,
+      "parent_handle": "warehousing-material-handling",
+      "child_handles": []
+    },
+    "carts-dollies-hand-trucks": {
+      "handle": "carts-dollies-hand-trucks",
+      "name_en": "Carts, Dollies & Hand Trucks",
+      "name_et": "Käru ja veod",
+      "level": 2,
+      "parent_handle": "warehousing-material-handling",
+      "child_handles": []
+    },
+    "industrial-shelving-racking": {
+      "handle": "industrial-shelving-racking",
+      "name_en": "Industrial Shelving & Racking",
+      "name_et": "Tööstusriiulid",
+      "level": 2,
+      "parent_handle": "warehousing-material-handling",
+      "child_handles": []
+    },
+    "workbenches-storage": {
+      "handle": "workbenches-storage",
+      "name_en": "Workbenches & Tool Storage",
+      "name_et": "Tööpingid ja hoiustus",
+      "level": 2,
+      "parent_handle": "warehousing-material-handling",
+      "child_handles": []
+    },
+    "strapping-chains-securing": {
+      "handle": "strapping-chains-securing",
+      "name_en": "Strapping, Chains & Securing",
+      "name_et": "Rihmad ja ketid",
+      "level": 2,
+      "parent_handle": "warehousing-material-handling",
+      "child_handles": []
+    },
+    "warehousing-material-handling": {
+      "handle": "warehousing-material-handling",
+      "name_en": "Warehousing & Material Handling",
+      "name_et": "Laondus ja käitlus",
+      "level": 1,
+      "parent_handle": null,
+      "child_handles": [
+        "hoists-cranes-lifting",
+        "forklifts-pallet-equipment",
+        "carts-dollies-hand-trucks",
+        "industrial-shelving-racking",
+        "workbenches-storage",
+        "strapping-chains-securing"
+      ]
+    },
+    "air-conditioners-mini-splits": {
+      "handle": "air-conditioners-mini-splits",
+      "name_en": "Air Conditioners & Mini Splits",
+      "name_et": "Kliimaseadmed",
+      "level": 2,
+      "parent_handle": "hvac-climate-control",
+      "child_handles": []
+    },
+    "heaters": {
+      "handle": "heaters",
+      "name_en": "Heaters",
+      "name_et": "Soojendid",
+      "level": 2,
+      "parent_handle": "hvac-climate-control",
+      "child_handles": []
+    },
+    "fans-ventilation": {
+      "handle": "fans-ventilation",
+      "name_en": "Fans & Ventilation",
+      "name_et": "Ventilaatorid",
+      "level": 2,
+      "parent_handle": "hvac-climate-control",
+      "child_handles": []
+    },
+    "ducting-grilles-hvac-supplies": {
+      "handle": "ducting-grilles-hvac-supplies",
+      "name_en": "Ducting, Grilles & HVAC Supplies",
+      "name_et": "Ventilatsioonikanalid",
+      "level": 2,
+      "parent_handle": "hvac-climate-control",
+      "child_handles": []
+    },
+    "air-quality-purification": {
+      "handle": "air-quality-purification",
+      "name_en": "Air Quality & Purification",
+      "name_et": "Õhupuhastus",
+      "level": 2,
+      "parent_handle": "hvac-climate-control",
+      "child_handles": []
+    },
+    "dehumidifiers-evaporative-coolers": {
+      "handle": "dehumidifiers-evaporative-coolers",
+      "name_en": "Dehumidifiers & Evaporative Coolers",
+      "name_et": "Niiskuse eemaldajad",
+      "level": 2,
+      "parent_handle": "hvac-climate-control",
+      "child_handles": []
+    },
+    "hvac-climate-control": {
+      "handle": "hvac-climate-control",
+      "name_en": "HVAC & Climate Control",
+      "name_et": "Ventilatsioon ja kliimakontroll",
+      "level": 1,
+      "parent_handle": null,
+      "child_handles": [
+        "air-conditioners-mini-splits",
+        "heaters",
+        "fans-ventilation",
+        "ducting-grilles-hvac-supplies",
+        "air-quality-purification",
+        "dehumidifiers-evaporative-coolers"
+      ]
+    },
+    "water-pumps": {
+      "handle": "water-pumps",
+      "name_en": "Water Pumps",
+      "name_et": "Veepumbad",
+      "level": 2,
+      "parent_handle": "plumbing-water-systems",
+      "child_handles": []
+    },
+    "pipes-fittings-valves": {
+      "handle": "pipes-fittings-valves",
+      "name_en": "Pipes, Fittings & Valves",
+      "name_et": "Torud ja liitmikud",
+      "level": 2,
+      "parent_handle": "plumbing-water-systems",
+      "child_handles": []
+    },
+    "plumbing-tools": {
+      "handle": "plumbing-tools",
+      "name_en": "Plumbing Tools",
+      "name_et": "Santehniku tööriistad",
+      "level": 2,
+      "parent_handle": "plumbing-water-systems",
+      "child_handles": []
+    },
+    "water-heaters": {
+      "handle": "water-heaters",
+      "name_en": "Water Heaters",
+      "name_et": "Veeboilerid",
+      "level": 2,
+      "parent_handle": "plumbing-water-systems",
+      "child_handles": []
+    },
+    "water-filtration-softening": {
+      "handle": "water-filtration-softening",
+      "name_en": "Water Filtration & Softening",
+      "name_et": "Veefiltrid ja pehmendajad",
+      "level": 2,
+      "parent_handle": "plumbing-water-systems",
+      "child_handles": []
+    },
+    "bathroom-fixtures": {
+      "handle": "bathroom-fixtures",
+      "name_en": "Bathroom Fixtures",
+      "name_et": "Vannitoa sisseseade",
+      "level": 2,
+      "parent_handle": "plumbing-water-systems",
+      "child_handles": []
+    },
+    "plumbing-water-systems": {
+      "handle": "plumbing-water-systems",
+      "name_en": "Plumbing & Water Systems",
+      "name_et": "Veevärk ja santehnika",
+      "level": 1,
+      "parent_handle": null,
+      "child_handles": [
+        "water-pumps",
+        "pipes-fittings-valves",
+        "plumbing-tools",
+        "water-heaters",
+        "water-filtration-softening",
+        "bathroom-fixtures"
+      ]
+    },
+    "personal-protective-equipment": {
+      "handle": "personal-protective-equipment",
+      "name_en": "Personal Protective Equipment",
+      "name_et": "Isikukaitsevahendid",
+      "level": 2,
+      "parent_handle": "safety-security-workwear",
+      "child_handles": []
+    },
+    "traffic-site-safety": {
+      "handle": "traffic-site-safety",
+      "name_en": "Traffic & Site Safety",
+      "name_et": "Liiklus- ja objektiohutus",
+      "level": 2,
+      "parent_handle": "safety-security-workwear",
+      "child_handles": []
+    },
+    "locks-safes-access-control": {
+      "handle": "locks-safes-access-control",
+      "name_en": "Locks, Safes & Access Control",
+      "name_et": "Lukud ja seifid",
+      "level": 2,
+      "parent_handle": "safety-security-workwear",
+      "child_handles": []
+    },
+    "work-boots-footwear": {
+      "handle": "work-boots-footwear",
+      "name_en": "Work Boots & Footwear",
+      "name_et": "Tööjalatsid",
+      "level": 2,
+      "parent_handle": "safety-security-workwear",
+      "child_handles": []
+    },
+    "work-clothing-outerwear": {
+      "handle": "work-clothing-outerwear",
+      "name_en": "Work Clothing & Outerwear",
+      "name_et": "Tööriided",
+      "level": 2,
+      "parent_handle": "safety-security-workwear",
+      "child_handles": []
+    },
+    "safety-glasses": {
+      "handle": "safety-glasses",
+      "name_en": "Safety Glasses",
+      "name_et": "Kaitseprillid",
+      "level": 2,
+      "parent_handle": "safety-security-workwear",
+      "child_handles": []
+    },
+    "safety-security-workwear": {
+      "handle": "safety-security-workwear",
+      "name_en": "Safety, Security & Workwear",
+      "name_et": "Ohutus ja tööriided",
+      "level": 1,
+      "parent_handle": null,
+      "child_handles": [
+        "personal-protective-equipment",
+        "traffic-site-safety",
+        "locks-safes-access-control",
+        "work-boots-footwear",
+        "work-clothing-outerwear",
+        "safety-glasses"
+      ]
+    },
+    "vehicle-lifts-shop-equipment": {
+      "handle": "vehicle-lifts-shop-equipment",
+      "name_en": "Vehicle Lifts & Shop Equipment",
+      "name_et": "Autotõstukid ja töökojatehnika",
+      "level": 2,
+      "parent_handle": "automotive-workshop",
+      "child_handles": []
+    },
+    "mechanics-diagnostic-tools": {
+      "handle": "mechanics-diagnostic-tools",
+      "name_en": "Mechanics & Diagnostic Tools",
+      "name_et": "Mehaaniku ja diagnostikavahendid",
+      "level": 2,
+      "parent_handle": "automotive-workshop",
+      "child_handles": []
+    },
+    "jacks-lifting": {
+      "handle": "jacks-lifting",
+      "name_en": "Jacks & Lifting",
+      "name_et": "Tungrauad",
+      "level": 2,
+      "parent_handle": "automotive-workshop",
+      "child_handles": []
+    },
+    "towing-recovery": {
+      "handle": "towing-recovery",
+      "name_en": "Towing & Recovery",
+      "name_et": "Pukseerimine",
+      "level": 2,
+      "parent_handle": "automotive-workshop",
+      "child_handles": []
+    },
+    "truck-cargo-accessories": {
+      "handle": "truck-cargo-accessories",
+      "name_en": "Truck & Cargo Accessories",
+      "name_et": "Veoauto- ja lasttarvikud",
+      "level": 2,
+      "parent_handle": "automotive-workshop",
+      "child_handles": []
+    },
+    "auto-parts-replacement": {
+      "handle": "auto-parts-replacement",
+      "name_en": "Auto Parts & Replacement",
+      "name_et": "Autoosad",
+      "level": 2,
+      "parent_handle": "automotive-workshop",
+      "child_handles": []
+    },
+    "automotive-workshop": {
+      "handle": "automotive-workshop",
+      "name_en": "Automotive & Workshop",
+      "name_et": "Auto ja töökoda",
+      "level": 1,
+      "parent_handle": null,
+      "child_handles": [
+        "vehicle-lifts-shop-equipment",
+        "mechanics-diagnostic-tools",
+        "jacks-lifting",
+        "towing-recovery",
+        "truck-cargo-accessories",
+        "auto-parts-replacement"
+      ]
+    },
+    "barber-salon-chairs": {
+      "handle": "barber-salon-chairs",
+      "name_en": "Barber & Salon Chairs",
+      "name_et": "Juuksuri- ja salongi toolid",
+      "level": 2,
+      "parent_handle": "salon-spa-wellness",
+      "child_handles": []
+    },
+    "shampoo-stations-salon-furniture": {
+      "handle": "shampoo-stations-salon-furniture",
+      "name_en": "Shampoo Stations & Salon Furniture",
+      "name_et": "Pesupunktid ja salongi mööbel",
+      "level": 2,
+      "parent_handle": "salon-spa-wellness",
+      "child_handles": []
+    },
+    "massage-tables-spa-equipment": {
+      "handle": "massage-tables-spa-equipment",
+      "name_en": "Massage Tables & Spa Equipment",
+      "name_et": "Massaažilauad ja spaavarustus",
+      "level": 2,
+      "parent_handle": "salon-spa-wellness",
+      "child_handles": []
+    },
+    "personal-care-appliances": {
+      "handle": "personal-care-appliances",
+      "name_en": "Personal Care Appliances",
+      "name_et": "Isikliku hoolduse seadmed",
+      "level": 2,
+      "parent_handle": "salon-spa-wellness",
+      "child_handles": []
+    },
+    "manicure-nail-equipment": {
+      "handle": "manicure-nail-equipment",
+      "name_en": "Manicure & Nail Equipment",
+      "name_et": "Maniküürivarustus",
+      "level": 2,
+      "parent_handle": "salon-spa-wellness",
+      "child_handles": []
+    },
+    "facial-steamers": {
+      "handle": "facial-steamers",
+      "name_en": "Facial Steamers",
+      "name_et": "Näoaurutid",
+      "level": 2,
+      "parent_handle": "salon-spa-wellness",
+      "child_handles": []
+    },
+    "salon-spa-wellness": {
+      "handle": "salon-spa-wellness",
+      "name_en": "Salon, Spa & Wellness",
+      "name_et": "Ilu- ja spaasalong",
+      "level": 1,
+      "parent_handle": null,
+      "child_handles": [
+        "barber-salon-chairs",
+        "shampoo-stations-salon-furniture",
+        "massage-tables-spa-equipment",
+        "personal-care-appliances",
+        "manicure-nail-equipment",
+        "facial-steamers"
+      ]
+    },
+    "office-furniture": {
+      "handle": "office-furniture",
+      "name_en": "Office Furniture",
+      "name_et": "Kontorimööbel",
+      "level": 2,
+      "parent_handle": "office-commercial-interiors",
+      "child_handles": []
+    },
+    "meeting-lobby-furniture": {
+      "handle": "meeting-lobby-furniture",
+      "name_en": "Meeting & Lobby Furniture",
+      "name_et": "Fuajee- ja koosolekumööbel",
+      "level": 2,
+      "parent_handle": "office-commercial-interiors",
+      "child_handles": []
+    },
+    "door-cabinet-hardware": {
+      "handle": "door-cabinet-hardware",
+      "name_en": "Door & Cabinet Hardware",
+      "name_et": "Ukse- ja kapisisustus",
+      "level": 2,
+      "parent_handle": "office-commercial-interiors",
+      "child_handles": []
+    },
+    "interior-lighting": {
+      "handle": "interior-lighting",
+      "name_en": "Interior Lighting",
+      "name_et": "Sisevalgustus",
+      "level": 2,
+      "parent_handle": "office-commercial-interiors",
+      "child_handles": []
+    },
+    "bathroom-accessories": {
+      "handle": "bathroom-accessories",
+      "name_en": "Bathroom Accessories",
+      "name_et": "Vannitoa aksessuaarid",
+      "level": 2,
+      "parent_handle": "office-commercial-interiors",
+      "child_handles": []
+    },
+    "home-decor-window-treatments": {
+      "handle": "home-decor-window-treatments",
+      "name_en": "Home Decor & Window Treatments",
+      "name_et": "Kodudekoor ja aknakatted",
+      "level": 2,
+      "parent_handle": "office-commercial-interiors",
+      "child_handles": []
+    },
+    "office-commercial-interiors": {
+      "handle": "office-commercial-interiors",
+      "name_en": "Office & Commercial Interiors",
+      "name_et": "Kontor ja sisustus",
+      "level": 1,
+      "parent_handle": null,
+      "child_handles": [
+        "office-furniture",
+        "meeting-lobby-furniture",
+        "door-cabinet-hardware",
+        "interior-lighting",
+        "bathroom-accessories",
+        "home-decor-window-treatments"
+      ]
+    },
+    "medical-equipment-furniture": {
+      "handle": "medical-equipment-furniture",
+      "name_en": "Medical Equipment & Furniture",
+      "name_et": "Meditsiinivarustus ja -mööbel",
+      "level": 2,
+      "parent_handle": "health-medical-supply",
+      "child_handles": []
+    },
+    "mobility-aids": {
+      "handle": "mobility-aids",
+      "name_en": "Mobility Aids",
+      "name_et": "Liikumisabivahendid",
+      "level": 2,
+      "parent_handle": "health-medical-supply",
+      "child_handles": []
+    },
+    "bathroom-safety": {
+      "handle": "bathroom-safety",
+      "name_en": "Bathroom Safety",
+      "name_et": "Vannitoa ohutus",
+      "level": 2,
+      "parent_handle": "health-medical-supply",
+      "child_handles": []
+    },
+    "teaching-demonstration-models": {
+      "handle": "teaching-demonstration-models",
+      "name_en": "Teaching & Demonstration Models",
+      "name_et": "Õppe- ja demomudelid",
+      "level": 2,
+      "parent_handle": "health-medical-supply",
+      "child_handles": []
+    },
+    "wellness-skin-care": {
+      "handle": "wellness-skin-care",
+      "name_en": "Wellness & Skin Care",
+      "name_et": "Nahahooldus",
+      "level": 2,
+      "parent_handle": "health-medical-supply",
+      "child_handles": []
+    },
+    "wheelchairs": {
+      "handle": "wheelchairs",
+      "name_en": "Wheelchairs",
+      "name_et": "Ratastoolid",
+      "level": 2,
+      "parent_handle": "health-medical-supply",
+      "child_handles": []
+    },
+    "health-medical-supply": {
+      "handle": "health-medical-supply",
+      "name_en": "Health & Medical Supply",
+      "name_et": "Tervishoid ja meditsiin",
+      "level": 1,
+      "parent_handle": null,
+      "child_handles": [
+        "medical-equipment-furniture",
+        "mobility-aids",
+        "bathroom-safety",
+        "teaching-demonstration-models",
+        "wellness-skin-care",
+        "wheelchairs"
+      ]
+    },
+    "gym-equipment": {
+      "handle": "gym-equipment",
+      "name_en": "Gym Equipment",
+      "name_et": "Jõusaaliseadmed",
+      "level": 2,
+      "parent_handle": "fitness-sports-recreation",
+      "child_handles": []
+    },
+    "team-sports-equipment": {
+      "handle": "team-sports-equipment",
+      "name_en": "Team Sports Equipment",
+      "name_et": "Meeskonnaspordi varustus",
+      "level": 2,
+      "parent_handle": "fitness-sports-recreation",
+      "child_handles": []
+    },
+    "gym-flooring-mats": {
+      "handle": "gym-flooring-mats",
+      "name_en": "Gym Flooring & Mats",
+      "name_et": "Jõusaali põrand ja matid",
+      "level": 2,
+      "parent_handle": "fitness-sports-recreation",
+      "child_handles": []
+    },
+    "trampolines": {
+      "handle": "trampolines",
+      "name_en": "Trampolines",
+      "name_et": "Trampoliinid",
+      "level": 2,
+      "parent_handle": "fitness-sports-recreation",
+      "child_handles": []
+    },
+    "playground-outdoor-play": {
+      "handle": "playground-outdoor-play",
+      "name_en": "Playground & Outdoor Play",
+      "name_et": "Mänguväljakud",
+      "level": 2,
+      "parent_handle": "fitness-sports-recreation",
+      "child_handles": []
+    },
+    "cycling": {
+      "handle": "cycling",
+      "name_en": "Cycling",
+      "name_et": "Jalgrattad",
+      "level": 2,
+      "parent_handle": "fitness-sports-recreation",
+      "child_handles": []
+    },
+    "fitness-sports-recreation": {
+      "handle": "fitness-sports-recreation",
+      "name_en": "Fitness, Sports & Recreation",
+      "name_et": "Sport ja vabaaeg",
+      "level": 1,
+      "parent_handle": null,
+      "child_handles": [
+        "gym-equipment",
+        "team-sports-equipment",
+        "gym-flooring-mats",
+        "trampolines",
+        "playground-outdoor-play",
+        "cycling"
+      ]
+    },
+    "boat-parts-marine-hardware": {
+      "handle": "boat-parts-marine-hardware",
+      "name_en": "Boat Parts & Marine Hardware",
+      "name_et": "Paadivarustus",
+      "level": 2,
+      "parent_handle": "boating-camping-outdoor",
+      "child_handles": []
+    },
+    "inflatable-boats-kayaks": {
+      "handle": "inflatable-boats-kayaks",
+      "name_en": "Inflatable Boats & Kayaks",
+      "name_et": "Paisutatavad paadid ja kajakid",
+      "level": 2,
+      "parent_handle": "boating-camping-outdoor",
+      "child_handles": []
+    },
+    "water-sports": {
+      "handle": "water-sports",
+      "name_en": "Water Sports",
+      "name_et": "Veesport",
+      "level": 2,
+      "parent_handle": "boating-camping-outdoor",
+      "child_handles": []
+    },
+    "camping-gear": {
+      "handle": "camping-gear",
+      "name_en": "Camping Gear",
+      "name_et": "Matkavarustus",
+      "level": 2,
+      "parent_handle": "boating-camping-outdoor",
+      "child_handles": []
+    },
+    "canopy-tents-event-shelters": {
+      "handle": "canopy-tents-event-shelters",
+      "name_en": "Canopy Tents & Event Shelters",
+      "name_et": "Varjualused ja telgid",
+      "level": 2,
+      "parent_handle": "boating-camping-outdoor",
+      "child_handles": []
+    },
+    "outdoor-hobbies": {
+      "handle": "outdoor-hobbies",
+      "name_en": "Outdoor Hobbies",
+      "name_et": "Välihobid",
+      "level": 2,
+      "parent_handle": "boating-camping-outdoor",
+      "child_handles": []
+    },
+    "boating-camping-outdoor": {
+      "handle": "boating-camping-outdoor",
+      "name_en": "Boating, Camping & Outdoor Adventure",
+      "name_et": "Paadid ja matkatarbed",
+      "level": 1,
+      "parent_handle": null,
+      "child_handles": [
+        "boat-parts-marine-hardware",
+        "inflatable-boats-kayaks",
+        "water-sports",
+        "camping-gear",
+        "canopy-tents-event-shelters",
+        "outdoor-hobbies"
+      ]
+    },
+    "guitars-string-instruments": {
+      "handle": "guitars-string-instruments",
+      "name_en": "Guitars & String Instruments",
+      "name_et": "Kitarrid ja keelpillid",
+      "level": 2,
+      "parent_handle": "music-entertainment",
+      "child_handles": []
+    },
+    "keyboards-electronic-instruments": {
+      "handle": "keyboards-electronic-instruments",
+      "name_en": "Keyboards & Electronic Instruments",
+      "name_et": "Klahvpillid",
+      "level": 2,
+      "parent_handle": "music-entertainment",
+      "child_handles": []
+    },
+    "drums-percussion": {
+      "handle": "drums-percussion",
+      "name_en": "Drums & Percussion",
+      "name_et": "Trummid",
+      "level": 2,
+      "parent_handle": "music-entertainment",
+      "child_handles": []
+    },
+    "stage-dance-performance": {
+      "handle": "stage-dance-performance",
+      "name_en": "Stage, Dance & Performance",
+      "name_et": "Lava- ja esinemisvarustus",
+      "level": 2,
+      "parent_handle": "music-entertainment",
+      "child_handles": []
+    },
+    "game-room-entertainment": {
+      "handle": "game-room-entertainment",
+      "name_en": "Game Room & Entertainment",
+      "name_et": "Mängutuba",
+      "level": 2,
+      "parent_handle": "music-entertainment",
+      "child_handles": []
+    },
+    "instrument-storage-cases": {
+      "handle": "instrument-storage-cases",
+      "name_en": "Instrument Storage & Cases",
+      "name_et": "Pilli-kotid ja -kastid",
+      "level": 2,
+      "parent_handle": "music-entertainment",
+      "child_handles": []
+    },
+    "music-entertainment": {
+      "handle": "music-entertainment",
+      "name_en": "Music & Entertainment",
+      "name_et": "Muusika ja meelelahutus",
+      "level": 1,
+      "parent_handle": null,
+      "child_handles": [
+        "guitars-string-instruments",
+        "keyboards-electronic-instruments",
+        "drums-percussion",
+        "stage-dance-performance",
+        "game-room-entertainment",
+        "instrument-storage-cases"
+      ]
+    }
+  },
+  "order": [
+    "commercial-refrigeration",
+    "commercial-refrigerators",
+    "ice-machines",
+    "display-cases",
+    "bain-maries",
+    "commercial-cooking-equipment",
+    "commercial-ovens",
+    "combi-ovens",
+    "pizza-ovens",
+    "deep-fryers",
+    "induction-cookers",
+    "food-preparation-equipment",
+    "bar-beverage-service",
+    "espresso-machines",
+    "coffee-grinders",
+    "blenders",
+    "juicers",
+    "commercial-sinks-washdown",
+    "restaurant-storage-shelving",
+    "restaurant-furniture",
+    "kitchen-hvac-air-curtains",
+    "horeca-food-service",
+    "co2-laser-engravers-cutters",
+    "diode-laser-engravers",
+    "cnc-routers-mills",
+    "3d-printers",
+    "laser-cnc-accessories",
+    "rotary-attachments",
+    "honeycomb-tables",
+    "cnc-spindles",
+    "laser-cnc-digital-fabrication",
+    "welding-cutting",
+    "metal-lathes-mills",
+    "angle-grinders-metal-cutting",
+    "hydraulic-press-equipment",
+    "welding-safety-apparel",
+    "motors-drives-parts",
+    "welding-metalworking",
+    "screen-printing-heat-press",
+    "vinyl-cutters-plotters",
+    "packaging-sealing",
+    "label-makers-printers",
+    "signage-display",
+    "paper-document-handling",
+    "printing-packaging-signage",
+    "generators-portable-power",
+    "solar-renewable-energy",
+    "electrical-tools-testing",
+    "wiring-conduit-enclosures",
+    "commercial-industrial-lighting",
+    "batteries-charging",
+    "electrical-energy",
+    "stationary-woodworking-machines",
+    "routers-shaping",
+    "woodworking-benches-clamps",
+    "drill-presses-boring",
+    "saw-accessories-blades",
+    "finishing-sanding",
+    "woodworking-carpentry",
+    "concrete-masonry-drywall",
+    "ladders-scaffolding",
+    "roofing-insulation",
+    "flooring-installation",
+    "decking-fencing-hardware",
+    "paint-caulk-finishing",
+    "construction-building",
+    "floor-care-equipment",
+    "janitorial-supplies-carts",
+    "hand-dryers-washroom",
+    "waste-recycling",
+    "industrial-vacuums",
+    "carpet-extractors",
+    "cleaning-janitorial",
+    "power-tools",
+    "drills",
+    "grinders",
+    "sanders",
+    "saws",
+    "hand-tools",
+    "air-compressors-pneumatic",
+    "measuring-layout-tools",
+    "power-tool-accessories",
+    "tool-storage-cases",
+    "workbenches",
+    "hand-power-tools",
+    "fuel-transfer-pumps",
+    "oil-lubrication",
+    "drum-container-handling",
+    "dewatering-industrial-pumps",
+    "chemical-transfer",
+    "fuel-nozzles",
+    "fuel-lubrication-fluid",
+    "outdoor-power-equipment",
+    "pressure-washers",
+    "garden-tools-landscaping",
+    "outdoor-cooking-grilling",
+    "outdoor-heating",
+    "outdoor-decor-structures",
+    "outdoor-power-landscaping",
+    "hoists-cranes-lifting",
+    "forklifts-pallet-equipment",
+    "carts-dollies-hand-trucks",
+    "industrial-shelving-racking",
+    "workbenches-storage",
+    "strapping-chains-securing",
+    "warehousing-material-handling",
+    "air-conditioners-mini-splits",
+    "heaters",
+    "fans-ventilation",
+    "ducting-grilles-hvac-supplies",
+    "air-quality-purification",
+    "dehumidifiers-evaporative-coolers",
+    "hvac-climate-control",
+    "water-pumps",
+    "pipes-fittings-valves",
+    "plumbing-tools",
+    "water-heaters",
+    "water-filtration-softening",
+    "bathroom-fixtures",
+    "plumbing-water-systems",
+    "personal-protective-equipment",
+    "traffic-site-safety",
+    "locks-safes-access-control",
+    "work-boots-footwear",
+    "work-clothing-outerwear",
+    "safety-glasses",
+    "safety-security-workwear",
+    "vehicle-lifts-shop-equipment",
+    "mechanics-diagnostic-tools",
+    "jacks-lifting",
+    "towing-recovery",
+    "truck-cargo-accessories",
+    "auto-parts-replacement",
+    "automotive-workshop",
+    "barber-salon-chairs",
+    "shampoo-stations-salon-furniture",
+    "massage-tables-spa-equipment",
+    "personal-care-appliances",
+    "manicure-nail-equipment",
+    "facial-steamers",
+    "salon-spa-wellness",
+    "office-furniture",
+    "meeting-lobby-furniture",
+    "door-cabinet-hardware",
+    "interior-lighting",
+    "bathroom-accessories",
+    "home-decor-window-treatments",
+    "office-commercial-interiors",
+    "medical-equipment-furniture",
+    "mobility-aids",
+    "bathroom-safety",
+    "teaching-demonstration-models",
+    "wellness-skin-care",
+    "wheelchairs",
+    "health-medical-supply",
+    "gym-equipment",
+    "team-sports-equipment",
+    "gym-flooring-mats",
+    "trampolines",
+    "playground-outdoor-play",
+    "cycling",
+    "fitness-sports-recreation",
+    "boat-parts-marine-hardware",
+    "inflatable-boats-kayaks",
+    "water-sports",
+    "camping-gear",
+    "canopy-tents-event-shelters",
+    "outdoor-hobbies",
+    "boating-camping-outdoor",
+    "guitars-string-instruments",
+    "keyboards-electronic-instruments",
+    "drums-percussion",
+    "stage-dance-performance",
+    "game-room-entertainment",
+    "instrument-storage-cases",
+    "music-entertainment"
+  ]
+}

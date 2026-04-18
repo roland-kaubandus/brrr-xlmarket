@@ -12,6 +12,8 @@ type Props = {
   currentCategories?: string[]
   currentInStock?: boolean
   categoryFacets?: Record<string, number>
+  /** Optional handle → display label map. Falls back to handle when missing. */
+  categoryLabels?: Record<string, string>
   quickFilters?: QuickFilter[]
   currentQuickFilter?: string
   locale: string
@@ -35,8 +37,8 @@ const INITIAL_VISIBLE_CATS = 10
 
 export default function VevorSearchFilters({
   totalHits, query, currentSort, currentMin, currentMax,
-  currentCategories = [], currentInStock, categoryFacets = {}, locale,
-  quickFilters = [], currentQuickFilter = "",
+  currentCategories = [], currentInStock, categoryFacets = {}, categoryLabels = {},
+  locale, quickFilters = [], currentQuickFilter = "",
   basePath,
 }: Props) {
   const router = useRouter()
@@ -135,7 +137,7 @@ export default function VevorSearchFilters({
                     }}
                     className="accent-[#D97706] w-4 h-4 flex-shrink-0"
                   />
-                  <span className="truncate flex-1 text-[#1E293B] group-hover:text-[#D97706] transition-colors duration-150">{cat}</span>
+                  <span className="truncate flex-1 text-[#1E293B] group-hover:text-[#D97706] transition-colors duration-150">{categoryLabels[cat] || cat}</span>
                   <span className="text-xs text-[#94A3B8] tabular-nums">({count})</span>
                 </label>
               ))}

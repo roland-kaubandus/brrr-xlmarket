@@ -13,46 +13,18 @@ import SubcategoryScroller from "@/components/SubcategoryScroller"
 import categoryImages from "@/lib/category-images.json"
 import { categoryPath } from "@/lib/i18n"
 import { buildQuickFilters } from "@/lib/quick-filters"
+import {
+  getNode,
+  getAncestors,
+  getChildren,
+  getSiblings,
+  nodeName,
+  type Locale as TaxLocale,
+} from "@/lib/category-tree"
 
 const CATEGORY_IMAGES: Record<string, string> = categoryImages as Record<string, string>
 
 export const revalidate = 3600
-
-const CATEGORY_NAMES: Record<string, Record<string, string>> = {
-  // L1 VEVOR categories → ET + EN (matches XLSX product_type taxonomy)
-  "automotive": { et: "Auto ja garaaž", en: "Automotive" },
-  "plumbing": { et: "Torutööd ja sanitaar", en: "Plumbing" },
-  "sports-outdoors": { et: "Sport ja vaba aeg", en: "Sports & Outdoors" },
-  "tools": { et: "Tööriistad", en: "Tools" },
-  "outdoors": { et: "Aed ja õu", en: "Outdoors" },
-  "building-materials": { et: "Ehitus ja remont", en: "Building Materials" },
-  "industrial-scientific": { et: "Tööstus ja labor", en: "Industrial & Scientific" },
-  "doors-windows": { et: "Uksed ja aknad", en: "Doors & Windows" },
-  "appliances": { et: "Kodumasinad", en: "Appliances" },
-  "kitchen": { et: "Köök ja toitlustus", en: "Kitchen" },
-  "home-decor": { et: "Kodukaunistus", en: "Home Decor" },
-  "flooring": { et: "Põrandad ja plaatimine", en: "Flooring" },
-  "furniture": { et: "Mööbel", en: "Furniture" },
-  "bath": { et: "Vannituba", en: "Bath" },
-  "storage-organization": { et: "Ladustamine ja kontor", en: "Storage & Organization" },
-  "lumber-composites": { et: "Puitmaterjalid", en: "Lumber & Composites" },
-  "heating-venting-cooling": { et: "Küte ja jahutus", en: "Heating, Venting & Cooling" },
-  "electrical": { et: "Elektroonika", en: "Electrical" },
-  "musical-instruments": { et: "Muusikainstrumendid", en: "Musical Instruments" },
-  "paint": { et: "Värvid", en: "Paint" },
-  "cleaning": { et: "Puhastus", en: "Cleaning" },
-  "hardware": { et: "Riistvara", en: "Hardware" },
-  "safety-equipment": { et: "Tööohutus", en: "Safety Equipment" },
-  "health-and-wellness": { et: "Tervis ja heaolu", en: "Health & Wellness" },
-  "lighting": { et: "Valgustus", en: "Lighting" },
-  "window-treatments": { et: "Aknalahendused", en: "Window Treatments" },
-  "playground-sets": { et: "Mänguväljakud", en: "Playground Sets" }, // legacy v2 L1, jääb redirect tabeliks
-  "playground-outdoor-play": { et: "Mänguväljakud ja välimängud", en: "Playground & Outdoor Play" },
-  "holiday-decorations": { et: "Pühadedekoratsioonid", en: "Holiday Decorations" },
-  "workwear": { et: "Tööriided", en: "Workwear" },
-  "smart-home": { et: "Nutikas kodu", en: "Smart Home" },
-  "other": { et: "Muu", en: "Other" },
-}
 
 type Props = {
   params: Promise<{ handle: string; locale: string }>
@@ -77,10 +49,11 @@ const NOINDEX_HANDLES = new Set<string>([
 
 export async function generateMetadata({ params }: Props) {
   const { handle, locale } = await params
-  const category = await getCategoryByHandle(handle)
-  const displayName = category
-    ? (CATEGORY_NAMES[handle]?.[locale] || category.name)
-    : humanize(handle)
+  const node = getNode(handle)
+  const category = node ? null : await getCategoryByHandle(handle)
+  const displayName = node
+    ? nodeName(node, locale as TaxLocale)
+    : (category?.name || humanize(handle))
   const desc = locale === "et"
     ? `${displayName} tooted soodsa hinnaga. Kiire tarne üle Eesti.`
     : `${displayName} products at great prices. Fast delivery in Estonia.`
@@ -105,8 +78,13 @@ export default async function CategoryPage({ params, searchParams }: Props) {
   const { handle, locale } = await params
   const { page: pageParam, sort, min, max, q, categories, in_stock, filters } = await searchParams
 
-  // Try Medusa category first (for subcategories, ancestors, etc.)
-  const category = await getCategoryByHandle(handle)
+  // Hierarchy lookup from taxonomy.yaml SSoT (sync, in-memory).
+  const node = getNode(handle)
+  // Medusa fallback only when the node is unknown to the SSoT (legacy slugs,
+  // VEVOR shells, /kategooriad/other style dump pages still need a name).
+  const category = node ? null : await getCategoryByHandle(handle)
+  const ancestors = node ? getAncestors(handle) : []
+  const children = node ? getChildren(handle) : []
 
   const page = Math.max(1, parseInt(pageParam || "1", 10) || 1)
   const offset = (page - 1) * ITEMS_PER_PAGE
@@ -116,7 +94,6 @@ export default async function CategoryPage({ params, searchParams }: Props) {
   const currentQuickFilter = filters?.trim() || ""
 
   let totalCount = 0
-  let categoryFacets: Record<string, number> = {}
   let quickFilterFacets: Record<string, number> = {}
 
   // Build search filters for MeiliSearch
@@ -125,7 +102,7 @@ export default async function CategoryPage({ params, searchParams }: Props) {
   if (max) searchFilters.push(`price <= ${parseFloat(max)}`)
   if (inStock) searchFilters.push("in_stock = true")
   if (selectedCategories.length > 0) {
-    const catFilters = selectedCategories.map(c => `categories = "${c.replace(/"/g, '\\"')}"`)
+    const catFilters = selectedCategories.map(c => `category_handles = "${c.replace(/"/g, '\\"')}"`)
     searchFilters.push(`(${catFilters.join(" OR ")})`)
   }
   if (currentQuickFilter) {
@@ -135,6 +112,7 @@ export default async function CategoryPage({ params, searchParams }: Props) {
   const sortStr = (SORT_MAP[currentSort] || [])[0] || ""
 
   // MeiliSearch — facets + totalHits only (products fetched client-side)
+  let rawCategoryFacets: Record<string, number> = {}
   try {
     const meiliResult = await searchProducts({
       q: q || "",
@@ -142,22 +120,42 @@ export default async function CategoryPage({ params, searchParams }: Props) {
       offset: 0,
       sort: SORT_MAP[currentSort] || undefined,
       filter: searchFilters,
-      facets: ["categories", "price", "in_stock", "filter_tokens"],
+      facets: ["category_handles", "price", "in_stock", "filter_tokens"],
     })
 
     totalCount = meiliResult.totalHits || meiliResult.estimatedTotalHits || 0
-    categoryFacets = meiliResult.facetDistribution?.categories || {}
+    rawCategoryFacets = meiliResult.facetDistribution?.category_handles || {}
     quickFilterFacets = meiliResult.facetDistribution?.filter_tokens || {}
   } catch {
     // MeiliSearch unavailable — leave totalCount as 0
   }
 
-  // No products found AND no Medusa category → 404
-  if (totalCount === 0 && !category) notFound()
+  // Show only siblings + children of the current node in the sidebar facet
+  // list. Anything else in `category_handles` (current node itself, ancestors,
+  // unrelated handles inherited from VEVOR product_type drift) is filtered out.
+  const allowedSidebarHandles = node
+    ? new Set<string>([
+        ...getSiblings(handle).map((s) => s.handle),
+        ...children.map((c) => c.handle),
+      ])
+    : null
+  const categoryFacets: Record<string, number> = {}
+  const categoryLabels: Record<string, string> = {}
+  for (const [h, n] of Object.entries(rawCategoryFacets)) {
+    if (h === handle) continue
+    if (allowedSidebarHandles && !allowedSidebarHandles.has(h)) continue
+    const childNode = getNode(h)
+    if (!childNode) continue
+    categoryFacets[h] = n
+    categoryLabels[h] = nodeName(childNode, locale as TaxLocale)
+  }
 
-  const displayName = category
-    ? (CATEGORY_NAMES[handle]?.[locale] || category.name)
-    : humanize(handle)
+  // No products found AND unknown to both SSoT and Medusa → 404
+  if (totalCount === 0 && !node && !category) notFound()
+
+  const displayName = node
+    ? nodeName(node, locale as TaxLocale)
+    : (category?.name || humanize(handle))
 
   const totalPages = Math.ceil(totalCount / ITEMS_PER_PAGE)
   const categoryBasePath = categoryPath(locale as "et" | "en", handle)
@@ -185,25 +183,15 @@ export default async function CategoryPage({ params, searchParams }: Props) {
         productCount={totalCount}
       />
       <div className="max-w-[1360px] mx-auto px-4 sm:px-6 py-7 sm:py-10">
-        {/* Breadcrumb — full ancestor chain (if Medusa category exists) */}
-        <nav className="text-xs text-[#64748B] mb-4 min-h-[24px] flex items-center flex-wrap gap-y-1 transition-opacity duration-200">
+        {/* Breadcrumb — Home > L1 > L2 (> L3) from taxonomy SSoT */}
+        <nav className="text-xs text-[#64748B] mb-4 min-h-[24px] flex items-center flex-wrap gap-y-1 transition-opacity duration-200" aria-label="Breadcrumb">
           <Link href={`/${locale}`} className="text-[#64748B] hover:text-[#D97706] transition-colors duration-200">{locale === "et" ? "Avaleht" : "Home"}</Link>
-          {category && (() => {
-            const ancestors: Array<{ name: string; handle: string }> = []
-            const visited = new Set<string>()
-            let parent = category.parent_category
-            while (parent && !visited.has((parent as any).id) && ancestors.length < 20) {
-              visited.add((parent as any).id)
-              ancestors.unshift({ name: parent.name, handle: parent.handle })
-              parent = (parent as any).parent_category
-            }
-            return ancestors.map((a) => (
-              <span key={a.handle}>
-                <span className="mx-1.5 text-[#CBD5E1]">&gt;</span>
-                <Link href={categoryPath(locale as "et" | "en", a.handle)} className="text-[#64748B] hover:text-[#D97706] transition-colors duration-200">{a.name}</Link>
-              </span>
-            ))
-          })()}
+          {ancestors.map((a) => (
+            <span key={a.handle}>
+              <span className="mx-1.5 text-[#CBD5E1]">&gt;</span>
+              <Link href={categoryPath(locale as "et" | "en", a.handle)} className="text-[#64748B] hover:text-[#D97706] transition-colors duration-200">{nodeName(a, locale as TaxLocale)}</Link>
+            </span>
+          ))}
           <span className="mx-1.5 text-[#CBD5E1]">&gt;</span>
           <span className="text-[#1E293B] font-medium">{displayName}</span>
         </nav>
@@ -229,6 +217,7 @@ export default async function CategoryPage({ params, searchParams }: Props) {
                   currentCategories={selectedCategories}
                   currentInStock={inStock}
                   categoryFacets={categoryFacets}
+                  categoryLabels={categoryLabels}
                   quickFilters={quickFilters}
                   currentQuickFilter={currentQuickFilter}
                   locale={locale}
@@ -250,15 +239,16 @@ export default async function CategoryPage({ params, searchParams }: Props) {
           </div>
         </div>
 
-        {/* Subcategory navigation — visual shelf */}
-        {category && (category.category_children?.length ?? 0) > 0 && (
+        {/* Subcategory navigation — direct children (L2 row on L1, L3 row on L2) */}
+        {children.length > 0 && (
           <div className="bg-[#F8FAFC] -mx-4 px-4 sm:-mx-6 sm:px-6 py-4 mb-6 border-b border-[#E2E8F0]">
             <SubcategoryScroller>
-              {category.category_children!.map((child) => {
+              {children.map((child) => {
                 const thumb = CATEGORY_IMAGES[child.handle] || null
+                const childName = nodeName(child, locale as TaxLocale)
                 return (
                   <Link
-                    key={child.id}
+                    key={child.handle}
                     href={categoryPath(locale as "et" | "en", child.handle)}
                     className="flex-shrink-0 flex flex-col items-center gap-2 w-[130px] group"
                   >
@@ -266,7 +256,7 @@ export default async function CategoryPage({ params, searchParams }: Props) {
                       {thumb ? (
                         <Image
                           src={thumb}
-                          alt={child.name}
+                          alt={childName}
                           width={120}
                           height={120}
                           className="object-contain w-full h-full p-2"
@@ -279,7 +269,7 @@ export default async function CategoryPage({ params, searchParams }: Props) {
                       )}
                     </div>
                     <span className="text-[12px] text-center text-[#475569] group-hover:text-[#D97706] transition-colors leading-snug line-clamp-2 font-medium">
-                      {child.name}
+                      {childName}
                     </span>
                   </Link>
                 )
@@ -304,6 +294,7 @@ export default async function CategoryPage({ params, searchParams }: Props) {
                     currentCategories={selectedCategories}
                     currentInStock={inStock}
                     categoryFacets={categoryFacets}
+                  categoryLabels={categoryLabels}
                     quickFilters={quickFilters}
                     currentQuickFilter={currentQuickFilter}
                     locale={locale}
