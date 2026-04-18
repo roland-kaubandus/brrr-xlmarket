@@ -131,7 +131,7 @@
     "Laser Engraving": "laser-cnc-digital-fabrication",
     "CNC Router": "laser-cnc-digital-fabrication",
     "Engraving & Cutting": "laser-cnc-digital-fabrication",
-    "3D Printer": "printing-packaging-signage",
+    "3D Printer": "laser-cnc-digital-fabrication",
     "Heat Press": "printing-packaging-signage",
     "Vinyl Cutter": "printing-packaging-signage",
     "Screen Printing": "printing-packaging-signage"
