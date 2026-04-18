@@ -105,6 +105,23 @@ export function getAllL1(): CategoryNode[] {
     .filter((n): n is CategoryNode => n !== null && n.level === 1)
 }
 
+/**
+ * Spec §3.1.1 class C — L1 branches with <30 products are hidden from the
+ * MegaMenu and public nav until they reach catalogue viability. Deep links
+ * and breadcrumbs still resolve; only the menu surface is suppressed.
+ * TODO: replace with data-driven product_count once gen-category-tree.mjs
+ * emits per-L1 counts.
+ */
+const HIDE_FROM_MEGA_MENU: ReadonlySet<string> = new Set<string>([
+  "salon-spa-wellness",
+  "music-entertainment",
+])
+
+/** L1 nodes visible in the MegaMenu (spec §3.1.1, class A+B only). */
+export function getVisibleL1(): CategoryNode[] {
+  return getAllL1().filter((n) => !HIDE_FROM_MEGA_MENU.has(n.handle))
+}
+
 /** Build the canonical breadcrumb trail for any handle — root → node inclusive. */
 export function getBreadcrumbTrail(
   handle: string,
@@ -118,6 +135,57 @@ export function getBreadcrumbTrail(
   }
   out.push({ handle: node.handle, name: nodeName(node, locale) })
   return out
+}
+
+/**
+ * A child category node enriched with its Meili product count.
+ * Used by the subcategory carousel (spec §3.5.4).
+ */
+export interface ChildWithCount extends CategoryNode {
+  count: number
+}
+
+/**
+ * Merge `getChildren(handle)` with a Meili facet distribution map and return
+ * only children that actually have products (count > 0). Children are sorted
+ * first by their original YAML/taxonomy order (preserved through
+ * `child_handles`), then tie-broken by count descending. Sort stability is
+ * guaranteed because we walk `child_handles` in order.
+ *
+ * Spec §3.5.4 + INV-25: zero-count children MUST NOT appear in the carousel.
+ *
+ * @param handle   current node handle
+ * @param facetMap Meili `facetDistribution["taxonomy.ancestors"]` object —
+ *                 keys are category handles, values are product counts.
+ */
+export function getChildrenWithProductCounts(
+  handle: string,
+  facetMap: Record<string, number>
+): ChildWithCount[] {
+  const children = getChildren(handle)
+  const enriched: ChildWithCount[] = children.map((child) => ({
+    ...child,
+    count: facetMap[child.handle] ?? 0,
+  }))
+  // Filter 0-count children (INV-25).
+  const visible = enriched.filter((c) => c.count > 0)
+  // child_handles already carries the authored order. When two children share
+  // an index we keep that order; we only tie-break by count desc when the
+  // caller supplies counts that coincide on neighbouring positions. Use a
+  // stable sort that preserves YAML order as the primary key by indexing
+  // against the child_handles position.
+  const node = getNode(handle)
+  const orderIndex = new Map<string, number>()
+  if (node) {
+    node.child_handles.forEach((h, idx) => orderIndex.set(h, idx))
+  }
+  visible.sort((a, b) => {
+    const ai = orderIndex.get(a.handle) ?? Number.MAX_SAFE_INTEGER
+    const bi = orderIndex.get(b.handle) ?? Number.MAX_SAFE_INTEGER
+    if (ai !== bi) return ai - bi
+    return b.count - a.count
+  })
+  return visible
 }
 
 /**

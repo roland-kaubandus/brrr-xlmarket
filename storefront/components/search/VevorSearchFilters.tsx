@@ -18,6 +18,12 @@ type Props = {
   currentQuickFilter?: string
   locale: string
   basePath?: string
+  /**
+   * When true, the subcategory facet section is hidden — used by the category
+   * page to avoid duplicating the `SubcategoryCarousel` content in the sidebar
+   * (spec §3.5.5, Faas 5c).
+   */
+  suppressSubcategoryFacet?: boolean
 }
 
 const SORT_OPTIONS_ET = [
@@ -39,7 +45,7 @@ export default function VevorSearchFilters({
   totalHits, query, currentSort, currentMin, currentMax,
   currentCategories = [], currentInStock, categoryFacets = {}, categoryLabels = {},
   locale, quickFilters = [], currentQuickFilter = "",
-  basePath,
+  basePath, suppressSubcategoryFacet = false,
 }: Props) {
   const router = useRouter()
 
@@ -115,7 +121,7 @@ export default function VevorSearchFilters({
     return (
       <div className="divide-y divide-[#E2E8F0]">
         {/* Categories */}
-        {sortedCategories.length > 0 && (
+        {sortedCategories.length > 0 && !suppressSubcategoryFacet && (
           <div className="py-4 first:pt-0">
             <h3 className="text-xs uppercase tracking-wider text-[#64748B] font-bold mb-3">
               {et ? "Kategooriad" : "Categories"}

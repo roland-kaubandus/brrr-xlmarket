@@ -1,7 +1,14 @@
 const MEILI_HOST = process.env.MEILISEARCH_HOST || "http://127.0.0.1:7700"
-const MEILI_KEY = process.env.MEILISEARCH_KEY || "MEILI_LEGACY_KEY_REDACTED"
+const MEILI_KEY = process.env.MEILISEARCH_KEY || ""
 const INDEX = "products"
 const FETCH_TIMEOUT_MS = 2000
+
+export interface MeiliTaxonomy {
+  l1_slug?: string | null
+  l2_slug?: string | null
+  l3_slug?: string | null
+  ancestors?: string[]
+}
 
 export type MeiliHit = {
   id: string
@@ -23,6 +30,14 @@ export type MeiliHit = {
   in_stock: boolean
   translated: boolean
   created_at: number
+  // Faas 5c — taxonomy v3 + ranking fields.
+  // All optional because Meili may not yet expose them for every document
+  // while the re-index backfill is in flight (spec §6.3 compat window).
+  taxonomy?: MeiliTaxonomy
+  vertical_slugs?: string[]
+  brand?: string
+  discount_pct?: number
+  popularity?: number
   _formatted?: {
     title?: string
     title_et?: string

@@ -1,7 +1,7 @@
 import Link from "@/components/SafeLink"
 import { Suspense } from "react"
 import { getCategoryByHandle } from "@/lib/medusa"
-import { searchProducts } from "@/lib/meilisearch"
+import { searchProducts, isSafeHandleToken } from "@/lib/meilisearch"
 import ProductGrid from "@/components/ProductGrid"
 import VevorSearchFilters from "@/components/search/VevorSearchFilters"
 import VevorPagination from "@/components/search/VevorPagination"
@@ -9,16 +9,20 @@ import SortSelect from "@/components/search/SortSelect"
 import { notFound } from "next/navigation"
 import JsonLdCategory from "@/components/JsonLdCategory"
 import JsonLdBreadcrumb from "@/components/JsonLdBreadcrumb"
-import CategoryThumb from "@/components/CategoryThumb"
+import SubcategoryCarousel from "@/components/category/SubcategoryCarousel"
+import CategoryBottomRibbons from "@/components/category/CategoryBottomRibbons"
 import { categoryPath } from "@/lib/i18n"
 import { buildQuickFilters } from "@/lib/quick-filters"
 import {
   getNode,
-  getAncestors,
   getChildren,
   getSiblings,
+  getL1Ancestor,
+  getBreadcrumbTrail,
+  getChildrenWithProductCounts,
   nodeName,
   type Locale as TaxLocale,
+  type ChildWithCount,
 } from "@/lib/category-tree"
 
 export const revalidate = 3600
@@ -28,6 +32,7 @@ type Props = {
   searchParams: Promise<{
     page?: string; sort?: string; min?: string; max?: string
     q?: string; categories?: string; in_stock?: string; filters?: string
+    from?: string
   }>
 }
 
@@ -51,10 +56,6 @@ export async function generateMetadata({ params }: Props) {
   const displayName = node
     ? nodeName(node, locale as TaxLocale)
     : (category?.name || humanize(handle))
-  // Meta description — spec F5.5:
-  //   1. Node-specific description_et/en if provided in taxonomy.yaml
-  //   2. Node tagline if present
-  //   3. Templated fallback
   const nodeDesc =
     locale === "et" ? node?.description_et ?? node?.tagline_et : node?.description_en ?? node?.tagline_en
   const desc =
@@ -81,33 +82,54 @@ const SORT_MAP: Record<string, string[]> = {
 
 export default async function CategoryPage({ params, searchParams }: Props) {
   const { handle, locale } = await params
-  const { page: pageParam, sort, min, max, q, categories, in_stock, filters } = await searchParams
+  // H5: whitelist-validate route param before using it in any Meili filter
+  // string. Hard 404 on malformed handles to avoid filter injection.
+  if (!isSafeHandleToken(handle)) notFound()
+  const { page: pageParam, sort, min, max, q, categories, in_stock, filters, from } = await searchParams
+
+  // H4: `from` search param is the child handle the user just navigated from.
+  // Used by SubcategoryCarousel to scroll that card into view. Guarded by the
+  // same handle whitelist — anything odd is dropped.
+  const previousHandle = from && isSafeHandleToken(from) ? from : undefined
 
   // Hierarchy lookup from taxonomy.yaml SSoT (sync, in-memory).
   const node = getNode(handle)
-  // Medusa fallback only when the node is unknown to the SSoT (legacy slugs,
-  // VEVOR shells, /kategooriad/other style dump pages still need a name).
   const category = node ? null : await getCategoryByHandle(handle)
-  const ancestors = node ? getAncestors(handle) : []
-  const children = node ? getChildren(handle) : []
+  const rawChildren = node ? getChildren(handle) : []
+  const l1 = node ? getL1Ancestor(handle) : null
 
   const page = Math.max(1, parseInt(pageParam || "1", 10) || 1)
   const offset = (page - 1) * ITEMS_PER_PAGE
   const currentSort = sort || ""
-  const selectedCategories = categories ? categories.split(",").filter(Boolean) : []
+  // H5: whitelist-validate each selected category handle before it enters the
+  // Meili filter string. Drop anything that fails the token regex silently.
+  const selectedCategories = categories
+    ? categories.split(",").filter(Boolean).filter(isSafeHandleToken)
+    : []
   const inStock = in_stock === "1"
   const currentQuickFilter = filters?.trim() || ""
 
-  let totalCount = 0
-  let quickFilterFacets: Record<string, number> = {}
-
-  // Build search filters for MeiliSearch
-  const searchFilters: string[] = [`category_handles = "${handle}"`]
-  if (min) searchFilters.push(`price >= ${parseFloat(min)}`)
-  if (max) searchFilters.push(`price <= ${parseFloat(max)}`)
+  // --- Build Meili filter strings ---
+  // Spec §3.5.6 + INV-28: category page MUST filter on `taxonomy.ancestors`
+  // (array containing every ancestor L1..Ln inclusive) so equality matches
+  // all products rooted at `handle` regardless of their directly-tagged leaf.
+  const baseCategoryFilter = `taxonomy.ancestors = "${handle}"`
+  const searchFilters: string[] = [baseCategoryFilter]
+  // H1: reject NaN/Infinity/negative before they reach Meili. parseFloat("NaN")
+  // would inject `price >= NaN` and either error or silently zero the grid.
+  if (min) {
+    const minVal = Number(min)
+    if (isFinite(minVal) && minVal >= 0) searchFilters.push(`price >= ${minVal}`)
+  }
+  if (max) {
+    const maxVal = Number(max)
+    if (isFinite(maxVal) && maxVal >= 0) searchFilters.push(`price <= ${maxVal}`)
+  }
   if (inStock) searchFilters.push("in_stock = true")
   if (selectedCategories.length > 0) {
-    const catFilters = selectedCategories.map(c => `category_handles = "${c.replace(/"/g, '\\"')}"`)
+    const catFilters = selectedCategories.map(
+      (c) => `taxonomy.ancestors = "${c.replace(/"/g, '\\"')}"`
+    )
     searchFilters.push(`(${catFilters.join(" OR ")})`)
   }
   if (currentQuickFilter) {
@@ -116,8 +138,12 @@ export default async function CategoryPage({ params, searchParams }: Props) {
   const searchFilterStr = searchFilters.join(";")
   const sortStr = (SORT_MAP[currentSort] || [])[0] || ""
 
-  // MeiliSearch — facets + totalHits only (products fetched client-side)
-  let rawCategoryFacets: Record<string, number> = {}
+  // --- Meili facet query (limit:0) — child counts + total + quick filters ---
+  let totalCount = 0
+  let rawAncestorFacets: Record<string, number> = {}
+  let rawL2Facets: Record<string, number> = {}
+  let rawL3Facets: Record<string, number> = {}
+  let quickFilterFacets: Record<string, number> = {}
   try {
     const meiliResult = await searchProducts({
       q: q || "",
@@ -125,37 +151,61 @@ export default async function CategoryPage({ params, searchParams }: Props) {
       offset: 0,
       sort: SORT_MAP[currentSort] || undefined,
       filter: searchFilters,
-      facets: ["category_handles", "price", "in_stock", "filter_tokens"],
+      facets: [
+        "taxonomy.ancestors",
+        "taxonomy.l2_slug",
+        "taxonomy.l3_slug",
+        "price",
+        "in_stock",
+        "filter_tokens",
+      ],
     })
-
     totalCount = meiliResult.totalHits || meiliResult.estimatedTotalHits || 0
-    rawCategoryFacets = meiliResult.facetDistribution?.category_handles || {}
-    quickFilterFacets = meiliResult.facetDistribution?.filter_tokens || {}
+    const fd = meiliResult.facetDistribution || {}
+    rawAncestorFacets = fd["taxonomy.ancestors"] || {}
+    rawL2Facets = fd["taxonomy.l2_slug"] || {}
+    rawL3Facets = fd["taxonomy.l3_slug"] || {}
+    quickFilterFacets = fd["filter_tokens"] || {}
   } catch {
-    // MeiliSearch unavailable — leave totalCount as 0
+    // MeiliSearch unavailable — leave counts empty; page still renders.
   }
 
-  // Show only siblings + children of the current node in the sidebar facet
-  // list. Anything else in `category_handles` (current node itself, ancestors,
-  // unrelated handles inherited from VEVOR product_type drift) is filtered out.
+  // --- Build subcategory carousel data (INV-25: filter 0-count children) ---
+  const childrenWithCounts: ChildWithCount[] = node
+    ? getChildrenWithProductCounts(handle, rawAncestorFacets)
+    : []
+  const hasCarousel = childrenWithCounts.length > 0
+
+  // --- Sidebar facet (sibling-only when carousel visible to avoid dup) ---
+  // Prefer `taxonomy.l2_slug` / `taxonomy.l3_slug` when they exist; fall back
+  // to ancestors-based siblings so unknown-in-SSoT handles still get a facet
+  // list. Children are suppressed by `suppressSubcategoryFacet` downstream.
   const allowedSidebarHandles = node
     ? new Set<string>([
         ...getSiblings(handle).map((s) => s.handle),
-        ...children.map((c) => c.handle),
+        ...rawChildren.map((c) => c.handle),
       ])
     : null
-  const categoryFacets: Record<string, number> = {}
-  const categoryLabels: Record<string, string> = {}
-  for (const [h, n] of Object.entries(rawCategoryFacets)) {
+  const mergedHandleFacet: Record<string, number> = {}
+  for (const [h, n] of Object.entries({ ...rawL2Facets, ...rawL3Facets, ...rawAncestorFacets })) {
     if (h === handle) continue
     if (allowedSidebarHandles && !allowedSidebarHandles.has(h)) continue
+    const childNode = getNode(h)
+    if (!childNode) continue
+    // Prefer the highest count across the three facet buckets.
+    const prev = mergedHandleFacet[h] || 0
+    mergedHandleFacet[h] = Math.max(prev, n)
+  }
+  const categoryFacets: Record<string, number> = {}
+  const categoryLabels: Record<string, string> = {}
+  for (const [h, n] of Object.entries(mergedHandleFacet)) {
     const childNode = getNode(h)
     if (!childNode) continue
     categoryFacets[h] = n
     categoryLabels[h] = nodeName(childNode, locale as TaxLocale)
   }
 
-  // No products found AND unknown to both SSoT and Medusa → 404
+  // No products AND unknown to SSoT AND Medusa → 404
   if (totalCount === 0 && !node && !category) notFound()
 
   const displayName = node
@@ -165,6 +215,11 @@ export default async function CategoryPage({ params, searchParams }: Props) {
   const totalPages = Math.ceil(totalCount / ITEMS_PER_PAGE)
   const categoryBasePath = categoryPath(locale as "et" | "en", handle)
   const quickFilters = buildQuickFilters(quickFilterFacets, totalCount)
+
+  // Breadcrumb trail from SSoT — root → node inclusive. INV-24, INV-27.
+  const trail = node
+    ? getBreadcrumbTrail(handle, locale as TaxLocale)
+    : [{ handle, name: displayName }]
 
   function buildPageUrl(targetPage: number) {
     const p = new URLSearchParams()
@@ -190,36 +245,70 @@ export default async function CategoryPage({ params, searchParams }: Props) {
       <JsonLdBreadcrumb
         items={[
           { name: locale === "et" ? "Avaleht" : "Home", url: `https://xlmarket.store/${locale}` },
-          ...ancestors.map((a) => ({
-            name: nodeName(a, locale as TaxLocale),
-            url: `https://xlmarket.store${categoryPath(locale as "et" | "en", a.handle)}`,
+          ...trail.map((t) => ({
+            name: t.name,
+            url: `https://xlmarket.store${categoryPath(locale as "et" | "en", t.handle)}`,
           })),
-          {
-            name: displayName,
-            url: `https://xlmarket.store${categoryPath(locale as "et" | "en", handle)}`,
-          },
         ]}
       />
-      <div className="max-w-[1360px] mx-auto px-4 sm:px-6 py-7 sm:py-10">
-        {/* Breadcrumb — Home > L1 > L2 (> L3) from taxonomy SSoT */}
-        <nav className="text-xs text-[#64748B] mb-4 min-h-[24px] flex items-center flex-wrap gap-y-1 transition-opacity duration-200" aria-label="Breadcrumb">
-          <Link href={`/${locale}`} className="text-[#64748B] hover:text-[#D97706] transition-colors duration-200">{locale === "et" ? "Avaleht" : "Home"}</Link>
-          {ancestors.map((a) => (
-            <span key={a.handle}>
-              <span className="mx-1.5 text-[#CBD5E1]">&gt;</span>
-              <Link href={categoryPath(locale as "et" | "en", a.handle)} className="text-[#64748B] hover:text-[#D97706] transition-colors duration-200">{nodeName(a, locale as TaxLocale)}</Link>
-            </span>
-          ))}
-          <span className="mx-1.5 text-[#CBD5E1]">&gt;</span>
-          <span className="text-[#1E293B] font-medium">{displayName}</span>
-        </nav>
 
+      {/* Breadcrumb — Home > …trail (SSoT, every segment clickable) */}
+      <div className="max-w-[1360px] mx-auto px-4 sm:px-6 pt-5">
+        <nav
+          className="text-xs text-[#64748B] flex items-center flex-wrap gap-y-1"
+          aria-label="Breadcrumb"
+        >
+          <Link
+            href={`/${locale}`}
+            className="text-[#64748B] hover:text-[#D97706] transition-colors duration-200"
+          >
+            {locale === "et" ? "Avaleht" : "Home"}
+          </Link>
+          {trail.map((t, idx) => {
+            const isLast = idx === trail.length - 1
+            return (
+              <span key={t.handle} className="flex items-center">
+                <span className="mx-1.5 text-[#CBD5E1]">&gt;</span>
+                {isLast ? (
+                  <span className="text-[#1E293B] font-medium">{t.name}</span>
+                ) : (
+                  <Link
+                    href={categoryPath(locale as "et" | "en", t.handle)}
+                    className="text-[#64748B] hover:text-[#D97706] transition-colors duration-200"
+                  >
+                    {t.name}
+                  </Link>
+                )}
+              </span>
+            )
+          })}
+        </nav>
+      </div>
+
+      {/* Full-width subcategory carousel (spec §3.5.4). Self-hides on leaves. */}
+      {hasCarousel && (
+        <div className="mt-5">
+          <SubcategoryCarousel
+            children={childrenWithCounts}
+            locale={locale}
+            currentHandle={handle}
+            previousHandle={previousHandle}
+          />
+        </div>
+      )}
+
+      <div className="max-w-[1360px] mx-auto px-4 sm:px-6 py-7 sm:py-10">
         {/* Title row: name + result count + sort + mobile filter button */}
         <div className="flex items-start md:items-center justify-between gap-3 mb-6 flex-wrap">
           <div className="flex items-baseline gap-3 flex-wrap">
-            <h1 className="text-[28px] md:text-[34px] font-bold text-[#1E293B] tracking-tight">{displayName}</h1>
+            <h1 className="text-[28px] md:text-[34px] font-bold text-[#1E293B] tracking-tight">
+              {displayName}
+            </h1>
             <span className="text-sm text-[#64748B]">
-              <span className="font-semibold text-[#1E293B]">{totalCount.toLocaleString("et")}</span> {locale === "et" ? "toodet" : "products"}
+              <span className="font-semibold text-[#1E293B]">
+                {totalCount.toLocaleString("et")}
+              </span>{" "}
+              {locale === "et" ? "toodet" : "products"}
             </span>
           </div>
           <div className="flex items-center gap-2">
@@ -240,6 +329,7 @@ export default async function CategoryPage({ params, searchParams }: Props) {
                   currentQuickFilter={currentQuickFilter}
                   locale={locale}
                   basePath={categoryBasePath}
+                  suppressSubcategoryFacet={hasCarousel}
                 />
               </Suspense>
             </div>
@@ -257,9 +347,6 @@ export default async function CategoryPage({ params, searchParams }: Props) {
           </div>
         </div>
 
-        {/* Content area — spec §3.5:
-            sidebar vasakul, main paremal = subcategory grid + products.
-            Mobile: sidebar annab drawer, subcategory + products virnas. */}
         {totalCount > 0 ? (
           <div className="flex gap-8">
             {/* Desktop sidebar */}
@@ -280,47 +367,14 @@ export default async function CategoryPage({ params, searchParams }: Props) {
                     currentQuickFilter={currentQuickFilter}
                     locale={locale}
                     basePath={categoryBasePath}
+                    suppressSubcategoryFacet={hasCarousel}
                   />
                 </Suspense>
               </div>
             </aside>
 
-            {/* Main content */}
+            {/* Main content — products + pagination (no inline subcat grid; carousel above handles it). */}
             <main className="flex-1 min-w-0">
-              {/* Subcategory grid — direct children (L2 row on L1, L3 row on L2).
-                  Responsive grid: 2/3/4/6 cols. Shown above products, same column. */}
-              {children.length > 0 && (
-                <div className="mb-8">
-                  <h2 className="text-[13px] font-semibold text-[#64748B] uppercase tracking-wider mb-3">
-                    {locale === "et" ? "Alamkategooriad" : "Subcategories"}
-                  </h2>
-                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3">
-                    {children.map((child) => {
-                      const childName = nodeName(child, locale as TaxLocale)
-                      return (
-                        <Link
-                          key={child.handle}
-                          href={categoryPath(locale as "et" | "en", child.handle)}
-                          className="group flex flex-col items-center gap-2 p-3 rounded-xl bg-white border border-[#E2E8F0] hover:border-[#D97706] hover:shadow-md transition-all duration-200"
-                        >
-                          <CategoryThumb
-                            handle={child.handle}
-                            node={child}
-                            size={72}
-                            alt={childName}
-                            className="!rounded-lg"
-                          />
-                          <span className="text-[12px] text-center text-[#475569] group-hover:text-[#D97706] transition-colors leading-snug line-clamp-2 font-medium">
-                            {childName}
-                          </span>
-                        </Link>
-                      )
-                    })}
-                  </div>
-                </div>
-              )}
-
-              {/* Product grid — 2 mobile, 3 tablet, 4 desktop (sidebar takes 1 col worth) */}
               <ProductGrid
                 fetchParams={{
                   q: q || "",
@@ -331,9 +385,9 @@ export default async function CategoryPage({ params, searchParams }: Props) {
                   locale,
                 }}
                 locale={locale}
+                columns="2-3-4-4"
               />
 
-              {/* Pagination */}
               <VevorPagination
                 currentPage={page}
                 totalPages={totalPages}
@@ -343,58 +397,25 @@ export default async function CategoryPage({ params, searchParams }: Props) {
             </main>
           </div>
         ) : (
-          <>
-            {/* No products — but show subcategory grid if children exist */}
-            {children.length > 0 && (
-              <div className="mb-8">
-                <h2 className="text-[13px] font-semibold text-[#64748B] uppercase tracking-wider mb-3">
-                  {locale === "et" ? "Alamkategooriad" : "Subcategories"}
-                </h2>
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3">
-                  {children.map((child) => {
-                    const childName = nodeName(child, locale as TaxLocale)
-                    return (
-                      <Link
-                        key={child.handle}
-                        href={categoryPath(locale as "et" | "en", child.handle)}
-                        className="group flex flex-col items-center gap-2 p-3 rounded-xl bg-white border border-[#E2E8F0] hover:border-[#D97706] hover:shadow-md transition-all duration-200"
-                      >
-                        <CategoryThumb handle={child.handle} node={child} size={72} alt={childName} className="!rounded-lg" />
-                        <span className="text-[12px] text-center text-[#475569] group-hover:text-[#D97706] transition-colors leading-snug line-clamp-2 font-medium">
-                          {childName}
-                        </span>
-                      </Link>
-                    )
-                  })}
-                </div>
-              </div>
-            )}
-            <div className="bg-white rounded-xl p-12 text-center">
-              <p className="text-sm text-[#64748B] mb-4">
-                {locale === "et" ? "Selles kategoorias tooteid ei leitud." : "No products found in this category."}
-              </p>
-              <Link href={`/${locale}`} className="text-[#D97706] hover:underline font-medium">
-                {locale === "et" ? "Sirvi kategooriaid" : "Browse all categories"}
-              </Link>
-            </div>
-          </>
+          <div className="bg-white rounded-xl p-12 text-center">
+            <p className="text-sm text-[#64748B] mb-4">
+              {locale === "et"
+                ? "Selles kategoorias tooteid ei leitud."
+                : "No products found in this category."}
+            </p>
+            <Link
+              href={`/${locale}`}
+              className="text-[#D97706] hover:underline font-medium"
+            >
+              {locale === "et" ? "Sirvi kategooriaid" : "Browse all categories"}
+            </Link>
+          </div>
         )}
 
-        {/* You May Also Like */}
-        <section className="mt-10">
-          <h2 className="text-xl font-bold text-[#1E293B] mb-5">{locale === "et" ? "Sulle võib meeldida ka" : "You May Also Like"}</h2>
-          <ProductGrid
-            fetchParams={{
-              q: "",
-              filter: `category_handles = "${category?.parent_category?.handle || handle}";category_handles != "${handle}"`,
-              limit: 5,
-              offset: 0,
-              locale,
-            }}
-            locale={locale}
-            columns="2-3-5"
-          />
-        </section>
+        {/* Bottom ribbons: History / Deals / Best sellers — Implementer-B delivers. */}
+        {l1 && (
+          <CategoryBottomRibbons l1Handle={l1.handle} locale={locale} />
+        )}
       </div>
     </div>
   )

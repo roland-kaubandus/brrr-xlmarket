@@ -7,7 +7,7 @@ import { Menu, X, ChevronRight, ChevronLeft } from "lucide-react"
 import { V3_ICONS } from "@/lib/taxonomy-v3"
 import CategoryThumb from "@/components/CategoryThumb"
 import {
-  getAllL1,
+  getVisibleL1,
   getChildren,
   getNode,
   nodeName,
@@ -52,7 +52,9 @@ export default function MegaMenu({ locale = "et" }: MegaMenuProps) {
   const closeTimerRef = useRef<ReturnType<typeof setTimeout>>(undefined)
   const menuRef = useRef<HTMLDivElement>(null)
 
-  const l1Nodes = useMemo(() => getAllL1(), [])
+  // Spec §3.1.1 class C — hide <30 product branches (salon-spa-wellness,
+  // music-entertainment) until they reach catalogue viability.
+  const l1Nodes = useMemo(() => getVisibleL1(), [])
 
   const activeL2: CategoryNode[] = useMemo(() => {
     if (!activeL1) return []
@@ -134,10 +136,103 @@ export default function MegaMenu({ locale = "et" }: MegaMenuProps) {
     }, 250)
   }, [])
 
+  // a11y: Escape closes, ArrowLeft/Right between L1 items, ArrowDown opens
+  // panel, ArrowUp closes the panel. Focus trap: Tab/Shift+Tab cycles within
+  // the open menu until Escape is pressed.
   useEffect(() => {
     if (!isOpen) return
     const handler = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setIsOpen(false)
+      if (e.key === "Escape") {
+        setIsOpen(false)
+        setActiveL1(null)
+        setHoverPath([])
+        return
+      }
+
+      const root = menuRef.current
+      if (!root) return
+
+      const isTab = e.key === "Tab"
+      if (isTab) {
+        // Focus trap — cycle through focusable elements inside the menu.
+        const focusables = root.querySelectorAll<HTMLElement>(
+          'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+        )
+        if (focusables.length === 0) return
+        const first = focusables[0]
+        const last = focusables[focusables.length - 1]
+        const active = document.activeElement as HTMLElement | null
+        if (!active || !root.contains(active)) {
+          e.preventDefault()
+          first.focus()
+          return
+        }
+        if (e.shiftKey && active === first) {
+          e.preventDefault()
+          last.focus()
+        } else if (!e.shiftKey && active === last) {
+          e.preventDefault()
+          first.focus()
+        }
+        return
+      }
+
+      const active = document.activeElement as HTMLElement | null
+      if (!active || !root.contains(active)) return
+      const l1Item = active.closest<HTMLElement>('[data-mega-l1="true"]')
+
+      if (e.key === "ArrowRight" || e.key === "ArrowLeft") {
+        // Move between L1 menuitems when focus is on an L1 anchor.
+        if (!l1Item) return
+        e.preventDefault()
+        const l1List = root.querySelectorAll<HTMLElement>('[data-mega-l1="true"]')
+        const arr = Array.from(l1List)
+        const idx = arr.indexOf(l1Item)
+        if (idx < 0) return
+        const nextIdx =
+          e.key === "ArrowRight"
+            ? Math.min(arr.length - 1, idx + 1)
+            : Math.max(0, idx - 1)
+        const target = arr[nextIdx]
+        if (target) {
+          target.focus()
+          const handle = target.getAttribute("data-l1-handle")
+          if (handle) {
+            const node = getNode(handle)
+            if (node) {
+              setActiveL1(node)
+              setHoverPath([])
+            }
+          }
+        }
+        return
+      }
+
+      if (e.key === "ArrowDown") {
+        // Open / advance into the active panel.
+        if (l1Item && activeL1) {
+          e.preventDefault()
+          const firstL2 = root.querySelector<HTMLElement>('[data-mega-l2="true"]')
+          if (firstL2) firstL2.focus()
+        }
+        return
+      }
+
+      if (e.key === "ArrowUp") {
+        // Collapse back toward the L1 row.
+        if (!l1Item) {
+          e.preventDefault()
+          const currentL1 = root.querySelector<HTMLElement>(
+            `[data-mega-l1="true"][data-l1-handle="${activeL1?.handle ?? ""}"]`
+          )
+          if (currentL1) currentL1.focus()
+          else {
+            const firstL1 = root.querySelector<HTMLElement>('[data-mega-l1="true"]')
+            if (firstL1) firstL1.focus()
+          }
+        }
+        return
+      }
     }
     document.addEventListener("keydown", handler)
     document.body.style.overflow = "hidden"
@@ -145,7 +240,7 @@ export default function MegaMenu({ locale = "et" }: MegaMenuProps) {
       document.removeEventListener("keydown", handler)
       document.body.style.overflow = ""
     }
-  }, [isOpen])
+  }, [isOpen, activeL1])
 
   useEffect(() => {
     if (!isOpen) return
@@ -197,7 +292,12 @@ export default function MegaMenu({ locale = "et" }: MegaMenuProps) {
         >
           <div className="flex overflow-x-auto">
             {/* L1 column */}
-            <div className="w-[320px] py-3 max-h-[calc(100vh-140px)] overflow-y-auto flex-shrink-0 border-r border-[#ECEEF1]">
+            <div
+              className="w-[320px] py-3 max-h-[calc(100vh-140px)] overflow-y-auto flex-shrink-0 border-r border-[#ECEEF1]"
+              role="menu"
+              aria-orientation="vertical"
+              aria-label={loc === "et" ? "Kategooriad" : "Categories"}
+            >
               <h3 className="px-5 pb-2 text-[11px] font-bold text-[#64748B] uppercase tracking-wider">
                 {loc === "et" ? "Kategooriad" : "Shop by Category"}
               </h3>
@@ -209,7 +309,12 @@ export default function MegaMenu({ locale = "et" }: MegaMenuProps) {
                     key={l1.handle}
                     href={categoryPath(loc, l1.handle)}
                     onMouseEnter={() => handleL1Hover(l1)}
+                    onFocus={() => handleL1Hover(l1)}
                     onClick={() => setIsOpen(false)}
+                    role="menuitem"
+                    data-mega-l1="true"
+                    data-l1-handle={l1.handle}
+                    aria-haspopup={getChildren(l1.handle).length > 0 ? "true" : undefined}
                     className={`flex items-center gap-3 px-5 py-[9px] text-[13px] transition-colors ${
                       isActive ? "bg-[#FFF8F3] text-[#D97706]" : "text-[#1E293B] hover:bg-[#F8FAFC]"
                     }`}
@@ -235,7 +340,12 @@ export default function MegaMenu({ locale = "et" }: MegaMenuProps) {
 
             {/* L2 column */}
             {activeL1 && (
-              <div className="w-[340px] py-3 max-h-[calc(100vh-140px)] overflow-y-auto flex-shrink-0 border-r border-[#ECEEF1]">
+              <div
+                className="w-[340px] py-3 max-h-[calc(100vh-140px)] overflow-y-auto flex-shrink-0 border-r border-[#ECEEF1]"
+                role="menu"
+                aria-orientation="vertical"
+                aria-label={nodeName(activeL1, loc)}
+              >
                 <Link
                   href={categoryPath(loc, activeL1.handle)}
                   onClick={() => setIsOpen(false)}
@@ -253,7 +363,11 @@ export default function MegaMenu({ locale = "et" }: MegaMenuProps) {
                       key={l2.handle}
                       href={categoryPath(loc, l2.handle)}
                       onMouseEnter={() => handleL2Hover(l2)}
+                      onFocus={() => handleL2Hover(l2)}
                       onClick={() => setIsOpen(false)}
+                      role="menuitem"
+                      data-mega-l2="true"
+                      aria-haspopup={hasKids ? "true" : undefined}
                       className={`flex items-center gap-3 px-5 py-[7px] transition-colors ${
                         isActive ? "bg-[#FFF8F3] text-[#D97706]" : "text-[#1E293B] hover:bg-[#F8FAFC]"
                       }`}
@@ -284,6 +398,9 @@ export default function MegaMenu({ locale = "et" }: MegaMenuProps) {
                   key={panelIdx}
                   className={`py-3 max-h-[calc(100vh-140px)] overflow-y-auto flex-shrink-0 ${!isLastPanel ? "border-r border-[#ECEEF1]" : ""}`}
                   style={{ width: panelWidth }}
+                  role="menu"
+                  aria-orientation="vertical"
+                  aria-label={parent ? nodeName(parent, loc) : undefined}
                 >
                   {parent && (
                     <Link
@@ -304,7 +421,10 @@ export default function MegaMenu({ locale = "et" }: MegaMenuProps) {
                         key={node.handle}
                         href={categoryPath(loc, node.handle)}
                         onMouseEnter={() => handleDeepHover(node, panelIdx)}
+                        onFocus={() => handleDeepHover(node, panelIdx)}
                         onClick={() => setIsOpen(false)}
+                        role="menuitem"
+                        aria-haspopup={hasKids ? "true" : undefined}
                         className={`flex items-center gap-3 px-5 py-[7px] text-[13px] transition-colors ${
                           isActive ? "bg-[#FFF8F3] text-[#D97706]" : "text-[#1E293B] hover:bg-[#F8FAFC]"
                         }`}

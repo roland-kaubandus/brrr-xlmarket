@@ -27,5 +27,6 @@ export function mapMeiliHitToProduct(hit: MeiliHit, locale: string) {
       parent_category_id: null,
     })),
     created_at: new Date(hit.created_at * 1000).toISOString(),
+    in_stock: hit.in_stock,
   }
 }

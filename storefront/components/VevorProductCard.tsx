@@ -6,57 +6,9 @@ import { usePathname } from "next/navigation"
 import { Product, formatPrice } from "@/lib/medusa"
 import { useCompare } from "./CompareContext"
 
-function hashCode(str: string): number {
-  let hash = 0
-  for (let i = 0; i < str.length; i++) {
-    hash = ((hash << 5) - hash + str.charCodeAt(i)) | 0
-  }
-  return Math.abs(hash)
-}
-
-function getStarRating(id: string): number {
-  const h = hashCode(id)
-  // deterministic 3.5–5.0 range, step 0.5
-  const steps = [3.5, 4.0, 4.0, 4.5, 4.5, 4.5, 5.0, 5.0, 4.0, 4.5]
-  return steps[h % steps.length]
-}
-
-function Stars({ rating, productId }: { rating: number; productId: string }) {
-  const full = Math.floor(rating)
-  const half = rating % 1 >= 0.5
-  return (
-    <span className="inline-flex items-center gap-0.5">
-      {Array.from({ length: 5 }, (_, i) => {
-        if (i < full) {
-          return (
-            <svg key={i} width="14" height="14" viewBox="0 0 24 24" fill="#D97706" stroke="none">
-              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-            </svg>
-          )
-        }
-        if (i === full && half) {
-          return (
-            <svg key={i} width="14" height="14" viewBox="0 0 24 24" stroke="none">
-              <defs>
-                <linearGradient id={`half-${productId}-${i}`}>
-                  <stop offset="50%" stopColor="#D97706" />
-                  <stop offset="50%" stopColor="#E5E7EB" />
-                </linearGradient>
-              </defs>
-              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill={`url(#half-${productId}-${i})`} />
-            </svg>
-          )
-        }
-        return (
-          <svg key={i} width="14" height="14" viewBox="0 0 24 24" fill="#E5E7EB" stroke="none">
-            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-          </svg>
-        )
-      })}
-      <span className="text-xs text-[#64748B] ml-1">{rating.toFixed(1)}</span>
-    </span>
-  )
-}
+// TODO: add Stars component back when real ratings are available (see Huly XLM-???)
+// Previously rendered a deterministic hash-based fake rating (3.5–5.0). Removed
+// per the "no mock data" rule — misleading to users and not backed by real data.
 
 /** Extract basic specs from product description text for compare feature */
 function extractCardSpecs(product: Product): Record<string, string> {
@@ -126,7 +78,6 @@ export default function VevorProductCard({ product, locale }: { product: Product
     ? Math.round((1 - price.calculated_amount / price.original_amount) * 100)
     : 0
 
-  const rating = getStarRating(product.id)
   // Don't decodeURIComponent — VEVOR CDN requires encoded paths (%2F, %2B etc.)
   const thumbnailUrl = product.thumbnail || null
   const freeShipping = price && price.calculated_amount >= 9900
@@ -211,11 +162,6 @@ export default function VevorProductCard({ product, locale }: { product: Product
             {product.title}
           </h3>
 
-          {/* Star rating */}
-          <div className="mt-1.5 md:mt-2.5">
-            <Stars rating={rating} productId={product.id} />
-          </div>
-
           {/* Price */}
           {price && (
             <div className="mt-2 md:mt-3 flex items-baseline gap-2 flex-wrap">
@@ -232,10 +178,17 @@ export default function VevorProductCard({ product, locale }: { product: Product
 
           {/* Badges row */}
           <div className="mt-2 md:mt-3 flex items-center gap-2.5 text-[11px] md:text-[14px]">
-            <span className="inline-flex items-center gap-1 text-[#059669]">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#059669] inline-block" />
-              {resolvedLocale === "et" ? "Laos" : "In Stock"}
-            </span>
+            {product.in_stock === false ? (
+              <span className="inline-flex items-center gap-1 text-[#94A3B8]">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#94A3B8] inline-block" />
+                {resolvedLocale === "et" ? "Otsas" : "Out of stock"}
+              </span>
+            ) : (
+              <span className="inline-flex items-center gap-1 text-[#059669]">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#059669] inline-block" />
+                {resolvedLocale === "et" ? "Laos" : "In Stock"}
+              </span>
+            )}
             {isCompared && (
               <span className="ml-auto inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[10px] font-medium bg-[#D97706]/10 text-[#D97706]">
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

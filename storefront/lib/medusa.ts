@@ -133,6 +133,7 @@ export type Product = {
   categories: ProductCategory[]
   created_at: string
   metadata?: Record<string, unknown>
+  in_stock?: boolean
 }
 
 // --- Products ---

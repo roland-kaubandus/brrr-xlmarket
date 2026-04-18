@@ -3,10 +3,13 @@
 import { useEffect, useState } from "react"
 import VevorProductCard from "@/components/VevorProductCard"
 import { mapMeiliHitToProduct } from "@/lib/map-meili-hit"
+import type { MeiliHit } from "@/lib/meilisearch"
+
+type MappedProduct = ReturnType<typeof mapMeiliHitToProduct>
 
 type ProductGridProps = {
   /** Pre-loaded products (renders immediately, no fetch) */
-  initialProducts?: any[]
+  initialProducts?: MappedProduct[]
   /** OR: fetch products client-side via /api/products */
   fetchParams?: {
     q?: string
@@ -18,8 +21,19 @@ type ProductGridProps = {
     facets?: string
   }
   locale: string
-  columns?: "2-3-4" | "2-3-5"
+  columns?: "2-3-4" | "2-3-5" | "2-3-4-4"
   className?: string
+}
+
+function columnsClass(columns: "2-3-4" | "2-3-5" | "2-3-4-4"): string {
+  if (columns === "2-3-5") {
+    return "grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2.5 sm:gap-4 md:gap-6"
+  }
+  if (columns === "2-3-4-4") {
+    // Spec §3.5.6 / INV-29: 3 cols at 1024–1279 (lg), 4 cols at ≥1280 (xl).
+    return "grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 gap-2.5 sm:gap-4 md:gap-6"
+  }
+  return "grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2.5 sm:gap-4 md:gap-6"
 }
 
 function SkeletonCard() {
@@ -36,10 +50,8 @@ function SkeletonCard() {
   )
 }
 
-export function ProductGridSkeleton({ count = 24, columns = "2-3-4" }: { count?: number; columns?: "2-3-4" | "2-3-5" }) {
-  const gridClass = columns === "2-3-5"
-    ? "grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2.5 sm:gap-4 md:gap-6"
-    : "grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2.5 sm:gap-4 md:gap-6"
+export function ProductGridSkeleton({ count = 24, columns = "2-3-4" }: { count?: number; columns?: "2-3-4" | "2-3-5" | "2-3-4-4" }) {
+  const gridClass = columnsClass(columns)
   return (
     <div className={gridClass}>
       {Array.from({ length: count }, (_, i) => (
@@ -50,7 +62,7 @@ export function ProductGridSkeleton({ count = 24, columns = "2-3-4" }: { count?:
 }
 
 export default function ProductGrid({ initialProducts, fetchParams, locale, columns = "2-3-4", className }: ProductGridProps) {
-  const [products, setProducts] = useState<any[]>(initialProducts || [])
+  const [products, setProducts] = useState<MappedProduct[]>(initialProducts || [])
   const [loading, setLoading] = useState(!initialProducts && !!fetchParams)
 
   useEffect(() => {
@@ -77,7 +89,7 @@ export default function ProductGrid({ initialProducts, fetchParams, locale, colu
       .then((data) => {
         if (data?.hits) {
           const loc = fetchParams.locale || "et"
-          setProducts(data.hits.map((hit: any) => mapMeiliHitToProduct(hit, loc)))
+          setProducts(data.hits.map((hit: MeiliHit) => mapMeiliHitToProduct(hit, loc)))
         }
         setLoading(false)
       })
@@ -89,9 +101,7 @@ export default function ProductGrid({ initialProducts, fetchParams, locale, colu
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [initialProducts, JSON.stringify(fetchParams)])
 
-  const gridClass = columns === "2-3-5"
-    ? "grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2.5 sm:gap-4 md:gap-6"
-    : "grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2.5 sm:gap-4 md:gap-6"
+  const gridClass = columnsClass(columns)
 
   if (loading) return <ProductGridSkeleton count={fetchParams?.limit || 24} columns={columns} />
 

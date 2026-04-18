@@ -291,6 +291,192 @@ check("INV-23", "CRIT", "All v3 handles have unique parent_handle chains ending 
 })
 
 // ==========================================================================
+// Faas 5c extensions — category page UX invariants (spec §3.5.9 + §8)
+// ==========================================================================
+
+/**
+ * Build a breadcrumb trail purely from `category-tree.generated.json`. Mirrors
+ * `storefront/lib/category-tree.ts :: getBreadcrumbTrail` so the invariants
+ * script remains a standalone Node.js entrypoint (no TS compile step).
+ */
+function breadcrumbTrail(handle) {
+  const node = tree.nodes[handle]
+  if (!node) return []
+  const out = []
+  const seen = new Set()
+  let cur = node
+  // Walk up to root first.
+  const chain = []
+  while (cur) {
+    if (seen.has(cur.handle)) break
+    seen.add(cur.handle)
+    chain.push(cur)
+    if (!cur.parent_handle) break
+    cur = tree.nodes[cur.parent_handle]
+  }
+  // chain is node → root; reverse for root → node.
+  for (let i = chain.length - 1; i >= 0; i--) {
+    const n = chain[i]
+    out.push({ handle: n.handle, level: n.level })
+  }
+  return out
+}
+
+check("INV-24", "CRIT", "Category breadcrumb ends at a category node, not a product", () => {
+  const failures = []
+  const l1Handles = Object.values(tree.nodes)
+    .filter((n) => n.level === 1)
+    .map((n) => n.handle)
+  for (const h of l1Handles) {
+    const trail = breadcrumbTrail(h)
+    if (trail.length === 0) {
+      failures.push(`${h}: empty trail`)
+      continue
+    }
+    const last = trail[trail.length - 1]
+    if (last.handle !== h) {
+      failures.push(`${h}: trail ends at ${last.handle}`)
+      continue
+    }
+    // Product handles would not be in tree.nodes at all, but assert level is a
+    // category level (1-3) as defensive check.
+    if (![1, 2, 3].includes(last.level)) {
+      failures.push(`${h}: trail tail has non-category level ${last.level}`)
+    }
+  }
+  return {
+    pass: failures.length === 0,
+    detail: failures.length
+      ? `${failures.length} breadcrumb tails invalid: ${failures.slice(0, 3).join("; ")}`
+      : `${l1Handles.length} L1 breadcrumbs end at category node`,
+  }
+})
+
+check("INV-25", "WARN", "Subcategory carousel hides 0-product children (skipped — needs Meili facet)", () => {
+  // Live mode performs a Meili `limit:0` facet query per L1 and verifies that
+  // every child handle rendered by the carousel has `facetDistribution
+  // ["taxonomy.ancestors"][childHandle] > 0`. The UI enforcement lives in
+  // `getChildrenWithProductCounts()` — this invariant exists to catch drift
+  // between what Meili reports and what category-tree.generated.json exposes.
+  if (process.env.TAXONOMY_HEALTH_LIVE !== "1") {
+    return { pass: true, detail: "skipped (set TAXONOMY_HEALTH_LIVE=1 + requires Meili)" }
+  }
+  const host = process.env.MEILISEARCH_HOST || "http://127.0.0.1:7700"
+  const key = process.env.MEILISEARCH_KEY || ""
+  const l1s = Object.values(tree.nodes).filter((n) => n.level === 1)
+  const failures = []
+  for (const l1 of l1s.slice(0, 5)) {
+    try {
+      const body = JSON.stringify({
+        q: "",
+        limit: 0,
+        filter: [`taxonomy.ancestors = "${l1.handle}"`, "in_stock = true"],
+        facets: ["taxonomy.ancestors"],
+      })
+      const out = execSync(
+        `curl -s -H "Authorization: Bearer ${key}" -H "Content-Type: application/json" -X POST --data '${body.replace(/'/g, "\\'")}' ${host}/indexes/products/search`,
+      ).toString()
+      const parsed = JSON.parse(out)
+      const dist = parsed?.facetDistribution?.["taxonomy.ancestors"] || {}
+      for (const ch of l1.child_handles || []) {
+        if ((dist[ch] || 0) === 0) {
+          failures.push(`${l1.handle} → ${ch} has 0 products`)
+        }
+      }
+    } catch (err) {
+      failures.push(`${l1.handle}: query failed (${err.message})`)
+    }
+  }
+  return {
+    pass: failures.length === 0,
+    detail: failures.length ? `${failures.length} zero-count children: ${failures.slice(0, 3).join("; ")}` : "all children have products",
+  }
+})
+
+check("INV-26", "CRIT", "Every node has image_source !== 'none' (carousel cards have image)", () => {
+  const offenders = Object.values(tree.nodes).filter((n) => !n.image_source || n.image_source === "none")
+  return {
+    pass: offenders.length === 0,
+    detail: offenders.length
+      ? `${offenders.length} nodes with image_source=none: ${offenders.slice(0, 5).map((n) => n.handle).join(", ")}…`
+      : `${Object.keys(tree.nodes).length} nodes have resolvable image_source`,
+  }
+})
+
+check("INV-27", "CRIT", "Breadcrumb trail length === depth(handle) + 1", () => {
+  const failures = []
+  for (const node of Object.values(tree.nodes)) {
+    const trail = breadcrumbTrail(node.handle)
+    const expected = node.level // L1 → 1, L2 → 2, L3 → 3
+    if (trail.length !== expected) {
+      failures.push(`${node.handle}: trail=${trail.length} expected=${expected}`)
+    }
+  }
+  return {
+    pass: failures.length === 0,
+    detail: failures.length ? `${failures.length} bad trails: ${failures.slice(0, 3).join("; ")}` : "all trail lengths match level",
+  }
+})
+
+check("INV-28", "CRIT", "No 'category_handles' references remain in storefront category page", () => {
+  const scanRoot = resolve(ROOT, "storefront/app/[locale]/kategooriad")
+  if (!existsSync(scanRoot)) {
+    return { pass: true, detail: "category page directory absent — skip" }
+  }
+  let matches = ""
+  try {
+    // -R recursive, -n line numbers, -I skip binary, --include limits file types.
+    // Exit code 1 from grep = no matches = PASS.
+    matches = execSync(
+      `grep -RnI --include="*.ts" --include="*.tsx" "category_handles" ${scanRoot} || true`,
+    ).toString().trim()
+  } catch (err) {
+    return { pass: false, detail: `grep failed: ${err.message}` }
+  }
+  return {
+    pass: matches.length === 0,
+    detail: matches.length
+      ? `Found category_handles references:\n${matches.split("\n").slice(0, 5).join("\n")}`
+      : "no category_handles references in kategooriad pages",
+  }
+})
+
+check("INV-29", "WARN", "Product grid renders 4 columns at >=1280px (Playwright E2E only)", () => {
+  // Requires browser-side assertion. See tests/e2e/category-invariants.spec.ts
+  // (to be written in F5c.12). Marked WARN so CI does not block on it here.
+  return { pass: true, detail: "skipped (Playwright — add to tests/e2e/category-invariants.spec.ts)" }
+})
+
+check("INV-30", "WARN", "MegaMenu drills L1 → Ln without 404 (Playwright E2E only)", () => {
+  // Requires browser-side assertion. See tests/e2e/category-invariants.spec.ts.
+  return { pass: true, detail: "skipped (Playwright — add to tests/e2e/category-invariants.spec.ts)" }
+})
+
+check("INV-31", "CRIT", "No VEVOR-internal slug / path leaks in category UI", () => {
+  const scanRoots = [
+    resolve(ROOT, "storefront/app/[locale]/kategooriad"),
+    resolve(ROOT, "storefront/components/category"),
+  ].filter(existsSync)
+  if (scanRoots.length === 0) {
+    return { pass: true, detail: "no scan targets present — skip" }
+  }
+  let matches = ""
+  try {
+    matches = execSync(
+      `grep -RnI --include="*.ts" --include="*.tsx" -E "vevor_product_type|vevor_path" ${scanRoots.join(" ")} || true`,
+    ).toString().trim()
+  } catch (err) {
+    return { pass: false, detail: `grep failed: ${err.message}` }
+  }
+  return {
+    pass: matches.length === 0,
+    detail: matches.length
+      ? `VEVOR leak(s):\n${matches.split("\n").slice(0, 5).join("\n")}`
+      : "no vevor_product_type / vevor_path references",
+  }
+})
+
+// ==========================================================================
 // Execute + report
 // ==========================================================================
 

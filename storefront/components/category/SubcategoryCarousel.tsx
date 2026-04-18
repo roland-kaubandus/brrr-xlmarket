@@ -1,0 +1,145 @@
+"use client"
+
+import { useEffect, useRef, useCallback, type ReactElement } from "react"
+import CategoryThumb from "@/components/CategoryThumb"
+import { categoryPath } from "@/lib/i18n"
+import type { ChildWithCount } from "@/lib/category-tree"
+
+interface SubcategoryCarouselProps {
+  children: ChildWithCount[]
+  locale: string
+  /** When set, the matching child card is scrolled into view on mount. */
+  previousHandle?: string
+  /**
+   * Handle of the category page currently rendering the carousel. When
+   * provided, each child Link gets `?from={currentHandle}` appended so the
+   * destination page knows which card to highlight/scroll into view. See
+   * F5c H4.
+   */
+  currentHandle?: string
+}
+
+/** Safe handle/id token: alnum + dash + underscore, 1–128 chars. */
+function isSafeHandleToken(v: string): boolean {
+  return typeof v === "string" && /^[a-z0-9][a-z0-9_-]{0,127}$/i.test(v)
+}
+
+/**
+ * Full-width horizontal snap-scroll carousel of child category cards.
+ *
+ * Spec §3.5.4 + INV-26:
+ *   - Image is mandatory (SSoT guarantees `image_source !== "none"`).
+ *   - Zero-count children are filtered out upstream.
+ *   - Arrow-left / Arrow-right move focus between cards.
+ *   - `role="list"` + `role="listitem"` + localized `aria-label`.
+ *   - `scroll-snap-type: x mandatory` on the track.
+ *
+ * Returns `null` on leaf nodes (children.length === 0) so the page layout
+ * collapses without an empty region.
+ */
+export default function SubcategoryCarousel({
+  children,
+  locale,
+  previousHandle,
+  currentHandle,
+}: SubcategoryCarouselProps): ReactElement | null {
+  const safeCurrent =
+    currentHandle && isSafeHandleToken(currentHandle) ? currentHandle : undefined
+  const trackRef = useRef<HTMLDivElement | null>(null)
+  const itemRefs = useRef<Array<HTMLAnchorElement | null>>([])
+
+  const loc = (locale === "en" ? "en" : "et") as "et" | "en"
+  const et = loc === "et"
+
+  // Scroll previously visited child into view on mount.
+  useEffect(() => {
+    if (!previousHandle) return
+    const idx = children.findIndex((c) => c.handle === previousHandle)
+    if (idx < 0) return
+    const el = itemRefs.current[idx]
+    if (el && trackRef.current) {
+      el.scrollIntoView({ behavior: "auto", inline: "center", block: "nearest" })
+    }
+  }, [previousHandle, children])
+
+  const handleKeyDown = useCallback(
+    (e: React.KeyboardEvent<HTMLAnchorElement>, idx: number) => {
+      if (e.key === "ArrowRight" || e.key === "ArrowLeft") {
+        e.preventDefault()
+        const next =
+          e.key === "ArrowRight"
+            ? Math.min(children.length - 1, idx + 1)
+            : Math.max(0, idx - 1)
+        const target = itemRefs.current[next]
+        if (target) {
+          target.focus()
+          target.scrollIntoView({ behavior: "smooth", inline: "nearest", block: "nearest" })
+        }
+      }
+    },
+    [children.length]
+  )
+
+  if (children.length === 0) return null
+
+  return (
+    <section
+      className="mb-8"
+      aria-labelledby="subcategory-carousel-heading"
+    >
+      <h2
+        id="subcategory-carousel-heading"
+        className="text-[13px] font-semibold text-[#64748B] uppercase tracking-wider mb-3 px-4 sm:px-6 max-w-[1360px] mx-auto"
+      >
+        {et ? "Alamkategooriad" : "Subcategories"}
+      </h2>
+      <div
+        ref={trackRef}
+        role="list"
+        aria-label={et ? "Alamkategooriad" : "Subcategories"}
+        className="flex gap-3 overflow-x-auto scroll-smooth snap-x snap-mandatory px-4 sm:px-6 pb-3"
+        style={{ scrollSnapType: "x mandatory" }}
+      >
+        {children.map((child, idx) => {
+          const childName = loc === "en" ? child.name_en : child.name_et
+          const isCurrent = previousHandle === child.handle
+          const basePath = categoryPath(loc, child.handle)
+          const childHref = safeCurrent ? `${basePath}?from=${encodeURIComponent(safeCurrent)}` : basePath
+          return (
+            <a
+              key={child.handle}
+              ref={(el) => {
+                itemRefs.current[idx] = el
+              }}
+              role="listitem"
+              href={childHref}
+              aria-current={isCurrent ? "true" : undefined}
+              onKeyDown={(e) => handleKeyDown(e, idx)}
+              className={`group flex-shrink-0 w-[140px] sm:w-[160px] md:w-[180px] snap-start flex flex-col items-center gap-2 p-3 rounded-xl bg-white border transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D97706] ${
+                isCurrent
+                  ? "border-[#D97706] ring-2 ring-[#D97706]/30"
+                  : "border-[#E2E8F0] hover:border-[#D97706] hover:shadow-md"
+              }`}
+              style={{ scrollSnapAlign: "start" }}
+            >
+              <CategoryThumb
+                handle={child.handle}
+                node={child}
+                size={96}
+                alt={childName}
+                className="!rounded-lg"
+              />
+              <span className="text-[13px] text-center text-[#1E293B] group-hover:text-[#D97706] transition-colors leading-snug line-clamp-2 font-medium">
+                {childName}
+              </span>
+              <span className="text-[11px] tabular-nums text-[#94A3B8]">
+                {child.count.toLocaleString(et ? "et" : "en-GB")}{" "}
+                {et ? "toodet" : "products"}
+              </span>
+            </a>
+          )
+        })}
+      </div>
+    </section>
+  )
+}
