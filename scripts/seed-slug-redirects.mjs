@@ -60,6 +60,9 @@ const REDIRECTS = [
   ["tools", "hand-power-tools"],
   ["window-treatments", "office-commercial-interiors"],
   ["workwear", "safety-security-workwear"],
+  // Legacy L1 handles deleted in F2.6 cleanup (2026-04-18).
+  ["other", "hand-power-tools"],
+  ["playground-sets", "fitness-sports-recreation"],
   // Estonian legacy handles (pre-English rename)
   ["elektroonika", "electrical-energy"],
   ["kodu-ja-aed", "outdoor-power-landscaping"],
