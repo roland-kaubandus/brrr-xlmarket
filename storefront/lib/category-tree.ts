@@ -106,20 +106,14 @@ export function getAllL1(): CategoryNode[] {
 }
 
 /**
- * Spec §3.1.1 class C — L1 branches with <30 products are hidden from the
- * MegaMenu and public nav until they reach catalogue viability. Deep links
- * and breadcrumbs still resolve; only the menu surface is suppressed.
- * TODO: replace with data-driven product_count once gen-category-tree.mjs
- * emits per-L1 counts.
+ * All L1 nodes are visible in the MegaMenu.
+ * Spec §3.1.1 (revised 2026-04-18 by user): no category may be hidden by
+ * product-count or subcategory-count threshold. Only nodes whose full subtree
+ * contains 0 in-stock products are hidden — enforced dynamically at carousel
+ * and menu level via Meili facet counts, not by a static list here.
  */
-const HIDE_FROM_MEGA_MENU: ReadonlySet<string> = new Set<string>([
-  "salon-spa-wellness",
-  "music-entertainment",
-])
-
-/** L1 nodes visible in the MegaMenu (spec §3.1.1, class A+B only). */
 export function getVisibleL1(): CategoryNode[] {
-  return getAllL1().filter((n) => !HIDE_FROM_MEGA_MENU.has(n.handle))
+  return getAllL1()
 }
 
 /** Build the canonical breadcrumb trail for any handle — root → node inclusive. */

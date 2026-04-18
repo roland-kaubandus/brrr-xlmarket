@@ -143,32 +143,18 @@ URL: `/{locale}/kategooriad/{slug}`. Slug'id jäävad ingliskeelseks (infrastruk
 - `playground-sets` subSlug (Fitness all) → **`playground-outdoor-play`** (kollisioon redirect'iga)
 - `hand-power-tools` nime NE muudeta (2 000 toote 301-d liiga kulukas) — lahendame tugeva L2 struktuuriga
 
-### 3.1.1 Madala-tootearvuga L1 reegel — **strateegia-põhine, mitte automaatne**
+### 3.1.1 Madala-tootearvuga L1 reegel — **TÜHISTATUD 2026-04-18 kasutaja poolt**
 
-Varasem versioon lülitas `showInMegaMenu: false` mehhaaniliselt kõik L1-d kus <30 toodet. See on vale, sest peidab ära **suure strateegilise potentsiaaliga kategooriaid, mida uuring (b2b-market-research.md §1) eksplitsiitselt prioritiseerib**.
+**Ühelgi kategoorial ei saa olla piirangut, kui palju tal on alamkategooriaid ega kui palju tooteid.** (Kasutaja reegel, ülimuslik üle varasema strateegia-klassifikatsiooni.)
 
-**Lõplik reegel:** iga madala tootearvuga L1 klassifitseeritakse ühte kolmest kategooriast:
+- `showInMegaMenu: false` lipp on **keelatud** — kõik L1-d on MegaMenu's nähtavad, sõltumata tootearvust.
+- Minimum-tootearvu lävendid (<30, <10 jne) on **keelatud** — ükski kategooria ei peideta tootearvu pärast.
+- L2/L1 `∈ [4, 8]` ja L3/L2 `∈ [0, 12]` piirangud INV-02-st on **keelatud** — iga L1 võib omada mis tahes arvu L2-sid, iga L2 mis tahes arvu L3-sid, nii edasi kuni L7+.
+- L3 "eksisteerib ainult kui L2 >50 toodet" reegel §3.3-s on **keelatud** — L3+ sõlmed eksisteerivad siis, kui VEVOR feedi path neid toetab või toimetaja on `taxonomy.yaml`-is defineerinud.
 
-| Klass | Tegevus | Kriteeriumid |
-|---|---|---|
-| **A — STRATEEGILINE** | Jääb MegaMenu's nähtavaks. Investeeri resolveri-reeglitesse (S2-S5), et kasvatada tootearvu. Ehita vertikaali (`/alustajale/`) samal ajal. | Uuring märgib prioriteet-sektoriks VÕI selge kasvu-potentsiaal + vähemalt üks vertikaali-kit sellest sõltub |
-| **B — HOOLDA** | Jääb nähtavaks, aga ei investeeri kasvatamisse. Tavapärane L2-struktuur. | Mitte prioriteet, aga sisuliselt olemas — UI-s ei peida, aga ka aktiivselt ei sihi |
-| **C — PEIDA** | `showInMegaMenu: false` kuni >30 toodet. Vastab uuringu "sektorid mida MITTE sihtida" soovitusele. | Mitte uuringu prioriteet, madal konkurentsieelis, nõrk buyer-persona |
+**Ainus reegel, mis jääb:** sõlme **karusellist ja MegaMenu-st peidetakse ainult see alamsõlm, millel on 0 toodet KOOS ALAMPUUGA** (dünaamiline arvutus `taxonomy.ancestors` Meili facet-count'ist). Kui sõlmel on alampuus >=1 toode, kuvatakse.
 
-**Konkreetne klassifikatsioon praegustele madalatele L1-dele:**
-
-| L1 | Tooted | Klass | Põhjendus |
-|---|---|---|---|
-| `laser-cnc-digital-fabrication` | 42 → **~200 pärast 3D-printer fix** | **A — STRATEEGILINE** | Uuring §1 prioriteet #2: "nišiturg ilma kohalike tarnijateta. Kohalikud alternatiivid algavad €5000+". Agent D: top-3 Google rank saavutatav 4-6 kuud. Agent C: oma vertikaal (`/alustajale/laser-graveerijad`). **Jääb nähtavaks. Investeerime.** |
-| `woodworking-carpentry` | 24 → sihtarv 150+ | **B — HOOLDA** | V3 spec projekteeris 150+, aga VEVOR feed `Tools|Woodworking Tools` on alakasutatud. Resolveri laienduse kaudu saab kasvada, aga mitte uuringu top-3. Jääb nähtavaks, tavapärane L2. |
-| `salon-spa-wellness` | 9 | **C — PEIDA** | Uuring §2 "watch-list" sektor, mitte prioriteet. Ilusalong vertikaal on plaanis (Agent C), aga L1 ise MegaMenu's genereerib negatiivset usalduse-signaali. `showInMegaMenu: false` kuni ≥30. Vertikaal `/alustajale/ilusalong` teenindab vajadust eraldi. |
-| `music-entertainment` | 9 | **C — PEIDA** | Uuring ei maini prioriteedina. 9 toodet top-level kategoorias on ostja-usalduse-risk. `showInMegaMenu: false` kuni ≥30. |
-
-**Oluline vahe laser-cnc ja music-entertainment vahel:**
-- **Laser-cnc: 42 toodet, mis on tulevikus 200+ pärast 3D-printer migratsiooni (§5.5), uuring märgib #2 prioriteediks.** Peidame ära tähendaks ennast SEO-eelisest ja kasvupotentsiaalist ilma jätta.
-- **Music-entertainment: 9 toodet, mille all pole strateegiat.** Peidame ära vastab uuringu "mitte-sihtida" soovitusele.
-
-**3 kuu pärast audit:** iga **C — PEIDA** L1 vaadatakse uuesti üle. Kui tootearv kasvas >30 → liikume B-sse või A-sse. Kui ei, kaalume L1 merge'i sarnasesse (nt `music-entertainment` → `office-commercial-interiors/entertainment-venues`).
+**Mõju praeguse 22 L1 klassifikatsioonile:** kõik 22 jäävad MegaMenu's nähtavaks, sh `salon-spa-wellness` (9 toodet), `music-entertainment` (9), `woodworking-carpentry` (24). Kunagi varem lisatud `HIDE_FROM_MEGA_MENU` list (Round 3 fix 2026-04-18) eemaldatakse koodist.
 
 ### 3.2 L2 struktuur
 

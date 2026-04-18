@@ -153,19 +153,13 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
     const candidates = [...meiliCandidates, ...medusaCandidates]
     const canonicalNode = firstKnownHandle(candidates)
 
-    let productTypeTrail: Array<{ name: string; handle: string }> = []
-    if (canonicalNode) {
-      productTypeTrail = getBreadcrumbTrail(canonicalNode.handle, locale as TaxLocale)
-    } else {
-      // Fallback: no v3 category known — derive display trail from VEVOR
-      // productType string so tooteleht isn't breadcrumb-less. Handles are
-      // slugified but won't link to a real category page (that's the point —
-      // the product needs review-queue attention).
-      const rawType = stringifyScalar(metadata.vevor_product_type) || feedEntry?.productType || null
-      productTypeTrail = rawType
-        ? rawType.split(">").map((s) => s.trim()).filter(Boolean).map((name) => ({ name, handle: slugify(name) }))
-        : []
-    }
+    // Breadcrumb trail from SSoT only — NEVER fall back to VEVOR taxonomy.
+    // Invariant 1 (§1) + INV-31: "portaalis on täpselt üks taksonoomia".
+    // If the product has no v3 category yet, breadcrumb stays empty; the
+    // product should surface in the review queue, not leak VEVOR paths.
+    const productTypeTrail: Array<{ name: string; handle: string }> = canonicalNode
+      ? getBreadcrumbTrail(canonicalNode.handle, locale as TaxLocale)
+      : []
 
     // Descriptions — prefer pre-computed sanitized HTML from feed import
     const mainDescriptionRaw = product.description || feedEntry?.descriptionHtml || null

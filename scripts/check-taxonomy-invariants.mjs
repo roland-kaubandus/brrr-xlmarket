@@ -69,24 +69,17 @@ check("INV-01", "CRIT", "taxonomy.yaml parses + top-level shape", () => {
   return { pass: true, detail: `${yamlDoc.l1.length} L1 entries` }
 })
 
-check("INV-02", "CRIT", "L1 ∈ [18, 22]; L2/L1 ∈ [4, 8]; L3/L2 ∈ [0, 12]", () => {
+check("INV-02", "WARN", "Taxonomy size counters (informational — no hard limits per spec §3.1.1 revision)", () => {
   const l1Count = yamlDoc.l1.length
-  if (l1Count < 18 || l1Count > 22) {
-    return { pass: false, detail: `L1 count ${l1Count} outside [18,22]` }
-  }
+  let l2Sum = 0
+  let l3Sum = 0
   for (const l1 of yamlDoc.l1) {
-    const l2Count = (l1.subs || []).length
-    if (l2Count < 4 || l2Count > 8) {
-      return { pass: false, detail: `${l1.slug}: ${l2Count} L2s outside [4,8]` }
-    }
-    for (const l2 of l1.subs || []) {
-      const l3Count = (l2.subs || []).length
-      if (l3Count > 12) {
-        return { pass: false, detail: `${l1.slug} > ${l2.slug}: ${l3Count} L3s > 12` }
-      }
-    }
+    l2Sum += (l1.subs || []).length
+    for (const l2 of l1.subs || []) l3Sum += (l2.subs || []).length
   }
-  return { pass: true, detail: `22 L1 / valid L2 & L3 counts` }
+  // No thresholds — kasutaja 2026-04-18: "Ühelgi kategoorial ei saa olla
+  // piirangut kui palju tal alamkategooriaid on või palju tooteid on".
+  return { pass: true, detail: `${l1Count} L1 / ${l2Sum} L2 / ${l3Sum} L3 (informational)` }
 })
 
 check("INV-03", "CRIT", "No duplicate slugs in tree", () => {
@@ -159,8 +152,8 @@ check("INV-11", "WARN", "Every product has ≥1 category (skipped — needs back
   return { pass: true, detail: "skipped (run SQL check in backend)" }
 })
 
-check("INV-12", "WARN", "No active L1 with <10 products >14 days (skipped — needs analytics)", () => {
-  return { pass: true, detail: "skipped (Meili facet count required)" }
+check("INV-12", "WARN", "INV-12 DEPRECATED — product-count thresholds removed per spec §3.1.1 revision 2026-04-18", () => {
+  return { pass: true, detail: "deprecated (no category may be hidden by product count)" }
 })
 
 check("INV-13", "WARN", "No product placed at hidden node (skipped — needs backend env)", () => {
