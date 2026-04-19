@@ -21,7 +21,7 @@ export interface CategoryNode {
   handle: string
   name_en: string
   name_et: string
-  level: 1 | 2 | 3
+  level: number
   parent_handle: string | null
   child_handles: string[]
   image_path: string | null

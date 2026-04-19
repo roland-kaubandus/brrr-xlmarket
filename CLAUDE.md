@@ -1,6 +1,6 @@
 # CLAUDE.md — XL: xlmarket.eu e-pood
 
-> Viimati uuendatud: 2026-04-14
+> Viimati uuendatud: 2026-04-19
 
 ---
 
@@ -8,6 +8,15 @@
 
 **XL** — xlmarket.eu e-poe arendusagent.
 Huly projekt: **XLM** | Konto: xl@brrr.ee
+
+---
+
+## Kasutaja eelistused (sticky reeglid)
+
+**Kui kasutaja palub kindlat skilli/agenti/workflow'i kasutada — kasuta seda kuni sessiooni lõpuni.**
+- Sama kehtib kui palutakse "kasuta frontend-design skill", "nano-banana pro", "reviewer-ui + gatekeeper loop" vms — need jäävad aktiivseks kogu sessiooniks, isegi kui järgmistes käskudes ei mainita.
+- Ära langetaks oma algatusel kasutusele odavamat/lihtsamat varianti (nt flash pro asemel, lihtne build loopi asemel).
+- Ainult kasutaja enda uus korraldus tühistab eelmise.
 
 ---
 

@@ -4,7 +4,7 @@ import { useEffect, useState, useRef, useCallback, useMemo } from "react"
 import SafeLink from "@/components/SafeLink"
 import { categoryPath, branchPath, type Locale } from "@/lib/i18n"
 import { V3_ICONS } from "@/lib/taxonomy-v3"
-import { getChildren, getVisibleL1, nodeName, type CategoryNode } from "@/lib/category-tree"
+import { getChildren, getNode, getVisibleL1, nodeName, type CategoryNode } from "@/lib/category-tree"
 
 // Adapter: render the homepage category explorer from the SSoT 18-L1 taxonomy
 // tree instead of the legacy hard-coded 22-entry TAXONOMY_V3 list.
@@ -158,7 +158,7 @@ export default function HomepageShell({ locale }: HomepageShellProps) {
 
   /* ── Category products (lazy loaded per section) ── */
   const [catProducts, setCatProducts] = useState<Record<number, MeiliProduct[]>>({})
-  const sectionRefs = useRef<Record<number, HTMLDivElement | null>>({})
+  const sectionRefs = useRef<Record<number, HTMLElement | null>>({})
   const loadedRef = useRef<Set<number>>(new Set())
 
   useEffect(() => {
@@ -325,132 +325,103 @@ export default function HomepageShell({ locale }: HomepageShellProps) {
           })}
         </div>
 
-        {/* Categories Grid */}
+        {/* Categories Grid — mockup v2 vertical layout */}
         <div className="hp-categories-grid">
           {CATEGORIES.map((cat) => {
-            const products = catProducts[cat.id] ?? []
+            const Icon = V3_ICONS[cat.slug]
+            const l2List = getChildren(cat.slug)
+            // Featured cards: walk the full subtree (BFS) until we find 6
+            // usable children. The v3 taxonomy goes L1..L7 and many L2/L3
+            // are structural-only (image_source === "none"/"fuzzy"), so a
+            // 2-level scan misses usable leaves deeper in the tree.
+            const isUsable = (n: CategoryNode) =>
+              !!n.image_path && n.image_source !== "fuzzy"
+            const featured: CategoryNode[] = []
+            const seen = new Set<string>()
+            const queue: string[] = [...l2List.map((n) => n.handle)]
+            while (queue.length && featured.length < 6) {
+              const h = queue.shift()!
+              if (seen.has(h)) continue
+              seen.add(h)
+              const node = getNode(h)
+              if (!node) continue
+              if (isUsable(node)) featured.push(node)
+              for (const ch of node.child_handles) queue.push(ch)
+            }
+            const atmosphere = `/images/cat-atmosphere/${cat.slug}.png`
             return (
-              <div
+              <section
                 key={cat.id}
                 className="hp-category-section"
                 data-cat-id={cat.id}
                 ref={(el) => { sectionRefs.current[cat.id] = el }}
+                aria-labelledby={`cat-${cat.id}-title`}
               >
-                {/* COL 1 — name + subcategories (real L2 children from SSoT) */}
-                <div className="hp-category-header">
-                  <div className="hp-category-title-bar">
-                    <h2 className="hp-category-title">{cat.name}</h2>
+                {/* 1 — Atmosphere banner with huge title overlaid */}
+                <div className="hp-cat-banner">
+                  <img
+                    src={atmosphere}
+                    alt=""
+                    loading="lazy"
+                    onError={(e) => {
+                      const img = e.currentTarget
+                      img.style.display = "none"
+                      const parent = img.parentElement
+                      if (parent) parent.classList.add("hp-cat-banner--placeholder")
+                    }}
+                  />
+                  {Icon ? (
+                    <span className="hp-cat-banner-fallback" aria-hidden="true">
+                      <Icon size={160} strokeWidth={1} />
+                    </span>
+                  ) : null}
+                  <div className="hp-cat-banner-overlay" />
+                  <div className="hp-cat-banner-title-wrap">
+                    <h2 id={`cat-${cat.id}-title`} className="hp-cat-banner-title">{cat.name}</h2>
                   </div>
-                  <div className="hp-subcategory-list">
-                    {getChildren(cat.slug).slice(0, 8).map((child) => (
+                </div>
+
+                {/* 2 — Large subcategory name list */}
+                {l2List.length > 0 ? (
+                  <nav className="hp-cat-sublist" aria-label={`${cat.name} subcategories`}>
+                    {l2List.map((l2) => (
+                      <SafeLink
+                        key={l2.handle}
+                        href={categoryPath(loc, l2.handle)}
+                        className="hp-cat-sublist-item"
+                      >
+                        <span className="hp-cat-sublist-dot" aria-hidden="true" />
+                        <span className="hp-cat-sublist-name">{nodeName(l2, loc)}</span>
+                      </SafeLink>
+                    ))}
+                  </nav>
+                ) : null}
+
+                {/* 3 — 6 featured cards (L2 / L3 fallback) */}
+                <div className="hp-cat-cards">
+                  {featured.map((child) => {
+                    // featured is already filtered through isUsable() — image_path exists and is not fuzzy.
+                    const imgSrc = decodeURIComponent(child.image_path!)
+                    const subName = nodeName(child, loc)
+                    return (
                       <SafeLink
                         key={child.handle}
                         href={categoryPath(loc, child.handle)}
-                        className="hp-subcategory-link"
+                        className="hp-cat-card"
                       >
-                        {nodeName(child, loc)}
+                        <div className="hp-cat-card-image">
+                          <img
+                            src={imgSrc!}
+                            alt={subName}
+                            loading="lazy"
+                          />
+                        </div>
+                        <div className="hp-cat-card-name">{subName}</div>
                       </SafeLink>
-                    ))}
-                  </div>
-                  <SafeLink
-                    href={categoryPath(loc, cat.slug)}
-                    className="hp-cat-view-all"
-                  >
-                    View All &rarr;
-                  </SafeLink>
-                </div>
-
-                {/* COL 2 — atmosphere image (local banner first, then SSoT thumb, then icon placeholder) */}
-                <div className="hp-category-image">
-                  {(() => {
-                    const l1Node = L1_NODES.find((n) => n.handle === cat.slug)
-                    const ssot = l1Node?.image_path
-                    const atmosphere = `/images/cat-atmosphere/${cat.slug}.png`
-                    return (
-                      <img
-                        src={atmosphere}
-                        alt=""
-                        loading="lazy"
-                        onError={(e) => {
-                          const img = e.currentTarget
-                          if (ssot && !img.dataset.ssotTried) {
-                            img.dataset.ssotTried = "1"
-                            img.src = decodeURIComponent(ssot)
-                            return
-                          }
-                          // Final fallback: hide img, reveal icon placeholder sibling
-                          img.style.display = "none"
-                          const parent = img.parentElement
-                          if (parent) parent.classList.add("hp-category-image--placeholder")
-                        }}
-                      />
                     )
-                  })()}
-                  {/* Icon placeholder — visible when image fails (revealed via CSS class). */}
-                  {(() => {
-                    const Icon = V3_ICONS[cat.slug]
-                    return Icon ? (
-                      <span className="hp-category-image-fallback" aria-hidden="true">
-                        <Icon size={120} strokeWidth={1.2} />
-                      </span>
-                    ) : null
-                  })()}
+                  })}
                 </div>
-
-                {/* COL 3 — 6 products (mockup images) */}
-                <div className="hp-products-grid">
-                  {products.length > 0
-                    ? products.slice(0, 6).map((prod) => (
-                        <SafeLink
-                          key={prod.id}
-                          href={`/${loc}/toode/${prod.handle}`}
-                          className="hp-product-card"
-                        >
-                          <div className="hp-product-image">
-                            {prod.thumbnail && (
-                              <img src={prod.thumbnail} alt={prod.title} loading="lazy" />
-                            )}
-                          </div>
-                          <div className="hp-product-info">
-                            <div className="hp-product-name">{prod.title}</div>
-                          </div>
-                        </SafeLink>
-                      ))
-                    : (() => {
-                        const realChildren = getChildren(cat.slug).slice(0, 6)
-                        const pad = String(cat.prodNum).padStart(2, "0")
-                        return realChildren.map((child, n) => {
-                          const subThumb = child.image_path
-                          const mockupFallback = `/images/mockup-prods/prod-${pad}-${String(n + 1).padStart(2, "0")}.jpg`
-                          const imgSrc = subThumb ? decodeURIComponent(subThumb) : mockupFallback
-                          const subName = nodeName(child, loc)
-                          return (
-                            <SafeLink
-                              key={child.handle}
-                              href={categoryPath(loc, child.handle)}
-                              className="hp-product-card"
-                            >
-                              <div className="hp-product-image">
-                                <img
-                                  src={imgSrc}
-                                  alt={subName}
-                                  loading="lazy"
-                                  onError={(e) => {
-                                    const img = e.currentTarget
-                                    if (img.src.endsWith(mockupFallback)) return
-                                    img.src = mockupFallback
-                                  }}
-                                />
-                              </div>
-                              <div className="hp-product-info">
-                                <div className="hp-product-name">{subName}</div>
-                              </div>
-                            </SafeLink>
-                          )
-                        })
-                      })()}
-                </div>
-              </div>
+              </section>
             )
           })}
         </div>
@@ -755,19 +726,13 @@ const homepageStyles = `
   position: sticky;
   top: 110px;
   height: fit-content;
-  max-height: calc(100vh - 130px);
-  overflow-y: auto;
-  overflow-x: visible;
+  overflow: visible;
   flex-shrink: 0;
   background: #fff;
   box-shadow: 0 2px 8px rgba(0,0,0,0.08);
   border-radius: 0;
   padding: 6px 0;
-  scrollbar-width: thin;
 }
-
-.hp-sticky-nav::-webkit-scrollbar { width: 4px; }
-.hp-sticky-nav::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 2px; }
 
 .hp-sticky-nav-icon {
   display: flex;
@@ -816,9 +781,8 @@ const homepageStyles = `
   font-size: 12px;
   font-weight: 500;
   white-space: nowrap;
-  z-index: 50;
   pointer-events: none;
-  z-index: 20;
+  z-index: 100;
 }
 
 .hp-sticky-nav-icon:hover .hp-tooltip { display: block; }
@@ -829,192 +793,224 @@ const homepageStyles = `
   min-width: 0;
 }
 
+/* Category module: 3-column — atmosphere | sublist | 6 cards.
+   Fixed 500px height — every L1 identical. Cards ~250px each. */
 .hp-category-section {
   display: grid;
-  grid-template-columns: 220px 1fr 630px;
-  margin-bottom: 20px;
+  grid-template-columns: 280px 220px 1fr;
+  grid-template-rows: 500px;
+  height: 500px;
+  margin-bottom: 24px;
   background: #fff;
-  overflow: visible;
-  min-height: 480px;
+  overflow: hidden;
   box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  border-radius: 4px;
 }
 
-/* COL 1 — name + subcategories */
-.hp-category-header {
-  display: flex;
-  flex-direction: column;
-  border-right: 1px solid #ECEEF1;
-}
+/* Sublist must fit the section height set by the cards grid on the right.
+   Any L2 items beyond what fits are clipped (no scroll, no pushing height). */
 
-.hp-category-title-bar {
-  padding: 24px 20px 14px;
-  border-bottom: none;
-}
-
-.hp-category-title {
-  font-family: var(--font-dm-sans, 'DM Sans', system-ui, sans-serif);
-  font-size: 22px;
-  font-weight: 800;
-  color: #0F172A;
-  line-height: 1.2;
-  letter-spacing: -0.04em;
-  text-transform: none;
-}
-
-.hp-subcategory-list {
-  display: flex;
-  flex-direction: column;
-  padding: 8px 0;
-  flex: 1;
-}
-
-.hp-subcategory-link {
-  font-family: var(--font-dm-sans, 'DM Sans', system-ui, sans-serif);
-  font-size: 14px;
-  font-weight: 400;
-  color: #475569;
-  text-decoration: none;
-  cursor: pointer;
-  transition: all 0.15s;
-  padding: 6px 20px;
-  line-height: 1.4;
-  border-left: 2px solid transparent;
-}
-
-.hp-subcategory-link:hover {
-  color: #D97706;
-  background: #FFF8F3;
-  border-left-color: #D97706;
-}
-
-.hp-subcategory-extra {
-  font-size: 12px;
-  color: #999;
-}
-
-.hp-cat-view-all {
-  display: block;
-  padding: 14px 20px;
-  font-size: 13px;
-  font-weight: 600;
-  color: #D97706;
-  text-decoration: none;
-  border-top: 1px solid #ECEEF1;
-  margin-top: auto;
-  transition: background 0.15s;
-}
-
-.hp-cat-view-all:hover { background: #FFF8F3; }
-
-/* COL 2 — atmosphere image */
-.hp-category-image {
+/* 1 — Atmosphere portrait banner on the left */
+.hp-cat-banner {
   position: relative;
+  width: 100%;
+  height: 100%;
   overflow: hidden;
   background: linear-gradient(135deg, #0F1B2D 0%, #1a3a5c 100%);
 }
 
-.hp-category-image img {
+.hp-cat-banner img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   transition: transform 6s ease;
 }
 
-.hp-category-image-fallback {
+.hp-category-section:hover .hp-cat-banner img {
+  transform: scale(1.03);
+}
+
+.hp-cat-banner-fallback {
   position: absolute;
   inset: 0;
   display: none;
   align-items: center;
   justify-content: center;
   color: #D97706;
-  opacity: 0.55;
+  opacity: 0.45;
 }
 
-.hp-category-image--placeholder .hp-category-image-fallback { display: flex; }
+.hp-cat-banner--placeholder .hp-cat-banner-fallback { display: flex; }
 
-.hp-category-section:hover .hp-category-image img {
-  transform: scale(1.03);
+.hp-cat-banner-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg,
+    rgba(15,27,45,0.72) 0%,
+    rgba(15,27,45,0.35) 55%,
+    rgba(15,27,45,0) 100%);
+  pointer-events: none;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .hp-category-image img,
-  .hp-category-section:hover .hp-category-image img {
-    transition: none;
-    transform: none;
-  }
+.hp-cat-banner-title-wrap {
+  position: absolute;
+  left: clamp(24px, 4vw, 64px);
+  right: clamp(24px, 4vw, 64px);
+  bottom: clamp(20px, 3vw, 44px);
+  z-index: 2;
 }
 
-/* COL 3 — 6 products in 3x2 */
-.hp-products-grid {
+.hp-cat-banner-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.1;
+  letter-spacing: 0;
+  margin: 0;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.45);
+  text-transform: none;
+  /* Prefer one line — Barlow Condensed narrow fits most L1 names in 280px.
+     Names longer than the column wrap naturally to a second line. */
+}
+
+/* 2 — Subcategory name list (middle column, stacked) */
+.hp-cat-sublist {
+  display: flex;
+  flex-direction: column;
+  padding: 16px 20px;
+  border-right: 1px solid #ECEEF1;
+  background: #F8FAFC;
+  overflow: hidden;
+  max-height: 100%;
+}
+
+.hp-cat-sublist-item {
+  flex-shrink: 0;        /* keep full-height rows so half-lines never appear */
+}
+
+.hp-cat-sublist-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 0;
+  text-decoration: none;
+  color: #475569;
+  transition: color 0.15s ease;
+}
+
+.hp-cat-sublist-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #D97706;
+  opacity: 0.6;
+  flex-shrink: 0;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.hp-cat-sublist-name {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.35;
+}
+
+.hp-cat-sublist-item:hover {
+  color: #D97706;
+}
+
+.hp-cat-sublist-item:hover .hp-cat-sublist-dot {
+  opacity: 1;
+  transform: scale(1.25);
+}
+
+/* 3 — up to 6 featured cards (3x2 grid on the right). Rows fill the module
+   height (320px / 2 = 160px) so both rows are equal. */
+.hp-cat-cards {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: 1fr 1fr;
   gap: 0;
-  border-left: 1px solid #ECEEF1;
+  overflow: hidden;
 }
 
-.hp-product-card {
-  background-color: #fff;
-  border-right: 1px solid #f0f0f0;
-  border-bottom: 1px solid #f0f0f0;
-  overflow: visible;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-  cursor: pointer;
+.hp-cat-card {
   display: flex;
   flex-direction: column;
-  position: relative;
-  z-index: 1;
   text-decoration: none;
-  color: inherit;
+  color: #1E293B;
+  background: #fff;
+  border-right: 1px solid #ECEEF1;
+  border-bottom: 1px solid #ECEEF1;
+  transition: background 0.2s ease;
 }
 
-.hp-product-card:nth-child(3n) { border-right: none; }
-.hp-product-card:nth-child(n+4) { border-bottom: none; }
+.hp-cat-card:nth-child(3n) { border-right: none; }
+.hp-cat-card:nth-last-child(-n+3) { border-bottom: none; }
 
-.hp-product-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
-  z-index: 10;
+.hp-cat-card:hover {
+  color: #D97706;
 }
 
-.hp-product-image {
+.hp-cat-card-image {
   flex: 1;
-  background-color: #fff;
-  overflow: hidden;
   min-height: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 12%;
+  background: transparent;
+  position: relative;
+  overflow: hidden;
 }
 
-.hp-product-image img {
+.hp-cat-card-image img {
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
   transition: transform 0.3s ease;
 }
 
-.hp-product-card:hover .hp-product-image img {
+.hp-cat-card:hover .hp-cat-card-image img {
   transform: scale(1.05);
 }
 
-.hp-product-info {
-  padding: 10px 12px 14px;
-  background: #fff;
-  text-align: center;
-}
-
-.hp-product-name {
-  font-family: var(--font-dm-sans, 'DM Sans', system-ui, sans-serif);
-  font-size: 14px;
-  font-weight: 700;
-  color: #333;
-  line-height: 1.35;
-  min-height: 2.7em;
-  display: flex;
+.hp-cat-card-fallback {
+  display: none;
   align-items: center;
   justify-content: center;
+  color: #D97706;
+  opacity: 0.45;
+}
+
+.hp-cat-card-image:not(:has(img)) .hp-cat-card-fallback,
+.hp-cat-card-image--placeholder .hp-cat-card-fallback {
+  display: flex;
+}
+
+.hp-cat-card-name {
+  padding: 10px 12px 14px;
+  font-family: var(--font-dm-sans), system-ui, sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  text-align: center;
+  line-height: 1.3;
+  color: #333;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hp-cat-banner img,
+  .hp-category-section:hover .hp-cat-banner img,
+  .hp-cat-card-image img,
+  .hp-cat-card:hover .hp-cat-card-image img {
+    transition: none;
+    transform: none;
+  }
 }
 
 /* ═══════ TABLET (768-1024) ═══════ */
@@ -1026,9 +1022,10 @@ const homepageStyles = `
   .hp-deals-row { grid-template-columns: repeat(2, 1fr); }
   .hp-promo-row { grid-template-columns: repeat(2, 1fr); }
   .hp-promo-row .hp-promo-card:nth-child(n+3) { display: none; }
-  .hp-category-section { grid-template-columns: 180px 1fr 400px; min-height: 380px; }
   .hp-category-explorer { padding: 20px 20px 40px; gap: 16px; }
   .hp-explorer-header { padding: 36px 20px 0; }
+  .hp-category-section { grid-template-columns: 220px 180px 1fr; }
+  .hp-cat-cards { grid-auto-rows: 140px; }
 }
 
 /* ═══════ MOBILE (<768) ═══════ */
@@ -1060,38 +1057,36 @@ const homepageStyles = `
   .hp-category-explorer { flex-direction: column; padding: 16px 16px 40px; gap: 16px; }
   .hp-sticky-nav { display: none; }
 
-  /* Category sections: stack vertically */
+  /* Category sections stack vertically on mobile */
   .hp-category-section {
     display: flex;
     flex-direction: column;
     min-height: auto;
-    margin-bottom: 16px;
+    margin-bottom: 20px;
   }
-  .hp-category-header { border-right: none; border-bottom: 1px solid #ECEEF1; }
-  .hp-category-title-bar { padding: 16px 16px 10px; }
-  .hp-category-title { font-size: 20px; }
-  .hp-subcategory-list { flex-direction: row; flex-wrap: wrap; padding: 4px 12px 12px; gap: 0; }
-  .hp-subcategory-link { padding: 4px 10px; font-size: 13px; border-left: none; }
-  .hp-subcategory-link:hover { border-left: none; }
-  .hp-subcategory-extra { display: none; }
-  .hp-category-image { height: 200px; }
-  .hp-category-image img { height: 100%; }
-  .hp-products-grid {
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: auto;
-    border-left: none;
-    border-top: 1px solid #ECEEF1;
+  .hp-cat-banner { height: 240px; border-right: none; border-bottom: 1px solid #ECEEF1; }
+  .hp-cat-banner-title-wrap { left: 20px; right: 20px; bottom: 18px; }
+  .hp-cat-banner-title { font-size: 28px; line-height: 1.05; }
+  .hp-cat-sublist {
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 12px 16px;
+    gap: 2px 16px;
+    border-right: none;
+    border-bottom: 1px solid #ECEEF1;
   }
-  .hp-product-image { padding: 8%; }
-  .hp-product-info { padding: 8px 8px 12px; }
-  .hp-product-name { font-size: 11px; min-height: 2.4em; }
+  .hp-cat-sublist-item { padding: 4px 0; }
+  .hp-cat-sublist-name { font-size: 13px; }
+  .hp-cat-cards { grid-template-columns: repeat(3, 1fr); }
+  .hp-cat-card-image { padding: 10%; }
+  .hp-cat-card-name { padding: 10px 6px 14px; font-size: 12px; }
 }
 
 /* ═══════ SMALL MOBILE (<400) ═══════ */
 @media (max-width: 400px) {
   .hp-deals-row { grid-template-columns: 1fr; }
-  .hp-products-grid { grid-template-columns: repeat(2, 1fr); }
-  .hp-product-card:nth-child(3n) { border-right: 1px solid #f0f0f0; }
-  .hp-product-card:nth-child(2n) { border-right: none; }
+  .hp-cat-cards { grid-template-columns: repeat(2, 1fr); }
+  .hp-cat-card:nth-child(3n) { border-right: 1px solid #ECEEF1; }
+  .hp-cat-card:nth-last-child(-n+3):not(:nth-last-child(-n+2)) { border-bottom: 1px solid #ECEEF1; }
 }
 `
