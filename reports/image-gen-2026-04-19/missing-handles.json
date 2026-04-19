@@ -1,0 +1,5762 @@
+[
+  {
+    "handle": "automotive-workshop",
+    "level": 1,
+    "name_en": "Automotive & Workshop",
+    "parent": null
+  },
+  {
+    "handle": "backyard-landscaping-farm",
+    "level": 1,
+    "name_en": "Backyard, Landscaping & Farm",
+    "parent": null
+  },
+  {
+    "handle": "boating-camping-outdoor",
+    "level": 1,
+    "name_en": "Boating, Camping & Outdoor Adventure",
+    "parent": null
+  },
+  {
+    "handle": "cleaning-janitorial",
+    "level": 1,
+    "name_en": "Cleaning & Janitorial",
+    "parent": null
+  },
+  {
+    "handle": "construction-building",
+    "level": 1,
+    "name_en": "Construction & Building",
+    "parent": null
+  },
+  {
+    "handle": "crafts-sewing-printing",
+    "level": 1,
+    "name_en": "Crafts, Sewing & Printing",
+    "parent": null
+  },
+  {
+    "handle": "fitness-sports-games",
+    "level": 1,
+    "name_en": "Fitness, Sports & Games",
+    "parent": null
+  },
+  {
+    "handle": "hand-power-tools",
+    "level": 1,
+    "name_en": "Hand, Power & Specialty Tools",
+    "parent": null
+  },
+  {
+    "handle": "health-medical-supply",
+    "level": 1,
+    "name_en": "Health & Medical Supply",
+    "parent": null
+  },
+  {
+    "handle": "horeca-food-service",
+    "level": 1,
+    "name_en": "HoReCa & Food Service",
+    "parent": null
+  },
+  {
+    "handle": "kids-playgrounds",
+    "level": 1,
+    "name_en": "Kids & Playgrounds",
+    "parent": null
+  },
+  {
+    "handle": "music-entertainment",
+    "level": 1,
+    "name_en": "Music & Entertainment",
+    "parent": null
+  },
+  {
+    "handle": "office-commercial-interiors",
+    "level": 1,
+    "name_en": "Office & Commercial Interiors",
+    "parent": null
+  },
+  {
+    "handle": "pets-wildlife-clinic",
+    "level": 1,
+    "name_en": "Pets, Wildlife, Veterinary & Kennels",
+    "parent": null
+  },
+  {
+    "handle": "renewable-energy-batteries",
+    "level": 1,
+    "name_en": "Renewable Energy & Batteries",
+    "parent": null
+  },
+  {
+    "handle": "safety-security-workwear",
+    "level": 1,
+    "name_en": "Safety, Security & Workwear",
+    "parent": null
+  },
+  {
+    "handle": "salon-spa-wellness",
+    "level": 1,
+    "name_en": "Salon, Spa & Wellness",
+    "parent": null
+  },
+  {
+    "handle": "warehousing-material-handling",
+    "level": 1,
+    "name_en": "Warehousing & Material Handling",
+    "parent": null
+  },
+  {
+    "handle": "access-barriers-and-crowd-control",
+    "level": 2,
+    "name_en": "Access Barriers & Crowd Control",
+    "parent": "safety-security-workwear"
+  },
+  {
+    "handle": "action-aids",
+    "level": 2,
+    "name_en": "Action Aids",
+    "parent": "health-medical-supply"
+  },
+  {
+    "handle": "air-compressor-accessories",
+    "level": 2,
+    "name_en": "Air Compressor Accessories",
+    "parent": "hand-power-tools"
+  },
+  {
+    "handle": "air-conditioning-and-heat",
+    "level": 2,
+    "name_en": "Air Conditioning & Heat",
+    "parent": "automotive-workshop"
+  },
+  {
+    "handle": "air-quality-parts-and-accessories",
+    "level": 2,
+    "name_en": "Air Quality Parts & Accessories",
+    "parent": "construction-building"
+  },
+  {
+    "handle": "air-treatment",
+    "level": 2,
+    "name_en": "Air Treatment",
+    "parent": "construction-building"
+  },
+  {
+    "handle": "auto-body-and-trim",
+    "level": 2,
+    "name_en": "Auto Body & Trim",
+    "parent": "automotive-workshop"
+  },
+  {
+    "handle": "automotive-accessories",
+    "level": 2,
+    "name_en": "Automotive Accessories",
+    "parent": "automotive-workshop"
+  },
+  {
+    "handle": "automotive-electrical",
+    "level": 2,
+    "name_en": "Automotive Electrical",
+    "parent": "automotive-workshop"
+  },
+  {
+    "handle": "baby-activities-and-gear",
+    "level": 2,
+    "name_en": "Baby Activities & Gear",
+    "parent": "health-medical-supply"
+  },
+  {
+    "handle": "backpacking-equipment",
+    "level": 2,
+    "name_en": "Backpacking Equipment",
+    "parent": "boating-camping-outdoor"
+  },
+  {
+    "handle": "backyard-landscaping-farm-pet-supplies-and-wildlife",
+    "level": 2,
+    "name_en": "Pet Supplies & Wildlife",
+    "parent": "backyard-landscaping-farm"
+  },
+  {
+    "handle": "band-and-orchestra",
+    "level": 2,
+    "name_en": "Band & Orchestra",
+    "parent": "music-entertainment"
+  },
+  {
+    "handle": "bathroom-supplies",
+    "level": 2,
+    "name_en": "Bathroom Supplies",
+    "parent": "cleaning-janitorial"
+  },
+  {
+    "handle": "batteries-and-chargers-and-accessories",
+    "level": 2,
+    "name_en": "Batteries & Chargers & Accessories",
+    "parent": "renewable-energy-batteries"
+  },
+  {
+    "handle": "beauty-and-personal-care",
+    "level": 2,
+    "name_en": "Beauty & Personal Care",
+    "parent": "health-medical-supply"
+  },
+  {
+    "handle": "bedding-and-bath",
+    "level": 2,
+    "name_en": "Bedding & Bath",
+    "parent": "office-commercial-interiors"
+  },
+  {
+    "handle": "beverage-equipment",
+    "level": 2,
+    "name_en": "Beverage Equipment",
+    "parent": "horeca-food-service"
+  },
+  {
+    "handle": "boat-docks-and-hardware",
+    "level": 2,
+    "name_en": "Boat Docks & Hardware",
+    "parent": "construction-building"
+  },
+  {
+    "handle": "boating-camping-outdoor-boat-parts-and-accessories",
+    "level": 2,
+    "name_en": "Boat Parts & Accessories",
+    "parent": "boating-camping-outdoor"
+  },
+  {
+    "handle": "braces-and-brackets",
+    "level": 2,
+    "name_en": "Braces & Brackets",
+    "parent": "construction-building"
+  },
+  {
+    "handle": "building-supplies",
+    "level": 2,
+    "name_en": "Building Supplies",
+    "parent": "construction-building"
+  },
+  {
+    "handle": "camera-and-photo",
+    "level": 2,
+    "name_en": "Camera & Photo",
+    "parent": "crafts-sewing-printing"
+  },
+  {
+    "handle": "candle-holders",
+    "level": 2,
+    "name_en": "Candle Holders",
+    "parent": "office-commercial-interiors"
+  },
+  {
+    "handle": "cargo-control",
+    "level": 2,
+    "name_en": "Cargo Control",
+    "parent": "warehousing-material-handling"
+  },
+  {
+    "handle": "cargo-management",
+    "level": 2,
+    "name_en": "Cargo Management",
+    "parent": "automotive-workshop"
+  },
+  {
+    "handle": "carts-and-trucks",
+    "level": 2,
+    "name_en": "Carts & Trucks",
+    "parent": "warehousing-material-handling"
+  },
+  {
+    "handle": "ceramics-and-pottery-crafts",
+    "level": 2,
+    "name_en": "Ceramics & Pottery Crafts",
+    "parent": "crafts-sewing-printing"
+  },
+  {
+    "handle": "chain-and-wire-and-rope",
+    "level": 2,
+    "name_en": "Chain & Wire & Rope",
+    "parent": "warehousing-material-handling"
+  },
+  {
+    "handle": "chains-and-ropes",
+    "level": 2,
+    "name_en": "Chains & Ropes",
+    "parent": "hand-power-tools"
+  },
+  {
+    "handle": "circulators-and-chillers",
+    "level": 2,
+    "name_en": "Circulators & Chillers",
+    "parent": "construction-building"
+  },
+  {
+    "handle": "cleaning-equipment",
+    "level": 2,
+    "name_en": "Cleaning Equipment",
+    "parent": "health-medical-supply"
+  },
+  {
+    "handle": "concrete-cement-and-masonry",
+    "level": 2,
+    "name_en": "Concrete, Cement & Masonry",
+    "parent": "construction-building"
+  },
+  {
+    "handle": "confined-space-entry-systems",
+    "level": 2,
+    "name_en": "Confined Space Entry Systems",
+    "parent": "safety-security-workwear"
+  },
+  {
+    "handle": "construction-building-insulation",
+    "level": 2,
+    "name_en": "Insulation",
+    "parent": "construction-building"
+  },
+  {
+    "handle": "construction-building-water-filters",
+    "level": 2,
+    "name_en": "Water Filters",
+    "parent": "construction-building"
+  },
+  {
+    "handle": "cooking-equipment",
+    "level": 2,
+    "name_en": "Cooking Equipment",
+    "parent": "horeca-food-service"
+  },
+  {
+    "handle": "crafts-and-sewing",
+    "level": 2,
+    "name_en": "Crafts & Sewing",
+    "parent": "crafts-sewing-printing"
+  },
+  {
+    "handle": "curtains-and-drapes",
+    "level": 2,
+    "name_en": "Curtains & Drapes",
+    "parent": "office-commercial-interiors"
+  },
+  {
+    "handle": "decking-and-fencing",
+    "level": 2,
+    "name_en": "Decking & Fencing",
+    "parent": "construction-building"
+  },
+  {
+    "handle": "definite-purpose-dc-motors",
+    "level": 2,
+    "name_en": "Definite Purpose Dc Motors",
+    "parent": "automotive-workshop"
+  },
+  {
+    "handle": "demolition-tools-and-equipment",
+    "level": 2,
+    "name_en": "Demolition Tools & Equipment",
+    "parent": "hand-power-tools"
+  },
+  {
+    "handle": "dollies-and-movers",
+    "level": 2,
+    "name_en": "Dollies & Movers",
+    "parent": "warehousing-material-handling"
+  },
+  {
+    "handle": "door-hardware-and-locks",
+    "level": 2,
+    "name_en": "Door Hardware & Locks",
+    "parent": "construction-building"
+  },
+  {
+    "handle": "doors-and-accessories",
+    "level": 2,
+    "name_en": "Doors & Accessories",
+    "parent": "warehousing-material-handling"
+  },
+  {
+    "handle": "drains-and-drainage",
+    "level": 2,
+    "name_en": "Drains & Drainage",
+    "parent": "construction-building"
+  },
+  {
+    "handle": "drawer-and-cabinet-hardware",
+    "level": 2,
+    "name_en": "Drawer & Cabinet Hardware",
+    "parent": "office-commercial-interiors"
+  },
+  {
+    "handle": "drills-and-drivers",
+    "level": 2,
+    "name_en": "Drills & Drivers",
+    "parent": "hand-power-tools"
+  },
+  {
+    "handle": "drums-and-percussion",
+    "level": 2,
+    "name_en": "Drums & Percussion",
+    "parent": "music-entertainment"
+  },
+  {
+    "handle": "electric-motors",
+    "level": 2,
+    "name_en": "Electric Motors",
+    "parent": "construction-building"
+  },
+  {
+    "handle": "electrical-boxes-and-panels-and-fittings",
+    "level": 2,
+    "name_en": "Electrical Boxes & Panels & Fittings",
+    "parent": "construction-building"
+  },
+  {
+    "handle": "electrical-boxes-conduit-and-fittings",
+    "level": 2,
+    "name_en": "Electrical Boxes, Conduit & Fittings",
+    "parent": "construction-building"
+  },
+  {
+    "handle": "engraving",
+    "level": 2,
+    "name_en": "Engraving",
+    "parent": "crafts-sewing-printing"
+  },
+  {
+    "handle": "equipment-parts-and-accessories",
+    "level": 2,
+    "name_en": "Equipment Parts & Accessories",
+    "parent": "backyard-landscaping-farm"
+  },
+  {
+    "handle": "exercise-and-fitness",
+    "level": 2,
+    "name_en": "Exercise & Fitness",
+    "parent": "fitness-sports-games"
+  },
+  {
+    "handle": "eyewash-stations-and-emergency-showers",
+    "level": 2,
+    "name_en": "Eyewash Stations & Emergency Showers",
+    "parent": "safety-security-workwear"
+  },
+  {
+    "handle": "fencing-and-gates",
+    "level": 2,
+    "name_en": "Fencing & Gates",
+    "parent": "construction-building"
+  },
+  {
+    "handle": "filling-and-sealing-machine",
+    "level": 2,
+    "name_en": "Filling & Sealing Machine",
+    "parent": "warehousing-material-handling"
+  },
+  {
+    "handle": "fire-safety",
+    "level": 2,
+    "name_en": "Fire Safety",
+    "parent": "construction-building"
+  },
+  {
+    "handle": "fishery-aquaculture",
+    "level": 2,
+    "name_en": "Fishery Aquaculture",
+    "parent": "backyard-landscaping-farm"
+  },
+  {
+    "handle": "fishing-equipment",
+    "level": 2,
+    "name_en": "Fishing Equipment",
+    "parent": "boating-camping-outdoor"
+  },
+  {
+    "handle": "fitness-sports-games-golf-equipment",
+    "level": 2,
+    "name_en": "Golf Equipment",
+    "parent": "fitness-sports-games"
+  },
+  {
+    "handle": "floor-and-upholstery-cleaning",
+    "level": 2,
+    "name_en": "Floor & Upholstery Cleaning",
+    "parent": "cleaning-janitorial"
+  },
+  {
+    "handle": "food-display-and-merchandising-equipment",
+    "level": 2,
+    "name_en": "Food Display & Merchandising Equipment",
+    "parent": "horeca-food-service"
+  },
+  {
+    "handle": "food-holding-and-warming-equipment",
+    "level": 2,
+    "name_en": "Food Holding & Warming Equipment",
+    "parent": "horeca-food-service"
+  },
+  {
+    "handle": "food-preparation-equipment",
+    "level": 2,
+    "name_en": "Food Preparation Equipment",
+    "parent": "horeca-food-service"
+  },
+  {
+    "handle": "fuel-transfer-and-lubrication",
+    "level": 2,
+    "name_en": "Fuel Transfer & Lubrication",
+    "parent": "automotive-workshop"
+  },
+  {
+    "handle": "furniture-accessories-and-replacement-parts",
+    "level": 2,
+    "name_en": "Furniture Accessories & Replacement Parts",
+    "parent": "office-commercial-interiors"
+  },
+  {
+    "handle": "furniture-hardware",
+    "level": 2,
+    "name_en": "Furniture Hardware",
+    "parent": "office-commercial-interiors"
+  },
+  {
+    "handle": "general-purpose-ac-motors",
+    "level": 2,
+    "name_en": "General Purpose AC Motors",
+    "parent": "automotive-workshop"
+  },
+  {
+    "handle": "glass-and-plastic-sheets",
+    "level": 2,
+    "name_en": "Glass & Plastic Sheets",
+    "parent": "construction-building"
+  },
+  {
+    "handle": "glassware-and-labware",
+    "level": 2,
+    "name_en": "Glassware & Labware",
+    "parent": "health-medical-supply"
+  },
+  {
+    "handle": "grinding-and-sanding-and-finishing-tools",
+    "level": 2,
+    "name_en": "Grinding & Sanding & Finishing Tools",
+    "parent": "hand-power-tools"
+  },
+  {
+    "handle": "guitar",
+    "level": 2,
+    "name_en": "Guitar",
+    "parent": "music-entertainment"
+  },
+  {
+    "handle": "hair-care",
+    "level": 2,
+    "name_en": "Hair Care",
+    "parent": "health-medical-supply"
+  },
+  {
+    "handle": "hand-power-tools-clamps-and-vises",
+    "level": 2,
+    "name_en": "Clamps & Vises",
+    "parent": "hand-power-tools"
+  },
+  {
+    "handle": "hand-power-tools-cutting-tools",
+    "level": 2,
+    "name_en": "Cutting Tools",
+    "parent": "hand-power-tools"
+  },
+  {
+    "handle": "hand-power-tools-labware",
+    "level": 2,
+    "name_en": "Labware",
+    "parent": "hand-power-tools"
+  },
+  {
+    "handle": "hand-power-tools-measuring-tools",
+    "level": 2,
+    "name_en": "Measuring Tools",
+    "parent": "hand-power-tools"
+  },
+  {
+    "handle": "hand-power-tools-wrenches",
+    "level": 2,
+    "name_en": "Wrenches",
+    "parent": "hand-power-tools"
+  },
+  {
+    "handle": "health-medical-supply-medical-auxiliary-supplies",
+    "level": 2,
+    "name_en": "Medical Auxiliary Supplies",
+    "parent": "health-medical-supply"
+  },
+  {
+    "handle": "health-medical-supply-salon-and-spa-equipment",
+    "level": 2,
+    "name_en": "Salon & Spa Equipment",
+    "parent": "health-medical-supply"
+  },
+  {
+    "handle": "health-medical-supply-skin-care",
+    "level": 2,
+    "name_en": "Skin Care",
+    "parent": "health-medical-supply"
+  },
+  {
+    "handle": "health-medical-supply-wellness-and-relaxation-products",
+    "level": 2,
+    "name_en": "Wellness & Relaxation Products",
+    "parent": "health-medical-supply"
+  },
+  {
+    "handle": "heated-clothing-and-gear",
+    "level": 2,
+    "name_en": "Heated Clothing & Gear",
+    "parent": "safety-security-workwear"
+  },
+  {
+    "handle": "heaters-and-accessories",
+    "level": 2,
+    "name_en": "Heaters & Accessories",
+    "parent": "construction-building"
+  },
+  {
+    "handle": "heavy-equipment-accessories",
+    "level": 2,
+    "name_en": "Heavy Equipment Accessories",
+    "parent": "automotive-workshop"
+  },
+  {
+    "handle": "hoists-and-winches-and-rigging",
+    "level": 2,
+    "name_en": "Hoists & Winches & Rigging",
+    "parent": "warehousing-material-handling"
+  },
+  {
+    "handle": "home-decor-products",
+    "level": 2,
+    "name_en": "Home Décor Products",
+    "parent": "construction-building"
+  },
+  {
+    "handle": "hydraulic-equipment",
+    "level": 2,
+    "name_en": "Hydraulic Equipment",
+    "parent": "automotive-workshop"
+  },
+  {
+    "handle": "inspection-and-retrieving-tools",
+    "level": 2,
+    "name_en": "Inspection & Retrieving Tools",
+    "parent": "hand-power-tools"
+  },
+  {
+    "handle": "instrument-accessories",
+    "level": 2,
+    "name_en": "Instrument Accessories",
+    "parent": "construction-building"
+  },
+  {
+    "handle": "inverters",
+    "level": 2,
+    "name_en": "Inverters",
+    "parent": "renewable-energy-batteries"
+  },
+  {
+    "handle": "jewelry-making-and-repair",
+    "level": 2,
+    "name_en": "Jewelry Making & Repair",
+    "parent": "crafts-sewing-printing"
+  },
+  {
+    "handle": "keyboards-and-midi",
+    "level": 2,
+    "name_en": "Keyboards & MIDI",
+    "parent": "music-entertainment"
+  },
+  {
+    "handle": "kitchen-and-dining-room-furniture",
+    "level": 2,
+    "name_en": "Kitchen & Dining Room Furniture",
+    "parent": "horeca-food-service"
+  },
+  {
+    "handle": "kitchen-storage-and-organization",
+    "level": 2,
+    "name_en": "Kitchen Storage & Organization",
+    "parent": "horeca-food-service"
+  },
+  {
+    "handle": "lab-and-scientific-products",
+    "level": 2,
+    "name_en": "Lab & Scientific Products",
+    "parent": "hand-power-tools"
+  },
+  {
+    "handle": "landscaping-and-shade",
+    "level": 2,
+    "name_en": "Landscaping & Shade",
+    "parent": "backyard-landscaping-farm"
+  },
+  {
+    "handle": "lathe-machines-and-accessories",
+    "level": 2,
+    "name_en": "Lathe Machines & Accessories",
+    "parent": "hand-power-tools"
+  },
+  {
+    "handle": "laundry-supplies",
+    "level": 2,
+    "name_en": "Laundry Supplies",
+    "parent": "cleaning-janitorial"
+  },
+  {
+    "handle": "learning-and-education",
+    "level": 2,
+    "name_en": "Learning & Education",
+    "parent": "health-medical-supply"
+  },
+  {
+    "handle": "leather-crafts",
+    "level": 2,
+    "name_en": "Leather Crafts",
+    "parent": "crafts-sewing-printing"
+  },
+  {
+    "handle": "leisure-sports",
+    "level": 2,
+    "name_en": "Leisure Sports",
+    "parent": "boating-camping-outdoor"
+  },
+  {
+    "handle": "lifts-and-hoists-and-jacks",
+    "level": 2,
+    "name_en": "Lifts & Hoists & Jacks",
+    "parent": "automotive-workshop"
+  },
+  {
+    "handle": "livestock-and-poultry-supplies",
+    "level": 2,
+    "name_en": "Livestock & Poultry Supplies",
+    "parent": "backyard-landscaping-farm"
+  },
+  {
+    "handle": "luggage-and-travel-accessories",
+    "level": 2,
+    "name_en": "Luggage & Travel Accessories",
+    "parent": "construction-building"
+  },
+  {
+    "handle": "marking-and-labeling",
+    "level": 2,
+    "name_en": "Marking & Labeling",
+    "parent": "warehousing-material-handling"
+  },
+  {
+    "handle": "masonry-and-concrete-and-tile-tools",
+    "level": 2,
+    "name_en": "Masonry & Concrete & Tile Tools",
+    "parent": "construction-building"
+  },
+  {
+    "handle": "misters",
+    "level": 2,
+    "name_en": "Misters",
+    "parent": "construction-building"
+  },
+  {
+    "handle": "mixing-and-blending-equipment",
+    "level": 2,
+    "name_en": "Mixing & Blending Equipment",
+    "parent": "health-medical-supply"
+  },
+  {
+    "handle": "motion-control",
+    "level": 2,
+    "name_en": "Motion Control",
+    "parent": "construction-building"
+  },
+  {
+    "handle": "motorcycle-parts-and-accessories",
+    "level": 2,
+    "name_en": "Motorcycle Parts & Accessories",
+    "parent": "automotive-workshop"
+  },
+  {
+    "handle": "motors-and-parts",
+    "level": 2,
+    "name_en": "Motors & Parts",
+    "parent": "construction-building"
+  },
+  {
+    "handle": "moulding-and-millwork",
+    "level": 2,
+    "name_en": "Moulding & Millwork",
+    "parent": "construction-building"
+  },
+  {
+    "handle": "office-commercial-interiors-boards-and-easels",
+    "level": 2,
+    "name_en": "Boards & Easels",
+    "parent": "office-commercial-interiors"
+  },
+  {
+    "handle": "office-commercial-interiors-christmas-decorations",
+    "level": 2,
+    "name_en": "Christmas Decorations",
+    "parent": "office-commercial-interiors"
+  },
+  {
+    "handle": "office-commercial-interiors-mirrors",
+    "level": 2,
+    "name_en": "Mirrors",
+    "parent": "office-commercial-interiors"
+  },
+  {
+    "handle": "office-electronics",
+    "level": 2,
+    "name_en": "Office Electronics",
+    "parent": "office-commercial-interiors"
+  },
+  {
+    "handle": "office-furniture",
+    "level": 2,
+    "name_en": "Office Furniture",
+    "parent": "office-commercial-interiors"
+  },
+  {
+    "handle": "office-storage-and-organization",
+    "level": 2,
+    "name_en": "Office Storage & Organization",
+    "parent": "office-commercial-interiors"
+  },
+  {
+    "handle": "outdoor-decoration",
+    "level": 2,
+    "name_en": "Outdoor Decoration",
+    "parent": "backyard-landscaping-farm"
+  },
+  {
+    "handle": "outdoor-hand-tools",
+    "level": 2,
+    "name_en": "Outdoor Hand Tools",
+    "parent": "backyard-landscaping-farm"
+  },
+  {
+    "handle": "outdoor-lighting-and-accessories",
+    "level": 2,
+    "name_en": "Outdoor Lighting & Accessories",
+    "parent": "construction-building"
+  },
+  {
+    "handle": "packing-materials",
+    "level": 2,
+    "name_en": "Packing Materials",
+    "parent": "warehousing-material-handling"
+  },
+  {
+    "handle": "painting-equipment-and-supplies",
+    "level": 2,
+    "name_en": "Painting Equipment & Supplies",
+    "parent": "crafts-sewing-printing"
+  },
+  {
+    "handle": "pallet-moving-equipment-and-accessories",
+    "level": 2,
+    "name_en": "Pallet Moving Equipment & Accessories",
+    "parent": "warehousing-material-handling"
+  },
+  {
+    "handle": "paper-crafts",
+    "level": 2,
+    "name_en": "Paper Crafts",
+    "parent": "crafts-sewing-printing"
+  },
+  {
+    "handle": "patio-furniture-and-accessories",
+    "level": 2,
+    "name_en": "Patio Furniture & Accessories",
+    "parent": "backyard-landscaping-farm"
+  },
+  {
+    "handle": "personal-protective-equipment",
+    "level": 2,
+    "name_en": "Personal Protective Equipment",
+    "parent": "safety-security-workwear"
+  },
+  {
+    "handle": "pet-supplies",
+    "level": 2,
+    "name_en": "Pet Supplies",
+    "parent": "pets-wildlife-clinic"
+  },
+  {
+    "handle": "pet-supplies-and-wildlife",
+    "level": 2,
+    "name_en": "Pet Supplies & Wildlife",
+    "parent": "pets-wildlife-clinic"
+  },
+  {
+    "handle": "pipe-and-fittings",
+    "level": 2,
+    "name_en": "Pipe & Fittings",
+    "parent": "construction-building"
+  },
+  {
+    "handle": "planers-and-jointers",
+    "level": 2,
+    "name_en": "Planers & Jointers",
+    "parent": "hand-power-tools"
+  },
+  {
+    "handle": "plumbing-accessories",
+    "level": 2,
+    "name_en": "Plumbing Accessories",
+    "parent": "construction-building"
+  },
+  {
+    "handle": "pools-and-spas",
+    "level": 2,
+    "name_en": "Pools & Spas",
+    "parent": "backyard-landscaping-farm"
+  },
+  {
+    "handle": "power-tool-parts-and-accessories",
+    "level": 2,
+    "name_en": "Power Tool Parts & Accessories",
+    "parent": "hand-power-tools"
+  },
+  {
+    "handle": "presses",
+    "level": 2,
+    "name_en": "Presses",
+    "parent": "hand-power-tools"
+  },
+  {
+    "handle": "printmaking",
+    "level": 2,
+    "name_en": "Printmaking",
+    "parent": "crafts-sewing-printing"
+  },
+  {
+    "handle": "ramps-and-ladders",
+    "level": 2,
+    "name_en": "Ramps & Ladders",
+    "parent": "warehousing-material-handling"
+  },
+  {
+    "handle": "refrigeration-and-ice-equipment",
+    "level": 2,
+    "name_en": "Refrigeration & Ice Equipment",
+    "parent": "horeca-food-service"
+  },
+  {
+    "handle": "repair-tools",
+    "level": 2,
+    "name_en": "Repair Tools",
+    "parent": "automotive-workshop"
+  },
+  {
+    "handle": "restaurant-faucets-and-plumbing-and-sinks",
+    "level": 2,
+    "name_en": "Restaurant Faucets & Plumbing & Sinks",
+    "parent": "horeca-food-service"
+  },
+  {
+    "handle": "restaurant-furniture",
+    "level": 2,
+    "name_en": "Restaurant Furniture",
+    "parent": "horeca-food-service"
+  },
+  {
+    "handle": "retail-supplies",
+    "level": 2,
+    "name_en": "Retail Supplies",
+    "parent": "office-commercial-interiors"
+  },
+  {
+    "handle": "routers-and-bits",
+    "level": 2,
+    "name_en": "Routers & Bits",
+    "parent": "hand-power-tools"
+  },
+  {
+    "handle": "rv-parts-and-accessories",
+    "level": 2,
+    "name_en": "Rv Parts & Accessories",
+    "parent": "automotive-workshop"
+  },
+  {
+    "handle": "safety-and-security",
+    "level": 2,
+    "name_en": "Safety & Security",
+    "parent": "hand-power-tools"
+  },
+  {
+    "handle": "salon-and-spa-equipment",
+    "level": 2,
+    "name_en": "Salon & Spa Equipment",
+    "parent": "salon-spa-wellness"
+  },
+  {
+    "handle": "sand-blasting-equipment",
+    "level": 2,
+    "name_en": "Sand Blasting Equipment",
+    "parent": "hand-power-tools"
+  },
+  {
+    "handle": "satellite-equipment",
+    "level": 2,
+    "name_en": "Satellite Equipment",
+    "parent": "construction-building"
+  },
+  {
+    "handle": "saws-and-accessories",
+    "level": 2,
+    "name_en": "Saws & Accessories",
+    "parent": "hand-power-tools"
+  },
+  {
+    "handle": "scaffolds-and-mobile-bases",
+    "level": 2,
+    "name_en": "Scaffolds & Mobile Bases",
+    "parent": "construction-building"
+  },
+  {
+    "handle": "scales-and-scale-accessories",
+    "level": 2,
+    "name_en": "Scales & Scale Accessories",
+    "parent": "warehousing-material-handling"
+  },
+  {
+    "handle": "sewing",
+    "level": 2,
+    "name_en": "Sewing",
+    "parent": "crafts-sewing-printing"
+  },
+  {
+    "handle": "shelving-and-storage",
+    "level": 2,
+    "name_en": "Shelving & Storage",
+    "parent": "warehousing-material-handling"
+  },
+  {
+    "handle": "smallwares",
+    "level": 2,
+    "name_en": "Smallwares",
+    "parent": "horeca-food-service"
+  },
+  {
+    "handle": "snow-and-ice-removal-equipment",
+    "level": 2,
+    "name_en": "Snow & Ice Removal Equipment",
+    "parent": "backyard-landscaping-farm"
+  },
+  {
+    "handle": "sockets-and-bits",
+    "level": 2,
+    "name_en": "Sockets & Bits",
+    "parent": "hand-power-tools"
+  },
+  {
+    "handle": "solar-power",
+    "level": 2,
+    "name_en": "Solar Power",
+    "parent": "renewable-energy-batteries"
+  },
+  {
+    "handle": "speciality-crafts-and-hobbies",
+    "level": 2,
+    "name_en": "Speciality Crafts & Hobbies",
+    "parent": "crafts-sewing-printing"
+  },
+  {
+    "handle": "sports",
+    "level": 2,
+    "name_en": "Sports",
+    "parent": "fitness-sports-games"
+  },
+  {
+    "handle": "sports-and-outdoor-recreation-accessories",
+    "level": 2,
+    "name_en": "Sports & Outdoor Recreation Accessories",
+    "parent": "fitness-sports-games"
+  },
+  {
+    "handle": "spot-welding-and-accessories",
+    "level": 2,
+    "name_en": "Spot Welding & Accessories",
+    "parent": "hand-power-tools"
+  },
+  {
+    "handle": "stage-lighting-and-effects",
+    "level": 2,
+    "name_en": "Stage Lighting & Effects",
+    "parent": "music-entertainment"
+  },
+  {
+    "handle": "storage-and-organization",
+    "level": 2,
+    "name_en": "Storage & Organization",
+    "parent": "horeca-food-service"
+  },
+  {
+    "handle": "storage-trunks-and-chests",
+    "level": 2,
+    "name_en": "Storage Trunks & Chests",
+    "parent": "warehousing-material-handling"
+  },
+  {
+    "handle": "stove-and-fireplace-accessories",
+    "level": 2,
+    "name_en": "Stove & Fireplace Accessories",
+    "parent": "construction-building"
+  },
+  {
+    "handle": "tabletop",
+    "level": 2,
+    "name_en": "Tabletop",
+    "parent": "horeca-food-service"
+  },
+  {
+    "handle": "tableware-and-bar",
+    "level": 2,
+    "name_en": "Tableware & Bar",
+    "parent": "horeca-food-service"
+  },
+  {
+    "handle": "tap-and-die-sets",
+    "level": 2,
+    "name_en": "Tap & Die Sets",
+    "parent": "hand-power-tools"
+  },
+  {
+    "handle": "tape-and-adhesives-and-fasteners",
+    "level": 2,
+    "name_en": "Tape & Adhesives & Fasteners",
+    "parent": "office-commercial-interiors"
+  },
+  {
+    "handle": "test-instruments",
+    "level": 2,
+    "name_en": "Test Instruments",
+    "parent": "construction-building"
+  },
+  {
+    "handle": "test-measure-and-inspect",
+    "level": 2,
+    "name_en": "Test, Measure & Inspect",
+    "parent": "hand-power-tools"
+  },
+  {
+    "handle": "tire-and-wheel-tools",
+    "level": 2,
+    "name_en": "Tire & Wheel Tools",
+    "parent": "automotive-workshop"
+  },
+  {
+    "handle": "towing-system",
+    "level": 2,
+    "name_en": "Towing System",
+    "parent": "automotive-workshop"
+  },
+  {
+    "handle": "toys-and-games",
+    "level": 2,
+    "name_en": "Toys & Games",
+    "parent": "kids-playgrounds"
+  },
+  {
+    "handle": "traffic-safety",
+    "level": 2,
+    "name_en": "Traffic Safety",
+    "parent": "safety-security-workwear"
+  },
+  {
+    "handle": "transmission-and-drive-train",
+    "level": 2,
+    "name_en": "Transmission & Drive Train",
+    "parent": "automotive-workshop"
+  },
+  {
+    "handle": "trash-and-recycling",
+    "level": 2,
+    "name_en": "Trash & Recycling",
+    "parent": "cleaning-janitorial"
+  },
+  {
+    "handle": "vacuum-pumps",
+    "level": 2,
+    "name_en": "Vacuum Pumps",
+    "parent": "construction-building"
+  },
+  {
+    "handle": "ventilation-equipment-and-supplies",
+    "level": 2,
+    "name_en": "Ventilation Equipment & Supplies",
+    "parent": "construction-building"
+  },
+  {
+    "handle": "venue-decoration",
+    "level": 2,
+    "name_en": "Venue Decoration",
+    "parent": "horeca-food-service"
+  },
+  {
+    "handle": "video-games",
+    "level": 2,
+    "name_en": "Video Games",
+    "parent": "kids-playgrounds"
+  },
+  {
+    "handle": "washers-and-dryers",
+    "level": 2,
+    "name_en": "Washers & Dryers",
+    "parent": "cleaning-janitorial"
+  },
+  {
+    "handle": "water-dispensers-and-pitchers",
+    "level": 2,
+    "name_en": "Water Dispensers & Pitchers",
+    "parent": "horeca-food-service"
+  },
+  {
+    "handle": "welding-and-soldering",
+    "level": 2,
+    "name_en": "Welding & Soldering",
+    "parent": "hand-power-tools"
+  },
+  {
+    "handle": "welding-safety-equipment",
+    "level": 2,
+    "name_en": "Welding Safety Equipment",
+    "parent": "hand-power-tools"
+  },
+  {
+    "handle": "wind-power",
+    "level": 2,
+    "name_en": "Wind Power",
+    "parent": "renewable-energy-batteries"
+  },
+  {
+    "handle": "wiring-devices-and-light-controls",
+    "level": 2,
+    "name_en": "Wiring Devices & Light Controls",
+    "parent": "construction-building"
+  },
+  {
+    "handle": "workbenches-and-accessories",
+    "level": 2,
+    "name_en": "Workbenches & Accessories",
+    "parent": "warehousing-material-handling"
+  },
+  {
+    "handle": "wrenches-and-ratchets",
+    "level": 2,
+    "name_en": "Wrenches & Ratchets",
+    "parent": "hand-power-tools"
+  },
+  {
+    "handle": "ac-vibrator-motor",
+    "level": 3,
+    "name_en": "AC Vibrator Motor",
+    "parent": "general-purpose-ac-motors"
+  },
+  {
+    "handle": "access-barriers-and-crowd-control-spill-control-supplies",
+    "level": 3,
+    "name_en": "Spill Control Supplies",
+    "parent": "access-barriers-and-crowd-control"
+  },
+  {
+    "handle": "adhesives-and-tape",
+    "level": 3,
+    "name_en": "Adhesives & Tape",
+    "parent": "office-supplies"
+  },
+  {
+    "handle": "adjustable-workbench",
+    "level": 3,
+    "name_en": "Adjustable Workbench",
+    "parent": "workbenches-and-accessories"
+  },
+  {
+    "handle": "air-compressor-parts-and-accessories",
+    "level": 3,
+    "name_en": "Air Compressor Parts & Accessories",
+    "parent": "air-compressor-tools"
+  },
+  {
+    "handle": "air-cushion-film",
+    "level": 3,
+    "name_en": "Air Cushion Film",
+    "parent": "packing-materials"
+  },
+  {
+    "handle": "air-greenhouse-circulation-fan",
+    "level": 3,
+    "name_en": "Air Greenhouse Circulation Fan",
+    "parent": "ventilation"
+  },
+  {
+    "handle": "air-impact-wrench",
+    "level": 3,
+    "name_en": "Air Impact Wrench",
+    "parent": "wrenches-and-ratchets"
+  },
+  {
+    "handle": "alcohol-distiller",
+    "level": 3,
+    "name_en": "Alcohol Distiller",
+    "parent": "beverage-equipment"
+  },
+  {
+    "handle": "aluminum-coated-balusters",
+    "level": 3,
+    "name_en": "Aluminum Coated Balusters",
+    "parent": "building-supplies"
+  },
+  {
+    "handle": "aluminum-work-plank",
+    "level": 3,
+    "name_en": "Aluminum Work Plank",
+    "parent": "scaffolds-and-mobile-bases"
+  },
+  {
+    "handle": "anchor-chain",
+    "level": 3,
+    "name_en": "Anchor Chain",
+    "parent": "boating-camping-outdoor-boat-parts-and-accessories"
+  },
+  {
+    "handle": "aquarium-filtration",
+    "level": 3,
+    "name_en": "Aquarium Filtration",
+    "parent": "pet-supplies"
+  },
+  {
+    "handle": "aquarium-stands",
+    "level": 3,
+    "name_en": "Aquarium Stands",
+    "parent": "fishery-aquaculture"
+  },
+  {
+    "handle": "arbor-press",
+    "level": 3,
+    "name_en": "Arbor Press",
+    "parent": "presses"
+  },
+  {
+    "handle": "artificial-boxwood-panel",
+    "level": 3,
+    "name_en": "Artificial Boxwood Panel",
+    "parent": "landscaping-and-shade"
+  },
+  {
+    "handle": "artificial-grasses",
+    "level": 3,
+    "name_en": "Artificial Grasses",
+    "parent": "artificial-plants"
+  },
+  {
+    "handle": "arts-and-crafts",
+    "level": 3,
+    "name_en": "Arts & Crafts",
+    "parent": "toys-and-games"
+  },
+  {
+    "handle": "arts-and-crafts-supplies",
+    "level": 3,
+    "name_en": "Arts & Crafts Supplies",
+    "parent": "crafts-and-sewing"
+  },
+  {
+    "handle": "atv-and-motorcycle-lifts",
+    "level": 3,
+    "name_en": "ATV & Motorcycle Lifts",
+    "parent": "shop-equipment"
+  },
+  {
+    "handle": "atv-and-utv-parts-and-accessories",
+    "level": 3,
+    "name_en": "ATV & UTV Parts & Accessories",
+    "parent": "motorcycle-parts-and-accessories"
+  },
+  {
+    "handle": "auger-drill-bit",
+    "level": 3,
+    "name_en": "Auger Drill Bit",
+    "parent": "drills-and-drivers"
+  },
+  {
+    "handle": "automatic-label-dispensers",
+    "level": 3,
+    "name_en": "Automatic Label Dispensers",
+    "parent": "marking-and-labeling"
+  },
+  {
+    "handle": "automatic-poultry-feeder",
+    "level": 3,
+    "name_en": "Automatic Poultry Feeder",
+    "parent": "livestock-and-poultry-supplies"
+  },
+  {
+    "handle": "automotive-accessories-tailgate-pad",
+    "level": 3,
+    "name_en": "Tailgate Pad",
+    "parent": "automotive-accessories"
+  },
+  {
+    "handle": "automotive-accessories-tonneau-cover",
+    "level": 3,
+    "name_en": "Tonneau Cover",
+    "parent": "automotive-accessories"
+  },
+  {
+    "handle": "automotive-accessories-truck-tool-boxes",
+    "level": 3,
+    "name_en": "Truck Tool Boxes",
+    "parent": "automotive-accessories"
+  },
+  {
+    "handle": "baby-changing-station",
+    "level": 3,
+    "name_en": "Baby Changing Station",
+    "parent": "bathroom-supplies"
+  },
+  {
+    "handle": "baby-playpens",
+    "level": 3,
+    "name_en": "Baby Playpens",
+    "parent": "baby-activities-and-gear"
+  },
+  {
+    "handle": "baby-stroller",
+    "level": 3,
+    "name_en": "Baby Stroller",
+    "parent": "furniture-hardware"
+  },
+  {
+    "handle": "backhoe-thumb",
+    "level": 3,
+    "name_en": "Backhoe Thumb",
+    "parent": "heavy-equipment-accessories"
+  },
+  {
+    "handle": "backpacking-equipment-picnic-backpacks",
+    "level": 3,
+    "name_en": "Picnic Backpacks",
+    "parent": "backpacking-equipment"
+  },
+  {
+    "handle": "backyard-landscaping-farm-pet-supplies-and-wildlife-small-animal",
+    "level": 3,
+    "name_en": "Small Animal Supplies",
+    "parent": "backyard-landscaping-farm-pet-supplies-and-wildlife"
+  },
+  {
+    "handle": "bakers-racks",
+    "level": 3,
+    "name_en": "Baker's Racks",
+    "parent": "kitchen-and-dining-room-furniture"
+  },
+  {
+    "handle": "baking-steel",
+    "level": 3,
+    "name_en": "Baking Steel",
+    "parent": "smallwares"
+  },
+  {
+    "handle": "ball-storage",
+    "level": 3,
+    "name_en": "Ball Storage",
+    "parent": "sports-and-outdoor-recreation-accessories"
+  },
+  {
+    "handle": "band-saw",
+    "level": 3,
+    "name_en": "Band Saw",
+    "parent": "saws-and-accessories"
+  },
+  {
+    "handle": "band-saw-blades",
+    "level": 3,
+    "name_en": "Band Saw Blades",
+    "parent": "food-preparation-equipment"
+  },
+  {
+    "handle": "banner-stand",
+    "level": 3,
+    "name_en": "Banner Stand",
+    "parent": "retail-supplies"
+  },
+  {
+    "handle": "bar-cart",
+    "level": 3,
+    "name_en": "Bar Cart",
+    "parent": "carts"
+  },
+  {
+    "handle": "bar-sets",
+    "level": 3,
+    "name_en": "Bar Sets",
+    "parent": "beverage-equipment"
+  },
+  {
+    "handle": "bathroom-storage-over-the-toilet-storage",
+    "level": 3,
+    "name_en": "Over-the-Toilet Storage",
+    "parent": "bathroom-storage"
+  },
+  {
+    "handle": "bay-lighting",
+    "level": 3,
+    "name_en": "Bay Lighting",
+    "parent": "commercial-lighting"
+  },
+  {
+    "handle": "bearing-puller",
+    "level": 3,
+    "name_en": "Bearing Puller",
+    "parent": "transmission-and-drive-train"
+  },
+  {
+    "handle": "bed-frames",
+    "level": 3,
+    "name_en": "Bed Frames",
+    "parent": "office-furniture"
+  },
+  {
+    "handle": "bed-underpads",
+    "level": 3,
+    "name_en": "Bed Underpads",
+    "parent": "health-medical-supply-medical-auxiliary-supplies"
+  },
+  {
+    "handle": "bed-wedges-and-body-positioners",
+    "level": 3,
+    "name_en": "Bed Wedges & Body Positioners",
+    "parent": "health-medical-supply-medical-auxiliary-supplies"
+  },
+  {
+    "handle": "belt-grinder",
+    "level": 3,
+    "name_en": "Belt Grinder",
+    "parent": "grinding-and-sanding-and-finishing-tools"
+  },
+  {
+    "handle": "belt-grinder-knife-jig",
+    "level": 3,
+    "name_en": "Belt Grinder Knife Jig",
+    "parent": "grinding-and-sanding-and-finishing-tools"
+  },
+  {
+    "handle": "benchtop-planer",
+    "level": 3,
+    "name_en": "Benchtop Planer",
+    "parent": "planers-and-jointers"
+  },
+  {
+    "handle": "beverage-equipment-cup-sealing-machine",
+    "level": 3,
+    "name_en": "Cup Sealing Machine",
+    "parent": "beverage-equipment"
+  },
+  {
+    "handle": "beverage-equipment-water-distiller",
+    "level": 3,
+    "name_en": "Water Distiller",
+    "parent": "beverage-equipment"
+  },
+  {
+    "handle": "beverage-refrigerator",
+    "level": 3,
+    "name_en": "Beverage Refrigerator",
+    "parent": "refrigeration-and-ice-equipment"
+  },
+  {
+    "handle": "bike-parts-and-accessories",
+    "level": 3,
+    "name_en": "Bike Parts & Accessories",
+    "parent": "cycling-gear"
+  },
+  {
+    "handle": "bike-racks-and-stands",
+    "level": 3,
+    "name_en": "Bike Racks & Stands",
+    "parent": "cycling-gear"
+  },
+  {
+    "handle": "bimini-tops",
+    "level": 3,
+    "name_en": "Bimini Tops",
+    "parent": "boating-camping-outdoor-boat-parts-and-accessories"
+  },
+  {
+    "handle": "bird-and-wildlife-supplies",
+    "level": 3,
+    "name_en": "Bird & Wildlife Supplies",
+    "parent": "backyard-landscaping-farm-pet-supplies-and-wildlife"
+  },
+  {
+    "handle": "birdcages",
+    "level": 3,
+    "name_en": "Birdcages",
+    "parent": "pet-supplies"
+  },
+  {
+    "handle": "boards-and-easels",
+    "level": 3,
+    "name_en": "Boards & Easels",
+    "parent": "office-supplies"
+  },
+  {
+    "handle": "boat-cover",
+    "level": 3,
+    "name_en": "Boat Cover",
+    "parent": "boating-camping-outdoor-boat-parts-and-accessories"
+  },
+  {
+    "handle": "boat-steering-kit",
+    "level": 3,
+    "name_en": "Boat Steering Kit",
+    "parent": "boating-camping-outdoor-boat-parts-and-accessories"
+  },
+  {
+    "handle": "boat-trailer-guides",
+    "level": 3,
+    "name_en": "Boat Trailer Guides",
+    "parent": "boating-camping-outdoor-boat-parts-and-accessories"
+  },
+  {
+    "handle": "boating-camping-outdoor-boat-parts-and-accessories-boat-fenders",
+    "level": 3,
+    "name_en": "Boat Fenders",
+    "parent": "boating-camping-outdoor-boat-parts-and-accessories"
+  },
+  {
+    "handle": "body-sculpting-machine",
+    "level": 3,
+    "name_en": "Body Sculpting Machine",
+    "parent": "personal-care"
+  },
+  {
+    "handle": "bolt-cutter",
+    "level": 3,
+    "name_en": "Bolt Cutter",
+    "parent": "hand-power-tools-cutting-tools"
+  },
+  {
+    "handle": "book-cart",
+    "level": 3,
+    "name_en": "Book Cart",
+    "parent": "carts-and-trucks"
+  },
+  {
+    "handle": "bookcases-and-bookshelves",
+    "level": 3,
+    "name_en": "Bookcases & Bookshelves",
+    "parent": "home-office-furniture"
+  },
+  {
+    "handle": "boxes-and-brackets",
+    "level": 3,
+    "name_en": "Boxes & Brackets",
+    "parent": "electrical-boxes-conduit-and-fittings"
+  },
+  {
+    "handle": "brazing-and-soldering-equipment",
+    "level": 3,
+    "name_en": "Brazing & Soldering Equipment",
+    "parent": "welding-and-soldering"
+  },
+  {
+    "handle": "brushed-dc-motor",
+    "level": 3,
+    "name_en": "Brushed DC Motor",
+    "parent": "definite-purpose-dc-motors"
+  },
+  {
+    "handle": "brushless-dc-motor",
+    "level": 3,
+    "name_en": "Brushless DC Motor",
+    "parent": "definite-purpose-dc-motors"
+  },
+  {
+    "handle": "building-block",
+    "level": 3,
+    "name_en": "Building Block",
+    "parent": "toys-and-games"
+  },
+  {
+    "handle": "camping-and-hiking",
+    "level": 3,
+    "name_en": "Camping & Hiking",
+    "parent": "outdoor-recreation"
+  },
+  {
+    "handle": "car-cover",
+    "level": 3,
+    "name_en": "Car Cover",
+    "parent": "automotive-accessories"
+  },
+  {
+    "handle": "cargo-boxes-and-bags",
+    "level": 3,
+    "name_en": "Cargo Boxes & Bags",
+    "parent": "cargo-carriers"
+  },
+  {
+    "handle": "cargo-carrier",
+    "level": 3,
+    "name_en": "Cargo Carrier",
+    "parent": "cargo-management"
+  },
+  {
+    "handle": "cargo-door-lock-and-truck-tailgate-lock",
+    "level": 3,
+    "name_en": "Cargo Door Lock & Truck Tailgate Lock",
+    "parent": "truck-accessories"
+  },
+  {
+    "handle": "cargo-net",
+    "level": 3,
+    "name_en": "Cargo Net",
+    "parent": "cargo-control"
+  },
+  {
+    "handle": "carts-and-utility-tables",
+    "level": 3,
+    "name_en": "Carts & Utility Tables",
+    "parent": "kitchen-and-dining-room-furniture"
+  },
+  {
+    "handle": "cat-trees",
+    "level": 3,
+    "name_en": "Cat Trees",
+    "parent": "pet-supplies"
+  },
+  {
+    "handle": "caulk-and-sealants",
+    "level": 3,
+    "name_en": "Caulk & Sealants",
+    "parent": "paint-supplies"
+  },
+  {
+    "handle": "chain-and-wire-and-rope-tow-chain",
+    "level": 3,
+    "name_en": "Tow Chain",
+    "parent": "chain-and-wire-and-rope"
+  },
+  {
+    "handle": "chaise-lounges",
+    "level": 3,
+    "name_en": "Chaise Lounges",
+    "parent": "living-room-furniture"
+  },
+  {
+    "handle": "charcoal-fire-pit",
+    "level": 3,
+    "name_en": "Charcoal Fire Pit",
+    "parent": "patio-furniture-and-accessories"
+  },
+  {
+    "handle": "child-carrier-trailers",
+    "level": 3,
+    "name_en": "Child Carrier Trailers",
+    "parent": "cycling-gear"
+  },
+  {
+    "handle": "childrens-play-tent",
+    "level": 3,
+    "name_en": "Children's Play Tent",
+    "parent": "kids-toys"
+  },
+  {
+    "handle": "childrens-rocking-horse",
+    "level": 3,
+    "name_en": "Children's Rocking Horse",
+    "parent": "kids-toys"
+  },
+  {
+    "handle": "childrens-slide",
+    "level": 3,
+    "name_en": "Children's Slide",
+    "parent": "playground-slides"
+  },
+  {
+    "handle": "childrens-swing-slide-set",
+    "level": 3,
+    "name_en": "Children's Swing Slide Set",
+    "parent": "swing-sets"
+  },
+  {
+    "handle": "chisels-files-and-punches",
+    "level": 3,
+    "name_en": "Chisels, Files & Punches",
+    "parent": "hand-tools"
+  },
+  {
+    "handle": "chocolate-fountains",
+    "level": 3,
+    "name_en": "Chocolate Fountains",
+    "parent": "food-holding-and-warming-equipment"
+  },
+  {
+    "handle": "chop-saw",
+    "level": 3,
+    "name_en": "Chop Saw",
+    "parent": "saws-and-accessories"
+  },
+  {
+    "handle": "circulators-and-chillers-portable-air-conditioners",
+    "level": 3,
+    "name_en": "Portable Air Conditioners",
+    "parent": "circulators-and-chillers"
+  },
+  {
+    "handle": "classical-guitar",
+    "level": 3,
+    "name_en": "Classical Guitar",
+    "parent": "guitar"
+  },
+  {
+    "handle": "clearfloor-lifts",
+    "level": 3,
+    "name_en": "Clearfloor Lifts",
+    "parent": "lifts-and-hoists-and-jacks"
+  },
+  {
+    "handle": "coffe-table",
+    "level": 3,
+    "name_en": "Coffe Table",
+    "parent": "furniture"
+  },
+  {
+    "handle": "coffee-table",
+    "level": 3,
+    "name_en": "Coffee Table",
+    "parent": "furniture"
+  },
+  {
+    "handle": "coffee-urn",
+    "level": 3,
+    "name_en": "Coffee Urn",
+    "parent": "beverage-equipment"
+  },
+  {
+    "handle": "commercial-burger-press",
+    "level": 3,
+    "name_en": "Commercial Burger Press",
+    "parent": "food-preparation-equipment"
+  },
+  {
+    "handle": "commercial-convection-oven",
+    "level": 3,
+    "name_en": "Commercial Convection Oven",
+    "parent": "cooking-equipment"
+  },
+  {
+    "handle": "commercial-conveyor-toasters",
+    "level": 3,
+    "name_en": "Commercial Conveyor Toasters",
+    "parent": "cooking-equipment"
+  },
+  {
+    "handle": "commercial-ice-makers",
+    "level": 3,
+    "name_en": "Commercial Ice Makers",
+    "parent": "ice-makers"
+  },
+  {
+    "handle": "commercial-meat-tenderizer",
+    "level": 3,
+    "name_en": "Commercial Meat Tenderizer",
+    "parent": "food-preparation-equipment"
+  },
+  {
+    "handle": "commercial-meatball-forming-machine",
+    "level": 3,
+    "name_en": "Commercial Meatball Forming Machine",
+    "parent": "food-preparation-equipment"
+  },
+  {
+    "handle": "commercial-mixers",
+    "level": 3,
+    "name_en": "Commercial Mixers",
+    "parent": "food-preparation-equipment"
+  },
+  {
+    "handle": "commercial-outdoor-grills",
+    "level": 3,
+    "name_en": "Commercial Outdoor Grills",
+    "parent": "cooking-equipment"
+  },
+  {
+    "handle": "commercial-steamers",
+    "level": 3,
+    "name_en": "Commercial Steamers",
+    "parent": "cooking-equipment"
+  },
+  {
+    "handle": "compact-router",
+    "level": 3,
+    "name_en": "Compact Router",
+    "parent": "routers-and-bits"
+  },
+  {
+    "handle": "computer-and-laptop-accessories",
+    "level": 3,
+    "name_en": "Computer & Laptop Accessories",
+    "parent": "electronics"
+  },
+  {
+    "handle": "concrete-parts-and-accessories",
+    "level": 3,
+    "name_en": "Concrete Parts & Accessories",
+    "parent": "concrete-cement-and-masonry"
+  },
+  {
+    "handle": "condiment-and-topping-and-sauce-warmers",
+    "level": 3,
+    "name_en": "Condiment & Topping & Sauce Warmers",
+    "parent": "food-display-and-merchandising-equipment"
+  },
+  {
+    "handle": "crane-scale",
+    "level": 3,
+    "name_en": "Crane Scale",
+    "parent": "scales-and-scale-accessories"
+  },
+  {
+    "handle": "curtain-strips",
+    "level": 3,
+    "name_en": "Curtain Strips",
+    "parent": "doors-and-accessories"
+  },
+  {
+    "handle": "cutters-and-slicers",
+    "level": 3,
+    "name_en": "Cutters & Slicers",
+    "parent": "food-preparation-equipment"
+  },
+  {
+    "handle": "dash-cams",
+    "level": 3,
+    "name_en": "Dash Cams",
+    "parent": "interior-car-accessories"
+  },
+  {
+    "handle": "davit-crane",
+    "level": 3,
+    "name_en": "Davit Crane",
+    "parent": "hoists-and-winches-and-rigging"
+  },
+  {
+    "handle": "deck-parts-and-accessories",
+    "level": 3,
+    "name_en": "Deck Parts & Accessories",
+    "parent": "decking"
+  },
+  {
+    "handle": "deck-post-base",
+    "level": 3,
+    "name_en": "Deck Post Base",
+    "parent": "decking-and-fencing"
+  },
+  {
+    "handle": "decorative-fences",
+    "level": 3,
+    "name_en": "Decorative Fences",
+    "parent": "outdoor-decoration"
+  },
+  {
+    "handle": "decorative-pipe-covers",
+    "level": 3,
+    "name_en": "Decorative Pipe Covers",
+    "parent": "plumbing-accessories"
+  },
+  {
+    "handle": "delineator-post",
+    "level": 3,
+    "name_en": "Delineator Post",
+    "parent": "traffic-safety"
+  },
+  {
+    "handle": "dent-repair-kit",
+    "level": 3,
+    "name_en": "Dent Repair Kit",
+    "parent": "repair-tools"
+  },
+  {
+    "handle": "desk-organizers-and-accessories",
+    "level": 3,
+    "name_en": "Desk Organizers & Accessories",
+    "parent": "office-supplies"
+  },
+  {
+    "handle": "dicers",
+    "level": 3,
+    "name_en": "Dicers",
+    "parent": "food-preparation-equipment"
+  },
+  {
+    "handle": "diving-and-snorkeling",
+    "level": 3,
+    "name_en": "Diving & Snorkeling",
+    "parent": "water-sports"
+  },
+  {
+    "handle": "dog-crates",
+    "level": 3,
+    "name_en": "Dog Crates",
+    "parent": "pet-supplies"
+  },
+  {
+    "handle": "dog-doors-and-gates-and-ramps",
+    "level": 3,
+    "name_en": "Dog Doors & Gates & Ramps",
+    "parent": "door-hardware-and-locks"
+  },
+  {
+    "handle": "dog-grooming-tub",
+    "level": 3,
+    "name_en": "Dog Grooming Tub",
+    "parent": "pet-supplies"
+  },
+  {
+    "handle": "door-closer",
+    "level": 3,
+    "name_en": "Door Closer",
+    "parent": "door-hardware-and-locks"
+  },
+  {
+    "handle": "door-lock-lever",
+    "level": 3,
+    "name_en": "Door Lock Lever",
+    "parent": "door-hardware-and-locks"
+  },
+  {
+    "handle": "doors-bolt-on-kit",
+    "level": 3,
+    "name_en": "Doors Bolt On Kit",
+    "parent": "auto-body-and-trim"
+  },
+  {
+    "handle": "dough-sheeters-and-rounders-and-dividers",
+    "level": 3,
+    "name_en": "Dough Sheeters & Rounders & Dividers",
+    "parent": "food-preparation-equipment"
+  },
+  {
+    "handle": "drain-cleaning-equipment",
+    "level": 3,
+    "name_en": "Drain Cleaning Equipment",
+    "parent": "drains-and-drainage"
+  },
+  {
+    "handle": "drains-and-drainage-drain-cleaner-machine",
+    "level": 3,
+    "name_en": "Drain Cleaner Machine",
+    "parent": "drains-and-drainage"
+  },
+  {
+    "handle": "drawer-slide",
+    "level": 3,
+    "name_en": "Drawer Slide",
+    "parent": "drawer-and-cabinet-hardware"
+  },
+  {
+    "handle": "drawers-and-cabinet-organizers-and-accessories",
+    "level": 3,
+    "name_en": "Drawers & Cabinet Organizers & Accessories",
+    "parent": "storage-and-organization"
+  },
+  {
+    "handle": "drop-in-bathroom-sinks",
+    "level": 3,
+    "name_en": "Drop-in Bathroom Sinks",
+    "parent": "bathroom-sinks"
+  },
+  {
+    "handle": "drop-in-fire-pit",
+    "level": 3,
+    "name_en": "Drop-in Fire Pit",
+    "parent": "patio-furniture-and-accessories"
+  },
+  {
+    "handle": "drum-sets-and-set-components",
+    "level": 3,
+    "name_en": "Drum Sets & Set Components",
+    "parent": "drums-and-percussion"
+  },
+  {
+    "handle": "ducting-and-venting",
+    "level": 3,
+    "name_en": "Ducting & Venting",
+    "parent": "hvac-supplies"
+  },
+  {
+    "handle": "dust-barriers",
+    "level": 3,
+    "name_en": "Dust Barriers",
+    "parent": "painting-equipment-and-supplies"
+  },
+  {
+    "handle": "egg-peeler-machine",
+    "level": 3,
+    "name_en": "Egg Peeler Machine",
+    "parent": "food-preparation-equipment"
+  },
+  {
+    "handle": "electric-bicycle",
+    "level": 3,
+    "name_en": "Electric Bicycle",
+    "parent": "sports"
+  },
+  {
+    "handle": "electric-blankets",
+    "level": 3,
+    "name_en": "Electric Blankets",
+    "parent": "heaters-and-accessories"
+  },
+  {
+    "handle": "electric-brake-bleeder",
+    "level": 3,
+    "name_en": "Electric Brake Bleeder",
+    "parent": "repair-tools"
+  },
+  {
+    "handle": "electric-concrete-vibrator",
+    "level": 3,
+    "name_en": "Electric Concrete Vibrator",
+    "parent": "masonry-and-concrete-and-tile-tools"
+  },
+  {
+    "handle": "electric-driven-hydraulic-pump",
+    "level": 3,
+    "name_en": "Electric Driven Hydraulic Pump",
+    "parent": "hydraulic-pumps"
+  },
+  {
+    "handle": "electric-grain-grinder-mill",
+    "level": 3,
+    "name_en": "Electric Grain Grinder Mill",
+    "parent": "food-preparation-equipment"
+  },
+  {
+    "handle": "electric-hot-pot-grill",
+    "level": 3,
+    "name_en": "Electric Hot Pot Grill",
+    "parent": "cooking-equipment"
+  },
+  {
+    "handle": "electric-milkshake-maker",
+    "level": 3,
+    "name_en": "Electric Milkshake Maker",
+    "parent": "beverage-equipment"
+  },
+  {
+    "handle": "electric-rebar-cutter",
+    "level": 3,
+    "name_en": "Electric Rebar Cutter",
+    "parent": "masonry-and-concrete-and-tile-tools"
+  },
+  {
+    "handle": "electric-screwdriver",
+    "level": 3,
+    "name_en": "Electric Screwdriver",
+    "parent": "demolition-tools-and-equipment"
+  },
+  {
+    "handle": "electric-skillets-and-indoor-grills",
+    "level": 3,
+    "name_en": "Electric Skillets & Indoor Grills",
+    "parent": "small-kitchen-appliances"
+  },
+  {
+    "handle": "electric-sugarcane-press",
+    "level": 3,
+    "name_en": "Electric Sugarcane Press",
+    "parent": "beverage-equipment"
+  },
+  {
+    "handle": "electrical-boxes-and-panels-and-fittings-weather-station",
+    "level": 3,
+    "name_en": "Weather Station",
+    "parent": "electrical-boxes-and-panels-and-fittings"
+  },
+  {
+    "handle": "electrical-enclosure",
+    "level": 3,
+    "name_en": "Electrical Enclosure",
+    "parent": "electrical-boxes-and-panels-and-fittings"
+  },
+  {
+    "handle": "electrical-panels-and-protective-devices",
+    "level": 3,
+    "name_en": "Electrical Panels & Protective Devices",
+    "parent": "power-distribution"
+  },
+  {
+    "handle": "electronics-camera-and-photo",
+    "level": 3,
+    "name_en": "Camera & Photo",
+    "parent": "electronics"
+  },
+  {
+    "handle": "electronics-home-audio",
+    "level": 3,
+    "name_en": "Home Audio",
+    "parent": "electronics"
+  },
+  {
+    "handle": "emergency-and-exit-lights",
+    "level": 3,
+    "name_en": "Emergency & Exit Lights",
+    "parent": "commercial-lighting"
+  },
+  {
+    "handle": "emergency-preparedness-flood-barrier",
+    "level": 3,
+    "name_en": "Flood Barrier",
+    "parent": "emergency-preparedness"
+  },
+  {
+    "handle": "engraving-and-cutting",
+    "level": 3,
+    "name_en": "Engraving & Cutting",
+    "parent": "crafts-and-sewing"
+  },
+  {
+    "handle": "engraving-laser-engraving-machine",
+    "level": 3,
+    "name_en": "Laser Engraving Machine",
+    "parent": "engraving"
+  },
+  {
+    "handle": "engraving-laser-tube",
+    "level": 3,
+    "name_en": "Laser Tube",
+    "parent": "engraving"
+  },
+  {
+    "handle": "evaporative-cooler-parts-and-accessories",
+    "level": 3,
+    "name_en": "Evaporative Cooler Parts & Accessories",
+    "parent": "evaporative-coolers"
+  },
+  {
+    "handle": "exercise-and-fitness-battle-ropes",
+    "level": 3,
+    "name_en": "Battle Ropes",
+    "parent": "exercise-and-fitness"
+  },
+  {
+    "handle": "exercise-and-fitness-bike-resistance-trainers",
+    "level": 3,
+    "name_en": "Bike Resistance Trainers",
+    "parent": "exercise-and-fitness"
+  },
+  {
+    "handle": "exercise-and-fitness-boxing-equipment",
+    "level": 3,
+    "name_en": "Boxing Equipment",
+    "parent": "exercise-and-fitness"
+  },
+  {
+    "handle": "exercise-and-fitness-pilates-accessories",
+    "level": 3,
+    "name_en": "Pilates Accessories",
+    "parent": "exercise-and-fitness"
+  },
+  {
+    "handle": "exhaust-pipes-and-tips",
+    "level": 3,
+    "name_en": "Exhaust Pipes & Tips",
+    "parent": "fittings"
+  },
+  {
+    "handle": "facial-masks",
+    "level": 3,
+    "name_en": "Facial Masks",
+    "parent": "health-medical-supply-skin-care"
+  },
+  {
+    "handle": "fall-protection",
+    "level": 3,
+    "name_en": "Fall Protection",
+    "parent": "fall-protection-equipment"
+  },
+  {
+    "handle": "farm-fences",
+    "level": 3,
+    "name_en": "Farm Fences",
+    "parent": "fencing-and-gates"
+  },
+  {
+    "handle": "fiber-laser",
+    "level": 3,
+    "name_en": "Fiber Laser",
+    "parent": "engraving"
+  },
+  {
+    "handle": "filter-regulators",
+    "level": 3,
+    "name_en": "Filter Regulators",
+    "parent": "air-compressor-accessories"
+  },
+  {
+    "handle": "fire-bowl",
+    "level": 3,
+    "name_en": "Fire Bowl",
+    "parent": "patio-furniture-and-accessories"
+  },
+  {
+    "handle": "fire-pit-burner",
+    "level": 3,
+    "name_en": "Fire Pit Burner",
+    "parent": "patio-furniture-and-accessories"
+  },
+  {
+    "handle": "fire-pit-wind-guard",
+    "level": 3,
+    "name_en": "Fire Pit Wind Guard",
+    "parent": "patio-furniture-and-accessories"
+  },
+  {
+    "handle": "firewood-splitter",
+    "level": 3,
+    "name_en": "Firewood Splitter",
+    "parent": "outdoor-hand-tools"
+  },
+  {
+    "handle": "fishing-rod-racks",
+    "level": 3,
+    "name_en": "Fishing Rod Racks",
+    "parent": "fishing-equipment"
+  },
+  {
+    "handle": "fitness-sports-games-golf-equipment-disc-golf",
+    "level": 3,
+    "name_en": "Disc Golf",
+    "parent": "fitness-sports-games-golf-equipment"
+  },
+  {
+    "handle": "fitness-sports-games-golf-equipment-golf-hitting-mat",
+    "level": 3,
+    "name_en": "Golf Hitting Mat",
+    "parent": "fitness-sports-games-golf-equipment"
+  },
+  {
+    "handle": "fitness-sports-games-golf-equipment-golf-putting-mat",
+    "level": 3,
+    "name_en": "Golf Putting Mat",
+    "parent": "fitness-sports-games-golf-equipment"
+  },
+  {
+    "handle": "fittings-hydraulic-hoses",
+    "level": 3,
+    "name_en": "Hydraulic Hoses",
+    "parent": "fittings"
+  },
+  {
+    "handle": "flashlight",
+    "level": 3,
+    "name_en": "Flashlight",
+    "parent": "outdoor-lighting-and-accessories"
+  },
+  {
+    "handle": "flex-shaft",
+    "level": 3,
+    "name_en": "Flex Shaft",
+    "parent": "jewelry-making-and-repair"
+  },
+  {
+    "handle": "floor-scrubbers-and-buffers",
+    "level": 3,
+    "name_en": "Floor Scrubbers & Buffers",
+    "parent": "floor-care"
+  },
+  {
+    "handle": "foam-rollers",
+    "level": 3,
+    "name_en": "Foam Rollers",
+    "parent": "exercise-and-fitness"
+  },
+  {
+    "handle": "folding-adult-electric-bicycles",
+    "level": 3,
+    "name_en": "Folding Adult Electric Bicycles",
+    "parent": "cycling-gear"
+  },
+  {
+    "handle": "folding-barricade",
+    "level": 3,
+    "name_en": "Folding Barricade",
+    "parent": "fencing-and-gates"
+  },
+  {
+    "handle": "folding-camp-lounger",
+    "level": 3,
+    "name_en": "Folding Camp Lounger",
+    "parent": "patio-furniture-and-accessories"
+  },
+  {
+    "handle": "food-preparation-equipment-commercial-immersion-blender",
+    "level": 3,
+    "name_en": "Commercial Immersion Blender",
+    "parent": "food-preparation-equipment"
+  },
+  {
+    "handle": "foot-and-leg-massager",
+    "level": 3,
+    "name_en": "Foot & Leg Massager",
+    "parent": "health-medical-supply-wellness-and-relaxation-products"
+  },
+  {
+    "handle": "forklift-mobile-crane",
+    "level": 3,
+    "name_en": "Forklift Mobile Crane",
+    "parent": "pallet-moving-equipment-and-accessories"
+  },
+  {
+    "handle": "forklifts-and-attachments",
+    "level": 3,
+    "name_en": "Forklifts & Attachments",
+    "parent": "material-handling-equipment"
+  },
+  {
+    "handle": "foundation-flood-vent",
+    "level": 3,
+    "name_en": "Foundation Flood Vent",
+    "parent": "building-supplies"
+  },
+  {
+    "handle": "freestanding-slides",
+    "level": 3,
+    "name_en": "Freestanding Slides",
+    "parent": "toys-and-games"
+  },
+  {
+    "handle": "french-fry-warmer",
+    "level": 3,
+    "name_en": "French Fry Warmer",
+    "parent": "food-holding-and-warming-equipment"
+  },
+  {
+    "handle": "fuel-caddy",
+    "level": 3,
+    "name_en": "Fuel Caddy",
+    "parent": "fuel-transfer-and-lubrication"
+  },
+  {
+    "handle": "furniture-and-patient-transport",
+    "level": 3,
+    "name_en": "Furniture & Patient Transport",
+    "parent": "medical-supplies"
+  },
+  {
+    "handle": "furniture-bean-bag-chairs",
+    "level": 3,
+    "name_en": "Bean Bag Chairs",
+    "parent": "furniture"
+  },
+  {
+    "handle": "furniture-headboards",
+    "level": 3,
+    "name_en": "Headboards",
+    "parent": "furniture"
+  },
+  {
+    "handle": "furniture-mattresses",
+    "level": 3,
+    "name_en": "Mattresses",
+    "parent": "furniture"
+  },
+  {
+    "handle": "furniture-shoe-cabinets",
+    "level": 3,
+    "name_en": "Shoe Cabinets",
+    "parent": "furniture"
+  },
+  {
+    "handle": "games-table-top-games",
+    "level": 3,
+    "name_en": "Table Top Games",
+    "parent": "games"
+  },
+  {
+    "handle": "garage-parking-aids",
+    "level": 3,
+    "name_en": "Garage Parking Aids",
+    "parent": "garage-door-accessories"
+  },
+  {
+    "handle": "garage-storage-carts",
+    "level": 3,
+    "name_en": "Carts",
+    "parent": "garage-storage"
+  },
+  {
+    "handle": "garage-storage-rack",
+    "level": 3,
+    "name_en": "Garage Storage Rack",
+    "parent": "shelving-and-storage"
+  },
+  {
+    "handle": "garden-arch",
+    "level": 3,
+    "name_en": "Garden Arch",
+    "parent": "patio-furniture-and-accessories"
+  },
+  {
+    "handle": "garden-cart",
+    "level": 3,
+    "name_en": "Garden Cart",
+    "parent": "patio-furniture-and-accessories"
+  },
+  {
+    "handle": "garden-trailer",
+    "level": 3,
+    "name_en": "Garden Trailer",
+    "parent": "patio-furniture-and-accessories"
+  },
+  {
+    "handle": "garment-bags",
+    "level": 3,
+    "name_en": "Garment Bags",
+    "parent": "luggage-and-travel-accessories"
+  },
+  {
+    "handle": "garment-racks",
+    "level": 3,
+    "name_en": "Garment Racks",
+    "parent": "shelving-and-storage"
+  },
+  {
+    "handle": "garment-steamers",
+    "level": 3,
+    "name_en": "Garment Steamers",
+    "parent": "laundry-supplies"
+  },
+  {
+    "handle": "gas-logs",
+    "level": 3,
+    "name_en": "Gas Logs",
+    "parent": "stove-and-fireplace-accessories"
+  },
+  {
+    "handle": "gates-and-gate-openers",
+    "level": 3,
+    "name_en": "Gates & Gate Openers",
+    "parent": "fencing-and-gates"
+  },
+  {
+    "handle": "geographic-globes",
+    "level": 3,
+    "name_en": "Geographic Globes",
+    "parent": "learning-and-education"
+  },
+  {
+    "handle": "golf-rangefinder",
+    "level": 3,
+    "name_en": "Golf Rangefinder",
+    "parent": "fitness-sports-games-golf-equipment"
+  },
+  {
+    "handle": "granita-and-slushy-machines",
+    "level": 3,
+    "name_en": "Granita & Slushy Machines",
+    "parent": "beverage-equipment"
+  },
+  {
+    "handle": "grease-gun",
+    "level": 3,
+    "name_en": "Grease Gun",
+    "parent": "fuel-transfer-and-lubrication"
+  },
+  {
+    "handle": "greenhouse",
+    "level": 3,
+    "name_en": "Greenhouse",
+    "parent": "landscaping-and-shade"
+  },
+  {
+    "handle": "grid-tie-solar-inverter",
+    "level": 3,
+    "name_en": "Grid Tie Solar Inverter",
+    "parent": "inverters"
+  },
+  {
+    "handle": "grills",
+    "level": 3,
+    "name_en": "Grills",
+    "parent": "outdoor-cooking"
+  },
+  {
+    "handle": "gun-cases",
+    "level": 3,
+    "name_en": "Gun Cases",
+    "parent": "access-barriers-and-crowd-control"
+  },
+  {
+    "handle": "gutter-guards-and-strainers",
+    "level": 3,
+    "name_en": "Gutter Guards & Strainers",
+    "parent": "gutter-systems"
+  },
+  {
+    "handle": "hand-power-tools-labware-dewar-liquid-nitrogen-tank",
+    "level": 3,
+    "name_en": "Dewar Liquid Nitrogen Tank",
+    "parent": "hand-power-tools-labware"
+  },
+  {
+    "handle": "hand-power-tools-measuring-tools-measuring-wheels",
+    "level": 3,
+    "name_en": "Measuring Wheels",
+    "parent": "hand-power-tools-measuring-tools"
+  },
+  {
+    "handle": "hand-tools-fastening-tools",
+    "level": 3,
+    "name_en": "Fastening Tools",
+    "parent": "hand-tools"
+  },
+  {
+    "handle": "hanging-bar-glass-rack",
+    "level": 3,
+    "name_en": "Hanging Bar Glass Rack",
+    "parent": "storage-and-organization"
+  },
+  {
+    "handle": "hanging-tent",
+    "level": 3,
+    "name_en": "Hanging Tent",
+    "parent": "patio-furniture-and-accessories"
+  },
+  {
+    "handle": "hardware-cloth-fencing",
+    "level": 3,
+    "name_en": "Hardware Cloth Fencing",
+    "parent": "fencing-and-gates"
+  },
+  {
+    "handle": "headache-rack",
+    "level": 3,
+    "name_en": "Headache Rack",
+    "parent": "cargo-management"
+  },
+  {
+    "handle": "health-medical-supply-wellness-and-relaxation-products-light-the",
+    "level": 3,
+    "name_en": "Light Therapy",
+    "parent": "health-medical-supply-wellness-and-relaxation-products"
+  },
+  {
+    "handle": "health-medical-supply-wellness-and-relaxation-products-massagers",
+    "level": 3,
+    "name_en": "Massagers",
+    "parent": "health-medical-supply-wellness-and-relaxation-products"
+  },
+  {
+    "handle": "heated-socks",
+    "level": 3,
+    "name_en": "Heated Socks",
+    "parent": "heated-clothing-and-gear"
+  },
+  {
+    "handle": "heated-vests",
+    "level": 3,
+    "name_en": "Heated Vests",
+    "parent": "heated-clothing-and-gear"
+  },
+  {
+    "handle": "heating-pads",
+    "level": 3,
+    "name_en": "Heating Pads",
+    "parent": "health-medical-supply-wellness-and-relaxation-products"
+  },
+  {
+    "handle": "heavy-duty-shelf-brackets",
+    "level": 3,
+    "name_en": "Heavy Duty Shelf Brackets",
+    "parent": "braces-and-brackets"
+  },
+  {
+    "handle": "hitch-receivers",
+    "level": 3,
+    "name_en": "Hitch Receivers",
+    "parent": "towing-system"
+  },
+  {
+    "handle": "hoists-and-winches-and-rigging-winch-cable",
+    "level": 3,
+    "name_en": "Winch Cable",
+    "parent": "hoists-and-winches-and-rigging"
+  },
+  {
+    "handle": "hole-saw-kit",
+    "level": 3,
+    "name_en": "Hole Saw Kit",
+    "parent": "power-tool-parts-and-accessories"
+  },
+  {
+    "handle": "hoodies-and-sweatshirts",
+    "level": 3,
+    "name_en": "Hoodies & Sweatshirts",
+    "parent": "outerwear"
+  },
+  {
+    "handle": "hot-air-hair-brushes",
+    "level": 3,
+    "name_en": "Hot-Air Hair Brushes",
+    "parent": "hair-care"
+  },
+  {
+    "handle": "hot-and-cold-pouch-laminating-machine",
+    "level": 3,
+    "name_en": "Hot & Cold Pouch Laminating Machine",
+    "parent": "office-electronics"
+  },
+  {
+    "handle": "humidifiers-evaporative-humidifier",
+    "level": 3,
+    "name_en": "Evaporative Humidifier",
+    "parent": "humidifiers"
+  },
+  {
+    "handle": "hydraulic-power-unit",
+    "level": 3,
+    "name_en": "Hydraulic Power Unit",
+    "parent": "hydraulic-equipment"
+  },
+  {
+    "handle": "hydraulic-quick-coupler",
+    "level": 3,
+    "name_en": "Hydraulic Quick Coupler",
+    "parent": "fittings"
+  },
+  {
+    "handle": "ice-cube-tray",
+    "level": 3,
+    "name_en": "Ice Cube Tray",
+    "parent": "refrigeration-and-ice-equipment"
+  },
+  {
+    "handle": "ice-machines",
+    "level": 3,
+    "name_en": "Ice Machines",
+    "parent": "refrigeration-and-ice-equipment"
+  },
+  {
+    "handle": "ice-maker-with-water-dispenser",
+    "level": 3,
+    "name_en": "Ice Maker With Water Dispenser",
+    "parent": "ice-makers"
+  },
+  {
+    "handle": "indoor-christmas-decorations",
+    "level": 3,
+    "name_en": "Indoor Christmas Decorations",
+    "parent": "office-commercial-interiors-christmas-decorations"
+  },
+  {
+    "handle": "ingredient-bin-cart",
+    "level": 3,
+    "name_en": "Ingredient Bin Cart",
+    "parent": "carts"
+  },
+  {
+    "handle": "ingredient-bins",
+    "level": 3,
+    "name_en": "Ingredient Bins",
+    "parent": "smallwares"
+  },
+  {
+    "handle": "instrument-accessories-instrument-accessories",
+    "level": 3,
+    "name_en": "Instrument Accessories",
+    "parent": "instrument-accessories"
+  },
+  {
+    "handle": "insulated-beverage-dispensers",
+    "level": 3,
+    "name_en": "Insulated Beverage Dispensers",
+    "parent": "beverage-equipment"
+  },
+  {
+    "handle": "japanese-tatami-and-mattress",
+    "level": 3,
+    "name_en": "Japanese Tatami & Mattress",
+    "parent": "bedding"
+  },
+  {
+    "handle": "jerry-cans",
+    "level": 3,
+    "name_en": "Jerry Cans",
+    "parent": "fuel-transfer-and-lubrication"
+  },
+  {
+    "handle": "jewelry-making-and-repair-gem-faceting-machine",
+    "level": 3,
+    "name_en": "Gem Faceting Machine",
+    "parent": "jewelry-making-and-repair"
+  },
+  {
+    "handle": "jobsite-radios",
+    "level": 3,
+    "name_en": "Jobsite Radios",
+    "parent": "power-tool-accessories"
+  },
+  {
+    "handle": "jointers",
+    "level": 3,
+    "name_en": "Jointers",
+    "parent": "woodworking-tools"
+  },
+  {
+    "handle": "kayak-seat",
+    "level": 3,
+    "name_en": "Kayak Seat",
+    "parent": "water-sports"
+  },
+  {
+    "handle": "kids-chair",
+    "level": 3,
+    "name_en": "Kids' Chair",
+    "parent": "furniture"
+  },
+  {
+    "handle": "kids-electronic-piano",
+    "level": 3,
+    "name_en": "Kids Electronic Piano",
+    "parent": "kids-toys"
+  },
+  {
+    "handle": "kinetic-recovery-rope",
+    "level": 3,
+    "name_en": "Kinetic Recovery Rope",
+    "parent": "towing-system"
+  },
+  {
+    "handle": "kitchen-and-dining-tables",
+    "level": 3,
+    "name_en": "Kitchen & Dining Tables",
+    "parent": "kitchen-and-dining-room-furniture"
+  },
+  {
+    "handle": "kitchen-gadgets-and-tools",
+    "level": 3,
+    "name_en": "Kitchen Gadgets & Tools",
+    "parent": "kitchenware"
+  },
+  {
+    "handle": "knives-and-blades",
+    "level": 3,
+    "name_en": "Knives & Blades",
+    "parent": "hand-tools"
+  },
+  {
+    "handle": "lab-instruments-and-equipment",
+    "level": 3,
+    "name_en": "Lab Instruments & Equipment",
+    "parent": "lab-and-scientific-products"
+  },
+  {
+    "handle": "ladder-rack-ratchet-straps",
+    "level": 3,
+    "name_en": "Ladder Rack Ratchet Straps",
+    "parent": "tie-down-straps"
+  },
+  {
+    "handle": "landscaping-and-shade-landscape-fabric",
+    "level": 3,
+    "name_en": "Landscape Fabric",
+    "parent": "landscaping-and-shade"
+  },
+  {
+    "handle": "laser-power-supply",
+    "level": 3,
+    "name_en": "Laser Power Supply",
+    "parent": "engraving"
+  },
+  {
+    "handle": "lathe-chuck",
+    "level": 3,
+    "name_en": "Lathe Chuck",
+    "parent": "lathe-machines-and-accessories"
+  },
+  {
+    "handle": "laundry-cart",
+    "level": 3,
+    "name_en": "Laundry Cart",
+    "parent": "carts-and-trucks"
+  },
+  {
+    "handle": "leather-cutting-machine",
+    "level": 3,
+    "name_en": "Leather Cutting Machine",
+    "parent": "leather-crafts"
+  },
+  {
+    "handle": "lifting-straps",
+    "level": 3,
+    "name_en": "Lifting Straps",
+    "parent": "moving-supplies"
+  },
+  {
+    "handle": "lifts-and-hoists-and-jacks-bottle-jacks",
+    "level": 3,
+    "name_en": "Bottle Jacks",
+    "parent": "lifts-and-hoists-and-jacks"
+  },
+  {
+    "handle": "lifts-and-hoists-and-jacks-floor-jacks",
+    "level": 3,
+    "name_en": "Floor Jacks",
+    "parent": "lifts-and-hoists-and-jacks"
+  },
+  {
+    "handle": "lifts-and-hoists-and-jacks-transmission-jacks",
+    "level": 3,
+    "name_en": "Transmission Jacks",
+    "parent": "lifts-and-hoists-and-jacks"
+  },
+  {
+    "handle": "lighting-and-studio",
+    "level": 3,
+    "name_en": "Lighting & Studio",
+    "parent": "camera-and-photo"
+  },
+  {
+    "handle": "linear-scale",
+    "level": 3,
+    "name_en": "Linear Scale",
+    "parent": "lathe-machines-and-accessories"
+  },
+  {
+    "handle": "liquid-filling-machine",
+    "level": 3,
+    "name_en": "Liquid Filling Machine",
+    "parent": "filling-and-sealing-machine"
+  },
+  {
+    "handle": "liquid-nitrogen-tank",
+    "level": 3,
+    "name_en": "Liquid Nitrogen Tank",
+    "parent": "glassware-and-labware"
+  },
+  {
+    "handle": "liquor-bottle-display",
+    "level": 3,
+    "name_en": "Liquor Bottle Display",
+    "parent": "food-display-and-merchandising-equipment"
+  },
+  {
+    "handle": "literature-organizer",
+    "level": 3,
+    "name_en": "Literature Organizer",
+    "parent": "office-furniture"
+  },
+  {
+    "handle": "livestock-and-poultry-supplies-chicken-coop",
+    "level": 3,
+    "name_en": "Chicken Coop",
+    "parent": "livestock-and-poultry-supplies"
+  },
+  {
+    "handle": "livestock-and-poultry-supplies-metal-chicken-coop",
+    "level": 3,
+    "name_en": "Metal Chicken Coop",
+    "parent": "livestock-and-poultry-supplies"
+  },
+  {
+    "handle": "living-room-sets",
+    "level": 3,
+    "name_en": "Living Room Sets",
+    "parent": "living-room-furniture"
+  },
+  {
+    "handle": "load-binders",
+    "level": 3,
+    "name_en": "Load Binders",
+    "parent": "hoists-and-winches-and-rigging"
+  },
+  {
+    "handle": "machinery-mover",
+    "level": 3,
+    "name_en": "Machinery Mover",
+    "parent": "dollies-and-movers"
+  },
+  {
+    "handle": "magnet-fishing-kit",
+    "level": 3,
+    "name_en": "Magnet Fishing Kit",
+    "parent": "inspection-and-retrieving-tools"
+  },
+  {
+    "handle": "magnetic-induction-heater",
+    "level": 3,
+    "name_en": "Magnetic Induction Heater",
+    "parent": "repair-tools"
+  },
+  {
+    "handle": "magnetic-stirrer",
+    "level": 3,
+    "name_en": "Magnetic Stirrer",
+    "parent": "mixing-and-blending-equipment"
+  },
+  {
+    "handle": "mailbox-posts-and-stands",
+    "level": 3,
+    "name_en": "Mailbox Posts & Stands",
+    "parent": "mailboxes"
+  },
+  {
+    "handle": "manicure-tables",
+    "level": 3,
+    "name_en": "Manicure Tables",
+    "parent": "health-medical-supply-salon-and-spa-equipment"
+  },
+  {
+    "handle": "manual-chain-hoist",
+    "level": 3,
+    "name_en": "Manual Chain Hoist",
+    "parent": "hoists-and-winches-and-rigging"
+  },
+  {
+    "handle": "marine-carpet",
+    "level": 3,
+    "name_en": "Marine Carpet",
+    "parent": "venue-decoration"
+  },
+  {
+    "handle": "massage-chair",
+    "level": 3,
+    "name_en": "Massage Chair",
+    "parent": "furniture"
+  },
+  {
+    "handle": "massage-mat",
+    "level": 3,
+    "name_en": "Massage Mat",
+    "parent": "health-medical-supply-wellness-and-relaxation-products"
+  },
+  {
+    "handle": "meat-and-poultry-tools",
+    "level": 3,
+    "name_en": "Meat & Poultry Tools",
+    "parent": "small-kitchen-appliances"
+  },
+  {
+    "handle": "meat-choppers-and-meat-grinders",
+    "level": 3,
+    "name_en": "Meat Choppers & Meat Grinders",
+    "parent": "food-preparation-equipment"
+  },
+  {
+    "handle": "medical-exam-table",
+    "level": 3,
+    "name_en": "Medical Exam Table",
+    "parent": "salon-and-spa-equipment"
+  },
+  {
+    "handle": "medical-teaching-model",
+    "level": 3,
+    "name_en": "Medical Teaching Model",
+    "parent": "learning-and-education"
+  },
+  {
+    "handle": "melting-furnace",
+    "level": 3,
+    "name_en": "Melting Furnace",
+    "parent": "jewelry-making-and-repair"
+  },
+  {
+    "handle": "metal-landscape-edging",
+    "level": 3,
+    "name_en": "Metal Landscape Edging",
+    "parent": "landscaping-and-shade"
+  },
+  {
+    "handle": "metal-shear",
+    "level": 3,
+    "name_en": "Metal Shear",
+    "parent": "hand-power-tools-cutting-tools"
+  },
+  {
+    "handle": "metal-table-leg",
+    "level": 3,
+    "name_en": "Metal Table Leg",
+    "parent": "furniture-hardware"
+  },
+  {
+    "handle": "milk-can",
+    "level": 3,
+    "name_en": "Milk Can",
+    "parent": "beverage-equipment"
+  },
+  {
+    "handle": "mill-vise",
+    "level": 3,
+    "name_en": "Mill Vise",
+    "parent": "hand-power-tools-clamps-and-vises"
+  },
+  {
+    "handle": "mini-fridge",
+    "level": 3,
+    "name_en": "Mini Fridge",
+    "parent": "refrigeration-and-ice-equipment"
+  },
+  {
+    "handle": "mini-miter-saw",
+    "level": 3,
+    "name_en": "Mini Miter Saw",
+    "parent": "saws-and-accessories"
+  },
+  {
+    "handle": "miniatures-storage-case",
+    "level": 3,
+    "name_en": "Miniatures Storage Case",
+    "parent": "kids-toys"
+  },
+  {
+    "handle": "misting-fans",
+    "level": 3,
+    "name_en": "Misting Fans",
+    "parent": "misters"
+  },
+  {
+    "handle": "mobile-bin-units",
+    "level": 3,
+    "name_en": "Mobile Bin Units",
+    "parent": "garage-storage"
+  },
+  {
+    "handle": "mobile-white-board",
+    "level": 3,
+    "name_en": "Mobile White Board",
+    "parent": "office-commercial-interiors-boards-and-easels"
+  },
+  {
+    "handle": "mppt-solar-charge-controller",
+    "level": 3,
+    "name_en": "MPPT Solar Charge Controller",
+    "parent": "solar-power"
+  },
+  {
+    "handle": "mug-hooks",
+    "level": 3,
+    "name_en": "Mug Hooks",
+    "parent": "smallwares"
+  },
+  {
+    "handle": "musical-instrument-bags-and-cases",
+    "level": 3,
+    "name_en": "Musical Instrument Bags & Cases",
+    "parent": "musical-instrument-storage"
+  },
+  {
+    "handle": "nibblers-and-shears",
+    "level": 3,
+    "name_en": "Nibblers & Shears",
+    "parent": "power-tools"
+  },
+  {
+    "handle": "off-grid-solar-inverter",
+    "level": 3,
+    "name_en": "Off Grid Solar Inverter",
+    "parent": "inverters"
+  },
+  {
+    "handle": "office-chair",
+    "level": 3,
+    "name_en": "Office Chair",
+    "parent": "office-furniture"
+  },
+  {
+    "handle": "office-chairs-and-desk-chairs",
+    "level": 3,
+    "name_en": "Office Chairs & Desk Chairs",
+    "parent": "home-office-furniture"
+  },
+  {
+    "handle": "office-commercial-interiors-christmas-decorations-christmas-tree",
+    "level": 3,
+    "name_en": "Christmas Trees",
+    "parent": "office-commercial-interiors-christmas-decorations"
+  },
+  {
+    "handle": "office-electronics-inflatable-projection-screen",
+    "level": 3,
+    "name_en": "Inflatable Projection Screen",
+    "parent": "office-electronics"
+  },
+  {
+    "handle": "office-furniture-chest-of-drawers",
+    "level": 3,
+    "name_en": "Chest Of Drawers",
+    "parent": "office-furniture"
+  },
+  {
+    "handle": "office-furniture-kids-furniture",
+    "level": 3,
+    "name_en": "Kids' Furniture",
+    "parent": "office-furniture"
+  },
+  {
+    "handle": "office-furniture-monitor-arms",
+    "level": 3,
+    "name_en": "Monitor Arms",
+    "parent": "office-furniture"
+  },
+  {
+    "handle": "office-furniture-office-chair-base",
+    "level": 3,
+    "name_en": "Office Chair Base",
+    "parent": "office-furniture"
+  },
+  {
+    "handle": "office-furniture-rattan-chair",
+    "level": 3,
+    "name_en": "Rattan Chair",
+    "parent": "office-furniture"
+  },
+  {
+    "handle": "office-room-divider",
+    "level": 3,
+    "name_en": "Office Room Divider",
+    "parent": "office-furniture"
+  },
+  {
+    "handle": "offset-shower-kit",
+    "level": 3,
+    "name_en": "Offset Shower Kit",
+    "parent": "building-supplies"
+  },
+  {
+    "handle": "oral-care",
+    "level": 3,
+    "name_en": "Oral Care",
+    "parent": "personal-care-appliances"
+  },
+  {
+    "handle": "oscillating-blades",
+    "level": 3,
+    "name_en": "Oscillating Blades",
+    "parent": "saws-and-accessories"
+  },
+  {
+    "handle": "outboard-propeller",
+    "level": 3,
+    "name_en": "Outboard Propeller",
+    "parent": "boating-camping-outdoor-boat-parts-and-accessories"
+  },
+  {
+    "handle": "outdoor-hand-tools-asphalt-rake",
+    "level": 3,
+    "name_en": "Asphalt Rake",
+    "parent": "outdoor-hand-tools"
+  },
+  {
+    "handle": "outdoor-hand-tools-spreaders",
+    "level": 3,
+    "name_en": "Spreaders",
+    "parent": "outdoor-hand-tools"
+  },
+  {
+    "handle": "outdoor-kitchen-door",
+    "level": 3,
+    "name_en": "Outdoor Kitchen Door",
+    "parent": "restaurant-furniture"
+  },
+  {
+    "handle": "outdoor-lighting-and-accessories-landscape-lighting",
+    "level": 3,
+    "name_en": "Landscape Lighting",
+    "parent": "outdoor-lighting-and-accessories"
+  },
+  {
+    "handle": "outdoor-power-equipment-gas-chainsaws",
+    "level": 3,
+    "name_en": "Gas Chainsaws",
+    "parent": "outdoor-power-equipment"
+  },
+  {
+    "handle": "outdoor-power-equipment-pressure-washer-hose",
+    "level": 3,
+    "name_en": "Pressure Washer Hose",
+    "parent": "outdoor-power-equipment"
+  },
+  {
+    "handle": "outdoor-storage-shelter",
+    "level": 3,
+    "name_en": "Outdoor Storage Shelter",
+    "parent": "landscaping-and-shade"
+  },
+  {
+    "handle": "pa-system-speakers",
+    "level": 3,
+    "name_en": "PA System Speakers",
+    "parent": "electrical-tools"
+  },
+  {
+    "handle": "pads-and-enhancers",
+    "level": 3,
+    "name_en": "Pads & Enhancers",
+    "parent": "beauty-and-personal-care"
+  },
+  {
+    "handle": "paint-sprayer",
+    "level": 3,
+    "name_en": "Paint Sprayer",
+    "parent": "painting-equipment-and-supplies"
+  },
+  {
+    "handle": "pallet-forks-extensions",
+    "level": 3,
+    "name_en": "Pallet Forks Extensions",
+    "parent": "pallet-moving-equipment-and-accessories"
+  },
+  {
+    "handle": "pallet-puller",
+    "level": 3,
+    "name_en": "Pallet Puller",
+    "parent": "pallet-moving-equipment-and-accessories"
+  },
+  {
+    "handle": "panel-trucks",
+    "level": 3,
+    "name_en": "Panel Trucks",
+    "parent": "carts-and-trucks"
+  },
+  {
+    "handle": "paper-crafts-hot-foil-stamping-machine",
+    "level": 3,
+    "name_en": "Hot Foil Stamping Machine",
+    "parent": "paper-crafts"
+  },
+  {
+    "handle": "pasta-maker",
+    "level": 3,
+    "name_en": "Pasta Maker",
+    "parent": "food-preparation-equipment"
+  },
+  {
+    "handle": "patio-chaise-lounges",
+    "level": 3,
+    "name_en": "Patio Chaise Lounges",
+    "parent": "patio-furniture-and-accessories"
+  },
+  {
+    "handle": "patio-furniture-and-accessories-fire-pit-grate",
+    "level": 3,
+    "name_en": "Fire Pit Grate",
+    "parent": "patio-furniture-and-accessories"
+  },
+  {
+    "handle": "patio-furniture-and-accessories-fire-pits",
+    "level": 3,
+    "name_en": "Fire Pits",
+    "parent": "patio-furniture-and-accessories"
+  },
+  {
+    "handle": "patio-gazebo",
+    "level": 3,
+    "name_en": "Patio Gazebo",
+    "parent": "patio-furniture-and-accessories"
+  },
+  {
+    "handle": "patio-umbrella-cover",
+    "level": 3,
+    "name_en": "Patio Umbrella Cover",
+    "parent": "patio-furniture-and-accessories"
+  },
+  {
+    "handle": "personal-protective-equipment-chainsaw-accessories",
+    "level": 3,
+    "name_en": "Chainsaw Accessories",
+    "parent": "personal-protective-equipment"
+  },
+  {
+    "handle": "pet-carrier",
+    "level": 3,
+    "name_en": "Pet Carrier",
+    "parent": "pet-supplies"
+  },
+  {
+    "handle": "pet-fencing-and-training",
+    "level": 3,
+    "name_en": "Pet Fencing & Training",
+    "parent": "pet-supplies-and-wildlife"
+  },
+  {
+    "handle": "pet-furniture",
+    "level": 3,
+    "name_en": "Pet Furniture",
+    "parent": "pet-supplies"
+  },
+  {
+    "handle": "pet-supplies-cat-cage",
+    "level": 3,
+    "name_en": "Cat Cage",
+    "parent": "pet-supplies"
+  },
+  {
+    "handle": "pet-supplies-pet-car-seat",
+    "level": 3,
+    "name_en": "Pet Car Seat",
+    "parent": "pet-supplies"
+  },
+  {
+    "handle": "pex-al-pex-tubing",
+    "level": 3,
+    "name_en": "PEX-Al-PEX Tubing",
+    "parent": "pipe-and-fittings"
+  },
+  {
+    "handle": "piercing-and-tattoo-supplies",
+    "level": 3,
+    "name_en": "Piercing & Tattoo Supplies",
+    "parent": "personal-care"
+  },
+  {
+    "handle": "pipe-and-fittings-fittings",
+    "level": 3,
+    "name_en": "Fittings",
+    "parent": "pipe-and-fittings"
+  },
+  {
+    "handle": "pipe-and-tube-benders",
+    "level": 3,
+    "name_en": "Pipe & Tube Benders",
+    "parent": "plumbing-tools"
+  },
+  {
+    "handle": "pipe-and-tube-cutters",
+    "level": 3,
+    "name_en": "Pipe & Tube Cutters",
+    "parent": "plumbing-tools"
+  },
+  {
+    "handle": "pipe-inspection-camera",
+    "level": 3,
+    "name_en": "Pipe Inspection Camera",
+    "parent": "inspection-and-retrieving-tools"
+  },
+  {
+    "handle": "pipe-shelf",
+    "level": 3,
+    "name_en": "Pipe Shelf",
+    "parent": "office-furniture"
+  },
+  {
+    "handle": "pipe-wrench",
+    "level": 3,
+    "name_en": "Pipe Wrench",
+    "parent": "hand-power-tools-wrenches"
+  },
+  {
+    "handle": "pitcher-pump",
+    "level": 3,
+    "name_en": "Pitcher Pump",
+    "parent": "water-pumps"
+  },
+  {
+    "handle": "platform-trucks-and-dollies",
+    "level": 3,
+    "name_en": "Platform Trucks & Dollies",
+    "parent": "material-handling-equipment"
+  },
+  {
+    "handle": "platform-trucks-and-dollies-accessories",
+    "level": 3,
+    "name_en": "Platform Trucks & Dollies Accessories",
+    "parent": "material-handling-equipment"
+  },
+  {
+    "handle": "playpens",
+    "level": 3,
+    "name_en": "Playpens",
+    "parent": "pet-supplies"
+  },
+  {
+    "handle": "plier-set",
+    "level": 3,
+    "name_en": "Plier Set",
+    "parent": "hand-power-tools-wrenches"
+  },
+  {
+    "handle": "pocket-hole-jig-system-set",
+    "level": 3,
+    "name_en": "Pocket Hole Jig System Set",
+    "parent": "power-tool-parts-and-accessories"
+  },
+  {
+    "handle": "poles-rods-and-reels",
+    "level": 3,
+    "name_en": "Poles, Rods & Reels",
+    "parent": "fishing-gear"
+  },
+  {
+    "handle": "ponds-and-pond-accessories",
+    "level": 3,
+    "name_en": "Ponds & Pond Accessories",
+    "parent": "garden-center"
+  },
+  {
+    "handle": "pool-cleaner",
+    "level": 3,
+    "name_en": "Pool Cleaner",
+    "parent": "pools-and-spas"
+  },
+  {
+    "handle": "pool-hose",
+    "level": 3,
+    "name_en": "Pool Hose",
+    "parent": "pools-and-spas"
+  },
+  {
+    "handle": "portable-cooler",
+    "level": 3,
+    "name_en": "Portable Cooler",
+    "parent": "refrigeration-and-ice-equipment"
+  },
+  {
+    "handle": "portable-fuel-tank",
+    "level": 3,
+    "name_en": "Portable Fuel Tank",
+    "parent": "fuel-transfer-and-lubrication"
+  },
+  {
+    "handle": "portable-heat-press-machine",
+    "level": 3,
+    "name_en": "Portable Heat Press Machine",
+    "parent": "printmaking"
+  },
+  {
+    "handle": "portable-utility-blower",
+    "level": 3,
+    "name_en": "Portable Utility Blower",
+    "parent": "ventilation-equipment-and-supplies"
+  },
+  {
+    "handle": "pot-rack",
+    "level": 3,
+    "name_en": "Pot Rack",
+    "parent": "storage-and-organization"
+  },
+  {
+    "handle": "pottery-wheel",
+    "level": 3,
+    "name_en": "Pottery Wheel",
+    "parent": "ceramics-and-pottery-crafts"
+  },
+  {
+    "handle": "powder-coating-machine",
+    "level": 3,
+    "name_en": "Powder Coating Machine",
+    "parent": "painting-equipment-and-supplies"
+  },
+  {
+    "handle": "pretend-play-toys",
+    "level": 3,
+    "name_en": "Pretend Play Toys",
+    "parent": "toys-and-games"
+  },
+  {
+    "handle": "printers",
+    "level": 3,
+    "name_en": "Printers",
+    "parent": "electronics"
+  },
+  {
+    "handle": "printmaking-heat-press-machine",
+    "level": 3,
+    "name_en": "Heat Press Machine",
+    "parent": "printmaking"
+  },
+  {
+    "handle": "printmaking-vinyl-cutter",
+    "level": 3,
+    "name_en": "Vinyl Cutter",
+    "parent": "printmaking"
+  },
+  {
+    "handle": "prize-wheel",
+    "level": 3,
+    "name_en": "Prize Wheel",
+    "parent": "retail-supplies"
+  },
+  {
+    "handle": "pull-out-trash-cans",
+    "level": 3,
+    "name_en": "Pull Out Trash Cans",
+    "parent": "storage-and-organization"
+  },
+  {
+    "handle": "pull-up-bar",
+    "level": 3,
+    "name_en": "Pull-Up Bar",
+    "parent": "exercise-and-fitness"
+  },
+  {
+    "handle": "push-beam-trolley",
+    "level": 3,
+    "name_en": "Push Beam Trolley",
+    "parent": "hoists-and-winches-and-rigging"
+  },
+  {
+    "handle": "radon-detectors",
+    "level": 3,
+    "name_en": "Radon Detectors",
+    "parent": "fire-safety"
+  },
+  {
+    "handle": "railings",
+    "level": 3,
+    "name_en": "Railings",
+    "parent": "decking-and-fencing"
+  },
+  {
+    "handle": "razor-wire",
+    "level": 3,
+    "name_en": "Razor Wire",
+    "parent": "outdoor-decoration"
+  },
+  {
+    "handle": "rebar-and-accessories",
+    "level": 3,
+    "name_en": "Rebar & Accessories",
+    "parent": "concrete-cement-and-masonry"
+  },
+  {
+    "handle": "rechargeable-battery-chargers",
+    "level": 3,
+    "name_en": "Rechargeable Battery Chargers",
+    "parent": "batteries"
+  },
+  {
+    "handle": "recovery-straps",
+    "level": 3,
+    "name_en": "Recovery Straps",
+    "parent": "towing-system"
+  },
+  {
+    "handle": "refrigeration-and-ice-equipment-humidors",
+    "level": 3,
+    "name_en": "Humidors",
+    "parent": "refrigeration-and-ice-equipment"
+  },
+  {
+    "handle": "registers-and-grilles",
+    "level": 3,
+    "name_en": "Registers & Grilles",
+    "parent": "hvac-supplies"
+  },
+  {
+    "handle": "remote-and-app-controlled-toys",
+    "level": 3,
+    "name_en": "Remote & App Controlled Toys",
+    "parent": "toys-and-games"
+  },
+  {
+    "handle": "reptile-and-amphibian-supplies",
+    "level": 3,
+    "name_en": "Reptile & Amphibian Supplies",
+    "parent": "pet-supplies-and-wildlife"
+  },
+  {
+    "handle": "rescue-tripod",
+    "level": 3,
+    "name_en": "Rescue Tripod",
+    "parent": "confined-space-entry-systems"
+  },
+  {
+    "handle": "restaurant-faucets-and-plumbing-and-sinks-pre-rinse-faucets",
+    "level": 3,
+    "name_en": "Pre-Rinse Faucets",
+    "parent": "restaurant-faucets-and-plumbing-and-sinks"
+  },
+  {
+    "handle": "restaurant-faucets-and-plumbing-and-sinks-sink-protector",
+    "level": 3,
+    "name_en": "Sink Protector",
+    "parent": "restaurant-faucets-and-plumbing-and-sinks"
+  },
+  {
+    "handle": "retail-supplies-flagpoles",
+    "level": 3,
+    "name_en": "Flagpoles",
+    "parent": "retail-supplies"
+  },
+  {
+    "handle": "riding-mower-and-tractor-attachments",
+    "level": 3,
+    "name_en": "Riding Mower & Tractor Attachments",
+    "parent": "outdoor-power-equipment"
+  },
+  {
+    "handle": "rocking-horse",
+    "level": 3,
+    "name_en": "Rocking Horse",
+    "parent": "toys-and-games"
+  },
+  {
+    "handle": "rolling-cooler-cart",
+    "level": 3,
+    "name_en": "Rolling Cooler Cart",
+    "parent": "carts"
+  },
+  {
+    "handle": "roof-bike-racks",
+    "level": 3,
+    "name_en": "Roof Bike Racks",
+    "parent": "cargo-management"
+  },
+  {
+    "handle": "roof-rack-cross-bars",
+    "level": 3,
+    "name_en": "Roof Rack Cross Bars",
+    "parent": "cargo-management"
+  },
+  {
+    "handle": "rototillers-and-cultivators",
+    "level": 3,
+    "name_en": "Rototillers & Cultivators",
+    "parent": "outdoor-power-equipment"
+  },
+  {
+    "handle": "routers-and-bits-and-accessories",
+    "level": 3,
+    "name_en": "Routers & Bits & Accessories",
+    "parent": "woodworking-tools"
+  },
+  {
+    "handle": "rubber-tarp-straps",
+    "level": 3,
+    "name_en": "Rubber Tarp Straps",
+    "parent": "cargo-control"
+  },
+  {
+    "handle": "rv-awnings",
+    "level": 3,
+    "name_en": "RV Awnings",
+    "parent": "rv-parts-and-accessories"
+  },
+  {
+    "handle": "rv-cover",
+    "level": 3,
+    "name_en": "RV Cover",
+    "parent": "rv-parts-and-accessories"
+  },
+  {
+    "handle": "rv-water-pump",
+    "level": 3,
+    "name_en": "RV Water Pump",
+    "parent": "water-pumps"
+  },
+  {
+    "handle": "safety-and-traffic-control",
+    "level": 3,
+    "name_en": "Safety & Traffic Control",
+    "parent": "material-handling-equipment"
+  },
+  {
+    "handle": "salon-sink",
+    "level": 3,
+    "name_en": "Salon Sink",
+    "parent": "salon-and-spa-equipment"
+  },
+  {
+    "handle": "sand-blasting-equipment-sand-blaster-cabinet",
+    "level": 3,
+    "name_en": "Sand Blaster Cabinet",
+    "parent": "sand-blasting-equipment"
+  },
+  {
+    "handle": "satellite-dish-mounts",
+    "level": 3,
+    "name_en": "Satellite Dish Mounts",
+    "parent": "satellite-equipment"
+  },
+  {
+    "handle": "sauna-heater-stove",
+    "level": 3,
+    "name_en": "Sauna Heater Stove",
+    "parent": "pools-and-spas"
+  },
+  {
+    "handle": "scooter-lift",
+    "level": 3,
+    "name_en": "Scooter Lift",
+    "parent": "action-aids"
+  },
+  {
+    "handle": "screen-printing-dryer",
+    "level": 3,
+    "name_en": "Screen Printing Dryer",
+    "parent": "printmaking"
+  },
+  {
+    "handle": "screwdrivers-and-nut-drivers",
+    "level": 3,
+    "name_en": "Screwdrivers & Nut Drivers",
+    "parent": "hand-tools"
+  },
+  {
+    "handle": "scrolling-sign",
+    "level": 3,
+    "name_en": "Scrolling Sign",
+    "parent": "retail-supplies"
+  },
+  {
+    "handle": "sealing-machine",
+    "level": 3,
+    "name_en": "Sealing Machine",
+    "parent": "filling-and-sealing-machine"
+  },
+  {
+    "handle": "seasonal-decorations-snowflake-machine",
+    "level": 3,
+    "name_en": "Snowflake Machine",
+    "parent": "seasonal-decorations"
+  },
+  {
+    "handle": "seat-covers",
+    "level": 3,
+    "name_en": "Seat Covers",
+    "parent": "automotive-accessories"
+  },
+  {
+    "handle": "sewing-cloth-cutting-machine",
+    "level": 3,
+    "name_en": "Cloth Cutting Machine",
+    "parent": "sewing"
+  },
+  {
+    "handle": "shelf-bins-and-racks",
+    "level": 3,
+    "name_en": "Shelf Bins & Racks",
+    "parent": "tool-storage"
+  },
+  {
+    "handle": "shelving-and-storage-garage-storage-cabinet",
+    "level": 3,
+    "name_en": "Garage Storage Cabinet",
+    "parent": "shelving-and-storage"
+  },
+  {
+    "handle": "shooting-tents",
+    "level": 3,
+    "name_en": "Shooting Tents",
+    "parent": "camera-and-photo"
+  },
+  {
+    "handle": "shopping-basket",
+    "level": 3,
+    "name_en": "Shopping Basket",
+    "parent": "retail-supplies"
+  },
+  {
+    "handle": "shower-caddies",
+    "level": 3,
+    "name_en": "Shower Caddies",
+    "parent": "bathroom-supplies"
+  },
+  {
+    "handle": "shower-panel",
+    "level": 3,
+    "name_en": "Shower Panel",
+    "parent": "building-supplies"
+  },
+  {
+    "handle": "shower-walls-and-surrounds",
+    "level": 3,
+    "name_en": "Shower Walls & Surrounds",
+    "parent": "showers"
+  },
+  {
+    "handle": "sleds-and-chutes",
+    "level": 3,
+    "name_en": "Sleds & Chutes",
+    "parent": "leisure-sports"
+  },
+  {
+    "handle": "small-animal-exercise-wheels",
+    "level": 3,
+    "name_en": "Small Animal Exercise Wheels",
+    "parent": "pet-supplies"
+  },
+  {
+    "handle": "snow-cone-machines-and-commercial-ice-shavers",
+    "level": 3,
+    "name_en": "Snow Cone Machines & Commercial Ice Shavers",
+    "parent": "refrigeration-and-ice-equipment"
+  },
+  {
+    "handle": "snow-shovels-and-rakes",
+    "level": 3,
+    "name_en": "Snow Shovels & Rakes",
+    "parent": "snow-and-ice-removal-equipment"
+  },
+  {
+    "handle": "socket-wrenches",
+    "level": 3,
+    "name_en": "Socket Wrenches",
+    "parent": "sockets-and-bits"
+  },
+  {
+    "handle": "sockets-and-bits-impact-socket-set",
+    "level": 3,
+    "name_en": "Impact Socket Set",
+    "parent": "sockets-and-bits"
+  },
+  {
+    "handle": "solar-panel-guard",
+    "level": 3,
+    "name_en": "Solar Panel Guard",
+    "parent": "solar-power"
+  },
+  {
+    "handle": "solar-panel-kits",
+    "level": 3,
+    "name_en": "Solar Panel Kits",
+    "parent": "renewable-energy"
+  },
+  {
+    "handle": "spark-screen",
+    "level": 3,
+    "name_en": "Spark Screen",
+    "parent": "patio-furniture-and-accessories"
+  },
+  {
+    "handle": "speciality-crafts-and-hobbies-wax-melter",
+    "level": 3,
+    "name_en": "Wax Melter",
+    "parent": "speciality-crafts-and-hobbies"
+  },
+  {
+    "handle": "sports-and-outdoor-play-toys",
+    "level": 3,
+    "name_en": "Sports & Outdoor Play Toys",
+    "parent": "toys-and-games"
+  },
+  {
+    "handle": "stainless-steel-cable",
+    "level": 3,
+    "name_en": "Stainless Steel Cable",
+    "parent": "chain-and-wire-and-rope"
+  },
+  {
+    "handle": "stainless-steel-stair-railing",
+    "level": 3,
+    "name_en": "Stainless Steel Stair Railing",
+    "parent": "building-supplies"
+  },
+  {
+    "handle": "stainless-steel-work-table",
+    "level": 3,
+    "name_en": "Stainless Steel Work Table",
+    "parent": "restaurant-furniture"
+  },
+  {
+    "handle": "stair-climbing-cart",
+    "level": 3,
+    "name_en": "Stair Climbing Cart",
+    "parent": "carts-and-trucks"
+  },
+  {
+    "handle": "stair-handrail",
+    "level": 3,
+    "name_en": "Stair Handrail",
+    "parent": "building-supplies"
+  },
+  {
+    "handle": "stair-treads",
+    "level": 3,
+    "name_en": "Stair Treads",
+    "parent": "building-supplies"
+  },
+  {
+    "handle": "stanchion",
+    "level": 3,
+    "name_en": "Stanchion",
+    "parent": "access-barriers-and-crowd-control"
+  },
+  {
+    "handle": "stand-up-desk",
+    "level": 3,
+    "name_en": "Stand Up Desk",
+    "parent": "office-furniture"
+  },
+  {
+    "handle": "stands",
+    "level": 3,
+    "name_en": "Stands",
+    "parent": "instrument-accessories"
+  },
+  {
+    "handle": "steam-mops-and-steam-cleaners",
+    "level": 3,
+    "name_en": "Steam Mops & Steam Cleaners",
+    "parent": "floor-care"
+  },
+  {
+    "handle": "steam-table-food-warmer",
+    "level": 3,
+    "name_en": "Steam Table Food Warmer",
+    "parent": "food-holding-and-warming-equipment"
+  },
+  {
+    "handle": "steering-and-suspension-tools",
+    "level": 3,
+    "name_en": "Steering & Suspension Tools",
+    "parent": "mechanics-tools"
+  },
+  {
+    "handle": "storage-and-organization-dish-racks",
+    "level": 3,
+    "name_en": "Dish Racks",
+    "parent": "storage-and-organization"
+  },
+  {
+    "handle": "storage-racks",
+    "level": 3,
+    "name_en": "Storage Racks",
+    "parent": "tool-storage"
+  },
+  {
+    "handle": "strapping-banding-roll",
+    "level": 3,
+    "name_en": "Strapping Banding Roll",
+    "parent": "chain-and-wire-and-rope"
+  },
+  {
+    "handle": "strapping-machine",
+    "level": 3,
+    "name_en": "Strapping Machine",
+    "parent": "filling-and-sealing-machine"
+  },
+  {
+    "handle": "stretch-film",
+    "level": 3,
+    "name_en": "Stretch Film",
+    "parent": "packing-materials"
+  },
+  {
+    "handle": "stud-welder",
+    "level": 3,
+    "name_en": "Stud Welder",
+    "parent": "spot-welding-and-accessories"
+  },
+  {
+    "handle": "suction-cup-lifter",
+    "level": 3,
+    "name_en": "Suction Cup Lifter",
+    "parent": "hoists-and-winches-and-rigging"
+  },
+  {
+    "handle": "support-pole",
+    "level": 3,
+    "name_en": "Support Pole",
+    "parent": "hoists-and-winches-and-rigging"
+  },
+  {
+    "handle": "surf-boards",
+    "level": 3,
+    "name_en": "Surf Boards",
+    "parent": "water-sports"
+  },
+  {
+    "handle": "t-top-storage-bag",
+    "level": 3,
+    "name_en": "T-Top Storage Bag",
+    "parent": "boating-camping-outdoor-boat-parts-and-accessories"
+  },
+  {
+    "handle": "table-cover-protector",
+    "level": 3,
+    "name_en": "Table Cover Protector",
+    "parent": "tabletop"
+  },
+  {
+    "handle": "table-linens-and-kitchen-linens",
+    "level": 3,
+    "name_en": "Table Linens & Kitchen Linens",
+    "parent": "tableware-and-bar"
+  },
+  {
+    "handle": "table-saw",
+    "level": 3,
+    "name_en": "Table Saw",
+    "parent": "saws-and-accessories"
+  },
+  {
+    "handle": "tablets-and-accessories",
+    "level": 3,
+    "name_en": "Tablets & Accessories",
+    "parent": "electronics"
+  },
+  {
+    "handle": "tap-and-die-set",
+    "level": 3,
+    "name_en": "Tap & Die Set",
+    "parent": "tap-and-die-sets"
+  },
+  {
+    "handle": "tap-extractors",
+    "level": 3,
+    "name_en": "Tap Extractors",
+    "parent": "sockets-and-bits"
+  },
+  {
+    "handle": "tape-and-adhesives-and-fasteners-packing-tape",
+    "level": 3,
+    "name_en": "Packing Tape",
+    "parent": "tape-and-adhesives-and-fasteners"
+  },
+  {
+    "handle": "taps-and-dies",
+    "level": 3,
+    "name_en": "Taps & Dies",
+    "parent": "hand-tools"
+  },
+  {
+    "handle": "targets-and-throwers",
+    "level": 3,
+    "name_en": "Targets & Throwers",
+    "parent": "hunting-gear"
+  },
+  {
+    "handle": "telescoping-ladder",
+    "level": 3,
+    "name_en": "Telescoping Ladder",
+    "parent": "building-supplies"
+  },
+  {
+    "handle": "test-instruments-specialty-meters",
+    "level": 3,
+    "name_en": "Specialty Meters",
+    "parent": "test-instruments"
+  },
+  {
+    "handle": "threshold-ramp",
+    "level": 3,
+    "name_en": "Threshold Ramp",
+    "parent": "ramps-and-ladders"
+  },
+  {
+    "handle": "tie-down-hardware-and-accessories",
+    "level": 3,
+    "name_en": "Tie-Down Hardware & Accessories",
+    "parent": "tie-down-straps"
+  },
+  {
+    "handle": "tie-down-kit",
+    "level": 3,
+    "name_en": "Tie-Down Kit",
+    "parent": "cargo-control"
+  },
+  {
+    "handle": "tire-pressure-monitoring-systems-tpms",
+    "level": 3,
+    "name_en": "Tire Pressure Monitoring Systems (TPMS)",
+    "parent": "tire-and-wheel-tools"
+  },
+  {
+    "handle": "toaster-ovens",
+    "level": 3,
+    "name_en": "Toaster Ovens",
+    "parent": "small-kitchen-appliances"
+  },
+  {
+    "handle": "tow-ropes-cables-and-chains",
+    "level": 3,
+    "name_en": "Tow Ropes, Cables & Chains",
+    "parent": "towing-equipment"
+  },
+  {
+    "handle": "towel-rack",
+    "level": 3,
+    "name_en": "Towel Rack",
+    "parent": "bathroom-supplies"
+  },
+  {
+    "handle": "towing-system-tow-chain",
+    "level": 3,
+    "name_en": "Tow Chain",
+    "parent": "towing-system"
+  },
+  {
+    "handle": "towing-system-tow-strap",
+    "level": 3,
+    "name_en": "Tow Strap",
+    "parent": "towing-system"
+  },
+  {
+    "handle": "towing-system-towing-couplers",
+    "level": 3,
+    "name_en": "Towing Couplers",
+    "parent": "towing-system"
+  },
+  {
+    "handle": "towing-system-towing-mirrors",
+    "level": 3,
+    "name_en": "Towing Mirrors",
+    "parent": "towing-system"
+  },
+  {
+    "handle": "towing-system-wheel-dolly",
+    "level": 3,
+    "name_en": "Wheel Dolly",
+    "parent": "towing-system"
+  },
+  {
+    "handle": "towing-winches",
+    "level": 3,
+    "name_en": "Towing Winches",
+    "parent": "towing-system"
+  },
+  {
+    "handle": "toy-basketball",
+    "level": 3,
+    "name_en": "Toy Basketball",
+    "parent": "toys-and-games"
+  },
+  {
+    "handle": "toy-construction-tools",
+    "level": 3,
+    "name_en": "Toy Construction Tools",
+    "parent": "toys-and-games"
+  },
+  {
+    "handle": "traffic-cone",
+    "level": 3,
+    "name_en": "Traffic Cone",
+    "parent": "traffic-safety"
+  },
+  {
+    "handle": "trailer-dolly",
+    "level": 3,
+    "name_en": "Trailer Dolly",
+    "parent": "rv-parts-and-accessories"
+  },
+  {
+    "handle": "trailer-hitch",
+    "level": 3,
+    "name_en": "Trailer Hitch",
+    "parent": "towing-system"
+  },
+  {
+    "handle": "trailer-jack",
+    "level": 3,
+    "name_en": "Trailer Jack",
+    "parent": "rv-parts-and-accessories"
+  },
+  {
+    "handle": "trailer-parts-and-accessories",
+    "level": 3,
+    "name_en": "Trailer Parts & Accessories",
+    "parent": "towing-equipment"
+  },
+  {
+    "handle": "train-horn-kit",
+    "level": 3,
+    "name_en": "Train Horn Kit",
+    "parent": "automotive-electrical"
+  },
+  {
+    "handle": "training-equipment",
+    "level": 3,
+    "name_en": "Training Equipment",
+    "parent": "fitness-sports-games-golf-equipment"
+  },
+  {
+    "handle": "travel-garment-bags",
+    "level": 3,
+    "name_en": "Travel Garment Bags",
+    "parent": "luggage"
+  },
+  {
+    "handle": "triangle-ladder-and-rocker-set",
+    "level": 3,
+    "name_en": "Triangle Ladder & Rocker Set",
+    "parent": "swing-sets"
+  },
+  {
+    "handle": "trunk-spoiler",
+    "level": 3,
+    "name_en": "Trunk Spoiler",
+    "parent": "auto-body-and-trim"
+  },
+  {
+    "handle": "tumbling-mat",
+    "level": 3,
+    "name_en": "Tumbling Mat",
+    "parent": "exercise-and-fitness"
+  },
+  {
+    "handle": "tv-and-home-theater-accessories",
+    "level": 3,
+    "name_en": "TV & Home Theater Accessories",
+    "parent": "electronics"
+  },
+  {
+    "handle": "tv-stands-and-tv-cabinet",
+    "level": 3,
+    "name_en": "TV Stands & TV Cabinet",
+    "parent": "living-room-furniture"
+  },
+  {
+    "handle": "twin-sheave-block",
+    "level": 3,
+    "name_en": "Twin Sheave Block",
+    "parent": "hoists-and-winches-and-rigging"
+  },
+  {
+    "handle": "ultrasonic-cleaner",
+    "level": 3,
+    "name_en": "Ultrasonic Cleaner",
+    "parent": "cleaning-equipment"
+  },
+  {
+    "handle": "under-cabinet-lighting",
+    "level": 3,
+    "name_en": "Under Cabinet Lighting",
+    "parent": "accent-lighting"
+  },
+  {
+    "handle": "underbar-ice-bins",
+    "level": 3,
+    "name_en": "Underbar Ice Bins",
+    "parent": "beverage-equipment"
+  },
+  {
+    "handle": "utility-cart",
+    "level": 3,
+    "name_en": "Utility Cart",
+    "parent": "carts-and-trucks"
+  },
+  {
+    "handle": "vacuum-cleaner",
+    "level": 3,
+    "name_en": "Vacuum Cleaner",
+    "parent": "floor-and-upholstery-cleaning"
+  },
+  {
+    "handle": "vacuum-pumps-vacuum-pump",
+    "level": 3,
+    "name_en": "Vacuum Pump",
+    "parent": "vacuum-pumps"
+  },
+  {
+    "handle": "variable-frequency-drives",
+    "level": 3,
+    "name_en": "Variable Frequency Drives",
+    "parent": "electric-motors"
+  },
+  {
+    "handle": "ventilation-equipment-and-supplies-air-curtain",
+    "level": 3,
+    "name_en": "Air Curtain",
+    "parent": "ventilation-equipment-and-supplies"
+  },
+  {
+    "handle": "ventilation-equipment-and-supplies-pedestal-fans",
+    "level": 3,
+    "name_en": "Pedestal Fans",
+    "parent": "ventilation-equipment-and-supplies"
+  },
+  {
+    "handle": "ventilation-equipment-and-supplies-radon-fan",
+    "level": 3,
+    "name_en": "Radon Fan",
+    "parent": "ventilation-equipment-and-supplies"
+  },
+  {
+    "handle": "video-games-playstation-5",
+    "level": 3,
+    "name_en": "PlayStation 5",
+    "parent": "video-games"
+  },
+  {
+    "handle": "violin-and-cello-case",
+    "level": 3,
+    "name_en": "Violin & Cello Case",
+    "parent": "musical-instrument-storage"
+  },
+  {
+    "handle": "walkers-and-rollators",
+    "level": 3,
+    "name_en": "Walkers & Rollators",
+    "parent": "action-aids"
+  },
+  {
+    "handle": "wall-mount-styling-station",
+    "level": 3,
+    "name_en": "Wall Mount Styling Station",
+    "parent": "salon-and-spa-equipment"
+  },
+  {
+    "handle": "warmmer-drawer",
+    "level": 3,
+    "name_en": "Warmmer Drawer",
+    "parent": "wall-ovens"
+  },
+  {
+    "handle": "water-chiller",
+    "level": 3,
+    "name_en": "Water Chiller",
+    "parent": "engraving"
+  },
+  {
+    "handle": "water-sports-boats",
+    "level": 3,
+    "name_en": "Boats",
+    "parent": "water-sports"
+  },
+  {
+    "handle": "watering-and-irrigation",
+    "level": 3,
+    "name_en": "Watering & Irrigation",
+    "parent": "garden-center"
+  },
+  {
+    "handle": "waterproof-hard-case",
+    "level": 3,
+    "name_en": "Waterproof Hard Case",
+    "parent": "office-electronics"
+  },
+  {
+    "handle": "wedding-lantern-centerpiece",
+    "level": 3,
+    "name_en": "Wedding Lantern Centerpiece",
+    "parent": "candle-holders"
+  },
+  {
+    "handle": "welding-blanket",
+    "level": 3,
+    "name_en": "Welding Blanket",
+    "parent": "welding-safety-equipment"
+  },
+  {
+    "handle": "welding-screens",
+    "level": 3,
+    "name_en": "Welding Screens",
+    "parent": "welding-safety-equipment"
+  },
+  {
+    "handle": "wellness-and-relaxation-products",
+    "level": 3,
+    "name_en": "Wellness & Relaxation Products",
+    "parent": "personal-care"
+  },
+  {
+    "handle": "wheel-accessories-and-parts",
+    "level": 3,
+    "name_en": "Wheel Accessories & Parts",
+    "parent": "tire-and-wheel-tools"
+  },
+  {
+    "handle": "wifi-and-networking-devices",
+    "level": 3,
+    "name_en": "WiFi & Networking Devices",
+    "parent": "electronics"
+  },
+  {
+    "handle": "wind-turbine",
+    "level": 3,
+    "name_en": "Wind Turbine",
+    "parent": "wind-power"
+  },
+  {
+    "handle": "wire-and-conduit-tools",
+    "level": 3,
+    "name_en": "Wire & Conduit Tools",
+    "parent": "electrical-tools"
+  },
+  {
+    "handle": "wood-lathe",
+    "level": 3,
+    "name_en": "Wood Lathe",
+    "parent": "lathe-machines-and-accessories"
+  },
+  {
+    "handle": "work-jackets-and-coats",
+    "level": 3,
+    "name_en": "Work Jackets & Coats",
+    "parent": "outerwear"
+  },
+  {
+    "handle": "workbenches-and-accessories-workbench-tops",
+    "level": 3,
+    "name_en": "Workbench Tops",
+    "parent": "workbenches-and-accessories"
+  },
+  {
+    "handle": "wrecking-and-pry-bars",
+    "level": 3,
+    "name_en": "Wrecking & Pry Bars",
+    "parent": "hand-tools"
+  },
+  {
+    "handle": "yurt-tent",
+    "level": 3,
+    "name_en": "Yurt Tent",
+    "parent": "patio-furniture-and-accessories"
+  },
+  {
+    "handle": "3d-printer-cover",
+    "level": 4,
+    "name_en": "3D Printer Cover",
+    "parent": "printers"
+  },
+  {
+    "handle": "air-hoses",
+    "level": 4,
+    "name_en": "Air Hoses",
+    "parent": "air-compressor-parts-and-accessories"
+  },
+  {
+    "handle": "air-sanders-and-polishers",
+    "level": 4,
+    "name_en": "Air Sanders & Polishers",
+    "parent": "air-tools"
+  },
+  {
+    "handle": "appliance-and-specialty-extension-cords",
+    "level": 4,
+    "name_en": "Appliance & Specialty Extension Cords",
+    "parent": "extension-cords"
+  },
+  {
+    "handle": "audio-and-video-cables",
+    "level": 4,
+    "name_en": "Audio & Video Cables",
+    "parent": "cables"
+  },
+  {
+    "handle": "audio-component-stand-and-cabinet",
+    "level": 4,
+    "name_en": "Audio Component Stand & Cabinet",
+    "parent": "media-storage"
+  },
+  {
+    "handle": "automatic-beer-brewing-machine",
+    "level": 4,
+    "name_en": "Automatic Beer Brewing Machine",
+    "parent": "kegerators"
+  },
+  {
+    "handle": "baby-walkers",
+    "level": 4,
+    "name_en": "Baby Walkers",
+    "parent": "walkers"
+  },
+  {
+    "handle": "backpacks-bags-and-accessories",
+    "level": 4,
+    "name_en": "Backpacks, Bags & Accessories",
+    "parent": "camping-and-hiking"
+  },
+  {
+    "handle": "bags-and-cases",
+    "level": 4,
+    "name_en": "Bags & Cases",
+    "parent": "electronics-camera-and-photo"
+  },
+  {
+    "handle": "balusters-and-spindles",
+    "level": 4,
+    "name_en": "Balusters & Spindles",
+    "parent": "deck-railings"
+  },
+  {
+    "handle": "baseball-and-softball-pitching-trainers",
+    "level": 4,
+    "name_en": "Baseball & Softball Pitching Trainers",
+    "parent": "baseball-equipment"
+  },
+  {
+    "handle": "basketball-hoop-and-goal",
+    "level": 4,
+    "name_en": "Basketball Hoop & Goal",
+    "parent": "basketball-equipment"
+  },
+  {
+    "handle": "battery-generators",
+    "level": 4,
+    "name_en": "Battery Generators",
+    "parent": "generators"
+  },
+  {
+    "handle": "bay-light",
+    "level": 4,
+    "name_en": "Bay Light",
+    "parent": "high-bay-lights"
+  },
+  {
+    "handle": "beach-canopy",
+    "level": 4,
+    "name_en": "Beach Canopy",
+    "parent": "pop-up-tents"
+  },
+  {
+    "handle": "beds-and-cages",
+    "level": 4,
+    "name_en": "Beds & Cages",
+    "parent": "small-animal-supplies"
+  },
+  {
+    "handle": "bike-travel-case",
+    "level": 4,
+    "name_en": "Bike Travel Case",
+    "parent": "cargo-boxes-and-bags"
+  },
+  {
+    "handle": "bird-cages-and-carriers",
+    "level": 4,
+    "name_en": "Bird Cages & Carriers",
+    "parent": "pet-bird-supplies"
+  },
+  {
+    "handle": "boat-parts-and-accessories",
+    "level": 4,
+    "name_en": "Boat Parts & Accessories",
+    "parent": "boats"
+  },
+  {
+    "handle": "brad-nailers",
+    "level": 4,
+    "name_en": "Brad Nailers",
+    "parent": "nail-guns"
+  },
+  {
+    "handle": "building-and-construction-toys",
+    "level": 4,
+    "name_en": "Building & Construction Toys",
+    "parent": "kids-handmade-toys"
+  },
+  {
+    "handle": "cabinet-and-furniture-drawer-slides",
+    "level": 4,
+    "name_en": "Cabinet & Furniture Drawer Slides",
+    "parent": "drawer-slides"
+  },
+  {
+    "handle": "car-audio-subwoofers",
+    "level": 4,
+    "name_en": "Car Audio Subwoofers",
+    "parent": "car-cell-phone-accessories"
+  },
+  {
+    "handle": "car-buffer-polisher",
+    "level": 4,
+    "name_en": "Car Buffer Polisher",
+    "parent": "polishers"
+  },
+  {
+    "handle": "car-mono-amplifiers",
+    "level": 4,
+    "name_en": "Car Mono Amplifiers",
+    "parent": "car-cell-phone-accessories"
+  },
+  {
+    "handle": "car-multichannel-amplifiers",
+    "level": 4,
+    "name_en": "Car Multichannel Amplifiers",
+    "parent": "car-cell-phone-accessories"
+  },
+  {
+    "handle": "cases-and-storage",
+    "level": 4,
+    "name_en": "Cases & Storage",
+    "parent": "playstation-5-accessories"
+  },
+  {
+    "handle": "cat-doors",
+    "level": 4,
+    "name_en": "Cat Doors",
+    "parent": "pet-doors"
+  },
+  {
+    "handle": "cat-litter-and-accessories",
+    "level": 4,
+    "name_en": "Cat Litter & Accessories",
+    "parent": "cat-supplies"
+  },
+  {
+    "handle": "category-1-blades-and-scrapers",
+    "level": 4,
+    "name_en": "Category 1 Blades & Scrapers",
+    "parent": "utv-accessories"
+  },
+  {
+    "handle": "ceramic-and-pottery-supplies",
+    "level": 4,
+    "name_en": "Ceramic & Pottery Supplies",
+    "parent": "crafting-machines"
+  },
+  {
+    "handle": "charcoal-grills",
+    "level": 4,
+    "name_en": "Charcoal Grills",
+    "parent": "grills"
+  },
+  {
+    "handle": "childrens-basketball-set",
+    "level": 4,
+    "name_en": "Children's Basketball Set",
+    "parent": "kids-activity-toys"
+  },
+  {
+    "handle": "christmas-trains",
+    "level": 4,
+    "name_en": "Christmas Trains",
+    "parent": "indoor-christmas-decorations"
+  },
+  {
+    "handle": "clamps-and-vises",
+    "level": 4,
+    "name_en": "Clamps & Vises",
+    "parent": "hand-tools-fastening-tools"
+  },
+  {
+    "handle": "claw-foot-tub-faucets",
+    "level": 4,
+    "name_en": "Claw Foot Tub Faucets",
+    "parent": "bathtub-faucets"
+  },
+  {
+    "handle": "climbing-crash-pads",
+    "level": 4,
+    "name_en": "Climbing Crash Pads",
+    "parent": "rock-climbing-equipment"
+  },
+  {
+    "handle": "conference-table",
+    "level": 4,
+    "name_en": "Conference Table",
+    "parent": "desks"
+  },
+  {
+    "handle": "darts-and-dart-boards",
+    "level": 4,
+    "name_en": "Darts & Dart Boards",
+    "parent": "game-room"
+  },
+  {
+    "handle": "deck-boxes",
+    "level": 4,
+    "name_en": "Deck Boxes",
+    "parent": "patio-storage"
+  },
+  {
+    "handle": "deck-parts-and-accessories-log-tongs",
+    "level": 4,
+    "name_en": "Log Tongs",
+    "parent": "deck-parts-and-accessories"
+  },
+  {
+    "handle": "demolition-and-breaker-hammers",
+    "level": 4,
+    "name_en": "Demolition & Breaker Hammers",
+    "parent": "concrete-drilling-tools"
+  },
+  {
+    "handle": "desktop-and-off-surface-shelves",
+    "level": 4,
+    "name_en": "Desktop & Off-Surface Shelves",
+    "parent": "desk-organizers-and-accessories"
+  },
+  {
+    "handle": "dog-carriers-houses-and-kennels",
+    "level": 4,
+    "name_en": "Dog Carriers, Houses & Kennels",
+    "parent": "dog-supplies"
+  },
+  {
+    "handle": "drains-and-drain-parts",
+    "level": 4,
+    "name_en": "Drains & Drain Parts",
+    "parent": "drain-parts"
+  },
+  {
+    "handle": "dvd-and-cd-cabinet",
+    "level": 4,
+    "name_en": "DVD & CD Cabinet",
+    "parent": "media-storage"
+  },
+  {
+    "handle": "e-and-x-track-rails",
+    "level": 4,
+    "name_en": "E & X-Track Rails",
+    "parent": "tie-down-hardware-and-accessories"
+  },
+  {
+    "handle": "electric-grill",
+    "level": 4,
+    "name_en": "Electric Grill",
+    "parent": "grills"
+  },
+  {
+    "handle": "electric-tillers",
+    "level": 4,
+    "name_en": "Electric Tillers",
+    "parent": "rototillers-and-cultivators"
+  },
+  {
+    "handle": "electric-trailer-mover",
+    "level": 4,
+    "name_en": "Electric Trailer Mover",
+    "parent": "rv-accessories"
+  },
+  {
+    "handle": "electricians-tool-sets",
+    "level": 4,
+    "name_en": "Electrician's Tool Sets",
+    "parent": "hand-tool-sets"
+  },
+  {
+    "handle": "electronic-magnifier",
+    "level": 4,
+    "name_en": "Electronic Magnifier",
+    "parent": "independent-living"
+  },
+  {
+    "handle": "electronics-home-audio-speakers",
+    "level": 4,
+    "name_en": "Speakers",
+    "parent": "electronics-home-audio"
+  },
+  {
+    "handle": "enclosed-mobility-scooter",
+    "level": 4,
+    "name_en": "Enclosed Mobility Scooter",
+    "parent": "wheelchairs"
+  },
+  {
+    "handle": "end-and-side-tables",
+    "level": 4,
+    "name_en": "End & Side Tables",
+    "parent": "accent-tables"
+  },
+  {
+    "handle": "executive-desks",
+    "level": 4,
+    "name_en": "Executive Desks",
+    "parent": "desks"
+  },
+  {
+    "handle": "fabric-bedroom-benches",
+    "level": 4,
+    "name_en": "Fabric Bedroom Benches",
+    "parent": "bedroom-benches"
+  },
+  {
+    "handle": "fabric-power-loveseat",
+    "level": 4,
+    "name_en": "Fabric Power Loveseat",
+    "parent": "loveseats"
+  },
+  {
+    "handle": "fish-tape-and-poles",
+    "level": 4,
+    "name_en": "Fish Tape & Poles",
+    "parent": "wire-and-conduit-tools"
+  },
+  {
+    "handle": "foldable-barn-door",
+    "level": 4,
+    "name_en": "Foldable Barn Door",
+    "parent": "barn-doors"
+  },
+  {
+    "handle": "forearm-lifting-straps",
+    "level": 4,
+    "name_en": "Forearm Lifting Straps",
+    "parent": "lifting-straps"
+  },
+  {
+    "handle": "forklifts-jib-cranes",
+    "level": 4,
+    "name_en": "Forklifts Jib Cranes",
+    "parent": "lifting-equipment"
+  },
+  {
+    "handle": "garage-wall-organization-slatwall-panels",
+    "level": 4,
+    "name_en": "Slatwall Panels",
+    "parent": "garage-wall-organization"
+  },
+  {
+    "handle": "garden-stakes",
+    "level": 4,
+    "name_en": "Garden Stakes",
+    "parent": "plant-support"
+  },
+  {
+    "handle": "garden-work-bench",
+    "level": 4,
+    "name_en": "Garden Work Bench",
+    "parent": "planters"
+  },
+  {
+    "handle": "gas-fire-pits",
+    "level": 4,
+    "name_en": "Gas Fire Pits",
+    "parent": "fire-pits"
+  },
+  {
+    "handle": "gliders-and-ottomans",
+    "level": 4,
+    "name_en": "Gliders & Ottomans",
+    "parent": "baby-furniture"
+  },
+  {
+    "handle": "greenhouse-supplies",
+    "level": 4,
+    "name_en": "Greenhouse Supplies",
+    "parent": "greenhouses"
+  },
+  {
+    "handle": "habitats-and-decor",
+    "level": 4,
+    "name_en": "Habitats & Decor",
+    "parent": "reptile-and-amphibian-supplies"
+  },
+  {
+    "handle": "hand-soap-and-lotion-dispensers",
+    "level": 4,
+    "name_en": "Hand Soap & Lotion Dispensers",
+    "parent": "kitchen-soap-dispensers"
+  },
+  {
+    "handle": "hitch-cargo-bag-and-expandable-nylon-cargo-carrier-cover",
+    "level": 4,
+    "name_en": "Hitch Cargo Bag & Expandable Nylon Cargo Carrier Cover",
+    "parent": "cargo-boxes-and-bags"
+  },
+  {
+    "handle": "home-indoor-plush-carpet",
+    "level": 4,
+    "name_en": "Home Indoor Plush Carpet",
+    "parent": "area-rugs"
+  },
+  {
+    "handle": "home-safety-emergency-preparedness",
+    "level": 4,
+    "name_en": "Emergency Preparedness",
+    "parent": "home-safety"
+  },
+  {
+    "handle": "household-electric-pizza-ovens",
+    "level": 4,
+    "name_en": "Household Electric Pizza Ovens",
+    "parent": "toaster-ovens"
+  },
+  {
+    "handle": "instant-sheds-and-storage-shelters",
+    "level": 4,
+    "name_en": "Instant Sheds & Storage Shelters",
+    "parent": "outdoor-car-storage"
+  },
+  {
+    "handle": "kids-art-easel",
+    "level": 4,
+    "name_en": "Kid's Art Easel",
+    "parent": "kids-educational-toys"
+  },
+  {
+    "handle": "kids-balance-bike",
+    "level": 4,
+    "name_en": "Kid's Balance Bike",
+    "parent": "bikes"
+  },
+  {
+    "handle": "kids-carry-on-luggage-set",
+    "level": 4,
+    "name_en": "Kids Carry On Luggage Set",
+    "parent": "kids-decorative-toys"
+  },
+  {
+    "handle": "kids-tables-and-chairs",
+    "level": 4,
+    "name_en": "Kids Tables & Chairs",
+    "parent": "kids-playroom"
+  },
+  {
+    "handle": "kids-tricycles",
+    "level": 4,
+    "name_en": "Kids' Tricycles",
+    "parent": "kid-cars"
+  },
+  {
+    "handle": "kitchen-baker-rack",
+    "level": 4,
+    "name_en": "Kitchen Baker Rack",
+    "parent": "bakers-racks"
+  },
+  {
+    "handle": "knife-sets",
+    "level": 4,
+    "name_en": "Knife Sets",
+    "parent": "hand-tool-sets"
+  },
+  {
+    "handle": "lathes-and-accessories",
+    "level": 4,
+    "name_en": "Lathes & Accessories",
+    "parent": "metalworking-tools"
+  },
+  {
+    "handle": "learning-table",
+    "level": 4,
+    "name_en": "Learning Table",
+    "parent": "kids-activity-toys"
+  },
+  {
+    "handle": "metal-coffee-table",
+    "level": 4,
+    "name_en": "Metal Coffee Table",
+    "parent": "coffee-tables"
+  },
+  {
+    "handle": "metal-hall-tree",
+    "level": 4,
+    "name_en": "Metal Hall Tree",
+    "parent": "hall-trees"
+  },
+  {
+    "handle": "micrometer-set",
+    "level": 4,
+    "name_en": "Micrometer Set",
+    "parent": "measuring-tools"
+  },
+  {
+    "handle": "microscopes-and-equipment",
+    "level": 4,
+    "name_en": "Microscopes & Equipment",
+    "parent": "lab-instruments-and-equipment"
+  },
+  {
+    "handle": "milling-machines-and-drill-presses",
+    "level": 4,
+    "name_en": "Milling Machines & Drill Presses",
+    "parent": "metalworking-tools"
+  },
+  {
+    "handle": "motorcycle-tail-bags-and-saddle-bags",
+    "level": 4,
+    "name_en": "Motorcycle Tail Bags & Saddle Bags",
+    "parent": "camping-gear-accessories"
+  },
+  {
+    "handle": "multi-process-welders",
+    "level": 4,
+    "name_en": "Multi Process Welders",
+    "parent": "welding-machines"
+  },
+  {
+    "handle": "network-cable-testers",
+    "level": 4,
+    "name_en": "Network Cable Testers",
+    "parent": "wifi-and-networking-devices"
+  },
+  {
+    "handle": "off-grid-solar-systems",
+    "level": 4,
+    "name_en": "Off Grid Solar Systems",
+    "parent": "solar-panel-kits"
+  },
+  {
+    "handle": "pallet-stackers-and-lifters",
+    "level": 4,
+    "name_en": "Pallet Stackers & Lifters",
+    "parent": "lifting-equipment"
+  },
+  {
+    "handle": "pegboards-and-accessories",
+    "level": 4,
+    "name_en": "Pegboards & Accessories",
+    "parent": "garage-wall-organization"
+  },
+  {
+    "handle": "physicians-scale",
+    "level": 4,
+    "name_en": "Physician's Scale",
+    "parent": "bathroom-scales"
+  },
+  {
+    "handle": "pizza-stones",
+    "level": 4,
+    "name_en": "Pizza Stones",
+    "parent": "bakeware"
+  },
+  {
+    "handle": "plastic-andwood-patio-lounge-chairs",
+    "level": 4,
+    "name_en": "Plastic &Wood Patio Lounge Chairs",
+    "parent": "patio-chairs"
+  },
+  {
+    "handle": "plastic-mesh-fence",
+    "level": 4,
+    "name_en": "Plastic Mesh Fence",
+    "parent": "hardware-cloth-fencing"
+  },
+  {
+    "handle": "portable-air-conditioner",
+    "level": 4,
+    "name_en": "Portable Air Conditioner",
+    "parent": "portable-air-conditioners"
+  },
+  {
+    "handle": "portable-audio-and-video",
+    "level": 4,
+    "name_en": "Portable Audio & Video",
+    "parent": "electronics-home-audio"
+  },
+  {
+    "handle": "portable-lifts",
+    "level": 4,
+    "name_en": "Portable Lifts",
+    "parent": "car-lifts"
+  },
+  {
+    "handle": "portable-soft-cooler",
+    "level": 4,
+    "name_en": "Portable Soft Cooler",
+    "parent": "coolers"
+  },
+  {
+    "handle": "pot-and-pan-sets",
+    "level": 4,
+    "name_en": "Pot & Pan Sets",
+    "parent": "cookware"
+  },
+  {
+    "handle": "preserved-flowers",
+    "level": 4,
+    "name_en": "Preserved Flowers",
+    "parent": "artificial-flowers"
+  },
+  {
+    "handle": "punches-and-nail-setters",
+    "level": 4,
+    "name_en": "Punches & Nail Setters",
+    "parent": "chisels-files-and-punches"
+  },
+  {
+    "handle": "ratchet-and-socket-sets",
+    "level": 4,
+    "name_en": "Ratchet & Socket Sets",
+    "parent": "hand-tool-sets"
+  },
+  {
+    "handle": "rebar-bender-and-cutter",
+    "level": 4,
+    "name_en": "Rebar Bender & Cutter",
+    "parent": "power-cutting-tools"
+  },
+  {
+    "handle": "rivet-tools-and-rivets",
+    "level": 4,
+    "name_en": "Rivet Tools & Rivets",
+    "parent": "hand-tools-fastening-tools"
+  },
+  {
+    "handle": "rod-and-reel-combos",
+    "level": 4,
+    "name_en": "Rod & Reel Combos",
+    "parent": "poles-rods-and-reels"
+  },
+  {
+    "handle": "rotary-tools",
+    "level": 4,
+    "name_en": "Rotary Tools",
+    "parent": "power-multi-tools"
+  },
+  {
+    "handle": "rowing-machine",
+    "level": 4,
+    "name_en": "Rowing Machine",
+    "parent": "cardio-equipment"
+  },
+  {
+    "handle": "rv-awning-sun-shade-screen",
+    "level": 4,
+    "name_en": "RV Awning Sun Shade Screen",
+    "parent": "fixed-awnings"
+  },
+  {
+    "handle": "scooters",
+    "level": 4,
+    "name_en": "Scooters",
+    "parent": "skating"
+  },
+  {
+    "handle": "scrapbooking-and-stamping",
+    "level": 4,
+    "name_en": "Scrapbooking & Stamping",
+    "parent": "crafting-machines"
+  },
+  {
+    "handle": "screen-house-tent",
+    "level": 4,
+    "name_en": "Screen House Tent",
+    "parent": "pop-up-tents"
+  },
+  {
+    "handle": "server-racks-and-cabinets",
+    "level": 4,
+    "name_en": "Server Racks & Cabinets",
+    "parent": "wifi-and-networking-devices"
+  },
+  {
+    "handle": "shallow-well-pumps",
+    "level": 4,
+    "name_en": "Shallow Well Pumps",
+    "parent": "well-pumps"
+  },
+  {
+    "handle": "shoe-and-boot-dryers",
+    "level": 4,
+    "name_en": "Shoe & Boot Dryers",
+    "parent": "dryers"
+  },
+  {
+    "handle": "shower-and-bathtub-trim-kits",
+    "level": 4,
+    "name_en": "Shower & Bathtub Trim Kits",
+    "parent": "trim-kits"
+  },
+  {
+    "handle": "smokers",
+    "level": 4,
+    "name_en": "Smokers",
+    "parent": "grills"
+  },
+  {
+    "handle": "sockets-and-ratchets",
+    "level": 4,
+    "name_en": "Sockets & Ratchets",
+    "parent": "hand-tool-sets"
+  },
+  {
+    "handle": "soldering-parts-and-accessories",
+    "level": 4,
+    "name_en": "Soldering Parts & Accessories",
+    "parent": "brazing-and-soldering-equipment"
+  },
+  {
+    "handle": "sound-bars",
+    "level": 4,
+    "name_en": "Sound Bars",
+    "parent": "electronics-home-audio"
+  },
+  {
+    "handle": "sous-vide-circulator",
+    "level": 4,
+    "name_en": "Sous Vide Circulator",
+    "parent": "cookers"
+  },
+  {
+    "handle": "specialty-meter",
+    "level": 4,
+    "name_en": "Specialty Meter",
+    "parent": "electrical-testers"
+  },
+  {
+    "handle": "squat-racks",
+    "level": 4,
+    "name_en": "Squat Racks",
+    "parent": "fitness-accessories"
+  },
+  {
+    "handle": "staplers-and-staples",
+    "level": 4,
+    "name_en": "Staplers & Staples",
+    "parent": "hand-tools-fastening-tools"
+  },
+  {
+    "handle": "starting-and-energy-storage-battery-charger",
+    "level": 4,
+    "name_en": "Starting & Energy Storage Battery Charger",
+    "parent": "rechargeable-battery-chargers"
+  },
+  {
+    "handle": "stovetop-pressure-cookers",
+    "level": 4,
+    "name_en": "Stovetop Pressure Cookers",
+    "parent": "cookware"
+  },
+  {
+    "handle": "strapping-machine-and-strapping-and-strapping-cart",
+    "level": 4,
+    "name_en": "Strapping Machine & Strapping & Strapping Cart",
+    "parent": "package-handling"
+  },
+  {
+    "handle": "tape-measures",
+    "level": 4,
+    "name_en": "Tape Measures",
+    "parent": "measuring-tools"
+  },
+  {
+    "handle": "teeth-whitening-machine",
+    "level": 4,
+    "name_en": "Teeth Whitening Machine",
+    "parent": "oral-care"
+  },
+  {
+    "handle": "tent-accessories",
+    "level": 4,
+    "name_en": "Tent Accessories",
+    "parent": "tents"
+  },
+  {
+    "handle": "track-saws-and-guide-rail",
+    "level": 4,
+    "name_en": "Track Saws & Guide Rail",
+    "parent": "saws"
+  },
+  {
+    "handle": "under-cabinet-lighting-accessories",
+    "level": 4,
+    "name_en": "Under Cabinet Lighting Accessories",
+    "parent": "under-cabinet-lighting"
+  },
+  {
+    "handle": "voltage-transformers-voltage-converter-transformer",
+    "level": 4,
+    "name_en": "Voltage Converter Transformer",
+    "parent": "voltage-transformers"
+  },
+  {
+    "handle": "water-leak-detector",
+    "level": 4,
+    "name_en": "Water Leak Detector",
+    "parent": "pipe-inspection-tools"
+  },
+  {
+    "handle": "welding-hoses",
+    "level": 4,
+    "name_en": "Welding Hoses",
+    "parent": "welding-supplies"
+  },
+  {
+    "handle": "welding-sleeves-and-aprons",
+    "level": 4,
+    "name_en": "Welding Sleeves & Aprons",
+    "parent": "welding-safety-apparel"
+  },
+  {
+    "handle": "wheel-alignment-and-balancing-tools",
+    "level": 4,
+    "name_en": "Wheel Alignment & Balancing Tools",
+    "parent": "other-tire-accessories"
+  },
+  {
+    "handle": "wood-and-bamboo-folding-chairs",
+    "level": 4,
+    "name_en": "Wood & Bamboo Folding Chairs",
+    "parent": "folding-chairs"
+  },
+  {
+    "handle": "wood-planer-and-accessories",
+    "level": 4,
+    "name_en": "Wood Planer & Accessories",
+    "parent": "planers"
+  },
+  {
+    "handle": "adults-bean-bag-chairs",
+    "level": 5,
+    "name_en": "Adult's Bean Bag Chairs",
+    "parent": "bean-bag-chairs"
+  },
+  {
+    "handle": "beach-tent",
+    "level": 5,
+    "name_en": "Beach Tent",
+    "parent": "camping-tents"
+  },
+  {
+    "handle": "billiard-stick",
+    "level": 5,
+    "name_en": "Billiard Stick",
+    "parent": "billiard-equipment"
+  },
+  {
+    "handle": "boat-trailer-steps",
+    "level": 5,
+    "name_en": "Boat Trailer Steps",
+    "parent": "boat-parts-and-accessories"
+  },
+  {
+    "handle": "breast-pump-carrying-bags",
+    "level": 5,
+    "name_en": "Breast Pump Carrying Bags",
+    "parent": "portable-soft-cooler"
+  },
+  {
+    "handle": "canopy-tents",
+    "level": 5,
+    "name_en": "Canopy Tents",
+    "parent": "canopies"
+  },
+  {
+    "handle": "car-seats-and-strollers",
+    "level": 5,
+    "name_en": "Car Seats & Strollers",
+    "parent": "child-safety"
+  },
+  {
+    "handle": "carbon-dioxide-monitoring-controller",
+    "level": 5,
+    "name_en": "Carbon Dioxide Monitoring Controller",
+    "parent": "specialty-meter"
+  },
+  {
+    "handle": "cat-drinking-fountains-and-water-dishes",
+    "level": 5,
+    "name_en": "Cat Drinking Fountains & Water Dishes",
+    "parent": "cat-feeding-supplies"
+  },
+  {
+    "handle": "cat-trees-and-scratch-posts",
+    "level": 5,
+    "name_en": "Cat Trees & Scratch Posts",
+    "parent": "cat-furniture"
+  },
+  {
+    "handle": "charcoal-smokers",
+    "level": 5,
+    "name_en": "Charcoal Smokers",
+    "parent": "smokers"
+  },
+  {
+    "handle": "clip-fan",
+    "level": 5,
+    "name_en": "Clip Fan",
+    "parent": "jobsite-fans"
+  },
+  {
+    "handle": "coat-locker-organizers",
+    "level": 5,
+    "name_en": "Coat Locker Organizers",
+    "parent": "kids-storage"
+  },
+  {
+    "handle": "coupler-lock",
+    "level": 5,
+    "name_en": "Coupler Lock",
+    "parent": "hitch-accessories"
+  },
+  {
+    "handle": "dog-beds-and-pillows",
+    "level": 5,
+    "name_en": "Dog Beds & Pillows",
+    "parent": "dog-furniture"
+  },
+  {
+    "handle": "dog-crates-and-crate-pads",
+    "level": 5,
+    "name_en": "Dog Crates & Crate Pads",
+    "parent": "dog-carriers-houses-and-kennels"
+  },
+  {
+    "handle": "dog-pens-and-gates",
+    "level": 5,
+    "name_en": "Dog Pens & Gates",
+    "parent": "dog-carriers-houses-and-kennels"
+  },
+  {
+    "handle": "expandable-solar-power-station",
+    "level": 5,
+    "name_en": "Expandable Solar Power Station",
+    "parent": "battery-generators"
+  },
+  {
+    "handle": "fireplace-tool-set",
+    "level": 5,
+    "name_en": "Fireplace Tool Set",
+    "parent": "fireplace-tools"
+  },
+  {
+    "handle": "fixed-l-shaped-desks",
+    "level": 5,
+    "name_en": "Fixed L Shaped Desks",
+    "parent": "writing-desks"
+  },
+  {
+    "handle": "floating-cooler",
+    "level": 5,
+    "name_en": "Floating Cooler",
+    "parent": "chest-coolers"
+  },
+  {
+    "handle": "fruit-crusher-fermenter",
+    "level": 5,
+    "name_en": "Fruit Crusher Fermenter",
+    "parent": "specialty-kitchen-gadgets"
+  },
+  {
+    "handle": "gas-heaters-diesel-heater",
+    "level": 5,
+    "name_en": "Diesel Heater",
+    "parent": "gas-heaters"
+  },
+  {
+    "handle": "horse-hay-bag",
+    "level": 5,
+    "name_en": "Horse Hay Bag",
+    "parent": "horse-supplies"
+  },
+  {
+    "handle": "karaoke-machine",
+    "level": 5,
+    "name_en": "Karaoke Machine",
+    "parent": "portable-audio-and-video"
+  },
+  {
+    "handle": "kick-scooters",
+    "level": 5,
+    "name_en": "Kick Scooters",
+    "parent": "scooters"
+  },
+  {
+    "handle": "kids-play-table-and-chair",
+    "level": 5,
+    "name_en": "Kid's Play Table and Chair",
+    "parent": "kids-tables-and-chairs"
+  },
+  {
+    "handle": "kids-pull-along-wagons",
+    "level": 5,
+    "name_en": "Kids' Pull-Along Wagons",
+    "parent": "garden-carts"
+  },
+  {
+    "handle": "kids-study-desks-and-chairs",
+    "level": 5,
+    "name_en": "Kid's Study Desks and Chairs",
+    "parent": "kids-tables-and-chairs"
+  },
+  {
+    "handle": "lab-scales-and-balances",
+    "level": 5,
+    "name_en": "Lab Scales & Balances",
+    "parent": "lab-instruments"
+  },
+  {
+    "handle": "led-aluminium-channel",
+    "level": 5,
+    "name_en": "LED Aluminium Channel",
+    "parent": "under-cabinet-lighting-accessories"
+  },
+  {
+    "handle": "litter-boxes-and-houses",
+    "level": 5,
+    "name_en": "Litter Boxes & Houses",
+    "parent": "cat-litter-and-accessories"
+  },
+  {
+    "handle": "metal-end-table",
+    "level": 5,
+    "name_en": "Metal End Table",
+    "parent": "end-and-side-tables"
+  },
+  {
+    "handle": "metal-fabrication-accessories-linear-guide-rail",
+    "level": 5,
+    "name_en": "Linear Guide Rail",
+    "parent": "metal-fabrication-accessories"
+  },
+  {
+    "handle": "non-electric-grease-guns",
+    "level": 5,
+    "name_en": "Non electric Grease Guns",
+    "parent": "grease-guns"
+  },
+  {
+    "handle": "nut-and-bolt-assortment-sets",
+    "level": 5,
+    "name_en": "Nut & Bolt Assortment Sets",
+    "parent": "set-screws"
+  },
+  {
+    "handle": "other-parts-and-accessories",
+    "level": 5,
+    "name_en": "Other Parts & Accessories",
+    "parent": "breaker-box-parts"
+  },
+  {
+    "handle": "outdoor-dog-kennel",
+    "level": 5,
+    "name_en": "Outdoor Dog Kennel",
+    "parent": "dog-houses"
+  },
+  {
+    "handle": "overlock-sewing-machine",
+    "level": 5,
+    "name_en": "Overlock Sewing Machine",
+    "parent": "sewing-machines"
+  },
+  {
+    "handle": "plant-cages-and-support",
+    "level": 5,
+    "name_en": "Plant Cages & Support",
+    "parent": "tomato-cages"
+  },
+  {
+    "handle": "plant-protection-cover",
+    "level": 5,
+    "name_en": "Plant Protection Cover",
+    "parent": "tomato-cages"
+  },
+  {
+    "handle": "polyester-fabric-tablecloths",
+    "level": 5,
+    "name_en": "Polyester Fabric Tablecloths",
+    "parent": "tablecloths"
+  },
+  {
+    "handle": "polypropylene-sandbags",
+    "level": 5,
+    "name_en": "Polypropylene Sandbags",
+    "parent": "landscape-accessories"
+  },
+  {
+    "handle": "pool-storage",
+    "level": 5,
+    "name_en": "Pool Storage",
+    "parent": "deck-boxes"
+  },
+  {
+    "handle": "pop-up-gazebo-side-panel",
+    "level": 5,
+    "name_en": "Pop-Up Gazebo Side Panel",
+    "parent": "tent-accessories"
+  },
+  {
+    "handle": "portable-galvanometer-laser-engraver",
+    "level": 5,
+    "name_en": "Portable Galvanometer Laser Engraver",
+    "parent": "laser-engraving-machine"
+  },
+  {
+    "handle": "pressure-canner",
+    "level": 5,
+    "name_en": "Pressure Canner",
+    "parent": "stovetop-pressure-cookers"
+  },
+  {
+    "handle": "privacy-tents",
+    "level": 5,
+    "name_en": "Privacy Tents",
+    "parent": "camping-tents"
+  },
+  {
+    "handle": "safety-gas-can",
+    "level": 5,
+    "name_en": "Safety Gas Can",
+    "parent": "gas-cans"
+  },
+  {
+    "handle": "salamander-broilers-and-cheese-melters",
+    "level": 5,
+    "name_en": "Salamander Broilers & Cheese Melters",
+    "parent": "electric-griddles"
+  },
+  {
+    "handle": "snowboard-and-boot-bag",
+    "level": 5,
+    "name_en": "snowboard & boot bag",
+    "parent": "backpacks-bags-and-accessories"
+  },
+  {
+    "handle": "solar-street-flood-light",
+    "level": 5,
+    "name_en": "Solar Street Flood Light",
+    "parent": "area-lights"
+  },
+  {
+    "handle": "steering-wheel",
+    "level": 5,
+    "name_en": "Steering Wheel",
+    "parent": "other-rv-accessories"
+  },
+  {
+    "handle": "tile-edging-trim",
+    "level": 5,
+    "name_en": "Tile Edging Trim",
+    "parent": "tile-tools"
+  },
+  {
+    "handle": "toddler-bed-rails-and-bumpers",
+    "level": 5,
+    "name_en": "Toddler Bed Rails & Bumpers",
+    "parent": "child-safety"
+  },
+  {
+    "handle": "wall-mounted-ventilation-fan",
+    "level": 5,
+    "name_en": "Wall Mounted Ventilation Fan",
+    "parent": "gable-mount-attic-fan"
+  },
+  {
+    "handle": "welding-cable-reels",
+    "level": 5,
+    "name_en": "Welding Cable Reels",
+    "parent": "welding-hoses"
+  },
+  {
+    "handle": "whole-house-portable-solar-power-generator",
+    "level": 5,
+    "name_en": "Whole House Portable Solar Power Generator",
+    "parent": "battery-generators"
+  },
+  {
+    "handle": "wooden-kids-desk",
+    "level": 5,
+    "name_en": "Wooden Kid's Desk",
+    "parent": "kids-desks"
+  },
+  {
+    "handle": "baby-and-toddler-bed-rails-and-rail-guards",
+    "level": 6,
+    "name_en": "Baby & Toddler Bed Rails & Rail Guards",
+    "parent": "toddler-bed-rails-and-bumpers"
+  },
+  {
+    "handle": "pool-ionizers",
+    "level": 6,
+    "name_en": "Pool Ionizers",
+    "parent": "pool-cleaning-supplies"
+  },
+  {
+    "handle": "variable-speed-pool-pump",
+    "level": 6,
+    "name_en": "Variable Speed Pool Pump",
+    "parent": "pool-pumps"
+  },
+  {
+    "handle": "lake-weed-roller",
+    "level": 7,
+    "name_en": "Lake Weed Roller",
+    "parent": "landscaping-rakes"
+  },
+  {
+    "handle": "solar-pool-ionizers",
+    "level": 7,
+    "name_en": "Solar Pool Ionizers",
+    "parent": "pool-ionizers"
+  }
+]
