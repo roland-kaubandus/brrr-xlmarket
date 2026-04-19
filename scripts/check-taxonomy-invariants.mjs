@@ -1,6 +1,9 @@
 #!/usr/bin/env node
 /**
- * check-taxonomy-invariants.mjs — run all 19 invariants from spec §8.
+ * check-taxonomy-invariants.mjs — run all taxonomy invariants (spec §8).
+ * As of 2026-04-19 there are 29 registered checks. 1 is formally
+ * deprecated (INV-12, kept for audit trail; flagged via `deprecated: true`
+ * in --json output and skipped from pass/fail totals).
  *
  * Usage:
  *   node scripts/check-taxonomy-invariants.mjs                  # all checks
@@ -20,6 +23,30 @@ import { fileURLToPath } from "node:url"
 import yaml from "js-yaml"
 import { execSync } from "node:child_process"
 
+// Optional pg import — only required when INV-14 / INV-32 (DB checks) run.
+// Wrapped in try/catch so the script still loads on machines where `pg` is
+// not installed (CI without backend deps). The DB-backed invariants fall
+// back to "skipped" if the import fails.
+let pg = null
+try {
+  pg = (await import("pg")).default
+} catch {
+  pg = null
+}
+
+// Shared PG config — mirrors scripts/reassign-v3-from-mapping.mjs exactly.
+const PG_CONFIG = {
+  host: "localhost",
+  port: 5435,
+  user: "xlmarket",
+  password: "PG_PASSWORD_REDACTED",
+  database: "xlmarket",
+}
+
+// Allow DB-backed invariants to be skipped in environments without Postgres
+// (e.g. a fresh dev laptop). Set TAXONOMY_HEALTH_DB=0 to force-skip.
+const DB_ENABLED = process.env.TAXONOMY_HEALTH_DB !== "0" && pg !== null
+
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..")
 const YAML_PATH = resolve(ROOT, "backend/src/data/taxonomy.yaml")
 const ALIAS_PATH = resolve(ROOT, "backend/src/data/taxonomy-image-aliases.yaml")
@@ -32,16 +59,17 @@ const only = args.find((a) => a.startsWith("--only="))?.split("=")[1]
 const isCi = args.includes("--ci")
 const jsonOut = args.includes("--json")
 
-/** @type {Array<{id:string, title:string, run:() => {pass:boolean, severity:'CRIT'|'WARN', detail:string}}>} */
+/** @type {Array<{id:string, title:string, deprecated?:boolean, run:() => Promise<{pass:boolean, severity:'CRIT'|'WARN', detail:string}> | {pass:boolean, severity:'CRIT'|'WARN', detail:string}}>} */
 const checks = []
 
-function check(id, severity, title, fn) {
+function check(id, severity, title, fn, opts = {}) {
   checks.push({
     id,
     title,
-    run: () => {
+    deprecated: !!opts.deprecated,
+    run: async () => {
       try {
-        const res = fn()
+        const res = await fn()
         return { pass: res.pass, severity, detail: res.detail || "" }
       } catch (err) {
         return { pass: false, severity, detail: `Threw: ${err.message}` }
@@ -69,7 +97,11 @@ check("INV-01", "CRIT", "taxonomy.yaml parses + top-level shape", () => {
   return { pass: true, detail: `${yamlDoc.l1.length} L1 entries` }
 })
 
-check("INV-02", "WARN", "Taxonomy size counters (informational — no hard limits per spec §3.1.1 revision)", () => {
+check("INV-02", "WARN", "Taxonomy size counters (informational — WARN, not blocking; user 2026-04-18: no category may have limits)", () => {
+  // Kasutaja otsus 2026-04-18: "Ühelgi kategoorial ei saa olla piirangut kui
+  // palju tal alamkategooriaid on või palju tooteid on". Säilitame checki
+  // MONITOORINGUKS — kuvame counterid aga EI blokeeri ühtegi deploy'd.
+  // Severity = WARN (mitte CRIT). Spec §3.1.1 revision 2026-04-18.
   const l1Count = yamlDoc.l1.length
   let l2Sum = 0
   let l3Sum = 0
@@ -77,9 +109,7 @@ check("INV-02", "WARN", "Taxonomy size counters (informational — no hard limit
     l2Sum += (l1.subs || []).length
     for (const l2 of l1.subs || []) l3Sum += (l2.subs || []).length
   }
-  // No thresholds — kasutaja 2026-04-18: "Ühelgi kategoorial ei saa olla
-  // piirangut kui palju tal alamkategooriaid on või palju tooteid on".
-  return { pass: true, detail: `${l1Count} L1 / ${l2Sum} L2 / ${l3Sum} L3 (informational)` }
+  return { pass: true, detail: `${l1Count} L1 / ${l2Sum} L2 / ${l3Sum} L3 (informational — no thresholds enforced)` }
 })
 
 check("INV-03", "CRIT", "No duplicate slugs in tree", () => {
@@ -152,16 +182,116 @@ check("INV-11", "WARN", "Every product has ≥1 category (skipped — needs back
   return { pass: true, detail: "skipped (run SQL check in backend)" }
 })
 
-check("INV-12", "WARN", "INV-12 DEPRECATED — product-count thresholds removed per spec §3.1.1 revision 2026-04-18", () => {
-  return { pass: true, detail: "deprecated (no category may be hidden by product count)" }
-})
+// INV-12 DEPRECATED — v2 piirang (L1 with <30 products >60 days). Kasutaja
+// 2026-04-18 otsus: piiranguid pole. Säilitame koodi ajalooliseks viiteks
+// kuid skript logib "deprecated" ja ei kontrolli midagi. `--json` output
+// sisaldab `deprecated: true` flag'i.
+check("INV-12", "WARN", "INV-12 deprecated (v2 piirang — product-count thresholds eemaldatud spec §3.1.1 revision 2026-04-18)", () => {
+  console.error("INV-12: deprecated (v2 piirang, enam ei kehti)")
+  return { pass: true, detail: "deprecated — no category may be hidden by product count (user decision 2026-04-18)" }
+}, { deprecated: true })
 
 check("INV-13", "WARN", "No product placed at hidden node (skipped — needs backend env)", () => {
   return { pass: true, detail: "skipped (SQL check in backend)" }
 })
 
-check("INV-14", "WARN", "Meili taxonomy.ancestors matches DB (skipped)", () => {
-  return { pass: true, detail: "skipped (sample diff, backend env needed)" }
+check("INV-14", "WARN", "Meili taxonomy.ancestors matches DB bindings leaf-level (root → leaf chain)", async () => {
+  // LEAF-LEVEL check (uuendatud 2026-04-19): iga toote kohta Meili
+  // `taxonomy.ancestors` massiiv PEAB TÄPSELT vastama DB
+  // `product_category_product` ahelale ehk root → leaf kõik sõlmed (mitte
+  // ainult L1). Vana versioon võrdles ainult L1 — see jättis märkamata
+  // juhtumi, kus tooted on DB-s leaf'il aga Meili näitab ainult L1.
+  if (!DB_ENABLED) {
+    return { pass: true, detail: "skipped (pg module unavailable or TAXONOMY_HEALTH_DB=0)" }
+  }
+  const host = process.env.MEILISEARCH_HOST || "http://127.0.0.1:7700"
+  const key = process.env.MEILISEARCH_KEY || ""
+  const sampleSize = Number.parseInt(process.env.INV14_SAMPLE || "50", 10)
+
+  const client = new pg.Client(PG_CONFIG)
+  try {
+    await client.connect()
+  } catch (err) {
+    return { pass: true, detail: `skipped (DB unreachable: ${err.message})` }
+  }
+
+  try {
+    // Pull a random sample of products that have ≥1 v3 taxonomy binding
+    // (taxonomy_node_meta is the v3 marker table).
+    const { rows: sample } = await client.query(
+      `SELECT p.id, p.handle
+       FROM product p
+       WHERE p.status = 'published' AND p.deleted_at IS NULL
+         AND EXISTS (
+           SELECT 1 FROM product_category_product pcp
+           JOIN taxonomy_node_meta tnm ON tnm.node_id = pcp.product_category_id
+           WHERE pcp.product_id = p.id
+         )
+       ORDER BY random()
+       LIMIT $1`,
+      [sampleSize],
+    )
+    if (sample.length === 0) {
+      return { pass: true, detail: "no v3-bound products to sample" }
+    }
+
+    // For each sampled product, compute the full root→leaf handle set from DB.
+    const mismatches = []
+    let compared = 0
+    for (const prod of sample) {
+      const { rows: binds } = await client.query(
+        `SELECT pc.handle
+         FROM product_category_product pcp
+         JOIN product_category pc ON pc.id = pcp.product_category_id
+         JOIN taxonomy_node_meta tnm ON tnm.node_id = pc.id
+         WHERE pcp.product_id = $1`,
+        [prod.id],
+      )
+      if (binds.length === 0) continue
+      // Expand every bound handle into its full ancestor chain via tree.
+      const dbExpected = new Set()
+      for (const b of binds) {
+        let cur = tree.nodes[b.handle]
+        while (cur) {
+          dbExpected.add(cur.handle)
+          if (!cur.parent_handle) break
+          cur = tree.nodes[cur.parent_handle]
+        }
+      }
+
+      // Fetch Meili doc.
+      let meiliAnc
+      try {
+        const raw = execSync(
+          `curl -s -H "Authorization: Bearer ${key}" ${host}/indexes/products/documents/${prod.id}?fields=taxonomy`,
+          { stdio: ["ignore", "pipe", "pipe"] },
+        ).toString()
+        const parsed = JSON.parse(raw)
+        meiliAnc = new Set(parsed?.taxonomy?.ancestors || [])
+      } catch {
+        mismatches.push(`${prod.handle}: meili fetch failed`)
+        continue
+      }
+
+      compared++
+      // Compute diff in both directions.
+      const missingInMeili = [...dbExpected].filter((h) => !meiliAnc.has(h))
+      const extraInMeili = [...meiliAnc].filter((h) => !dbExpected.has(h))
+      if (missingInMeili.length || extraInMeili.length) {
+        mismatches.push(
+          `${prod.handle}: meili missing [${missingInMeili.slice(0, 3).join(",")}] extra [${extraInMeili.slice(0, 3).join(",")}]`,
+        )
+      }
+    }
+    return {
+      pass: mismatches.length === 0,
+      detail: mismatches.length
+        ? `${mismatches.length}/${compared} products drift (sample=${sample.length}): ${mismatches.slice(0, 3).join("; ")}`
+        : `${compared} products sampled, all root→leaf ancestors match`,
+    }
+  } finally {
+    await client.end().catch(() => {})
+  }
 })
 
 check("INV-15", "WARN", "Every L1/L2 slug resolves to 200 on /kategooriad/{slug}", () => {
@@ -470,37 +600,177 @@ check("INV-31", "CRIT", "No VEVOR-internal slug / path leaks in category UI", ()
 })
 
 // ==========================================================================
+// v3 path-to-leaf integrity (2026-04-19 — post-v3 deploy)
+// ==========================================================================
+
+check(
+  "INV-32",
+  "CRIT",
+  "Products bound to deepest possible leaf (v3 path-to-leaf mapping)",
+  async () => {
+    // Iga toote kohta, kelle `metadata.vevor_product_type` on kaardistatud
+    // failis `backend/src/taxonomy/rules/vevor-path-to-leaf.json`, peab DB
+    // binding vastama mapping target'iga (`handle`). Kui ei vasta →
+    // CRITICAL (resolver jättis teo tegemata või keegi kirjutas üle).
+    //
+    // Lubatud erand: tooted `needs-review-bucket` sõlmes (S8 review queue) —
+    // neid ei kontrolli.
+    if (!DB_ENABLED) {
+      return { pass: true, detail: "skipped (pg module unavailable or TAXONOMY_HEALTH_DB=0)" }
+    }
+    const mappingPath = resolve(ROOT, "backend/src/taxonomy/rules/vevor-path-to-leaf.json")
+    if (!existsSync(mappingPath)) {
+      return { pass: true, detail: "skipped (vevor-path-to-leaf.json not present)" }
+    }
+    const mapping = JSON.parse(readFileSync(mappingPath, "utf8")).mappings || {}
+    const mappingCount = Object.keys(mapping).length
+    if (mappingCount === 0) {
+      return { pass: true, detail: "skipped (mapping is empty)" }
+    }
+
+    const client = new pg.Client(PG_CONFIG)
+    try {
+      await client.connect()
+    } catch (err) {
+      return { pass: true, detail: `skipped (DB unreachable: ${err.message})` }
+    }
+
+    try {
+      // Preload handle → category_id from DB (v3 nodes only).
+      const { rows: cats } = await client.query(
+        `SELECT pc.id, pc.handle
+         FROM product_category pc
+         JOIN taxonomy_node_meta tnm ON tnm.node_id = pc.id
+         WHERE pc.deleted_at IS NULL`,
+      )
+      const handleToId = new Map()
+      for (const c of cats) handleToId.set(c.handle, c.id)
+
+      // Pull all published products that have a vevor_product_type in the mapping.
+      const { rows: products } = await client.query(
+        `SELECT p.id, p.handle, p.metadata->>'vevor_product_type' AS vp,
+           array_agg(DISTINCT pc.handle)
+             FILTER (WHERE pc.handle IS NOT NULL AND tnm.node_id IS NOT NULL)
+             AS v3_handles
+         FROM product p
+         LEFT JOIN product_category_product pcp ON pcp.product_id = p.id
+         LEFT JOIN product_category pc ON pc.id = pcp.product_category_id
+         LEFT JOIN taxonomy_node_meta tnm ON tnm.node_id = pc.id
+         WHERE p.status = 'published' AND p.deleted_at IS NULL
+           AND p.metadata->>'vevor_product_type' IS NOT NULL
+         GROUP BY p.id, p.handle, p.metadata`,
+      )
+
+      let checked = 0
+      let reviewBucketSkipped = 0
+      let mapped = 0
+      const mismatches = []
+      for (const prod of products) {
+        const expected = mapping[prod.vp]
+        if (!expected) continue // path not in mapping — not our concern here
+        mapped++
+        const bound = new Set(prod.v3_handles || [])
+        // Skip products parked in review bucket (S8 exception).
+        if (bound.has("needs-review-bucket")) {
+          reviewBucketSkipped++
+          continue
+        }
+        checked++
+        if (!bound.has(expected)) {
+          if (mismatches.length < 5) {
+            mismatches.push(
+              `${prod.handle}: vp='${prod.vp}' expected=${expected} actual=[${[...bound].slice(0, 3).join(",")}]`,
+            )
+          } else if (mismatches.length === 5) {
+            mismatches.push("…(truncated)")
+          }
+        }
+      }
+
+      const failCount = mismatches.filter((m) => !m.startsWith("…")).length
+      // We recount against the full set by subtracting matches: non-match total
+      // equals `checked - matches`. Redo accurately.
+      // (mismatches list is truncated but we tracked count via iteration.)
+      let totalDrift = 0
+      for (const prod of products) {
+        const expected = mapping[prod.vp]
+        if (!expected) continue
+        const bound = new Set(prod.v3_handles || [])
+        if (bound.has("needs-review-bucket")) continue
+        if (!bound.has(expected)) totalDrift++
+      }
+
+      return {
+        pass: totalDrift === 0,
+        detail: totalDrift === 0
+          ? `${checked} mapped products checked (${reviewBucketSkipped} in review bucket skipped), all bound to deepest leaf`
+          : `${totalDrift}/${checked} products drift (${mappingCount} mappings, ${reviewBucketSkipped} review-bucket skipped): ${mismatches.slice(0, 3).join("; ")}`,
+      }
+    } finally {
+      await client.end().catch(() => {})
+    }
+  },
+)
+
+// ==========================================================================
 // Execute + report
 // ==========================================================================
 
-function main() {
+async function main() {
   loadAll()
   const results = []
   for (const c of checks) {
     if (only && c.id !== only) continue
-    const r = c.run()
-    results.push({ id: c.id, title: c.title, severity: r.severity, pass: r.pass, detail: r.detail })
+    const r = await c.run()
+    results.push({
+      id: c.id,
+      title: c.title,
+      severity: r.severity,
+      pass: r.pass,
+      deprecated: !!c.deprecated,
+      detail: r.detail,
+    })
   }
 
   if (jsonOut) {
-    console.log(JSON.stringify({ generated_at: new Date().toISOString(), results }, null, 2))
+    // `invariants` key kept alongside legacy `results` for backward compat
+    // with tools that already read `results`. New consumers should use
+    // `invariants`.
+    console.log(
+      JSON.stringify(
+        {
+          generated_at: new Date().toISOString(),
+          invariants: results,
+          results,
+        },
+        null,
+        2,
+      ),
+    )
   } else {
     console.log("Taxonomy invariants:\n")
     for (const r of results) {
-      const mark = r.pass ? "PASS" : r.severity === "CRIT" ? "FAIL" : "WARN"
-      console.log(`${mark.padEnd(4)} ${r.id.padEnd(7)} ${r.title}`)
+      const mark = r.deprecated ? "SKIP" : r.pass ? "PASS" : r.severity === "CRIT" ? "FAIL" : "WARN"
+      const tag = r.deprecated ? " [deprecated]" : ""
+      console.log(`${mark.padEnd(4)} ${r.id.padEnd(7)} ${r.title}${tag}`)
       if (r.detail) console.log(`      ${r.detail}`)
     }
-    const crits = results.filter((r) => !r.pass && r.severity === "CRIT").length
-    const warns = results.filter((r) => !r.pass && r.severity === "WARN").length
-    const pass = results.filter((r) => r.pass).length
-    console.log(`\nTotal: ${pass} pass, ${warns} warn, ${crits} crit (of ${results.length})`)
+    const crits = results.filter((r) => !r.pass && !r.deprecated && r.severity === "CRIT").length
+    const warns = results.filter((r) => !r.pass && !r.deprecated && r.severity === "WARN").length
+    const deprecated = results.filter((r) => r.deprecated).length
+    const pass = results.filter((r) => r.pass && !r.deprecated).length
+    console.log(
+      `\nTotal: ${pass} pass, ${warns} warn, ${crits} crit, ${deprecated} deprecated (of ${results.length})`,
+    )
   }
 
-  const crits = results.filter((r) => !r.pass && r.severity === "CRIT").length
-  const warns = results.filter((r) => !r.pass && r.severity === "WARN").length
+  const crits = results.filter((r) => !r.pass && !r.deprecated && r.severity === "CRIT").length
+  const warns = results.filter((r) => !r.pass && !r.deprecated && r.severity === "WARN").length
   if (crits > 0) process.exit(1)
   if (isCi && warns > 0) process.exit(1)
 }
 
-main()
+main().catch((err) => {
+  console.error("FATAL:", err)
+  process.exit(1)
+})

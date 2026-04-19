@@ -97,7 +97,7 @@ export default function SubcategoryCarousel({
         ref={trackRef}
         role="list"
         aria-label={et ? "Alamkategooriad" : "Subcategories"}
-        className="flex gap-3 overflow-x-auto scroll-smooth snap-x snap-mandatory px-4 sm:px-6 pb-3"
+        className="flex gap-3 overflow-x-auto scroll-smooth snap-x snap-mandatory px-4 sm:px-6 pb-3 max-w-[1360px] mx-auto"
         style={{ scrollSnapType: "x mandatory" }}
       >
         {children.map((child, idx) => {

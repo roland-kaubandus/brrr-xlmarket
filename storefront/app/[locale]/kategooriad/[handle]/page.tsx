@@ -252,10 +252,10 @@ export default async function CategoryPage({ params, searchParams }: Props) {
         ]}
       />
 
-      {/* Breadcrumb — Home > …trail (SSoT, every segment clickable) */}
+      {/* Breadcrumb + Title row — Home > …trail + H1 + product count */}
       <div className="max-w-[1360px] mx-auto px-4 sm:px-6 pt-5">
         <nav
-          className="text-xs text-[#64748B] flex items-center flex-wrap gap-y-1"
+          className="text-xs text-[#64748B] flex items-center flex-wrap gap-y-1 mb-3"
           aria-label="Breadcrumb"
         >
           <Link
@@ -283,6 +283,17 @@ export default async function CategoryPage({ params, searchParams }: Props) {
             )
           })}
         </nav>
+        <div className="flex items-baseline gap-3 flex-wrap">
+          <h1 className="text-[28px] md:text-[34px] font-bold text-[#1E293B] tracking-tight">
+            {displayName}
+          </h1>
+          <span className="text-sm text-[#64748B]">
+            <span className="font-semibold text-[#1E293B]">
+              {totalCount.toLocaleString("et")}
+            </span>{" "}
+            {locale === "et" ? "toodet" : "products"}
+          </span>
+        </div>
       </div>
 
       {/* Full-width subcategory carousel (spec §3.5.4). Self-hides on leaves. */}
@@ -298,19 +309,14 @@ export default async function CategoryPage({ params, searchParams }: Props) {
       )}
 
       <div className="max-w-[1360px] mx-auto px-4 sm:px-6 py-7 sm:py-10">
-        {/* Title row: name + result count + sort + mobile filter button */}
-        <div className="flex items-start md:items-center justify-between gap-3 mb-6 flex-wrap">
-          <div className="flex items-baseline gap-3 flex-wrap">
-            <h1 className="text-[28px] md:text-[34px] font-bold text-[#1E293B] tracking-tight">
-              {displayName}
-            </h1>
-            <span className="text-sm text-[#64748B]">
-              <span className="font-semibold text-[#1E293B]">
-                {totalCount.toLocaleString("et")}
-              </span>{" "}
-              {locale === "et" ? "toodet" : "products"}
-            </span>
-          </div>
+        {/* Toolbar row: result count (compact) + sort + mobile filter button */}
+        <div className="flex items-center justify-between gap-3 mb-6 flex-wrap">
+          <span className="text-sm text-[#64748B]">
+            <span className="font-semibold text-[#1E293B]">
+              {totalCount.toLocaleString("et")}
+            </span>{" "}
+            {locale === "et" ? "toodet" : "products"}
+          </span>
           <div className="flex items-center gap-2">
             {/* Mobile filter button */}
             <div className="md:hidden">

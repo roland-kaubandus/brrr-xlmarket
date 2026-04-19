@@ -108,40 +108,46 @@ Konteksti jaoks enne kõiki muudatusi. Numbrid 2026-04-18 seisuga.
 
 ---
 
-## 3. Lõplik taksonoomia (22 L1 + L2 + L3 reeglid)
+## 3. Lõplik taksonoomia (18 L1 + L2..Ln, piiranguid pole)
 
-### 3.1 L1 nimekiri (lõplik, 22)
+### 3.1 L1 nimekiri (lõplik, 18) — v3 2026-04-19
 
 URL: `/{locale}/kategooriad/{slug}`. Slug'id jäävad ingliskeelseks (infrastruktuur); display-nimed tulevad `taxonomy_node_translation` tabelist.
 
-| # | Slug | Name (EN) | Nimi (ET) | Nombre (ES, hilisem) |
-|---|---|---|---|---|
-| 01 | `horeca-food-service` | HoReCa & Food Service | Suurköök ja Toitlustus | HoReCa y Restauración |
-| 02 | `laser-cnc-digital-fabrication` | Laser, CNC & Digital Fabrication | Laser, CNC ja Digitaaltootmine | Láser, CNC y Fabricación Digital |
-| 03 | `welding-metalworking` | Welding & Metalworking | Keevitus ja Metallitöö | Soldadura y Metalurgia |
-| 04 | `printing-packaging-signage` | Printing, Packaging & Signage | Trükk, Pakendamine ja Reklaam | Impresión, Embalaje y Rótulos |
-| 05 | `electrical-energy` | Electrical & Energy | Elekter ja Energia | Electricidad y Energía |
-| 06 | `woodworking-carpentry` | Woodworking & Carpentry | Puidutöö ja Tisleritöö | Carpintería y Ebanistería |
-| 07 | `construction-building` | Construction & Building | Ehitus ja Remont | Construcción y Edificación |
-| 08 | `cleaning-janitorial` | Cleaning & Janitorial | Puhastusteenindus | Limpieza y Mantenimiento |
-| 09 | `hand-power-tools` | Hand & Power Tools | Käsi- ja Elektritööriistad | Herramientas Manuales y Eléctricas |
-| 10 | `fuel-lubrication-fluid` | Fuel, Lubrication & Fluid Management | Kütus, Määrded ja Vedelikud | Combustible, Lubricación y Fluidos |
-| 11 | `outdoor-power-landscaping` | Outdoor Power & Landscaping | Aiatehnika ja Maastikuhooldus | Equipos de Exterior y Jardinería |
-| 12 | `warehousing-material-handling` | Warehousing & Material Handling | Laondus ja Materjalikäitlus | Almacenaje y Manutención |
-| 13 | `hvac-climate-control` | HVAC & Climate Control | Kliima ja Ventilatsioon | HVAC y Climatización |
-| 14 | `plumbing-water-systems` | Plumbing & Water Systems | Torustik ja Veesüsteemid | Fontanería y Sistemas de Agua |
-| 15 | `safety-security-workwear` | Safety, Security & Workwear | Ohutus, Turve ja Tööriietus | Seguridad y Ropa Laboral |
-| 16 | `automotive-workshop` | Automotive & Workshop | Autohooldus ja Töökoda | Automoción y Taller |
-| 17 | `salon-spa-wellness` | Salon, Spa & Wellness | Salong, Spa ja Heaolu | Salón, Spa y Bienestar |
-| 18 | `office-commercial-interiors` | Office & Commercial Interiors | Kontor ja Äriinterjöör | Oficina e Interiores Comerciales |
-| 19 | `health-medical-supply` | Health & Medical Supply | Tervis ja Meditsiinivarustus | Salud y Material Médico |
-| 20 | `fitness-sports-recreation` | Fitness, Sports & Recreation | Sport, Fitness ja Vaba Aeg | Fitness, Deporte y Ocio |
-| 21 | `boating-camping-outdoor` | Boating, Camping & Outdoor Adventure | Paadindus, Matk ja Seiklus | Náutica, Camping y Aventura |
-| 22 | `music-entertainment` | Music & Entertainment | Muusika ja Meelelahutus | Música y Entretenimiento |
+Kasutaja otsus 2026-04-19: 22 L1 konsolideeritud 18-ks. Allikas: `backend/src/data/taxonomy.yaml` (v3, 13 212 rida, 3977 sõlme, L1..L7).
 
-**Muudatused v3-st:**
-- `playground-sets` subSlug (Fitness all) → **`playground-outdoor-play`** (kollisioon redirect'iga)
-- `hand-power-tools` nime NE muudeta (2 000 toote 301-d liiga kulukas) — lahendame tugeva L2 struktuuriga
+| # | Slug | Name (EN) |
+|---|---|---|
+| 01 | `horeca-food-service` | HoReCa & Food Service |
+| 02 | `renewable-energy-batteries` | Renewable Energy & Batteries *(uus L1)* |
+| 03 | `automotive-workshop` | Automotive & Workshop |
+| 04 | `cleaning-janitorial` | Cleaning & Janitorial |
+| 05 | `crafts-sewing-printing` | Crafts, Sewing & Printing *(Printing+Engraving sulandatud sisse)* |
+| 06 | `salon-spa-wellness` | Salon, Spa & Wellness |
+| 07 | `health-medical-supply` | Health & Medical Supply |
+| 08 | `fitness-sports-games` | Fitness, Sports & Games |
+| 09 | `boating-camping-outdoor-adventure` | Boating, Camping & Outdoor Adventure |
+| 10 | `music-entertainment` | Music & Entertainment |
+| 11 | `pets-wildlife-veterinary-kennels` | Pets, Wildlife, Veterinary & Kennels |
+| 12 | `kids-playgrounds` | Kids & Playgrounds |
+| 13 | `backyard-landscaping-farm` | Backyard, Landscaping & Farm *(Farm+Backyard+Landscaping liidetud)* |
+| 14 | `construction-building` | Construction & Building |
+| 15 | `safety-security-workwear` | Safety, Security & Workwear *(Construction alt eraldi L1)* |
+| 16 | `hand-power-specialty-tools` | Hand, Power & Specialty Tools *(konsolideeritud: +Woodworking +Metalworking +Welding +Industrial)* |
+| 17 | `warehousing-material-handling` | Warehousing & Material Handling |
+| 18 | `office-commercial-interiors` | Office & Commercial Interiors |
+
+**Consolidated from v2 (22 → 18 L1):**
+- `woodworking-carpentry` + `welding-metalworking` + `laser-cnc-digital-fabrication` (osaliselt) + `printing-packaging-signage` (tööriistalised osad) + `hand-power-tools` → **`hand-power-specialty-tools`**
+- `printing-packaging-signage` (loovtöö + graveerimine) → **`crafts-sewing-printing`**
+- `outdoor-power-landscaping` + Farm & Agriculture → **`backyard-landscaping-farm`**
+- `electrical-energy` (taastuv-osa) → **`renewable-energy-batteries`** (eraldi L1)
+- `fuel-lubrication-fluid`, `hvac-climate-control`, `plumbing-water-systems` → absorbeeritud `construction-building` / `automotive-workshop` / `horeca-food-service` harudesse
+- `fitness-sports-recreation` → **`fitness-sports-games`**; mänguväljakud eraldi → **`kids-playgrounds`**
+- Uus L1: **`pets-wildlife-veterinary-kennels`** (kliinik + hotell + veterinar, Farm livestock → `backyard-landscaping-farm`)
+- Inglise keel on SSoT; ET/ES tõlked tuletatakse `taxonomy_node_translation` tabelist hiljem.
+
+**Inglise-keelne SSoT:** slug'id on immutable (vt §3.4). Nimetuste tõlked lisanduvad per locale ilma slug'e puudutamata.
 
 ### 3.1.1 Madala-tootearvuga L1 reegel — **TÜHISTATUD 2026-04-18 kasutaja poolt**
 
@@ -203,13 +209,16 @@ hand-power-tools:
 
 Täielik nimekiri (22 L1 × ~6 L2 = ~132 L2, + ~60 L3 kus >50 toodet) elab failis `backend/src/data/taxonomy.yaml`. Ehitatakse Faasis 1.
 
-### 3.3 L3 reegel
+### 3.3 Sügavus (L1..L7) — piiranguid pole
 
-L3 eksisteerib **füüsiliselt DB-s** ainult kui:
-- L2 sisaldab >50 toodet *ja* on selge alamkategoriatega, VÕI
-- Verticaali starter kit vajab seda eristust (nt `diode-laser-engravers` vs `co2-laser-engravers`)
+**v3 2026-04-19 otsus: ühtegi struktuurset piirangut sügavusel ega tootearvul pole.**
 
-Muidu L3 elab ainult `taxonomy.yaml`-is + Meili `taxonomy.l3_slug`-is, aga ei saa oma lehte. Tooteloendi filter teeb selle ülearuseks.
+- L1..L7 sõlmed eksisteerivad **füüsiliselt DB-s** täpselt sellisel kujul, nagu `taxonomy.yaml` ja VEVOR feedi path neid toetab.
+- Tooted seotakse **sügavaima võimaliku leaf'iga** (mitte L1-ga). Praegu jaotus: L2=135, L3=3247, L4=7001, L5=3807, L6=603, L7=55 (kokku 14848/14850).
+- "L3 eksisteerib ainult kui L2 >50 toodet" reegel on **kustutatud** — vastuolus kasutaja 2026-04-18 otsusega (§3.1.1).
+- `taxonomy_node_meta.level_check` constraint laiendatud: `1..3` → `1..10`.
+
+**Nähtavuse reegel (dünaamiline, mitte staatiline):** alamsõlm peidetakse MegaMenu/karussellist **ainult siis**, kui Meili facet-count `taxonomy.ancestors = "{handle}"` = 0 pärast stock-filtrit (INV-25). Mingit hardcoded "peida kui <N toodet" lippu pole.
 
 ### 3.4 Slug-skeem reeglid
 
@@ -349,10 +358,10 @@ Lehe rendereerimiseks tarvis olev info tuleb **ühest** SSoT'ist + Meili päring
 
 | ID | Invariant | Check |
 |----|-----------|-------|
-| INV-24 | Kõigil 22 L1 URL-il `getBreadcrumbTrail()` lõppeb kategooriaga, mitte tootega | smoke-test |
+| INV-24 | Kõigil 18 L1 URL-il `getBreadcrumbTrail()` lõppeb kategooriaga, mitte tootega | smoke-test |
 | INV-25 | Kategoorialeht ei kuva karussellil 0-toote alamsõlmi | UI smoke + Meili count diff |
 | INV-26 | Iga karuselli-kaardil on `image_path` resolveeritud (direct/alias/none ≠ missing) | INV-20 laiendus |
-| INV-27 | Breadcrumb `trail.length === depth(handle) + 1` iga URL-i kohta (22 L1 smoke) | JSON compare |
+| INV-27 | Breadcrumb `trail.length === depth(handle) + 1` iga URL-i kohta (18 L1 smoke, L2..L7 sample) | JSON compare |
 | INV-28 | Product grid päring kasutab `taxonomy.ancestors`, mitte `category_handles` (vältimaks legacy drift) | source scan CI |
 | INV-29 | 4-veeruline grid ≥1280px viewport'il (Playwright visual invariant) | E2E regression |
 
@@ -507,11 +516,13 @@ Logo | Sirvi (mega menu ▼) | Alustajale ▼ | Ärikliendile | Hooldus | [searc
 
 ---
 
-## 5. Feed-resolver v2 — deterministlik pipeline
+## 5. Feed-resolver v3 — deterministlik pipeline
 
 ### 5.1 Ülesanne
 
-Iga VEVOR toode → `(l1_slug, l2_slug?, l3_slug?, confidence, method, needs_review)` n-tik. Logitakse `category_classification_audit` tabelisse.
+Iga VEVOR toode → `(leaf_slug, ancestors[], confidence, method, needs_review)` n-tik. Toode seotakse **sügavaima võimaliku leaf'iga** (L1..L7), mitte ainult L1-ga. Logitakse `category_classification_audit` tabelisse.
+
+**v3 esmane mapping:** `backend/src/taxonomy/rules/vevor-path-to-leaf.json` — hardcoded 2692-entry map VEVOR full path (`"Category|SubCategory|SubSubCategory"`) → meie taksonoomia leaf slug. Kuni ~95% feedist klassifitseeritakse selle ühe lookup'iga.
 
 ### 5.2 Stage'id (ordered, short-circuit on high confidence)
 
@@ -519,8 +530,14 @@ Iga VEVOR toode → `(l1_slug, l2_slug?, l3_slug?, confidence, method, needs_rev
 VEVOR row
   │
   ▼
-[S1] Manual SKU override              (backend/src/data/sku-overrides.json)
+[S1] Manual SKU override              (backend/src/taxonomy/rules/sku-overrides.json)
      if match: conf=1.00, STOP
+  │
+  ▼
+[S1.5] path_to_leaf_exact             (backend/src/taxonomy/rules/vevor-path-to-leaf.json)
+     exact VEVOR path ("L1|L2|L3") → leaf slug (L2..L7)
+     if match: conf=1.00, STOP
+     *** v3 PRIMARY PATH — katab ~95% feedist ***
   │
   ▼
 [S2] path_contains                    (vevor_product_type substring → slug)
@@ -553,7 +570,14 @@ VEVOR row
      assign to `needs-review-bucket` (hidden node, never in public)
      conf=0, needs_review=true
      queue for admin UI
+     *** v3 reegel: uus tundmatu VEVOR path → S8, MITTE auto-fallback L1-le ***
 ```
+
+### 5.2.1 v3 muudatused v2-suhtes
+
+- **Uus stage S1.5** `path_to_leaf_exact` on nüüd pipeline'i **primaarne**: kui VEVOR path on hardcoded map'is, target on leaf (mitte L1), confidence 1.00, STOP. See välistab iga-feed-sync'iga juhtunud L1-tagasilange (vt diagnoos 2026-04-19).
+- **Uue path'i käitumine:** tundmatu VEVOR path ei "fallback'i" enam L1-le S5_l1_default_only kaudu. Selle asemel läheb toode S8 review bucket'isse. Review-queue drain (§5.4) lisab uue rea `vevor-path-to-leaf.json`-i, re-runib S1.5, edasi automaatne.
+- **Rollback flag:** keskkonnamuutuja `USE_LEGACY_RESOLVER=1` pöörab S1.5 välja (v2 käitumine). Kasutatakse ainult hädaolukorras.
 
 ### 5.3 Confidence thresholds
 
@@ -618,7 +642,7 @@ Pärast muudatust: re-run `migrate-categories-to-v3.mjs --execute` → ~100-150 
 | **`taxonomy.l1_slug`** | string | | ✔ | ✔ | | canonical L1 |
 | **`taxonomy.l2_slug`** | string? | | ✔ | ✔ | | canonical L2 |
 | **`taxonomy.l3_slug`** | string? | | ✔ | ✔ | | canonical L3 |
-| **`taxonomy.ancestors`** | string[] | | ✔ | ✔ | | `[l1, l2, l3]` single-filter drill |
+| **`taxonomy.ancestors`** | string[] | | ✔ | ✔ | | **Kogu ahel** `[l1, l2, …, leaf]` L1-st leaf'ini (L1..L7); single-filter drill mis tahes tasemel |
 | **`vertical_slugs`** | string[] | | ✔ | ✔ | | e.g. `["alustajale:kohvik","arikliendile:haljastus"]` |
 | `price_cents` | int | | ✔ | | ✔ | VAT-incl hind |
 | `in_stock` | bool | | ✔ | ✔ | | availability |
@@ -627,6 +651,8 @@ Pärast muudatust: re-run `migrate-categories-to-v3.mjs --execute` → ~100-150 
 | `thumbnail` | string | | | | | display-only |
 | `published_at` | int (unix) | | ✔ | | ✔ | "new arrivals" |
 | `popularity` | int | | | | ✔ | editorial sort |
+
+**Ancestors derivation (v3):** `taxonomy.ancestors` tuletatakse `product_category_product` bindings'test — **iga toode PEAB olema seotud oma sügavaima leaf'iga** (mitte L1-ga). Indexer (`backend/scripts/index-meilisearch.mjs`) walk'ib DB parent-ketti leaf'ist L1-ni ja emit'ib kogu slug-rea. Kui toode on ainult L1-l (v2 drift), siis `taxonomy.ancestors` on lame ja kategoorialehe filter `taxonomy.ancestors = "{l2_or_deeper}"` tagastab 0 — seda tüüpi drift on INV-14 rikkumine (vt §8).
 
 ### 6.2 Settings invariants
 
@@ -703,7 +729,7 @@ CREATE INDEX idx_slug_redirect_to ON slug_redirect(to_slug);
 | ID | Invariant | Check |
 |---|---|---|
 | INV-01 | `taxonomy.yaml` on valid JSON Schema | `npm run lint:taxonomy` |
-| INV-02 | L1 ∈ [18, 22]; L2/L1 ∈ [4, 8]; L3/L2 ∈ [0, 12] | counting on YAML |
+| INV-02 | **(WARN only, v3 2026-04-19)** L1 count + L2/L1 + L3/L2 jaotused logitakse, aga piiranguid **pole jõustatud** — kasutaja 2026-04-18 + v3 2026-04-19 otsus. Praegu: 18 L1, 3977 sõlme L1..L7. CI teatab dashboard'ile, ei blokeeri. | counting on YAML, severity=warn |
 | INV-03 | No duplicate slug anywhere in tree | set-size check |
 | INV-04 | `branches.ts` byte-identical to generator output | `diff <(npm run gen:branches --stdout) branches.ts` |
 | INV-05 | No slug in `slug_redirect.from_slug` also exists as active `taxonomy_node.slug` | SQL-equivalent on fixtures |
@@ -715,9 +741,9 @@ CREATE INDEX idx_slug_redirect_to ON slug_redirect(to_slug);
 |---|---|---|
 | INV-10 | `taxonomy_node` DB == `taxonomy.yaml` | `check-taxonomy-drift.mjs` |
 | INV-11 | Every product has exactly 1 row in `product_taxonomy` | COUNT query |
-| INV-12 | No active L1 with <30 products for >60 days (warn); <10 products for >14 days (alert) | rollup |
+| INV-12 | **DEPRECATED (v3 2026-04-19).** Madal-tootearvu L1 threshold reegel tühistatud — "piiranguid pole" otsus välistab minimaalse tootearvu. Rida säilitatud ainult ajaloo jaoks; checker on no-op. | deprecated |
 | INV-13 | No product placed at node with `status != active` (except review-bucket) | SQL |
-| INV-14 | Meili `taxonomy.ancestors` matches DB for every product | sample diff |
+| INV-14 | Meili `taxonomy.ancestors` matches DB bindings **at leaf level** (mitte ainult L1) — iga toote ancestors peab sisaldama kogu ahelat leaf'ist L1-ni, vastavalt `product_category_product` ketile | sample diff, fail kui mõni toode on ainult L1-l aga leaf binding peaks olemas olema |
 | INV-15 | Every L1/L2 slug in MegaMenu resolves to 200 on `/kategooriad/{slug}` | smoke-curl |
 | INV-16 | No `slug_redirect` chain >3 hops | graph walk |
 | INV-17 | `vertical_collection` materialization ≤ 26h old | `materialize-verticals.mjs` SLA |
@@ -727,7 +753,7 @@ CREATE INDEX idx_slug_redirect_to ON slug_redirect(to_slug);
 | INV-21 | Every `image_path` file exists on disk | Faas 5b |
 | INV-22 | `taxonomy-image-aliases.yaml` targets all valid | Faas 5b |
 | INV-23 | Parent-handle chains end at an L1 root, no cycles | Faas 5b |
-| INV-24 | Kõigi 22 L1 URL-i breadcrumb lõppeb kategooriaga, mitte tootega | smoke + JSON diff |
+| INV-24 | Kõigi 18 L1 URL-i breadcrumb lõppeb kategooriaga, mitte tootega | smoke + JSON diff |
 | INV-25 | Kategoorialeht ei näita karussellil 0-tootearvuga alamsõlme | UI smoke + Meili count |
 | INV-26 | Iga karuselli-kaart resolveerib `image_path` (ei missing) | INV-20 laiendus |
 | INV-27 | Breadcrumb trail.length === depth(handle)+1 iga URL-i kohta | Playwright + JSON |
@@ -735,6 +761,7 @@ CREATE INDEX idx_slug_redirect_to ON slug_redirect(to_slug);
 | INV-29 | 4-veeruline grid ≥1280px viewport'il | Playwright visual |
 | INV-30 | MegaMenu drillib L1→Ln (mitte ainult L2) | Playwright keyboard nav |
 | INV-31 | VEVOR slug/name ei leki kunagi UI-sse (kategoorialehed, breadcrumb, karusell) | CI grep scan |
+| INV-32 | **Iga toode peab olema seotud oma sügavaima võimaliku leaf'iga (v3 mapping järgi); L1-only binding lubatud AINULT `needs-review-bucket` sõlmes.** Kontrollib: tooteid kus `MAX(depth) = 1` peab olema 0 (v.a. review bucket). Iga feed sync järel. | SQL join `product_category_product` + `taxonomy_node_meta.level`; severity=critical |
 
 ### 8.3 Dashboard
 
@@ -1072,6 +1099,22 @@ ES subdirectory (`/es/`) esialgu, mitte eraldi domeen. Migreerida `xlmarket.es`-
 - `storefront/components/SubcategoryPills.tsx`
 - `data/feeds/sitemap.xml` (→ `.stale`)
 - nginx `location = /sitemap.xml` rule
+
+---
+
+## 14.5 v3 migratsiooni log (2026-04-19)
+
+Öö 01:30–03:15 deploy'siti v3 taksonoomia, mis muudab spec'i aluseid:
+
+- **22 → 18 L1** (konsolideerimised vt §3.1).
+- **176 → 3977 sõlme**, max sügavus L1..L7 (varem L1..L3 lubatud).
+- **Hardcoded path-to-leaf mapping:** `backend/src/taxonomy/rules/vevor-path-to-leaf.json` (2692 entries), VEVOR full path → leaf slug otseühendus.
+- **L3 piirang eemaldatud** (§3.3): sügavus on tuletatud ainult YAML-ist + VEVOR path'ist, mitte tootearvu threshold'ist.
+- **Toodete reassign:** 14848/14850 seotud oma sügavaima leaf'iga (L2=135, L3=3247, L4=7001, L5=3807, L6=603, L7=55). 2 skipped (`Other|Other|Other`).
+- **DB constraint** `taxonomy_node_meta.level_check` laiendatud `1..3` → `1..10`.
+- **Resolver v3:** uus S1.5 stage (§5.2) on nüüd pipeline'i primaarne, tagasi S2..S8 ainult kui path tundmatu.
+
+Viide: `/home/brrr/.claude/projects/-home-brrr-brrr-xlmarket/memory/session_2026-04-19_taxonomy_v3_deployed.md` (deploy kokkuvõte) ja `session_2026-04-19_DIAGNOSIS_kategooriad_katki.md` (miks v2 spec vajas uuendust, 3 juurpõhjust).
 
 ---
 

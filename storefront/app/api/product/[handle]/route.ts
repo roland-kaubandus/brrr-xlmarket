@@ -267,11 +267,16 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
     // ahel võib lõppeda legacy rootis → drift. SSoT puu teab ainult 22 v3 L1.
     //
     // Valime esimese handle'i mis eksisteerib SSoT-s:
-    //   1. meiliCategoryHandles (Meili doc, tavaliselt sorteeritud leaf→root)
-    //   2. product.categories[].handle (Medusa links, järjekord juhuslik)
+    //   1. meiliHit.taxonomy.ancestors (autoritatiivne leaf→root, resolver v2
+    //      poolt arvutatud puu järgi — ainuke allikas, mis ALATI pöördub SSoT-sse)
+    //   2. meiliHit.category_handles (Meili doc legacy candidates, sisaldab
+    //      ka mitte-SSoT handleid — firstKnownHandle filtreerib nad välja)
+    //   3. product.categories[].handle (Medusa links, järjekord juhuslik,
+    //      Store API võib tagastada tühja listi kui kategooria pole publitseeritud)
+    const taxonomyAncestors: string[] = meiliHit?.taxonomy?.ancestors || []
     const meiliCandidates: string[] = meiliHit?.category_handles || []
     const medusaCandidates: string[] = (product.categories || []).map((c) => c.handle).filter(Boolean)
-    const candidates = [...meiliCandidates, ...medusaCandidates]
+    const candidates = [...taxonomyAncestors, ...meiliCandidates, ...medusaCandidates]
     const canonicalNode = firstKnownHandle(candidates)
 
     // Breadcrumb trail from SSoT only — NEVER fall back to VEVOR taxonomy.

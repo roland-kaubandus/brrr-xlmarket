@@ -1,4 +1,5 @@
 import { getProduct } from "@/lib/medusa"
+import { getMeiliProductByHandle } from "@/lib/meilisearch"
 import { notFound } from "next/navigation"
 import JsonLdProduct from "@/components/JsonLdProduct"
 import JsonLdBreadcrumb from "@/components/JsonLdBreadcrumb"
@@ -40,16 +41,25 @@ export async function generateMetadata({ params }: Props) {
 
 export default async function ProductPage({ params }: Props) {
   const { handle, locale } = await params
-  const product = await getProduct(handle)
+  const [product, meiliHit] = await Promise.all([
+    getProduct(handle),
+    getMeiliProductByHandle(handle),
+  ])
   if (!product) notFound()
 
   const variant = product.variants?.[0]
   const price = variant?.calculated_price
 
   // BreadcrumbList JSON-LD — derive from SSoT category-tree.
-  // Uses same firstKnownHandle logic as /api/product route for visible breadcrumb.
+  // Same candidate priority as /api/product route:
+  //   1. Meili taxonomy.ancestors (resolver v2 authoritative path)
+  //   2. Meili category_handles (legacy fallback)
+  //   3. Medusa product.categories (Store API may return [] when category is
+  //      not publicly listed — cannot be the only source)
+  const taxonomyAncestors = meiliHit?.taxonomy?.ancestors || []
+  const meiliHandles = meiliHit?.category_handles || []
   const medusaHandles = (product.categories || []).map((c) => c.handle).filter(Boolean) as string[]
-  const canonicalNode = firstKnownHandle(medusaHandles)
+  const canonicalNode = firstKnownHandle([...taxonomyAncestors, ...meiliHandles, ...medusaHandles])
   const breadcrumbItems = [
     { name: locale === "et" ? "Avaleht" : "Home", url: `https://xlmarket.store/${locale}` },
     ...(canonicalNode

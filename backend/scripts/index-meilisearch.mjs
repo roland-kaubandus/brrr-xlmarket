@@ -35,6 +35,11 @@ async function configureIndex() {
       // Taxonomy v3 SSoT fields (F2.8). See docs/superpowers/specs/2026-04-18-taxonomy-final-design.md §6.
       "taxonomy.l1_slug", "taxonomy.l2_slug", "taxonomy.l3_slug", "taxonomy.ancestors",
       "vertical_slugs",
+      // Required for exact-match product lookups from the product page API
+      // route (getMeiliProductByHandle). Without this, the filter silently
+      // fails and breadcrumb candidates collapse to Medusa only — which can
+      // return [] for products whose categories are not publicly listed.
+      "handle",
     ],
     sortableAttributes: ["price", "created_at", "title_en"],
     displayedAttributes: ["*"],
