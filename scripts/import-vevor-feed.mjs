@@ -335,9 +335,14 @@ function classifyRow(row, catIds) {
   }
 
   // Pick deepest category that actually exists in Medusa.
+  // target_slug on resolver'i kõige täpsem leaf (S1.5 annab L4..L7), seega
+  // eelistame seda enne L3/L2/L1 ancestor'eid. Ilma selle eelistuseta pani
+  // iga 4h feed sync tooted tagasi L2/L3 peale (INV-32 CRIT, 80% drift).
   let chosenHandle = null
   if (c.review_bucket) {
     chosenHandle = "needs-review-bucket"
+  } else if (c.target_slug && catIds[c.target_slug]) {
+    chosenHandle = c.target_slug
   } else if (c.l3_slug && catIds[c.l3_slug]) {
     chosenHandle = c.l3_slug
   } else if (c.l2_slug && catIds[c.l2_slug]) {
