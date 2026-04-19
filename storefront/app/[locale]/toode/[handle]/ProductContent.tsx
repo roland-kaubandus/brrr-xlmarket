@@ -86,7 +86,7 @@ export default function ProductContent(props: ProductContentProps) {
               {isLast ? (
                 <span aria-current="page" className="text-[#1E293B] font-medium">{seg.name}</span>
               ) : (
-                <Link href={seg.url} className="text-[#64748B] hover:text-[#D97706] transition-colors duration-200">
+                <Link href={seg.url} className="text-[#64748B] hover:text-[#E8920A] transition-colors duration-200">
                   {seg.name}
                 </Link>
               )}
@@ -198,10 +198,10 @@ export default function ProductContent(props: ProductContentProps) {
                   href={manual.href}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center gap-2 rounded-lg border border-[#E2E8F0] bg-white px-4 py-3 text-sm font-medium text-[#1E293B] hover:border-[#D97706]/40 hover:text-[#D97706] transition-colors duration-200"
+                  className="inline-flex items-center gap-2 rounded-lg border border-[#E2E8F0] bg-white px-4 py-3 text-sm font-medium text-[#1E293B] hover:border-[#E8920A]/40 hover:text-[#E8920A] transition-colors duration-200"
                 >
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D97706" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                  <span className="text-[#D97706] font-bold">PDF</span>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E8920A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                  <span className="text-[#E8920A] font-bold">PDF</span>
                   <span>{manual.label}</span>
                 </a>
               ))}

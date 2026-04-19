@@ -260,7 +260,7 @@ export default async function CategoryPage({ params, searchParams }: Props) {
         >
           <Link
             href={`/${locale}`}
-            className="text-[#64748B] hover:text-[#D97706] transition-colors duration-200"
+            className="text-[#64748B] hover:text-[#E8920A] transition-colors duration-200"
           >
             {locale === "et" ? "Avaleht" : "Home"}
           </Link>
@@ -274,7 +274,7 @@ export default async function CategoryPage({ params, searchParams }: Props) {
                 ) : (
                   <Link
                     href={categoryPath(locale as "et" | "en", t.handle)}
-                    className="text-[#64748B] hover:text-[#D97706] transition-colors duration-200"
+                    className="text-[#64748B] hover:text-[#E8920A] transition-colors duration-200"
                   >
                     {t.name}
                   </Link>
@@ -405,7 +405,7 @@ export default async function CategoryPage({ params, searchParams }: Props) {
             </p>
             <Link
               href={`/${locale}`}
-              className="text-[#D97706] hover:underline font-medium"
+              className="text-[#E8920A] hover:underline font-medium"
             >
               {locale === "et" ? "Sirvi kategooriaid" : "Browse all categories"}
             </Link>

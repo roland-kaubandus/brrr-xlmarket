@@ -3,14 +3,14 @@ import Link from "@/components/SafeLink"
 export default function VevorFooter({ locale = "et" }: { locale?: string }) {
   const isEt = locale === "et"
   return (
-    <footer className="mt-20 bg-[#1E293B] text-[#CBD5E1]" style={{ padding: "64px 0 32px" }}>
+    <footer className="mt-20 bg-[#1B2438] text-[#CBD5E1]" style={{ fontFamily: "'Mulish', system-ui, sans-serif", padding: "64px 0 32px" }}>
       <div className="max-w-[1320px] mx-auto px-6">
         {/* Top grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr_1.2fr] gap-10 mb-12">
           {/* Brand */}
           <div>
             <Link href={`/${locale}`} className="inline-block mb-4" style={{ fontSize: "32px", fontWeight: 700, letterSpacing: "-0.5px", lineHeight: 1 }}>
-              <span className="text-[#D97706]">XL</span><span className="text-white">Market</span>
+              <span className="text-[#E8920A]">XL</span><span className="text-white">Market</span>
             </Link>
             <p className="text-[14px] text-[#94A3B8] leading-relaxed max-w-[260px]">
               {isEt
@@ -69,11 +69,11 @@ export default function VevorFooter({ locale = "et" }: { locale?: string }) {
               <input
                 type="email"
                 placeholder={isEt ? "sinu@email.ee" : "your@email.com"}
-                className="flex-1 px-4 py-2.5 rounded-full border border-[#334155] bg-[#0F172A] text-white text-[13px] outline-none placeholder:text-[#475569] focus:border-[#D97706] min-w-0"
+                className="flex-1 px-4 py-2.5 rounded-full border border-[#334155] bg-[#0F172A] text-white text-[13px] outline-none placeholder:text-[#475569] focus:border-[#E8920A] min-w-0"
               />
               <button
                 type="submit"
-                className="px-5 py-2.5 rounded-full bg-[#D97706] hover:bg-[#F59E0B] text-white text-[13px] font-semibold shrink-0 transition-colors"
+                className="px-5 py-2.5 rounded-full bg-[#E8920A] hover:bg-[#CF7F00] text-white text-[13px] font-semibold shrink-0 transition-colors"
               >
                 {isEt ? "Telli" : "Subscribe"}
               </button>

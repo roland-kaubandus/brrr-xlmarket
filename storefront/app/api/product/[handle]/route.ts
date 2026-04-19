@@ -18,6 +18,127 @@ function slugify(str: string): string {
   return str.toLowerCase().trim().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")
 }
 
+/**
+ * Beautify a sanitized VEVOR rich description.
+ *
+ * VEVOR's source HTML uses pure <div> trees with CSS classes for hierarchy.
+ * After sanitization (which strips classes and styles) we are left with a
+ * flat soup of <div>/<span>/<li> with no semantic structure. This function
+ * adds back hierarchy by:
+ *   - dropping duplicate "Why Choose VEVOR?" PC+mobile blocks
+ *   - turning short text-only divs into <h3>
+ *   - wrapping orphan text into <p>
+ *   - collapsing empty wrapper <div>/<span> chains
+ *
+ * Keep this function defensive — it should never throw and should preserve
+ * the original markup if a transformation does not match.
+ */
+function beautifyRichDescription(html: string): string {
+  if (!html || html.length < 50) return html
+  let out = html
+
+  // 1. Drop duplicate "Why Choose VEVOR?" blocks (VEVOR ships PC + mobile copy)
+  let firstWhy = true
+  out = out.replace(
+    /<div[^>]*>\s*(?:<div[^>]*>\s*)*[^<]*Why Choose VEVOR\?[\s\S]*?<\/ul>\s*(?:<\/div>\s*){1,4}/gi,
+    (match) => {
+      if (firstWhy) {
+        firstWhy = false
+        return match
+      }
+      return ""
+    }
+  )
+
+  // 2. Strip empty divs/spans (with possible whitespace inside) — repeat
+  //    until stable to handle deeply nested empties.
+  for (let i = 0; i < 4; i++) {
+    const before = out
+    out = out
+      .replace(/<div>\s*<\/div>/gi, "")
+      .replace(/<span>\s*<\/span>/gi, "")
+      .replace(/<ul>\s*<\/ul>/gi, "")
+    if (out === before) break
+  }
+
+  // 3. Convert short text-only <div>...</div> to <h3>.
+  //    Title heuristic: 5–80 chars, no other tags inside, ends without period
+  //    OR matches Title Case / known section names.
+  out = out.replace(/<div>\s*([^<>][^<>]{4,79})\s*<\/div>/gi, (match, text: string) => {
+    const trimmed = text.trim()
+    // Skip long sentence-like content (treat as paragraph instead)
+    if (trimmed.length > 70 && /[.!?]$/.test(trimmed)) return match
+    // Skip if it looks like body text (>10 words and ends with period)
+    const words = trimmed.split(/\s+/).length
+    if (words > 10 && /[.!?]$/.test(trimmed)) return match
+    // Treat as heading if Title Case, ALL CAPS, or 1-7 words without ending period
+    const looksLikeTitle =
+      /^[A-Z]/.test(trimmed) &&
+      (words <= 7 || !/[.!?]$/.test(trimmed))
+    if (!looksLikeTitle) return match
+    return `<h3>${trimmed}</h3>`
+  })
+
+  // 4. Wrap longer text-only divs as paragraphs.
+  out = out.replace(/<div>\s*([^<>][^<>]{20,})\s*<\/div>/gi, (_m, text: string) => {
+    const trimmed = text.trim()
+    return `<p>${trimmed}</p>`
+  })
+
+  // 5. Flatten <li> contents — VEVOR wraps each bullet in 2-3 layers of
+  //    <div>/<span>. Extract the deepest non-empty text and rewrite to <li>text.
+  out = out.replace(/<li>([\s\S]*?)<\/li>/gi, (_m, inner: string) => {
+    // Strip all tags inside, collapse whitespace, decode common entities at display-time.
+    const text = inner
+      .replace(/<[^>]+>/g, " ")
+      .replace(/\s+/g, " ")
+      .trim()
+    if (!text) return ""
+    return `<li>${text}</li>`
+  })
+
+  // 6. Final empty-wrapper sweep
+  for (let i = 0; i < 4; i++) {
+    const before = out
+    out = out
+      .replace(/<div>\s*<\/div>/gi, "")
+      .replace(/<span>\s*<\/span>/gi, "")
+    if (out === before) break
+  }
+
+  return out
+}
+
+/**
+ * Build a structured fallback when the product has no rich_description —
+ * just the main description with <br>-separated lines. Promote the first
+ * paragraph as intro, the next short lines as bullets.
+ */
+function structureMainDescription(text: string): string {
+  if (!text) return ""
+  // Split on <br> variants and newlines
+  const parts = text
+    .replace(/<br\s*\/?>/gi, "\n")
+    .split(/\n+/)
+    .map((s) => s.replace(/<[^>]+>/g, "").trim())
+    .filter((s) => s.length > 0)
+  if (parts.length === 0) return text
+  if (parts.length === 1) return `<p>${parts[0]}</p>`
+
+  // First long-ish line = intro paragraph; the rest = bullet list of features.
+  const [intro, ...rest] = parts
+  const introHtml = `<p>${intro}</p>`
+  // If there are short bullet-like lines, render as <ul>
+  const bulletLike = rest.filter((p) => p.length < 80 && !/[.!?]$/.test(p))
+  if (bulletLike.length >= 3) {
+    const items = bulletLike.map((b) => `<li>${b}</li>`).join("")
+    return `${introHtml}<ul>${items}</ul>`
+  }
+  // Otherwise render as paragraphs
+  const paragraphs = rest.map((p) => `<p>${p}</p>`).join("")
+  return `${introHtml}${paragraphs}`
+}
+
 function parseSpecs(description: string): Array<{ key: string; value: string }> {
   const text = description.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim()
   const specs: Array<{ key: string; value: string }> = []
@@ -163,9 +284,13 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
 
     // Descriptions — prefer pre-computed sanitized HTML from feed import
     const mainDescriptionRaw = product.description || feedEntry?.descriptionHtml || null
-    const mainDescriptionHtml = typeof metadata.sanitized_description === "string" && metadata.sanitized_description.length > 10
+    const mainSanitized = typeof metadata.sanitized_description === "string" && metadata.sanitized_description.length > 10
       ? metadata.sanitized_description
       : sanitizeHtml(mainDescriptionRaw || "")
+    // Structure plain <br>-separated text into <p>+<ul> for the fallback case.
+    const mainDescriptionHtml = mainSanitized.includes("<p>") || mainSanitized.includes("<h")
+      ? mainSanitized
+      : structureMainDescription(mainSanitized)
 
     const sellingPoints: string[] = Array.isArray(metadata.selling_points) && metadata.selling_points.length > 0
       ? (metadata.selling_points as string[])
@@ -173,7 +298,7 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
 
     let richDescription: string | null = null
     if (typeof metadata.sanitized_rich_description === "string" && metadata.sanitized_rich_description.length > 50) {
-      richDescription = metadata.sanitized_rich_description
+      richDescription = beautifyRichDescription(metadata.sanitized_rich_description)
     } else {
       const rawRich = typeof metadata.rich_description === "string" && metadata.rich_description.length > 50
         ? metadata.rich_description : null
@@ -192,7 +317,7 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
           seenImgUrls.add(src)
           return match
         })
-        richDescription = sanitizeHtml(cleaned)
+        richDescription = beautifyRichDescription(sanitizeHtml(cleaned))
       }
     }
 

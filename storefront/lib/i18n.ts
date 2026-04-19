@@ -35,9 +35,16 @@ export function localePath(locale: Locale, path: string): string {
   return clean
 }
 
+// Route segment for category pages. Both locales use the Estonian segment
+// `kategooriad` — the storefront ships English UI text but EE routing slugs
+// (matches /toode, /ostukorv, /tellimus). The English plural `categories` is
+// kept ONLY as a legacy 308 redirect in next.config.ts to honour external
+// inbound links. Generating `/en/categories/...` from internal links would
+// force every clicked link through that redirect hop and inflate redirect
+// chains in crawlers, so we always emit `/kategooriad/`.
 const CATEGORY_SEGMENT: Record<Locale, string> = {
   et: "kategooriad",
-  en: "categories",
+  en: "kategooriad",
 }
 
 export function categoryPath(locale: Locale, handle?: string): string {

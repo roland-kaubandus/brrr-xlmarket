@@ -28,7 +28,7 @@ export default function CollapsibleDescription({ html, collapsedHeight = 600, de
         style={{ maxHeight: expanded || !needsCollapse ? "none" : `${collapsedHeight}px` }}
       >
         <div
-          className="rich-desc text-[#1E293B] text-sm leading-relaxed [&_img]:rounded-lg [&_img]:my-4 [&_img]:max-w-full [&_img]:h-auto [&_img]:max-h-[500px] [&_img]:object-contain [&_img]:mx-auto [&_img]:block [&_h2]:font-bold [&_h2]:text-lg [&_h2]:mt-8 [&_h2]:mb-3 [&_h3]:font-bold [&_h3]:text-base [&_h3]:mt-6 [&_h3]:mb-2 [&_p]:mb-3 [&_p]:text-[#64748B] [&_b]:text-[#1E293B] [&_strong]:text-[#1E293B] [&_ul]:pl-5 [&_ul]:list-disc [&_li]:mb-1 [&_li]:text-[#64748B] [&_a]:text-[#D97706] [&_a]:underline"
+          className="rich-desc text-[#1E293B] text-[15px] leading-[1.65] [&_img]:rounded-lg [&_img]:my-5 [&_img]:max-w-full [&_img]:h-auto [&_img]:max-h-[500px] [&_img]:object-contain [&_img]:mx-auto [&_img]:block [&_h2]:font-bold [&_h2]:text-[20px] [&_h2]:text-[#1E293B] [&_h2]:mt-8 [&_h2]:mb-3 [&_h2]:tracking-tight [&_h3]:font-semibold [&_h3]:text-[17px] [&_h3]:text-[#1E293B] [&_h3]:mt-6 [&_h3]:mb-2 [&_h3]:tracking-tight [&_h4]:font-semibold [&_h4]:text-[15px] [&_h4]:text-[#1E293B] [&_h4]:mt-5 [&_h4]:mb-2 [&_p]:mb-3 [&_p]:text-[#475569] [&_p]:leading-[1.65] [&_b]:text-[#1E293B] [&_b]:font-semibold [&_strong]:text-[#1E293B] [&_strong]:font-semibold [&_ul]:pl-5 [&_ul]:list-disc [&_ul]:my-3 [&_ul]:space-y-1 [&_ol]:pl-5 [&_ol]:list-decimal [&_ol]:my-3 [&_ol]:space-y-1 [&_li]:text-[#475569] [&_li]:leading-[1.6] [&_a]:text-[#E8920A] [&_a]:underline [&_a:hover]:text-[#CF7F00] [&_table]:w-full [&_table]:my-4 [&_table]:border-collapse [&_table]:border [&_table]:border-[#E2E8F0] [&_table]:rounded-md [&_table]:overflow-hidden [&_th]:bg-[#F1F5F9] [&_th]:px-3 [&_th]:py-2 [&_th]:text-left [&_th]:text-xs [&_th]:font-semibold [&_th]:text-[#1E293B] [&_th]:border [&_th]:border-[#E2E8F0] [&_td]:px-3 [&_td]:py-2 [&_td]:text-sm [&_td]:text-[#475569] [&_td]:border [&_td]:border-[#E2E8F0]"
           dangerouslySetInnerHTML={{ __html: html }}
         />
       </div>
@@ -42,7 +42,7 @@ export default function CollapsibleDescription({ html, collapsedHeight = 600, de
           <button
             type="button"
             onClick={() => setExpanded(!expanded)}
-            className="inline-flex items-center gap-2 px-8 py-3 border border-[#E2E8F0] bg-white hover:border-[#D97706]/40 rounded-lg text-sm font-semibold text-[#1E293B] transition-colors duration-200"
+            className="inline-flex items-center gap-2 px-8 py-3 border border-[#E2E8F0] bg-white hover:border-[#E8920A]/40 rounded-lg text-sm font-semibold text-[#1E293B] transition-colors duration-200"
           >
             {expanded ? "Show Less" : "Show More"}
             <ChevronDown
