@@ -14,6 +14,11 @@ data/feeds/*.xlsx
 data/feeds/*.xml
 data/feeds/sitemap.xml.stale*
 data/feeds/sync-reports/
+backend/data/feeds/*.xlsx
+backend/data/feeds/vevor-feed-cache.json
+
+# Generated reports (bootstraps, audits, pipeline outputs — can be large)
+reports/
 
 # Category-icon scraper runtime state (regenerated per run)
 data/category-icons/retry-queue.json

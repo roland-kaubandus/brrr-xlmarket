@@ -1,0 +1,114 @@
+{
+  "horeca-food-service": {
+    "primary_product": "commercial restaurant stand mixer",
+    "detail_hint": "stainless steel professional kitchen appliance"
+  },
+  "automotive-workshop": {
+    "primary_product": "red hydraulic floor jack",
+    "detail_hint": "heavy-duty garage automotive tool"
+  },
+  "renewable-energy-batteries": {
+    "primary_product": "portable solar power station",
+    "detail_hint": "black lithium power station with LCD display, handle on top"
+  },
+  "cleaning-janitorial": {
+    "primary_product": "commercial floor scrubber machine",
+    "detail_hint": "yellow and black walk-behind industrial cleaner"
+  },
+  "crafts-sewing-printing": {
+    "primary_product": "heat press transfer machine",
+    "detail_hint": "black and silver industrial t-shirt heat press"
+  },
+  "fitness-sports-games": {
+    "primary_product": "adjustable weight bench",
+    "detail_hint": "black padded gym exercise equipment"
+  },
+  "hand-power-tools": {
+    "primary_product": "cordless impact driver drill",
+    "detail_hint": "red and black power tool with battery pack"
+  },
+  "health-medical-supply": {
+    "primary_product": "electric medical examination table",
+    "detail_hint": "white clinical adjustable medical bed"
+  },
+  "backyard-landscaping-farm": {
+    "primary_product": "red gasoline powered lawn mower",
+    "detail_hint": "self-propelled walk-behind outdoor equipment"
+  },
+  "boating-camping-outdoor": {
+    "primary_product": "inflatable kayak boat",
+    "detail_hint": "green two-person inflatable watercraft"
+  },
+  "construction-building": {
+    "primary_product": "yellow concrete mixer",
+    "detail_hint": "portable electric cement mixer with wheels"
+  },
+  "outdoor-power-landscaping": {
+    "primary_product": "orange gas-powered chainsaw",
+    "detail_hint": "professional outdoor power equipment"
+  },
+  "fuel-lubrication-fluid": {
+    "primary_product": "electric fuel transfer pump",
+    "detail_hint": "black diesel transfer pump with hose"
+  },
+  "warehousing-material-handling": {
+    "primary_product": "red hydraulic pallet jack",
+    "detail_hint": "industrial warehouse lift truck"
+  },
+  "safety-security-workwear": {
+    "primary_product": "yellow hard hat safety helmet",
+    "detail_hint": "construction safety equipment"
+  },
+  "salon-spa-wellness": {
+    "primary_product": "black professional barber chair",
+    "detail_hint": "hydraulic salon styling chair"
+  },
+  "office-commercial-interiors": {
+    "primary_product": "ergonomic office chair",
+    "detail_hint": "black mesh-back executive chair with wheels"
+  },
+  "music-entertainment": {
+    "primary_product": "electric guitar",
+    "detail_hint": "red solid-body electric guitar"
+  },
+  "kids-playgrounds": {
+    "primary_product": "colorful outdoor kids swing set",
+    "detail_hint": "metal frame playground swing with two seats for children"
+  },
+  "printing-packaging-signage": {
+    "primary_product": "wide-format inkjet printer",
+    "detail_hint": "large industrial printing machine"
+  },
+  "pet-supplies": {
+    "primary_product": "metal dog crate",
+    "detail_hint": "wire pet kennel with door"
+  },
+  "livestock-farming": {
+    "primary_product": "red poultry egg incubator",
+    "detail_hint": "automatic hatching machine with digital display"
+  },
+  "woodworking-carpentry": {
+    "primary_product": "table saw with stand",
+    "detail_hint": "benchtop woodworking power tool"
+  },
+  "welding-metalworking": {
+    "primary_product": "blue mig welder machine",
+    "detail_hint": "inverter welding equipment with handle"
+  },
+  "hvac-climate-control": {
+    "primary_product": "portable air conditioner unit",
+    "detail_hint": "white AC unit on wheels with exhaust hose"
+  },
+  "plumbing-water-systems": {
+    "primary_product": "electric submersible water pump",
+    "detail_hint": "stainless steel well pump with power cord"
+  },
+  "electrical-energy": {
+    "primary_product": "portable gasoline generator",
+    "detail_hint": "red and black power generator with handle"
+  },
+  "laser-cnc-digital-fabrication": {
+    "primary_product": "co2 laser engraving machine",
+    "detail_hint": "black industrial desktop laser engraver"
+  }
+}
