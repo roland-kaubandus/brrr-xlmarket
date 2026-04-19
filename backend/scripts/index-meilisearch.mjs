@@ -25,8 +25,17 @@ async function meili(path, method = "GET", body = null) {
 
 async function configureIndex() {
   console.log("⚙️  Seadistan indeksit...")
-  // Create index
-  try { await meili("/indexes", "POST", { uid: INDEX, primaryKey: "id" }) } catch {}
+  // Create index — "already exists" (4xx with 'already_exists' code) is OK,
+  // anything else (auth, disk, corrupt) must fail fast so we don't upload
+  // 17k docs into a broken index (audit 2026-04-20 C4).
+  try {
+    await meili("/indexes", "POST", { uid: INDEX, primaryKey: "id" })
+  } catch (e) {
+    const msg = e && e.message ? String(e.message) : ""
+    if (!msg.includes("index_already_exists") && !msg.match(/\b409\b/)) {
+      throw e
+    }
+  }
   // All settings in one call
   await meili("/indexes/" + INDEX + "/settings", "PATCH", {
     searchableAttributes: ["title_et", "title_en", "description_et", "description_en", "categories", "sku", "handle"],

@@ -13,23 +13,25 @@ export interface MeiliTaxonomy {
 export type MeiliHit = {
   id: string
   title: string      // originaal EN (display fallback)
-  title_en: string   // otsinguindeks EN
-  title_et: string   // otsinguindeks ET
-  // tulevikus: title_ru, title_fi — sama muster
+  title_en?: string   // otsinguindeks EN
+  title_et?: string   // otsinguindeks ET
   handle: string
-  description: string
-  description_en: string
-  description_et: string
-  thumbnail: string
-  sku: string
-  price: number
-  categories: string[]
-  category_handles: string[]
+  description?: string
+  description_en?: string
+  description_et?: string
+  thumbnail?: string | null
+  sku?: string
+  price?: number
+  // Optional because Meili may return document before full schema backfill,
+  // or a newly-rotated admin key may reset index settings. Every consumer
+  // MUST guard with `?? []` or optional chaining. See audit 2026-04-20 C5.
+  categories?: string[] | null
+  category_handles?: string[] | null
   spec_filters?: string[]
   filter_tokens?: string[]
-  in_stock: boolean
-  translated: boolean
-  created_at: number
+  in_stock?: boolean
+  translated?: boolean
+  created_at?: number
   // Faas 5c — taxonomy v3 + ranking fields.
   // All optional because Meili may not yet expose them for every document
   // while the re-index backfill is in flight (spec §6.3 compat window).
@@ -48,18 +50,17 @@ export type MeiliHit = {
   }
 }
 
-/** Tagastab locale-põhise pealkirja, EN fallback */
-export function getLocalizedTitle(hit: MeiliHit, locale: string): string {
-  if (locale === 'et' && hit.title_et) return hit.title_et
-  if (locale === 'en' && hit.title_en) return hit.title_en
-  return hit.title || hit.title_en || hit.title_et || ''
+/**
+ * Tagastab toote pealkirja. XLMarket = AINULT INGLISE KEEL (CLAUDE.md HARD RULE #1).
+ * Locale parameeter säilib signatuuris back-compat'i jaoks, aga ei mõjuta valikut.
+ */
+export function getLocalizedTitle(hit: MeiliHit, _locale?: string): string {
+  return hit.title || hit.title_en || ''
 }
 
-/** Tagastab locale-põhise kirjelduse, EN fallback */
-export function getLocalizedDescription(hit: MeiliHit, locale: string): string {
-  if (locale === 'et' && hit.description_et) return hit.description_et
-  if (locale === 'en' && hit.description_en) return hit.description_en
-  return hit.description || ''
+/** Tagastab toote kirjelduse. EN-only (CLAUDE.md HARD RULE #1). */
+export function getLocalizedDescription(hit: MeiliHit, _locale?: string): string {
+  return hit.description || hit.description_en || ''
 }
 
 /** Escape a value for safe inclusion in a MeiliSearch filter string */
@@ -132,10 +133,16 @@ export async function getMeiliProductByHandle(handle: string): Promise<MeiliHit 
       body: JSON.stringify({ q: "", limit: 1, filter: [`handle = "${escapeMeiliFilterValue(handle)}"`] }),
       next: { revalidate: 300 },
     }).finally(() => clearTimeout(timeout))
-    if (!res.ok) return null
+    if (!res.ok) {
+      console.error(`[getMeiliProductByHandle] Meili ${res.status} for handle="${handle}"`)
+      return null
+    }
     const data = await res.json()
     return data.hits?.[0] || null
-  } catch { return null }
+  } catch (err) {
+    console.error(`[getMeiliProductByHandle] fetch failed for handle="${handle}":`, err instanceof Error ? err.message : err)
+    return null
+  }
 }
 
 export async function searchProducts(options: SearchOptions): Promise<MeiliSearchResult> {

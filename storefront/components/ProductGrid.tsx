@@ -64,11 +64,13 @@ export function ProductGridSkeleton({ count = 24, columns = "2-3-4" }: { count?:
 export default function ProductGrid({ initialProducts, fetchParams, locale, columns = "2-3-4", className }: ProductGridProps) {
   const [products, setProducts] = useState<MappedProduct[]>(initialProducts || [])
   const [loading, setLoading] = useState(!initialProducts && !!fetchParams)
+  const [fetchError, setFetchError] = useState<string | null>(null)
 
   useEffect(() => {
     if (initialProducts || !fetchParams) return
     const controller = new AbortController()
     setLoading(true)
+    setFetchError(null)
 
     const body: Record<string, unknown> = {
       q: fetchParams.q || "",
@@ -85,16 +87,29 @@ export default function ProductGrid({ initialProducts, fetchParams, locale, colu
       body: JSON.stringify(body),
       signal: controller.signal,
     })
-      .then((r) => r.ok ? r.json() : null)
+      .then(async (r) => {
+        if (!r.ok) {
+          // Surface failure instead of silently showing empty grid
+          // (audit 2026-04-20 C3). Key rotation / index wipe / 5xx must
+          // produce a user-visible error and a PM2-log entry.
+          console.error(`[ProductGrid] Meili ${r.status} ${r.statusText}`)
+          throw new Error(`Meili ${r.status}`)
+        }
+        return r.json()
+      })
       .then((data) => {
         if (data?.hits) {
-          const loc = fetchParams.locale || "et"
-          setProducts(data.hits.map((hit: MeiliHit) => mapMeiliHitToProduct(hit, loc)))
+          setProducts(data.hits.map((hit: MeiliHit) => mapMeiliHitToProduct(hit, fetchParams.locale)))
+        } else {
+          setProducts([])
         }
         setLoading(false)
       })
-      .catch((e) => {
-        if (e.name !== "AbortError") setLoading(false)
+      .catch((e: Error) => {
+        if (e.name === "AbortError") return
+        console.error("[ProductGrid] fetch failed:", e.message)
+        setFetchError(e.message)
+        setLoading(false)
       })
 
     return () => controller.abort()
@@ -104,6 +119,15 @@ export default function ProductGrid({ initialProducts, fetchParams, locale, colu
   const gridClass = columnsClass(columns)
 
   if (loading) return <ProductGridSkeleton count={fetchParams?.limit || 24} columns={columns} />
+
+  if (fetchError) {
+    return (
+      <div className="rounded-xl border border-[#FECACA] bg-[#FEF2F2] text-[#991B1B] p-6 text-center">
+        <p className="text-sm font-medium">Products are temporarily unavailable.</p>
+        <p className="text-xs mt-1 text-[#B91C1C]">Please refresh the page or try again shortly.</p>
+      </div>
+    )
+  }
 
   return (
     <div className={`${gridClass}${className ? ` ${className}` : ""}`}>
