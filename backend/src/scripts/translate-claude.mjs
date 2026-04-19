@@ -18,7 +18,7 @@ import { promisify } from "util"
 const { Client } = pg
 const execFileAsync = promisify(execFile)
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
-const DEFAULT_DB_URL = "postgres://xlmarket:PG_PASSWORD_REDACTED@localhost:5435/xlmarket"
+const DEFAULT_DB_URL = `postgres://xlmarket:${process.env.PGPASSWORD || "PG_PASSWORD_REDACTED"}@localhost:5435/xlmarket`
 const DEFAULT_OUTPUT_DIR = path.resolve(__dirname, "../../data/translation-batches")
 const DEFAULT_BATCH_ID = "wo-codex-001-batch-001"
 const DEFAULT_CHUNK_SIZE = 20

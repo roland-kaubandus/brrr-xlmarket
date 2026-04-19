@@ -5,22 +5,24 @@
 set -euo pipefail
 REPO="/home/brrr/brrr-xlmarket"
 
+export PGPASSWORD="${PGPASSWORD:-PG_PASSWORD_REDACTED}"
+
 echo "=== Fix Draft Products ==="
 echo ""
 
 # 1. Count draft products
-DRAFT_COUNT=$(psql "postgres://xlmarket:PG_PASSWORD_REDACTED@localhost:5435/xlmarket" -t -c \
+DRAFT_COUNT=$(psql "postgres://xlmarket:${PGPASSWORD}@localhost:5435/xlmarket" -t -c \
   "SELECT COUNT(*) FROM product WHERE status='draft' AND deleted_at IS NULL")
 echo "[1/5] Draft products found: $DRAFT_COUNT"
 
 # 2. Update draft → published
 echo "[2/5] Setting all draft products to published..."
-psql "postgres://xlmarket:PG_PASSWORD_REDACTED@localhost:5435/xlmarket" -c \
+psql "postgres://xlmarket:${PGPASSWORD}@localhost:5435/xlmarket" -c \
   "UPDATE product SET status = 'published' WHERE status = 'draft' AND deleted_at IS NULL;"
 echo "  Done."
 
 # 3. Verify
-PUBLISHED_COUNT=$(psql "postgres://xlmarket:PG_PASSWORD_REDACTED@localhost:5435/xlmarket" -t -c \
+PUBLISHED_COUNT=$(psql "postgres://xlmarket:${PGPASSWORD}@localhost:5435/xlmarket" -t -c \
   "SELECT COUNT(*) FROM product WHERE status='published' AND deleted_at IS NULL")
 echo "[3/5] Total published products now: $PUBLISHED_COUNT"
 

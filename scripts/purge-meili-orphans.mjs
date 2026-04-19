@@ -6,9 +6,9 @@
  */
 import pg from "pg";
 
-const PG = { host: "localhost", port: 5435, user: "xlmarket", password: "PG_PASSWORD_REDACTED", database: "xlmarket" };
+const PG = { host: "localhost", port: 5435, user: "xlmarket", password: process.env.PGPASSWORD || "PG_PASSWORD_REDACTED", database: "xlmarket" };
 const MEILI = "http://127.0.0.1:7700";
-const KEY = "MEILI_LEGACY_KEY_REDACTED";
+const KEY = process.env.MEILISEARCH_KEY || "MEILI_LEGACY_KEY_REDACTED";
 
 const pgc = new pg.Client(PG);
 await pgc.connect();

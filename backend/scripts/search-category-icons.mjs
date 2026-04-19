@@ -15,7 +15,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const DATA_DIR = resolve(__dirname, '../../data/category-icons');
 
 const MEILI_URL = 'http://127.0.0.1:7700';
-const MEILI_KEY = 'MEILI_LEGACY_KEY_REDACTED';
+const MEILI_KEY = process.env.MEILISEARCH_KEY || 'MEILI_LEGACY_KEY_REDACTED';
 
 const BATCH_SIZE = 5;
 const LOG_EVERY = 50;

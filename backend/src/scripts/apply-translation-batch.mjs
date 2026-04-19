@@ -17,7 +17,7 @@ import { readFileSync } from "fs"
 import path from "path"
 
 const { Client } = pg
-const DEFAULT_DB_URL = "postgres://xlmarket:PG_PASSWORD_REDACTED@localhost:5435/xlmarket"
+const DEFAULT_DB_URL = `postgres://xlmarket:${process.env.PGPASSWORD || "PG_PASSWORD_REDACTED"}@localhost:5435/xlmarket`
 
 function getArg(name, fallback = null) {
   const idx = process.argv.indexOf(name)

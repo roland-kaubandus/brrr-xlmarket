@@ -31,9 +31,9 @@ const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..")
 const YAML_PATH = resolve(ROOT, "backend/src/data/taxonomy.yaml")
 
 const DB_URL = process.env.DATABASE_URL ||
-  "postgres://xlmarket:PG_PASSWORD_REDACTED@localhost:5435/xlmarket"
+  `postgres://xlmarket:${process.env.PGPASSWORD || "PG_PASSWORD_REDACTED"}@localhost:5435/xlmarket`
 const MEILI_HOST = process.env.MEILISEARCH_HOST || "http://127.0.0.1:7700"
-const MEILI_KEY = process.env.MEILISEARCH_API_KEY || "MEILI_LEGACY_KEY_REDACTED"
+const MEILI_KEY = process.env.MEILISEARCH_KEY || "MEILI_LEGACY_KEY_REDACTED"
 const INDEX = "products"
 const BATCH = 500
 

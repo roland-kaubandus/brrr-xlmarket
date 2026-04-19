@@ -29,13 +29,13 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 const MEDUSA_URL = "http://127.0.0.1:9001"
 const ADMIN_EMAIL = "admin@xlmarket.eu"
-const ADMIN_PASS = "MEDUSA_ADMIN_PASSWORD_REDACTED"
+const ADMIN_PASS = process.env.MEDUSA_ADMIN_PASS || "MEDUSA_ADMIN_PASSWORD_REDACTED"
 
 const PG_CONFIG = {
   host: "localhost",
   port: 5435,
   user: "xlmarket",
-  password: "PG_PASSWORD_REDACTED",
+  password: process.env.PGPASSWORD || "PG_PASSWORD_REDACTED",
   database: "xlmarket",
 }
 

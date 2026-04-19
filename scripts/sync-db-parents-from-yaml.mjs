@@ -23,7 +23,7 @@ const EXECUTE = process.argv.includes("--execute")
 
 const PG_CONFIG = {
   host: "localhost", port: 5435, user: "xlmarket",
-  password: "PG_PASSWORD_REDACTED", database: "xlmarket",
+  password: process.env.PGPASSWORD || "PG_PASSWORD_REDACTED", database: "xlmarket",
 }
 
 async function main() {

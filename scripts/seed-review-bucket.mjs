@@ -25,7 +25,7 @@ const CONN = {
   host: "localhost",
   port: 5435,
   user: "xlmarket",
-  password: "PG_PASSWORD_REDACTED",
+  password: process.env.PGPASSWORD || "PG_PASSWORD_REDACTED",
   database: "xlmarket",
 }
 

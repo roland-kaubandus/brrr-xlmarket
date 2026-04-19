@@ -15,7 +15,7 @@ import http from "http"
 
 const MEDUSA_URL = "http://127.0.0.1:9001"
 const ADMIN_EMAIL = "admin@xlmarket.eu"
-const ADMIN_PASS = "MEDUSA_ADMIN_PASSWORD_REDACTED"
+const ADMIN_PASS = process.env.MEDUSA_ADMIN_PASS || "MEDUSA_ADMIN_PASSWORD_REDACTED"
 const BATCH_SIZE = 100
 const EXECUTE = process.argv.includes("--execute")
 
