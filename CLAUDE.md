@@ -1,6 +1,31 @@
 # CLAUDE.md — XL: xlmarket.eu e-pood
 
-> Viimati uuendatud: 2026-04-19
+> Viimati uuendatud: 2026-04-20
+
+---
+
+## 🛑 HARD RULE #1 — AINULT INGLISE KEEL
+
+**XLMarket pood = 100% INGLISE KEEL. MITTE KUSAGIL eestistamist.**
+
+- Mitte `locale === "et" ? "Ostukorv" : "Cart"` — kasuta ainult `"Cart"`
+- Mitte `isEt` ternary UI stringide jaoks
+- Mitte `.name_et`, `.description_et`, `.tagline_et` lookupid — ainult `_en` või baasväljad
+- Mitte "eestistamist" nõuda audit'id — need EI OLE bugid
+- Mitte jooksutada tõlkeskripti DB-s (product.title/description ALATI EN)
+- `/et/` URL prefix jääb ainult URL struktuuri jaoks — kuvab sama EN sisu
+
+**Why:** Kahe keele segadus on põhjustanud enamus kategooria-probleeme
+(tühjad fallback'id, DB-sünkroonist välja, ebakindel UI kuvamine).
+Risto on seda mitmeid kordi öelnud, viimati 2026-04-20 põhjaliku raevuga.
+
+**Kui audit-agent soovitab lokaliseerida mõnda osa → IGNORE. See pole bug.**
+
+**Järjekord (Risto 2026-04-20):** "me teeme lõpuni inglise keele ja alles siis
+võtame uue keele juurde" — kuni EN pood pole 100% puhas ja stabiilne, mingit
+teist keelt ei lisa. Tee ükshaaval, mitte paralleelselt.
+
+Erand: formaadid (number, kuupäev, valuuta) võivad olla locale-aware.
 
 ---
 
