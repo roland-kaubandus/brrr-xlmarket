@@ -7,6 +7,15 @@ set -euo pipefail
 
 REPO="/home/brrr/brrr-xlmarket"
 
+# Prevent overlapping cron runs (audit 2026-04-20 C9). If another sync is
+# already holding the lock, exit cleanly — the next cron tick will retry.
+LOCK="/tmp/xlmarket-feed-sync.lock"
+exec 9>"$LOCK"
+if ! flock -n 9; then
+  echo "Another feed-sync.sh is already running — exiting."
+  exit 0
+fi
+
 # Load environment variables
 if [ -f "$REPO/.env" ]; then
   set -a
@@ -16,6 +25,7 @@ fi
 
 # Validate required environment variables
 : "${MEILISEARCH_API_KEY:?Missing MEILISEARCH_API_KEY}"
+: "${PGPASSWORD:?Missing PGPASSWORD}"
 FEED_DIR="$REPO/backend/data/feeds"
 LOG_DIR="$REPO/data/feeds/sync-reports"
 FEED_URL="https://ads-feed.s3.us-west-2.amazonaws.com/ads/business/571/vevor-571.xlsx"
@@ -59,10 +69,33 @@ NEW_COUNT=$(echo "$IMPORT_OUTPUT" | grep -oP '\d+ new' | head -1 || echo "0 new"
 UPDATE_COUNT=$(echo "$IMPORT_OUTPUT" | grep -oP '\d+ updat' | head -1 || echo "0 updat")
 echo "  Dry run: $NEW_COUNT, $UPDATE_COUNT"
 
+# ── Step 3.5: Regenerate SSoT artefacts (audit 2026-04-20 C9) ──
+# Without these, yaml↔DB drift accumulates invisibly until someone audits.
+echo "[3.5/6] Regenerating SSoT artefacts..."
+cd "$REPO"
+node scripts/gen-category-tree.mjs 2>&1 | tail -3 || {
+  echo "  FAIL: gen-category-tree.mjs"
+  exit 1
+}
+node scripts/sync-db-parents-from-yaml.mjs --execute 2>&1 | tail -3 || {
+  echo "  FAIL: sync-db-parents-from-yaml.mjs"
+  exit 1
+}
+node scripts/export-slug-redirects.mjs 2>&1 | tail -3 || {
+  echo "  WARN: export-slug-redirects.mjs failed (non-fatal)"
+}
+
 # ── Step 4: MeiliSearch reindex ──
+# Hard-fail if reindex fails — do not mask with silent tail (audit 2026-04-20 H13).
 echo "[4/6] Reindexing MeiliSearch..."
 cd "$REPO/backend"
-MEILI_OUTPUT=$(node scripts/index-meilisearch.mjs 2>&1)
+if ! MEILI_OUTPUT=$(node scripts/index-meilisearch.mjs 2>&1); then
+  echo "  FAIL: Meili reindex failed"
+  echo "$MEILI_OUTPUT" | tail -10
+  echo "# Feed Sync FAILED at Meili reindex: $TIMESTAMP" > "$REPORT"
+  echo "$MEILI_OUTPUT" >> "$REPORT"
+  exit 1
+fi
 MEILI_DOCS=$(echo "$MEILI_OUTPUT" | grep -oP '\d+ dokumenti' || echo "? dokumenti")
 echo "  $MEILI_DOCS"
 

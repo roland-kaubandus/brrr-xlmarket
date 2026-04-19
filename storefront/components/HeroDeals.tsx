@@ -66,9 +66,14 @@ export default function HeroDeals({ locale }: { locale: string }) {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
+    // Audit 2026-04-20 H1: previously sort:price:desc — showed the MOST
+    // EXPENSIVE products under a "Deals / Pakkumised" label. Switched to
+    // discount_pct:desc so real deals surface first; falls back to
+    // price:asc (cheapest) when discount_pct is absent from the hit.
     const body = {
       q: "",
-      sort: ["price:desc"],
+      filter: ["in_stock = true"],
+      sort: ["discount_pct:desc", "price:asc"],
       limit: 4,
       attributesToRetrieve: ["id", "title", "handle", "thumbnail", "price"],
     }

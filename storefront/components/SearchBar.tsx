@@ -5,6 +5,25 @@ import { useRouter } from "next/navigation"
 import { Search, X } from "lucide-react"
 import Image from "next/image"
 
+/**
+ * Escape HTML special chars in the raw highlighted title from Meili, then
+ * re-allow ONLY <mark> tags (Meili's own highlight wrapper). This prevents
+ * XSS if a product title ever contains `<script>` or `<img onerror=...>`
+ * (audit 2026-04-20 H7).
+ */
+function safeHighlightedTitle(formatted?: string, fallback = ""): string {
+  const raw = formatted || fallback
+  // 1. Escape all HTML specials.
+  const escaped = String(raw)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;")
+  // 2. Re-allow just <mark> and </mark> (Meili's highlight tags).
+  return escaped.replace(/&lt;mark&gt;/g, "<mark>").replace(/&lt;\/mark&gt;/g, "</mark>")
+}
+
 type SearchHit = {
   id: string
   title: string
@@ -239,7 +258,7 @@ export default function SearchBar({ locale = "et", variant = "dark" }: { locale?
               <div className="flex-1 min-w-0">
                 <p
                   className="text-[14px] text-[#1E293B] truncate [&>mark]:bg-[#FFFBEB] [&>mark]:text-[#D97706] [&>mark]:font-semibold"
-                  dangerouslySetInnerHTML={{ __html: hit._formatted?.title || hit.title }}
+                  dangerouslySetInnerHTML={{ __html: safeHighlightedTitle(hit._formatted?.title, hit.title) }}
                 />
                 {hit.categories?.[0] && (
                   <p className="text-[12px] text-[#64748B] mt-0.5">{hit.categories[0]}</p>

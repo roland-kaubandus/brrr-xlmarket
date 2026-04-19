@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useRef, useCallback, type ReactElement } from "react"
+import Link from "next/link"
 import CategoryThumb from "@/components/CategoryThumb"
 import { categoryPath } from "@/lib/i18n"
 import type { ChildWithCount } from "@/lib/category-tree"
@@ -106,13 +107,14 @@ export default function SubcategoryCarousel({
           const basePath = categoryPath(loc, child.handle)
           const childHref = safeCurrent ? `${basePath}?from=${encodeURIComponent(safeCurrent)}` : basePath
           return (
-            <a
+            <Link
               key={child.handle}
               ref={(el) => {
                 itemRefs.current[idx] = el
               }}
               role="listitem"
               href={childHref}
+              prefetch={false}
               aria-current={isCurrent ? "true" : undefined}
               onKeyDown={(e) => handleKeyDown(e, idx)}
               className={`group flex-shrink-0 w-[140px] sm:w-[160px] md:w-[180px] snap-start flex flex-col items-center gap-2 p-3 rounded-xl bg-white border transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D97706] ${
@@ -136,7 +138,7 @@ export default function SubcategoryCarousel({
                 {child.count.toLocaleString(et ? "et" : "en-GB")}{" "}
                 {et ? "toodet" : "products"}
               </span>
-            </a>
+            </Link>
           )
         })}
       </div>

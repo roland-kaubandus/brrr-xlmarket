@@ -5,7 +5,7 @@
  */
 
 const API_URL = 'http://127.0.0.1:9001/store/product-categories';
-const API_KEY = 'pk_d8dce98ddbea51a05856fe088fd0af77fab4675ccc4f03773d064dd4f6d203b3';
+const API_KEY = process.env.NEXT_PUBLIC_MEDUSA_KEY;
 const LIMIT = 500;
 
 import { writeFileSync, mkdirSync } from 'fs';
