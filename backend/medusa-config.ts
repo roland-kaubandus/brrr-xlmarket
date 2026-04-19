@@ -26,7 +26,7 @@ export default defineConfig({
       options: {
         config: {
           host: process.env.MEILISEARCH_HOST || "http://127.0.0.1:7700",
-          apiKey: process.env.MEILISEARCH_API_KEY || "MEILI_LEGACY_KEY_REDACTED",
+          apiKey: process.env.MEILISEARCH_API_KEY,
         },
         settings: {
           products: {

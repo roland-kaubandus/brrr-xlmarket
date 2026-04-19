@@ -24,7 +24,7 @@ const PG_CONFIG = {
   host: process.env.PGHOST || "localhost",
   port: Number(process.env.PGPORT) || 5435,
   user: process.env.PGUSER || "xlmarket",
-  password: process.env.PGPASSWORD || "PG_PASSWORD_REDACTED",
+  password: process.env.PGPASSWORD,
   database: process.env.PGDATABASE || "xlmarket",
 }
 

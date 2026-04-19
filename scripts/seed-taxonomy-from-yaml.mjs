@@ -25,7 +25,7 @@
  *   - backend/node_modules has ulid.
  *
  * DB creds (from memory project_next_session_faas2.md line 37):
- *   - user xlmarket / pass PG_PASSWORD_REDACTED / db xlmarket
+ *   - user xlmarket / pass via PGPASSWORD env / db xlmarket
  *   - localhost:5435 (Docker exposed port)
  */
 
@@ -47,7 +47,7 @@ const DB_CONFIG = {
   host: "localhost",
   port: 5435,
   user: "xlmarket",
-  password: process.env.PGPASSWORD || "PG_PASSWORD_REDACTED",
+  password: process.env.PGPASSWORD,
   database: "xlmarket",
 };
 

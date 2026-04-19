@@ -41,7 +41,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 // ── Config ──────────────────────────────────────────────────────────
 const MEDUSA_URL = "http://127.0.0.1:9001";
 const ADMIN_EMAIL = "admin@xlmarket.eu";
-const ADMIN_PASS = process.env.MEDUSA_ADMIN_PASS || "MEDUSA_ADMIN_PASSWORD_REDACTED";
+const ADMIN_PASS = process.env.MEDUSA_ADMIN_PASS;
 const SALES_CHANNEL_ID = "sc_01KMRWP84555JPGA6M0QMG409M";
 const PRICE_MARKUP = 1.15;
 const API_DELAY_MS = 100;
@@ -51,7 +51,7 @@ const PG_CONFIG = {
   host: "localhost",
   port: 5435,
   user: "xlmarket",
-  password: process.env.PGPASSWORD || "PG_PASSWORD_REDACTED",
+  password: process.env.PGPASSWORD,
   database: "xlmarket",
 };
 

@@ -22,7 +22,7 @@ from urllib.parse import unquote
 import subprocess
 
 MEDIA_DIR = Path('/var/www/xlmarket-media/products')
-DB_URL = os.environ.get('DATABASE_URL', 'postgres://xlmarket:PG_PASSWORD_REDACTED@localhost:5435/xlmarket')
+DB_URL = os.environ['DATABASE_URL']
 CONCURRENCY = 10
 HEADERS = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36'}
 

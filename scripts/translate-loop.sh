@@ -2,7 +2,8 @@
 # Translate loop: runs translate-claude.mjs in batches until done
 cd /home/brrr/brrr-xlmarket/backend
 
-export PGPASSWORD="${PGPASSWORD:-PG_PASSWORD_REDACTED}"
+: "${PGPASSWORD:?PGPASSWORD env variable required}"
+export PGPASSWORD
 
 BATCH=50
 TOTAL=$(psql "postgres://xlmarket:${PGPASSWORD}@localhost:5435/xlmarket" -t -c "SELECT COUNT(*) FROM product WHERE status='published' AND deleted_at IS NULL AND (metadata->>'translated' IS NULL OR (metadata->>'translated')::boolean = false)")

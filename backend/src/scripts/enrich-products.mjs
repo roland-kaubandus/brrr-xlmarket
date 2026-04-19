@@ -17,10 +17,10 @@ import { fileURLToPath } from "url"
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const FEED_PATH = path.resolve(__dirname, "../../data/feeds/vevor-571.xlsx")
-const DB_URL = `postgres://xlmarket:${process.env.PGPASSWORD || "PG_PASSWORD_REDACTED"}@localhost:5435/xlmarket`
+const DB_URL = `postgres://xlmarket:${process.env.PGPASSWORD}@localhost:5435/xlmarket`
 const MEDUSA_URL = "http://127.0.0.1:9001"
 const ADMIN_EMAIL = "admin@xlmarket.eu"
-const ADMIN_PASS = process.env.MEDUSA_ADMIN_PASS || "MEDUSA_ADMIN_PASSWORD_REDACTED"
+const ADMIN_PASS = process.env.MEDUSA_ADMIN_PASS
 
 const args = process.argv.slice(2)
 const LIMIT = args.includes("--limit") ? parseInt(args[args.indexOf("--limit") + 1]) : 0

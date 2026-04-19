@@ -6,7 +6,7 @@
 
 import pg from "pg"
 const { Client } = pg
-const DB_URL = process.env.DATABASE_URL || `postgres://xlmarket:${process.env.PGPASSWORD || "PG_PASSWORD_REDACTED"}@localhost:5435/xlmarket`
+const DB_URL = process.env.DATABASE_URL || `postgres://xlmarket:${process.env.PGPASSWORD}@localhost:5435/xlmarket`
 
 async function main() {
   const client = new Client({ connectionString: DB_URL })

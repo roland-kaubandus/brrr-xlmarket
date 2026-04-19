@@ -4,7 +4,7 @@ import { useEffect, useState } from "react"
 import Link from "@/components/SafeLink"
 
 const MEILI_URL = "/meili/indexes/products/search"
-const MEILI_KEY = "MEILI_SEARCH_KEY_REDACTED"
+const MEILI_KEY = process.env.NEXT_PUBLIC_MEILISEARCH_SEARCH_KEY || ""
 
 type DealProduct = {
   id: string

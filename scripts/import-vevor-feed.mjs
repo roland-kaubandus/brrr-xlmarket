@@ -35,18 +35,18 @@ const FEED_URL = "https://ads-feed.s3.us-west-2.amazonaws.com/ads/business/571/v
 
 const MEDUSA_URL = "http://127.0.0.1:9001";
 const ADMIN_EMAIL = "admin@xlmarket.eu";
-const ADMIN_PASS = process.env.MEDUSA_ADMIN_PASS || "MEDUSA_ADMIN_PASSWORD_REDACTED";
+const ADMIN_PASS = process.env.MEDUSA_ADMIN_PASS;
 
 const PG_CONFIG = {
   host: "localhost",
   port: 5435,
   user: "xlmarket",
-  password: process.env.PGPASSWORD || "PG_PASSWORD_REDACTED",
+  password: process.env.PGPASSWORD,
   database: "xlmarket",
 };
 
 const MEILI_HOST = "http://127.0.0.1:7700";
-const MEILI_KEY = process.env.MEILISEARCH_ADMIN_KEY || "MEILI_MASTER_KEY_REDACTED";
+const MEILI_KEY = process.env.MEILISEARCH_ADMIN_KEY;
 const MEILI_INDEX = "products";
 
 const PRICE_MARKUP = 1.15;

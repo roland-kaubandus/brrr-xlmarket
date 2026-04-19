@@ -19,7 +19,7 @@ const DB_CONFIG = {
   host: "localhost",
   port: 5435,
   user: "xlmarket",
-  password: process.env.PGPASSWORD || "PG_PASSWORD_REDACTED",
+  password: process.env.PGPASSWORD,
   database: "xlmarket",
 };
 

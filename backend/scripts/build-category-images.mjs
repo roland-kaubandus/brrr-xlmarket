@@ -8,7 +8,7 @@ import { fileURLToPath } from 'url'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const MEILI_HOST = "http://127.0.0.1:7700"
-const MEILI_KEY = process.env.MEILISEARCH_KEY || "MEILI_LEGACY_KEY_REDACTED"
+const MEILI_KEY = process.env.MEILISEARCH_KEY
 const MEDUSA_URL = "http://127.0.0.1:9001"
 const API_KEY = "pk_d8dce98ddbea51a05856fe088fd0af77fab4675ccc4f03773d064dd4f6d203b3"
 const OUTPUT = path.join(__dirname, '../../storefront/lib/category-images.json')

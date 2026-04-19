@@ -32,7 +32,7 @@ function execCodex(prompt) {
 }
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
-const DB_URL = `postgres://xlmarket:${process.env.PGPASSWORD || "PG_PASSWORD_REDACTED"}@localhost:5435/xlmarket`
+const DB_URL = `postgres://xlmarket:${process.env.PGPASSWORD}@localhost:5435/xlmarket`
 const LOG_FILE = path.resolve(__dirname, "../../data/translation-batches/progress.log")
 const CODEX = "/home/brrr/.local/bin/codex"
 

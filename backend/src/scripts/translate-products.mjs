@@ -21,7 +21,7 @@ const ADMIN_PASS = process.env.ADMIN_PASS
 if (!ADMIN_PASS) throw new Error("ADMIN_PASS env variable required")
 
 const MEILI_HOST = process.env.MEILISEARCH_HOST || "http://127.0.0.1:7700"
-const MEILI_KEY = process.env.MEILISEARCH_KEY || "MEILI_LEGACY_KEY_REDACTED"
+const MEILI_KEY = process.env.MEILISEARCH_KEY
 const MEILI_INDEX = "products"
 
 async function meiliUpdate(docs) {

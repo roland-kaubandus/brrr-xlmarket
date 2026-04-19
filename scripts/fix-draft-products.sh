@@ -5,7 +5,8 @@
 set -euo pipefail
 REPO="/home/brrr/brrr-xlmarket"
 
-export PGPASSWORD="${PGPASSWORD:-PG_PASSWORD_REDACTED}"
+: "${PGPASSWORD:?PGPASSWORD env variable required}"
+export PGPASSWORD
 
 echo "=== Fix Draft Products ==="
 echo ""

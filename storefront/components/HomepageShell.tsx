@@ -84,7 +84,7 @@ const PROMOS = [
 /* ═══════════════════════════════════════════════
    MEILI SEARCH HELPER
    ═══════════════════════════════════════════════ */
-const MEILI_KEY = "MEILI_SEARCH_KEY_REDACTED"
+const MEILI_KEY = process.env.NEXT_PUBLIC_MEILISEARCH_SEARCH_KEY || ""
 
 async function searchMeili(
   query: string,

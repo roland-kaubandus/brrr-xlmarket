@@ -8,15 +8,16 @@ Kasutus: python3 backend/scripts/generate-embeddings.py
 """
 
 import json
+import os
 import sys
 import time
 import psycopg2
 import requests
 from sentence_transformers import SentenceTransformer
 
-DB_URL = "postgres://xlmarket:PG_PASSWORD_REDACTED@localhost:5435/xlmarket"
-MEILI_HOST = "http://127.0.0.1:7700"
-MEILI_KEY = "MEILI_LEGACY_KEY_REDACTED"
+DB_URL = os.environ["DATABASE_URL"]
+MEILI_HOST = os.environ.get("MEILISEARCH_HOST", "http://127.0.0.1:7700")
+MEILI_KEY = os.environ["MEILISEARCH_KEY"]
 INDEX = "products"
 MODEL_NAME = "paraphrase-multilingual-MiniLM-L12-v2"
 BATCH_SIZE = 200
