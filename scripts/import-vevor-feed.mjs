@@ -892,27 +892,14 @@ async function main() {
 
   const newRows = [];
   const updateRows = [];
-  const newSpuGroups = [];
 
-  for (const [spu, group] of spuGroups) {
-    // Check if ANY SKU in the group already exists
-    const existingIds = group.map(r => existingSkus.get(r.sku)).filter(Boolean);
-
-    if (existingIds.length > 0) {
-      // At least one variant exists — mark all as update
-      for (const row of group) {
-        const existingId = existingSkus.get(row.sku);
-        if (existingId) {
-          updateRows.push(Object.assign({}, row, { productId: existingId }));
-        } else {
-          // New variant for existing SPU group — treat as new for now
-          newRows.push(row);
-        }
-      }
+  // 1 feed row = 1 Medusa product. Check each SKU individually (no SPU grouping).
+  for (const row of feedRows) {
+    const existingId = existingSkus.get(row.sku);
+    if (existingId) {
+      updateRows.push(Object.assign({}, row, { productId: existingId }));
     } else {
-      // Entirely new SPU group
-      newSpuGroups.push(group);
-      for (const row of group) newRows.push(row);
+      newRows.push(row);
     }
   }
 
@@ -923,7 +910,7 @@ async function main() {
   log("=== Analysis ===");
   log("  Feed total:          " + stats.feedRows);
   log("  Already in DB:       " + stats.existingInDb);
-  log("  New to import:       " + stats.newProducts + " (in " + newSpuGroups.length + " SPU groups)");
+  log("  New to import:       " + stats.newProducts);
   log("  Existing (updatable):" + stats.toUpdate);
   console.log("");
 
@@ -1003,28 +990,29 @@ async function main() {
   await auditPg.connect();
   log("  Resolver: " + (USE_LEGACY_RESOLVER ? "LEGACY v1 (USE_LEGACY_RESOLVER=1)" : "v2 (8-stage pipeline)"));
 
-  // ── Step 4: Create new products (SPU-grouped) ──
-  const groupsToCreate = LIMIT ? newSpuGroups.slice(0, LIMIT) : newSpuGroups;
-  if (groupsToCreate.length > 0) {
-    const totalProducts = groupsToCreate.reduce((s, g) => s + g.length, 0);
-    log("Creating " + groupsToCreate.length + " product groups (" + totalProducts + " variants, batch delay: " + API_DELAY_MS + "ms)...");
+  // ── Step 4: Create new products (one product per SKU, no SPU grouping) ──
+  // SPU grouping removed 2026-04-20: every VEVOR SKU becomes its own Medusa product.
+  // SPU ID stays on metadata.vevor_spu for future "related products" widgets.
+  const rowsToCreate = LIMIT ? newRows.slice(0, LIMIT) : newRows;
+  if (rowsToCreate.length > 0) {
+    log("Creating " + rowsToCreate.length + " products (1 product per SKU, batch delay: " + API_DELAY_MS + "ms)...");
     const startTime = Date.now();
 
-    for (let i = 0; i < groupsToCreate.length; i++) {
-      const group = groupsToCreate[i];
+    for (let i = 0; i < rowsToCreate.length; i++) {
+      const row = rowsToCreate[i];
       try {
-        await createProductFromGroup(group, token, categoryMap, categoryIds, auditPg);
+        await createProduct(row, token, categoryMap, categoryIds, auditPg);
       } catch (err) {
         stats.errors++;
         if (stats.errors <= 20) {
-          log("  ERROR [" + group[0].sku + " SPU=" + group[0].spu + "]: " + err.message);
+          log("  ERROR [" + row.sku + " SPU=" + row.spu + "]: " + err.message);
         }
       }
       await sleep(API_DELAY_MS);
 
-      if ((i + 1) % 50 === 0 || i + 1 === groupsToCreate.length) {
+      if ((i + 1) % 50 === 0 || i + 1 === rowsToCreate.length) {
         const elapsed = ((Date.now() - startTime) / 1000).toFixed(0);
-        log("  Progress: " + (i + 1) + "/" + groupsToCreate.length + " groups (" + elapsed + "s) | created: " + stats.created + " errors: " + stats.errors + " variant_groups: " + (stats.variantGroupsCreated || 0));
+        log("  Progress: " + (i + 1) + "/" + rowsToCreate.length + " (" + elapsed + "s) | created: " + stats.created + " errors: " + stats.errors);
       }
     }
   }
