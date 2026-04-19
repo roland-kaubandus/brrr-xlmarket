@@ -2,7 +2,8 @@ import {
   UtensilsCrossed, Building2, Wrench, Flame, Zap, TreePine,
   Printer, Plug, Snowflake, Droplets, Warehouse, Car, Leaf, Fuel,
   Sparkles, ShieldCheck, Armchair, Scissors, Dumbbell, Ship,
-  HeartPulse, Music, type LucideIcon,
+  HeartPulse, Music, Battery, Palette, PawPrint, Baby, Trees,
+  type LucideIcon,
 } from "lucide-react"
 
 export interface TaxonomyL1 {
@@ -155,4 +156,11 @@ export const V3_ICONS: Record<string, LucideIcon> = {
   "fitness-sports-recreation": Dumbbell,
   "boating-camping-outdoor": Ship,
   "music-entertainment": Music,
+  // 2026-04-19 taxonomy v3 (18 L1) additions
+  "renewable-energy-batteries": Battery,
+  "crafts-sewing-printing": Palette,
+  "fitness-sports-games": Dumbbell,
+  "pets-wildlife-clinic": PawPrint,
+  "kids-playgrounds": Baby,
+  "backyard-landscaping-farm": Trees,
 }

@@ -1,10 +1,22 @@
 "use client"
 
-import { useEffect, useState, useRef, useCallback } from "react"
+import { useEffect, useState, useRef, useCallback, useMemo } from "react"
 import SafeLink from "@/components/SafeLink"
 import { categoryPath, branchPath, type Locale } from "@/lib/i18n"
-import { TAXONOMY_V3 as CATEGORIES, V3_ICONS } from "@/lib/taxonomy-v3"
-import { getChildren, nodeName } from "@/lib/category-tree"
+import { V3_ICONS } from "@/lib/taxonomy-v3"
+import { getChildren, getVisibleL1, nodeName, type CategoryNode } from "@/lib/category-tree"
+
+// Adapter: render the homepage category explorer from the SSoT 18-L1 taxonomy
+// tree instead of the legacy hard-coded 22-entry TAXONOMY_V3 list.
+// Per L1: numeric id (stable scroll anchor), slug (=handle), localized name.
+// prodNum drives the /images/mockup-prods/prod-NN-MM.jpg fallback — kept 1..18
+// for now; real L2 images from node.image_path take priority where present.
+interface HomepageCategory {
+  id: number
+  slug: string
+  name: string
+  prodNum: number
+}
 
 
 /* ═══════════════════════════════════════════════
@@ -102,6 +114,19 @@ async function searchMeili(
 export default function HomepageShell({ locale }: HomepageShellProps) {
   const loc = locale as Locale
 
+  /* ── 18 L1 from SSoT taxonomy tree ── */
+  const L1_NODES: CategoryNode[] = useMemo(() => getVisibleL1(), [])
+  const CATEGORIES: HomepageCategory[] = useMemo(
+    () =>
+      L1_NODES.map((n, i) => ({
+        id: i + 1,
+        slug: n.handle,
+        name: nodeName(n, loc),
+        prodNum: i + 1,
+      })),
+    [L1_NODES, loc],
+  )
+
   /* ── Carousel state ── */
   const [currentSlide, setCurrentSlide] = useState(0)
   const slideTimer = useRef<ReturnType<typeof setInterval> | null>(null)
@@ -158,7 +183,7 @@ export default function HomepageShell({ locale }: HomepageShellProps) {
       if (el) observer.observe(el)
     }
     return () => observer.disconnect()
-  }, [])
+  }, [CATEGORIES])
 
   /* ── Sticky nav highlighting ── */
   const [activeNav, setActiveNav] = useState<number>(1)
@@ -180,7 +205,7 @@ export default function HomepageShell({ locale }: HomepageShellProps) {
       if (el) observer.observe(el)
     }
     return () => observer.disconnect()
-  }, [])
+  }, [CATEGORIES])
 
   function scrollToCategory(catId: number) {
     const el = sectionRefs.current[catId]
@@ -277,7 +302,7 @@ export default function HomepageShell({ locale }: HomepageShellProps) {
         <div className="hp-explorer-header-inner">
           <h2>Explore Categories</h2>
           <div className="hp-line" />
-          <span className="hp-count">22 categories &middot; 16,000+ products</span>
+          <span className="hp-count">18 categories &middot; 16,000+ products</span>
         </div>
       </div>
 
@@ -335,13 +360,41 @@ export default function HomepageShell({ locale }: HomepageShellProps) {
                   </SafeLink>
                 </div>
 
-                {/* COL 2 — atmosphere image */}
+                {/* COL 2 — atmosphere image (local banner first, then SSoT thumb, then icon placeholder) */}
                 <div className="hp-category-image">
-                  <img
-                    src={`/images/cat-atmosphere/${cat.slug}.png`}
-                    alt={cat.name}
-                    loading="lazy"
-                  />
+                  {(() => {
+                    const l1Node = L1_NODES.find((n) => n.handle === cat.slug)
+                    const ssot = l1Node?.image_path
+                    const atmosphere = `/images/cat-atmosphere/${cat.slug}.png`
+                    return (
+                      <img
+                        src={atmosphere}
+                        alt=""
+                        loading="lazy"
+                        onError={(e) => {
+                          const img = e.currentTarget
+                          if (ssot && !img.dataset.ssotTried) {
+                            img.dataset.ssotTried = "1"
+                            img.src = decodeURIComponent(ssot)
+                            return
+                          }
+                          // Final fallback: hide img, reveal icon placeholder sibling
+                          img.style.display = "none"
+                          const parent = img.parentElement
+                          if (parent) parent.classList.add("hp-category-image--placeholder")
+                        }}
+                      />
+                    )
+                  })()}
+                  {/* Icon placeholder — visible when image fails (revealed via CSS class). */}
+                  {(() => {
+                    const Icon = V3_ICONS[cat.slug]
+                    return Icon ? (
+                      <span className="hp-category-image-fallback" aria-hidden="true">
+                        <Icon size={120} strokeWidth={1.2} />
+                      </span>
+                    ) : null
+                  })()}
                 </div>
 
                 {/* COL 3 — 6 products (mockup images) */}
@@ -368,7 +421,8 @@ export default function HomepageShell({ locale }: HomepageShellProps) {
                         const pad = String(cat.prodNum).padStart(2, "0")
                         return realChildren.map((child, n) => {
                           const subThumb = child.image_path
-                          const imgSrc = subThumb ?? `/images/mockup-prods/prod-${pad}-${String(n + 1).padStart(2, "0")}.jpg`
+                          const mockupFallback = `/images/mockup-prods/prod-${pad}-${String(n + 1).padStart(2, "0")}.jpg`
+                          const imgSrc = subThumb ? decodeURIComponent(subThumb) : mockupFallback
                           const subName = nodeName(child, loc)
                           return (
                             <SafeLink
@@ -377,7 +431,16 @@ export default function HomepageShell({ locale }: HomepageShellProps) {
                               className="hp-product-card"
                             >
                               <div className="hp-product-image">
-                                <img src={imgSrc} alt={subName} loading="lazy" />
+                                <img
+                                  src={imgSrc}
+                                  alt={subName}
+                                  loading="lazy"
+                                  onError={(e) => {
+                                    const img = e.currentTarget
+                                    if (img.src.endsWith(mockupFallback)) return
+                                    img.src = mockupFallback
+                                  }}
+                                />
                               </div>
                               <div className="hp-product-info">
                                 <div className="hp-product-name">{subName}</div>
@@ -693,22 +756,25 @@ const homepageStyles = `
   top: 110px;
   height: fit-content;
   max-height: calc(100vh - 130px);
-  overflow: visible;
+  overflow-y: auto;
+  overflow-x: visible;
   flex-shrink: 0;
   background: #fff;
   box-shadow: 0 2px 8px rgba(0,0,0,0.08);
   border-radius: 0;
   padding: 6px 0;
+  scrollbar-width: thin;
 }
 
-.hp-sticky-nav::-webkit-scrollbar { width: 0; }
+.hp-sticky-nav::-webkit-scrollbar { width: 4px; }
+.hp-sticky-nav::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 2px; }
 
 .hp-sticky-nav-icon {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 56px;
-  height: 52px;
+  height: 44px;
   cursor: pointer;
   transition: all 0.15s;
   position: relative;
@@ -827,7 +893,7 @@ const homepageStyles = `
 }
 
 .hp-cat-view-all {
-  display: none;
+  display: block;
   padding: 14px 20px;
   font-size: 13px;
   font-weight: 600;
@@ -844,6 +910,7 @@ const homepageStyles = `
 .hp-category-image {
   position: relative;
   overflow: hidden;
+  background: linear-gradient(135deg, #0F1B2D 0%, #1a3a5c 100%);
 }
 
 .hp-category-image img {
@@ -853,8 +920,28 @@ const homepageStyles = `
   transition: transform 6s ease;
 }
 
+.hp-category-image-fallback {
+  position: absolute;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  color: #D97706;
+  opacity: 0.55;
+}
+
+.hp-category-image--placeholder .hp-category-image-fallback { display: flex; }
+
 .hp-category-section:hover .hp-category-image img {
   transform: scale(1.03);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hp-category-image img,
+  .hp-category-section:hover .hp-category-image img {
+    transition: none;
+    transform: none;
+  }
 }
 
 /* COL 3 — 6 products in 3x2 */
