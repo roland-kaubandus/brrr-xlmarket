@@ -126,62 +126,40 @@ function buildTree(doc) {
     order.push(handle)
   }
 
-  for (const l1 of doc.l1) {
-    const l1Handle = l1.slug
-    const l2Handles = []
+  // Recursive walker — supports L1..Ln (bootstrap-v3 uses up to L7).
+  // Each node in YAML is: { slug, name_en, name_et?, description_en?, description_et?,
+  //                         tagline_en?, tagline_et?, image_alias?, subs?: [child...] }
+  function walk(node, level, parentHandle) {
+    const handle = typeof node === "string" ? node : node.slug
+    if (!handle) return
+    const isObj = typeof node === "object" && node !== null
+    const nameEn = isObj
+      ? (node.name_en || handle)
+      : handle.split("-").map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(" ")
+    const nameEt = isObj ? (node.name_et || nameEn) : nameEn
+    const alias = (isObj ? node.image_alias : null) || aliasMap[handle]
+    const img = pickImage(handle, alias, legacyKeys, thumbFiles)
+    const subs = isObj ? (node.subs || []) : []
+    const childHandles = subs.map((s) => (typeof s === "string" ? s : s.slug)).filter(Boolean)
 
-    for (const l2 of l1.subs || []) {
-      const l2Handle = l2.slug
-      l2Handles.push(l2Handle)
-      const l3Handles = (l2.subs || []).map((s) => (typeof s === "string" ? s : s.slug))
-
-      const l2Img = pickImage(l2Handle, l2.image_alias || aliasMap[l2Handle], legacyKeys, thumbFiles)
-      add(l2Handle, {
-        name_en: l2.name_en || l2.slug,
-        name_et: l2.name_et || l2.name_en || l2.slug,
-        level: 2,
-        parent_handle: l1Handle,
-        child_handles: l3Handles,
-        description_et: l2.description_et || null,
-        description_en: l2.description_en || null,
-        ...l2Img,
-      })
-
-      for (const l3 of l2.subs || []) {
-        const l3Handle = typeof l3 === "string" ? l3 : l3.slug
-        const l3NameEn =
-          typeof l3 === "string"
-            ? l3.split("-").map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(" ")
-            : l3.name_en || l3.slug
-        const l3NameEt =
-          typeof l3 === "string" ? l3NameEn : l3.name_et || l3.name_en || l3.slug
-        const l3Alias = (typeof l3 === "string" ? undefined : l3.image_alias) || aliasMap[l3Handle]
-        const l3Img = pickImage(l3Handle, l3Alias, legacyKeys, thumbFiles)
-        add(l3Handle, {
-          name_en: l3NameEn,
-          name_et: l3NameEt,
-          level: 3,
-          parent_handle: l2Handle,
-          child_handles: [],
-          ...l3Img,
-        })
-      }
+    const attrs = {
+      name_en: nameEn,
+      name_et: nameEt,
+      level,
+      parent_handle: parentHandle,
+      child_handles: childHandles,
+      ...img,
     }
+    if (isObj && node.description_en != null) attrs.description_en = node.description_en
+    if (isObj && node.description_et != null) attrs.description_et = node.description_et
+    if (isObj && node.tagline_en != null) attrs.tagline_en = node.tagline_en
+    if (isObj && node.tagline_et != null) attrs.tagline_et = node.tagline_et
+    add(handle, attrs)
 
-    const l1Img = pickImage(l1Handle, l1.image_alias || aliasMap[l1Handle], legacyKeys, thumbFiles)
-    add(l1Handle, {
-      name_en: l1.name_en || l1.slug,
-      name_et: l1.name_et || l1.name_en || l1.slug,
-      level: 1,
-      parent_handle: null,
-      child_handles: l2Handles,
-      description_et: l1.description_et || null,
-      description_en: l1.description_en || null,
-      tagline_et: l1.tagline_et || null,
-      tagline_en: l1.tagline_en || null,
-      ...l1Img,
-    })
+    for (const child of subs) walk(child, level + 1, handle)
   }
+
+  for (const l1 of doc.l1) walk(l1, 1, null)
 
   return {
     generated_at: new Date().toISOString(),
@@ -192,13 +170,16 @@ function buildTree(doc) {
 
 function report(tree) {
   const nodes = Object.values(tree.nodes)
-  const rows = [[1], [2], [3]].map(([lvl]) => {
+  const maxLvl = Math.max(...nodes.map((n) => n.level || 1))
+  const rows = []
+  for (let lvl = 1; lvl <= maxLvl; lvl++) {
     const ns = nodes.filter((n) => n.level === lvl)
+    if (ns.length === 0) continue
     const bySrc = { direct: 0, alias: 0, fuzzy: 0, none: 0 }
     for (const n of ns) bySrc[n.image_source]++
     const covered = ns.length - bySrc.none
-    return { lvl, total: ns.length, covered, ...bySrc }
-  })
+    rows.push({ lvl, total: ns.length, covered, ...bySrc })
+  }
   console.log("Image coverage per level:")
   console.log("lvl | total | covered | direct | alias | fuzzy | none")
   for (const r of rows) {
@@ -208,8 +189,7 @@ function report(tree) {
   }
   const missing = nodes.filter((n) => n.image_source === "none").map((n) => n.handle)
   if (missing.length > 0) {
-    console.log(`\n${missing.length} nodes with no image (will render SVG fallback):`)
-    missing.forEach((h) => console.log("  " + h))
+    console.log(`\n${missing.length} nodes with no image (will render SVG fallback)`)
   }
 }
 
