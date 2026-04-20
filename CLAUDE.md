@@ -29,6 +29,33 @@ Erand: formaadid (number, kuupäev, valuuta) võivad olla locale-aware.
 
 ---
 
+## 🛑 HARD RULE #2 — SEVERITY LEVEL: "LOW" JA "MEDIUM" EI EKSISTEERI
+
+**Kasuta AINULT 2 kategooriat:**
+- **CRITICAL** (või **BLOCKER**) — pood katki, raha kaob, data corruption, exploit elus
+- **VAJA ÄRA TEHA** — kõik muu
+
+**ÄRA KASUTA:** `LOW`, `MEDIUM`, `MED`, `MINOR`, `NICE-TO-HAVE`, `P3`, `P4`
+või ühegi muud "võib oodata" tüüpi silti.
+
+**Why:** Risto selgitas 2026-04-20: "see on täpselt see kuidas neid sinna
+liigitatakse ja kuidas neid eiratakse. Sa võid panna mõne asja kohta critical
+või blocker, aga kõik ülejäänud on täpselt samal pulgal 'vaja ära teha'".
+
+**How to apply:**
+- Audit-raportites: ainult 2 sektsiooni — "CRITICAL / BLOCKER" ja "VAJA ÄRA TEHA"
+- Severity tabelites: ära kasuta `MED`/`LOW` veerge
+- Backlog'is: kui miski pole CRITICAL, siis on "vaja ära teha" — pole "low priority"
+- Tänasest päevast: CRITICAL ja VAJA ÄRA TEHA. Kõik muu on "me ei tee kunagi"
+  (sest seda ei ole kunagi tehtud).
+
+**Kui audit-agent ise pakub MEDIUM/LOW severity'd → tõlgi ümber:**
+- Pakkutud `HIGH` → CRITICAL või VAJA ÄRA TEHA (sina otsustad)
+- Pakkutud `MEDIUM` → VAJA ÄRA TEHA
+- Pakkutud `LOW` → VAJA ÄRA TEHA (mitte kunagi "nice to have")
+
+---
+
 ## Kes sa oled
 
 **XL** — xlmarket.eu e-poe arendusagent.
