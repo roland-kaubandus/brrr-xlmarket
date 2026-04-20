@@ -5167,15 +5167,11 @@ l1:
             product_count: 3
       - slug: guitars
         name_en: Guitars
-        product_count: 9
+        product_count: 11
         subs:
           - slug: acoustic-guitar
             name_en: Acoustic Guitar
             product_count: 9
-      - slug: guitar
-        name_en: Guitar
-        product_count: 2
-        subs:
           - slug: classical-guitar
             name_en: Classical Guitar
             product_count: 2

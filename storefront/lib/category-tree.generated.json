@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-20T10:07:07.102Z",
+  "generated_at": "2026-04-20T18:47:27.580Z",
   "nodes": {
     "horeca-food-service": {
       "handle": "horeca-food-service",
@@ -17382,7 +17382,6 @@
         "musical-instrument-accessories",
         "band-and-orchestra",
         "guitars",
-        "guitar",
         "home-audio",
         "stage-lighting-and-effects"
       ],
@@ -17719,7 +17718,8 @@
       "level": 2,
       "parent_handle": "music-entertainment",
       "child_handles": [
-        "acoustic-guitar"
+        "acoustic-guitar",
+        "classical-guitar"
       ],
       "image_path": "/cat-thumbs/guitars.webp",
       "image_source": "direct"
@@ -17734,24 +17734,12 @@
       "image_path": "/cat-thumbs/acoustic-guitar.webp",
       "image_source": "direct"
     },
-    "guitar": {
-      "handle": "guitar",
-      "name_en": "Guitar",
-      "name_et": "Guitar",
-      "level": 2,
-      "parent_handle": "music-entertainment",
-      "child_handles": [
-        "classical-guitar"
-      ],
-      "image_path": "/cat-thumbs/guitar.webp",
-      "image_source": "direct"
-    },
     "classical-guitar": {
       "handle": "classical-guitar",
       "name_en": "Classical Guitar",
       "name_et": "Classical Guitar",
       "level": 3,
-      "parent_handle": "guitar",
+      "parent_handle": "guitars",
       "child_handles": [],
       "image_path": "/cat-thumbs/classical-guitar.webp",
       "image_source": "direct"
@@ -46597,7 +46585,6 @@
     "saxophone",
     "guitars",
     "acoustic-guitar",
-    "guitar",
     "classical-guitar",
     "home-audio",
     "speakers",

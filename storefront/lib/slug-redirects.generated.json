@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-04-20T10:07:07.303Z",
-  "count": 42,
+  "generatedAt": "2026-04-20T18:50:14.552Z",
+  "count": 43,
   "redirects": {
     "appliances": "horeca-food-service",
     "auto-ja-garaaz": "automotive-workshop",
@@ -14,6 +14,7 @@
     "elektroonika": "electrical-energy",
     "flooring": "construction-building",
     "furniture": "office-commercial-interiors",
+    "guitar": "guitars",
     "hardware": "hand-power-tools",
     "health-and-wellness": "health-medical-supply",
     "heating-venting-cooling": "hvac-climate-control",
