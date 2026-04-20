@@ -21,7 +21,7 @@ export async function GET(req: NextRequest) {
       return { hits: [], query: "", processingTimeMs: 0 }
     }
   }
-  const map = (hits: MeiliHit[]) => hits.map(h => mapMeiliHitToProduct(h, locale))
+  const map = (hits: MeiliHit[]) => hits.map(h => mapMeiliHitToProduct(h))
   const exclude = <T extends { id: string }>(arr: T[]) => arr.filter(p => p.id !== productId)
 
   try {

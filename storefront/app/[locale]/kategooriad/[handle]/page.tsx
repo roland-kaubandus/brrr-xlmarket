@@ -21,7 +21,6 @@ import {
   getBreadcrumbTrail,
   getChildrenWithProductCounts,
   nodeName,
-  type Locale as TaxLocale,
   type ChildWithCount,
 } from "@/lib/category-tree"
 
@@ -54,7 +53,7 @@ export async function generateMetadata({ params }: Props) {
   const node = getNode(handle)
   const category = node ? null : await getCategoryByHandle(handle)
   const displayName = node
-    ? nodeName(node, locale as TaxLocale)
+    ? nodeName(node)
     : (category?.name || humanize(handle))
   const nodeDesc = node?.description_en ?? node?.tagline_en
   const desc =
@@ -199,14 +198,14 @@ export default async function CategoryPage({ params, searchParams }: Props) {
     const childNode = getNode(h)
     if (!childNode) continue
     categoryFacets[h] = n
-    categoryLabels[h] = nodeName(childNode, locale as TaxLocale)
+    categoryLabels[h] = nodeName(childNode)
   }
 
   // No products AND unknown to SSoT AND Medusa → 404
   if (totalCount === 0 && !node && !category) notFound()
 
   const displayName = node
-    ? nodeName(node, locale as TaxLocale)
+    ? nodeName(node)
     : (category?.name || humanize(handle))
 
   const totalPages = Math.ceil(totalCount / ITEMS_PER_PAGE)
@@ -215,7 +214,7 @@ export default async function CategoryPage({ params, searchParams }: Props) {
 
   // Breadcrumb trail from SSoT — root → node inclusive. INV-24, INV-27.
   const trail = node
-    ? getBreadcrumbTrail(handle, locale as TaxLocale)
+    ? getBreadcrumbTrail(handle)
     : [{ handle, name: displayName }]
 
   function buildPageUrl(targetPage: number) {

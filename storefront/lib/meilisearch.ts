@@ -50,16 +50,11 @@ export type MeiliHit = {
   }
 }
 
-/**
- * Tagastab toote pealkirja. XLMarket = AINULT INGLISE KEEL (CLAUDE.md HARD RULE #1).
- * Locale parameeter säilib signatuuris back-compat'i jaoks, aga ei mõjuta valikut.
- */
-export function getLocalizedTitle(hit: MeiliHit, _locale?: string): string {
+export function getProductTitle(hit: MeiliHit): string {
   return hit.title || hit.title_en || ''
 }
 
-/** Tagastab toote kirjelduse. EN-only (CLAUDE.md HARD RULE #1). */
-export function getLocalizedDescription(hit: MeiliHit, _locale?: string): string {
+export function getProductDescription(hit: MeiliHit): string {
   return hit.description || hit.description_en || ''
 }
 

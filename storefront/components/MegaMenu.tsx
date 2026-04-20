@@ -55,7 +55,7 @@ async function fetchChildren(handle: string): Promise<MenuNode[]> {
   }
 }
 
-export default function MegaMenu({ locale = "et", menuData }: MegaMenuProps) {
+export default function MegaMenu({ locale = "en", menuData }: MegaMenuProps) {
   const loc = locale as "et" | "en"
   const pathname = usePathname() ?? ""
   // Active when on /kategooriad indeks or any /kategooriad/X page.

@@ -1,5 +1,5 @@
 import type { MeiliHit } from "./meilisearch"
-import { getLocalizedTitle } from "./meilisearch"
+import { getProductTitle } from "./meilisearch"
 
 export interface MappedProduct {
   id: string
@@ -22,14 +22,14 @@ export interface MappedProduct {
   in_stock: boolean
 }
 
-export function mapMeiliHitToProduct(hit: MeiliHit, locale?: string): MappedProduct {
+export function mapMeiliHitToProduct(hit: MeiliHit): MappedProduct {
   const categories = hit.categories ?? []
   const categoryHandles = hit.category_handles ?? []
   const price = typeof hit.price === "number" ? hit.price : 0
   const createdAt = typeof hit.created_at === "number" ? hit.created_at : Math.floor(Date.now() / 1000)
   return {
     id: hit.id,
-    title: getLocalizedTitle(hit, locale),
+    title: getProductTitle(hit),
     handle: hit.handle,
     description: hit.description ?? "",
     thumbnail: hit.thumbnail ?? null,

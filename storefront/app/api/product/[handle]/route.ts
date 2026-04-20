@@ -2,10 +2,10 @@ import { NextRequest, NextResponse } from "next/server"
 import { getProduct, getCategoryByHandle, formatPrice } from "@/lib/medusa"
 import { getProductMedia } from "@/lib/product-media"
 import { getVevorFeedEntryAsync } from "@/lib/vevor-feed"
-import { getMeiliProductByHandle, getLocalizedTitle } from "@/lib/meilisearch"
+import { getMeiliProductByHandle, getProductTitle } from "@/lib/meilisearch"
 import { sanitizeHtml } from "@/lib/sanitize"
 import { categoryPath } from "@/lib/i18n"
-import { firstKnownHandle, getBreadcrumbTrail, type Locale as TaxLocale } from "@/lib/category-tree"
+import { firstKnownHandle, getBreadcrumbTrail } from "@/lib/category-tree"
 
 function stringifyScalar(value: unknown): string | null {
   if (value === null || value === undefined) return null
@@ -205,7 +205,7 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
       }),
     ])
 
-    const localizedTitle = meiliHit ? getLocalizedTitle(meiliHit, locale) : product.title
+    const localizedTitle = meiliHit ? getProductTitle(meiliHit) : product.title
     const variant = product.variants?.[0]
     const price = variant?.calculated_price
 
@@ -284,7 +284,7 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
     // If the product has no v3 category yet, breadcrumb stays empty; the
     // product should surface in the review queue, not leak VEVOR paths.
     const productTypeTrail: Array<{ name: string; handle: string }> = canonicalNode
-      ? getBreadcrumbTrail(canonicalNode.handle, locale as TaxLocale)
+      ? getBreadcrumbTrail(canonicalNode.handle)
       : []
 
     // Descriptions — prefer pre-computed sanitized HTML from feed import

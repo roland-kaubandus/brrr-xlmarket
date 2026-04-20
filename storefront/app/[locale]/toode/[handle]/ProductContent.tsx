@@ -111,7 +111,7 @@ export default function ProductContent(props: ProductContentProps) {
 
           {/* Favorites + Compare — below Buy Now, 2-up grid, full labels */}
           <div className="mt-3 grid grid-cols-2 gap-2">
-            <ProductWishlistButton locale={locale} item={compareItem} />
+            <ProductWishlistButton item={compareItem} />
             <ProductCompareActions item={compareItem} locale={locale} />
           </div>
 

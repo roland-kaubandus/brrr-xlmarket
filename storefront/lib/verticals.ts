@@ -9,7 +9,7 @@
 import rawData from "./verticals.generated.json"
 import {
   escapeMeiliFilterValue,
-  getLocalizedTitle,
+  getProductTitle,
   type MeiliHit,
 } from "./meilisearch"
 
@@ -94,11 +94,7 @@ export function allVerticalSlugs(): Array<{ mode: VerticalMode; slug: string }> 
   return data.verticals.map((v) => ({ mode: v.mode as VerticalMode, slug: v.slug }))
 }
 
-/**
- * Display strings for a vertical. XLMarket = EN-only (CLAUDE.md HARD RULE #1).
- * `locale` parameter kept for back-compat but ignored — always returns EN.
- */
-export function localisedVertical(v: VerticalMeta, _locale?: string) {
+export function localisedVertical(v: VerticalMeta) {
   return {
     name: v.name_en,
     tagline: v.tagline_en,
@@ -112,7 +108,7 @@ export function localisedVertical(v: VerticalMeta, _locale?: string) {
 export async function getVerticalProducts(
   mode: VerticalMode,
   slug: string,
-  opts: { limit?: number; locale?: string } = {},
+  opts: { limit?: number } = {},
 ): Promise<MeiliHit[]> {
   const { limit = 24 } = opts
   const verticalSlug = `${mode}:${slug}`
@@ -155,9 +151,7 @@ export async function getVerticalProducts(
  */
 export async function getKitItemProducts(
   kit: Kit,
-  _locale?: string,
 ): Promise<Array<KitItem & { product?: MeiliHit; displayTitle: string }>> {
-  // locale ignored — EN-only (CLAUDE.md HARD RULE #1).
   const results: Array<KitItem & { product?: MeiliHit; displayTitle: string }> = []
 
   for (const item of kit.items) {
@@ -201,7 +195,7 @@ export async function getKitItemProducts(
       results.push({
         ...item,
         product,
-        displayTitle: product ? getLocalizedTitle(product) : item.label_en,
+        displayTitle: product ? getProductTitle(product) : item.label_en,
       })
     } catch {
       results.push({

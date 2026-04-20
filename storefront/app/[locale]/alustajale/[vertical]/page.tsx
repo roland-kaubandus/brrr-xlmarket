@@ -10,7 +10,7 @@ import {
   localisedVertical,
   type VerticalMode,
 } from "@/lib/verticals"
-import { getLocalizedTitle, type MeiliHit } from "@/lib/meilisearch"
+import { getProductTitle, type MeiliHit } from "@/lib/meilisearch"
 
 export const revalidate = 3600
 
@@ -50,10 +50,10 @@ export default async function VerticalPage(
   const v = getVerticalBySlug(MODE, vertical)
   if (!v) notFound()
 
-  const loc = localisedVertical(v, locale)
+  const loc = localisedVertical(v)
   const [products, ...kitProductLists] = await Promise.all([
     getVerticalProducts(MODE, vertical, { limit: 24 }),
-    ...v.kits.map((kit) => getKitItemProducts(kit, locale)),
+    ...v.kits.map((kit) => getKitItemProducts(kit)),
   ])
 
   // JSON-LD (SEO)
@@ -419,7 +419,7 @@ function ProductGridSimple({ products, locale }: { products: MeiliHit[]; locale:
           />
           <div className="p-[14px] flex flex-col flex-1">
             <h3 className="text-[12.5px] font-[600] text-[#1E293B] leading-snug line-clamp-2 mb-[8px] font-[family-name:var(--font-dm-sans)] group-hover:text-[#D97706]">
-              {getLocalizedTitle(p, locale)}
+              {getProductTitle(p)}
             </h3>
             <div className="mt-auto text-[15px] font-[800] text-[#1E293B] tabular-nums font-[family-name:var(--font-dm-sans)]">
               €{(p.price || 0).toLocaleString("en-US")}

@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import Link from "@/components/SafeLink"
 
-export default function CookieConsent({ locale = "et" }: { locale?: string }) {
+export default function CookieConsent({ locale = "en" }: { locale?: string }) {
   const [visible, setVisible] = useState(false)
   const [t, setT] = useState<any>(null)
 

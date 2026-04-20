@@ -16,7 +16,7 @@ const getNavLinks = (locale: string) => [
   { label: "Deals", href: `/${locale}/otsing?tag=deals`, matchPrefix: "" },
 ]
 
-export default async function VevorHeader({ locale = "et" }: { locale?: string }) {
+export default async function VevorHeader({ locale = "en" }: { locale?: string }) {
   const NAV_LINKS = getNavLinks(locale)
   // Compute menu slice server-side — only L1 + L2 (~30KB) goes to the client.
   // L3+ is fetched lazily by MegaMenu via /api/category-children.

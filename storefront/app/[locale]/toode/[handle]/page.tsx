@@ -4,7 +4,7 @@ import { notFound } from "next/navigation"
 import JsonLdProduct from "@/components/JsonLdProduct"
 import JsonLdBreadcrumb from "@/components/JsonLdBreadcrumb"
 import ProductPageClient from "./ProductPageClient"
-import { firstKnownHandle, getBreadcrumbTrail, type Locale as TaxLocale } from "@/lib/category-tree"
+import { firstKnownHandle, getBreadcrumbTrail } from "@/lib/category-tree"
 import { categoryPath } from "@/lib/i18n"
 
 export const revalidate = 3600
@@ -63,7 +63,7 @@ export default async function ProductPage({ params }: Props) {
   const breadcrumbItems = [
     { name: "Home", url: `https://xlmarket.store/${locale}` },
     ...(canonicalNode
-      ? getBreadcrumbTrail(canonicalNode.handle, locale as TaxLocale).map((item) => ({
+      ? getBreadcrumbTrail(canonicalNode.handle).map((item) => ({
           name: item.name,
           url: `https://xlmarket.store${categoryPath(locale as "et" | "en", item.handle)}`,
         }))
