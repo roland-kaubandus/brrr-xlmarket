@@ -30,7 +30,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     openGraph: {
       title: t.meta.ogTitle,
       description: t.meta.ogDescription,
-      locale: locale === "et" ? "et_EE" : "en_US",
+      locale: "en_US",
       type: "website",
       siteName: "XL Market",
       url: "https://xlmarket.store",

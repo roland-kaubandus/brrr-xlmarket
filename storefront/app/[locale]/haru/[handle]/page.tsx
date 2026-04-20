@@ -147,12 +147,12 @@ export default async function BranchLandingPage({ params, searchParams }: Props)
 
         <div className="relative z-10 max-w-[1400px] mx-auto px-4 h-full flex flex-col justify-end pb-12 md:pb-16">
           <nav className="text-[12px] text-white/50 mb-6" aria-label="Breadcrumb">
-            <Link href={`/${locale}`} className="hover:text-white transition-colors">{locale === "en" ? "Home" : "Avaleht"}</Link>
+            <Link href={`/${locale}`} className="hover:text-white transition-colors">Home</Link>
             <span className="mx-2">/</span>
             <span className="text-white/80">{branch.name}</span>
           </nav>
 
-          <span className="inline-block text-[11px] uppercase tracking-[0.2em] font-semibold text-accent mb-3">{locale === "en" ? "Department" : "Osakond"}</span>
+          <span className="inline-block text-[11px] uppercase tracking-[0.2em] font-semibold text-accent mb-3">Department</span>
           <h1 className="font-[family-name:var(--font-dm-sans)] font-[800] text-4xl md:text-6xl text-white tracking-tighter leading-[1.05] mb-4">
             {branch.name}
           </h1>
@@ -169,10 +169,10 @@ export default async function BranchLandingPage({ params, searchParams }: Props)
                 href={categoryPath(locale as "et" | "en", branch.categoryHandle)}
                 className="inline-flex items-center gap-2 px-6 py-3 bg-accent hover:bg-accent-dark text-white text-sm font-semibold rounded-xl btn-press transition-all duration-300"
               >
-                {locale === "en" ? "View all products" : "Vaata kõiki tooteid"}
+                View all products
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
               </Link>
-              <span className="text-white/40 text-sm">{totalCount.toLocaleString("en")} {locale === "en" ? "products" : "toodet"}</span>
+              <span className="text-white/40 text-sm">{totalCount.toLocaleString("en")} products</span>
             </div>
           )}
         </div>
@@ -182,17 +182,12 @@ export default async function BranchLandingPage({ params, searchParams }: Props)
       {branch.categoryHandle && (
         <div className="bg-white border-b border-soft-border">
           <div className="max-w-[1400px] mx-auto px-4 py-5 flex flex-wrap items-center justify-center gap-6 md:gap-10">
-            {(locale === "en" ? [
+            {[
               { icon: "\u2713", text: "Professional quality" },
               { icon: "\u26A1", text: "Fast delivery" },
               { icon: "\u2699", text: "Spare parts available" },
               { icon: "\u260E", text: "Expert advice" },
-            ] : [
-              { icon: "\u2713", text: "Professionaalne kvaliteet" },
-              { icon: "\u26A1", text: "Kiire tarne" },
-              { icon: "\u2699", text: "Varuosad saadaval" },
-              { icon: "\u260E", text: "Eksperdi nõuanne" },
-            ]).map((badge) => (
+            ].map((badge) => (
               <div key={badge.text} className="flex items-center gap-2 text-sm text-muted">
                 <span className="w-5 h-5 bg-accent/10 rounded-full flex items-center justify-center text-accent text-xs">{badge.icon}</span>
                 <span>{badge.text}</span>
@@ -251,16 +246,16 @@ export default async function BranchLandingPage({ params, searchParams }: Props)
             ) : (
               <div className="rounded-2xl border border-soft-border bg-silver px-6 py-12 text-center">
                 <h3 className="font-[family-name:var(--font-dm-sans)] font-[700] text-xl text-off-black mb-2">
-                  {locale === "en" ? "No products found with this filter" : "Selle filtriga tooteid ei leitud"}
+                  No products found with this filter
                 </h3>
                 <p className="text-sm text-muted max-w-xl mx-auto mb-5">
-                  {locale === "en" ? "Try a different product group, wider price range, or clear active filters." : "Proovi teist tootegruppi, laiemat hinnavahemikku või tühjenda filtrid."}
+                  Try a different product group, wider price range, or clear active filters.
                 </p>
                 <Link
                   href={`/${locale}/haru/${handle}`}
                   className="inline-flex items-center gap-2 px-5 py-3 bg-accent hover:bg-accent-dark text-white text-sm font-semibold rounded-xl btn-press transition-all duration-300"
                 >
-                  {locale === "en" ? "Clear all filters" : "Tühjenda filtrid"}
+                  Clear all filters
                 </Link>
               </div>
             )}
@@ -273,14 +268,14 @@ export default async function BranchLandingPage({ params, searchParams }: Props)
                     href={branchUrl({ limit: String(nextLimit) })}
                     className="inline-flex items-center gap-2 px-8 py-3 border border-soft-border text-sm font-semibold text-off-black hover:border-accent hover:text-accent rounded-xl transition-all duration-300"
                   >
-                    {locale === "en" ? "Show more products" : "Näita rohkem tooteid"}
+                    Show more products
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="m6 9 6 6 6-6"/></svg>
                   </Link>
                 ) : (
-                  <span className="text-sm text-muted">{locale === "en" ? `All ${totalCount} products shown` : `Kõik ${totalCount} toodet näidatud`}</span>
+                  <span className="text-sm text-muted">{`All ${totalCount} products shown`}</span>
                 )}
                 <div className="flex items-center gap-2 text-xs text-muted">
-                  <span>{locale === "en" ? "Per page:" : "Lehel:"}</span>
+                  <span>Per page:</span>
                   {VALID_LIMITS.map((l) => (
                     <Link
                       key={l}
@@ -308,10 +303,10 @@ export default async function BranchLandingPage({ params, searchParams }: Props)
                   <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
                 </svg>
               </div>
-              <h2 className="font-[family-name:var(--font-dm-sans)] font-[600] text-xl mb-3">{locale === "en" ? "Coming Soon" : "Tulekul"}</h2>
-              <p className="text-muted text-sm leading-relaxed mb-6">{locale === "en" ? "Products are on their way. We will notify you when they are available." : "Tooted on teel. Teavitame teid, kui need on saadaval."}</p>
+              <h2 className="font-[family-name:var(--font-dm-sans)] font-[600] text-xl mb-3">Coming Soon</h2>
+              <p className="text-muted text-sm leading-relaxed mb-6">Products are on their way. We will notify you when they are available.</p>
               <Link href={categoryPath(locale as "et" | "en")} className="inline-flex items-center gap-2 px-5 py-2.5 bg-silver hover:bg-accent-light text-sm font-medium rounded-xl transition-all duration-300">
-                {locale === "en" ? "Browse Categories" : "Sirvi kategooriaid"}
+                Browse Categories
               </Link>
             </div>
           </div>
@@ -322,9 +317,9 @@ export default async function BranchLandingPage({ params, searchParams }: Props)
       <section className="py-16 md:py-24 bg-silver">
         <div className="max-w-[1400px] mx-auto px-4">
           <div className="mb-10">
-            <span className="inline-block text-[11px] uppercase tracking-[0.2em] font-semibold text-accent mb-3">{locale === "en" ? "Explore More" : "Avasta lisaks"}</span>
+            <span className="inline-block text-[11px] uppercase tracking-[0.2em] font-semibold text-accent mb-3">Explore More</span>
             <h2 className="font-[family-name:var(--font-dm-sans)] font-[700] text-2xl md:text-3xl tracking-tight">
-              {locale === "en" ? "Other Departments" : "Teised osakonnad"}
+              Other Departments
             </h2>
           </div>
 

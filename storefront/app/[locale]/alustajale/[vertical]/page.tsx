@@ -33,11 +33,11 @@ export async function generateMetadata(
   const v = getVerticalBySlug(MODE, vertical)
   if (!v) return {}
   return {
-    title: v.meta_title_et || `${v.name_et} — XLMarket`,
-    description: v.meta_description_et || v.description_et,
+    title: v.meta_title_en ?? `${v.name_en} — XLMarket`,
+    description: v.meta_description_en ?? v.description_en,
     openGraph: {
-      title: v.meta_title_et || v.name_et,
-      description: v.meta_description_et || v.description_et,
+      title: v.meta_title_en ?? v.name_en,
+      description: v.meta_description_en ?? v.description_en,
       images: v.hero_img ? [v.hero_img] : undefined,
     },
   }
@@ -62,8 +62,8 @@ export default async function VerticalPage(
     "@type": "FAQPage",
     mainEntity: v.faq.map((f) => ({
       "@type": "Question",
-      name: f.q_et,
-      acceptedAnswer: { "@type": "Answer", text: f.a_et },
+      name: f.q_en,
+      acceptedAnswer: { "@type": "Answer", text: f.a_en },
     })),
   }
   const collectionJsonLd = {
@@ -92,8 +92,8 @@ export default async function VerticalPage(
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: locale === "et" ? "Avaleht" : "Home", item: `https://xlmarket.store/${locale}` },
-      { "@type": "ListItem", position: 2, name: locale === "et" ? "Alustajale" : "Getting Started", item: `https://xlmarket.store/${locale}/alustajale` },
+      { "@type": "ListItem", position: 1, name: "Home", item: `https://xlmarket.store/${locale}` },
+      { "@type": "ListItem", position: 2, name: "Getting Started", item: `https://xlmarket.store/${locale}/alustajale` },
       { "@type": "ListItem", position: 3, name: loc.name, item: `https://xlmarket.store/${locale}/alustajale/${vertical}` },
     ],
   }
@@ -120,17 +120,17 @@ export default async function VerticalPage(
             aria-label="Breadcrumb"
           >
             <Link href={`/${locale}`} className="hover:text-[#D97706] transition-colors">
-              Avaleht
+              Home
             </Link>
             <span className="mx-[8px] text-white/30">/</span>
             <Link href={`/${locale}/alustajale`} className="hover:text-[#D97706] transition-colors">
-              Alustajale
+              Getting Started
             </Link>
             <span className="mx-[8px] text-white/30">/</span>
             <span className="text-white/90">{loc.name}</span>
           </nav>
           <span className="inline-block bg-[#D97706] text-white text-[11px] font-bold uppercase tracking-[0.12em] px-[10px] py-[4px] mb-[18px]">
-            Alustajale
+            Getting Started
           </span>
           <h1 className="text-[36px] sm:text-[48px] lg:text-[56px] font-[800] leading-[1.05] text-white tracking-[-0.025em] max-w-[880px] mb-[18px] font-[family-name:var(--font-dm-sans)]">
             {loc.name}
@@ -143,18 +143,18 @@ export default async function VerticalPage(
               href="#kits"
               className="inline-flex items-center gap-[8px] px-[22px] py-[13px] bg-[#D97706] text-white text-[14px] font-[600] hover:bg-[#B45309] transition-colors font-[family-name:var(--font-dm-sans)]"
             >
-              Vaata komplekte <ArrowRight size={15} strokeWidth={2.5} />
+              View Kits <ArrowRight size={15} strokeWidth={2.5} />
             </a>
             <Link
               href={`/${locale}/arikliendile#quote`}
               className="inline-flex items-center gap-[8px] px-[22px] py-[13px] border border-white/25 text-white/90 text-[14px] font-[600] hover:border-white/50 transition-colors font-[family-name:var(--font-dm-sans)]"
             >
-              Küsi custom pakkumist
+              Request Custom Quote
             </Link>
           </div>
           {v.emtak_codes.length > 0 && (
             <p className="mt-[20px] text-[11.5px] text-white/50 font-[family-name:var(--font-dm-sans)]">
-              EMTAK: {v.emtak_codes.join(", ")} · KMD 24% sisaldub · Tavaline tarne 4.99€
+              EMTAK: {v.emtak_codes.join(", ")} · VAT 24% included · Standard delivery €4.99
             </p>
           )}
         </div>
@@ -172,13 +172,13 @@ export default async function VerticalPage(
         <div className="max-w-[1280px] mx-auto px-[16px] sm:px-[24px] py-[56px] sm:py-[72px]">
           <div className="mb-[32px]">
             <p className="text-[11px] uppercase tracking-[0.14em] text-[#D97706] font-[700] mb-[6px] font-[family-name:var(--font-dm-sans)]">
-              Kolm taset
+              Three Tiers
             </p>
             <h2 className="text-[24px] sm:text-[32px] font-[800] text-[#1E293B] font-[family-name:var(--font-dm-sans)]">
-              Vali omale sobiv stardikomplekt
+              Choose Your Starter Kit
             </h2>
             <p className="text-[13px] text-[#64748B] mt-[8px] max-w-[620px] font-[family-name:var(--font-dm-sans)]">
-              Iga tase on soovitus — kohandame konfiguratsiooni sinu ruumide ja eelarve järgi tsitaati saates.
+              Each tier is a recommendation — we tailor the configuration to your space and budget when sending the quote.
             </p>
           </div>
 
@@ -186,7 +186,7 @@ export default async function VerticalPage(
             {v.kits.map((kit, idx) => {
               const kitItems = kitProductLists[idx] || []
               const tierLabel =
-                kit.tier === "starter" ? "Alustaja" : kit.tier === "pro" ? "Profi" : "Täiskomplekt"
+                kit.tier === "starter" ? "Starter" : kit.tier === "pro" ? "Pro" : "Full Kit"
 
               return (
                 <article
@@ -209,18 +209,18 @@ export default async function VerticalPage(
                       <Package size={16} strokeWidth={1.8} className="text-[#94A3B8]" />
                     </div>
                     <h3 className="text-[19px] font-[800] text-[#1E293B] font-[family-name:var(--font-dm-sans)] mb-[4px]">
-                      {locale === "en" ? kit.name_en : kit.name_et}
+                      {kit.name_en}
                     </h3>
                     <div className="flex items-baseline gap-[6px]">
                       <span className="text-[10px] uppercase tracking-[0.1em] text-[#94A3B8] font-[600]">
-                        Alates
+                        From
                       </span>
                       <span className="text-[24px] font-[800] text-[#1E293B] tabular-nums font-[family-name:var(--font-dm-sans)]">
                         {priceFmt(kit.price_from)}
                       </span>
                     </div>
                     <div className="text-[10px] text-[#94A3B8] font-[family-name:var(--font-dm-sans)]">
-                      KMD 24% sisaldub
+                      VAT 24% included
                     </div>
                   </div>
 
@@ -261,7 +261,7 @@ export default async function VerticalPage(
                       href={`/${locale}/arikliendile#quote`}
                       className="w-full inline-flex items-center justify-center gap-[8px] px-[18px] py-[11px] bg-[#D97706] text-white text-[13px] font-[600] hover:bg-[#B45309] transition-colors font-[family-name:var(--font-dm-sans)]"
                     >
-                      Küsi selle komplekti pakkumist
+                      Request Quote for This Kit
                       <ArrowRight size={13} strokeWidth={2.5} />
                     </Link>
                   </div>
@@ -278,10 +278,10 @@ export default async function VerticalPage(
           <div className="flex items-end justify-between mb-[24px] flex-wrap gap-[12px]">
             <div>
               <p className="text-[11px] uppercase tracking-[0.14em] text-[#D97706] font-[700] mb-[6px] font-[family-name:var(--font-dm-sans)]">
-                Kõik tooted
+                All Products
               </p>
               <h2 className="text-[22px] sm:text-[28px] font-[800] text-[#1E293B] font-[family-name:var(--font-dm-sans)]">
-                Sirvi kõiki {loc.name.toLowerCase()} tooteid
+                Browse all {loc.name.toLowerCase()} products
               </h2>
             </div>
           </div>
@@ -296,13 +296,13 @@ export default async function VerticalPage(
             <div className="grid grid-cols-1 lg:grid-cols-[320px_1fr] gap-[32px] lg:gap-[48px]">
               <div>
                 <p className="text-[11px] uppercase tracking-[0.14em] text-[#D97706] font-[700] mb-[6px] font-[family-name:var(--font-dm-sans)]">
-                  KKK
+                  FAQ
                 </p>
                 <h2 className="text-[24px] sm:text-[32px] font-[800] text-[#1E293B] tracking-[-0.015em] font-[family-name:var(--font-dm-sans)]">
-                  Küsimused, mida alustajad kõige sagedamini küsivad
+                  Frequently asked questions
                 </h2>
                 <p className="text-[13px] text-[#64748B] mt-[12px] font-[family-name:var(--font-dm-sans)]">
-                  Ei leia vastust? Kirjuta — vastame 1 tööpäeva jooksul.
+                  Can't find an answer? Email us — we reply within 1 business day.
                 </p>
               </div>
               <div className="flex flex-col divide-y divide-[#E2E8F0] bg-white border border-[#E2E8F0]">
@@ -310,14 +310,14 @@ export default async function VerticalPage(
                   <details key={i} className="group" open={i === 0}>
                     <summary className="cursor-pointer p-[20px] sm:p-[24px] flex items-start justify-between gap-[12px] list-none">
                       <h3 className="text-[15px] sm:text-[16px] font-[700] text-[#1E293B] font-[family-name:var(--font-dm-sans)]">
-                        {f.q_et}
+                        {f.q_en}
                       </h3>
                       <span className="text-[#D97706] text-[18px] font-[700] shrink-0 group-open:rotate-45 transition-transform">
                         +
                       </span>
                     </summary>
                     <div className="px-[20px] pb-[20px] sm:px-[24px] sm:pb-[24px] text-[14px] text-[#475569] leading-relaxed font-[family-name:var(--font-dm-sans)]">
-                      {f.a_et}
+                      {f.a_en}
                     </div>
                   </details>
                 ))}
@@ -335,7 +335,7 @@ export default async function VerticalPage(
               <Truck size={22} strokeWidth={1.8} className="text-[#D97706] shrink-0 mt-[2px]" />
               <div>
                 <h3 className="text-[14px] font-[700] text-[#1E293B] mb-[6px] font-[family-name:var(--font-dm-sans)]">
-                  Tarne
+                  Delivery
                 </h3>
                 <p className="text-[13px] text-[#475569] leading-relaxed font-[family-name:var(--font-dm-sans)]">
                   {loc.deliveryNote}
@@ -348,7 +348,7 @@ export default async function VerticalPage(
               <CheckCircle2 size={22} strokeWidth={1.8} className="text-[#D97706] shrink-0 mt-[2px]" />
               <div>
                 <h3 className="text-[14px] font-[700] text-[#1E293B] mb-[6px] font-[family-name:var(--font-dm-sans)]">
-                  Hind ja rahastamine
+                  Pricing & Financing
                 </h3>
                 <p className="text-[13px] text-[#475569] leading-relaxed font-[family-name:var(--font-dm-sans)]">
                   {loc.financingNote}
@@ -364,10 +364,10 @@ export default async function VerticalPage(
         <div className="border border-[#1E293B] bg-[#0F172A] text-white p-[32px] sm:p-[48px] flex flex-col lg:flex-row items-start lg:items-center gap-[24px] justify-between">
           <div className="max-w-[620px]">
             <h3 className="text-[22px] sm:text-[28px] font-[800] mb-[10px] tracking-[-0.015em] font-[family-name:var(--font-dm-sans)]">
-              Sa oled üks esimesi. Räägime.
+              You're one of the first. Let's talk.
             </h3>
             <p className="text-[14px] text-white/70 font-[family-name:var(--font-dm-sans)]">
-              Kirjuta meile oma projektist — saadame custom-pakkumise 48 tunni jooksul ja esimese tellimuse eest saad -5% allahindlust.
+              Tell us about your project — we'll send a custom quote within 48 hours and you'll get 5% off your first order.
             </p>
           </div>
           <div className="flex flex-wrap gap-[10px]">
@@ -375,13 +375,13 @@ export default async function VerticalPage(
               href={`/${locale}/arikliendile#quote`}
               className="inline-flex items-center gap-[8px] px-[22px] py-[13px] bg-[#D97706] text-white text-[14px] font-[700] hover:bg-[#B45309] transition-colors font-[family-name:var(--font-dm-sans)]"
             >
-              Küsi pakkumist <ArrowRight size={15} strokeWidth={2.5} />
+              Request Quote <ArrowRight size={15} strokeWidth={2.5} />
             </Link>
             <a
               href="mailto:info@xlmarket.store"
               className="inline-flex items-center gap-[8px] px-[22px] py-[13px] border border-white/25 text-white/90 text-[14px] font-[600] hover:border-white/50 transition-colors font-[family-name:var(--font-dm-sans)]"
             >
-              <MessageSquare size={15} strokeWidth={2.2} /> Kirjuta e-kiri
+              <MessageSquare size={15} strokeWidth={2.2} /> Send Email
             </a>
           </div>
         </div>
@@ -390,13 +390,13 @@ export default async function VerticalPage(
       {/* Cross-mode escape (spec §4.6 #7) */}
       <section className="max-w-[1280px] mx-auto px-[16px] sm:px-[24px] pb-[64px]">
         <p className="text-[13px] text-[#64748B] font-[family-name:var(--font-dm-sans)]">
-          Eelistad ise sirvida?{" "}
+          Prefer to browse yourself?{" "}
           <Link href={`/${locale}`} className="text-[#D97706] font-[600] hover:underline">
-            Ava kategooriate sirvimine
+            Open category browser
           </Link>
-          {" "}või{" "}
+          {" "}or{" "}
           <Link href={`/${locale}/alustajale`} className="text-[#D97706] font-[600] hover:underline">
-            vaata teisi alustajate-komplekte
+            see other starter kits
           </Link>.
         </p>
       </section>
@@ -425,7 +425,7 @@ function ProductGridSimple({ products, locale }: { products: MeiliHit[]; locale:
               €{(p.price || 0).toLocaleString("en-US")}
             </div>
             <div className="text-[10px] text-[#94A3B8] font-[family-name:var(--font-dm-sans)]">
-              KMD 24% sisaldub
+              VAT 24% included
             </div>
           </div>
         </Link>

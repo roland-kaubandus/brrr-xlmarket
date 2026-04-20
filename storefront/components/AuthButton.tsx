@@ -40,7 +40,7 @@ export default function AuthButton() {
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" /><circle cx="12" cy="7" r="4" />
       </svg>
-      <span className="text-[#94A3B8]">{locale === "et" ? "Tere, " : "Hello, "}<strong className="text-[#1E293B]">{locale === "et" ? "Logi sisse" : "Sign In"}</strong></span>
+      <span className="text-[#94A3B8]">Hello, <strong className="text-[#1E293B]">Sign In</strong></span>
     </Link>
   )
 }

@@ -39,7 +39,7 @@ export async function toolSearchProducts(args: {
 
   return result.hits.map((hit: MeiliHit): ProductResult => ({
     handle: hit.handle,
-    title: hit.title_et || hit.title_en || hit.title,
+    title: hit.title_en || hit.title,
     price: hit.price,
     thumbnail: hit.thumbnail,
     categories: hit.categories,

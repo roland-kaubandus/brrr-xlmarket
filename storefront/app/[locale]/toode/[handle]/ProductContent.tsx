@@ -186,7 +186,7 @@ export default function ProductContent(props: ProductContentProps) {
         {(richDescription || mainDescriptionHtml) && (
           <div className="border-b border-[#E2E8F0] pb-6 mb-0">
             <h2 className="text-[17px] font-bold text-[#1E293B] mb-4">
-              {locale === "et" ? "Tootekirjeldus" : "Product Description"}
+              Product Description
             </h2>
             <div className="max-w-[800px]">
               <CollapsibleDescription
@@ -202,7 +202,7 @@ export default function ProductContent(props: ProductContentProps) {
           <div id="full-specifications" className="scroll-mt-20" />
         )}
         {specs.length > 0 && (
-          <CollapsibleSection title={locale === "et" ? "Tehnilised andmed" : "Specifications"} defaultOpen={true}>
+          <CollapsibleSection title="Specifications" defaultOpen={true}>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {[0, 1].map((col) => {
                 const half = Math.ceil(specs.length / 2)
@@ -227,7 +227,7 @@ export default function ProductContent(props: ProductContentProps) {
         )}
 
         {manualLinks.length > 0 && (
-          <CollapsibleSection title={locale === "et" ? "Juhendid ja allalaadimised" : "Manuals & Downloads"} defaultOpen={true}>
+          <CollapsibleSection title="Manuals & Downloads" defaultOpen={true}>
             <div className="flex flex-wrap gap-3">
               {manualLinks.map((manual, index) => (
                 <a
@@ -246,7 +246,7 @@ export default function ProductContent(props: ProductContentProps) {
           </CollapsibleSection>
         )}
 
-        <CollapsibleSection title={locale === "et" ? "Arvustused" : "Reviews"} defaultOpen={false}>
+        <CollapsibleSection title="Reviews" defaultOpen={false}>
           <ProductReviews />
         </CollapsibleSection>
       </div>

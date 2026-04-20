@@ -2,13 +2,7 @@
 import { useRouter } from "next/navigation"
 import { useCallback } from "react"
 
-const SORT_OPTIONS_ET = [
-  { value: "", label: "Parim vaste" },
-  { value: "price_asc", label: "Hind: odavaim" },
-  { value: "price_desc", label: "Hind: kalleim" },
-  { value: "newest", label: "Uusimad" },
-]
-const SORT_OPTIONS_EN = [
+const SORT_OPTIONS = [
   { value: "", label: "Best Match" },
   { value: "price_asc", label: "Price: Low to High" },
   { value: "price_desc", label: "Price: High to Low" },
@@ -33,8 +27,6 @@ export default function SortSelect({
   basePath,
 }: Props) {
   const router = useRouter()
-  const et = locale === "et"
-  const SORT_OPTIONS = et ? SORT_OPTIONS_ET : SORT_OPTIONS_EN
 
   const buildUrl = useCallback((sortValue: string) => {
     const params = new URLSearchParams()

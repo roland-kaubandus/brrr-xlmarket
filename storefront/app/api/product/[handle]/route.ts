@@ -370,7 +370,7 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
         specs: Object.fromEntries(specs.map(s => [s.key, s.value])),
       },
       breadcrumbItems: [
-        { name: locale === "et" ? "Avaleht" : "Home", url: `https://xlmarket.store/${locale}` },
+        { name: "Home", url: `https://xlmarket.store/${locale}` },
         ...productTypeTrail.map((seg) => ({
           name: seg.name,
           url: `https://xlmarket.store${categoryPath(locale as "et" | "en", seg.handle)}`,

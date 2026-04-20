@@ -61,7 +61,7 @@ export default async function ProductPage({ params }: Props) {
   const medusaHandles = (product.categories || []).map((c) => c.handle).filter(Boolean) as string[]
   const canonicalNode = firstKnownHandle([...taxonomyAncestors, ...meiliHandles, ...medusaHandles])
   const breadcrumbItems = [
-    { name: locale === "et" ? "Avaleht" : "Home", url: `https://xlmarket.store/${locale}` },
+    { name: "Home", url: `https://xlmarket.store/${locale}` },
     ...(canonicalNode
       ? getBreadcrumbTrail(canonicalNode.handle, locale as TaxLocale).map((item) => ({
           name: item.name,

@@ -53,6 +53,8 @@ export interface VerticalMeta {
   description_en: string
   meta_title_et: string | null
   meta_description_et: string | null
+  meta_title_en: string | null
+  meta_description_en: string | null
   hero_img: string | null
   hero_gradient: string | null
   emtak_codes: string[]
@@ -92,15 +94,17 @@ export function allVerticalSlugs(): Array<{ mode: VerticalMode; slug: string }> 
   return data.verticals.map((v) => ({ mode: v.mode as VerticalMode, slug: v.slug }))
 }
 
-/** Localised display strings (ET default, EN fallback to ET). */
-export function localisedVertical(v: VerticalMeta, locale: string) {
-  const isEn = locale === "en"
+/**
+ * Display strings for a vertical. XLMarket = EN-only (CLAUDE.md HARD RULE #1).
+ * `locale` parameter kept for back-compat but ignored — always returns EN.
+ */
+export function localisedVertical(v: VerticalMeta, _locale?: string) {
   return {
-    name: isEn ? v.name_en || v.name_et : v.name_et,
-    tagline: isEn ? v.tagline_en || v.tagline_et : v.tagline_et,
-    description: isEn ? v.description_en || v.description_et : v.description_et,
-    deliveryNote: isEn ? v.delivery_note_en || v.delivery_note_et : v.delivery_note_et,
-    financingNote: isEn ? v.financing_note_en || v.financing_note_et : v.financing_note_et,
+    name: v.name_en,
+    tagline: v.tagline_en,
+    description: v.description_en,
+    deliveryNote: v.delivery_note_en,
+    financingNote: v.financing_note_en,
   }
 }
 
@@ -151,8 +155,9 @@ export async function getVerticalProducts(
  */
 export async function getKitItemProducts(
   kit: Kit,
-  locale: string,
+  _locale?: string,
 ): Promise<Array<KitItem & { product?: MeiliHit; displayTitle: string }>> {
+  // locale ignored — EN-only (CLAUDE.md HARD RULE #1).
   const results: Array<KitItem & { product?: MeiliHit; displayTitle: string }> = []
 
   for (const item of kit.items) {
@@ -160,7 +165,7 @@ export async function getKitItemProducts(
     if (!slug) {
       results.push({
         ...item,
-        displayTitle: locale === "en" ? item.label_en : item.label_et,
+        displayTitle: item.label_en,
       })
       continue
     }
@@ -196,16 +201,12 @@ export async function getKitItemProducts(
       results.push({
         ...item,
         product,
-        displayTitle: product
-          ? getLocalizedTitle(product, locale)
-          : locale === "en"
-            ? item.label_en
-            : item.label_et,
+        displayTitle: product ? getLocalizedTitle(product) : item.label_en,
       })
     } catch {
       results.push({
         ...item,
-        displayTitle: locale === "en" ? item.label_en : item.label_et,
+        displayTitle: item.label_en,
       })
     }
   }

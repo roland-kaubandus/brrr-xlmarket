@@ -58,13 +58,13 @@ export default function ProductPageClient({ handle, locale }: Props) {
     return (
       <div className="text-center py-12">
         <p className="text-[#64748B] mb-4">
-          {locale === "et" ? "Toote laadimine ebaõnnestus." : "Failed to load product."}
+          Failed to load product.
         </p>
         <button
           onClick={() => { setError(false); setData(null) }}
           className="px-4 py-2 bg-[#D97706] text-white rounded-lg text-sm font-medium"
         >
-          {locale === "et" ? "Proovi uuesti" : "Try again"}
+          Try again
         </button>
       </div>
     )

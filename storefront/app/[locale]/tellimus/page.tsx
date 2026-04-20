@@ -122,13 +122,13 @@ export default function CheckoutPage() {
   }
 
   function validateForm(): string | null {
-    if (!form.first_name.trim()) return "Eesnimi on kohustuslik"
-    if (!form.last_name.trim()) return "Perekonnanimi on kohustuslik"
-    if (!form.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) return "Kehtiv e-posti aadress on kohustuslik"
-    if (!form.phone.trim() || !/^[\d\s+()-]{7,20}$/.test(form.phone.trim())) return "Palun sisestage kehtiv telefoninumber"
-    if (!form.address_1.trim()) return "Aadress on kohustuslik"
-    if (!form.city.trim()) return "Linn on kohustuslik"
-    if (!form.postal_code.trim() || !/^\d{5}$/.test(form.postal_code.trim())) return "Postiindeks peab olema 5-kohaline number"
+    if (!form.first_name.trim()) return "First name is required"
+    if (!form.last_name.trim()) return "Last name is required"
+    if (!form.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) return "A valid email address is required"
+    if (!form.phone.trim() || !/^[\d\s+()-]{7,20}$/.test(form.phone.trim())) return "Please enter a valid phone number"
+    if (!form.address_1.trim()) return "Address is required"
+    if (!form.city.trim()) return "City is required"
+    if (!form.postal_code.trim() || !/^\d{5}$/.test(form.postal_code.trim())) return "Postal code must be a 5-digit number"
     return null
   }
 
@@ -173,7 +173,7 @@ export default function CheckoutPage() {
 
       if (!checkoutRes.ok) {
         posthog.capture("checkout_failed", { step: "customer_info", cart_id: cart.id })
-        setError("Kliendi andmete salvestamine ebaõnnestus")
+        setError("Failed to save customer details")
         setSubmitting(false)
         return
       }
@@ -191,7 +191,7 @@ export default function CheckoutPage() {
 
         if (!shipRes.ok) {
           posthog.capture("checkout_failed", { step: "shipping", cart_id: cart.id })
-          setError("Tarneviisi valimine ebaõnnestus")
+          setError("Failed to select shipping method")
           setSubmitting(false)
           return
         }
@@ -206,7 +206,7 @@ export default function CheckoutPage() {
 
       if (!paymentRes.ok) {
         posthog.capture("checkout_failed", { step: "payment", cart_id: cart.id })
-        setError("Makse ettevalmistamine ebaõnnestus")
+        setError("Failed to prepare payment")
         setSubmitting(false)
         return
       }
@@ -220,7 +220,7 @@ export default function CheckoutPage() {
 
       if (!completeRes.ok) {
         posthog.capture("checkout_failed", { step: "complete", cart_id: cart.id })
-        setError("Checkout ebaõnnestus")
+        setError("Checkout failed")
         setSubmitting(false)
         return
       }
@@ -230,7 +230,7 @@ export default function CheckoutPage() {
       // Medusa returns type:"order" on success, type:"cart" on failure
       if (orderData.type === "cart" || (!orderData.order && !orderData.id)) {
         posthog.capture("checkout_failed", { step: "complete_type_cart", cart_id: cart.id })
-        setError("Tellimuse kinnitamine ebaõnnestus. Palun proovige uuesti.")
+        setError("Order confirmation failed. Please try again.")
         setSubmitting(false)
         return
       }
@@ -249,7 +249,7 @@ export default function CheckoutPage() {
       setStep("done")
     } catch (err) {
       posthog.captureException(err)
-      setError("Checkout ebaõnnestus. Palun proovi uuesti.")
+      setError("Checkout failed. Please try again.")
     } finally {
       setSubmitting(false)
     }
@@ -535,7 +535,7 @@ export default function CheckoutPage() {
                           {item.variant?.product?.title || item.title}
                         </p>
                         <p className="text-[12px] text-[#64748B]">
-                          {item.quantity} tk &times; {formatPrice(item.unit_price, cart.currency_code)}
+                          {item.quantity} pcs &times; {formatPrice(item.unit_price, cart.currency_code)}
                         </p>
                       </div>
                       <p className="text-[13px] font-bold text-[#1E293B] shrink-0">

@@ -176,14 +176,14 @@ export default async function AlustajalePage({ params }: { params: Promise<{ loc
         <div className="flex items-end justify-between mb-[24px] flex-wrap gap-[12px]">
           <div>
             <p className="text-[11px] uppercase tracking-[0.14em] text-[#D97706] font-[700] mb-[6px] font-[family-name:var(--font-dm-sans)]">
-              Now live · 3 vertikaali
+              Now live · 3 verticals
             </p>
             <h2 className="text-[24px] sm:text-[32px] font-[800] text-[#1E293B] font-[family-name:var(--font-dm-sans)]">
-              Alusta oma äri ühe lehega
+              Start your business on a single page
             </h2>
           </div>
           <p className="text-[13px] text-[#64748B] max-w-[360px] font-[family-name:var(--font-dm-sans)]">
-            Iga vertikaal: 3 taseme stardikomplekt, FAQ, tarne-realiteet, rahastuse-info.
+            Every vertical: 3-tier starter kit, FAQ, delivery reality, financing info.
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-[16px]">
@@ -197,7 +197,7 @@ export default async function AlustajalePage({ params }: { params: Promise<{ loc
               >
                 <div className="flex items-start justify-between mb-[12px]">
                   <span className="inline-block bg-[#D97706] text-white text-[10px] font-bold uppercase tracking-[0.12em] px-[8px] py-[3px]">
-                    Vertikaal
+                    Vertical
                   </span>
                   <ArrowRight size={16} strokeWidth={2.2} className="text-white/40 group-hover:text-[#D97706] group-hover:translate-x-[2px] transition-all" />
                 </div>
@@ -208,7 +208,7 @@ export default async function AlustajalePage({ params }: { params: Promise<{ loc
                   {l.tagline}
                 </p>
                 <div className="mt-[16px] pt-[14px] border-t border-white/10 text-[11px] text-white/50 font-[family-name:var(--font-dm-sans)]">
-                  3 taset · KKK · Tarne · Rahastus
+                  3 tiers · FAQ · Delivery · Financing
                 </div>
               </Link>
             )

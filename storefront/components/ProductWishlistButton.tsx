@@ -11,7 +11,7 @@ type Props = {
 
 const WISHLIST_KEY = "xlmarket_wishlist"
 
-export default function ProductWishlistButton({ item, locale }: Props) {
+export default function ProductWishlistButton({ item, locale: _locale }: Props) {
   const [wishlisted, setWishlisted] = useState(false)
 
   useEffect(() => {
@@ -27,9 +27,7 @@ export default function ProductWishlistButton({ item, locale }: Props) {
     setWishlisted(!exists)
   }
 
-  const label = wishlisted
-    ? (locale === "et" ? "Lemmikutes" : "In Favorites")
-    : (locale === "et" ? "Lisa lemmikuks" : "Add to Favorites")
+  const label = wishlisted ? "In Favorites" : "Add to Favorites"
 
   return (
     <button

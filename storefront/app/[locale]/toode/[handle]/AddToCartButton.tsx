@@ -106,17 +106,17 @@ export default function AddToCartButton({ variantId }: { variantId: string }) {
           {loading ? (
             <>
               <span className="w-[18px] h-[18px] border-2 border-white/30 border-t-white rounded-full animate-spin" />
-              {locale === "et" ? "Lisamine..." : "Adding..."}
+              Adding...
             </>
           ) : added ? (
             <>
               <Check size={18} strokeWidth={2} />
-              {locale === "et" ? "Lisatud!" : "Added!"}
+              Added!
             </>
           ) : (
             <>
               <ShoppingCart size={18} strokeWidth={1.5} />
-              {locale === "et" ? "Lisa ostukorvi" : "Add to Cart"}
+              Add to Cart
             </>
           )}
         </button>
@@ -124,12 +124,12 @@ export default function AddToCartButton({ variantId }: { variantId: string }) {
 
       {added && (
         <p className="mt-3 text-sm text-green-700 bg-green-50 px-3 py-2 rounded-lg">
-          {locale === "et" ? "Toode lisatud!" : "Product added!"}{" "}
+          Product added!{" "}
           <Link
             href={`/${locale}/ostukorv`}
             className="font-medium underline underline-offset-2 hover:text-green-900"
           >
-            {locale === "et" ? "Vaata ostukorvi" : "View Cart"}
+            View Cart
           </Link>
         </p>
       )}

@@ -238,9 +238,7 @@ export default function CategoryBottomRibbons({
   // TODO(F5c.9): Rename back to "Enimmüüdud" / "Best sellers" + switch sort
   // to `popularity:desc` once Meili field is live. Until then this ribbon
   // is an honest "new arrivals" fallback — never advertise it as popularity.
-  const labels = locale === "en"
-    ? { history: "Recently viewed", deals: "Lowest price", bestSellers: "New arrivals" }
-    : { history: "Hiljuti vaadatud", deals: "Odavaim hind", bestSellers: "Uued tooted" }
+  const labels = { history: "Recently viewed", deals: "Lowest price", bestSellers: "New arrivals" }
 
   if (history.length === 0 && deals.length === 0 && bestSellers.length === 0) {
     return null

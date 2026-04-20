@@ -41,7 +41,7 @@ type SearchResult = {
   processingTimeMs: number
 }
 
-const PLACEHOLDER_TEXTS_EN = [
+const PLACEHOLDER_TEXTS = [
   "welding helmet",
   "lathe",
   "kitchen sink",
@@ -56,22 +56,7 @@ const PLACEHOLDER_TEXTS_EN = [
   "garden hose",
 ]
 
-const PLACEHOLDER_TEXTS_ET = [
-  "keevituskiiver",
-  "treipink",
-  "kraanikauss",
-  "trenažöör",
-  "paadikate",
-  "survepesur",
-  "tööpink",
-  "jäämasin",
-  "basseinipump",
-  "käsipuu",
-  "puurpink",
-  "aiavolik",
-]
-
-export default function SearchBar({ locale = "et", variant = "dark" }: { locale?: string; variant?: "light" | "dark" }) {
+export default function SearchBar({ locale = "en", variant = "dark" }: { locale?: string; variant?: "light" | "dark" }) {
   const [query, setQuery] = useState("")
   const [results, setResults] = useState<SearchResult | null>(null)
   const [isOpen, setIsOpen] = useState(false)
@@ -83,8 +68,6 @@ export default function SearchBar({ locale = "et", variant = "dark" }: { locale?
   const wrapperRef = useRef<HTMLDivElement>(null)
   const timerRef = useRef<ReturnType<typeof setTimeout>>(undefined)
   const router = useRouter()
-
-  const PLACEHOLDER_TEXTS = locale === "et" ? PLACEHOLDER_TEXTS_ET : PLACEHOLDER_TEXTS_EN
 
   // Variant-based styling
   const wrapperCls = variant === "light"
@@ -187,7 +170,7 @@ export default function SearchBar({ locale = "et", variant = "dark" }: { locale?
   useEffect(() => () => clearTimeout(timerRef.current), [])
 
   const formatPrice = (price: number) =>
-    new Intl.NumberFormat(locale === "en" ? "en-IE" : "et-EE", { style: "currency", currency: "EUR" }).format(price)
+    new Intl.NumberFormat("en-IE", { style: "currency", currency: "EUR" }).format(price)
 
   const currentPlaceholder = PLACEHOLDER_TEXTS[placeholderIdx]
 
@@ -212,8 +195,8 @@ export default function SearchBar({ locale = "et", variant = "dark" }: { locale?
                 animating ? "opacity-0" : "opacity-100"
               }`}
             >
-              <span className="hidden sm:inline">{locale === "et" ? "Otsi" : "Search for"} &quot;{currentPlaceholder}&quot;</span>
-              <span className="sm:hidden">{locale === "et" ? "Otsi..." : "Search..."}</span>
+              <span className="hidden sm:inline">Search for &quot;{currentPlaceholder}&quot;</span>
+              <span className="sm:hidden">Search...</span>
             </span>
           )}
         </div>
@@ -276,7 +259,7 @@ export default function SearchBar({ locale = "et", variant = "dark" }: { locale?
                 activeIdx === results.hits.length ? "bg-[#FFFBEB]" : ""
               }`}
             >
-              {locale === "en" ? "View all results" : "Kõik tulemused"} ({results.totalHits.toLocaleString(locale === "en" ? "en-IE" : "et-EE")}) &rarr;
+              View all results ({results.totalHits.toLocaleString("en-IE")}) &rarr;
             </button>
           )}
         </div>

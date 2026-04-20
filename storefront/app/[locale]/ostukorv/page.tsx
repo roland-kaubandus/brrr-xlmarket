@@ -140,9 +140,9 @@ export default function CartPage() {
       <div className="max-w-[1360px] mx-auto px-4 sm:px-6 py-8 sm:py-12">
         {/* Breadcrumb */}
         <nav className="text-[12px] text-[#64748B] mb-7 flex items-center" aria-label="Breadcrumb">
-          <Link href={`/${locale}`} className="text-[#64748B] hover:text-[#D97706] transition-colors">{locale === "et" ? "Avaleht" : "Home"}</Link>
+          <Link href={`/${locale}`} className="text-[#64748B] hover:text-[#D97706] transition-colors">Home</Link>
           <span className="mx-2 text-[#CBD5E1]">/</span>
-          <span className="text-[#1E293B] font-medium">{locale === "et" ? "Ostukorv" : "Cart"}</span>
+          <span className="text-[#1E293B] font-medium">Cart</span>
         </nav>
 
         <div className="flex items-center gap-3 mb-8">

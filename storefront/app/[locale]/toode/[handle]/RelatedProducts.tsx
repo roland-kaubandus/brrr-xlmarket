@@ -88,7 +88,7 @@ export default function RelatedProducts({
   return (
     <>
       <HorizontalRow
-        title={locale === "et" ? "Sarnased tooted" : "Similar Products"}
+        title="Similar Products"
         products={similar}
         locale={locale}
       />

@@ -31,7 +31,7 @@ export default function LoginPage() {
       posthog.capture("user_signed_in", { email: customer.email })
       router.push(`/${locale}/account`)
     } catch (err: any) {
-      setError(err.message || "Sisselogimine ebaõnnestus")
+      setError(err.message || "Sign in failed")
     } finally {
       setLoading(false)
     }
@@ -40,11 +40,11 @@ export default function LoginPage() {
   return (
     <div className="min-h-[70vh] flex items-center justify-center px-4 py-12">
       <div className="w-full max-w-[420px]">
-        <h1 className="text-[28px] font-bold text-[#1E293B] mb-2">Logi sisse</h1>
+        <h1 className="text-[28px] font-bold text-[#1E293B] mb-2">Sign In</h1>
         <p className="text-sm text-[#64748B] mb-8">
-          Pole veel kontot?{" "}
+          Don't have an account yet?{" "}
           <Link href={`/${locale}/register`} className="text-[#D97706] font-medium hover:underline">
-            Loo konto
+            Create Account
           </Link>
         </p>
 
@@ -57,7 +57,7 @@ export default function LoginPage() {
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label htmlFor="email" className="block text-sm font-medium text-[#1E293B] mb-1.5">
-              E-post
+              Email
             </label>
             <input
               id="email"
@@ -66,13 +66,13 @@ export default function LoginPage() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="w-full px-4 py-3 rounded-xl border border-[#E2E8F0] text-[#1E293B] text-sm focus:outline-none focus:ring-2 focus:ring-[#D97706]/30 focus:border-[#D97706] transition-all"
-              placeholder="sinu@email.com"
+              placeholder="you@email.com"
             />
           </div>
 
           <div>
             <label htmlFor="password" className="block text-sm font-medium text-[#1E293B] mb-1.5">
-              Parool
+              Password
             </label>
             <input
               id="password"
@@ -81,7 +81,7 @@ export default function LoginPage() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               className="w-full px-4 py-3 rounded-xl border border-[#E2E8F0] text-[#1E293B] text-sm focus:outline-none focus:ring-2 focus:ring-[#D97706]/30 focus:border-[#D97706] transition-all"
-              placeholder="Sinu parool"
+              placeholder="Your password"
             />
           </div>
 
@@ -90,7 +90,7 @@ export default function LoginPage() {
             disabled={loading}
             className="w-full py-3.5 bg-[#D97706] hover:bg-[#B45309] disabled:bg-[#D97706]/50 text-white font-semibold rounded-xl transition-colors text-sm"
           >
-            {loading ? "Sisselogimine..." : "Logi sisse"}
+            {loading ? "Signing in..." : "Sign In"}
           </button>
         </form>
       </div>

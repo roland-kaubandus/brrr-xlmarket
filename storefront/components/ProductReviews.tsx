@@ -10,7 +10,7 @@ export default function ProductReviews() {
     <section className="mt-12 pt-10 border-t border-[#E2E8F0]">
       <div className="flex items-center justify-between mb-6">
         <h2 className="text-[20px] font-bold text-[#1E293B]">
-          Arvustused
+          Reviews
         </h2>
         {!submitted && (
           <button
@@ -18,7 +18,7 @@ export default function ProductReviews() {
             type="button"
             onClick={() => setSubmitted(true)}
           >
-            Kirjuta arvustus
+            Write a review
           </button>
         )}
       </div>
@@ -26,10 +26,10 @@ export default function ProductReviews() {
       {submitted ? (
         <div className="flex flex-col items-center justify-center py-8 px-6 bg-green-50 border border-green-200 rounded-lg">
           <p className="text-[15px] font-bold text-green-700 mb-1">
-            Aitäh!
+            Thank you!
           </p>
           <p className="text-sm text-green-600 text-center">
-            Sinu arvustus on esitatud ja ootab kinnitust.
+            Your review has been submitted and is awaiting approval.
           </p>
         </div>
       ) : (
@@ -43,10 +43,10 @@ export default function ProductReviews() {
             ))}
           </div>
           <p className="text-[15px] font-bold text-[#1E293B] mb-1.5">
-            Sellel tootel pole veel arvustusi
+            This product has no reviews yet
           </p>
           <p className="text-sm text-[#64748B] text-center max-w-[320px]">
-            Ole esimene, kes jagab oma kogemust selle tootega.
+            Be the first to share your experience with this product.
           </p>
         </div>
       )}

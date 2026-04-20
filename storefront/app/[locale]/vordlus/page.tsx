@@ -6,22 +6,20 @@ import Link from "@/components/SafeLink"
 export default function ComparePage() {
   const { items, remove, clear } = useCompare()
   const pathname = usePathname()
-  const locale = pathname.split("/")[1] === "en" ? "en" : "et"
+  const locale = pathname.split("/")[1] || "en"
 
   if (items.length === 0) {
     return (
       <div className="max-w-[1360px] mx-auto px-4 py-12 text-center">
         <h1 className="text-2xl font-bold text-[#1E293B] mb-4">
-          {locale === "en" ? "Product Comparison" : "Toodete võrdlus"}
+          Product Comparison
         </h1>
         <p className="text-[#64748B] mb-6">
-          {locale === "en"
-            ? "No products added to compare. Browse products and click \"Add to Compare\" to start."
-            : "Võrdlusesse pole tooteid lisatud. Sirvi tooteid ja kliki \"Lisa võrdlusse\" alustamiseks."}
+          No products added to compare. Browse products and click &quot;Add to Compare&quot; to start.
         </p>
         <Link href={`/${locale}`}
           className="inline-block px-6 py-3 bg-[#D97706] text-white rounded-lg font-semibold hover:bg-[#B45309] transition-colors">
-          {locale === "en" ? "Browse Products" : "Sirvi tooteid"}
+          Browse Products
         </Link>
       </div>
     )
@@ -37,22 +35,22 @@ export default function ComparePage() {
       {/* Breadcrumb */}
       <nav className="text-xs text-[#64748B] mb-4 flex items-center">
         <Link href={`/${locale}`} className="text-[#64748B] hover:text-[#D97706]">
-          {locale === "en" ? "Home" : "Avaleht"}
+          Home
         </Link>
         <span className="mx-1.5 text-[#CBD5E1]">&gt;</span>
         <span className="text-[#1E293B] font-medium">
-          {locale === "en" ? "Compare Products" : "Toodete võrdlus"}
+          Compare Products
         </span>
       </nav>
 
       <div className="flex items-center justify-between mb-6">
         <h1 className="text-2xl font-bold text-[#1E293B]">
-          {locale === "en" ? "Compare Products" : "Toodete võrdlus"}
+          Compare Products
           <span className="text-base font-normal text-[#64748B] ml-2">({items.length})</span>
         </h1>
         <button onClick={clear}
           className="text-sm text-[#64748B] hover:text-[#DC2626] transition-colors">
-          {locale === "en" ? "Clear all" : "Tühjenda kõik"}
+          Clear all
         </button>
       </div>
 
@@ -63,14 +61,14 @@ export default function ComparePage() {
           <thead>
             <tr className="border-b border-[#E2E8F0]">
               <th className="p-4 text-left text-sm font-medium text-[#64748B] w-[180px] bg-[#F8FAFC]">
-                {locale === "en" ? "Product" : "Toode"}
+                Product
               </th>
               {items.map(item => (
                 <th key={item.id} className="p-4 text-center align-top">
                   <div className="relative group">
                     <button onClick={() => remove(item.id)}
                       className="absolute -top-1 -right-1 w-6 h-6 rounded-full bg-[#64748B] text-white text-xs flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity z-10"
-                      aria-label={locale === "en" ? "Remove" : "Eemalda"}>×</button>
+                      aria-label="Remove">×</button>
                     <Link href={`/${locale}/toode/${item.handle}`}>
                       <div className="w-[120px] h-[120px] mx-auto bg-[#FAFAFA] rounded-lg overflow-hidden mb-2">
                         {item.thumbnail ? (
@@ -88,7 +86,7 @@ export default function ComparePage() {
             {/* Price row */}
             <tr className="border-b border-[#E2E8F0]">
               <th className="p-4 text-left text-sm font-medium text-[#64748B] bg-[#F8FAFC]">
-                {locale === "en" ? "Price" : "Hind"}
+                Price
               </th>
               {items.map(item => (
                 <td key={item.id} className="p-4 text-center">
@@ -112,7 +110,7 @@ export default function ComparePage() {
             {allSpecKeys.length === 0 && (
               <tr>
                 <td colSpan={items.length + 1} className="p-8 text-center text-sm text-[#64748B]">
-                  {locale === "en" ? "No specifications available for comparison." : "Tehnilised andmed pole võrdluseks saadaval."}
+                  No specifications available for comparison.
                 </td>
               </tr>
             )}

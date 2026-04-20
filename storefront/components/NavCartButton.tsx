@@ -42,7 +42,7 @@ export default function NavCartButton({ variant = "light" }: { variant?: "light"
           ? "text-white/80 hover:text-[#D97706] hover:bg-white/10"
           : "text-[#1E293B] hover:text-[#D97706] hover:bg-[#FFFBEB]"
       }`}
-      aria-label="Ostukorv"
+      aria-label="Cart"
     >
       <ShoppingCart size={20} strokeWidth={1.5} />
       {count > 0 && (

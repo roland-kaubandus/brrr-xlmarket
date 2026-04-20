@@ -287,9 +287,9 @@ export async function getCmsContent(): Promise<CmsContent> {
 
 // --- Helpers ---
 
-/** Map our app locales to BCP-47 number-format tags. */
-export function intlLocale(locale?: string): string {
-  return locale === "en" ? "en-IE" : "et-EE"
+/** BCP-47 number-format tag. Store is EN-only (Ireland EUR formatting). */
+export function intlLocale(_locale?: string): string {
+  return "en-IE"
 }
 
 export function formatPrice(amount: number, currency = "EUR", locale?: string): string {

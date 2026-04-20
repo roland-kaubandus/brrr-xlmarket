@@ -44,8 +44,10 @@ export function getNode(handle: string): CategoryNode | null {
   return TREE.nodes[handle] || null
 }
 
-export function nodeName(node: CategoryNode, locale: Locale): string {
-  return locale === "en" ? node.name_en : node.name_et
+export function nodeName(node: CategoryNode, _locale?: Locale): string {
+  // XLMarket = EN-only (CLAUDE.md HARD RULE #1). Locale param kept for
+  // back-compat but ignored — always return the English name.
+  return node.name_en
 }
 
 export function nodeImage(node: CategoryNode | null): string | null {
@@ -119,15 +121,16 @@ export function getVisibleL1(): CategoryNode[] {
 /** Build the canonical breadcrumb trail for any handle — root → node inclusive. */
 export function getBreadcrumbTrail(
   handle: string,
-  locale: Locale
+  _locale?: Locale
 ): Array<{ handle: string; name: string }> {
+  // locale ignored — EN-only (CLAUDE.md HARD RULE #1).
   const node = getNode(handle)
   if (!node) return []
   const out: Array<{ handle: string; name: string }> = []
   for (const a of getAncestors(handle)) {
-    out.push({ handle: a.handle, name: nodeName(a, locale) })
+    out.push({ handle: a.handle, name: nodeName(a) })
   }
-  out.push({ handle: node.handle, name: nodeName(node, locale) })
+  out.push({ handle: node.handle, name: nodeName(node) })
   return out
 }
 

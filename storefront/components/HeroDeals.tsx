@@ -103,8 +103,6 @@ export default function HeroDeals({ locale }: { locale: string }) {
       .finally(() => setLoading(false))
   }, [])
 
-  const isEt = locale === "et"
-
   return (
     <section className="bg-[#F8FAFC] py-6 sm:py-8 md:py-10">
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-8">
@@ -113,13 +111,13 @@ export default function HeroDeals({ locale }: { locale: string }) {
             className="text-[16px] sm:text-[20px] md:text-[24px] font-bold text-[#0F172A] tracking-tight"
             style={{ letterSpacing: "-0.3px" }}
           >
-            {isEt ? "Pakkumised" : "Top Deals"}
+            Top Deals
           </h2>
           <Link
             href={`/${locale}/otsing?tag=deals`}
             className="text-[13px] md:text-[15px] font-semibold text-[#D97706] flex items-center gap-1 hover:gap-2 transition-all"
           >
-            {isEt ? "Kõik pakkumised" : "All deals"}
+            All deals
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
           </Link>
         </div>

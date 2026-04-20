@@ -6,7 +6,7 @@ import Link from "@/components/SafeLink"
 export default function CompareBar() {
   const { items, remove, clear, count } = useCompare()
   const pathname = usePathname()
-  const locale = pathname.split("/")[1] === "en" ? "en" : "et"
+  const locale = pathname.split("/")[1] || "en"
 
   if (count === 0) return null
 
@@ -28,7 +28,7 @@ export default function CompareBar() {
               <button
                 onClick={() => remove(item.id)}
                 className="absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full bg-[#64748B] text-white text-[10px] flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
-                aria-label={locale === "en" ? "Remove from compare" : "Eemalda võrdlusest"}
+                aria-label="Remove from compare"
               >×</button>
               <p className="text-[10px] text-[#64748B] mt-1 max-w-[56px] truncate text-center">{item.title.split(" ").slice(0, 3).join(" ")}</p>
             </div>
@@ -50,7 +50,7 @@ export default function CompareBar() {
             onClick={clear}
             className="text-xs text-[#64748B] hover:text-[#DC2626] transition-colors"
           >
-            {locale === "en" ? "Clear" : "Tühjenda"}
+            Clear
           </button>
           <Link
             href={`/${locale}/vordlus`}
@@ -60,7 +60,7 @@ export default function CompareBar() {
                 : "bg-[#E2E8F0] text-[#94A3B8] pointer-events-none"
             }`}
           >
-            {locale === "en" ? `Compare (${count})` : `Võrdle (${count})`}
+            {`Compare (${count})`}
           </Link>
         </div>
       </div>

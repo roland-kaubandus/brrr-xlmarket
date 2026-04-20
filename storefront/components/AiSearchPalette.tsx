@@ -26,37 +26,21 @@ function generateId(): string {
   return Math.random().toString(36).slice(2, 9)
 }
 
-function formatPrice(price: number, locale = "et"): string {
-  return (price / 100).toLocaleString(locale === "en" ? "en-IE" : "et-EE", { style: "currency", currency: "EUR" })
+function formatPrice(price: number): string {
+  return (price / 100).toLocaleString("en-IE", { style: "currency", currency: "EUR" })
 }
 
-const GREETINGS = {
-  et: "Tere! Saan aidata õige toote leidmisel. Proovi küsida näiteks \"Millist puuri betoonile vaja?\" või \"Parim keevitusaparaat alla 200€\"",
-  en: "Hi! I can help you find the right product. Try asking \"What drill do I need for concrete?\" or \"Best welder under €200\"",
-}
+const GREETING = "Hi! I can help you find the right product. Try asking \"What drill do I need for concrete?\" or \"Best welder under €200\""
 
-const PLACEHOLDERS = {
-  et: "Otsi tooteid või küsi AI-lt...",
-  en: "Search products or ask AI...",
-}
+const PLACEHOLDER = "Search products or ask AI..."
 
-const SEND_LABELS = {
-  et: "Saada",
-  en: "Send",
-}
+const SEND_LABEL = "Send"
 
-const QUICK_ACTIONS = {
-  et: [
-    { label: "Tänased pakkumised", url: (locale: string) => `/${locale}/otsing?filter=deals` },
-    { label: "Uued tooted", url: (locale: string) => `/${locale}/otsing?sort=uusimad` },
-    { label: "Bestsellerid", url: (locale: string) => `/${locale}/otsing?sort=bestsellerid` },
-  ],
-  en: [
-    { label: "Today's Deals", url: (locale: string) => `/${locale}/otsing?filter=deals` },
-    { label: "New Arrivals", url: (locale: string) => `/${locale}/otsing?sort=uusimad` },
-    { label: "Best Sellers", url: (locale: string) => `/${locale}/otsing?sort=bestsellerid` },
-  ],
-}
+const QUICK_ACTIONS: Array<{ label: string; url: (locale: string) => string }> = [
+  { label: "Today's Deals", url: (locale: string) => `/${locale}/otsing?filter=deals` },
+  { label: "New Arrivals", url: (locale: string) => `/${locale}/otsing?sort=uusimad` },
+  { label: "Best Sellers", url: (locale: string) => `/${locale}/otsing?sort=bestsellerid` },
+]
 
 function AgentAvatar({ agent }: { agent?: "claudia" | "specialist" }) {
   const isSpecialist = agent === "specialist"
@@ -99,7 +83,7 @@ function ProductCard({ item, locale, onClick }: { item: ProductItem; locale: str
       </div>
       <div className="px-2 py-1.5">
         <p className="text-[11px] text-[#475569] leading-tight line-clamp-2 mb-1">{item.title}</p>
-        <p className="text-[12px] font-semibold text-[#D97706]">{formatPrice(item.price, locale)}</p>
+        <p className="text-[12px] font-semibold text-[#D97706]">{formatPrice(item.price)}</p>
       </div>
     </button>
   )
@@ -115,7 +99,7 @@ function StreamingDots() {
   )
 }
 
-export default function AiSearchPalette({ locale = "et" }: { locale?: string }) {
+export default function AiSearchPalette({ locale = "en" }: { locale?: string }) {
   const [open, setOpen] = useState(false)
   const [messages, setMessages] = useState<ChatMessage[]>([])
   const [input, setInput] = useState("")
@@ -126,8 +110,6 @@ export default function AiSearchPalette({ locale = "et" }: { locale?: string }) 
   const chatRef = useRef<HTMLDivElement>(null)
   const router = useRouter()
 
-  const isEt = locale === "et"
-  const lang = isEt ? "et" : "en"
   const hasUserMessages = messages.some(m => m.role === "user")
 
   // Auto-scroll chat to bottom
@@ -269,7 +251,7 @@ export default function AiSearchPalette({ locale = "et" }: { locale?: string }) 
             const escalationMsg: ChatMessage = {
               id: generateId(),
               role: "system",
-              content: isEt ? "Tootespetsialist vastab" : "Product specialist responding",
+              content: "Product specialist responding",
               isEscalation: true,
             }
             setMessages(prev => [...prev, escalationMsg])
@@ -301,7 +283,7 @@ export default function AiSearchPalette({ locale = "et" }: { locale?: string }) 
             setMessages(prev =>
               prev.map(m =>
                 m.id === assistantId
-                  ? { ...m, content: errMsg || (isEt ? "Viga vastuse saamisel." : "Error receiving response."), isStreaming: false }
+                  ? { ...m, content: errMsg || "Error receiving response.", isStreaming: false }
                   : m
               )
             )
@@ -314,7 +296,7 @@ export default function AiSearchPalette({ locale = "et" }: { locale?: string }) 
       setMessages(prev =>
         prev.map(m =>
           m.isStreaming
-            ? { ...m, content: isEt ? `Viga: ${errText}` : `Error: ${errText}`, isStreaming: false }
+            ? { ...m, content: `Error: ${errText}`, isStreaming: false }
             : m
         )
       )
@@ -322,7 +304,7 @@ export default function AiSearchPalette({ locale = "et" }: { locale?: string }) 
       setIsStreaming(false)
       setMessages(prev => prev.map(m => m.isStreaming ? { ...m, isStreaming: false } : m))
     }
-  }, [input, isStreaming, messages, currentAgent, locale, isEt])
+  }, [input, isStreaming, messages, currentAgent, locale])
 
   const handleKeyDown = useCallback((e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter" && !e.shiftKey) {
@@ -333,10 +315,10 @@ export default function AiSearchPalette({ locale = "et" }: { locale?: string }) 
 
   if (!open) return null
 
-  const greeting = GREETINGS[lang]
-  const placeholder = PLACEHOLDERS[lang]
-  const sendLabel = SEND_LABELS[lang]
-  const quickActions = QUICK_ACTIONS[lang]
+  const greeting = GREETING
+  const placeholder = PLACEHOLDER
+  const sendLabel = SEND_LABEL
+  const quickActions = QUICK_ACTIONS
 
   return (
     <div
@@ -439,7 +421,7 @@ export default function AiSearchPalette({ locale = "et" }: { locale?: string }) 
 
             if (msg.role === "assistant") {
               const agentLabel = msg.agent === "specialist"
-                ? (isEt ? "Tootespetsialist" : "Product Specialist")
+                ? "Product Specialist"
                 : "Claudia"
 
               return (

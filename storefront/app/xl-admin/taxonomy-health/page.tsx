@@ -102,7 +102,7 @@ export default async function TaxonomyHealthPage() {
     <div>
       <h1 className="text-2xl font-bold mb-2">Taxonomy Health</h1>
       <p className="text-sm text-[#64748B] mb-6">
-        Generated at {new Date(generated_at).toLocaleString("et-EE")}
+        Generated at {new Date(generated_at).toLocaleString("en-IE")}
       </p>
 
       <div className={`rounded-lg border p-4 mb-8 ${overallBg}`}>

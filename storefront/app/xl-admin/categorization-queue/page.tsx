@@ -23,7 +23,7 @@ export const revalidate = 0
 interface MeiliHit {
   id: string
   handle: string
-  title_et?: string
+  title?: string
   title_en?: string
   category_handles?: string[]
   vevor_sku?: string
@@ -50,7 +50,7 @@ async function fetchQueue(): Promise<{ hits: MeiliHit[]; total: number }> {
       attributesToRetrieve: [
         "id",
         "handle",
-        "title_et",
+        "title",
         "title_en",
         "category_handles",
         "vevor_sku",
@@ -137,7 +137,7 @@ export default async function CategorizationQueuePage() {
                     className="text-[#D97706] hover:underline font-medium"
                     target="_blank"
                   >
-                    {h.title_et || h.title_en || h.handle}
+                    {h.title_en || h.title || h.handle}
                   </Link>
                 </td>
                 <td className="px-4 py-3 font-mono text-xs text-[#64748B]">{h.vevor_sku || "—"}</td>

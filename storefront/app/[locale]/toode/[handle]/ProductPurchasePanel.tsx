@@ -93,7 +93,7 @@ export default function ProductPurchasePanel({ locale, title, variants, options 
               </>
             )}
           </div>
-          <p className="text-xs text-[#64748B] mb-5">{locale === "et" ? "Hind sisaldab käibemaksu" : "Price includes VAT"}</p>
+          <p className="text-xs text-[#64748B] mb-5">Price includes VAT</p>
         </>
       )}
 
@@ -101,12 +101,12 @@ export default function ProductPurchasePanel({ locale, title, variants, options 
         {selectedVariant && inStock ? (
           <span className="inline-flex items-center gap-1.5 text-sm font-medium text-[#059669]">
             <span className="w-2 h-2 rounded-full bg-[#059669]" />
-            {locale === "et" ? "Laos" : "In Stock"}
+            In Stock
           </span>
         ) : (
           <span className="inline-flex items-center gap-1.5 text-sm font-medium text-red-600">
             <span className="w-2 h-2 rounded-full bg-red-500" />
-            {locale === "et" ? "Hetkel ei ole saadaval" : "Currently Unavailable"}
+            Currently Unavailable
           </span>
         )}
       </div>
@@ -153,12 +153,12 @@ export default function ProductPurchasePanel({ locale, title, variants, options 
             href={`/${locale}/ostukorv`}
             className="block w-full text-center h-12 leading-[48px] text-sm font-bold bg-[#1E293B] text-white hover:bg-[#0F172A] rounded-lg transition-colors duration-200"
           >
-            {locale === "et" ? "Osta kohe" : "Buy Now"}
+            Buy Now
           </Link>
         </div>
       ) : (
         <p className="text-sm text-[#64748B]">
-          {locale === "et" ? "See toode ei ole hetkel saadaval." : "This product is currently unavailable."}
+          This product is currently unavailable.
         </p>
       )}
 

@@ -74,7 +74,7 @@ export default function StickyBuyBar({ variantId, title, price }: Props) {
             href={`/${locale}/ostukorv`}
             className="px-4 py-2.5 border border-[#D97706] text-[#D97706] text-sm font-semibold hover:bg-[#FFFBEB] rounded-lg transition-colors duration-200"
           >
-            {locale === "et" ? "Ostukorv" : "Cart"}
+            Cart
           </a>
           <button
             onClick={handleAdd}
@@ -85,7 +85,7 @@ export default function StickyBuyBar({ variantId, title, price }: Props) {
             }
           >
             <ShoppingCart size={16} strokeWidth={1.5} />
-            {added ? (locale === "et" ? "Lisatud!" : "Added!") : adding ? (locale === "et" ? "Lisamine..." : "Adding...") : (locale === "et" ? "Lisa ostukorvi" : "Add to Cart")}
+            {added ? "Added!" : adding ? "Adding..." : "Add to Cart"}
           </button>
         </div>
       </div>

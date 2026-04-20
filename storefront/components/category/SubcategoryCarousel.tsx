@@ -3,7 +3,7 @@
 import { useEffect, useRef, useCallback, useState, type ReactElement } from "react"
 import Link from "next/link"
 import CategoryThumb from "@/components/CategoryThumb"
-import { categoryPath } from "@/lib/i18n"
+import { categoryPath, type Locale } from "@/lib/i18n"
 import type { ChildWithCount } from "@/lib/category-tree"
 
 interface SubcategoryCarouselProps {
@@ -56,8 +56,6 @@ export default function SubcategoryCarousel({
   const trackRef = useRef<HTMLDivElement | null>(null)
   const itemRefs = useRef<Array<HTMLAnchorElement | null>>([])
 
-  const loc = (locale === "en" ? "en" : "et") as "et" | "en"
-  const et = loc === "et"
 
   // Scroll previously visited child into view on mount.
   useEffect(() => {
@@ -156,9 +154,9 @@ export default function SubcategoryCarousel({
         style={{ scrollSnapType: "x mandatory" }}
       >
         {children.map((child, idx) => {
-          const childName = loc === "en" ? child.name_en : child.name_et
+          const childName = child.name_en
           const isCurrent = previousHandle === child.handle
-          const basePath = categoryPath(loc, child.handle)
+          const basePath = categoryPath(locale as Locale, child.handle)
           const childHref = safeCurrent ? `${basePath}?from=${encodeURIComponent(safeCurrent)}` : basePath
           return (
             <Link

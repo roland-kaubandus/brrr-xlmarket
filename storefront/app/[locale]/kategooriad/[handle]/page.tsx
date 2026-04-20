@@ -56,13 +56,10 @@ export async function generateMetadata({ params }: Props) {
   const displayName = node
     ? nodeName(node, locale as TaxLocale)
     : (category?.name || humanize(handle))
-  const nodeDesc =
-    locale === "et" ? node?.description_et ?? node?.tagline_et : node?.description_en ?? node?.tagline_en
+  const nodeDesc = node?.description_en ?? node?.tagline_en
   const desc =
     nodeDesc ||
-    (locale === "et"
-      ? `${displayName} — professionaalne varustus soodsa hinnaga. Kiire tarne üle Eesti.`
-      : `${displayName} — professional equipment at great prices. Fast delivery in Estonia.`)
+    `${displayName} — professional equipment at great prices. Fast delivery in Estonia.`
   const shouldNoindex = NOINDEX_HANDLES.has(handle)
   return {
     title: `${displayName} — XLMARKET`,
@@ -244,7 +241,7 @@ export default async function CategoryPage({ params, searchParams }: Props) {
       />
       <JsonLdBreadcrumb
         items={[
-          { name: locale === "et" ? "Avaleht" : "Home", url: `https://xlmarket.store/${locale}` },
+          { name: "Home", url: `https://xlmarket.store/${locale}` },
           ...trail.map((t) => ({
             name: t.name,
             url: `https://xlmarket.store${categoryPath(locale as "et" | "en", t.handle)}`,
@@ -262,7 +259,7 @@ export default async function CategoryPage({ params, searchParams }: Props) {
             href={`/${locale}`}
             className="text-[#64748B] hover:text-[#E8920A] transition-colors duration-200"
           >
-            {locale === "et" ? "Avaleht" : "Home"}
+            Home
           </Link>
           {trail.map((t, idx) => {
             const isLast = idx === trail.length - 1
@@ -372,7 +369,7 @@ export default async function CategoryPage({ params, searchParams }: Props) {
                 <span className="font-semibold text-[#1E293B]">
                   {totalCount.toLocaleString("et")}
                 </span>{" "}
-                {locale === "et" ? "toodet" : "products"}
+                products
               </div>
               <ProductGrid
                 fetchParams={{
@@ -398,15 +395,13 @@ export default async function CategoryPage({ params, searchParams }: Props) {
         ) : (
           <div className="bg-white rounded-xl p-12 text-center">
             <p className="text-sm text-[#64748B] mb-4">
-              {locale === "et"
-                ? "Selles kategoorias tooteid ei leitud."
-                : "No products found in this category."}
+              No products found in this category.
             </p>
             <Link
               href={`/${locale}`}
               className="text-[#E8920A] hover:underline font-medium"
             >
-              {locale === "et" ? "Sirvi kategooriaid" : "Browse all categories"}
+              Browse all categories
             </Link>
           </div>
         )}

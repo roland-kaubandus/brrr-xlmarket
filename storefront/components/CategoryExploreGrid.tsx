@@ -23,7 +23,7 @@ export default function CategoryExploreGrid({
         <div className="flex items-center gap-2 mb-4">
           <div className="w-1 h-5 rounded-full bg-[#D97706]" />
           <h2 className="font-bold text-[17px] md:text-[20px] text-[#1E293B] tracking-tight">
-            {locale === "en" ? "Categories" : "Kategooriad"}
+            Categories
           </h2>
         </div>
 
