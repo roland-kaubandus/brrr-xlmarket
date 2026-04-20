@@ -76,8 +76,9 @@ export default function CartPage() {
         body: JSON.stringify({ cart_id: cart.id, item_id: itemId, quantity }),
       })
       if (res.ok) {
-        const data = await res.json()
-        setCart(data.cart)
+        // Medusa PATCH response omits line-item `total` / `subtotal` — refetch
+        // the cart so line totals render correctly (not as €NaN).
+        await fetchCart()
       } else {
         setError("Failed to update quantity")
       }
