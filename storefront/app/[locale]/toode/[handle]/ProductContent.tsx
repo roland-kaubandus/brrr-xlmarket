@@ -183,20 +183,25 @@ export default function ProductContent(props: ProductContentProps) {
 
       {/* Description + Specs */}
       <div className="mt-12">
-        {(richDescription || mainDescriptionHtml) && (
-          <div className="border-b border-[#E2E8F0] pb-6 mb-0">
-            <h2 className="text-[17px] font-bold text-[#1E293B] mb-4">
-              Product Description
-            </h2>
-            <div className="max-w-[800px]">
-              <CollapsibleDescription
-                html={richDescription || mainDescriptionHtml || ""}
-                defaultExpanded={true}
-                collapsedHeight={999999}
-              />
+        {(() => {
+          const richHasContent = richDescription && richDescription.replace(/<[^>]+>|\s/g, "").length > 20
+          const descHtml = richHasContent ? richDescription : mainDescriptionHtml
+          if (!descHtml) return null
+          return (
+            <div className="border-b border-[#E2E8F0] pb-6 mb-0">
+              <h2 className="text-[17px] font-bold text-[#1E293B] mb-4">
+                Product Description
+              </h2>
+              <div className="max-w-[800px]">
+                <CollapsibleDescription
+                  html={descHtml}
+                  defaultExpanded={true}
+                  collapsedHeight={999999}
+                />
+              </div>
             </div>
-          </div>
-        )}
+          )
+        })()}
 
         {specs.length > 0 && (
           <div id="full-specifications" className="scroll-mt-20" />

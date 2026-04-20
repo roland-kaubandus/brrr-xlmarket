@@ -86,8 +86,42 @@ export default function VevorProductCard({ product, locale }: { product: Product
   return (
     <article className="bg-white rounded-xl overflow-hidden border border-transparent hover:border-[#E2E8F0] hover:shadow-[0_4px_20px_rgba(0,0,0,0.06)] transition-all duration-300 relative group">
       <Link href={`/${resolvedLocale}/toode/${product.handle}`} prefetch={false} className="block">
-        <div className="absolute top-3 right-3 z-10 flex items-center gap-1">
-          {/* Compare */}
+        {/* Wishlist heart — top right, always visible */}
+        <button
+          type="button"
+          onClick={toggleWishlist}
+          aria-label={wishlisted ? "Remove from Wishlist" : "Add to Wishlist"}
+          className="absolute top-3 right-3 z-10 w-9 h-9 rounded-full flex items-center justify-center bg-white/90 hover:bg-white shadow-sm transition-colors"
+        >
+          <svg width="16" height="16" viewBox="0 0 24 24" fill={wishlisted ? "#DC2626" : "none"} stroke={wishlisted ? "#DC2626" : "#94A3B8"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
+          </svg>
+        </button>
+
+        {/* Discount badge */}
+        {discount > 0 && (
+          <span className="absolute top-3 left-3 z-10 px-2.5 py-1 bg-[#DC2626] text-white text-[11px] font-bold rounded-md">
+            -{discount}%
+          </span>
+        )}
+
+        {/* Product image — 1:1 */}
+        <div className="relative aspect-square flex items-center justify-center overflow-hidden bg-[#FAFAFA] p-4 md:p-6">
+          {thumbnailUrl ? (
+            <Image
+              src={thumbnailUrl}
+              alt={product.title}
+              width={400}
+              height={400}
+              loading="lazy"
+              className="max-h-full object-contain transition-transform duration-500 ease-out group-hover:scale-[1.06]"
+              sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
+            />
+          ) : (
+            <div className="flex items-center justify-center h-full text-[#CBD5E1] text-sm md:text-base">No image</div>
+          )}
+
+          {/* Compare — bottom right of image, always visible */}
           <button
             type="button"
             onClick={(e) => {
@@ -107,50 +141,17 @@ export default function VevorProductCard({ product, locale }: { product: Product
               }
             }}
             aria-label={isCompared ? "Remove from compare" : "Add to compare"}
-            className={`w-8 h-8 rounded-full flex items-center justify-center shadow-sm opacity-0 group-hover:opacity-100 transition-all duration-200 ${
-              isCompared ? "bg-[#D97706] text-white" : "bg-white/90 hover:bg-white text-[#64748B]"
+            className={`absolute bottom-3 right-3 z-10 flex items-center gap-1.5 px-3 h-8 rounded-full shadow-sm text-[12px] font-semibold transition-colors ${
+              isCompared
+                ? "bg-[#D97706] text-white hover:bg-[#B45309]"
+                : "bg-white/95 hover:bg-white text-[#475569] hover:text-[#D97706] border border-[#E2E8F0]"
             }`}
           >
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <line x1="18" y1="20" x2="18" y2="10" /><line x1="12" y1="20" x2="12" y2="4" /><line x1="6" y1="20" x2="6" y2="14" />
             </svg>
+            <span>{isCompared ? "In Compare" : "Compare"}</span>
           </button>
-
-          {/* Wishlist heart */}
-          <button
-            type="button"
-            onClick={toggleWishlist}
-            aria-label={wishlisted ? "Remove from Wishlist" : "Add to Wishlist"}
-            className="w-8 h-8 rounded-full flex items-center justify-center bg-white/90 hover:bg-white shadow-sm opacity-0 group-hover:opacity-100 transition-all duration-200"
-          >
-            <svg width="15" height="15" viewBox="0 0 24 24" fill={wishlisted ? "#DC2626" : "none"} stroke={wishlisted ? "#DC2626" : "#94A3B8"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
-            </svg>
-          </button>
-        </div>
-
-        {/* Discount badge */}
-        {discount > 0 && (
-          <span className="absolute top-3 left-3 z-10 px-2.5 py-1 bg-[#DC2626] text-white text-[11px] font-bold rounded-md">
-            -{discount}%
-          </span>
-        )}
-
-        {/* Product image — 1:1 */}
-        <div className="aspect-square flex items-center justify-center overflow-hidden bg-[#FAFAFA] p-4 md:p-6">
-          {thumbnailUrl ? (
-            <Image
-              src={thumbnailUrl}
-              alt={product.title}
-              width={400}
-              height={400}
-              loading="lazy"
-              className="max-h-full object-contain transition-transform duration-500 ease-out group-hover:scale-[1.06]"
-              sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
-            />
-          ) : (
-            <div className="flex items-center justify-center h-full text-[#CBD5E1] text-sm md:text-base">No image</div>
-          )}
         </div>
 
         {/* Product info */}
