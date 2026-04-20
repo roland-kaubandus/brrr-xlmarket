@@ -15,10 +15,20 @@ const ALLOWED_ATTRS: Record<string, Set<string>> = {
  */
 export function sanitizeHtml(html: string): string {
   return html
-    // Remove entire CSS blocks — VEVOR dumps raw CSS outside <style> tags
-    // Match everything from "/* " comment or ".class-name {" up to the last "}" before next HTML tag
+    // Remove entire CSS blocks — VEVOR dumps raw CSS outside <style> tags.
+    // Bounded quantifiers prevent catastrophic backtracking (ReDoS).
     .replace(/\/\*[\s\S]*?\*\//g, "")
-    .replace(/\.[a-z][\w-]{0,50}[^{}]{0,300}\{[^}]{0,5000}\}/gi, "")
+    .replace(/\.[a-z][\w-]{0,50}[^{}]{0,10000}\{[^{}]{0,10000}\}/gi, "")
+    // Remove orphaned CSS selector lists — VEVOR scraped content sometimes
+    // contains selector lists WITHOUT the `{ ... }` block because the source
+    // HTML had a malformed <style> that got stripped. Each orphan line looks
+    // like `.vevor-m-label-swiperbox input#slideLabelm1:checked ~ .foo label#bar,`
+    // Detect a line that starts with optional whitespace + `.classname` and
+    // contains CSS-combinator markers (`:checked`, `~`, `::`, `>`, `+`) and
+    // ends in a comma or is followed by whitespace before another such line.
+    .replace(/^[ \t]*\.[a-z][\w-]{0,80}(?:[ \t][^\n{}]{0,500})?[:~+>][^\n{}]{0,500},?[ \t]*$/gim, "")
+    // Strip stray HTML comments that remain after CSS cleanup (e.g. `<!-- logo -->`)
+    .replace(/<!--[\s\S]*?-->/g, "")
     // Remove script/style/iframe blocks entirely (tag + content + closing tag)
     .replace(/<style[^>]*>[\s\S]*?<\/style\s*>/gi, "")
     .replace(/<script[^>]*>[\s\S]*?<\/script\s*>/gi, "")

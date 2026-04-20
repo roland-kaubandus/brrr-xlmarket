@@ -303,7 +303,10 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
 
     let richDescription: string | null = null
     if (typeof metadata.sanitized_rich_description === "string" && metadata.sanitized_rich_description.length > 50) {
-      richDescription = beautifyRichDescription(metadata.sanitized_rich_description)
+      // Re-run sanitizeHtml — the pre-computed version may have been stored
+      // before newer sanitize rules (e.g. orphan CSS selector stripping)
+      // were added. Runtime re-sanitize is cheap (~5ms).
+      richDescription = beautifyRichDescription(sanitizeHtml(metadata.sanitized_rich_description))
     } else {
       const rawRich = typeof metadata.rich_description === "string" && metadata.rich_description.length > 50
         ? metadata.rich_description : null
