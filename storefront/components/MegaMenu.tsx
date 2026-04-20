@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useRef, useEffect, useCallback, useMemo } from "react"
+import { usePathname } from "next/navigation"
 import Link from "@/components/SafeLink"
 import { categoryPath } from "@/lib/i18n"
 import { Menu, X, ChevronRight, ChevronLeft } from "lucide-react"
@@ -56,6 +57,9 @@ async function fetchChildren(handle: string): Promise<MenuNode[]> {
 
 export default function MegaMenu({ locale = "et", menuData }: MegaMenuProps) {
   const loc = locale as "et" | "en"
+  const pathname = usePathname() ?? ""
+  // Active when on /kategooriad indeks or any /kategooriad/X page.
+  const isCategoriesActive = /^\/(?:et|en)\/kategooriad(?:\/|$)/.test(pathname)
   const [isOpen, setIsOpen] = useState(false)
   const [activeL1, setActiveL1] = useState<MenuNode | null>(null)
   // hoverPath[i] = node whose children are rendered as the (i+2)-th column.
@@ -340,7 +344,9 @@ export default function MegaMenu({ locale = "et", menuData }: MegaMenuProps) {
         onMouseLeave={handleTriggerLeave}
         aria-expanded={isOpen}
         aria-haspopup="true"
-        className="flex items-center gap-2 px-3 py-1.5 text-white font-bold text-[14px] rounded-md hover:bg-white/10 transition-colors"
+        className={`flex items-center gap-2 px-3 py-1.5 font-bold text-[14px] rounded-md hover:bg-white/10 transition-colors ${
+          isCategoriesActive || isOpen ? "text-[#D97706]" : "text-white"
+        }`}
       >
         {isOpen ? <X size={18} strokeWidth={2} /> : <Menu size={18} strokeWidth={2} />}
         <span className="hidden sm:inline">Categories</span>

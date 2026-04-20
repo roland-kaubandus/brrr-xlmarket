@@ -4,14 +4,16 @@ import SearchBar from "@/components/SearchBar"
 import MegaMenu from "@/components/MegaMenu"
 import LocaleSwitcher from "@/components/LocaleSwitcher"
 import MobileSearchToggle from "@/components/MobileSearchToggle"
+import HeaderNavLinks from "@/components/HeaderNavLinks"
 import { getMenuSlice } from "@/lib/menu-data"
 
 // EN-only nav labels per CLAUDE.md HARD RULE #1.
+// `matchPrefix` is used client-side to highlight the active link.
 const getNavLinks = (locale: string) => [
-  { label: "Starter kits", href: `/${locale}/alustajale`, highlight: true },
-  { label: "B2B", href: `/${locale}/arikliendile` },
-  { label: "Service", href: `/${locale}/hooldus` },
-  { label: "Deals", href: `/${locale}/otsing?tag=deals` },
+  { label: "Starter kits", href: `/${locale}/alustajale`, highlight: true, matchPrefix: `/${locale}/alustajale` },
+  { label: "B2B", href: `/${locale}/arikliendile`, matchPrefix: `/${locale}/arikliendile` },
+  { label: "Service", href: `/${locale}/hooldus`, matchPrefix: `/${locale}/hooldus` },
+  { label: "Deals", href: `/${locale}/otsing?tag=deals`, matchPrefix: "" },
 ]
 
 export default async function VevorHeader({ locale = "et" }: { locale?: string }) {
@@ -69,21 +71,7 @@ export default async function VevorHeader({ locale = "et" }: { locale?: string }
       <div className="hidden md:block border-t border-white/10">
         <div className="max-w-[1440px] mx-auto flex items-center px-8 h-[48px] gap-1">
           <MegaMenu locale={locale} variant="dark" menuData={menuData} />
-          <nav className="flex items-center gap-0.5">
-            {NAV_LINKS.map(link => (
-              <Link
-                key={link.label}
-                href={link.href}
-                className={`px-4 py-1.5 text-[0.95rem] font-semibold rounded-md transition-colors whitespace-nowrap ${
-                  link.highlight
-                    ? "text-[#D97706] hover:text-[#F59E0B] hover:bg-white/10"
-                    : "text-[#94A3B8] hover:text-white hover:bg-white/10"
-                }`}
-              >
-                {link.label}
-              </Link>
-            ))}
-          </nav>
+          <HeaderNavLinks links={NAV_LINKS} />
         </div>
       </div>
 
