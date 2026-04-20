@@ -74,13 +74,23 @@ const SLIDES = [
 /* ═══════════════════════════════════════════════
    PROMO CARDS — six starter kits
    ═══════════════════════════════════════════════ */
-const PROMOS = [
-  { tag: "Starter Kit", title: "Caf\u00e9 & Coffee Shop", sub: "From \u20AC8,499 \u2014 espresso, fridge, prep, shelving", gradient: "linear-gradient(135deg, #0F1B2D, #1a3a5c)", href: "LOCALE/alustajale#cafe" },
-  { tag: "Starter Kit", title: "Auto Workshop", sub: "From \u20AC12,900 \u2014 lift, compressor, tool chest, scanner", gradient: "linear-gradient(135deg, #E8920A, #CF7F00)", href: "LOCALE/alustajale#auto" },
-  { tag: "Starter Kit", title: "Barber Shop", sub: "From \u20AC3,499 \u2014 chairs, mirrors, tools, sterilizer", gradient: "linear-gradient(135deg, #CF7F00, #E8920A)", href: "LOCALE/alustajale#barber" },
-  { tag: "Starter Kit", title: "Print & Sign Shop", sub: "From \u20AC5,999 \u2014 heat press, cutter, DTF, inks", gradient: "linear-gradient(135deg, #1a3a5c, #2a5a7c)", href: "LOCALE/alustajale#print" },
-  { tag: "Starter Kit", title: "Bakery & Pastry", sub: "From \u20AC7,499 \u2014 oven, proofer, mixer, display", gradient: "linear-gradient(135deg, #0F1B2D, #243b55)", href: "LOCALE/alustajale#bakery" },
-  { tag: "Starter Kit", title: "Cleaning Service", sub: "From \u20AC2,799 \u2014 scrubber, vacuum, pressure washer", gradient: "linear-gradient(135deg, #2a5a7c, #0F1B2D)", href: "LOCALE/alustajale#cleaning" },
+type PromoItem = {
+  tag: string
+  tagTone: "amber" | "red" | "green" | "navy"
+  title: string
+  sub: string
+  image?: string
+  bg?: string
+  href: string
+}
+
+const PROMOS: PromoItem[] = [
+  { tag: "Starter Kit", tagTone: "amber", title: "Caf\u00e9 & Coffee Shop", sub: "From \u20AC8,499 \u2014 espresso, fridge, prep, shelving", image: "/images/cat-01-horeca-food-service.png", href: "LOCALE/alustajale#cafe" },
+  { tag: "Starter Kit", tagTone: "amber", title: "Barber Shop", sub: "From \u20AC3,499 \u2014 chairs, mirrors, tools, sterilizer", image: "/images/cat-18-salon-spa-wellness.png", href: "LOCALE/alustajale#barber" },
+  { tag: "Starter Kit", tagTone: "amber", title: "Bakery & Pastry", sub: "From \u20AC7,499 \u2014 oven, proofer, mixer, display", image: "/images/cat-01-kitchen.png", href: "LOCALE/alustajale#bakery" },
+  { tag: "Deal", tagTone: "red", title: "Deal of the week", sub: "Hand-picked discounts refreshed every Monday.", bg: "linear-gradient(135deg, #7F1D1D 0%, #DC2626 100%)", href: "LOCALE/kategooriad?deals=1" },
+  { tag: "New", tagTone: "green", title: "Pay in 3 with Montonio", sub: "Split your order into 3 interest-free payments at checkout.", bg: "linear-gradient(135deg, #064E3B 0%, #059669 100%)", href: "LOCALE/arikliendile#financing" },
+  { tag: "Beta", tagTone: "navy", title: "AI product finder", sub: "Describe what you need \u2014 we match the right tool and variant.", bg: "linear-gradient(135deg, #0F1B2D 0%, #334155 100%)", href: "LOCALE/otsing" },
 ]
 
 /* ═══════════════════════════════════════════════
@@ -117,6 +127,43 @@ async function searchMeili(
 /* ═══════════════════════════════════════════════
    COMPONENT
    ═══════════════════════════════════════════════ */
+/* Short labels for horizontal sticky nav — hand-picked so they stay meaningful.
+   Fallback: first segment of the full name if slug missing here. */
+const NAV_SHORT_NAMES: Record<string, string> = {
+  "renewable-energy": "Energy",
+  "horeca-food-service": "HoReCa",
+  "automotive-workshop": "Automotive",
+  "cleaning-janitorial": "Cleaning",
+  "crafts-sewing-printing": "Crafts",
+  "salon-spa-wellness": "Salon",
+  "health-medical-supply": "Medical",
+  "fitness-sports-recreation": "Sport",
+  "boating-camping-outdoor": "Outdoor",
+  "music-instruments": "Music",
+  "pets-animal-supplies": "Pets",
+  "backyard-landscaping-farm": "Garden",
+  "construction-building": "Construction",
+  "safety-security": "Safety",
+  "hand-power-tools": "Tools",
+  "warehousing-material-handling": "Warehousing",
+  "welding-metalworking": "Welding",
+  "laser-cnc-digital-fabrication": "CNC",
+  "industrial-scientific": "Industrial",
+  "hvac-climate-control": "HVAC",
+  "electrical-energy": "Electrical",
+  "building-materials": "Materials",
+  "fuel-lubrication-fluid": "Fuel",
+  "kids-playgrounds": "Kids",
+  "kitchen": "Kitchen",
+}
+
+function shortNavLabel(slug: string, name: string): string {
+  if (NAV_SHORT_NAMES[slug]) return NAV_SHORT_NAMES[slug]
+  // Fallback: strip trailing descriptors, keep up to two punchy words
+  const cleaned = name.replace(/\s*[,&/].*$/, "").trim()
+  return cleaned
+}
+
 export default function HomepageShell({ locale, l1Nodes }: HomepageShellProps) {
   const loc = locale as Locale
 
@@ -209,7 +256,30 @@ export default function HomepageShell({ locale, l1Nodes }: HomepageShellProps) {
   /* ── Section refs for sticky nav highlighting ── */
   const sectionRefs = useRef<Record<number, HTMLElement | null>>({})
 
-  /* ── Sticky nav highlighting ── */
+  /* ── Nav background activates only when nav is stuck (scrolled past origin). */
+  const navRef = useRef<HTMLDivElement | null>(null)
+  const [navStuck, setNavStuck] = useState(false)
+  useEffect(() => {
+    const el = navRef.current
+    if (!el) return
+    const headerOffset = 116
+    function update() {
+      if (!el) return
+      const rect = el.getBoundingClientRect()
+      setNavStuck(rect.top <= headerOffset + 1)
+    }
+    update()
+    window.addEventListener("scroll", update, { passive: true })
+    window.addEventListener("resize", update)
+    return () => {
+      window.removeEventListener("scroll", update)
+      window.removeEventListener("resize", update)
+    }
+  }, [])
+
+  /* ── Sticky nav highlighting — tracks which section is centred in viewport.
+     rootMargin narrows the "active zone" to ~40% band around viewport centre,
+     so a section only becomes active once its body crosses the middle. */
   const [activeNav, setActiveNav] = useState<number>(1)
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -221,7 +291,7 @@ export default function HomepageShell({ locale, l1Nodes }: HomepageShellProps) {
           }
         }
       },
-      { threshold: 0.2 }
+      { rootMargin: "-40% 0px -50% 0px", threshold: 0 }
     )
     const refs = sectionRefs.current
     for (const cat of CATEGORIES) {
@@ -278,18 +348,24 @@ export default function HomepageShell({ locale, l1Nodes }: HomepageShellProps) {
 
           {/* Promo Cards */}
           <div className="hp-promo-row">
-            {PROMOS.map((promo, idx) => (
-              <SafeLink
-                key={idx}
-                href={`/${promo.href.replace("LOCALE", loc)}`}
-                className="hp-promo-card"
-                style={{ background: promo.gradient }}
-              >
-                <span className="hp-promo-tag">{promo.tag}</span>
-                <h3>{promo.title}</h3>
-                <div className="hp-promo-sub">{promo.sub}</div>
-              </SafeLink>
-            ))}
+            {PROMOS.map((promo, idx) => {
+              const style = promo.image
+                ? { backgroundImage: `url('${promo.image}')` }
+                : { backgroundImage: promo.bg }
+              const modifier = promo.image ? "hp-promo-card--photo" : "hp-promo-card--solid"
+              return (
+                <SafeLink
+                  key={idx}
+                  href={`/${promo.href.replace("LOCALE", loc)}`}
+                  className={`hp-promo-card ${modifier}`}
+                  style={style}
+                >
+                  <span className={`hp-promo-tag hp-promo-tag--${promo.tagTone}`}>{promo.tag}</span>
+                  <h3>{promo.title}</h3>
+                  <div className="hp-promo-sub">{promo.sub}</div>
+                </SafeLink>
+              )
+            })}
           </div>
 
           {/* Deal Cards — mockup v2 layout: aspect-[4/3] product image,
@@ -336,7 +412,7 @@ export default function HomepageShell({ locale, l1Nodes }: HomepageShellProps) {
 
       <div className="hp-category-explorer">
         {/* Sticky Nav */}
-        <div className="hp-sticky-nav">
+        <div ref={navRef} className={`hp-sticky-nav${navStuck ? " hp-sticky-nav--stuck" : ""}`}>
           {CATEGORIES.map((cat) => {
             const Icon = V3_ICONS[cat.slug]
             return (
@@ -347,7 +423,7 @@ export default function HomepageShell({ locale, l1Nodes }: HomepageShellProps) {
                 type="button"
               >
                 {Icon && <Icon size={22} strokeWidth={1.4} />}
-                <span className="hp-tooltip">{cat.name}</span>
+                <span className="hp-tooltip">{shortNavLabel(cat.slug, cat.name)}</span>
               </button>
             )
           })}
@@ -589,7 +665,7 @@ const homepageStyles = `
   cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   position: relative;
-  min-height: 150px;
+  min-height: 170px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -597,11 +673,42 @@ const homepageStyles = `
   color: #fff;
   text-decoration: none;
   box-shadow: 0 1px 3px rgba(27,36,56,0.04);
+  background-color: #0F1B2D;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  isolation: isolate;
+}
+
+.hp-promo-card--photo::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(10, 14, 20, 0.78) 0%,
+    rgba(10, 14, 20, 0.45) 28%,
+    rgba(10, 14, 20, 0.10) 55%,
+    rgba(10, 14, 20, 0) 80%);
+  z-index: -1;
+  transition: opacity 0.2s ease;
+}
+
+.hp-promo-card h3, .hp-promo-card .hp-promo-sub {
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
 }
 
 .hp-promo-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(27,36,56,0.08);
+  box-shadow: 0 6px 16px rgba(27,36,56,0.18);
+}
+
+.hp-promo-card:hover::before {
+  opacity: 0.9;
+}
+
+.hp-promo-card > * {
+  position: relative;
 }
 
 .hp-promo-tag {
@@ -612,11 +719,16 @@ const homepageStyles = `
   text-transform: uppercase;
   letter-spacing: 1px;
   background: #E8920A;
+  color: #fff;
   padding: 3px 8px;
   border-radius: 4px;
   margin-bottom: 8px;
   width: fit-content;
 }
+.hp-promo-tag--amber { background: #E8920A; color: #fff; }
+.hp-promo-tag--red   { background: #DC2626; color: #fff; }
+.hp-promo-tag--green { background: #059669; color: #fff; }
+.hp-promo-tag--navy  { background: #1E293B; color: #fff; }
 
 .hp-promo-card h3 {
   font-family: 'Mulish', system-ui, sans-serif;
@@ -782,53 +894,76 @@ const homepageStyles = `
 
 .hp-category-explorer {
   display: flex;
-  gap: 24px;
-  padding: 24px 40px 60px;
+  flex-direction: column;
+  gap: 16px;
+  padding: 0 40px 60px;
   max-width: 1440px;
   margin: 0 auto;
 }
 
-/* ── Sticky Icon Nav ── */
+/* ── Horizontal Sticky Nav — sits under header (68+48=116px), transparent strip ── */
 .hp-sticky-nav {
-  width: 60px;
+  width: 100%;
   position: sticky;
-  top: 110px;
-  height: fit-content;
-  overflow: visible;
-  flex-shrink: 0;
-  background: #fff;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  top: 116px; /* header 68 + secondary bar 48 */
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0;
+  background: transparent;
+  box-shadow: none;
+  border-bottom: 0;
   border-radius: 0;
-  padding: 6px 0;
+  padding: 4px 6px;
+  margin-top: 20px;
+  overflow: hidden;
+  transition: background-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.hp-sticky-nav--stuck {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: saturate(1.1) blur(6px);
+  -webkit-backdrop-filter: saturate(1.1) blur(6px);
+  box-shadow: 0 1px 0 rgba(15,27,45,0.08), 0 2px 6px rgba(15,27,45,0.04);
 }
 
 .hp-sticky-nav-icon {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 56px;
-  height: 44px;
+  gap: 3px;
+  flex: 1 1 0;
+  min-width: 0;
+  height: 60px;
   cursor: pointer;
   transition: all 0.15s;
   position: relative;
-  opacity: 0.55;
+  opacity: 0.75;
   border: none;
   background: none;
-  padding: 0;
+  padding: 4px 2px;
+  border-radius: 0;
 }
 
 .hp-sticky-nav-icon:hover,
 .hp-sticky-nav-icon.active {
   opacity: 1;
-  background: #FFF5EE;
+  background: transparent;
+}
+
+.hp-sticky-nav-icon.active {
+  box-shadow: inset 0 -2px 0 0 #E8920A;
 }
 
 .hp-sticky-nav-icon svg {
-  width: 26px;
-  height: 26px;
-  color: #6B7280;
-  stroke-width: 1.2;
+  width: 28px;
+  height: 28px;
+  color: #4B5563;
+  stroke-width: 1.4;
   transition: color 0.15s;
+  flex-shrink: 0;
 }
 
 .hp-sticky-nav-icon:hover svg,
@@ -837,24 +972,21 @@ const homepageStyles = `
 }
 
 .hp-tooltip {
-  display: none;
-  position: absolute;
-  left: 68px;
-  top: 50%;
-  transform: translateY(-50%);
-  background: #1B2438;
-  color: #fff;
-  padding: 6px 12px;
-  border-radius: 4px;
   font-family: 'Mulish', system-ui, sans-serif;
-  font-size: 12px;
-  font-weight: 500;
+  font-size: 10.5px;
+  font-weight: 600;
+  color: #4B5563;
   white-space: nowrap;
-  pointer-events: none;
-  z-index: 100;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  max-width: 100%;
+  text-align: center;
+  letter-spacing: 0;
+  line-height: 1.2;
 }
 
-.hp-sticky-nav-icon:hover .hp-tooltip { display: block; }
+.hp-sticky-nav-icon:hover .hp-tooltip,
+.hp-sticky-nav-icon.active .hp-tooltip { color: #E8920A; }
 
 /* ── Category Sections ── */
 .hp-categories-grid {
@@ -914,14 +1046,15 @@ const homepageStyles = `
 
 .hp-cat-banner--placeholder .hp-cat-banner-fallback { display: flex; }
 
-/* Diagonal dark scrim — locks readability of the title over any photo. */
+/* Subtle bottom scrim — keeps title readable without washing the photo. */
 .hp-cat-banner-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg,
-    rgba(27,36,56,0.82) 0%,
-    rgba(27,36,56,0.40) 60%,
-    rgba(27,36,56,0.00) 100%);
+  background: linear-gradient(to top,
+    rgba(10,14,20,0.70) 0%,
+    rgba(10,14,20,0.35) 30%,
+    rgba(10,14,20,0.05) 60%,
+    rgba(10,14,20,0.00) 100%);
   pointer-events: none;
 }
 

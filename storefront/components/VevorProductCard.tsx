@@ -155,7 +155,7 @@ export default function VevorProductCard({ product, locale }: { product: Product
 
         {/* Product info */}
         <div className="p-3 sm:p-3.5 md:p-5 pt-2.5 sm:pt-3 md:pt-4">
-          <h3 className="text-[13px] md:text-[16px] text-[#334155] line-clamp-2 leading-snug min-h-[2.5em] group-hover:text-[#1E293B] transition-colors">
+          <h3 className="text-[13px] md:text-[16px] text-[#334155] line-clamp-2 leading-snug group-hover:text-[#1E293B] transition-colors">
             {product.title}
           </h3>
 

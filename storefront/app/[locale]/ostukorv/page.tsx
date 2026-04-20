@@ -391,7 +391,7 @@ export default function CartPage() {
                     </div>
                     {cart.tax_total > 0 && (
                       <div className="flex items-center justify-between">
-                        <span className="text-[13px] text-[#64748B]">VAT (22%)</span>
+                        <span className="text-[13px] text-[#64748B]">VAT (24%)</span>
                         <span className="text-[13px] text-[#1E293B]">
                           {formatPrice(cart.tax_total, cart.currency_code)}
                         </span>

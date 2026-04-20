@@ -162,12 +162,6 @@ export default function ProductPurchasePanel({ locale, title, variants, options 
         </p>
       )}
 
-      {/* Delivery info */}
-      <div className="mt-5 pt-5 border-t border-[#E2E8F0] flex items-center gap-2 text-sm text-[#64748B]">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D97706" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
-        <span>{locale === "et" ? "Tarne Eestisse. Eeldatav tarneaeg 5–10 tööpäeva" : "Delivery to Estonia. Estimated delivery 5-10 business days"}</span>
-      </div>
-
       {selectedVariant && price && (
         <StickyBuyBar
           variantId={selectedVariant.id}

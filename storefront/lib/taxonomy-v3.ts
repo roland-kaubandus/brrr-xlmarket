@@ -10,7 +10,7 @@
 
 import {
   UtensilsCrossed, Building2, Wrench, Sparkles, ShieldCheck, Armchair,
-  Scissors, Dumbbell, Ship, HeartPulse, Music, Battery, Palette,
+  Scissors, Dumbbell, Ship, HeartPulse, Music, Zap, Palette,
   PawPrint, Baby, Trees, Car, Warehouse,
   type LucideIcon,
 } from "lucide-react"
@@ -27,7 +27,7 @@ export const V3_ICONS: Record<string, LucideIcon> = {
   "boating-camping-outdoor": Ship,
   "health-medical-supply": HeartPulse,
   "music-entertainment": Music,
-  "renewable-energy-batteries": Battery,
+  "renewable-energy-batteries": Zap,
   "crafts-sewing-printing": Palette,
   "pets-wildlife-clinic": PawPrint,
   "kids-playgrounds": Baby,

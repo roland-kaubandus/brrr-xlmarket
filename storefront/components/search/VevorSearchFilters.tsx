@@ -298,6 +298,9 @@ export default function VevorSearchFilters({
     <>
       {/* Desktop sidebar — hidden on mobile, shown by parent flex layout */}
       <div className="hidden md:block">
+        <h2 className="text-[13px] font-semibold text-[#64748B] uppercase tracking-wider pb-3 mb-3 border-b border-[#E2E8F0]">
+          {et ? "Filtrid" : "Filters"}
+        </h2>
         {renderFilterSections()}
       </div>
 

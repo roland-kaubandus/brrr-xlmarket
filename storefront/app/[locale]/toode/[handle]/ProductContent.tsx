@@ -3,7 +3,6 @@
 import Link from "@/components/SafeLink"
 import ProductGallery from "@/components/ProductGallery"
 import ProductPurchasePanel from "./ProductPurchasePanel"
-import ProductInfoAccordion from "@/components/ProductInfoAccordion"
 import ProductReviews from "@/components/ProductReviews"
 import CollapsibleDescription from "@/components/CollapsibleDescription"
 import CollapsibleSection from "@/components/CollapsibleSection"
@@ -77,14 +76,14 @@ export default function ProductContent(props: ProductContentProps) {
 
       {/* Breadcrumb — SSoT from category-tree.generated.json (spec §3.5.3 + INV-31).
           Never renders VEVOR productType path. */}
-      <nav className="text-xs text-[#64748B] mb-5 min-h-[24px] flex items-center flex-wrap gap-y-1 transition-opacity duration-200" aria-label="Breadcrumb">
+      <nav className="text-[15px] text-[#64748B] mb-6 min-h-[28px] flex items-center flex-wrap gap-y-1 transition-opacity duration-200" aria-label="Breadcrumb">
         {breadcrumbItems.map((seg, index) => {
           const isLast = index === breadcrumbItems.length - 1
           return (
             <span key={`bc-${index}-${seg.url}`} className="inline-flex items-center">
-              {index > 0 && <span className="mx-2 text-[#CBD5E1]">&rsaquo;</span>}
+              {index > 0 && <span className="mx-2.5 text-[#CBD5E1]">&rsaquo;</span>}
               {isLast ? (
-                <span aria-current="page" className="text-[#1E293B] font-medium">{seg.name}</span>
+                <span aria-current="page" className="text-[#1E293B] font-semibold">{seg.name}</span>
               ) : (
                 <Link href={seg.url} className="text-[#64748B] hover:text-[#E8920A] transition-colors duration-200">
                   {seg.name}
@@ -99,17 +98,9 @@ export default function ProductContent(props: ProductContentProps) {
         <ProductGallery images={images} title={localizedTitle} locale={locale} />
 
         <div>
-          <h1 className="text-lg md:text-xl font-bold text-[#1E293B] leading-tight tracking-tight mb-2">
+          <h1 className="text-lg md:text-xl font-bold text-[#1E293B] leading-tight tracking-tight mb-3">
             {localizedTitle}
           </h1>
-
-          <div className="flex items-center gap-2 mb-4">
-            <ProductWishlistButton locale={locale} item={compareItem} />
-          </div>
-
-          <div className="mb-4">
-            <ProductCompareActions item={compareItem} locale={locale} />
-          </div>
 
           <ProductPurchasePanel
             locale={locale}
@@ -118,35 +109,77 @@ export default function ProductContent(props: ProductContentProps) {
             options={product.options}
           />
 
-          <ProductInfoAccordion locale={locale} />
+          {/* Favorites + Compare — below Buy Now, 2-up grid, full labels */}
+          <div className="mt-3 grid grid-cols-2 gap-2">
+            <ProductWishlistButton locale={locale} item={compareItem} />
+            <ProductCompareActions item={compareItem} locale={locale} />
+          </div>
+
+          {/* Quiet key specs — top 4 rows + muted "View all" link */}
+          {specs.length > 0 && (
+            <dl className="mt-5 pt-4 border-t border-[#E2E8F0] space-y-1.5 text-[13.5px] text-[#64748B]">
+              {specs.slice(0, 4).map((spec, i) => (
+                <div key={spec.key + i} className="flex leading-[1.5]">
+                  <dt className="flex-[0_0_45%] font-normal">{spec.key}</dt>
+                  <dd className="m-0 text-[#334155] font-medium">{spec.value}</dd>
+                </div>
+              ))}
+              {specs.length > 4 && (
+                <a
+                  href="#full-specifications"
+                  className="inline-block mt-2 text-[13px] text-[#64748B] underline decoration-[#CBD5E1] underline-offset-[3px] hover:text-[#E8920A] hover:decoration-[#E8920A]"
+                >
+                  View all specifications
+                </a>
+              )}
+            </dl>
+          )}
+
+          {/* Trust list — Delivery, Warranty, Returns, Support */}
+          <ul className="mt-5 pt-4 border-t border-[#E2E8F0] space-y-2.5 text-[13.5px] text-[#64748B]">
+            <li className="flex items-start gap-2.5 leading-[1.45]">
+              <svg className="shrink-0 mt-[1px]" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E8920A" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+                <rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>
+              </svg>
+              <span>
+                <span className="font-semibold text-[#334155]">Delivery to Estonia</span>
+                <span className="mx-1.5 text-[#CBD5E1]">·</span>
+                5–10 business days
+              </span>
+            </li>
+            <li className="flex items-start gap-2.5 leading-[1.45]">
+              <svg className="shrink-0 mt-[1px]" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E8920A" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/>
+              </svg>
+              <span>
+                <span className="font-semibold text-[#334155]">2-year warranty</span>
+                <span className="mx-1.5 text-[#CBD5E1]">·</span>
+                manufacturer-backed
+              </span>
+            </li>
+            <li className="flex items-start gap-2.5 leading-[1.45]">
+              <svg className="shrink-0 mt-[1px]" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E8920A" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M3 12a9 9 0 1 0 3-6.7"/><polyline points="3 4 3 10 9 10"/>
+              </svg>
+              <span>
+                <span className="font-semibold text-[#334155]">14-day returns</span>
+                <span className="mx-1.5 text-[#CBD5E1]">·</span>
+                unused, in original packaging
+              </span>
+            </li>
+            <li className="flex items-start gap-2.5 leading-[1.45]">
+              <svg className="shrink-0 mt-[1px]" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E8920A" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+              </svg>
+              <span>
+                <span className="font-semibold text-[#334155]">Customer support</span>
+                <span className="mx-1.5 text-[#CBD5E1]">·</span>
+                Mon–Fri
+              </span>
+            </li>
+          </ul>
         </div>
       </div>
-
-      {/* Key Features */}
-      {sellingPoints.length > 0 && (
-        <div className="mt-6 lg:max-w-[60%]">
-          <h3 className="text-sm font-bold text-[#1E293B] uppercase tracking-wider mb-3">
-            {locale === "et" ? "Omadused" : "Key Features"}
-          </h3>
-          <div className="space-y-3">
-            {sellingPoints.slice(0, 5).map((sp, i) => {
-              const colonIdx = sp.indexOf(":")
-              const hasTitle = colonIdx > 0 && colonIdx < 60
-              const spTitle = hasTitle ? sp.substring(0, colonIdx).trim() : null
-              const body = hasTitle ? sp.substring(colonIdx + 1).trim() : sp
-              return (
-                <div key={i} className="flex items-start gap-3">
-                  <svg className="shrink-0 mt-1" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#059669" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                  <div>
-                    {spTitle && <p className="text-sm font-semibold text-[#1E293B] mb-0.5">{spTitle}</p>}
-                    <p className="text-sm text-[#475569] leading-relaxed">{body}</p>
-                  </div>
-                </div>
-              )
-            })}
-          </div>
-        </div>
-      )}
 
       {/* Description + Specs */}
       <div className="mt-12">
@@ -159,13 +192,17 @@ export default function ProductContent(props: ProductContentProps) {
               <CollapsibleDescription
                 html={richDescription || mainDescriptionHtml || ""}
                 defaultExpanded={true}
+                collapsedHeight={999999}
               />
             </div>
           </div>
         )}
 
         {specs.length > 0 && (
-          <CollapsibleSection title={locale === "et" ? "Tehnilised andmed" : "Specifications"} defaultOpen={false}>
+          <div id="full-specifications" className="scroll-mt-20" />
+        )}
+        {specs.length > 0 && (
+          <CollapsibleSection title={locale === "et" ? "Tehnilised andmed" : "Specifications"} defaultOpen={true}>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {[0, 1].map((col) => {
                 const half = Math.ceil(specs.length / 2)
@@ -190,7 +227,7 @@ export default function ProductContent(props: ProductContentProps) {
         )}
 
         {manualLinks.length > 0 && (
-          <CollapsibleSection title={locale === "et" ? "Juhendid ja allalaadimised" : "Manuals & Downloads"} defaultOpen={false}>
+          <CollapsibleSection title={locale === "et" ? "Juhendid ja allalaadimised" : "Manuals & Downloads"} defaultOpen={true}>
             <div className="flex flex-wrap gap-3">
               {manualLinks.map((manual, index) => (
                 <a

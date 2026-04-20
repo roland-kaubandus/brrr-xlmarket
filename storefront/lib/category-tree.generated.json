@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-19T20:06:58.950Z",
+  "generated_at": "2026-04-20T06:07:11.987Z",
   "nodes": {
     "horeca-food-service": {
       "handle": "horeca-food-service",
@@ -9277,8 +9277,8 @@
       "level": 3,
       "parent_handle": "repair-tools",
       "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
+      "image_path": "/cat-thumbs/electric-brake-bleeder.webp",
+      "image_source": "direct"
     },
     "magnetic-induction-heater": {
       "handle": "magnetic-induction-heater",

@@ -16,10 +16,10 @@ export default async function CategoriesIndexPage({ params }: { params: Promise<
 
   return (
     <main className="mx-auto max-w-[1360px] px-4 md:px-6 py-8 md:py-12">
-      <nav className="text-[12px] text-[#64748B] mb-4" aria-label="Breadcrumb">
+      <nav className="text-[15px] text-[#64748B] mb-4" aria-label="Breadcrumb">
         <Link href={`/${locale}`} className="hover:text-[#E8920A]">Home</Link>
-        <span className="mx-1.5">&gt;</span>
-        <span className="text-[#1E293B]">All categories</span>
+        <span className="mx-2.5 text-[#CBD5E1]">&rsaquo;</span>
+        <span className="text-[#1E293B] font-semibold">All categories</span>
       </nav>
 
       <h1 className="text-[28px] md:text-[36px] font-bold text-[#1E293B] tracking-tight mb-2">

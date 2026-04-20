@@ -255,7 +255,7 @@ export default async function CategoryPage({ params, searchParams }: Props) {
       {/* Breadcrumb + Title row — Home > …trail + H1 + product count */}
       <div className="max-w-[1360px] mx-auto px-4 sm:px-6 pt-5">
         <nav
-          className="text-xs text-[#64748B] flex items-center flex-wrap gap-y-1 mb-3"
+          className="text-[15px] text-[#64748B] flex items-center flex-wrap gap-y-1 mb-4"
           aria-label="Breadcrumb"
         >
           <Link
@@ -268,9 +268,9 @@ export default async function CategoryPage({ params, searchParams }: Props) {
             const isLast = idx === trail.length - 1
             return (
               <span key={t.handle} className="flex items-center">
-                <span className="mx-1.5 text-[#CBD5E1]">&gt;</span>
+                <span className="mx-2.5 text-[#CBD5E1]">&rsaquo;</span>
                 {isLast ? (
-                  <span className="text-[#1E293B] font-medium">{t.name}</span>
+                  <span className="text-[#1E293B] font-semibold">{t.name}</span>
                 ) : (
                   <Link
                     href={categoryPath(locale as "et" | "en", t.handle)}
@@ -283,16 +283,10 @@ export default async function CategoryPage({ params, searchParams }: Props) {
             )
           })}
         </nav>
-        <div className="flex items-baseline gap-3 flex-wrap">
-          <h1 className="text-[28px] md:text-[34px] font-bold text-[#1E293B] tracking-tight">
+        <div className="pt-2 pb-6 md:pt-4 md:pb-8">
+          <h1 className="text-[28px] md:text-[34px] font-bold text-[#1E293B] tracking-tight leading-tight">
             {displayName}
           </h1>
-          <span className="text-sm text-[#64748B]">
-            <span className="font-semibold text-[#1E293B]">
-              {totalCount.toLocaleString("et")}
-            </span>{" "}
-            {locale === "et" ? "toodet" : "products"}
-          </span>
         </div>
       </div>
 
@@ -310,48 +304,40 @@ export default async function CategoryPage({ params, searchParams }: Props) {
       )}
 
       <div className="max-w-[1360px] mx-auto px-4 sm:px-6 py-7 sm:py-10">
-        {/* Toolbar row: result count (compact) + sort + mobile filter button */}
-        <div className="flex items-center justify-between gap-3 mb-6 flex-wrap">
-          <span className="text-sm text-[#64748B]">
-            <span className="font-semibold text-[#1E293B]">
-              {totalCount.toLocaleString("et")}
-            </span>{" "}
-            {locale === "et" ? "toodet" : "products"}
-          </span>
-          <div className="flex items-center gap-2">
-            {/* Mobile filter button */}
-            <div className="md:hidden">
-              <Suspense fallback={null}>
-                <VevorSearchFilters
-                  totalHits={totalCount}
-                  query={q || ""}
-                  currentSort={currentSort}
-                  currentMin={min}
-                  currentMax={max}
-                  currentCategories={selectedCategories}
-                  currentInStock={inStock}
-                  categoryFacets={categoryFacets}
-                  categoryLabels={categoryLabels}
-                  quickFilters={quickFilters}
-                  currentQuickFilter={currentQuickFilter}
-                  locale={locale}
-                  basePath={categoryBasePath}
-                  suppressSubcategoryFacet={hasCarousel}
-                />
-              </Suspense>
-            </div>
-            <SortSelect
-              currentSort={currentSort}
-              locale={locale}
-              query={q || ""}
-              currentMin={min}
-              currentMax={max}
-              currentCategories={selectedCategories}
-              currentInStock={inStock}
-              currentQuickFilter={currentQuickFilter}
-              basePath={categoryBasePath}
-            />
+        {/* Toolbar row: sort + mobile filter button (result count moved above grid) */}
+        <div className="flex items-center justify-end gap-2 mb-6 flex-wrap">
+          {/* Mobile filter button */}
+          <div className="md:hidden">
+            <Suspense fallback={null}>
+              <VevorSearchFilters
+                totalHits={totalCount}
+                query={q || ""}
+                currentSort={currentSort}
+                currentMin={min}
+                currentMax={max}
+                currentCategories={selectedCategories}
+                currentInStock={inStock}
+                categoryFacets={categoryFacets}
+                categoryLabels={categoryLabels}
+                quickFilters={quickFilters}
+                currentQuickFilter={currentQuickFilter}
+                locale={locale}
+                basePath={categoryBasePath}
+                suppressSubcategoryFacet={hasCarousel}
+              />
+            </Suspense>
           </div>
+          <SortSelect
+            currentSort={currentSort}
+            locale={locale}
+            query={q || ""}
+            currentMin={min}
+            currentMax={max}
+            currentCategories={selectedCategories}
+            currentInStock={inStock}
+            currentQuickFilter={currentQuickFilter}
+            basePath={categoryBasePath}
+          />
         </div>
 
         {totalCount > 0 ? (
@@ -382,6 +368,12 @@ export default async function CategoryPage({ params, searchParams }: Props) {
 
             {/* Main content — products + pagination (no inline subcat grid; carousel above handles it). */}
             <main className="flex-1 min-w-0">
+              <div className="mb-4 text-sm text-[#64748B]">
+                <span className="font-semibold text-[#1E293B]">
+                  {totalCount.toLocaleString("et")}
+                </span>{" "}
+                {locale === "et" ? "toodet" : "products"}
+              </div>
               <ProductGrid
                 fetchParams={{
                   q: q || "",

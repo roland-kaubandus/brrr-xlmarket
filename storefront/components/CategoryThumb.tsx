@@ -21,6 +21,7 @@
  */
 
 import { V3_ICONS } from "@/lib/taxonomy-v3"
+import CategoryThumbImage from "./CategoryThumbImage"
 
 interface CategoryThumbProps {
   /** Category handle — used as React key only, no tree lookup. */
@@ -51,14 +52,7 @@ export default function CategoryThumb({
         className={`flex-shrink-0 rounded-md bg-[#F8FAFC] border border-[#ECEEF1] overflow-hidden flex items-center justify-center ${className}`}
         style={{ width: size, height: size }}
       >
-        <img
-          src={image_path}
-          alt={alt}
-          className="w-full h-full object-contain"
-          loading="lazy"
-          width={size}
-          height={size}
-        />
+        <CategoryThumbImage src={image_path} alt={alt} size={size} l1_handle={l1_handle} />
       </span>
     )
   }

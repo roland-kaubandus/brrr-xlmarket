@@ -30,7 +30,7 @@ export default async function TermsPage({ params }: { params: Promise<{ locale: 
 
         <h2 className="text-[18px] font-[600] font-[family-name:var(--font-dm-sans)] text-[#1E293B] mt-[32px] mb-[12px]">2. Prices</h2>
         <p>
-          All prices include VAT (22%). Prices are in euros (EUR). The Seller reserves the right
+          All prices include VAT (24%). Prices are in euros (EUR). The Seller reserves the right
           to change prices at any time without prior notice. The price at the time of order placement is binding.
         </p>
 
