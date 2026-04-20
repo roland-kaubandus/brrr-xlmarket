@@ -5,6 +5,7 @@ import Link from "@/components/SafeLink"
 import { usePathname } from "next/navigation"
 import { Product, formatPrice } from "@/lib/medusa"
 import { useCompare } from "./CompareContext"
+import { safeReadJSON, safeWriteJSON } from "@/lib/safe-storage"
 
 // TODO: add Stars component back when real ratings are available (see Huly XLM-???)
 // Previously rendered a deterministic hash-based fake rating (3.5–5.0). Removed
@@ -42,6 +43,10 @@ function extractCardSpecs(product: Product): Record<string, string> {
   return specs
 }
 
+type WishlistItem = { id: string; handle: string; title: string; thumbnail: string | null; price: string }
+
+const WISHLIST_KEY = "xlmarket_wishlist"
+
 export default function VevorProductCard({ product, locale }: { product: Product; locale?: string }) {
   const pathname = usePathname()
   const resolvedLocale = locale || (pathname.split("/")[1] === "en" ? "en" : "et")
@@ -49,29 +54,25 @@ export default function VevorProductCard({ product, locale }: { product: Product
   const [wishlisted, setWishlisted] = useState(false)
   const compare = useCompare()
   const isCompared = compare.has(product.id)
+
   useEffect(() => {
-    try {
-      const raw = localStorage.getItem("xlmarket_wishlist")
-      if (raw) setWishlisted(JSON.parse(raw).some((i: { id: string }) => i.id === product.id))
-    } catch {}
+    const items = safeReadJSON<Array<{ id: string }>>(WISHLIST_KEY, [])
+    setWishlisted(items.some((i) => i.id === product.id))
   }, [product.id])
 
   function toggleWishlist(e: React.MouseEvent) {
     e.preventDefault()
     e.stopPropagation()
-    try {
-      const raw = localStorage.getItem("xlmarket_wishlist")
-      const items: Array<{ id: string; handle: string; title: string; thumbnail: string | null; price: string }> = raw ? JSON.parse(raw) : []
-      const exists = items.some((i) => i.id === product.id)
-      const next = exists
-        ? items.filter((i) => i.id !== product.id)
-        : [...items, {
-            id: product.id, handle: product.handle, title: product.title, thumbnail: product.thumbnail,
-            price: price ? new Intl.NumberFormat(resolvedLocale === "en" ? "en-IE" : "et-EE", { style: "currency", currency: price.currency_code }).format(price.calculated_amount / 100) : ""
-          }]
-      localStorage.setItem("xlmarket_wishlist", JSON.stringify(next))
-      setWishlisted(!exists)
-    } catch {}
+    const items = safeReadJSON<WishlistItem[]>(WISHLIST_KEY, [])
+    const exists = items.some((i) => i.id === product.id)
+    const next = exists
+      ? items.filter((i) => i.id !== product.id)
+      : [...items, {
+          id: product.id, handle: product.handle, title: product.title, thumbnail: product.thumbnail,
+          price: price ? new Intl.NumberFormat("en-IE", { style: "currency", currency: price.currency_code }).format(price.calculated_amount / 100) : ""
+        }]
+    safeWriteJSON(WISHLIST_KEY, next)
+    setWishlisted(!exists)
   }
 
   const discount = price && price.original_amount > price.calculated_amount
@@ -105,9 +106,7 @@ export default function VevorProductCard({ product, locale }: { product: Product
                 })
               }
             }}
-            aria-label={isCompared
-              ? (resolvedLocale === "en" ? "Remove from compare" : "Eemalda võrdlusest")
-              : (resolvedLocale === "en" ? "Add to compare" : "Lisa võrdlusse")}
+            aria-label={isCompared ? "Remove from compare" : "Add to compare"}
             className={`w-8 h-8 rounded-full flex items-center justify-center shadow-sm opacity-0 group-hover:opacity-100 transition-all duration-200 ${
               isCompared ? "bg-[#D97706] text-white" : "bg-white/90 hover:bg-white text-[#64748B]"
             }`}
@@ -121,9 +120,7 @@ export default function VevorProductCard({ product, locale }: { product: Product
           <button
             type="button"
             onClick={toggleWishlist}
-            aria-label={wishlisted
-              ? (resolvedLocale === "en" ? "Remove from Wishlist" : "Eemalda soovinimekirjast")
-              : (resolvedLocale === "en" ? "Add to Wishlist" : "Lisa soovinimekirja")}
+            aria-label={wishlisted ? "Remove from Wishlist" : "Add to Wishlist"}
             className="w-8 h-8 rounded-full flex items-center justify-center bg-white/90 hover:bg-white shadow-sm opacity-0 group-hover:opacity-100 transition-all duration-200"
           >
             <svg width="15" height="15" viewBox="0 0 24 24" fill={wishlisted ? "#DC2626" : "none"} stroke={wishlisted ? "#DC2626" : "#94A3B8"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -152,7 +149,7 @@ export default function VevorProductCard({ product, locale }: { product: Product
               sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
             />
           ) : (
-            <div className="flex items-center justify-center h-full text-[#CBD5E1] text-sm md:text-base">{resolvedLocale === "et" ? "Pilt puudub" : "No image"}</div>
+            <div className="flex items-center justify-center h-full text-[#CBD5E1] text-sm md:text-base">No image</div>
           )}
         </div>
 
@@ -181,12 +178,12 @@ export default function VevorProductCard({ product, locale }: { product: Product
             {product.in_stock === false ? (
               <span className="inline-flex items-center gap-1 text-[#94A3B8]">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#94A3B8] inline-block" />
-                {resolvedLocale === "et" ? "Otsas" : "Out of stock"}
+                Out of stock
               </span>
             ) : (
               <span className="inline-flex items-center gap-1 text-[#059669]">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#059669] inline-block" />
-                {resolvedLocale === "et" ? "Laos" : "In Stock"}
+                In Stock
               </span>
             )}
             {isCompared && (
@@ -194,7 +191,7 @@ export default function VevorProductCard({ product, locale }: { product: Product
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>
                 </svg>
-                {resolvedLocale === "en" ? "In Compare" : "Võrdluses"}
+                In Compare
               </span>
             )}
           </div>

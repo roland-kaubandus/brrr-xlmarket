@@ -4,7 +4,7 @@ import { useEffect, useState, useRef, useCallback, useMemo } from "react"
 import SafeLink from "@/components/SafeLink"
 import { categoryPath, branchPath, type Locale } from "@/lib/i18n"
 import { V3_ICONS } from "@/lib/taxonomy-v3"
-import { getChildren, getNode, getVisibleL1, nodeName, type CategoryNode } from "@/lib/category-tree"
+import type { HomepageL1Node } from "@/lib/menu-data"
 
 // Adapter: render the homepage category explorer from the SSoT 18-L1 taxonomy
 // tree instead of the legacy hard-coded 22-entry TAXONOMY_V3 list.
@@ -37,6 +37,8 @@ interface MeiliProduct {
 
 interface HomepageShellProps {
   locale: string
+  /** Pre-computed L1 nodes from getHomepageL1Nodes() — server-side only. */
+  l1Nodes: HomepageL1Node[]
 }
 
 /* ═══════════════════════════════════════════════
@@ -115,20 +117,19 @@ async function searchMeili(
 /* ═══════════════════════════════════════════════
    COMPONENT
    ═══════════════════════════════════════════════ */
-export default function HomepageShell({ locale }: HomepageShellProps) {
+export default function HomepageShell({ locale, l1Nodes }: HomepageShellProps) {
   const loc = locale as Locale
 
-  /* ── 18 L1 from SSoT taxonomy tree ── */
-  const L1_NODES: CategoryNode[] = useMemo(() => getVisibleL1(), [])
+  /* ── 18 L1 from SSoT taxonomy tree (pre-computed server-side, PERF-C1) ── */
   const CATEGORIES: HomepageCategory[] = useMemo(
     () =>
-      L1_NODES.map((n, i) => ({
+      l1Nodes.map((n, i) => ({
         id: i + 1,
         slug: n.handle,
-        name: nodeName(n, loc),
+        name: n.name_en,
         prodNum: i + 1,
       })),
-    [L1_NODES, loc],
+    [l1Nodes],
   )
 
   /* ── Carousel state ── */
@@ -356,25 +357,10 @@ export default function HomepageShell({ locale }: HomepageShellProps) {
         <div className="hp-categories-grid">
           {CATEGORIES.map((cat) => {
             const Icon = V3_ICONS[cat.slug]
-            const l2List = getChildren(cat.slug)
-            // Featured cards: walk the full subtree (BFS) until we find 6
-            // usable children. The v3 taxonomy goes L1..L7 and many L2/L3
-            // are structural-only (image_source === "none"/"fuzzy"), so a
-            // 2-level scan misses usable leaves deeper in the tree.
-            const isUsable = (n: CategoryNode) =>
-              !!n.image_path && n.image_source !== "fuzzy"
-            const featured: CategoryNode[] = []
-            const seen = new Set<string>()
-            const queue: string[] = [...l2List.map((n) => n.handle)]
-            while (queue.length && featured.length < 6) {
-              const h = queue.shift()!
-              if (seen.has(h)) continue
-              seen.add(h)
-              const node = getNode(h)
-              if (!node) continue
-              if (isUsable(node)) featured.push(node)
-              for (const ch of node.child_handles) queue.push(ch)
-            }
+            // l1Data pre-computed server-side via getHomepageL1Nodes() (PERF-C1).
+            const l1Data = l1Nodes.find((n) => n.handle === cat.slug)
+            const l2List = l1Data?.l2_list ?? []
+            const featured = l1Data?.featured ?? []
             const atmosphere = `/images/cat-atmosphere/${cat.slug}.png`
             return (
               <section
@@ -415,25 +401,24 @@ export default function HomepageShell({ locale }: HomepageShellProps) {
                 {/* 2 — Large subcategory name list (max 10, clips remainder) */}
                 {l2List.length > 0 ? (
                   <nav className="hp-cat-sublist" aria-label={`${cat.name} subcategories`}>
-                    {l2List.slice(0, 10).map((l2) => (
+                    {l2List.map((l2) => (
                       <SafeLink
                         key={l2.handle}
                         href={categoryPath(loc, l2.handle)}
                         className="hp-cat-sublist-item"
                       >
                         <span className="hp-cat-sublist-dot" aria-hidden="true" />
-                        <span className="hp-cat-sublist-name">{nodeName(l2, loc)}</span>
+                        <span className="hp-cat-sublist-name">{l2.name_en}</span>
                       </SafeLink>
                     ))}
                   </nav>
                 ) : null}
 
-                {/* 3 — 6 featured cards (L2 / L3 fallback) */}
+                {/* 3 — 6 featured cards (L2 / L3 fallback, BFS pre-computed server-side) */}
                 <div className="hp-cat-cards">
                   {featured.map((child) => {
-                    // featured is already filtered through isUsable() — image_path exists and is not fuzzy.
-                    const imgSrc = decodeURIComponent(child.image_path!)
-                    const subName = nodeName(child, loc)
+                    // image_path guaranteed non-null by getHomepageL1Nodes BFS filter.
+                    const imgSrc = decodeURIComponent(child.image_path)
                     return (
                       <SafeLink
                         key={child.handle}
@@ -442,12 +427,12 @@ export default function HomepageShell({ locale }: HomepageShellProps) {
                       >
                         <div className="hp-cat-card-image">
                           <img
-                            src={imgSrc!}
-                            alt={subName}
+                            src={imgSrc}
+                            alt={child.name_en}
                             loading="lazy"
                           />
                         </div>
-                        <div className="hp-cat-card-name">{subName}</div>
+                        <div className="hp-cat-card-name">{child.name_en}</div>
                       </SafeLink>
                     )
                   })}

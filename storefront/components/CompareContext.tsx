@@ -1,5 +1,6 @@
 "use client"
 import { createContext, useContext, useState, useEffect, useCallback, type ReactNode } from "react"
+import { safeReadJSON, safeWriteJSON } from "@/lib/safe-storage"
 
 export type CompareItem = {
   id: string
@@ -31,15 +32,12 @@ export function CompareProvider({ children }: { children: ReactNode }) {
   const [items, setItems] = useState<CompareItem[]>([])
 
   useEffect(() => {
-    try {
-      const raw = localStorage.getItem(STORAGE_KEY)
-      if (raw) setItems(JSON.parse(raw))
-    } catch {}
+    setItems(safeReadJSON<CompareItem[]>(STORAGE_KEY, []))
   }, [])
 
   const persist = useCallback((next: CompareItem[]) => {
     setItems(next)
-    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(next)) } catch {}
+    safeWriteJSON(STORAGE_KEY, next)
   }, [])
 
   const add = useCallback((item: CompareItem) => {
@@ -47,7 +45,7 @@ export function CompareProvider({ children }: { children: ReactNode }) {
       if (prev.some(i => i.id === item.id)) return prev
       if (prev.length >= MAX_COMPARE) return prev
       const next = [...prev, item]
-      try { localStorage.setItem(STORAGE_KEY, JSON.stringify(next)) } catch {}
+      safeWriteJSON(STORAGE_KEY, next)
       return next
     })
   }, [])
@@ -55,7 +53,7 @@ export function CompareProvider({ children }: { children: ReactNode }) {
   const remove = useCallback((id: string) => {
     setItems(prev => {
       const next = prev.filter(i => i.id !== id)
-      try { localStorage.setItem(STORAGE_KEY, JSON.stringify(next)) } catch {}
+      safeWriteJSON(STORAGE_KEY, next)
       return next
     })
   }, [])

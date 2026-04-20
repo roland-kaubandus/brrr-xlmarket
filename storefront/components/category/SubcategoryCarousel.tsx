@@ -9,6 +9,12 @@ import type { ChildWithCount } from "@/lib/category-tree"
 interface SubcategoryCarouselProps {
   children: ChildWithCount[]
   locale: string
+  /**
+   * L1 ancestor handle — used by CategoryThumb for Lucide icon fallback when a
+   * child node has no image_path. Resolved server-side so this component does
+   * NOT import category-tree (PERF-C1).
+   */
+  l1Handle?: string | null
   /** When set, the matching child card is scrolled into view on mount. */
   previousHandle?: string
   /**
@@ -41,6 +47,7 @@ function isSafeHandleToken(v: string): boolean {
 export default function SubcategoryCarousel({
   children,
   locale,
+  l1Handle,
   previousHandle,
   currentHandle,
 }: SubcategoryCarouselProps): ReactElement | null {
@@ -92,12 +99,12 @@ export default function SubcategoryCarousel({
         id="subcategory-carousel-heading"
         className="text-[13px] font-semibold text-[#64748B] uppercase tracking-wider mb-3 px-4 sm:px-6 max-w-[1360px] mx-auto"
       >
-        {et ? "Alamkategooriad" : "Subcategories"}
+        Subcategories
       </h2>
       <div
         ref={trackRef}
         role="list"
-        aria-label={et ? "Alamkategooriad" : "Subcategories"}
+        aria-label="Subcategories"
         className="flex gap-3 overflow-x-auto scroll-smooth snap-x snap-mandatory px-4 sm:px-6 pb-3 max-w-[1360px] mx-auto"
         style={{ scrollSnapType: "x mandatory" }}
       >
@@ -126,7 +133,8 @@ export default function SubcategoryCarousel({
             >
               <CategoryThumb
                 handle={child.handle}
-                node={child}
+                image_path={child.image_path}
+                l1_handle={l1Handle}
                 size={96}
                 alt={childName}
                 className="!rounded-lg"
@@ -135,8 +143,7 @@ export default function SubcategoryCarousel({
                 {childName}
               </span>
               <span className="text-[11px] tabular-nums text-[#94A3B8]">
-                {child.count.toLocaleString(et ? "et" : "en-GB")}{" "}
-                {et ? "toodet" : "products"}
+                {child.count.toLocaleString("en-GB")} products
               </span>
             </Link>
           )

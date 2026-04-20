@@ -2,40 +2,36 @@
 
 import { useEffect, useState } from "react"
 import type { CompareItem } from "./CompareContext"
+import { safeReadJSON, safeWriteJSON } from "@/lib/safe-storage"
 
 type Props = {
   item: CompareItem
   locale: string
 }
 
+const WISHLIST_KEY = "xlmarket_wishlist"
+
 export default function ProductWishlistButton({ item, locale }: Props) {
   const [wishlisted, setWishlisted] = useState(false)
 
   useEffect(() => {
-    try {
-      const raw = localStorage.getItem("xlmarket_wishlist")
-      if (raw) setWishlisted(JSON.parse(raw).some((i: { id: string }) => i.id === item.id))
-    } catch {}
+    const items = safeReadJSON<Array<{ id: string }>>(WISHLIST_KEY, [])
+    setWishlisted(items.some((i) => i.id === item.id))
   }, [item.id])
 
   function toggleWishlist() {
-    try {
-      const raw = localStorage.getItem("xlmarket_wishlist")
-      const items: CompareItem[] = raw ? JSON.parse(raw) : []
-      const exists = items.some((i) => i.id === item.id)
-      const next = exists ? items.filter((i) => i.id !== item.id) : [...items, item]
-      localStorage.setItem("xlmarket_wishlist", JSON.stringify(next))
-      setWishlisted(!exists)
-    } catch {}
+    const items = safeReadJSON<CompareItem[]>(WISHLIST_KEY, [])
+    const exists = items.some((i) => i.id === item.id)
+    const next = exists ? items.filter((i) => i.id !== item.id) : [...items, item]
+    safeWriteJSON(WISHLIST_KEY, next)
+    setWishlisted(!exists)
   }
 
   return (
     <button
       type="button"
       onClick={toggleWishlist}
-      aria-label={wishlisted
-        ? (locale === "en" ? "Remove from Wishlist" : "Eemalda soovinimekirjast")
-        : (locale === "en" ? "Add to Wishlist" : "Lisa soovinimekirja")}
+      aria-label={wishlisted ? "Remove from Wishlist" : "Add to Wishlist"}
       className="ml-auto w-10 h-10 rounded-full flex items-center justify-center border border-[#E2E8F0] bg-white hover:border-[#D97706] hover:text-[#D97706] transition-colors"
     >
       <svg width="20" height="20" viewBox="0 0 24 24" fill={wishlisted ? "#DC2626" : "none"} stroke={wishlisted ? "#DC2626" : "#64748B"} strokeWidth="1.5">

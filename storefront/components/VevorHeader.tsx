@@ -4,21 +4,22 @@ import SearchBar from "@/components/SearchBar"
 import MegaMenu from "@/components/MegaMenu"
 import LocaleSwitcher from "@/components/LocaleSwitcher"
 import MobileSearchToggle from "@/components/MobileSearchToggle"
+import { getMenuSlice } from "@/lib/menu-data"
 
-const getNavLinks = (locale: string) => locale === "et" ? [
-  { label: "Alusta ettevõtet", href: `/${locale}/alustajale`, highlight: true },
-  { label: "Ärikliendile", href: `/${locale}/arikliendile` },
-  { label: "Hooldus", href: `/${locale}/hooldus` },
-  { label: "Pakkumised", href: `/${locale}/otsing?tag=deals` },
-] : [
+// EN-only nav labels per CLAUDE.md HARD RULE #1.
+const getNavLinks = (locale: string) => [
   { label: "Starter kits", href: `/${locale}/alustajale`, highlight: true },
   { label: "B2B", href: `/${locale}/arikliendile` },
   { label: "Service", href: `/${locale}/hooldus` },
   { label: "Deals", href: `/${locale}/otsing?tag=deals` },
 ]
 
-export default function VevorHeader({ locale = "et" }: { locale?: string }) {
+export default async function VevorHeader({ locale = "et" }: { locale?: string }) {
   const NAV_LINKS = getNavLinks(locale)
+  // Compute menu slice server-side — only L1 + L2 (~30KB) goes to the client.
+  // L3+ is fetched lazily by MegaMenu via /api/category-children.
+  const menuData = getMenuSlice()
+
   return (
     <header className="sticky top-0 z-30" style={{ background: "linear-gradient(135deg, #1E293B 0%, #0F172A 60%, #1E293B 100%)" }}>
       {/* === Row 1: Logo + Search + Actions === */}
@@ -67,7 +68,7 @@ export default function VevorHeader({ locale = "et" }: { locale?: string }) {
       {/* === Row 2: Menu + Nav links — desktop only === */}
       <div className="hidden md:block border-t border-white/10">
         <div className="max-w-[1440px] mx-auto flex items-center px-8 h-[48px] gap-1">
-          <MegaMenu locale={locale} variant="dark" />
+          <MegaMenu locale={locale} variant="dark" menuData={menuData} />
           <nav className="flex items-center gap-0.5">
             {NAV_LINKS.map(link => (
               <Link
@@ -89,7 +90,7 @@ export default function VevorHeader({ locale = "et" }: { locale?: string }) {
       {/* === Mobile: hamburger row === */}
       <div className="md:hidden border-t border-white/10">
         <div className="flex items-center px-4 h-[44px]">
-          <MegaMenu locale={locale} variant="dark" />
+          <MegaMenu locale={locale} variant="dark" menuData={menuData} />
         </div>
       </div>
     </header>

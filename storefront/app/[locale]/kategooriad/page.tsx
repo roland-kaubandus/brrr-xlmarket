@@ -38,7 +38,14 @@ export default async function CategoriesIndexPage({ params }: { params: Promise<
             className="group flex flex-col items-center text-center p-4 rounded-xl bg-white border border-[#E2E8F0] hover:border-[#E8920A] transition-colors"
           >
             <div className="w-16 h-16 md:w-20 md:h-20 flex items-center justify-center mb-3">
-              <CategoryThumb handle={node.handle} alt={node.name_en || node.handle} size={80} />
+              {/* SERVER component — pass image_path + l1_handle directly (no client tree lookup) */}
+              <CategoryThumb
+                handle={node.handle}
+                alt={node.name_en || node.handle}
+                size={80}
+                image_path={node.image_path}
+                l1_handle={node.handle}
+              />
             </div>
             <span className="text-[13px] md:text-[14px] font-semibold text-[#1E293B] line-clamp-2 leading-snug">
               {node.name_en || node.handle}

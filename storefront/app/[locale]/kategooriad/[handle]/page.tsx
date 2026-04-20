@@ -302,6 +302,7 @@ export default async function CategoryPage({ params, searchParams }: Props) {
           <SubcategoryCarousel
             children={childrenWithCounts}
             locale={locale}
+            l1Handle={l1?.handle}
             currentHandle={handle}
             previousHandle={previousHandle}
           />

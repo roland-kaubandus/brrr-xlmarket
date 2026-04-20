@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import HomepageShell from "@/components/HomepageShell"
+import { getHomepageL1Nodes } from "@/lib/menu-data"
 
 export const revalidate = 3600
 
@@ -25,5 +26,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
 export default async function Home({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
-  return <HomepageShell locale={locale} />
+  // Compute L1 data server-side — only ~30KB of category nodes go to the client
+  // instead of the full 1.5MB category-tree.generated.json (PERF-C1).
+  const l1Nodes = getHomepageL1Nodes()
+  return <HomepageShell locale={locale} l1Nodes={l1Nodes} />
 }

@@ -1,16 +1,20 @@
 /**
  * Taxonomy Health Dashboard — spec F5.7
  *
- * Runs `scripts/check-taxonomy-invariants.mjs --json` at request time and
- * renders a color-coded table of the 19+ invariants.
+ * Runs `scripts/check-taxonomy-invariants.mjs --json` and renders a
+ * color-coded table of the 19+ invariants.
  *
- * No caching — every page load re-runs invariants fresh. Rendered SSR
- * so network calls (if enabled via TAXONOMY_HEALTH_LIVE=1) execute on
- * the server, not the browser.
+ * PERF-C3: Uses async execFile (not execSync — never sync I/O in server
+ * components) plus a 60s module-level cache so rapid refreshes serve from
+ * memory instead of spawning a 3-5s Node subprocess per request.
  */
 
-import { execSync } from "node:child_process"
+import { execFile } from "node:child_process"
+import { existsSync } from "node:fs"
 import { resolve } from "node:path"
+import { promisify } from "node:util"
+
+const execFileAsync = promisify(execFile)
 
 export const dynamic = "force-dynamic"
 
@@ -22,15 +26,36 @@ interface InvariantResult {
   detail: string
 }
 
-function runInvariants(): { generated_at: string; results: InvariantResult[] } {
+interface InvariantsPayload {
+  generated_at: string
+  results: InvariantResult[]
+}
+
+const CACHE_TTL_MS = 60_000
+let invariantsCache: { data: InvariantsPayload; cachedAt: number } | null = null
+
+async function runInvariants(): Promise<InvariantsPayload> {
+  if (invariantsCache && Date.now() - invariantsCache.cachedAt < CACHE_TTL_MS) {
+    return invariantsCache.data
+  }
+
   try {
-    const script = resolve(process.cwd(), "../scripts/check-taxonomy-invariants.mjs")
-    // In standalone build, scripts dir may be at repo root. Try both paths.
-    const scriptPath = scriptLocation(script)
-    const out = execSync(`node ${scriptPath} --json`, { cwd: resolve(scriptPath, "..", ".."), stdio: ["ignore", "pipe", "pipe"] }).toString()
-    return JSON.parse(out)
-  } catch (err: any) {
-    return {
+    const candidate = resolve(process.cwd(), "../scripts/check-taxonomy-invariants.mjs")
+    const scriptPath = scriptLocation(candidate)
+    const { stdout } = await execFileAsync("node", [scriptPath, "--json"], {
+      cwd: resolve(scriptPath, "..", ".."),
+      maxBuffer: 16 * 1024 * 1024,
+      // 30s hard timeout — if the script hangs, the cache still caps the
+      // blast radius but a hung subprocess would still hold the worker
+      // thread without this. Security review 2026-04-20.
+      timeout: 30_000,
+    })
+    const data = JSON.parse(stdout) as InvariantsPayload
+    invariantsCache = { data, cachedAt: Date.now() }
+    return data
+  } catch (err: unknown) {
+    const message = err instanceof Error ? err.message : String(err)
+    const data: InvariantsPayload = {
       generated_at: new Date().toISOString(),
       results: [
         {
@@ -38,34 +63,31 @@ function runInvariants(): { generated_at: string; results: InvariantResult[] } {
           title: "Invariant script failed to run",
           severity: "CRIT",
           pass: false,
-          detail: err.message || String(err),
+          detail: message,
         },
       ],
     }
+    // Cache errors too — if the script is broken, don't hammer it every request.
+    invariantsCache = { data, cachedAt: Date.now() }
+    return data
   }
 }
 
 function scriptLocation(candidate: string): string {
-  try {
-    // eslint-disable-next-line @typescript-eslint/no-require-imports
-    const fs = require("node:fs")
-    if (fs.existsSync(candidate)) return candidate
-  } catch {}
+  if (existsSync(candidate)) return candidate
   // Fallbacks for varied deploy layouts
   const fallbacks = [
     "/home/brrr/brrr-xlmarket/scripts/check-taxonomy-invariants.mjs",
     resolve(process.cwd(), "scripts/check-taxonomy-invariants.mjs"),
   ]
-  // eslint-disable-next-line @typescript-eslint/no-require-imports
-  const fs = require("node:fs")
   for (const p of fallbacks) {
-    if (fs.existsSync(p)) return p
+    if (existsSync(p)) return p
   }
   return candidate
 }
 
-export default function TaxonomyHealthPage() {
-  const { generated_at, results } = runInvariants()
+export default async function TaxonomyHealthPage() {
+  const { generated_at, results } = await runInvariants()
   const critFails = results.filter((r) => !r.pass && r.severity === "CRIT").length
   const warnFails = results.filter((r) => !r.pass && r.severity === "WARN").length
   const passes = results.filter((r) => r.pass).length

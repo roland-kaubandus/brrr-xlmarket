@@ -6,29 +6,23 @@ import { categoryPath } from "@/lib/i18n"
 import { Menu, X, ChevronRight, ChevronLeft } from "lucide-react"
 import { V3_ICONS } from "@/lib/taxonomy-v3"
 import CategoryThumb from "@/components/CategoryThumb"
-import {
-  getVisibleL1,
-  getChildren,
-  getNode,
-  nodeName,
-  type CategoryNode,
-  type Locale as TaxLocale,
-} from "@/lib/category-tree"
+import type { MenuNode } from "@/lib/menu-data"
 
 /**
  * MegaMenu — N-level category drill-down.
  *
+ * PERF-C1 (2026-04-20): no longer imports category-tree.generated.json.
+ * L1 + L2 data comes via menuData prop (server-computed ~30KB slice).
+ * L3+ is fetched lazily from /api/category-children on user hover.
+ *
  * Single source of truth: category-tree.generated.json (from taxonomy.yaml).
  * No more subSlugs arrays, no more THUMB_OVERRIDES indirection, no more
- * DB /api/header-categories fetch. Everything is static and SSoT-bound.
+ * DB /api/header-categories fetch. Everything is SSoT-bound.
  *
  * Structure:
- *   Column 1: L1 list (22, V3_ICONS for icons)
+ *   Column 1: L1 list (18, V3_ICONS for icons)
  *   Column 2: L2 list for active L1 (CategoryThumb per row)
- *   Column 3+: L3+ panels when the active L2 node has children
- *
- * Drill is recursive — if the tree ever grows an L4 level, no code change
- * needed here.
+ *   Column 3+: L3+ panels when the active L2 node has children (lazy-fetched)
  *
  * Spec: 2026-04-18 §3.5
  */
@@ -36,44 +30,113 @@ import {
 interface MegaMenuProps {
   locale?: string
   variant?: "light" | "dark"
+  menuData: {
+    l1: MenuNode[]
+    l2ByL1: Record<string, MenuNode[]>
+  }
 }
 
-export default function MegaMenu({ locale = "et" }: MegaMenuProps) {
-  const loc = locale as TaxLocale
+// Cache for lazily-fetched children: handle -> MenuNode[]
+// Shared across MegaMenu instances (singleton per page lifetime).
+const childrenCache = new Map<string, MenuNode[]>()
+
+async function fetchChildren(handle: string): Promise<MenuNode[]> {
+  if (childrenCache.has(handle)) return childrenCache.get(handle)!
+  try {
+    const res = await fetch(`/api/category-children?handle=${encodeURIComponent(handle)}`)
+    if (!res.ok) return []
+    const data = await res.json()
+    const children: MenuNode[] = data.children ?? []
+    childrenCache.set(handle, children)
+    return children
+  } catch {
+    return []
+  }
+}
+
+export default function MegaMenu({ locale = "et", menuData }: MegaMenuProps) {
+  const loc = locale as "et" | "en"
   const [isOpen, setIsOpen] = useState(false)
-  const [activeL1, setActiveL1] = useState<CategoryNode | null>(null)
+  const [activeL1, setActiveL1] = useState<MenuNode | null>(null)
   // hoverPath[i] = node whose children are rendered as the (i+2)-th column.
   // hoverPath[0] = L2 node (its children are the L3 panel), etc.
-  const [hoverPath, setHoverPath] = useState<CategoryNode[]>([])
-  const [mobileStack, setMobileStack] = useState<CategoryNode[]>([])
+  const [hoverPath, setHoverPath] = useState<MenuNode[]>([])
+  const [mobileStack, setMobileStack] = useState<MenuNode[]>([])
+
+  // Lazily-fetched children for drill panels (L3+).
+  // Key: parent handle → children array.
+  const [drillChildren, setDrillChildren] = useState<Record<string, MenuNode[]>>({})
 
   const hoverTimerRef = useRef<ReturnType<typeof setTimeout>>(undefined)
   const openTimerRef = useRef<ReturnType<typeof setTimeout>>(undefined)
   const closeTimerRef = useRef<ReturnType<typeof setTimeout>>(undefined)
   const menuRef = useRef<HTMLDivElement>(null)
 
-  // Spec §3.1.1 class C — hide <30 product branches (salon-spa-wellness,
-  // music-entertainment) until they reach catalogue viability.
-  const l1Nodes = useMemo(() => getVisibleL1(), [])
+  const l1Nodes = menuData.l1
 
-  const activeL2: CategoryNode[] = useMemo(() => {
+  const activeL2: MenuNode[] = useMemo(() => {
     if (!activeL1) return []
-    return getChildren(activeL1.handle)
-  }, [activeL1])
+    return menuData.l2ByL1[activeL1.handle] ?? []
+  }, [activeL1, menuData.l2ByL1])
 
-  // Panels are hoverPath[i].children, rendered in order.
-  const drillPanels: CategoryNode[][] = useMemo(() => {
-    return hoverPath.map((n) => getChildren(n.handle)).filter((children) => children.length > 0)
-  }, [hoverPath])
+  // For each node in hoverPath, resolve its children (from cache or lazy fetch).
+  // drillPanels[i] = children of hoverPath[i]
+  const drillPanels: MenuNode[][] = useMemo(() => {
+    return hoverPath
+      .map((n) => drillChildren[n.handle] ?? [])
+      .filter((children) => children.length > 0)
+  }, [hoverPath, drillChildren])
 
-  const shouldDrill = useCallback((node: CategoryNode): boolean => {
-    const kids = getChildren(node.handle)
-    if (kids.length === 0) return false
-    if (kids.length === 1 && getChildren(kids[0].handle).length === 0) return false
+  const shouldDrill = useCallback((node: MenuNode): boolean => {
+    if (!node.has_children) return false
+    const kids = drillChildren[node.handle]
+    if (kids !== undefined && kids.length === 0) return false
+    // has_children=true but not yet fetched — assume drillable until fetch.
     return true
+  }, [drillChildren])
+
+  // Pre-fetch children for a node and update drillChildren state.
+  const prefetchChildren = useCallback(async (node: MenuNode) => {
+    if (!node.has_children) return
+    if (childrenCache.has(node.handle)) {
+      const kids = childrenCache.get(node.handle)!
+      setDrillChildren((prev) => {
+        if (prev[node.handle] === kids) return prev
+        return { ...prev, [node.handle]: kids }
+      })
+      return
+    }
+    const kids = await fetchChildren(node.handle)
+    setDrillChildren((prev) => ({ ...prev, [node.handle]: kids }))
   }, [])
 
-  const handleL1Hover = useCallback((l1: CategoryNode) => {
+  // Mobile drill: fetch children when navigating into a node.
+  const [mobileChildren, setMobileChildren] = useState<MenuNode[]>([])
+  const mobileTop = mobileStack.length > 0 ? mobileStack[mobileStack.length - 1] : null
+
+  useEffect(() => {
+    if (!isOpen) return
+    if (!mobileTop) {
+      setMobileChildren(l1Nodes)
+      return
+    }
+    // Fetch L2+ children for the current mobile drill level.
+    const top = mobileTop
+    if (mobileTop.level === 1) {
+      setMobileChildren(menuData.l2ByL1[mobileTop.handle] ?? [])
+      return
+    }
+    // L2+ — need lazy fetch.
+    if (childrenCache.has(top.handle)) {
+      setMobileChildren(childrenCache.get(top.handle)!)
+      return
+    }
+    fetchChildren(top.handle).then((kids) => {
+      setMobileChildren(kids)
+    })
+  }, [mobileTop, isOpen, l1Nodes, menuData.l2ByL1])
+
+  const handleL1Hover = useCallback((l1: MenuNode) => {
     clearTimeout(hoverTimerRef.current)
     hoverTimerRef.current = setTimeout(() => {
       setActiveL1(l1)
@@ -82,27 +145,36 @@ export default function MegaMenu({ locale = "et" }: MegaMenuProps) {
   }, [])
 
   const handleL2Hover = useCallback(
-    (l2: CategoryNode) => {
+    (l2: MenuNode) => {
       clearTimeout(hoverTimerRef.current)
-      hoverTimerRef.current = setTimeout(() => {
-        setHoverPath(shouldDrill(l2) ? [l2] : [])
+      hoverTimerRef.current = setTimeout(async () => {
+        if (l2.has_children) {
+          await prefetchChildren(l2)
+          setHoverPath([l2])
+        } else {
+          setHoverPath([])
+        }
       }, 80)
     },
-    [shouldDrill]
+    [prefetchChildren]
   )
 
   const handleDeepHover = useCallback(
-    (node: CategoryNode, depth: number) => {
+    (node: MenuNode, depth: number) => {
       clearTimeout(hoverTimerRef.current)
-      hoverTimerRef.current = setTimeout(() => {
-        if (!shouldDrill(node)) {
+      hoverTimerRef.current = setTimeout(async () => {
+        if (!node.has_children) {
           setHoverPath((prev) => prev.slice(0, depth + 1))
           return
         }
-        setHoverPath((prev) => [...prev.slice(0, depth + 1), node])
+        await prefetchChildren(node)
+        setHoverPath((prev) => {
+          const updated = [...prev.slice(0, depth + 1), node]
+          return updated
+        })
       }, 80)
     },
-    [shouldDrill]
+    [prefetchChildren]
   )
 
   useEffect(
@@ -182,7 +254,6 @@ export default function MegaMenu({ locale = "et" }: MegaMenuProps) {
       const l1Item = active.closest<HTMLElement>('[data-mega-l1="true"]')
 
       if (e.key === "ArrowRight" || e.key === "ArrowLeft") {
-        // Move between L1 menuitems when focus is on an L1 anchor.
         if (!l1Item) return
         e.preventDefault()
         const l1List = root.querySelectorAll<HTMLElement>('[data-mega-l1="true"]')
@@ -198,7 +269,7 @@ export default function MegaMenu({ locale = "et" }: MegaMenuProps) {
           target.focus()
           const handle = target.getAttribute("data-l1-handle")
           if (handle) {
-            const node = getNode(handle)
+            const node = l1Nodes.find((n) => n.handle === handle) ?? null
             if (node) {
               setActiveL1(node)
               setHoverPath([])
@@ -209,7 +280,6 @@ export default function MegaMenu({ locale = "et" }: MegaMenuProps) {
       }
 
       if (e.key === "ArrowDown") {
-        // Open / advance into the active panel.
         if (l1Item && activeL1) {
           e.preventDefault()
           const firstL2 = root.querySelector<HTMLElement>('[data-mega-l2="true"]')
@@ -219,7 +289,6 @@ export default function MegaMenu({ locale = "et" }: MegaMenuProps) {
       }
 
       if (e.key === "ArrowUp") {
-        // Collapse back toward the L1 row.
         if (!l1Item) {
           e.preventDefault()
           const currentL1 = root.querySelector<HTMLElement>(
@@ -240,7 +309,7 @@ export default function MegaMenu({ locale = "et" }: MegaMenuProps) {
       document.removeEventListener("keydown", handler)
       document.body.style.overflow = ""
     }
-  }, [isOpen, activeL1])
+  }, [isOpen, activeL1, l1Nodes])
 
   useEffect(() => {
     if (!isOpen) return
@@ -254,8 +323,9 @@ export default function MegaMenu({ locale = "et" }: MegaMenuProps) {
   const panelWidth = 300
   const totalWidth = 320 + (activeL1 ? 340 : 0) + drillPanels.length * panelWidth
 
-  const mobileTop = mobileStack.length > 0 ? mobileStack[mobileStack.length - 1] : null
-  const mobileChildren: CategoryNode[] = mobileTop ? getChildren(mobileTop.handle) : l1Nodes
+  function nodeName(node: MenuNode): string {
+    return node.name_en
+  }
 
   return (
     <div ref={menuRef} className="relative" onMouseLeave={handleMenuLeave}>
@@ -273,7 +343,7 @@ export default function MegaMenu({ locale = "et" }: MegaMenuProps) {
         className="flex items-center gap-2 px-3 py-1.5 text-white font-bold text-[14px] rounded-md hover:bg-white/10 transition-colors"
       >
         {isOpen ? <X size={18} strokeWidth={2} /> : <Menu size={18} strokeWidth={2} />}
-        <span className="hidden sm:inline">{loc === "et" ? "Kategooriad" : "Categories"}</span>
+        <span className="hidden sm:inline">Categories</span>
       </button>
 
       {isOpen && <div className="fixed inset-0 bg-black/30 z-40" onClick={() => setIsOpen(false)} />}
@@ -296,10 +366,10 @@ export default function MegaMenu({ locale = "et" }: MegaMenuProps) {
               className="w-[320px] py-3 max-h-[calc(100vh-140px)] overflow-y-auto flex-shrink-0 border-r border-[#ECEEF1]"
               role="menu"
               aria-orientation="vertical"
-              aria-label={loc === "et" ? "Kategooriad" : "Categories"}
+              aria-label="Categories"
             >
               <h3 className="px-5 pb-2 text-[11px] font-bold text-[#64748B] uppercase tracking-wider">
-                {loc === "et" ? "Kategooriad" : "Shop by Category"}
+                Shop by Category
               </h3>
               {l1Nodes.map((l1) => {
                 const Icon = V3_ICONS[l1.handle]
@@ -314,7 +384,7 @@ export default function MegaMenu({ locale = "et" }: MegaMenuProps) {
                     role="menuitem"
                     data-mega-l1="true"
                     data-l1-handle={l1.handle}
-                    aria-haspopup={getChildren(l1.handle).length > 0 ? "true" : undefined}
+                    aria-haspopup={(menuData.l2ByL1[l1.handle]?.length ?? 0) > 0 ? "true" : undefined}
                     className={`flex items-center gap-3 px-5 py-[9px] text-[13px] transition-colors ${
                       isActive ? "bg-[#FFF8F3] text-[#D97706]" : "text-[#1E293B] hover:bg-[#F8FAFC]"
                     }`}
@@ -327,7 +397,7 @@ export default function MegaMenu({ locale = "et" }: MegaMenuProps) {
                         className="flex-shrink-0"
                       />
                     )}
-                    <span className="font-medium flex-1 truncate">{nodeName(l1, loc)}</span>
+                    <span className="font-medium flex-1 truncate">{nodeName(l1)}</span>
                     <ChevronRight
                       size={13}
                       style={{ color: isActive ? "#D97706" : "#CBD5E1" }}
@@ -344,20 +414,18 @@ export default function MegaMenu({ locale = "et" }: MegaMenuProps) {
                 className="w-[340px] py-3 max-h-[calc(100vh-140px)] overflow-y-auto flex-shrink-0 border-r border-[#ECEEF1]"
                 role="menu"
                 aria-orientation="vertical"
-                aria-label={nodeName(activeL1, loc)}
+                aria-label={nodeName(activeL1)}
               >
                 <Link
                   href={categoryPath(loc, activeL1.handle)}
                   onClick={() => setIsOpen(false)}
                   className="block px-5 py-2 text-[11px] font-bold text-[#D97706] uppercase tracking-wider border-b border-[#ECEEF1] mb-1 hover:underline"
                 >
-                  {loc === "et"
-                    ? `Kõik: ${nodeName(activeL1, loc)}`
-                    : `Shop All ${nodeName(activeL1, loc)}`}
+                  Shop All {nodeName(activeL1)}
                 </Link>
                 {activeL2.map((l2) => {
                   const isActive = hoverPath[0]?.handle === l2.handle
-                  const hasKids = getChildren(l2.handle).length > 0
+                  const hasKids = l2.has_children
                   return (
                     <Link
                       key={l2.handle}
@@ -372,9 +440,15 @@ export default function MegaMenu({ locale = "et" }: MegaMenuProps) {
                         isActive ? "bg-[#FFF8F3] text-[#D97706]" : "text-[#1E293B] hover:bg-[#F8FAFC]"
                       }`}
                     >
-                      <CategoryThumb handle={l2.handle} node={l2} size={32} alt="" />
+                      <CategoryThumb
+                        handle={l2.handle}
+                        image_path={l2.image_path}
+                        l1_handle={l2.l1_handle}
+                        size={32}
+                        alt=""
+                      />
                       <span className="flex-1 leading-tight text-[13px] font-medium">
-                        {nodeName(l2, loc)}
+                        {nodeName(l2)}
                       </span>
                       {hasKids && (
                         <ChevronRight
@@ -389,7 +463,7 @@ export default function MegaMenu({ locale = "et" }: MegaMenuProps) {
               </div>
             )}
 
-            {/* L3+ drill-down panels (recursive, N-level) */}
+            {/* L3+ drill-down panels (recursive, N-level, lazy-fetched) */}
             {drillPanels.map((nodes, panelIdx) => {
               const isLastPanel = panelIdx === drillPanels.length - 1
               const parent = hoverPath[panelIdx]
@@ -400,7 +474,7 @@ export default function MegaMenu({ locale = "et" }: MegaMenuProps) {
                   style={{ width: panelWidth }}
                   role="menu"
                   aria-orientation="vertical"
-                  aria-label={parent ? nodeName(parent, loc) : undefined}
+                  aria-label={parent ? nodeName(parent) : undefined}
                 >
                   {parent && (
                     <Link
@@ -408,14 +482,12 @@ export default function MegaMenu({ locale = "et" }: MegaMenuProps) {
                       onClick={() => setIsOpen(false)}
                       className="block px-5 py-2 text-[11px] font-bold text-[#D97706] uppercase tracking-wider border-b border-[#ECEEF1] mb-1 hover:underline"
                     >
-                      {loc === "et"
-                        ? `Kõik: ${nodeName(parent, loc)}`
-                        : `Shop All ${nodeName(parent, loc)}`}
+                      Shop All {nodeName(parent)}
                     </Link>
                   )}
                   {nodes.map((node) => {
                     const isActive = hoverPath[panelIdx + 1]?.handle === node.handle
-                    const hasKids = getChildren(node.handle).length > 0
+                    const hasKids = node.has_children
                     return (
                       <Link
                         key={node.handle}
@@ -429,8 +501,14 @@ export default function MegaMenu({ locale = "et" }: MegaMenuProps) {
                           isActive ? "bg-[#FFF8F3] text-[#D97706]" : "text-[#1E293B] hover:bg-[#F8FAFC]"
                         }`}
                       >
-                        <CategoryThumb handle={node.handle} node={node} size={28} alt="" />
-                        <span className="font-medium flex-1 truncate">{nodeName(node, loc)}</span>
+                        <CategoryThumb
+                          handle={node.handle}
+                          image_path={node.image_path}
+                          l1_handle={node.l1_handle}
+                          size={28}
+                          alt=""
+                        />
+                        <span className="font-medium flex-1 truncate">{nodeName(node)}</span>
                         {hasKids && (
                           <ChevronRight
                             size={12}
@@ -458,12 +536,10 @@ export default function MegaMenu({ locale = "et" }: MegaMenuProps) {
                 className="flex items-center gap-2 text-white font-medium text-[15px] min-h-[44px]"
               >
                 <ChevronLeft size={20} />
-                {loc === "et" ? "Tagasi" : "Back"}
+                Back
               </button>
             ) : (
-              <span className="text-white font-bold text-[16px]">
-                {loc === "et" ? "Kategooriad" : "Categories"}
-              </span>
+              <span className="text-white font-bold text-[16px]">Categories</span>
             )}
             <button
               onClick={() => {
@@ -485,10 +561,7 @@ export default function MegaMenu({ locale = "et" }: MegaMenuProps) {
               }}
               className="block px-4 py-3.5 text-[14px] font-bold text-[#D97706] border-b border-[#E2E8F0] bg-[#FFFBEB]"
             >
-              {loc === "et"
-                ? `Kõik: ${nodeName(mobileTop, loc)}`
-                : `View All ${nodeName(mobileTop, loc)}`}{" "}
-              &rarr;
+              View All {nodeName(mobileTop)} &rarr;
             </Link>
           )}
 
@@ -504,7 +577,7 @@ export default function MegaMenu({ locale = "et" }: MegaMenuProps) {
                   >
                     <span className="flex items-center gap-3">
                       {Icon && <Icon size={20} strokeWidth={1.4} className="text-[#94A3B8]" />}
-                      <span>{nodeName(l1, loc)}</span>
+                      <span>{nodeName(l1)}</span>
                     </span>
                     <ChevronRight size={16} className="text-[#CBD5E1]" />
                   </button>
@@ -513,7 +586,7 @@ export default function MegaMenu({ locale = "et" }: MegaMenuProps) {
 
             {mobileTop &&
               mobileChildren.map((child) => {
-                const hasKids = getChildren(child.handle).length > 0
+                const hasKids = child.has_children
                 if (hasKids) {
                   return (
                     <button
@@ -522,8 +595,14 @@ export default function MegaMenu({ locale = "et" }: MegaMenuProps) {
                       className="w-full flex items-center justify-between pl-4 pr-4 min-h-[56px] text-[14px] font-medium text-[#1E293B] border-b border-[#F1F5F9] active:bg-[#FFFBEB] transition-colors"
                     >
                       <span className="flex items-center flex-1 text-left gap-3">
-                        <CategoryThumb handle={child.handle} node={child} size={36} alt="" />
-                        <span className="flex-1">{nodeName(child, loc)}</span>
+                        <CategoryThumb
+                          handle={child.handle}
+                          image_path={child.image_path}
+                          l1_handle={child.l1_handle}
+                          size={36}
+                          alt=""
+                        />
+                        <span className="flex-1">{nodeName(child)}</span>
                       </span>
                       <ChevronRight size={16} className="text-[#CBD5E1] flex-shrink-0 ml-2" />
                     </button>
@@ -539,8 +618,14 @@ export default function MegaMenu({ locale = "et" }: MegaMenuProps) {
                     }}
                     className="pl-4 pr-4 min-h-[56px] text-[14px] font-medium text-[#1E293B] border-b border-[#F1F5F9] active:bg-[#FFFBEB] active:text-[#D97706] transition-colors flex items-center gap-3"
                   >
-                    <CategoryThumb handle={child.handle} node={child} size={36} alt="" />
-                    <span className="flex-1">{nodeName(child, loc)}</span>
+                    <CategoryThumb
+                      handle={child.handle}
+                      image_path={child.image_path}
+                      l1_handle={child.l1_handle}
+                      size={36}
+                      alt=""
+                    />
+                    <span className="flex-1">{nodeName(child)}</span>
                   </Link>
                 )
               })}

@@ -63,14 +63,33 @@ export async function GET(request: NextRequest) {
   const limit = Math.min(Math.max(parseInt(params.get("limit") || "24"), 1), 100)
   const offset = Math.max(parseInt(params.get("offset") || "0"), 0)
 
+  // If user sent a parameter but NONE of its tokens passed the allowlist,
+  // reject with 400. Otherwise silently-dropping the filter leaks the full
+  // catalog on bogus queries (test 1 FAIL 2026-04-20).
+  const rawFilter = params.get("filter")
+  const rawSort = params.get("sort")
+  const rawFacets = params.get("facets")
+  const filter = parseFilter(rawFilter)
+  const sort = parseSort(rawSort)
+  const facets = parseFacets(rawFacets)
+  if (rawFilter && !filter) {
+    return NextResponse.json({ products: [], totalHits: 0, error: "Invalid filter" }, { status: 400 })
+  }
+  if (rawSort && !sort) {
+    return NextResponse.json({ products: [], totalHits: 0, error: "Invalid sort" }, { status: 400 })
+  }
+  if (rawFacets && !facets) {
+    return NextResponse.json({ products: [], totalHits: 0, error: "Invalid facets" }, { status: 400 })
+  }
+
   try {
     const result = await searchProducts({
       q,
       limit,
       offset,
-      sort: parseSort(params.get("sort")),
-      filter: parseFilter(params.get("filter")),
-      facets: parseFacets(params.get("facets")),
+      sort,
+      filter,
+      facets,
     })
 
     return NextResponse.json({
