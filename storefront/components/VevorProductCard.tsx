@@ -106,7 +106,7 @@ export default function VevorProductCard({ product, locale }: { product: Product
         )}
 
         {/* Product image — 1:1 */}
-        <div className="relative aspect-square flex items-center justify-center overflow-hidden bg-[#FAFAFA] p-4 md:p-6">
+        <div className="aspect-square flex items-center justify-center overflow-hidden bg-[#FAFAFA] p-4 md:p-6">
           {thumbnailUrl ? (
             <Image
               src={thumbnailUrl}
@@ -120,38 +120,6 @@ export default function VevorProductCard({ product, locale }: { product: Product
           ) : (
             <div className="flex items-center justify-center h-full text-[#CBD5E1] text-sm md:text-base">No image</div>
           )}
-
-          {/* Compare — bottom right of image, always visible */}
-          <button
-            type="button"
-            onClick={(e) => {
-              e.preventDefault()
-              e.stopPropagation()
-              if (isCompared) {
-                compare.remove(product.id)
-              } else {
-                compare.add({
-                  id: product.id,
-                  handle: product.handle,
-                  title: product.title,
-                  thumbnail: product.thumbnail || null,
-                  price: price ? formatPrice(price.calculated_amount, price.currency_code) : "",
-                  specs: extractCardSpecs(product),
-                })
-              }
-            }}
-            aria-label={isCompared ? "Remove from compare" : "Add to compare"}
-            className={`absolute bottom-3 right-3 z-10 flex items-center gap-1.5 px-3 h-8 rounded-full shadow-sm text-[12px] font-semibold transition-colors ${
-              isCompared
-                ? "bg-[#D97706] text-white hover:bg-[#B45309]"
-                : "bg-white/95 hover:bg-white text-[#475569] hover:text-[#D97706] border border-[#E2E8F0]"
-            }`}
-          >
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <line x1="18" y1="20" x2="18" y2="10" /><line x1="12" y1="20" x2="12" y2="4" /><line x1="6" y1="20" x2="6" y2="14" />
-            </svg>
-            <span>{isCompared ? "In Compare" : "Compare"}</span>
-          </button>
         </div>
 
         {/* Product info */}
@@ -187,17 +155,41 @@ export default function VevorProductCard({ product, locale }: { product: Product
                 In Stock
               </span>
             )}
-            {isCompared && (
-              <span className="ml-auto inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[10px] font-medium bg-[#D97706]/10 text-[#D97706]">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>
-                </svg>
-                In Compare
-              </span>
-            )}
           </div>
         </div>
       </Link>
+
+      {/* Compare — bottom right of card, always visible, outside <Link> */}
+      <button
+        type="button"
+        onClick={(e) => {
+          e.preventDefault()
+          e.stopPropagation()
+          if (isCompared) {
+            compare.remove(product.id)
+          } else {
+            compare.add({
+              id: product.id,
+              handle: product.handle,
+              title: product.title,
+              thumbnail: product.thumbnail || null,
+              price: price ? formatPrice(price.calculated_amount, price.currency_code) : "",
+              specs: extractCardSpecs(product),
+            })
+          }
+        }}
+        aria-label={isCompared ? "Remove from compare" : "Add to compare"}
+        className={`absolute bottom-3 right-3 z-20 flex items-center gap-1.5 px-3 h-8 rounded-full shadow-sm text-[12px] font-semibold transition-colors ${
+          isCompared
+            ? "bg-[#D97706] text-white hover:bg-[#B45309]"
+            : "bg-white hover:bg-[#FFFBEB] text-[#475569] hover:text-[#D97706] border border-[#E2E8F0]"
+        }`}
+      >
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <line x1="18" y1="20" x2="18" y2="10" /><line x1="12" y1="20" x2="12" y2="4" /><line x1="6" y1="20" x2="6" y2="14" />
+        </svg>
+        <span>{isCompared ? "In Compare" : "Compare"}</span>
+      </button>
     </article>
   )
 }
