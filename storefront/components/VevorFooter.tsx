@@ -24,8 +24,8 @@ export default function VevorFooter({ locale = "en" }: { locale?: string }) {
             <ul className="flex flex-col gap-2.5">
               <li><Link href={`/${locale}/kategooriad`} className="text-[14px] text-[#94A3B8] hover:text-white transition-colors">All Categories</Link></li>
               <li><Link href={`/${locale}/otsing?sort=newest`} className="text-[14px] text-[#94A3B8] hover:text-white transition-colors">New Arrivals</Link></li>
-              <li><Link href={`/${locale}/otsing?tag=hot`} className="text-[14px] text-[#94A3B8] hover:text-white transition-colors">Best Sellers</Link></li>
-              <li><Link href={`/${locale}/otsing?tag=deals`} className="text-[14px] text-[#94A3B8] hover:text-white transition-colors">Deals</Link></li>
+              <li><Link href={`/${locale}/otsing?sort=best`} className="text-[14px] text-[#94A3B8] hover:text-white transition-colors">Best Sellers</Link></li>
+              <li><Link href={`/${locale}/otsing?sort=deals`} className="text-[14px] text-[#94A3B8] hover:text-white transition-colors">Deals</Link></li>
             </ul>
           </div>
 

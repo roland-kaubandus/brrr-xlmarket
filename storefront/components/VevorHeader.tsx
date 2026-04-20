@@ -13,7 +13,7 @@ const getNavLinks = (locale: string) => [
   { label: "Starter kits", href: `/${locale}/alustajale`, highlight: true, matchPrefix: `/${locale}/alustajale` },
   { label: "B2B", href: `/${locale}/arikliendile`, matchPrefix: `/${locale}/arikliendile` },
   { label: "Service", href: `/${locale}/hooldus`, matchPrefix: `/${locale}/hooldus` },
-  { label: "Deals", href: `/${locale}/otsing?tag=deals`, matchPrefix: "" },
+  { label: "Deals", href: `/${locale}/otsing?sort=deals`, matchPrefix: "" },
 ]
 
 export default async function VevorHeader({ locale = "en" }: { locale?: string }) {

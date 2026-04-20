@@ -114,7 +114,7 @@ export default function HeroDeals({ locale }: { locale: string }) {
             Top Deals
           </h2>
           <Link
-            href={`/${locale}/otsing?tag=deals`}
+            href={`/${locale}/otsing?sort=deals`}
             className="text-[13px] md:text-[15px] font-semibold text-[#D97706] flex items-center gap-1 hover:gap-2 transition-all"
           >
             All deals

@@ -61,10 +61,15 @@ export default async function SearchPage({ searchParams, params }: Props) {
   const { locale } = await params
   const { q, page: pageParam, sort, tag, min, max, categories, in_stock, filters } = await searchParams
   const query = q?.trim() || ""
-  const activeTag = tag?.trim() || ""
+  const rawTag = tag?.trim() || ""
+  // `tag=` is a legacy alias for `sort=` (promo_tags index does not exist).
+  // Map known legacy values to sort keys so old bookmarks keep working.
+  const tagToSort: Record<string, string> = { hot: "best", deals: "deals", newest: "newest" }
+  const effectiveSort = (sort || "").trim() || tagToSort[rawTag] || ""
+  const activeTag = rawTag && tagToSort[rawTag] ? rawTag : ""
   const page = Math.max(1, parseInt(pageParam || "1", 10) || 1)
   const offset = (page - 1) * ITEMS_PER_PAGE
-  const currentSort = sort || ""
+  const currentSort = effectiveSort
   const selectedCategories = categories ? categories.split(",").filter(Boolean) : []
   const inStock = in_stock === "1"
   const currentQuickFilter = filters?.trim() || ""
@@ -75,7 +80,6 @@ export default async function SearchPage({ searchParams, params }: Props) {
 
   // Build search filters
   const searchFilters: string[] = []
-  if (activeTag) searchFilters.push(`promo_tags = "${activeTag}"`)
   if (currentSort === "clearance" && !max) searchFilters.push("price <= 50")
   if (min) searchFilters.push(`price >= ${parseFloat(min)}`)
   if (max) searchFilters.push(`price <= ${parseFloat(max)}`)
