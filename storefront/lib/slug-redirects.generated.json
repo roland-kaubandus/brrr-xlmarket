@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-21T07:38:02.907Z",
+  "generatedAt": "2026-04-21T08:02:22.817Z",
   "count": 60,
   "redirects": {
     "appliances": "horeca-food-service",
@@ -48,8 +48,8 @@
     "renewable-energy": "renewable-energy-batteries",
     "safety-equipment": "safety-security-workwear",
     "smart-home": "electrical-energy",
+    "solar": "solar-power",
     "solar-charge-controllers": "charge-controllers",
-    "solar-power": "solar",
     "sport-ja-vaba-aeg": "fitness-sports-recreation",
     "sports-outdoors": "fitness-sports-recreation",
     "storage-organization": "warehousing-material-handling",
@@ -57,8 +57,8 @@
     "tools": "hand-power-tools",
     "toostus-ja-seadmed": "hand-power-tools",
     "voltage-converter-transformer": "voltage-converters",
+    "wind": "wind-power",
     "wind-generators": "wind",
-    "wind-power": "wind",
     "wind-turbine": "home-wind-turbines",
     "window-treatments": "office-commercial-interiors",
     "workwear": "safety-security-workwear"

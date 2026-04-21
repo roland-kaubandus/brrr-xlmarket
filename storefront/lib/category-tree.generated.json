@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-21T07:59:04.821Z",
+  "generated_at": "2026-04-21T08:01:28.273Z",
   "nodes": {
     "horeca-food-service": {
       "handle": "horeca-food-service",
@@ -4911,35 +4911,34 @@
       "level": 1,
       "parent_handle": null,
       "child_handles": [
-        "solar",
-        "wind",
+        "solar-power",
+        "wind-power",
+        "inverters-and-controllers",
         "batteries-and-chargers"
       ],
       "image_path": "/cat-thumbs/renewable-energy-batteries.webp",
       "image_source": "direct"
     },
-    "solar": {
-      "handle": "solar",
-      "name_en": "Solar",
-      "name_et": "Solar",
+    "solar-power": {
+      "handle": "solar-power",
+      "name_en": "Solar Power",
+      "name_et": "Solar Power",
       "level": 2,
       "parent_handle": "renewable-energy-batteries",
       "child_handles": [
         "solar-panels",
-        "inverters-and-controllers",
         "solar-power-accessories",
         "solar-panel-kits"
       ],
-      "image_path": "/cat-thumbs/solar-panels.webp",
-      "image_source": "inherited",
-      "image_donor": "solar-panels"
+      "image_path": "/cat-thumbs/solar-power.webp",
+      "image_source": "direct"
     },
     "solar-panels": {
       "handle": "solar-panels",
       "name_en": "Solar Panels",
       "name_et": "Solar Panels",
       "level": 3,
-      "parent_handle": "solar",
+      "parent_handle": "solar-power",
       "child_handles": [
         "monocrystalline-solar-panel",
         "solar-trickle-charger"
@@ -4967,68 +4966,12 @@
       "image_path": "/cat-thumbs/solar-trickle-charger.webp",
       "image_source": "direct"
     },
-    "inverters-and-controllers": {
-      "handle": "inverters-and-controllers",
-      "name_en": "Inverters & Controllers",
-      "name_et": "Inverters & Controllers",
-      "level": 3,
-      "parent_handle": "solar",
-      "child_handles": [
-        "grid-tie-inverters",
-        "off-grid-solar-inverters",
-        "hybrid-inverters",
-        "charge-controllers"
-      ],
-      "image_path": "/cat-thumbs/charge-controllers.webp",
-      "image_source": "inherited",
-      "image_donor": "charge-controllers"
-    },
-    "grid-tie-inverters": {
-      "handle": "grid-tie-inverters",
-      "name_en": "Grid Tie Inverters",
-      "name_et": "Grid Tie Inverters",
-      "level": 4,
-      "parent_handle": "inverters-and-controllers",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "off-grid-solar-inverters": {
-      "handle": "off-grid-solar-inverters",
-      "name_en": "Off Grid Solar Inverters",
-      "name_et": "Off Grid Solar Inverters",
-      "level": 4,
-      "parent_handle": "inverters-and-controllers",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "hybrid-inverters": {
-      "handle": "hybrid-inverters",
-      "name_en": "Hybrid Inverters",
-      "name_et": "Hybrid Inverters",
-      "level": 4,
-      "parent_handle": "inverters-and-controllers",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "charge-controllers": {
-      "handle": "charge-controllers",
-      "name_en": "Charge Controllers",
-      "name_et": "Charge Controllers",
-      "level": 4,
-      "parent_handle": "inverters-and-controllers",
-      "child_handles": [],
-      "image_path": "/cat-thumbs/charge-controllers.webp",
-      "image_source": "direct"
-    },
     "solar-power-accessories": {
       "handle": "solar-power-accessories",
       "name_en": "Solar Power Accessories",
       "name_et": "Solar Power Accessories",
       "level": 3,
-      "parent_handle": "solar",
+      "parent_handle": "solar-power",
       "child_handles": [
         "solar-panel-mount-brackets",
         "solar-panel-extension-cable",
@@ -5073,7 +5016,7 @@
       "name_en": "Solar Panel Kits",
       "name_et": "Solar Panel Kits",
       "level": 3,
-      "parent_handle": "solar",
+      "parent_handle": "solar-power",
       "child_handles": [
         "off-grid-solar-systems"
       ],
@@ -5090,27 +5033,82 @@
       "image_path": null,
       "image_source": "none"
     },
-    "wind": {
-      "handle": "wind",
-      "name_en": "Wind",
-      "name_et": "Wind",
+    "wind-power": {
+      "handle": "wind-power",
+      "name_en": "Wind Power",
+      "name_et": "Wind Power",
       "level": 2,
       "parent_handle": "renewable-energy-batteries",
       "child_handles": [
         "home-wind-turbines"
       ],
-      "image_path": "/cat-thumbs/home-wind-turbines.webp",
-      "image_source": "inherited",
-      "image_donor": "home-wind-turbines"
+      "image_path": "/cat-thumbs/wind-power.webp",
+      "image_source": "direct"
     },
     "home-wind-turbines": {
       "handle": "home-wind-turbines",
       "name_en": "Home Wind Turbines",
       "name_et": "Home Wind Turbines",
       "level": 3,
-      "parent_handle": "wind",
+      "parent_handle": "wind-power",
       "child_handles": [],
       "image_path": "/cat-thumbs/home-wind-turbines.webp",
+      "image_source": "direct"
+    },
+    "inverters-and-controllers": {
+      "handle": "inverters-and-controllers",
+      "name_en": "Inverters & Controllers",
+      "name_et": "Inverters & Controllers",
+      "level": 2,
+      "parent_handle": "renewable-energy-batteries",
+      "child_handles": [
+        "grid-tie-inverters",
+        "off-grid-solar-inverters",
+        "hybrid-inverters",
+        "charge-controllers"
+      ],
+      "image_path": "/cat-thumbs/charge-controllers.webp",
+      "image_source": "inherited",
+      "image_donor": "charge-controllers"
+    },
+    "grid-tie-inverters": {
+      "handle": "grid-tie-inverters",
+      "name_en": "Grid Tie Inverters",
+      "name_et": "Grid Tie Inverters",
+      "level": 3,
+      "parent_handle": "inverters-and-controllers",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "off-grid-solar-inverters": {
+      "handle": "off-grid-solar-inverters",
+      "name_en": "Off Grid Solar Inverters",
+      "name_et": "Off Grid Solar Inverters",
+      "level": 3,
+      "parent_handle": "inverters-and-controllers",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "hybrid-inverters": {
+      "handle": "hybrid-inverters",
+      "name_en": "Hybrid Inverters",
+      "name_et": "Hybrid Inverters",
+      "level": 3,
+      "parent_handle": "inverters-and-controllers",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "charge-controllers": {
+      "handle": "charge-controllers",
+      "name_en": "Charge Controllers",
+      "name_et": "Charge Controllers",
+      "level": 3,
+      "parent_handle": "inverters-and-controllers",
+      "child_handles": [],
+      "image_path": "/cat-thumbs/charge-controllers.webp",
       "image_source": "direct"
     },
     "batteries-and-chargers": {
@@ -45413,23 +45411,23 @@
     "venue-decoration",
     "marine-carpet",
     "renewable-energy-batteries",
-    "solar",
+    "solar-power",
     "solar-panels",
     "monocrystalline-solar-panel",
     "solar-trickle-charger",
-    "inverters-and-controllers",
-    "grid-tie-inverters",
-    "off-grid-solar-inverters",
-    "hybrid-inverters",
-    "charge-controllers",
     "solar-power-accessories",
     "solar-panel-mount-brackets",
     "solar-panel-extension-cable",
     "solar-panel-guard",
     "solar-panel-kits",
     "off-grid-solar-systems",
-    "wind",
+    "wind-power",
     "home-wind-turbines",
+    "inverters-and-controllers",
+    "grid-tie-inverters",
+    "off-grid-solar-inverters",
+    "hybrid-inverters",
+    "charge-controllers",
     "batteries-and-chargers",
     "batteries",
     "powersports-batteries",

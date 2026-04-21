@@ -1442,9 +1442,9 @@ l1:
   - slug: renewable-energy-batteries
     name_en: Renewable Energy & Batteries
     subs:
-      - slug: solar
-        name_en: Solar
-        product_count: 55
+      - slug: solar-power
+        name_en: Solar Power
+        product_count: 66
         subs:
           - slug: solar-panels
             name_en: Solar Panels
@@ -1456,25 +1456,9 @@ l1:
               - slug: solar-trickle-charger
                 name_en: Solar Trickle Charger
                 product_count: 9
-          - slug: inverters-and-controllers
-            name_en: Inverters & Controllers
-            product_count: 10
-            subs:
-              - slug: grid-tie-inverters
-                name_en: Grid Tie Inverters
-                product_count: 3
-              - slug: off-grid-solar-inverters
-                name_en: Off Grid Solar Inverters
-                product_count: 1
-              - slug: hybrid-inverters
-                name_en: Hybrid Inverters
-                product_count: 5
-              - slug: charge-controllers
-                name_en: Charge Controllers
-                product_count: 4
           - slug: solar-power-accessories
             name_en: Solar Power Accessories
-            product_count: 6
+            product_count: 20
             subs:
               - slug: solar-panel-mount-brackets
                 name_en: Solar Panel Mount Brackets
@@ -1492,16 +1476,32 @@ l1:
               - slug: off-grid-solar-systems
                 name_en: Off Grid Solar Systems
                 product_count: 3
-      - slug: wind
-        name_en: Wind
-        product_count: 11
+      - slug: wind-power
+        name_en: Wind Power
+        product_count: 12
         subs:
           - slug: home-wind-turbines
             name_en: Home Wind Turbines
             product_count: 11
+      - slug: inverters-and-controllers
+        name_en: Inverters & Controllers
+        product_count: 16
+        subs:
+          - slug: grid-tie-inverters
+            name_en: Grid Tie Inverters
+            product_count: 5
+          - slug: off-grid-solar-inverters
+            name_en: Off Grid Solar Inverters
+            product_count: 1
+          - slug: hybrid-inverters
+            name_en: Hybrid Inverters
+            product_count: 6
+          - slug: charge-controllers
+            name_en: Charge Controllers
+            product_count: 4
       - slug: batteries-and-chargers
         name_en: Batteries & Chargers
-        product_count: 33
+        product_count: 29
         subs:
           - slug: batteries
             name_en: Batteries
@@ -1512,7 +1512,7 @@ l1:
                 product_count: 2
           - slug: battery-chargers
             name_en: Battery Chargers
-            product_count: 3
+            product_count: 7
             subs:
               - slug: starting-and-energy-storage-battery-charger
                 name_en: Starting & Energy Storage Battery Charger
