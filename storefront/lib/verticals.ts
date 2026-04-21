@@ -20,39 +20,36 @@ const FETCH_TIMEOUT_MS = 2500
 
 export type VerticalMode = "alustajale" | "arikliendile" | "hooldus"
 
+// EN-only store — `*_et` fields stay optional so the generated JSON can
+// still carry legacy rows, but no code path reads them.
 export interface KitItem {
-  label_et: string
   label_en: string
   l2_slug: string | null
   l3_slug: string | null
+  label_et?: string
 }
 
 export interface Kit {
   tier: "starter" | "pro" | "enterprise"
-  name_et: string
   name_en: string
   price_from: number
   items: KitItem[]
+  name_et?: string
 }
 
 export interface FaqEntry {
-  q_et: string
-  a_et: string
   q_en: string | null
   a_en: string | null
+  q_et?: string
+  a_et?: string
 }
 
 export interface VerticalMeta {
   slug: string
   mode: VerticalMode
-  name_et: string
   name_en: string
-  tagline_et: string
   tagline_en: string
-  description_et: string
   description_en: string
-  meta_title_et: string | null
-  meta_description_et: string | null
   meta_title_en: string | null
   meta_description_en: string | null
   hero_img: string | null
@@ -62,10 +59,15 @@ export interface VerticalMeta {
   exclude_nodes: string[]
   kits: Kit[]
   faq: FaqEntry[]
-  delivery_note_et: string | null
   delivery_note_en: string | null
-  financing_note_et: string | null
   financing_note_en: string | null
+  name_et?: string
+  tagline_et?: string
+  description_et?: string
+  meta_title_et?: string | null
+  meta_description_et?: string | null
+  delivery_note_et?: string | null
+  financing_note_et?: string | null
 }
 
 interface GeneratedData {
