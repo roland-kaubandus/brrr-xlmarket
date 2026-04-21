@@ -468,8 +468,8 @@ export default function HomepageShell({ locale, l1Nodes }: HomepageShellProps) {
                   <div className="hp-cat-banner-overlay" />
                   <div className="hp-cat-banner-title-wrap">
                     <h2 id={`cat-${cat.id}-title`} className="hp-cat-banner-title">{cat.name}</h2>
-                    {l2List.length > 0 ? (
-                      <p className="hp-cat-banner-sub">{l2List.length} subcategories</p>
+                    {l1Data && l1Data.l2_count > 0 ? (
+                      <p className="hp-cat-banner-sub">{l1Data.l2_count} subcategories</p>
                     ) : null}
                   </div>
                 </div>

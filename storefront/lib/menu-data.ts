@@ -128,17 +128,40 @@ export function getHomepageL1Nodes(): HomepageL1Node[] {
       for (const ch of node.child_handles) queue.push(ch)
     }
 
+    // Sublist: at least 6 entries. If L2 count < 6, backfill with L3 grandchildren
+    // via BFS so sparse branches (e.g. pets-wildlife-clinic has only 2 L2) still
+    // show a respectable list. Otherwise cap at 10 L2.
+    const MIN_SUBLIST = 6
+    const MAX_SUBLIST = 10
+    const sublist: Array<{ handle: string; name_en: string; image_path: string | null }> = []
+    const sublistSeen = new Set<string>()
+    for (const l2 of l2List) {
+      if (sublist.length >= MAX_SUBLIST) break
+      sublist.push({ handle: l2.handle, name_en: l2.name_en, image_path: l2.image_path })
+      sublistSeen.add(l2.handle)
+    }
+    if (sublist.length < MIN_SUBLIST) {
+      // Backfill with grandchildren (L3) in L2 order.
+      for (const l2 of l2List) {
+        if (sublist.length >= MIN_SUBLIST) break
+        for (const l3h of l2.child_handles) {
+          if (sublist.length >= MIN_SUBLIST) break
+          if (sublistSeen.has(l3h)) continue
+          const l3 = getNode(l3h)
+          if (!l3) continue
+          sublist.push({ handle: l3.handle, name_en: l3.name_en, image_path: l3.image_path })
+          sublistSeen.add(l3h)
+        }
+      }
+    }
+
     return {
       handle: l1Node.handle,
       name_en: l1Node.name_en,
       image_path: l1Node.image_path,
       level: 1 as const,
       l2_count: l2List.length,
-      l2_list: l2List.slice(0, 10).map((l2) => ({
-        handle: l2.handle,
-        name_en: l2.name_en,
-        image_path: l2.image_path,
-      })),
+      l2_list: sublist,
       featured,
     }
   })
