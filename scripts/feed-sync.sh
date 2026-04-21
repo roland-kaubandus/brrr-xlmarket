@@ -88,6 +88,10 @@ node scripts/reassign-v3-from-mapping.mjs --execute 2>&1 | tail -5 || {
   echo "  FAIL: reassign-v3-from-mapping.mjs"
   exit 1
 }
+# Title-based split: trickle + portable/foldable/flexible solar → solar-panel-kits
+node scripts/reassign-solar-panel-kits.mjs --execute 2>&1 | tail -3 || {
+  echo "  WARN: reassign-solar-panel-kits.mjs failed (non-fatal)"
+}
 node scripts/export-slug-redirects.mjs 2>&1 | tail -3 || {
   echo "  WARN: export-slug-redirects.mjs failed (non-fatal)"
 }
