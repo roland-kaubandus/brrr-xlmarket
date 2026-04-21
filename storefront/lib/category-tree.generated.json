@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-21T06:07:12.501Z",
+  "generated_at": "2026-04-21T07:07:29.703Z",
   "nodes": {
     "horeca-food-service": {
       "handle": "horeca-food-service",
@@ -1757,8 +1757,9 @@
       "child_handles": [
         "cookware-sets"
       ],
-      "image_path": null,
-      "image_source": "none"
+      "image_path": "/cat-thumbs/cookware-sets.webp",
+      "image_source": "inherited",
+      "image_donor": "cookware-sets"
     },
     "cookware-sets": {
       "handle": "cookware-sets",
@@ -4024,8 +4025,9 @@
         "beverage-refrigerator",
         "ice-machines"
       ],
-      "image_path": null,
-      "image_source": "none"
+      "image_path": "/cat-thumbs/beverage-refrigerator.webp",
+      "image_source": "inherited",
+      "image_donor": "beverage-refrigerator"
     },
     "ice-cube-tray": {
       "handle": "ice-cube-tray",
@@ -5254,8 +5256,9 @@
       "child_handles": [
         "voltage-converter-transformer"
       ],
-      "image_path": null,
-      "image_source": "none"
+      "image_path": "/cat-thumbs/voltage-converter-transformer.webp",
+      "image_source": "inherited",
+      "image_donor": "voltage-converter-transformer"
     },
     "voltage-converter-transformer": {
       "handle": "voltage-converter-transformer",
@@ -10307,8 +10310,9 @@
         "arts-and-crafts-supplies",
         "sewing-supplies"
       ],
-      "image_path": null,
-      "image_source": "none"
+      "image_path": "/cat-thumbs/crafting-machines.webp",
+      "image_source": "inherited",
+      "image_donor": "crafting-machines"
     },
     "crafting-machines": {
       "handle": "crafting-machines",
@@ -13278,8 +13282,9 @@
         "singing-bowls",
         "magnetic-field-therapy"
       ],
-      "image_path": null,
-      "image_source": "none"
+      "image_path": "/cat-thumbs/singing-bowls.webp",
+      "image_source": "inherited",
+      "image_donor": "singing-bowls"
     },
     "singing-bowls": {
       "handle": "singing-bowls",
@@ -16380,8 +16385,9 @@
         "boat-trailer-steps",
         "kayak-stabilizer"
       ],
-      "image_path": null,
-      "image_source": "none"
+      "image_path": "/cat-thumbs/hydraulic-steering.webp",
+      "image_source": "inherited",
+      "image_donor": "hydraulic-steering"
     },
     "hydraulic-steering": {
       "handle": "hydraulic-steering",
@@ -18900,8 +18906,9 @@
         "playground-slides",
         "video-games"
       ],
-      "image_path": null,
-      "image_source": "none"
+      "image_path": "/cat-thumbs/kids-toys.webp",
+      "image_source": "inherited",
+      "image_donor": "kids-toys"
     },
     "kids-toys": {
       "handle": "kids-toys",
@@ -20258,8 +20265,9 @@
       "child_handles": [
         "ps5-carrying-case"
       ],
-      "image_path": null,
-      "image_source": "none"
+      "image_path": "/cat-thumbs/ps5-carrying-case.webp",
+      "image_source": "inherited",
+      "image_donor": "ps5-carrying-case"
     },
     "ps5-carrying-case": {
       "handle": "ps5-carrying-case",
@@ -23407,8 +23415,9 @@
         "electric-grill",
         "smokers"
       ],
-      "image_path": null,
-      "image_source": "none"
+      "image_path": "/cat-thumbs/electric-skillets-indoor-grills.webp",
+      "image_source": "inherited",
+      "image_donor": "electric-grill"
     },
     "charcoal-grills": {
       "handle": "charcoal-grills",
@@ -24905,8 +24914,9 @@
         "shopping-carts",
         "stair-climbing-chair"
       ],
-      "image_path": null,
-      "image_source": "none"
+      "image_path": "/cat-thumbs/machinery-movers.webp",
+      "image_source": "inherited",
+      "image_donor": "machinery-movers"
     },
     "machinery-movers": {
       "handle": "machinery-movers",
@@ -31775,8 +31785,9 @@
       "child_handles": [
         "pipe-plug-kit"
       ],
-      "image_path": null,
-      "image_source": "none"
+      "image_path": "/cat-thumbs/pipe-plug-kit.webp",
+      "image_source": "inherited",
+      "image_donor": "pipe-plug-kit"
     },
     "pipe-plug-kit": {
       "handle": "pipe-plug-kit",
@@ -33930,8 +33941,9 @@
       "child_handles": [
         "insulated-tool-set"
       ],
-      "image_path": null,
-      "image_source": "none"
+      "image_path": "/cat-thumbs/insulated-tool-set.webp",
+      "image_source": "inherited",
+      "image_donor": "insulated-tool-set"
     },
     "insulated-tool-set": {
       "handle": "insulated-tool-set",
@@ -34396,8 +34408,9 @@
         "staplers-and-staples",
         "rivet-tools-and-rivets"
       ],
-      "image_path": null,
-      "image_source": "none"
+      "image_path": "/cat-thumbs/staplers-staples.webp",
+      "image_source": "inherited",
+      "image_donor": "staplers-and-staples"
     },
     "clamps-and-vises": {
       "handle": "clamps-and-vises",
@@ -34408,8 +34421,9 @@
       "child_handles": [
         "vises"
       ],
-      "image_path": null,
-      "image_source": "none"
+      "image_path": "/cat-thumbs/vises.webp",
+      "image_source": "inherited",
+      "image_donor": "vises"
     },
     "vises": {
       "handle": "vises",
@@ -34845,8 +34859,9 @@
       "child_handles": [
         "screwdrivers"
       ],
-      "image_path": null,
-      "image_source": "none"
+      "image_path": "/cat-thumbs/screwdrivers.webp",
+      "image_source": "inherited",
+      "image_donor": "screwdrivers"
     },
     "screwdrivers": {
       "handle": "screwdrivers",
@@ -36157,8 +36172,9 @@
         "choking-rescue-device",
         "first-aid-kits"
       ],
-      "image_path": null,
-      "image_source": "none"
+      "image_path": "/cat-thumbs/other-emergency-accessories.webp",
+      "image_source": "inherited",
+      "image_donor": "other-emergency-accessories"
     },
     "other-emergency-accessories": {
       "handle": "other-emergency-accessories",
@@ -38732,8 +38748,9 @@
       "child_handles": [
         "electric-screwdriver"
       ],
-      "image_path": null,
-      "image_source": "none"
+      "image_path": "/cat-thumbs/electric-screwdrivers.webp",
+      "image_source": "inherited",
+      "image_donor": "electric-screwdriver"
     },
     "electric-screwdriver": {
       "handle": "electric-screwdriver",
@@ -38986,8 +39003,9 @@
         "lab-carts",
         "utility-carts"
       ],
-      "image_path": null,
-      "image_source": "none"
+      "image_path": "/cat-thumbs/lab-carts.webp",
+      "image_source": "inherited",
+      "image_donor": "lab-carts"
     },
     "lab-carts": {
       "handle": "lab-carts",
@@ -40285,8 +40303,9 @@
         "liquid-filling-machine",
         "sealing-machine"
       ],
-      "image_path": null,
-      "image_source": "none"
+      "image_path": "/cat-thumbs/strapping-machine-strapping-strapping-cart.webp",
+      "image_source": "inherited",
+      "image_donor": "strapping-machine"
     },
     "strapping-machine": {
       "handle": "strapping-machine",
@@ -40787,8 +40806,9 @@
         "farmhouse-end-table",
         "metal-end-table"
       ],
-      "image_path": null,
-      "image_source": "none"
+      "image_path": "/cat-thumbs/farmhouse-end-table.webp",
+      "image_source": "inherited",
+      "image_donor": "farmhouse-end-table"
     },
     "farmhouse-end-table": {
       "handle": "farmhouse-end-table",
@@ -41519,8 +41539,9 @@
         "bags-and-cases",
         "mobile-stabilizer"
       ],
-      "image_path": null,
-      "image_source": "none"
+      "image_path": "/cat-thumbs/photo-studio.webp",
+      "image_source": "inherited",
+      "image_donor": "photo-studio"
     },
     "photo-studio": {
       "handle": "photo-studio",
@@ -41565,8 +41586,9 @@
         "telescope-cases",
         "studio-equipment-trolley-case"
       ],
-      "image_path": null,
-      "image_source": "none"
+      "image_path": "/cat-thumbs/telescope-cases.webp",
+      "image_source": "inherited",
+      "image_donor": "telescope-cases"
     },
     "telescope-cases": {
       "handle": "telescope-cases",
@@ -41610,8 +41632,9 @@
         "gramophone",
         "sound-bars"
       ],
-      "image_path": null,
-      "image_source": "none"
+      "image_path": "/cat-thumbs/portable-audio-video.webp",
+      "image_source": "inherited",
+      "image_donor": "portable-audio-and-video"
     },
     "electronics-home-audio-speakers": {
       "handle": "electronics-home-audio-speakers",
@@ -41624,8 +41647,9 @@
         "floor-standing-speaker",
         "powered-bookshelf-speakers"
       ],
-      "image_path": null,
-      "image_source": "none"
+      "image_path": "/cat-thumbs/ceiling-speakers.webp",
+      "image_source": "inherited",
+      "image_donor": "ceiling-speakers"
     },
     "ceiling-speakers": {
       "handle": "ceiling-speakers",
@@ -44325,8 +44349,9 @@
       "child_handles": [
         "artificial-christmas-trees"
       ],
-      "image_path": null,
-      "image_source": "none"
+      "image_path": "/cat-thumbs/artificial-christmas-trees.webp",
+      "image_source": "inherited",
+      "image_donor": "artificial-christmas-trees"
     },
     "artificial-christmas-trees": {
       "handle": "artificial-christmas-trees",
@@ -44725,8 +44750,9 @@
         "baby-stroller",
         "metal-table-leg"
       ],
-      "image_path": null,
-      "image_source": "none"
+      "image_path": "/cat-thumbs/baby-stroller.webp",
+      "image_source": "inherited",
+      "image_donor": "baby-stroller"
     },
     "baby-stroller": {
       "handle": "baby-stroller",

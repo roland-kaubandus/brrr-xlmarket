@@ -161,6 +161,36 @@ function buildTree(doc) {
 
   for (const l1 of doc.l1) walk(l1, 1, null)
 
+  // Post-pass: inherit images from descendants (deep BFS) for parents that
+  // ended up without their own image. Rationale: an L2 without a photo but
+  // whose L3 children are all illustrated should borrow the first child's
+  // image — same holds for L3 borrowing from L4, etc. Prevents the "some
+  // tiles missing" look on category subcategory carousels.
+  function firstDescendantImage(node) {
+    const queue = [...(node.child_handles || [])]
+    while (queue.length > 0) {
+      const childHandle = queue.shift()
+      const child = nodes[childHandle]
+      if (!child) continue
+      if (child.image_path) {
+        return { image_path: child.image_path, donor: childHandle }
+      }
+      for (const grand of child.child_handles || []) queue.push(grand)
+    }
+    return null
+  }
+
+  for (const handle of order) {
+    const n = nodes[handle]
+    if (n.image_path) continue
+    const inherit = firstDescendantImage(n)
+    if (inherit) {
+      n.image_path = inherit.image_path
+      n.image_source = "inherited"
+      n.image_donor = inherit.donor
+    }
+  }
+
   return {
     generated_at: new Date().toISOString(),
     nodes,
@@ -175,16 +205,16 @@ function report(tree) {
   for (let lvl = 1; lvl <= maxLvl; lvl++) {
     const ns = nodes.filter((n) => n.level === lvl)
     if (ns.length === 0) continue
-    const bySrc = { direct: 0, alias: 0, fuzzy: 0, none: 0 }
-    for (const n of ns) bySrc[n.image_source]++
+    const bySrc = { direct: 0, alias: 0, fuzzy: 0, inherited: 0, none: 0 }
+    for (const n of ns) bySrc[n.image_source] = (bySrc[n.image_source] || 0) + 1
     const covered = ns.length - bySrc.none
     rows.push({ lvl, total: ns.length, covered, ...bySrc })
   }
   console.log("Image coverage per level:")
-  console.log("lvl | total | covered | direct | alias | fuzzy | none")
+  console.log("lvl | total | covered | direct | alias | fuzzy | inherited | none")
   for (const r of rows) {
     console.log(
-      `L${r.lvl}  | ${String(r.total).padEnd(5)} | ${String(r.covered).padEnd(7)} | ${String(r.direct).padEnd(6)} | ${String(r.alias).padEnd(5)} | ${String(r.fuzzy).padEnd(5)} | ${r.none}`
+      `L${r.lvl}  | ${String(r.total).padEnd(5)} | ${String(r.covered).padEnd(7)} | ${String(r.direct).padEnd(6)} | ${String(r.alias).padEnd(5)} | ${String(r.fuzzy).padEnd(5)} | ${String(r.inherited).padEnd(9)} | ${r.none}`
     )
   }
   const missing = nodes.filter((n) => n.image_source === "none").map((n) => n.handle)
