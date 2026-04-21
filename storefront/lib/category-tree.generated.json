@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-21T07:38:03.093Z",
+  "generated_at": "2026-04-21T07:59:04.821Z",
   "nodes": {
     "horeca-food-service": {
       "handle": "horeca-food-service",
@@ -5034,8 +5034,9 @@
         "solar-panel-extension-cable",
         "solar-panel-guard"
       ],
-      "image_path": "/cat-thumbs/solar-power-accessories.webp",
-      "image_source": "direct"
+      "image_path": "/cat-thumbs/solar-panel-mount-brackets.webp",
+      "image_source": "inherited",
+      "image_donor": "solar-panel-mount-brackets"
     },
     "solar-panel-mount-brackets": {
       "handle": "solar-panel-mount-brackets",
