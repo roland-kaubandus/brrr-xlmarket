@@ -25,7 +25,7 @@ const PG_CONFIG = {
 }
 
 const EXECUTE = process.argv.includes("--execute")
-const PORTABLE_RE = /\b(portable|foldable|flexible|trickle)\b/i
+const PORTABLE_RE = /\b(portable|foldable|flexible|trickle|kit|kits|bundle|system|systems|package)\b/i
 
 async function main() {
   console.log("=== reassign-solar-panel-kits ===")

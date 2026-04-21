@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-04-21T08:06:42.320Z",
-  "count": 61,
+  "generatedAt": "2026-04-21T08:30:26.357Z",
+  "count": 63,
   "redirects": {
     "appliances": "horeca-food-service",
     "auto-ja-garaaz": "automotive-workshop",
@@ -25,6 +25,7 @@
     "heating-venting-cooling": "hvac-climate-control",
     "holiday-decorations": "office-commercial-interiors",
     "home-decor": "office-commercial-interiors",
+    "home-wind-turbines": "wind-power",
     "hybrid-solar-inverter": "hybrid-inverters",
     "industrial-scientific": "hand-power-tools",
     "inverters": "inverters-and-controllers",
@@ -45,6 +46,7 @@
     "paint": "construction-building",
     "playground-sets": "fitness-sports-recreation",
     "plumbing": "plumbing-water-systems",
+    "powersports-batteries": "batteries",
     "rechargeable-battery-chargers": "battery-chargers",
     "renewable-energy": "renewable-energy-batteries",
     "safety-equipment": "safety-security-workwear",

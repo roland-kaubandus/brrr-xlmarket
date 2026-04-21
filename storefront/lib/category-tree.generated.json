@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-21T08:06:05.136Z",
+  "generated_at": "2026-04-21T08:29:51.513Z",
   "nodes": {
     "horeca-food-service": {
       "handle": "horeca-food-service",
@@ -5027,20 +5027,8 @@
       "name_et": "Wind Power",
       "level": 2,
       "parent_handle": "renewable-energy-batteries",
-      "child_handles": [
-        "home-wind-turbines"
-      ],
-      "image_path": "/cat-thumbs/wind-power.webp",
-      "image_source": "direct"
-    },
-    "home-wind-turbines": {
-      "handle": "home-wind-turbines",
-      "name_en": "Home Wind Turbines",
-      "name_et": "Home Wind Turbines",
-      "level": 3,
-      "parent_handle": "wind-power",
       "child_handles": [],
-      "image_path": "/cat-thumbs/home-wind-turbines.webp",
+      "image_path": "/cat-thumbs/wind-power.webp",
       "image_source": "direct"
     },
     "inverters-and-controllers": {
@@ -5121,20 +5109,8 @@
       "name_et": "Batteries",
       "level": 3,
       "parent_handle": "batteries-and-chargers",
-      "child_handles": [
-        "powersports-batteries"
-      ],
-      "image_path": "/cat-thumbs/batteries.webp",
-      "image_source": "direct"
-    },
-    "powersports-batteries": {
-      "handle": "powersports-batteries",
-      "name_en": "Powersports Batteries",
-      "name_et": "Powersports Batteries",
-      "level": 4,
-      "parent_handle": "batteries",
       "child_handles": [],
-      "image_path": "/cat-thumbs/powersports-batteries.webp",
+      "image_path": "/cat-thumbs/batteries.webp",
       "image_source": "direct"
     },
     "battery-chargers": {
@@ -5165,22 +5141,9 @@
       "name_et": "Voltage Converters",
       "level": 3,
       "parent_handle": "batteries-and-chargers",
-      "child_handles": [
-        "voltage-converter-transformer"
-      ],
-      "image_path": "/cat-thumbs/voltage-converter-transformer.webp",
-      "image_source": "inherited",
-      "image_donor": "voltage-converter-transformer"
-    },
-    "voltage-converter-transformer": {
-      "handle": "voltage-converter-transformer",
-      "name_en": "Voltage Converter Transformer",
-      "name_et": "Voltage Converter Transformer",
-      "level": 4,
-      "parent_handle": "voltage-converters",
       "child_handles": [],
-      "image_path": "/cat-thumbs/voltage-converter-transformer.webp",
-      "image_source": "direct"
+      "image_path": null,
+      "image_source": "none"
     },
     "ev-charging": {
       "handle": "ev-charging",
@@ -45409,7 +45372,6 @@
     "solar-panel-guard",
     "solar-panel-kits",
     "wind-power",
-    "home-wind-turbines",
     "inverters-and-controllers",
     "grid-tie-inverters",
     "off-grid-solar-inverters",
@@ -45417,11 +45379,9 @@
     "charge-controllers",
     "batteries-and-chargers",
     "batteries",
-    "powersports-batteries",
     "battery-chargers",
     "starting-and-energy-storage-battery-charger",
     "voltage-converters",
-    "voltage-converter-transformer",
     "ev-charging",
     "ev-charging-station",
     "ev-charger-extension-cable",

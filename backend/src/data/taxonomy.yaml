@@ -1475,10 +1475,7 @@ l1:
       - slug: wind-power
         name_en: Wind Power
         product_count: 12
-        subs:
-          - slug: home-wind-turbines
-            name_en: Home Wind Turbines
-            product_count: 11
+        subs: []
       - slug: inverters-and-controllers
         name_en: Inverters & Controllers
         product_count: 16
@@ -1502,10 +1499,7 @@ l1:
           - slug: batteries
             name_en: Batteries
             product_count: 6
-            subs:
-              - slug: powersports-batteries
-                name_en: Powersports Batteries
-                product_count: 2
+            subs: []
           - slug: battery-chargers
             name_en: Battery Chargers
             product_count: 7
@@ -1516,10 +1510,7 @@ l1:
           - slug: voltage-converters
             name_en: Voltage Converters
             product_count: 1
-            subs:
-              - slug: voltage-converter-transformer
-                name_en: Voltage Converter Transformer
-                product_count: 1
+            subs: []
           - slug: ev-charging
             name_en: EV Charging
             product_count: 18
