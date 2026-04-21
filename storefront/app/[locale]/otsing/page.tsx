@@ -7,6 +7,7 @@ import VevorPagination from "@/components/search/VevorPagination"
 import SortSelect from "@/components/search/SortSelect"
 import { categoryPath } from "@/lib/i18n"
 import { buildQuickFilters } from "@/lib/quick-filters"
+import { buildFilterGroups } from "@/lib/filter-groups"
 
 export const revalidate = 3600 // cache search results 1 min
 
@@ -89,7 +90,13 @@ export default async function SearchPage({ searchParams, params }: Props) {
     searchFilters.push(`(${catFilters.join(" OR ")})`)
   }
   if (currentQuickFilter) {
-    searchFilters.push(`filter_tokens = "${currentQuickFilter.replace(/"/g, '\\"')}"`)
+    // Multi-select: `filters=voltage_v:220V,amperage_a:100-200A` produces
+    // an AND of each token — (filter_tokens = "A") AND (filter_tokens = "B")
+    // so a product must carry all selected tokens.
+    const activeTokens = currentQuickFilter.split(",").map(s => s.trim()).filter(Boolean)
+    for (const token of activeTokens) {
+      searchFilters.push(`filter_tokens = "${token.replace(/"/g, '\\"')}"`)
+    }
   }
 
   // Fetch ONLY facets + totalHits (no products — client fetches those via /api/products)
@@ -104,6 +111,22 @@ export default async function SearchPage({ searchParams, params }: Props) {
     totalHits = meiliResult.totalHits || meiliResult.estimatedTotalHits || 0
     categoryFacets = meiliResult.facetDistribution?.categories || {}
     quickFilterFacets = meiliResult.facetDistribution?.filter_tokens || {}
+
+    // Disjunctive facet pattern for adaptive filters — see comment in
+    // app/[locale]/kategooriad/[handle]/page.tsx.
+    if (currentQuickFilter) {
+      const filtersWithoutTokens = searchFilters.filter(
+        (f) => !f.startsWith("filter_tokens ")
+      )
+      const disjRes = await searchProducts({
+        q: query,
+        limit: 0,
+        offset: 0,
+        filter: filtersWithoutTokens.length > 0 ? filtersWithoutTokens : undefined,
+        facets: ["filter_tokens"],
+      })
+      quickFilterFacets = disjRes.facetDistribution?.filter_tokens || quickFilterFacets
+    }
   } catch {
     // MeiliSearch failed — totals will be 0, client-side fetch may still work
   }
@@ -114,6 +137,7 @@ export default async function SearchPage({ searchParams, params }: Props) {
 
   const totalPages = Math.ceil(totalHits / ITEMS_PER_PAGE)
   const quickFilters = buildQuickFilters(quickFilterFacets, totalHits)
+  const filterGroups = buildFilterGroups(quickFilterFacets)
 
   function buildPageUrl(targetPage: number) {
     const p = new URLSearchParams()
@@ -169,6 +193,7 @@ export default async function SearchPage({ searchParams, params }: Props) {
                   currentInStock={inStock}
                   categoryFacets={categoryFacets}
                   quickFilters={quickFilters}
+                  filterGroups={filterGroups}
                   currentQuickFilter={currentQuickFilter}
                   locale={locale}
                 />

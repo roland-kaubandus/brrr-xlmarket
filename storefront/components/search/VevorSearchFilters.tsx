@@ -2,6 +2,8 @@
 import { useRouter } from "next/navigation"
 import { useState, useRef, useEffect, useCallback } from "react"
 import type { QuickFilter } from "@/lib/quick-filters"
+import type { FilterGroup } from "@/lib/filter-groups"
+import { parseActiveFilters, serializeActiveFilters } from "@/lib/filter-groups"
 
 type Props = {
   totalHits: number
@@ -15,6 +17,8 @@ type Props = {
   /** Optional handle → display label map. Falls back to handle when missing. */
   categoryLabels?: Record<string, string>
   quickFilters?: QuickFilter[]
+  /** Adaptive filter groups built from filter_tokens facets. See lib/filter-groups.ts. */
+  filterGroups?: FilterGroup[]
   currentQuickFilter?: string
   locale: string
   basePath?: string
@@ -31,7 +35,7 @@ const INITIAL_VISIBLE_CATS = 10
 export default function VevorSearchFilters({
   totalHits, query, currentSort, currentMin, currentMax,
   currentCategories = [], currentInStock, categoryFacets = {}, categoryLabels = {},
-  locale, quickFilters = [], currentQuickFilter = "",
+  locale, quickFilters = [], filterGroups = [], currentQuickFilter = "",
   basePath, suppressSubcategoryFacet = false,
 }: Props) {
   const router = useRouter()
@@ -102,9 +106,45 @@ export default function VevorSearchFilters({
   // --- Filter sections (shared between sidebar and sheet) ---
   function renderFilterSections() {
     const visibleCats = catsExpanded ? sortedCategories : sortedCategories.slice(0, INITIAL_VISIBLE_CATS)
+    const activeTokens = parseActiveFilters(currentQuickFilter)
+    const tokenLabelLookup = new Map<string, string>()
+    for (const g of filterGroups) {
+      for (const opt of g.options) {
+        tokenLabelLookup.set(opt.token, `${g.label}: ${opt.label}`)
+      }
+    }
 
     return (
       <div className="divide-y divide-[#E2E8F0]">
+        {/* Active filters summary */}
+        {activeTokens.size > 0 && (
+          <div className="py-4 first:pt-0">
+            <h3 className="text-xs uppercase tracking-wider text-[#64748B] font-bold mb-2">
+              Active filters
+            </h3>
+            <div className="flex flex-wrap gap-1.5">
+              {[...activeTokens].map((token) => {
+                const label = tokenLabelLookup.get(token) || token
+                return (
+                  <button
+                    key={token}
+                    type="button"
+                    onClick={() => {
+                      const next = new Set(activeTokens)
+                      next.delete(token)
+                      router.push(buildUrl({ filters: serializeActiveFilters(next) || undefined }))
+                    }}
+                    className="inline-flex items-center gap-1.5 px-2 py-1 rounded-md bg-[#FFF7ED] border border-[#FED7AA] text-xs font-medium text-[#9A3412] hover:bg-[#FFEDD5] transition-colors"
+                  >
+                    <span>{label}</span>
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><path d="M18 6 6 18M6 6l12 12" /></svg>
+                  </button>
+                )
+              })}
+            </div>
+          </div>
+        )}
+
         {/* Categories */}
         {sortedCategories.length > 0 && !suppressSubcategoryFacet && (
           <div className="py-4 first:pt-0">
@@ -214,8 +254,48 @@ export default function VevorSearchFilters({
           </label>
         </div>
 
-        {/* Quick Filters */}
-        {quickFilters.length > 0 && (
+        {/* Adaptive Filter Groups — per-category spec filters */}
+        {filterGroups.length > 0 ? (
+          filterGroups.map((group) => {
+            const activeTokens = parseActiveFilters(currentQuickFilter)
+            return (
+              <div key={group.key} className="py-4">
+                <h3 className="text-xs uppercase tracking-wider text-[#64748B] font-bold mb-3">
+                  {group.label}
+                </h3>
+                <div className="space-y-1">
+                  {group.options.map((opt) => {
+                    const active = activeTokens.has(opt.token)
+                    return (
+                      <label
+                        key={opt.token}
+                        className="flex items-center gap-2.5 py-1 px-1 rounded-md hover:bg-[#F8FAFC] cursor-pointer text-sm group transition-colors duration-150"
+                        onClick={() => {
+                          const next = new Set(activeTokens)
+                          if (active) next.delete(opt.token)
+                          else next.add(opt.token)
+                          router.push(buildUrl({ filters: serializeActiveFilters(next) || undefined }))
+                        }}
+                      >
+                        <span className={`w-4 h-4 rounded border flex-shrink-0 flex items-center justify-center transition-colors duration-150 ${
+                          active ? "bg-[#D97706] border-[#D97706]" : "border-[#CBD5E1] group-hover:border-[#D97706]"
+                        }`}>
+                          {active && (
+                            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
+                          )}
+                        </span>
+                        <span className={`truncate flex-1 transition-colors duration-150 ${active ? "text-[#D97706] font-medium" : "text-[#1E293B] group-hover:text-[#D97706]"}`}>
+                          {opt.label}
+                        </span>
+                        <span className="text-xs text-[#94A3B8] tabular-nums">({opt.count})</span>
+                      </label>
+                    )
+                  })}
+                </div>
+              </div>
+            )
+          })
+        ) : quickFilters.length > 0 ? (
           <div className="py-4">
             <h3 className="text-xs uppercase tracking-wider text-[#64748B] font-bold mb-3">
               Quick Filters
@@ -255,7 +335,7 @@ export default function VevorSearchFilters({
               </button>
             )}
           </div>
-        )}
+        ) : null}
 
         {/* Clear all */}
         {hasFilters && (

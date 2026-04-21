@@ -1,0 +1,204 @@
+# filter-profiles.yaml — per-category adaptive filter definitions.
+#
+# Profile keys MUST match actual taxonomy slugs (L1 or L2). Matching is
+# done most-specific-first in `filter-profiles.mjs`:
+#   L2 slug -> L1 slug -> `_fallback`
+#
+# Spec keys emitted by backend/src/filters/spec-extractor.mjs:
+#   voltage_v, amperage_a, pressure_bar, power_w, capacity_l,
+#   flow_lmin, rpm, btu, duty_cycle_pct, frequency_hz,
+#   weight_kg, length_cm, width_cm, height_cm,
+#   brand, fuel, material
+
+# Baseline filters applied to every category unless overridden
+_defaults:
+  filters:
+    - { key: brand, type: keyword, label: "Brand" }
+    - { key: price, type: price, label: "Price" }
+    - { key: in_stock, type: boolean, label: "In Stock" }
+
+# ══════════════════════════════════════════════════════════════════════
+# L2 SLUG PROFILES (most specific — match first)
+# ══════════════════════════════════════════════════════════════════════
+
+welding-and-soldering:
+  extends: _defaults
+  filters:
+    - { key: voltage_v, type: discrete, label: "Voltage", unit: V, buckets: [110, 220, 380] }
+    - { key: amperage_a, type: range, label: "Amperage", unit: A, buckets: [[0, 100], [100, 200], [200, 300], [300, null]] }
+    - { key: duty_cycle_pct, type: range, label: "Duty Cycle", unit: "%", buckets: [[0, 40], [40, 60], [60, 100]] }
+    - { key: weight_kg, type: range, label: "Weight", unit: kg, buckets: [[0, 10], [10, 25], [25, 50], [50, null]] }
+
+power-tools:
+  extends: _defaults
+  filters:
+    - { key: power_w, type: range, label: "Power", unit: W, buckets: [[0, 500], [500, 1000], [1000, 1500], [1500, null]] }
+    - { key: voltage_v, type: discrete, label: "Voltage", unit: V, buckets: [12, 18, 20, 36, 40] }
+    - { key: fuel, type: keyword, label: "Power Source" }
+    - { key: rpm, type: range, label: "RPM", unit: rpm, buckets: [[0, 3000], [3000, 10000], [10000, null]] }
+
+hand-tools:
+  extends: _defaults
+  filters:
+    - { key: weight_kg, type: range, label: "Weight", unit: kg, buckets: [[0, 1], [1, 2], [2, 5], [5, null]] }
+    - { key: material, type: keyword, label: "Material" }
+
+outdoor-power-equipment:
+  extends: _defaults
+  filters:
+    - { key: power_w, type: range, label: "Power", unit: W, buckets: [[0, 1500], [1500, 3000], [3000, 7000], [7000, null]] }
+    - { key: fuel, type: keyword, label: "Fuel" }
+    - { key: voltage_v, type: discrete, label: "Voltage", unit: V, buckets: [110, 220, 380] }
+
+small-kitchen-appliances:
+  extends: _defaults
+  filters:
+    - { key: power_w, type: range, label: "Power", unit: W, buckets: [[0, 800], [800, 1500], [1500, null]] }
+    - { key: capacity_l, type: range, label: "Capacity", unit: L, buckets: [[0, 1], [1, 5], [5, 20], [20, null]] }
+    - { key: pressure_bar, type: discrete, label: "Pressure", unit: bar, buckets: [9, 15, 19] }
+    - { key: material, type: keyword, label: "Material" }
+
+outdoor-cooking:
+  extends: _defaults
+  filters:
+    - { key: btu, type: range, label: "Heat Output", unit: BTU, buckets: [[0, 10000], [10000, 25000], [25000, 50000], [50000, null]] }
+    - { key: capacity_l, type: range, label: "Capacity", unit: L, buckets: [[0, 10], [10, 30], [30, null]] }
+    - { key: fuel, type: keyword, label: "Fuel" }
+    - { key: material, type: keyword, label: "Material" }
+
+kitchenware:
+  extends: _defaults
+  filters:
+    - { key: capacity_l, type: range, label: "Capacity", unit: L, buckets: [[0, 1], [1, 5], [5, 20], [20, null]] }
+    - { key: material, type: keyword, label: "Material" }
+
+shop-equipment:
+  extends: _defaults
+  filters:
+    - { key: power_w, type: range, label: "Power", unit: W, buckets: [[0, 1000], [1000, 2000], [2000, 4000], [4000, null]] }
+    - { key: capacity_l, type: range, label: "Capacity", unit: L, buckets: [[0, 10], [10, 50], [50, 200], [200, null]] }
+    - { key: voltage_v, type: discrete, label: "Voltage", unit: V, buckets: [220, 380] }
+    - { key: material, type: keyword, label: "Material" }
+
+garden-center:
+  extends: _defaults
+  filters:
+    - { key: power_w, type: range, label: "Power", unit: W, buckets: [[0, 500], [500, 1500], [1500, null]] }
+    - { key: capacity_l, type: range, label: "Capacity", unit: L, buckets: [[0, 10], [10, 50], [50, null]] }
+    - { key: fuel, type: keyword, label: "Power Source" }
+    - { key: material, type: keyword, label: "Material" }
+
+plumbing-tools:
+  extends: _defaults
+  filters:
+    - { key: pressure_bar, type: range, label: "Pressure", unit: bar, buckets: [[0, 50], [50, 100], [100, null]] }
+    - { key: flow_lmin, type: range, label: "Flow", unit: "L/min", buckets: [[0, 10], [10, 50], [50, null]] }
+    - { key: power_w, type: range, label: "Power", unit: W, buckets: [[0, 750], [750, 1500], [1500, null]] }
+    - { key: material, type: keyword, label: "Material" }
+
+pools:
+  extends: _defaults
+  filters:
+    - { key: capacity_l, type: range, label: "Water Volume", unit: L, buckets: [[0, 2000], [2000, 10000], [10000, null]] }
+    - { key: flow_lmin, type: range, label: "Flow", unit: "L/min", buckets: [[0, 50], [50, 150], [150, null]] }
+    - { key: material, type: keyword, label: "Material" }
+
+towing-equipment:
+  extends: _defaults
+  filters:
+    - { key: weight_kg, type: range, label: "Weight Capacity", unit: kg, buckets: [[0, 500], [500, 1500], [1500, 3000], [3000, null]] }
+    - { key: material, type: keyword, label: "Material" }
+
+material-handling-equipment:
+  extends: _defaults
+  filters:
+    - { key: weight_kg, type: range, label: "Load Capacity", unit: kg, buckets: [[0, 100], [100, 500], [500, 2000], [2000, null]] }
+    - { key: voltage_v, type: discrete, label: "Voltage", unit: V, buckets: [12, 24, 220, 380] }
+    - { key: material, type: keyword, label: "Material" }
+
+exercise-equipment:
+  extends: _defaults
+  filters:
+    - { key: weight_kg, type: range, label: "Weight", unit: kg, buckets: [[0, 10], [10, 30], [30, 60], [60, null]] }
+    - { key: power_w, type: range, label: "Power", unit: W, buckets: [[0, 500], [500, 1500], [1500, null]] }
+
+safety-and-security:
+  extends: _defaults
+  filters:
+    - { key: voltage_v, type: discrete, label: "Voltage", unit: V, buckets: [12, 24, 220] }
+    - { key: material, type: keyword, label: "Material" }
+
+# ══════════════════════════════════════════════════════════════════════
+# L1 SLUG PROFILES (fallback when L2 has no specific profile)
+# ══════════════════════════════════════════════════════════════════════
+
+hand-power-tools:
+  extends: _defaults
+  filters:
+    - { key: power_w, type: range, label: "Power", unit: W, buckets: [[0, 500], [500, 1000], [1000, 1500], [1500, null]] }
+    - { key: voltage_v, type: discrete, label: "Voltage", unit: V, buckets: [12, 18, 20, 36, 220] }
+    - { key: fuel, type: keyword, label: "Power Source" }
+    - { key: material, type: keyword, label: "Material" }
+
+horeca-food-service:
+  extends: _defaults
+  filters:
+    - { key: power_w, type: range, label: "Power", unit: W, buckets: [[0, 1000], [1000, 2000], [2000, 4000], [4000, null]] }
+    - { key: capacity_l, type: range, label: "Capacity", unit: L, buckets: [[0, 10], [10, 50], [50, 200], [200, null]] }
+    - { key: voltage_v, type: discrete, label: "Voltage", unit: V, buckets: [220, 380] }
+    - { key: material, type: keyword, label: "Material" }
+
+automotive-workshop:
+  extends: _defaults
+  filters:
+    - { key: weight_kg, type: range, label: "Weight", unit: kg, buckets: [[0, 5], [5, 20], [20, 50], [50, null]] }
+    - { key: voltage_v, type: discrete, label: "Voltage", unit: V, buckets: [12, 24, 220] }
+    - { key: pressure_bar, type: range, label: "Pressure", unit: bar, buckets: [[0, 10], [10, 100], [100, null]] }
+    - { key: material, type: keyword, label: "Material" }
+
+renewable-energy-batteries:
+  extends: _defaults
+  filters:
+    - { key: power_w, type: range, label: "Power", unit: W, buckets: [[0, 500], [500, 1000], [1000, 3000], [3000, null]] }
+    - { key: voltage_v, type: discrete, label: "Voltage", unit: V, buckets: [12, 24, 48, 220] }
+    - { key: capacity_l, type: range, label: "Capacity", unit: L, buckets: [[0, 50], [50, 100], [100, null]] }
+
+construction-building:
+  extends: _defaults
+  filters:
+    - { key: power_w, type: range, label: "Power", unit: W, buckets: [[0, 1000], [1000, 2200], [2200, null]] }
+    - { key: weight_kg, type: range, label: "Weight", unit: kg, buckets: [[0, 20], [20, 100], [100, null]] }
+    - { key: material, type: keyword, label: "Material" }
+
+backyard-landscaping-farm:
+  extends: _defaults
+  filters:
+    - { key: power_w, type: range, label: "Power", unit: W, buckets: [[0, 1000], [1000, 3000], [3000, null]] }
+    - { key: fuel, type: keyword, label: "Fuel" }
+    - { key: material, type: keyword, label: "Material" }
+
+cleaning-janitorial:
+  extends: _defaults
+  filters:
+    - { key: power_w, type: range, label: "Power", unit: W, buckets: [[0, 1000], [1000, 2000], [2000, null]] }
+    - { key: pressure_bar, type: range, label: "Pressure", unit: bar, buckets: [[0, 100], [100, 150], [150, null]] }
+    - { key: flow_lmin, type: range, label: "Flow", unit: "L/min", buckets: [[0, 6], [6, 9], [9, null]] }
+    - { key: capacity_l, type: range, label: "Tank", unit: L, buckets: [[0, 10], [10, 50], [50, null]] }
+
+warehousing-material-handling:
+  extends: _defaults
+  filters:
+    - { key: weight_kg, type: range, label: "Load Capacity", unit: kg, buckets: [[0, 100], [100, 500], [500, 2000], [2000, null]] }
+    - { key: voltage_v, type: discrete, label: "Voltage", unit: V, buckets: [12, 24, 48, 220] }
+    - { key: material, type: keyword, label: "Material" }
+
+# ══════════════════════════════════════════════════════════════════════
+# GENERIC FALLBACK
+# ══════════════════════════════════════════════════════════════════════
+
+_fallback:
+  extends: _defaults
+  filters:
+    - { key: weight_kg, type: range, label: "Weight", unit: kg, buckets: [[0, 2], [2, 10], [10, 25], [25, null]] }
+    - { key: power_w, type: range, label: "Power", unit: W, buckets: [[0, 500], [500, 1500], [1500, null]] }
+    - { key: material, type: keyword, label: "Material" }

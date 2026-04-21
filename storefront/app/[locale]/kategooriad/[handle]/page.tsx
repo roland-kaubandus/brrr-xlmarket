@@ -13,6 +13,7 @@ import SubcategoryCarousel from "@/components/category/SubcategoryCarousel"
 import CategoryBottomRibbons from "@/components/category/CategoryBottomRibbons"
 import { categoryPath } from "@/lib/i18n"
 import { buildQuickFilters } from "@/lib/quick-filters"
+import { buildFilterGroups } from "@/lib/filter-groups"
 import {
   getNode,
   getChildren,
@@ -129,7 +130,11 @@ export default async function CategoryPage({ params, searchParams }: Props) {
     searchFilters.push(`(${catFilters.join(" OR ")})`)
   }
   if (currentQuickFilter) {
-    searchFilters.push(`filter_tokens = "${currentQuickFilter.replace(/"/g, '\\"')}"`)
+    // Multi-select: comma-separated tokens become AND conditions.
+    const activeTokens = currentQuickFilter.split(",").map(s => s.trim()).filter(Boolean)
+    for (const token of activeTokens) {
+      searchFilters.push(`filter_tokens = "${token.replace(/"/g, '\\"')}"`)
+    }
   }
   const searchFilterStr = searchFilters.join(";")
   const sortStr = (SORT_MAP[currentSort] || [])[0] || ""
@@ -162,6 +167,24 @@ export default async function CategoryPage({ params, searchParams }: Props) {
     rawL2Facets = fd["taxonomy.l2_slug"] || {}
     rawL3Facets = fd["taxonomy.l3_slug"] || {}
     quickFilterFacets = fd["filter_tokens"] || {}
+
+    // Adaptive filters: disjunctive facet pattern. When the user selects
+    // tokens (AND across groups), we still want to show *alternative*
+    // options within each group. Re-query facets without the filter_tokens
+    // clauses so non-active options don't disappear.
+    if (currentQuickFilter) {
+      const filtersWithoutTokens = searchFilters.filter(
+        (f) => !f.startsWith("filter_tokens ")
+      )
+      const disjRes = await searchProducts({
+        q: q || "",
+        limit: 0,
+        offset: 0,
+        filter: filtersWithoutTokens,
+        facets: ["filter_tokens"],
+      })
+      quickFilterFacets = disjRes.facetDistribution?.["filter_tokens"] || quickFilterFacets
+    }
   } catch {
     // MeiliSearch unavailable — leave counts empty; page still renders.
   }
@@ -211,6 +234,7 @@ export default async function CategoryPage({ params, searchParams }: Props) {
   const totalPages = Math.ceil(totalCount / ITEMS_PER_PAGE)
   const categoryBasePath = categoryPath(locale as "et" | "en", handle)
   const quickFilters = buildQuickFilters(quickFilterFacets, totalCount)
+  const filterGroups = buildFilterGroups(quickFilterFacets)
 
   // Breadcrumb trail from SSoT — root → node inclusive. INV-24, INV-27.
   const trail = node
@@ -316,6 +340,7 @@ export default async function CategoryPage({ params, searchParams }: Props) {
                 categoryFacets={categoryFacets}
                 categoryLabels={categoryLabels}
                 quickFilters={quickFilters}
+                filterGroups={filterGroups}
                 currentQuickFilter={currentQuickFilter}
                 locale={locale}
                 basePath={categoryBasePath}
@@ -353,6 +378,7 @@ export default async function CategoryPage({ params, searchParams }: Props) {
                     categoryFacets={categoryFacets}
                     categoryLabels={categoryLabels}
                     quickFilters={quickFilters}
+                    filterGroups={filterGroups}
                     currentQuickFilter={currentQuickFilter}
                     locale={locale}
                     basePath={categoryBasePath}
