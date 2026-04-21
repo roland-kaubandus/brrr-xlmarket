@@ -14,14 +14,30 @@ interface NavLink {
   matchPrefix: string
 }
 
+// Pathname prefixes owned by other "primary" nav surfaces that steal the
+// accent color from fallback-highlighted links. Keep this in sync with
+// MegaMenu's isCategoriesActive check.
+const FOREIGN_ACTIVE_PREFIXES = [/^\/(?:et|en)\/kategooriad(?:\/|$)/]
+
 export default function HeaderNavLinks({ links }: { links: NavLink[] }) {
   const pathname = usePathname() ?? ""
 
+  const matchedIdx = links.findIndex(
+    (l) => l.matchPrefix !== "" && pathname.startsWith(l.matchPrefix),
+  )
+  const inForeignActive = FOREIGN_ACTIVE_PREFIXES.some((re) => re.test(pathname))
+
+  // Fallback highlight applies only when nothing else in the primary nav
+  // (this list + MegaMenu) claims the active slot. This keeps a single
+  // accent color on screen at a time.
+  const fallbackHighlightIdx = matchedIdx === -1 && !inForeignActive
+    ? links.findIndex((l) => l.highlight)
+    : -1
+
   return (
     <nav className="flex items-center gap-0.5">
-      {links.map((link) => {
-        const isActive = link.matchPrefix !== "" && pathname.startsWith(link.matchPrefix)
-        const active = isActive || link.highlight
+      {links.map((link, idx) => {
+        const active = idx === matchedIdx || idx === fallbackHighlightIdx
         return (
           <Link
             key={link.label}
