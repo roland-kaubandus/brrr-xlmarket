@@ -1472,10 +1472,6 @@ l1:
           - slug: solar-panel-kits
             name_en: Solar Panel Kits
             product_count: 7
-            subs:
-              - slug: off-grid-solar-systems
-                name_en: Off Grid Solar Systems
-                product_count: 3
       - slug: wind-power
         name_en: Wind Power
         product_count: 12

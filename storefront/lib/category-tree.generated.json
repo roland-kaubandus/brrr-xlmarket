@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-21T08:01:28.273Z",
+  "generated_at": "2026-04-21T08:06:05.136Z",
   "nodes": {
     "horeca-food-service": {
       "handle": "horeca-food-service",
@@ -5017,18 +5017,6 @@
       "name_et": "Solar Panel Kits",
       "level": 3,
       "parent_handle": "solar-power",
-      "child_handles": [
-        "off-grid-solar-systems"
-      ],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "off-grid-solar-systems": {
-      "handle": "off-grid-solar-systems",
-      "name_en": "Off Grid Solar Systems",
-      "name_et": "Off Grid Solar Systems",
-      "level": 4,
-      "parent_handle": "solar-panel-kits",
       "child_handles": [],
       "image_path": null,
       "image_source": "none"
@@ -45420,7 +45408,6 @@
     "solar-panel-extension-cable",
     "solar-panel-guard",
     "solar-panel-kits",
-    "off-grid-solar-systems",
     "wind-power",
     "home-wind-turbines",
     "inverters-and-controllers",

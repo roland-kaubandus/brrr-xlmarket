@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-04-21T08:02:22.817Z",
-  "count": 60,
+  "generatedAt": "2026-04-21T08:06:42.320Z",
+  "count": 61,
   "redirects": {
     "appliances": "horeca-food-service",
     "auto-ja-garaaz": "automotive-workshop",
@@ -39,6 +39,7 @@
     "mppt-solar-charge-controller": "charge-controllers",
     "musical-instruments": "music-entertainment",
     "off-grid-solar-inverter": "off-grid-solar-inverters",
+    "off-grid-solar-systems": "solar-panel-kits",
     "other": "hand-power-tools",
     "outdoors": "outdoor-power-landscaping",
     "paint": "construction-building",
