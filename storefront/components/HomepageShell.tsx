@@ -1170,7 +1170,7 @@ const homepageStyles = `
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 2%;
+  padding: 7%;
   background: transparent;
   position: relative;
   overflow: hidden;
@@ -1298,7 +1298,7 @@ const homepageStyles = `
   .hp-cat-sublist-item { padding: 4px 0; }
   .hp-cat-sublist-name { font-size: 15px; }
   .hp-cat-cards { grid-template-columns: repeat(3, 1fr); }
-  .hp-cat-card-image { padding: 2%; }
+  .hp-cat-card-image { padding: 7%; }
   .hp-cat-card-name { padding: 10px 6px 14px; font-size: 14px; }
 }
 
