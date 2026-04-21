@@ -4,13 +4,13 @@
  */
 import { defineRouteConfig } from "@medusajs/admin-sdk"
 import { Container, Heading, Text, Table, StatusBadge } from "@medusajs/ui"
-import { FileText } from "@medusajs/icons"
+import { DocumentText } from "@medusajs/icons"
 import { useEffect, useState } from "react"
 import { listPages, type PageMeta } from "../../lib/cms-api"
 
 export const config = defineRouteConfig({
   label: "Content (CMS)",
-  icon: FileText,
+  icon: DocumentText,
 })
 
 function editorRouteFor(key: string): string {
