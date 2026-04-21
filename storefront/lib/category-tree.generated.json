@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-21T08:53:33.795Z",
+  "generated_at": "2026-04-21T10:52:03.390Z",
   "nodes": {
     "horeca-food-service": {
       "handle": "horeca-food-service",
@@ -42,8 +42,8 @@
         "food-display-and-merchandising-equipment",
         "venue-decoration"
       ],
-      "image_path": "/cat-thumbs/horeca-food-service.webp",
-      "image_source": "direct"
+      "image_path": "/cat-thumbs/commercial-ovens.webp",
+      "image_source": "alias"
     },
     "small-kitchen-appliances": {
       "handle": "small-kitchen-appliances",
@@ -171,8 +171,9 @@
         "commercial-ice-cream-machine",
         "household-freezing-ice-cream-maker"
       ],
-      "image_path": "/cat-thumbs/ice-cream-machine.webp",
-      "image_source": "direct"
+      "image_path": "/cat-thumbs/commercial-soft-ice-cream-machine.webp",
+      "image_source": "inherited",
+      "image_donor": "commercial-ice-cream-machine"
     },
     "household-compressor-ice-cream-maker": {
       "handle": "household-compressor-ice-cream-maker",
@@ -181,8 +182,8 @@
       "level": 6,
       "parent_handle": "ice-cream-machine",
       "child_handles": [],
-      "image_path": "/cat-thumbs/household-compressor-ice-cream-maker.webp",
-      "image_source": "direct"
+      "image_path": null,
+      "image_source": "none"
     },
     "commercial-ice-cream-machine": {
       "handle": "commercial-ice-cream-machine",
@@ -193,8 +194,8 @@
       "child_handles": [
         "commercial-hard-ice-cream-machine"
       ],
-      "image_path": "/cat-thumbs/commercial-ice-cream-machine.webp",
-      "image_source": "direct"
+      "image_path": "/cat-thumbs/commercial-soft-ice-cream-machine.webp",
+      "image_source": "fuzzy"
     },
     "commercial-hard-ice-cream-machine": {
       "handle": "commercial-hard-ice-cream-machine",
@@ -203,8 +204,8 @@
       "level": 7,
       "parent_handle": "commercial-ice-cream-machine",
       "child_handles": [],
-      "image_path": "/cat-thumbs/commercial-hard-ice-cream-machine.webp",
-      "image_source": "direct"
+      "image_path": null,
+      "image_source": "none"
     },
     "household-freezing-ice-cream-maker": {
       "handle": "household-freezing-ice-cream-maker",
@@ -213,8 +214,8 @@
       "level": 6,
       "parent_handle": "ice-cream-machine",
       "child_handles": [],
-      "image_path": "/cat-thumbs/household-freezing-ice-cream-maker.webp",
-      "image_source": "direct"
+      "image_path": null,
+      "image_source": "none"
     },
     "specialty-dessert-makers": {
       "handle": "specialty-dessert-makers",
@@ -358,8 +359,8 @@
         "meat-tenderizers",
         "electric-pulse-meat-grinder"
       ],
-      "image_path": "/cat-thumbs/meat-poultry-tools.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/meat-and-poultry-tools.webp",
+      "image_source": "direct"
     },
     "meat-slicers": {
       "handle": "meat-slicers",
@@ -645,8 +646,8 @@
       "level": 6,
       "parent_handle": "food-vacuum-sealers",
       "child_handles": [],
-      "image_path": "/cat-thumbs/vacuum-sealers.webp",
-      "image_source": "direct"
+      "image_path": null,
+      "image_source": "none"
     },
     "cup-sealing-machine": {
       "handle": "cup-sealing-machine",
@@ -722,8 +723,8 @@
         "electric-griddles",
         "panini-presses"
       ],
-      "image_path": "/cat-thumbs/electric-skillets-indoor-grills.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/electric-skillets-and-indoor-grills.webp",
+      "image_source": "direct"
     },
     "waffle-makers": {
       "handle": "waffle-makers",
@@ -765,8 +766,8 @@
       "level": 5,
       "parent_handle": "electric-griddles",
       "child_handles": [],
-      "image_path": "/cat-thumbs/salamander-broilers-cheese-melters.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/salamander-broilers-and-cheese-melters.webp",
+      "image_source": "direct"
     },
     "panini-presses": {
       "handle": "panini-presses",
@@ -822,8 +823,8 @@
       "level": 4,
       "parent_handle": "mixers",
       "child_handles": [],
-      "image_path": "/cat-thumbs/stand-mixer.webp",
-      "image_source": "direct"
+      "image_path": "/cat-thumbs/meat-stand-mixer.webp",
+      "image_source": "fuzzy"
     },
     "milkshake-maker": {
       "handle": "milkshake-maker",
@@ -1261,8 +1262,8 @@
         "milk-pasteurizer",
         "salad-spinners"
       ],
-      "image_path": "/cat-thumbs/kitchen-gadgets-tools.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/kitchen-gadgets-and-tools.webp",
+      "image_source": "direct"
     },
     "commercial-vegetable-fruit-chopper": {
       "handle": "commercial-vegetable-fruit-chopper",
@@ -1796,8 +1797,8 @@
       "level": 4,
       "parent_handle": "restaurant-signs",
       "child_handles": [],
-      "image_path": "/cat-thumbs/electronic-signs.webp",
-      "image_source": "direct"
+      "image_path": "/cat-thumbs/non-electronic-signs.webp",
+      "image_source": "fuzzy"
     },
     "led-poster-frame": {
       "handle": "led-poster-frame",
@@ -2035,8 +2036,8 @@
         "pvc-table-protector",
         "polyester-fabric-tablecloths"
       ],
-      "image_path": "/cat-thumbs/table-linens-kitchen-linens.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/table-linens-and-kitchen-linens.webp",
+      "image_source": "direct"
     },
     "pvc-table-protector": {
       "handle": "pvc-table-protector",
@@ -2337,8 +2338,8 @@
       "level": 3,
       "parent_handle": "kitchen-and-dining-room-furniture",
       "child_handles": [],
-      "image_path": "/cat-thumbs/kitchen-dining-tables.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/kitchen-and-dining-tables.webp",
+      "image_source": "direct"
     },
     "dining-benches": {
       "handle": "dining-benches",
@@ -3358,8 +3359,8 @@
       "level": 3,
       "parent_handle": "food-preparation-equipment",
       "child_handles": [],
-      "image_path": "/cat-thumbs/electric-quail-egg-peeler-machine.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/egg-peeler-machine.webp",
+      "image_source": "direct"
     },
     "pasta-maker": {
       "handle": "pasta-maker",
@@ -3368,8 +3369,8 @@
       "level": 3,
       "parent_handle": "food-preparation-equipment",
       "child_handles": [],
-      "image_path": "/cat-thumbs/pasta-makers.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/pasta-maker.webp",
+      "image_source": "direct"
     },
     "refrigerators": {
       "handle": "refrigerators",
@@ -3496,8 +3497,8 @@
         "beverage-refrigerator",
         "ice-machines"
       ],
-      "image_path": "/cat-thumbs/refrigeration-and-ice-equipment-humidors.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/refrigeration-and-ice-equipment.webp",
+      "image_source": "direct"
     },
     "ice-cube-tray": {
       "handle": "ice-cube-tray",
@@ -3566,8 +3567,8 @@
       "level": 3,
       "parent_handle": "refrigeration-and-ice-equipment",
       "child_handles": [],
-      "image_path": "/cat-thumbs/commercial-ice-cream-freezer-display-case.webp",
-      "image_source": "alias"
+      "image_path": "/cat-thumbs/ice-machines.webp",
+      "image_source": "direct"
     },
     "beverage-equipment": {
       "handle": "beverage-equipment",
@@ -3747,8 +3748,8 @@
         "hanging-bar-glass-rack",
         "pull-out-trash-cans"
       ],
-      "image_path": "/cat-thumbs/storage-and-organization.webp",
-      "image_source": "direct"
+      "image_path": null,
+      "image_source": "none"
     },
     "drawers-and-cabinet-organizers-and-accessories": {
       "handle": "drawers-and-cabinet-organizers-and-accessories",
@@ -3929,8 +3930,8 @@
       "level": 3,
       "parent_handle": "cooktops",
       "child_handles": [],
-      "image_path": "/cat-thumbs/induction-cooktop.webp",
-      "image_source": "direct"
+      "image_path": "/cat-thumbs/countertop-induction-cooktop.webp",
+      "image_source": "fuzzy"
     },
     "cooking-equipment": {
       "handle": "cooking-equipment",
@@ -3985,8 +3986,8 @@
       "level": 3,
       "parent_handle": "cooking-equipment",
       "child_handles": [],
-      "image_path": "/cat-thumbs/commercial-steamers-pots.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/commercial-steamers.webp",
+      "image_source": "direct"
     },
     "electric-hot-pot-grill": {
       "handle": "electric-hot-pot-grill",
@@ -3995,8 +3996,8 @@
       "level": 3,
       "parent_handle": "cooking-equipment",
       "child_handles": [],
-      "image_path": "/cat-thumbs/electric-skillets-indoor-grills.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/electric-hot-pot-grill.webp",
+      "image_source": "direct"
     },
     "food-holding-and-warming-equipment": {
       "handle": "food-holding-and-warming-equipment",
@@ -4019,8 +4020,8 @@
       "level": 3,
       "parent_handle": "food-holding-and-warming-equipment",
       "child_handles": [],
-      "image_path": "/cat-thumbs/french-fries-warmer.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/french-fry-warmer.webp",
+      "image_source": "direct"
     },
     "chocolate-fountains": {
       "handle": "chocolate-fountains",
@@ -4160,8 +4161,8 @@
       "level": 3,
       "parent_handle": "smallwares",
       "child_handles": [],
-      "image_path": "/cat-thumbs/hoisting-hooks.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/mug-hooks.webp",
+      "image_source": "direct"
     },
     "baking-steel": {
       "handle": "baking-steel",
@@ -4277,8 +4278,8 @@
       "level": 3,
       "parent_handle": "food-display-and-merchandising-equipment",
       "child_handles": [],
-      "image_path": "/cat-thumbs/liquor-bottle-display-shelf.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/liquor-bottle-display.webp",
+      "image_source": "direct"
     },
     "venue-decoration": {
       "handle": "venue-decoration",
@@ -4349,8 +4350,8 @@
       "level": 4,
       "parent_handle": "solar-panels",
       "child_handles": [],
-      "image_path": "/cat-thumbs/solar-trickle-charger.webp",
-      "image_source": "direct"
+      "image_path": null,
+      "image_source": "none"
     },
     "solar-power-accessories": {
       "handle": "solar-power-accessories",
@@ -4363,9 +4364,8 @@
         "solar-panel-extension-cable",
         "solar-panel-guard"
       ],
-      "image_path": "/cat-thumbs/solar-panel-mount-brackets.webp",
-      "image_source": "inherited",
-      "image_donor": "solar-panel-mount-brackets"
+      "image_path": "/cat-thumbs/solar-power-accessories.webp",
+      "image_source": "direct"
     },
     "solar-panel-mount-brackets": {
       "handle": "solar-panel-mount-brackets",
@@ -4394,8 +4394,8 @@
       "level": 4,
       "parent_handle": "solar-power-accessories",
       "child_handles": [],
-      "image_path": "/cat-thumbs/solar-panel-bird-critter-guard-kit.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/solar-panel-guard.webp",
+      "image_source": "direct"
     },
     "solar-panel-kits": {
       "handle": "solar-panel-kits",
@@ -4429,9 +4429,8 @@
         "hybrid-inverters",
         "charge-controllers"
       ],
-      "image_path": "/cat-thumbs/grid-tie-inverters.webp",
-      "image_source": "inherited",
-      "image_donor": "grid-tie-inverters"
+      "image_path": "/cat-thumbs/inverters-and-controllers.webp",
+      "image_source": "direct"
     },
     "grid-tie-inverters": {
       "handle": "grid-tie-inverters",
@@ -4485,9 +4484,8 @@
         "voltage-converters",
         "ev-charging"
       ],
-      "image_path": "/cat-thumbs/batteries.webp",
-      "image_source": "inherited",
-      "image_donor": "batteries"
+      "image_path": "/cat-thumbs/batteries-and-chargers.webp",
+      "image_source": "direct"
     },
     "batteries": {
       "handle": "batteries",
@@ -4508,8 +4506,8 @@
       "child_handles": [
         "starting-and-energy-storage-battery-charger"
       ],
-      "image_path": "/cat-thumbs/car-battery-chargers.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/battery-chargers.webp",
+      "image_source": "direct"
     },
     "starting-and-energy-storage-battery-charger": {
       "handle": "starting-and-energy-storage-battery-charger",
@@ -4541,9 +4539,8 @@
         "ev-charging-station",
         "ev-charger-extension-cable"
       ],
-      "image_path": "/cat-thumbs/ev-charging-station.webp",
-      "image_source": "inherited",
-      "image_donor": "ev-charging-station"
+      "image_path": "/cat-thumbs/ev-charging.webp",
+      "image_source": "direct"
     },
     "ev-charging-station": {
       "handle": "ev-charging-station",
@@ -5566,8 +5563,8 @@
         "tow-chain",
         "bridle-chain"
       ],
-      "image_path": "/cat-thumbs/tow-ropes-cables-chains.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/tow-ropes-cables-and-chains.webp",
+      "image_source": "direct"
     },
     "ratchet-chain-binders": {
       "handle": "ratchet-chain-binders",
@@ -5620,8 +5617,8 @@
         "spare-tire-carriers",
         "trailer-gate-lift-assist"
       ],
-      "image_path": "/cat-thumbs/trailer-parts-accessories.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/trailer-parts-and-accessories.webp",
+      "image_source": "direct"
     },
     "trimmer-rack": {
       "handle": "trimmer-rack",
@@ -6625,8 +6622,8 @@
       "level": 4,
       "parent_handle": "cargo-boxes-and-bags",
       "child_handles": [],
-      "image_path": "/cat-thumbs/hitch-cargo-bag-expandable-nylon-cargo-carrier-cover.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/hitch-cargo-bag-and-expandable-nylon-cargo-carrier-cover.webp",
+      "image_source": "direct"
     },
     "roof-cargo-box": {
       "handle": "roof-cargo-box",
@@ -6843,8 +6840,8 @@
       "level": 3,
       "parent_handle": "mechanics-tools",
       "child_handles": [],
-      "image_path": "/cat-thumbs/steering-suspension-tools.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/steering-and-suspension-tools.webp",
+      "image_source": "direct"
     },
     "compression-test-kit": {
       "handle": "compression-test-kit",
@@ -7170,8 +7167,8 @@
       "level": 5,
       "parent_handle": "other-rv-accessories",
       "child_handles": [],
-      "image_path": "/cat-thumbs/steering-wheel-stand.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/steering-wheel.webp",
+      "image_source": "direct"
     },
     "rv-stabilizer-jacks": {
       "handle": "rv-stabilizer-jacks",
@@ -7510,8 +7507,8 @@
       "level": 3,
       "parent_handle": "tire-accessories",
       "child_handles": [],
-      "image_path": "/cat-thumbs/wheel-alignment-balancing-tools.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/wheel-alignment-and-balancing-tools.webp",
+      "image_source": "direct"
     },
     "wheel-lock-clamp": {
       "handle": "wheel-lock-clamp",
@@ -7567,8 +7564,8 @@
       "level": 3,
       "parent_handle": "recreational-vehicles",
       "child_handles": [],
-      "image_path": "/cat-thumbs/category-1-blades-scrapers.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/category-1-blades-and-scrapers.webp",
+      "image_source": "direct"
     },
     "atv-utv-storage-box": {
       "handle": "atv-utv-storage-box",
@@ -7763,8 +7760,8 @@
       "level": 3,
       "parent_handle": "tie-down-straps",
       "child_handles": [],
-      "image_path": "/cat-thumbs/tie-down-hardware-accessories.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/tie-down-hardware-and-accessories.webp",
+      "image_source": "direct"
     },
     "ladder-rack-ratchet-straps": {
       "handle": "ladder-rack-ratchet-straps",
@@ -7854,8 +7851,8 @@
       "level": 3,
       "parent_handle": "towing-system",
       "child_handles": [],
-      "image_path": "/cat-thumbs/trailer-hitch-receivers.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/hitch-receivers.webp",
+      "image_source": "direct"
     },
     "kinetic-recovery-rope": {
       "handle": "kinetic-recovery-rope",
@@ -7939,8 +7936,8 @@
       "level": 3,
       "parent_handle": "fuel-transfer-and-lubrication",
       "child_handles": [],
-      "image_path": "/cat-thumbs/utility-portable-fuel-tanks.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/portable-fuel-tank.webp",
+      "image_source": "direct"
     },
     "fuel-caddy": {
       "handle": "fuel-caddy",
@@ -8291,8 +8288,8 @@
       "level": 3,
       "parent_handle": "repair-tools",
       "child_handles": [],
-      "image_path": "/cat-thumbs/stud-welder-dent-repair-kit.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/dent-repair-kit.webp",
+      "image_source": "direct"
     },
     "electric-brake-bleeder": {
       "handle": "electric-brake-bleeder",
@@ -8311,8 +8308,8 @@
       "level": 3,
       "parent_handle": "repair-tools",
       "child_handles": [],
-      "image_path": "/cat-thumbs/magnetic-induction-heater-kit.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/magnetic-induction-heater.webp",
+      "image_source": "direct"
     },
     "tire-and-wheel-tools": {
       "handle": "tire-and-wheel-tools",
@@ -8910,8 +8907,8 @@
       "level": 3,
       "parent_handle": "floor-care",
       "child_handles": [],
-      "image_path": "/cat-thumbs/steam-mops-steam-cleaners.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/steam-mops-and-steam-cleaners.webp",
+      "image_source": "direct"
     },
     "carpet-cleaners": {
       "handle": "carpet-cleaners",
@@ -8963,8 +8960,8 @@
       "level": 3,
       "parent_handle": "washers-and-dryers",
       "child_handles": [],
-      "image_path": "/cat-thumbs/shoe-boot-dryers.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/shoe-and-boot-dryers.webp",
+      "image_source": "direct"
     },
     "electric-dryers": {
       "handle": "electric-dryers",
@@ -9031,9 +9028,8 @@
         "arts-and-crafts-supplies",
         "sewing-supplies"
       ],
-      "image_path": "/cat-thumbs/crafting-machines.webp",
-      "image_source": "inherited",
-      "image_donor": "crafting-machines"
+      "image_path": "/cat-thumbs/crafts-and-sewing.webp",
+      "image_source": "direct"
     },
     "crafting-machines": {
       "handle": "crafting-machines",
@@ -9307,8 +9303,8 @@
         "belt-pottery-wheel",
         "direct-drive-pottery-wheel"
       ],
-      "image_path": "/cat-thumbs/ceramic-pottery-supplies.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/ceramic-and-pottery-supplies.webp",
+      "image_source": "direct"
     },
     "belt-pottery-wheel": {
       "handle": "belt-pottery-wheel",
@@ -9342,8 +9338,8 @@
         "button-maker-accessories",
         "die-cutting-machine"
       ],
-      "image_path": "/cat-thumbs/scrapbooking-stamping.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/scrapbooking-and-stamping.webp",
+      "image_source": "direct"
     },
     "button-maker": {
       "handle": "button-maker",
@@ -9627,8 +9623,8 @@
         "laser-engraving-machine",
         "engraver-accessories"
       ],
-      "image_path": "/cat-thumbs/engraving-cutting.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/engraving-and-cutting.webp",
+      "image_source": "direct"
     },
     "laser-engraving-machine-accessories": {
       "handle": "laser-engraving-machine-accessories",
@@ -10003,8 +9999,8 @@
       "level": 3,
       "parent_handle": "engraving",
       "child_handles": [],
-      "image_path": "/cat-thumbs/laser-engraving-machine-power-supply.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/laser-power-supply.webp",
+      "image_source": "direct"
     },
     "engraving-laser-tube": {
       "handle": "engraving-laser-tube",
@@ -10079,8 +10075,9 @@
         "fastening-tools",
         "sewing-cloth-cutting-machine"
       ],
-      "image_path": "/cat-thumbs/sewing.webp",
-      "image_source": "direct"
+      "image_path": "/cat-thumbs/hand-tools-fastening-tools.webp",
+      "image_source": "inherited",
+      "image_donor": "fastening-tools"
     },
     "fastening-tools": {
       "handle": "fastening-tools",
@@ -10089,8 +10086,8 @@
       "level": 3,
       "parent_handle": "sewing",
       "child_handles": [],
-      "image_path": "/cat-thumbs/fastening-tools.webp",
-      "image_source": "direct"
+      "image_path": "/cat-thumbs/hand-tools-fastening-tools.webp",
+      "image_source": "fuzzy"
     },
     "sewing-cloth-cutting-machine": {
       "handle": "sewing-cloth-cutting-machine",
@@ -10274,8 +10271,8 @@
         "home-spas",
         "salon-and-spa-equipment"
       ],
-      "image_path": "/cat-thumbs/salon-spa-wellness.webp",
-      "image_source": "direct"
+      "image_path": "/cat-thumbs/barber-chairs.webp",
+      "image_source": "alias"
     },
     "pools": {
       "handle": "pools",
@@ -10929,8 +10926,8 @@
       "level": 3,
       "parent_handle": "salon-and-spa-equipment",
       "child_handles": [],
-      "image_path": "/cat-thumbs/medical-exam-table-paper.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/medical-exam-table.webp",
+      "image_source": "direct"
     },
     "salon-barber-chair": {
       "handle": "salon-barber-chair",
@@ -11708,8 +11705,8 @@
         "tattoo-light",
         "tattoo-stencil-machine"
       ],
-      "image_path": "/cat-thumbs/piercing-tattoo-supplies.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/piercing-and-tattoo-supplies.webp",
+      "image_source": "direct"
     },
     "tattoo-light": {
       "handle": "tattoo-light",
@@ -11751,9 +11748,8 @@
         "singing-bowls",
         "magnetic-field-therapy"
       ],
-      "image_path": "/cat-thumbs/singing-bowls.webp",
-      "image_source": "inherited",
-      "image_donor": "singing-bowls"
+      "image_path": "/cat-thumbs/wellness-and-relaxation-products.webp",
+      "image_source": "direct"
     },
     "singing-bowls": {
       "handle": "singing-bowls",
@@ -11881,8 +11877,8 @@
       "level": 3,
       "parent_handle": "medical-supplies",
       "child_handles": [],
-      "image_path": "/cat-thumbs/furniture-patient-transport.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/furniture-and-patient-transport.webp",
+      "image_source": "direct"
     },
     "health-medical-supply-wellness-and-relaxation-products": {
       "handle": "health-medical-supply-wellness-and-relaxation-products",
@@ -12138,8 +12134,8 @@
       "level": 3,
       "parent_handle": "glassware-and-labware",
       "child_handles": [],
-      "image_path": "/cat-thumbs/dewar-liquid-nitrogen-tank.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/liquid-nitrogen-tank.webp",
+      "image_source": "direct"
     },
     "labware": {
       "handle": "labware",
@@ -12150,8 +12146,8 @@
       "child_handles": [
         "dewar-liquid-nitrogen-tank"
       ],
-      "image_path": "/cat-thumbs/labware.webp",
-      "image_source": "direct"
+      "image_path": null,
+      "image_source": "none"
     },
     "dewar-liquid-nitrogen-tank": {
       "handle": "dewar-liquid-nitrogen-tank",
@@ -12160,8 +12156,8 @@
       "level": 3,
       "parent_handle": "labware",
       "child_handles": [],
-      "image_path": "/cat-thumbs/dewar-liquid-nitrogen-tank.webp",
-      "image_source": "direct"
+      "image_path": null,
+      "image_source": "none"
     },
     "health-medical-supply-skin-care": {
       "handle": "health-medical-supply-skin-care",
@@ -12688,8 +12684,8 @@
       "level": 4,
       "parent_handle": "baseball-equipment",
       "child_handles": [],
-      "image_path": "/cat-thumbs/baseball-softball-pitching-trainers.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/baseball-and-softball-pitching-trainers.webp",
+      "image_source": "direct"
     },
     "baseball-pitching-pocket": {
       "handle": "baseball-pitching-pocket",
@@ -12984,8 +12980,8 @@
       "level": 4,
       "parent_handle": "basketball-equipment",
       "child_handles": [],
-      "image_path": "/cat-thumbs/basketball-hoop-goal.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/basketball-hoop-and-goal.webp",
+      "image_source": "direct"
     },
     "basketball-rim": {
       "handle": "basketball-rim",
@@ -13345,8 +13341,8 @@
       "level": 4,
       "parent_handle": "game-room",
       "child_handles": [],
-      "image_path": "/cat-thumbs/darts-dart-boards.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/darts-and-dart-boards.webp",
+      "image_source": "direct"
     },
     "mahjong-equipment": {
       "handle": "mahjong-equipment",
@@ -13581,8 +13577,8 @@
       "level": 3,
       "parent_handle": "games",
       "child_handles": [],
-      "image_path": "/cat-thumbs/table-top-games.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/games-table-top-games.webp",
+      "image_source": "direct"
     },
     "yoga-equipment": {
       "handle": "yoga-equipment",
@@ -14178,8 +14174,9 @@
       "child_handles": [
         "electric-bicycle"
       ],
-      "image_path": "/cat-thumbs/sports.webp",
-      "image_source": "direct"
+      "image_path": "/cat-thumbs/folding-adult-electric-bicycles.webp",
+      "image_source": "inherited",
+      "image_donor": "electric-bicycle"
     },
     "electric-bicycle": {
       "handle": "electric-bicycle",
@@ -14222,8 +14219,8 @@
         "fishing-equipment",
         "leisure-sports"
       ],
-      "image_path": "/cat-thumbs/boating-camping-outdoor.webp",
-      "image_source": "direct"
+      "image_path": "/cat-thumbs/boat-hardware.webp",
+      "image_source": "alias"
     },
     "camping-gear": {
       "handle": "camping-gear",
@@ -14481,8 +14478,8 @@
       "level": 4,
       "parent_handle": "camping-gear-accessories",
       "child_handles": [],
-      "image_path": "/cat-thumbs/motorcycle-tail-bags-saddle-bags.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/motorcycle-tail-bags-and-saddle-bags.webp",
+      "image_source": "direct"
     },
     "picnic-backpacks": {
       "handle": "picnic-backpacks",
@@ -14578,9 +14575,8 @@
         "boat-trailer-steps",
         "kayak-stabilizer"
       ],
-      "image_path": "/cat-thumbs/hydraulic-steering.webp",
-      "image_source": "inherited",
-      "image_donor": "hydraulic-steering"
+      "image_path": "/cat-thumbs/boat-parts-and-accessories.webp",
+      "image_source": "direct"
     },
     "hydraulic-steering": {
       "handle": "hydraulic-steering",
@@ -15005,8 +15001,8 @@
       "level": 3,
       "parent_handle": "hunting-gear",
       "child_handles": [],
-      "image_path": "/cat-thumbs/targets-throwers.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/targets-and-throwers.webp",
+      "image_source": "direct"
     },
     "hunting-game-carts": {
       "handle": "hunting-game-carts",
@@ -15313,8 +15309,8 @@
       "level": 3,
       "parent_handle": "outdoor-recreation",
       "child_handles": [],
-      "image_path": "/cat-thumbs/backpacks-bags-accessories.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/backpacks-bags-and-accessories.webp",
+      "image_source": "direct"
     },
     "fishing-gear": {
       "handle": "fishing-gear",
@@ -15445,8 +15441,8 @@
         "drum-kit",
         "electric-drum-set"
       ],
-      "image_path": "/cat-thumbs/drum-sets-set-components.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/drum-sets-and-set-components.webp",
+      "image_source": "direct"
     },
     "drum-kit": {
       "handle": "drum-kit",
@@ -15584,8 +15580,8 @@
       "level": 3,
       "parent_handle": "musical-instrument-storage",
       "child_handles": [],
-      "image_path": "/cat-thumbs/violin-cello-case.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/violin-and-cello-case.webp",
+      "image_source": "direct"
     },
     "guitar-hard-case": {
       "handle": "guitar-hard-case",
@@ -15604,8 +15600,8 @@
       "level": 3,
       "parent_handle": "musical-instrument-storage",
       "child_handles": [],
-      "image_path": "/cat-thumbs/musical-instrument-bags-cases.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/musical-instrument-bags-and-cases.webp",
+      "image_source": "direct"
     },
     "musical-instrument-accessories": {
       "handle": "musical-instrument-accessories",
@@ -15863,8 +15859,8 @@
         "dog-crates-and-crate-pads",
         "pet-carrier-with-wheels"
       ],
-      "image_path": "/cat-thumbs/dog-carriers-houses-kennels.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/dog-carriers-houses-and-kennels.webp",
+      "image_source": "direct"
     },
     "dog-pens-and-gates": {
       "handle": "dog-pens-and-gates",
@@ -15876,8 +15872,8 @@
         "patio-exercise-pet-playpen",
         "portable-foldable-pet-playpen"
       ],
-      "image_path": "/cat-thumbs/dog-pens-gates.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/dog-pens-and-gates.webp",
+      "image_source": "direct"
     },
     "patio-exercise-pet-playpen": {
       "handle": "patio-exercise-pet-playpen",
@@ -15906,8 +15902,8 @@
       "level": 5,
       "parent_handle": "dog-carriers-houses-and-kennels",
       "child_handles": [],
-      "image_path": "/cat-thumbs/dog-crates-crate-pads.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/dog-crates-and-crate-pads.webp",
+      "image_source": "direct"
     },
     "pet-carrier-with-wheels": {
       "handle": "pet-carrier-with-wheels",
@@ -16177,8 +16173,8 @@
         "traditional-cat-litter-box",
         "plastic-cat-litter-box-enclosures"
       ],
-      "image_path": "/cat-thumbs/cat-litter-accessories.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/cat-litter-and-accessories.webp",
+      "image_source": "direct"
     },
     "wood-cat-litter-box-enclosures": {
       "handle": "wood-cat-litter-box-enclosures",
@@ -16270,8 +16266,8 @@
       "level": 5,
       "parent_handle": "cat-furniture",
       "child_handles": [],
-      "image_path": "/cat-thumbs/cat-trees-scratch-posts.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/cat-trees-and-scratch-posts.webp",
+      "image_source": "direct"
     },
     "cat-feeding-supplies": {
       "handle": "cat-feeding-supplies",
@@ -16294,8 +16290,8 @@
         "tortoise-house",
         "reptile-incubator"
       ],
-      "image_path": "/cat-thumbs/reptile-amphibian-supplies.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/reptile-and-amphibian-supplies.webp",
+      "image_source": "direct"
     },
     "habitats-and-decor": {
       "handle": "habitats-and-decor",
@@ -16307,8 +16303,8 @@
         "stainless-steel-dog-grooming-tub",
         "plastic-pet-bathtub"
       ],
-      "image_path": "/cat-thumbs/habitats-decor.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/habitats-and-decor.webp",
+      "image_source": "direct"
     },
     "stainless-steel-dog-grooming-tub": {
       "handle": "stainless-steel-dog-grooming-tub",
@@ -16491,8 +16487,8 @@
       "level": 4,
       "parent_handle": "small-animal-supplies",
       "child_handles": [],
-      "image_path": "/cat-thumbs/beds-cages.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/beds-and-cages.webp",
+      "image_source": "direct"
     },
     "pet-fencing-and-training": {
       "handle": "pet-fencing-and-training",
@@ -16501,8 +16497,8 @@
       "level": 3,
       "parent_handle": "pet-supplies-and-wildlife",
       "child_handles": [],
-      "image_path": "/cat-thumbs/pet-fencing-training.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/pet-fencing-and-training.webp",
+      "image_source": "direct"
     },
     "pet-grooming-supplies": {
       "handle": "pet-grooming-supplies",
@@ -16703,9 +16699,8 @@
         "playground-slides",
         "video-games"
       ],
-      "image_path": "/cat-thumbs/kids-toys.webp",
-      "image_source": "inherited",
-      "image_donor": "kids-toys"
+      "image_path": "/cat-thumbs/kids-playgrounds.webp",
+      "image_source": "direct"
     },
     "kids-toys": {
       "handle": "kids-toys",
@@ -17042,8 +17037,8 @@
       "level": 4,
       "parent_handle": "kids-handmade-toys",
       "child_handles": [],
-      "image_path": "/cat-thumbs/building-construction-toys.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/building-and-construction-toys.webp",
+      "image_source": "direct"
     },
     "ice-cream-cart-toy-playset": {
       "handle": "ice-cream-cart-toy-playset",
@@ -17445,8 +17440,8 @@
         "kids-play-table-and-chair",
         "weaning-table-and-chair-set"
       ],
-      "image_path": "/cat-thumbs/kids-tables-chairs.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/kids-tables-and-chairs.webp",
+      "image_source": "direct"
     },
     "kids-study-desks-and-chairs": {
       "handle": "kids-study-desks-and-chairs",
@@ -17531,8 +17526,8 @@
       "level": 4,
       "parent_handle": "baby-furniture",
       "child_handles": [],
-      "image_path": "/cat-thumbs/gliders-ottomans.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/gliders-and-ottomans.webp",
+      "image_source": "direct"
     },
     "crib-mattresses": {
       "handle": "crib-mattresses",
@@ -17640,8 +17635,8 @@
       "level": 3,
       "parent_handle": "trampolines",
       "child_handles": [],
-      "image_path": "/cat-thumbs/trampoline.webp",
-      "image_source": "direct"
+      "image_path": null,
+      "image_source": "none"
     },
     "toys-and-games": {
       "handle": "toys-and-games",
@@ -17850,8 +17845,8 @@
       "level": 3,
       "parent_handle": "swing-sets",
       "child_handles": [],
-      "image_path": "/cat-thumbs/triangle-ladder-rocker-set.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/triangle-ladder-and-rocker-set.webp",
+      "image_source": "direct"
     },
     "childrens-swing-slide-set": {
       "handle": "childrens-swing-slide-set",
@@ -19002,8 +18997,8 @@
         "rain-barrels",
         "lawn-sprinklers"
       ],
-      "image_path": "/cat-thumbs/watering-irrigation.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/watering-and-irrigation.webp",
+      "image_source": "direct"
     },
     "water-storage-bladder": {
       "handle": "water-storage-bladder",
@@ -19211,8 +19206,8 @@
         "above-ground-fish-pond",
         "water-garden-pumps"
       ],
-      "image_path": "/cat-thumbs/ponds-pond-accessories.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/ponds-and-pond-accessories.webp",
+      "image_source": "direct"
     },
     "pond-accessories": {
       "handle": "pond-accessories",
@@ -19378,8 +19373,8 @@
       "level": 5,
       "parent_handle": "tomato-cages",
       "child_handles": [],
-      "image_path": "/cat-thumbs/plant-cages-support.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/plant-cages-and-support.webp",
+      "image_source": "direct"
     },
     "plant-protection-cover": {
       "handle": "plant-protection-cover",
@@ -19882,8 +19877,8 @@
         "lawn-rollers",
         "lawn-mower-lifts"
       ],
-      "image_path": "/cat-thumbs/riding-mower-tractor-attachments.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/riding-mower-and-tractor-attachments.webp",
+      "image_source": "direct"
     },
     "lawn-aerators": {
       "handle": "lawn-aerators",
@@ -20187,8 +20182,8 @@
         "gas-powered-tillers",
         "electric-tillers"
       ],
-      "image_path": "/cat-thumbs/rototillers-cultivators.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/rototillers-and-cultivators.webp",
+      "image_source": "direct"
     },
     "gas-powered-tillers": {
       "handle": "gas-powered-tillers",
@@ -20599,9 +20594,8 @@
         "electric-grill",
         "smokers"
       ],
-      "image_path": "/cat-thumbs/charcoal-grills.webp",
-      "image_source": "inherited",
-      "image_donor": "charcoal-grills"
+      "image_path": "/cat-thumbs/grills.webp",
+      "image_source": "direct"
     },
     "charcoal-grills": {
       "handle": "charcoal-grills",
@@ -20620,8 +20614,8 @@
       "level": 4,
       "parent_handle": "grills",
       "child_handles": [],
-      "image_path": "/cat-thumbs/electric-skillets-indoor-grills.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/electric-grill.webp",
+      "image_source": "direct"
     },
     "smokers": {
       "handle": "smokers",
@@ -21013,8 +21007,8 @@
       "level": 4,
       "parent_handle": "fire-pits",
       "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
+      "image_path": "/cat-thumbs/gas-fire-pits.webp",
+      "image_source": "direct"
     },
     "outdoor-heating-accessories": {
       "handle": "outdoor-heating-accessories",
@@ -21313,8 +21307,8 @@
       "child_handles": [
         "chicken-coop-door-opener"
       ],
-      "image_path": "/cat-thumbs/backyard-landscaping-farm-pet-supplies-and-wildlife-small-animal.webp",
-      "image_source": "direct"
+      "image_path": null,
+      "image_source": "none"
     },
     "chicken-coop-door-opener": {
       "handle": "chicken-coop-door-opener",
@@ -21323,8 +21317,8 @@
       "level": 4,
       "parent_handle": "backyard-landscaping-farm-pet-supplies-and-wildlife-small-animal",
       "child_handles": [],
-      "image_path": "/cat-thumbs/chicken-coop-door-opener.webp",
-      "image_source": "direct"
+      "image_path": null,
+      "image_source": "none"
     },
     "patio-furniture-and-accessories": {
       "handle": "patio-furniture-and-accessories",
@@ -21471,8 +21465,8 @@
       "level": 3,
       "parent_handle": "patio-furniture-and-accessories",
       "child_handles": [],
-      "image_path": "/cat-thumbs/garden-arches.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/garden-arch.webp",
+      "image_source": "direct"
     },
     "garden-trailer": {
       "handle": "garden-trailer",
@@ -21481,8 +21475,8 @@
       "level": 3,
       "parent_handle": "patio-furniture-and-accessories",
       "child_handles": [],
-      "image_path": "/cat-thumbs/garden-trailers.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/garden-trailer.webp",
+      "image_source": "direct"
     },
     "patio-gazebo": {
       "handle": "patio-gazebo",
@@ -21942,9 +21936,8 @@
         "shopping-carts",
         "stair-climbing-chair"
       ],
-      "image_path": "/cat-thumbs/machinery-movers.webp",
-      "image_source": "inherited",
-      "image_donor": "machinery-movers"
+      "image_path": "/cat-thumbs/platform-trucks-and-dollies.webp",
+      "image_source": "direct"
     },
     "machinery-movers": {
       "handle": "machinery-movers",
@@ -22161,8 +22154,8 @@
       "level": 4,
       "parent_handle": "lifting-equipment",
       "child_handles": [],
-      "image_path": "/cat-thumbs/pallet-stackers-lifters.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/pallet-stackers-and-lifters.webp",
+      "image_source": "direct"
     },
     "forklifts-jib-cranes": {
       "handle": "forklifts-jib-cranes",
@@ -22200,8 +22193,8 @@
       "level": 4,
       "parent_handle": "package-handling",
       "child_handles": [],
-      "image_path": "/cat-thumbs/strapping-machine-strapping-strapping-cart.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/strapping-machine-and-strapping-and-strapping-cart.webp",
+      "image_source": "direct"
     },
     "manual-strapping-tools": {
       "handle": "manual-strapping-tools",
@@ -22286,8 +22279,8 @@
         "pallet-forks",
         "forklift-platforms"
       ],
-      "image_path": "/cat-thumbs/forklifts-attachments.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/forklifts-and-attachments.webp",
+      "image_source": "direct"
     },
     "pallet-fork-blade": {
       "handle": "pallet-fork-blade",
@@ -22379,8 +22372,8 @@
       "level": 3,
       "parent_handle": "material-handling-equipment",
       "child_handles": [],
-      "image_path": "/cat-thumbs/safety-traffic-control.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/safety-and-traffic-control.webp",
+      "image_source": "direct"
     },
     "shipping-container-wheels-package": {
       "handle": "shipping-container-wheels-package",
@@ -22399,8 +22392,8 @@
       "level": 3,
       "parent_handle": "material-handling-equipment",
       "child_handles": [],
-      "image_path": "/cat-thumbs/platform-trucks-dollies-accessories.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/platform-trucks-and-dollies-accessories.webp",
+      "image_source": "direct"
     },
     "decking": {
       "handle": "decking",
@@ -22496,8 +22489,8 @@
       "level": 4,
       "parent_handle": "deck-railings",
       "child_handles": [],
-      "image_path": "/cat-thumbs/balusters-spindles.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/balusters-and-spindles.webp",
+      "image_source": "direct"
     },
     "cable-railings": {
       "handle": "cable-railings",
@@ -22539,9 +22532,8 @@
         "deck-parts-and-accessories-log-tongs",
         "log-jack"
       ],
-      "image_path": "/cat-thumbs/deck-parts-and-accessories-log-tongs.webp",
-      "image_source": "inherited",
-      "image_donor": "deck-parts-and-accessories-log-tongs"
+      "image_path": "/cat-thumbs/deck-parts-and-accessories.webp",
+      "image_source": "direct"
     },
     "deck-parts-and-accessories-log-tongs": {
       "handle": "deck-parts-and-accessories-log-tongs",
@@ -22668,8 +22660,8 @@
       "level": 5,
       "parent_handle": "sewer-machines",
       "child_handles": [],
-      "image_path": "/cat-thumbs/drain-cleaner-machine.webp",
-      "image_source": "direct"
+      "image_path": null,
+      "image_source": "none"
     },
     "handheld-drain-cleaner-machine": {
       "handle": "handheld-drain-cleaner-machine",
@@ -22757,8 +22749,8 @@
         "copper-tube-bender",
         "electric-tube-bender"
       ],
-      "image_path": "/cat-thumbs/pipe-tube-benders.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/pipe-and-tube-benders.webp",
+      "image_source": "direct"
     },
     "manual-tube-bender": {
       "handle": "manual-tube-bender",
@@ -22777,8 +22769,8 @@
       "level": 4,
       "parent_handle": "pipe-and-tube-benders",
       "child_handles": [],
-      "image_path": "/cat-thumbs/tube-bender.webp",
-      "image_source": "direct"
+      "image_path": null,
+      "image_source": "none"
     },
     "copper-tube-bender": {
       "handle": "copper-tube-bender",
@@ -22887,8 +22879,8 @@
         "automatic-pipe-cutting-machine",
         "manual-pipe-cutting-machine"
       ],
-      "image_path": "/cat-thumbs/pipe-tube-cutters.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/pipe-and-tube-cutters.webp",
+      "image_source": "direct"
     },
     "automatic-pipe-cutting-machine": {
       "handle": "automatic-pipe-cutting-machine",
@@ -22999,8 +22991,8 @@
       "level": 3,
       "parent_handle": "fencing-and-gates",
       "child_handles": [],
-      "image_path": "/cat-thumbs/gates-gate-openers.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/gates-and-gate-openers.webp",
+      "image_source": "direct"
     },
     "chain-link-fencing": {
       "handle": "chain-link-fencing",
@@ -24603,8 +24595,8 @@
       "level": 4,
       "parent_handle": "electrical-testers",
       "child_handles": [],
-      "image_path": "/cat-thumbs/specialty-meters.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/specialty-meter.webp",
+      "image_source": "direct"
     },
     "wire-and-conduit-tools": {
       "handle": "wire-and-conduit-tools",
@@ -24616,8 +24608,8 @@
         "fish-tape-and-poles",
         "wire-management"
       ],
-      "image_path": "/cat-thumbs/wire-conduit-tools.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/wire-and-conduit-tools.webp",
+      "image_source": "direct"
     },
     "fish-tape-and-poles": {
       "handle": "fish-tape-and-poles",
@@ -24626,8 +24618,8 @@
       "level": 4,
       "parent_handle": "wire-and-conduit-tools",
       "child_handles": [],
-      "image_path": "/cat-thumbs/fish-tape-poles.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/fish-tape-and-poles.webp",
+      "image_source": "direct"
     },
     "wire-management": {
       "handle": "wire-management",
@@ -24736,8 +24728,8 @@
         "other-parts-and-accessories",
         "circuit-breaker-lockouts"
       ],
-      "image_path": "/cat-thumbs/electrical-panels-protective-devices.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/electrical-panels-and-protective-devices.webp",
+      "image_source": "direct"
     },
     "other-parts-and-accessories": {
       "handle": "other-parts-and-accessories",
@@ -24746,8 +24738,8 @@
       "level": 4,
       "parent_handle": "electrical-panels-and-protective-devices",
       "child_handles": [],
-      "image_path": "/cat-thumbs/other-parts-accessories.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/other-parts-and-accessories.webp",
+      "image_source": "direct"
     },
     "circuit-breaker-lockouts": {
       "handle": "circuit-breaker-lockouts",
@@ -24997,8 +24989,8 @@
       "level": 5,
       "parent_handle": "fireplace-tools",
       "child_handles": [],
-      "image_path": "/cat-thumbs/fireplace-tools.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/fireplace-tool-set.webp",
+      "image_source": "direct"
     },
     "chimney-caps": {
       "handle": "chimney-caps",
@@ -25230,8 +25222,8 @@
         "flexible-ductwork",
         "appliance-vents"
       ],
-      "image_path": "/cat-thumbs/ducting-venting.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/ducting-and-venting.webp",
+      "image_source": "direct"
     },
     "flexible-ductwork": {
       "handle": "flexible-ductwork",
@@ -25316,8 +25308,8 @@
       "level": 3,
       "parent_handle": "hvac-supplies",
       "child_handles": [],
-      "image_path": "/cat-thumbs/registers-grilles.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/registers-and-grilles.webp",
+      "image_source": "direct"
     },
     "hvac-tools": {
       "handle": "hvac-tools",
@@ -25951,8 +25943,8 @@
       "level": 3,
       "parent_handle": "concrete-cement-and-masonry",
       "child_handles": [],
-      "image_path": "/cat-thumbs/rebar-accessories.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/rebar-and-accessories.webp",
+      "image_source": "direct"
     },
     "concrete-forms": {
       "handle": "concrete-forms",
@@ -25971,8 +25963,8 @@
       "level": 3,
       "parent_handle": "concrete-cement-and-masonry",
       "child_handles": [],
-      "image_path": "/cat-thumbs/concrete-parts-accessories.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/concrete-parts-and-accessories.webp",
+      "image_source": "direct"
     },
     "bathroom-storage": {
       "handle": "bathroom-storage",
@@ -26051,8 +26043,8 @@
       "level": 4,
       "parent_handle": "medicine-cabinets",
       "child_handles": [],
-      "image_path": "/cat-thumbs/electric-medicine-cabinet.webp",
-      "image_source": "direct"
+      "image_path": "/cat-thumbs/non-electric-medicine-cabinet.webp",
+      "image_source": "fuzzy"
     },
     "bathroom-storage-over-the-toilet-storage": {
       "handle": "bathroom-storage-over-the-toilet-storage",
@@ -26377,8 +26369,8 @@
       "level": 3,
       "parent_handle": "building-supplies",
       "child_handles": [],
-      "image_path": "/cat-thumbs/insulated-foundation-flood-vent.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/foundation-flood-vent.webp",
+      "image_source": "direct"
     },
     "shower-panel": {
       "handle": "shower-panel",
@@ -26431,8 +26423,8 @@
       "level": 3,
       "parent_handle": "showers",
       "child_handles": [],
-      "image_path": "/cat-thumbs/shower-walls-surrounds.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/shower-walls-and-surrounds.webp",
+      "image_source": "direct"
     },
     "shower-doors": {
       "handle": "shower-doors",
@@ -26495,8 +26487,8 @@
       "level": 3,
       "parent_handle": "bathroom-mirrors",
       "child_handles": [],
-      "image_path": "/cat-thumbs/electric-wall-mounted-makeup-mirror.webp",
-      "image_source": "direct"
+      "image_path": "/cat-thumbs/non-electric-wall-mounted-makeup-mirror.webp",
+      "image_source": "fuzzy"
     },
     "lamps": {
       "handle": "lamps",
@@ -26940,8 +26932,8 @@
       "level": 3,
       "parent_handle": "mailboxes",
       "child_handles": [],
-      "image_path": "/cat-thumbs/mailbox-posts-stands.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/mailbox-posts-and-stands.webp",
+      "image_source": "direct"
     },
     "mini-split-air-conditioners": {
       "handle": "mini-split-air-conditioners",
@@ -27099,8 +27091,8 @@
       "level": 3,
       "parent_handle": "commercial-lighting",
       "child_handles": [],
-      "image_path": "/cat-thumbs/emergency-exit-lights.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/emergency-and-exit-lights.webp",
+      "image_source": "direct"
     },
     "strip-light-fixtures": {
       "handle": "strip-light-fixtures",
@@ -27197,8 +27189,8 @@
         "air-conditioner-supplies",
         "portable-air-conditioners"
       ],
-      "image_path": "/cat-thumbs/air-conditioners.webp",
-      "image_source": "direct"
+      "image_path": "/cat-thumbs/mini-split-air-conditioners.webp",
+      "image_source": "fuzzy"
     },
     "air-conditioner-supplies": {
       "handle": "air-conditioner-supplies",
@@ -27210,8 +27202,8 @@
         "air-conditioner-covers",
         "air-conditioner-sleeves"
       ],
-      "image_path": "/cat-thumbs/air-conditioner-supplies.webp",
-      "image_source": "direct"
+      "image_path": null,
+      "image_source": "none"
     },
     "air-conditioner-covers": {
       "handle": "air-conditioner-covers",
@@ -27220,8 +27212,8 @@
       "level": 4,
       "parent_handle": "air-conditioner-supplies",
       "child_handles": [],
-      "image_path": "/cat-thumbs/air-conditioner-covers.webp",
-      "image_source": "direct"
+      "image_path": null,
+      "image_source": "none"
     },
     "air-conditioner-sleeves": {
       "handle": "air-conditioner-sleeves",
@@ -27230,8 +27222,8 @@
       "level": 4,
       "parent_handle": "air-conditioner-supplies",
       "child_handles": [],
-      "image_path": "/cat-thumbs/air-conditioner-sleeves.webp",
-      "image_source": "direct"
+      "image_path": null,
+      "image_source": "none"
     },
     "portable-air-conditioners": {
       "handle": "portable-air-conditioners",
@@ -27243,8 +27235,8 @@
         "camping-portable-air-conditioner",
         "portable-air-conditioner"
       ],
-      "image_path": "/cat-thumbs/portable-air-conditioners.webp",
-      "image_source": "direct"
+      "image_path": null,
+      "image_source": "none"
     },
     "camping-portable-air-conditioner": {
       "handle": "camping-portable-air-conditioner",
@@ -27253,8 +27245,8 @@
       "level": 4,
       "parent_handle": "portable-air-conditioners",
       "child_handles": [],
-      "image_path": "/cat-thumbs/camping-portable-air-conditioner.webp",
-      "image_source": "direct"
+      "image_path": null,
+      "image_source": "none"
     },
     "portable-air-conditioner": {
       "handle": "portable-air-conditioner",
@@ -27276,8 +27268,8 @@
         "dock-ladders",
         "boat-hardware"
       ],
-      "image_path": "/cat-thumbs/boat-docks-hardware.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/boat-docks-and-hardware.webp",
+      "image_source": "direct"
     },
     "dock-ladders": {
       "handle": "dock-ladders",
@@ -27329,8 +27321,8 @@
       "level": 3,
       "parent_handle": "moulding-and-millwork",
       "child_handles": [],
-      "image_path": "/cat-thumbs/wall-panels.webp",
-      "image_source": "direct"
+      "image_path": null,
+      "image_source": "none"
     },
     "toilets": {
       "handle": "toilets",
@@ -27522,8 +27514,8 @@
         "starlink-extension-cable",
         "rv-extension-cord"
       ],
-      "image_path": "/cat-thumbs/appliance-specialty-extension-cords.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/appliance-and-specialty-extension-cords.webp",
+      "image_source": "direct"
     },
     "starlink-extension-cable": {
       "handle": "starlink-extension-cable",
@@ -27869,8 +27861,8 @@
       "level": 3,
       "parent_handle": "door-hardware-and-locks",
       "child_handles": [],
-      "image_path": "/cat-thumbs/door-closers.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/door-closer.webp",
+      "image_source": "direct"
     },
     "door-lock-lever": {
       "handle": "door-lock-lever",
@@ -28051,8 +28043,8 @@
       "level": 3,
       "parent_handle": "evaporative-coolers",
       "child_handles": [],
-      "image_path": "/cat-thumbs/evaporative-cooler-parts-accessories.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/evaporative-cooler-parts-and-accessories.webp",
+      "image_source": "direct"
     },
     "portable-evaporative-coolers": {
       "handle": "portable-evaporative-coolers",
@@ -28460,8 +28452,8 @@
       "level": 3,
       "parent_handle": "electrical-boxes-and-panels-and-fittings",
       "child_handles": [],
-      "image_path": "/cat-thumbs/electrical-enclosures.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/electrical-enclosure.webp",
+      "image_source": "direct"
     },
     "electrical-boxes-and-panels-and-fittings-weather-station": {
       "handle": "electrical-boxes-and-panels-and-fittings-weather-station",
@@ -28833,8 +28825,8 @@
       "level": 3,
       "parent_handle": "outerwear",
       "child_handles": [],
-      "image_path": "/cat-thumbs/hoodies-sweatshirts.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/hoodies-and-sweatshirts.webp",
+      "image_source": "direct"
     },
     "work-jackets-and-coats": {
       "handle": "work-jackets-and-coats",
@@ -28843,8 +28835,8 @@
       "level": 3,
       "parent_handle": "outerwear",
       "child_handles": [],
-      "image_path": "/cat-thumbs/work-jackets-coats.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/work-jackets-and-coats.webp",
+      "image_source": "direct"
     },
     "traffic-safety-supplies": {
       "handle": "traffic-safety-supplies",
@@ -28964,8 +28956,8 @@
       "level": 3,
       "parent_handle": "fall-protection-equipment",
       "child_handles": [],
-      "image_path": "/cat-thumbs/fall-protection-equipment.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/fall-protection.webp",
+      "image_source": "direct"
     },
     "bottom-wear": {
       "handle": "bottom-wear",
@@ -29114,8 +29106,8 @@
       "level": 3,
       "parent_handle": "traffic-safety",
       "child_handles": [],
-      "image_path": "/cat-thumbs/traffic-delineator-posts.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/delineator-post.webp",
+      "image_source": "direct"
     },
     "traffic-cone": {
       "handle": "traffic-cone",
@@ -29124,8 +29116,8 @@
       "level": 3,
       "parent_handle": "traffic-safety",
       "child_handles": [],
-      "image_path": "/cat-thumbs/traffic-cones.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/traffic-cone.webp",
+      "image_source": "direct"
     },
     "disposable-protective-clothing": {
       "handle": "disposable-protective-clothing",
@@ -29247,8 +29239,8 @@
       "level": 4,
       "parent_handle": "hand-tool-sets",
       "child_handles": [],
-      "image_path": "/cat-thumbs/sockets-ratchets.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/sockets-and-ratchets.webp",
+      "image_source": "direct"
     },
     "ratchet-and-socket-sets": {
       "handle": "ratchet-and-socket-sets",
@@ -29257,8 +29249,8 @@
       "level": 4,
       "parent_handle": "hand-tool-sets",
       "child_handles": [],
-      "image_path": "/cat-thumbs/ratchet-socket-sets.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/ratchet-and-socket-sets.webp",
+      "image_source": "direct"
     },
     "turning-tools": {
       "handle": "turning-tools",
@@ -29277,8 +29269,8 @@
       "level": 4,
       "parent_handle": "hand-tool-sets",
       "child_handles": [],
-      "image_path": "/cat-thumbs/socket-sets.webp",
-      "image_source": "direct"
+      "image_path": "/cat-thumbs/ratchet-and-socket-sets.webp",
+      "image_source": "fuzzy"
     },
     "electricians-tool-sets": {
       "handle": "electricians-tool-sets",
@@ -29695,9 +29687,8 @@
         "staplers-and-staples",
         "rivet-tools-and-rivets"
       ],
-      "image_path": "/cat-thumbs/staplers-staples.webp",
-      "image_source": "inherited",
-      "image_donor": "staplers-and-staples"
+      "image_path": "/cat-thumbs/hand-tools-fastening-tools.webp",
+      "image_source": "direct"
     },
     "clamps-and-vises": {
       "handle": "clamps-and-vises",
@@ -29709,9 +29700,8 @@
         "woodworking-bench-vise",
         "multipurpose-bench-vise"
       ],
-      "image_path": "/cat-thumbs/woodworking-bench-vise.webp",
-      "image_source": "inherited",
-      "image_donor": "woodworking-bench-vise"
+      "image_path": "/cat-thumbs/clamps-and-vises.webp",
+      "image_source": "direct"
     },
     "woodworking-bench-vise": {
       "handle": "woodworking-bench-vise",
@@ -29740,8 +29730,8 @@
       "level": 4,
       "parent_handle": "hand-tools-fastening-tools",
       "child_handles": [],
-      "image_path": "/cat-thumbs/staplers-staples.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/staplers-and-staples.webp",
+      "image_source": "direct"
     },
     "rivet-tools-and-rivets": {
       "handle": "rivet-tools-and-rivets",
@@ -29750,8 +29740,8 @@
       "level": 4,
       "parent_handle": "hand-tools-fastening-tools",
       "child_handles": [],
-      "image_path": "/cat-thumbs/rivet-tools-rivets.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/rivet-tools-and-rivets.webp",
+      "image_source": "direct"
     },
     "cutting-tools": {
       "handle": "cutting-tools",
@@ -29968,8 +29958,8 @@
       "level": 3,
       "parent_handle": "hand-tools",
       "child_handles": [],
-      "image_path": "/cat-thumbs/taps-dies.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/taps-and-dies.webp",
+      "image_source": "direct"
     },
     "wrecking-and-pry-bars": {
       "handle": "wrecking-and-pry-bars",
@@ -29978,8 +29968,8 @@
       "level": 3,
       "parent_handle": "hand-tools",
       "child_handles": [],
-      "image_path": "/cat-thumbs/wrecking-pry-bars.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/wrecking-and-pry-bars.webp",
+      "image_source": "direct"
     },
     "screwdrivers-and-nut-drivers": {
       "handle": "screwdrivers-and-nut-drivers",
@@ -30008,8 +29998,8 @@
       "level": 3,
       "parent_handle": "hand-tools",
       "child_handles": [],
-      "image_path": "/cat-thumbs/knives-blades.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/knives-and-blades.webp",
+      "image_source": "direct"
     },
     "power-tools": {
       "handle": "power-tools",
@@ -30067,8 +30057,8 @@
         "woodworking-lathe-chuck",
         "lathe-cutting-tools"
       ],
-      "image_path": "/cat-thumbs/lathes-accessories.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/lathes-and-accessories.webp",
+      "image_source": "direct"
     },
     "precision-lathe-chuck": {
       "handle": "precision-lathe-chuck",
@@ -30218,8 +30208,8 @@
         "power-table-feed-mill",
         "drill-press"
       ],
-      "image_path": "/cat-thumbs/milling-machines-drill-presses.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/milling-machines-and-drill-presses.webp",
+      "image_source": "direct"
     },
     "power-table-feed-mill": {
       "handle": "power-table-feed-mill",
@@ -30437,8 +30427,8 @@
       "level": 4,
       "parent_handle": "saws",
       "child_handles": [],
-      "image_path": "/cat-thumbs/track-saws-guide-rail.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/track-saws-and-guide-rail.webp",
+      "image_source": "direct"
     },
     "chop-saws": {
       "handle": "chop-saws",
@@ -30491,8 +30481,8 @@
       "level": 4,
       "parent_handle": "power-cutting-tools",
       "child_handles": [],
-      "image_path": "/cat-thumbs/rebar-bender-cutter.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/rebar-bender-and-cutter.webp",
+      "image_source": "direct"
     },
     "concrete-drilling-tools": {
       "handle": "concrete-drilling-tools",
@@ -30524,8 +30514,8 @@
       "level": 4,
       "parent_handle": "concrete-drilling-tools",
       "child_handles": [],
-      "image_path": "/cat-thumbs/demolition-breaker-hammers.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/demolition-and-breaker-hammers.webp",
+      "image_source": "direct"
     },
     "power-crimpers": {
       "handle": "power-crimpers",
@@ -30857,8 +30847,8 @@
         "nibbler",
         "electric-meltal-shears"
       ],
-      "image_path": "/cat-thumbs/nibblers-shears.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/nibblers-and-shears.webp",
+      "image_source": "direct"
     },
     "nibbler": {
       "handle": "nibbler",
@@ -31194,9 +31184,8 @@
         "choking-rescue-device",
         "first-aid-kits"
       ],
-      "image_path": "/cat-thumbs/other-emergency-accessories.webp",
-      "image_source": "inherited",
-      "image_donor": "other-emergency-accessories"
+      "image_path": "/cat-thumbs/home-safety-emergency-preparedness.webp",
+      "image_source": "direct"
     },
     "other-emergency-accessories": {
       "handle": "other-emergency-accessories",
@@ -31253,8 +31242,8 @@
         "lightweight-baby-stroller",
         "standard-baby-stroller"
       ],
-      "image_path": "/cat-thumbs/car-seats-strollers.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/car-seats-and-strollers.webp",
+      "image_source": "direct"
     },
     "tandem-strollers": {
       "handle": "tandem-strollers",
@@ -31296,8 +31285,8 @@
         "baby-and-toddler-bed-rails-and-rail-guards",
         "bed-bumpers-for-toddlers"
       ],
-      "image_path": "/cat-thumbs/toddler-bed-rails-bumpers.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/toddler-bed-rails-and-bumpers.webp",
+      "image_source": "direct"
     },
     "baby-and-toddler-bed-rails-and-rail-guards": {
       "handle": "baby-and-toddler-bed-rails-and-rail-guards",
@@ -31306,8 +31295,8 @@
       "level": 6,
       "parent_handle": "toddler-bed-rails-and-bumpers",
       "child_handles": [],
-      "image_path": "/cat-thumbs/baby-toddler-bed-rails-rail-guards.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/baby-and-toddler-bed-rails-and-rail-guards.webp",
+      "image_source": "direct"
     },
     "bed-bumpers-for-toddlers": {
       "handle": "bed-bumpers-for-toddlers",
@@ -31673,8 +31662,8 @@
       "level": 4,
       "parent_handle": "welding-safety-apparel",
       "child_handles": [],
-      "image_path": "/cat-thumbs/welding-sleeves-aprons.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/welding-sleeves-and-aprons.webp",
+      "image_source": "direct"
     },
     "brazing-and-soldering-equipment": {
       "handle": "brazing-and-soldering-equipment",
@@ -31740,8 +31729,8 @@
       "level": 4,
       "parent_handle": "brazing-and-soldering-equipment",
       "child_handles": [],
-      "image_path": "/cat-thumbs/soldering-parts-accessories.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/soldering-parts-and-accessories.webp",
+      "image_source": "direct"
     },
     "power-tool-accessories": {
       "handle": "power-tool-accessories",
@@ -32212,8 +32201,8 @@
       "level": 4,
       "parent_handle": "air-tools",
       "child_handles": [],
-      "image_path": "/cat-thumbs/air-sanders-polishers.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/air-sanders-and-polishers.webp",
+      "image_source": "direct"
     },
     "air-compressor-parts-and-accessories": {
       "handle": "air-compressor-parts-and-accessories",
@@ -32369,8 +32358,8 @@
       "level": 4,
       "parent_handle": "planers",
       "child_handles": [],
-      "image_path": "/cat-thumbs/wood-planer-accessories.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/wood-planer-and-accessories.webp",
+      "image_source": "direct"
     },
     "power-handheld-planers": {
       "handle": "power-handheld-planers",
@@ -32443,8 +32432,8 @@
       "level": 3,
       "parent_handle": "woodworking-tools",
       "child_handles": [],
-      "image_path": "/cat-thumbs/routers-bits-accessories.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/routers-and-bits-and-accessories.webp",
+      "image_source": "direct"
     },
     "lathes": {
       "handle": "lathes",
@@ -32533,8 +32522,8 @@
       "level": 3,
       "parent_handle": "woodworking-tools",
       "child_handles": [],
-      "image_path": "/cat-thumbs/planers-and-jointers.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/jointers.webp",
+      "image_source": "direct"
     },
     "woodworking-benches": {
       "handle": "woodworking-benches",
@@ -32575,8 +32564,8 @@
         "akro-storage-bin",
         "drill-organizer-cabinet"
       ],
-      "image_path": "/cat-thumbs/shelf-bins-racks.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/shelf-bins-and-racks.webp",
+      "image_source": "direct"
     },
     "akro-storage-bin": {
       "handle": "akro-storage-bin",
@@ -32700,8 +32689,8 @@
       "level": 3,
       "parent_handle": "tool-storage",
       "child_handles": [],
-      "image_path": "/cat-thumbs/strength-training-plate-storage-racks.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/storage-racks.webp",
+      "image_source": "direct"
     },
     "tool-chests": {
       "handle": "tool-chests",
@@ -32755,8 +32744,8 @@
       "level": 3,
       "parent_handle": "chains-and-ropes",
       "child_handles": [],
-      "image_path": "/cat-thumbs/rope.webp",
-      "image_source": "direct"
+      "image_path": null,
+      "image_source": "none"
     },
     "polyester-pull-tapes": {
       "handle": "polyester-pull-tapes",
@@ -32793,8 +32782,8 @@
         "lab-instruments",
         "microscopes-and-equipment"
       ],
-      "image_path": "/cat-thumbs/lab-instruments-equipment.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/lab-instruments-and-equipment.webp",
+      "image_source": "direct"
     },
     "lab-equipment": {
       "handle": "lab-equipment",
@@ -32889,8 +32878,8 @@
       "level": 4,
       "parent_handle": "lab-instruments-and-equipment",
       "child_handles": [],
-      "image_path": "/cat-thumbs/microscopes-equipment.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/microscopes-and-equipment.webp",
+      "image_source": "direct"
     },
     "lab-furniture": {
       "handle": "lab-furniture",
@@ -32965,8 +32954,8 @@
       "level": 3,
       "parent_handle": "saws-and-accessories",
       "child_handles": [],
-      "image_path": "/cat-thumbs/oscillating-tool-blades.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/oscillating-blades.webp",
+      "image_source": "direct"
     },
     "grinding-and-sanding-and-finishing-tools": {
       "handle": "grinding-and-sanding-and-finishing-tools",
@@ -33142,8 +33131,8 @@
       "level": 3,
       "parent_handle": "welding-safety-equipment",
       "child_handles": [],
-      "image_path": "/cat-thumbs/welding-blankets.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/welding-blanket.webp",
+      "image_source": "direct"
     },
     "welding-screens": {
       "handle": "welding-screens",
@@ -33175,8 +33164,8 @@
       "level": 3,
       "parent_handle": "hand-power-tools-wrenches",
       "child_handles": [],
-      "image_path": "/cat-thumbs/pipe-wrenches.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/pipe-wrench.webp",
+      "image_source": "direct"
     },
     "plier-set": {
       "handle": "plier-set",
@@ -33228,8 +33217,8 @@
       "level": 3,
       "parent_handle": "power-tool-parts-and-accessories",
       "child_handles": [],
-      "image_path": "/cat-thumbs/pocket-hole-jig-system.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/pocket-hole-jig-system-set.webp",
+      "image_source": "direct"
     },
     "hand-power-tools-cutting-tools": {
       "handle": "hand-power-tools-cutting-tools",
@@ -33261,8 +33250,8 @@
       "level": 3,
       "parent_handle": "hand-power-tools-cutting-tools",
       "child_handles": [],
-      "image_path": "/cat-thumbs/metal-plate-shear.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/metal-shear.webp",
+      "image_source": "direct"
     },
     "inspection-and-retrieving-tools": {
       "handle": "inspection-and-retrieving-tools",
@@ -33284,8 +33273,8 @@
       "level": 3,
       "parent_handle": "inspection-and-retrieving-tools",
       "child_handles": [],
-      "image_path": "/cat-thumbs/magnets-fishing-kit.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/magnet-fishing-kit.webp",
+      "image_source": "direct"
     },
     "pipe-inspection-camera": {
       "handle": "pipe-inspection-camera",
@@ -33465,8 +33454,8 @@
         "marking-and-labeling",
         "storage-trunks-and-chests"
       ],
-      "image_path": "/cat-thumbs/warehousing-material-handling.webp",
-      "image_source": "direct"
+      "image_path": "/cat-thumbs/restaurant-shelving.webp",
+      "image_source": "alias"
     },
     "garage-storage": {
       "handle": "garage-storage",
@@ -33556,9 +33545,8 @@
         "lab-carts",
         "utility-carts"
       ],
-      "image_path": "/cat-thumbs/lab-carts.webp",
-      "image_source": "inherited",
-      "image_donor": "lab-carts"
+      "image_path": "/cat-thumbs/garage-storage-carts.webp",
+      "image_source": "direct"
     },
     "lab-carts": {
       "handle": "lab-carts",
@@ -33738,8 +33726,8 @@
         "pegboards",
         "pegboard-display-stand"
       ],
-      "image_path": "/cat-thumbs/pegboards-accessories.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/pegboards-and-accessories.webp",
+      "image_source": "direct"
     },
     "pegboards": {
       "handle": "pegboards",
@@ -34130,8 +34118,8 @@
       "level": 4,
       "parent_handle": "outdoor-car-storage",
       "child_handles": [],
-      "image_path": "/cat-thumbs/instant-sheds-storage-shelters.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/instant-sheds-and-storage-shelters.webp",
+      "image_source": "direct"
     },
     "portable-garages": {
       "handle": "portable-garages",
@@ -34558,8 +34546,8 @@
       "level": 3,
       "parent_handle": "hoists-and-winches-and-rigging",
       "child_handles": [],
-      "image_path": "/cat-thumbs/manual-gear-chain-hoists.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/manual-chain-hoist.webp",
+      "image_source": "direct"
     },
     "load-binders": {
       "handle": "load-binders",
@@ -34694,8 +34682,8 @@
       "level": 3,
       "parent_handle": "carts-and-trucks",
       "child_handles": [],
-      "image_path": "/cat-thumbs/non-dolly-stair-climbing-cart.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/stair-climbing-cart.webp",
+      "image_source": "direct"
     },
     "cargo-control": {
       "handle": "cargo-control",
@@ -34772,8 +34760,8 @@
       "level": 3,
       "parent_handle": "shelving-and-storage",
       "child_handles": [],
-      "image_path": "/cat-thumbs/garage-tool-storage-rack.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/garage-storage-rack.webp",
+      "image_source": "direct"
     },
     "garment-racks": {
       "handle": "garment-racks",
@@ -34796,9 +34784,8 @@
         "liquid-filling-machine",
         "sealing-machine"
       ],
-      "image_path": "/cat-thumbs/strapping-machine-strapping-strapping-cart.webp",
-      "image_source": "inherited",
-      "image_donor": "strapping-machine"
+      "image_path": "/cat-thumbs/filling-and-sealing-machine.webp",
+      "image_source": "direct"
     },
     "strapping-machine": {
       "handle": "strapping-machine",
@@ -34807,8 +34794,8 @@
       "level": 3,
       "parent_handle": "filling-and-sealing-machine",
       "child_handles": [],
-      "image_path": "/cat-thumbs/strapping-machine-strapping-strapping-cart.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/strapping-machine.webp",
+      "image_source": "direct"
     },
     "liquid-filling-machine": {
       "handle": "liquid-filling-machine",
@@ -34817,8 +34804,8 @@
       "level": 3,
       "parent_handle": "filling-and-sealing-machine",
       "child_handles": [],
-      "image_path": "/cat-thumbs/paste-liquid-filling-machine.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/liquid-filling-machine.webp",
+      "image_source": "direct"
     },
     "sealing-machine": {
       "handle": "sealing-machine",
@@ -35050,8 +35037,8 @@
         "smart-devices",
         "office-commercial-interiors-boards-and-easels"
       ],
-      "image_path": "/cat-thumbs/office-commercial-interiors.webp",
-      "image_source": "direct"
+      "image_path": "/cat-thumbs/office-chairs.webp",
+      "image_source": "alias"
     },
     "living-room-furniture": {
       "handle": "living-room-furniture",
@@ -35097,8 +35084,8 @@
         "tv-wall-mounts",
         "glass-tv-stand"
       ],
-      "image_path": "/cat-thumbs/tv-stands-tv-cabinet.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/tv-stands-and-tv-cabinet.webp",
+      "image_source": "direct"
     },
     "universal-tv-stand": {
       "handle": "universal-tv-stand",
@@ -35239,9 +35226,8 @@
         "farmhouse-end-table",
         "metal-end-table"
       ],
-      "image_path": "/cat-thumbs/farmhouse-end-table.webp",
-      "image_source": "inherited",
-      "image_donor": "farmhouse-end-table"
+      "image_path": "/cat-thumbs/end-and-side-tables.webp",
+      "image_source": "direct"
     },
     "farmhouse-end-table": {
       "handle": "farmhouse-end-table",
@@ -35260,8 +35246,8 @@
       "level": 5,
       "parent_handle": "end-and-side-tables",
       "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
+      "image_path": "/cat-thumbs/metal-end-table.webp",
+      "image_source": "direct"
     },
     "c-table": {
       "handle": "c-table",
@@ -35483,8 +35469,8 @@
       "level": 4,
       "parent_handle": "media-storage",
       "child_handles": [],
-      "image_path": "/cat-thumbs/audio-component-stand-cabinet.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/audio-component-stand-and-cabinet.webp",
+      "image_source": "direct"
     },
     "record-player-stand-rack": {
       "handle": "record-player-stand-rack",
@@ -35770,8 +35756,8 @@
         "dvd-players",
         "tv-antennas"
       ],
-      "image_path": "/cat-thumbs/tv-home-theater-accessories.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/tv-and-home-theater-accessories.webp",
+      "image_source": "direct"
     },
     "projector-screens": {
       "handle": "projector-screens",
@@ -35867,8 +35853,8 @@
         "server-racks-and-cabinets",
         "network-cable-testers"
       ],
-      "image_path": "/cat-thumbs/wifi-networking-devices.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/wifi-and-networking-devices.webp",
+      "image_source": "direct"
     },
     "server-racks-and-cabinets": {
       "handle": "server-racks-and-cabinets",
@@ -35880,8 +35866,8 @@
         "network-enclosure",
         "computer-cases"
       ],
-      "image_path": "/cat-thumbs/server-racks-cabinets.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/server-racks-and-cabinets.webp",
+      "image_source": "direct"
     },
     "network-enclosure": {
       "handle": "network-enclosure",
@@ -35924,9 +35910,8 @@
         "bags-and-cases",
         "mobile-stabilizer"
       ],
-      "image_path": "/cat-thumbs/photo-studio.webp",
-      "image_source": "inherited",
-      "image_donor": "photo-studio"
+      "image_path": "/cat-thumbs/electronics-camera-and-photo.webp",
+      "image_source": "direct"
     },
     "photo-studio": {
       "handle": "photo-studio",
@@ -35971,9 +35956,8 @@
         "telescope-cases",
         "studio-equipment-trolley-case"
       ],
-      "image_path": "/cat-thumbs/telescope-cases.webp",
-      "image_source": "inherited",
-      "image_donor": "telescope-cases"
+      "image_path": "/cat-thumbs/bags-and-cases.webp",
+      "image_source": "direct"
     },
     "telescope-cases": {
       "handle": "telescope-cases",
@@ -36017,9 +36001,8 @@
         "gramophone",
         "sound-bars"
       ],
-      "image_path": "/cat-thumbs/portable-audio-video.webp",
-      "image_source": "inherited",
-      "image_donor": "portable-audio-and-video"
+      "image_path": "/cat-thumbs/electronics-home-audio.webp",
+      "image_source": "direct"
     },
     "electronics-home-audio-speakers": {
       "handle": "electronics-home-audio-speakers",
@@ -36032,9 +36015,8 @@
         "floor-standing-speaker",
         "powered-bookshelf-speakers"
       ],
-      "image_path": "/cat-thumbs/ceiling-speakers.webp",
-      "image_source": "inherited",
-      "image_donor": "ceiling-speakers"
+      "image_path": "/cat-thumbs/electronics-home-audio-speakers.webp",
+      "image_source": "direct"
     },
     "ceiling-speakers": {
       "handle": "ceiling-speakers",
@@ -36077,8 +36059,8 @@
         "karaoke-machine",
         "portable-recorders"
       ],
-      "image_path": "/cat-thumbs/portable-audio-video.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/portable-audio-and-video.webp",
+      "image_source": "direct"
     },
     "sleep-aid-device": {
       "handle": "sleep-aid-device",
@@ -36151,8 +36133,8 @@
         "computer-monitors",
         "monitor-arms"
       ],
-      "image_path": "/cat-thumbs/computer-laptop-accessories.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/computer-and-laptop-accessories.webp",
+      "image_source": "direct"
     },
     "cpu-cooling-fans": {
       "handle": "cpu-cooling-fans",
@@ -36201,8 +36183,8 @@
       "level": 3,
       "parent_handle": "electronics",
       "child_handles": [],
-      "image_path": "/cat-thumbs/tablets-accessories.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/tablets-and-accessories.webp",
+      "image_source": "direct"
     },
     "printers": {
       "handle": "printers",
@@ -36253,8 +36235,8 @@
         "under-desk-drawer",
         "keyboard-platform"
       ],
-      "image_path": "/cat-thumbs/desk-organizers-accessories.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/desk-organizers-and-accessories.webp",
+      "image_source": "direct"
     },
     "literature-organizers": {
       "handle": "literature-organizers",
@@ -36273,8 +36255,8 @@
       "level": 4,
       "parent_handle": "desk-organizers-and-accessories",
       "child_handles": [],
-      "image_path": "/cat-thumbs/desktop-off-surface-shelves.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/desktop-and-off-surface-shelves.webp",
+      "image_source": "direct"
     },
     "literature-display": {
       "handle": "literature-display",
@@ -36877,8 +36859,8 @@
         "kneeling-chairs",
         "office-chairs"
       ],
-      "image_path": "/cat-thumbs/office-chairs-desk-chairs.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/office-chairs-and-desk-chairs.webp",
+      "image_source": "direct"
     },
     "executive-chairs": {
       "handle": "executive-chairs",
@@ -37062,8 +37044,8 @@
       "level": 4,
       "parent_handle": "drawer-slides",
       "child_handles": [],
-      "image_path": "/cat-thumbs/cabinet-furniture-drawer-slides.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/cabinet-and-furniture-drawer-slides.webp",
+      "image_source": "direct"
     },
     "cabinet-hinges": {
       "handle": "cabinet-hinges",
@@ -37809,8 +37791,8 @@
       "level": 3,
       "parent_handle": "bedding",
       "child_handles": [],
-      "image_path": "/cat-thumbs/japanese-tatami-mattress.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/japanese-tatami-and-mattress.webp",
+      "image_source": "direct"
     },
     "bed-tent": {
       "handle": "bed-tent",
@@ -37994,8 +37976,8 @@
         "office-furniture-office-chair-base",
         "stand-up-desk"
       ],
-      "image_path": "/cat-thumbs/office-furniture.webp",
-      "image_source": "direct"
+      "image_path": "/cat-thumbs/home-office-furniture.webp",
+      "image_source": "fuzzy"
     },
     "office-room-divider": {
       "handle": "office-room-divider",
@@ -38004,8 +37986,8 @@
       "level": 3,
       "parent_handle": "office-furniture",
       "child_handles": [],
-      "image_path": "/cat-thumbs/office-room-dividers.webp",
-      "image_source": "fuzzy"
+      "image_path": null,
+      "image_source": "none"
     },
     "office-furniture-chest-of-drawers": {
       "handle": "office-furniture-chest-of-drawers",
@@ -38034,8 +38016,8 @@
       "level": 3,
       "parent_handle": "office-furniture",
       "child_handles": [],
-      "image_path": "/cat-thumbs/bed-frames.webp",
-      "image_source": "direct"
+      "image_path": "/cat-thumbs/picture-frames.webp",
+      "image_source": "fuzzy"
     },
     "office-chair": {
       "handle": "office-chair",
@@ -38390,8 +38372,9 @@
         "furniture-mattresses",
         "furniture-shoe-cabinets"
       ],
-      "image_path": "/cat-thumbs/furniture.webp",
-      "image_source": "direct"
+      "image_path": "/cat-thumbs/massage-chairs.webp",
+      "image_source": "inherited",
+      "image_donor": "massage-chair"
     },
     "furniture-bean-bag-chairs": {
       "handle": "furniture-bean-bag-chairs",
@@ -38410,8 +38393,8 @@
       "level": 3,
       "parent_handle": "furniture",
       "child_handles": [],
-      "image_path": "/cat-thumbs/coffee-table.webp",
-      "image_source": "direct"
+      "image_path": null,
+      "image_source": "none"
     },
     "coffe-table": {
       "handle": "coffe-table",
@@ -38420,8 +38403,8 @@
       "level": 3,
       "parent_handle": "furniture",
       "child_handles": [],
-      "image_path": "/cat-thumbs/coffe-table.webp",
-      "image_source": "direct"
+      "image_path": null,
+      "image_source": "none"
     },
     "furniture-headboards": {
       "handle": "furniture-headboards",
@@ -38506,9 +38489,8 @@
       "child_handles": [
         "artificial-christmas-trees"
       ],
-      "image_path": "/cat-thumbs/artificial-christmas-trees.webp",
-      "image_source": "inherited",
-      "image_donor": "artificial-christmas-trees"
+      "image_path": null,
+      "image_source": "none"
     },
     "artificial-christmas-trees": {
       "handle": "artificial-christmas-trees",
@@ -38519,8 +38501,8 @@
       "child_handles": [
         "pre-lit-christmas-trees"
       ],
-      "image_path": "/cat-thumbs/artificial-christmas-trees.webp",
-      "image_source": "direct"
+      "image_path": null,
+      "image_source": "none"
     },
     "pre-lit-christmas-trees": {
       "handle": "pre-lit-christmas-trees",
@@ -38529,8 +38511,8 @@
       "level": 5,
       "parent_handle": "artificial-christmas-trees",
       "child_handles": [],
-      "image_path": "/cat-thumbs/pre-lit-christmas-trees.webp",
-      "image_source": "direct"
+      "image_path": null,
+      "image_source": "none"
     },
     "indoor-christmas-decorations": {
       "handle": "indoor-christmas-decorations",
@@ -38585,8 +38567,8 @@
       "level": 4,
       "parent_handle": "folding-chairs",
       "child_handles": [],
-      "image_path": "/cat-thumbs/wood-bamboo-folding-chairs.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/wood-and-bamboo-folding-chairs.webp",
+      "image_source": "direct"
     },
     "folding-tables": {
       "handle": "folding-tables",
@@ -38608,8 +38590,8 @@
         "electric-paper-cutter",
         "guillotine-trimmer"
       ],
-      "image_path": "/cat-thumbs/office-storage-organization.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/office-storage-and-organization.webp",
+      "image_source": "direct"
     },
     "electric-paper-cutter": {
       "handle": "electric-paper-cutter",
@@ -38664,8 +38646,8 @@
       "level": 3,
       "parent_handle": "retail-supplies",
       "child_handles": [],
-      "image_path": "/cat-thumbs/scrolling-led-sign.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/scrolling-sign.webp",
+      "image_source": "direct"
     },
     "banner-stand": {
       "handle": "banner-stand",
@@ -38684,8 +38666,8 @@
       "level": 3,
       "parent_handle": "retail-supplies",
       "child_handles": [],
-      "image_path": "/cat-thumbs/prize-wheels.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/prize-wheel.webp",
+      "image_source": "direct"
     },
     "shopping-basket": {
       "handle": "shopping-basket",
@@ -38823,9 +38805,8 @@
         "baby-stroller",
         "metal-table-leg"
       ],
-      "image_path": "/cat-thumbs/baby-stroller.webp",
-      "image_source": "inherited",
-      "image_donor": "baby-stroller"
+      "image_path": "/cat-thumbs/furniture-hardware.webp",
+      "image_source": "direct"
     },
     "baby-stroller": {
       "handle": "baby-stroller",
@@ -38844,8 +38825,8 @@
       "level": 3,
       "parent_handle": "furniture-hardware",
       "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
+      "image_path": "/cat-thumbs/metal-table-leg.webp",
+      "image_source": "direct"
     },
     "home-fragrance": {
       "handle": "home-fragrance",
@@ -38971,8 +38952,8 @@
       "level": 2,
       "parent_handle": "office-commercial-interiors",
       "child_handles": [],
-      "image_path": "/cat-thumbs/curtains-drapes.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/curtains-and-drapes.webp",
+      "image_source": "direct"
     },
     "candle-holders": {
       "handle": "candle-holders",

@@ -9,6 +9,10 @@
 
 import "server-only"
 import { getVisibleL1, getChildren, getNode, type CategoryNode } from "./category-tree"
+import countsDoc from "./category-counts.generated.json"
+
+const COUNTS: Record<string, number> = (countsDoc as { counts: Record<string, number> }).counts || {}
+const countOf = (handle: string): number => COUNTS[handle] ?? 0
 
 export interface MenuNode {
   handle: string
@@ -104,33 +108,14 @@ export function getMenuChildren(handle: string): MenuNode[] {
  */
 export function getHomepageL1Nodes(): HomepageL1Node[] {
   return getVisibleL1().map((l1Node) => {
-    const l2List = getChildren(l1Node.handle)
+    const l2ListRaw = getChildren(l1Node.handle)
+    // Sort L2 by product count (biggest first). Meili snapshot source.
+    const l2List = [...l2ListRaw].sort((a, b) => countOf(b.handle) - countOf(a.handle))
 
-    // BFS to find up to 6 usable nodes (image_path present and not fuzzy).
     const isUsable = (n: CategoryNode) =>
       !!n.image_path && n.image_source !== "fuzzy"
-    const featured: Array<{ handle: string; name_en: string; image_path: string }> = []
-    const seen = new Set<string>()
-    const queue: string[] = [...l2List.map((n) => n.handle)]
-    while (queue.length && featured.length < 6) {
-      const h = queue.shift()!
-      if (seen.has(h)) continue
-      seen.add(h)
-      const node = getNode(h)
-      if (!node) continue
-      if (isUsable(node)) {
-        featured.push({
-          handle: node.handle,
-          name_en: node.name_en,
-          image_path: node.image_path!,
-        })
-      }
-      for (const ch of node.child_handles) queue.push(ch)
-    }
 
-    // Sublist: at least 6 entries. If L2 count < 6, backfill with L3 grandchildren
-    // via BFS so sparse branches (e.g. pets-wildlife-clinic has only 2 L2) still
-    // show a respectable list. Otherwise cap at 10 L2.
+    // Sublist: min 6, max 10. L2 in count order; backfill with L3 (also by count).
     const MIN_SUBLIST = 6
     const MAX_SUBLIST = 10
     const sublist: Array<{ handle: string; name_en: string; image_path: string | null }> = []
@@ -141,17 +126,47 @@ export function getHomepageL1Nodes(): HomepageL1Node[] {
       sublistSeen.add(l2.handle)
     }
     if (sublist.length < MIN_SUBLIST) {
-      // Backfill with grandchildren (L3) in L2 order.
+      // Backfill with L3 grandchildren, ordered by count across all L2 subtrees.
+      const l3Pool: CategoryNode[] = []
       for (const l2 of l2List) {
-        if (sublist.length >= MIN_SUBLIST) break
         for (const l3h of l2.child_handles) {
-          if (sublist.length >= MIN_SUBLIST) break
           if (sublistSeen.has(l3h)) continue
           const l3 = getNode(l3h)
-          if (!l3) continue
-          sublist.push({ handle: l3.handle, name_en: l3.name_en, image_path: l3.image_path })
-          sublistSeen.add(l3h)
+          if (l3) l3Pool.push(l3)
         }
+      }
+      l3Pool.sort((a, b) => countOf(b.handle) - countOf(a.handle))
+      for (const l3 of l3Pool) {
+        if (sublist.length >= MIN_SUBLIST) break
+        sublist.push({ handle: l3.handle, name_en: l3.name_en, image_path: l3.image_path })
+        sublistSeen.add(l3.handle)
+      }
+    }
+
+    // Featured cards mirror the sublist top-6. If an entry lacks a usable
+    // image, descend its subtree by count until we find a node with an image.
+    const resolveUsable = (handle: string): { handle: string; name_en: string; image_path: string } | null => {
+      let cur = getNode(handle)
+      while (cur) {
+        if (isUsable(cur)) {
+          return { handle: cur.handle, name_en: cur.name_en, image_path: cur.image_path! }
+        }
+        if (!cur.child_handles.length) return null
+        const heaviest = [...cur.child_handles]
+          .map((h) => getNode(h))
+          .filter((n): n is CategoryNode => !!n)
+          .sort((a, b) => countOf(b.handle) - countOf(a.handle))[0]
+        if (!heaviest) return null
+        cur = heaviest
+      }
+      return null
+    }
+    const featured: Array<{ handle: string; name_en: string; image_path: string }> = []
+    for (const entry of sublist.slice(0, 6)) {
+      const resolved = resolveUsable(entry.handle)
+      if (resolved) {
+        // Keep the sublist label (parent category name), but use the donor's image.
+        featured.push({ handle: entry.handle, name_en: entry.name_en, image_path: resolved.image_path })
       }
     }
 
@@ -160,7 +175,7 @@ export function getHomepageL1Nodes(): HomepageL1Node[] {
       name_en: l1Node.name_en,
       image_path: l1Node.image_path,
       level: 1 as const,
-      l2_count: l2List.length,
+      l2_count: l2ListRaw.length,
       l2_list: sublist,
       featured,
     }

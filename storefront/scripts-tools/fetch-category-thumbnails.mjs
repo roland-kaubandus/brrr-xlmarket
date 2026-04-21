@@ -22,6 +22,10 @@ const MEILI_KEY = process.env.MEILISEARCH_KEY || process.env.MEILISEARCH_ADMIN_K
 
 const EXECUTE = process.argv.includes("--execute")
 const INCLUDE_INHERITED = process.argv.includes("--include-inherited")
+// Also fetch direct thumbnails for nodes that currently rely on inherited/fuzzy
+// donor images. Useful when a category gets a donor image that's a poor match
+// (e.g. personal-care-appliances inheriting heat-therapy-products).
+const FORCE_RESOLVE = process.argv.includes("--force-resolve")
 
 if (!existsSync(OUT_DIR)) mkdirSync(OUT_DIR, { recursive: true })
 
@@ -67,6 +71,7 @@ async function main() {
   for (const [handle, n] of Object.entries(tree.nodes)) {
     if (n.image_source === "none") candidates.push(handle)
     else if (INCLUDE_INHERITED && n.image_source === "inherited") candidates.push(handle)
+    else if (FORCE_RESOLVE && (n.image_source === "fuzzy" || n.image_source === "inherited")) candidates.push(handle)
   }
 
   console.log(`=== fetch-category-thumbnails ===`)

@@ -1170,21 +1170,22 @@ const homepageStyles = `
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 10%;
+  padding: 2%;
   background: transparent;
   position: relative;
   overflow: hidden;
 }
 
 .hp-cat-card-image img {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
   transition: transform 0.3s ease;
 }
 
 .hp-cat-card:hover .hp-cat-card-image img {
-  transform: scale(1.05);
+  transform: scale(1.04);
 }
 
 .hp-cat-card-fallback {

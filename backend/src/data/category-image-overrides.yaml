@@ -1,0 +1,19 @@
+# category-image-overrides.yaml
+#
+# Manual thumbnail overrides when Meili first-product pick is a dud
+# (gift-box packaging, abstract pharma roll, etc.). Keys are category handles;
+# values are either:
+#   - a VEVOR CDN URL (will be fetched + converted by fetch-category-thumbnails.mjs)
+#   - a local file path (placed manually into public/cat-thumbs/)
+#
+# Run `node scripts-tools/fetch-category-thumbnails.mjs --execute --apply-overrides`
+# after editing.
+
+overrides:
+  # HORECA
+
+  # HEALTH & MEDICAL SUPPLY — flagged on homepage as "kingipaki", "suvaline rull", "ajakirja reklaam"
+  # personal-care-appliances: TBD — avoid Laser Hair Removal gift-box thumbnail
+  # medical-supplies: TBD — prefer Bed Rails or Skeleton Model, not IV practice arm
+  # health-medical-supply-wellness-and-relaxation-products: TBD
+  # mixing-and-blending-equipment: TBD
