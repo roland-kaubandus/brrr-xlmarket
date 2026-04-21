@@ -81,6 +81,13 @@ node scripts/sync-db-parents-from-yaml.mjs --execute 2>&1 | tail -3 || {
   echo "  FAIL: sync-db-parents-from-yaml.mjs"
   exit 1
 }
+# CRITICAL: without this, feed import leaves new/updated products bound to L1
+# only — category pages below L1 render 0 products. Must run BEFORE Meili
+# reindex so taxonomy.ancestors arrays include L2/L3 chain.
+node scripts/reassign-v3-from-mapping.mjs --execute 2>&1 | tail -5 || {
+  echo "  FAIL: reassign-v3-from-mapping.mjs"
+  exit 1
+}
 node scripts/export-slug-redirects.mjs 2>&1 | tail -3 || {
   echo "  WARN: export-slug-redirects.mjs failed (non-fatal)"
 }
