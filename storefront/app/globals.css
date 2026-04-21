@@ -125,3 +125,15 @@ a, button, input, select, textarea {
 @media (max-width: 680px) {
   .bento-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
 }
+
+/* Reserve space for the cookie consent banner while it is visible so footer
+   content / last-screen controls are never covered. Height differs between
+   mobile (stacked layout ~140px) and desktop (single row ~72px). */
+html[data-cookie-banner="visible"] body {
+  padding-bottom: 140px;
+}
+@media (min-width: 640px) {
+  html[data-cookie-banner="visible"] body {
+    padding-bottom: 80px;
+  }
+}

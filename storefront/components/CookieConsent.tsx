@@ -14,6 +14,16 @@ export default function CookieConsent({ locale = "en" }: { locale?: string }) {
     import(`@/messages/${locale}.json`).then(m => setT(m.default?.cookie || m.cookie)).catch(() => {})
   }, [locale])
 
+  useEffect(() => {
+    if (typeof document === "undefined") return
+    if (visible) {
+      document.documentElement.setAttribute("data-cookie-banner", "visible")
+    } else {
+      document.documentElement.removeAttribute("data-cookie-banner")
+    }
+    return () => document.documentElement.removeAttribute("data-cookie-banner")
+  }, [visible])
+
   function accept() { localStorage.setItem("xlmarket_cookie_consent", "all"); setVisible(false) }
   function acceptNecessary() { localStorage.setItem("xlmarket_cookie_consent", "necessary"); setVisible(false) }
 

@@ -1284,9 +1284,9 @@ const homepageStyles = `
     min-height: auto;
     margin-bottom: 20px;
   }
-  .hp-cat-banner { height: 240px; border-right: none; border-bottom: 1px solid #ECEEF1; }
-  .hp-cat-banner-title-wrap { left: 20px; right: 20px; bottom: 18px; }
-  .hp-cat-banner-title { font-size: 28px; line-height: 1.05; }
+  .hp-cat-banner { height: 180px; border-right: none; border-bottom: 1px solid #ECEEF1; }
+  .hp-cat-banner-title-wrap { left: 18px; right: 18px; bottom: 14px; }
+  .hp-cat-banner-title { font-size: 24px; line-height: 1.05; }
   .hp-cat-sublist {
     flex-direction: row;
     flex-wrap: wrap;
@@ -1302,11 +1302,12 @@ const homepageStyles = `
   .hp-cat-card-name { padding: 10px 6px 14px; font-size: 14px; }
 }
 
-/* ═══════ SMALL MOBILE (<400) ═══════ */
-@media (max-width: 400px) {
+/* ═══════ SMALL MOBILE (<500) — 2-column cards for narrower phones ═══════ */
+@media (max-width: 499px) {
   .hp-deals-row { grid-template-columns: 1fr; }
   .hp-cat-cards { grid-template-columns: repeat(2, 1fr); }
   .hp-cat-card:nth-child(3n) { border-right: 1px solid #ECEEF1; }
+  .hp-cat-card:nth-child(2n) { border-right: none; }
   .hp-cat-card:nth-last-child(-n+3):not(:nth-last-child(-n+2)) { border-bottom: 1px solid #ECEEF1; }
 }
 `
