@@ -68,11 +68,13 @@ export type GlobalContent = {
 }
 
 const MEDUSA_URL = process.env.NEXT_PUBLIC_MEDUSA_URL || "http://127.0.0.1:9001"
+const MEDUSA_KEY = process.env.NEXT_PUBLIC_MEDUSA_KEY || ""
 
 async function fetchCmsPage<T>(key: string, revalidate = 60): Promise<T | null> {
   try {
     const res = await fetch(`${MEDUSA_URL}/store/cms/${key}`, {
       next: { revalidate, tags: [`cms:${key}`] },
+      headers: MEDUSA_KEY ? { "x-publishable-api-key": MEDUSA_KEY } : {},
     })
     if (!res.ok) return null
     const data = (await res.json()) as { content: T }
