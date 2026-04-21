@@ -1,14 +1,10 @@
 import type { MedusaRequest, MedusaResponse } from "@medusajs/framework/http"
-import fs from "fs"
-import path from "path"
+import { listPages } from "../../../modules/cms/db"
 
-const CMS_PATH = path.join(process.cwd(), "../data/cms/content.json")
-
-export const GET = async (req: MedusaRequest, res: MedusaResponse) => {
-  try {
-    const content = JSON.parse(fs.readFileSync(CMS_PATH, "utf-8"))
-    res.json({ content })
-  } catch {
-    res.json({ content: { hero: {}, announcement: {}, banners: [], campaigns: [] } })
-  }
+// GET /store/cms — list all published page keys + update timestamps (no content)
+export const GET = async (_req: MedusaRequest, res: MedusaResponse) => {
+  const pages = await listPages()
+  res.json({
+    pages: pages.map((p) => ({ key: p.page_key, updated_at: p.updated_at })),
+  })
 }

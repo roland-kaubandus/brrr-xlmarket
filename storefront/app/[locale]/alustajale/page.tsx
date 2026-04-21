@@ -1,24 +1,35 @@
 import type { Metadata } from "next"
 import Link from "@/components/SafeLink"
-import { Coffee, Wrench, Scissors, Printer, UtensilsCrossed, Sparkles, CheckCircle2, ArrowRight } from "lucide-react"
+import { Coffee, Wrench, Scissors, Printer, UtensilsCrossed, Sparkles, CheckCircle2, ArrowRight, type LucideIcon } from "lucide-react"
 import { listVerticalsByMode, localisedVertical } from "@/lib/verticals"
+import { getStarterKitsCms, type CmsKit } from "@/lib/cms"
+import starterKitsFallback from "@/lib/cms-fallback/starter-kits.json"
 
 export const metadata: Metadata = {
   title: "Starter Kits — Everything Your New Business Needs | XL Market",
   description: "Six turnkey business starter packages — café, auto workshop, barber, print shop, bakery, cleaning service. One order, one invoice, one delivery. VAT 24% incl.",
 }
 
-type Kit = {
-  slug: string
-  name: string
-  priceFrom: number
-  icon: typeof Coffee
-  tagline: string
-  includes: string[]
-  image: string
+// Map icon name (CMS string) → Lucide component
+const ICON_MAP: Record<string, LucideIcon> = {
+  Coffee,
+  Wrench,
+  Scissors,
+  Printer,
+  UtensilsCrossed,
+  Sparkles,
 }
 
-const KITS: Kit[] = [
+function iconFor(name: string): LucideIcon {
+  return ICON_MAP[name] ?? Coffee
+}
+
+type Kit = CmsKit
+
+// Kits are now CMS-managed (cms_page where page_key='starter-kits').
+// Content below kept as a comment for reference during migration; delete later.
+/*
+const LEGACY_KITS_REFERENCE = [
   {
     slug: "cafe",
     name: "Café & Coffee Shop",
@@ -116,6 +127,7 @@ const KITS: Kit[] = [
     image: "cat-15-cleaning-janitorial.png",
   },
 ]
+*/
 
 function priceFmt(n: number) {
   return `€${n.toLocaleString("en-US")}`
@@ -123,6 +135,8 @@ function priceFmt(n: number) {
 
 export default async function AlustajalePage({ params }: { params: Promise<{ locale: string }> }) {
   const locale = (await params).locale
+  const cms = (await getStarterKitsCms()) ?? (starterKitsFallback as unknown as { kits: CmsKit[] })
+  const KITS = cms.kits
 
   return (
     <div>
@@ -234,7 +248,7 @@ export default async function AlustajalePage({ params }: { params: Promise<{ loc
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[20px] sm:gap-[24px]">
           {KITS.map(kit => {
-            const Icon = kit.icon
+            const Icon = iconFor(kit.icon)
             return (
               <article
                 key={kit.slug}

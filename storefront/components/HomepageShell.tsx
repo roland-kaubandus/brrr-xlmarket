@@ -5,6 +5,7 @@ import SafeLink from "@/components/SafeLink"
 import { categoryPath, branchPath, type Locale } from "@/lib/i18n"
 import { V3_ICONS } from "@/lib/taxonomy-v3"
 import type { HomepageL1Node } from "@/lib/menu-data"
+import type { CmsSlide, CmsPromo } from "@/lib/cms"
 
 // Adapter: render the homepage category explorer from the SSoT 18-L1 taxonomy
 // tree instead of the legacy hard-coded 22-entry TAXONOMY_V3 list.
@@ -39,59 +40,19 @@ interface HomepageShellProps {
   locale: string
   /** Pre-computed L1 nodes from getHomepageL1Nodes() — server-side only. */
   l1Nodes: HomepageL1Node[]
+  /** CMS-managed hero carousel slides */
+  slides: CmsSlide[]
+  /** CMS-managed promo cards */
+  promos: CmsPromo[]
+  /** CMS-managed nav short names per category slug */
+  navShortNames: Record<string, string>
 }
 
 /* ═══════════════════════════════════════════════
-   CAROUSEL SLIDES — entrepreneur vibe
+   CAROUSEL + PROMO content now CMS-managed.
+   See: backend cms_page rows (homepage) + storefront/lib/cms.ts
    ═══════════════════════════════════════════════ */
-const SLIDES = [
-  {
-    badge: "Starter Kits",
-    title: "Six businesses. Six turnkey kits.",
-    text: "Caf\u00e9, auto shop, barber, print, bakery, cleaning. One order, one invoice, one delivery. \u20AC2,799 \u2013 \u20AC12,900, VAT incl.",
-    cta: "See starter kits",
-    ctaHref: "LOCALE/alustajale",
-    bg: "/images/hero-1.png",
-  },
-  {
-    badge: "B2B Account",
-    title: "Net-30, volume pricing, real humans.",
-    text: "Dedicated account manager, custom equipment bundles, priority shipping, 2-year extended warranty.",
-    cta: "Request a quote",
-    ctaHref: "LOCALE/arikliendile",
-    bg: "/images/hero-2.png",
-  },
-  {
-    badge: "Service",
-    title: "Your machines should last a decade.",
-    text: "Basic, Pro, Enterprise plans. Quarterly maintenance, 48h priority repair, replacement units while we fix yours.",
-    cta: "Choose a service plan",
-    ctaHref: "LOCALE/hooldus",
-    bg: "/images/hero-3.png",
-  },
-]
-
-/* ═══════════════════════════════════════════════
-   PROMO CARDS — six starter kits
-   ═══════════════════════════════════════════════ */
-type PromoItem = {
-  tag: string
-  tagTone: "amber" | "red" | "green" | "navy"
-  title: string
-  sub: string
-  image?: string
-  bg?: string
-  href: string
-}
-
-const PROMOS: PromoItem[] = [
-  { tag: "Starter Kit", tagTone: "amber", title: "Caf\u00e9 & Coffee Shop", sub: "From \u20AC8,499 \u2014 espresso, fridge, prep, shelving", image: "/images/cat-01-horeca-food-service.png", href: "LOCALE/alustajale#cafe" },
-  { tag: "Starter Kit", tagTone: "amber", title: "Barber Shop", sub: "From \u20AC3,499 \u2014 chairs, mirrors, tools, sterilizer", image: "/images/cat-18-salon-spa-wellness.png", href: "LOCALE/alustajale#barber" },
-  { tag: "Starter Kit", tagTone: "amber", title: "Bakery & Pastry", sub: "From \u20AC7,499 \u2014 oven, proofer, mixer, display", image: "/images/cat-01-kitchen.png", href: "LOCALE/alustajale#bakery" },
-  { tag: "Deal", tagTone: "red", title: "Deal of the week", sub: "Hand-picked discounts refreshed every Monday.", bg: "linear-gradient(135deg, #7F1D1D 0%, #DC2626 100%)", href: "LOCALE/kategooriad?deals=1" },
-  { tag: "New", tagTone: "green", title: "Pay in 3 with Montonio", sub: "Split your order into 3 interest-free payments at checkout.", bg: "linear-gradient(135deg, #064E3B 0%, #059669 100%)", href: "LOCALE/arikliendile#financing" },
-  { tag: "Beta", tagTone: "navy", title: "AI product finder", sub: "Describe what you need \u2014 we match the right tool and variant.", bg: "linear-gradient(135deg, #0F1B2D 0%, #334155 100%)", href: "LOCALE/otsing" },
-]
+type PromoItem = CmsPromo
 
 /* ═══════════════════════════════════════════════
    MEILI SEARCH HELPER
@@ -127,44 +88,15 @@ async function searchMeili(
 /* ═══════════════════════════════════════════════
    COMPONENT
    ═══════════════════════════════════════════════ */
-/* Short labels for horizontal sticky nav — hand-picked so they stay meaningful.
-   Fallback: first segment of the full name if slug missing here. */
-const NAV_SHORT_NAMES: Record<string, string> = {
-  "renewable-energy": "Energy",
-  "horeca-food-service": "HoReCa",
-  "automotive-workshop": "Automotive",
-  "cleaning-janitorial": "Cleaning",
-  "crafts-sewing-printing": "Crafts",
-  "salon-spa-wellness": "Salon",
-  "health-medical-supply": "Medical",
-  "fitness-sports-recreation": "Sport",
-  "boating-camping-outdoor": "Outdoor",
-  "music-instruments": "Music",
-  "pets-animal-supplies": "Pets",
-  "backyard-landscaping-farm": "Garden",
-  "construction-building": "Construction",
-  "safety-security": "Safety",
-  "hand-power-tools": "Tools",
-  "warehousing-material-handling": "Warehousing",
-  "welding-metalworking": "Welding",
-  "laser-cnc-digital-fabrication": "CNC",
-  "industrial-scientific": "Industrial",
-  "hvac-climate-control": "HVAC",
-  "electrical-energy": "Electrical",
-  "building-materials": "Materials",
-  "fuel-lubrication-fluid": "Fuel",
-  "kids-playgrounds": "Kids",
-  "kitchen": "Kitchen",
-}
-
-function shortNavLabel(slug: string, name: string): string {
-  if (NAV_SHORT_NAMES[slug]) return NAV_SHORT_NAMES[slug]
+/* Short labels for horizontal sticky nav — now CMS-managed (homepage.nav_short_names). */
+function shortNavLabel(slug: string, name: string, navShortNames: Record<string, string>): string {
+  if (navShortNames[slug]) return navShortNames[slug]
   // Fallback: strip trailing descriptors, keep up to two punchy words
   const cleaned = name.replace(/\s*[,&/].*$/, "").trim()
   return cleaned
 }
 
-export default function HomepageShell({ locale, l1Nodes }: HomepageShellProps) {
+export default function HomepageShell({ locale, l1Nodes, slides, promos, navShortNames }: HomepageShellProps) {
   const loc = locale as Locale
 
   /* ── 18 L1 from SSoT taxonomy tree (pre-computed server-side, PERF-C1) ── */
@@ -185,20 +117,20 @@ export default function HomepageShell({ locale, l1Nodes }: HomepageShellProps) {
 
   useEffect(() => {
     slideTimer.current = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % SLIDES.length)
+      setCurrentSlide((prev) => (prev + 1) % slides.length)
     }, 6000)
     return () => {
       if (slideTimer.current) clearInterval(slideTimer.current)
     }
-  }, [])
+  }, [slides.length])
 
   const goToSlide = useCallback((n: number) => {
     setCurrentSlide(n)
     if (slideTimer.current) clearInterval(slideTimer.current)
     slideTimer.current = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % SLIDES.length)
+      setCurrentSlide((prev) => (prev + 1) % slides.length)
     }, 6000)
-  }, [])
+  }, [slides.length])
 
   /* ── Deal products — real Meili hits, one per seed query. ── */
   interface Deal {
@@ -320,7 +252,7 @@ export default function HomepageShell({ locale, l1Nodes }: HomepageShellProps) {
         {/* Carousel + Promos + Deals */}
         <div className="hp-carousel-container">
           <div className="hp-carousel">
-            {SLIDES.map((slide, idx) => (
+            {slides.map((slide, idx) => (
               <div
                 key={idx}
                 className={`hp-carousel-slide hp-slide-${idx + 1}${idx === currentSlide ? " active" : ""}`}
@@ -336,7 +268,7 @@ export default function HomepageShell({ locale, l1Nodes }: HomepageShellProps) {
               </div>
             ))}
             <div className="hp-carousel-dots">
-              {SLIDES.map((_, idx) => (
+              {slides.map((_, idx) => (
                 <span
                   key={idx}
                   className={`hp-dot${idx === currentSlide ? " active" : ""}`}
@@ -348,7 +280,7 @@ export default function HomepageShell({ locale, l1Nodes }: HomepageShellProps) {
 
           {/* Promo Cards */}
           <div className="hp-promo-row">
-            {PROMOS.map((promo, idx) => {
+            {promos.map((promo, idx) => {
               const style = promo.image
                 ? { backgroundImage: `url('${promo.image}')` }
                 : { backgroundImage: promo.bg }
@@ -423,7 +355,7 @@ export default function HomepageShell({ locale, l1Nodes }: HomepageShellProps) {
                 type="button"
               >
                 {Icon && <Icon size={22} strokeWidth={1.4} />}
-                <span className="hp-tooltip">{shortNavLabel(cat.slug, cat.name)}</span>
+                <span className="hp-tooltip">{shortNavLabel(cat.slug, cat.name, navShortNames)}</span>
               </button>
             )
           })}

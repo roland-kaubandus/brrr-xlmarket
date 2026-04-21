@@ -1,38 +1,21 @@
 import type { MedusaRequest, MedusaResponse } from "@medusajs/framework/http"
-import fs from "fs"
-import path from "path"
+import { listPages } from "../../../modules/cms/db"
+import { PAGE_REGISTRY } from "../../../modules/cms/schemas"
 
-const CMS_PATH = path.join(process.cwd(), "../data/cms/content.json")
+// GET /admin/cms — list all manageable pages with seeded status + last edit info
+export const GET = async (_req: MedusaRequest, res: MedusaResponse) => {
+  const rows = await listPages()
 
-function readCms() {
-  try {
-    return JSON.parse(fs.readFileSync(CMS_PATH, "utf-8"))
-  } catch {
-    return { hero: {}, announcement: {}, banners: [], campaigns: [] }
-  }
-}
+  const pages = Object.entries(PAGE_REGISTRY).map(([key, reg]) => {
+    const row = rows.find((p) => p.page_key === key)
+    return {
+      key,
+      title: reg.title,
+      seeded: !!row,
+      updated_at: row?.updated_at ?? null,
+      updated_by: row?.updated_by ?? null,
+    }
+  })
 
-function writeCms(data: Record<string, unknown>) {
-  fs.mkdirSync(path.dirname(CMS_PATH), { recursive: true })
-  fs.writeFileSync(CMS_PATH, JSON.stringify(data, null, 2))
-}
-
-export const GET = async (req: MedusaRequest, res: MedusaResponse) => {
-  const content = readCms()
-  res.json({ content })
-}
-
-export const POST = async (req: MedusaRequest, res: MedusaResponse) => {
-  if (!(req as any).auth_context?.actor_id) {
-    res.status(401).json({ message: "Autentimine on kohustuslik" })
-    return
-  }
-
-  const current = readCms()
-  const updates = req.body as Record<string, unknown>
-
-  const merged = { ...current, ...updates, updatedAt: new Date().toISOString(), updatedBy: "admin" }
-  writeCms(merged)
-
-  res.json({ content: merged })
+  res.json({ pages })
 }
