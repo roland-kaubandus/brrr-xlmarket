@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-21T07:07:29.703Z",
+  "generated_at": "2026-04-21T07:38:03.093Z",
   "nodes": {
     "horeca-food-service": {
       "handle": "horeca-food-service",
@@ -4911,32 +4911,116 @@
       "level": 1,
       "parent_handle": null,
       "child_handles": [
-        "renewable-energy",
-        "inverters",
-        "solar-power",
-        "batteries",
-        "batteries-and-chargers-and-accessories",
-        "wind-power"
+        "solar",
+        "wind",
+        "batteries-and-chargers"
       ],
       "image_path": "/cat-thumbs/renewable-energy-batteries.webp",
       "image_source": "direct"
     },
-    "renewable-energy": {
-      "handle": "renewable-energy",
-      "name_en": "Renewable Energy",
-      "name_et": "Renewable Energy",
+    "solar": {
+      "handle": "solar",
+      "name_en": "Solar",
+      "name_et": "Solar",
       "level": 2,
       "parent_handle": "renewable-energy-batteries",
       "child_handles": [
-        "solar-power-accessories",
         "solar-panels",
-        "ev-chargers",
-        "wind-generators",
-        "dc-to-dc-charger",
-        "solar-panel-kits",
-        "solar-charge-controllers"
+        "inverters-and-controllers",
+        "solar-power-accessories",
+        "solar-panel-kits"
       ],
-      "image_path": "/cat-thumbs/renewable-energy.webp",
+      "image_path": "/cat-thumbs/solar-panels.webp",
+      "image_source": "inherited",
+      "image_donor": "solar-panels"
+    },
+    "solar-panels": {
+      "handle": "solar-panels",
+      "name_en": "Solar Panels",
+      "name_et": "Solar Panels",
+      "level": 3,
+      "parent_handle": "solar",
+      "child_handles": [
+        "monocrystalline-solar-panel",
+        "solar-trickle-charger"
+      ],
+      "image_path": "/cat-thumbs/solar-panels.webp",
+      "image_source": "direct"
+    },
+    "monocrystalline-solar-panel": {
+      "handle": "monocrystalline-solar-panel",
+      "name_en": "Monocrystalline Solar Panel",
+      "name_et": "Monocrystalline Solar Panel",
+      "level": 4,
+      "parent_handle": "solar-panels",
+      "child_handles": [],
+      "image_path": "/cat-thumbs/monocrystalline-solar-panel.webp",
+      "image_source": "direct"
+    },
+    "solar-trickle-charger": {
+      "handle": "solar-trickle-charger",
+      "name_en": "Solar Trickle Charger",
+      "name_et": "Solar Trickle Charger",
+      "level": 4,
+      "parent_handle": "solar-panels",
+      "child_handles": [],
+      "image_path": "/cat-thumbs/solar-trickle-charger.webp",
+      "image_source": "direct"
+    },
+    "inverters-and-controllers": {
+      "handle": "inverters-and-controllers",
+      "name_en": "Inverters & Controllers",
+      "name_et": "Inverters & Controllers",
+      "level": 3,
+      "parent_handle": "solar",
+      "child_handles": [
+        "grid-tie-inverters",
+        "off-grid-solar-inverters",
+        "hybrid-inverters",
+        "charge-controllers"
+      ],
+      "image_path": "/cat-thumbs/charge-controllers.webp",
+      "image_source": "inherited",
+      "image_donor": "charge-controllers"
+    },
+    "grid-tie-inverters": {
+      "handle": "grid-tie-inverters",
+      "name_en": "Grid Tie Inverters",
+      "name_et": "Grid Tie Inverters",
+      "level": 4,
+      "parent_handle": "inverters-and-controllers",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "off-grid-solar-inverters": {
+      "handle": "off-grid-solar-inverters",
+      "name_en": "Off Grid Solar Inverters",
+      "name_et": "Off Grid Solar Inverters",
+      "level": 4,
+      "parent_handle": "inverters-and-controllers",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "hybrid-inverters": {
+      "handle": "hybrid-inverters",
+      "name_en": "Hybrid Inverters",
+      "name_et": "Hybrid Inverters",
+      "level": 4,
+      "parent_handle": "inverters-and-controllers",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "charge-controllers": {
+      "handle": "charge-controllers",
+      "name_en": "Charge Controllers",
+      "name_et": "Charge Controllers",
+      "level": 4,
+      "parent_handle": "inverters-and-controllers",
+      "child_handles": [],
+      "image_path": "/cat-thumbs/charge-controllers.webp",
       "image_source": "direct"
     },
     "solar-power-accessories": {
@@ -4944,12 +5028,11 @@
       "name_en": "Solar Power Accessories",
       "name_et": "Solar Power Accessories",
       "level": 3,
-      "parent_handle": "renewable-energy",
+      "parent_handle": "solar",
       "child_handles": [
         "solar-panel-mount-brackets",
         "solar-panel-extension-cable",
-        "hybrid-solar-inverter",
-        "grid-tie-inverter"
+        "solar-panel-guard"
       ],
       "image_path": "/cat-thumbs/solar-power-accessories.webp",
       "image_source": "direct"
@@ -4974,130 +5057,22 @@
       "image_path": "/cat-thumbs/solar-panel-extension-cable.webp",
       "image_source": "direct"
     },
-    "hybrid-solar-inverter": {
-      "handle": "hybrid-solar-inverter",
-      "name_en": "Hybrid Solar Inverter",
-      "name_et": "Hybrid Solar Inverter",
+    "solar-panel-guard": {
+      "handle": "solar-panel-guard",
+      "name_en": "Solar Panel Guard",
+      "name_et": "Solar Panel Guard",
       "level": 4,
       "parent_handle": "solar-power-accessories",
       "child_handles": [],
-      "image_path": "/cat-thumbs/hybrid-solar-inverter.webp",
-      "image_source": "direct"
-    },
-    "grid-tie-inverter": {
-      "handle": "grid-tie-inverter",
-      "name_en": "Grid Tie Inverter",
-      "name_et": "Grid Tie Inverter",
-      "level": 4,
-      "parent_handle": "solar-power-accessories",
-      "child_handles": [],
-      "image_path": "/cat-thumbs/grid-tie-inverter.webp",
-      "image_source": "direct"
-    },
-    "solar-panels": {
-      "handle": "solar-panels",
-      "name_en": "Solar Panels",
-      "name_et": "Solar Panels",
-      "level": 3,
-      "parent_handle": "renewable-energy",
-      "child_handles": [
-        "solar-trickle-charger",
-        "monocrystalline-solar-panel"
-      ],
-      "image_path": "/cat-thumbs/solar-panels.webp",
-      "image_source": "direct"
-    },
-    "solar-trickle-charger": {
-      "handle": "solar-trickle-charger",
-      "name_en": "Solar Trickle Charger",
-      "name_et": "Solar Trickle Charger",
-      "level": 4,
-      "parent_handle": "solar-panels",
-      "child_handles": [],
-      "image_path": "/cat-thumbs/solar-trickle-charger.webp",
-      "image_source": "direct"
-    },
-    "monocrystalline-solar-panel": {
-      "handle": "monocrystalline-solar-panel",
-      "name_en": "Monocrystalline Solar Panel",
-      "name_et": "Monocrystalline Solar Panel",
-      "level": 4,
-      "parent_handle": "solar-panels",
-      "child_handles": [],
-      "image_path": "/cat-thumbs/monocrystalline-solar-panel.webp",
-      "image_source": "direct"
-    },
-    "ev-chargers": {
-      "handle": "ev-chargers",
-      "name_en": "EV Chargers",
-      "name_et": "EV Chargers",
-      "level": 3,
-      "parent_handle": "renewable-energy",
-      "child_handles": [
-        "ev-charger-extension-cable",
-        "ev-charging-station"
-      ],
-      "image_path": "/cat-thumbs/ev-chargers.webp",
-      "image_source": "direct"
-    },
-    "ev-charger-extension-cable": {
-      "handle": "ev-charger-extension-cable",
-      "name_en": "EV Charger Extension Cable",
-      "name_et": "EV Charger Extension Cable",
-      "level": 4,
-      "parent_handle": "ev-chargers",
-      "child_handles": [],
-      "image_path": "/cat-thumbs/ev-charger-extension-cable.webp",
-      "image_source": "direct"
-    },
-    "ev-charging-station": {
-      "handle": "ev-charging-station",
-      "name_en": "EV Charging Station",
-      "name_et": "EV Charging Station",
-      "level": 4,
-      "parent_handle": "ev-chargers",
-      "child_handles": [],
-      "image_path": "/cat-thumbs/ev-charging-station.webp",
-      "image_source": "direct"
-    },
-    "wind-generators": {
-      "handle": "wind-generators",
-      "name_en": "Wind Generators",
-      "name_et": "Wind Generators",
-      "level": 3,
-      "parent_handle": "renewable-energy",
-      "child_handles": [
-        "home-wind-turbines"
-      ],
-      "image_path": "/cat-thumbs/wind-generators.webp",
-      "image_source": "direct"
-    },
-    "home-wind-turbines": {
-      "handle": "home-wind-turbines",
-      "name_en": "Home Wind Turbines",
-      "name_et": "Home Wind Turbines",
-      "level": 4,
-      "parent_handle": "wind-generators",
-      "child_handles": [],
-      "image_path": "/cat-thumbs/home-wind-turbines.webp",
-      "image_source": "direct"
-    },
-    "dc-to-dc-charger": {
-      "handle": "dc-to-dc-charger",
-      "name_en": "DC to DC Charger",
-      "name_et": "DC to DC Charger",
-      "level": 3,
-      "parent_handle": "renewable-energy",
-      "child_handles": [],
-      "image_path": "/cat-thumbs/dc-to-dc-charger.webp",
-      "image_source": "direct"
+      "image_path": "/cat-thumbs/solar-panel-bird-critter-guard-kit.webp",
+      "image_source": "fuzzy"
     },
     "solar-panel-kits": {
       "handle": "solar-panel-kits",
       "name_en": "Solar Panel Kits",
       "name_et": "Solar Panel Kits",
       "level": 3,
-      "parent_handle": "renewable-energy",
+      "parent_handle": "solar",
       "child_handles": [
         "off-grid-solar-systems"
       ],
@@ -5114,103 +5089,53 @@
       "image_path": null,
       "image_source": "none"
     },
-    "solar-charge-controllers": {
-      "handle": "solar-charge-controllers",
-      "name_en": "Solar Charge Controllers",
-      "name_et": "Solar Charge Controllers",
-      "level": 3,
-      "parent_handle": "renewable-energy",
-      "child_handles": [
-        "charge-controllers"
-      ],
-      "image_path": "/cat-thumbs/solar-charge-controllers.webp",
-      "image_source": "direct"
-    },
-    "charge-controllers": {
-      "handle": "charge-controllers",
-      "name_en": "Charge Controllers",
-      "name_et": "Charge Controllers",
-      "level": 4,
-      "parent_handle": "solar-charge-controllers",
-      "child_handles": [],
-      "image_path": "/cat-thumbs/charge-controllers.webp",
-      "image_source": "direct"
-    },
-    "inverters": {
-      "handle": "inverters",
-      "name_en": "Inverters",
-      "name_et": "Inverters",
+    "wind": {
+      "handle": "wind",
+      "name_en": "Wind",
+      "name_et": "Wind",
       "level": 2,
       "parent_handle": "renewable-energy-batteries",
       "child_handles": [
-        "grid-tie-solar-inverter",
-        "off-grid-solar-inverter"
+        "home-wind-turbines"
       ],
-      "image_path": "/cat-thumbs/inverters.webp",
+      "image_path": "/cat-thumbs/home-wind-turbines.webp",
+      "image_source": "inherited",
+      "image_donor": "home-wind-turbines"
+    },
+    "home-wind-turbines": {
+      "handle": "home-wind-turbines",
+      "name_en": "Home Wind Turbines",
+      "name_et": "Home Wind Turbines",
+      "level": 3,
+      "parent_handle": "wind",
+      "child_handles": [],
+      "image_path": "/cat-thumbs/home-wind-turbines.webp",
       "image_source": "direct"
     },
-    "grid-tie-solar-inverter": {
-      "handle": "grid-tie-solar-inverter",
-      "name_en": "Grid Tie Solar Inverter",
-      "name_et": "Grid Tie Solar Inverter",
-      "level": 3,
-      "parent_handle": "inverters",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "off-grid-solar-inverter": {
-      "handle": "off-grid-solar-inverter",
-      "name_en": "Off Grid Solar Inverter",
-      "name_et": "Off Grid Solar Inverter",
-      "level": 3,
-      "parent_handle": "inverters",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "solar-power": {
-      "handle": "solar-power",
-      "name_en": "Solar Power",
-      "name_et": "Solar Power",
+    "batteries-and-chargers": {
+      "handle": "batteries-and-chargers",
+      "name_en": "Batteries & Chargers",
+      "name_et": "Batteries & Chargers",
       "level": 2,
       "parent_handle": "renewable-energy-batteries",
       "child_handles": [
-        "mppt-solar-charge-controller",
-        "solar-panel-guard"
+        "batteries",
+        "battery-chargers",
+        "voltage-converters",
+        "ev-charging"
       ],
-      "image_path": "/cat-thumbs/solar-power.webp",
-      "image_source": "direct"
-    },
-    "mppt-solar-charge-controller": {
-      "handle": "mppt-solar-charge-controller",
-      "name_en": "MPPT Solar Charge Controller",
-      "name_et": "MPPT Solar Charge Controller",
-      "level": 3,
-      "parent_handle": "solar-power",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "solar-panel-guard": {
-      "handle": "solar-panel-guard",
-      "name_en": "Solar Panel Guard",
-      "name_et": "Solar Panel Guard",
-      "level": 3,
-      "parent_handle": "solar-power",
-      "child_handles": [],
-      "image_path": "/cat-thumbs/solar-panel-bird-critter-guard-kit.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/batteries.webp",
+      "image_source": "inherited",
+      "image_donor": "batteries"
     },
     "batteries": {
       "handle": "batteries",
       "name_en": "Batteries",
       "name_et": "Batteries",
-      "level": 2,
-      "parent_handle": "renewable-energy-batteries",
+      "level": 3,
+      "parent_handle": "batteries-and-chargers",
       "child_handles": [
-        "powersports-batteries",
-        "rechargeable-battery-chargers"
+        "powersports-batteries"
       ],
       "image_path": "/cat-thumbs/batteries.webp",
       "image_source": "direct"
@@ -5219,40 +5144,40 @@
       "handle": "powersports-batteries",
       "name_en": "Powersports Batteries",
       "name_et": "Powersports Batteries",
-      "level": 3,
+      "level": 4,
       "parent_handle": "batteries",
       "child_handles": [],
       "image_path": "/cat-thumbs/powersports-batteries.webp",
       "image_source": "direct"
     },
-    "rechargeable-battery-chargers": {
-      "handle": "rechargeable-battery-chargers",
-      "name_en": "Rechargeable Battery Chargers",
-      "name_et": "Rechargeable Battery Chargers",
+    "battery-chargers": {
+      "handle": "battery-chargers",
+      "name_en": "Battery Chargers",
+      "name_et": "Battery Chargers",
       "level": 3,
-      "parent_handle": "batteries",
+      "parent_handle": "batteries-and-chargers",
       "child_handles": [
         "starting-and-energy-storage-battery-charger"
       ],
-      "image_path": null,
-      "image_source": "none"
+      "image_path": "/cat-thumbs/car-battery-chargers.webp",
+      "image_source": "fuzzy"
     },
     "starting-and-energy-storage-battery-charger": {
       "handle": "starting-and-energy-storage-battery-charger",
       "name_en": "Starting & Energy Storage Battery Charger",
       "name_et": "Starting & Energy Storage Battery Charger",
       "level": 4,
-      "parent_handle": "rechargeable-battery-chargers",
+      "parent_handle": "battery-chargers",
       "child_handles": [],
       "image_path": null,
       "image_source": "none"
     },
-    "batteries-and-chargers-and-accessories": {
-      "handle": "batteries-and-chargers-and-accessories",
-      "name_en": "Batteries & Chargers & Accessories",
-      "name_et": "Batteries & Chargers & Accessories",
-      "level": 2,
-      "parent_handle": "renewable-energy-batteries",
+    "voltage-converters": {
+      "handle": "voltage-converters",
+      "name_en": "Voltage Converters",
+      "name_et": "Voltage Converters",
+      "level": 3,
+      "parent_handle": "batteries-and-chargers",
       "child_handles": [
         "voltage-converter-transformer"
       ],
@@ -5264,33 +5189,45 @@
       "handle": "voltage-converter-transformer",
       "name_en": "Voltage Converter Transformer",
       "name_et": "Voltage Converter Transformer",
-      "level": 3,
-      "parent_handle": "batteries-and-chargers-and-accessories",
+      "level": 4,
+      "parent_handle": "voltage-converters",
       "child_handles": [],
       "image_path": "/cat-thumbs/voltage-converter-transformer.webp",
       "image_source": "direct"
     },
-    "wind-power": {
-      "handle": "wind-power",
-      "name_en": "Wind Power",
-      "name_et": "Wind Power",
-      "level": 2,
-      "parent_handle": "renewable-energy-batteries",
+    "ev-charging": {
+      "handle": "ev-charging",
+      "name_en": "EV Charging",
+      "name_et": "EV Charging",
+      "level": 3,
+      "parent_handle": "batteries-and-chargers",
       "child_handles": [
-        "wind-turbine"
+        "ev-charging-station",
+        "ev-charger-extension-cable"
       ],
-      "image_path": "/cat-thumbs/wind-power.webp",
+      "image_path": "/cat-thumbs/ev-charging-station.webp",
+      "image_source": "inherited",
+      "image_donor": "ev-charging-station"
+    },
+    "ev-charging-station": {
+      "handle": "ev-charging-station",
+      "name_en": "EV Charging Station",
+      "name_et": "EV Charging Station",
+      "level": 4,
+      "parent_handle": "ev-charging",
+      "child_handles": [],
+      "image_path": "/cat-thumbs/ev-charging-station.webp",
       "image_source": "direct"
     },
-    "wind-turbine": {
-      "handle": "wind-turbine",
-      "name_en": "Wind Turbine",
-      "name_et": "Wind Turbine",
-      "level": 3,
-      "parent_handle": "wind-power",
+    "ev-charger-extension-cable": {
+      "handle": "ev-charger-extension-cable",
+      "name_en": "EV Charger Extension Cable",
+      "name_et": "EV Charger Extension Cable",
+      "level": 4,
+      "parent_handle": "ev-charging",
       "child_handles": [],
-      "image_path": "/cat-thumbs/home-wind-turbines.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/ev-charger-extension-cable.webp",
+      "image_source": "direct"
     },
     "automotive-workshop": {
       "handle": "automotive-workshop",
@@ -45475,39 +45412,33 @@
     "venue-decoration",
     "marine-carpet",
     "renewable-energy-batteries",
-    "renewable-energy",
+    "solar",
+    "solar-panels",
+    "monocrystalline-solar-panel",
+    "solar-trickle-charger",
+    "inverters-and-controllers",
+    "grid-tie-inverters",
+    "off-grid-solar-inverters",
+    "hybrid-inverters",
+    "charge-controllers",
     "solar-power-accessories",
     "solar-panel-mount-brackets",
     "solar-panel-extension-cable",
-    "hybrid-solar-inverter",
-    "grid-tie-inverter",
-    "solar-panels",
-    "solar-trickle-charger",
-    "monocrystalline-solar-panel",
-    "ev-chargers",
-    "ev-charger-extension-cable",
-    "ev-charging-station",
-    "wind-generators",
-    "home-wind-turbines",
-    "dc-to-dc-charger",
+    "solar-panel-guard",
     "solar-panel-kits",
     "off-grid-solar-systems",
-    "solar-charge-controllers",
-    "charge-controllers",
-    "inverters",
-    "grid-tie-solar-inverter",
-    "off-grid-solar-inverter",
-    "solar-power",
-    "mppt-solar-charge-controller",
-    "solar-panel-guard",
+    "wind",
+    "home-wind-turbines",
+    "batteries-and-chargers",
     "batteries",
     "powersports-batteries",
-    "rechargeable-battery-chargers",
+    "battery-chargers",
     "starting-and-energy-storage-battery-charger",
-    "batteries-and-chargers-and-accessories",
+    "voltage-converters",
     "voltage-converter-transformer",
-    "wind-power",
-    "wind-turbine",
+    "ev-charging",
+    "ev-charging-station",
+    "ev-charger-extension-cable",
     "automotive-workshop",
     "shop-equipment",
     "car-jacks",

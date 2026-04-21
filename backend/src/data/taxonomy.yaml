@@ -1442,13 +1442,39 @@ l1:
   - slug: renewable-energy-batteries
     name_en: Renewable Energy & Batteries
     subs:
-      - slug: renewable-energy
-        name_en: Renewable Energy
-        product_count: 73
+      - slug: solar
+        name_en: Solar
+        product_count: 55
         subs:
+          - slug: solar-panels
+            name_en: Solar Panels
+            product_count: 33
+            subs:
+              - slug: monocrystalline-solar-panel
+                name_en: Monocrystalline Solar Panel
+                product_count: 8
+              - slug: solar-trickle-charger
+                name_en: Solar Trickle Charger
+                product_count: 9
+          - slug: inverters-and-controllers
+            name_en: Inverters & Controllers
+            product_count: 10
+            subs:
+              - slug: grid-tie-inverters
+                name_en: Grid Tie Inverters
+                product_count: 3
+              - slug: off-grid-solar-inverters
+                name_en: Off Grid Solar Inverters
+                product_count: 1
+              - slug: hybrid-inverters
+                name_en: Hybrid Inverters
+                product_count: 5
+              - slug: charge-controllers
+                name_en: Charge Controllers
+                product_count: 4
           - slug: solar-power-accessories
             name_en: Solar Power Accessories
-            product_count: 23
+            product_count: 6
             subs:
               - slug: solar-panel-mount-brackets
                 name_en: Solar Panel Mount Brackets
@@ -1456,104 +1482,58 @@ l1:
               - slug: solar-panel-extension-cable
                 name_en: Solar Panel Extension Cable
                 product_count: 7
-              - slug: hybrid-solar-inverter
-                name_en: Hybrid Solar Inverter
-                product_count: 5
-              - slug: grid-tie-inverter
-                name_en: Grid Tie Inverter
-                product_count: 2
-          - slug: solar-panels
-            name_en: Solar Panels
-            product_count: 17
-            subs:
-              - slug: solar-trickle-charger
-                name_en: Solar Trickle Charger
-                product_count: 9
-              - slug: monocrystalline-solar-panel
-                name_en: Monocrystalline Solar Panel
-                product_count: 8
-          - slug: ev-chargers
-            name_en: EV Chargers
-            product_count: 14
-            subs:
-              - slug: ev-charger-extension-cable
-                name_en: EV Charger Extension Cable
-                product_count: 8
-              - slug: ev-charging-station
-                name_en: EV Charging Station
-                product_count: 6
-          - slug: wind-generators
-            name_en: Wind Generators
-            product_count: 11
-            subs:
-              - slug: home-wind-turbines
-                name_en: Home Wind Turbines
-                product_count: 11
-          - slug: dc-to-dc-charger
-            name_en: DC to DC Charger
-            product_count: 4
+              - slug: solar-panel-guard
+                name_en: Solar Panel Guard
+                product_count: 1
           - slug: solar-panel-kits
             name_en: Solar Panel Kits
-            product_count: 3
+            product_count: 7
             subs:
               - slug: off-grid-solar-systems
                 name_en: Off Grid Solar Systems
                 product_count: 3
-          - slug: solar-charge-controllers
-            name_en: Solar Charge Controllers
-            product_count: 1
+      - slug: wind
+        name_en: Wind
+        product_count: 11
+        subs:
+          - slug: home-wind-turbines
+            name_en: Home Wind Turbines
+            product_count: 11
+      - slug: batteries-and-chargers
+        name_en: Batteries & Chargers
+        product_count: 33
+        subs:
+          - slug: batteries
+            name_en: Batteries
+            product_count: 6
             subs:
-              - slug: charge-controllers
-                name_en: Charge Controllers
-                product_count: 1
-      - slug: inverters
-        name_en: Inverters
-        product_count: 4
-        subs:
-          - slug: grid-tie-solar-inverter
-            name_en: Grid Tie Solar Inverter
+              - slug: powersports-batteries
+                name_en: Powersports Batteries
+                product_count: 2
+          - slug: battery-chargers
+            name_en: Battery Chargers
             product_count: 3
-          - slug: off-grid-solar-inverter
-            name_en: Off Grid Solar Inverter
-            product_count: 1
-      - slug: solar-power
-        name_en: Solar Power
-        product_count: 4
-        subs:
-          - slug: mppt-solar-charge-controller
-            name_en: MPPT Solar Charge Controller
-            product_count: 3
-          - slug: solar-panel-guard
-            name_en: Solar Panel Guard
-            product_count: 1
-      - slug: batteries
-        name_en: Batteries
-        product_count: 3
-        subs:
-          - slug: powersports-batteries
-            name_en: Powersports Batteries
-            product_count: 2
-          - slug: rechargeable-battery-chargers
-            name_en: Rechargeable Battery Chargers
-            product_count: 1
             subs:
               - slug: starting-and-energy-storage-battery-charger
                 name_en: Starting & Energy Storage Battery Charger
                 product_count: 1
-      - slug: batteries-and-chargers-and-accessories
-        name_en: Batteries & Chargers & Accessories
-        product_count: 1
-        subs:
-          - slug: voltage-converter-transformer
-            name_en: Voltage Converter Transformer
+          - slug: voltage-converters
+            name_en: Voltage Converters
             product_count: 1
-      - slug: wind-power
-        name_en: Wind Power
-        product_count: 1
-        subs:
-          - slug: wind-turbine
-            name_en: Wind Turbine
-            product_count: 1
+            subs:
+              - slug: voltage-converter-transformer
+                name_en: Voltage Converter Transformer
+                product_count: 1
+          - slug: ev-charging
+            name_en: EV Charging
+            product_count: 18
+            subs:
+              - slug: ev-charging-station
+                name_en: EV Charging Station
+                product_count: 6
+              - slug: ev-charger-extension-cable
+                name_en: EV Charger Extension Cable
+                product_count: 8
   - slug: automotive-workshop
     name_en: Automotive & Workshop
     subs:
