@@ -37,6 +37,15 @@ mkdir -p "$LOG_DIR"
 echo "=== XL Market Feed Sync: $TIMESTAMP ==="
 echo ""
 
+# Slack alert helper. Safe no-op if tokens missing (dev/test). Silently
+# swallows errors so a network hiccup can't take down the sync itself.
+slack_alert() {
+  local msg="$1"
+  if [[ -f "$HOME/.slack_tokens" && -f "$HOME/bin/slack-send.py" ]]; then
+    python3 "$HOME/bin/slack-send.py" cc printer2 "$msg" >/dev/null 2>&1 || true
+  fi
+}
+
 # ── SAFETY NET: always verify Meili has custom fields at exit ──
 # If any earlier step crashes, the Medusa plugin may have partially overwritten
 # the index with minimal fields (no price, no taxonomy). Run our full reindex
@@ -47,12 +56,21 @@ safety_reindex() {
   if [[ $exit_code -ne 0 ]]; then
     echo ""
     echo "⚠  Feed-sync failed at earlier step (exit $exit_code). Running safety reindex..."
-    cd "$REPO" && unset DATABASE_URL && node backend/scripts/index-meilisearch.mjs 2>&1 | tail -3 || echo "  Safety reindex also failed — index may be broken, investigate manually."
+    slack_alert ":warning: XL feed-sync failed (step crash, exit=$exit_code). Running safety reindex at $TIMESTAMP."
+    cd "$REPO" && unset DATABASE_URL && node backend/scripts/index-meilisearch.mjs 2>&1 | tail -3 || {
+      echo "  Safety reindex also failed — index may be broken, investigate manually."
+      slack_alert ":rotating_light: XL feed-sync: safety reindex ALSO FAILED at $TIMESTAMP. Site may show €0.00 prices. Investigate now."
+    }
     # Verify custom fields present; alert if still missing.
     HAS_PRICE=$(curl -s -X POST "http://127.0.0.1:7700/indexes/products/search" \
       -H "Authorization: Bearer $MEILISEARCH_KEY" -H "Content-Type: application/json" \
       -d '{"q":"","limit":1}' 2>/dev/null | python3 -c 'import json,sys,re; d=json.load(sys.stdin); print("yes" if d.get("hits",[{}])[0].get("price") is not None else "no")' 2>/dev/null || echo "?")
     echo "  Meili has price field after safety reindex: $HAS_PRICE"
+    if [[ "$HAS_PRICE" != "yes" ]]; then
+      slack_alert ":rotating_light: XL feed-sync: Meili index BROKEN after safety reindex (no price field). €0.00 on live site. Timestamp: $TIMESTAMP"
+    else
+      slack_alert ":white_check_mark: XL feed-sync: safety reindex succeeded at $TIMESTAMP. Price field back."
+    fi
   fi
   return $exit_code
 }
@@ -126,6 +144,7 @@ if ! MEILI_OUTPUT=$(node scripts/index-meilisearch.mjs 2>&1); then
   echo "$MEILI_OUTPUT" | tail -10
   echo "# Feed Sync FAILED at Meili reindex: $TIMESTAMP" > "$REPORT"
   echo "$MEILI_OUTPUT" >> "$REPORT"
+  slack_alert ":rotating_light: XL feed-sync: Meili reindex FAILED at $TIMESTAMP. EXIT trap will retry, but alert now so a human can watch."
   exit 1
 fi
 MEILI_DOCS=$(echo "$MEILI_OUTPUT" | grep -oP '\d+ dokumenti' || echo "? dokumenti")
@@ -144,6 +163,7 @@ if [[ "$HAS_PRICE" != "yes" || "$HAS_TAX" != "yes" ]]; then
   echo "  FAIL: Meili index missing custom fields (price=$HAS_PRICE, taxonomy=$HAS_TAX)"
   echo "# Feed Sync FAILED at Meili verify: $TIMESTAMP" > "$REPORT"
   echo "After reindex, product[0] missing fields. Site will show €0.00 and broken breadcrumbs." >> "$REPORT"
+  slack_alert ":rotating_light: XL feed-sync: verify FAILED (price=$HAS_PRICE, taxonomy=$HAS_TAX) at $TIMESTAMP. Site likely showing €0.00. Next cron will retry."
   exit 1
 fi
 echo "  OK: price + taxonomy fields present"
