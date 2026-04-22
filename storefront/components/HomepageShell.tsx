@@ -499,9 +499,9 @@ const homepageStyles = `
 
 .hp-carousel-slide.active { opacity: 1; }
 
-.hp-slide-1 { background: linear-gradient(90deg, rgba(15,27,45,0.95) 0%, rgba(15,27,45,0.7) 35%, rgba(15,27,45,0.15) 65%, transparent 100%), url('/images/hero-1.webp') right center/cover no-repeat; }
-.hp-slide-2 { background: linear-gradient(90deg, rgba(15,27,45,0.95) 0%, rgba(15,27,45,0.7) 35%, rgba(15,27,45,0.15) 65%, transparent 100%), url('/images/hero-2.webp') right center/cover no-repeat; }
-.hp-slide-3 { background: linear-gradient(90deg, rgba(15,27,45,0.95) 0%, rgba(15,27,45,0.7) 35%, rgba(15,27,45,0.15) 65%, transparent 100%), url('/images/hero-3.webp') right center/cover no-repeat; }
+.hp-slide-1 { background: linear-gradient(95deg, rgba(15,27,45,0.98) 0%, rgba(15,27,45,0.92) 22%, rgba(15,27,45,0.65) 42%, rgba(15,27,45,0.25) 62%, rgba(15,27,45,0.05) 82%, transparent 100%), url('/images/hero-1.webp') right center/cover no-repeat; }
+.hp-slide-2 { background: linear-gradient(95deg, rgba(15,27,45,0.98) 0%, rgba(15,27,45,0.92) 22%, rgba(15,27,45,0.65) 42%, rgba(15,27,45,0.25) 62%, rgba(15,27,45,0.05) 82%, transparent 100%), url('/images/hero-2.webp') right center/cover no-repeat; }
+.hp-slide-3 { background: linear-gradient(95deg, rgba(15,27,45,0.98) 0%, rgba(15,27,45,0.92) 22%, rgba(15,27,45,0.65) 42%, rgba(15,27,45,0.25) 62%, rgba(15,27,45,0.05) 82%, transparent 100%), url('/images/hero-3.webp') right center/cover no-repeat; }
 
 .hp-slide-content {
   max-width: 500px;
