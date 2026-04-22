@@ -49,24 +49,21 @@ fi
 git fetch --all --prune 2>&1 | grep -v "^Fetching" || true
 
 # ── 1. Fast-forward origin/main if new commits ────────────────────────
-LOCAL=$(git rev-parse main)
-REMOTE=$(git rev-parse origin/main)
-if [ "$LOCAL" != "$REMOTE" ]; then
-  # Is it a pure fast-forward?
-  if git merge-base --is-ancestor "$LOCAL" "$REMOTE"; then
-    loud "Fast-forwarding main from $(git rev-parse --short $LOCAL) to $(git rev-parse --short $REMOTE)"
-    git pull --ff-only origin main 2>&1 || {
-      loud "FF pull failed — manual intervention required."
-      exit 1
-    }
-  else
-    loud "main diverged from origin/main — local has commits not on remote AND remote has commits not on local."
-    loud "Local:  $(git log --oneline origin/main..main | wc -l) commit(s)"
-    loud "Remote: $(git log --oneline main..origin/main | wc -l) commit(s)"
-    loud "Manual rebase or merge needed."
+# AHEAD = local commits not yet pushed. BEHIND = remote commits not yet pulled.
+AHEAD=$(git rev-list --count origin/main..main)
+BEHIND=$(git rev-list --count main..origin/main)
+
+if [ "$AHEAD" -gt 0 ] && [ "$BEHIND" -gt 0 ]; then
+  loud "main diverged from origin/main (ahead $AHEAD, behind $BEHIND) — manual rebase or merge needed."
+  exit 1
+elif [ "$BEHIND" -gt 0 ]; then
+  loud "Fast-forwarding main — $BEHIND new commit(s) from origin/main"
+  git pull --ff-only origin main 2>&1 || {
+    loud "FF pull failed — manual intervention required."
     exit 1
-  fi
+  }
 fi
+# AHEAD only (local unpushed commits, remote unchanged) is harmless — continue.
 
 # ── 2. Scan feature branches for new commits to merge ─────────────────
 # A branch qualifies if:
