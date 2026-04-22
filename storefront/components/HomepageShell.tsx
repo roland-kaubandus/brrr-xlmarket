@@ -499,9 +499,9 @@ const homepageStyles = `
 
 .hp-carousel-slide.active { opacity: 1; }
 
-.hp-slide-1 { background: linear-gradient(90deg, rgba(15,27,45,0.85) 0%, rgba(15,27,45,0.4) 60%, transparent 100%), url('/images/hero-1.webp') center/cover no-repeat; }
-.hp-slide-2 { background: linear-gradient(90deg, rgba(15,27,45,0.85) 0%, rgba(15,27,45,0.4) 60%, transparent 100%), url('/images/hero-2.webp') center/cover no-repeat; }
-.hp-slide-3 { background: linear-gradient(90deg, rgba(15,27,45,0.85) 0%, rgba(15,27,45,0.4) 60%, transparent 100%), url('/images/hero-3.webp') center/cover no-repeat; }
+.hp-slide-1 { background: linear-gradient(90deg, rgba(15,27,45,0.95) 0%, rgba(15,27,45,0.7) 35%, rgba(15,27,45,0.15) 65%, transparent 100%), url('/images/hero-1.webp') right center/cover no-repeat; }
+.hp-slide-2 { background: linear-gradient(90deg, rgba(15,27,45,0.95) 0%, rgba(15,27,45,0.7) 35%, rgba(15,27,45,0.15) 65%, transparent 100%), url('/images/hero-2.webp') right center/cover no-repeat; }
+.hp-slide-3 { background: linear-gradient(90deg, rgba(15,27,45,0.95) 0%, rgba(15,27,45,0.7) 35%, rgba(15,27,45,0.15) 65%, transparent 100%), url('/images/hero-3.webp') right center/cover no-repeat; }
 
 .hp-slide-content {
   max-width: 500px;
