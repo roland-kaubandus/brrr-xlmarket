@@ -37,6 +37,27 @@ mkdir -p "$LOG_DIR"
 echo "=== XL Market Feed Sync: $TIMESTAMP ==="
 echo ""
 
+# ── SAFETY NET: always verify Meili has custom fields at exit ──
+# If any earlier step crashes, the Medusa plugin may have partially overwritten
+# the index with minimal fields (no price, no taxonomy). Run our full reindex
+# on the way out so the site never stays with a broken index overnight.
+# See audit 2026-04-22: admin password mismatch hung step 3/6 for 8 hours.
+safety_reindex() {
+  local exit_code=$?
+  if [[ $exit_code -ne 0 ]]; then
+    echo ""
+    echo "⚠  Feed-sync failed at earlier step (exit $exit_code). Running safety reindex..."
+    cd "$REPO" && unset DATABASE_URL && node backend/scripts/index-meilisearch.mjs 2>&1 | tail -3 || echo "  Safety reindex also failed — index may be broken, investigate manually."
+    # Verify custom fields present; alert if still missing.
+    HAS_PRICE=$(curl -s -X POST "http://127.0.0.1:7700/indexes/products/search" \
+      -H "Authorization: Bearer $MEILISEARCH_KEY" -H "Content-Type: application/json" \
+      -d '{"q":"","limit":1}' 2>/dev/null | python3 -c 'import json,sys,re; d=json.load(sys.stdin); print("yes" if d.get("hits",[{}])[0].get("price") is not None else "no")' 2>/dev/null || echo "?")
+    echo "  Meili has price field after safety reindex: $HAS_PRICE"
+  fi
+  return $exit_code
+}
+trap safety_reindex EXIT
+
 # ── Step 1: Download fresh feed ──
 echo "[1/6] Downloading fresh VEVOR feed..."
 BEFORE_SIZE=$(stat -c%s "$FEED_DIR/vevor-571.xlsx" 2>/dev/null || echo 0)
@@ -109,6 +130,23 @@ if ! MEILI_OUTPUT=$(node scripts/index-meilisearch.mjs 2>&1); then
 fi
 MEILI_DOCS=$(echo "$MEILI_OUTPUT" | grep -oP '\d+ dokumenti' || echo "? dokumenti")
 echo "  $MEILI_DOCS"
+
+# ── Step 4.5: Verify custom fields actually present ──
+# Without this check, a silently-broken reindex lets the site ship €0.00 prices
+# and missing breadcrumbs. Fail loud so cron retries next cycle (audit 2026-04-22).
+echo "  Verifying index has price + taxonomy fields..."
+SAMPLE=$(curl -s -X POST "http://127.0.0.1:7700/indexes/products/search" \
+  -H "Authorization: Bearer $MEILISEARCH_KEY" -H "Content-Type: application/json" \
+  -d '{"q":"","limit":1}')
+HAS_PRICE=$(echo "$SAMPLE" | python3 -c 'import json,sys; d=json.load(sys.stdin); print("yes" if d.get("hits",[{}])[0].get("price") is not None else "no")' 2>/dev/null || echo "no")
+HAS_TAX=$(echo "$SAMPLE" | python3 -c 'import json,sys; d=json.load(sys.stdin); print("yes" if d.get("hits",[{}])[0].get("taxonomy") else "no")' 2>/dev/null || echo "no")
+if [[ "$HAS_PRICE" != "yes" || "$HAS_TAX" != "yes" ]]; then
+  echo "  FAIL: Meili index missing custom fields (price=$HAS_PRICE, taxonomy=$HAS_TAX)"
+  echo "# Feed Sync FAILED at Meili verify: $TIMESTAMP" > "$REPORT"
+  echo "After reindex, product[0] missing fields. Site will show €0.00 and broken breadcrumbs." >> "$REPORT"
+  exit 1
+fi
+echo "  OK: price + taxonomy fields present"
 
 # ── Step 5: Update MeiliSearch stock status from feed ──
 echo "[5/6] Syncing stock status to MeiliSearch..."
