@@ -19,7 +19,7 @@ const SLIDES: Slide[] = [
     description: "Café, auto-shop, barber, print, bakery, cleaning. One order, one invoice, one delivery. From €2,799 to €12,900, VAT incl.",
     cta: "See starter kits",
     ctaHref: "/alustajale",
-    bgImage: "/images/hero/hero-1.png",
+    bgImage: "/images/hero/hero-1.webp",
   },
   {
     badge: "B2B Account",
@@ -27,7 +27,7 @@ const SLIDES: Slide[] = [
     description: "Dedicated account manager, custom equipment bundles, priority shipping, 2-year extended warranty.",
     cta: "Request a quote",
     ctaHref: "/arikliendile",
-    bgImage: "/images/hero/hero-2.png",
+    bgImage: "/images/hero/hero-2.webp",
   },
   {
     badge: "Service",
@@ -35,7 +35,7 @@ const SLIDES: Slide[] = [
     description: "Basic, Pro, Enterprise service plans. Quarterly maintenance, 48h priority repair, replacement units while we fix yours.",
     cta: "Choose a service plan",
     ctaHref: "/hooldus",
-    bgImage: "/images/hero/hero-3.png",
+    bgImage: "/images/hero/hero-3.webp",
   },
 ]
 

@@ -23,7 +23,7 @@ export const BRANCHES: BranchDef[] = [
     tagline: "Professionaalne köök algab õigest varustusest",
     taglineEn: "The professional kitchen starts with the right equipment",
     description: "Roostevaba terasest tööpinnad, kuumseadmed, külmikud, cateringitehnika ja serveerimisvahendid professionaalsele köögile ja toitlustusettevõttele.",
-    heroImg: "/images/branches/horeca.png",
+    heroImg: "/images/branches/horeca.webp",
     heroGradient: "from-amber-950/80 via-amber-900/40 to-transparent",
   },
   {
@@ -34,7 +34,7 @@ export const BRANCHES: BranchDef[] = [
     tagline: "Täppistootmine uuel tasemel",
     taglineEn: "Precision manufacturing, next level",
     description: "Lasergraveerijad, CNC-freesid, 3D-printerid ja digitaaltootmise seadmed täppistöödeks ja prototüüpimiseks.",
-    heroImg: "/images/branches/laser-cnc.png",
+    heroImg: "/images/branches/laser-cnc.webp",
     heroGradient: "from-violet-950/80 via-violet-900/40 to-transparent",
   },
   {
@@ -45,7 +45,7 @@ export const BRANCHES: BranchDef[] = [
     tagline: "Metallist meistritööd",
     taglineEn: "Masterwork in metal",
     description: "Keevitusaparaadid, lõikurid, painutuspingid ja metallitöötluse seadmed. Professionaalsed lahendused metallitöökojale.",
-    heroImg: "/images/branches/keevitus.png",
+    heroImg: "/images/branches/keevitus.webp",
     heroGradient: "from-red-950/80 via-red-900/40 to-transparent",
   },
   {
@@ -56,7 +56,7 @@ export const BRANCHES: BranchDef[] = [
     tagline: "Sinu bränd, sinu visuaal",
     taglineEn: "Your brand, your visual",
     description: "Trükimasinad, pakendamisseadmed, vinüülilõikurid ja reklaamtehnika. Professionaalsed lahendused brändingu ja reklaami jaoks.",
-    heroImg: "/images/branches/trukk-pakendamine.png",
+    heroImg: "/images/branches/trukk-pakendamine.webp",
     heroGradient: "from-fuchsia-950/80 via-fuchsia-900/40 to-transparent",
   },
   {
@@ -67,7 +67,7 @@ export const BRANCHES: BranchDef[] = [
     tagline: "Energia igale vajadusele",
     taglineEn: "Power for every need",
     description: "Generaatorid, inverterid, päikesepaneelid, akud ja elektripaigaldustarvikud. Energialahendused igale vajadusele.",
-    heroImg: "/images/branches/elekter-energia.png",
+    heroImg: "/images/branches/elekter-energia.webp",
     heroGradient: "from-blue-950/80 via-blue-900/40 to-transparent",
   },
   {
@@ -78,7 +78,7 @@ export const BRANCHES: BranchDef[] = [
     tagline: "Puit väärib parimat töötlust",
     taglineEn: "Wood deserves the finest craftsmanship",
     description: "Höövlid, saepingid, freesid ja puidutöötlemise seadmed. Kõik vajalik kvaliteetseks tisleritööks ja puusepatöökojale.",
-    heroImg: "/images/branches/puidutoo.png",
+    heroImg: "/images/branches/puidutoo.webp",
     heroGradient: "from-yellow-950/80 via-yellow-900/40 to-transparent",
   },
   {
@@ -89,7 +89,7 @@ export const BRANCHES: BranchDef[] = [
     tagline: "Ehita nagu profi",
     taglineEn: "Build like a pro",
     description: "Lõikurid, tõstukid, tellingud, mõõteriistad ja ehituskeemia. Kõik tööriistad ja seadmed ehitusplatsile ning renoveerimistöödeks.",
-    heroImg: "/images/branches/ehitus.png",
+    heroImg: "/images/branches/ehitus.webp",
     heroGradient: "from-stone-950/80 via-stone-900/40 to-transparent",
   },
   {
@@ -100,7 +100,7 @@ export const BRANCHES: BranchDef[] = [
     tagline: "Puhtus on professionaalsuse alus",
     taglineEn: "Cleanliness is the foundation of professionalism",
     description: "Professionaalsed survepesured, põrandahooldusmasinad, tolmuimejad ja puhastusvahendid. Tööstuslik puhtus mõistliku hinnaga.",
-    heroImg: "/images/branches/puhastus.png",
+    heroImg: "/images/branches/puhastus.webp",
     heroGradient: "from-teal-950/80 via-teal-900/40 to-transparent",
   },
   {
@@ -111,7 +111,7 @@ export const BRANCHES: BranchDef[] = [
     tagline: "Igale tööle õige tööriist",
     taglineEn: "The right tool for every job",
     description: "Akutrellid, lihvmasinad, saed, mutrivõtmed ja muud käsi- ning elektritööriistad igapäevaseks ja professionaalseks kasutamiseks.",
-    heroImg: "/images/branches/tooriistad.png",
+    heroImg: "/images/branches/tooriistad.webp",
     heroGradient: "from-orange-950/80 via-orange-900/40 to-transparent",
   },
   {
@@ -122,7 +122,7 @@ export const BRANCHES: BranchDef[] = [
     tagline: "Vedelike käitlemine turvaliselt",
     taglineEn: "Fluid management done safely",
     description: "Kütuseülekande pumbad, määrdepressid, vedelike kogumisseadmed ja mahutid. Turvaline ja efektiivne vedelike käitlemine.",
-    heroImg: "/images/branches/kutus-vedelikud.png",
+    heroImg: "/images/branches/kutus-vedelikud.webp",
     heroGradient: "from-amber-950/80 via-amber-900/40 to-transparent",
   },
   {
@@ -133,7 +133,7 @@ export const BRANCHES: BranchDef[] = [
     tagline: "Professionaalne haljastus ja aiandus",
     taglineEn: "Professional landscaping and gardening",
     description: "Niidukid, trimmerd, pumpad, kasvuhooned ja maastikuhoolduse seadmed. Professionaalne varustus aia ja haljasalade hoolduseks.",
-    heroImg: "/images/branches/aiatehnika.png",
+    heroImg: "/images/branches/aiatehnika.webp",
     heroGradient: "from-emerald-950/80 via-emerald-900/40 to-transparent",
   },
   {
@@ -144,7 +144,7 @@ export const BRANCHES: BranchDef[] = [
     tagline: "Ladu korras, töö sujub",
     taglineEn: "Organized warehouse, smooth operations",
     description: "Riiulisüsteemid, tõstukid, kärud ja ladustamisseadmed. Kõik vajalik lao efektiivseks haldamiseks ja materjalide käitlemiseks.",
-    heroImg: "/images/branches/laondus.png",
+    heroImg: "/images/branches/laondus.webp",
     heroGradient: "from-slate-950/80 via-slate-900/40 to-transparent",
   },
   {
@@ -155,7 +155,7 @@ export const BRANCHES: BranchDef[] = [
     tagline: "Mugav kliima igas ruumis",
     taglineEn: "Comfortable climate in every room",
     description: "Konditsioneerid, soojuspumbad, ventilaatorid ja õhukvaliteedi seadmed. Mugav sisekliima nii kodus kui kontoris.",
-    heroImg: "/images/branches/kliima.png",
+    heroImg: "/images/branches/kliima.webp",
     heroGradient: "from-sky-950/80 via-sky-900/40 to-transparent",
   },
   {
@@ -166,7 +166,7 @@ export const BRANCHES: BranchDef[] = [
     tagline: "Vesi voolab sinna, kuhu vaja",
     taglineEn: "Water flows where it's needed",
     description: "Torupressid, pumpad, filtrid ja torustiku paigaldustarvikud. Professionaalsed lahendused veevarustuse ja kanalisatsiooni jaoks.",
-    heroImg: "/images/branches/torustik.png",
+    heroImg: "/images/branches/torustik.webp",
     heroGradient: "from-cyan-950/80 via-cyan-900/40 to-transparent",
   },
   {
@@ -177,7 +177,7 @@ export const BRANCHES: BranchDef[] = [
     tagline: "Kaitse ennast ja oma meeskonda",
     taglineEn: "Protect yourself and your team",
     description: "Isikukaitsevahendid, turvavarustus, tööriietus ja ohutustehnika. Kõik vajalik töökoha ohutuse tagamiseks.",
-    heroImg: "/images/branches/ohutus.png",
+    heroImg: "/images/branches/ohutus.webp",
     heroGradient: "from-rose-950/80 via-rose-900/40 to-transparent",
   },
   {
@@ -188,7 +188,7 @@ export const BRANCHES: BranchDef[] = [
     tagline: "Sinu garaaz, sinu reeglid",
     taglineEn: "Your garage, your rules",
     description: "Tungrauad, kompressorid, diagnostikaseadmed ja autohoolduse tööriistad. Kõik profi tasemel garaazi ja töökoja jaoks.",
-    heroImg: "/images/branches/auto.png",
+    heroImg: "/images/branches/auto.webp",
     heroGradient: "from-zinc-950/80 via-zinc-900/40 to-transparent",
   },
   {
@@ -199,7 +199,7 @@ export const BRANCHES: BranchDef[] = [
     tagline: "Ilu ja heaolu professionaalile",
     taglineEn: "Beauty and wellness for the professional",
     description: "Juuksuritoolid, massaažilauad, spa-seadmed ja iluteeninduse tarvikud. Professionaalne varustus salongidele ja spa-dele.",
-    heroImg: "/images/branches/salong.png",
+    heroImg: "/images/branches/salong.webp",
     heroGradient: "from-pink-950/80 via-pink-900/40 to-transparent",
   },
   {
@@ -210,7 +210,7 @@ export const BRANCHES: BranchDef[] = [
     tagline: "Kontor ja äripind, targalt sisustatud",
     taglineEn: "Office and commercial space, smartly furnished",
     description: "Kontorimööbel, esitlustehnika, organiseerimissüsteemid ja äripinna sisustus. Funktsionaalne ja esinduslik töökeskkond.",
-    heroImg: "/images/branches/kontor.png",
+    heroImg: "/images/branches/kontor.webp",
     heroGradient: "from-gray-950/80 via-gray-900/40 to-transparent",
   },
   {
@@ -221,7 +221,7 @@ export const BRANCHES: BranchDef[] = [
     tagline: "Professionaalne meditsiinivarustus",
     taglineEn: "Professional medical equipment",
     description: "Meditsiiniline mööbel, diagnostikaseadmed, taastusravi vahendid ja tervishoiu tarvikud professionaalseks kasutamiseks.",
-    heroImg: "/images/branches/tervis.png",
+    heroImg: "/images/branches/tervis.webp",
     heroGradient: "from-green-950/80 via-green-900/40 to-transparent",
   },
   {
@@ -232,7 +232,7 @@ export const BRANCHES: BranchDef[] = [
     tagline: "Varusta oma spordiklubi",
     taglineEn: "Equip your sports club",
     description: "Jõusaali seadmed, treeningtarvikud, spordivarustus ja vabaaja seadmed. Kommertskvaliteet spordiklubidele ja kodujõusaalidele.",
-    heroImg: "/images/branches/sport.png",
+    heroImg: "/images/branches/sport.webp",
     heroGradient: "from-red-950/80 via-red-900/40 to-transparent",
   },
   {
@@ -243,7 +243,7 @@ export const BRANCHES: BranchDef[] = [
     tagline: "Seiklus algab õigest varustusest",
     taglineEn: "Adventure starts with the right gear",
     description: "Kaatritarvikud, telgid, matkavarustus ja välivarustus. Kõik vajalik merel, metsas ja mägedes seiklemiseks.",
-    heroImg: "/images/branches/paadindus-matk.png",
+    heroImg: "/images/branches/paadindus-matk.webp",
     heroGradient: "from-indigo-950/80 via-indigo-900/40 to-transparent",
   },
   {
@@ -254,7 +254,7 @@ export const BRANCHES: BranchDef[] = [
     tagline: "Muusika ja meelelahutus",
     taglineEn: "Music and entertainment for every venue",
     description: "Helitehnika, valgustus, DJ-seadmed ja lavavarustus. Professionaalsed lahendused üritustele ja meelelahutuskohtadele.",
-    heroImg: "/images/branches/muusika.png",
+    heroImg: "/images/branches/muusika.webp",
     heroGradient: "from-purple-950/80 via-purple-900/40 to-transparent",
   },
 ]

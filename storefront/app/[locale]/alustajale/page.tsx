@@ -44,7 +44,7 @@ const LEGACY_KITS_REFERENCE = [
       "Ice machine",
       "Cups, carafes, tampers, knock-box",
     ],
-    image: "cat-01-horeca-food-service.png",
+    image: "cat-01-horeca-food-service.webp",
   },
   {
     slug: "auto",
@@ -60,7 +60,7 @@ const LEGACY_KITS_REFERENCE = [
       "Impact wrench & air tools",
       "OBD-II diagnostic scanner",
     ],
-    image: "cat-12-automotive-workshop.png",
+    image: "cat-12-automotive-workshop.webp",
   },
   {
     slug: "barber",
@@ -76,7 +76,7 @@ const LEGACY_KITS_REFERENCE = [
       "Tool trolley & waiting bench",
       "Clippers, scissors, capes",
     ],
-    image: "cat-18-salon-spa-wellness.png",
+    image: "cat-18-salon-spa-wellness.webp",
   },
   {
     slug: "print",
@@ -92,7 +92,7 @@ const LEGACY_KITS_REFERENCE = [
       "Design tablet & workstation",
       "Heavy-duty workbench",
     ],
-    image: "cat-07-printing-packaging-signage.png",
+    image: "cat-07-printing-packaging-signage.webp",
   },
   {
     slug: "bakery",
@@ -108,7 +108,7 @@ const LEGACY_KITS_REFERENCE = [
       "Display case + bakery racks",
       "Stainless steel prep surface",
     ],
-    image: "cat-01-kitchen.png",
+    image: "cat-01-kitchen.webp",
   },
   {
     slug: "cleaning",
@@ -124,7 +124,7 @@ const LEGACY_KITS_REFERENCE = [
       "Supply carts & mop systems",
       "PPE kits × 4 + sanitizers",
     ],
-    image: "cat-15-cleaning-janitorial.png",
+    image: "cat-15-cleaning-janitorial.webp",
   },
 ]
 */

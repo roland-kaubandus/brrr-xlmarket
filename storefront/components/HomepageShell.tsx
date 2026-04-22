@@ -369,7 +369,7 @@ export default function HomepageShell({ locale, l1Nodes, slides, promos, navShor
             const l1Data = l1Nodes.find((n) => n.handle === cat.slug)
             const l2List = l1Data?.l2_list ?? []
             const featured = l1Data?.featured ?? []
-            const atmosphere = `/images/cat-atmosphere/${cat.slug}.png`
+            const atmosphere = `/images/cat-atmosphere/${cat.slug}.webp`
             return (
               <section
                 key={cat.id}
@@ -499,9 +499,9 @@ const homepageStyles = `
 
 .hp-carousel-slide.active { opacity: 1; }
 
-.hp-slide-1 { background: linear-gradient(90deg, rgba(15,27,45,0.85) 0%, rgba(15,27,45,0.4) 60%, transparent 100%), url('/images/hero-1.png') center/cover no-repeat; }
-.hp-slide-2 { background: linear-gradient(90deg, rgba(15,27,45,0.85) 0%, rgba(15,27,45,0.4) 60%, transparent 100%), url('/images/hero-2.png') center/cover no-repeat; }
-.hp-slide-3 { background: linear-gradient(90deg, rgba(15,27,45,0.85) 0%, rgba(15,27,45,0.4) 60%, transparent 100%), url('/images/hero-3.png') center/cover no-repeat; }
+.hp-slide-1 { background: linear-gradient(90deg, rgba(15,27,45,0.85) 0%, rgba(15,27,45,0.4) 60%, transparent 100%), url('/images/hero-1.webp') center/cover no-repeat; }
+.hp-slide-2 { background: linear-gradient(90deg, rgba(15,27,45,0.85) 0%, rgba(15,27,45,0.4) 60%, transparent 100%), url('/images/hero-2.webp') center/cover no-repeat; }
+.hp-slide-3 { background: linear-gradient(90deg, rgba(15,27,45,0.85) 0%, rgba(15,27,45,0.4) 60%, transparent 100%), url('/images/hero-3.webp') center/cover no-repeat; }
 
 .hp-slide-content {
   max-width: 500px;
