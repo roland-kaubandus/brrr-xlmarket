@@ -136,6 +136,9 @@ pm2 reload xlmarket-storefront
 - **nginx /app proxy:** `location ^~` (mitte `location /`)
 - **Email subscribers KATKI:** `order-placed.ts` ja `order-shipped.ts` kommenteeritud välja
 - **CORS:** STORE_CORS, ADMIN_CORS, AUTH_CORS peavad sisaldama `https://xlmarket.store`
+- **Meili index WIPED (price/taxonomy puudu):** Medusa plugin kirjutab cron restart'i järel indeksi üle minimaalsete väljadega. Taastamine: `cd /home/brrr/brrr-xlmarket && set -a && source .env && set +a && unset DATABASE_URL && node backend/scripts/index-meilisearch.mjs && node scripts/sync-existing-synonyms.mjs` + `find /home/brrr/brrr-xlmarket/storefront/.next/cache -type f -delete` + `pm2 reload xlmarket-storefront`. feed-sync.sh EXIT trap + Slack alerts peaks nüüd kaitsma (2026-04-22 acff4d7).
+- **admin@xlmarket.eu jagab login + feed-sync cron auth:** Parooli vahetades UUENDA `.env` MEDUSA_ADMIN_PASS ka, muidu cron hängib [3/6] Medusa import sammu juures, [4/6] Meili reindex ei käivitu, sait näitab €0.00.
+- **Meili settings PATCH panics:** Meili 1.41 teadaolev bug — `PUT /indexes/products/settings/searchable-attributes` crashib internal error'iga. Kui vaja muuta, tee kogu index uuesti (`index-meilisearch.mjs` loob õiged settings'id).
 
 ---
 
