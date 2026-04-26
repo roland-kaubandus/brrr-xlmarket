@@ -113,14 +113,21 @@ export async function upsertPage(
   }
 }
 
-export async function getRevisions(pageKey: string, limit = 20): Promise<CmsPageRevision[]> {
+export async function getRevisions(
+  pageKey: string,
+  limit = 20,
+  locale: string = "en"
+): Promise<CmsPageRevision[]> {
   const client = makePgClient()
   try {
     await client.connect()
     const r = await client.query<CmsPageRevision>(
-      `SELECT * FROM cms_page_revision WHERE page_id = $1
-       ORDER BY created_at DESC LIMIT $2`,
-      [pageKey, limit]
+      `SELECT rev.*
+       FROM cms_page_revision rev
+       JOIN cms_page p ON p.id = rev.page_id
+       WHERE p.page_key = $1 AND rev.locale = $2
+       ORDER BY rev.created_at DESC LIMIT $3`,
+      [pageKey, locale, limit]
     )
     return r.rows
   } finally {
@@ -131,7 +138,8 @@ export async function getRevisions(pageKey: string, limit = 20): Promise<CmsPage
 export async function rollbackToRevision(
   pageKey: string,
   revisionId: number,
-  rolledBackBy: string
+  rolledBackBy: string,
+  locale: string = "en"
 ): Promise<CmsPage | null> {
   const client = makePgClient()
   try {
@@ -139,8 +147,11 @@ export async function rollbackToRevision(
     await client.query("BEGIN")
 
     const rev = await client.query<CmsPageRevision>(
-      "SELECT * FROM cms_page_revision WHERE id = $1 AND page_id = $2",
-      [revisionId, pageKey]
+      `SELECT rev.*
+       FROM cms_page_revision rev
+       JOIN cms_page p ON p.id = rev.page_id
+       WHERE rev.id = $1 AND p.page_key = $2 AND rev.locale = $3`,
+      [revisionId, pageKey, locale]
     )
     if (!rev.rows[0]) {
       await client.query("ROLLBACK")
@@ -150,15 +161,17 @@ export async function rollbackToRevision(
     const content = rev.rows[0].content
     const r = await client.query<CmsPage>(
       `UPDATE cms_page SET content = $1, updated_at = NOW(), updated_by = $2
-       WHERE page_key = $3 RETURNING *`,
-      [JSON.stringify(content), rolledBackBy, pageKey]
+       WHERE page_key = $3 AND locale = $4 RETURNING *`,
+      [JSON.stringify(content), rolledBackBy, pageKey, locale]
     )
 
-    await client.query(
-      `INSERT INTO cms_page_revision (page_id, content, created_by, note)
-       VALUES ($1, $2, $3, $4)`,
-      [pageKey, JSON.stringify(content), rolledBackBy, `Rolled back to revision #${revisionId}`]
-    )
+    if (r.rows[0]) {
+      await client.query(
+        `INSERT INTO cms_page_revision (page_id, locale, content, created_by, note)
+         VALUES ($1, $2, $3, $4, $5)`,
+        [r.rows[0].id, locale, JSON.stringify(content), rolledBackBy, `Rolled back to revision #${revisionId}`]
+      )
+    }
 
     await client.query("COMMIT")
     return r.rows[0] ?? null

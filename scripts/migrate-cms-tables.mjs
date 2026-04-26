@@ -1,7 +1,10 @@
 #!/usr/bin/env node
 /**
- * One-time migration: create cms_page and cms_page_revision tables.
- * Safe to re-run (IF NOT EXISTS).
+ * Bootstrap migration: create cms_page and cms_page_revision tables with
+ * multi-locale support (locale column + (page_key, locale) UNIQUE).
+ *
+ * Safe to re-run (IF NOT EXISTS). For incremental schema changes on an
+ * existing CMS install, see scripts/migrations/006-cms-locale.sql.
  *
  * Usage: node scripts/migrate-cms-tables.mjs
  */
@@ -23,16 +26,19 @@ try {
 const SQL = `
 CREATE TABLE IF NOT EXISTS cms_page (
   id           TEXT PRIMARY KEY,
-  page_key     TEXT UNIQUE NOT NULL,
+  page_key     TEXT NOT NULL,
+  locale       TEXT NOT NULL DEFAULT 'en',
   title        TEXT NOT NULL,
   schema_ver   INTEGER NOT NULL DEFAULT 1,
   content      JSONB NOT NULL DEFAULT '{}',
   updated_at   TIMESTAMPTZ,
-  updated_by   TEXT
+  updated_by   TEXT,
+  CONSTRAINT cms_page_page_key_locale_key UNIQUE (page_key, locale)
 );
 CREATE TABLE IF NOT EXISTS cms_page_revision (
   id           SERIAL PRIMARY KEY,
   page_id      TEXT NOT NULL REFERENCES cms_page(id) ON DELETE CASCADE,
+  locale       TEXT NOT NULL DEFAULT 'en',
   content      JSONB NOT NULL,
   created_at   TIMESTAMPTZ NOT NULL DEFAULT NOW(),
   created_by   TEXT,
@@ -40,6 +46,8 @@ CREATE TABLE IF NOT EXISTS cms_page_revision (
 );
 CREATE INDEX IF NOT EXISTS cms_page_revision_page_id_idx
   ON cms_page_revision (page_id, created_at DESC);
+CREATE INDEX IF NOT EXISTS cms_page_revision_page_locale_idx
+  ON cms_page_revision (page_id, locale, created_at DESC);
 `
 
 const env = {

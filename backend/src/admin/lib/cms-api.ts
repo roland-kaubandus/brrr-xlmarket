@@ -6,6 +6,7 @@
 export interface PageMeta {
   key: string
   title: string
+  locale: string
   seeded: boolean
   updated_at: string | null
   updated_by: string | null
@@ -13,6 +14,7 @@ export interface PageMeta {
 
 export interface PageDetail<T = Record<string, unknown>> {
   key: string
+  locale: string
   title: string
   content: T
   updated_at: string | null
@@ -22,6 +24,7 @@ export interface PageDetail<T = Record<string, unknown>> {
 export interface Revision {
   id: number
   page_id: string
+  locale: string
   content: Record<string, unknown>
   created_at: string
   created_by: string | null
@@ -43,28 +46,46 @@ async function request<T>(path: string, init?: RequestInit): Promise<T> {
   return res.json() as Promise<T>
 }
 
-export function listPages(): Promise<{ pages: PageMeta[] }> {
-  return request("")
+function withLocale(path: string, locale: string): string {
+  return `${path}${path.includes("?") ? "&" : "?"}locale=${encodeURIComponent(locale)}`
 }
 
-export function getPage<T = Record<string, unknown>>(key: string): Promise<PageDetail<T>> {
-  return request(`/${encodeURIComponent(key)}`)
+export function listPages(locale: string = "en"): Promise<{ locale: string; pages: PageMeta[] }> {
+  return request(withLocale("", locale))
 }
 
-export function savePage<T>(key: string, content: T): Promise<PageDetail<T>> {
+export function getPage<T = Record<string, unknown>>(
+  key: string,
+  locale: string = "en"
+): Promise<PageDetail<T>> {
+  return request(withLocale(`/${encodeURIComponent(key)}`, locale))
+}
+
+export function savePage<T>(
+  key: string,
+  content: T,
+  locale: string = "en"
+): Promise<PageDetail<T>> {
   return request(`/${encodeURIComponent(key)}`, {
     method: "PUT",
-    body: JSON.stringify({ content }),
+    body: JSON.stringify({ content, locale }),
   })
 }
 
-export function listRevisions(key: string): Promise<{ revisions: Revision[] }> {
-  return request(`/${encodeURIComponent(key)}/revisions`)
+export function listRevisions(
+  key: string,
+  locale: string = "en"
+): Promise<{ locale: string; revisions: Revision[] }> {
+  return request(withLocale(`/${encodeURIComponent(key)}/revisions`, locale))
 }
 
-export function rollback(key: string, revisionId: number): Promise<PageDetail> {
+export function rollback(
+  key: string,
+  revisionId: number,
+  locale: string = "en"
+): Promise<PageDetail> {
   return request(`/${encodeURIComponent(key)}/revisions`, {
     method: "POST",
-    body: JSON.stringify({ revision_id: revisionId }),
+    body: JSON.stringify({ revision_id: revisionId, locale }),
   })
 }

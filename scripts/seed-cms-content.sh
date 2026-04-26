@@ -18,15 +18,15 @@ set -u
 export PGPASSWORD="${PGPASSWORD:-}"
 PG="psql -h ${PGHOST:-localhost} -p ${PGPORT:-5435} -U ${PGUSER:-xlmarket} -d ${PGDATABASE:-xlmarket} -v ON_ERROR_STOP=1"
 
-CONFLICT="ON CONFLICT (page_key) DO NOTHING"
-[[ $FORCE -eq 1 ]] && CONFLICT="ON CONFLICT (page_key) DO UPDATE SET content = EXCLUDED.content, updated_at = NOW(), updated_by = 'seed'"
+CONFLICT="ON CONFLICT (page_key, locale) DO NOTHING"
+[[ $FORCE -eq 1 ]] && CONFLICT="ON CONFLICT (page_key, locale) DO UPDATE SET content = EXCLUDED.content, updated_at = NOW(), updated_by = 'seed'"
 
 echo "Seeding CMS pages... (force=$FORCE)"
 
 # ─── HOMEPAGE ──────────────────────────────────────────────────────────────
 $PG <<SQL
-INSERT INTO cms_page (id, page_key, title, schema_ver, content, updated_at, updated_by)
-VALUES ('homepage', 'homepage', 'Homepage', 1, \$\$
+INSERT INTO cms_page (id, page_key, locale, title, schema_ver, content, updated_at, updated_by)
+VALUES ('homepage', 'homepage', 'en', 'Homepage', 1, \$\$
 {
   "slides": [
     {
@@ -97,8 +97,8 @@ echo "  ✓ homepage"
 
 # ─── STARTER KITS ──────────────────────────────────────────────────────────
 $PG <<SQL
-INSERT INTO cms_page (id, page_key, title, schema_ver, content, updated_at, updated_by)
-VALUES ('starter-kits', 'starter-kits', 'Starter Kits', 1, \$\$
+INSERT INTO cms_page (id, page_key, locale, title, schema_ver, content, updated_at, updated_by)
+VALUES ('starter-kits', 'starter-kits', 'en', 'Starter Kits', 1, \$\$
 {
   "kits": [
     {
@@ -164,8 +164,8 @@ echo "  ✓ starter-kits"
 
 # ─── GLOBAL SETTINGS ───────────────────────────────────────────────────────
 $PG <<SQL
-INSERT INTO cms_page (id, page_key, title, schema_ver, content, updated_at, updated_by)
-VALUES ('global', 'global', 'Global Settings', 1, \$\$
+INSERT INTO cms_page (id, page_key, locale, title, schema_ver, content, updated_at, updated_by)
+VALUES ('global', 'global', 'en', 'Global Settings', 1, \$\$
 {
   "company_name": "Roland Kaubandus OÜ",
   "reg_number": "",
@@ -184,8 +184,8 @@ echo "  ✓ global"
 
 # ─── LEGAL: TERMS ──────────────────────────────────────────────────────────
 $PG <<SQL
-INSERT INTO cms_page (id, page_key, title, schema_ver, content, updated_at, updated_by)
-VALUES ('legal-terms', 'legal-terms', 'Terms & Conditions', 1, \$\$
+INSERT INTO cms_page (id, page_key, locale, title, schema_ver, content, updated_at, updated_by)
+VALUES ('legal-terms', 'legal-terms', 'en', 'Terms & Conditions', 1, \$\$
 {
   "title": "Terms & Conditions",
   "effective_date": "28 March 2026",
@@ -198,8 +198,8 @@ echo "  ✓ legal-terms"
 
 # ─── LEGAL: PRIVACY ────────────────────────────────────────────────────────
 $PG <<SQL
-INSERT INTO cms_page (id, page_key, title, schema_ver, content, updated_at, updated_by)
-VALUES ('legal-privacy', 'legal-privacy', 'Privacy Policy', 1, \$\$
+INSERT INTO cms_page (id, page_key, locale, title, schema_ver, content, updated_at, updated_by)
+VALUES ('legal-privacy', 'legal-privacy', 'en', 'Privacy Policy', 1, \$\$
 {
   "title": "Privacy Policy",
   "effective_date": "28 March 2026",
@@ -212,8 +212,8 @@ echo "  ✓ legal-privacy"
 
 # ─── LEGAL: SHIPPING ───────────────────────────────────────────────────────
 $PG <<SQL
-INSERT INTO cms_page (id, page_key, title, schema_ver, content, updated_at, updated_by)
-VALUES ('legal-shipping', 'legal-shipping', 'Shipping Info', 1, \$\$
+INSERT INTO cms_page (id, page_key, locale, title, schema_ver, content, updated_at, updated_by)
+VALUES ('legal-shipping', 'legal-shipping', 'en', 'Shipping Info', 1, \$\$
 {
   "title": "Shipping Info",
   "effective_date": "28 March 2026",
@@ -226,8 +226,8 @@ echo "  ✓ legal-shipping"
 
 # ─── LEGAL: RETURNS ────────────────────────────────────────────────────────
 $PG <<SQL
-INSERT INTO cms_page (id, page_key, title, schema_ver, content, updated_at, updated_by)
-VALUES ('legal-returns', 'legal-returns', 'Returns Policy', 1, \$\$
+INSERT INTO cms_page (id, page_key, locale, title, schema_ver, content, updated_at, updated_by)
+VALUES ('legal-returns', 'legal-returns', 'en', 'Returns Policy', 1, \$\$
 {
   "title": "Returns Policy",
   "effective_date": "28 March 2026",
@@ -240,8 +240,8 @@ echo "  ✓ legal-returns"
 
 # ─── LEGAL: COOKIES ────────────────────────────────────────────────────────
 $PG <<SQL
-INSERT INTO cms_page (id, page_key, title, schema_ver, content, updated_at, updated_by)
-VALUES ('legal-cookies', 'legal-cookies', 'Cookie Policy', 1, \$\$
+INSERT INTO cms_page (id, page_key, locale, title, schema_ver, content, updated_at, updated_by)
+VALUES ('legal-cookies', 'legal-cookies', 'en', 'Cookie Policy', 1, \$\$
 {
   "title": "Cookie Policy",
   "effective_date": "28 March 2026",
@@ -254,8 +254,8 @@ echo "  ✓ legal-cookies"
 
 # ─── ABOUT ─────────────────────────────────────────────────────────────────
 $PG <<SQL
-INSERT INTO cms_page (id, page_key, title, schema_ver, content, updated_at, updated_by)
-VALUES ('about', 'about', 'About Us', 1, \$\$
+INSERT INTO cms_page (id, page_key, locale, title, schema_ver, content, updated_at, updated_by)
+VALUES ('about', 'about', 'en', 'About Us', 1, \$\$
 {
   "title": "About Us",
   "body_md": "## Who We Are\n\nXL Market (Roland Kaubandus OÜ) is an Estonian e-commerce company specialising in professional tools, catering equipment, and machinery for small and medium-sized businesses.\n\nWe are the authorised representative of VEVOR in Estonia and Spain, bringing professional-grade equipment at half the price of traditional distributors.\n\n## Our Mission\n\n**Professional Tools, Half the Price.** We believe every entrepreneur deserves access to proper equipment without compromising their cash flow on day one.\n\n## What We Offer\n\n- 16,000+ SKUs across 18 product categories\n- Turnkey starter kits for 6 business types\n- B2B accounts with Net-30 terms and volume pricing\n- Service plans for maintenance and priority repair\n\n## Contact\n\nEmail: info@xlmarket.eu\nB2B inquiries: b2b@xlmarket.eu"
@@ -267,8 +267,8 @@ echo "  ✓ about"
 
 # ─── CONTACT ───────────────────────────────────────────────────────────────
 $PG <<SQL
-INSERT INTO cms_page (id, page_key, title, schema_ver, content, updated_at, updated_by)
-VALUES ('contact', 'contact', 'Contact', 1, \$\$
+INSERT INTO cms_page (id, page_key, locale, title, schema_ver, content, updated_at, updated_by)
+VALUES ('contact', 'contact', 'en', 'Contact', 1, \$\$
 {
   "title": "Contact",
   "body_md": "## Get in Touch\n\n**General enquiries:** info@xlmarket.eu\n\n**B2B & bulk orders:** b2b@xlmarket.eu\n\n**Response time:** We aim to reply within 1 business day.\n\n## Company Details\n\nRoland Kaubandus OÜ\nEmail: info@xlmarket.eu\n\n## Returns & Warranty\n\nFor return requests and warranty claims, see our [Returns Policy](/en/tagastamine) or email info@xlmarket.eu with your order number."
