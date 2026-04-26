@@ -70,10 +70,11 @@ export type GlobalContent = {
 const MEDUSA_URL = process.env.NEXT_PUBLIC_MEDUSA_URL || "http://127.0.0.1:9001"
 const MEDUSA_KEY = process.env.NEXT_PUBLIC_MEDUSA_KEY || ""
 
-async function fetchCmsPage<T>(key: string, revalidate = 60): Promise<T | null> {
+async function fetchCmsPage<T>(key: string, locale: string, revalidate = 60): Promise<T | null> {
   try {
-    const res = await fetch(`${MEDUSA_URL}/store/cms/${key}`, {
-      next: { revalidate, tags: [`cms:${key}`] },
+    const url = `${MEDUSA_URL}/store/cms/${key}?locale=${encodeURIComponent(locale)}`
+    const res = await fetch(url, {
+      next: { revalidate, tags: [`cms:${key}:${locale}`, `cms:${key}`] },
       headers: MEDUSA_KEY ? { "x-publishable-api-key": MEDUSA_KEY } : {},
     })
     if (!res.ok) return null
@@ -93,28 +94,34 @@ async function loadFallback<T>(key: string): Promise<T | null> {
   }
 }
 
-async function getPage<T>(key: string): Promise<T | null> {
-  const live = await fetchCmsPage<T>(key)
+async function getPage<T>(key: string, locale: string = "en"): Promise<T | null> {
+  const live = await fetchCmsPage<T>(key, locale)
   if (live !== null) return live
   return loadFallback<T>(key)
 }
 
-export async function getHomepageCms(): Promise<HomepageContent | null> {
-  return getPage<HomepageContent>("homepage")
+export async function getHomepageCms(locale: string = "en"): Promise<HomepageContent | null> {
+  return getPage<HomepageContent>("homepage", locale)
 }
 
-export async function getStarterKitsCms(): Promise<StarterKitsContent | null> {
-  return getPage<StarterKitsContent>("starter-kits")
+export async function getStarterKitsCms(locale: string = "en"): Promise<StarterKitsContent | null> {
+  return getPage<StarterKitsContent>("starter-kits", locale)
 }
 
-export async function getLegalPage(slug: "terms" | "privacy" | "shipping" | "returns" | "cookies"): Promise<LegalPageContent | null> {
-  return getPage<LegalPageContent>(`legal-${slug}`)
+export async function getLegalPage(
+  slug: "terms" | "privacy" | "shipping" | "returns" | "cookies",
+  locale: string = "en"
+): Promise<LegalPageContent | null> {
+  return getPage<LegalPageContent>(`legal-${slug}`, locale)
 }
 
-export async function getPlainPage(slug: "about" | "contact"): Promise<PlainPageContent | null> {
-  return getPage<PlainPageContent>(slug)
+export async function getPlainPage(
+  slug: "about" | "contact",
+  locale: string = "en"
+): Promise<PlainPageContent | null> {
+  return getPage<PlainPageContent>(slug, locale)
 }
 
-export async function getGlobalCms(): Promise<GlobalContent | null> {
-  return getPage<GlobalContent>("global")
+export async function getGlobalCms(locale: string = "en"): Promise<GlobalContent | null> {
+  return getPage<GlobalContent>("global", locale)
 }

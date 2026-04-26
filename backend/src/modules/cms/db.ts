@@ -13,6 +13,7 @@ export function makePgClient() {
 export interface CmsPage {
   id: string
   page_key: string
+  locale: string
   title: string
   schema_ver: number
   content: Record<string, unknown>
@@ -23,32 +24,45 @@ export interface CmsPage {
 export interface CmsPageRevision {
   id: number
   page_id: string
+  locale: string
   content: Record<string, unknown>
   created_at: string
   created_by: string | null
   note: string | null
 }
 
-export async function getPage(pageKey: string): Promise<CmsPage | null> {
+export async function getPage(
+  pageKey: string,
+  locale: string = "en"
+): Promise<CmsPage | null> {
   const client = makePgClient()
   try {
     await client.connect()
     const r = await client.query<CmsPage>(
-      "SELECT * FROM cms_page WHERE page_key = $1",
-      [pageKey]
+      "SELECT * FROM cms_page WHERE page_key = $1 AND locale = $2",
+      [pageKey, locale]
     )
-    return r.rows[0] ?? null
+    if (r.rows[0]) return r.rows[0]
+    if (locale !== "en") {
+      const fb = await client.query<CmsPage>(
+        "SELECT * FROM cms_page WHERE page_key = $1 AND locale = 'en'",
+        [pageKey]
+      )
+      return fb.rows[0] ?? null
+    }
+    return null
   } finally {
     await client.end()
   }
 }
 
-export async function listPages(): Promise<CmsPage[]> {
+export async function listPages(locale: string = "en"): Promise<CmsPage[]> {
   const client = makePgClient()
   try {
     await client.connect()
     const r = await client.query<CmsPage>(
-      "SELECT * FROM cms_page ORDER BY page_key"
+      "SELECT * FROM cms_page WHERE locale = $1 ORDER BY page_key",
+      [locale]
     )
     return r.rows
   } finally {
@@ -60,32 +74,33 @@ export async function upsertPage(
   pageKey: string,
   title: string,
   content: Record<string, unknown>,
-  updatedBy: string
+  updatedBy: string,
+  locale: string = "en"
 ): Promise<CmsPage> {
   const client = makePgClient()
   try {
     await client.connect()
     await client.query("BEGIN")
 
-    // Upsert the page
+    const rowId = locale === "en" ? pageKey : `${pageKey}-${locale}`
+
     const r = await client.query<CmsPage>(
-      `INSERT INTO cms_page (id, page_key, title, content, updated_at, updated_by)
-       VALUES ($1, $1, $2, $3, NOW(), $4)
-       ON CONFLICT (page_key) DO UPDATE SET
+      `INSERT INTO cms_page (id, page_key, locale, title, content, updated_at, updated_by)
+       VALUES ($1, $2, $3, $4, $5, NOW(), $6)
+       ON CONFLICT (page_key, locale) DO UPDATE SET
          title = EXCLUDED.title,
          content = EXCLUDED.content,
          updated_at = NOW(),
          updated_by = EXCLUDED.updated_by
        RETURNING *`,
-      [pageKey, title, JSON.stringify(content), updatedBy]
+      [rowId, pageKey, locale, title, JSON.stringify(content), updatedBy]
     )
     const page = r.rows[0]
 
-    // Write revision
     await client.query(
-      `INSERT INTO cms_page_revision (page_id, content, created_by)
-       VALUES ($1, $2, $3)`,
-      [pageKey, JSON.stringify(content), updatedBy]
+      `INSERT INTO cms_page_revision (page_id, locale, content, created_by)
+       VALUES ($1, $2, $3, $4)`,
+      [page.id, locale, JSON.stringify(content), updatedBy]
     )
 
     await client.query("COMMIT")

@@ -10,13 +10,22 @@ export const GET = async (req: MedusaRequest, res: MedusaResponse) => {
     return
   }
 
-  const page = await getPage(key)
+  const localeRaw = (req.query as Record<string, string | undefined>).locale
+  const locale = typeof localeRaw === "string" && /^[a-z]{2}$/.test(localeRaw)
+    ? localeRaw
+    : "en"
+
+  const page = await getPage(key, locale)
   if (!page) {
     res.status(404).json({ message: `Page "${key}" not found` })
     return
   }
 
-  // Allow CDN/Next.js ISR to cache — 60s stale, 5m stale-while-revalidate
   res.setHeader("Cache-Control", "public, s-maxage=60, stale-while-revalidate=300")
-  res.json({ key, content: page.content, updated_at: page.updated_at })
+  res.json({
+    key,
+    locale: page.locale,
+    content: page.content,
+    updated_at: page.updated_at,
+  })
 }
