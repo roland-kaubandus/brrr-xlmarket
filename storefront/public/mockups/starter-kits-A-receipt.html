@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Starter Kits — Variant A: Receipt</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+  rel="stylesheet"
+/>
+<style>
+  :root {
+    --ink: #1E293B;
+    --ink-2: #475569;
+    --ink-3: #64748B;
+    --amber: #E8920A;
+    --amber-dark: #B26F08;
+    --paper: #FAF7F1;
+    --paper-line: #E8E1D4;
+    --receipt-border: #D9CEB8;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 48px 24px;
+    background: #F1F5F9;
+    font-family: 'Mulish', system-ui, sans-serif;
+    color: var(--ink);
+  }
+  .wrap { max-width: 1360px; margin: 0 auto; }
+  .heading { font-size: 14px; color: var(--ink-3); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 24px; font-weight: 600; }
+  .section-title { font-size: 28px; font-weight: 700; margin: 0 0 32px; letter-spacing: -0.02em; }
+
+  /* ── Variant A: Receipt-ticket ───────────────────────────────── */
+  .row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+
+  .ticket {
+    position: relative;
+    background: var(--paper);
+    border: 1px solid var(--receipt-border);
+    padding: 26px 26px 24px;
+    display: flex;
+    flex-direction: column;
+    min-height: 290px;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+    transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.25s ease;
+    overflow: hidden;
+    /* Subtle paper grain — radial noise via multiple stops */
+    background-image:
+      radial-gradient(ellipse 800px 400px at 20% 0%, rgba(232,146,10,0.04), transparent 60%),
+      radial-gradient(ellipse 600px 300px at 100% 100%, rgba(15,27,45,0.03), transparent 60%);
+  }
+  .ticket:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 32px -12px rgba(15, 27, 45, 0.18), 0 4px 10px -4px rgba(15, 27, 45, 0.08);
+  }
+
+  /* Perforated amber top edge */
+  .ticket::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: var(--amber);
+  }
+
+  /* Tear-edge holes on top */
+  .ticket::after {
+    content: '';
+    position: absolute;
+    top: 4px; left: 0; right: 0;
+    height: 3px;
+    background-image: radial-gradient(circle at 6px 50%, #F1F5F9 2px, transparent 2.5px);
+    background-size: 14px 3px;
+    background-repeat: repeat-x;
+  }
+
+  .ticket-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 18px;
+    padding-top: 10px;
+  }
+  .ticket-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--amber);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+  .ticket-category {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--ink-3);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .ticket-title {
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    margin: 0 0 18px;
+  }
+
+  /* Item list */
+  .ticket-items {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 auto;
+  }
+  .ticket-items li {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12.5px;
+    font-weight: 400;
+    color: var(--ink-2);
+    padding: 7px 0;
+    border-bottom: 1px dashed var(--paper-line);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .ticket-items li::before {
+    content: '+';
+    color: var(--amber);
+    font-weight: 600;
+    flex-shrink: 0;
+  }
+  .ticket-items li.more {
+    color: var(--ink-3);
+    font-style: italic;
+    opacity: 0.75;
+  }
+  .ticket-items li.more::before { content: '…'; color: var(--ink-3); }
+
+  .ticket-foot {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-top: 22px;
+    padding-top: 16px;
+    border-top: 1.5px solid var(--ink);
+  }
+  .ticket-meta {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10.5px;
+    color: var(--ink-3);
+    line-height: 1.5;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .ticket-price {
+    font-family: 'Mulish', system-ui, sans-serif;
+    font-size: 26px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    line-height: 1;
+  }
+  .ticket-price sub {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--ink-3);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    display: block;
+    margin-top: 4px;
+  }
+
+  .ticket-cta {
+    position: absolute;
+    right: 26px;
+    bottom: 24px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--amber);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+    opacity: 0;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    transform: translateX(-6px);
+  }
+  .ticket:hover .ticket-cta {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  /* Also dim ticket price slightly on hover so CTA pops */
+  .ticket:hover .ticket-foot { opacity: 0.95; }
+
+  .variant-label {
+    background: var(--ink);
+    color: white;
+    padding: 18px 22px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 16px;
+    border-radius: 3px;
+  }
+  .variant-label strong { color: var(--amber); font-weight: 600; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="heading">Starter Kits — Variant A — Receipt / Invoice Ticket</div>
+  <div class="variant-label"><strong>A · RECEIPT</strong> · paper-texture card, mono-type spec list, bold price at bottom, amber tear-edge up top, hover reveals arrow cta</div>
+
+  <div class="row">
+
+    <a href="#" class="ticket">
+      <div class="ticket-head">
+        <span class="ticket-num">Kit · 01</span>
+        <span class="ticket-category">Hospitality</span>
+      </div>
+      <h3 class="ticket-title">Café &amp; Coffee Shop</h3>
+      <ul class="ticket-items">
+        <li>Espresso machine, 2-group</li>
+        <li>Undercounter fridge, 120L</li>
+        <li>Prep tables, stainless</li>
+        <li>Shelving &amp; dunnage racks</li>
+        <li class="more">plus grinder, pitchers, scales</li>
+      </ul>
+      <div class="ticket-foot">
+        <div class="ticket-meta">
+          Ships 10 business days<br>
+          2-year warranty · VAT incl
+        </div>
+        <div class="ticket-price">
+          €8,499<sub>from · subtotal</sub>
+        </div>
+      </div>
+      <span class="ticket-cta">See inside →</span>
+    </a>
+
+    <a href="#" class="ticket">
+      <div class="ticket-head">
+        <span class="ticket-num">Kit · 02</span>
+        <span class="ticket-category">Personal care</span>
+      </div>
+      <h3 class="ticket-title">Barber Shop</h3>
+      <ul class="ticket-items">
+        <li>Hydraulic barber chairs (×2)</li>
+        <li>Wall mirrors, gold-framed</li>
+        <li>Clipper, razor &amp; scissor set</li>
+        <li>UV sterilizer cabinet</li>
+        <li class="more">plus towel warmer, stools</li>
+      </ul>
+      <div class="ticket-foot">
+        <div class="ticket-meta">
+          Ships 10 business days<br>
+          2-year warranty · VAT incl
+        </div>
+        <div class="ticket-price">
+          €3,499<sub>from · subtotal</sub>
+        </div>
+      </div>
+      <span class="ticket-cta">See inside →</span>
+    </a>
+
+    <a href="#" class="ticket">
+      <div class="ticket-head">
+        <span class="ticket-num">Kit · 03</span>
+        <span class="ticket-category">Food production</span>
+      </div>
+      <h3 class="ticket-title">Bakery &amp; Pastry</h3>
+      <ul class="ticket-items">
+        <li>Commercial convection oven</li>
+        <li>Spiral dough mixer, 20L</li>
+        <li>Proofing cabinet, 16-tray</li>
+        <li>Refrigerated display, 1.5m</li>
+        <li class="more">plus scales, baskets, peels</li>
+      </ul>
+      <div class="ticket-foot">
+        <div class="ticket-meta">
+          Ships 10 business days<br>
+          2-year warranty · VAT incl
+        </div>
+        <div class="ticket-price">
+          €7,499<sub>from · subtotal</sub>
+        </div>
+      </div>
+      <span class="ticket-cta">See inside →</span>
+    </a>
+
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Hero · T3-B adapted (Barlow Condensed + Mulish)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Mulish:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+  rel="stylesheet"
+/>
+<style>
+  :root {
+    --ink: #0F1B2D;
+    --ink-2: #1E293B;
+    --amber: #E8920A;
+    --amber-dark: #CF7F00;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 0;
+    background: #ECEEF1;
+    font-family: 'Mulish', system-ui, sans-serif;
+    color: var(--ink);
+  }
+  .label-bar {
+    background: var(--ink);
+    color: #fff;
+    padding: 14px 22px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin: 24px;
+    border-radius: 8px;
+  }
+  .label-bar strong { color: var(--amber); }
+
+  /* ── Container — matches existing .hp-page-wrap ── */
+  .page-wrap { max-width: 1360px; margin: 0 auto; padding: 0 24px 48px; }
+
+  /* ── Hero frame ── */
+  .hero {
+    position: relative;
+    height: 520px;
+    border-radius: 0;
+    overflow: hidden;
+    background: var(--ink);
+  }
+
+  /* slide layer — image + gradient identical to existing hp-slide gradient */
+  .slide {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: right center;
+    background-repeat: no-repeat;
+    opacity: 0;
+    transition: opacity 1.6s ease-in-out;
+  }
+  .slide.active { opacity: 1; }
+  .slide.s1 { background-image:
+      linear-gradient(95deg, rgba(15,27,45,0.98) 0%, rgba(15,27,45,0.92) 22%, rgba(15,27,45,0.65) 42%, rgba(15,27,45,0.25) 62%, rgba(15,27,45,0.05) 82%, transparent 100%),
+      url('/images/hero-3.webp'); }
+  .slide.s2 { background-image:
+      linear-gradient(95deg, rgba(15,27,45,0.98) 0%, rgba(15,27,45,0.92) 22%, rgba(15,27,45,0.65) 42%, rgba(15,27,45,0.25) 62%, rgba(15,27,45,0.05) 82%, transparent 100%),
+      url('/images/starter-kit-cafe.webp'); }
+  .slide.s3 { background-image:
+      linear-gradient(95deg, rgba(15,27,45,0.98) 0%, rgba(15,27,45,0.92) 22%, rgba(15,27,45,0.65) 42%, rgba(15,27,45,0.25) 62%, rgba(15,27,45,0.05) 82%, transparent 100%),
+      url('/images/starter-kit-barber.webp'); }
+  .slide.s4 { background-image:
+      linear-gradient(95deg, rgba(15,27,45,0.98) 0%, rgba(15,27,45,0.92) 22%, rgba(15,27,45,0.65) 42%, rgba(15,27,45,0.25) 62%, rgba(15,27,45,0.05) 82%, transparent 100%),
+      url('/images/starter-kit-bakery.webp'); }
+
+  /* ── Content layer (left third) — matches existing slide-content rules ── */
+  .hero-content {
+    position: absolute;
+    inset: 0;
+    padding: 0 60px;
+    display: flex;
+    align-items: center;
+    z-index: 2;
+  }
+  .hero-content-inner {
+    max-width: 540px;
+  }
+
+  /* Type stack inside the slot */
+  .scene-stack {
+    position: relative;
+    height: 232px;  /* fits headline + sub + cta + space */
+  }
+  .scene {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 800ms ease, transform 800ms ease;
+    pointer-events: none;
+  }
+  .scene.active { opacity: 1; transform: translateY(0); pointer-events: auto; }
+
+  .badge {
+    display: inline-block;
+    background: rgba(232,146,10,0.95);
+    color: #fff;
+    font-family: 'Mulish', system-ui, sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 0;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .headline {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 56px;
+    font-weight: 700;
+    line-height: 1.0;
+    letter-spacing: 0.005em;
+    color: #fff;
+    margin: 0 0 12px;
+    text-wrap: balance;
+  }
+  .headline .amber { color: var(--amber); }
+
+  .sub {
+    font-family: 'Mulish', system-ui, sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.5;
+    color: rgba(255,255,255,0.9);
+    margin: 0 0 24px;
+    max-width: 44ch;
+  }
+
+  .cta {
+    display: inline-block;
+    padding: 12px 28px;
+    background-color: var(--amber);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-family: 'Mulish', system-ui, sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+    text-decoration: none;
+  }
+  .cta:hover { background-color: var(--amber-dark); transform: translateY(-2px); }
+
+  /* ── Bottom-left counter + dots row ── */
+  .hero-meta {
+    position: absolute;
+    left: 60px;
+    bottom: 22px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    z-index: 3;
+  }
+  .counter {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: rgba(255,255,255,0.55);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-variant-numeric: tabular-nums;
+  }
+  .counter strong { color: var(--amber); font-weight: 600; }
+  .dots {
+    display: flex;
+    gap: 8px;
+  }
+  .dot {
+    width: 28px;
+    height: 3px;
+    background: rgba(255,255,255,0.25);
+    border: 0;
+    cursor: pointer;
+    transition: background 200ms ease;
+    padding: 0;
+  }
+  .dot.active { background: var(--amber); }
+
+  /* ── Bottom-right caption (the T3-B signature) ── */
+  .scene-caption {
+    position: absolute;
+    right: 32px;
+    bottom: 24px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: rgba(255,255,255,0.55);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    z-index: 3;
+    text-align: right;
+  }
+  .scene-caption strong { color: var(--amber); font-weight: 500; }
+
+  /* ── Responsive ── */
+  @media (max-width: 900px) {
+    .hero { height: 460px; }
+    .hero-content { padding: 0 30px; }
+    .headline { font-size: 40px; }
+    .scene-stack { height: 220px; }
+    .hero-meta, .scene-caption { left: 30px; right: 30px; bottom: 18px; }
+  }
+  @media (max-width: 600px) {
+    .hero { height: 420px; }
+    .headline { font-size: 32px; }
+    .sub { font-size: 14px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="label-bar"><strong>HERO · T3-B ADAPTED</strong> · same Barlow Condensed + Mulish + amber-button system as the rest of the site · 4 cinematic scenes · text + image cross-fade · existing dot-nav pattern preserved</div>
+
+<div class="page-wrap">
+  <section class="hero">
+
+    <!-- Image scenes -->
+    <div class="slide s1 active"></div>
+    <div class="slide s2"></div>
+    <div class="slide s3"></div>
+    <div class="slide s4"></div>
+
+    <!-- Type slot — matches .hp-slide-content geometry -->
+    <div class="hero-content">
+      <div class="hero-content-inner">
+
+        <div class="scene-stack">
+
+          <div class="scene active">
+            <span class="badge">Workshop</span>
+            <h2 class="headline">The hour the <span class="amber">morning shift</span> begins.</h2>
+            <p class="sub">Commercial-grade tools across 18 trades. Same parts EU brands resell at double the price. VAT paid, warranty in Tallinn, ships in 10 business days.</p>
+            <a class="cta" href="#">Browse the catalogue →</a>
+          </div>
+
+          <div class="scene">
+            <span class="badge">Café</span>
+            <h2 class="headline">Espresso machine. <span class="amber">Day one.</span></h2>
+            <p class="sub">Two-group espresso, undercounter fridge, prep, shelving — €8,499 for a turnkey starter kit. One invoice, one delivery, ten business days.</p>
+            <a class="cta" href="#">See the café kit →</a>
+          </div>
+
+          <div class="scene">
+            <span class="badge">Salon &amp; Spa</span>
+            <h2 class="headline">Two chairs, <span class="amber">ready to book.</span></h2>
+            <p class="sub">Hydraulic chairs, gold-framed mirrors, clipper and razor sets, UV sterilizer. Barber starter kit from €3,499, VAT included.</p>
+            <a class="cta" href="#">See the barber kit →</a>
+          </div>
+
+          <div class="scene">
+            <span class="badge">Bakery</span>
+            <h2 class="headline">Hot ovens <span class="amber">from day one.</span></h2>
+            <p class="sub">Convection oven, spiral mixer, proofing cabinet, refrigerated display. Bakery kit from €7,499, ships in 10 business days.</p>
+            <a class="cta" href="#">See the bakery kit →</a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom-left meta: counter + dots -->
+    <div class="hero-meta">
+      <span class="counter"><strong id="counter-num">01</strong> / 04</span>
+      <div class="dots" id="dots">
+        <button class="dot active" data-i="0"></button>
+        <button class="dot" data-i="1"></button>
+        <button class="dot" data-i="2"></button>
+        <button class="dot" data-i="3"></button>
+      </div>
+    </div>
+
+    <!-- Bottom-right scene caption -->
+    <div class="scene-caption" id="caption"><strong>Workshop</strong> · 15-piece wrench set · €89</div>
+
+  </section>
+</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const scenes = document.querySelectorAll('.scene');
+  const dots = document.querySelectorAll('.dot');
+  const counterNum = document.getElementById('counter-num');
+  const caption = document.getElementById('caption');
+  const captions = [
+    '<strong>Workshop</strong> · 15-piece wrench set · €89',
+    '<strong>Café</strong> · 2-group espresso · €3,199',
+    '<strong>Salon &amp; Spa</strong> · hydraulic barber chair · €489',
+    '<strong>Bakery</strong> · convection oven · €1,249',
+  ];
+  let i = 0;
+  let timer;
+  function go(n) {
+    slides[i].classList.remove('active');
+    scenes[i].classList.remove('active');
+    dots[i].classList.remove('active');
+    i = n;
+    slides[i].classList.add('active');
+    scenes[i].classList.add('active');
+    dots[i].classList.add('active');
+    counterNum.textContent = String(i + 1).padStart(2, '0');
+    caption.innerHTML = captions[i];
+  }
+  function next() { go((i + 1) % slides.length); }
+  function start() { clearInterval(timer); timer = setInterval(next, 6000); }
+  dots.forEach((d) => d.addEventListener('click', () => { go(+d.dataset.i); start(); }));
+  start();
+</script>
+
+</body></html>

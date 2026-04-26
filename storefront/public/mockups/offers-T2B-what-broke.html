@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><title>T2B · What Broke This Week</title>
+<link href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;500;600;700;800;900&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root { --ink:#0F172A; --ink-2:#334155; --ink-3:#64748B; --ink-4:#94A3B8; --amber:#E8920A; --amber-bg:#FEF3E2; --green:#15803D; --rule:#E2E8F0; }
+  * { box-sizing:border-box; }
+  body { margin:0; padding:48px clamp(16px,4vw,40px); background:#F1F5F9; font-family:'Mulish',system-ui,sans-serif; color:var(--ink); font-feature-settings:"tnum","lnum"; }
+  .wrap { max-width:1360px; margin:0 auto; }
+  .label { background:var(--ink); color:#fff; padding:14px 20px; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:2px; text-transform:uppercase; margin-bottom:20px; border-radius:8px; }
+  .label strong { color:var(--amber); }
+
+  .pitcrew { background:#fff; border:1px solid var(--rule); border-radius:8px; box-shadow:0 1px 3px rgba(15,23,42,0.04), 0 10px 28px -16px rgba(15,23,42,0.12); overflow:hidden; }
+
+  .head { padding:32px 40px 24px; border-bottom:1px solid var(--rule); }
+  .kicker { font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--amber); letter-spacing:0.18em; text-transform:uppercase; font-weight:600; margin:0 0 10px; }
+  h2 { font-size:clamp(24px, 2.6vw, 34px); font-weight:800; letter-spacing:-0.022em; margin:0 0 8px; line-height:1.12; }
+  h2 em { font-style:normal; color:var(--amber); }
+  .sub { font-size:15px; color:var(--ink-2); line-height:1.55; margin:0 0 24px; max-width:56ch; }
+
+  .search-bar { display:flex; align-items:center; border:2px solid var(--ink); border-radius:8px; overflow:hidden; max-width:720px; transition:border-color 180ms; }
+  .search-bar:focus-within { border-color:var(--amber); }
+  .search-icon { width:52px; display:flex; align-items:center; justify-content:center; color:var(--ink-3); }
+  .search-bar input { flex:1; border:0; padding:16px 0; font-family:'Mulish',sans-serif; font-size:15px; outline:none; background:transparent; }
+  .search-bar input::placeholder { color:var(--ink-4); }
+  .search-bar button { border:0; background:var(--ink); color:#fff; padding:14px 22px; font-family:'IBM Plex Mono',monospace; font-size:11px; font-weight:700; letter-spacing:0.12em; cursor:pointer; text-transform:uppercase; }
+
+  /* middle rail: ships-today strip */
+  .ships { padding:24px 40px; background:linear-gradient(to bottom, #F0FDF4 0%, #fff 100%); border-bottom:1px solid var(--rule); }
+  .ships-head { display:flex; justify-content:space-between; align-items:baseline; margin-bottom:16px; }
+  .ships-title { font-family:'Mulish',sans-serif; font-size:15px; font-weight:700; display:inline-flex; align-items:center; gap:10px; }
+  .ships-dot { width:8px; height:8px; border-radius:50%; background:var(--green); box-shadow:0 0 0 3px rgba(21,128,61,0.18); animation:pulse 2s ease-in-out infinite; }
+  @keyframes pulse { 0%,100% { box-shadow:0 0 0 3px rgba(21,128,61,0.18); } 50% { box-shadow:0 0 0 6px rgba(21,128,61,0.08); } }
+  .ships-cutoff { font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--ink-3); letter-spacing:0.08em; }
+  .ships-grid { display:grid; grid-template-columns:repeat(4, 1fr); gap:12px; }
+  .spare { display:block; padding:14px 16px; background:#fff; border:1px solid var(--rule); border-radius:6px; text-decoration:none; color:inherit; transition:border-color 160ms, transform 160ms; }
+  .spare:hover { border-color:var(--amber); transform:translateY(-2px); }
+  .spare-cat { font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--ink-4); letter-spacing:0.14em; text-transform:uppercase; margin-bottom:4px; }
+  .spare-name { font-size:13px; font-weight:600; line-height:1.3; margin-bottom:10px; min-height:34px; }
+  .spare-foot { display:flex; justify-content:space-between; align-items:baseline; }
+  .spare-price { font-family:'Mulish',sans-serif; font-weight:800; font-size:15px; font-variant-numeric:tabular-nums; letter-spacing:-0.01em; }
+  .spare-stock { font-family:'IBM Plex Mono',monospace; font-size:10.5px; color:var(--green); letter-spacing:0.04em; font-weight:600; }
+
+  /* bottom rail: common failures chips */
+  .failures { padding:20px 40px 24px; background:#F8FAFC; }
+  .failures-label { font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--ink-3); letter-spacing:0.14em; text-transform:uppercase; margin-bottom:12px; }
+  .chips { display:flex; flex-wrap:wrap; gap:8px; }
+  .chip { display:inline-flex; align-items:center; gap:8px; padding:8px 14px; background:#fff; border:1px solid var(--rule); border-radius:999px; text-decoration:none; color:var(--ink); font-size:13px; font-weight:500; transition:all 160ms; }
+  .chip:hover { background:var(--ink); color:#fff; border-color:var(--ink); }
+  .chip-count { font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--ink-4); }
+  .chip:hover .chip-count { color:var(--amber); }
+
+  @media (max-width:900px) { .ships-grid { grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:600px) { .ships-grid { grid-template-columns:1fr; } .head,.ships,.failures { padding-left:20px; padding-right:20px; } }
+</style></head>
+<body>
+<div class="wrap">
+  <div class="label"><strong>T2-B · WHAT BROKE THIS WEEK</strong> · for returning operators · search for the broken part · 4 ships-today spares · failure-type chips</div>
+
+  <section class="pitcrew">
+
+    <header class="head">
+      <p class="kicker">For operators, not browsers</p>
+      <h2>Something in the shop just stopped working? <em>We're the pit crew.</em></h2>
+      <p class="sub">Search for a part, a model, or describe what broke. Consumables and spares in the Tallinn warehouse ship the same day if you order before 14:00.</p>
+
+      <form class="search-bar" onsubmit="event.preventDefault()">
+        <div class="search-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        </div>
+        <input type="text" placeholder="e.g. portafilter gasket 58mm, MIG welder torch, 9L pump diaphragm…">
+        <button type="submit">Find the part</button>
+      </form>
+    </header>
+
+    <div class="ships">
+      <div class="ships-head">
+        <span class="ships-title"><span class="ships-dot"></span> In stock in Tallinn · ships today</span>
+        <span class="ships-cutoff">Cutoff 14:00 · Mon–Fri</span>
+      </div>
+      <div class="ships-grid">
+        <a class="spare" href="#">
+          <div class="spare-cat">Espresso · Consumable</div>
+          <div class="spare-name">Portafilter gasket 58mm · silicone</div>
+          <div class="spare-foot"><span class="spare-price">€6.90</span><span class="spare-stock">42 in stock</span></div>
+        </a>
+        <a class="spare" href="#">
+          <div class="spare-cat">Welding · Consumable</div>
+          <div class="spare-name">MIG torch liner 4m · 0.8mm steel</div>
+          <div class="spare-foot"><span class="spare-price">€14.50</span><span class="spare-stock">18 in stock</span></div>
+        </a>
+        <a class="spare" href="#">
+          <div class="spare-cat">Pressure washer · Pump</div>
+          <div class="spare-name">Axial pump oil seal kit · 15mm</div>
+          <div class="spare-foot"><span class="spare-price">€22.00</span><span class="spare-stock">11 in stock</span></div>
+        </a>
+        <a class="spare" href="#">
+          <div class="spare-cat">Generator · Service</div>
+          <div class="spare-name">Air filter · 5kW inverter gens</div>
+          <div class="spare-foot"><span class="spare-price">€9.80</span><span class="spare-stock">27 in stock</span></div>
+        </a>
+      </div>
+    </div>
+
+    <div class="failures">
+      <div class="failures-label">Common failures · pick your machine</div>
+      <div class="chips">
+        <a class="chip" href="#">Coffee machine spares <span class="chip-count">84</span></a>
+        <a class="chip" href="#">Generator service kits <span class="chip-count">31</span></a>
+        <a class="chip" href="#">Welder consumables <span class="chip-count">142</span></a>
+        <a class="chip" href="#">Pressure-washer pumps <span class="chip-count">28</span></a>
+        <a class="chip" href="#">Clipper &amp; trimmer blades <span class="chip-count">46</span></a>
+        <a class="chip" href="#">Oven heating elements <span class="chip-count">19</span></a>
+      </div>
+    </div>
+
+  </section>
+</div>
+</body></html>

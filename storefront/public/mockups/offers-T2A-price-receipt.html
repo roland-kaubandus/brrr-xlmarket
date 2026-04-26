@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><title>T2A · Price Receipt</title>
+<link href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;500;600;700;800;900&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root { --ink:#0F172A; --ink-2:#334155; --ink-3:#64748B; --ink-4:#94A3B8; --amber:#E8920A; --amber-bg:#FEF3E2; --green:#15803D; --red:#B91C1C; --rule:#E2E8F0; }
+  * { box-sizing:border-box; }
+  body { margin:0; padding:48px clamp(16px,4vw,40px); background:#F1F5F9; font-family:'Mulish',system-ui,sans-serif; color:var(--ink); font-feature-settings:"tnum","lnum"; }
+  .wrap { max-width:1360px; margin:0 auto; }
+  .label { background:var(--ink); color:#fff; padding:14px 20px; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:2px; text-transform:uppercase; margin-bottom:20px; border-radius:8px; }
+  .label strong { color:var(--amber); }
+
+  .receipt { background:#fff; border:1px solid var(--rule); border-radius:8px; box-shadow:0 1px 3px rgba(15,23,42,0.04), 0 10px 28px -16px rgba(15,23,42,0.12); overflow:hidden; display:grid; grid-template-columns: 1.2fr 1fr; }
+
+  .proof-col { padding:36px 40px; border-right:1px solid var(--rule); }
+  .why-col { padding:36px 40px; background:#FAFBFC; }
+
+  .kicker { font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--amber); letter-spacing:0.18em; text-transform:uppercase; font-weight:600; margin:0 0 12px; display:flex; align-items:center; gap:10px; }
+  .kicker-dot { width:8px; height:8px; border-radius:50%; background:var(--green); animation:pulse 2.2s ease-in-out infinite; }
+  @keyframes pulse { 0%,100% { transform:scale(1); opacity:1; } 50% { transform:scale(1.2); opacity:0.7; } }
+
+  h2 { font-size:24px; font-weight:800; letter-spacing:-0.02em; margin:0 0 24px; line-height:1.2; }
+
+  .product { display:flex; gap:20px; align-items:flex-start; margin-bottom:28px; }
+  .product-photo { width:120px; height:120px; background:#F4F6F9; border-radius:6px; border:1px solid var(--rule); flex-shrink:0; display:flex; align-items:center; justify-content:center; font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--ink-4); letter-spacing:0.12em; text-transform:uppercase; }
+  .product-photo img { width:100%; height:100%; object-fit:cover; border-radius:6px; }
+  .product-info { flex:1; }
+  .product-cat { font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--ink-3); letter-spacing:0.12em; text-transform:uppercase; margin:0 0 6px; }
+  .product-name { font-size:16px; font-weight:700; line-height:1.3; letter-spacing:-0.01em; margin:0 0 4px; }
+  .product-sku { font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--ink-4); }
+
+  .prices { border-top:1.5px solid var(--ink); border-bottom:1.5px solid var(--ink); padding:16px 0; margin-bottom:20px; }
+  .price-row { display:grid; grid-template-columns: 1fr auto; align-items:baseline; padding:10px 0; }
+  .price-row + .price-row { border-top:1px dashed var(--rule); }
+  .price-label { font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--ink-2); letter-spacing:0.04em; }
+  .price-label em { font-style:normal; color:var(--ink-4); font-size:10.5px; display:block; margin-top:2px; }
+  .price-value { font-family:'Mulish',sans-serif; font-weight:700; font-size:18px; font-variant-numeric:tabular-nums; letter-spacing:-0.01em; }
+  .price-row.ours .price-value { font-size:28px; font-weight:900; color:var(--amber); }
+  .price-row.ours .price-label { color:var(--ink); font-weight:600; font-size:13px; }
+  .price-row.other .price-value { text-decoration:line-through; color:var(--ink-3); text-decoration-color:var(--red); }
+
+  .delta { display:inline-flex; align-items:center; gap:8px; padding:8px 14px; background:var(--amber-bg); color:var(--amber); border-radius:4px; font-family:'IBM Plex Mono',monospace; font-size:12px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; }
+  .delta::before { content:'↓'; font-size:14px; }
+
+  .cta-row { display:flex; gap:12px; align-items:center; flex-wrap:wrap; margin-top:20px; }
+  .cta { background:var(--ink); color:#fff; padding:12px 20px; border-radius:6px; text-decoration:none; font-weight:700; font-size:13px; transition:background 180ms; }
+  .cta:hover { background:var(--amber); }
+  .cta-text { font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--ink-3); letter-spacing:0.1em; text-transform:uppercase; }
+
+  /* Right column: how we can do this */
+  .why-list { list-style:none; padding:0; margin:0; display:grid; gap:20px; }
+  .why-item { display:flex; gap:14px; align-items:flex-start; }
+  .why-num { font-family:'Mulish',sans-serif; font-size:22px; font-weight:900; color:var(--amber); line-height:1; letter-spacing:-0.03em; flex-shrink:0; width:30px; }
+  .why-body h4 { font-size:14px; font-weight:700; margin:0 0 4px; letter-spacing:-0.01em; }
+  .why-body p { font-size:13px; color:var(--ink-2); line-height:1.55; margin:0; }
+
+  .method-link { display:block; margin-top:28px; padding-top:20px; border-top:1px solid var(--rule); font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--ink-3); letter-spacing:0.08em; text-transform:uppercase; text-decoration:none; }
+  .method-link strong { color:var(--amber); font-weight:600; }
+
+  @media (max-width:900px) { .receipt { grid-template-columns:1fr; } .proof-col { border-right:0; border-bottom:1px solid var(--rule); } }
+</style></head>
+<body>
+<div class="wrap">
+  <div class="label"><strong>T2-A · PRICE RECEIPT</strong> · one real SKU rotated per session · proves "half the price" with two competitor anchors · delta in amber</div>
+
+  <section class="receipt">
+
+    <!-- LEFT: the proof -->
+    <div class="proof-col">
+      <p class="kicker"><span class="kicker-dot"></span> Price comparison · Today</p>
+      <h2>The espresso machine, three places.</h2>
+
+      <div class="product">
+        <div class="product-photo">
+          <img src="/images/starter-kit-cafe.webp" alt="">
+        </div>
+        <div class="product-info">
+          <p class="product-cat">Horeca · Espresso</p>
+          <h3 class="product-name">VEVOR 2-group Commercial Espresso Machine, 15 bar, semi-automatic</h3>
+          <p class="product-sku">SKU · EM-2G-SS · In stock, 9 units</p>
+        </div>
+      </div>
+
+      <div class="prices">
+        <div class="price-row ours">
+          <div class="price-label">XLmarket <em>incl. 24% VAT · ships 10 days · 2-year warranty</em></div>
+          <div class="price-value">€3,199</div>
+        </div>
+        <div class="price-row other">
+          <div class="price-label">VEVOR.eu direct <em>excl. import VAT · 3-5 weeks from China · email-only warranty</em></div>
+          <div class="price-value">€3,780</div>
+        </div>
+        <div class="price-row other">
+          <div class="price-label">EU-branded equivalent <em>same specs · different sticker · dealer network</em></div>
+          <div class="price-value">€6,400</div>
+        </div>
+      </div>
+
+      <div class="delta">You save €3,201 vs EU retail · €581 vs direct</div>
+
+      <div class="cta-row">
+        <a class="cta" href="#">See the espresso machine →</a>
+        <span class="cta-text">New comparison every session</span>
+      </div>
+    </div>
+
+    <!-- RIGHT: how we can do this -->
+    <div class="why-col">
+      <p class="kicker">How we can do this</p>
+      <h2>Three reasons the math works.</h2>
+
+      <ol class="why-list">
+        <li class="why-item">
+          <div class="why-num">01</div>
+          <div class="why-body">
+            <h4>Bulk import direct from VEVOR</h4>
+            <p>One container, one customs run, 17,000 SKUs. The shipping and duty cost that kills a one-off import is amortized across the whole catalogue.</p>
+          </div>
+        </li>
+        <li class="why-item">
+          <div class="why-num">02</div>
+          <div class="why-body">
+            <h4>Estonian warranty, no middleman</h4>
+            <p>We hold the stock in Tallinn. You don't pay a local reseller's margin and we don't pay a local distributor either.</p>
+          </div>
+        </li>
+        <li class="why-item">
+          <div class="why-num">03</div>
+          <div class="why-body">
+            <h4>Professional-grade, no hobbyist packaging</h4>
+            <p>VEVOR makes the same gear that EU brands re-sticker. We skip the sticker and pass the difference on.</p>
+          </div>
+        </li>
+      </ol>
+
+      <a class="method-link" href="#"><strong>How we verify the comparison →</strong> weekly manual checks</a>
+    </div>
+
+  </section>
+</div>
+</body></html>

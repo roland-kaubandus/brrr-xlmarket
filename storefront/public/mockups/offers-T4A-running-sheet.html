@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><title>T4A · Running Sheet</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,700&family=IBM+Plex+Mono:wght@400;500;600&family=Mulish:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root { --ink:#0F172A; --ink-2:#334155; --ink-3:#64748B; --ink-4:#94A3B8; --amber:#E8920A; --paper:#FAF7F1; --paper-edge:#D9CEB8; --rule:#E2E8F0; }
+  * { box-sizing:border-box; }
+  body { margin:0; padding:48px clamp(16px,4vw,40px); background:#F1F5F9; font-family:'Mulish',system-ui,sans-serif; color:var(--ink); font-feature-settings:"tnum","lnum"; }
+  .wrap { max-width:1360px; margin:0 auto; }
+  .label { background:var(--ink); color:#fff; padding:14px 20px; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:2px; text-transform:uppercase; margin-bottom:20px; border-radius:8px; }
+  .label strong { color:var(--amber); }
+
+  .bulletin { background:var(--paper); border:1px solid var(--paper-edge); border-radius:8px; overflow:hidden; padding:32px 48px 36px; box-shadow:0 1px 3px rgba(15,23,42,0.04), 0 10px 28px -16px rgba(15,23,42,0.12); }
+
+  .masthead { border-top:3px solid var(--ink); border-bottom:1px solid var(--ink); padding:16px 0 12px; margin-bottom:28px; display:flex; justify-content:space-between; align-items:baseline; gap:20px; flex-wrap:wrap; }
+  .masthead-title { font-family:'Fraunces', serif; font-weight:700; font-size:clamp(26px, 3vw, 38px); letter-spacing:-0.022em; margin:0; line-height:1; font-optical-sizing:auto; }
+  .masthead-meta { font-family:'IBM Plex Mono', monospace; font-size:11px; color:var(--ink-2); letter-spacing:0.14em; text-transform:uppercase; text-align:right; line-height:1.5; }
+  .masthead-meta strong { color:var(--amber); font-weight:600; }
+
+  .entries { display:flex; flex-direction:column; gap:0; }
+  .entry { display:grid; grid-template-columns: 110px 1fr auto; gap:28px; align-items:baseline; padding:16px 12px; position:relative; text-decoration:none; color:inherit; transition:background 160ms; }
+  .entry:not(:last-child)::after { content:''; position:absolute; left:12px; right:12px; bottom:0; height:1px; background:var(--paper-edge); }
+  .entry:hover { background:rgba(232,146,10,0.05); }
+  .entry.lead::before { content:''; position:absolute; left:-2px; top:50%; transform:translateY(-50%); width:6px; height:6px; background:var(--amber); border-radius:1px; }
+
+  .e-date { font-family:'IBM Plex Mono', monospace; font-size:11.5px; color:var(--ink-3); letter-spacing:0.08em; text-transform:uppercase; font-weight:500; }
+  .e-date .day { color:var(--ink); font-weight:600; }
+
+  .e-body { font-family:'Mulish', sans-serif; font-size:15px; color:var(--ink); line-height:1.5; }
+  .e-body strong { color:var(--ink); font-weight:700; }
+  .e-body em { font-style:italic; color:var(--amber); font-weight:500; }
+  .e-body .cat { font-family:'IBM Plex Mono', monospace; font-size:10.5px; color:var(--ink-3); letter-spacing:0.12em; text-transform:uppercase; display:block; margin-top:4px; }
+
+  .e-num { font-family:'Mulish', sans-serif; font-size:18px; font-weight:700; color:var(--ink); font-variant-numeric:tabular-nums; letter-spacing:-0.01em; text-align:right; white-space:nowrap; }
+  .e-num small { display:block; font-family:'IBM Plex Mono', monospace; font-size:10px; color:var(--ink-4); font-weight:500; letter-spacing:0.1em; text-transform:uppercase; margin-top:2px; }
+
+  .foot { margin-top:24px; padding-top:18px; border-top:1px solid var(--ink); display:flex; justify-content:space-between; align-items:center; font-family:'IBM Plex Mono', monospace; font-size:11px; color:var(--ink-3); letter-spacing:0.1em; text-transform:uppercase; }
+  .foot a { color:var(--amber); text-decoration:none; font-weight:600; }
+  .foot a::after { content:' →'; }
+
+  @media (max-width:700px) { .entry { grid-template-columns:1fr auto; gap:10px; } .e-date { grid-column:1/-1; } }
+</style></head>
+<body>
+<div class="wrap">
+  <div class="label"><strong>T4-A · RUNNING SHEET</strong> · weekly trade bulletin front page · 7 dated entries, rule-separated, amber lead bullet · serif masthead + mono metadata</div>
+
+  <section class="bulletin">
+
+    <header class="masthead">
+      <h2 class="masthead-title">This week at XLmarket</h2>
+      <div class="masthead-meta">
+        Week 17 · 2026<br>
+        <strong>Updated Monday 06:00</strong>
+      </div>
+    </header>
+
+    <div class="entries">
+
+      <a class="entry lead" href="#">
+        <div class="e-date"><span class="day">Mon</span> · Apr 24</div>
+        <div class="e-body">
+          New arrival — <strong>VEVOR MIG Welder 200A</strong>, 3-in-1 torch, restocked after the 12-week gap. <em>14 units in.</em>
+          <span class="cat">Welding</span>
+        </div>
+        <div class="e-num">€469<small>VAT incl</small></div>
+      </a>
+
+      <a class="entry" href="#">
+        <div class="e-date"><span class="day">Mon</span> · Apr 24</div>
+        <div class="e-body">
+          Price cut — commercial pizza oven, twin-deck, dropped from €1,419 to <strong>€1,249</strong> after the supplier adjusted container pricing.
+          <span class="cat">Horeca</span>
+        </div>
+        <div class="e-num">−12%<small>vs. last wk</small></div>
+      </a>
+
+      <a class="entry" href="#">
+        <div class="e-date"><span class="day">Tue</span> · Apr 25</div>
+        <div class="e-body">
+          Low stock — diesel generator 5.5kW, inverter model. Two units left; next shipment arrives <strong>May 8</strong>.
+          <span class="cat">Power generation</span>
+        </div>
+        <div class="e-num">2 left<small>pre-order ok</small></div>
+      </a>
+
+      <a class="entry" href="#">
+        <div class="e-date"><span class="day">Wed</span> · Apr 26</div>
+        <div class="e-body">
+          Starter kit update — café kit #01 now ships with the <em>upgraded grinder</em> (flat burr 83mm) at the same €8,499 price.
+          <span class="cat">Starter kits</span>
+        </div>
+        <div class="e-num">€8,499<small>same price</small></div>
+      </a>
+
+      <a class="entry" href="#">
+        <div class="e-date"><span class="day">Thu</span> · Apr 27</div>
+        <div class="e-body">
+          Delivery window — orders placed before <strong>Thursday 14:00</strong> ship same week. Mon–Wed cutoff moved by one day.
+          <span class="cat">Logistics</span>
+        </div>
+        <div class="e-num">Thu 14:00<small>new cutoff</small></div>
+      </a>
+
+      <a class="entry" href="#">
+        <div class="e-date"><span class="day">Thu</span> · Apr 27</div>
+        <div class="e-body">
+          Warranty note — UV sterilizer cabinets (barber kit) now covered for <strong>3 years</strong>, up from 2, on the latest batch.
+          <span class="cat">Salon &amp; Spa</span>
+        </div>
+        <div class="e-num">3yr<small>was 2yr</small></div>
+      </a>
+
+      <a class="entry" href="#">
+        <div class="e-date"><span class="day">Fri</span> · Apr 28</div>
+        <div class="e-body">
+          Retired — trencher walk-behind model <strong>TRC-420</strong> discontinued; final 2 units at a closing price until stock runs out.
+          <span class="cat">Outdoor power</span>
+        </div>
+        <div class="e-num">€2,399<small>final batch</small></div>
+      </a>
+
+    </div>
+
+    <footer class="foot">
+      <span>7 entries · Week 17</span>
+      <a href="#">Past bulletins</a>
+    </footer>
+
+  </section>
+</div>
+</body></html>

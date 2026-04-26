@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Starter Kits — Variant B: Blueprint</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
+  rel="stylesheet"
+/>
+<style>
+  :root {
+    --ink: #0F172A;
+    --ink-2: #334155;
+    --ink-3: #64748B;
+    --ink-4: #94A3B8;
+    --amber: #E8920A;
+    --paper: #F8FAFC;
+    --grid-line: rgba(15, 27, 45, 0.06);
+    --rule: #E2E8F0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 48px 24px;
+    background: #F1F5F9;
+    font-family: 'Mulish', system-ui, sans-serif;
+    color: var(--ink);
+  }
+  .wrap { max-width: 1360px; margin: 0 auto; }
+  .heading { font-size: 14px; color: var(--ink-3); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 24px; font-weight: 600; }
+
+  .variant-label {
+    background: var(--ink);
+    color: white;
+    padding: 18px 22px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 16px;
+    border-radius: 3px;
+  }
+  .variant-label strong { color: var(--amber); font-weight: 600; }
+
+  .row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+
+  /* ── Variant B: Blueprint card ──────────────────────────────── */
+  .blueprint {
+    position: relative;
+    background: #fff;
+    border: 1px solid var(--rule);
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 300px;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+    overflow: hidden;
+    background-image:
+      linear-gradient(var(--grid-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+    background-size: 22px 22px;
+    background-position: -1px -1px;
+  }
+  .blueprint:hover {
+    border-color: var(--amber);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 28px -10px rgba(15, 23, 42, 0.18);
+  }
+
+  .bp-corner {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    border-color: var(--amber);
+    border-style: solid;
+    border-width: 0;
+  }
+  .bp-corner.tl { top: 10px; left: 10px; border-top-width: 1.5px; border-left-width: 1.5px; }
+  .bp-corner.tr { top: 10px; right: 10px; border-top-width: 1.5px; border-right-width: 1.5px; }
+  .bp-corner.bl { bottom: 10px; left: 10px; border-bottom-width: 1.5px; border-left-width: 1.5px; }
+  .bp-corner.br { bottom: 10px; right: 10px; border-bottom-width: 1.5px; border-right-width: 1.5px; }
+
+  .bp-head {
+    padding: 28px 28px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .bp-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--ink-3);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    line-height: 1.4;
+  }
+  .bp-num .amber { color: var(--amber); }
+  .bp-code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--ink-4);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+  .bp-title-row {
+    padding: 0 28px 20px;
+  }
+  .bp-title {
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin: 0 0 4px;
+  }
+  .bp-subtitle {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-3);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  /* Spec callouts: each item is a blueprint-style annotation */
+  .bp-items {
+    padding: 0 28px 20px;
+    display: grid;
+    grid-template-columns: 1fr;
+    row-gap: 9px;
+  }
+  .bp-item {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12.5px;
+    color: var(--ink-2);
+    display: grid;
+    grid-template-columns: 28px 1fr;
+    align-items: baseline;
+    column-gap: 6px;
+  }
+  .bp-item-marker {
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--amber);
+    letter-spacing: 0.5px;
+  }
+
+  .bp-foot {
+    margin-top: auto;
+    padding: 16px 28px 22px;
+    background: linear-gradient(to bottom, transparent 0, #fff 6px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid var(--rule);
+  }
+  .bp-price-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--ink-3);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    line-height: 1.2;
+  }
+  .bp-price {
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    color: var(--ink);
+    line-height: 1;
+    margin-top: 3px;
+  }
+  .bp-arrow {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: var(--ink);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 16px;
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+  .blueprint:hover .bp-arrow {
+    background: var(--amber);
+    transform: translateX(3px) rotate(-45deg);
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="heading">Starter Kits — Variant B — Blueprint / Plan Card</div>
+  <div class="variant-label"><strong>B · BLUEPRINT</strong> · grid-paper background, monospace specs, corner brackets, bold price, amber arrow-circle cta</div>
+
+  <div class="row">
+
+    <a href="#" class="blueprint">
+      <span class="bp-corner tl"></span><span class="bp-corner tr"></span>
+      <span class="bp-corner bl"></span><span class="bp-corner br"></span>
+
+      <div class="bp-head">
+        <div class="bp-num">Kit <span class="amber">/ 01</span></div>
+        <div class="bp-code">REV 2026 · CAF-S</div>
+      </div>
+      <div class="bp-title-row">
+        <h3 class="bp-title">Café &amp; Coffee Shop</h3>
+        <div class="bp-subtitle">Opens your doors in 10 days</div>
+      </div>
+      <div class="bp-items">
+        <div class="bp-item"><span class="bp-item-marker">A1</span><span>Espresso machine, 2-group</span></div>
+        <div class="bp-item"><span class="bp-item-marker">A2</span><span>Undercounter fridge, 120 L</span></div>
+        <div class="bp-item"><span class="bp-item-marker">A3</span><span>Prep tables, stainless</span></div>
+        <div class="bp-item"><span class="bp-item-marker">A4</span><span>Shelving + dunnage racks</span></div>
+      </div>
+      <div class="bp-foot">
+        <div>
+          <div class="bp-price-label">Subtotal · VAT incl</div>
+          <div class="bp-price">€8,499</div>
+        </div>
+        <div class="bp-arrow">→</div>
+      </div>
+    </a>
+
+    <a href="#" class="blueprint">
+      <span class="bp-corner tl"></span><span class="bp-corner tr"></span>
+      <span class="bp-corner bl"></span><span class="bp-corner br"></span>
+
+      <div class="bp-head">
+        <div class="bp-num">Kit <span class="amber">/ 02</span></div>
+        <div class="bp-code">REV 2026 · BRB-S</div>
+      </div>
+      <div class="bp-title-row">
+        <h3 class="bp-title">Barber Shop</h3>
+        <div class="bp-subtitle">Two-chair layout, ready to book</div>
+      </div>
+      <div class="bp-items">
+        <div class="bp-item"><span class="bp-item-marker">B1</span><span>Hydraulic barber chairs × 2</span></div>
+        <div class="bp-item"><span class="bp-item-marker">B2</span><span>Gold-framed wall mirrors</span></div>
+        <div class="bp-item"><span class="bp-item-marker">B3</span><span>Clipper + razor + scissor set</span></div>
+        <div class="bp-item"><span class="bp-item-marker">B4</span><span>UV sterilizer cabinet</span></div>
+      </div>
+      <div class="bp-foot">
+        <div>
+          <div class="bp-price-label">Subtotal · VAT incl</div>
+          <div class="bp-price">€3,499</div>
+        </div>
+        <div class="bp-arrow">→</div>
+      </div>
+    </a>
+
+    <a href="#" class="blueprint">
+      <span class="bp-corner tl"></span><span class="bp-corner tr"></span>
+      <span class="bp-corner bl"></span><span class="bp-corner br"></span>
+
+      <div class="bp-head">
+        <div class="bp-num">Kit <span class="amber">/ 03</span></div>
+        <div class="bp-code">REV 2026 · BAK-S</div>
+      </div>
+      <div class="bp-title-row">
+        <h3 class="bp-title">Bakery &amp; Pastry</h3>
+        <div class="bp-subtitle">Hot ovens from day one</div>
+      </div>
+      <div class="bp-items">
+        <div class="bp-item"><span class="bp-item-marker">C1</span><span>Commercial convection oven</span></div>
+        <div class="bp-item"><span class="bp-item-marker">C2</span><span>Spiral dough mixer, 20 L</span></div>
+        <div class="bp-item"><span class="bp-item-marker">C3</span><span>Proofing cabinet, 16-tray</span></div>
+        <div class="bp-item"><span class="bp-item-marker">C4</span><span>Refrigerated display, 1.5 m</span></div>
+      </div>
+      <div class="bp-foot">
+        <div>
+          <div class="bp-price-label">Subtotal · VAT incl</div>
+          <div class="bp-price">€7,499</div>
+        </div>
+        <div class="bp-arrow">→</div>
+      </div>
+    </a>
+
+  </div>
+</div>
+</body>
+</html>

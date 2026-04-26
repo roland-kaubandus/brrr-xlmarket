@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Starter Kits — Variant E: 3-phase workflow</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;500;600;700;800;900&family=IBM+Plex+Mono:wght@400;500;600&family=Caveat:wght@400;500;600;700&family=Kalam:wght@300;400;700&display=swap"
+  rel="stylesheet"
+/>
+<style>
+  :root {
+    --ink: #1E293B;
+    --ink-2: #475569;
+    --ink-3: #64748B;
+    --ink-4: #94A3B8;
+    --amber: #E8920A;
+    --amber-dark: #B26F08;
+    --amber-bg: #FEF3E2;
+    --paper: #FAF7F1;
+    --paper-shadow: #E8E1D4;
+    --pencil: #2B3440;
+    --red-ink: #C53030;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 48px 24px;
+    background: #F1F5F9;
+    font-family: 'Mulish', system-ui, sans-serif;
+    color: var(--ink);
+  }
+  .wrap { max-width: 1360px; margin: 0 auto; }
+  .heading { font-size: 14px; color: var(--ink-3); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 24px; font-weight: 600; }
+  .variant-label {
+    background: var(--ink);
+    color: white;
+    padding: 18px 22px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 16px;
+    border-radius: 3px;
+  }
+  .variant-label strong { color: var(--amber); font-weight: 600; }
+
+  /* ── Workflow card ──────────────────────────────────────────── */
+  .workflow {
+    background: var(--paper);
+    border: 1px solid var(--paper-shadow);
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    position: relative;
+    box-shadow:
+      0 1px 2px rgba(15,23,42,0.04),
+      0 6px 20px -8px rgba(15,23,42,0.10);
+    background-image:
+      radial-gradient(ellipse 1200px 400px at 0% 0%, rgba(232,146,10,0.03), transparent 50%),
+      radial-gradient(ellipse 900px 300px at 100% 100%, rgba(30,41,59,0.02), transparent 55%),
+      repeating-linear-gradient(175deg, transparent 0, transparent 28px, rgba(203,189,162,0.08) 28px, rgba(203,189,162,0.08) 29px);
+  }
+
+  /* Workflow header bar */
+  .workflow-banner {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 28px;
+    border-bottom: 1.5px solid var(--paper-shadow);
+  }
+  .banner-eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--amber);
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  .banner-title {
+    font-family: 'Mulish', system-ui, sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    margin: 0;
+    color: var(--ink);
+  }
+  .banner-title em {
+    font-style: normal;
+    color: var(--amber);
+  }
+  .banner-meta {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-3);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  /* Each phase column */
+  .phase {
+    position: relative;
+    padding: 30px 32px 28px;
+    min-height: 460px;
+    display: flex;
+    flex-direction: column;
+  }
+  .phase + .phase {
+    border-left: 1.5px dashed var(--paper-shadow);
+  }
+
+  /* Amber arrow between phases */
+  .phase-arrow {
+    position: absolute;
+    left: -14px;
+    top: 72px;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--paper);
+    border: 1.5px solid var(--amber);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Mulish', sans-serif;
+    font-weight: 700;
+    color: var(--amber);
+    font-size: 14px;
+    z-index: 5;
+  }
+
+  .phase-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--amber);
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .phase-title {
+    font-family: 'Mulish', sans-serif;
+    font-size: 26px;
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    line-height: 1.1;
+    margin: 0 0 6px;
+  }
+  .phase-sub {
+    font-size: 13px;
+    color: var(--ink-3);
+    line-height: 1.5;
+    margin: 0 0 20px;
+  }
+
+  /* ── Phase 1: Plan it — sketchy ───────────────────────── */
+  .plan-content {
+    position: relative;
+    flex: 1;
+  }
+  .plan-polaroid {
+    position: absolute;
+    top: 4px;
+    right: 0;
+    width: 108px;
+    background: #fff;
+    padding: 5px 5px 18px;
+    transform: rotate(4deg);
+    box-shadow: 0 2px 6px rgba(15,23,42,0.18), 0 8px 20px -6px rgba(15,23,42,0.14);
+    z-index: 3;
+  }
+  .plan-polaroid img {
+    width: 100%;
+    height: 78px;
+    display: block;
+    object-fit: cover;
+  }
+  .plan-polaroid-cap {
+    font-family: 'Kalam', cursive;
+    font-size: 11px;
+    color: var(--ink-2);
+    text-align: center;
+    margin-top: 3px;
+    line-height: 1;
+  }
+  .plan-floor {
+    width: 170px;
+    height: 108px;
+    margin: 6px 0 14px -4px;
+  }
+  .floor-label {
+    font-family: 'Kalam', cursive;
+    font-size: 11px;
+    fill: var(--ink-3);
+  }
+  .plan-list {
+    font-family: 'Kalam', cursive;
+    font-size: 16px;
+    color: var(--ink);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    line-height: 1.4;
+  }
+  .plan-list li {
+    padding: 2px 0;
+  }
+  .plan-list li::before {
+    content: '✓';
+    color: var(--amber);
+    margin-right: 8px;
+    font-weight: 700;
+  }
+  .plan-list .crossed {
+    color: var(--ink-3);
+    text-decoration: line-through 1.5px var(--red-ink);
+  }
+  .plan-list .crossed::before { content: '×'; color: var(--red-ink); }
+  .plan-list .added { color: var(--red-ink); }
+  .plan-list .added::before { content: '→'; color: var(--red-ink); }
+
+  .plan-scribble {
+    font-family: 'Caveat', cursive;
+    font-size: 16px;
+    color: var(--red-ink);
+    margin-top: 10px;
+    transform: rotate(-2deg);
+    display: inline-block;
+    padding-left: 20px;
+  }
+
+  /* ── Phase 2: Ship it — structured invoice ────────────── */
+  .ship-invoice {
+    background: #fff;
+    border: 1px solid var(--paper-shadow);
+    padding: 18px 20px 16px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12.5px;
+    color: var(--ink-2);
+    margin-bottom: 16px;
+    position: relative;
+  }
+  .ship-invoice::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--amber);
+  }
+  .ship-ref {
+    font-size: 10px;
+    color: var(--ink-3);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .ship-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px dashed var(--paper-shadow);
+    align-items: baseline;
+  }
+  .ship-row:last-of-type { border-bottom: 0; }
+  .ship-row-name {
+    font-weight: 500;
+    color: var(--ink);
+    font-size: 13px;
+  }
+  .ship-row-code {
+    color: var(--ink-4);
+    font-size: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-top: 2px;
+  }
+  .ship-row-price {
+    font-weight: 600;
+    color: var(--ink);
+    font-family: 'Mulish', sans-serif;
+    font-size: 15px;
+  }
+  .ship-total-row {
+    margin-top: 10px;
+    padding-top: 12px;
+    border-top: 1.5px solid var(--ink);
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+  .ship-total-label {
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--ink-3);
+  }
+  .ship-total-price {
+    font-family: 'Mulish', sans-serif;
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+  .ship-features {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+  .ship-feature {
+    display: flex;
+    align-items: flex-start;
+    gap: 9px;
+    font-size: 12.5px;
+    color: var(--ink-2);
+    line-height: 1.4;
+  }
+  .ship-feature-icon {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    color: var(--amber);
+    margin-top: 1px;
+  }
+
+  /* ── Phase 3: Open it — celebratory ───────────────────── */
+  .open-photos {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    margin: 4px 0 20px;
+  }
+  .open-photo {
+    position: relative;
+    aspect-ratio: 1/1;
+    overflow: hidden;
+    background: #fff;
+    padding: 4px 4px 16px;
+    box-shadow: 0 2px 6px rgba(15,23,42,0.14), 0 8px 18px -8px rgba(15,23,42,0.12);
+  }
+  .open-photo:nth-child(1) { transform: rotate(-2.5deg); }
+  .open-photo:nth-child(2) { transform: rotate(1deg); margin-top: 6px; }
+  .open-photo:nth-child(3) { transform: rotate(-1.5deg); margin-top: -4px; }
+  .open-photo img {
+    width: 100%;
+    height: calc(100% - 14px);
+    object-fit: cover;
+    display: block;
+  }
+  .open-photo-cap {
+    position: absolute;
+    bottom: 3px;
+    left: 0; right: 0;
+    font-family: 'Kalam', cursive;
+    font-size: 10px;
+    color: var(--ink-2);
+    text-align: center;
+    line-height: 1;
+  }
+  .open-price-list {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--ink-2);
+    margin: 0 0 16px;
+    display: grid;
+    gap: 5px;
+  }
+  .open-price-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 4px 0;
+    border-bottom: 1px dashed var(--paper-shadow);
+  }
+  .open-price-item span:first-child {
+    color: var(--ink-2);
+  }
+  .open-price-item span:last-child {
+    font-family: 'Mulish', sans-serif;
+    font-weight: 700;
+    color: var(--ink);
+    font-size: 13px;
+  }
+  .open-cta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: var(--amber);
+    color: #fff;
+    padding: 14px 20px;
+    border: none;
+    text-decoration: none;
+    font-family: 'Mulish', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 0.01em;
+    transition: background 0.2s ease, transform 0.2s ease;
+    margin-top: auto;
+  }
+  .open-cta::after {
+    content: '→';
+    transition: transform 0.2s ease;
+  }
+  .open-cta:hover {
+    background: var(--amber-dark);
+  }
+  .open-cta:hover::after { transform: translateX(4px); }
+
+  /* ── Responsive: stack vertically under 900px ───────── */
+  @media (max-width: 900px) {
+    .workflow { grid-template-columns: 1fr; }
+    .phase + .phase {
+      border-left: 0;
+      border-top: 1.5px dashed var(--paper-shadow);
+    }
+    .phase-arrow {
+      left: 50%;
+      top: -14px;
+      transform: translateX(-50%) rotate(90deg);
+    }
+    .open-photos { grid-template-columns: repeat(3, 1fr); }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="heading">Starter Kits — Variant E — 3-phase workflow narrative</div>
+  <div class="variant-label"><strong>E · WORKFLOW</strong> · üks lai kaart · plan it → we ship it → open it · iga etapp oma visuaalne karakter · kolm kit-i nähtavad hinnaloendis</div>
+
+  <article class="workflow">
+    <!-- Banner strip on top -->
+    <header class="workflow-banner">
+      <div>
+        <div class="banner-eyebrow">Starter Kits · how it works</div>
+        <h3 class="banner-title">Three weeks. <em>Three hand-offs.</em> Open for business.</h3>
+      </div>
+      <div class="banner-meta">Café · Barber · Bakery<br>From €3,499 &nbsp;·&nbsp; VAT incl</div>
+    </header>
+
+    <!-- ── Phase 1: Plan it ────────────────────────────── -->
+    <section class="phase">
+      <div class="phase-num">Phase 01 · You</div>
+      <h4 class="phase-title">Plan it at the kitchen table.</h4>
+      <p class="phase-sub">Sketch the floor, list what you'll need, cross out what you won't. We don't mind scribbles.</p>
+
+      <div class="plan-content">
+        <div class="plan-polaroid">
+          <img src="/images/starter-kit-cafe.webp" alt="" />
+          <div class="plan-polaroid-cap">"the bar."</div>
+        </div>
+
+        <svg class="plan-floor" viewBox="0 0 170 108" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 4 5 L 164 6 L 165 102 L 5 103 Z" stroke="var(--pencil)" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M 54 103 Q 60 95 68 103" stroke="var(--pencil)" stroke-width="1.2" fill="none"/>
+          <path d="M 12 36 L 88 37 L 89 64 L 12 65 Z" stroke="var(--amber)" stroke-width="1.4" fill="none"/>
+          <rect x="20" y="42" width="20" height="14" stroke="var(--pencil)" stroke-width="1" fill="none"/>
+          <text x="30" y="52" class="floor-label" text-anchor="middle" style="font-size:7px">esp.</text>
+          <rect x="48" y="42" width="14" height="14" stroke="var(--pencil)" stroke-width="1" fill="none"/>
+          <text x="55" y="52" class="floor-label" text-anchor="middle" style="font-size:7px">frg.</text>
+          <rect x="68" y="42" width="15" height="20" stroke="var(--pencil)" stroke-width="1" fill="none"/>
+          <circle cx="115" cy="26" r="5" stroke="var(--pencil)" stroke-width="1" fill="none"/>
+          <circle cx="135" cy="26" r="5" stroke="var(--pencil)" stroke-width="1" fill="none"/>
+          <circle cx="115" cy="50" r="5" stroke="var(--pencil)" stroke-width="1" fill="none"/>
+          <circle cx="135" cy="50" r="5" stroke="var(--pencil)" stroke-width="1" fill="none"/>
+          <rect x="110" y="33" width="30" height="12" stroke="var(--pencil)" stroke-width="1" fill="none"/>
+          <path d="M 110 78 L 155 80" stroke="var(--pencil)" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+          <path d="M 150 76 L 155 80 L 150 84" stroke="var(--pencil)" stroke-width="1.2" fill="none"/>
+          <text x="110" y="91" class="floor-label">shelves →</text>
+        </svg>
+
+        <ul class="plan-list">
+          <li>Espresso, 2-group</li>
+          <li class="crossed">Fancy pastry case</li>
+          <li class="added">Simple fridge + prep</li>
+        </ul>
+        <div class="plan-scribble">"actually need 2 fridges?"</div>
+      </div>
+    </section>
+
+    <!-- ── Phase 2: We ship it ─────────────────────────── -->
+    <section class="phase">
+      <div class="phase-arrow">→</div>
+      <div class="phase-num">Phase 02 · Us</div>
+      <h4 class="phase-title">One invoice. One delivery.</h4>
+      <p class="phase-sub">You send the plan, we pack the kit — every piece matched, tested, and on the same truck.</p>
+
+      <div class="ship-invoice">
+        <div class="ship-ref">
+          <span>Kit · CAF-S</span>
+          <span>Rev 2026</span>
+        </div>
+        <div class="ship-row">
+          <div>
+            <div class="ship-row-name">Espresso machine, 2-group</div>
+            <div class="ship-row-code">EM-2G · stainless</div>
+          </div>
+          <div class="ship-row-price">€3,200</div>
+        </div>
+        <div class="ship-row">
+          <div>
+            <div class="ship-row-name">Undercounter fridge, 120 L</div>
+            <div class="ship-row-code">FRG-120 · energy A</div>
+          </div>
+          <div class="ship-row-price">€1,450</div>
+        </div>
+        <div class="ship-row">
+          <div>
+            <div class="ship-row-name">Prep tables + shelving</div>
+            <div class="ship-row-code">PT-SH · 4pc</div>
+          </div>
+          <div class="ship-row-price">€2,100</div>
+        </div>
+        <div class="ship-row">
+          <div>
+            <div class="ship-row-name">Grinder + accessories</div>
+            <div class="ship-row-code">GR-ACC · set</div>
+          </div>
+          <div class="ship-row-price">€1,749</div>
+        </div>
+        <div class="ship-total-row">
+          <span class="ship-total-label">Kit total · VAT incl</span>
+          <span class="ship-total-price">€8,499</span>
+        </div>
+      </div>
+
+      <div class="ship-features">
+        <div class="ship-feature">
+          <svg class="ship-feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+          <span><strong>10 business days</strong> · pallet delivery to your door</span>
+        </div>
+        <div class="ship-feature">
+          <svg class="ship-feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <span><strong>2-year warranty</strong> · every piece, replace-on-fail</span>
+        </div>
+        <div class="ship-feature">
+          <svg class="ship-feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12V8H6a2 2 0 0 1-2-2c0-1.1.9-2 2-2h12v4"/><path d="M4 6v12c0 1.1.9 2 2 2h14v-4"/><path d="M18 12a2 2 0 0 0 0 4h4v-4Z"/></svg>
+          <span><strong>Net-30 terms</strong> for B2B accounts on request</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Phase 3: Open it ────────────────────────────── -->
+    <section class="phase">
+      <div class="phase-arrow">→</div>
+      <div class="phase-num">Phase 03 · You again</div>
+      <h4 class="phase-title">Open your doors.</h4>
+      <p class="phase-sub">Three businesses, one system. Pick the one you're starting — the rest wait for next time.</p>
+
+      <div class="open-photos">
+        <div class="open-photo">
+          <img src="/images/starter-kit-cafe.webp" alt="" />
+          <div class="open-photo-cap">café · €8,499</div>
+        </div>
+        <div class="open-photo">
+          <img src="/images/starter-kit-barber.webp" alt="" />
+          <div class="open-photo-cap">barber · €3,499</div>
+        </div>
+        <div class="open-photo">
+          <img src="/images/starter-kit-bakery.webp" alt="" />
+          <div class="open-photo-cap">bakery · €7,499</div>
+        </div>
+      </div>
+
+      <div class="open-price-list">
+        <div class="open-price-item"><span>Café &amp; Coffee Shop · 6 items</span><span>€8,499</span></div>
+        <div class="open-price-item"><span>Barber Shop · 6 items</span><span>€3,499</span></div>
+        <div class="open-price-item"><span>Bakery &amp; Pastry · 7 items</span><span>€7,499</span></div>
+      </div>
+
+      <a class="open-cta" href="#">Choose your kit</a>
+    </section>
+
+  </article>
+</div>
+</body>
+</html>

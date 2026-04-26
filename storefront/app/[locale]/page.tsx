@@ -3,6 +3,7 @@ import HomepageShell from "@/components/HomepageShell"
 import { getHomepageL1Nodes } from "@/lib/menu-data"
 import { getHomepageCms, type HomepageContent } from "@/lib/cms"
 import homepageFallback from "@/lib/cms-fallback/homepage.json"
+import { getStockBoardRows } from "@/lib/stock-board-data"
 
 export const revalidate = 3600
 
@@ -28,6 +29,8 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
   const l1Nodes = getHomepageL1Nodes()
   // CMS content: live Medusa → fallback JSON (ships in bundle as safety net)
   const cms: HomepageContent = (await getHomepageCms()) ?? (homepageFallback as unknown as HomepageContent)
+  // Stock Board: 8 in-stock SKUs across the catalogue, server-fetched.
+  const stockBoard = await getStockBoardRows(locale)
   return (
     <HomepageShell
       locale={locale}
@@ -35,6 +38,8 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
       slides={cms.slides}
       promos={cms.promos}
       navShortNames={cms.nav_short_names}
+      stockBoardRows={stockBoard.rows}
+      stockBoardUpdatedAt={stockBoard.updatedAt}
     />
   )
 }

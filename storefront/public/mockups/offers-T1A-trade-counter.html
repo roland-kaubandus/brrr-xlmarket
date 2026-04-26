@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><title>T1A · Trade Counter</title>
+<link href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root { --ink:#0F172A; --ink-2:#475569; --ink-3:#64748B; --ink-4:#94A3B8; --amber:#E8920A; --amber-bg:#FEF3E2; --rule:#E2E8F0; --bg:#FFFFFF; }
+  * { box-sizing:border-box; }
+  body { margin:0; padding:48px clamp(16px,4vw,40px); background:#F1F5F9; font-family:'Mulish',system-ui,sans-serif; color:var(--ink); font-feature-settings:"tnum","lnum"; }
+  .wrap { max-width:1360px; margin:0 auto; }
+  .label { background:var(--ink); color:#fff; padding:14px 20px; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:2px; text-transform:uppercase; margin-bottom:20px; border-radius:8px; }
+  .label strong { color:var(--amber); }
+
+  .counter { background:var(--bg); border:1px solid var(--rule); border-radius:8px; overflow:hidden; box-shadow:0 1px 3px rgba(15,23,42,0.04), 0 10px 28px -16px rgba(15,23,42,0.12); }
+  .counter-header { padding:24px 32px 18px; border-bottom:1px solid var(--rule); display:flex; justify-content:space-between; align-items:baseline; gap:24px; flex-wrap:wrap; }
+  .counter-header h2 { font-size:clamp(22px,2.4vw,30px); font-weight:800; letter-spacing:-0.022em; margin:0; line-height:1.15; }
+  .counter-header h2 em { font-style:normal; color:var(--amber); }
+  .counter-header .trust { font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--ink-3); letter-spacing:0.14em; text-transform:uppercase; white-space:nowrap; }
+
+  .cols { display:grid; grid-template-columns:1fr 1fr 1fr; }
+  .col { padding:28px 32px; position:relative; }
+  .col + .col::before { content:''; position:absolute; top:24px; bottom:24px; left:0; width:1px; background:var(--rule); }
+
+  .col-kicker { font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--amber); letter-spacing:0.16em; text-transform:uppercase; font-weight:600; margin:0 0 10px; }
+  .col-title { font-size:20px; font-weight:800; letter-spacing:-0.02em; margin:0 0 6px; }
+  .col-sub { font-size:13px; color:var(--ink-3); line-height:1.5; margin:0 0 18px; }
+
+  .search { display:flex; border:1.5px solid var(--rule); border-radius:6px; overflow:hidden; margin-bottom:16px; transition:border-color 180ms; }
+  .col:hover .search { border-color:var(--amber); }
+  .search input { flex:1; border:0; padding:10px 12px; font-family:'Mulish',sans-serif; font-size:13px; outline:none; }
+  .search input::placeholder { color:var(--ink-4); }
+  .search button { border:0; background:var(--ink); color:#fff; padding:10px 14px; font-family:'IBM Plex Mono',monospace; font-size:11px; font-weight:600; letter-spacing:0.1em; cursor:pointer; }
+
+  .shortcut-list { list-style:none; padding:0; margin:0 0 18px; display:grid; gap:6px; }
+  .shortcut-list a { display:flex; justify-content:space-between; padding:6px 8px; border-radius:4px; text-decoration:none; color:var(--ink); font-family:'IBM Plex Mono',monospace; font-size:12.5px; transition:background 160ms; }
+  .shortcut-list a:hover { background:var(--amber-bg); color:var(--ink); }
+  .shortcut-list a .count { color:var(--ink-4); font-weight:500; font-variant-numeric:tabular-nums; }
+
+  .kit-list { list-style:none; padding:0; margin:0 0 18px; display:grid; gap:10px; }
+  .kit-list li { display:flex; justify-content:space-between; align-items:baseline; padding-bottom:10px; border-bottom:1px dashed var(--rule); }
+  .kit-list li:last-child { border:0; padding-bottom:0; }
+  .kit-name { font-size:14px; font-weight:600; }
+  .kit-price { font-family:'IBM Plex Mono',monospace; font-size:13px; color:var(--ink-2); font-variant-numeric:tabular-nums; }
+
+  .perks { list-style:none; padding:0; margin:0 0 18px; display:grid; gap:8px; }
+  .perks li { display:flex; align-items:center; gap:8px; font-size:13px; color:var(--ink-2); }
+  .perks li::before { content:''; width:6px; height:6px; border-radius:50%; background:var(--amber); flex-shrink:0; }
+
+  .col-link { font-family:'IBM Plex Mono',monospace; font-size:12px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:var(--amber); text-decoration:none; display:inline-flex; align-items:center; gap:6px; padding-top:6px; border-top:1.5px solid var(--ink); margin-top:auto; }
+  .col-link::after { content:'→'; transition:transform 180ms; }
+  .col-link:hover::after { transform:translateX(4px); }
+
+  .col { display:flex; flex-direction:column; }
+
+  @media (max-width:900px) {
+    .cols { grid-template-columns:1fr; }
+    .col + .col::before { left:24px; right:24px; top:0; bottom:auto; width:auto; height:1px; }
+  }
+</style></head>
+<body>
+<div class="wrap">
+  <div class="label"><strong>T1-A · TRADE COUNTER</strong> · kolm kolonni, kolm ostja-tüüpi, iga saab oma CTA · SKU-counts + real kit prices + B2B terms · no photos, all structure</div>
+
+  <section class="counter">
+    <header class="counter-header">
+      <h2>Industrial and commercial gear. <em>17,000 SKUs.</em> Ships in 10 business days.</h2>
+      <span class="trust">VAT incl · 2-year warranty · Montonio</span>
+    </header>
+
+    <div class="cols">
+
+      <div class="col">
+        <p class="col-kicker">Column 01 · I know what I need</p>
+        <h3 class="col-title">Go straight to the gear.</h3>
+        <p class="col-sub">Search by name, model, or category. Filters for voltage, capacity, throughput.</p>
+        <div class="search">
+          <input type="text" placeholder="welder, oven, generator…">
+          <button>Search</button>
+        </div>
+        <ul class="shortcut-list">
+          <li><a href="#"><span>Welding</span><span class="count">612</span></a></li>
+          <li><a href="#"><span>Commercial kitchen</span><span class="count">1,840</span></a></li>
+          <li><a href="#"><span>Power generation</span><span class="count">387</span></a></li>
+          <li><a href="#"><span>Metalworking</span><span class="count">2,104</span></a></li>
+        </ul>
+        <a class="col-link" href="#">Browse all 17,000 SKUs</a>
+      </div>
+
+      <div class="col">
+        <p class="col-kicker">Column 02 · I'm starting something</p>
+        <h3 class="col-title">Buy a whole setup, one invoice.</h3>
+        <p class="col-sub">Six turnkey kits for cafés, barbers, bakeries, auto shops, print shops, and cleaning.</p>
+        <ul class="kit-list">
+          <li><span class="kit-name">Café &amp; Coffee Shop</span><span class="kit-price">€8,499</span></li>
+          <li><span class="kit-name">Barber Shop</span><span class="kit-price">€3,499</span></li>
+          <li><span class="kit-name">Bakery &amp; Pastry</span><span class="kit-price">€7,499</span></li>
+          <li><span class="kit-name">Auto Shop · Print · Cleaning</span><span class="kit-price">from €2,799</span></li>
+        </ul>
+        <a class="col-link" href="#">All six Starter Kits</a>
+      </div>
+
+      <div class="col">
+        <p class="col-kicker">Column 03 · I buy for a company</p>
+        <h3 class="col-title">Procurement without the friction.</h3>
+        <p class="col-sub">Real humans on the phone, real invoices at month-end, real warranty in Tallinn.</p>
+        <ul class="perks">
+          <li>Net-30 terms for B2B accounts</li>
+          <li>Montonio Pay-in-3 on cards</li>
+          <li>VAT invoice, 24% breakdown</li>
+          <li>Dedicated account manager</li>
+          <li>Custom equipment bundles</li>
+        </ul>
+        <a class="col-link" href="#">Open a company account</a>
+      </div>
+
+    </div>
+  </section>
+</div>
+</body></html>

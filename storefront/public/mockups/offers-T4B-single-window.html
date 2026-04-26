@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><title>T4B · Single Window</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Mono:wght@400;500&family=Mulish:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root { --ink:#0F172A; --amber:#E8920A; --paper:#FAF7F1; --paper-edge:#D9CEB8; }
+  * { box-sizing:border-box; }
+  body { margin:0; padding:48px clamp(16px,4vw,40px); background:#F1F5F9; font-family:'Mulish',system-ui,sans-serif; color:var(--ink); }
+  .wrap { max-width:1360px; margin:0 auto; }
+  .label { background:var(--ink); color:#fff; padding:14px 20px; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:2px; text-transform:uppercase; margin-bottom:20px; border-radius:8px; }
+  .label strong { color:var(--amber); }
+
+  .window { position:relative; border-radius:8px; overflow:hidden; background:var(--ink); aspect-ratio:21/9; box-shadow:0 1px 3px rgba(15,23,42,0.04), 0 10px 28px -16px rgba(15,23,42,0.12); min-height:380px; }
+  .window img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center; }
+
+  /* gallery label — small cream swatch pasted on the photo */
+  .plaque { position:absolute; bottom:32px; left:32px; background:var(--paper); padding:14px 18px; max-width:340px; box-shadow:0 8px 24px -8px rgba(0,0,0,0.4); border:1px solid var(--paper-edge); }
+  .plaque::before, .plaque::after { content:''; position:absolute; left:0; right:0; height:1px; background:var(--ink); }
+  .plaque::before { top:6px; }
+  .plaque::after { bottom:6px; }
+  .plaque .role { font-family:'Fraunces', serif; font-weight:500; font-size:22px; letter-spacing:-0.018em; line-height:1.1; color:var(--ink); margin:6px 0 6px; font-optical-sizing:auto; }
+  .plaque .role em { font-style:italic; color:var(--amber); }
+  .plaque .equip { font-family:'IBM Plex Mono', monospace; font-size:10.5px; color:#475569; letter-spacing:0.1em; text-transform:uppercase; line-height:1.5; margin:0; }
+  .plaque .equip a { color:var(--amber); text-decoration:none; border-bottom:1px solid var(--amber); font-weight:500; }
+  .plaque .equip a:hover { background:var(--amber); color:#fff; border-color:var(--amber); }
+
+  /* page-number style accent top-right */
+  .accession { position:absolute; top:24px; right:28px; font-family:'IBM Plex Mono', monospace; font-size:11px; color:rgba(250,247,241,0.58); letter-spacing:0.2em; text-transform:uppercase; z-index:2; }
+  .accession strong { color:var(--amber); font-weight:600; }
+
+  @media (max-width:700px) { .plaque { left:16px; right:16px; bottom:16px; max-width:none; } }
+</style></head>
+<body>
+<div class="wrap">
+  <div class="label"><strong>T4-B · SINGLE WINDOW</strong> · one edge-to-edge image, one gallery-label caption pasted on the photo · density dial 2 · zero CTAs in frame</div>
+
+  <section class="window">
+    <img src="/images/hero-3.webp" alt="">
+    <div class="accession">Plate <strong>XLM · 017</strong></div>
+
+    <div class="plaque">
+      <p class="equip">Mechanic · workshop</p>
+      <h3 class="role">The hour when the <em>morning shift</em> begins.</h3>
+      <p class="equip">Tools in frame: <a href="#">15-piece combination wrench set</a>, €89.</p>
+    </div>
+  </section>
+</div>
+</body></html>

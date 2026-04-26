@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Starter Kits — Variant C: Split card with photo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+  rel="stylesheet"
+/>
+<style>
+  :root {
+    --ink: #0F172A;
+    --ink-2: #334155;
+    --ink-3: #64748B;
+    --ink-4: #94A3B8;
+    --amber: #E8920A;
+    --amber-bg: #FEF3E2;
+    --rule: #E2E8F0;
+    --paper: #FAF7F1;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 48px 24px;
+    background: #F1F5F9;
+    font-family: 'Mulish', system-ui, sans-serif;
+    color: var(--ink);
+  }
+  .wrap { max-width: 1360px; margin: 0 auto; }
+  .heading { font-size: 14px; color: var(--ink-3); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 24px; font-weight: 600; }
+
+  .variant-label {
+    background: var(--ink);
+    color: white;
+    padding: 18px 22px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 16px;
+    border-radius: 3px;
+  }
+  .variant-label strong { color: var(--amber); font-weight: 600; }
+
+  .row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+
+  /* ── Variant C: Split card (media + spec panel) ─────────────── */
+  .split {
+    position: relative;
+    background: #fff;
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    min-height: 340px;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+    transition: box-shadow 0.25s ease, transform 0.25s ease;
+    overflow: hidden;
+  }
+  .split:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 32px -12px rgba(15, 23, 42, 0.22);
+  }
+
+  .split-media {
+    position: relative;
+    height: 160px;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+  .split-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.5s ease;
+  }
+  .split:hover .split-media img { transform: scale(1.05); }
+
+  .split-badge {
+    position: absolute;
+    top: 12px; left: 12px;
+    background: rgba(15, 23, 42, 0.85);
+    backdrop-filter: blur(6px);
+    color: #fff;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 5px 9px;
+    border-radius: 2px;
+  }
+  .split-badge span { color: var(--amber); }
+
+  .split-body {
+    padding: 18px 20px 20px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+  .split-title {
+    font-size: 19px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0 0 3px;
+    letter-spacing: -0.015em;
+  }
+  .split-kicker {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10.5px;
+    color: var(--ink-3);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+
+  .split-specs {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 6px 10px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11.5px;
+    color: var(--ink-2);
+    margin-bottom: 16px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .split-specs dt {
+    color: var(--ink-4);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 10px;
+    padding-top: 1px;
+  }
+  .split-specs dd { margin: 0; color: var(--ink-2); }
+
+  .split-foot {
+    margin-top: auto;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .split-price {
+    font-family: 'Mulish', system-ui, sans-serif;
+    font-size: 24px;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .split-price small {
+    display: block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--ink-3);
+    font-weight: 500;
+    margin-top: 4px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .split-cta {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--amber);
+    background: var(--amber-bg);
+    padding: 9px 11px;
+    border-radius: 2px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+  .split:hover .split-cta {
+    background: var(--amber);
+    color: #fff;
+  }
+  .split-cta::after { content: '→'; transition: transform 0.2s ease; }
+  .split:hover .split-cta::after { transform: translateX(3px); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="heading">Starter Kits — Variant C — Split card (photo + spec panel)</div>
+  <div class="variant-label"><strong>C · SPLIT</strong> · compact photo top (160px) · spec dl-list · amber cta pill · bold price</div>
+
+  <div class="row">
+
+    <a href="#" class="split">
+      <div class="split-media">
+        <img src="/images/starter-kit-cafe.webp" alt="" />
+        <div class="split-badge"><span>KIT 01</span> · 6 items</div>
+      </div>
+      <div class="split-body">
+        <h3 class="split-title">Café &amp; Coffee Shop</h3>
+        <div class="split-kicker">Opens your doors in 10 days</div>
+
+        <dl class="split-specs">
+          <dt>Core</dt><dd>Espresso machine, undercounter fridge</dd>
+          <dt>Prep</dt><dd>Stainless tables, shelving, racks</dd>
+          <dt>Extra</dt><dd>Grinder, pitchers, scales</dd>
+        </dl>
+
+        <div class="split-foot">
+          <div class="split-price">€8,499<small>from · VAT incl</small></div>
+          <span class="split-cta">Configure</span>
+        </div>
+      </div>
+    </a>
+
+    <a href="#" class="split">
+      <div class="split-media">
+        <img src="/images/starter-kit-barber.webp" alt="" />
+        <div class="split-badge"><span>KIT 02</span> · 6 items</div>
+      </div>
+      <div class="split-body">
+        <h3 class="split-title">Barber Shop</h3>
+        <div class="split-kicker">Two-chair layout</div>
+
+        <dl class="split-specs">
+          <dt>Core</dt><dd>Two hydraulic chairs, wall mirrors</dd>
+          <dt>Tools</dt><dd>Clippers, razors, scissor set</dd>
+          <dt>Extra</dt><dd>UV sterilizer, towel warmer</dd>
+        </dl>
+
+        <div class="split-foot">
+          <div class="split-price">€3,499<small>from · VAT incl</small></div>
+          <span class="split-cta">Configure</span>
+        </div>
+      </div>
+    </a>
+
+    <a href="#" class="split">
+      <div class="split-media">
+        <img src="/images/starter-kit-bakery.webp" alt="" />
+        <div class="split-badge"><span>KIT 03</span> · 7 items</div>
+      </div>
+      <div class="split-body">
+        <h3 class="split-title">Bakery &amp; Pastry</h3>
+        <div class="split-kicker">Hot ovens from day one</div>
+
+        <dl class="split-specs">
+          <dt>Core</dt><dd>Convection oven, spiral mixer</dd>
+          <dt>Prep</dt><dd>Proofing cabinet, display case</dd>
+          <dt>Extra</dt><dd>Scales, baskets, peels</dd>
+        </dl>
+
+        <div class="split-foot">
+          <div class="split-price">€7,499<small>from · VAT incl</small></div>
+          <span class="split-cta">Configure</span>
+        </div>
+      </div>
+    </a>
+
+  </div>
+</div>
+</body>
+</html>

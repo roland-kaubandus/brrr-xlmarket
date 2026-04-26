@@ -1,11 +1,13 @@
 "use client"
 
-import { useEffect, useState, useRef, useCallback, useMemo } from "react"
+import { useEffect, useState, useRef, useMemo } from "react"
 import SafeLink from "@/components/SafeLink"
 import { categoryPath, branchPath, type Locale } from "@/lib/i18n"
 import { V3_ICONS } from "@/lib/taxonomy-v3"
 import type { HomepageL1Node } from "@/lib/menu-data"
 import type { CmsSlide, CmsPromo } from "@/lib/cms"
+import HeroFour from "@/components/HeroFour"
+import StockBoard, { type StockBoardRow } from "@/components/StockBoard"
 
 // Adapter: render the homepage category explorer from the SSoT 18-L1 taxonomy
 // tree instead of the legacy hard-coded 22-entry TAXONOMY_V3 list.
@@ -40,12 +42,16 @@ interface HomepageShellProps {
   locale: string
   /** Pre-computed L1 nodes from getHomepageL1Nodes() — server-side only. */
   l1Nodes: HomepageL1Node[]
-  /** CMS-managed hero carousel slides */
+  /** CMS-managed hero carousel slides — accepted for backward compatibility, no longer rendered. */
   slides: CmsSlide[]
-  /** CMS-managed promo cards */
+  /** CMS-managed promo cards — accepted for backward compatibility, no longer rendered. */
   promos: CmsPromo[]
   /** CMS-managed nav short names per category slug */
   navShortNames: Record<string, string>
+  /** Stock Board rows fetched server-side (replaces the old promo grid). */
+  stockBoardRows: StockBoardRow[]
+  /** HH:MM stamp shown next to the live-stock lamp. */
+  stockBoardUpdatedAt: string
 }
 
 /* ═══════════════════════════════════════════════
@@ -96,7 +102,7 @@ function shortNavLabel(slug: string, name: string, navShortNames: Record<string,
   return cleaned
 }
 
-export default function HomepageShell({ locale, l1Nodes, slides, promos, navShortNames }: HomepageShellProps) {
+export default function HomepageShell({ locale, l1Nodes, slides, promos, navShortNames, stockBoardRows, stockBoardUpdatedAt }: HomepageShellProps) {
   const loc = locale as Locale
 
   /* ── 18 L1 from SSoT taxonomy tree (pre-computed server-side, PERF-C1) ── */
@@ -111,26 +117,11 @@ export default function HomepageShell({ locale, l1Nodes, slides, promos, navShor
     [l1Nodes],
   )
 
-  /* ── Carousel state ── */
-  const [currentSlide, setCurrentSlide] = useState(0)
-  const slideTimer = useRef<ReturnType<typeof setInterval> | null>(null)
-
-  useEffect(() => {
-    slideTimer.current = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % slides.length)
-    }, 6000)
-    return () => {
-      if (slideTimer.current) clearInterval(slideTimer.current)
-    }
-  }, [slides.length])
-
-  const goToSlide = useCallback((n: number) => {
-    setCurrentSlide(n)
-    if (slideTimer.current) clearInterval(slideTimer.current)
-    slideTimer.current = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % slides.length)
-    }, 6000)
-  }, [slides.length])
+  // Hero carousel state has moved into <HeroFour /> (its own component).
+  // The legacy `slides` and `promos` props are still in the prop signature
+  // for CMS-shape compatibility but no longer drive any UI in this shell.
+  void slides
+  void promos
 
   /* ── Deal products — real Meili hits, one per seed query. ── */
   interface Deal {
@@ -249,56 +240,22 @@ export default function HomepageShell({ locale, l1Nodes, slides, promos, navShor
 
       {/* ═══════ HERO SECTION ═══════ */}
       <div className="hp-hero-container hp-page-wrap">
-        {/* Carousel + Promos + Deals */}
         <div className="hp-carousel-container">
-          <div className="hp-carousel">
-            {slides.map((slide, idx) => (
-              <div
-                key={idx}
-                className={`hp-carousel-slide hp-slide-${idx + 1}${idx === currentSlide ? " active" : ""}`}
-              >
-                <div className="hp-slide-content">
-                  <span className="hp-slide-badge">{slide.badge}</span>
-                  <h2>{slide.title}</h2>
-                  <p>{slide.text}</p>
-                  <SafeLink className="hp-slide-cta" href={`/${slide.ctaHref.replace("LOCALE", loc)}`}>
-                    {slide.cta} &rarr;
-                  </SafeLink>
-                </div>
-              </div>
-            ))}
-            <div className="hp-carousel-dots">
-              {slides.map((_, idx) => (
-                <span
-                  key={idx}
-                  className={`hp-dot${idx === currentSlide ? " active" : ""}`}
-                  onClick={() => goToSlide(idx)}
-                />
-              ))}
-            </div>
-          </div>
+          {/* HeroFour replaces the previous CMS-driven 3-slide carousel.
+              Four hardcoded scenes (Workshop / Café / Salon&Spa / Bakery)
+              with the existing site's Barlow Condensed + Mulish + amber-button
+              system. See components/HeroFour.tsx. */}
+          <HeroFour locale={loc} />
 
-          {/* Promo Cards */}
-          <div className="hp-promo-row">
-            {promos.map((promo, idx) => {
-              const style = promo.image
-                ? { backgroundImage: `url('${promo.image}')` }
-                : { backgroundImage: promo.bg }
-              const modifier = promo.image ? "hp-promo-card--photo" : "hp-promo-card--solid"
-              return (
-                <SafeLink
-                  key={idx}
-                  href={`/${promo.href.replace("LOCALE", loc)}`}
-                  className={`hp-promo-card ${modifier}`}
-                  style={style}
-                >
-                  <span className={`hp-promo-tag hp-promo-tag--${promo.tagTone}`}>{promo.tag}</span>
-                  <h3>{promo.title}</h3>
-                  <div className="hp-promo-sub">{promo.sub}</div>
-                </SafeLink>
-              )
-            })}
-          </div>
+          {/* StockBoard replaces the previous photo-tile promo grid (3 starter
+              kits + 3 auxiliary blocks). Eight in-stock SKUs across the
+              catalogue, click-through to the product page. Data comes from
+              lib/stock-board-data.ts on the server. */}
+          <StockBoard
+            locale={loc}
+            rows={stockBoardRows}
+            updatedAt={stockBoardUpdatedAt}
+          />
 
           {/* Deal Cards — mockup v2 layout: aspect-[4/3] product image,
               red percentage badge top-left, category small + title + amber
@@ -470,7 +427,7 @@ const homepageStyles = `
   background-color: #ECEEF1;
 }
 
-/* ── Carousel ── */
+/* ── Hero (4-scene rotation) + Stock Board container ── */
 .hp-carousel-container {
   display: flex;
   flex-direction: column;
@@ -478,69 +435,83 @@ const homepageStyles = `
   min-width: 0;
 }
 
-.hp-carousel {
+/* HeroFour — replaces the old 3-slide CMS-driven carousel.
+   Scenes are hardcoded in components/HeroFour.tsx so the homepage hero is
+   no longer at the mercy of CMS drift. The visual language reuses the
+   existing site's Barlow Condensed + Mulish + amber-button system. */
+.hero-four {
   position: relative;
   width: 100%;
-  height: 420px;
-  border-radius: 0;
+  height: 520px;
   overflow: hidden;
+  background: #0F1B2D;
 }
-
-.hp-carousel-slide {
+.hero-four-slide {
   position: absolute;
-  width: 100%;
-  height: 100%;
+  inset: 0;
+  background-size: cover;
+  background-position: right center;
+  background-repeat: no-repeat;
+  opacity: 0;
+  transition: opacity 1.6s ease-in-out;
+}
+.hero-four-slide.active { opacity: 1; }
+.hero-four-content {
+  position: absolute;
+  inset: 0;
+  padding: 0 60px;
   display: flex;
   align-items: center;
-  padding: 0 60px;
-  opacity: 0;
-  transition: opacity 0.6s ease-in-out;
-}
-
-.hp-carousel-slide.active { opacity: 1; }
-
-.hp-slide-1 { background: linear-gradient(95deg, rgba(15,27,45,0.98) 0%, rgba(15,27,45,0.92) 22%, rgba(15,27,45,0.65) 42%, rgba(15,27,45,0.25) 62%, rgba(15,27,45,0.05) 82%, transparent 100%), url('/images/hero-1.webp') right center/cover no-repeat; }
-.hp-slide-2 { background: linear-gradient(95deg, rgba(15,27,45,0.98) 0%, rgba(15,27,45,0.92) 22%, rgba(15,27,45,0.65) 42%, rgba(15,27,45,0.25) 62%, rgba(15,27,45,0.05) 82%, transparent 100%), url('/images/hero-2.webp') right center/cover no-repeat; }
-.hp-slide-3 { background: linear-gradient(95deg, rgba(15,27,45,0.98) 0%, rgba(15,27,45,0.92) 22%, rgba(15,27,45,0.65) 42%, rgba(15,27,45,0.25) 62%, rgba(15,27,45,0.05) 82%, transparent 100%), url('/images/hero-3.webp') right center/cover no-repeat; }
-
-.hp-slide-content {
-  max-width: 500px;
   z-index: 2;
 }
-
-.hp-slide-badge {
+.hero-four-stack {
+  position: relative;
+  width: 100%;
+  max-width: 540px;
+  height: 232px;
+}
+.hero-four-scene {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 800ms ease, transform 800ms ease;
+  pointer-events: none;
+}
+.hero-four-scene.active { opacity: 1; transform: translateY(0); pointer-events: auto; }
+.hero-four-badge {
   display: inline-block;
-  background: rgba(217,119,6,0.9);
+  background: rgba(232,146,10,0.95);
   color: #fff;
+  font-family: 'Mulish', system-ui, sans-serif;
   font-size: 11px;
   font-weight: 700;
   padding: 4px 12px;
-  border-radius: 0;
   margin-bottom: 16px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
-
-.hp-slide-content h2 {
+.hero-four-headline {
   font-family: 'Barlow Condensed', sans-serif;
-  font-size: 44px;
+  font-size: 56px;
   font-weight: 700;
-  line-height: 1.1;
+  line-height: 1.0;
   letter-spacing: 0.005em;
   color: #fff;
-  margin-bottom: 12px;
+  margin: 0 0 12px;
+  text-wrap: balance;
 }
-
-.hp-slide-content p {
+.hero-four-accent { color: #E8920A; }
+.hero-four-sub {
   font-family: 'Mulish', system-ui, sans-serif;
   font-size: 15px;
   font-weight: 500;
-  color: rgba(255,255,255,0.9);
-  margin-bottom: 24px;
   line-height: 1.5;
+  color: rgba(255,255,255,0.9);
+  margin: 0 0 24px;
+  max-width: 44ch;
 }
-
-.hp-slide-cta {
+.hero-four-cta {
   display: inline-block;
   padding: 12px 28px;
   background-color: #E8920A;
@@ -554,128 +525,215 @@ const homepageStyles = `
   transition: background-color 0.2s ease, transform 0.2s ease;
   text-decoration: none;
 }
-
-.hp-slide-cta:hover {
+.hero-four-cta:hover {
   background-color: #CF7F00;
   transform: translateY(-2px);
 }
-
-.hp-carousel-dots {
+.hero-four-meta {
   position: absolute;
-  bottom: 24px;
   left: 60px;
+  bottom: 22px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  z-index: 3;
+}
+.hero-four-counter {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: rgba(255,255,255,0.55);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
+}
+.hero-four-counter strong { color: #E8920A; font-weight: 600; }
+.hero-four-dots {
   display: flex;
   gap: 8px;
-  z-index: 5;
 }
-
-.hp-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 0;
-  background-color: rgba(255,255,255,0.4);
-  cursor: pointer;
-  transition: all 0.3s;
-}
-
-.hp-dot.active {
-  background-color: #fff;
+.hero-four-dot {
   width: 28px;
-  border-radius: 0;
+  height: 3px;
+  background: rgba(255,255,255,0.25);
+  border: 0;
+  cursor: pointer;
+  transition: background 200ms ease;
+  padding: 0;
+}
+.hero-four-dot.active { background: #E8920A; }
+.hero-four-caption {
+  position: absolute;
+  right: 32px;
+  bottom: 24px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: rgba(255,255,255,0.55);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  z-index: 3;
+  text-align: right;
 }
 
-/* ── Promo Banner Cards ── */
-.hp-promo-row {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-}
-
-.hp-promo-card {
+/* ── Stock Board (replaces old hp-promo-row) ── */
+.stock-board {
+  background: #fff;
+  border: 1px solid #E2E8F0;
   border-radius: 8px;
   overflow: hidden;
-  cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  position: relative;
-  min-height: 170px;
+  box-shadow: 0 1px 3px rgba(15,23,42,0.04), 0 10px 28px -16px rgba(15,23,42,0.12);
+  font-feature-settings: "tnum", "lnum";
+}
+.stock-board-empty { display: none; }
+.stock-board-head {
+  padding: 18px 24px;
   display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: 20px;
-  color: #fff;
-  text-decoration: none;
-  box-shadow: 0 1px 3px rgba(27,36,56,0.04);
-  background-color: #0F1B2D;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  isolation: isolate;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  background: linear-gradient(to bottom, #FAFBFC, #fff);
+  border-bottom: 1.5px solid #E2E8F0;
 }
-
-.hp-promo-card--photo::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to top,
-    rgba(10, 14, 20, 0.78) 0%,
-    rgba(10, 14, 20, 0.45) 28%,
-    rgba(10, 14, 20, 0.10) 55%,
-    rgba(10, 14, 20, 0) 80%);
-  z-index: -1;
-  transition: opacity 0.2s ease;
+.stock-board-head-l {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  flex-wrap: wrap;
 }
-
-.hp-promo-card h3, .hp-promo-card .hp-promo-sub {
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
-}
-
-.hp-promo-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(27,36,56,0.18);
-}
-
-.hp-promo-card:hover::before {
-  opacity: 0.9;
-}
-
-.hp-promo-card > * {
-  position: relative;
-}
-
-.hp-promo-tag {
-  display: inline-block;
-  font-family: 'Mulish', system-ui, sans-serif;
+.stock-board-status {
+  font-family: 'IBM Plex Mono', monospace;
   font-size: 11px;
-  font-weight: 700;
+  color: #64748B;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  background: #E8920A;
-  color: #fff;
-  padding: 3px 8px;
-  border-radius: 4px;
-  margin-bottom: 8px;
-  width: fit-content;
 }
-.hp-promo-tag--amber { background: #E8920A; color: #fff; }
-.hp-promo-tag--red   { background: #DC2626; color: #fff; }
-.hp-promo-tag--green { background: #059669; color: #fff; }
-.hp-promo-tag--navy  { background: #1E293B; color: #fff; }
-
-.hp-promo-card h3 {
-  font-family: 'Mulish', system-ui, sans-serif;
-  font-size: 17px;
-  font-weight: 600;
-  line-height: 1.3;
+.stock-board-lamp {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #16A34A;
+  box-shadow: 0 0 0 3px rgba(22,163,74,0.18);
+  animation: stockboard-pulse 2s ease-in-out infinite;
+}
+@keyframes stockboard-pulse {
+  0%, 100% { box-shadow: 0 0 0 3px rgba(22,163,74,0.18); }
+  50% { box-shadow: 0 0 0 6px rgba(22,163,74,0.08); }
+}
+.stock-board-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0.005em;
   margin: 0;
+  color: #0F1B2D;
 }
-
-.hp-promo-sub {
+.stock-board-meta {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: #94A3B8;
+  letter-spacing: 0.06em;
+}
+.stock-board-cols {
+  display: grid;
+  grid-template-columns: 110px 1fr 110px 110px 40px;
+  gap: 16px;
+  padding: 10px 24px;
+  background: #F8FAFC;
+  border-bottom: 1px solid #E2E8F0;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  font-weight: 600;
+  color: #94A3B8;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.stock-board-rows {
+  display: grid;
+}
+.stock-board-row {
+  display: grid;
+  grid-template-columns: 110px 1fr 110px 110px 40px;
+  gap: 16px;
+  padding: 14px 24px;
+  align-items: center;
+  text-decoration: none;
+  color: #0F1B2D;
+  border-bottom: 1px solid #E2E8F0;
+  transition: background 160ms;
+  cursor: pointer;
+}
+.stock-board-row:hover { background: #FEF3E2; }
+.stock-board-row:last-child { border-bottom: 0; }
+.stock-board-cat {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10.5px;
+  font-weight: 600;
+  color: #E8920A;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.stock-board-name {
   font-family: 'Mulish', system-ui, sans-serif;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 500;
-  opacity: 0.85;
-  margin-top: 4px;
+  line-height: 1.3;
+  color: #0F1B2D;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.stock-board-price {
+  font-family: 'Mulish', system-ui, sans-serif;
+  font-weight: 800;
+  font-size: 15px;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+  text-align: right;
+}
+.stock-board-stock {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  color: #15803D;
+  text-align: right;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+}
+.stock-board-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #16A34A;
+  display: inline-block;
+}
+.stock-board-go {
+  font-family: 'IBM Plex Mono', monospace;
+  color: #E8920A;
+  font-size: 14px;
+  text-align: right;
+  transition: transform 180ms;
+}
+.stock-board-row:hover .stock-board-go { transform: translateX(4px); }
+.stock-board-foot {
+  padding: 16px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #F8FAFC;
+  border-top: 1px solid #E2E8F0;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  color: #64748B;
+  letter-spacing: 0.06em;
+}
+.stock-board-foot-link {
+  color: #E8920A;
+  text-decoration: none;
+  font-weight: 600;
 }
 
 /* ═══════ DEALS ROW ═══════ */
@@ -1166,12 +1224,15 @@ const homepageStyles = `
 /* ═══════ TABLET (768-1024) ═══════ */
 @media (max-width: 1024px) {
   .hp-hero-container { padding: 16px 20px; }
-  .hp-carousel { height: 340px; }
-  .hp-carousel-slide { padding: 0 30px; }
-  .hp-slide-content h2 { font-size: 28px; }
+  .hero-four { height: 460px; }
+  .hero-four-content { padding: 0 30px; }
+  .hero-four-headline { font-size: 40px; }
+  .hero-four-stack { height: 220px; }
+  .hero-four-meta { left: 30px; bottom: 18px; }
+  .hero-four-caption { right: 24px; bottom: 18px; }
   .hp-deals-row { grid-template-columns: repeat(2, 1fr); }
-  .hp-promo-row { grid-template-columns: repeat(2, 1fr); }
-  .hp-promo-row .hp-promo-card:nth-child(n+3) { display: none; }
+  .stock-board-cols,
+  .stock-board-row { grid-template-columns: 100px 1fr 90px 90px 32px; gap: 12px; padding-left: 18px; padding-right: 18px; }
   .hp-category-explorer { padding: 20px 20px 40px; gap: 16px; }
   .hp-explorer-header { padding: 36px 20px 0; }
   .hp-category-section { grid-template-columns: 240px 180px 1fr; }
@@ -1185,12 +1246,26 @@ const homepageStyles = `
   /* Hero: stack, hide sidebar */
   .hp-hero-container { padding: 12px 16px; }
   .hp-carousel-container { width: 100%; }
-  .hp-carousel { height: 260px; }
-  .hp-carousel-slide { padding: 0 24px; }
-  .hp-slide-content h2 { font-size: 22px; }
-  .hp-slide-content p { font-size: 13px; margin-bottom: 16px; }
-  .hp-slide-cta { padding: 10px 20px; font-size: 13px; }
-  .hp-carousel-dots { bottom: 16px; left: 24px; }
+  .hero-four { height: 380px; }
+  .hero-four-content { padding: 0 20px; }
+  .hero-four-headline { font-size: 30px; }
+  .hero-four-sub { font-size: 13px; }
+  .hero-four-cta { padding: 10px 20px; font-size: 13px; }
+  .hero-four-meta { left: 20px; bottom: 14px; }
+  .hero-four-caption { right: 20px; bottom: 14px; font-size: 10px; }
+  .hero-four-stack { height: 210px; }
+
+  /* Stock Board: compact for narrow screens — drop the stock column,
+     truncate name, keep cat + name + price + arrow only. */
+  .stock-board-head { padding: 14px 16px; }
+  .stock-board-cols { display: none; }
+  .stock-board-row { grid-template-columns: 1fr auto 24px; gap: 10px; padding: 12px 16px; }
+  .stock-board-cat { grid-column: 1 / -1; font-size: 9.5px; margin-bottom: 0; }
+  .stock-board-name { grid-column: 1; font-size: 13px; }
+  .stock-board-price { grid-column: 2; font-size: 14px; }
+  .stock-board-stock { display: none; }
+  .stock-board-go { grid-column: 3; }
+  .stock-board-foot { padding: 12px 16px; flex-direction: column; align-items: flex-start; gap: 8px; font-size: 11px; }
 
   /* Deals */
   .hp-deals-row { grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 10px; }

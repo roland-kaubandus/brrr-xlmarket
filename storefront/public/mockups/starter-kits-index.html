@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Starter Kit Card — Variants</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  body { font-family: 'Mulish', system-ui, sans-serif; background: #F1F5F9; margin: 0; padding: 48px 24px; color: #1E293B; }
+  .wrap { max-width: 960px; margin: 0 auto; }
+  h1 { font-size: 32px; font-weight: 800; letter-spacing: -0.02em; margin: 0 0 12px; }
+  .sub { color: #64748B; margin-bottom: 36px; font-size: 15px; }
+  .list { display: grid; gap: 14px; }
+  .card {
+    background: white;
+    border: 1px solid #E2E8F0;
+    border-radius: 4px;
+    padding: 24px 28px;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .card:hover {
+    border-color: #E8920A;
+    transform: translateX(4px);
+    box-shadow: 0 8px 22px -8px rgba(15, 23, 42, 0.18);
+  }
+  .key { font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #E8920A; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 4px; }
+  .title { font-size: 22px; font-weight: 700; letter-spacing: -0.01em; margin: 0 0 6px; }
+  .desc { color: #475569; font-size: 14px; line-height: 1.5; margin: 0; }
+  .arrow { font-family: 'IBM Plex Mono', monospace; color: #E8920A; font-size: 16px; font-weight: 600; flex-shrink: 0; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Starter Kit Card — 3 suunda</h1>
+  <p class="sub">Iga variant loobub praegusest mini-hero stiilist ja teeb kit-kaardist konkreetse ostupakkumise. Vajuta igaühele, et näha 3 kaarti kõrvuti.</p>
+
+  <div class="list">
+
+    <a class="card" href="/mockups/starter-kits-A-receipt.html">
+      <div>
+        <div class="key">Variant A</div>
+        <h2 class="title">Receipt / Invoice Ticket</h2>
+        <p class="desc">Paberilaadne kreem-taustaga kviitung. Amber tear-edge üleval, mono-font toodete nimekiri, suur bold hind all, 2-year warranty + shipping info. Tundub nagu "tõeline arve kollektorist" — erineb kõigest mida teistel e-poodidel näeb. Kõige julgem, kõige unikaalsem.</p>
+      </div>
+      <div class="arrow">→</div>
+    </a>
+
+    <a class="card" href="/mockups/starter-kits-B-blueprint.html">
+      <div>
+        <div class="key">Variant B</div>
+        <h2 class="title">Blueprint / Plan Card</h2>
+        <p class="desc">Ruudulise paberi taust, 4 nurga-korralikud amber brackets, igal tooteesel ruudu tähis (A1, A2…). Tunnetab nagu arhitekti joonis — "valmis äriplaan". Utility-stiil, sobib XL Marketi ratsionaalse tonaalsusega.</p>
+      </div>
+      <div class="arrow">→</div>
+    </a>
+
+    <a class="card" href="/mockups/starter-kits-C-splitcard.html">
+      <div>
+        <div class="key">Variant C</div>
+        <h2 class="title">Split Card (photo + spec)</h2>
+        <p class="desc">Kompaktne — 160px kõrge pilt ülal, all spec-paneel definition-listina (Core / Prep / Extra), amber CTA pilli. Kõige ohutum ja kõige "e-com standard". Pilt jääb, aga ei domineeri.</p>
+      </div>
+      <div class="arrow">→</div>
+    </a>
+
+    <a class="card" href="/mockups/starter-kits-D-handwritten.html">
+      <div>
+        <div class="key">Variant D</div>
+        <h2 class="title">Planning Sheet — 1 polaroid</h2>
+        <p class="desc">Paberilaadne "õhtu laual visandatud" nimekiri. Ülemises paremas nurgas üks polaroid 3° viltu, vasakul käsitsi joonistatud põrandaplaan (espresso-bar, prep-laud, toolid). Loend on käsikirjas, üks ese läbi kriipsutatud ja punase pastakaga parandatud. Servamärkmed. Hind ring'iga ümbritsetud, amber "See inside" stamp.</p>
+      </div>
+      <div class="arrow">→</div>
+    </a>
+
+    <a class="card" href="/mockups/starter-kits-D2-polaroid-stack.html">
+      <div>
+        <div class="key">Variant D2</div>
+        <h2 class="title">Planning Sheet — 3 polaroide virnas</h2>
+        <p class="desc">Sama planning-sheet keel, aga ülemises paremas nurgas on <strong>kolm polaroid</strong> üksteise peal laotud — iga erineva nurga all, hover'il laotuvad laiali. Annab rohkem narratiivi ("bar · floor · day one"), pilt jääb väike aga sisu tihedam.</p>
+      </div>
+      <div class="arrow">→</div>
+    </a>
+
+    <a class="card" href="/mockups/starter-kits-E-workflow.html">
+      <div>
+        <div class="key">Variant E · Plaan 3</div>
+        <h2 class="title">Üks lai workflow: Plan → Ship → Open</h2>
+        <p class="desc">Üks kogu riba laiune kaart, sees 3 etappi eri visuaalse karakteriga: <strong>01 Plan</strong> (sketchy) · <strong>02 Ship</strong> (invoice) · <strong>03 Open</strong> (polaroidid + CTA). Narratiivi-keskne.</p>
+      </div>
+      <div class="arrow">→</div>
+    </a>
+
+    <a class="card" href="/mockups/starter-kits-F-synthesis.html">
+      <div>
+        <div class="key">Variant F · Süntees ⭐</div>
+        <h2 class="title">Kit picker 70% + side rail 30%</h2>
+        <p class="desc">4-meeskonna töö süntees (Copy · Product · Design · Taste):<br>
+        <strong>Vasak 70%:</strong> 3 kit-kaarti sama paberi-notebooki'st, aga <em>erinevat tüüpi lehed</em> — Café polaroidiga, Barber punase korrektsiooniga, Bakery puhta invoice'iga. Signatuur: amber corner bracket hinna ümber.<br>
+        <strong>Parem 30%:</strong> stacked side rail — päris Deal (foto + −32% badge), Pay in 3 (€2,833/kuu näitega), AI search inline input.<br>
+        Headline'i all <em>thin workflow strip</em> (01 → 02 → 03) — narratiiv olemas, aga demoted footer-strip'iks, et decision-surface saaks ruumi.<br>
+        Varied card heights (6/5/7 specs), paberi-cream taust, tabular figures hindadel, minimeeritud amber.</p>
+      </div>
+      <div class="arrow">→</div>
+    </a>
+
+  </div>
+</div>
+</body>
+</html>

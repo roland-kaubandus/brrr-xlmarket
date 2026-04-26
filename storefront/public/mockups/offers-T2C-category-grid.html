@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><title>T2C · Category Grid (18 L1)</title>
+<link href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root { --ink:#0F172A; --ink-2:#334155; --ink-3:#64748B; --ink-4:#94A3B8; --amber:#E8920A; --amber-bg:#FEF3E2; --rule:#E2E8F0; }
+  * { box-sizing:border-box; }
+  body { margin:0; padding:48px clamp(16px,4vw,40px); background:#F1F5F9; font-family:'Mulish',system-ui,sans-serif; color:var(--ink); font-feature-settings:"tnum","lnum"; }
+  .wrap { max-width:1360px; margin:0 auto; }
+  .label { background:var(--ink); color:#fff; padding:14px 20px; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:2px; text-transform:uppercase; margin-bottom:20px; border-radius:8px; }
+  .label strong { color:var(--amber); }
+
+  .head { display:flex; justify-content:space-between; align-items:baseline; margin-bottom:20px; flex-wrap:wrap; gap:12px; padding:0 4px; }
+  .kicker { font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--amber); letter-spacing:0.18em; text-transform:uppercase; font-weight:600; margin:0; }
+  h2 { font-size:clamp(22px, 2.4vw, 30px); font-weight:800; letter-spacing:-0.022em; margin:6px 0 0; line-height:1.1; }
+  .meta { font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--ink-3); letter-spacing:0.08em; }
+
+  .grid { display:grid; grid-template-columns:repeat(6, 1fr); gap:10px; }
+
+  .tile { position:relative; background:#fff; border:1px solid var(--rule); border-radius:8px; padding:14px; text-decoration:none; color:inherit; overflow:hidden; transition:transform 180ms, box-shadow 180ms, border-color 180ms; display:flex; flex-direction:column; min-height:140px; }
+  .tile:hover { transform:translateY(-3px); box-shadow:0 12px 28px -14px rgba(15,23,42,0.18); border-color:var(--amber); }
+
+  .tile-thumb { width:100%; height:60px; background:#F4F6F9; border-radius:4px; overflow:hidden; margin-bottom:10px; display:flex; align-items:center; justify-content:center; }
+  .tile-thumb img { width:100%; height:100%; object-fit:cover; }
+  .tile-thumb-placeholder { font-family:'IBM Plex Mono',monospace; font-size:22px; font-weight:700; color:var(--ink-4); opacity:0.4; }
+
+  .tile-name { font-size:13px; font-weight:700; letter-spacing:-0.01em; line-height:1.2; margin:0 0 auto 0; }
+  .tile-count { font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--ink-3); letter-spacing:0.04em; margin-top:8px; font-variant-numeric:tabular-nums; }
+
+  /* Highlight: featured tile (top 3 by volume) gets amber accent */
+  .tile.featured { background:var(--ink); color:#fff; border-color:var(--ink); }
+  .tile.featured .tile-name { color:#fff; }
+  .tile.featured .tile-count { color:var(--amber); font-weight:600; }
+  .tile.featured .tile-thumb { background:#1E293B; }
+  .tile.featured:hover { border-color:var(--amber); }
+
+  @media (max-width:1100px) { .grid { grid-template-columns:repeat(4, 1fr); } }
+  @media (max-width:700px) { .grid { grid-template-columns:repeat(3, 1fr); } }
+  @media (max-width:480px) { .grid { grid-template-columns:repeat(2, 1fr); } .tile-thumb { height:50px; } }
+</style></head>
+<body>
+<div class="wrap">
+  <div class="label"><strong>T2-C · CATEGORY GRID</strong> · 18 L1 tiles, all on the page, no hide-and-seek menu · top-3 featured dark · product counts in mono · 0 new data required</div>
+
+  <header class="head">
+    <div>
+      <p class="kicker">All 18 categories · 17,000 SKUs</p>
+      <h2>Skip the menu. Pick your trade.</h2>
+    </div>
+    <span class="meta">Category · in-stock count</span>
+  </header>
+
+  <div class="grid">
+    <a class="tile featured" href="#"><div class="tile-thumb"><img src="/images/cat-01-horeca-food-service.webp" alt=""></div><div class="tile-name">Horeca &amp; Food Service</div><div class="tile-count">1,840 SKUs</div></a>
+    <a class="tile featured" href="#"><div class="tile-thumb"><img src="/images/cat-02-tools.webp" alt=""></div><div class="tile-name">Hand &amp; Power Tools</div><div class="tile-count">2,104 SKUs</div></a>
+    <a class="tile featured" href="#"><div class="tile-thumb"><img src="/images/cat-13-outdoor-power-landscaping.webp" alt=""></div><div class="tile-name">Outdoor &amp; Landscaping</div><div class="tile-count">1,312 SKUs</div></a>
+
+    <a class="tile" href="#"><div class="tile-thumb"><img src="/images/cat-12-automotive-workshop.webp" alt=""></div><div class="tile-name">Automotive Workshop</div><div class="tile-count">987 SKUs</div></a>
+    <a class="tile" href="#"><div class="tile-thumb"><img src="/images/cat-04-welding.webp" alt=""></div><div class="tile-name">Welding &amp; Metalwork</div><div class="tile-count">612 SKUs</div></a>
+    <a class="tile" href="#"><div class="tile-thumb"><img src="/images/cat-16-salon.webp" alt=""></div><div class="tile-name">Salon, Spa &amp; Wellness</div><div class="tile-count">528 SKUs</div></a>
+
+    <a class="tile" href="#"><div class="tile-thumb"><img src="/images/cat-02-construction-building.webp" alt=""></div><div class="tile-name">Construction</div><div class="tile-count">744 SKUs</div></a>
+    <a class="tile" href="#"><div class="tile-thumb"><img src="/images/cat-15-cleaning.webp" alt=""></div><div class="tile-name">Cleaning &amp; Janitorial</div><div class="tile-count">416 SKUs</div></a>
+    <a class="tile" href="#"><div class="tile-thumb"><img src="/images/cat-10-hvac.webp" alt=""></div><div class="tile-name">HVAC &amp; Climate</div><div class="tile-count">378 SKUs</div></a>
+
+    <a class="tile" href="#"><div class="tile-thumb"><img src="/images/cat-08-electrical-energy.webp" alt=""></div><div class="tile-name">Renewable Energy</div><div class="tile-count">289 SKUs</div></a>
+    <a class="tile" href="#"><div class="tile-thumb"><img src="/images/cat-11-warehousing-material-handling.webp" alt=""></div><div class="tile-name">Warehousing</div><div class="tile-count">259 SKUs</div></a>
+    <a class="tile" href="#"><div class="tile-thumb"><img src="/images/cat-06-printing.webp" alt=""></div><div class="tile-name">Printing &amp; Signage</div><div class="tile-count">202 SKUs</div></a>
+
+    <a class="tile" href="#"><div class="tile-thumb"><img src="/images/cat-21-health-medical-supply.webp" alt=""></div><div class="tile-name">Health &amp; Medical</div><div class="tile-count">198 SKUs</div></a>
+    <a class="tile" href="#"><div class="tile-thumb"><img src="/images/cat-13-safety.webp" alt=""></div><div class="tile-name">Safety &amp; Workwear</div><div class="tile-count">214 SKUs</div></a>
+    <a class="tile" href="#"><div class="tile-thumb"><img src="/images/cat-20-pet.webp" alt=""></div><div class="tile-name">Pets &amp; Wildlife</div><div class="tile-count">372 SKUs</div></a>
+
+    <a class="tile" href="#"><div class="tile-thumb"><img src="/images/cat-19-fitness-sports-recreation.webp" alt=""></div><div class="tile-name">Fitness &amp; Sports</div><div class="tile-count">234 SKUs</div></a>
+    <a class="tile" href="#"><div class="tile-thumb"><img src="/images/cat-17-office-commercial-interiors.webp" alt=""></div><div class="tile-name">Office &amp; Interiors</div><div class="tile-count">194 SKUs</div></a>
+    <a class="tile" href="#"><div class="tile-thumb"><img src="/images/cat-22-music.webp" alt=""></div><div class="tile-name">Music &amp; Entertainment</div><div class="tile-count">186 SKUs</div></a>
+  </div>
+</div>
+</body></html>

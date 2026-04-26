@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><title>T4C · Index Strip</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Mono:wght@400;500;600&family=Mulish:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root { --ink:#0F172A; --ink-2:#334155; --ink-3:#64748B; --ink-4:#94A3B8; --amber:#E8920A; --paper:#FAF7F1; --paper-edge:#D9CEB8; }
+  * { box-sizing:border-box; }
+  body { margin:0; padding:48px clamp(16px,4vw,40px); background:#F1F5F9; font-family:'Mulish',system-ui,sans-serif; color:var(--ink); font-feature-settings:"tnum","lnum"; }
+  .wrap { max-width:1360px; margin:0 auto; }
+  .label { background:var(--ink); color:#fff; padding:14px 20px; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:2px; text-transform:uppercase; margin-bottom:20px; border-radius:8px; }
+  .label strong { color:var(--amber); }
+
+  .atlas { background:var(--paper); border:1px solid var(--paper-edge); border-radius:8px; padding:36px 48px 40px; box-shadow:0 1px 3px rgba(15,23,42,0.04), 0 10px 28px -16px rgba(15,23,42,0.12); }
+
+  .atlas-head { display:flex; justify-content:space-between; align-items:baseline; padding-bottom:18px; margin-bottom:22px; border-bottom:1.5px solid var(--ink); flex-wrap:wrap; gap:12px; }
+  .atlas-head h2 { font-family:'Fraunces', serif; font-weight:600; font-size:clamp(24px, 2.6vw, 34px); letter-spacing:-0.018em; margin:0; line-height:1; font-optical-sizing:auto; }
+  .atlas-head h2 em { font-style:italic; color:var(--amber); font-weight:500; }
+  .atlas-meta { font-family:'IBM Plex Mono', monospace; font-size:11px; color:var(--ink-3); letter-spacing:0.12em; text-transform:uppercase; }
+
+  .columns { display:grid; grid-template-columns:repeat(4, 1fr); gap:32px; }
+
+  .col-head { font-family:'IBM Plex Mono', monospace; font-size:10px; color:var(--amber); letter-spacing:0.2em; text-transform:uppercase; font-weight:600; padding-bottom:10px; border-bottom:1px solid var(--paper-edge); margin-bottom:12px; }
+
+  .col-list { list-style:none; padding:0; margin:0; display:grid; gap:2px; }
+  .col-list li a { display:grid; grid-template-columns: 1fr auto; align-items:baseline; gap:8px; padding:4px 0; text-decoration:none; color:var(--ink); font-family:'Fraunces', serif; font-weight:400; font-size:15px; letter-spacing:-0.005em; transition:color 160ms; position:relative; }
+  .col-list li a:hover { color:var(--amber); }
+  .col-list li a .name { position:relative; overflow:hidden; white-space:nowrap; }
+  .col-list li a .name::after { content:"................................................................."; position:absolute; left:calc(100% + 4px); color:var(--ink-4); font-family:serif; letter-spacing:0.08em; }
+  .col-list li a .count { font-family:'IBM Plex Mono', monospace; font-size:12px; font-weight:500; color:var(--ink-3); background:var(--paper); padding:0 0 0 6px; position:relative; z-index:2; font-variant-numeric:tabular-nums; letter-spacing:0.04em; }
+  .col-list li a:hover .count { color:var(--amber); font-weight:600; }
+
+  .col-list li.sub a { padding-left:18px; font-size:13px; color:var(--ink-2); }
+  .col-list li.sub a:hover { color:var(--amber); }
+
+  .foot { margin-top:28px; padding-top:18px; border-top:1px solid var(--ink); display:flex; justify-content:space-between; align-items:center; font-family:'IBM Plex Mono', monospace; font-size:11px; color:var(--ink-3); letter-spacing:0.1em; text-transform:uppercase; }
+  .foot a { color:var(--amber); text-decoration:none; font-weight:600; }
+  .foot a::after { content:' →'; }
+
+  @media (max-width:900px) { .columns { grid-template-columns:repeat(2,1fr); gap:24px; } }
+  @media (max-width:500px) { .columns { grid-template-columns:1fr; } }
+</style></head>
+<body>
+<div class="wrap">
+  <div class="label"><strong>T4-C · INDEX STRIP</strong> · atlas gazetteer · 4 orthogonal ways in · dot leaders between entries · serif body + mono counts · no images</div>
+
+  <section class="atlas">
+
+    <header class="atlas-head">
+      <h2>The shop, <em>indexed</em>.</h2>
+      <div class="atlas-meta">17,043 SKUs · 1,688 categories · 18 trades</div>
+    </header>
+
+    <div class="columns">
+
+      <div>
+        <div class="col-head">By trade</div>
+        <ul class="col-list">
+          <li><a href="#"><span class="name">Barista</span><span class="count">340</span></a></li>
+          <li><a href="#"><span class="name">Baker</span><span class="count">512</span></a></li>
+          <li><a href="#"><span class="name">Barber</span><span class="count">188</span></a></li>
+          <li><a href="#"><span class="name">Mechanic</span><span class="count">987</span></a></li>
+          <li><a href="#"><span class="name">Welder</span><span class="count">612</span></a></li>
+          <li><a href="#"><span class="name">Cleaner</span><span class="count">416</span></a></li>
+          <li><a href="#"><span class="name">Farmer</span><span class="count">744</span></a></li>
+          <li><a href="#"><span class="name">Contractor</span><span class="count">1,312</span></a></li>
+          <li><a href="#"><span class="name">Printer</span><span class="count">202</span></a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="col-head">By room</div>
+        <ul class="col-list">
+          <li><a href="#"><span class="name">Commercial kitchen</span><span class="count">1,840</span></a></li>
+          <li><a href="#"><span class="name">Workshop floor</span><span class="count">2,104</span></a></li>
+          <li><a href="#"><span class="name">Salon floor</span><span class="count">528</span></a></li>
+          <li><a href="#"><span class="name">Loading dock</span><span class="count">259</span></a></li>
+          <li><a href="#"><span class="name">Forecourt</span><span class="count">378</span></a></li>
+          <li><a href="#"><span class="name">Cellar / backroom</span><span class="count">443</span></a></li>
+          <li><a href="#"><span class="name">Outdoor yard</span><span class="count">1,312</span></a></li>
+          <li><a href="#"><span class="name">Front of house</span><span class="count">234</span></a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="col-head">By need</div>
+        <ul class="col-list">
+          <li><a href="#"><span class="name">Something broke</span><span class="count">—</span></a></li>
+          <li class="sub"><a href="#"><span class="name">Consumables</span><span class="count">684</span></a></li>
+          <li class="sub"><a href="#"><span class="name">Spares &amp; service kits</span><span class="count">412</span></a></li>
+          <li><a href="#"><span class="name">Opening up</span><span class="count">—</span></a></li>
+          <li class="sub"><a href="#"><span class="name">Starter kits</span><span class="count">6</span></a></li>
+          <li class="sub"><a href="#"><span class="name">First-year gear</span><span class="count">2,108</span></a></li>
+          <li><a href="#"><span class="name">Scaling up</span><span class="count">—</span></a></li>
+          <li class="sub"><a href="#"><span class="name">Second location</span><span class="count">—</span></a></li>
+          <li class="sub"><a href="#"><span class="name">B2B volume pricing</span><span class="count">—</span></a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="col-head">This week</div>
+        <ul class="col-list">
+          <li><a href="#"><span class="name">New arrivals</span><span class="count">42</span></a></li>
+          <li><a href="#"><span class="name">Back in stock</span><span class="count">17</span></a></li>
+          <li><a href="#"><span class="name">Price drops</span><span class="count">9</span></a></li>
+          <li><a href="#"><span class="name">Low stock</span><span class="count">14</span></a></li>
+          <li><a href="#"><span class="name">Retiring</span><span class="count">3</span></a></li>
+          <li><a href="#"><span class="name">Pre-order open</span><span class="count">6</span></a></li>
+          <li><a href="#"><span class="name">Week 17 bulletin</span><span class="count">→</span></a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <footer class="foot">
+      <span>Four orthogonal indexes · one directory</span>
+      <a href="#">Browse the full index</a>
+    </footer>
+
+  </section>
+</div>
+</body></html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><title>T1C · Procurement Question</title>
+<link href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;500;600;700;800;900&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root { --ink:#0F172A; --ink-2:#334155; --ink-3:#64748B; --amber:#E8920A; --amber-line:#F5B853; --rule:#E2E8F0; }
+  * { box-sizing:border-box; }
+  body { margin:0; padding:48px clamp(16px,4vw,40px); background:#F1F5F9; font-family:'Mulish',system-ui,sans-serif; color:var(--ink); font-feature-settings:"tnum","lnum"; }
+  .wrap { max-width:1360px; margin:0 auto; }
+  .label { background:var(--ink); color:#fff; padding:14px 20px; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:2px; text-transform:uppercase; margin-bottom:20px; border-radius:8px; }
+  .label strong { color:var(--amber); }
+
+  .statement { background:#fff; border:1px solid var(--rule); border-radius:8px; padding:clamp(32px, 5vw, 64px) clamp(28px, 5vw, 72px); box-shadow:0 1px 3px rgba(15,23,42,0.04), 0 10px 28px -16px rgba(15,23,42,0.12); position:relative; overflow:hidden; }
+
+  .statement::before { content:''; position:absolute; left:0; top:0; bottom:0; width:4px; background:linear-gradient(to bottom, var(--amber) 0%, var(--amber) 40%, transparent 100%); }
+
+  .statement-kicker { font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--amber); letter-spacing:0.2em; text-transform:uppercase; font-weight:600; margin:0 0 24px; }
+
+  .statement h2 { font-size:clamp(28px, 3.6vw, 50px); font-weight:900; letter-spacing:-0.028em; line-height:1.06; margin:0 0 28px; max-width:14ch; text-wrap:balance; }
+  .statement h2 em { font-style:normal; color:var(--amber); }
+  .statement h2 .strike { text-decoration:line-through; text-decoration-thickness:2px; text-decoration-color:var(--ink-3); color:var(--ink-3); font-weight:800; }
+
+  .proofs { display:grid; grid-template-columns:repeat(3, 1fr); gap:0; margin:32px 0 32px; border-top:1.5px solid var(--ink); border-bottom:1.5px solid var(--ink); }
+  .proof { padding:22px 28px; position:relative; }
+  .proof + .proof { border-left:1px solid var(--rule); }
+  .proof-num { font-family:'Mulish',sans-serif; font-size:clamp(28px, 3vw, 42px); font-weight:900; letter-spacing:-0.03em; color:var(--ink); line-height:1; font-variant-numeric:tabular-nums; }
+  .proof-num small { font-size:0.55em; color:var(--ink-3); font-weight:600; letter-spacing:-0.01em; }
+  .proof-cap { font-family:'IBM Plex Mono',monospace; font-size:11.5px; font-weight:500; color:var(--ink-2); letter-spacing:0.04em; line-height:1.5; margin:8px 0 0; text-transform:uppercase; }
+
+  .sub { font-size:16px; color:var(--ink-2); line-height:1.6; margin:0 0 28px; max-width:52ch; }
+
+  .actions { display:flex; gap:16px; align-items:center; flex-wrap:wrap; }
+  .cta { display:inline-flex; align-items:center; gap:10px; background:var(--ink); color:#fff; padding:14px 24px; border-radius:6px; text-decoration:none; font-family:'Mulish',sans-serif; font-weight:700; font-size:14px; letter-spacing:0.01em; transition:background 180ms; }
+  .cta:hover { background:var(--amber); }
+  .cta::after { content:'→'; transition:transform 180ms; }
+  .cta:hover::after { transform:translateX(4px); }
+  .secondary { font-family:'IBM Plex Mono',monospace; font-size:12px; font-weight:600; color:var(--ink-3); letter-spacing:0.08em; text-transform:uppercase; text-decoration:none; }
+  .secondary:hover { color:var(--amber); }
+
+  @media (max-width:900px) { .proofs { grid-template-columns:1fr; } .proof + .proof { border-left:0; border-top:1px solid var(--rule); } }
+</style></head>
+<body>
+<div class="wrap">
+  <div class="label"><strong>T1-C · PROCUREMENT QUESTION</strong> · one argument, not a grid · names the real competition (self-import from Shenzhen) and defeats it with three numbers</div>
+
+  <section class="statement">
+    <p class="statement-kicker">Why XLmarket exists</p>
+
+    <h2>The same VEVOR gear you'd import <span class="strike">from&nbsp;Shenzhen</span> <em>landed in Estonia.</em></h2>
+
+    <p class="sub">VAT paid. Warranty in your language. On your doorstep in 10 business days. You were going to do this yourself on the weekend anyway — this is a better weekend.</p>
+
+    <div class="proofs">
+      <div class="proof">
+        <div class="proof-num">½<small>×</small></div>
+        <p class="proof-cap">Retail price of EU-branded equivalents</p>
+      </div>
+      <div class="proof">
+        <div class="proof-num">24%</div>
+        <p class="proof-cap">VAT already in the number you see</p>
+      </div>
+      <div class="proof">
+        <div class="proof-num">2<small>yr</small></div>
+        <p class="proof-cap">Warranty handled from Tallinn, not Shenzhen email</p>
+      </div>
+    </div>
+
+    <div class="actions">
+      <a class="cta" href="#">Browse 17,000 SKUs</a>
+      <a class="secondary" href="#">How we price this →</a>
+    </div>
+  </section>
+</div>
+</body></html>

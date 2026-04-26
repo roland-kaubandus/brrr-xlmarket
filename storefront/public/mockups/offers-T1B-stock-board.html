@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><title>T1B · Stock Board</title>
+<link href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root { --ink:#0F172A; --ink-2:#334155; --ink-3:#64748B; --ink-4:#94A3B8; --amber:#E8920A; --rule:#E2E8F0; --dot-in:#16A34A; --dot-low:#F59E0B; --dot-ok:#3B82F6; }
+  * { box-sizing:border-box; }
+  body { margin:0; padding:48px clamp(16px,4vw,40px); background:#F1F5F9; font-family:'Mulish',system-ui,sans-serif; color:var(--ink); font-feature-settings:"tnum","lnum"; }
+  .wrap { max-width:1360px; margin:0 auto; }
+  .label { background:var(--ink); color:#fff; padding:14px 20px; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:2px; text-transform:uppercase; margin-bottom:20px; border-radius:8px; }
+  .label strong { color:var(--amber); }
+
+  .board { background:#fff; border:1px solid var(--rule); border-radius:8px; overflow:hidden; box-shadow:0 1px 3px rgba(15,23,42,0.04), 0 10px 28px -16px rgba(15,23,42,0.12); }
+
+  .board-head { padding:18px 24px; display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap; background:linear-gradient(to bottom, #FAFBFC, #fff); border-bottom:1.5px solid var(--rule); }
+  .status-lamp { display:inline-flex; align-items:center; gap:8px; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--ink-3); letter-spacing:0.14em; text-transform:uppercase; }
+  .lamp-dot { width:8px; height:8px; border-radius:50%; background:var(--dot-in); box-shadow:0 0 0 3px rgba(22,163,74,0.18); animation:pulse 2s ease-in-out infinite; }
+  @keyframes pulse { 0%,100% { box-shadow:0 0 0 3px rgba(22,163,74,0.18); } 50% { box-shadow:0 0 0 6px rgba(22,163,74,0.08); } }
+  .board-title { font-size:16px; font-weight:700; letter-spacing:-0.01em; margin:0; }
+  .board-meta { font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--ink-4); letter-spacing:0.06em; }
+
+  .col-head { display:grid; grid-template-columns:110px 1fr 110px 90px 120px 40px; gap:16px; padding:10px 24px; background:#F8FAFC; border-bottom:1px solid var(--rule); font-family:'JetBrains Mono',monospace; font-size:10px; font-weight:600; color:var(--ink-4); letter-spacing:0.14em; text-transform:uppercase; }
+
+  .rows { display:grid; }
+  .row { display:grid; grid-template-columns:110px 1fr 110px 90px 120px 40px; gap:16px; padding:14px 24px; align-items:center; text-decoration:none; color:inherit; border-bottom:1px solid var(--rule); transition:background 160ms; cursor:pointer; }
+  .row:hover { background:#FEF3E2; }
+  .row:last-child { border:0; }
+
+  .cat { font-family:'JetBrains Mono',monospace; font-size:10.5px; font-weight:600; color:var(--amber); letter-spacing:0.12em; text-transform:uppercase; }
+  .name { font-size:14px; font-weight:500; line-height:1.3; }
+  .price { font-family:'Mulish',sans-serif; font-weight:800; font-size:15px; font-variant-numeric:tabular-nums; text-align:right; letter-spacing:-0.01em; }
+  .stock { font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--ink-2); text-align:right; font-variant-numeric:tabular-nums; }
+  .lead { font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--ink-3); }
+  .go { font-family:'JetBrains Mono',monospace; color:var(--amber); font-size:14px; text-align:right; transition:transform 180ms; }
+  .row:hover .go { transform:translateX(4px); }
+
+  .stock-dot { display:inline-block; width:7px; height:7px; border-radius:50%; margin-right:6px; vertical-align:middle; }
+  .stock-dot.in { background:var(--dot-in); }
+  .stock-dot.low { background:var(--dot-low); }
+  .stock-dot.ok { background:var(--dot-ok); }
+
+  .board-foot { padding:16px 24px; display:flex; justify-content:space-between; align-items:center; background:#F8FAFC; border-top:1px solid var(--rule); font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--ink-3); letter-spacing:0.06em; }
+  .board-foot a { color:var(--amber); text-decoration:none; font-weight:600; }
+  .board-foot a::after { content:' →'; }
+
+  @media (max-width:900px) {
+    .col-head { display:none; }
+    .row { grid-template-columns:1fr auto; gap:8px; padding:12px 16px; }
+    .row .cat { grid-column:1/-1; font-size:10px; }
+    .row .name { grid-column:1; font-size:13px; }
+    .row .price { grid-column:2; font-size:14px; }
+    .row .stock, .row .lead, .row .go { display:none; }
+  }
+</style></head>
+<body>
+<div class="wrap">
+  <div class="label"><strong>T1-B · STOCK BOARD</strong> · 8 real SKUs across the full range · live stock, lead times, click-through to product · proves 17,000-SKU depth without claiming it</div>
+
+  <section class="board">
+    <header class="board-head">
+      <div>
+        <span class="status-lamp"><span class="lamp-dot"></span> Live stock · updated 06:12</span>
+        <h2 class="board-title">Eight of seventeen thousand.</h2>
+      </div>
+      <span class="board-meta">Tallinn warehouse · VAT incl · EUR</span>
+    </header>
+
+    <div class="col-head">
+      <span>Category</span><span>Product</span><span>Price</span><span>Stock</span><span>Ships</span><span></span>
+    </div>
+
+    <div class="rows">
+      <a class="row" href="#"><span class="cat">Welding</span><span class="name">VEVOR MIG Welder 200A · 3-in-1 MIG/TIG/Arc</span><span class="price">€469</span><span class="stock"><span class="stock-dot in"></span>14</span><span class="lead">10 days</span><span class="go">→</span></a>
+      <a class="row" href="#"><span class="cat">Horeca</span><span class="name">Twin-deck pizza oven, 9 kW, stainless</span><span class="price">€1,249</span><span class="stock"><span class="stock-dot in"></span>6</span><span class="lead">10 days</span><span class="go">→</span></a>
+      <a class="row" href="#"><span class="cat">Generators</span><span class="name">Diesel generator 5.5 kW · electric start</span><span class="price">€1,799</span><span class="stock"><span class="stock-dot low"></span>2 low</span><span class="lead">10 days</span><span class="go">→</span></a>
+      <a class="row" href="#"><span class="cat">Salon &amp; Spa</span><span class="name">Hydraulic barber chair · chrome &amp; leather</span><span class="price">€489</span><span class="stock"><span class="stock-dot in"></span>22</span><span class="lead">10 days</span><span class="go">→</span></a>
+      <a class="row" href="#"><span class="cat">Cleaning</span><span class="name">Pressure washer 3200 PSI · 6 L/min · petrol</span><span class="price">€629</span><span class="stock"><span class="stock-dot in"></span>11</span><span class="lead">10 days</span><span class="go">→</span></a>
+      <a class="row" href="#"><span class="cat">Horeca</span><span class="name">Commercial coffee grinder · flat burr · 83 mm</span><span class="price">€379</span><span class="stock"><span class="stock-dot in"></span>9</span><span class="lead">10 days</span><span class="go">→</span></a>
+      <a class="row" href="#"><span class="cat">Metalworking</span><span class="name">Plasma cutter 60A · digital · dual voltage</span><span class="price">€549</span><span class="stock"><span class="stock-dot ok"></span>4</span><span class="lead">10 days</span><span class="go">→</span></a>
+      <a class="row" href="#"><span class="cat">Salon &amp; Spa</span><span class="name">Backwash shampoo unit · ceramic bowl · chair</span><span class="price">€716</span><span class="stock"><span class="stock-dot in"></span>7</span><span class="lead">10 days</span><span class="go">→</span></a>
+    </div>
+
+    <footer class="board-foot">
+      <span>Rotating selection · refreshed every page load</span>
+      <a href="#">See all 17,000 SKUs</a>
+    </footer>
+  </section>
+</div>
+</body></html>

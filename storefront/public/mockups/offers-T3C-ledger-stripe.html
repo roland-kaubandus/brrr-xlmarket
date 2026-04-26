@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><title>T3C · Ledger Stripe</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=JetBrains+Mono:wght@500;600&family=Mulish:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root { --ink:#0F172A; --ink-2:#334155; --ink-3:#64748B; --amber:#E8920A; --paper:#FAF7F1; --rule:#E2E8F0; }
+  * { box-sizing:border-box; }
+  body { margin:0; padding:48px clamp(16px,4vw,40px); background:#F1F5F9; font-family:'Mulish',system-ui,sans-serif; color:var(--ink); }
+  .wrap { max-width:1360px; margin:0 auto; }
+  .label { background:var(--ink); color:#fff; padding:14px 20px; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:2px; text-transform:uppercase; margin-bottom:20px; border-radius:8px; }
+  .label strong { color:var(--amber); }
+
+  .stripe-outer { background:var(--paper); border-radius:8px; padding:48px 0; overflow:hidden; border:1px solid #D9CEB8; box-shadow:0 1px 3px rgba(15,23,42,0.04), 0 10px 28px -16px rgba(15,23,42,0.12); position:relative; }
+
+  .stripe { position:relative; height:140px; display:flex; align-items:center; overflow:hidden; }
+
+  .stripe::before { content:''; position:absolute; left:0; right:0; top:50%; height:2px; background:var(--amber); transform:translateY(-50%); z-index:1; }
+
+  .ticker { display:flex; align-items:center; gap:0; white-space:nowrap; animation:scroll 60s linear infinite; padding-left:0; position:relative; z-index:2; }
+  .stripe:hover .ticker { animation-play-state:paused; }
+  @keyframes scroll { from { transform:translateX(0); } to { transform:translateX(-50%); } }
+
+  .big { font-family:'Archivo Black', sans-serif; font-size:96px; line-height:1; color:var(--ink); letter-spacing:-0.028em; padding:0 32px; background:var(--paper); position:relative; z-index:3; text-transform:uppercase; }
+  .big.amber { color:var(--amber); }
+
+  .meta { font-family:'JetBrains Mono', monospace; font-size:13px; font-weight:500; color:var(--ink-2); letter-spacing:0.12em; text-transform:uppercase; padding:6px 14px; background:transparent; position:relative; z-index:2; }
+  .meta strong { color:var(--ink); font-weight:600; font-family:'Mulish', sans-serif; font-size:15px; font-variant-numeric:tabular-nums; letter-spacing:-0.01em; text-transform:none; }
+
+  .corner-labels { padding:0 32px; display:flex; justify-content:space-between; color:var(--ink-3); font-family:'JetBrains Mono', monospace; font-size:10px; letter-spacing:0.18em; text-transform:uppercase; margin-bottom:20px; }
+
+  .corner-foot { padding:0 32px; margin-top:20px; display:flex; justify-content:space-between; align-items:center; font-family:'JetBrains Mono', monospace; font-size:11px; color:var(--ink-3); letter-spacing:0.1em; }
+  .corner-foot a { color:var(--amber); text-decoration:none; font-weight:600; text-transform:uppercase; }
+  .corner-foot a::after { content:' →'; }
+
+  @media (max-width:700px) { .big { font-size:52px; } .meta { font-size:11px; padding:4px 10px; } }
+</style></head>
+<body>
+<div class="wrap">
+  <div class="label"><strong>T3-C · LEDGER STRIPE</strong> · 96pt display words + 13pt mono metadata on one line · amber hairline interrupted by words, passes through metadata · slow marquee</div>
+
+  <section class="stripe-outer">
+    <div class="corner-labels">
+      <span>XLmarket · Est. 2024</span>
+      <span>Week 17 · 2026 · Tallinn</span>
+    </div>
+
+    <div class="stripe">
+      <div class="ticker">
+        <span class="big">Industrial</span>
+        <span class="meta"><strong>17,043</strong> SKUs in stock</span>
+        <span class="big amber">Commercial</span>
+        <span class="meta">Tallinn warehouse · <strong>ships 10d</strong></span>
+        <span class="big">Workshop</span>
+        <span class="meta"><strong>½ price</strong> vs EU retail</span>
+        <span class="big">Hospitality</span>
+        <span class="meta"><strong>VAT 24%</strong> included</span>
+        <span class="big amber">Farm</span>
+        <span class="meta"><strong>2-year</strong> warranty · EE</span>
+        <span class="big">Salon</span>
+        <span class="meta"><strong>Net-30</strong> for B2B</span>
+        <!-- duplicate for seamless scroll -->
+        <span class="big">Industrial</span>
+        <span class="meta"><strong>17,043</strong> SKUs in stock</span>
+        <span class="big amber">Commercial</span>
+        <span class="meta">Tallinn warehouse · <strong>ships 10d</strong></span>
+        <span class="big">Workshop</span>
+        <span class="meta"><strong>½ price</strong> vs EU retail</span>
+        <span class="big">Hospitality</span>
+        <span class="meta"><strong>VAT 24%</strong> included</span>
+        <span class="big amber">Farm</span>
+        <span class="meta"><strong>2-year</strong> warranty · EE</span>
+        <span class="big">Salon</span>
+        <span class="meta"><strong>Net-30</strong> for B2B</span>
+      </div>
+    </div>
+
+    <div class="corner-foot">
+      <span>Hover to pause · continuous record</span>
+      <a href="#">Browse 17,000 SKUs</a>
+    </div>
+  </section>
+</div>
+</body></html>
