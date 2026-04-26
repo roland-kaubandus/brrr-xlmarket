@@ -4,19 +4,22 @@ import SearchBar from "@/components/SearchBar"
 import MegaMenu from "@/components/MegaMenu"
 import MobileSearchToggle from "@/components/MobileSearchToggle"
 import HeaderNavLinks from "@/components/HeaderNavLinks"
+import LocaleSwitcher from "@/components/LocaleSwitcher"
 import { getMenuSlice } from "@/lib/menu-data"
+import { getTranslations, t } from "@/lib/i18n"
 
-// EN-only nav labels per CLAUDE.md HARD RULE #1.
-// `matchPrefix` is used client-side to highlight the active link.
-const getNavLinks = (locale: string) => [
-  { label: "Starter kits", href: `/${locale}/alustajale`, highlight: true, matchPrefix: `/${locale}/alustajale` },
-  { label: "B2B", href: `/${locale}/arikliendile`, matchPrefix: `/${locale}/arikliendile` },
-  { label: "Service", href: `/${locale}/hooldus`, matchPrefix: `/${locale}/hooldus` },
-  { label: "Deals", href: `/${locale}/otsing?sort=deals`, matchPrefix: "" },
+// Nav labels pulled from messages/{locale}.json nav.* — `matchPrefix` is used
+// client-side to highlight the active link.
+const getNavLinks = (locale: string, labels: ReturnType<typeof getTranslations>) => [
+  { label: t(labels, "nav.starterKits"), href: `/${locale}/alustajale`, highlight: true, matchPrefix: `/${locale}/alustajale` },
+  { label: t(labels, "nav.b2b"), href: `/${locale}/arikliendile`, matchPrefix: `/${locale}/arikliendile` },
+  { label: t(labels, "nav.service"), href: `/${locale}/hooldus`, matchPrefix: `/${locale}/hooldus` },
+  { label: t(labels, "nav.deals"), href: `/${locale}/otsing?sort=deals`, matchPrefix: "" },
 ]
 
 export default async function VevorHeader({ locale = "en" }: { locale?: string }) {
-  const NAV_LINKS = getNavLinks(locale)
+  const labels = getTranslations(locale as "et" | "en")
+  const NAV_LINKS = getNavLinks(locale, labels)
   // Compute menu slice server-side — only L1 + L2 (~30KB) goes to the client.
   // L3+ is fetched lazily by MegaMenu via /api/category-children.
   const menuData = getMenuSlice()
@@ -56,6 +59,9 @@ export default async function VevorHeader({ locale = "en" }: { locale?: string }
 
         {/* Right side actions */}
         <div className="flex items-center gap-1 md:gap-3 shrink-0">
+          <div className="hidden md:block">
+            <LocaleSwitcher locale={locale} variant="dark" />
+          </div>
           <div className="md:hidden">
             <MobileSearchToggle locale={locale} />
           </div>

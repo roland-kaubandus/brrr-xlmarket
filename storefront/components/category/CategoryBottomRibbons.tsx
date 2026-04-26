@@ -182,7 +182,7 @@ export default function CategoryBottomRibbons({
       const ordered: RibbonProduct[] = []
       for (const id of safeIds) {
         const hit = byId.get(id)
-        if (hit) ordered.push(mapMeiliHitToProduct(hit))
+        if (hit) ordered.push(mapMeiliHitToProduct(hit, locale))
         if (ordered.length >= RIBBON_LIMIT) break
       }
       setHistory(ordered)
@@ -207,7 +207,7 @@ export default function CategoryBottomRibbons({
       sort: ["price:asc"],
     }
     fetchMeili(body, controller.signal).then((hits) => {
-      setDeals(hits.map((h) => mapMeiliHitToProduct(h)))
+      setDeals(hits.map((h) => mapMeiliHitToProduct(h, locale)))
     })
     return () => controller.abort()
   }, [safeL1, locale])
@@ -227,7 +227,7 @@ export default function CategoryBottomRibbons({
       sort: ["created_at:desc"],
     }
     fetchMeili(body, controller.signal).then((hits) => {
-      setBestSellers(hits.map((h) => mapMeiliHitToProduct(h)))
+      setBestSellers(hits.map((h) => mapMeiliHitToProduct(h, locale)))
     })
     return () => controller.abort()
   }, [safeL1, locale])

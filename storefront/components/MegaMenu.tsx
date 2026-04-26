@@ -327,7 +327,9 @@ export default function MegaMenu({ locale = "en", menuData }: MegaMenuProps) {
   const panelWidth = 300
   const totalWidth = 320 + (activeL1 ? 340 : 0) + drillPanels.length * panelWidth
 
-  function nodeName(node: MenuNode): string {
+  function nodeName(node: MenuNode, nlocale?: string): string {
+    const et = (node as { name_et?: string }).name_et
+    if (nlocale === "et" && et) return et
     return node.name_en
   }
 
@@ -403,7 +405,7 @@ export default function MegaMenu({ locale = "en", menuData }: MegaMenuProps) {
                         className="flex-shrink-0"
                       />
                     )}
-                    <span className="font-medium flex-1 truncate">{nodeName(l1)}</span>
+                    <span className="font-medium flex-1 truncate">{nodeName(l1, loc)}</span>
                     <ChevronRight
                       size={13}
                       style={{ color: isActive ? "#D97706" : "#CBD5E1" }}
@@ -420,14 +422,14 @@ export default function MegaMenu({ locale = "en", menuData }: MegaMenuProps) {
                 className="w-[340px] py-3 max-h-[calc(100vh-140px)] overflow-y-auto flex-shrink-0 border-r border-[#ECEEF1]"
                 role="menu"
                 aria-orientation="vertical"
-                aria-label={nodeName(activeL1)}
+                aria-label={nodeName(activeL1, loc)}
               >
                 <Link
                   href={categoryPath(loc, activeL1.handle)}
                   onClick={() => setIsOpen(false)}
                   className="block px-5 py-2 text-[11px] font-bold text-[#D97706] uppercase tracking-wider border-b border-[#ECEEF1] mb-1 hover:underline"
                 >
-                  Shop All {nodeName(activeL1)}
+                  Shop All {nodeName(activeL1, loc)}
                 </Link>
                 {activeL2.map((l2) => {
                   const isActive = hoverPath[0]?.handle === l2.handle
@@ -454,7 +456,7 @@ export default function MegaMenu({ locale = "en", menuData }: MegaMenuProps) {
                         alt=""
                       />
                       <span className="flex-1 leading-tight text-[13px] font-medium">
-                        {nodeName(l2)}
+                        {nodeName(l2, loc)}
                       </span>
                       {hasKids && (
                         <ChevronRight
@@ -480,7 +482,7 @@ export default function MegaMenu({ locale = "en", menuData }: MegaMenuProps) {
                   style={{ width: panelWidth }}
                   role="menu"
                   aria-orientation="vertical"
-                  aria-label={parent ? nodeName(parent) : undefined}
+                  aria-label={parent ? nodeName(parent, loc) : undefined}
                 >
                   {parent && (
                     <Link
@@ -488,7 +490,7 @@ export default function MegaMenu({ locale = "en", menuData }: MegaMenuProps) {
                       onClick={() => setIsOpen(false)}
                       className="block px-5 py-2 text-[11px] font-bold text-[#D97706] uppercase tracking-wider border-b border-[#ECEEF1] mb-1 hover:underline"
                     >
-                      Shop All {nodeName(parent)}
+                      Shop All {nodeName(parent, loc)}
                     </Link>
                   )}
                   {nodes.map((node) => {
@@ -514,7 +516,7 @@ export default function MegaMenu({ locale = "en", menuData }: MegaMenuProps) {
                           size={28}
                           alt=""
                         />
-                        <span className="font-medium flex-1 truncate">{nodeName(node)}</span>
+                        <span className="font-medium flex-1 truncate">{nodeName(node, loc)}</span>
                         {hasKids && (
                           <ChevronRight
                             size={12}
@@ -567,7 +569,7 @@ export default function MegaMenu({ locale = "en", menuData }: MegaMenuProps) {
               }}
               className="block px-4 py-3.5 text-[14px] font-bold text-[#D97706] border-b border-[#E2E8F0] bg-[#FFFBEB]"
             >
-              View All {nodeName(mobileTop)} &rarr;
+              View All {nodeName(mobileTop, loc)} &rarr;
             </Link>
           )}
 
@@ -583,7 +585,7 @@ export default function MegaMenu({ locale = "en", menuData }: MegaMenuProps) {
                   >
                     <span className="flex items-center gap-3">
                       {Icon && <Icon size={20} strokeWidth={1.4} className="text-[#94A3B8]" />}
-                      <span>{nodeName(l1)}</span>
+                      <span>{nodeName(l1, loc)}</span>
                     </span>
                     <ChevronRight size={16} className="text-[#CBD5E1]" />
                   </button>
@@ -608,7 +610,7 @@ export default function MegaMenu({ locale = "en", menuData }: MegaMenuProps) {
                           size={36}
                           alt=""
                         />
-                        <span className="flex-1">{nodeName(child)}</span>
+                        <span className="flex-1">{nodeName(child, loc)}</span>
                       </span>
                       <ChevronRight size={16} className="text-[#CBD5E1] flex-shrink-0 ml-2" />
                     </button>
@@ -631,7 +633,7 @@ export default function MegaMenu({ locale = "en", menuData }: MegaMenuProps) {
                       size={36}
                       alt=""
                     />
-                    <span className="flex-1">{nodeName(child)}</span>
+                    <span className="flex-1">{nodeName(child, loc)}</span>
                   </Link>
                 )
               })}

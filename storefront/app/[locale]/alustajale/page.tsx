@@ -202,7 +202,7 @@ export default async function AlustajalePage({ params }: { params: Promise<{ loc
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-[16px]">
           {listVerticalsByMode("alustajale").map((v) => {
-            const l = localisedVertical(v)
+            const l = localisedVertical(v, locale)
             return (
               <Link
                 key={v.slug}

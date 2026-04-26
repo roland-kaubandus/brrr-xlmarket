@@ -54,7 +54,7 @@ export async function generateMetadata({ params }: Props) {
   const node = getNode(handle)
   const category = node ? null : await getCategoryByHandle(handle)
   const displayName = node
-    ? nodeName(node)
+    ? nodeName(node, locale)
     : (category?.name || humanize(handle))
   const nodeDesc = node?.description_en ?? node?.tagline_en
   const desc =
@@ -221,14 +221,14 @@ export default async function CategoryPage({ params, searchParams }: Props) {
     const childNode = getNode(h)
     if (!childNode) continue
     categoryFacets[h] = n
-    categoryLabels[h] = nodeName(childNode)
+    categoryLabels[h] = nodeName(childNode, locale)
   }
 
   // No products AND unknown to SSoT AND Medusa → 404
   if (totalCount === 0 && !node && !category) notFound()
 
   const displayName = node
-    ? nodeName(node)
+    ? nodeName(node, locale)
     : (category?.name || humanize(handle))
 
   const totalPages = Math.ceil(totalCount / ITEMS_PER_PAGE)

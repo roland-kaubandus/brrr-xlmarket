@@ -13,7 +13,11 @@
     "close": "Close",
     "categories": "Categories",
     "allBranches": "All fields",
-    "navigation": "Navigation"
+    "navigation": "Navigation",
+    "starterKits": "Starter kits",
+    "b2b": "B2B",
+    "service": "Service",
+    "deals": "Deals"
   },
   "announcement": {
     "freeShipping": "Free shipping from 99 EUR",

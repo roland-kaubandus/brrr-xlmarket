@@ -46,7 +46,8 @@ export function getNode(handle: string): CategoryNode | null {
   return TREE.nodes[handle] || null
 }
 
-export function nodeName(node: CategoryNode): string {
+export function nodeName(node: CategoryNode, locale?: string): string {
+  if (locale === "et" && node.name_et) return node.name_et
   return node.name_en
 }
 

@@ -50,11 +50,20 @@ export type MeiliHit = {
   }
 }
 
-export function getProductTitle(hit: MeiliHit): string {
+/**
+ * Locale-aware product title.
+ * ET: prefer title_et, fall back to EN baseline if not yet translated.
+ * EN / anything else: original EN baseline.
+ * The fallback chain is intentional — during rollout many products will have
+ * no ET yet; showing EN is better than showing empty string.
+ */
+export function getProductTitle(hit: MeiliHit, locale: string = 'en'): string {
+  if (locale === 'et' && hit.title_et) return hit.title_et
   return hit.title || hit.title_en || ''
 }
 
-export function getProductDescription(hit: MeiliHit): string {
+export function getProductDescription(hit: MeiliHit, locale: string = 'en'): string {
+  if (locale === 'et' && hit.description_et) return hit.description_et
   return hit.description || hit.description_en || ''
 }
 

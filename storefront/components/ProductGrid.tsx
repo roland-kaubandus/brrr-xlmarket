@@ -99,7 +99,7 @@ export default function ProductGrid({ initialProducts, fetchParams, locale, colu
       })
       .then((data) => {
         if (data?.hits) {
-          setProducts(data.hits.map((hit: MeiliHit) => mapMeiliHitToProduct(hit)))
+          setProducts(data.hits.map((hit: MeiliHit) => mapMeiliHitToProduct(hit, locale)))
         } else {
           setProducts([])
         }

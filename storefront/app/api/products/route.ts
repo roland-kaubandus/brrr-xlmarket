@@ -93,7 +93,7 @@ export async function GET(request: NextRequest) {
     })
 
     return NextResponse.json({
-      products: result.hits.map((hit) => mapMeiliHitToProduct(hit)),
+      products: result.hits.map((hit) => mapMeiliHitToProduct(hit, locale)),
       totalHits: result.totalHits || result.estimatedTotalHits || 0,
       facetDistribution: result.facetDistribution,
       facetStats: result.facetStats,

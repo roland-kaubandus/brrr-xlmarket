@@ -96,13 +96,14 @@ export function allVerticalSlugs(): Array<{ mode: VerticalMode; slug: string }> 
   return data.verticals.map((v) => ({ mode: v.mode as VerticalMode, slug: v.slug }))
 }
 
-export function localisedVertical(v: VerticalMeta) {
+export function localisedVertical(v: VerticalMeta, locale: string = "en") {
+  const et = locale === "et"
   return {
-    name: v.name_en,
-    tagline: v.tagline_en,
-    description: v.description_en,
-    deliveryNote: v.delivery_note_en,
-    financingNote: v.financing_note_en,
+    name: (et && v.name_et) || v.name_en,
+    tagline: (et && v.tagline_et) || v.tagline_en,
+    description: (et && v.description_et) || v.description_en,
+    deliveryNote: (et && v.delivery_note_et !== undefined) ? v.delivery_note_et : v.delivery_note_en,
+    financingNote: (et && v.financing_note_et !== undefined) ? v.financing_note_et : v.financing_note_en,
   }
 }
 
@@ -153,6 +154,7 @@ export async function getVerticalProducts(
  */
 export async function getKitItemProducts(
   kit: Kit,
+  locale: string = "en",
 ): Promise<Array<KitItem & { product?: MeiliHit; displayTitle: string }>> {
   const results: Array<KitItem & { product?: MeiliHit; displayTitle: string }> = []
 
@@ -161,7 +163,7 @@ export async function getKitItemProducts(
     if (!slug) {
       results.push({
         ...item,
-        displayTitle: item.label_en,
+        displayTitle: (locale === "et" && item.label_et) ? item.label_et : item.label_en,
       })
       continue
     }
@@ -197,12 +199,12 @@ export async function getKitItemProducts(
       results.push({
         ...item,
         product,
-        displayTitle: product ? getProductTitle(product) : item.label_en,
+        displayTitle: product ? getProductTitle(product, locale) : item.label_en,
       })
     } catch {
       results.push({
         ...item,
-        displayTitle: item.label_en,
+        displayTitle: (locale === "et" && item.label_et) ? item.label_et : item.label_en,
       })
     }
   }

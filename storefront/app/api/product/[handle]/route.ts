@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server"
 import { getProduct, getCategoryByHandle, formatPrice } from "@/lib/medusa"
 import { getProductMedia } from "@/lib/product-media"
 import { getVevorFeedEntryAsync } from "@/lib/vevor-feed"
-import { getMeiliProductByHandle, getProductTitle } from "@/lib/meilisearch"
+import { getMeiliProductByHandle, getProductDescription, getProductTitle } from "@/lib/meilisearch"
 import { sanitizeHtml } from "@/lib/sanitize"
 import { categoryPath } from "@/lib/i18n"
 import { firstKnownHandle, getBreadcrumbTrail } from "@/lib/category-tree"
@@ -205,7 +205,16 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
       }),
     ])
 
-    const localizedTitle = meiliHit ? getProductTitle(meiliHit) : product.title
+    // Locale-aware title: prefer ET (if locale=et and title_et present), else EN baseline.
+    // meta.title_et is written by translate-worker.mjs; Meili reindex picks it up.
+    const metaTitleEt = locale === "et" ? (typeof metadata.title_et === "string" && metadata.title_et.trim() ? metadata.title_et : null) : null
+    const localizedTitle = meiliHit
+      ? getProductTitle(meiliHit, locale)
+      : (metaTitleEt || product.title)
+    const metaDescEt = locale === "et" ? (typeof metadata.description_et === "string" && metadata.description_et.trim() ? metadata.description_et : null) : null
+    const localizedDescription = meiliHit
+      ? getProductDescription(meiliHit, locale)
+      : (metaDescEt || product.description || "")
     const variant = product.variants?.[0]
     const price = variant?.calculated_price
 
@@ -287,19 +296,35 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
       ? getBreadcrumbTrail(canonicalNode.handle)
       : []
 
-    // Descriptions — prefer pre-computed sanitized HTML from feed import
-    const mainDescriptionRaw = product.description || feedEntry?.descriptionHtml || null
-    const mainSanitized = typeof metadata.sanitized_description === "string" && metadata.sanitized_description.length > 10
-      ? metadata.sanitized_description
-      : sanitizeHtml(mainDescriptionRaw || "")
+    // Descriptions — locale-aware. For ET, prefer localizedDescription (metadata.description_et
+    // or MeiliHit description_et). Sanitized HTML variants are EN-only right now; ET goes through
+    // runtime sanitize on the plain-text translation.
+    const mainDescriptionRaw = locale === "et"
+      ? (localizedDescription || product.description || feedEntry?.descriptionHtml || null)
+      : (product.description || feedEntry?.descriptionHtml || null)
+    const mainSanitized = locale === "et"
+      ? sanitizeHtml(mainDescriptionRaw || "")
+      : (typeof metadata.sanitized_description === "string" && metadata.sanitized_description.length > 10
+        ? metadata.sanitized_description
+        : sanitizeHtml(mainDescriptionRaw || ""))
     // Structure plain <br>-separated text into <p>+<ul> for the fallback case.
     const mainDescriptionHtml = mainSanitized.includes("<p>") || mainSanitized.includes("<h")
       ? mainSanitized
       : structureMainDescription(mainSanitized)
 
-    const sellingPoints: string[] = Array.isArray(metadata.selling_points) && metadata.selling_points.length > 0
+    // Selling points — ET overlay if locale=et and metadata.selling_point_N_et present;
+    // each slot independently falls back to EN if its ET twin is missing.
+    const defaultSellingPoints: string[] = Array.isArray(metadata.selling_points) && metadata.selling_points.length > 0
       ? (metadata.selling_points as string[])
       : feedEntry?.sellingPoints || []
+    const sellingPoints: string[] = locale === "et"
+      ? [1, 2, 3, 4, 5]
+          .map((i) => {
+            const et = metadata[`selling_point_${i}_et`]
+            return typeof et === "string" && et.trim() ? et : defaultSellingPoints[i - 1] || ""
+          })
+          .filter(Boolean)
+      : defaultSellingPoints
 
     let richDescription: string | null = null
     if (typeof metadata.sanitized_rich_description === "string" && metadata.sanitized_rich_description.length > 50) {
