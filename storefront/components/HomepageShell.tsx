@@ -6,8 +6,8 @@ import { categoryPath, branchPath, type Locale } from "@/lib/i18n"
 import { V3_ICONS } from "@/lib/taxonomy-v3"
 import type { HomepageL1Node } from "@/lib/menu-data"
 import type { CmsSlide, CmsPromo } from "@/lib/cms"
-import HeroFour from "@/components/HeroFour"
-import StockBoard, { type StockBoardRow } from "@/components/StockBoard"
+import SeasonSpecial from "@/components/SeasonSpecial"
+import type { SeasonSpecialData } from "@/lib/season-special-data"
 
 // Adapter: render the homepage category explorer from the SSoT 18-L1 taxonomy
 // tree instead of the legacy hard-coded 22-entry TAXONOMY_V3 list.
@@ -48,10 +48,8 @@ interface HomepageShellProps {
   promos: CmsPromo[]
   /** CMS-managed nav short names per category slug */
   navShortNames: Record<string, string>
-  /** Stock Board rows fetched server-side (replaces the old promo grid). */
-  stockBoardRows: StockBoardRow[]
-  /** HH:MM stamp shown next to the live-stock lamp. */
-  stockBoardUpdatedAt: string
+  /** Festival-season Special data: 2 star deals + 6 strip items. Fetched server-side. */
+  seasonSpecial: SeasonSpecialData
 }
 
 /* ═══════════════════════════════════════════════
@@ -102,7 +100,7 @@ function shortNavLabel(slug: string, name: string, navShortNames: Record<string,
   return cleaned
 }
 
-export default function HomepageShell({ locale, l1Nodes, slides, promos, navShortNames, stockBoardRows, stockBoardUpdatedAt }: HomepageShellProps) {
+export default function HomepageShell({ locale, l1Nodes, slides, promos, navShortNames, seasonSpecial }: HomepageShellProps) {
   const loc = locale as Locale
 
   /* ── 18 L1 from SSoT taxonomy tree (pre-computed server-side, PERF-C1) ── */
@@ -238,24 +236,14 @@ export default function HomepageShell({ locale, l1Nodes, slides, promos, navShor
     <div style={{ backgroundColor: "#ECEEF1" }}>
       <style>{homepageStyles}</style>
 
-      {/* ═══════ HERO SECTION ═══════ */}
+      {/* ═══════ SEASON SPECIAL ═══════ */}
+      {/* One designed band replaces the previous hero carousel + stock board.
+          Festival-season outdoor catering: 2 star deals (waffle + ice-cream),
+          6 supporting machines, plus an Estonian event ticker. Data comes
+          from lib/season-special-data.ts on the server. */}
       <div className="hp-hero-container hp-page-wrap">
         <div className="hp-carousel-container">
-          {/* HeroFour replaces the previous CMS-driven 3-slide carousel.
-              Four hardcoded scenes (Workshop / Café / Salon&Spa / Bakery)
-              with the existing site's Barlow Condensed + Mulish + amber-button
-              system. See components/HeroFour.tsx. */}
-          <HeroFour locale={loc} />
-
-          {/* StockBoard replaces the previous photo-tile promo grid (3 starter
-              kits + 3 auxiliary blocks). Eight in-stock SKUs across the
-              catalogue, click-through to the product page. Data comes from
-              lib/stock-board-data.ts on the server. */}
-          <StockBoard
-            locale={loc}
-            rows={stockBoardRows}
-            updatedAt={stockBoardUpdatedAt}
-          />
+          <SeasonSpecial locale={loc} data={seasonSpecial} />
 
           {/* Deal Cards — mockup v2 layout: aspect-[4/3] product image,
               red percentage badge top-left, category small + title + amber
@@ -427,313 +415,348 @@ const homepageStyles = `
   background-color: #ECEEF1;
 }
 
-/* ── Hero (4-scene rotation) + Stock Board container ── */
-.hp-carousel-container {
+/* ═══════════════════════════════════════════════════════════════
+   SEASON SPECIAL — festival-season outdoor catering band
+   Replaces the previous hero carousel + stock-board pair.
+   Aesthetic: Estonian fairground broadsheet. Navy + cream + amber.
+   Display type: Barlow Condensed. Mono numerals: IBM Plex Mono.
+   ═══════════════════════════════════════════════════════════════ */
+.season-special {
+  background: #FAF7F1;
+  border: 1px solid #D9CEB8;
+  border-radius: 0;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 1px 3px rgba(15,23,42,0.04), 0 14px 32px -18px rgba(15,23,42,0.14);
+  /* paper grain */
+  background-image:
+    radial-gradient(ellipse 1200px 400px at 0% 0%, rgba(232,146,10,0.04), transparent 55%),
+    radial-gradient(ellipse 900px 400px at 100% 100%, rgba(15,27,45,0.025), transparent 60%),
+    repeating-linear-gradient(175deg, transparent 0, transparent 28px, rgba(203,189,162,0.07) 28px, rgba(203,189,162,0.07) 29px);
+}
+
+/* ── Top ticker ── */
+.ss-ticker {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: #0F1B2D;
+  color: rgba(255,255,255,0.85);
+  padding: 9px 18px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.ss-ticker-label {
+  color: #E8920A;
+  font-weight: 600;
+  flex-shrink: 0;
+  letter-spacing: 0.18em;
+}
+.ss-ticker-track {
+  display: flex;
+  gap: 0;
+  animation: ss-ticker-scroll 60s linear infinite;
+  flex-shrink: 0;
+}
+.ss-ticker:hover .ss-ticker-track { animation-play-state: paused; }
+@keyframes ss-ticker-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.ss-ticker-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 14px;
+  color: rgba(255,255,255,0.85);
+}
+.ss-ticker-when {
+  color: #E8920A;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+}
+.ss-ticker-name {
+  color: #FAF7F1;
+  text-transform: none;
+  letter-spacing: 0;
+  font-family: 'Mulish', system-ui, sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+}
+.ss-ticker-dot {
+  color: #E8920A;
+  opacity: 0.6;
+  letter-spacing: 0;
+  font-size: 14px;
+}
+
+/* ── Main grid: statement | star1 | star2 ── */
+.ss-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr) minmax(0, 1fr);
+  gap: 0;
+  align-items: stretch;
+  border-bottom: 1px solid #D9CEB8;
+}
+.ss-statement {
+  padding: 36px 36px 32px;
+  background: #0F1B2D;
+  color: #FAF7F1;
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  min-width: 0;
-}
-
-/* HeroFour — replaces the old 3-slide CMS-driven carousel.
-   Scenes are hardcoded in components/HeroFour.tsx so the homepage hero is
-   no longer at the mercy of CMS drift. The visual language reuses the
-   existing site's Barlow Condensed + Mulish + amber-button system. */
-.hero-four {
   position: relative;
-  width: 100%;
-  height: 520px;
-  overflow: hidden;
-  background: #0F1B2D;
 }
-.hero-four-slide {
+.ss-statement::after {
+  content: '';
   position: absolute;
-  inset: 0;
-  background-size: cover;
-  background-position: right center;
-  background-repeat: no-repeat;
-  opacity: 0;
-  transition: opacity 1.6s ease-in-out;
+  right: 0; top: 24px; bottom: 24px;
+  width: 2px;
+  background: #E8920A;
+  opacity: 0.8;
 }
-.hero-four-slide.active { opacity: 1; }
-.hero-four-content {
-  position: absolute;
-  inset: 0;
-  padding: 0 60px;
-  display: flex;
-  align-items: center;
-  z-index: 2;
-}
-.hero-four-stack {
-  position: relative;
-  width: 100%;
-  max-width: 540px;
-  height: 232px;
-}
-.hero-four-scene {
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-  transform: translateY(8px);
-  transition: opacity 800ms ease, transform 800ms ease;
-  pointer-events: none;
-}
-.hero-four-scene.active { opacity: 1; transform: translateY(0); pointer-events: auto; }
-.hero-four-badge {
-  display: inline-block;
-  background: rgba(232,146,10,0.95);
-  color: #fff;
-  font-family: 'Mulish', system-ui, sans-serif;
+.ss-eyebrow {
+  font-family: 'IBM Plex Mono', monospace;
   font-size: 11px;
-  font-weight: 700;
-  padding: 4px 12px;
-  margin-bottom: 16px;
+  font-weight: 500;
+  color: #E8920A;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  margin-bottom: 18px;
 }
-.hero-four-headline {
+.ss-headline {
   font-family: 'Barlow Condensed', sans-serif;
-  font-size: 56px;
   font-weight: 700;
-  line-height: 1.0;
-  letter-spacing: 0.005em;
-  color: #fff;
-  margin: 0 0 12px;
+  font-size: clamp(38px, 4.4vw, 64px);
+  line-height: 0.92;
+  letter-spacing: 0;
+  color: #FAF7F1;
+  margin: 0 0 18px;
   text-wrap: balance;
 }
-.hero-four-accent { color: #E8920A; }
-.hero-four-sub {
+.ss-amber { color: #E8920A; }
+.ss-sub {
   font-family: 'Mulish', system-ui, sans-serif;
-  font-size: 15px;
+  font-size: 14.5px;
   font-weight: 500;
-  line-height: 1.5;
-  color: rgba(255,255,255,0.9);
+  line-height: 1.55;
+  color: rgba(250,247,241,0.78);
   margin: 0 0 24px;
-  max-width: 44ch;
+  max-width: 36ch;
 }
-.hero-four-cta {
+.ss-cta {
   display: inline-block;
-  padding: 12px 28px;
+  padding: 12px 24px;
   background-color: #E8920A;
-  color: #fff;
-  border: none;
-  border-radius: 8px;
+  color: #0F1B2D;
   font-family: 'Mulish', system-ui, sans-serif;
-  font-weight: 600;
-  font-size: 14px;
-  cursor: pointer;
-  transition: background-color 0.2s ease, transform 0.2s ease;
+  font-weight: 700;
+  font-size: 13px;
   text-decoration: none;
+  letter-spacing: 0.01em;
+  align-self: flex-start;
+  border-radius: 4px;
+  transition: background-color 180ms ease, transform 180ms ease;
 }
-.hero-four-cta:hover {
-  background-color: #CF7F00;
-  transform: translateY(-2px);
-}
-.hero-four-meta {
-  position: absolute;
-  left: 60px;
-  bottom: 22px;
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  z-index: 3;
-}
-.hero-four-counter {
+.ss-cta:hover { background-color: #fff; transform: translateY(-2px); }
+
+.ss-trust {
+  list-style: none;
+  padding: 24px 0 0;
+  margin: auto 0 0;
+  display: grid;
+  gap: 6px;
   font-family: 'IBM Plex Mono', monospace;
   font-size: 11px;
-  color: rgba(255,255,255,0.55);
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.04em;
+  color: rgba(250,247,241,0.65);
+  border-top: 1px solid rgba(232,146,10,0.18);
+  margin-top: 24px;
 }
-.hero-four-counter strong { color: #E8920A; font-weight: 600; }
-.hero-four-dots {
-  display: flex;
-  gap: 8px;
-}
-.hero-four-dot {
-  width: 28px;
-  height: 3px;
-  background: rgba(255,255,255,0.25);
-  border: 0;
-  cursor: pointer;
-  transition: background 200ms ease;
-  padding: 0;
-}
-.hero-four-dot.active { background: #E8920A; }
-.hero-four-caption {
-  position: absolute;
-  right: 32px;
-  bottom: 24px;
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 11px;
-  color: rgba(255,255,255,0.55);
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  z-index: 3;
-  text-align: right;
+.ss-trust li { line-height: 1.5; }
+.ss-trust strong {
+  color: #E8920A;
+  font-weight: 600;
 }
 
-/* ── Stock Board (replaces old hp-promo-row) ── */
-.stock-board {
-  background: #fff;
-  border: 1px solid #E2E8F0;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 1px 3px rgba(15,23,42,0.04), 0 10px 28px -16px rgba(15,23,42,0.12);
-  font-feature-settings: "tnum", "lnum";
-}
-.stock-board-empty { display: none; }
-.stock-board-head {
-  padding: 18px 24px;
+/* ── Star deal cards (waffle + ice cream) ── */
+.ss-star {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 16px;
-  flex-wrap: wrap;
-  background: linear-gradient(to bottom, #FAFBFC, #fff);
-  border-bottom: 1.5px solid #E2E8F0;
-}
-.stock-board-head-l {
-  display: flex;
-  align-items: baseline;
-  gap: 14px;
-  flex-wrap: wrap;
-}
-.stock-board-status {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 11px;
-  color: #64748B;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-}
-.stock-board-lamp {
-  display: inline-block;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: #16A34A;
-  box-shadow: 0 0 0 3px rgba(22,163,74,0.18);
-  animation: stockboard-pulse 2s ease-in-out infinite;
-}
-@keyframes stockboard-pulse {
-  0%, 100% { box-shadow: 0 0 0 3px rgba(22,163,74,0.18); }
-  50% { box-shadow: 0 0 0 6px rgba(22,163,74,0.08); }
-}
-.stock-board-title {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 22px;
-  font-weight: 700;
-  letter-spacing: 0.005em;
-  margin: 0;
-  color: #0F1B2D;
-}
-.stock-board-meta {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 11px;
-  color: #94A3B8;
-  letter-spacing: 0.06em;
-}
-.stock-board-cols {
-  display: grid;
-  grid-template-columns: 110px 1fr 110px 110px 40px;
-  gap: 16px;
-  padding: 10px 24px;
-  background: #F8FAFC;
-  border-bottom: 1px solid #E2E8F0;
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 10px;
-  font-weight: 600;
-  color: #94A3B8;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-}
-.stock-board-rows {
-  display: grid;
-}
-.stock-board-row {
-  display: grid;
-  grid-template-columns: 110px 1fr 110px 110px 40px;
-  gap: 16px;
-  padding: 14px 24px;
-  align-items: center;
+  flex-direction: column;
+  background: #FAF7F1;
   text-decoration: none;
   color: #0F1B2D;
-  border-bottom: 1px solid #E2E8F0;
-  transition: background 160ms;
-  cursor: pointer;
+  border-left: 1px solid #D9CEB8;
+  position: relative;
+  overflow: hidden;
+  transition: background 180ms ease;
 }
-.stock-board-row:hover { background: #FEF3E2; }
-.stock-board-row:last-child { border-bottom: 0; }
-.stock-board-cat {
+.ss-star:hover { background: #fff; }
+.ss-star-media {
+  position: relative;
+  aspect-ratio: 1.05 / 1;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-bottom: 1px solid #ECE5D2;
+}
+.ss-star-media img {
+  width: 84%;
+  height: 84%;
+  object-fit: contain;
+  transition: transform 280ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.ss-star:hover .ss-star-media img { transform: scale(1.04); }
+.ss-star-body {
+  padding: 20px 24px 22px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.ss-star-kicker {
   font-family: 'IBM Plex Mono', monospace;
   font-size: 10.5px;
-  font-weight: 600;
   color: #E8920A;
-  letter-spacing: 0.12em;
+  font-weight: 600;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
+  margin-bottom: 8px;
 }
-.stock-board-name {
-  font-family: 'Mulish', system-ui, sans-serif;
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 1.3;
+.ss-star-name {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.0;
+  letter-spacing: 0;
+  margin: 0 0 8px;
   color: #0F1B2D;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
-.stock-board-price {
+.ss-star-caption {
+  font-family: 'Mulish', system-ui, sans-serif;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #475569;
+  margin: 0 0 16px;
+}
+.ss-star-foot {
+  margin-top: auto;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding-top: 14px;
+  border-top: 1.5px solid #0F1B2D;
+}
+.ss-star-price {
   font-family: 'Mulish', system-ui, sans-serif;
   font-weight: 800;
-  font-size: 15px;
+  font-size: 26px;
+  letter-spacing: -0.02em;
   font-variant-numeric: tabular-nums;
-  letter-spacing: -0.01em;
-  text-align: right;
+  line-height: 1;
 }
-.stock-board-stock {
+.ss-star-cta {
   font-family: 'IBM Plex Mono', monospace;
-  font-size: 12px;
-  color: #15803D;
-  text-align: right;
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 6px;
-}
-.stock-board-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: #16A34A;
-  display: inline-block;
-}
-.stock-board-go {
-  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  font-weight: 600;
   color: #E8920A;
-  font-size: 14px;
-  text-align: right;
-  transition: transform 180ms;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  transition: transform 180ms ease;
 }
-.stock-board-row:hover .stock-board-go { transform: translateX(4px); }
-.stock-board-foot {
-  padding: 16px 24px;
+.ss-star:hover .ss-star-cta { transform: translateX(4px); }
+
+/* ── Strip of supporting machines ── */
+.ss-strip-wrap { padding: 22px 36px 26px; }
+.ss-strip-head {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  background: #F8FAFC;
-  border-top: 1px solid #E2E8F0;
+  align-items: baseline;
+  margin-bottom: 14px;
+  border-bottom: 1px solid #D9CEB8;
+  padding-bottom: 10px;
+}
+.ss-strip-eyebrow {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0.005em;
+  color: #0F1B2D;
+}
+.ss-strip-meta {
   font-family: 'IBM Plex Mono', monospace;
-  font-size: 12px;
+  font-size: 11px;
   color: #64748B;
   letter-spacing: 0.06em;
 }
-.stock-board-foot-link {
-  color: #E8920A;
+.ss-strip {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 12px;
+}
+.ss-strip-item {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border: 1px solid #ECE5D2;
   text-decoration: none;
+  color: #0F1B2D;
+  padding: 12px;
+  position: relative;
+  transition: border-color 180ms ease, transform 180ms ease, box-shadow 180ms ease;
+}
+.ss-strip-item:hover {
+  border-color: #E8920A;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 22px -12px rgba(15,23,42,0.18);
+}
+.ss-strip-thumb {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: #FAF7F1;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.ss-strip-thumb img {
+  width: 84%;
+  height: 84%;
+  object-fit: contain;
+}
+.ss-strip-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-bottom: 10px;
+}
+.ss-strip-name {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 17px;
   font-weight: 600;
+  letter-spacing: 0.005em;
+  line-height: 1.05;
+}
+.ss-strip-cap {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10.5px;
+  color: #64748B;
+  letter-spacing: 0.04em;
+  line-height: 1.4;
+}
+.ss-strip-price {
+  font-family: 'Mulish', system-ui, sans-serif;
+  font-weight: 800;
+  font-size: 16px;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+  margin-top: auto;
+  align-self: flex-start;
 }
 
 /* ═══════ DEALS ROW ═══════ */
@@ -1224,15 +1247,15 @@ const homepageStyles = `
 /* ═══════ TABLET (768-1024) ═══════ */
 @media (max-width: 1024px) {
   .hp-hero-container { padding: 16px 20px; }
-  .hero-four { height: 460px; }
-  .hero-four-content { padding: 0 30px; }
-  .hero-four-headline { font-size: 40px; }
-  .hero-four-stack { height: 220px; }
-  .hero-four-meta { left: 30px; bottom: 18px; }
-  .hero-four-caption { right: 24px; bottom: 18px; }
+  .ss-grid { grid-template-columns: 1fr; }
+  .ss-statement { padding: 24px 24px 24px; }
+  .ss-statement::after { display: none; }
+  .ss-headline { font-size: 36px; }
+  .ss-strip { grid-template-columns: repeat(3, 1fr); }
+  .ss-strip-wrap { padding: 18px 22px 22px; }
+  .ss-star-body { padding: 16px 20px 18px; }
+  .ss-star-name { font-size: 26px; }
   .hp-deals-row { grid-template-columns: repeat(2, 1fr); }
-  .stock-board-cols,
-  .stock-board-row { grid-template-columns: 100px 1fr 90px 90px 32px; gap: 12px; padding-left: 18px; padding-right: 18px; }
   .hp-category-explorer { padding: 20px 20px 40px; gap: 16px; }
   .hp-explorer-header { padding: 36px 20px 0; }
   .hp-category-section { grid-template-columns: 240px 180px 1fr; }
@@ -1243,29 +1266,25 @@ const homepageStyles = `
 
 /* ═══════ MOBILE (<768) ═══════ */
 @media (max-width: 767px) {
-  /* Hero: stack, hide sidebar */
   .hp-hero-container { padding: 12px 16px; }
   .hp-carousel-container { width: 100%; }
-  .hero-four { height: 380px; }
-  .hero-four-content { padding: 0 20px; }
-  .hero-four-headline { font-size: 30px; }
-  .hero-four-sub { font-size: 13px; }
-  .hero-four-cta { padding: 10px 20px; font-size: 13px; }
-  .hero-four-meta { left: 20px; bottom: 14px; }
-  .hero-four-caption { right: 20px; bottom: 14px; font-size: 10px; }
-  .hero-four-stack { height: 210px; }
 
-  /* Stock Board: compact for narrow screens — drop the stock column,
-     truncate name, keep cat + name + price + arrow only. */
-  .stock-board-head { padding: 14px 16px; }
-  .stock-board-cols { display: none; }
-  .stock-board-row { grid-template-columns: 1fr auto 24px; gap: 10px; padding: 12px 16px; }
-  .stock-board-cat { grid-column: 1 / -1; font-size: 9.5px; margin-bottom: 0; }
-  .stock-board-name { grid-column: 1; font-size: 13px; }
-  .stock-board-price { grid-column: 2; font-size: 14px; }
-  .stock-board-stock { display: none; }
-  .stock-board-go { grid-column: 3; }
-  .stock-board-foot { padding: 12px 16px; flex-direction: column; align-items: flex-start; gap: 8px; font-size: 11px; }
+  /* Season Special — stack everything single-column */
+  .ss-grid { grid-template-columns: 1fr; }
+  .ss-statement { padding: 22px 18px 22px; }
+  .ss-statement::after { display: none; }
+  .ss-headline { font-size: 32px; }
+  .ss-sub { font-size: 13px; }
+  .ss-trust { font-size: 10.5px; padding-top: 18px; }
+  .ss-star { border-left: 0; border-top: 1px solid #D9CEB8; }
+  .ss-star-name { font-size: 22px; }
+  .ss-star-body { padding: 14px 16px 16px; }
+  .ss-star-price { font-size: 22px; }
+  .ss-strip-wrap { padding: 16px 16px 20px; }
+  .ss-strip { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .ss-strip-name { font-size: 15px; }
+  .ss-ticker-name { font-size: 11px; }
+  .ss-ticker { font-size: 10px; padding: 7px 14px; gap: 10px; }
 
   /* Deals */
   .hp-deals-row { grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 10px; }
