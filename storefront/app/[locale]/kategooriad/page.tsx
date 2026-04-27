@@ -1,155 +1,154 @@
+import "server-only"
 import Link from "next/link"
-import { getVisibleL1, getNode, type CategoryNode } from "@/lib/category-tree"
+import { getVisibleL1, getNode, nodeName, type CategoryNode } from "@/lib/category-tree"
 import CategoryThumb from "@/components/CategoryThumb"
-import { ChevronRight } from "lucide-react"
+import countsDoc from "@/lib/category-counts.generated.json"
 
 export const revalidate = 3600
 
 export const metadata = {
   title: "All Categories — XLMARKET",
-  description: "Browse all product categories at XLMarket.",
+  description: "Browse all product categories at XLMarket — Level 1, Level 2, Level 3 and beyond.",
 }
 
-interface TreeNode extends CategoryNode {
-  children?: TreeNode[]
-}
+const COUNTS: Record<string, number> = (countsDoc as { counts: Record<string, number> }).counts || {}
+const countOf = (h: string): number => COUNTS[h] ?? 0
 
-function nodeName(n: TreeNode, locale: string): string {
-  if (locale === "et" && n.name_et) return n.name_et
-  return n.name_en || n.handle
-}
-
-/** Recursively materialise a CategoryNode into a tree with `children` arrays. */
-function buildTree(n: CategoryNode): TreeNode {
-  const kids = (n.child_handles || [])
-    .map((h) => getNode(h))
-    .filter((c): c is CategoryNode => c !== null)
-  return {
-    ...n,
-    children: kids.length > 0 ? kids.map(buildTree) : undefined,
+/** Walk the visible-L1 subtree, collect every node with `level === target`. */
+function collectByLevel(target: number, l1Nodes: CategoryNode[]): CategoryNode[] {
+  const out: CategoryNode[] = []
+  const queue: CategoryNode[] = [...l1Nodes]
+  while (queue.length > 0) {
+    const cur = queue.shift()!
+    if (cur.level === target) out.push(cur)
+    if (cur.level < target) {
+      for (const childHandle of cur.child_handles || []) {
+        const child = getNode(childHandle)
+        if (child) queue.push(child)
+      }
+    }
   }
+  out.sort((a, b) => countOf(b.handle) - countOf(a.handle))
+  return out
 }
 
-function CategoryBranch({
-  node,
-  locale,
-  depth,
-  l1Handle,
-}: {
-  node: TreeNode
+/** Find the L1 ancestor of any node — for CategoryThumb icon fallback. */
+function findL1Handle(node: CategoryNode): string {
+  let cur: CategoryNode | null = node
+  while (cur && cur.level > 1 && cur.parent_handle) {
+    const parent = getNode(cur.parent_handle)
+    if (!parent) break
+    cur = parent
+  }
+  return cur?.handle ?? node.handle
+}
+
+interface CategoryCardProps {
+  node: CategoryNode
   locale: string
-  depth: number
-  l1Handle: string
-}) {
-  const hasKids = Array.isArray(node.children) && node.children.length > 0
-  const indent = depth * 24
-  const href = `/${locale}/kategooriad/${node.handle}`
-  if (!hasKids) {
-    return (
-      <Link
-        href={href}
-        prefetch={false}
-        className="flex items-center gap-3 py-2 px-3 rounded-md hover:bg-[#FFF8F3] hover:text-[#B45309] transition-colors text-[15px] text-[#1F2937] group"
-        style={{ paddingLeft: 12 + indent }}
-      >
-        <CategoryThumb
-          handle={node.handle}
-          alt=""
-          size={28}
-          image_path={node.image_path}
-          l1_handle={l1Handle}
-        />
-        <span className="flex-1 truncate">{nodeName(node, locale)}</span>
-      </Link>
-    )
-  }
-  // Render expand-toggle and "go to category" as separate sibling rows so
-  // a Server Component never needs onClick. Toggle = <details>/<summary>;
-  // category link = a normal <Link> aligned to the right.
+}
+
+function CategoryCard({ node, locale }: CategoryCardProps) {
+  const count = countOf(node.handle)
+  const name = nodeName(node, locale)
+  const l1Handle = findL1Handle(node)
   return (
-    <details className="group/branch">
-      <summary
-        className="flex items-center gap-3 py-2 px-3 rounded-md hover:bg-[#F8FAFC] cursor-pointer list-none text-[15px] text-[#1F2937]"
-        style={{ paddingLeft: 12 + indent }}
-      >
-        <ChevronRight className="w-4 h-4 text-[#94A3B8] transition-transform group-open/branch:rotate-90 flex-shrink-0" />
+    <Link
+      href={`/${locale}/kategooriad/${node.handle}`}
+      prefetch={false}
+      className="group flex flex-col items-center justify-start text-center p-3 rounded-xl bg-white border border-[#E2E8F0] hover:border-[#E8920A] hover:shadow-sm transition-all"
+    >
+      <div className="w-full aspect-square rounded-lg overflow-hidden mb-2.5 bg-[#F8FAFC] flex items-center justify-center">
         <CategoryThumb
           handle={node.handle}
-          alt=""
-          size={28}
+          alt={name}
+          size={140}
           image_path={node.image_path}
           l1_handle={l1Handle}
         />
-        <span className="flex-1 truncate font-medium">{nodeName(node, locale)}</span>
-        {node.children && (
-          <span className="text-[12px] text-[#94A3B8] tabular-nums">{node.children.length}</span>
-        )}
-        <Link
-          href={href}
-          prefetch={false}
-          className="ml-2 px-2 py-0.5 text-[12px] font-semibold text-[#B45309] hover:text-[#92400E] uppercase tracking-wide"
+      </div>
+      <span className="text-[13px] font-semibold text-[#1E293B] line-clamp-2 leading-snug min-h-[34px] group-hover:text-[#B45309]">
+        {name}
+      </span>
+      {count > 0 ? (
+        <span className="mt-1 text-[11px] text-[#94A3B8] tabular-nums">
+          {count} {locale === "et" ? "toodet" : "products"}
+        </span>
+      ) : null}
+    </Link>
+  )
+}
+
+interface LevelSectionProps {
+  level: number
+  nodes: CategoryNode[]
+  locale: string
+}
+
+function LevelSection({ level, nodes, locale }: LevelSectionProps) {
+  if (nodes.length === 0) return null
+  const heading = locale === "et"
+    ? `Tase ${level} — ${nodes.length} kategooriat`
+    : `Level ${level} — ${nodes.length} categories`
+  return (
+    <section className="mb-12 md:mb-16" aria-labelledby={`level-${level}-heading`}>
+      <header className="mb-5 md:mb-6 pb-3 border-b border-[#E2E8F0]">
+        <h2
+          id={`level-${level}-heading`}
+          className="text-[13px] font-bold text-[#64748B] uppercase tracking-[0.12em]"
         >
-          {locale === "et" ? "Vaata" : "View"}
-        </Link>
-      </summary>
-      <div className="mt-0.5">
-        {node.children!.map((child) => (
-          <CategoryBranch
-            key={child.handle}
-            node={child as TreeNode}
-            locale={locale}
-            depth={depth + 1}
-            l1Handle={l1Handle}
-          />
+          {heading}
+        </h2>
+      </header>
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 md:gap-4">
+        {nodes.map((n) => (
+          <CategoryCard key={n.handle} node={n} locale={locale} />
         ))}
       </div>
-    </details>
+    </section>
   )
 }
 
 export default async function CategoriesIndexPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
-  const l1: TreeNode[] = getVisibleL1().map(buildTree)
+  const l1Nodes = getVisibleL1()
+
+  // Collect every level present in the tree (cap at 5 — L6/L7 are 53 nodes total
+  // and rarely browsed; surface them via deeper category pages, not this index).
+  const MAX_LEVEL = 5
+  const levels: Array<{ level: number; nodes: CategoryNode[] }> = []
+  for (let level = 1; level <= MAX_LEVEL; level++) {
+    const nodes = collectByLevel(level, l1Nodes)
+    if (nodes.length > 0) levels.push({ level, nodes })
+  }
+
+  const totalNodes = levels.reduce((sum, l) => sum + l.nodes.length, 0)
 
   const heading = locale === "et" ? "Kõik kategooriad" : "All categories"
   const intro = locale === "et"
-    ? `Professionaalsed seadmed ja tööriistad ${l1.length} kategoorias. Klõpsa, et näha alamkategooriaid.`
-    : `Professional tools and equipment across ${l1.length} categories. Click to expand subcategories.`
+    ? `Kõik ${totalNodes} kategooriat — sirvi tasemete kaupa, klõpsa avamiseks.`
+    : `All ${totalNodes} categories — browse level by level.`
 
   return (
-    <main className="mx-auto max-w-[1280px] px-4 md:px-6 py-8 md:py-12">
+    <main className="mx-auto max-w-[1440px] px-4 md:px-8 py-8 md:py-12">
       <nav className="text-[14px] text-[#64748B] mb-4" aria-label="Breadcrumb">
         <Link href={`/${locale}`} className="hover:text-[#E8920A]">{locale === "et" ? "Avaleht" : "Home"}</Link>
         <span className="mx-2.5 text-[#CBD5E1]">&rsaquo;</span>
         <span className="text-[#1E293B] font-semibold">{heading}</span>
       </nav>
 
-      <header className="mb-8 md:mb-10">
-        <h1 className="text-[32px] md:text-[44px] font-bold text-[#1E293B] tracking-tight mb-3 leading-[1.1]">
+      <header className="mb-10 md:mb-14 max-w-[760px]">
+        <h1 className="text-[36px] md:text-[52px] font-bold text-[#1E293B] tracking-tight mb-3 leading-[1.05]">
           {heading}
         </h1>
-        <p className="text-[15px] md:text-[16px] text-[#64748B] max-w-[680px]">
+        <p className="text-[15px] md:text-[17px] text-[#64748B]">
           {intro}
         </p>
       </header>
 
-      {/* Two-column layout on desktop, stacked on mobile.
-          Each L1 is an expandable tree → unlimited depth via <details>. */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-10 gap-y-2">
-        {l1.map((node) => (
-          <section
-            key={node.handle}
-            className="border-b border-[#F1F5F9] last:border-b-0 py-3"
-          >
-            <CategoryBranch
-              node={node}
-              locale={locale}
-              depth={0}
-              l1Handle={node.handle}
-            />
-          </section>
-        ))}
-      </div>
+      {levels.map(({ level, nodes }) => (
+        <LevelSection key={level} level={level} nodes={nodes} locale={locale} />
+      ))}
     </main>
   )
 }

@@ -400,9 +400,13 @@ export default function MegaMenu({ locale = "en", menuData }: MegaMenuProps) {
               aria-orientation="vertical"
               aria-label={loc === "et" ? "Kategooriad" : "Categories"}
             >
-              <h3 className="px-4 pt-1 pb-1.5 text-[12px] font-bold text-[#64748B] uppercase tracking-wider">
-                {loc === "et" ? "Sirvi kategooriaid" : "Shop by Category"}
-              </h3>
+              <Link
+                href={`/${loc}/kategooriad`}
+                onClick={() => setIsOpen(false)}
+                className="block px-4 py-1.5 text-[12px] font-bold text-[#D97706] uppercase tracking-wider border-b border-[#ECEEF1] mb-0.5 hover:underline"
+              >
+                {loc === "et" ? "Vaata kõiki kategooriaid" : "Shop All Categories"}
+              </Link>
               {l1Nodes.map((l1) => {
                 const Icon = V3_ICONS[l1.handle]
                 const isActive = activeL1?.handle === l1.handle
