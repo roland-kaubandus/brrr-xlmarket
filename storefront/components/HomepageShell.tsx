@@ -103,16 +103,20 @@ function shortNavLabel(slug: string, name: string, navShortNames: Record<string,
 export default function HomepageShell({ locale, l1Nodes, slides, promos, navShortNames, seasonSpecial }: HomepageShellProps) {
   const loc = locale as Locale
 
-  /* ── 18 L1 from SSoT taxonomy tree (pre-computed server-side, PERF-C1) ── */
+  /* ── 18 L1 from SSoT taxonomy tree (pre-computed server-side, PERF-C1).
+        Locale-aware: prefer name_et when locale=et and YAML translation exists. ── */
   const CATEGORIES: HomepageCategory[] = useMemo(
     () =>
-      l1Nodes.map((n, i) => ({
-        id: i + 1,
-        slug: n.handle,
-        name: n.name_en,
-        prodNum: i + 1,
-      })),
-    [l1Nodes],
+      l1Nodes.map((n, i) => {
+        const et = (n as { name_et?: string }).name_et
+        return {
+          id: i + 1,
+          slug: n.handle,
+          name: loc === "et" && et ? et : n.name_en,
+          prodNum: i + 1,
+        }
+      }),
+    [l1Nodes, loc],
   )
 
   // Hero carousel state has moved into <HeroFour /> (its own component).
@@ -132,11 +136,13 @@ export default function HomepageShell({ locale, l1Nodes, slides, promos, navShor
     oldPrice: number
     discountPct: number
   }
+  // Festival-season themed deals — outdoor catering/event matches the
+  // Season Special hero so the homepage tells one consistent story.
   const DEAL_SEEDS: Array<{ query: string; category: string; discountPct: number }> = [
-    { query: "espresso machine",  category: "HoReCa & Food Service",   discountPct: 23 },
-    { query: "mig welder",        category: "Metalworks & Welding",    discountPct: 18 },
-    { query: "car lift hydraulic", category: "Automotive & Workshop",  discountPct: 15 },
-    { query: "barber chair",      category: "Salon, Spa & Wellness",   discountPct: 28 },
+    { query: "popcorn machine cart",        category: "Festival Catering",   discountPct: 23 },
+    { query: "hot dog grill commercial",    category: "Outdoor Food Service", discountPct: 18 },
+    { query: "deep fryer commercial",       category: "Festival Catering",   discountPct: 22 },
+    { query: "outdoor patio heater propane", category: "Outdoor Catering",   discountPct: 15 },
   ]
   const [deals, setDeals] = useState<Deal[]>([])
 
@@ -324,8 +330,12 @@ export default function HomepageShell({ locale, l1Nodes, slides, promos, navShor
                 aria-labelledby={`cat-${cat.id}-title`}
                 style={{ ["--hp-cat-font" as string]: CATEGORY_FONT_FAMILY }}
               >
-                {/* 1 — Atmosphere banner with huge title overlaid */}
-                <div className="hp-cat-banner">
+                {/* 1 — Atmosphere banner with huge title overlaid (full image clickable → L1 page) */}
+                <SafeLink
+                  href={categoryPath(loc, cat.slug)}
+                  className="hp-cat-banner"
+                  aria-label={loc === "et" ? `Sirvi: ${cat.name}` : `Shop ${cat.name}`}
+                >
                   <img
                     src={atmosphere}
                     alt=""
@@ -346,24 +356,40 @@ export default function HomepageShell({ locale, l1Nodes, slides, promos, navShor
                   <div className="hp-cat-banner-title-wrap">
                     <h2 id={`cat-${cat.id}-title`} className="hp-cat-banner-title">{cat.name}</h2>
                     {l1Data && l1Data.l2_count > 0 ? (
-                      <p className="hp-cat-banner-sub">{l1Data.l2_count} subcategories</p>
+                      <p className="hp-cat-banner-sub">
+                        {loc === "et" ? `${l1Data.l2_count} alamkategooriat` : `${l1Data.l2_count} subcategories`}
+                      </p>
                     ) : null}
                   </div>
-                </div>
+                </SafeLink>
 
-                {/* 2 — Large subcategory name list (max 10, clips remainder) */}
+                {/* 2 — Sublist header "All HoReCa" + L2 list (locale-aware names) */}
                 {l2List.length > 0 ? (
                   <nav className="hp-cat-sublist" aria-label={`${cat.name} subcategories`}>
-                    {l2List.map((l2) => (
-                      <SafeLink
-                        key={l2.handle}
-                        href={categoryPath(loc, l2.handle)}
-                        className="hp-cat-sublist-item"
-                      >
-                        <span className="hp-cat-sublist-dot" aria-hidden="true" />
-                        <span className="hp-cat-sublist-name">{l2.name_en}</span>
-                      </SafeLink>
-                    ))}
+                    <SafeLink
+                      href={categoryPath(loc, cat.slug)}
+                      className="hp-cat-sublist-all"
+                    >
+                      <span className="hp-cat-sublist-dot hp-cat-sublist-dot--all" aria-hidden="true" />
+                      <span className="hp-cat-sublist-name">
+                        {loc === "et" ? `Kogu ${cat.name}` : `All ${cat.name}`}
+                      </span>
+                    </SafeLink>
+                    {l2List.map((l2) => {
+                      const l2Name = (loc === "et" && (l2 as { name_et?: string }).name_et)
+                        ? (l2 as { name_et?: string }).name_et!
+                        : l2.name_en
+                      return (
+                        <SafeLink
+                          key={l2.handle}
+                          href={categoryPath(loc, l2.handle)}
+                          className="hp-cat-sublist-item"
+                        >
+                          <span className="hp-cat-sublist-dot" aria-hidden="true" />
+                          <span className="hp-cat-sublist-name">{l2Name}</span>
+                        </SafeLink>
+                      )
+                    })}
                   </nav>
                 ) : null}
 
@@ -372,6 +398,8 @@ export default function HomepageShell({ locale, l1Nodes, slides, promos, navShor
                   {featured.map((child) => {
                     // image_path guaranteed non-null by getHomepageL1Nodes BFS filter.
                     const imgSrc = decodeURIComponent(child.image_path)
+                    const childEt = (child as { name_et?: string }).name_et
+                    const childName = loc === "et" && childEt ? childEt : child.name_en
                     return (
                       <SafeLink
                         key={child.handle}
@@ -381,11 +409,11 @@ export default function HomepageShell({ locale, l1Nodes, slides, promos, navShor
                         <div className="hp-cat-card-image">
                           <img
                             src={imgSrc}
-                            alt={child.name_en}
+                            alt={childName}
                             loading="lazy"
                           />
                         </div>
-                        <div className="hp-cat-card-name">{child.name_en}</div>
+                        <div className="hp-cat-card-name">{childName}</div>
                       </SafeLink>
                     )
                   })}
@@ -1032,6 +1060,10 @@ const homepageStyles = `
   align-self: stretch;
   background: linear-gradient(135deg, #1B2438 0%, #2A3650 100%);
   min-height: 100%;
+  display: block;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
 }
 
 .hp-cat-banner img {
@@ -1147,6 +1179,41 @@ const homepageStyles = `
 .hp-cat-sublist-item:hover .hp-cat-sublist-dot {
   opacity: 1;
   transform: scale(1.3);
+}
+
+/* "All <L1>" header — eristub teistest sublist-item'idest tugeva amber värvi
+   ja paksema fondiga, et selgelt kutsuda klikkima L1 lehele. */
+.hp-cat-sublist-all {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 0 8px;
+  margin-bottom: 6px;
+  text-decoration: none;
+  color: #B45309;
+  border-bottom: 1px solid #E5E7EB;
+  transition: color 0.15s ease;
+  flex-shrink: 0;
+}
+
+.hp-cat-sublist-all:hover {
+  color: #92400E;
+}
+
+.hp-cat-sublist-all .hp-cat-sublist-name {
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+.hp-cat-sublist-dot--all {
+  background: #B45309;
+  opacity: 1;
+  width: 7px;
+  height: 7px;
+}
+
+.hp-cat-sublist-all:hover .hp-cat-sublist-dot--all {
+  transform: scale(1.25);
 }
 
 /* 3 — 6 featured square cards (3×2). Banner height follows these two rows. */
