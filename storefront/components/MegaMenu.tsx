@@ -324,8 +324,8 @@ export default function MegaMenu({ locale = "en", menuData }: MegaMenuProps) {
     return () => document.removeEventListener("mousedown", handler)
   }, [isOpen])
 
-  const panelWidth = 300
-  const totalWidth = 320 + (activeL1 ? 340 : 0) + drillPanels.length * panelWidth
+  const panelWidth = 320
+  const totalWidth = 340 + (activeL1 ? 360 : 0) + drillPanels.length * panelWidth
 
   function nodeName(node: MenuNode, nlocale?: string): string {
     const et = (node as { name_et?: string }).name_et
@@ -335,6 +335,32 @@ export default function MegaMenu({ locale = "en", menuData }: MegaMenuProps) {
 
   return (
     <div ref={menuRef} className="relative" onMouseLeave={handleMenuLeave}>
+      {/*
+        Click → /kategooriad (full all-categories page).
+        Hover → opens mega menu (keyboard ↓-key still toggles via aria-haspopup).
+        On small screens (<md) the icon-button still toggles since hover is
+        unreliable on touch.
+      */}
+      <Link
+        href={`/${loc}/kategooriad`}
+        onMouseEnter={handleTriggerEnter}
+        onMouseLeave={handleTriggerLeave}
+        onClick={(e) => {
+          // Allow desktop hover-menu users to click the trigger and navigate.
+          // Mobile (no hover): tapping the link goes to the index page —
+          // the hamburger menu is opened via the X icon button instead.
+          if (isOpen) setIsOpen(false)
+        }}
+        aria-haspopup="true"
+        aria-expanded={isOpen}
+        className={`hidden md:flex items-center gap-2 px-3 py-1.5 font-bold text-[14px] rounded-md hover:bg-white/10 transition-colors ${
+          isCategoriesActive || isOpen ? "text-[#D97706]" : "text-white"
+        }`}
+      >
+        {isOpen ? <X size={18} strokeWidth={2} /> : <Menu size={18} strokeWidth={2} />}
+        <span className="hidden sm:inline">{loc === "et" ? "Kategooriad" : "Categories"}</span>
+      </Link>
+      {/* Mobile-only toggle button (hover unreliable on touch) */}
       <button
         onClick={() => {
           setIsOpen(!isOpen)
@@ -342,16 +368,14 @@ export default function MegaMenu({ locale = "en", menuData }: MegaMenuProps) {
           setHoverPath([])
           setMobileStack([])
         }}
-        onMouseEnter={handleTriggerEnter}
-        onMouseLeave={handleTriggerLeave}
         aria-expanded={isOpen}
         aria-haspopup="true"
-        className={`flex items-center gap-2 px-3 py-1.5 font-bold text-[14px] rounded-md hover:bg-white/10 transition-colors ${
+        className={`md:hidden flex items-center gap-2 px-3 py-1.5 font-bold text-[14px] rounded-md hover:bg-white/10 transition-colors ${
           isCategoriesActive || isOpen ? "text-[#D97706]" : "text-white"
         }`}
       >
         {isOpen ? <X size={18} strokeWidth={2} /> : <Menu size={18} strokeWidth={2} />}
-        <span className="hidden sm:inline">Categories</span>
+        <span className="hidden sm:inline">{loc === "et" ? "Kategooriad" : "Categories"}</span>
       </button>
 
       {isOpen && <div className="fixed inset-0 bg-black/30 z-40" onClick={() => setIsOpen(false)} />}
@@ -371,13 +395,13 @@ export default function MegaMenu({ locale = "en", menuData }: MegaMenuProps) {
           <div className="flex overflow-x-auto">
             {/* L1 column */}
             <div
-              className="w-[320px] py-3 max-h-[calc(100vh-140px)] overflow-y-auto flex-shrink-0 border-r border-[#ECEEF1]"
+              className="w-[340px] py-2 max-h-[calc(100vh-140px)] overflow-y-auto flex-shrink-0 border-r border-[#ECEEF1]"
               role="menu"
               aria-orientation="vertical"
-              aria-label="Categories"
+              aria-label={loc === "et" ? "Kategooriad" : "Categories"}
             >
-              <h3 className="px-5 pb-2 text-[11px] font-bold text-[#64748B] uppercase tracking-wider">
-                Shop by Category
+              <h3 className="px-4 pt-1 pb-1.5 text-[12px] font-bold text-[#64748B] uppercase tracking-wider">
+                {loc === "et" ? "Sirvi kategooriaid" : "Shop by Category"}
               </h3>
               {l1Nodes.map((l1) => {
                 const Icon = V3_ICONS[l1.handle]
@@ -393,13 +417,13 @@ export default function MegaMenu({ locale = "en", menuData }: MegaMenuProps) {
                     data-mega-l1="true"
                     data-l1-handle={l1.handle}
                     aria-haspopup={(menuData.l2ByL1[l1.handle]?.length ?? 0) > 0 ? "true" : undefined}
-                    className={`flex items-center gap-3 px-5 py-[9px] text-[13px] transition-colors ${
+                    className={`flex items-center gap-3 px-4 py-[7px] text-[15px] transition-colors ${
                       isActive ? "bg-[#FFF8F3] text-[#D97706]" : "text-[#1E293B] hover:bg-[#F8FAFC]"
                     }`}
                   >
                     {Icon && (
                       <Icon
-                        size={18}
+                        size={22}
                         strokeWidth={1.4}
                         style={{ color: isActive ? "#D97706" : "#94A3B8" }}
                         className="flex-shrink-0"
@@ -407,7 +431,7 @@ export default function MegaMenu({ locale = "en", menuData }: MegaMenuProps) {
                     )}
                     <span className="font-medium flex-1 truncate">{nodeName(l1, loc)}</span>
                     <ChevronRight
-                      size={13}
+                      size={15}
                       style={{ color: isActive ? "#D97706" : "#CBD5E1" }}
                       className="flex-shrink-0"
                     />
@@ -419,7 +443,7 @@ export default function MegaMenu({ locale = "en", menuData }: MegaMenuProps) {
             {/* L2 column */}
             {activeL1 && (
               <div
-                className="w-[340px] py-3 max-h-[calc(100vh-140px)] overflow-y-auto flex-shrink-0 border-r border-[#ECEEF1]"
+                className="w-[360px] py-2 max-h-[calc(100vh-140px)] overflow-y-auto flex-shrink-0 border-r border-[#ECEEF1]"
                 role="menu"
                 aria-orientation="vertical"
                 aria-label={nodeName(activeL1, loc)}
@@ -427,9 +451,9 @@ export default function MegaMenu({ locale = "en", menuData }: MegaMenuProps) {
                 <Link
                   href={categoryPath(loc, activeL1.handle)}
                   onClick={() => setIsOpen(false)}
-                  className="block px-5 py-2 text-[11px] font-bold text-[#D97706] uppercase tracking-wider border-b border-[#ECEEF1] mb-1 hover:underline"
+                  className="block px-4 py-1.5 text-[12px] font-bold text-[#D97706] uppercase tracking-wider border-b border-[#ECEEF1] mb-0.5 hover:underline"
                 >
-                  Shop All {nodeName(activeL1, loc)}
+                  {loc === "et" ? `Vaata kõiki — ${nodeName(activeL1, loc)}` : `Shop All ${nodeName(activeL1, loc)}`}
                 </Link>
                 {activeL2.map((l2) => {
                   const isActive = hoverPath[0]?.handle === l2.handle
@@ -444,7 +468,7 @@ export default function MegaMenu({ locale = "en", menuData }: MegaMenuProps) {
                       role="menuitem"
                       data-mega-l2="true"
                       aria-haspopup={hasKids ? "true" : undefined}
-                      className={`flex items-center gap-3 px-5 py-[7px] transition-colors ${
+                      className={`flex items-center gap-3 px-4 py-[6px] transition-colors ${
                         isActive ? "bg-[#FFF8F3] text-[#D97706]" : "text-[#1E293B] hover:bg-[#F8FAFC]"
                       }`}
                     >
@@ -452,15 +476,15 @@ export default function MegaMenu({ locale = "en", menuData }: MegaMenuProps) {
                         handle={l2.handle}
                         image_path={l2.image_path}
                         l1_handle={l2.l1_handle}
-                        size={32}
+                        size={44}
                         alt=""
                       />
-                      <span className="flex-1 leading-tight text-[13px] font-medium">
+                      <span className="flex-1 leading-tight text-[15px] font-medium">
                         {nodeName(l2, loc)}
                       </span>
                       {hasKids && (
                         <ChevronRight
-                          size={12}
+                          size={14}
                           style={{ color: isActive ? "#D97706" : "#CBD5E1" }}
                           className="flex-shrink-0"
                         />
@@ -478,7 +502,7 @@ export default function MegaMenu({ locale = "en", menuData }: MegaMenuProps) {
               return (
                 <div
                   key={panelIdx}
-                  className={`py-3 max-h-[calc(100vh-140px)] overflow-y-auto flex-shrink-0 ${!isLastPanel ? "border-r border-[#ECEEF1]" : ""}`}
+                  className={`py-2 max-h-[calc(100vh-140px)] overflow-y-auto flex-shrink-0 ${!isLastPanel ? "border-r border-[#ECEEF1]" : ""}`}
                   style={{ width: panelWidth }}
                   role="menu"
                   aria-orientation="vertical"
@@ -488,9 +512,9 @@ export default function MegaMenu({ locale = "en", menuData }: MegaMenuProps) {
                     <Link
                       href={categoryPath(loc, parent.handle)}
                       onClick={() => setIsOpen(false)}
-                      className="block px-5 py-2 text-[11px] font-bold text-[#D97706] uppercase tracking-wider border-b border-[#ECEEF1] mb-1 hover:underline"
+                      className="block px-4 py-1.5 text-[12px] font-bold text-[#D97706] uppercase tracking-wider border-b border-[#ECEEF1] mb-0.5 hover:underline"
                     >
-                      Shop All {nodeName(parent, loc)}
+                      {loc === "et" ? `Vaata kõiki — ${nodeName(parent, loc)}` : `Shop All ${nodeName(parent, loc)}`}
                     </Link>
                   )}
                   {nodes.map((node) => {
@@ -505,7 +529,7 @@ export default function MegaMenu({ locale = "en", menuData }: MegaMenuProps) {
                         onClick={() => setIsOpen(false)}
                         role="menuitem"
                         aria-haspopup={hasKids ? "true" : undefined}
-                        className={`flex items-center gap-3 px-5 py-[7px] text-[13px] transition-colors ${
+                        className={`flex items-center gap-3 px-4 py-[6px] text-[15px] transition-colors ${
                           isActive ? "bg-[#FFF8F3] text-[#D97706]" : "text-[#1E293B] hover:bg-[#F8FAFC]"
                         }`}
                       >
@@ -513,13 +537,13 @@ export default function MegaMenu({ locale = "en", menuData }: MegaMenuProps) {
                           handle={node.handle}
                           image_path={node.image_path}
                           l1_handle={node.l1_handle}
-                          size={28}
+                          size={36}
                           alt=""
                         />
                         <span className="font-medium flex-1 truncate">{nodeName(node, loc)}</span>
                         {hasKids && (
                           <ChevronRight
-                            size={12}
+                            size={14}
                             style={{ color: isActive ? "#D97706" : "#CBD5E1" }}
                             className="flex-shrink-0"
                           />
@@ -544,10 +568,10 @@ export default function MegaMenu({ locale = "en", menuData }: MegaMenuProps) {
                 className="flex items-center gap-2 text-white font-medium text-[15px] min-h-[44px]"
               >
                 <ChevronLeft size={20} />
-                Back
+                {loc === "et" ? "Tagasi" : "Back"}
               </button>
             ) : (
-              <span className="text-white font-bold text-[16px]">Categories</span>
+              <span className="text-white font-bold text-[16px]">{loc === "et" ? "Kategooriad" : "Categories"}</span>
             )}
             <button
               onClick={() => {

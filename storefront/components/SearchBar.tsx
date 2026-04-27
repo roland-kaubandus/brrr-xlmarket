@@ -41,7 +41,7 @@ type SearchResult = {
   processingTimeMs: number
 }
 
-const PLACEHOLDER_TEXTS = [
+const PLACEHOLDER_TEXTS_EN = [
   "welding helmet",
   "lathe",
   "kitchen sink",
@@ -56,7 +56,23 @@ const PLACEHOLDER_TEXTS = [
   "garden hose",
 ]
 
+const PLACEHOLDER_TEXTS_ET = [
+  "keevitusmask",
+  "treipink",
+  "köögivalamu",
+  "spordivarustus",
+  "paadikate",
+  "survepesur",
+  "töölaud",
+  "jäämasin",
+  "basseinipump",
+  "trepikäsipuu",
+  "puurpink",
+  "aiavoolik",
+]
+
 export default function SearchBar({ locale = "en", variant = "dark" }: { locale?: string; variant?: "light" | "dark" }) {
+  const PLACEHOLDER_TEXTS = locale === "et" ? PLACEHOLDER_TEXTS_ET : PLACEHOLDER_TEXTS_EN
   const [query, setQuery] = useState("")
   const [results, setResults] = useState<SearchResult | null>(null)
   const [isOpen, setIsOpen] = useState(false)
@@ -195,8 +211,8 @@ export default function SearchBar({ locale = "en", variant = "dark" }: { locale?
                 animating ? "opacity-0" : "opacity-100"
               }`}
             >
-              <span className="hidden sm:inline">Search for &quot;{currentPlaceholder}&quot;</span>
-              <span className="sm:hidden">Search...</span>
+              <span className="hidden sm:inline">{locale === "et" ? "Otsi" : "Search for"} &quot;{currentPlaceholder}&quot;</span>
+              <span className="sm:hidden">{locale === "et" ? "Otsi..." : "Search..."}</span>
             </span>
           )}
         </div>
@@ -205,7 +221,7 @@ export default function SearchBar({ locale = "en", variant = "dark" }: { locale?
             type="button"
             onClick={() => { setQuery(""); setResults(null); setIsOpen(false); inputRef.current?.focus() }}
             className={clearBtnCls}
-            aria-label="Clear"
+            aria-label={locale === "et" ? "Tühjenda" : "Clear"}
           >
             <X size={18} strokeWidth={1.5} />
           </button>
@@ -214,7 +230,7 @@ export default function SearchBar({ locale = "en", variant = "dark" }: { locale?
           type="button"
           onClick={goToResults}
           className={searchBtnCls}
-          aria-label="Search"
+          aria-label={locale === "et" ? "Otsi" : "Search"}
         >
           <Search size={20} strokeWidth={2} className={searchIconCls} />
         </button>
