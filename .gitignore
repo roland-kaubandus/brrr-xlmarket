@@ -38,6 +38,10 @@ Thumbs.db
 tsconfig.tsbuildinfo
 *.tsbuildinfo
 
+# Medusa auto-generated types — regenerated on every `medusa build`.
+# Tracking these files causes spurious diffs on every build.
+backend/.medusa/types/
+
 # Docker volumes
 pgdata/
 
