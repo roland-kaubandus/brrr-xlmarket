@@ -17,6 +17,8 @@ const countOf = (handle: string): number => COUNTS[handle] ?? 0
 export interface MenuNode {
   handle: string
   name_en: string
+  /** Optional Estonian translation — present after taxonomy.yaml is translated + gen-tree runs. */
+  name_et?: string
   image_path: string | null
   level: number
   /** Present only on L2 nodes — indicates whether this node has children (for drill chevron + lazy fetch). */
@@ -28,16 +30,17 @@ export interface MenuNode {
 export interface HomepageL1Node {
   handle: string
   name_en: string
+  name_et?: string
   image_path: string | null
   level: 1
   l2_count: number
   /** Direct L2 children (name + handle + image for the sublist). */
-  l2_list: Array<{ handle: string; name_en: string; image_path: string | null }>
+  l2_list: Array<{ handle: string; name_en: string; name_et?: string; image_path: string | null }>
   /**
    * Up to 6 featured leaf nodes for the bento card grid.
    * BFS walk through subtree, filtered to nodes with usable image_path.
    */
-  featured: Array<{ handle: string; name_en: string; image_path: string }>
+  featured: Array<{ handle: string; name_en: string; name_et?: string; image_path: string }>
 }
 
 /** Slim node for MegaMenu L2/L3 panels. */
@@ -45,6 +48,7 @@ function toMenuNode(node: CategoryNode, l1Handle: string): MenuNode {
   return {
     handle: node.handle,
     name_en: node.name_en,
+    name_et: node.name_et,
     image_path: node.image_path,
     level: node.level,
     has_children: node.child_handles.length > 0,
@@ -65,6 +69,7 @@ export function getMenuSlice(): {
   const l1: MenuNode[] = l1Nodes.map((n) => ({
     handle: n.handle,
     name_en: n.name_en,
+    name_et: n.name_et,
     image_path: n.image_path,
     level: 1,
     has_children: n.child_handles.length > 0,
@@ -118,11 +123,11 @@ export function getHomepageL1Nodes(): HomepageL1Node[] {
     // Sublist: min 6, max 10. L2 in count order; backfill with L3 (also by count).
     const MIN_SUBLIST = 6
     const MAX_SUBLIST = 10
-    const sublist: Array<{ handle: string; name_en: string; image_path: string | null }> = []
+    const sublist: Array<{ handle: string; name_en: string; name_et?: string; image_path: string | null }> = []
     const sublistSeen = new Set<string>()
     for (const l2 of l2List) {
       if (sublist.length >= MAX_SUBLIST) break
-      sublist.push({ handle: l2.handle, name_en: l2.name_en, image_path: l2.image_path })
+      sublist.push({ handle: l2.handle, name_en: l2.name_en, name_et: l2.name_et, image_path: l2.image_path })
       sublistSeen.add(l2.handle)
     }
     if (sublist.length < MIN_SUBLIST) {
@@ -138,18 +143,18 @@ export function getHomepageL1Nodes(): HomepageL1Node[] {
       l3Pool.sort((a, b) => countOf(b.handle) - countOf(a.handle))
       for (const l3 of l3Pool) {
         if (sublist.length >= MIN_SUBLIST) break
-        sublist.push({ handle: l3.handle, name_en: l3.name_en, image_path: l3.image_path })
+        sublist.push({ handle: l3.handle, name_en: l3.name_en, name_et: l3.name_et, image_path: l3.image_path })
         sublistSeen.add(l3.handle)
       }
     }
 
     // Featured cards mirror the sublist top-6. If an entry lacks a usable
     // image, descend its subtree by count until we find a node with an image.
-    const resolveUsable = (handle: string): { handle: string; name_en: string; image_path: string } | null => {
+    const resolveUsable = (handle: string): { handle: string; name_en: string; name_et?: string; image_path: string } | null => {
       let cur = getNode(handle)
       while (cur) {
         if (isUsable(cur)) {
-          return { handle: cur.handle, name_en: cur.name_en, image_path: cur.image_path! }
+          return { handle: cur.handle, name_en: cur.name_en, name_et: cur.name_et, image_path: cur.image_path! }
         }
         if (!cur.child_handles.length) return null
         const heaviest = [...cur.child_handles]
@@ -161,18 +166,19 @@ export function getHomepageL1Nodes(): HomepageL1Node[] {
       }
       return null
     }
-    const featured: Array<{ handle: string; name_en: string; image_path: string }> = []
+    const featured: Array<{ handle: string; name_en: string; name_et?: string; image_path: string }> = []
     for (const entry of sublist.slice(0, 6)) {
       const resolved = resolveUsable(entry.handle)
       if (resolved) {
         // Keep the sublist label (parent category name), but use the donor's image.
-        featured.push({ handle: entry.handle, name_en: entry.name_en, image_path: resolved.image_path })
+        featured.push({ handle: entry.handle, name_en: entry.name_en, name_et: entry.name_et, image_path: resolved.image_path })
       }
     }
 
     return {
       handle: l1Node.handle,
       name_en: l1Node.name_en,
+      name_et: l1Node.name_et,
       image_path: l1Node.image_path,
       level: 1 as const,
       l2_count: l2ListRaw.length,
