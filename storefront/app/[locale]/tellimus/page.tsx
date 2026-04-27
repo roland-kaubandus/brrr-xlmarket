@@ -327,7 +327,7 @@ export default function CheckoutPage() {
       <div className="max-w-[1360px] mx-auto px-4 sm:px-6 py-8 sm:py-12">
         {/* Breadcrumb */}
         <nav className="text-[12px] text-[#64748B] mb-7 flex items-center" aria-label="Breadcrumb">
-          <Link href={`/${locale}`} className="text-[#64748B] hover:text-[#D97706] transition-colors">Home</Link>
+          <Link href={`/${locale}`} className="text-[#64748B] hover:text-[#D97706] transition-colors">{locale === "et" ? "Avaleht" : "Home"}</Link>
           <span className="mx-2 text-[#CBD5E1]">/</span>
           <Link href={`/${locale}/ostukorv`} className="text-[#64748B] hover:text-[#D97706] transition-colors">Cart</Link>
           <span className="mx-2 text-[#CBD5E1]">/</span>

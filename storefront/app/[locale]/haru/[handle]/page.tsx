@@ -147,7 +147,7 @@ export default async function BranchLandingPage({ params, searchParams }: Props)
 
         <div className="relative z-10 max-w-[1400px] mx-auto px-4 h-full flex flex-col justify-end pb-12 md:pb-16">
           <nav className="text-[12px] text-white/50 mb-6" aria-label="Breadcrumb">
-            <Link href={`/${locale}`} className="hover:text-white transition-colors">Home</Link>
+            <Link href={`/${locale}`} className="hover:text-white transition-colors">{locale === "et" ? "Avaleht" : "Home"}</Link>
             <span className="mx-2">/</span>
             <span className="text-white/80">{branch.name}</span>
           </nav>

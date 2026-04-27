@@ -159,7 +159,7 @@ export default async function SearchPage({ searchParams, params }: Props) {
     <div className="bg-[#F8FAFC]">
       <div className="max-w-[1360px] mx-auto px-4 sm:px-6 py-7 sm:py-10">
         <nav className="text-xs text-[#64748B] mb-4 min-h-[24px] flex items-center">
-          <Link href={`/${locale}`} className="text-[#64748B] hover:text-[#D97706] transition-colors duration-200">Home</Link>
+          <Link href={`/${locale}`} className="text-[#64748B] hover:text-[#D97706] transition-colors duration-200">{locale === "et" ? "Avaleht" : "Home"}</Link>
           <span className="mx-1.5 text-[#CBD5E1]">&gt;</span>
           <span className="text-[#1E293B] transition-opacity duration-200">
             {TAG_TITLES[activeTag] || SORT_TITLES[currentSort] || "Search Results"}

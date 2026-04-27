@@ -135,7 +135,7 @@ function priceFmt(n: number) {
 
 export default async function AlustajalePage({ params }: { params: Promise<{ locale: string }> }) {
   const locale = (await params).locale
-  const cms = (await getStarterKitsCms()) ?? (starterKitsFallback as unknown as { kits: CmsKit[] })
+  const cms = (await getStarterKitsCms(locale)) ?? (starterKitsFallback as unknown as { kits: CmsKit[] })
   const KITS = cms.kits
 
   return (

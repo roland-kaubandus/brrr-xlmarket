@@ -28,7 +28,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
   // instead of the full 1.5MB category-tree.generated.json (PERF-C1).
   const l1Nodes = getHomepageL1Nodes()
   // CMS content: live Medusa → fallback JSON (ships in bundle as safety net)
-  const cms: HomepageContent = (await getHomepageCms()) ?? (homepageFallback as unknown as HomepageContent)
+  const cms: HomepageContent = (await getHomepageCms(locale)) ?? (homepageFallback as unknown as HomepageContent)
   // Season Special: 2 star deals + 6 strip items, server-fetched.
   const seasonSpecial = await getSeasonSpecial(locale)
   return (

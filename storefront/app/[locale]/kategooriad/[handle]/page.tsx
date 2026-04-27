@@ -282,7 +282,7 @@ export default async function CategoryPage({ params, searchParams }: Props) {
             href={`/${locale}`}
             className="text-[#64748B] hover:text-[#E8920A] transition-colors duration-200"
           >
-            Home
+            {locale === "et" ? "Avaleht" : "Home"}
           </Link>
           {trail.map((t, idx) => {
             const isLast = idx === trail.length - 1
