@@ -39,6 +39,13 @@ module.exports = {
       NEXT_PUBLIC_REGION_ID: process.env.NEXT_PUBLIC_REGION_ID || "",
       NEXT_PUBLIC_POSTHOG_KEY: process.env.NEXT_PUBLIC_POSTHOG_KEY || "",
       NEXT_PUBLIC_POSTHOG_HOST: process.env.NEXT_PUBLIC_POSTHOG_HOST || "",
+      // Admin edit mode (Risto + Tarmo) — see lib/admin-session.ts
+      ADMIN_SESSION_SECRET: process.env.ADMIN_SESSION_SECRET || "",
+      RISTO_ADMIN_EMAIL: process.env.RISTO_ADMIN_EMAIL || "",
+      RISTO_ADMIN_PASS: process.env.RISTO_ADMIN_PASS || "",
+      TARMO_ADMIN_EMAIL: process.env.TARMO_ADMIN_EMAIL || "",
+      TARMO_ADMIN_PASS: process.env.TARMO_ADMIN_PASS || "",
+      MEDUSA_ADMIN_API_KEY: process.env.MEDUSA_ADMIN_API_KEY || "",
     },
     max_memory_restart: "512M",
     restart_delay: 1000,

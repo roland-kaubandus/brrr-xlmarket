@@ -110,8 +110,15 @@ export function getMenuChildren(handle: string): MenuNode[] {
 /**
  * Returns the 18 L1 nodes enriched with L2 sublist and featured bento cards.
  * Used by HomepageShell.
+ *
+ * `featuredOverrides` (optional, admin-edited) maps L1 handle → ordered list of
+ * up to 6 descendant handles to use as featured cards instead of the default
+ * BFS picks. Unknown handles are silently dropped; missing entries fall back to
+ * the default behaviour.
  */
-export function getHomepageL1Nodes(): HomepageL1Node[] {
+export function getHomepageL1Nodes(
+  featuredOverrides?: Record<string, string[]>
+): HomepageL1Node[] {
   return getVisibleL1().map((l1Node) => {
     const l2ListRaw = getChildren(l1Node.handle)
     // Sort L2 by product count (biggest first). Meili snapshot source.
@@ -167,11 +174,24 @@ export function getHomepageL1Nodes(): HomepageL1Node[] {
       return null
     }
     const featured: Array<{ handle: string; name_en: string; name_et?: string; image_path: string }> = []
-    for (const entry of sublist.slice(0, 6)) {
-      const resolved = resolveUsable(entry.handle)
-      if (resolved) {
-        // Keep the sublist label (parent category name), but use the donor's image.
-        featured.push({ handle: entry.handle, name_en: entry.name_en, name_et: entry.name_et, image_path: resolved.image_path })
+    const overrideList = featuredOverrides?.[l1Node.handle]
+    if (Array.isArray(overrideList) && overrideList.length > 0) {
+      for (const handle of overrideList.slice(0, 6)) {
+        const node = getNode(handle)
+        if (!node) continue
+        const resolved = resolveUsable(handle)
+        if (resolved) {
+          featured.push({ handle: node.handle, name_en: node.name_en, name_et: node.name_et, image_path: resolved.image_path })
+        }
+      }
+    }
+    if (featured.length === 0) {
+      // Default: top-6 sublist with image fallback.
+      for (const entry of sublist.slice(0, 6)) {
+        const resolved = resolveUsable(entry.handle)
+        if (resolved) {
+          featured.push({ handle: entry.handle, name_en: entry.name_en, name_et: entry.name_et, image_path: resolved.image_path })
+        }
       }
     }
 

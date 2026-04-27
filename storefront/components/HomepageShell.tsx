@@ -8,6 +8,7 @@ import type { HomepageL1Node } from "@/lib/menu-data"
 import type { CmsSlide, CmsPromo } from "@/lib/cms"
 import SeasonSpecial from "@/components/SeasonSpecial"
 import type { SeasonSpecialData } from "@/lib/season-special-data"
+import FeaturedPicker from "@/components/admin/FeaturedPicker"
 
 // Adapter: render the homepage category explorer from the SSoT 18-L1 taxonomy
 // tree instead of the legacy hard-coded 22-entry TAXONOMY_V3 list.
@@ -394,6 +395,13 @@ export default function HomepageShell({ locale, l1Nodes, slides, promos, navShor
                 ) : null}
 
                 {/* 3 — 6 featured cards (L2 / L3 fallback, BFS pre-computed server-side) */}
+                <div className="absolute top-2 right-2 z-10">
+                  <FeaturedPicker
+                    l1Handle={cat.slug}
+                    locale={loc}
+                    currentFeatured={featured.map((f) => f.handle)}
+                  />
+                </div>
                 <div className="hp-cat-cards">
                   {featured.map((child) => {
                     // image_path guaranteed non-null by getHomepageL1Nodes BFS filter.
@@ -1051,6 +1059,7 @@ const homepageStyles = `
   border: 1px solid #E2E5EB;
   border-radius: 12px;
   box-shadow: 0 1px 3px rgba(27,36,56,0.04);
+  position: relative;
 }
 
 /* 1 — Atmosphere banner (left). Stretches to row height set by card grid. */

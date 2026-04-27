@@ -11,6 +11,8 @@ import ProductWishlistButton from "@/components/ProductWishlistButton"
 import TrackProductView from "@/components/TrackProductView"
 import RecentlyViewed from "@/components/RecentlyViewed"
 import RelatedProducts from "./RelatedProducts"
+import EditableText from "@/components/admin/EditableText"
+import CategoryPicker from "@/components/admin/CategoryPicker"
 import { categoryPath } from "@/lib/i18n"
 
 export type ProductContentProps = {
@@ -92,15 +94,31 @@ export default function ProductContent(props: ProductContentProps) {
             </span>
           )
         })}
+        <CategoryPicker
+          productId={product.id}
+          productHandle={product.handle}
+          locale={locale}
+          currentHandle={categoryHandle}
+          onSaved={() => window.location.reload()}
+        />
       </nav>
 
       <div className="grid grid-cols-1 lg:grid-cols-[3fr_2fr] gap-6 lg:gap-10 lg:items-start">
         <ProductGallery images={images} title={localizedTitle} locale={locale} />
 
         <div>
-          <h1 className="text-lg md:text-xl font-bold text-[#1E293B] leading-tight tracking-tight mb-3">
-            {localizedTitle}
-          </h1>
+          <EditableText
+            productId={product.id}
+            productHandle={product.handle}
+            field="title"
+            locale={locale}
+            initialValue={localizedTitle}
+            onSaved={() => window.location.reload()}
+          >
+            <h1 className="text-lg md:text-xl font-bold text-[#1E293B] leading-tight tracking-tight mb-3">
+              {localizedTitle}
+            </h1>
+          </EditableText>
 
           <ProductPurchasePanel
             locale={locale}
@@ -189,8 +207,19 @@ export default function ProductContent(props: ProductContentProps) {
           if (!descHtml) return null
           return (
             <div className="border-b border-[#E2E8F0] pb-6 mb-0">
-              <h2 className="text-[17px] font-bold text-[#1E293B] mb-4">
+              <h2 className="text-[17px] font-bold text-[#1E293B] mb-4 flex items-center gap-2">
                 Product Description
+                <EditableText
+                  productId={product.id}
+                  productHandle={product.handle}
+                  field="description"
+                  locale={locale}
+                  initialValue={descHtml}
+                  multiline
+                  onSaved={() => window.location.reload()}
+                >
+                  <span aria-hidden="true" />
+                </EditableText>
               </h2>
               <div className="max-w-[800px]">
                 <CollapsibleDescription

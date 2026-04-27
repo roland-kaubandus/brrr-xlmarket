@@ -5,6 +5,7 @@ import { useMemo, useState } from "react"
 import AddToCartButton from "./AddToCartButton"
 import StickyBuyBar from "@/components/StickyBuyBar"
 import { formatPrice, type ProductOption, type ProductVariant } from "@/lib/medusa"
+import { useAdmin } from "@/components/admin/AdminProvider"
 import posthog from "posthog-js"
 
 type Props = {
@@ -72,6 +73,10 @@ export default function ProductPurchasePanel({ locale, title, variants, options 
 
   const price = selectedVariant?.calculated_price
   const inStock = selectedVariant ? hasInventory(selectedVariant) : false
+  const { isAdmin } = useAdmin()
+  const adminQty = isAdmin && selectedVariant && typeof selectedVariant.inventory_quantity === "number"
+    ? selectedVariant.inventory_quantity
+    : null
 
   return (
     <>
@@ -97,7 +102,7 @@ export default function ProductPurchasePanel({ locale, title, variants, options 
         </>
       )}
 
-      <div className="mb-5">
+      <div className="mb-5 flex items-center gap-3 flex-wrap">
         {selectedVariant && inStock ? (
           <span className="inline-flex items-center gap-1.5 text-sm font-medium text-[#059669]">
             <span className="w-2 h-2 rounded-full bg-[#059669]" />
@@ -107,6 +112,14 @@ export default function ProductPurchasePanel({ locale, title, variants, options 
           <span className="inline-flex items-center gap-1.5 text-sm font-medium text-red-600">
             <span className="w-2 h-2 rounded-full bg-red-500" />
             Currently Unavailable
+          </span>
+        )}
+        {adminQty !== null && (
+          <span
+            className="inline-flex items-center gap-1 text-[12px] font-semibold text-[#1E293B] bg-[#FCD34D] border border-[#B45309] rounded px-2 py-0.5"
+            title="Admin only — laoseis Medusa API-st"
+          >
+            ADMIN: {adminQty} tk
           </span>
         )}
       </div>

@@ -2,6 +2,7 @@ import "server-only"
 import Link from "next/link"
 import { getVisibleL1, getNode, nodeName, type CategoryNode } from "@/lib/category-tree"
 import CategoryThumb from "@/components/CategoryThumb"
+import CategoryImageEditor from "@/components/admin/CategoryImageEditor"
 import countsDoc from "@/lib/category-counts.generated.json"
 
 export const revalidate = 3600
@@ -53,29 +54,34 @@ function CategoryCard({ node, locale }: CategoryCardProps) {
   const name = nodeName(node, locale)
   const l1Handle = findL1Handle(node)
   return (
-    <Link
-      href={`/${locale}/kategooriad/${node.handle}`}
-      prefetch={false}
-      className="group flex flex-col items-center justify-start text-center p-3 rounded-xl bg-white border border-[#E2E8F0] hover:border-[#E8920A] hover:shadow-sm transition-all"
-    >
-      <div className="w-full aspect-square rounded-lg overflow-hidden mb-2.5 bg-[#F8FAFC] flex items-center justify-center">
-        <CategoryThumb
-          handle={node.handle}
-          alt={name}
-          size={140}
-          image_path={node.image_path}
-          l1_handle={l1Handle}
-        />
-      </div>
-      <span className="text-[13px] font-semibold text-[#1E293B] line-clamp-2 leading-snug min-h-[34px] group-hover:text-[#B45309]">
-        {name}
-      </span>
-      {count > 0 ? (
-        <span className="mt-1 text-[11px] text-[#94A3B8] tabular-nums">
-          {count} {locale === "et" ? "toodet" : "products"}
+    <div className="relative group">
+      <Link
+        href={`/${locale}/kategooriad/${node.handle}`}
+        prefetch={false}
+        className="flex flex-col items-center justify-start text-center p-3 rounded-xl bg-white border border-[#E2E8F0] hover:border-[#E8920A] hover:shadow-sm transition-all"
+      >
+        <div className="w-full aspect-square rounded-lg overflow-hidden mb-2.5 bg-[#F8FAFC] flex items-center justify-center">
+          <CategoryThumb
+            handle={node.handle}
+            alt={name}
+            size={140}
+            image_path={node.image_path}
+            l1_handle={l1Handle}
+          />
+        </div>
+        <span className="text-[13px] font-semibold text-[#1E293B] line-clamp-2 leading-snug min-h-[34px] group-hover:text-[#B45309]">
+          {name}
         </span>
-      ) : null}
-    </Link>
+        {count > 0 ? (
+          <span className="mt-1 text-[11px] text-[#94A3B8] tabular-nums">
+            {count} {locale === "et" ? "toodet" : "products"}
+          </span>
+        ) : null}
+      </Link>
+      <div className="absolute top-2 right-2">
+        <CategoryImageEditor handle={node.handle} displayName={name} />
+      </div>
+    </div>
   )
 }
 

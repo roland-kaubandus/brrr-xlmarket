@@ -1,0 +1,4 @@
+{
+  "_doc": "Admin-edited homepage L1 module overrides. Maps L1 handle → ordered list of up to 6 featured handles. Empty / missing key = use default BFS featured.",
+  "overrides": {}
+}
