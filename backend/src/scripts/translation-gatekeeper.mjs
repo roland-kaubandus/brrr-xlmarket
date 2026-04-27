@@ -101,6 +101,7 @@ async function sampleRecent(client) {
 
 async function applyRatings(client, ratings) {
   let flagged = 0
+  let requeued = 0
   for (const r of ratings) {
     if (!r.sku || !r.rating) continue
     const quality = r.rating >= 4 ? "good" : (r.rating >= 3 ? "ok" : "bad")
@@ -114,14 +115,32 @@ async function applyRatings(client, ratings) {
           )
         WHERE metadata->>'vevor_sku' = $4
       `, [quality, r.rating, r.issues || "", r.sku])
+
       if (quality === "bad") {
         flagged++
         appendFileSync(BAD_LOG, JSON.stringify({ ts: new Date().toISOString(), ...r }) + "\n")
+
+        // Re-queue: clear translated flag + translation_batch so worker picks up
+        // again. Track attempts so we can route persistent failures to a stronger
+        // model (Sonnet via claude fleet) on the 3rd attempt.
+        const attemptRes = await client.query(`
+          UPDATE product SET
+            metadata = (metadata - 'translated' - 'translation_batch' - 'translation_status')
+              || jsonb_build_object(
+                'translation_attempts',
+                COALESCE((metadata->>'translation_attempts')::int, 1) + 1
+              )
+          WHERE metadata->>'vevor_sku' = $1
+            AND COALESCE((metadata->>'translation_attempts')::int, 1) < 3
+          RETURNING id
+        `, [r.sku])
+        if (attemptRes.rowCount > 0) requeued++
       }
     } catch (err) {
       log(`  DB error SKU ${r.sku}: ${err.message.substring(0, 80)}`)
     }
   }
+  if (requeued > 0) log(`  re-queued ${requeued} bad translations for retry`)
   return flagged
 }
 

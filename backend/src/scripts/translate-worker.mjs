@@ -75,28 +75,68 @@ function shouldStop() {
 
 // Prompt: rules + two few-shot examples (good vs bad) to reduce English leaks
 // and protect numbers. Examples taken from real gatekeeper-flagged mistakes.
-const PROMPT_HEADER = `Tõlgi järgmised VEVOR tooted inglise keelest eesti keelde.
+const PROMPT_HEADER = `Tõlgi järgmised VEVOR tooted inglise keelest eesti keelde EESTI E-KAUBANDUSE STIILIS.
+
+EESMÄRK: pealkirjad ja kirjeldused, mida võib avaldada professionaalse Eesti e-poe lehel. EI TOHI olla masintõlkelik.
+
+KONTEKSTI KASUTAMINE:
+- Iga sisendtoode sisaldab "category" välja (nt "Tools > Safety & Security > Safes > Gun Safes")
+- See näitab, mis tüüpi toode see on — kasuta seda, et leida ÕIGE Eesti vaste tehnilistele terminitele
+- Näide: "Mops" kategoorias "Cleaning > Mops" = "Põrandamopid" (mitte koeratõug)
+- Näide: "Jacks" kategoorias "Auto Tools" = "Tungrauad" (mitte mängukaardid)
+- Kategooriat ennast ei tõlgi (see on ainult kontekst), aga title_et ja description_et peavad olema kategooriaga kooskõlas
 
 KRIITILINE — NUMBRID + ÜHIKUD:
 - SÄILITA KÕIK NUMBRID TÄPSELT: RPM, V, W, kW, HP, Hz, A, mm, cm, m, km, inch, ft, kg, g, L, ml, °C, °F, Nm, bar, PSI
 - "50-2500 RPM" jääb "50-2500 RPM" (mitte 0-2500, mitte 50-2000)
 - "170 cm" jääb "170 cm" (MITTE 170 m — üks täht = meetrid asemel sentimeetrid!)
 - Mudelitähised, seerianumbrid, koodid (0618WXCC, VFD-500, G80) jäävad muutmata
+- "9.5inch / 24cm" → "9.5 tolli (24 cm)" — pane sulgudesse meetersüsteem kui mõlemad on antud
+- "16 Gauge" → "16 gabariit" (ära jäta tõlkimata)
+- "Inch", "Feet", "LBS" pealkirjas: tõlgi "tolli", "jalga", "lbs"
 
-KRIITILINE — TÕLGI KÕIK SÕNAD:
-- Ei ühtegi ingliskeelset sõna ET tõlkes (välja arvatud: VEVOR, mõõtühikud nagu mm/cm/inch/HP/RPM, mudelikoodid)
-- Kui ei leia otsest eesti vastet, kasuta kirjeldavat väljendit
+KRIITILINE — TÕLGI KÕIK SÕNAD (mitte ühtegi inglise sõna ET tekstis):
+- Erandid: VEVOR, mõõtühikud (mm/cm/m/kg/L/ml/RPM/V/W/HP/Hz/Nm/bar), mudelikoodid
+- Kui ei leia otsevastet, kasuta kirjeldavat väljendit
 - "drum dolly" → "vaadikäru"; "stock pot" → "supipott"; "airbag jack" → "padjaga tungraud"
 - "Load Capacity" → "kandevõime"; "Heavy Duty" → "tugev"; "Brand new" → "uus"
+- "Portable" → "kaasaskantav" (mitte jätta inglise keelde)
 
-NÄITED:
+KEELATUD VEAD (need tulid eelmistest tõlgetest, ÄRA korda):
+- "gummipael" / "palliga gummipael" → ÕIGE: "kummipael" / "kummipallidega"
+- "rotimeister" → ÕIGE: "rotihävitaja" või "näriliste hävitaja"
+- "põrandastatív" → ÕIGE: "põrandastatiiv" (Eesti keeles "iiv" mitte "ív")
+- "dispenseer" → ÕIGE: "jaotur" või "dosaator"
+- "tasanduskopa piik" (box blade) → ÕIGE: "tasanduslaba" või "planeerimislaba"
+- "kopp-laadur" (backhoe) → ÕIGE: "tagakopp" või "tagakaeve"
+- "presspinguti" → ÕIGE: "pingutaja" või "trummelpingutaja"
+- "rattakaitsehülss" → ÕIGE: "rattakaitse" või täpsem otstarve
+- "kanavõrkaed" (hardware cloth) → ÕIGE: "metallvõrk" või "tugevdatud võrk"
+- "õllekanduri ühendaja" / "peo koju" → marketing-tekst peab kõlama nagu Eesti müüja kirjutas, mitte Google Translate
+- "vaatetornitelk" / "privaatsus-tuulekang" → telkide nimedes kasuta "vaatetorn" + "telk" eraldi mitte liidetult
+- "mag puur bitid" → ÕIGE: "magnetpuuri otsikud"
+- "hingega kaaneta" → mõte! "hinged cover" = "hingedega kaas"
+
+KEELATUD KOOSLUSED:
+- ÄRA pane "ärikasutuse X" igale poole — Eesti stiilis "äriklassi", "professionaalne", "kommertsi-"
+- ÄRA tee otsetõlget liitsõnadest — "stainless steel utility cart" pole "roostevaba teras kommunaalkäru" vaid "roostevabast terasest abikäru"
+- ÄRA jäta turundus-fraase masintõlkele ("lukusta värskus" → "säilita värskus", "rong kõikjal" → "treening kõikjal")
+
+NÄITED (head):
 Sisend:  {"title":"VEVOR Heavy Duty Drum Dolly 600 LBS"}
 Õige:    {"title_et":"VEVOR tugev vaadikäru 600 lbs (272 kg)"}
-Vale:    "VEVOR Heavy Duty drum dolly 600 lbs" (jättis 2 ingliskeelset terminit)
 
 Sisend:  {"title":"Mini Metal Lathe 50-2500 RPM 7x14 Inch"}
-Õige:    {"title_et":"Mini-metallitreipink 50-2500 RPM 7x14 inch"}
-Vale:    "Mini-metallitreipink 0-2500 RPM 7x14 toll" (RPM moonutatud 50→0; inch → toll lubatud ainult kui kogu tekst ühtlaselt)
+Õige:    {"title_et":"Mini-metallitreipink 50-2500 RPM 7x14 tolli"}
+
+Sisend:  {"title":"Vinyl Cutter Plotter with Floor Stand 28 inch"}
+Õige:    {"title_et":"Vinüüllõikur jalalisega 28 tolli"}  (mitte "põrandastatív")
+
+KONTROLLI ENNE VASTUST:
+1. Kas mõni inglise sõna on jäänud (välja arvatud lubatud erandid)?
+2. Kas kõik numbrid + ühikud on täpselt samad mis sisendis?
+3. Kas eestikeelne tekst loeb loomulikult — kas Eesti müüja kirjutaks nii?
+4. Kas tehnilised terminid on Eesti standardvasted, mitte sõnasõnaline tõlge?
 
 REEGLID:
 - VEVOR brändinimi muutumatu
@@ -159,6 +199,7 @@ async function claimProducts(client, limit, batchId) {
       p.title,
       COALESCE(p.description, '') AS description,
       p.metadata->>'vevor_sku' AS sku,
+      p.metadata->>'vevor_product_type' AS product_type,
       p.metadata->'selling_points'->>0 AS sp1,
       p.metadata->'selling_points'->>1 AS sp2,
       p.metadata->'selling_points'->>2 AS sp3,
@@ -271,6 +312,7 @@ async function main() {
       const results = await Promise.all(batch.map(async ({ tier, rows: cr }, idx) => {
         const input = cr.map((r) => ({
           sku: r.sku || "",
+          category: r.product_type || "",
           title: r.title,
           description: (r.description || "").slice(0, 400),
           sp1: r.sp1 || "", sp2: r.sp2 || "", sp3: r.sp3 || "", sp4: r.sp4 || "", sp5: r.sp5 || "",
