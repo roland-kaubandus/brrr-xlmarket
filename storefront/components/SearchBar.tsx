@@ -2,8 +2,9 @@
 
 import { useState, useRef, useEffect, useCallback } from "react"
 import { useRouter } from "next/navigation"
-import { Search, X } from "lucide-react"
+import { Search, X, Sparkles } from "lucide-react"
 import Image from "next/image"
+import SearchBarChat from "./SearchBarChat"
 
 /**
  * Escape HTML special chars in the raw highlighted title from Meili, then
@@ -76,6 +77,8 @@ export default function SearchBar({ locale = "en", variant = "dark" }: { locale?
   const [query, setQuery] = useState("")
   const [results, setResults] = useState<SearchResult | null>(null)
   const [isOpen, setIsOpen] = useState(false)
+  const [chatOpen, setChatOpen] = useState(false)
+  const [chatInitialQuery, setChatInitialQuery] = useState("")
   const [activeIdx, setActiveIdx] = useState(-1)
   const [loading, setLoading] = useState(false)
   const [placeholderIdx, setPlaceholderIdx] = useState(0)
@@ -98,6 +101,10 @@ export default function SearchBar({ locale = "en", variant = "dark" }: { locale?
     ? "h-[36px] w-[52px] bg-transparent hover:bg-[#E2E8F0] flex items-center justify-center rounded-r-lg transition-colors"
     : "h-[44px] md:h-[40px] w-[52px] bg-[#D97706] hover:bg-[#B45309] flex items-center justify-center rounded-r-full transition-colors"
   const searchIconCls = variant === "light" ? "text-[#94A3B8]" : "text-white"
+  const chatBtnCls = variant === "light"
+    ? "h-[36px] w-[44px] bg-transparent hover:bg-[#FEF3C7] flex items-center justify-center transition-colors border-l border-[#E2E8F0]"
+    : "h-[44px] md:h-[40px] w-[44px] bg-white/5 hover:bg-white/15 flex items-center justify-center transition-colors border-l border-white/15"
+  const chatIconCls = variant === "light" ? "text-[#D97706]" : "text-[#FCD34D]"
 
   // Rotate placeholder text
   useEffect(() => {
@@ -176,11 +183,18 @@ export default function SearchBar({ locale = "en", variant = "dark" }: { locale?
     const handler = (e: MouseEvent) => {
       if (wrapperRef.current && !wrapperRef.current.contains(e.target as Node)) {
         setIsOpen(false)
+        setChatOpen(false)
       }
     }
     document.addEventListener("mousedown", handler)
     return () => document.removeEventListener("mousedown", handler)
   }, [])
+
+  const openChat = () => {
+    setChatInitialQuery(query.trim())
+    setIsOpen(false)
+    setChatOpen(true)
+  }
 
   // Cleanup debounce timer on unmount
   useEffect(() => () => clearTimeout(timerRef.current), [])
@@ -228,6 +242,15 @@ export default function SearchBar({ locale = "en", variant = "dark" }: { locale?
         )}
         <button
           type="button"
+          onClick={openChat}
+          className={chatBtnCls}
+          aria-label={locale === "et" ? "Küsi Claudialt" : "Ask Claudia"}
+          title={locale === "et" ? "Küsi Claudialt" : "Ask Claudia"}
+        >
+          <Sparkles size={18} strokeWidth={1.8} className={chatIconCls} />
+        </button>
+        <button
+          type="button"
           onClick={goToResults}
           className={searchBtnCls}
           aria-label={locale === "et" ? "Otsi" : "Search"}
@@ -235,6 +258,14 @@ export default function SearchBar({ locale = "en", variant = "dark" }: { locale?
           <Search size={20} strokeWidth={2} className={searchIconCls} />
         </button>
       </div>
+
+      {chatOpen && (
+        <SearchBarChat
+          locale={locale}
+          initialQuery={chatInitialQuery}
+          onClose={() => setChatOpen(false)}
+        />
+      )}
 
       {/* Dropdown */}
       {isOpen && results && results.hits.length > 0 && (
