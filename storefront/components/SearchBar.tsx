@@ -72,8 +72,25 @@ const PLACEHOLDER_TEXTS_ET = [
   "aiavoolik",
 ]
 
+const AI_HINT_TEXTS_EN = [
+  "Ask Claudia: 'I'm setting up a small bakery — what tools do I need?'",
+  "Ask Claudia: 'Compare the 750W and 1100W magnetic drill presses'",
+  "Ask Claudia: 'What's the best welder for stainless steel under 500€?'",
+  "Ask Claudia: 'I run a food truck — recommend a fryer + waffle maker combo'",
+  "Ask Claudia: 'Which workshop air compressor for a small auto-repair garage?'",
+]
+
+const AI_HINT_TEXTS_ET = [
+  "Küsi Claudialt: 'Avan väikese pagariäri — milliseid seadmeid mul vaja on?'",
+  "Küsi Claudialt: 'Võrdle 750W ja 1100W magnetpuurpinki'",
+  "Küsi Claudialt: 'Millise keevituse aparaadiga saab roostevaba 500€ piires?'",
+  "Küsi Claudialt: 'Mul on toidukauplus tänaval — soovita fritüür + vahvliküpsetaja'",
+  "Küsi Claudialt: 'Milline kompressor sobib väiksele autoremondi töökojale?'",
+]
+
 export default function SearchBar({ locale = "en", variant = "dark" }: { locale?: string; variant?: "light" | "dark" }) {
   const PLACEHOLDER_TEXTS = locale === "et" ? PLACEHOLDER_TEXTS_ET : PLACEHOLDER_TEXTS_EN
+  const AI_HINT_TEXTS = locale === "et" ? AI_HINT_TEXTS_ET : AI_HINT_TEXTS_EN
   const [query, setQuery] = useState("")
   const [results, setResults] = useState<SearchResult | null>(null)
   const [isOpen, setIsOpen] = useState(false)
@@ -106,18 +123,19 @@ export default function SearchBar({ locale = "en", variant = "dark" }: { locale?
     : "h-[44px] md:h-[40px] w-[44px] bg-white/5 hover:bg-white/15 flex items-center justify-center transition-colors border-l border-white/15"
   const chatIconCls = variant === "light" ? "text-[#D97706]" : "text-[#FCD34D]"
 
-  // Rotate placeholder text
+  // Rotate placeholder text. Every 3rd rotation we show a long AI prompt hint
+  // instead of a single keyword, so the user discovers Claudia naturally.
   useEffect(() => {
     if (query) return
     const interval = setInterval(() => {
       setAnimating(true)
       setTimeout(() => {
-        setPlaceholderIdx(i => (i + 1) % PLACEHOLDER_TEXTS.length)
+        setPlaceholderIdx(i => (i + 1) % (PLACEHOLDER_TEXTS.length + AI_HINT_TEXTS.length))
         setAnimating(false)
       }, 300)
-    }, 3000)
+    }, 3500)
     return () => clearInterval(interval)
-  }, [query])
+  }, [query, PLACEHOLDER_TEXTS.length, AI_HINT_TEXTS.length])
 
   const doSearch = useCallback(async (q: string) => {
     if (!q.trim()) { setResults(null); setIsOpen(false); return }
@@ -202,7 +220,12 @@ export default function SearchBar({ locale = "en", variant = "dark" }: { locale?
   const formatPrice = (price: number) =>
     new Intl.NumberFormat("en-IE", { style: "currency", currency: "EUR" }).format(price)
 
-  const currentPlaceholder = PLACEHOLDER_TEXTS[placeholderIdx]
+  // Interleave: short keyword (3 in a row), then one long AI prompt hint, repeat.
+  // Result rotation: kw, kw, kw, AI, kw, kw, kw, AI, ...
+  const isAiHint = placeholderIdx % 4 === 3
+  const aiHintIdx = Math.floor(placeholderIdx / 4) % AI_HINT_TEXTS.length
+  const kwIdx = (placeholderIdx - Math.floor(placeholderIdx / 4)) % PLACEHOLDER_TEXTS.length
+  const currentPlaceholder = isAiHint ? AI_HINT_TEXTS[aiHintIdx] : PLACEHOLDER_TEXTS[kwIdx]
 
   return (
     <div ref={wrapperRef} className="relative w-full md:max-w-[600px]">
@@ -221,11 +244,15 @@ export default function SearchBar({ locale = "en", variant = "dark" }: { locale?
           />
           {!query && (
             <span
-              className={`absolute left-4 top-1/2 -translate-y-1/2 text-[14px] md:text-[14px] ${placeholderCls} pointer-events-none transition-opacity duration-300 ${
+              className={`absolute left-4 right-2 top-1/2 -translate-y-1/2 text-[14px] md:text-[14px] ${placeholderCls} pointer-events-none transition-opacity duration-300 truncate ${
                 animating ? "opacity-0" : "opacity-100"
               }`}
             >
-              <span className="hidden sm:inline">{locale === "et" ? "Otsi" : "Search for"} &quot;{currentPlaceholder}&quot;</span>
+              {isAiHint ? (
+                <span className="hidden sm:inline italic">{currentPlaceholder}</span>
+              ) : (
+                <span className="hidden sm:inline">{locale === "et" ? "Otsi" : "Search for"} &quot;{currentPlaceholder}&quot;</span>
+              )}
               <span className="sm:hidden">{locale === "et" ? "Otsi..." : "Search..."}</span>
             </span>
           )}
