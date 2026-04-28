@@ -96,6 +96,7 @@ export default function SearchBarChat({ locale, initialQuery, onClose }: Props) 
     if (!userText.trim() || busy) return
     setError(null)
     setInput("")
+    setProducts([]) // clear previous search hits — new turn starts fresh
     const userMsg: ChatMsg = { role: "user", text: userText.trim() }
     setMessages((prev) => [...prev, userMsg, { role: "assistant", text: "" }])
     setBusy(true)
