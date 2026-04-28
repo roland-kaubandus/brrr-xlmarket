@@ -7,6 +7,8 @@ import type { NextConfig } from "next"
 
 const nextConfig: NextConfig = {
   output: "standalone",
+  // Allow Tailscale + public-IP origins for `next dev` HMR (no effect in prod).
+  allowedDevOrigins: ["100.93.186.17", "65.109.86.254", "xlmarket.store"],
   images: {
     unoptimized: true,
     remotePatterns: [
