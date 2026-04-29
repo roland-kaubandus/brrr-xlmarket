@@ -1,12 +1,29 @@
-version: "3.8"
+# XLMarket — Coolify-ready Docker Compose
+#
+# Coolify auto-injects:
+#   - Traefik labels for HTTP routing (set Domains in Coolify UI per service)
+#   - Persistent volumes for named volumes
+#   - Internal network bridging
+#
+# Required environment variables (set in Coolify UI -> Environment Variables):
+#   POSTGRES_PASSWORD       Strong random string for Postgres
+#   JWT_SECRET              Random 32+ chars
+#   COOKIE_SECRET           Random 32+ chars
+#   MEILI_MASTER_KEY        Random 32+ chars (Meili master key)
+#   MEILISEARCH_API_KEY     Same value as MEILI_MASTER_KEY (legacy alias used by Medusa plugin)
+#   NEXT_PUBLIC_MEDUSA_KEY  pk_... (created via Medusa Admin -> Settings -> Publishable API Keys)
+#   NEXT_PUBLIC_REGION_ID   reg_... (Medusa region)
+#   NEXT_PUBLIC_BASE_URL    https://xlmarket.eu (or staging URL)
+#   NEXT_PUBLIC_MEILI_URL   https://meili.xlmarket.eu  (Coolify-exposed Meili domain)
+#   NEXT_PUBLIC_MEILI_KEY   Search-only key (generate after first Meili boot via /keys API)
+#   STORE_CORS              https://xlmarket.eu
+#   ADMIN_CORS              https://xlmarket.eu,https://admin.xlmarket.eu
+#   AUTH_CORS               https://xlmarket.eu
 
 services:
   db:
     image: postgres:16-alpine
-    container_name: xlmarket-db
     restart: unless-stopped
-    ports:
-      - "127.0.0.1:5435:5432"
     environment:
       POSTGRES_USER: xlmarket
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
@@ -14,17 +31,16 @@ services:
     volumes:
       - xlmarket_pgdata:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U xlmarket"]
+      test: ["CMD-SHELL", "pg_isready -U xlmarket -d xlmarket"]
       interval: 10s
       timeout: 5s
-      retries: 5
+      retries: 10
+      start_period: 20s
 
   redis:
     image: redis:7-alpine
-    container_name: xlmarket-redis
     restart: unless-stopped
-    ports:
-      - "127.0.0.1:6380:6379"
+    command: ["redis-server", "--appendonly", "yes", "--save", "60", "1"]
     volumes:
       - xlmarket_redis:/data
     healthcheck:
@@ -33,70 +49,94 @@ services:
       timeout: 5s
       retries: 5
 
+  meili:
+    image: getmeili/meilisearch:v1.41
+    restart: unless-stopped
+    environment:
+      MEILI_MASTER_KEY: ${MEILI_MASTER_KEY}
+      MEILI_ENV: production
+      MEILI_NO_ANALYTICS: "true"
+      MEILI_DB_PATH: /meili_data
+    volumes:
+      - xlmarket_meili:/meili_data
+    expose:
+      - "7700"
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:7700/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
   medusa:
     build:
-      args:
-        NEXT_PUBLIC_MEDUSA_URL: http://medusa:9000
-        NEXT_PUBLIC_MEDUSA_KEY: ${NEXT_PUBLIC_MEDUSA_KEY}
-        NEXT_PUBLIC_REGION_ID: ${NEXT_PUBLIC_REGION_ID}
-        NEXT_PUBLIC_BASE_URL: https://xlmarket.eu
       context: ./backend
       dockerfile: Dockerfile
-    container_name: xlmarket-medusa
     restart: unless-stopped
-    ports:
-      - "127.0.0.1:9001:9000"
     environment:
+      NODE_ENV: production
       DATABASE_URL: postgres://xlmarket:${POSTGRES_PASSWORD}@db:5432/xlmarket
       REDIS_URL: redis://redis:6379
       JWT_SECRET: ${JWT_SECRET}
       COOKIE_SECRET: ${COOKIE_SECRET}
-      NODE_ENV: production
-      STORE_CORS: http://localhost:3030,https://xlmarket.eu
-      ADMIN_CORS: http://localhost:3030,http://localhost:9001,https://xlmarket.eu
+      MEILISEARCH_HOST: http://meili:7700
+      MEILISEARCH_API_KEY: ${MEILISEARCH_API_KEY}
+      MEILISEARCH_ADMIN_KEY: ${MEILISEARCH_API_KEY}
+      MEILISEARCH_KEY: ${MEILISEARCH_API_KEY}
+      STORE_CORS: ${STORE_CORS}
+      ADMIN_CORS: ${ADMIN_CORS}
+      AUTH_CORS: ${AUTH_CORS}
+      MEDUSA_ADMIN_PASS: ${MEDUSA_ADMIN_PASS:-}
     depends_on:
       db:
         condition: service_healthy
       redis:
         condition: service_healthy
+      meili:
+        condition: service_healthy
+    expose:
+      - "9000"
     healthcheck:
       test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:9000/health"]
       interval: 30s
       timeout: 10s
-      retries: 3
-      start_period: 40s
-
-  # Medusa 2.0 admin panel is built-in at /app — no separate admin service needed
+      retries: 5
+      start_period: 90s
 
   storefront:
     build:
+      context: ./storefront
+      dockerfile: Dockerfile
       args:
         NEXT_PUBLIC_MEDUSA_URL: http://medusa:9000
         NEXT_PUBLIC_MEDUSA_KEY: ${NEXT_PUBLIC_MEDUSA_KEY}
         NEXT_PUBLIC_REGION_ID: ${NEXT_PUBLIC_REGION_ID}
-        NEXT_PUBLIC_BASE_URL: https://xlmarket.eu
-      context: ./storefront
-      dockerfile: Dockerfile
-    container_name: xlmarket-storefront
+        NEXT_PUBLIC_BASE_URL: ${NEXT_PUBLIC_BASE_URL}
+        NEXT_PUBLIC_MEILI_URL: ${NEXT_PUBLIC_MEILI_URL}
+        NEXT_PUBLIC_MEILI_KEY: ${NEXT_PUBLIC_MEILI_KEY}
     restart: unless-stopped
-    ports:
-      - "127.0.0.1:3030:3000"
     environment:
+      NODE_ENV: production
       NEXT_PUBLIC_MEDUSA_URL: http://medusa:9000
       NEXT_PUBLIC_MEDUSA_KEY: ${NEXT_PUBLIC_MEDUSA_KEY}
       NEXT_PUBLIC_REGION_ID: ${NEXT_PUBLIC_REGION_ID}
-      NEXT_PUBLIC_BASE_URL: https://xlmarket.eu
+      NEXT_PUBLIC_BASE_URL: ${NEXT_PUBLIC_BASE_URL}
+      NEXT_PUBLIC_MEILI_URL: ${NEXT_PUBLIC_MEILI_URL}
+      NEXT_PUBLIC_MEILI_KEY: ${NEXT_PUBLIC_MEILI_KEY}
       NEXT_PUBLIC_DEFAULT_REGION: ee
     depends_on:
       medusa:
         condition: service_healthy
+    expose:
+      - "3030"
     healthcheck:
-      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:3000/"]
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:3030/"]
       interval: 30s
       timeout: 10s
-      retries: 3
-      start_period: 30s
+      retries: 5
+      start_period: 60s
 
 volumes:
   xlmarket_pgdata:
   xlmarket_redis:
+  xlmarket_meili:
