@@ -1,0 +1,26 @@
+# Root .dockerignore — used when Coolify builds from repo root
+.git
+.gitignore
+.github
+.claude
+.dmux
+.ruff_cache
+.vscode
+.idea
+node_modules
+*.log
+.env
+.env.local
+.env.*.local
+.DS_Store
+reports/
+docs/
+work-orders/
+xlmarket-qa/
+cowork/
+data/
+*.xlsx
+*.zip
+nohup.out
+posthog-setup-report.md
+SOLUTION-*.md
