@@ -1,64 +1,64 @@
-# XLMarket — Coolify Deploy Guide
+# XLMarket — Relocation to Coolify
 
-> Branch: `xl/coolify-docker-migration`
-> Target: Tarmo's Coolify instance (Medusa Team)
-> Status: **Migration build ready. Awaiting server slot + first deploy.**
+> Goal: move xlmarket main from old VPS (`65.109.86.254`) to Tarmo's Coolify host. Old VPS gets shut down after the move.
+>
+> Pood pole avatud — null kliente, null tellimusi. Downtime pole oluline. Lõpus on vana VPS lihtsalt välja lülitatud.
 
-This file is the only thing you need open while clicking through Coolify. Every step is sequenced — do them in order.
+This is a **single linear move**, not parallel hosting. Do steps in order.
 
 ---
 
-## 0. Pre-flight (do these before opening Coolify)
+## Phase 0 — preparation (~10 min)
 
-- [ ] Decide repo location: stay on `oitmaaristo/brrr-xlmarket` **or** transfer to `roland-kaubandus/xlmarket`. If transferring, do it now (GitHub repo settings → Transfer ownership). After transfer, update local remote: `git remote set-url origin git@github.com:roland-kaubandus/xlmarket.git`.
-- [ ] Push the migration branch: `git push -u origin xl/coolify-docker-migration`.
-- [ ] Generate four 64-char random secrets — keep them open in a password manager:
+- [ ] Decide repo location. Two options:
+  - **Stay on `oitmaaristo/brrr-xlmarket`** — fastest. No transfer needed.
+  - **Transfer to `roland-kaubandus/xlmarket`** — cleaner long-term ownership.
+
+  If transferring: GitHub repo Settings → Transfer ownership → confirm. Then locally:
+  ```bash
+  git remote set-url origin git@github.com:roland-kaubandus/xlmarket.git
+  ```
+
+- [ ] Push `main`:
+  ```bash
+  git push origin main
+  ```
+
+- [ ] Generate four 64-char secrets (keep in password manager):
   ```bash
   for v in POSTGRES_PASSWORD JWT_SECRET COOKIE_SECRET MEILI_MASTER_KEY; do
     echo "$v=$(openssl rand -hex 32)"
   done
   ```
-- [ ] Decide DNS targets — these point at Tarmo's server IP once we cut over:
+
+- [ ] Plan DNS targets (point at Tarmo's Coolify host IP — get IP from Tarmo):
   - `xlmarket.eu` → storefront
-  - `api.xlmarket.eu` → Medusa
-  - `admin.xlmarket.eu` → same Medusa container, path `/app`
-  - `meili.xlmarket.eu` → Meili (browser uses this for live search)
+  - `api.xlmarket.eu` → Medusa (admin lives at `/app`)
+  - `meili.xlmarket.eu` → Meili (browser-side search)
 
-Do **not** flip DNS yet. Coolify will issue Let's Encrypt certs as soon as DNS resolves; we want the first deploy to succeed first.
-
----
-
-## 1. Connect repo as a Source
-
-1. Coolify → **Sources** (left sidebar) → **+ New** → **GitHub App**.
-2. Install the GitHub App on the org/account that owns the repo (`oitmaaristo` or `roland-kaubandus`). Limit access to **only the xlmarket repo**.
-3. Back in Coolify, the source should now appear with the repo listed.
-
-If GitHub App is blocked, fall back to **Deploy Key**: Coolify gives you a public key — paste into GitHub → repo Settings → Deploy keys → allow read access.
+  **Don't change DNS yet** — last step.
 
 ---
 
-## 2. Create the project
+## Phase 1 — connect repo as Coolify Source (~5 min)
 
-1. Dashboard → **Projects → +** → name it `xlmarket` (Description: `xlmarket.eu — VEVOR storefront + Medusa`).
-2. Open the project → **Production** environment is created by default. Use it.
+1. Coolify → **Sources** → **+ New** → **GitHub App**.
+2. Install on the org/account that owns the repo. Limit access to **only the xlmarket repo**.
+3. Confirm repo appears in source list.
 
----
-
-## 3. Add the resource (Docker Compose)
-
-1. Inside the `xlmarket` project → **+ Add Resource**.
-2. Choose **Private Repository (with GitHub App)** → pick the repo → **Branch:** `xl/coolify-docker-migration` (later: `main` once we merge).
-3. **Build Pack:** Coolify auto-detects `docker-compose.yml`. Confirm.
-4. **Compose file location:** `docker-compose.yml` (root). Leave default.
-
-Coolify now parses the file and lists 5 services: `db`, `redis`, `meili`, `medusa`, `storefront`.
+Fallback (if GitHub App is blocked): use **Deploy Key** — Coolify shows a public key, paste into GitHub → repo Settings → Deploy keys → read access.
 
 ---
 
-## 4. Set Environment Variables
+## Phase 2 — create Coolify project + first deploy (~15 min)
 
-Project → **Environment Variables** → paste each line below. Click **"Is Build Variable"** for the `NEXT_PUBLIC_*` ones (Next.js inlines them at build time). Click **"Is Secret"** for the four random secrets, `MEDUSA_ADMIN_PASS`, and `NEXT_PUBLIC_MEILI_KEY`.
+1. Dashboard → **Projects → +** → name `xlmarket`.
+2. Open project → **+ Add Resource** → **Private Repository (with GitHub App)** → pick repo → branch `main` → it auto-detects `docker-compose.yml`.
+3. Confirm 5 services parsed: `db`, `redis`, `meili`, `medusa`, `storefront`.
+
+### Set environment variables
+
+Project → **Environment Variables**. Mark `Is Build Variable` for `NEXT_PUBLIC_*` ones. Mark `Is Secret` for the four random secrets, `MEDUSA_ADMIN_PASS`, and the search-only key.
 
 ```
 POSTGRES_PASSWORD=<random 64 hex>
@@ -66,27 +66,25 @@ JWT_SECRET=<random 64 hex>
 COOKIE_SECRET=<random 64 hex>
 MEILI_MASTER_KEY=<random 64 hex>
 MEILISEARCH_API_KEY=<same value as MEILI_MASTER_KEY>
-MEDUSA_ADMIN_PASS=<choose a strong admin login password>
+MEDUSA_ADMIN_PASS=<strong admin login password>
 
-STORE_CORS=https://xlmarket.eu,https://xlmarket.store
-ADMIN_CORS=https://xlmarket.eu,https://admin.xlmarket.eu,https://xlmarket.store
-AUTH_CORS=https://xlmarket.eu,https://xlmarket.store
+STORE_CORS=https://xlmarket.eu
+ADMIN_CORS=https://xlmarket.eu,https://api.xlmarket.eu
+AUTH_CORS=https://xlmarket.eu
 
 NEXT_PUBLIC_BASE_URL=https://xlmarket.eu
 NEXT_PUBLIC_MEILI_URL=https://meili.xlmarket.eu
 NEXT_PUBLIC_DEFAULT_REGION=ee
 
-# Set these AFTER first Medusa boot (Step 7) — leave blank for first build
+# Leave blank for now — fill in Phase 4 after Medusa boots
 NEXT_PUBLIC_MEDUSA_KEY=
 NEXT_PUBLIC_REGION_ID=
 NEXT_PUBLIC_MEILI_KEY=
 ```
 
----
+### Set domains per service
 
-## 5. Configure Domains (per service)
-
-For each service that should be web-reachable, open the service in Coolify and set its domain + port:
+For each web-reachable service:
 
 | Service     | Domain                  | Port  |
 |-------------|-------------------------|-------|
@@ -94,50 +92,85 @@ For each service that should be web-reachable, open the service in Coolify and s
 | medusa      | https://api.xlmarket.eu | 9000  |
 | meili       | https://meili.xlmarket.eu | 7700 |
 
-`db` and `redis` stay internal — no domain.
+`db` and `redis` stay internal.
 
-Coolify auto-generates Traefik labels and provisions Let's Encrypt certs once DNS resolves.
+### Click Deploy
 
----
+Watch Coolify → Deployments. First build: **8–15 min**. Order: `db` → `redis` → `meili` → `medusa` → `storefront`.
 
-## 6. First deploy — but staged
-
-> ⚠️ DNS still pointing at the old server (65.109.86.254). We deploy to Coolify's auto-generated `*.coolify.<server-domain>` URL first, verify everything works, then cut DNS.
-
-1. Click **Deploy** on the project. Watch logs in real-time (Coolify → Deployments).
-2. Order of healthy services: `db` → `redis` → `meili` → `medusa` → `storefront`.
-3. Expected first-build time: **8–15 minutes** (storefront has 14k+ products' build-time data; Medusa migrations run on first boot).
-4. If `medusa` fails because tables don't exist:
-   - Coolify → `medusa` service → **Terminal** (one-shot exec into container)
-   - Run: `npx medusa db:migrate`
-   - Then redeploy.
+If `medusa` fails on missing tables:
+- Coolify → `medusa` service → Terminal → `npx medusa db:migrate` → redeploy.
 
 ---
 
-## 7. Post-boot: create publishable key + region
+## Phase 3 — export data from old VPS (~10 min)
 
-Once `medusa` is healthy:
-
-1. Visit `https://api.xlmarket.eu/app` → log in with `admin@xlmarket.eu` + `MEDUSA_ADMIN_PASS` (or seed if missing — see step 7b).
-2. **Settings → Regions →** create `Estonia (EUR, EE)` if missing → copy `reg_...` UUID.
-3. **Settings → Publishable API Keys →** create `Storefront key` → assign to a Sales Channel → copy `pk_...`.
-4. Coolify → Project → Environment Variables → paste the two values into:
-   - `NEXT_PUBLIC_REGION_ID`
-   - `NEXT_PUBLIC_MEDUSA_KEY`
-5. **Storefront service → Redeploy** (rebuild — these are build-time vars).
-
-### 7b. If admin user does not exist
-
-Coolify → `medusa` service → Terminal:
+SSH into old VPS:
 ```bash
-npx medusa user --email admin@xlmarket.eu --password "$MEDUSA_ADMIN_PASS"
+ssh -i ~/.ssh/dc_ed25519 brrr@100.93.186.17
+cd brrr-xlmarket
+git pull   # gets the new export script
+bash scripts/coolify-migrate-export.sh
+```
+
+Output: `/tmp/xlmarket-coolify-migration-<ts>.tar.gz` (Postgres dump + Meili dump + uploads).
+
+Move to your laptop or directly to the new Coolify host:
+```bash
+# from your laptop
+scp brrr@100.93.186.17:/tmp/xlmarket-coolify-migration-*.tar.gz .
+scp xlmarket-coolify-migration-*.tar.gz <user>@<coolify-host>:/tmp/
 ```
 
 ---
 
-## 8. Generate Meili search-only key
+## Phase 4 — import data into Coolify stack (~15 min)
 
-Meili master key is server-side only. The browser needs a search-only key.
+SSH into the Coolify host. Find the Coolify-generated container names:
+```bash
+docker ps --format '{{.Names}}' | grep -E '(xlmarket|coolify)' | head -20
+```
+
+Note the Postgres and Medusa container names — they look like `db-<uuid>` and `medusa-<uuid>`.
+
+Find the Meili volume mount path:
+```bash
+docker volume ls | grep meili
+docker volume inspect <volume-name> --format '{{.Mountpoint}}'
+```
+
+Run import:
+```bash
+export COOLIFY_DB_CONTAINER=db-xxxxx
+export COOLIFY_MEDUSA_CONTAINER=medusa-xxxxx
+export COOLIFY_MEILI_VOLUME=/var/lib/docker/volumes/xxxxx_xlmarket_meili/_data
+export MEILI_MASTER_KEY=<the value you set in Coolify env>
+
+bash scripts/coolify-migrate-import.sh /tmp/xlmarket-coolify-migration-*.tar.gz
+```
+
+The script:
+1. Restores Postgres (drops public schema first, clean slate)
+2. Drops Meili dump file into the volume + tells you to set `MEILI_IMPORT_DUMP` env var on the meili service in Coolify and redeploy it once
+3. Copies uploads/static into the Medusa container
+
+After Meili import completes, **remove the `MEILI_IMPORT_DUMP` env var** from Coolify and redeploy Meili once more (so it doesn't re-import on every restart).
+
+---
+
+## Phase 5 — wire publishable key + Meili search key (~10 min)
+
+### Medusa publishable key + region
+
+1. Visit `https://api.xlmarket.eu/app` (or Coolify-generated URL if DNS still pending) → log in with `admin@xlmarket.eu` + `MEDUSA_ADMIN_PASS`.
+2. **Settings → Regions** → confirm `Estonia (EUR)` exists → copy `reg_...`.
+3. **Settings → Publishable API Keys** → confirm `Storefront key` exists or create one → assign to a Sales Channel → copy `pk_...`.
+4. Coolify env vars:
+   - `NEXT_PUBLIC_REGION_ID=reg_...`
+   - `NEXT_PUBLIC_MEDUSA_KEY=pk_...`
+5. Redeploy storefront (these are build-time, must rebuild).
+
+### Meili search-only key
 
 Coolify → `meili` service → Terminal:
 ```bash
@@ -145,103 +178,85 @@ wget -qO- --header="Authorization: Bearer $MEILI_MASTER_KEY" \
   http://localhost:7700/keys
 ```
 
-Copy the `key` value of the entry whose `actions` is `["search"]`. Paste it into Coolify env var `NEXT_PUBLIC_MEILI_KEY`. Redeploy storefront.
+Copy the `key` value of the entry whose `actions: ["search"]`. Paste into:
+- `NEXT_PUBLIC_MEILI_KEY=<search-only key>`
+
+Redeploy storefront.
 
 ---
 
-## 9. Migrate data from the old VPS
+## Phase 6 — DNS cutover (~5 min)
 
-> Old VPS: `65.109.86.254` (Tailscale `100.93.186.17`). New VPS: Tarmo's Coolify host.
-
-### 9a. Postgres (xlmarket DB)
-
-On old VPS:
-```bash
-ssh -i ~/.ssh/dc_ed25519 brrr@100.93.186.17 \
-  'docker exec xlmarket-db pg_dump -U xlmarket -Fc xlmarket' \
-  > /tmp/xlmarket-$(date +%Y%m%d-%H%M).dump
-```
-
-Upload the dump (Coolify → `db` service → Files, or `scp` to Tarmo host then exec into container):
-```bash
-docker exec -i <coolify-db-container> pg_restore -U xlmarket -d xlmarket --clean --if-exists < /tmp/xlmarket-*.dump
-```
-
-### 9b. MeiliSearch index
-
-Easiest path: re-build from scratch on the new server. It's deterministic and avoids version drift:
-```bash
-# Coolify → medusa service → Terminal
-node ../scripts/index-meilisearch.mjs   # path may differ; adapt to your repo layout
-```
-
-If you must transfer: Meili supports dumps. On old VPS:
-```bash
-curl -X POST -H "Authorization: Bearer $OLD_MEILI_MASTER" http://127.0.0.1:7700/dumps
-# wait, then copy /var/lib/meilisearch/dumps/*.dump to new server's volume
-```
-
-### 9c. Uploaded media
-
-If the backend has `/uploads` (product images uploaded via admin), `rsync` to the matching Coolify volume mount path (Coolify shows the host path under each volume).
+1. Update DNS A records to point at Tarmo's Coolify host IP:
+   - `xlmarket.eu` → A record
+   - `api.xlmarket.eu` → A record
+   - `meili.xlmarket.eu` → A record
+2. Wait ~2–5 min. Coolify auto-issues Let's Encrypt certs once DNS resolves.
+3. Verify:
+   ```bash
+   curl -I https://xlmarket.eu
+   curl -I https://api.xlmarket.eu/health
+   curl -s -H "Authorization: Bearer $MEILI_MASTER_KEY" https://meili.xlmarket.eu/indexes/products/stats | python3 -m json.tool
+   ```
 
 ---
 
-## 10. Smoke test on Coolify URLs
+## Phase 7 — feed sync cron
 
-Before flipping DNS:
-- `curl -I https://api-xlmarket-<hash>.coolify.<host>/health` → `200 OK`
-- `curl -I https://storefront-xlmarket-<hash>.coolify.<host>/` → `200 OK`
-- Browse storefront URL: hero loads, ProductGrid renders products from Meili
-- Log into admin at `/app`, browse products list (should show 14k+)
+The 4-hourly VEVOR sync must run somewhere. Options:
 
----
-
-## 11. DNS cutover
-
-Only when steps 1–10 are green:
-
-1. Lower TTL on the four DNS records to 300s (do this 24h before the cutover ideally).
-2. Update DNS A records to Tarmo's Coolify host IP.
-3. Wait ~5 min, watch Coolify → SSL Certificates → all 4 domains should turn green (Let's Encrypt issued).
-4. `curl -I https://xlmarket.eu` → 200 from new infra. If you see the old server's response, flush local DNS.
-
----
-
-## 12. Old VPS — leave running for 7 days
-
-Don't tear down `65.109.86.254` immediately. Keep it for a week as instant rollback:
-- DNS revert = 5 min recovery
-- Keeps Postfix mail relay alive for receipts (until SMTP cutover)
-- Lets you compare logs side-by-side if something looks off on Coolify
-
-After 7 quiet days: archive Postgres dump, snapshot the disk, then decommission.
-
----
-
-## 13. Feed sync (cron)
-
-The 4-hourly VEVOR feed sync currently runs on the old VPS (`scripts/feed-sync.sh`). Two options:
-
-- **A** Keep cron on the old VPS pointing at the new Medusa API URL (works fine while old VPS is alive).
-- **B** Move to Coolify: create a **Scheduled Task** on the `medusa` service:
+- **A** Coolify Scheduled Task on `medusa` service:
   - Schedule: `0 */4 * * *`
-  - Command: `bash scripts/feed-sync.sh` (path inside container)
-  - Requires `MEDUSA_ADMIN_USER` + `MEDUSA_ADMIN_PASS` env vars
+  - Command: `bash scripts/feed-sync.sh`
+- **B** External cron pointing at the new API URL.
 
-Option B is cleaner long-term.
+Pick A — it lives with the app.
 
 ---
 
-## What changed in the migration branch
+## Phase 8 — shut down old VPS
 
-| File                          | Change                                                              |
-|-------------------------------|---------------------------------------------------------------------|
-| `docker-compose.yml`          | Added `meili` service. Dropped `127.0.0.1:` host port bindings (Coolify Traefik handles routing). Dropped `container_name` (Coolify auto-names). Added `expose:` per service. Wired Meili env vars into Medusa + storefront. |
-| `storefront/Dockerfile`       | Multi-stage (deps → builder → runner). Uses Next.js standalone output. Non-root user `nextjs:1001`. Healthcheck. |
-| `backend/Dockerfile`          | Multi-stage. Non-root user `medusa:1001`. `dumb-init` PID 1. Healthcheck on `/health`. |
-| `.env.example`                | Added Meili keys, full CORS list, dropped local Postfix assumption. |
-| `.dockerignore` (root, backend, storefront) | Added/expanded — keeps build context small. |
-| `COOLIFY_DEPLOY.md`           | This file. |
+Once the new site is verified working for 24h:
 
-Nothing on `main` changed. Old VPS is untouched.
+1. Stop services: `pm2 stop all && docker compose -f /home/brrr/brrr-xlmarket/docker-compose.yml down`.
+2. Snapshot the disk (Hetzner UI → Server → Snapshots) — kept as cold backup, in case something turns up missing later.
+3. Cancel the server.
+
+Old VPS hosts other things too (autoradar, wingit, printer2, huly, declar, canaryparts) — **don't cancel until those are migrated separately**. Just stop the xlmarket-related processes:
+```bash
+pm2 stop xlmarket-storefront
+docker compose down  # in /home/brrr/brrr-xlmarket
+sudo systemctl stop xlmarket-feed-sync.timer 2>/dev/null || true
+sudo rm /etc/nginx/sites-enabled/xlmarket.store
+sudo systemctl reload nginx
+```
+
+---
+
+## Files in this migration
+
+| File                                        | Purpose                                  |
+|---------------------------------------------|------------------------------------------|
+| `docker-compose.yml`                        | Coolify stack (5 services)               |
+| `storefront/Dockerfile`                     | Next.js 16 standalone, multi-stage       |
+| `backend/Dockerfile`                        | Medusa multi-stage, dumb-init            |
+| `.env.example`                              | All required env vars documented         |
+| `.dockerignore` (root, backend, storefront) | Keep build context small                 |
+| `scripts/coolify-migrate-export.sh`         | Run on old VPS — produces tarball        |
+| `scripts/coolify-migrate-import.sh`         | Run on Coolify host — restores tarball   |
+| `COOLIFY_DEPLOY.md`                         | This file                                |
+
+---
+
+## Rollback (if something blocks)
+
+Until DNS is flipped (Phase 6), the old VPS is still serving everything as before. Rollback = "do nothing different." If Phase 6 reveals a problem, flip DNS back to `65.109.86.254` — the old stack is still running.
+
+After Phase 8 (old VPS stopped), rollback means restarting the old PM2 + nginx + Docker stack. The old data is still there, just idle. Restart with:
+```bash
+ssh brrr@100.93.186.17
+cd brrr-xlmarket
+docker compose up -d db redis
+pm2 start ecosystem.config.js
+sudo systemctl reload nginx
+```
