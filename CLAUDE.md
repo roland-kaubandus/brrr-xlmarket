@@ -21,7 +21,7 @@
 
 **Repo on Tarmo githubis:** `roland-kaubandus/brrr-xlmarket` (canonical), local main remote `roland`. Kõik commits sünk.
 
-**Tarmo Coolify deploy POOLELI:** Faas C+D (Coolify resource create + andmemigration) ootab SSH ligipääsu Tarmo serverisse (`~/.ssh/coolify_xlmarket` praegu Permission denied).
+**Tarmo Coolify deploy POOLELI:** Faas C (Coolify resource create) + Faas D (andmemigration) — pole alustatud. Plaan: `~/.claude/plans/xlmarket-on-n-d-mber-mossy-hopper.md` + `COOLIFY_DEPLOY.md`.
 
 **Research raport** uutele keeltele + parimatest praktikatest: `outputs/translation-research-2026-05-02.md` (50+ allikat). Anthropic Max + Batch API kombinatsiooni LAHENDUST EI OLE (Anthropic blokeerib OAuth tokeni).
 
