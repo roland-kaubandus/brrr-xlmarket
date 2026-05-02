@@ -127,6 +127,10 @@ function execClaude(prompt, model) {
       "-p",
       "--output-format", "text",
       "--model", model,
+      // 2026-05-02: --effort low — translation pole multi-step reasoning,
+      // extended thinking burns 10× tokens + on tõenäoline 480s timeout põhjus
+      // (translation-research-2026-05-02.md, samm 1).
+      "--effort", "low",
       "--no-session-persistence",
       "--disable-slash-commands",
       "--dangerously-skip-permissions",
@@ -135,10 +139,12 @@ function execClaude(prompt, model) {
     if (FALLBACK_MODEL && FALLBACK_MODEL !== model) {
       baseArgs.push("--fallback-model", FALLBACK_MODEL)
     }
+    // 2026-05-02: timeout 8min → 90s. Väiksemad chunks (10/6/3) peaksid
+    // mahtuma alla 60s. 90s = headroom + kiirem failover Haikuga (samm 3).
     const child = execFile(
       CLAUDE_BIN,
       baseArgs,
-      { encoding: "utf8", timeout: 8 * 60 * 1000, maxBuffer: 20 * 1024 * 1024 },
+      { encoding: "utf8", timeout: 90 * 1000, maxBuffer: 20 * 1024 * 1024 },
       (err, stdout) => {
         const combined = (stdout || "") + "\n" + (err?.message || "")
         const kind = classifyClaudeError(combined)
@@ -189,8 +195,23 @@ async function claimProducts(client, limit, batchId) {
   return rows
 }
 
+// 2026-05-02: Critical warnings list — translation-research-2026-05-02.md
+// samm 4 (glossary enforcement). Need warnings tähendavad et numbrid või
+// units on RIKUTUD (nt 0-2250 RPM asemel 50-2500). Sellised tõlked EI tohi
+// minna 'translated: true' staatusesse, vaid peavad ootama retry'le.
+const CRITICAL_WARNING_CODES = new Set(["number_missing", "unit_missing"])
+
+// 2026-05-02: source hash for stale detection (samm 5). Kui hiljem source
+// EN muutub (price update, description rewrite), võrdleme hashi → mark stale.
+function computeSourceHash(en) {
+  const crypto = require("crypto")
+  const payload = `${en.title || ""}|${en.description || ""}`
+  return crypto.createHash("sha256").update(payload).digest("hex").slice(0, 16)
+}
+
 async function applyTranslations(client, translated, batchId, enBySku) {
   let applied = 0
+  let autoRejected = 0
   const validatorCounts = { english_leak: 0, number_missing: 0, unit_missing: 0, too_short: 0 }
 
   for (const t of translated) {
@@ -202,6 +223,8 @@ async function applyTranslations(client, translated, batchId, enBySku) {
     ]
     for (const w of warnings) validatorCounts[w.code] = (validatorCounts[w.code] ?? 0) + 1
 
+    const hasCritical = warnings.some((w) => CRITICAL_WARNING_CODES.has(w.code))
+
     try {
       const metaPayload = {
         title_et: t.title_et,
@@ -211,15 +234,26 @@ async function applyTranslations(client, translated, batchId, enBySku) {
         selling_point_3_et: t.sp3 || "",
         selling_point_4_et: t.sp4 || "",
         selling_point_5_et: t.sp5 || "",
-        translated: true,
         translated_at: new Date().toISOString(),
-        translation_status: "translated",
         translation_batch: batchId,
         translation_provider: PROVIDER_ID,
+        source_hash_et: computeSourceHash(en),
       }
-      if (warnings.length > 0) {
-        metaPayload.translation_auto_flag = "suspect"
+      if (hasCritical) {
+        // Auto-reject: numbrid/units rikutud — pane queue'isse retry'ks.
+        // 'translated' jääb false (või null) → fleet võtab toote järgmises
+        // round'is uuesti.
+        metaPayload.translated = false
+        metaPayload.translation_status = "auto_rejected"
+        metaPayload.translation_auto_flag = "critical"
         metaPayload.translation_auto_warnings = warnings.map((w) => `${w.code}:${w.detail}`).join(";")
+      } else {
+        metaPayload.translated = true
+        metaPayload.translation_status = "translated"
+        if (warnings.length > 0) {
+          metaPayload.translation_auto_flag = "suspect"
+          metaPayload.translation_auto_warnings = warnings.map((w) => `${w.code}:${w.detail}`).join(";")
+        }
       }
       const res = await client.query(`
         UPDATE product SET
@@ -228,11 +262,15 @@ async function applyTranslations(client, translated, batchId, enBySku) {
         WHERE metadata->>'vevor_sku' = $2
           AND (metadata->>'translation_batch') = $3
       `, [JSON.stringify(metaPayload), t.sku, batchId])
-      if (res.rowCount > 0) applied++
+      if (res.rowCount > 0) {
+        if (hasCritical) autoRejected++
+        else applied++
+      }
     } catch (err) {
       log(`  DB error SKU ${t.sku}: ${err.message.slice(0, 100)}`)
     }
   }
+  if (autoRejected > 0) log(`  auto-rejected ${autoRejected} (critical warnings: numbers/units lost)`)
   return { applied, validatorCounts }
 }
 

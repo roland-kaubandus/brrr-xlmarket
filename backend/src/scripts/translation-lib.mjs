@@ -56,10 +56,11 @@ export function chunkSizeForTier(tier) {
  * chunk size while staying under 200k-tok context.
  */
 export function chunkSizeForTierClaude(tier) {
-  // Reduced 2026-04-24 16:37 after 5×5×40 config caused 6-min zero-progress:
-  // large prompts + high concurrency created Claude API back-pressure with
-  // 400-500s chunks. Smaller chunks complete in 90-150s for faster feedback.
-  return { simple: 30, standard: 22, complex: 15 }[tier] ?? 18
+  // Reduced again 2026-05-02 after Sonnet "complex" chunks consistently FAIL'sid 480s
+  // timeout'iga (vt translation-research-2026-05-02.md). Põhjus: extended thinking
+  // + suur chunk = pikem reasoning kui streaming idle timeout. Lahendus: --effort low
+  // (translate-worker-claude.mjs) + väiksemad chunks (kiirem feedback, vältib timeout'i).
+  return { simple: 10, standard: 6, complex: 3 }[tier] ?? 5
 }
 
 /**
