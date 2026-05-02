@@ -49,7 +49,10 @@ for i in $(seq 1 60); do
 done
 
 # Find the latest dump file Meili produced
-MEILI_DUMP_DIR="${MEILI_DUMP_DIR:-$(docker volume inspect xlmarket-data --format '{{.Mountpoint}}' 2>/dev/null || echo '/var/lib/meilisearch')/dumps}"
+if [ -z "${MEILI_DUMP_DIR:-}" ]; then
+  VOL_PATH=$(docker volume inspect xlmarket-data --format '{{.Mountpoint}}' 2>/dev/null | tr -d '\n\r ')
+  MEILI_DUMP_DIR="${VOL_PATH:-/var/lib/meilisearch}/dumps"
+fi
 LATEST_DUMP=$(ls -t "$MEILI_DUMP_DIR"/*.dump 2>/dev/null | head -n1 || true)
 if [ -z "$LATEST_DUMP" ]; then
   echo "      WARN: could not auto-locate Meili dump file. Set MEILI_DUMP_DIR env var and rerun."

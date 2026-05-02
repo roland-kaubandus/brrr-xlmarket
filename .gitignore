@@ -62,3 +62,6 @@ backend/data/translation-batches/
 
 # Tarmo/Risto tööfailid (price lists, oversizes)
 storefront/*.xlsx
+
+# Operatsiooni-väljundid (env vars, secrets, raportid)
+outputs/
