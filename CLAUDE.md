@@ -1,6 +1,29 @@
 # CLAUDE.md — XL: xlmarket.eu e-pood
 
-> Viimati uuendatud: 2026-04-24
+> Viimati uuendatud: 2026-05-02
+
+---
+
+## Sessioon 2026-05-02 muudatused
+
+**Sessioonilogi:** `brrr-kadzin/memory/2026-05-02-xl.md` (täielik kontekst)
+
+**Tõlke pipeline 5-step fix** (commits b309563, 216fff3, 80cf9ee, 7bd3565):
+- `--effort low` Claude CLI args'idesse (translation pole multi-step reasoning)
+- Chunk sizes 30/22/15 → **10/6/3** (väldib 480s timeout)
+- execClaude timeout 8min → **90s**
+- Validator critical_warning_codes **tühi** (validator regex liiga karm — `06` count'kse missing, lokaliseeritud units `inch→tolli` flag'b unit_missing'iks)
+- `source_hash_et` metadata salvestus (tulevane stale detection)
+
+**DB seis 2026-05-02:** **6456 / 16 335 = 39.5%** (+846 tõlget täna)
+
+**Throughput:** ~830/h Sonnet 4.6 + Max plan, ~12h aktiivset fleet'i lõpetuseks (Max kvoot lööb iga 5h sessiooni järel).
+
+**Repo on Tarmo githubis:** `roland-kaubandus/brrr-xlmarket` (canonical), local main remote `roland`. Kõik commits sünk.
+
+**Tarmo Coolify deploy POOLELI:** Faas C+D (Coolify resource create + andmemigration) ootab SSH ligipääsu Tarmo serverisse (`~/.ssh/coolify_xlmarket` praegu Permission denied).
+
+**Research raport** uutele keeltele + parimatest praktikatest: `outputs/translation-research-2026-05-02.md` (50+ allikat). Anthropic Max + Batch API kombinatsiooni LAHENDUST EI OLE (Anthropic blokeerib OAuth tokeni).
 
 ---
 
