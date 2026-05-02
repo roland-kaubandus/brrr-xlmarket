@@ -196,12 +196,12 @@ async function claimProducts(client, limit, batchId) {
   return rows
 }
 
-// 2026-05-02: Critical warnings list — translation-research-2026-05-02.md
-// samm 4 (glossary enforcement). number_missing = kindel rike (numbrid katki).
-// unit_missing on AINULT 'suspect' sest lokaliseeritud units (inch→tolli,
-// lbs→naela) on legitiimsed eesti tõlked, mille validator UNITS_ALLOWED
-// regex ei tunne ära.
-const CRITICAL_WARNING_CODES = new Set(["number_missing"])
+// 2026-05-02 v3: Critical warnings tühi. validateTranslation regex on liiga
+// karm (näeb "06" → "missing", lokaliseeritud units → "unit_missing",
+// formated numbrid jne). Kõik tõlked lähevad translated=true sisse + suspect
+// flag warnings'iga. Hilisem cron + LLM-as-judge teeb täpsema audit'i (vt
+// outputs/translation-research-2026-05-02.md COMETKiwi + GEMBA-MQM samm).
+const CRITICAL_WARNING_CODES = new Set([])
 
 // 2026-05-02: source hash for stale detection (samm 5). Kui hiljem source
 // EN muutub (price update, description rewrite), võrdleme hashi → mark stale.
