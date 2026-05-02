@@ -2,7 +2,7 @@
   "compilerOptions": {
     "lib": ["es2021"],
     "target": "es2021",
-    "outDir": "./dist",
+    "outDir": "./.medusa/server",
     "rootDir": ".",
     "esModuleInterop": true,
     "declaration": true,
@@ -20,5 +20,5 @@
     }
   },
   "include": ["src", "medusa-config.ts"],
-  "exclude": ["dist", "node_modules", "src/admin"]
+  "exclude": ["dist", ".medusa", "node_modules", "src/admin"]
 }
