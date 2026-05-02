@@ -175,3 +175,20 @@ pm2 reload xlmarket-storefront
 - Pildid: kasuta VEVOR CDN URL-e, ara kopeeri serverisse
 - Tarmole peab admin olema lihtne ja eestikeelne
 - Tootehinnad ALATI * 1.15
+
+
+---
+
+## 💎 TOKEN-SÄÄSTMISE REEGEL (lisatud 2026-04-30)
+
+1. **PowerShell skript >5 rida** → kirjuta .ps1 faili, käivita `-File` (mitte inline)
+2. **Diagnostika** → ÜKS batch-skript, mitte mitu eraldi tool-call'i
+3. **Taustal jooksvale tööle** → ÜKS check, mitte spam
+4. **2 katset ebaõnnestus** → küsi userilt, mitte 5. lähenemist proovida
+5. **Pika info kuvamiseks** → markdown-fail `outputs/`-i + link
+6. **SSH/Bash escape probleem** ($, \, ") → kohe script-faili lähenemisele
+7. **Kontekst >70%** → KOHE mälu kirjutada (compaction reegel)
+8. **Vastused lühikesed:** tabel/link > pikk seletus. Selgitused ainult kui küsitakse.
+
+Detailid: `brrr-kadzin/memory/2026-04-30-cowork.md`
+
