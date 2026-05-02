@@ -174,9 +174,15 @@ export function validateTranslation(originalEn, translationEt) {
   // 2. Number preservation — extract number+unit pairs from EN, ensure each
   //    appears in ET. Unit may be translated ("inch"→"tolli") so we only
   //    check the numeric portion.
+  // 2026-05-02: NORMALISEERI kümnendkohad enne võrdlust — eesti keeles on
+  //    standard "24,5" mitte "24.5" (validator blokib false-positiivselt 77
+  //    head tõlget kuni see fix tuli).
   const numRe = /(\d[\d.,]*)/g
-  const enNumbers = new Set((originalEn.match(numRe) || []).filter((n) => n.length > 1))
-  const etNumbers = new Set((translationEt.match(numRe) || []))
+  const normalizeNum = (s) => s.replace(/,/g, ".").replace(/\.$/, "")
+  const enNumbers = new Set((originalEn.match(numRe) || [])
+    .filter((n) => n.length > 1)
+    .map(normalizeNum))
+  const etNumbers = new Set((translationEt.match(numRe) || []).map(normalizeNum))
   const missing = [...enNumbers].filter((n) => !etNumbers.has(n))
   if (missing.length > 0) {
     warnings.push({ code: "number_missing", detail: missing.slice(0, 3).join(",") })
