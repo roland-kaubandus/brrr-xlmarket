@@ -5,11 +5,11 @@
 FROM node:22-alpine AS builder
 WORKDIR /app
 
-ENV NODE_ENV=production \
-    NPM_CONFIG_LOGLEVEL=warn
+# DO NOT set NODE_ENV=production here — medusa build needs devDependencies (typescript, vite, esbuild)
+ENV NPM_CONFIG_LOGLEVEL=warn
 
 COPY package.json package-lock.json* ./
-RUN npm ci --no-audit --no-fund
+RUN npm ci --include=dev --no-audit --no-fund
 
 COPY . .
 RUN npm run build
