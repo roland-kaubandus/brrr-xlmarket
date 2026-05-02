@@ -27,6 +27,7 @@
 import pg from "pg"
 import { execFile } from "child_process"
 import { appendFileSync, mkdirSync } from "fs"
+import crypto from "crypto"
 import path from "path"
 import { fileURLToPath } from "url"
 
@@ -204,7 +205,6 @@ const CRITICAL_WARNING_CODES = new Set(["number_missing", "unit_missing"])
 // 2026-05-02: source hash for stale detection (samm 5). Kui hiljem source
 // EN muutub (price update, description rewrite), võrdleme hashi → mark stale.
 function computeSourceHash(en) {
-  const crypto = require("crypto")
   const payload = `${en.title || ""}|${en.description || ""}`
   return crypto.createHash("sha256").update(payload).digest("hex").slice(0, 16)
 }
