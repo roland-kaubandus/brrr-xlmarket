@@ -1,12 +1,27 @@
-# CLAUDE.md — XL: xlmarket.eu e-pood
+# CLAUDE.md — XL: xlmarket.ee + .eu e-pood
 
-> Viimati uuendatud: 2026-05-02
+> Viimati uuendatud: 2026-05-02 (õhtul, pärast Tarmo Coolify deploy)
 
 ---
 
-## Sessioon 2026-05-02 muudatused
+## Praegune deploy seis (2026-05-02 öö)
 
-**Sessioonilogi:** `brrr-kadzin/memory/2026-05-02-xl.md` (täielik kontekst)
+**TWO LIVE SETUPS — kasuta neid teadlikult:**
+
+| Süsteem | URL | Mis seal töötab | Andmed |
+|---|---|---|---|
+| **Vana VPS** (`100.93.186.17`) | `xlmarket.store` (live) | bare-metal Next.js + Docker DB/Redis + bare-metal Meili + bare-metal Medusa, PM2 | Production andmed, 17468 toodet, **6508+ ET tõlget** (tõlke pipeline siin jookseb) |
+| **Tarmo Coolify** (`65.21.126.235`) | `xlmarket.ee` (live, self-signed SSL) | 5-konteineri Docker stack: db/redis/meili/medusa/storefront, Coolify-managed | **Sama andmed migrates'tud** (pg dump + meili dump 2026-05-02). Tõlke pipeline EI jookse siin (lihtsam vana VPS-il jätkata) |
+
+**Production migrate plaan:** Kui Tarmo lisab wildcard DNS `*.xlmarket.ee → 65.21.126.235`, Tarmo Coolify saab täielikult elus + Let's Encrypt cert. Siis: cutover (DNS muudatus), uus prod = Coolify, vana VPS jääb 30p backup'iks.
+
+**Tarmo Coolify deploy detailid:** `xlmarket/memory/sessions/2026-05-02-xl-coolify.md` (kõik bug-id, fix-id, container nimed, env vars, sudoers eskaleerimine).
+
+---
+
+## Sessioon 2026-05-02 muudatused (hommikune pool)
+
+**Sessioonilogi:** `xlmarket/memory/sessions/2026-05-02-xl.md`
 
 **Tõlke pipeline 5-step fix** (commits b309563, 216fff3, 80cf9ee, 7bd3565):
 - `--effort low` Claude CLI args'idesse (translation pole multi-step reasoning)
@@ -15,13 +30,11 @@
 - Validator critical_warning_codes **tühi** (validator regex liiga karm — `06` count'kse missing, lokaliseeritud units `inch→tolli` flag'b unit_missing'iks)
 - `source_hash_et` metadata salvestus (tulevane stale detection)
 
-**DB seis 2026-05-02:** **6456 / 16 335 = 39.5%** (+846 tõlget täna)
+**DB seis 2026-05-02 (vana VPS):** **6508 / 17468 = 37.3%** (õhtu seis)
 
 **Throughput:** ~830/h Sonnet 4.6 + Max plan, ~12h aktiivset fleet'i lõpetuseks (Max kvoot lööb iga 5h sessiooni järel).
 
-**Repo on Tarmo githubis:** `roland-kaubandus/brrr-xlmarket` (canonical), local main remote `roland`. Kõik commits sünk.
-
-**Tarmo Coolify deploy POOLELI:** Faas C (Coolify resource create) + Faas D (andmemigration) — pole alustatud. Plaan: `~/.claude/plans/xlmarket-on-n-d-mber-mossy-hopper.md` + `COOLIFY_DEPLOY.md`.
+**Repo on Tarmo githubis:** `roland-kaubandus/brrr-xlmarket` (canonical, **public** — Tarmo on org owner, Risto member ainult; private vajab Tarmo admin'i), local main remote `roland`. Kõik commits sünk.
 
 **Research raport** uutele keeltele + parimatest praktikatest: `outputs/translation-research-2026-05-02.md` (50+ allikat). Anthropic Max + Batch API kombinatsiooni LAHENDUST EI OLE (Anthropic blokeerib OAuth tokeni).
 
@@ -155,7 +168,7 @@ pm2 reload xlmarket-storefront
 - **nginx /app proxy:** `location ^~` (mitte `location /`)
 - **Email subscribers KATKI:** `order-placed.ts` ja `order-shipped.ts` kommenteeritud välja
 - **CORS:** STORE_CORS, ADMIN_CORS, AUTH_CORS peavad sisaldama `https://xlmarket.store`
-- **Meili index WIPED (price/taxonomy puudu):** Medusa plugin kirjutab cron restart'i järel indeksi üle minimaalsete väljadega. Taastamine: `cd /home/brrr/brrr-xlmarket && set -a && source .env && set +a && unset DATABASE_URL && node backend/scripts/index-meilisearch.mjs && node scripts/sync-existing-synonyms.mjs` + `find /home/brrr/brrr-xlmarket/storefront/.next/cache -type f -delete` + `pm2 reload xlmarket-storefront`. feed-sync.sh EXIT trap + Slack alerts peaks nüüd kaitsma (2026-04-22 acff4d7).
+- **Meili index WIPED (price/taxonomy puudu):** Medusa plugin kirjutab cron restart'i järel indeksi üle minimaalsete väljadega. Taastamine: `cd /home/brrr/xlmarket && set -a && source .env && set +a && unset DATABASE_URL && node backend/scripts/index-meilisearch.mjs && node scripts/sync-existing-synonyms.mjs` + `find /home/brrr/xlmarket/storefront/.next/cache -type f -delete` + `pm2 reload xlmarket-storefront`. feed-sync.sh EXIT trap + Slack alerts peaks nüüd kaitsma (2026-04-22 acff4d7).
 - **admin@xlmarket.eu jagab login + feed-sync cron auth:** Parooli vahetades UUENDA `.env` MEDUSA_ADMIN_PASS ka, muidu cron hängib [3/6] Medusa import sammu juures, [4/6] Meili reindex ei käivitu, sait näitab €0.00.
 - **Meili settings PATCH panics:** Meili 1.41 teadaolev bug — `PUT /indexes/products/settings/searchable-attributes` crashib internal error'iga. Kui vaja muuta, tee kogu index uuesti (`index-meilisearch.mjs` loob õiged settings'id).
 
@@ -213,5 +226,20 @@ pm2 reload xlmarket-storefront
 7. **Kontekst >70%** → KOHE mälu kirjutada (compaction reegel)
 8. **Vastused lühikesed:** tabel/link > pikk seletus. Selgitused ainult kui küsitakse.
 
-Detailid: `brrr-kadzin/memory/2026-04-30-cowork.md`
+Detailid: `brrr-printer2/memory/sessions/2026-04-30-cowork.md`
+
+---
+
+## Memory
+
+- **Sessioonilogi:** `memory/sessions/YYYY-MM-DD-<agent>.md` (git tracked)
+- **Otsused:** `memory/decisions/`
+- **Gotchas:** `memory/gotchas/`
+- **ck quick state:** `~/.claude/ck/contexts/xlmarket/`
+
+**Migreeritud kadzin'ist (2026-05-03):**
+- `memory/sessions/2026-05-02-xl.md` (hommikune sessioon)
+- `memory/sessions/2026-05-02-xl-coolify.md` (Tarmo Coolify deploy)
+
+**Repo rename'd 2026-05-03:** `/home/brrr/brrr-xlmarket/` → `/home/brrr/xlmarket/`. Kõik path viited uuendatud.
 
