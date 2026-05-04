@@ -152,7 +152,7 @@ export async function getMeiliProductByHandle(handle: string): Promise<MeiliHit 
 export async function searchProducts(options: SearchOptions): Promise<MeiliSearchResult> {
   const body: Record<string, unknown> = {
     q: expandCompoundWords(options.q),
-    limit: options.limit || 24,
+    limit: options.limit ?? 24,
     offset: options.offset || 0,
     attributesToHighlight: options.attributesToHighlight || ["title"],
     highlightPreTag: options.highlightPreTag || "<mark>",

@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react"
 import VevorProductCard from "@/components/VevorProductCard"
 import { mapMeiliHitToProduct } from "@/lib/map-meili-hit"
-import type { MeiliHit } from "@/lib/meilisearch"
 
 type MappedProduct = ReturnType<typeof mapMeiliHitToProduct>
 
@@ -72,38 +71,29 @@ export default function ProductGrid({ initialProducts, fetchParams, locale, colu
     setLoading(true)
     setFetchError(null)
 
-    const body: Record<string, unknown> = {
-      q: fetchParams.q || "",
-      limit: fetchParams.limit || 24,
-      offset: fetchParams.offset || 0,
-    }
-    if (fetchParams.sort) body.sort = fetchParams.sort.split(",")
-    if (fetchParams.filter) body.filter = fetchParams.filter.split(";")
-    if (fetchParams.facets) body.facets = fetchParams.facets.split(",")
+    const params = new URLSearchParams()
+    params.set("q", fetchParams.q || "")
+    params.set("limit", String(fetchParams.limit || 24))
+    params.set("offset", String(fetchParams.offset || 0))
+    params.set("locale", fetchParams.locale || locale)
+    if (fetchParams.sort) params.set("sort", fetchParams.sort)
+    if (fetchParams.filter) params.set("filter", fetchParams.filter)
+    if (fetchParams.facets) params.set("facets", fetchParams.facets)
 
-    const meiliKey = process.env.NEXT_PUBLIC_MEILI_KEY || process.env.NEXT_PUBLIC_MEILISEARCH_SEARCH_KEY || ""
-    fetch(`${process.env.NEXT_PUBLIC_MEILI_URL || "/meili"}/indexes/products/search`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        ...(meiliKey ? { Authorization: `Bearer ${meiliKey}` } : {}),
-      },
-      body: JSON.stringify(body),
+    fetch(`/api/products?${params.toString()}`, {
+      method: "GET",
       signal: controller.signal,
     })
       .then(async (r) => {
         if (!r.ok) {
-          // Surface failure instead of silently showing empty grid
-          // (audit 2026-04-20 C3). Key rotation / index wipe / 5xx must
-          // produce a user-visible error and a PM2-log entry.
-          console.error(`[ProductGrid] Meili ${r.status} ${r.statusText}`)
-          throw new Error(`Meili ${r.status}`)
+          console.error(`[ProductGrid] products API ${r.status} ${r.statusText}`)
+          throw new Error(`Products API ${r.status}`)
         }
         return r.json()
       })
       .then((data) => {
-        if (data?.hits) {
-          setProducts(data.hits.map((hit: MeiliHit) => mapMeiliHitToProduct(hit, locale)))
+        if (data?.products) {
+          setProducts(data.products)
         } else {
           setProducts([])
         }
