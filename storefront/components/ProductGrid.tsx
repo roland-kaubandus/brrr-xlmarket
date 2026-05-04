@@ -81,9 +81,13 @@ export default function ProductGrid({ initialProducts, fetchParams, locale, colu
     if (fetchParams.filter) body.filter = fetchParams.filter.split(";")
     if (fetchParams.facets) body.facets = fetchParams.facets.split(",")
 
+    const meiliKey = process.env.NEXT_PUBLIC_MEILI_KEY || process.env.NEXT_PUBLIC_MEILISEARCH_SEARCH_KEY || ""
     fetch(`${process.env.NEXT_PUBLIC_MEILI_URL || "/meili"}/indexes/products/search`, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        ...(meiliKey ? { Authorization: `Bearer ${meiliKey}` } : {}),
+      },
       body: JSON.stringify(body),
       signal: controller.signal,
     })
