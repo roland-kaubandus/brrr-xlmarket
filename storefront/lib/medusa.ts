@@ -168,7 +168,7 @@ export async function getProducts(params: {
 export const getProduct = cache(async function getProduct(handle: string): Promise<Product | null> {
   try {
     const res = await medusaFetch<ProductsResponse>(
-      `/store/products?handle=${handle}&region_id=${REGION_ID}&fields=*variants,*variants.calculated_price,*variants.options,*variants.inventory_quantity,*options,+metadata,+images,+categories`,
+      `/store/products?handle=${handle}&fields=*variants,+metadata,+images,+categories`,
       { revalidate: 3600 } // cache 5 min
     )
     return res.products[0] || null
