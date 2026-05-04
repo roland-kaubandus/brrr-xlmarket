@@ -3,6 +3,8 @@ import fs from "node:fs"
 const productGrid = fs.readFileSync(new URL("../components/ProductGrid.tsx", import.meta.url), "utf8")
 const middleware = fs.readFileSync(new URL("../middleware.ts", import.meta.url), "utf8")
 const meilisearch = fs.readFileSync(new URL("../lib/meilisearch.ts", import.meta.url), "utf8")
+const dockerfile = fs.readFileSync(new URL("../Dockerfile", import.meta.url), "utf8")
+const healthRoute = fs.readFileSync(new URL("../app/api/health/route.ts", import.meta.url), "utf8")
 
 const failures = []
 
@@ -24,6 +26,14 @@ if (!middleware.includes("meili")) {
 
 if (!meilisearch.includes("limit: options.limit ?? 24")) {
   failures.push("searchProducts must preserve limit: 0 so SSR totals/facets calls do not fetch an extra product page.")
+}
+
+if (!dockerfile.includes("http://127.0.0.1:3030/api/health")) {
+  failures.push("storefront Docker healthcheck must use the lightweight /api/health route instead of SSR /.")
+}
+
+if (!healthRoute.includes("NextResponse.json({ ok: true })")) {
+  failures.push("storefront /api/health route must return a lightweight ok response.")
 }
 
 if (failures.length > 0) {
