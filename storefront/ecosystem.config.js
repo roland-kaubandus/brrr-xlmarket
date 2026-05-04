@@ -24,7 +24,7 @@ module.exports = {
   apps: [{
     name: "xlmarket-storefront",
     script: ".next/standalone/server.js",
-    cwd: "/home/brrr/brrr-xlmarket/storefront",
+    cwd: "/home/brrr/xlmarket/storefront",
     instances: 5,
     exec_mode: "cluster",
     env: {
