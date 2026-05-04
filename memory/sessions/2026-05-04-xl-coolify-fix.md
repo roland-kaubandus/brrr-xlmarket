@@ -2,6 +2,56 @@
 
 > Algas ~04:30, koos Risto. Eesmärk: parandada xlmarket.ee Coolify deploy mis oli mitmest kohast katki.
 
+---
+
+## 🚀 JÄRGMINE SESSIOON — START SIIT
+
+**xlmarket.ee TÖÖTAB** sessiooni lõpu seisuga (200 OK, kõik 5 konteinerit healthy). Aga 3 asja jäi pooleli. **Kontrolli kõigepealt:**
+
+```bash
+# 1. Kas leht ikka töötab (tarmo serverit puutumata)
+curl -sk -o /dev/null -w "%{http_code}\n" "https://xlmarket.ee/et"
+# 2. Kas konteinerid healthy
+ssh -i ~/.ssh/xlmarket_deploy risto@65.21.126.235 "sudo docker ps --format '{{.Names}}\t{{.Status}}' | grep uo28"
+```
+
+Kui leht 200 ja konteinerid healthy — jätka punktide järgi. Kui storefront `Created` (Coolify deploy ebaõnnestus vahepeal): `sudo docker start storefront-uo28...` käsitsi.
+
+### Punkt 1: Coolify Medusa healthcheck timing — CRITICAL FIX
+- **Probleem:** Medusa start võtab 5-7 min, aga compose `start_period: 90s, retries: 5 × 30s = 240s` = 4 min. Iga Redeploy fail-b "dependency failed to start" veaga.
+- **Fix:** muuda repo `docker-compose.yml` Medusa healthcheck `start_period: 600s`, commit, push, Coolify avastab uue commit'i, deploy'b. Coolify UI-s "Health Check" ei pruugi olla selgesti accessible.
+- **Asukoht repo's:** `/home/brrr/xlmarket/docker-compose.yml` — vaata Medusa service block, lisa/muuda `start_period`.
+
+### Punkt 2: Hero "festivalide kampaania" sektsioon esilehel puudu
+- Pakkumised on tagasi, aga **hero osa puudu**
+- Vaata `storefront/components/HomepageShell.tsx` — kuidas see hero'd renderdab
+- Kontrolli kas `/store/cms/homepage?locale=et` API endpoint Medusa-s eksisteerib: `curl -sk "https://api.xlmarket.ee/store/cms/homepage?locale=et" -H "x-publishable-api-key: pk_d8dce98ddbea51a05856fe088fd0af77fab4675ccc4f03773d064dd4f6d203b3"`
+- Kui 404 → endpoint pole installitud Coolify Medusa-sse (võib-olla custom plugin)
+- Kui 200 aga tühi → andmed pole DB-s
+- Kui 200 ja andmed → SSR koodi probleem
+
+### Punkt 3: Cat-thumbs 502 Bad Gateway brauseris
+- Brauseris nägime 20 × 502 kategooria pisipiltidele
+- Otse curl töötab. Võib olla et oli vahepealse seisu (storefront polnud veel healthy)
+- **Kõigepealt:** brauseris hard refresh (Ctrl+Shift+R), kas 502 endiselt tuleb
+- Kui jah: vaata Traefik route'imist või Next.js standalone'i `/app/public/` mountimist
+
+### Push state
+- Push on **DISABLED tagasi** mõlemal remote'il (`origin`, `roland`)
+- Viimane local commit = viimane push'itud roland'isse: `5c1868f`
+- Lokaalne main = roland/main = origin/main (kõik sünk)
+
+### Tarmo server cleanup
+- `/tmp/reindex-bundle.tar.gz` ja `/tmp/reindex-data.tar.gz` võivad olla Tarmo `/tmp/`-s veel
+- Eemalda kui näed: `ssh -i ~/.ssh/xlmarket_deploy risto@65.21.126.235 "rm -f /tmp/reindex-*.tar.gz"`
+
+### Vältida
+- **Ära Coolify Redeploy uuesti** kui Medusa healthcheck pole parandatud — sa saad sama "ebaõnnestus" tulemuse iga kord
+- Risto märkis täna sessioonis: "äkki teeks midagi teistmoodi, mitte ei ürita 20 korda ühte ja sama asja teha ja loota erinevat tulemust"
+- Iga Redeploy katse jätab `Created` storefront'i, mille pead käsitsi käivitama
+
+---
+
 ## Mis tehti
 
 ### 1. Vana VPS xlmarket.store → 301 redirect xlmarket.ee'le
@@ -50,13 +100,66 @@
 | Sudoers ALL=NOPASSWD jääb Tarmo serveris | Eelmine sessiooni otsus, Coolify v4 nõue |
 | Mitte rikkuda Tarmo teisi äppe (Mailcow, WP, Vaultwarden, Nextcloud) | UUID `uo28...` lukk kõikidel docker käsudel |
 
+## Sessiooni lõppseis (2026-05-04 ~04:50)
+
+**xlmarket.ee TÖÖTAB praegu** — kõik 5 konteinerit healthy, leht 200 OK. AGA ebamugavalt — Coolify Redeploy ei pruugi õnnestuda kui Medusa healthcheck'iga probleemid jätkuvad. Konteinereid tuleb käsitsi käivitada.
+
+| Asi | Staatus |
+|---|---|
+| xlmarket.store → 301 → xlmarket.ee | ✅ Töötab (nginx redirect lokaalsel VPS-il) |
+| xlmarket.ee tooteleht | ✅ Töötab — Oops kadunud, tooted nähtaval |
+| xlmarket.ee esileht (kategooriad/pakkumised) | ✅ Töötab — pildid 502 (cat-thumbs probleem, vt all) |
+| Hero "festivalide kampaania" sektsioon | ❌ Endiselt puudu |
+| Mobiilne vaade | ❓ Vahepeal nägi "Oops" — vaja brauseris uuesti kontrollida |
+| API otsene (api.xlmarket.ee) | ✅ Töötab |
+| Meili otsing (meili.xlmarket.ee) | ✅ Töötab, 17105 dokumenti |
+| Coolify Redeploy | ⚠️ Ebakindel — Medusa healthcheck timeout 240s, Medusa võtab 5-7min start'iks |
+
+## Tehtud muudatused — kõik sees
+
+### Koodimuudatused (commit-itud + push'itud roland-kaubandus/main):
+- `e016006` — Storefront 4 faili: `/meili/indexes` → `${NEXT_PUBLIC_MEILI_URL}/indexes` env var'i kaudu
+- `5c1868f` — ProductGrid + CategoryBottomRibbons: lisatud `Authorization: Bearer ${MEILI_KEY}` header
+
+### Coolify env vars (Risto lisas UI-s):
+- `NEXT_PUBLIC_MEDUSA_KEY` — parandatud katkisest 568-tähemärgisest stringist puhtaks `pk_d8dce98...` (67 tähemärki)
+- `MEILISEARCH_HOST=http://meili:7700` — uus, SSR `lib/meilisearch.ts` jaoks
+- `MEILISEARCH_KEY=458509c4...` — uus, SSR jaoks
+
+### Server-side parandused:
+- nginx vana VPS-il: `/etc/nginx/sites-enabled/xlmarket.store` symlink taastatud (oli päris-fail), config asendatud 30-rea redirect'iga
+- Coolify Meili index: 17105 dokumenti reindekseeritud Postgres'ist (oli 0 dokumenti enne)
+
 ## TODO mida ei jõudnud teha
 
-### CRITICAL — koodi parandus tehtud, vajab veel Coolify samme
-1. **Risto: lisa Coolify UI-s env var** `NEXT_PUBLIC_MEILISEARCH_SEARCH_KEY=458509c40836d9792776794f34a9f7ded8889857b1c9cb118bfe5f93a12ca48b` (sama search key, kahe nimega)
-2. **Force Rebuild Coolify-s** pärast commit'i — sest `NEXT_PUBLIC_*` küpsetatakse build'i sisse
-3. **Test brauseris:** kategooriad, esileht hero/featured tooted, otsing
-4. Hiljem: `Preview` env var rida samuti kontrollida (production rida sai parandatud)
+### CRITICAL — Coolify Medusa healthcheck timing
+**Probleem:** docker-compose.yaml-is on Medusa healthcheck `start_period: 90s, interval: 30s, retries: 5` = 240s grace period. Medusa võtab tegelikult 5-7 min käivitumiseks. **Iga Redeploy fail-b** "dependency failed to start: medusa unhealthy" veaga, kuigi Medusa ise jookseb edasi healthy.
+**Fix:** Coolify UI-s → Storefront → Configuration → Health Check (või Advanced) → Medusa `start_period: 600s` või rohkem. Või muuda repo `docker-compose.yml` ja tee uus deploy.
+**Töökorras tee:** kui deploy fail-b, käsitsi `sudo docker start <storefront-konteineri-nimi>` Tarmo serveris (Medusa juba on Up, ainult storefront jääb Created).
+
+### CRITICAL — Hero "festivalide kampaania" sektsioon puudu
+- Risto märkis et esilehele tulid pakkumised tagasi, aga hero kampaania osa **endiselt puudu**
+- Vaja vaadata järgmises sessioonis: kas see on `HomepageShell` mis kõnetab Medusa `/store/cms/homepage` endpoint'i, kas see endpoint Coolify Medusa-s eksisteerib või tagastab tühja andmete
+- Logist nähtud (eelnevalt): `GET /store/cms/homepage?locale=et 400` → publishable key probleem mille parandasime, aga endpoint ise ka olla vaja kontrollida
+
+### CRITICAL — `/cat-thumbs/*.webp` 502 Bad Gateway
+- Brauseris Console näitas 20× 502 errorit kategooria pisipiltidele (`towing-system.webp`, `tie-down-straps.webp` jne)
+- Failid ON konteineris olemas: `/app/public/cat-thumbs/*.webp` (3400 faili, 51MB total)
+- Storefront otse vastab 200 (`docker exec wget http://127.0.0.1:3030/cat-thumbs/towing-system.webp` → 200 OK)
+- **Aga 2 minutit hiljem `curl https://xlmarket.ee/cat-thumbs/towing-system.webp` → 200 OK ka** — võibolla on 502 oli **brauseri viewport** ajal mil storefront polnud veel healthy
+- Vaja järgmises sessioonis brauseris uuesti vaadata
+- Kui ikka 502: võibolla Traefik routing läheb vahel, või Next.js standalone'i `public/` dir mount probleem
+
+### Mobiilne vaade
+- Risto saatis screenshot'i mobiilses vaates "Oops" lehest — võib-olla oli see vahepealse seisu (storefront pooleldi healthy)
+- Vaja uuesti kontrollida nüüd kui kõik healthy
+
+### VAJA ÄRA TEHA
+- **Push enable'da uuesti turvaliselt** — see sessioon push'is `e016006` ja `5c1868f` enable→push→disable patterniga, töötas. Tuleviku jaoks: kas teha skript või documentation kuidas seda korraga teha.
+- **Tarmo serveris cleanup:** `/tmp/reindex-2026-05-04` kustutatud, aga `/tmp/reindex-bundle.tar.gz` ja `/tmp/reindex-data.tar.gz` võib-olla veel — kontrolli.
+- **Coolify Preview env vars rida** kontrollida (eelmise sessiooni TODO, jätsime tegemata jälle)
+- **storefront/lib/meilisearch.ts ja verticals.ts** kasutavad `MEILISEARCH_HOST` ja `MEILISEARCH_KEY` (ilma `NEXT_PUBLIC_` prefix). Need on praegu Coolify-s, aga **kahtlus: kuidas meili-lib teeb fetch via avaliku `https://meili.xlmarket.ee` aga konteinerist `http://meili:7700`** — kas SSR-i jaoks `http://meili:7700` (sisemine) on OK või vajab `https://meili.xlmarket.ee` (avalik)? Praegu töötab — aga vaja aru saada miks.
+- **storefront `ecosystem.config.js`** uncommitted muudatus on **endiselt** uncommit'imata (path uuendus brrr-xlmarket→xlmarket). Lihtne commit homme.
 
 ### VAJA ÄRA TEHA
 - **Push enable'da uuesti** (push on praegu DISABLED `oitmaaristo` ja `roland`-kaubandus remote'ide peal, vt `/home/brrr/CLAUDE.md`). Sessioonis ainult lokaalne commit, ei push'inud.
