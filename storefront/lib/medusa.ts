@@ -165,6 +165,22 @@ export async function getProducts(params: {
   return medusaFetch<ProductsResponse>(`/store/products?${search}`, { revalidate: 3600 }) // cache 2 min
 }
 
+export async function getProductsByHandles(handles: string[]): Promise<Product[]> {
+  const uniqueHandles = [...new Set(handles.filter(Boolean))].slice(0, 100)
+  if (uniqueHandles.length === 0) return []
+
+  const search = new URLSearchParams()
+  search.set("region_id", REGION_ID)
+  search.set("fields", "*variants,*variants.calculated_price,+metadata,+images,+categories")
+  search.set("limit", String(uniqueHandles.length))
+  for (const handle of uniqueHandles) {
+    search.append("handle[]", handle)
+  }
+
+  const res = await medusaFetch<ProductsResponse>(`/store/products?${search}`, { revalidate: 300 })
+  return res.products || []
+}
+
 export const getProduct = cache(async function getProduct(handle: string): Promise<Product | null> {
   try {
     const res = await medusaFetch<ProductsResponse>(

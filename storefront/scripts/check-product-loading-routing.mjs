@@ -1,6 +1,8 @@
 import fs from "node:fs"
 
 const productGrid = fs.readFileSync(new URL("../components/ProductGrid.tsx", import.meta.url), "utf8")
+const productsApi = fs.readFileSync(new URL("../app/api/products/route.ts", import.meta.url), "utf8")
+const medusa = fs.readFileSync(new URL("../lib/medusa.ts", import.meta.url), "utf8")
 const middleware = fs.readFileSync(new URL("../middleware.ts", import.meta.url), "utf8")
 const meilisearch = fs.readFileSync(new URL("../lib/meilisearch.ts", import.meta.url), "utf8")
 const dockerfile = fs.readFileSync(new URL("../Dockerfile", import.meta.url), "utf8")
@@ -22,6 +24,18 @@ if (!middleware.includes("'/meili/'")) {
 
 if (!middleware.includes("meili")) {
   failures.push("middleware matcher must exclude meili paths.")
+}
+
+if (!middleware.includes("LEGACY_SEARCH_SEGMENT = '/search'") || !middleware.includes("SEARCH_SEGMENT = '/otsing'")) {
+  failures.push("middleware must redirect legacy /search URLs to /otsing.")
+}
+
+if (!productsApi.includes("enrichMissingPrices") || !productsApi.includes("getProductsByHandles")) {
+  failures.push("/api/products must enrich missing Meili prices from Medusa so category cards do not render zero prices.")
+}
+
+if (!medusa.includes("export async function getProductsByHandles") || !medusa.includes('search.append("handle[]"')) {
+  failures.push("Medusa client must support batch lookup by product handle for price enrichment.")
 }
 
 if (!meilisearch.includes("limit: options.limit ?? 24")) {

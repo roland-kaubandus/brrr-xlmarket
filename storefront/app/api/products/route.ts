@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server"
 import { searchProducts, escapeMeiliFilterValue, isSafeHandleToken } from "@/lib/meilisearch"
 import { mapMeiliHitToProduct } from "@/lib/map-meili-hit"
+import { getProductsByHandles } from "@/lib/medusa"
+import type { Product } from "@/lib/medusa"
 
 // Allowlist Meili sort values — prevents enumeration of internal fields via
 // `?sort=internalField:asc` (audit 2026-04-20 H8).
@@ -56,6 +58,48 @@ function parseFacets(raw: string | null): string[] | undefined {
   return out.length ? out : undefined
 }
 
+function hasUsablePrice(product: ReturnType<typeof mapMeiliHitToProduct>) {
+  const amount = product.variants?.[0]?.calculated_price?.calculated_amount
+  return typeof amount === "number" && amount > 0
+}
+
+async function enrichMissingPrices(products: ReturnType<typeof mapMeiliHitToProduct>[]): Promise<ReturnType<typeof mapMeiliHitToProduct>[]> {
+  const missingPriceHandles = products
+    .filter((product) => !hasUsablePrice(product))
+    .map((product) => product.handle)
+
+  if (missingPriceHandles.length === 0) return products
+
+  try {
+    const medusaProducts = await getProductsByHandles(missingPriceHandles)
+    const byHandle = new Map<string, Product>()
+    for (const product of medusaProducts) {
+      byHandle.set(product.handle, product)
+    }
+
+    return products.map((product) => {
+      if (hasUsablePrice(product)) return product
+      const medusaProduct = byHandle.get(product.handle)
+      const price = medusaProduct?.variants?.[0]?.calculated_price
+      if (!price || typeof price.calculated_amount !== "number" || price.calculated_amount <= 0) {
+        return product
+      }
+      return {
+        ...product,
+        variants: [
+          {
+            ...(product.variants?.[0] || { id: `${product.id}_v`, title: "Default" }),
+            calculated_price: price,
+          },
+        ],
+      }
+    })
+  } catch (err) {
+    console.error("[api/products] price enrichment failed:", err instanceof Error ? err.message : err)
+    return products
+  }
+}
+
 export async function GET(request: NextRequest) {
   const params = request.nextUrl.searchParams
   const q = params.get("q") || ""
@@ -92,8 +136,11 @@ export async function GET(request: NextRequest) {
       facets,
     })
 
+    const products = result.hits.map((hit) => mapMeiliHitToProduct(hit, locale))
+    const enrichedProducts = await enrichMissingPrices(products)
+
     return NextResponse.json({
-      products: result.hits.map((hit) => mapMeiliHitToProduct(hit, locale)),
+      products: enrichedProducts,
       totalHits: result.totalHits || result.estimatedTotalHits || 0,
       facetDistribution: result.facetDistribution,
       facetStats: result.facetStats,
