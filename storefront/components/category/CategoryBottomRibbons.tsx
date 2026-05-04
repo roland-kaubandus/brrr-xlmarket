@@ -42,7 +42,7 @@ const RIBBON_LIMIT = 12
 
 async function fetchMeili(body: Record<string, unknown>, signal: AbortSignal): Promise<MeiliHit[]> {
   try {
-    const res = await fetch("/meili/indexes/products/search", {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_MEILI_URL || "/meili"}/indexes/products/search`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body),

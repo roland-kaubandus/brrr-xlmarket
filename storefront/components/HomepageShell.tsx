@@ -62,14 +62,15 @@ type PromoItem = CmsPromo
 /* ═══════════════════════════════════════════════
    MEILI SEARCH HELPER
    ═══════════════════════════════════════════════ */
-const MEILI_KEY = process.env.NEXT_PUBLIC_MEILISEARCH_SEARCH_KEY || ""
+const MEILI_KEY = process.env.NEXT_PUBLIC_MEILI_KEY || process.env.NEXT_PUBLIC_MEILISEARCH_SEARCH_KEY || ""
+const MEILI_BASE = process.env.NEXT_PUBLIC_MEILI_URL || "/meili"
 
 async function searchMeili(
   query: string,
   options: { limit?: number; sort?: string[]; filter?: string } = {}
 ): Promise<MeiliProduct[]> {
   try {
-    const res = await fetch("/meili/indexes/products/search", {
+    const res = await fetch(`${MEILI_BASE}/indexes/products/search`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

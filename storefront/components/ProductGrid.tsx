@@ -81,7 +81,7 @@ export default function ProductGrid({ initialProducts, fetchParams, locale, colu
     if (fetchParams.filter) body.filter = fetchParams.filter.split(";")
     if (fetchParams.facets) body.facets = fetchParams.facets.split(",")
 
-    fetch("/meili/indexes/products/search", {
+    fetch(`${process.env.NEXT_PUBLIC_MEILI_URL || "/meili"}/indexes/products/search`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body),

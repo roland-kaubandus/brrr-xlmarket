@@ -3,8 +3,9 @@
 import { useEffect, useState } from "react"
 import Link from "@/components/SafeLink"
 
-const MEILI_URL = "/meili/indexes/products/search"
-const MEILI_KEY = process.env.NEXT_PUBLIC_MEILISEARCH_SEARCH_KEY || ""
+const MEILI_BASE = process.env.NEXT_PUBLIC_MEILI_URL || "/meili"
+const MEILI_URL = `${MEILI_BASE}/indexes/products/search`
+const MEILI_KEY = process.env.NEXT_PUBLIC_MEILI_KEY || process.env.NEXT_PUBLIC_MEILISEARCH_SEARCH_KEY || ""
 
 type DealProduct = {
   id: string
