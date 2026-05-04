@@ -41,10 +41,17 @@ export async function generateMetadata({ params }: Props) {
 
 export default async function ProductPage({ params }: Props) {
   const { handle, locale } = await params
-  const [product, meiliHit] = await Promise.all([
-    getProduct(handle),
-    getMeiliProductByHandle(handle),
-  ])
+  let product: Awaited<ReturnType<typeof getProduct>> = null
+  let meiliHit: Awaited<ReturnType<typeof getMeiliProductByHandle>> = null
+  try {
+    ;[product, meiliHit] = await Promise.all([
+      getProduct(handle),
+      getMeiliProductByHandle(handle),
+    ])
+  } catch (err) {
+    console.error(`[ProductPage] fetch failed for handle="${handle}":`, err instanceof Error ? err.message : err)
+    notFound()
+  }
   if (!product) notFound()
 
   const variant = product.variants?.[0]

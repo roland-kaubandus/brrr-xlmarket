@@ -3,7 +3,7 @@ import { cache } from "react"
 const MEDUSA_URL = process.env.NEXT_PUBLIC_MEDUSA_URL!
 const API_KEY = process.env.NEXT_PUBLIC_MEDUSA_KEY!
 const REGION_ID = process.env.NEXT_PUBLIC_REGION_ID!
-const FETCH_TIMEOUT_MS = 3000
+const FETCH_TIMEOUT_MS = 10000
 const MAX_CONCURRENT_FETCHES = 3
 
 // Semaphore to limit concurrent Medusa API calls
@@ -166,11 +166,16 @@ export async function getProducts(params: {
 }
 
 export const getProduct = cache(async function getProduct(handle: string): Promise<Product | null> {
-  const res = await medusaFetch<ProductsResponse>(
-    `/store/products?handle=${handle}&region_id=${REGION_ID}&fields=*variants,*variants.calculated_price,*variants.options,*variants.inventory_quantity,*options,+metadata,+images,+categories`,
-    { revalidate: 3600 } // cache 5 min
-  )
-  return res.products[0] || null
+  try {
+    const res = await medusaFetch<ProductsResponse>(
+      `/store/products?handle=${handle}&region_id=${REGION_ID}&fields=*variants,*variants.calculated_price,*variants.options,*variants.inventory_quantity,*options,+metadata,+images,+categories`,
+      { revalidate: 3600 } // cache 5 min
+    )
+    return res.products[0] || null
+  } catch (err) {
+    console.error(`[getProduct] fetch failed for handle="${handle}":`, err instanceof Error ? err.message : err)
+    return null
+  }
 })
 
 // --- Categories ---

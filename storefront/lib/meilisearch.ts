@@ -1,7 +1,7 @@
 const MEILI_HOST = process.env.MEILISEARCH_HOST || "http://127.0.0.1:7700"
 const MEILI_KEY = process.env.MEILISEARCH_KEY || ""
 const INDEX = "products"
-const FETCH_TIMEOUT_MS = 2000
+const FETCH_TIMEOUT_MS = 8000
 
 export interface MeiliTaxonomy {
   l1_slug?: string | null
