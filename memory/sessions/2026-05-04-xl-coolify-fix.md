@@ -6,7 +6,14 @@
 
 ## 🚀 JÄRGMINE SESSIOON — START SIIT
 
-**xlmarket.ee TÖÖTAB** sessiooni lõpu seisuga (200 OK, kõik 5 konteinerit healthy). Aga 3 asja jäi pooleli. **Kontrolli kõigepealt:**
+**HOIATUS:** Risto lõpetas sessiooni frustreerituna ("see saast jääb üles?"). Sait on **kohati katki** (osad tooted 200 OK, osad annavad SSR-is "Oops"). Vana VPS xlmarket.store **endiselt redirectib xlmarket.ee'le** — tähendab kõik vana VPS kasutajad näevad osaliselt katki lehte. Mina pakkusin maintenance HTML-i kui vahe-lahendust, aga Risto ei vastanud "jah" — sessioon lõpetati ilma cleanup'ita.
+
+**Esimene asi:** küsi Ristolt kas:
+- (a) maintenance HTML xlmarket.store-le (vana VPS, mu kätte) + hommikul lahendada xlmarket.ee
+- (b) rollback: eemalda nginx redirect, Coolify storefront stop, mõlemad domain'id "down"
+- (c) jätka parandamist (vt punkte all)
+
+**xlmarket.ee TÖÖTAB** sessiooni lõpu seisuga (200 OK, kõik 5 konteinerit healthy), aga **osad tooted SSR crash** (vt punkt 2.5). Aga 3 asja jäi pooleli. **Kontrolli kõigepealt:**
 
 ```bash
 # 1. Kas leht ikka töötab (tarmo serverit puutumata)
