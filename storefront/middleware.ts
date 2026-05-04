@@ -11,6 +11,8 @@ const EXCLUDED = ['/api/', '/meili/', '/_next/', '/favicon', '/images/', '/media
 // Category URL segments where slug_redirect applies.
 // Extend if new category URL prefixes are introduced.
 const REDIRECT_PREFIXES = ['/kategooriad/', '/haru/']
+const LEGACY_SEARCH_SEGMENT = '/search'
+const SEARCH_SEGMENT = '/otsing'
 
 const SLUG_REDIRECTS: Record<string, string> = (slugRedirectsData as {
   redirects: Record<string, string>
@@ -63,6 +65,22 @@ export function middleware(request: NextRequest) {
     const url = request.nextUrl.clone()
     url.pathname = rewritten
     return NextResponse.redirect(url, 301)
+  }
+
+  // Legacy English search URLs should keep working after the Estonian route rename.
+  if (pathname === LEGACY_SEARCH_SEGMENT || pathname.startsWith(`${LEGACY_SEARCH_SEGMENT}/`)) {
+    const url = request.nextUrl.clone()
+    url.pathname = `${SEARCH_SEGMENT}${pathname.slice(LEGACY_SEARCH_SEGMENT.length)}`
+    return NextResponse.redirect(url, 301)
+  }
+
+  for (const locale of locales) {
+    const localizedLegacySearch = `/${locale}${LEGACY_SEARCH_SEGMENT}`
+    if (pathname === localizedLegacySearch || pathname.startsWith(`${localizedLegacySearch}/`)) {
+      const url = request.nextUrl.clone()
+      url.pathname = `/${locale}${SEARCH_SEGMENT}${pathname.slice(localizedLegacySearch.length)}`
+      return NextResponse.redirect(url, 301)
+    }
   }
 
   // Spec F4.8 — /haru/ is a duplicate of /kategooriad/. Permanently redirect.

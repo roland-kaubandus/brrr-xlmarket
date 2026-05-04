@@ -11,6 +11,8 @@ const requiredSnippets = [
   "SKIP_MEILISEARCH_STARTUP_INDEXING=true",
   "Skipping product indexing on startup",
   "Skipping category indexing on startup",
+  "scripts/index-meilisearch.mjs",
+  "src/data/filter-profiles.yaml",
   "start-period=300s",
   "retries=5",
 ]

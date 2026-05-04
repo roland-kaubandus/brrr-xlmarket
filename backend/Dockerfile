@@ -31,6 +31,9 @@ RUN apk add --no-cache dumb-init wget && \
 
 # Copy the entire built .medusa/server/ as the runtime root
 COPY --from=builder --chown=medusa:medusa /app/.medusa/server/ ./
+COPY --from=builder --chown=medusa:medusa /app/scripts/index-meilisearch.mjs ./scripts/index-meilisearch.mjs
+COPY --from=builder --chown=medusa:medusa /app/src/filters ./src/filters
+COPY --from=builder --chown=medusa:medusa /app/src/data/filter-profiles.yaml ./src/data/filter-profiles.yaml
 
 # Install production deps using the package.json from .medusa/server
 RUN npm ci --omit=dev --no-audit --no-fund && npm cache clean --force
