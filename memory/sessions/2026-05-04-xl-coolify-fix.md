@@ -30,6 +30,15 @@ Kui leht 200 ja konteinerid healthy — jätka punktide järgi. Kui storefront `
 - Kui 200 aga tühi → andmed pole DB-s
 - Kui 200 ja andmed → SSR koodi probleem
 
+### Punkt 2.5: Mõned tooted annavad "Oops" (SSR error)
+- Risto leidis **konkreetse toote** mis annab "Oops" — `vevor-pottery-wheel-for-adults-36-and-28-cm-turntables-450w-electric-t-pasipjqistmsc69yi0u1v2`
+- Storefront API `/api/product/[handle]` → **404 "Not found"** sellele
+- Medusa otse `/store/products?handle=...` → **200 OK** (toode on DB-s olemas)
+- Console: "Error: An error occurred in the Server Components render"
+- **Tähendab:** mingi konkreetse toote SSR koodis crashib (mitte kõik tooted)
+- Hüpotees: toote metadata vormingus midagi katki — null väärtus, ET tõlke struktuur, kategooriad puudu
+- **Test:** vaata `storefront/app/[locale]/toode/[handle]/page.tsx` ja `app/api/product/[handle]/route.ts` koodi — kuidas need tooted renderdavad. Lisaks: võrdle töötava (`12v-24v-400w-wind-turbine`) ja katkise (`vevor-pottery-wheel`) toote raw metadata Medusa API kaudu — leiad erinevuse
+
 ### Punkt 3: Cat-thumbs 502 Bad Gateway brauseris
 - Brauseris nägime 20 × 502 kategooria pisipiltidele
 - Otse curl töötab. Võib olla et oli vahepealse seisu (storefront polnud veel healthy)
