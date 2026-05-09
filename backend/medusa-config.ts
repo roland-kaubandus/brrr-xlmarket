@@ -16,7 +16,7 @@ export default defineConfig({
     backendUrl: process.env.MEDUSA_BACKEND_URL || "https://xlmarket.ee",
     vite: () => ({
       server: {
-        allowedHosts: ["xlmarket.ee", "localhost", "100.93.186.17"],
+        allowedHosts: ["xlmarket.ee", "dev.xlmarket.ee", "localhost"],
       },
     }),
   },
