@@ -14,7 +14,7 @@ export default function JsonLdCategory({ name, description, url, productCount }:
     provider: {
       "@type": "Organization",
       name: "XL Market",
-      url: "https://xlmarket.store",
+      url: "https://xlmarket.ee",
     },
   }
 

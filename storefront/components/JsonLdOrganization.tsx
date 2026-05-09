@@ -4,8 +4,8 @@ export default function JsonLdOrganization() {
     "@type": "Organization",
     name: "XLMARKET",
     legalName: "Roland Kaubandus OÜ",
-    url: "https://xlmarket.store",
-    email: "info@xlmarket.store",
+    url: "https://xlmarket.ee",
+    email: "info@xlmarket.ee",
     sameAs: [],
   }
 

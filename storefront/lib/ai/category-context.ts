@@ -2,7 +2,7 @@ import { BRANCHES } from '../branches'
 
 export function buildCategoryContext(): string {
   const header = [
-    'POOD: xlmarket.store — Professional tools & equipment, half the price',
+    'POOD: xlmarket.ee — Professional tools & equipment, half the price',
     '',
     'TARNE: 4.99€, tasuta alates 99€',
     'TAGASTUS: 30 päeva',

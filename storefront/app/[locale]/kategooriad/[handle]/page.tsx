@@ -259,15 +259,15 @@ export default async function CategoryPage({ params, searchParams }: Props) {
     <div className="bg-white">
       <JsonLdCategory
         name={displayName}
-        url={`https://xlmarket.store${categoryPath(locale as "et" | "en", handle)}`}
+        url={`https://xlmarket.ee${categoryPath(locale as "et" | "en", handle)}`}
         productCount={totalCount}
       />
       <JsonLdBreadcrumb
         items={[
-          { name: "Home", url: `https://xlmarket.store/${locale}` },
+          { name: "Home", url: `https://xlmarket.ee/${locale}` },
           ...trail.map((t) => ({
             name: t.name,
-            url: `https://xlmarket.store${categoryPath(locale as "et" | "en", t.handle)}`,
+            url: `https://xlmarket.ee${categoryPath(locale as "et" | "en", t.handle)}`,
           })),
         ]}
       />

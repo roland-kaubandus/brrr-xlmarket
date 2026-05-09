@@ -8,13 +8,13 @@ export default function JsonLdWebsite() {
     "@context": "https://schema.org",
     "@type": "WebSite",
     name: "XLMARKET",
-    url: "https://xlmarket.store",
+    url: "https://xlmarket.ee",
     inLanguage: ["et", "en"],
     potentialAction: {
       "@type": "SearchAction",
       target: {
         "@type": "EntryPoint",
-        urlTemplate: "https://xlmarket.store/et/otsing?q={search_term_string}",
+        urlTemplate: "https://xlmarket.ee/et/otsing?q={search_term_string}",
       },
       "query-input": "required name=search_term_string",
     },

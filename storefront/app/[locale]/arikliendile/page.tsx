@@ -212,10 +212,10 @@ export default async function AriklendileePage({ params }: { params: Promise<{ l
               </p>
               <div className="flex flex-col gap-[10px]">
                 <a
-                  href="mailto:b2b@xlmarket.store?subject=B2B quote request"
+                  href="mailto:b2b@xlmarket.ee?subject=B2B quote request"
                   className="inline-flex items-center gap-[10px] text-[14px] text-white/90 hover:text-[#D97706] transition-colors font-[family-name:var(--font-dm-sans)]"
                 >
-                  <Mail size={15} strokeWidth={1.8} /> b2b@xlmarket.store
+                  <Mail size={15} strokeWidth={1.8} /> b2b@xlmarket.ee
                 </a>
                 <a
                   href="/sample-b2b-agreement.pdf"
@@ -228,7 +228,7 @@ export default async function AriklendileePage({ params }: { params: Promise<{ l
 
             <form
               className="lg:col-span-3 bg-white p-[24px] sm:p-[32px] flex flex-col gap-[14px]"
-              action="mailto:b2b@xlmarket.store"
+              action="mailto:b2b@xlmarket.ee"
               method="post"
               encType="text/plain"
             >

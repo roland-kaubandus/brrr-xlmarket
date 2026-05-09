@@ -27,7 +27,7 @@ export default function JsonLdProduct({ product, price, locale = "en" }: Props) 
     "@context": "https://schema.org",
     "@type": "Product",
     name: product.title,
-    url: `https://xlmarket.store/${locale}/toode/${product.handle}`,
+    url: `https://xlmarket.ee/${locale}/toode/${product.handle}`,
     description: product.description
       ? product.description.replace(/<[^>]*>/g, "").substring(0, 500)
       : product.title,
@@ -49,7 +49,7 @@ export default function JsonLdProduct({ product, price, locale = "en" }: Props) 
       priceCurrency: price.currency_code?.toUpperCase() || "EUR",
       availability: "https://schema.org/InStock",
       itemCondition: "https://schema.org/NewCondition",
-      url: `https://xlmarket.store/${locale}/toode/${product.handle}`,
+      url: `https://xlmarket.ee/${locale}/toode/${product.handle}`,
       seller: {
         "@type": "Organization",
         name: "XLMARKET",

@@ -14,10 +14,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     title: "XLMarket — Professional Tools, Half the Price",
     description: "Over 16,000 products: tools, equipment, kitchen, automotive. Affordable prices, 2-year warranty, delivery across Europe.",
     alternates: {
-      canonical: `https://xlmarket.store/${locale}`,
+      canonical: `https://xlmarket.ee/${locale}`,
       languages: {
-        et: "https://xlmarket.store/et",
-        en: "https://xlmarket.store/en",
+        et: "https://xlmarket.ee/et",
+        en: "https://xlmarket.ee/en",
       },
     },
   }

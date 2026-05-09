@@ -13,10 +13,10 @@ export default defineConfig({
     },
   },
   admin: {
-    backendUrl: process.env.MEDUSA_BACKEND_URL || "https://xlmarket.store",
+    backendUrl: process.env.MEDUSA_BACKEND_URL || "https://xlmarket.ee",
     vite: () => ({
       server: {
-        allowedHosts: ["xlmarket.store", "localhost", "100.93.186.17"],
+        allowedHosts: ["xlmarket.ee", "localhost", "100.93.186.17"],
       },
     }),
   },

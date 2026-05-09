@@ -71,30 +71,30 @@ export default async function VerticalPage(
     "@type": "CollectionPage",
     name: loc.name,
     description: loc.description,
-    url: `https://xlmarket.store/${locale}/alustajale/${vertical}`,
+    url: `https://xlmarket.ee/${locale}/alustajale/${vertical}`,
     mainEntity: {
       "@type": "ItemList",
       numberOfItems: products.length,
       itemListElement: products.slice(0, 12).map((p, i) => ({
         "@type": "ListItem",
         position: i + 1,
-        url: `https://xlmarket.store/${locale}/toode/${p.handle}`,
+        url: `https://xlmarket.ee/${locale}/toode/${p.handle}`,
         name: p.title,
       })),
     },
     provider: {
       "@type": "Organization",
       name: "XLMARKET",
-      url: "https://xlmarket.store",
+      url: "https://xlmarket.ee",
     },
   }
   const breadcrumbJsonLd = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: `https://xlmarket.store/${locale}` },
-      { "@type": "ListItem", position: 2, name: "Getting Started", item: `https://xlmarket.store/${locale}/alustajale` },
-      { "@type": "ListItem", position: 3, name: loc.name, item: `https://xlmarket.store/${locale}/alustajale/${vertical}` },
+      { "@type": "ListItem", position: 1, name: "Home", item: `https://xlmarket.ee/${locale}` },
+      { "@type": "ListItem", position: 2, name: "Getting Started", item: `https://xlmarket.ee/${locale}/alustajale` },
+      { "@type": "ListItem", position: 3, name: loc.name, item: `https://xlmarket.ee/${locale}/alustajale/${vertical}` },
     ],
   }
 
@@ -378,7 +378,7 @@ export default async function VerticalPage(
               Request Quote <ArrowRight size={15} strokeWidth={2.5} />
             </Link>
             <a
-              href="mailto:info@xlmarket.store"
+              href="mailto:info@xlmarket.ee"
               className="inline-flex items-center gap-[8px] px-[22px] py-[13px] border border-white/25 text-white/90 text-[14px] font-[600] hover:border-white/50 transition-colors font-[family-name:var(--font-dm-sans)]"
             >
               <MessageSquare size={15} strokeWidth={2.2} /> Send Email

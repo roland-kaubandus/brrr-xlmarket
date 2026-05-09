@@ -68,16 +68,16 @@ export default async function ProductPage({ params }: Props) {
   const medusaHandles = (product.categories || []).map((c) => c.handle).filter(Boolean) as string[]
   const canonicalNode = firstKnownHandle([...taxonomyAncestors, ...meiliHandles, ...medusaHandles])
   const breadcrumbItems = [
-    { name: "Home", url: `https://xlmarket.store/${locale}` },
+    { name: "Home", url: `https://xlmarket.ee/${locale}` },
     ...(canonicalNode
       ? getBreadcrumbTrail(canonicalNode.handle).map((item) => ({
           name: item.name,
-          url: `https://xlmarket.store${categoryPath(locale as "et" | "en", item.handle)}`,
+          url: `https://xlmarket.ee${categoryPath(locale as "et" | "en", item.handle)}`,
         }))
       : []),
     {
       name: product.title,
-      url: `https://xlmarket.store/${locale}/toode/${product.handle}`,
+      url: `https://xlmarket.ee/${locale}/toode/${product.handle}`,
     },
   ]
 

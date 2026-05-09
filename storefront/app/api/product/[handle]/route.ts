@@ -398,10 +398,10 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
         specs: Object.fromEntries(specs.map(s => [s.key, s.value])),
       },
       breadcrumbItems: [
-        { name: "Home", url: `https://xlmarket.store/${locale}` },
+        { name: "Home", url: `https://xlmarket.ee/${locale}` },
         ...productTypeTrail.map((seg) => ({
           name: seg.name,
-          url: `https://xlmarket.store${categoryPath(locale as "et" | "en", seg.handle)}`,
+          url: `https://xlmarket.ee${categoryPath(locale as "et" | "en", seg.handle)}`,
         })),
       ],
     }, {

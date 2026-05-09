@@ -33,17 +33,17 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       locale: "en_US",
       type: "website",
       siteName: "XL Market",
-      url: "https://xlmarket.store",
-      images: [{ url: "https://xlmarket.store/og-image.png", width: 1200, height: 630, alt: "XL Market" }],
+      url: "https://xlmarket.ee",
+      images: [{ url: "https://xlmarket.ee/og-image.png", width: 1200, height: 630, alt: "XL Market" }],
     },
     alternates: {
-      canonical: `https://xlmarket.store/${locale}`,
+      canonical: `https://xlmarket.ee/${locale}`,
       languages: {
-        et: "https://xlmarket.store/et",
-        en: "https://xlmarket.store/en",
+        et: "https://xlmarket.ee/et",
+        en: "https://xlmarket.ee/en",
       },
     },
-    metadataBase: new URL("https://xlmarket.store"),
+    metadataBase: new URL("https://xlmarket.ee"),
     icons: { icon: "/favicon.svg" },
     verification: {
       google: "7CAn8vXu2SXJONPYZqctcHXWLFfRulKeyXy5",

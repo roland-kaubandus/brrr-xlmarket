@@ -4,7 +4,7 @@ import { allVerticalSlugs } from "@/lib/verticals"
 export const revalidate = 3600 // regenerate sitemap at most every 1 hour
 export const dynamic = "force-static"
 
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://xlmarket.store"
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://xlmarket.ee"
 const MEDUSA_URL = process.env.NEXT_PUBLIC_MEDUSA_URL!
 const API_KEY = process.env.NEXT_PUBLIC_MEDUSA_KEY!
 const REGION_ID = process.env.NEXT_PUBLIC_REGION_ID!
