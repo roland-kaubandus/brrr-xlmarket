@@ -102,7 +102,10 @@ services:
       interval: 30s
       timeout: 10s
       retries: 5
-      start_period: 300s
+      # Medusa cold-boot takes ~373s on this catalog (observed: duration 373532ms).
+      # start_period must exceed that or Coolify marks the deploy failed ("medusa unhealthy")
+      # and leaves storefront in Created. 600s gives a safe margin.
+      start_period: 600s
 
   storefront:
     build:
