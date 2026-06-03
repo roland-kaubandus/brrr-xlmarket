@@ -21,7 +21,7 @@ const transporter = nodemailer.createTransport({
 
 const EMAIL_FROM = process.env.EMAIL_FROM || "info@xlmarket.eu"
 const EMAIL_ADMIN = process.env.EMAIL_ADMIN || "tarmo@xlmarket.eu"
-const EMAIL_INVOICE = process.env.EMAIL_INVOICE || "risto.oitmaa@gmail.com"
+const EMAIL_INVOICE = process.env.EMAIL_INVOICE || "tarmo@naissaar.eu"
 const STORE_URL = process.env.STORE_URL || "https://xlmarket.eu"
 
 async function sendEmail({ to, subject, html }) {
