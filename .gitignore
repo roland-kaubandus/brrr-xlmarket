@@ -17,8 +17,13 @@ data/feeds/sync-reports/
 backend/data/feeds/*.xlsx
 backend/data/feeds/vevor-feed-cache.json
 
-# Generated reports (bootstraps, audits, pipeline outputs — can be large)
-reports/
+# Reports: track markdown work-reports (dev-workflow), ignore large generated outputs
+reports/*.csv
+reports/image-gen-*/
+reports/spu-split-*
+
+# Backups — large DB/meili dumps, NEVER in git (HANDBOOK §5)
+archive/
 
 # Category-icon scraper runtime state (regenerated per run)
 data/category-icons/retry-queue.json
