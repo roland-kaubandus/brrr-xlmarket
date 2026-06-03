@@ -27,7 +27,7 @@ Medusa 2.13.5 (backend, port 9000) · Next.js 16 storefront (3030) · PostgreSQL
 - **Coolify resource:** `brrr-xlmarket-staging`, UUID `k33g510dw19uyjau3ca7dqpi`, projekt xlmarket, branch `main`, server localhost
 - **Isoleeritud:** oma volumes (`k33g510..._xlmarket-{pgdata,meili,redis}`) — EI jaga prod andmeid
 - **Kaitsed:** `EMAIL_DISABLED=true` (prod-koopia andmed → ei saada maile), noindex robots (base URL sisaldab "staging"), Montonio sandbox
-- **Secrets:** uued POSTGRES/JWT/COOKIE; meili/publishable võtmed prod'iga samad (ühilduvus). Kõik → Vaultwarden
+- **Secrets:** uued POSTGRES/JWT/COOKIE; MEILI_MASTER_KEY + publishable key prod'iga samad. **NB: NEXT_PUBLIC_MEILI_KEY = staging meili OMA search-key** (`7714aed0...`), MITTE prod'i oma — meili default-võtmed on per-instance juhuslikud (mitte master'ist tuletatud). Kõik → Vaultwarden
 - **Refresh:** `scripts/staging-refresh.sh` (prod pg → staging + meili reindex). AINULT prod→staging
 - **Promote-flow (HANDBOOK §7):** arenda → staging → verify → backup prod → main → prod
 - **Coolify API:** token `claude-api` (Root Team, abilities *), instance API lubatud. Token → Vaultwarden. Võimaldab CLI deploy/halduse
