@@ -15,10 +15,22 @@ Medusa 2.13.5 (backend, port 9000) · Next.js 16 storefront (3030) · PostgreSQL
 ## Live URL-id + seis
 | URL | Mis | Seis |
 |---|---|---|
-| https://xlmarket.ee | storefront | ✅ 200 |
+| https://xlmarket.ee | storefront (PROD) | ✅ 200 |
 | https://api.xlmarket.ee/app | Medusa admin (Coolify-native) | ✅ 200 |
 | https://admin.xlmarket.ee/app | Medusa admin (manuaalne Traefik yaml → `medusa` alias) | ✅ 200 |
 | https://meili.xlmarket.ee | Meili | ✅ |
+| https://staging.xlmarket.ee | storefront (STAGING) | ✅ noindex, email OFF |
+| https://staging-api.xlmarket.ee/app | Medusa admin (staging) | ✅ |
+| https://staging-meili.xlmarket.ee | Meili (staging) | ✅ |
+
+## Staging keskkond (loodud 2026-06-03)
+- **Coolify resource:** `brrr-xlmarket-staging`, UUID `k33g510dw19uyjau3ca7dqpi`, projekt xlmarket, branch `main`, server localhost
+- **Isoleeritud:** oma volumes (`k33g510..._xlmarket-{pgdata,meili,redis}`) — EI jaga prod andmeid
+- **Kaitsed:** `EMAIL_DISABLED=true` (prod-koopia andmed → ei saada maile), noindex robots (base URL sisaldab "staging"), Montonio sandbox
+- **Secrets:** uued POSTGRES/JWT/COOKIE; meili/publishable võtmed prod'iga samad (ühilduvus). Kõik → Vaultwarden
+- **Refresh:** `scripts/staging-refresh.sh` (prod pg → staging + meili reindex). AINULT prod→staging
+- **Promote-flow (HANDBOOK §7):** arenda → staging → verify → backup prod → main → prod
+- **Coolify API:** token `claude-api` (Root Team, abilities *), instance API lubatud. Token → Vaultwarden. Võimaldab CLI deploy/halduse
 
 ## Konteinerid (kõik Coolify-managed, healthy)
 `storefront/medusa/db/redis/meili -uo28ovobnflauslqjgxeohl0-144011*`. Medusa cold-boot ~373s (healthcheck start_period 600s). Medusa on lisaks `mailcowdockerized_mailcow-network`'is (email relay).
