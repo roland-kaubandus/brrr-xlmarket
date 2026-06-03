@@ -54,6 +54,31 @@ docker rm -f medusa-xlmarket-fixed     # orvuks jäänud käsitsi konteiner
 # medusa-admin.yaml: jäta alles (osutab nüüd 'medusa' aliasele) VÕI eemalda kui native domeen lisatud
 ```
 
+## SAMM 5 — Email aktiveerub Variant 2 deploy'ga (relay JUBA seadistatud)
+Email-relay on tõestatud töötavana (2026-06-03 testsaatmine `status=sent`). Redeploy aktiveerib
+selle päris-appis (uus image email.ts tls-fixiga + SMTP env). Eeltöö juba tehtud:
+- ✅ Mailcow `sender_acl`: `server@xlrent.eu` → saata kui `info@xlmarket.ee` (live, püsiv)
+- ✅ `email.ts/.js`: `tls.rejectUnauthorized=false` (self-signed relay)
+- ✅ `docker-compose.yml`: SMTP/EMAIL env + medusa liidetud `mailcow` võrku
+
+**Coolify UI env (sea ENNE redeploy't, SMTP_PASSWORD = Is Secret):**
+```
+SMTP_HOST=mail.xlrent.eu   SMTP_PORT=587   SMTP_USER=server@xlrent.eu
+SMTP_PASSWORD=AinultRahu6029
+EMAIL_FROM=info@xlmarket.ee   EMAIL_ADMIN=tarmo@naissaar.eu   EMAIL_INVOICE=tarmo@naissaar.eu
+```
+**Post-deploy verify:**
+```bash
+# medusa peab olema mailcow-võrgus (kui Coolify external-net strip'is):
+docker network connect mailcowdockerized_mailcow-network <uus-medusa-konteiner>
+# test: tee tellimus VÕI docker exec medusa node smtp-test ; vaata postfix log status=sent
+```
+
+**DNS (Elkdata / veebimajutus.ee paneel — SINA):** SPF lisa `a:mail.xlrent.eu`:
+`v=spf1 a mx include:mail.spf.elkdata.ee a:mail.xlrent.eu ~all`
+
+**DKIM:** hilisem (pärast Variant 2) — ettevaatlik mailcow rspamd töö, xlmarket.ee MX on Elkdata's (mitte lisada täisdomeenina).
+
 ---
 
 ## Rollback (kui deploy kukub)
@@ -63,6 +88,7 @@ docker rm -f medusa-xlmarket-fixed     # orvuks jäänud käsitsi konteiner
 - Meili tühi → reindex: `backend/scripts/index-meilisearch.mjs` (~150s)
 
 ## Lahtised (mitte-blokeerivad)
+- DKIM xlmarket.ee jaoks (pärast Variant 2)
 - Montonio makse stub (`backend/medusa-config.ts:46`)
 - Admin basic-auth puudub (`storefront/app/xl-admin/layout.tsx:9`)
 - Tõlked: ~10 646 toodet ilma ET
