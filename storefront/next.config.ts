@@ -8,7 +8,7 @@ import type { NextConfig } from "next"
 const nextConfig: NextConfig = {
   output: "standalone",
   // Allow Tailscale + public-IP origins for `next dev` HMR (no effect in prod).
-  allowedDevOrigins: ["100.93.186.17", "65.109.86.254", "xlmarket.ee"],
+  allowedDevOrigins: ["65.109.86.254", "xlmarket.ee"],
   images: {
     unoptimized: true,
     remotePatterns: [
@@ -16,12 +16,6 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "xlmarket.ee",
         pathname: "/media/**",
-      },
-      {
-        protocol: "http",
-        hostname: "100.93.186.17",
-        port: "8091",
-        pathname: "/**",
       },
       {
         protocol: "https",

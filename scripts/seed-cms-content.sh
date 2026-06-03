@@ -170,11 +170,11 @@ VALUES ('global', 'global', 'en', 'Global Settings', 1, \$\$
   "company_name": "Roland Kaubandus OÜ",
   "reg_number": "",
   "vat_number": "",
-  "email_info": "info@xlmarket.eu",
-  "email_b2b": "b2b@xlmarket.eu",
+  "email_info": "info@xlmarket.ee",
+  "email_b2b": "b2b@xlmarket.ee",
   "phone": "",
   "address": "",
-  "domain": "xlmarket.store",
+  "domain": "xlmarket.ee",
   "slogan": "Professional Tools, Half the Price"
 }
 \$\$::jsonb, NOW(), 'seed')

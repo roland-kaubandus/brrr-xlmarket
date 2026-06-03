@@ -13,12 +13,12 @@
 #   MEILISEARCH_API_KEY     Same value as MEILI_MASTER_KEY (legacy alias used by Medusa plugin)
 #   NEXT_PUBLIC_MEDUSA_KEY  pk_... (created via Medusa Admin -> Settings -> Publishable API Keys)
 #   NEXT_PUBLIC_REGION_ID   reg_... (Medusa region)
-#   NEXT_PUBLIC_BASE_URL    https://xlmarket.eu (or staging URL)
-#   NEXT_PUBLIC_MEILI_URL   https://meili.xlmarket.eu  (Coolify-exposed Meili domain)
+#   NEXT_PUBLIC_BASE_URL    https://xlmarket.ee (or staging URL)
+#   NEXT_PUBLIC_MEILI_URL   https://meili.xlmarket.ee  (Coolify-exposed Meili domain)
 #   NEXT_PUBLIC_MEILI_KEY   Search-only key (generate after first Meili boot via /keys API)
-#   STORE_CORS              https://xlmarket.eu
-#   ADMIN_CORS              https://xlmarket.eu,https://admin.xlmarket.eu
-#   AUTH_CORS               https://xlmarket.eu
+#   STORE_CORS              https://xlmarket.ee
+#   ADMIN_CORS              https://xlmarket.ee,https://admin.xlmarket.ee
+#   AUTH_CORS               https://xlmarket.ee
 
 services:
   db:
@@ -124,6 +124,11 @@ services:
       NEXT_PUBLIC_BASE_URL: ${NEXT_PUBLIC_BASE_URL}
       NEXT_PUBLIC_MEILI_URL: ${NEXT_PUBLIC_MEILI_URL}
       NEXT_PUBLIC_MEILI_KEY: ${NEXT_PUBLIC_MEILI_KEY}
+      # Server-side (SSR) Meili calls go over the internal Docker network.
+      # MEILISEARCH_HOST is read by lib/meilisearch.ts, lib/verticals.ts, api/muuja.
+      # MEILI_INTERNAL_URL is read by the xl-admin categorization-queue page.
+      MEILISEARCH_HOST: http://meili:7700
+      MEILI_INTERNAL_URL: http://meili:7700
       NEXT_PUBLIC_DEFAULT_REGION: ee
     depends_on:
       medusa:

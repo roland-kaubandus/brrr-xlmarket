@@ -19,10 +19,10 @@ const transporter = nodemailer.createTransport({
     : {}),
 })
 
-const EMAIL_FROM = process.env.EMAIL_FROM || "info@xlmarket.eu"
-const EMAIL_ADMIN = process.env.EMAIL_ADMIN || "tarmo@xlmarket.eu"
+const EMAIL_FROM = process.env.EMAIL_FROM || "info@xlmarket.ee"
+const EMAIL_ADMIN = process.env.EMAIL_ADMIN || "tarmo@xlmarket.ee"
 const EMAIL_INVOICE = process.env.EMAIL_INVOICE || "risto.oitmaa@gmail.com"
-const STORE_URL = process.env.STORE_URL || "https://xlmarket.eu"
+const STORE_URL = process.env.STORE_URL || "https://xlmarket.ee"
 
 interface SendEmailOptions {
   to: string
@@ -66,8 +66,8 @@ function emailWrapper(content: string): string {
     ${content}
   </div>
   <div style="padding: 20px 30px; background: #f9fafb; border-top: 1px solid #e5e7eb; text-align: center; font-size: 12px; color: #9ca3af;">
-    <p>Roland Kaubandus O&Uuml; | <a href="mailto:info@xlmarket.eu" style="color: #d97706;">info@xlmarket.eu</a></p>
-    <p><a href="${STORE_URL}" style="color: #d97706;">xlmarket.eu</a></p>
+    <p>Roland Kaubandus O&Uuml; | <a href="mailto:info@xlmarket.ee" style="color: #d97706;">info@xlmarket.ee</a></p>
+    <p><a href="${STORE_URL}" style="color: #d97706;">xlmarket.ee</a></p>
   </div>
 </div>
 </body>
@@ -142,7 +142,7 @@ export async function sendOrderConfirmation(order: OrderData) {
         </div>`
         : ""
     }
-    <p style="color: #6b7280; margin-top: 25px; font-size: 13px;">K&uuml;simuste korral kirjutage <a href="mailto:info@xlmarket.eu" style="color: #d97706;">info@xlmarket.eu</a></p>
+    <p style="color: #6b7280; margin-top: 25px; font-size: 13px;">K&uuml;simuste korral kirjutage <a href="mailto:info@xlmarket.ee" style="color: #d97706;">info@xlmarket.ee</a></p>
   `)
 
   await sendEmail({
@@ -208,7 +208,7 @@ export async function sendInvoice(order: OrderData) {
         </div>`
         : ""
     }
-    <p style="color: #6b7280; margin-top: 25px; font-size: 13px;">K&uuml;simuste korral kirjutage <a href="mailto:info@xlmarket.eu" style="color: #d97706;">info@xlmarket.eu</a></p>
+    <p style="color: #6b7280; margin-top: 25px; font-size: 13px;">K&uuml;simuste korral kirjutage <a href="mailto:info@xlmarket.ee" style="color: #d97706;">info@xlmarket.ee</a></p>
   `)
 
   await sendEmail({
@@ -226,7 +226,7 @@ export async function sendShippingConfirmation(order: OrderData, trackingNumber?
     <h1 style="font-size: 22px; color: #111827; margin: 0 0 20px;">Tellimus saadetud</h1>
     <p style="color: #4b5563; margin: 0 0 20px;">Tere, ${escapeHtml(name)}! Teie tellimus #${orderNum} on teele pandud.</p>
     ${trackingNumber ? `<div style="background: #f9fafb; padding: 15px; margin-bottom: 20px;"><p style="margin: 0;">J&auml;lgimisnumber: <strong>${escapeHtml(trackingNumber)}</strong></p></div>` : ""}
-    <p style="color: #6b7280; font-size: 13px;">K&uuml;simuste korral kirjutage <a href="mailto:info@xlmarket.eu" style="color: #d97706;">info@xlmarket.eu</a></p>
+    <p style="color: #6b7280; font-size: 13px;">K&uuml;simuste korral kirjutage <a href="mailto:info@xlmarket.ee" style="color: #d97706;">info@xlmarket.ee</a></p>
   `)
 
   await sendEmail({
