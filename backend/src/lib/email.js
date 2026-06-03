@@ -26,6 +26,10 @@ const EMAIL_INVOICE = process.env.EMAIL_INVOICE || "tarmo@naissaar.eu"
 const STORE_URL = process.env.STORE_URL || "https://xlmarket.eu"
 
 async function sendEmail({ to, subject, html }) {
+  if (process.env.EMAIL_DISABLED === "true") {
+    console.log(`[EMAIL] disabled (EMAIL_DISABLED=true) — skip send to ${to}: ${subject}`)
+    return
+  }
   await transporter.sendMail({
     from: `"XLMARKET" <${EMAIL_FROM}>`,
     to,

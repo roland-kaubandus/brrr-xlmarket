@@ -34,6 +34,12 @@ interface SendEmailOptions {
 }
 
 export async function sendEmail({ to, subject, html }: SendEmailOptions) {
+  // Staging kill-switch: EMAIL_DISABLED=true → ära saada ühtegi maili.
+  // Staging DB on prod-koopia (päris klientide aadressid) → MITTE saata. (HANDBOOK §7)
+  if (process.env.EMAIL_DISABLED === "true") {
+    console.log(`[EMAIL] disabled (EMAIL_DISABLED=true) — skip send to ${to}: ${subject}`)
+    return
+  }
   await transporter.sendMail({
     from: `"XLMARKET" <${EMAIL_FROM}>`,
     to,
