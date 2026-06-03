@@ -88,6 +88,21 @@ services:
       ADMIN_CORS: ${ADMIN_CORS}
       AUTH_CORS: ${AUTH_CORS}
       MEDUSA_ADMIN_PASS: ${MEDUSA_ADMIN_PASS:-}
+      # ---- Email (SMTP relay via local Mailcow smarthost) ----
+      # Requires medusa to be on the mailcow network (see networks: below).
+      # Mailcow relays out; sender info@xlmarket.ee is whitelisted via sender_acl
+      # (server@xlrent.eu allowed to send as info@xlmarket.ee).
+      SMTP_HOST: ${SMTP_HOST:-mail.xlrent.eu}
+      SMTP_PORT: ${SMTP_PORT:-587}
+      SMTP_USER: ${SMTP_USER:-server@xlrent.eu}
+      SMTP_PASSWORD: ${SMTP_PASSWORD}
+      EMAIL_FROM: ${EMAIL_FROM:-info@xlmarket.ee}
+      EMAIL_ADMIN: ${EMAIL_ADMIN:-tarmo@naissaar.eu}
+      EMAIL_INVOICE: ${EMAIL_INVOICE:-tarmo@naissaar.eu}
+      STORE_URL: ${NEXT_PUBLIC_BASE_URL:-https://xlmarket.ee}
+    networks:
+      - default
+      - mailcow
     depends_on:
       db:
         condition: service_healthy
@@ -149,3 +164,12 @@ volumes:
   xlmarket_pgdata:
   xlmarket_redis:
   xlmarket_meili:
+
+networks:
+  default:
+  # Mailcow's network — medusa joins it to reach the SMTP relay (mail.xlrent.eu).
+  # NB: on Coolify redeploy verify medusa is attached; if Coolify strips external
+  # networks, run: docker network connect mailcowdockerized_mailcow-network <medusa-container>
+  mailcow:
+    external: true
+    name: mailcowdockerized_mailcow-network
