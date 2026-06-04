@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-29T18:07:49.956Z",
+  "generated_at": "2026-06-04T18:03:40.547Z",
   "nodes": {
     "horeca-food-service": {
       "handle": "horeca-food-service",
@@ -25,7 +25,6 @@
         "refrigeration-and-ice-equipment",
         "beverage-equipment",
         "kitchen-cabinets",
-        "storage-and-organization",
         "kitchen-faucets",
         "restaurant-faucets-and-plumbing-and-sinks",
         "cooktops",
@@ -144,8 +143,7 @@
       "level": 4,
       "parent_handle": "dessert-makers",
       "child_handles": [
-        "commercial-soft-ice-cream-machine",
-        "ice-cream-machine"
+        "commercial-soft-ice-cream-machine"
       ],
       "image_path": "/cat-thumbs/ice-cream-makers.webp",
       "image_source": "direct"
@@ -159,63 +157,6 @@
       "child_handles": [],
       "image_path": "/cat-thumbs/commercial-soft-ice-cream-machine.webp",
       "image_source": "direct"
-    },
-    "ice-cream-machine": {
-      "handle": "ice-cream-machine",
-      "name_en": "Ice Cream Machine",
-      "name_et": "Jäätisemasinad",
-      "level": 5,
-      "parent_handle": "ice-cream-makers",
-      "child_handles": [
-        "household-compressor-ice-cream-maker",
-        "commercial-ice-cream-machine",
-        "household-freezing-ice-cream-maker"
-      ],
-      "image_path": "/cat-thumbs/commercial-soft-ice-cream-machine.webp",
-      "image_source": "inherited",
-      "image_donor": "commercial-ice-cream-machine"
-    },
-    "household-compressor-ice-cream-maker": {
-      "handle": "household-compressor-ice-cream-maker",
-      "name_en": "Household Compressor Ice Cream Maker",
-      "name_et": "Kompressoriga kodujäätisemasinad",
-      "level": 6,
-      "parent_handle": "ice-cream-machine",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "commercial-ice-cream-machine": {
-      "handle": "commercial-ice-cream-machine",
-      "name_en": "Commercial Ice Cream Machine",
-      "name_et": "Professionaalsed jäätisemasinad",
-      "level": 6,
-      "parent_handle": "ice-cream-machine",
-      "child_handles": [
-        "commercial-hard-ice-cream-machine"
-      ],
-      "image_path": "/cat-thumbs/commercial-soft-ice-cream-machine.webp",
-      "image_source": "fuzzy"
-    },
-    "commercial-hard-ice-cream-machine": {
-      "handle": "commercial-hard-ice-cream-machine",
-      "name_en": "Commercial Hard Ice Cream Machine",
-      "name_et": "Professionaalsed kõva jäätise masinad",
-      "level": 7,
-      "parent_handle": "commercial-ice-cream-machine",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "household-freezing-ice-cream-maker": {
-      "handle": "household-freezing-ice-cream-maker",
-      "name_en": "Household Freezing Ice Cream Maker",
-      "name_et": "Külmutusega kodujäätisemasinad",
-      "level": 6,
-      "parent_handle": "ice-cream-machine",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
     },
     "specialty-dessert-makers": {
       "handle": "specialty-dessert-makers",
@@ -613,7 +554,6 @@
       "child_handles": [
         "continuous-sealing-machines",
         "chamber-vacuum-sealers",
-        "vacuum-sealers",
         "cup-sealing-machine"
       ],
       "image_path": "/cat-thumbs/food-vacuum-sealers.webp",
@@ -638,16 +578,6 @@
       "child_handles": [],
       "image_path": "/cat-thumbs/chamber-vacuum-sealers.webp",
       "image_source": "direct"
-    },
-    "vacuum-sealers": {
-      "handle": "vacuum-sealers",
-      "name_en": "Vacuum Sealers",
-      "name_et": "Vaakumsulgurid",
-      "level": 6,
-      "parent_handle": "food-vacuum-sealers",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
     },
     "cup-sealing-machine": {
       "handle": "cup-sealing-machine",
@@ -788,7 +718,6 @@
       "child_handles": [
         "commercial-food-mixer",
         "meat-stand-mixer",
-        "stand-mixer",
         "milkshake-maker",
         "mixer-attachments",
         "electric-ice-cream-mixer-machine"
@@ -815,16 +744,6 @@
       "child_handles": [],
       "image_path": "/cat-thumbs/meat-stand-mixer.webp",
       "image_source": "direct"
-    },
-    "stand-mixer": {
-      "handle": "stand-mixer",
-      "name_en": "Stand Mixer",
-      "name_et": "Planetaarmikserid",
-      "level": 4,
-      "parent_handle": "mixers",
-      "child_handles": [],
-      "image_path": "/cat-thumbs/meat-stand-mixer.webp",
-      "image_source": "fuzzy"
     },
     "milkshake-maker": {
       "handle": "milkshake-maker",
@@ -1763,7 +1682,6 @@
       "child_handles": [
         "non-electronic-signs",
         "scrolling-led-sign",
-        "electronic-signs",
         "led-poster-frame",
         "digital-kiosk"
       ],
@@ -1789,16 +1707,6 @@
       "child_handles": [],
       "image_path": "/cat-thumbs/scrolling-led-sign.webp",
       "image_source": "direct"
-    },
-    "electronic-signs": {
-      "handle": "electronic-signs",
-      "name_en": "Electronic Signs",
-      "name_et": "Elektroonilised sildid",
-      "level": 4,
-      "parent_handle": "restaurant-signs",
-      "child_handles": [],
-      "image_path": "/cat-thumbs/non-electronic-signs.webp",
-      "image_source": "fuzzy"
     },
     "led-poster-frame": {
       "handle": "led-poster-frame",
@@ -3735,72 +3643,6 @@
       "image_path": "/cat-thumbs/in-stock-kitchen-cabinets.webp",
       "image_source": "direct"
     },
-    "storage-and-organization": {
-      "handle": "storage-and-organization",
-      "name_en": "Storage & Organization",
-      "name_et": "Hoiundus ja korraldus",
-      "level": 2,
-      "parent_handle": "horeca-food-service",
-      "child_handles": [
-        "drawers-and-cabinet-organizers-and-accessories",
-        "pot-rack",
-        "storage-and-organization-dish-racks",
-        "hanging-bar-glass-rack",
-        "pull-out-trash-cans"
-      ],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "drawers-and-cabinet-organizers-and-accessories": {
-      "handle": "drawers-and-cabinet-organizers-and-accessories",
-      "name_en": "Drawers & Cabinet Organizers & Accessories",
-      "name_et": "Sahtlid, korraldajad ja tarvikud",
-      "level": 3,
-      "parent_handle": "storage-and-organization",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "pot-rack": {
-      "handle": "pot-rack",
-      "name_en": "Pot Rack",
-      "name_et": "Potiriiulid",
-      "level": 3,
-      "parent_handle": "storage-and-organization",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "storage-and-organization-dish-racks": {
-      "handle": "storage-and-organization-dish-racks",
-      "name_en": "Dish Racks",
-      "name_et": "Nõuderiiulid",
-      "level": 3,
-      "parent_handle": "storage-and-organization",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "hanging-bar-glass-rack": {
-      "handle": "hanging-bar-glass-rack",
-      "name_en": "Hanging Bar Glass Rack",
-      "name_et": "Rippuvad klaasihoidikud",
-      "level": 3,
-      "parent_handle": "storage-and-organization",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "pull-out-trash-cans": {
-      "handle": "pull-out-trash-cans",
-      "name_en": "Pull Out Trash Cans",
-      "name_et": "Väljatõmmatavad prügikastid",
-      "level": 3,
-      "parent_handle": "storage-and-organization",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
     "kitchen-faucets": {
       "handle": "kitchen-faucets",
       "name_en": "Kitchen Faucets",
@@ -3897,8 +3739,7 @@
       "parent_handle": "horeca-food-service",
       "child_handles": [
         "gas-cooktops",
-        "countertop-induction-cooktop",
-        "induction-cooktop"
+        "countertop-induction-cooktop"
       ],
       "image_path": "/cat-thumbs/cooktops.webp",
       "image_source": "direct"
@@ -3922,16 +3763,6 @@
       "child_handles": [],
       "image_path": "/cat-thumbs/countertop-induction-cooktop.webp",
       "image_source": "direct"
-    },
-    "induction-cooktop": {
-      "handle": "induction-cooktop",
-      "name_en": "Induction Cooktop",
-      "name_et": "Induktsioonplaadid",
-      "level": 3,
-      "parent_handle": "cooktops",
-      "child_handles": [],
-      "image_path": "/cat-thumbs/countertop-induction-cooktop.webp",
-      "image_source": "fuzzy"
     },
     "cooking-equipment": {
       "handle": "cooking-equipment",
@@ -4327,8 +4158,7 @@
       "level": 3,
       "parent_handle": "solar-power",
       "child_handles": [
-        "monocrystalline-solar-panel",
-        "solar-trickle-charger"
+        "monocrystalline-solar-panel"
       ],
       "image_path": "/cat-thumbs/solar-panels.webp",
       "image_source": "direct"
@@ -4342,16 +4172,6 @@
       "child_handles": [],
       "image_path": "/cat-thumbs/monocrystalline-solar-panel.webp",
       "image_source": "direct"
-    },
-    "solar-trickle-charger": {
-      "handle": "solar-trickle-charger",
-      "name_en": "Solar Trickle Charger",
-      "name_et": "Päikeselaadijad",
-      "level": 4,
-      "parent_handle": "solar-panels",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
     },
     "solar-power-accessories": {
       "handle": "solar-power-accessories",
@@ -9004,7 +8824,6 @@
         "printmaking",
         "engraving",
         "craft-storage",
-        "sewing",
         "camera-and-photo",
         "jewelry-making-and-repair",
         "painting-equipment-and-supplies",
@@ -10065,40 +9884,6 @@
       "image_path": "/cat-thumbs/cricut-table.webp",
       "image_source": "direct"
     },
-    "sewing": {
-      "handle": "sewing",
-      "name_en": "Sewing",
-      "name_et": "Õmblemine",
-      "level": 2,
-      "parent_handle": "crafts-sewing-printing",
-      "child_handles": [
-        "fastening-tools",
-        "sewing-cloth-cutting-machine"
-      ],
-      "image_path": "/cat-thumbs/hand-tools-fastening-tools.webp",
-      "image_source": "inherited",
-      "image_donor": "fastening-tools"
-    },
-    "fastening-tools": {
-      "handle": "fastening-tools",
-      "name_en": "Fastening Tools",
-      "name_et": "Kinnitustööriistad",
-      "level": 3,
-      "parent_handle": "sewing",
-      "child_handles": [],
-      "image_path": "/cat-thumbs/hand-tools-fastening-tools.webp",
-      "image_source": "fuzzy"
-    },
-    "sewing-cloth-cutting-machine": {
-      "handle": "sewing-cloth-cutting-machine",
-      "name_en": "Cloth Cutting Machine",
-      "name_et": "Riidelõikusmasinad",
-      "level": 3,
-      "parent_handle": "sewing",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
     "camera-and-photo": {
       "handle": "camera-and-photo",
       "name_en": "Camera & Photo",
@@ -11002,7 +10787,6 @@
         "beauty-and-personal-care",
         "christmas-decorations",
         "glassware-and-labware",
-        "labware",
         "health-medical-supply-skin-care"
       ],
       "image_path": "/cat-thumbs/health-medical-supply.webp",
@@ -11887,7 +11671,6 @@
       "level": 2,
       "parent_handle": "health-medical-supply",
       "child_handles": [
-        "health-medical-supply-wellness-and-relaxation-products-light-the",
         "foot-and-leg-massager",
         "heating-pads",
         "massage-mat",
@@ -11895,16 +11678,6 @@
       ],
       "image_path": "/cat-thumbs/health-medical-supply-wellness-and-relaxation-products.webp",
       "image_source": "direct"
-    },
-    "health-medical-supply-wellness-and-relaxation-products-light-the": {
-      "handle": "health-medical-supply-wellness-and-relaxation-products-light-the",
-      "name_en": "Light Therapy",
-      "name_et": "Valgusteraapia",
-      "level": 3,
-      "parent_handle": "health-medical-supply-wellness-and-relaxation-products",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
     },
     "foot-and-leg-massager": {
       "handle": "foot-and-leg-massager",
@@ -12137,28 +11910,6 @@
       "image_path": "/cat-thumbs/liquid-nitrogen-tank.webp",
       "image_source": "direct"
     },
-    "labware": {
-      "handle": "labware",
-      "name_en": "Labware",
-      "name_et": "Laborinõud",
-      "level": 2,
-      "parent_handle": "health-medical-supply",
-      "child_handles": [
-        "dewar-liquid-nitrogen-tank"
-      ],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "dewar-liquid-nitrogen-tank": {
-      "handle": "dewar-liquid-nitrogen-tank",
-      "name_en": "Dewar Liquid Nitrogen Tank",
-      "name_et": "Dewar-mahutid",
-      "level": 3,
-      "parent_handle": "labware",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
     "health-medical-supply-skin-care": {
       "handle": "health-medical-supply-skin-care",
       "name_en": "Skin Care",
@@ -12189,7 +11940,6 @@
         "exercise-and-fitness",
         "dance-equipment",
         "fitness-sports-games-golf-equipment",
-        "sports",
         "sports-and-outdoor-recreation-accessories"
       ],
       "image_path": "/cat-thumbs/fitness-sports-games.webp",
@@ -13086,8 +12836,7 @@
       "level": 3,
       "parent_handle": "outdoor-sports",
       "child_handles": [
-        "stunt-scooters",
-        "scooters"
+        "stunt-scooters"
       ],
       "image_path": "/cat-thumbs/skating.webp",
       "image_source": "direct"
@@ -13101,28 +12850,6 @@
       "child_handles": [],
       "image_path": "/cat-thumbs/stunt-scooters.webp",
       "image_source": "direct"
-    },
-    "scooters": {
-      "handle": "scooters",
-      "name_en": "Scooters",
-      "name_et": "Tõukerattad",
-      "level": 4,
-      "parent_handle": "skating",
-      "child_handles": [
-        "kick-scooters"
-      ],
-      "image_path": "/cat-thumbs/stunt-scooters.webp",
-      "image_source": "fuzzy"
-    },
-    "kick-scooters": {
-      "handle": "kick-scooters",
-      "name_en": "Kick Scooters",
-      "name_et": "Jalgtõukerattad",
-      "level": 5,
-      "parent_handle": "scooters",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
     },
     "tennis-ball-equipment": {
       "handle": "tennis-ball-equipment",
@@ -14164,29 +13891,6 @@
       "child_handles": [],
       "image_path": "/cat-thumbs/training-equipment.webp",
       "image_source": "direct"
-    },
-    "sports": {
-      "handle": "sports",
-      "name_en": "Sports",
-      "name_et": "Sport",
-      "level": 2,
-      "parent_handle": "fitness-sports-games",
-      "child_handles": [
-        "electric-bicycle"
-      ],
-      "image_path": "/cat-thumbs/folding-adult-electric-bicycles.webp",
-      "image_source": "inherited",
-      "image_donor": "electric-bicycle"
-    },
-    "electric-bicycle": {
-      "handle": "electric-bicycle",
-      "name_en": "Electric Bicycle",
-      "name_et": "Elektrirattad",
-      "level": 3,
-      "parent_handle": "sports",
-      "child_handles": [],
-      "image_path": "/cat-thumbs/folding-adult-electric-bicycles.webp",
-      "image_source": "fuzzy"
     },
     "sports-and-outdoor-recreation-accessories": {
       "handle": "sports-and-outdoor-recreation-accessories",
@@ -17582,8 +17286,7 @@
         "water-trampoline",
         "kids-trampoline",
         "fitness-trampoline",
-        "trampoline-parts",
-        "trampoline"
+        "trampoline-parts"
       ],
       "image_path": "/cat-thumbs/trampolines.webp",
       "image_source": "direct"
@@ -17627,16 +17330,6 @@
       "child_handles": [],
       "image_path": "/cat-thumbs/trampoline-parts.webp",
       "image_source": "direct"
-    },
-    "trampoline": {
-      "handle": "trampoline",
-      "name_en": "Trampoline",
-      "name_et": "Trampliinid",
-      "level": 3,
-      "parent_handle": "trampolines",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
     },
     "toys-and-games": {
       "handle": "toys-and-games",
@@ -21104,8 +20797,7 @@
       "child_handles": [
         "farm-animal-supplies",
         "bird-and-wildlife-supplies",
-        "livestock-scratch-brushes",
-        "backyard-landscaping-farm-pet-supplies-and-wildlife-small-animal"
+        "livestock-scratch-brushes"
       ],
       "image_path": "/cat-thumbs/backyard-landscaping-farm-pet-supplies-and-wildlife.webp",
       "image_source": "direct"
@@ -21297,28 +20989,6 @@
       "child_handles": [],
       "image_path": "/cat-thumbs/livestock-scratch-brushes.webp",
       "image_source": "direct"
-    },
-    "backyard-landscaping-farm-pet-supplies-and-wildlife-small-animal": {
-      "handle": "backyard-landscaping-farm-pet-supplies-and-wildlife-small-animal",
-      "name_en": "Small Animal Supplies",
-      "name_et": "Väikeloomade tarvikud",
-      "level": 3,
-      "parent_handle": "backyard-landscaping-farm-pet-supplies-and-wildlife",
-      "child_handles": [
-        "chicken-coop-door-opener"
-      ],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "chicken-coop-door-opener": {
-      "handle": "chicken-coop-door-opener",
-      "name_en": "Chicken Coop Door Opener",
-      "name_et": "Kanapuuri ukseautomaadid",
-      "level": 4,
-      "parent_handle": "backyard-landscaping-farm-pet-supplies-and-wildlife-small-animal",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
     },
     "patio-furniture-and-accessories": {
       "handle": "patio-furniture-and-accessories",
@@ -21646,8 +21316,7 @@
       "parent_handle": "backyard-landscaping-farm",
       "child_handles": [
         "livestock-and-poultry-supplies-metal-chicken-coop",
-        "automatic-poultry-feeder",
-        "livestock-and-poultry-supplies-chicken-coop"
+        "automatic-poultry-feeder"
       ],
       "image_path": "/cat-thumbs/livestock-and-poultry-supplies.webp",
       "image_source": "direct"
@@ -21671,16 +21340,6 @@
       "child_handles": [],
       "image_path": "/cat-thumbs/automatic-poultry-feeder.webp",
       "image_source": "direct"
-    },
-    "livestock-and-poultry-supplies-chicken-coop": {
-      "handle": "livestock-and-poultry-supplies-chicken-coop",
-      "name_en": "Chicken Coop",
-      "name_et": "Kanapuurid",
-      "level": 3,
-      "parent_handle": "livestock-and-poultry-supplies",
-      "child_handles": [],
-      "image_path": "/cat-thumbs/livestock-and-poultry-supplies-metal-chicken-coop.webp",
-      "image_source": "fuzzy"
     },
     "outdoor-decoration": {
       "handle": "outdoor-decoration",
@@ -21827,7 +21486,6 @@
         "commercial-lighting",
         "door-accessories",
         "roofing",
-        "air-conditioners",
         "boat-docks-and-hardware",
         "moulding-and-millwork",
         "toilets",
@@ -22636,7 +22294,6 @@
       "parent_handle": "drain-cleaning-tools",
       "child_handles": [
         "pipe-drain-cleaner-machine",
-        "drain-cleaner-machine",
         "handheld-drain-cleaner-machine",
         "municipal-pipeline-detection-robot"
       ],
@@ -22652,16 +22309,6 @@
       "child_handles": [],
       "image_path": "/cat-thumbs/pipe-drain-cleaner-machine.webp",
       "image_source": "direct"
-    },
-    "drain-cleaner-machine": {
-      "handle": "drain-cleaner-machine",
-      "name_en": "Drain Cleaner Machine",
-      "name_et": "Torupuhastusmasinad",
-      "level": 5,
-      "parent_handle": "sewer-machines",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
     },
     "handheld-drain-cleaner-machine": {
       "handle": "handheld-drain-cleaner-machine",
@@ -22745,7 +22392,6 @@
       "parent_handle": "plumbing-tools",
       "child_handles": [
         "manual-tube-bender",
-        "tube-bender",
         "copper-tube-bender",
         "electric-tube-bender"
       ],
@@ -22761,16 +22407,6 @@
       "child_handles": [],
       "image_path": "/cat-thumbs/manual-tube-bender.webp",
       "image_source": "direct"
-    },
-    "tube-bender": {
-      "handle": "tube-bender",
-      "name_en": "Tube Bender",
-      "name_et": "Torupainurid",
-      "level": 4,
-      "parent_handle": "pipe-and-tube-benders",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
     },
     "copper-tube-bender": {
       "handle": "copper-tube-bender",
@@ -26020,8 +25656,7 @@
       "level": 3,
       "parent_handle": "bathroom-storage",
       "child_handles": [
-        "non-electric-medicine-cabinet",
-        "electric-medicine-cabinet"
+        "non-electric-medicine-cabinet"
       ],
       "image_path": "/cat-thumbs/medicine-cabinets.webp",
       "image_source": "direct"
@@ -26035,16 +25670,6 @@
       "child_handles": [],
       "image_path": "/cat-thumbs/non-electric-medicine-cabinet.webp",
       "image_source": "direct"
-    },
-    "electric-medicine-cabinet": {
-      "handle": "electric-medicine-cabinet",
-      "name_en": "Electric Medicine Cabinet",
-      "name_et": "Elektrilised ravimikapid",
-      "level": 4,
-      "parent_handle": "medicine-cabinets",
-      "child_handles": [],
-      "image_path": "/cat-thumbs/non-electric-medicine-cabinet.webp",
-      "image_source": "fuzzy"
     },
     "bathroom-storage-over-the-toilet-storage": {
       "handle": "bathroom-storage-over-the-toilet-storage",
@@ -26454,8 +26079,7 @@
       "parent_handle": "construction-building",
       "child_handles": [
         "non-electric-wall-mounted-makeup-mirror",
-        "dresser-vanity-mirror",
-        "electric-wall-mounted-makeup-mirror"
+        "dresser-vanity-mirror"
       ],
       "image_path": "/cat-thumbs/bathroom-mirrors.webp",
       "image_source": "direct"
@@ -26479,16 +26103,6 @@
       "child_handles": [],
       "image_path": "/cat-thumbs/dresser-vanity-mirror.webp",
       "image_source": "direct"
-    },
-    "electric-wall-mounted-makeup-mirror": {
-      "handle": "electric-wall-mounted-makeup-mirror",
-      "name_en": "Electric Wall Mounted Makeup Mirror",
-      "name_et": "Electric Wall Mounted Makeup Mirror",
-      "level": 3,
-      "parent_handle": "bathroom-mirrors",
-      "child_handles": [],
-      "image_path": "/cat-thumbs/non-electric-wall-mounted-makeup-mirror.webp",
-      "image_source": "fuzzy"
     },
     "lamps": {
       "handle": "lamps",
@@ -27179,85 +26793,6 @@
       "image_path": "/cat-thumbs/roofing-tools.webp",
       "image_source": "direct"
     },
-    "air-conditioners": {
-      "handle": "air-conditioners",
-      "name_en": "Air Conditioners",
-      "name_et": "Kliimaseadmed",
-      "level": 2,
-      "parent_handle": "construction-building",
-      "child_handles": [
-        "air-conditioner-supplies",
-        "portable-air-conditioners"
-      ],
-      "image_path": "/cat-thumbs/mini-split-air-conditioners.webp",
-      "image_source": "fuzzy"
-    },
-    "air-conditioner-supplies": {
-      "handle": "air-conditioner-supplies",
-      "name_en": "Air Conditioner Supplies",
-      "name_et": "Kliimaseadmete tarvikud",
-      "level": 3,
-      "parent_handle": "air-conditioners",
-      "child_handles": [
-        "air-conditioner-covers",
-        "air-conditioner-sleeves"
-      ],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "air-conditioner-covers": {
-      "handle": "air-conditioner-covers",
-      "name_en": "Air Conditioner Covers",
-      "name_et": "Kliimaseadmete katted",
-      "level": 4,
-      "parent_handle": "air-conditioner-supplies",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "air-conditioner-sleeves": {
-      "handle": "air-conditioner-sleeves",
-      "name_en": "Air Conditioner Sleeves",
-      "name_et": "Kliimaseadmete seinahülsid",
-      "level": 4,
-      "parent_handle": "air-conditioner-supplies",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "portable-air-conditioners": {
-      "handle": "portable-air-conditioners",
-      "name_en": "Portable Air Conditioners",
-      "name_et": "Kaasaskantavad kliimaseadmed",
-      "level": 3,
-      "parent_handle": "air-conditioners",
-      "child_handles": [
-        "camping-portable-air-conditioner",
-        "portable-air-conditioner"
-      ],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "camping-portable-air-conditioner": {
-      "handle": "camping-portable-air-conditioner",
-      "name_en": "Camping Portable Air Conditioner",
-      "name_et": "Matkakliimaseadmed",
-      "level": 4,
-      "parent_handle": "portable-air-conditioners",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "portable-air-conditioner": {
-      "handle": "portable-air-conditioner",
-      "name_en": "Portable Air Conditioner",
-      "name_et": "Mobiilsed kliimaseadmed",
-      "level": 4,
-      "parent_handle": "portable-air-conditioners",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
     "boat-docks-and-hardware": {
       "handle": "boat-docks-and-hardware",
       "name_en": "Boat Docks & Hardware",
@@ -27298,8 +26833,7 @@
       "level": 2,
       "parent_handle": "construction-building",
       "child_handles": [
-        "acoustic-slat-wall-panels",
-        "wall-panels"
+        "acoustic-slat-wall-panels"
       ],
       "image_path": "/cat-thumbs/moulding-and-millwork.webp",
       "image_source": "direct"
@@ -27313,16 +26847,6 @@
       "child_handles": [],
       "image_path": "/cat-thumbs/acoustic-slat-wall-panels.webp",
       "image_source": "direct"
-    },
-    "wall-panels": {
-      "handle": "wall-panels",
-      "name_en": "Wall Panels",
-      "name_et": "Seinapaneelid",
-      "level": 3,
-      "parent_handle": "moulding-and-millwork",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
     },
     "toilets": {
       "handle": "toilets",
@@ -29221,7 +28745,6 @@
         "sockets-and-ratchets",
         "ratchet-and-socket-sets",
         "turning-tools",
-        "socket-sets",
         "electricians-tool-sets",
         "wrench-sets",
         "carry-clamps",
@@ -29261,16 +28784,6 @@
       "child_handles": [],
       "image_path": "/cat-thumbs/turning-tools.webp",
       "image_source": "direct"
-    },
-    "socket-sets": {
-      "handle": "socket-sets",
-      "name_en": "Socket Sets",
-      "name_et": "Padrunkomplektid",
-      "level": 4,
-      "parent_handle": "hand-tool-sets",
-      "child_handles": [],
-      "image_path": "/cat-thumbs/ratchet-and-socket-sets.webp",
-      "image_source": "fuzzy"
     },
     "electricians-tool-sets": {
       "handle": "electricians-tool-sets",
@@ -32711,7 +32224,6 @@
       "child_handles": [
         "wire-rope",
         "chain",
-        "rope",
         "polyester-pull-tapes"
       ],
       "image_path": "/cat-thumbs/chains-and-ropes.webp",
@@ -32736,16 +32248,6 @@
       "child_handles": [],
       "image_path": "/cat-thumbs/chain.webp",
       "image_source": "direct"
-    },
-    "rope": {
-      "handle": "rope",
-      "name_en": "Rope",
-      "name_et": "Köied",
-      "level": 3,
-      "parent_handle": "chains-and-ropes",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
     },
     "polyester-pull-tapes": {
       "handle": "polyester-pull-tapes",
@@ -35008,12 +34510,10 @@
         "bedding",
         "carpet",
         "closet-organizers",
-        "office-furniture",
         "wall-decor",
         "shoe-storage",
         "entryway-furniture",
         "luggage",
-        "furniture",
         "office-commercial-interiors-christmas-decorations",
         "folding-furniture",
         "office-storage-and-organization",
@@ -37957,138 +37457,6 @@
       "image_path": "/cat-thumbs/closet-accessories.webp",
       "image_source": "direct"
     },
-    "office-furniture": {
-      "handle": "office-furniture",
-      "name_en": "Office Furniture",
-      "name_et": "Kontorimööbel",
-      "level": 2,
-      "parent_handle": "office-commercial-interiors",
-      "child_handles": [
-        "office-room-divider",
-        "office-furniture-chest-of-drawers",
-        "pipe-shelf",
-        "bed-frames",
-        "office-chair",
-        "office-furniture-rattan-chair",
-        "office-furniture-kids-furniture",
-        "literature-organizer",
-        "office-furniture-monitor-arms",
-        "office-furniture-office-chair-base",
-        "stand-up-desk"
-      ],
-      "image_path": "/cat-thumbs/home-office-furniture.webp",
-      "image_source": "fuzzy"
-    },
-    "office-room-divider": {
-      "handle": "office-room-divider",
-      "name_en": "Office Room Divider",
-      "name_et": "Kontori ruumijagajad",
-      "level": 3,
-      "parent_handle": "office-furniture",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "office-furniture-chest-of-drawers": {
-      "handle": "office-furniture-chest-of-drawers",
-      "name_en": "Chest Of Drawers",
-      "name_et": "Kommoodid",
-      "level": 3,
-      "parent_handle": "office-furniture",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "pipe-shelf": {
-      "handle": "pipe-shelf",
-      "name_en": "Pipe Shelf",
-      "name_et": "Toruriiulid",
-      "level": 3,
-      "parent_handle": "office-furniture",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "bed-frames": {
-      "handle": "bed-frames",
-      "name_en": "Bed Frames",
-      "name_et": "Voodiraamid",
-      "level": 3,
-      "parent_handle": "office-furniture",
-      "child_handles": [],
-      "image_path": "/cat-thumbs/picture-frames.webp",
-      "image_source": "fuzzy"
-    },
-    "office-chair": {
-      "handle": "office-chair",
-      "name_en": "Office Chair",
-      "name_et": "Kontoritoolid",
-      "level": 3,
-      "parent_handle": "office-furniture",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "office-furniture-rattan-chair": {
-      "handle": "office-furniture-rattan-chair",
-      "name_en": "Rattan Chair",
-      "name_et": "Rotangitoolid",
-      "level": 3,
-      "parent_handle": "office-furniture",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "office-furniture-kids-furniture": {
-      "handle": "office-furniture-kids-furniture",
-      "name_en": "Kids' Furniture",
-      "name_et": "Lastemööbel",
-      "level": 3,
-      "parent_handle": "office-furniture",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "literature-organizer": {
-      "handle": "literature-organizer",
-      "name_en": "Literature Organizer",
-      "name_et": "Trükisehoidikud",
-      "level": 3,
-      "parent_handle": "office-furniture",
-      "child_handles": [],
-      "image_path": "/cat-thumbs/literature-organizers.webp",
-      "image_source": "fuzzy"
-    },
-    "office-furniture-monitor-arms": {
-      "handle": "office-furniture-monitor-arms",
-      "name_en": "Monitor Arms",
-      "name_et": "Monitorivarred",
-      "level": 3,
-      "parent_handle": "office-furniture",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "office-furniture-office-chair-base": {
-      "handle": "office-furniture-office-chair-base",
-      "name_en": "Office Chair Base",
-      "name_et": "Kontoritooli alused",
-      "level": 3,
-      "parent_handle": "office-furniture",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "stand-up-desk": {
-      "handle": "stand-up-desk",
-      "name_en": "Stand Up Desk",
-      "name_et": "Püstitöölauad",
-      "level": 3,
-      "parent_handle": "office-furniture",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
     "wall-decor": {
       "handle": "wall-decor",
       "name_en": "Wall Decor",
@@ -38356,106 +37724,6 @@
       "image_path": "/cat-thumbs/vacuum-backpack.webp",
       "image_source": "direct"
     },
-    "furniture": {
-      "handle": "furniture",
-      "name_en": "Furniture",
-      "name_et": "Mööbel",
-      "level": 2,
-      "parent_handle": "office-commercial-interiors",
-      "child_handles": [
-        "furniture-bean-bag-chairs",
-        "coffee-table",
-        "coffe-table",
-        "furniture-headboards",
-        "kids-chair",
-        "massage-chair",
-        "furniture-mattresses",
-        "furniture-shoe-cabinets"
-      ],
-      "image_path": "/cat-thumbs/massage-chairs.webp",
-      "image_source": "inherited",
-      "image_donor": "massage-chair"
-    },
-    "furniture-bean-bag-chairs": {
-      "handle": "furniture-bean-bag-chairs",
-      "name_en": "Bean Bag Chairs",
-      "name_et": "Kottoolid",
-      "level": 3,
-      "parent_handle": "furniture",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "coffee-table": {
-      "handle": "coffee-table",
-      "name_en": "Coffee Table",
-      "name_et": "Kohvilauad",
-      "level": 3,
-      "parent_handle": "furniture",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "coffe-table": {
-      "handle": "coffe-table",
-      "name_en": "Coffe Table",
-      "name_et": "Kohvilauad",
-      "level": 3,
-      "parent_handle": "furniture",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "furniture-headboards": {
-      "handle": "furniture-headboards",
-      "name_en": "Headboards",
-      "name_et": "Voodipeatsid",
-      "level": 3,
-      "parent_handle": "furniture",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "kids-chair": {
-      "handle": "kids-chair",
-      "name_en": "Kids' Chair",
-      "name_et": "Laste toolid",
-      "level": 3,
-      "parent_handle": "furniture",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "massage-chair": {
-      "handle": "massage-chair",
-      "name_en": "Massage Chair",
-      "name_et": "Massaažitoolid",
-      "level": 3,
-      "parent_handle": "furniture",
-      "child_handles": [],
-      "image_path": "/cat-thumbs/massage-chairs.webp",
-      "image_source": "fuzzy"
-    },
-    "furniture-mattresses": {
-      "handle": "furniture-mattresses",
-      "name_en": "Mattresses",
-      "name_et": "Madratsid",
-      "level": 3,
-      "parent_handle": "furniture",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "furniture-shoe-cabinets": {
-      "handle": "furniture-shoe-cabinets",
-      "name_en": "Shoe Cabinets",
-      "name_et": "Jalatsikapid",
-      "level": 3,
-      "parent_handle": "furniture",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
     "office-commercial-interiors-christmas-decorations": {
       "handle": "office-commercial-interiors-christmas-decorations",
       "name_en": "Christmas Decorations",
@@ -38464,7 +37732,6 @@
       "parent_handle": "office-commercial-interiors",
       "child_handles": [
         "christmas-greenery",
-        "office-commercial-interiors-christmas-decorations-christmas-tree",
         "indoor-christmas-decorations"
       ],
       "image_path": "/cat-thumbs/office-commercial-interiors-christmas-decorations.webp",
@@ -38479,40 +37746,6 @@
       "child_handles": [],
       "image_path": "/cat-thumbs/christmas-greenery.webp",
       "image_source": "direct"
-    },
-    "office-commercial-interiors-christmas-decorations-christmas-tree": {
-      "handle": "office-commercial-interiors-christmas-decorations-christmas-tree",
-      "name_en": "Christmas Trees",
-      "name_et": "Jõulupuud",
-      "level": 3,
-      "parent_handle": "office-commercial-interiors-christmas-decorations",
-      "child_handles": [
-        "artificial-christmas-trees"
-      ],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "artificial-christmas-trees": {
-      "handle": "artificial-christmas-trees",
-      "name_en": "Artificial Christmas Trees",
-      "name_et": "Kunstjõulupuud",
-      "level": 4,
-      "parent_handle": "office-commercial-interiors-christmas-decorations-christmas-tree",
-      "child_handles": [
-        "pre-lit-christmas-trees"
-      ],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "pre-lit-christmas-trees": {
-      "handle": "pre-lit-christmas-trees",
-      "name_en": "Pre-Lit Christmas Trees",
-      "name_et": "Valgustusega kunstjõulupuud",
-      "level": 5,
-      "parent_handle": "artificial-christmas-trees",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
     },
     "indoor-christmas-decorations": {
       "handle": "indoor-christmas-decorations",
@@ -38996,11 +38229,6 @@
     "closed-slush-machine",
     "ice-cream-makers",
     "commercial-soft-ice-cream-machine",
-    "ice-cream-machine",
-    "household-compressor-ice-cream-maker",
-    "commercial-ice-cream-machine",
-    "commercial-hard-ice-cream-machine",
-    "household-freezing-ice-cream-maker",
     "specialty-dessert-makers",
     "mini-donut-makers",
     "fried-ice-machine",
@@ -39039,7 +38267,6 @@
     "food-vacuum-sealers",
     "continuous-sealing-machines",
     "chamber-vacuum-sealers",
-    "vacuum-sealers",
     "cup-sealing-machine",
     "dehydrators",
     "food-air-dryer",
@@ -39055,7 +38282,6 @@
     "mixers",
     "commercial-food-mixer",
     "meat-stand-mixer",
-    "stand-mixer",
     "milkshake-maker",
     "mixer-attachments",
     "electric-ice-cream-mixer-machine",
@@ -39143,7 +38369,6 @@
     "restaurant-signs",
     "non-electronic-signs",
     "scrolling-led-sign",
-    "electronic-signs",
     "led-poster-frame",
     "digital-kiosk",
     "cutlery",
@@ -39318,12 +38543,6 @@
     "kitchen-cabinets",
     "kitchen-cabinet-moulding",
     "in-stock-kitchen-cabinets",
-    "storage-and-organization",
-    "drawers-and-cabinet-organizers-and-accessories",
-    "pot-rack",
-    "storage-and-organization-dish-racks",
-    "hanging-bar-glass-rack",
-    "pull-out-trash-cans",
     "kitchen-faucets",
     "pre-rinse-faucets",
     "filtered-water-faucets",
@@ -39335,7 +38554,6 @@
     "cooktops",
     "gas-cooktops",
     "countertop-induction-cooktop",
-    "induction-cooktop",
     "cooking-equipment",
     "commercial-outdoor-grills",
     "commercial-convection-oven",
@@ -39373,7 +38591,6 @@
     "solar-power",
     "solar-panels",
     "monocrystalline-solar-panel",
-    "solar-trickle-charger",
     "solar-power-accessories",
     "solar-panel-mount-brackets",
     "solar-panel-extension-cable",
@@ -39884,9 +39101,6 @@
     "craft-storage",
     "scrapbook-paper-storage-cases-sets",
     "cricut-table",
-    "sewing",
-    "fastening-tools",
-    "sewing-cloth-cutting-machine",
     "camera-and-photo",
     "lighting-and-studio",
     "shooting-tents",
@@ -40046,7 +39260,6 @@
     "overbed-tables",
     "furniture-and-patient-transport",
     "health-medical-supply-wellness-and-relaxation-products",
-    "health-medical-supply-wellness-and-relaxation-products-light-the",
     "foot-and-leg-massager",
     "heating-pads",
     "massage-mat",
@@ -40069,8 +39282,6 @@
     "christmas-decorations",
     "glassware-and-labware",
     "liquid-nitrogen-tank",
-    "labware",
-    "dewar-liquid-nitrogen-tank",
     "health-medical-supply-skin-care",
     "fitness-sports-games",
     "exercise-equipment",
@@ -40154,8 +39365,6 @@
     "badminton-equipment",
     "skating",
     "stunt-scooters",
-    "scooters",
-    "kick-scooters",
     "tennis-ball-equipment",
     "tennis-equipment",
     "games",
@@ -40250,8 +39459,6 @@
     "fitness-sports-games-golf-equipment-golf-putting-mat",
     "golf-rangefinder",
     "training-equipment",
-    "sports",
-    "electric-bicycle",
     "sports-and-outdoor-recreation-accessories",
     "boating-camping-outdoor",
     "camping-gear",
@@ -40558,7 +39765,6 @@
     "kids-trampoline",
     "fitness-trampoline",
     "trampoline-parts",
-    "trampoline",
     "toys-and-games",
     "sports-and-outdoor-play-toys",
     "building-block",
@@ -40885,8 +40091,6 @@
     "bird-feeders",
     "bird-feeders-pole",
     "livestock-scratch-brushes",
-    "backyard-landscaping-farm-pet-supplies-and-wildlife-small-animal",
-    "chicken-coop-door-opener",
     "patio-furniture-and-accessories",
     "patio-furniture-and-accessories-fire-pit-grate",
     "garden-cart",
@@ -40919,7 +40123,6 @@
     "livestock-and-poultry-supplies",
     "livestock-and-poultry-supplies-metal-chicken-coop",
     "automatic-poultry-feeder",
-    "livestock-and-poultry-supplies-chicken-coop",
     "outdoor-decoration",
     "decorative-fences",
     "razor-wire",
@@ -40997,7 +40200,6 @@
     "drain-cleaning-tools",
     "sewer-machines",
     "pipe-drain-cleaner-machine",
-    "drain-cleaner-machine",
     "handheld-drain-cleaner-machine",
     "municipal-pipeline-detection-robot",
     "drain-cleaning-accessories",
@@ -41007,7 +40209,6 @@
     "water-leak-detector",
     "pipe-and-tube-benders",
     "manual-tube-bender",
-    "tube-bender",
     "copper-tube-bender",
     "electric-tube-bender",
     "pipe-threaders",
@@ -41300,7 +40501,6 @@
     "linen-cabinets",
     "medicine-cabinets",
     "non-electric-medicine-cabinet",
-    "electric-medicine-cabinet",
     "bathroom-storage-over-the-toilet-storage",
     "over-toilet-storage-cabinet",
     "over-toilet-storage-rack",
@@ -41340,7 +40540,6 @@
     "bathroom-mirrors",
     "non-electric-wall-mounted-makeup-mirror",
     "dresser-vanity-mirror",
-    "electric-wall-mounted-makeup-mirror",
     "lamps",
     "lamp-shades",
     "cordless-table-lamp",
@@ -41403,19 +40602,11 @@
     "roof-panels",
     "roof-flashing",
     "roofing-tools",
-    "air-conditioners",
-    "air-conditioner-supplies",
-    "air-conditioner-covers",
-    "air-conditioner-sleeves",
-    "portable-air-conditioners",
-    "camping-portable-air-conditioner",
-    "portable-air-conditioner",
     "boat-docks-and-hardware",
     "dock-ladders",
     "boat-hardware",
     "moulding-and-millwork",
     "acoustic-slat-wall-panels",
-    "wall-panels",
     "toilets",
     "commodes",
     "composting-toilets",
@@ -41589,7 +40780,6 @@
     "sockets-and-ratchets",
     "ratchet-and-socket-sets",
     "turning-tools",
-    "socket-sets",
     "electricians-tool-sets",
     "wrench-sets",
     "carry-clamps",
@@ -41901,7 +41091,6 @@
     "chains-and-ropes",
     "wire-rope",
     "chain",
-    "rope",
     "polyester-pull-tapes",
     "lab-and-scientific-products",
     "lab-instruments-and-equipment",
@@ -42366,18 +41555,6 @@
     "wood-closet-organizers",
     "clothes-racks",
     "closet-accessories",
-    "office-furniture",
-    "office-room-divider",
-    "office-furniture-chest-of-drawers",
-    "pipe-shelf",
-    "bed-frames",
-    "office-chair",
-    "office-furniture-rattan-chair",
-    "office-furniture-kids-furniture",
-    "literature-organizer",
-    "office-furniture-monitor-arms",
-    "office-furniture-office-chair-base",
-    "stand-up-desk",
     "wall-decor",
     "memo-boards",
     "stained-glass-panels",
@@ -42402,20 +41579,8 @@
     "suitcases",
     "travel-garment-bags",
     "vacuum-backpack",
-    "furniture",
-    "furniture-bean-bag-chairs",
-    "coffee-table",
-    "coffe-table",
-    "furniture-headboards",
-    "kids-chair",
-    "massage-chair",
-    "furniture-mattresses",
-    "furniture-shoe-cabinets",
     "office-commercial-interiors-christmas-decorations",
     "christmas-greenery",
-    "office-commercial-interiors-christmas-decorations-christmas-tree",
-    "artificial-christmas-trees",
-    "pre-lit-christmas-trees",
     "indoor-christmas-decorations",
     "folding-furniture",
     "folding-chairs",

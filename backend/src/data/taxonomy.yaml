@@ -38,28 +38,6 @@ l1:
                     name_en: Commercial Soft Ice Cream Machine
                     product_count: 12
                     name_et: Professionaalsed pehme jäätise masinad
-                  - slug: ice-cream-machine
-                    name_en: Ice Cream Machine
-                    product_count: 10
-                    subs:
-                      - slug: household-compressor-ice-cream-maker
-                        name_en: Household Compressor Ice Cream Maker
-                        product_count: 5
-                        name_et: Kompressoriga kodujäätisemasinad
-                      - slug: commercial-ice-cream-machine
-                        name_en: Commercial Ice Cream Machine
-                        product_count: 4
-                        subs:
-                          - slug: commercial-hard-ice-cream-machine
-                            name_en: Commercial Hard Ice Cream Machine
-                            product_count: 4
-                            name_et: Professionaalsed kõva jäätise masinad
-                        name_et: Professionaalsed jäätisemasinad
-                      - slug: household-freezing-ice-cream-maker
-                        name_en: Household Freezing Ice Cream Maker
-                        product_count: 1
-                        name_et: Külmutusega kodujäätisemasinad
-                    name_et: Jäätisemasinad
                 name_et: Jäätisemasinad
               - slug: specialty-dessert-makers
                 name_en: Specialty Dessert Makers
@@ -222,10 +200,6 @@ l1:
                         name_en: Chamber Vacuum Sealers
                         product_count: 3
                         name_et: Kammervaakumpakendajad
-                      - slug: vacuum-sealers
-                        name_en: Vacuum Sealers
-                        product_count: 3
-                        name_et: Vaakumsulgurid
                       - slug: cup-sealing-machine
                         name_en: Cup Sealing Machine
                         product_count: 2
@@ -294,10 +268,6 @@ l1:
                 name_en: Meat Stand Mixer
                 product_count: 9
                 name_et: Lihamikserid
-              - slug: stand-mixer
-                name_en: Stand Mixer
-                product_count: 4
-                name_et: Planetaarmikserid
               - slug: milkshake-maker
                 name_en: Milkshake Maker
                 product_count: 3
@@ -677,10 +647,6 @@ l1:
                 name_en: Scrolling Led Sign
                 product_count: 8
                 name_et: Kerivad LED-sildid
-              - slug: electronic-signs
-                name_en: Electronic Signs
-                product_count: 4
-                name_et: Elektroonilised sildid
               - slug: led-poster-frame
                 name_en: Led Poster Frame
                 product_count: 3
@@ -1440,31 +1406,6 @@ l1:
             subs: []
             name_et: Laos olevad köögikappid
         name_et: Köögikapid
-      - slug: storage-and-organization
-        name_en: Storage & Organization
-        product_count: 10
-        subs:
-          - slug: drawers-and-cabinet-organizers-and-accessories
-            name_en: Drawers & Cabinet Organizers & Accessories
-            product_count: 5
-            name_et: Sahtlid, korraldajad ja tarvikud
-          - slug: pot-rack
-            name_en: Pot Rack
-            product_count: 2
-            name_et: Potiriiulid
-          - slug: storage-and-organization-dish-racks
-            name_en: Dish Racks
-            product_count: 1
-            name_et: Nõuderiiulid
-          - slug: hanging-bar-glass-rack
-            name_en: Hanging Bar Glass Rack
-            product_count: 1
-            name_et: Rippuvad klaasihoidikud
-          - slug: pull-out-trash-cans
-            name_en: Pull Out Trash Cans
-            product_count: 1
-            name_et: Väljatõmmatavad prügikastid
-        name_et: Hoiundus ja korraldus
       - slug: kitchen-faucets
         name_en: Kitchen Faucets
         product_count: 9
@@ -1513,10 +1454,6 @@ l1:
             name_en: Countertop Induction Cooktop
             product_count: 2
             name_et: Lauapealsed induktsioonplaadid
-          - slug: induction-cooktop
-            name_en: Induction Cooktop
-            product_count: 1
-            name_et: Induktsioonplaadid
         name_et: Pliidiplaadid
       - slug: cooking-equipment
         name_en: Cooking Equipment
@@ -1677,10 +1614,6 @@ l1:
                 name_en: Monocrystalline Solar Panel
                 product_count: 8
                 name_et: Monokristalsed päikesepaneelid
-              - slug: solar-trickle-charger
-                name_en: Solar Trickle Charger
-                product_count: 9
-                name_et: Päikeselaadijad
             name_et: Päikesepaneelid
           - slug: solar-power-accessories
             name_en: Solar Power Accessories
@@ -3865,19 +3798,6 @@ l1:
             product_count: 2
             name_et: Cricut-töölauad
         name_et: Käsitöövahendite hoiustus
-      - slug: sewing
-        name_en: Sewing
-        product_count: 6
-        subs:
-          - slug: fastening-tools
-            name_en: Fastening Tools
-            product_count: 4
-            name_et: Kinnitustööriistad
-          - slug: sewing-cloth-cutting-machine
-            name_en: Cloth Cutting Machine
-            product_count: 2
-            name_et: Riidelõikusmasinad
-        name_et: Õmblemine
       - slug: camera-and-photo
         name_en: Camera & Photo
         product_count: 5
@@ -4569,10 +4489,6 @@ l1:
         name_en: Wellness & Relaxation Products
         product_count: 12
         subs:
-          - slug: health-medical-supply-wellness-and-relaxation-products-light-the
-            name_en: Light Therapy
-            product_count: 5
-            name_et: Valgusteraapia
           - slug: foot-and-leg-massager
             name_en: Foot & Leg Massager
             product_count: 4
@@ -4673,15 +4589,6 @@ l1:
             product_count: 1
             name_et: Vedela lämmastiku mahutid
         name_et: Klaas- ja laborinõud
-      - slug: labware
-        name_en: Labware
-        product_count: 1
-        subs:
-          - slug: dewar-liquid-nitrogen-tank
-            name_en: Dewar Liquid Nitrogen Tank
-            product_count: 1
-            name_et: Dewar-mahutid
-        name_et: Laborinõud
       - slug: health-medical-supply-skin-care
         name_en: Skin Care
         product_count: 1
@@ -5031,15 +4938,6 @@ l1:
                 name_en: Stunt Scooters
                 product_count: 3
                 name_et: Trikitõukerattad
-              - slug: scooters
-                name_en: Scooters
-                product_count: 1
-                subs:
-                  - slug: kick-scooters
-                    name_en: Kick Scooters
-                    product_count: 1
-                    name_et: Jalgtõukerattad
-                name_et: Tõukerattad
             name_et: Uisutamine
           - slug: tennis-ball-equipment
             name_en: Tennis Ball Equipment
@@ -5444,15 +5342,6 @@ l1:
             product_count: 1
             name_et: Treeningseadmed
         name_et: Golfivarustus
-      - slug: sports
-        name_en: Sports
-        product_count: 1
-        subs:
-          - slug: electric-bicycle
-            name_en: Electric Bicycle
-            product_count: 1
-            name_et: Elektrirattad
-        name_et: Sport
       - slug: sports-and-outdoor-recreation-accessories
         name_en: Sports & Outdoor Recreation Accessories
         product_count: 1
@@ -6766,10 +6655,6 @@ l1:
             name_en: Trampoline Parts
             product_count: 7
             name_et: Trampliini varuosad
-          - slug: trampoline
-            name_en: Trampoline
-            product_count: 3
-            name_et: Trampliinid
         name_et: Trampliinid
       - slug: toys-and-games
         name_en: Toys & Games
@@ -8197,15 +8082,6 @@ l1:
             name_en: Livestock Scratch Brushes
             product_count: 10
             name_et: Loomade kraasimisharjad
-          - slug: backyard-landscaping-farm-pet-supplies-and-wildlife-small-animal
-            name_en: Small Animal Supplies
-            product_count: 6
-            subs:
-              - slug: chicken-coop-door-opener
-                name_en: Chicken Coop Door Opener
-                product_count: 6
-                name_et: Kanapuuri ukseautomaadid
-            name_et: Väikeloomade tarvikud
         name_et: Lemmikloomad ja looduselu
       - slug: patio-furniture-and-accessories
         name_en: Patio Furniture & Accessories
@@ -8339,10 +8215,6 @@ l1:
             name_en: Automatic Poultry Feeder
             product_count: 1
             name_et: Automaatsed linnusöötjad
-          - slug: livestock-and-poultry-supplies-chicken-coop
-            name_en: Chicken Coop
-            product_count: 1
-            name_et: Kanapuurid
         name_et: Loomakasvatuse tarvikud
       - slug: outdoor-decoration
         name_en: Outdoor Decoration
@@ -8672,10 +8544,6 @@ l1:
                     name_en: Pipe Drain Cleaner Machine
                     product_count: 30
                     name_et: Torude puhastusmasinad
-                  - slug: drain-cleaner-machine
-                    name_en: Drain Cleaner Machine
-                    product_count: 5
-                    name_et: Torupuhastusmasinad
                   - slug: handheld-drain-cleaner-machine
                     name_en: Handheld Drain Cleaner Machine
                     product_count: 3
@@ -8715,10 +8583,6 @@ l1:
                 name_en: Manual Tube Bender
                 product_count: 14
                 name_et: Käsitorupainurid
-              - slug: tube-bender
-                name_en: Tube Bender
-                product_count: 5
-                name_et: Torupainurid
               - slug: copper-tube-bender
                 name_en: Copper Tube Bender
                 product_count: 2
@@ -10004,10 +9868,6 @@ l1:
                 name_en: Non-Electric Medicine Cabinet
                 product_count: 7
                 name_et: Elektrivabad ravimikapid
-              - slug: electric-medicine-cabinet
-                name_en: Electric Medicine Cabinet
-                product_count: 4
-                name_et: Elektrilised ravimikapid
             name_et: Ravimikapid
           - slug: bathroom-storage-over-the-toilet-storage
             name_en: Over-the-Toilet Storage
@@ -10169,9 +10029,6 @@ l1:
           - slug: dresser-vanity-mirror
             name_en: Dresser Vanity Mirror
             product_count: 9
-          - slug: electric-wall-mounted-makeup-mirror
-            name_en: Electric Wall Mounted Makeup Mirror
-            product_count: 4
       - slug: lamps
         name_en: Lamps
         product_count: 26
@@ -10431,37 +10288,6 @@ l1:
             subs: []
             name_et: Katusetööriistad
         name_et: Katusematerjal
-      - slug: air-conditioners
-        name_en: Air Conditioners
-        product_count: 22
-        subs:
-          - slug: air-conditioner-supplies
-            name_en: Air Conditioner Supplies
-            product_count: 18
-            subs:
-              - slug: air-conditioner-covers
-                name_en: Air Conditioner Covers
-                product_count: 17
-                name_et: Kliimaseadmete katted
-              - slug: air-conditioner-sleeves
-                name_en: Air Conditioner Sleeves
-                product_count: 1
-                name_et: Kliimaseadmete seinahülsid
-            name_et: Kliimaseadmete tarvikud
-          - slug: portable-air-conditioners
-            name_en: Portable Air Conditioners
-            product_count: 4
-            subs:
-              - slug: camping-portable-air-conditioner
-                name_en: Camping Portable Air Conditioner
-                product_count: 3
-                name_et: Matkakliimaseadmed
-              - slug: portable-air-conditioner
-                name_en: Portable Air Conditioner
-                product_count: 1
-                name_et: Mobiilsed kliimaseadmed
-            name_et: Kaasaskantavad kliimaseadmed
-        name_et: Kliimaseadmed
       - slug: boat-docks-and-hardware
         name_en: Boat Docks & Hardware
         product_count: 19
@@ -10484,10 +10310,6 @@ l1:
             name_en: Acoustic Slat Wall Panels
             product_count: 13
             name_et: Akustilised ribapaneelid
-          - slug: wall-panels
-            name_en: Wall Panels
-            product_count: 6
-            name_et: Seinapaneelid
         name_et: Liistud ja puitdetailid
       - slug: toilets
         name_en: Toilets
@@ -11273,10 +11095,6 @@ l1:
                 name_en: Turning Tools
                 product_count: 9
                 name_et: Treimistööriistad
-              - slug: socket-sets
-                name_en: Socket Sets
-                product_count: 8
-                name_et: Padrunkomplektid
               - slug: electricians-tool-sets
                 name_en: Electrician's Tool Sets
                 product_count: 6
@@ -12629,10 +12447,6 @@ l1:
             name_en: Chain
             product_count: 9
             name_et: Ahelad
-          - slug: rope
-            name_en: Rope
-            product_count: 8
-            name_et: Köied
           - slug: polyester-pull-tapes
             name_en: Polyester Pull Tapes
             product_count: 6
@@ -14640,55 +14454,6 @@ l1:
             subs: []
             name_et: Garderoobi lisatarvikud
         name_et: Garderoobi lahendused
-      - slug: office-furniture
-        name_en: Office Furniture
-        product_count: 24
-        subs:
-          - slug: office-room-divider
-            name_en: Office Room Divider
-            product_count: 5
-            name_et: Kontori ruumijagajad
-          - slug: office-furniture-chest-of-drawers
-            name_en: Chest Of Drawers
-            product_count: 4
-            name_et: Kommoodid
-          - slug: pipe-shelf
-            name_en: Pipe Shelf
-            product_count: 4
-            name_et: Toruriiulid
-          - slug: bed-frames
-            name_en: Bed Frames
-            product_count: 2
-            name_et: Voodiraamid
-          - slug: office-chair
-            name_en: Office Chair
-            product_count: 2
-            name_et: Kontoritoolid
-          - slug: office-furniture-rattan-chair
-            name_en: Rattan Chair
-            product_count: 2
-            name_et: Rotangitoolid
-          - slug: office-furniture-kids-furniture
-            name_en: Kids' Furniture
-            product_count: 1
-            name_et: Lastemööbel
-          - slug: literature-organizer
-            name_en: Literature Organizer
-            product_count: 1
-            name_et: Trükisehoidikud
-          - slug: office-furniture-monitor-arms
-            name_en: Monitor Arms
-            product_count: 1
-            name_et: Monitorivarred
-          - slug: office-furniture-office-chair-base
-            name_en: Office Chair Base
-            product_count: 1
-            name_et: Kontoritooli alused
-          - slug: stand-up-desk
-            name_en: Stand Up Desk
-            product_count: 1
-            name_et: Püstitöölauad
-        name_et: Kontorimööbel
       - slug: wall-decor
         name_en: Wall Decor
         product_count: 23
@@ -14794,43 +14559,6 @@ l1:
             product_count: 1
             name_et: Vaakum-seljakotid
         name_et: Reisipagasi
-      - slug: furniture
-        name_en: Furniture
-        product_count: 14
-        subs:
-          - slug: furniture-bean-bag-chairs
-            name_en: Bean Bag Chairs
-            product_count: 6
-            name_et: Kottoolid
-          - slug: coffee-table
-            name_en: Coffee Table
-            product_count: 2
-            name_et: Kohvilauad
-          - slug: coffe-table
-            name_en: Coffe Table
-            product_count: 1
-            name_et: Kohvilauad
-          - slug: furniture-headboards
-            name_en: Headboards
-            product_count: 1
-            name_et: Voodipeatsid
-          - slug: kids-chair
-            name_en: Kids' Chair
-            product_count: 1
-            name_et: Laste toolid
-          - slug: massage-chair
-            name_en: Massage Chair
-            product_count: 1
-            name_et: Massaažitoolid
-          - slug: furniture-mattresses
-            name_en: Mattresses
-            product_count: 1
-            name_et: Madratsid
-          - slug: furniture-shoe-cabinets
-            name_en: Shoe Cabinets
-            product_count: 1
-            name_et: Jalatsikapid
-        name_et: Mööbel
       - slug: office-commercial-interiors-christmas-decorations
         name_en: Christmas Decorations
         product_count: 13
@@ -14840,20 +14568,6 @@ l1:
             product_count: 6
             subs: []
             name_et: Jõuluhaljastus
-          - slug: office-commercial-interiors-christmas-decorations-christmas-tree
-            name_en: Christmas Trees
-            product_count: 6
-            subs:
-              - slug: artificial-christmas-trees
-                name_en: Artificial Christmas Trees
-                product_count: 6
-                subs:
-                  - slug: pre-lit-christmas-trees
-                    name_en: Pre-Lit Christmas Trees
-                    product_count: 6
-                    name_et: Valgustusega kunstjõulupuud
-                name_et: Kunstjõulupuud
-            name_et: Jõulupuud
           - slug: indoor-christmas-decorations
             name_en: Indoor Christmas Decorations
             product_count: 1
