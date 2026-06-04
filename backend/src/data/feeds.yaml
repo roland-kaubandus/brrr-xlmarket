@@ -1,0 +1,37 @@
+# feeds.yaml — multi-feed registry (SSoT feedide kohta)
+# Vt arhitektuur: outputs/multi-feed-plaan-2026-06-04.md
+# Uue feedi lisamine = 1 blokk siia + 1 adapter (backend/src/feeds/adapters/<id>.mjs)
+#   + 1 mapping-fail (backend/src/taxonomy/<id>-to-v3.json). EI muuda pipeline'i.
+version: 1
+updated: '2026-06-04'
+
+defaults:
+  markup: 1.15                 # algne_hind * 1.15 (käibemaks)
+  currency: eur
+  status_on_import: published  # või 'draft' kui vaja review enne avaldamist
+
+feeds:
+  - id: vevor
+    name: VEVOR
+    enabled: true
+    format: xlsx
+    url: https://ads-feed.s3.us-west-2.amazonaws.com/ads/business/571/vevor-571.xlsx
+    local_path: backend/data/feeds/vevor-571.xlsx
+    sku_prefix: VV             # supplier_sku = "VV-<raw_sku>" (kollisioonivaba)
+    mapping: vevor-to-v3.json  # tarnija kategooria → kureeritud taxonomy
+    adapter: vevor             # backend/src/feeds/adapters/vevor.mjs
+    markup: 1.15
+    brand_lock: VEVOR          # bränd jääb muutmata
+    image_source: vevor_cdn    # pildid feedist (image.vevor.com) — ei hosti ise
+
+  # --- Tulevased feedid (näidis, enabled:false kuni valmis) ---
+  # - id: supplierA
+  #   name: Tarnija A
+  #   enabled: false
+  #   format: csv               # xlsx | csv | json | xml
+  #   url: https://example.com/feed-a.csv
+  #   sku_prefix: SA
+  #   mapping: supplierA-to-v3.json
+  #   adapter: supplierA
+  #   markup: 1.20              # erinev marginaal lubatud
+  #   image_source: r2          # kui pildid migreeritakse Cloudflare R2-te
