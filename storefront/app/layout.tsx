@@ -2,7 +2,6 @@ import { DM_Sans, Playfair_Display } from "next/font/google"
 import JsonLdOrganization from "@/components/JsonLdOrganization"
 import JsonLdWebsite from "@/components/JsonLdWebsite"
 import PostHogProvider from "@/components/PostHogProvider"
-import { readAdminSession } from "@/lib/admin-session"
 import { AdminProvider } from "@/components/admin/AdminProvider"
 import AdminBar from "@/components/admin/AdminBar"
 import "./globals.css"
@@ -29,8 +28,7 @@ export const metadata = {
 const CATEGORY_FONTS_URL =
   "https://fonts.googleapis.com/css2?family=Mulish:wght@500;600;700&display=swap"
 
-export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  const session = await readAdminSession()
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html className="scroll-smooth" suppressHydrationWarning>
       <head>
@@ -42,7 +40,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <JsonLdOrganization />
         <JsonLdWebsite />
         <div className="noise-overlay" />
-        <AdminProvider email={session?.email ?? null}>
+        <AdminProvider>
           <AdminBar />
           <PostHogProvider>{children}</PostHogProvider>
         </AdminProvider>
