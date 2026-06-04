@@ -4,6 +4,7 @@ import { getVisibleL1, getNode, nodeName, type CategoryNode } from "@/lib/catego
 import CategoryThumb from "@/components/CategoryThumb"
 import CategoryImageEditor from "@/components/admin/CategoryImageEditor"
 import countsDoc from "@/lib/category-counts.generated.json"
+import { readAdminSession } from "@/lib/admin-session"
 
 export const revalidate = 3600
 
@@ -47,9 +48,10 @@ function findL1Handle(node: CategoryNode): string {
 interface CategoryCardProps {
   node: CategoryNode
   locale: string
+  isAdmin: boolean
 }
 
-function CategoryCard({ node, locale }: CategoryCardProps) {
+function CategoryCard({ node, locale, isAdmin }: CategoryCardProps) {
   const count = countOf(node.handle)
   const name = nodeName(node, locale)
   const l1Handle = findL1Handle(node)
@@ -78,9 +80,14 @@ function CategoryCard({ node, locale }: CategoryCardProps) {
           </span>
         ) : null}
       </Link>
-      <div className="absolute top-2 right-2">
-        <CategoryImageEditor handle={node.handle} displayName={name} />
-      </div>
+      {/* PERF: admin-only editor rendered server-side ONLY for admins.
+          For the public (99.99% of traffic) this client boundary is never
+          serialised — see 2026-06-04 SSR-payload fix. */}
+      {isAdmin && (
+        <div className="absolute top-2 right-2">
+          <CategoryImageEditor handle={node.handle} displayName={name} />
+        </div>
+      )}
     </div>
   )
 }
@@ -89,9 +96,10 @@ interface LevelSectionProps {
   level: number
   nodes: CategoryNode[]
   locale: string
+  isAdmin: boolean
 }
 
-function LevelSection({ level, nodes, locale }: LevelSectionProps) {
+function LevelSection({ level, nodes, locale, isAdmin }: LevelSectionProps) {
   if (nodes.length === 0) return null
   const heading = locale === "et"
     ? `Tase ${level} — ${nodes.length} kategooriat`
@@ -108,7 +116,7 @@ function LevelSection({ level, nodes, locale }: LevelSectionProps) {
       </header>
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 md:gap-4">
         {nodes.map((n) => (
-          <CategoryCard key={n.handle} node={n} locale={locale} />
+          <CategoryCard key={n.handle} node={n} locale={locale} isAdmin={isAdmin} />
         ))}
       </div>
     </section>
@@ -118,10 +126,14 @@ function LevelSection({ level, nodes, locale }: LevelSectionProps) {
 export default async function CategoriesIndexPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
   const l1Nodes = getVisibleL1()
+  // Admin-staatus server-side → editorit ei serialiseerita avalikule payloadile.
+  const isAdmin = Boolean((await readAdminSession())?.email)
 
-  // Collect every level present in the tree (cap at 5 — L6/L7 are 53 nodes total
-  // and rarely browsed; surface them via deeper category pages, not this index).
-  const MAX_LEVEL = 5
+  // PERF (2026-06-04 SSR-payload fix): show only L1+L2 here. Rendering all
+  // levels (L1–L5 = 3420 kaarti) blew the RSC payload to ~7.8 MB / TTFB 60s+.
+  // Deeper levels (L3+) stay reachable via the category detail page carousel,
+  // the mega-menu drill and search — they don't need to be on this index.
+  const MAX_LEVEL = 2
   const levels: Array<{ level: number; nodes: CategoryNode[] }> = []
   for (let level = 1; level <= MAX_LEVEL; level++) {
     const nodes = collectByLevel(level, l1Nodes)
@@ -132,8 +144,8 @@ export default async function CategoriesIndexPage({ params }: { params: Promise<
 
   const heading = locale === "et" ? "Kõik kategooriad" : "All categories"
   const intro = locale === "et"
-    ? `Kõik ${totalNodes} kategooriat — sirvi tasemete kaupa, klõpsa avamiseks.`
-    : `All ${totalNodes} categories — browse level by level.`
+    ? `Sirvi peamisi kategooriaid — klõpsa avamiseks ja vaata alamkategooriaid.`
+    : `Browse our main categories — click any to drill into subcategories.`
 
   return (
     <main className="mx-auto max-w-[1440px] px-4 md:px-8 py-8 md:py-12">
@@ -153,7 +165,7 @@ export default async function CategoriesIndexPage({ params }: { params: Promise<
       </header>
 
       {levels.map(({ level, nodes }) => (
-        <LevelSection key={level} level={level} nodes={nodes} locale={locale} />
+        <LevelSection key={level} level={level} nodes={nodes} locale={locale} isAdmin={isAdmin} />
       ))}
     </main>
   )
