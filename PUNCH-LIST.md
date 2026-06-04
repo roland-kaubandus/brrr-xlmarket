@@ -17,7 +17,7 @@
 - [ ] Admin paneelil pole basic-auth'i (`storefront/app/xl-admin/layout.tsx:9`) — ainult obscurity + reverse-proxy
 
 ### Sisu / tõlked
-- [ ] ~10 148 toodet ilma ET-tõlketa (40.7% valmis, 6957/17105) — tõlke pipeline jätkata. Runner: `scripts/translate-claude-cli.cjs` (claude CLI, Max OAuth). 2026-06-03: +498 tõlgitud
+- [ ] ~8 652 toodet ilma ET-tõlketa (49.4% valmis, 8453/17105) — runner: `scripts/translate-claude-cli.cjs`. 2026-06-03/04: +1994 tõlgitud (0 broken)
 
 ### Stabiilsus / arhitektuur
 - [ ] DKIM võti (xlmarket.ee) on mailcow redis'es — dokumenteeri restore (kui mailcow taastatakse, võti taastada)
