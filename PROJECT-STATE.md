@@ -15,7 +15,7 @@ Medusa 2.13.5 (backend, port 9000) · Next.js 16 storefront (3030) · PostgreSQL
 ## Live URL-id + seis
 | URL | Mis | Seis |
 |---|---|---|
-| https://xlmarket.ee | storefront (PROD) | ✅ 200 |
+| https://xlmarket.ee | **maintenance-leht** ("Tuleme varsti tagasi") kuni launchini | ✅ 200 (konteiner `xlmarket-maintenance`, võidab Traefik routingu prod-storefront'i ees). Päris storefront terve, eelvaade `dev.xlmarket.ee` kaudu |
 | https://api.xlmarket.ee/app | Medusa admin (Coolify-native) | ✅ 200 |
 | https://admin.xlmarket.ee/app | Medusa admin (manuaalne Traefik yaml → `medusa` alias) | ✅ 200 |
 | https://meili.xlmarket.ee | Meili | ✅ |

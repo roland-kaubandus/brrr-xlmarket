@@ -20,6 +20,7 @@
 - [ ] ~8 652 toodet ilma ET-tõlketa (49.4% valmis, 8453/17105) — runner: `scripts/translate-claude-cli.cjs`. 2026-06-03/04: +1994 tõlgitud (0 broken)
 
 ### Stabiilsus / arhitektuur
+- [x] **Meili settingud kirjutatakse üle** (LAHENDATUD 2026-06-04) — juurpõhjus: plugin'i `loaders/index.js` rakendab `medusa-config.ts` `indexSettings`'i IGAL boot'il (SKIP_MEILISEARCH_STARTUP_INDEXING keelab ainult dok-reindexi, mitte settinguid). Config'is olid minimaalsed searchable+displayed → reset igal redeploy'l (€0.00, tühjad kategooriad, ET peidus). **Fix:** `medusa-config.ts` `indexSettings` täiendatud täielikuks (sünk index-meilisearch.mjs-ga) → loader rakendab nüüd ÕIGEID settinguid igal boot'il. **Vajab redeploy't et aktiveeruda.** Praegune indeks juba parandatud (reindex 2026-06-04)
 - [ ] DKIM võti (xlmarket.ee) on mailcow redis'es — dokumenteeri restore (kui mailcow taastatakse, võti taastada)
 - [ ] `MEILISEARCH_API_KEY` ilma fallbackita (`medusa-config.ts:29`) — vaikne crash kui puudu
 

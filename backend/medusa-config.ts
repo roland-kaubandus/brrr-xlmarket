@@ -30,9 +30,22 @@ export default defineConfig({
         },
         settings: {
           products: {
+            // NB: plugin'i loader (loaders/index.js) rakendab neid indexSettinguid
+            // IGAL Medusa boot'il (Coolify redeploy / restart), sõltumata
+            // SKIP_MEILISEARCH_STARTUP_INDEXING'ist (see keelab ainult dokumentide
+            // reindexi, MITTE settingute rakendamist). Kui need on minimaalsed,
+            // kirjutab boot üle searchable+displayed → hinnad €0.00, kategooriad
+            // tühjad, ET-tõlked peidus (juhtus 2026-06-04). PEAVAD olema sünkroonis
+            // backend/scripts/index-meilisearch.mjs settingutega (SSoT seal).
             indexSettings: {
-              searchableAttributes: ["title", "description", "handle"],
-              displayedAttributes: ["id", "title", "description", "handle", "thumbnail", "variants", "options"],
+              searchableAttributes: ["title_et", "title_en", "description_et", "description_en", "categories", "sku", "handle"],
+              displayedAttributes: ["*"],
+              filterableAttributes: [
+                "categories", "category_handles", "subcategory", "price", "in_stock", "translated", "filter_tokens",
+                "taxonomy.l1_slug", "taxonomy.l2_slug", "taxonomy.l3_slug", "taxonomy.ancestors",
+                "vertical_slugs", "handle",
+              ],
+              sortableAttributes: ["price", "created_at", "title_en"],
             },
           },
         },
