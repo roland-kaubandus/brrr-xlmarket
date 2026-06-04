@@ -110,8 +110,13 @@ services:
       EMAIL_INVOICE: ${EMAIL_INVOICE:-tarmo@naissaar.eu}
       STORE_URL: ${NEXT_PUBLIC_BASE_URL:-https://xlmarket.ee}
     networks:
-      - default
-      - mailcow
+      default:
+        # Stabiilne alias (prod=xlmarket-medusa, staging=eraldi env) → manuaalne
+        # Traefik route (admin.xlmarket.ee) ei vaja konteineri-rename uuendust
+        # iga redeploy järel. Default '-unset' väldib prod/staging kollisiooni.
+        aliases:
+          - ${MEDUSA_ALIAS:-xlmarket-medusa-unset}
+      mailcow:
     depends_on:
       db:
         condition: service_healthy
@@ -160,6 +165,12 @@ services:
     depends_on:
       medusa:
         condition: service_started
+    networks:
+      default:
+        # Stabiilne alias (prod=xlmarket-storefront) → dev.xlmarket.ee Traefik
+        # route ei vaja konteineri-rename uuendust iga redeploy järel.
+        aliases:
+          - ${STOREFRONT_ALIAS:-xlmarket-storefront-unset}
     expose:
       - "3030"
     healthcheck:
