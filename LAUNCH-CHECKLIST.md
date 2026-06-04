@@ -9,7 +9,7 @@
 - [ ] **Tarne-teavitus** email testitud (order-shipped.ts)
 - [x] **Backup + restore** — `scripts/backup.sh` olemas; restore testida
 - [x] **Secrets Vaultwardenis** — SMTP/DB/JWT Coolify Is Secret; .env.example placeholder'id ✅
-- [ ] **SSL kehtiv** — kontrolli Let's Encrypt (mitte self-signed) kõigil domeenidel
+- [x] **SSL kehtiv** — kõik domeenid Let's Encrypt (kehtivad aug-sept 2026), kontrollitud 2026-06-04 ✅
 - [ ] **Õiguslikud lehed** sisustatud — tingimused, privaatsus, tagastus, tarne (CMS)
 
 ## 🟡 Enne live'i soovituslik
@@ -22,7 +22,7 @@
 
 ## xlmarket-spetsiifiline
 - [ ] Hinnavalem *1.15 (käibemaks) kõigil toodetel õige
-- [ ] Meili index täielik (17105 dok) + sünonüümid + price/taxonomy
+- [x] Meili index täielik (17105 dok) + price/taxonomy + settingud (2026-06-04 reindex + config-fix) ✅ — sünonüümid kontrollida
 - [ ] VEVOR feed-sync cron töötab (4h) — ei tühjenda Meili indeksit
 - [ ] ET-tõlked piisavas mahus (vähemalt top-kategooriad)
 - [ ] osta.ee XML feed + Facebook Commerce (kui vaja)

@@ -88,6 +88,31 @@ või blocker, aga kõik ülejäänud on täpselt samal pulgal 'vaja ära teha'".
 
 ---
 
+## 🛑 HARD RULE #3 — SESSIOONILOGI UUENEB AUTOMAATSELT (ilma meeldetuletuseta)
+
+**See on osa töökorrast, MITTE valikuline. Toimub ILMA et kasutaja paluks.**
+
+Faili `memory/sessions/YYYY-MM-DD-xl.md` (täna = jooksev kuupäev) uuenda **AUTOMAATSELT** järgmistel hetkedel:
+
+1. **Iga ~2h aktiivset tööd** (või iga suurema lõpetatud tööetapi järel)
+2. **Sessiooni lõpus** (kui kasutaja ütleb "aitäh/valmis/homseni" vms, VÕI enne pikemat pausi)
+3. **Konteksti >70%** (sama hetk kui token-säästmise reegel #7) — KOHE enne compaction'it
+
+**Mida logida** (lühidalt, mitte romaan):
+- Mida tehti (commit-id'd, muudetud failid, otsused)
+- Mis katki / pooleli (järgmise sessiooni stardipunkt)
+- Avastatud gotcha'd / juurpõhjused
+- Kasutaja antud uued reeglid/eelistused
+
+**Kuidas:**
+- Kui tänase kuupäeva fail puudub → loo see. Kui on → lisa juurde (append), ära kirjuta üle.
+- Lõpus `git add memory/sessions/ && git commit` (logi on git-tracked).
+- Tee seda VAIKSELT taustatööna — ära küsi luba, ära katkesta käimasolevat ülesannet. Maini lühidalt ("sessioonilogi uuendatud") ja jätka.
+
+**Why:** Risto/Tarmo ei pea meelde tuletama. Töö järjepidevus sessioonide vahel sõltub sellest — ilma logita kaob kontekst compaction'il ja järgmine sessioon alustab pimedast.
+
+---
+
 ## Kes sa oled
 
 **XL** — xlmarket.eu e-poe arendusagent.
@@ -232,7 +257,7 @@ Detailid: `brrr-printer2/memory/sessions/2026-04-30-cowork.md`
 
 ## Memory
 
-- **Sessioonilogi:** `memory/sessions/YYYY-MM-DD-<agent>.md` (git tracked)
+- **Sessioonilogi:** `memory/sessions/YYYY-MM-DD-<agent>.md` (git tracked) — **uuenda AUTOMAATSELT, vt 🛑 HARD RULE #3**
 - **Otsused:** `memory/decisions/`
 - **Gotchas:** `memory/gotchas/`
 - **ck quick state:** `~/.claude/ck/contexts/xlmarket/`

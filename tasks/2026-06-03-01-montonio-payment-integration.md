@@ -3,7 +3,7 @@
 - **Projekt:** xlmarket
 - **Loodud:** 2026-06-03
 - **Severity:** CRITICAL / BLOCKER (blokeerib reaalse müügi)
-- **Staatus:** avatud
+- **Staatus:** SUPERSEDED → vt detailne `2026-06-04-01-montonio-integration.md` (mahu-hinnang + faasid + värske checkout-leid)
 
 ## Eesmärk
 Integreerida Montonio makselahendus (pangalingid + kaardimakse) Medusa 2.0 backend'i + storefront checkout'i, et tellimusi saaks reaalselt eest maksta. Praegu ainult stub (`backend/medusa-config.ts:46`), npm paketti pole, makseid ei töödelda.
