@@ -25,10 +25,6 @@ l1:
                     name_en: Conventional Slush Machine
                     product_count: 21
                     name_et: Avatud slušimasinad
-                  - slug: closed-slush-machine
-                    name_en: Closed Slush Machine
-                    product_count: 2
-                    name_et: Kinnised slušimasinad
                 name_et: Purustatud jää masinad
               - slug: ice-cream-makers
                 name_en: Ice Cream Makers
@@ -51,10 +47,6 @@ l1:
                     name_en: Fried Ice Machine
                     product_count: 5
                     name_et: Praetud jää masinad
-                  - slug: hot-chocolate-dispenser
-                    name_en: Hot chocolate dispenser
-                    product_count: 2
-                    name_et: Kuuma šokolaadi jaoturid
                 name_et: Erimagustoidumasinad
               - slug: ice-shaver
                 name_en: Ice Shaver
@@ -81,15 +73,6 @@ l1:
                 name_en: Sand Ice Machine
                 product_count: 4
                 name_et: Liivjää masinad
-              - slug: cotton-candy-machine-accessories
-                name_en: Cotton Candy Machine Accessories
-                product_count: 2
-                subs: []
-                name_et: Suhkruvatimasina tarvikud
-              - slug: chocolate-melting-machine
-                name_en: Chocolate Melting Machine
-                product_count: 1
-                name_et: Šokolaadisulatajad
             name_et: Magustoidumasinad
           - slug: meat-and-poultry-tools
             name_en: Meat & Poultry Tools
@@ -142,14 +125,6 @@ l1:
                 name_en: Commercial Meat Grinder and Cutter
                 product_count: 4
                 name_et: Tööstuslikud hakkliha- ja lihalõikurid
-              - slug: meat-tenderizers
-                name_en: Meat Tenderizers
-                product_count: 2
-                name_et: Lihavasarad
-              - slug: electric-pulse-meat-grinder
-                name_en: Electric Pulse Meat Grinder
-                product_count: 1
-                name_et: Impulss-hakklihamasinad
             name_et: Liha- ja linnulihatööriistad
           - slug: food-warmers
             name_en: Food Warmers
@@ -175,10 +150,6 @@ l1:
                 name_en: Electric Warming Trays For Food
                 product_count: 3
                 name_et: Elektrililised toidusoojusalused
-              - slug: french-fries-warmer
-                name_en: French Fries Warmer
-                product_count: 2
-                name_et: Friikartulite soojendid
             name_et: Toidusoojendid
           - slug: food-processing
             name_en: Food Processing
@@ -200,10 +171,6 @@ l1:
                         name_en: Chamber Vacuum Sealers
                         product_count: 3
                         name_et: Kammervaakumpakendajad
-                      - slug: cup-sealing-machine
-                        name_en: Cup Sealing Machine
-                        product_count: 2
-                        name_et: Topsisulgurid
                     name_et: Vaakumpakendajad
                   - slug: dehydrators
                     name_en: Dehydrators
@@ -213,21 +180,12 @@ l1:
                         name_en: Food Air Dryer
                         product_count: 6
                         name_et: Õhkkuivatid
-                      - slug: food-freeze-drying-machine
-                        name_en: Food Freeze Drying Machine
-                        product_count: 2
-                        name_et: Külmkuivatid
                     name_et: Toidukuivatid
                 name_et: Toidusäilitamine
               - slug: vegetable-processing-machine
                 name_en: Vegetable Processing Machine
                 product_count: 14
                 name_et: Köögiviljamasinad
-              - slug: food-preparation
-                name_en: Food Preparation
-                product_count: 1
-                subs: []
-                name_et: Toiduettevalmistus
             name_et: Toidutöötlemine
           - slug: electric-skillets-and-indoor-grills
             name_en: Electric Skillets & Indoor Grills
@@ -246,10 +204,6 @@ l1:
                     name_en: Commercial Electric Griddle
                     product_count: 7
                     name_et: Professionaalsed grillplaadid
-                  - slug: salamander-broilers-and-cheese-melters
-                    name_en: Salamander Broilers & Cheese Melters
-                    product_count: 1
-                    name_et: Salamandrid ja juustusulatid
                 name_et: Elektrilised grillplaadid
               - slug: panini-presses
                 name_en: Panini Presses
@@ -277,10 +231,6 @@ l1:
                 product_count: 3
                 subs: []
                 name_et: Mikseri lisatarvikud
-              - slug: electric-ice-cream-mixer-machine
-                name_en: Electric Ice Cream Mixer Machine
-                product_count: 2
-                name_et: Jäätisemiksrid
             name_et: Mikserid
           - slug: juicers
             name_en: Juicers
@@ -298,14 +248,6 @@ l1:
                 name_en: Sugarcane Juice Machine
                 product_count: 4
                 name_et: Suhkruroo mahlapressid
-              - slug: wheatgrass-juicer
-                name_en: Wheatgrass Juicer
-                product_count: 2
-                name_et: Nisuorase mahlapressid
-              - slug: heavy-duty-manual-citrus-juicer
-                name_en: Heavy Duty Manual Citrus Juicer
-                product_count: 1
-                name_et: Tugevad käsitsipressid
             name_et: Mahlapressid
           - slug: coffee-makers
             name_en: Coffee Makers
@@ -332,14 +274,6 @@ l1:
                 name_en: Espresso Machines
                 product_count: 3
                 subs:
-                  - slug: super-automatic-espresso-coffee-maker
-                    name_en: Super-Automatic Espresso Coffee Maker
-                    product_count: 2
-                    name_et: Täisautomaatsed espressomasinad
-                  - slug: household-semi-automatic-espresso-coffee-maker
-                    name_en: Household Semi-Automatic Espresso Coffee Maker
-                    product_count: 1
-                    name_et: Kodused poolautomaatsed espressomasinad
                 name_et: Espressomasinad
               - slug: milk-frothers
                 name_en: Milk Frothers
@@ -350,10 +284,6 @@ l1:
                 name_en: Milking Machine
                 product_count: 2
                 name_et: Lüpsmasinad
-              - slug: coffee-airpots
-                name_en: Coffee Airpots
-                product_count: 1
-                name_et: Kohvitermosed
             name_et: Kohvimasinad
           - slug: electric-kettles
             name_en: Electric Kettles
@@ -367,10 +297,6 @@ l1:
                 name_en: Hydrogen Water Pitche
                 product_count: 4
                 name_et: Vesinikuvee kannud
-              - slug: instant-hot-water-dispenser-countertop
-                name_en: Instant Hot Water Dispenser Countertop
-                product_count: 1
-                name_et: Kuumaveejaoturid
             name_et: Veekeetjad
           - slug: deep-fryers
             name_en: Deep Fryers
@@ -401,10 +327,6 @@ l1:
                 name_en: Hot Pots
                 product_count: 6
                 name_et: Kuumapotid
-              - slug: sous-vide-circulator
-                name_en: Sous Vide Circulator
-                product_count: 1
-                name_et: Sous vide tsirkulaatorid
             name_et: Keeduseadmed
           - slug: blenders
             name_en: Blenders
@@ -420,16 +342,6 @@ l1:
             name_en: Hot Dog Equipment
             product_count: 5
             name_et: Hot Dog seadmed
-          - slug: commercial-ovens-equipment
-            name_en: Commercial Ovens Equipment
-            product_count: 1
-            subs: []
-            name_et: Tööstuslikud ahjud
-          - slug: toaster-ovens
-            name_en: Toaster Ovens
-            product_count: 1
-            subs: []
-            name_et: Rösterahjud
         name_et: Väikeköögiseadmed
       - slug: kitchenware
         name_en: Kitchenware
@@ -460,14 +372,6 @@ l1:
                     name_en: Electric Grain Grinder
                     product_count: 18
                     name_et: Elektrilised viljajahvatid
-                  - slug: oil-presser
-                    name_en: Oil Presser
-                    product_count: 2
-                    name_et: Õlipressid
-                  - slug: electric-tomato-strainer
-                    name_en: Electric Tomato Strainer
-                    product_count: 1
-                    name_et: Tomatisõelad
                 name_et: Toiduveskid
               - slug: pasta-makers
                 name_en: Pasta Makers
@@ -477,18 +381,6 @@ l1:
                     name_en: Dough Presses Machine
                     product_count: 9
                     name_et: Taignapressid
-                  - slug: dough-cutters
-                    name_en: Dough Cutters
-                    product_count: 2
-                    name_et: Taignalõikurid
-                  - slug: mexico-corn-tortilla-machine
-                    name_en: Mexico Corn Tortilla Machine
-                    product_count: 2
-                    name_et: Tortillamasinad
-                  - slug: dough-sheeter-machine
-                    name_en: Dough Sheeter Machine
-                    product_count: 1
-                    name_et: Taignarullmasinad
                 name_et: Pastamasinad
               - slug: specialty-kitchen-gadgets
                 name_en: Specialty Kitchen Gadgets
@@ -502,10 +394,6 @@ l1:
                     name_en: Fruit Crusher Fermenter
                     product_count: 1
                     name_et: Puuviljapurustid ja kääritid
-                  - slug: manual-hand-grain-mill
-                    name_en: Manual Hand Grain Mill
-                    product_count: 1
-                    name_et: Käsiveskid
                 name_et: Eriotstarbelised köögiriistad
               - slug: tomato-slicer
                 name_en: Tomato Slicer
@@ -525,22 +413,6 @@ l1:
                 product_count: 3
                 subs: []
                 name_et: Teravilja ettevalmistus
-              - slug: commercial-vegetable-fruit-dicer
-                name_en: Commercial Vegetable Fruit Dicer
-                product_count: 2
-                name_et: Köögivilja- ja puuviljalõikurid
-              - slug: food-choppers
-                name_en: Food Choppers
-                product_count: 2
-                name_et: Toiduhakkijad
-              - slug: milk-pasteurizer
-                name_en: Milk Pasteurizer
-                product_count: 2
-                name_et: Piima pastörisaatorid
-              - slug: salad-spinners
-                name_en: Salad Spinners
-                product_count: 1
-                name_et: Salatikuivatid
             name_et: Köögivahendid
           - slug: cookware
             name_en: Cookware
@@ -580,10 +452,6 @@ l1:
                 product_count: 1
                 subs: []
                 name_et: Kiirpotid
-              - slug: water-bath-canner
-                name_en: Water Bath Canner
-                product_count: 1
-                name_et: Konserveerimiskatlad
             name_et: Keedunõud
           - slug: bakeware
             name_en: Bakeware
@@ -616,20 +484,12 @@ l1:
                     name_en: Bakery Display Case
                     product_count: 3
                     name_et: Pagarivitriinid
-                  - slug: bun-pan-rack
-                    name_en: Bun Pan Rack
-                    product_count: 2
-                    name_et: Küpsetusplaadiriiulid
                 name_et: Jahutusrestid
               - slug: pizza-pans
                 name_en: Pizza Pans
                 product_count: 4
                 subs: []
                 name_et: Pitsapannid
-              - slug: baking-dishes
-                name_en: Baking Dishes
-                product_count: 1
-                name_et: Ahjuvormid
               - slug: pizza-stones
                 name_en: Pizza Stones
                 product_count: 1
@@ -651,10 +511,6 @@ l1:
                 name_en: Led Poster Frame
                 product_count: 3
                 name_et: LED-plakaadiraamid
-              - slug: digital-kiosk
-                name_en: Digital Kiosk
-                product_count: 2
-                name_et: Digikioskid
             name_et: Restoranisildid
           - slug: cutlery
             name_en: Cutlery
@@ -664,14 +520,6 @@ l1:
                 name_en: Knife Sharpener Jig
                 product_count: 6
                 name_et: Noa teritushoidikud
-              - slug: cutting-boards
-                name_en: Cutting Boards
-                product_count: 1
-                name_et: Lõikelauad
-              - slug: kitchen-knife-holder
-                name_en: Kitchen Knife Holder
-                product_count: 1
-                name_et: Noa hoidikud
             name_et: Noad ja lõiketarbed
         name_et: Köögitarvikud
       - slug: tableware-and-bar
@@ -694,10 +542,6 @@ l1:
                     name_en: Beer Mini Keg
                     product_count: 4
                     name_et: Õlle minitünnid
-                  - slug: cheese-dispenser-with-pump
-                    name_en: Cheese Dispenser With Pump
-                    product_count: 1
-                    name_et: Juustudosaatorid pumbaga
                 name_et: Joogijaoturid
               - slug: chafing-dish
                 name_en: Chafing Dish
@@ -708,11 +552,6 @@ l1:
                 product_count: 12
                 subs: []
                 name_et: Joogikannud
-              - slug: serving-trays
-                name_en: Serving Trays
-                product_count: 1
-                subs: []
-                name_et: Kandikud
             name_et: Serveerimisnõud
           - slug: brewing-equipment
             name_en: Brewing Equipment
@@ -730,10 +569,6 @@ l1:
                 name_en: Beer Brewing Barrel
                 product_count: 5
                 name_et: Pruulimisvaadid
-              - slug: brew-kettle
-                name_en: Brew Kettle
-                product_count: 2
-                name_et: Pruulimiskatlad
             name_et: Pruulimisseadmed
           - slug: table-linens-and-kitchen-linens
             name_en: Table Linens & Kitchen Linens
@@ -773,20 +608,12 @@ l1:
                         name_en: Barware Tool Sets
                         product_count: 3
                         name_et: Barikomplektid
-                      - slug: ice-ball-maker-mold
-                        name_en: Ice Ball Maker Mold
-                        product_count: 1
-                        name_et: Jääpallide vormid
                     name_et: Kokteilikomplektid
                   - slug: electric-wine-glass-polishing-machine
                     name_en: Electric Wine Glass Polishing Machine
                     product_count: 5
                     name_et: Veiniklaaside poleerimasinad
                 name_et: Baritööriistad
-              - slug: glass-froster
-                name_en: Glass Froster
-                product_count: 1
-                name_et: Klaasijahutid
             name_et: Baritarvikud
           - slug: flatware
             name_en: Flatware
@@ -801,10 +628,6 @@ l1:
                 name_en: Cigar Humidor Box
                 product_count: 4
                 name_et: Sigarihumidorid
-              - slug: electric-cooler-humidors
-                name_en: Electric Cooler Humidors
-                product_count: 2
-                name_et: Elektrilised jahutushumidorid
             name_et: Sigaritarvikud
           - slug: dinnerware
             name_en: Dinnerware
@@ -859,27 +682,11 @@ l1:
             name_en: Kitchen & Dining Tables
             product_count: 5
             name_et: Köögi- ja söögilauad
-          - slug: dining-benches
-            name_en: Dining Benches
-            product_count: 2
-            name_et: Söögipingid
           - slug: bakers-racks
             name_en: Baker's Racks
             product_count: 1
             subs: []
             name_et: Köögiriiulid
-          - slug: dining-room-sets
-            name_en: Dining Room Sets
-            product_count: 1
-            name_et: Söögitoa komplektid
-          - slug: pantry-cabinets
-            name_en: Pantry Cabinets
-            product_count: 1
-            name_et: Sahvrikapid
-          - slug: standing-cabinet
-            name_en: Standing Cabinet
-            product_count: 1
-            name_et: Põrandakapid
         name_et: Köögi- ja söögitoa mööbel
       - slug: kitchen-storage-and-organization
         name_en: Kitchen Storage & Organization
@@ -950,10 +757,6 @@ l1:
                 name_en: Bread Boxes
                 product_count: 6
                 name_et: Leivakarbid
-              - slug: mug-trees
-                name_en: Mug Trees
-                product_count: 2
-                name_et: Tassihoidjad
             name_et: Tööpinna hoiustus
           - slug: seasoning-rack
             name_en: Seasoning Rack
@@ -977,16 +780,6 @@ l1:
             name_en: Kitchen Sink Organizers
             product_count: 2
             subs:
-              - slug: dish-racks
-                name_en: Dish Racks
-                product_count: 1
-                subs: []
-                name_et: Nõuderiiulid
-              - slug: sink-grids
-                name_en: Sink Grids
-                product_count: 1
-                subs: []
-                name_et: Valamuvõred
             name_et: Valamukorraldid
         name_et: Köögi hoiustamine ja korraldus
       - slug: ice-makers
@@ -1009,22 +802,10 @@ l1:
             name_en: Ice Makers Countertop
             product_count: 8
             name_et: Lauapealsed jäämasinad
-          - slug: built-in-ice-maker-machine
-            name_en: Built-in Ice Maker Machine
-            product_count: 2
-            name_et: Integreeritavad jäämasinad
           - slug: commercial-ice-makers
             name_en: Commercial Ice Makers
             product_count: 1
             name_et: Tööstuslikud jäätegijad
-          - slug: ice-dispensers
-            name_en: Ice Dispensers
-            product_count: 1
-            name_et: Jäädosaatorid
-          - slug: ice-maker-with-water-dispenser
-            name_en: Ice Maker With Water Dispenser
-            product_count: 1
-            name_et: Jäätegija veejaoturiga
         name_et: Jäämasinad
       - slug: appliance-parts
         name_en: Appliance Parts
@@ -1048,10 +829,6 @@ l1:
                 name_en: Gas Stove Cover
                 product_count: 6
                 name_et: Gaasipliidi kaaned
-              - slug: range-parts
-                name_en: Range Parts
-                product_count: 1
-                name_et: Keedukolde varuosad
             name_et: Pliidi varuosad
           - slug: vacuum-parts
             name_en: Vacuum Parts
@@ -1070,10 +847,6 @@ l1:
                 name_en: Fume Hood Filter
                 product_count: 4
                 name_et: Õhupuhastaja filtrid
-              - slug: stainless-backsplash
-                name_en: Stainless Backsplash
-                product_count: 1
-                name_et: Terasest tagaplaadid
             name_et: Õhupuhastaja varuosad
           - slug: dryer-parts
             name_en: Dryer Parts
@@ -1106,10 +879,6 @@ l1:
                 name_en: Granite  Kitchen Sink
                 product_count: 5
                 name_et: Graniidist köögivalamuд
-              - slug: fireclay-kitchen-sink
-                name_en: Fireclay Kitchen Sink
-                product_count: 1
-                name_et: Keraamilised köögivalamuд
             name_et: Koduvalamuд
         name_et: Köögivalamuд
       - slug: beverage-coolers
@@ -1134,20 +903,11 @@ l1:
                 name_en: Automatic Beer Brewing Machine
                 product_count: 2
                 name_et: Automaatsed õllepruulimismasinad
-              - slug: aluminum-cylinder
-                name_en: Aluminum Cylinder
-                product_count: 1
-                name_et: Alumiiniumsilindriд
             name_et: Tünnijahutid
           - slug: beverage-refrigerators
             name_en: Beverage Refrigerators
             product_count: 3
             name_et: Joogikülmikuд
-          - slug: wine-coolers
-            name_en: Wine Coolers
-            product_count: 2
-            subs: []
-            name_et: Veinijahutid
         name_et: Joogijahutid
       - slug: water-dispensers-and-pitchers
         name_en: Water Dispensers & Pitchers
@@ -1201,15 +961,6 @@ l1:
             name_en: Bar Tables
             product_count: 4
             name_et: Baarilauad
-          - slug: wine-cabinet
-            name_en: Wine Cabinet
-            product_count: 2
-            name_et: Veinikapid
-          - slug: bar-carts
-            name_en: Bar Carts
-            product_count: 1
-            subs: []
-            name_et: Baarikärud
         name_et: Baarimööbel
       - slug: food-preparation-equipment
         name_en: Food Preparation Equipment
@@ -1219,54 +970,6 @@ l1:
             name_en: Meat Choppers & Meat Grinders
             product_count: 5
             name_et: Lihatükeldajad ja lihaveskid
-          - slug: commercial-burger-press
-            name_en: Commercial Burger Press
-            product_count: 2
-            name_et: Professionaalsed burgeripressid
-          - slug: food-preparation-equipment-commercial-immersion-blender
-            name_en: Commercial Immersion Blender
-            product_count: 2
-            name_et: Professionaalsed saumikserid
-          - slug: dough-sheeters-and-rounders-and-dividers
-            name_en: Dough Sheeters & Rounders & Dividers
-            product_count: 2
-            name_et: Taignarullijad, ümardajad ja jagajad
-          - slug: electric-grain-grinder-mill
-            name_en: Electric Grain Grinder Mill
-            product_count: 2
-            name_et: Elektrilised teraviljajahvatajad
-          - slug: band-saw-blades
-            name_en: Band Saw Blades
-            product_count: 1
-            name_et: Lintsaeterad
-          - slug: commercial-meat-tenderizer
-            name_en: Commercial Meat Tenderizer
-            product_count: 1
-            name_et: Lihapehmendajad
-          - slug: commercial-meatball-forming-machine
-            name_en: Commercial Meatball Forming Machine
-            product_count: 1
-            name_et: Lihapallide vormimismasinad
-          - slug: commercial-mixers
-            name_en: Commercial Mixers
-            product_count: 1
-            name_et: Professionaalsed mikserid
-          - slug: cutters-and-slicers
-            name_en: Cutters & Slicers
-            product_count: 1
-            name_et: Lõikurid ja viilutajad
-          - slug: dicers
-            name_en: Dicers
-            product_count: 1
-            name_et: Kuubikuteks lõikurid
-          - slug: egg-peeler-machine
-            name_en: Egg Peeler Machine
-            product_count: 1
-            name_et: Munakoortimismasinad
-          - slug: pasta-maker
-            name_en: Pasta Maker
-            product_count: 1
-            name_et: Pastamasinad
         name_et: Toidu ettevalmistusseadmed
       - slug: refrigerators
         name_en: Refrigerators
@@ -1280,14 +983,6 @@ l1:
             name_en: Refrigerated Display Cases
             product_count: 7
             name_et: Külmvitriinid
-          - slug: dry-aging-refrigerator
-            name_en: Dry Aging Refrigerator
-            product_count: 1
-            name_et: Kuivlaagerduskülmikud
-          - slug: sushi-display-case-refrigerator
-            name_en: Sushi Display Case Refrigerator
-            product_count: 1
-            name_et: Sushivitriinid
         name_et: Külmikud
       - slug: freezers
         name_en: Freezers
@@ -1305,10 +1000,6 @@ l1:
             name_en: Chest Freezers
             product_count: 3
             name_et: Laekülmikud
-          - slug: blast-chiller
-            name_en: Blast Chiller
-            product_count: 2
-            name_et: Šokkülmutid
         name_et: Sügavkülmikud
       - slug: refrigeration-and-ice-equipment
         name_en: Refrigeration & Ice Equipment
@@ -1330,18 +1021,6 @@ l1:
             name_en: Snow Cone Machines & Commercial Ice Shavers
             product_count: 3
             name_et: Jäähobeldusmasinad
-          - slug: refrigeration-and-ice-equipment-humidors
-            name_en: Humidors
-            product_count: 2
-            name_et: Humidoorid
-          - slug: beverage-refrigerator
-            name_en: Beverage Refrigerator
-            product_count: 1
-            name_et: Joogikülmikud
-          - slug: ice-machines
-            name_en: Ice Machines
-            product_count: 1
-            name_et: Jäämasinad
         name_et: Jahutus- ja jääseadmed
       - slug: beverage-equipment
         name_en: Beverage Equipment
@@ -1351,46 +1030,6 @@ l1:
             name_en: Bar Sets
             product_count: 4
             name_et: Baarikomplektid
-          - slug: electric-milkshake-maker
-            name_en: Electric Milkshake Maker
-            product_count: 2
-            name_et: Piimakokteilimasinad
-          - slug: alcohol-distiller
-            name_en: Alcohol Distiller
-            product_count: 1
-            name_et: Alkoholi destilleerijad
-          - slug: coffee-urn
-            name_en: Coffee Urn
-            product_count: 1
-            name_et: Kohviurnid
-          - slug: beverage-equipment-cup-sealing-machine
-            name_en: Cup Sealing Machine
-            product_count: 1
-            name_et: Tasside sulgemismasinad
-          - slug: electric-sugarcane-press
-            name_en: Electric Sugarcane Press
-            product_count: 1
-            name_et: Suhkruroopressid
-          - slug: granita-and-slushy-machines
-            name_en: Granita & Slushy Machines
-            product_count: 1
-            name_et: Granita- ja slushimasinad
-          - slug: insulated-beverage-dispensers
-            name_en: Insulated Beverage Dispensers
-            product_count: 1
-            name_et: Isoleeritud joogijaoturid
-          - slug: milk-can
-            name_en: Milk Can
-            product_count: 1
-            name_et: Piimakannad
-          - slug: underbar-ice-bins
-            name_en: Underbar Ice Bins
-            product_count: 1
-            name_et: Baari jääanumad
-          - slug: beverage-equipment-water-distiller
-            name_en: Water Distiller
-            product_count: 1
-            name_et: Veedestillaatorid
         name_et: Joogiseadmed
       - slug: kitchen-cabinets
         name_en: Kitchen Cabinets
@@ -1414,15 +1053,6 @@ l1:
             name_en: Pre Rinse Faucets
             product_count: 7
             name_et: Eelloputuskraanid
-          - slug: filtered-water-faucets
-            name_en: Filtered Water Faucets
-            product_count: 1
-            name_et: Filterkraanid
-          - slug: kitchen-soap-dispensers
-            name_en: Kitchen Soap Dispensers
-            product_count: 1
-            subs: []
-            name_et: Seebidosaatorid
         name_et: Köögikraanid
       - slug: restaurant-faucets-and-plumbing-and-sinks
         name_en: Restaurant Faucets & Plumbing & Sinks
@@ -1436,10 +1066,6 @@ l1:
             name_en: Pre-Rinse Faucets
             product_count: 3
             name_et: Eelloputuskraanid
-          - slug: restaurant-faucets-and-plumbing-and-sinks-sink-protector
-            name_en: Sink Protector
-            product_count: 1
-            name_et: Valamu kaitserestid
         name_et: Kraanid, torustik ja valamud
       - slug: cooktops
         name_en: Cooktops
@@ -1459,26 +1085,6 @@ l1:
         name_en: Cooking Equipment
         product_count: 6
         subs:
-          - slug: commercial-outdoor-grills
-            name_en: Commercial Outdoor Grills
-            product_count: 2
-            name_et: Professionaalsed väligrilid
-          - slug: commercial-convection-oven
-            name_en: Commercial Convection Oven
-            product_count: 1
-            name_et: Professionaalsed konvektsioonahjud
-          - slug: commercial-conveyor-toasters
-            name_en: Commercial Conveyor Toasters
-            product_count: 1
-            name_et: Konveierrösterid
-          - slug: commercial-steamers
-            name_en: Commercial Steamers
-            product_count: 1
-            name_et: Aurukeetjad
-          - slug: electric-hot-pot-grill
-            name_en: Electric Hot Pot Grill
-            product_count: 1
-            name_et: Elektrilised hot pot grillid
         name_et: Toiduvalmistusseadmed
       - slug: food-holding-and-warming-equipment
         name_en: Food Holding & Warming Equipment
@@ -1488,14 +1094,6 @@ l1:
             name_en: French Fry Warmer
             product_count: 3
             name_et: Friikartulite soojendajad
-          - slug: chocolate-fountains
-            name_en: Chocolate Fountains
-            product_count: 2
-            name_et: Šokolaadifontäänid
-          - slug: steam-table-food-warmer
-            name_en: Steam Table Food Warmer
-            product_count: 1
-            name_et: Aurulauad
         name_et: Toidu hoidmis- ja soojendusseadmed
       - slug: garbage-disposal
         name_en: Garbage Disposal
@@ -1514,14 +1112,6 @@ l1:
             name_en: Electric Wall Ovens
             product_count: 3
             name_et: Elektrilised seinaahjud
-          - slug: commercial-ovens
-            name_en: Commercial Ovens
-            product_count: 2
-            name_et: Tööstusahjud
-          - slug: warmmer-drawer
-            name_en: Warmmer Drawer
-            product_count: 1
-            name_et: Soojendussahtlid
         name_et: Seinaahjud
       - slug: restaurant-furniture
         name_en: Restaurant Furniture
@@ -1531,10 +1121,6 @@ l1:
             name_en: Outdoor Kitchen Door
             product_count: 3
             name_et: Välisköögi uksed
-          - slug: stainless-steel-work-table
-            name_en: Stainless Steel Work Table
-            product_count: 2
-            name_et: Terastöölauad
         name_et: Restoranmööbel
       - slug: smallwares
         name_en: Smallwares
@@ -1544,31 +1130,11 @@ l1:
             name_en: Mug Hooks
             product_count: 3
             name_et: Tassikonksud
-          - slug: baking-steel
-            name_en: Baking Steel
-            product_count: 1
-            name_et: Terasküpsetusplaadid
-          - slug: ingredient-bins
-            name_en: Ingredient Bins
-            product_count: 1
-            name_et: Koostisaineboksid
         name_et: Köögitarbed
       - slug: carts
         name_en: Carts
         product_count: 3
         subs:
-          - slug: bar-cart
-            name_en: Bar Cart
-            product_count: 1
-            name_et: Barikärud
-          - slug: ingredient-bin-cart
-            name_en: Ingredient Bin Cart
-            product_count: 1
-            name_et: Koostisainekärud
-          - slug: rolling-cooler-cart
-            name_en: Rolling Cooler Cart
-            product_count: 1
-            name_et: Ratastel külmkärud
         name_et: Kärud
       - slug: mini-fridges
         name_en: Mini Fridges
@@ -1584,20 +1150,7 @@ l1:
         name_en: Food Display & Merchandising Equipment
         product_count: 2
         subs:
-          - slug: condiment-and-topping-and-sauce-warmers
-            name_en: Condiment & Topping & Sauce Warmers
-            product_count: 1
-            name_et: Kastmete ja lisandite soojendajad
-          - slug: liquor-bottle-display
-            name_en: Liquor Bottle Display
-            product_count: 1
-            name_et: Alkoholipudelite väljapanekud
         name_et: Toidueksponeerimisseadmed
-      - slug: venue-decoration
-        name_en: Venue Decoration
-        product_count: 1
-        subs: []
-        name_et: Ruumide kaunistused
     name_et: HoReCa & Toitlustus
   - slug: renewable-energy-batteries
     name_en: Renewable Energy & Batteries
@@ -1627,10 +1180,6 @@ l1:
                 name_en: Solar Panel Extension Cable
                 product_count: 7
                 name_et: Päikesepaneeli pikendusjuhtmed
-              - slug: solar-panel-guard
-                name_en: Solar Panel Guard
-                product_count: 1
-                name_et: Päikesepaneelide kaitsed
             name_et: Päikeseenergia tarvikud
           - slug: solar-panel-kits
             name_en: Solar Panel Kits
@@ -1650,10 +1199,6 @@ l1:
             name_en: Grid Tie Inverters
             product_count: 5
             name_et: Võrguinverterid
-          - slug: off-grid-solar-inverters
-            name_en: Off Grid Solar Inverters
-            product_count: 1
-            name_et: Autonoomsed inverterid
           - slug: hybrid-inverters
             name_en: Hybrid Inverters
             product_count: 6
@@ -1681,11 +1226,6 @@ l1:
                 product_count: 1
                 name_et: Käivitus- ja energiasalvestuse laadijad
             name_et: Akude laadijad
-          - slug: voltage-converters
-            name_en: Voltage Converters
-            product_count: 1
-            subs: []
-            name_et: Pingemuundurid
           - slug: ev-charging
             name_en: EV Charging
             product_count: 18
@@ -1769,10 +1309,6 @@ l1:
                 name_en: Jack Stands
                 product_count: 3
                 name_et: Tugipukid
-              - slug: scissor-jacks
-                name_en: Scissor Jacks
-                product_count: 1
-                name_et: Käärtungrauad
             name_et: Autotungrauad
           - slug: engine-hoists
             name_en: Engine Hoists
@@ -1798,14 +1334,6 @@ l1:
                 name_en: Portable Power Electric Hoist
                 product_count: 7
                 name_et: Kaasaskantavad elektritõstukid
-              - slug: hoisting-hooks
-                name_en: Hoisting Hooks
-                product_count: 2
-                name_et: Tõstekonksud
-              - slug: shop-cranes
-                name_en: Shop Cranes
-                product_count: 1
-                name_et: Töökoja nosturid
             name_et: Mootoritõstukid
           - slug: fluid-transfer-equipment
             name_en: Fluid Transfer Equipment
@@ -1948,10 +1476,6 @@ l1:
                 name_en: Frame Puller Straightener
                 product_count: 3
                 name_et: Raami sirgendajad
-              - slug: portable-lifts
-                name_en: Portable Lifts
-                product_count: 1
-                name_et: Mobiilsed tõstukid
             name_et: Autotõstukid
           - slug: underhoist-stand
             name_en: Underhoist Stand
@@ -1998,10 +1522,6 @@ l1:
                     name_en: Coupler Lock
                     product_count: 2
                     name_et: Ühendiku lukud
-                  - slug: towing-couplers
-                    name_en: Towing Couplers
-                    product_count: 2
-                    name_et: Haagise ühendikud
                 name_et: Haakme tarvikud
               - slug: ball-mounts
                 name_en: Ball Mounts
@@ -2015,10 +1535,6 @@ l1:
                     name_en: Ball Mount Hitches
                     product_count: 8
                     name_et: Kuulhaaked
-                  - slug: tow-bars
-                    name_en: Tow Bars
-                    product_count: 1
-                    name_et: Haakevardad
                 name_et: Pallkinnitused
               - slug: kayak-trailer
                 name_en: Kayak Trailer
@@ -2044,10 +1560,6 @@ l1:
                     name_en: Weight Distribution Hitch
                     product_count: 3
                     name_et: Koormusjaotushaagised
-                  - slug: hitch-adapters
-                    name_en: Hitch Adapters
-                    product_count: 1
-                    name_et: Haakmeadapterid
                 name_et: Haakme vastuvõtjad
               - slug: truck-cranes
                 name_en: Truck Cranes
@@ -2087,14 +1599,6 @@ l1:
                 name_en: Trimmer Rack
                 product_count: 3
                 name_et: Trimmerhoidikud
-              - slug: spare-tire-carriers
-                name_en: Spare Tire Carriers
-                product_count: 2
-                name_et: Varurehvihoidikud
-              - slug: trailer-gate-lift-assist
-                name_en: Trailer Gate Lift Assist
-                product_count: 2
-                name_et: Haagisvärava tõsteabi
             name_et: Haagiste osad ja tarvikud
           - slug: towing-mirrors
             name_en: Towing Mirrors
@@ -2163,14 +1667,6 @@ l1:
                 name_en: Engine Motor Mount
                 product_count: 4
                 name_et: Mootoripadjad
-              - slug: cylinder-head
-                name_en: Cylinder Head
-                product_count: 2
-                name_et: Silindripead
-              - slug: intake-manifold
-                name_en: Intake Manifold
-                product_count: 1
-                name_et: Imekollektorid
             name_et: Mootoriosad
           - slug: fuel-systems
             name_en: Fuel Systems
@@ -2184,14 +1680,6 @@ l1:
                 name_en: Catalytic Converters
                 product_count: 3
                 name_et: Katalüsaatorid
-              - slug: fuel-injector-tester
-                name_en: Fuel Injector Tester
-                product_count: 1
-                name_et: Kütuseinjektorite testerid
-              - slug: pro-fuel-system-test-kit
-                name_en: Pro Fuel System Test Kit
-                product_count: 1
-                name_et: Kütusesüsteemi testkomplektid
             name_et: Kütusesüsteemid
           - slug: ignition-systems
             name_en: Ignition Systems
@@ -2201,10 +1689,6 @@ l1:
                 name_en: Magnetic Induction Heater Kit
                 product_count: 10
                 name_et: Magnetinduktsiooni soojenduskomplektid
-              - slug: ignition-coil
-                name_en: Ignition Coil
-                product_count: 1
-                name_et: Süütepoolid
             name_et: Süütesüsteemid
           - slug: car-suspension-parts
             name_en: Car Suspension Parts
@@ -2214,10 +1698,6 @@ l1:
                 name_en: Air Bag Suspension Kit
                 product_count: 8
                 name_et: Õhkvedrustuskomplektid
-              - slug: air-shock-controller-kit
-                name_en: Air Shock Controller Kit
-                product_count: 2
-                name_et: Õhkvedrustuse juhtimiskomplektid
             name_et: Vedrustusosad
           - slug: alternators
             name_en: Alternators
@@ -2245,27 +1725,6 @@ l1:
             name_en: Truck Air Horn
             product_count: 3
             name_et: Veoauto õhusarved
-          - slug: air-suspension-strut
-            name_en: Air Suspension Strut
-            product_count: 2
-            name_et: Õhkamortisaatorid
-          - slug: metal-wheel-chock-stabilizer
-            name_en: Metal Wheel Chock Stabilizer
-            product_count: 2
-            name_et: Metallrattakiiladid
-          - slug: transmission
-            name_en: Transmission
-            product_count: 2
-            subs: []
-            name_et: Käigukastid
-          - slug: automobile-hub-assemblies
-            name_en: Automobile Hub Assemblies
-            product_count: 1
-            name_et: Auto rummukoostud
-          - slug: jeep-hardtop-removal-system
-            name_en: Jeep Hardtop Removal System
-            product_count: 1
-            name_et: Jeep jäikkatuse eemaldussüsteemid
         name_et: Autoosad
       - slug: truck-accessories
         name_en: Truck Accessories
@@ -2329,22 +1788,6 @@ l1:
                 name_en: Cargo Bars
                 product_count: 3
                 name_et: Kinnituslattid
-              - slug: tailgate-pad
-                name_en: Tailgate Pad
-                product_count: 2
-                name_et: Tagaluugi padjad
-              - slug: truck-bed-air-mattress
-                name_en: Truck Bed Air Mattress
-                product_count: 2
-                name_et: Kere õhkmadratsid
-              - slug: windshield-rack
-                name_en: Windshield Rack
-                product_count: 2
-                name_et: Tuuleklaasiraamid
-              - slug: truck-bed-extender
-                name_en: Truck Bed Extender
-                product_count: 1
-                name_et: Kere pikendajad
             name_et: Kere tarvikud
           - slug: tonneau-cover
             name_en: Tonneau Cover
@@ -2371,10 +1814,6 @@ l1:
             name_en: Truck Running Boards
             product_count: 4
             name_et: Veoauto astmelauad
-          - slug: cargo-door-lock-and-truck-tailgate-lock
-            name_en: Cargo Door Lock & Truck Tailgate Lock
-            product_count: 2
-            name_et: Lastiruumi uste ja tagaluugi lukud
         name_et: Veoauto tarvikud
       - slug: cargo-carriers
         name_en: Cargo Carriers
@@ -2412,10 +1851,6 @@ l1:
                 name_en: Roof Rack Water Tank
                 product_count: 4
                 name_et: Katusraamide veepaagid
-              - slug: over-cab-truck-rack
-                name_en: Over-Cab Truck Rack
-                product_count: 1
-                name_et: Kabiini ülesed veokiraamid
             name_et: Katuserapuudid
           - slug: motorcycle-accessories
             name_en: Motorcycle Accessories
@@ -2450,10 +1885,6 @@ l1:
                 name_en: Hitch Bike Rack
                 product_count: 3
                 name_et: Haakeseadme rattahoidjad
-              - slug: roof-bike-rack
-                name_en: Roof Bike Rack
-                product_count: 2
-                name_et: Katuse rattahoidjad
             name_et: Jalarattahoidjad
           - slug: cargo-boxes-and-bags
             name_en: Cargo Boxes & Bags
@@ -2471,23 +1902,11 @@ l1:
                 name_en: Bike Travel Case
                 product_count: 2
                 name_et: Jalgratta reisikohvrid
-              - slug: roof-cargo-bag
-                name_en: Roof Cargo Bag
-                product_count: 2
-                name_et: Katuse pagasikotid
             name_et: Pagasikohvrid ja -kotid
           - slug: cargo-nets
             name_en: Cargo Nets
             product_count: 11
             name_et: Pagasivõrgud
-          - slug: hitch-cargo-carriers
-            name_en: Hitch Cargo Carriers
-            product_count: 1
-            name_et: Haakeseadme pagasikandjad
-          - slug: hitch-motorcycle-carrier
-            name_en: Hitch Motorcycle Carrier
-            product_count: 1
-            name_et: Haakeseadme mootorrataskandja
         name_et: Lastikandjad
       - slug: mechanics-tools
         name_en: Mechanics Tools
@@ -2614,10 +2033,6 @@ l1:
                 name_en: Ratchet Power Puller
                 product_count: 3
                 name_et: Hammasratastõmburid
-              - slug: winch-recovery-kit
-                name_en: Winch Recovery Kit
-                product_count: 2
-                name_et: Vintsi päästekomplekt
             name_et: Vintsi tarvikud
           - slug: other-exterior-auto-accessories
             name_en: Other Exterior Auto Accessories
@@ -2632,10 +2047,6 @@ l1:
                 product_count: 6
                 name_et: Spoilertiivad
             name_et: Muud auto välisaksessuaarid
-          - slug: car-covers
-            name_en: Car Covers
-            product_count: 2
-            name_et: Autokatted
         name_et: Auto välisaksessuaarid
       - slug: rv-supplies
         name_en: RV Supplies
@@ -2665,10 +2076,6 @@ l1:
                     name_en: RV Lead Fifth Wheel Landing Gear Leg
                     product_count: 3
                     name_et: RV viienda ratta tugijalgad
-                  - slug: rv-awning-fabric
-                    name_en: RV Awning  Fabric
-                    product_count: 2
-                    name_et: RV varikatuse riie
                   - slug: steering-wheel
                     name_en: Steering Wheel
                     product_count: 1
@@ -2810,10 +2217,6 @@ l1:
             name_en: Wheel Lock Clamp
             product_count: 4
             name_et: Rattaklambrid
-          - slug: wheel-chock-holder
-            name_en: Wheel Chock Holder
-            product_count: 2
-            name_et: Rattatõkised
         name_et: Rehvitarvikud
       - slug: recreational-vehicles
         name_en: Recreational Vehicles
@@ -2839,10 +2242,6 @@ l1:
             name_en: Tractor PTO Shaft Assemblies
             product_count: 3
             name_et: PTO võllikomplektid
-          - slug: golf-cart-rear-seat-rack
-            name_en: Golf Cart Rear Seat Rack
-            product_count: 2
-            name_et: Golfikäru tagariiu­lid
         name_et: Vabaajasõidukid
       - slug: garage-flooring
         name_en: Garage Flooring
@@ -2935,26 +2334,6 @@ l1:
             name_en: Trailer Hitch
             product_count: 3
             name_et: Haakmed
-          - slug: hitch-receivers
-            name_en: Hitch Receivers
-            product_count: 2
-            name_et: Haakepesad
-          - slug: kinetic-recovery-rope
-            name_en: Kinetic Recovery Rope
-            product_count: 1
-            name_et: Kineetilised taastumisköied
-          - slug: recovery-straps
-            name_en: Recovery Straps
-            product_count: 1
-            name_et: Taastamisrihmad
-          - slug: towing-winches
-            name_en: Towing Winches
-            product_count: 1
-            name_et: Pukseerimisvintsid
-          - slug: towing-system-wheel-dolly
-            name_en: Wheel Dolly
-            product_count: 1
-            name_et: Rattakärud
         name_et: Haakeseadmed
       - slug: fuel-transfer-and-lubrication
         name_en: Fuel Transfer & Lubrication
@@ -2968,14 +2347,6 @@ l1:
             name_en: Grease Gun
             product_count: 3
             name_et: Rasvapüstolid
-          - slug: portable-fuel-tank
-            name_en: Portable Fuel Tank
-            product_count: 3
-            name_et: Kaasaskantavad kütusepaagid
-          - slug: fuel-caddy
-            name_en: Fuel Caddy
-            product_count: 2
-            name_et: Kütusekärud
         name_et: Kütuse ülekanne ja määrimine
       - slug: automotive-accessories
         name_en: Automotive Accessories
@@ -2985,26 +2356,6 @@ l1:
             name_en: Insulation
             product_count: 3
             name_et: Autoisolatsioon
-          - slug: automotive-accessories-tailgate-pad
-            name_en: Tailgate Pad
-            product_count: 2
-            name_et: Tagaluugi kaitsepadjad
-          - slug: car-cover
-            name_en: Car Cover
-            product_count: 1
-            name_et: Autokatted
-          - slug: seat-covers
-            name_en: Seat Covers
-            product_count: 1
-            name_et: Istmekatted
-          - slug: automotive-accessories-tonneau-cover
-            name_en: Tonneau Cover
-            product_count: 1
-            name_et: Kastikatted
-          - slug: automotive-accessories-truck-tool-boxes
-            name_en: Truck Tool Boxes
-            product_count: 1
-            name_et: Veoki tööriistakastid
         name_et: Autoaksessuaarid
       - slug: cargo-management
         name_en: Cargo Management
@@ -3014,18 +2365,6 @@ l1:
             name_en: Roof Bike Racks
             product_count: 4
             name_et: Katuserattahoidikud
-          - slug: roof-rack-cross-bars
-            name_en: Roof Rack Cross Bars
-            product_count: 2
-            name_et: Katuseriiulite põikvardad
-          - slug: cargo-carrier
-            name_en: Cargo Carrier
-            product_count: 1
-            name_et: Lastikandurid
-          - slug: headache-rack
-            name_en: Headache Rack
-            product_count: 1
-            name_et: Kabiinikaitsevõred
         name_et: Lastikorralus
       - slug: auto-body-and-trim
         name_en: Auto Body & Trim
@@ -3035,10 +2374,6 @@ l1:
             name_en: Trunk Spoiler
             product_count: 5
             name_et: Pagasiruumi spoilerid
-          - slug: doors-bolt-on-kit
-            name_en: Doors Bolt On Kit
-            product_count: 1
-            name_et: Uste kinnituskomplektid
         name_et: Autokere ja liistud
       - slug: definite-purpose-dc-motors
         name_en: Definite Purpose Dc Motors
@@ -3048,52 +2383,16 @@ l1:
             name_en: Brushless DC Motor
             product_count: 5
             name_et: Harjadeta alalisvoolumootrid
-          - slug: brushed-dc-motor
-            name_en: Brushed DC Motor
-            product_count: 1
-            name_et: Harjadega alalisvoolumootrid
         name_et: Eriotstarbelised alalisvoolumootrid
       - slug: lifts-and-hoists-and-jacks
         name_en: Lifts & Hoists & Jacks
         product_count: 6
         subs:
-          - slug: clearfloor-lifts
-            name_en: Clearfloor Lifts
-            product_count: 2
-            name_et: Vabapõranda autotõstukid
-          - slug: lifts-and-hoists-and-jacks-floor-jacks
-            name_en: Floor Jacks
-            product_count: 2
-            name_et: Põrandatungrauad
-          - slug: lifts-and-hoists-and-jacks-bottle-jacks
-            name_en: Bottle Jacks
-            product_count: 1
-            name_et: Pudelitungrauad
-          - slug: lifts-and-hoists-and-jacks-transmission-jacks
-            name_en: Transmission Jacks
-            product_count: 1
-            name_et: Käigukastide tungrauad
         name_et: Tõstukid ja tungrauad
       - slug: rv-parts-and-accessories
         name_en: Rv Parts & Accessories
         product_count: 6
         subs:
-          - slug: trailer-dolly
-            name_en: Trailer Dolly
-            product_count: 2
-            name_et: Haagise käsikärud
-          - slug: trailer-jack
-            name_en: Trailer Jack
-            product_count: 2
-            name_et: Haagise tungrauad
-          - slug: rv-awnings
-            name_en: RV Awnings
-            product_count: 1
-            name_et: RV markiisid
-          - slug: rv-cover
-            name_en: RV Cover
-            product_count: 1
-            name_et: RV katted
         name_et: RV varuosad ja tarvikud
       - slug: car-cleaning-supplies
         name_en: Car Cleaning Supplies
@@ -3104,31 +2403,11 @@ l1:
         name_en: Repair Tools
         product_count: 4
         subs:
-          - slug: dent-repair-kit
-            name_en: Dent Repair Kit
-            product_count: 2
-            name_et: Lohkude paranduskomplektid
-          - slug: electric-brake-bleeder
-            name_en: Electric Brake Bleeder
-            product_count: 1
-            name_et: Elektrilised piduriõhutajad
-          - slug: magnetic-induction-heater
-            name_en: Magnetic Induction Heater
-            product_count: 1
-            name_et: Magnetinduktsiooni soojendid
         name_et: Remonditööriistad
       - slug: tire-and-wheel-tools
         name_en: Tire & Wheel Tools
         product_count: 4
         subs:
-          - slug: tire-pressure-monitoring-systems-tpms
-            name_en: Tire Pressure Monitoring Systems (TPMS)
-            product_count: 2
-            name_et: Rehvisurve seiresüsteemid (TPMS)
-          - slug: wheel-accessories-and-parts
-            name_en: Wheel Accessories & Parts
-            product_count: 2
-            name_et: Ratta tarvikud ja osad
         name_et: Rehvi- ja rattariistad
       - slug: automotive-electrical
         name_en: Automotive Electrical
@@ -3139,59 +2418,17 @@ l1:
         name_en: Fittings
         product_count: 3
         subs:
-          - slug: exhaust-pipes-and-tips
-            name_en: Exhaust Pipes & Tips
-            product_count: 1
-            name_et: Heitgaasitorud ja otsikud
-          - slug: fittings-hydraulic-hoses
-            name_en: Hydraulic Hoses
-            product_count: 1
-            name_et: Hüdraulikavoolikud
-          - slug: hydraulic-quick-coupler
-            name_en: Hydraulic Quick Coupler
-            product_count: 1
-            name_et: Hüdraulika kiirühendused
         name_et: Liitmikud
       - slug: hydraulic-equipment
         name_en: Hydraulic Equipment
         product_count: 3
         subs: []
         name_et: Hüdraulikaseadmed
-      - slug: air-conditioning-and-heat
-        name_en: Air Conditioning & Heat
-        product_count: 2
-        subs: []
-        name_et: Kliimaseadmed ja salongiküte
-      - slug: heavy-equipment-accessories
-        name_en: Heavy Equipment Accessories
-        product_count: 2
-        subs: []
-        name_et: Raskemasinate tarvikud
       - slug: mechanic-tools
         name_en: Mechanic Tools
         product_count: 2
         subs: []
         name_et: Mehaanikutööriistad
-      - slug: transmission-and-drive-train
-        name_en: Transmission & Drive Train
-        product_count: 2
-        subs: []
-        name_et: Käigukast ja jõuülekanne
-      - slug: general-purpose-ac-motors
-        name_en: General Purpose AC Motors
-        product_count: 1
-        subs: []
-        name_et: Üldotstarbelised vahelduvvoolumootored
-      - slug: motorcycle-parts-and-accessories
-        name_en: Motorcycle Parts & Accessories
-        product_count: 1
-        subs: []
-        name_et: Mootorratta osad ja tarvikud
-      - slug: replacement-parts
-        name_en: Replacement Parts
-        product_count: 1
-        subs: []
-        name_et: Varuosad
     name_et: Autondus ja töökoda
   - slug: cleaning-janitorial
     name_en: Cleaning & Janitorial
@@ -3204,10 +2441,6 @@ l1:
             name_en: Industrial Ultrasonic Cleaner
             product_count: 60
             name_et: Tööstuslikud ultrahelipuhastid
-          - slug: household-ultrasonic-cleaner
-            name_en: Household ultrasonic cleaner
-            product_count: 1
-            name_et: Kodused ultrahelipuhastid
         name_et: Puhastusvahendid
       - slug: laundry-room-storage
         name_en: Laundry Room Storage
@@ -3233,11 +2466,6 @@ l1:
             name_en: Ironing Boards
             product_count: 3
             name_et: Triikimislauad
-          - slug: clothes-drying-racks
-            name_en: Clothes Drying Racks
-            product_count: 2
-            subs: []
-            name_et: Riidekuivatid
         name_et: Pesuruumi hoiustus
       - slug: cleaning-tools
         name_en: Cleaning Tools
@@ -3252,21 +2480,6 @@ l1:
             product_count: 5
             subs: []
             name_et: Kummilabad
-          - slug: mop-buckets
-            name_en: Mop Buckets
-            product_count: 2
-            subs: []
-            name_et: Mopiämbrid
-          - slug: mops
-            name_en: Mops
-            product_count: 1
-            subs: []
-            name_et: Põrandamopid
-          - slug: power-scrubbers
-            name_en: Power Scrubbers
-            product_count: 1
-            subs: []
-            name_et: Elektrilised küürimisharjad
         name_et: Koristusvahendid
       - slug: janitorial-supplies
         name_en: Janitorial Supplies
@@ -3307,22 +2520,6 @@ l1:
             name_en: Stick Sweepers
             product_count: 4
             name_et: Käsipühkijad
-          - slug: mite-removal-instrument
-            name_en: Mite Removal Instrument
-            product_count: 2
-            name_et: Lestatõrjurid
-          - slug: stick-vacuums
-            name_en: Stick Vacuums
-            product_count: 2
-            name_et: Kepitolmuimejad
-          - slug: backpack-vacuums
-            name_en: Backpack Vacuums
-            product_count: 1
-            name_et: Seljakott-tolmuimejad
-          - slug: canister-vacuums
-            name_en: Canister Vacuums
-            product_count: 1
-            name_et: Silindertolmuimejad
         name_et: Tolmuimejad
       - slug: trash-and-recycling
         name_en: Trash & Recycling
@@ -3333,45 +2530,11 @@ l1:
         name_en: Bathroom Supplies
         product_count: 5
         subs:
-          - slug: towel-rack
-            name_en: Towel Rack
-            product_count: 2
-            name_et: Rätikuhoidjad
-          - slug: baby-changing-station
-            name_en: Baby Changing Station
-            product_count: 1
-            name_et: Mähkimislauad
-          - slug: over-the-toilet-storage
-            name_en: Over-the-Toilet Storage
-            product_count: 1
-            name_et: WC-pealsed riiulid
-          - slug: shower-caddies
-            name_en: Shower Caddies
-            product_count: 1
-            name_et: Duširiiulid
         name_et: Vannitoatarvikud
       - slug: floor-care
         name_en: Floor Care
         product_count: 5
         subs:
-          - slug: steam-mops-and-steam-cleaners
-            name_en: Steam Mops & Steam Cleaners
-            product_count: 2
-            subs: []
-            name_et: Aurumopid ja aurupuhastid
-          - slug: carpet-cleaners
-            name_en: Carpet Cleaners
-            product_count: 1
-            subs: []
-            name_et: Vaippuhastid
-          - slug: floor-scrubbers-and-buffers
-            name_en: Floor Scrubbers & Buffers
-            product_count: 1
-            name_et: Põrandapuhastid ja poleerijad
-          - slug: sweepers
-            name_en: Sweepers
-            product_count: 1
-            name_et: Põrandapühkijad
         name_et: Põrandahooldus
       - slug: washers-and-dryers
         name_en: Washers & Dryers
@@ -3381,21 +2544,7 @@ l1:
             name_en: Shoe & Boot Dryers
             product_count: 4
             name_et: Jalanõukuivatid
-          - slug: electric-dryers
-            name_en: Electric Dryers
-            product_count: 1
-            name_et: Elektrokuivatid
         name_et: Pesemasinad ja kuivatid
-      - slug: floor-and-upholstery-cleaning
-        name_en: Floor & Upholstery Cleaning
-        product_count: 1
-        subs: []
-        name_et: Põranda- ja polstripuhastus
-      - slug: laundry-supplies
-        name_en: Laundry Supplies
-        product_count: 1
-        subs: []
-        name_et: Pesutarvikud
     name_et: Puhastus ja koristus
   - slug: crafts-sewing-printing
     name_en: Crafts, Sewing & Printing
@@ -3424,10 +2573,6 @@ l1:
                     name_en: Auto Heat Press
                     product_count: 3
                     name_et: Automaatsed kuumpressid
-                  - slug: lifting-jack-heat-press-machine
-                    name_en: Lifting Jack Heat Press Machine
-                    product_count: 2
-                    name_et: Tõstemehhanismiga kuumpressid
                 name_et: Kuumpressid
               - slug: jewelry-making-kits
                 name_en: Jewelry Making Kits
@@ -3457,27 +2602,6 @@ l1:
                     name_en: Rock Tumbling Kit
                     product_count: 4
                     name_et: Kivide poleerimiskomplekt
-                  - slug: vacuum-casting-machine
-                    name_en: Vacuum Casting Machine
-                    product_count: 2
-                    name_et: Vaakumvalamismasin
-                  - slug: gem-faceting-machine
-                    name_en: Gem Faceting Machine
-                    product_count: 1
-                    name_et: Vääriskivide tahutamismasin
-                  - slug: inside-ring-engraver
-                    name_en: Inside Ring Engraver
-                    product_count: 1
-                    name_et: Sõrmuste sisegraveerija
-                  - slug: melting-furnace-accessories
-                    name_en: Melting Furnace Accessories
-                    product_count: 1
-                    subs: []
-                    name_et: Sulatusahju tarvikud
-                  - slug: ring-stretcher-and-reducer
-                    name_en: Ring Stretcher And Reducer
-                    product_count: 1
-                    name_et: Sõrmuse suurendaja ja vähendaja
                 name_et: Ehtetöö komplektid
               - slug: vinyl-cutter
                 name_en: Vinyl Cutter
@@ -3491,10 +2615,6 @@ l1:
                     name_en: Auto Desktop Cutter Machine
                     product_count: 6
                     name_et: Automaatne lauaplotter
-                  - slug: manual-desktop-cutter-machine
-                    name_en: Manual  Desktop Cutter Machine
-                    product_count: 2
-                    name_et: Manuaalne lauaplotter
                 name_et: Vinüüllõikur
               - slug: ceramic-and-pottery-supplies
                 name_en: Ceramic & Pottery Supplies
@@ -3525,10 +2645,6 @@ l1:
                     name_en: Button Maker Accessories
                     product_count: 5
                     name_et: Rinnamärgipressi tarvikud
-                  - slug: die-cutting-machine
-                    name_en: Die Cutting Machine
-                    product_count: 2
-                    name_et: Stantsimismasin
                 name_et: Albumikunst ja tembeldamine
               - slug: hat-press-machine
                 name_en: Hat Press Machine
@@ -3542,10 +2658,6 @@ l1:
                     name_en: Mini Hat Heat Press Machine
                     product_count: 4
                     name_et: Väike mütsikuumpress
-                  - slug: smart-hat-press-machine
-                    name_en: Smart Hat Press Machine
-                    product_count: 2
-                    name_et: Nutikas mütsikuumpress
                 name_et: Mütsikuumpress
               - slug: mug-heat-press
                 name_en: Mug Heat Press
@@ -3585,10 +2697,6 @@ l1:
                     name_en: Soap Cutter
                     product_count: 4
                     name_et: Seepilõikurid
-                  - slug: wax-melter
-                    name_en: Wax Melter
-                    product_count: 1
-                    name_et: Vahasulatid
                 name_et: Küünlavalmistamise tarvikud
               - slug: art-drying-rack
                 name_en: Art Drying Rack
@@ -3610,18 +2718,6 @@ l1:
                 name_en: Pyrography Machine
                 product_count: 3
                 name_et: Puidupõletusmasinad
-              - slug: etching-press
-                name_en: Etching Press
-                product_count: 1
-                name_et: Söövituspressi
-              - slug: hot-foil-stamping-machine
-                name_en: Hot Foil Stamping Machine
-                product_count: 1
-                name_et: Kuumfoolium-tembeldusmasinad
-              - slug: marking-machine
-                name_en: Marking Machine
-                product_count: 1
-                name_et: Märgistusmasinad
             name_et: Käsitöömasinad
           - slug: engraving-and-cutting
             name_en: Engraving & Cutting
@@ -3673,11 +2769,6 @@ l1:
                     product_count: 1
                     name_et: Kaasaskantavad galvanomeeterlasergraveerijad
                 name_et: Lasergraveerimismasinad
-              - slug: engraver-accessories
-                name_en: Engraver Accessories
-                product_count: 1
-                subs: []
-                name_et: Graveerijate tarvikud
             name_et: Graveerimine ja lõikamine
           - slug: arts-and-crafts-supplies
             name_en: Arts & Crafts Supplies
@@ -3721,22 +2812,10 @@ l1:
                     product_count: 1
                     name_et: Overlokimasinad
                 name_et: Õmblusmasinad
-              - slug: cloth-cutting-machine
-                name_en: Cloth Cutting Machine
-                product_count: 2
-                name_et: Riidelõikusmasinad
-              - slug: hand-press-grommet-machine
-                name_en: Hand Press Grommet Machine
-                product_count: 2
-                name_et: Neetide käsipressid
               - slug: sewing-table
                 name_en: Sewing Table
                 product_count: 2
                 name_et: Õmblustöölauad
-              - slug: industrial-steam-iron
-                name_en: Industrial Steam Iron
-                product_count: 1
-                name_et: Tööstuslikud aurutriikrauad
             name_et: Õmblustarvikud
         name_et: Käsitöö ja õmblemine
       - slug: printmaking
@@ -3747,18 +2826,6 @@ l1:
             name_en: Heat Press Machine
             product_count: 6
             name_et: Termopressid
-          - slug: portable-heat-press-machine
-            name_en: Portable Heat Press Machine
-            product_count: 2
-            name_et: Kaasaskantavad termopressid
-          - slug: printmaking-vinyl-cutter
-            name_en: Vinyl Cutter
-            product_count: 2
-            name_et: Vinüüllõikurid
-          - slug: screen-printing-dryer
-            name_en: Screen Printing Dryer
-            product_count: 1
-            name_et: Trükikuivatid
         name_et: Trükkimine
       - slug: engraving
         name_en: Engraving
@@ -3768,22 +2835,6 @@ l1:
             name_en: Fiber Laser
             product_count: 3
             name_et: Kiudlaserid
-          - slug: laser-power-supply
-            name_en: Laser Power Supply
-            product_count: 2
-            name_et: Laseri toiteplokid
-          - slug: engraving-laser-tube
-            name_en: Laser Tube
-            product_count: 2
-            name_et: Lasertorud
-          - slug: engraving-laser-engraving-machine
-            name_en: Laser Engraving Machine
-            product_count: 1
-            name_et: Lasergraveerimasinad
-          - slug: water-chiller
-            name_en: Water Chiller
-            product_count: 1
-            name_et: Vesijahuturid
         name_et: Graveerimine
       - slug: craft-storage
         name_en: Craft Storage
@@ -3793,10 +2844,6 @@ l1:
             name_en: Scrapbook Paper Storage Cases sets
             product_count: 5
             name_et: Käsitöö paberite hoiukomplektid
-          - slug: cricut-table
-            name_en: Cricut Table
-            product_count: 2
-            name_et: Cricut-töölauad
         name_et: Käsitöövahendite hoiustus
       - slug: camera-and-photo
         name_en: Camera & Photo
@@ -3806,65 +2853,17 @@ l1:
             name_en: Lighting & Studio
             product_count: 4
             name_et: Stuudiovalgustus
-          - slug: shooting-tents
-            name_en: Shooting Tents
-            product_count: 1
-            name_et: Fototelgid
         name_et: Kaamera ja foto
       - slug: jewelry-making-and-repair
         name_en: Jewelry Making & Repair
         product_count: 4
         subs:
-          - slug: jewelry-making-and-repair-gem-faceting-machine
-            name_en: Gem Faceting Machine
-            product_count: 2
-            name_et: Vääriskivide lihvimismasinad
-          - slug: flex-shaft
-            name_en: Flex Shaft
-            product_count: 1
-            name_et: Paindvõllid
-          - slug: melting-furnace
-            name_en: Melting Furnace
-            product_count: 1
-            name_et: Sulatusahjud
         name_et: Ehtemeisterdus
       - slug: painting-equipment-and-supplies
         name_en: Painting Equipment & Supplies
         product_count: 4
         subs:
-          - slug: dust-barriers
-            name_en: Dust Barriers
-            product_count: 2
-            name_et: Tolmutõkked
-          - slug: paint-sprayer
-            name_en: Paint Sprayer
-            product_count: 1
-            name_et: Värvipihustid
-          - slug: powder-coating-machine
-            name_en: Powder Coating Machine
-            product_count: 1
-            name_et: Pulbervärvimisseadmed
         name_et: Värvimisvarustus
-      - slug: ceramics-and-pottery-crafts
-        name_en: Ceramics & Pottery Crafts
-        product_count: 1
-        subs: []
-        name_et: Keraamika ja savitöö
-      - slug: leather-crafts
-        name_en: Leather Crafts
-        product_count: 1
-        subs: []
-        name_et: Nahkmeisterdus
-      - slug: paper-crafts
-        name_en: Paper Crafts
-        product_count: 1
-        subs: []
-        name_et: Paberitööd
-      - slug: speciality-crafts-and-hobbies
-        name_en: Speciality Crafts & Hobbies
-        product_count: 1
-        subs: []
-        name_et: Erikäsitöö ja hobid
     name_et: Käsitöö, õmblemine ja trükk
   - slug: salon-spa-wellness
     name_en: Salon, Spa & Wellness
@@ -3918,10 +2917,6 @@ l1:
                             name_en: Suction Pool Cleaners
                             product_count: 3
                             name_et: Imupuhastid
-                          - slug: handheld-pool-vacuums
-                            name_en: Handheld Pool Vacuums
-                            product_count: 2
-                            name_et: Käsiimejad
                         name_et: Automaatsed basseini puhastid
                       - slug: pool-cleaning-kits
                         name_en: Pool Cleaning Kits
@@ -3984,10 +2979,6 @@ l1:
                     name_en: Hot Tub Step
                     product_count: 3
                     name_et: Mullivanni astmed
-                  - slug: salt-water-chlorination-system
-                    name_en: Salt Water Chlorination System
-                    product_count: 2
-                    name_et: Soolvee klorimissüsteemid
                 name_et: Basseini tarvikud
               - slug: pool-covers
                 name_en: Pool Covers
@@ -4037,22 +3028,7 @@ l1:
                 name_en: Pool Cover Reel
                 product_count: 4
                 name_et: Kattekellarullid
-              - slug: pool-floats
-                name_en: Pool Floats
-                product_count: 2
-                subs: []
-                name_et: Basseini ujukid
             name_et: Basseinitarvikud
-          - slug: above-ground-pools
-            name_en: Above Ground Pools
-            product_count: 1
-            subs: []
-            name_et: Maapealsed basseinid
-          - slug: inflatable-pools
-            name_en: Inflatable Pools
-            product_count: 1
-            subs: []
-            name_et: Täispuhutavad basseinid
         name_et: Basseinid
       - slug: home-spas
         name_en: Home Spas
@@ -4116,35 +3092,14 @@ l1:
             product_count: 4
             subs: []
             name_et: Massaažilauad
-          - slug: barber-chairs
-            name_en: Barber Chairs
-            product_count: 2
-            subs: []
-            name_et: Juuksuritoolid
           - slug: medical-exam-table
             name_en: Medical Exam Table
             product_count: 2
             name_et: Meditsiinilauad
-          - slug: salon-barber-chair
-            name_en: Salon Barber Chair
-            product_count: 2
-            name_et: Saloni juuksuritoolid
-          - slug: salon-cart
-            name_en: Salon Cart
-            product_count: 2
-            name_et: Salonivankrid
           - slug: shampoo-sink
             name_en: Shampoo Sink
             product_count: 2
             name_et: Pesukausid
-          - slug: salon-sink
-            name_en: Salon Sink
-            product_count: 1
-            name_et: Saloni valamud
-          - slug: wall-mount-styling-station
-            name_en: Wall Mount Styling Station
-            product_count: 1
-            name_et: Seinakinnitusega salonijaamad
         name_et: Saloni- ja spaavarustus
     name_et: Salong, spaa ja heaolu
   - slug: health-medical-supply
@@ -4170,10 +3125,6 @@ l1:
                     name_en: Red Light Therapy Mat
                     product_count: 4
                     name_et: Punase valguse ravimadrad
-                  - slug: led-face-therapy
-                    name_en: LED Face Therapy
-                    product_count: 1
-                    name_et: LED näoravi
                 name_et: Valgusravi
               - slug: amethyst-heating-pad
                 name_en: Amethyst Heating Pad
@@ -4229,14 +3180,6 @@ l1:
                 name_en: Iron Hair Straightener
                 product_count: 3
                 name_et: Juuksesirgendid
-              - slug: curling-iron
-                name_en: Curling Iron
-                product_count: 1
-                name_et: Lokkrauad
-              - slug: hair-steamer-for-deep-conditioning
-                name_en: Hair Steamer For Deep Conditioning
-                product_count: 1
-                name_et: Juukseaururid
             name_et: Juuksestiilimisseadmed
           - slug: massagers
             name_en: Massagers
@@ -4250,28 +3193,11 @@ l1:
                 name_en: Eye Massager
                 product_count: 5
                 name_et: Silmamassaažijad
-              - slug: foam-roller-body-massager
-                name_en: Foam Roller Body Massager
-                product_count: 1
-                name_et: Vahtrullid
-              - slug: scalp-massager
-                name_en: Scalp Massager
-                product_count: 1
-                name_et: Peanahkamassaažijad
             name_et: Massaažiseadmed
           - slug: hair-clippers
             name_en: Hair Clippers
             product_count: 4
             name_et: Juukselõikusmasinad
-          - slug: ipl-laser-hair-remover
-            name_en: IPL Laser Hair Remover
-            product_count: 2
-            name_et: IPL karvaeemaldajad
-          - slug: oral-care
-            name_en: Oral Care
-            product_count: 1
-            subs: []
-            name_et: Suuhooldus
         name_et: Isikuhoolduse seadmed
       - slug: mobility-aids
         name_en: Mobility Aids
@@ -4322,14 +3248,6 @@ l1:
                 name_en: Recreational Mobility Scooter
                 product_count: 3
                 name_et: Puhkeaja liikumisskootered
-              - slug: bathroom-wheelchairs
-                name_en: Bathroom Wheelchairs
-                product_count: 2
-                name_et: Vannitoaratastoolid
-              - slug: enclosed-mobility-scooter
-                name_en: Enclosed Mobility Scooter
-                product_count: 1
-                name_et: Kabiiniga liikumisskootered
             name_et: Ratastoolid
           - slug: walkers
             name_en: Walkers
@@ -4347,14 +3265,6 @@ l1:
                 name_en: Knee Scooter
                 product_count: 3
                 name_et: Põlveskootered
-              - slug: baby-stationary-activity-centers
-                name_en: Baby Stationary Activity Centers
-                product_count: 2
-                name_et: Beebi mängukeskused
-              - slug: baby-walkers
-                name_en: Baby Walkers
-                product_count: 1
-                name_et: Beebi kõnnikaarikud
             name_et: Kõnniraamid
           - slug: walking-canes
             name_en: Walking Canes
@@ -4416,10 +3326,6 @@ l1:
                 name_en: Tattoo Light
                 product_count: 6
                 name_et: Tätoveerimisvalgustid
-              - slug: tattoo-stencil-machine
-                name_en: Tattoo Stencil Machine
-                product_count: 1
-                name_et: Tattoo šabloonimasinad
             name_et: Piercingu ja tätoveeringu tarvikud
           - slug: nail-tools
             name_en: Nail Tools
@@ -4434,21 +3340,7 @@ l1:
                 name_en: Singing Bowls
                 product_count: 3
                 name_et: Helikausid
-              - slug: magnetic-field-therapy
-                name_en: Magnetic Field Therapy
-                product_count: 1
-                subs: []
-                name_et: Magnetväljateraapia
             name_et: Heaolu ja lõõgastustooted
-          - slug: maternal-baby-care
-            name_en: Maternal-Baby Care
-            product_count: 2
-            subs: []
-            name_et: Ema ja lapse hooldus
-          - slug: body-sculpting-machine
-            name_en: Body Sculpting Machine
-            product_count: 1
-            name_et: Keha kujundusseadmed
         name_et: Isikuhooldus
       - slug: medical-supplies
         name_en: Medical Supplies
@@ -4470,10 +3362,6 @@ l1:
                 name_en: Medical Exam Table Paper
                 product_count: 5
                 name_et: Uurimislauapaber
-              - slug: hydrogen-inhalation-machine
-                name_en: Hydrogen Inhalation Machine
-                product_count: 1
-                name_et: Vesinikuinhalaatorid
             name_et: Meditsiini abivarustus
           - slug: overbed-tables
             name_en: Overbed Tables
@@ -4493,18 +3381,6 @@ l1:
             name_en: Foot & Leg Massager
             product_count: 4
             name_et: Jala- ja sääremasserid
-          - slug: heating-pads
-            name_en: Heating Pads
-            product_count: 1
-            name_et: Soojenduspadjad
-          - slug: massage-mat
-            name_en: Massage Mat
-            product_count: 1
-            name_et: Massaažimatid
-          - slug: health-medical-supply-wellness-and-relaxation-products-massagers
-            name_en: Massagers
-            product_count: 1
-            name_et: Masserid
         name_et: Heaolu- ja lõõgastustooted
       - slug: mixing-and-blending-equipment
         name_en: Mixing & Blending Equipment
@@ -4519,10 +3395,6 @@ l1:
             name_en: Medical Teaching Model
             product_count: 6
             name_et: Meditsiini õppemudelid
-          - slug: geographic-globes
-            name_en: Geographic Globes
-            product_count: 1
-            name_et: Maakerad
         name_et: Õppevahendid
       - slug: cleaning-equipment
         name_en: Cleaning Equipment
@@ -4548,52 +3420,17 @@ l1:
         name_en: Action Aids
         product_count: 2
         subs:
-          - slug: scooter-lift
-            name_en: Scooter Lift
-            product_count: 1
-            name_et: Skooteri tõstukid
-          - slug: walkers-and-rollators
-            name_en: Walkers & Rollators
-            product_count: 1
-            name_et: Käimisraamid ja rollatarid
         name_et: Liikumisabivahendid
       - slug: health-medical-supply-medical-auxiliary-supplies
         name_en: Medical Auxiliary Supplies
         product_count: 2
         subs:
-          - slug: bed-underpads
-            name_en: Bed Underpads
-            product_count: 1
-            name_et: Voodikaitsepadjad
-          - slug: bed-wedges-and-body-positioners
-            name_en: Bed Wedges & Body Positioners
-            product_count: 1
-            name_et: Kiilupadjad ja kehaasetajad
         name_et: Meditsiini abivarustus
-      - slug: beauty-and-personal-care
-        name_en: Beauty & Personal Care
-        product_count: 1
-        subs: []
-        name_et: Ilu ja isikuhooldus
-      - slug: christmas-decorations
-        name_en: Christmas Decorations
-        product_count: 1
-        subs: []
-        name_et: Jõulukaunistused
       - slug: glassware-and-labware
         name_en: Glassware & Labware
         product_count: 1
         subs:
-          - slug: liquid-nitrogen-tank
-            name_en: Liquid Nitrogen Tank
-            product_count: 1
-            name_et: Vedela lämmastiku mahutid
         name_et: Klaas- ja laborinõud
-      - slug: health-medical-supply-skin-care
-        name_en: Skin Care
-        product_count: 1
-        subs: []
-        name_et: Nahahooldus
     name_et: Tervis ja meditsiinivarustus
   - slug: fitness-sports-games
     name_en: Fitness, Sports & Games
@@ -4682,10 +3519,6 @@ l1:
                 name_en: Battle Ropes
                 product_count: 3
                 name_et: Treeninguköied
-              - slug: log-bar
-                name_en: Log Bar
-                product_count: 2
-                name_et: Silinderkangid
             name_et: Treeningtarvikud
           - slug: weight-lifting-equipment
             name_en: Weight Lifting Equipment
@@ -4715,10 +3548,6 @@ l1:
                 name_en: Weighted Bench
                 product_count: 3
                 name_et: Jõupingid
-              - slug: kettlebells
-                name_en: Kettlebells
-                product_count: 2
-                name_et: Raskuskellad
             name_et: Jõutreeningseadmed
           - slug: cardio-equipment
             name_en: Cardio Equipment
@@ -4812,14 +3641,6 @@ l1:
                 name_en: Metal Golf Storage Organizer
                 product_count: 4
                 name_et: Metallist golfi hoidikud
-              - slug: golf-hitting-mat
-                name_en: Golf Hitting Mat
-                product_count: 2
-                name_et: Golfi löögialused
-              - slug: golf-putting-mat
-                name_en: Golf Putting Mat
-                product_count: 1
-                name_et: Puttimismatid
             name_et: Golfivarustus
           - slug: soccer-equipment
             name_en: Soccer Equipment
@@ -4863,10 +3684,6 @@ l1:
                 name_en: Snow Sports Goggles
                 product_count: 10
                 name_et: Talispordiprillid
-              - slug: sleds
-                name_en: Sleds
-                product_count: 2
-                name_et: Kelgud
             name_et: Talisport
           - slug: volleyball-equipment
             name_en: Volleyball Equipment
@@ -4939,16 +3756,6 @@ l1:
                 product_count: 3
                 name_et: Trikitõukerattad
             name_et: Uisutamine
-          - slug: tennis-ball-equipment
-            name_en: Tennis Ball Equipment
-            product_count: 2
-            subs: []
-            name_et: Tennisevahendid
-          - slug: tennis-equipment
-            name_en: Tennis Equipment
-            product_count: 2
-            subs: []
-            name_et: Tennisevahendid
         name_et: Välisport
       - slug: games
         name_en: Games
@@ -5085,10 +3892,6 @@ l1:
                     name_en: Disc Golf Set
                     product_count: 5
                     name_et: Ketasgolfi komplektid
-                  - slug: disc-golf-baskets
-                    name_en: Disc Golf Baskets
-                    product_count: 2
-                    name_et: Ketasgolfi korvid
                 name_et: Ketasgolf
               - slug: zipline-kit
                 name_en: Zipline Kit
@@ -5106,10 +3909,6 @@ l1:
                 name_en: Bocce Ball
                 product_count: 4
                 name_et: Bocce pallid
-              - slug: walking-ball
-                name_en: Walking Ball
-                product_count: 1
-                name_et: Kõndimispallid
             name_et: Õuemängud
           - slug: games-table-top-games
             name_en: Table Top Games
@@ -5157,10 +3956,6 @@ l1:
                 name_en: Exercise Equipment Mat
                 product_count: 7
                 name_et: Treeningseadmete alusmatid
-              - slug: wrestling-mat
-                name_en: Wrestling Mat
-                product_count: 2
-                name_et: Maadlusmatid
             name_et: Treeningmatid
         name_et: Spordisaali põrandakatted
       - slug: field-equipment
@@ -5200,10 +3995,6 @@ l1:
                 name_en: Mountain Bicycles
                 product_count: 4
                 name_et: Mägijalgrattad
-              - slug: kids-balance-bike
-                name_en: Kid's Balance Bike
-                product_count: 2
-                name_et: Laste jooksurattad
             name_et: Jalgrattad
           - slug: bike-parts-and-accessories
             name_en: Bike Parts & Accessories
@@ -5213,27 +4004,15 @@ l1:
                 name_en: Bike Resistance Trainers
                 product_count: 3
                 name_et: Rattarullid
-              - slug: cycling-desk
-                name_en: Cycling Desk
-                product_count: 2
-                name_et: Velolauad
             name_et: Rattaosad ja tarvikud
           - slug: cruiser-bike
             name_en: Cruiser Bike
             product_count: 5
             name_et: Kruiserjalgrattad
-          - slug: bike-racks-and-stands
-            name_en: Bike Racks & Stands
-            product_count: 1
-            name_et: Rattahoidikud ja statiivid
           - slug: child-carrier-trailers
             name_en: Child Carrier Trailers
             product_count: 1
             name_et: Laste rattahaagised
-          - slug: folding-adult-electric-bicycles
-            name_en: Folding Adult Electric Bicycles
-            product_count: 1
-            name_et: Kokkukäivad elektrirattad
           - slug: kid-cars
             name_en: Kid Cars
             product_count: 1
@@ -5279,30 +4058,6 @@ l1:
             name_en: Bike Resistance Trainers
             product_count: 3
             name_et: Rattarullid
-          - slug: foam-rollers
-            name_en: Foam Rollers
-            product_count: 2
-            name_et: Vahtrullid
-          - slug: pull-up-bar
-            name_en: Pull-Up Bar
-            product_count: 2
-            name_et: Rippkangid
-          - slug: exercise-and-fitness-battle-ropes
-            name_en: Battle Ropes
-            product_count: 1
-            name_et: Treeningköied
-          - slug: exercise-and-fitness-boxing-equipment
-            name_en: Boxing Equipment
-            product_count: 1
-            name_et: Poksivarustus
-          - slug: exercise-and-fitness-pilates-accessories
-            name_en: Pilates Accessories
-            product_count: 1
-            name_et: Pilatese tarvikud
-          - slug: tumbling-mat
-            name_en: Tumbling Mat
-            product_count: 1
-            name_et: Akrobaatikamatid
         name_et: Treeninguvahendid
       - slug: dance-equipment
         name_en: Dance Equipment
@@ -5325,28 +4080,7 @@ l1:
             name_en: Golf Hitting Mat
             product_count: 3
             name_et: Golfi löögimattid
-          - slug: fitness-sports-games-golf-equipment-disc-golf
-            name_en: Disc Golf
-            product_count: 2
-            name_et: Kettapall
-          - slug: fitness-sports-games-golf-equipment-golf-putting-mat
-            name_en: Golf Putting Mat
-            product_count: 2
-            name_et: Golfi puttimismatid
-          - slug: golf-rangefinder
-            name_en: Golf Rangefinder
-            product_count: 1
-            name_et: Golfi kaugusmõõtjad
-          - slug: training-equipment
-            name_en: Training Equipment
-            product_count: 1
-            name_et: Treeningseadmed
         name_et: Golfivarustus
-      - slug: sports-and-outdoor-recreation-accessories
-        name_en: Sports & Outdoor Recreation Accessories
-        product_count: 1
-        subs: []
-        name_et: Spordi- ja välistegevuse tarvikud
     name_et: Fitness, sport ja mängud
   - slug: boating-camping-outdoor
     name_en: Boating, Camping & Outdoor Adventure
@@ -5403,10 +4137,6 @@ l1:
                     name_en: Car Side Awning
                     product_count: 4
                     name_et: Auto külgmarkiisid
-                  - slug: backpacking-instant-tent
-                    name_en: Backpacking Instant Tent
-                    product_count: 1
-                    name_et: Kiirülesseadmise matkatelgid
                   - slug: privacy-tents
                     name_en: Privacy Tents
                     product_count: 1
@@ -5522,18 +4252,10 @@ l1:
                     name_en: Marine Fuel Tank
                     product_count: 3
                     name_et: Paadi kütusepaagid
-                  - slug: beach-wheels
-                    name_en: Beach Wheels
-                    product_count: 2
-                    name_et: Rannarattad
                   - slug: boat-trailer-steps
                     name_en: Boat Trailer Steps
                     product_count: 1
                     name_et: Haagise astmed
-                  - slug: kayak-stabilizer
-                    name_en: Kayak Stabilizer
-                    product_count: 1
-                    name_et: Kajaaki stabilisaatorid
                 name_et: Paadi osad ja tarvikud
               - slug: inflatable-floating-dock
                 name_en: Inflatable Floating Dock
@@ -5552,11 +4274,6 @@ l1:
                 product_count: 5
                 name_et: Puhutavad paadid
             name_et: Paadid
-          - slug: paddling
-            name_en: Paddling
-            product_count: 1
-            subs: []
-            name_et: Aerutamine
         name_et: Paadisõit
       - slug: tailgating-gear
         name_en: Tailgating Gear
@@ -5615,10 +4332,6 @@ l1:
                 product_count: 1
                 name_et: Sääsevõrgu telgid
             name_et: Kiirtelgid
-          - slug: canopy-tent
-            name_en: Canopy Tent
-            product_count: 2
-            name_et: Varjualused
         name_et: Välipeovarustus
       - slug: hunting-gear
         name_en: Hunting Gear
@@ -5680,18 +4393,6 @@ l1:
             name_en: Kayak Seat
             product_count: 2
             name_et: Kajaki istmed
-          - slug: water-sports-boats
-            name_en: Boats
-            product_count: 1
-            name_et: Paadid
-          - slug: diving-and-snorkeling
-            name_en: Diving & Snorkeling
-            product_count: 1
-            name_et: Sukeldumine ja snorklimine
-          - slug: surf-boards
-            name_en: Surf Boards
-            product_count: 1
-            name_et: Lainelauad
         name_et: Veesport
       - slug: outdoor-hobbies
         name_en: Outdoor Hobbies
@@ -5735,26 +4436,6 @@ l1:
             name_en: Outboard Propeller
             product_count: 3
             name_et: Propellerid
-          - slug: anchor-chain
-            name_en: Anchor Chain
-            product_count: 1
-            name_et: Ankruahelad
-          - slug: boating-camping-outdoor-boat-parts-and-accessories-boat-fenders
-            name_en: Boat Fenders
-            product_count: 1
-            name_et: Paadifenderid
-          - slug: boat-steering-kit
-            name_en: Boat Steering Kit
-            product_count: 1
-            name_et: Roolisüsteemid
-          - slug: boat-trailer-guides
-            name_en: Boat Trailer Guides
-            product_count: 1
-            name_et: Haagisejuhikud
-          - slug: t-top-storage-bag
-            name_en: T-Top Storage Bag
-            product_count: 1
-            name_et: T-katuse kotid
         name_et: Paadiosad ja tarvikud
       - slug: outdoor-recreation
         name_en: Outdoor Recreation
@@ -5794,21 +4475,6 @@ l1:
         product_count: 8
         subs: []
         name_et: Veespordivarustus
-      - slug: backpacking-equipment
-        name_en: Backpacking Equipment
-        product_count: 2
-        subs: []
-        name_et: Matkamisvarustus
-      - slug: fishing-equipment
-        name_en: Fishing Equipment
-        product_count: 2
-        subs: []
-        name_et: Kalapüügitarbed
-      - slug: leisure-sports
-        name_en: Leisure Sports
-        product_count: 2
-        subs: []
-        name_et: Vaba aja sport
     name_et: Veesport, telkimine ja seiklused
   - slug: music-entertainment
     name_en: Music & Entertainment
@@ -5901,14 +4567,6 @@ l1:
             name_en: Guitar Pedal Board
             product_count: 3
             name_et: Kitarripedaalilauad
-          - slug: drum-stools
-            name_en: Drum Stools
-            product_count: 1
-            name_et: Trummaripingid
-          - slug: piano-keyboard-stand
-            name_en: Piano Keyboard Stand
-            product_count: 1
-            name_et: Klaviatuuri statiivid
         name_et: Pilliaksessuaarid
       - slug: band-and-orchestra
         name_en: Band & Orchestra
@@ -5936,16 +4594,6 @@ l1:
             product_count: 2
             name_et: Klassikalised kitarrid
         name_et: Kitarrid
-      - slug: home-audio
-        name_en: Home Audio
-        product_count: 1
-        subs: []
-        name_et: Koduheli
-      - slug: stage-lighting-and-effects
-        name_en: Stage Lighting & Effects
-        product_count: 1
-        subs: []
-        name_et: Lavalised tulede ja efektid
     name_et: Muusika ja meelelahutus
   - slug: pets-wildlife-clinic
     name_en: Pets, Wildlife, Veterinary & Kennels
@@ -6009,10 +4657,6 @@ l1:
                     name_en: Heavy Duty Dog Crates
                     product_count: 3
                     name_et: Vastupidavad koerapuurid
-                  - slug: dog-house
-                    name_en: Dog House
-                    product_count: 1
-                    name_et: Koeramajad
                   - slug: outdoor-dog-kennel
                     name_en: Outdoor Dog Kennel
                     product_count: 1
@@ -6070,10 +4714,6 @@ l1:
                 name_en: Dog Treadmill
                 product_count: 2
                 name_et: Koera jooksulindid
-              - slug: dog-knee-brace
-                name_en: Dog Knee Brace
-                product_count: 1
-                name_et: Koera põlvetuged
             name_et: Koera tarvikud
           - slug: cat-supplies
             name_en: Cat Supplies
@@ -6112,10 +4752,6 @@ l1:
                     name_en: Traditional Cat Litter Box
                     product_count: 4
                     name_et: Tavalised kassitualetid
-                  - slug: plastic-cat-litter-box-enclosures
-                    name_en: Plastic Cat Litter Box Enclosures
-                    product_count: 1
-                    name_et: Plastikust kassitualetikapid
                 name_et: Kassiliiv ja tarvikud
               - slug: pillar-type-cat-trees
                 name_en: Pillar Type Cat Trees
@@ -6133,17 +4769,7 @@ l1:
                     name_en: Cat Beds
                     product_count: 7
                     name_et: Kassivoodid
-                  - slug: cat-trees-and-scratch-posts
-                    name_en: Cat Trees & Scratch Posts
-                    product_count: 1
-                    subs: []
-                    name_et: Kassipostid ja kraapimispuud
                 name_et: Kassimööbel
-              - slug: cat-feeding-supplies
-                name_en: Cat Feeding Supplies
-                product_count: 1
-                subs: []
-                name_et: Kassitoidunõud
             name_et: Kassi tarvikud
           - slug: reptile-and-amphibian-supplies
             name_en: Reptile & Amphibian Supplies
@@ -6157,19 +4783,11 @@ l1:
                     name_en: Stainless Steel Dog Grooming Tub
                     product_count: 27
                     name_et: Terasest koerte hooldusvaanid
-                  - slug: plastic-pet-bathtub
-                    name_en: Plastic Pet Bathtub
-                    product_count: 2
-                    name_et: Plastikust lemmikloomavannid
                 name_et: Terraariumid ja dekoratsioonid
               - slug: tortoise-house
                 name_en: Tortoise House
                 product_count: 5
                 name_et: Kilpkonnamajad
-              - slug: reptile-incubator
-                name_en: Reptile Incubator
-                product_count: 1
-                name_et: Roomajate inkubaatorid
             name_et: Roomajate ja kahepaiksete tarvikud
           - slug: pet-cleaning-supplies
             name_en: Pet Cleaning Supplies
@@ -6242,10 +4860,6 @@ l1:
                 name_en: Pet Grooming Table
                 product_count: 5
                 name_et: Hoolduslauad
-              - slug: pet-dryer
-                name_en: Pet Dryer
-                product_count: 1
-                name_et: Lemmiklooma kuivatid
             name_et: Hooldusvahendid
           - slug: pet-bird-supplies
             name_en: Pet Bird Supplies
@@ -6273,34 +4887,6 @@ l1:
             name_en: Cat Cage
             product_count: 3
             name_et: Kassipuurid
-          - slug: small-animal-exercise-wheels
-            name_en: Small Animal Exercise Wheels
-            product_count: 2
-            name_et: Väikeloomade jooksurattad
-          - slug: aquarium-filtration
-            name_en: Aquarium Filtration
-            product_count: 1
-            name_et: Akvaariumi filtrid
-          - slug: birdcages
-            name_en: Birdcages
-            product_count: 1
-            name_et: Linnupuurid
-          - slug: dog-crates
-            name_en: Dog Crates
-            product_count: 1
-            name_et: Koerapuurid
-          - slug: pet-supplies-pet-car-seat
-            name_en: Pet Car Seat
-            product_count: 1
-            name_et: Lemmiklooma autoistmed
-          - slug: pet-furniture
-            name_en: Pet Furniture
-            product_count: 1
-            name_et: Lemmiklooma mööbel
-          - slug: playpens
-            name_en: Playpens
-            product_count: 1
-            name_et: Mänguaedikud
         name_et: Lemmikloomade tarvikud
     name_et: Lemmikloomad, metsloomad ja veterinaaria
   - slug: kids-playgrounds
@@ -6355,26 +4941,10 @@ l1:
                 name_en: Water Play Table
                 product_count: 3
                 name_et: Veemängulauad
-              - slug: balance-stepping-stones-for-kids
-                name_en: Balance Stepping Stones For Kids
-                product_count: 2
-                name_et: Tasakaalukivid lastele
-              - slug: bbq-grill-playset
-                name_en: BBQ Grill Playset
-                product_count: 2
-                name_et: Grilli mängukomplektid
-              - slug: childrens-basketball-set
-                name_en: Children's Basketball Set
-                product_count: 2
-                name_et: Laste korvpallikomplektid
               - slug: learning-table
                 name_en: Learning Table
                 product_count: 2
                 name_et: Õppelauad
-              - slug: bow-and-arrow-sets-for-kids
-                name_en: Bow and Arrow Sets for Kids
-                product_count: 1
-                name_et: Vibukomplektid lastele
             name_et: Aktiivsed mänguasjad
           - slug: kids-transportation-toys
             name_en: Kids Transportation Toys
@@ -6400,14 +4970,6 @@ l1:
                 name_en: Remote Control Excavator
                 product_count: 3
                 name_et: Puldiga ekskavaatorid
-              - slug: kids-bike
-                name_en: Kids Bike
-                product_count: 2
-                name_et: Lasterattad
-              - slug: kids-pedal-vehicles
-                name_en: Kids' Pedal Vehicles
-                product_count: 1
-                name_et: Pedaalsõidukid lastele
             name_et: Sõidukimänguasjad
           - slug: kids-handmade-toys
             name_en: Kids Handmade Toys
@@ -6434,10 +4996,6 @@ l1:
                 name_en: Workbench Toy
                 product_count: 3
                 name_et: Mängupingid
-              - slug: kid-building-block-activity-table
-                name_en: Kid Building Block Activity Table
-                product_count: 2
-                name_et: Klotsimängude tegevuslauad
             name_et: Loovmänguasjad
           - slug: kids-intelligent-toys
             name_en: Kids Intelligent Toys
@@ -6455,10 +5013,6 @@ l1:
                 name_en: RC Helicopters
                 product_count: 5
                 name_et: RC helikopterid
-              - slug: rc-programming-robot-building-kit
-                name_en: Rc/Programming Robot Building Kit
-                product_count: 2
-                name_et: Programmeeritavad robotikomplektid
             name_et: Tehnikamänguasjad
           - slug: hand-drum
             name_en: Hand Drum
@@ -6551,10 +5105,6 @@ l1:
                     name_en: Kids swivel chair
                     product_count: 3
                     name_et: Laste pöördtoolid
-                  - slug: high-chair
-                    name_en: High Chair
-                    product_count: 2
-                    name_et: Beebi söögitoolid
                 name_et: Laste toolid
               - slug: kids-storage
                 name_en: Kids Storage
@@ -6615,10 +5165,6 @@ l1:
                 name_en: Gliders & Ottomans
                 product_count: 3
                 name_et: Kiiktoolid ja jalaalused
-              - slug: crib-mattresses
-                name_en: Crib Mattresses
-                product_count: 1
-                name_et: Võrevoodi madratsid
             name_et: Beebi mööbel
           - slug: kids-bedroom-furniture
             name_en: Kids Bedroom Furniture
@@ -6668,34 +5214,10 @@ l1:
             name_en: Building Block
             product_count: 5
             name_et: Ehitusklotsid
-          - slug: pretend-play-toys
-            name_en: Pretend Play Toys
-            product_count: 5
-            name_et: Rollimängu mänguasjad
           - slug: remote-and-app-controlled-toys
             name_en: Remote & App Controlled Toys
             product_count: 4
             name_et: Kaugjuhitavad mänguasjad
-          - slug: rocking-horse
-            name_en: Rocking Horse
-            product_count: 2
-            name_et: Kiikhobused
-          - slug: arts-and-crafts
-            name_en: Arts & Crafts
-            product_count: 1
-            name_et: Käsitöö ja meisterdamine
-          - slug: freestanding-slides
-            name_en: Freestanding Slides
-            product_count: 1
-            name_et: Liumäed
-          - slug: toy-basketball
-            name_en: Toy Basketball
-            product_count: 1
-            name_et: Laste korvpallikomplektid
-          - slug: toy-construction-tools
-            name_en: Toy Construction Tools
-            product_count: 1
-            name_et: Laste ehitusmänguasjad
         name_et: Mänguasjad ja mängud
       - slug: freestanding-play
         name_en: Freestanding Play
@@ -6734,10 +5256,6 @@ l1:
             name_en: Triangle Ladder & Rocker Set
             product_count: 3
             name_et: Kolmnurkredel ja kiigukomplekt
-          - slug: childrens-swing-slide-set
-            name_en: Children's Swing Slide Set
-            product_count: 2
-            name_et: Laste kiige-liumäekomplekt
         name_et: Kiigekomplektid
       - slug: commercial-playground-equipment
         name_en: Commercial Playground Equipment
@@ -6777,16 +5295,6 @@ l1:
         product_count: 3
         subs: []
         name_et: PlayStation 5
-      - slug: playground-slides
-        name_en: Playground Slides
-        product_count: 2
-        subs: []
-        name_et: Mänguväljaku liumäed
-      - slug: video-games
-        name_en: Video Games
-        product_count: 1
-        subs: []
-        name_et: Videomängud
     name_et: Lapsed ja mänguväljakud
   - slug: backyard-landscaping-farm
     name_en: Backyard, Landscaping & Farm
@@ -7075,10 +5583,6 @@ l1:
                     name_en: Post Hole Diggers
                     product_count: 3
                     name_et: Postiaugu kaevajad
-                  - slug: shovels
-                    name_en: Shovels
-                    product_count: 2
-                    name_et: Labidad
                 name_et: Kaevamisriistad
             name_et: Aiariistad
           - slug: garden-fencing
@@ -7147,10 +5651,6 @@ l1:
                     name_en: Rolling Garden Seat
                     product_count: 6
                     name_et: Ratastel aiaistmed
-                  - slug: potted-plant-mover-dolly
-                    name_en: Potted Plant Mover Dolly
-                    product_count: 1
-                    name_et: Lillepottide transpordikärud
                 name_et: Ratastega potialused
               - slug: garden-work-bench
                 name_en: Garden Work Bench
@@ -7164,10 +5664,6 @@ l1:
                 name_en: Geometric Decorative Planters
                 product_count: 3
                 name_et: Geomeetrilised dekoratiivpotid
-              - slug: barrel-planters
-                name_en: Barrel Planters
-                product_count: 1
-                name_et: Tünnpotid
             name_et: Lillepotid ja istutuskastid
           - slug: watering-and-irrigation
             name_en: Watering & Irrigation
@@ -7199,11 +5695,6 @@ l1:
                 name_en: Rain Barrels
                 product_count: 3
                 name_et: Vihmaveepaagid
-              - slug: lawn-sprinklers
-                name_en: Lawn Sprinklers
-                product_count: 1
-                subs: []
-                name_et: Muruniisutajad
             name_et: Kastmine ja niisutamine
           - slug: hydroponic-gardening
             name_en: Hydroponic Gardening
@@ -7225,10 +5716,6 @@ l1:
                     name_en: Hydroponics Growing System Tower
                     product_count: 3
                     name_et: Hüdropoonikatornid
-                  - slug: aquarium-water-chiller
-                    name_en: Aquarium Water Chiller
-                    product_count: 1
-                    name_et: Akvaariumivee jahutid
                 name_et: Hüdropooniasüsteemid
               - slug: grow-tents
                 name_en: Grow Tents
@@ -7247,10 +5734,6 @@ l1:
                 name_en: Planter Box with Legs
                 product_count: 3
                 name_et: Jalustega istutuskastid
-              - slug: planting-frame
-                name_en: Planting Frame
-                product_count: 2
-                name_et: Istutusraamid
             name_et: Kõrgpeenrad
           - slug: ponds-and-pond-accessories
             name_en: Ponds & Pond Accessories
@@ -7295,19 +5778,7 @@ l1:
                     name_en: Battery Powered Backpack Sprayer
                     product_count: 4
                     name_et: Akuseljapritsid
-                  - slug: atv-sprayers
-                    name_en: ATV Sprayers
-                    product_count: 1
-                    name_et: ATV pritsid
-                  - slug: gas-powered-backpack-sprayer
-                    name_en: Gas Powered Backpack Sprayer
-                    product_count: 1
-                    name_et: Bensiiniseljapritsid
                 name_et: Pumbaga pritsid
-              - slug: battery-sprayers
-                name_en: Battery Sprayers
-                product_count: 1
-                name_et: Akupritsid
             name_et: Pritsid
           - slug: plant-support
             name_en: Plant Support
@@ -7343,10 +5814,6 @@ l1:
                 name_en: Compost Spreader
                 product_count: 5
                 name_et: Kompostilaotajad
-              - slug: manual-seeder
-                name_en: Manual Seeder
-                product_count: 1
-                name_et: Käsikülvikud
             name_et: Muruhooldus
           - slug: composters
             name_en: Composters
@@ -7356,14 +5823,6 @@ l1:
                 name_en: Tumbler Composters
                 product_count: 4
                 name_et: Trummelkompostrid
-              - slug: stationary-composters
-                name_en: Stationary Composters
-                product_count: 2
-                name_et: Statsionaarsed kompostrid
-              - slug: worm-composters
-                name_en: Worm Composters
-                product_count: 1
-                name_et: Ussikompostrid
             name_et: Kompostrid
           - slug: artificial-grass
             name_en: Artificial Grass
@@ -7412,14 +5871,6 @@ l1:
                     name_en: Pressure Washer Hose Reel
                     product_count: 4
                     name_et: Voolikurullid
-                  - slug: pressure-washer-accessories
-                    name_en: Pressure Washer Accessories
-                    product_count: 1
-                    name_et: Survepesuri tarvikud
-                  - slug: pressure-washer-spray-guns
-                    name_en: Pressure Washer Spray Guns
-                    product_count: 1
-                    name_et: Pihustuspüstolid
                 name_et: Survepesuri varuosad
               - slug: gas-cans
                 name_en: Gas Cans
@@ -7536,10 +5987,6 @@ l1:
                 name_en: Lawn Rollers
                 product_count: 3
                 name_et: Mururullid
-              - slug: lawn-mower-lifts
-                name_en: Lawn Mower Lifts
-                product_count: 2
-                name_et: Muruniiduki tõstukid
             name_et: Sõiduniidukite ja traktorite tarvikud
           - slug: chainsaws
             name_en: Chainsaws
@@ -7563,10 +6010,6 @@ l1:
                 product_count: 1
                 subs: []
                 name_et: Mootorsae tarvikud
-              - slug: electric-pole-saw
-                name_en: Electric Pole Saw
-                product_count: 1
-                name_et: Elektrilised oksasaed
             name_et: Mootorsaed
           - slug: augers
             name_en: Augers
@@ -7657,28 +6100,11 @@ l1:
             name_en: Plate Compactors
             product_count: 3
             subs:
-              - slug: jumping-jack-tamping-rammer
-                name_en: Jumping Jack Tamping Rammer
-                product_count: 2
-                name_et: Löökrammid
               - slug: plate-compactor
                 name_en: Plate Compactor
                 product_count: 1
                 name_et: Plaatkompaktorid
             name_et: Pinnasekompaktorid
-          - slug: outdoor-power-equipment-gas-chainsaws
-            name_en: Gas Chainsaws
-            product_count: 1
-            name_et: Bensiinimootorsaed
-          - slug: outdoor-power-equipment-pressure-washer-hose
-            name_en: Pressure Washer Hose
-            product_count: 1
-            name_et: Survepesuri voolikud
-          - slug: wood-chippers
-            name_en: Wood Chippers
-            product_count: 1
-            subs: []
-            name_et: Puuhakkurid
         name_et: Aiamasinad
       - slug: outdoor-cooking
         name_en: Outdoor Cooking
@@ -7723,21 +6149,12 @@ l1:
                     name_en: Commercial Electric Pizza Ovens
                     product_count: 10
                     name_et: Professionaalsed elektripitsaahjud
-                  - slug: outdoor-gas-oven
-                    name_en: Outdoor Gas Oven
-                    product_count: 2
-                    name_et: Välisgaasiahjud
                 name_et: Pitsaahjud
               - slug: outdoor-kitchen-sinks
                 name_en: Outdoor Kitchen Sinks
                 product_count: 17
                 subs: []
                 name_et: Välisköögi valamud
-              - slug: pizza-oven-accessories
-                name_en: Pizza Oven Accessories
-                product_count: 1
-                subs: []
-                name_et: Pitsaahju tarvikud
             name_et: Välisköögid
           - slug: grill-accessories
             name_en: Grill Accessories
@@ -7767,11 +6184,6 @@ l1:
                 product_count: 5
                 subs: []
                 name_et: Grillilauad
-              - slug: charcoal-starters
-                name_en: Charcoal Starters
-                product_count: 1
-                subs: []
-                name_et: Söesüütajad
             name_et: Grillitarvikud
           - slug: grill-replacement-parts
             name_en: Grill Replacement Parts
@@ -7799,10 +6211,6 @@ l1:
                 product_count: 8
                 subs: []
                 name_et: Fritüüritarvikud
-              - slug: turkey-fryers
-                name_en: Turkey Fryers
-                product_count: 2
-                name_et: Kalkunifritüürid
             name_et: Välipliidid
           - slug: grills
             name_en: Grills
@@ -7812,10 +6220,6 @@ l1:
                 name_en: Charcoal Grills
                 product_count: 1
                 name_et: Söegrillid
-              - slug: electric-grill
-                name_en: Electric Grill
-                product_count: 1
-                name_et: Elektrigrillid
               - slug: smokers
                 name_en: Smokers
                 product_count: 1
@@ -7868,10 +6272,6 @@ l1:
                 name_en: Plastic &Wood Patio Lounge Chairs
                 product_count: 4
                 name_et: Plast-puit terrassilamistoolid
-              - slug: outdoor-rocking-chairs
-                name_en: Outdoor Rocking Chairs
-                product_count: 2
-                name_et: Terrassi kiiktoolid
             name_et: Terrassitoolid
           - slug: patio-tables
             name_en: Patio Tables
@@ -7910,14 +6310,6 @@ l1:
                 name_en: Hammock Stands
                 product_count: 5
                 name_et: Võrkkiige statiivid
-              - slug: camping-hammocks
-                name_en: Camping Hammocks
-                product_count: 2
-                name_et: Matka võrkkiiged
-              - slug: quilted-hammocks
-                name_en: Quilted Hammocks
-                product_count: 2
-                name_et: Vateeritud võrkkiiged
             name_et: Võrkkiiged
           - slug: patio-accessories
             name_en: Patio Accessories
@@ -7929,16 +6321,6 @@ l1:
             product_count: 4
             subs: []
             name_et: Välispadjad
-          - slug: patio-dining-furniture
-            name_en: Patio Dining Furniture
-            product_count: 2
-            subs: []
-            name_et: Terrassi söögimööbel
-          - slug: patio-umbrellas
-            name_en: Patio Umbrellas
-            product_count: 2
-            subs: []
-            name_et: Päikesevarjud
         name_et: Terrassimööbel
       - slug: outdoor-heating
         name_en: Outdoor Heating
@@ -7964,10 +6346,6 @@ l1:
                 name_en: Chimineas
                 product_count: 4
                 name_et: Chiminead
-              - slug: gas-fire-pits
-                name_en: Gas Fire Pits
-                product_count: 1
-                name_et: Gaasitulekolded
             name_et: Tulekolded
           - slug: outdoor-heating-accessories
             name_en: Outdoor Heating Accessories
@@ -8099,87 +6477,11 @@ l1:
             name_en: Patio Chaise Lounges
             product_count: 3
             name_et: Terrasi lamaistoolid
-          - slug: fire-pit-burner
-            name_en: Fire Pit Burner
-            product_count: 2
-            name_et: Tulekolde põletid
-          - slug: fire-pit-wind-guard
-            name_en: Fire Pit Wind Guard
-            product_count: 2
-            name_et: Tulekolde tuulekaitsed
-          - slug: patio-furniture-and-accessories-fire-pits
-            name_en: Fire Pits
-            product_count: 2
-            name_et: Tulekolded
-          - slug: hanging-tent
-            name_en: Hanging Tent
-            product_count: 2
-            name_et: Ripptelgid
-          - slug: charcoal-fire-pit
-            name_en: Charcoal Fire Pit
-            product_count: 1
-            name_et: Söekolded
-          - slug: drop-in-fire-pit
-            name_en: Drop-in Fire Pit
-            product_count: 1
-            name_et: Süviskolded
-          - slug: fire-bowl
-            name_en: Fire Bowl
-            product_count: 1
-            name_et: Tulekaused
-          - slug: folding-camp-lounger
-            name_en: Folding Camp Lounger
-            product_count: 1
-            name_et: Kokkupandavad laagritoolid
-          - slug: garden-arch
-            name_en: Garden Arch
-            product_count: 1
-            name_et: Aiakaared
-          - slug: garden-trailer
-            name_en: Garden Trailer
-            product_count: 1
-            name_et: Aiahaagised
-          - slug: patio-gazebo
-            name_en: Patio Gazebo
-            product_count: 1
-            name_et: Terrasi paviljonid
-          - slug: patio-umbrella-cover
-            name_en: Patio Umbrella Cover
-            product_count: 1
-            name_et: Terrasi vihmavarjude katted
-          - slug: spark-screen
-            name_en: Spark Screen
-            product_count: 1
-            name_et: Sädemekaitserestid
-          - slug: yurt-tent
-            name_en: Yurt Tent
-            product_count: 1
-            name_et: Jurt-telgid
         name_et: Terrasi mööbel ja tarvikud
       - slug: landscaping-and-shade
         name_en: Landscaping & Shade
         product_count: 6
         subs:
-          - slug: outdoor-storage-shelter
-            name_en: Outdoor Storage Shelter
-            product_count: 2
-            name_et: Välislaokuured
-          - slug: artificial-boxwood-panel
-            name_en: Artificial Boxwood Panel
-            product_count: 1
-            name_et: Kunstpukspuu paneelid
-          - slug: greenhouse
-            name_en: Greenhouse
-            product_count: 1
-            name_et: Kasvuhooned
-          - slug: landscaping-and-shade-landscape-fabric
-            name_en: Landscape Fabric
-            product_count: 1
-            name_et: Maastikukangas
-          - slug: metal-landscape-edging
-            name_en: Metal Landscape Edging
-            product_count: 1
-            name_et: Metalläärised
         name_et: Haljastus ja varjutus
       - slug: outdoor-hand-tools
         name_en: Outdoor Hand Tools
@@ -8189,14 +6491,6 @@ l1:
             name_en: Spreaders
             product_count: 3
             name_et: Külvikud
-          - slug: outdoor-hand-tools-asphalt-rake
-            name_en: Asphalt Rake
-            product_count: 1
-            name_et: Asfaldireha
-          - slug: firewood-splitter
-            name_en: Firewood Splitter
-            product_count: 1
-            name_et: Puulõhkujad
         name_et: Aiatööriistad
       - slug: fishery-aquaculture
         name_en: Fishery Aquaculture
@@ -8211,51 +6505,17 @@ l1:
             name_en: Metal Chicken Coop
             product_count: 2
             name_et: Metallist kanapuurid
-          - slug: automatic-poultry-feeder
-            name_en: Automatic Poultry Feeder
-            product_count: 1
-            name_et: Automaatsed linnusöötjad
         name_et: Loomakasvatuse tarvikud
       - slug: outdoor-decoration
         name_en: Outdoor Decoration
         product_count: 4
         subs:
-          - slug: decorative-fences
-            name_en: Decorative Fences
-            product_count: 2
-            name_et: Dekoratiivaiad
-          - slug: razor-wire
-            name_en: Razor Wire
-            product_count: 2
-            name_et: Teravaokastraat
         name_et: Aiadekor
       - slug: pools-and-spas
         name_en: Pools & Spas
         product_count: 4
         subs:
-          - slug: pool-cleaner
-            name_en: Pool Cleaner
-            product_count: 2
-            name_et: Basseinipuhastajad
-          - slug: pool-hose
-            name_en: Pool Hose
-            product_count: 1
-            name_et: Basseinivoolikud
-          - slug: sauna-heater-stove
-            name_en: Sauna Heater Stove
-            product_count: 1
-            name_et: Saunakolded
         name_et: Basseinid ja spaavanid
-      - slug: equipment-parts-and-accessories
-        name_en: Equipment Parts & Accessories
-        product_count: 2
-        subs: []
-        name_et: Varuosad ja tarvikud
-      - slug: snow-and-ice-removal-equipment
-        name_en: Snow & Ice Removal Equipment
-        product_count: 1
-        subs: []
-        name_et: Lume- ja jääeemaldusseadmed
     name_et: Aed, haljastus ja põllumajandus
   - slug: construction-building
     name_en: Construction & Building
@@ -8320,10 +6580,6 @@ l1:
                 name_en: Shopping Carts
                 product_count: 3
                 name_et: Ostukärud
-              - slug: stair-climbing-chair
-                name_en: Stair Climbing Chair
-                product_count: 1
-                name_et: Trepironimistoolid
             name_et: Platvormkärud
           - slug: lifting-equipment
             name_en: Lifting Equipment
@@ -8345,18 +6601,6 @@ l1:
                 name_en: Manual Trolley
                 product_count: 5
                 name_et: Käsitrollid
-              - slug: pallet-jack-truck
-                name_en: Pallet Jack Truck
-                product_count: 2
-                name_et: Paletttõstukid
-              - slug: pallet-stackers-and-lifters
-                name_en: Pallet Stackers & Lifters
-                product_count: 2
-                name_et: Paletladurid ja tõstukid
-              - slug: forklifts-jib-cranes
-                name_en: Forklifts Jib Cranes
-                product_count: 1
-                name_et: Kahveltõstukid ja konsoolkraanid
             name_et: Tõsteseadmed
           - slug: package-handling
             name_en: Package Handling
@@ -8386,14 +6630,6 @@ l1:
                 name_en: Strapping Band
                 product_count: 3
                 name_et: Sidumislindid
-              - slug: clipping-machine
-                name_en: Clipping Machine
-                product_count: 1
-                name_et: Klambermasinad
-              - slug: counting-scales
-                name_en: Counting Scales
-                product_count: 1
-                name_et: Loenduskaalud
             name_et: Pakikäitlus
           - slug: forklifts-and-attachments
             name_en: Forklifts & Attachments
@@ -8415,10 +6651,6 @@ l1:
                 name_en: Pallet Forks
                 product_count: 7
                 name_et: Kaubaaluse kahvlid
-              - slug: forklift-platforms
-                name_en: Forklift Platforms
-                product_count: 2
-                name_et: Tõstuki platvormid
             name_et: Kahveltõstukid ja lisaseadmed
           - slug: drum-handling-equipment
             name_en: Drum Handling Equipment
@@ -8441,11 +6673,6 @@ l1:
             name_en: Shipping Container Wheels Package
             product_count: 4
             name_et: Konteinerite teisaldusrattad
-          - slug: platform-trucks-and-dollies-accessories
-            name_en: Platform Trucks & Dollies Accessories
-            product_count: 1
-            subs: []
-            name_et: Platvormkäru tarvikud
         name_et: Materjalikäitlusseadmed
       - slug: decking
         name_en: Decking
@@ -8548,10 +6775,6 @@ l1:
                     name_en: Handheld Drain Cleaner Machine
                     product_count: 3
                     name_et: Käsitorupuhastid
-                  - slug: municipal-pipeline-detection-robot
-                    name_en: Municipal Pipeline Detection robot
-                    product_count: 2
-                    name_et: Toruinspekteerimisrobotid
                 name_et: Kanalisatsioonimasinad
               - slug: drain-cleaning-accessories
                 name_en: Drain Cleaning Accessories
@@ -8566,10 +6789,6 @@ l1:
                 name_en: Sewer Camera
                 product_count: 29
                 name_et: Torukaamerid
-              - slug: pipe-locators
-                name_en: Pipe Locators
-                product_count: 2
-                name_et: Toruotsijad
               - slug: water-leak-detector
                 name_en: Water Leak Detector
                 product_count: 1
@@ -8583,14 +6802,6 @@ l1:
                 name_en: Manual Tube Bender
                 product_count: 14
                 name_et: Käsitorupainurid
-              - slug: copper-tube-bender
-                name_en: Copper Tube Bender
-                product_count: 2
-                name_et: Vasktorude painurid
-              - slug: electric-tube-bender
-                name_en: Electric Tube Bender
-                product_count: 1
-                name_et: Elektritorupainurid
             name_et: Torude painutajad
           - slug: pipe-threaders
             name_en: Pipe Threaders
@@ -8798,10 +7009,6 @@ l1:
                 name_en: Striping Machines
                 product_count: 6
                 name_et: Joonemarkeerijad
-              - slug: texture-sprayers
-                name_en: Texture Sprayers
-                product_count: 1
-                name_et: Tekstuuripihustid
             name_et: Värvimisseadmed
           - slug: inflatable-paint-booth
             name_en: Inflatable Paint Booth
@@ -8823,10 +7030,6 @@ l1:
                 name_en: Sander Wheel Set Idler
                 product_count: 3
                 name_et: Lihvmasina juhtrullid
-              - slug: dry-ice-cleaning-machine
-                name_en: Dry Ice Cleaning Machine
-                product_count: 2
-                name_et: Kuivjää puhastusmasin
             name_et: Lihvimistarvikud
           - slug: tarps
             name_en: Tarps
@@ -8840,10 +7043,6 @@ l1:
                 name_en: PE Tarps
                 product_count: 3
                 name_et: PE pressenningud
-              - slug: pvc-tarps
-                name_en: PVC Tarps
-                product_count: 2
-                name_et: PVC pressenningud
             name_et: Pressenningud
           - slug: portable-paint-tent
             name_en: Portable Paint Tent
@@ -8858,15 +7057,6 @@ l1:
             name_en: Airbrush Spray Booth
             product_count: 3
             name_et: Airbrushi värvikamber
-          - slug: heat-guns
-            name_en: Heat Guns
-            product_count: 2
-            name_et: Kuumapüstolid
-          - slug: tape
-            name_en: Tape
-            product_count: 1
-            subs: []
-            name_et: Teibid
         name_et: Värvimistarvikud
       - slug: heaters
         name_en: Heaters
@@ -8902,10 +7092,6 @@ l1:
                     product_count: 3
                     name_et: Infrapunasoojendajad
                 name_et: Infrapunaküttekehad
-              - slug: greenhouse-heater
-                name_en: Greenhouse Heater
-                product_count: 2
-                name_et: Kasvuhooneküttekehad
             name_et: Ruumiküttekehad
           - slug: heater-accessories
             name_en: Heater Accessories
@@ -8932,11 +7118,6 @@ l1:
                 name_en: Gas Fireplace Pilot Assembly
                 product_count: 7
                 name_et: Gaasikamina süütekomplektid
-              - slug: electric-wall-heaters
-                name_en: Electric Wall Heaters
-                product_count: 1
-                subs: []
-                name_et: Elektrilised seinakütted
             name_et: Seinaküttekehad
         name_et: Küttekehad
       - slug: door-hardware
@@ -9081,14 +7262,6 @@ l1:
                 name_en: Transfer Pumps
                 product_count: 3
                 subs:
-                  - slug: engine-driven-pumps
-                    name_en: Engine Driven Pumps
-                    product_count: 2
-                    name_et: Mootorpumbad
-                  - slug: water-transfer-pump
-                    name_en: Water Transfer Pump
-                    product_count: 1
-                    name_et: Vee ülekandepumbad
                 name_et: Ülekandepumbad
             name_et: Olmepumbad
           - slug: pump-accessories
@@ -9107,27 +7280,11 @@ l1:
                 name_en: Cast Iron Circulator Pump
                 product_count: 4
                 name_et: Malmist tsirkulatsioonipumbad
-              - slug: cordless-water-transfer-pump
-                name_en: Cordless Water Transfer Pump
-                product_count: 2
-                name_et: Akutoitel vee ülekandepumbad
             name_et: Pumba tarvikud
           - slug: macerator-pump
             name_en: Macerator Pump
             product_count: 7
             name_et: Purustuspumbad
-          - slug: pitcher-pump
-            name_en: Pitcher Pump
-            product_count: 1
-            name_et: Käsipumbad
-          - slug: rv-water-pump
-            name_en: RV Water Pump
-            product_count: 1
-            name_et: RV veepumbad
-          - slug: sewage-pumps
-            name_en: Sewage Pumps
-            product_count: 1
-            name_et: Kanalisatsioonipumbad
         name_et: Veepumbad
       - slug: flooring-supplies
         name_en: Flooring Supplies
@@ -9166,15 +7323,6 @@ l1:
                 name_en: Flooring Cutters
                 product_count: 3
                 name_et: Põrandakattelõikurid
-              - slug: floor-scrapers
-                name_en: Floor Scrapers
-                product_count: 2
-                name_et: Põrandakraapijad
-              - slug: carpet-tools
-                name_en: Carpet Tools
-                product_count: 1
-                subs: []
-                name_et: Vaipatööriistad
             name_et: Põrandatööriistad
           - slug: floor-protection-materials
             name_en: Floor Protection Materials
@@ -9282,14 +7430,6 @@ l1:
                 name_en: Multimeters
                 product_count: 4
                 name_et: Multimeetrid
-              - slug: clamp-meters
-                name_en: Clamp Meters
-                product_count: 2
-                name_et: Klambermõõtjad
-              - slug: infrared-thermometer
-                name_en: Infrared Thermometer
-                product_count: 1
-                name_et: Infrapunatermomeetrid
               - slug: specialty-meter
                 name_en: Specialty Meter
                 product_count: 1
@@ -9315,14 +7455,6 @@ l1:
             product_count: 5
             subs: []
             name_et: Elektriku käsitööriistad
-          - slug: pa-system-speakers
-            name_en: PA System Speakers
-            product_count: 2
-            name_et: PA-süsteemi kõlarid
-          - slug: wire-stripper-blades
-            name_en: Wire Stripper Blades
-            product_count: 1
-            name_et: Koorimisterad
         name_et: Elektritööriistad
       - slug: power-distribution
         name_en: Power Distribution
@@ -9397,14 +7529,6 @@ l1:
                 name_en: Shower Stool
                 product_count: 4
                 name_et: Duširoolid
-              - slug: corner-shower-bench
-                name_en: Corner Shower Bench
-                product_count: 2
-                name_et: Nurga dušipingid
-              - slug: bathtub-lifts
-                name_en: Bathtub Lifts
-                product_count: 1
-                name_et: Vannitõstukid
             name_et: Dušitoolid
           - slug: tub-transfer-benches
             name_en: Tub Transfer Benches
@@ -9508,10 +7632,6 @@ l1:
                 name_en: Corner Stabilizer
                 product_count: 4
                 name_et: Nurgastabilisaatorid
-              - slug: ladder-hook
-                name_en: Ladder Hook
-                product_count: 2
-                name_et: Redelikonksud
             name_et: Redelitarvikud
           - slug: attic-ladders
             name_en: Attic Ladders
@@ -9530,10 +7650,6 @@ l1:
             name_en: Fire Escape Ladders
             product_count: 3
             name_et: Evakuatsiooniredelid
-          - slug: work-platforms
-            name_en: Work Platforms
-            product_count: 2
-            name_et: Töötasandid
         name_et: Redelid
       - slug: hvac-supplies
         name_en: HVAC Supplies
@@ -9588,10 +7704,6 @@ l1:
                 name_en: AC Gauge Set
                 product_count: 3
                 name_et: Kliimamõõtekomplektid
-              - slug: refrigerant-scale
-                name_en: Refrigerant Scale
-                product_count: 2
-                name_et: Külmainekaalud
             name_et: HVAC tööriistad
         name_et: HVAC-tarvikud
       - slug: construction-building-insulation
@@ -9658,11 +7770,6 @@ l1:
             product_count: 4
             subs: []
             name_et: Tornventilaatorid
-          - slug: desk-fans
-            name_en: Desk Fans
-            product_count: 2
-            subs: []
-            name_et: Lauaventilaatorid
         name_et: Ventilaatorid
       - slug: motors-and-parts
         name_en: Motors & Parts
@@ -9676,14 +7783,6 @@ l1:
             name_en: General Purpose AC Motor
             product_count: 14
             name_et: Üldotstarbelised AC-mootorid
-          - slug: general-purpose-dc-motor
-            name_en: General Purpose DC Motor
-            product_count: 2
-            name_et: Üldotstarbelised DC-mootorid
-          - slug: vibration-motor
-            name_en: Vibration Motor
-            product_count: 1
-            name_et: Vibratsioonimootored
         name_et: Mootorid ja varuosad
       - slug: awnings
         name_en: Awnings
@@ -9737,10 +7836,6 @@ l1:
             name_en: Conduit
             product_count: 3
             name_et: Kaablitorud
-          - slug: battery-box
-            name_en: Battery Box
-            product_count: 2
-            name_et: Akukarbid
         name_et: Elektrikarbid, kaablitorud ja liitmikud
       - slug: building-hardware
         name_en: Building Hardware
@@ -9837,11 +7932,6 @@ l1:
             name_en: Concrete Forms
             product_count: 6
             name_et: Betoonivormid
-          - slug: concrete-parts-and-accessories
-            name_en: Concrete Parts & Accessories
-            product_count: 2
-            subs: []
-            name_et: Betooni osad ja tarvikud
         name_et: Betoon, tsement ja müüritöö
       - slug: bathroom-storage
         name_en: Bathroom Storage
@@ -9913,10 +8003,6 @@ l1:
                 product_count: 6
                 subs: []
                 name_et: Veepehmendurisüsteemid
-              - slug: rv-water-softener
-                name_en: RV Water Softener
-                product_count: 1
-                name_et: RV veepehmendurid
             name_et: Veepehmendurid
           - slug: faucet-water-filters
             name_en: Faucet Water Filters
@@ -9940,10 +8026,6 @@ l1:
                 name_en: Drywall Knives
                 product_count: 10
                 name_et: Kipsplaadi noad
-              - slug: drywall-compound-tools
-                name_en: Drywall Compound Tools
-                product_count: 2
-                name_et: Kipsplaadi vuugimistööriistad
               - slug: drywall-sanders
                 name_en: Drywall Sanders
                 product_count: 2
@@ -9967,10 +8049,6 @@ l1:
             name_en: Drywall Corner Bead
             product_count: 5
             name_et: Nurgaliistud
-          - slug: drywall-tape
-            name_en: Drywall Tape
-            product_count: 2
-            name_et: Vuugiteibid
         name_et: Kipsplaadid
       - slug: building-supplies
         name_en: Building Supplies
@@ -9987,21 +8065,6 @@ l1:
           - slug: stainless-steel-stair-railing
             name_en: Stainless Steel Stair Railing
             product_count: 4
-          - slug: aluminum-coated-balusters
-            name_en: Aluminum Coated Balusters
-            product_count: 2
-          - slug: foundation-flood-vent
-            name_en: Foundation Flood Vent
-            product_count: 2
-          - slug: shower-panel
-            name_en: Shower Panel
-            product_count: 2
-          - slug: stair-handrail
-            name_en: Stair Handrail
-            product_count: 2
-          - slug: stair-treads
-            name_en: Stair Treads
-            product_count: 1
         name_et: Ehitustarvikud
       - slug: showers
         name_en: Showers
@@ -10053,9 +8116,6 @@ l1:
               - slug: outdoor-sconces
                 name_en: Outdoor Sconces
                 product_count: 8
-              - slug: barn-lights
-                name_en: Barn Lights
-                product_count: 1
           - slug: security-lights
             name_en: Security Lights
             product_count: 7
@@ -10063,9 +8123,6 @@ l1:
               - slug: canopy-light
                 name_en: Canopy Light
                 product_count: 3
-              - slug: garage-light
-                name_en: Garage Light
-                product_count: 2
               - slug: solar-street-flood-light
                 name_en: Solar Street Flood Light
                 product_count: 2
@@ -10130,10 +8187,6 @@ l1:
             name_en: Hydraulic Electric Pump
             product_count: 3
             name_et: Elektrilised hüdropumbad
-          - slug: electric-driven-hydraulic-pump
-            name_en: Electric Driven Hydraulic Pump
-            product_count: 1
-            name_et: Elektriveoga hüdropumbad
         name_et: Hüdropumbad
       - slug: interior-doors
         name_en: Interior Doors
@@ -10184,10 +8237,6 @@ l1:
             product_count: 9
             subs: []
             name_et: Majanumbrisildid
-          - slug: mailbox-posts-and-stands
-            name_en: Mailbox Posts & Stands
-            product_count: 2
-            name_et: Postkastipostid
         name_et: Postkastid
       - slug: mini-split-air-conditioners
         name_en: Mini Split Air Conditioners
@@ -10250,14 +8299,6 @@ l1:
             product_count: 3
             subs: []
             name_et: Avarii- ja väljapääsuvalgustid
-          - slug: strip-light-fixtures
-            name_en: Strip Light Fixtures
-            product_count: 2
-            name_et: Ribavalgustid
-          - slug: bay-lighting
-            name_en: Bay Lighting
-            product_count: 1
-            name_et: Hallivalgustus
         name_et: Ärivalgustus
       - slug: door-accessories
         name_en: Door Accessories
@@ -10366,10 +8407,6 @@ l1:
                 name_en: Air Scrubber Replacement Filter
                 product_count: 3
                 name_et: Õhupuhasti varufilter
-              - slug: uv-sanitizers
-                name_en: Uv Sanitizers
-                product_count: 1
-                name_et: UV-desinfektorid
             name_et: Õhupuhasti tarvikud
           - slug: air-quality-testers
             name_en: Air Quality Testers
@@ -10388,10 +8425,6 @@ l1:
                 name_en: Starlink Extension Cable
                 product_count: 9
                 name_et: Starlinki pikendusjuhe
-              - slug: rv-extension-cord
-                name_en: RV Extension Cord
-                product_count: 1
-                name_et: RV pikendusjuhe
             name_et: Eriotstarbelised pikendusjuhtmed
           - slug: extension-cord-reels
             name_en: Extension Cord Reels
@@ -10443,10 +8476,6 @@ l1:
             name_en: Railings
             product_count: 10
             name_et: Piirded
-          - slug: deck-post-base
-            name_en: Deck Post Base
-            product_count: 2
-            name_et: Postide jalused
         name_et: Terrassid ja aiad
       - slug: vinyl-flooring
         name_en: Vinyl Flooring
@@ -10461,14 +8490,6 @@ l1:
             name_en: Sludge Pumps
             product_count: 9
             name_et: Mudapumbad
-          - slug: rv-macerator-pump
-            name_en: RV Macerator Pump
-            product_count: 1
-            name_et: RV maseraatorpumbad
-          - slug: sink-drain-pump
-            name_en: Sink Drain Pump
-            product_count: 1
-            name_et: Valamupumbad
         name_et: Kuivendusp umbad
       - slug: garage-door-accessories
         name_en: Garage Door Accessories
@@ -10498,10 +8519,6 @@ l1:
             product_count: 4
             subs: []
             name_et: Toruühendused
-          - slug: pex-al-pex-tubing
-            name_en: PEX-Al-PEX Tubing
-            product_count: 1
-            name_et: PEX-Al-PEX torud
         name_et: Torud ja ühendused
       - slug: valves
         name_en: Valves
@@ -10524,14 +8541,6 @@ l1:
             name_en: Dog Doors & Gates & Ramps
             product_count: 6
             name_et: Lemmikloomade uksed ja väravad
-          - slug: door-closer
-            name_en: Door Closer
-            product_count: 2
-            name_et: Uksesulgurid
-          - slug: door-lock-lever
-            name_en: Door Lock Lever
-            product_count: 2
-            name_et: Ukselingid
         name_et: Ukseosad ja lukud
       - slug: ceilings
         name_en: Ceilings
@@ -10588,11 +8597,6 @@ l1:
             product_count: 5
             subs: []
             name_et: Viimistluskomplektid
-          - slug: drain-parts
-            name_en: Drain Parts
-            product_count: 2
-            subs: []
-            name_et: Äravooluosad
         name_et: Santehnikaosad
       - slug: ceiling-fans
         name_en: Ceiling Fans
@@ -10622,10 +8626,6 @@ l1:
             name_en: Plexiglass
             product_count: 5
             name_et: Pleksiklaas
-          - slug: personal-desk-shield-guard
-            name_en: Personal Desk Shield Guard
-            product_count: 1
-            name_et: Lauakaitsesirmid
         name_et: Klaas- ja plastlehed
       - slug: accent-lighting
         name_en: Accent Lighting
@@ -10649,10 +8649,6 @@ l1:
             name_en: Ozone Generators
             product_count: 3
             name_et: Osoongeneraatorid
-          - slug: commercial-air-purifiers
-            name_en: Commercial Air Purifiers
-            product_count: 2
-            name_et: Tööstuslikud õhupuhastid
         name_et: Õhupuhastid
       - slug: bidets
         name_en: Bidets
@@ -10667,10 +8663,6 @@ l1:
             name_en: Instrument Accessories
             product_count: 4
             name_et: Instrumendi tarvikud
-          - slug: stands
-            name_en: Stands
-            product_count: 1
-            name_et: Statiivid
         name_et: Instrumendi tarvikud
       - slug: vacuum-pumps
         name_en: Vacuum Pumps
@@ -10691,22 +8683,6 @@ l1:
         name_en: Ventilation Equipment & Supplies
         product_count: 4
         subs:
-          - slug: ventilation-equipment-and-supplies-air-curtain
-            name_en: Air Curtain
-            product_count: 1
-            name_et: Õhukardinad
-          - slug: ventilation-equipment-and-supplies-pedestal-fans
-            name_en: Pedestal Fans
-            product_count: 1
-            name_et: Põrandaventilaatorid
-          - slug: portable-utility-blower
-            name_en: Portable Utility Blower
-            product_count: 1
-            name_et: Kaasaskantavad puhurid
-          - slug: ventilation-equipment-and-supplies-radon-fan
-            name_en: Radon Fan
-            product_count: 1
-            name_et: Radooniventilaatorid
         name_et: Ventilatsioonivarustus
       - slug: water-heaters
         name_en: Water Heaters
@@ -10716,11 +8692,6 @@ l1:
             name_en: Solar Water Heaters
             product_count: 2
             name_et: Päikese-veesoojendid
-          - slug: tank-water-heaters
-            name_en: Tank Water Heaters
-            product_count: 2
-            subs: []
-            name_et: Mahutiga veesoojendid
         name_et: Veesoojendid
       - slug: wiring-devices-and-light-controls
         name_en: Wiring Devices & Light Controls
@@ -10730,10 +8701,6 @@ l1:
             name_en: Time Clock
             product_count: 3
             name_et: Ajakellad
-          - slug: thermal-time-clock
-            name_en: Thermal Time Clock
-            product_count: 1
-            name_et: Termilised ajakellad
         name_et: Elektripaigaldised ja valgustuse juhtimine
       - slug: garage-door-openers
         name_en: Garage Door Openers
@@ -10748,153 +8715,36 @@ l1:
         product_count: 3
         subs: []
         name_et: Juhtmed
-      - slug: air-treatment
-        name_en: Air Treatment
-        product_count: 2
-        subs: []
-        name_et: Õhu töötlemine
-      - slug: braces-and-brackets
-        name_en: Braces & Brackets
-        product_count: 2
-        subs: []
-        name_et: Toed ja kinnituskonsoolia
       - slug: drains-and-drainage
         name_en: Drains & Drainage
         product_count: 2
         subs:
-          - slug: drains-and-drainage-drain-cleaner-machine
-            name_en: Drain Cleaner Machine
-            product_count: 1
-            name_et: Kanalisatsiooni puhastusmasinad
-          - slug: drain-cleaning-equipment
-            name_en: Drain Cleaning Equipment
-            product_count: 1
-            name_et: Kanalisatsiooni puhastusseadmed
         name_et: Drenaaž ja kanalisatsioon
       - slug: electrical-boxes-and-panels-and-fittings
         name_en: Electrical Boxes & Panels & Fittings
         product_count: 2
         subs:
-          - slug: electrical-enclosure
-            name_en: Electrical Enclosure
-            product_count: 1
-            name_et: Elektrikapid
-          - slug: electrical-boxes-and-panels-and-fittings-weather-station
-            name_en: Weather Station
-            product_count: 1
-            name_et: Ilmajaamad
         name_et: Elektrikarbid, kilbid ja liitmikud
-      - slug: humidifiers
-        name_en: Humidifiers
-        product_count: 2
-        subs: []
-        name_et: Õhuniisutajad
-      - slug: luggage-and-travel-accessories
-        name_en: Luggage & Travel Accessories
-        product_count: 2
-        subs: []
-        name_et: Kohvrid ja reisitarbed
       - slug: masonry-and-concrete-and-tile-tools
         name_en: Masonry & Concrete & Tile Tools
         product_count: 2
         subs:
-          - slug: electric-concrete-vibrator
-            name_en: Electric Concrete Vibrator
-            product_count: 1
-            name_et: Elektrilised betoonivibraatorid
-          - slug: electric-rebar-cutter
-            name_en: Electric Rebar Cutter
-            product_count: 1
-            name_et: Elektrilised armatuurlõikurid
         name_et: Müürimis-, betooni- ja plaatimisvahendid
       - slug: outdoor-lighting-and-accessories
         name_en: Outdoor Lighting & Accessories
         product_count: 2
         subs:
-          - slug: flashlight
-            name_en: Flashlight
-            product_count: 1
-            name_et: Taskulambid
-          - slug: outdoor-lighting-and-accessories-landscape-lighting
-            name_en: Landscape Lighting
-            product_count: 1
-            name_et: Aiavalgustus
         name_et: Välivalgustus ja tarvikud
-      - slug: test-instruments
-        name_en: Test Instruments
-        product_count: 2
-        subs: []
-        name_et: Mõõteriistad
-      - slug: circulators-and-chillers
-        name_en: Circulators & Chillers
-        product_count: 1
-        subs: []
-        name_et: Tsirkulaatorid ja jahutid
-      - slug: dehumidifiers
-        name_en: Dehumidifiers
-        product_count: 1
-        subs: []
-        name_et: Õhukuivatid
-      - slug: driven-pumps
-        name_en: Driven Pumps
-        product_count: 1
-        subs: []
-        name_et: Mootorpumbad
-      - slug: electric-motors
-        name_en: Electric Motors
-        product_count: 1
-        subs: []
-        name_et: Elektromotoorid
-      - slug: fire-safety
-        name_en: Fire Safety
-        product_count: 1
-        subs: []
-        name_et: Tuleohutus
-      - slug: heaters-and-accessories
-        name_en: Heaters & Accessories
-        product_count: 1
-        subs: []
-        name_et: Küttekehad ja tarvikud
-      - slug: home-decor-products
-        name_en: Home Décor Products
-        product_count: 1
-        subs: []
-        name_et: Kodukaunistused
       - slug: misters
         name_en: Misters
         product_count: 1
         subs: []
         name_et: Udupihustid
-      - slug: motion-control
-        name_en: Motion Control
-        product_count: 1
-        subs: []
-        name_et: Liikumisjuhtimine
       - slug: plumbing-accessories
         name_en: Plumbing Accessories
         product_count: 1
         subs: []
         name_et: Torustiku tarvikud
-      - slug: satellite-equipment
-        name_en: Satellite Equipment
-        product_count: 1
-        subs: []
-        name_et: Satelliitseadmed
-      - slug: scaffolds-and-mobile-bases
-        name_en: Scaffolds & Mobile Bases
-        product_count: 1
-        subs: []
-        name_et: Tellingud ja mobiilsed alused
-      - slug: stove-and-fireplace-accessories
-        name_en: Stove & Fireplace Accessories
-        product_count: 1
-        subs: []
-        name_et: Ahju- ja kaminatarvikud
-      - slug: thermostats
-        name_en: Thermostats
-        product_count: 1
-        subs: []
-        name_et: Termostaadid
     name_et: Ehitus
   - slug: safety-security-workwear
     name_en: Safety, Security & Workwear
@@ -10987,10 +8837,6 @@ l1:
             product_count: 4
             subs: []
             name_et: Turvavöödid
-          - slug: fall-protection
-            name_en: Fall Protection
-            product_count: 2
-            name_et: Kukkumiskaitse
         name_et: Kukkumiskaitse seadmed
       - slug: bottom-wear
         name_en: Bottom Wear
@@ -11051,25 +8897,7 @@ l1:
         name_en: Traffic Safety
         product_count: 3
         subs:
-          - slug: delineator-post
-            name_en: Delineator Post
-            product_count: 2
-            name_et: Liikluspostid
-          - slug: traffic-cone
-            name_en: Traffic Cone
-            product_count: 1
-            name_et: Liikluskoonused
         name_et: Liiklusohutus
-      - slug: disposable-protective-clothing
-        name_en: Disposable Protective Clothing
-        product_count: 2
-        subs: []
-        name_et: Ühekordsed kaitseriided
-      - slug: confined-space-entry-systems
-        name_en: Confined Space Entry Systems
-        product_count: 1
-        subs: []
-        name_et: Kitsaste ruumide turvavarustus
     name_et: Ohutus, turvalisus ja tööriided
   - slug: hand-power-tools
     name_en: Hand, Power & Specialty Tools
@@ -11163,11 +8991,6 @@ l1:
                 name_en: Seam Setter
                 product_count: 3
                 name_et: Liiteseadjad
-              - slug: watch-repair-tools
-                name_en: Watch Repair Tools
-                product_count: 2
-                subs: []
-                name_et: Kellasepa tööriistad
             name_et: Erikäsitööriistad
           - slug: measuring-tools
             name_en: Measuring Tools
@@ -11194,10 +9017,6 @@ l1:
                     name_en: Grating Ruler
                     product_count: 7
                     name_et: Rasterjoonlauad
-                  - slug: height-measuring-stick
-                    name_en: Height Measuring Stick
-                    product_count: 2
-                    name_et: Kõrgusmõõdupuud
                 name_et: Joonlauad ja mõõtpulgad
               - slug: inside-diameter-measuring-tool
                 name_en: Inside Diameter Measuring Tool
@@ -11215,23 +9034,10 @@ l1:
                 name_en: Measuring Rods
                 product_count: 4
                 name_et: Mõõtlattid
-              - slug: gauge-tools
-                name_en: Gauge Tools
-                product_count: 2
-                subs: []
-                name_et: Mõõtekalibrid
-              - slug: measuring-wheels
-                name_en: Measuring Wheels
-                product_count: 2
-                name_et: Mõõtarattad
               - slug: micrometer-set
                 name_en: Micrometer Set
                 product_count: 1
                 name_et: Mikromeetrikomplektid
-              - slug: tape-measures
-                name_en: Tape Measures
-                product_count: 1
-                name_et: Mõõdulindid
             name_et: Mõõteriistad
           - slug: wrenches
             name_en: Wrenches
@@ -11303,10 +9109,6 @@ l1:
                     name_en: Hinge Jig Drilling Hole
                     product_count: 3
                     name_et: Hingeaugu puurimismall
-                  - slug: cabinet-hardware-jig
-                    name_en: Cabinet hardware jig
-                    product_count: 2
-                    name_et: Kapikinnitiste mall
                   - slug: dovetail-jig
                     name_en: Dovetail Jig
                     product_count: 2
@@ -11317,10 +9119,6 @@ l1:
                 product_count: 7
                 subs: []
                 name_et: Kirved
-              - slug: bolt-cutters
-                name_en: Bolt Cutters
-                product_count: 2
-                name_et: Poltlõikurid
             name_et: Lõiketööriistad
           - slug: clamps
             name_en: Clamps
@@ -11330,10 +9128,6 @@ l1:
                 name_en: F-Clamps
                 product_count: 13
                 name_et: F-klambrid
-              - slug: pipe-alignment-clamp
-                name_en: Pipe Alignment Clamp
-                product_count: 2
-                name_et: Torude joondusklamber
             name_et: Klambrid
           - slug: pliers
             name_en: Pliers
@@ -11349,14 +9143,6 @@ l1:
                 product_count: 2
                 subs: []
                 name_et: Lõiketangid
-              - slug: plier-sets
-                name_en: Plier Sets
-                product_count: 2
-                name_et: Tangikomplektid
-              - slug: locking-pliers
-                name_en: Locking Pliers
-                product_count: 1
-                name_et: Lukustustangid
             name_et: Tangid
           - slug: tool-accessories
             name_en: Tool Accessories
@@ -11421,10 +9207,6 @@ l1:
                     name_en: Woodworking Lathe Chuck
                     product_count: 4
                     name_et: Puidutreipingi padrunid
-                  - slug: lathe-cutting-tools
-                    name_en: Lathe Cutting Tools
-                    product_count: 1
-                    name_et: Treipingi lõiketööriistad
                 name_et: Treipingid ja tarvikud
               - slug: metal-fabrication-accessories
                 name_en: Metal Fabrication Accessories
@@ -11455,10 +9237,6 @@ l1:
                     name_en: Slip Roller
                     product_count: 3
                     name_et: Rullpainutajad
-                  - slug: combination-sheet-metal-machine
-                    name_en: Combination Sheet Metal Machine
-                    product_count: 1
-                    name_et: Kombineeritud lehtmetallimasinad
                 name_et: Lehtmetallitöötlus
               - slug: milling-machines-and-drill-presses
                 name_en: Milling Machines & Drill Presses
@@ -11511,10 +9289,6 @@ l1:
                 name_en: Rotary Hammers
                 product_count: 2
                 name_et: Perforaatorid
-              - slug: screw-guns
-                name_en: Screw Guns
-                product_count: 2
-                name_et: Kruvipüstolid
             name_et: Trellid
           - slug: saws
             name_en: Saws
@@ -11550,10 +9324,6 @@ l1:
                 name_en: Track Saws & Guide Rail
                 product_count: 4
                 name_et: Juhtsiinega saed ja juhtsiinad
-              - slug: chop-saws
-                name_en: Chop Saws
-                product_count: 2
-                name_et: Lõikesaed
             name_et: Saed
           - slug: power-cutting-tools
             name_en: Power Cutting Tools
@@ -11567,10 +9337,6 @@ l1:
                 name_en: Rebar Bender
                 product_count: 5
                 name_et: Armatuuri painutajad
-              - slug: rebar-bender-and-cutter
-                name_en: Rebar Bender & Cutter
-                product_count: 2
-                name_et: Armatuuri painutajad ja lõikurid
             name_et: Elektrilised lõiketööriistad
           - slug: concrete-drilling-tools
             name_en: Concrete Drilling Tools
@@ -11605,10 +9371,6 @@ l1:
                     name_en: Belt Disc Sander
                     product_count: 2
                     name_et: Lint-kettaslihvijad
-                  - slug: file-belt-sander
-                    name_en: File Belt Sander
-                    product_count: 1
-                    name_et: Sõrmlintlihvijad
                 name_et: Lintlihvijad
               - slug: spindle-sanders
                 name_en: Spindle Sanders
@@ -11627,10 +9389,6 @@ l1:
                 name_en: Foam Cutter Machine
                 product_count: 12
                 name_et: Vahulõikurid
-              - slug: concrete-vibrator
-                name_en: Concrete Vibrator
-                product_count: 2
-                name_et: Betoonivibreerijad
             name_et: Eriotstarbelised elektritööriistad
           - slug: inspection-cameras
             name_en: Inspection Cameras
@@ -11657,18 +9415,6 @@ l1:
                 name_en: Angle Grinder
                 product_count: 3
                 name_et: Nurklihvijad
-              - slug: concrete-grinder
-                name_en: Concrete Grinder
-                product_count: 2
-                name_et: Betoonilihvijad
-              - slug: die-grinders
-                name_en: Die Grinders
-                product_count: 1
-                name_et: Matriitslihvijad
-              - slug: plastic-grinder
-                name_en: Plastic Grinder
-                product_count: 1
-                name_et: Plastikupurustajad
             name_et: Lihvmasinad
           - slug: jobsite
             name_en: Jobsite
@@ -11705,11 +9451,6 @@ l1:
                 name_en: Brad Nailers
                 product_count: 1
                 name_et: Peennael-naelutajad
-              - slug: pneumatic-nail-gun
-                name_en: Pneumatic Nail Gun
-                product_count: 1
-                subs: []
-                name_et: Pneumaatilised naelutuspüstolid
             name_et: Naelutuspüstolid
           - slug: nibblers-and-shears
             name_en: Nibblers & Shears
@@ -11732,10 +9473,6 @@ l1:
                 name_en: Wet Polisher Grinder
                 product_count: 3
                 name_et: Märglihvija-poleerijad
-              - slug: burnishing-polishing-machine
-                name_en: Burnishing Polishing Machine
-                product_count: 2
-                name_et: Lihvimis-poleerimismasinad
               - slug: car-buffer-polisher
                 name_en: Car Buffer Polisher
                 product_count: 1
@@ -11826,14 +9563,6 @@ l1:
                 name_en: Wall Safes
                 product_count: 3
                 name_et: Seinaseifid
-              - slug: signal-blocker
-                name_en: signal blocker
-                product_count: 2
-                name_et: Signaaliblokaatorid
-              - slug: document-safes
-                name_en: Document Safes
-                product_count: 1
-                name_et: Dokumendiseifid
             name_et: Seifid
           - slug: home-safety
             name_en: Home Safety
@@ -11872,10 +9601,6 @@ l1:
                         name_en: Lightweight Baby Stroller
                         product_count: 5
                         name_et: Kerged beebivankerid
-                      - slug: standard-baby-stroller
-                        name_en: Standard Baby Stroller
-                        product_count: 2
-                        name_et: Tavalised beebivankerid
                     name_et: Turvatoolid ja vankrid
                   - slug: toddler-bed-rails-and-bumpers
                     name_en: Toddler Bed Rails & Bumpers
@@ -11955,14 +9680,6 @@ l1:
                     name_en: Spot Welder
                     product_count: 6
                     name_et: Punktkeevitusmasinad
-                  - slug: track-torch
-                    name_en: Track Torch
-                    product_count: 1
-                    name_et: Rööpaslõikurid
-                  - slug: welding-machine-handheld
-                    name_en: Welding Machine Handheld
-                    product_count: 1
-                    name_et: Käeshoitavad keevitusmasinad
                 name_et: Keevituskomplektid
               - slug: welding-carts
                 name_en: Welding Carts
@@ -11973,11 +9690,6 @@ l1:
                 product_count: 5
                 subs: []
                 name_et: Keevitustraadid
-              - slug: welding-hoses
-                name_en: Welding Hoses
-                product_count: 1
-                subs: []
-                name_et: Keevitusvoolikud
             name_et: Keevitustarvikud
           - slug: welding-machines
             name_en: Welding Machines
@@ -12047,10 +9759,6 @@ l1:
                     name_en: Electric Soldering Iron
                     product_count: 4
                     name_et: Elektrijootekolvid
-                  - slug: hot-air-rework-station
-                    name_en: Hot Air Rework Station
-                    product_count: 2
-                    name_et: Kuumõhu tööjaamad
                 name_et: Jootmisjaamad
               - slug: soldering-parts-and-accessories
                 name_en: Soldering Parts & Accessories
@@ -12096,10 +9804,6 @@ l1:
                 product_count: 5
                 subs: []
                 name_et: Kombineeritud puurikomplektid
-              - slug: forstner-bits
-                name_en: Forstner Bits
-                product_count: 1
-                name_et: Forstner-puurid
             name_et: Puuriotsikud
           - slug: tool-stands
             name_en: Tool Stands
@@ -12125,10 +9829,6 @@ l1:
                 name_en: Bench Grinder Pedestal
                 product_count: 3
                 name_et: Lauagrinderite jalused
-              - slug: table-saw-stand
-                name_en: Table Saw Stand
-                product_count: 2
-                name_et: Lauasae statiivid
             name_et: Tööriistastatiivid
           - slug: saw-blades
             name_en: Saw Blades
@@ -12175,20 +9875,10 @@ l1:
             name_en: Saw Accessories
             product_count: 4
             name_et: Saagade tarvikud
-          - slug: power-tool-batteries
-            name_en: Power Tool Batteries
-            product_count: 2
-            subs: []
-            name_et: Elektritööriistade akud
           - slug: jobsite-radios
             name_en: Jobsite Radios
             product_count: 1
             name_et: Ehitusraadiod
-          - slug: rotary-tool-accessories
-            name_en: Rotary Tool Accessories
-            product_count: 1
-            subs: []
-            name_et: Pöörlevate tööriistade tarvikud
         name_et: Elektritööriistade tarvikud
       - slug: air-compressor-tools
         name_en: Air Compressor Tools
@@ -12210,10 +9900,6 @@ l1:
                 name_en: Vertical Air Compressors
                 product_count: 4
                 name_et: Vertikaalkompressorid
-              - slug: diving-compressors
-                name_en: Diving Compressors
-                product_count: 2
-                name_et: Sukeldumiskompressorid
             name_et: Õhukompressorid
           - slug: air-tools
             name_en: Air Tools
@@ -12231,14 +9917,6 @@ l1:
                 name_en: Air Blow Guns
                 product_count: 4
                 name_et: Suruõhupüstolid
-              - slug: air-rivet-guns
-                name_en: Air Rivet Guns
-                product_count: 1
-                name_et: Pneumaatilised neetpüstolid
-              - slug: air-sanders-and-polishers
-                name_en: Air Sanders & Polishers
-                product_count: 1
-                name_et: Pneumaatilised lihvijad ja poleerijad
             name_et: Pneumaatilised tööriistad
           - slug: air-compressor-parts-and-accessories
             name_en: Air Compressor Parts & Accessories
@@ -12278,10 +9956,6 @@ l1:
                 name_en: Portable Air Compressors
                 product_count: 5
                 name_et: Kaasaskantavad kompressorid
-              - slug: on-board-air-compressor-system
-                name_en: On Board Air Compressor System
-                product_count: 1
-                name_et: Pardakompressorid
             name_et: Täitepumbad
         name_et: Suruõhutööriistad
       - slug: woodworking-tools
@@ -12313,10 +9987,6 @@ l1:
                 name_en: Woodworking Dust Collector Hoses
                 product_count: 4
                 name_et: Tolmukoguja voolikud
-              - slug: cyclone-dust-separator-kit
-                name_en: Cyclone Dust Separator Kit
-                product_count: 2
-                name_et: Tsüklontolmuärastaja komplektid
             name_et: Tolmukoguja tarvikud
           - slug: mortising-machine
             name_en: Mortising Machine
@@ -12341,35 +10011,10 @@ l1:
             product_count: 3
             subs: []
             name_et: Freesi varuosad
-          - slug: ash-vacuum
-            name_en: Ash Vacuum
-            product_count: 2
-            name_et: Tuhaimejad
-          - slug: router-bits
-            name_en: Router Bits
-            product_count: 2
-            subs: []
-            name_et: Freesiotsikud
-          - slug: router-tables
-            name_en: Router Tables
-            product_count: 2
-            name_et: Freesilauad
           - slug: dust-collectors
             name_en: Dust Collectors
             product_count: 1
             name_et: Tolmukogujad
-          - slug: joiners
-            name_en: Joiners
-            product_count: 1
-            name_et: Liiturmasinad
-          - slug: jointers
-            name_en: Jointers
-            product_count: 1
-            name_et: Tasanduspingid
-          - slug: woodworking-benches
-            name_en: Woodworking Benches
-            product_count: 1
-            name_et: Puutöölauad
         name_et: Puidutööriistad
       - slug: tool-storage
         name_en: Tool Storage
@@ -12404,10 +10049,6 @@ l1:
                 name_en: Welding Backpack
                 product_count: 3
                 name_et: Keevitusseljakotid
-              - slug: tactical-backpacks
-                name_en: Tactical Backpacks
-                product_count: 2
-                name_et: Taktikalised seljakotid
             name_et: Tööriistakotid
           - slug: portable-tool-boxes
             name_en: Portable Tool Boxes
@@ -12421,19 +10062,6 @@ l1:
             name_en: Tool Carts
             product_count: 3
             name_et: Tööriistakärrud
-          - slug: slatwall-panels
-            name_en: Slatwall Panels
-            product_count: 1
-            name_et: Soontega seinapaneelid
-          - slug: storage-racks
-            name_en: Storage Racks
-            product_count: 1
-            name_et: Hoiuriiulid
-          - slug: tool-chests
-            name_en: Tool Chests
-            product_count: 1
-            subs: []
-            name_et: Tööriistakastid
         name_et: Tööriistahoidikud
       - slug: chains-and-ropes
         name_en: Chains & Ropes
@@ -12476,14 +10104,6 @@ l1:
                     name_en: Centrifuges
                     product_count: 3
                     name_et: Tsentrifuugid
-                  - slug: lab-circulators
-                    name_en: Lab Circulators
-                    product_count: 2
-                    name_et: Labori tsirkulaatorid
-                  - slug: rotary-evaporators
-                    name_en: Rotary Evaporators
-                    product_count: 1
-                    name_et: Pöördaurustid
                 name_et: Laborivarustus
               - slug: microscopes
                 name_en: Microscopes
@@ -12494,17 +10114,7 @@ l1:
                 product_count: 5
                 subs: []
                 name_et: Laboriinstrumendid
-              - slug: microscopes-and-equipment
-                name_en: Microscopes & Equipment
-                product_count: 1
-                subs: []
-                name_et: Mikroskoobid ja lisatarvikud
             name_et: Laboriinstrumendid ja -seadmed
-          - slug: lab-furniture
-            name_en: Lab Furniture
-            product_count: 1
-            subs: []
-            name_et: Laborimööbel
         name_et: Laboriseadmed ja -tooted
       - slug: saws-and-accessories
         name_en: Saws & Accessories
@@ -12514,22 +10124,6 @@ l1:
             name_en: Table Saw
             product_count: 3
             name_et: Lauasaed
-          - slug: band-saw
-            name_en: Band Saw
-            product_count: 1
-            name_et: Lindisaed
-          - slug: chop-saw
-            name_en: Chop Saw
-            product_count: 1
-            name_et: Lõikesaed
-          - slug: mini-miter-saw
-            name_en: Mini Miter Saw
-            product_count: 1
-            name_et: Väikesed nurksaed
-          - slug: oscillating-blades
-            name_en: Oscillating Blades
-            product_count: 1
-            name_et: Ostsilleerivad lõiketerad
         name_et: Saed ja tarvikud
       - slug: grinding-and-sanding-and-finishing-tools
         name_en: Grinding & Sanding & Finishing Tools
@@ -12539,10 +10133,6 @@ l1:
             name_en: Belt Grinder
             product_count: 5
             name_et: Lintlihvijad
-          - slug: belt-grinder-knife-jig
-            name_en: Belt Grinder Knife Jig
-            product_count: 1
-            name_et: Lintlihvija noatugi
         name_et: Lihvimis- ja viimistlustööriistad
       - slug: sockets-and-bits
         name_en: Sockets & Bits
@@ -12552,14 +10142,6 @@ l1:
             name_en: Socket Wrenches
             product_count: 4
             name_et: Padrunvõtmed
-          - slug: sockets-and-bits-impact-socket-set
-            name_en: Impact Socket Set
-            product_count: 1
-            name_et: Löögipüstoli padrunid
-          - slug: tap-extractors
-            name_en: Tap Extractors
-            product_count: 1
-            name_et: Kraanide eemaldajad
         name_et: Padrunid ja otsikud
       - slug: lathe-machines-and-accessories
         name_en: Lathe Machines & Accessories
@@ -12569,14 +10151,6 @@ l1:
             name_en: Lathe Chuck
             product_count: 3
             name_et: Treipingi padrunid
-          - slug: linear-scale
-            name_en: Linear Scale
-            product_count: 1
-            name_et: Lineaarskaalad
-          - slug: wood-lathe
-            name_en: Wood Lathe
-            product_count: 1
-            name_et: Puidutreipingid
         name_et: Treipingid ja tarvikud
       - slug: test-measure-and-inspect
         name_en: Test, Measure & Inspect
@@ -12586,10 +10160,6 @@ l1:
             name_en: Viscometers
             product_count: 3
             name_et: Viskosimeetrid
-          - slug: polarimeters
-            name_en: Polarimeters
-            product_count: 2
-            name_et: Polarimeetrid
         name_et: Mõõtmis- ja kontrollimisvahendid
       - slug: welding-safety-equipment
         name_en: Welding Safety Equipment
@@ -12599,10 +10169,6 @@ l1:
             name_en: Welding Blanket
             product_count: 3
             name_et: Keevitustekid
-          - slug: welding-screens
-            name_en: Welding Screens
-            product_count: 2
-            name_et: Keevitusekraanid
         name_et: Keevituse kaitsevahendid
       - slug: hand-power-tools-wrenches
         name_en: Wrenches
@@ -12612,10 +10178,6 @@ l1:
             name_en: Pipe Wrench
             product_count: 4
             name_et: Torupüüdid
-          - slug: plier-set
-            name_en: Plier Set
-            product_count: 1
-            name_et: Tangikomplektid
         name_et: Mutrivõtmed
       - slug: hand-power-tools-labware
         name_en: Labware
@@ -12630,107 +10192,17 @@ l1:
             name_en: Hole Saw Kit
             product_count: 3
             name_et: Augusaagade komplektid
-          - slug: pocket-hole-jig-system-set
-            name_en: Pocket Hole Jig System Set
-            product_count: 1
-            name_et: Taskuaugu juhikute komplektid
         name_et: Elektritööriistade varuosad ja tarvikud
       - slug: hand-power-tools-cutting-tools
         name_en: Cutting Tools
         product_count: 3
         subs:
-          - slug: bolt-cutter
-            name_en: Bolt Cutter
-            product_count: 2
-            name_et: Poltlõikurid
-          - slug: metal-shear
-            name_en: Metal Shear
-            product_count: 1
-            name_et: Metallilõikurid
         name_et: Lõiketööriistad
       - slug: inspection-and-retrieving-tools
         name_en: Inspection & Retrieving Tools
         product_count: 2
         subs:
-          - slug: magnet-fishing-kit
-            name_en: Magnet Fishing Kit
-            product_count: 1
-            name_et: Magnetkalapüügi komplektid
-          - slug: pipe-inspection-camera
-            name_en: Pipe Inspection Camera
-            product_count: 1
-            name_et: Toru inspektsioonikaamerad
         name_et: Inspektsiooni- ja hankimisvahendid
-      - slug: hand-power-tools-measuring-tools
-        name_en: Measuring Tools
-        product_count: 2
-        subs: []
-        name_et: Mõõtevahendid
-      - slug: planers-and-jointers
-        name_en: Planers & Jointers
-        product_count: 2
-        subs: []
-        name_et: Höövlid ja liitmispingid
-      - slug: routers-and-bits
-        name_en: Routers & Bits
-        product_count: 2
-        subs: []
-        name_et: Freespingid ja otsikud
-      - slug: spot-welding-and-accessories
-        name_en: Spot Welding & Accessories
-        product_count: 2
-        subs: []
-        name_et: Punktkeevitus ja tarvikud
-      - slug: water-testing-equipment-and-meters
-        name_en: Water Testing Equipment And Meters
-        product_count: 2
-        subs: []
-        name_et: Veekvaliteedi mõõteseadmed
-      - slug: wrenches-and-ratchets
-        name_en: Wrenches & Ratchets
-        product_count: 2
-        subs: []
-        name_et: Mutrivõtmed ja ratšeed
-      - slug: air-compressor-accessories
-        name_en: Air Compressor Accessories
-        product_count: 1
-        subs: []
-        name_et: Kompressori tarvikud
-      - slug: hand-power-tools-clamps-and-vises
-        name_en: Clamps & Vises
-        product_count: 1
-        subs: []
-        name_et: Klambrid ja kruustangid
-      - slug: demolition-tools-and-equipment
-        name_en: Demolition Tools & Equipment
-        product_count: 1
-        subs: []
-        name_et: Lammutustööriistad
-      - slug: drills-and-drivers
-        name_en: Drills & Drivers
-        product_count: 1
-        subs: []
-        name_et: Puurid ja kruvikeerajad
-      - slug: flashlights
-        name_en: Flashlights
-        product_count: 1
-        subs: []
-        name_et: Taskulambid
-      - slug: presses
-        name_en: Presses
-        product_count: 1
-        subs: []
-        name_et: Pressid
-      - slug: sand-blasting-equipment
-        name_en: Sand Blasting Equipment
-        product_count: 1
-        subs: []
-        name_et: Liivapritsid
-      - slug: tap-and-die-sets
-        name_en: Tap & Die Sets
-        product_count: 1
-        subs: []
-        name_et: Keermestuskomplektid
     name_et: Käsi- ja elektritööriistad
   - slug: warehousing-material-handling
     name_en: Warehousing & Material Handling
@@ -12850,10 +10322,6 @@ l1:
                 name_en: Gridwall Panels
                 product_count: 6
                 name_et: Võrgupaneelid
-              - slug: wall-mounted-tool-organizer
-                name_en: Wall Mounted Tool Organizer
-                product_count: 2
-                name_et: Seina tööriistakorraldajad
             name_et: Garaaži seinakorrastus
           - slug: horizontal-storage-rack
             name_en: Horizontal Storage Rack
@@ -12872,18 +10340,10 @@ l1:
             name_en: Garage Tool Storage Rack
             product_count: 3
             name_et: Garaaži tööriistariiulid
-          - slug: garage-bike-racks
-            name_en: Garage Bike Racks
-            product_count: 1
-            name_et: Garaaži rattariiulid
           - slug: mobile-bin-units
             name_en: Mobile Bin Units
             product_count: 1
             name_et: Mobiilsed hoiukastid
-          - slug: overhead-garage-storage
-            name_en: Overhead Garage Storage
-            product_count: 1
-            name_et: Laepealsed hoiusüsteemid
         name_et: Garaaži ladustamine
       - slug: outdoor-storage
         name_en: Outdoor Storage
@@ -12939,10 +10399,6 @@ l1:
                     name_en: Outdoor Gazebo Canopy
                     product_count: 3
                     name_et: Välipaviljoni varikatused
-                  - slug: frame-gazebo
-                    name_en: Frame Gazebo
-                    product_count: 2
-                    name_et: Raampaviljonid
                 name_et: Paviljonid
               - slug: pergola-bracket
                 name_en: Pergola Bracket
@@ -12960,10 +10416,6 @@ l1:
                     name_en: Thatch Roofing
                     product_count: 6
                     name_et: Õlgkatused
-                  - slug: arched-pergola
-                    name_en: Arched Pergola
-                    product_count: 2
-                    name_et: Kaarikpergolaad
                 name_et: Pergolad
               - slug: side-awning
                 name_en: Side Awning
@@ -13025,10 +10477,6 @@ l1:
                 name_en: Bike Storage Shelters
                 product_count: 8
                 name_et: Jalgrattavarjualused
-              - slug: metal-sheds
-                name_en: Metal Sheds
-                product_count: 2
-                name_et: Metallist aiamajad
             name_et: Aiamajad
         name_et: Väliladustamine
       - slug: shelving
@@ -13153,34 +10601,6 @@ l1:
             name_en: Manual Chain Hoist
             product_count: 7
             name_et: Käsiahelatõstukid
-          - slug: load-binders
-            name_en: Load Binders
-            product_count: 2
-            name_et: Koormuskinnitid
-          - slug: push-beam-trolley
-            name_en: Push Beam Trolley
-            product_count: 2
-            name_et: Talutrollid
-          - slug: davit-crane
-            name_en: Davit Crane
-            product_count: 1
-            name_et: Davit-kraanад
-          - slug: suction-cup-lifter
-            name_en: Suction Cup Lifter
-            product_count: 1
-            name_et: Vaakumtõstukid
-          - slug: support-pole
-            name_en: Support Pole
-            product_count: 1
-            name_et: Tugipulgad
-          - slug: twin-sheave-block
-            name_en: Twin Sheave Block
-            product_count: 1
-            name_et: Topeltrullplokid
-          - slug: hoists-and-winches-and-rigging-winch-cable
-            name_en: Winch Cable
-            product_count: 1
-            name_et: Vintsikaablid
         name_et: Tõstukid, Vintsid ja Taklaaž
       - slug: carts-and-trucks
         name_en: Carts & Trucks
@@ -13194,18 +10614,6 @@ l1:
             name_en: Panel Trucks
             product_count: 3
             name_et: Paneelkärud
-          - slug: utility-cart
-            name_en: Utility Cart
-            product_count: 3
-            name_et: Universaalkärud
-          - slug: laundry-cart
-            name_en: Laundry Cart
-            product_count: 2
-            name_et: Pesukärud
-          - slug: stair-climbing-cart
-            name_en: Stair Climbing Cart
-            product_count: 2
-            name_et: Trepikärud
         name_et: Kärud ja veokärud
       - slug: cargo-control
         name_en: Cargo Control
@@ -13215,14 +10623,6 @@ l1:
             name_en: Rubber Tarp Straps
             product_count: 7
             name_et: Kummist kinnitusrihmad
-          - slug: cargo-net
-            name_en: Cargo Net
-            product_count: 2
-            name_et: Lastivõrgud
-          - slug: tie-down-kit
-            name_en: Tie-Down Kit
-            product_count: 1
-            name_et: Kinnituskomplektid
         name_et: Lastitõkised
       - slug: shelving-and-storage
         name_en: Shelving & Storage
@@ -13232,10 +10632,6 @@ l1:
             name_en: Garage Storage Cabinet
             product_count: 3
             name_et: Garaaži hoiukapid
-          - slug: garage-storage-rack
-            name_en: Garage Storage Rack
-            product_count: 3
-            name_et: Garaaži laoriiulid
           - slug: garment-racks
             name_en: Garment Racks
             product_count: 3
@@ -13249,14 +10645,6 @@ l1:
             name_en: Strapping Machine
             product_count: 4
             name_et: Rihmastusmasinad
-          - slug: liquid-filling-machine
-            name_en: Liquid Filling Machine
-            product_count: 3
-            name_et: Vedelikutäitmasinad
-          - slug: sealing-machine
-            name_en: Sealing Machine
-            product_count: 1
-            name_et: Sulgemismasinad
         name_et: Täite- ja sulgemismasinad
       - slug: pallet-moving-equipment-and-accessories
         name_en: Pallet Moving Equipment & Accessories
@@ -13266,27 +10654,11 @@ l1:
             name_en: Pallet Forks Extensions
             product_count: 3
             name_et: Kahvli pikendused
-          - slug: forklift-mobile-crane
-            name_en: Forklift Mobile Crane
-            product_count: 1
-            name_et: Tõstukikraanad
-          - slug: pallet-puller
-            name_en: Pallet Puller
-            product_count: 1
-            name_et: Kaubaaluste vedurid
         name_et: Kaubaaluste liigutusvahendid
       - slug: workbenches-and-accessories
         name_en: Workbenches & Accessories
         product_count: 5
         subs:
-          - slug: workbenches-and-accessories-workbench-tops
-            name_en: Workbench Tops
-            product_count: 3
-            name_et: Töölauaplaadid
-          - slug: adjustable-workbench
-            name_en: Adjustable Workbench
-            product_count: 2
-            name_et: Reguleeritavad töölauad
         name_et: Töölauad ja tarvikud
       - slug: doors-and-accessories
         name_en: Doors & Accessories
@@ -13297,35 +10669,12 @@ l1:
         name_en: Packing Materials
         product_count: 3
         subs:
-          - slug: stretch-film
-            name_en: Stretch Film
-            product_count: 2
-            name_et: Venituskile
-          - slug: air-cushion-film
-            name_en: Air Cushion Film
-            product_count: 1
-            name_et: Õhkpadjandid
         name_et: Pakendimaterjalid
       - slug: ramps-and-ladders
         name_en: Ramps & Ladders
         product_count: 3
         subs: []
         name_et: Laadimissillad ja redelid
-      - slug: dollies-and-movers
-        name_en: Dollies & Movers
-        product_count: 2
-        subs: []
-        name_et: Transpordivankrid
-      - slug: scales-and-scale-accessories
-        name_en: Scales & Scale Accessories
-        product_count: 2
-        subs: []
-        name_et: Kaalud ja tarvikud
-      - slug: marking-and-labeling
-        name_en: Marking & Labeling
-        product_count: 1
-        subs: []
-        name_et: Märgistusseadmed
       - slug: storage-trunks-and-chests
         name_en: Storage Trunks & Chests
         product_count: 1
@@ -13362,10 +10711,6 @@ l1:
                 name_en: TV Wall Mounts
                 product_count: 4
                 name_et: Teleri seinakinnitused
-              - slug: glass-tv-stand
-                name_en: Glass TV Stand
-                product_count: 2
-                name_et: Klaasist telerialused
             name_et: TV-alused ja kapid
           - slug: accent-tables
             name_en: Accent Tables
@@ -13387,10 +10732,6 @@ l1:
                     name_en: Rattan Entryway Table
                     product_count: 4
                     name_et: Rotang-esiku lauad
-                  - slug: manicure-table
-                    name_en: Manicure Table
-                    product_count: 1
-                    name_et: Maniküürilauad
                 name_et: Konsoollauad
               - slug: end-and-side-tables
                 name_en: End & Side Tables
@@ -13405,10 +10746,6 @@ l1:
                     product_count: 1
                     name_et: Metallist kõrvallauad
                 name_et: Kõrvallauad
-              - slug: c-table
-                name_en: C-Table
-                product_count: 2
-                name_et: C-kujulised lauad
             name_et: Dekoratiivlauad
           - slug: coffee-tables
             name_en: Coffee Tables
@@ -13447,14 +10784,6 @@ l1:
                     name_en: Wood Accent Chair
                     product_count: 3
                     name_et: Puidust dekoratiivtoolid
-                  - slug: metal-accent-chair
-                    name_en: Metal Accent Chair
-                    product_count: 2
-                    name_et: Metallist dekoratiivtoolid
-                  - slug: cloth-accent-chair
-                    name_en: Cloth Accent Chair
-                    product_count: 1
-                    name_et: Kangast dekoratiivtoolid
                 name_et: Dekoratiivtoolid
               - slug: bean-bag-chairs
                 name_en: Bean Bag Chairs
@@ -13558,10 +10887,6 @@ l1:
                 name_en: Fabric Power Loveseat
                 product_count: 1
                 name_et: Elektrilised kangast diivanid
-              - slug: leather-power-loveseat
-                name_en: Leather Power Loveseat
-                product_count: 1
-                name_et: Elektrilised nahast diivanid
             name_et: Kahekohalised diivanid
           - slug: massage-chairs
             name_en: Massage Chairs
@@ -13579,11 +10904,6 @@ l1:
             name_en: Living Room Table Set
             product_count: 2
             name_et: Elutoa lauakomplektid
-          - slug: sofa-beds
-            name_en: Sofa Beds
-            product_count: 2
-            subs: []
-            name_et: Diivanvoodid
           - slug: chaise-lounges
             name_en: Chaise Lounges
             product_count: 1
@@ -13709,10 +11029,6 @@ l1:
                     name_en: Floor Standing Speaker
                     product_count: 5
                     name_et: Põrandakõlarid
-                  - slug: powered-bookshelf-speakers
-                    name_en: Powered Bookshelf Speakers
-                    product_count: 2
-                    name_et: Aktiivsed riiulikõlarid
                 name_et: Kõlarid
               - slug: portable-audio-and-video
                 name_en: Portable Audio & Video
@@ -13726,19 +11042,11 @@ l1:
                     name_en: Karaoke Machine
                     product_count: 1
                     name_et: Karaokeseadmed
-                  - slug: portable-recorders
-                    name_en: Portable Recorders
-                    product_count: 1
-                    name_et: Kaasaskantavad salvestid
                 name_et: Kaasaskantav audio ja video
               - slug: gramophone
                 name_en: Gramophone
                 product_count: 3
                 name_et: Grammofoonid
-              - slug: sound-bars
-                name_en: Sound Bars
-                product_count: 1
-                name_et: Heliriibad
             name_et: Koduaudio
           - slug: cables
             name_en: Cables
@@ -13753,25 +11061,12 @@ l1:
                 name_en: CPU Cooling Fans
                 product_count: 4
                 name_et: Protsessori jahutid
-              - slug: computer-monitors
-                name_en: Computer Monitors
-                product_count: 2
-                name_et: Monitorid
-              - slug: monitor-arms
-                name_en: Monitor Arms
-                product_count: 1
-                name_et: Monitorihoidjad
             name_et: Arvuti- ja sülearvutitarvikud
           - slug: two-way-radios
             name_en: Two-Way Radios
             product_count: 3
             subs: []
             name_et: Raadiosaatjad
-          - slug: tablets-and-accessories
-            name_en: Tablets & Accessories
-            product_count: 2
-            subs: []
-            name_et: Tahvelarvutid ja tarvikud
           - slug: printers
             name_en: Printers
             product_count: 1
@@ -13802,10 +11097,6 @@ l1:
                 name_en: Under Desk Drawer
                 product_count: 8
                 name_et: Lauaalused sahtlid
-              - slug: keyboard-platform
-                name_en: Keyboard Platform
-                product_count: 2
-                name_et: Klaviatuurialused
             name_et: Lauakorraldid ja tarvikud
           - slug: labeling
             name_en: Labeling
@@ -13823,14 +11114,6 @@ l1:
                 name_en: Label Makers And Tape
                 product_count: 3
                 name_et: Sildistajad ja lindid
-              - slug: portable-thermal-printer
-                name_en: Portable Thermal Printer
-                product_count: 2
-                name_et: Kaasaskantavad termoprinterid
-              - slug: label-rewinder
-                name_en: Label Rewinder
-                product_count: 1
-                name_et: Etikettkerijad
             name_et: Etikettimine
           - slug: money-counter
             name_en: Money Counter
@@ -13848,10 +11131,6 @@ l1:
                 name_en: Whiteboard
                 product_count: 3
                 name_et: Markeritahvlid
-              - slug: corkboard
-                name_en: Corkboard
-                product_count: 2
-                name_et: Korktahvlid
             name_et: Tahvlid ja molbertid
           - slug: lab-distillation-apparatus
             name_en: Lab Distillation Apparatus
@@ -13891,14 +11170,6 @@ l1:
             name_en: Glue Binder Machine
             product_count: 3
             name_et: Liimköitmismasinad
-          - slug: adhesives-and-tape
-            name_en: Adhesives & Tape
-            product_count: 1
-            name_et: Liimid ja kleeplindid
-          - slug: chalkboard
-            name_en: Chalkboard
-            product_count: 1
-            name_et: Tahvlid
         name_et: Kontoritarbed
       - slug: artificial-plants
         name_en: Artificial Plants
@@ -13983,10 +11254,6 @@ l1:
                     name_en: Reception Desk
                     product_count: 6
                     name_et: Vastuvõtulauad
-                  - slug: drafting-tables
-                    name_en: Drafting Tables
-                    product_count: 1
-                    name_et: Joonistuslauad
                   - slug: fixed-l-shaped-desks
                     name_en: Fixed L Shaped Desks
                     product_count: 1
@@ -14000,14 +11267,6 @@ l1:
                 name_en: Computer Desks
                 product_count: 3
                 subs:
-                  - slug: height-adjustable-standing-desk
-                    name_en: Height Adjustable Standing Desk
-                    product_count: 2
-                    name_et: Kõrgusregulaarsed seisulauad
-                  - slug: office-workbench
-                    name_en: Office Workbench
-                    product_count: 1
-                    name_et: Kontoritöölauad
                 name_et: Arvutilauad
               - slug: conference-table
                 name_en: Conference Table
@@ -14017,10 +11276,6 @@ l1:
                 name_en: Executive Desks
                 product_count: 1
                 name_et: Direktoritöölauad
-              - slug: floating-desks
-                name_en: Floating Desks
-                product_count: 1
-                name_et: Seinale kinnitatavad kirjutuslauad
             name_et: Töölauad
           - slug: office-chairs-and-desk-chairs
             name_en: Office Chairs & Desk Chairs
@@ -14046,10 +11301,6 @@ l1:
                 name_en: Kneeling Chairs
                 product_count: 5
                 name_et: Põlvitustoolid
-              - slug: office-chairs
-                name_en: Office Chairs
-                product_count: 2
-                name_et: Kontoritoolid
             name_et: Kontoritoolid
           - slug: bookcases-and-bookshelves
             name_en: Bookcases & Bookshelves
@@ -14145,14 +11396,6 @@ l1:
                 name_en: Lever Casters
                 product_count: 3
                 name_et: Piduriga rattad
-              - slug: soild-wheels
-                name_en: Soild Wheels
-                product_count: 2
-                name_et: Täisrattad
-              - slug: side-mount-casters
-                name_en: Side-Mount Casters
-                product_count: 1
-                name_et: Külgkinnitusega rattad
             name_et: Rattad ja rullikud
           - slug: furniture-accessories
             name_en: Furniture Accessories
@@ -14206,11 +11449,6 @@ l1:
                 name_en: Rollaway Beds
                 product_count: 4
                 name_et: Kokkupandavad lisavoodid
-              - slug: platform-beds
-                name_en: Platform Beds
-                product_count: 2
-                subs: []
-                name_et: Platvormvoodid
             name_et: Voodid
           - slug: jewelry-armoires
             name_en: Jewelry Armoires
@@ -14233,11 +11471,6 @@ l1:
             name_en: Box Springs
             product_count: 3
             name_et: Vedrurest-alused
-          - slug: headboards
-            name_en: Headboards
-            product_count: 1
-            subs: []
-            name_et: Voodipeatsid
         name_et: Magamistoa mööbel
       - slug: rugs
         name_en: Rugs
@@ -14448,11 +11681,6 @@ l1:
             name_en: Clothes Racks
             product_count: 3
             name_et: Rõivastatiivid
-          - slug: closet-accessories
-            name_en: Closet Accessories
-            product_count: 1
-            subs: []
-            name_et: Garderoobi lisatarvikud
         name_et: Garderoobi lahendused
       - slug: wall-decor
         name_en: Wall Decor
@@ -14621,18 +11849,6 @@ l1:
             name_en: Scrolling Sign
             product_count: 3
             name_et: Keritavad sildid
-          - slug: banner-stand
-            name_en: Banner Stand
-            product_count: 1
-            name_et: Bänneristatiivid
-          - slug: prize-wheel
-            name_en: Prize Wheel
-            product_count: 1
-            name_et: Auhinnarattad
-          - slug: shopping-basket
-            name_en: Shopping Basket
-            product_count: 1
-            name_et: Ostukorvid
         name_et: Kaubandustarvikud
       - slug: drawer-and-cabinet-hardware
         name_en: Drawer & Cabinet Hardware
@@ -14693,10 +11909,6 @@ l1:
             name_en: Baby Stroller
             product_count: 5
             name_et: Lastevankrid
-          - slug: metal-table-leg
-            name_en: Metal Table Leg
-            product_count: 1
-            name_et: Metallist lauajalad
         name_et: Mööblitarvikud
       - slug: home-fragrance
         name_en: Home Fragrance
@@ -14706,18 +11918,6 @@ l1:
         name_en: Office Electronics
         product_count: 5
         subs:
-          - slug: office-electronics-inflatable-projection-screen
-            name_en: Inflatable Projection Screen
-            product_count: 2
-            name_et: Täispuhutavad projektsiooniekraanid
-          - slug: waterproof-hard-case
-            name_en: Waterproof Hard Case
-            product_count: 2
-            name_et: Veekindlad transpordikohvrid
-          - slug: hot-and-cold-pouch-laminating-machine
-            name_en: Hot & Cold Pouch Laminating Machine
-            product_count: 1
-            name_et: Kuum- ja külmlaminaatorid
         name_et: Kontorielektroonika
       - slug: picture-frames
         name_en: Picture Frames
@@ -14733,14 +11933,6 @@ l1:
         name_en: Mirrors
         product_count: 4
         subs:
-          - slug: arched-floor-mirror
-            name_en: Arched Floor Mirror
-            product_count: 2
-            name_et: Kaarjad põrandapeeglid
-          - slug: square-floor-mirror
-            name_en: Square Floor Mirror
-            product_count: 2
-            name_et: Kandilised põrandapeeglid
         name_et: Peeglid
       - slug: tape-and-adhesives-and-fasteners
         name_en: Tape & Adhesives & Fasteners
@@ -14762,9 +11954,4 @@ l1:
         product_count: 2
         subs: []
         name_et: Nutiseadmed
-      - slug: office-commercial-interiors-boards-and-easels
-        name_en: Boards & Easels
-        product_count: 1
-        subs: []
-        name_et: Tahvlid ja esitlusstatiivid
     name_et: Kontori- ja ärimööbel
