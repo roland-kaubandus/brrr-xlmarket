@@ -25,13 +25,20 @@ feeds:
     image_source: vevor_cdn    # pildid feedist (image.vevor.com) — ei hosti ise
 
   # --- Tulevased feedid (näidis, enabled:false kuni valmis) ---
-  # - id: supplierA
-  #   name: Tarnija A
-  #   enabled: false
-  #   format: csv               # xlsx | csv | json | xml
-  #   url: https://example.com/feed-a.csv
-  #   sku_prefix: SA
-  #   mapping: supplierA-to-v3.json
-  #   adapter: supplierA
-  #   markup: 1.20              # erinev marginaal lubatud
-  #   image_source: r2          # kui pildid migreeritakse Cloudflare R2-te
+  - id: powermat
+    name: Powermat
+    enabled: false             # ANALÜÜS valmis, import EI ole veel lubatud
+    format: xml
+    url: http://powermat-hurt.pl/uploads/soteshopxml.xml
+    local_path: backend/data/feeds/powermat.xml
+    sku_prefix: PM             # supplier_sku = "PM-<code>" (nt PM-PM0013)
+    mapping: powermat-to-v3.json  # TEGEMATA — poola kat → kureeritud taxonomy
+    adapter: powermat
+    brand_lock: Powermat
+    image_source: powermat
+    # ⚠ Powermat ERISUSED (vt analüüs):
+    currency: pln              # hinnad PLN-is! vaja PLN→EUR konversioon enne markup'i
+    price_basis: wholesale_net # wholesale group-a netto (ostuhind), ilma 23% PL VAT
+    language: pl               # nimi+kirjeldus poola keeles → ET-tõlge pipeline'is
+    # markup: kava: PLN→EUR (~/4.3) × marginaal × meie käibemaks
+    # ~1882 toodet, 1027 laos, 8 L1-kategooriat (CZĘŚCI/WARSZTAT/ELEKTRONARZĘDZIA...)
