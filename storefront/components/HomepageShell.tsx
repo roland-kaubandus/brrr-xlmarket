@@ -9,6 +9,8 @@ import type { CmsSlide, CmsPromo } from "@/lib/cms"
 import SeasonSpecial from "@/components/SeasonSpecial"
 import type { SeasonSpecialData } from "@/lib/season-special-data"
 import FeaturedPicker from "@/components/admin/FeaturedPicker"
+import BrandCarousel from "@/components/BrandCarousel"
+import type { Brand } from "@/lib/brands"
 
 // Adapter: render the homepage category explorer from the SSoT 18-L1 taxonomy
 // tree instead of the legacy hard-coded 22-entry TAXONOMY_V3 list.
@@ -51,6 +53,8 @@ interface HomepageShellProps {
   navShortNames: Record<string, string>
   /** Festival-season Special data: 2 star deals + 6 strip items. Fetched server-side. */
   seasonSpecial: SeasonSpecialData
+  /** Brändi-carousel'i config (cms/brands.yaml). */
+  brands: Brand[]
 }
 
 /* ═══════════════════════════════════════════════
@@ -102,7 +106,7 @@ function shortNavLabel(slug: string, name: string, navShortNames: Record<string,
   return cleaned
 }
 
-export default function HomepageShell({ locale, l1Nodes, slides, promos, navShortNames, seasonSpecial }: HomepageShellProps) {
+export default function HomepageShell({ locale, l1Nodes, slides, promos, navShortNames, seasonSpecial, brands }: HomepageShellProps) {
   const loc = locale as Locale
 
   /* ── 18 L1 from SSoT taxonomy tree (pre-computed server-side, PERF-C1).
@@ -285,6 +289,9 @@ export default function HomepageShell({ locale, l1Nodes, slides, promos, navShor
           </div>
         </div>
       </div>
+
+      {/* ═══════ BRAND CAROUSEL ═══════ */}
+      <BrandCarousel locale={loc} brands={brands} />
 
       {/* ═══════ CATEGORY EXPLORER ═══════ */}
       <div className="hp-explorer-header">
@@ -903,6 +910,86 @@ const homepageStyles = `
   font-weight: 500;
   color: #9CA3AF;
   text-decoration: line-through;
+}
+
+/* ═══════ BRAND CAROUSEL ═══════ */
+.brand-carousel {
+  max-width: 1440px;
+  margin: 40px auto 0;
+  padding: 0 40px;
+}
+.brand-carousel-inner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+  padding: 8px 44px;
+}
+.brand-track {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  width: 100%;
+}
+.brand-track::-webkit-scrollbar { display: none; }
+.brand-item {
+  flex: 0 0 auto;
+  scroll-snap-align: start;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 64px;
+  padding: 0 20px;
+  border-radius: 8px;
+  transition: background-color 0.15s ease;
+}
+.brand-item:hover { background: #F8FAFC; }
+.brand-logo {
+  height: 34px;
+  width: auto;
+  max-width: 150px;
+  object-fit: contain;
+  filter: grayscale(100%);
+  opacity: 0.65;
+  transition: filter 0.2s ease, opacity 0.2s ease;
+}
+.brand-item:hover .brand-logo { filter: grayscale(0%); opacity: 1; }
+.brand-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid #E2E8F0;
+  background: #fff;
+  color: #475569;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 1px 4px rgba(15,23,42,0.08);
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+.brand-arrow:hover { background: #D97706; color: #fff; border-color: #D97706; }
+.brand-arrow--left { left: 6px; }
+.brand-arrow--right { right: 6px; }
+@media (max-width: 640px) {
+  .brand-carousel { padding: 0 16px; margin-top: 28px; }
+  .brand-carousel-inner { padding: 6px 12px; }
+  .brand-track { gap: 16px; }
+  .brand-item { height: 52px; padding: 0 12px; }
+  .brand-logo { height: 26px; max-width: 110px; }
+  .brand-arrow { display: none; }
 }
 
 /* ═══════ CATEGORY EXPLORER ═══════ */

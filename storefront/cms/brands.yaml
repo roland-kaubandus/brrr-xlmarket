@@ -1,0 +1,31 @@
+# brands.yaml — esilehe brändi-carousel'i config (SSoT brändide kohta).
+#
+# Brändi LISAMINE: lisa üks blokk siia + pane logo public/brands/-i.
+# Brändi PEITMINE: enabled: false (ei kustuta, lihtsalt ei näita).
+# JÄRJEKORD: `order` (väiksem = eespool). Sama order → nime järgi.
+#
+# Väljad:
+#   name    — kuvatav nimi (alt-tekst)
+#   slug    — unikaalne id (URL-sõbralik)
+#   logo    — tee public/-st (nt /brands/vevor.svg)
+#   filter  — otsingu-filter token (link: /{locale}/otsing?filters=<filter>)
+#             brand:<slug> töötab kui indekser lisab brand-tokeni (vt index-meilisearch.mjs)
+#   enabled — true/false
+#   order   — sortimine (täisarv)
+#
+# Muudatus jõustub järgmisel redeploy'l (ISR revalidate 1h).
+
+brands:
+  - name: VEVOR
+    slug: vevor
+    logo: /brands/vevor.svg
+    filter: brand:vevor
+    enabled: true
+    order: 1
+
+  - name: Powermat
+    slug: powermat
+    logo: /brands/powermat.svg
+    filter: brand:powermat
+    enabled: true
+    order: 2

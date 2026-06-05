@@ -5,6 +5,7 @@ import { getHomepageCms, type HomepageContent } from "@/lib/cms"
 import homepageFallback from "@/lib/cms-fallback/homepage.json"
 import { getSeasonSpecial } from "@/lib/season-special-data"
 import { readHomepageOverrides } from "@/lib/homepage-overrides"
+import { getBrands } from "@/lib/brands"
 
 export const revalidate = 3600
 
@@ -33,6 +34,8 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
   const cms: HomepageContent = (await getHomepageCms(locale)) ?? (homepageFallback as unknown as HomepageContent)
   // Season Special: 2 star deals + 6 strip items, server-fetched.
   const seasonSpecial = await getSeasonSpecial(locale)
+  // Brändi-carousel config (cms/brands.yaml).
+  const brands = await getBrands()
   return (
     <HomepageShell
       locale={locale}
@@ -41,6 +44,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
       promos={cms.promos}
       navShortNames={cms.nav_short_names}
       seasonSpecial={seasonSpecial}
+      brands={brands}
     />
   )
 }

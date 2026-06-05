@@ -194,6 +194,21 @@ function resolveFeedEntry(row) {
   return null
 }
 
+/**
+ * Tuleta brändi-slug tootemetadata'st (cms/brands.yaml `filter: brand:<slug>`).
+ * Prioriteet: 1) multi-feed `source`, 2) `supplier_sku` prefiks (VV-/PM-),
+ * 3) VEVOR-i legacy metadata (vevor_*). Tundmatu → null (brand-tokenit ei lisa).
+ */
+function deriveBrandSlug(meta) {
+  const src = String(meta.source || "").trim().toLowerCase()
+  if (src) return src
+  const ssku = String(meta.supplier_sku || "").trim().toUpperCase()
+  if (ssku.startsWith("PM-")) return "powermat"
+  if (ssku.startsWith("VV-")) return "vevor"
+  if (meta.vevor_sku || meta.vevor_product_type || meta.vevor_upc) return "vevor"
+  return null
+}
+
 function transform(row) {
   const meta = row.metadata || {}
   const categoryHandles = [...(row.category_handles || [])]
@@ -226,6 +241,11 @@ function transform(row) {
     row.taxonomy?.l1_slug,
   ].filter(Boolean)
   const filter_tokens = generateFilterTokens(specs, profileKeys)
+
+  // Brändi-token (esilehe brand-carousel + otsingu brand-filter, cms/brands.yaml).
+  // Tuletus: multi-feed source → supplier_sku prefix → VEVOR metadata fallback.
+  const brandSlug = deriveBrandSlug(meta)
+  if (brandSlug) filter_tokens.push(`brand:${brandSlug}`)
 
   return {
     id: row.id,
