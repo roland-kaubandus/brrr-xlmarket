@@ -26,7 +26,11 @@ export default defineConfig({
       options: {
         config: {
           host: process.env.MEILISEARCH_HOST || "http://127.0.0.1:7700",
-          apiKey: process.env.MEILISEARCH_API_KEY,
+          // Fallback env-aliastele (vaikne crash kui MEILISEARCH_API_KEY puudu).
+          apiKey:
+            process.env.MEILISEARCH_API_KEY ||
+            process.env.MEILISEARCH_KEY ||
+            process.env.MEILI_MASTER_KEY,
         },
         settings: {
           products: {

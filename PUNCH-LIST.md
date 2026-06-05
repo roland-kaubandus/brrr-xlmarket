@@ -14,7 +14,7 @@
 - [ ] Toote hinnangud/tärnid (`ProductContent.tsx:58` — TODO, ootab Huly ticketit)
 
 ### Turvalisus
-- [ ] Admin paneelil pole basic-auth'i (`storefront/app/xl-admin/layout.tsx:9`) — ainult obscurity + reverse-proxy
+- [x] **Admin lehed auth-gate'itud** (2026-06-05) — xl-admin/layout.tsx readAdminSession() → redirect /admin-login. Write-API'd (/api/admin/*) olid juba gate'itud (401).
 
 ### Sisu / tõlked
 - [ ] ET-tõlked pooleli — **75.4% valmis (12900/17105), ~4205 jäänud** (seis 2026-06-05). Runner `/tmp/tr/` batch. 2026-06-04/05: +~4400 tõlgitud (0 broken). Jookseb partiidena, jätkub.
@@ -27,7 +27,7 @@
 ### Stabiilsus / arhitektuur
 - [x] **Meili settingud kirjutatakse üle** (LAHENDATUD 2026-06-04) — juurpõhjus: plugin'i `loaders/index.js` rakendab `medusa-config.ts` `indexSettings`'i IGAL boot'il (SKIP_MEILISEARCH_STARTUP_INDEXING keelab ainult dok-reindexi, mitte settinguid). Config'is olid minimaalsed searchable+displayed → reset igal redeploy'l (€0.00, tühjad kategooriad, ET peidus). **Fix:** `medusa-config.ts` `indexSettings` täiendatud täielikuks (sünk index-meilisearch.mjs-ga) → loader rakendab nüüd ÕIGEID settinguid igal boot'il. **Vajab redeploy't et aktiveeruda.** Praegune indeks juba parandatud (reindex 2026-06-04)
 - [ ] DKIM võti (xlmarket.ee) on mailcow redis'es — dokumenteeri restore (kui mailcow taastatakse, võti taastada)
-- [ ] `MEILISEARCH_API_KEY` ilma fallbackita (`medusa-config.ts:29`) — vaikne crash kui puudu
+- [x] **MEILISEARCH_API_KEY fallback** (2026-06-05) — medusa-config.ts: fallback MEILISEARCH_KEY → MEILI_MASTER_KEY env-aliastele.
 
 ## ✅ Lahendatud (arhiiv)
 - [x] 2026-06-03 admin.xlmarket.ee 502 → 200 (medusa routing/alias) → `memory/sessions/2026-06-03-xl.md`
