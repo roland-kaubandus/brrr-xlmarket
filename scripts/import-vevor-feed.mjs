@@ -245,12 +245,14 @@ async function loadExistingSkus() {
   await client.connect();
 
   const result = await client.query(
-    "SELECT metadata->>'vevor_sku' AS sku, id FROM product WHERE metadata->>'vevor_sku' IS NOT NULL AND deleted_at IS NULL"
+    "SELECT metadata->>'vevor_sku' AS sku, id, metadata FROM product WHERE metadata->>'vevor_sku' IS NOT NULL AND deleted_at IS NULL"
   );
 
+  // sku → { id, metadata }. Metadata vaja, et update säilitaks tõlked
+  // (title_et jne) + austaks category_override't (FAAS 0, 2026-06-05).
   const map = new Map();
   for (const row of result.rows) {
-    if (row.sku) map.set(row.sku, row.id);
+    if (row.sku) map.set(row.sku, { id: row.id, metadata: row.metadata || {} });
   }
 
   await client.end();
@@ -746,15 +748,24 @@ async function createProduct(row, token, catMap, catIds, pgClient) {
   }
 }
 
-async function updateProduct(productId, row, token, catIds, auditPg) {
+async function updateProduct(productId, row, token, catIds, auditPg, existingMeta) {
   const finalPrice = Math.round(row.price * PRICE_MARKUP * 100);
   const isInStock = row.availability === "in stock";
+  existingMeta = existingMeta || {};
 
   // Reclassify on every sync so productType / SKU drifts re-bind to the
   // correct deepest leaf (L3 > L2 > L1). Without this, existing products
   // stay on whatever node they were first bound to even if VEVOR changes
   // the path or rules evolve.
   const { classification, categoryId } = classifyRow(row, catIds || {});
+
+  // FAAS 0 (2026-06-05) — category_override: kui toode on käsitsi mitmesse
+  // kategooriasse pandud (kat-halduse tööriist salvestab metadata.category_override
+  // = handle-massiiv), siis JÄTA resolver vahele ja kasuta override't. Nii et
+  // käsitsi-määrang elab feed-sync'i üle. Toetab MITUT kategooriat.
+  const overrideHandles = Array.isArray(existingMeta.category_override)
+    ? existingMeta.category_override.filter((h) => h && catIds[h])
+    : [];
 
   try {
     // Update product status, metadata, and images
@@ -765,6 +776,10 @@ async function updateProduct(productId, row, token, catIds, auditPg) {
       status: "published",
       thumbnail: row.mainOriginalImage || row.image || undefined,
       metadata: {
+        // FAAS 0: säilita olemasolev metadata (Medusa ASENDAB metadata täielikult
+        // → ilma selleta kustuks title_et tõlked + category_override iga feed-sync'il).
+        // Feed-väljad kirjutatakse alla üle; tõlked/override/source jäävad alles.
+        ...existingMeta,
         vevor_sku: row.sku,
         vevor_upc: row.upc || "",
         vevor_link: row.link || "",
@@ -787,7 +802,10 @@ async function updateProduct(productId, row, token, catIds, auditPg) {
         ...row.originalImages.slice(0, 10).map(url => ({ url })),
       ].filter((img, i, arr) => arr.findIndex(a => a.url === img.url) === i).slice(0, 10),
     };
-    if (categoryId) {
+    if (overrideHandles.length > 0) {
+      // FAAS 0: käsitsi-määratud kategooriad (mitu lubatud) — resolver vahele jäetud.
+      updateData.categories = overrideHandles.map((h) => ({ id: catIds[h] }));
+    } else if (categoryId) {
       // Replace category bindings with the deepest leaf. Medusa treats
       // `categories` as the full set, so this keeps the product on exactly
       // one v3 node per sync.
@@ -900,9 +918,9 @@ async function main() {
 
   // 1 feed row = 1 Medusa product. Check each SKU individually (no SPU grouping).
   for (const row of feedRows) {
-    const existingId = existingSkus.get(row.sku);
-    if (existingId) {
-      updateRows.push(Object.assign({}, row, { productId: existingId }));
+    const existing = existingSkus.get(row.sku);
+    if (existing) {
+      updateRows.push(Object.assign({}, row, { productId: existing.id, existingMeta: existing.metadata || {} }));
     } else {
       newRows.push(row);
     }
@@ -1031,7 +1049,7 @@ async function main() {
     for (let i = 0; i < toUpdate.length; i++) {
       const row = toUpdate[i];
       try {
-        await updateProduct(row.productId, row, token, categoryIds, auditPg);
+        await updateProduct(row.productId, row, token, categoryIds, auditPg, row.existingMeta);
       } catch (err) {
         stats.errors++;
       }
