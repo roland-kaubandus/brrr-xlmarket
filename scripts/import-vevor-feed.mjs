@@ -33,20 +33,24 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const FEED_PATH = path.join(__dirname, "..", "backend", "data", "feeds", "vevor-571.xlsx");
 const FEED_URL = "https://ads-feed.s3.us-west-2.amazonaws.com/ads/business/571/vevor-571.xlsx";
 
-const MEDUSA_URL = "http://127.0.0.1:9001";
-const ADMIN_EMAIL = "admin@xlmarket.eu";
+// Env-driven (Coolify scheduled task / dev VPS). Fallback vanale VPS-ile.
+const MEDUSA_URL = process.env.MEDUSA_URL || "http://127.0.0.1:9001";
+const ADMIN_EMAIL = process.env.MEDUSA_ADMIN_EMAIL || "admin@xlmarket.eu";
 const ADMIN_PASS = process.env.MEDUSA_ADMIN_PASS;
 
-const PG_CONFIG = {
-  host: "localhost",
-  port: 5435,
-  user: "xlmarket",
-  password: process.env.PGPASSWORD,
-  database: "xlmarket",
-};
+// DATABASE_URL (Coolify) eelistatud; muidu vana host/port/PGPASSWORD.
+const PG_CONFIG = process.env.DATABASE_URL
+  ? { connectionString: process.env.DATABASE_URL }
+  : {
+      host: process.env.PGHOST || "localhost",
+      port: Number(process.env.PGPORT) || 5435,
+      user: process.env.PGUSER || "xlmarket",
+      password: process.env.PGPASSWORD,
+      database: process.env.PGDATABASE || "xlmarket",
+    };
 
-const MEILI_HOST = "http://127.0.0.1:7700";
-const MEILI_KEY = process.env.MEILISEARCH_ADMIN_KEY;
+const MEILI_HOST = process.env.MEILISEARCH_HOST || "http://127.0.0.1:7700";
+const MEILI_KEY = process.env.MEILISEARCH_ADMIN_KEY || process.env.MEILISEARCH_KEY || process.env.MEILI_MASTER_KEY;
 const MEILI_INDEX = "products";
 
 const PRICE_MARKUP = 1.15;
