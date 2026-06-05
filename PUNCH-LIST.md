@@ -1,6 +1,6 @@
 # xlmarket — Punch-list (avatud teadaolevad vead)
 
-> Viimati uuendatud: 2026-06-03. Severity: AINULT CRITICAL/BLOCKER või VAJA ÄRA TEHA (HANDBOOK §2).
+> Viimati uuendatud: 2026-06-05. Severity: AINULT CRITICAL/BLOCKER või VAJA ÄRA TEHA (HANDBOOK §2).
 
 ## 🛑 CRITICAL / BLOCKER
 > Praegu CRITICAL avatud punkte EI ole (sait live, email töötab). Allolevad blokeerivad REAALSET MÜÜKI:
@@ -17,12 +17,12 @@
 - [ ] Admin paneelil pole basic-auth'i (`storefront/app/xl-admin/layout.tsx:9`) — ainult obscurity + reverse-proxy
 
 ### Sisu / tõlked
-- [ ] ~8 652 toodet ilma ET-tõlketa (49.4% valmis, 8453/17105) — runner: `scripts/translate-claude-cli.cjs`. 2026-06-03/04: +1994 tõlgitud (0 broken)
+- [ ] ET-tõlked pooleli — **75.4% valmis (12900/17105), ~4205 jäänud** (seis 2026-06-05). Runner `/tmp/tr/` batch. 2026-06-04/05: +~4400 tõlgitud (0 broken). Jookseb partiidena, jätkub.
 
 ### Jõudlus
 - [x] **Medusa → mailcow redis NOAUTH** (LAHENDATUD 2026-06-04, commit 4c9a90dc) — medusa on mailcow-võrgus (email), kus 'redis' alias = mailcow redis (parooliga) → NOAUTH → getCategories timeout → kõik medusa-lehed aeglased. Fix: Coolify redisele unikaalne alias `xlmarket-redis`. Tulemus: kat-detail 4.7s→0.078s, email töötab edasi.
 - [x] **Kategooria-index 8.2MB payload** (LAHENDATUD 2026-06-04, commit 18912f89) — renderdas L1-L5 (3420 kaarti). Fix: L1+L2 (420 kaarti) → 0.99MB.
-- [ ] **Kategooria-lehed 9-19s SSR render** — `/kategooriad` (index, 19s) + `/kategooriad/[handle]` (detail, 9s) renderdavad aeglaselt (avaleht 1.2s). Detail päästetud proxy/ISR-cache'iga (kasutajale 0.078s), aga index on **dünaamiline root layout'i `readAdminSession()` (cookies) tõttu** → 19s igal päringul. Juurpõhjus: (a) root layout loeb cookie't → kõik lehed dünaamilised, (b) 420+ klient-komponendi boundary't (CategoryThumbImage/CategoryImageEditor) RSC-serialiseerimine aeglane. **Fix-suunad:** root layout admin-detect → kliendipoolne (võimaldab ISR) VÕI CategoryThumb server-side <img> (vähem boundary't) VÕI Traefik microcache /kategooriad-le.
+- [x] **Kategooria-lehed 9-19s SSR render** (LAHENDATUD 2026-06-04, commit 228ccca0) — juurpõhjus: root layout `readAdminSession()` (cookies()) → kõik lehed dünaamilised → no-store. Fix: admin-detect kliendipoolseks (AdminProvider fetchib whoami) → lehed static/ISR. **Tulemus (live): avaleht 11s→0.04s, kategooriad 9-26s→0.05s, beat VEVOR.com.**
 
 ### Stabiilsus / arhitektuur
 - [x] **Meili settingud kirjutatakse üle** (LAHENDATUD 2026-06-04) — juurpõhjus: plugin'i `loaders/index.js` rakendab `medusa-config.ts` `indexSettings`'i IGAL boot'il (SKIP_MEILISEARCH_STARTUP_INDEXING keelab ainult dok-reindexi, mitte settinguid). Config'is olid minimaalsed searchable+displayed → reset igal redeploy'l (€0.00, tühjad kategooriad, ET peidus). **Fix:** `medusa-config.ts` `indexSettings` täiendatud täielikuks (sünk index-meilisearch.mjs-ga) → loader rakendab nüüd ÕIGEID settinguid igal boot'il. **Vajab redeploy't et aktiveeruda.** Praegune indeks juba parandatud (reindex 2026-06-04)
