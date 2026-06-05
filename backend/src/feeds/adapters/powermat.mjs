@@ -62,6 +62,10 @@ export async function parse(filePath, feed) {
       priceNet = toNum(cdata(a) || a?.["#text"] || a)
     }
     if (!priceNet) priceNet = toNum(cdata(p.price) || p.price?.["#text"] || p.price)
+    // PLN → EUR (fikseeritud kurss feeds.yaml currency_rate, uuenda käsitsi kord kuus).
+    // Pipeline rakendab pärast markup'i (×1.15). Lõpp = pln × rate × markup.
+    const rate = Number(feed.currency_rate) || 1
+    const priceEur = priceNet * rate
 
     // Kategooriad: vali main="true", strip "Lista produktów/" prefiks
     let catPath = ""
@@ -100,7 +104,7 @@ export async function parse(filePath, feed) {
       rich_description_html: cdata(p.description) || null,
       brand: feed.brand_lock || cdata(p.producer) || "Powermat",
       product_type: catPath, // poola category path — resolver mapib (powermat-to-v3.json)
-      price: priceNet, // NETTO ostuhind — markup rakendub pipeline'is
+      price: priceEur, // NETTO ostuhind EUR-is (PLN×rate) — markup rakendub pipeline'is
       availability: stock > 0 ? "in stock" : "out of stock",
       inventory: Math.round(stock),
       weight: toNum(p.weight?.["#text"] ?? p.weight),

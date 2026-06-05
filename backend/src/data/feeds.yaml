@@ -37,8 +37,10 @@ feeds:
     brand_lock: Powermat
     image_source: powermat
     # ⚠ Powermat ERISUSED (vt analüüs):
-    currency: pln              # hinnad PLN-is! vaja PLN→EUR konversioon enne markup'i
+    currency: pln              # hinnad PLN-is
+    currency_rate: 0.23        # 1 PLN = 0.23 EUR (FIKSEERITUD, uuenda KÄSITSI kord kuus)
+    markup: 1.15               # PLN→EUR (×0.23) JÄREL: × 1.15 → lõpphind
     price_basis: wholesale_net # wholesale group-a netto (ostuhind), ilma 23% PL VAT
     language: pl               # nimi+kirjeldus poola keeles → ET-tõlge pipeline'is
-    # markup: kava: PLN→EUR (~/4.3) × marginaal × meie käibemaks
+    # Lõpphind = price_pln × 0.23 (EUR) × 1.15 (markup). Adapter teeb ×0.23, pipeline ×1.15.
     # ~1882 toodet, 1027 laos, 8 L1-kategooriat (CZĘŚCI/WARSZTAT/ELEKTRONARZĘDZIA...)
