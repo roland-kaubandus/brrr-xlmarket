@@ -67,7 +67,18 @@ export async function POST(req: NextRequest) {
     }
 
     const sessionData = await sessionRes.json()
-    return NextResponse.json(sessionData, { status: 200 })
+
+    // Redirect-provideritele (Montonio pangalink/kaart): session.data sisaldab
+    // paymentUrl'i (initiatePayment). Storefront suunab brauseri sinna ja
+    // EI complete'i ostukorvi enne kui makse on autoriseeritud (webhook → tagasi-leht).
+    const sessions = sessionData.payment_collection?.payment_sessions || []
+    const active = sessions.find((s: { provider_id?: string }) => s.provider_id === providerId) || sessions[0]
+    const redirectUrl = active?.data?.paymentUrl || active?.data?.payment_url || null
+
+    return NextResponse.json(
+      { ...sessionData, provider_id: providerId, redirect_url: redirectUrl },
+      { status: 200 }
+    )
   } catch {
     return NextResponse.json({ error: "Failed to connect to server" }, { status: 503 })
   }

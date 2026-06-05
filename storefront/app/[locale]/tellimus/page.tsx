@@ -211,7 +211,22 @@ export default function CheckoutPage() {
         return
       }
 
-      // Step 4: Complete order
+      // Step 3b: Redirect-provider (Montonio) → suuna pangalingile.
+      // Ostukorvi EI complete'i siin — makse autoriseeritakse Montonio juures,
+      // webhook teavitab backendi, tagasi-leht (/tellimus/tagasi) lõpetab tellimuse.
+      const paymentData = await paymentRes.json()
+      if (paymentData.redirect_url) {
+        localStorage.setItem("xlmarket_cart_id", cart.id)
+        localStorage.setItem("xlmarket_checkout_email", form.email)
+        posthog.capture("payment_redirect", {
+          cart_id: cart.id,
+          provider: paymentData.provider_id,
+        })
+        window.location.href = paymentData.redirect_url
+        return
+      }
+
+      // Step 4: Complete order (sünkroonsed provideridele, nt manual)
       const completeRes = await fetch("/api/cart/complete", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
