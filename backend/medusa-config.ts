@@ -61,7 +61,17 @@ export default defineConfig({
       resolve: "@medusajs/medusa/payment",
       options: {
         providers: [
-          // Montonio payment provider will be added here
+          {
+            resolve: "./src/modules/montonio",
+            id: "montonio",
+            options: {
+              accessKey: process.env.MONTONIO_ACCESS_KEY,
+              secretKey: process.env.MONTONIO_SECRET_KEY,
+              environment: process.env.MONTONIO_ENV || "sandbox",
+              storeUrl: process.env.NEXT_PUBLIC_BASE_URL || "https://xlmarket.ee",
+              backendUrl: process.env.MEDUSA_BACKEND_URL || "https://api.xlmarket.ee",
+            },
+          },
         ],
       },
     },
