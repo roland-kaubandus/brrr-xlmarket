@@ -101,6 +101,36 @@ export function getChildren(handle: string): CategoryNode[] {
     .filter((n): n is CategoryNode => n !== null)
 }
 
+/**
+ * Flatten single-child chains (2026-06-05): kui sõlmel on TÄPSELT 1 laps,
+ * jälgi ahelat alla kuni harunemiseni/leheni. Väldib mõttetuid kliki-tasemeid
+ * (104 üksik-ahelat taxonomy's). Tagastab "navigatsiooni-mõtteka" sõlme.
+ */
+export function collapseChain(node: CategoryNode): CategoryNode {
+  let cur = node
+  let guard = 0
+  while (cur.child_handles.length === 1 && guard++ < 10) {
+    const only = getNode(cur.child_handles[0])
+    if (!only) break
+    cur = only
+  }
+  return cur
+}
+
+/**
+ * Navigatsiooni-lapsed: getChildren + flatten. Kui `handle` ise on üksik-ahela
+ * läbiv sõlm, laskub esmalt harunemiseni; iga laps on samuti kokku-tõmmatud.
+ */
+export function getNavChildren(handle: string): CategoryNode[] {
+  const node = getNode(handle)
+  if (!node) return []
+  const base = collapseChain(node)
+  return base.child_handles
+    .map((h) => getNode(h))
+    .filter((n): n is CategoryNode => n !== null)
+    .map((c) => collapseChain(c))
+}
+
 /** All L1 nodes in YAML order. */
 export function getAllL1(): CategoryNode[] {
   return TREE.order

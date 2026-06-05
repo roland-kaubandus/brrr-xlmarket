@@ -167,6 +167,10 @@ export default function MegaMenu({ locale = "en", menuData }: MegaMenuProps) {
     (node: MenuNode, depth: number) => {
       clearTimeout(hoverTimerRef.current)
       hoverTimerRef.current = setTimeout(async () => {
+        // Cap L3 (2026-06-05): mega-menüü näitab max L1→L2→L3. Sügavam refine
+        // toimub kategooria-lehel (tooted + alamkat-chip'id), mitte järjest
+        // uutes paneelides. depth>=1 = juba L3-paneelis → ära ava L4+.
+        if (depth >= 1) return
         if (!node.has_children) {
           setHoverPath((prev) => prev.slice(0, depth + 1))
           return

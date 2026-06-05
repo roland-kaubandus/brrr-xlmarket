@@ -8,7 +8,7 @@
  */
 
 import "server-only"
-import { getVisibleL1, getChildren, getNode, type CategoryNode } from "./category-tree"
+import { getVisibleL1, getChildren, getNavChildren, getNode, type CategoryNode } from "./category-tree"
 import countsDoc from "./category-counts.generated.json"
 
 const COUNTS: Record<string, number> = (countsDoc as { counts: Record<string, number> }).counts || {}
@@ -78,7 +78,7 @@ export function getMenuSlice(): {
 
   const l2ByL1: Record<string, MenuNode[]> = {}
   for (const l1Node of l1Nodes) {
-    l2ByL1[l1Node.handle] = getChildren(l1Node.handle).map((c) =>
+    l2ByL1[l1Node.handle] = getNavChildren(l1Node.handle).map((c) =>
       toMenuNode(c, l1Node.handle)
     )
   }
@@ -104,7 +104,7 @@ export function getMenuChildren(handle: string): MenuNode[] {
     if (cur.level === 1) l1Handle = cur.handle
   }
 
-  return getChildren(handle).map((c) => toMenuNode(c, l1Handle))
+  return getNavChildren(handle).map((c) => toMenuNode(c, l1Handle))
 }
 
 /**
@@ -120,7 +120,7 @@ export function getHomepageL1Nodes(
   featuredOverrides?: Record<string, string[]>
 ): HomepageL1Node[] {
   return getVisibleL1().map((l1Node) => {
-    const l2ListRaw = getChildren(l1Node.handle)
+    const l2ListRaw = getNavChildren(l1Node.handle)
     // Sort L2 by product count (biggest first). Meili snapshot source.
     const l2List = [...l2ListRaw].sort((a, b) => countOf(b.handle) - countOf(a.handle))
 
