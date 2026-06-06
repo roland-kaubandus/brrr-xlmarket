@@ -37,7 +37,10 @@ WORKDIR /app
 ENV NODE_ENV=production \
     NEXT_TELEMETRY_DISABLED=1 \
     PORT=3030 \
-    HOSTNAME=0.0.0.0
+    HOSTNAME=0.0.0.0 \
+    # Keela Node happy-eyeballs — väldib ~5s connect-stalle storefront→medusa fetch'idel
+    # (Alpine/musl+Docker autoSelectFamily bug). Vt backend/Dockerfile.
+    NODE_OPTIONS=--no-network-family-autoselection
 
 RUN addgroup --system --gid 1001 nodejs && \
     adduser --system --uid 1001 nextjs

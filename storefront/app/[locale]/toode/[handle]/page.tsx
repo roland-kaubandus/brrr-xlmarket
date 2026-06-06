@@ -70,7 +70,7 @@ export default async function ProductPage({ params }: Props) {
   const breadcrumbItems = [
     { name: "Home", url: `https://xlmarket.ee/${locale}` },
     ...(canonicalNode
-      ? getBreadcrumbTrail(canonicalNode.handle).map((item) => ({
+      ? getBreadcrumbTrail(canonicalNode.handle, locale).map((item) => ({
           name: item.name,
           url: `https://xlmarket.ee${categoryPath(locale as "et" | "en", item.handle)}`,
         }))

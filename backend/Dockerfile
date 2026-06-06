@@ -23,7 +23,11 @@ WORKDIR /app
 ENV NODE_ENV=production \
     PORT=9000 \
     HOSTNAME=0.0.0.0 \
-    SKIP_MEILISEARCH_STARTUP_INDEXING=true
+    SKIP_MEILISEARCH_STARTUP_INDEXING=true \
+    # Keela Node happy-eyeballs (autoSelectFamily) — Alpine/musl+Docker põhjustab
+    # ~5s vahelduvaid connect-stalle (redis/meili/db hostinime-ühendused) →
+    # cart-loomine + SSR fetch'id flaky/timeout. Single-stack IPv4, IPv6 pole vaja.
+    NODE_OPTIONS=--no-network-family-autoselection
 
 RUN apk add --no-cache dumb-init wget && \
     addgroup --system --gid 1001 medusa && \

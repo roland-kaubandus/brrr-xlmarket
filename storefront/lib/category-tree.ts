@@ -151,15 +151,16 @@ export function getVisibleL1(): CategoryNode[] {
 
 /** Build the canonical breadcrumb trail for any handle — root → node inclusive. */
 export function getBreadcrumbTrail(
-  handle: string
+  handle: string,
+  locale?: string
 ): Array<{ handle: string; name: string }> {
   const node = getNode(handle)
   if (!node) return []
   const out: Array<{ handle: string; name: string }> = []
   for (const a of getAncestors(handle)) {
-    out.push({ handle: a.handle, name: nodeName(a) })
+    out.push({ handle: a.handle, name: nodeName(a, locale) })
   }
-  out.push({ handle: node.handle, name: nodeName(node) })
+  out.push({ handle: node.handle, name: nodeName(node, locale) })
   return out
 }
 

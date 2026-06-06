@@ -293,7 +293,7 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
     // If the product has no v3 category yet, breadcrumb stays empty; the
     // product should surface in the review queue, not leak VEVOR paths.
     const productTypeTrail: Array<{ name: string; handle: string }> = canonicalNode
-      ? getBreadcrumbTrail(canonicalNode.handle)
+      ? getBreadcrumbTrail(canonicalNode.handle, locale)
       : []
 
     // Descriptions — locale-aware. For ET, prefer localizedDescription (metadata.description_et

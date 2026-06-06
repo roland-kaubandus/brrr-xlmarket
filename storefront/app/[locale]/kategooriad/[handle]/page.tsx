@@ -257,7 +257,7 @@ export default async function CategoryPage({ params, searchParams }: Props) {
 
   // Breadcrumb trail from SSoT — root → node inclusive. INV-24, INV-27.
   const trail = node
-    ? getBreadcrumbTrail(handle)
+    ? getBreadcrumbTrail(handle, locale)
     : [{ handle, name: displayName }]
 
   function buildPageUrl(targetPage: number) {

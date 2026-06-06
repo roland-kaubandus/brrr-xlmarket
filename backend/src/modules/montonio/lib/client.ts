@@ -34,9 +34,10 @@ export interface MontonioOrder {
   currency?: string
 }
 
+// Montonio Orders API v2 gateway = "Stargate" (sandbox-api/api hostid EI eksisteeri!).
 const BASE: Record<MontonioEnv, string> = {
-  sandbox: "https://sandbox-api.montonio.com",
-  live: "https://api.montonio.com",
+  sandbox: "https://sandbox-stargate.montonio.com",
+  live: "https://stargate.montonio.com",
 }
 
 export class MontonioClient {
