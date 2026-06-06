@@ -50,7 +50,7 @@ export default function CompareBar() {
             onClick={clear}
             className="text-xs text-[#64748B] hover:text-[#DC2626] transition-colors"
           >
-            Clear
+            {locale === "et" ? "Tühjenda" : "Clear"}
           </button>
           <Link
             href={`/${locale}/vordlus`}
@@ -60,7 +60,7 @@ export default function CompareBar() {
                 : "bg-[#E2E8F0] text-[#94A3B8] pointer-events-none"
             }`}
           >
-            {`Compare (${count})`}
+            {locale === "et" ? `Võrdle (${count})` : `Compare (${count})`}
           </Link>
         </div>
       </div>

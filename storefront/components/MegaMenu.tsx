@@ -601,7 +601,7 @@ export default function MegaMenu({ locale = "en", menuData }: MegaMenuProps) {
               }}
               className="block px-4 py-3.5 text-[14px] font-bold text-[#D97706] border-b border-[#E2E8F0] bg-[#FFFBEB]"
             >
-              View All {nodeName(mobileTop, loc)} &rarr;
+              {loc === "et" ? "Vaata kõiki" : "View All"} {nodeName(mobileTop, loc)} &rarr;
             </Link>
           )}
 

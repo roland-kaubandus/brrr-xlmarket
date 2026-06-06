@@ -12,14 +12,14 @@ export default function ComparePage() {
     return (
       <div className="max-w-[1360px] mx-auto px-4 py-12 text-center">
         <h1 className="text-2xl font-bold text-[#1E293B] mb-4">
-          Product Comparison
+          {locale === "et" ? "Toodete võrdlus" : "Product Comparison"}
         </h1>
         <p className="text-[#64748B] mb-6">
-          No products added to compare. Browse products and click &quot;Add to Compare&quot; to start.
+          {locale === "et" ? "Võrdlusesse pole tooteid lisatud. Sirvi tooteid ja vajuta \"Lisa võrdlusse\", et alustada." : "No products added to compare. Browse products and click \"Add to Compare\" to start."}
         </p>
         <Link href={`/${locale}`}
           className="inline-block px-6 py-3 bg-[#D97706] text-white rounded-lg font-semibold hover:bg-[#B45309] transition-colors">
-          Browse Products
+          {locale === "et" ? "Sirvi tooteid" : "Browse Products"}
         </Link>
       </div>
     )
@@ -35,22 +35,22 @@ export default function ComparePage() {
       {/* Breadcrumb */}
       <nav className="text-xs text-[#64748B] mb-4 flex items-center">
         <Link href={`/${locale}`} className="text-[#64748B] hover:text-[#D97706]">
-          Home
+          {locale === "et" ? "Avaleht" : "Home"}
         </Link>
         <span className="mx-1.5 text-[#CBD5E1]">&gt;</span>
         <span className="text-[#1E293B] font-medium">
-          Compare Products
+          {locale === "et" ? "Võrdle tooteid" : "Compare Products"}
         </span>
       </nav>
 
       <div className="flex items-center justify-between mb-6">
         <h1 className="text-2xl font-bold text-[#1E293B]">
-          Compare Products
+          {locale === "et" ? "Võrdle tooteid" : "Compare Products"}
           <span className="text-base font-normal text-[#64748B] ml-2">({items.length})</span>
         </h1>
         <button onClick={clear}
           className="text-sm text-[#64748B] hover:text-[#DC2626] transition-colors">
-          Clear all
+          {locale === "et" ? "Tühjenda kõik" : "Clear all"}
         </button>
       </div>
 
@@ -61,7 +61,7 @@ export default function ComparePage() {
           <thead>
             <tr className="border-b border-[#E2E8F0]">
               <th className="p-4 text-left text-sm font-medium text-[#64748B] w-[180px] bg-[#F8FAFC]">
-                Product
+                {locale === "et" ? "Toode" : "Product"}
               </th>
               {items.map(item => (
                 <th key={item.id} className="p-4 text-center align-top">
@@ -86,7 +86,7 @@ export default function ComparePage() {
             {/* Price row */}
             <tr className="border-b border-[#E2E8F0]">
               <th className="p-4 text-left text-sm font-medium text-[#64748B] bg-[#F8FAFC]">
-                Price
+                {locale === "et" ? "Hind" : "Price"}
               </th>
               {items.map(item => (
                 <td key={item.id} className="p-4 text-center">
@@ -110,7 +110,7 @@ export default function ComparePage() {
             {allSpecKeys.length === 0 && (
               <tr>
                 <td colSpan={items.length + 1} className="p-8 text-center text-sm text-[#64748B]">
-                  No specifications available for comparison.
+                  {locale === "et" ? "Võrdluseks pole spetsifikatsioone saadaval." : "No specifications available for comparison."}
                 </td>
               </tr>
             )}

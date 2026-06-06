@@ -118,7 +118,7 @@ export default function VevorProductCard({ product, locale }: { product: Product
               sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
             />
           ) : (
-            <div className="flex items-center justify-center h-full text-[#CBD5E1] text-sm md:text-base">No image</div>
+            <div className="flex items-center justify-center h-full text-[#CBD5E1] text-sm md:text-base">{resolvedLocale === "et" ? "Pilt puudub" : "No image"}</div>
           )}
         </div>
 
@@ -147,12 +147,12 @@ export default function VevorProductCard({ product, locale }: { product: Product
             {product.in_stock === false ? (
               <span className="inline-flex items-center gap-1 text-[#94A3B8]">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#94A3B8] inline-block" />
-                Out of stock
+                {resolvedLocale === "et" ? "Otsas" : "Out of stock"}
               </span>
             ) : (
               <span className="inline-flex items-center gap-1 text-[#059669]">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#059669] inline-block" />
-                In Stock
+                {resolvedLocale === "et" ? "Laos" : "In Stock"}
               </span>
             )}
           </div>
@@ -188,7 +188,7 @@ export default function VevorProductCard({ product, locale }: { product: Product
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <line x1="18" y1="20" x2="18" y2="10" /><line x1="12" y1="20" x2="12" y2="4" /><line x1="6" y1="20" x2="6" y2="14" />
         </svg>
-        <span>{isCompared ? "In Compare" : "Compare"}</span>
+        <span>{isCompared ? (resolvedLocale === "et" ? "Võrdluses" : "In Compare") : (resolvedLocale === "et" ? "Võrdle" : "Compare")}</span>
       </button>
     </article>
   )

@@ -37,7 +37,7 @@ export default function WishlistPage() {
       <div className="flex items-center gap-[10px] mb-[32px]">
         <Heart size={22} strokeWidth={1.5} className="text-[#E8650A]" />
         <h1 className="text-[28px] font-[700] font-[family-name:var(--font-dm-sans)] text-[#1E293B]">
-          Wishlist
+          {locale === "et" ? "Lemmikud" : "Wishlist"}
         </h1>
         {items.length > 0 && (
           <span className="ml-[4px] text-[15px] font-[family-name:var(--font-dm-sans)] text-[#999999]">
@@ -50,16 +50,16 @@ export default function WishlistPage() {
         <div className="flex flex-col items-center justify-center py-[80px] text-center">
           <Heart size={56} strokeWidth={1} className="text-[#E8E8E8] mb-[20px]" />
           <p className="text-[18px] font-[600] font-[family-name:var(--font-dm-sans)] text-[#1E293B] mb-[8px]">
-            Your wishlist is empty
+            {locale === "et" ? "Sinu lemmikute nimekiri on tühi" : "Your wishlist is empty"}
           </p>
           <p className="text-[14px] font-[family-name:var(--font-dm-sans)] text-[#999999] mb-[24px]">
-            Tap the heart icon on any product to add it to your wishlist
+            {locale === "et" ? "Vajuta toote südameikoonile, et lisada see lemmikutesse" : "Tap the heart icon on any product to add it to your wishlist"}
           </p>
           <Link
             href={categoryPath(locale as "et" | "en")}
             className="px-[20px] py-[11px] bg-[#E8650A] text-white text-[14px] font-[600] font-[family-name:var(--font-dm-sans)] hover:bg-[#CF5A08] transition-colors"
           >
-            Browse Products
+            {locale === "et" ? "Sirvi tooteid" : "Browse Products"}
           </Link>
         </div>
       ) : (

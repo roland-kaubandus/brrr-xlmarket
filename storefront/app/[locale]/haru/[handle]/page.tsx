@@ -227,6 +227,7 @@ export default async function BranchLandingPage({ params, searchParams }: Props)
               currentCat={selectedSubcategory?.handle}
               totalProducts={totalCount}
               priceRange={priceRange}
+              locale={locale}
             />
 
             {/* Product grid */}

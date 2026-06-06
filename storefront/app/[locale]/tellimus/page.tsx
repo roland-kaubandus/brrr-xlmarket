@@ -103,14 +103,14 @@ export default function CheckoutPage() {
         setShippingOptions(options)
         if (options.length > 0) setSelectedShipping(options[0].id)
       } else {
-        setError("Failed to load shipping options. Please try refreshing the page.")
+        setError(locale === "et" ? "Tarneviiside laadimine ebaõnnestus. Palun proovi lehte värskendada." : "Failed to load shipping options. Please try refreshing the page.")
       }
     } catch {
-      setError("Failed to load cart")
+      setError(locale === "et" ? "Ostukorvi laadimine ebaõnnestus" : "Failed to load cart")
     } finally {
       setLoading(false)
     }
-  }, [])
+  }, [locale])
 
   useEffect(() => {
     fetchCart()
@@ -122,13 +122,13 @@ export default function CheckoutPage() {
   }
 
   function validateForm(): string | null {
-    if (!form.first_name.trim()) return "First name is required"
-    if (!form.last_name.trim()) return "Last name is required"
-    if (!form.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) return "A valid email address is required"
-    if (!form.phone.trim() || !/^[\d\s+()-]{7,20}$/.test(form.phone.trim())) return "Please enter a valid phone number"
-    if (!form.address_1.trim()) return "Address is required"
-    if (!form.city.trim()) return "City is required"
-    if (!form.postal_code.trim() || !/^\d{5}$/.test(form.postal_code.trim())) return "Postal code must be a 5-digit number"
+    if (!form.first_name.trim()) return locale === "et" ? "Eesnimi on kohustuslik" : "First name is required"
+    if (!form.last_name.trim()) return locale === "et" ? "Perekonnanimi on kohustuslik" : "Last name is required"
+    if (!form.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) return locale === "et" ? "Sisesta kehtiv e-post" : "A valid email address is required"
+    if (!form.phone.trim() || !/^[\d\s+()-]{7,20}$/.test(form.phone.trim())) return locale === "et" ? "Sisesta kehtiv telefoninumber" : "Please enter a valid phone number"
+    if (!form.address_1.trim()) return locale === "et" ? "Aadress on kohustuslik" : "Address is required"
+    if (!form.city.trim()) return locale === "et" ? "Linn on kohustuslik" : "City is required"
+    if (!form.postal_code.trim() || !/^\d{5}$/.test(form.postal_code.trim())) return locale === "et" ? "Postiindeks peab olema 5-kohaline number" : "Postal code must be a 5-digit number"
     return null
   }
 
@@ -173,7 +173,7 @@ export default function CheckoutPage() {
 
       if (!checkoutRes.ok) {
         posthog.capture("checkout_failed", { step: "customer_info", cart_id: cart.id })
-        setError("Failed to save customer details")
+        setError(locale === "et" ? "Kliendiandmete salvestamine ebaõnnestus" : "Failed to save customer details")
         setSubmitting(false)
         return
       }
@@ -191,7 +191,7 @@ export default function CheckoutPage() {
 
         if (!shipRes.ok) {
           posthog.capture("checkout_failed", { step: "shipping", cart_id: cart.id })
-          setError("Failed to select shipping method")
+          setError(locale === "et" ? "Tarneviisi valimine ebaõnnestus" : "Failed to select shipping method")
           setSubmitting(false)
           return
         }
@@ -206,7 +206,7 @@ export default function CheckoutPage() {
 
       if (!paymentRes.ok) {
         posthog.capture("checkout_failed", { step: "payment", cart_id: cart.id })
-        setError("Failed to prepare payment")
+        setError(locale === "et" ? "Makse ettevalmistus ebaõnnestus" : "Failed to prepare payment")
         setSubmitting(false)
         return
       }
@@ -235,7 +235,7 @@ export default function CheckoutPage() {
 
       if (!completeRes.ok) {
         posthog.capture("checkout_failed", { step: "complete", cart_id: cart.id })
-        setError("Checkout failed")
+        setError(locale === "et" ? "Tellimuse vormistamine ebaõnnestus" : "Checkout failed")
         setSubmitting(false)
         return
       }
@@ -245,7 +245,7 @@ export default function CheckoutPage() {
       // Medusa returns type:"order" on success, type:"cart" on failure
       if (orderData.type === "cart" || (!orderData.order && !orderData.id)) {
         posthog.capture("checkout_failed", { step: "complete_type_cart", cart_id: cart.id })
-        setError("Order confirmation failed. Please try again.")
+        setError(locale === "et" ? "Tellimuse kinnitamine ebaõnnestus. Palun proovi uuesti." : "Order confirmation failed. Please try again.")
         setSubmitting(false)
         return
       }
@@ -264,7 +264,7 @@ export default function CheckoutPage() {
       setStep("done")
     } catch (err) {
       posthog.captureException(err)
-      setError("Checkout failed. Please try again.")
+      setError(locale === "et" ? "Tellimuse vormistamine ebaõnnestus. Palun proovi uuesti." : "Checkout failed. Please try again.")
     } finally {
       setSubmitting(false)
     }
@@ -275,7 +275,7 @@ export default function CheckoutPage() {
     return (
       <div className="min-h-screen bg-white">
         <div className="max-w-[1360px] mx-auto px-4 sm:px-6 py-12">
-          <h1 className="text-xl font-semibold text-[#1E293B] mb-6">Checkout</h1>
+          <h1 className="text-xl font-semibold text-[#1E293B] mb-6">{locale === "et" ? "Kassa" : "Checkout"}</h1>
           <div className="flex items-center justify-center py-20">
             <div className="w-8 h-8 border-2 border-[#E2E8F0] border-t-[#D97706] rounded-full animate-spin" />
           </div>
@@ -289,14 +289,14 @@ export default function CheckoutPage() {
     return (
       <div className="min-h-screen bg-white">
         <div className="max-w-[1360px] mx-auto px-4 sm:px-6 py-12">
-          <h1 className="text-xl font-semibold text-[#1E293B] mb-6">Checkout</h1>
+          <h1 className="text-xl font-semibold text-[#1E293B] mb-6">{locale === "et" ? "Kassa" : "Checkout"}</h1>
           <div className="flex flex-col items-center justify-center py-16 bg-white border border-[#E2E8F0] rounded-lg">
-            <p className="text-[14px] text-[#64748B] mb-7">Your cart is empty.</p>
+            <p className="text-[14px] text-[#64748B] mb-7">{locale === "et" ? "Sinu ostukorv on tühi." : "Your cart is empty."}</p>
             <Link
               href={`/${locale}`}
               className="inline-flex items-center bg-[#D97706] text-white px-6 py-3 text-[15px] font-semibold rounded-lg hover:bg-[#B45309] transition-colors"
             >
-              Browse Products
+              {locale === "et" ? "Sirvi tooteid" : "Browse Products"}
             </Link>
           </div>
         </div>
@@ -313,21 +313,21 @@ export default function CheckoutPage() {
             <div className="w-14 h-14 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-5">
               <span className="text-[#059669] text-[28px]">&#10003;</span>
             </div>
-            <h1 className="text-xl font-semibold text-[#1E293B] mb-4">Order Confirmed!</h1>
+            <h1 className="text-xl font-semibold text-[#1E293B] mb-4">{locale === "et" ? "Tellimus kinnitatud!" : "Order Confirmed!"}</h1>
             <p className="text-[14px] text-[#64748B] mb-2">
-              Thank you for your purchase. We will send a confirmation to{" "}
+              {locale === "et" ? "Täname ostu eest. Saadame kinnituse aadressile" : "Thank you for your purchase. We will send a confirmation to"}{" "}
               <strong className="text-[#1E293B]">{form.email}</strong>.
             </p>
             {orderId && (
               <p className="text-[14px] text-[#64748B] mb-8">
-                Order number: <span className="font-medium text-[#1E293B]">{orderId}</span>
+                {locale === "et" ? "Tellimuse number:" : "Order number:"} <span className="font-medium text-[#1E293B]">{orderId}</span>
               </p>
             )}
             <Link
               href={`/${locale}`}
               className="inline-flex items-center bg-[#D97706] text-white px-6 py-3 text-[15px] font-semibold rounded-lg hover:bg-[#B45309] transition-colors"
             >
-              Back to Home
+              {locale === "et" ? "Tagasi avalehele" : "Back to Home"}
             </Link>
           </div>
         </div>
@@ -344,12 +344,12 @@ export default function CheckoutPage() {
         <nav className="text-[12px] text-[#64748B] mb-7 flex items-center" aria-label="Breadcrumb">
           <Link href={`/${locale}`} className="text-[#64748B] hover:text-[#D97706] transition-colors">{locale === "et" ? "Avaleht" : "Home"}</Link>
           <span className="mx-2 text-[#CBD5E1]">/</span>
-          <Link href={`/${locale}/ostukorv`} className="text-[#64748B] hover:text-[#D97706] transition-colors">Cart</Link>
+          <Link href={`/${locale}/ostukorv`} className="text-[#64748B] hover:text-[#D97706] transition-colors">{locale === "et" ? "Ostukorv" : "Cart"}</Link>
           <span className="mx-2 text-[#CBD5E1]">/</span>
-          <span className="text-[#1E293B] font-medium">Checkout</span>
+          <span className="text-[#1E293B] font-medium">{locale === "et" ? "Kassa" : "Checkout"}</span>
         </nav>
 
-        <h1 className="text-[28px] font-bold text-[#1E293B] mb-6">Checkout</h1>
+        <h1 className="text-[28px] font-bold text-[#1E293B] mb-6">{locale === "et" ? "Kassa" : "Checkout"}</h1>
 
         {error && (
           <div className="mb-5 px-4 py-3 bg-red-50 border border-red-200 rounded-lg text-[#DC2626] text-[13px]" role="alert">
@@ -363,11 +363,11 @@ export default function CheckoutPage() {
             <div className="lg:col-span-2 flex flex-col gap-5">
               {/* Personal info */}
               <div className="bg-white border border-[#E2E8F0] rounded-lg p-5">
-                <h2 className="text-base font-semibold text-[#1E293B] mb-4">Customer Details</h2>
+                <h2 className="text-base font-semibold text-[#1E293B] mb-4">{locale === "et" ? "Kliendiandmed" : "Customer Details"}</h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label htmlFor="first_name" className={labelClass}>
-                      First Name *
+                      {locale === "et" ? "Eesnimi *" : "First Name *"}
                     </label>
                     <input
                       id="first_name"
@@ -380,7 +380,7 @@ export default function CheckoutPage() {
                   </div>
                   <div>
                     <label htmlFor="last_name" className={labelClass}>
-                      Last Name *
+                      {locale === "et" ? "Perekonnanimi *" : "Last Name *"}
                     </label>
                     <input
                       id="last_name"
@@ -393,7 +393,7 @@ export default function CheckoutPage() {
                   </div>
                   <div>
                     <label htmlFor="email" className={labelClass}>
-                      Email *
+                      {locale === "et" ? "E-post *" : "Email *"}
                     </label>
                     <input
                       id="email"
@@ -406,7 +406,7 @@ export default function CheckoutPage() {
                   </div>
                   <div>
                     <label htmlFor="phone" className={labelClass}>
-                      Phone *
+                      {locale === "et" ? "Telefon *" : "Phone *"}
                     </label>
                     <input
                       id="phone"
@@ -422,17 +422,17 @@ export default function CheckoutPage() {
 
               {/* Address */}
               <div className="bg-white border border-[#E2E8F0] rounded-lg p-5">
-                <h2 className="text-base font-semibold text-[#1E293B] mb-4">Shipping Address</h2>
+                <h2 className="text-base font-semibold text-[#1E293B] mb-4">{locale === "et" ? "Tarneaadress" : "Shipping Address"}</h2>
                 <div className="flex flex-col gap-4">
                   <div>
                     <label htmlFor="address_1" className={labelClass}>
-                      Address *
+                      {locale === "et" ? "Aadress *" : "Address *"}
                     </label>
                     <input
                       id="address_1"
                       type="text"
                       required
-                      placeholder="Street, building, apartment"
+                      placeholder={locale === "et" ? "Tänav, hoone, korter" : "Street, building, apartment"}
                       value={form.address_1}
                       onChange={(e) => updateField("address_1", e.target.value)}
                       className={inputClass}
@@ -441,7 +441,7 @@ export default function CheckoutPage() {
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                     <div className="sm:col-span-2">
                       <label htmlFor="city" className={labelClass}>
-                        City *
+                        {locale === "et" ? "Linn *" : "City *"}
                       </label>
                       <input
                         id="city"
@@ -454,7 +454,7 @@ export default function CheckoutPage() {
                     </div>
                     <div>
                       <label htmlFor="postal_code" className={labelClass}>
-                        Postal Code *
+                        {locale === "et" ? "Postiindeks *" : "Postal Code *"}
                       </label>
                       <input
                         id="postal_code"
@@ -468,7 +468,7 @@ export default function CheckoutPage() {
                   </div>
                   <div>
                     <label htmlFor="country" className={labelClass}>
-                      Country
+                      {locale === "et" ? "Riik" : "Country"}
                     </label>
                     <select
                       id="country"
@@ -476,7 +476,7 @@ export default function CheckoutPage() {
                       onChange={(e) => updateField("country_code", e.target.value)}
                       className={inputClass}
                     >
-                      <option value="ee">Estonia</option>
+                      <option value="ee">{locale === "et" ? "Eesti" : "Estonia"}</option>
                     </select>
                   </div>
                 </div>
@@ -484,9 +484,9 @@ export default function CheckoutPage() {
 
               {/* Shipping */}
               <div className="bg-white border border-[#E2E8F0] rounded-lg p-5">
-                <h2 className="text-base font-semibold text-[#1E293B] mb-4">Shipping Method</h2>
+                <h2 className="text-base font-semibold text-[#1E293B] mb-4">{locale === "et" ? "Tarneviis" : "Shipping Method"}</h2>
                 {shippingOptions.length === 0 ? (
-                  <p className="text-[12px] text-[#64748B]">Loading shipping options...</p>
+                  <p className="text-[12px] text-[#64748B]">{locale === "et" ? "Laen tarneviise..." : "Loading shipping options..."}</p>
                 ) : (
                   <div className="flex flex-col gap-2">
                     {shippingOptions.map((opt) => (
@@ -511,7 +511,7 @@ export default function CheckoutPage() {
                         </div>
                         {typeof opt.amount === "number" && (
                           <span className="text-[13px] font-bold text-[#1E293B]">
-                            {opt.amount === 0 ? "Free" : formatPrice(opt.amount, cart.currency_code)}
+                            {opt.amount === 0 ? (locale === "et" ? "Tasuta" : "Free") : formatPrice(opt.amount, cart.currency_code)}
                           </span>
                         )}
                       </label>
@@ -524,7 +524,7 @@ export default function CheckoutPage() {
             {/* Right: Order summary */}
             <div className="lg:col-span-1">
               <div className="bg-white border border-[#E2E8F0] rounded-lg p-5 sticky top-20">
-                <h2 className="text-base font-semibold text-[#1E293B] mb-4">Order Summary</h2>
+                <h2 className="text-base font-semibold text-[#1E293B] mb-4">{locale === "et" ? "Tellimuse kokkuvõte" : "Order Summary"}</h2>
 
                 {/* Items */}
                 <div className="flex flex-col gap-2.5 mb-4">
@@ -550,7 +550,7 @@ export default function CheckoutPage() {
                           {item.variant?.product?.title || item.title}
                         </p>
                         <p className="text-[12px] text-[#64748B]">
-                          {item.quantity} pcs &times; {formatPrice(item.unit_price, cart.currency_code)}
+                          {item.quantity} {locale === "et" ? "tk" : "pcs"} &times; {formatPrice(item.unit_price, cart.currency_code)}
                         </p>
                       </div>
                       <p className="text-[13px] font-bold text-[#1E293B] shrink-0">
@@ -563,18 +563,18 @@ export default function CheckoutPage() {
                 {/* Totals */}
                 <div className="border-t border-[#E2E8F0] pt-3 flex flex-col gap-2">
                   <div className="flex justify-between text-[13px]">
-                    <span className="text-[#64748B]">Subtotal</span>
+                    <span className="text-[#64748B]">{locale === "et" ? "Vahesumma" : "Subtotal"}</span>
                     <span className="text-[#1E293B]">{formatPrice(cart.subtotal, cart.currency_code)}</span>
                   </div>
                   {cart.shipping_total > 0 && (
                     <div className="flex justify-between text-[13px]">
-                      <span className="text-[#64748B]">Shipping</span>
+                      <span className="text-[#64748B]">{locale === "et" ? "Tarne" : "Shipping"}</span>
                       <span className="text-[#1E293B]">{formatPrice(cart.shipping_total, cart.currency_code)}</span>
                     </div>
                   )}
                   {cart.tax_total > 0 && (
                     <div className="flex justify-between text-[13px]">
-                      <span className="text-[#64748B]">VAT</span>
+                      <span className="text-[#64748B]">{locale === "et" ? "Käibemaks" : "VAT"}</span>
                       <span className="text-[#1E293B]">{formatPrice(cart.tax_total, cart.currency_code)}</span>
                     </div>
                   )}
@@ -582,7 +582,7 @@ export default function CheckoutPage() {
 
                 <div className="border-t border-[#E2E8F0] mt-4 pt-4">
                   <div className="flex items-center justify-between">
-                    <span className="text-[15px] font-semibold text-[#1E293B]">Total</span>
+                    <span className="text-[15px] font-semibold text-[#1E293B]">{locale === "et" ? "Kokku" : "Total"}</span>
                     <span className="text-xl font-bold text-[#D97706]">
                       {formatPrice(cart.total, cart.currency_code)}
                     </span>
@@ -595,11 +595,11 @@ export default function CheckoutPage() {
                   className="w-full mt-5 py-3.5 bg-[#D97706] text-white text-[15px] font-semibold rounded-lg hover:bg-[#B45309] disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
                   style={{ boxShadow: "0 4px 16px rgba(255,106,0,0.25)" }}
                 >
-                  {submitting ? "Processing..." : "Confirm Order"}
+                  {submitting ? (locale === "et" ? "Töötlen..." : "Processing...") : (locale === "et" ? "Kinnita tellimus" : "Confirm Order")}
                 </button>
 
                 <p className="text-[12px] text-[#64748B] text-center mt-2.5">
-                  Payment: bank transfer (invoice sent via email)
+                  {locale === "et" ? "Makse: pangaülekanne (arve saadetakse e-postiga)" : "Payment: bank transfer (invoice sent via email)"}
                 </p>
               </div>
             </div>

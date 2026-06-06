@@ -120,7 +120,7 @@ export default function VevorSearchFilters({
         {activeTokens.size > 0 && (
           <div className="py-4 first:pt-0">
             <h3 className="text-xs uppercase tracking-wider text-[#64748B] font-bold mb-2">
-              Active filters
+              {locale === "et" ? "Aktiivsed filtrid" : "Active filters"}
             </h3>
             <div className="flex flex-wrap gap-1.5">
               {[...activeTokens].map((token) => {
@@ -149,7 +149,7 @@ export default function VevorSearchFilters({
         {sortedCategories.length > 0 && !suppressSubcategoryFacet && (
           <div className="py-4 first:pt-0">
             <h3 className="text-xs uppercase tracking-wider text-[#64748B] font-bold mb-3">
-              Categories
+              {locale === "et" ? "Kategooriad" : "Categories"}
               {selectedCats.length > 0 && (
                 <span className="ml-1.5 text-[#D97706] normal-case tracking-normal">({selectedCats.length})</span>
               )}
@@ -179,8 +179,8 @@ export default function VevorSearchFilters({
                 className="mt-2 text-xs text-[#D97706] hover:underline font-medium"
               >
                 {catsExpanded
-                  ? "Show less"
-                  : `Show all (${sortedCategories.length})`}
+                  ? (locale === "et" ? "Näita vähem" : "Show less")
+                  : (locale === "et" ? `Näita kõiki (${sortedCategories.length})` : `Show all (${sortedCategories.length})`)}
               </button>
             )}
             {selectedCats.length > 0 && selectedCats.join(",") !== currentCategories.join(",") && (
@@ -188,7 +188,7 @@ export default function VevorSearchFilters({
                 onClick={handleApplyCategories}
                 className="mt-2 w-full py-1.5 bg-[#D97706] text-white text-sm rounded-lg hover:bg-[#C2690A] transition-colors duration-200 font-medium"
               >
-                Apply
+                {locale === "et" ? "Rakenda" : "Apply"}
               </button>
             )}
           </div>
@@ -197,7 +197,7 @@ export default function VevorSearchFilters({
         {/* Price Range */}
         <div className="py-4">
           <h3 className="text-xs uppercase tracking-wider text-[#64748B] font-bold mb-3">
-            Price Range
+            {locale === "et" ? "Hinnavahemik" : "Price Range"}
           </h3>
           <div className="flex items-center gap-2">
             <input
@@ -221,12 +221,12 @@ export default function VevorSearchFilters({
               onClick={handleApplyPrice}
               className="mt-2 w-full py-1.5 bg-[#D97706] text-white text-sm rounded-lg hover:bg-[#C2690A] transition-colors duration-200 font-medium"
             >
-              Apply
+              {locale === "et" ? "Rakenda" : "Apply"}
             </button>
           )}
           {(currentMin || currentMax) && (
             <div className="mt-2 text-xs text-[#64748B]">
-              Active: {currentMin || "0"}&euro; &ndash; {currentMax || "..."}&euro;
+              {locale === "et" ? "Aktiivne:" : "Active:"} {currentMin || "0"}&euro; &ndash; {currentMax || "..."}&euro;
             </div>
           )}
         </div>
@@ -235,7 +235,7 @@ export default function VevorSearchFilters({
         <div className="py-4">
           <label className="flex items-center justify-between cursor-pointer group">
             <h3 className="text-xs uppercase tracking-wider text-[#64748B] font-bold group-hover:text-[#1E293B] transition-colors duration-150">
-              In Stock
+              {locale === "et" ? "Laos" : "In Stock"}
             </h3>
             <button
               onClick={() => router.push(buildUrl({ in_stock: currentInStock ? "" : "1" }))}
@@ -298,7 +298,7 @@ export default function VevorSearchFilters({
         ) : quickFilters.length > 0 ? (
           <div className="py-4">
             <h3 className="text-xs uppercase tracking-wider text-[#64748B] font-bold mb-3">
-              Quick Filters
+              {locale === "et" ? "Kiirfiltrid" : "Quick Filters"}
             </h3>
             <div className="space-y-1">
               {(quickExpanded ? quickFilters : quickFilters.slice(0, 8)).map((filter) => {
@@ -330,8 +330,8 @@ export default function VevorSearchFilters({
                 className="mt-2 text-xs text-[#D97706] hover:underline font-medium"
               >
                 {quickExpanded
-                  ? "Show less"
-                  : `Show all (${quickFilters.length})`}
+                  ? (locale === "et" ? "Näita vähem" : "Show less")
+                  : (locale === "et" ? `Näita kõiki (${quickFilters.length})` : `Show all (${quickFilters.length})`)}
               </button>
             )}
           </div>
@@ -344,7 +344,7 @@ export default function VevorSearchFilters({
               onClick={handleClearAll}
               className="w-full text-sm text-[#D97706] hover:text-[#C2690A] hover:underline font-medium transition-colors duration-150"
             >
-              Clear all filters
+              {locale === "et" ? "Tühista kõik filtrid" : "Clear all filters"}
             </button>
           </div>
         )}
@@ -364,7 +364,7 @@ export default function VevorSearchFilters({
       {/* Desktop sidebar — hidden on mobile, shown by parent flex layout */}
       <div className="hidden md:block">
         <h2 className="text-[13px] font-semibold text-[#64748B] uppercase tracking-wider pb-3 mb-3 border-b border-[#E2E8F0]">
-          Filters
+          {locale === "et" ? "Filtrid" : "Filters"}
         </h2>
         {renderFilterSections()}
       </div>
@@ -378,7 +378,7 @@ export default function VevorSearchFilters({
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <line x1="4" y1="6" x2="20" y2="6" /><line x1="4" y1="12" x2="14" y2="12" /><line x1="4" y1="18" x2="10" y2="18" />
           </svg>
-          Filters
+          {locale === "et" ? "Filtrid" : "Filters"}
           {activeFilterCount > 0 && (
             <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-[#D97706] text-white text-xs font-bold">
               {activeFilterCount}
@@ -405,7 +405,7 @@ export default function VevorSearchFilters({
               <div className="w-10 h-1 rounded-full bg-[#CBD5E1] mx-auto mb-3" />
               <div className="flex items-center justify-between">
                 <h2 className="text-base font-bold text-[#1E293B]">
-                  Filters
+                  {locale === "et" ? "Filtrid" : "Filters"}
                 </h2>
                 <button
                   onClick={() => setSheetOpen(false)}
@@ -442,7 +442,9 @@ export default function VevorSearchFilters({
                 }}
                 className="w-full py-3 bg-[#D97706] text-white text-sm font-bold rounded-xl hover:bg-[#C2690A] transition-colors duration-200"
               >
-                {`Show results (${totalHits.toLocaleString("en-GB")})`}
+                {locale === "et"
+                  ? `Näita tulemusi (${totalHits.toLocaleString("en-GB")})`
+                  : `Show results (${totalHits.toLocaleString("en-GB")})`}
               </button>
             </div>
           </div>

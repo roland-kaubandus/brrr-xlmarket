@@ -57,11 +57,11 @@ export default function CartPage() {
         localStorage.setItem("xlmarket_cart_count", String(cnt))
       }
     } catch {
-      setError("Failed to load cart")
+      setError(locale === "et" ? "Ostukorvi laadimine ebaõnnestus" : "Failed to load cart")
     } finally {
       setLoading(false)
     }
-  }, [])
+  }, [locale])
 
   useEffect(() => { fetchCart() }, [fetchCart])
 
@@ -80,10 +80,10 @@ export default function CartPage() {
         // the cart so line totals render correctly (not as €NaN).
         await fetchCart()
       } else {
-        setError("Failed to update quantity")
+        setError(locale === "et" ? "Koguse muutmine ebaõnnestus" : "Failed to update quantity")
       }
     } catch {
-      setError("Failed to update quantity")
+      setError(locale === "et" ? "Koguse muutmine ebaõnnestus" : "Failed to update quantity")
     } finally {
       setUpdating(null)
     }
@@ -109,10 +109,10 @@ export default function CartPage() {
         })
         setCart(data.cart)
       } else {
-        setError("Failed to remove item")
+        setError(locale === "et" ? "Toote eemaldamine ebaõnnestus" : "Failed to remove item")
       }
     } catch {
-      setError("Failed to remove item")
+      setError(locale === "et" ? "Toote eemaldamine ebaõnnestus" : "Failed to remove item")
     } finally {
       setUpdating(null)
     }
@@ -141,18 +141,18 @@ export default function CartPage() {
       <div className="max-w-[1360px] mx-auto px-4 sm:px-6 py-8 sm:py-12">
         {/* Breadcrumb */}
         <nav className="text-[12px] text-[#64748B] mb-7 flex items-center" aria-label="Breadcrumb">
-          <Link href={`/${locale}`} className="text-[#64748B] hover:text-[#D97706] transition-colors">Home</Link>
+          <Link href={`/${locale}`} className="text-[#64748B] hover:text-[#D97706] transition-colors">{locale === "et" ? "Avaleht" : "Home"}</Link>
           <span className="mx-2 text-[#CBD5E1]">/</span>
-          <span className="text-[#1E293B] font-medium">Cart</span>
+          <span className="text-[#1E293B] font-medium">{locale === "et" ? "Ostukorv" : "Cart"}</span>
         </nav>
 
         <div className="flex items-center gap-3 mb-8">
           <h1 className="text-[28px] font-bold text-[#1E293B]">
-            Shopping Cart
+            {locale === "et" ? "Ostukorv" : "Shopping Cart"}
           </h1>
           {!isEmpty && (
             <span className="text-base text-[#64748B]">
-              ({items.reduce((s, i) => s + i.quantity, 0)} items)
+              ({items.reduce((s, i) => s + i.quantity, 0)} {locale === "et" ? "toodet" : "items"})
             </span>
           )}
         </div>
@@ -167,16 +167,16 @@ export default function CartPage() {
           <div className="flex flex-col items-center justify-center py-20 text-center bg-white border border-[#E2E8F0] rounded-lg">
             <ShoppingCart size={56} strokeWidth={1} className="text-[#E2E8F0] mb-5" />
             <p className="text-lg font-semibold text-[#1E293B] mb-1.5">
-              Your cart is empty
+              {locale === "et" ? "Sinu ostukorv on tühi" : "Your cart is empty"}
             </p>
             <p className="text-[14px] text-[#64748B] mb-7">
-              Add products to start shopping
+              {locale === "et" ? "Lisa tooteid, et alustada ostlemist" : "Add products to start shopping"}
             </p>
             <Link
               href={categoryPath(locale as "et" | "en")}
               className="inline-flex items-center gap-2 px-6 py-3 bg-[#D97706] text-white text-[14px] font-semibold rounded-lg hover:bg-[#B45309] transition-colors"
             >
-              Browse Products
+              {locale === "et" ? "Sirvi tooteid" : "Browse Products"}
               <ArrowRight size={16} strokeWidth={1.5} />
             </Link>
           </div>
@@ -190,7 +190,7 @@ export default function CartPage() {
                   <div className="flex items-center gap-1.5">
                     <Truck size={14} strokeWidth={1.5} className="text-[#D97706] shrink-0" />
                     <span className="text-[13px] text-[#64748B]">
-                      Add <strong className="text-[#D97706]">{formatPrice(toFreeShipping, cart?.currency_code ?? "EUR")}</strong> more for free shipping
+                      {locale === "et" ? "Lisa veel " : "Add "}<strong className="text-[#D97706]">{formatPrice(toFreeShipping, cart?.currency_code ?? "EUR")}</strong>{locale === "et" ? " tasuta tarneks" : " more for free shipping"}
                     </span>
                   </div>
                   <div className="h-1 bg-[#E2E8F0] rounded-full overflow-hidden">
@@ -205,17 +205,17 @@ export default function CartPage() {
                 <div className="flex items-center gap-2 p-3 bg-green-50 border border-green-200 rounded-lg mb-1">
                   <Truck size={14} strokeWidth={1.5} className="text-[#059669] shrink-0" />
                   <span className="text-[13px] text-green-700">
-                    Free shipping applied!
+                    {locale === "et" ? "Tasuta tarne rakendatud!" : "Free shipping applied!"}
                   </span>
                 </div>
               )}
 
               {/* Table header (desktop) */}
               <div className="hidden sm:grid grid-cols-[1fr_100px_140px_100px_40px] gap-4 px-4 py-3 bg-white border border-[#E2E8F0] rounded-lg text-[12px] font-semibold text-[#64748B] uppercase tracking-wide">
-                <span>Product</span>
-                <span className="text-center">Price</span>
-                <span className="text-center">Quantity</span>
-                <span className="text-right">Total</span>
+                <span>{locale === "et" ? "Toode" : "Product"}</span>
+                <span className="text-center">{locale === "et" ? "Hind" : "Price"}</span>
+                <span className="text-center">{locale === "et" ? "Kogus" : "Quantity"}</span>
+                <span className="text-right">{locale === "et" ? "Kokku" : "Total"}</span>
                 <span></span>
               </div>
 
@@ -353,7 +353,7 @@ export default function CartPage() {
                           aria-label={"Remove " + (item.variant?.product?.title ?? item.title)}
                         >
                           <Trash2 size={14} strokeWidth={1.5} />
-                          Remove
+                          {locale === "et" ? "Eemalda" : "Remove"}
                         </button>
                       </div>
                     </div>
@@ -365,7 +365,7 @@ export default function CartPage() {
                 href={categoryPath(locale as "et" | "en")}
                 className="inline-flex items-center gap-1.5 text-[13px] font-medium text-[#D97706] hover:text-[#B45309] mt-1 self-start transition-colors"
               >
-                ← Continue Shopping
+                ← {locale === "et" ? "Jätka ostlemist" : "Continue Shopping"}
               </Link>
             </div>
 
@@ -374,25 +374,25 @@ export default function CartPage() {
               <div className="lg:col-span-1">
                 <div className="bg-white border border-[#E2E8F0] rounded-lg p-5 sticky top-20">
                   <h2 className="text-[17px] font-semibold text-[#1E293B] mb-5">
-                    Order Summary
+                    {locale === "et" ? "Tellimuse kokkuvõte" : "Order Summary"}
                   </h2>
 
                   <div className="flex flex-col gap-2.5 mb-4">
                     <div className="flex items-center justify-between">
-                      <span className="text-[13px] text-[#64748B]">Subtotal</span>
+                      <span className="text-[13px] text-[#64748B]">{locale === "et" ? "Vahesumma" : "Subtotal"}</span>
                       <span className="text-[13px] text-[#1E293B]">
                         {formatPrice(cart.subtotal ?? cart.item_total, cart.currency_code)}
                       </span>
                     </div>
                     <div className="flex items-center justify-between">
-                      <span className="text-[13px] text-[#64748B]">Shipping</span>
+                      <span className="text-[13px] text-[#64748B]">{locale === "et" ? "Tarne" : "Shipping"}</span>
                       <span className={`text-[13px] ${toFreeShipping === 0 ? "text-[#059669] font-medium" : "text-[#1E293B]"}`}>
-                        {toFreeShipping === 0 ? "Free" : "Calculated at checkout"}
+                        {toFreeShipping === 0 ? (locale === "et" ? "Tasuta" : "Free") : (locale === "et" ? "Arvutatakse kassas" : "Calculated at checkout")}
                       </span>
                     </div>
                     {cart.tax_total > 0 && (
                       <div className="flex items-center justify-between">
-                        <span className="text-[13px] text-[#64748B]">VAT (24%)</span>
+                        <span className="text-[13px] text-[#64748B]">{locale === "et" ? "Käibemaks (24%)" : "VAT (24%)"}</span>
                         <span className="text-[13px] text-[#1E293B]">
                           {formatPrice(cart.tax_total, cart.currency_code)}
                         </span>
@@ -402,13 +402,13 @@ export default function CartPage() {
 
                   <div className="border-t border-[#E2E8F0] pt-4 mb-5">
                     <div className="flex items-center justify-between">
-                      <span className="text-[15px] font-semibold text-[#1E293B]">Total</span>
+                      <span className="text-[15px] font-semibold text-[#1E293B]">{locale === "et" ? "Kokku" : "Total"}</span>
                       <span className="text-xl font-bold text-[#D97706]">
                         {formatPrice(cart.total, cart.currency_code)}
                       </span>
                     </div>
                     <p className="text-[11px] text-[#64748B] mt-1">
-                      Includes VAT
+                      {locale === "et" ? "Sisaldab käibemaksu" : "Includes VAT"}
                     </p>
                   </div>
 
@@ -417,11 +417,11 @@ export default function CartPage() {
                     className="block w-full text-center py-3.5 bg-[#D97706] text-white text-[15px] font-semibold rounded-lg hover:bg-[#B45309] transition-colors"
                     style={{ boxShadow: "0 4px 16px rgba(255,106,0,0.25)" }}
                   >
-                    Proceed to Checkout
+                    {locale === "et" ? "Vormista tellimus" : "Proceed to Checkout"}
                   </Link>
 
                   <p className="text-[11px] text-[#64748B] text-center mt-2.5">
-                    Secure payment · SSL encrypted
+                    {locale === "et" ? "Turvaline makse · SSL krüpteeritud" : "Secure payment · SSL encrypted"}
                   </p>
                 </div>
               </div>

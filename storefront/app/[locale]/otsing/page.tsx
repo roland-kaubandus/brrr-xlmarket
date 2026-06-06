@@ -43,19 +43,25 @@ const SORT_MAP: Record<string, string[]> = {
   clearance: ["price:asc"],
 }
 
-const SORT_TITLES: Record<string, string> = {
-  deals: "Deals",
-  newest: "New Arrivals",
-  best: "Best Sellers",
-  clearance: "Clearance — Under €50",
+function sortTitles(locale: string): Record<string, string> {
+  const et = locale === "et"
+  return {
+    deals: et ? "Pakkumised" : "Deals",
+    newest: et ? "Uued tooted" : "New Arrivals",
+    best: et ? "Enimmüüdud" : "Best Sellers",
+    clearance: et ? "Tühjendusmüük — alla 50€" : "Clearance — Under €50",
+  }
 }
 
-const TAG_TITLES: Record<string, string> = {
-  deals: "Deals",
-  hot: "Best Sellers",
-  "spring-sale": "Spring Sale",
-  "flash-sale": "Flash Sale",
-  promo: "Promotions",
+function tagTitles(locale: string): Record<string, string> {
+  const et = locale === "et"
+  return {
+    deals: et ? "Pakkumised" : "Deals",
+    hot: et ? "Enimmüüdud" : "Best Sellers",
+    "spring-sale": et ? "Kevadmüük" : "Spring Sale",
+    "flash-sale": et ? "Välkmüük" : "Flash Sale",
+    promo: et ? "Kampaaniad" : "Promotions",
+  }
 }
 
 export default async function SearchPage({ searchParams, params }: Props) {
@@ -153,7 +159,9 @@ export default async function SearchPage({ searchParams, params }: Props) {
     return `/${locale}/otsing${qs ? `?${qs}` : ""}`
   }
 
-  const pageTitle = TAG_TITLES[activeTag] || SORT_TITLES[currentSort] || (query ? `Search: "${query}"` : "All Products")
+  const SORT_TITLES = sortTitles(locale)
+  const TAG_TITLES = tagTitles(locale)
+  const pageTitle = TAG_TITLES[activeTag] || SORT_TITLES[currentSort] || (query ? (locale === "et" ? `Otsing: "${query}"` : `Search: "${query}"`) : (locale === "et" ? "Kõik tooted" : "All Products"))
 
   return (
     <div className="bg-[#F8FAFC]">
@@ -162,7 +170,7 @@ export default async function SearchPage({ searchParams, params }: Props) {
           <Link href={`/${locale}`} className="text-[#64748B] hover:text-[#D97706] transition-colors duration-200">{locale === "et" ? "Avaleht" : "Home"}</Link>
           <span className="mx-1.5 text-[#CBD5E1]">&gt;</span>
           <span className="text-[#1E293B] transition-opacity duration-200">
-            {TAG_TITLES[activeTag] || SORT_TITLES[currentSort] || "Search Results"}
+            {TAG_TITLES[activeTag] || SORT_TITLES[currentSort] || (locale === "et" ? "Otsingutulemused" : "Search Results")}
           </span>
         </nav>
 
@@ -173,9 +181,9 @@ export default async function SearchPage({ searchParams, params }: Props) {
               {pageTitle}
             </h1>
             <p className="text-sm text-[#64748B] mt-1">
-              <span className="font-semibold text-[#1E293B]">{totalHits.toLocaleString("en-IE")}</span> products
+              <span className="font-semibold text-[#1E293B]">{totalHits.toLocaleString("en-IE")}</span> {locale === "et" ? "toodet" : "products"}
               {query && (
-                <span> {`for "${query}"`}</span>
+                <span> {locale === "et" ? `päringule "${query}"` : `for "${query}"`}</span>
               )}
             </p>
           </div>
@@ -215,16 +223,16 @@ export default async function SearchPage({ searchParams, params }: Props) {
         {totalHits === 0 && !query ? (
           <div className="bg-white rounded-3xl border border-[#E2E8F0] shadow-sm p-12 text-center">
             <p className="text-sm text-[#64748B]">
-              No products available yet.
+              {locale === "et" ? "Tooteid pole veel saadaval." : "No products available yet."}
             </p>
           </div>
         ) : totalHits === 0 && query ? (
           <div className="bg-white rounded-3xl border border-[#E2E8F0] shadow-sm p-12 text-center">
             <p className="text-sm text-[#64748B] mb-4">
-              {`No results found for "${query}".`}
+              {locale === "et" ? `Päringule "${query}" tulemusi ei leitud.` : `No results found for "${query}".`}
             </p>
             <Link href={categoryPath(locale as "et" | "en")} className="text-[#D97706] hover:underline font-medium">
-              Browse all categories
+              {locale === "et" ? "Sirvi kõiki kategooriaid" : "Browse all categories"}
             </Link>
           </div>
         ) : (
@@ -257,10 +265,10 @@ export default async function SearchPage({ searchParams, params }: Props) {
                 <div className="bg-white rounded-2xl border border-[#E2E8F0] shadow-sm p-4 sm:p-5">
                   <div className="flex items-center justify-between mb-3">
                     <h2 className="text-sm font-semibold text-[#1E293B]">
-                      Popular categories
+                      {locale === "et" ? "Populaarsed kategooriad" : "Popular categories"}
                     </h2>
                     <span className="text-xs text-[#94A3B8]">
-                      Refine by category
+                      {locale === "et" ? "Täpsusta kategooria järgi" : "Refine by category"}
                     </span>
                   </div>
                   <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-hide">
@@ -313,7 +321,7 @@ export default async function SearchPage({ searchParams, params }: Props) {
               {query && Object.keys(categoryFacets).length > 0 && (
                 <section className="bg-white rounded-2xl border border-[#E2E8F0] shadow-sm p-4 sm:p-5">
                   <h2 className="text-sm font-semibold text-[#1E293B] mb-3">
-                    Recommended searches
+                    {locale === "et" ? "Soovitatud otsingud" : "Recommended searches"}
                   </h2>
                   <div className="flex flex-wrap gap-2">
                     {Object.entries(categoryFacets)

@@ -129,7 +129,7 @@ export default function ProductContent(props: ProductContentProps) {
 
           {/* Favorites + Compare — below Buy Now, 2-up grid, full labels */}
           <div className="mt-3 grid grid-cols-2 gap-2">
-            <ProductWishlistButton item={compareItem} />
+            <ProductWishlistButton item={compareItem} locale={locale} />
             <ProductCompareActions item={compareItem} locale={locale} />
           </div>
 
@@ -147,7 +147,7 @@ export default function ProductContent(props: ProductContentProps) {
                   href="#full-specifications"
                   className="inline-block mt-2 text-[13px] text-[#64748B] underline decoration-[#CBD5E1] underline-offset-[3px] hover:text-[#E8920A] hover:decoration-[#E8920A]"
                 >
-                  View all specifications
+                  {locale === "et" ? "Vaata kõiki spetsifikatsioone" : "View all specifications"}
                 </a>
               )}
             </dl>
@@ -160,9 +160,9 @@ export default function ProductContent(props: ProductContentProps) {
                 <rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>
               </svg>
               <span>
-                <span className="font-semibold text-[#334155]">Delivery to Estonia</span>
+                <span className="font-semibold text-[#334155]">{locale === "et" ? "Tarne Eestisse" : "Delivery to Estonia"}</span>
                 <span className="mx-1.5 text-[#CBD5E1]">·</span>
-                5–10 business days
+                {locale === "et" ? "5–10 tööpäeva" : "5–10 business days"}
               </span>
             </li>
             <li className="flex items-start gap-2.5 leading-[1.45]">
@@ -170,9 +170,9 @@ export default function ProductContent(props: ProductContentProps) {
                 <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/>
               </svg>
               <span>
-                <span className="font-semibold text-[#334155]">2-year warranty</span>
+                <span className="font-semibold text-[#334155]">{locale === "et" ? "2-aastane garantii" : "2-year warranty"}</span>
                 <span className="mx-1.5 text-[#CBD5E1]">·</span>
-                manufacturer-backed
+                {locale === "et" ? "tootjapoolne" : "manufacturer-backed"}
               </span>
             </li>
             <li className="flex items-start gap-2.5 leading-[1.45]">
@@ -180,9 +180,9 @@ export default function ProductContent(props: ProductContentProps) {
                 <path d="M3 12a9 9 0 1 0 3-6.7"/><polyline points="3 4 3 10 9 10"/>
               </svg>
               <span>
-                <span className="font-semibold text-[#334155]">14-day returns</span>
+                <span className="font-semibold text-[#334155]">{locale === "et" ? "14-päevane tagastusõigus" : "14-day returns"}</span>
                 <span className="mx-1.5 text-[#CBD5E1]">·</span>
-                unused, in original packaging
+                {locale === "et" ? "kasutamata, originaalpakendis" : "unused, in original packaging"}
               </span>
             </li>
             <li className="flex items-start gap-2.5 leading-[1.45]">
@@ -190,9 +190,9 @@ export default function ProductContent(props: ProductContentProps) {
                 <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
               </svg>
               <span>
-                <span className="font-semibold text-[#334155]">Customer support</span>
+                <span className="font-semibold text-[#334155]">{locale === "et" ? "Klienditugi" : "Customer support"}</span>
                 <span className="mx-1.5 text-[#CBD5E1]">·</span>
-                Mon–Fri
+                {locale === "et" ? "E–R" : "Mon–Fri"}
               </span>
             </li>
           </ul>
@@ -208,7 +208,7 @@ export default function ProductContent(props: ProductContentProps) {
           return (
             <div className="border-b border-[#E2E8F0] pb-6 mb-0">
               <h2 className="text-[17px] font-bold text-[#1E293B] mb-4 flex items-center gap-2">
-                Product Description
+                {locale === "et" ? "Toote kirjeldus" : "Product Description"}
                 <EditableText
                   productId={product.id}
                   productHandle={product.handle}
@@ -236,7 +236,7 @@ export default function ProductContent(props: ProductContentProps) {
           <div id="full-specifications" className="scroll-mt-20" />
         )}
         {specs.length > 0 && (
-          <CollapsibleSection title="Specifications" defaultOpen={true}>
+          <CollapsibleSection title={locale === "et" ? "Spetsifikatsioonid" : "Specifications"} defaultOpen={true}>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {[0, 1].map((col) => {
                 const half = Math.ceil(specs.length / 2)
@@ -261,7 +261,7 @@ export default function ProductContent(props: ProductContentProps) {
         )}
 
         {manualLinks.length > 0 && (
-          <CollapsibleSection title="Manuals & Downloads" defaultOpen={true}>
+          <CollapsibleSection title={locale === "et" ? "Juhendid ja allalaadimised" : "Manuals & Downloads"} defaultOpen={true}>
             <div className="flex flex-wrap gap-3">
               {manualLinks.map((manual, index) => (
                 <a
@@ -280,7 +280,7 @@ export default function ProductContent(props: ProductContentProps) {
           </CollapsibleSection>
         )}
 
-        <CollapsibleSection title="Reviews" defaultOpen={false}>
+        <CollapsibleSection title={locale === "et" ? "Arvustused" : "Reviews"} defaultOpen={false}>
           <ProductReviews />
         </CollapsibleSection>
       </div>

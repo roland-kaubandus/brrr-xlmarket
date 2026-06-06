@@ -6,11 +6,12 @@ import { safeReadJSON, safeWriteJSON } from "@/lib/safe-storage"
 
 type Props = {
   item: CompareItem
+  locale: string
 }
 
 const WISHLIST_KEY = "xlmarket_wishlist"
 
-export default function ProductWishlistButton({ item }: Props) {
+export default function ProductWishlistButton({ item, locale }: Props) {
   const [wishlisted, setWishlisted] = useState(false)
 
   useEffect(() => {
@@ -26,7 +27,9 @@ export default function ProductWishlistButton({ item }: Props) {
     setWishlisted(!exists)
   }
 
-  const label = wishlisted ? "In Favorites" : "Add to Favorites"
+  const label = wishlisted
+    ? (locale === "et" ? "Lemmikutes" : "In Favorites")
+    : (locale === "et" ? "Lisa lemmikutesse" : "Add to Favorites")
 
   return (
     <button

@@ -2,12 +2,15 @@
 import { useRouter } from "next/navigation"
 import { useCallback } from "react"
 
-const SORT_OPTIONS = [
-  { value: "", label: "Best Match" },
-  { value: "price_asc", label: "Price: Low to High" },
-  { value: "price_desc", label: "Price: High to Low" },
-  { value: "newest", label: "Newest" },
-]
+function sortOptions(locale: string) {
+  const et = locale === "et"
+  return [
+    { value: "", label: et ? "Parim vaste" : "Best Match" },
+    { value: "price_asc", label: et ? "Hind: odavamad ees" : "Price: Low to High" },
+    { value: "price_desc", label: et ? "Hind: kallimad ees" : "Price: High to Low" },
+    { value: "newest", label: et ? "Uusimad" : "Newest" },
+  ]
+}
 
 type Props = {
   currentSort: string
@@ -52,7 +55,7 @@ export default function SortSelect({
         paddingRight: "2rem",
       }}
     >
-      {SORT_OPTIONS.map(opt => (
+      {sortOptions(locale).map(opt => (
         <option key={opt.value} value={opt.value}>{opt.label}</option>
       ))}
     </select>

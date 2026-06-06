@@ -12,6 +12,7 @@ type Props = {
   currentCat?: string
   totalProducts: number
   priceRange?: { min: number; max: number }
+  locale: string
 }
 
 export default function BranchFilters({
@@ -23,6 +24,7 @@ export default function BranchFilters({
   currentCat,
   totalProducts,
   priceRange,
+  locale,
 }: Props) {
   const router = useRouter()
   const searchParams = useSearchParams()
@@ -72,9 +74,9 @@ export default function BranchFilters({
   }
 
   const sortOptions = [
-    { value: "uusimad", label: "Newest" },
-    { value: "odavamad", label: "Cheapest" },
-    { value: "kallimad", label: "Most Expensive" },
+    { value: "uusimad", label: locale === "et" ? "Uusimad" : "Newest" },
+    { value: "odavamad", label: locale === "et" ? "Odavamad" : "Cheapest" },
+    { value: "kallimad", label: locale === "et" ? "Kallimad" : "Most Expensive" },
   ]
 
   const hasFilters = Boolean(currentSort || currentMin || currentMax || currentInStock)
@@ -85,7 +87,7 @@ export default function BranchFilters({
       <div className="flex items-center gap-0 rounded-2xl border border-soft-border bg-white overflow-hidden h-[48px]">
         {/* Sort pills */}
         <div className="flex items-center gap-1 px-4 border-r border-soft-border h-full">
-          <span className="text-xs font-medium text-muted mr-1 hidden sm:inline">Sort</span>
+          <span className="text-xs font-medium text-muted mr-1 hidden sm:inline">{locale === "et" ? "Sorteeri" : "Sort"}</span>
           {sortOptions.map((opt) => (
             <button
               key={opt.value}
@@ -105,7 +107,7 @@ export default function BranchFilters({
         {/* Price display */}
         <div className="flex items-center px-4 border-r border-soft-border h-full">
           <span className="text-xs text-muted">
-            Price:{" "}
+            {locale === "et" ? "Hind:" : "Price:"}{" "}
             <span className="font-medium text-off-black">
               {currentMin || priceRange?.min || 0}€ – {currentMax || priceRange?.max || "∞"}€
             </span>
@@ -120,7 +122,7 @@ export default function BranchFilters({
             currentInStock ? "text-accent bg-accent-light" : "text-off-black hover:bg-silver"
           }`}
         >
-          In Stock
+          {locale === "et" ? "Laos" : "In Stock"}
         </button>
 
         {/* More filters toggle */}
@@ -139,12 +141,12 @@ export default function BranchFilters({
             <line x1="4" y1="18" x2="20" y2="18" />
             <circle cx="11" cy="18" r="2" fill="currentColor" />
           </svg>
-          Filters
+          {locale === "et" ? "Filtrid" : "Filters"}
         </button>
 
         {/* Product count */}
         <div className="ml-auto px-4 text-xs text-muted hidden md:flex items-center h-full">
-          {totalProducts.toLocaleString("en")} products
+          {totalProducts.toLocaleString("en")} {locale === "et" ? "toodet" : "products"}
         </div>
       </div>
 
@@ -153,7 +155,7 @@ export default function BranchFilters({
         <div className="mt-3 p-5 rounded-2xl border border-soft-border bg-white animate-in slide-in-from-top-2 duration-200">
           <form onSubmit={handlePriceApply} className="flex flex-wrap items-end gap-4">
             <div>
-              <label className="block text-xs font-medium text-muted mb-1.5">Min price</label>
+              <label className="block text-xs font-medium text-muted mb-1.5">{locale === "et" ? "Min hind" : "Min price"}</label>
               <input
                 type="number"
                 value={minPrice}
@@ -164,7 +166,7 @@ export default function BranchFilters({
               />
             </div>
             <div>
-              <label className="block text-xs font-medium text-muted mb-1.5">Max price</label>
+              <label className="block text-xs font-medium text-muted mb-1.5">{locale === "et" ? "Max hind" : "Max price"}</label>
               <input
                 type="number"
                 value={maxPrice}
@@ -178,7 +180,7 @@ export default function BranchFilters({
               type="submit"
               className="h-[38px] px-5 bg-accent hover:bg-accent-dark text-white text-sm font-semibold rounded-xl transition-colors"
             >
-              Apply
+              {locale === "et" ? "Rakenda" : "Apply"}
             </button>
             {hasFilters && (
               <button
@@ -186,7 +188,7 @@ export default function BranchFilters({
                 onClick={handleReset}
                 className="h-[38px] px-4 border border-soft-border text-sm font-medium text-off-black hover:border-accent hover:text-accent rounded-xl transition-colors"
               >
-                Clear All
+                {locale === "et" ? "Tühista kõik" : "Clear All"}
               </button>
             )}
           </form>
@@ -194,7 +196,7 @@ export default function BranchFilters({
           {/* Active filters */}
           {hasFilters && (
             <div className="flex flex-wrap items-center gap-2 mt-4 pt-4 border-t border-soft-border">
-              <span className="text-[10px] uppercase tracking-[0.14em] text-muted">Active:</span>
+              <span className="text-[10px] uppercase tracking-[0.14em] text-muted">{locale === "et" ? "Aktiivne:" : "Active:"}</span>
               {currentSort && (
                 <span className="inline-flex items-center rounded-full bg-accent-light px-3 py-1 text-xs font-medium text-accent">
                   {sortOptions.find((o) => o.value === currentSort)?.label || currentSort}
@@ -202,7 +204,7 @@ export default function BranchFilters({
               )}
               {currentInStock && (
                 <span className="inline-flex items-center rounded-full bg-accent-light px-3 py-1 text-xs font-medium text-accent">
-                  In Stock
+                  {locale === "et" ? "Laos" : "In Stock"}
                 </span>
               )}
               {(currentMin || currentMax) && (

@@ -394,7 +394,7 @@ export default async function CategoryPage({ params, searchParams }: Props) {
                 <span className="font-semibold text-[#1E293B]">
                   {totalCount.toLocaleString("et")}
                 </span>{" "}
-                products
+                {locale === "et" ? "toodet" : "products"}
               </div>
               <ProductGrid
                 fetchParams={{
@@ -420,13 +420,13 @@ export default async function CategoryPage({ params, searchParams }: Props) {
         ) : (
           <div className="bg-white rounded-xl p-12 text-center">
             <p className="text-sm text-[#64748B] mb-4">
-              No products found in this category.
+              {locale === "et" ? "Selles kategoorias tooteid ei leitud." : "No products found in this category."}
             </p>
             <Link
               href={`/${locale}`}
               className="text-[#E8920A] hover:underline font-medium"
             >
-              Browse all categories
+              {locale === "et" ? "Sirvi kõiki kategooriaid" : "Browse all categories"}
             </Link>
           </div>
         )}
