@@ -327,7 +327,13 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
       : defaultSellingPoints
 
     let richDescription: string | null = null
-    if (typeof metadata.sanitized_rich_description === "string" && metadata.sanitized_rich_description.length > 50) {
+    // Locale-aware: eelista ET rich-description'i kui locale=et ja tõlge olemas
+    // (tõlke-pipeline kirjutab metadata.sanitized_rich_description_et). Fallback EN.
+    const richEt = locale === "et" && typeof metadata.sanitized_rich_description_et === "string" && metadata.sanitized_rich_description_et.length > 50
+      ? metadata.sanitized_rich_description_et : null
+    if (richEt) {
+      richDescription = beautifyRichDescription(sanitizeHtml(richEt))
+    } else if (typeof metadata.sanitized_rich_description === "string" && metadata.sanitized_rich_description.length > 50) {
       // Re-run sanitizeHtml — the pre-computed version may have been stored
       // before newer sanitize rules (e.g. orphan CSS selector stripping)
       // were added. Runtime re-sanitize is cheap (~5ms).
