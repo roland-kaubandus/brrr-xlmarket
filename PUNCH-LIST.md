@@ -1,11 +1,15 @@
 # xlmarket — Punch-list (avatud teadaolevad vead)
 
-> Viimati uuendatud: 2026-06-05. Severity: AINULT CRITICAL/BLOCKER või VAJA ÄRA TEHA (HANDBOOK §2).
+> Viimati uuendatud: 2026-06-06. Severity: AINULT CRITICAL/BLOCKER või VAJA ÄRA TEHA (HANDBOOK §2).
+> **Täielik verifitseeritud launch-audit: `outputs/audit-2026-06-06.md`**
 
 ## 🛑 CRITICAL / BLOCKER
 > Praegu CRITICAL avatud punkte EI ole (sait live, email töötab). Allolevad blokeerivad REAALSET MÜÜKI:
 
-- [ ] **Montonio makse pole integreeritud** — ainult stub (`backend/medusa-config.ts:46`), npm paketti pole. Makseid ei töötle. Vaja custom Medusa 2.0 payment provider + webhook + checkout-flow. *(blokeerib müügi)*
+- [x] **Montonio makse INTEGREERITUD** (2026-06-05/06) — custom Medusa 2.0 provider `pp_montonio_montonio` enabled + LIVE (a066f683, 60be26c9, e9f63531). Sandbox-võtmed env-s.
+- [ ] **Montonio end-to-end TESTIMATA** — päris sandbox-makset (korv→redirect→webhook→tellimus) pole kord testitud. *(blokeerib müügi avamise)*
+- [ ] **Õiguslikud lehed ainult EN + viitavad xlmarket.eu** — sisu+footer+render ✅, aga ET puudub + domeen vale (.eu→.ee). *(EU müügi nõue)*
+- [ ] **xlmarket-maintenance konteiner kaaperdab route'i** — ajutiselt peatatud (restart=no), püsiv fix vaja (priority=200 võidab storefront'i IGAL redeploy'l)
 
 ## 📋 VAJA ÄRA TEHA
 
@@ -17,7 +21,7 @@
 - [x] **Admin lehed auth-gate'itud** (2026-06-05) — xl-admin/layout.tsx readAdminSession() → redirect /admin-login. Write-API'd (/api/admin/*) olid juba gate'itud (401).
 
 ### Sisu / tõlked
-- [ ] ET-tõlked pooleli — **75.4% valmis (12900/17105), ~4205 jäänud** (seis 2026-06-05). Runner `/tmp/tr/` batch. 2026-06-04/05: +~4400 tõlgitud (0 broken). Jookseb partiidena, jätkub.
+- [x] **ET-tõlked 100% VALMIS** (17441/17441, 2026-06-06 öine). DB `title_et IS NULL`=0. Runner `/tmp/tr/` batch.
 
 ### Jõudlus
 - [x] **Medusa → mailcow redis NOAUTH** (LAHENDATUD 2026-06-04, commit 4c9a90dc) — medusa on mailcow-võrgus (email), kus 'redis' alias = mailcow redis (parooliga) → NOAUTH → getCategories timeout → kõik medusa-lehed aeglased. Fix: Coolify redisele unikaalne alias `xlmarket-redis`. Tulemus: kat-detail 4.7s→0.078s, email töötab edasi.
