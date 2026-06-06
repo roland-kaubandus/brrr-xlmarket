@@ -134,24 +134,26 @@ export function CmsMarkdown({ body }: { body: string }) {
         }
         if (block.type === "table") {
           return (
-            <table key={i} className="w-full text-[13px] border-collapse mt-[12px]">
-              <thead>
-                <tr>
-                  {block.headers.map((h, j) => (
-                    <th key={j} className="text-left border-b border-[#E2E8F0] py-[8px] font-[600] text-[#1E293B]">{h}</th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {block.rows.map((row, j) => (
-                  <tr key={j}>
-                    {row.map((cell, k) => (
-                      <td key={k} className="border-b border-[#F1F5F9] py-[8px] pr-[16px]">{cell}</td>
+            <div key={i} className="overflow-x-auto mt-[12px]">
+              <table className="w-full text-[13px] border-collapse">
+                <thead>
+                  <tr>
+                    {block.headers.map((h, j) => (
+                      <th key={j} className="text-left border-b border-[#E2E8F0] py-[8px] pr-[16px] font-[600] text-[#1E293B] whitespace-nowrap">{h}</th>
                     ))}
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {block.rows.map((row, j) => (
+                    <tr key={j}>
+                      {row.map((cell, k) => (
+                        <td key={k} className="border-b border-[#F1F5F9] py-[8px] pr-[16px]">{cell}</td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           )
         }
         return null

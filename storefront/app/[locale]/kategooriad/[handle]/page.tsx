@@ -21,11 +21,30 @@ import {
   getL1Ancestor,
   getBreadcrumbTrail,
   getChildrenWithProductCounts,
+  getAllL1,
   nodeName,
   type ChildWithCount,
 } from "@/lib/category-tree"
 
 export const revalidate = 3600
+
+/**
+ * Pre-renderda L1 + L2 kategooriad build-ajal (mõlemad keeled). Väldib külma
+ * ISR-renderit deploy-aknas (kui medusa veel bootib) → ei teki gateway timeout
+ * (nt salon-spa-wellness 7-9s probleem 2026-06-06). L3+ jäävad on-demand ISR.
+ */
+export async function generateStaticParams() {
+  const out: { locale: string; handle: string }[] = []
+  for (const locale of ["et", "en"]) {
+    for (const l1 of getAllL1()) {
+      out.push({ locale, handle: l1.handle })
+      for (const l2 of getChildren(l1.handle)) {
+        out.push({ locale, handle: l2.handle })
+      }
+    }
+  }
+  return out
+}
 
 type Props = {
   params: Promise<{ handle: string; locale: string }>
