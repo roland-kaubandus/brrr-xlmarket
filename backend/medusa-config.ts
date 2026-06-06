@@ -13,29 +13,29 @@ const redisModules: Record<string, unknown>[] = []
 
 if (process.env.CACHE_REDIS_URL) {
   redisModules.push({
-    resolve: "@medusajs/cache-redis",
+    resolve: "@medusajs/medusa/cache-redis",
     options: { redisUrl: process.env.CACHE_REDIS_URL },
   })
 }
 if (process.env.EVENTS_REDIS_URL) {
   redisModules.push({
-    resolve: "@medusajs/event-bus-redis",
+    resolve: "@medusajs/medusa/event-bus-redis",
     options: { redisUrl: process.env.EVENTS_REDIS_URL },
   })
 }
 if (process.env.WE_REDIS_URL) {
   redisModules.push({
-    resolve: "@medusajs/workflow-engine-redis",
+    resolve: "@medusajs/medusa/workflow-engine-redis",
     options: { redis: { redisUrl: process.env.WE_REDIS_URL } },
   })
 }
 if (process.env.LOCKING_REDIS_URL) {
   redisModules.push({
-    resolve: "@medusajs/locking",
+    resolve: "@medusajs/medusa/locking",
     options: {
       providers: [
         {
-          resolve: "@medusajs/locking-redis",
+          resolve: "@medusajs/medusa/locking-redis",
           id: "locking-redis",
           is_default: true,
           options: { redisUrl: process.env.LOCKING_REDIS_URL },
