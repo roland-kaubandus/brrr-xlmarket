@@ -85,19 +85,23 @@ async function fetchCmsPage<T>(key: string, locale: string, revalidate = 60): Pr
   }
 }
 
-async function loadFallback<T>(key: string): Promise<T | null> {
-  try {
-    const mod = await import(`./cms-fallback/${key}.json`)
-    return mod.default as T
-  } catch {
-    return null
+async function loadFallback<T>(key: string, locale: string = "en"): Promise<T | null> {
+  // Proovi locale-spetsiifilist fallback'i (nt legal-terms.et.json), siis baasi (legal-terms.json).
+  for (const name of [`${key}.${locale}`, key]) {
+    try {
+      const mod = await import(`./cms-fallback/${name}.json`)
+      return mod.default as T
+    } catch {
+      // proovi järgmist
+    }
   }
+  return null
 }
 
 async function getPage<T>(key: string, locale: string = "en"): Promise<T | null> {
   const live = await fetchCmsPage<T>(key, locale)
   if (live !== null) return live
-  return loadFallback<T>(key)
+  return loadFallback<T>(key, locale)
 }
 
 export async function getHomepageCms(locale: string = "en"): Promise<HomepageContent | null> {
