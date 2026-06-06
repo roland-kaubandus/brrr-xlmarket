@@ -3,19 +3,27 @@ import { medusaProxy, REGION_ID } from "@/lib/medusa-proxy"
 import { isValidId } from "@/lib/validation"
 
 export async function POST() {
-  try {
-    const res = await medusaProxy("/store/carts", {
-      method: "POST",
-      body: JSON.stringify({ region_id: REGION_ID }),
-    })
-    if (!res.ok) {
-      return NextResponse.json({ error: "Failed to create cart" }, { status: res.status })
+  // STOPGAP: cart-workflow stallib vahelduvalt (5-12s). ~pooled päringud kiired,
+  // seega kuni 3 katset (15s timeout) tabab peaaegu kindlasti õnnestunud katse.
+  let lastStatus = 503
+  for (let attempt = 0; attempt < 3; attempt++) {
+    try {
+      const res = await medusaProxy("/store/carts", {
+        method: "POST",
+        body: JSON.stringify({ region_id: REGION_ID }),
+        timeoutMs: 15000,
+      })
+      if (res.ok) {
+        const data = await res.json()
+        return NextResponse.json(data, { status: res.status })
+      }
+      lastStatus = res.status
+      if (res.status < 500) break // klienditviga → ära korda
+    } catch {
+      lastStatus = 503 // timeout/abort → korda
     }
-    const data = await res.json()
-    return NextResponse.json(data, { status: res.status })
-  } catch {
-    return NextResponse.json({ error: "Failed to connect to server" }, { status: 503 })
   }
+  return NextResponse.json({ error: "Failed to create cart" }, { status: lastStatus })
 }
 
 export async function GET(req: NextRequest) {
