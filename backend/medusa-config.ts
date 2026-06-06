@@ -2,6 +2,49 @@ import { defineConfig, loadEnv } from "@medusajs/framework/utils"
 
 loadEnv(process.env.NODE_ENV || "development", process.cwd())
 
+// ── Redis-backed moodulid (env-driven, in-memory fallback) ──────────────────
+// Cart-stall juur (2026-06-06): Medusa in-memory workflow-engine + locking on
+// AINULT arenduseks — serialiseerivad cart-workflow'd in-process (futex-
+// contention, ~5s stall, paralleelne katastroof). Redis-backed moodulid =
+// Medusa prod-standard. OHUTU: kui redis-URL env PUUDUB → moodul jäetakse välja
+// → jääb in-memory vaikeväärtus. Nii ei muutu prod vaikselt deploy'l — prod
+// läheb redisele alles kui redis-env'id käsitsi seatakse.
+const redisModules: Record<string, unknown>[] = []
+
+if (process.env.CACHE_REDIS_URL) {
+  redisModules.push({
+    resolve: "@medusajs/cache-redis",
+    options: { redisUrl: process.env.CACHE_REDIS_URL },
+  })
+}
+if (process.env.EVENTS_REDIS_URL) {
+  redisModules.push({
+    resolve: "@medusajs/event-bus-redis",
+    options: { redisUrl: process.env.EVENTS_REDIS_URL },
+  })
+}
+if (process.env.WE_REDIS_URL) {
+  redisModules.push({
+    resolve: "@medusajs/workflow-engine-redis",
+    options: { redis: { redisUrl: process.env.WE_REDIS_URL } },
+  })
+}
+if (process.env.LOCKING_REDIS_URL) {
+  redisModules.push({
+    resolve: "@medusajs/locking",
+    options: {
+      providers: [
+        {
+          resolve: "@medusajs/locking-redis",
+          id: "locking-redis",
+          is_default: true,
+          options: { redisUrl: process.env.LOCKING_REDIS_URL },
+        },
+      ],
+    },
+  })
+}
+
 export default defineConfig({
   projectConfig: {
     databaseUrl: process.env.DATABASE_URL,
@@ -83,5 +126,7 @@ export default defineConfig({
         ],
       },
     },
+    // Env-driven redis-moodulid (vt ülal). Tühi kui redis-env'e pole → in-memory.
+    ...redisModules,
   ],
 })
