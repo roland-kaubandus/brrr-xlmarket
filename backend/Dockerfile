@@ -32,6 +32,11 @@ RUN apk add --no-cache dumb-init wget && \
 # Copy the entire built .medusa/server/ as the runtime root
 COPY --from=builder --chown=medusa:medusa /app/.medusa/server/ ./
 COPY --from=builder --chown=medusa:medusa /app/scripts/index-meilisearch.mjs ./scripts/index-meilisearch.mjs
+# Feed-sync-bulk skriptid (Coolify Scheduled Task → bash scripts/feed-sync-bulk.sh)
+COPY --from=builder --chown=medusa:medusa /app/scripts/build-vevor-feed-cache.mjs ./scripts/build-vevor-feed-cache.mjs
+COPY --from=builder --chown=medusa:medusa /app/scripts/feed-bulk-price.mjs ./scripts/feed-bulk-price.mjs
+COPY --from=builder --chown=medusa:medusa /app/scripts/sync-synonyms.mjs ./scripts/sync-synonyms.mjs
+COPY --from=builder --chown=medusa:medusa /app/scripts/feed-sync-bulk.sh ./scripts/feed-sync-bulk.sh
 COPY --from=builder --chown=medusa:medusa /app/src/filters ./src/filters
 COPY --from=builder --chown=medusa:medusa /app/src/data/filter-profiles.yaml ./src/data/filter-profiles.yaml
 
@@ -72,7 +77,7 @@ USER medusa
 
 EXPOSE 9000
 
-HEALTHCHECK --interval=30s --timeout=10s --start-period=300s --retries=5 \
+HEALTHCHECK --interval=30s --timeout=10s --start-period=600s --retries=5 \
     CMD wget --no-verbose --tries=1 --spider http://127.0.0.1:9000/health || exit 1
 
 ENTRYPOINT ["dumb-init", "--"]
