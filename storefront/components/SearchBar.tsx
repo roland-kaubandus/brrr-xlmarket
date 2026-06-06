@@ -341,7 +341,7 @@ export default function SearchBar({ locale = "en", variant = "dark" }: { locale?
 
       {loading && query && (
         <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-lg shadow-sm z-50 px-4 py-4 text-center">
-          <span className="text-[14px] text-[#64748B]">Searching...</span>
+          <span className="text-[14px] text-[#64748B]">{locale === "et" ? "Otsin..." : "Searching..."}</span>
         </div>
       )}
     </div>

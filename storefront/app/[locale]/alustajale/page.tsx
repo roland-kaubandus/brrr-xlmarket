@@ -135,6 +135,7 @@ function priceFmt(n: number) {
 
 export default async function AlustajalePage({ params }: { params: Promise<{ locale: string }> }) {
   const locale = (await params).locale
+  const et = locale === "et"
   const cms = (await getStarterKitsCms(locale)) ?? (starterKitsFallback as unknown as { kits: CmsKit[] })
   const KITS = cms.kits
 
@@ -154,32 +155,34 @@ export default async function AlustajalePage({ params }: { params: Promise<{ loc
             aria-label="Breadcrumb"
           >
             <Link href={`/${locale}`} className="hover:text-[#D97706] transition-colors">
-              Home
+              {et ? "Avaleht" : "Home"}
             </Link>
             <span className="mx-[8px] text-white/30">/</span>
-            <span className="text-white/90">Starter Kits</span>
+            <span className="text-white/90">{et ? "Stardikomplektid" : "Starter Kits"}</span>
           </nav>
           <span className="inline-block bg-[#D97706] text-white text-[11px] font-bold uppercase tracking-[0.12em] px-[10px] py-[4px] mb-[18px]">
-            Starter Kits
+            {et ? "Stardikomplektid" : "Starter Kits"}
           </span>
           <h1 className="text-[36px] sm:text-[48px] lg:text-[56px] font-[800] leading-[1.05] text-white tracking-[-0.025em] max-w-[880px] mb-[18px] font-[family-name:var(--font-dm-sans)]">
-            Everything your new business needs. One order.
+            {et ? "Kõik, mida su uus äri vajab. Üks tellimus." : "Everything your new business needs. One order."}
           </h1>
           <p className="text-[15px] sm:text-[17px] text-white/70 max-w-[680px] leading-relaxed mb-[28px] font-[family-name:var(--font-dm-sans)]">
-            Six turnkey equipment packages, assembled from our 16,000+ product catalogue. One invoice, one delivery, one account manager. VAT 24% included — no surprises at checkout.
+            {et
+              ? "Kuus võtmed-kätte seadmekomplekti, kokku pandud meie 16 000+ toote kataloogist. Üks arve, üks tarne, üks kliendihaldur. Käibemaks 24% sees — kassas üllatusi ei tule."
+              : "Six turnkey equipment packages, assembled from our 16,000+ product catalogue. One invoice, one delivery, one account manager. VAT 24% included — no surprises at checkout."}
           </p>
           <div className="flex flex-wrap gap-[10px]">
             <Link
               href={`/${locale}/arikliendile`}
               className="inline-flex items-center gap-[8px] px-[22px] py-[13px] bg-[#D97706] text-white text-[14px] font-[600] hover:bg-[#B45309] transition-colors font-[family-name:var(--font-dm-sans)]"
             >
-              Request a custom quote <ArrowRight size={15} strokeWidth={2.5} />
+              {et ? "Küsi kohandatud pakkumist" : "Request a custom quote"} <ArrowRight size={15} strokeWidth={2.5} />
             </Link>
             <a
               href="#kits"
               className="inline-flex items-center gap-[8px] px-[22px] py-[13px] border border-white/25 text-white/90 text-[14px] font-[600] hover:border-white/50 transition-colors font-[family-name:var(--font-dm-sans)]"
             >
-              See all six kits
+              {et ? "Vaata kõiki kuut komplekti" : "See all six kits"}
             </a>
           </div>
         </div>
@@ -190,14 +193,14 @@ export default async function AlustajalePage({ params }: { params: Promise<{ loc
         <div className="flex items-end justify-between mb-[24px] flex-wrap gap-[12px]">
           <div>
             <p className="text-[11px] uppercase tracking-[0.14em] text-[#D97706] font-[700] mb-[6px] font-[family-name:var(--font-dm-sans)]">
-              Now live · 3 verticals
+              {et ? "Nüüd elus · 3 valdkonda" : "Now live · 3 verticals"}
             </p>
             <h2 className="text-[24px] sm:text-[32px] font-[800] text-[#1E293B] font-[family-name:var(--font-dm-sans)]">
-              Start your business on a single page
+              {et ? "Alusta oma äri ühelt lehelt" : "Start your business on a single page"}
             </h2>
           </div>
           <p className="text-[13px] text-[#64748B] max-w-[360px] font-[family-name:var(--font-dm-sans)]">
-            Every vertical: 3-tier starter kit, FAQ, delivery reality, financing info.
+            {et ? "Iga valdkond: 3-tasemeline stardikomplekt, KKK, tarne tegelikkus, finantseerimisinfo." : "Every vertical: 3-tier starter kit, FAQ, delivery reality, financing info."}
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-[16px]">
@@ -211,7 +214,7 @@ export default async function AlustajalePage({ params }: { params: Promise<{ loc
               >
                 <div className="flex items-start justify-between mb-[12px]">
                   <span className="inline-block bg-[#D97706] text-white text-[10px] font-bold uppercase tracking-[0.12em] px-[8px] py-[3px]">
-                    Vertical
+                    {et ? "Valdkond" : "Vertical"}
                   </span>
                   <ArrowRight size={16} strokeWidth={2.2} className="text-white/40 group-hover:text-[#D97706] group-hover:translate-x-[2px] transition-all" />
                 </div>
@@ -222,7 +225,7 @@ export default async function AlustajalePage({ params }: { params: Promise<{ loc
                   {l.tagline}
                 </p>
                 <div className="mt-[16px] pt-[14px] border-t border-white/10 text-[11px] text-white/50 font-[family-name:var(--font-dm-sans)]">
-                  3 tiers · FAQ · Delivery · Financing
+                  {et ? "3 taset · KKK · Tarne · Finantseerimine" : "3 tiers · FAQ · Delivery · Financing"}
                 </div>
               </Link>
             )
@@ -235,14 +238,14 @@ export default async function AlustajalePage({ params }: { params: Promise<{ loc
         <div className="flex items-end justify-between mb-[28px] flex-wrap gap-[12px]">
           <div>
             <p className="text-[11px] uppercase tracking-[0.14em] text-[#D97706] font-[700] mb-[6px] font-[family-name:var(--font-dm-sans)]">
-              Six ready kits
+              {et ? "Kuus valmis komplekti" : "Six ready kits"}
             </p>
             <h2 className="text-[24px] sm:text-[32px] font-[800] text-[#1E293B] font-[family-name:var(--font-dm-sans)]">
-              Pick the one that matches what you are opening.
+              {et ? "Vali see, mis sobib su avatava äriga." : "Pick the one that matches what you are opening."}
             </h2>
           </div>
           <p className="text-[13px] text-[#64748B] max-w-[360px] font-[family-name:var(--font-dm-sans)]">
-            Every kit is a starting point — we adjust the configuration to your space and budget during the quote.
+            {et ? "Iga komplekt on lähtepunkt — kohandame konfiguratsiooni sinu ruumi ja eelarve järgi pakkumise käigus." : "Every kit is a starting point — we adjust the configuration to your space and budget during the quote."}
           </p>
         </div>
 
@@ -281,20 +284,20 @@ export default async function AlustajalePage({ params }: { params: Promise<{ loc
                   <div className="pt-[14px] border-t border-[#F1F5F9] flex items-end justify-between">
                     <div>
                       <div className="text-[10px] uppercase tracking-[0.12em] text-[#94A3B8] font-[600] font-[family-name:var(--font-dm-sans)]">
-                        From
+                        {et ? "Alates" : "From"}
                       </div>
                       <div className="text-[22px] font-[800] text-[#1E293B] tabular-nums font-[family-name:var(--font-dm-sans)]">
                         {priceFmt(kit.priceFrom)}
                       </div>
                       <div className="text-[10px] text-[#94A3B8] font-[family-name:var(--font-dm-sans)]">
-                        VAT 24% incl.
+                        {et ? "Käibemaks 24% sees" : "VAT 24% incl."}
                       </div>
                     </div>
                     <Link
                       href={`/${locale}/arikliendile#quote`}
                       className="inline-flex items-center gap-[6px] text-[13px] font-[600] text-[#D97706] hover:text-[#B45309] font-[family-name:var(--font-dm-sans)]"
                     >
-                      Request quote <ArrowRight size={13} strokeWidth={2.5} />
+                      {et ? "Küsi pakkumist" : "Request quote"} <ArrowRight size={13} strokeWidth={2.5} />
                     </Link>
                   </div>
                 </div>
@@ -309,10 +312,18 @@ export default async function AlustajalePage({ params }: { params: Promise<{ loc
         <div className="max-w-[1280px] mx-auto px-[16px] sm:px-[24px] py-[48px] sm:py-[64px]">
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-[24px]">
             {[
-              { k: "One order", v: "Every machine, accessory, and spare from the same invoice and delivery." },
-              { k: "Two-year warranty", v: "Every tool, machine, and appliance. Extensions available." },
-              { k: "Net-30 for approved businesses", v: "Pay after you open the doors. No card surcharge on bulk orders." },
-              { k: "Real people, not a portal", v: "One account manager from quote to delivery to service." },
+              et
+                ? { k: "Üks tellimus", v: "Iga masin, tarvik ja varuosa samalt arvelt ja samast tarnest." }
+                : { k: "One order", v: "Every machine, accessory, and spare from the same invoice and delivery." },
+              et
+                ? { k: "Kaheaastane garantii", v: "Iga tööriist, masin ja seade. Pikendused saadaval." }
+                : { k: "Two-year warranty", v: "Every tool, machine, and appliance. Extensions available." },
+              et
+                ? { k: "Net-30 kinnitatud ettevõtetele", v: "Maksa pärast uste avamist. Hulgitellimustel puudub kaardimakse lisatasu." }
+                : { k: "Net-30 for approved businesses", v: "Pay after you open the doors. No card surcharge on bulk orders." },
+              et
+                ? { k: "Päris inimesed, mitte portaal", v: "Üks kliendihaldur pakkumisest tarneni ja hoolduseni." }
+                : { k: "Real people, not a portal", v: "One account manager from quote to delivery to service." },
             ].map(item => (
               <div key={item.k}>
                 <div className="text-[14px] font-[700] text-[#1E293B] mb-[6px] font-[family-name:var(--font-dm-sans)]">
@@ -332,17 +343,17 @@ export default async function AlustajalePage({ params }: { params: Promise<{ loc
         <div className="border border-[#1E293B] bg-[#0F172A] text-white p-[32px] sm:p-[48px] flex flex-col lg:flex-row items-start lg:items-center gap-[24px] justify-between">
           <div className="max-w-[620px]">
             <h3 className="text-[22px] sm:text-[28px] font-[800] mb-[10px] tracking-[-0.015em] font-[family-name:var(--font-dm-sans)]">
-              Not exactly your business? Let&apos;s build a custom kit.
+              {et ? "Ei sobi täpselt sinu äriga? Ehitame kohandatud komplekti." : "Not exactly your business? Let’s build a custom kit."}
             </h3>
             <p className="text-[14px] text-white/70 font-[family-name:var(--font-dm-sans)]">
-              Tell us what you are opening and we return a configured quote within 48 hours.
+              {et ? "Räägi meile, mida avad, ja saadame seadistatud pakkumise 48 tunni jooksul." : "Tell us what you are opening and we return a configured quote within 48 hours."}
             </p>
           </div>
           <Link
             href={`/${locale}/arikliendile#quote`}
             className="inline-flex items-center gap-[8px] px-[26px] py-[14px] bg-[#D97706] text-white text-[14px] font-[700] hover:bg-[#B45309] transition-colors font-[family-name:var(--font-dm-sans)]"
           >
-            Talk to an account manager <ArrowRight size={15} strokeWidth={2.5} />
+            {et ? "Räägi kliendihalduriga" : "Talk to an account manager"} <ArrowRight size={15} strokeWidth={2.5} />
           </Link>
         </div>
       </section>

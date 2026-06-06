@@ -296,9 +296,9 @@ export default function HomepageShell({ locale, l1Nodes, slides, promos, navShor
       {/* ═══════ CATEGORY EXPLORER ═══════ */}
       <div className="hp-explorer-header">
         <div className="hp-explorer-header-inner">
-          <h2>Explore Categories</h2>
+          <h2>{loc === "et" ? "Sirvi kategooriaid" : "Explore Categories"}</h2>
           <div className="hp-line" />
-          <span className="hp-count">18 categories &middot; 16,000+ products</span>
+          <span className="hp-count">{loc === "et" ? "18 kategooriat · 16 000+ toodet" : "18 categories · 16,000+ products"}</span>
         </div>
       </div>
 

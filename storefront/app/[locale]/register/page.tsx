@@ -24,7 +24,7 @@ export default function RegisterPage() {
     setLoading(true)
 
     try {
-      if (password.length < 8) throw new Error("Password must be at least 8 characters")
+      if (password.length < 8) throw new Error(locale === "et" ? "Parool peab olema vähemalt 8 tähemärki" : "Password must be at least 8 characters")
 
       const { token } = await register(email, password)
       setToken(token)
@@ -33,7 +33,7 @@ export default function RegisterPage() {
       posthog.capture("user_registered", { email })
       router.push(`/${locale}/account`)
     } catch (err: any) {
-      setError(err.message || "Registration failed")
+      setError(err.message || (locale === "et" ? "Registreerimine ebaõnnestus" : "Registration failed"))
     } finally {
       setLoading(false)
     }
@@ -42,11 +42,11 @@ export default function RegisterPage() {
   return (
     <div className="min-h-[70vh] flex items-center justify-center px-4 py-12">
       <div className="w-full max-w-[420px]">
-        <h1 className="text-[28px] font-bold text-[#1E293B] mb-2">Create Account</h1>
+        <h1 className="text-[28px] font-bold text-[#1E293B] mb-2">{locale === "et" ? "Loo konto" : "Create Account"}</h1>
         <p className="text-sm text-[#64748B] mb-8">
-          Already have an account?{" "}
+          {locale === "et" ? "Sul on juba konto?" : "Already have an account?"}{" "}
           <Link href={`/${locale}/login`} className="text-[#D97706] font-medium hover:underline">
-            Sign In
+            {locale === "et" ? "Logi sisse" : "Sign In"}
           </Link>
         </p>
 
@@ -60,7 +60,7 @@ export default function RegisterPage() {
           <div className="grid grid-cols-2 gap-3">
             <div>
               <label htmlFor="firstName" className="block text-sm font-medium text-[#1E293B] mb-1.5">
-                First Name
+                {locale === "et" ? "Eesnimi" : "First Name"}
               </label>
               <input
                 id="firstName"
@@ -73,7 +73,7 @@ export default function RegisterPage() {
             </div>
             <div>
               <label htmlFor="lastName" className="block text-sm font-medium text-[#1E293B] mb-1.5">
-                Last Name
+                {locale === "et" ? "Perekonnanimi" : "Last Name"}
               </label>
               <input
                 id="lastName"
@@ -88,7 +88,7 @@ export default function RegisterPage() {
 
           <div>
             <label htmlFor="email" className="block text-sm font-medium text-[#1E293B] mb-1.5">
-              Email
+              {locale === "et" ? "E-post" : "Email"}
             </label>
             <input
               id="email"
@@ -103,7 +103,7 @@ export default function RegisterPage() {
 
           <div>
             <label htmlFor="password" className="block text-sm font-medium text-[#1E293B] mb-1.5">
-              Password
+              {locale === "et" ? "Parool" : "Password"}
             </label>
             <input
               id="password"
@@ -113,7 +113,7 @@ export default function RegisterPage() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               className="w-full px-4 py-3 rounded-xl border border-[#E2E8F0] text-[#1E293B] text-sm focus:outline-none focus:ring-2 focus:ring-[#D97706]/30 focus:border-[#D97706] transition-all"
-              placeholder="At least 8 characters"
+              placeholder={locale === "et" ? "Vähemalt 8 tähemärki" : "At least 8 characters"}
             />
           </div>
 
@@ -122,13 +122,14 @@ export default function RegisterPage() {
             disabled={loading}
             className="w-full py-3.5 bg-[#D97706] hover:bg-[#B45309] disabled:bg-[#D97706]/50 text-white font-semibold rounded-xl transition-colors text-sm"
           >
-            {loading ? "Creating account..." : "Create Account"}
+            {loading ? (locale === "et" ? "Loon kontot..." : "Creating account...") : (locale === "et" ? "Loo konto" : "Create Account")}
           </button>
 
           <p className="text-xs text-[#94A3B8] text-center">
-            By creating an account, you agree to our{" "}
-            <Link href={`/${locale}/tingimused`} className="underline">Terms</Link> and{" "}
-            <Link href={`/${locale}/privaatsus`} className="underline">Privacy Policy</Link>.
+            {locale === "et" ? "Konto loomisega nõustud meie" : "By creating an account, you agree to our"}{" "}
+            <Link href={`/${locale}/tingimused`} className="underline">{locale === "et" ? "tingimustega" : "Terms"}</Link>{" "}
+            {locale === "et" ? "ja" : "and"}{" "}
+            <Link href={`/${locale}/privaatsus`} className="underline">{locale === "et" ? "privaatsuspoliitikaga" : "Privacy Policy"}</Link>.
           </p>
         </form>
       </div>
