@@ -64,22 +64,26 @@ export async function GET(request: NextRequest) {
       attributesToHighlight: ["title"],
     })
 
-    return NextResponse.json({
-      hits: result.hits.map(hit => ({
-        id: hit.id,
-        title: hit.title,
-        handle: hit.handle,
-        thumbnail: hit.thumbnail,
-        price: hit.price,
-        categories: hit.categories ?? [],
-        _formatted: hit._formatted,
-      })),
-      totalHits: result.totalHits || result.estimatedTotalHits || 0,
-      query: result.query,
-      processingTimeMs: result.processingTimeMs,
-      facetDistribution: result.facetDistribution,
-      facetStats: result.facetStats,
-    })
+    return NextResponse.json(
+      {
+        hits: result.hits.map(hit => ({
+          id: hit.id,
+          title: hit.title,
+          handle: hit.handle,
+          thumbnail: hit.thumbnail,
+          price: hit.price,
+          categories: hit.categories ?? [],
+          _formatted: hit._formatted,
+        })),
+        totalHits: result.totalHits || result.estimatedTotalHits || 0,
+        query: result.query,
+        processingTimeMs: result.processingTimeMs,
+        facetDistribution: result.facetDistribution,
+        facetStats: result.facetStats,
+      },
+      // Browse-cache (2a): otsingu-tulemused 5min + 10min SWR.
+      { headers: { "Cache-Control": "public, s-maxage=300, stale-while-revalidate=600" } }
+    )
   } catch (e) {
     console.error("[api/search] Meili failure:", e instanceof Error ? e.message : e)
     return NextResponse.json({ hits: [], totalHits: 0, query: q, error: "Search failed" }, { status: 503 })

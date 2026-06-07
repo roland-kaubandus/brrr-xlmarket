@@ -14,6 +14,18 @@ const REDIRECT_PREFIXES = ['/kategooriad/', '/haru/']
 const LEGACY_SEARCH_SEGMENT = '/search'
 const SEARCH_SEGMENT = '/otsing'
 
+// KRIITILINE (browse-cache samm 2a): user-spetsiifilised lehed mida CDN/cache
+// EI TOHI KUNAGI cache'ida (muidu serveerid ühe kliendi cart'i/konto teisele).
+// Need on "use client" (shell ei sisalda SSR user-data) AGA no-store = defense-
+// in-depth + CDN-ohutus. Browse-lehed (toode/kategooriad/otsing) cache'itakse
+// ISR'iga (revalidate=3600) — neid SIIN ei puudutata.
+const NO_STORE_SEGMENTS = ['ostukorv', 'account', 'tellimus', 'login', 'register', 'vordlus']
+function isDynamicUserPath(pathname: string): boolean {
+  // /{locale}/{segment}...
+  const parts = pathname.split('/').filter(Boolean) // ['et','ostukorv',...]
+  return parts.length >= 2 && NO_STORE_SEGMENTS.includes(parts[1])
+}
+
 const SLUG_REDIRECTS: Record<string, string> = (slugRedirectsData as {
   redirects: Record<string, string>
 }).redirects
@@ -106,6 +118,10 @@ export function middleware(request: NextRequest) {
       path: '/',
       sameSite: 'lax',
     })
+    // User-spetsiifilised lehed: keela igasugune cache (CDN + brauser).
+    if (isDynamicUserPath(pathname)) {
+      response.headers.set('Cache-Control', 'private, no-store, max-age=0, must-revalidate')
+    }
     return response
   }
 

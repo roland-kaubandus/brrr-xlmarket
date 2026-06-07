@@ -139,12 +139,16 @@ export async function GET(request: NextRequest) {
     const products = result.hits.map((hit) => mapMeiliHitToProduct(hit, locale))
     const enrichedProducts = await enrichMissingPrices(products)
 
-    return NextResponse.json({
-      products: enrichedProducts,
-      totalHits: result.totalHits || result.estimatedTotalHits || 0,
-      facetDistribution: result.facetDistribution,
-      facetStats: result.facetStats,
-    })
+    return NextResponse.json(
+      {
+        products: enrichedProducts,
+        totalHits: result.totalHits || result.estimatedTotalHits || 0,
+        facetDistribution: result.facetDistribution,
+        facetStats: result.facetStats,
+      },
+      // Browse-cache (2a): listing/filter-tulemused — lühem aken (hind/laoseis) 5min + 10min SWR.
+      { headers: { "Cache-Control": "public, s-maxage=300, stale-while-revalidate=600" } }
+    )
   } catch (e) {
     console.error("[api/products] Meili failure:", e instanceof Error ? e.message : e)
     return NextResponse.json(

@@ -47,7 +47,20 @@ node scripts/build-vevor-feed-cache.mjs || { echo "VIGA: feed-cache"; exit 1; }
 echo "[4/5 $(ts)] Meili reindex (üks kord)..."
 node scripts/index-meilisearch.mjs 2>&1 | grep -vE "^  [0-9]+/" | tail -8 || { echo "VIGA: reindex"; exit 1; }
 
-echo "[5/5 $(ts)] Synonyms re-sync..."
+echo "[5/6 $(ts)] Synonyms re-sync..."
 node scripts/sync-synonyms.mjs || echo "HOIATUS: synonyms sync ebaõnnestus (mittekriitiline)"
+
+# [6/6] Browse-cache invalidatsioon (samm 2a). Meili on nüüd värske → puhasta Next
+# ISR-cache avaleht/listing'ult (toote-detail bounded ISR=3600, hind tuleb värskest
+# Meili'st). Gated: ainult kui REVALIDATE_SECRET + STOREFRONT_URL seatud (muidu skip).
+# Browse (ProductGrid) loeb Meili'st otse → juba värske ilma selleta.
+echo "[6/6 $(ts)] Browse-cache revalidate..."
+if [ -n "$REVALIDATE_SECRET" ] && [ -n "$STOREFRONT_URL" ]; then
+  curl -fsS --max-time 30 -X POST "$STOREFRONT_URL/api/revalidate" \
+    -H "Authorization: Bearer $REVALIDATE_SECRET" -H "Content-Type: application/json" \
+    -d '{"all":true}' && echo "  revalidate OK" || echo "  HOIATUS: revalidate ebaõnnestus (mittekriitiline, ISR=3600 fallback)"
+else
+  echo "  vahele jäetud (REVALIDATE_SECRET/STOREFRONT_URL seadmata) — ISR=3600 bounded"
+fi
 
 echo "=== FEED-SYNC-BULK valmis $(date -u +%Y-%m-%dT%H:%M:%S) ==="
