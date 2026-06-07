@@ -54,6 +54,10 @@ RUN npm ci --omit=dev --no-audit --no-fund && npm cache clean --force
 COPY --from=builder --chown=medusa:medusa /app/debug-blocked-at.cjs ./debug-blocked-at.cjs
 COPY --from=builder --chown=medusa:medusa /app/node_modules/blocked-at ./node_modules/blocked-at
 
+# --require alles NÜÜD (peale npm ci + COPY), et build-aegne npm ci EI prooviks
+# faili laadida. Aktiveerub ainult kui DEBUG_BLOCKED_AT env seatud (vt .cjs).
+ENV NODE_OPTIONS="--no-network-family-autoselection --require /app/debug-blocked-at.cjs"
+
 # The Meilisearch plugin ships one-shot cron jobs that run a full product and
 # category reindex during Medusa startup. On the live catalog this delays the
 # API listener long enough for Coolify health checks to fail and leaves the
