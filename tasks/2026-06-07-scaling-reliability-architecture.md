@@ -102,8 +102,9 @@ Black-box A/B jõudis piirini (degradatsioon ei taastu kohe). Edasi: **õige koo
 **Faas 2 — browse-cache + CDN:**
 2. Toote-/listing-lehed täielikult cache'itavaks (Next ISR/route-cache) — ✅ **app-tasand tehtud staging'us** (samm 2a, commit a77a7f08): browse-API s-maxage, dünaamilised lehed no-store, /api/revalidate + feed-sync hook. 8-parallel /api/product 0.014s (oli 25s freeze). Caveat: toode-leht response no-store (Next 15 vaikimisi; server-side full-route-cache töötab; CDN-html-edge = punkt 3).
 3. Cloudflare edge-cache aktiveeri + cache-invalideerimine feed-sync'il
-   - 🔴 **BLOKEERITUD: .ee NS-delegatsioon KIRJAVIGA** (diagnoos 2026-06-07, read-only DNS). Register delegeerib `edaard.ns.cloudflare.com` (kirjaviga, ei eksisteeri/ei resolveeru) + `penny.ns.cloudflare.com` (õige). Cloudflare nõuab MÕLEMAT määratud NS-i (`edward`+`penny`) → zone jääb **Pending**, ei aktiveeru. DNSSEC EI blokeeri (DS/DNSKEY puuduvad).
-   - **Parandus (Tarmo, .ee registrari paneel — Code ei saa registrit muuta):** `edaard` → `edward`, `penny` jätta. Propagatsioon ~6h (NS TTL) → Cloudflare auto-aktiveerib. SEEJÄREL: A-rekord Proxied (oranž) + edge-cache reeglid + purge feed-sync'il.
+   - ✅ **zone AKTIIVNE** (2026-06-07 — NS-typo `edaard`→`edward` parandatud Tarmo poolt, propageeris). VERIFY: sait läbi CF (cf-ray, server: cloudflare), SSL kehtiv (Google Trust Services edge-cert), `/`→307 /et (locale, mitte loop), avaleht/cart/admin 200. **Email terve:** MX (mh7/mh9.elkdata.ee), SPF/DKIM/DMARC TXT alles, mail-host'id DNS-only (185.7.x, mitte CF-proxied) → SMTP OK. admin = DNS-only.
+   - ⚠ Email-watch: SPF `a`-mehhanism resolveerib nüüd CF-IP-le → kui transaktsiooni-mail saadetakse origin-serverist (mailcow 65.21) otse, lisa 65.21 SPF-i (inbound + elkdata-mail OK).
+   - **JÄRGMINE (peale 2a→prod):** CF cache-reeglid (cache browse-HTML toode/listing/kategooriad override no-store; bypass cart/checkout/admin/api-cart) + purge feed-sync'il. Praegu cf-cache-status=DYNAMIC (reegleid pole → kõik origin'i). NB: toode-leht vahelduvalt aeglane origin-renderil → CF-cache lahendab.
 
 **Faas 3 — cart-skaleerimine ✋:**
 4. PgBouncer staging'usse + pool-sizing koordineeri

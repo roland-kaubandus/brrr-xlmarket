@@ -26,7 +26,7 @@
 | Fix #1 (field-trim + Meili-hind) → prod | ✅ tehtud (commit 0119c2d3) |
 | DB pool 10/50, LOG_LEVEL=error → prod | ✅ tehtud |
 | Browse-cache app-tasand (Next ISR + s-maxage API + /api/revalidate) | ✅ tehtud staging'us (samm 2a, commit a77a7f08) |
-| Cloudflare edge-cache | 🔴 BLOKEERITUD: .ee NS kirjaviga `edaard`→`edward` (Tarmo registrar-paneel; ~6h propag → CF auto-aktiveerib). DNSSEC ei blokeeri. |
+| Cloudflare edge-cache | ✅ **zone AKTIIVNE** (NS-fix töötas 2026-06-07): sait läbi CF (cf-ray, SSL kehtiv), email DNS terve (MX/SPF/DKIM/DMARC alles, mail-host DNS-only). Järgmine: CF cache-reeglid (peale 2a→prod). cf-cache-status veel DYNAMIC (reegleid pole). |
 | PgBouncer + replicad + Traefik-LB + worker (Coolify-compose) | ⏭️ Samm 3 (POC ✅ staging'us) |
 | Resilient storefront-fallback + rolling/zero-downtime deploy | ⏭️ Samm 4 |
 | Monitooring (event-loop-lag, latents, pg-conn) + alerting | ⏭️ Samm 4 |
