@@ -185,10 +185,14 @@ export const getProduct = cache(async function getProduct(handle: string): Promi
   try {
     const res = await medusaFetch<ProductsResponse>(
       // Cart-stall juur (2026-06-07): query.graph SÜGAV relatsiooni-laiendus
-      // (eriti `*categories` parent-ahel = 15.8s 8-paralleelselt) ujutab event-loop'i.
-      // Trimmitud miinimumini mida toote-detail UI päriselt renderdab — wildcardid
-      // (*variants, *options, +categories) → spetsiifilised fieldid.
-      `/store/products?handle=${handle}&region_id=${REGION_ID}&fields=title,handle,thumbnail,+metadata,images.id,images.url,categories.id,categories.name,categories.handle,variants.id,variants.title,variants.sku,*variants.calculated_price,variants.inventory_quantity,variants.options.id,variants.options.value,variants.options.option_id,options.id,options.title,options.values.id,options.values.value`,
+      // (`*categories` parent-ahel 15.8s + `calculated_price` pricing-moodul 9.9s
+      // 8-paralleelselt) ujutab event-loop'i → freeze. KÕIK 17105 toodet on
+      // 1-variant + Meili price === Medusa calc_price → hind/stock tuleb Meili'st
+      // (route). Medusa'st AINULT: metadata (JSONB column, odav — _et+rich desc),
+      // images (odav 0.12s — galerii), categories MINIMAALSED scalar-fieldid (EI
+      // wildcard → väldib parent-ahelat), variant.id (add-to-cart jaoks).
+      // EI: calculated_price, inventory_quantity, options, *variants/*categories.
+      `/store/products?handle=${handle}&region_id=${REGION_ID}&fields=title,handle,thumbnail,+metadata,images.id,images.url,categories.id,categories.name,categories.handle,variants.id,variants.title,variants.sku`,
       { revalidate: 3600 } // cache 5 min
     )
     return res.products[0] || null

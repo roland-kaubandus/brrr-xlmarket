@@ -216,7 +216,14 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
       ? getProductDescription(meiliHit, locale)
       : (metaDescEt || product.description || "")
     const variant = product.variants?.[0]
-    const price = variant?.calculated_price
+    // Hind Meili'st (kõik tooted 1-variant, Meili price === Medusa calc_price).
+    // Väldib Medusa `calculated_price` pricing-moodul query.graph-laiendust mis
+    // concurrency'l ujutab event-loop'i (cart-stall juur 2026-06-07). Fallback
+    // Medusa calc_price'ile kui Meili-hit puudub.
+    const meiliPriceEur = typeof (meiliHit as { price?: number } | null)?.price === "number" ? (meiliHit as { price: number }).price : null
+    const price = meiliPriceEur != null
+      ? { calculated_amount: Math.round(meiliPriceEur * 100), original_amount: Math.round(meiliPriceEur * 100), currency_code: "eur" }
+      : variant?.calculated_price
 
     // Gallery images
     const metaGalleryImages: Array<{ id: string; url: string }> = Array.isArray(metadata.gallery_images)
