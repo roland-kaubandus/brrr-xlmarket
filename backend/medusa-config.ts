@@ -49,6 +49,17 @@ export default defineConfig({
   projectConfig: {
     databaseUrl: process.env.DATABASE_URL,
     redisUrl: process.env.REDIS_URL,
+    // DB connection-pool (env-driven, prod-ohutu vaikeväärtus = Medusa default).
+    // Cart-stall juur (2026-06-07, blocked-at): koormuse all päringud blokeeruvad
+    // knex `ensureConnection`-is — default pool min:2/max:10 ammendub (iga store-
+    // päring vajab ≥2 ühendust: pubkey-middleware + sisupäring). min hoiab
+    // ühendused soojas (väldib aeglast külma pg-connect'i ~13s).
+    databaseDriverOptions: {
+      pool: {
+        min: parseInt(process.env.DB_POOL_MIN || "2", 10),
+        max: parseInt(process.env.DB_POOL_MAX || "10", 10),
+      },
+    },
     http: {
       storeCors: process.env.STORE_CORS || "http://localhost:3030",
       adminCors: process.env.ADMIN_CORS || "http://localhost:7001",
