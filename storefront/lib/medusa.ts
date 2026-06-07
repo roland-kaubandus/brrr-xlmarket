@@ -184,7 +184,11 @@ export async function getProductsByHandles(handles: string[]): Promise<Product[]
 export const getProduct = cache(async function getProduct(handle: string): Promise<Product | null> {
   try {
     const res = await medusaFetch<ProductsResponse>(
-      `/store/products?handle=${handle}&region_id=${REGION_ID}&fields=*variants,*variants.calculated_price,*variants.options,*variants.inventory_quantity,*options,+metadata,+images,+categories`,
+      // Cart-stall juur (2026-06-07): query.graph SÜGAV relatsiooni-laiendus
+      // (eriti `*categories` parent-ahel = 15.8s 8-paralleelselt) ujutab event-loop'i.
+      // Trimmitud miinimumini mida toote-detail UI päriselt renderdab — wildcardid
+      // (*variants, *options, +categories) → spetsiifilised fieldid.
+      `/store/products?handle=${handle}&region_id=${REGION_ID}&fields=title,handle,thumbnail,+metadata,images.id,images.url,categories.id,categories.name,categories.handle,variants.id,variants.title,variants.sku,*variants.calculated_price,variants.inventory_quantity,variants.options.id,variants.options.value,variants.options.option_id,options.id,options.title,options.values.id,options.values.value`,
       { revalidate: 3600 } // cache 5 min
     )
     return res.products[0] || null
