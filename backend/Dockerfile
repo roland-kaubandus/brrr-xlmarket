@@ -47,6 +47,13 @@ COPY --from=builder --chown=medusa:medusa /app/src/data/filter-profiles.yaml ./s
 # Install production deps using the package.json from .medusa/server
 RUN npm ci --omit=dev --no-audit --no-fund && npm cache clean --force
 
+# Debug-preload (event-loop block tuvastaja) — AKTIIVNE ainult kui DEBUG_BLOCKED_AT
+# env + NODE_OPTIONS=--require /app/debug-blocked-at.cjs (ainult staging-uuring).
+# blocked-at = 0 sõltuvust (standalone async_hooks). npm ci wipe'b node_modules,
+# seega kopeerime PEALE seda. Prod-ohutu: ilma env/--require'ita no-op.
+COPY --from=builder --chown=medusa:medusa /app/debug-blocked-at.cjs ./debug-blocked-at.cjs
+COPY --from=builder --chown=medusa:medusa /app/node_modules/blocked-at ./node_modules/blocked-at
+
 # The Meilisearch plugin ships one-shot cron jobs that run a full product and
 # category reindex during Medusa startup. On the live catalog this delays the
 # API listener long enough for Coolify health checks to fail and leaves the
