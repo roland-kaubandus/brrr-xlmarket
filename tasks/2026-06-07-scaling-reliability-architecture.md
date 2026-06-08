@@ -263,3 +263,57 @@ Standard single-instance redeploy (Tarmo prod-go). Build 173s (cache), medusa bo
 - 🟡 **Pre-existing leid (MITTE deploy A põhjustatud):** `connect ECONNREFUSED ::1:5435` kordub ~iga 2.5min prod-medusas. Port 5435 = lokaalne dev postgres-port (CLAUDE.md). DATABASE_URL on õige (`db:5432`); 5435 pole env'is/medusa-config'is/@medusajs's. Sügavam dev-config-default-leke (mingi subscriber/job). **Non-fatal** (sait töötab). VAJA ÄRA TEHA: jälita allikas (eraldi ülesanne).
 
 **Seis:** eeltingimus #1 LIVE prod's → 408-deploy-killer kadunud, KÕIK tulevased prod-deploy'd töökindlamad. **B (PgBouncer + 2 replicat + worker) ootab eraldi öö-akna prod-go'd.** Stopgap jääb.
+
+---
+
+## 16. B-CUTOVER — uuendatud kombineeritud plaan (öö-aken, ootab prod-go't)
+
+> **HARD RULE #1: EI käivita enne Tarmo öö-akna selget go'd.** Madal-liiklus-aken (öö), sest boot-aknas tulevad instantsid järjest üles + parooli-rotatsioon + cache külmeneb hetkeks.
+
+**Eeldused olemas:** eeltingimus #1 (meili-fix) LIVE → 0×408, töökindel boot. Multi-instance runtime valideeritud staging'us (round-robin + connection-math pg-peak 18<30 + steady-state odav).
+
+### B-cutover komponendid (ühes aknas, koordineeritult)
+
+**B1 — Skaleerimis-tuum (PgBouncer + 2 replicat + worker)**
+- Lisa `pgbouncer` (edoburu/pgbouncer, transaction-mode, `DEFAULT_POOL_SIZE=50`, `MAX_CLIENT_CONN=1000`, `AUTH_TYPE=scram-sha-256`, `DB_HOST=db`).
+- `medusa` põhi: `DATABASE_URL→pgbouncer:5432`, `MEDUSA_WORKER_MODE=server`, redis-moodulid (CACHE/EVENTS/WE/LOCKING → xlmarket-redis).
+- `medusa-2`: `<<: *medusa-env` + võrgu-alias `medusa` (round-robin), `depends_on medusa: service_healthy`.
+- `medusa-worker`: `<<: *medusa-env` + `MEDUSA_WORKER_MODE=worker`, `depends_on medusa-2: service_healthy`.
+- **Connection-math:** PgBouncer KOHUSTUSLIK — ilma selleta 2×DB_POOL_MAX 50 = 100 = postgres max 100 (null headroom). PgBouncer bounds server-conn <30.
+- **Boot-orkestratsioon:** Coolify-compose automaatne *serial* multi-boot timeout'ib (~13min/instants × 3 > Coolify deploy-timeout). → kas (a) tõsta Coolify deploy-timeout, VÕI (b) põhi-medusa+pgbouncer+worker esmalt 1 web'iga, siis medusa-2 **staggered manuaalse boot'iga**. Otsusta aknas host-load'i järgi.
+
+**B2 — Postgres-parooli rotatsioon (FOLDITUD, sama aken)**
+> Põhjus: parool paljastus diagnostika-väljundis 2026-06-08 (sessioon). Roteeri B-cutover'i osana (stack niikuinii redeployb).
+- Genereeri uus tugev parool.
+- Koordineeritud uuendus ühes aknas (KÕIK tarbijad korraga, muidu auth-fail):
+  1. `ALTER USER xlmarket WITH PASSWORD '<uus>'` postgres'is.
+  2. Coolify-env `POSTGRES_PASSWORD=<uus>` (→ propageerub `DATABASE_URL`, pgbouncer `DB_PASSWORD`, kõik `<<: *medusa-env`).
+  3. PgBouncer auth: edoburu loeb `DB_PASSWORD` env'ist → sama `<uus>`; kui userlist.txt kasutusel, uuenda ka seda.
+  4. Kontrolli muud tarbijad: feed-sync skriptid (DATABASE_URL kaudu OK), cms/db PGPASSWORD (vt B3 — pärast fix'i DATABASE_URL kaudu).
+  5. Redeploy → kõik konteinerid uue parooliga; postgres ALTER'itud → match.
+- **Järjekord:** ALTER + env-update koos, SIIS redeploy. Lühike aken kus vanad konteinerid ei saa UUSI conn'e (aktsepteeritav cutover-aknas). Verifitseeri: kõik teenused healthy + pg-auth OK uue parooliga.
+- **Rollback:** kui auth-fail → ALTER tagasi vanale + env tagasi + redeploy.
+
+**B3 — CMS / 5435 dev-config-leke koristus (FOLDITUD, koodi-fix)**
+> Juur (kinnitatud): `backend/src/modules/cms/db.ts` + `backend/src/api/admin/categorization-queue/route.ts` → oma pg-`Client` `host: PGHOST||"localhost"`, `port: PGPORT||5435`. Prod-medusas PG* puudub → localhost:5435 ECONNREFUSED ~2.5min → CMS ei loe DB-st (cms_page 20 rida db:5432's) → storefront fallback static-JSON'ile; admin CMS-editing katki.
+- **Koodi-fix (eelistatud, robustne):** muuda `makePgClient()` + categorization-queue route parse'ima `DATABASE_URL`'i (üks tõeallikas) PG* env asemel. Siis pole eraldi env vaja, töötab dev+staging+prod. Läheb B-deploy'ga (rebuild niikuinii).
+- **Alt (kiire):** lisa prod PG*-env (`PGHOST=db PGPORT=5432 PGUSER=xlmarket PGPASSWORD=<uus> PGDATABASE=xlmarket`) — aga siis sõltub parooli-rotatsioonist (B2) → koodi-fix puhtam.
+- Verifitseeri peale: 0× ::1:5435 logis, `/store/cms/:key` 200, live CMS-leht näitab DB-sisu (mitte fallback), admin CMS-editing loeb+kirjutab.
+
+**B4 — Surgical CF purge + warm-up (FOLDITUD)**
+> Põhjus: deploy A `purge_everything` → külm-cache thundering-herd → esimene /et SSR 504 (CF/Traefik timeout) enne warmimist.
+- **Surgical purge:** `purge_everything` asemel purge AINULT muutunud rajad (toode-API'd / kategooriad mida cutover puudutas), VÕI kui täis-purge vajalik → kohe warm-up.
+- **Warm-up-skript:** peale cutover'it eelsoojenda võtme-browse-lehed ser-side ISR cache'i: `/et` (avaleht), top-N kategooria-lehte, `/api/header-categories`, sample toode-API'd. Sekventsiaalne (ei thundering-herd) → ISR soe enne kui CF-liiklus saabub.
+- Verifitseeri: /et + kategooriad 200 <1s peale warm-up'i (mitte 504).
+
+### B-cutover järjekord (öö-aknas)
+1. Genereeri uus pg-parool (B2 ettevalmistus).
+2. Merge koodi-fix (B3) main'i (eraldi PR/commit, ei deployi veel).
+3. Aknas: ALTER postgres-parool + Coolify-env (POSTGRES_PASSWORD + scaling-env'd) → redeploy uue compose'iga (B1).
+4. Boot-orkestratsioon (staggered vajadusel) → kõik healthy.
+5. Surgical purge + warm-up (B4).
+6. Verifitseeri: health, round-robin, pg-conn<30, CMS DB-sisu, 0×5435, sait+hinnad, parool-auth.
+7. Load-test prod-arhitektuuril → kui kinnitab cart-tee → ALLES SIIS aruta stopgap'i eemaldamist (eraldi go).
+- **Rollback igal sammul:** compose tagasi single-instance + parool tagasi + redeploy.
+
+**Stopgap (12s+retry) JÄÄB** kuni load-test prod-arhitektuuril kinnitab (eraldi go eemaldamiseks).
