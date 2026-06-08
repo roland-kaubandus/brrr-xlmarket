@@ -201,3 +201,48 @@ Multi-instance skaleerimine on **runtime'is valideeritud** (round-robin + pgboun
 SIIS multi-instance feasible (staggered VÕI peale meili-fix'i simultaanne). VÕI **2. node** (replicad eraldi hostil — aga meili-408 fix ikka vajalik).
 
 **PgBouncer üksi** võib prod'i minna (ohutu, prod-standard, bounds conn) — AGA üksi ei lahenda cart-freeze't (selleks vaja replicaid). Stopgap (12s+retry) JÄÄB.
+
+---
+
+## 14. EELTINGIMUS #1 valideeritud — meili settings-on-boot SKIP (2026-06-08)
+
+**Muudatus (commit bc8f8809):** `backend/Dockerfile` patch-blokk laiendatud — plugin loader
+`@rokmohar/medusa-plugin-meilisearch/.../loaders/index.js` SKIP'ib `updateSettings` boot'il
+kui `SKIP_MEILISEARCH_STARTUP_INDEXING !== 'false'` (juba `true` staging+prod env'is).
+Settingsid jäävad SSoT `index-meilisearch.mjs`'i (feed-sync rakendab 4h tagant). Registreerimine
+(`container.register(meilisearchService)`) jääb enne SKIP'i → teenus saadaval.
+
+### Mõõdetud staging'us
+| Mõõt | Enne | Peale meili-fix'i |
+|---|---|---|
+| Meili 408 boot'il | korduv → deploy FAILED | **0** |
+| Boot StartedAt→loader-valmis | ~514s | **413s** (-100s) |
+| Meili settings terved | — | ✅ searchable 7, filter 13, sort 3, 17105 docs (boot ei rakenda, volume-persistent) |
+| Browse/search | — | ✅ töötab, hinnad õiged |
+
+**Boot-aja suur osa (~5.5min) on Medusa core-bootstrap** (telemetry-banner → module/link-loaderid),
+MITTE meili. Meili-fix annab **reliability** (0×408 = deploy-killer kadunud), boot-kiirus paraneb mõõdukalt.
+→ **Blokeerija #1 lahendatud. Blokeerija #2 (boot CPU) leevendub aga jääb.**
+
+### Multi-instance re-test (meili-fix'iga, manuaalne 2. instance)
+- **medusa-2 boot HEALTHY** õigel võrgul (`k33g...` 10.0.9.x, kus db/meili/redis), **0×408**, boot 770s (host-CPU-surve all, aga edukas).
+- ⚠️ **Test-harness gotcha:** Coolify-l on 2 võrku — `k33g...` (10.0.9.x, kus `db`/`meili` aliasid) ja `k33g..._default` (10.0.10.x). `db` resolveerub AINULT esimeses. medusa peab olema MÕLEMAS (medusa-1 on). Vale-võrgule pandud instance → `db` ei resolveeru → pool-timeout (algselt valesti tõlgendatud boot-blokeerijaks).
+- **Round-robin kinnitatud:** `getent medusa` → 10.0.9.6 (3×) + 10.0.9.8 (7×), DNS jaotab mõlemale instantsile.
+- **Connection-math kinnitatud:** idle 5 pg-conn (2 instance), 30-concurrent koormus → **pg-peak 18** (<30 siht, max 100). Host load tipnes 9.8/12 vCPU, RAM 9.4/62Gi.
+
+### 🔴 UUS LEID — pool-starvation üksikinstantsil raske kontsurentsi all
+Koormus-test (300 päringut, 30 concurrent `/store/regions`) → **medusa-1 jäi pool-starvation seisu**
+(Running=true, Health=unhealthy, health-endpoint 20s timeout). Juur: `/store/regions` JA `/store/products`
+teevad query.graph relation-expansion'i (EntityLoader.populateMany/findChildren N+1) → aeglased päringud
+hoiavad knex-pool-conn'e → pool ammendub → uued acquire'd timeout'ivad → kaskaad. **Sama #11922 juur.**
+pg server-conn oli vaid 12 (postgres POLE süüdi) — APP-pool ammendus. **Ise-taastus ~90s** peale koormuse lõppu (kinni-päringud timeout'ivad → pool vabaneb; restart polnud vaja).
+
+**Tähendus prod'ile:**
+- Browse on juba Meili peal (Fix #1) → see endpoint-klass EI ole reaal-browse-teel. Cart/checkout kaitseb stopgap.
+- Aga kinnitab: **horisontaalne scaling (rohkem pool-e) + PgBouncer (bounds server-conn) on õige suund**, ja raske-relation-endpoint'e ei tohi katmata jätta.
+- **Connection-math RISK ilma PgBouncerita:** 2 instance × DB_POOL_MAX 50 = **100 = postgres max_connections 100 → null headroom** (worker/migratsioon/psql/admin lükataks tagasi). → **PgBouncer prod'is VAJALIK**, mitte valikuline (VÕI DB_POOL_MAX alla).
+
+### Steady-state ressurss (kõrvalteenuste headroom)
+12 vCPU, 62Gi RAM. 2 medusa idle: load ~4-5, RAM 9.4Gi kasutuses / **53Gi vaba**. Kõrval: coolify (~50% CPU 1 tuum),
+mailcow-redis, teine Coolify-projekt (uo28...), uptime-kuma, 2 muud db. **Runtime-headroom OLEMAS** mailcow/teiste kõrval.
+Ainus surve-aken on **boot** (CPU-raske ~7-13min) — sellele staggered-boot.
