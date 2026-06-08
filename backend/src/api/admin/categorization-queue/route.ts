@@ -20,21 +20,29 @@ import { Client } from "pg"
 import fs from "fs"
 import path from "path"
 
-const PG_CONFIG = {
-  host: process.env.PGHOST || "localhost",
-  port: Number(process.env.PGPORT) || 5435,
-  user: process.env.PGUSER || "xlmarket",
-  password: process.env.PGPASSWORD,
-  database: process.env.PGDATABASE || "xlmarket",
-}
-
 const RULES_DIR = path.resolve(process.cwd(), "src/taxonomy/rules")
 const L1L2_PATH = path.join(RULES_DIR, "l1-l2-overrides.json")
 
 // ── helpers ────────────────────────────────────────────────────────
 
+// DATABASE_URL = üks tõeallikas (prod/staging: db:5432, B-cutover: pgbouncer:5432).
+// PG*-fallback ainult lokaalseks dev'iks (vana default localhost:5435 → prod'is
+// ECONNREFUSED, vt scaling-doc §15/§16 B3).
+function makeCatQueueClient(): Client {
+  if (process.env.DATABASE_URL) {
+    return new Client({ connectionString: process.env.DATABASE_URL })
+  }
+  return new Client({
+    host: process.env.PGHOST || "localhost",
+    port: Number(process.env.PGPORT) || 5435,
+    user: process.env.PGUSER || "xlmarket",
+    password: process.env.PGPASSWORD,
+    database: process.env.PGDATABASE || "xlmarket",
+  })
+}
+
 async function withPg<T>(fn: (c: Client) => Promise<T>): Promise<T> {
-  const c = new Client(PG_CONFIG)
+  const c = makeCatQueueClient()
   await c.connect()
   try { return await fn(c) } finally { await c.end() }
 }

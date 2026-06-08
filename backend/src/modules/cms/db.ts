@@ -1,6 +1,13 @@
 import { Client } from "pg"
 
 export function makePgClient() {
+  // DATABASE_URL = üks tõeallikas (prod/staging: db:5432, B-cutover: pgbouncer:5432).
+  // pg Client parse'ib connectionString'i natiivselt. PG*-fallback ainult lokaalseks
+  // dev'iks ilma DATABASE_URL'ita (vana default localhost:5435 põhjustas prod'is
+  // ECONNREFUSED ::1:5435 — CMS ei lugenud DB-st, vt scaling-doc §15/§16 B3).
+  if (process.env.DATABASE_URL) {
+    return new Client({ connectionString: process.env.DATABASE_URL })
+  }
   return new Client({
     host: process.env.PGHOST || "localhost",
     port: Number(process.env.PGPORT) || 5435,
