@@ -90,8 +90,10 @@ services:
       DB_NAME: xlmarket
       POOL_MODE: transaction
       MAX_CLIENT_CONN: "1000"
-      DEFAULT_POOL_SIZE: "30"
-      MIN_POOL_SIZE: "5"
+      # 50 server-conn (< pg max_connections 100) — varu 3-instantsi boot-storm'ile.
+      DEFAULT_POOL_SIZE: "50"
+      MIN_POOL_SIZE: "10"
+      RESERVE_POOL_SIZE: "10"
       AUTH_TYPE: scram-sha-256
     depends_on:
       db:
@@ -113,6 +115,14 @@ services:
       # xlmarket-redis = Coolify redis unikaalne alias (mitte 'redis', mis
       # kollideerub mailcow-võrgu redisega). Vt redis service kommentaari.
       REDIS_URL: redis://xlmarket-redis:6379
+      # Multi-instance JAGATUD state (workflow-engine/event-bus/locking/cache) →
+      # KÕIK compose redis-teenusele (xlmarket-redis), et N replicat jagaks
+      # workflow/lock/event-state'i. NB: KÕIK redis = sama compose-teenus
+      # (mitte manuaalne konteiner — see pole peale redeploy'd kättesaadav).
+      CACHE_REDIS_URL: redis://xlmarket-redis:6379
+      EVENTS_REDIS_URL: redis://xlmarket-redis:6379
+      WE_REDIS_URL: redis://xlmarket-redis:6379
+      LOCKING_REDIS_URL: redis://xlmarket-redis:6379
       JWT_SECRET: ${JWT_SECRET}
       COOKIE_SECRET: ${COOKIE_SECRET}
       MEILISEARCH_HOST: http://meili:7700
