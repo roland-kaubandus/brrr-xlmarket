@@ -75,14 +75,41 @@ services:
       retries: 5
       start_period: 30s
 
+  # PgBouncer (transaction-mode) — multipleksib N medusa-replica app-ühendused
+  # vähestele Postgres server-ühendustele (lahutab app-pooli pg-limiidist).
+  # Connection-math (§5): DEFAULT_POOL_SIZE=30 → pg ~30 server-conn (<100);
+  # MAX_CLIENT_CONN=1000 mahutab replicad×pool. KOHUSTUSLIK >1 medusa-instantsiga.
+  pgbouncer:
+    image: edoburu/pgbouncer:latest
+    restart: unless-stopped
+    environment:
+      DB_HOST: db
+      DB_PORT: "5432"
+      DB_USER: xlmarket
+      DB_PASSWORD: ${POSTGRES_PASSWORD}
+      DB_NAME: xlmarket
+      POOL_MODE: transaction
+      MAX_CLIENT_CONN: "1000"
+      DEFAULT_POOL_SIZE: "30"
+      MIN_POOL_SIZE: "5"
+      AUTH_TYPE: scram-sha-256
+    depends_on:
+      db:
+        condition: service_healthy
+    expose:
+      - "5432"
+
+  # medusa = HTTP server-replica #1 (server-mode). Round-robin medusa-2-ga
+  # docker-DNS kaudu ("medusa:9000" → mõlemad). DATABASE_URL → pgbouncer.
   medusa:
     build:
       context: ./backend
       dockerfile: Dockerfile
     restart: unless-stopped
-    environment:
+    environment: &medusa-env
       NODE_ENV: production
-      DATABASE_URL: postgres://xlmarket:${POSTGRES_PASSWORD}@db:5432/xlmarket
+      DATABASE_URL: postgres://xlmarket:${POSTGRES_PASSWORD}@pgbouncer:5432/xlmarket
+      MEDUSA_WORKER_MODE: server
       # xlmarket-redis = Coolify redis unikaalne alias (mitte 'redis', mis
       # kollideerub mailcow-võrgu redisega). Vt redis service kommentaari.
       REDIS_URL: redis://xlmarket-redis:6379
@@ -118,6 +145,8 @@ services:
           - ${MEDUSA_ALIAS:-xlmarket-medusa-unset}
       mailcow:
     depends_on:
+      pgbouncer:
+        condition: service_started
       db:
         condition: service_healthy
       redis:
@@ -126,15 +155,59 @@ services:
         condition: service_healthy
     expose:
       - "9000"
-    healthcheck:
+    healthcheck: &medusa-health
       test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://127.0.0.1:9000/health"]
       interval: 30s
-      timeout: 10s
-      retries: 5
-      # Medusa cold-boot takes ~373s on this catalog (observed: duration 373532ms).
-      # start_period must exceed that or Coolify marks the deploy failed ("medusa unhealthy")
-      # and leaves storefront in Created. 600s gives a safe margin.
+      timeout: 15s
+      # ~30s recovery-tolerants: 6×30s=180s grace, et mööduv freeze/rolling EI flap'i.
+      retries: 6
+      # Medusa cold-boot ~373-514s sel kataloogil. start_period peab ületama, muidu
+      # Coolify märgib deploy failed. 600s ohutu varu.
       start_period: 600s
+
+  # medusa-2 = HTTP server-replica #2. Võrgu-alias "medusa" → docker-DNS round-robin
+  # storefront'i "medusa:9000" päringutele üle mõlema replica (cart-tee LB,
+  # Traefik'it pole vaja). NB: Coolify seab container_name → deploy.replicas EI
+  # tööta (nime-konflikt), seega eraldi teenus jagatud aliasega.
+  medusa-2:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    environment:
+      <<: *medusa-env
+    networks:
+      default:
+        aliases:
+          - medusa
+      mailcow:
+    depends_on:
+      pgbouncer:
+        condition: service_started
+      db:
+        condition: service_healthy
+    expose:
+      - "9000"
+    healthcheck: *medusa-health
+
+  # medusa-worker = taustatööd (MEDUSA_WORKER_MODE=worker) → HTTP-replicad ei
+  # jooksuta jobe (scheduled tasks, subscribers, workflow-engine async). Ei expose'i.
+  medusa-worker:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    environment:
+      <<: *medusa-env
+      MEDUSA_WORKER_MODE: worker
+    networks:
+      default:
+      mailcow:
+    depends_on:
+      pgbouncer:
+        condition: service_started
+      db:
+        condition: service_healthy
 
   storefront:
     build:
