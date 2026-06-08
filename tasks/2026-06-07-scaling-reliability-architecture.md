@@ -246,3 +246,20 @@ pg server-conn oli vaid 12 (postgres POLE süüdi) — APP-pool ammendus. **Ise-
 12 vCPU, 62Gi RAM. 2 medusa idle: load ~4-5, RAM 9.4Gi kasutuses / **53Gi vaba**. Kõrval: coolify (~50% CPU 1 tuum),
 mailcow-redis, teine Coolify-projekt (uo28...), uptime-kuma, 2 muud db. **Runtime-headroom OLEMAS** mailcow/teiste kõrval.
 Ainus surve-aken on **boot** (CPU-raske ~7-13min) — sellele staggered-boot.
+
+---
+
+## 15. PROD-DEPLOY A — meili-fix LIVE (2026-06-08) ✅ EELTINGIMUS #1 TÄIDETUD
+
+**Deploy:** Coolify prod-app `uo28ovobnflauslqjgxeohl0` (brrr-xlmarket:main), main HEAD 42f3d701 (sisaldab bc8f8809).
+Standard single-instance redeploy (Tarmo prod-go). Build 173s (cache), medusa boot ~13.5min (prod aeglasem: 7755 synonyme + rohkem data, jagatud host).
+
+**Verifikatsioon LIVE:**
+- ✅ **0×408 boot'il**, skip-log kinnitatud, boot edukas.
+- ✅ **Meili settings 100% TERVED** (enne→peale identne): searchable 7, filterable 13, sortable 3, **synonyms 7755**, rankingRules 6, **17441 docs**. Boot ei puutunud (volume-persistent; synonyms tulevad sync-synonyms.mjs'ist).
+- ✅ Otsing + facet-filtrid + kategooriad + toote-API + toote-leht + avaleht (/et) + hinnad — kõik 200, hinnad õiged.
+- ⚠️ **Cutover-cleanup:** ~13.5min cutover-aknas (vana medusa maas, uus boot'is) CF cache'is mõned 404-d (storefront ei saanud tooteid → 404 → CF s-maxage=3600). **Lahendatud CF purge_everything'iga** (node-fetch konteineri seest, token ei lahkunud). Sait re-warm 200 (/et 0.13s).
+  - **Õppetund:** purge_everything peale cutover'it tekitab külm-cache thundering-herd → esimene /et SSR 504 (CF/Traefik timeout), siis warmib. B-cutover'il: surgical purge VÕI warm-up-skript peale deploy't.
+- 🟡 **Pre-existing leid (MITTE deploy A põhjustatud):** `connect ECONNREFUSED ::1:5435` kordub ~iga 2.5min prod-medusas. Port 5435 = lokaalne dev postgres-port (CLAUDE.md). DATABASE_URL on õige (`db:5432`); 5435 pole env'is/medusa-config'is/@medusajs's. Sügavam dev-config-default-leke (mingi subscriber/job). **Non-fatal** (sait töötab). VAJA ÄRA TEHA: jälita allikas (eraldi ülesanne).
+
+**Seis:** eeltingimus #1 LIVE prod's → 408-deploy-killer kadunud, KÕIK tulevased prod-deploy'd töökindlamad. **B (PgBouncer + 2 replicat + worker) ootab eraldi öö-akna prod-go'd.** Stopgap jääb.

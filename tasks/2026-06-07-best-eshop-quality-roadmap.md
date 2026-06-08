@@ -27,7 +27,8 @@
 | DB pool 10/50, LOG_LEVEL=error → prod | ✅ tehtud |
 | Browse-cache app-tasand (Next ISR + s-maxage API + /api/revalidate) | ✅ **PROD** (samm 2a, afcad7e4) — dünaamilised no-store läbi CF kinnitatud |
 | Cloudflare edge-cache | ✅ **zone AKTIIVNE** (NS-fix töötas 2026-06-07): sait läbi CF (cf-ray, SSL kehtiv), email DNS terve (MX/SPF/DKIM/DMARC alles, mail-host DNS-only). Järgmine: CF cache-reeglid (peale 2a→prod). cf-cache-status veel DYNAMIC (reegleid pole). |
-| PgBouncer + replicad + Traefik-LB + worker (Coolify-compose) | ⏭️ Samm 3 (POC ✅ staging'us) |
+| Meili settings-on-boot SKIP (eeltingimus #1) | ✅ **PROD** (2026-06-08, deploy A): 0×408, settings terved, deploy-killer kadunud |
+| PgBouncer + replicad + Traefik-LB + worker (Coolify-compose) | ⏭️ Samm 3 (POC ✅ staging, multi-instance valideeritud) — ootab öö-akna prod-go'd |
 | Resilient storefront-fallback + rolling/zero-downtime deploy | ⏭️ Samm 4 |
 | Monitooring (event-loop-lag, latents, pg-conn) + alerting | ⏭️ Samm 4 |
 | k6-koormustest tipp-sihi vastu → capacity-tuuning | ⏭️ Samm 5 |
