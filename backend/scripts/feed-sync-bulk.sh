@@ -63,4 +63,19 @@ else
   echo "  vahele jäetud (REVALIDATE_SECRET/STOREFRONT_URL seadmata) — ISR=3600 bounded"
 fi
 
+# [7/7] Cloudflare edge-cache purge (samm 2b). Browse-API'd (header-categories,
+# products, search, product) on CF-edge'is cached → peale feed-syncit puhasta,
+# et uued hinnad/laoseis kohe nähtuks (muidu kuni s-maxage TTL). Gated CF_API_TOKEN
+# + CF_ZONE_ID env'iga. Token ainult siit env'ist (ei logita).
+echo "[7/7 $(ts)] Cloudflare edge purge..."
+if [ -n "$CF_API_TOKEN" ] && [ -n "$CF_ZONE_ID" ]; then
+  PURGE=$(curl -fsS --max-time 30 -X POST \
+    "https://api.cloudflare.com/client/v4/zones/$CF_ZONE_ID/purge_cache" \
+    -H "Authorization: Bearer $CF_API_TOKEN" -H "Content-Type: application/json" \
+    -d '{"purge_everything":true}' 2>/dev/null)
+  if echo "$PURGE" | grep -q '"success":true'; then echo "  CF purge OK (purge_everything)"; else echo "  HOIATUS: CF purge ebaõnnestus (mittekriitiline, TTL fallback)"; fi
+else
+  echo "  vahele jäetud (CF_API_TOKEN/CF_ZONE_ID seadmata)"
+fi
+
 echo "=== FEED-SYNC-BULK valmis $(date -u +%Y-%m-%dT%H:%M:%S) ==="
