@@ -174,3 +174,30 @@ Samad mustrid (browse-cache/CDN + cart-replica/PgBouncer + töökindlus) korduvk
 - Eraldi `MEDUSA_WORKER_MODE=worker` instants (taustatööd).
 - DEFAULT_POOL_SIZE tuning koormustesti järgi (20 hoidis 8-16 conc; k6-tipu järgi suurusta).
 - Simultaanne replica-boot oli aeglane/flaky (meili settings-on-boot + raske boot) → prod: staggered boot VÕI keela meili-settings-on-boot.
+
+---
+
+## 13. STAGING DRY-RUN tulemused (2026-06-08) — RAKENDAMIS-LEIUD
+
+Coolify-compose dry-run (pgbouncer + medusa+medusa-2 jagatud alias + medusa-worker) ENNE prod-cutover'it. **Prod puutumata kogu aja (afcad7e4).**
+
+### ✅ Mis TÖÖTAB (valideeritud)
+- **PgBouncer (transaction-mode):** single medusa boot'is healthy via pgbouncer; **pg server-conn 11-12 koormuse all** (8 parallel, 2 instantsi) → connection-math kinnitatud (<30, multiplekseerib).
+- **Round-robin (docker-DNS):** medusa-2 jagatud võrgu-aliasega "medusa" → `getent medusa` → 2 IP (medusa + medusa-2), liiklus jaotub. **deploy.replicas EI tööta** (Coolify seab container_name → konflikt); **2 eraldi teenust jagatud aliasega = lahendus.**
+- **Steady-state ODAV:** 2 medusa + pgbouncer = ~330MB RAM, ~0% CPU idle; koormuse all host load 4.6 (12 tuumast), vaba RAM 52Gi. Runtime-ressurss POLE piirang.
+- **Load distribution:** 8 parallel raske-päring 1 instants **25s** → 4+4 jaotatud **15-20s** (paraneb; raske default-fields freeze'ib ikka ~4/instants — reaal-liiklus (Fix#1 kerge) palju parem).
+
+### 🔴 Mis BLOKEERIB multi-instance boot'i (3 compounding fragiilsust)
+1. **Meili settings-on-boot 408** — iga medusa-instants rakendab meili indexSettings boot'il (Dockerfile SKIP keelab AINULT doc-indexi, mitte settingsi). Meili 1.41 PATCH 408 intermittent → boot kukub. (CLAUDE.md teadaolev gotcha.)
+2. **Simultaanne boot CPU-overload** — 3 medusa cold-boot korraga → host load **>13** (12 tuuma) → connect-timeout (redis/pg) → boot kukub. (Boot CPU-raske ~514s; steady-state ei ole.)
+3. **Coolify-deploy-timeout serialiseeritult** — `depends_on: service_healthy` (boot'ide jadastamiseks) → `docker compose up` ootab medusa-healthy't ~514s → Coolify märgib deploy FAILED ("medusa unhealthy") enne kui medusa-2 stardib.
+
+→ Manuaalne staggered boot (üks korraga) TÖÖTAS (medusa-2 healthy peale 1 retry'd — 408 intermittent). Aga Coolify-compose automaatne multi-instance boot EI ole töökindel.
+
+### JÄRELDUS + PROD-EELTINGIMUSED
+Multi-instance skaleerimine on **runtime'is valideeritud** (round-robin + pgbouncer + steady-state OK) AGA **boot/orkestratsioon Coolify-compose'is blokeeritud**. Enne prod-scaling'ut LAHENDA:
+1. **Meili settings-on-boot maha** — tee index-settings ÜHEKORDSEKS/manuaalseks (mitte iga-boot). Eemaldab 408-blokeerija + kiirendab boot'i + teeb KÕIK deploy'd töökindlamaks (408 on varem prod-deploy'sid kukutanud). **Kõrge prioriteet, iseseisev väärtus.**
+2. **Boot-aeg lühemaks** (~514s module-loader) — väldib simultaanse-boot overload'i.
+SIIS multi-instance feasible (staggered VÕI peale meili-fix'i simultaanne). VÕI **2. node** (replicad eraldi hostil — aga meili-408 fix ikka vajalik).
+
+**PgBouncer üksi** võib prod'i minna (ohutu, prod-standard, bounds conn) — AGA üksi ei lahenda cart-freeze't (selleks vaja replicaid). Stopgap (12s+retry) JÄÄB.
