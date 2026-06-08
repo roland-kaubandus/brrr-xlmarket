@@ -76,6 +76,15 @@ const patches = [
     needle: "    logger.info('Starting category indexing...');",
     guard: "    if (process.env.SKIP_MEILISEARCH_STARTUP_INDEXING !== 'false') { logger.info('Skipping category indexing on startup'); return; }\n",
   },
+  {
+    // EELTINGIMUS #1 (2026-06-08): plugin loader rakendab indexSettings IGAL boot'il
+    // (updateSettings PATCH) → Meili 1.41 intermittent 408 → kukutab deploy'd +
+    // blokeerib multi-instance boot'i. Settingsid on SSoT index-meilisearch.mjs's
+    // (feed-sync rakendab). SKIP boot'il → töökindlad/kiired deploy'd + unblock scaling.
+    file: "/app/node_modules/@rokmohar/medusa-plugin-meilisearch/.medusa/server/src/modules/meilisearch/loaders/index.js",
+    needle: "    await Promise.all(Object.entries(settings || {}).map(async ([indexName, value]) => {",
+    guard: "    if (process.env.SKIP_MEILISEARCH_STARTUP_INDEXING !== 'false') { console.log('[meili] Skipping settings update on startup (SSoT: index-meilisearch.mjs)'); return; }\n",
+  },
 ]
 
 for (const { file, needle, guard } of patches) {
