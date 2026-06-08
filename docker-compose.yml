@@ -191,11 +191,14 @@ services:
         aliases:
           - medusa
       mailcow:
+    # SERIALISEERITUD boot: medusa-2 stardib alles kui medusa HEALTHY. Üks medusa
+    # cold-boot korraga (host ~12 tuuma; 3 simultaanset → load>12 → connect-timeout
+    # → boot kukub). Dry-run tõestas. Tradeoff: jada-boot ~aeglane (vt prod-plaan).
     depends_on:
+      medusa:
+        condition: service_healthy
       pgbouncer:
         condition: service_started
-      db:
-        condition: service_healthy
     expose:
       - "9000"
     healthcheck: *medusa-health
@@ -213,11 +216,12 @@ services:
     networks:
       default:
       mailcow:
+    # Worker stardib viimasena (peale medusa-2 healthy) → jada-boot, ei ülekoorma.
     depends_on:
+      medusa-2:
+        condition: service_healthy
       pgbouncer:
         condition: service_started
-      db:
-        condition: service_healthy
 
   storefront:
     build:
