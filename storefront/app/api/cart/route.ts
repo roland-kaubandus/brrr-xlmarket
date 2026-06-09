@@ -34,8 +34,12 @@ export async function GET(req: NextRequest) {
   }
 
   try {
+    // Trimmitud: cart-UI vajab AINULT denormaliseeritud item-välju (title, thumbnail,
+    // unit_price, quantity — kõik salvestatud line-item'il add-ajal). Vana
+    // `*items.variant.product` täis-graaf = N+1 relation-expansion (~90 päringut,
+    // #11922). Cart-stall fix 2026-06-09. Vt LAUNCH-CHECKLIST.
     const res = await medusaProxy(
-      `/store/carts/${cartId}?fields=*items,*items.variant,*items.variant.product`
+      `/store/carts/${cartId}?fields=*items`
     )
     const data = await res.json()
     return NextResponse.json(data, { status: res.status })

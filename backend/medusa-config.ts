@@ -11,22 +11,28 @@ loadEnv(process.env.NODE_ENV || "development", process.cwd())
 // läheb redisele alles kui redis-env'id käsitsi seatakse.
 const redisModules: Record<string, unknown>[] = []
 
+// family:4 (IPv4) KOHUSTUSLIK — ilma selleta ioredis cold-connect intermittentne
+// 5-10s (IPv4/IPv6 Happy-Eyeballs, --no-network-family-autoselection EI mõju
+// ioredis'ile) → cart-workflow (WE+locking) stallib 5-16s. Mõõdetud 2026-06-09:
+// default cold-connect 5238ms vs family:4 3-6ms. Vt LAUNCH-CHECKLIST cart-stall.
+const REDIS_OPTS = { family: 4 as const }
+
 if (process.env.CACHE_REDIS_URL) {
   redisModules.push({
     resolve: "@medusajs/medusa/cache-redis",
-    options: { redisUrl: process.env.CACHE_REDIS_URL },
+    options: { redisUrl: process.env.CACHE_REDIS_URL, redisOptions: REDIS_OPTS },
   })
 }
 if (process.env.EVENTS_REDIS_URL) {
   redisModules.push({
     resolve: "@medusajs/medusa/event-bus-redis",
-    options: { redisUrl: process.env.EVENTS_REDIS_URL },
+    options: { redisUrl: process.env.EVENTS_REDIS_URL, redisOptions: REDIS_OPTS },
   })
 }
 if (process.env.WE_REDIS_URL) {
   redisModules.push({
     resolve: "@medusajs/medusa/workflow-engine-redis",
-    options: { redis: { redisUrl: process.env.WE_REDIS_URL } },
+    options: { redis: { redisUrl: process.env.WE_REDIS_URL, redisOptions: REDIS_OPTS } },
   })
 }
 if (process.env.LOCKING_REDIS_URL) {
@@ -38,7 +44,7 @@ if (process.env.LOCKING_REDIS_URL) {
           resolve: "@medusajs/medusa/locking-redis",
           id: "locking-redis",
           is_default: true,
-          options: { redisUrl: process.env.LOCKING_REDIS_URL },
+          options: { redisUrl: process.env.LOCKING_REDIS_URL, redisOptions: REDIS_OPTS },
         },
       ],
     },
@@ -49,6 +55,8 @@ export default defineConfig({
   projectConfig: {
     databaseUrl: process.env.DATABASE_URL,
     redisUrl: process.env.REDIS_URL,
+    // family:4 — vt redisModules kommentaar (IPv6 cold-connect-stall fix).
+    redisOptions: { family: 4 },
     // DB connection-pool (env-driven, prod-ohutu vaikeväärtus = Medusa default).
     // Cart-stall juur (2026-06-07, blocked-at): koormuse all päringud blokeeruvad
     // knex `ensureConnection`-is — default pool min:2/max:10 ammendub (iga store-
