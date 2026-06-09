@@ -420,3 +420,27 @@ worker'i tühi `networks: default:` → Coolify EI liitnud `<uuid>_default` võr
 - Parool ei muutu (B2 juba tehtud) → ei auth-riski.
 
 **D tulemus:** persistentne (Coolify-redeploy ei kaota worker'it), host-sõbralik (2 boot'i serial), homepage-504 leevendatud (warm-cache cron). 2. web-replica edasi lükatud k6-ni (Sammas 5). Stopgap (12s+retry) JÄÄB.
+
+---
+
+## 20. VARIANT D PROD-DEPLOY TEHTUD (2026-06-09) ✅ PERSISTENTNE
+
+Prod-app uo28, watched-aken, Tarmo jälgis. D-redeploy (HEAD f587d60f) edukas.
+
+| Samm | Tulemus |
+|---|---|
+| 1. Peata manuaalsed medusa-2+worker | ✅ puhas cutover (compose-medusa serveeris) |
+| 2. Coolify D-redeploy | ✅ deploy ei timeout; compose-medusa healthy ~13min, worker healthy ~35min (sleep 900 serial); max-load 9.7 (host-sõbralik) |
+| 3. Eemalda manuaalsed | ✅ — topoloogia nüüd 100% Coolify-managed |
+| 4. Scheduled-task warm-cache | ✅ loodud (*/15, enabled). Dockerfile-fix (warm-cache.sh COPY puudus) + docker cp jooksvasse (kohene). wget-fix (konteineris pole curl) |
+| 5. Verifikatsioon | ✅ pg-conn 11 bounded, CMS 20 rida, auth 0/0, 5435 0/0, worker-mode worker, medusa→pgbouncer, /et+kategooriad+toode 200, hind €973.94 |
+
+**LÕPP-TOPOLOOGIA (persistentne, 7 Coolify-teenust):** db + **medusa** (server, →pgbouncer) + **medusa-worker** (worker-mode, sleep 900 stagger) + meili + **pgbouncer** + redis + storefront. **Coolify-redeploy EI kaota enam worker'it** (persistentsus saavutatud).
+
+**Erinevus B-st:** 2. web-replica (medusa-2) EEMALDATUD — väärtus tõestamata + host ei mahtunud. pgbouncer JÄÄB (bounds conn + valmis 2.-node skaleerimiseks kui k6 tõestab). 
+
+**Lahtised (väiksemad):**
+- warm-cache.sh praegu docker-cp'ga jooksvas konteineris (toimib); PERSISTENTNE alles järgmisest redeploy'st (Dockerfile COPY lisatud, commit 7f5efc77). Scheduled-task töötab niikaua docker-cp-failiga.
+- Homepage/toode TRULY-külm-render 504 (~10%, pre-existing #11922 pub-key-middleware) — warm-cache (*/15) leevendab nüüd; juur jääb (eraldi optimeerimine).
+- 2. web-replica + k6 cart-load-test = Sammas 5 (kui päris-liiklus tõestab vajaduse).
+- Stopgap (12s+retry) JÄÄB.
