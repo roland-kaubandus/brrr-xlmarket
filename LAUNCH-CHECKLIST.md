@@ -111,3 +111,20 @@ Staging-sandbox e2e-test leidis 3 launch-kriitilist asja (kõik koodi-fix'id com
 4. Eskaleeri Medusa community/support (#11922).
 
 **EI deployitud prod'i** (fix ei tööta). Prod gated → 0 checkout-liiklust → pole kohene oht, aga launch-blokeerija püsib.
+
+### CART-STALL JUUR — LÕPLIK DIAGNOOS (2026-06-10 sügav profileerimine, kõik 3 angle't)
+
+**Definitiivsed mõõtmised (kõik staging, kõik välistab/kinnitab):**
+- **Angle 1 (CPU):** aeglase cart-create ajal medusa CPU **~0%** (RUN: 7.65s @ 0/0/11% sämplid). → **OFF-CPU WAIT, mitte RemoteJoiner/CPU.** Kasutaja "polling/wait" hüpotees ÕIGE.
+- **Angle 2 (redis-moodulid):** in-memory-WE cart-create ikka bimodaalne (10.7/0.72/6.5/8.1/7.2s); in-memory-WE+LOCKING ikka bimodaalne (6.6/.../22.5/.../0.66s, 2/8 kiire). → **redis-WE EGA locking POLE süüdlane.** 2026-06-06 redis-muudatus pole põhjus.
+- **Angle 3 (upstream):** #11922 "Requests serially" teada; v2.10.1 cart-perf-fix juba 2.13.5's; pole garanteeritud >2.13.5 fix'i.
+- **JUUR-isolatsioon:** node-pg **OTSE-postgres cold-connect ~4.7s** (#1=4738ms, rest 5-8ms); node-pg→pgbouncer **enamasti kiire** (pgbouncer hoiab warm) AGA intermittentselt ~4.7s; ioredis ka intermittentne ~6s. **DNS kiire** (12ms), **raw-TCP kiire** (7ms), **CPU idle**, **family:4 ei katnud**, **blocked-at no-op**.
+
+**JUUR:** **intermittentne ~5s ühenduse-ESTABLISHMENT** (postgres backend-fork / redis-handshake) — server vastab uue ühenduse handshake'ile ~5s, kiire kord ühendatud. pgbouncer + warm-pool'id PEIDAVAD enamasti, aga cart-create tabab intermittentselt värske ühenduse → ootab ~5s (bimodaalne: warm=0.66s / cold=5-16s). **POLE Medusa cart-kood, POLE redis-moodulid, POLE CPU/query.graph.** ~5s cold-connect on **abnormaalne isegi vaiksel hostil** → host-tasandi fork/ressurss-latents (**49 konteinerit** hostil, mälusurve?).
+
+**FIX-TEED (su otsus):**
+1. **Hoia KÕIK ühendused warm** (kõige praktilisem launch'iks): knex pool min=max (nt 20/20, ei kasva→ei cold-connect) + `idleTimeoutMillis` kõrge (ei evict) + pgbouncer `min_pool_size`=`pool_size` (server-conn alati warm). → cart-create taaskasutab warm → ei fork → kiire. Madala/keskmise launch-liikluse korral piisav. Testitav staging'us. **EI lahenda kõrge-concurrency pool-kasvu.**
+2. **Uuri abnormaalset ~5s postgres cold-connect'i** (host-tasand): postgres backend-fork-latents 49-konteineri-hostil, mälu/swap-surve. Vähenda konteinereid / lisa RAM / postgres-tuuning. (Juur-juur.)
+3. 2. web-replica (edasi lükatud) aitab concurrency't, MITTE per-connect cold-latentsi.
+
+**Soovitus:** #1 (pool-warmth) kiire testitav launch-fix + #2 (host cold-connect uurimine) juur-juureks. family:4+relation-trim jäävad (kahjutud). EI deployitud prod'i.
