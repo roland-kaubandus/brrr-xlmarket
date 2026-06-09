@@ -41,6 +41,9 @@ COPY --from=builder --chown=medusa:medusa /app/scripts/build-vevor-feed-cache.mj
 COPY --from=builder --chown=medusa:medusa /app/scripts/feed-bulk-price.mjs ./scripts/feed-bulk-price.mjs
 COPY --from=builder --chown=medusa:medusa /app/scripts/sync-synonyms.mjs ./scripts/sync-synonyms.mjs
 COPY --from=builder --chown=medusa:medusa /app/scripts/feed-sync-bulk.sh ./scripts/feed-sync-bulk.sh
+# warm-cache.sh — homepage külm-render 504 leevendus (Coolify Scheduled Task iga 15min
+# + feed-sync [8/8]). POSIX sh (konteineris pole bash). Vt scaling-doc §17/§19.
+COPY --from=builder --chown=medusa:medusa /app/scripts/warm-cache.sh ./scripts/warm-cache.sh
 COPY --from=builder --chown=medusa:medusa /app/src/filters ./src/filters
 COPY --from=builder --chown=medusa:medusa /app/src/data/filter-profiles.yaml ./src/data/filter-profiles.yaml
 
