@@ -128,3 +128,5 @@ Staging-sandbox e2e-test leidis 3 launch-kriitilist asja (kõik koodi-fix'id com
 3. 2. web-replica (edasi lükatud) aitab concurrency't, MITTE per-connect cold-latentsi.
 
 **Soovitus:** #1 (pool-warmth) kiire testitav launch-fix + #2 (host cold-connect uurimine) juur-juureks. family:4+relation-trim jäävad (kahjutud). EI deployitud prod'i.
+
+**Host-ressurss (2026-06-10):** host EI ole mälu/swap-surve all (51Gi vaba, swap 0%, load 1.9, 48 konteinerit) → fix-tee #2 "mälu->aeglane fork" NÕRK. ~5s cold-connect pole ressurss-piirang → fix-tee #1 (pool-warmth, väldi cold-connect) praktiline launch-tee.
