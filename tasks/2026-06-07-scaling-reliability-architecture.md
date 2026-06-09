@@ -383,3 +383,40 @@ Staging boot-storm (load 15 jagatud hostil) → **prod homepage 504/20s** storm'
 ### Homepage külm-render 504 (read-only leid)
 - `[locale]/page.tsx` (ISR revalidate=3600) await'ib: `getHomepageCms` (Medusa /store/cms → pub-key-middleware query.graph, külm ~5s #11922) + `season-special` (Meili, kiire) + `brands`/`overrides` (failid). Juur = pub-key-middleware query.graph külm-cost + Meili-külm, intermittentne ISR-expiry'l (tunnis).
 - **Fix (tehtud, foldub):** `warm-cache.sh` (hoia /et + kategooriad + header-cat ISR+CF soe) → Coolify scheduled-task (iga 15min) + feed-sync-bulk [8/8] re-warm peale revalidate+purge. Ships image's, aktiveerub persistentsuse-redeploy'l VÕI scheduled-task'i lisamisel.
+
+---
+
+## 19. VARIANT D valideeritud staging'us (2026-06-09) ✅ + prod-redeploy plaan
+
+**D = pgbouncer + 1 medusa + worker** (TEADLIKULT ilma 2. web-replikata kuni k6 Sammas 5 tõestab cart-concurrency vajaduse; pgbouncer jääb tuleviku-skaleerimiseks). + warm-cache homepage-504-leevenduseks.
+
+### Staging-validatsioon (2 järjestikust deploy'd, prod kaitstud warm-keeper'iga)
+| Kriteerium | Tulemus |
+|---|---|
+| Deploy EI timeout | ✅ mõlemad deploy'd "finished" ~3min (staggered-sleep väldib) |
+| medusa + worker healthy | ✅ medusa ~13min, worker ~31min (sleep 900 + boot) |
+| 2. järjestikune deploy ei lõhu | ✅ persistentsus kinnitatud (mõlemad taas healthy) |
+| Host-sõbralik (1-2 boot) | ✅ max-load 9.14-11.20 (<12, ei overload'inud; vrd #18 fail load 15.6) |
+| worker redis | ✅ 0 redis-error (peale võrgu-fix'i) |
+| warm-cache.sh | ✅ POSIX-sh, /et+kategooriad+header-cat 200 |
+
+### Kriitiline fix avastatud staging'us (commit ae4f7bd3)
+worker'i tühi `networks: default:` → Coolify EI liitnud `<uuid>_default` võrku (kus `xlmarket-redis` alias) → worker crash-loop (getaddrinfo ENOTFOUND xlmarket-redis). **Fix: `default: aliases: [xlmarket-worker]`** (mitte-tühi blokk) → Coolify liidab `_default`. medusa töötas sest tal oli default:aliases. + warm-cache.sh POSIX-sh (konteineris pole bash, pole pipefail).
+
+### PROD-REDEPLOY PLAAN (watched madal-liiklus-aken, ootab go't)
+**Eel:** git HEAD (D-compose + worker-fix + warm-cache POSIX) main'is. prod-warm-keeper käima (kaitse homepage). Parool juba roteeritud (B2) — D kasutab sama Coolify-env'i (uus parool), ALTER pole vaja.
+
+**Sammud:**
+1. Peata manuaalsed `medusa-2-manual` + `medusa-worker-manual` (eemalda "medusa"-alias rotatsioonist → puhas cutover, väldi 50% flaky booting-medusa pihta). Prod = compose single medusa.
+2. Coolify prod-redeploy (uo28, D-compose). Build ~3min (vana serveerib). Recreate: pgbouncer + medusa (~13min boot) + worker (sleep 900 → boot ~+15min) + storefront.
+   - **Downtime:** ~13min DÜNAAMILINE (cart/SSR); **browse püsib CF-cache'ist + warm-keeper hoiab homepage**. Watched aken.
+3. Verifi compose medusa healthy → siis worker healthy (~+15min). Eemalda manuaalsed konteinerid lõplikult.
+4. Lisa Coolify Scheduled Task: `sh /app/scripts/warm-cache.sh` iga 15min (pidev homepage-soojus). + feed-sync-bulk [8/8] juba re-warm'ib.
+5. Verifi: medusa+worker healthy, pg bounded, CMS DB-read (20 rida), hinnad, 0×5435, 0 auth-error, warm-cache.
+
+**Rollback (graatsiline):**
+- Kui worker ei boot'i → compose medusa üksi serveerib (pgbouncer+1 medusa, töötab; ainult job-offload puudu — ajuti võib MEDUSA_WORKER_MODE eemaldada medusalt = shared, jooksutab jobe).
+- Kui compose medusa katki → revert compose (eelmine HEAD) + redeploy VÕI taaskäivita manuaalsed medusa-2/worker (8h töötanud seis).
+- Parool ei muutu (B2 juba tehtud) → ei auth-riski.
+
+**D tulemus:** persistentne (Coolify-redeploy ei kaota worker'it), host-sõbralik (2 boot'i serial), homepage-504 leevendatud (warm-cache cron). 2. web-replica edasi lükatud k6-ni (Sammas 5). Stopgap (12s+retry) JÄÄB.
