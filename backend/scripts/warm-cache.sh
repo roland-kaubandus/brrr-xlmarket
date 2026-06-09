@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/bin/sh
+# NB: POSIX sh (medusa-konteineris POLE bash) — väldi bash-arrayd/[[ ]].
 # warm-cache.sh — hoia Next ISR + CF-edge SOE võtmelehtedel, et TRULY-külm SSR
 # (revalidate=3600 expiry'l) EI tabaks kasutajat 504-ga (homepage külm-render >30s,
 # vt scaling-doc §17 homepage-leid). Juur: külm /et SSR await'ib pub-key-middleware
@@ -36,10 +37,11 @@ warm "/api/header-categories"
 
 # 3) Top L1-kategooria-lehed (kui antud env-iga WARM_CATEGORIES="haru1,haru2,...")
 if [ -n "${WARM_CATEGORIES:-}" ]; then
-  IFS=',' read -ra CATS <<< "$WARM_CATEGORIES"
-  for c in "${CATS[@]}"; do
+  OLDIFS="$IFS"; IFS=','
+  for c in $WARM_CATEGORIES; do
     warm "/$LOCALE/kategooriad/$c"
   done
+  IFS="$OLDIFS"
 fi
 
 echo "=== WARM-CACHE valmis $(date -u +%Y-%m-%dT%H:%M:%S) ==="
