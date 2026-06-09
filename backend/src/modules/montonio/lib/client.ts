@@ -87,7 +87,7 @@ export class MontonioClient {
         },
       },
     })
-    const res = await fetch(`${this.base}/orders`, {
+    const res = await fetch(`${this.base}/api/orders`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ data: orderToken }),
@@ -101,7 +101,7 @@ export class MontonioClient {
 
   /** Päri order'i staatus uuid järgi. */
   async getOrder(uuid: string): Promise<MontonioOrder> {
-    const res = await fetch(`${this.base}/orders/${uuid}`, {
+    const res = await fetch(`${this.base}/api/orders/${uuid}`, {
       headers: { Authorization: `Bearer ${this.bearer()}` },
     })
     if (!res.ok) {
@@ -114,7 +114,7 @@ export class MontonioClient {
   /** Tagasimakse. */
   async refundOrder(uuid: string, amount: number, currency: string): Promise<unknown> {
     const token = this.sign({ orderUuid: uuid, amount, currency })
-    const res = await fetch(`${this.base}/refunds`, {
+    const res = await fetch(`${this.base}/api/refunds`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ data: token }),
