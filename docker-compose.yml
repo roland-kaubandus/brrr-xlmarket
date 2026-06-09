@@ -172,12 +172,44 @@ services:
       # and leaves storefront in Created. 600s gives a safe margin.
       start_period: 600s
 
-  # NB: medusa-2 + medusa-worker compose-teenused EEMALDATUD (2026-06-09) — staging-
-  # validatsioon (sleep 300/600 staggered) EBAÕNNESTUS: kattuvad boot'id + jagatud-host
-  # (prod juba multi-instance) → sustained load 15 → ükski ei boot'inud + degradeeris
-  # korraks prodi (homepage 504). Vt scaling-doc §18. Persistentsus vajab kas täis-
-  # serialiseeritud sleeps (900/1800s) JA quiet-akent VÕI 2. node'i (host-capacity).
-  # Prod jooksb praegu manuaalsete medusa-2/worker konteineritega (docker run, 8h+).
+  # VARIANT D (2026-06-09): pgbouncer + 1 medusa + worker (TEADLIKULT ilma 2. web-
+  # replikata — selle väärtus tõestamata, k6 Sammas 5; host ei mahuta multi-boot'i).
+  # pgbouncer JÄÄB (bounds conn + valmis tuleviku 2.-node skaleerimiseks).
+  #
+  # medusa-worker = taustatööd (MEDUSA_WORKER_MODE=worker) → medusa-web ei jooksuta jobe.
+  # STAGGERED: sleep 900 → worker npm-boot algab PÄRAST medusa healthy't (~810s) → ainult
+  # ÜKS raske boot korraga (host-sõbralik, ei overload'i, dry-run §18 õppetund). Konteiner
+  # luuakse kohe (deploy ei timeout — depends_on EI medusa:healthy). start_period 2100s
+  # katab sleep(900)+boot(~810)+varu → "starting" mitte "unhealthy" sleep'i ajal.
+  medusa-worker:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    environment:
+      <<: *medusa-env
+      MEDUSA_WORKER_MODE: worker
+    command: ["sh", "-c", "sleep 900 && npm run start"]
+    networks:
+      default:
+      mailcow:
+    depends_on:
+      pgbouncer:
+        condition: service_started
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      meili:
+        condition: service_healthy
+    expose:
+      - "9000"
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://127.0.0.1:9000/health"]
+      interval: 30s
+      timeout: 15s
+      retries: 6
+      start_period: 2100s
 
   storefront:
     build:
