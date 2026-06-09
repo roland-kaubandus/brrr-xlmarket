@@ -79,7 +79,10 @@ export default class MontonioProviderService extends AbstractPaymentProvider<Opt
 
     const order = await this.client_.createOrder({
       merchantReference: sessionId,
-      grandTotal: Number(input.amount),
+      // Medusa amount = MINOR units (sendid, nt 83758); Montonio Orders API ootab
+      // MAJOR units (eurod, nt 837.58). /100 KOHUSTUSLIK — muidu "grandTotal exceeding
+      // max 14999.99" (>€150 tellimused kukuvad) + 100× ülemakse risk. (2026-06-09 leid.)
+      grandTotal: Number(input.amount) / 100,
       currency: (input.currency_code || "eur").toUpperCase(),
       returnUrl: `${store}/et/tellimus/tagasi?session=${encodeURIComponent(sessionId)}`,
       // Medusa sisseehitatud payment-webhook (POST /hooks/payment/[provider]).
@@ -119,7 +122,8 @@ export default class MontonioProviderService extends AbstractPaymentProvider<Opt
   async refundPayment(input: { amount: number; data?: SessionData }): Promise<{ data: SessionData }> {
     const uuid = input.data?.uuid
     if (uuid) {
-      await this.client_.refundOrder(uuid, Number(input.amount), "EUR")
+      // sendid → eurod (Montonio API major units), vt initiatePayment kommentaar.
+      await this.client_.refundOrder(uuid, Number(input.amount) / 100, "EUR")
     }
     return { data: { ...input.data, status: "REFUNDED" } }
   }
@@ -157,7 +161,9 @@ export default class MontonioProviderService extends AbstractPaymentProvider<Opt
     }
     const status = String(claims.paymentStatus || claims.status || "").toUpperCase()
     const sessionId = String(claims.merchantReference || "")
-    const amount = Number(claims.grandTotal || 0)
+    // Montonio tagastab grandTotal'i MAJOR units (eurod); Medusa webhook ootab MINOR
+    // units (sendid) et payment-session summaga klappida. *100 (initiate /100 invers).
+    const amount = Number(claims.grandTotal || 0) * 100
     if (status === "PAID") {
       return { action: PaymentActions.AUTHORIZED, data: { session_id: sessionId, amount } }
     }
