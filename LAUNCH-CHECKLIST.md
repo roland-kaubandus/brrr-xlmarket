@@ -72,3 +72,22 @@ Staging-sandbox e2e-test leidis 3 launch-kriitilist asja (kõik koodi-fix'id com
 4. Kuni real-fix: checkout EI ole launch-valmis. Stopgap-budget tõstmine (band-aid) ei paranda UX-i.
 
 **Fix#1 (0119c2d3) EI kata cart'i** — see oli product-detail field-trim + Meili-price (browse). Cart/checkout läheb endiselt läbi raske Medusa-workflow.
+
+### CART-STALL JUUR KINNITATUD + FIX-PLAAN (2026-06-09 profileerimine staging'us)
+
+**Profileerimise-leid (pg-query-logging + ioredis-timing):**
+- cart-create: 5-16s, VARIEERUB metsikult (0.66s ↔ 12s). AINULT **7 pg-päringut** (DB pole pudelikael).
+- add-line-item: 7s, **~90 pg-päringut** (N+1 relation-expansion — cart-refresh laiendab `*items.variant.product` täis-graafi).
+- cart-GET (raske fields): 0.59s (pole pudelikael soojas).
+- `/store/regions`: 0s (üldine query.graph kiire).
+
+**JUUR (kinnitatud mõõtmisega):**
+1. **Redis ioredis cold-connect INTERMITTENTNE 5-10s** (IPv4/IPv6 family / Happy-Eyeballs). Mõõdetud: default cold-connect 27ms / 27ms / **5238ms** (intermittentne); **family:4 alati 3-6ms**. Cart-create kasutab redis workflow-engine + locking (lisatud 2026-06-06 in-memory-serialiseerumise vastu) → maksab intermittentse cold-connect-stalli → cart-create variance 0.66s↔12s. raw-TCP connect 7ms (võrk OK), `--no-network-family-autoselection` NODE_OPTIONS EI mõju ioredis'ile.
+2. **add-line-item N+1** (~90 päringut) = query.graph relation-expansion `*items.variant.product`.
+
+**FIX-PLAAN (2 osa, siht: cart-create <2s, add-line-item <2s):**
+- **A (PRIMAARNE, cart-create): sunni IPv4 (`family:4`) kõigile redis-moodul-ühendustele** (WE/locking/cache/events + projectConfig.redisUrl) — medusa-config redis-options VÕI `?family=4` URL-is. Kaotab intermittentse 5-10s cold-connect-stalli → cart-create järjepidevalt <1s (0.66s juhtum saab normiks). **NB: see oli VARJATUD — `family:4` mõjub ioredis'ile, NODE_OPTIONS-lipp mitte.**
+- **B (add-line-item): trimmi cart query.graph relatsioonid** storefront'is (`/api/cart/items` + `/api/cart` GET) minimaalseks — cart-UI vajab: item id, title, thumbnail, unit_price, quantity, variant id/title. EI täis `*items.variant.product` graafi. Kaotab ~90→<10 päringut.
+- Fix#1 (0119c2d3) EI katnud cart'i (oli browse/product-detail).
+
+**Mõju:** sama setup prod's → sama cart-stall. family:4 fix kandub prod'i. EI veel deployitud (ootab plaani-kinnitust). Saab staging'us tõestada (apply family:4 → re-mõõda) enne prod'i.
