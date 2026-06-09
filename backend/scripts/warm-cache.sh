@@ -13,7 +13,7 @@
 # Sekventsiaalne (EI thundering-herd) — üks päring korraga, et mitte ise koormata.
 # Tabab AVALIKKU URL-i (STORE_URL) → soojendab korraga origin-ISR + CF-edge cache.
 
-set -uo pipefail
+set -u  # NB: ei 'pipefail' — pole POSIX sh (dash) toetatud
 BASE="${STORE_URL:-https://xlmarket.ee}"
 LOCALE="${WARM_LOCALE:-et}"
 TIMEOUT="${WARM_TIMEOUT:-60}"
