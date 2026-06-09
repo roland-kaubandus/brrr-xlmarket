@@ -47,3 +47,28 @@ Staging-sandbox e2e-test leidis 3 launch-kriitilist asja (kõik koodi-fix'id com
 3. Prod env: `MONTONIO_ENV=live` + production-võtmed (partner.montonio.com).
 4. Väike päris-makse test prod'is enne avalikku launch'i.
 5. Region↔montonio link prod'is OK (kinnitatud); staging'ule lisatud testiks.
+
+---
+
+## 🔴🔴 CART-CREATE LAUNCH-BLOKEERIJA (2026-06-09 Tarmo browser-test + diagnoos)
+
+**Sümptom:** Tarmo browser staging: add-to-cart 30-40s → "Failed to create cart". Blokeerib checkout'i.
+
+**Diagnoos (prod+staging, idle, headless 5×):**
+- cart-create `POST /store/carts`: **5-15s IDLE** (prod: 15/6/8/0/5s, staging: 11/7/5/5/6s) — pole liiklust, ikka aeglane.
+- Võrdlus baseline: `/health` 0s, **`/store/regions` 0s** (kiire query.graph). → POLE kogu query.graph/pgbouncer/kontentsioon. **Cart-WORKFLOW ise spetsiifiliselt aeglane** (#11922 cart-tee).
+- add-to-cart = create (5-15s) + add-line-item (24s) = **30-40s > stopgap 26s** (2×13s) → fail.
+- pg-conn 1 active/10 idle (pole exhaustion). pgbouncer pool OK.
+
+**Hinnang:**
+- **LAUNCH-BLOKEERIJA JAH.** Cart-create ebausaldusväärselt aeglane isegi 1 kasutaja / idle. Stopgap (26s) EI kata (üksik create kuni 15s, +add 24s ületab). Halb UX (15-40s ootamine) + sage fail.
+- **Variant D (1 web-replica) EI lahenda** — see on per-operatsioon latents, mitte kontentsioon. 2. replica aitab concurrency't, mitte üksik-cart-latentsi.
+- **Stopgap on plaaster, MITTE lahendus.** Vaja PÄRIS cart-stall fix.
+
+**Soovitus (real fix, mitte stopgap):**
+1. Profileeri `createCartWorkflow` + add-line-item — leia TÄPNE aeglane samm (5-15s). /store/regions kiire → cart-workflow spetsiifiline (sales-channel/region/pricing-context setup VÕI cart-response query.graph relation-expansion).
+2. Trimmi cart-ops query.graph relatsioonid (nagu Fix#1 tegi product-detail'iga) — cart GET kasutab juba `*items.variant.product` (raske).
+3. Kontrolli kas Medusa createCartWorkflow teeb liigseid samme / N+1 (võib olla pricing-context või sales-channel-link).
+4. Kuni real-fix: checkout EI ole launch-valmis. Stopgap-budget tõstmine (band-aid) ei paranda UX-i.
+
+**Fix#1 (0119c2d3) EI kata cart'i** — see oli product-detail field-trim + Meili-price (browse). Cart/checkout läheb endiselt läbi raske Medusa-workflow.
