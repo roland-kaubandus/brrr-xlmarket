@@ -191,7 +191,13 @@ services:
       MEDUSA_WORKER_MODE: worker
     command: ["sh", "-c", "sleep 900 && npm run start"]
     networks:
+      # NB: default-blokk PEAB olema mitte-tühi (alias) — tühi 'default:' jätab
+      # Coolify't worker'i `<uuid>_default` võrku liitmata (kus xlmarket-redis alias)
+      # → worker ei resolveeri redist → crash-loop (2026-06-09 staging-leid §18).
+      # medusa töötab sest tal on default:aliases. Alias ise on muidu kasutu.
       default:
+        aliases:
+          - xlmarket-worker
       mailcow:
     depends_on:
       pgbouncer:
