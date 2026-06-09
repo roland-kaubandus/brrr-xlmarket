@@ -346,3 +346,40 @@ Standard single-instance redeploy (Tarmo prod-go). Build 173s (cache), medusa bo
 2. **Homepage külm-render 504** (pre-existing, MITTE pgbouncer): TRULY-külm /et SSR ületab CF 30s → 504; soojana 0.1s. ISR-revalidate-hetkedel risk. Follow-up: uuri /et SSR aeglust (mis cold-renderil teeb) + warm-up-cron VÕI pikenda ISR.
 3. **Parool assistant-teada:** Coolify PATCH-API kajas väärtuse sessioonis. Soovitus: 1× lõpp-rotatsioon UI kaudu (assistant ei näe) — vt session-log retsept.
 4. **Stopgap (12s+retry) JÄÄB** — eemaldust EI tehtud (vajab eraldi go peale päris-load-testi).
+
+---
+
+## 18. PERSISTENTSUSE-VALIDATSIOON EBAÕNNESTUS + host-capacity leid (2026-06-09)
+
+**Eesmärk oli:** worker + medusa-2 Coolify-compose'i staggered-start'iga, mis ei timeout'i deploy'd ega overload'i hosti. Valideerida staging'us enne prodi.
+
+### Mis juhtus (staging)
+- Compose: medusa-2 (`sleep 300 && start`, alias medusa) + worker (`sleep 600`), depends_on EI medusa:healthy.
+- **Deploy EI timeout'inud** (finished +176s) ✅ — staggered-sleep väldib Coolify-timeout'i (õige leid).
+- **AGA ükski 3-st ei boot'inud healthy'ks 55min jooksul.** Host load püsivalt 9-15 (tipp 15.64/12 tuuma).
+- **Juur:** sleep 300/600 << medusa boot ~810s → boot'id KATTUSID (medusa 0-810, medusa-2 300-1100, worker 600-1400 → 3 korraga) → sustained CPU-overload → event-loop-starvation → ükski ei lõpeta (sama muster nagu dry-run §13.2).
+- **+ Jagatud-host:** prod jookseb NÜÜD ise multi-instance (3 medusa) → staging-boot konkureeris → host'il polnud boot-headroom'i.
+
+### 🔴 PROD MÕJUTATUD (oluline)
+Staging boot-storm (load 15 jagatud hostil) → **prod homepage 504/20s** storm'i ajal (prod medusa-backend jäi 200, aga külm-render-SSR timeout'is host-load all). Peatasin staging (medusa+medusa-2+worker) → prod taastus (load 2.5, /et 200 0.1s). **Õppetund: raske operatsioon jagatud hostil ohustab prodi.**
+
+### Juur-järeldused
+1. **Stagger peab olema TÄIS-serialiseeriv:** medusa-2 sleep > medusa boot (~810s) → nt **900s**; worker > medusa-2 healthy → **1800s**. 300/600 oli vale.
+2. **Host-capacity on PIIRANG:** üks 12-tuuma host, prod juba 3 medusa + mailcow/nextcloud/teine-coolify. Boot-CPU on kitsaskoht (RAM 62G OK). Isegi serialiseeritud staging-boot lisab prod-baseline'ile (~5) → ~14 → prod homepage-blip risk IGA boot-akna ajal.
+3. **Staging-multi-instance valideerimine prod-multi-instance kõrval = ise riskantne** (jagatud host, konkureerivad, prod sai pihta).
+
+### Valikud (vajab Tarmo otsust)
+- **A — Serial-sleeps + quiet-aken:** sleep 900/1800 compose's, prod-redeploy SÜGAV-öö-aknas (madalaim liiklus), monitoori prodi, rollback kohe kui homepage-blip. Risk: iga boot lisab load'i, prod homepage võib akna jooksul blip'ida. Staging-validatsioon ka quiet-aknas.
+- **B — Manuaalne + runbook (väikseim risk):** jäta prod manuaalsete medusa-2/worker konteineritega (töötab 8h+), dokumenteeri runbook "peale iga Coolify-redeploy'd käivita medusa-2+worker uuesti" + ÄRA-redeploy-ilma-selleta. Ei lahenda päris-persistentsust, aga 0 prod-riski praegu.
+- **C — 2. node (õige pikaajaline):** capacity-plaan (§3.6) mainis "teine node kui tipp kõrge". 2 hosti → prod-replicad jagunevad → boot-headroom + päris-HA. Suurem muudatus (Coolify multi-server / eraldi host).
+- **D — Lihtsusta:** kas prod VAJAB 2 web-replicat + workerit praegu (pre-launch, madal liiklus)? Võib-olla pgbouncer + 1 medusa + worker (2 boot'i, mitte 3) piisab kuni päris-liiklus tuleb. Cart-concurrency-vajadus tõestamata (k6 Sammas 5 pole tehtud).
+
+### Seis
+- Prod: stabiilne, manuaalne multi-instance (medusa+medusa-2-manual+worker-manual, 8h+), homepage intermittentne külm-504 (~10%, pre-existing).
+- Staging: PEATATUD (kaitseks prodile). Vajab ta-käivitamist (single-instance) quiet-hetkel.
+- Compose HEAD: ohutu (pgbouncer+single medusa+warm-cache). medusa-2/worker EI ole compose's.
+- **ÄRA prod-redeploy** (kaotaks manuaalsed medusa-2/worker) enne kui valik A/B/C/D otsustatud.
+
+### Homepage külm-render 504 (read-only leid)
+- `[locale]/page.tsx` (ISR revalidate=3600) await'ib: `getHomepageCms` (Medusa /store/cms → pub-key-middleware query.graph, külm ~5s #11922) + `season-special` (Meili, kiire) + `brands`/`overrides` (failid). Juur = pub-key-middleware query.graph külm-cost + Meili-külm, intermittentne ISR-expiry'l (tunnis).
+- **Fix (tehtud, foldub):** `warm-cache.sh` (hoia /et + kategooriad + header-cat ISR+CF soe) → Coolify scheduled-task (iga 15min) + feed-sync-bulk [8/8] re-warm peale revalidate+purge. Ships image's, aktiveerub persistentsuse-redeploy'l VÕI scheduled-task'i lisamisel.
