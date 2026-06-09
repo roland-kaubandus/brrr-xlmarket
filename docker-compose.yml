@@ -172,78 +172,12 @@ services:
       # and leaves storefront in Created. 600s gives a safe margin.
       start_period: 600s
 
-  # medusa-2 = HTTP server-replica #2 (round-robin). Võrgu-alias "medusa" →
-  # docker-DNS round-robin storefront'i "medusa:9000" päringutele üle mõlema replica.
-  #
-  # STAGGERED-START (väldib Coolify-deploy-timeout'i JA simultaanse boot-overload'i):
-  #   - command 'sleep 300 && start' → konteiner LOOdud kohe (Coolify-deploy "finished"
-  #     ei oota healthy't — vt medusa start_period muster), aga npm-boot algab +300s,
-  #     PÄRAST primaarse medusa CPU-raskeimat boot-faasi → ei ülekoorma hosti.
-  #   - depends_on EI sisalda medusa:service_healthy (see serialiseeriks → compose-up
-  #     blokeeruks ~40min → Coolify-deploy-timeout). Ainult db/redis/meili/pgbouncer.
-  #   - start_period 1500s katab sleep(300)+boot(~810)+varu → "starting" mitte "unhealthy".
-  medusa-2:
-    build:
-      context: ./backend
-      dockerfile: Dockerfile
-    restart: unless-stopped
-    environment:
-      <<: *medusa-env
-    command: ["sh", "-c", "sleep 300 && npm run start"]
-    networks:
-      default:
-        aliases:
-          - medusa
-      mailcow:
-    depends_on:
-      pgbouncer:
-        condition: service_started
-      db:
-        condition: service_healthy
-      redis:
-        condition: service_healthy
-      meili:
-        condition: service_healthy
-    expose:
-      - "9000"
-    healthcheck:
-      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://127.0.0.1:9000/health"]
-      interval: 30s
-      timeout: 15s
-      retries: 6
-      start_period: 1500s
-
-  # medusa-worker = taustatööd (MEDUSA_WORKER_MODE=worker) → HTTP-replicad ei
-  # jooksuta jobe. Staggered viimasena (sleep 600 → peale medusa-2 boot-faasi).
-  medusa-worker:
-    build:
-      context: ./backend
-      dockerfile: Dockerfile
-    restart: unless-stopped
-    environment:
-      <<: *medusa-env
-      MEDUSA_WORKER_MODE: worker
-    command: ["sh", "-c", "sleep 600 && npm run start"]
-    networks:
-      default:
-      mailcow:
-    depends_on:
-      pgbouncer:
-        condition: service_started
-      db:
-        condition: service_healthy
-      redis:
-        condition: service_healthy
-      meili:
-        condition: service_healthy
-    expose:
-      - "9000"
-    healthcheck:
-      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://127.0.0.1:9000/health"]
-      interval: 30s
-      timeout: 15s
-      retries: 6
-      start_period: 1800s
+  # NB: medusa-2 + medusa-worker compose-teenused EEMALDATUD (2026-06-09) — staging-
+  # validatsioon (sleep 300/600 staggered) EBAÕNNESTUS: kattuvad boot'id + jagatud-host
+  # (prod juba multi-instance) → sustained load 15 → ükski ei boot'inud + degradeeris
+  # korraks prodi (homepage 504). Vt scaling-doc §18. Persistentsus vajab kas täis-
+  # serialiseeritud sleeps (900/1800s) JA quiet-akent VÕI 2. node'i (host-capacity).
+  # Prod jooksb praegu manuaalsete medusa-2/worker konteineritega (docker run, 8h+).
 
   storefront:
     build:
