@@ -91,3 +91,23 @@ Staging-sandbox e2e-test leidis 3 launch-kriitilist asja (kõik koodi-fix'id com
 - Fix#1 (0119c2d3) EI katnud cart'i (oli browse/product-detail).
 
 **Mõju:** sama setup prod's → sama cart-stall. family:4 fix kandub prod'i. EI veel deployitud (ootab plaani-kinnitust). Saab staging'us tõestada (apply family:4 → re-mõõda) enne prod'i.
+
+### KORREKTSIOON (2026-06-10): family:4 fix EI aidanud — juur on event-loop-block, mitte redis-family
+
+**Puhas idle-mõõtmine (host load 2.84) — prod(fix'imata) vs staging(family:4+relation-trim):**
+- PROD: 5.8/6.2/**0.67**/6.3/**0.64**s. STAGING: 16.1/**0.62**/5.7/11.5/**0.68**s.
+- **MÕLEMAD bimodaalsed (~0.65s VÕI 5-16s), IDENTNE.** family:4 EI parandanud.
+
+**Korrigeeritud juur:** cart-create on **bimodaalne ~0.65s (kiire) VÕI 5-16s (aeglane)** isegi IDLE'is (load 2.84), SÕLTUMATA family:4'st. raw-TCP redis'ele alati kiire (0-7ms), redis-server OK, host idle → intermittentne 5-16s on **event-loop-blokk cart-workflow'/query.graph JS-is** (#11922 RemoteJoiner raske sünk-assembly cache-miss'il vs cache-hit kiire). Varasem "family:4 lahendab" oli **õnneliku 5-sample-jooksu artefakt** — family:4-connect on ka intermittentne (6406ms peale deploy'd). ioredis cold-connect aeglus = event-loop-gated JS-handshake (TCP kiire), mitte family.
+
+**Mida fix'id ANDSID (jäävad, kahjutud/kasulikud):**
+- family:4 (benign, IPv4-explicit, ei kahjusta) — JÄÄB.
+- relation-trim cart GET `*items.variant.product`→`*items` (kergem cart-GET, õiged denormaliseeritud väljad) — KASULIK, JÄÄB. Aga EI lahenda cart-create/add latentsi.
+
+**Cart-stall on endiselt LAHENDAMATA launch-blokeerija.** Reaalsed valikud (kõik mitte-triviaalsed):
+1. Sügav Medusa query.graph/workflow profileerimine (debug-logging) → leia mis blokeerib event-loopi 5-16s cache-miss'il. Framework-tasandi fix.
+2. Medusa versiooni-upgrade (kontrolli kas #11922 upstream parandatud).
+3. 2. web-replica (concurrency aitab AINULT samaaegsust, MITTE üksik-op-latentsi — bimodaalne 0.65/16s jääks).
+4. Eskaleeri Medusa community/support (#11922).
+
+**EI deployitud prod'i** (fix ei tööta). Prod gated → 0 checkout-liiklust → pole kohene oht, aga launch-blokeerija püsib.
