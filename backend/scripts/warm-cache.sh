@@ -19,11 +19,15 @@ LOCALE="${WARM_LOCALE:-et}"
 TIMEOUT="${WARM_TIMEOUT:-60}"
 
 ts() { date -u +%H:%M:%S; }
+# NB: wget (mitte curl) — medusa-konteineris POLE curl'i (ainult wget). wget toetab
+# nii sisemist http kui avalikku https. busybox wget'il pole -w → staatus exit-koodist.
 warm() {
-  local path="$1"
-  local code
-  code=$(curl -s -o /dev/null -w '%{http_code}' --max-time "$TIMEOUT" "$BASE$path" 2>/dev/null || echo "000")
-  echo "  [$(ts)] $path → $code"
+  path="$1"
+  if wget -q -O /dev/null --timeout="$TIMEOUT" "$BASE$path" 2>/dev/null; then
+    echo "  [$(ts)] $path -> OK"
+  else
+    echo "  [$(ts)] $path -> FAIL (külm-render >timeout või viga)"
+  fi
 }
 
 echo "=== WARM-CACHE algus $(date -u +%Y-%m-%dT%H:%M:%S) (base=$BASE) ==="
