@@ -78,4 +78,9 @@ else
   echo "  vahele jäetud (CF_API_TOKEN/CF_ZONE_ID seadmata)"
 fi
 
+# [8/8] Cache warm-up — revalidate+purge RE-külmetas ISR+CF → soojenda võtmelehed
+# kohe, et esimene kasutaja EI tabaks külm-SSR 504 (homepage >30s, vt scaling-doc §17).
+echo "[8/8 $(ts)] Cache warm-up (võtmelehed)..."
+bash /app/scripts/warm-cache.sh || echo "  HOIATUS: warm-up ebaõnnestus (mittekriitiline)"
+
 echo "=== FEED-SYNC-BULK valmis $(date -u +%Y-%m-%dT%H:%M:%S) ==="
