@@ -317,3 +317,32 @@ Standard single-instance redeploy (Tarmo prod-go). Build 173s (cache), medusa bo
 - **Rollback igal sammul:** compose tagasi single-instance + parool tagasi + redeploy.
 
 **Stopgap (12s+retry) JÄÄB** kuni load-test prod-arhitektuuril kinnitab (eraldi go eemaldamiseks).
+
+---
+
+## 17. B-CUTOVER PROD — TEHTUD (2026-06-09 öö) ✅ + lahtised
+
+**Aken:** öine, Tarmo jälgis. Prod-app uo28, commit 0044a754. Cutover ~16min (browse CF-cache'ist).
+
+### Tehtud + verifitseeritud (8h stabiilne)
+| Komponent | Tulemus |
+|---|---|
+| **B2 parool-rotatsioon** | ALTER + Coolify-env. **pg-auth-error 0** kõigis (medusa+medusa-2+worker). |
+| **B1 pgbouncer** | transaction-mode üleval; medusa+medusa-2+worker → pgbouncer; **pg server-conn 11** (bounded, <100). |
+| **B1 2 web-replica't** | medusa + medusa-2; **round-robin** `medusa` alias → 7:5 jaotus, mõlemad health 200. |
+| **B1 worker** | MEDUSA_WORKER_MODE=worker, eraldi konteiner; 0 auth/conn-viga. |
+| **B1 redis-moodulid** | cache/events/WE/locking → xlmarket-redis (jagatud state N replicale). |
+| **B3 CMS-fix** | CMS DB-read töötab prod's (cms_page 20 rida); **0×5435, 0×ECONNREFUSED**. |
+| **B4 warm-up** | purge ebavajalik (cache 8h loomulikult soe); /et 9/10×200, hinnad õiged (€973.94). |
+| Sait | /et + kategooriad + toode + hind kõik OK. |
+
+### Load-test enne/pärast (8 parallel raske query.graph)
+- ENNE (single-instance, direct-pg): **36s**, pg-peak 10.
+- PÄRAST (2 replicat + pgbouncer round-robin): **59s**, pg-peak 11.
+- **Tõlgendus:** sünteetiline raske *untrimmed* query.graph endpoint POLE reaal-hot-tee (Fix#1 trimmib toote kiireks=0s soe; browse=Meili). pgbouncer txn-mode lisab per-query overhead'i "jutukale" relation-expansion'ile (#11922, ~5s/päring inherentne) → 2-replica split ei kompenseeri SEL sünteetilisel testil. **Reaal-liiklus regressioonita.** 2-replica concurrency-väärtus vajab päris-concurrent-cart k6-testi (Sammas 5).
+
+### 🔴 LAHTISED (kriitiline + follow-up)
+1. **PERSISTENTSUS (kriitiline):** worker + medusa-2 on **manuaalsed `docker run` konteinerid** (restart:unless-stopped), MITTE Coolify-compose's. → **Coolify-redeploy taastab single-instance'i** (worker+medusa-2 orphan'iks/kaob). **ÄRA tee prod Coolify-redeploy't enne kui need on compose's folditud.** Follow-up: lisa medusa-2+worker compose'i staggered-start'iga (sleep-delay command) VÕI tõsta Coolify deploy-timeout + serial depends_on. Vajab uut akent + go't.
+2. **Homepage külm-render 504** (pre-existing, MITTE pgbouncer): TRULY-külm /et SSR ületab CF 30s → 504; soojana 0.1s. ISR-revalidate-hetkedel risk. Follow-up: uuri /et SSR aeglust (mis cold-renderil teeb) + warm-up-cron VÕI pikenda ISR.
+3. **Parool assistant-teada:** Coolify PATCH-API kajas väärtuse sessioonis. Soovitus: 1× lõpp-rotatsioon UI kaudu (assistant ei näe) — vt session-log retsept.
+4. **Stopgap (12s+retry) JÄÄB** — eemaldust EI tehtud (vajab eraldi go peale päris-load-testi).
