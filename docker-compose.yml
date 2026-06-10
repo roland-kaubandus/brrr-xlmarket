@@ -180,11 +180,11 @@ services:
   # replikata — selle väärtus tõestamata, k6 Sammas 5; host ei mahuta multi-boot'i).
   # pgbouncer JÄÄB (bounds conn + valmis tuleviku 2.-node skaleerimiseks).
   #
-  # medusa-worker = taustatööd (MEDUSA_WORKER_MODE=worker) → medusa-web ei jooksuta jobe.
-  # STAGGERED: sleep 900 → worker npm-boot algab PÄRAST medusa healthy't (~810s) → ainult
-  # ÜKS raske boot korraga (host-sõbralik, ei overload'i, dry-run §18 õppetund). Konteiner
-  # luuakse kohe (deploy ei timeout — depends_on EI medusa:healthy). start_period 2100s
-  # katab sleep(900)+boot(~810)+varu → "starting" mitte "unhealthy" sleep'i ajal.
+  # medusa-worker = taustatööd (MEDUSA_WORKER_MODE=worker, sh BullMQ webhook-töötlus) → medusa-web
+  # ei jooksuta jobe. STAGGERED: sleep 60 (oli 900) → medusa-web saab boot-edumaa, väldib samaaegset
+  # rasket boot'i. Lühendatud 2026-06-10: boot-storm'i juur (host audit uid=1001) eemaldatud →
+  # 15min pime-aken (webhook'id ei töötle) kaob. Konteiner luuakse kohe (deploy ei timeout —
+  # depends_on EI medusa:healthy). start_period 600s katab sleep(60)+boot+varu → "starting" mitte "unhealthy".
   medusa-worker:
     build:
       context: ./backend
@@ -193,7 +193,10 @@ services:
     environment:
       <<: *medusa-env
       MEDUSA_WORKER_MODE: worker
-    command: ["sh", "-c", "sleep 900 && npm run start"]
+    # Stagger 60s (oli 900s): annab medusa-web'ile boot-edumaa, väldib samaaegset rasket boot'i.
+    # Lühendatud 2026-06-10 — boot-storm'i juur (host audit-reeglid uid=1001) eemaldatud, host-load
+    # ~1.4 → 15min pime-aken (webhook'id ei töötle) kaob. Kui boot-koormust tekib, tõsta tagasi.
+    command: ["sh", "-c", "sleep 60 && npm run start"]
     networks:
       # NB: default-blokk PEAB olema mitte-tühi (alias) — tühi 'default:' jätab
       # Coolify't worker'i `<uuid>_default` võrku liitmata (kus xlmarket-redis alias)
@@ -219,7 +222,7 @@ services:
       interval: 30s
       timeout: 15s
       retries: 6
-      start_period: 2100s
+      start_period: 600s
 
   storefront:
     build:
