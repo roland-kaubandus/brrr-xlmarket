@@ -47,3 +47,8 @@ Risto = vaenulik endine arendaja (offboard mai 2026, `userdel -r`, UID 1001). Of
 
 ## ✅ Kood-puhastus VALIDEERITUD staging'us (2026-06-10)
 RISTO_ADMIN-slot + allowedDevOrigins 65.109.86.254 eemaldatud (commit 9eaa1b97). Staging-deploy: build OK, /et 200, xl-admin 307 (normaalne login-redirect — admin-kood ei katkenud), staging.xlmarket.ee 200. **OOTAB go't → prod-deploy.**
+
+## ✅ EXFILTRATION-KONTROLL (2026-06-10) — MÕLEMAD PUHTAD
+- **Audit-log forwarding: PUHAS.** /etc/audit/plugins.d/ af_unix=active=no + syslog=active=no; pole audisp-remote protsessi/remote_server'it; rsyslog ei forwardi remote'i. → audit-logid EI lahku serverist.
+- **daily-report.sh: PUHAS.** TO=tarmo@naissaar.eu (mitte Risto/tundmatu), msmtp relay=mail.xlrent.eu:587 (oma Mailcow), /etc/aliases tühi, root .forward puudub. → läheb Tarmole oma mail-infra kaudu.
+- **JÄRELDUS: ükski mehhanism EI saada/saatnud andmeid serverist välja.** (Koos varasema võrgu-sweep'iga: pole väljuvaid ühendusi Risto-IP'dele, pole reverse-tunnel/autossh, pole LD_PRELOAD.)
