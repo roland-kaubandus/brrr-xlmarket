@@ -225,6 +225,18 @@ services:
       start_period: 600s
 
   storefront:
+    # Gate-erand /hooks (Montonio webhook): docker-provider router prio 250 > maintenance-gate 200,
+    # et webhook läbiks coming-soon-gate'i taga. DOCKER-provider (mitte file-provider) — file-provider
+    # router ei käivitanud Next.js /hooks route'i (tagastas "OK"+vary:rsc, server-actions-quirk);
+    # docker-provider (sama mis staging) käivitab route'i korrektselt. Eksponeerib AINULT /hooks.
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.xlhooks.rule=Host(`xlmarket.ee`) && PathPrefix(`/hooks`)"
+      - "traefik.http.routers.xlhooks.priority=250"
+      - "traefik.http.routers.xlhooks.entrypoints=https"
+      - "traefik.http.routers.xlhooks.tls=true"
+      - "traefik.http.routers.xlhooks.service=xlhooks-svc"
+      - "traefik.http.services.xlhooks-svc.loadbalancer.server.port=3030"
     build:
       context: ./storefront
       dockerfile: Dockerfile
