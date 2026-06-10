@@ -66,6 +66,12 @@ export default defineConfig({
       pool: {
         min: parseInt(process.env.DB_POOL_MIN || "2", 10),
         max: parseInt(process.env.DB_POOL_MAX || "10", 10),
+        // Cart-stall fix (2026-06-10): hoia pool-ühendused PÜSIVALT soojad → väldi
+        // intermittentset ~5s külma pg-connect'i (cart-create bimodaalne 0.66s/5-16s
+        // juur). idleTimeoutMillis kõrge = tarn EI hävita idle-ühendusi → ei loo
+        // hiljem cold-connect'i. Koos DB_POOL_MIN=MAX (env) → pool ei kahane ega kasva.
+        idleTimeoutMillis: 600000,
+        reapIntervalMillis: 120000,
       },
     },
     http: {
