@@ -30,6 +30,14 @@ docker run -d --name xlmarket-maintenance --restart unless-stopped --network coo
 ## LAUNCH'IL (gate maha)
 docker stop xlmarket-maintenance && docker rm xlmarket-maintenance
 # → uo28 storefront hakkab xlmarket.ee't serveerima (pärispood läheb avalikuks).
+#
+# ⚠️ KOHUSTUSLIK PÄRAST: PURGE CLOUDFLARE CACHE (Tarmo CF-konto → Caching → Purge Everything).
+#    CF cache'ib coming-soon-lehte (~1.5h age) → ilma purge'ita näevad kliendid VEEL cache'itud
+#    coming-soon't kuni cache aegub. (2026-06-10 leid: cf-cache-status HIT /et lehel.)
+#
+# WEBHOOK-NOOT: xlmarket.ee/hooks → storefront (docker-provider router xlhooks, prio 250 > gate 200,
+#   storefront compose-label) → /hooks-proxy → medusa. Töötab gate-olekus + peale launchi. ÄRA eemalda
+#   seda routerit. (NB: file-provider dünaamiline router EI tööta Next.js route'iga — kasuta docker-labelit.)
 
 ## Ajalugu
 - Originaalne gate (loodud 2026-05-10) STOPPITI 2026-06-05 (eelmine sessioon pidas seda
