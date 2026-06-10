@@ -27,3 +27,6 @@ Risto = vaenulik endine arendaja (offboard mai 2026, `userdel -r`, UID 1001). Of
 
 ## Märkused
 - next-server host-port :3099 (pid 404763) — verifitseerida (kas stray dev-server).
+
+## Lisa-leid (2026-06-10, peale cart-fix'i)
+- **`docker_commands` audit-reegel** (`-w /usr/bin/docker -p x`, risto.rules's, jäeti alles) hoiab **auditd ~35% CPU** (auditeerib iga docker-exec'i; 48 konteinerit + Coolify health-checkid = pidev volüüm). EI mõjuta cart'i (lahendatud), AGA obsoletne Risto-era + raiskab CPU → kaaluda eemaldamist remedeerimisel (auditctl -d + risto.rules'ist).
