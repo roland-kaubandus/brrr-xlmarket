@@ -13,15 +13,10 @@ type CartItem = {
   quantity: number
   unit_price: number
   total: number
-  variant: {
-    id: string
-    title: string
-    product: {
-      title: string
-      handle: string
-      thumbnail: string | null
-    }
-  }
+  // Denormaliseeritud line-item väljad (cart-query trimmitud `*items` peale, cart-stall fix).
+  // Nested item.variant.product.* EI ole enam saadaval. (thumbnail-fix 2026-06-10, checkout-summary)
+  thumbnail: string | null
+  product_title: string | null
 }
 
 type Cart = {
@@ -531,10 +526,10 @@ export default function CheckoutPage() {
                   {items.map((item) => (
                     <div key={item.id} className="flex gap-3">
                       <div className="relative w-14 h-14 bg-[#F7F7F7] rounded-lg border border-[#E2E8F0] shrink-0 overflow-hidden">
-                        {item.variant?.product?.thumbnail ? (
+                        {item.thumbnail ? (
                           <Image
-                            src={item.variant.product.thumbnail}
-                            alt={item.variant?.product?.title || item.title}
+                            src={item.thumbnail}
+                            alt={item.product_title || item.title}
                             fill
                             className="object-contain p-1"
                             sizes="56px"
@@ -547,7 +542,7 @@ export default function CheckoutPage() {
                       </div>
                       <div className="flex-1 min-w-0">
                         <p className="text-[12px] font-medium text-[#1E293B] leading-[1.4] line-clamp-2">
-                          {item.variant?.product?.title || item.title}
+                          {item.product_title || item.title}
                         </p>
                         <p className="text-[12px] text-[#64748B]">
                           {item.quantity} {locale === "et" ? "tk" : "pcs"} &times; {formatPrice(item.unit_price, cart.currency_code)}
