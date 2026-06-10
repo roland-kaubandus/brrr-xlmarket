@@ -62,7 +62,6 @@ function categorySlugRedirect(pathname: string): string | null {
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
-  if (pathname.startsWith('/hooks')) console.log(`[MW-DEBUG] middleware HIT /hooks path=${pathname} host=${request.headers.get('host')}`)
 
   // Skip public files and API routes
   if (
