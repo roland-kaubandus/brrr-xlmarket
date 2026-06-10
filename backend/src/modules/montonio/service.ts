@@ -86,8 +86,11 @@ export default class MontonioProviderService extends AbstractPaymentProvider<Opt
       currency: (input.currency_code || "eur").toUpperCase(),
       returnUrl: `${store}/et/tellimus/tagasi?session=${encodeURIComponent(sessionId)}`,
       // Medusa sisseehitatud payment-webhook (POST /hooks/payment/[provider]).
-      // provider-slug = pp_<identifier>_<id> = pp_montonio_montonio.
-      notificationUrl: `${backend}/hooks/payment/pp_montonio_montonio`,
+      // ⚠️ KRIITILINE: Medusa lisab URL-segmendile `pp_` ETTE ise (payment-module.js:
+      // `providerId = \`pp_${provider}\``). Seega URL-is on BARE id `montonio_montonio`,
+      // MITTE `pp_montonio_montonio` — muidu resolveerub `pp_pp_montonio_montonio` →
+      // AwilixResolutionError → webhook EI töötle → session jääb pending. (2026-06-10 leid.)
+      notificationUrl: `${backend}/hooks/payment/montonio_montonio`,
       locale: "et",
     })
 

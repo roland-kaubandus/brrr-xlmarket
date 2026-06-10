@@ -6,7 +6,7 @@ const defaultLocale = 'et'
 
 // Paths that should NOT be locale-prefixed
 const PUBLIC_FILE = /\.(.*)$/
-const EXCLUDED = ['/api/', '/meili/', '/_next/', '/favicon', '/images/', '/media/', '/og-image', '/robots', '/sitemap', '/xl-admin', '/admin-login']
+const EXCLUDED = ['/api/', '/hooks/', '/meili/', '/_next/', '/favicon', '/images/', '/media/', '/og-image', '/robots', '/sitemap', '/xl-admin', '/admin-login']
 
 // Category URL segments where slug_redirect applies.
 // Extend if new category URL prefixes are introduced.
@@ -146,6 +146,6 @@ export function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    '/((?!api|meili|_next/static|_next/image|favicon|images|media|og-image|robots|sitemap).*)',
+    '/((?!api|hooks|meili|_next/static|_next/image|favicon|images|media|og-image|robots|sitemap).*)',
   ],
 }
