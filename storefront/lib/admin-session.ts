@@ -55,9 +55,7 @@ interface AdminUser {
 
 export function getAdminUsers(): AdminUser[] {
   const users: AdminUser[] = []
-  const ristoEmail = process.env.RISTO_ADMIN_EMAIL
-  const ristoPass = process.env.RISTO_ADMIN_PASS
-  if (ristoEmail && ristoPass) users.push({ email: ristoEmail, password: ristoPass })
+  // RISTO_ADMIN-slot eemaldatud 2026-06-10 (Risto offboard'itud) — vt risto-offboard-sweep.
   const tarmoEmail = process.env.TARMO_ADMIN_EMAIL
   const tarmoPass = process.env.TARMO_ADMIN_PASS
   if (tarmoEmail && tarmoPass) users.push({ email: tarmoEmail, password: tarmoPass })
