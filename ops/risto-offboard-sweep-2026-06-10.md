@@ -44,3 +44,6 @@ Risto = vaenulik endine arendaja (offboard mai 2026, `userdel -r`, UID 1001). Of
 5. **:3099 next-server** (pid 404763, root, systemd, cwd `/opt/xlmarket-github/storefront/.next/standalone (deleted)`, 5+ päeva) = stray vana bare-metal storefront (pre-Coolify). Obsoletne (Coolify serveerib). Saab peatada (tuvasta systemd-unit) [ootab go't].
 
 ## Kood (eraldi, staging→prod): RISTO_ADMIN-allowlist + next.config allowedDevOrigins ["65.109.86.254"] — eemaldada repost.
+
+## ✅ Kood-puhastus VALIDEERITUD staging'us (2026-06-10)
+RISTO_ADMIN-slot + allowedDevOrigins 65.109.86.254 eemaldatud (commit 9eaa1b97). Staging-deploy: build OK, /et 200, xl-admin 307 (normaalne login-redirect — admin-kood ei katkenud), staging.xlmarket.ee 200. **OOTAB go't → prod-deploy.**
