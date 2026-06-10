@@ -137,11 +137,12 @@ export default defineConfig({
               secretKey: process.env.MONTONIO_SECRET_KEY,
               environment: process.env.MONTONIO_ENV || "sandbox",
               storeUrl: process.env.NEXT_PUBLIC_BASE_URL || "https://xlmarket.ee",
-              // Webhook notificationUrl host. Storefront proxy'b /hooks/payment → sisemine medusa,
-              // seega webhook käib SAMAL domeenil kui storeUrl (staging.xlmarket.ee / xlmarket.ee).
-              // Fallback NEXT_PUBLIC_BASE_URL'ile → portaabel staging↔prod ilma eraldi env'ita.
-              // (Vana default api.xlmarket.ee ei resolvinud → webhook ei jõudnud kohale.)
-              backendUrl: process.env.MEDUSA_BACKEND_URL || process.env.NEXT_PUBLIC_BASE_URL || "https://xlmarket.ee",
+              // Webhook notificationUrl host = AVALIK storefront-domeen (kus /hooks route'itakse
+              // medusa'ni: prod = Traefik gate-erand xlmarket.ee/hooks→medusa; staging = storefront-proxy).
+              // EI tohi kasutada MEDUSA_BACKEND_URL'i — see on admin-paneeli backend (api/admin.xlmarket.ee,
+              // rida ~84) ja erineb avalikust domeenist. Vt prod-leid 2026-06-10 (admin.xlmarket.ee→502).
+              // MONTONIO_WEBHOOK_BASE_URL = valikuline override; muidu NEXT_PUBLIC_BASE_URL (portaabel).
+              backendUrl: process.env.MONTONIO_WEBHOOK_BASE_URL || process.env.NEXT_PUBLIC_BASE_URL || "https://xlmarket.ee",
             },
           },
         ],
