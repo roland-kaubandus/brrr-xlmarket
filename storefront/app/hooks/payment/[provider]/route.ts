@@ -11,6 +11,7 @@ export async function POST(
   req: NextRequest,
   { params }: { params: Promise<{ provider: string }> }
 ) {
+  console.log(`[HOOKS-PROXY] TOP url=${req.url} path=${req.nextUrl.pathname}`)
   const { provider } = await params
   // Ainult tähed/numbrid/alakriips — väldi path-traversal'i / suvalist medusa-rada.
   if (!/^[a-z0-9_]+$/i.test(provider)) {
