@@ -15,15 +15,13 @@ type CartItem = {
   quantity: number
   unit_price: number
   total: number
-  variant: {
-    id: string
-    title: string
-    product: {
-      title: string
-      handle: string
-      thumbnail: string | null
-    }
-  }
+  // Denormaliseeritud line-item väljad (Medusa salvestab add-ajal). Cart-query on trimmitud
+  // `*items` peale (cart-stall fix 2026-06-09) → nested item.variant.product.* EI ole enam
+  // saadaval. Kasuta neid denormaliseeritud välju (vrd CartSlideOver.tsx). (thumbnail-fix 2026-06-10)
+  thumbnail: string | null
+  product_handle: string | null
+  product_title: string | null
+  variant_id: string | null
 }
 
 type Cart = {
@@ -103,8 +101,8 @@ export default function CartPage() {
         const removedItem = cart.items.find((i) => i.id === itemId)
         posthog.capture("cart_item_removed", {
           item_id: itemId,
-          variant_id: removedItem?.variant?.id,
-          product_title: removedItem?.variant?.product?.title,
+          variant_id: removedItem?.variant_id,
+          product_title: removedItem?.product_title,
           quantity: removedItem?.quantity,
         })
         setCart(data.cart)
@@ -228,12 +226,12 @@ export default function CartPage() {
                   <div className="hidden sm:grid grid-cols-[1fr_100px_140px_100px_40px] gap-4 items-center">
                     {/* Product */}
                     <div className="flex gap-3 items-center min-w-0">
-                      <Link href={`/${locale}/toode/${item.variant?.product?.handle ?? ""}`} className="shrink-0">
+                      <Link href={`/${locale}/toode/${item.product_handle ?? ""}`} className="shrink-0">
                         <div className="w-[60px] h-[60px] bg-[#F7F7F7] rounded-lg border border-[#E2E8F0] overflow-hidden">
-                          {item.variant?.product?.thumbnail ? (
+                          {item.thumbnail ? (
                             <Image
-                              src={item.variant.product.thumbnail}
-                              alt={item.variant?.product?.title ?? item.title}
+                              src={item.thumbnail}
+                              alt={item.product_title ?? item.title}
                               width={60}
                               height={60}
                               className="w-full h-full object-contain p-1"
@@ -241,9 +239,9 @@ export default function CartPage() {
                           ) : null}
                         </div>
                       </Link>
-                      <Link href={`/${locale}/toode/${item.variant?.product?.handle ?? ""}`} className="min-w-0">
+                      <Link href={`/${locale}/toode/${item.product_handle ?? ""}`} className="min-w-0">
                         <p className="text-[13px] font-medium text-[#1E293B] hover:text-[#D97706] line-clamp-2 leading-[1.4] transition-colors">
-                          {item.variant?.product?.title ?? item.title}
+                          {item.product_title ?? item.title}
                         </p>
                       </Link>
                     </div>
@@ -293,7 +291,7 @@ export default function CartPage() {
                         onClick={() => removeItem(item.id)}
                         disabled={!!updating}
                         className="w-8 h-8 flex items-center justify-center text-[#CCCCCC] hover:text-[#DC2626] disabled:opacity-40 transition-colors rounded-lg hover:bg-red-50"
-                        aria-label={"Remove " + (item.variant?.product?.title ?? item.title)}
+                        aria-label={"Remove " + (item.product_title ?? item.title)}
                       >
                         <Trash2 size={16} strokeWidth={1.5} />
                       </button>
@@ -302,12 +300,12 @@ export default function CartPage() {
 
                   {/* Mobile: stacked layout */}
                   <div className="flex sm:hidden gap-3">
-                    <Link href={`/${locale}/toode/${item.variant?.product?.handle ?? ""}`} className="shrink-0">
+                    <Link href={`/${locale}/toode/${item.product_handle ?? ""}`} className="shrink-0">
                       <div className="w-[72px] h-[72px] bg-[#F7F7F7] rounded-lg border border-[#E2E8F0] overflow-hidden">
-                        {item.variant?.product?.thumbnail ? (
+                        {item.thumbnail ? (
                           <Image
-                            src={item.variant.product.thumbnail}
-                            alt={item.variant?.product?.title ?? item.title}
+                            src={item.thumbnail}
+                            alt={item.product_title ?? item.title}
                             width={72}
                             height={72}
                             className="w-full h-full object-contain p-1.5"
@@ -316,9 +314,9 @@ export default function CartPage() {
                       </div>
                     </Link>
                     <div className="flex-1 min-w-0">
-                      <Link href={`/${locale}/toode/${item.variant?.product?.handle ?? ""}`}>
+                      <Link href={`/${locale}/toode/${item.product_handle ?? ""}`}>
                         <p className="text-[13px] font-medium text-[#1E293B] hover:text-[#D97706] line-clamp-2 leading-[1.4] mb-1 transition-colors">
-                          {item.variant?.product?.title ?? item.title}
+                          {item.product_title ?? item.title}
                         </p>
                       </Link>
                       <p className="text-[15px] font-bold text-[#D97706] mb-2.5">
@@ -350,7 +348,7 @@ export default function CartPage() {
                           onClick={() => removeItem(item.id)}
                           disabled={!!updating}
                           className="flex items-center gap-1 text-[12px] text-[#CCCCCC] hover:text-[#DC2626] disabled:opacity-40 transition-colors"
-                          aria-label={"Remove " + (item.variant?.product?.title ?? item.title)}
+                          aria-label={"Remove " + (item.product_title ?? item.title)}
                         >
                           <Trash2 size={14} strokeWidth={1.5} />
                           {locale === "et" ? "Eemalda" : "Remove"}
