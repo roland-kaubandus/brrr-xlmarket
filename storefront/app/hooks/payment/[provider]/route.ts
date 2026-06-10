@@ -18,6 +18,8 @@ export async function POST(
   }
 
   const body = await req.text()
+  // TEMP DEBUG (2026-06-10): diagnoosib Traefik POST-body forwarding (eemalda peale fix'i).
+  console.log(`[HOOKS-PROXY] provider=${provider} method=POST body_len=${body.length} ct=${req.headers.get("content-type")} fwd-host=${req.headers.get("x-forwarded-host") || "-"}`)
   try {
     const res = await fetch(`${MEDUSA_URL}/hooks/payment/${provider}`, {
       method: "POST",
@@ -25,6 +27,7 @@ export async function POST(
       body,
     })
     const text = await res.text()
+    console.log(`[HOOKS-PROXY] medusa-resp status=${res.status} body=${text.slice(0,30)}`)
     return new NextResponse(text, {
       status: res.status,
       headers: { "Content-Type": res.headers.get("content-type") || "text/plain" },
