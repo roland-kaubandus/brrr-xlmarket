@@ -37,7 +37,13 @@ export async function POST(req: NextRequest) {
 
     const providersData = await providersRes.json()
     const providers: PaymentProvider[] = providersData.payment_providers || []
-    const providerId = providers[0]?.id
+    // pp_system_default on test/manuaal-provider (auto-autoriseerib ILMA päris-makseta) —
+    // kliendi-checkout PEAB kasutama päris-väravat. Eelista Montonio't, väldi system_default'i.
+    // (Varem providers[0] → region tagastas system_default esimesena → päris-makse jäi tegemata.)
+    const providerId =
+      providers.find((p) => p.id === "pp_montonio_montonio")?.id ||
+      providers.find((p) => p.id !== "pp_system_default")?.id ||
+      providers[0]?.id
     if (!providerId) {
       return NextResponse.json({ error: "No payment providers are available for this region" }, { status: 400 })
     }
