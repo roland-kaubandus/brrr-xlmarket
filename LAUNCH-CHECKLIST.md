@@ -130,3 +130,26 @@ Staging-sandbox e2e-test leidis 3 launch-kriitilist asja (kõik koodi-fix'id com
 **Soovitus:** #1 (pool-warmth) kiire testitav launch-fix + #2 (host cold-connect uurimine) juur-juureks. family:4+relation-trim jäävad (kahjutud). EI deployitud prod'i.
 
 **Host-ressurss (2026-06-10):** host EI ole mälu/swap-surve all (51Gi vaba, swap 0%, load 1.9, 48 konteinerit) → fix-tee #2 "mälu->aeglane fork" NÕRK. ~5s cold-connect pole ressurss-piirang → fix-tee #1 (pool-warmth, väldi cold-connect) praktiline launch-tee.
+
+### 🎯🎯 CART-STALL PÄRIS JUUR — host audit-reegel (2026-06-10 DEFINITIIVNE)
+
+**JUUR:** Linux `auditd` reegel **`-a always,exit -F arch=b64 -S all -F uid=1001 -F key=risto_all`** auditeerib **KÕIK syscall'id uid 1001 jaoks**. **uid 1001 = `medusa`-konteineri protsess** (staging + prod). Busy Node-protsessi iga syscall → audit-backlog ületäitub (`backlog 5084/8192, lost 362, dmesg "backlog limit exceeded"`) → `backlog_wait_time=60000` paneb medusa syscall'id OOTAMA → **intermittentne 5-16s syscall-stall** (connect/read/write).
+
+**Seletab KÕIK varasemad mõõtmised:**
+- OFF-CPU wait (syscall kinni audit_backlog_wait'is, mitte CPU/query.graph).
+- Intermittentne ~5s, bimodaalne (backlog täitub/tühjeneb).
+- Connection-establishment aeglus (node-pg/ioredis connect = connect-syscall, auditeeritud).
+- Miks family:4, pool-warmth, redis-WE-revert EI aidanud — see on KERNELI audit, mitte app/redis/pool.
+- Mõlemad keskkonnad (prod+staging medusa = uid 1001). Host load "kõrge" aga konteinerid madala CPU-ga → **auditd ise 35-85% CPU**.
+
+**FIX (host-tasand, Risto security-config — vajab go't):**
+```
+# Eemalda agressiivne reegel (auditeerib KÕIK medusa syscall'id):
+auditctl -d always,exit -F arch=b64 -S all -F uid=1001 -F key=risto_all
+# + /etc/audit/rules.d/*.rules failist (et ei naaseks reboot'il)
+```
+Alt (kui audit vaja säilitada): kitsenda reeglit (mitte `-S all`), tõsta `backlog_limit`, sea `backlog_wait_time=0` (ära blokeeri, lihtsalt drop). Aga `-S all` busy-protsessil on fundamentaalselt performance-katastroof.
+
+**VALIDEERIMINE (reverditav, vajab go't):** `auditctl -d ...` (eemalda) → mõõda cart-create (peaks järjepidevalt <1s) → `auditctl -a ...` (taasta Risto reegel). Definitiivne kinnitus.
+
+**App-fix'id (family:4, pool-warmth idleTimeout, relation-trim) JÄÄVAD — kahjutud/kasulikud, aga POLE cart-stall'i juur.** Cart-stall = host audit-reegel.
