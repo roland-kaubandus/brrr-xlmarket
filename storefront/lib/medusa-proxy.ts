@@ -13,7 +13,7 @@ export async function medusaProxy(path: string, options?: RequestInit & { timeou
   const timer = setTimeout(() => controller.abort(), timeoutMs)
 
   try {
-    const r = await fetch(`${MEDUSA_URL}${path}`, {
+    return await fetch(`${MEDUSA_URL}${path}`, {
       ...fetchOptions,
       signal: controller.signal,
       cache: "no-store",
@@ -23,9 +23,6 @@ export async function medusaProxy(path: string, options?: RequestInit & { timeou
         ...fetchOptions.headers,
       },
     })
-    // TEMP DEBUG (2026-06-11): Traefik-vs-localhost medusaProxy erinevus (eemalda peale juurt)
-    console.log(`[MPROXY] ${(fetchOptions.method as string) || "GET"} ${path} url=${MEDUSA_URL} key=${(API_KEY || "").slice(0, 12)} → ${r.status}`)
-    return r
   } finally {
     clearTimeout(timer)
   }

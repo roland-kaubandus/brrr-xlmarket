@@ -1,3 +1,6 @@
+export const dynamic = "force-dynamic"
+export const fetchCache = "force-no-store"
+
 import { NextRequest, NextResponse } from "next/server"
 import { medusaProxy, REGION_ID } from "@/lib/medusa-proxy"
 import { isValidId } from "@/lib/validation"
