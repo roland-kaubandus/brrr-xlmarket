@@ -16,7 +16,6 @@ export async function medusaProxy(path: string, options?: RequestInit & { timeou
     return await fetch(`${MEDUSA_URL}${path}`, {
       ...fetchOptions,
       signal: controller.signal,
-      cache: "no-store",
       headers: {
         "x-publishable-api-key": API_KEY,
         "Content-Type": "application/json",
