@@ -229,14 +229,23 @@ services:
     # et webhook läbiks coming-soon-gate'i taga. DOCKER-provider (mitte file-provider) — file-provider
     # router ei käivitanud Next.js /hooks route'i (tagastas "OK"+vary:rsc, server-actions-quirk);
     # docker-provider (sama mis staging) käivitab route'i korrektselt. Eksponeerib AINULT /hooks.
+    # ROUTING-FIX (2026-06-11): router+teenuse nimed UNIKAALSED per-stack (${STOREFRONT_ALIAS}:
+    # prod=xlmarket-storefront, staging=xlmarket-storefront-unset). JUUR: Coolify auto-genereeritud
+    # main-router (https-0-<uuid>-storefront, ILMA eksplitsiitse teenuseta) langeb tagasi konteineri
+    # AINSALE eksplitsiitsele teenusele. Kui see (vana "xlhooks-svc") oli JAGATUD nimega üle stackide,
+    # agregeeris Traefik MÕLEMA stacki storefront'i → staging.xlmarket.ee (ja prod gate-eemaldusel)
+    # round-robin'is k33g↔uo28 → split-brain cart üle 2 DB ("cart not found" ~50%, kategooriad "Oops").
+    # Unikaalne nimi → main-router langeb AINULT oma konteineri teenusele. WEBHOOK_HOST: prod default
+    # xlmarket.ee (gate taga, prio 250 vajalik); staging seab oma domeeni (staging.xlmarket.ee) et
+    # mitte segada prod /hooks-i. Webhook-emit kontrollitud (vrd 1f1606a7).
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.xlhooks.rule=Host(`xlmarket.ee`) && PathPrefix(`/hooks`)"
-      - "traefik.http.routers.xlhooks.priority=250"
-      - "traefik.http.routers.xlhooks.entrypoints=https"
-      - "traefik.http.routers.xlhooks.tls=true"
-      - "traefik.http.routers.xlhooks.service=xlhooks-svc"
-      - "traefik.http.services.xlhooks-svc.loadbalancer.server.port=3030"
+      - "traefik.http.routers.xlhooks-${STOREFRONT_ALIAS:-xlmarket-storefront-unset}.rule=Host(`${WEBHOOK_HOST:-xlmarket.ee}`) && PathPrefix(`/hooks`)"
+      - "traefik.http.routers.xlhooks-${STOREFRONT_ALIAS:-xlmarket-storefront-unset}.priority=250"
+      - "traefik.http.routers.xlhooks-${STOREFRONT_ALIAS:-xlmarket-storefront-unset}.entrypoints=https"
+      - "traefik.http.routers.xlhooks-${STOREFRONT_ALIAS:-xlmarket-storefront-unset}.tls=true"
+      - "traefik.http.routers.xlhooks-${STOREFRONT_ALIAS:-xlmarket-storefront-unset}.service=xlhooks-svc-${STOREFRONT_ALIAS:-xlmarket-storefront-unset}"
+      - "traefik.http.services.xlhooks-svc-${STOREFRONT_ALIAS:-xlmarket-storefront-unset}.loadbalancer.server.port=3030"
     build:
       context: ./storefront
       dockerfile: Dockerfile

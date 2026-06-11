@@ -1,4 +1,5 @@
-import { NextRequest, NextResponse } from "next/server"
+import { NextRequest } from "next/server"
+import { jsonCL } from "@/lib/json-response"
 import { searchProducts, escapeMeiliFilterValue, isSafeHandleToken } from "@/lib/meilisearch"
 import { mapMeiliHitToProduct } from "@/lib/map-meili-hit"
 import { getProductsByHandles } from "@/lib/medusa"
@@ -117,13 +118,13 @@ export async function GET(request: NextRequest) {
   const sort = parseSort(rawSort)
   const facets = parseFacets(rawFacets)
   if (rawFilter && !filter) {
-    return NextResponse.json({ products: [], totalHits: 0, error: "Invalid filter" }, { status: 400 })
+    return jsonCL({ products: [], totalHits: 0, error: "Invalid filter" }, { status: 400 })
   }
   if (rawSort && !sort) {
-    return NextResponse.json({ products: [], totalHits: 0, error: "Invalid sort" }, { status: 400 })
+    return jsonCL({ products: [], totalHits: 0, error: "Invalid sort" }, { status: 400 })
   }
   if (rawFacets && !facets) {
-    return NextResponse.json({ products: [], totalHits: 0, error: "Invalid facets" }, { status: 400 })
+    return jsonCL({ products: [], totalHits: 0, error: "Invalid facets" }, { status: 400 })
   }
 
   try {
@@ -139,7 +140,7 @@ export async function GET(request: NextRequest) {
     const products = result.hits.map((hit) => mapMeiliHitToProduct(hit, locale))
     const enrichedProducts = await enrichMissingPrices(products)
 
-    return NextResponse.json(
+    return jsonCL(
       {
         products: enrichedProducts,
         totalHits: result.totalHits || result.estimatedTotalHits || 0,
@@ -151,7 +152,7 @@ export async function GET(request: NextRequest) {
     )
   } catch (e) {
     console.error("[api/products] Meili failure:", e instanceof Error ? e.message : e)
-    return NextResponse.json(
+    return jsonCL(
       { products: [], totalHits: 0, error: "Search failed" },
       { status: 503 }
     )

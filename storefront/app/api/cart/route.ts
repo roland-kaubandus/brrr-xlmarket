@@ -1,6 +1,7 @@
-import { NextRequest, NextResponse } from "next/server"
+import { NextRequest } from "next/server"
 import { medusaProxy, REGION_ID } from "@/lib/medusa-proxy"
 import { isValidId } from "@/lib/validation"
+import { jsonCL } from "@/lib/json-response"
 
 export async function POST() {
   // STOPGAP: cart-workflow stallib vahelduvalt (5-12s). ~pooled päringud kiired,
@@ -16,7 +17,7 @@ export async function POST() {
       })
       if (res.ok) {
         const data = await res.json()
-        return NextResponse.json(data, { status: res.status })
+        return jsonCL(data, { status: res.status })
       }
       lastStatus = res.status
       if (res.status < 500) break // klienditviga → ära korda
@@ -24,13 +25,13 @@ export async function POST() {
       lastStatus = 503 // timeout/abort → korda
     }
   }
-  return NextResponse.json({ error: "Failed to create cart" }, { status: lastStatus })
+  return jsonCL({ error: "Failed to create cart" }, { status: lastStatus })
 }
 
 export async function GET(req: NextRequest) {
   const cartId = req.nextUrl.searchParams.get("cart_id")
   if (!isValidId(cartId)) {
-    return NextResponse.json({ error: "cart_id is required and must be a valid ID" }, { status: 400 })
+    return jsonCL({ error: "cart_id is required and must be a valid ID" }, { status: 400 })
   }
 
   try {
@@ -42,8 +43,8 @@ export async function GET(req: NextRequest) {
       `/store/carts/${cartId}?fields=*items`
     )
     const data = await res.json()
-    return NextResponse.json(data, { status: res.status })
+    return jsonCL(data, { status: res.status })
   } catch {
-    return NextResponse.json({ error: "Failed to connect to server" }, { status: 503 })
+    return jsonCL({ error: "Failed to connect to server" }, { status: 503 })
   }
 }
