@@ -20,5 +20,7 @@ docker network connect uo28ovobnflauslqjgxeohl0_default coolify-proxy 2>/dev/nul
 
 # 2) Kopeeri git-tracked configid live-kausta (Traefik watch=true → hot-reload):
 cp "$HERE/dynamic/medusa-admin.yaml" "$DYN/medusa-admin.yaml"
-echo "medusa-admin.yaml taastatud → $DYN"
+cp "$HERE/dynamic/xlmarket-preview.yaml" "$DYN/xlmarket-preview.yaml"
+cp "$HERE/dynamic/xlmarket-api-lockdown.yaml" "$DYN/xlmarket-api-lockdown.yaml"
+echo "medusa-admin + preview + api-lockdown taastatud → $DYN"
 echo "VALMIS. Kontrolli: curl -o /dev/null -w '%{http_code}' https://admin.xlmarket.ee/health (peab 200)"

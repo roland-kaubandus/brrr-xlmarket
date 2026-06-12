@@ -1,0 +1,18 @@
+# Gate-bypass (Tarmo eelvaade): küpsisega xl_preview=<secret> → prod-storefront;
+# ilma küpsiseta → maintenance coming-soon (kliendid). Priority 260 > maintenance 200.
+# Tagasipööramine: kustuta see fail. Secret: ec8bc71d9cb8fa52a6a4cd08fc268df7
+http:
+  routers:
+    xl-preview-https:
+      rule: "Host(`xlmarket.ee`) && HeaderRegexp(`Cookie`, `xl_preview=ec8bc71d9cb8fa52a6a4cd08fc268df7`)"
+      entryPoints:
+        - https
+      service: xl-preview-storefront
+      priority: 260
+      tls:
+        certResolver: letsencrypt
+  services:
+    xl-preview-storefront:
+      loadBalancer:
+        servers:
+          - url: "http://xlmarket-storefront:3030"

@@ -1,0 +1,26 @@
+# api.xlmarket.ee: blokeeri AVALIK medusa-API (/store, /hooks) → 403. Admin-pathid (/app,/admin,/auth,
+# /health) jäävad PUUTUMATA Coolify-docker-routeri kaudu (admin ei katke). deny-router matchib AINULT
+# /store+/hooks → ipAllowList-middleware (403) ENNE backend'i → ei route'i medusa'ni (väldib file-provider
+# auth-mangimist mis whitelist'il admini lõhkus). Webhook käib xlmarket.ee/hooks kaudu. Reversible: kustuta fail.
+http:
+  middlewares:
+    api-denyall:
+      ipAllowList:
+        sourceRange:
+          - "192.0.2.1/32"
+  routers:
+    api-deny-public:
+      rule: "Host(`api.xlmarket.ee`) && (PathPrefix(`/store`) || PathPrefix(`/hooks`))"
+      entryPoints:
+        - https
+      service: api-noop
+      priority: 300
+      middlewares:
+        - api-denyall
+      tls:
+        certResolver: letsencrypt
+  services:
+    api-noop:
+      loadBalancer:
+        servers:
+          - url: "http://medusa:9000"
