@@ -1,0 +1,21 @@
+# admin.xlmarket.ee → PROD medusa admin-paneel.
+# Backend = STABIILNE prod-unikaalne alias 'xlmarket-medusa' (env MEDUSA_ALIAS=xlmarket-medusa,
+# uo28_default-võrgul). EI vanane prod-redeploy'l (vs vana exact-konteinerinimi → 502 peale redeploy't).
+# NÕUE: coolify-proxy peab olema uo28_default-võrgul (docker network connect uo28..._default coolify-proxy)
+#   → vt ops/proxy/setup-dynamic.sh. Staging kasutab xlmarket-medusa-unset → 'xlmarket-medusa' = prod-only.
+# Git-track: ops/proxy/dynamic/medusa-admin.yaml. Reversible: taasta .bak või kustuta.
+http:
+  routers:
+    medusa-admin:
+      rule: "Host(`admin.xlmarket.ee`)"
+      service: medusa-admin
+      entryPoints:
+        - http
+        - https
+      tls:
+        certResolver: letsencrypt
+  services:
+    medusa-admin:
+      loadBalancer:
+        servers:
+          - url: "http://xlmarket-medusa:9000"
