@@ -241,6 +241,12 @@ services:
     # vajab gate-rule erandit /hooks-ile (vt ops/maintenance), MITTE eraldi xlhooks-routerit.
     labels:
       - "traefik.enable=true"
+      # DURABILITY (2026-06-12): sunni Traefik kasutama coolify-võrku backend-IP jaoks.
+      # JUUR: storefront on 2 võrgul (stack + _default); ilma selle labelita valib Traefik
+      # backend-võrgu MITTEDETERMINISTLIKULT → prod valis _default (coolify-proxy ei ulatu) →
+      # auto-service hang (/hooks 000). Vajab Coolify "Connect to predefined network" = ON
+      # (mõlemal stackil) → storefront liitub coolify-võrku, kus coolify-proxy alati on → reachable.
+      - "traefik.docker.network=coolify"
     build:
       context: ./storefront
       dockerfile: Dockerfile
