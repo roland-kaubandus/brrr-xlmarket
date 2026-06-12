@@ -281,6 +281,12 @@ services:
         # route ei vaja konteineri-rename uuendust iga redeploy järel.
         aliases:
           - ${STOREFRONT_ALIAS:-xlmarket-storefront-unset}
+      # DURABILITY (2026-06-12): AINULT storefront coolify-võrku (Traefik-inbound determinism,
+      # traefik.docker.network=coolify). Backend'id (medusa/meili/db/redis/pgbouncer) jäävad stack-only
+      # → storefront→medusa/meili resolvib oma-stacki (coolify'l on AINULT storefront'id, ei räägi
+      # omavahel) → EI cross-stack collision/leke. NÕUE: connect_to_docker_network=OFF mõlemal stackil
+      # (muidu Coolify lisaks backend'id coolify'sse → leke). Vt intsident 2026-06-12 sessioonilogis.
+      coolify: {}
     expose:
       - "3030"
     healthcheck:
@@ -303,3 +309,8 @@ networks:
   mailcow:
     external: true
     name: mailcowdockerized_mailcow-network
+  # Coolify-proxy (Traefik) võrk — AINULT storefront liitub (vt storefront.networks).
+  # connect_to_docker_network=OFF mõlemal stackil → Coolify ei lisa backend'e siia.
+  coolify:
+    external: true
+    name: coolify
