@@ -300,7 +300,7 @@ check("INV-15", "WARN", "Every L1/L2 slug resolves to 200 on /kategooriad/{slug}
   if (process.env.TAXONOMY_HEALTH_LIVE !== "1") {
     return { pass: true, detail: "skipped (set TAXONOMY_HEALTH_LIVE=1 to enable)" }
   }
-  const base = process.env.XL_BASE_URL || "https://xlmarket.store"
+  const base = process.env.XL_BASE_URL || "https://xlmarket.ee"
   const l1 = Object.values(tree.nodes).filter((n) => n.level === 1)
   const l2 = Object.values(tree.nodes).filter((n) => n.level === 2).slice(0, 10)
   const failures = []

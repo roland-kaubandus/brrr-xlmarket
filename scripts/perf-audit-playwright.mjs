@@ -6,7 +6,7 @@
 import { chromium } from "@playwright/test"
 import { writeFileSync, mkdirSync } from "fs"
 
-const BASE = "https://xlmarket.store"
+const BASE = "https://xlmarket.ee"
 const OUT = "/home/brrr/brrr-xlmarket/reports/overnight-2026-04-22/lighthouse"
 mkdirSync(OUT, { recursive: true })
 

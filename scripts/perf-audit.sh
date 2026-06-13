@@ -6,7 +6,7 @@ OUT="/home/brrr/brrr-xlmarket/reports/overnight-2026-04-22/lighthouse"
 mkdir -p "$OUT"
 
 CHROME="/home/brrr/.cache/ms-playwright/chromium-1217/chrome-linux64/chrome"
-BASE="https://xlmarket.store"
+BASE="https://xlmarket.ee"
 
 URLS=(
   "/en"
