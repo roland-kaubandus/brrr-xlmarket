@@ -1,6 +1,6 @@
 version: 4
 updated: '2026-06-15'
-source: v4 AI-classification (17 L1 + canonical L2); slugs AJUTISELT nimest, SEO-slugid L3-s
+source: v4 + Tööriistad L3 (staging)
 l1:
   - slug: v4-tooriistad-ja-tarvikud
     name_en: "Tööriistad ja tarvikud"
@@ -17,63 +17,301 @@ l1:
       - slug: v4-tooriistad-ja-tarvikud-kasitooriistad
         name_en: "Käsitööriistad"
         name_et: "Käsitööriistad"
-        product_count: 451
+        product_count: 301
+        subs:
+          - slug: v4-tooriistad-ja-tarvikud-kasitooriistad-mutrivotmed-ja-padrunid
+            name_en: "Mutrivõtmed & padrunid"
+            name_et: "Mutrivõtmed & padrunid"
+            product_count: 106
+          - slug: v4-tooriistad-ja-tarvikud-kasitooriistad-kruvikeerajad-ja-otsikud
+            name_en: "Kruvikeerajad & otsikud"
+            name_et: "Kruvikeerajad & otsikud"
+            product_count: 8
+          - slug: v4-tooriistad-ja-tarvikud-kasitooriistad-tangid-ja-napitsad
+            name_en: "Tangid & näpitsad"
+            name_et: "Tangid & näpitsad"
+            product_count: 48
+          - slug: v4-tooriistad-ja-tarvikud-kasitooriistad-vasarad-ja-loogiriistad
+            name_en: "Vasarad & löögiriistad"
+            name_et: "Vasarad & löögiriistad"
+            product_count: 3
+          - slug: v4-tooriistad-ja-tarvikud-kasitooriistad-kangid-ja-montaaziriistad
+            name_en: "Kangid & montaažiriistad"
+            name_et: "Kangid & montaažiriistad"
+            product_count: 17
+          - slug: v4-tooriistad-ja-tarvikud-kasitooriistad-kasisaed-ja-loikeriistad
+            name_en: "Käsisaed & lõikeriistad"
+            name_et: "Käsisaed & lõikeriistad"
+            product_count: 15
+          - slug: v4-tooriistad-ja-tarvikud-kasitooriistad-viilid-peitlid-ja-meislid
+            name_en: "Viilid, peitlid & meislid"
+            name_et: "Viilid, peitlid & meislid"
+            product_count: 10
+          - slug: v4-tooriistad-ja-tarvikud-kasitooriistad-kruustangid-ja-pitskruvid
+            name_en: "Kruustangid & pitskruvid"
+            name_et: "Kruustangid & pitskruvid"
+            product_count: 44
+          - slug: v4-tooriistad-ja-tarvikud-kasitooriistad-tooriistakomplektid
+            name_en: "Tööriistakomplektid"
+            name_et: "Tööriistakomplektid"
+            product_count: 27
       - slug: v4-tooriistad-ja-tarvikud-elektrilised-tooriistad
         name_en: "Elektrilised tööriistad"
         name_et: "Elektrilised tööriistad"
-        product_count: 259
-      - slug: v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-osad
-        name_en: "Tööriistade tarvikud & osad"
-        name_et: "Tööriistade tarvikud & osad"
-        product_count: 241
-      - slug: v4-tooriistad-ja-tarvikud-ketid-trossid-ja-kinnitused
-        name_en: "Ketid, trossid & kinnitused"
-        name_et: "Ketid, trossid & kinnitused"
-        product_count: 200
-      - slug: v4-tooriistad-ja-tarvikud-keevitus-ja-jootmine
-        name_en: "Keevitus & jootmine"
-        name_et: "Keevitus & jootmine"
-        product_count: 200
-      - slug: v4-tooriistad-ja-tarvikud-tooohutus-ja-turvalisus
-        name_en: "Tööohutus & turvalisus"
-        name_et: "Tööohutus & turvalisus"
-        product_count: 176
-      - slug: v4-tooriistad-ja-tarvikud-puhastusvahendid-ja-tarvikud
-        name_en: "Puhastusvahendid & -tarvikud"
-        name_et: "Puhastusvahendid & -tarvikud"
-        product_count: 158
+        product_count: 173
+        subs:
+          - slug: v4-tooriistad-ja-tarvikud-elektrilised-tooriistad-trellid-ja-looktrellid
+            name_en: "Trellid & lööktrellid"
+            name_et: "Trellid & lööktrellid"
+            product_count: 53
+          - slug: v4-tooriistad-ja-tarvikud-elektrilised-tooriistad-lihvijad
+            name_en: "Lihvijad"
+            name_et: "Lihvijad"
+            product_count: 42
+          - slug: v4-tooriistad-ja-tarvikud-elektrilised-tooriistad-saed
+            name_en: "Saed"
+            name_et: "Saed"
+            product_count: 36
+          - slug: v4-tooriistad-ja-tarvikud-elektrilised-tooriistad-freesid-ja-hoovlid
+            name_en: "Freesid & höövlid"
+            name_et: "Freesid & höövlid"
+            product_count: 15
+          - slug: v4-tooriistad-ja-tarvikud-elektrilised-tooriistad-kuumapuhurid-ja-multitooriistad
+            name_en: "Kuumapuhurid & multitööriistad"
+            name_et: "Kuumapuhurid & multitööriistad"
+            product_count: 17
+      - slug: v4-tooriistad-ja-tarvikud-akutooriistad
+        name_en: "Akutööriistad"
+        name_et: "Akutööriistad"
+        product_count: 51
+        subs:
+          - slug: v4-tooriistad-ja-tarvikud-akutooriistad-akutrellid-ja-kruvikeerajad
+            name_en: "Akutrellid & -kruvikeerajad"
+            name_et: "Akutrellid & -kruvikeerajad"
+            product_count: 13
+          - slug: v4-tooriistad-ja-tarvikud-akutooriistad-akusaed-ja-lihvijad
+            name_en: "Akusaed & -lihvijad"
+            name_et: "Akusaed & -lihvijad"
+            product_count: 22
+          - slug: v4-tooriistad-ja-tarvikud-akutooriistad-akud-ja-laadijad
+            name_en: "Akud & laadijad"
+            name_et: "Akud & laadijad"
+            product_count: 4
+          - slug: v4-tooriistad-ja-tarvikud-akutooriistad-muud-akutooriistad
+            name_en: "Muud akutööriistad"
+            name_et: "Muud akutööriistad"
+            product_count: 12
+      - slug: v4-tooriistad-ja-tarvikud-suruohutooriistad
+        name_en: "Suruõhutööriistad"
+        name_et: "Suruõhutööriistad"
+        product_count: 142
+        subs:
+          - slug: v4-tooriistad-ja-tarvikud-suruohutooriistad-kompressorid
+            name_en: "Kompressorid"
+            name_et: "Kompressorid"
+            product_count: 47
+          - slug: v4-tooriistad-ja-tarvikud-suruohutooriistad-mutrikeerajad-ja-lookmasinad
+            name_en: "Mutrikeerajad & löökmasinad"
+            name_et: "Mutrikeerajad & löökmasinad"
+            product_count: 44
+          - slug: v4-tooriistad-ja-tarvikud-suruohutooriistad-varvi-ja-pihustuspustolid
+            name_en: "Värvi- & pihustuspüstolid"
+            name_et: "Värvi- & pihustuspüstolid"
+            product_count: 25
+          - slug: v4-tooriistad-ja-tarvikud-suruohutooriistad-voolikud-ja-liitmikud
+            name_en: "Voolikud & liitmikud"
+            name_et: "Voolikud & liitmikud"
+            product_count: 26
       - slug: v4-tooriistad-ja-tarvikud-puidutoo-tooriistad
         name_en: "Puidutöö tööriistad"
         name_et: "Puidutöö tööriistad"
-        product_count: 150
-      - slug: v4-tooriistad-ja-tarvikud-suruohu-tooriistad
-        name_en: "Suruõhu tööriistad"
-        name_et: "Suruõhu tööriistad"
-        product_count: 144
-      - slug: v4-tooriistad-ja-tarvikud-labori-ja-teadustooted
-        name_en: "Labori- & teadustooted"
-        name_et: "Labori- & teadustooted"
-        product_count: 107
+        product_count: 115
+        subs:
+          - slug: v4-tooriistad-ja-tarvikud-puidutoo-tooriistad-puidutoopingid
+            name_en: "Puidutööpingid"
+            name_et: "Puidutööpingid"
+            product_count: 21
+          - slug: v4-tooriistad-ja-tarvikud-puidutoo-tooriistad-hoovlid-ja-lihvmasinad
+            name_en: "Höövlid & lihvmasinad"
+            name_et: "Höövlid & lihvmasinad"
+            product_count: 18
+          - slug: v4-tooriistad-ja-tarvikud-puidutoo-tooriistad-kasiriistad-ja-tarvikud
+            name_en: "Käsiriistad & tarvikud"
+            name_et: "Käsiriistad & tarvikud"
+            product_count: 76
+      - slug: v4-tooriistad-ja-tarvikud-metallitoo-ja-sepatoo
+        name_en: "Metallitöö & sepatöö"
+        name_et: "Metallitöö & sepatöö"
+        product_count: 134
+        subs:
+          - slug: v4-tooriistad-ja-tarvikud-metallitoo-ja-sepatoo-alasid-ja-sepatooriistad
+            name_en: "Alasid & sepatööriistad"
+            name_et: "Alasid & sepatööriistad"
+            product_count: 32
+          - slug: v4-tooriistad-ja-tarvikud-metallitoo-ja-sepatoo-plekipainutajad-ja-rullid
+            name_en: "Plekipainutajad & -rullid"
+            name_et: "Plekipainutajad & -rullid"
+            product_count: 33
+          - slug: v4-tooriistad-ja-tarvikud-metallitoo-ja-sepatoo-metalliloikus
+            name_en: "Metallilõikus"
+            name_et: "Metallilõikus"
+            product_count: 69
+      - slug: v4-tooriistad-ja-tarvikud-keevitus-ja-jootmine
+        name_en: "Keevitus & jootmine"
+        name_et: "Keevitus & jootmine"
+        product_count: 184
+        subs:
+          - slug: v4-tooriistad-ja-tarvikud-keevitus-ja-jootmine-keevitusaparaadid
+            name_en: "Keevitusaparaadid"
+            name_et: "Keevitusaparaadid"
+            product_count: 47
+          - slug: v4-tooriistad-ja-tarvikud-keevitus-ja-jootmine-jootmine
+            name_en: "Jootmine"
+            name_et: "Jootmine"
+            product_count: 26
+          - slug: v4-tooriistad-ja-tarvikud-keevitus-ja-jootmine-maskid-ja-kaitse
+            name_en: "Maskid & kaitse"
+            name_et: "Maskid & kaitse"
+            product_count: 44
+          - slug: v4-tooriistad-ja-tarvikud-keevitus-ja-jootmine-tarvikud-ja-materjalid
+            name_en: "Tarvikud & materjalid"
+            name_et: "Tarvikud & materjalid"
+            product_count: 67
+      - slug: v4-tooriistad-ja-tarvikud-moote-ja-markeriistad
+        name_en: "Mõõte- & märkeriistad"
+        name_et: "Mõõte- & märkeriistad"
+        product_count: 93
+        subs:
+          - slug: v4-tooriistad-ja-tarvikud-moote-ja-markeriistad-laserloodid-ja-nivelliirid
+            name_en: "Laserloodid & nivelliirid"
+            name_et: "Laserloodid & nivelliirid"
+            product_count: 22
+          - slug: v4-tooriistad-ja-tarvikud-moote-ja-markeriistad-moodulindid-ja-nihikud
+            name_en: "Mõõdulindid & nihikud"
+            name_et: "Mõõdulindid & nihikud"
+            product_count: 33
+          - slug: v4-tooriistad-ja-tarvikud-moote-ja-markeriistad-loodid-ja-nurgamootjad
+            name_en: "Loodid & nurgamõõtjad"
+            name_et: "Loodid & nurgamõõtjad"
+            product_count: 19
+      - slug: v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid
+        name_en: "Tööriistade tarvikud & kulumaterjalid"
+        name_et: "Tööriistade tarvikud & kulumaterjalid"
+        product_count: 189
+        subs:
+          - slug: v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-loike-ja-lihvkettad
+            name_en: "Lõike- & lihvkettad"
+            name_et: "Lõike- & lihvkettad"
+            product_count: 23
+          - slug: v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-puurid-ja-freesiterad
+            name_en: "Puurid & freesiterad"
+            name_et: "Puurid & freesiterad"
+            product_count: 70
+          - slug: v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-saekettad-ja-terad
+            name_en: "Saekettad & -terad"
+            name_et: "Saekettad & -terad"
+            product_count: 26
+          - slug: v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-padrunid-ja-adapterid
+            name_en: "Padrunid & adapterid"
+            name_et: "Padrunid & adapterid"
+            product_count: 44
+      - slug: v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine
+        name_en: "Tõstmine & kinnitamine"
+        name_et: "Tõstmine & kinnitamine"
+        product_count: 253
+        subs:
+          - slug: v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine-tostetropid-ketid-ja-vood
+            name_en: "Tõstetropid, ketid & vööd"
+            name_et: "Tõstetropid, ketid & vööd"
+            product_count: 25
+          - slug: v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine-koormarihmad-ja-pingutid
+            name_en: "Koormarihmad & pingutid"
+            name_et: "Koormarihmad & pingutid"
+            product_count: 57
+          - slug: v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine-trossid-koied-ja-tarvikud
+            name_en: "Trossid, köied & tarvikud"
+            name_et: "Trossid, köied & tarvikud"
+            product_count: 54
+          - slug: v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine-vintsid-talid-ja-taljed
+            name_en: "Vintsid, talid & taljed"
+            name_et: "Vintsid, talid & taljed"
+            product_count: 83
+          - slug: v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine-taglased
+            name_en: "Taglased"
+            name_et: "Taglased"
+            product_count: 28
       - slug: v4-tooriistad-ja-tarvikud-tooriistade-hoiustamine
         name_en: "Tööriistade hoiustamine"
         name_et: "Tööriistade hoiustamine"
-        product_count: 89
-      - slug: v4-tooriistad-ja-tarvikud-mooteriistad
-        name_en: "Mõõteriistad"
-        name_et: "Mõõteriistad"
-        product_count: 13
-      - slug: v4-tooriistad-ja-tarvikud-tosteseadmed-ja-vintsid
-        name_en: "Tõsteseadmed & vintsid"
-        name_et: "Tõsteseadmed & vintsid"
-        product_count: 11
-      - slug: v4-tooriistad-ja-tarvikud-kasitoo-ja-meisterdamine
-        name_en: "Käsitöö & meisterdamine"
-        name_et: "Käsitöö & meisterdamine"
-        product_count: 9
-      - slug: v4-tooriistad-ja-tarvikud-metallitoo-tooriistad
-        name_en: "Metallitöö tööriistad"
-        name_et: "Metallitöö tööriistad"
-        product_count: 5
+        product_count: 109
+        subs:
+          - slug: v4-tooriistad-ja-tarvikud-tooriistade-hoiustamine-kastid-ja-kotid
+            name_en: "Kastid & kotid"
+            name_et: "Kastid & kotid"
+            product_count: 50
+          - slug: v4-tooriistad-ja-tarvikud-tooriistade-hoiustamine-karud-ja-toolauad
+            name_en: "Kärud & töölauad"
+            name_et: "Kärud & töölauad"
+            product_count: 36
+          - slug: v4-tooriistad-ja-tarvikud-tooriistade-hoiustamine-kapid-ja-riiulid
+            name_en: "Kapid & riiulid"
+            name_et: "Kapid & riiulid"
+            product_count: 21
+      - slug: v4-tooriistad-ja-tarvikud-puhastustehnika-ja-tarvikud
+        name_en: "Puhastustehnika & -tarvikud"
+        name_et: "Puhastustehnika & -tarvikud"
+        product_count: 97
+        subs:
+          - slug: v4-tooriistad-ja-tarvikud-puhastustehnika-ja-tarvikud-survepesurid
+            name_en: "Survepesurid"
+            name_et: "Survepesurid"
+            product_count: 1
+          - slug: v4-tooriistad-ja-tarvikud-puhastustehnika-ja-tarvikud-tolmu-ja-ehitustolmuimejad
+            name_en: "Tolmu- & ehitustolmuimejad"
+            name_et: "Tolmu- & ehitustolmuimejad"
+            product_count: 18
+          - slug: v4-tooriistad-ja-tarvikud-puhastustehnika-ja-tarvikud-auru-ja-porandapuhastid
+            name_en: "Auru- & põrandapuhastid"
+            name_et: "Auru- & põrandapuhastid"
+            product_count: 26
+      - slug: v4-tooriistad-ja-tarvikud-turva-ja-objektivarustus
+        name_en: "Turva- & objektivarustus"
+        name_et: "Turva- & objektivarustus"
+        product_count: 189
+        subs:
+          - slug: v4-tooriistad-ja-tarvikud-turva-ja-objektivarustus-seifid-ja-votmekapid
+            name_en: "Seifid & võtmekapid"
+            name_et: "Seifid & võtmekapid"
+            product_count: 75
+          - slug: v4-tooriistad-ja-tarvikud-turva-ja-objektivarustus-crowd-control-ja-liiklusohutus
+            name_en: "Crowd-control & liiklusohutus"
+            name_et: "Crowd-control & liiklusohutus"
+            product_count: 85
+          - slug: v4-tooriistad-ja-tarvikud-turva-ja-objektivarustus-lukustus
+            name_en: "Lukustus"
+            name_et: "Lukustus"
+            product_count: 19
+      - slug: v4-tooriistad-ja-tarvikud-labori-ja-teadustooted
+        name_en: "Labori- & teadustooted"
+        name_et: "Labori- & teadustooted"
+        product_count: 145
+        subs:
+          - slug: v4-tooriistad-ja-tarvikud-labori-ja-teadustooted-mikroskoobid-ja-optika
+            name_en: "Mikroskoobid & optika"
+            name_et: "Mikroskoobid & optika"
+            product_count: 9
+          - slug: v4-tooriistad-ja-tarvikud-labori-ja-teadustooted-segajad-ja-kuumutus
+            name_en: "Segajad & kuumutus"
+            name_et: "Segajad & kuumutus"
+            product_count: 32
+          - slug: v4-tooriistad-ja-tarvikud-labori-ja-teadustooted-mooteinstrumendid
+            name_en: "Mõõteinstrumendid"
+            name_et: "Mõõteinstrumendid"
+            product_count: 31
+          - slug: v4-tooriistad-ja-tarvikud-labori-ja-teadustooted-puhastus
+            name_en: "Puhastus"
+            name_et: "Puhastus"
+            product_count: 60
   - slug: v4-garaaziseadmed
     name_en: "Garaažiseadmed"
     name_et: "Garaažiseadmed"

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-15T11:22:51.728Z",
+  "generated_at": "2026-06-15T19:16:01.398Z",
   "nodes": {
     "v4-tooriistad-ja-tarvikud": {
       "handle": "v4-tooriistad-ja-tarvikud",
@@ -10,19 +10,18 @@
       "child_handles": [
         "v4-tooriistad-ja-tarvikud-kasitooriistad",
         "v4-tooriistad-ja-tarvikud-elektrilised-tooriistad",
-        "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-osad",
-        "v4-tooriistad-ja-tarvikud-ketid-trossid-ja-kinnitused",
-        "v4-tooriistad-ja-tarvikud-keevitus-ja-jootmine",
-        "v4-tooriistad-ja-tarvikud-tooohutus-ja-turvalisus",
-        "v4-tooriistad-ja-tarvikud-puhastusvahendid-ja-tarvikud",
+        "v4-tooriistad-ja-tarvikud-akutooriistad",
+        "v4-tooriistad-ja-tarvikud-suruohutooriistad",
         "v4-tooriistad-ja-tarvikud-puidutoo-tooriistad",
-        "v4-tooriistad-ja-tarvikud-suruohu-tooriistad",
-        "v4-tooriistad-ja-tarvikud-labori-ja-teadustooted",
+        "v4-tooriistad-ja-tarvikud-metallitoo-ja-sepatoo",
+        "v4-tooriistad-ja-tarvikud-keevitus-ja-jootmine",
+        "v4-tooriistad-ja-tarvikud-moote-ja-markeriistad",
+        "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid",
+        "v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine",
         "v4-tooriistad-ja-tarvikud-tooriistade-hoiustamine",
-        "v4-tooriistad-ja-tarvikud-mooteriistad",
-        "v4-tooriistad-ja-tarvikud-tosteseadmed-ja-vintsid",
-        "v4-tooriistad-ja-tarvikud-kasitoo-ja-meisterdamine",
-        "v4-tooriistad-ja-tarvikud-metallitoo-tooriistad"
+        "v4-tooriistad-ja-tarvikud-puhastustehnika-ja-tarvikud",
+        "v4-tooriistad-ja-tarvikud-turva-ja-objektivarustus",
+        "v4-tooriistad-ja-tarvikud-labori-ja-teadustooted"
       ],
       "image_path": null,
       "image_source": "none",
@@ -37,6 +36,106 @@
       "name_et": "Käsitööriistad",
       "level": 2,
       "parent_handle": "v4-tooriistad-ja-tarvikud",
+      "child_handles": [
+        "v4-tooriistad-ja-tarvikud-kasitooriistad-mutrivotmed-ja-padrunid",
+        "v4-tooriistad-ja-tarvikud-kasitooriistad-kruvikeerajad-ja-otsikud",
+        "v4-tooriistad-ja-tarvikud-kasitooriistad-tangid-ja-napitsad",
+        "v4-tooriistad-ja-tarvikud-kasitooriistad-vasarad-ja-loogiriistad",
+        "v4-tooriistad-ja-tarvikud-kasitooriistad-kangid-ja-montaaziriistad",
+        "v4-tooriistad-ja-tarvikud-kasitooriistad-kasisaed-ja-loikeriistad",
+        "v4-tooriistad-ja-tarvikud-kasitooriistad-viilid-peitlid-ja-meislid",
+        "v4-tooriistad-ja-tarvikud-kasitooriistad-kruustangid-ja-pitskruvid",
+        "v4-tooriistad-ja-tarvikud-kasitooriistad-tooriistakomplektid"
+      ],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-kasitooriistad-mutrivotmed-ja-padrunid": {
+      "handle": "v4-tooriistad-ja-tarvikud-kasitooriistad-mutrivotmed-ja-padrunid",
+      "name_en": "Mutrivõtmed & padrunid",
+      "name_et": "Mutrivõtmed & padrunid",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-kasitooriistad",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-kasitooriistad-kruvikeerajad-ja-otsikud": {
+      "handle": "v4-tooriistad-ja-tarvikud-kasitooriistad-kruvikeerajad-ja-otsikud",
+      "name_en": "Kruvikeerajad & otsikud",
+      "name_et": "Kruvikeerajad & otsikud",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-kasitooriistad",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-kasitooriistad-tangid-ja-napitsad": {
+      "handle": "v4-tooriistad-ja-tarvikud-kasitooriistad-tangid-ja-napitsad",
+      "name_en": "Tangid & näpitsad",
+      "name_et": "Tangid & näpitsad",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-kasitooriistad",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-kasitooriistad-vasarad-ja-loogiriistad": {
+      "handle": "v4-tooriistad-ja-tarvikud-kasitooriistad-vasarad-ja-loogiriistad",
+      "name_en": "Vasarad & löögiriistad",
+      "name_et": "Vasarad & löögiriistad",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-kasitooriistad",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-kasitooriistad-kangid-ja-montaaziriistad": {
+      "handle": "v4-tooriistad-ja-tarvikud-kasitooriistad-kangid-ja-montaaziriistad",
+      "name_en": "Kangid & montaažiriistad",
+      "name_et": "Kangid & montaažiriistad",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-kasitooriistad",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-kasitooriistad-kasisaed-ja-loikeriistad": {
+      "handle": "v4-tooriistad-ja-tarvikud-kasitooriistad-kasisaed-ja-loikeriistad",
+      "name_en": "Käsisaed & lõikeriistad",
+      "name_et": "Käsisaed & lõikeriistad",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-kasitooriistad",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-kasitooriistad-viilid-peitlid-ja-meislid": {
+      "handle": "v4-tooriistad-ja-tarvikud-kasitooriistad-viilid-peitlid-ja-meislid",
+      "name_en": "Viilid, peitlid & meislid",
+      "name_et": "Viilid, peitlid & meislid",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-kasitooriistad",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-kasitooriistad-kruustangid-ja-pitskruvid": {
+      "handle": "v4-tooriistad-ja-tarvikud-kasitooriistad-kruustangid-ja-pitskruvid",
+      "name_en": "Kruustangid & pitskruvid",
+      "name_et": "Kruustangid & pitskruvid",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-kasitooriistad",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-kasitooriistad-tooriistakomplektid": {
+      "handle": "v4-tooriistad-ja-tarvikud-kasitooriistad-tooriistakomplektid",
+      "name_en": "Tööriistakomplektid",
+      "name_et": "Tööriistakomplektid",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-kasitooriistad",
       "child_handles": [],
       "image_path": null,
       "image_source": "none"
@@ -47,56 +146,172 @@
       "name_et": "Elektrilised tööriistad",
       "level": 2,
       "parent_handle": "v4-tooriistad-ja-tarvikud",
+      "child_handles": [
+        "v4-tooriistad-ja-tarvikud-elektrilised-tooriistad-trellid-ja-looktrellid",
+        "v4-tooriistad-ja-tarvikud-elektrilised-tooriistad-lihvijad",
+        "v4-tooriistad-ja-tarvikud-elektrilised-tooriistad-saed",
+        "v4-tooriistad-ja-tarvikud-elektrilised-tooriistad-freesid-ja-hoovlid",
+        "v4-tooriistad-ja-tarvikud-elektrilised-tooriistad-kuumapuhurid-ja-multitooriistad"
+      ],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-elektrilised-tooriistad-trellid-ja-looktrellid": {
+      "handle": "v4-tooriistad-ja-tarvikud-elektrilised-tooriistad-trellid-ja-looktrellid",
+      "name_en": "Trellid & lööktrellid",
+      "name_et": "Trellid & lööktrellid",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-elektrilised-tooriistad",
       "child_handles": [],
       "image_path": null,
       "image_source": "none"
     },
-    "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-osad": {
-      "handle": "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-osad",
-      "name_en": "Tööriistade tarvikud & osad",
-      "name_et": "Tööriistade tarvikud & osad",
-      "level": 2,
-      "parent_handle": "v4-tooriistad-ja-tarvikud",
+    "v4-tooriistad-ja-tarvikud-elektrilised-tooriistad-lihvijad": {
+      "handle": "v4-tooriistad-ja-tarvikud-elektrilised-tooriistad-lihvijad",
+      "name_en": "Lihvijad",
+      "name_et": "Lihvijad",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-elektrilised-tooriistad",
       "child_handles": [],
       "image_path": null,
       "image_source": "none"
     },
-    "v4-tooriistad-ja-tarvikud-ketid-trossid-ja-kinnitused": {
-      "handle": "v4-tooriistad-ja-tarvikud-ketid-trossid-ja-kinnitused",
-      "name_en": "Ketid, trossid & kinnitused",
-      "name_et": "Ketid, trossid & kinnitused",
-      "level": 2,
-      "parent_handle": "v4-tooriistad-ja-tarvikud",
+    "v4-tooriistad-ja-tarvikud-elektrilised-tooriistad-saed": {
+      "handle": "v4-tooriistad-ja-tarvikud-elektrilised-tooriistad-saed",
+      "name_en": "Saed",
+      "name_et": "Saed",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-elektrilised-tooriistad",
       "child_handles": [],
       "image_path": null,
       "image_source": "none"
     },
-    "v4-tooriistad-ja-tarvikud-keevitus-ja-jootmine": {
-      "handle": "v4-tooriistad-ja-tarvikud-keevitus-ja-jootmine",
-      "name_en": "Keevitus & jootmine",
-      "name_et": "Keevitus & jootmine",
-      "level": 2,
-      "parent_handle": "v4-tooriistad-ja-tarvikud",
+    "v4-tooriistad-ja-tarvikud-elektrilised-tooriistad-freesid-ja-hoovlid": {
+      "handle": "v4-tooriistad-ja-tarvikud-elektrilised-tooriistad-freesid-ja-hoovlid",
+      "name_en": "Freesid & höövlid",
+      "name_et": "Freesid & höövlid",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-elektrilised-tooriistad",
       "child_handles": [],
       "image_path": null,
       "image_source": "none"
     },
-    "v4-tooriistad-ja-tarvikud-tooohutus-ja-turvalisus": {
-      "handle": "v4-tooriistad-ja-tarvikud-tooohutus-ja-turvalisus",
-      "name_en": "Tööohutus & turvalisus",
-      "name_et": "Tööohutus & turvalisus",
-      "level": 2,
-      "parent_handle": "v4-tooriistad-ja-tarvikud",
+    "v4-tooriistad-ja-tarvikud-elektrilised-tooriistad-kuumapuhurid-ja-multitooriistad": {
+      "handle": "v4-tooriistad-ja-tarvikud-elektrilised-tooriistad-kuumapuhurid-ja-multitooriistad",
+      "name_en": "Kuumapuhurid & multitööriistad",
+      "name_et": "Kuumapuhurid & multitööriistad",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-elektrilised-tooriistad",
       "child_handles": [],
       "image_path": null,
       "image_source": "none"
     },
-    "v4-tooriistad-ja-tarvikud-puhastusvahendid-ja-tarvikud": {
-      "handle": "v4-tooriistad-ja-tarvikud-puhastusvahendid-ja-tarvikud",
-      "name_en": "Puhastusvahendid & -tarvikud",
-      "name_et": "Puhastusvahendid & -tarvikud",
+    "v4-tooriistad-ja-tarvikud-akutooriistad": {
+      "handle": "v4-tooriistad-ja-tarvikud-akutooriistad",
+      "name_en": "Akutööriistad",
+      "name_et": "Akutööriistad",
       "level": 2,
       "parent_handle": "v4-tooriistad-ja-tarvikud",
+      "child_handles": [
+        "v4-tooriistad-ja-tarvikud-akutooriistad-akutrellid-ja-kruvikeerajad",
+        "v4-tooriistad-ja-tarvikud-akutooriistad-akusaed-ja-lihvijad",
+        "v4-tooriistad-ja-tarvikud-akutooriistad-akud-ja-laadijad",
+        "v4-tooriistad-ja-tarvikud-akutooriistad-muud-akutooriistad"
+      ],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-akutooriistad-akutrellid-ja-kruvikeerajad": {
+      "handle": "v4-tooriistad-ja-tarvikud-akutooriistad-akutrellid-ja-kruvikeerajad",
+      "name_en": "Akutrellid & -kruvikeerajad",
+      "name_et": "Akutrellid & -kruvikeerajad",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-akutooriistad",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-akutooriistad-akusaed-ja-lihvijad": {
+      "handle": "v4-tooriistad-ja-tarvikud-akutooriistad-akusaed-ja-lihvijad",
+      "name_en": "Akusaed & -lihvijad",
+      "name_et": "Akusaed & -lihvijad",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-akutooriistad",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-akutooriistad-akud-ja-laadijad": {
+      "handle": "v4-tooriistad-ja-tarvikud-akutooriistad-akud-ja-laadijad",
+      "name_en": "Akud & laadijad",
+      "name_et": "Akud & laadijad",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-akutooriistad",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-akutooriistad-muud-akutooriistad": {
+      "handle": "v4-tooriistad-ja-tarvikud-akutooriistad-muud-akutooriistad",
+      "name_en": "Muud akutööriistad",
+      "name_et": "Muud akutööriistad",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-akutooriistad",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-suruohutooriistad": {
+      "handle": "v4-tooriistad-ja-tarvikud-suruohutooriistad",
+      "name_en": "Suruõhutööriistad",
+      "name_et": "Suruõhutööriistad",
+      "level": 2,
+      "parent_handle": "v4-tooriistad-ja-tarvikud",
+      "child_handles": [
+        "v4-tooriistad-ja-tarvikud-suruohutooriistad-kompressorid",
+        "v4-tooriistad-ja-tarvikud-suruohutooriistad-mutrikeerajad-ja-lookmasinad",
+        "v4-tooriistad-ja-tarvikud-suruohutooriistad-varvi-ja-pihustuspustolid",
+        "v4-tooriistad-ja-tarvikud-suruohutooriistad-voolikud-ja-liitmikud"
+      ],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-suruohutooriistad-kompressorid": {
+      "handle": "v4-tooriistad-ja-tarvikud-suruohutooriistad-kompressorid",
+      "name_en": "Kompressorid",
+      "name_et": "Kompressorid",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-suruohutooriistad",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-suruohutooriistad-mutrikeerajad-ja-lookmasinad": {
+      "handle": "v4-tooriistad-ja-tarvikud-suruohutooriistad-mutrikeerajad-ja-lookmasinad",
+      "name_en": "Mutrikeerajad & löökmasinad",
+      "name_et": "Mutrikeerajad & löökmasinad",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-suruohutooriistad",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-suruohutooriistad-varvi-ja-pihustuspustolid": {
+      "handle": "v4-tooriistad-ja-tarvikud-suruohutooriistad-varvi-ja-pihustuspustolid",
+      "name_en": "Värvi- & pihustuspüstolid",
+      "name_et": "Värvi- & pihustuspüstolid",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-suruohutooriistad",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-suruohutooriistad-voolikud-ja-liitmikud": {
+      "handle": "v4-tooriistad-ja-tarvikud-suruohutooriistad-voolikud-ja-liitmikud",
+      "name_en": "Voolikud & liitmikud",
+      "name_et": "Voolikud & liitmikud",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-suruohutooriistad",
       "child_handles": [],
       "image_path": null,
       "image_source": "none"
@@ -107,26 +322,304 @@
       "name_et": "Puidutöö tööriistad",
       "level": 2,
       "parent_handle": "v4-tooriistad-ja-tarvikud",
+      "child_handles": [
+        "v4-tooriistad-ja-tarvikud-puidutoo-tooriistad-puidutoopingid",
+        "v4-tooriistad-ja-tarvikud-puidutoo-tooriistad-hoovlid-ja-lihvmasinad",
+        "v4-tooriistad-ja-tarvikud-puidutoo-tooriistad-kasiriistad-ja-tarvikud"
+      ],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-puidutoo-tooriistad-puidutoopingid": {
+      "handle": "v4-tooriistad-ja-tarvikud-puidutoo-tooriistad-puidutoopingid",
+      "name_en": "Puidutööpingid",
+      "name_et": "Puidutööpingid",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-puidutoo-tooriistad",
       "child_handles": [],
       "image_path": null,
       "image_source": "none"
     },
-    "v4-tooriistad-ja-tarvikud-suruohu-tooriistad": {
-      "handle": "v4-tooriistad-ja-tarvikud-suruohu-tooriistad",
-      "name_en": "Suruõhu tööriistad",
-      "name_et": "Suruõhu tööriistad",
-      "level": 2,
-      "parent_handle": "v4-tooriistad-ja-tarvikud",
+    "v4-tooriistad-ja-tarvikud-puidutoo-tooriistad-hoovlid-ja-lihvmasinad": {
+      "handle": "v4-tooriistad-ja-tarvikud-puidutoo-tooriistad-hoovlid-ja-lihvmasinad",
+      "name_en": "Höövlid & lihvmasinad",
+      "name_et": "Höövlid & lihvmasinad",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-puidutoo-tooriistad",
       "child_handles": [],
       "image_path": null,
       "image_source": "none"
     },
-    "v4-tooriistad-ja-tarvikud-labori-ja-teadustooted": {
-      "handle": "v4-tooriistad-ja-tarvikud-labori-ja-teadustooted",
-      "name_en": "Labori- & teadustooted",
-      "name_et": "Labori- & teadustooted",
+    "v4-tooriistad-ja-tarvikud-puidutoo-tooriistad-kasiriistad-ja-tarvikud": {
+      "handle": "v4-tooriistad-ja-tarvikud-puidutoo-tooriistad-kasiriistad-ja-tarvikud",
+      "name_en": "Käsiriistad & tarvikud",
+      "name_et": "Käsiriistad & tarvikud",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-puidutoo-tooriistad",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-metallitoo-ja-sepatoo": {
+      "handle": "v4-tooriistad-ja-tarvikud-metallitoo-ja-sepatoo",
+      "name_en": "Metallitöö & sepatöö",
+      "name_et": "Metallitöö & sepatöö",
       "level": 2,
       "parent_handle": "v4-tooriistad-ja-tarvikud",
+      "child_handles": [
+        "v4-tooriistad-ja-tarvikud-metallitoo-ja-sepatoo-alasid-ja-sepatooriistad",
+        "v4-tooriistad-ja-tarvikud-metallitoo-ja-sepatoo-plekipainutajad-ja-rullid",
+        "v4-tooriistad-ja-tarvikud-metallitoo-ja-sepatoo-metalliloikus"
+      ],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-metallitoo-ja-sepatoo-alasid-ja-sepatooriistad": {
+      "handle": "v4-tooriistad-ja-tarvikud-metallitoo-ja-sepatoo-alasid-ja-sepatooriistad",
+      "name_en": "Alasid & sepatööriistad",
+      "name_et": "Alasid & sepatööriistad",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-metallitoo-ja-sepatoo",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-metallitoo-ja-sepatoo-plekipainutajad-ja-rullid": {
+      "handle": "v4-tooriistad-ja-tarvikud-metallitoo-ja-sepatoo-plekipainutajad-ja-rullid",
+      "name_en": "Plekipainutajad & -rullid",
+      "name_et": "Plekipainutajad & -rullid",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-metallitoo-ja-sepatoo",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-metallitoo-ja-sepatoo-metalliloikus": {
+      "handle": "v4-tooriistad-ja-tarvikud-metallitoo-ja-sepatoo-metalliloikus",
+      "name_en": "Metallilõikus",
+      "name_et": "Metallilõikus",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-metallitoo-ja-sepatoo",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-keevitus-ja-jootmine": {
+      "handle": "v4-tooriistad-ja-tarvikud-keevitus-ja-jootmine",
+      "name_en": "Keevitus & jootmine",
+      "name_et": "Keevitus & jootmine",
+      "level": 2,
+      "parent_handle": "v4-tooriistad-ja-tarvikud",
+      "child_handles": [
+        "v4-tooriistad-ja-tarvikud-keevitus-ja-jootmine-keevitusaparaadid",
+        "v4-tooriistad-ja-tarvikud-keevitus-ja-jootmine-jootmine",
+        "v4-tooriistad-ja-tarvikud-keevitus-ja-jootmine-maskid-ja-kaitse",
+        "v4-tooriistad-ja-tarvikud-keevitus-ja-jootmine-tarvikud-ja-materjalid"
+      ],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-keevitus-ja-jootmine-keevitusaparaadid": {
+      "handle": "v4-tooriistad-ja-tarvikud-keevitus-ja-jootmine-keevitusaparaadid",
+      "name_en": "Keevitusaparaadid",
+      "name_et": "Keevitusaparaadid",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-keevitus-ja-jootmine",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-keevitus-ja-jootmine-jootmine": {
+      "handle": "v4-tooriistad-ja-tarvikud-keevitus-ja-jootmine-jootmine",
+      "name_en": "Jootmine",
+      "name_et": "Jootmine",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-keevitus-ja-jootmine",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-keevitus-ja-jootmine-maskid-ja-kaitse": {
+      "handle": "v4-tooriistad-ja-tarvikud-keevitus-ja-jootmine-maskid-ja-kaitse",
+      "name_en": "Maskid & kaitse",
+      "name_et": "Maskid & kaitse",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-keevitus-ja-jootmine",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-keevitus-ja-jootmine-tarvikud-ja-materjalid": {
+      "handle": "v4-tooriistad-ja-tarvikud-keevitus-ja-jootmine-tarvikud-ja-materjalid",
+      "name_en": "Tarvikud & materjalid",
+      "name_et": "Tarvikud & materjalid",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-keevitus-ja-jootmine",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-moote-ja-markeriistad": {
+      "handle": "v4-tooriistad-ja-tarvikud-moote-ja-markeriistad",
+      "name_en": "Mõõte- & märkeriistad",
+      "name_et": "Mõõte- & märkeriistad",
+      "level": 2,
+      "parent_handle": "v4-tooriistad-ja-tarvikud",
+      "child_handles": [
+        "v4-tooriistad-ja-tarvikud-moote-ja-markeriistad-laserloodid-ja-nivelliirid",
+        "v4-tooriistad-ja-tarvikud-moote-ja-markeriistad-moodulindid-ja-nihikud",
+        "v4-tooriistad-ja-tarvikud-moote-ja-markeriistad-loodid-ja-nurgamootjad"
+      ],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-moote-ja-markeriistad-laserloodid-ja-nivelliirid": {
+      "handle": "v4-tooriistad-ja-tarvikud-moote-ja-markeriistad-laserloodid-ja-nivelliirid",
+      "name_en": "Laserloodid & nivelliirid",
+      "name_et": "Laserloodid & nivelliirid",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-moote-ja-markeriistad",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-moote-ja-markeriistad-moodulindid-ja-nihikud": {
+      "handle": "v4-tooriistad-ja-tarvikud-moote-ja-markeriistad-moodulindid-ja-nihikud",
+      "name_en": "Mõõdulindid & nihikud",
+      "name_et": "Mõõdulindid & nihikud",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-moote-ja-markeriistad",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-moote-ja-markeriistad-loodid-ja-nurgamootjad": {
+      "handle": "v4-tooriistad-ja-tarvikud-moote-ja-markeriistad-loodid-ja-nurgamootjad",
+      "name_en": "Loodid & nurgamõõtjad",
+      "name_et": "Loodid & nurgamõõtjad",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-moote-ja-markeriistad",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid": {
+      "handle": "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid",
+      "name_en": "Tööriistade tarvikud & kulumaterjalid",
+      "name_et": "Tööriistade tarvikud & kulumaterjalid",
+      "level": 2,
+      "parent_handle": "v4-tooriistad-ja-tarvikud",
+      "child_handles": [
+        "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-loike-ja-lihvkettad",
+        "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-puurid-ja-freesiterad",
+        "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-saekettad-ja-terad",
+        "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-padrunid-ja-adapterid"
+      ],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-loike-ja-lihvkettad": {
+      "handle": "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-loike-ja-lihvkettad",
+      "name_en": "Lõike- & lihvkettad",
+      "name_et": "Lõike- & lihvkettad",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-puurid-ja-freesiterad": {
+      "handle": "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-puurid-ja-freesiterad",
+      "name_en": "Puurid & freesiterad",
+      "name_et": "Puurid & freesiterad",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-saekettad-ja-terad": {
+      "handle": "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-saekettad-ja-terad",
+      "name_en": "Saekettad & -terad",
+      "name_et": "Saekettad & -terad",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-padrunid-ja-adapterid": {
+      "handle": "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-padrunid-ja-adapterid",
+      "name_en": "Padrunid & adapterid",
+      "name_et": "Padrunid & adapterid",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine": {
+      "handle": "v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine",
+      "name_en": "Tõstmine & kinnitamine",
+      "name_et": "Tõstmine & kinnitamine",
+      "level": 2,
+      "parent_handle": "v4-tooriistad-ja-tarvikud",
+      "child_handles": [
+        "v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine-tostetropid-ketid-ja-vood",
+        "v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine-koormarihmad-ja-pingutid",
+        "v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine-trossid-koied-ja-tarvikud",
+        "v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine-vintsid-talid-ja-taljed",
+        "v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine-taglased"
+      ],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine-tostetropid-ketid-ja-vood": {
+      "handle": "v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine-tostetropid-ketid-ja-vood",
+      "name_en": "Tõstetropid, ketid & vööd",
+      "name_et": "Tõstetropid, ketid & vööd",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine-koormarihmad-ja-pingutid": {
+      "handle": "v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine-koormarihmad-ja-pingutid",
+      "name_en": "Koormarihmad & pingutid",
+      "name_et": "Koormarihmad & pingutid",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine-trossid-koied-ja-tarvikud": {
+      "handle": "v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine-trossid-koied-ja-tarvikud",
+      "name_en": "Trossid, köied & tarvikud",
+      "name_et": "Trossid, köied & tarvikud",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine-vintsid-talid-ja-taljed": {
+      "handle": "v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine-vintsid-talid-ja-taljed",
+      "name_en": "Vintsid, talid & taljed",
+      "name_et": "Vintsid, talid & taljed",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine-taglased": {
+      "handle": "v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine-taglased",
+      "name_en": "Taglased",
+      "name_et": "Taglased",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine",
       "child_handles": [],
       "image_path": null,
       "image_source": "none"
@@ -137,46 +630,183 @@
       "name_et": "Tööriistade hoiustamine",
       "level": 2,
       "parent_handle": "v4-tooriistad-ja-tarvikud",
+      "child_handles": [
+        "v4-tooriistad-ja-tarvikud-tooriistade-hoiustamine-kastid-ja-kotid",
+        "v4-tooriistad-ja-tarvikud-tooriistade-hoiustamine-karud-ja-toolauad",
+        "v4-tooriistad-ja-tarvikud-tooriistade-hoiustamine-kapid-ja-riiulid"
+      ],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-tooriistade-hoiustamine-kastid-ja-kotid": {
+      "handle": "v4-tooriistad-ja-tarvikud-tooriistade-hoiustamine-kastid-ja-kotid",
+      "name_en": "Kastid & kotid",
+      "name_et": "Kastid & kotid",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-tooriistade-hoiustamine",
       "child_handles": [],
       "image_path": null,
       "image_source": "none"
     },
-    "v4-tooriistad-ja-tarvikud-mooteriistad": {
-      "handle": "v4-tooriistad-ja-tarvikud-mooteriistad",
-      "name_en": "Mõõteriistad",
-      "name_et": "Mõõteriistad",
-      "level": 2,
-      "parent_handle": "v4-tooriistad-ja-tarvikud",
+    "v4-tooriistad-ja-tarvikud-tooriistade-hoiustamine-karud-ja-toolauad": {
+      "handle": "v4-tooriistad-ja-tarvikud-tooriistade-hoiustamine-karud-ja-toolauad",
+      "name_en": "Kärud & töölauad",
+      "name_et": "Kärud & töölauad",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-tooriistade-hoiustamine",
       "child_handles": [],
       "image_path": null,
       "image_source": "none"
     },
-    "v4-tooriistad-ja-tarvikud-tosteseadmed-ja-vintsid": {
-      "handle": "v4-tooriistad-ja-tarvikud-tosteseadmed-ja-vintsid",
-      "name_en": "Tõsteseadmed & vintsid",
-      "name_et": "Tõsteseadmed & vintsid",
-      "level": 2,
-      "parent_handle": "v4-tooriistad-ja-tarvikud",
+    "v4-tooriistad-ja-tarvikud-tooriistade-hoiustamine-kapid-ja-riiulid": {
+      "handle": "v4-tooriistad-ja-tarvikud-tooriistade-hoiustamine-kapid-ja-riiulid",
+      "name_en": "Kapid & riiulid",
+      "name_et": "Kapid & riiulid",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-tooriistade-hoiustamine",
       "child_handles": [],
       "image_path": null,
       "image_source": "none"
     },
-    "v4-tooriistad-ja-tarvikud-kasitoo-ja-meisterdamine": {
-      "handle": "v4-tooriistad-ja-tarvikud-kasitoo-ja-meisterdamine",
-      "name_en": "Käsitöö & meisterdamine",
-      "name_et": "Käsitöö & meisterdamine",
+    "v4-tooriistad-ja-tarvikud-puhastustehnika-ja-tarvikud": {
+      "handle": "v4-tooriistad-ja-tarvikud-puhastustehnika-ja-tarvikud",
+      "name_en": "Puhastustehnika & -tarvikud",
+      "name_et": "Puhastustehnika & -tarvikud",
       "level": 2,
       "parent_handle": "v4-tooriistad-ja-tarvikud",
+      "child_handles": [
+        "v4-tooriistad-ja-tarvikud-puhastustehnika-ja-tarvikud-survepesurid",
+        "v4-tooriistad-ja-tarvikud-puhastustehnika-ja-tarvikud-tolmu-ja-ehitustolmuimejad",
+        "v4-tooriistad-ja-tarvikud-puhastustehnika-ja-tarvikud-auru-ja-porandapuhastid"
+      ],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-puhastustehnika-ja-tarvikud-survepesurid": {
+      "handle": "v4-tooriistad-ja-tarvikud-puhastustehnika-ja-tarvikud-survepesurid",
+      "name_en": "Survepesurid",
+      "name_et": "Survepesurid",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-puhastustehnika-ja-tarvikud",
       "child_handles": [],
       "image_path": null,
       "image_source": "none"
     },
-    "v4-tooriistad-ja-tarvikud-metallitoo-tooriistad": {
-      "handle": "v4-tooriistad-ja-tarvikud-metallitoo-tooriistad",
-      "name_en": "Metallitöö tööriistad",
-      "name_et": "Metallitöö tööriistad",
+    "v4-tooriistad-ja-tarvikud-puhastustehnika-ja-tarvikud-tolmu-ja-ehitustolmuimejad": {
+      "handle": "v4-tooriistad-ja-tarvikud-puhastustehnika-ja-tarvikud-tolmu-ja-ehitustolmuimejad",
+      "name_en": "Tolmu- & ehitustolmuimejad",
+      "name_et": "Tolmu- & ehitustolmuimejad",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-puhastustehnika-ja-tarvikud",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-puhastustehnika-ja-tarvikud-auru-ja-porandapuhastid": {
+      "handle": "v4-tooriistad-ja-tarvikud-puhastustehnika-ja-tarvikud-auru-ja-porandapuhastid",
+      "name_en": "Auru- & põrandapuhastid",
+      "name_et": "Auru- & põrandapuhastid",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-puhastustehnika-ja-tarvikud",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-turva-ja-objektivarustus": {
+      "handle": "v4-tooriistad-ja-tarvikud-turva-ja-objektivarustus",
+      "name_en": "Turva- & objektivarustus",
+      "name_et": "Turva- & objektivarustus",
       "level": 2,
       "parent_handle": "v4-tooriistad-ja-tarvikud",
+      "child_handles": [
+        "v4-tooriistad-ja-tarvikud-turva-ja-objektivarustus-seifid-ja-votmekapid",
+        "v4-tooriistad-ja-tarvikud-turva-ja-objektivarustus-crowd-control-ja-liiklusohutus",
+        "v4-tooriistad-ja-tarvikud-turva-ja-objektivarustus-lukustus"
+      ],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-turva-ja-objektivarustus-seifid-ja-votmekapid": {
+      "handle": "v4-tooriistad-ja-tarvikud-turva-ja-objektivarustus-seifid-ja-votmekapid",
+      "name_en": "Seifid & võtmekapid",
+      "name_et": "Seifid & võtmekapid",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-turva-ja-objektivarustus",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-turva-ja-objektivarustus-crowd-control-ja-liiklusohutus": {
+      "handle": "v4-tooriistad-ja-tarvikud-turva-ja-objektivarustus-crowd-control-ja-liiklusohutus",
+      "name_en": "Crowd-control & liiklusohutus",
+      "name_et": "Crowd-control & liiklusohutus",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-turva-ja-objektivarustus",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-turva-ja-objektivarustus-lukustus": {
+      "handle": "v4-tooriistad-ja-tarvikud-turva-ja-objektivarustus-lukustus",
+      "name_en": "Lukustus",
+      "name_et": "Lukustus",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-turva-ja-objektivarustus",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-labori-ja-teadustooted": {
+      "handle": "v4-tooriistad-ja-tarvikud-labori-ja-teadustooted",
+      "name_en": "Labori- & teadustooted",
+      "name_et": "Labori- & teadustooted",
+      "level": 2,
+      "parent_handle": "v4-tooriistad-ja-tarvikud",
+      "child_handles": [
+        "v4-tooriistad-ja-tarvikud-labori-ja-teadustooted-mikroskoobid-ja-optika",
+        "v4-tooriistad-ja-tarvikud-labori-ja-teadustooted-segajad-ja-kuumutus",
+        "v4-tooriistad-ja-tarvikud-labori-ja-teadustooted-mooteinstrumendid",
+        "v4-tooriistad-ja-tarvikud-labori-ja-teadustooted-puhastus"
+      ],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-labori-ja-teadustooted-mikroskoobid-ja-optika": {
+      "handle": "v4-tooriistad-ja-tarvikud-labori-ja-teadustooted-mikroskoobid-ja-optika",
+      "name_en": "Mikroskoobid & optika",
+      "name_et": "Mikroskoobid & optika",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-labori-ja-teadustooted",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-labori-ja-teadustooted-segajad-ja-kuumutus": {
+      "handle": "v4-tooriistad-ja-tarvikud-labori-ja-teadustooted-segajad-ja-kuumutus",
+      "name_en": "Segajad & kuumutus",
+      "name_et": "Segajad & kuumutus",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-labori-ja-teadustooted",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-labori-ja-teadustooted-mooteinstrumendid": {
+      "handle": "v4-tooriistad-ja-tarvikud-labori-ja-teadustooted-mooteinstrumendid",
+      "name_en": "Mõõteinstrumendid",
+      "name_et": "Mõõteinstrumendid",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-labori-ja-teadustooted",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-labori-ja-teadustooted-puhastus": {
+      "handle": "v4-tooriistad-ja-tarvikud-labori-ja-teadustooted-puhastus",
+      "name_en": "Puhastus",
+      "name_et": "Puhastus",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-labori-ja-teadustooted",
       "child_handles": [],
       "image_path": null,
       "image_source": "none"
@@ -1998,20 +2628,76 @@
   "order": [
     "v4-tooriistad-ja-tarvikud",
     "v4-tooriistad-ja-tarvikud-kasitooriistad",
+    "v4-tooriistad-ja-tarvikud-kasitooriistad-mutrivotmed-ja-padrunid",
+    "v4-tooriistad-ja-tarvikud-kasitooriistad-kruvikeerajad-ja-otsikud",
+    "v4-tooriistad-ja-tarvikud-kasitooriistad-tangid-ja-napitsad",
+    "v4-tooriistad-ja-tarvikud-kasitooriistad-vasarad-ja-loogiriistad",
+    "v4-tooriistad-ja-tarvikud-kasitooriistad-kangid-ja-montaaziriistad",
+    "v4-tooriistad-ja-tarvikud-kasitooriistad-kasisaed-ja-loikeriistad",
+    "v4-tooriistad-ja-tarvikud-kasitooriistad-viilid-peitlid-ja-meislid",
+    "v4-tooriistad-ja-tarvikud-kasitooriistad-kruustangid-ja-pitskruvid",
+    "v4-tooriistad-ja-tarvikud-kasitooriistad-tooriistakomplektid",
     "v4-tooriistad-ja-tarvikud-elektrilised-tooriistad",
-    "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-osad",
-    "v4-tooriistad-ja-tarvikud-ketid-trossid-ja-kinnitused",
-    "v4-tooriistad-ja-tarvikud-keevitus-ja-jootmine",
-    "v4-tooriistad-ja-tarvikud-tooohutus-ja-turvalisus",
-    "v4-tooriistad-ja-tarvikud-puhastusvahendid-ja-tarvikud",
+    "v4-tooriistad-ja-tarvikud-elektrilised-tooriistad-trellid-ja-looktrellid",
+    "v4-tooriistad-ja-tarvikud-elektrilised-tooriistad-lihvijad",
+    "v4-tooriistad-ja-tarvikud-elektrilised-tooriistad-saed",
+    "v4-tooriistad-ja-tarvikud-elektrilised-tooriistad-freesid-ja-hoovlid",
+    "v4-tooriistad-ja-tarvikud-elektrilised-tooriistad-kuumapuhurid-ja-multitooriistad",
+    "v4-tooriistad-ja-tarvikud-akutooriistad",
+    "v4-tooriistad-ja-tarvikud-akutooriistad-akutrellid-ja-kruvikeerajad",
+    "v4-tooriistad-ja-tarvikud-akutooriistad-akusaed-ja-lihvijad",
+    "v4-tooriistad-ja-tarvikud-akutooriistad-akud-ja-laadijad",
+    "v4-tooriistad-ja-tarvikud-akutooriistad-muud-akutooriistad",
+    "v4-tooriistad-ja-tarvikud-suruohutooriistad",
+    "v4-tooriistad-ja-tarvikud-suruohutooriistad-kompressorid",
+    "v4-tooriistad-ja-tarvikud-suruohutooriistad-mutrikeerajad-ja-lookmasinad",
+    "v4-tooriistad-ja-tarvikud-suruohutooriistad-varvi-ja-pihustuspustolid",
+    "v4-tooriistad-ja-tarvikud-suruohutooriistad-voolikud-ja-liitmikud",
     "v4-tooriistad-ja-tarvikud-puidutoo-tooriistad",
-    "v4-tooriistad-ja-tarvikud-suruohu-tooriistad",
-    "v4-tooriistad-ja-tarvikud-labori-ja-teadustooted",
+    "v4-tooriistad-ja-tarvikud-puidutoo-tooriistad-puidutoopingid",
+    "v4-tooriistad-ja-tarvikud-puidutoo-tooriistad-hoovlid-ja-lihvmasinad",
+    "v4-tooriistad-ja-tarvikud-puidutoo-tooriistad-kasiriistad-ja-tarvikud",
+    "v4-tooriistad-ja-tarvikud-metallitoo-ja-sepatoo",
+    "v4-tooriistad-ja-tarvikud-metallitoo-ja-sepatoo-alasid-ja-sepatooriistad",
+    "v4-tooriistad-ja-tarvikud-metallitoo-ja-sepatoo-plekipainutajad-ja-rullid",
+    "v4-tooriistad-ja-tarvikud-metallitoo-ja-sepatoo-metalliloikus",
+    "v4-tooriistad-ja-tarvikud-keevitus-ja-jootmine",
+    "v4-tooriistad-ja-tarvikud-keevitus-ja-jootmine-keevitusaparaadid",
+    "v4-tooriistad-ja-tarvikud-keevitus-ja-jootmine-jootmine",
+    "v4-tooriistad-ja-tarvikud-keevitus-ja-jootmine-maskid-ja-kaitse",
+    "v4-tooriistad-ja-tarvikud-keevitus-ja-jootmine-tarvikud-ja-materjalid",
+    "v4-tooriistad-ja-tarvikud-moote-ja-markeriistad",
+    "v4-tooriistad-ja-tarvikud-moote-ja-markeriistad-laserloodid-ja-nivelliirid",
+    "v4-tooriistad-ja-tarvikud-moote-ja-markeriistad-moodulindid-ja-nihikud",
+    "v4-tooriistad-ja-tarvikud-moote-ja-markeriistad-loodid-ja-nurgamootjad",
+    "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid",
+    "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-loike-ja-lihvkettad",
+    "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-puurid-ja-freesiterad",
+    "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-saekettad-ja-terad",
+    "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-padrunid-ja-adapterid",
+    "v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine",
+    "v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine-tostetropid-ketid-ja-vood",
+    "v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine-koormarihmad-ja-pingutid",
+    "v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine-trossid-koied-ja-tarvikud",
+    "v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine-vintsid-talid-ja-taljed",
+    "v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine-taglased",
     "v4-tooriistad-ja-tarvikud-tooriistade-hoiustamine",
-    "v4-tooriistad-ja-tarvikud-mooteriistad",
-    "v4-tooriistad-ja-tarvikud-tosteseadmed-ja-vintsid",
-    "v4-tooriistad-ja-tarvikud-kasitoo-ja-meisterdamine",
-    "v4-tooriistad-ja-tarvikud-metallitoo-tooriistad",
+    "v4-tooriistad-ja-tarvikud-tooriistade-hoiustamine-kastid-ja-kotid",
+    "v4-tooriistad-ja-tarvikud-tooriistade-hoiustamine-karud-ja-toolauad",
+    "v4-tooriistad-ja-tarvikud-tooriistade-hoiustamine-kapid-ja-riiulid",
+    "v4-tooriistad-ja-tarvikud-puhastustehnika-ja-tarvikud",
+    "v4-tooriistad-ja-tarvikud-puhastustehnika-ja-tarvikud-survepesurid",
+    "v4-tooriistad-ja-tarvikud-puhastustehnika-ja-tarvikud-tolmu-ja-ehitustolmuimejad",
+    "v4-tooriistad-ja-tarvikud-puhastustehnika-ja-tarvikud-auru-ja-porandapuhastid",
+    "v4-tooriistad-ja-tarvikud-turva-ja-objektivarustus",
+    "v4-tooriistad-ja-tarvikud-turva-ja-objektivarustus-seifid-ja-votmekapid",
+    "v4-tooriistad-ja-tarvikud-turva-ja-objektivarustus-crowd-control-ja-liiklusohutus",
+    "v4-tooriistad-ja-tarvikud-turva-ja-objektivarustus-lukustus",
+    "v4-tooriistad-ja-tarvikud-labori-ja-teadustooted",
+    "v4-tooriistad-ja-tarvikud-labori-ja-teadustooted-mikroskoobid-ja-optika",
+    "v4-tooriistad-ja-tarvikud-labori-ja-teadustooted-segajad-ja-kuumutus",
+    "v4-tooriistad-ja-tarvikud-labori-ja-teadustooted-mooteinstrumendid",
+    "v4-tooriistad-ja-tarvikud-labori-ja-teadustooted-puhastus",
     "v4-garaaziseadmed",
     "v4-garaaziseadmed-mehaaniku-tooriistad",
     "v4-garaaziseadmed-garaazi-hoiustamine",
