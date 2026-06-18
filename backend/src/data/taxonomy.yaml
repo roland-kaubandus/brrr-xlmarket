@@ -27,6 +27,10 @@ l1:
             name_en: "Toru laiendus- ja flaaringutööriistad"
             name_et: "Toru laiendus- ja flaaringutööriistad"
             product_count: 0
+          - slug: v4-tooriistad-ja-tarvikud-akutooriistad-toru-pressimistooriistad
+            name_en: "Toru pressimistööriistad"
+            name_et: "Toru pressimistööriistad"
+            product_count: 0
           - slug: v4-tooriistad-ja-tarvikud-kasitooriistad-toru-valjatombajad
             name_en: "Toru väljatõmbajad"
             name_et: "Toru väljatõmbajad"
@@ -35,9 +39,17 @@ l1:
             name_en: "Toru-keermestajad ja -lõikurid"
             name_et: "Toru-keermestajad ja -lõikurid"
             product_count: 0
+          - slug: v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-toruinspektsiooni-seadmed
+            name_en: "Toruinspektsiooni seadmed"
+            name_et: "Toruinspektsiooni seadmed"
+            product_count: 0
           - slug: v4-tooriistad-ja-tarvikud-metallitoo-ja-sepatoo-torupainutajad
             name_en: "Torupainutajad"
             name_et: "Torupainutajad"
+            product_count: 0
+          - slug: v4-tooriistad-ja-tarvikud-elektrilised-tooriistad-torutootlustooriistad
+            name_en: "Torutöötlustööriistad"
+            name_et: "Torutöötlustööriistad"
             product_count: 0
           - slug: v4-tooriistad-ja-tarvikud-kasitooriistad-toruvotmed-ja-torutangid
             name_en: "Toruvõtmed ja torutangid"
@@ -282,10 +294,6 @@ l1:
             name_en: "Torulihvijad"
             name_et: "Torulihvijad"
             product_count: 0
-          - slug: v4-tooriistad-ja-tarvikud-elektrilised-tooriistad-torutootlustooriistad
-            name_en: "Torutöötlustööriistad"
-            name_et: "Torutöötlustööriistad"
-            product_count: 0
           - slug: v4-tooriistad-ja-tarvikud-elektrilised-tooriistad-vahtplasti-loikurid
             name_en: "Vahtplasti lõikurid"
             name_et: "Vahtplasti lõikurid"
@@ -326,10 +334,6 @@ l1:
           - slug: v4-tooriistad-ja-tarvikud-akutooriistad-akusaed
             name_en: "Akusaed"
             name_et: "Akusaed"
-            product_count: 0
-          - slug: v4-tooriistad-ja-tarvikud-akutooriistad-toru-pressimistooriistad
-            name_en: "Toru pressimistööriistad"
-            name_et: "Toru pressimistööriistad"
             product_count: 0
       - slug: v4-tooriistad-ja-tarvikud-suruohutooriistad
         name_en: "Suruõhutööriistad"
@@ -772,10 +776,6 @@ l1:
           - slug: v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-teritusalused-ja-rakised
             name_en: "Teritusalused ja -rakised"
             name_et: "Teritusalused ja -rakised"
-            product_count: 0
-          - slug: v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-toruinspektsiooni-seadmed
-            name_en: "Toruinspektsiooni seadmed"
-            name_et: "Toruinspektsiooni seadmed"
             product_count: 0
           - slug: v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-treilauad-ja-toolauad
             name_en: "Treilauad ja töölauad"

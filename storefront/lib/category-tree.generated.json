@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-18T13:33:39.160Z",
+  "generated_at": "2026-06-18T14:17:42.565Z",
   "nodes": {
     "v4-tooriistad-ja-tarvikud": {
       "handle": "v4-tooriistad-ja-tarvikud",
@@ -41,9 +41,12 @@
       "child_handles": [
         "v4-tooriistad-ja-tarvikud-kasitooriistad-toru-joondusklambrid",
         "v4-tooriistad-ja-tarvikud-kasitooriistad-toru-laiendus-ja-flaaringutooriistad",
+        "v4-tooriistad-ja-tarvikud-akutooriistad-toru-pressimistooriistad",
         "v4-tooriistad-ja-tarvikud-kasitooriistad-toru-valjatombajad",
         "v4-tooriistad-ja-tarvikud-torutooriistad-toru-keermestajad-ja-loikurid",
+        "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-toruinspektsiooni-seadmed",
         "v4-tooriistad-ja-tarvikud-metallitoo-ja-sepatoo-torupainutajad",
+        "v4-tooriistad-ja-tarvikud-elektrilised-tooriistad-torutootlustooriistad",
         "v4-tooriistad-ja-tarvikud-kasitooriistad-toruvotmed-ja-torutangid"
       ],
       "image_path": null,
@@ -63,6 +66,16 @@
       "handle": "v4-tooriistad-ja-tarvikud-kasitooriistad-toru-laiendus-ja-flaaringutooriistad",
       "name_en": "Toru laiendus- ja flaaringutööriistad",
       "name_et": "Toru laiendus- ja flaaringutööriistad",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-torutooriistad",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-akutooriistad-toru-pressimistooriistad": {
+      "handle": "v4-tooriistad-ja-tarvikud-akutooriistad-toru-pressimistooriistad",
+      "name_en": "Toru pressimistööriistad",
+      "name_et": "Toru pressimistööriistad",
       "level": 3,
       "parent_handle": "v4-tooriistad-ja-tarvikud-torutooriistad",
       "child_handles": [],
@@ -89,10 +102,30 @@
       "image_path": null,
       "image_source": "none"
     },
+    "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-toruinspektsiooni-seadmed": {
+      "handle": "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-toruinspektsiooni-seadmed",
+      "name_en": "Toruinspektsiooni seadmed",
+      "name_et": "Toruinspektsiooni seadmed",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-torutooriistad",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
     "v4-tooriistad-ja-tarvikud-metallitoo-ja-sepatoo-torupainutajad": {
       "handle": "v4-tooriistad-ja-tarvikud-metallitoo-ja-sepatoo-torupainutajad",
       "name_en": "Torupainutajad",
       "name_et": "Torupainutajad",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-torutooriistad",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-elektrilised-tooriistad-torutootlustooriistad": {
+      "handle": "v4-tooriistad-ja-tarvikud-elektrilised-tooriistad-torutootlustooriistad",
+      "name_en": "Torutöötlustööriistad",
+      "name_et": "Torutöötlustööriistad",
       "level": 3,
       "parent_handle": "v4-tooriistad-ja-tarvikud-torutooriistad",
       "child_handles": [],
@@ -494,7 +527,6 @@
         "v4-tooriistad-ja-tarvikud-elektrilised-tooriistad-teemantpuurmasinad",
         "v4-tooriistad-ja-tarvikud-elektrilised-tooriistad-teritusmasinad",
         "v4-tooriistad-ja-tarvikud-elektrilised-tooriistad-torulihvijad",
-        "v4-tooriistad-ja-tarvikud-elektrilised-tooriistad-torutootlustooriistad",
         "v4-tooriistad-ja-tarvikud-elektrilised-tooriistad-vahtplasti-loikurid"
       ],
       "image_path": null,
@@ -760,16 +792,6 @@
       "image_path": null,
       "image_source": "none"
     },
-    "v4-tooriistad-ja-tarvikud-elektrilised-tooriistad-torutootlustooriistad": {
-      "handle": "v4-tooriistad-ja-tarvikud-elektrilised-tooriistad-torutootlustooriistad",
-      "name_en": "Torutöötlustööriistad",
-      "name_et": "Torutöötlustööriistad",
-      "level": 3,
-      "parent_handle": "v4-tooriistad-ja-tarvikud-elektrilised-tooriistad",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
     "v4-tooriistad-ja-tarvikud-elektrilised-tooriistad-vahtplasti-loikurid": {
       "handle": "v4-tooriistad-ja-tarvikud-elektrilised-tooriistad-vahtplasti-loikurid",
       "name_en": "Vahtplasti lõikurid",
@@ -794,8 +816,7 @@
         "v4-tooriistad-ja-tarvikud-akutooriistad-akunaelapustolid",
         "v4-tooriistad-ja-tarvikud-akutooriistad-akuplekikaarid",
         "v4-tooriistad-ja-tarvikud-akutooriistad-akupuurvasarad",
-        "v4-tooriistad-ja-tarvikud-akutooriistad-akusaed",
-        "v4-tooriistad-ja-tarvikud-akutooriistad-toru-pressimistooriistad"
+        "v4-tooriistad-ja-tarvikud-akutooriistad-akusaed"
       ],
       "image_path": null,
       "image_source": "none"
@@ -874,16 +895,6 @@
       "handle": "v4-tooriistad-ja-tarvikud-akutooriistad-akusaed",
       "name_en": "Akusaed",
       "name_et": "Akusaed",
-      "level": 3,
-      "parent_handle": "v4-tooriistad-ja-tarvikud-akutooriistad",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-tooriistad-ja-tarvikud-akutooriistad-toru-pressimistooriistad": {
-      "handle": "v4-tooriistad-ja-tarvikud-akutooriistad-toru-pressimistooriistad",
-      "name_en": "Toru pressimistööriistad",
-      "name_et": "Toru pressimistööriistad",
       "level": 3,
       "parent_handle": "v4-tooriistad-ja-tarvikud-akutooriistad",
       "child_handles": [],
@@ -1875,7 +1886,6 @@
         "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-teemantloikekettad",
         "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-teemantpuurkroonid-ja-sudamikpuurid",
         "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-teritusalused-ja-rakised",
-        "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-toruinspektsiooni-seadmed",
         "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-treilauad-ja-toolauad",
         "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-treipingi-loiketerad",
         "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-treipingi-padrunid",
@@ -2089,16 +2099,6 @@
       "handle": "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-teritusalused-ja-rakised",
       "name_en": "Teritusalused ja -rakised",
       "name_et": "Teritusalused ja -rakised",
-      "level": 3,
-      "parent_handle": "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-toruinspektsiooni-seadmed": {
-      "handle": "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-toruinspektsiooni-seadmed",
-      "name_en": "Toruinspektsiooni seadmed",
-      "name_et": "Toruinspektsiooni seadmed",
       "level": 3,
       "parent_handle": "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid",
       "child_handles": [],
@@ -4843,9 +4843,12 @@
     "v4-tooriistad-ja-tarvikud-torutooriistad",
     "v4-tooriistad-ja-tarvikud-kasitooriistad-toru-joondusklambrid",
     "v4-tooriistad-ja-tarvikud-kasitooriistad-toru-laiendus-ja-flaaringutooriistad",
+    "v4-tooriistad-ja-tarvikud-akutooriistad-toru-pressimistooriistad",
     "v4-tooriistad-ja-tarvikud-kasitooriistad-toru-valjatombajad",
     "v4-tooriistad-ja-tarvikud-torutooriistad-toru-keermestajad-ja-loikurid",
+    "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-toruinspektsiooni-seadmed",
     "v4-tooriistad-ja-tarvikud-metallitoo-ja-sepatoo-torupainutajad",
+    "v4-tooriistad-ja-tarvikud-elektrilised-tooriistad-torutootlustooriistad",
     "v4-tooriistad-ja-tarvikud-kasitooriistad-toruvotmed-ja-torutangid",
     "v4-tooriistad-ja-tarvikud-viimistlustooriistad",
     "v4-tooriistad-ja-tarvikud-viimistlustooriistad-krohvimistooriistad",
@@ -4906,7 +4909,6 @@
     "v4-tooriistad-ja-tarvikud-elektrilised-tooriistad-teemantpuurmasinad",
     "v4-tooriistad-ja-tarvikud-elektrilised-tooriistad-teritusmasinad",
     "v4-tooriistad-ja-tarvikud-elektrilised-tooriistad-torulihvijad",
-    "v4-tooriistad-ja-tarvikud-elektrilised-tooriistad-torutootlustooriistad",
     "v4-tooriistad-ja-tarvikud-elektrilised-tooriistad-vahtplasti-loikurid",
     "v4-tooriistad-ja-tarvikud-akutooriistad",
     "v4-tooriistad-ja-tarvikud-akutooriistad-akud-ja-laadijad",
@@ -4917,7 +4919,6 @@
     "v4-tooriistad-ja-tarvikud-akutooriistad-akuplekikaarid",
     "v4-tooriistad-ja-tarvikud-akutooriistad-akupuurvasarad",
     "v4-tooriistad-ja-tarvikud-akutooriistad-akusaed",
-    "v4-tooriistad-ja-tarvikud-akutooriistad-toru-pressimistooriistad",
     "v4-tooriistad-ja-tarvikud-suruohutooriistad",
     "v4-tooriistad-ja-tarvikud-suruohutooriistad-aerograafi-komplektid",
     "v4-tooriistad-ja-tarvikud-suruohutooriistad-hudraulilised-kiirliitmikud",
@@ -5027,7 +5028,6 @@
     "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-teemantloikekettad",
     "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-teemantpuurkroonid-ja-sudamikpuurid",
     "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-teritusalused-ja-rakised",
-    "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-toruinspektsiooni-seadmed",
     "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-treilauad-ja-toolauad",
     "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-treipingi-loiketerad",
     "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-treipingi-padrunid",
