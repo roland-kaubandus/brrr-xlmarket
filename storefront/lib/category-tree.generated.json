@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-19T11:21:42.043Z",
+  "generated_at": "2026-06-19T11:25:02.937Z",
   "nodes": {
     "v4-tooriistad-ja-tarvikud": {
       "handle": "v4-tooriistad-ja-tarvikud",
@@ -3738,7 +3738,6 @@
         "v4-aed-ja-aiatehnika-l1-puuronimisnaastud",
         "v4-aed-ja-aiatehnika-l1-rehad-ja-akked",
         "v4-aed-ja-aiatehnika-l1-taimetoed-ja-tugikonstruktsioonid",
-        "v4-aed-ja-aiatehnika-l1-traktori-haakeseadmed",
         "v4-aed-ja-aiatehnika-l1-veekogude-umbrohutooriistad",
         "v4-aed-ja-aiatehnika-l1-vaetise-ja-seemnelaotajad"
       ],
@@ -3939,16 +3938,6 @@
       "handle": "v4-aed-ja-aiatehnika-l1-taimetoed-ja-tugikonstruktsioonid",
       "name_en": "Taimetoed ja tugikonstruktsioonid",
       "name_et": "Taimetoed ja tugikonstruktsioonid",
-      "level": 3,
-      "parent_handle": "v4-aed-ja-aiatehnika-aiatooriistad",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-aed-ja-aiatehnika-l1-traktori-haakeseadmed": {
-      "handle": "v4-aed-ja-aiatehnika-l1-traktori-haakeseadmed",
-      "name_en": "Traktori haakeseadmed",
-      "name_et": "Traktori haakeseadmed",
       "level": 3,
       "parent_handle": "v4-aed-ja-aiatehnika-aiatooriistad",
       "child_handles": [],
@@ -7183,7 +7172,6 @@
     "v4-aed-ja-aiatehnika-l1-puuronimisnaastud",
     "v4-aed-ja-aiatehnika-l1-rehad-ja-akked",
     "v4-aed-ja-aiatehnika-l1-taimetoed-ja-tugikonstruktsioonid",
-    "v4-aed-ja-aiatehnika-l1-traktori-haakeseadmed",
     "v4-aed-ja-aiatehnika-l1-veekogude-umbrohutooriistad",
     "v4-aed-ja-aiatehnika-l1-vaetise-ja-seemnelaotajad",
     "v4-aed-ja-aiatehnika-basseinid-ja-spaa",

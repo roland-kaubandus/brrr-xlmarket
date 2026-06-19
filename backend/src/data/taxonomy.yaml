@@ -1487,10 +1487,6 @@ l1:
             name_en: "Taimetoed ja tugikonstruktsioonid"
             name_et: "Taimetoed ja tugikonstruktsioonid"
             product_count: 0
-          - slug: v4-aed-ja-aiatehnika-l1-traktori-haakeseadmed
-            name_en: "Traktori haakeseadmed"
-            name_et: "Traktori haakeseadmed"
-            product_count: 0
           - slug: v4-aed-ja-aiatehnika-l1-veekogude-umbrohutooriistad
             name_en: "Veekogude umbrohutööriistad"
             name_et: "Veekogude umbrohutööriistad"
