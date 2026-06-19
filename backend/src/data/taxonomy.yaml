@@ -1,6 +1,6 @@
 version: 4
 updated: '2026-06-18'
-source: v4 + Tööriistad L3 + trade touch-up (staging)
+source: v4 + Tööriistad + Aed L3 (staging)
 l1:
   - slug: v4-tooriistad-ja-tarvikud
     name_en: "Tööriistad ja tarvikud"
@@ -980,6 +980,10 @@ l1:
             name_en: "Põrandapesumasinad ja -tarvikud"
             name_et: "Põrandapesumasinad ja -tarvikud"
             product_count: 0
+          - slug: v4-tooriistad-ja-tarvikud-puhastustehnika-survepesuri-tarvikud-ja-pinnapuhastid
+            name_en: "Survepesuri tarvikud ja pinnapuhastid"
+            name_et: "Survepesuri tarvikud ja pinnapuhastid"
+            product_count: 0
           - slug: v4-tooriistad-ja-tarvikud-puhastustehnika-ja-tarvikud-tolmuimejad
             name_en: "Tolmuimejad"
             name_et: "Tolmuimejad"
@@ -1401,59 +1405,677 @@ l1:
       - slug: v4-aed-ja-aiatehnika-aiatooriistad
         name_en: "Aiatööriistad"
         name_et: "Aiatööriistad"
-        product_count: 322
+        product_count: 0
+        subs:
+          - slug: v4-aed-ja-aiatehnika-l1-aeraatorrehad
+            name_en: "Aeraatorrehad"
+            name_et: "Aeraatorrehad"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l1-aiahargid-ja-sonnikuhargid
+            name_en: "Aiahargid ja sõnnikuhargid"
+            name_et: "Aiahargid ja sõnnikuhargid"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l1-aiaistmed-ja-polvituspingid
+            name_en: "Aiaistmed ja põlvituspingid"
+            name_et: "Aiaistmed ja põlvituspingid"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l1-aiakarud-ja-veovankrid
+            name_en: "Aiakärud ja veovankrid"
+            name_et: "Aiakärud ja veovankrid"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l1-aiatoolauad-ja-istutuslauad
+            name_en: "Aiatöölauad ja istutuslauad"
+            name_et: "Aiatöölauad ja istutuslauad"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l1-heinapallide-tosteokad-ja-haagid
+            name_en: "Heinapallide tõsteokad ja haagid"
+            name_et: "Heinapallide tõsteokad ja haagid"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l1-istutuspuurid-ja-maaaugurid
+            name_en: "Istutuspuurid ja maaaugurid"
+            name_et: "Istutuspuurid ja maaaugurid"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l1-komposti-tarvikud
+            name_en: "Komposti tarvikud"
+            name_et: "Komposti tarvikud"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l1-lehe-ja-pungatrimmerid
+            name_en: "Lehe- ja pungatrimmerid"
+            name_et: "Lehe- ja pungatrimmerid"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l1-lumelabidad-ja-lumetosteseadmed
+            name_en: "Lumelabidad ja lumetõsteseadmed"
+            name_et: "Lumelabidad ja lumetõsteseadmed"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l1-muru-aeraatorid-ja-vertikuteerijad
+            name_en: "Muru aeraatorid ja vertikuteerijad"
+            name_et: "Muru aeraatorid ja vertikuteerijad"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l1-murutasandusrehad
+            name_en: "Murutasandusrehad"
+            name_et: "Murutasandusrehad"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l1-muruvaltsid
+            name_en: "Muruvaltsid"
+            name_et: "Muruvaltsid"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l1-oksaloikurid
+            name_en: "Oksalõikurid"
+            name_et: "Oksalõikurid"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l1-oksaloikurid-ja-saed
+            name_en: "Oksalõikurid ja saed"
+            name_et: "Oksalõikurid ja saed"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l1-oksasaed
+            name_en: "Oksasaed"
+            name_et: "Oksasaed"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l1-palkide-tosteriistad-ja-konksud
+            name_en: "Palkide tõsteriistad ja konksud"
+            name_et: "Palkide tõsteriistad ja konksud"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l1-puuronimisnaastud
+            name_en: "Puuronimisnaastud"
+            name_et: "Puuronimisnaastud"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l1-rehad-ja-akked
+            name_en: "Rehad ja äkked"
+            name_et: "Rehad ja äkked"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l1-taimetoed-ja-tugikonstruktsioonid
+            name_en: "Taimetoed ja tugikonstruktsioonid"
+            name_et: "Taimetoed ja tugikonstruktsioonid"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l1-traktori-haakeseadmed
+            name_en: "Traktori haakeseadmed"
+            name_et: "Traktori haakeseadmed"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l1-veekogude-umbrohutooriistad
+            name_en: "Veekogude umbrohutööriistad"
+            name_et: "Veekogude umbrohutööriistad"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l1-vaetise-ja-seemnelaotajad
+            name_en: "Väetise- ja seemnelaotajad"
+            name_et: "Väetise- ja seemnelaotajad"
+            product_count: 0
       - slug: v4-aed-ja-aiatehnika-basseinid-ja-spaa
         name_en: "Basseinid & spaa"
         name_et: "Basseinid & spaa"
-        product_count: 289
+        product_count: 0
+        subs:
+          - slug: v4-aed-ja-aiatehnika-l2-basseini-ionisaatorid-ja-kloorinaatorid
+            name_en: "Basseini ionisaatorid & kloorinaatorid"
+            name_et: "Basseini ionisaatorid & kloorinaatorid"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l2-basseini-joad-ja-veeefektid
+            name_en: "Basseini joad & veeefektid"
+            name_et: "Basseini joad & veeefektid"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l2-basseini-kasipuud
+            name_en: "Basseini käsipuud"
+            name_et: "Basseini käsipuud"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l2-basseini-lamamistoolid-ja-paikesevoodid
+            name_en: "Basseini lamamistoolid & päikesevoodid"
+            name_et: "Basseini lamamistoolid & päikesevoodid"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l2-basseini-aravooluvoolikud
+            name_en: "Basseini äravooluvoolikud"
+            name_et: "Basseini äravooluvoolikud"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l2-basseiniaiad-ja-varavad
+            name_en: "Basseiniaiad & väravad"
+            name_et: "Basseiniaiad & väravad"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l2-basseinifiltrid-ja-filterpallid
+            name_en: "Basseinifiltrid & filterpallid"
+            name_et: "Basseinifiltrid & filterpallid"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l2-basseinikatte-rullid-ja-tarvikud
+            name_en: "Basseinikatte rullid & tarvikud"
+            name_et: "Basseinikatte rullid & tarvikud"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l2-basseinikatted
+            name_en: "Basseinikatted"
+            name_et: "Basseinikatted"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l2-basseinikuttekehad-ja-soojuspumbad
+            name_en: "Basseiniküttekehad & soojuspumbad"
+            name_et: "Basseiniküttekehad & soojuspumbad"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l2-basseinimatid-ja-aluspadjad
+            name_en: "Basseinimatid & aluspadjad"
+            name_et: "Basseinimatid & aluspadjad"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l2-basseinipuhastid-ja-puhastustarvikud
+            name_en: "Basseinipuhastid & puhastustarvikud"
+            name_et: "Basseinipuhastid & puhastustarvikud"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l2-basseinipumbad
+            name_en: "Basseinipumbad"
+            name_et: "Basseinipumbad"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l2-basseiniredelid-ja-trepid
+            name_en: "Basseiniredelid & trepid"
+            name_et: "Basseiniredelid & trepid"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l2-basseinivooderdised-ja-vooderdised
+            name_en: "Basseinivooderdised & vooderdised"
+            name_et: "Basseinivooderdised & vooderdised"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l2-hoiukorvid-ja-karu
+            name_en: "Hoiukorvid & -käruд"
+            name_et: "Hoiukorvid & -käruд"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l2-infrapunasaunad
+            name_en: "Infrapunasaunad"
+            name_et: "Infrapunasaunad"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l2-mullivanni-katte-tostemehhanismid
+            name_en: "Mullivanni katte tõstemehhanismid"
+            name_et: "Mullivanni katte tõstemehhanismid"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l2-mullivannid-ja-jaavannid
+            name_en: "Mullivannid & jäävannid"
+            name_et: "Mullivannid & jäävannid"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l2-ratikuhoidikud
+            name_en: "Rätikuhoidikud"
+            name_et: "Rätikuhoidikud"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l2-saunaahjud-ja-kerised
+            name_en: "Saunaahjud & kerised"
+            name_et: "Saunaahjud & kerised"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l2-taispuhutavad-ja-raamiga-basseinid
+            name_en: "Täispuhutavad & raamiga basseinid"
+            name_et: "Täispuhutavad & raamiga basseinid"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l2-valis
+            name_en: "Välisдушид"
+            name_et: "Välisдушид"
+            product_count: 0
       - slug: v4-aed-ja-aiatehnika-maastikukujundus
         name_en: "Maastikukujundus"
         name_et: "Maastikukujundus"
-        product_count: 170
+        product_count: 0
+        subs:
+          - slug: v4-aed-ja-aiatehnika-l3-aiaaaristused-ja-peenraservad
+            name_en: "Aiaääristused ja peenraservad"
+            name_et: "Aiaääristused ja peenraservad"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l3-astmekivid-ja-sillutusplaadid
+            name_en: "Astmekivid ja sillutusplaadid"
+            name_et: "Astmekivid ja sillutusplaadid"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l3-auru-ja-niiskustokkekiled
+            name_en: "Auru- ja niiskustõkkekiled"
+            name_et: "Auru- ja niiskustõkkekiled"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l3-kunstmuru-ja-kummimatid
+            name_en: "Kunstmuru ja kummimatid"
+            name_et: "Kunstmuru ja kummimatid"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l3-maapinnaankrud-ja-kinnitusnaelad
+            name_en: "Maapinnaankrud ja kinnitusnaelad"
+            name_et: "Maapinnaankrud ja kinnitusnaelad"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l3-mullafreesi-ja-kraabitsa-varuosad
+            name_en: "Mullafreesi ja kraabitsa varuosad"
+            name_et: "Mullafreesi ja kraabitsa varuosad"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l3-pinnasestabilisaatorid-ja-kruusavored
+            name_en: "Pinnasestabilisaatorid ja kruusavõred"
+            name_et: "Pinnasestabilisaatorid ja kruusavõred"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l3-puidust-aiateed-ja-konniteed
+            name_en: "Puidust aiateed ja kõnniteed"
+            name_et: "Puidust aiateed ja kõnniteed"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l3-puude-talvekatted-ja-dzuutkangad
+            name_en: "Puude talvekatted ja džuutkangad"
+            name_et: "Puude talvekatted ja džuutkangad"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l3-umbrohutokked-ja-maastikukangad
+            name_en: "Umbrohutõkked ja maastikukangad"
+            name_et: "Umbrohutõkked ja maastikukangad"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l3-uleujutuskaitse-kotid-ja-barjaarid
+            name_en: "Üleujutuskaitse kotid ja barjäärid"
+            name_et: "Üleujutuskaitse kotid ja barjäärid"
+            product_count: 0
       - slug: v4-aed-ja-aiatehnika-ouegrill-ja-valitoiduvalmistamine
         name_en: "Õuegrill & välitoiduvalmistamine"
         name_et: "Õuegrill & välitoiduvalmistamine"
-        product_count: 156
+        product_count: 0
+        subs:
+          - slug: v4-aed-ja-aiatehnika-l4-grilli-varuosad-ja-tarvikud
+            name_en: "Grilli varuosad ja tarvikud"
+            name_et: "Grilli varuosad ja tarvikud"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l4-grillikarud-ja-lauad
+            name_en: "Grillikärud ja -lauad"
+            name_et: "Grillikärud ja -lauad"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l4-grilliplaadid-ja-kaitsekatted
+            name_en: "Grilliplaadid ja kaitsekatted"
+            name_et: "Grilliplaadid ja kaitsekatted"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l4-grillrestid-ja-lokkegrillid
+            name_en: "Grillrestid ja lõkkegrillid"
+            name_et: "Grillrestid ja lõkkegrillid"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l4-jaakastid-ja-jookide-jahutuskarud
+            name_en: "Jääkastid ja jookide jahutuskärud"
+            name_et: "Jääkastid ja jookide jahutuskärud"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l4-rotisserie-ja-vardasgrillid
+            name_en: "Rotisserie- ja vardasgrillid"
+            name_et: "Rotisserie- ja vardasgrillid"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l4-soe-ja-gaasigrillid
+            name_en: "Söe- ja gaasigrillid"
+            name_et: "Söe- ja gaasigrillid"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l4-valipitsaahjud-ja-kupsetajad
+            name_en: "Välipitsaahjud ja -küpsetajad"
+            name_et: "Välipitsaahjud ja -küpsetajad"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l4-valiskoogi-ja-bbq-saare-uksed-ja-luugid
+            name_en: "Välisköögi & BBQ-saare uksed ja luugid"
+            name_et: "Välisköögi & BBQ-saare uksed ja luugid"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l4-valiskoogi-sahtlid-ja-kapid
+            name_en: "Välisköögi sahtlid ja kapid"
+            name_et: "Välisköögi sahtlid ja kapid"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l4-valiskoogi-uksed-ja-luugid
+            name_en: "Välisköögi uksed ja luugid"
+            name_et: "Välisköögi uksed ja luugid"
+            product_count: 0
       - slug: v4-aed-ja-aiatehnika-aia-jouseadmed
         name_en: "Aia jõuseadmed"
         name_et: "Aia jõuseadmed"
-        product_count: 142
+        product_count: 0
+        subs:
+          - slug: v4-aed-ja-aiatehnika-l5-hekitrimmerid-ja-hekikaarid
+            name_en: "Hekitrimmerid ja hekikäärid"
+            name_et: "Hekitrimmerid ja hekikäärid"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l5-kettsaed-ja-mootorsaed
+            name_en: "Kettsaed ja mootorsaed"
+            name_et: "Kettsaed ja mootorsaed"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l5-lehepuhurid-ja-lehekogujad
+            name_en: "Lehepuhurid ja lehekogujad"
+            name_et: "Lehepuhurid ja lehekogujad"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l5-lumesahad-ja-lumeaderid
+            name_en: "Lumesahad ja lumeaderid"
+            name_et: "Lumesahad ja lumeaderid"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l5-maapuurid-ja-postiaugurid
+            name_en: "Maapuurid ja postiaugurid"
+            name_et: "Maapuurid ja postiaugurid"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l5-mullafreesid-ja-motofreesid
+            name_en: "Mullafreesid ja motofreesid"
+            name_et: "Mullafreesid ja motofreesid"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l5-multifunktsionaalsed-aiatrimmerid
+            name_en: "Multifunktsionaalsed aiatrimmerid"
+            name_et: "Multifunktsionaalsed aiatrimmerid"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l5-muruharjad-ja-puhkijad
+            name_en: "Muruharjad ja pühkijad"
+            name_et: "Muruharjad ja pühkijad"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l5-muruniidukid
+            name_en: "Muruniidukid"
+            name_et: "Muruniidukid"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l5-survepesurid
+            name_en: "Survepesurid"
+            name_et: "Survepesurid"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l5-survepesurite-tarvikud
+            name_en: "Survepesurite tarvikud"
+            name_et: "Survepesurite tarvikud"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l5-traktori-lisaseadmed-ja-tarvikud
+            name_en: "Traktori lisaseadmed ja tarvikud"
+            name_et: "Traktori lisaseadmed ja tarvikud"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l5-ulekande-ja-jouulekandeosad
+            name_en: "Ülekande- ja jõuülekandeosad"
+            name_et: "Ülekande- ja jõuülekandeosad"
+            product_count: 0
       - slug: v4-aed-ja-aiatehnika-aiadekoor
         name_en: "Aiadekoor"
         name_et: "Aiadekoor"
-        product_count: 134
+        product_count: 0
+        subs:
+          - slug: v4-aed-ja-aiatehnika-l6-aiakaared-ja-varavad
+            name_en: "Aiakaared ja väravad"
+            name_et: "Aiakaared ja väravad"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l6-aiakonksud-ja-postid
+            name_en: "Aiakonksud ja postid"
+            name_et: "Aiakonksud ja postid"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l6-hoiukastid-ja-aiakuurid
+            name_en: "Hoiukastid ja aiakuurid"
+            name_et: "Hoiukastid ja aiakuurid"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l6-ilmajaamad
+            name_en: "Ilmajaamad"
+            name_et: "Ilmajaamad"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l6-kaarstatiivid-ja-taustaraamid
+            name_en: "Kaarstatiivid ja taustaraamid"
+            name_et: "Kaarstatiivid ja taustaraamid"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l6-kunsthekid-ja-privaatsusekraanid
+            name_en: "Kunsthekid ja privaatsusekraanid"
+            name_et: "Kunsthekid ja privaatsusekraanid"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l6-kunstkivi-dekoratiivkatted
+            name_en: "Kunstkivi dekoratiivkatted"
+            name_et: "Kunstkivi dekoratiivkatted"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l6-kuttepuude-hoidikud
+            name_en: "Küttepuude hoidikud"
+            name_et: "Küttepuude hoidikud"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l6-lipumastid
+            name_en: "Lipumastid"
+            name_et: "Lipumastid"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l6-taimede-tugiresti-ja-trellised
+            name_en: "Taimede tugiresti ja trellised"
+            name_et: "Taimede tugiresti ja trellised"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l6-tee-ja-soidutee-margistused
+            name_en: "Tee- ja sõidutee märgistused"
+            name_et: "Tee- ja sõidutee märgistused"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l6-tulelauad-ja-tuulevarjud
+            name_en: "Tulelauad ja tuulevarjud"
+            name_et: "Tulelauad ja tuulevarjud"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l6-tuulekellad
+            name_en: "Tuulekellad"
+            name_et: "Tuulekellad"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l6-udumasinad
+            name_en: "Udumasinad"
+            name_et: "Udumasinad"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l6-veejoad-ja-purskkaevud
+            name_en: "Veejoad ja purskkaevud"
+            name_et: "Veejoad ja purskkaevud"
+            product_count: 0
       - slug: v4-aed-ja-aiatehnika-aiamoobel
         name_en: "Aiamööbel"
         name_et: "Aiamööbel"
-        product_count: 118
+        product_count: 0
+        subs:
+          - slug: v4-aed-ja-aiatehnika-l7-aiakiiged-ja-vorkkiiged
+            name_en: "Aiakiiged ja võrkkiiged"
+            name_et: "Aiakiiged ja võrkkiiged"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l7-aialauad
+            name_en: "Aialauad"
+            name_et: "Aialauad"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l7-aiamoobli-kaitsekatted
+            name_en: "Aiamööbli kaitsekatted"
+            name_et: "Aiamööbli kaitsekatted"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l7-aiamoobli-komplektid
+            name_en: "Aiamööbli komplektid"
+            name_et: "Aiamööbli komplektid"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l7-aiapingid
+            name_en: "Aiapingid"
+            name_et: "Aiapingid"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l7-aiatoolid
+            name_en: "Aiatoolid"
+            name_et: "Aiatoolid"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l7-jalatoed-ottomanid
+            name_en: "Jalatoed (ottomanid)"
+            name_et: "Jalatoed (ottomanid)"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l7-paikesetooli-ja-toolipadjad
+            name_en: "Päikesetooli ja toolipadjad"
+            name_et: "Päikesetooli ja toolipadjad"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l7-paikesetoolid-ja-lamamistoolid
+            name_en: "Päikesetoolid ja lamamistoolid"
+            name_et: "Päikesetoolid ja lamamistoolid"
+            product_count: 0
       - slug: v4-aed-ja-aiatehnika-kastmine-ja-niisutus
         name_en: "Kastmine & niisutus"
         name_et: "Kastmine & niisutus"
-        product_count: 111
+        product_count: 0
+        subs:
+          - slug: v4-aed-ja-aiatehnika-l8-hudropoonika
+            name_en: "Hüdropoonika"
+            name_et: "Hüdropoonika"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l8-hudropoonika-kasvususteemid
+            name_en: "Hüdropoonika kasvusüsteemid"
+            name_et: "Hüdropoonika kasvusüsteemid"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l8-kokkupandavad-veemahutid-ja-vihmaveepaagid
+            name_en: "Kokkupandavad veemahutid ja vihmaveepaagid"
+            name_et: "Kokkupandavad veemahutid ja vihmaveepaagid"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l8-kasipritsijad-ja-kasipihustuspumbad
+            name_en: "Käsipritsijad ja käsipihustuspumbad"
+            name_et: "Käsipritsijad ja käsipihustuspumbad"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l8-kulmakindlad-maaveepostid-ja-hudrandid
+            name_en: "Külmakindlad maaveepostid ja hüdrandid"
+            name_et: "Külmakindlad maaveepostid ja hüdrandid"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l8-puude-kastmiskotid
+            name_en: "Puude kastmiskotid"
+            name_et: "Puude kastmiskotid"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l8-ratastega-ja-veetavad-aiapritsijad
+            name_en: "Ratastega ja veetavad aiapritsijad"
+            name_et: "Ratastega ja veetavad aiapritsijad"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l8-seljapritsijad-ja-pihustuspumbad
+            name_en: "Seljapritsijad ja pihustuspumbad"
+            name_et: "Seljapritsijad ja pihustuspumbad"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l8-sprinklerid
+            name_en: "Sprinklerid"
+            name_et: "Sprinklerid"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l8-taimede-kasvulambid
+            name_en: "Taimede kasvulambid"
+            name_et: "Taimede kasvulambid"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l8-tiigi-aeraatorid-ja-aeratsioonisusteemid
+            name_en: "Tiigi aeraatorid ja aeratsioonisüsteemid"
+            name_et: "Tiigi aeraatorid ja aeratsioonisüsteemid"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l8-voolikukarud-ja-voolikurullid
+            name_en: "Voolikukärud ja voolikurullid"
+            name_et: "Voolikukärud ja voolikurullid"
+            product_count: 0
       - slug: v4-aed-ja-aiatehnika-ouekutted-ja-soojendid
         name_en: "Õuekütted & soojendid"
         name_et: "Õuekütted & soojendid"
-        product_count: 101
+        product_count: 0
+        subs:
+          - slug: v4-aed-ja-aiatehnika-l9-chiminead-ja-oueahjud
+            name_en: "Chiminead & õueahjud"
+            name_et: "Chiminead & õueahjud"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l9-dekoratiivsed-tuleklaasid-ja-tulekivid
+            name_en: "Dekoratiivsed tuleklaasid & tulekivid"
+            name_et: "Dekoratiivsed tuleklaasid & tulekivid"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l9-gaasipoletid-lokkekohale
+            name_en: "Gaasipõletid lõkkekohale"
+            name_et: "Gaasipõletid lõkkekohale"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l9-kuttepuude-hoidikud-ja-karud
+            name_en: "Küttepuude hoidikud & kärud"
+            name_et: "Küttepuude hoidikud & kärud"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l9-lauatule-kaminad-ja-kuunlad
+            name_en: "Lauatule kaminad & küünlad"
+            name_et: "Lauatule kaminad & küünlad"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l9-lokkekoha-rongad-ja-alused
+            name_en: "Lõkkekoha rõngad & alused"
+            name_et: "Lõkkekoha rõngad & alused"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l9-lokkekoha-sadekaitsed-ja-katted
+            name_en: "Lõkkekoha sädekaitsed & katted"
+            name_et: "Lõkkekoha sädekaitsed & katted"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l9-lokkekolded-ja-tulekausid
+            name_en: "Lõkkekolded & tulekausid"
+            name_et: "Lõkkekolded & tulekausid"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l9-soojuse-hajutid-ja-deflektorid
+            name_en: "Soojuse hajutid & deflektorid"
+            name_et: "Soojuse hajutid & deflektorid"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l9-tuule-ja-klaasekraanid
+            name_en: "Tuule- ja klaasekraanid"
+            name_et: "Tuule- ja klaasekraanid"
+            product_count: 0
       - slug: v4-aed-ja-aiatehnika-aiapiirded-ja-varavad
         name_en: "Aiapiirded & väravad"
         name_et: "Aiapiirded & väravad"
-        product_count: 91
+        product_count: 0
+        subs:
+          - slug: v4-aed-ja-aiatehnika-l10-aiapostid
+            name_en: "Aiapostid"
+            name_et: "Aiapostid"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l10-ajutised-aiapiirded
+            name_en: "Ajutised aiapiirded"
+            name_et: "Ajutised aiapiirded"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l10-elektrikarjused-ja-tarvikud
+            name_en: "Elektrikarjused ja tarvikud"
+            name_et: "Elektrikarjused ja tarvikud"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l10-pilliroo-ja-bambusaiad
+            name_en: "Pilliroo- ja bambusaiad"
+            name_et: "Pilliroo- ja bambusaiad"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l10-privaatsusekraanid
+            name_en: "Privaatsusekraanid"
+            name_et: "Privaatsusekraanid"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l10-privaatsusekraanid-ja-kunsthekid
+            name_en: "Privaatsusekraanid ja kunsthekid"
+            name_et: "Privaatsusekraanid ja kunsthekid"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l10-taimede-kaitsevorgud-ja-puurid
+            name_en: "Taimede kaitsevõrgud ja -puurid"
+            name_et: "Taimede kaitsevõrgud ja -puurid"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l10-traatvorgud-ja-traataiad
+            name_en: "Traatvõrgud ja traataiad"
+            name_et: "Traatvõrgud ja traataiad"
+            product_count: 0
       - slug: v4-aed-ja-aiatehnika-peenrakastid-ja-istutuskastid
         name_en: "Peenrakastid & istutuskastid"
         name_et: "Peenrakastid & istutuskastid"
-        product_count: 82
+        product_count: 0
+        subs:
+          - slug: v4-aed-ja-aiatehnika-l11-korgpeenrakastid
+            name_en: "Kõrgpeenrakastid"
+            name_et: "Kõrgpeenrakastid"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l11-lillepotid
+            name_en: "Lillepotid"
+            name_et: "Lillepotid"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l11-metallpeenrakastid
+            name_en: "Metallpeenrakastid"
+            name_et: "Metallpeenrakastid"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l11-peenrakastid
+            name_en: "Peenrakastid"
+            name_et: "Peenrakastid"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l11-taimeriiulid-kasvulampidega
+            name_en: "Taimeriiulid kasvulampidega"
+            name_et: "Taimeriiulid kasvulampidega"
+            product_count: 0
       - slug: v4-aed-ja-aiatehnika-lemmikloomad-ja-tiigid
         name_en: "Lemmikloomad & tiigid"
         name_et: "Lemmikloomad & tiigid"
-        product_count: 43
+        product_count: 0
+        subs:
+          - slug: v4-aed-ja-aiatehnika-l12-kokkupandavad-kalatiigid
+            name_en: "Kokkupandavad kalatiigid"
+            name_et: "Kokkupandavad kalatiigid"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l12-linnukasvatusseadmed
+            name_en: "Linnukasvatusseadmed"
+            name_et: "Linnukasvatusseadmed"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l12-loomapuunised-ja-loksud
+            name_en: "Loomapüünised ja lõksud"
+            name_et: "Loomapüünised ja lõksud"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l12-lupsimasinad
+            name_en: "Lüpsimasinad"
+            name_et: "Lüpsimasinad"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l12-mesindustarvikud-ja-mesitarud
+            name_en: "Mesindustarvikud ja mesitarud"
+            name_et: "Mesindustarvikud ja mesitarud"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l12-munahaudurid-ja-inkubaatorid
+            name_en: "Munahaudurid ja inkubaatorid"
+            name_et: "Munahaudurid ja inkubaatorid"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l12-nutikad-linnusootjad-kaameraga
+            name_en: "Nutikad linnusöötjad kaameraga"
+            name_et: "Nutikad linnusöötjad kaameraga"
+            product_count: 0
       - slug: v4-aed-ja-aiatehnika-kompostimine-ja-mesindus
         name_en: "Kompostimine & mesindus"
         name_et: "Kompostimine & mesindus"
-        product_count: 11
+        product_count: 0
+        subs:
+          - slug: v4-aed-ja-aiatehnika-l13-kompostrid-ja-kompostimisnoud
+            name_en: "Kompostrid ja kompostimisnõud"
+            name_et: "Kompostrid ja kompostimisnõud"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l13-meekeskrifuugid-ja-mee-ekstraktorid
+            name_en: "Meekeskrifuugid ja mee-ekstraktorid"
+            name_et: "Meekeskrifuugid ja mee-ekstraktorid"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-l13-mesitarud
+            name_en: "Mesitarud"
+            name_et: "Mesitarud"
+            product_count: 0
       - slug: v4-aed-ja-aiatehnika-kasvuhooned-ja-hudropoonika
         name_en: "Kasvuhooned & hüdropoonika"
         name_et: "Kasvuhooned & hüdropoonika"
-        product_count: 2
+        product_count: 0
+        subs:
+          - slug: v4-aed-ja-aiatehnika-l14-hudropoonilised-kasvatustornid
+            name_en: "Hüdropoonilised kasvatustornid"
+            name_et: "Hüdropoonilised kasvatustornid"
+            product_count: 0
   - slug: v4-varjualused-telgid-ja-kasvuhooned
     name_en: "Varjualused, telgid ja kasvuhooned"
     name_et: "Varjualused, telgid ja kasvuhooned"
