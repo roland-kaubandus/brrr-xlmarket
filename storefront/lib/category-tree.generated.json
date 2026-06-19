@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-19T11:25:02.937Z",
+  "generated_at": "2026-06-19T11:44:19.055Z",
   "nodes": {
     "v4-tooriistad-ja-tarvikud": {
       "handle": "v4-tooriistad-ja-tarvikud",
@@ -5434,8 +5434,7 @@
       "level": 2,
       "parent_handle": "v4-aed-ja-aiatehnika",
       "child_handles": [
-        "v4-aed-ja-aiatehnika-l13-kompostrid-ja-kompostimisnoud",
-        "v4-aed-ja-aiatehnika-l13-meekeskrifuugid-ja-mee-ekstraktorid"
+        "v4-aed-ja-aiatehnika-l13-kompostrid-ja-kompostimisnoud"
       ],
       "image_path": null,
       "image_source": "none"
@@ -5444,16 +5443,6 @@
       "handle": "v4-aed-ja-aiatehnika-l13-kompostrid-ja-kompostimisnoud",
       "name_en": "Kompostrid ja kompostimisnõud",
       "name_et": "Kompostrid ja kompostimisnõud",
-      "level": 3,
-      "parent_handle": "v4-aed-ja-aiatehnika-kompostimine-ja-mesindus",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-aed-ja-aiatehnika-l13-meekeskrifuugid-ja-mee-ekstraktorid": {
-      "handle": "v4-aed-ja-aiatehnika-l13-meekeskrifuugid-ja-mee-ekstraktorid",
-      "name_en": "Meekeskrifuugid ja mee-ekstraktorid",
-      "name_et": "Meekeskrifuugid ja mee-ekstraktorid",
       "level": 3,
       "parent_handle": "v4-aed-ja-aiatehnika-kompostimine-ja-mesindus",
       "child_handles": [],
@@ -6727,10 +6716,23 @@
       "level": 2,
       "parent_handle": "v4-pollumajandus-ja-loomakasvatus",
       "child_handles": [
+        "v4-pollumajandus-ja-loomakasvatus-talutehnika-heinakahvlid",
         "v4-pollumajandus-ja-loomakasvatus-talutehnika-lohistatavad-akked",
+        "v4-pollumajandus-ja-loomakasvatus-talutehnika-muruhooldusseadmed-traktori",
+        "v4-pollumajandus-ja-loomakasvatus-talutehnika-pallikahvlid",
         "v4-pollumajandus-ja-loomakasvatus-talutehnika-traktori-ballastkastid",
         "v4-pollumajandus-ja-loomakasvatus-talutehnika-traktori-kolmepunkti-haakeadapterid"
       ],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-pollumajandus-ja-loomakasvatus-talutehnika-heinakahvlid": {
+      "handle": "v4-pollumajandus-ja-loomakasvatus-talutehnika-heinakahvlid",
+      "name_en": "Heinakahvlid",
+      "name_et": "Heinakahvlid",
+      "level": 3,
+      "parent_handle": "v4-pollumajandus-ja-loomakasvatus-talutehnika",
+      "child_handles": [],
       "image_path": null,
       "image_source": "none"
     },
@@ -6738,6 +6740,26 @@
       "handle": "v4-pollumajandus-ja-loomakasvatus-talutehnika-lohistatavad-akked",
       "name_en": "Lohistatavad äkked",
       "name_et": "Lohistatavad äkked",
+      "level": 3,
+      "parent_handle": "v4-pollumajandus-ja-loomakasvatus-talutehnika",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-pollumajandus-ja-loomakasvatus-talutehnika-muruhooldusseadmed-traktori": {
+      "handle": "v4-pollumajandus-ja-loomakasvatus-talutehnika-muruhooldusseadmed-traktori",
+      "name_en": "Muruhooldusseadmed (traktori)",
+      "name_et": "Muruhooldusseadmed (traktori)",
+      "level": 3,
+      "parent_handle": "v4-pollumajandus-ja-loomakasvatus-talutehnika",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-pollumajandus-ja-loomakasvatus-talutehnika-pallikahvlid": {
+      "handle": "v4-pollumajandus-ja-loomakasvatus-talutehnika-pallikahvlid",
+      "name_en": "Pallikahvlid",
+      "name_et": "Pallikahvlid",
       "level": 3,
       "parent_handle": "v4-pollumajandus-ja-loomakasvatus-talutehnika",
       "child_handles": [],
@@ -7309,7 +7331,6 @@
     "v4-aed-ja-aiatehnika-l12-nutikad-linnusootjad-kaameraga",
     "v4-aed-ja-aiatehnika-kompostimine-ja-mesindus",
     "v4-aed-ja-aiatehnika-l13-kompostrid-ja-kompostimisnoud",
-    "v4-aed-ja-aiatehnika-l13-meekeskrifuugid-ja-mee-ekstraktorid",
     "v4-aed-ja-aiatehnika-kasvuhooned-ja-hudropoonika",
     "v4-aed-ja-aiatehnika-l14-hudropoonilised-kasvatustornid",
     "v4-varjualused-telgid-ja-kasvuhooned",
@@ -7421,7 +7442,10 @@
     "v4-pollumajandus-ja-loomakasvatus-kariloomad-tra-ataiad-ja-aiapiirded",
     "v4-pollumajandus-ja-loomakasvatus-kariloomad-veepumbad",
     "v4-pollumajandus-ja-loomakasvatus-talutehnika",
+    "v4-pollumajandus-ja-loomakasvatus-talutehnika-heinakahvlid",
     "v4-pollumajandus-ja-loomakasvatus-talutehnika-lohistatavad-akked",
+    "v4-pollumajandus-ja-loomakasvatus-talutehnika-muruhooldusseadmed-traktori",
+    "v4-pollumajandus-ja-loomakasvatus-talutehnika-pallikahvlid",
     "v4-pollumajandus-ja-loomakasvatus-talutehnika-traktori-ballastkastid",
     "v4-pollumajandus-ja-loomakasvatus-talutehnika-traktori-kolmepunkti-haakeadapterid",
     "v4-pollumajandus-ja-loomakasvatus-mesindus",

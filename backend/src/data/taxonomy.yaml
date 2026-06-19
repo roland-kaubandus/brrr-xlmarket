@@ -2047,10 +2047,6 @@ l1:
             name_en: "Kompostrid ja kompostimisnõud"
             name_et: "Kompostrid ja kompostimisnõud"
             product_count: 0
-          - slug: v4-aed-ja-aiatehnika-l13-meekeskrifuugid-ja-mee-ekstraktorid
-            name_en: "Meekeskrifuugid ja mee-ekstraktorid"
-            name_et: "Meekeskrifuugid ja mee-ekstraktorid"
-            product_count: 0
       - slug: v4-aed-ja-aiatehnika-kasvuhooned-ja-hudropoonika
         name_en: "Kasvuhooned & hüdropoonika"
         name_et: "Kasvuhooned & hüdropoonika"
@@ -2587,9 +2583,21 @@ l1:
         name_et: "Talutehnika"
         product_count: 0
         subs:
+          - slug: v4-pollumajandus-ja-loomakasvatus-talutehnika-heinakahvlid
+            name_en: "Heinakahvlid"
+            name_et: "Heinakahvlid"
+            product_count: 0
           - slug: v4-pollumajandus-ja-loomakasvatus-talutehnika-lohistatavad-akked
             name_en: "Lohistatavad äkked"
             name_et: "Lohistatavad äkked"
+            product_count: 0
+          - slug: v4-pollumajandus-ja-loomakasvatus-talutehnika-muruhooldusseadmed-traktori
+            name_en: "Muruhooldusseadmed (traktori)"
+            name_et: "Muruhooldusseadmed (traktori)"
+            product_count: 0
+          - slug: v4-pollumajandus-ja-loomakasvatus-talutehnika-pallikahvlid
+            name_en: "Pallikahvlid"
+            name_et: "Pallikahvlid"
             product_count: 0
           - slug: v4-pollumajandus-ja-loomakasvatus-talutehnika-traktori-ballastkastid
             name_en: "Traktori ballastkastid"
