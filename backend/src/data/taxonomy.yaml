@@ -2383,31 +2383,206 @@ l1:
       - slug: v4-lemmikloomatarbed-puurid-ja-aedikud
         name_en: "Puurid & aedikud"
         name_et: "Puurid & aedikud"
-        product_count: 169
+        product_count: 0
+        subs:
+          - slug: v4-lemmikloomatarbed-puurid-ja-aedikud-akvaariumitarvikud
+            name_en: "Akvaariumitarvikud"
+            name_et: "Akvaariumitarvikud"
+            product_count: 0
+          - slug: v4-lemmikloomatarbed-puurid-ja-aedikud-koerapuurid-ja-moobel
+            name_en: "Koerapuurid ja -mööbel"
+            name_et: "Koerapuurid ja -mööbel"
+            product_count: 0
+          - slug: v4-lemmikloomatarbed-puurid-ja-aedikud-lemmikloomade-kandekotid-ratastel
+            name_en: "Lemmikloomade kandekotid ratastel"
+            name_et: "Lemmikloomade kandekotid ratastel"
+            product_count: 0
+          - slug: v4-lemmikloomatarbed-puurid-ja-aedikud-linnupuurid
+            name_en: "Linnupuurid"
+            name_et: "Linnupuurid"
+            product_count: 0
+          - slug: v4-lemmikloomatarbed-puurid-ja-aedikud-manguplatsid-ja-aedikud
+            name_en: "Mänguplatsid ja aedikud"
+            name_et: "Mänguplatsid ja aedikud"
+            product_count: 0
+          - slug: v4-lemmikloomatarbed-puurid-ja-aedikud-narilistepuurid
+            name_en: "Närilistepuurid"
+            name_et: "Närilistepuurid"
+            product_count: 0
+          - slug: v4-lemmikloomatarbed-puurid-ja-aedikud-ohutus-ja-turvavaravad
+            name_en: "Ohutus- ja turvaväravad"
+            name_et: "Ohutus- ja turvaväravad"
+            product_count: 0
+          - slug: v4-lemmikloomatarbed-puurid-ja-aedikud-poegimiskastid-ja-nurgad
+            name_en: "Poegimiskastid ja -nurgad"
+            name_et: "Poegimiskastid ja -nurgad"
+            product_count: 0
+          - slug: v4-lemmikloomatarbed-puurid-ja-aedikud-roomajate-ja-kilpkonnade-aedikud
+            name_en: "Roomajate ja kilpkonnade aedikud"
+            name_et: "Roomajate ja kilpkonnade aedikud"
+            product_count: 0
       - slug: v4-lemmikloomatarbed-lemmiklooma-hooldus
         name_en: "Lemmiklooma-hooldus"
         name_et: "Lemmiklooma-hooldus"
-        product_count: 115
+        product_count: 0
+        subs:
+          - slug: v4-lemmikloomatarbed-lemmiklooma-hooldus-akvaariumi-puhastustarbed
+            name_en: "Akvaariumi puhastustarbed"
+            name_et: "Akvaariumi puhastustarbed"
+            product_count: 0
+          - slug: v4-lemmikloomatarbed-lemmiklooma-hooldus-kassi-kuunistuskaitsed
+            name_en: "Kassi küünistuskaitsed"
+            name_et: "Kassi küünistuskaitsed"
+            product_count: 0
+          - slug: v4-lemmikloomatarbed-lemmiklooma-hooldus-kassitualeti-moobel
+            name_en: "Kassitualeti mööbel"
+            name_et: "Kassitualeti mööbel"
+            product_count: 0
+          - slug: v4-lemmikloomatarbed-lemmiklooma-hooldus-koera-autoistme-katted
+            name_en: "Koera autoistme katted"
+            name_et: "Koera autoistme katted"
+            product_count: 0
+          - slug: v4-lemmikloomatarbed-lemmiklooma-hooldus-koera-ortopeedilised-toed
+            name_en: "Koera ortopeedilised toed"
+            name_et: "Koera ortopeedilised toed"
+            product_count: 0
+          - slug: v4-lemmikloomatarbed-lemmiklooma-hooldus-koera-valjaheitejaamad
+            name_en: "Koera väljaheitejaamad"
+            name_et: "Koera väljaheitejaamad"
+            product_count: 0
+          - slug: v4-lemmikloomatarbed-lemmiklooma-hooldus-koerte-uhekordsed-mahkmed
+            name_en: "Koerte ühekordsed mähkmed"
+            name_et: "Koerte ühekordsed mähkmed"
+            product_count: 0
+          - slug: v4-lemmikloomatarbed-lemmiklooma-hooldus-lemmiklooma-autobarjaarid
+            name_en: "Lemmiklooma autobarjäärid"
+            name_et: "Lemmiklooma autobarjäärid"
+            product_count: 0
+          - slug: v4-lemmikloomatarbed-lemmiklooma-hooldus-lemmiklooma-hoolduslauad
+            name_en: "Lemmiklooma hoolduslauad"
+            name_et: "Lemmiklooma hoolduslauad"
+            product_count: 0
+          - slug: v4-lemmikloomatarbed-lemmiklooma-hooldus-lemmikloomade-pesemisvannid
+            name_en: "Lemmikloomade pesemisvannid"
+            name_et: "Lemmikloomade pesemisvannid"
+            product_count: 0
       - slug: v4-lemmikloomatarbed-transport-ja-autotarvikud
         name_en: "Transport & autotarvikud"
         name_et: "Transport & autotarvikud"
-        product_count: 93
+        product_count: 0
+        subs:
+          - slug: v4-lemmikloomatarbed-transport-ja-autotarvikud-akvaariumitarvikud
+            name_en: "Akvaariumitarvikud"
+            name_et: "Akvaariumitarvikud"
+            product_count: 0
+          - slug: v4-lemmikloomatarbed-transport-ja-autotarvikud-auto-istmekatted-ja-porandakaitsed
+            name_en: "Auto istmekatted & põrandakaitsed"
+            name_et: "Auto istmekatted & põrandakaitsed"
+            product_count: 0
+          - slug: v4-lemmikloomatarbed-transport-ja-autotarvikud-kassiliivakastid-ja-tualetimoobel
+            name_en: "Kassiliivakastid & tualetimööbel"
+            name_et: "Kassiliivakastid & tualetimööbel"
+            product_count: 0
+          - slug: v4-lemmikloomatarbed-transport-ja-autotarvikud-lemmikloomade-autobarjaarid
+            name_en: "Lemmikloomade autobarjäärid"
+            name_et: "Lemmikloomade autobarjäärid"
+            product_count: 0
+          - slug: v4-lemmikloomatarbed-transport-ja-autotarvikud-lemmikloomade-jalgrattahaagised
+            name_en: "Lemmikloomade jalgrattahaagised"
+            name_et: "Lemmikloomade jalgrattahaagised"
+            product_count: 0
+          - slug: v4-lemmikloomatarbed-transport-ja-autotarvikud-lemmikloomade-jalutuskarud-ja-vankrid
+            name_en: "Lemmikloomade jalutuskärud & vankrid"
+            name_et: "Lemmikloomade jalutuskärud & vankrid"
+            product_count: 0
+          - slug: v4-lemmikloomatarbed-transport-ja-autotarvikud-lemmikloomade-trepid-ja-rambid
+            name_en: "Lemmikloomade trepid & rambid"
+            name_et: "Lemmikloomade trepid & rambid"
+            product_count: 0
+          - slug: v4-lemmikloomatarbed-transport-ja-autotarvikud-sadulariiulid-ja-hoidikud
+            name_en: "Sadulariiulid & -hoidikud"
+            name_et: "Sadulariiulid & -hoidikud"
+            product_count: 0
       - slug: v4-lemmikloomatarbed-pesad-ja-asemed
         name_en: "Pesad & asemed"
         name_et: "Pesad & asemed"
-        product_count: 82
+        product_count: 0
+        subs:
+          - slug: v4-lemmikloomatarbed-pesad-ja-asemed-inimsuuruses-koeravoodid
+            name_en: "Inimsuuruses koeravoodid"
+            name_et: "Inimsuuruses koeravoodid"
+            product_count: 0
+          - slug: v4-lemmikloomatarbed-pesad-ja-asemed-kassimajad
+            name_en: "Kassimajad"
+            name_et: "Kassimajad"
+            product_count: 0
+          - slug: v4-lemmikloomatarbed-pesad-ja-asemed-kassitualeti-moobel
+            name_en: "Kassitualeti mööbel"
+            name_et: "Kassitualeti mööbel"
+            product_count: 0
+          - slug: v4-lemmikloomatarbed-pesad-ja-asemed-koera-autoistmed
+            name_en: "Koera autoistmed"
+            name_et: "Koera autoistmed"
+            product_count: 0
+          - slug: v4-lemmikloomatarbed-pesad-ja-asemed-koeravoodid-ja-pesad
+            name_en: "Koeravoodid ja -pesad"
+            name_et: "Koeravoodid ja -pesad"
+            product_count: 0
+          - slug: v4-lemmikloomatarbed-pesad-ja-asemed-lemmiklooma-voodid
+            name_en: "Lemmiklooma voodid"
+            name_et: "Lemmiklooma voodid"
+            product_count: 0
+          - slug: v4-lemmikloomatarbed-pesad-ja-asemed-valiskassimajad
+            name_en: "Väliskassimajad"
+            name_et: "Väliskassimajad"
+            product_count: 0
       - slug: v4-lemmikloomatarbed-sootmine-ja-jootmine
         name_en: "Söötmine & jootmine"
         name_et: "Söötmine & jootmine"
-        product_count: 48
+        product_count: 0
+        subs:
+          - slug: v4-lemmikloomatarbed-sootmine-ja-jootmine-akvaariumifiltrid
+            name_en: "Akvaariumifiltrid"
+            name_et: "Akvaariumifiltrid"
+            product_count: 0
+          - slug: v4-lemmikloomatarbed-sootmine-ja-jootmine-heinasootjad
+            name_en: "Heinasöötjad"
+            name_et: "Heinasöötjad"
+            product_count: 0
+          - slug: v4-lemmikloomatarbed-sootmine-ja-jootmine-sootmisjaamad
+            name_en: "Söötmisjaamad"
+            name_et: "Söötmisjaamad"
+            product_count: 0
       - slug: v4-lemmikloomatarbed-treening-ja-manguasjad
         name_en: "Treening & mänguasjad"
         name_et: "Treening & mänguasjad"
-        product_count: 45
+        product_count: 0
+        subs:
+          - slug: v4-lemmikloomatarbed-treening-ja-manguasjad-kassi-jooksurattad
+            name_en: "Kassi jooksurattad"
+            name_et: "Kassi jooksurattad"
+            product_count: 0
+          - slug: v4-lemmikloomatarbed-treening-ja-manguasjad-kassipuud
+            name_en: "Kassipuud"
+            name_et: "Kassipuud"
+            product_count: 0
+          - slug: v4-lemmikloomatarbed-treening-ja-manguasjad-koerte-agility-ja-treeningkomplektid
+            name_en: "Koerte agility- ja treeningkomplektid"
+            name_et: "Koerte agility- ja treeningkomplektid"
+            product_count: 0
+          - slug: v4-lemmikloomatarbed-treening-ja-manguasjad-koerte-jooksulindid
+            name_en: "Koerte jooksulindid"
+            name_et: "Koerte jooksulindid"
+            product_count: 0
       - slug: v4-lemmikloomatarbed-lemmiklooma-uksed-ja-varavad
         name_en: "Lemmiklooma-uksed & väravad"
         name_et: "Lemmiklooma-uksed & väravad"
-        product_count: 28
+        product_count: 0
+        subs:
+          - slug: v4-lemmikloomatarbed-lemmiklooma-uksed-ja-varavad-lemmiklooma-uksed
+            name_en: "Lemmiklooma-uksed"
+            name_et: "Lemmiklooma-uksed"
+            product_count: 0
   - slug: v4-tervis-hooldus-ja-ilu
     name_en: "Tervis, hooldus ja ilu"
     name_et: "Tervis, hooldus ja ilu"

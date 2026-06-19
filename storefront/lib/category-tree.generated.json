@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-19T11:44:19.055Z",
+  "generated_at": "2026-06-19T12:01:44.588Z",
   "nodes": {
     "v4-tooriistad-ja-tarvikud": {
       "handle": "v4-tooriistad-ja-tarvikud",
@@ -6249,6 +6249,106 @@
       "name_et": "Puurid & aedikud",
       "level": 2,
       "parent_handle": "v4-lemmikloomatarbed",
+      "child_handles": [
+        "v4-lemmikloomatarbed-puurid-ja-aedikud-akvaariumitarvikud",
+        "v4-lemmikloomatarbed-puurid-ja-aedikud-koerapuurid-ja-moobel",
+        "v4-lemmikloomatarbed-puurid-ja-aedikud-lemmikloomade-kandekotid-ratastel",
+        "v4-lemmikloomatarbed-puurid-ja-aedikud-linnupuurid",
+        "v4-lemmikloomatarbed-puurid-ja-aedikud-manguplatsid-ja-aedikud",
+        "v4-lemmikloomatarbed-puurid-ja-aedikud-narilistepuurid",
+        "v4-lemmikloomatarbed-puurid-ja-aedikud-ohutus-ja-turvavaravad",
+        "v4-lemmikloomatarbed-puurid-ja-aedikud-poegimiskastid-ja-nurgad",
+        "v4-lemmikloomatarbed-puurid-ja-aedikud-roomajate-ja-kilpkonnade-aedikud"
+      ],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-lemmikloomatarbed-puurid-ja-aedikud-akvaariumitarvikud": {
+      "handle": "v4-lemmikloomatarbed-puurid-ja-aedikud-akvaariumitarvikud",
+      "name_en": "Akvaariumitarvikud",
+      "name_et": "Akvaariumitarvikud",
+      "level": 3,
+      "parent_handle": "v4-lemmikloomatarbed-puurid-ja-aedikud",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-lemmikloomatarbed-puurid-ja-aedikud-koerapuurid-ja-moobel": {
+      "handle": "v4-lemmikloomatarbed-puurid-ja-aedikud-koerapuurid-ja-moobel",
+      "name_en": "Koerapuurid ja -mööbel",
+      "name_et": "Koerapuurid ja -mööbel",
+      "level": 3,
+      "parent_handle": "v4-lemmikloomatarbed-puurid-ja-aedikud",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-lemmikloomatarbed-puurid-ja-aedikud-lemmikloomade-kandekotid-ratastel": {
+      "handle": "v4-lemmikloomatarbed-puurid-ja-aedikud-lemmikloomade-kandekotid-ratastel",
+      "name_en": "Lemmikloomade kandekotid ratastel",
+      "name_et": "Lemmikloomade kandekotid ratastel",
+      "level": 3,
+      "parent_handle": "v4-lemmikloomatarbed-puurid-ja-aedikud",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-lemmikloomatarbed-puurid-ja-aedikud-linnupuurid": {
+      "handle": "v4-lemmikloomatarbed-puurid-ja-aedikud-linnupuurid",
+      "name_en": "Linnupuurid",
+      "name_et": "Linnupuurid",
+      "level": 3,
+      "parent_handle": "v4-lemmikloomatarbed-puurid-ja-aedikud",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-lemmikloomatarbed-puurid-ja-aedikud-manguplatsid-ja-aedikud": {
+      "handle": "v4-lemmikloomatarbed-puurid-ja-aedikud-manguplatsid-ja-aedikud",
+      "name_en": "Mänguplatsid ja aedikud",
+      "name_et": "Mänguplatsid ja aedikud",
+      "level": 3,
+      "parent_handle": "v4-lemmikloomatarbed-puurid-ja-aedikud",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-lemmikloomatarbed-puurid-ja-aedikud-narilistepuurid": {
+      "handle": "v4-lemmikloomatarbed-puurid-ja-aedikud-narilistepuurid",
+      "name_en": "Närilistepuurid",
+      "name_et": "Närilistepuurid",
+      "level": 3,
+      "parent_handle": "v4-lemmikloomatarbed-puurid-ja-aedikud",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-lemmikloomatarbed-puurid-ja-aedikud-ohutus-ja-turvavaravad": {
+      "handle": "v4-lemmikloomatarbed-puurid-ja-aedikud-ohutus-ja-turvavaravad",
+      "name_en": "Ohutus- ja turvaväravad",
+      "name_et": "Ohutus- ja turvaväravad",
+      "level": 3,
+      "parent_handle": "v4-lemmikloomatarbed-puurid-ja-aedikud",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-lemmikloomatarbed-puurid-ja-aedikud-poegimiskastid-ja-nurgad": {
+      "handle": "v4-lemmikloomatarbed-puurid-ja-aedikud-poegimiskastid-ja-nurgad",
+      "name_en": "Poegimiskastid ja -nurgad",
+      "name_et": "Poegimiskastid ja -nurgad",
+      "level": 3,
+      "parent_handle": "v4-lemmikloomatarbed-puurid-ja-aedikud",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-lemmikloomatarbed-puurid-ja-aedikud-roomajate-ja-kilpkonnade-aedikud": {
+      "handle": "v4-lemmikloomatarbed-puurid-ja-aedikud-roomajate-ja-kilpkonnade-aedikud",
+      "name_en": "Roomajate ja kilpkonnade aedikud",
+      "name_et": "Roomajate ja kilpkonnade aedikud",
+      "level": 3,
+      "parent_handle": "v4-lemmikloomatarbed-puurid-ja-aedikud",
       "child_handles": [],
       "image_path": null,
       "image_source": "none"
@@ -6259,6 +6359,117 @@
       "name_et": "Lemmiklooma-hooldus",
       "level": 2,
       "parent_handle": "v4-lemmikloomatarbed",
+      "child_handles": [
+        "v4-lemmikloomatarbed-lemmiklooma-hooldus-akvaariumi-puhastustarbed",
+        "v4-lemmikloomatarbed-lemmiklooma-hooldus-kassi-kuunistuskaitsed",
+        "v4-lemmikloomatarbed-lemmiklooma-hooldus-kassitualeti-moobel",
+        "v4-lemmikloomatarbed-lemmiklooma-hooldus-koera-autoistme-katted",
+        "v4-lemmikloomatarbed-lemmiklooma-hooldus-koera-ortopeedilised-toed",
+        "v4-lemmikloomatarbed-lemmiklooma-hooldus-koera-valjaheitejaamad",
+        "v4-lemmikloomatarbed-lemmiklooma-hooldus-koerte-uhekordsed-mahkmed",
+        "v4-lemmikloomatarbed-lemmiklooma-hooldus-lemmiklooma-autobarjaarid",
+        "v4-lemmikloomatarbed-lemmiklooma-hooldus-lemmiklooma-hoolduslauad",
+        "v4-lemmikloomatarbed-lemmiklooma-hooldus-lemmikloomade-pesemisvannid"
+      ],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-lemmikloomatarbed-lemmiklooma-hooldus-akvaariumi-puhastustarbed": {
+      "handle": "v4-lemmikloomatarbed-lemmiklooma-hooldus-akvaariumi-puhastustarbed",
+      "name_en": "Akvaariumi puhastustarbed",
+      "name_et": "Akvaariumi puhastustarbed",
+      "level": 3,
+      "parent_handle": "v4-lemmikloomatarbed-lemmiklooma-hooldus",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-lemmikloomatarbed-lemmiklooma-hooldus-kassi-kuunistuskaitsed": {
+      "handle": "v4-lemmikloomatarbed-lemmiklooma-hooldus-kassi-kuunistuskaitsed",
+      "name_en": "Kassi küünistuskaitsed",
+      "name_et": "Kassi küünistuskaitsed",
+      "level": 3,
+      "parent_handle": "v4-lemmikloomatarbed-lemmiklooma-hooldus",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-lemmikloomatarbed-lemmiklooma-hooldus-kassitualeti-moobel": {
+      "handle": "v4-lemmikloomatarbed-lemmiklooma-hooldus-kassitualeti-moobel",
+      "name_en": "Kassitualeti mööbel",
+      "name_et": "Kassitualeti mööbel",
+      "level": 3,
+      "parent_handle": "v4-lemmikloomatarbed-lemmiklooma-hooldus",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-lemmikloomatarbed-lemmiklooma-hooldus-koera-autoistme-katted": {
+      "handle": "v4-lemmikloomatarbed-lemmiklooma-hooldus-koera-autoistme-katted",
+      "name_en": "Koera autoistme katted",
+      "name_et": "Koera autoistme katted",
+      "level": 3,
+      "parent_handle": "v4-lemmikloomatarbed-lemmiklooma-hooldus",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-lemmikloomatarbed-lemmiklooma-hooldus-koera-ortopeedilised-toed": {
+      "handle": "v4-lemmikloomatarbed-lemmiklooma-hooldus-koera-ortopeedilised-toed",
+      "name_en": "Koera ortopeedilised toed",
+      "name_et": "Koera ortopeedilised toed",
+      "level": 3,
+      "parent_handle": "v4-lemmikloomatarbed-lemmiklooma-hooldus",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-lemmikloomatarbed-lemmiklooma-hooldus-koera-valjaheitejaamad": {
+      "handle": "v4-lemmikloomatarbed-lemmiklooma-hooldus-koera-valjaheitejaamad",
+      "name_en": "Koera väljaheitejaamad",
+      "name_et": "Koera väljaheitejaamad",
+      "level": 3,
+      "parent_handle": "v4-lemmikloomatarbed-lemmiklooma-hooldus",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-lemmikloomatarbed-lemmiklooma-hooldus-koerte-uhekordsed-mahkmed": {
+      "handle": "v4-lemmikloomatarbed-lemmiklooma-hooldus-koerte-uhekordsed-mahkmed",
+      "name_en": "Koerte ühekordsed mähkmed",
+      "name_et": "Koerte ühekordsed mähkmed",
+      "level": 3,
+      "parent_handle": "v4-lemmikloomatarbed-lemmiklooma-hooldus",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-lemmikloomatarbed-lemmiklooma-hooldus-lemmiklooma-autobarjaarid": {
+      "handle": "v4-lemmikloomatarbed-lemmiklooma-hooldus-lemmiklooma-autobarjaarid",
+      "name_en": "Lemmiklooma autobarjäärid",
+      "name_et": "Lemmiklooma autobarjäärid",
+      "level": 3,
+      "parent_handle": "v4-lemmikloomatarbed-lemmiklooma-hooldus",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-lemmikloomatarbed-lemmiklooma-hooldus-lemmiklooma-hoolduslauad": {
+      "handle": "v4-lemmikloomatarbed-lemmiklooma-hooldus-lemmiklooma-hoolduslauad",
+      "name_en": "Lemmiklooma hoolduslauad",
+      "name_et": "Lemmiklooma hoolduslauad",
+      "level": 3,
+      "parent_handle": "v4-lemmikloomatarbed-lemmiklooma-hooldus",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-lemmikloomatarbed-lemmiklooma-hooldus-lemmikloomade-pesemisvannid": {
+      "handle": "v4-lemmikloomatarbed-lemmiklooma-hooldus-lemmikloomade-pesemisvannid",
+      "name_en": "Lemmikloomade pesemisvannid",
+      "name_et": "Lemmikloomade pesemisvannid",
+      "level": 3,
+      "parent_handle": "v4-lemmikloomatarbed-lemmiklooma-hooldus",
       "child_handles": [],
       "image_path": null,
       "image_source": "none"
@@ -6269,6 +6480,95 @@
       "name_et": "Transport & autotarvikud",
       "level": 2,
       "parent_handle": "v4-lemmikloomatarbed",
+      "child_handles": [
+        "v4-lemmikloomatarbed-transport-ja-autotarvikud-akvaariumitarvikud",
+        "v4-lemmikloomatarbed-transport-ja-autotarvikud-auto-istmekatted-ja-porandakaitsed",
+        "v4-lemmikloomatarbed-transport-ja-autotarvikud-kassiliivakastid-ja-tualetimoobel",
+        "v4-lemmikloomatarbed-transport-ja-autotarvikud-lemmikloomade-autobarjaarid",
+        "v4-lemmikloomatarbed-transport-ja-autotarvikud-lemmikloomade-jalgrattahaagised",
+        "v4-lemmikloomatarbed-transport-ja-autotarvikud-lemmikloomade-jalutuskarud-ja-vankrid",
+        "v4-lemmikloomatarbed-transport-ja-autotarvikud-lemmikloomade-trepid-ja-rambid",
+        "v4-lemmikloomatarbed-transport-ja-autotarvikud-sadulariiulid-ja-hoidikud"
+      ],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-lemmikloomatarbed-transport-ja-autotarvikud-akvaariumitarvikud": {
+      "handle": "v4-lemmikloomatarbed-transport-ja-autotarvikud-akvaariumitarvikud",
+      "name_en": "Akvaariumitarvikud",
+      "name_et": "Akvaariumitarvikud",
+      "level": 3,
+      "parent_handle": "v4-lemmikloomatarbed-transport-ja-autotarvikud",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-lemmikloomatarbed-transport-ja-autotarvikud-auto-istmekatted-ja-porandakaitsed": {
+      "handle": "v4-lemmikloomatarbed-transport-ja-autotarvikud-auto-istmekatted-ja-porandakaitsed",
+      "name_en": "Auto istmekatted & põrandakaitsed",
+      "name_et": "Auto istmekatted & põrandakaitsed",
+      "level": 3,
+      "parent_handle": "v4-lemmikloomatarbed-transport-ja-autotarvikud",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-lemmikloomatarbed-transport-ja-autotarvikud-kassiliivakastid-ja-tualetimoobel": {
+      "handle": "v4-lemmikloomatarbed-transport-ja-autotarvikud-kassiliivakastid-ja-tualetimoobel",
+      "name_en": "Kassiliivakastid & tualetimööbel",
+      "name_et": "Kassiliivakastid & tualetimööbel",
+      "level": 3,
+      "parent_handle": "v4-lemmikloomatarbed-transport-ja-autotarvikud",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-lemmikloomatarbed-transport-ja-autotarvikud-lemmikloomade-autobarjaarid": {
+      "handle": "v4-lemmikloomatarbed-transport-ja-autotarvikud-lemmikloomade-autobarjaarid",
+      "name_en": "Lemmikloomade autobarjäärid",
+      "name_et": "Lemmikloomade autobarjäärid",
+      "level": 3,
+      "parent_handle": "v4-lemmikloomatarbed-transport-ja-autotarvikud",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-lemmikloomatarbed-transport-ja-autotarvikud-lemmikloomade-jalgrattahaagised": {
+      "handle": "v4-lemmikloomatarbed-transport-ja-autotarvikud-lemmikloomade-jalgrattahaagised",
+      "name_en": "Lemmikloomade jalgrattahaagised",
+      "name_et": "Lemmikloomade jalgrattahaagised",
+      "level": 3,
+      "parent_handle": "v4-lemmikloomatarbed-transport-ja-autotarvikud",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-lemmikloomatarbed-transport-ja-autotarvikud-lemmikloomade-jalutuskarud-ja-vankrid": {
+      "handle": "v4-lemmikloomatarbed-transport-ja-autotarvikud-lemmikloomade-jalutuskarud-ja-vankrid",
+      "name_en": "Lemmikloomade jalutuskärud & vankrid",
+      "name_et": "Lemmikloomade jalutuskärud & vankrid",
+      "level": 3,
+      "parent_handle": "v4-lemmikloomatarbed-transport-ja-autotarvikud",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-lemmikloomatarbed-transport-ja-autotarvikud-lemmikloomade-trepid-ja-rambid": {
+      "handle": "v4-lemmikloomatarbed-transport-ja-autotarvikud-lemmikloomade-trepid-ja-rambid",
+      "name_en": "Lemmikloomade trepid & rambid",
+      "name_et": "Lemmikloomade trepid & rambid",
+      "level": 3,
+      "parent_handle": "v4-lemmikloomatarbed-transport-ja-autotarvikud",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-lemmikloomatarbed-transport-ja-autotarvikud-sadulariiulid-ja-hoidikud": {
+      "handle": "v4-lemmikloomatarbed-transport-ja-autotarvikud-sadulariiulid-ja-hoidikud",
+      "name_en": "Sadulariiulid & -hoidikud",
+      "name_et": "Sadulariiulid & -hoidikud",
+      "level": 3,
+      "parent_handle": "v4-lemmikloomatarbed-transport-ja-autotarvikud",
       "child_handles": [],
       "image_path": null,
       "image_source": "none"
@@ -6279,6 +6579,84 @@
       "name_et": "Pesad & asemed",
       "level": 2,
       "parent_handle": "v4-lemmikloomatarbed",
+      "child_handles": [
+        "v4-lemmikloomatarbed-pesad-ja-asemed-inimsuuruses-koeravoodid",
+        "v4-lemmikloomatarbed-pesad-ja-asemed-kassimajad",
+        "v4-lemmikloomatarbed-pesad-ja-asemed-kassitualeti-moobel",
+        "v4-lemmikloomatarbed-pesad-ja-asemed-koera-autoistmed",
+        "v4-lemmikloomatarbed-pesad-ja-asemed-koeravoodid-ja-pesad",
+        "v4-lemmikloomatarbed-pesad-ja-asemed-lemmiklooma-voodid",
+        "v4-lemmikloomatarbed-pesad-ja-asemed-valiskassimajad"
+      ],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-lemmikloomatarbed-pesad-ja-asemed-inimsuuruses-koeravoodid": {
+      "handle": "v4-lemmikloomatarbed-pesad-ja-asemed-inimsuuruses-koeravoodid",
+      "name_en": "Inimsuuruses koeravoodid",
+      "name_et": "Inimsuuruses koeravoodid",
+      "level": 3,
+      "parent_handle": "v4-lemmikloomatarbed-pesad-ja-asemed",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-lemmikloomatarbed-pesad-ja-asemed-kassimajad": {
+      "handle": "v4-lemmikloomatarbed-pesad-ja-asemed-kassimajad",
+      "name_en": "Kassimajad",
+      "name_et": "Kassimajad",
+      "level": 3,
+      "parent_handle": "v4-lemmikloomatarbed-pesad-ja-asemed",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-lemmikloomatarbed-pesad-ja-asemed-kassitualeti-moobel": {
+      "handle": "v4-lemmikloomatarbed-pesad-ja-asemed-kassitualeti-moobel",
+      "name_en": "Kassitualeti mööbel",
+      "name_et": "Kassitualeti mööbel",
+      "level": 3,
+      "parent_handle": "v4-lemmikloomatarbed-pesad-ja-asemed",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-lemmikloomatarbed-pesad-ja-asemed-koera-autoistmed": {
+      "handle": "v4-lemmikloomatarbed-pesad-ja-asemed-koera-autoistmed",
+      "name_en": "Koera autoistmed",
+      "name_et": "Koera autoistmed",
+      "level": 3,
+      "parent_handle": "v4-lemmikloomatarbed-pesad-ja-asemed",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-lemmikloomatarbed-pesad-ja-asemed-koeravoodid-ja-pesad": {
+      "handle": "v4-lemmikloomatarbed-pesad-ja-asemed-koeravoodid-ja-pesad",
+      "name_en": "Koeravoodid ja -pesad",
+      "name_et": "Koeravoodid ja -pesad",
+      "level": 3,
+      "parent_handle": "v4-lemmikloomatarbed-pesad-ja-asemed",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-lemmikloomatarbed-pesad-ja-asemed-lemmiklooma-voodid": {
+      "handle": "v4-lemmikloomatarbed-pesad-ja-asemed-lemmiklooma-voodid",
+      "name_en": "Lemmiklooma voodid",
+      "name_et": "Lemmiklooma voodid",
+      "level": 3,
+      "parent_handle": "v4-lemmikloomatarbed-pesad-ja-asemed",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-lemmikloomatarbed-pesad-ja-asemed-valiskassimajad": {
+      "handle": "v4-lemmikloomatarbed-pesad-ja-asemed-valiskassimajad",
+      "name_en": "Väliskassimajad",
+      "name_et": "Väliskassimajad",
+      "level": 3,
+      "parent_handle": "v4-lemmikloomatarbed-pesad-ja-asemed",
       "child_handles": [],
       "image_path": null,
       "image_source": "none"
@@ -6289,6 +6667,40 @@
       "name_et": "Söötmine & jootmine",
       "level": 2,
       "parent_handle": "v4-lemmikloomatarbed",
+      "child_handles": [
+        "v4-lemmikloomatarbed-sootmine-ja-jootmine-akvaariumifiltrid",
+        "v4-lemmikloomatarbed-sootmine-ja-jootmine-heinasootjad",
+        "v4-lemmikloomatarbed-sootmine-ja-jootmine-sootmisjaamad"
+      ],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-lemmikloomatarbed-sootmine-ja-jootmine-akvaariumifiltrid": {
+      "handle": "v4-lemmikloomatarbed-sootmine-ja-jootmine-akvaariumifiltrid",
+      "name_en": "Akvaariumifiltrid",
+      "name_et": "Akvaariumifiltrid",
+      "level": 3,
+      "parent_handle": "v4-lemmikloomatarbed-sootmine-ja-jootmine",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-lemmikloomatarbed-sootmine-ja-jootmine-heinasootjad": {
+      "handle": "v4-lemmikloomatarbed-sootmine-ja-jootmine-heinasootjad",
+      "name_en": "Heinasöötjad",
+      "name_et": "Heinasöötjad",
+      "level": 3,
+      "parent_handle": "v4-lemmikloomatarbed-sootmine-ja-jootmine",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-lemmikloomatarbed-sootmine-ja-jootmine-sootmisjaamad": {
+      "handle": "v4-lemmikloomatarbed-sootmine-ja-jootmine-sootmisjaamad",
+      "name_en": "Söötmisjaamad",
+      "name_et": "Söötmisjaamad",
+      "level": 3,
+      "parent_handle": "v4-lemmikloomatarbed-sootmine-ja-jootmine",
       "child_handles": [],
       "image_path": null,
       "image_source": "none"
@@ -6299,6 +6711,51 @@
       "name_et": "Treening & mänguasjad",
       "level": 2,
       "parent_handle": "v4-lemmikloomatarbed",
+      "child_handles": [
+        "v4-lemmikloomatarbed-treening-ja-manguasjad-kassi-jooksurattad",
+        "v4-lemmikloomatarbed-treening-ja-manguasjad-kassipuud",
+        "v4-lemmikloomatarbed-treening-ja-manguasjad-koerte-agility-ja-treeningkomplektid",
+        "v4-lemmikloomatarbed-treening-ja-manguasjad-koerte-jooksulindid"
+      ],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-lemmikloomatarbed-treening-ja-manguasjad-kassi-jooksurattad": {
+      "handle": "v4-lemmikloomatarbed-treening-ja-manguasjad-kassi-jooksurattad",
+      "name_en": "Kassi jooksurattad",
+      "name_et": "Kassi jooksurattad",
+      "level": 3,
+      "parent_handle": "v4-lemmikloomatarbed-treening-ja-manguasjad",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-lemmikloomatarbed-treening-ja-manguasjad-kassipuud": {
+      "handle": "v4-lemmikloomatarbed-treening-ja-manguasjad-kassipuud",
+      "name_en": "Kassipuud",
+      "name_et": "Kassipuud",
+      "level": 3,
+      "parent_handle": "v4-lemmikloomatarbed-treening-ja-manguasjad",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-lemmikloomatarbed-treening-ja-manguasjad-koerte-agility-ja-treeningkomplektid": {
+      "handle": "v4-lemmikloomatarbed-treening-ja-manguasjad-koerte-agility-ja-treeningkomplektid",
+      "name_en": "Koerte agility- ja treeningkomplektid",
+      "name_et": "Koerte agility- ja treeningkomplektid",
+      "level": 3,
+      "parent_handle": "v4-lemmikloomatarbed-treening-ja-manguasjad",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-lemmikloomatarbed-treening-ja-manguasjad-koerte-jooksulindid": {
+      "handle": "v4-lemmikloomatarbed-treening-ja-manguasjad-koerte-jooksulindid",
+      "name_en": "Koerte jooksulindid",
+      "name_et": "Koerte jooksulindid",
+      "level": 3,
+      "parent_handle": "v4-lemmikloomatarbed-treening-ja-manguasjad",
       "child_handles": [],
       "image_path": null,
       "image_source": "none"
@@ -6309,6 +6766,18 @@
       "name_et": "Lemmiklooma-uksed & väravad",
       "level": 2,
       "parent_handle": "v4-lemmikloomatarbed",
+      "child_handles": [
+        "v4-lemmikloomatarbed-lemmiklooma-uksed-ja-varavad-lemmiklooma-uksed"
+      ],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-lemmikloomatarbed-lemmiklooma-uksed-ja-varavad-lemmiklooma-uksed": {
+      "handle": "v4-lemmikloomatarbed-lemmiklooma-uksed-ja-varavad-lemmiklooma-uksed",
+      "name_en": "Lemmiklooma-uksed",
+      "name_et": "Lemmiklooma-uksed",
+      "level": 3,
+      "parent_handle": "v4-lemmikloomatarbed-lemmiklooma-uksed-ja-varavad",
       "child_handles": [],
       "image_path": null,
       "image_source": "none"
@@ -7401,12 +7870,54 @@
     "v4-reklaami-truki-ja-graveerimisseadmed-fotostuudio-ja-taustad",
     "v4-lemmikloomatarbed",
     "v4-lemmikloomatarbed-puurid-ja-aedikud",
+    "v4-lemmikloomatarbed-puurid-ja-aedikud-akvaariumitarvikud",
+    "v4-lemmikloomatarbed-puurid-ja-aedikud-koerapuurid-ja-moobel",
+    "v4-lemmikloomatarbed-puurid-ja-aedikud-lemmikloomade-kandekotid-ratastel",
+    "v4-lemmikloomatarbed-puurid-ja-aedikud-linnupuurid",
+    "v4-lemmikloomatarbed-puurid-ja-aedikud-manguplatsid-ja-aedikud",
+    "v4-lemmikloomatarbed-puurid-ja-aedikud-narilistepuurid",
+    "v4-lemmikloomatarbed-puurid-ja-aedikud-ohutus-ja-turvavaravad",
+    "v4-lemmikloomatarbed-puurid-ja-aedikud-poegimiskastid-ja-nurgad",
+    "v4-lemmikloomatarbed-puurid-ja-aedikud-roomajate-ja-kilpkonnade-aedikud",
     "v4-lemmikloomatarbed-lemmiklooma-hooldus",
+    "v4-lemmikloomatarbed-lemmiklooma-hooldus-akvaariumi-puhastustarbed",
+    "v4-lemmikloomatarbed-lemmiklooma-hooldus-kassi-kuunistuskaitsed",
+    "v4-lemmikloomatarbed-lemmiklooma-hooldus-kassitualeti-moobel",
+    "v4-lemmikloomatarbed-lemmiklooma-hooldus-koera-autoistme-katted",
+    "v4-lemmikloomatarbed-lemmiklooma-hooldus-koera-ortopeedilised-toed",
+    "v4-lemmikloomatarbed-lemmiklooma-hooldus-koera-valjaheitejaamad",
+    "v4-lemmikloomatarbed-lemmiklooma-hooldus-koerte-uhekordsed-mahkmed",
+    "v4-lemmikloomatarbed-lemmiklooma-hooldus-lemmiklooma-autobarjaarid",
+    "v4-lemmikloomatarbed-lemmiklooma-hooldus-lemmiklooma-hoolduslauad",
+    "v4-lemmikloomatarbed-lemmiklooma-hooldus-lemmikloomade-pesemisvannid",
     "v4-lemmikloomatarbed-transport-ja-autotarvikud",
+    "v4-lemmikloomatarbed-transport-ja-autotarvikud-akvaariumitarvikud",
+    "v4-lemmikloomatarbed-transport-ja-autotarvikud-auto-istmekatted-ja-porandakaitsed",
+    "v4-lemmikloomatarbed-transport-ja-autotarvikud-kassiliivakastid-ja-tualetimoobel",
+    "v4-lemmikloomatarbed-transport-ja-autotarvikud-lemmikloomade-autobarjaarid",
+    "v4-lemmikloomatarbed-transport-ja-autotarvikud-lemmikloomade-jalgrattahaagised",
+    "v4-lemmikloomatarbed-transport-ja-autotarvikud-lemmikloomade-jalutuskarud-ja-vankrid",
+    "v4-lemmikloomatarbed-transport-ja-autotarvikud-lemmikloomade-trepid-ja-rambid",
+    "v4-lemmikloomatarbed-transport-ja-autotarvikud-sadulariiulid-ja-hoidikud",
     "v4-lemmikloomatarbed-pesad-ja-asemed",
+    "v4-lemmikloomatarbed-pesad-ja-asemed-inimsuuruses-koeravoodid",
+    "v4-lemmikloomatarbed-pesad-ja-asemed-kassimajad",
+    "v4-lemmikloomatarbed-pesad-ja-asemed-kassitualeti-moobel",
+    "v4-lemmikloomatarbed-pesad-ja-asemed-koera-autoistmed",
+    "v4-lemmikloomatarbed-pesad-ja-asemed-koeravoodid-ja-pesad",
+    "v4-lemmikloomatarbed-pesad-ja-asemed-lemmiklooma-voodid",
+    "v4-lemmikloomatarbed-pesad-ja-asemed-valiskassimajad",
     "v4-lemmikloomatarbed-sootmine-ja-jootmine",
+    "v4-lemmikloomatarbed-sootmine-ja-jootmine-akvaariumifiltrid",
+    "v4-lemmikloomatarbed-sootmine-ja-jootmine-heinasootjad",
+    "v4-lemmikloomatarbed-sootmine-ja-jootmine-sootmisjaamad",
     "v4-lemmikloomatarbed-treening-ja-manguasjad",
+    "v4-lemmikloomatarbed-treening-ja-manguasjad-kassi-jooksurattad",
+    "v4-lemmikloomatarbed-treening-ja-manguasjad-kassipuud",
+    "v4-lemmikloomatarbed-treening-ja-manguasjad-koerte-agility-ja-treeningkomplektid",
+    "v4-lemmikloomatarbed-treening-ja-manguasjad-koerte-jooksulindid",
     "v4-lemmikloomatarbed-lemmiklooma-uksed-ja-varavad",
+    "v4-lemmikloomatarbed-lemmiklooma-uksed-ja-varavad-lemmiklooma-uksed",
     "v4-tervis-hooldus-ja-ilu",
     "v4-tervis-hooldus-ja-ilu-isikuhooldusseadmed",
     "v4-tervis-hooldus-ja-ilu-beebi-ja-lapsetarbed",
