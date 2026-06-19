@@ -1,6 +1,6 @@
 version: 4
 updated: '2026-06-18'
-source: v4 + Tööriistad + Aed L3 (staging)
+source: v4 + Tööriistad/Aed L3 + #18 Põllumajandus (staging)
 l1:
   - slug: v4-tooriistad-ja-tarvikud
     name_en: "Tööriistad ja tarvikud"
@@ -2026,10 +2026,6 @@ l1:
             name_en: "Kokkupandavad kalatiigid"
             name_et: "Kokkupandavad kalatiigid"
             product_count: 0
-          - slug: v4-aed-ja-aiatehnika-l12-linnukasvatusseadmed
-            name_en: "Linnukasvatusseadmed"
-            name_et: "Linnukasvatusseadmed"
-            product_count: 0
           - slug: v4-aed-ja-aiatehnika-l12-loomapuunised-ja-loksud
             name_en: "Loomapüünised ja lõksud"
             name_et: "Loomapüünised ja lõksud"
@@ -2037,10 +2033,6 @@ l1:
           - slug: v4-aed-ja-aiatehnika-l12-lupsimasinad
             name_en: "Lüpsimasinad"
             name_et: "Lüpsimasinad"
-            product_count: 0
-          - slug: v4-aed-ja-aiatehnika-l12-mesindustarvikud-ja-mesitarud
-            name_en: "Mesindustarvikud ja mesitarud"
-            name_et: "Mesindustarvikud ja mesitarud"
             product_count: 0
           - slug: v4-aed-ja-aiatehnika-l12-munahaudurid-ja-inkubaatorid
             name_en: "Munahaudurid ja inkubaatorid"
@@ -2062,10 +2054,6 @@ l1:
           - slug: v4-aed-ja-aiatehnika-l13-meekeskrifuugid-ja-mee-ekstraktorid
             name_en: "Meekeskrifuugid ja mee-ekstraktorid"
             name_et: "Meekeskrifuugid ja mee-ekstraktorid"
-            product_count: 0
-          - slug: v4-aed-ja-aiatehnika-l13-mesitarud
-            name_en: "Mesitarud"
-            name_et: "Mesitarud"
             product_count: 0
       - slug: v4-aed-ja-aiatehnika-kasvuhooned-ja-hudropoonika
         name_en: "Kasvuhooned & hüdropoonika"
@@ -2504,3 +2492,135 @@ l1:
         name_en: "Isikukaitsevahendid"
         name_et: "Isikukaitsevahendid"
         product_count: 10
+  - slug: v4-pollumajandus-ja-loomakasvatus
+    name_en: "Põllumajandus ja loomakasvatus"
+    name_et: "Põllumajandus ja loomakasvatus"
+    short_slug: pollumajandus
+    tagline_en: "Põllumajandus ja loomakasvatus"
+    tagline_et: "Põllumajandus ja loomakasvatus"
+    description_en: "Põllumajandus ja loomakasvatus — products."
+    description_et: "Põllumajandus ja loomakasvatus — tooted."
+    hero_img: /images/branches/horeca.webp
+    hero_gradient: from-stone-950/80 via-stone-900/40 to-transparent
+    product_count: 193
+    subs:
+      - slug: v4-pollumajandus-ja-loomakasvatus-linnukasvatus
+        name_en: "Linnukasvatus"
+        name_et: "Linnukasvatus"
+        product_count: 0
+        subs:
+          - slug: v4-pollumajandus-ja-loomakasvatus-linnukasvatus-aiad-ja-vorgud
+            name_en: "Aiad ja võrgud"
+            name_et: "Aiad ja võrgud"
+            product_count: 0
+          - slug: v4-pollumajandus-ja-loomakasvatus-linnukasvatus-automaatsed-kanamajauksed
+            name_en: "Automaatsed kanamajauksed"
+            name_et: "Automaatsed kanamajauksed"
+            product_count: 0
+          - slug: v4-pollumajandus-ja-loomakasvatus-linnukasvatus-elektrikarjused
+            name_en: "Elektrikarjused"
+            name_et: "Elektrikarjused"
+            product_count: 0
+          - slug: v4-pollumajandus-ja-loomakasvatus-linnukasvatus-inkubaatorid-ja-munahaudejad
+            name_en: "Inkubaatorid ja munahaudejad"
+            name_et: "Inkubaatorid ja munahaudejad"
+            product_count: 0
+          - slug: v4-pollumajandus-ja-loomakasvatus-linnukasvatus-kanakuudid-ja-kanalad
+            name_en: "Kanakuudid ja kanalad"
+            name_et: "Kanakuudid ja kanalad"
+            product_count: 0
+          - slug: v4-pollumajandus-ja-loomakasvatus-linnukasvatus-kanapuurid-ja-aedikud
+            name_en: "Kanapuurid ja aedikud"
+            name_et: "Kanapuurid ja aedikud"
+            product_count: 0
+          - slug: v4-pollumajandus-ja-loomakasvatus-linnukasvatus-linnutootlemise-masinad
+            name_en: "Linnutöötlemise masinad"
+            name_et: "Linnutöötlemise masinad"
+            product_count: 0
+          - slug: v4-pollumajandus-ja-loomakasvatus-linnukasvatus-murahooldusseadmed
+            name_en: "Murahooldusseadmed"
+            name_et: "Murahooldusseadmed"
+            product_count: 0
+          - slug: v4-pollumajandus-ja-loomakasvatus-linnukasvatus-pesakastid-ja-munemispesad
+            name_en: "Pesakastid ja munemispesad"
+            name_et: "Pesakastid ja munemispesad"
+            product_count: 0
+          - slug: v4-pollumajandus-ja-loomakasvatus-linnukasvatus-praadimisseadmed
+            name_en: "Praadimisseadmed"
+            name_et: "Praadimisseadmed"
+            product_count: 0
+          - slug: v4-pollumajandus-ja-loomakasvatus-linnukasvatus-soodaautomaadid-ja-jootjad
+            name_en: "Söödaautomaadid ja jootjad"
+            name_et: "Söödaautomaadid ja jootjad"
+            product_count: 0
+          - slug: v4-pollumajandus-ja-loomakasvatus-linnukasvatus-ventilaatorid-ja-ohutus
+            name_en: "Ventilaatorid ja õhutus"
+            name_et: "Ventilaatorid ja õhutus"
+            product_count: 0
+      - slug: v4-pollumajandus-ja-loomakasvatus-kariloomad
+        name_en: "Kariloomad"
+        name_et: "Kariloomad"
+        product_count: 0
+        subs:
+          - slug: v4-pollumajandus-ja-loomakasvatus-kariloomad-elektrikarjused-ja-tarvikud
+            name_en: "Elektrikarjused ja tarvikud"
+            name_et: "Elektrikarjused ja tarvikud"
+            product_count: 0
+          - slug: v4-pollumajandus-ja-loomakasvatus-kariloomad-heinasooturid-ja-heinavorgud
+            name_en: "Heinasööturid ja heinavõrgud"
+            name_et: "Heinasööturid ja heinavõrgud"
+            product_count: 0
+          - slug: v4-pollumajandus-ja-loomakasvatus-kariloomad-kariloomade-sugamisharjad
+            name_en: "Kariloomade sügamisharjad"
+            name_et: "Kariloomade sügamisharjad"
+            product_count: 0
+          - slug: v4-pollumajandus-ja-loomakasvatus-kariloomad-soodurid-ja-soodakuna
+            name_en: "Söödurid ja söödaküna"
+            name_et: "Söödurid ja söödaküna"
+            product_count: 0
+          - slug: v4-pollumajandus-ja-loomakasvatus-kariloomad-tra-ataiad-ja-aiapiirded
+            name_en: "Tra ataiad ja aiapiirded"
+            name_et: "Tra ataiad ja aiapiirded"
+            product_count: 0
+          - slug: v4-pollumajandus-ja-loomakasvatus-kariloomad-veepumbad
+            name_en: "Veepumbad"
+            name_et: "Veepumbad"
+            product_count: 0
+      - slug: v4-pollumajandus-ja-loomakasvatus-talutehnika
+        name_en: "Talutehnika"
+        name_et: "Talutehnika"
+        product_count: 0
+        subs:
+          - slug: v4-pollumajandus-ja-loomakasvatus-talutehnika-lohistatavad-akked
+            name_en: "Lohistatavad äkked"
+            name_et: "Lohistatavad äkked"
+            product_count: 0
+          - slug: v4-pollumajandus-ja-loomakasvatus-talutehnika-traktori-ballastkastid
+            name_en: "Traktori ballastkastid"
+            name_et: "Traktori ballastkastid"
+            product_count: 0
+          - slug: v4-pollumajandus-ja-loomakasvatus-talutehnika-traktori-kolmepunkti-haakeadapterid
+            name_en: "Traktori kolmepunkti haakeadapterid"
+            name_et: "Traktori kolmepunkti haakeadapterid"
+            product_count: 0
+      - slug: v4-pollumajandus-ja-loomakasvatus-mesindus
+        name_en: "Mesindus"
+        name_et: "Mesindus"
+        product_count: 0
+        subs:
+          - slug: v4-pollumajandus-ja-loomakasvatus-mesindus-meeekstraktorid-ja-tsentrifuugid
+            name_en: "Meeekstraktorid ja -tsentrifuugid"
+            name_et: "Meeekstraktorid ja -tsentrifuugid"
+            product_count: 0
+          - slug: v4-pollumajandus-ja-loomakasvatus-mesindus-mesitarud-ja-komplektid
+            name_en: "Mesitarud ja komplektid"
+            name_et: "Mesitarud ja komplektid"
+            product_count: 0
+      - slug: v4-pollumajandus-ja-loomakasvatus-piimakari-ja-lupsitehnika
+        name_en: "Piimakari ja lüpsitehnika"
+        name_et: "Piimakari ja lüpsitehnika"
+        product_count: 0
+      - slug: v4-pollumajandus-ja-loomakasvatus-lamba-ja-kitsekasvatus
+        name_en: "Lamba- ja kitsekasvatus"
+        name_et: "Lamba- ja kitsekasvatus"
+        product_count: 0

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-19T10:52:24.965Z",
+  "generated_at": "2026-06-19T11:21:42.043Z",
   "nodes": {
     "v4-tooriistad-ja-tarvikud": {
       "handle": "v4-tooriistad-ja-tarvikud",
@@ -5380,10 +5380,8 @@
       "parent_handle": "v4-aed-ja-aiatehnika",
       "child_handles": [
         "v4-aed-ja-aiatehnika-l12-kokkupandavad-kalatiigid",
-        "v4-aed-ja-aiatehnika-l12-linnukasvatusseadmed",
         "v4-aed-ja-aiatehnika-l12-loomapuunised-ja-loksud",
         "v4-aed-ja-aiatehnika-l12-lupsimasinad",
-        "v4-aed-ja-aiatehnika-l12-mesindustarvikud-ja-mesitarud",
         "v4-aed-ja-aiatehnika-l12-munahaudurid-ja-inkubaatorid",
         "v4-aed-ja-aiatehnika-l12-nutikad-linnusootjad-kaameraga"
       ],
@@ -5394,16 +5392,6 @@
       "handle": "v4-aed-ja-aiatehnika-l12-kokkupandavad-kalatiigid",
       "name_en": "Kokkupandavad kalatiigid",
       "name_et": "Kokkupandavad kalatiigid",
-      "level": 3,
-      "parent_handle": "v4-aed-ja-aiatehnika-lemmikloomad-ja-tiigid",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-aed-ja-aiatehnika-l12-linnukasvatusseadmed": {
-      "handle": "v4-aed-ja-aiatehnika-l12-linnukasvatusseadmed",
-      "name_en": "Linnukasvatusseadmed",
-      "name_et": "Linnukasvatusseadmed",
       "level": 3,
       "parent_handle": "v4-aed-ja-aiatehnika-lemmikloomad-ja-tiigid",
       "child_handles": [],
@@ -5424,16 +5412,6 @@
       "handle": "v4-aed-ja-aiatehnika-l12-lupsimasinad",
       "name_en": "Lüpsimasinad",
       "name_et": "Lüpsimasinad",
-      "level": 3,
-      "parent_handle": "v4-aed-ja-aiatehnika-lemmikloomad-ja-tiigid",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-aed-ja-aiatehnika-l12-mesindustarvikud-ja-mesitarud": {
-      "handle": "v4-aed-ja-aiatehnika-l12-mesindustarvikud-ja-mesitarud",
-      "name_en": "Mesindustarvikud ja mesitarud",
-      "name_et": "Mesindustarvikud ja mesitarud",
       "level": 3,
       "parent_handle": "v4-aed-ja-aiatehnika-lemmikloomad-ja-tiigid",
       "child_handles": [],
@@ -5468,8 +5446,7 @@
       "parent_handle": "v4-aed-ja-aiatehnika",
       "child_handles": [
         "v4-aed-ja-aiatehnika-l13-kompostrid-ja-kompostimisnoud",
-        "v4-aed-ja-aiatehnika-l13-meekeskrifuugid-ja-mee-ekstraktorid",
-        "v4-aed-ja-aiatehnika-l13-mesitarud"
+        "v4-aed-ja-aiatehnika-l13-meekeskrifuugid-ja-mee-ekstraktorid"
       ],
       "image_path": null,
       "image_source": "none"
@@ -5488,16 +5465,6 @@
       "handle": "v4-aed-ja-aiatehnika-l13-meekeskrifuugid-ja-mee-ekstraktorid",
       "name_en": "Meekeskrifuugid ja mee-ekstraktorid",
       "name_et": "Meekeskrifuugid ja mee-ekstraktorid",
-      "level": 3,
-      "parent_handle": "v4-aed-ja-aiatehnika-kompostimine-ja-mesindus",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-aed-ja-aiatehnika-l13-mesitarud": {
-      "handle": "v4-aed-ja-aiatehnika-l13-mesitarud",
-      "name_en": "Mesitarud",
-      "name_et": "Mesitarud",
       "level": 3,
       "parent_handle": "v4-aed-ja-aiatehnika-kompostimine-ja-mesindus",
       "child_handles": [],
@@ -6522,6 +6489,344 @@
       "child_handles": [],
       "image_path": null,
       "image_source": "none"
+    },
+    "v4-pollumajandus-ja-loomakasvatus": {
+      "handle": "v4-pollumajandus-ja-loomakasvatus",
+      "name_en": "Põllumajandus ja loomakasvatus",
+      "name_et": "Põllumajandus ja loomakasvatus",
+      "level": 1,
+      "parent_handle": null,
+      "child_handles": [
+        "v4-pollumajandus-ja-loomakasvatus-linnukasvatus",
+        "v4-pollumajandus-ja-loomakasvatus-kariloomad",
+        "v4-pollumajandus-ja-loomakasvatus-talutehnika",
+        "v4-pollumajandus-ja-loomakasvatus-mesindus",
+        "v4-pollumajandus-ja-loomakasvatus-piimakari-ja-lupsitehnika",
+        "v4-pollumajandus-ja-loomakasvatus-lamba-ja-kitsekasvatus"
+      ],
+      "image_path": null,
+      "image_source": "none",
+      "description_en": "Põllumajandus ja loomakasvatus — products.",
+      "description_et": "Põllumajandus ja loomakasvatus — tooted.",
+      "tagline_en": "Põllumajandus ja loomakasvatus",
+      "tagline_et": "Põllumajandus ja loomakasvatus"
+    },
+    "v4-pollumajandus-ja-loomakasvatus-linnukasvatus": {
+      "handle": "v4-pollumajandus-ja-loomakasvatus-linnukasvatus",
+      "name_en": "Linnukasvatus",
+      "name_et": "Linnukasvatus",
+      "level": 2,
+      "parent_handle": "v4-pollumajandus-ja-loomakasvatus",
+      "child_handles": [
+        "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-aiad-ja-vorgud",
+        "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-automaatsed-kanamajauksed",
+        "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-elektrikarjused",
+        "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-inkubaatorid-ja-munahaudejad",
+        "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-kanakuudid-ja-kanalad",
+        "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-kanapuurid-ja-aedikud",
+        "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-linnutootlemise-masinad",
+        "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-murahooldusseadmed",
+        "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-pesakastid-ja-munemispesad",
+        "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-praadimisseadmed",
+        "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-soodaautomaadid-ja-jootjad",
+        "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-ventilaatorid-ja-ohutus"
+      ],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-aiad-ja-vorgud": {
+      "handle": "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-aiad-ja-vorgud",
+      "name_en": "Aiad ja võrgud",
+      "name_et": "Aiad ja võrgud",
+      "level": 3,
+      "parent_handle": "v4-pollumajandus-ja-loomakasvatus-linnukasvatus",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-automaatsed-kanamajauksed": {
+      "handle": "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-automaatsed-kanamajauksed",
+      "name_en": "Automaatsed kanamajauksed",
+      "name_et": "Automaatsed kanamajauksed",
+      "level": 3,
+      "parent_handle": "v4-pollumajandus-ja-loomakasvatus-linnukasvatus",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-elektrikarjused": {
+      "handle": "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-elektrikarjused",
+      "name_en": "Elektrikarjused",
+      "name_et": "Elektrikarjused",
+      "level": 3,
+      "parent_handle": "v4-pollumajandus-ja-loomakasvatus-linnukasvatus",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-inkubaatorid-ja-munahaudejad": {
+      "handle": "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-inkubaatorid-ja-munahaudejad",
+      "name_en": "Inkubaatorid ja munahaudejad",
+      "name_et": "Inkubaatorid ja munahaudejad",
+      "level": 3,
+      "parent_handle": "v4-pollumajandus-ja-loomakasvatus-linnukasvatus",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-kanakuudid-ja-kanalad": {
+      "handle": "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-kanakuudid-ja-kanalad",
+      "name_en": "Kanakuudid ja kanalad",
+      "name_et": "Kanakuudid ja kanalad",
+      "level": 3,
+      "parent_handle": "v4-pollumajandus-ja-loomakasvatus-linnukasvatus",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-kanapuurid-ja-aedikud": {
+      "handle": "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-kanapuurid-ja-aedikud",
+      "name_en": "Kanapuurid ja aedikud",
+      "name_et": "Kanapuurid ja aedikud",
+      "level": 3,
+      "parent_handle": "v4-pollumajandus-ja-loomakasvatus-linnukasvatus",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-linnutootlemise-masinad": {
+      "handle": "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-linnutootlemise-masinad",
+      "name_en": "Linnutöötlemise masinad",
+      "name_et": "Linnutöötlemise masinad",
+      "level": 3,
+      "parent_handle": "v4-pollumajandus-ja-loomakasvatus-linnukasvatus",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-murahooldusseadmed": {
+      "handle": "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-murahooldusseadmed",
+      "name_en": "Murahooldusseadmed",
+      "name_et": "Murahooldusseadmed",
+      "level": 3,
+      "parent_handle": "v4-pollumajandus-ja-loomakasvatus-linnukasvatus",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-pesakastid-ja-munemispesad": {
+      "handle": "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-pesakastid-ja-munemispesad",
+      "name_en": "Pesakastid ja munemispesad",
+      "name_et": "Pesakastid ja munemispesad",
+      "level": 3,
+      "parent_handle": "v4-pollumajandus-ja-loomakasvatus-linnukasvatus",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-praadimisseadmed": {
+      "handle": "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-praadimisseadmed",
+      "name_en": "Praadimisseadmed",
+      "name_et": "Praadimisseadmed",
+      "level": 3,
+      "parent_handle": "v4-pollumajandus-ja-loomakasvatus-linnukasvatus",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-soodaautomaadid-ja-jootjad": {
+      "handle": "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-soodaautomaadid-ja-jootjad",
+      "name_en": "Söödaautomaadid ja jootjad",
+      "name_et": "Söödaautomaadid ja jootjad",
+      "level": 3,
+      "parent_handle": "v4-pollumajandus-ja-loomakasvatus-linnukasvatus",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-ventilaatorid-ja-ohutus": {
+      "handle": "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-ventilaatorid-ja-ohutus",
+      "name_en": "Ventilaatorid ja õhutus",
+      "name_et": "Ventilaatorid ja õhutus",
+      "level": 3,
+      "parent_handle": "v4-pollumajandus-ja-loomakasvatus-linnukasvatus",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-pollumajandus-ja-loomakasvatus-kariloomad": {
+      "handle": "v4-pollumajandus-ja-loomakasvatus-kariloomad",
+      "name_en": "Kariloomad",
+      "name_et": "Kariloomad",
+      "level": 2,
+      "parent_handle": "v4-pollumajandus-ja-loomakasvatus",
+      "child_handles": [
+        "v4-pollumajandus-ja-loomakasvatus-kariloomad-elektrikarjused-ja-tarvikud",
+        "v4-pollumajandus-ja-loomakasvatus-kariloomad-heinasooturid-ja-heinavorgud",
+        "v4-pollumajandus-ja-loomakasvatus-kariloomad-kariloomade-sugamisharjad",
+        "v4-pollumajandus-ja-loomakasvatus-kariloomad-soodurid-ja-soodakuna",
+        "v4-pollumajandus-ja-loomakasvatus-kariloomad-tra-ataiad-ja-aiapiirded",
+        "v4-pollumajandus-ja-loomakasvatus-kariloomad-veepumbad"
+      ],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-pollumajandus-ja-loomakasvatus-kariloomad-elektrikarjused-ja-tarvikud": {
+      "handle": "v4-pollumajandus-ja-loomakasvatus-kariloomad-elektrikarjused-ja-tarvikud",
+      "name_en": "Elektrikarjused ja tarvikud",
+      "name_et": "Elektrikarjused ja tarvikud",
+      "level": 3,
+      "parent_handle": "v4-pollumajandus-ja-loomakasvatus-kariloomad",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-pollumajandus-ja-loomakasvatus-kariloomad-heinasooturid-ja-heinavorgud": {
+      "handle": "v4-pollumajandus-ja-loomakasvatus-kariloomad-heinasooturid-ja-heinavorgud",
+      "name_en": "Heinasööturid ja heinavõrgud",
+      "name_et": "Heinasööturid ja heinavõrgud",
+      "level": 3,
+      "parent_handle": "v4-pollumajandus-ja-loomakasvatus-kariloomad",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-pollumajandus-ja-loomakasvatus-kariloomad-kariloomade-sugamisharjad": {
+      "handle": "v4-pollumajandus-ja-loomakasvatus-kariloomad-kariloomade-sugamisharjad",
+      "name_en": "Kariloomade sügamisharjad",
+      "name_et": "Kariloomade sügamisharjad",
+      "level": 3,
+      "parent_handle": "v4-pollumajandus-ja-loomakasvatus-kariloomad",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-pollumajandus-ja-loomakasvatus-kariloomad-soodurid-ja-soodakuna": {
+      "handle": "v4-pollumajandus-ja-loomakasvatus-kariloomad-soodurid-ja-soodakuna",
+      "name_en": "Söödurid ja söödaküna",
+      "name_et": "Söödurid ja söödaküna",
+      "level": 3,
+      "parent_handle": "v4-pollumajandus-ja-loomakasvatus-kariloomad",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-pollumajandus-ja-loomakasvatus-kariloomad-tra-ataiad-ja-aiapiirded": {
+      "handle": "v4-pollumajandus-ja-loomakasvatus-kariloomad-tra-ataiad-ja-aiapiirded",
+      "name_en": "Tra ataiad ja aiapiirded",
+      "name_et": "Tra ataiad ja aiapiirded",
+      "level": 3,
+      "parent_handle": "v4-pollumajandus-ja-loomakasvatus-kariloomad",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-pollumajandus-ja-loomakasvatus-kariloomad-veepumbad": {
+      "handle": "v4-pollumajandus-ja-loomakasvatus-kariloomad-veepumbad",
+      "name_en": "Veepumbad",
+      "name_et": "Veepumbad",
+      "level": 3,
+      "parent_handle": "v4-pollumajandus-ja-loomakasvatus-kariloomad",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-pollumajandus-ja-loomakasvatus-talutehnika": {
+      "handle": "v4-pollumajandus-ja-loomakasvatus-talutehnika",
+      "name_en": "Talutehnika",
+      "name_et": "Talutehnika",
+      "level": 2,
+      "parent_handle": "v4-pollumajandus-ja-loomakasvatus",
+      "child_handles": [
+        "v4-pollumajandus-ja-loomakasvatus-talutehnika-lohistatavad-akked",
+        "v4-pollumajandus-ja-loomakasvatus-talutehnika-traktori-ballastkastid",
+        "v4-pollumajandus-ja-loomakasvatus-talutehnika-traktori-kolmepunkti-haakeadapterid"
+      ],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-pollumajandus-ja-loomakasvatus-talutehnika-lohistatavad-akked": {
+      "handle": "v4-pollumajandus-ja-loomakasvatus-talutehnika-lohistatavad-akked",
+      "name_en": "Lohistatavad äkked",
+      "name_et": "Lohistatavad äkked",
+      "level": 3,
+      "parent_handle": "v4-pollumajandus-ja-loomakasvatus-talutehnika",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-pollumajandus-ja-loomakasvatus-talutehnika-traktori-ballastkastid": {
+      "handle": "v4-pollumajandus-ja-loomakasvatus-talutehnika-traktori-ballastkastid",
+      "name_en": "Traktori ballastkastid",
+      "name_et": "Traktori ballastkastid",
+      "level": 3,
+      "parent_handle": "v4-pollumajandus-ja-loomakasvatus-talutehnika",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-pollumajandus-ja-loomakasvatus-talutehnika-traktori-kolmepunkti-haakeadapterid": {
+      "handle": "v4-pollumajandus-ja-loomakasvatus-talutehnika-traktori-kolmepunkti-haakeadapterid",
+      "name_en": "Traktori kolmepunkti haakeadapterid",
+      "name_et": "Traktori kolmepunkti haakeadapterid",
+      "level": 3,
+      "parent_handle": "v4-pollumajandus-ja-loomakasvatus-talutehnika",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-pollumajandus-ja-loomakasvatus-mesindus": {
+      "handle": "v4-pollumajandus-ja-loomakasvatus-mesindus",
+      "name_en": "Mesindus",
+      "name_et": "Mesindus",
+      "level": 2,
+      "parent_handle": "v4-pollumajandus-ja-loomakasvatus",
+      "child_handles": [
+        "v4-pollumajandus-ja-loomakasvatus-mesindus-meeekstraktorid-ja-tsentrifuugid",
+        "v4-pollumajandus-ja-loomakasvatus-mesindus-mesitarud-ja-komplektid"
+      ],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-pollumajandus-ja-loomakasvatus-mesindus-meeekstraktorid-ja-tsentrifuugid": {
+      "handle": "v4-pollumajandus-ja-loomakasvatus-mesindus-meeekstraktorid-ja-tsentrifuugid",
+      "name_en": "Meeekstraktorid ja -tsentrifuugid",
+      "name_et": "Meeekstraktorid ja -tsentrifuugid",
+      "level": 3,
+      "parent_handle": "v4-pollumajandus-ja-loomakasvatus-mesindus",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-pollumajandus-ja-loomakasvatus-mesindus-mesitarud-ja-komplektid": {
+      "handle": "v4-pollumajandus-ja-loomakasvatus-mesindus-mesitarud-ja-komplektid",
+      "name_en": "Mesitarud ja komplektid",
+      "name_et": "Mesitarud ja komplektid",
+      "level": 3,
+      "parent_handle": "v4-pollumajandus-ja-loomakasvatus-mesindus",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-pollumajandus-ja-loomakasvatus-piimakari-ja-lupsitehnika": {
+      "handle": "v4-pollumajandus-ja-loomakasvatus-piimakari-ja-lupsitehnika",
+      "name_en": "Piimakari ja lüpsitehnika",
+      "name_et": "Piimakari ja lüpsitehnika",
+      "level": 2,
+      "parent_handle": "v4-pollumajandus-ja-loomakasvatus",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-pollumajandus-ja-loomakasvatus-lamba-ja-kitsekasvatus": {
+      "handle": "v4-pollumajandus-ja-loomakasvatus-lamba-ja-kitsekasvatus",
+      "name_en": "Lamba- ja kitsekasvatus",
+      "name_et": "Lamba- ja kitsekasvatus",
+      "level": 2,
+      "parent_handle": "v4-pollumajandus-ja-loomakasvatus",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
     }
   },
   "order": [
@@ -7010,16 +7315,13 @@
     "v4-aed-ja-aiatehnika-l11-taimeriiulid-kasvulampidega",
     "v4-aed-ja-aiatehnika-lemmikloomad-ja-tiigid",
     "v4-aed-ja-aiatehnika-l12-kokkupandavad-kalatiigid",
-    "v4-aed-ja-aiatehnika-l12-linnukasvatusseadmed",
     "v4-aed-ja-aiatehnika-l12-loomapuunised-ja-loksud",
     "v4-aed-ja-aiatehnika-l12-lupsimasinad",
-    "v4-aed-ja-aiatehnika-l12-mesindustarvikud-ja-mesitarud",
     "v4-aed-ja-aiatehnika-l12-munahaudurid-ja-inkubaatorid",
     "v4-aed-ja-aiatehnika-l12-nutikad-linnusootjad-kaameraga",
     "v4-aed-ja-aiatehnika-kompostimine-ja-mesindus",
     "v4-aed-ja-aiatehnika-l13-kompostrid-ja-kompostimisnoud",
     "v4-aed-ja-aiatehnika-l13-meekeskrifuugid-ja-mee-ekstraktorid",
-    "v4-aed-ja-aiatehnika-l13-mesitarud",
     "v4-aed-ja-aiatehnika-kasvuhooned-ja-hudropoonika",
     "v4-aed-ja-aiatehnika-l14-hudropoonilised-kasvatustornid",
     "v4-varjualused-telgid-ja-kasvuhooned",
@@ -7108,6 +7410,36 @@
     "v4-tooriied-ja-isikukaitse-tooriietus-ja-uleroivad",
     "v4-tooriied-ja-isikukaitse-soojendusega-riietus",
     "v4-tooriied-ja-isikukaitse-kukkumiskaitse-ja-korgustoo",
-    "v4-tooriied-ja-isikukaitse-isikukaitsevahendid"
+    "v4-tooriied-ja-isikukaitse-isikukaitsevahendid",
+    "v4-pollumajandus-ja-loomakasvatus",
+    "v4-pollumajandus-ja-loomakasvatus-linnukasvatus",
+    "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-aiad-ja-vorgud",
+    "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-automaatsed-kanamajauksed",
+    "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-elektrikarjused",
+    "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-inkubaatorid-ja-munahaudejad",
+    "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-kanakuudid-ja-kanalad",
+    "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-kanapuurid-ja-aedikud",
+    "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-linnutootlemise-masinad",
+    "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-murahooldusseadmed",
+    "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-pesakastid-ja-munemispesad",
+    "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-praadimisseadmed",
+    "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-soodaautomaadid-ja-jootjad",
+    "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-ventilaatorid-ja-ohutus",
+    "v4-pollumajandus-ja-loomakasvatus-kariloomad",
+    "v4-pollumajandus-ja-loomakasvatus-kariloomad-elektrikarjused-ja-tarvikud",
+    "v4-pollumajandus-ja-loomakasvatus-kariloomad-heinasooturid-ja-heinavorgud",
+    "v4-pollumajandus-ja-loomakasvatus-kariloomad-kariloomade-sugamisharjad",
+    "v4-pollumajandus-ja-loomakasvatus-kariloomad-soodurid-ja-soodakuna",
+    "v4-pollumajandus-ja-loomakasvatus-kariloomad-tra-ataiad-ja-aiapiirded",
+    "v4-pollumajandus-ja-loomakasvatus-kariloomad-veepumbad",
+    "v4-pollumajandus-ja-loomakasvatus-talutehnika",
+    "v4-pollumajandus-ja-loomakasvatus-talutehnika-lohistatavad-akked",
+    "v4-pollumajandus-ja-loomakasvatus-talutehnika-traktori-ballastkastid",
+    "v4-pollumajandus-ja-loomakasvatus-talutehnika-traktori-kolmepunkti-haakeadapterid",
+    "v4-pollumajandus-ja-loomakasvatus-mesindus",
+    "v4-pollumajandus-ja-loomakasvatus-mesindus-meeekstraktorid-ja-tsentrifuugid",
+    "v4-pollumajandus-ja-loomakasvatus-mesindus-mesitarud-ja-komplektid",
+    "v4-pollumajandus-ja-loomakasvatus-piimakari-ja-lupsitehnika",
+    "v4-pollumajandus-ja-loomakasvatus-lamba-ja-kitsekasvatus"
   ]
 }

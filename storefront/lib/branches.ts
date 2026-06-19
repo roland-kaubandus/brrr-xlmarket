@@ -202,6 +202,17 @@ export const BRANCHES: BranchDef[] = [
     heroImg: "/images/branches/horeca.webp",
     heroGradient: "from-stone-950/80 via-stone-900/40 to-transparent",
   },
+  {
+    name: "Põllumajandus ja loomakasvatus",
+    nameEn: "Põllumajandus ja loomakasvatus",
+    slug: "pollumajandus",
+    categoryHandle: "v4-pollumajandus-ja-loomakasvatus",
+    tagline: "Põllumajandus ja loomakasvatus",
+    taglineEn: "Põllumajandus ja loomakasvatus",
+    description: "Põllumajandus ja loomakasvatus — tooted.",
+    heroImg: "/images/branches/horeca.webp",
+    heroGradient: "from-stone-950/80 via-stone-900/40 to-transparent",
+  },
 ]
 
 export function getBranchBySlug(slug: string) {
