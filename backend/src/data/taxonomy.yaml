@@ -60,10 +60,6 @@ l1:
             name_en: "Krohvimistööriistad"
             name_et: "Krohvimistööriistad"
             product_count: 0
-          - slug: v4-tooriistad-ja-tarvikud-viimistlustooriistad-maalritooriistad
-            name_en: "Maalritööriistad"
-            name_et: "Maalritööriistad"
-            product_count: 0
           - slug: v4-tooriistad-ja-tarvikud-kasitooriistad-pahtli-ja-kaabitsariistad
             name_en: "Pahtli- ja kaabitsariistad"
             name_et: "Pahtli- ja kaabitsariistad"

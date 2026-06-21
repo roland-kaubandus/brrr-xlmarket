@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-21T07:44:05.754Z",
+  "generated_at": "2026-06-21T07:45:55.822Z",
   "nodes": {
     "v4-tooriistad-ja-tarvikud": {
       "handle": "v4-tooriistad-ja-tarvikud",
@@ -139,7 +139,6 @@
       "parent_handle": "v4-tooriistad-ja-tarvikud",
       "child_handles": [
         "v4-tooriistad-ja-tarvikud-viimistlustooriistad-krohvimistooriistad",
-        "v4-tooriistad-ja-tarvikud-viimistlustooriistad-maalritooriistad",
         "v4-tooriistad-ja-tarvikud-kasitooriistad-pahtli-ja-kaabitsariistad",
         "v4-tooriistad-ja-tarvikud-kasitooriistad-plaadiloikurid",
         "v4-tooriistad-ja-tarvikud-viimistlustooriistad-porandaloikurid",
@@ -153,16 +152,6 @@
       "handle": "v4-tooriistad-ja-tarvikud-viimistlustooriistad-krohvimistooriistad",
       "name_en": "Krohvimistööriistad",
       "name_et": "Krohvimistööriistad",
-      "level": 3,
-      "parent_handle": "v4-tooriistad-ja-tarvikud-viimistlustooriistad",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-tooriistad-ja-tarvikud-viimistlustooriistad-maalritooriistad": {
-      "handle": "v4-tooriistad-ja-tarvikud-viimistlustooriistad-maalritooriistad",
-      "name_en": "Maalritööriistad",
-      "name_et": "Maalritööriistad",
       "level": 3,
       "parent_handle": "v4-tooriistad-ja-tarvikud-viimistlustooriistad",
       "child_handles": [],
@@ -9731,7 +9720,6 @@
     "v4-tooriistad-ja-tarvikud-kasitooriistad-toruvotmed-ja-torutangid",
     "v4-tooriistad-ja-tarvikud-viimistlustooriistad",
     "v4-tooriistad-ja-tarvikud-viimistlustooriistad-krohvimistooriistad",
-    "v4-tooriistad-ja-tarvikud-viimistlustooriistad-maalritooriistad",
     "v4-tooriistad-ja-tarvikud-kasitooriistad-pahtli-ja-kaabitsariistad",
     "v4-tooriistad-ja-tarvikud-kasitooriistad-plaadiloikurid",
     "v4-tooriistad-ja-tarvikud-viimistlustooriistad-porandaloikurid",
