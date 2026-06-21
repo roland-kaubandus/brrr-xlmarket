@@ -6099,10 +6099,6 @@ l1:
         name_et: "Trummid & löökpillid"
         product_count: 0
         subs:
-          - slug: v4-sport-ja-vaba-aeg-trummid-ja-lookpillid-handpani-ja-keeltrummid
-            name_en: "Handpani- ja keeltrummid"
-            name_et: "Handpani- ja keeltrummid"
-            product_count: 0
           - slug: v4-sport-ja-vaba-aeg-trummid-ja-lookpillid-kajonid
             name_en: "Kajonid"
             name_et: "Kajonid"

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-21T10:24:26.812Z",
+  "generated_at": "2026-06-21T10:26:41.230Z",
   "nodes": {
     "v4-tooriistad-ja-tarvikud": {
       "handle": "v4-tooriistad-ja-tarvikud",
@@ -16349,21 +16349,10 @@
       "level": 2,
       "parent_handle": "v4-sport-ja-vaba-aeg",
       "child_handles": [
-        "v4-sport-ja-vaba-aeg-trummid-ja-lookpillid-handpani-ja-keeltrummid",
         "v4-sport-ja-vaba-aeg-trummid-ja-lookpillid-kajonid",
         "v4-sport-ja-vaba-aeg-trummid-ja-lookpillid-ksulofonid-ja-kellamangud",
         "v4-sport-ja-vaba-aeg-trummid-ja-lookpillid-taldrikud-ja-taldrikukomplektid"
       ],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-sport-ja-vaba-aeg-trummid-ja-lookpillid-handpani-ja-keeltrummid": {
-      "handle": "v4-sport-ja-vaba-aeg-trummid-ja-lookpillid-handpani-ja-keeltrummid",
-      "name_en": "Handpani- ja keeltrummid",
-      "name_et": "Handpani- ja keeltrummid",
-      "level": 3,
-      "parent_handle": "v4-sport-ja-vaba-aeg-trummid-ja-lookpillid",
-      "child_handles": [],
       "image_path": null,
       "image_source": "none"
     },
@@ -20753,7 +20742,6 @@
     "v4-sport-ja-vaba-aeg-jaht-ja-jahivarustus-vibumarklauad",
     "v4-sport-ja-vaba-aeg-jaht-ja-jahivarustus-ongehoidikud",
     "v4-sport-ja-vaba-aeg-trummid-ja-lookpillid",
-    "v4-sport-ja-vaba-aeg-trummid-ja-lookpillid-handpani-ja-keeltrummid",
     "v4-sport-ja-vaba-aeg-trummid-ja-lookpillid-kajonid",
     "v4-sport-ja-vaba-aeg-trummid-ja-lookpillid-ksulofonid-ja-kellamangud",
     "v4-sport-ja-vaba-aeg-trummid-ja-lookpillid-taldrikud-ja-taldrikukomplektid",
