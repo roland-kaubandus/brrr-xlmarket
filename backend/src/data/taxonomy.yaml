@@ -4652,6 +4652,31 @@ l1:
             name_en: "Katuseläbiviigu tihendid"
             name_et: "Katuseläbiviigu tihendid"
             product_count: 0
+      - slug: v4-ehitus-laaduri-ja-skid-steer-haakeseadmed
+        name_en: "Laaduri- ja skid-steer haakeseadmed"
+        name_et: "Laaduri- ja skid-steer haakeseadmed"
+        product_count: 0
+        subs:
+          - slug: v4-ehitus-laaduri-haakeseadmed-greiferid-ja-haaratsid
+            name_en: "Greiferid ja haaratsid"
+            name_et: "Greiferid ja haaratsid"
+            product_count: 0
+          - slug: v4-ehitus-laaduri-haakeseadmed-kinnitusplaadid-ja-adapterid
+            name_en: "Kinnitusplaadid ja adapterid"
+            name_et: "Kinnitusplaadid ja adapterid"
+            product_count: 0
+          - slug: v4-ehitus-laaduri-haakeseadmed-kopad-ja-sahad
+            name_en: "Kopad ja sahad"
+            name_et: "Kopad ja sahad"
+            product_count: 0
+          - slug: v4-ehitus-laaduri-haakeseadmed-muud-tooseadmed
+            name_en: "Muud tööseadmed"
+            name_et: "Muud tööseadmed"
+            product_count: 0
+          - slug: v4-ehitus-laaduri-haakeseadmed-pallikahvlid-ja-kahvlid
+            name_en: "Pallikahvlid ja kahvlid"
+            name_et: "Pallikahvlid ja kahvlid"
+            product_count: 0
   - slug: v4-santehnika-kute-ja-ventilatsioon
     name_en: "Santehnika, küte ja ventilatsioon"
     name_et: "Santehnika, küte ja ventilatsioon"
@@ -6726,7 +6751,7 @@ l1:
     description_et: "Põllumajandus ja loomakasvatus — tooted."
     hero_img: /images/branches/horeca.webp
     hero_gradient: from-stone-950/80 via-stone-900/40 to-transparent
-    product_count: 203
+    product_count: 238
     subs:
       - slug: v4-pollumajandus-ja-loomakasvatus-linnukasvatus
         name_en: "Linnukasvatus"
@@ -6787,29 +6812,29 @@ l1:
         name_et: "Talutehnika"
         product_count: 0
         subs:
-          - slug: v4-pollumajandus-ja-loomakasvatus-talutehnika-heinakahvlid
-            name_en: "Heinakahvlid"
-            name_et: "Heinakahvlid"
-            product_count: 0
-          - slug: v4-pollumajandus-ja-loomakasvatus-talutehnika-lohistatavad-akked
-            name_en: "Lohistatavad äkked"
-            name_et: "Lohistatavad äkked"
-            product_count: 0
-          - slug: v4-pollumajandus-ja-loomakasvatus-talutehnika-pallikahvlid
-            name_en: "Pallikahvlid"
-            name_et: "Pallikahvlid"
-            product_count: 0
-          - slug: v4-pollumajandus-ja-loomakasvatus-talutehnika-skid-steer-tarvikud
-            name_en: "Skid-steer & laaduri tarvikud"
-            name_et: "Skid-steer & laaduri tarvikud"
-            product_count: 0
           - slug: v4-pollumajandus-ja-loomakasvatus-talutehnika-traktori-ballastkastid
-            name_en: "Traktori ballastkastid"
-            name_et: "Traktori ballastkastid"
+            name_en: "Ballast ja raskused"
+            name_et: "Ballast ja raskused"
             product_count: 0
           - slug: v4-pollumajandus-ja-loomakasvatus-talutehnika-traktori-kolmepunkti-haakeadapterid
-            name_en: "Traktori kolmepunkti haakeadapterid"
-            name_et: "Traktori kolmepunkti haakeadapterid"
+            name_en: "Haakeadapterid (3-point)"
+            name_et: "Haakeadapterid (3-point)"
+            product_count: 0
+          - slug: v4-pollumajandus-ja-loomakasvatus-talutehnika-pallikahvlid
+            name_en: "Heinatöö ja pallikäsitlus"
+            name_et: "Heinatöö ja pallikäsitlus"
+            product_count: 0
+          - slug: v4-pollumajandus-ja-loomakasvatus-talutehnika-lohistatavad-akked
+            name_en: "Mullaharimine (äkked ja kultivaatorid)"
+            name_et: "Mullaharimine (äkked ja kultivaatorid)"
+            product_count: 0
+          - slug: v4-pollumajandus-talutehnika-muud
+            name_en: "Muud talutehnika"
+            name_et: "Muud talutehnika"
+            product_count: 0
+          - slug: v4-pollumajandus-talutehnika-pinnasetoo-greiderdamine
+            name_en: "Pinnasetöö ja greiderdamine"
+            name_et: "Pinnasetöö ja greiderdamine"
             product_count: 0
       - slug: v4-pollumajandus-ja-loomakasvatus-mesindus
         name_en: "Mesindus"
