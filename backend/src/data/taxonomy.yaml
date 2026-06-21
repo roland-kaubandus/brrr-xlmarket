@@ -2604,59 +2604,633 @@ l1:
       - slug: v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor
         name_en: "Sisustustarvikud & dekoor"
         name_et: "Sisustustarvikud & dekoor"
-        product_count: 494
+        product_count: 0
+        subs:
+          - slug: v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-dekoratiivlaternad
+            name_en: "Dekoratiivlaternad"
+            name_et: "Dekoratiivlaternad"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-diskopallid
+            name_en: "Diskopallid"
+            name_et: "Diskopallid"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-ehte-ja-hoiukarbid
+            name_en: "Ehte- & hoiukarbid"
+            name_et: "Ehte- & hoiukarbid"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-isekleepuv-tapeet
+            name_en: "Isekleepuv tapeet"
+            name_et: "Isekleepuv tapeet"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-joulu-ja-dekoratiivparjad
+            name_en: "Jõulu- & dekoratiivpärjad"
+            name_et: "Jõulu- & dekoratiivpärjad"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-kaardikogumiku-hoiukohvrid
+            name_en: "Kaardikogumiku hoiukohvrid"
+            name_et: "Kaardikogumiku hoiukohvrid"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-kardinasiinid-ja-susteemid
+            name_en: "Kardinasiinid & -süsteemid"
+            name_et: "Kardinasiinid & -süsteemid"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-kellamehhanismid-ja-seinakellad
+            name_en: "Kellamehhanismid & seinakellad"
+            name_et: "Kellamehhanismid & seinakellad"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-kontoritooli-alused
+            name_en: "Kontoritooli alused"
+            name_et: "Kontoritooli alused"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-kunsttaime-seinapaneelid-ja-kunstmuru
+            name_en: "Kunsttaime seinapaneelid & kunstmuru"
+            name_et: "Kunsttaime seinapaneelid & kunstmuru"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-kunsttaimed-ja-lilled
+            name_en: "Kunsttaimed & -lilled"
+            name_et: "Kunsttaimed & -lilled"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-lauajalad
+            name_en: "Lauajalad"
+            name_et: "Lauajalad"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-lauakaitsed-ja-kiled
+            name_en: "Lauakaitsed & -kiled"
+            name_et: "Lauakaitsed & -kiled"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-lauaplaadid
+            name_en: "Lauaplaadid"
+            name_et: "Lauaplaadid"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-laudlinad
+            name_en: "Laudlinad"
+            name_et: "Laudlinad"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-lillealused-ja-statiivid
+            name_en: "Lillealused & -statiivid"
+            name_et: "Lillealused & -statiivid"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-lillevaasid
+            name_en: "Lillevaasid"
+            name_et: "Lillevaasid"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-mooblijalad
+            name_en: "Mööblijalad"
+            name_et: "Mööblijalad"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-mooblirattad
+            name_en: "Mööblirattad"
+            name_et: "Mööblirattad"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-peeglid
+            name_en: "Peeglid"
+            name_et: "Peeglid"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-pulmakaared-ja-lilledekoor
+            name_en: "Pulmakaared & lilledekoor"
+            name_et: "Pulmakaared & lilledekoor"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-puuvillakoiest-korvid
+            name_en: "Puuvillaköiest korvid"
+            name_et: "Puuvillaköiest korvid"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-seinavoodi-mehhanismid
+            name_en: "Seinavoodi mehhanismid"
+            name_et: "Seinavoodi mehhanismid"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-sigarihumidorid
+            name_en: "Sigarihumidorid"
+            name_et: "Sigarihumidorid"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-sailivlilled-kinkekarbis
+            name_en: "Säilivlilled kinkekarbis"
+            name_et: "Säilivlilled kinkekarbis"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-teadetetahvlid
+            name_en: "Teadetetahvlid"
+            name_et: "Teadetetahvlid"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-teleri-seinabraketid-ja-jalused
+            name_en: "Teleri seinabraketid & jalused"
+            name_et: "Teleri seinabraketid & jalused"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-toolikatted-ja-umbrised
+            name_en: "Toolikatted & -ümbrised"
+            name_et: "Toolikatted & -ümbrised"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-vitraazaknad-ja-paneelid
+            name_en: "Vitraažaknad & -paneelid"
+            name_et: "Vitraažaknad & -paneelid"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-vitriinkarbid-ja-spordisuveniirid
+            name_en: "Vitriinkarbid & spordisuveniirid"
+            name_et: "Vitriinkarbid & spordisuveniirid"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-ohupallikaared-ja-raamid
+            name_en: "Õhupallikaared & raamid"
+            name_et: "Õhupallikaared & raamid"
+            product_count: 0
       - slug: v4-moobel-ja-sisustus-riiulid-ja-hoiustamine
         name_en: "Riiulid & hoiustamine"
         name_et: "Riiulid & hoiustamine"
-        product_count: 295
+        product_count: 0
+        subs:
+          - slug: v4-moobel-ja-sisustus-riiulid-ja-hoiustamine-bambusriiulid
+            name_en: "Bambusriiulid"
+            name_et: "Bambusriiulid"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-riiulid-ja-hoiustamine-ekspositsioonirestid
+            name_en: "Ekspositsioonirestid"
+            name_et: "Ekspositsioonirestid"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-riiulid-ja-hoiustamine-filamendi-ja-kunstirestid
+            name_en: "Filamendi- & kunstirestid"
+            name_et: "Filamendi- & kunstirestid"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-riiulid-ja-hoiustamine-hoiukastid-ja-kirstud
+            name_en: "Hoiukastid & -kirstud"
+            name_et: "Hoiukastid & -kirstud"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-riiulid-ja-hoiustamine-jalatsihoiustamine
+            name_en: "Jalatsihoiustamine"
+            name_et: "Jalatsihoiustamine"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-riiulid-ja-hoiustamine-kaminariiulid-ja-mantlid
+            name_en: "Kaminariiulid & -mantlid"
+            name_et: "Kaminariiulid & -mantlid"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-riiulid-ja-hoiustamine-kokkupandavad-hoiuriiulid-ratastega
+            name_en: "Kokkupandavad hoiuriiulid ratastega"
+            name_et: "Kokkupandavad hoiuriiulid ratastega"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-riiulid-ja-hoiustamine-koogiriiulid-ja-kapid
+            name_en: "Köögiriiulid & -kapid"
+            name_et: "Köögiriiulid & -kapid"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-riiulid-ja-hoiustamine-lauariiulid
+            name_en: "Lauariiulid"
+            name_et: "Lauariiulid"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-riiulid-ja-hoiustamine-meediariiulid-ja-kapid
+            name_en: "Meediariiulid & -kapid"
+            name_et: "Meediariiulid & -kapid"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-riiulid-ja-hoiustamine-metallriiulid
+            name_en: "Metallriiulid"
+            name_et: "Metallriiulid"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-riiulid-ja-hoiustamine-nurgariiulikapid
+            name_en: "Nurgariiulikapid"
+            name_et: "Nurgariiulikapid"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-riiulid-ja-hoiustamine-ostukorvid
+            name_en: "Ostukorvid"
+            name_et: "Ostukorvid"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-riiulid-ja-hoiustamine-pesukorvid-ja-sorteerijad
+            name_en: "Pesukorvid & -sorteerijad"
+            name_et: "Pesukorvid & -sorteerijad"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-riiulid-ja-hoiustamine-pesumasina-pealsed-riiulid
+            name_en: "Pesumasina pealsed riiulid"
+            name_et: "Pesumasina pealsed riiulid"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-riiulid-ja-hoiustamine-raamaturiiulid
+            name_en: "Raamaturiiulid"
+            name_et: "Raamaturiiulid"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-riiulid-ja-hoiustamine-redeliriiulid
+            name_en: "Redeliriiulid"
+            name_et: "Redeliriiulid"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-riiulid-ja-hoiustamine-riiulikandurid-ja-kinnitused
+            name_en: "Riiulikandurid & -kinnitused"
+            name_et: "Riiulikandurid & -kinnitused"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-riiulid-ja-hoiustamine-roivariiulid-ja-nagid
+            name_en: "Rõivariiulid & -nagid"
+            name_et: "Rõivariiulid & -nagid"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-riiulid-ja-hoiustamine-sahtlitega-pohikapid
+            name_en: "Sahtlitega põhikapid"
+            name_et: "Sahtlitega põhikapid"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-riiulid-ja-hoiustamine-seinakapid
+            name_en: "Seinakapid"
+            name_et: "Seinakapid"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-riiulid-ja-hoiustamine-seinariiulid
+            name_en: "Seinariiulid"
+            name_et: "Seinariiulid"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-riiulid-ja-hoiustamine-telefonihoiukapsel-ja-kapid
+            name_en: "Telefonihoiukapsel- & kapid"
+            name_et: "Telefonihoiukapsel- & kapid"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-riiulid-ja-hoiustamine-vannitoakapid-ja-hoiustamine
+            name_en: "Vannitoakapid & hoiustamine"
+            name_et: "Vannitoakapid & hoiustamine"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-riiulid-ja-hoiustamine-veini-ja-pudeliriiulid
+            name_en: "Veini- & pudeliriiulid"
+            name_et: "Veini- & pudeliriiulid"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-riiulid-ja-hoiustamine-voodialused-hoiukastid
+            name_en: "Voodialused hoiukastid"
+            name_et: "Voodialused hoiukastid"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-riiulid-ja-hoiustamine-valjatommatavad-korraldajad
+            name_en: "Väljatõmmatavad korraldajad"
+            name_et: "Väljatõmmatavad korraldajad"
+            product_count: 0
       - slug: v4-moobel-ja-sisustus-kontorimoobel-ja-tarvikud
         name_en: "Kontorimööbel & -tarvikud"
         name_et: "Kontorimööbel & -tarvikud"
-        product_count: 220
+        product_count: 0
+        subs:
+          - slug: v4-moobel-ja-sisustus-kontorimoobel-ja-tarvikud-brosuuri-ja-ajakirjahoidikud
+            name_en: "Brošüüri- & ajakirjahoidikud"
+            name_et: "Brošüüri- & ajakirjahoidikud"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-kontorimoobel-ja-tarvikud-dokumendisorteerijad-ja-organisaatorid
+            name_en: "Dokumendisorteerijad & -organisaatorid"
+            name_et: "Dokumendisorteerijad & -organisaatorid"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-kontorimoobel-ja-tarvikud-joonistehoidjad-ja-restid
+            name_en: "Joonistehoidjad & -restid"
+            name_et: "Joonistehoidjad & -restid"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-kontorimoobel-ja-tarvikud-kirjutus-ja-arvutilauad
+            name_en: "Kirjutus- & arvutilauad"
+            name_et: "Kirjutus- & arvutilauad"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-kontorimoobel-ja-tarvikud-kontoritoolid
+            name_en: "Kontoritoolid"
+            name_et: "Kontoritoolid"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-kontorimoobel-ja-tarvikud-konepuldid
+            name_en: "Kõnepuldid"
+            name_et: "Kõnepuldid"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-kontorimoobel-ja-tarvikud-lauasahtlid-ja-alused
+            name_en: "Lauasahtlid & -alused"
+            name_et: "Lauasahtlid & -alused"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-kontorimoobel-ja-tarvikud-ostukorvid
+            name_en: "Ostukorvid"
+            name_et: "Ostukorvid"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-kontorimoobel-ja-tarvikud-raha-ja-mundiloendusmasinad
+            name_en: "Raha- & mündiloendusmasinad"
+            name_et: "Raha- & mündiloendusmasinad"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-kontorimoobel-ja-tarvikud-seisulauad-ja-lauaraamid
+            name_en: "Seisulauad & lauaraamid"
+            name_et: "Seisulauad & lauaraamid"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-kontorimoobel-ja-tarvikud-tahvlid-ja-teadetetahvlid
+            name_en: "Tahvlid & teadetetahvlid"
+            name_et: "Tahvlid & teadetetahvlid"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-kontorimoobel-ja-tarvikud-toimiku-ja-dokumendikapid
+            name_en: "Toimiku- & dokumendikapid"
+            name_et: "Toimiku- & dokumendikapid"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-kontorimoobel-ja-tarvikud-vastuvotu-ja-registratuurilauad
+            name_en: "Vastuvõtu- & registratuurilauad"
+            name_et: "Vastuvõtu- & registratuurilauad"
+            product_count: 0
       - slug: v4-moobel-ja-sisustus-lauad
         name_en: "Lauad"
         name_et: "Lauad"
-        product_count: 194
+        product_count: 0
+        subs:
+          - slug: v4-moobel-ja-sisustus-lauad-baarilauad-ja-komplektid
+            name_en: "Baarilauad ja -komplektid"
+            name_et: "Baarilauad ja -komplektid"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-lauad-diivanilauad
+            name_en: "Diivanilauad"
+            name_et: "Diivanilauad"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-lauad-konsoolilauad
+            name_en: "Konsoolilauad"
+            name_et: "Konsoolilauad"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-lauad-kasitoo-ja-ombluslauad
+            name_en: "Käsitöö- ja õmbluslauad"
+            name_et: "Käsitöö- ja õmbluslauad"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-lauad-korval-ja-kuljelauad
+            name_en: "Kõrval- ja küljelauad"
+            name_et: "Kõrval- ja küljelauad"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-lauad-koogikarud-ja-koogisaared
+            name_en: "Köögikärud ja köögisaared"
+            name_et: "Köögikärud ja köögisaared"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-lauad-kulmiku-alused
+            name_en: "Külmiku alused"
+            name_et: "Külmiku alused"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-lauad-meditsiinikarud-ja-lauad
+            name_en: "Meditsiinikärud ja -lauad"
+            name_et: "Meditsiinikärud ja -lauad"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-lauad-seinale-kinnitatavad-kokkuklapitavad-lauad
+            name_en: "Seinale kinnitatavad kokkuklapitavad lauad"
+            name_et: "Seinale kinnitatavad kokkuklapitavad lauad"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-lauad-soogilauad
+            name_en: "Söögilauad"
+            name_et: "Söögilauad"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-lauad-teenindus-ja-hoiukarud
+            name_en: "Teenindus- ja hoiukärud"
+            name_et: "Teenindus- ja hoiukärud"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-lauad-ookapid-ja-oolauad
+            name_en: "Öökapid ja öölauad"
+            name_et: "Öökapid ja öölauad"
+            product_count: 0
       - slug: v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu
         name_en: "Magamistoamööbel & voodipesu"
         name_et: "Magamistoamööbel & voodipesu"
-        product_count: 171
+        product_count: 0
+        subs:
+          - slug: v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-ehtekapid-ja-peeglid
+            name_en: "Ehtekapid & peeglid"
+            name_et: "Ehtekapid & peeglid"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-hoiupingid-ja-ottomanid
+            name_en: "Hoiupingid & ottomanid"
+            name_et: "Hoiupingid & ottomanid"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-kummutid-ja-sahtlikapid
+            name_en: "Kummutid & sahtlikapid"
+            name_et: "Kummutid & sahtlikapid"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-maanduslinad
+            name_en: "Maanduslinad"
+            name_et: "Maanduslinad"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-madratsikaitsed-ja-soojendustooted
+            name_en: "Madratsikaitsed & soojendustooted"
+            name_et: "Madratsikaitsed & soojendustooted"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-madratsivahe-taidised
+            name_en: "Madratsivahe täidised"
+            name_et: "Madratsivahe täidised"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-padjad-ja-magamispadjad
+            name_en: "Padjad & magamispadjad"
+            name_et: "Padjad & magamispadjad"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-riidekapid-ja-garderoobisusteemid
+            name_en: "Riidekapid & garderoobisüsteemid"
+            name_et: "Riidekapid & garderoobisüsteemid"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-tatami-matid-ja-matrassid
+            name_en: "Tatami matid & matrassid"
+            name_et: "Tatami matid & matrassid"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-tekid
+            name_en: "Tekid"
+            name_et: "Tekid"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-voodipeatsid
+            name_en: "Voodipeatsid"
+            name_et: "Voodipeatsid"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-voodipohjad-ja-latialused
+            name_en: "Voodipõhjad & latialused"
+            name_et: "Voodipõhjad & latialused"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-voodiraamid-ja-baldahhiinvoodid
+            name_en: "Voodiraamid & baldahhiinvoodid"
+            name_et: "Voodiraamid & baldahhiinvoodid"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-vooditelgid
+            name_en: "Vooditelgid"
+            name_et: "Vooditelgid"
+            product_count: 0
       - slug: v4-moobel-ja-sisustus-elutoamoobel
         name_en: "Elutoamööbel"
         name_et: "Elutoamööbel"
-        product_count: 152
+        product_count: 0
+        subs:
+          - slug: v4-moobel-ja-sisustus-elutoamoobel-diivanid
+            name_en: "Diivanid"
+            name_et: "Diivanid"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-elutoamoobel-hoiupingid-ja-ottomaanid
+            name_en: "Hoiupingid ja ottomaanid"
+            name_et: "Hoiupingid ja ottomaanid"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-elutoamoobel-jalatsikapid
+            name_en: "Jalatsikapid"
+            name_et: "Jalatsikapid"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-elutoamoobel-kapid-ja-kummutid
+            name_en: "Kapid ja kummutid"
+            name_et: "Kapid ja kummutid"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-elutoamoobel-kohvibaari-ja-baarikapid
+            name_en: "Kohvibaari- ja baarikapid"
+            name_et: "Kohvibaari- ja baarikapid"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-elutoamoobel-konsoollauad
+            name_en: "Konsoollauad"
+            name_et: "Konsoollauad"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-elutoamoobel-kott-toolid
+            name_en: "Kott-toolid"
+            name_et: "Kott-toolid"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-elutoamoobel-meediakapid
+            name_en: "Meediakapid"
+            name_et: "Meediakapid"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-elutoamoobel-rotangmoobel
+            name_en: "Rotangmööbel"
+            name_et: "Rotangmööbel"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-elutoamoobel-tv-alused
+            name_en: "TV-alused"
+            name_et: "TV-alused"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-elutoamoobel-tugitoolid
+            name_en: "Tugitoolid"
+            name_et: "Tugitoolid"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-elutoamoobel-vinuulplaatide-hoiualused
+            name_en: "Vinüülplaatide hoiualused"
+            name_et: "Vinüülplaatide hoiualused"
+            product_count: 0
       - slug: v4-moobel-ja-sisustus-lapsemoobel
         name_en: "Lapsemööbel"
         name_et: "Lapsemööbel"
-        product_count: 115
+        product_count: 0
+        subs:
+          - slug: v4-moobel-ja-sisustus-lapsemoobel-dekoratsioonid-ja-maakerad
+            name_en: "Dekoratsioonid ja maakerad"
+            name_et: "Dekoratsioonid ja maakerad"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-lapsemoobel-laste-diivanid-ja-diivanvoodid
+            name_en: "Laste diivanid ja diivanvoodid"
+            name_et: "Laste diivanid ja diivanvoodid"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-lapsemoobel-laste-kirjutuslauad-ja-tookohad
+            name_en: "Laste kirjutuslauad ja töökohad"
+            name_et: "Laste kirjutuslauad ja töökohad"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-lapsemoobel-laste-koogi-ja-oppetornid
+            name_en: "Laste köögi- ja õppetornid"
+            name_et: "Laste köögi- ja õppetornid"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-lapsemoobel-laste-lamamistoolid
+            name_en: "Laste lamamistoolid"
+            name_et: "Laste lamamistoolid"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-lapsemoobel-laste-laua-ja-toolikomplektid
+            name_en: "Laste laua- ja toolikomplektid"
+            name_et: "Laste laua- ja toolikomplektid"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-lapsemoobel-laste-manguasjade-hoiukastid-ja-pingid
+            name_en: "Laste mänguasjade hoiukastid ja pingid"
+            name_et: "Laste mänguasjade hoiukastid ja pingid"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-lapsemoobel-laste-toolid-ja-istmed
+            name_en: "Laste toolid ja istmed"
+            name_et: "Laste toolid ja istmed"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-lapsemoobel-laste-voodid-ja-madratsid
+            name_en: "Laste voodid ja madratsid"
+            name_et: "Laste voodid ja madratsid"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-lapsemoobel-lasteriiulid-ja-raamaturiiulid
+            name_en: "Lasteriiulid ja raamaturiiulid"
+            name_et: "Lasteriiulid ja raamaturiiulid"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-lapsemoobel-mahkimislauad
+            name_en: "Mähkimislauad"
+            name_et: "Mähkimislauad"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-lapsemoobel-riidepuud-ja-esikumoobel
+            name_en: "Riidepuud ja esikumööbel"
+            name_et: "Riidepuud ja esikumööbel"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-lapsemoobel-tooli-satiinpaelad-ja-kaunistused
+            name_en: "Tooli satiinpaelad ja kaunistused"
+            name_et: "Tooli satiinpaelad ja kaunistused"
+            product_count: 0
       - slug: v4-moobel-ja-sisustus-toolid-ja-istmed
         name_en: "Toolid & istmed"
         name_et: "Toolid & istmed"
-        product_count: 77
+        product_count: 0
+        subs:
+          - slug: v4-moobel-ja-sisustus-toolid-ja-istmed-baaritoolid
+            name_en: "Baaritoolid"
+            name_et: "Baaritoolid"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-toolid-ja-istmed-kokkupandavad-toolid
+            name_en: "Kokkupandavad toolid"
+            name_et: "Kokkupandavad toolid"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-toolid-ja-istmed-kontori-ja-tootoolid
+            name_en: "Kontori- ja töötoolid"
+            name_et: "Kontori- ja töötoolid"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-toolid-ja-istmed-pingid
+            name_en: "Pingid"
+            name_et: "Pingid"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-toolid-ja-istmed-soogitoolid
+            name_en: "Söögitoolid"
+            name_et: "Söögitoolid"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-toolid-ja-istmed-taburetid-ja-tootoolid-ratastega
+            name_en: "Taburetid ja töötoolid ratastega"
+            name_et: "Taburetid ja töötoolid ratastega"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-toolid-ja-istmed-vannitoa-istmed
+            name_en: "Vannitoa istmed"
+            name_et: "Vannitoa istmed"
+            product_count: 0
       - slug: v4-moobel-ja-sisustus-ruumijagajad-ja-akustika
         name_en: "Ruumijagajad & akustika"
         name_et: "Ruumijagajad & akustika"
-        product_count: 70
+        product_count: 0
+        subs:
+          - slug: v4-moobel-ja-sisustus-ruumijagajad-ja-akustika-kokkupandavad-ruumijagajad
+            name_en: "Kokkupandavad ruumijagajad"
+            name_et: "Kokkupandavad ruumijagajad"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-ruumijagajad-ja-akustika-proovikabiinid
+            name_en: "Proovikabiinid"
+            name_et: "Proovikabiinid"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-ruumijagajad-ja-akustika-ruumijagajad
+            name_en: "Ruumijagajad"
+            name_et: "Ruumijagajad"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-ruumijagajad-ja-akustika-vaheseinad
+            name_en: "Vaheseinad"
+            name_et: "Vaheseinad"
+            product_count: 0
       - slug: v4-moobel-ja-sisustus-esikumoobel-ja-jalatsikapid
         name_en: "Esikumööbel & jalatsikapid"
         name_et: "Esikumööbel & jalatsikapid"
-        product_count: 16
+        product_count: 0
+        subs:
+          - slug: v4-moobel-ja-sisustus-esikumoobel-ja-jalatsikapid-jalatsikapid
+            name_en: "Jalatsikapid"
+            name_et: "Jalatsikapid"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-esikumoobel-ja-jalatsikapid-jalatsipingid-ja-istmed
+            name_en: "Jalatsipingid & istmed"
+            name_et: "Jalatsipingid & istmed"
+            product_count: 0
       - slug: v4-moobel-ja-sisustus-lauakatted-ja-tekstiil
         name_en: "Lauakatted & tekstiil"
         name_et: "Lauakatted & tekstiil"
-        product_count: 12
+        product_count: 0
+        subs:
+          - slug: v4-moobel-ja-sisustus-lauakatted-ja-tekstiil-laudlinad
+            name_en: "Laudlinad"
+            name_et: "Laudlinad"
+            product_count: 0
       - slug: v4-moobel-ja-sisustus-aknakatted-ja-kardinatarvikud
         name_en: "Aknakatted & kardinatarvikud"
         name_et: "Aknakatted & kardinatarvikud"
-        product_count: 10
+        product_count: 0
+        subs:
+          - slug: v4-moobel-ja-sisustus-aknakatted-ja-kardinatarvikud-paneelkardinad
+            name_en: "Paneelkardinad"
+            name_et: "Paneelkardinad"
+            product_count: 0
       - slug: v4-moobel-ja-sisustus-vannitoamoobel
         name_en: "Vannitoamööbel"
         name_et: "Vannitoamööbel"
-        product_count: 8
+        product_count: 0
+        subs:
+          - slug: v4-moobel-ja-sisustus-vannitoamoobel-peeglikapid
+            name_en: "Peeglikapid"
+            name_et: "Peeglikapid"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-vannitoamoobel-vannitoakapid
+            name_en: "Vannitoakapid"
+            name_et: "Vannitoakapid"
+            product_count: 0
       - slug: v4-moobel-ja-sisustus-tv-alused-ja-kinnitused
         name_en: "TV-alused & kinnitused"
         name_et: "TV-alused & kinnitused"
-        product_count: 4
+        product_count: 0
+        subs:
+          - slug: v4-moobel-ja-sisustus-tv-alused-ja-kinnitused-tv-seinabraketid
+            name_en: "TV seinabraketid"
+            name_et: "TV seinabraketid"
+            product_count: 0
   - slug: v4-aed-ja-aiatehnika
     name_en: "Aed ja aiatehnika"
     name_et: "Aed ja aiatehnika"
@@ -3338,27 +3912,180 @@ l1:
       - slug: v4-varjualused-telgid-ja-kasvuhooned-varikatused-ja-pergolad
         name_en: "Varikatused & pergolad"
         name_et: "Varikatused & pergolad"
-        product_count: 104
+        product_count: 0
+        subs:
+          - slug: v4-varjualused-telgid-ja-kasvuhooned-varikatused-ja-pergolad-katete-ja-tarpide-tarvikud
+            name_en: "Katete ja tarpide tarvikud"
+            name_et: "Katete ja tarpide tarvikud"
+            product_count: 0
+          - slug: v4-varjualused-telgid-ja-kasvuhooned-varikatused-ja-pergolad-kunstlikud-olg-ja-tikikatused
+            name_en: "Kunstlikud õlg- ja tikikatused"
+            name_et: "Kunstlikud õlg- ja tikikatused"
+            product_count: 0
+          - slug: v4-varjualused-telgid-ja-kasvuhooned-varikatused-ja-pergolad-paviljoni-ja-gasebo-kulgseinad-ning-kardinad
+            name_en: "Paviljoni ja gasebo külgseinad ning kardinad"
+            name_et: "Paviljoni ja gasebo külgseinad ning kardinad"
+            product_count: 0
+          - slug: v4-varjualused-telgid-ja-kasvuhooned-varikatused-ja-pergolad-paviljoni-ja-gasebo-saasevorgud
+            name_en: "Paviljoni ja gasebo sääsevõrgud"
+            name_et: "Paviljoni ja gasebo sääsevõrgud"
+            product_count: 0
+          - slug: v4-varjualused-telgid-ja-kasvuhooned-varikatused-ja-pergolad-paviljoni-ja-gasebo-talvekatted
+            name_en: "Paviljoni ja gasebo talvekatted"
+            name_et: "Paviljoni ja gasebo talvekatted"
+            product_count: 0
+          - slug: v4-varjualused-telgid-ja-kasvuhooned-varikatused-ja-pergolad-paviljonid-ja-gasebod
+            name_en: "Paviljonid ja gasebod"
+            name_et: "Paviljonid ja gasebod"
+            product_count: 0
+          - slug: v4-varjualused-telgid-ja-kasvuhooned-varikatused-ja-pergolad-pergola-katted
+            name_en: "Pergola katted"
+            name_et: "Pergola katted"
+            product_count: 0
+          - slug: v4-varjualused-telgid-ja-kasvuhooned-varikatused-ja-pergolad-pergola-kinnitustarvikud
+            name_en: "Pergola kinnitustarvikud"
+            name_et: "Pergola kinnitustarvikud"
+            product_count: 0
+          - slug: v4-varjualused-telgid-ja-kasvuhooned-varikatused-ja-pergolad-pergola-nurgatarvikud
+            name_en: "Pergola nurgatarvikud"
+            name_et: "Pergola nurgatarvikud"
+            product_count: 0
+          - slug: v4-varjualused-telgid-ja-kasvuhooned-varikatused-ja-pergolad-pergolad
+            name_en: "Pergolad"
+            name_et: "Pergolad"
+            product_count: 0
+          - slug: v4-varjualused-telgid-ja-kasvuhooned-varikatused-ja-pergolad-paikesevarjukatted-ja-kangad
+            name_en: "Päikesevarjukatted ja -kangad"
+            name_et: "Päikesevarjukatted ja -kangad"
+            product_count: 0
+          - slug: v4-varjualused-telgid-ja-kasvuhooned-varikatused-ja-pergolad-telgid-ja-telgiseinad
+            name_en: "Telgid ja telgiseinad"
+            name_et: "Telgid ja telgiseinad"
+            product_count: 0
+          - slug: v4-varjualused-telgid-ja-kasvuhooned-varikatused-ja-pergolad-uksekatuse-ja-aknakatuse-visiirid
+            name_en: "Uksekatuse ja aknakatuse visiirid"
+            name_et: "Uksekatuse ja aknakatuse visiirid"
+            product_count: 0
+          - slug: v4-varjualused-telgid-ja-kasvuhooned-varikatused-ja-pergolad-uksekatuse-varikatused
+            name_en: "Uksekatuse varikatused"
+            name_et: "Uksekatuse varikatused"
+            product_count: 0
       - slug: v4-varjualused-telgid-ja-kasvuhooned-telgid
         name_en: "Telgid"
         name_et: "Telgid"
-        product_count: 75
+        product_count: 0
+        subs:
+          - slug: v4-varjualused-telgid-ja-kasvuhooned-telgid-ekraan-ja-soeltelgid
+            name_en: "Ekraan- ja sõeltelgid"
+            name_et: "Ekraan- ja sõeltelgid"
+            product_count: 0
+          - slug: v4-varjualused-telgid-ja-kasvuhooned-telgid-jalgrattahoidlad-ja-tendid
+            name_en: "Jalgrattahoidlad ja -tendid"
+            name_et: "Jalgrattahoidlad ja -tendid"
+            product_count: 0
+          - slug: v4-varjualused-telgid-ja-kasvuhooned-telgid-peotelgid
+            name_en: "Peotelgid"
+            name_et: "Peotelgid"
+            product_count: 0
+          - slug: v4-varjualused-telgid-ja-kasvuhooned-telgid-pop-up-telgid-ja-varjualused
+            name_en: "Pop-up telgid ja varjualused"
+            name_et: "Pop-up telgid ja varjualused"
+            product_count: 0
+          - slug: v4-varjualused-telgid-ja-kasvuhooned-telgid-rannatelgid-ja-varjualused
+            name_en: "Rannatelgid ja -varjualused"
+            name_et: "Rannatelgid ja -varjualused"
+            product_count: 0
+          - slug: v4-varjualused-telgid-ja-kasvuhooned-telgid-saasevorguga-varjualused-ja-paviljonid
+            name_en: "Sääsevõrguga varjualused ja paviljonid"
+            name_et: "Sääsevõrguga varjualused ja paviljonid"
+            product_count: 0
       - slug: v4-varjualused-telgid-ja-kasvuhooned-markiisid
         name_en: "Markiisid"
         name_et: "Markiisid"
-        product_count: 67
+        product_count: 0
+        subs:
+          - slug: v4-varjualused-telgid-ja-kasvuhooned-markiisid-aknakatuse-varjualused-ja-visiirid
+            name_en: "Aknakatuse varjualused ja visiirid"
+            name_et: "Aknakatuse varjualused ja visiirid"
+            product_count: 0
+          - slug: v4-varjualused-telgid-ja-kasvuhooned-markiisid-automarkiisid
+            name_en: "Automarkiisid"
+            name_et: "Automarkiisid"
+            product_count: 0
+          - slug: v4-varjualused-telgid-ja-kasvuhooned-markiisid-kasitsi-sissetommatavad-markiisid
+            name_en: "Käsitsi sissetõmmatavad markiisid"
+            name_et: "Käsitsi sissetõmmatavad markiisid"
+            product_count: 0
+          - slug: v4-varjualused-telgid-ja-kasvuhooned-markiisid-kulgekraanid-ja-kulgseinad
+            name_en: "Külgekraanid ja külgseinad"
+            name_et: "Külgekraanid ja külgseinad"
+            product_count: 0
+          - slug: v4-varjualused-telgid-ja-kasvuhooned-markiisid-matka-ja-haagissuvila-markiisid
+            name_en: "Matka- ja haagissuvila markiisid"
+            name_et: "Matka- ja haagissuvila markiisid"
+            product_count: 0
+          - slug: v4-varjualused-telgid-ja-kasvuhooned-markiisid-mootormarkiisid
+            name_en: "Mootormarkiisid"
+            name_et: "Mootormarkiisid"
+            product_count: 0
+          - slug: v4-varjualused-telgid-ja-kasvuhooned-markiisid-rv-markiisi-paikesekaitsed
+            name_en: "RV markiisi päikesekaitsed"
+            name_et: "RV markiisi päikesekaitsed"
+            product_count: 0
       - slug: v4-varjualused-telgid-ja-kasvuhooned-kasvuhooned
         name_en: "Kasvuhooned"
         name_et: "Kasvuhooned"
-        product_count: 65
+        product_count: 0
+        subs:
+          - slug: v4-varjualused-telgid-ja-kasvuhooned-kasvuhooned-kasvuhoone-kiled-ja-katted
+            name_en: "Kasvuhoone kiled ja katted"
+            name_et: "Kasvuhoone kiled ja katted"
+            product_count: 0
+          - slug: v4-varjualused-telgid-ja-kasvuhooned-kasvuhooned-kasvuhoone-kinnitustarvikud
+            name_en: "Kasvuhoone kinnitustarvikud"
+            name_et: "Kasvuhoone kinnitustarvikud"
+            product_count: 0
+          - slug: v4-varjualused-telgid-ja-kasvuhooned-kasvuhooned-kasvuhooned
+            name_en: "Kasvuhooned"
+            name_et: "Kasvuhooned"
+            product_count: 0
+          - slug: v4-varjualused-telgid-ja-kasvuhooned-kasvuhooned-kasvutendid-ja-telgid
+            name_en: "Kasvutendid ja -telgid"
+            name_et: "Kasvutendid ja -telgid"
+            product_count: 0
+          - slug: v4-varjualused-telgid-ja-kasvuhooned-kasvuhooned-polukarbonaatpaneelid
+            name_en: "Polükarbonaatpaneelid"
+            name_et: "Polükarbonaatpaneelid"
+            product_count: 0
+          - slug: v4-varjualused-telgid-ja-kasvuhooned-kasvuhooned-tunnelkasvuhooned
+            name_en: "Tunnelkasvuhooned"
+            name_et: "Tunnelkasvuhooned"
+            product_count: 0
       - slug: v4-varjualused-telgid-ja-kasvuhooned-autovarjualused-ja-garaazitelgid
         name_en: "Autovarjualused & garaažitelgid"
         name_et: "Autovarjualused & garaažitelgid"
-        product_count: 50
+        product_count: 0
+        subs:
+          - slug: v4-varjualused-telgid-ja-kasvuhooned-autovarjualused-ja-garaazitelgid-autovarjualused
+            name_en: "Autovarjualused"
+            name_et: "Autovarjualused"
+            product_count: 0
+          - slug: v4-varjualused-telgid-ja-kasvuhooned-autovarjualused-ja-garaazitelgid-autovarjualuste-asenduskatted
+            name_en: "Autovarjualuste asenduskatted"
+            name_et: "Autovarjualuste asenduskatted"
+            product_count: 0
+          - slug: v4-varjualused-telgid-ja-kasvuhooned-autovarjualused-ja-garaazitelgid-hoiutelgid-ja-garaazitelgid
+            name_en: "Hoiutelgid & garaažitelgid"
+            name_et: "Hoiutelgid & garaažitelgid"
+            product_count: 0
+          - slug: v4-varjualused-telgid-ja-kasvuhooned-autovarjualused-ja-garaazitelgid-markiisid-ja-kuljekatused
+            name_en: "Markiisid & küljekatused"
+            name_et: "Markiisid & küljekatused"
+            product_count: 0
       - slug: v4-varjualused-telgid-ja-kasvuhooned-aiamajad-ja-kuurid
         name_en: "Aiamajad & kuurid"
         name_et: "Aiamajad & kuurid"
-        product_count: 2
+        product_count: 0
   - slug: v4-ehitus-remont-ja-varvid
     name_en: "Ehitus, remont ja värvid"
     name_et: "Ehitus, remont ja värvid"
