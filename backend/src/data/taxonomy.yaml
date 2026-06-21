@@ -6272,31 +6272,192 @@ l1:
       - slug: v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc
         name_en: "Laser, graveerimine & CNC"
         name_et: "Laser, graveerimine & CNC"
-        product_count: 233
-      - slug: v4-reklaami-truki-ja-graveerimisseadmed-kuumpress-ja-sublimatsioon
-        name_en: "Kuumpress & sublimatsioon"
-        name_et: "Kuumpress & sublimatsioon"
-        product_count: 126
+        product_count: 0
+        subs:
+          - slug: v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-3d-printeri-korpused-ja-katted
+            name_en: "3D-printeri korpused ja katted"
+            name_et: "3D-printeri korpused ja katted"
+            product_count: 0
+          - slug: v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-cnc-freespingid-ja-graveerijad
+            name_en: "CNC freespingid ja graveerijad"
+            name_et: "CNC freespingid ja graveerijad"
+            product_count: 0
+          - slug: v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-graveerimispingid-ja-klambrid
+            name_en: "Graveerimispingid ja -klambrid"
+            name_et: "Graveerimispingid ja -klambrid"
+            product_count: 0
+          - slug: v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-juveelimikroskoobid
+            name_en: "Juveelimikroskoobid"
+            name_et: "Juveelimikroskoobid"
+            product_count: 0
+          - slug: v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-kivide-lihvimis-ja-poleerimismasinad
+            name_en: "Kivide lihvimis- ja poleerimismasinad"
+            name_et: "Kivide lihvimis- ja poleerimismasinad"
+            product_count: 0
+          - slug: v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-lasergraveerija-kaitsekatted
+            name_en: "Lasergraveerija kaitsekatted"
+            name_et: "Lasergraveerija kaitsekatted"
+            product_count: 0
+          - slug: v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-lasergraveerijad-ja-loikurid
+            name_en: "Lasergraveerijad ja -lõikurid"
+            name_et: "Lasergraveerijad ja -lõikurid"
+            product_count: 0
+          - slug: v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-lasertorud-ja-toiteplokid
+            name_en: "Lasertorud ja toiteplokid"
+            name_et: "Lasertorud ja toiteplokid"
+            product_count: 0
+          - slug: v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-lineaarjuhikud-ja-liikumissusteemid
+            name_en: "Lineaarjuhikud ja liikumissüsteemid"
+            name_et: "Lineaarjuhikud ja liikumissüsteemid"
+            product_count: 0
+          - slug: v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-nahaloikus-ja-pressimismasinad
+            name_en: "Nahalõikus- ja pressimismasinad"
+            name_et: "Nahalõikus- ja pressimismasinad"
+            product_count: 0
+          - slug: v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-noopide-ja-markide-valmistusmasinad
+            name_en: "Nööpide ja märkide valmistusmasinad"
+            name_et: "Nööpide ja märkide valmistusmasinad"
+            product_count: 0
+          - slug: v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-paindvolliga-lihvimismasinad
+            name_en: "Paindvõlliga lihvimismasinad"
+            name_et: "Paindvõlliga lihvimismasinad"
+            product_count: 0
+          - slug: v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-spindelmootorid-ja-tarvikud
+            name_en: "Spindelmootorid ja tarvikud"
+            name_et: "Spindelmootorid ja tarvikud"
+            product_count: 0
+          - slug: v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-stantsimis-ja-pressimismasinad
+            name_en: "Stantsimis- ja pressimismasinad"
+            name_et: "Stantsimis- ja pressimismasinad"
+            product_count: 0
+          - slug: v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-sulatus-ja-poletusahjud
+            name_en: "Sulatus- ja põletusahjud"
+            name_et: "Sulatus- ja põletusahjud"
+            product_count: 0
+          - slug: v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-toostuslikud-vesijahutid
+            name_en: "Tööstuslikud vesijahutid"
+            name_et: "Tööstuslikud vesijahutid"
+            product_count: 0
+          - slug: v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-vaakumvalamismasinad
+            name_en: "Vaakumvalamismasinad"
+            name_et: "Vaakumvalamismasinad"
+            product_count: 0
+          - slug: v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-ohupuhuri-komplektid-laserloikuritele
+            name_en: "Õhupuhuri komplektid laserlõikuritele"
+            name_et: "Õhupuhuri komplektid laserlõikuritele"
+            product_count: 0
       - slug: v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign
         name_en: "Vinüül & sign"
         name_et: "Vinüül & sign"
-        product_count: 101
-      - slug: v4-reklaami-truki-ja-graveerimisseadmed-omblus-ja-tekstiil
-        name_en: "Õmblus & tekstiil"
-        name_et: "Õmblus & tekstiil"
-        product_count: 53
-      - slug: v4-reklaami-truki-ja-graveerimisseadmed-siidi-ja-padtrukk
-        name_en: "Siidi- & padtrükk"
-        name_et: "Siidi- & padtrükk"
-        product_count: 42
+        product_count: 0
+        subs:
+          - slug: v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-led-reklaamtahvlid-ja-ekraanid
+            name_en: "LED-reklaamtahvlid & -ekraanid"
+            name_et: "LED-reklaamtahvlid & -ekraanid"
+            product_count: 0
+          - slug: v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-naitustahvlid-ja-lauad
+            name_en: "Näitustahvlid & -lauad"
+            name_et: "Näitustahvlid & -lauad"
+            product_count: 0
+          - slug: v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-plotteri-paberirullid
+            name_en: "Plotteri paberirullid"
+            name_et: "Plotteri paberirullid"
+            product_count: 0
+          - slug: v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-posteri-ja-bannerihoidikud
+            name_en: "Posteri- & bännerihoidikud"
+            name_et: "Posteri- & bännerihoidikud"
+            product_count: 0
+          - slug: v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-reklaamlipud-ja-lipumastid
+            name_en: "Reklaamlipud & lipumastid"
+            name_et: "Reklaamlipud & lipumastid"
+            product_count: 0
+          - slug: v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-vinuulloikurid-ja-plotterid
+            name_en: "Vinüüllõikurid & plotterid"
+            name_et: "Vinüüllõikurid & plotterid"
+            product_count: 0
+      - slug: v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk
+        name_en: "Tekstiili- & rõivatrükk"
+        name_et: "Tekstiili- & rõivatrükk"
+        product_count: 0
+        subs:
+          - slug: v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-kuumpressi-ja-vinuulloikuri-komplektid
+            name_en: "Kuumpressi & vinüüllõikuri komplektid"
+            name_et: "Kuumpressi & vinüüllõikuri komplektid"
+            product_count: 0
+          - slug: v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-kuumpressi-tarvikud-ja-toolauad
+            name_en: "Kuumpressi tarvikud & töölauad"
+            name_et: "Kuumpressi tarvikud & töölauad"
+            product_count: 0
+          - slug: v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-kuumpressid
+            name_en: "Kuumpressid"
+            name_et: "Kuumpressid"
+            product_count: 0
+          - slug: v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-kuumpressid-sublimatsioon
+            name_en: "Kuumpressid (sublimatsioon)"
+            name_et: "Kuumpressid (sublimatsioon)"
+            product_count: 0
+          - slug: v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-kuumulekande-vinuul-htv
+            name_en: "Kuumülekande vinüül (HTV)"
+            name_et: "Kuumülekande vinüül (HTV)"
+            product_count: 0
+          - slug: v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-loikemasinad-ja-tarvikud
+            name_en: "Lõikemasinad & -tarvikud"
+            name_et: "Lõikemasinad & -tarvikud"
+            product_count: 0
+          - slug: v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-maalimistarvikud-ja-molbertid
+            name_en: "Maalimistarvikud & molbertid"
+            name_et: "Maalimistarvikud & molbertid"
+            product_count: 0
+          - slug: v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-mutsi-ja-kruusipressid
+            name_en: "Mütsi- & kruusipressid"
+            name_et: "Mütsi- & kruusipressid"
+            product_count: 0
+          - slug: v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-noopide-ja-markide-valmistamise-masinad
+            name_en: "Nööpide & märkide valmistamise masinad"
+            name_et: "Nööpide & märkide valmistamise masinad"
+            product_count: 0
+          - slug: v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-siiditruki-seadmed-ja-komplektid
+            name_en: "Siiditrüki seadmed & komplektid"
+            name_et: "Siiditrüki seadmed & komplektid"
+            product_count: 0
+          - slug: v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-stantsimis-ja-reljeefpressimismasinad
+            name_en: "Stantsimis- & reljeefpressimismasinad"
+            name_et: "Stantsimis- & reljeefpressimismasinad"
+            product_count: 0
+          - slug: v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-sublimatsioonitoorikud-topsid-ja-termosed
+            name_en: "Sublimatsioonitoorikud (topsid & termosed)"
+            name_et: "Sublimatsioonitoorikud (topsid & termosed)"
+            product_count: 0
+          - slug: v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-truki-ja-siiditrukikuivatid
+            name_en: "Trüki- & siiditrükikuivatid"
+            name_et: "Trüki- & siiditrükikuivatid"
+            product_count: 0
+          - slug: v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-truki-ja-termoprinterid
+            name_en: "Trüki- & termoprinterid"
+            name_et: "Trüki- & termoprinterid"
+            product_count: 0
+          - slug: v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-omblusmasinad
+            name_en: "Õmblusmasinad"
+            name_et: "Õmblusmasinad"
+            product_count: 0
       - slug: v4-reklaami-truki-ja-graveerimisseadmed-koitmine-ja-lamineerimine
         name_en: "Köitmine & lamineerimine"
         name_et: "Köitmine & lamineerimine"
-        product_count: 32
+        product_count: 0
+        subs:
+          - slug: v4-reklaami-truki-ja-graveerimisseadmed-koitmine-ja-lamineerimine-paberiloikurid
+            name_en: "Paberilõikurid"
+            name_et: "Paberilõikurid"
+            product_count: 0
       - slug: v4-reklaami-truki-ja-graveerimisseadmed-fotostuudio-ja-taustad
         name_en: "Fotostuudio & taustad"
         name_et: "Fotostuudio & taustad"
-        product_count: 10
+        product_count: 0
+        subs:
+          - slug: v4-reklaami-truki-ja-graveerimisseadmed-fotostuudio-ja-taustad-taustastatiivid
+            name_en: "Taustastatiivid"
+            name_et: "Taustastatiivid"
+            product_count: 0
   - slug: v4-lemmikloomatarbed
     name_en: "Lemmikloomatarbed"
     name_et: "Lemmikloomatarbed"
@@ -6675,15 +6836,114 @@ l1:
       - slug: v4-tervis-hooldus-ja-ilu-isikuhooldusseadmed
         name_en: "Isikuhooldusseadmed"
         name_et: "Isikuhooldusseadmed"
-        product_count: 194
+        product_count: 0
+        subs:
+          - slug: v4-tervis-hooldus-ja-ilu-isikuhooldusseadmed-beebi-ja-lastetarvikud
+            name_en: "Beebi- ja lastetarvikud"
+            name_et: "Beebi- ja lastetarvikud"
+            product_count: 0
+          - slug: v4-tervis-hooldus-ja-ilu-isikuhooldusseadmed-hammaste-valgendusvahendid
+            name_en: "Hammaste valgendusvahendid"
+            name_et: "Hammaste valgendusvahendid"
+            product_count: 0
+          - slug: v4-tervis-hooldus-ja-ilu-isikuhooldusseadmed-infrapuna-ja-soojendusseadmed
+            name_en: "Infrapuna- ja soojendusseadmed"
+            name_et: "Infrapuna- ja soojendusseadmed"
+            product_count: 0
+          - slug: v4-tervis-hooldus-ja-ilu-isikuhooldusseadmed-inkontinentsitooted
+            name_en: "Inkontinentsitooted"
+            name_et: "Inkontinentsitooted"
+            product_count: 0
+          - slug: v4-tervis-hooldus-ja-ilu-isikuhooldusseadmed-juuksehooldusseadmed
+            name_en: "Juuksehooldusseadmed"
+            name_et: "Juuksehooldusseadmed"
+            product_count: 0
+          - slug: v4-tervis-hooldus-ja-ilu-isikuhooldusseadmed-kristallheli-teraapiavahendid
+            name_en: "Kristallheli teraapiavahendid"
+            name_et: "Kristallheli teraapiavahendid"
+            product_count: 0
+          - slug: v4-tervis-hooldus-ja-ilu-isikuhooldusseadmed-manikuuri-ja-kuunehooldusseadmed
+            name_en: "Maniküüri- ja küünehooldusseadmed"
+            name_et: "Maniküüri- ja küünehooldusseadmed"
+            product_count: 0
+          - slug: v4-tervis-hooldus-ja-ilu-isikuhooldusseadmed-massaaziseadmed
+            name_en: "Massaažiseadmed"
+            name_et: "Massaažiseadmed"
+            product_count: 0
+          - slug: v4-tervis-hooldus-ja-ilu-isikuhooldusseadmed-meigipeeglid-ja-kosmeetikakohvrid
+            name_en: "Meigipeeglid ja kosmeetikakohvrid"
+            name_et: "Meigipeeglid ja kosmeetikakohvrid"
+            product_count: 0
+          - slug: v4-tervis-hooldus-ja-ilu-isikuhooldusseadmed-mikronoelamisseadmed
+            name_en: "Mikronõelamisseadmed"
+            name_et: "Mikronõelamisseadmed"
+            product_count: 0
+          - slug: v4-tervis-hooldus-ja-ilu-isikuhooldusseadmed-proteesid-ja-kehakujundusvahendid
+            name_en: "Proteesid ja kehakujundusvahendid"
+            name_et: "Proteesid ja kehakujundusvahendid"
+            product_count: 0
+          - slug: v4-tervis-hooldus-ja-ilu-isikuhooldusseadmed-rinnapumbad-ja-tarvikud
+            name_en: "Rinnapumbad ja tarvikud"
+            name_et: "Rinnapumbad ja tarvikud"
+            product_count: 0
+          - slug: v4-tervis-hooldus-ja-ilu-isikuhooldusseadmed-salongimoobel
+            name_en: "Salongimööbel"
+            name_et: "Salongimööbel"
+            product_count: 0
+          - slug: v4-tervis-hooldus-ja-ilu-isikuhooldusseadmed-sterilisaatorid
+            name_en: "Sterilisaatorid"
+            name_et: "Sterilisaatorid"
+            product_count: 0
+          - slug: v4-tervis-hooldus-ja-ilu-isikuhooldusseadmed-valgusteraapiaseadmed
+            name_en: "Valgusteraapiaseadmed"
+            name_et: "Valgusteraapiaseadmed"
+            product_count: 0
+          - slug: v4-tervis-hooldus-ja-ilu-isikuhooldusseadmed-vesinikuvee-generaatorid
+            name_en: "Vesinikuvee generaatorid"
+            name_et: "Vesinikuvee generaatorid"
+            product_count: 0
       - slug: v4-tervis-hooldus-ja-ilu-beebi-ja-lapsetarbed
         name_en: "Beebi- & lapsetarbed"
         name_et: "Beebi- & lapsetarbed"
-        product_count: 63
+        product_count: 0
+        subs:
+          - slug: v4-tervis-hooldus-ja-ilu-beebi-ja-lapsetarbed-beebitoolid-ja-lamamistoolid
+            name_en: "Beebitoolid ja -lamamistoolid"
+            name_et: "Beebitoolid ja -lamamistoolid"
+            product_count: 0
+          - slug: v4-tervis-hooldus-ja-ilu-beebi-ja-lapsetarbed-beebivankrid-ja-karud
+            name_en: "Beebivankrid ja -kärud"
+            name_et: "Beebivankrid ja -kärud"
+            product_count: 0
+          - slug: v4-tervis-hooldus-ja-ilu-beebi-ja-lapsetarbed-mangumatid-ja-aiad
+            name_en: "Mängumatid ja -aiad"
+            name_et: "Mängumatid ja -aiad"
+            product_count: 0
+          - slug: v4-tervis-hooldus-ja-ilu-beebi-ja-lapsetarbed-pesapadjad-ja-pesad
+            name_en: "Pesapadjad ja -pesad"
+            name_et: "Pesapadjad ja -pesad"
+            product_count: 0
+          - slug: v4-tervis-hooldus-ja-ilu-beebi-ja-lapsetarbed-turvavaravad
+            name_en: "Turvaväravad"
+            name_et: "Turvaväravad"
+            product_count: 0
+          - slug: v4-tervis-hooldus-ja-ilu-beebi-ja-lapsetarbed-voodipiirded-ja-kaitsmed
+            name_en: "Voodipiirded ja -kaitsmed"
+            name_et: "Voodipiirded ja -kaitsmed"
+            product_count: 0
       - slug: v4-tervis-hooldus-ja-ilu-salongi-ja-spaaseadmed
         name_en: "Salongi- & spaaseadmed"
         name_et: "Salongi- & spaaseadmed"
-        product_count: 15
+        product_count: 0
+        subs:
+          - slug: v4-tervis-hooldus-ja-ilu-salongi-ja-spaaseadmed-salongimatid
+            name_en: "Salongimatid"
+            name_et: "Salongimatid"
+            product_count: 0
+          - slug: v4-tervis-hooldus-ja-ilu-salongi-ja-spaaseadmed-salongimoobel
+            name_en: "Salongimööbel"
+            name_et: "Salongimööbel"
+            product_count: 0
   - slug: v4-meditsiin-ja-liikumisabi
     name_en: "Meditsiin ja liikumisabi"
     name_et: "Meditsiin ja liikumisabi"
@@ -6699,11 +6959,121 @@ l1:
       - slug: v4-meditsiin-ja-liikumisabi-liikumisabi
         name_en: "Liikumisabi"
         name_et: "Liikumisabi"
-        product_count: 199
+        product_count: 0
+        subs:
+          - slug: v4-meditsiin-ja-liikumisabi-liikumisabi-dusitoolid-ja-pingid
+            name_en: "Dušitoolid ja -pingid"
+            name_et: "Dušitoolid ja -pingid"
+            product_count: 0
+          - slug: v4-meditsiin-ja-liikumisabi-liikumisabi-elektrilised-liikumisskuutrid
+            name_en: "Elektrilised liikumisskuutrid"
+            name_et: "Elektrilised liikumisskuutrid"
+            product_count: 0
+          - slug: v4-meditsiin-ja-liikumisabi-liikumisabi-haiglavoodid
+            name_en: "Haiglavoodid"
+            name_et: "Haiglavoodid"
+            product_count: 0
+          - slug: v4-meditsiin-ja-liikumisabi-liikumisabi-istmepadjad
+            name_en: "Istmepadjad"
+            name_et: "Istmepadjad"
+            product_count: 0
+          - slug: v4-meditsiin-ja-liikumisabi-liikumisabi-kondimiskepid-ja-raamid
+            name_en: "Kõndimiskepid ja -raamid"
+            name_et: "Kõndimiskepid ja -raamid"
+            product_count: 0
+          - slug: v4-meditsiin-ja-liikumisabi-liikumisabi-ratastooli-ja-laverampid
+            name_en: "Ratastooli- ja läverampid"
+            name_et: "Ratastooli- ja läverampid"
+            product_count: 0
+          - slug: v4-meditsiin-ja-liikumisabi-liikumisabi-ratastoolid
+            name_en: "Ratastoolid"
+            name_et: "Ratastoolid"
+            product_count: 0
+          - slug: v4-meditsiin-ja-liikumisabi-liikumisabi-rollaatorid
+            name_en: "Rollaatorid"
+            name_et: "Rollaatorid"
+            product_count: 0
+          - slug: v4-meditsiin-ja-liikumisabi-liikumisabi-trepironimisabivahendid
+            name_en: "Trepironimisabivahendid"
+            name_et: "Trepironimisabivahendid"
+            product_count: 0
+          - slug: v4-meditsiin-ja-liikumisabi-liikumisabi-tualetiabivahendid
+            name_en: "Tualetiabivahendid"
+            name_et: "Tualetiabivahendid"
+            product_count: 0
+          - slug: v4-meditsiin-ja-liikumisabi-liikumisabi-tugipostid
+            name_en: "Tugipostid"
+            name_et: "Tugipostid"
+            product_count: 0
+          - slug: v4-meditsiin-ja-liikumisabi-liikumisabi-tostetoolid
+            name_en: "Tõstetoolid"
+            name_et: "Tõstetoolid"
+            product_count: 0
+          - slug: v4-meditsiin-ja-liikumisabi-liikumisabi-vannitoa-ulekandeabivahendid
+            name_en: "Vannitoa ülekandeabivahendid"
+            name_et: "Vannitoa ülekandeabivahendid"
+            product_count: 0
+          - slug: v4-meditsiin-ja-liikumisabi-liikumisabi-voodiabivahendid
+            name_en: "Voodiabivahendid"
+            name_et: "Voodiabivahendid"
+            product_count: 0
       - slug: v4-meditsiin-ja-liikumisabi-meditsiinitarvikud
         name_en: "Meditsiinitarvikud"
         name_et: "Meditsiinitarvikud"
-        product_count: 85
+        product_count: 0
+        subs:
+          - slug: v4-meditsiin-ja-liikumisabi-meditsiinitarvikud-esmaabivahendid
+            name_en: "Esmaabivahendid"
+            name_et: "Esmaabivahendid"
+            product_count: 0
+          - slug: v4-meditsiin-ja-liikumisabi-meditsiinitarvikud-geriaatrilised-toolid
+            name_en: "Geriaatrilised toolid"
+            name_et: "Geriaatrilised toolid"
+            product_count: 0
+          - slug: v4-meditsiin-ja-liikumisabi-meditsiinitarvikud-haiglavoodid-ja-madratsid
+            name_en: "Haiglavoodid ja madratsid"
+            name_et: "Haiglavoodid ja madratsid"
+            product_count: 0
+          - slug: v4-meditsiin-ja-liikumisabi-meditsiinitarvikud-inkontinentsitooted
+            name_en: "Inkontinentsitooted"
+            name_et: "Inkontinentsitooted"
+            product_count: 0
+          - slug: v4-meditsiin-ja-liikumisabi-meditsiinitarvikud-kukkumiskaitsevahendid-ja-voodialarmid
+            name_en: "Kukkumiskaitsevahendid ja voodialarmid"
+            name_et: "Kukkumiskaitsevahendid ja voodialarmid"
+            product_count: 0
+          - slug: v4-meditsiin-ja-liikumisabi-meditsiinitarvikud-lambumis-ja-hingamisabivahendid
+            name_en: "Lämbumis- ja hingamisabivahendid"
+            name_et: "Lämbumis- ja hingamisabivahendid"
+            product_count: 0
+          - slug: v4-meditsiin-ja-liikumisabi-meditsiinitarvikud-meditsiinilised-kaalud
+            name_en: "Meditsiinilised kaalud"
+            name_et: "Meditsiinilised kaalud"
+            product_count: 0
+          - slug: v4-meditsiin-ja-liikumisabi-meditsiinitarvikud-meditsiinilised-karud-ja-alused
+            name_en: "Meditsiinilised kärud ja alused"
+            name_et: "Meditsiinilised kärud ja alused"
+            product_count: 0
+          - slug: v4-meditsiin-ja-liikumisabi-meditsiinitarvikud-suurendusseadmed
+            name_en: "Suurendusseadmed"
+            name_et: "Suurendusseadmed"
+            product_count: 0
+          - slug: v4-meditsiin-ja-liikumisabi-meditsiinitarvikud-tualetiabivahendid
+            name_en: "Tualetiabivahendid"
+            name_et: "Tualetiabivahendid"
+            product_count: 0
+          - slug: v4-meditsiin-ja-liikumisabi-meditsiinitarvikud-uurimis-ja-protseduurilauad
+            name_en: "Uurimis- ja protseduurilauad"
+            name_et: "Uurimis- ja protseduurilauad"
+            product_count: 0
+          - slug: v4-meditsiin-ja-liikumisabi-meditsiinitarvikud-oppe-ja-anatoomiamudelid
+            name_en: "Õppe- ja anatoomiamudelid"
+            name_et: "Õppe- ja anatoomiamudelid"
+            product_count: 0
+          - slug: v4-meditsiin-ja-liikumisabi-meditsiinitarvikud-uhekordsed-katte-ja-aluspaberid
+            name_en: "Ühekordsed katte- ja aluspaberid"
+            name_et: "Ühekordsed katte- ja aluspaberid"
+            product_count: 0
   - slug: v4-tooriied-ja-isikukaitse
     name_en: "Tööriied ja isikukaitse"
     name_et: "Tööriied ja isikukaitse"
@@ -6719,20 +7089,104 @@ l1:
       - slug: v4-tooriied-ja-isikukaitse-toojalatsid
         name_en: "Tööjalatsid"
         name_et: "Tööjalatsid"
-        product_count: 102
+        product_count: 0
+        subs:
+          - slug: v4-tooriied-ja-isikukaitse-toojalatsid-kummisaapad-ja-kummikud
+            name_en: "Kummisaapad ja kummikud"
+            name_et: "Kummisaapad ja kummikud"
+            product_count: 0
+          - slug: v4-tooriied-ja-isikukaitse-toojalatsid-taktikalised-saapad
+            name_en: "Taktikalised saapad"
+            name_et: "Taktikalised saapad"
+            product_count: 0
+          - slug: v4-tooriied-ja-isikukaitse-toojalatsid-terasninaga-toojalatsid
+            name_en: "Terasninaga tööjalatsid"
+            name_et: "Terasninaga tööjalatsid"
+            product_count: 0
+          - slug: v4-tooriied-ja-isikukaitse-toojalatsid-treeningjalatsid
+            name_en: "Treeningjalatsid"
+            name_et: "Treeningjalatsid"
+            product_count: 0
       - slug: v4-tooriied-ja-isikukaitse-tooriietus-ja-uleroivad
         name_en: "Tööriietus & ülerõivad"
         name_et: "Tööriietus & ülerõivad"
-        product_count: 80
+        product_count: 0
+        subs:
+          - slug: v4-tooriied-ja-isikukaitse-tooriietus-ja-uleroivad-kapuutsiga-pusad-ja-dressipluusid
+            name_en: "Kapuutsiga pusad & dressipluusid"
+            name_et: "Kapuutsiga pusad & dressipluusid"
+            product_count: 0
+          - slug: v4-tooriied-ja-isikukaitse-tooriietus-ja-uleroivad-keevitusjoped-ja-jakid
+            name_en: "Keevitusjoped & -jakid"
+            name_et: "Keevitusjoped & -jakid"
+            product_count: 0
+          - slug: v4-tooriied-ja-isikukaitse-tooriietus-ja-uleroivad-keevituskaised-ja-varrukad
+            name_en: "Keevituskäised & -varrukad"
+            name_et: "Keevituskäised & -varrukad"
+            product_count: 0
+          - slug: v4-tooriied-ja-isikukaitse-tooriietus-ja-uleroivad-keevituspolled
+            name_en: "Keevituspõlled"
+            name_et: "Keevituspõlled"
+            product_count: 0
+          - slug: v4-tooriied-ja-isikukaitse-tooriietus-ja-uleroivad-meeste-sargid-ja-pluusid
+            name_en: "Meeste särgid & pluusid"
+            name_et: "Meeste särgid & pluusid"
+            product_count: 0
+          - slug: v4-tooriied-ja-isikukaitse-tooriietus-ja-uleroivad-saepuksid-ja-mootorsae-kaitsepuksid
+            name_en: "Saepüksid & mootorsae kaitsepüksid"
+            name_et: "Saepüksid & mootorsae kaitsepüksid"
+            product_count: 0
+          - slug: v4-tooriied-ja-isikukaitse-tooriietus-ja-uleroivad-tulekindlad-toopluusid
+            name_en: "Tulekindlad tööpluusid"
+            name_et: "Tulekindlad tööpluusid"
+            product_count: 0
+          - slug: v4-tooriied-ja-isikukaitse-tooriietus-ja-uleroivad-tulekindlad-toopuksid
+            name_en: "Tulekindlad tööpüksid"
+            name_et: "Tulekindlad tööpüksid"
+            product_count: 0
       - slug: v4-tooriied-ja-isikukaitse-soojendusega-riietus
         name_en: "Soojendusega riietus"
         name_et: "Soojendusega riietus"
-        product_count: 63
+        product_count: 0
+        subs:
+          - slug: v4-tooriied-ja-isikukaitse-soojendusega-riietus-soojendusega-dressipluusid
+            name_en: "Soojendusega dressipluusid"
+            name_et: "Soojendusega dressipluusid"
+            product_count: 0
+          - slug: v4-tooriied-ja-isikukaitse-soojendusega-riietus-soojendusega-fliisjakid
+            name_en: "Soojendusega fliisjakid"
+            name_et: "Soojendusega fliisjakid"
+            product_count: 0
+          - slug: v4-tooriied-ja-isikukaitse-soojendusega-riietus-soojendusega-joped
+            name_en: "Soojendusega joped"
+            name_et: "Soojendusega joped"
+            product_count: 0
+          - slug: v4-tooriied-ja-isikukaitse-soojendusega-riietus-soojendusega-kapuutsiga-pusad
+            name_en: "Soojendusega kapuutsiga pusad"
+            name_et: "Soojendusega kapuutsiga pusad"
+            product_count: 0
+          - slug: v4-tooriied-ja-isikukaitse-soojendusega-riietus-soojendusega-sokid
+            name_en: "Soojendusega sokid"
+            name_et: "Soojendusega sokid"
+            product_count: 0
+          - slug: v4-tooriied-ja-isikukaitse-soojendusega-riietus-soojendusega-vestid
+            name_en: "Soojendusega vestid"
+            name_et: "Soojendusega vestid"
+            product_count: 0
       - slug: v4-tooriied-ja-isikukaitse-kukkumiskaitse-ja-korgustoo
         name_en: "Kukkumiskaitse & kõrgustöö"
         name_et: "Kukkumiskaitse & kõrgustöö"
-        product_count: 11
+        product_count: 0
       - slug: v4-tooriied-ja-isikukaitse-isikukaitsevahendid
         name_en: "Isikukaitsevahendid"
         name_et: "Isikukaitsevahendid"
-        product_count: 10
+        product_count: 0
+        subs:
+          - slug: v4-tooriied-ja-isikukaitse-isikukaitsevahendid-kaitsekiivrid-ja-peakaitsmed
+            name_en: "Kaitsekiivrid ja peakaitsmed"
+            name_et: "Kaitsekiivrid ja peakaitsmed"
+            product_count: 0
+          - slug: v4-tooriied-ja-isikukaitse-isikukaitsevahendid-polvekaitsmed
+            name_en: "Põlvekaitsmed"
+            name_et: "Põlvekaitsmed"
+            product_count: 0
