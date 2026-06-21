@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-21T13:59:36.714Z",
+  "generated_at": "2026-06-21T20:19:48.211Z",
   "nodes": {
     "v4-tooriistad-ja-tarvikud": {
       "handle": "v4-tooriistad-ja-tarvikud",
@@ -10979,7 +10979,8 @@
         "v4-ehitus-remont-ja-varvid-betoonitood-ja-ehitusmaterjalid",
         "v4-ehitus-remont-ja-varvid-ohutus-ja-turvalisus",
         "v4-ehitus-remont-ja-varvid-vihmaveesusteemid-ja-drenaaz",
-        "v4-ehitus-remont-ja-varvid-katusematerjalid"
+        "v4-ehitus-remont-ja-varvid-katusematerjalid",
+        "v4-ehitus-laaduri-ja-skid-steer-haakeseadmed"
       ],
       "image_path": null,
       "image_source": "none",
@@ -12458,6 +12459,72 @@
       "name_et": "Katuseläbiviigu tihendid",
       "level": 3,
       "parent_handle": "v4-ehitus-remont-ja-varvid-katusematerjalid",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-ehitus-laaduri-ja-skid-steer-haakeseadmed": {
+      "handle": "v4-ehitus-laaduri-ja-skid-steer-haakeseadmed",
+      "name_en": "Laaduri- ja skid-steer haakeseadmed",
+      "name_et": "Laaduri- ja skid-steer haakeseadmed",
+      "level": 2,
+      "parent_handle": "v4-ehitus-remont-ja-varvid",
+      "child_handles": [
+        "v4-ehitus-laaduri-haakeseadmed-greiferid-ja-haaratsid",
+        "v4-ehitus-laaduri-haakeseadmed-kinnitusplaadid-ja-adapterid",
+        "v4-ehitus-laaduri-haakeseadmed-kopad-ja-sahad",
+        "v4-ehitus-laaduri-haakeseadmed-muud-tooseadmed",
+        "v4-ehitus-laaduri-haakeseadmed-pallikahvlid-ja-kahvlid"
+      ],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-ehitus-laaduri-haakeseadmed-greiferid-ja-haaratsid": {
+      "handle": "v4-ehitus-laaduri-haakeseadmed-greiferid-ja-haaratsid",
+      "name_en": "Greiferid ja haaratsid",
+      "name_et": "Greiferid ja haaratsid",
+      "level": 3,
+      "parent_handle": "v4-ehitus-laaduri-ja-skid-steer-haakeseadmed",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-ehitus-laaduri-haakeseadmed-kinnitusplaadid-ja-adapterid": {
+      "handle": "v4-ehitus-laaduri-haakeseadmed-kinnitusplaadid-ja-adapterid",
+      "name_en": "Kinnitusplaadid ja adapterid",
+      "name_et": "Kinnitusplaadid ja adapterid",
+      "level": 3,
+      "parent_handle": "v4-ehitus-laaduri-ja-skid-steer-haakeseadmed",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-ehitus-laaduri-haakeseadmed-kopad-ja-sahad": {
+      "handle": "v4-ehitus-laaduri-haakeseadmed-kopad-ja-sahad",
+      "name_en": "Kopad ja sahad",
+      "name_et": "Kopad ja sahad",
+      "level": 3,
+      "parent_handle": "v4-ehitus-laaduri-ja-skid-steer-haakeseadmed",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-ehitus-laaduri-haakeseadmed-muud-tooseadmed": {
+      "handle": "v4-ehitus-laaduri-haakeseadmed-muud-tooseadmed",
+      "name_en": "Muud tööseadmed",
+      "name_et": "Muud tööseadmed",
+      "level": 3,
+      "parent_handle": "v4-ehitus-laaduri-ja-skid-steer-haakeseadmed",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-ehitus-laaduri-haakeseadmed-pallikahvlid-ja-kahvlid": {
+      "handle": "v4-ehitus-laaduri-haakeseadmed-pallikahvlid-ja-kahvlid",
+      "name_en": "Pallikahvlid ja kahvlid",
+      "name_et": "Pallikahvlid ja kahvlid",
+      "level": 3,
+      "parent_handle": "v4-ehitus-laaduri-ja-skid-steer-haakeseadmed",
       "child_handles": [],
       "image_path": null,
       "image_source": "none"
@@ -18124,60 +18191,20 @@
       "level": 2,
       "parent_handle": "v4-pollumajandus-ja-loomakasvatus",
       "child_handles": [
-        "v4-pollumajandus-ja-loomakasvatus-talutehnika-heinakahvlid",
-        "v4-pollumajandus-ja-loomakasvatus-talutehnika-lohistatavad-akked",
-        "v4-pollumajandus-ja-loomakasvatus-talutehnika-pallikahvlid",
-        "v4-pollumajandus-ja-loomakasvatus-talutehnika-skid-steer-tarvikud",
         "v4-pollumajandus-ja-loomakasvatus-talutehnika-traktori-ballastkastid",
-        "v4-pollumajandus-ja-loomakasvatus-talutehnika-traktori-kolmepunkti-haakeadapterid"
+        "v4-pollumajandus-ja-loomakasvatus-talutehnika-traktori-kolmepunkti-haakeadapterid",
+        "v4-pollumajandus-ja-loomakasvatus-talutehnika-pallikahvlid",
+        "v4-pollumajandus-ja-loomakasvatus-talutehnika-lohistatavad-akked",
+        "v4-pollumajandus-talutehnika-muud",
+        "v4-pollumajandus-talutehnika-pinnasetoo-greiderdamine"
       ],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-pollumajandus-ja-loomakasvatus-talutehnika-heinakahvlid": {
-      "handle": "v4-pollumajandus-ja-loomakasvatus-talutehnika-heinakahvlid",
-      "name_en": "Heinakahvlid",
-      "name_et": "Heinakahvlid",
-      "level": 3,
-      "parent_handle": "v4-pollumajandus-ja-loomakasvatus-talutehnika",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-pollumajandus-ja-loomakasvatus-talutehnika-lohistatavad-akked": {
-      "handle": "v4-pollumajandus-ja-loomakasvatus-talutehnika-lohistatavad-akked",
-      "name_en": "Lohistatavad äkked",
-      "name_et": "Lohistatavad äkked",
-      "level": 3,
-      "parent_handle": "v4-pollumajandus-ja-loomakasvatus-talutehnika",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-pollumajandus-ja-loomakasvatus-talutehnika-pallikahvlid": {
-      "handle": "v4-pollumajandus-ja-loomakasvatus-talutehnika-pallikahvlid",
-      "name_en": "Pallikahvlid",
-      "name_et": "Pallikahvlid",
-      "level": 3,
-      "parent_handle": "v4-pollumajandus-ja-loomakasvatus-talutehnika",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-pollumajandus-ja-loomakasvatus-talutehnika-skid-steer-tarvikud": {
-      "handle": "v4-pollumajandus-ja-loomakasvatus-talutehnika-skid-steer-tarvikud",
-      "name_en": "Skid-steer & laaduri tarvikud",
-      "name_et": "Skid-steer & laaduri tarvikud",
-      "level": 3,
-      "parent_handle": "v4-pollumajandus-ja-loomakasvatus-talutehnika",
-      "child_handles": [],
       "image_path": null,
       "image_source": "none"
     },
     "v4-pollumajandus-ja-loomakasvatus-talutehnika-traktori-ballastkastid": {
       "handle": "v4-pollumajandus-ja-loomakasvatus-talutehnika-traktori-ballastkastid",
-      "name_en": "Traktori ballastkastid",
-      "name_et": "Traktori ballastkastid",
+      "name_en": "Ballast ja raskused",
+      "name_et": "Ballast ja raskused",
       "level": 3,
       "parent_handle": "v4-pollumajandus-ja-loomakasvatus-talutehnika",
       "child_handles": [],
@@ -18186,8 +18213,48 @@
     },
     "v4-pollumajandus-ja-loomakasvatus-talutehnika-traktori-kolmepunkti-haakeadapterid": {
       "handle": "v4-pollumajandus-ja-loomakasvatus-talutehnika-traktori-kolmepunkti-haakeadapterid",
-      "name_en": "Traktori kolmepunkti haakeadapterid",
-      "name_et": "Traktori kolmepunkti haakeadapterid",
+      "name_en": "Haakeadapterid (3-point)",
+      "name_et": "Haakeadapterid (3-point)",
+      "level": 3,
+      "parent_handle": "v4-pollumajandus-ja-loomakasvatus-talutehnika",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-pollumajandus-ja-loomakasvatus-talutehnika-pallikahvlid": {
+      "handle": "v4-pollumajandus-ja-loomakasvatus-talutehnika-pallikahvlid",
+      "name_en": "Heinatöö ja pallikäsitlus",
+      "name_et": "Heinatöö ja pallikäsitlus",
+      "level": 3,
+      "parent_handle": "v4-pollumajandus-ja-loomakasvatus-talutehnika",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-pollumajandus-ja-loomakasvatus-talutehnika-lohistatavad-akked": {
+      "handle": "v4-pollumajandus-ja-loomakasvatus-talutehnika-lohistatavad-akked",
+      "name_en": "Mullaharimine (äkked ja kultivaatorid)",
+      "name_et": "Mullaharimine (äkked ja kultivaatorid)",
+      "level": 3,
+      "parent_handle": "v4-pollumajandus-ja-loomakasvatus-talutehnika",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-pollumajandus-talutehnika-muud": {
+      "handle": "v4-pollumajandus-talutehnika-muud",
+      "name_en": "Muud talutehnika",
+      "name_et": "Muud talutehnika",
+      "level": 3,
+      "parent_handle": "v4-pollumajandus-ja-loomakasvatus-talutehnika",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-pollumajandus-talutehnika-pinnasetoo-greiderdamine": {
+      "handle": "v4-pollumajandus-talutehnika-pinnasetoo-greiderdamine",
+      "name_en": "Pinnasetöö ja greiderdamine",
+      "name_et": "Pinnasetöö ja greiderdamine",
       "level": 3,
       "parent_handle": "v4-pollumajandus-ja-loomakasvatus-talutehnika",
       "child_handles": [],
@@ -20315,6 +20382,12 @@
     "v4-ehitus-remont-ja-varvid-katusematerjalid",
     "v4-ehitus-remont-ja-varvid-katusematerjalid-epdm-kummikatted",
     "v4-ehitus-remont-ja-varvid-katusematerjalid-katuselabiviigu-tihendid",
+    "v4-ehitus-laaduri-ja-skid-steer-haakeseadmed",
+    "v4-ehitus-laaduri-haakeseadmed-greiferid-ja-haaratsid",
+    "v4-ehitus-laaduri-haakeseadmed-kinnitusplaadid-ja-adapterid",
+    "v4-ehitus-laaduri-haakeseadmed-kopad-ja-sahad",
+    "v4-ehitus-laaduri-haakeseadmed-muud-tooseadmed",
+    "v4-ehitus-laaduri-haakeseadmed-pallikahvlid-ja-kahvlid",
     "v4-santehnika-kute-ja-ventilatsioon",
     "v4-santehnika-kute-ja-ventilatsioon-ventilatsioon-ja-ventilaatorid",
     "v4-santehnika-kute-ja-ventilatsioon-ventilatsioon-ja-ventilaatorid-kaasaskantavad-konditsioneerid",
@@ -20823,12 +20896,12 @@
     "v4-pollumajandus-ja-loomakasvatus-kariloomad-soodurid-ja-soodakuna",
     "v4-pollumajandus-ja-loomakasvatus-kariloomad-tra-ataiad-ja-aiapiirded",
     "v4-pollumajandus-ja-loomakasvatus-talutehnika",
-    "v4-pollumajandus-ja-loomakasvatus-talutehnika-heinakahvlid",
-    "v4-pollumajandus-ja-loomakasvatus-talutehnika-lohistatavad-akked",
-    "v4-pollumajandus-ja-loomakasvatus-talutehnika-pallikahvlid",
-    "v4-pollumajandus-ja-loomakasvatus-talutehnika-skid-steer-tarvikud",
     "v4-pollumajandus-ja-loomakasvatus-talutehnika-traktori-ballastkastid",
     "v4-pollumajandus-ja-loomakasvatus-talutehnika-traktori-kolmepunkti-haakeadapterid",
+    "v4-pollumajandus-ja-loomakasvatus-talutehnika-pallikahvlid",
+    "v4-pollumajandus-ja-loomakasvatus-talutehnika-lohistatavad-akked",
+    "v4-pollumajandus-talutehnika-muud",
+    "v4-pollumajandus-talutehnika-pinnasetoo-greiderdamine",
     "v4-pollumajandus-ja-loomakasvatus-mesindus",
     "v4-pollumajandus-ja-loomakasvatus-mesindus-meeekstraktorid-ja-tsentrifuugid",
     "v4-pollumajandus-ja-loomakasvatus-mesindus-mesitarud-ja-komplektid",
