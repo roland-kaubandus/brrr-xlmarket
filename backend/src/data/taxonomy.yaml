@@ -1,6 +1,6 @@
 version: 4
-updated: '2026-06-18'
-source: v4 + Tööriistad/Aed L3 + #18 Põllumajandus (staging)
+updated: '2026-06-19'
+source: v4 + #18 nav-order Lemmiku järel (staging)
 l1:
   - slug: v4-tooriistad-ja-tarvikud
     name_en: "Tööriistad ja tarvikud"
@@ -2583,82 +2583,6 @@ l1:
             name_en: "Lemmiklooma-uksed"
             name_et: "Lemmiklooma-uksed"
             product_count: 0
-  - slug: v4-tervis-hooldus-ja-ilu
-    name_en: "Tervis, hooldus ja ilu"
-    name_et: "Tervis, hooldus ja ilu"
-    short_slug: tervis-hooldus-ja-ilu
-    tagline_en: "Tervis, hooldus ja ilu"
-    tagline_et: "Tervis, hooldus ja ilu"
-    description_en: "Tervis, hooldus ja ilu — products."
-    description_et: "Tervis, hooldus ja ilu — tooted."
-    hero_img: /images/branches/horeca.webp
-    hero_gradient: from-stone-950/80 via-stone-900/40 to-transparent
-    product_count: 272
-    subs:
-      - slug: v4-tervis-hooldus-ja-ilu-isikuhooldusseadmed
-        name_en: "Isikuhooldusseadmed"
-        name_et: "Isikuhooldusseadmed"
-        product_count: 194
-      - slug: v4-tervis-hooldus-ja-ilu-beebi-ja-lapsetarbed
-        name_en: "Beebi- & lapsetarbed"
-        name_et: "Beebi- & lapsetarbed"
-        product_count: 63
-      - slug: v4-tervis-hooldus-ja-ilu-salongi-ja-spaaseadmed
-        name_en: "Salongi- & spaaseadmed"
-        name_et: "Salongi- & spaaseadmed"
-        product_count: 15
-  - slug: v4-meditsiin-ja-liikumisabi
-    name_en: "Meditsiin ja liikumisabi"
-    name_et: "Meditsiin ja liikumisabi"
-    short_slug: meditsiin-ja-liikumisabi
-    tagline_en: "Meditsiin ja liikumisabi"
-    tagline_et: "Meditsiin ja liikumisabi"
-    description_en: "Meditsiin ja liikumisabi — products."
-    description_et: "Meditsiin ja liikumisabi — tooted."
-    hero_img: /images/branches/horeca.webp
-    hero_gradient: from-stone-950/80 via-stone-900/40 to-transparent
-    product_count: 284
-    subs:
-      - slug: v4-meditsiin-ja-liikumisabi-liikumisabi
-        name_en: "Liikumisabi"
-        name_et: "Liikumisabi"
-        product_count: 199
-      - slug: v4-meditsiin-ja-liikumisabi-meditsiinitarvikud
-        name_en: "Meditsiinitarvikud"
-        name_et: "Meditsiinitarvikud"
-        product_count: 85
-  - slug: v4-tooriied-ja-isikukaitse
-    name_en: "Tööriied ja isikukaitse"
-    name_et: "Tööriied ja isikukaitse"
-    short_slug: tooriied-ja-isikukaitse
-    tagline_en: "Tööriied ja isikukaitse"
-    tagline_et: "Tööriied ja isikukaitse"
-    description_en: "Tööriied ja isikukaitse — products."
-    description_et: "Tööriied ja isikukaitse — tooted."
-    hero_img: /images/branches/horeca.webp
-    hero_gradient: from-stone-950/80 via-stone-900/40 to-transparent
-    product_count: 266
-    subs:
-      - slug: v4-tooriied-ja-isikukaitse-toojalatsid
-        name_en: "Tööjalatsid"
-        name_et: "Tööjalatsid"
-        product_count: 102
-      - slug: v4-tooriied-ja-isikukaitse-tooriietus-ja-uleroivad
-        name_en: "Tööriietus & ülerõivad"
-        name_et: "Tööriietus & ülerõivad"
-        product_count: 80
-      - slug: v4-tooriied-ja-isikukaitse-soojendusega-riietus
-        name_en: "Soojendusega riietus"
-        name_et: "Soojendusega riietus"
-        product_count: 63
-      - slug: v4-tooriied-ja-isikukaitse-kukkumiskaitse-ja-korgustoo
-        name_en: "Kukkumiskaitse & kõrgustöö"
-        name_et: "Kukkumiskaitse & kõrgustöö"
-        product_count: 11
-      - slug: v4-tooriied-ja-isikukaitse-isikukaitsevahendid
-        name_en: "Isikukaitsevahendid"
-        name_et: "Isikukaitsevahendid"
-        product_count: 10
   - slug: v4-pollumajandus-ja-loomakasvatus
     name_en: "Põllumajandus ja loomakasvatus"
     name_et: "Põllumajandus ja loomakasvatus"
@@ -2803,3 +2727,79 @@ l1:
         name_en: "Lamba- ja kitsekasvatus"
         name_et: "Lamba- ja kitsekasvatus"
         product_count: 0
+  - slug: v4-tervis-hooldus-ja-ilu
+    name_en: "Tervis, hooldus ja ilu"
+    name_et: "Tervis, hooldus ja ilu"
+    short_slug: tervis-hooldus-ja-ilu
+    tagline_en: "Tervis, hooldus ja ilu"
+    tagline_et: "Tervis, hooldus ja ilu"
+    description_en: "Tervis, hooldus ja ilu — products."
+    description_et: "Tervis, hooldus ja ilu — tooted."
+    hero_img: /images/branches/horeca.webp
+    hero_gradient: from-stone-950/80 via-stone-900/40 to-transparent
+    product_count: 272
+    subs:
+      - slug: v4-tervis-hooldus-ja-ilu-isikuhooldusseadmed
+        name_en: "Isikuhooldusseadmed"
+        name_et: "Isikuhooldusseadmed"
+        product_count: 194
+      - slug: v4-tervis-hooldus-ja-ilu-beebi-ja-lapsetarbed
+        name_en: "Beebi- & lapsetarbed"
+        name_et: "Beebi- & lapsetarbed"
+        product_count: 63
+      - slug: v4-tervis-hooldus-ja-ilu-salongi-ja-spaaseadmed
+        name_en: "Salongi- & spaaseadmed"
+        name_et: "Salongi- & spaaseadmed"
+        product_count: 15
+  - slug: v4-meditsiin-ja-liikumisabi
+    name_en: "Meditsiin ja liikumisabi"
+    name_et: "Meditsiin ja liikumisabi"
+    short_slug: meditsiin-ja-liikumisabi
+    tagline_en: "Meditsiin ja liikumisabi"
+    tagline_et: "Meditsiin ja liikumisabi"
+    description_en: "Meditsiin ja liikumisabi — products."
+    description_et: "Meditsiin ja liikumisabi — tooted."
+    hero_img: /images/branches/horeca.webp
+    hero_gradient: from-stone-950/80 via-stone-900/40 to-transparent
+    product_count: 284
+    subs:
+      - slug: v4-meditsiin-ja-liikumisabi-liikumisabi
+        name_en: "Liikumisabi"
+        name_et: "Liikumisabi"
+        product_count: 199
+      - slug: v4-meditsiin-ja-liikumisabi-meditsiinitarvikud
+        name_en: "Meditsiinitarvikud"
+        name_et: "Meditsiinitarvikud"
+        product_count: 85
+  - slug: v4-tooriied-ja-isikukaitse
+    name_en: "Tööriied ja isikukaitse"
+    name_et: "Tööriied ja isikukaitse"
+    short_slug: tooriied-ja-isikukaitse
+    tagline_en: "Tööriied ja isikukaitse"
+    tagline_et: "Tööriied ja isikukaitse"
+    description_en: "Tööriied ja isikukaitse — products."
+    description_et: "Tööriied ja isikukaitse — tooted."
+    hero_img: /images/branches/horeca.webp
+    hero_gradient: from-stone-950/80 via-stone-900/40 to-transparent
+    product_count: 266
+    subs:
+      - slug: v4-tooriied-ja-isikukaitse-toojalatsid
+        name_en: "Tööjalatsid"
+        name_et: "Tööjalatsid"
+        product_count: 102
+      - slug: v4-tooriied-ja-isikukaitse-tooriietus-ja-uleroivad
+        name_en: "Tööriietus & ülerõivad"
+        name_et: "Tööriietus & ülerõivad"
+        product_count: 80
+      - slug: v4-tooriied-ja-isikukaitse-soojendusega-riietus
+        name_en: "Soojendusega riietus"
+        name_et: "Soojendusega riietus"
+        product_count: 63
+      - slug: v4-tooriied-ja-isikukaitse-kukkumiskaitse-ja-korgustoo
+        name_en: "Kukkumiskaitse & kõrgustöö"
+        name_et: "Kukkumiskaitse & kõrgustöö"
+        product_count: 11
+      - slug: v4-tooriied-ja-isikukaitse-isikukaitsevahendid
+        name_en: "Isikukaitsevahendid"
+        name_et: "Isikukaitsevahendid"
+        product_count: 10

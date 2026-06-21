@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-19T12:01:44.588Z",
+  "generated_at": "2026-06-21T07:13:01.250Z",
   "nodes": {
     "v4-tooriistad-ja-tarvikud": {
       "handle": "v4-tooriistad-ja-tarvikud",
@@ -6782,161 +6782,6 @@
       "image_path": null,
       "image_source": "none"
     },
-    "v4-tervis-hooldus-ja-ilu": {
-      "handle": "v4-tervis-hooldus-ja-ilu",
-      "name_en": "Tervis, hooldus ja ilu",
-      "name_et": "Tervis, hooldus ja ilu",
-      "level": 1,
-      "parent_handle": null,
-      "child_handles": [
-        "v4-tervis-hooldus-ja-ilu-isikuhooldusseadmed",
-        "v4-tervis-hooldus-ja-ilu-beebi-ja-lapsetarbed",
-        "v4-tervis-hooldus-ja-ilu-salongi-ja-spaaseadmed"
-      ],
-      "image_path": null,
-      "image_source": "none",
-      "description_en": "Tervis, hooldus ja ilu — products.",
-      "description_et": "Tervis, hooldus ja ilu — tooted.",
-      "tagline_en": "Tervis, hooldus ja ilu",
-      "tagline_et": "Tervis, hooldus ja ilu"
-    },
-    "v4-tervis-hooldus-ja-ilu-isikuhooldusseadmed": {
-      "handle": "v4-tervis-hooldus-ja-ilu-isikuhooldusseadmed",
-      "name_en": "Isikuhooldusseadmed",
-      "name_et": "Isikuhooldusseadmed",
-      "level": 2,
-      "parent_handle": "v4-tervis-hooldus-ja-ilu",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-tervis-hooldus-ja-ilu-beebi-ja-lapsetarbed": {
-      "handle": "v4-tervis-hooldus-ja-ilu-beebi-ja-lapsetarbed",
-      "name_en": "Beebi- & lapsetarbed",
-      "name_et": "Beebi- & lapsetarbed",
-      "level": 2,
-      "parent_handle": "v4-tervis-hooldus-ja-ilu",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-tervis-hooldus-ja-ilu-salongi-ja-spaaseadmed": {
-      "handle": "v4-tervis-hooldus-ja-ilu-salongi-ja-spaaseadmed",
-      "name_en": "Salongi- & spaaseadmed",
-      "name_et": "Salongi- & spaaseadmed",
-      "level": 2,
-      "parent_handle": "v4-tervis-hooldus-ja-ilu",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-meditsiin-ja-liikumisabi": {
-      "handle": "v4-meditsiin-ja-liikumisabi",
-      "name_en": "Meditsiin ja liikumisabi",
-      "name_et": "Meditsiin ja liikumisabi",
-      "level": 1,
-      "parent_handle": null,
-      "child_handles": [
-        "v4-meditsiin-ja-liikumisabi-liikumisabi",
-        "v4-meditsiin-ja-liikumisabi-meditsiinitarvikud"
-      ],
-      "image_path": null,
-      "image_source": "none",
-      "description_en": "Meditsiin ja liikumisabi — products.",
-      "description_et": "Meditsiin ja liikumisabi — tooted.",
-      "tagline_en": "Meditsiin ja liikumisabi",
-      "tagline_et": "Meditsiin ja liikumisabi"
-    },
-    "v4-meditsiin-ja-liikumisabi-liikumisabi": {
-      "handle": "v4-meditsiin-ja-liikumisabi-liikumisabi",
-      "name_en": "Liikumisabi",
-      "name_et": "Liikumisabi",
-      "level": 2,
-      "parent_handle": "v4-meditsiin-ja-liikumisabi",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-meditsiin-ja-liikumisabi-meditsiinitarvikud": {
-      "handle": "v4-meditsiin-ja-liikumisabi-meditsiinitarvikud",
-      "name_en": "Meditsiinitarvikud",
-      "name_et": "Meditsiinitarvikud",
-      "level": 2,
-      "parent_handle": "v4-meditsiin-ja-liikumisabi",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-tooriied-ja-isikukaitse": {
-      "handle": "v4-tooriied-ja-isikukaitse",
-      "name_en": "Tööriied ja isikukaitse",
-      "name_et": "Tööriied ja isikukaitse",
-      "level": 1,
-      "parent_handle": null,
-      "child_handles": [
-        "v4-tooriied-ja-isikukaitse-toojalatsid",
-        "v4-tooriied-ja-isikukaitse-tooriietus-ja-uleroivad",
-        "v4-tooriied-ja-isikukaitse-soojendusega-riietus",
-        "v4-tooriied-ja-isikukaitse-kukkumiskaitse-ja-korgustoo",
-        "v4-tooriied-ja-isikukaitse-isikukaitsevahendid"
-      ],
-      "image_path": null,
-      "image_source": "none",
-      "description_en": "Tööriied ja isikukaitse — products.",
-      "description_et": "Tööriied ja isikukaitse — tooted.",
-      "tagline_en": "Tööriied ja isikukaitse",
-      "tagline_et": "Tööriied ja isikukaitse"
-    },
-    "v4-tooriied-ja-isikukaitse-toojalatsid": {
-      "handle": "v4-tooriied-ja-isikukaitse-toojalatsid",
-      "name_en": "Tööjalatsid",
-      "name_et": "Tööjalatsid",
-      "level": 2,
-      "parent_handle": "v4-tooriied-ja-isikukaitse",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-tooriied-ja-isikukaitse-tooriietus-ja-uleroivad": {
-      "handle": "v4-tooriied-ja-isikukaitse-tooriietus-ja-uleroivad",
-      "name_en": "Tööriietus & ülerõivad",
-      "name_et": "Tööriietus & ülerõivad",
-      "level": 2,
-      "parent_handle": "v4-tooriied-ja-isikukaitse",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-tooriied-ja-isikukaitse-soojendusega-riietus": {
-      "handle": "v4-tooriied-ja-isikukaitse-soojendusega-riietus",
-      "name_en": "Soojendusega riietus",
-      "name_et": "Soojendusega riietus",
-      "level": 2,
-      "parent_handle": "v4-tooriied-ja-isikukaitse",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-tooriied-ja-isikukaitse-kukkumiskaitse-ja-korgustoo": {
-      "handle": "v4-tooriied-ja-isikukaitse-kukkumiskaitse-ja-korgustoo",
-      "name_en": "Kukkumiskaitse & kõrgustöö",
-      "name_et": "Kukkumiskaitse & kõrgustöö",
-      "level": 2,
-      "parent_handle": "v4-tooriied-ja-isikukaitse",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-tooriied-ja-isikukaitse-isikukaitsevahendid": {
-      "handle": "v4-tooriied-ja-isikukaitse-isikukaitsevahendid",
-      "name_en": "Isikukaitsevahendid",
-      "name_et": "Isikukaitsevahendid",
-      "level": 2,
-      "parent_handle": "v4-tooriied-ja-isikukaitse",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
     "v4-pollumajandus-ja-loomakasvatus": {
       "handle": "v4-pollumajandus-ja-loomakasvatus",
       "name_en": "Põllumajandus ja loomakasvatus",
@@ -7304,6 +7149,161 @@
       "name_et": "Lamba- ja kitsekasvatus",
       "level": 2,
       "parent_handle": "v4-pollumajandus-ja-loomakasvatus",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tervis-hooldus-ja-ilu": {
+      "handle": "v4-tervis-hooldus-ja-ilu",
+      "name_en": "Tervis, hooldus ja ilu",
+      "name_et": "Tervis, hooldus ja ilu",
+      "level": 1,
+      "parent_handle": null,
+      "child_handles": [
+        "v4-tervis-hooldus-ja-ilu-isikuhooldusseadmed",
+        "v4-tervis-hooldus-ja-ilu-beebi-ja-lapsetarbed",
+        "v4-tervis-hooldus-ja-ilu-salongi-ja-spaaseadmed"
+      ],
+      "image_path": null,
+      "image_source": "none",
+      "description_en": "Tervis, hooldus ja ilu — products.",
+      "description_et": "Tervis, hooldus ja ilu — tooted.",
+      "tagline_en": "Tervis, hooldus ja ilu",
+      "tagline_et": "Tervis, hooldus ja ilu"
+    },
+    "v4-tervis-hooldus-ja-ilu-isikuhooldusseadmed": {
+      "handle": "v4-tervis-hooldus-ja-ilu-isikuhooldusseadmed",
+      "name_en": "Isikuhooldusseadmed",
+      "name_et": "Isikuhooldusseadmed",
+      "level": 2,
+      "parent_handle": "v4-tervis-hooldus-ja-ilu",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tervis-hooldus-ja-ilu-beebi-ja-lapsetarbed": {
+      "handle": "v4-tervis-hooldus-ja-ilu-beebi-ja-lapsetarbed",
+      "name_en": "Beebi- & lapsetarbed",
+      "name_et": "Beebi- & lapsetarbed",
+      "level": 2,
+      "parent_handle": "v4-tervis-hooldus-ja-ilu",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tervis-hooldus-ja-ilu-salongi-ja-spaaseadmed": {
+      "handle": "v4-tervis-hooldus-ja-ilu-salongi-ja-spaaseadmed",
+      "name_en": "Salongi- & spaaseadmed",
+      "name_et": "Salongi- & spaaseadmed",
+      "level": 2,
+      "parent_handle": "v4-tervis-hooldus-ja-ilu",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-meditsiin-ja-liikumisabi": {
+      "handle": "v4-meditsiin-ja-liikumisabi",
+      "name_en": "Meditsiin ja liikumisabi",
+      "name_et": "Meditsiin ja liikumisabi",
+      "level": 1,
+      "parent_handle": null,
+      "child_handles": [
+        "v4-meditsiin-ja-liikumisabi-liikumisabi",
+        "v4-meditsiin-ja-liikumisabi-meditsiinitarvikud"
+      ],
+      "image_path": null,
+      "image_source": "none",
+      "description_en": "Meditsiin ja liikumisabi — products.",
+      "description_et": "Meditsiin ja liikumisabi — tooted.",
+      "tagline_en": "Meditsiin ja liikumisabi",
+      "tagline_et": "Meditsiin ja liikumisabi"
+    },
+    "v4-meditsiin-ja-liikumisabi-liikumisabi": {
+      "handle": "v4-meditsiin-ja-liikumisabi-liikumisabi",
+      "name_en": "Liikumisabi",
+      "name_et": "Liikumisabi",
+      "level": 2,
+      "parent_handle": "v4-meditsiin-ja-liikumisabi",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-meditsiin-ja-liikumisabi-meditsiinitarvikud": {
+      "handle": "v4-meditsiin-ja-liikumisabi-meditsiinitarvikud",
+      "name_en": "Meditsiinitarvikud",
+      "name_et": "Meditsiinitarvikud",
+      "level": 2,
+      "parent_handle": "v4-meditsiin-ja-liikumisabi",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriied-ja-isikukaitse": {
+      "handle": "v4-tooriied-ja-isikukaitse",
+      "name_en": "Tööriied ja isikukaitse",
+      "name_et": "Tööriied ja isikukaitse",
+      "level": 1,
+      "parent_handle": null,
+      "child_handles": [
+        "v4-tooriied-ja-isikukaitse-toojalatsid",
+        "v4-tooriied-ja-isikukaitse-tooriietus-ja-uleroivad",
+        "v4-tooriied-ja-isikukaitse-soojendusega-riietus",
+        "v4-tooriied-ja-isikukaitse-kukkumiskaitse-ja-korgustoo",
+        "v4-tooriied-ja-isikukaitse-isikukaitsevahendid"
+      ],
+      "image_path": null,
+      "image_source": "none",
+      "description_en": "Tööriied ja isikukaitse — products.",
+      "description_et": "Tööriied ja isikukaitse — tooted.",
+      "tagline_en": "Tööriied ja isikukaitse",
+      "tagline_et": "Tööriied ja isikukaitse"
+    },
+    "v4-tooriied-ja-isikukaitse-toojalatsid": {
+      "handle": "v4-tooriied-ja-isikukaitse-toojalatsid",
+      "name_en": "Tööjalatsid",
+      "name_et": "Tööjalatsid",
+      "level": 2,
+      "parent_handle": "v4-tooriied-ja-isikukaitse",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriied-ja-isikukaitse-tooriietus-ja-uleroivad": {
+      "handle": "v4-tooriied-ja-isikukaitse-tooriietus-ja-uleroivad",
+      "name_en": "Tööriietus & ülerõivad",
+      "name_et": "Tööriietus & ülerõivad",
+      "level": 2,
+      "parent_handle": "v4-tooriied-ja-isikukaitse",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriied-ja-isikukaitse-soojendusega-riietus": {
+      "handle": "v4-tooriied-ja-isikukaitse-soojendusega-riietus",
+      "name_en": "Soojendusega riietus",
+      "name_et": "Soojendusega riietus",
+      "level": 2,
+      "parent_handle": "v4-tooriied-ja-isikukaitse",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriied-ja-isikukaitse-kukkumiskaitse-ja-korgustoo": {
+      "handle": "v4-tooriied-ja-isikukaitse-kukkumiskaitse-ja-korgustoo",
+      "name_en": "Kukkumiskaitse & kõrgustöö",
+      "name_et": "Kukkumiskaitse & kõrgustöö",
+      "level": 2,
+      "parent_handle": "v4-tooriied-ja-isikukaitse",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriied-ja-isikukaitse-isikukaitsevahendid": {
+      "handle": "v4-tooriied-ja-isikukaitse-isikukaitsevahendid",
+      "name_en": "Isikukaitsevahendid",
+      "name_et": "Isikukaitsevahendid",
+      "level": 2,
+      "parent_handle": "v4-tooriied-ja-isikukaitse",
       "child_handles": [],
       "image_path": null,
       "image_source": "none"
@@ -7918,19 +7918,6 @@
     "v4-lemmikloomatarbed-treening-ja-manguasjad-koerte-jooksulindid",
     "v4-lemmikloomatarbed-lemmiklooma-uksed-ja-varavad",
     "v4-lemmikloomatarbed-lemmiklooma-uksed-ja-varavad-lemmiklooma-uksed",
-    "v4-tervis-hooldus-ja-ilu",
-    "v4-tervis-hooldus-ja-ilu-isikuhooldusseadmed",
-    "v4-tervis-hooldus-ja-ilu-beebi-ja-lapsetarbed",
-    "v4-tervis-hooldus-ja-ilu-salongi-ja-spaaseadmed",
-    "v4-meditsiin-ja-liikumisabi",
-    "v4-meditsiin-ja-liikumisabi-liikumisabi",
-    "v4-meditsiin-ja-liikumisabi-meditsiinitarvikud",
-    "v4-tooriied-ja-isikukaitse",
-    "v4-tooriied-ja-isikukaitse-toojalatsid",
-    "v4-tooriied-ja-isikukaitse-tooriietus-ja-uleroivad",
-    "v4-tooriied-ja-isikukaitse-soojendusega-riietus",
-    "v4-tooriied-ja-isikukaitse-kukkumiskaitse-ja-korgustoo",
-    "v4-tooriied-ja-isikukaitse-isikukaitsevahendid",
     "v4-pollumajandus-ja-loomakasvatus",
     "v4-pollumajandus-ja-loomakasvatus-linnukasvatus",
     "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-aiad-ja-vorgud",
@@ -7963,6 +7950,19 @@
     "v4-pollumajandus-ja-loomakasvatus-mesindus-meeekstraktorid-ja-tsentrifuugid",
     "v4-pollumajandus-ja-loomakasvatus-mesindus-mesitarud-ja-komplektid",
     "v4-pollumajandus-ja-loomakasvatus-piimakari-ja-lupsitehnika",
-    "v4-pollumajandus-ja-loomakasvatus-lamba-ja-kitsekasvatus"
+    "v4-pollumajandus-ja-loomakasvatus-lamba-ja-kitsekasvatus",
+    "v4-tervis-hooldus-ja-ilu",
+    "v4-tervis-hooldus-ja-ilu-isikuhooldusseadmed",
+    "v4-tervis-hooldus-ja-ilu-beebi-ja-lapsetarbed",
+    "v4-tervis-hooldus-ja-ilu-salongi-ja-spaaseadmed",
+    "v4-meditsiin-ja-liikumisabi",
+    "v4-meditsiin-ja-liikumisabi-liikumisabi",
+    "v4-meditsiin-ja-liikumisabi-meditsiinitarvikud",
+    "v4-tooriied-ja-isikukaitse",
+    "v4-tooriied-ja-isikukaitse-toojalatsid",
+    "v4-tooriied-ja-isikukaitse-tooriietus-ja-uleroivad",
+    "v4-tooriied-ja-isikukaitse-soojendusega-riietus",
+    "v4-tooriied-ja-isikukaitse-kukkumiskaitse-ja-korgustoo",
+    "v4-tooriied-ja-isikukaitse-isikukaitsevahendid"
   ]
 }
