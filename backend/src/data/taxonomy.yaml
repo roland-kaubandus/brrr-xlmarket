@@ -1,6 +1,6 @@
 version: 4
 updated: '2026-06-19'
-source: v4 + #18 nav-order Lemmiku järel (staging)
+source: v4 + #19 Muusika (nav #12 järel) + #18 (#14 järel)
 l1:
   - slug: v4-tooriistad-ja-tarvikud
     name_en: "Tööriistad ja tarvikud"
@@ -6099,14 +6099,6 @@ l1:
         name_et: "Trummid & löökpillid"
         product_count: 0
         subs:
-          - slug: v4-sport-ja-vaba-aeg-trummid-ja-lookpillid-akustilised-trummikomplektid
-            name_en: "Akustilised trummikomplektid"
-            name_et: "Akustilised trummikomplektid"
-            product_count: 0
-          - slug: v4-sport-ja-vaba-aeg-trummid-ja-lookpillid-elektroonilised-trummikomplektid
-            name_en: "Elektroonilised trummikomplektid"
-            name_et: "Elektroonilised trummikomplektid"
-            product_count: 0
           - slug: v4-sport-ja-vaba-aeg-trummid-ja-lookpillid-handpani-ja-keeltrummid
             name_en: "Handpani- ja keeltrummid"
             name_et: "Handpani- ja keeltrummid"
@@ -6123,31 +6115,11 @@ l1:
             name_en: "Taldrikud ja taldrikukomplektid"
             name_et: "Taldrikud ja taldrikukomplektid"
             product_count: 0
-          - slug: v4-sport-ja-vaba-aeg-trummid-ja-lookpillid-trummikotid-ja-transpordikotid
-            name_en: "Trummikotid ja transpordikotid"
-            name_et: "Trummikotid ja transpordikotid"
-            product_count: 0
-          - slug: v4-sport-ja-vaba-aeg-trummid-ja-lookpillid-trummitoolid-ja-istmed
-            name_en: "Trummitoolid ja -istmed"
-            name_et: "Trummitoolid ja -istmed"
-            product_count: 0
       - slug: v4-sport-ja-vaba-aeg-muusikariistad
         name_en: "Muusikariistad"
         name_et: "Muusikariistad"
         product_count: 0
         subs:
-          - slug: v4-sport-ja-vaba-aeg-muusikariistad-akustilised-kitarrid
-            name_en: "Akustilised kitarrid"
-            name_et: "Akustilised kitarrid"
-            product_count: 0
-          - slug: v4-sport-ja-vaba-aeg-muusikariistad-digitaalpianod-ja-klaverid
-            name_en: "Digitaalpianod ja -klaverid"
-            name_et: "Digitaalpianod ja -klaverid"
-            product_count: 0
-          - slug: v4-sport-ja-vaba-aeg-muusikariistad-klassikalised-kitarrid
-            name_en: "Klassikalised kitarrid"
-            name_et: "Klassikalised kitarrid"
-            product_count: 0
           - slug: v4-sport-ja-vaba-aeg-muusikariistad-kohvrid-ja-kotid
             name_en: "Kohvrid ja kotid"
             name_et: "Kohvrid ja kotid"
@@ -6256,6 +6228,77 @@ l1:
           - slug: v4-sport-ja-vaba-aeg-lava-ja-dj-tehnika-lavaefektimasinad
             name_en: "Lavaefektimasinad"
             name_et: "Lavaefektimasinad"
+            product_count: 0
+  - slug: v4-muusika-ja-helitehnika
+    name_en: "Muusika ja helitehnika"
+    name_et: "Muusika ja helitehnika"
+    short_slug: muusika
+    tagline_en: "Muusika ja helitehnika"
+    tagline_et: "Muusika ja helitehnika"
+    description_en: "Muusika ja helitehnika — products."
+    description_et: "Muusika ja helitehnika — tooted."
+    hero_img: /images/branches/horeca.webp
+    hero_gradient: from-stone-950/80 via-stone-900/40 to-transparent
+    product_count: 199
+    subs:
+      - slug: v4-muusika-ja-helitehnika-muusikariistad
+        name_en: "Muusikariistad"
+        name_et: "Muusikariistad"
+        product_count: 0
+        subs:
+          - slug: v4-muusika-ja-helitehnika-muusikariistad-keelpillid
+            name_en: "Keelpillid"
+            name_et: "Keelpillid"
+            product_count: 0
+          - slug: v4-muusika-ja-helitehnika-muusikariistad-klahvpillid
+            name_en: "Klahvpillid"
+            name_et: "Klahvpillid"
+            product_count: 0
+          - slug: v4-muusika-ja-helitehnika-muusikariistad-lookpillid
+            name_en: "Löökpillid"
+            name_et: "Löökpillid"
+            product_count: 0
+          - slug: v4-muusika-ja-helitehnika-muusikariistad-pillitarvikud
+            name_en: "Pillitarvikud"
+            name_et: "Pillitarvikud"
+            product_count: 0
+          - slug: v4-muusika-ja-helitehnika-muusikariistad-puhkpillid
+            name_en: "Puhkpillid"
+            name_et: "Puhkpillid"
+            product_count: 0
+      - slug: v4-muusika-ja-helitehnika-dj-ja-lavatehnika
+        name_en: "DJ & lavatehnika"
+        name_et: "DJ & lavatehnika"
+        product_count: 0
+        subs:
+          - slug: v4-muusika-ja-helitehnika-dj-ja-lavatehnika-lavaefektide-masinad
+            name_en: "Lavaefektide masinad"
+            name_et: "Lavaefektide masinad"
+            product_count: 0
+          - slug: v4-muusika-ja-helitehnika-dj-ja-lavatehnika-pottsepakettad
+            name_en: "Pottsepakettad"
+            name_et: "Pottsepakettad"
+            product_count: 0
+          - slug: v4-muusika-ja-helitehnika-dj-ja-lavatehnika-vinuulplaadimangijad
+            name_en: "Vinüülplaadimängijad"
+            name_et: "Vinüülplaadimängijad"
+            product_count: 0
+          - slug: v4-muusika-ja-helitehnika-dj-ja-lavatehnika-vinuulplaatide-hoiustamine
+            name_en: "Vinüülplaatide hoiustamine"
+            name_et: "Vinüülplaatide hoiustamine"
+            product_count: 0
+      - slug: v4-muusika-ja-helitehnika-heli-ja-salvestus
+        name_en: "Heli & salvestus"
+        name_et: "Heli & salvestus"
+        product_count: 0
+        subs:
+          - slug: v4-muusika-ja-helitehnika-heli-ja-salvestus-karaokemasinad
+            name_en: "Karaokemasinad"
+            name_et: "Karaokemasinad"
+            product_count: 0
+          - slug: v4-muusika-ja-helitehnika-heli-ja-salvestus-mikrofonikaablid
+            name_en: "Mikrofonikaablid"
+            name_et: "Mikrofonikaablid"
             product_count: 0
   - slug: v4-reklaami-truki-ja-graveerimisseadmed
     name_en: "Reklaami-, trüki- ja graveerimisseadmed"
@@ -6683,7 +6726,7 @@ l1:
     description_et: "Põllumajandus ja loomakasvatus — tooted."
     hero_img: /images/branches/horeca.webp
     hero_gradient: from-stone-950/80 via-stone-900/40 to-transparent
-    product_count: 193
+    product_count: 194
     subs:
       - slug: v4-pollumajandus-ja-loomakasvatus-linnukasvatus
         name_en: "Linnukasvatus"

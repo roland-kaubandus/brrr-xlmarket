@@ -148,6 +148,17 @@ export const BRANCHES: BranchDef[] = [
     heroGradient: "from-stone-950/80 via-stone-900/40 to-transparent",
   },
   {
+    name: "Muusika ja helitehnika",
+    nameEn: "Muusika ja helitehnika",
+    slug: "muusika",
+    categoryHandle: "v4-muusika-ja-helitehnika",
+    tagline: "Muusika ja helitehnika",
+    taglineEn: "Muusika ja helitehnika",
+    description: "Muusika ja helitehnika — tooted.",
+    heroImg: "/images/branches/horeca.webp",
+    heroGradient: "from-stone-950/80 via-stone-900/40 to-transparent",
+  },
+  {
     name: "Reklaami-, trüki- ja graveerimisseadmed",
     nameEn: "Reklaami-, trüki- ja graveerimisseadmed",
     slug: "reklaami-truki-ja-graveerimisseadmed",

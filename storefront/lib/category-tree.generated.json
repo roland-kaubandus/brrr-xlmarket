@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-21T10:11:51.642Z",
+  "generated_at": "2026-06-21T10:24:26.812Z",
   "nodes": {
     "v4-tooriistad-ja-tarvikud": {
       "handle": "v4-tooriistad-ja-tarvikud",
@@ -16349,35 +16349,11 @@
       "level": 2,
       "parent_handle": "v4-sport-ja-vaba-aeg",
       "child_handles": [
-        "v4-sport-ja-vaba-aeg-trummid-ja-lookpillid-akustilised-trummikomplektid",
-        "v4-sport-ja-vaba-aeg-trummid-ja-lookpillid-elektroonilised-trummikomplektid",
         "v4-sport-ja-vaba-aeg-trummid-ja-lookpillid-handpani-ja-keeltrummid",
         "v4-sport-ja-vaba-aeg-trummid-ja-lookpillid-kajonid",
         "v4-sport-ja-vaba-aeg-trummid-ja-lookpillid-ksulofonid-ja-kellamangud",
-        "v4-sport-ja-vaba-aeg-trummid-ja-lookpillid-taldrikud-ja-taldrikukomplektid",
-        "v4-sport-ja-vaba-aeg-trummid-ja-lookpillid-trummikotid-ja-transpordikotid",
-        "v4-sport-ja-vaba-aeg-trummid-ja-lookpillid-trummitoolid-ja-istmed"
+        "v4-sport-ja-vaba-aeg-trummid-ja-lookpillid-taldrikud-ja-taldrikukomplektid"
       ],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-sport-ja-vaba-aeg-trummid-ja-lookpillid-akustilised-trummikomplektid": {
-      "handle": "v4-sport-ja-vaba-aeg-trummid-ja-lookpillid-akustilised-trummikomplektid",
-      "name_en": "Akustilised trummikomplektid",
-      "name_et": "Akustilised trummikomplektid",
-      "level": 3,
-      "parent_handle": "v4-sport-ja-vaba-aeg-trummid-ja-lookpillid",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-sport-ja-vaba-aeg-trummid-ja-lookpillid-elektroonilised-trummikomplektid": {
-      "handle": "v4-sport-ja-vaba-aeg-trummid-ja-lookpillid-elektroonilised-trummikomplektid",
-      "name_en": "Elektroonilised trummikomplektid",
-      "name_et": "Elektroonilised trummikomplektid",
-      "level": 3,
-      "parent_handle": "v4-sport-ja-vaba-aeg-trummid-ja-lookpillid",
-      "child_handles": [],
       "image_path": null,
       "image_source": "none"
     },
@@ -16421,26 +16397,6 @@
       "image_path": null,
       "image_source": "none"
     },
-    "v4-sport-ja-vaba-aeg-trummid-ja-lookpillid-trummikotid-ja-transpordikotid": {
-      "handle": "v4-sport-ja-vaba-aeg-trummid-ja-lookpillid-trummikotid-ja-transpordikotid",
-      "name_en": "Trummikotid ja transpordikotid",
-      "name_et": "Trummikotid ja transpordikotid",
-      "level": 3,
-      "parent_handle": "v4-sport-ja-vaba-aeg-trummid-ja-lookpillid",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-sport-ja-vaba-aeg-trummid-ja-lookpillid-trummitoolid-ja-istmed": {
-      "handle": "v4-sport-ja-vaba-aeg-trummid-ja-lookpillid-trummitoolid-ja-istmed",
-      "name_en": "Trummitoolid ja -istmed",
-      "name_et": "Trummitoolid ja -istmed",
-      "level": 3,
-      "parent_handle": "v4-sport-ja-vaba-aeg-trummid-ja-lookpillid",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
     "v4-sport-ja-vaba-aeg-muusikariistad": {
       "handle": "v4-sport-ja-vaba-aeg-muusikariistad",
       "name_en": "Muusikariistad",
@@ -16448,45 +16404,12 @@
       "level": 2,
       "parent_handle": "v4-sport-ja-vaba-aeg",
       "child_handles": [
-        "v4-sport-ja-vaba-aeg-muusikariistad-akustilised-kitarrid",
-        "v4-sport-ja-vaba-aeg-muusikariistad-digitaalpianod-ja-klaverid",
-        "v4-sport-ja-vaba-aeg-muusikariistad-klassikalised-kitarrid",
         "v4-sport-ja-vaba-aeg-muusikariistad-kohvrid-ja-kotid",
         "v4-sport-ja-vaba-aeg-muusikariistad-pedaalilauad",
         "v4-sport-ja-vaba-aeg-muusikariistad-saksofonid",
         "v4-sport-ja-vaba-aeg-muusikariistad-statiivid-ja-kinnitused",
         "v4-sport-ja-vaba-aeg-muusikariistad-viiulid"
       ],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-sport-ja-vaba-aeg-muusikariistad-akustilised-kitarrid": {
-      "handle": "v4-sport-ja-vaba-aeg-muusikariistad-akustilised-kitarrid",
-      "name_en": "Akustilised kitarrid",
-      "name_et": "Akustilised kitarrid",
-      "level": 3,
-      "parent_handle": "v4-sport-ja-vaba-aeg-muusikariistad",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-sport-ja-vaba-aeg-muusikariistad-digitaalpianod-ja-klaverid": {
-      "handle": "v4-sport-ja-vaba-aeg-muusikariistad-digitaalpianod-ja-klaverid",
-      "name_en": "Digitaalpianod ja -klaverid",
-      "name_et": "Digitaalpianod ja -klaverid",
-      "level": 3,
-      "parent_handle": "v4-sport-ja-vaba-aeg-muusikariistad",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-sport-ja-vaba-aeg-muusikariistad-klassikalised-kitarrid": {
-      "handle": "v4-sport-ja-vaba-aeg-muusikariistad-klassikalised-kitarrid",
-      "name_en": "Klassikalised kitarrid",
-      "name_et": "Klassikalised kitarrid",
-      "level": 3,
-      "parent_handle": "v4-sport-ja-vaba-aeg-muusikariistad",
-      "child_handles": [],
       "image_path": null,
       "image_source": "none"
     },
@@ -16767,6 +16690,178 @@
       "name_et": "Lavaefektimasinad",
       "level": 3,
       "parent_handle": "v4-sport-ja-vaba-aeg-lava-ja-dj-tehnika",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-muusika-ja-helitehnika": {
+      "handle": "v4-muusika-ja-helitehnika",
+      "name_en": "Muusika ja helitehnika",
+      "name_et": "Muusika ja helitehnika",
+      "level": 1,
+      "parent_handle": null,
+      "child_handles": [
+        "v4-muusika-ja-helitehnika-muusikariistad",
+        "v4-muusika-ja-helitehnika-dj-ja-lavatehnika",
+        "v4-muusika-ja-helitehnika-heli-ja-salvestus"
+      ],
+      "image_path": null,
+      "image_source": "none",
+      "description_en": "Muusika ja helitehnika — products.",
+      "description_et": "Muusika ja helitehnika — tooted.",
+      "tagline_en": "Muusika ja helitehnika",
+      "tagline_et": "Muusika ja helitehnika"
+    },
+    "v4-muusika-ja-helitehnika-muusikariistad": {
+      "handle": "v4-muusika-ja-helitehnika-muusikariistad",
+      "name_en": "Muusikariistad",
+      "name_et": "Muusikariistad",
+      "level": 2,
+      "parent_handle": "v4-muusika-ja-helitehnika",
+      "child_handles": [
+        "v4-muusika-ja-helitehnika-muusikariistad-keelpillid",
+        "v4-muusika-ja-helitehnika-muusikariistad-klahvpillid",
+        "v4-muusika-ja-helitehnika-muusikariistad-lookpillid",
+        "v4-muusika-ja-helitehnika-muusikariistad-pillitarvikud",
+        "v4-muusika-ja-helitehnika-muusikariistad-puhkpillid"
+      ],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-muusika-ja-helitehnika-muusikariistad-keelpillid": {
+      "handle": "v4-muusika-ja-helitehnika-muusikariistad-keelpillid",
+      "name_en": "Keelpillid",
+      "name_et": "Keelpillid",
+      "level": 3,
+      "parent_handle": "v4-muusika-ja-helitehnika-muusikariistad",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-muusika-ja-helitehnika-muusikariistad-klahvpillid": {
+      "handle": "v4-muusika-ja-helitehnika-muusikariistad-klahvpillid",
+      "name_en": "Klahvpillid",
+      "name_et": "Klahvpillid",
+      "level": 3,
+      "parent_handle": "v4-muusika-ja-helitehnika-muusikariistad",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-muusika-ja-helitehnika-muusikariistad-lookpillid": {
+      "handle": "v4-muusika-ja-helitehnika-muusikariistad-lookpillid",
+      "name_en": "Löökpillid",
+      "name_et": "Löökpillid",
+      "level": 3,
+      "parent_handle": "v4-muusika-ja-helitehnika-muusikariistad",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-muusika-ja-helitehnika-muusikariistad-pillitarvikud": {
+      "handle": "v4-muusika-ja-helitehnika-muusikariistad-pillitarvikud",
+      "name_en": "Pillitarvikud",
+      "name_et": "Pillitarvikud",
+      "level": 3,
+      "parent_handle": "v4-muusika-ja-helitehnika-muusikariistad",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-muusika-ja-helitehnika-muusikariistad-puhkpillid": {
+      "handle": "v4-muusika-ja-helitehnika-muusikariistad-puhkpillid",
+      "name_en": "Puhkpillid",
+      "name_et": "Puhkpillid",
+      "level": 3,
+      "parent_handle": "v4-muusika-ja-helitehnika-muusikariistad",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-muusika-ja-helitehnika-dj-ja-lavatehnika": {
+      "handle": "v4-muusika-ja-helitehnika-dj-ja-lavatehnika",
+      "name_en": "DJ & lavatehnika",
+      "name_et": "DJ & lavatehnika",
+      "level": 2,
+      "parent_handle": "v4-muusika-ja-helitehnika",
+      "child_handles": [
+        "v4-muusika-ja-helitehnika-dj-ja-lavatehnika-lavaefektide-masinad",
+        "v4-muusika-ja-helitehnika-dj-ja-lavatehnika-pottsepakettad",
+        "v4-muusika-ja-helitehnika-dj-ja-lavatehnika-vinuulplaadimangijad",
+        "v4-muusika-ja-helitehnika-dj-ja-lavatehnika-vinuulplaatide-hoiustamine"
+      ],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-muusika-ja-helitehnika-dj-ja-lavatehnika-lavaefektide-masinad": {
+      "handle": "v4-muusika-ja-helitehnika-dj-ja-lavatehnika-lavaefektide-masinad",
+      "name_en": "Lavaefektide masinad",
+      "name_et": "Lavaefektide masinad",
+      "level": 3,
+      "parent_handle": "v4-muusika-ja-helitehnika-dj-ja-lavatehnika",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-muusika-ja-helitehnika-dj-ja-lavatehnika-pottsepakettad": {
+      "handle": "v4-muusika-ja-helitehnika-dj-ja-lavatehnika-pottsepakettad",
+      "name_en": "Pottsepakettad",
+      "name_et": "Pottsepakettad",
+      "level": 3,
+      "parent_handle": "v4-muusika-ja-helitehnika-dj-ja-lavatehnika",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-muusika-ja-helitehnika-dj-ja-lavatehnika-vinuulplaadimangijad": {
+      "handle": "v4-muusika-ja-helitehnika-dj-ja-lavatehnika-vinuulplaadimangijad",
+      "name_en": "Vinüülplaadimängijad",
+      "name_et": "Vinüülplaadimängijad",
+      "level": 3,
+      "parent_handle": "v4-muusika-ja-helitehnika-dj-ja-lavatehnika",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-muusika-ja-helitehnika-dj-ja-lavatehnika-vinuulplaatide-hoiustamine": {
+      "handle": "v4-muusika-ja-helitehnika-dj-ja-lavatehnika-vinuulplaatide-hoiustamine",
+      "name_en": "Vinüülplaatide hoiustamine",
+      "name_et": "Vinüülplaatide hoiustamine",
+      "level": 3,
+      "parent_handle": "v4-muusika-ja-helitehnika-dj-ja-lavatehnika",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-muusika-ja-helitehnika-heli-ja-salvestus": {
+      "handle": "v4-muusika-ja-helitehnika-heli-ja-salvestus",
+      "name_en": "Heli & salvestus",
+      "name_et": "Heli & salvestus",
+      "level": 2,
+      "parent_handle": "v4-muusika-ja-helitehnika",
+      "child_handles": [
+        "v4-muusika-ja-helitehnika-heli-ja-salvestus-karaokemasinad",
+        "v4-muusika-ja-helitehnika-heli-ja-salvestus-mikrofonikaablid"
+      ],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-muusika-ja-helitehnika-heli-ja-salvestus-karaokemasinad": {
+      "handle": "v4-muusika-ja-helitehnika-heli-ja-salvestus-karaokemasinad",
+      "name_en": "Karaokemasinad",
+      "name_et": "Karaokemasinad",
+      "level": 3,
+      "parent_handle": "v4-muusika-ja-helitehnika-heli-ja-salvestus",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-muusika-ja-helitehnika-heli-ja-salvestus-mikrofonikaablid": {
+      "handle": "v4-muusika-ja-helitehnika-heli-ja-salvestus-mikrofonikaablid",
+      "name_en": "Mikrofonikaablid",
+      "name_et": "Mikrofonikaablid",
+      "level": 3,
+      "parent_handle": "v4-muusika-ja-helitehnika-heli-ja-salvestus",
       "child_handles": [],
       "image_path": null,
       "image_source": "none"
@@ -20658,18 +20753,11 @@
     "v4-sport-ja-vaba-aeg-jaht-ja-jahivarustus-vibumarklauad",
     "v4-sport-ja-vaba-aeg-jaht-ja-jahivarustus-ongehoidikud",
     "v4-sport-ja-vaba-aeg-trummid-ja-lookpillid",
-    "v4-sport-ja-vaba-aeg-trummid-ja-lookpillid-akustilised-trummikomplektid",
-    "v4-sport-ja-vaba-aeg-trummid-ja-lookpillid-elektroonilised-trummikomplektid",
     "v4-sport-ja-vaba-aeg-trummid-ja-lookpillid-handpani-ja-keeltrummid",
     "v4-sport-ja-vaba-aeg-trummid-ja-lookpillid-kajonid",
     "v4-sport-ja-vaba-aeg-trummid-ja-lookpillid-ksulofonid-ja-kellamangud",
     "v4-sport-ja-vaba-aeg-trummid-ja-lookpillid-taldrikud-ja-taldrikukomplektid",
-    "v4-sport-ja-vaba-aeg-trummid-ja-lookpillid-trummikotid-ja-transpordikotid",
-    "v4-sport-ja-vaba-aeg-trummid-ja-lookpillid-trummitoolid-ja-istmed",
     "v4-sport-ja-vaba-aeg-muusikariistad",
-    "v4-sport-ja-vaba-aeg-muusikariistad-akustilised-kitarrid",
-    "v4-sport-ja-vaba-aeg-muusikariistad-digitaalpianod-ja-klaverid",
-    "v4-sport-ja-vaba-aeg-muusikariistad-klassikalised-kitarrid",
     "v4-sport-ja-vaba-aeg-muusikariistad-kohvrid-ja-kotid",
     "v4-sport-ja-vaba-aeg-muusikariistad-pedaalilauad",
     "v4-sport-ja-vaba-aeg-muusikariistad-saksofonid",
@@ -20696,6 +20784,21 @@
     "v4-sport-ja-vaba-aeg-reisikotid-ja-kohvrid-vaakumkompressiooniga-reisikotid",
     "v4-sport-ja-vaba-aeg-lava-ja-dj-tehnika",
     "v4-sport-ja-vaba-aeg-lava-ja-dj-tehnika-lavaefektimasinad",
+    "v4-muusika-ja-helitehnika",
+    "v4-muusika-ja-helitehnika-muusikariistad",
+    "v4-muusika-ja-helitehnika-muusikariistad-keelpillid",
+    "v4-muusika-ja-helitehnika-muusikariistad-klahvpillid",
+    "v4-muusika-ja-helitehnika-muusikariistad-lookpillid",
+    "v4-muusika-ja-helitehnika-muusikariistad-pillitarvikud",
+    "v4-muusika-ja-helitehnika-muusikariistad-puhkpillid",
+    "v4-muusika-ja-helitehnika-dj-ja-lavatehnika",
+    "v4-muusika-ja-helitehnika-dj-ja-lavatehnika-lavaefektide-masinad",
+    "v4-muusika-ja-helitehnika-dj-ja-lavatehnika-pottsepakettad",
+    "v4-muusika-ja-helitehnika-dj-ja-lavatehnika-vinuulplaadimangijad",
+    "v4-muusika-ja-helitehnika-dj-ja-lavatehnika-vinuulplaatide-hoiustamine",
+    "v4-muusika-ja-helitehnika-heli-ja-salvestus",
+    "v4-muusika-ja-helitehnika-heli-ja-salvestus-karaokemasinad",
+    "v4-muusika-ja-helitehnika-heli-ja-salvestus-mikrofonikaablid",
     "v4-reklaami-truki-ja-graveerimisseadmed",
     "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc",
     "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-3d-printeri-korpused-ja-katted",
