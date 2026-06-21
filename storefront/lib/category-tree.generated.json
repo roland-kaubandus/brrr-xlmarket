@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-21T10:26:41.230Z",
+  "generated_at": "2026-06-21T13:59:36.714Z",
   "nodes": {
     "v4-tooriistad-ja-tarvikud": {
       "handle": "v4-tooriistad-ja-tarvikud",
@@ -8709,6 +8709,7 @@
         "v4-aed-ja-aiatehnika-l1-aiatoolauad-ja-istutuslauad",
         "v4-aed-ja-aiatehnika-l1-heinapallide-tosteokad-ja-haagid",
         "v4-aed-ja-aiatehnika-l1-istutuspuurid-ja-maaaugurid",
+        "v4-aed-aiatooriistad-jarelveetavad-muruhooldusseadmed",
         "v4-aed-ja-aiatehnika-l1-komposti-tarvikud",
         "v4-aed-ja-aiatehnika-l1-lehe-ja-pungatrimmerid",
         "v4-aed-ja-aiatehnika-l1-lumelabidad-ja-lumetosteseadmed",
@@ -8792,6 +8793,16 @@
       "handle": "v4-aed-ja-aiatehnika-l1-istutuspuurid-ja-maaaugurid",
       "name_en": "Istutuspuurid ja maaaugurid",
       "name_et": "Istutuspuurid ja maaaugurid",
+      "level": 3,
+      "parent_handle": "v4-aed-ja-aiatehnika-aiatooriistad",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-aed-aiatooriistad-jarelveetavad-muruhooldusseadmed": {
+      "handle": "v4-aed-aiatooriistad-jarelveetavad-muruhooldusseadmed",
+      "name_en": "Järelveetavad muruhooldusseadmed",
+      "name_et": "Järelveetavad muruhooldusseadmed",
       "level": 3,
       "parent_handle": "v4-aed-ja-aiatehnika-aiatooriistad",
       "child_handles": [],
@@ -16863,8 +16874,8 @@
       "parent_handle": null,
       "child_handles": [
         "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc",
-        "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign",
         "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk",
+        "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign",
         "v4-reklaami-truki-ja-graveerimisseadmed-koitmine-ja-lamineerimine",
         "v4-reklaami-truki-ja-graveerimisseadmed-fotostuudio-ja-taustad"
       ],
@@ -17084,83 +17095,6 @@
       "image_path": null,
       "image_source": "none"
     },
-    "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign": {
-      "handle": "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign",
-      "name_en": "Vinüül & sign",
-      "name_et": "Vinüül & sign",
-      "level": 2,
-      "parent_handle": "v4-reklaami-truki-ja-graveerimisseadmed",
-      "child_handles": [
-        "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-led-reklaamtahvlid-ja-ekraanid",
-        "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-naitustahvlid-ja-lauad",
-        "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-plotteri-paberirullid",
-        "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-posteri-ja-bannerihoidikud",
-        "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-reklaamlipud-ja-lipumastid",
-        "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-vinuulloikurid-ja-plotterid"
-      ],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-led-reklaamtahvlid-ja-ekraanid": {
-      "handle": "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-led-reklaamtahvlid-ja-ekraanid",
-      "name_en": "LED-reklaamtahvlid & -ekraanid",
-      "name_et": "LED-reklaamtahvlid & -ekraanid",
-      "level": 3,
-      "parent_handle": "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-naitustahvlid-ja-lauad": {
-      "handle": "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-naitustahvlid-ja-lauad",
-      "name_en": "Näitustahvlid & -lauad",
-      "name_et": "Näitustahvlid & -lauad",
-      "level": 3,
-      "parent_handle": "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-plotteri-paberirullid": {
-      "handle": "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-plotteri-paberirullid",
-      "name_en": "Plotteri paberirullid",
-      "name_et": "Plotteri paberirullid",
-      "level": 3,
-      "parent_handle": "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-posteri-ja-bannerihoidikud": {
-      "handle": "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-posteri-ja-bannerihoidikud",
-      "name_en": "Posteri- & bännerihoidikud",
-      "name_et": "Posteri- & bännerihoidikud",
-      "level": 3,
-      "parent_handle": "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-reklaamlipud-ja-lipumastid": {
-      "handle": "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-reklaamlipud-ja-lipumastid",
-      "name_en": "Reklaamlipud & lipumastid",
-      "name_et": "Reklaamlipud & lipumastid",
-      "level": 3,
-      "parent_handle": "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-vinuulloikurid-ja-plotterid": {
-      "handle": "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-vinuulloikurid-ja-plotterid",
-      "name_en": "Vinüüllõikurid & plotterid",
-      "name_et": "Vinüüllõikurid & plotterid",
-      "level": 3,
-      "parent_handle": "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
     "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk": {
       "handle": "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk",
       "name_en": "Tekstiili- & rõivatrükk",
@@ -17333,6 +17267,83 @@
       "name_et": "Õmblusmasinad",
       "level": 3,
       "parent_handle": "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign": {
+      "handle": "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign",
+      "name_en": "Vinüül & sign",
+      "name_et": "Vinüül & sign",
+      "level": 2,
+      "parent_handle": "v4-reklaami-truki-ja-graveerimisseadmed",
+      "child_handles": [
+        "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-led-reklaamtahvlid-ja-ekraanid",
+        "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-naitustahvlid-ja-lauad",
+        "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-plotteri-paberirullid",
+        "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-posteri-ja-bannerihoidikud",
+        "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-reklaamlipud-ja-lipumastid",
+        "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-vinuulloikurid-ja-plotterid"
+      ],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-led-reklaamtahvlid-ja-ekraanid": {
+      "handle": "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-led-reklaamtahvlid-ja-ekraanid",
+      "name_en": "LED-reklaamtahvlid & -ekraanid",
+      "name_et": "LED-reklaamtahvlid & -ekraanid",
+      "level": 3,
+      "parent_handle": "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-naitustahvlid-ja-lauad": {
+      "handle": "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-naitustahvlid-ja-lauad",
+      "name_en": "Näitustahvlid & -lauad",
+      "name_et": "Näitustahvlid & -lauad",
+      "level": 3,
+      "parent_handle": "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-plotteri-paberirullid": {
+      "handle": "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-plotteri-paberirullid",
+      "name_en": "Plotteri paberirullid",
+      "name_et": "Plotteri paberirullid",
+      "level": 3,
+      "parent_handle": "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-posteri-ja-bannerihoidikud": {
+      "handle": "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-posteri-ja-bannerihoidikud",
+      "name_en": "Posteri- & bännerihoidikud",
+      "name_et": "Posteri- & bännerihoidikud",
+      "level": 3,
+      "parent_handle": "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-reklaamlipud-ja-lipumastid": {
+      "handle": "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-reklaamlipud-ja-lipumastid",
+      "name_en": "Reklaamlipud & lipumastid",
+      "name_et": "Reklaamlipud & lipumastid",
+      "level": 3,
+      "parent_handle": "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-vinuulloikurid-ja-plotterid": {
+      "handle": "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-vinuulloikurid-ja-plotterid",
+      "name_en": "Vinüüllõikurid & plotterid",
+      "name_et": "Vinüüllõikurid & plotterid",
+      "level": 3,
+      "parent_handle": "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign",
       "child_handles": [],
       "image_path": null,
       "image_source": "none"
@@ -17970,29 +17981,13 @@
       "level": 2,
       "parent_handle": "v4-pollumajandus-ja-loomakasvatus",
       "child_handles": [
-        "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-aiad-ja-vorgud",
         "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-automaatsed-kanamajauksed",
-        "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-elektrikarjused",
         "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-inkubaatorid-ja-munahaudejad",
-        "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-kanakuudid-ja-kanalad",
         "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-kanapuurid-ja-aedikud",
         "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-linnutootlemise-masinad",
-        "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-murahooldusseadmed",
         "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-pesakastid-ja-munemispesad",
-        "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-praadimisseadmed",
-        "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-soodaautomaadid-ja-jootjad",
-        "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-ventilaatorid-ja-ohutus"
+        "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-soodaautomaadid-ja-jootjad"
       ],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-aiad-ja-vorgud": {
-      "handle": "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-aiad-ja-vorgud",
-      "name_en": "Aiad ja võrgud",
-      "name_et": "Aiad ja võrgud",
-      "level": 3,
-      "parent_handle": "v4-pollumajandus-ja-loomakasvatus-linnukasvatus",
-      "child_handles": [],
       "image_path": null,
       "image_source": "none"
     },
@@ -18006,30 +18001,10 @@
       "image_path": null,
       "image_source": "none"
     },
-    "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-elektrikarjused": {
-      "handle": "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-elektrikarjused",
-      "name_en": "Elektrikarjused",
-      "name_et": "Elektrikarjused",
-      "level": 3,
-      "parent_handle": "v4-pollumajandus-ja-loomakasvatus-linnukasvatus",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
     "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-inkubaatorid-ja-munahaudejad": {
       "handle": "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-inkubaatorid-ja-munahaudejad",
       "name_en": "Inkubaatorid ja munahaudejad",
       "name_et": "Inkubaatorid ja munahaudejad",
-      "level": 3,
-      "parent_handle": "v4-pollumajandus-ja-loomakasvatus-linnukasvatus",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-kanakuudid-ja-kanalad": {
-      "handle": "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-kanakuudid-ja-kanalad",
-      "name_en": "Kanakuudid ja kanalad",
-      "name_et": "Kanakuudid ja kanalad",
       "level": 3,
       "parent_handle": "v4-pollumajandus-ja-loomakasvatus-linnukasvatus",
       "child_handles": [],
@@ -18056,16 +18031,6 @@
       "image_path": null,
       "image_source": "none"
     },
-    "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-murahooldusseadmed": {
-      "handle": "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-murahooldusseadmed",
-      "name_en": "Murahooldusseadmed",
-      "name_et": "Murahooldusseadmed",
-      "level": 3,
-      "parent_handle": "v4-pollumajandus-ja-loomakasvatus-linnukasvatus",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
     "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-pesakastid-ja-munemispesad": {
       "handle": "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-pesakastid-ja-munemispesad",
       "name_en": "Pesakastid ja munemispesad",
@@ -18076,30 +18041,10 @@
       "image_path": null,
       "image_source": "none"
     },
-    "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-praadimisseadmed": {
-      "handle": "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-praadimisseadmed",
-      "name_en": "Praadimisseadmed",
-      "name_et": "Praadimisseadmed",
-      "level": 3,
-      "parent_handle": "v4-pollumajandus-ja-loomakasvatus-linnukasvatus",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
     "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-soodaautomaadid-ja-jootjad": {
       "handle": "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-soodaautomaadid-ja-jootjad",
       "name_en": "Söödaautomaadid ja jootjad",
       "name_et": "Söödaautomaadid ja jootjad",
-      "level": 3,
-      "parent_handle": "v4-pollumajandus-ja-loomakasvatus-linnukasvatus",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-ventilaatorid-ja-ohutus": {
-      "handle": "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-ventilaatorid-ja-ohutus",
-      "name_en": "Ventilaatorid ja õhutus",
-      "name_et": "Ventilaatorid ja õhutus",
       "level": 3,
       "parent_handle": "v4-pollumajandus-ja-loomakasvatus-linnukasvatus",
       "child_handles": [],
@@ -18117,8 +18062,7 @@
         "v4-pollumajandus-ja-loomakasvatus-kariloomad-heinasooturid-ja-heinavorgud",
         "v4-pollumajandus-ja-loomakasvatus-kariloomad-kariloomade-sugamisharjad",
         "v4-pollumajandus-ja-loomakasvatus-kariloomad-soodurid-ja-soodakuna",
-        "v4-pollumajandus-ja-loomakasvatus-kariloomad-tra-ataiad-ja-aiapiirded",
-        "v4-pollumajandus-ja-loomakasvatus-kariloomad-veepumbad"
+        "v4-pollumajandus-ja-loomakasvatus-kariloomad-tra-ataiad-ja-aiapiirded"
       ],
       "image_path": null,
       "image_source": "none"
@@ -18165,18 +18109,8 @@
     },
     "v4-pollumajandus-ja-loomakasvatus-kariloomad-tra-ataiad-ja-aiapiirded": {
       "handle": "v4-pollumajandus-ja-loomakasvatus-kariloomad-tra-ataiad-ja-aiapiirded",
-      "name_en": "Tra ataiad ja aiapiirded",
-      "name_et": "Tra ataiad ja aiapiirded",
-      "level": 3,
-      "parent_handle": "v4-pollumajandus-ja-loomakasvatus-kariloomad",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-pollumajandus-ja-loomakasvatus-kariloomad-veepumbad": {
-      "handle": "v4-pollumajandus-ja-loomakasvatus-kariloomad-veepumbad",
-      "name_en": "Veepumbad",
-      "name_et": "Veepumbad",
+      "name_en": "Tarad ja võrgud",
+      "name_et": "Tarad ja võrgud",
       "level": 3,
       "parent_handle": "v4-pollumajandus-ja-loomakasvatus-kariloomad",
       "child_handles": [],
@@ -18192,7 +18126,6 @@
       "child_handles": [
         "v4-pollumajandus-ja-loomakasvatus-talutehnika-heinakahvlid",
         "v4-pollumajandus-ja-loomakasvatus-talutehnika-lohistatavad-akked",
-        "v4-pollumajandus-ja-loomakasvatus-talutehnika-muruhooldusseadmed-traktori",
         "v4-pollumajandus-ja-loomakasvatus-talutehnika-pallikahvlid",
         "v4-pollumajandus-ja-loomakasvatus-talutehnika-skid-steer-tarvikud",
         "v4-pollumajandus-ja-loomakasvatus-talutehnika-traktori-ballastkastid",
@@ -18215,16 +18148,6 @@
       "handle": "v4-pollumajandus-ja-loomakasvatus-talutehnika-lohistatavad-akked",
       "name_en": "Lohistatavad äkked",
       "name_et": "Lohistatavad äkked",
-      "level": 3,
-      "parent_handle": "v4-pollumajandus-ja-loomakasvatus-talutehnika",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-pollumajandus-ja-loomakasvatus-talutehnika-muruhooldusseadmed-traktori": {
-      "handle": "v4-pollumajandus-ja-loomakasvatus-talutehnika-muruhooldusseadmed-traktori",
-      "name_en": "Muruhooldusseadmed (traktori)",
-      "name_et": "Muruhooldusseadmed (traktori)",
       "level": 3,
       "parent_handle": "v4-pollumajandus-ja-loomakasvatus-talutehnika",
       "child_handles": [],
@@ -18286,8 +18209,8 @@
     },
     "v4-pollumajandus-ja-loomakasvatus-mesindus-meeekstraktorid-ja-tsentrifuugid": {
       "handle": "v4-pollumajandus-ja-loomakasvatus-mesindus-meeekstraktorid-ja-tsentrifuugid",
-      "name_en": "Meeekstraktorid ja -tsentrifuugid",
-      "name_et": "Meeekstraktorid ja -tsentrifuugid",
+      "name_en": "Mee-ekstraktorid ja -tsentrifuugid",
+      "name_et": "Mee-ekstraktorid ja -tsentrifuugid",
       "level": 3,
       "parent_handle": "v4-pollumajandus-ja-loomakasvatus-mesindus",
       "child_handles": [],
@@ -20060,6 +19983,7 @@
     "v4-aed-ja-aiatehnika-l1-aiatoolauad-ja-istutuslauad",
     "v4-aed-ja-aiatehnika-l1-heinapallide-tosteokad-ja-haagid",
     "v4-aed-ja-aiatehnika-l1-istutuspuurid-ja-maaaugurid",
+    "v4-aed-aiatooriistad-jarelveetavad-muruhooldusseadmed",
     "v4-aed-ja-aiatehnika-l1-komposti-tarvikud",
     "v4-aed-ja-aiatehnika-l1-lehe-ja-pungatrimmerid",
     "v4-aed-ja-aiatehnika-l1-lumelabidad-ja-lumetosteseadmed",
@@ -20807,13 +20731,6 @@
     "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-toostuslikud-vesijahutid",
     "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-vaakumvalamismasinad",
     "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-ohupuhuri-komplektid-laserloikuritele",
-    "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign",
-    "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-led-reklaamtahvlid-ja-ekraanid",
-    "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-naitustahvlid-ja-lauad",
-    "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-plotteri-paberirullid",
-    "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-posteri-ja-bannerihoidikud",
-    "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-reklaamlipud-ja-lipumastid",
-    "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-vinuulloikurid-ja-plotterid",
     "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk",
     "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-kuumpressi-ja-vinuulloikuri-komplektid",
     "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-kuumpressi-tarvikud-ja-toolauad",
@@ -20830,6 +20747,13 @@
     "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-truki-ja-siiditrukikuivatid",
     "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-truki-ja-termoprinterid",
     "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-omblusmasinad",
+    "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign",
+    "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-led-reklaamtahvlid-ja-ekraanid",
+    "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-naitustahvlid-ja-lauad",
+    "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-plotteri-paberirullid",
+    "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-posteri-ja-bannerihoidikud",
+    "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-reklaamlipud-ja-lipumastid",
+    "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-vinuulloikurid-ja-plotterid",
     "v4-reklaami-truki-ja-graveerimisseadmed-koitmine-ja-lamineerimine",
     "v4-reklaami-truki-ja-graveerimisseadmed-koitmine-ja-lamineerimine-paberiloikurid",
     "v4-reklaami-truki-ja-graveerimisseadmed-fotostuudio-ja-taustad",
@@ -20886,29 +20810,21 @@
     "v4-lemmikloomatarbed-lemmiklooma-uksed-ja-varavad-lemmiklooma-uksed",
     "v4-pollumajandus-ja-loomakasvatus",
     "v4-pollumajandus-ja-loomakasvatus-linnukasvatus",
-    "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-aiad-ja-vorgud",
     "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-automaatsed-kanamajauksed",
-    "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-elektrikarjused",
     "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-inkubaatorid-ja-munahaudejad",
-    "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-kanakuudid-ja-kanalad",
     "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-kanapuurid-ja-aedikud",
     "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-linnutootlemise-masinad",
-    "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-murahooldusseadmed",
     "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-pesakastid-ja-munemispesad",
-    "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-praadimisseadmed",
     "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-soodaautomaadid-ja-jootjad",
-    "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-ventilaatorid-ja-ohutus",
     "v4-pollumajandus-ja-loomakasvatus-kariloomad",
     "v4-pollumajandus-ja-loomakasvatus-kariloomad-elektrikarjused-ja-tarvikud",
     "v4-pollumajandus-ja-loomakasvatus-kariloomad-heinasooturid-ja-heinavorgud",
     "v4-pollumajandus-ja-loomakasvatus-kariloomad-kariloomade-sugamisharjad",
     "v4-pollumajandus-ja-loomakasvatus-kariloomad-soodurid-ja-soodakuna",
     "v4-pollumajandus-ja-loomakasvatus-kariloomad-tra-ataiad-ja-aiapiirded",
-    "v4-pollumajandus-ja-loomakasvatus-kariloomad-veepumbad",
     "v4-pollumajandus-ja-loomakasvatus-talutehnika",
     "v4-pollumajandus-ja-loomakasvatus-talutehnika-heinakahvlid",
     "v4-pollumajandus-ja-loomakasvatus-talutehnika-lohistatavad-akked",
-    "v4-pollumajandus-ja-loomakasvatus-talutehnika-muruhooldusseadmed-traktori",
     "v4-pollumajandus-ja-loomakasvatus-talutehnika-pallikahvlid",
     "v4-pollumajandus-ja-loomakasvatus-talutehnika-skid-steer-tarvikud",
     "v4-pollumajandus-ja-loomakasvatus-talutehnika-traktori-ballastkastid",

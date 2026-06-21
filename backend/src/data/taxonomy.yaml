@@ -3276,6 +3276,10 @@ l1:
             name_en: "Istutuspuurid ja maaaugurid"
             name_et: "Istutuspuurid ja maaaugurid"
             product_count: 0
+          - slug: v4-aed-aiatooriistad-jarelveetavad-muruhooldusseadmed
+            name_en: "Järelveetavad muruhooldusseadmed"
+            name_et: "Järelveetavad muruhooldusseadmed"
+            product_count: 0
           - slug: v4-aed-ja-aiatehnika-l1-komposti-tarvikud
             name_en: "Komposti tarvikud"
             name_et: "Komposti tarvikud"
@@ -6235,7 +6239,7 @@ l1:
     description_et: "Muusika ja helitehnika — tooted."
     hero_img: /images/branches/horeca.webp
     hero_gradient: from-stone-950/80 via-stone-900/40 to-transparent
-    product_count: 199
+    product_count: 201
     subs:
       - slug: v4-muusika-ja-helitehnika-muusikariistad
         name_en: "Muusikariistad"
@@ -6385,35 +6389,6 @@ l1:
             name_en: "Õhupuhuri komplektid laserlõikuritele"
             name_et: "Õhupuhuri komplektid laserlõikuritele"
             product_count: 0
-      - slug: v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign
-        name_en: "Vinüül & sign"
-        name_et: "Vinüül & sign"
-        product_count: 0
-        subs:
-          - slug: v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-led-reklaamtahvlid-ja-ekraanid
-            name_en: "LED-reklaamtahvlid & -ekraanid"
-            name_et: "LED-reklaamtahvlid & -ekraanid"
-            product_count: 0
-          - slug: v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-naitustahvlid-ja-lauad
-            name_en: "Näitustahvlid & -lauad"
-            name_et: "Näitustahvlid & -lauad"
-            product_count: 0
-          - slug: v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-plotteri-paberirullid
-            name_en: "Plotteri paberirullid"
-            name_et: "Plotteri paberirullid"
-            product_count: 0
-          - slug: v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-posteri-ja-bannerihoidikud
-            name_en: "Posteri- & bännerihoidikud"
-            name_et: "Posteri- & bännerihoidikud"
-            product_count: 0
-          - slug: v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-reklaamlipud-ja-lipumastid
-            name_en: "Reklaamlipud & lipumastid"
-            name_et: "Reklaamlipud & lipumastid"
-            product_count: 0
-          - slug: v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-vinuulloikurid-ja-plotterid
-            name_en: "Vinüüllõikurid & plotterid"
-            name_et: "Vinüüllõikurid & plotterid"
-            product_count: 0
       - slug: v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk
         name_en: "Tekstiili- & rõivatrükk"
         name_et: "Tekstiili- & rõivatrükk"
@@ -6478,6 +6453,35 @@ l1:
           - slug: v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-omblusmasinad
             name_en: "Õmblusmasinad"
             name_et: "Õmblusmasinad"
+            product_count: 0
+      - slug: v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign
+        name_en: "Vinüül & sign"
+        name_et: "Vinüül & sign"
+        product_count: 0
+        subs:
+          - slug: v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-led-reklaamtahvlid-ja-ekraanid
+            name_en: "LED-reklaamtahvlid & -ekraanid"
+            name_et: "LED-reklaamtahvlid & -ekraanid"
+            product_count: 0
+          - slug: v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-naitustahvlid-ja-lauad
+            name_en: "Näitustahvlid & -lauad"
+            name_et: "Näitustahvlid & -lauad"
+            product_count: 0
+          - slug: v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-plotteri-paberirullid
+            name_en: "Plotteri paberirullid"
+            name_et: "Plotteri paberirullid"
+            product_count: 0
+          - slug: v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-posteri-ja-bannerihoidikud
+            name_en: "Posteri- & bännerihoidikud"
+            name_et: "Posteri- & bännerihoidikud"
+            product_count: 0
+          - slug: v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-reklaamlipud-ja-lipumastid
+            name_en: "Reklaamlipud & lipumastid"
+            name_et: "Reklaamlipud & lipumastid"
+            product_count: 0
+          - slug: v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-vinuulloikurid-ja-plotterid
+            name_en: "Vinüüllõikurid & plotterid"
+            name_et: "Vinüüllõikurid & plotterid"
             product_count: 0
       - slug: v4-reklaami-truki-ja-graveerimisseadmed-koitmine-ja-lamineerimine
         name_en: "Köitmine & lamineerimine"
@@ -6722,32 +6726,20 @@ l1:
     description_et: "Põllumajandus ja loomakasvatus — tooted."
     hero_img: /images/branches/horeca.webp
     hero_gradient: from-stone-950/80 via-stone-900/40 to-transparent
-    product_count: 194
+    product_count: 203
     subs:
       - slug: v4-pollumajandus-ja-loomakasvatus-linnukasvatus
         name_en: "Linnukasvatus"
         name_et: "Linnukasvatus"
         product_count: 0
         subs:
-          - slug: v4-pollumajandus-ja-loomakasvatus-linnukasvatus-aiad-ja-vorgud
-            name_en: "Aiad ja võrgud"
-            name_et: "Aiad ja võrgud"
-            product_count: 0
           - slug: v4-pollumajandus-ja-loomakasvatus-linnukasvatus-automaatsed-kanamajauksed
             name_en: "Automaatsed kanamajauksed"
             name_et: "Automaatsed kanamajauksed"
             product_count: 0
-          - slug: v4-pollumajandus-ja-loomakasvatus-linnukasvatus-elektrikarjused
-            name_en: "Elektrikarjused"
-            name_et: "Elektrikarjused"
-            product_count: 0
           - slug: v4-pollumajandus-ja-loomakasvatus-linnukasvatus-inkubaatorid-ja-munahaudejad
             name_en: "Inkubaatorid ja munahaudejad"
             name_et: "Inkubaatorid ja munahaudejad"
-            product_count: 0
-          - slug: v4-pollumajandus-ja-loomakasvatus-linnukasvatus-kanakuudid-ja-kanalad
-            name_en: "Kanakuudid ja kanalad"
-            name_et: "Kanakuudid ja kanalad"
             product_count: 0
           - slug: v4-pollumajandus-ja-loomakasvatus-linnukasvatus-kanapuurid-ja-aedikud
             name_en: "Kanapuurid ja aedikud"
@@ -6757,25 +6749,13 @@ l1:
             name_en: "Linnutöötlemise masinad"
             name_et: "Linnutöötlemise masinad"
             product_count: 0
-          - slug: v4-pollumajandus-ja-loomakasvatus-linnukasvatus-murahooldusseadmed
-            name_en: "Murahooldusseadmed"
-            name_et: "Murahooldusseadmed"
-            product_count: 0
           - slug: v4-pollumajandus-ja-loomakasvatus-linnukasvatus-pesakastid-ja-munemispesad
             name_en: "Pesakastid ja munemispesad"
             name_et: "Pesakastid ja munemispesad"
             product_count: 0
-          - slug: v4-pollumajandus-ja-loomakasvatus-linnukasvatus-praadimisseadmed
-            name_en: "Praadimisseadmed"
-            name_et: "Praadimisseadmed"
-            product_count: 0
           - slug: v4-pollumajandus-ja-loomakasvatus-linnukasvatus-soodaautomaadid-ja-jootjad
             name_en: "Söödaautomaadid ja jootjad"
             name_et: "Söödaautomaadid ja jootjad"
-            product_count: 0
-          - slug: v4-pollumajandus-ja-loomakasvatus-linnukasvatus-ventilaatorid-ja-ohutus
-            name_en: "Ventilaatorid ja õhutus"
-            name_et: "Ventilaatorid ja õhutus"
             product_count: 0
       - slug: v4-pollumajandus-ja-loomakasvatus-kariloomad
         name_en: "Kariloomad"
@@ -6799,12 +6779,8 @@ l1:
             name_et: "Söödurid ja söödaküna"
             product_count: 0
           - slug: v4-pollumajandus-ja-loomakasvatus-kariloomad-tra-ataiad-ja-aiapiirded
-            name_en: "Tra ataiad ja aiapiirded"
-            name_et: "Tra ataiad ja aiapiirded"
-            product_count: 0
-          - slug: v4-pollumajandus-ja-loomakasvatus-kariloomad-veepumbad
-            name_en: "Veepumbad"
-            name_et: "Veepumbad"
+            name_en: "Tarad ja võrgud"
+            name_et: "Tarad ja võrgud"
             product_count: 0
       - slug: v4-pollumajandus-ja-loomakasvatus-talutehnika
         name_en: "Talutehnika"
@@ -6818,10 +6794,6 @@ l1:
           - slug: v4-pollumajandus-ja-loomakasvatus-talutehnika-lohistatavad-akked
             name_en: "Lohistatavad äkked"
             name_et: "Lohistatavad äkked"
-            product_count: 0
-          - slug: v4-pollumajandus-ja-loomakasvatus-talutehnika-muruhooldusseadmed-traktori
-            name_en: "Muruhooldusseadmed (traktori)"
-            name_et: "Muruhooldusseadmed (traktori)"
             product_count: 0
           - slug: v4-pollumajandus-ja-loomakasvatus-talutehnika-pallikahvlid
             name_en: "Pallikahvlid"
@@ -6845,8 +6817,8 @@ l1:
         product_count: 0
         subs:
           - slug: v4-pollumajandus-ja-loomakasvatus-mesindus-meeekstraktorid-ja-tsentrifuugid
-            name_en: "Meeekstraktorid ja -tsentrifuugid"
-            name_et: "Meeekstraktorid ja -tsentrifuugid"
+            name_en: "Mee-ekstraktorid ja -tsentrifuugid"
+            name_et: "Mee-ekstraktorid ja -tsentrifuugid"
             product_count: 0
           - slug: v4-pollumajandus-ja-loomakasvatus-mesindus-mesitarud-ja-komplektid
             name_en: "Mesitarud ja komplektid"
