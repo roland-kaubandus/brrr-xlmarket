@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-22T09:58:20.998Z",
+  "generated_at": "2026-06-22T10:50:35.139Z",
   "nodes": {
     "v4-tooriistad-ja-tarvikud": {
       "handle": "v4-tooriistad-ja-tarvikud",
@@ -8,8 +8,8 @@
       "level": 1,
       "parent_handle": null,
       "child_handles": [
-        "v4-tooriistad-ja-tarvikud-viimistlustooriistad",
         "v4-tooriistad-ja-tarvikud-torutooriistad",
+        "v4-tooriistad-ja-tarvikud-viimistlustooriistad",
         "v4-tooriistad-ja-tarvikud-kasitooriistad",
         "v4-tooriistad-ja-tarvikud-elektrilised-tooriistad",
         "v4-tooriistad-ja-tarvikud-akutooriistad",
@@ -25,7 +25,8 @@
         "v4-tooriistad-ja-tarvikud-turva-ja-objektivarustus",
         "v4-tooriistad-ja-tarvikud-labori-ja-teadustooted",
         "v4-tooriistad-ja-tarvikud-transpordikarud",
-        "v4-tooriistad-ja-tarvikud-redelid"
+        "v4-tooriistad-ja-tarvikud-redelid",
+        "v4-tooriistad-ja-tarvikud-hvac-ja-torudiagnostika"
       ],
       "image_path": null,
       "image_source": "none",
@@ -33,105 +34,6 @@
       "description_et": "Tööriistad ja tarvikud — tooted.",
       "tagline_en": "Tööriistad ja tarvikud",
       "tagline_et": "Tööriistad ja tarvikud"
-    },
-    "v4-tooriistad-ja-tarvikud-viimistlustooriistad": {
-      "handle": "v4-tooriistad-ja-tarvikud-viimistlustooriistad",
-      "name_en": "Viimistlustööriistad",
-      "name_et": "Viimistlustööriistad",
-      "level": 2,
-      "parent_handle": "v4-tooriistad-ja-tarvikud",
-      "child_handles": [
-        "v4-tooriistad-ja-tarvikud-viimistlus-joonte-margistus",
-        "v4-tooriistad-ja-tarvikud-viimistlustooriistad-krohvimistooriistad",
-        "v4-tooriistad-ja-tarvikud-kasitooriistad-pahtli-ja-kaabitsariistad",
-        "v4-tooriistad-ja-tarvikud-kasitooriistad-plaadiloikurid",
-        "v4-tooriistad-ja-tarvikud-viimistlustooriistad-porandaloikurid",
-        "v4-tooriistad-ja-tarvikud-viimistlustooriistad-silikooni-ja-hermeetikupustolid",
-        "v4-tooriistad-ja-tarvikud-kasitooriistad-vuugitooriistad",
-        "v4-tooriistad-ja-tarvikud-viimistlustooriistad-varvipustolid-ja-pihustid"
-      ],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-tooriistad-ja-tarvikud-viimistlus-joonte-margistus": {
-      "handle": "v4-tooriistad-ja-tarvikud-viimistlus-joonte-margistus",
-      "name_en": "Joonte märgistusmasinad",
-      "name_et": "Joonte märgistusmasinad",
-      "level": 3,
-      "parent_handle": "v4-tooriistad-ja-tarvikud-viimistlustooriistad",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-tooriistad-ja-tarvikud-viimistlustooriistad-krohvimistooriistad": {
-      "handle": "v4-tooriistad-ja-tarvikud-viimistlustooriistad-krohvimistooriistad",
-      "name_en": "Krohvimistööriistad",
-      "name_et": "Krohvimistööriistad",
-      "level": 3,
-      "parent_handle": "v4-tooriistad-ja-tarvikud-viimistlustooriistad",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-tooriistad-ja-tarvikud-kasitooriistad-pahtli-ja-kaabitsariistad": {
-      "handle": "v4-tooriistad-ja-tarvikud-kasitooriistad-pahtli-ja-kaabitsariistad",
-      "name_en": "Pahtli- ja kaabitsariistad",
-      "name_et": "Pahtli- ja kaabitsariistad",
-      "level": 3,
-      "parent_handle": "v4-tooriistad-ja-tarvikud-viimistlustooriistad",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-tooriistad-ja-tarvikud-kasitooriistad-plaadiloikurid": {
-      "handle": "v4-tooriistad-ja-tarvikud-kasitooriistad-plaadiloikurid",
-      "name_en": "Plaadilõikurid",
-      "name_et": "Plaadilõikurid",
-      "level": 3,
-      "parent_handle": "v4-tooriistad-ja-tarvikud-viimistlustooriistad",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-tooriistad-ja-tarvikud-viimistlustooriistad-porandaloikurid": {
-      "handle": "v4-tooriistad-ja-tarvikud-viimistlustooriistad-porandaloikurid",
-      "name_en": "Põranda- ja vinüüllõikurid",
-      "name_et": "Põranda- ja vinüüllõikurid",
-      "level": 3,
-      "parent_handle": "v4-tooriistad-ja-tarvikud-viimistlustooriistad",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-tooriistad-ja-tarvikud-viimistlustooriistad-silikooni-ja-hermeetikupustolid": {
-      "handle": "v4-tooriistad-ja-tarvikud-viimistlustooriistad-silikooni-ja-hermeetikupustolid",
-      "name_en": "Silikooni- ja hermeetikupüstolid",
-      "name_et": "Silikooni- ja hermeetikupüstolid",
-      "level": 3,
-      "parent_handle": "v4-tooriistad-ja-tarvikud-viimistlustooriistad",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-tooriistad-ja-tarvikud-kasitooriistad-vuugitooriistad": {
-      "handle": "v4-tooriistad-ja-tarvikud-kasitooriistad-vuugitooriistad",
-      "name_en": "Vuugitööriistad",
-      "name_et": "Vuugitööriistad",
-      "level": 3,
-      "parent_handle": "v4-tooriistad-ja-tarvikud-viimistlustooriistad",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-tooriistad-ja-tarvikud-viimistlustooriistad-varvipustolid-ja-pihustid": {
-      "handle": "v4-tooriistad-ja-tarvikud-viimistlustooriistad-varvipustolid-ja-pihustid",
-      "name_en": "Värvipüstolid ja pihustid",
-      "name_et": "Värvipüstolid ja pihustid",
-      "level": 3,
-      "parent_handle": "v4-tooriistad-ja-tarvikud-viimistlustooriistad",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
     },
     "v4-tooriistad-ja-tarvikud-torutooriistad": {
       "handle": "v4-tooriistad-ja-tarvikud-torutooriistad",
@@ -228,6 +130,105 @@
       "name_et": "Toruvõtmed ja torutangid",
       "level": 3,
       "parent_handle": "v4-tooriistad-ja-tarvikud-torutooriistad",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-viimistlustooriistad": {
+      "handle": "v4-tooriistad-ja-tarvikud-viimistlustooriistad",
+      "name_en": "Viimistlustööriistad",
+      "name_et": "Viimistlustööriistad",
+      "level": 2,
+      "parent_handle": "v4-tooriistad-ja-tarvikud",
+      "child_handles": [
+        "v4-tooriistad-ja-tarvikud-viimistlus-joonte-margistus",
+        "v4-tooriistad-ja-tarvikud-viimistlustooriistad-krohvimistooriistad",
+        "v4-tooriistad-ja-tarvikud-kasitooriistad-pahtli-ja-kaabitsariistad",
+        "v4-tooriistad-ja-tarvikud-kasitooriistad-plaadiloikurid",
+        "v4-tooriistad-ja-tarvikud-viimistlustooriistad-porandaloikurid",
+        "v4-tooriistad-ja-tarvikud-viimistlustooriistad-silikooni-ja-hermeetikupustolid",
+        "v4-tooriistad-ja-tarvikud-kasitooriistad-vuugitooriistad",
+        "v4-tooriistad-ja-tarvikud-viimistlustooriistad-varvipustolid-ja-pihustid"
+      ],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-viimistlus-joonte-margistus": {
+      "handle": "v4-tooriistad-ja-tarvikud-viimistlus-joonte-margistus",
+      "name_en": "Joonte märgistusmasinad",
+      "name_et": "Joonte märgistusmasinad",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-viimistlustooriistad",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-viimistlustooriistad-krohvimistooriistad": {
+      "handle": "v4-tooriistad-ja-tarvikud-viimistlustooriistad-krohvimistooriistad",
+      "name_en": "Krohvimistööriistad",
+      "name_et": "Krohvimistööriistad",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-viimistlustooriistad",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-kasitooriistad-pahtli-ja-kaabitsariistad": {
+      "handle": "v4-tooriistad-ja-tarvikud-kasitooriistad-pahtli-ja-kaabitsariistad",
+      "name_en": "Pahtli- ja kaabitsariistad",
+      "name_et": "Pahtli- ja kaabitsariistad",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-viimistlustooriistad",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-kasitooriistad-plaadiloikurid": {
+      "handle": "v4-tooriistad-ja-tarvikud-kasitooriistad-plaadiloikurid",
+      "name_en": "Plaadilõikurid",
+      "name_et": "Plaadilõikurid",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-viimistlustooriistad",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-viimistlustooriistad-porandaloikurid": {
+      "handle": "v4-tooriistad-ja-tarvikud-viimistlustooriistad-porandaloikurid",
+      "name_en": "Põranda- ja vinüüllõikurid",
+      "name_et": "Põranda- ja vinüüllõikurid",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-viimistlustooriistad",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-viimistlustooriistad-silikooni-ja-hermeetikupustolid": {
+      "handle": "v4-tooriistad-ja-tarvikud-viimistlustooriistad-silikooni-ja-hermeetikupustolid",
+      "name_en": "Silikooni- ja hermeetikupüstolid",
+      "name_et": "Silikooni- ja hermeetikupüstolid",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-viimistlustooriistad",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-kasitooriistad-vuugitooriistad": {
+      "handle": "v4-tooriistad-ja-tarvikud-kasitooriistad-vuugitooriistad",
+      "name_en": "Vuugitööriistad",
+      "name_et": "Vuugitööriistad",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-viimistlustooriistad",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-viimistlustooriistad-varvipustolid-ja-pihustid": {
+      "handle": "v4-tooriistad-ja-tarvikud-viimistlustooriistad-varvipustolid-ja-pihustid",
+      "name_en": "Värvipüstolid ja pihustid",
+      "name_et": "Värvipüstolid ja pihustid",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-viimistlustooriistad",
       "child_handles": [],
       "image_path": null,
       "image_source": "none"
@@ -1677,6 +1678,7 @@
         "v4-tooriistad-ja-tarvikud-moote-ja-markeriistad-laserkaugusmoodikud",
         "v4-tooriistad-ja-tarvikud-moote-ja-markeriistad-laserkiire-vastuvotjad",
         "v4-tooriistad-ja-tarvikud-moote-ja-markeriistad-mikromeetrid",
+        "v4-tooriistad-ja-tarvikud-moote-multimeetrid",
         "v4-tooriistad-ja-tarvikud-moote-ja-markeriistad-moote-ja-seadistusplokkide-komplektid",
         "v4-tooriistad-ja-tarvikud-moote-ja-markeriistad-mootekellad-ja-indikaatorid",
         "v4-tooriistad-ja-tarvikud-moote-ja-markeriistad-mooterattad",
@@ -1766,6 +1768,16 @@
       "handle": "v4-tooriistad-ja-tarvikud-moote-ja-markeriistad-mikromeetrid",
       "name_en": "Mikromeetrid",
       "name_et": "Mikromeetrid",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-moote-ja-markeriistad",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-moote-multimeetrid": {
+      "handle": "v4-tooriistad-ja-tarvikud-moote-multimeetrid",
+      "name_en": "Multimeetrid ja klamberampermeetrid",
+      "name_et": "Multimeetrid ja klamberampermeetrid",
       "level": 3,
       "parent_handle": "v4-tooriistad-ja-tarvikud-moote-ja-markeriistad",
       "child_handles": [],
@@ -3297,6 +3309,61 @@
       "name_et": "Teleskoopredelid",
       "level": 3,
       "parent_handle": "v4-tooriistad-ja-tarvikud-redelid",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-hvac-ja-torudiagnostika": {
+      "handle": "v4-tooriistad-ja-tarvikud-hvac-ja-torudiagnostika",
+      "name_en": "HVAC- ja torudiagnostika tööriistad",
+      "name_et": "HVAC- ja torudiagnostika tööriistad",
+      "level": 2,
+      "parent_handle": "v4-tooriistad-ja-tarvikud",
+      "child_handles": [
+        "v4-tooriistad-ja-tarvikud-hvac-vaakumpumbad",
+        "v4-tooriistad-ja-tarvikud-hvac-inspektsioonikaamerad",
+        "v4-tooriistad-ja-tarvikud-hvac-survetestrid",
+        "v4-tooriistad-ja-tarvikud-hvac-vaakumkambrid"
+      ],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-hvac-vaakumpumbad": {
+      "handle": "v4-tooriistad-ja-tarvikud-hvac-vaakumpumbad",
+      "name_en": "HVAC- ja vaakumpumbad",
+      "name_et": "HVAC- ja vaakumpumbad",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-hvac-ja-torudiagnostika",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-hvac-inspektsioonikaamerad": {
+      "handle": "v4-tooriistad-ja-tarvikud-hvac-inspektsioonikaamerad",
+      "name_en": "Inspektsioonikaamerad",
+      "name_et": "Inspektsioonikaamerad",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-hvac-ja-torudiagnostika",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-hvac-survetestrid": {
+      "handle": "v4-tooriistad-ja-tarvikud-hvac-survetestrid",
+      "name_en": "Surve- ja lekketestrid",
+      "name_et": "Surve- ja lekketestrid",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-hvac-ja-torudiagnostika",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-hvac-vaakumkambrid": {
+      "handle": "v4-tooriistad-ja-tarvikud-hvac-vaakumkambrid",
+      "name_en": "Vaakumkambrid",
+      "name_et": "Vaakumkambrid",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-hvac-ja-torudiagnostika",
       "child_handles": [],
       "image_path": null,
       "image_source": "none"
@@ -12706,7 +12773,6 @@
       "child_handles": [
         "v4-santehnika-kute-ja-ventilatsioon-veepumbad-ja-vaakumpumbad-akupumbad",
         "v4-santehnika-kute-ja-ventilatsioon-veepumbad-ja-vaakumpumbad-bensiinimootoriga-pumbad",
-        "v4-santehnika-kute-ja-ventilatsioon-veepumbad-ja-vaakumpumbad-kliima-ja-kulmutusseadmete-vaakumpumbad",
         "v4-santehnika-kute-ja-ventilatsioon-veepumbad-ja-vaakumpumbad-kasipumbad",
         "v4-santehnika-kute-ja-ventilatsioon-veepumbad-ja-vaakumpumbad-maceraator-ja-purustuspumbad",
         "v4-santehnika-kute-ja-ventilatsioon-veepumbad-ja-vaakumpumbad-membraanpumbad",
@@ -12716,8 +12782,6 @@
         "v4-santehnika-kute-ja-ventilatsioon-veepumbad-ja-vaakumpumbad-sukel-ja-suvakaevupumbad",
         "v4-santehnika-kute-ja-ventilatsioon-veepumbad-ja-vaakumpumbad-surve-ja-paagiga-pumbad",
         "v4-santehnika-kute-ja-ventilatsioon-veepumbad-ja-vaakumpumbad-tsirkulatsiooni-ja-ringluspumbad",
-        "v4-santehnika-kute-ja-ventilatsioon-veepumbad-ja-vaakumpumbad-vaakumkambrid-ja-komplektid",
-        "v4-santehnika-kute-ja-ventilatsioon-veepumbad-ja-vaakumpumbad-vaakumpumbad",
         "v4-santehnika-kute-ja-ventilatsioon-veepumbad-ja-vaakumpumbad-vaakumpumbad-manomeetrikomplektiga"
       ],
       "image_path": null,
@@ -12737,16 +12801,6 @@
       "handle": "v4-santehnika-kute-ja-ventilatsioon-veepumbad-ja-vaakumpumbad-bensiinimootoriga-pumbad",
       "name_en": "Bensiinimootoriga pumbad",
       "name_et": "Bensiinimootoriga pumbad",
-      "level": 3,
-      "parent_handle": "v4-santehnika-kute-ja-ventilatsioon-veepumbad-ja-vaakumpumbad",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-santehnika-kute-ja-ventilatsioon-veepumbad-ja-vaakumpumbad-kliima-ja-kulmutusseadmete-vaakumpumbad": {
-      "handle": "v4-santehnika-kute-ja-ventilatsioon-veepumbad-ja-vaakumpumbad-kliima-ja-kulmutusseadmete-vaakumpumbad",
-      "name_en": "Kliima- & külmutusseadmete vaakumpumbad",
-      "name_et": "Kliima- & külmutusseadmete vaakumpumbad",
       "level": 3,
       "parent_handle": "v4-santehnika-kute-ja-ventilatsioon-veepumbad-ja-vaakumpumbad",
       "child_handles": [],
@@ -12843,26 +12897,6 @@
       "image_path": null,
       "image_source": "none"
     },
-    "v4-santehnika-kute-ja-ventilatsioon-veepumbad-ja-vaakumpumbad-vaakumkambrid-ja-komplektid": {
-      "handle": "v4-santehnika-kute-ja-ventilatsioon-veepumbad-ja-vaakumpumbad-vaakumkambrid-ja-komplektid",
-      "name_en": "Vaakumkambrid & -komplektid",
-      "name_et": "Vaakumkambrid & -komplektid",
-      "level": 3,
-      "parent_handle": "v4-santehnika-kute-ja-ventilatsioon-veepumbad-ja-vaakumpumbad",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-santehnika-kute-ja-ventilatsioon-veepumbad-ja-vaakumpumbad-vaakumpumbad": {
-      "handle": "v4-santehnika-kute-ja-ventilatsioon-veepumbad-ja-vaakumpumbad-vaakumpumbad",
-      "name_en": "Vaakumpumbad",
-      "name_et": "Vaakumpumbad",
-      "level": 3,
-      "parent_handle": "v4-santehnika-kute-ja-ventilatsioon-veepumbad-ja-vaakumpumbad",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
     "v4-santehnika-kute-ja-ventilatsioon-veepumbad-ja-vaakumpumbad-vaakumpumbad-manomeetrikomplektiga": {
       "handle": "v4-santehnika-kute-ja-ventilatsioon-veepumbad-ja-vaakumpumbad-vaakumpumbad-manomeetrikomplektiga",
       "name_en": "Vaakumpumbad manomeetrikomplektiga",
@@ -12882,11 +12916,9 @@
       "child_handles": [
         "v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika-dusialuste-ja-vannide-komplektid",
         "v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika-hudraulikauhenduste-komplektid",
-        "v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika-inspektsioonikaamerad",
         "v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika-kanalisatsiooni-puhastusmasinad",
         "v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika-puhastuskaablid-ja-trossid",
         "v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika-rasvaeraldajad",
-        "v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika-surve-ja-lekketestimine",
         "v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika-torutoed-ja-hoidikud"
       ],
       "image_path": null,
@@ -12906,16 +12938,6 @@
       "handle": "v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika-hudraulikauhenduste-komplektid",
       "name_en": "Hüdraulikaühenduste komplektid",
       "name_et": "Hüdraulikaühenduste komplektid",
-      "level": 3,
-      "parent_handle": "v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika-inspektsioonikaamerad": {
-      "handle": "v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika-inspektsioonikaamerad",
-      "name_en": "Inspektsioonikaamerad",
-      "name_et": "Inspektsioonikaamerad",
       "level": 3,
       "parent_handle": "v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika",
       "child_handles": [],
@@ -12946,16 +12968,6 @@
       "handle": "v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika-rasvaeraldajad",
       "name_en": "Rasvaeraldajad",
       "name_et": "Rasvaeraldajad",
-      "level": 3,
-      "parent_handle": "v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika-surve-ja-lekketestimine": {
-      "handle": "v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika-surve-ja-lekketestimine",
-      "name_en": "Surve- & lekketestimine",
-      "name_et": "Surve- & lekketestimine",
       "level": 3,
       "parent_handle": "v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika",
       "child_handles": [],
@@ -19142,15 +19154,6 @@
   },
   "order": [
     "v4-tooriistad-ja-tarvikud",
-    "v4-tooriistad-ja-tarvikud-viimistlustooriistad",
-    "v4-tooriistad-ja-tarvikud-viimistlus-joonte-margistus",
-    "v4-tooriistad-ja-tarvikud-viimistlustooriistad-krohvimistooriistad",
-    "v4-tooriistad-ja-tarvikud-kasitooriistad-pahtli-ja-kaabitsariistad",
-    "v4-tooriistad-ja-tarvikud-kasitooriistad-plaadiloikurid",
-    "v4-tooriistad-ja-tarvikud-viimistlustooriistad-porandaloikurid",
-    "v4-tooriistad-ja-tarvikud-viimistlustooriistad-silikooni-ja-hermeetikupustolid",
-    "v4-tooriistad-ja-tarvikud-kasitooriistad-vuugitooriistad",
-    "v4-tooriistad-ja-tarvikud-viimistlustooriistad-varvipustolid-ja-pihustid",
     "v4-tooriistad-ja-tarvikud-torutooriistad",
     "v4-tooriistad-ja-tarvikud-kasitooriistad-toru-joondusklambrid",
     "v4-tooriistad-ja-tarvikud-kasitooriistad-toru-laiendus-ja-flaaringutooriistad",
@@ -19160,6 +19163,15 @@
     "v4-tooriistad-ja-tarvikud-metallitoo-ja-sepatoo-torupainutajad",
     "v4-tooriistad-ja-tarvikud-elektrilised-tooriistad-torutootlustooriistad",
     "v4-tooriistad-ja-tarvikud-kasitooriistad-toruvotmed-ja-torutangid",
+    "v4-tooriistad-ja-tarvikud-viimistlustooriistad",
+    "v4-tooriistad-ja-tarvikud-viimistlus-joonte-margistus",
+    "v4-tooriistad-ja-tarvikud-viimistlustooriistad-krohvimistooriistad",
+    "v4-tooriistad-ja-tarvikud-kasitooriistad-pahtli-ja-kaabitsariistad",
+    "v4-tooriistad-ja-tarvikud-kasitooriistad-plaadiloikurid",
+    "v4-tooriistad-ja-tarvikud-viimistlustooriistad-porandaloikurid",
+    "v4-tooriistad-ja-tarvikud-viimistlustooriistad-silikooni-ja-hermeetikupustolid",
+    "v4-tooriistad-ja-tarvikud-kasitooriistad-vuugitooriistad",
+    "v4-tooriistad-ja-tarvikud-viimistlustooriistad-varvipustolid-ja-pihustid",
     "v4-tooriistad-ja-tarvikud-kasitooriistad",
     "v4-tooriistad-ja-tarvikud-kasitooriistad-aasade-paigaldustooriistad",
     "v4-tooriistad-ja-tarvikud-kasitooriistad-avade-mulgustajad-ja-stantsid",
@@ -19299,6 +19311,7 @@
     "v4-tooriistad-ja-tarvikud-moote-ja-markeriistad-laserkaugusmoodikud",
     "v4-tooriistad-ja-tarvikud-moote-ja-markeriistad-laserkiire-vastuvotjad",
     "v4-tooriistad-ja-tarvikud-moote-ja-markeriistad-mikromeetrid",
+    "v4-tooriistad-ja-tarvikud-moote-multimeetrid",
     "v4-tooriistad-ja-tarvikud-moote-ja-markeriistad-moote-ja-seadistusplokkide-komplektid",
     "v4-tooriistad-ja-tarvikud-moote-ja-markeriistad-mootekellad-ja-indikaatorid",
     "v4-tooriistad-ja-tarvikud-moote-ja-markeriistad-mooterattad",
@@ -19439,6 +19452,11 @@
     "v4-tooriistad-ja-tarvikud-redelid-pooninguredelid",
     "v4-tooriistad-ja-tarvikud-redelid-stabilisaatorid",
     "v4-tooriistad-ja-tarvikud-redelid-teleskoopredelid",
+    "v4-tooriistad-ja-tarvikud-hvac-ja-torudiagnostika",
+    "v4-tooriistad-ja-tarvikud-hvac-vaakumpumbad",
+    "v4-tooriistad-ja-tarvikud-hvac-inspektsioonikaamerad",
+    "v4-tooriistad-ja-tarvikud-hvac-survetestrid",
+    "v4-tooriistad-ja-tarvikud-hvac-vaakumkambrid",
     "v4-garaaziseadmed",
     "v4-garaaziseadmed-mehaaniku-tooriistad",
     "v4-garaaziseadmed-mehaaniku-tooriistad-autoelektri-testrid",
@@ -20285,7 +20303,6 @@
     "v4-santehnika-kute-ja-ventilatsioon-veepumbad-ja-vaakumpumbad",
     "v4-santehnika-kute-ja-ventilatsioon-veepumbad-ja-vaakumpumbad-akupumbad",
     "v4-santehnika-kute-ja-ventilatsioon-veepumbad-ja-vaakumpumbad-bensiinimootoriga-pumbad",
-    "v4-santehnika-kute-ja-ventilatsioon-veepumbad-ja-vaakumpumbad-kliima-ja-kulmutusseadmete-vaakumpumbad",
     "v4-santehnika-kute-ja-ventilatsioon-veepumbad-ja-vaakumpumbad-kasipumbad",
     "v4-santehnika-kute-ja-ventilatsioon-veepumbad-ja-vaakumpumbad-maceraator-ja-purustuspumbad",
     "v4-santehnika-kute-ja-ventilatsioon-veepumbad-ja-vaakumpumbad-membraanpumbad",
@@ -20295,17 +20312,13 @@
     "v4-santehnika-kute-ja-ventilatsioon-veepumbad-ja-vaakumpumbad-sukel-ja-suvakaevupumbad",
     "v4-santehnika-kute-ja-ventilatsioon-veepumbad-ja-vaakumpumbad-surve-ja-paagiga-pumbad",
     "v4-santehnika-kute-ja-ventilatsioon-veepumbad-ja-vaakumpumbad-tsirkulatsiooni-ja-ringluspumbad",
-    "v4-santehnika-kute-ja-ventilatsioon-veepumbad-ja-vaakumpumbad-vaakumkambrid-ja-komplektid",
-    "v4-santehnika-kute-ja-ventilatsioon-veepumbad-ja-vaakumpumbad-vaakumpumbad",
     "v4-santehnika-kute-ja-ventilatsioon-veepumbad-ja-vaakumpumbad-vaakumpumbad-manomeetrikomplektiga",
     "v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika",
     "v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika-dusialuste-ja-vannide-komplektid",
     "v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika-hudraulikauhenduste-komplektid",
-    "v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika-inspektsioonikaamerad",
     "v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika-kanalisatsiooni-puhastusmasinad",
     "v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika-puhastuskaablid-ja-trossid",
     "v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika-rasvaeraldajad",
-    "v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika-surve-ja-lekketestimine",
     "v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika-torutoed-ja-hoidikud",
     "v4-santehnika-kute-ja-ventilatsioon-kute-ja-kaminad",
     "v4-santehnika-kute-ja-ventilatsioon-kute-ja-kaminad-aurugeneraatorid",

@@ -14,43 +14,6 @@ l1:
     hero_gradient: from-stone-950/80 via-stone-900/40 to-transparent
     product_count: 2213
     subs:
-      - slug: v4-tooriistad-ja-tarvikud-viimistlustooriistad
-        name_en: "Viimistlustööriistad"
-        name_et: "Viimistlustööriistad"
-        product_count: 0
-        subs:
-          - slug: v4-tooriistad-ja-tarvikud-viimistlus-joonte-margistus
-            name_en: "Joonte märgistusmasinad"
-            name_et: "Joonte märgistusmasinad"
-            product_count: 0
-          - slug: v4-tooriistad-ja-tarvikud-viimistlustooriistad-krohvimistooriistad
-            name_en: "Krohvimistööriistad"
-            name_et: "Krohvimistööriistad"
-            product_count: 0
-          - slug: v4-tooriistad-ja-tarvikud-kasitooriistad-pahtli-ja-kaabitsariistad
-            name_en: "Pahtli- ja kaabitsariistad"
-            name_et: "Pahtli- ja kaabitsariistad"
-            product_count: 0
-          - slug: v4-tooriistad-ja-tarvikud-kasitooriistad-plaadiloikurid
-            name_en: "Plaadilõikurid"
-            name_et: "Plaadilõikurid"
-            product_count: 0
-          - slug: v4-tooriistad-ja-tarvikud-viimistlustooriistad-porandaloikurid
-            name_en: "Põranda- ja vinüüllõikurid"
-            name_et: "Põranda- ja vinüüllõikurid"
-            product_count: 0
-          - slug: v4-tooriistad-ja-tarvikud-viimistlustooriistad-silikooni-ja-hermeetikupustolid
-            name_en: "Silikooni- ja hermeetikupüstolid"
-            name_et: "Silikooni- ja hermeetikupüstolid"
-            product_count: 0
-          - slug: v4-tooriistad-ja-tarvikud-kasitooriistad-vuugitooriistad
-            name_en: "Vuugitööriistad"
-            name_et: "Vuugitööriistad"
-            product_count: 0
-          - slug: v4-tooriistad-ja-tarvikud-viimistlustooriistad-varvipustolid-ja-pihustid
-            name_en: "Värvipüstolid ja pihustid"
-            name_et: "Värvipüstolid ja pihustid"
-            product_count: 0
       - slug: v4-tooriistad-ja-tarvikud-torutooriistad
         name_en: "Torutööriistad"
         name_et: "Torutööriistad"
@@ -87,6 +50,43 @@ l1:
           - slug: v4-tooriistad-ja-tarvikud-kasitooriistad-toruvotmed-ja-torutangid
             name_en: "Toruvõtmed ja torutangid"
             name_et: "Toruvõtmed ja torutangid"
+            product_count: 0
+      - slug: v4-tooriistad-ja-tarvikud-viimistlustooriistad
+        name_en: "Viimistlustööriistad"
+        name_et: "Viimistlustööriistad"
+        product_count: 0
+        subs:
+          - slug: v4-tooriistad-ja-tarvikud-viimistlus-joonte-margistus
+            name_en: "Joonte märgistusmasinad"
+            name_et: "Joonte märgistusmasinad"
+            product_count: 0
+          - slug: v4-tooriistad-ja-tarvikud-viimistlustooriistad-krohvimistooriistad
+            name_en: "Krohvimistööriistad"
+            name_et: "Krohvimistööriistad"
+            product_count: 0
+          - slug: v4-tooriistad-ja-tarvikud-kasitooriistad-pahtli-ja-kaabitsariistad
+            name_en: "Pahtli- ja kaabitsariistad"
+            name_et: "Pahtli- ja kaabitsariistad"
+            product_count: 0
+          - slug: v4-tooriistad-ja-tarvikud-kasitooriistad-plaadiloikurid
+            name_en: "Plaadilõikurid"
+            name_et: "Plaadilõikurid"
+            product_count: 0
+          - slug: v4-tooriistad-ja-tarvikud-viimistlustooriistad-porandaloikurid
+            name_en: "Põranda- ja vinüüllõikurid"
+            name_et: "Põranda- ja vinüüllõikurid"
+            product_count: 0
+          - slug: v4-tooriistad-ja-tarvikud-viimistlustooriistad-silikooni-ja-hermeetikupustolid
+            name_en: "Silikooni- ja hermeetikupüstolid"
+            name_et: "Silikooni- ja hermeetikupüstolid"
+            product_count: 0
+          - slug: v4-tooriistad-ja-tarvikud-kasitooriistad-vuugitooriistad
+            name_en: "Vuugitööriistad"
+            name_et: "Vuugitööriistad"
+            product_count: 0
+          - slug: v4-tooriistad-ja-tarvikud-viimistlustooriistad-varvipustolid-ja-pihustid
+            name_en: "Värvipüstolid ja pihustid"
+            name_et: "Värvipüstolid ja pihustid"
             product_count: 0
       - slug: v4-tooriistad-ja-tarvikud-kasitooriistad
         name_en: "Käsitööriistad"
@@ -651,6 +651,10 @@ l1:
           - slug: v4-tooriistad-ja-tarvikud-moote-ja-markeriistad-mikromeetrid
             name_en: "Mikromeetrid"
             name_et: "Mikromeetrid"
+            product_count: 0
+          - slug: v4-tooriistad-ja-tarvikud-moote-multimeetrid
+            name_en: "Multimeetrid ja klamberampermeetrid"
+            name_et: "Multimeetrid ja klamberampermeetrid"
             product_count: 0
           - slug: v4-tooriistad-ja-tarvikud-moote-ja-markeriistad-moote-ja-seadistusplokkide-komplektid
             name_en: "Mõõte- ja seadistusplokkide komplektid"
@@ -1219,6 +1223,27 @@ l1:
           - slug: v4-tooriistad-ja-tarvikud-redelid-teleskoopredelid
             name_en: "Teleskoopredelid"
             name_et: "Teleskoopredelid"
+            product_count: 0
+      - slug: v4-tooriistad-ja-tarvikud-hvac-ja-torudiagnostika
+        name_en: "HVAC- ja torudiagnostika tööriistad"
+        name_et: "HVAC- ja torudiagnostika tööriistad"
+        product_count: 0
+        subs:
+          - slug: v4-tooriistad-ja-tarvikud-hvac-vaakumpumbad
+            name_en: "HVAC- ja vaakumpumbad"
+            name_et: "HVAC- ja vaakumpumbad"
+            product_count: 0
+          - slug: v4-tooriistad-ja-tarvikud-hvac-inspektsioonikaamerad
+            name_en: "Inspektsioonikaamerad"
+            name_et: "Inspektsioonikaamerad"
+            product_count: 0
+          - slug: v4-tooriistad-ja-tarvikud-hvac-survetestrid
+            name_en: "Surve- ja lekketestrid"
+            name_et: "Surve- ja lekketestrid"
+            product_count: 0
+          - slug: v4-tooriistad-ja-tarvikud-hvac-vaakumkambrid
+            name_en: "Vaakumkambrid"
+            name_et: "Vaakumkambrid"
             product_count: 0
   - slug: v4-garaaziseadmed
     name_en: "Garaažiseadmed"
@@ -4756,10 +4781,6 @@ l1:
             name_en: "Bensiinimootoriga pumbad"
             name_et: "Bensiinimootoriga pumbad"
             product_count: 0
-          - slug: v4-santehnika-kute-ja-ventilatsioon-veepumbad-ja-vaakumpumbad-kliima-ja-kulmutusseadmete-vaakumpumbad
-            name_en: "Kliima- & külmutusseadmete vaakumpumbad"
-            name_et: "Kliima- & külmutusseadmete vaakumpumbad"
-            product_count: 0
           - slug: v4-santehnika-kute-ja-ventilatsioon-veepumbad-ja-vaakumpumbad-kasipumbad
             name_en: "Käsipumbad"
             name_et: "Käsipumbad"
@@ -4796,14 +4817,6 @@ l1:
             name_en: "Tsirkulatsiooni- & ringluspumbad"
             name_et: "Tsirkulatsiooni- & ringluspumbad"
             product_count: 0
-          - slug: v4-santehnika-kute-ja-ventilatsioon-veepumbad-ja-vaakumpumbad-vaakumkambrid-ja-komplektid
-            name_en: "Vaakumkambrid & -komplektid"
-            name_et: "Vaakumkambrid & -komplektid"
-            product_count: 0
-          - slug: v4-santehnika-kute-ja-ventilatsioon-veepumbad-ja-vaakumpumbad-vaakumpumbad
-            name_en: "Vaakumpumbad"
-            name_et: "Vaakumpumbad"
-            product_count: 0
           - slug: v4-santehnika-kute-ja-ventilatsioon-veepumbad-ja-vaakumpumbad-vaakumpumbad-manomeetrikomplektiga
             name_en: "Vaakumpumbad manomeetrikomplektiga"
             name_et: "Vaakumpumbad manomeetrikomplektiga"
@@ -4821,10 +4834,6 @@ l1:
             name_en: "Hüdraulikaühenduste komplektid"
             name_et: "Hüdraulikaühenduste komplektid"
             product_count: 0
-          - slug: v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika-inspektsioonikaamerad
-            name_en: "Inspektsioonikaamerad"
-            name_et: "Inspektsioonikaamerad"
-            product_count: 0
           - slug: v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika-kanalisatsiooni-puhastusmasinad
             name_en: "Kanalisatsiooni puhastusmasinad"
             name_et: "Kanalisatsiooni puhastusmasinad"
@@ -4836,10 +4845,6 @@ l1:
           - slug: v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika-rasvaeraldajad
             name_en: "Rasvaeraldajad"
             name_et: "Rasvaeraldajad"
-            product_count: 0
-          - slug: v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika-surve-ja-lekketestimine
-            name_en: "Surve- & lekketestimine"
-            name_et: "Surve- & lekketestimine"
             product_count: 0
           - slug: v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika-torutoed-ja-hoidikud
             name_en: "Torutoed & -hoidikud"
