@@ -14,6 +14,43 @@ l1:
     hero_gradient: from-stone-950/80 via-stone-900/40 to-transparent
     product_count: 2213
     subs:
+      - slug: v4-tooriistad-ja-tarvikud-viimistlustooriistad
+        name_en: "Viimistlustööriistad"
+        name_et: "Viimistlustööriistad"
+        product_count: 0
+        subs:
+          - slug: v4-tooriistad-ja-tarvikud-viimistlus-joonte-margistus
+            name_en: "Joonte märgistusmasinad"
+            name_et: "Joonte märgistusmasinad"
+            product_count: 0
+          - slug: v4-tooriistad-ja-tarvikud-viimistlustooriistad-krohvimistooriistad
+            name_en: "Krohvimistööriistad"
+            name_et: "Krohvimistööriistad"
+            product_count: 0
+          - slug: v4-tooriistad-ja-tarvikud-kasitooriistad-pahtli-ja-kaabitsariistad
+            name_en: "Pahtli- ja kaabitsariistad"
+            name_et: "Pahtli- ja kaabitsariistad"
+            product_count: 0
+          - slug: v4-tooriistad-ja-tarvikud-kasitooriistad-plaadiloikurid
+            name_en: "Plaadilõikurid"
+            name_et: "Plaadilõikurid"
+            product_count: 0
+          - slug: v4-tooriistad-ja-tarvikud-viimistlustooriistad-porandaloikurid
+            name_en: "Põranda- ja vinüüllõikurid"
+            name_et: "Põranda- ja vinüüllõikurid"
+            product_count: 0
+          - slug: v4-tooriistad-ja-tarvikud-viimistlustooriistad-silikooni-ja-hermeetikupustolid
+            name_en: "Silikooni- ja hermeetikupüstolid"
+            name_et: "Silikooni- ja hermeetikupüstolid"
+            product_count: 0
+          - slug: v4-tooriistad-ja-tarvikud-kasitooriistad-vuugitooriistad
+            name_en: "Vuugitööriistad"
+            name_et: "Vuugitööriistad"
+            product_count: 0
+          - slug: v4-tooriistad-ja-tarvikud-viimistlustooriistad-varvipustolid-ja-pihustid
+            name_en: "Värvipüstolid ja pihustid"
+            name_et: "Värvipüstolid ja pihustid"
+            product_count: 0
       - slug: v4-tooriistad-ja-tarvikud-torutooriistad
         name_en: "Torutööriistad"
         name_et: "Torutööriistad"
@@ -50,39 +87,6 @@ l1:
           - slug: v4-tooriistad-ja-tarvikud-kasitooriistad-toruvotmed-ja-torutangid
             name_en: "Toruvõtmed ja torutangid"
             name_et: "Toruvõtmed ja torutangid"
-            product_count: 0
-      - slug: v4-tooriistad-ja-tarvikud-viimistlustooriistad
-        name_en: "Viimistlustööriistad"
-        name_et: "Viimistlustööriistad"
-        product_count: 0
-        subs:
-          - slug: v4-tooriistad-ja-tarvikud-viimistlustooriistad-krohvimistooriistad
-            name_en: "Krohvimistööriistad"
-            name_et: "Krohvimistööriistad"
-            product_count: 0
-          - slug: v4-tooriistad-ja-tarvikud-kasitooriistad-pahtli-ja-kaabitsariistad
-            name_en: "Pahtli- ja kaabitsariistad"
-            name_et: "Pahtli- ja kaabitsariistad"
-            product_count: 0
-          - slug: v4-tooriistad-ja-tarvikud-kasitooriistad-plaadiloikurid
-            name_en: "Plaadilõikurid"
-            name_et: "Plaadilõikurid"
-            product_count: 0
-          - slug: v4-tooriistad-ja-tarvikud-viimistlustooriistad-porandaloikurid
-            name_en: "Põranda- ja vinüüllõikurid"
-            name_et: "Põranda- ja vinüüllõikurid"
-            product_count: 0
-          - slug: v4-tooriistad-ja-tarvikud-viimistlustooriistad-silikooni-ja-hermeetikupustolid
-            name_en: "Silikooni- ja hermeetikupüstolid"
-            name_et: "Silikooni- ja hermeetikupüstolid"
-            product_count: 0
-          - slug: v4-tooriistad-ja-tarvikud-kasitooriistad-vuugitooriistad
-            name_en: "Vuugitööriistad"
-            name_et: "Vuugitööriistad"
-            product_count: 0
-          - slug: v4-tooriistad-ja-tarvikud-viimistlustooriistad-varvipustolid-ja-pihustid
-            name_en: "Värvipüstolid ja pihustid"
-            name_et: "Värvipüstolid ja pihustid"
             product_count: 0
       - slug: v4-tooriistad-ja-tarvikud-kasitooriistad
         name_en: "Käsitööriistad"
@@ -842,9 +846,17 @@ l1:
             name_en: "Käsitõstukid"
             name_et: "Käsitõstukid"
             product_count: 0
+          - slug: v4-tooriistad-ja-tarvikud-tostmine-kaartostelauad
+            name_en: "Käärtõstelauad ja -tõstukid"
+            name_et: "Käärtõstelauad ja -tõstukid"
+            product_count: 0
           - slug: v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine-montaazitungrauad-ja-tosturid
             name_en: "Montaažitungrauad ja tõsturid"
             name_et: "Montaažitungrauad ja tõsturid"
+            product_count: 0
+          - slug: v4-tooriistad-ja-tarvikud-tostmine-pakkimis-koitmis
+            name_en: "Pakkimis- ja köitmistarvikud"
+            name_et: "Pakkimis- ja köitmistarvikud"
             product_count: 0
           - slug: v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine-palgitangid-ja-haaratsid
             name_en: "Palgitangid ja -haaratsid"
@@ -865,6 +877,10 @@ l1:
           - slug: v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine-posti-eemaldajad
             name_en: "Posti eemaldajad"
             name_et: "Posti eemaldajad"
+            product_count: 0
+          - slug: v4-tooriistad-ja-tarvikud-tostmine-talid-trollid
+            name_en: "Talid ja tõstetrollid"
+            name_et: "Talid ja tõstetrollid"
             product_count: 0
           - slug: v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine-teleskoop-tugipostid
             name_en: "Teleskoop-tugipostid"
@@ -889,6 +905,10 @@ l1:
           - slug: v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine-tostekonksud
             name_en: "Tõstekonksud"
             name_et: "Tõstekonksud"
+            product_count: 0
+          - slug: v4-tooriistad-ja-tarvikud-tostmine-tostemagnetid
+            name_en: "Tõstemagnetid"
+            name_et: "Tõstemagnetid"
             product_count: 0
           - slug: v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine-tosterihmade-komplektid
             name_en: "Tõsterihmade komplektid"
@@ -983,6 +1003,10 @@ l1:
           - slug: v4-tooriistad-ja-tarvikud-puhastustehnika-ja-tarvikud-porandapesumasinad-ja-tarvikud
             name_en: "Põrandapesumasinad ja -tarvikud"
             name_et: "Põrandapesumasinad ja -tarvikud"
+            product_count: 0
+          - slug: v4-tooriistad-ja-tarvikud-puhastus-rennipuhastusharjad
+            name_en: "Rennipuhastusharjad"
+            name_et: "Rennipuhastusharjad"
             product_count: 0
           - slug: v4-tooriistad-ja-tarvikud-puhastustehnika-survepesuri-tarvikud-ja-pinnapuhastid
             name_en: "Survepesuri tarvikud ja pinnapuhastid"
@@ -1125,6 +1149,68 @@ l1:
           - slug: v4-tooriistad-ja-tarvikud-labori-ja-teadustooted-ohukvaliteedi-mooturid
             name_en: "Õhukvaliteedi mõõturid"
             name_et: "Õhukvaliteedi mõõturid"
+            product_count: 0
+      - slug: v4-tooriistad-ja-tarvikud-transpordikarud
+        name_en: "Transpordikärud"
+        name_et: "Transpordikärud"
+        product_count: 0
+        subs:
+          - slug: v4-tooriistad-ja-tarvikud-transpordikarud-erikarud
+            name_en: "Erikärud"
+            name_et: "Erikärud"
+            product_count: 0
+          - slug: v4-tooriistad-ja-tarvikud-transpordikarud-kasikarud
+            name_en: "Käsikärud"
+            name_et: "Käsikärud"
+            product_count: 0
+          - slug: v4-tooriistad-ja-tarvikud-transpordikarud-masina-konteinerikarud
+            name_en: "Masina- ja konteinerikärud"
+            name_et: "Masina- ja konteinerikärud"
+            product_count: 0
+          - slug: v4-tooriistad-ja-tarvikud-transpordikarud-materjalikarud
+            name_en: "Materjalikärud"
+            name_et: "Materjalikärud"
+            product_count: 0
+          - slug: v4-tooriistad-ja-tarvikud-transpordikarud-platvormkarud
+            name_en: "Platvormkärud"
+            name_et: "Platvormkärud"
+            product_count: 0
+          - slug: v4-tooriistad-ja-tarvikud-transpordikarud-trepikarud
+            name_en: "Trepikärud"
+            name_et: "Trepikärud"
+            product_count: 0
+          - slug: v4-tooriistad-ja-tarvikud-transpordikarud-vaadi-tunnikarud
+            name_en: "Vaadi- ja tünnikärud"
+            name_et: "Vaadi- ja tünnikärud"
+            product_count: 0
+      - slug: v4-tooriistad-ja-tarvikud-redelid
+        name_en: "Redelid"
+        name_et: "Redelid"
+        product_count: 0
+        subs:
+          - slug: v4-tooriistad-ja-tarvikud-redelid-astmepukid
+            name_en: "Astmepukid ja redeltoolid"
+            name_et: "Astmepukid ja redeltoolid"
+            product_count: 0
+          - slug: v4-tooriistad-ja-tarvikud-redelid-kokkupandavad
+            name_en: "Kokkupandavad redelid"
+            name_et: "Kokkupandavad redelid"
+            product_count: 0
+          - slug: v4-tooriistad-ja-tarvikud-redelid-muud
+            name_en: "Muud redelitarvikud"
+            name_et: "Muud redelitarvikud"
+            product_count: 0
+          - slug: v4-tooriistad-ja-tarvikud-redelid-pooninguredelid
+            name_en: "Pööninguredelid"
+            name_et: "Pööninguredelid"
+            product_count: 0
+          - slug: v4-tooriistad-ja-tarvikud-redelid-stabilisaatorid
+            name_en: "Redeli stabilisaatorid ja tasandajad"
+            name_et: "Redeli stabilisaatorid ja tasandajad"
+            product_count: 0
+          - slug: v4-tooriistad-ja-tarvikud-redelid-teleskoopredelid
+            name_en: "Teleskoopredelid"
+            name_et: "Teleskoopredelid"
             product_count: 0
   - slug: v4-garaaziseadmed
     name_en: "Garaažiseadmed"
@@ -4171,99 +4257,6 @@ l1:
             name_en: "Vinüül- ja PVC-põrandaplaadid"
             name_et: "Vinüül- ja PVC-põrandaplaadid"
             product_count: 0
-      - slug: v4-ehitus-remont-ja-varvid-toste-ja-teisaldustehnika
-        name_en: "Tõste- & teisaldustehnika"
-        name_et: "Tõste- & teisaldustehnika"
-        product_count: 0
-        subs:
-          - slug: v4-ehitus-remont-ja-varvid-toste-ja-teisaldustehnika-digitaalsed-kaalud
-            name_en: "Digitaalsed kaalud"
-            name_et: "Digitaalsed kaalud"
-            product_count: 0
-          - slug: v4-ehitus-remont-ja-varvid-toste-ja-teisaldustehnika-ekskavaatori-lisaseadmed
-            name_en: "Ekskavaatori lisaseadmed"
-            name_et: "Ekskavaatori lisaseadmed"
-            product_count: 0
-          - slug: v4-ehitus-remont-ja-varvid-toste-ja-teisaldustehnika-hudraulilised-kaartostelauad-ja-tostukid
-            name_en: "Hüdraulilised käärtõstelauad ja -tõstukid"
-            name_et: "Hüdraulilised käärtõstelauad ja -tõstukid"
-            product_count: 0
-          - slug: v4-ehitus-remont-ja-varvid-toste-ja-teisaldustehnika-kahveltostuki-kahvlite-pikendused
-            name_en: "Kahveltõstuki kahvlite pikendused"
-            name_et: "Kahveltõstuki kahvlite pikendused"
-            product_count: 0
-          - slug: v4-ehitus-remont-ja-varvid-toste-ja-teisaldustehnika-kahveltostuki-lisaseadmed
-            name_en: "Kahveltõstuki lisaseadmed"
-            name_et: "Kahveltõstuki lisaseadmed"
-            product_count: 0
-          - slug: v4-ehitus-remont-ja-varvid-toste-ja-teisaldustehnika-kodumasinate-teisaldusalused
-            name_en: "Kodumasinate teisaldusalused"
-            name_et: "Kodumasinate teisaldusalused"
-            product_count: 0
-          - slug: v4-ehitus-remont-ja-varvid-toste-ja-teisaldustehnika-konteinerite-teisaldusratastiku-tarvikud
-            name_en: "Konteinerite teisaldusratastiku tarvikud"
-            name_et: "Konteinerite teisaldusratastiku tarvikud"
-            product_count: 0
-          - slug: v4-ehitus-remont-ja-varvid-toste-ja-teisaldustehnika-konveierid
-            name_en: "Konveierid"
-            name_et: "Konveierid"
-            product_count: 0
-          - slug: v4-ehitus-remont-ja-varvid-toste-ja-teisaldustehnika-kasikarud
-            name_en: "Käsikärud"
-            name_et: "Käsikärud"
-            product_count: 0
-          - slug: v4-ehitus-remont-ja-varvid-toste-ja-teisaldustehnika-masinate-teisaldusrullikud-ja-karud
-            name_en: "Masinate teisaldusrullikud ja -kärud"
-            name_et: "Masinate teisaldusrullikud ja -kärud"
-            product_count: 0
-          - slug: v4-ehitus-remont-ja-varvid-toste-ja-teisaldustehnika-pagasikarud
-            name_en: "Pagasikärud"
-            name_et: "Pagasikärud"
-            product_count: 0
-          - slug: v4-ehitus-remont-ja-varvid-toste-ja-teisaldustehnika-pakkimis-ja-koitmiskomplektid-ning-lindid
-            name_en: "Pakkimis- ja köitmiskomplektid ning lindid"
-            name_et: "Pakkimis- ja köitmiskomplektid ning lindid"
-            product_count: 0
-          - slug: v4-ehitus-remont-ja-varvid-toste-ja-teisaldustehnika-plaadi-ja-paneelikarud
-            name_en: "Plaadi- ja paneelikärud"
-            name_et: "Plaadi- ja paneelikärud"
-            product_count: 0
-          - slug: v4-ehitus-remont-ja-varvid-toste-ja-teisaldustehnika-platvorm-ja-transpordikarud
-            name_en: "Platvorm- ja transpordikärud"
-            name_et: "Platvorm- ja transpordikärud"
-            product_count: 0
-          - slug: v4-ehitus-remont-ja-varvid-toste-ja-teisaldustehnika-talikarud-ja-trollid
-            name_en: "Talikärud ja -trollid"
-            name_et: "Talikärud ja -trollid"
-            product_count: 0
-          - slug: v4-ehitus-remont-ja-varvid-toste-ja-teisaldustehnika-teleskoop-tugipostid-ja-tungrauad
-            name_en: "Teleskoop-tugipostid ja tungrauad"
-            name_et: "Teleskoop-tugipostid ja tungrauad"
-            product_count: 0
-          - slug: v4-ehitus-remont-ja-varvid-toste-ja-teisaldustehnika-toolikarud
-            name_en: "Toolikärud"
-            name_et: "Toolikärud"
-            product_count: 0
-          - slug: v4-ehitus-remont-ja-varvid-toste-ja-teisaldustehnika-traktori-ja-laaduri-kahvlid-ning-kopa-lisaseadmed
-            name_en: "Traktori ja laaduri kahvlid ning kopa lisaseadmed"
-            name_et: "Traktori ja laaduri kahvlid ning kopa lisaseadmed"
-            product_count: 0
-          - slug: v4-ehitus-remont-ja-varvid-toste-ja-teisaldustehnika-trepikarud-ja-ronijad
-            name_en: "Trepikärud ja -ronijad"
-            name_et: "Trepikärud ja -ronijad"
-            product_count: 0
-          - slug: v4-ehitus-remont-ja-varvid-toste-ja-teisaldustehnika-trumli-ja-tunnikarud
-            name_en: "Trumli- ja tünnikärud"
-            name_et: "Trumli- ja tünnikärud"
-            product_count: 0
-          - slug: v4-ehitus-remont-ja-varvid-toste-ja-teisaldustehnika-tostemagnetid
-            name_en: "Tõstemagnetid"
-            name_et: "Tõstemagnetid"
-            product_count: 0
-          - slug: v4-ehitus-remont-ja-varvid-toste-ja-teisaldustehnika-tosteseadmed-taljad-ja-vintsid
-            name_en: "Tõsteseadmed (taljad ja vintsid)"
-            name_et: "Tõsteseadmed (taljad ja vintsid)"
-            product_count: 0
       - slug: v4-ehitus-remont-ja-varvid-uksed-aknad-ja-luugid
         name_en: "Uksed, aknad & luugid"
         name_et: "Uksed, aknad & luugid"
@@ -4436,10 +4429,6 @@ l1:
             name_en: "Aurutõkkekiled ja kaitsekatted"
             name_et: "Aurutõkkekiled ja kaitsekatted"
             product_count: 0
-          - slug: v4-ehitus-remont-ja-varvid-varvid-ja-maalritarvikud-joonte-margistusmasinad
-            name_en: "Joonte märgistusmasinad"
-            name_et: "Joonte märgistusmasinad"
-            product_count: 0
           - slug: v4-ehitus-remont-ja-varvid-varvid-ja-maalritarvikud-kipsplaaditoo-tarvikud
             name_en: "Kipsplaaditöö tarvikud"
             name_et: "Kipsplaaditöö tarvikud"
@@ -4496,47 +4485,6 @@ l1:
           - slug: v4-ehitus-remont-ja-varvid-moobli-ja-kapifurnituur-tala-ja-nurgakinnitused
             name_en: "Tala- ja nurgakinnitused"
             name_et: "Tala- ja nurgakinnitused"
-            product_count: 0
-      - slug: v4-ehitus-remont-ja-varvid-redelid-ja-tellingud
-        name_en: "Redelid & tellingud"
-        name_et: "Redelid & tellingud"
-        product_count: 0
-        subs:
-          - slug: v4-ehitus-remont-ja-varvid-redelid-ja-tellingud-astmepukid-ja-redeltoolid
-            name_en: "Astmepukid & redeltoolid"
-            name_et: "Astmepukid & redeltoolid"
-            product_count: 0
-          - slug: v4-ehitus-remont-ja-varvid-redelid-ja-tellingud-evakuatsiooniredelid
-            name_en: "Evakuatsiooniredelid"
-            name_et: "Evakuatsiooniredelid"
-            product_count: 0
-          - slug: v4-ehitus-remont-ja-varvid-redelid-ja-tellingud-kokkupandavad-redelid
-            name_en: "Kokkupandavad redelid"
-            name_et: "Kokkupandavad redelid"
-            product_count: 0
-          - slug: v4-ehitus-remont-ja-varvid-redelid-ja-tellingud-pooninguredelid
-            name_en: "Pööninguredelid"
-            name_et: "Pööninguredelid"
-            product_count: 0
-          - slug: v4-ehitus-remont-ja-varvid-redelid-ja-tellingud-redeli-katusekonksud
-            name_en: "Redeli katusekonksud"
-            name_et: "Redeli katusekonksud"
-            product_count: 0
-          - slug: v4-ehitus-remont-ja-varvid-redelid-ja-tellingud-redeli-stabilisaatorid-ja-tasandajad
-            name_en: "Redeli stabilisaatorid & tasandajad"
-            name_et: "Redeli stabilisaatorid & tasandajad"
-            product_count: 0
-          - slug: v4-ehitus-remont-ja-varvid-redelid-ja-tellingud-teleskoopredelid
-            name_en: "Teleskoopredelid"
-            name_et: "Teleskoopredelid"
-            product_count: 0
-          - slug: v4-ehitus-remont-ja-varvid-redelid-ja-tellingud-tellingud-ja-tellingulauad
-            name_en: "Tellingud & tellingulauad"
-            name_et: "Tellingud & tellingulauad"
-            product_count: 0
-          - slug: v4-ehitus-remont-ja-varvid-redelid-ja-tellingud-toolavad-ja-tootasapinnad
-            name_en: "Töölavad & töötasapinnad"
-            name_et: "Töölavad & töötasapinnad"
             product_count: 0
       - slug: v4-ehitus-remont-ja-varvid-isolatsioon-ja-soojustus
         name_en: "Isolatsioon & soojustus"
@@ -4601,14 +4549,6 @@ l1:
             name_en: "Betooni põlvelauad ja liugurid"
             name_et: "Betooni põlvelauad ja liugurid"
             product_count: 0
-          - slug: v4-ehitus-remont-ja-varvid-betoonitood-ja-ehitusmaterjalid-betooni-silurid-ja-latid
-            name_en: "Betooni silurid ja latid"
-            name_et: "Betooni silurid ja latid"
-            product_count: 0
-          - slug: v4-ehitus-remont-ja-varvid-betoonitood-ja-ehitusmaterjalid-betooni-tihendus-ja-vibroseadmed
-            name_en: "Betooni tihendus- ja vibroseadmed"
-            name_et: "Betooni tihendus- ja vibroseadmed"
-            product_count: 0
           - slug: v4-ehitus-remont-ja-varvid-betoonitood-ja-ehitusmaterjalid-ehitusplaadid-ja-lehed
             name_en: "Ehitusplaadid ja -lehed"
             name_et: "Ehitusplaadid ja -lehed"
@@ -4634,10 +4574,6 @@ l1:
           - slug: v4-ehitus-remont-ja-varvid-vihmaveesusteemid-ja-drenaaz-renni-ja-raastakaitsevorgud
             name_en: "Renni- ja räästakaitsevõrgud"
             name_et: "Renni- ja räästakaitsevõrgud"
-            product_count: 0
-          - slug: v4-ehitus-remont-ja-varvid-vihmaveesusteemid-ja-drenaaz-rennipuhastusharjad
-            name_en: "Rennipuhastusharjad"
-            name_et: "Rennipuhastusharjad"
             product_count: 0
       - slug: v4-ehitus-remont-ja-varvid-katusematerjalid
         name_en: "Katusematerjalid"
@@ -4676,6 +4612,19 @@ l1:
           - slug: v4-ehitus-laaduri-haakeseadmed-pallikahvlid-ja-kahvlid
             name_en: "Pallikahvlid ja kahvlid"
             name_et: "Pallikahvlid ja kahvlid"
+            product_count: 0
+      - slug: v4-ehitus-remont-ja-varvid-tellingud-ja-toestus
+        name_en: "Tellingud ja toestus"
+        name_et: "Tellingud ja toestus"
+        product_count: 0
+        subs:
+          - slug: v4-ehitus-remont-ja-varvid-tellingud-toolavad
+            name_en: "Tellingud ja töölavad"
+            name_et: "Tellingud ja töölavad"
+            product_count: 0
+          - slug: v4-ehitus-remont-ja-varvid-tellingud-toestuspostid
+            name_en: "Toestuspostid ja tungrauad"
+            name_et: "Toestuspostid ja tungrauad"
             product_count: 0
   - slug: v4-santehnika-kute-ja-ventilatsioon
     name_en: "Santehnika, küte ja ventilatsioon"
