@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-22T08:42:50.840Z",
+  "generated_at": "2026-06-22T09:58:20.998Z",
   "nodes": {
     "v4-tooriistad-ja-tarvikud": {
       "handle": "v4-tooriistad-ja-tarvikud",
@@ -2192,6 +2192,7 @@
         "v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine-kett-talid",
         "v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine-kinnise-ruumi-paastekolmjalad",
         "v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine-kinnituskettid",
+        "v4-tooriistad-ja-tarvikud-tostmine-kipsplaaditostukid",
         "v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine-kolimistekid",
         "v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine-koormarihmad",
         "v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine-kasitostukid",
@@ -2272,6 +2273,16 @@
       "handle": "v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine-kinnituskettid",
       "name_en": "Kinnituskettid",
       "name_et": "Kinnituskettid",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-tostmine-kipsplaaditostukid": {
+      "handle": "v4-tooriistad-ja-tarvikud-tostmine-kipsplaaditostukid",
+      "name_en": "Kipsplaaditõstukid ja paneelitõstukid",
+      "name_et": "Kipsplaaditõstukid ja paneelitõstukid",
       "level": 3,
       "parent_handle": "v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine",
       "child_handles": [],
@@ -3125,6 +3136,7 @@
         "v4-tooriistad-ja-tarvikud-transpordikarud-kasikarud",
         "v4-tooriistad-ja-tarvikud-transpordikarud-masina-konteinerikarud",
         "v4-tooriistad-ja-tarvikud-transpordikarud-materjalikarud",
+        "v4-tooriistad-ja-tarvikud-transpordikarud-mooblikarud",
         "v4-tooriistad-ja-tarvikud-transpordikarud-platvormkarud",
         "v4-tooriistad-ja-tarvikud-transpordikarud-trepikarud",
         "v4-tooriistad-ja-tarvikud-transpordikarud-vaadi-tunnikarud"
@@ -3166,6 +3178,16 @@
       "handle": "v4-tooriistad-ja-tarvikud-transpordikarud-materjalikarud",
       "name_en": "Materjalikärud",
       "name_et": "Materjalikärud",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-transpordikarud",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-transpordikarud-mooblikarud": {
+      "handle": "v4-tooriistad-ja-tarvikud-transpordikarud-mooblikarud",
+      "name_en": "Mööblikärud",
+      "name_et": "Mööblikärud",
       "level": 3,
       "parent_handle": "v4-tooriistad-ja-tarvikud-transpordikarud",
       "child_handles": [],
@@ -19322,6 +19344,7 @@
     "v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine-kett-talid",
     "v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine-kinnise-ruumi-paastekolmjalad",
     "v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine-kinnituskettid",
+    "v4-tooriistad-ja-tarvikud-tostmine-kipsplaaditostukid",
     "v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine-kolimistekid",
     "v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine-koormarihmad",
     "v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine-kasitostukid",
@@ -19405,6 +19428,7 @@
     "v4-tooriistad-ja-tarvikud-transpordikarud-kasikarud",
     "v4-tooriistad-ja-tarvikud-transpordikarud-masina-konteinerikarud",
     "v4-tooriistad-ja-tarvikud-transpordikarud-materjalikarud",
+    "v4-tooriistad-ja-tarvikud-transpordikarud-mooblikarud",
     "v4-tooriistad-ja-tarvikud-transpordikarud-platvormkarud",
     "v4-tooriistad-ja-tarvikud-transpordikarud-trepikarud",
     "v4-tooriistad-ja-tarvikud-transpordikarud-vaadi-tunnikarud",

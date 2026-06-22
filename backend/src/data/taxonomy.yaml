@@ -834,6 +834,10 @@ l1:
             name_en: "Kinnituskettid"
             name_et: "Kinnituskettid"
             product_count: 0
+          - slug: v4-tooriistad-ja-tarvikud-tostmine-kipsplaaditostukid
+            name_en: "Kipsplaaditõstukid ja paneelitõstukid"
+            name_et: "Kipsplaaditõstukid ja paneelitõstukid"
+            product_count: 0
           - slug: v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine-kolimistekid
             name_en: "Kolimistekid"
             name_et: "Kolimistekid"
@@ -1170,6 +1174,10 @@ l1:
           - slug: v4-tooriistad-ja-tarvikud-transpordikarud-materjalikarud
             name_en: "Materjalikärud"
             name_et: "Materjalikärud"
+            product_count: 0
+          - slug: v4-tooriistad-ja-tarvikud-transpordikarud-mooblikarud
+            name_en: "Mööblikärud"
+            name_et: "Mööblikärud"
             product_count: 0
           - slug: v4-tooriistad-ja-tarvikud-transpordikarud-platvormkarud
             name_en: "Platvormkärud"
