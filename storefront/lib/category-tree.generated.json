@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-22T10:50:35.139Z",
+  "generated_at": "2026-06-22T11:14:23.948Z",
   "nodes": {
     "v4-tooriistad-ja-tarvikud": {
       "handle": "v4-tooriistad-ja-tarvikud",
@@ -3810,7 +3810,6 @@
         "v4-garaaziseadmed-tungrauad-haagise-tugijalad",
         "v4-garaaziseadmed-tungrauad-kaigukastitungrauad",
         "v4-garaaziseadmed-tungrauad-kaartungrauad",
-        "v4-garaaziseadmed-tungrauad-korgtostukid",
         "v4-garaaziseadmed-tungrauad-mootorratta-ja-muruniidukitostukid",
         "v4-garaaziseadmed-tungrauad-pneumaatilised-tungrauad",
         "v4-garaaziseadmed-tungrauad-porta-power-komplektid",
@@ -3858,16 +3857,6 @@
       "handle": "v4-garaaziseadmed-tungrauad-kaartungrauad",
       "name_en": "Käärtungrauad",
       "name_et": "Käärtungrauad",
-      "level": 3,
-      "parent_handle": "v4-garaaziseadmed-tungrauad",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-garaaziseadmed-tungrauad-korgtostukid": {
-      "handle": "v4-garaaziseadmed-tungrauad-korgtostukid",
-      "name_en": "Kõrgtõstukid",
-      "name_et": "Kõrgtõstukid",
       "level": 3,
       "parent_handle": "v4-garaaziseadmed-tungrauad",
       "child_handles": [],
@@ -4148,11 +4137,8 @@
       "parent_handle": "v4-garaaziseadmed",
       "child_handles": [
         "v4-garaaziseadmed-tostukid-autorambid-ja-kaldteed",
-        "v4-garaaziseadmed-tostukid-elektrilised-ahel-ja-ketttostukid",
-        "v4-garaaziseadmed-tostukid-elektrilised-vintsid-ja-tostevintsid",
         "v4-garaaziseadmed-tostukid-hudraulilised-jouseadmed-ja-agregaadid",
         "v4-garaaziseadmed-tostukid-kahveltostuki-tarvikud",
-        "v4-garaaziseadmed-tostukid-kasiketttostukid",
         "v4-garaaziseadmed-tostukid-mootorratta-tostukid"
       ],
       "image_path": null,
@@ -4162,26 +4148,6 @@
       "handle": "v4-garaaziseadmed-tostukid-autorambid-ja-kaldteed",
       "name_en": "Autorambid ja kaldteed",
       "name_et": "Autorambid ja kaldteed",
-      "level": 3,
-      "parent_handle": "v4-garaaziseadmed-tostukid",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-garaaziseadmed-tostukid-elektrilised-ahel-ja-ketttostukid": {
-      "handle": "v4-garaaziseadmed-tostukid-elektrilised-ahel-ja-ketttostukid",
-      "name_en": "Elektrilised ahel- ja ketttõstukid",
-      "name_et": "Elektrilised ahel- ja ketttõstukid",
-      "level": 3,
-      "parent_handle": "v4-garaaziseadmed-tostukid",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-garaaziseadmed-tostukid-elektrilised-vintsid-ja-tostevintsid": {
-      "handle": "v4-garaaziseadmed-tostukid-elektrilised-vintsid-ja-tostevintsid",
-      "name_en": "Elektrilised vintsid ja tõstevintsid",
-      "name_et": "Elektrilised vintsid ja tõstevintsid",
       "level": 3,
       "parent_handle": "v4-garaaziseadmed-tostukid",
       "child_handles": [],
@@ -4202,16 +4168,6 @@
       "handle": "v4-garaaziseadmed-tostukid-kahveltostuki-tarvikud",
       "name_en": "Kahveltõstuki tarvikud",
       "name_et": "Kahveltõstuki tarvikud",
-      "level": 3,
-      "parent_handle": "v4-garaaziseadmed-tostukid",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-garaaziseadmed-tostukid-kasiketttostukid": {
-      "handle": "v4-garaaziseadmed-tostukid-kasiketttostukid",
-      "name_en": "Käsiketttõstukid",
-      "name_et": "Käsiketttõstukid",
       "level": 3,
       "parent_handle": "v4-garaaziseadmed-tostukid",
       "child_handles": [],
@@ -19500,7 +19456,6 @@
     "v4-garaaziseadmed-tungrauad-haagise-tugijalad",
     "v4-garaaziseadmed-tungrauad-kaigukastitungrauad",
     "v4-garaaziseadmed-tungrauad-kaartungrauad",
-    "v4-garaaziseadmed-tungrauad-korgtostukid",
     "v4-garaaziseadmed-tungrauad-mootorratta-ja-muruniidukitostukid",
     "v4-garaaziseadmed-tungrauad-pneumaatilised-tungrauad",
     "v4-garaaziseadmed-tungrauad-porta-power-komplektid",
@@ -19528,11 +19483,8 @@
     "v4-garaaziseadmed-olivahetus-ja-hooldus-olivahetuspannid-ja-tuhjenduspaagid",
     "v4-garaaziseadmed-tostukid",
     "v4-garaaziseadmed-tostukid-autorambid-ja-kaldteed",
-    "v4-garaaziseadmed-tostukid-elektrilised-ahel-ja-ketttostukid",
-    "v4-garaaziseadmed-tostukid-elektrilised-vintsid-ja-tostevintsid",
     "v4-garaaziseadmed-tostukid-hudraulilised-jouseadmed-ja-agregaadid",
     "v4-garaaziseadmed-tostukid-kahveltostuki-tarvikud",
-    "v4-garaaziseadmed-tostukid-kasiketttostukid",
     "v4-garaaziseadmed-tostukid-mootorratta-tostukid",
     "v4-garaaziseadmed-rehvitood",
     "v4-garaaziseadmed-rehvitood-mootorratta-rattaste-tasakaalustusseadmed",

@@ -1428,10 +1428,6 @@ l1:
             name_en: "Käärtungrauad"
             name_et: "Käärtungrauad"
             product_count: 0
-          - slug: v4-garaaziseadmed-tungrauad-korgtostukid
-            name_en: "Kõrgtõstukid"
-            name_et: "Kõrgtõstukid"
-            product_count: 0
           - slug: v4-garaaziseadmed-tungrauad-mootorratta-ja-muruniidukitostukid
             name_en: "Mootorratta- ja muruniidukitõstukid"
             name_et: "Mootorratta- ja muruniidukitõstukid"
@@ -1542,14 +1538,6 @@ l1:
             name_en: "Autorambid ja kaldteed"
             name_et: "Autorambid ja kaldteed"
             product_count: 0
-          - slug: v4-garaaziseadmed-tostukid-elektrilised-ahel-ja-ketttostukid
-            name_en: "Elektrilised ahel- ja ketttõstukid"
-            name_et: "Elektrilised ahel- ja ketttõstukid"
-            product_count: 0
-          - slug: v4-garaaziseadmed-tostukid-elektrilised-vintsid-ja-tostevintsid
-            name_en: "Elektrilised vintsid ja tõstevintsid"
-            name_et: "Elektrilised vintsid ja tõstevintsid"
-            product_count: 0
           - slug: v4-garaaziseadmed-tostukid-hudraulilised-jouseadmed-ja-agregaadid
             name_en: "Hüdraulilised jõuseadmed ja agregaadid"
             name_et: "Hüdraulilised jõuseadmed ja agregaadid"
@@ -1557,10 +1545,6 @@ l1:
           - slug: v4-garaaziseadmed-tostukid-kahveltostuki-tarvikud
             name_en: "Kahveltõstuki tarvikud"
             name_et: "Kahveltõstuki tarvikud"
-            product_count: 0
-          - slug: v4-garaaziseadmed-tostukid-kasiketttostukid
-            name_en: "Käsiketttõstukid"
-            name_et: "Käsiketttõstukid"
             product_count: 0
           - slug: v4-garaaziseadmed-tostukid-mootorratta-tostukid
             name_en: "Mootorratta tõstukid"
