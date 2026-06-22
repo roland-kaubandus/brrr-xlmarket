@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-22T11:14:23.948Z",
+  "generated_at": "2026-06-22T12:36:01.682Z",
   "nodes": {
     "v4-tooriistad-ja-tarvikud": {
       "handle": "v4-tooriistad-ja-tarvikud",
@@ -8,8 +8,8 @@
       "level": 1,
       "parent_handle": null,
       "child_handles": [
-        "v4-tooriistad-ja-tarvikud-torutooriistad",
         "v4-tooriistad-ja-tarvikud-viimistlustooriistad",
+        "v4-tooriistad-ja-tarvikud-torutooriistad",
         "v4-tooriistad-ja-tarvikud-kasitooriistad",
         "v4-tooriistad-ja-tarvikud-elektrilised-tooriistad",
         "v4-tooriistad-ja-tarvikud-akutooriistad",
@@ -26,7 +26,8 @@
         "v4-tooriistad-ja-tarvikud-labori-ja-teadustooted",
         "v4-tooriistad-ja-tarvikud-transpordikarud",
         "v4-tooriistad-ja-tarvikud-redelid",
-        "v4-tooriistad-ja-tarvikud-hvac-ja-torudiagnostika"
+        "v4-tooriistad-ja-tarvikud-hvac-ja-torudiagnostika",
+        "v4-tooriistad-ja-tarvikud-hudraulika"
       ],
       "image_path": null,
       "image_source": "none",
@@ -34,105 +35,6 @@
       "description_et": "Tööriistad ja tarvikud — tooted.",
       "tagline_en": "Tööriistad ja tarvikud",
       "tagline_et": "Tööriistad ja tarvikud"
-    },
-    "v4-tooriistad-ja-tarvikud-torutooriistad": {
-      "handle": "v4-tooriistad-ja-tarvikud-torutooriistad",
-      "name_en": "Torutööriistad",
-      "name_et": "Torutööriistad",
-      "level": 2,
-      "parent_handle": "v4-tooriistad-ja-tarvikud",
-      "child_handles": [
-        "v4-tooriistad-ja-tarvikud-kasitooriistad-toru-joondusklambrid",
-        "v4-tooriistad-ja-tarvikud-kasitooriistad-toru-laiendus-ja-flaaringutooriistad",
-        "v4-tooriistad-ja-tarvikud-akutooriistad-toru-pressimistooriistad",
-        "v4-tooriistad-ja-tarvikud-kasitooriistad-toru-valjatombajad",
-        "v4-tooriistad-ja-tarvikud-torutooriistad-toru-keermestajad-ja-loikurid",
-        "v4-tooriistad-ja-tarvikud-metallitoo-ja-sepatoo-torupainutajad",
-        "v4-tooriistad-ja-tarvikud-elektrilised-tooriistad-torutootlustooriistad",
-        "v4-tooriistad-ja-tarvikud-kasitooriistad-toruvotmed-ja-torutangid"
-      ],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-tooriistad-ja-tarvikud-kasitooriistad-toru-joondusklambrid": {
-      "handle": "v4-tooriistad-ja-tarvikud-kasitooriistad-toru-joondusklambrid",
-      "name_en": "Toru joondusklambrid",
-      "name_et": "Toru joondusklambrid",
-      "level": 3,
-      "parent_handle": "v4-tooriistad-ja-tarvikud-torutooriistad",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-tooriistad-ja-tarvikud-kasitooriistad-toru-laiendus-ja-flaaringutooriistad": {
-      "handle": "v4-tooriistad-ja-tarvikud-kasitooriistad-toru-laiendus-ja-flaaringutooriistad",
-      "name_en": "Toru laiendus- ja flaaringutööriistad",
-      "name_et": "Toru laiendus- ja flaaringutööriistad",
-      "level": 3,
-      "parent_handle": "v4-tooriistad-ja-tarvikud-torutooriistad",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-tooriistad-ja-tarvikud-akutooriistad-toru-pressimistooriistad": {
-      "handle": "v4-tooriistad-ja-tarvikud-akutooriistad-toru-pressimistooriistad",
-      "name_en": "Toru pressimistööriistad",
-      "name_et": "Toru pressimistööriistad",
-      "level": 3,
-      "parent_handle": "v4-tooriistad-ja-tarvikud-torutooriistad",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-tooriistad-ja-tarvikud-kasitooriistad-toru-valjatombajad": {
-      "handle": "v4-tooriistad-ja-tarvikud-kasitooriistad-toru-valjatombajad",
-      "name_en": "Toru väljatõmbajad",
-      "name_et": "Toru väljatõmbajad",
-      "level": 3,
-      "parent_handle": "v4-tooriistad-ja-tarvikud-torutooriistad",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-tooriistad-ja-tarvikud-torutooriistad-toru-keermestajad-ja-loikurid": {
-      "handle": "v4-tooriistad-ja-tarvikud-torutooriistad-toru-keermestajad-ja-loikurid",
-      "name_en": "Toru-keermestajad ja -lõikurid",
-      "name_et": "Toru-keermestajad ja -lõikurid",
-      "level": 3,
-      "parent_handle": "v4-tooriistad-ja-tarvikud-torutooriistad",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-tooriistad-ja-tarvikud-metallitoo-ja-sepatoo-torupainutajad": {
-      "handle": "v4-tooriistad-ja-tarvikud-metallitoo-ja-sepatoo-torupainutajad",
-      "name_en": "Torupainutajad",
-      "name_et": "Torupainutajad",
-      "level": 3,
-      "parent_handle": "v4-tooriistad-ja-tarvikud-torutooriistad",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-tooriistad-ja-tarvikud-elektrilised-tooriistad-torutootlustooriistad": {
-      "handle": "v4-tooriistad-ja-tarvikud-elektrilised-tooriistad-torutootlustooriistad",
-      "name_en": "Torutöötlustööriistad",
-      "name_et": "Torutöötlustööriistad",
-      "level": 3,
-      "parent_handle": "v4-tooriistad-ja-tarvikud-torutooriistad",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-tooriistad-ja-tarvikud-kasitooriistad-toruvotmed-ja-torutangid": {
-      "handle": "v4-tooriistad-ja-tarvikud-kasitooriistad-toruvotmed-ja-torutangid",
-      "name_en": "Toruvõtmed ja torutangid",
-      "name_et": "Toruvõtmed ja torutangid",
-      "level": 3,
-      "parent_handle": "v4-tooriistad-ja-tarvikud-torutooriistad",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
     },
     "v4-tooriistad-ja-tarvikud-viimistlustooriistad": {
       "handle": "v4-tooriistad-ja-tarvikud-viimistlustooriistad",
@@ -229,6 +131,105 @@
       "name_et": "Värvipüstolid ja pihustid",
       "level": 3,
       "parent_handle": "v4-tooriistad-ja-tarvikud-viimistlustooriistad",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-torutooriistad": {
+      "handle": "v4-tooriistad-ja-tarvikud-torutooriistad",
+      "name_en": "Torutööriistad",
+      "name_et": "Torutööriistad",
+      "level": 2,
+      "parent_handle": "v4-tooriistad-ja-tarvikud",
+      "child_handles": [
+        "v4-tooriistad-ja-tarvikud-kasitooriistad-toru-joondusklambrid",
+        "v4-tooriistad-ja-tarvikud-kasitooriistad-toru-laiendus-ja-flaaringutooriistad",
+        "v4-tooriistad-ja-tarvikud-akutooriistad-toru-pressimistooriistad",
+        "v4-tooriistad-ja-tarvikud-kasitooriistad-toru-valjatombajad",
+        "v4-tooriistad-ja-tarvikud-torutooriistad-toru-keermestajad-ja-loikurid",
+        "v4-tooriistad-ja-tarvikud-metallitoo-ja-sepatoo-torupainutajad",
+        "v4-tooriistad-ja-tarvikud-elektrilised-tooriistad-torutootlustooriistad",
+        "v4-tooriistad-ja-tarvikud-kasitooriistad-toruvotmed-ja-torutangid"
+      ],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-kasitooriistad-toru-joondusklambrid": {
+      "handle": "v4-tooriistad-ja-tarvikud-kasitooriistad-toru-joondusklambrid",
+      "name_en": "Toru joondusklambrid",
+      "name_et": "Toru joondusklambrid",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-torutooriistad",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-kasitooriistad-toru-laiendus-ja-flaaringutooriistad": {
+      "handle": "v4-tooriistad-ja-tarvikud-kasitooriistad-toru-laiendus-ja-flaaringutooriistad",
+      "name_en": "Toru laiendus- ja flaaringutööriistad",
+      "name_et": "Toru laiendus- ja flaaringutööriistad",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-torutooriistad",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-akutooriistad-toru-pressimistooriistad": {
+      "handle": "v4-tooriistad-ja-tarvikud-akutooriistad-toru-pressimistooriistad",
+      "name_en": "Toru pressimistööriistad",
+      "name_et": "Toru pressimistööriistad",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-torutooriistad",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-kasitooriistad-toru-valjatombajad": {
+      "handle": "v4-tooriistad-ja-tarvikud-kasitooriistad-toru-valjatombajad",
+      "name_en": "Toru väljatõmbajad",
+      "name_et": "Toru väljatõmbajad",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-torutooriistad",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-torutooriistad-toru-keermestajad-ja-loikurid": {
+      "handle": "v4-tooriistad-ja-tarvikud-torutooriistad-toru-keermestajad-ja-loikurid",
+      "name_en": "Toru-keermestajad ja -lõikurid",
+      "name_et": "Toru-keermestajad ja -lõikurid",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-torutooriistad",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-metallitoo-ja-sepatoo-torupainutajad": {
+      "handle": "v4-tooriistad-ja-tarvikud-metallitoo-ja-sepatoo-torupainutajad",
+      "name_en": "Torupainutajad",
+      "name_et": "Torupainutajad",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-torutooriistad",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-elektrilised-tooriistad-torutootlustooriistad": {
+      "handle": "v4-tooriistad-ja-tarvikud-elektrilised-tooriistad-torutootlustooriistad",
+      "name_en": "Torutöötlustööriistad",
+      "name_et": "Torutöötlustööriistad",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-torutooriistad",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-kasitooriistad-toruvotmed-ja-torutangid": {
+      "handle": "v4-tooriistad-ja-tarvikud-kasitooriistad-toruvotmed-ja-torutangid",
+      "name_en": "Toruvõtmed ja torutangid",
+      "name_et": "Toruvõtmed ja torutangid",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-torutooriistad",
       "child_handles": [],
       "image_path": null,
       "image_source": "none"
@@ -2209,6 +2210,7 @@
         "v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine-koormarihmad",
         "v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine-kasitostukid",
         "v4-tooriistad-ja-tarvikud-tostmine-kaartostelauad",
+        "v4-tooriistad-ja-tarvikud-tostmine-laadimisrambid",
         "v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine-montaazitungrauad-ja-tosturid",
         "v4-tooriistad-ja-tarvikud-tostmine-pakkimis-koitmis",
         "v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine-palgitangid-ja-haaratsid",
@@ -2335,6 +2337,16 @@
       "handle": "v4-tooriistad-ja-tarvikud-tostmine-kaartostelauad",
       "name_en": "Käärtõstelauad ja -tõstukid",
       "name_et": "Käärtõstelauad ja -tõstukid",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-tostmine-laadimisrambid": {
+      "handle": "v4-tooriistad-ja-tarvikud-tostmine-laadimisrambid",
+      "name_en": "Laadimisrambid",
+      "name_et": "Laadimisrambid",
       "level": 3,
       "parent_handle": "v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine",
       "child_handles": [],
@@ -3368,6 +3380,72 @@
       "image_path": null,
       "image_source": "none"
     },
+    "v4-tooriistad-ja-tarvikud-hudraulika": {
+      "handle": "v4-tooriistad-ja-tarvikud-hudraulika",
+      "name_en": "Hüdraulika",
+      "name_et": "Hüdraulika",
+      "level": 2,
+      "parent_handle": "v4-tooriistad-ja-tarvikud",
+      "child_handles": [
+        "v4-tooriistad-ja-tarvikud-hudraulika-agregaadid",
+        "v4-tooriistad-ja-tarvikud-hudraulika-klapid-jagajad",
+        "v4-tooriistad-ja-tarvikud-hudraulika-pumbad-mootorid",
+        "v4-tooriistad-ja-tarvikud-hudraulika-silindrid",
+        "v4-tooriistad-ja-tarvikud-hudraulika-voolikud-liitmikud"
+      ],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-hudraulika-agregaadid": {
+      "handle": "v4-tooriistad-ja-tarvikud-hudraulika-agregaadid",
+      "name_en": "Hüdroagregaadid",
+      "name_et": "Hüdroagregaadid",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-hudraulika",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-hudraulika-klapid-jagajad": {
+      "handle": "v4-tooriistad-ja-tarvikud-hudraulika-klapid-jagajad",
+      "name_en": "Hüdroklapid ja -jagajad",
+      "name_et": "Hüdroklapid ja -jagajad",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-hudraulika",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-hudraulika-pumbad-mootorid": {
+      "handle": "v4-tooriistad-ja-tarvikud-hudraulika-pumbad-mootorid",
+      "name_en": "Hüdropumbad ja -mootorid",
+      "name_et": "Hüdropumbad ja -mootorid",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-hudraulika",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-hudraulika-silindrid": {
+      "handle": "v4-tooriistad-ja-tarvikud-hudraulika-silindrid",
+      "name_en": "Hüdrosilindrid",
+      "name_et": "Hüdrosilindrid",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-hudraulika",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-hudraulika-voolikud-liitmikud": {
+      "handle": "v4-tooriistad-ja-tarvikud-hudraulika-voolikud-liitmikud",
+      "name_en": "Hüdrovoolikud ja liitmikud",
+      "name_et": "Hüdrovoolikud ja liitmikud",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-hudraulika",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
     "v4-garaaziseadmed": {
       "handle": "v4-garaaziseadmed",
       "name_en": "Garaažiseadmed",
@@ -3401,7 +3479,6 @@
       "child_handles": [
         "v4-garaaziseadmed-mehaaniku-tooriistad-autoelektri-testrid",
         "v4-garaaziseadmed-mehaaniku-tooriistad-hammasratta-ja-rihmaratta-tomburid",
-        "v4-garaaziseadmed-mehaaniku-tooriistad-hudraulikapumbad-ja-voolikud",
         "v4-garaaziseadmed-mehaaniku-tooriistad-hudraulilise-rohu-testimiskomplektid",
         "v4-garaaziseadmed-mehaaniku-tooriistad-hudraulilised-pressid",
         "v4-garaaziseadmed-mehaaniku-tooriistad-induktsioonkuumutid",
@@ -3438,16 +3515,6 @@
       "handle": "v4-garaaziseadmed-mehaaniku-tooriistad-hammasratta-ja-rihmaratta-tomburid",
       "name_en": "Hammasratta- ja rihmaratta tõmburid",
       "name_et": "Hammasratta- ja rihmaratta tõmburid",
-      "level": 3,
-      "parent_handle": "v4-garaaziseadmed-mehaaniku-tooriistad",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-garaaziseadmed-mehaaniku-tooriistad-hudraulikapumbad-ja-voolikud": {
-      "handle": "v4-garaaziseadmed-mehaaniku-tooriistad-hudraulikapumbad-ja-voolikud",
-      "name_en": "Hüdraulikapumbad ja -voolikud",
-      "name_et": "Hüdraulikapumbad ja -voolikud",
       "level": 3,
       "parent_handle": "v4-garaaziseadmed-mehaaniku-tooriistad",
       "child_handles": [],
@@ -4137,8 +4204,6 @@
       "parent_handle": "v4-garaaziseadmed",
       "child_handles": [
         "v4-garaaziseadmed-tostukid-autorambid-ja-kaldteed",
-        "v4-garaaziseadmed-tostukid-hudraulilised-jouseadmed-ja-agregaadid",
-        "v4-garaaziseadmed-tostukid-kahveltostuki-tarvikud",
         "v4-garaaziseadmed-tostukid-mootorratta-tostukid"
       ],
       "image_path": null,
@@ -4148,26 +4213,6 @@
       "handle": "v4-garaaziseadmed-tostukid-autorambid-ja-kaldteed",
       "name_en": "Autorambid ja kaldteed",
       "name_et": "Autorambid ja kaldteed",
-      "level": 3,
-      "parent_handle": "v4-garaaziseadmed-tostukid",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-garaaziseadmed-tostukid-hudraulilised-jouseadmed-ja-agregaadid": {
-      "handle": "v4-garaaziseadmed-tostukid-hudraulilised-jouseadmed-ja-agregaadid",
-      "name_en": "Hüdraulilised jõuseadmed ja agregaadid",
-      "name_et": "Hüdraulilised jõuseadmed ja agregaadid",
-      "level": 3,
-      "parent_handle": "v4-garaaziseadmed-tostukid",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-garaaziseadmed-tostukid-kahveltostuki-tarvikud": {
-      "handle": "v4-garaaziseadmed-tostukid-kahveltostuki-tarvikud",
-      "name_en": "Kahveltõstuki tarvikud",
-      "name_et": "Kahveltõstuki tarvikud",
       "level": 3,
       "parent_handle": "v4-garaaziseadmed-tostukid",
       "child_handles": [],
@@ -4282,8 +4327,6 @@
         "v4-garaaziseadmed-muu-garaaziseadmed-autokere-sirgendusseadmed",
         "v4-garaaziseadmed-muu-garaaziseadmed-garaaziporandamatid",
         "v4-garaaziseadmed-muu-garaaziseadmed-garaaziukse-osad",
-        "v4-garaaziseadmed-muu-garaaziseadmed-hudraulilised-pumbad-ja-jouseadmed",
-        "v4-garaaziseadmed-muu-garaaziseadmed-laadimisrambid",
         "v4-garaaziseadmed-muu-garaaziseadmed-parkimis-ja-peatusabivahendid",
         "v4-garaaziseadmed-muu-garaaziseadmed-varvimiskabiinid-ja-telgid"
       ],
@@ -4314,26 +4357,6 @@
       "handle": "v4-garaaziseadmed-muu-garaaziseadmed-garaaziukse-osad",
       "name_en": "Garaažiukse osad & vedrud",
       "name_et": "Garaažiukse osad & vedrud",
-      "level": 3,
-      "parent_handle": "v4-garaaziseadmed-muu-garaaziseadmed",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-garaaziseadmed-muu-garaaziseadmed-hudraulilised-pumbad-ja-jouseadmed": {
-      "handle": "v4-garaaziseadmed-muu-garaaziseadmed-hudraulilised-pumbad-ja-jouseadmed",
-      "name_en": "Hüdraulilised pumbad ja jõuseadmed",
-      "name_et": "Hüdraulilised pumbad ja jõuseadmed",
-      "level": 3,
-      "parent_handle": "v4-garaaziseadmed-muu-garaaziseadmed",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-garaaziseadmed-muu-garaaziseadmed-laadimisrambid": {
-      "handle": "v4-garaaziseadmed-muu-garaaziseadmed-laadimisrambid",
-      "name_en": "Laadimisrambid & -sillad",
-      "name_et": "Laadimisrambid & -sillad",
       "level": 3,
       "parent_handle": "v4-garaaziseadmed-muu-garaaziseadmed",
       "child_handles": [],
@@ -16789,8 +16812,8 @@
       "parent_handle": null,
       "child_handles": [
         "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc",
-        "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk",
         "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign",
+        "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk",
         "v4-reklaami-truki-ja-graveerimisseadmed-koitmine-ja-lamineerimine",
         "v4-reklaami-truki-ja-graveerimisseadmed-fotostuudio-ja-taustad"
       ],
@@ -17010,6 +17033,83 @@
       "image_path": null,
       "image_source": "none"
     },
+    "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign": {
+      "handle": "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign",
+      "name_en": "Vinüül & sign",
+      "name_et": "Vinüül & sign",
+      "level": 2,
+      "parent_handle": "v4-reklaami-truki-ja-graveerimisseadmed",
+      "child_handles": [
+        "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-led-reklaamtahvlid-ja-ekraanid",
+        "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-naitustahvlid-ja-lauad",
+        "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-plotteri-paberirullid",
+        "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-posteri-ja-bannerihoidikud",
+        "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-reklaamlipud-ja-lipumastid",
+        "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-vinuulloikurid-ja-plotterid"
+      ],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-led-reklaamtahvlid-ja-ekraanid": {
+      "handle": "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-led-reklaamtahvlid-ja-ekraanid",
+      "name_en": "LED-reklaamtahvlid & -ekraanid",
+      "name_et": "LED-reklaamtahvlid & -ekraanid",
+      "level": 3,
+      "parent_handle": "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-naitustahvlid-ja-lauad": {
+      "handle": "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-naitustahvlid-ja-lauad",
+      "name_en": "Näitustahvlid & -lauad",
+      "name_et": "Näitustahvlid & -lauad",
+      "level": 3,
+      "parent_handle": "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-plotteri-paberirullid": {
+      "handle": "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-plotteri-paberirullid",
+      "name_en": "Plotteri paberirullid",
+      "name_et": "Plotteri paberirullid",
+      "level": 3,
+      "parent_handle": "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-posteri-ja-bannerihoidikud": {
+      "handle": "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-posteri-ja-bannerihoidikud",
+      "name_en": "Posteri- & bännerihoidikud",
+      "name_et": "Posteri- & bännerihoidikud",
+      "level": 3,
+      "parent_handle": "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-reklaamlipud-ja-lipumastid": {
+      "handle": "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-reklaamlipud-ja-lipumastid",
+      "name_en": "Reklaamlipud & lipumastid",
+      "name_et": "Reklaamlipud & lipumastid",
+      "level": 3,
+      "parent_handle": "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-vinuulloikurid-ja-plotterid": {
+      "handle": "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-vinuulloikurid-ja-plotterid",
+      "name_en": "Vinüüllõikurid & plotterid",
+      "name_et": "Vinüüllõikurid & plotterid",
+      "level": 3,
+      "parent_handle": "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
     "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk": {
       "handle": "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk",
       "name_en": "Tekstiili- & rõivatrükk",
@@ -17182,83 +17282,6 @@
       "name_et": "Õmblusmasinad",
       "level": 3,
       "parent_handle": "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign": {
-      "handle": "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign",
-      "name_en": "Vinüül & sign",
-      "name_et": "Vinüül & sign",
-      "level": 2,
-      "parent_handle": "v4-reklaami-truki-ja-graveerimisseadmed",
-      "child_handles": [
-        "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-led-reklaamtahvlid-ja-ekraanid",
-        "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-naitustahvlid-ja-lauad",
-        "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-plotteri-paberirullid",
-        "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-posteri-ja-bannerihoidikud",
-        "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-reklaamlipud-ja-lipumastid",
-        "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-vinuulloikurid-ja-plotterid"
-      ],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-led-reklaamtahvlid-ja-ekraanid": {
-      "handle": "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-led-reklaamtahvlid-ja-ekraanid",
-      "name_en": "LED-reklaamtahvlid & -ekraanid",
-      "name_et": "LED-reklaamtahvlid & -ekraanid",
-      "level": 3,
-      "parent_handle": "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-naitustahvlid-ja-lauad": {
-      "handle": "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-naitustahvlid-ja-lauad",
-      "name_en": "Näitustahvlid & -lauad",
-      "name_et": "Näitustahvlid & -lauad",
-      "level": 3,
-      "parent_handle": "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-plotteri-paberirullid": {
-      "handle": "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-plotteri-paberirullid",
-      "name_en": "Plotteri paberirullid",
-      "name_et": "Plotteri paberirullid",
-      "level": 3,
-      "parent_handle": "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-posteri-ja-bannerihoidikud": {
-      "handle": "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-posteri-ja-bannerihoidikud",
-      "name_en": "Posteri- & bännerihoidikud",
-      "name_et": "Posteri- & bännerihoidikud",
-      "level": 3,
-      "parent_handle": "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-reklaamlipud-ja-lipumastid": {
-      "handle": "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-reklaamlipud-ja-lipumastid",
-      "name_en": "Reklaamlipud & lipumastid",
-      "name_et": "Reklaamlipud & lipumastid",
-      "level": 3,
-      "parent_handle": "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-vinuulloikurid-ja-plotterid": {
-      "handle": "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-vinuulloikurid-ja-plotterid",
-      "name_en": "Vinüüllõikurid & plotterid",
-      "name_et": "Vinüüllõikurid & plotterid",
-      "level": 3,
-      "parent_handle": "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign",
       "child_handles": [],
       "image_path": null,
       "image_source": "none"
@@ -19110,15 +19133,6 @@
   },
   "order": [
     "v4-tooriistad-ja-tarvikud",
-    "v4-tooriistad-ja-tarvikud-torutooriistad",
-    "v4-tooriistad-ja-tarvikud-kasitooriistad-toru-joondusklambrid",
-    "v4-tooriistad-ja-tarvikud-kasitooriistad-toru-laiendus-ja-flaaringutooriistad",
-    "v4-tooriistad-ja-tarvikud-akutooriistad-toru-pressimistooriistad",
-    "v4-tooriistad-ja-tarvikud-kasitooriistad-toru-valjatombajad",
-    "v4-tooriistad-ja-tarvikud-torutooriistad-toru-keermestajad-ja-loikurid",
-    "v4-tooriistad-ja-tarvikud-metallitoo-ja-sepatoo-torupainutajad",
-    "v4-tooriistad-ja-tarvikud-elektrilised-tooriistad-torutootlustooriistad",
-    "v4-tooriistad-ja-tarvikud-kasitooriistad-toruvotmed-ja-torutangid",
     "v4-tooriistad-ja-tarvikud-viimistlustooriistad",
     "v4-tooriistad-ja-tarvikud-viimistlus-joonte-margistus",
     "v4-tooriistad-ja-tarvikud-viimistlustooriistad-krohvimistooriistad",
@@ -19128,6 +19142,15 @@
     "v4-tooriistad-ja-tarvikud-viimistlustooriistad-silikooni-ja-hermeetikupustolid",
     "v4-tooriistad-ja-tarvikud-kasitooriistad-vuugitooriistad",
     "v4-tooriistad-ja-tarvikud-viimistlustooriistad-varvipustolid-ja-pihustid",
+    "v4-tooriistad-ja-tarvikud-torutooriistad",
+    "v4-tooriistad-ja-tarvikud-kasitooriistad-toru-joondusklambrid",
+    "v4-tooriistad-ja-tarvikud-kasitooriistad-toru-laiendus-ja-flaaringutooriistad",
+    "v4-tooriistad-ja-tarvikud-akutooriistad-toru-pressimistooriistad",
+    "v4-tooriistad-ja-tarvikud-kasitooriistad-toru-valjatombajad",
+    "v4-tooriistad-ja-tarvikud-torutooriistad-toru-keermestajad-ja-loikurid",
+    "v4-tooriistad-ja-tarvikud-metallitoo-ja-sepatoo-torupainutajad",
+    "v4-tooriistad-ja-tarvikud-elektrilised-tooriistad-torutootlustooriistad",
+    "v4-tooriistad-ja-tarvikud-kasitooriistad-toruvotmed-ja-torutangid",
     "v4-tooriistad-ja-tarvikud-kasitooriistad",
     "v4-tooriistad-ja-tarvikud-kasitooriistad-aasade-paigaldustooriistad",
     "v4-tooriistad-ja-tarvikud-kasitooriistad-avade-mulgustajad-ja-stantsid",
@@ -19318,6 +19341,7 @@
     "v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine-koormarihmad",
     "v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine-kasitostukid",
     "v4-tooriistad-ja-tarvikud-tostmine-kaartostelauad",
+    "v4-tooriistad-ja-tarvikud-tostmine-laadimisrambid",
     "v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine-montaazitungrauad-ja-tosturid",
     "v4-tooriistad-ja-tarvikud-tostmine-pakkimis-koitmis",
     "v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine-palgitangid-ja-haaratsid",
@@ -19413,11 +19437,16 @@
     "v4-tooriistad-ja-tarvikud-hvac-inspektsioonikaamerad",
     "v4-tooriistad-ja-tarvikud-hvac-survetestrid",
     "v4-tooriistad-ja-tarvikud-hvac-vaakumkambrid",
+    "v4-tooriistad-ja-tarvikud-hudraulika",
+    "v4-tooriistad-ja-tarvikud-hudraulika-agregaadid",
+    "v4-tooriistad-ja-tarvikud-hudraulika-klapid-jagajad",
+    "v4-tooriistad-ja-tarvikud-hudraulika-pumbad-mootorid",
+    "v4-tooriistad-ja-tarvikud-hudraulika-silindrid",
+    "v4-tooriistad-ja-tarvikud-hudraulika-voolikud-liitmikud",
     "v4-garaaziseadmed",
     "v4-garaaziseadmed-mehaaniku-tooriistad",
     "v4-garaaziseadmed-mehaaniku-tooriistad-autoelektri-testrid",
     "v4-garaaziseadmed-mehaaniku-tooriistad-hammasratta-ja-rihmaratta-tomburid",
-    "v4-garaaziseadmed-mehaaniku-tooriistad-hudraulikapumbad-ja-voolikud",
     "v4-garaaziseadmed-mehaaniku-tooriistad-hudraulilise-rohu-testimiskomplektid",
     "v4-garaaziseadmed-mehaaniku-tooriistad-hudraulilised-pressid",
     "v4-garaaziseadmed-mehaaniku-tooriistad-induktsioonkuumutid",
@@ -19483,8 +19512,6 @@
     "v4-garaaziseadmed-olivahetus-ja-hooldus-olivahetuspannid-ja-tuhjenduspaagid",
     "v4-garaaziseadmed-tostukid",
     "v4-garaaziseadmed-tostukid-autorambid-ja-kaldteed",
-    "v4-garaaziseadmed-tostukid-hudraulilised-jouseadmed-ja-agregaadid",
-    "v4-garaaziseadmed-tostukid-kahveltostuki-tarvikud",
     "v4-garaaziseadmed-tostukid-mootorratta-tostukid",
     "v4-garaaziseadmed-rehvitood",
     "v4-garaaziseadmed-rehvitood-mootorratta-rattaste-tasakaalustusseadmed",
@@ -19498,8 +19525,6 @@
     "v4-garaaziseadmed-muu-garaaziseadmed-autokere-sirgendusseadmed",
     "v4-garaaziseadmed-muu-garaaziseadmed-garaaziporandamatid",
     "v4-garaaziseadmed-muu-garaaziseadmed-garaaziukse-osad",
-    "v4-garaaziseadmed-muu-garaaziseadmed-hudraulilised-pumbad-ja-jouseadmed",
-    "v4-garaaziseadmed-muu-garaaziseadmed-laadimisrambid",
     "v4-garaaziseadmed-muu-garaaziseadmed-parkimis-ja-peatusabivahendid",
     "v4-garaaziseadmed-muu-garaaziseadmed-varvimiskabiinid-ja-telgid",
     "v4-garaaziseadmed-varvimine-ja-viimistlus",
@@ -20638,6 +20663,13 @@
     "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-toostuslikud-vesijahutid",
     "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-vaakumvalamismasinad",
     "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-ohupuhuri-komplektid-laserloikuritele",
+    "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign",
+    "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-led-reklaamtahvlid-ja-ekraanid",
+    "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-naitustahvlid-ja-lauad",
+    "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-plotteri-paberirullid",
+    "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-posteri-ja-bannerihoidikud",
+    "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-reklaamlipud-ja-lipumastid",
+    "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-vinuulloikurid-ja-plotterid",
     "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk",
     "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-kuumpressi-ja-vinuulloikuri-komplektid",
     "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-kuumpressi-tarvikud-ja-toolauad",
@@ -20654,13 +20686,6 @@
     "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-truki-ja-siiditrukikuivatid",
     "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-truki-ja-termoprinterid",
     "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-omblusmasinad",
-    "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign",
-    "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-led-reklaamtahvlid-ja-ekraanid",
-    "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-naitustahvlid-ja-lauad",
-    "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-plotteri-paberirullid",
-    "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-posteri-ja-bannerihoidikud",
-    "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-reklaamlipud-ja-lipumastid",
-    "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-vinuulloikurid-ja-plotterid",
     "v4-reklaami-truki-ja-graveerimisseadmed-koitmine-ja-lamineerimine",
     "v4-reklaami-truki-ja-graveerimisseadmed-koitmine-ja-lamineerimine-paberiloikurid",
     "v4-reklaami-truki-ja-graveerimisseadmed-fotostuudio-ja-taustad",
