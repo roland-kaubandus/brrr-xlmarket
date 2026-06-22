@@ -1053,10 +1053,6 @@ l1:
             name_en: "Jalgrattalukud"
             name_et: "Jalgrattalukud"
             product_count: 0
-          - slug: v4-tooriistad-ja-tarvikud-turva-ja-objektivarustus-jarjekorra-piirdepostid
-            name_en: "Järjekorra piirdepostid"
-            name_et: "Järjekorra piirdepostid"
-            product_count: 0
           - slug: v4-tooriistad-ja-tarvikud-turva-ja-objektivarustus-lekke-ja-uleujutustorje
             name_en: "Lekke- ja üleujutustõrje"
             name_et: "Lekke- ja üleujutustõrje"
@@ -2777,10 +2773,6 @@ l1:
         name_et: "Sisustustarvikud & dekoor"
         product_count: 0
         subs:
-          - slug: v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-dekoratiivlaternad
-            name_en: "Dekoratiivlaternad"
-            name_et: "Dekoratiivlaternad"
-            product_count: 0
           - slug: v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-diskopallid
             name_en: "Diskopallid"
             name_et: "Diskopallid"
@@ -2792,10 +2784,6 @@ l1:
           - slug: v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-isekleepuv-tapeet
             name_en: "Isekleepuv tapeet"
             name_et: "Isekleepuv tapeet"
-            product_count: 0
-          - slug: v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-joulu-ja-dekoratiivparjad
-            name_en: "Jõulu- & dekoratiivpärjad"
-            name_et: "Jõulu- & dekoratiivpärjad"
             product_count: 0
           - slug: v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-kaardikogumiku-hoiukohvrid
             name_en: "Kaardikogumiku hoiukohvrid"
@@ -2814,12 +2802,8 @@ l1:
             name_et: "Kontoritooli alused"
             product_count: 0
           - slug: v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-kunsttaime-seinapaneelid-ja-kunstmuru
-            name_en: "Kunsttaime seinapaneelid & kunstmuru"
-            name_et: "Kunsttaime seinapaneelid & kunstmuru"
-            product_count: 0
-          - slug: v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-kunsttaimed-ja-lilled
-            name_en: "Kunsttaimed & -lilled"
-            name_et: "Kunsttaimed & -lilled"
+            name_en: "Kunstmuru"
+            name_et: "Kunstmuru"
             product_count: 0
           - slug: v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-lauajalad
             name_en: "Lauajalad"
@@ -2832,10 +2816,6 @@ l1:
           - slug: v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-lauaplaadid
             name_en: "Lauaplaadid"
             name_et: "Lauaplaadid"
-            product_count: 0
-          - slug: v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-laudlinad
-            name_en: "Laudlinad"
-            name_et: "Laudlinad"
             product_count: 0
           - slug: v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-lillealused-ja-statiivid
             name_en: "Lillealused & -statiivid"
@@ -2856,10 +2836,6 @@ l1:
           - slug: v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-peeglid
             name_en: "Peeglid"
             name_et: "Peeglid"
-            product_count: 0
-          - slug: v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-pulmakaared-ja-lilledekoor
-            name_en: "Pulmakaared & lilledekoor"
-            name_et: "Pulmakaared & lilledekoor"
             product_count: 0
           - slug: v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-puuvillakoiest-korvid
             name_en: "Puuvillaköiest korvid"
@@ -2884,10 +2860,6 @@ l1:
           - slug: v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-teleri-seinabraketid-ja-jalused
             name_en: "Teleri seinabraketid & jalused"
             name_et: "Teleri seinabraketid & jalused"
-            product_count: 0
-          - slug: v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-toolikatted-ja-umbrised
-            name_en: "Toolikatted & -ümbrised"
-            name_et: "Toolikatted & -ümbrised"
             product_count: 0
           - slug: v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-vitraazaknad-ja-paneelid
             name_en: "Vitraažaknad & -paneelid"
@@ -3291,10 +3263,6 @@ l1:
             name_en: "Riidepuud ja esikumööbel"
             name_et: "Riidepuud ja esikumööbel"
             product_count: 0
-          - slug: v4-moobel-ja-sisustus-lapsemoobel-tooli-satiinpaelad-ja-kaunistused
-            name_en: "Tooli satiinpaelad ja kaunistused"
-            name_et: "Tooli satiinpaelad ja kaunistused"
-            product_count: 0
       - slug: v4-moobel-ja-sisustus-toolid-ja-istmed
         name_en: "Toolid & istmed"
         name_et: "Toolid & istmed"
@@ -3303,10 +3271,6 @@ l1:
           - slug: v4-moobel-ja-sisustus-toolid-ja-istmed-baaritoolid
             name_en: "Baaritoolid"
             name_et: "Baaritoolid"
-            product_count: 0
-          - slug: v4-moobel-ja-sisustus-toolid-ja-istmed-kokkupandavad-toolid
-            name_en: "Kokkupandavad toolid"
-            name_et: "Kokkupandavad toolid"
             product_count: 0
           - slug: v4-moobel-ja-sisustus-toolid-ja-istmed-kontori-ja-tootoolid
             name_en: "Kontori- ja töötoolid"
@@ -3366,11 +3330,6 @@ l1:
         name_en: "Lauakatted & tekstiil"
         name_et: "Lauakatted & tekstiil"
         product_count: 0
-        subs:
-          - slug: v4-moobel-ja-sisustus-lauakatted-ja-tekstiil-laudlinad
-            name_en: "Laudlinad"
-            name_et: "Laudlinad"
-            product_count: 0
       - slug: v4-moobel-ja-sisustus-aknakatted-ja-kardinatarvikud
         name_en: "Aknakatted & kardinatarvikud"
         name_et: "Aknakatted & kardinatarvikud"
@@ -3401,6 +3360,51 @@ l1:
           - slug: v4-moobel-ja-sisustus-tv-alused-ja-kinnitused-tv-seinabraketid
             name_en: "TV seinabraketid"
             name_et: "TV seinabraketid"
+            product_count: 0
+      - slug: v4-moobel-ja-sisustus-pidu-ja-uritused
+        name_en: "Pidu ja üritused"
+        name_et: "Pidu ja üritused"
+        product_count: 0
+        subs:
+          - slug: v4-reklaami-truki-ja-graveerimisseadmed-fotostuudio-ja-taustad-taustastatiivid
+            name_en: "Backdrop-statiivid ja taustad"
+            name_et: "Backdrop-statiivid ja taustad"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-dekoratiivlaternad
+            name_en: "Dekoratiivlaternad ja pärjad"
+            name_et: "Dekoratiivlaternad ja pärjad"
+            product_count: 0
+          - slug: v4-tooriistad-ja-tarvikud-turva-ja-objektivarustus-jarjekorra-piirdepostid
+            name_en: "Järjekorra piirdepostid"
+            name_et: "Järjekorra piirdepostid"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-toolid-ja-istmed-kokkupandavad-toolid
+            name_en: "Kokkupandavad peotoolid"
+            name_et: "Kokkupandavad peotoolid"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-kunsttaimed-ja-lilled
+            name_en: "Kunstlilled ja -taimed"
+            name_et: "Kunstlilled ja -taimed"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-laudlinad
+            name_en: "Laudlinad"
+            name_et: "Laudlinad"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-pulmakaared-ja-lilledekoor
+            name_en: "Pulmakaared & lilledekoor"
+            name_et: "Pulmakaared & lilledekoor"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-lapsemoobel-tooli-satiinpaelad-ja-kaunistused
+            name_en: "Tooli satiinpaelad ja kaunistused"
+            name_et: "Tooli satiinpaelad ja kaunistused"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-toolikatted-ja-umbrised
+            name_en: "Toolikatted & -ümbrised"
+            name_et: "Toolikatted & -ümbrised"
+            product_count: 0
+          - slug: v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-onne-ja-loosimisrattad-ning-trumlid
+            name_en: "Õnne- ja loosimisrattad ning -trumlid"
+            name_et: "Õnne- ja loosimisrattad ning -trumlid"
             product_count: 0
   - slug: v4-aed-ja-aiatehnika
     name_en: "Aed ja aiatehnika"
@@ -3783,10 +3787,6 @@ l1:
           - slug: v4-aed-ja-aiatehnika-l6-ilmajaamad
             name_en: "Ilmajaamad"
             name_et: "Ilmajaamad"
-            product_count: 0
-          - slug: v4-aed-ja-aiatehnika-l6-kaarstatiivid-ja-taustaraamid
-            name_en: "Kaarstatiivid ja taustaraamid"
-            name_et: "Kaarstatiivid ja taustaraamid"
             product_count: 0
           - slug: v4-aed-ja-aiatehnika-l6-kunsthekid-ja-privaatsusekraanid
             name_en: "Kunsthekid ja privaatsusekraanid"
@@ -5664,10 +5664,6 @@ l1:
             name_en: "Õhuhokilauad"
             name_et: "Õhuhokilauad"
             product_count: 0
-          - slug: v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-onne-ja-loosimisrattad-ning-trumlid
-            name_en: "Õnne- ja loosimisrattad ning -trumlid"
-            name_et: "Õnne- ja loosimisrattad ning -trumlid"
-            product_count: 0
       - slug: v4-sport-ja-vaba-aeg-manguasjad-lastele
         name_en: "Mänguasjad lastele"
         name_et: "Mänguasjad lastele"
@@ -5858,6 +5854,10 @@ l1:
             name_en: "Tasakaalupallid ja -lauad"
             name_et: "Tasakaalupallid ja -lauad"
             product_count: 0
+          - slug: v4-sport-ja-vaba-aeg-fitness-treeningjalatsid
+            name_en: "Treeningjalatsid"
+            name_et: "Treeningjalatsid"
+            product_count: 0
           - slug: v4-sport-ja-vaba-aeg-fitness-ja-treeningseadmed-treeningkelgud-ja-saanid
             name_en: "Treeningkelgud ja -saanid"
             name_et: "Treeningkelgud ja -saanid"
@@ -5869,6 +5869,10 @@ l1:
           - slug: v4-sport-ja-vaba-aeg-fitness-ja-treeningseadmed-treeningliivakotid-ja-kotid
             name_en: "Treeningliivakotid ja -kotid"
             name_et: "Treeningliivakotid ja -kotid"
+            product_count: 0
+          - slug: v4-sport-ja-vaba-aeg-fitness-treeningmatid
+            name_en: "Treeningmatid"
+            name_et: "Treeningmatid"
             product_count: 0
           - slug: v4-sport-ja-vaba-aeg-fitness-ja-treeningseadmed-treeningmatid-ja-ohkmatid
             name_en: "Treeningmatid ja õhkmatid"
@@ -6531,11 +6535,6 @@ l1:
         name_en: "Fotostuudio & taustad"
         name_et: "Fotostuudio & taustad"
         product_count: 0
-        subs:
-          - slug: v4-reklaami-truki-ja-graveerimisseadmed-fotostuudio-ja-taustad-taustastatiivid
-            name_en: "Taustastatiivid"
-            name_et: "Taustastatiivid"
-            product_count: 0
   - slug: v4-lemmikloomatarbed
     name_en: "Lemmikloomatarbed"
     name_et: "Lemmikloomatarbed"
