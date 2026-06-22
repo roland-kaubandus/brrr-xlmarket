@@ -14,43 +14,6 @@ l1:
     hero_gradient: from-stone-950/80 via-stone-900/40 to-transparent
     product_count: 2213
     subs:
-      - slug: v4-tooriistad-ja-tarvikud-viimistlustooriistad
-        name_en: "Viimistlustööriistad"
-        name_et: "Viimistlustööriistad"
-        product_count: 0
-        subs:
-          - slug: v4-tooriistad-ja-tarvikud-viimistlus-joonte-margistus
-            name_en: "Joonte märgistusmasinad"
-            name_et: "Joonte märgistusmasinad"
-            product_count: 0
-          - slug: v4-tooriistad-ja-tarvikud-viimistlustooriistad-krohvimistooriistad
-            name_en: "Krohvimistööriistad"
-            name_et: "Krohvimistööriistad"
-            product_count: 0
-          - slug: v4-tooriistad-ja-tarvikud-kasitooriistad-pahtli-ja-kaabitsariistad
-            name_en: "Pahtli- ja kaabitsariistad"
-            name_et: "Pahtli- ja kaabitsariistad"
-            product_count: 0
-          - slug: v4-tooriistad-ja-tarvikud-kasitooriistad-plaadiloikurid
-            name_en: "Plaadilõikurid"
-            name_et: "Plaadilõikurid"
-            product_count: 0
-          - slug: v4-tooriistad-ja-tarvikud-viimistlustooriistad-porandaloikurid
-            name_en: "Põranda- ja vinüüllõikurid"
-            name_et: "Põranda- ja vinüüllõikurid"
-            product_count: 0
-          - slug: v4-tooriistad-ja-tarvikud-viimistlustooriistad-silikooni-ja-hermeetikupustolid
-            name_en: "Silikooni- ja hermeetikupüstolid"
-            name_et: "Silikooni- ja hermeetikupüstolid"
-            product_count: 0
-          - slug: v4-tooriistad-ja-tarvikud-kasitooriistad-vuugitooriistad
-            name_en: "Vuugitööriistad"
-            name_et: "Vuugitööriistad"
-            product_count: 0
-          - slug: v4-tooriistad-ja-tarvikud-viimistlustooriistad-varvipustolid-ja-pihustid
-            name_en: "Värvipüstolid ja pihustid"
-            name_et: "Värvipüstolid ja pihustid"
-            product_count: 0
       - slug: v4-tooriistad-ja-tarvikud-torutooriistad
         name_en: "Torutööriistad"
         name_et: "Torutööriistad"
@@ -87,6 +50,43 @@ l1:
           - slug: v4-tooriistad-ja-tarvikud-kasitooriistad-toruvotmed-ja-torutangid
             name_en: "Toruvõtmed ja torutangid"
             name_et: "Toruvõtmed ja torutangid"
+            product_count: 0
+      - slug: v4-tooriistad-ja-tarvikud-viimistlustooriistad
+        name_en: "Viimistlustööriistad"
+        name_et: "Viimistlustööriistad"
+        product_count: 0
+        subs:
+          - slug: v4-tooriistad-ja-tarvikud-viimistlus-joonte-margistus
+            name_en: "Joonte märgistusmasinad"
+            name_et: "Joonte märgistusmasinad"
+            product_count: 0
+          - slug: v4-tooriistad-ja-tarvikud-viimistlustooriistad-krohvimistooriistad
+            name_en: "Krohvimistööriistad"
+            name_et: "Krohvimistööriistad"
+            product_count: 0
+          - slug: v4-tooriistad-ja-tarvikud-kasitooriistad-pahtli-ja-kaabitsariistad
+            name_en: "Pahtli- ja kaabitsariistad"
+            name_et: "Pahtli- ja kaabitsariistad"
+            product_count: 0
+          - slug: v4-tooriistad-ja-tarvikud-kasitooriistad-plaadiloikurid
+            name_en: "Plaadilõikurid"
+            name_et: "Plaadilõikurid"
+            product_count: 0
+          - slug: v4-tooriistad-ja-tarvikud-viimistlustooriistad-porandaloikurid
+            name_en: "Põranda- ja vinüüllõikurid"
+            name_et: "Põranda- ja vinüüllõikurid"
+            product_count: 0
+          - slug: v4-tooriistad-ja-tarvikud-viimistlustooriistad-silikooni-ja-hermeetikupustolid
+            name_en: "Silikooni- ja hermeetikupüstolid"
+            name_et: "Silikooni- ja hermeetikupüstolid"
+            product_count: 0
+          - slug: v4-tooriistad-ja-tarvikud-kasitooriistad-vuugitooriistad
+            name_en: "Vuugitööriistad"
+            name_et: "Vuugitööriistad"
+            product_count: 0
+          - slug: v4-tooriistad-ja-tarvikud-viimistlustooriistad-varvipustolid-ja-pihustid
+            name_en: "Värvipüstolid ja pihustid"
+            name_et: "Värvipüstolid ja pihustid"
             product_count: 0
       - slug: v4-tooriistad-ja-tarvikud-kasitooriistad
         name_en: "Käsitööriistad"
@@ -632,6 +632,10 @@ l1:
             name_en: "Endoskoopkaamerad"
             name_et: "Endoskoopkaamerad"
             product_count: 0
+          - slug: v4-garaaziseadmed-mehaaniku-tooriistad-hudraulilise-rohu-testimiskomplektid
+            name_en: "Hüdraulilise rõhu testimiskomplektid"
+            name_et: "Hüdraulilise rõhu testimiskomplektid"
+            product_count: 0
           - slug: v4-tooriistad-ja-tarvikud-moote-ja-markeriistad-koormuse-korgusemootjad
             name_en: "Koormuse kõrgusemõõtjad"
             name_et: "Koormuse kõrgusemõõtjad"
@@ -724,10 +728,6 @@ l1:
           - slug: v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-hoovliterad
             name_en: "Höövliterad"
             name_et: "Höövliterad"
-            product_count: 0
-          - slug: v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-hudraulikakomponendid
-            name_en: "Hüdraulikakomponendid"
-            name_et: "Hüdraulikakomponendid"
             product_count: 0
           - slug: v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-kruvi-ja-poldieemaldajad
             name_en: "Kruvi- ja poldieemaldajad"
@@ -1274,6 +1274,32 @@ l1:
             name_en: "Hüdrovoolikud ja liitmikud"
             name_et: "Hüdrovoolikud ja liitmikud"
             product_count: 0
+      - slug: v4-tooriistad-ja-tarvikud-tookoja-sisustus
+        name_en: "Töökoja sisustus"
+        name_et: "Töökoja sisustus"
+        product_count: 0
+        subs:
+          - slug: v4-garaaziseadmed-mehaaniku-tooriistad-toolauad-ja-tootoolid
+            name_en: "Töölauad ja töötoolid"
+            name_et: "Töölauad ja töötoolid"
+            product_count: 0
+      - slug: v4-tooriistad-ja-tarvikud-tomburid-ja-pressid
+        name_en: "Tõmburid ja pressid"
+        name_et: "Tõmburid ja pressid"
+        product_count: 0
+        subs:
+          - slug: v4-garaaziseadmed-mehaaniku-tooriistad-hammasratta-ja-rihmaratta-tomburid
+            name_en: "Hammasratta- ja rihmaratta tõmburid"
+            name_et: "Hammasratta- ja rihmaratta tõmburid"
+            product_count: 0
+          - slug: v4-garaaziseadmed-mehaaniku-tooriistad-hudraulilised-pressid
+            name_en: "Hüdraulilised pressid"
+            name_et: "Hüdraulilised pressid"
+            product_count: 0
+          - slug: v4-garaaziseadmed-mehaaniku-tooriistad-laagri-ja-tihendivaljavotjad-ning-press-tooriistad
+            name_en: "Laagri- ja tihendiväljavõtjad ning press-tööriistad"
+            name_et: "Laagri- ja tihendiväljavõtjad ning press-tööriistad"
+            product_count: 0
   - slug: v4-garaaziseadmed
     name_en: "Garaažiseadmed"
     name_et: "Garaažiseadmed"
@@ -1286,91 +1312,6 @@ l1:
     hero_gradient: from-stone-950/80 via-stone-900/40 to-transparent
     product_count: 840
     subs:
-      - slug: v4-garaaziseadmed-mehaaniku-tooriistad
-        name_en: "Mehaaniku-tööriistad"
-        name_et: "Mehaaniku-tööriistad"
-        product_count: 0
-        subs:
-          - slug: v4-garaaziseadmed-mehaaniku-tooriistad-autoelektri-testrid
-            name_en: "Autoelektri testrid"
-            name_et: "Autoelektri testrid"
-            product_count: 0
-          - slug: v4-garaaziseadmed-mehaaniku-tooriistad-hammasratta-ja-rihmaratta-tomburid
-            name_en: "Hammasratta- ja rihmaratta tõmburid"
-            name_et: "Hammasratta- ja rihmaratta tõmburid"
-            product_count: 0
-          - slug: v4-garaaziseadmed-mehaaniku-tooriistad-hudraulilise-rohu-testimiskomplektid
-            name_en: "Hüdraulilise rõhu testimiskomplektid"
-            name_et: "Hüdraulilise rõhu testimiskomplektid"
-            product_count: 0
-          - slug: v4-garaaziseadmed-mehaaniku-tooriistad-hudraulilised-pressid
-            name_en: "Hüdraulilised pressid"
-            name_et: "Hüdraulilised pressid"
-            product_count: 0
-          - slug: v4-garaaziseadmed-mehaaniku-tooriistad-induktsioonkuumutid
-            name_en: "Induktsioonkuumutid"
-            name_et: "Induktsioonkuumutid"
-            product_count: 0
-          - slug: v4-garaaziseadmed-mehaaniku-tooriistad-jahutus-ja-radiaatori-survetestrid
-            name_en: "Jahutus- ja radiaatori survetestrid"
-            name_et: "Jahutus- ja radiaatori survetestrid"
-            product_count: 0
-          - slug: v4-garaaziseadmed-mehaaniku-tooriistad-kutusepihustite-puhastid-ja-testrid
-            name_en: "Kütusepihustite puhastid ja testrid"
-            name_et: "Kütusepihustite puhastid ja testrid"
-            product_count: 0
-          - slug: v4-garaaziseadmed-mehaaniku-tooriistad-laagri-ja-tihendivaljavotjad-ning-press-tooriistad
-            name_en: "Laagri- ja tihendiväljavõtjad ning press-tööriistad"
-            name_et: "Laagri- ja tihendiväljavõtjad ning press-tööriistad"
-            product_count: 0
-          - slug: v4-garaaziseadmed-mehaaniku-tooriistad-mehaaniku-lamamiskaru-creeper
-            name_en: "Mehaaniku lamamiskäru (creeper)"
-            name_et: "Mehaaniku lamamiskäru (creeper)"
-            product_count: 0
-          - slug: v4-garaaziseadmed-mehaaniku-tooriistad-mootoristendid-ja-hoidikud
-            name_en: "Mootoristendid ja -hoidikud"
-            name_et: "Mootoristendid ja -hoidikud"
-            product_count: 0
-          - slug: v4-garaaziseadmed-mehaaniku-tooriistad-mootorite-kompressiooni-ja-survetestrid
-            name_en: "Mootorite kompressiooni- ja survetestrid"
-            name_et: "Mootorite kompressiooni- ja survetestrid"
-            product_count: 0
-          - slug: v4-garaaziseadmed-mehaaniku-tooriistad-piduri-ohutus-ja-remonditooriistad
-            name_en: "Piduri õhutus- ja remonditööriistad"
-            name_et: "Piduri õhutus- ja remonditööriistad"
-            product_count: 0
-          - slug: v4-garaaziseadmed-mehaaniku-tooriistad-plekitoode-ja-lohkude-eemalduskomplektid-pdr
-            name_en: "Plekitööde ja lohkude eemalduskomplektid (PDR)"
-            name_et: "Plekitööde ja lohkude eemalduskomplektid (PDR)"
-            product_count: 0
-          - slug: v4-garaaziseadmed-mehaaniku-tooriistad-rattakarud-ja-soiduki-teisaldusvahendid
-            name_en: "Rattakärud ja sõiduki teisaldusvahendid"
-            name_et: "Rattakärud ja sõiduki teisaldusvahendid"
-            product_count: 0
-          - slug: v4-garaaziseadmed-mehaaniku-tooriistad-rummu-ja-rattanaba-valjavotjad
-            name_en: "Rummu- ja rattanaba väljavõtjad"
-            name_et: "Rummu- ja rattanaba väljavõtjad"
-            product_count: 0
-          - slug: v4-garaaziseadmed-mehaaniku-tooriistad-silindrivoodri-tooriistad
-            name_en: "Silindrivoodri tööriistad"
-            name_et: "Silindrivoodri tööriistad"
-            product_count: 0
-          - slug: v4-garaaziseadmed-mehaaniku-tooriistad-suitsu-lekketestrid
-            name_en: "Suitsu-lekketestrid"
-            name_et: "Suitsu-lekketestrid"
-            product_count: 0
-          - slug: v4-garaaziseadmed-mehaaniku-tooriistad-toru-laiendus-ja-aarestustooriistad
-            name_en: "Toru laiendus- ja äärestustööriistad"
-            name_et: "Toru laiendus- ja äärestustööriistad"
-            product_count: 0
-          - slug: v4-garaaziseadmed-mehaaniku-tooriistad-toolauad-ja-tootoolid
-            name_en: "Töölauad ja töötoolid"
-            name_et: "Töölauad ja töötoolid"
-            product_count: 0
-          - slug: v4-garaaziseadmed-mehaaniku-tooriistad-vedrukompressorid
-            name_en: "Vedrukompressorid"
-            name_et: "Vedrukompressorid"
-            product_count: 0
       - slug: v4-garaaziseadmed-garaazi-hoiustamine
         name_en: "Garaaži-hoiustamine"
         name_et: "Garaaži-hoiustamine"
@@ -1633,6 +1574,91 @@ l1:
         name_en: "Hüdraulilised pumbad & osad"
         name_et: "Hüdraulilised pumbad & osad"
         product_count: 0
+      - slug: v4-garaaziseadmed-auto-diagnostika
+        name_en: "Auto-diagnostika ja testrid"
+        name_et: "Auto-diagnostika ja testrid"
+        product_count: 0
+        subs:
+          - slug: v4-garaaziseadmed-mehaaniku-tooriistad-autoelektri-testrid
+            name_en: "Autoelektri testrid"
+            name_et: "Autoelektri testrid"
+            product_count: 0
+          - slug: v4-garaaziseadmed-mehaaniku-tooriistad-jahutus-ja-radiaatori-survetestrid
+            name_en: "Jahutus- ja radiaatori survetestrid"
+            name_et: "Jahutus- ja radiaatori survetestrid"
+            product_count: 0
+          - slug: v4-garaaziseadmed-mehaaniku-tooriistad-kutusepihustite-puhastid-ja-testrid
+            name_en: "Kütusepihustite puhastid ja testrid"
+            name_et: "Kütusepihustite puhastid ja testrid"
+            product_count: 0
+          - slug: v4-garaaziseadmed-mehaaniku-tooriistad-mootorite-kompressiooni-ja-survetestrid
+            name_en: "Mootorite kompressiooni- ja survetestrid"
+            name_et: "Mootorite kompressiooni- ja survetestrid"
+            product_count: 0
+          - slug: v4-garaaziseadmed-mehaaniku-tooriistad-suitsu-lekketestrid
+            name_en: "Suitsu-lekketestrid"
+            name_et: "Suitsu-lekketestrid"
+            product_count: 0
+      - slug: v4-garaaziseadmed-mootori-remont
+        name_en: "Mootori-remondi tööriistad"
+        name_et: "Mootori-remondi tööriistad"
+        product_count: 0
+        subs:
+          - slug: v4-garaaziseadmed-mehaaniku-tooriistad-induktsioonkuumutid
+            name_en: "Induktsioonkuumutid"
+            name_et: "Induktsioonkuumutid"
+            product_count: 0
+          - slug: v4-garaaziseadmed-mehaaniku-tooriistad-mootoristendid-ja-hoidikud
+            name_en: "Mootoristendid ja -hoidikud"
+            name_et: "Mootoristendid ja -hoidikud"
+            product_count: 0
+          - slug: v4-garaaziseadmed-mehaaniku-tooriistad-rummu-ja-rattanaba-valjavotjad
+            name_en: "Rummu- ja rattanaba väljavõtjad"
+            name_et: "Rummu- ja rattanaba väljavõtjad"
+            product_count: 0
+          - slug: v4-garaaziseadmed-mehaaniku-tooriistad-silindrivoodri-tooriistad
+            name_en: "Silindrivoodri tööriistad"
+            name_et: "Silindrivoodri tööriistad"
+            product_count: 0
+          - slug: v4-garaaziseadmed-mehaaniku-tooriistad-toru-laiendus-ja-aarestustooriistad
+            name_en: "Toru laiendus- ja äärestustööriistad"
+            name_et: "Toru laiendus- ja äärestustööriistad"
+            product_count: 0
+          - slug: v4-garaaziseadmed-mehaaniku-tooriistad-vedrukompressorid
+            name_en: "Vedrukompressorid"
+            name_et: "Vedrukompressorid"
+            product_count: 0
+      - slug: v4-garaaziseadmed-pidurisysteem
+        name_en: "Pidurisüsteemi tööriistad"
+        name_et: "Pidurisüsteemi tööriistad"
+        product_count: 0
+        subs:
+          - slug: v4-garaaziseadmed-mehaaniku-tooriistad-piduri-ohutus-ja-remonditooriistad
+            name_en: "Piduri õhutus- ja remonditööriistad"
+            name_et: "Piduri õhutus- ja remonditööriistad"
+            product_count: 0
+      - slug: v4-garaaziseadmed-plekitoo-pdr
+        name_en: "Plekitöö ja PDR"
+        name_et: "Plekitöö ja PDR"
+        product_count: 0
+        subs:
+          - slug: v4-garaaziseadmed-mehaaniku-tooriistad-plekitoode-ja-lohkude-eemalduskomplektid-pdr
+            name_en: "Plekitööde ja lohkude eemalduskomplektid (PDR)"
+            name_et: "Plekitööde ja lohkude eemalduskomplektid (PDR)"
+            product_count: 0
+      - slug: v4-garaaziseadmed-auto-teisaldus
+        name_en: "Auto-teisaldus ja töökoht"
+        name_et: "Auto-teisaldus ja töökoht"
+        product_count: 0
+        subs:
+          - slug: v4-garaaziseadmed-mehaaniku-tooriistad-mehaaniku-lamamiskaru-creeper
+            name_en: "Mehaaniku lamamiskäru (creeper)"
+            name_et: "Mehaaniku lamamiskäru (creeper)"
+            product_count: 0
+          - slug: v4-garaaziseadmed-mehaaniku-tooriistad-rattakarud-ja-soiduki-teisaldusvahendid
+            name_en: "Rattakärud ja sõiduki teisaldusvahendid"
+            name_et: "Rattakärud ja sõiduki teisaldusvahendid"
+            product_count: 0
   - slug: v4-autovaruosad-ja-tarvikud
     name_en: "Autovaruosad ja -tarvikud"
     name_et: "Autovaruosad ja -tarvikud"
@@ -1795,10 +1821,6 @@ l1:
           - slug: v4-autovaruosad-ja-tarvikud-autovaruosad-helisignaalid
             name_en: "Helisignaalid"
             name_et: "Helisignaalid"
-            product_count: 0
-          - slug: v4-autovaruosad-ja-tarvikud-autovaruosad-hudraulikaosad
-            name_en: "Hüdraulikaosad"
-            name_et: "Hüdraulikaosad"
             product_count: 0
           - slug: v4-autovaruosad-ja-tarvikud-autovaruosad-istme-vedrustuskomplektid
             name_en: "Istme vedrustuskomplektid"
@@ -4822,10 +4844,6 @@ l1:
           - slug: v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika-dusialuste-ja-vannide-komplektid
             name_en: "Dušialuste & vannide komplektid"
             name_et: "Dušialuste & vannide komplektid"
-            product_count: 0
-          - slug: v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika-hudraulikauhenduste-komplektid
-            name_en: "Hüdraulikaühenduste komplektid"
-            name_et: "Hüdraulikaühenduste komplektid"
             product_count: 0
           - slug: v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika-kanalisatsiooni-puhastusmasinad
             name_en: "Kanalisatsiooni puhastusmasinad"
