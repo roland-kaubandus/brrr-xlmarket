@@ -1693,6 +1693,10 @@ l1:
             name_en: "Haagise lukud ja lukustusseadmed"
             name_et: "Haagise lukud ja lukustusseadmed"
             product_count: 0
+          - slug: pcat-a3h
+            name_en: "Haagise tarvikud"
+            name_et: "Haagise tarvikud"
+            product_count: 0
           - slug: v4-autovaruosad-ja-tarvikud-pukseerimisseadmed-haagise-teisaldus-ja-liigutuskarud
             name_en: "Haagise teisaldus- ja liigutuskärud"
             name_et: "Haagise teisaldus- ja liigutuskärud"
@@ -1789,6 +1793,10 @@ l1:
           - slug: v4-autovaruosad-ja-tarvikud-veoauto-tarvikud-veljekatted-ja-rattakatted
             name_en: "Veljekatted ja rattakatted"
             name_et: "Veljekatted ja rattakatted"
+            product_count: 0
+          - slug: pcat-a3k
+            name_en: "Veoauto kasti tarvikud"
+            name_et: "Veoauto kasti tarvikud"
             product_count: 0
           - slug: v4-autovaruosad-ja-tarvikud-veoauto-tarvikud-aarekivi-rambid
             name_en: "Äärekivi rambid"
@@ -2013,6 +2021,10 @@ l1:
           - slug: v4-autovaruosad-ja-tarvikud-salongitarvikud-auto-istmekatted
             name_en: "Auto istmekatted"
             name_et: "Auto istmekatted"
+            product_count: 0
+          - slug: pcat-a3m
+            name_en: "Auto madratsid"
+            name_et: "Auto madratsid"
             product_count: 0
           - slug: v4-autovaruosad-ja-tarvikud-salongitarvikud-auto-multimeediaekraanid
             name_en: "Auto multimeediaekraanid"
