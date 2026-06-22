@@ -1435,6 +1435,10 @@ l1:
         name_et: "Õlivahetus & hooldus"
         product_count: 0
         subs:
+          - slug: v4-garaaziseadmed-autopesu-ja-veetootlus
+            name_en: "Autopesu ja veetöötlus"
+            name_et: "Autopesu ja veetöötlus"
+            product_count: 0
           - slug: v4-garaaziseadmed-olivahetus-ja-hooldus-hudraulilised-pumbaseadmed-ja-agregaadid
             name_en: "Hüdraulilised pumbaseadmed ja agregaadid"
             name_et: "Hüdraulilised pumbaseadmed ja agregaadid"
@@ -1569,10 +1573,6 @@ l1:
       - slug: v4-garaaziseadmed-varvimine-ja-viimistlus
         name_en: "Värvimine & viimistlus"
         name_et: "Värvimine & viimistlus"
-        product_count: 0
-      - slug: v4-garaaziseadmed-hudraulilised-pumbad-ja-osad
-        name_en: "Hüdraulilised pumbad & osad"
-        name_et: "Hüdraulilised pumbad & osad"
         product_count: 0
       - slug: v4-garaaziseadmed-auto-diagnostika
         name_en: "Auto-diagnostika ja testrid"
@@ -1797,6 +1797,51 @@ l1:
         name_en: "Välistarvikud & rehvitarvikud"
         name_et: "Välistarvikud & rehvitarvikud"
         product_count: 0
+        subs:
+          - slug: v4-autovaruosad-ja-tarvikud-valistarvikud-astmelauad-ja-astmed
+            name_en: "Astmelauad ja astmed"
+            name_et: "Astmelauad ja astmed"
+            product_count: 0
+          - slug: v4-autovaruosad-ja-tarvikud-valistarvikud-jeep-maasturi-valisosad
+            name_en: "Jeep/maasturi välisosad"
+            name_et: "Jeep/maasturi välisosad"
+            product_count: 0
+          - slug: v4-autovaruosad-ja-tarvikud-valistarvikud-mootorratta-valisosad
+            name_en: "Mootorratta välisosad"
+            name_et: "Mootorratta välisosad"
+            product_count: 0
+          - slug: v4-autovaruosad-ja-tarvikud-valistarvikud-muu-valistarvikud
+            name_en: "Muu välistarvikud"
+            name_et: "Muu välistarvikud"
+            product_count: 0
+          - slug: v4-autovaruosad-ja-tarvikud-valistarvikud-pukseerimispeeglid
+            name_en: "Pukseerimispeeglid"
+            name_et: "Pukseerimispeeglid"
+            product_count: 0
+          - slug: v4-autovaruosad-ja-tarvikud-valistarvikud-rattatakked-ja-rattalukud
+            name_en: "Rattatõkked ja rattalukud"
+            name_et: "Rattatõkked ja rattalukud"
+            product_count: 0
+          - slug: v4-autovaruosad-ja-tarvikud-valistarvikud-rehvirahu-jalgimissusteemid
+            name_en: "Rehvirõhu jälgimissüsteemid"
+            name_et: "Rehvirõhu jälgimissüsteemid"
+            product_count: 0
+          - slug: v4-autovaruosad-ja-tarvikud-valistarvikud-rehvitarvikud-ja-lumeketid
+            name_en: "Rehvitarvikud ja lumeketid"
+            name_et: "Rehvitarvikud ja lumeketid"
+            product_count: 0
+          - slug: v4-autovaruosad-ja-tarvikud-valistarvikud-spoilerid-ja-aerodunaamika
+            name_en: "Spoilerid ja aerodünaamika"
+            name_et: "Spoilerid ja aerodünaamika"
+            product_count: 0
+          - slug: v4-autovaruosad-ja-tarvikud-valistarvikud-veljed-rummukatted-ja-speisrid
+            name_en: "Veljed, rummukatted ja speisrid"
+            name_et: "Veljed, rummukatted ja speisrid"
+            product_count: 0
+          - slug: v4-autovaruosad-ja-tarvikud-valistarvikud-valisvalgustus-ja-whip-tuled
+            name_en: "Välisvalgustus ja whip-tuled"
+            name_et: "Välisvalgustus ja whip-tuled"
+            product_count: 0
       - slug: v4-autovaruosad-ja-tarvikud-autovaruosad
         name_en: "Autovaruosad"
         name_et: "Autovaruosad"
@@ -2197,10 +2242,6 @@ l1:
             name_en: "Õllepruulimisseadmed"
             name_et: "Õllepruulimisseadmed"
             product_count: 0
-      - slug: v4-kodumasinad-ja-kodutehnika-koogitarvikud-ja-noud
-        name_en: "Köögitarvikud & nõud"
-        name_et: "Köögitarvikud & nõud"
-        product_count: 0
       - slug: v4-kodumasinad-ja-kodutehnika-koogi-hoiustamine-ja-korraldus
         name_en: "Köögi hoiustamine & korraldus"
         name_et: "Köögi hoiustamine & korraldus"
@@ -2714,10 +2755,6 @@ l1:
       - slug: v4-suurkoogiseadmed-koogiventilatsioon
         name_en: "Köögiventilatsioon"
         name_et: "Köögiventilatsioon"
-        product_count: 0
-      - slug: v4-suurkoogiseadmed-toidu-transport-ja-sailitus
-        name_en: "Toidu transport & säilitus"
-        name_et: "Toidu transport & säilitus"
         product_count: 0
       - slug: v4-suurkoogiseadmed-toitlustus-ja-teenindustarvikud
         name_en: "Toitlustus- & teenindustarvikud"
@@ -4614,6 +4651,10 @@ l1:
             name_en: "Liikluspostid ja -tõkked"
             name_et: "Liikluspostid ja -tõkked"
             product_count: 0
+          - slug: v4-ehitus-remont-ja-varvid-aarekivirambid
+            name_en: "Äärekivi- ja kaldrambid"
+            name_et: "Äärekivi- ja kaldrambid"
+            product_count: 0
       - slug: v4-ehitus-remont-ja-varvid-vihmaveesusteemid-ja-drenaaz
         name_en: "Vihmaveesüsteemid & drenaaž"
         name_et: "Vihmaveesüsteemid & drenaaž"
@@ -5445,10 +5486,6 @@ l1:
       - slug: v4-elektritarvikud-ja-valgustus-serverikapid-ja-vorgukapid
         name_en: "Serverikapid & võrgukapid"
         name_et: "Serverikapid & võrgukapid"
-        product_count: 0
-      - slug: v4-elektritarvikud-ja-valgustus-muu
-        name_en: "Muu"
-        name_et: "Muu"
         product_count: 0
   - slug: v4-sport-ja-vaba-aeg
     name_en: "Sport ja vaba aeg"

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-22T13:05:36.961Z",
+  "generated_at": "2026-06-22T14:26:45.661Z",
   "nodes": {
     "v4-tooriistad-ja-tarvikud": {
       "handle": "v4-tooriistad-ja-tarvikud",
@@ -3528,7 +3528,6 @@
         "v4-garaaziseadmed-rehvitood",
         "v4-garaaziseadmed-muu-garaaziseadmed",
         "v4-garaaziseadmed-varvimine-ja-viimistlus",
-        "v4-garaaziseadmed-hudraulilised-pumbad-ja-osad",
         "v4-garaaziseadmed-auto-diagnostika",
         "v4-garaaziseadmed-mootori-remont",
         "v4-garaaziseadmed-pidurisysteem",
@@ -3868,6 +3867,7 @@
       "level": 2,
       "parent_handle": "v4-garaaziseadmed",
       "child_handles": [
+        "v4-garaaziseadmed-autopesu-ja-veetootlus",
         "v4-garaaziseadmed-olivahetus-ja-hooldus-hudraulilised-pumbaseadmed-ja-agregaadid",
         "v4-garaaziseadmed-olivahetus-ja-hooldus-infrapuna-kuivatuslambid-ja-seadmed",
         "v4-garaaziseadmed-olivahetus-ja-hooldus-kaasaskantavad-kutusepaagid-pumbaga",
@@ -3884,6 +3884,16 @@
         "v4-garaaziseadmed-olivahetus-ja-hooldus-olivahetusanumad-ja-kogumisnoud-ratastega",
         "v4-garaaziseadmed-olivahetus-ja-hooldus-olivahetuspannid-ja-tuhjenduspaagid"
       ],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-garaaziseadmed-autopesu-ja-veetootlus": {
+      "handle": "v4-garaaziseadmed-autopesu-ja-veetootlus",
+      "name_en": "Autopesu ja veetöötlus",
+      "name_et": "Autopesu ja veetöötlus",
+      "level": 3,
+      "parent_handle": "v4-garaaziseadmed-olivahetus-ja-hooldus",
+      "child_handles": [],
       "image_path": null,
       "image_source": "none"
     },
@@ -4228,16 +4238,6 @@
       "handle": "v4-garaaziseadmed-varvimine-ja-viimistlus",
       "name_en": "Värvimine & viimistlus",
       "name_et": "Värvimine & viimistlus",
-      "level": 2,
-      "parent_handle": "v4-garaaziseadmed",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-garaaziseadmed-hudraulilised-pumbad-ja-osad": {
-      "handle": "v4-garaaziseadmed-hudraulilised-pumbad-ja-osad",
-      "name_en": "Hüdraulilised pumbad & osad",
-      "name_et": "Hüdraulilised pumbad & osad",
       "level": 2,
       "parent_handle": "v4-garaaziseadmed",
       "child_handles": [],
@@ -4825,6 +4825,128 @@
       "name_et": "Välistarvikud & rehvitarvikud",
       "level": 2,
       "parent_handle": "v4-autovaruosad-ja-tarvikud",
+      "child_handles": [
+        "v4-autovaruosad-ja-tarvikud-valistarvikud-astmelauad-ja-astmed",
+        "v4-autovaruosad-ja-tarvikud-valistarvikud-jeep-maasturi-valisosad",
+        "v4-autovaruosad-ja-tarvikud-valistarvikud-mootorratta-valisosad",
+        "v4-autovaruosad-ja-tarvikud-valistarvikud-muu-valistarvikud",
+        "v4-autovaruosad-ja-tarvikud-valistarvikud-pukseerimispeeglid",
+        "v4-autovaruosad-ja-tarvikud-valistarvikud-rattatakked-ja-rattalukud",
+        "v4-autovaruosad-ja-tarvikud-valistarvikud-rehvirahu-jalgimissusteemid",
+        "v4-autovaruosad-ja-tarvikud-valistarvikud-rehvitarvikud-ja-lumeketid",
+        "v4-autovaruosad-ja-tarvikud-valistarvikud-spoilerid-ja-aerodunaamika",
+        "v4-autovaruosad-ja-tarvikud-valistarvikud-veljed-rummukatted-ja-speisrid",
+        "v4-autovaruosad-ja-tarvikud-valistarvikud-valisvalgustus-ja-whip-tuled"
+      ],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-autovaruosad-ja-tarvikud-valistarvikud-astmelauad-ja-astmed": {
+      "handle": "v4-autovaruosad-ja-tarvikud-valistarvikud-astmelauad-ja-astmed",
+      "name_en": "Astmelauad ja astmed",
+      "name_et": "Astmelauad ja astmed",
+      "level": 3,
+      "parent_handle": "v4-autovaruosad-ja-tarvikud-valistarvikud-ja-rehvitarvikud",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-autovaruosad-ja-tarvikud-valistarvikud-jeep-maasturi-valisosad": {
+      "handle": "v4-autovaruosad-ja-tarvikud-valistarvikud-jeep-maasturi-valisosad",
+      "name_en": "Jeep/maasturi välisosad",
+      "name_et": "Jeep/maasturi välisosad",
+      "level": 3,
+      "parent_handle": "v4-autovaruosad-ja-tarvikud-valistarvikud-ja-rehvitarvikud",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-autovaruosad-ja-tarvikud-valistarvikud-mootorratta-valisosad": {
+      "handle": "v4-autovaruosad-ja-tarvikud-valistarvikud-mootorratta-valisosad",
+      "name_en": "Mootorratta välisosad",
+      "name_et": "Mootorratta välisosad",
+      "level": 3,
+      "parent_handle": "v4-autovaruosad-ja-tarvikud-valistarvikud-ja-rehvitarvikud",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-autovaruosad-ja-tarvikud-valistarvikud-muu-valistarvikud": {
+      "handle": "v4-autovaruosad-ja-tarvikud-valistarvikud-muu-valistarvikud",
+      "name_en": "Muu välistarvikud",
+      "name_et": "Muu välistarvikud",
+      "level": 3,
+      "parent_handle": "v4-autovaruosad-ja-tarvikud-valistarvikud-ja-rehvitarvikud",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-autovaruosad-ja-tarvikud-valistarvikud-pukseerimispeeglid": {
+      "handle": "v4-autovaruosad-ja-tarvikud-valistarvikud-pukseerimispeeglid",
+      "name_en": "Pukseerimispeeglid",
+      "name_et": "Pukseerimispeeglid",
+      "level": 3,
+      "parent_handle": "v4-autovaruosad-ja-tarvikud-valistarvikud-ja-rehvitarvikud",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-autovaruosad-ja-tarvikud-valistarvikud-rattatakked-ja-rattalukud": {
+      "handle": "v4-autovaruosad-ja-tarvikud-valistarvikud-rattatakked-ja-rattalukud",
+      "name_en": "Rattatõkked ja rattalukud",
+      "name_et": "Rattatõkked ja rattalukud",
+      "level": 3,
+      "parent_handle": "v4-autovaruosad-ja-tarvikud-valistarvikud-ja-rehvitarvikud",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-autovaruosad-ja-tarvikud-valistarvikud-rehvirahu-jalgimissusteemid": {
+      "handle": "v4-autovaruosad-ja-tarvikud-valistarvikud-rehvirahu-jalgimissusteemid",
+      "name_en": "Rehvirõhu jälgimissüsteemid",
+      "name_et": "Rehvirõhu jälgimissüsteemid",
+      "level": 3,
+      "parent_handle": "v4-autovaruosad-ja-tarvikud-valistarvikud-ja-rehvitarvikud",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-autovaruosad-ja-tarvikud-valistarvikud-rehvitarvikud-ja-lumeketid": {
+      "handle": "v4-autovaruosad-ja-tarvikud-valistarvikud-rehvitarvikud-ja-lumeketid",
+      "name_en": "Rehvitarvikud ja lumeketid",
+      "name_et": "Rehvitarvikud ja lumeketid",
+      "level": 3,
+      "parent_handle": "v4-autovaruosad-ja-tarvikud-valistarvikud-ja-rehvitarvikud",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-autovaruosad-ja-tarvikud-valistarvikud-spoilerid-ja-aerodunaamika": {
+      "handle": "v4-autovaruosad-ja-tarvikud-valistarvikud-spoilerid-ja-aerodunaamika",
+      "name_en": "Spoilerid ja aerodünaamika",
+      "name_et": "Spoilerid ja aerodünaamika",
+      "level": 3,
+      "parent_handle": "v4-autovaruosad-ja-tarvikud-valistarvikud-ja-rehvitarvikud",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-autovaruosad-ja-tarvikud-valistarvikud-veljed-rummukatted-ja-speisrid": {
+      "handle": "v4-autovaruosad-ja-tarvikud-valistarvikud-veljed-rummukatted-ja-speisrid",
+      "name_en": "Veljed, rummukatted ja speisrid",
+      "name_et": "Veljed, rummukatted ja speisrid",
+      "level": 3,
+      "parent_handle": "v4-autovaruosad-ja-tarvikud-valistarvikud-ja-rehvitarvikud",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-autovaruosad-ja-tarvikud-valistarvikud-valisvalgustus-ja-whip-tuled": {
+      "handle": "v4-autovaruosad-ja-tarvikud-valistarvikud-valisvalgustus-ja-whip-tuled",
+      "name_en": "Välisvalgustus ja whip-tuled",
+      "name_et": "Välisvalgustus ja whip-tuled",
+      "level": 3,
+      "parent_handle": "v4-autovaruosad-ja-tarvikud-valistarvikud-ja-rehvitarvikud",
       "child_handles": [],
       "image_path": null,
       "image_source": "none"
@@ -5640,7 +5762,6 @@
       "parent_handle": null,
       "child_handles": [
         "v4-kodumasinad-ja-kodutehnika-koogitehnika",
-        "v4-kodumasinad-ja-kodutehnika-koogitarvikud-ja-noud",
         "v4-kodumasinad-ja-kodutehnika-koogi-hoiustamine-ja-korraldus",
         "v4-kodumasinad-ja-kodutehnika-kasitoo-ja-varuosad",
         "v4-kodumasinad-ja-kodutehnika-puhastus-ja-koristustehnika",
@@ -5891,16 +6012,6 @@
       "name_et": "Õllepruulimisseadmed",
       "level": 3,
       "parent_handle": "v4-kodumasinad-ja-kodutehnika-koogitehnika",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-kodumasinad-ja-kodutehnika-koogitarvikud-ja-noud": {
-      "handle": "v4-kodumasinad-ja-kodutehnika-koogitarvikud-ja-noud",
-      "name_en": "Köögitarvikud & nõud",
-      "name_et": "Köögitarvikud & nõud",
-      "level": 2,
-      "parent_handle": "v4-kodumasinad-ja-kodutehnika",
       "child_handles": [],
       "image_path": null,
       "image_source": "none"
@@ -6187,7 +6298,6 @@
         "v4-suurkoogiseadmed-toitlustusaknad-ja-toiduveoki-tarvikud",
         "v4-suurkoogiseadmed-hoiustamine-ja-riiulid",
         "v4-suurkoogiseadmed-koogiventilatsioon",
-        "v4-suurkoogiseadmed-toidu-transport-ja-sailitus",
         "v4-suurkoogiseadmed-toitlustus-ja-teenindustarvikud"
       ],
       "image_path": null,
@@ -7268,16 +7378,6 @@
       "handle": "v4-suurkoogiseadmed-koogiventilatsioon",
       "name_en": "Köögiventilatsioon",
       "name_et": "Köögiventilatsioon",
-      "level": 2,
-      "parent_handle": "v4-suurkoogiseadmed",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-suurkoogiseadmed-toidu-transport-ja-sailitus": {
-      "handle": "v4-suurkoogiseadmed-toidu-transport-ja-sailitus",
-      "name_en": "Toidu transport & säilitus",
-      "name_et": "Toidu transport & säilitus",
       "level": 2,
       "parent_handle": "v4-suurkoogiseadmed",
       "child_handles": [],
@@ -12336,7 +12436,8 @@
       "level": 2,
       "parent_handle": "v4-ehitus-remont-ja-varvid",
       "child_handles": [
-        "v4-ehitus-remont-ja-varvid-ohutus-ja-turvalisus-liikluspostid-ja-tokked"
+        "v4-ehitus-remont-ja-varvid-ohutus-ja-turvalisus-liikluspostid-ja-tokked",
+        "v4-ehitus-remont-ja-varvid-aarekivirambid"
       ],
       "image_path": null,
       "image_source": "none"
@@ -12345,6 +12446,16 @@
       "handle": "v4-ehitus-remont-ja-varvid-ohutus-ja-turvalisus-liikluspostid-ja-tokked",
       "name_en": "Liikluspostid ja -tõkked",
       "name_et": "Liikluspostid ja -tõkked",
+      "level": 3,
+      "parent_handle": "v4-ehitus-remont-ja-varvid-ohutus-ja-turvalisus",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-ehitus-remont-ja-varvid-aarekivirambid": {
+      "handle": "v4-ehitus-remont-ja-varvid-aarekivirambid",
+      "name_en": "Äärekivi- ja kaldrambid",
+      "name_et": "Äärekivi- ja kaldrambid",
       "level": 3,
       "parent_handle": "v4-ehitus-remont-ja-varvid-ohutus-ja-turvalisus",
       "child_handles": [],
@@ -13632,8 +13743,7 @@
         "v4-elektritarvikud-ja-valgustus-toitejaotus-ja-jaotussusteemid",
         "v4-elektritarvikud-ja-valgustus-harukarbid-torud-ja-kinnitused",
         "v4-elektritarvikud-ja-valgustus-kaablihaldus-ja-kaitse",
-        "v4-elektritarvikud-ja-valgustus-serverikapid-ja-vorgukapid",
-        "v4-elektritarvikud-ja-valgustus-muu"
+        "v4-elektritarvikud-ja-valgustus-serverikapid-ja-vorgukapid"
       ],
       "image_path": null,
       "image_source": "none",
@@ -14559,16 +14669,6 @@
       "handle": "v4-elektritarvikud-ja-valgustus-serverikapid-ja-vorgukapid",
       "name_en": "Serverikapid & võrgukapid",
       "name_et": "Serverikapid & võrgukapid",
-      "level": 2,
-      "parent_handle": "v4-elektritarvikud-ja-valgustus",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-elektritarvikud-ja-valgustus-muu": {
-      "handle": "v4-elektritarvikud-ja-valgustus-muu",
-      "name_en": "Muu",
-      "name_et": "Muu",
       "level": 2,
       "parent_handle": "v4-elektritarvikud-ja-valgustus",
       "child_handles": [],
@@ -19519,6 +19619,7 @@
     "v4-garaaziseadmed-tungrauad-tostetoed-ja-tugistatiivid",
     "v4-garaaziseadmed-tungrauad-varba-ja-pikktungrauad",
     "v4-garaaziseadmed-olivahetus-ja-hooldus",
+    "v4-garaaziseadmed-autopesu-ja-veetootlus",
     "v4-garaaziseadmed-olivahetus-ja-hooldus-hudraulilised-pumbaseadmed-ja-agregaadid",
     "v4-garaaziseadmed-olivahetus-ja-hooldus-infrapuna-kuivatuslambid-ja-seadmed",
     "v4-garaaziseadmed-olivahetus-ja-hooldus-kaasaskantavad-kutusepaagid-pumbaga",
@@ -19552,7 +19653,6 @@
     "v4-garaaziseadmed-muu-garaaziseadmed-parkimis-ja-peatusabivahendid",
     "v4-garaaziseadmed-muu-garaaziseadmed-varvimiskabiinid-ja-telgid",
     "v4-garaaziseadmed-varvimine-ja-viimistlus",
-    "v4-garaaziseadmed-hudraulilised-pumbad-ja-osad",
     "v4-garaaziseadmed-auto-diagnostika",
     "v4-garaaziseadmed-mehaaniku-tooriistad-autoelektri-testrid",
     "v4-garaaziseadmed-mehaaniku-tooriistad-jahutus-ja-radiaatori-survetestrid",
@@ -19605,6 +19705,17 @@
     "v4-autovaruosad-ja-tarvikud-veoauto-tarvikud-aarekivi-rambid",
     "v4-autovaruosad-ja-tarvikud-veoauto-tarvikud-ohususteemi-komplektid",
     "v4-autovaruosad-ja-tarvikud-valistarvikud-ja-rehvitarvikud",
+    "v4-autovaruosad-ja-tarvikud-valistarvikud-astmelauad-ja-astmed",
+    "v4-autovaruosad-ja-tarvikud-valistarvikud-jeep-maasturi-valisosad",
+    "v4-autovaruosad-ja-tarvikud-valistarvikud-mootorratta-valisosad",
+    "v4-autovaruosad-ja-tarvikud-valistarvikud-muu-valistarvikud",
+    "v4-autovaruosad-ja-tarvikud-valistarvikud-pukseerimispeeglid",
+    "v4-autovaruosad-ja-tarvikud-valistarvikud-rattatakked-ja-rattalukud",
+    "v4-autovaruosad-ja-tarvikud-valistarvikud-rehvirahu-jalgimissusteemid",
+    "v4-autovaruosad-ja-tarvikud-valistarvikud-rehvitarvikud-ja-lumeketid",
+    "v4-autovaruosad-ja-tarvikud-valistarvikud-spoilerid-ja-aerodunaamika",
+    "v4-autovaruosad-ja-tarvikud-valistarvikud-veljed-rummukatted-ja-speisrid",
+    "v4-autovaruosad-ja-tarvikud-valistarvikud-valisvalgustus-ja-whip-tuled",
     "v4-autovaruosad-ja-tarvikud-autovaruosad",
     "v4-autovaruosad-ja-tarvikud-autovaruosad-autopesu-filtrid-ja-taited",
     "v4-autovaruosad-ja-tarvikud-autovaruosad-generaatorid-alternaatorid",
@@ -19701,7 +19812,6 @@
     "v4-kodumasinad-ja-kodutehnika-koogitehnika-vaakumpakkimismasinad",
     "v4-kodumasinad-ja-kodutehnika-koogitehnika-vorstitaitemasinad-ja-pressid",
     "v4-kodumasinad-ja-kodutehnika-koogitehnika-ollepruulimisseadmed",
-    "v4-kodumasinad-ja-kodutehnika-koogitarvikud-ja-noud",
     "v4-kodumasinad-ja-kodutehnika-koogi-hoiustamine-ja-korraldus",
     "v4-kodumasinad-ja-kodutehnika-koogi-hoiustamine-ja-korraldus-leivakastid-ja-karbid",
     "v4-kodumasinad-ja-kodutehnika-koogi-hoiustamine-ja-korraldus-maitseaineriiulid-ja-hoidikud",
@@ -19825,7 +19935,6 @@
     "v4-suurkoogiseadmed-hoiustamine-ja-riiulid",
     "v4-suurkoogiseadmed-hoiustamine-ja-riiulid-porandariiulid-ja-ladustamisrestid",
     "v4-suurkoogiseadmed-koogiventilatsioon",
-    "v4-suurkoogiseadmed-toidu-transport-ja-sailitus",
     "v4-suurkoogiseadmed-toitlustus-ja-teenindustarvikud",
     "v4-moobel-ja-sisustus",
     "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor",
@@ -20281,6 +20390,7 @@
     "v4-ehitus-remont-ja-varvid-betoonitood-ja-ehitusmaterjalid-kipsplaaditoo-tarvikud",
     "v4-ehitus-remont-ja-varvid-ohutus-ja-turvalisus",
     "v4-ehitus-remont-ja-varvid-ohutus-ja-turvalisus-liikluspostid-ja-tokked",
+    "v4-ehitus-remont-ja-varvid-aarekivirambid",
     "v4-ehitus-remont-ja-varvid-vihmaveesusteemid-ja-drenaaz",
     "v4-ehitus-remont-ja-varvid-vihmaveesusteemid-ja-drenaaz-renni-ja-raastakaitsevorgud",
     "v4-ehitus-remont-ja-varvid-katusematerjalid",
@@ -20480,7 +20590,6 @@
     "v4-elektritarvikud-ja-valgustus-kaablihaldus-ja-kaitse-kummikunnised-ja-kaitsjad",
     "v4-elektritarvikud-ja-valgustus-kaablihaldus-ja-kaitse-poranda-kaablikaitsjad",
     "v4-elektritarvikud-ja-valgustus-serverikapid-ja-vorgukapid",
-    "v4-elektritarvikud-ja-valgustus-muu",
     "v4-sport-ja-vaba-aeg",
     "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud",
     "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-arkaadimangud",
