@@ -1008,10 +1008,6 @@ l1:
             name_en: "Koristuskärud"
             name_et: "Koristuskärud"
             product_count: 0
-          - slug: v4-tooriistad-ja-tarvikud-puhastustehnika-ja-tarvikud-korstnapuhkimise-komplektid
-            name_en: "Korstnapühkimise komplektid"
-            name_et: "Korstnapühkimise komplektid"
-            product_count: 0
           - slug: v4-tooriistad-ja-tarvikud-puhastustehnika-ja-tarvikud-kuivjaa-ja-survepuhastusseadmed
             name_en: "Kuivjää- ja survepuhastusseadmed"
             name_et: "Kuivjää- ja survepuhastusseadmed"
@@ -2913,10 +2909,6 @@ l1:
           - slug: v4-moobel-ja-sisustus-riiulid-ja-hoiustamine-jalatsihoiustamine
             name_en: "Jalatsihoiustamine"
             name_et: "Jalatsihoiustamine"
-            product_count: 0
-          - slug: v4-moobel-ja-sisustus-riiulid-ja-hoiustamine-kaminariiulid-ja-mantlid
-            name_en: "Kaminariiulid & -mantlid"
-            name_et: "Kaminariiulid & -mantlid"
             product_count: 0
           - slug: v4-moobel-ja-sisustus-riiulid-ja-hoiustamine-kokkupandavad-hoiuriiulid-ratastega
             name_en: "Kokkupandavad hoiuriiulid ratastega"
@@ -4932,61 +4924,21 @@ l1:
         name_et: "Küte & kaminad"
         product_count: 0
         subs:
-          - slug: v4-santehnika-kute-ja-ventilatsioon-kute-ja-kaminad-gaasisoojendid
-            name_en: "Gaasisoojendid"
-            name_et: "Gaasisoojendid"
-            product_count: 0
-          - slug: v4-santehnika-kute-ja-ventilatsioon-kute-ja-kaminad-infrapunasoojendid
-            name_en: "Infrapunasoojendid"
-            name_et: "Infrapunasoojendid"
-            product_count: 0
-          - slug: v4-santehnika-kute-ja-ventilatsioon-kute-ja-kaminad-kaminadekoratsioonid
-            name_en: "Kaminadekoratsioonid"
-            name_et: "Kaminadekoratsioonid"
-            product_count: 0
-          - slug: v4-santehnika-kute-ja-ventilatsioon-kute-ja-kaminad-kaminakaitsed-ja-ekraanid
-            name_en: "Kaminakaitsed ja -ekraanid"
-            name_et: "Kaminakaitsed ja -ekraanid"
+          - slug: v4-santehnika-kute-kaminad-tarvikud
+            name_en: "Kaminad ja tarvikud"
+            name_et: "Kaminad ja tarvikud"
             product_count: 0
           - slug: v4-santehnika-kute-ja-ventilatsioon-kute-ja-kaminad-kaminapoletid-ja-suutekomplektid
             name_en: "Kaminapõletid ja süütekomplektid"
             name_et: "Kaminapõletid ja süütekomplektid"
             product_count: 0
-          - slug: v4-santehnika-kute-ja-ventilatsioon-kute-ja-kaminad-kaminarestid
-            name_en: "Kaminarestid"
-            name_et: "Kaminarestid"
+          - slug: v4-santehnika-kute-korsten
+            name_en: "Korsten ja korstnahooldus"
+            name_et: "Korsten ja korstnahooldus"
             product_count: 0
-          - slug: v4-santehnika-kute-ja-ventilatsioon-kute-ja-kaminad-kaminatarvikud-ja-tooriistad
-            name_en: "Kaminatarvikud ja -tööriistad"
-            name_et: "Kaminatarvikud ja -tööriistad"
-            product_count: 0
-          - slug: v4-santehnika-kute-ja-ventilatsioon-kute-ja-kaminad-kasvuhoonekutteseadmed
-            name_en: "Kasvuhoonekütteseadmed"
-            name_et: "Kasvuhoonekütteseadmed"
-            product_count: 0
-          - slug: v4-santehnika-kute-ja-ventilatsioon-kute-ja-kaminad-korstnatarvikud
-            name_en: "Korstnatarvikud"
-            name_et: "Korstnatarvikud"
-            product_count: 0
-          - slug: v4-santehnika-kute-ja-ventilatsioon-kute-ja-kaminad-porandakutteseadmed
-            name_en: "Põrandakütteseadmed"
-            name_et: "Põrandakütteseadmed"
-            product_count: 0
-          - slug: v4-santehnika-kute-ja-ventilatsioon-kute-ja-kaminad-radiaatorid-ja-radiaatorikatted
-            name_en: "Radiaatorid ja radiaatorikatted"
-            name_et: "Radiaatorid ja radiaatorikatted"
-            product_count: 0
-          - slug: v4-santehnika-kute-ja-ventilatsioon-kute-ja-kaminad-ratikukuivatid-ja-soojendid
-            name_en: "Rätikukuivatid ja -soojendid"
-            name_et: "Rätikukuivatid ja -soojendid"
-            product_count: 0
-          - slug: v4-santehnika-kute-ja-ventilatsioon-kute-ja-kaminad-veeboilerid
-            name_en: "Veeboilerid"
-            name_et: "Veeboilerid"
-            product_count: 0
-          - slug: v4-santehnika-kute-ja-ventilatsioon-kute-ja-kaminad-ohu-ja-olisoojapuhurid
-            name_en: "Õhu- ja õlisoojapuhurid"
-            name_et: "Õhu- ja õlisoojapuhurid"
+          - slug: v4-santehnika-kute-ruumisoojendid
+            name_en: "Ruumisoojendid"
+            name_et: "Ruumisoojendid"
             product_count: 0
       - slug: v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud
         name_en: "Segistid & valamud"
