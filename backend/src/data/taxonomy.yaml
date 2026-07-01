@@ -14,43 +14,6 @@ l1:
     hero_gradient: from-stone-950/80 via-stone-900/40 to-transparent
     product_count: 2213
     subs:
-      - slug: v4-tooriistad-ja-tarvikud-torutooriistad
-        name_en: "Torutööriistad"
-        name_et: "Torutööriistad"
-        product_count: 0
-        subs:
-          - slug: v4-tooriistad-ja-tarvikud-kasitooriistad-toru-joondusklambrid
-            name_en: "Toru joondusklambrid"
-            name_et: "Toru joondusklambrid"
-            product_count: 0
-          - slug: v4-tooriistad-ja-tarvikud-kasitooriistad-toru-laiendus-ja-flaaringutooriistad
-            name_en: "Toru laiendus- ja flaaringutööriistad"
-            name_et: "Toru laiendus- ja flaaringutööriistad"
-            product_count: 0
-          - slug: v4-tooriistad-ja-tarvikud-akutooriistad-toru-pressimistooriistad
-            name_en: "Toru pressimistööriistad"
-            name_et: "Toru pressimistööriistad"
-            product_count: 0
-          - slug: v4-tooriistad-ja-tarvikud-kasitooriistad-toru-valjatombajad
-            name_en: "Toru väljatõmbajad"
-            name_et: "Toru väljatõmbajad"
-            product_count: 0
-          - slug: v4-tooriistad-ja-tarvikud-torutooriistad-toru-keermestajad-ja-loikurid
-            name_en: "Toru-keermestajad ja -lõikurid"
-            name_et: "Toru-keermestajad ja -lõikurid"
-            product_count: 0
-          - slug: v4-tooriistad-ja-tarvikud-metallitoo-ja-sepatoo-torupainutajad
-            name_en: "Torupainutajad"
-            name_et: "Torupainutajad"
-            product_count: 0
-          - slug: v4-tooriistad-ja-tarvikud-elektrilised-tooriistad-torutootlustooriistad
-            name_en: "Torutöötlustööriistad"
-            name_et: "Torutöötlustööriistad"
-            product_count: 0
-          - slug: v4-tooriistad-ja-tarvikud-kasitooriistad-toruvotmed-ja-torutangid
-            name_en: "Toruvõtmed ja torutangid"
-            name_et: "Toruvõtmed ja torutangid"
-            product_count: 0
       - slug: v4-tooriistad-ja-tarvikud-viimistlustooriistad
         name_en: "Viimistlustööriistad"
         name_et: "Viimistlustööriistad"
@@ -87,6 +50,43 @@ l1:
           - slug: v4-tooriistad-ja-tarvikud-viimistlustooriistad-varvipustolid-ja-pihustid
             name_en: "Värvipüstolid ja pihustid"
             name_et: "Värvipüstolid ja pihustid"
+            product_count: 0
+      - slug: v4-tooriistad-ja-tarvikud-torutooriistad
+        name_en: "Torutööriistad"
+        name_et: "Torutööriistad"
+        product_count: 0
+        subs:
+          - slug: v4-tooriistad-ja-tarvikud-kasitooriistad-toru-joondusklambrid
+            name_en: "Toru joondusklambrid"
+            name_et: "Toru joondusklambrid"
+            product_count: 0
+          - slug: v4-tooriistad-ja-tarvikud-kasitooriistad-toru-laiendus-ja-flaaringutooriistad
+            name_en: "Toru laiendus- ja flaaringutööriistad"
+            name_et: "Toru laiendus- ja flaaringutööriistad"
+            product_count: 0
+          - slug: v4-tooriistad-ja-tarvikud-akutooriistad-toru-pressimistooriistad
+            name_en: "Toru pressimistööriistad"
+            name_et: "Toru pressimistööriistad"
+            product_count: 0
+          - slug: v4-tooriistad-ja-tarvikud-kasitooriistad-toru-valjatombajad
+            name_en: "Toru väljatõmbajad"
+            name_et: "Toru väljatõmbajad"
+            product_count: 0
+          - slug: v4-tooriistad-ja-tarvikud-torutooriistad-toru-keermestajad-ja-loikurid
+            name_en: "Toru-keermestajad ja -lõikurid"
+            name_et: "Toru-keermestajad ja -lõikurid"
+            product_count: 0
+          - slug: v4-tooriistad-ja-tarvikud-metallitoo-ja-sepatoo-torupainutajad
+            name_en: "Torupainutajad"
+            name_et: "Torupainutajad"
+            product_count: 0
+          - slug: v4-tooriistad-ja-tarvikud-elektrilised-tooriistad-torutootlustooriistad
+            name_en: "Torutöötlustööriistad"
+            name_et: "Torutöötlustööriistad"
+            product_count: 0
+          - slug: v4-tooriistad-ja-tarvikud-kasitooriistad-toruvotmed-ja-torutangid
+            name_en: "Toruvõtmed ja torutangid"
+            name_et: "Toruvõtmed ja torutangid"
             product_count: 0
       - slug: v4-tooriistad-ja-tarvikud-kasitooriistad
         name_en: "Käsitööriistad"
@@ -2375,34 +2375,30 @@ l1:
     hero_gradient: from-stone-950/80 via-stone-900/40 to-transparent
     product_count: 1075
     subs:
-      - slug: v4-suurkoogiseadmed-koogiseadmed-ja-elektriseadmed
-        name_en: "Köögiseadmed & elektriseadmed"
-        name_et: "Köögiseadmed & elektriseadmed"
+      - slug: v4-suurkoogiseadmed-kuum
+        name_en: "Kuumaseadmed"
+        name_et: "Kuumaseadmed"
         product_count: 0
         subs:
+          - slug: v4-suurkoogiseadmed-toidusoojendid-ja-soojendusvitriinid-bain-marie-toidusoojendajad
+            name_en: "Bain-marie toidusoojendajad"
+            name_et: "Bain-marie toidusoojendajad"
+            product_count: 0
           - slug: v4-suurkoogiseadmed-koogiseadmed-ja-elektriseadmed-frituurid
             name_en: "Fritüürid"
             name_et: "Fritüürid"
             product_count: 0
-          - slug: v4-suurkoogiseadmed-koogiseadmed-ja-elektriseadmed-hakklihamasinad-ja-lihaveskid
-            name_en: "Hakklihamasinad ja lihaveskid"
-            name_et: "Hakklihamasinad ja lihaveskid"
+          - slug: v4-suurkoogiseadmed-koogitarvikud-ja-noud-gaasipliidid
+            name_en: "Gaasipliidid"
+            name_et: "Gaasipliidid"
             product_count: 0
           - slug: v4-suurkoogiseadmed-koogiseadmed-ja-elektriseadmed-hot-dog-ja-viineri-seadmed
             name_en: "Hot dog ja viineri seadmed"
             name_et: "Hot dog ja viineri seadmed"
             product_count: 0
-          - slug: v4-suurkoogiseadmed-koogiseadmed-ja-elektriseadmed-jaapurustajad-ja-hooveldajad
-            name_en: "Jääpurustajad ja -hööveldajad"
-            name_et: "Jääpurustajad ja -hööveldajad"
-            product_count: 0
-          - slug: v4-suurkoogiseadmed-koogiseadmed-ja-elektriseadmed-jaatisemasinad
-            name_en: "Jäätisemasinad"
-            name_et: "Jäätisemasinad"
-            product_count: 0
-          - slug: v4-suurkoogiseadmed-koogiseadmed-ja-elektriseadmed-kartuli-ja-friikartuliloikurid
-            name_en: "Kartuli- ja friikartulilõikurid"
-            name_et: "Kartuli- ja friikartulilõikurid"
+          - slug: v4-suurkoogiseadmed-koogitarvikud-ja-noud-kohvi-ja-teevalmistajad
+            name_en: "Kohvi- ja teevalmistajad"
+            name_et: "Kohvi- ja teevalmistajad"
             product_count: 0
           - slug: v4-suurkoogiseadmed-koogiseadmed-ja-elektriseadmed-kohvimasinad-ja-urnid
             name_en: "Kohvimasinad ja -urnid"
@@ -2416,41 +2412,17 @@ l1:
             name_en: "Kreebi- ja pannkoogimasinad"
             name_et: "Kreebi- ja pannkoogimasinad"
             product_count: 0
-          - slug: v4-suurkoogiseadmed-koogiseadmed-ja-elektriseadmed-kasi-ja-koogimikserid
-            name_en: "Käsi- ja köögimikserid"
-            name_et: "Käsi- ja köögimikserid"
-            product_count: 0
           - slug: v4-suurkoogiseadmed-koogiseadmed-ja-elektriseadmed-lauagrillid-ja-grillplaadid
             name_en: "Lauagrillid ja grillplaadid"
             name_et: "Lauagrillid ja grillplaadid"
-            product_count: 0
-          - slug: v4-suurkoogiseadmed-koogiseadmed-ja-elektriseadmed-lihaloikurid-ja-viilutajad
-            name_en: "Lihalõikurid ja -viilutajad"
-            name_et: "Lihalõikurid ja -viilutajad"
-            product_count: 0
-          - slug: v4-suurkoogiseadmed-koogiseadmed-ja-elektriseadmed-lihasaed
-            name_en: "Lihasaed"
-            name_et: "Lihasaed"
-            product_count: 0
-          - slug: v4-suurkoogiseadmed-koogiseadmed-ja-elektriseadmed-mahlapressid
-            name_en: "Mahlapressid"
-            name_et: "Mahlapressid"
             product_count: 0
           - slug: v4-suurkoogiseadmed-koogiseadmed-ja-elektriseadmed-panini-ja-kontaktgrillid
             name_en: "Panini- ja kontaktgrillid"
             name_et: "Panini- ja kontaktgrillid"
             product_count: 0
-          - slug: v4-suurkoogiseadmed-koogiseadmed-ja-elektriseadmed-piimakokteili-ja-milkshake-masinad
-            name_en: "Piimakokteili- ja milkshake-masinad"
-            name_et: "Piimakokteili- ja milkshake-masinad"
-            product_count: 0
           - slug: v4-suurkoogiseadmed-koogiseadmed-ja-elektriseadmed-pitsaahjud-ja-kupsetajad
             name_en: "Pitsaahjud ja -küpsetajad"
             name_et: "Pitsaahjud ja -küpsetajad"
-            product_count: 0
-          - slug: v4-suurkoogiseadmed-koogiseadmed-ja-elektriseadmed-pitsataigna-ja-taignamasinad
-            name_en: "Pitsataigna ja taignamasinad"
-            name_et: "Pitsataigna ja taignamasinad"
             product_count: 0
           - slug: v4-suurkoogiseadmed-koogiseadmed-ja-elektriseadmed-popkornimasinad
             name_en: "Popkornimasinad"
@@ -2460,9 +2432,9 @@ l1:
             name_en: "Riisikeetjad"
             name_et: "Riisikeetjad"
             product_count: 0
-          - slug: v4-suurkoogiseadmed-koogiseadmed-ja-elektriseadmed-slusimasinad
-            name_en: "Slušimasinad"
-            name_et: "Slušimasinad"
+          - slug: v4-suurkoogiseadmed-toidusoojendid-ja-soojendusvitriinid-soojenduslambid
+            name_en: "Soojenduslambid"
+            name_et: "Soojenduslambid"
             product_count: 0
           - slug: v4-suurkoogiseadmed-koogiseadmed-ja-elektriseadmed-suhkruvati-ja-vahukommimasinad
             name_en: "Suhkruvati- ja vahukommimasinad"
@@ -2472,6 +2444,91 @@ l1:
             name_en: "Sõõriku- ja vahvlimasinad"
             name_et: "Sõõriku- ja vahvlimasinad"
             product_count: 0
+          - slug: v4-suurkoogiseadmed-koogitarvikud-ja-noud-toidusoojendajad-chafing-dish
+            name_en: "Toidusoojendajad (chafing dish)"
+            name_et: "Toidusoojendajad (chafing dish)"
+            product_count: 0
+          - slug: v4-suurkoogiseadmed-koogiseadmed-ja-elektriseadmed-toidusoojendajad-ja-bain-marie
+            name_en: "Toidusoojendajad ja bain-marie"
+            name_et: "Toidusoojendajad ja bain-marie"
+            product_count: 0
+          - slug: v4-suurkoogiseadmed-toidusoojendid-ja-soojendusvitriinid-toidusoojenduskapid
+            name_en: "Toidusoojenduskapid"
+            name_et: "Toidusoojenduskapid"
+            product_count: 0
+          - slug: v4-suurkoogiseadmed-koogiseadmed-ja-elektriseadmed-toidusoojendusvitriinid-ja-lauad
+            name_en: "Toidusoojendusvitriinid ja -lauad"
+            name_et: "Toidusoojendusvitriinid ja -lauad"
+            product_count: 0
+          - slug: v4-suurkoogiseadmed-koogiseadmed-ja-elektriseadmed-veekeetjad-ja-boilerid
+            name_en: "Veekeetjad ja -boilerid"
+            name_et: "Veekeetjad ja -boilerid"
+            product_count: 0
+          - slug: v4-suurkoogiseadmed-koogiseadmed-ja-elektriseadmed-sokolaadi-tempereerimismasinad
+            name_en: "Šokolaadi tempereerimismasinad"
+            name_et: "Šokolaadi tempereerimismasinad"
+            product_count: 0
+      - slug: v4-suurkoogiseadmed-prep
+        name_en: "Ettevalmistus & töötlus"
+        name_et: "Ettevalmistus & töötlus"
+        product_count: 0
+        subs:
+          - slug: v4-suurkoogiseadmed-koogitarvikud-ja-noud-burgeri-ja-taignapressid
+            name_en: "Burgeri- ja taignapressid"
+            name_et: "Burgeri- ja taignapressid"
+            product_count: 0
+          - slug: v4-suurkoogiseadmed-koogitarvikud-ja-noud-friikartuliloikurid
+            name_en: "Friikartulilõikurid"
+            name_et: "Friikartulilõikurid"
+            product_count: 0
+          - slug: v4-suurkoogiseadmed-koogiseadmed-ja-elektriseadmed-hakklihamasinad-ja-lihaveskid
+            name_en: "Hakklihamasinad ja lihaveskid"
+            name_et: "Hakklihamasinad ja lihaveskid"
+            product_count: 0
+          - slug: v4-suurkoogiseadmed-koogiseadmed-ja-elektriseadmed-jaapurustajad-ja-hooveldajad
+            name_en: "Jääpurustajad ja -hööveldajad"
+            name_et: "Jääpurustajad ja -hööveldajad"
+            product_count: 0
+          - slug: v4-suurkoogiseadmed-koogiseadmed-ja-elektriseadmed-kartuli-ja-friikartuliloikurid
+            name_en: "Kartuli- ja friikartulilõikurid"
+            name_et: "Kartuli- ja friikartulilõikurid"
+            product_count: 0
+          - slug: v4-suurkoogiseadmed-koogiseadmed-ja-elektriseadmed-kasi-ja-koogimikserid
+            name_en: "Käsi- ja köögimikserid"
+            name_et: "Käsi- ja köögimikserid"
+            product_count: 0
+          - slug: v4-suurkoogiseadmed-koogitarvikud-ja-noud-koogivilja-viilutajad-ja-tukeldajad
+            name_en: "Köögivilja viilutajad ja tükeldajad"
+            name_et: "Köögivilja viilutajad ja tükeldajad"
+            product_count: 0
+          - slug: v4-suurkoogiseadmed-koogiseadmed-ja-elektriseadmed-lihaloikurid-ja-viilutajad
+            name_en: "Lihalõikurid ja -viilutajad"
+            name_et: "Lihalõikurid ja -viilutajad"
+            product_count: 0
+          - slug: v4-suurkoogiseadmed-koogiseadmed-ja-elektriseadmed-lihasaed
+            name_en: "Lihasaed"
+            name_et: "Lihasaed"
+            product_count: 0
+          - slug: v4-suurkoogiseadmed-koogitarvikud-ja-noud-lihatootlusmasinad
+            name_en: "Lihatöötlusmasinad"
+            name_et: "Lihatöötlusmasinad"
+            product_count: 0
+          - slug: v4-suurkoogiseadmed-pakendamis-ja-taiteseadmed-lintkeevitusmasinad
+            name_en: "Lintkeevitusmasinad"
+            name_et: "Lintkeevitusmasinad"
+            product_count: 0
+          - slug: v4-suurkoogiseadmed-koogiseadmed-ja-elektriseadmed-mahlapressid
+            name_en: "Mahlapressid"
+            name_et: "Mahlapressid"
+            product_count: 0
+          - slug: v4-suurkoogiseadmed-koogiseadmed-ja-elektriseadmed-pitsataigna-ja-taignamasinad
+            name_en: "Pitsataigna ja taignamasinad"
+            name_et: "Pitsataigna ja taignamasinad"
+            product_count: 0
+          - slug: v4-suurkoogiseadmed-pakendamis-ja-taiteseadmed-pulbri-taiteseadmed
+            name_en: "Pulbri täiteseadmed"
+            name_et: "Pulbri täiteseadmed"
+            product_count: 0
           - slug: v4-suurkoogiseadmed-koogiseadmed-ja-elektriseadmed-teraviljajahvatajad-ja-veskid
             name_en: "Teraviljajahvatajad ja veskid"
             name_et: "Teraviljajahvatajad ja veskid"
@@ -2479,14 +2536,6 @@ l1:
           - slug: v4-suurkoogiseadmed-koogiseadmed-ja-elektriseadmed-toiduprotsessorid
             name_en: "Toiduprotsessorid"
             name_et: "Toiduprotsessorid"
-            product_count: 0
-          - slug: v4-suurkoogiseadmed-koogiseadmed-ja-elektriseadmed-toidusoojendajad-ja-bain-marie
-            name_en: "Toidusoojendajad ja bain-marie"
-            name_et: "Toidusoojendajad ja bain-marie"
-            product_count: 0
-          - slug: v4-suurkoogiseadmed-koogiseadmed-ja-elektriseadmed-toidusoojendusvitriinid-ja-lauad
-            name_en: "Toidusoojendusvitriinid ja -lauad"
-            name_et: "Toidusoojendusvitriinid ja -lauad"
             product_count: 0
           - slug: v4-suurkoogiseadmed-koogiseadmed-ja-elektriseadmed-tordi-kaunistus-ja-glasuurimismasinad
             name_en: "Tordi kaunistus- ja glasuurimismasinad"
@@ -2496,9 +2545,9 @@ l1:
             name_en: "Vaakumpakendajad"
             name_et: "Vaakumpakendajad"
             product_count: 0
-          - slug: v4-suurkoogiseadmed-koogiseadmed-ja-elektriseadmed-veekeetjad-ja-boilerid
-            name_en: "Veekeetjad ja -boilerid"
-            name_et: "Veekeetjad ja -boilerid"
+          - slug: v4-suurkoogiseadmed-pakendamis-ja-taiteseadmed-vedeliku-taitemasinad
+            name_en: "Vedeliku täitemasinad"
+            name_et: "Vedeliku täitemasinad"
             product_count: 0
           - slug: v4-suurkoogiseadmed-koogiseadmed-ja-elektriseadmed-vibrosoelad
             name_en: "Vibrosõelad"
@@ -2512,62 +2561,22 @@ l1:
             name_en: "Šawarma noad"
             name_et: "Šawarma noad"
             product_count: 0
-          - slug: v4-suurkoogiseadmed-koogiseadmed-ja-elektriseadmed-sokolaadi-tempereerimismasinad
-            name_en: "Šokolaadi tempereerimismasinad"
-            name_et: "Šokolaadi tempereerimismasinad"
-            product_count: 0
-      - slug: v4-suurkoogiseadmed-koogitarvikud-ja-noud
-        name_en: "Köögitarvikud & nõud"
-        name_et: "Köögitarvikud & nõud"
+      - slug: v4-suurkoogiseadmed-noud
+        name_en: "Nõud & serveerimine"
+        name_et: "Nõud & serveerimine"
         product_count: 0
         subs:
-          - slug: v4-suurkoogiseadmed-koogitarvikud-ja-noud-burgeri-ja-taignapressid
-            name_en: "Burgeri- ja taignapressid"
-            name_et: "Burgeri- ja taignapressid"
-            product_count: 0
-          - slug: v4-suurkoogiseadmed-koogitarvikud-ja-noud-friikartuliloikurid
-            name_en: "Friikartulilõikurid"
-            name_et: "Friikartulilõikurid"
-            product_count: 0
           - slug: v4-suurkoogiseadmed-koogitarvikud-ja-noud-frituurioli-filtreerimistarvikud
             name_en: "Fritüüriõli filtreerimistarvikud"
             name_et: "Fritüüriõli filtreerimistarvikud"
-            product_count: 0
-          - slug: v4-suurkoogiseadmed-koogitarvikud-ja-noud-gaasipliidid
-            name_en: "Gaasipliidid"
-            name_et: "Gaasipliidid"
             product_count: 0
           - slug: v4-suurkoogiseadmed-koogitarvikud-ja-noud-gastronoomianoud-hotel-pan
             name_en: "Gastronoomianõud (hotel pan)"
             name_et: "Gastronoomianõud (hotel pan)"
             product_count: 0
-          - slug: v4-suurkoogiseadmed-koogitarvikud-ja-noud-isoleeritud-toidukandurid
-            name_en: "Isoleeritud toidukandurid"
-            name_et: "Isoleeritud toidukandurid"
-            product_count: 0
-          - slug: v4-suurkoogiseadmed-koogitarvikud-ja-noud-joogi-ja-viinariiulid
-            name_en: "Joogi- ja viinariiulid"
-            name_et: "Joogi- ja viinariiulid"
-            product_count: 0
-          - slug: v4-suurkoogiseadmed-koogitarvikud-ja-noud-joogidispenserid
-            name_en: "Joogidispenserid"
-            name_et: "Joogidispenserid"
-            product_count: 0
-          - slug: v4-suurkoogiseadmed-koogitarvikud-ja-noud-jaakastid
-            name_en: "Jääkastid"
-            name_et: "Jääkastid"
-            product_count: 0
           - slug: v4-suurkoogiseadmed-koogitarvikud-ja-noud-jaapressid-ja-jaatarvikud
             name_en: "Jääpressid ja jäätarvikud"
             name_et: "Jääpressid ja jäätarvikud"
-            product_count: 0
-          - slug: v4-suurkoogiseadmed-koogitarvikud-ja-noud-klaasipesumasinad
-            name_en: "Klaasipesumasinad"
-            name_et: "Klaasipesumasinad"
-            product_count: 0
-          - slug: v4-suurkoogiseadmed-koogitarvikud-ja-noud-kohvi-ja-teevalmistajad
-            name_en: "Kohvi- ja teevalmistajad"
-            name_et: "Kohvi- ja teevalmistajad"
             product_count: 0
           - slug: v4-suurkoogiseadmed-koogitarvikud-ja-noud-kokteili-ja-baaritarvikud
             name_en: "Kokteili- ja baaritarvikud"
@@ -2581,21 +2590,9 @@ l1:
             name_en: "Konserviavajad"
             name_et: "Konserviavajad"
             product_count: 0
-          - slug: v4-suurkoogiseadmed-koogitarvikud-ja-noud-koostisainete-hoiukastid
-            name_en: "Koostisainete hoiukastid"
-            name_et: "Koostisainete hoiukastid"
-            product_count: 0
           - slug: v4-suurkoogiseadmed-koogitarvikud-ja-noud-koogitarvikute-komplektid
             name_en: "Köögitarvikute komplektid"
             name_et: "Köögitarvikute komplektid"
-            product_count: 0
-          - slug: v4-suurkoogiseadmed-koogitarvikud-ja-noud-koogivilja-viilutajad-ja-tukeldajad
-            name_en: "Köögivilja viilutajad ja tükeldajad"
-            name_et: "Köögivilja viilutajad ja tükeldajad"
-            product_count: 0
-          - slug: v4-suurkoogiseadmed-koogitarvikud-ja-noud-lihatootlusmasinad
-            name_en: "Lihatöötlusmasinad"
-            name_et: "Lihatöötlusmasinad"
             product_count: 0
           - slug: v4-suurkoogiseadmed-koogitarvikud-ja-noud-loikelauad-ja-pliidikaaned
             name_en: "Lõikelauad ja pliidikaaned"
@@ -2617,18 +2614,6 @@ l1:
             name_en: "Praepannid ja pannikomplektid"
             name_et: "Praepannid ja pannikomplektid"
             product_count: 0
-          - slug: v4-suurkoogiseadmed-koogitarvikud-ja-noud-roostevabast-terasest-toolauad
-            name_en: "Roostevabast terasest töölauad"
-            name_et: "Roostevabast terasest töölauad"
-            product_count: 0
-          - slug: v4-suurkoogiseadmed-koogitarvikud-ja-noud-seinariiulid-ja-ulariiulid
-            name_en: "Seinariiulid ja ülariiulid"
-            name_et: "Seinariiulid ja ülariiulid"
-            product_count: 0
-          - slug: v4-suurkoogiseadmed-koogitarvikud-ja-noud-sigarikapid-ja-humidorid
-            name_en: "Sigarikapid ja humidorid"
-            name_et: "Sigarikapid ja humidorid"
-            product_count: 0
           - slug: v4-suurkoogiseadmed-koogitarvikud-ja-noud-soelad-ja-jaotusvahendid
             name_en: "Sõelad ja jaotusvahendid"
             name_et: "Sõelad ja jaotusvahendid"
@@ -2637,25 +2622,9 @@ l1:
             name_en: "Söögiriistade ja lauanõude komplektid"
             name_et: "Söögiriistade ja lauanõude komplektid"
             product_count: 0
-          - slug: v4-suurkoogiseadmed-koogitarvikud-ja-noud-toidusoojendajad-chafing-dish
-            name_en: "Toidusoojendajad (chafing dish)"
-            name_et: "Toidusoojendajad (chafing dish)"
-            product_count: 0
-          - slug: v4-suurkoogiseadmed-koogitarvikud-ja-noud-vitriinkapid
-            name_en: "Vitriinkapid"
-            name_et: "Vitriinkapid"
-            product_count: 0
-          - slug: v4-suurkoogiseadmed-koogitarvikud-ja-noud-ollepruulimis-ja-destilleerimisseadmed
-            name_en: "Õllepruulimis- ja destilleerimisseadmed"
-            name_et: "Õllepruulimis- ja destilleerimisseadmed"
-            product_count: 0
-          - slug: v4-suurkoogiseadmed-koogitarvikud-ja-noud-ollesusteemid-ja-tornid
-            name_en: "Õllesüsteemid ja -tornid"
-            name_et: "Õllesüsteemid ja -tornid"
-            product_count: 0
-      - slug: v4-suurkoogiseadmed-jaamasinad
-        name_en: "Jäämasinad"
-        name_et: "Jäämasinad"
+      - slug: v4-suurkoogiseadmed-kulm
+        name_en: "Külmaseadmed"
+        name_et: "Külmaseadmed"
         product_count: 0
         subs:
           - slug: v4-suurkoogiseadmed-jaamasinad-helbejaamasinad
@@ -2666,6 +2635,10 @@ l1:
             name_en: "Jää hoiukonteinerid"
             name_et: "Jää hoiukonteinerid"
             product_count: 0
+          - slug: v4-suurkoogiseadmed-koogitarvikud-ja-noud-jaakastid
+            name_en: "Jääkastid"
+            name_et: "Jääkastid"
+            product_count: 0
           - slug: v4-suurkoogiseadmed-jaamasinad-jaamasina-pead
             name_en: "Jäämasina pead"
             name_et: "Jäämasina pead"
@@ -2674,13 +2647,29 @@ l1:
             name_en: "Jäämasinad"
             name_et: "Jäämasinad"
             product_count: 0
+          - slug: v4-suurkoogiseadmed-koogiseadmed-ja-elektriseadmed-jaatisemasinad
+            name_en: "Jäätisemasinad"
+            name_et: "Jäätisemasinad"
+            product_count: 0
+          - slug: v4-suurkoogiseadmed-kulmutus-ja-jahutusseadmed-jaatisevitriinkulmikud
+            name_en: "Jäätisevitriinkülmikud"
+            name_et: "Jäätisevitriinkülmikud"
+            product_count: 0
           - slug: v4-suurkoogiseadmed-jaamasinad-kommertsjaamasinad
             name_en: "Kommertsjäämasinad"
             name_et: "Kommertsjäämasinad"
             product_count: 0
-      - slug: v4-suurkoogiseadmed-koogivalamud
-        name_en: "Köögivalamud"
-        name_et: "Köögivalamud"
+          - slug: v4-suurkoogiseadmed-kulmutus-ja-jahutusseadmed-kommertskulmikud
+            name_en: "Kommertskülmikud"
+            name_et: "Kommertskülmikud"
+            product_count: 0
+          - slug: v4-suurkoogiseadmed-kulmutus-ja-jahutusseadmed-kondiitritoodete-kulmvitriinid
+            name_en: "Kondiitritoodete külmvitriinid"
+            name_et: "Kondiitritoodete külmvitriinid"
+            product_count: 0
+      - slug: v4-suurkoogiseadmed-tool
+        name_en: "Töölauad & valamud"
+        name_et: "Töölauad & valamud"
         product_count: 0
         subs:
           - slug: v4-suurkoogiseadmed-koogivalamud-kommertskoogi-valamud
@@ -2691,69 +2680,75 @@ l1:
             name_en: "Köögivalamud"
             name_et: "Köögivalamud"
             product_count: 0
+          - slug: v4-suurkoogiseadmed-koogitarvikud-ja-noud-klaasipesumasinad
+            name_en: "Nõude- & klaasipesumasinad"
+            name_et: "Nõude- & klaasipesumasinad"
+            product_count: 0
+          - slug: v4-suurkoogiseadmed-koogitarvikud-ja-noud-roostevabast-terasest-toolauad
+            name_en: "Roostevabast terasest töölauad"
+            name_et: "Roostevabast terasest töölauad"
+            product_count: 0
           - slug: v4-suurkoogiseadmed-koogivalamud-roostevabast-terasest-valamud
             name_en: "Roostevabast terasest valamud"
             name_et: "Roostevabast terasest valamud"
             product_count: 0
-      - slug: v4-suurkoogiseadmed-kulmutus-ja-jahutusseadmed
-        name_en: "Külmutus- & jahutusseadmed"
-        name_et: "Külmutus- & jahutusseadmed"
+      - slug: v4-suurkoogiseadmed-jook
+        name_en: "Joogiseadmed"
+        name_et: "Joogiseadmed"
         product_count: 0
         subs:
-          - slug: v4-suurkoogiseadmed-kulmutus-ja-jahutusseadmed-jaatisevitriinkulmikud
-            name_en: "Jäätisevitriinkülmikud"
-            name_et: "Jäätisevitriinkülmikud"
+          - slug: v4-suurkoogiseadmed-koogitarvikud-ja-noud-joogidispenserid
+            name_en: "Joogidispenserid"
+            name_et: "Joogidispenserid"
             product_count: 0
-          - slug: v4-suurkoogiseadmed-kulmutus-ja-jahutusseadmed-kommertskulmikud
-            name_en: "Kommertskülmikud"
-            name_et: "Kommertskülmikud"
+          - slug: v4-suurkoogiseadmed-koogiseadmed-ja-elektriseadmed-piimakokteili-ja-milkshake-masinad
+            name_en: "Piimakokteili- ja milkshake-masinad"
+            name_et: "Piimakokteili- ja milkshake-masinad"
             product_count: 0
-          - slug: v4-suurkoogiseadmed-kulmutus-ja-jahutusseadmed-kondiitritoodete-kulmvitriinid
-            name_en: "Kondiitritoodete külmvitriinid"
-            name_et: "Kondiitritoodete külmvitriinid"
+          - slug: v4-suurkoogiseadmed-koogiseadmed-ja-elektriseadmed-slusimasinad
+            name_en: "Slušimasinad"
+            name_et: "Slušimasinad"
             product_count: 0
-      - slug: v4-suurkoogiseadmed-toolauad-ja-toopinnad
-        name_en: "Töölauad & tööpinnad"
-        name_et: "Töölauad & tööpinnad"
+          - slug: v4-suurkoogiseadmed-koogitarvikud-ja-noud-ollepruulimis-ja-destilleerimisseadmed
+            name_en: "Õllepruulimis- ja destilleerimisseadmed"
+            name_et: "Õllepruulimis- ja destilleerimisseadmed"
+            product_count: 0
+          - slug: v4-suurkoogiseadmed-koogitarvikud-ja-noud-ollesusteemid-ja-tornid
+            name_en: "Õllesüsteemid ja -tornid"
+            name_et: "Õllesüsteemid ja -tornid"
+            product_count: 0
+      - slug: v4-suurkoogiseadmed-taara
+        name_en: "Hoiustamine & taara"
+        name_et: "Hoiustamine & taara"
         product_count: 0
         subs:
-          - slug: v4-suurkoogiseadmed-toolauad-ja-toopinnad-roostevabast-terasest-toolauad
-            name_en: "Roostevabast terasest töölauad"
-            name_et: "Roostevabast terasest töölauad"
+          - slug: v4-suurkoogiseadmed-koogitarvikud-ja-noud-isoleeritud-toidukandurid
+            name_en: "Isoleeritud toidukandurid"
+            name_et: "Isoleeritud toidukandurid"
             product_count: 0
-      - slug: v4-suurkoogiseadmed-pakendamis-ja-taiteseadmed
-        name_en: "Pakendamis- & täiteseadmed"
-        name_et: "Pakendamis- & täiteseadmed"
-        product_count: 0
-        subs:
-          - slug: v4-suurkoogiseadmed-pakendamis-ja-taiteseadmed-lintkeevitusmasinad
-            name_en: "Lintkeevitusmasinad"
-            name_et: "Lintkeevitusmasinad"
+          - slug: v4-suurkoogiseadmed-koogitarvikud-ja-noud-joogi-ja-viinariiulid
+            name_en: "Joogi- ja viinariiulid"
+            name_et: "Joogi- ja viinariiulid"
             product_count: 0
-          - slug: v4-suurkoogiseadmed-pakendamis-ja-taiteseadmed-pulbri-taiteseadmed
-            name_en: "Pulbri täiteseadmed"
-            name_et: "Pulbri täiteseadmed"
+          - slug: v4-suurkoogiseadmed-koogitarvikud-ja-noud-koostisainete-hoiukastid
+            name_en: "Koostisainete hoiukastid"
+            name_et: "Koostisainete hoiukastid"
             product_count: 0
-          - slug: v4-suurkoogiseadmed-pakendamis-ja-taiteseadmed-vedeliku-taitemasinad
-            name_en: "Vedeliku täitemasinad"
-            name_et: "Vedeliku täitemasinad"
+          - slug: v4-suurkoogiseadmed-hoiustamine-ja-riiulid-porandariiulid-ja-ladustamisrestid
+            name_en: "Põrandariiulid ja ladustamisrestid"
+            name_et: "Põrandariiulid ja ladustamisrestid"
             product_count: 0
-      - slug: v4-suurkoogiseadmed-toidusoojendid-ja-soojendusvitriinid
-        name_en: "Toidusoojendid & soojendusvitriinid"
-        name_et: "Toidusoojendid & soojendusvitriinid"
-        product_count: 0
-        subs:
-          - slug: v4-suurkoogiseadmed-toidusoojendid-ja-soojendusvitriinid-bain-marie-toidusoojendajad
-            name_en: "Bain-marie toidusoojendajad"
-            name_et: "Bain-marie toidusoojendajad"
+          - slug: v4-suurkoogiseadmed-koogitarvikud-ja-noud-seinariiulid-ja-ulariiulid
+            name_en: "Seinariiulid ja ülariiulid"
+            name_et: "Seinariiulid ja ülariiulid"
             product_count: 0
-          - slug: v4-suurkoogiseadmed-toidusoojendid-ja-soojendusvitriinid-soojenduslambid
-            name_en: "Soojenduslambid"
-            name_et: "Soojenduslambid"
+          - slug: v4-suurkoogiseadmed-koogitarvikud-ja-noud-sigarikapid-ja-humidorid
+            name_en: "Sigarikapid ja humidorid"
+            name_et: "Sigarikapid ja humidorid"
             product_count: 0
-          - slug: v4-suurkoogiseadmed-toidusoojendid-ja-soojendusvitriinid-toidusoojenduskapid
-            name_en: "Toidusoojenduskapid"
-            name_et: "Toidusoojenduskapid"
+          - slug: v4-suurkoogiseadmed-koogitarvikud-ja-noud-vitriinkapid
+            name_en: "Vitriinkapid"
+            name_et: "Vitriinkapid"
             product_count: 0
       - slug: v4-suurkoogiseadmed-toitlustusaknad-ja-toiduveoki-tarvikud
         name_en: "Toitlustusaknad & toiduveoki tarvikud"
@@ -2764,23 +2759,6 @@ l1:
             name_en: "Toiduveoki teenindusaknad"
             name_et: "Toiduveoki teenindusaknad"
             product_count: 0
-      - slug: v4-suurkoogiseadmed-hoiustamine-ja-riiulid
-        name_en: "Hoiustamine & riiulid"
-        name_et: "Hoiustamine & riiulid"
-        product_count: 0
-        subs:
-          - slug: v4-suurkoogiseadmed-hoiustamine-ja-riiulid-porandariiulid-ja-ladustamisrestid
-            name_en: "Põrandariiulid ja ladustamisrestid"
-            name_et: "Põrandariiulid ja ladustamisrestid"
-            product_count: 0
-      - slug: v4-suurkoogiseadmed-koogiventilatsioon
-        name_en: "Köögiventilatsioon"
-        name_et: "Köögiventilatsioon"
-        product_count: 0
-      - slug: v4-suurkoogiseadmed-toitlustus-ja-teenindustarvikud
-        name_en: "Toitlustus- & teenindustarvikud"
-        name_et: "Toitlustus- & teenindustarvikud"
-        product_count: 0
   - slug: v4-moobel-ja-sisustus
     name_en: "Mööbel ja sisustus"
     name_et: "Mööbel ja sisustus"
@@ -4385,10 +4363,6 @@ l1:
         name_et: "Uksed, aknad & luugid"
         product_count: 0
         subs:
-          - slug: v4-ehitus-remont-ja-varvid-uksed-aknad-ja-luugid-food-trucki-muugiaknad-ja-luugid
-            name_en: "Food trucki müügiaknad & -luugid"
-            name_et: "Food trucki müügiaknad & -luugid"
-            product_count: 0
           - slug: v4-ehitus-remont-ja-varvid-uksed-aknad-ja-luugid-garaaziuste-tihendid-ja-vedrud
             name_en: "Garaažiuste tihendid & vedrud"
             name_et: "Garaažiuste tihendid & vedrud"
