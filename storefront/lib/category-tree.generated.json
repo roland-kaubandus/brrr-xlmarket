@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-02T08:27:08.947Z",
+  "generated_at": "2026-07-02T08:31:02.301Z",
   "nodes": {
     "v4-tooriistad-ja-tarvikud": {
       "handle": "v4-tooriistad-ja-tarvikud",
@@ -7808,22 +7808,42 @@
       "level": 2,
       "parent_handle": "v4-moobel-ja-sisustus",
       "child_handles": [
+        "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-kaardikogumiku-hoiukohvrid",
+        "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-vitriinkarbid-ja-spordisuveniirid",
         "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-sigarihumidorid",
-        "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-diskopallid",
-        "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-vitraazaknad-ja-paneelid",
         "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-kellamehhanismid-ja-seinakellad",
         "v4-moobel-ja-sisustus-sisustusdekoor-vaibad",
         "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-puuvillakoiest-korvid",
         "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-ehte-ja-hoiukarbid",
         "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-teadetetahvlid",
-        "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-kaardikogumiku-hoiukohvrid",
-        "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-vitriinkarbid-ja-spordisuveniirid",
         "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-peeglid",
         "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-sailivlilled-kinkekarbis",
         "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-lillevaasid",
         "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-lillealused-ja-statiivid",
-        "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-isekleepuv-tapeet"
+        "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-isekleepuv-tapeet",
+        "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-diskopallid",
+        "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-vitraazaknad-ja-paneelid"
       ],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-kaardikogumiku-hoiukohvrid": {
+      "handle": "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-kaardikogumiku-hoiukohvrid",
+      "name_en": "Kaardikogumiku hoiukohvrid",
+      "name_et": "Kaardikogumiku hoiukohvrid",
+      "level": 3,
+      "parent_handle": "v4-moobel-ja-sisustus-sisustusdekoor",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-vitriinkarbid-ja-spordisuveniirid": {
+      "handle": "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-vitriinkarbid-ja-spordisuveniirid",
+      "name_en": "Vitriinkarbid & spordisuveniirid",
+      "name_et": "Vitriinkarbid & spordisuveniirid",
+      "level": 3,
+      "parent_handle": "v4-moobel-ja-sisustus-sisustusdekoor",
+      "child_handles": [],
       "image_path": null,
       "image_source": "none"
     },
@@ -7831,26 +7851,6 @@
       "handle": "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-sigarihumidorid",
       "name_en": "Sigarihumidorid",
       "name_et": "Sigarihumidorid",
-      "level": 3,
-      "parent_handle": "v4-moobel-ja-sisustus-sisustusdekoor",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-diskopallid": {
-      "handle": "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-diskopallid",
-      "name_en": "Diskopallid",
-      "name_et": "Diskopallid",
-      "level": 3,
-      "parent_handle": "v4-moobel-ja-sisustus-sisustusdekoor",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-vitraazaknad-ja-paneelid": {
-      "handle": "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-vitraazaknad-ja-paneelid",
-      "name_en": "Vitraažaknad & -paneelid",
-      "name_et": "Vitraažaknad & -paneelid",
       "level": 3,
       "parent_handle": "v4-moobel-ja-sisustus-sisustusdekoor",
       "child_handles": [],
@@ -7907,26 +7907,6 @@
       "image_path": null,
       "image_source": "none"
     },
-    "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-kaardikogumiku-hoiukohvrid": {
-      "handle": "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-kaardikogumiku-hoiukohvrid",
-      "name_en": "Kaardikogumiku hoiukohvrid",
-      "name_et": "Kaardikogumiku hoiukohvrid",
-      "level": 3,
-      "parent_handle": "v4-moobel-ja-sisustus-sisustusdekoor",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-vitriinkarbid-ja-spordisuveniirid": {
-      "handle": "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-vitriinkarbid-ja-spordisuveniirid",
-      "name_en": "Vitriinkarbid & spordisuveniirid",
-      "name_et": "Vitriinkarbid & spordisuveniirid",
-      "level": 3,
-      "parent_handle": "v4-moobel-ja-sisustus-sisustusdekoor",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
     "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-peeglid": {
       "handle": "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-peeglid",
       "name_en": "Peeglid",
@@ -7971,6 +7951,26 @@
       "handle": "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-isekleepuv-tapeet",
       "name_en": "Isekleepuv tapeet",
       "name_et": "Isekleepuv tapeet",
+      "level": 3,
+      "parent_handle": "v4-moobel-ja-sisustus-sisustusdekoor",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-diskopallid": {
+      "handle": "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-diskopallid",
+      "name_en": "Diskopallid",
+      "name_et": "Diskopallid",
+      "level": 3,
+      "parent_handle": "v4-moobel-ja-sisustus-sisustusdekoor",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-vitraazaknad-ja-paneelid": {
+      "handle": "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-vitraazaknad-ja-paneelid",
+      "name_en": "Vitraažaknad & -paneelid",
+      "name_et": "Vitraažaknad & -paneelid",
       "level": 3,
       "parent_handle": "v4-moobel-ja-sisustus-sisustusdekoor",
       "child_handles": [],
@@ -8974,33 +8974,13 @@
       "level": 2,
       "parent_handle": "v4-moobel-ja-sisustus",
       "child_handles": [
-        "v4-moobel-ja-sisustus-toolid-ja-istmed-vannitoa-istmed",
-        "v4-moobel-ja-sisustus-toolid-ja-istmed-pingid",
         "v4-moobel-ja-sisustus-toolid-ja-istmed-taburetid-ja-tootoolid-ratastega",
         "v4-moobel-ja-sisustus-toolid-ja-istmed-kontori-ja-tootoolid",
         "v4-moobel-ja-sisustus-toolid-ja-istmed-baaritoolid",
-        "v4-moobel-ja-sisustus-toolid-ja-istmed-soogitoolid"
+        "v4-moobel-ja-sisustus-toolid-ja-istmed-soogitoolid",
+        "v4-moobel-ja-sisustus-toolid-ja-istmed-vannitoa-istmed",
+        "v4-moobel-ja-sisustus-toolid-ja-istmed-pingid"
       ],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-moobel-ja-sisustus-toolid-ja-istmed-vannitoa-istmed": {
-      "handle": "v4-moobel-ja-sisustus-toolid-ja-istmed-vannitoa-istmed",
-      "name_en": "Vannitoa istmed",
-      "name_et": "Vannitoa istmed",
-      "level": 3,
-      "parent_handle": "v4-moobel-ja-sisustus-toolid-ja-istmed",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-moobel-ja-sisustus-toolid-ja-istmed-pingid": {
-      "handle": "v4-moobel-ja-sisustus-toolid-ja-istmed-pingid",
-      "name_en": "Pingid",
-      "name_et": "Pingid",
-      "level": 3,
-      "parent_handle": "v4-moobel-ja-sisustus-toolid-ja-istmed",
-      "child_handles": [],
       "image_path": null,
       "image_source": "none"
     },
@@ -9044,6 +9024,26 @@
       "image_path": null,
       "image_source": "none"
     },
+    "v4-moobel-ja-sisustus-toolid-ja-istmed-vannitoa-istmed": {
+      "handle": "v4-moobel-ja-sisustus-toolid-ja-istmed-vannitoa-istmed",
+      "name_en": "Vannitoa istmed",
+      "name_et": "Vannitoa istmed",
+      "level": 3,
+      "parent_handle": "v4-moobel-ja-sisustus-toolid-ja-istmed",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-moobel-ja-sisustus-toolid-ja-istmed-pingid": {
+      "handle": "v4-moobel-ja-sisustus-toolid-ja-istmed-pingid",
+      "name_en": "Pingid",
+      "name_et": "Pingid",
+      "level": 3,
+      "parent_handle": "v4-moobel-ja-sisustus-toolid-ja-istmed",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
     "v4-moobel-ja-sisustus-ruumijagajad-ja-akustika": {
       "handle": "v4-moobel-ja-sisustus-ruumijagajad-ja-akustika",
       "name_en": "Ruumijagajad & akustika",
@@ -9052,10 +9052,10 @@
       "parent_handle": "v4-moobel-ja-sisustus",
       "child_handles": [
         "v4-moobel-ja-sisustus-ruumijagajad-ja-akustika-ruumijagajad",
-        "v4-moobel-ja-sisustus-ruumijagajad-ja-akustika-proovikabiinid",
-        "v4-moobel-ja-sisustus-ruumijagajad-helisummutus",
+        "v4-moobel-ja-sisustus-ruumijagajad-ja-akustika-kokkupandavad-ruumijagajad",
         "v4-moobel-ja-sisustus-ruumijagajad-ja-akustika-vaheseinad",
-        "v4-moobel-ja-sisustus-ruumijagajad-ja-akustika-kokkupandavad-ruumijagajad"
+        "v4-moobel-ja-sisustus-ruumijagajad-ja-akustika-proovikabiinid",
+        "v4-moobel-ja-sisustus-ruumijagajad-helisummutus"
       ],
       "image_path": null,
       "image_source": "none"
@@ -9064,6 +9064,26 @@
       "handle": "v4-moobel-ja-sisustus-ruumijagajad-ja-akustika-ruumijagajad",
       "name_en": "Ruumijagajad",
       "name_et": "Ruumijagajad",
+      "level": 3,
+      "parent_handle": "v4-moobel-ja-sisustus-ruumijagajad-ja-akustika",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-moobel-ja-sisustus-ruumijagajad-ja-akustika-kokkupandavad-ruumijagajad": {
+      "handle": "v4-moobel-ja-sisustus-ruumijagajad-ja-akustika-kokkupandavad-ruumijagajad",
+      "name_en": "Kokkupandavad ruumijagajad",
+      "name_et": "Kokkupandavad ruumijagajad",
+      "level": 3,
+      "parent_handle": "v4-moobel-ja-sisustus-ruumijagajad-ja-akustika",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-moobel-ja-sisustus-ruumijagajad-ja-akustika-vaheseinad": {
+      "handle": "v4-moobel-ja-sisustus-ruumijagajad-ja-akustika-vaheseinad",
+      "name_en": "Vaheseinad",
+      "name_et": "Vaheseinad",
       "level": 3,
       "parent_handle": "v4-moobel-ja-sisustus-ruumijagajad-ja-akustika",
       "child_handles": [],
@@ -9084,26 +9104,6 @@
       "handle": "v4-moobel-ja-sisustus-ruumijagajad-helisummutus",
       "name_en": "Helisummutus & akustika",
       "name_et": "Helisummutus & akustika",
-      "level": 3,
-      "parent_handle": "v4-moobel-ja-sisustus-ruumijagajad-ja-akustika",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-moobel-ja-sisustus-ruumijagajad-ja-akustika-vaheseinad": {
-      "handle": "v4-moobel-ja-sisustus-ruumijagajad-ja-akustika-vaheseinad",
-      "name_en": "Vaheseinad",
-      "name_et": "Vaheseinad",
-      "level": 3,
-      "parent_handle": "v4-moobel-ja-sisustus-ruumijagajad-ja-akustika",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-moobel-ja-sisustus-ruumijagajad-ja-akustika-kokkupandavad-ruumijagajad": {
-      "handle": "v4-moobel-ja-sisustus-ruumijagajad-ja-akustika-kokkupandavad-ruumijagajad",
-      "name_en": "Kokkupandavad ruumijagajad",
-      "name_et": "Kokkupandavad ruumijagajad",
       "level": 3,
       "parent_handle": "v4-moobel-ja-sisustus-ruumijagajad-ja-akustika",
       "child_handles": [],
@@ -9227,10 +9227,20 @@
       "level": 2,
       "parent_handle": "v4-moobel-ja-sisustus",
       "child_handles": [
+        "v4-moobel-ja-sisustus-tv-alused-ja-jalused",
         "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-teleri-seinabraketid-ja-jalused",
-        "v4-moobel-ja-sisustus-tv-alused-ja-kinnitused-tv-seinabraketid",
-        "v4-moobel-ja-sisustus-tv-alused-ja-jalused"
+        "v4-moobel-ja-sisustus-tv-alused-ja-kinnitused-tv-seinabraketid"
       ],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-moobel-ja-sisustus-tv-alused-ja-jalused": {
+      "handle": "v4-moobel-ja-sisustus-tv-alused-ja-jalused",
+      "name_en": "TV-alused & jalused",
+      "name_et": "TV-alused & jalused",
+      "level": 3,
+      "parent_handle": "v4-moobel-ja-sisustus-tv-alused-ja-kinnitused",
+      "child_handles": [],
       "image_path": null,
       "image_source": "none"
     },
@@ -9248,16 +9258,6 @@
       "handle": "v4-moobel-ja-sisustus-tv-alused-ja-kinnitused-tv-seinabraketid",
       "name_en": "TV seinabraketid",
       "name_et": "TV seinabraketid",
-      "level": 3,
-      "parent_handle": "v4-moobel-ja-sisustus-tv-alused-ja-kinnitused",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-moobel-ja-sisustus-tv-alused-ja-jalused": {
-      "handle": "v4-moobel-ja-sisustus-tv-alused-ja-jalused",
-      "name_en": "TV-alused & jalused",
-      "name_et": "TV-alused & jalused",
       "level": 3,
       "parent_handle": "v4-moobel-ja-sisustus-tv-alused-ja-kinnitused",
       "child_handles": [],
@@ -13635,12 +13635,32 @@
       "level": 2,
       "parent_handle": "v4-santehnika-kute-ja-ventilatsioon",
       "child_handles": [
+        "v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika-dusialuste-ja-vannide-komplektid",
+        "v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika-rasvaeraldajad",
         "v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika-kanalisatsiooni-puhastusmasinad",
         "v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika-puhastuskaablid-ja-trossid",
-        "v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika-torutoed-ja-hoidikud",
-        "v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika-dusialuste-ja-vannide-komplektid",
-        "v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika-rasvaeraldajad"
+        "v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika-torutoed-ja-hoidikud"
       ],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika-dusialuste-ja-vannide-komplektid": {
+      "handle": "v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika-dusialuste-ja-vannide-komplektid",
+      "name_en": "Dušialuste & vannide komplektid",
+      "name_et": "Dušialuste & vannide komplektid",
+      "level": 3,
+      "parent_handle": "v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika-rasvaeraldajad": {
+      "handle": "v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika-rasvaeraldajad",
+      "name_en": "Rasvaeraldajad",
+      "name_et": "Rasvaeraldajad",
+      "level": 3,
+      "parent_handle": "v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika",
+      "child_handles": [],
       "image_path": null,
       "image_source": "none"
     },
@@ -13674,26 +13694,6 @@
       "image_path": null,
       "image_source": "none"
     },
-    "v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika-dusialuste-ja-vannide-komplektid": {
-      "handle": "v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika-dusialuste-ja-vannide-komplektid",
-      "name_en": "Dušialuste & vannide komplektid",
-      "name_et": "Dušialuste & vannide komplektid",
-      "level": 3,
-      "parent_handle": "v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika-rasvaeraldajad": {
-      "handle": "v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika-rasvaeraldajad",
-      "name_en": "Rasvaeraldajad",
-      "name_et": "Rasvaeraldajad",
-      "level": 3,
-      "parent_handle": "v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
     "v4-santehnika-kute-ja-ventilatsioon-kaminad-ja-korsten": {
       "handle": "v4-santehnika-kute-ja-ventilatsioon-kaminad-ja-korsten",
       "name_en": "Kaminad & korsten",
@@ -13701,20 +13701,10 @@
       "level": 2,
       "parent_handle": "v4-santehnika-kute-ja-ventilatsioon",
       "child_handles": [
-        "v4-santehnika-kute-ja-ventilatsioon-kute-ja-kaminad-kaminapoletid-ja-suutekomplektid",
         "v4-santehnika-kute-korsten",
+        "v4-santehnika-kute-ja-ventilatsioon-kute-ja-kaminad-kaminapoletid-ja-suutekomplektid",
         "v4-santehnika-kute-kaminad-tarvikud"
       ],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-santehnika-kute-ja-ventilatsioon-kute-ja-kaminad-kaminapoletid-ja-suutekomplektid": {
-      "handle": "v4-santehnika-kute-ja-ventilatsioon-kute-ja-kaminad-kaminapoletid-ja-suutekomplektid",
-      "name_en": "Kaminapõletid ja süütekomplektid",
-      "name_et": "Kaminapõletid ja süütekomplektid",
-      "level": 3,
-      "parent_handle": "v4-santehnika-kute-ja-ventilatsioon-kaminad-ja-korsten",
-      "child_handles": [],
       "image_path": null,
       "image_source": "none"
     },
@@ -13722,6 +13712,16 @@
       "handle": "v4-santehnika-kute-korsten",
       "name_en": "Korsten ja korstnahooldus",
       "name_et": "Korsten ja korstnahooldus",
+      "level": 3,
+      "parent_handle": "v4-santehnika-kute-ja-ventilatsioon-kaminad-ja-korsten",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-santehnika-kute-ja-ventilatsioon-kute-ja-kaminad-kaminapoletid-ja-suutekomplektid": {
+      "handle": "v4-santehnika-kute-ja-ventilatsioon-kute-ja-kaminad-kaminapoletid-ja-suutekomplektid",
+      "name_en": "Kaminapõletid ja süütekomplektid",
+      "name_et": "Kaminapõletid ja süütekomplektid",
       "level": 3,
       "parent_handle": "v4-santehnika-kute-ja-ventilatsioon-kaminad-ja-korsten",
       "child_handles": [],
@@ -13745,6 +13745,10 @@
       "level": 2,
       "parent_handle": "v4-santehnika-kute-ja-ventilatsioon",
       "child_handles": [
+        "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-koogisegistid",
+        "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-dusisegistid",
+        "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-vannisegistid",
+        "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-dusikomplektid",
         "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-dusipaneelid",
         "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-dusisusteemid",
         "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-tualettsusteemid",
@@ -13754,12 +13758,48 @@
         "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-kommertssegistid-ja-valamud",
         "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-vannitoavalamud",
         "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-koogivalamud",
-        "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-kraanisegistid",
-        "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-koogisegistid",
-        "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-dusisegistid",
-        "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-dusikomplektid",
-        "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-vannisegistid"
+        "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-kraanisegistid"
       ],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-koogisegistid": {
+      "handle": "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-koogisegistid",
+      "name_en": "Köögisegistid",
+      "name_et": "Köögisegistid",
+      "level": 3,
+      "parent_handle": "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-dusisegistid": {
+      "handle": "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-dusisegistid",
+      "name_en": "Dušisegistid",
+      "name_et": "Dušisegistid",
+      "level": 3,
+      "parent_handle": "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-vannisegistid": {
+      "handle": "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-vannisegistid",
+      "name_en": "Vannisegistid",
+      "name_et": "Vannisegistid",
+      "level": 3,
+      "parent_handle": "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-dusikomplektid": {
+      "handle": "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-dusikomplektid",
+      "name_en": "Dušikomplektid",
+      "name_et": "Dušikomplektid",
+      "level": 3,
+      "parent_handle": "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud",
+      "child_handles": [],
       "image_path": null,
       "image_source": "none"
     },
@@ -13863,46 +13903,6 @@
       "image_path": null,
       "image_source": "none"
     },
-    "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-koogisegistid": {
-      "handle": "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-koogisegistid",
-      "name_en": "Köögisegistid",
-      "name_et": "Köögisegistid",
-      "level": 3,
-      "parent_handle": "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-dusisegistid": {
-      "handle": "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-dusisegistid",
-      "name_en": "Dušisegistid",
-      "name_et": "Dušisegistid",
-      "level": 3,
-      "parent_handle": "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-dusikomplektid": {
-      "handle": "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-dusikomplektid",
-      "name_en": "Dušikomplektid",
-      "name_et": "Dušikomplektid",
-      "level": 3,
-      "parent_handle": "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-vannisegistid": {
-      "handle": "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-vannisegistid",
-      "name_en": "Vannisegistid",
-      "name_et": "Vannisegistid",
-      "level": 3,
-      "parent_handle": "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
     "v4-santehnika-kute-ja-ventilatsioon-veefiltrid-ja-puhastus": {
       "handle": "v4-santehnika-kute-ja-ventilatsioon-veefiltrid-ja-puhastus",
       "name_en": "Veefiltrid & puhastus",
@@ -13910,9 +13910,9 @@
       "level": 2,
       "parent_handle": "v4-santehnika-kute-ja-ventilatsioon",
       "child_handles": [
-        "v4-santehnika-kute-ja-ventilatsioon-veefiltrid-ja-puhastus-kraanile-kinnitatavad-veefiltrid",
-        "v4-santehnika-kute-ja-ventilatsioon-veefiltrid-ja-puhastus-gravitatsioonilised-veefiltrid",
         "v4-santehnika-kute-ja-ventilatsioon-veefiltrid-ja-puhastus-poordosmoosisusteemid",
+        "v4-santehnika-kute-ja-ventilatsioon-veefiltrid-ja-puhastus-gravitatsioonilised-veefiltrid",
+        "v4-santehnika-kute-ja-ventilatsioon-veefiltrid-ja-puhastus-kraanile-kinnitatavad-veefiltrid",
         "v4-santehnika-kute-ja-ventilatsioon-veefiltrid-ja-puhastus-uv-veepuhastid",
         "v4-santehnika-kute-ja-ventilatsioon-veefiltrid-ja-puhastus-vee-ionisaatorid",
         "v4-santehnika-kute-ja-ventilatsioon-veefiltrid-ja-puhastus-veepehmendussusteemid",
@@ -13922,10 +13922,10 @@
       "image_path": null,
       "image_source": "none"
     },
-    "v4-santehnika-kute-ja-ventilatsioon-veefiltrid-ja-puhastus-kraanile-kinnitatavad-veefiltrid": {
-      "handle": "v4-santehnika-kute-ja-ventilatsioon-veefiltrid-ja-puhastus-kraanile-kinnitatavad-veefiltrid",
-      "name_en": "Kraanile kinnitatavad veefiltrid",
-      "name_et": "Kraanile kinnitatavad veefiltrid",
+    "v4-santehnika-kute-ja-ventilatsioon-veefiltrid-ja-puhastus-poordosmoosisusteemid": {
+      "handle": "v4-santehnika-kute-ja-ventilatsioon-veefiltrid-ja-puhastus-poordosmoosisusteemid",
+      "name_en": "Pöördosmoosisüsteemid",
+      "name_et": "Pöördosmoosisüsteemid",
       "level": 3,
       "parent_handle": "v4-santehnika-kute-ja-ventilatsioon-veefiltrid-ja-puhastus",
       "child_handles": [],
@@ -13942,10 +13942,10 @@
       "image_path": null,
       "image_source": "none"
     },
-    "v4-santehnika-kute-ja-ventilatsioon-veefiltrid-ja-puhastus-poordosmoosisusteemid": {
-      "handle": "v4-santehnika-kute-ja-ventilatsioon-veefiltrid-ja-puhastus-poordosmoosisusteemid",
-      "name_en": "Pöördosmoosisüsteemid",
-      "name_et": "Pöördosmoosisüsteemid",
+    "v4-santehnika-kute-ja-ventilatsioon-veefiltrid-ja-puhastus-kraanile-kinnitatavad-veefiltrid": {
+      "handle": "v4-santehnika-kute-ja-ventilatsioon-veefiltrid-ja-puhastus-kraanile-kinnitatavad-veefiltrid",
+      "name_en": "Kraanile kinnitatavad veefiltrid",
+      "name_et": "Kraanile kinnitatavad veefiltrid",
       "level": 3,
       "parent_handle": "v4-santehnika-kute-ja-ventilatsioon-veefiltrid-ja-puhastus",
       "child_handles": [],
@@ -14009,42 +14009,12 @@
       "level": 2,
       "parent_handle": "v4-santehnika-kute-ja-ventilatsioon",
       "child_handles": [
-        "v4-santehnika-kute-ja-ventilatsioon-dusisusteemid-ja-dusikabiinid-dusiseinad",
-        "v4-santehnika-kute-ja-ventilatsioon-dusisusteemid-ja-dusikabiinid-dusinisid",
-        "v4-santehnika-kute-ja-ventilatsioon-dusisusteemid-ja-dusikabiinid-dusiuksed",
         "v4-santehnika-kute-ja-ventilatsioon-dusisusteemid-ja-dusikabiinid-dusipaneelid",
-        "v4-santehnika-kute-ja-ventilatsioon-dusisusteemid-ja-dusikabiinid-dusialuste-komplektid-ja-tarvikud"
+        "v4-santehnika-kute-ja-ventilatsioon-dusisusteemid-ja-dusikabiinid-dusialuste-komplektid-ja-tarvikud",
+        "v4-santehnika-kute-ja-ventilatsioon-dusisusteemid-ja-dusikabiinid-dusiseinad",
+        "v4-santehnika-kute-ja-ventilatsioon-dusisusteemid-ja-dusikabiinid-dusiuksed",
+        "v4-santehnika-kute-ja-ventilatsioon-dusisusteemid-ja-dusikabiinid-dusinisid"
       ],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-santehnika-kute-ja-ventilatsioon-dusisusteemid-ja-dusikabiinid-dusiseinad": {
-      "handle": "v4-santehnika-kute-ja-ventilatsioon-dusisusteemid-ja-dusikabiinid-dusiseinad",
-      "name_en": "Dušiseinad",
-      "name_et": "Dušiseinad",
-      "level": 3,
-      "parent_handle": "v4-santehnika-kute-ja-ventilatsioon-dusisusteemid-ja-dusikabiinid",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-santehnika-kute-ja-ventilatsioon-dusisusteemid-ja-dusikabiinid-dusinisid": {
-      "handle": "v4-santehnika-kute-ja-ventilatsioon-dusisusteemid-ja-dusikabiinid-dusinisid",
-      "name_en": "Dušinišid",
-      "name_et": "Dušinišid",
-      "level": 3,
-      "parent_handle": "v4-santehnika-kute-ja-ventilatsioon-dusisusteemid-ja-dusikabiinid",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-santehnika-kute-ja-ventilatsioon-dusisusteemid-ja-dusikabiinid-dusiuksed": {
-      "handle": "v4-santehnika-kute-ja-ventilatsioon-dusisusteemid-ja-dusikabiinid-dusiuksed",
-      "name_en": "Dušiuksed",
-      "name_et": "Dušiuksed",
-      "level": 3,
-      "parent_handle": "v4-santehnika-kute-ja-ventilatsioon-dusisusteemid-ja-dusikabiinid",
-      "child_handles": [],
       "image_path": null,
       "image_source": "none"
     },
@@ -14062,6 +14032,36 @@
       "handle": "v4-santehnika-kute-ja-ventilatsioon-dusisusteemid-ja-dusikabiinid-dusialuste-komplektid-ja-tarvikud",
       "name_en": "Dušialuste komplektid & tarvikud",
       "name_et": "Dušialuste komplektid & tarvikud",
+      "level": 3,
+      "parent_handle": "v4-santehnika-kute-ja-ventilatsioon-dusisusteemid-ja-dusikabiinid",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-santehnika-kute-ja-ventilatsioon-dusisusteemid-ja-dusikabiinid-dusiseinad": {
+      "handle": "v4-santehnika-kute-ja-ventilatsioon-dusisusteemid-ja-dusikabiinid-dusiseinad",
+      "name_en": "Dušiseinad",
+      "name_et": "Dušiseinad",
+      "level": 3,
+      "parent_handle": "v4-santehnika-kute-ja-ventilatsioon-dusisusteemid-ja-dusikabiinid",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-santehnika-kute-ja-ventilatsioon-dusisusteemid-ja-dusikabiinid-dusiuksed": {
+      "handle": "v4-santehnika-kute-ja-ventilatsioon-dusisusteemid-ja-dusikabiinid-dusiuksed",
+      "name_en": "Dušiuksed",
+      "name_et": "Dušiuksed",
+      "level": 3,
+      "parent_handle": "v4-santehnika-kute-ja-ventilatsioon-dusisusteemid-ja-dusikabiinid",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-santehnika-kute-ja-ventilatsioon-dusisusteemid-ja-dusikabiinid-dusinisid": {
+      "handle": "v4-santehnika-kute-ja-ventilatsioon-dusisusteemid-ja-dusikabiinid-dusinisid",
+      "name_en": "Dušinišid",
+      "name_et": "Dušinišid",
       "level": 3,
       "parent_handle": "v4-santehnika-kute-ja-ventilatsioon-dusisusteemid-ja-dusikabiinid",
       "child_handles": [],
@@ -14129,6 +14129,29 @@
       "name_et": "Äravool & põrandatrapid",
       "level": 2,
       "parent_handle": "v4-santehnika-kute-ja-ventilatsioon",
+      "child_handles": [
+        "v4-santehnika-kute-ja-ventilatsioon-lineaarsed-dusitrapid",
+        "v4-santehnika-kute-ja-ventilatsioon-kanal-ja-renn-aravool"
+      ],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-santehnika-kute-ja-ventilatsioon-lineaarsed-dusitrapid": {
+      "handle": "v4-santehnika-kute-ja-ventilatsioon-lineaarsed-dusitrapid",
+      "name_en": "Lineaarsed dušitrapid",
+      "name_et": "Lineaarsed dušitrapid",
+      "level": 3,
+      "parent_handle": "v4-santehnika-kute-ja-ventilatsioon-aravool-ja-porandatrapid",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-santehnika-kute-ja-ventilatsioon-kanal-ja-renn-aravool": {
+      "handle": "v4-santehnika-kute-ja-ventilatsioon-kanal-ja-renn-aravool",
+      "name_en": "Kanal- & renn-äravool",
+      "name_et": "Kanal- & renn-äravool",
+      "level": 3,
+      "parent_handle": "v4-santehnika-kute-ja-ventilatsioon-aravool-ja-porandatrapid",
       "child_handles": [],
       "image_path": null,
       "image_source": "none"
@@ -14879,22 +14902,22 @@
       "level": 2,
       "parent_handle": "v4-elektritarvikud-ja-valgustus",
       "child_handles": [
-        "v4-elektritarvikud-ja-valgustus-toostusvalgustus-tanava-ja-valisvalgustid",
+        "v4-elektritarvikud-ja-valgustus-toostusvalgustus-lae-ja-katusevalgustid",
         "v4-elektritarvikud-ja-valgustus-toostusvalgustus-reklaamvalgustid-ja-ekraanid",
         "v4-elektritarvikud-ja-valgustus-toostusvalgustus-fotostuudio-valgustid",
         "v4-elektritarvikud-ja-valgustus-toostusvalgustus-avarii-ja-hadavalgustid",
         "v4-elektritarvikud-ja-valgustus-toostusvalgustus-ehitusvalgustus",
         "v4-elektritarvikud-ja-valgustus-toostusvalgustus-laovalgustid",
         "v4-elektritarvikud-ja-valgustus-toostusvalgustus-toovalgustid",
-        "v4-elektritarvikud-ja-valgustus-toostusvalgustus-lae-ja-katusevalgustid"
+        "v4-elektritarvikud-ja-valgustus-toostusvalgustus-tanava-ja-valisvalgustid"
       ],
       "image_path": null,
       "image_source": "none"
     },
-    "v4-elektritarvikud-ja-valgustus-toostusvalgustus-tanava-ja-valisvalgustid": {
-      "handle": "v4-elektritarvikud-ja-valgustus-toostusvalgustus-tanava-ja-valisvalgustid",
-      "name_en": "Tänava- ja välisvalgustid",
-      "name_et": "Tänava- ja välisvalgustid",
+    "v4-elektritarvikud-ja-valgustus-toostusvalgustus-lae-ja-katusevalgustid": {
+      "handle": "v4-elektritarvikud-ja-valgustus-toostusvalgustus-lae-ja-katusevalgustid",
+      "name_en": "Lae- ja katusevalgustid",
+      "name_et": "Lae- ja katusevalgustid",
       "level": 3,
       "parent_handle": "v4-elektritarvikud-ja-valgustus-toostusvalgustus",
       "child_handles": [],
@@ -14961,10 +14984,10 @@
       "image_path": null,
       "image_source": "none"
     },
-    "v4-elektritarvikud-ja-valgustus-toostusvalgustus-lae-ja-katusevalgustid": {
-      "handle": "v4-elektritarvikud-ja-valgustus-toostusvalgustus-lae-ja-katusevalgustid",
-      "name_en": "Lae- ja katusevalgustid",
-      "name_et": "Lae- ja katusevalgustid",
+    "v4-elektritarvikud-ja-valgustus-toostusvalgustus-tanava-ja-valisvalgustid": {
+      "handle": "v4-elektritarvikud-ja-valgustus-toostusvalgustus-tanava-ja-valisvalgustid",
+      "name_en": "Tänava- ja välisvalgustid",
+      "name_et": "Tänava- ja välisvalgustid",
       "level": 3,
       "parent_handle": "v4-elektritarvikud-ja-valgustus-toostusvalgustus",
       "child_handles": [],
@@ -17425,22 +17448,12 @@
       "level": 2,
       "parent_handle": "v4-muusika-ja-helitehnika",
       "child_handles": [
-        "v4-muusika-ja-helitehnika-muusikariistad-klahvpillid",
         "v4-muusika-ja-helitehnika-muusikariistad-keelpillid",
+        "v4-muusika-ja-helitehnika-muusikariistad-pillitarvikud",
         "v4-muusika-ja-helitehnika-muusikariistad-puhkpillid",
         "v4-muusika-ja-helitehnika-muusikariistad-lookpillid",
-        "v4-muusika-ja-helitehnika-muusikariistad-pillitarvikud"
+        "v4-muusika-ja-helitehnika-muusikariistad-klahvpillid"
       ],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-muusika-ja-helitehnika-muusikariistad-klahvpillid": {
-      "handle": "v4-muusika-ja-helitehnika-muusikariistad-klahvpillid",
-      "name_en": "Klahvpillid",
-      "name_et": "Klahvpillid",
-      "level": 3,
-      "parent_handle": "v4-muusika-ja-helitehnika-muusikariistad",
-      "child_handles": [],
       "image_path": null,
       "image_source": "none"
     },
@@ -17448,6 +17461,16 @@
       "handle": "v4-muusika-ja-helitehnika-muusikariistad-keelpillid",
       "name_en": "Keelpillid",
       "name_et": "Keelpillid",
+      "level": 3,
+      "parent_handle": "v4-muusika-ja-helitehnika-muusikariistad",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-muusika-ja-helitehnika-muusikariistad-pillitarvikud": {
+      "handle": "v4-muusika-ja-helitehnika-muusikariistad-pillitarvikud",
+      "name_en": "Pillitarvikud",
+      "name_et": "Pillitarvikud",
       "level": 3,
       "parent_handle": "v4-muusika-ja-helitehnika-muusikariistad",
       "child_handles": [],
@@ -17474,10 +17497,10 @@
       "image_path": null,
       "image_source": "none"
     },
-    "v4-muusika-ja-helitehnika-muusikariistad-pillitarvikud": {
-      "handle": "v4-muusika-ja-helitehnika-muusikariistad-pillitarvikud",
-      "name_en": "Pillitarvikud",
-      "name_et": "Pillitarvikud",
+    "v4-muusika-ja-helitehnika-muusikariistad-klahvpillid": {
+      "handle": "v4-muusika-ja-helitehnika-muusikariistad-klahvpillid",
+      "name_en": "Klahvpillid",
+      "name_et": "Klahvpillid",
       "level": 3,
       "parent_handle": "v4-muusika-ja-helitehnika-muusikariistad",
       "child_handles": [],
@@ -17491,18 +17514,18 @@
       "level": 2,
       "parent_handle": "v4-muusika-ja-helitehnika",
       "child_handles": [
-        "v4-muusika-ja-helitehnika-dj-ja-lavatehnika-lavaefektide-masinad",
-        "v4-muusika-ja-helitehnika-dj-ja-lavatehnika-vinuulplaatide-hoiustamine",
         "v4-muusika-ja-helitehnika-dj-ja-lavatehnika-vinuulplaadimangijad",
+        "v4-muusika-ja-helitehnika-dj-ja-lavatehnika-vinuulplaatide-hoiustamine",
+        "v4-muusika-ja-helitehnika-dj-ja-lavatehnika-lavaefektide-masinad",
         "v4-muusika-ja-helitehnika-dj-ja-lavatehnika-pottsepakettad"
       ],
       "image_path": null,
       "image_source": "none"
     },
-    "v4-muusika-ja-helitehnika-dj-ja-lavatehnika-lavaefektide-masinad": {
-      "handle": "v4-muusika-ja-helitehnika-dj-ja-lavatehnika-lavaefektide-masinad",
-      "name_en": "Lavaefektide masinad",
-      "name_et": "Lavaefektide masinad",
+    "v4-muusika-ja-helitehnika-dj-ja-lavatehnika-vinuulplaadimangijad": {
+      "handle": "v4-muusika-ja-helitehnika-dj-ja-lavatehnika-vinuulplaadimangijad",
+      "name_en": "Vinüülplaadimängijad",
+      "name_et": "Vinüülplaadimängijad",
       "level": 3,
       "parent_handle": "v4-muusika-ja-helitehnika-dj-ja-lavatehnika",
       "child_handles": [],
@@ -17519,10 +17542,10 @@
       "image_path": null,
       "image_source": "none"
     },
-    "v4-muusika-ja-helitehnika-dj-ja-lavatehnika-vinuulplaadimangijad": {
-      "handle": "v4-muusika-ja-helitehnika-dj-ja-lavatehnika-vinuulplaadimangijad",
-      "name_en": "Vinüülplaadimängijad",
-      "name_et": "Vinüülplaadimängijad",
+    "v4-muusika-ja-helitehnika-dj-ja-lavatehnika-lavaefektide-masinad": {
+      "handle": "v4-muusika-ja-helitehnika-dj-ja-lavatehnika-lavaefektide-masinad",
+      "name_en": "Lavaefektide masinad",
+      "name_et": "Lavaefektide masinad",
       "level": 3,
       "parent_handle": "v4-muusika-ja-helitehnika-dj-ja-lavatehnika",
       "child_handles": [],
@@ -17546,19 +17569,9 @@
       "level": 2,
       "parent_handle": "v4-muusika-ja-helitehnika",
       "child_handles": [
-        "v4-muusika-ja-helitehnika-heli-ja-salvestus-karaokemasinad",
-        "v4-muusika-ja-helitehnika-heli-ja-salvestus-mikrofonikaablid"
+        "v4-muusika-ja-helitehnika-heli-ja-salvestus-mikrofonikaablid",
+        "v4-muusika-ja-helitehnika-heli-ja-salvestus-karaokemasinad"
       ],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-muusika-ja-helitehnika-heli-ja-salvestus-karaokemasinad": {
-      "handle": "v4-muusika-ja-helitehnika-heli-ja-salvestus-karaokemasinad",
-      "name_en": "Karaokemasinad",
-      "name_et": "Karaokemasinad",
-      "level": 3,
-      "parent_handle": "v4-muusika-ja-helitehnika-heli-ja-salvestus",
-      "child_handles": [],
       "image_path": null,
       "image_source": "none"
     },
@@ -17566,6 +17579,16 @@
       "handle": "v4-muusika-ja-helitehnika-heli-ja-salvestus-mikrofonikaablid",
       "name_en": "Mikrofonikaablid",
       "name_et": "Mikrofonikaablid",
+      "level": 3,
+      "parent_handle": "v4-muusika-ja-helitehnika-heli-ja-salvestus",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-muusika-ja-helitehnika-heli-ja-salvestus-karaokemasinad": {
+      "handle": "v4-muusika-ja-helitehnika-heli-ja-salvestus-karaokemasinad",
+      "name_en": "Karaokemasinad",
+      "name_et": "Karaokemasinad",
       "level": 3,
       "parent_handle": "v4-muusika-ja-helitehnika-heli-ja-salvestus",
       "child_handles": [],
@@ -17599,25 +17622,55 @@
       "level": 2,
       "parent_handle": "v4-reklaami-truki-ja-graveerimisseadmed",
       "child_handles": [
+        "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-graveerimispingid-ja-klambrid",
+        "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-paindvolliga-lihvimismasinad",
+        "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-sulatus-ja-poletusahjud",
         "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-spindelmootorid-ja-tarvikud",
+        "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-lineaarjuhikud-ja-liikumissusteemid",
+        "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-lasertorud-ja-toiteplokid",
+        "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-lasergraveerijad-ja-loikurid",
+        "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-vaakumvalamismasinad",
         "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-ohupuhuri-komplektid-laserloikuritele",
+        "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-lasergraveerija-kaitsekatted",
         "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-juveelimikroskoobid",
         "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-nahaloikus-ja-pressimismasinad",
-        "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-sulatus-ja-poletusahjud",
-        "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-vaakumvalamismasinad",
-        "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-lasergraveerija-kaitsekatted",
-        "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-paindvolliga-lihvimismasinad",
-        "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-graveerimispingid-ja-klambrid",
+        "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-cnc-freespingid-ja-graveerijad",
         "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-3d-printeri-korpused-ja-katted",
         "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-stantsimis-ja-pressimismasinad",
         "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-kivide-lihvimis-ja-poleerimismasinad",
         "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-toostuslikud-vesijahutid",
-        "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-noopide-ja-markide-valmistusmasinad",
-        "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-cnc-freespingid-ja-graveerijad",
-        "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-lineaarjuhikud-ja-liikumissusteemid",
-        "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-lasertorud-ja-toiteplokid",
-        "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-lasergraveerijad-ja-loikurid"
+        "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-noopide-ja-markide-valmistusmasinad"
       ],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-graveerimispingid-ja-klambrid": {
+      "handle": "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-graveerimispingid-ja-klambrid",
+      "name_en": "Graveerimispingid ja -klambrid",
+      "name_et": "Graveerimispingid ja -klambrid",
+      "level": 3,
+      "parent_handle": "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-paindvolliga-lihvimismasinad": {
+      "handle": "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-paindvolliga-lihvimismasinad",
+      "name_en": "Paindvõlliga lihvimismasinad",
+      "name_et": "Paindvõlliga lihvimismasinad",
+      "level": 3,
+      "parent_handle": "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-sulatus-ja-poletusahjud": {
+      "handle": "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-sulatus-ja-poletusahjud",
+      "name_en": "Sulatus- ja põletusahjud",
+      "name_et": "Sulatus- ja põletusahjud",
+      "level": 3,
+      "parent_handle": "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc",
+      "child_handles": [],
       "image_path": null,
       "image_source": "none"
     },
@@ -17631,10 +17684,60 @@
       "image_path": null,
       "image_source": "none"
     },
+    "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-lineaarjuhikud-ja-liikumissusteemid": {
+      "handle": "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-lineaarjuhikud-ja-liikumissusteemid",
+      "name_en": "Lineaarjuhikud ja liikumissüsteemid",
+      "name_et": "Lineaarjuhikud ja liikumissüsteemid",
+      "level": 3,
+      "parent_handle": "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-lasertorud-ja-toiteplokid": {
+      "handle": "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-lasertorud-ja-toiteplokid",
+      "name_en": "Lasertorud ja toiteplokid",
+      "name_et": "Lasertorud ja toiteplokid",
+      "level": 3,
+      "parent_handle": "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-lasergraveerijad-ja-loikurid": {
+      "handle": "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-lasergraveerijad-ja-loikurid",
+      "name_en": "Lasergraveerijad ja -lõikurid",
+      "name_et": "Lasergraveerijad ja -lõikurid",
+      "level": 3,
+      "parent_handle": "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-vaakumvalamismasinad": {
+      "handle": "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-vaakumvalamismasinad",
+      "name_en": "Vaakumvalamismasinad",
+      "name_et": "Vaakumvalamismasinad",
+      "level": 3,
+      "parent_handle": "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
     "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-ohupuhuri-komplektid-laserloikuritele": {
       "handle": "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-ohupuhuri-komplektid-laserloikuritele",
       "name_en": "Õhupuhuri komplektid laserlõikuritele",
       "name_et": "Õhupuhuri komplektid laserlõikuritele",
+      "level": 3,
+      "parent_handle": "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-lasergraveerija-kaitsekatted": {
+      "handle": "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-lasergraveerija-kaitsekatted",
+      "name_en": "Lasergraveerija kaitsekatted",
+      "name_et": "Lasergraveerija kaitsekatted",
       "level": 3,
       "parent_handle": "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc",
       "child_handles": [],
@@ -17661,50 +17764,10 @@
       "image_path": null,
       "image_source": "none"
     },
-    "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-sulatus-ja-poletusahjud": {
-      "handle": "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-sulatus-ja-poletusahjud",
-      "name_en": "Sulatus- ja põletusahjud",
-      "name_et": "Sulatus- ja põletusahjud",
-      "level": 3,
-      "parent_handle": "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-vaakumvalamismasinad": {
-      "handle": "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-vaakumvalamismasinad",
-      "name_en": "Vaakumvalamismasinad",
-      "name_et": "Vaakumvalamismasinad",
-      "level": 3,
-      "parent_handle": "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-lasergraveerija-kaitsekatted": {
-      "handle": "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-lasergraveerija-kaitsekatted",
-      "name_en": "Lasergraveerija kaitsekatted",
-      "name_et": "Lasergraveerija kaitsekatted",
-      "level": 3,
-      "parent_handle": "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-paindvolliga-lihvimismasinad": {
-      "handle": "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-paindvolliga-lihvimismasinad",
-      "name_en": "Paindvõlliga lihvimismasinad",
-      "name_et": "Paindvõlliga lihvimismasinad",
-      "level": 3,
-      "parent_handle": "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-graveerimispingid-ja-klambrid": {
-      "handle": "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-graveerimispingid-ja-klambrid",
-      "name_en": "Graveerimispingid ja -klambrid",
-      "name_et": "Graveerimispingid ja -klambrid",
+    "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-cnc-freespingid-ja-graveerijad": {
+      "handle": "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-cnc-freespingid-ja-graveerijad",
+      "name_en": "CNC freespingid ja graveerijad",
+      "name_et": "CNC freespingid ja graveerijad",
       "level": 3,
       "parent_handle": "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc",
       "child_handles": [],
@@ -17761,46 +17824,6 @@
       "image_path": null,
       "image_source": "none"
     },
-    "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-cnc-freespingid-ja-graveerijad": {
-      "handle": "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-cnc-freespingid-ja-graveerijad",
-      "name_en": "CNC freespingid ja graveerijad",
-      "name_et": "CNC freespingid ja graveerijad",
-      "level": 3,
-      "parent_handle": "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-lineaarjuhikud-ja-liikumissusteemid": {
-      "handle": "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-lineaarjuhikud-ja-liikumissusteemid",
-      "name_en": "Lineaarjuhikud ja liikumissüsteemid",
-      "name_et": "Lineaarjuhikud ja liikumissüsteemid",
-      "level": 3,
-      "parent_handle": "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-lasertorud-ja-toiteplokid": {
-      "handle": "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-lasertorud-ja-toiteplokid",
-      "name_en": "Lasertorud ja toiteplokid",
-      "name_et": "Lasertorud ja toiteplokid",
-      "level": 3,
-      "parent_handle": "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-lasergraveerijad-ja-loikurid": {
-      "handle": "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-lasergraveerijad-ja-loikurid",
-      "name_en": "Lasergraveerijad ja -lõikurid",
-      "name_et": "Lasergraveerijad ja -lõikurid",
-      "level": 3,
-      "parent_handle": "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
     "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk": {
       "handle": "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk",
       "name_en": "Tekstiili- & rõivatrükk",
@@ -17808,59 +17831,29 @@
       "level": 2,
       "parent_handle": "v4-reklaami-truki-ja-graveerimisseadmed",
       "child_handles": [
-        "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-mutsi-ja-kruusipressid",
-        "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-kuumpressi-tarvikud-ja-toolauad",
-        "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-kuumpressid",
-        "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-kuumpressid-sublimatsioon",
+        "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-sublimatsioonitoorikud-topsid-ja-termosed",
         "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-truki-ja-termoprinterid",
         "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-stantsimis-ja-reljeefpressimismasinad",
         "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-loikemasinad-ja-tarvikud",
-        "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-sublimatsioonitoorikud-topsid-ja-termosed",
         "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-maalimistarvikud-ja-molbertid",
         "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-noopide-ja-markide-valmistamise-masinad",
         "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-omblusmasinad",
         "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-kuumpressi-ja-vinuulloikuri-komplektid",
         "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-kuumulekande-vinuul-htv",
         "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-truki-ja-siiditrukikuivatid",
-        "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-siiditruki-seadmed-ja-komplektid"
+        "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-siiditruki-seadmed-ja-komplektid",
+        "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-mutsi-ja-kruusipressid",
+        "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-kuumpressi-tarvikud-ja-toolauad",
+        "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-kuumpressid",
+        "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-kuumpressid-sublimatsioon"
       ],
       "image_path": null,
       "image_source": "none"
     },
-    "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-mutsi-ja-kruusipressid": {
-      "handle": "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-mutsi-ja-kruusipressid",
-      "name_en": "Mütsi- & kruusipressid",
-      "name_et": "Mütsi- & kruusipressid",
-      "level": 3,
-      "parent_handle": "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-kuumpressi-tarvikud-ja-toolauad": {
-      "handle": "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-kuumpressi-tarvikud-ja-toolauad",
-      "name_en": "Kuumpressi tarvikud & töölauad",
-      "name_et": "Kuumpressi tarvikud & töölauad",
-      "level": 3,
-      "parent_handle": "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-kuumpressid": {
-      "handle": "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-kuumpressid",
-      "name_en": "Kuumpressid",
-      "name_et": "Kuumpressid",
-      "level": 3,
-      "parent_handle": "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-kuumpressid-sublimatsioon": {
-      "handle": "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-kuumpressid-sublimatsioon",
-      "name_en": "Kuumpressid (sublimatsioon)",
-      "name_et": "Kuumpressid (sublimatsioon)",
+    "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-sublimatsioonitoorikud-topsid-ja-termosed": {
+      "handle": "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-sublimatsioonitoorikud-topsid-ja-termosed",
+      "name_en": "Sublimatsioonitoorikud (topsid & termosed)",
+      "name_et": "Sublimatsioonitoorikud (topsid & termosed)",
       "level": 3,
       "parent_handle": "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk",
       "child_handles": [],
@@ -17891,16 +17884,6 @@
       "handle": "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-loikemasinad-ja-tarvikud",
       "name_en": "Lõikemasinad & -tarvikud",
       "name_et": "Lõikemasinad & -tarvikud",
-      "level": 3,
-      "parent_handle": "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-sublimatsioonitoorikud-topsid-ja-termosed": {
-      "handle": "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-sublimatsioonitoorikud-topsid-ja-termosed",
-      "name_en": "Sublimatsioonitoorikud (topsid & termosed)",
-      "name_et": "Sublimatsioonitoorikud (topsid & termosed)",
       "level": 3,
       "parent_handle": "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk",
       "child_handles": [],
@@ -17977,6 +17960,46 @@
       "image_path": null,
       "image_source": "none"
     },
+    "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-mutsi-ja-kruusipressid": {
+      "handle": "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-mutsi-ja-kruusipressid",
+      "name_en": "Mütsi- & kruusipressid",
+      "name_et": "Mütsi- & kruusipressid",
+      "level": 3,
+      "parent_handle": "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-kuumpressi-tarvikud-ja-toolauad": {
+      "handle": "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-kuumpressi-tarvikud-ja-toolauad",
+      "name_en": "Kuumpressi tarvikud & töölauad",
+      "name_et": "Kuumpressi tarvikud & töölauad",
+      "level": 3,
+      "parent_handle": "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-kuumpressid": {
+      "handle": "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-kuumpressid",
+      "name_en": "Kuumpressid",
+      "name_et": "Kuumpressid",
+      "level": 3,
+      "parent_handle": "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-kuumpressid-sublimatsioon": {
+      "handle": "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-kuumpressid-sublimatsioon",
+      "name_en": "Kuumpressid (sublimatsioon)",
+      "name_et": "Kuumpressid (sublimatsioon)",
+      "level": 3,
+      "parent_handle": "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
     "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign": {
       "handle": "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign",
       "name_en": "Vinüül & sign",
@@ -17984,13 +18007,23 @@
       "level": 2,
       "parent_handle": "v4-reklaami-truki-ja-graveerimisseadmed",
       "child_handles": [
+        "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-reklaamlipud-ja-lipumastid",
         "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-plotteri-paberirullid",
         "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-naitustahvlid-ja-lauad",
         "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-led-reklaamtahvlid-ja-ekraanid",
         "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-posteri-ja-bannerihoidikud",
-        "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-reklaamlipud-ja-lipumastid",
         "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-vinuulloikurid-ja-plotterid"
       ],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-reklaamlipud-ja-lipumastid": {
+      "handle": "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-reklaamlipud-ja-lipumastid",
+      "name_en": "Reklaamlipud & lipumastid",
+      "name_et": "Reklaamlipud & lipumastid",
+      "level": 3,
+      "parent_handle": "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign",
+      "child_handles": [],
       "image_path": null,
       "image_source": "none"
     },
@@ -18028,16 +18061,6 @@
       "handle": "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-posteri-ja-bannerihoidikud",
       "name_en": "Posteri- & bännerihoidikud",
       "name_et": "Posteri- & bännerihoidikud",
-      "level": 3,
-      "parent_handle": "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-reklaamlipud-ja-lipumastid": {
-      "handle": "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-reklaamlipud-ja-lipumastid",
-      "name_en": "Reklaamlipud & lipumastid",
-      "name_et": "Reklaamlipud & lipumastid",
       "level": 3,
       "parent_handle": "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign",
       "child_handles": [],
@@ -18675,30 +18698,20 @@
       "level": 2,
       "parent_handle": "v4-pollumajandus-ja-loomakasvatus",
       "child_handles": [
-        "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-kanapuurid-ja-aedikud",
-        "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-soodaautomaadid-ja-jootjad",
-        "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-automaatsed-kanamajauksed",
         "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-inkubaatorid-ja-munahaudejad",
+        "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-automaatsed-kanamajauksed",
         "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-linnutootlemise-masinad",
-        "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-pesakastid-ja-munemispesad"
+        "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-kanapuurid-ja-aedikud",
+        "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-pesakastid-ja-munemispesad",
+        "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-soodaautomaadid-ja-jootjad"
       ],
       "image_path": null,
       "image_source": "none"
     },
-    "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-kanapuurid-ja-aedikud": {
-      "handle": "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-kanapuurid-ja-aedikud",
-      "name_en": "Kanapuurid ja aedikud",
-      "name_et": "Kanapuurid ja aedikud",
-      "level": 3,
-      "parent_handle": "v4-pollumajandus-ja-loomakasvatus-linnukasvatus",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-soodaautomaadid-ja-jootjad": {
-      "handle": "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-soodaautomaadid-ja-jootjad",
-      "name_en": "Söödaautomaadid ja jootjad",
-      "name_et": "Söödaautomaadid ja jootjad",
+    "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-inkubaatorid-ja-munahaudejad": {
+      "handle": "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-inkubaatorid-ja-munahaudejad",
+      "name_en": "Inkubaatorid ja munahaudejad",
+      "name_et": "Inkubaatorid ja munahaudejad",
       "level": 3,
       "parent_handle": "v4-pollumajandus-ja-loomakasvatus-linnukasvatus",
       "child_handles": [],
@@ -18715,20 +18728,20 @@
       "image_path": null,
       "image_source": "none"
     },
-    "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-inkubaatorid-ja-munahaudejad": {
-      "handle": "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-inkubaatorid-ja-munahaudejad",
-      "name_en": "Inkubaatorid ja munahaudejad",
-      "name_et": "Inkubaatorid ja munahaudejad",
+    "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-linnutootlemise-masinad": {
+      "handle": "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-linnutootlemise-masinad",
+      "name_en": "Linnutöötlemise masinad",
+      "name_et": "Linnutöötlemise masinad",
       "level": 3,
       "parent_handle": "v4-pollumajandus-ja-loomakasvatus-linnukasvatus",
       "child_handles": [],
       "image_path": null,
       "image_source": "none"
     },
-    "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-linnutootlemise-masinad": {
-      "handle": "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-linnutootlemise-masinad",
-      "name_en": "Linnutöötlemise masinad",
-      "name_et": "Linnutöötlemise masinad",
+    "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-kanapuurid-ja-aedikud": {
+      "handle": "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-kanapuurid-ja-aedikud",
+      "name_en": "Kanapuurid ja aedikud",
+      "name_et": "Kanapuurid ja aedikud",
       "level": 3,
       "parent_handle": "v4-pollumajandus-ja-loomakasvatus-linnukasvatus",
       "child_handles": [],
@@ -18745,6 +18758,16 @@
       "image_path": null,
       "image_source": "none"
     },
+    "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-soodaautomaadid-ja-jootjad": {
+      "handle": "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-soodaautomaadid-ja-jootjad",
+      "name_en": "Söödaautomaadid ja jootjad",
+      "name_et": "Söödaautomaadid ja jootjad",
+      "level": 3,
+      "parent_handle": "v4-pollumajandus-ja-loomakasvatus-linnukasvatus",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
     "v4-pollumajandus-ja-loomakasvatus-kariloomad": {
       "handle": "v4-pollumajandus-ja-loomakasvatus-kariloomad",
       "name_en": "Kariloomad",
@@ -18752,23 +18775,13 @@
       "level": 2,
       "parent_handle": "v4-pollumajandus-ja-loomakasvatus",
       "child_handles": [
-        "v4-pollumajandus-ja-loomakasvatus-hobuse-ja-tallitarvikud",
         "v4-pollumajandus-ja-loomakasvatus-kariloomad-elektrikarjused-ja-tarvikud",
-        "v4-pollumajandus-ja-loomakasvatus-kariloomad-kariloomade-sugamisharjad",
-        "v4-pollumajandus-ja-loomakasvatus-kariloomad-heinasooturid-ja-heinavorgud",
+        "v4-pollumajandus-ja-loomakasvatus-hobuse-ja-tallitarvikud",
+        "v4-pollumajandus-ja-loomakasvatus-kariloomad-tra-ataiad-ja-aiapiirded",
         "v4-pollumajandus-ja-loomakasvatus-kariloomad-soodurid-ja-soodakuna",
-        "v4-pollumajandus-ja-loomakasvatus-kariloomad-tra-ataiad-ja-aiapiirded"
+        "v4-pollumajandus-ja-loomakasvatus-kariloomad-heinasooturid-ja-heinavorgud",
+        "v4-pollumajandus-ja-loomakasvatus-kariloomad-kariloomade-sugamisharjad"
       ],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-pollumajandus-ja-loomakasvatus-hobuse-ja-tallitarvikud": {
-      "handle": "v4-pollumajandus-ja-loomakasvatus-hobuse-ja-tallitarvikud",
-      "name_en": "Hobuse- ja tallitarvikud",
-      "name_et": "Hobuse- ja tallitarvikud",
-      "level": 3,
-      "parent_handle": "v4-pollumajandus-ja-loomakasvatus-kariloomad",
-      "child_handles": [],
       "image_path": null,
       "image_source": "none"
     },
@@ -18782,30 +18795,10 @@
       "image_path": null,
       "image_source": "none"
     },
-    "v4-pollumajandus-ja-loomakasvatus-kariloomad-kariloomade-sugamisharjad": {
-      "handle": "v4-pollumajandus-ja-loomakasvatus-kariloomad-kariloomade-sugamisharjad",
-      "name_en": "Kariloomade sügamisharjad",
-      "name_et": "Kariloomade sügamisharjad",
-      "level": 3,
-      "parent_handle": "v4-pollumajandus-ja-loomakasvatus-kariloomad",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-pollumajandus-ja-loomakasvatus-kariloomad-heinasooturid-ja-heinavorgud": {
-      "handle": "v4-pollumajandus-ja-loomakasvatus-kariloomad-heinasooturid-ja-heinavorgud",
-      "name_en": "Heinasööturid ja heinavõrgud",
-      "name_et": "Heinasööturid ja heinavõrgud",
-      "level": 3,
-      "parent_handle": "v4-pollumajandus-ja-loomakasvatus-kariloomad",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-pollumajandus-ja-loomakasvatus-kariloomad-soodurid-ja-soodakuna": {
-      "handle": "v4-pollumajandus-ja-loomakasvatus-kariloomad-soodurid-ja-soodakuna",
-      "name_en": "Söödurid ja söödaküna",
-      "name_et": "Söödurid ja söödaküna",
+    "v4-pollumajandus-ja-loomakasvatus-hobuse-ja-tallitarvikud": {
+      "handle": "v4-pollumajandus-ja-loomakasvatus-hobuse-ja-tallitarvikud",
+      "name_en": "Hobuse- ja tallitarvikud",
+      "name_et": "Hobuse- ja tallitarvikud",
       "level": 3,
       "parent_handle": "v4-pollumajandus-ja-loomakasvatus-kariloomad",
       "child_handles": [],
@@ -18822,6 +18815,36 @@
       "image_path": null,
       "image_source": "none"
     },
+    "v4-pollumajandus-ja-loomakasvatus-kariloomad-soodurid-ja-soodakuna": {
+      "handle": "v4-pollumajandus-ja-loomakasvatus-kariloomad-soodurid-ja-soodakuna",
+      "name_en": "Söödurid ja söödaküna",
+      "name_et": "Söödurid ja söödaküna",
+      "level": 3,
+      "parent_handle": "v4-pollumajandus-ja-loomakasvatus-kariloomad",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-pollumajandus-ja-loomakasvatus-kariloomad-heinasooturid-ja-heinavorgud": {
+      "handle": "v4-pollumajandus-ja-loomakasvatus-kariloomad-heinasooturid-ja-heinavorgud",
+      "name_en": "Heinasööturid ja heinavõrgud",
+      "name_et": "Heinasööturid ja heinavõrgud",
+      "level": 3,
+      "parent_handle": "v4-pollumajandus-ja-loomakasvatus-kariloomad",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-pollumajandus-ja-loomakasvatus-kariloomad-kariloomade-sugamisharjad": {
+      "handle": "v4-pollumajandus-ja-loomakasvatus-kariloomad-kariloomade-sugamisharjad",
+      "name_en": "Kariloomade sügamisharjad",
+      "name_et": "Kariloomade sügamisharjad",
+      "level": 3,
+      "parent_handle": "v4-pollumajandus-ja-loomakasvatus-kariloomad",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
     "v4-pollumajandus-ja-loomakasvatus-talutehnika": {
       "handle": "v4-pollumajandus-ja-loomakasvatus-talutehnika",
       "name_en": "Talutehnika",
@@ -18829,13 +18852,33 @@
       "level": 2,
       "parent_handle": "v4-pollumajandus-ja-loomakasvatus",
       "child_handles": [
+        "v4-pollumajandus-talutehnika-muud",
+        "v4-pollumajandus-ja-loomakasvatus-talutehnika-lohistatavad-akked",
         "v4-pollumajandus-ja-loomakasvatus-talutehnika-pallikahvlid",
         "v4-pollumajandus-ja-loomakasvatus-talutehnika-traktori-kolmepunkti-haakeadapterid",
-        "v4-pollumajandus-ja-loomakasvatus-talutehnika-lohistatavad-akked",
         "v4-pollumajandus-ja-loomakasvatus-talutehnika-traktori-ballastkastid",
-        "v4-pollumajandus-talutehnika-muud",
         "v4-pollumajandus-talutehnika-pinnasetoo-greiderdamine"
       ],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-pollumajandus-talutehnika-muud": {
+      "handle": "v4-pollumajandus-talutehnika-muud",
+      "name_en": "Muud talutehnika",
+      "name_et": "Muud talutehnika",
+      "level": 3,
+      "parent_handle": "v4-pollumajandus-ja-loomakasvatus-talutehnika",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-pollumajandus-ja-loomakasvatus-talutehnika-lohistatavad-akked": {
+      "handle": "v4-pollumajandus-ja-loomakasvatus-talutehnika-lohistatavad-akked",
+      "name_en": "Mullaharimine (äkked ja kultivaatorid)",
+      "name_et": "Mullaharimine (äkked ja kultivaatorid)",
+      "level": 3,
+      "parent_handle": "v4-pollumajandus-ja-loomakasvatus-talutehnika",
+      "child_handles": [],
       "image_path": null,
       "image_source": "none"
     },
@@ -18859,30 +18902,10 @@
       "image_path": null,
       "image_source": "none"
     },
-    "v4-pollumajandus-ja-loomakasvatus-talutehnika-lohistatavad-akked": {
-      "handle": "v4-pollumajandus-ja-loomakasvatus-talutehnika-lohistatavad-akked",
-      "name_en": "Mullaharimine (äkked ja kultivaatorid)",
-      "name_et": "Mullaharimine (äkked ja kultivaatorid)",
-      "level": 3,
-      "parent_handle": "v4-pollumajandus-ja-loomakasvatus-talutehnika",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
     "v4-pollumajandus-ja-loomakasvatus-talutehnika-traktori-ballastkastid": {
       "handle": "v4-pollumajandus-ja-loomakasvatus-talutehnika-traktori-ballastkastid",
       "name_en": "Ballast ja raskused",
       "name_et": "Ballast ja raskused",
-      "level": 3,
-      "parent_handle": "v4-pollumajandus-ja-loomakasvatus-talutehnika",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-pollumajandus-talutehnika-muud": {
-      "handle": "v4-pollumajandus-talutehnika-muud",
-      "name_en": "Muud talutehnika",
-      "name_et": "Muud talutehnika",
       "level": 3,
       "parent_handle": "v4-pollumajandus-ja-loomakasvatus-talutehnika",
       "child_handles": [],
@@ -20600,21 +20623,21 @@
     "v4-suurkoogiseadmed-toitlustusaknad-ja-toiduveoki-tarvikud-toiduveoki-teenindusaknad",
     "v4-moobel-ja-sisustus",
     "v4-moobel-ja-sisustus-sisustusdekoor",
+    "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-kaardikogumiku-hoiukohvrid",
+    "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-vitriinkarbid-ja-spordisuveniirid",
     "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-sigarihumidorid",
-    "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-diskopallid",
-    "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-vitraazaknad-ja-paneelid",
     "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-kellamehhanismid-ja-seinakellad",
     "v4-moobel-ja-sisustus-sisustusdekoor-vaibad",
     "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-puuvillakoiest-korvid",
     "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-ehte-ja-hoiukarbid",
     "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-teadetetahvlid",
-    "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-kaardikogumiku-hoiukohvrid",
-    "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-vitriinkarbid-ja-spordisuveniirid",
     "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-peeglid",
     "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-sailivlilled-kinkekarbis",
     "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-lillevaasid",
     "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-lillealused-ja-statiivid",
     "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-isekleepuv-tapeet",
+    "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-diskopallid",
+    "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-vitraazaknad-ja-paneelid",
     "v4-moobel-ja-sisustus-riiulid-ja-hoiustamine",
     "v4-moobel-ja-sisustus-riiulid-ja-hoiustamine-pesumasina-pealsed-riiulid",
     "v4-moobel-ja-sisustus-riiulid-kuttepuude-hoidjad",
@@ -20706,18 +20729,18 @@
     "v4-moobel-ja-sisustus-lapsemoobel-laste-manguasjade-hoiukastid-ja-pingid",
     "v4-moobel-ja-sisustus-lapsemoobel-laste-diivanid-ja-diivanvoodid",
     "v4-moobel-ja-sisustus-toolid-ja-istmed",
-    "v4-moobel-ja-sisustus-toolid-ja-istmed-vannitoa-istmed",
-    "v4-moobel-ja-sisustus-toolid-ja-istmed-pingid",
     "v4-moobel-ja-sisustus-toolid-ja-istmed-taburetid-ja-tootoolid-ratastega",
     "v4-moobel-ja-sisustus-toolid-ja-istmed-kontori-ja-tootoolid",
     "v4-moobel-ja-sisustus-toolid-ja-istmed-baaritoolid",
     "v4-moobel-ja-sisustus-toolid-ja-istmed-soogitoolid",
+    "v4-moobel-ja-sisustus-toolid-ja-istmed-vannitoa-istmed",
+    "v4-moobel-ja-sisustus-toolid-ja-istmed-pingid",
     "v4-moobel-ja-sisustus-ruumijagajad-ja-akustika",
     "v4-moobel-ja-sisustus-ruumijagajad-ja-akustika-ruumijagajad",
+    "v4-moobel-ja-sisustus-ruumijagajad-ja-akustika-kokkupandavad-ruumijagajad",
+    "v4-moobel-ja-sisustus-ruumijagajad-ja-akustika-vaheseinad",
     "v4-moobel-ja-sisustus-ruumijagajad-ja-akustika-proovikabiinid",
     "v4-moobel-ja-sisustus-ruumijagajad-helisummutus",
-    "v4-moobel-ja-sisustus-ruumijagajad-ja-akustika-vaheseinad",
-    "v4-moobel-ja-sisustus-ruumijagajad-ja-akustika-kokkupandavad-ruumijagajad",
     "v4-moobel-ja-sisustus-esikumoobel-ja-jalatsikapid",
     "v4-moobel-ja-sisustus-esikumoobel-ja-jalatsikapid-jalatsikapid",
     "v4-moobel-ja-sisustus-esikumoobel-ja-jalatsikapid-jalatsipingid-ja-istmed",
@@ -20729,9 +20752,9 @@
     "v4-moobel-ja-sisustus-vannitoamoobel-vannitoakapid",
     "v4-moobel-ja-sisustus-vannitoamoobel-peeglikapid",
     "v4-moobel-ja-sisustus-tv-alused-ja-kinnitused",
+    "v4-moobel-ja-sisustus-tv-alused-ja-jalused",
     "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-teleri-seinabraketid-ja-jalused",
     "v4-moobel-ja-sisustus-tv-alused-ja-kinnitused-tv-seinabraketid",
-    "v4-moobel-ja-sisustus-tv-alused-ja-jalused",
     "v4-moobel-ja-sisustus-pidu-ja-uritused",
     "v4-reklaami-truki-ja-graveerimisseadmed-fotostuudio-ja-taustad-taustastatiivid",
     "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-onne-ja-loosimisrattad-ning-trumlid",
@@ -21124,16 +21147,20 @@
     "v4-santehnika-kute-ja-ventilatsioon-veepumbad-ja-vaakumpumbad-akupumbad",
     "v4-santehnika-kute-ja-ventilatsioon-veepumbad-ja-vaakumpumbad-pilssipumbad",
     "v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika",
+    "v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika-dusialuste-ja-vannide-komplektid",
+    "v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika-rasvaeraldajad",
     "v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika-kanalisatsiooni-puhastusmasinad",
     "v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika-puhastuskaablid-ja-trossid",
     "v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika-torutoed-ja-hoidikud",
-    "v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika-dusialuste-ja-vannide-komplektid",
-    "v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika-rasvaeraldajad",
     "v4-santehnika-kute-ja-ventilatsioon-kaminad-ja-korsten",
-    "v4-santehnika-kute-ja-ventilatsioon-kute-ja-kaminad-kaminapoletid-ja-suutekomplektid",
     "v4-santehnika-kute-korsten",
+    "v4-santehnika-kute-ja-ventilatsioon-kute-ja-kaminad-kaminapoletid-ja-suutekomplektid",
     "v4-santehnika-kute-kaminad-tarvikud",
     "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud",
+    "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-koogisegistid",
+    "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-dusisegistid",
+    "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-vannisegistid",
+    "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-dusikomplektid",
     "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-dusipaneelid",
     "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-dusisusteemid",
     "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-tualettsusteemid",
@@ -21144,31 +21171,29 @@
     "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-vannitoavalamud",
     "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-koogivalamud",
     "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-kraanisegistid",
-    "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-koogisegistid",
-    "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-dusisegistid",
-    "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-dusikomplektid",
-    "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-vannisegistid",
     "v4-santehnika-kute-ja-ventilatsioon-veefiltrid-ja-puhastus",
-    "v4-santehnika-kute-ja-ventilatsioon-veefiltrid-ja-puhastus-kraanile-kinnitatavad-veefiltrid",
-    "v4-santehnika-kute-ja-ventilatsioon-veefiltrid-ja-puhastus-gravitatsioonilised-veefiltrid",
     "v4-santehnika-kute-ja-ventilatsioon-veefiltrid-ja-puhastus-poordosmoosisusteemid",
+    "v4-santehnika-kute-ja-ventilatsioon-veefiltrid-ja-puhastus-gravitatsioonilised-veefiltrid",
+    "v4-santehnika-kute-ja-ventilatsioon-veefiltrid-ja-puhastus-kraanile-kinnitatavad-veefiltrid",
     "v4-santehnika-kute-ja-ventilatsioon-veefiltrid-ja-puhastus-uv-veepuhastid",
     "v4-santehnika-kute-ja-ventilatsioon-veefiltrid-ja-puhastus-vee-ionisaatorid",
     "v4-santehnika-kute-ja-ventilatsioon-veefiltrid-ja-puhastus-veepehmendussusteemid",
     "v4-santehnika-kute-ja-ventilatsioon-veefiltrid-ja-puhastus-settefiltrid",
     "v4-santehnika-kute-ja-ventilatsioon-veefiltrid-ja-puhastus-asenduspatronid-ja-filtrikassetid",
     "v4-santehnika-kute-ja-ventilatsioon-dusisusteemid-ja-dusikabiinid",
-    "v4-santehnika-kute-ja-ventilatsioon-dusisusteemid-ja-dusikabiinid-dusiseinad",
-    "v4-santehnika-kute-ja-ventilatsioon-dusisusteemid-ja-dusikabiinid-dusinisid",
-    "v4-santehnika-kute-ja-ventilatsioon-dusisusteemid-ja-dusikabiinid-dusiuksed",
     "v4-santehnika-kute-ja-ventilatsioon-dusisusteemid-ja-dusikabiinid-dusipaneelid",
     "v4-santehnika-kute-ja-ventilatsioon-dusisusteemid-ja-dusikabiinid-dusialuste-komplektid-ja-tarvikud",
+    "v4-santehnika-kute-ja-ventilatsioon-dusisusteemid-ja-dusikabiinid-dusiseinad",
+    "v4-santehnika-kute-ja-ventilatsioon-dusisusteemid-ja-dusikabiinid-dusiuksed",
+    "v4-santehnika-kute-ja-ventilatsioon-dusisusteemid-ja-dusikabiinid-dusinisid",
     "v4-santehnika-kute-ja-ventilatsioon-vannitoa-tarvikud-ja-hoiustamine",
     "v4-santehnika-kute-ja-ventilatsioon-vannitoa-tarvikud-ja-hoiustamine-dusinisid",
     "v4-santehnika-kute-ja-ventilatsioon-vannitoa-tarvikud-ja-hoiustamine-valgustusega-vannitoapeeglid-ja-peeglikapid",
     "v4-santehnika-kute-ja-ventilatsioon-vannitoa-tarvikud-ja-hoiustamine-vannitoa-tarvikute-komplektid",
     "v4-santehnika-kute-ja-ventilatsioon-vannitoa-tarvikud-ja-hoiustamine-dusinurga-riiulid-ja-postid",
     "v4-santehnika-kute-ja-ventilatsioon-aravool-ja-porandatrapid",
+    "v4-santehnika-kute-ja-ventilatsioon-lineaarsed-dusitrapid",
+    "v4-santehnika-kute-ja-ventilatsioon-kanal-ja-renn-aravool",
     "v4-santehnika-kute-ja-ventilatsioon-radiaatorid-ja-kuttekehad",
     "v4-santehnika-kute-ja-ventilatsioon-konvektorid-ja-seinakuttekehad",
     "v4-santehnika-kute-ja-ventilatsioon-ratikukuivatid",
@@ -21236,14 +21261,14 @@
     "v4-elektritarvikud-ja-valgustus-lambid-ja-valgustid-rippvalgustid",
     "v4-elektritarvikud-ja-valgustus-lambid-ja-valgustid-mullitoru-lambid",
     "v4-elektritarvikud-ja-valgustus-toostusvalgustus",
-    "v4-elektritarvikud-ja-valgustus-toostusvalgustus-tanava-ja-valisvalgustid",
+    "v4-elektritarvikud-ja-valgustus-toostusvalgustus-lae-ja-katusevalgustid",
     "v4-elektritarvikud-ja-valgustus-toostusvalgustus-reklaamvalgustid-ja-ekraanid",
     "v4-elektritarvikud-ja-valgustus-toostusvalgustus-fotostuudio-valgustid",
     "v4-elektritarvikud-ja-valgustus-toostusvalgustus-avarii-ja-hadavalgustid",
     "v4-elektritarvikud-ja-valgustus-toostusvalgustus-ehitusvalgustus",
     "v4-elektritarvikud-ja-valgustus-toostusvalgustus-laovalgustid",
     "v4-elektritarvikud-ja-valgustus-toostusvalgustus-toovalgustid",
-    "v4-elektritarvikud-ja-valgustus-toostusvalgustus-lae-ja-katusevalgustid",
+    "v4-elektritarvikud-ja-valgustus-toostusvalgustus-tanava-ja-valisvalgustid",
     "v4-elektritarvikud-ja-valgustus-toitejaotus-ja-jaotussusteemid",
     "v4-elektritarvikud-ja-valgustus-toitejaotus-ja-jaotussusteemid-kaablirullid-ja-pikenduskaablid",
     "v4-elektritarvikud-ja-valgustus-toitejaotus-ja-jaotussusteemid-inverterid",
@@ -21465,48 +21490,44 @@
     "v4-sport-ja-vaba-aeg-veesport-ja-paadindus-livewell-pumbad",
     "v4-muusika-ja-helitehnika",
     "v4-muusika-ja-helitehnika-muusikariistad",
-    "v4-muusika-ja-helitehnika-muusikariistad-klahvpillid",
     "v4-muusika-ja-helitehnika-muusikariistad-keelpillid",
+    "v4-muusika-ja-helitehnika-muusikariistad-pillitarvikud",
     "v4-muusika-ja-helitehnika-muusikariistad-puhkpillid",
     "v4-muusika-ja-helitehnika-muusikariistad-lookpillid",
-    "v4-muusika-ja-helitehnika-muusikariistad-pillitarvikud",
+    "v4-muusika-ja-helitehnika-muusikariistad-klahvpillid",
     "v4-muusika-ja-helitehnika-dj-ja-lavatehnika",
-    "v4-muusika-ja-helitehnika-dj-ja-lavatehnika-lavaefektide-masinad",
-    "v4-muusika-ja-helitehnika-dj-ja-lavatehnika-vinuulplaatide-hoiustamine",
     "v4-muusika-ja-helitehnika-dj-ja-lavatehnika-vinuulplaadimangijad",
+    "v4-muusika-ja-helitehnika-dj-ja-lavatehnika-vinuulplaatide-hoiustamine",
+    "v4-muusika-ja-helitehnika-dj-ja-lavatehnika-lavaefektide-masinad",
     "v4-muusika-ja-helitehnika-dj-ja-lavatehnika-pottsepakettad",
     "v4-muusika-ja-helitehnika-heli-ja-salvestus",
-    "v4-muusika-ja-helitehnika-heli-ja-salvestus-karaokemasinad",
     "v4-muusika-ja-helitehnika-heli-ja-salvestus-mikrofonikaablid",
+    "v4-muusika-ja-helitehnika-heli-ja-salvestus-karaokemasinad",
     "v4-reklaami-truki-ja-graveerimisseadmed",
     "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc",
+    "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-graveerimispingid-ja-klambrid",
+    "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-paindvolliga-lihvimismasinad",
+    "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-sulatus-ja-poletusahjud",
     "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-spindelmootorid-ja-tarvikud",
+    "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-lineaarjuhikud-ja-liikumissusteemid",
+    "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-lasertorud-ja-toiteplokid",
+    "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-lasergraveerijad-ja-loikurid",
+    "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-vaakumvalamismasinad",
     "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-ohupuhuri-komplektid-laserloikuritele",
+    "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-lasergraveerija-kaitsekatted",
     "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-juveelimikroskoobid",
     "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-nahaloikus-ja-pressimismasinad",
-    "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-sulatus-ja-poletusahjud",
-    "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-vaakumvalamismasinad",
-    "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-lasergraveerija-kaitsekatted",
-    "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-paindvolliga-lihvimismasinad",
-    "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-graveerimispingid-ja-klambrid",
+    "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-cnc-freespingid-ja-graveerijad",
     "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-3d-printeri-korpused-ja-katted",
     "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-stantsimis-ja-pressimismasinad",
     "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-kivide-lihvimis-ja-poleerimismasinad",
     "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-toostuslikud-vesijahutid",
     "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-noopide-ja-markide-valmistusmasinad",
-    "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-cnc-freespingid-ja-graveerijad",
-    "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-lineaarjuhikud-ja-liikumissusteemid",
-    "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-lasertorud-ja-toiteplokid",
-    "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-lasergraveerijad-ja-loikurid",
     "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk",
-    "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-mutsi-ja-kruusipressid",
-    "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-kuumpressi-tarvikud-ja-toolauad",
-    "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-kuumpressid",
-    "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-kuumpressid-sublimatsioon",
+    "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-sublimatsioonitoorikud-topsid-ja-termosed",
     "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-truki-ja-termoprinterid",
     "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-stantsimis-ja-reljeefpressimismasinad",
     "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-loikemasinad-ja-tarvikud",
-    "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-sublimatsioonitoorikud-topsid-ja-termosed",
     "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-maalimistarvikud-ja-molbertid",
     "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-noopide-ja-markide-valmistamise-masinad",
     "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-omblusmasinad",
@@ -21514,12 +21535,16 @@
     "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-kuumulekande-vinuul-htv",
     "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-truki-ja-siiditrukikuivatid",
     "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-siiditruki-seadmed-ja-komplektid",
+    "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-mutsi-ja-kruusipressid",
+    "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-kuumpressi-tarvikud-ja-toolauad",
+    "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-kuumpressid",
+    "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-kuumpressid-sublimatsioon",
     "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign",
+    "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-reklaamlipud-ja-lipumastid",
     "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-plotteri-paberirullid",
     "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-naitustahvlid-ja-lauad",
     "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-led-reklaamtahvlid-ja-ekraanid",
     "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-posteri-ja-bannerihoidikud",
-    "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-reklaamlipud-ja-lipumastid",
     "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-vinuulloikurid-ja-plotterid",
     "v4-reklaami-truki-ja-graveerimisseadmed-koitmine-ja-lamineerimine",
     "v4-reklaami-truki-ja-graveerimisseadmed-koitmine-ja-lamineerimine-paberiloikurid",
@@ -21576,25 +21601,25 @@
     "v4-lemmikloomatarbed-lemmiklooma-uksed-ja-varavad-lemmiklooma-uksed",
     "v4-pollumajandus-ja-loomakasvatus",
     "v4-pollumajandus-ja-loomakasvatus-linnukasvatus",
-    "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-kanapuurid-ja-aedikud",
-    "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-soodaautomaadid-ja-jootjad",
-    "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-automaatsed-kanamajauksed",
     "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-inkubaatorid-ja-munahaudejad",
+    "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-automaatsed-kanamajauksed",
     "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-linnutootlemise-masinad",
+    "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-kanapuurid-ja-aedikud",
     "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-pesakastid-ja-munemispesad",
+    "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-soodaautomaadid-ja-jootjad",
     "v4-pollumajandus-ja-loomakasvatus-kariloomad",
-    "v4-pollumajandus-ja-loomakasvatus-hobuse-ja-tallitarvikud",
     "v4-pollumajandus-ja-loomakasvatus-kariloomad-elektrikarjused-ja-tarvikud",
-    "v4-pollumajandus-ja-loomakasvatus-kariloomad-kariloomade-sugamisharjad",
-    "v4-pollumajandus-ja-loomakasvatus-kariloomad-heinasooturid-ja-heinavorgud",
-    "v4-pollumajandus-ja-loomakasvatus-kariloomad-soodurid-ja-soodakuna",
+    "v4-pollumajandus-ja-loomakasvatus-hobuse-ja-tallitarvikud",
     "v4-pollumajandus-ja-loomakasvatus-kariloomad-tra-ataiad-ja-aiapiirded",
+    "v4-pollumajandus-ja-loomakasvatus-kariloomad-soodurid-ja-soodakuna",
+    "v4-pollumajandus-ja-loomakasvatus-kariloomad-heinasooturid-ja-heinavorgud",
+    "v4-pollumajandus-ja-loomakasvatus-kariloomad-kariloomade-sugamisharjad",
     "v4-pollumajandus-ja-loomakasvatus-talutehnika",
+    "v4-pollumajandus-talutehnika-muud",
+    "v4-pollumajandus-ja-loomakasvatus-talutehnika-lohistatavad-akked",
     "v4-pollumajandus-ja-loomakasvatus-talutehnika-pallikahvlid",
     "v4-pollumajandus-ja-loomakasvatus-talutehnika-traktori-kolmepunkti-haakeadapterid",
-    "v4-pollumajandus-ja-loomakasvatus-talutehnika-lohistatavad-akked",
     "v4-pollumajandus-ja-loomakasvatus-talutehnika-traktori-ballastkastid",
-    "v4-pollumajandus-talutehnika-muud",
     "v4-pollumajandus-talutehnika-pinnasetoo-greiderdamine",
     "v4-pollumajandus-ja-loomakasvatus-mesindus",
     "v4-pollumajandus-ja-loomakasvatus-mesindus-mesitarud-ja-komplektid",
