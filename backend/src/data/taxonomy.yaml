@@ -5220,21 +5220,21 @@ l1:
         name_et: "Kanalisatsiooni- ja torupuhastus"
         product_count: 0
         subs:
-          - slug: v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika-rasvaeraldajad
-            name_en: "Rasvaeraldajad"
-            name_et: "Rasvaeraldajad"
-            product_count: 0
-          - slug: v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika-kanalisatsiooni-puhastusmasinad
-            name_en: "Kanalisatsiooni puhastusmasinad"
-            name_et: "Kanalisatsiooni puhastusmasinad"
+          - slug: v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika-torutoed-ja-hoidikud
+            name_en: "Torutoed & -hoidikud"
+            name_et: "Torutoed & -hoidikud"
             product_count: 0
           - slug: v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika-puhastuskaablid-ja-trossid
             name_en: "Puhastuskaablid & trossid"
             name_et: "Puhastuskaablid & trossid"
             product_count: 0
-          - slug: v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika-torutoed-ja-hoidikud
-            name_en: "Torutoed & -hoidikud"
-            name_et: "Torutoed & -hoidikud"
+          - slug: v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika-kanalisatsiooni-puhastusmasinad
+            name_en: "Kanalisatsiooni puhastusmasinad"
+            name_et: "Kanalisatsiooni puhastusmasinad"
+            product_count: 0
+          - slug: v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika-rasvaeraldajad
+            name_en: "Rasvaeraldajad"
+            name_et: "Rasvaeraldajad"
             product_count: 0
       - slug: v4-santehnika-kute-ja-ventilatsioon-kaminad-ja-korsten
         name_en: "Kaminad & korsten"
@@ -5258,9 +5258,29 @@ l1:
         name_et: "Segistid & valamud"
         product_count: 0
         subs:
-          - slug: v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-dusikomplektid
-            name_en: "Dušikomplektid"
-            name_et: "Dušikomplektid"
+          - slug: v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-koogisegistid
+            name_en: "Köögisegistid"
+            name_et: "Köögisegistid"
+            product_count: 0
+          - slug: v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-vannisegistid
+            name_en: "Vannisegistid"
+            name_et: "Vannisegistid"
+            product_count: 0
+          - slug: v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-vannitoavalamud
+            name_en: "Vannitoavalamud"
+            name_et: "Vannitoavalamud"
+            product_count: 0
+          - slug: v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-koogivalamud
+            name_en: "Köögivalamud"
+            name_et: "Köögivalamud"
+            product_count: 0
+          - slug: v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-kraanisegistid
+            name_en: "Kraanisegistid"
+            name_et: "Kraanisegistid"
+            product_count: 0
+          - slug: v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-dusisegistid
+            name_en: "Dušisegistid"
+            name_et: "Dušisegistid"
             product_count: 0
           - slug: v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-tualettsusteemid
             name_en: "Tualettsüsteemid"
@@ -5282,47 +5302,11 @@ l1:
             name_en: "Kommertssegistid & -valamud"
             name_et: "Kommertssegistid & -valamud"
             product_count: 0
-          - slug: v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-vannitoavalamud
-            name_en: "Vannitoavalamud"
-            name_et: "Vannitoavalamud"
-            product_count: 0
-          - slug: v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-koogivalamud
-            name_en: "Köögivalamud"
-            name_et: "Köögivalamud"
-            product_count: 0
-          - slug: v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-kraanisegistid
-            name_en: "Kraanisegistid"
-            name_et: "Kraanisegistid"
-            product_count: 0
-          - slug: v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-koogisegistid
-            name_en: "Köögisegistid"
-            name_et: "Köögisegistid"
-            product_count: 0
-          - slug: v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-dusisegistid
-            name_en: "Dušisegistid"
-            name_et: "Dušisegistid"
-            product_count: 0
-          - slug: v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-vannisegistid
-            name_en: "Vannisegistid"
-            name_et: "Vannisegistid"
-            product_count: 0
-          - slug: v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-dusisusteemid
-            name_en: "Dušisüsteemid"
-            name_et: "Dušisüsteemid"
-            product_count: 0
       - slug: v4-santehnika-kute-ja-ventilatsioon-veefiltrid-ja-puhastus
         name_en: "Veefiltrid & puhastus"
         name_et: "Veefiltrid & puhastus"
         product_count: 0
         subs:
-          - slug: v4-santehnika-kute-ja-ventilatsioon-veefiltrid-ja-puhastus-asenduspatronid-ja-filtrikassetid
-            name_en: "Asenduspatronid & filtrikassetid"
-            name_et: "Asenduspatronid & filtrikassetid"
-            product_count: 0
-          - slug: v4-santehnika-kute-ja-ventilatsioon-veefiltrid-ja-puhastus-settefiltrid
-            name_en: "Settefiltrid"
-            name_et: "Settefiltrid"
-            product_count: 0
           - slug: v4-santehnika-kute-ja-ventilatsioon-veefiltrid-ja-puhastus-gravitatsioonilised-veefiltrid
             name_en: "Gravitatsioonilised veefiltrid"
             name_et: "Gravitatsioonilised veefiltrid"
@@ -5346,6 +5330,14 @@ l1:
           - slug: v4-santehnika-kute-ja-ventilatsioon-veefiltrid-ja-puhastus-veepehmendussusteemid
             name_en: "Veepehmendussüsteemid"
             name_et: "Veepehmendussüsteemid"
+            product_count: 0
+          - slug: v4-santehnika-kute-ja-ventilatsioon-veefiltrid-ja-puhastus-settefiltrid
+            name_en: "Settefiltrid"
+            name_et: "Settefiltrid"
+            product_count: 0
+          - slug: v4-santehnika-kute-ja-ventilatsioon-veefiltrid-ja-puhastus-asenduspatronid-ja-filtrikassetid
+            name_en: "Asenduspatronid & filtrikassetid"
+            name_et: "Asenduspatronid & filtrikassetid"
             product_count: 0
       - slug: v4-santehnika-kute-ja-ventilatsioon-dusisusteemid-ja-dusikabiinid
         name_en: "Dušisüsteemid & dušikabiinid"
@@ -5376,22 +5368,30 @@ l1:
             name_en: "Dušinišid"
             name_et: "Dušinišid"
             product_count: 0
+          - slug: v4-santehnika-kute-ja-ventilatsioon-dusisusteemid-ja-dusikabiinid-dusisusteemid
+            name_en: "Dušisüsteemid"
+            name_et: "Dušisüsteemid"
+            product_count: 0
+          - slug: v4-santehnika-kute-ja-ventilatsioon-dusisusteemid-ja-dusikabiinid-dusikomplektid
+            name_en: "Dušikomplektid"
+            name_et: "Dušikomplektid"
+            product_count: 0
       - slug: v4-santehnika-kute-ja-ventilatsioon-vannitoa-tarvikud-ja-hoiustamine
         name_en: "Vannitoa-tarvikud & hoiustamine"
         name_et: "Vannitoa-tarvikud & hoiustamine"
         product_count: 0
         subs:
-          - slug: v4-santehnika-kute-ja-ventilatsioon-vannitoa-tarvikud-ja-hoiustamine-dusinurga-riiulid-ja-postid
-            name_en: "Dušinurga riiulid & postid"
-            name_et: "Dušinurga riiulid & postid"
+          - slug: v4-santehnika-kute-ja-ventilatsioon-vannitoa-tarvikud-ja-hoiustamine-valgustusega-vannitoapeeglid-ja-peeglikapid
+            name_en: "Valgustusega vannitoapeeglid & peeglikapid"
+            name_et: "Valgustusega vannitoapeeglid & peeglikapid"
             product_count: 0
           - slug: v4-santehnika-kute-ja-ventilatsioon-vannitoa-tarvikud-ja-hoiustamine-vannitoa-tarvikute-komplektid
             name_en: "Vannitoa tarvikute komplektid"
             name_et: "Vannitoa tarvikute komplektid"
             product_count: 0
-          - slug: v4-santehnika-kute-ja-ventilatsioon-vannitoa-tarvikud-ja-hoiustamine-valgustusega-vannitoapeeglid-ja-peeglikapid
-            name_en: "Valgustusega vannitoapeeglid & peeglikapid"
-            name_et: "Valgustusega vannitoapeeglid & peeglikapid"
+          - slug: v4-santehnika-kute-ja-ventilatsioon-vannitoa-tarvikud-ja-hoiustamine-dusinurga-riiulid-ja-postid
+            name_en: "Dušinurga riiulid & postid"
+            name_et: "Dušinurga riiulid & postid"
             product_count: 0
       - slug: v4-santehnika-kute-ja-ventilatsioon-aravool-ja-porandatrapid
         name_en: "Äravool & põrandatrapid"
@@ -5411,6 +5411,10 @@ l1:
         name_et: "Radiaatorid & küttekehad"
         product_count: 0
         subs:
+          - slug: v4-santehnika-kute-ja-ventilatsioon-radiaatorid-terrassi-ja-infrapunasoojendid
+            name_en: "Terrassi- & infrapunasoojendid"
+            name_et: "Terrassi- & infrapunasoojendid"
+            product_count: 0
           - slug: v4-santehnika-kute-ja-ventilatsioon-konvektorid-ja-seinakuttekehad
             name_en: "Konvektorid & seinaküttekehad"
             name_et: "Konvektorid & seinaküttekehad"
@@ -5418,10 +5422,6 @@ l1:
           - slug: v4-santehnika-kute-ja-ventilatsioon-porandakuttetorud
             name_en: "Põrandaküttetorud"
             name_et: "Põrandaküttetorud"
-            product_count: 0
-          - slug: v4-santehnika-kute-ja-ventilatsioon-radiaatorid-terrassi-ja-infrapunasoojendid
-            name_en: "Terrassi- & infrapunasoojendid"
-            name_et: "Terrassi- & infrapunasoojendid"
             product_count: 0
           - slug: v4-santehnika-kute-ja-ventilatsioon-ratikukuivatid
             name_en: "Rätikukuivatid"

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-03T10:42:06.092Z",
+  "generated_at": "2026-07-03T10:47:47.935Z",
   "nodes": {
     "v4-tooriistad-ja-tarvikud": {
       "handle": "v4-tooriistad-ja-tarvikud",
@@ -13968,28 +13968,18 @@
       "level": 2,
       "parent_handle": "v4-santehnika-kute-ja-ventilatsioon",
       "child_handles": [
-        "v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika-rasvaeraldajad",
-        "v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika-kanalisatsiooni-puhastusmasinad",
+        "v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika-torutoed-ja-hoidikud",
         "v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika-puhastuskaablid-ja-trossid",
-        "v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika-torutoed-ja-hoidikud"
+        "v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika-kanalisatsiooni-puhastusmasinad",
+        "v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika-rasvaeraldajad"
       ],
       "image_path": null,
       "image_source": "none"
     },
-    "v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika-rasvaeraldajad": {
-      "handle": "v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika-rasvaeraldajad",
-      "name_en": "Rasvaeraldajad",
-      "name_et": "Rasvaeraldajad",
-      "level": 3,
-      "parent_handle": "v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika-kanalisatsiooni-puhastusmasinad": {
-      "handle": "v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika-kanalisatsiooni-puhastusmasinad",
-      "name_en": "Kanalisatsiooni puhastusmasinad",
-      "name_et": "Kanalisatsiooni puhastusmasinad",
+    "v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika-torutoed-ja-hoidikud": {
+      "handle": "v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika-torutoed-ja-hoidikud",
+      "name_en": "Torutoed & -hoidikud",
+      "name_et": "Torutoed & -hoidikud",
       "level": 3,
       "parent_handle": "v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika",
       "child_handles": [],
@@ -14006,10 +13996,20 @@
       "image_path": null,
       "image_source": "none"
     },
-    "v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika-torutoed-ja-hoidikud": {
-      "handle": "v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika-torutoed-ja-hoidikud",
-      "name_en": "Torutoed & -hoidikud",
-      "name_et": "Torutoed & -hoidikud",
+    "v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika-kanalisatsiooni-puhastusmasinad": {
+      "handle": "v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika-kanalisatsiooni-puhastusmasinad",
+      "name_en": "Kanalisatsiooni puhastusmasinad",
+      "name_et": "Kanalisatsiooni puhastusmasinad",
+      "level": 3,
+      "parent_handle": "v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika-rasvaeraldajad": {
+      "handle": "v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika-rasvaeraldajad",
+      "name_en": "Rasvaeraldajad",
+      "name_et": "Rasvaeraldajad",
       "level": 3,
       "parent_handle": "v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika",
       "child_handles": [],
@@ -14067,27 +14067,75 @@
       "level": 2,
       "parent_handle": "v4-santehnika-kute-ja-ventilatsioon",
       "child_handles": [
-        "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-dusikomplektid",
+        "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-koogisegistid",
+        "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-vannisegistid",
+        "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-vannitoavalamud",
+        "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-koogivalamud",
+        "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-kraanisegistid",
+        "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-dusisegistid",
         "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-tualettsusteemid",
         "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-bideed-ja-lisaseadmed",
         "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-ouekraanid",
         "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-joogivee-ja-filtersegistid",
-        "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-kommertssegistid-ja-valamud",
-        "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-vannitoavalamud",
-        "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-koogivalamud",
-        "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-kraanisegistid",
-        "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-koogisegistid",
-        "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-dusisegistid",
-        "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-vannisegistid",
-        "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-dusisusteemid"
+        "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-kommertssegistid-ja-valamud"
       ],
       "image_path": null,
       "image_source": "none"
     },
-    "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-dusikomplektid": {
-      "handle": "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-dusikomplektid",
-      "name_en": "Dušikomplektid",
-      "name_et": "Dušikomplektid",
+    "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-koogisegistid": {
+      "handle": "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-koogisegistid",
+      "name_en": "Köögisegistid",
+      "name_et": "Köögisegistid",
+      "level": 3,
+      "parent_handle": "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-vannisegistid": {
+      "handle": "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-vannisegistid",
+      "name_en": "Vannisegistid",
+      "name_et": "Vannisegistid",
+      "level": 3,
+      "parent_handle": "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-vannitoavalamud": {
+      "handle": "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-vannitoavalamud",
+      "name_en": "Vannitoavalamud",
+      "name_et": "Vannitoavalamud",
+      "level": 3,
+      "parent_handle": "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-koogivalamud": {
+      "handle": "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-koogivalamud",
+      "name_en": "Köögivalamud",
+      "name_et": "Köögivalamud",
+      "level": 3,
+      "parent_handle": "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-kraanisegistid": {
+      "handle": "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-kraanisegistid",
+      "name_en": "Kraanisegistid",
+      "name_et": "Kraanisegistid",
+      "level": 3,
+      "parent_handle": "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-dusisegistid": {
+      "handle": "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-dusisegistid",
+      "name_en": "Dušisegistid",
+      "name_et": "Dušisegistid",
       "level": 3,
       "parent_handle": "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud",
       "child_handles": [],
@@ -14144,76 +14192,6 @@
       "image_path": null,
       "image_source": "none"
     },
-    "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-vannitoavalamud": {
-      "handle": "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-vannitoavalamud",
-      "name_en": "Vannitoavalamud",
-      "name_et": "Vannitoavalamud",
-      "level": 3,
-      "parent_handle": "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-koogivalamud": {
-      "handle": "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-koogivalamud",
-      "name_en": "Köögivalamud",
-      "name_et": "Köögivalamud",
-      "level": 3,
-      "parent_handle": "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-kraanisegistid": {
-      "handle": "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-kraanisegistid",
-      "name_en": "Kraanisegistid",
-      "name_et": "Kraanisegistid",
-      "level": 3,
-      "parent_handle": "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-koogisegistid": {
-      "handle": "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-koogisegistid",
-      "name_en": "Köögisegistid",
-      "name_et": "Köögisegistid",
-      "level": 3,
-      "parent_handle": "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-dusisegistid": {
-      "handle": "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-dusisegistid",
-      "name_en": "Dušisegistid",
-      "name_et": "Dušisegistid",
-      "level": 3,
-      "parent_handle": "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-vannisegistid": {
-      "handle": "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-vannisegistid",
-      "name_en": "Vannisegistid",
-      "name_et": "Vannisegistid",
-      "level": 3,
-      "parent_handle": "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-dusisusteemid": {
-      "handle": "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-dusisusteemid",
-      "name_en": "Dušisüsteemid",
-      "name_et": "Dušisüsteemid",
-      "level": 3,
-      "parent_handle": "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
     "v4-santehnika-kute-ja-ventilatsioon-veefiltrid-ja-puhastus": {
       "handle": "v4-santehnika-kute-ja-ventilatsioon-veefiltrid-ja-puhastus",
       "name_en": "Veefiltrid & puhastus",
@@ -14221,35 +14199,15 @@
       "level": 2,
       "parent_handle": "v4-santehnika-kute-ja-ventilatsioon",
       "child_handles": [
-        "v4-santehnika-kute-ja-ventilatsioon-veefiltrid-ja-puhastus-asenduspatronid-ja-filtrikassetid",
-        "v4-santehnika-kute-ja-ventilatsioon-veefiltrid-ja-puhastus-settefiltrid",
         "v4-santehnika-kute-ja-ventilatsioon-veefiltrid-ja-puhastus-gravitatsioonilised-veefiltrid",
         "v4-santehnika-kute-ja-ventilatsioon-veefiltrid-ja-puhastus-kraanile-kinnitatavad-veefiltrid",
         "v4-santehnika-kute-ja-ventilatsioon-veefiltrid-ja-puhastus-poordosmoosisusteemid",
         "v4-santehnika-kute-ja-ventilatsioon-veefiltrid-ja-puhastus-uv-veepuhastid",
         "v4-santehnika-kute-ja-ventilatsioon-veefiltrid-ja-puhastus-vee-ionisaatorid",
-        "v4-santehnika-kute-ja-ventilatsioon-veefiltrid-ja-puhastus-veepehmendussusteemid"
+        "v4-santehnika-kute-ja-ventilatsioon-veefiltrid-ja-puhastus-veepehmendussusteemid",
+        "v4-santehnika-kute-ja-ventilatsioon-veefiltrid-ja-puhastus-settefiltrid",
+        "v4-santehnika-kute-ja-ventilatsioon-veefiltrid-ja-puhastus-asenduspatronid-ja-filtrikassetid"
       ],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-santehnika-kute-ja-ventilatsioon-veefiltrid-ja-puhastus-asenduspatronid-ja-filtrikassetid": {
-      "handle": "v4-santehnika-kute-ja-ventilatsioon-veefiltrid-ja-puhastus-asenduspatronid-ja-filtrikassetid",
-      "name_en": "Asenduspatronid & filtrikassetid",
-      "name_et": "Asenduspatronid & filtrikassetid",
-      "level": 3,
-      "parent_handle": "v4-santehnika-kute-ja-ventilatsioon-veefiltrid-ja-puhastus",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-santehnika-kute-ja-ventilatsioon-veefiltrid-ja-puhastus-settefiltrid": {
-      "handle": "v4-santehnika-kute-ja-ventilatsioon-veefiltrid-ja-puhastus-settefiltrid",
-      "name_en": "Settefiltrid",
-      "name_et": "Settefiltrid",
-      "level": 3,
-      "parent_handle": "v4-santehnika-kute-ja-ventilatsioon-veefiltrid-ja-puhastus",
-      "child_handles": [],
       "image_path": null,
       "image_source": "none"
     },
@@ -14313,6 +14271,26 @@
       "image_path": null,
       "image_source": "none"
     },
+    "v4-santehnika-kute-ja-ventilatsioon-veefiltrid-ja-puhastus-settefiltrid": {
+      "handle": "v4-santehnika-kute-ja-ventilatsioon-veefiltrid-ja-puhastus-settefiltrid",
+      "name_en": "Settefiltrid",
+      "name_et": "Settefiltrid",
+      "level": 3,
+      "parent_handle": "v4-santehnika-kute-ja-ventilatsioon-veefiltrid-ja-puhastus",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-santehnika-kute-ja-ventilatsioon-veefiltrid-ja-puhastus-asenduspatronid-ja-filtrikassetid": {
+      "handle": "v4-santehnika-kute-ja-ventilatsioon-veefiltrid-ja-puhastus-asenduspatronid-ja-filtrikassetid",
+      "name_en": "Asenduspatronid & filtrikassetid",
+      "name_et": "Asenduspatronid & filtrikassetid",
+      "level": 3,
+      "parent_handle": "v4-santehnika-kute-ja-ventilatsioon-veefiltrid-ja-puhastus",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
     "v4-santehnika-kute-ja-ventilatsioon-dusisusteemid-ja-dusikabiinid": {
       "handle": "v4-santehnika-kute-ja-ventilatsioon-dusisusteemid-ja-dusikabiinid",
       "name_en": "Dušisüsteemid & dušikabiinid",
@@ -14325,7 +14303,9 @@
         "v4-santehnika-kute-ja-ventilatsioon-dusisusteemid-ja-dusikabiinid-dusialuste-komplektid-ja-tarvikud",
         "v4-santehnika-kute-ja-ventilatsioon-dusisusteemid-ja-dusikabiinid-dusiseinad",
         "v4-santehnika-kute-ja-ventilatsioon-dusisusteemid-ja-dusikabiinid-dusiuksed",
-        "v4-santehnika-kute-ja-ventilatsioon-dusisusteemid-ja-dusikabiinid-dusinisid"
+        "v4-santehnika-kute-ja-ventilatsioon-dusisusteemid-ja-dusikabiinid-dusinisid",
+        "v4-santehnika-kute-ja-ventilatsioon-dusisusteemid-ja-dusikabiinid-dusisusteemid",
+        "v4-santehnika-kute-ja-ventilatsioon-dusisusteemid-ja-dusikabiinid-dusikomplektid"
       ],
       "image_path": null,
       "image_source": "none"
@@ -14390,6 +14370,26 @@
       "image_path": null,
       "image_source": "none"
     },
+    "v4-santehnika-kute-ja-ventilatsioon-dusisusteemid-ja-dusikabiinid-dusisusteemid": {
+      "handle": "v4-santehnika-kute-ja-ventilatsioon-dusisusteemid-ja-dusikabiinid-dusisusteemid",
+      "name_en": "Dušisüsteemid",
+      "name_et": "Dušisüsteemid",
+      "level": 3,
+      "parent_handle": "v4-santehnika-kute-ja-ventilatsioon-dusisusteemid-ja-dusikabiinid",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-santehnika-kute-ja-ventilatsioon-dusisusteemid-ja-dusikabiinid-dusikomplektid": {
+      "handle": "v4-santehnika-kute-ja-ventilatsioon-dusisusteemid-ja-dusikabiinid-dusikomplektid",
+      "name_en": "Dušikomplektid",
+      "name_et": "Dušikomplektid",
+      "level": 3,
+      "parent_handle": "v4-santehnika-kute-ja-ventilatsioon-dusisusteemid-ja-dusikabiinid",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
     "v4-santehnika-kute-ja-ventilatsioon-vannitoa-tarvikud-ja-hoiustamine": {
       "handle": "v4-santehnika-kute-ja-ventilatsioon-vannitoa-tarvikud-ja-hoiustamine",
       "name_en": "Vannitoa-tarvikud & hoiustamine",
@@ -14397,17 +14397,17 @@
       "level": 2,
       "parent_handle": "v4-santehnika-kute-ja-ventilatsioon",
       "child_handles": [
-        "v4-santehnika-kute-ja-ventilatsioon-vannitoa-tarvikud-ja-hoiustamine-dusinurga-riiulid-ja-postid",
+        "v4-santehnika-kute-ja-ventilatsioon-vannitoa-tarvikud-ja-hoiustamine-valgustusega-vannitoapeeglid-ja-peeglikapid",
         "v4-santehnika-kute-ja-ventilatsioon-vannitoa-tarvikud-ja-hoiustamine-vannitoa-tarvikute-komplektid",
-        "v4-santehnika-kute-ja-ventilatsioon-vannitoa-tarvikud-ja-hoiustamine-valgustusega-vannitoapeeglid-ja-peeglikapid"
+        "v4-santehnika-kute-ja-ventilatsioon-vannitoa-tarvikud-ja-hoiustamine-dusinurga-riiulid-ja-postid"
       ],
       "image_path": null,
       "image_source": "none"
     },
-    "v4-santehnika-kute-ja-ventilatsioon-vannitoa-tarvikud-ja-hoiustamine-dusinurga-riiulid-ja-postid": {
-      "handle": "v4-santehnika-kute-ja-ventilatsioon-vannitoa-tarvikud-ja-hoiustamine-dusinurga-riiulid-ja-postid",
-      "name_en": "Dušinurga riiulid & postid",
-      "name_et": "Dušinurga riiulid & postid",
+    "v4-santehnika-kute-ja-ventilatsioon-vannitoa-tarvikud-ja-hoiustamine-valgustusega-vannitoapeeglid-ja-peeglikapid": {
+      "handle": "v4-santehnika-kute-ja-ventilatsioon-vannitoa-tarvikud-ja-hoiustamine-valgustusega-vannitoapeeglid-ja-peeglikapid",
+      "name_en": "Valgustusega vannitoapeeglid & peeglikapid",
+      "name_et": "Valgustusega vannitoapeeglid & peeglikapid",
       "level": 3,
       "parent_handle": "v4-santehnika-kute-ja-ventilatsioon-vannitoa-tarvikud-ja-hoiustamine",
       "child_handles": [],
@@ -14424,10 +14424,10 @@
       "image_path": null,
       "image_source": "none"
     },
-    "v4-santehnika-kute-ja-ventilatsioon-vannitoa-tarvikud-ja-hoiustamine-valgustusega-vannitoapeeglid-ja-peeglikapid": {
-      "handle": "v4-santehnika-kute-ja-ventilatsioon-vannitoa-tarvikud-ja-hoiustamine-valgustusega-vannitoapeeglid-ja-peeglikapid",
-      "name_en": "Valgustusega vannitoapeeglid & peeglikapid",
-      "name_et": "Valgustusega vannitoapeeglid & peeglikapid",
+    "v4-santehnika-kute-ja-ventilatsioon-vannitoa-tarvikud-ja-hoiustamine-dusinurga-riiulid-ja-postid": {
+      "handle": "v4-santehnika-kute-ja-ventilatsioon-vannitoa-tarvikud-ja-hoiustamine-dusinurga-riiulid-ja-postid",
+      "name_en": "Dušinurga riiulid & postid",
+      "name_et": "Dušinurga riiulid & postid",
       "level": 3,
       "parent_handle": "v4-santehnika-kute-ja-ventilatsioon-vannitoa-tarvikud-ja-hoiustamine",
       "child_handles": [],
@@ -14474,12 +14474,22 @@
       "level": 2,
       "parent_handle": "v4-santehnika-kute-ja-ventilatsioon",
       "child_handles": [
+        "v4-santehnika-kute-ja-ventilatsioon-radiaatorid-terrassi-ja-infrapunasoojendid",
         "v4-santehnika-kute-ja-ventilatsioon-konvektorid-ja-seinakuttekehad",
         "v4-santehnika-kute-ja-ventilatsioon-porandakuttetorud",
-        "v4-santehnika-kute-ja-ventilatsioon-radiaatorid-terrassi-ja-infrapunasoojendid",
         "v4-santehnika-kute-ja-ventilatsioon-ratikukuivatid",
         "v4-santehnika-kute-ja-ventilatsioon-kuttekaablid-ja-lindid"
       ],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-santehnika-kute-ja-ventilatsioon-radiaatorid-terrassi-ja-infrapunasoojendid": {
+      "handle": "v4-santehnika-kute-ja-ventilatsioon-radiaatorid-terrassi-ja-infrapunasoojendid",
+      "name_en": "Terrassi- & infrapunasoojendid",
+      "name_et": "Terrassi- & infrapunasoojendid",
+      "level": 3,
+      "parent_handle": "v4-santehnika-kute-ja-ventilatsioon-radiaatorid-ja-kuttekehad",
+      "child_handles": [],
       "image_path": null,
       "image_source": "none"
     },
@@ -14497,16 +14507,6 @@
       "handle": "v4-santehnika-kute-ja-ventilatsioon-porandakuttetorud",
       "name_en": "Põrandaküttetorud",
       "name_et": "Põrandaküttetorud",
-      "level": 3,
-      "parent_handle": "v4-santehnika-kute-ja-ventilatsioon-radiaatorid-ja-kuttekehad",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-santehnika-kute-ja-ventilatsioon-radiaatorid-terrassi-ja-infrapunasoojendid": {
-      "handle": "v4-santehnika-kute-ja-ventilatsioon-radiaatorid-terrassi-ja-infrapunasoojendid",
-      "name_en": "Terrassi- & infrapunasoojendid",
-      "name_et": "Terrassi- & infrapunasoojendid",
       "level": 3,
       "parent_handle": "v4-santehnika-kute-ja-ventilatsioon-radiaatorid-ja-kuttekehad",
       "child_handles": [],
@@ -21712,37 +21712,35 @@
     "v4-santehnika-kute-ja-ventilatsioon-veepumbad-reovee-ja-fekaalpumbad",
     "v4-santehnika-kute-ja-ventilatsioon-veepumbad-drenaazi-ja-tuhjenduspumbad",
     "v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika",
-    "v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika-rasvaeraldajad",
-    "v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika-kanalisatsiooni-puhastusmasinad",
-    "v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika-puhastuskaablid-ja-trossid",
     "v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika-torutoed-ja-hoidikud",
+    "v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika-puhastuskaablid-ja-trossid",
+    "v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika-kanalisatsiooni-puhastusmasinad",
+    "v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika-rasvaeraldajad",
     "v4-santehnika-kute-ja-ventilatsioon-kaminad-ja-korsten",
     "v4-santehnika-kute-kaminad-tarvikud",
     "v4-santehnika-kute-ja-ventilatsioon-kute-ja-kaminad-kaminapoletid-ja-suutekomplektid",
     "v4-santehnika-kute-korsten",
     "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud",
-    "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-dusikomplektid",
+    "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-koogisegistid",
+    "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-vannisegistid",
+    "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-vannitoavalamud",
+    "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-koogivalamud",
+    "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-kraanisegistid",
+    "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-dusisegistid",
     "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-tualettsusteemid",
     "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-bideed-ja-lisaseadmed",
     "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-ouekraanid",
     "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-joogivee-ja-filtersegistid",
     "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-kommertssegistid-ja-valamud",
-    "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-vannitoavalamud",
-    "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-koogivalamud",
-    "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-kraanisegistid",
-    "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-koogisegistid",
-    "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-dusisegistid",
-    "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-vannisegistid",
-    "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-dusisusteemid",
     "v4-santehnika-kute-ja-ventilatsioon-veefiltrid-ja-puhastus",
-    "v4-santehnika-kute-ja-ventilatsioon-veefiltrid-ja-puhastus-asenduspatronid-ja-filtrikassetid",
-    "v4-santehnika-kute-ja-ventilatsioon-veefiltrid-ja-puhastus-settefiltrid",
     "v4-santehnika-kute-ja-ventilatsioon-veefiltrid-ja-puhastus-gravitatsioonilised-veefiltrid",
     "v4-santehnika-kute-ja-ventilatsioon-veefiltrid-ja-puhastus-kraanile-kinnitatavad-veefiltrid",
     "v4-santehnika-kute-ja-ventilatsioon-veefiltrid-ja-puhastus-poordosmoosisusteemid",
     "v4-santehnika-kute-ja-ventilatsioon-veefiltrid-ja-puhastus-uv-veepuhastid",
     "v4-santehnika-kute-ja-ventilatsioon-veefiltrid-ja-puhastus-vee-ionisaatorid",
     "v4-santehnika-kute-ja-ventilatsioon-veefiltrid-ja-puhastus-veepehmendussusteemid",
+    "v4-santehnika-kute-ja-ventilatsioon-veefiltrid-ja-puhastus-settefiltrid",
+    "v4-santehnika-kute-ja-ventilatsioon-veefiltrid-ja-puhastus-asenduspatronid-ja-filtrikassetid",
     "v4-santehnika-kute-ja-ventilatsioon-dusisusteemid-ja-dusikabiinid",
     "v4-santehnika-kute-ja-ventilatsioon-dusipingid-ja-istmed",
     "v4-santehnika-kute-ja-ventilatsioon-dusisusteemid-ja-dusikabiinid-dusipaneelid",
@@ -21750,17 +21748,19 @@
     "v4-santehnika-kute-ja-ventilatsioon-dusisusteemid-ja-dusikabiinid-dusiseinad",
     "v4-santehnika-kute-ja-ventilatsioon-dusisusteemid-ja-dusikabiinid-dusiuksed",
     "v4-santehnika-kute-ja-ventilatsioon-dusisusteemid-ja-dusikabiinid-dusinisid",
+    "v4-santehnika-kute-ja-ventilatsioon-dusisusteemid-ja-dusikabiinid-dusisusteemid",
+    "v4-santehnika-kute-ja-ventilatsioon-dusisusteemid-ja-dusikabiinid-dusikomplektid",
     "v4-santehnika-kute-ja-ventilatsioon-vannitoa-tarvikud-ja-hoiustamine",
-    "v4-santehnika-kute-ja-ventilatsioon-vannitoa-tarvikud-ja-hoiustamine-dusinurga-riiulid-ja-postid",
-    "v4-santehnika-kute-ja-ventilatsioon-vannitoa-tarvikud-ja-hoiustamine-vannitoa-tarvikute-komplektid",
     "v4-santehnika-kute-ja-ventilatsioon-vannitoa-tarvikud-ja-hoiustamine-valgustusega-vannitoapeeglid-ja-peeglikapid",
+    "v4-santehnika-kute-ja-ventilatsioon-vannitoa-tarvikud-ja-hoiustamine-vannitoa-tarvikute-komplektid",
+    "v4-santehnika-kute-ja-ventilatsioon-vannitoa-tarvikud-ja-hoiustamine-dusinurga-riiulid-ja-postid",
     "v4-santehnika-kute-ja-ventilatsioon-aravool-ja-porandatrapid",
     "v4-santehnika-kute-ja-ventilatsioon-lineaarsed-dusitrapid",
     "v4-santehnika-kute-ja-ventilatsioon-kanal-ja-renn-aravool",
     "v4-santehnika-kute-ja-ventilatsioon-radiaatorid-ja-kuttekehad",
+    "v4-santehnika-kute-ja-ventilatsioon-radiaatorid-terrassi-ja-infrapunasoojendid",
     "v4-santehnika-kute-ja-ventilatsioon-konvektorid-ja-seinakuttekehad",
     "v4-santehnika-kute-ja-ventilatsioon-porandakuttetorud",
-    "v4-santehnika-kute-ja-ventilatsioon-radiaatorid-terrassi-ja-infrapunasoojendid",
     "v4-santehnika-kute-ja-ventilatsioon-ratikukuivatid",
     "v4-santehnika-kute-ja-ventilatsioon-kuttekaablid-ja-lindid",
     "v4-santehnika-kute-ja-ventilatsioon-veesoojendid-ja-boilerid",
