@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-03T21:33:27.604Z",
+  "generated_at": "2026-07-03T22:18:43.087Z",
   "nodes": {
     "v4-tooriistad-ja-tarvikud": {
       "handle": "v4-tooriistad-ja-tarvikud",
@@ -28,8 +28,8 @@
         "v4-tooriistad-ja-tarvikud-redelid",
         "v4-tooriistad-ja-tarvikud-hvac-ja-torudiagnostika",
         "v4-tooriistad-ja-tarvikud-hudraulika",
-        "v4-tooriistad-ja-tarvikud-kliima-ja-kulmaaine-hooldus",
         "v4-tooriistad-ja-tarvikud-tookoja-sisustus",
+        "v4-tooriistad-ja-tarvikud-kliima-ja-kulmaaine-hooldus",
         "v4-tooriistad-ja-tarvikud-tomburid-ja-pressid",
         "v4-tooriistad-ja-tarvikud-koorma-kinnitus-ja-laadimine",
         "v4-tooriistad-ja-tarvikud-cnc-ja-lineaarkomponendid"
@@ -3451,6 +3451,39 @@
       "image_path": null,
       "image_source": "none"
     },
+    "v4-tooriistad-ja-tarvikud-tookoja-sisustus": {
+      "handle": "v4-tooriistad-ja-tarvikud-tookoja-sisustus",
+      "name_en": "Töökoja sisustus",
+      "name_et": "Töökoja sisustus",
+      "level": 2,
+      "parent_handle": "v4-tooriistad-ja-tarvikud",
+      "child_handles": [
+        "v4-tooriistad-ja-tarvikud-tookoja-sisustus-toolauad",
+        "v4-tooriistad-ja-tarvikud-tookoja-sisustus-tootoolid-taburetid"
+      ],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-tookoja-sisustus-toolauad": {
+      "handle": "v4-tooriistad-ja-tarvikud-tookoja-sisustus-toolauad",
+      "name_en": "Töölauad",
+      "name_et": "Töölauad",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-tookoja-sisustus",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-tookoja-sisustus-tootoolid-taburetid": {
+      "handle": "v4-tooriistad-ja-tarvikud-tookoja-sisustus-tootoolid-taburetid",
+      "name_en": "Töötoolid & -taburetid",
+      "name_et": "Töötoolid & -taburetid",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-tookoja-sisustus",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
     "v4-tooriistad-ja-tarvikud-kliima-ja-kulmaaine-hooldus": {
       "handle": "v4-tooriistad-ja-tarvikud-kliima-ja-kulmaaine-hooldus",
       "name_en": "Kliima- ja külmaaine-hooldus",
@@ -3502,39 +3535,6 @@
       "name_et": "Külmaaine-manomeetrid ja tarvikud",
       "level": 3,
       "parent_handle": "v4-tooriistad-ja-tarvikud-kliima-ja-kulmaaine-hooldus",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-tooriistad-ja-tarvikud-tookoja-sisustus": {
-      "handle": "v4-tooriistad-ja-tarvikud-tookoja-sisustus",
-      "name_en": "Töökoja sisustus",
-      "name_et": "Töökoja sisustus",
-      "level": 2,
-      "parent_handle": "v4-tooriistad-ja-tarvikud",
-      "child_handles": [
-        "v4-tooriistad-ja-tarvikud-tookoja-sisustus-toolauad",
-        "v4-tooriistad-ja-tarvikud-tookoja-sisustus-tootoolid-taburetid"
-      ],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-tooriistad-ja-tarvikud-tookoja-sisustus-toolauad": {
-      "handle": "v4-tooriistad-ja-tarvikud-tookoja-sisustus-toolauad",
-      "name_en": "Töölauad",
-      "name_et": "Töölauad",
-      "level": 3,
-      "parent_handle": "v4-tooriistad-ja-tarvikud-tookoja-sisustus",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-tooriistad-ja-tarvikud-tookoja-sisustus-tootoolid-taburetid": {
-      "handle": "v4-tooriistad-ja-tarvikud-tookoja-sisustus-tootoolid-taburetid",
-      "name_en": "Töötoolid & -taburetid",
-      "name_et": "Töötoolid & -taburetid",
-      "level": 3,
-      "parent_handle": "v4-tooriistad-ja-tarvikud-tookoja-sisustus",
       "child_handles": [],
       "image_path": null,
       "image_source": "none"
@@ -7682,10 +7682,10 @@
       "level": 2,
       "parent_handle": "v4-suurkoogiseadmed",
       "child_handles": [
-        "v4-suurkook-sugavkulmikud-ja-kulmakirstud",
-        "v4-suurkook-jahutusega-ettevalmistusjaamad",
         "v4-suurkook-sushi-kulmvitriinid",
-        "v4-suurkook-praetud-jaatise-rullmasinad",
+        "v4-suurkook-rull-jaatise-masinad",
+        "v4-suurkook-jahutusega-ettevalmistusjaamad",
+        "v4-suurkook-sugavkulmikud-ja-kulmakirstud",
         "v4-suurkook-kiirjahutid-ja-okk-kulmikud",
         "v4-suurkook-laagerdumiskulmikud-dry-aging",
         "v4-suurkoogiseadmed-kulmutus-ja-jahutusseadmed-jaatisevitriinkulmikud",
@@ -7701,10 +7701,20 @@
       "image_path": null,
       "image_source": "none"
     },
-    "v4-suurkook-sugavkulmikud-ja-kulmakirstud": {
-      "handle": "v4-suurkook-sugavkulmikud-ja-kulmakirstud",
-      "name_en": "Sügavkülmikud ja külmakirstud",
-      "name_et": "Sügavkülmikud ja külmakirstud",
+    "v4-suurkook-sushi-kulmvitriinid": {
+      "handle": "v4-suurkook-sushi-kulmvitriinid",
+      "name_en": "Sushi külmvitriinid",
+      "name_et": "Sushi külmvitriinid",
+      "level": 3,
+      "parent_handle": "v4-suurkoogiseadmed-kulm",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-suurkook-rull-jaatise-masinad": {
+      "handle": "v4-suurkook-rull-jaatise-masinad",
+      "name_en": "Rull-jäätise masinad",
+      "name_et": "Rull-jäätise masinad",
       "level": 3,
       "parent_handle": "v4-suurkoogiseadmed-kulm",
       "child_handles": [],
@@ -7721,20 +7731,10 @@
       "image_path": null,
       "image_source": "none"
     },
-    "v4-suurkook-sushi-kulmvitriinid": {
-      "handle": "v4-suurkook-sushi-kulmvitriinid",
-      "name_en": "Sushi külmvitriinid",
-      "name_et": "Sushi külmvitriinid",
-      "level": 3,
-      "parent_handle": "v4-suurkoogiseadmed-kulm",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-suurkook-praetud-jaatise-rullmasinad": {
-      "handle": "v4-suurkook-praetud-jaatise-rullmasinad",
-      "name_en": "Praetud jäätise rullmasinad",
-      "name_et": "Praetud jäätise rullmasinad",
+    "v4-suurkook-sugavkulmikud-ja-kulmakirstud": {
+      "handle": "v4-suurkook-sugavkulmikud-ja-kulmakirstud",
+      "name_en": "Sügavkülmikud ja külmakirstud",
+      "name_et": "Sügavkülmikud ja külmakirstud",
       "level": 3,
       "parent_handle": "v4-suurkoogiseadmed-kulm",
       "child_handles": [],
@@ -20447,14 +20447,14 @@
     "v4-tooriistad-ja-tarvikud-hudraulika-klapid-jagajad",
     "v4-tooriistad-ja-tarvikud-hudraulika-agregaadid",
     "v4-tooriistad-ja-tarvikud-hudraulika-pumbad-mootorid",
+    "v4-tooriistad-ja-tarvikud-tookoja-sisustus",
+    "v4-tooriistad-ja-tarvikud-tookoja-sisustus-toolauad",
+    "v4-tooriistad-ja-tarvikud-tookoja-sisustus-tootoolid-taburetid",
     "v4-tooriistad-ja-tarvikud-kliima-ja-kulmaaine-hooldus",
     "v4-santehnika-kute-ja-ventilatsioon-ventilatsioon-ja-ventilaatorid-kliimaseadme-vasktorustik-ja-komplektid",
     "v4-garaaziseadmed-olivahetus-ja-hooldus-kulmaaine-taastusseadmed",
     "v4-tooriistad-ja-tarvikud-kliima-ac-vaakumpumbad",
     "v4-santehnika-kute-ja-ventilatsioon-ventilatsioon-ja-ventilaatorid-kliimaseadme-manomeetrid-ja-teenindusvahendid",
-    "v4-tooriistad-ja-tarvikud-tookoja-sisustus",
-    "v4-tooriistad-ja-tarvikud-tookoja-sisustus-toolauad",
-    "v4-tooriistad-ja-tarvikud-tookoja-sisustus-tootoolid-taburetid",
     "v4-tooriistad-ja-tarvikud-tomburid-ja-pressid",
     "v4-garaaziseadmed-mehaaniku-tooriistad-laagri-ja-tihendivaljavotjad-ning-press-tooriistad",
     "v4-garaaziseadmed-mehaaniku-tooriistad-hammasratta-ja-rihmaratta-tomburid",
@@ -20827,10 +20827,10 @@
     "v4-suurkook-kassasahtlid-ja-pos-tarvikud",
     "v4-suurkook-salativurrid-ja-koogiviljakuivatid",
     "v4-suurkoogiseadmed-kulm",
-    "v4-suurkook-sugavkulmikud-ja-kulmakirstud",
-    "v4-suurkook-jahutusega-ettevalmistusjaamad",
     "v4-suurkook-sushi-kulmvitriinid",
-    "v4-suurkook-praetud-jaatise-rullmasinad",
+    "v4-suurkook-rull-jaatise-masinad",
+    "v4-suurkook-jahutusega-ettevalmistusjaamad",
+    "v4-suurkook-sugavkulmikud-ja-kulmakirstud",
     "v4-suurkook-kiirjahutid-ja-okk-kulmikud",
     "v4-suurkook-laagerdumiskulmikud-dry-aging",
     "v4-suurkoogiseadmed-kulmutus-ja-jahutusseadmed-jaatisevitriinkulmikud",

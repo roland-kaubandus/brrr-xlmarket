@@ -1274,6 +1274,19 @@ l1:
             name_en: "Hüdropumbad ja -mootorid"
             name_et: "Hüdropumbad ja -mootorid"
             product_count: 0
+      - slug: v4-tooriistad-ja-tarvikud-tookoja-sisustus
+        name_en: "Töökoja sisustus"
+        name_et: "Töökoja sisustus"
+        product_count: 0
+        subs:
+          - slug: v4-tooriistad-ja-tarvikud-tookoja-sisustus-toolauad
+            name_en: "Töölauad"
+            name_et: "Töölauad"
+            product_count: 0
+          - slug: v4-tooriistad-ja-tarvikud-tookoja-sisustus-tootoolid-taburetid
+            name_en: "Töötoolid & -taburetid"
+            name_et: "Töötoolid & -taburetid"
+            product_count: 0
       - slug: v4-tooriistad-ja-tarvikud-kliima-ja-kulmaaine-hooldus
         name_en: "Kliima- ja külmaaine-hooldus"
         name_et: "Kliima- ja külmaaine-hooldus"
@@ -1294,19 +1307,6 @@ l1:
           - slug: v4-santehnika-kute-ja-ventilatsioon-ventilatsioon-ja-ventilaatorid-kliimaseadme-manomeetrid-ja-teenindusvahendid
             name_en: "Külmaaine-manomeetrid ja tarvikud"
             name_et: "Külmaaine-manomeetrid ja tarvikud"
-            product_count: 0
-      - slug: v4-tooriistad-ja-tarvikud-tookoja-sisustus
-        name_en: "Töökoja sisustus"
-        name_et: "Töökoja sisustus"
-        product_count: 0
-        subs:
-          - slug: v4-tooriistad-ja-tarvikud-tookoja-sisustus-toolauad
-            name_en: "Töölauad"
-            name_et: "Töölauad"
-            product_count: 0
-          - slug: v4-tooriistad-ja-tarvikud-tookoja-sisustus-tootoolid-taburetid
-            name_en: "Töötoolid & -taburetid"
-            name_et: "Töötoolid & -taburetid"
             product_count: 0
       - slug: v4-tooriistad-ja-tarvikud-tomburid-ja-pressid
         name_en: "Tõmburid ja pressid"
@@ -2865,21 +2865,21 @@ l1:
         name_et: "Külmaseadmed"
         product_count: 0
         subs:
-          - slug: v4-suurkook-sugavkulmikud-ja-kulmakirstud
-            name_en: "Sügavkülmikud ja külmakirstud"
-            name_et: "Sügavkülmikud ja külmakirstud"
+          - slug: v4-suurkook-sushi-kulmvitriinid
+            name_en: "Sushi külmvitriinid"
+            name_et: "Sushi külmvitriinid"
+            product_count: 0
+          - slug: v4-suurkook-rull-jaatise-masinad
+            name_en: "Rull-jäätise masinad"
+            name_et: "Rull-jäätise masinad"
             product_count: 0
           - slug: v4-suurkook-jahutusega-ettevalmistusjaamad
             name_en: "Jahutusega ettevalmistusjaamad"
             name_et: "Jahutusega ettevalmistusjaamad"
             product_count: 0
-          - slug: v4-suurkook-sushi-kulmvitriinid
-            name_en: "Sushi külmvitriinid"
-            name_et: "Sushi külmvitriinid"
-            product_count: 0
-          - slug: v4-suurkook-praetud-jaatise-rullmasinad
-            name_en: "Praetud jäätise rullmasinad"
-            name_et: "Praetud jäätise rullmasinad"
+          - slug: v4-suurkook-sugavkulmikud-ja-kulmakirstud
+            name_en: "Sügavkülmikud ja külmakirstud"
+            name_et: "Sügavkülmikud ja külmakirstud"
             product_count: 0
           - slug: v4-suurkook-kiirjahutid-ja-okk-kulmikud
             name_en: "Kiirjahutid ja šokk-külmikud"
