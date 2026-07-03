@@ -1404,42 +1404,6 @@ l1:
         name_et: "Garaaži-hoiustamine"
         product_count: 0
         subs:
-          - slug: v4-garaaziseadmed-garaazi-hoiustamine-metallkapid
-            name_en: "Metallkapid"
-            name_et: "Metallkapid"
-            product_count: 0
-          - slug: v4-garaaziseadmed-garaazi-hoiustamine-tooriistariiulid-ja-kapid
-            name_en: "Tööriistariiulid ja -kapid"
-            name_et: "Tööriistariiulid ja -kapid"
-            product_count: 0
-          - slug: v4-garaaziseadmed-garaazi-hoiustamine-aiatooriistade-hoidikud
-            name_en: "Aiatööriistade hoidikud"
-            name_et: "Aiatööriistade hoidikud"
-            product_count: 0
-          - slug: v4-garaaziseadmed-garaazi-hoiustamine-lae-hoiustamisrestid
-            name_en: "Lae-hoiustamisrestid"
-            name_et: "Lae-hoiustamisrestid"
-            product_count: 0
-          - slug: v4-garaaziseadmed-garaazi-hoiustamine-mobiilsed-hoiustusrestid-ja-karud
-            name_en: "Mobiilsed hoiustusrestid ja -kärud"
-            name_et: "Mobiilsed hoiustusrestid ja -kärud"
-            product_count: 0
-          - slug: v4-garaaziseadmed-garaazi-hoiustamine-gaasiballoonide-ja-pudelite-hoidikud
-            name_en: "Gaasiballoonide ja -pudelite hoidikud"
-            name_et: "Gaasiballoonide ja -pudelite hoidikud"
-            product_count: 0
-          - slug: v4-garaaziseadmed-hoiustamine-katuse-ja-uksehoiukarud
-            name_en: "Katuse- & uksehoiukärud"
-            name_et: "Katuse- & uksehoiukärud"
-            product_count: 0
-          - slug: v4-garaaziseadmed-muu-garaaziseadmed-parkimis-ja-peatusabivahendid
-            name_en: "Parkimis- ja peatusabivahendid"
-            name_et: "Parkimis- ja peatusabivahendid"
-            product_count: 0
-          - slug: v4-garaaziseadmed-garaazi-hoiustamine-lukustuskapid
-            name_en: "Lukustuskapid"
-            name_et: "Lukustuskapid"
-            product_count: 0
           - slug: v4-garaaziseadmed-garaazi-hoiustamine-toolauad
             name_en: "Töölauad"
             name_et: "Töölauad"
@@ -1464,6 +1428,42 @@ l1:
             name_en: "Veepudelite hoidikud ja riiulid"
             name_et: "Veepudelite hoidikud ja riiulid"
             product_count: 0
+          - slug: v4-garaaziseadmed-garaazi-hoiustamine-lae-hoiustamisrestid
+            name_en: "Lae-hoiustamisrestid"
+            name_et: "Lae-hoiustamisrestid"
+            product_count: 0
+          - slug: v4-garaaziseadmed-garaazi-hoiustamine-gaasiballoonide-ja-pudelite-hoidikud
+            name_en: "Gaasiballoonide ja -pudelite hoidikud"
+            name_et: "Gaasiballoonide ja -pudelite hoidikud"
+            product_count: 0
+          - slug: v4-garaaziseadmed-hoiustamine-katuse-ja-uksehoiukarud
+            name_en: "Katuse- & uksehoiukärud"
+            name_et: "Katuse- & uksehoiukärud"
+            product_count: 0
+          - slug: v4-garaaziseadmed-garaazi-hoiustamine-aiatooriistade-hoidikud
+            name_en: "Aiatööriistade hoidikud"
+            name_et: "Aiatööriistade hoidikud"
+            product_count: 0
+          - slug: v4-garaaziseadmed-muu-garaaziseadmed-parkimis-ja-peatusabivahendid
+            name_en: "Parkimis- ja peatusabivahendid"
+            name_et: "Parkimis- ja peatusabivahendid"
+            product_count: 0
+          - slug: v4-garaaziseadmed-garaazi-hoiustamine-lukustuskapid
+            name_en: "Lukustuskapid"
+            name_et: "Lukustuskapid"
+            product_count: 0
+          - slug: v4-garaaziseadmed-garaazi-hoiustamine-tooriistariiulid-ja-kapid
+            name_en: "Tööriistariiulid ja -kapid"
+            name_et: "Tööriistariiulid ja -kapid"
+            product_count: 0
+          - slug: v4-garaaziseadmed-garaazi-hoiustamine-mobiilsed-hoiustusrestid-ja-karud
+            name_en: "Mobiilsed hoiustusrestid ja -kärud"
+            name_et: "Mobiilsed hoiustusrestid ja -kärud"
+            product_count: 0
+          - slug: v4-garaaziseadmed-garaazi-hoiustamine-metallkapid
+            name_en: "Metallkapid"
+            name_et: "Metallkapid"
+            product_count: 0
           - slug: v4-garaaziseadmed-garaazi-hoiustamine-seinapaneelid-ja-pegboardid
             name_en: "Seinapaneelid ja pegboardid"
             name_et: "Seinapaneelid ja pegboardid"
@@ -1473,9 +1473,9 @@ l1:
         name_et: "Tungrauad"
         product_count: 0
         subs:
-          - slug: v4-garaaziseadmed-tungrauad-tostetoed-ja-tugistatiivid
-            name_en: "Tõstetoed ja tugistatiivid"
-            name_et: "Tõstetoed ja tugistatiivid"
+          - slug: v4-garaaziseadmed-tungrauad-kaartungrauad
+            name_en: "Käärtungrauad"
+            name_et: "Käärtungrauad"
             product_count: 0
           - slug: v4-garaaziseadmed-tungrauad-porta-power-hudrokomplektid
             name_en: "Porta Power & hüdraulilised komplektid"
@@ -1489,6 +1489,38 @@ l1:
             name_en: "Mootorratta- ja muruniidukitõstukid"
             name_et: "Mootorratta- ja muruniidukitõstukid"
             product_count: 0
+          - slug: v4-garaaziseadmed-tungrauad-pneumaatilised-tungrauad
+            name_en: "Pneumaatilised tungrauad"
+            name_et: "Pneumaatilised tungrauad"
+            product_count: 0
+          - slug: v4-garaaziseadmed-tungrauad-porandatungrauad
+            name_en: "Põrandatungrauad"
+            name_et: "Põrandatungrauad"
+            product_count: 0
+          - slug: v4-garaaziseadmed-tungrauad-rattadollyd
+            name_en: "Rattadollyd"
+            name_et: "Rattadollyd"
+            product_count: 0
+          - slug: v4-garaaziseadmed-tungrauad-silindertungrauad
+            name_en: "Silindertungrauad"
+            name_et: "Silindertungrauad"
+            product_count: 0
+          - slug: v4-garaaziseadmed-tungrauad-tostetoed-ja-tugistatiivid
+            name_en: "Tõstetoed ja tugistatiivid"
+            name_et: "Tõstetoed ja tugistatiivid"
+            product_count: 0
+          - slug: v4-garaaziseadmed-tungrauad-varba-ja-pikktungrauad
+            name_en: "Varba- ja pikktungrauad"
+            name_et: "Varba- ja pikktungrauad"
+            product_count: 0
+          - slug: v4-garaaziseadmed-tungrauad-pudelitungrauad
+            name_en: "Pudelitungrauad"
+            name_et: "Pudelitungrauad"
+            product_count: 0
+          - slug: v4-garaaziseadmed-tungrauad-kaigukastitungrauad
+            name_en: "Käigukastitungrauad"
+            name_et: "Käigukastitungrauad"
+            product_count: 0
           - slug: v4-garaaziseadmed-tungrauad-haagise-tugijalad
             name_en: "Haagise tugijalad"
             name_et: "Haagise tugijalad"
@@ -1496,38 +1528,6 @@ l1:
           - slug: v4-garaaziseadmed-tungrauad-elektrilised-tungrauad
             name_en: "Elektrilised tungrauad"
             name_et: "Elektrilised tungrauad"
-            product_count: 0
-          - slug: v4-garaaziseadmed-tungrauad-rattadollyd
-            name_en: "Rattadollyd"
-            name_et: "Rattadollyd"
-            product_count: 0
-          - slug: v4-garaaziseadmed-tungrauad-kaigukastitungrauad
-            name_en: "Käigukastitungrauad"
-            name_et: "Käigukastitungrauad"
-            product_count: 0
-          - slug: v4-garaaziseadmed-tungrauad-varba-ja-pikktungrauad
-            name_en: "Varba- ja pikktungrauad"
-            name_et: "Varba- ja pikktungrauad"
-            product_count: 0
-          - slug: v4-garaaziseadmed-tungrauad-silindertungrauad
-            name_en: "Silindertungrauad"
-            name_et: "Silindertungrauad"
-            product_count: 0
-          - slug: v4-garaaziseadmed-tungrauad-kaartungrauad
-            name_en: "Käärtungrauad"
-            name_et: "Käärtungrauad"
-            product_count: 0
-          - slug: v4-garaaziseadmed-tungrauad-pudelitungrauad
-            name_en: "Pudelitungrauad"
-            name_et: "Pudelitungrauad"
-            product_count: 0
-          - slug: v4-garaaziseadmed-tungrauad-porandatungrauad
-            name_en: "Põrandatungrauad"
-            name_et: "Põrandatungrauad"
-            product_count: 0
-          - slug: v4-garaaziseadmed-tungrauad-pneumaatilised-tungrauad
-            name_en: "Pneumaatilised tungrauad"
-            name_et: "Pneumaatilised tungrauad"
             product_count: 0
           - slug: v4-garaaziseadmed-tungrauad-tookojapressid
             name_en: "Töökojapressid"
@@ -1538,29 +1538,29 @@ l1:
         name_et: "Õlivahetus & määrimine"
         product_count: 0
         subs:
-          - slug: v4-garaaziseadmed-olivahetus-ja-hooldus-olivahetuspannid-ja-tuhjenduspaagid
-            name_en: "Õlivahetuspannid ja tühjenduspaagid"
-            name_et: "Õlivahetuspannid ja tühjenduspaagid"
-            product_count: 0
           - slug: v4-garaaziseadmed-olivahetus-ja-hooldus-olifiltri-mutrivotmed
             name_en: "Õlifiltri mutrivõtmed"
             name_et: "Õlifiltri mutrivõtmed"
-            product_count: 0
-          - slug: v4-garaaziseadmed-olivahetus-ja-hooldus-kaigukastioli-pumbad-ja-vahetusjaamad
-            name_en: "Käigukastiõli pumbad ja vahetusjaamad"
-            name_et: "Käigukastiõli pumbad ja vahetusjaamad"
-            product_count: 0
-          - slug: v4-garaaziseadmed-olivahetus-ja-hooldus-oliimurid-ja-vaakumoliekstraktorid
-            name_en: "Õliimurid ja vaakumõliekstraktorid"
-            name_et: "Õliimurid ja vaakumõliekstraktorid"
             product_count: 0
           - slug: v4-garaaziseadmed-olivahetus-ja-hooldus-olivahetusanumad-ja-kogumisnoud-ratastega
             name_en: "Õlivahetusanumad ja -kogumisnõud ratastega"
             name_et: "Õlivahetusanumad ja -kogumisnõud ratastega"
             product_count: 0
+          - slug: v4-garaaziseadmed-olivahetus-ja-hooldus-oliimurid-ja-vaakumoliekstraktorid
+            name_en: "Õliimurid ja vaakumõliekstraktorid"
+            name_et: "Õliimurid ja vaakumõliekstraktorid"
+            product_count: 0
+          - slug: v4-garaaziseadmed-olivahetus-ja-hooldus-kaigukastioli-pumbad-ja-vahetusjaamad
+            name_en: "Käigukastiõli pumbad ja vahetusjaamad"
+            name_et: "Käigukastiõli pumbad ja vahetusjaamad"
+            product_count: 0
           - slug: v4-garaaziseadmed-olivahetus-ja-hooldus-maardepustolid-ja-otsikud
             name_en: "Määrdepüstolid ja otsikud"
             name_et: "Määrdepüstolid ja otsikud"
+            product_count: 0
+          - slug: v4-garaaziseadmed-olivahetus-ja-hooldus-olivahetuspannid-ja-tuhjenduspaagid
+            name_en: "Õlivahetuspannid ja tühjenduspaagid"
+            name_et: "Õlivahetuspannid ja tühjenduspaagid"
             product_count: 0
       - slug: v4-garaaziseadmed-tostukid
         name_en: "Tõstukid"
@@ -1588,6 +1588,14 @@ l1:
         name_et: "Rehvitööd"
         product_count: 0
         subs:
+          - slug: v4-garaaziseadmed-rehvitood-rehvikulje-lahutajad-ja-lohkujad
+            name_en: "Rehvikülje lahutajad ja lõhkujad"
+            name_et: "Rehvikülje lahutajad ja lõhkujad"
+            product_count: 0
+          - slug: v4-garaaziseadmed-rehvitood-mootorratta-rattaste-tasakaalustusseadmed
+            name_en: "Mootorratta rattaste tasakaalustusseadmed"
+            name_et: "Mootorratta rattaste tasakaalustusseadmed"
+            product_count: 0
           - slug: v4-garaaziseadmed-rehvitood-rataste-joondamise-ja-suunamise-seadmed
             name_en: "Rataste joondamise ja suunamise seadmed"
             name_et: "Rataste joondamise ja suunamise seadmed"
@@ -1600,10 +1608,6 @@ l1:
             name_en: "Rehvikorra paigaldus- ja täitevahendid (bead seater)"
             name_et: "Rehvikorra paigaldus- ja täitevahendid (bead seater)"
             product_count: 0
-          - slug: v4-garaaziseadmed-rehvitood-rehvikulje-lahutajad-ja-lohkujad
-            name_en: "Rehvikülje lahutajad ja lõhkujad"
-            name_et: "Rehvikülje lahutajad ja lõhkujad"
-            product_count: 0
           - slug: v4-garaaziseadmed-rehvitood-rehvivahetuse-tooriistakomplektid
             name_en: "Rehvivahetuse tööriistakomplektid"
             name_et: "Rehvivahetuse tööriistakomplektid"
@@ -1611,10 +1615,6 @@ l1:
           - slug: v4-garaaziseadmed-rehvitood-rehvivahetusseadmed-ja-vahetid
             name_en: "Rehvivahetusseadmed ja -vahetid"
             name_et: "Rehvivahetusseadmed ja -vahetid"
-            product_count: 0
-          - slug: v4-garaaziseadmed-rehvitood-mootorratta-rattaste-tasakaalustusseadmed
-            name_en: "Mootorratta rattaste tasakaalustusseadmed"
-            name_et: "Mootorratta rattaste tasakaalustusseadmed"
             product_count: 0
           - slug: v4-garaaziseadmed-rehvitood-rattarihtimis-poordplaadid
             name_en: "Rattarihtimis-pöördplaadid"
@@ -1625,13 +1625,13 @@ l1:
         name_et: "Värvimine & viimistlus"
         product_count: 0
         subs:
-          - slug: v4-garaaziseadmed-varvimine-varvi-surveanumad
-            name_en: "Värvimise surveanumad"
-            name_et: "Värvimise surveanumad"
-            product_count: 0
           - slug: pcat-vk2
             name_en: "Värvimiskabiinid ja -telgid"
             name_et: "Värvimiskabiinid ja -telgid"
+            product_count: 0
+          - slug: v4-garaaziseadmed-varvimine-infrapuna-kuivatuslambid
+            name_en: "Infrapuna-kuivatuslambid ja -seadmed"
+            name_et: "Infrapuna-kuivatuslambid ja -seadmed"
             product_count: 0
           - slug: v4-garaaziseadmed-varvimine-varvimis-ja-kuivatuskabiinid
             name_en: "Värvimis- ja kuivatuskabiinid"
@@ -1641,9 +1641,9 @@ l1:
             name_en: "Airbrush-komplektid"
             name_et: "Airbrush-komplektid"
             product_count: 0
-          - slug: v4-garaaziseadmed-varvimine-infrapuna-kuivatuslambid
-            name_en: "Infrapuna-kuivatuslambid ja -seadmed"
-            name_et: "Infrapuna-kuivatuslambid ja -seadmed"
+          - slug: v4-garaaziseadmed-varvimine-varvi-surveanumad
+            name_en: "Värvimise surveanumad"
+            name_et: "Värvimise surveanumad"
             product_count: 0
           - slug: v4-garaaziseadmed-varvimine-liivapritsimiskabiinid
             name_en: "Liivapritsimiskabiinid"
@@ -1683,6 +1683,14 @@ l1:
             name_en: "Silindrivoodri tööriistad"
             name_et: "Silindrivoodri tööriistad"
             product_count: 0
+          - slug: v4-garaaziseadmed-mehaaniku-tooriistad-mootoristendid-ja-hoidikud
+            name_en: "Mootoristendid ja -hoidikud"
+            name_et: "Mootoristendid ja -hoidikud"
+            product_count: 0
+          - slug: v4-garaaziseadmed-mehaaniku-tooriistad-vedrukompressorid
+            name_en: "Vedrukompressorid"
+            name_et: "Vedrukompressorid"
+            product_count: 0
           - slug: v4-garaaziseadmed-mehaaniku-tooriistad-induktsioonkuumutid
             name_en: "Induktsioonkuumutid"
             name_et: "Induktsioonkuumutid"
@@ -1698,14 +1706,6 @@ l1:
           - slug: v4-garaaziseadmed-mootori-remont-puksi-ja-laagritooriistad
             name_en: "Puksi- & laagritööriistad"
             name_et: "Puksi- & laagritööriistad"
-            product_count: 0
-          - slug: v4-garaaziseadmed-mehaaniku-tooriistad-vedrukompressorid
-            name_en: "Vedrukompressorid"
-            name_et: "Vedrukompressorid"
-            product_count: 0
-          - slug: v4-garaaziseadmed-mehaaniku-tooriistad-mootoristendid-ja-hoidikud
-            name_en: "Mootoristendid ja -hoidikud"
-            name_et: "Mootoristendid ja -hoidikud"
             product_count: 0
           - slug: v4-garaaziseadmed-mootori-remont-osade-pesurid
             name_en: "Osade pesurid & lahustivannid"
@@ -1725,13 +1725,13 @@ l1:
         name_et: "Plekitöö ja PDR"
         product_count: 0
         subs:
-          - slug: v4-garaaziseadmed-mehaaniku-tooriistad-plekitoode-ja-lohkude-eemalduskomplektid-pdr
-            name_en: "Plekitööde ja lohkude eemalduskomplektid (PDR)"
-            name_et: "Plekitööde ja lohkude eemalduskomplektid (PDR)"
-            product_count: 0
           - slug: v4-garaaziseadmed-muu-garaaziseadmed-autokere-sirgendusseadmed
             name_en: "Autokere sirgendusseadmed"
             name_et: "Autokere sirgendusseadmed"
+            product_count: 0
+          - slug: v4-garaaziseadmed-mehaaniku-tooriistad-plekitoode-ja-lohkude-eemalduskomplektid-pdr
+            name_en: "Plekitööde ja lohkude eemalduskomplektid (PDR)"
+            name_et: "Plekitööde ja lohkude eemalduskomplektid (PDR)"
             product_count: 0
       - slug: v4-garaaziseadmed-auto-teisaldus
         name_en: "Auto-teisaldus ja töökoht"
@@ -1751,13 +1751,13 @@ l1:
         name_et: "Kütusekäitlus & -mahutid"
         product_count: 0
         subs:
-          - slug: v4-garaaziseadmed-olivahetus-ja-hooldus-kutusevooliku-rullid
-            name_en: "Kütusevooliku rullid"
-            name_et: "Kütusevooliku rullid"
-            product_count: 0
           - slug: v4-garaaziseadmed-olivahetus-ja-hooldus-kutusemahutid-ja-konteinerid-ratastega
             name_en: "Kütusemahutid ja -konteinerid ratastega"
             name_et: "Kütusemahutid ja -konteinerid ratastega"
+            product_count: 0
+          - slug: v4-garaaziseadmed-olivahetus-ja-hooldus-kutusevooliku-rullid
+            name_en: "Kütusevooliku rullid"
+            name_et: "Kütusevooliku rullid"
             product_count: 0
           - slug: v4-garaaziseadmed-olivahetus-ja-hooldus-pneumaatilised-ja-membraanpumbad
             name_en: "Pneumaatilised ja membraanpumbad"
@@ -1895,6 +1895,38 @@ l1:
         name_et: "Veoauto tarvikud"
         product_count: 0
         subs:
+          - slug: v4-autovaruosad-ja-tarvikud-veoauto-tarvikud-hoiukastid-ja-karbid
+            name_en: "Hoiukastid ja -karbid"
+            name_et: "Hoiukastid ja -karbid"
+            product_count: 0
+          - slug: v4-autovaruosad-ja-tarvikud-veoauto-tarvikud-tooriistakastid
+            name_en: "Tööriistakastid"
+            name_et: "Tööriistakastid"
+            product_count: 0
+          - slug: pcat-a3k
+            name_en: "Veoauto kasti tarvikud"
+            name_et: "Veoauto kasti tarvikud"
+            product_count: 0
+          - slug: v4-autovaruosad-ja-tarvikud-veoauto-tarvikud-laadimismatid-ja-porandakatted
+            name_en: "Laadimismatid ja -põrandakatted"
+            name_et: "Laadimismatid ja -põrandakatted"
+            product_count: 0
+          - slug: v4-autovaruosad-ja-tarvikud-veoauto-autohaagise-madratsid
+            name_en: "Autohaagise madratsid"
+            name_et: "Autohaagise madratsid"
+            product_count: 0
+          - slug: v4-autovaruosad-ja-tarvikud-veoauto-kraanad
+            name_en: "Veoauto-kraanad"
+            name_et: "Veoauto-kraanad"
+            product_count: 0
+          - slug: v4-autovaruosad-ja-tarvikud-veoauto-tarvikud-aarekivi-rambid
+            name_en: "Äärekivi rambid"
+            name_et: "Äärekivi rambid"
+            product_count: 0
+          - slug: v4-autovaruosad-ja-tarvikud-veoauto-tarvikud-klaasi-transpordiraamid
+            name_en: "Klaasi transpordiraamid"
+            name_et: "Klaasi transpordiraamid"
+            product_count: 0
           - slug: v4-autovaruosad-ja-tarvikud-veoauto-tarvikud-ohususteemi-komplektid
             name_en: "Õhusüsteemi komplektid"
             name_et: "Õhusüsteemi komplektid"
@@ -1911,10 +1943,6 @@ l1:
             name_en: "Kütusepaagid ja -mahutid"
             name_et: "Kütusepaagid ja -mahutid"
             product_count: 0
-          - slug: v4-autovaruosad-ja-tarvikud-veoauto-tarvikud-laadimismatid-ja-porandakatted
-            name_en: "Laadimismatid ja -põrandakatted"
-            name_et: "Laadimismatid ja -põrandakatted"
-            product_count: 0
           - slug: v4-autovaruosad-ja-tarvikud-veoauto-tarvikud-lasti-kinnitustarvikud
             name_en: "Lasti kinnitustarvikud"
             name_et: "Lasti kinnitustarvikud"
@@ -1923,50 +1951,18 @@ l1:
             name_en: "Koormakatted ja presendid"
             name_et: "Koormakatted ja presendid"
             product_count: 0
-          - slug: v4-autovaruosad-ja-tarvikud-veoauto-tarvikud-hoiukastid-ja-karbid
-            name_en: "Hoiukastid ja -karbid"
-            name_et: "Hoiukastid ja -karbid"
-            product_count: 0
-          - slug: v4-autovaruosad-ja-tarvikud-veoauto-tarvikud-tooriistakastid
-            name_en: "Tööriistakastid"
-            name_et: "Tööriistakastid"
-            product_count: 0
-          - slug: pcat-a3k
-            name_en: "Veoauto kasti tarvikud"
-            name_et: "Veoauto kasti tarvikud"
-            product_count: 0
-          - slug: v4-autovaruosad-ja-tarvikud-veoauto-autohaagise-madratsid
-            name_en: "Autohaagise madratsid"
-            name_et: "Autohaagise madratsid"
-            product_count: 0
-          - slug: v4-autovaruosad-ja-tarvikud-veoauto-kraanad
-            name_en: "Veoauto-kraanad"
-            name_et: "Veoauto-kraanad"
-            product_count: 0
-          - slug: v4-autovaruosad-ja-tarvikud-veoauto-tarvikud-klaasi-transpordiraamid
-            name_en: "Klaasi transpordiraamid"
-            name_et: "Klaasi transpordiraamid"
-            product_count: 0
-          - slug: v4-autovaruosad-ja-tarvikud-veoauto-tarvikud-aarekivi-rambid
-            name_en: "Äärekivi rambid"
-            name_et: "Äärekivi rambid"
-            product_count: 0
       - slug: v4-autovaruosad-ja-tarvikud-valistarvikud-ja-rehvitarvikud
         name_en: "Välistarvikud & rehvitarvikud"
         name_et: "Välistarvikud & rehvitarvikud"
         product_count: 0
         subs:
-          - slug: v4-autovaruosad-ja-tarvikud-valistarvikud-astmelauad-ja-astmed
-            name_en: "Astmelauad ja astmed"
-            name_et: "Astmelauad ja astmed"
-            product_count: 0
-          - slug: v4-autovaruosad-ja-tarvikud-valistarvikud-pukseerimispeeglid
-            name_en: "Pukseerimispeeglid"
-            name_et: "Pukseerimispeeglid"
-            product_count: 0
           - slug: v4-autovaruosad-ja-tarvikud-valistarvikud-valisvalgustus-ja-whip-tuled
             name_en: "Välisvalgustus ja whip-tuled"
             name_et: "Välisvalgustus ja whip-tuled"
+            product_count: 0
+          - slug: v4-autovaruosad-ja-tarvikud-valistarvikud-astmelauad-ja-astmed
+            name_en: "Astmelauad ja astmed"
+            name_et: "Astmelauad ja astmed"
             product_count: 0
           - slug: v4-autovaruosad-ja-tarvikud-valistarvikud-spoilerid-ja-aerodunaamika
             name_en: "Spoilerid ja aerodünaamika"
@@ -1983,6 +1979,10 @@ l1:
           - slug: v4-autovaruosad-ja-tarvikud-valistarvikud-veljed-rummukatted-ja-speisrid
             name_en: "Veljed, rummukatted ja speisrid"
             name_et: "Veljed, rummukatted ja speisrid"
+            product_count: 0
+          - slug: v4-autovaruosad-ja-tarvikud-valistarvikud-pukseerimispeeglid
+            name_en: "Pukseerimispeeglid"
+            name_et: "Pukseerimispeeglid"
             product_count: 0
           - slug: v4-autovaruosad-ja-tarvikud-valistarvikud-rattatakked-ja-rattalukud
             name_en: "Rattatõkked ja rattalukud"
@@ -2159,17 +2159,17 @@ l1:
         name_et: "Salongitarvikud"
         product_count: 0
         subs:
-          - slug: v4-autovaruosad-ja-tarvikud-salongitarvikud-autoroolid
-            name_en: "Autoroolid"
-            name_et: "Autoroolid"
-            product_count: 0
-          - slug: v4-autovaruosad-ja-tarvikud-salongitarvikud-pardakaamerad
-            name_en: "Pardakaamerad"
-            name_et: "Pardakaamerad"
-            product_count: 0
           - slug: v4-autovaruosad-ja-tarvikud-salong-faraday-karbid
             name_en: "Faraday-karbid & võtme-kaitse"
             name_et: "Faraday-karbid & võtme-kaitse"
+            product_count: 0
+          - slug: v4-autovaruosad-ja-tarvikud-salongitarvikud-auto-alarmsireenid
+            name_en: "Auto alarmsireenid"
+            name_et: "Auto alarmsireenid"
+            product_count: 0
+          - slug: v4-autovaruosad-ja-tarvikud-salongitarvikud-autoroolid
+            name_en: "Autoroolid"
+            name_et: "Autoroolid"
             product_count: 0
           - slug: v4-autovaruosad-ja-tarvikud-salongitarvikud-auto-multimeediaekraanid
             name_en: "Auto multimeediaekraanid"
@@ -2183,9 +2183,17 @@ l1:
             name_en: "Heliisolatsioonimaterjalid"
             name_et: "Heliisolatsioonimaterjalid"
             product_count: 0
-          - slug: v4-autovaruosad-ja-tarvikud-salongitarvikud-auto-alarmsireenid
-            name_en: "Auto alarmsireenid"
-            name_et: "Auto alarmsireenid"
+          - slug: v4-autovaruosad-ja-tarvikud-salongitarvikud-autovoimendid
+            name_en: "Autovõimendid"
+            name_et: "Autovõimendid"
+            product_count: 0
+          - slug: pcat-a3m
+            name_en: "Auto madratsid"
+            name_et: "Auto madratsid"
+            product_count: 0
+          - slug: v4-autovaruosad-ja-tarvikud-salongitarvikud-pardakaamerad
+            name_en: "Pardakaamerad"
+            name_et: "Pardakaamerad"
             product_count: 0
           - slug: v4-autovaruosad-ja-tarvikud-salongitarvikud-auto-istmekatted
             name_en: "Auto istmekatted"
@@ -2202,14 +2210,6 @@ l1:
           - slug: v4-autovaruosad-ja-tarvikud-salongitarvikud-auto-bassikolarid
             name_en: "Auto bassikõlarid"
             name_et: "Auto bassikõlarid"
-            product_count: 0
-          - slug: v4-autovaruosad-ja-tarvikud-salongitarvikud-autovoimendid
-            name_en: "Autovõimendid"
-            name_et: "Autovõimendid"
-            product_count: 0
-          - slug: pcat-a3m
-            name_en: "Auto madratsid"
-            name_et: "Auto madratsid"
             product_count: 0
       - slug: v4-autovaruosad-ja-tarvikud-katuse-ja-koormakandjad
         name_en: "Katuse- & koormakandjad"
@@ -2365,25 +2365,25 @@ l1:
         name_et: "Köögitehnika"
         product_count: 0
         subs:
-          - slug: v4-kodumasinad-ja-kodutehnika-koogitehnika-kulmikud-ja-sugavkulmikud
-            name_en: "Külmikud ja sügavkülmikud"
-            name_et: "Külmikud ja sügavkülmikud"
+          - slug: v4-kodumasinad-ja-kodutehnika-koogitehnika-mahla-ja-veinipressid
+            name_en: "Mahla- ja veinipressid"
+            name_et: "Mahla- ja veinipressid"
             product_count: 0
-          - slug: v4-kodumasinad-ja-kodutehnika-koogitehnika-destilleerimisaparaadid-ja-seadmed
-            name_en: "Destilleerimisaparaadid ja -seadmed"
-            name_et: "Destilleerimisaparaadid ja -seadmed"
+          - slug: v4-kodumasinad-ja-kodutehnika-koogitehnika-slushi-ja-suhkruvatimasinad
+            name_en: "Slushi- ja suhkruvatimasinad"
+            name_et: "Slushi- ja suhkruvatimasinad"
             product_count: 0
-          - slug: v4-kodumasinad-ja-kodutehnika-koogitehnika-vorstitaitemasinad-ja-pressid
-            name_en: "Vorstitäitemasinad ja -pressid"
-            name_et: "Vorstitäitemasinad ja -pressid"
+          - slug: v4-kodumasinad-ja-kodutehnika-koogitehnika-toidukuivatid
+            name_en: "Toidukuivatid"
+            name_et: "Toidukuivatid"
             product_count: 0
           - slug: v4-kodumasinad-ja-kodutehnika-koogitehnika-koogikombainid-ja-toiduprotsessorid
             name_en: "Köögikombainid ja toiduprotsessorid"
             name_et: "Köögikombainid ja toiduprotsessorid"
             product_count: 0
-          - slug: v4-kodumasinad-ja-kodutehnika-koogitehnika-toidujaatmete-purustajad
-            name_en: "Toidujäätmete purustajad"
-            name_et: "Toidujäätmete purustajad"
+          - slug: v4-kodumasinad-ja-kodutehnika-koogitehnika-vorstitaitemasinad-ja-pressid
+            name_en: "Vorstitäitemasinad ja -pressid"
+            name_et: "Vorstitäitemasinad ja -pressid"
             product_count: 0
           - slug: v4-kodumasinad-ja-kodutehnika-koogitehnika-lihaloikurid-ja-viilutajad
             name_en: "Lihalõikurid ja -viilutajad"
@@ -2397,17 +2397,21 @@ l1:
             name_en: "Õllepruulimisseadmed"
             name_et: "Õllepruulimisseadmed"
             product_count: 0
+          - slug: v4-koogitehnika-piiritus-destilleerimisaparaadid
+            name_en: "Piiritus- & destilleerimisaparaadid"
+            name_et: "Piiritus- & destilleerimisaparaadid"
+            product_count: 0
           - slug: v4-kodumasinad-ja-kodutehnika-koogitehnika-espresso-ja-kohvimasinad
             name_en: "Espresso- ja kohvimasinad"
             name_et: "Espresso- ja kohvimasinad"
             product_count: 0
-          - slug: v4-kodumasinad-ja-kodutehnika-koogitehnika-slushi-ja-suhkruvatimasinad
-            name_en: "Slushi- ja suhkruvatimasinad"
-            name_et: "Slushi- ja suhkruvatimasinad"
-            product_count: 0
           - slug: v4-kodumasinad-ja-kodutehnika-koogitehnika-teraviljaveskid-ja-jahvatajad
             name_en: "Teraviljaveskid ja -jahvatajad"
             name_et: "Teraviljaveskid ja -jahvatajad"
+            product_count: 0
+          - slug: v4-kodumasinad-ja-kodutehnika-koogitehnika-kulmikud-ja-sugavkulmikud
+            name_en: "Külmikud ja sügavkülmikud"
+            name_et: "Külmikud ja sügavkülmikud"
             product_count: 0
           - slug: v4-kodumasinad-ja-kodutehnika-koogitehnika-vaakumpakkimismasinad
             name_en: "Vaakumpakkimismasinad"
@@ -2425,21 +2429,21 @@ l1:
             name_en: "Pliidid ja keeduplaadid"
             name_et: "Pliidid ja keeduplaadid"
             product_count: 0
-          - slug: v4-kodumasinad-ja-kodutehnika-koogitehnika-toidukuivatid
-            name_en: "Toidukuivatid"
-            name_et: "Toidukuivatid"
-            product_count: 0
           - slug: v4-kodumasinad-ja-kodutehnika-koogitehnika-jaamasinad-ja-jaatisemasinad
             name_en: "Jäämasinad ja jäätisemasinad"
             name_et: "Jäämasinad ja jäätisemasinad"
             product_count: 0
-          - slug: v4-kodumasinad-ja-kodutehnika-koogitehnika-mahla-ja-veinipressid
-            name_en: "Mahla- ja veinipressid"
-            name_et: "Mahla- ja veinipressid"
-            product_count: 0
           - slug: v4-kodumasinad-ja-kodutehnika-koogitehnika-gaseeritud-vee-valmistajad
             name_en: "Gaseeritud vee valmistajad"
             name_et: "Gaseeritud vee valmistajad"
+            product_count: 0
+          - slug: v4-kodumasinad-ja-kodutehnika-koogitehnika-toidujaatmete-purustajad
+            name_en: "Toidujäätmete purustajad"
+            name_et: "Toidujäätmete purustajad"
+            product_count: 0
+          - slug: v4-koogitehnika-veedestillaatorid
+            name_en: "Veedestillaatorid"
+            name_et: "Veedestillaatorid"
             product_count: 0
           - slug: v4-kodumasinad-ja-kodutehnika-koogitehnika-veedosaatorid
             name_en: "Veedosaatorid & -pumbad"
@@ -2454,17 +2458,21 @@ l1:
         name_et: "Köögi hoiustamine & korraldus"
         product_count: 0
         subs:
-          - slug: v4-kodumasinad-ja-kodutehnika-koogi-hoiustamine-ja-korraldus-valjatommatavad-kappide-korraldajad
-            name_en: "Väljatõmmatavad kappide korraldajad"
-            name_et: "Väljatõmmatavad kappide korraldajad"
-            product_count: 0
           - slug: v4-kodumasinad-ja-kodutehnika-koogi-hoiustamine-ja-korraldus-pottide-ja-pannide-korraldajad
             name_en: "Pottide ja pannide korraldajad"
             name_et: "Pottide ja pannide korraldajad"
             product_count: 0
-          - slug: v4-kodumasinad-ja-kodutehnika-koogi-hoiustamine-ja-korraldus-maitseaineriiulid-ja-hoidikud
-            name_en: "Maitseaineriiulid ja -hoidikud"
-            name_et: "Maitseaineriiulid ja -hoidikud"
+          - slug: v4-kodumasinad-ja-kodutehnika-koogi-hoiustamine-ja-korraldus-valjatommatavad-kappide-korraldajad
+            name_en: "Väljatõmmatavad kappide korraldajad"
+            name_et: "Väljatõmmatavad kappide korraldajad"
+            product_count: 0
+          - slug: v4-kodumasinad-ja-kodutehnika-koogi-hoiustamine-ja-korraldus-valjatommatavad-prugikastid
+            name_en: "Väljatõmmatavad prügikastid"
+            name_et: "Väljatõmmatavad prügikastid"
+            product_count: 0
+          - slug: v4-kodumasinad-ja-kodutehnika-koogi-hoiustamine-ja-korraldus-paberkotid
+            name_en: "Paberkotid"
+            name_et: "Paberkotid"
             product_count: 0
           - slug: v4-kodumasinad-ja-kodutehnika-koogi-hoiustamine-ja-korraldus-leivakastid-ja-karbid
             name_en: "Leivakastid ja -karbid"
@@ -2474,13 +2482,9 @@ l1:
             name_en: "Toiduainete hoiukonteinerid"
             name_et: "Toiduainete hoiukonteinerid"
             product_count: 0
-          - slug: v4-kodumasinad-ja-kodutehnika-koogi-hoiustamine-ja-korraldus-valjatommatavad-prugikastid
-            name_en: "Väljatõmmatavad prügikastid"
-            name_et: "Väljatõmmatavad prügikastid"
-            product_count: 0
-          - slug: v4-kodumasinad-ja-kodutehnika-koogi-hoiustamine-ja-korraldus-paberkotid
-            name_en: "Paberkotid"
-            name_et: "Paberkotid"
+          - slug: v4-kodumasinad-ja-kodutehnika-koogi-hoiustamine-ja-korraldus-maitseaineriiulid-ja-hoidikud
+            name_en: "Maitseaineriiulid ja -hoidikud"
+            name_et: "Maitseaineriiulid ja -hoidikud"
             product_count: 0
           - slug: v4-kodumasinad-ja-kodutehnika-koogi-hoiustamine-ja-korraldus-tassihoidjad-ja-riiulid
             name_en: "Tassihoidjad ja -riiulid"
@@ -2507,42 +2511,42 @@ l1:
         name_et: "Kodumasinate alused & varuosad"
         product_count: 0
         subs:
-          - slug: v4-kodumasinad-ja-kodutehnika-kasitoo-ja-varuosad-kodumasinate-alused
-            name_en: "Kodumasinate alused"
-            name_et: "Kodumasinate alused"
-            product_count: 0
-          - slug: v4-kodumasinad-ja-kodutehnika-kasitoo-ja-varuosad-tolmuimeja-hoidikud
-            name_en: "Tolmuimeja hoidikud"
-            name_et: "Tolmuimeja hoidikud"
+          - slug: v4-kodumasinad-ja-kodutehnika-kasitoo-ja-varuosad-veski-varuosad
+            name_en: "Veski varuosad"
+            name_et: "Veski varuosad"
             product_count: 0
           - slug: v4-kodumasinad-ja-kodutehnika-kasitoo-ja-varuosad-pesumasina-alused
             name_en: "Pesumasina alused"
             name_et: "Pesumasina alused"
             product_count: 0
-          - slug: v4-kodumasinad-ja-kodutehnika-kasitoo-ja-varuosad-veski-varuosad
-            name_en: "Veski varuosad"
-            name_et: "Veski varuosad"
-            product_count: 0
           - slug: v4-kodumasinad-ja-kodutehnika-kasitoo-ja-varuosad-kuivati-ventilatsioonikomplektid
             name_en: "Kuivati ventilatsioonikomplektid"
             name_et: "Kuivati ventilatsioonikomplektid"
             product_count: 0
+          - slug: v4-kodumasinad-ja-kodutehnika-kasitoo-ja-varuosad-kodumasinate-alused
+            name_en: "Kodumasinate alused"
+            name_et: "Kodumasinate alused"
+            product_count: 0
           - slug: v4-kodumasinad-ja-kodutehnika-kasitoo-ja-varuosad-koogimasinate-lisaseadmed
             name_en: "Köögimasinate lisaseadmed"
             name_et: "Köögimasinate lisaseadmed"
+            product_count: 0
+          - slug: v4-kodumasinad-ja-kodutehnika-kasitoo-ja-varuosad-tolmuimeja-hoidikud
+            name_en: "Tolmuimeja hoidikud"
+            name_et: "Tolmuimeja hoidikud"
             product_count: 0
       - slug: v4-kodumasinad-ja-kodutehnika-puhastus-ja-pesuhooldus
         name_en: "Puhastus & pesuhooldus"
         name_et: "Puhastus & pesuhooldus"
         product_count: 0
         subs:
-          - slug: v4-kodumasinad-ja-kodutehnika-puhastus-ja-koristustehnika-tolmuimejad
-            name_en: "Tolmuimejad"
-            name_et: "Tolmuimejad"
-            product_count: 0
           - slug: v4-kodumasinad-ja-kodutehnika-puhastus-ja-koristustehnika-jalatsikuivatid
             name_en: "Jalatsikuivatid"
             name_et: "Jalatsikuivatid"
+            product_count: 0
+          - slug: v4-kodumasinad-ja-kodutehnika-puhastus-ja-koristustehnika-tolmuimejad
+            name_en: "Tolmuimejad"
+            name_et: "Tolmuimejad"
             product_count: 0
           - slug: v4-kodumasinad-ja-kodutehnika-puhastus-ja-koristustehnika-katekuivatid
             name_en: "Kätekuivatid"
@@ -2979,13 +2983,13 @@ l1:
             name_en: "CO2 balloonid ja tarvikud"
             name_et: "CO2 balloonid ja tarvikud"
             product_count: 0
+          - slug: v4-suurkook-ollepruulimisseadmed
+            name_en: "Õllepruulimisseadmed"
+            name_et: "Õllepruulimisseadmed"
+            product_count: 0
           - slug: v4-suurkook-peo-serveerimisdispenserid
             name_en: "Peo- & serveerimisdispenserid"
             name_et: "Peo- & serveerimisdispenserid"
-            product_count: 0
-          - slug: v4-suurkoogiseadmed-koogitarvikud-ja-noud-ollepruulimis-ja-destilleerimisseadmed
-            name_en: "Õllepruulimis- ja destilleerimisseadmed"
-            name_et: "Õllepruulimis- ja destilleerimisseadmed"
             product_count: 0
           - slug: v4-suurkook-jahutusega-joogidispenserid
             name_en: "Jahutusega joogidispenserid"
@@ -3294,17 +3298,13 @@ l1:
         name_et: "Lauad"
         product_count: 0
         subs:
-          - slug: v4-moobel-ja-sisustus-lauad-meditsiinikarud-ja-lauad
-            name_en: "Meditsiinikärud ja -lauad"
-            name_et: "Meditsiinikärud ja -lauad"
-            product_count: 0
-          - slug: v4-moobel-ja-sisustus-lauad-kulmiku-alused
-            name_en: "Külmiku alused"
-            name_et: "Külmiku alused"
-            product_count: 0
           - slug: v4-moobel-ja-sisustus-lauad-teenindus-ja-hoiukarud
             name_en: "Teenindus- ja hoiukärud"
             name_et: "Teenindus- ja hoiukärud"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-lauad-meditsiinikarud-ja-lauad
+            name_en: "Meditsiinikärud ja -lauad"
+            name_et: "Meditsiinikärud ja -lauad"
             product_count: 0
           - slug: v4-moobel-ja-sisustus-lauad-koogikarud-ja-koogisaared
             name_en: "Köögikärud ja köögisaared"
@@ -3345,6 +3345,10 @@ l1:
           - slug: v4-moobel-ja-sisustus-lauad-ookapid-ja-oolauad
             name_en: "Öökapid ja öölauad"
             name_et: "Öökapid ja öölauad"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-lauad-kulmiku-alused
+            name_en: "Külmiku alused"
+            name_et: "Külmiku alused"
             product_count: 0
       - slug: v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu
         name_en: "Magamistoamööbel & voodipesu"
@@ -3408,9 +3412,9 @@ l1:
         name_et: "Elutoamööbel"
         product_count: 0
         subs:
-          - slug: v4-moobel-ja-sisustus-elutoamoobel-kott-toolid
-            name_en: "Kott-toolid"
-            name_et: "Kott-toolid"
+          - slug: v4-moobel-ja-sisustus-elutoamoobel-meediakapid
+            name_en: "Meediakapid"
+            name_et: "Meediakapid"
             product_count: 0
           - slug: v4-moobel-ja-sisustus-elutoamoobel-kapid-ja-kummutid
             name_en: "Kapid ja kummutid"
@@ -3440,9 +3444,9 @@ l1:
             name_en: "Diivanid"
             name_et: "Diivanid"
             product_count: 0
-          - slug: v4-moobel-ja-sisustus-elutoamoobel-meediakapid
-            name_en: "Meediakapid"
-            name_et: "Meediakapid"
+          - slug: v4-moobel-ja-sisustus-elutoamoobel-kott-toolid
+            name_en: "Kott-toolid"
+            name_et: "Kott-toolid"
             product_count: 0
           - slug: v4-moobel-ja-sisustus-elutoamoobel-hoiupingid-ja-tumbad
             name_en: "Hoiupingid ja tumbad"
@@ -3457,17 +3461,13 @@ l1:
         name_et: "Lapsemööbel"
         product_count: 0
         subs:
+          - slug: v4-moobel-ja-sisustus-lapsemoobel-laste-diivanid-ja-diivanvoodid
+            name_en: "Laste diivanid ja diivanvoodid"
+            name_et: "Laste diivanid ja diivanvoodid"
+            product_count: 0
           - slug: v4-moobel-ja-sisustus-lapsemoobel-laste-manguasjade-hoiukastid-ja-pingid
             name_en: "Laste mänguasjade hoiukastid ja pingid"
             name_et: "Laste mänguasjade hoiukastid ja pingid"
-            product_count: 0
-          - slug: v4-moobel-ja-sisustus-lapsemoobel-laste-toolid-ja-istmed
-            name_en: "Laste toolid ja istmed"
-            name_et: "Laste toolid ja istmed"
-            product_count: 0
-          - slug: v4-moobel-ja-sisustus-lapsemoobel-laste-lamamistoolid
-            name_en: "Laste lamamistoolid"
-            name_et: "Laste lamamistoolid"
             product_count: 0
           - slug: v4-moobel-ja-sisustus-lapsemoobel-mahkimislauad
             name_en: "Mähkimislauad"
@@ -3485,6 +3485,14 @@ l1:
             name_en: "Laste laua- ja toolikomplektid"
             name_et: "Laste laua- ja toolikomplektid"
             product_count: 0
+          - slug: v4-moobel-ja-sisustus-lapsemoobel-laste-toolid-ja-istmed
+            name_en: "Laste toolid ja istmed"
+            name_et: "Laste toolid ja istmed"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-lapsemoobel-laste-lamamistoolid
+            name_en: "Laste lamamistoolid"
+            name_et: "Laste lamamistoolid"
+            product_count: 0
           - slug: v4-moobel-ja-sisustus-lapsemoobel-laste-koogi-ja-oppetornid
             name_en: "Laste köögi- ja õppetornid"
             name_et: "Laste köögi- ja õppetornid"
@@ -3501,22 +3509,18 @@ l1:
             name_en: "Laste voodid ja madratsid"
             name_et: "Laste voodid ja madratsid"
             product_count: 0
-          - slug: v4-moobel-ja-sisustus-lapsemoobel-laste-diivanid-ja-diivanvoodid
-            name_en: "Laste diivanid ja diivanvoodid"
-            name_et: "Laste diivanid ja diivanvoodid"
-            product_count: 0
       - slug: v4-moobel-ja-sisustus-toolid-ja-istmed
         name_en: "Toolid & istmed"
         name_et: "Toolid & istmed"
         product_count: 0
         subs:
-          - slug: v4-moobel-ja-sisustus-toolid-ja-istmed-baaritoolid
-            name_en: "Baaritoolid"
-            name_et: "Baaritoolid"
-            product_count: 0
           - slug: v4-moobel-ja-sisustus-toolid-ja-istmed-soogitoolid
             name_en: "Söögitoolid"
             name_et: "Söögitoolid"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-toolid-ja-istmed-baaritoolid
+            name_en: "Baaritoolid"
+            name_et: "Baaritoolid"
             product_count: 0
           - slug: v4-moobel-ja-sisustus-toolid-ja-istmed-kontori-ja-tootoolid
             name_en: "Kontori- ja töötoolid"
@@ -3624,25 +3628,21 @@ l1:
             name_en: "Tooli satiinpaelad ja kaunistused"
             name_et: "Tooli satiinpaelad ja kaunistused"
             product_count: 0
-          - slug: v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-dekoratiivlaternad
-            name_en: "Dekoratiivlaternad ja pärjad"
-            name_et: "Dekoratiivlaternad ja pärjad"
+          - slug: v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-laudlinad
+            name_en: "Laudlinad"
+            name_et: "Laudlinad"
             product_count: 0
           - slug: v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-onne-ja-loosimisrattad-ning-trumlid
             name_en: "Õnne- ja loosimisrattad ning -trumlid"
             name_et: "Õnne- ja loosimisrattad ning -trumlid"
             product_count: 0
-          - slug: v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-laudlinad
-            name_en: "Laudlinad"
-            name_et: "Laudlinad"
+          - slug: v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-pulmakaared-ja-lilledekoor
+            name_en: "Pulmakaared & lilledekoor"
+            name_et: "Pulmakaared & lilledekoor"
             product_count: 0
           - slug: v4-tooriistad-ja-tarvikud-turva-ja-objektivarustus-jarjekorra-piirdepostid
             name_en: "Järjekorra piirdepostid"
             name_et: "Järjekorra piirdepostid"
-            product_count: 0
-          - slug: v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-pulmakaared-ja-lilledekoor
-            name_en: "Pulmakaared & lilledekoor"
-            name_et: "Pulmakaared & lilledekoor"
             product_count: 0
           - slug: v4-moobel-ja-sisustus-toolid-ja-istmed-kokkupandavad-toolid
             name_en: "Kokkupandavad peotoolid"
@@ -3660,6 +3660,10 @@ l1:
             name_en: "Kunstlilled ja -taimed"
             name_et: "Kunstlilled ja -taimed"
             product_count: 0
+          - slug: v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-dekoratiivlaternad
+            name_en: "Dekoratiivlaternad ja pärjad"
+            name_et: "Dekoratiivlaternad ja pärjad"
+            product_count: 0
           - slug: v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-ohupallikaared-ja-raamid
             name_en: "Õhupallikaared & raamid"
             name_et: "Õhupallikaared & raamid"
@@ -3669,9 +3673,13 @@ l1:
         name_et: "Mööbliosad & -komponendid"
         product_count: 0
         subs:
-          - slug: v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-kontoritooli-alused
-            name_en: "Kontoritooli alused"
-            name_et: "Kontoritooli alused"
+          - slug: v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-lauaplaadid
+            name_en: "Lauaplaadid"
+            name_et: "Lauaplaadid"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-seinavoodi-mehhanismid
+            name_en: "Seinavoodi mehhanismid"
+            name_et: "Seinavoodi mehhanismid"
             product_count: 0
           - slug: v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-mooblijalad
             name_en: "Mööblijalad"
@@ -3685,17 +3693,13 @@ l1:
             name_en: "Lauakaitsed & -kiled"
             name_et: "Lauakaitsed & -kiled"
             product_count: 0
-          - slug: v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-lauaplaadid
-            name_en: "Lauaplaadid"
-            name_et: "Lauaplaadid"
+          - slug: v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-kontoritooli-alused
+            name_en: "Kontoritooli alused"
+            name_et: "Kontoritooli alused"
             product_count: 0
           - slug: v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-mooblirattad
             name_en: "Mööblirattad"
             name_et: "Mööblirattad"
-            product_count: 0
-          - slug: v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-seinavoodi-mehhanismid
-            name_en: "Seinavoodi mehhanismid"
-            name_et: "Seinavoodi mehhanismid"
             product_count: 0
       - slug: v4-moobel-ja-sisustus-kontoritarvikud-ja-organiseerijad
         name_en: "Kontoritarvikud & organiseerijad"
@@ -4592,9 +4596,9 @@ l1:
         name_et: "Põrandakatted & tarvikud"
         product_count: 0
         subs:
-          - slug: v4-ehitus-remont-ja-varvid-porandakatted-ja-tarvikud-treeningmatid-ja-spordiporandad
-            name_en: "Treeningmatid ja spordipõrandad"
-            name_et: "Treeningmatid ja spordipõrandad"
+          - slug: v4-ehitus-remont-ja-varvid-porandakatted-ja-tarvikud-drenaazimatid-ja-plaadid
+            name_en: "Drenaažimatid ja -plaadid"
+            name_et: "Drenaažimatid ja -plaadid"
             product_count: 0
           - slug: v4-ehitus-remont-ja-varvid-porandakatted-ja-tarvikud-porandamatide-aareliistud-ja-komplektid
             name_en: "Põrandamatide ääreliistud ja komplektid"
@@ -4616,13 +4620,13 @@ l1:
             name_en: "Kummimatid ja -põrandad"
             name_et: "Kummimatid ja -põrandad"
             product_count: 0
+          - slug: v4-ehitus-remont-ja-varvid-porandakatted-ja-tarvikud-treeningmatid-ja-spordiporandad
+            name_en: "Treeningmatid ja spordipõrandad"
+            name_et: "Treeningmatid ja spordipõrandad"
+            product_count: 0
           - slug: v4-ehitus-remont-ja-varvid-porandakatted-ja-tarvikud-tantsuporandad-ja-plaadid
             name_en: "Tantsupõrandad ja -plaadid"
             name_et: "Tantsupõrandad ja -plaadid"
-            product_count: 0
-          - slug: v4-ehitus-remont-ja-varvid-porandakatted-ja-tarvikud-drenaazimatid-ja-plaadid
-            name_en: "Drenaažimatid ja -plaadid"
-            name_et: "Drenaažimatid ja -plaadid"
             product_count: 0
           - slug: v4-ehitus-remont-ja-varvid-porandakatted-ja-tarvikud-garaaziporandad-ja-matid
             name_en: "Garaažipõrandad ja -matid"
@@ -4776,13 +4780,17 @@ l1:
         name_et: "Mööbli- & kapifurnituur"
         product_count: 0
         subs:
-          - slug: v4-ehitus-remont-ja-varvid-moobli-ja-kapifurnituur-sahtlisiinid-ja-liugurid
-            name_en: "Sahtlisiinid ja -liugurid"
-            name_et: "Sahtlisiinid ja -liugurid"
+          - slug: v4-ehitus-remont-ja-varvid-moobli-ja-kapifurnituur-mooblinupud-ja-kaepidemed
+            name_en: "Mööblinupud ja -käepidemed"
+            name_et: "Mööblinupud ja -käepidemed"
             product_count: 0
           - slug: v4-ehitus-remont-ja-varvid-moobli-ja-kapifurnituur-kapihinged
             name_en: "Kapihinged"
             name_et: "Kapihinged"
+            product_count: 0
+          - slug: v4-ehitus-remont-ja-varvid-moobli-ja-kapifurnituur-sahtlisiinid-ja-liugurid
+            name_en: "Sahtlisiinid ja -liugurid"
+            name_et: "Sahtlisiinid ja -liugurid"
             product_count: 0
           - slug: v4-ehitus-remont-ja-varvid-moobli-ja-kapifurnituur-riiulikandurid-ja-klambrid
             name_en: "Riiulikandurid ja -klambrid"
@@ -4791,10 +4799,6 @@ l1:
           - slug: v4-ehitus-remont-ja-varvid-moobli-ja-kapifurnituur-tala-ja-nurgakinnitused
             name_en: "Tala- ja nurgakinnitused"
             name_et: "Tala- ja nurgakinnitused"
-            product_count: 0
-          - slug: v4-ehitus-remont-ja-varvid-moobli-ja-kapifurnituur-mooblinupud-ja-kaepidemed
-            name_en: "Mööblinupud ja -käepidemed"
-            name_et: "Mööblinupud ja -käepidemed"
             product_count: 0
       - slug: v4-ehitus-remont-ja-varvid-isolatsioon-ja-soojustus
         name_en: "Isolatsioon & soojustus"
@@ -4863,13 +4867,13 @@ l1:
             name_en: "Ehitusplatsi kütteseadmed"
             name_et: "Ehitusplatsi kütteseadmed"
             product_count: 0
-          - slug: v4-ehitus-remont-ja-varvid-betoonitood-ja-ehitusmaterjalid-betooni-pitsati-ja-tekstuurimatid
-            name_en: "Betooni pitsati- ja tekstuurimatid"
-            name_et: "Betooni pitsati- ja tekstuurimatid"
-            product_count: 0
           - slug: v4-ehitus-remont-ja-varvid-betoonitood-ja-ehitusmaterjalid-betooni-polvelauad-ja-liugurid
             name_en: "Betooni põlvelauad ja liugurid"
             name_et: "Betooni põlvelauad ja liugurid"
+            product_count: 0
+          - slug: v4-ehitus-remont-ja-varvid-betoonitood-ja-ehitusmaterjalid-betooni-pitsati-ja-tekstuurimatid
+            name_en: "Betooni pitsati- ja tekstuurimatid"
+            name_et: "Betooni pitsati- ja tekstuurimatid"
             product_count: 0
           - slug: v4-ehitus-remont-ja-varvid-betoonitood-ja-ehitusmaterjalid-ehitusplaadid-ja-lehed
             name_en: "Ehitusplaadid ja -lehed"
@@ -4888,13 +4892,9 @@ l1:
         name_et: "Ohutus & turvalisus"
         product_count: 0
         subs:
-          - slug: v4-ehitus-remont-ja-varvid-ohutus-turvavored-ja-kokkupandavad-varavad
-            name_en: "Turvavõred & kokkupandavad väravad"
-            name_et: "Turvavõred & kokkupandavad väravad"
-            product_count: 0
-          - slug: v4-ehitus-remont-ja-varvid-aarekivirambid
-            name_en: "Äärekivi- ja kaldrambid"
-            name_et: "Äärekivi- ja kaldrambid"
+          - slug: v4-ehitus-remont-ja-varvid-ohutus-uleujutuskaitse-ja-tokked
+            name_en: "Üleujutuskaitse & -tõkked"
+            name_et: "Üleujutuskaitse & -tõkked"
             product_count: 0
           - slug: v4-ehitus-remont-ja-varvid-ohutus-ja-turvalisus-liikluspostid-ja-tokked
             name_en: "Liikluspostid ja -tõkked"
@@ -4904,9 +4904,13 @@ l1:
             name_en: "Kaitseekraanid & vaheseinad"
             name_et: "Kaitseekraanid & vaheseinad"
             product_count: 0
-          - slug: v4-ehitus-remont-ja-varvid-ohutus-uleujutuskaitse-ja-tokked
-            name_en: "Üleujutuskaitse & -tõkked"
-            name_et: "Üleujutuskaitse & -tõkked"
+          - slug: v4-ehitus-remont-ja-varvid-ohutus-turvavored-ja-kokkupandavad-varavad
+            name_en: "Turvavõred & kokkupandavad väravad"
+            name_et: "Turvavõred & kokkupandavad väravad"
+            product_count: 0
+          - slug: v4-ehitus-remont-ja-varvid-aarekivirambid
+            name_en: "Äärekivi- ja kaldrambid"
+            name_et: "Äärekivi- ja kaldrambid"
             product_count: 0
       - slug: v4-ehitus-remont-ja-varvid-vihmaveesusteemid-ja-drenaaz
         name_en: "Vihmaveesüsteemid & drenaaž"
@@ -4926,13 +4930,13 @@ l1:
         name_et: "Katusematerjalid"
         product_count: 0
         subs:
-          - slug: v4-ehitus-remont-ja-varvid-katusematerjalid-epdm-kummikatted
-            name_en: "EPDM kummikatted"
-            name_et: "EPDM kummikatted"
-            product_count: 0
           - slug: v4-ehitus-remont-ja-varvid-katusematerjalid-katuselabiviigu-tihendid
             name_en: "Katuseläbiviigu tihendid"
             name_et: "Katuseläbiviigu tihendid"
+            product_count: 0
+          - slug: v4-ehitus-remont-ja-varvid-katusematerjalid-epdm-kummikatted
+            name_en: "EPDM kummikatted"
+            name_et: "EPDM kummikatted"
             product_count: 0
       - slug: v4-ehitus-laaduri-ja-skid-steer-haakeseadmed
         name_en: "Laaduri- ja skid-steer haakeseadmed"
@@ -4964,13 +4968,13 @@ l1:
         name_et: "Tellingud ja toestus"
         product_count: 0
         subs:
-          - slug: v4-ehitus-remont-ja-varvid-tellingud-toolavad
-            name_en: "Tellingud ja töölavad"
-            name_et: "Tellingud ja töölavad"
-            product_count: 0
           - slug: v4-ehitus-remont-ja-varvid-tellingud-toestuspostid
             name_en: "Toestuspostid ja tungrauad"
             name_et: "Toestuspostid ja tungrauad"
+            product_count: 0
+          - slug: v4-ehitus-remont-ja-varvid-tellingud-toolavad
+            name_en: "Tellingud ja töölavad"
+            name_et: "Tellingud ja töölavad"
             product_count: 0
       - slug: v4-ehitus-remont-ja-varvid-trepid-ja-trepiosad
         name_en: "Trepid ja trepiosad"
@@ -6950,10 +6954,6 @@ l1:
             name_en: "Koeravoodid ja -pesad"
             name_et: "Koeravoodid ja -pesad"
             product_count: 0
-          - slug: v4-lemmikloomatarbed-pesad-ja-asemed-inimsuuruses-koeravoodid
-            name_en: "Inimsuuruses koeravoodid"
-            name_et: "Inimsuuruses koeravoodid"
-            product_count: 0
           - slug: v4-lemmikloomatarbed-pesad-ja-asemed-lemmiklooma-voodid
             name_en: "Lemmiklooma voodid"
             name_et: "Lemmiklooma voodid"
@@ -6961,6 +6961,10 @@ l1:
           - slug: v4-lemmikloomatarbed-pesad-ja-asemed-koera-autoistmed
             name_en: "Koera autoistmed"
             name_et: "Koera autoistmed"
+            product_count: 0
+          - slug: v4-lemmikloomatarbed-pesad-ja-asemed-inimsuuruses-koeravoodid
+            name_en: "Inimsuuruses koeravoodid"
+            name_et: "Inimsuuruses koeravoodid"
             product_count: 0
       - slug: v4-lemmikloomatarbed-sootmine-ja-jootmine
         name_en: "Söötmine & jootmine"
@@ -7332,6 +7336,10 @@ l1:
         name_et: "Liikumisabi"
         product_count: 0
         subs:
+          - slug: v4-meditsiin-ja-liikumisabi-liikumisabi-vannitoa-ulekandeabivahendid
+            name_en: "Vannitoa ülekandeabivahendid"
+            name_et: "Vannitoa ülekandeabivahendid"
+            product_count: 0
           - slug: v4-meditsiin-ja-liikumisabi-liikumisabi-voodiabivahendid
             name_en: "Voodiabivahendid"
             name_et: "Voodiabivahendid"
@@ -7343,10 +7351,6 @@ l1:
           - slug: v4-meditsiin-ja-liikumisabi-liikumisabi-trepironimisabivahendid
             name_en: "Trepironimisabivahendid"
             name_et: "Trepironimisabivahendid"
-            product_count: 0
-          - slug: v4-meditsiin-ja-liikumisabi-liikumisabi-vannitoa-ulekandeabivahendid
-            name_en: "Vannitoa ülekandeabivahendid"
-            name_et: "Vannitoa ülekandeabivahendid"
             product_count: 0
           - slug: v4-meditsiin-ja-liikumisabi-liikumisabi-tugipostid
             name_en: "Tugipostid"
@@ -7389,9 +7393,9 @@ l1:
         name_et: "Meditsiinitarvikud"
         product_count: 0
         subs:
-          - slug: v4-meditsiin-ja-liikumisabi-meditsiinitarvikud-kukkumiskaitsevahendid-ja-voodialarmid
-            name_en: "Kukkumiskaitsevahendid ja voodialarmid"
-            name_et: "Kukkumiskaitsevahendid ja voodialarmid"
+          - slug: v4-meditsiin-ja-liikumisabi-meditsiinitarvikud-suurendusseadmed
+            name_en: "Suurendusseadmed"
+            name_et: "Suurendusseadmed"
             product_count: 0
           - slug: v4-meditsiin-ja-liikumisabi-meditsiinitarvikud-haiglavoodid-ja-madratsid
             name_en: "Haiglavoodid ja madratsid"
@@ -7421,9 +7425,9 @@ l1:
             name_en: "Lämbumis- ja hingamisabivahendid"
             name_et: "Lämbumis- ja hingamisabivahendid"
             product_count: 0
-          - slug: v4-meditsiin-ja-liikumisabi-meditsiinitarvikud-suurendusseadmed
-            name_en: "Suurendusseadmed"
-            name_et: "Suurendusseadmed"
+          - slug: v4-meditsiin-ja-liikumisabi-meditsiinitarvikud-kukkumiskaitsevahendid-ja-voodialarmid
+            name_en: "Kukkumiskaitsevahendid ja voodialarmid"
+            name_et: "Kukkumiskaitsevahendid ja voodialarmid"
             product_count: 0
           - slug: v4-meditsiin-ja-liikumisabi-meditsiinitarvikud-uhekordsed-katte-ja-aluspaberid
             name_en: "Ühekordsed katte- ja aluspaberid"
