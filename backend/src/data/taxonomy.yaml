@@ -1923,13 +1923,17 @@ l1:
             name_en: "Kütusepaagid ja -mahutid"
             name_et: "Kütusepaagid ja -mahutid"
             product_count: 0
-          - slug: v4-autovaruosad-ja-tarvikud-veoauto-autohaagise-madratsid
-            name_en: "Autohaagise madratsid"
-            name_et: "Autohaagise madratsid"
-            product_count: 0
           - slug: v4-autovaruosad-ja-tarvikud-veoauto-tarvikud-astmelauad-ja-astmepukid
             name_en: "Astmelauad ja astmepukid"
             name_et: "Astmelauad ja astmepukid"
+            product_count: 0
+          - slug: v4-autovaruosad-ja-tarvikud-veoauto-tarvikud-hoiukastid-ja-karbid
+            name_en: "Hoiukastid ja -karbid"
+            name_et: "Hoiukastid ja -karbid"
+            product_count: 0
+          - slug: v4-autovaruosad-ja-tarvikud-veoauto-kraanad
+            name_en: "Veoauto-kraanad"
+            name_et: "Veoauto-kraanad"
             product_count: 0
           - slug: v4-autovaruosad-ja-tarvikud-veoauto-tarvikud-koormakatted-ja-presendid
             name_en: "Koormakatted ja presendid"
@@ -1943,13 +1947,9 @@ l1:
             name_en: "Klaasi transpordiraamid"
             name_et: "Klaasi transpordiraamid"
             product_count: 0
-          - slug: v4-autovaruosad-ja-tarvikud-veoauto-tarvikud-hoiukastid-ja-karbid
-            name_en: "Hoiukastid ja -karbid"
-            name_et: "Hoiukastid ja -karbid"
-            product_count: 0
-          - slug: v4-autovaruosad-ja-tarvikud-veoauto-kraanad
-            name_en: "Veoauto-kraanad"
-            name_et: "Veoauto-kraanad"
+          - slug: v4-autovaruosad-ja-tarvikud-veoauto-autohaagise-madratsid
+            name_en: "Autohaagise madratsid"
+            name_et: "Autohaagise madratsid"
             product_count: 0
       - slug: v4-autovaruosad-ja-tarvikud-valistarvikud-ja-rehvitarvikud
         name_en: "Välistarvikud & rehvitarvikud"
@@ -1976,6 +1976,10 @@ l1:
             name_en: "Astmelauad ja astmed"
             name_et: "Astmelauad ja astmed"
             product_count: 0
+          - slug: v4-autovaruosad-ja-tarvikud-valistarvikud-rehvitarvikud-ja-lumeketid
+            name_en: "Rehvitarvikud ja lumeketid"
+            name_et: "Rehvitarvikud ja lumeketid"
+            product_count: 0
           - slug: v4-autovaruosad-ja-tarvikud-valistarvikud-rehvirahu-jalgimissusteemid
             name_en: "Rehvirõhu jälgimissüsteemid"
             name_et: "Rehvirõhu jälgimissüsteemid"
@@ -1984,42 +1988,38 @@ l1:
             name_en: "Rattatõkked ja rattalukud"
             name_et: "Rattatõkked ja rattalukud"
             product_count: 0
-          - slug: v4-autovaruosad-ja-tarvikud-valistarvikud-muu-valistarvikud
-            name_en: "Muu välistarvikud"
-            name_et: "Muu välistarvikud"
-            product_count: 0
-          - slug: v4-autovaruosad-ja-tarvikud-valistarvikud-rehvitarvikud-ja-lumeketid
-            name_en: "Rehvitarvikud ja lumeketid"
-            name_et: "Rehvitarvikud ja lumeketid"
-            product_count: 0
           - slug: v4-autovaruosad-ja-tarvikud-valistarvikud-veljed-rummukatted-ja-speisrid
             name_en: "Veljed, rummukatted ja speisrid"
             name_et: "Veljed, rummukatted ja speisrid"
+            product_count: 0
+          - slug: v4-autovaruosad-ja-tarvikud-valistarvikud-ja-rehvitarvikud-autokatted-presendid
+            name_en: "Autokatted & presendid"
+            name_et: "Autokatted & presendid"
+            product_count: 0
+          - slug: v4-autovaruosad-ja-tarvikud-valistarvikud-ja-rehvitarvikud-lumeharjad-jaakraabitsad
+            name_en: "Lumeharjad & jääkraabitsad"
+            name_et: "Lumeharjad & jääkraabitsad"
             product_count: 0
       - slug: v4-autovaruosad-ja-tarvikud-autovaruosad
         name_en: "Autovaruosad"
         name_et: "Autovaruosad"
         product_count: 0
         subs:
-          - slug: v4-autovaruosad-ja-tarvikud-autovaruosad-golfikaru-ja-go-kart-osad
-            name_en: "Golfikäru ja go-kart osad"
-            name_et: "Golfikäru ja go-kart osad"
+          - slug: v4-autovaruosad-ja-tarvikud-autovaruosad-istme-vedrustuskomplektid
+            name_en: "Istme vedrustuskomplektid"
+            name_et: "Istme vedrustuskomplektid"
             product_count: 0
           - slug: v4-autovaruosad-ja-tarvikud-autovaruosad-kutusepumbad
             name_en: "Kütusepumbad"
             name_et: "Kütusepumbad"
             product_count: 0
-          - slug: v4-autovaruosad-ja-tarvikud-autovaruosad-kutusevoolikud-ja-torud
-            name_en: "Kütusevoolikud ja -torud"
-            name_et: "Kütusevoolikud ja -torud"
-            product_count: 0
-          - slug: v4-autovaruosad-ja-tarvikud-autovaruosad-helisignaalid
-            name_en: "Helisignaalid"
-            name_et: "Helisignaalid"
-            product_count: 0
           - slug: v4-autovaruosad-ja-tarvikud-autovaruosad-rummulaagrid
             name_en: "Rummulaagrid & rattanabad"
             name_et: "Rummulaagrid & rattanabad"
+            product_count: 0
+          - slug: v4-autovaruosad-ja-tarvikud-autovaruosad-autopesu-filtrid-ja-taited
+            name_en: "Autopesu filtrid ja täited"
+            name_et: "Autopesu filtrid ja täited"
             product_count: 0
           - slug: v4-autovaruosad-ja-tarvikud-autovaruosad-suutepoolid
             name_en: "Süütepoolid & süütesüsteem"
@@ -2032,6 +2032,14 @@ l1:
           - slug: v4-autovaruosad-ja-tarvikud-kutusekanistrid-ja-ohutuskanistrid
             name_en: "Kütusekanistrid & ohutuskanistrid"
             name_et: "Kütusekanistrid & ohutuskanistrid"
+            product_count: 0
+          - slug: v4-autovaruosad-ja-tarvikud-autovaruosad-helisignaalid
+            name_en: "Helisignaalid"
+            name_et: "Helisignaalid"
+            product_count: 0
+          - slug: v4-autovaruosad-ja-tarvikud-autovaruosad-kutusevoolikud-ja-torud
+            name_en: "Kütusevoolikud ja -torud"
+            name_et: "Kütusevoolikud ja -torud"
             product_count: 0
           - slug: v4-autovaruosad-ja-tarvikud-autovaruosad-ohkvedrustuse-komplektid-ja-kompressorid
             name_en: "Õhkvedrustuse komplektid ja kompressorid"
@@ -2057,25 +2065,17 @@ l1:
             name_en: "Generaatorid (alternaatorid)"
             name_et: "Generaatorid (alternaatorid)"
             product_count: 0
-          - slug: v4-autovaruosad-ja-tarvikud-autovaruosad-traktori-ja-tostuki-istmed
-            name_en: "Traktori ja tõstuki istmed"
-            name_et: "Traktori ja tõstuki istmed"
+          - slug: v4-autovaruosad-ja-tarvikud-autovaruosad-mootori-ja-kaigukasti-kinnitused
+            name_en: "Mootori ja käigukasti kinnitused"
+            name_et: "Mootori ja käigukasti kinnitused"
             product_count: 0
           - slug: v4-autovaruosad-ja-tarvikud-autovaruosad-nukkvollid-ja-komplektid
             name_en: "Nukkvõllid ja -komplektid"
             name_et: "Nukkvõllid ja -komplektid"
             product_count: 0
-          - slug: v4-autovaruosad-ja-tarvikud-autovaruosad-sidurikomplektid
-            name_en: "Sidurikomplektid"
-            name_et: "Sidurikomplektid"
-            product_count: 0
-          - slug: v4-autovaruosad-ja-tarvikud-autovaruosad-mootori-ja-kaigukasti-kinnitused
-            name_en: "Mootori ja käigukasti kinnitused"
-            name_et: "Mootori ja käigukasti kinnitused"
-            product_count: 0
-          - slug: v4-autovaruosad-ja-tarvikud-autovaruosad-autopesu-filtrid-ja-taited
-            name_en: "Autopesu filtrid ja täited"
-            name_et: "Autopesu filtrid ja täited"
+          - slug: v4-autovaruosad-ja-tarvikud-autovaruosad-golfikaru-ja-go-kart-osad
+            name_en: "Golfikäru ja go-kart osad"
+            name_et: "Golfikäru ja go-kart osad"
             product_count: 0
           - slug: v4-autovaruosad-ja-tarvikud-autovaruosad-toruuksed
             name_en: "Toruuksed"
@@ -2085,22 +2085,22 @@ l1:
             name_en: "Pidurikomplektid"
             name_et: "Pidurikomplektid"
             product_count: 0
-          - slug: v4-autovaruosad-ja-tarvikud-autovaruosad-istme-vedrustuskomplektid
-            name_en: "Istme vedrustuskomplektid"
-            name_et: "Istme vedrustuskomplektid"
+          - slug: v4-autovaruosad-ja-tarvikud-autovaruosad-sidurikomplektid
+            name_en: "Sidurikomplektid"
+            name_et: "Sidurikomplektid"
+            product_count: 0
+          - slug: v4-autovaruosad-ja-tarvikud-autovaruosad-traktori-ja-tostuki-istmed
+            name_en: "Traktori ja tõstuki istmed"
+            name_et: "Traktori ja tõstuki istmed"
             product_count: 0
       - slug: v4-autovaruosad-ja-tarvikud-haagissuvila-ja-matkatarvikud
         name_en: "Haagissuvila & matkatarvikud"
         name_et: "Haagissuvila & matkatarvikud"
         product_count: 0
         subs:
-          - slug: v4-autovaruosad-ja-tarvikud-haagissuvila-ja-matkatarvikud-koetavad-voolikud
-            name_en: "Köetavad voolikud"
-            name_et: "Köetavad voolikud"
-            product_count: 0
-          - slug: v4-autovaruosad-ja-tarvikud-haagissuvila-ja-matkatarvikud-autokulmikud-ja-kulmakastid
-            name_en: "Autokülmikud ja külmakastid"
-            name_et: "Autokülmikud ja külmakastid"
+          - slug: v4-autovaruosad-ja-tarvikud-haagissuvila-matkatualetid
+            name_en: "Matkatualetid"
+            name_et: "Matkatualetid"
             product_count: 0
           - slug: v4-autovaruosad-ja-tarvikud-haagissuvila-ja-matkatarvikud-haagise-liigutajad-ja-manooverdusseadmed
             name_en: "Haagise liigutajad ja manööverdusseadmed"
@@ -2110,14 +2110,6 @@ l1:
             name_en: "Katuseventilaatorid"
             name_et: "Katuseventilaatorid"
             product_count: 0
-          - slug: v4-autovaruosad-ja-tarvikud-haagissuvila-ja-matkatarvikud-uksekaitsed-ja-vored
-            name_en: "Uksekaitsed ja võred"
-            name_et: "Uksekaitsed ja võred"
-            product_count: 0
-          - slug: v4-autovaruosad-ja-tarvikud-haagissuvila-ja-matkatarvikud-pumbad
-            name_en: "Pumbad"
-            name_et: "Pumbad"
-            product_count: 0
           - slug: v4-autovaruosad-ja-tarvikud-haagissuvila-ja-matkatarvikud-markiisid-ja-varikatuse-osad
             name_en: "Markiisid ja varikatuse osad"
             name_et: "Markiisid ja varikatuse osad"
@@ -2125,6 +2117,14 @@ l1:
           - slug: v4-autovaruosad-ja-tarvikud-haagissuvila-ja-matkatarvikud-katted-ja-kaitsekatted
             name_en: "Katted ja kaitsekatted"
             name_et: "Katted ja kaitsekatted"
+            product_count: 0
+          - slug: v4-autovaruosad-ja-tarvikud-haagissuvila-ja-matkatarvikud-uksekaitsed-ja-vored
+            name_en: "Uksekaitsed ja võred"
+            name_et: "Uksekaitsed ja võred"
+            product_count: 0
+          - slug: v4-autovaruosad-ja-tarvikud-haagissuvila-ja-matkatarvikud-pumbad
+            name_en: "Pumbad"
+            name_et: "Pumbad"
             product_count: 0
           - slug: v4-autovaruosad-ja-tarvikud-haagissuvila-ja-matkatarvikud-tungrauad-ja-alused
             name_en: "Tungrauad ja alused"
@@ -2138,26 +2138,30 @@ l1:
             name_en: "Tasandusplokid ja -kiilud"
             name_et: "Tasandusplokid ja -kiilud"
             product_count: 0
-          - slug: v4-autovaruosad-ja-tarvikud-haagissuvila-matkatualetid
-            name_en: "Matkatualetid"
-            name_et: "Matkatualetid"
+          - slug: v4-autovaruosad-ja-tarvikud-haagissuvila-ja-matkatarvikud-stabilisaator-ja-tugijalad
+            name_en: "Stabilisaator- ja tugijalad"
+            name_et: "Stabilisaator- ja tugijalad"
+            product_count: 0
+          - slug: v4-autovaruosad-ja-tarvikud-haagissuvila-ja-matkatarvikud-koetavad-voolikud
+            name_en: "Köetavad voolikud"
+            name_et: "Köetavad voolikud"
             product_count: 0
           - slug: v4-autovaruosad-ja-tarvikud-haagissuvila-rv-ja-atv-tarvikud
             name_en: "RV- & ATV-tarvikud"
             name_et: "RV- & ATV-tarvikud"
             product_count: 0
-          - slug: v4-autovaruosad-ja-tarvikud-haagissuvila-ja-matkatarvikud-stabilisaator-ja-tugijalad
-            name_en: "Stabilisaator- ja tugijalad"
-            name_et: "Stabilisaator- ja tugijalad"
+          - slug: v4-autovaruosad-ja-tarvikud-haagissuvila-ja-matkatarvikud-autokulmikud-ja-kulmakastid
+            name_en: "Autokülmikud ja külmakastid"
+            name_et: "Autokülmikud ja külmakastid"
             product_count: 0
       - slug: v4-autovaruosad-ja-tarvikud-salongitarvikud
         name_en: "Salongitarvikud"
         name_et: "Salongitarvikud"
         product_count: 0
         subs:
-          - slug: v4-autovaruosad-ja-tarvikud-salongitarvikud-autokulmikud
-            name_en: "Autokülmikud"
-            name_et: "Autokülmikud"
+          - slug: v4-autovaruosad-ja-tarvikud-salongitarvikud-autovoimendid
+            name_en: "Autovõimendid"
+            name_et: "Autovõimendid"
             product_count: 0
           - slug: v4-autovaruosad-ja-tarvikud-salongitarvikud-heliisolatsioonimaterjalid
             name_en: "Heliisolatsioonimaterjalid"
@@ -2206,10 +2210,6 @@ l1:
           - slug: pcat-a3m
             name_en: "Auto madratsid"
             name_et: "Auto madratsid"
-            product_count: 0
-          - slug: v4-autovaruosad-ja-tarvikud-salongitarvikud-autovoimendid
-            name_en: "Autovõimendid"
-            name_et: "Autovõimendid"
             product_count: 0
       - slug: v4-autovaruosad-ja-tarvikud-katuse-ja-koormakandjad
         name_en: "Katuse- & koormakandjad"
@@ -2294,6 +2294,10 @@ l1:
         name_et: "Mootorrattatarvikud"
         product_count: 0
         subs:
+          - slug: v4-autovaruosad-ja-tarvikud-mootorratta-kohvrid-ja-kandurid
+            name_en: "Mootorratta kohvrid & kandurid"
+            name_et: "Mootorratta kohvrid & kandurid"
+            product_count: 0
           - slug: v4-autovaruosad-ja-tarvikud-mootorratta-valisosad
             name_en: "Mootorratta välisosad"
             name_et: "Mootorratta välisosad"
@@ -2309,10 +2313,6 @@ l1:
           - slug: v4-autovaruosad-ja-tarvikud-mootorratta-ja-jalgrattatarvikud-mootorratta-tostestatiivid
             name_en: "Mootorratta tõstestatiivid"
             name_et: "Mootorratta tõstestatiivid"
-            product_count: 0
-          - slug: v4-autovaruosad-ja-tarvikud-mootorratta-kohvrid-ja-kandurid
-            name_en: "Mootorratta kohvrid & kandurid"
-            name_et: "Mootorratta kohvrid & kandurid"
             product_count: 0
       - slug: v4-autovaruosad-ja-tarvikud-soiduki-kute-ja-kliima
         name_en: "Sõiduki küte & kliima"
