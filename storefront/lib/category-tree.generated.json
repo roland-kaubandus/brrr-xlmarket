@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-04T12:14:12.099Z",
+  "generated_at": "2026-07-04T12:20:22.851Z",
   "nodes": {
     "v4-tooriistad-ja-tarvikud": {
       "handle": "v4-tooriistad-ja-tarvikud",
@@ -17174,15 +17174,15 @@
       "level": 2,
       "parent_handle": "v4-sport-ja-vaba-aeg",
       "child_handles": [
-        "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-hokivarava-tarvikud",
+        "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-spordivorgud-ja-tagasiloogiseinad",
+        "v4-sport-spordikotid-organiserid",
         "v4-sport-ja-vaba-aeg-pallimangud-seinapehmendused",
         "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-treeningmanekeenid-ja-kilbid",
         "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-valjakumargistajad",
         "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-pickleball-komplektid-ja-reketid",
         "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-tennise-ja-pallimasinad",
         "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-cornhole-ja-viskemangud",
-        "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-spordivorgud-ja-tagasiloogiseinad",
-        "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-hoiu-ja-transpordikotid-varustusele",
+        "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-hokivarava-tarvikud",
         "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-taispuhutavad-porke-ja-zorb-pallid",
         "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-vorkpalli-ja-mitmespordi-vorgud",
         "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-korvpallirongad-ja-korvid",
@@ -17192,10 +17192,20 @@
       "image_path": null,
       "image_source": "none"
     },
-    "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-hokivarava-tarvikud": {
-      "handle": "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-hokivarava-tarvikud",
-      "name_en": "Hokivärava tarvikud",
-      "name_et": "Hokivärava tarvikud",
+    "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-spordivorgud-ja-tagasiloogiseinad": {
+      "handle": "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-spordivorgud-ja-tagasiloogiseinad",
+      "name_en": "Spordivõrgud ja tagasilöögiseinad",
+      "name_et": "Spordivõrgud ja tagasilöögiseinad",
+      "level": 3,
+      "parent_handle": "v4-sport-ja-vaba-aeg-pallimangud-ja-valjakusport",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-sport-spordikotid-organiserid": {
+      "handle": "v4-sport-spordikotid-organiserid",
+      "name_en": "Spordikotid & -organiserid",
+      "name_et": "Spordikotid & -organiserid",
       "level": 3,
       "parent_handle": "v4-sport-ja-vaba-aeg-pallimangud-ja-valjakusport",
       "child_handles": [],
@@ -17262,20 +17272,10 @@
       "image_path": null,
       "image_source": "none"
     },
-    "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-spordivorgud-ja-tagasiloogiseinad": {
-      "handle": "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-spordivorgud-ja-tagasiloogiseinad",
-      "name_en": "Spordivõrgud ja tagasilöögiseinad",
-      "name_et": "Spordivõrgud ja tagasilöögiseinad",
-      "level": 3,
-      "parent_handle": "v4-sport-ja-vaba-aeg-pallimangud-ja-valjakusport",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-hoiu-ja-transpordikotid-varustusele": {
-      "handle": "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-hoiu-ja-transpordikotid-varustusele",
-      "name_en": "Hoiu- ja transpordikotid varustusele",
-      "name_et": "Hoiu- ja transpordikotid varustusele",
+    "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-hokivarava-tarvikud": {
+      "handle": "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-hokivarava-tarvikud",
+      "name_en": "Hokivärava tarvikud",
+      "name_et": "Hokivärava tarvikud",
       "level": 3,
       "parent_handle": "v4-sport-ja-vaba-aeg-pallimangud-ja-valjakusport",
       "child_handles": [],
@@ -21851,15 +21851,15 @@
     "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-piljardi-ja-snookerilauad-ning-kiid",
     "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-pokerilauad-ja-komplektid",
     "v4-sport-ja-vaba-aeg-pallimangud-ja-valjakusport",
-    "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-hokivarava-tarvikud",
+    "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-spordivorgud-ja-tagasiloogiseinad",
+    "v4-sport-spordikotid-organiserid",
     "v4-sport-ja-vaba-aeg-pallimangud-seinapehmendused",
     "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-treeningmanekeenid-ja-kilbid",
     "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-valjakumargistajad",
     "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-pickleball-komplektid-ja-reketid",
     "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-tennise-ja-pallimasinad",
     "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-cornhole-ja-viskemangud",
-    "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-spordivorgud-ja-tagasiloogiseinad",
-    "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-hoiu-ja-transpordikotid-varustusele",
+    "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-hokivarava-tarvikud",
     "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-taispuhutavad-porke-ja-zorb-pallid",
     "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-vorkpalli-ja-mitmespordi-vorgud",
     "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-korvpallirongad-ja-korvid",

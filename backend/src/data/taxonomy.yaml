@@ -6423,9 +6423,13 @@ l1:
         name_et: "Pallimängud & väljakusport"
         product_count: 0
         subs:
-          - slug: v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-hokivarava-tarvikud
-            name_en: "Hokivärava tarvikud"
-            name_et: "Hokivärava tarvikud"
+          - slug: v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-spordivorgud-ja-tagasiloogiseinad
+            name_en: "Spordivõrgud ja tagasilöögiseinad"
+            name_et: "Spordivõrgud ja tagasilöögiseinad"
+            product_count: 0
+          - slug: v4-sport-spordikotid-organiserid
+            name_en: "Spordikotid & -organiserid"
+            name_et: "Spordikotid & -organiserid"
             product_count: 0
           - slug: v4-sport-ja-vaba-aeg-pallimangud-seinapehmendused
             name_en: "Seinapehmendused"
@@ -6451,13 +6455,9 @@ l1:
             name_en: "Cornhole ja viskemängud"
             name_et: "Cornhole ja viskemängud"
             product_count: 0
-          - slug: v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-spordivorgud-ja-tagasiloogiseinad
-            name_en: "Spordivõrgud ja tagasilöögiseinad"
-            name_et: "Spordivõrgud ja tagasilöögiseinad"
-            product_count: 0
-          - slug: v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-hoiu-ja-transpordikotid-varustusele
-            name_en: "Hoiu- ja transpordikotid varustusele"
-            name_et: "Hoiu- ja transpordikotid varustusele"
+          - slug: v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-hokivarava-tarvikud
+            name_en: "Hokivärava tarvikud"
+            name_et: "Hokivärava tarvikud"
             product_count: 0
           - slug: v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-taispuhutavad-porke-ja-zorb-pallid
             name_en: "Täispuhutavad põrke- ja Zorb-pallid"
