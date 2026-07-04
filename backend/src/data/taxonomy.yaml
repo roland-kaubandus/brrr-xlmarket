@@ -3849,9 +3849,9 @@ l1:
         name_et: "Basseinid & spaa"
         product_count: 0
         subs:
-          - slug: v4-aed-ja-aiatehnika-l2-valis
-            name_en: "Välisдушид"
-            name_et: "Välisдушид"
+          - slug: v4-aed-ja-aiatehnika-l2-basseinipumbad
+            name_en: "Basseinipumbad"
+            name_et: "Basseinipumbad"
             product_count: 0
           - slug: v4-aed-ja-aiatehnika-l2-basseinikatted
             name_en: "Basseinikatted"
@@ -3885,13 +3885,13 @@ l1:
             name_en: "Basseini ionisaatorid & kloorinaatorid"
             name_et: "Basseini ionisaatorid & kloorinaatorid"
             product_count: 0
-          - slug: v4-aed-ja-aiatehnika-l2-basseinipumbad
-            name_en: "Basseinipumbad"
-            name_et: "Basseinipumbad"
-            product_count: 0
           - slug: v4-aed-ja-aiatehnika-l2-basseinikuttekehad-ja-soojuspumbad
             name_en: "Basseiniküttekehad & soojuspumbad"
             name_et: "Basseiniküttekehad & soojuspumbad"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-valisdusid
+            name_en: "Välisdušid"
+            name_et: "Välisdušid"
             product_count: 0
           - slug: v4-aed-ja-aiatehnika-l2-basseinikatte-rullid-ja-tarvikud
             name_en: "Basseinikatte rullid & tarvikud"
@@ -3900,10 +3900,6 @@ l1:
           - slug: v4-aed-ja-aiatehnika-l2-taispuhutavad-ja-raamiga-basseinid
             name_en: "Täispuhutavad & raamiga basseinid"
             name_et: "Täispuhutavad & raamiga basseinid"
-            product_count: 0
-          - slug: v4-aed-ja-aiatehnika-l2-hoiukorvid-ja-karu
-            name_en: "Hoiukorvid & -käruд"
-            name_et: "Hoiukorvid & -käruд"
             product_count: 0
           - slug: v4-aed-ja-aiatehnika-l2-ratikuhoidikud
             name_en: "Rätikuhoidikud"
@@ -3920,6 +3916,10 @@ l1:
           - slug: v4-aed-ja-aiatehnika-l2-mullivannid-ja-jaavannid
             name_en: "Mullivannid & jäävannid"
             name_et: "Mullivannid & jäävannid"
+            product_count: 0
+          - slug: v4-aed-ja-aiatehnika-hoiukorvid-ja-karud
+            name_en: "Hoiukorvid & -kärud"
+            name_et: "Hoiukorvid & -kärud"
             product_count: 0
           - slug: v4-aed-ja-aiatehnika-l2-basseini-lamamistoolid-ja-paikesevoodid
             name_en: "Basseini lamamistoolid & päikesevoodid"
@@ -6366,9 +6366,9 @@ l1:
             name_en: "Hoiu- ja transpordikotid varustusele"
             name_et: "Hoiu- ja transpordikotid varustusele"
             product_count: 0
-          - slug: v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-pesapalli-treeningpuurid
-            name_en: "Pesapalli treeningpuurid"
-            name_et: "Pesapalli treeningpuurid"
+          - slug: v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-vorkpalli-ja-mitmespordi-vorgud
+            name_en: "Võrkpalli ja mitmespordi võrgud"
+            name_et: "Võrkpalli ja mitmespordi võrgud"
             product_count: 0
           - slug: v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-korvpallirongad-ja-korvid
             name_en: "Korvpallirõngad ja -korvid"
@@ -6394,9 +6394,9 @@ l1:
             name_en: "Hokivärava tarvikud"
             name_et: "Hokivärava tarvikud"
             product_count: 0
-          - slug: v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-vorkpalli-ja-mitmespordi-vorgud
-            name_en: "Võrkpalli ja mitmespordi võrgud"
-            name_et: "Võrkpalli ja mitmespordi võrgud"
+          - slug: v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-taispuhutavad-porke-ja-zorb-pallid
+            name_en: "Täispuhutavad põrke- ja Zorb-pallid"
+            name_et: "Täispuhutavad põrke- ja Zorb-pallid"
             product_count: 0
           - slug: v4-sport-ja-vaba-aeg-pallimangud-seinapehmendused
             name_en: "Seinapehmendused"
