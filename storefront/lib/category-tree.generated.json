@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-05T16:06:28.482Z",
+  "generated_at": "2026-07-05T16:12:57.238Z",
   "nodes": {
     "v4-tooriistad-ja-tarvikud": {
       "handle": "v4-tooriistad-ja-tarvikud",
@@ -15369,6 +15369,300 @@
       "image_path": null,
       "image_source": "none"
     },
+    "v4-peoinventar-ja-dekoratsioonid": {
+      "handle": "v4-peoinventar-ja-dekoratsioonid",
+      "name_en": "Peoinventar ja dekoratsioonid",
+      "name_et": "Peoinventar ja dekoratsioonid",
+      "level": 1,
+      "parent_handle": null,
+      "child_handles": [
+        "v4-peoinventar-dekoratsioonid",
+        "v4-peoinventar-taustaseinad-pulmakaared",
+        "v4-peoinventar-meelelahutus-atraktsioonid",
+        "v4-peoinventar-peomoobel-katted"
+      ],
+      "image_path": null,
+      "image_source": "none",
+      "description_en": "Peoinventar ja dekoratsioonid — products.",
+      "description_et": "Peoinventar ja dekoratsioonid — tooted.",
+      "tagline_en": "Peoinventar ja dekoratsioonid",
+      "tagline_et": "Peoinventar ja dekoratsioonid"
+    },
+    "v4-peoinventar-dekoratsioonid": {
+      "handle": "v4-peoinventar-dekoratsioonid",
+      "name_en": "Dekoratsioonid",
+      "name_et": "Dekoratsioonid",
+      "level": 2,
+      "parent_handle": "v4-peoinventar-ja-dekoratsioonid",
+      "child_handles": [
+        "v4-peoinventar-kunstlilled-taimed",
+        "v4-peoinventar-pulma-lillestatiivid",
+        "v4-peoinventar-pulma-lillevaasid",
+        "v4-peoinventar-dekoratiivlaternad-parjad",
+        "v4-peoinventar-tooli-satiinpaelad-kaunistused"
+      ],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-peoinventar-kunstlilled-taimed": {
+      "handle": "v4-peoinventar-kunstlilled-taimed",
+      "name_en": "Kunstlilled ja -taimed",
+      "name_et": "Kunstlilled ja -taimed",
+      "level": 3,
+      "parent_handle": "v4-peoinventar-dekoratsioonid",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-peoinventar-pulma-lillestatiivid": {
+      "handle": "v4-peoinventar-pulma-lillestatiivid",
+      "name_en": "Pulma-lillestatiivid",
+      "name_et": "Pulma-lillestatiivid",
+      "level": 3,
+      "parent_handle": "v4-peoinventar-dekoratsioonid",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-peoinventar-pulma-lillevaasid": {
+      "handle": "v4-peoinventar-pulma-lillevaasid",
+      "name_en": "Pulma-lillevaasid",
+      "name_et": "Pulma-lillevaasid",
+      "level": 3,
+      "parent_handle": "v4-peoinventar-dekoratsioonid",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-peoinventar-dekoratiivlaternad-parjad": {
+      "handle": "v4-peoinventar-dekoratiivlaternad-parjad",
+      "name_en": "Dekoratiivlaternad ja pärjad",
+      "name_et": "Dekoratiivlaternad ja pärjad",
+      "level": 3,
+      "parent_handle": "v4-peoinventar-dekoratsioonid",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-peoinventar-tooli-satiinpaelad-kaunistused": {
+      "handle": "v4-peoinventar-tooli-satiinpaelad-kaunistused",
+      "name_en": "Tooli satiinpaelad ja kaunistused",
+      "name_et": "Tooli satiinpaelad ja kaunistused",
+      "level": 3,
+      "parent_handle": "v4-peoinventar-dekoratsioonid",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-peoinventar-taustaseinad-pulmakaared": {
+      "handle": "v4-peoinventar-taustaseinad-pulmakaared",
+      "name_en": "Taustaseinad & pulmakaared",
+      "name_et": "Taustaseinad & pulmakaared",
+      "level": 2,
+      "parent_handle": "v4-peoinventar-ja-dekoratsioonid",
+      "child_handles": [
+        "v4-peoinventar-backdrop-statiivid-taustad",
+        "v4-peoinventar-pulmakaared-lilledekoor",
+        "v4-peoinventar-laua-ohupallistatiivid"
+      ],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-peoinventar-backdrop-statiivid-taustad": {
+      "handle": "v4-peoinventar-backdrop-statiivid-taustad",
+      "name_en": "Backdrop-statiivid ja taustad",
+      "name_et": "Backdrop-statiivid ja taustad",
+      "level": 3,
+      "parent_handle": "v4-peoinventar-taustaseinad-pulmakaared",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-peoinventar-pulmakaared-lilledekoor": {
+      "handle": "v4-peoinventar-pulmakaared-lilledekoor",
+      "name_en": "Pulmakaared & lilledekoor",
+      "name_et": "Pulmakaared & lilledekoor",
+      "level": 3,
+      "parent_handle": "v4-peoinventar-taustaseinad-pulmakaared",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-peoinventar-laua-ohupallistatiivid": {
+      "handle": "v4-peoinventar-laua-ohupallistatiivid",
+      "name_en": "Laua-õhupallistatiivid",
+      "name_et": "Laua-õhupallistatiivid",
+      "level": 3,
+      "parent_handle": "v4-peoinventar-taustaseinad-pulmakaared",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-peoinventar-meelelahutus-atraktsioonid": {
+      "handle": "v4-peoinventar-meelelahutus-atraktsioonid",
+      "name_en": "Meelelahutus & atraktsioonid",
+      "name_et": "Meelelahutus & atraktsioonid",
+      "level": 2,
+      "parent_handle": "v4-peoinventar-ja-dekoratsioonid",
+      "child_handles": [
+        "v4-peoinventar-vaht-lumemasinad",
+        "v4-peoinventar-huppelossi-batuudipuhurid",
+        "v4-peoinventar-lavaefektid",
+        "v4-peoinventar-onne-loosimisrattad-trumlid",
+        "v4-peoinventar-taispuhutavad-atraktsioonid",
+        "v4-peoinventar-joulukuused",
+        "v4-peoinventar-peotelgid",
+        "v4-peoinventar-manguautomaadid"
+      ],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-peoinventar-vaht-lumemasinad": {
+      "handle": "v4-peoinventar-vaht-lumemasinad",
+      "name_en": "Vaht- ja lumemasinad",
+      "name_et": "Vaht- ja lumemasinad",
+      "level": 3,
+      "parent_handle": "v4-peoinventar-meelelahutus-atraktsioonid",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-peoinventar-huppelossi-batuudipuhurid": {
+      "handle": "v4-peoinventar-huppelossi-batuudipuhurid",
+      "name_en": "Hüppelossi- ja batuudipuhurid",
+      "name_et": "Hüppelossi- ja batuudipuhurid",
+      "level": 3,
+      "parent_handle": "v4-peoinventar-meelelahutus-atraktsioonid",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-peoinventar-lavaefektid": {
+      "handle": "v4-peoinventar-lavaefektid",
+      "name_en": "Lavaefektid",
+      "name_et": "Lavaefektid",
+      "level": 3,
+      "parent_handle": "v4-peoinventar-meelelahutus-atraktsioonid",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-peoinventar-onne-loosimisrattad-trumlid": {
+      "handle": "v4-peoinventar-onne-loosimisrattad-trumlid",
+      "name_en": "Õnne- ja loosimisrattad ning -trumlid",
+      "name_et": "Õnne- ja loosimisrattad ning -trumlid",
+      "level": 3,
+      "parent_handle": "v4-peoinventar-meelelahutus-atraktsioonid",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-peoinventar-taispuhutavad-atraktsioonid": {
+      "handle": "v4-peoinventar-taispuhutavad-atraktsioonid",
+      "name_en": "Täispuhutavad atraktsioonid",
+      "name_et": "Täispuhutavad atraktsioonid",
+      "level": 3,
+      "parent_handle": "v4-peoinventar-meelelahutus-atraktsioonid",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-peoinventar-joulukuused": {
+      "handle": "v4-peoinventar-joulukuused",
+      "name_en": "Jõulukuused",
+      "name_et": "Jõulukuused",
+      "level": 3,
+      "parent_handle": "v4-peoinventar-meelelahutus-atraktsioonid",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-peoinventar-peotelgid": {
+      "handle": "v4-peoinventar-peotelgid",
+      "name_en": "Peotelgid",
+      "name_et": "Peotelgid",
+      "level": 3,
+      "parent_handle": "v4-peoinventar-meelelahutus-atraktsioonid",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-peoinventar-manguautomaadid": {
+      "handle": "v4-peoinventar-manguautomaadid",
+      "name_en": "Mänguautomaadid",
+      "name_et": "Mänguautomaadid",
+      "level": 3,
+      "parent_handle": "v4-peoinventar-meelelahutus-atraktsioonid",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-peoinventar-peomoobel-katted": {
+      "handle": "v4-peoinventar-peomoobel-katted",
+      "name_en": "Peomööbel & katted",
+      "name_et": "Peomööbel & katted",
+      "level": 2,
+      "parent_handle": "v4-peoinventar-ja-dekoratsioonid",
+      "child_handles": [
+        "v4-peoinventar-kokkupandavad-peotoolid",
+        "v4-peoinventar-toolikatted-umbrised",
+        "v4-peoinventar-laudlinad",
+        "v4-peoinventar-toolikarud-hoidikud",
+        "v4-peoinventar-piirdepostid-jarjekorratokked"
+      ],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-peoinventar-kokkupandavad-peotoolid": {
+      "handle": "v4-peoinventar-kokkupandavad-peotoolid",
+      "name_en": "Kokkupandavad peotoolid",
+      "name_et": "Kokkupandavad peotoolid",
+      "level": 3,
+      "parent_handle": "v4-peoinventar-peomoobel-katted",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-peoinventar-toolikatted-umbrised": {
+      "handle": "v4-peoinventar-toolikatted-umbrised",
+      "name_en": "Toolikatted & -ümbrised",
+      "name_et": "Toolikatted & -ümbrised",
+      "level": 3,
+      "parent_handle": "v4-peoinventar-peomoobel-katted",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-peoinventar-laudlinad": {
+      "handle": "v4-peoinventar-laudlinad",
+      "name_en": "Laudlinad",
+      "name_et": "Laudlinad",
+      "level": 3,
+      "parent_handle": "v4-peoinventar-peomoobel-katted",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-peoinventar-toolikarud-hoidikud": {
+      "handle": "v4-peoinventar-toolikarud-hoidikud",
+      "name_en": "Toolikärud & -hoidikud",
+      "name_et": "Toolikärud & -hoidikud",
+      "level": 3,
+      "parent_handle": "v4-peoinventar-peomoobel-katted",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-peoinventar-piirdepostid-jarjekorratokked": {
+      "handle": "v4-peoinventar-piirdepostid-jarjekorratokked",
+      "name_en": "Piirdepostid & järjekorratõkked",
+      "name_et": "Piirdepostid & järjekorratõkked",
+      "level": 3,
+      "parent_handle": "v4-peoinventar-peomoobel-katted",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
     "v4-sport-ja-vaba-aeg": {
       "handle": "v4-sport-ja-vaba-aeg",
       "name_en": "Sport ja vaba aeg",
@@ -20221,300 +20515,6 @@
       "child_handles": [],
       "image_path": null,
       "image_source": "none"
-    },
-    "v4-peoinventar-ja-dekoratsioonid": {
-      "handle": "v4-peoinventar-ja-dekoratsioonid",
-      "name_en": "Peoinventar ja dekoratsioonid",
-      "name_et": "Peoinventar ja dekoratsioonid",
-      "level": 1,
-      "parent_handle": null,
-      "child_handles": [
-        "v4-peoinventar-dekoratsioonid",
-        "v4-peoinventar-taustaseinad-pulmakaared",
-        "v4-peoinventar-meelelahutus-atraktsioonid",
-        "v4-peoinventar-peomoobel-katted"
-      ],
-      "image_path": null,
-      "image_source": "none",
-      "description_en": "Peoinventar ja dekoratsioonid — products.",
-      "description_et": "Peoinventar ja dekoratsioonid — tooted.",
-      "tagline_en": "Peoinventar ja dekoratsioonid",
-      "tagline_et": "Peoinventar ja dekoratsioonid"
-    },
-    "v4-peoinventar-dekoratsioonid": {
-      "handle": "v4-peoinventar-dekoratsioonid",
-      "name_en": "Dekoratsioonid",
-      "name_et": "Dekoratsioonid",
-      "level": 2,
-      "parent_handle": "v4-peoinventar-ja-dekoratsioonid",
-      "child_handles": [
-        "v4-peoinventar-kunstlilled-taimed",
-        "v4-peoinventar-pulma-lillestatiivid",
-        "v4-peoinventar-pulma-lillevaasid",
-        "v4-peoinventar-dekoratiivlaternad-parjad",
-        "v4-peoinventar-tooli-satiinpaelad-kaunistused"
-      ],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-peoinventar-kunstlilled-taimed": {
-      "handle": "v4-peoinventar-kunstlilled-taimed",
-      "name_en": "Kunstlilled ja -taimed",
-      "name_et": "Kunstlilled ja -taimed",
-      "level": 3,
-      "parent_handle": "v4-peoinventar-dekoratsioonid",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-peoinventar-pulma-lillestatiivid": {
-      "handle": "v4-peoinventar-pulma-lillestatiivid",
-      "name_en": "Pulma-lillestatiivid",
-      "name_et": "Pulma-lillestatiivid",
-      "level": 3,
-      "parent_handle": "v4-peoinventar-dekoratsioonid",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-peoinventar-pulma-lillevaasid": {
-      "handle": "v4-peoinventar-pulma-lillevaasid",
-      "name_en": "Pulma-lillevaasid",
-      "name_et": "Pulma-lillevaasid",
-      "level": 3,
-      "parent_handle": "v4-peoinventar-dekoratsioonid",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-peoinventar-dekoratiivlaternad-parjad": {
-      "handle": "v4-peoinventar-dekoratiivlaternad-parjad",
-      "name_en": "Dekoratiivlaternad ja pärjad",
-      "name_et": "Dekoratiivlaternad ja pärjad",
-      "level": 3,
-      "parent_handle": "v4-peoinventar-dekoratsioonid",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-peoinventar-tooli-satiinpaelad-kaunistused": {
-      "handle": "v4-peoinventar-tooli-satiinpaelad-kaunistused",
-      "name_en": "Tooli satiinpaelad ja kaunistused",
-      "name_et": "Tooli satiinpaelad ja kaunistused",
-      "level": 3,
-      "parent_handle": "v4-peoinventar-dekoratsioonid",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-peoinventar-taustaseinad-pulmakaared": {
-      "handle": "v4-peoinventar-taustaseinad-pulmakaared",
-      "name_en": "Taustaseinad & pulmakaared",
-      "name_et": "Taustaseinad & pulmakaared",
-      "level": 2,
-      "parent_handle": "v4-peoinventar-ja-dekoratsioonid",
-      "child_handles": [
-        "v4-peoinventar-backdrop-statiivid-taustad",
-        "v4-peoinventar-pulmakaared-lilledekoor",
-        "v4-peoinventar-laua-ohupallistatiivid"
-      ],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-peoinventar-backdrop-statiivid-taustad": {
-      "handle": "v4-peoinventar-backdrop-statiivid-taustad",
-      "name_en": "Backdrop-statiivid ja taustad",
-      "name_et": "Backdrop-statiivid ja taustad",
-      "level": 3,
-      "parent_handle": "v4-peoinventar-taustaseinad-pulmakaared",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-peoinventar-pulmakaared-lilledekoor": {
-      "handle": "v4-peoinventar-pulmakaared-lilledekoor",
-      "name_en": "Pulmakaared & lilledekoor",
-      "name_et": "Pulmakaared & lilledekoor",
-      "level": 3,
-      "parent_handle": "v4-peoinventar-taustaseinad-pulmakaared",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-peoinventar-laua-ohupallistatiivid": {
-      "handle": "v4-peoinventar-laua-ohupallistatiivid",
-      "name_en": "Laua-õhupallistatiivid",
-      "name_et": "Laua-õhupallistatiivid",
-      "level": 3,
-      "parent_handle": "v4-peoinventar-taustaseinad-pulmakaared",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-peoinventar-meelelahutus-atraktsioonid": {
-      "handle": "v4-peoinventar-meelelahutus-atraktsioonid",
-      "name_en": "Meelelahutus & atraktsioonid",
-      "name_et": "Meelelahutus & atraktsioonid",
-      "level": 2,
-      "parent_handle": "v4-peoinventar-ja-dekoratsioonid",
-      "child_handles": [
-        "v4-peoinventar-vaht-lumemasinad",
-        "v4-peoinventar-huppelossi-batuudipuhurid",
-        "v4-peoinventar-lavaefektid",
-        "v4-peoinventar-onne-loosimisrattad-trumlid",
-        "v4-peoinventar-taispuhutavad-atraktsioonid",
-        "v4-peoinventar-joulukuused",
-        "v4-peoinventar-peotelgid",
-        "v4-peoinventar-manguautomaadid"
-      ],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-peoinventar-vaht-lumemasinad": {
-      "handle": "v4-peoinventar-vaht-lumemasinad",
-      "name_en": "Vaht- ja lumemasinad",
-      "name_et": "Vaht- ja lumemasinad",
-      "level": 3,
-      "parent_handle": "v4-peoinventar-meelelahutus-atraktsioonid",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-peoinventar-huppelossi-batuudipuhurid": {
-      "handle": "v4-peoinventar-huppelossi-batuudipuhurid",
-      "name_en": "Hüppelossi- ja batuudipuhurid",
-      "name_et": "Hüppelossi- ja batuudipuhurid",
-      "level": 3,
-      "parent_handle": "v4-peoinventar-meelelahutus-atraktsioonid",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-peoinventar-lavaefektid": {
-      "handle": "v4-peoinventar-lavaefektid",
-      "name_en": "Lavaefektid",
-      "name_et": "Lavaefektid",
-      "level": 3,
-      "parent_handle": "v4-peoinventar-meelelahutus-atraktsioonid",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-peoinventar-onne-loosimisrattad-trumlid": {
-      "handle": "v4-peoinventar-onne-loosimisrattad-trumlid",
-      "name_en": "Õnne- ja loosimisrattad ning -trumlid",
-      "name_et": "Õnne- ja loosimisrattad ning -trumlid",
-      "level": 3,
-      "parent_handle": "v4-peoinventar-meelelahutus-atraktsioonid",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-peoinventar-taispuhutavad-atraktsioonid": {
-      "handle": "v4-peoinventar-taispuhutavad-atraktsioonid",
-      "name_en": "Täispuhutavad atraktsioonid",
-      "name_et": "Täispuhutavad atraktsioonid",
-      "level": 3,
-      "parent_handle": "v4-peoinventar-meelelahutus-atraktsioonid",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-peoinventar-joulukuused": {
-      "handle": "v4-peoinventar-joulukuused",
-      "name_en": "Jõulukuused",
-      "name_et": "Jõulukuused",
-      "level": 3,
-      "parent_handle": "v4-peoinventar-meelelahutus-atraktsioonid",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-peoinventar-peotelgid": {
-      "handle": "v4-peoinventar-peotelgid",
-      "name_en": "Peotelgid",
-      "name_et": "Peotelgid",
-      "level": 3,
-      "parent_handle": "v4-peoinventar-meelelahutus-atraktsioonid",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-peoinventar-manguautomaadid": {
-      "handle": "v4-peoinventar-manguautomaadid",
-      "name_en": "Mänguautomaadid",
-      "name_et": "Mänguautomaadid",
-      "level": 3,
-      "parent_handle": "v4-peoinventar-meelelahutus-atraktsioonid",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-peoinventar-peomoobel-katted": {
-      "handle": "v4-peoinventar-peomoobel-katted",
-      "name_en": "Peomööbel & katted",
-      "name_et": "Peomööbel & katted",
-      "level": 2,
-      "parent_handle": "v4-peoinventar-ja-dekoratsioonid",
-      "child_handles": [
-        "v4-peoinventar-kokkupandavad-peotoolid",
-        "v4-peoinventar-toolikatted-umbrised",
-        "v4-peoinventar-laudlinad",
-        "v4-peoinventar-toolikarud-hoidikud",
-        "v4-peoinventar-piirdepostid-jarjekorratokked"
-      ],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-peoinventar-kokkupandavad-peotoolid": {
-      "handle": "v4-peoinventar-kokkupandavad-peotoolid",
-      "name_en": "Kokkupandavad peotoolid",
-      "name_et": "Kokkupandavad peotoolid",
-      "level": 3,
-      "parent_handle": "v4-peoinventar-peomoobel-katted",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-peoinventar-toolikatted-umbrised": {
-      "handle": "v4-peoinventar-toolikatted-umbrised",
-      "name_en": "Toolikatted & -ümbrised",
-      "name_et": "Toolikatted & -ümbrised",
-      "level": 3,
-      "parent_handle": "v4-peoinventar-peomoobel-katted",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-peoinventar-laudlinad": {
-      "handle": "v4-peoinventar-laudlinad",
-      "name_en": "Laudlinad",
-      "name_et": "Laudlinad",
-      "level": 3,
-      "parent_handle": "v4-peoinventar-peomoobel-katted",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-peoinventar-toolikarud-hoidikud": {
-      "handle": "v4-peoinventar-toolikarud-hoidikud",
-      "name_en": "Toolikärud & -hoidikud",
-      "name_et": "Toolikärud & -hoidikud",
-      "level": 3,
-      "parent_handle": "v4-peoinventar-peomoobel-katted",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-peoinventar-piirdepostid-jarjekorratokked": {
-      "handle": "v4-peoinventar-piirdepostid-jarjekorratokked",
-      "name_en": "Piirdepostid & järjekorratõkked",
-      "name_et": "Piirdepostid & järjekorratõkked",
-      "level": 3,
-      "parent_handle": "v4-peoinventar-peomoobel-katted",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
     }
   },
   "order": [
@@ -21898,6 +21898,32 @@
     "v4-elektritarvikud-ja-valgustus-kaablitombelindid",
     "v4-elektritarvikud-ja-valgustus-serverikapid-ja-vorgukapid",
     "v4-elektritarvikud-ja-valgustus-serverikapid-raamid",
+    "v4-peoinventar-ja-dekoratsioonid",
+    "v4-peoinventar-dekoratsioonid",
+    "v4-peoinventar-kunstlilled-taimed",
+    "v4-peoinventar-pulma-lillestatiivid",
+    "v4-peoinventar-pulma-lillevaasid",
+    "v4-peoinventar-dekoratiivlaternad-parjad",
+    "v4-peoinventar-tooli-satiinpaelad-kaunistused",
+    "v4-peoinventar-taustaseinad-pulmakaared",
+    "v4-peoinventar-backdrop-statiivid-taustad",
+    "v4-peoinventar-pulmakaared-lilledekoor",
+    "v4-peoinventar-laua-ohupallistatiivid",
+    "v4-peoinventar-meelelahutus-atraktsioonid",
+    "v4-peoinventar-vaht-lumemasinad",
+    "v4-peoinventar-huppelossi-batuudipuhurid",
+    "v4-peoinventar-lavaefektid",
+    "v4-peoinventar-onne-loosimisrattad-trumlid",
+    "v4-peoinventar-taispuhutavad-atraktsioonid",
+    "v4-peoinventar-joulukuused",
+    "v4-peoinventar-peotelgid",
+    "v4-peoinventar-manguautomaadid",
+    "v4-peoinventar-peomoobel-katted",
+    "v4-peoinventar-kokkupandavad-peotoolid",
+    "v4-peoinventar-toolikatted-umbrised",
+    "v4-peoinventar-laudlinad",
+    "v4-peoinventar-toolikarud-hoidikud",
+    "v4-peoinventar-piirdepostid-jarjekorratokked",
     "v4-sport-ja-vaba-aeg",
     "v4-sport-ja-vaba-aeg-ouetegevus-ja-hobi",
     "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-staadionitoolid-ja-valipingid",
@@ -22331,32 +22357,6 @@
     "v4-tooriied-ja-isikukaitse-kukkumiskaitse-ja-korgustoo-fliplinid-kukkumissummutid",
     "v4-tooriied-ja-isikukaitse-isikukaitsevahendid",
     "v4-tooriied-ja-isikukaitse-isikukaitsevahendid-kaitsekiivrid-ja-peakaitsmed",
-    "v4-tooriied-ja-isikukaitse-isikukaitsevahendid-polvekaitsmed",
-    "v4-peoinventar-ja-dekoratsioonid",
-    "v4-peoinventar-dekoratsioonid",
-    "v4-peoinventar-kunstlilled-taimed",
-    "v4-peoinventar-pulma-lillestatiivid",
-    "v4-peoinventar-pulma-lillevaasid",
-    "v4-peoinventar-dekoratiivlaternad-parjad",
-    "v4-peoinventar-tooli-satiinpaelad-kaunistused",
-    "v4-peoinventar-taustaseinad-pulmakaared",
-    "v4-peoinventar-backdrop-statiivid-taustad",
-    "v4-peoinventar-pulmakaared-lilledekoor",
-    "v4-peoinventar-laua-ohupallistatiivid",
-    "v4-peoinventar-meelelahutus-atraktsioonid",
-    "v4-peoinventar-vaht-lumemasinad",
-    "v4-peoinventar-huppelossi-batuudipuhurid",
-    "v4-peoinventar-lavaefektid",
-    "v4-peoinventar-onne-loosimisrattad-trumlid",
-    "v4-peoinventar-taispuhutavad-atraktsioonid",
-    "v4-peoinventar-joulukuused",
-    "v4-peoinventar-peotelgid",
-    "v4-peoinventar-manguautomaadid",
-    "v4-peoinventar-peomoobel-katted",
-    "v4-peoinventar-kokkupandavad-peotoolid",
-    "v4-peoinventar-toolikatted-umbrised",
-    "v4-peoinventar-laudlinad",
-    "v4-peoinventar-toolikarud-hoidikud",
-    "v4-peoinventar-piirdepostid-jarjekorratokked"
+    "v4-tooriied-ja-isikukaitse-isikukaitsevahendid-polvekaitsmed"
   ]
 }

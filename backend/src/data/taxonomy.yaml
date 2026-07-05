@@ -1,6 +1,6 @@
 version: 4
 updated: '2026-06-19'
-source: v4 + #19 Muusika (nav #12 järel) + #18 (#14 järel)
+source: v4 + #20 Peoinventar (nav #11 järel) + #19 Muusika (#12 järel) + #18 (#14 järel)
 l1:
   - slug: v4-tooriistad-ja-tarvikud
     name_en: "Tööriistad ja tarvikud"
@@ -5754,6 +5754,122 @@ l1:
             name_en: "Serverikapid & -raamid"
             name_et: "Serverikapid & -raamid"
             product_count: 0
+  - slug: v4-peoinventar-ja-dekoratsioonid
+    name_en: "Peoinventar ja dekoratsioonid"
+    name_et: "Peoinventar ja dekoratsioonid"
+    short_slug: peoinventar
+    tagline_en: "Peoinventar ja dekoratsioonid"
+    tagline_et: "Peoinventar ja dekoratsioonid"
+    description_en: "Peoinventar ja dekoratsioonid — products."
+    description_et: "Peoinventar ja dekoratsioonid — tooted."
+    hero_img: /images/branches/horeca.webp
+    hero_gradient: from-stone-950/80 via-stone-900/40 to-transparent
+    product_count: 413
+    subs:
+      - slug: v4-peoinventar-dekoratsioonid
+        name_en: "Dekoratsioonid"
+        name_et: "Dekoratsioonid"
+        product_count: 0
+        subs:
+          - slug: v4-peoinventar-kunstlilled-taimed
+            name_en: "Kunstlilled ja -taimed"
+            name_et: "Kunstlilled ja -taimed"
+            product_count: 0
+          - slug: v4-peoinventar-pulma-lillestatiivid
+            name_en: "Pulma-lillestatiivid"
+            name_et: "Pulma-lillestatiivid"
+            product_count: 0
+          - slug: v4-peoinventar-pulma-lillevaasid
+            name_en: "Pulma-lillevaasid"
+            name_et: "Pulma-lillevaasid"
+            product_count: 0
+          - slug: v4-peoinventar-dekoratiivlaternad-parjad
+            name_en: "Dekoratiivlaternad ja pärjad"
+            name_et: "Dekoratiivlaternad ja pärjad"
+            product_count: 0
+          - slug: v4-peoinventar-tooli-satiinpaelad-kaunistused
+            name_en: "Tooli satiinpaelad ja kaunistused"
+            name_et: "Tooli satiinpaelad ja kaunistused"
+            product_count: 0
+      - slug: v4-peoinventar-taustaseinad-pulmakaared
+        name_en: "Taustaseinad & pulmakaared"
+        name_et: "Taustaseinad & pulmakaared"
+        product_count: 0
+        subs:
+          - slug: v4-peoinventar-backdrop-statiivid-taustad
+            name_en: "Backdrop-statiivid ja taustad"
+            name_et: "Backdrop-statiivid ja taustad"
+            product_count: 0
+          - slug: v4-peoinventar-pulmakaared-lilledekoor
+            name_en: "Pulmakaared & lilledekoor"
+            name_et: "Pulmakaared & lilledekoor"
+            product_count: 0
+          - slug: v4-peoinventar-laua-ohupallistatiivid
+            name_en: "Laua-õhupallistatiivid"
+            name_et: "Laua-õhupallistatiivid"
+            product_count: 0
+      - slug: v4-peoinventar-meelelahutus-atraktsioonid
+        name_en: "Meelelahutus & atraktsioonid"
+        name_et: "Meelelahutus & atraktsioonid"
+        product_count: 0
+        subs:
+          - slug: v4-peoinventar-vaht-lumemasinad
+            name_en: "Vaht- ja lumemasinad"
+            name_et: "Vaht- ja lumemasinad"
+            product_count: 0
+          - slug: v4-peoinventar-huppelossi-batuudipuhurid
+            name_en: "Hüppelossi- ja batuudipuhurid"
+            name_et: "Hüppelossi- ja batuudipuhurid"
+            product_count: 0
+          - slug: v4-peoinventar-lavaefektid
+            name_en: "Lavaefektid"
+            name_et: "Lavaefektid"
+            product_count: 0
+          - slug: v4-peoinventar-onne-loosimisrattad-trumlid
+            name_en: "Õnne- ja loosimisrattad ning -trumlid"
+            name_et: "Õnne- ja loosimisrattad ning -trumlid"
+            product_count: 0
+          - slug: v4-peoinventar-taispuhutavad-atraktsioonid
+            name_en: "Täispuhutavad atraktsioonid"
+            name_et: "Täispuhutavad atraktsioonid"
+            product_count: 0
+          - slug: v4-peoinventar-joulukuused
+            name_en: "Jõulukuused"
+            name_et: "Jõulukuused"
+            product_count: 0
+          - slug: v4-peoinventar-peotelgid
+            name_en: "Peotelgid"
+            name_et: "Peotelgid"
+            product_count: 0
+          - slug: v4-peoinventar-manguautomaadid
+            name_en: "Mänguautomaadid"
+            name_et: "Mänguautomaadid"
+            product_count: 0
+      - slug: v4-peoinventar-peomoobel-katted
+        name_en: "Peomööbel & katted"
+        name_et: "Peomööbel & katted"
+        product_count: 0
+        subs:
+          - slug: v4-peoinventar-kokkupandavad-peotoolid
+            name_en: "Kokkupandavad peotoolid"
+            name_et: "Kokkupandavad peotoolid"
+            product_count: 0
+          - slug: v4-peoinventar-toolikatted-umbrised
+            name_en: "Toolikatted & -ümbrised"
+            name_et: "Toolikatted & -ümbrised"
+            product_count: 0
+          - slug: v4-peoinventar-laudlinad
+            name_en: "Laudlinad"
+            name_et: "Laudlinad"
+            product_count: 0
+          - slug: v4-peoinventar-toolikarud-hoidikud
+            name_en: "Toolikärud & -hoidikud"
+            name_et: "Toolikärud & -hoidikud"
+            product_count: 0
+          - slug: v4-peoinventar-piirdepostid-jarjekorratokked
+            name_en: "Piirdepostid & järjekorratõkked"
+            name_et: "Piirdepostid & järjekorratõkked"
+            product_count: 0
   - slug: v4-sport-ja-vaba-aeg
     name_en: "Sport ja vaba aeg"
     name_et: "Sport ja vaba aeg"
@@ -7600,120 +7716,4 @@ l1:
           - slug: v4-tooriied-ja-isikukaitse-isikukaitsevahendid-polvekaitsmed
             name_en: "Põlvekaitsmed"
             name_et: "Põlvekaitsmed"
-            product_count: 0
-  - slug: v4-peoinventar-ja-dekoratsioonid
-    name_en: "Peoinventar ja dekoratsioonid"
-    name_et: "Peoinventar ja dekoratsioonid"
-    short_slug: peoinventar
-    tagline_en: "Peoinventar ja dekoratsioonid"
-    tagline_et: "Peoinventar ja dekoratsioonid"
-    description_en: "Peoinventar ja dekoratsioonid — products."
-    description_et: "Peoinventar ja dekoratsioonid — tooted."
-    hero_img: /images/branches/horeca.webp
-    hero_gradient: from-stone-950/80 via-stone-900/40 to-transparent
-    product_count: 307
-    subs:
-      - slug: v4-peoinventar-dekoratsioonid
-        name_en: "Dekoratsioonid"
-        name_et: "Dekoratsioonid"
-        product_count: 0
-        subs:
-          - slug: v4-peoinventar-kunstlilled-taimed
-            name_en: "Kunstlilled ja -taimed"
-            name_et: "Kunstlilled ja -taimed"
-            product_count: 0
-          - slug: v4-peoinventar-pulma-lillestatiivid
-            name_en: "Pulma-lillestatiivid"
-            name_et: "Pulma-lillestatiivid"
-            product_count: 0
-          - slug: v4-peoinventar-pulma-lillevaasid
-            name_en: "Pulma-lillevaasid"
-            name_et: "Pulma-lillevaasid"
-            product_count: 0
-          - slug: v4-peoinventar-dekoratiivlaternad-parjad
-            name_en: "Dekoratiivlaternad ja pärjad"
-            name_et: "Dekoratiivlaternad ja pärjad"
-            product_count: 0
-          - slug: v4-peoinventar-tooli-satiinpaelad-kaunistused
-            name_en: "Tooli satiinpaelad ja kaunistused"
-            name_et: "Tooli satiinpaelad ja kaunistused"
-            product_count: 0
-      - slug: v4-peoinventar-taustaseinad-pulmakaared
-        name_en: "Taustaseinad & pulmakaared"
-        name_et: "Taustaseinad & pulmakaared"
-        product_count: 0
-        subs:
-          - slug: v4-peoinventar-backdrop-statiivid-taustad
-            name_en: "Backdrop-statiivid ja taustad"
-            name_et: "Backdrop-statiivid ja taustad"
-            product_count: 0
-          - slug: v4-peoinventar-pulmakaared-lilledekoor
-            name_en: "Pulmakaared & lilledekoor"
-            name_et: "Pulmakaared & lilledekoor"
-            product_count: 0
-          - slug: v4-peoinventar-laua-ohupallistatiivid
-            name_en: "Laua-õhupallistatiivid"
-            name_et: "Laua-õhupallistatiivid"
-            product_count: 0
-      - slug: v4-peoinventar-meelelahutus-atraktsioonid
-        name_en: "Meelelahutus & atraktsioonid"
-        name_et: "Meelelahutus & atraktsioonid"
-        product_count: 0
-        subs:
-          - slug: v4-peoinventar-vaht-lumemasinad
-            name_en: "Vaht- ja lumemasinad"
-            name_et: "Vaht- ja lumemasinad"
-            product_count: 0
-          - slug: v4-peoinventar-huppelossi-batuudipuhurid
-            name_en: "Hüppelossi- ja batuudipuhurid"
-            name_et: "Hüppelossi- ja batuudipuhurid"
-            product_count: 0
-          - slug: v4-peoinventar-lavaefektid
-            name_en: "Lavaefektid"
-            name_et: "Lavaefektid"
-            product_count: 0
-          - slug: v4-peoinventar-onne-loosimisrattad-trumlid
-            name_en: "Õnne- ja loosimisrattad ning -trumlid"
-            name_et: "Õnne- ja loosimisrattad ning -trumlid"
-            product_count: 0
-          - slug: v4-peoinventar-taispuhutavad-atraktsioonid
-            name_en: "Täispuhutavad atraktsioonid"
-            name_et: "Täispuhutavad atraktsioonid"
-            product_count: 0
-          - slug: v4-peoinventar-joulukuused
-            name_en: "Jõulukuused"
-            name_et: "Jõulukuused"
-            product_count: 0
-          - slug: v4-peoinventar-peotelgid
-            name_en: "Peotelgid"
-            name_et: "Peotelgid"
-            product_count: 0
-          - slug: v4-peoinventar-manguautomaadid
-            name_en: "Mänguautomaadid"
-            name_et: "Mänguautomaadid"
-            product_count: 0
-      - slug: v4-peoinventar-peomoobel-katted
-        name_en: "Peomööbel & katted"
-        name_et: "Peomööbel & katted"
-        product_count: 0
-        subs:
-          - slug: v4-peoinventar-kokkupandavad-peotoolid
-            name_en: "Kokkupandavad peotoolid"
-            name_et: "Kokkupandavad peotoolid"
-            product_count: 0
-          - slug: v4-peoinventar-toolikatted-umbrised
-            name_en: "Toolikatted & -ümbrised"
-            name_et: "Toolikatted & -ümbrised"
-            product_count: 0
-          - slug: v4-peoinventar-laudlinad
-            name_en: "Laudlinad"
-            name_et: "Laudlinad"
-            product_count: 0
-          - slug: v4-peoinventar-toolikarud-hoidikud
-            name_en: "Toolikärud & -hoidikud"
-            name_et: "Toolikärud & -hoidikud"
-            product_count: 0
-          - slug: v4-peoinventar-piirdepostid-jarjekorratokked
-            name_en: "Piirdepostid & järjekorratõkked"
-            name_et: "Piirdepostid & järjekorratõkked"
             product_count: 0
