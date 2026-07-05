@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-05T15:07:39.165Z",
+  "generated_at": "2026-07-05T15:51:15.104Z",
   "nodes": {
     "v4-tooriistad-ja-tarvikud": {
       "handle": "v4-tooriistad-ja-tarvikud",
@@ -8,8 +8,8 @@
       "level": 1,
       "parent_handle": null,
       "child_handles": [
-        "v4-tooriistad-ja-tarvikud-torutooriistad",
         "v4-tooriistad-ja-tarvikud-viimistlustooriistad",
+        "v4-tooriistad-ja-tarvikud-torutooriistad",
         "v4-tooriistad-ja-tarvikud-kasitooriistad",
         "v4-tooriistad-ja-tarvikud-elektrilised-tooriistad",
         "v4-tooriistad-ja-tarvikud-akutooriistad",
@@ -27,8 +27,8 @@
         "v4-tooriistad-ja-tarvikud-transpordikarud",
         "v4-tooriistad-ja-tarvikud-redelid",
         "v4-tooriistad-ja-tarvikud-hvac-ja-torudiagnostika",
-        "v4-tooriistad-ja-tarvikud-tookoja-sisustus",
         "v4-tooriistad-ja-tarvikud-kliima-ja-kulmaaine-hooldus",
+        "v4-tooriistad-ja-tarvikud-tookoja-sisustus",
         "v4-tooriistad-ja-tarvikud-tomburid-ja-pressid",
         "v4-tooriistad-ja-tarvikud-koorma-kinnitus-ja-laadimine",
         "v4-tooriistad-ja-tarvikud-cnc-ja-lineaarkomponendid"
@@ -39,105 +39,6 @@
       "description_et": "Tööriistad ja tarvikud — tooted.",
       "tagline_en": "Tööriistad ja tarvikud",
       "tagline_et": "Tööriistad ja tarvikud"
-    },
-    "v4-tooriistad-ja-tarvikud-torutooriistad": {
-      "handle": "v4-tooriistad-ja-tarvikud-torutooriistad",
-      "name_en": "Torutööriistad",
-      "name_et": "Torutööriistad",
-      "level": 2,
-      "parent_handle": "v4-tooriistad-ja-tarvikud",
-      "child_handles": [
-        "v4-tooriistad-ja-tarvikud-kasitooriistad-toruvotmed-ja-torutangid",
-        "v4-tooriistad-ja-tarvikud-kasitooriistad-toru-joondusklambrid",
-        "v4-tooriistad-ja-tarvikud-kasitooriistad-toru-laiendus-ja-flaaringutooriistad",
-        "v4-tooriistad-ja-tarvikud-kasitooriistad-toru-valjatombajad",
-        "v4-tooriistad-ja-tarvikud-akutooriistad-toru-pressimistooriistad",
-        "v4-tooriistad-ja-tarvikud-torutooriistad-toru-keermestajad-ja-loikurid",
-        "v4-tooriistad-ja-tarvikud-metallitoo-ja-sepatoo-torupainutajad",
-        "v4-tooriistad-torutoed-ja-hoidikud"
-      ],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-tooriistad-ja-tarvikud-kasitooriistad-toruvotmed-ja-torutangid": {
-      "handle": "v4-tooriistad-ja-tarvikud-kasitooriistad-toruvotmed-ja-torutangid",
-      "name_en": "Toruvõtmed ja torutangid",
-      "name_et": "Toruvõtmed ja torutangid",
-      "level": 3,
-      "parent_handle": "v4-tooriistad-ja-tarvikud-torutooriistad",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-tooriistad-ja-tarvikud-kasitooriistad-toru-joondusklambrid": {
-      "handle": "v4-tooriistad-ja-tarvikud-kasitooriistad-toru-joondusklambrid",
-      "name_en": "Toru joondusklambrid",
-      "name_et": "Toru joondusklambrid",
-      "level": 3,
-      "parent_handle": "v4-tooriistad-ja-tarvikud-torutooriistad",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-tooriistad-ja-tarvikud-kasitooriistad-toru-laiendus-ja-flaaringutooriistad": {
-      "handle": "v4-tooriistad-ja-tarvikud-kasitooriistad-toru-laiendus-ja-flaaringutooriistad",
-      "name_en": "Toru laiendus- ja flaaringutööriistad",
-      "name_et": "Toru laiendus- ja flaaringutööriistad",
-      "level": 3,
-      "parent_handle": "v4-tooriistad-ja-tarvikud-torutooriistad",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-tooriistad-ja-tarvikud-kasitooriistad-toru-valjatombajad": {
-      "handle": "v4-tooriistad-ja-tarvikud-kasitooriistad-toru-valjatombajad",
-      "name_en": "Toru väljatõmbajad",
-      "name_et": "Toru väljatõmbajad",
-      "level": 3,
-      "parent_handle": "v4-tooriistad-ja-tarvikud-torutooriistad",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-tooriistad-ja-tarvikud-akutooriistad-toru-pressimistooriistad": {
-      "handle": "v4-tooriistad-ja-tarvikud-akutooriistad-toru-pressimistooriistad",
-      "name_en": "Toru pressimistööriistad",
-      "name_et": "Toru pressimistööriistad",
-      "level": 3,
-      "parent_handle": "v4-tooriistad-ja-tarvikud-torutooriistad",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-tooriistad-ja-tarvikud-torutooriistad-toru-keermestajad-ja-loikurid": {
-      "handle": "v4-tooriistad-ja-tarvikud-torutooriistad-toru-keermestajad-ja-loikurid",
-      "name_en": "Toru-keermestajad ja -lõikurid",
-      "name_et": "Toru-keermestajad ja -lõikurid",
-      "level": 3,
-      "parent_handle": "v4-tooriistad-ja-tarvikud-torutooriistad",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-tooriistad-ja-tarvikud-metallitoo-ja-sepatoo-torupainutajad": {
-      "handle": "v4-tooriistad-ja-tarvikud-metallitoo-ja-sepatoo-torupainutajad",
-      "name_en": "Torupainutajad",
-      "name_et": "Torupainutajad",
-      "level": 3,
-      "parent_handle": "v4-tooriistad-ja-tarvikud-torutooriistad",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-tooriistad-torutoed-ja-hoidikud": {
-      "handle": "v4-tooriistad-torutoed-ja-hoidikud",
-      "name_en": "Torutoed & -hoidikud",
-      "name_et": "Torutoed & -hoidikud",
-      "level": 3,
-      "parent_handle": "v4-tooriistad-ja-tarvikud-torutooriistad",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
     },
     "v4-tooriistad-ja-tarvikud-viimistlustooriistad": {
       "handle": "v4-tooriistad-ja-tarvikud-viimistlustooriistad",
@@ -234,6 +135,105 @@
       "name_et": "Krohvimistööriistad",
       "level": 3,
       "parent_handle": "v4-tooriistad-ja-tarvikud-viimistlustooriistad",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-torutooriistad": {
+      "handle": "v4-tooriistad-ja-tarvikud-torutooriistad",
+      "name_en": "Torutööriistad",
+      "name_et": "Torutööriistad",
+      "level": 2,
+      "parent_handle": "v4-tooriistad-ja-tarvikud",
+      "child_handles": [
+        "v4-tooriistad-ja-tarvikud-kasitooriistad-toruvotmed-ja-torutangid",
+        "v4-tooriistad-ja-tarvikud-kasitooriistad-toru-joondusklambrid",
+        "v4-tooriistad-ja-tarvikud-kasitooriistad-toru-laiendus-ja-flaaringutooriistad",
+        "v4-tooriistad-ja-tarvikud-kasitooriistad-toru-valjatombajad",
+        "v4-tooriistad-ja-tarvikud-akutooriistad-toru-pressimistooriistad",
+        "v4-tooriistad-ja-tarvikud-torutooriistad-toru-keermestajad-ja-loikurid",
+        "v4-tooriistad-ja-tarvikud-metallitoo-ja-sepatoo-torupainutajad",
+        "v4-tooriistad-torutoed-ja-hoidikud"
+      ],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-kasitooriistad-toruvotmed-ja-torutangid": {
+      "handle": "v4-tooriistad-ja-tarvikud-kasitooriistad-toruvotmed-ja-torutangid",
+      "name_en": "Toruvõtmed ja torutangid",
+      "name_et": "Toruvõtmed ja torutangid",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-torutooriistad",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-kasitooriistad-toru-joondusklambrid": {
+      "handle": "v4-tooriistad-ja-tarvikud-kasitooriistad-toru-joondusklambrid",
+      "name_en": "Toru joondusklambrid",
+      "name_et": "Toru joondusklambrid",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-torutooriistad",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-kasitooriistad-toru-laiendus-ja-flaaringutooriistad": {
+      "handle": "v4-tooriistad-ja-tarvikud-kasitooriistad-toru-laiendus-ja-flaaringutooriistad",
+      "name_en": "Toru laiendus- ja flaaringutööriistad",
+      "name_et": "Toru laiendus- ja flaaringutööriistad",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-torutooriistad",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-kasitooriistad-toru-valjatombajad": {
+      "handle": "v4-tooriistad-ja-tarvikud-kasitooriistad-toru-valjatombajad",
+      "name_en": "Toru väljatõmbajad",
+      "name_et": "Toru väljatõmbajad",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-torutooriistad",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-akutooriistad-toru-pressimistooriistad": {
+      "handle": "v4-tooriistad-ja-tarvikud-akutooriistad-toru-pressimistooriistad",
+      "name_en": "Toru pressimistööriistad",
+      "name_et": "Toru pressimistööriistad",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-torutooriistad",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-torutooriistad-toru-keermestajad-ja-loikurid": {
+      "handle": "v4-tooriistad-ja-tarvikud-torutooriistad-toru-keermestajad-ja-loikurid",
+      "name_en": "Toru-keermestajad ja -lõikurid",
+      "name_et": "Toru-keermestajad ja -lõikurid",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-torutooriistad",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-metallitoo-ja-sepatoo-torupainutajad": {
+      "handle": "v4-tooriistad-ja-tarvikud-metallitoo-ja-sepatoo-torupainutajad",
+      "name_en": "Torupainutajad",
+      "name_et": "Torupainutajad",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-torutooriistad",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-torutoed-ja-hoidikud": {
+      "handle": "v4-tooriistad-torutoed-ja-hoidikud",
+      "name_en": "Torutoed & -hoidikud",
+      "name_et": "Torutoed & -hoidikud",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-torutooriistad",
       "child_handles": [],
       "image_path": null,
       "image_source": "none"
@@ -3395,39 +3395,6 @@
       "image_path": null,
       "image_source": "none"
     },
-    "v4-tooriistad-ja-tarvikud-tookoja-sisustus": {
-      "handle": "v4-tooriistad-ja-tarvikud-tookoja-sisustus",
-      "name_en": "Töökoja sisustus",
-      "name_et": "Töökoja sisustus",
-      "level": 2,
-      "parent_handle": "v4-tooriistad-ja-tarvikud",
-      "child_handles": [
-        "v4-tooriistad-ja-tarvikud-tookoja-sisustus-toolauad",
-        "v4-tooriistad-ja-tarvikud-tookoja-sisustus-tootoolid-taburetid"
-      ],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-tooriistad-ja-tarvikud-tookoja-sisustus-toolauad": {
-      "handle": "v4-tooriistad-ja-tarvikud-tookoja-sisustus-toolauad",
-      "name_en": "Töölauad",
-      "name_et": "Töölauad",
-      "level": 3,
-      "parent_handle": "v4-tooriistad-ja-tarvikud-tookoja-sisustus",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-tooriistad-ja-tarvikud-tookoja-sisustus-tootoolid-taburetid": {
-      "handle": "v4-tooriistad-ja-tarvikud-tookoja-sisustus-tootoolid-taburetid",
-      "name_en": "Töötoolid & -taburetid",
-      "name_et": "Töötoolid & -taburetid",
-      "level": 3,
-      "parent_handle": "v4-tooriistad-ja-tarvikud-tookoja-sisustus",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
     "v4-tooriistad-ja-tarvikud-kliima-ja-kulmaaine-hooldus": {
       "handle": "v4-tooriistad-ja-tarvikud-kliima-ja-kulmaaine-hooldus",
       "name_en": "Kliima- ja külmaaine-hooldus",
@@ -3479,6 +3446,39 @@
       "name_et": "Külmaaine-manomeetrid ja tarvikud",
       "level": 3,
       "parent_handle": "v4-tooriistad-ja-tarvikud-kliima-ja-kulmaaine-hooldus",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-tookoja-sisustus": {
+      "handle": "v4-tooriistad-ja-tarvikud-tookoja-sisustus",
+      "name_en": "Töökoja sisustus",
+      "name_et": "Töökoja sisustus",
+      "level": 2,
+      "parent_handle": "v4-tooriistad-ja-tarvikud",
+      "child_handles": [
+        "v4-tooriistad-ja-tarvikud-tookoja-sisustus-toolauad",
+        "v4-tooriistad-ja-tarvikud-tookoja-sisustus-tootoolid-taburetid"
+      ],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-tookoja-sisustus-toolauad": {
+      "handle": "v4-tooriistad-ja-tarvikud-tookoja-sisustus-toolauad",
+      "name_en": "Töölauad",
+      "name_et": "Töölauad",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-tookoja-sisustus",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-tookoja-sisustus-tootoolid-taburetid": {
+      "handle": "v4-tooriistad-ja-tarvikud-tookoja-sisustus-tootoolid-taburetid",
+      "name_en": "Töötoolid & -taburetid",
+      "name_et": "Töötoolid & -taburetid",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-tookoja-sisustus",
       "child_handles": [],
       "image_path": null,
       "image_source": "none"
@@ -17592,13 +17592,23 @@
       "level": 2,
       "parent_handle": "v4-muusika-ja-helitehnika",
       "child_handles": [
+        "v4-muusika-ja-helitehnika-muusikariistad-pillitarvikud",
         "v4-muusika-ja-helitehnika-muusikariistad-keelpillid",
         "v4-muusika-ja-helitehnika-muusikariistad-klahvpillid",
-        "v4-muusika-ja-helitehnika-muusikariistad-pillitarvikud",
         "v4-muusika-ja-helitehnika-muusikariistad-lookpillid",
         "v4-muusika-ja-helitehnika-muusikariistad-puhkpillid",
         "v4-muusika-ja-helitehnika-muusikariistad-ksulofonid-kellamangud"
       ],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-muusika-ja-helitehnika-muusikariistad-pillitarvikud": {
+      "handle": "v4-muusika-ja-helitehnika-muusikariistad-pillitarvikud",
+      "name_en": "Pillitarvikud",
+      "name_et": "Pillitarvikud",
+      "level": 3,
+      "parent_handle": "v4-muusika-ja-helitehnika-muusikariistad",
+      "child_handles": [],
       "image_path": null,
       "image_source": "none"
     },
@@ -17616,16 +17626,6 @@
       "handle": "v4-muusika-ja-helitehnika-muusikariistad-klahvpillid",
       "name_en": "Klahvpillid",
       "name_et": "Klahvpillid",
-      "level": 3,
-      "parent_handle": "v4-muusika-ja-helitehnika-muusikariistad",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-muusika-ja-helitehnika-muusikariistad-pillitarvikud": {
-      "handle": "v4-muusika-ja-helitehnika-muusikariistad-pillitarvikud",
-      "name_en": "Pillitarvikud",
-      "name_et": "Pillitarvikud",
       "level": 3,
       "parent_handle": "v4-muusika-ja-helitehnika-muusikariistad",
       "child_handles": [],
@@ -17769,8 +17769,8 @@
       "parent_handle": null,
       "child_handles": [
         "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc",
-        "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign",
         "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk",
+        "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign",
         "v4-reklaami-truki-ja-graveerimisseadmed-koitmine-ja-lamineerimine"
       ],
       "image_path": null,
@@ -17967,83 +17967,6 @@
       "image_path": null,
       "image_source": "none"
     },
-    "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign": {
-      "handle": "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign",
-      "name_en": "Vinüül & sign",
-      "name_et": "Vinüül & sign",
-      "level": 2,
-      "parent_handle": "v4-reklaami-truki-ja-graveerimisseadmed",
-      "child_handles": [
-        "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-reklaamlipud-ja-lipumastid",
-        "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-posteri-ja-bannerihoidikud",
-        "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-led-reklaamtahvlid-ja-ekraanid",
-        "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-naitustahvlid-ja-lauad",
-        "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-plotteri-paberirullid",
-        "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-vinuulloikurid-ja-plotterid"
-      ],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-reklaamlipud-ja-lipumastid": {
-      "handle": "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-reklaamlipud-ja-lipumastid",
-      "name_en": "Reklaamlipud & lipumastid",
-      "name_et": "Reklaamlipud & lipumastid",
-      "level": 3,
-      "parent_handle": "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-posteri-ja-bannerihoidikud": {
-      "handle": "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-posteri-ja-bannerihoidikud",
-      "name_en": "Posteri- & bännerihoidikud",
-      "name_et": "Posteri- & bännerihoidikud",
-      "level": 3,
-      "parent_handle": "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-led-reklaamtahvlid-ja-ekraanid": {
-      "handle": "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-led-reklaamtahvlid-ja-ekraanid",
-      "name_en": "LED-reklaamtahvlid & -ekraanid",
-      "name_et": "LED-reklaamtahvlid & -ekraanid",
-      "level": 3,
-      "parent_handle": "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-naitustahvlid-ja-lauad": {
-      "handle": "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-naitustahvlid-ja-lauad",
-      "name_en": "Näitustahvlid & -lauad",
-      "name_et": "Näitustahvlid & -lauad",
-      "level": 3,
-      "parent_handle": "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-plotteri-paberirullid": {
-      "handle": "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-plotteri-paberirullid",
-      "name_en": "Plotteri paberirullid",
-      "name_et": "Plotteri paberirullid",
-      "level": 3,
-      "parent_handle": "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-vinuulloikurid-ja-plotterid": {
-      "handle": "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-vinuulloikurid-ja-plotterid",
-      "name_en": "Vinüüllõikurid & plotterid",
-      "name_et": "Vinüüllõikurid & plotterid",
-      "level": 3,
-      "parent_handle": "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
     "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk": {
       "handle": "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk",
       "name_en": "Tekstiili- & rõivatrükk",
@@ -18227,6 +18150,83 @@
       "name_et": "Käsitöö-seadmed & -tarvikud",
       "level": 3,
       "parent_handle": "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign": {
+      "handle": "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign",
+      "name_en": "Vinüül & sign",
+      "name_et": "Vinüül & sign",
+      "level": 2,
+      "parent_handle": "v4-reklaami-truki-ja-graveerimisseadmed",
+      "child_handles": [
+        "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-reklaamlipud-ja-lipumastid",
+        "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-posteri-ja-bannerihoidikud",
+        "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-led-reklaamtahvlid-ja-ekraanid",
+        "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-naitustahvlid-ja-lauad",
+        "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-plotteri-paberirullid",
+        "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-vinuulloikurid-ja-plotterid"
+      ],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-reklaamlipud-ja-lipumastid": {
+      "handle": "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-reklaamlipud-ja-lipumastid",
+      "name_en": "Reklaamlipud & lipumastid",
+      "name_et": "Reklaamlipud & lipumastid",
+      "level": 3,
+      "parent_handle": "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-posteri-ja-bannerihoidikud": {
+      "handle": "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-posteri-ja-bannerihoidikud",
+      "name_en": "Posteri- & bännerihoidikud",
+      "name_et": "Posteri- & bännerihoidikud",
+      "level": 3,
+      "parent_handle": "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-led-reklaamtahvlid-ja-ekraanid": {
+      "handle": "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-led-reklaamtahvlid-ja-ekraanid",
+      "name_en": "LED-reklaamtahvlid & -ekraanid",
+      "name_et": "LED-reklaamtahvlid & -ekraanid",
+      "level": 3,
+      "parent_handle": "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-naitustahvlid-ja-lauad": {
+      "handle": "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-naitustahvlid-ja-lauad",
+      "name_en": "Näitustahvlid & -lauad",
+      "name_et": "Näitustahvlid & -lauad",
+      "level": 3,
+      "parent_handle": "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-plotteri-paberirullid": {
+      "handle": "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-plotteri-paberirullid",
+      "name_en": "Plotteri paberirullid",
+      "name_et": "Plotteri paberirullid",
+      "level": 3,
+      "parent_handle": "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-vinuulloikurid-ja-plotterid": {
+      "handle": "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-vinuulloikurid-ja-plotterid",
+      "name_en": "Vinüüllõikurid & plotterid",
+      "name_et": "Vinüüllõikurid & plotterid",
+      "level": 3,
+      "parent_handle": "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign",
       "child_handles": [],
       "image_path": null,
       "image_source": "none"
@@ -18953,14 +18953,34 @@
       "level": 2,
       "parent_handle": "v4-pollumajandus-ja-loomakasvatus",
       "child_handles": [
+        "v4-pollumajandus-ja-loomakasvatus-kariloomad-tra-ataiad-ja-aiapiirded",
+        "v4-pollumajandus-ja-loomakasvatus-hobuse-ja-tallitarvikud",
         "v4-pollumajandus-ja-loomakasvatus-kariloomad-heinasooturid-ja-heinavorgud",
         "v4-pollumajandus-ja-loomakasvatus-kariloomad-soodurid-ja-soodakuna",
-        "v4-pollumajandus-ja-loomakasvatus-kariloomad-kariloomade-sugamisharjad",
         "v4-pollumajandus-ja-loomakasvatus-kariloomad-elektrikarjused-ja-tarvikud",
-        "v4-pollumajandus-ja-loomakasvatus-hobuse-ja-tallitarvikud",
-        "v4-pollumajandus-ja-loomakasvatus-kariloomad-tra-ataiad-ja-aiapiirded",
+        "v4-pollumajandus-ja-loomakasvatus-kariloomad-kariloomade-sugamisharjad",
         "v4-pollumajandus-ja-loomakasvatus-kariloomad-eluspuugipuurid"
       ],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-pollumajandus-ja-loomakasvatus-kariloomad-tra-ataiad-ja-aiapiirded": {
+      "handle": "v4-pollumajandus-ja-loomakasvatus-kariloomad-tra-ataiad-ja-aiapiirded",
+      "name_en": "Tarad ja võrgud",
+      "name_et": "Tarad ja võrgud",
+      "level": 3,
+      "parent_handle": "v4-pollumajandus-ja-loomakasvatus-kariloomad",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-pollumajandus-ja-loomakasvatus-hobuse-ja-tallitarvikud": {
+      "handle": "v4-pollumajandus-ja-loomakasvatus-hobuse-ja-tallitarvikud",
+      "name_en": "Hobuse- ja tallitarvikud",
+      "name_et": "Hobuse- ja tallitarvikud",
+      "level": 3,
+      "parent_handle": "v4-pollumajandus-ja-loomakasvatus-kariloomad",
+      "child_handles": [],
       "image_path": null,
       "image_source": "none"
     },
@@ -18984,16 +19004,6 @@
       "image_path": null,
       "image_source": "none"
     },
-    "v4-pollumajandus-ja-loomakasvatus-kariloomad-kariloomade-sugamisharjad": {
-      "handle": "v4-pollumajandus-ja-loomakasvatus-kariloomad-kariloomade-sugamisharjad",
-      "name_en": "Kariloomade sügamisharjad",
-      "name_et": "Kariloomade sügamisharjad",
-      "level": 3,
-      "parent_handle": "v4-pollumajandus-ja-loomakasvatus-kariloomad",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
     "v4-pollumajandus-ja-loomakasvatus-kariloomad-elektrikarjused-ja-tarvikud": {
       "handle": "v4-pollumajandus-ja-loomakasvatus-kariloomad-elektrikarjused-ja-tarvikud",
       "name_en": "Elektrikarjused ja tarvikud",
@@ -19004,20 +19014,10 @@
       "image_path": null,
       "image_source": "none"
     },
-    "v4-pollumajandus-ja-loomakasvatus-hobuse-ja-tallitarvikud": {
-      "handle": "v4-pollumajandus-ja-loomakasvatus-hobuse-ja-tallitarvikud",
-      "name_en": "Hobuse- ja tallitarvikud",
-      "name_et": "Hobuse- ja tallitarvikud",
-      "level": 3,
-      "parent_handle": "v4-pollumajandus-ja-loomakasvatus-kariloomad",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-pollumajandus-ja-loomakasvatus-kariloomad-tra-ataiad-ja-aiapiirded": {
-      "handle": "v4-pollumajandus-ja-loomakasvatus-kariloomad-tra-ataiad-ja-aiapiirded",
-      "name_en": "Tarad ja võrgud",
-      "name_et": "Tarad ja võrgud",
+    "v4-pollumajandus-ja-loomakasvatus-kariloomad-kariloomade-sugamisharjad": {
+      "handle": "v4-pollumajandus-ja-loomakasvatus-kariloomad-kariloomade-sugamisharjad",
+      "name_en": "Kariloomade sügamisharjad",
+      "name_et": "Kariloomade sügamisharjad",
       "level": 3,
       "parent_handle": "v4-pollumajandus-ja-loomakasvatus-kariloomad",
       "child_handles": [],
@@ -20229,7 +20229,10 @@
       "level": 1,
       "parent_handle": null,
       "child_handles": [
-        "v4-peoinventar-pidu-ja-uritused"
+        "v4-peoinventar-dekoratsioonid",
+        "v4-peoinventar-taustaseinad-pulmakaared",
+        "v4-peoinventar-meelelahutus-atraktsioonid",
+        "v4-peoinventar-peomoobel-katted"
       ],
       "image_path": null,
       "image_source": "none",
@@ -20238,224 +20241,28 @@
       "tagline_en": "Peoinventar ja dekoratsioonid",
       "tagline_et": "Peoinventar ja dekoratsioonid"
     },
-    "v4-peoinventar-pidu-ja-uritused": {
-      "handle": "v4-peoinventar-pidu-ja-uritused",
-      "name_en": "Pidu ja üritused",
-      "name_et": "Pidu ja üritused",
+    "v4-peoinventar-dekoratsioonid": {
+      "handle": "v4-peoinventar-dekoratsioonid",
+      "name_en": "Dekoratsioonid",
+      "name_et": "Dekoratsioonid",
       "level": 2,
       "parent_handle": "v4-peoinventar-ja-dekoratsioonid",
       "child_handles": [
-        "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-laudlinad",
-        "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-ohupallikaared-ja-raamid",
-        "v4-reklaami-truki-ja-graveerimisseadmed-fotostuudio-ja-taustad-taustastatiivid",
-        "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-pulmakaared-ja-lilledekoor",
-        "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-toolikatted-ja-umbrised",
-        "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-kunsttaimed-ja-lilled",
-        "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-dekoratiivlaternad",
-        "v4-peoinventar-piirdepostid-jarjekorratokked",
-        "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-onne-ja-loosimisrattad-ning-trumlid",
-        "v4-moobel-ja-sisustus-lapsemoobel-tooli-satiinpaelad-ja-kaunistused",
-        "v4-moobel-ja-sisustus-toolid-ja-istmed-kokkupandavad-toolid",
-        "v4-varjualused-telgid-ja-kasvuhooned-telgid-peotelgid",
-        "v4-sport-ja-vaba-aeg-manguasjad-lastele-taispuhutavad-atraktsioonid",
-        "v4-peoinventar-joulukuused",
-        "v4-peoinventar-peo-ja-meelelahutusmasinad",
-        "v4-peoinventar-atraktsioonipuhurid",
-        "v4-peoinventar-lavaefektide-masinad",
-        "v4-peoinventar-sammaspostide-koied",
-        "v4-peoinventar-toolikarud-hoidikud",
+        "v4-peoinventar-kunstlilled-taimed",
         "v4-peoinventar-lillealused-statiivid",
-        "v4-peoinventar-lillevaasid"
+        "v4-peoinventar-lillevaasid",
+        "v4-peoinventar-dekoratiivlaternad-parjad",
+        "v4-peoinventar-tooli-satiinpaelad-kaunistused"
       ],
       "image_path": null,
       "image_source": "none"
     },
-    "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-laudlinad": {
-      "handle": "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-laudlinad",
-      "name_en": "Laudlinad",
-      "name_et": "Laudlinad",
-      "level": 3,
-      "parent_handle": "v4-peoinventar-pidu-ja-uritused",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-ohupallikaared-ja-raamid": {
-      "handle": "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-ohupallikaared-ja-raamid",
-      "name_en": "Õhupallikaared & raamid",
-      "name_et": "Õhupallikaared & raamid",
-      "level": 3,
-      "parent_handle": "v4-peoinventar-pidu-ja-uritused",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-reklaami-truki-ja-graveerimisseadmed-fotostuudio-ja-taustad-taustastatiivid": {
-      "handle": "v4-reklaami-truki-ja-graveerimisseadmed-fotostuudio-ja-taustad-taustastatiivid",
-      "name_en": "Backdrop-statiivid ja taustad",
-      "name_et": "Backdrop-statiivid ja taustad",
-      "level": 3,
-      "parent_handle": "v4-peoinventar-pidu-ja-uritused",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-pulmakaared-ja-lilledekoor": {
-      "handle": "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-pulmakaared-ja-lilledekoor",
-      "name_en": "Pulmakaared & lilledekoor",
-      "name_et": "Pulmakaared & lilledekoor",
-      "level": 3,
-      "parent_handle": "v4-peoinventar-pidu-ja-uritused",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-toolikatted-ja-umbrised": {
-      "handle": "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-toolikatted-ja-umbrised",
-      "name_en": "Toolikatted & -ümbrised",
-      "name_et": "Toolikatted & -ümbrised",
-      "level": 3,
-      "parent_handle": "v4-peoinventar-pidu-ja-uritused",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-kunsttaimed-ja-lilled": {
-      "handle": "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-kunsttaimed-ja-lilled",
+    "v4-peoinventar-kunstlilled-taimed": {
+      "handle": "v4-peoinventar-kunstlilled-taimed",
       "name_en": "Kunstlilled ja -taimed",
       "name_et": "Kunstlilled ja -taimed",
       "level": 3,
-      "parent_handle": "v4-peoinventar-pidu-ja-uritused",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-dekoratiivlaternad": {
-      "handle": "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-dekoratiivlaternad",
-      "name_en": "Dekoratiivlaternad ja pärjad",
-      "name_et": "Dekoratiivlaternad ja pärjad",
-      "level": 3,
-      "parent_handle": "v4-peoinventar-pidu-ja-uritused",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-peoinventar-piirdepostid-jarjekorratokked": {
-      "handle": "v4-peoinventar-piirdepostid-jarjekorratokked",
-      "name_en": "Piirdepostid & järjekorratõkked",
-      "name_et": "Piirdepostid & järjekorratõkked",
-      "level": 3,
-      "parent_handle": "v4-peoinventar-pidu-ja-uritused",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-onne-ja-loosimisrattad-ning-trumlid": {
-      "handle": "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-onne-ja-loosimisrattad-ning-trumlid",
-      "name_en": "Õnne- ja loosimisrattad ning -trumlid",
-      "name_et": "Õnne- ja loosimisrattad ning -trumlid",
-      "level": 3,
-      "parent_handle": "v4-peoinventar-pidu-ja-uritused",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-moobel-ja-sisustus-lapsemoobel-tooli-satiinpaelad-ja-kaunistused": {
-      "handle": "v4-moobel-ja-sisustus-lapsemoobel-tooli-satiinpaelad-ja-kaunistused",
-      "name_en": "Tooli satiinpaelad ja kaunistused",
-      "name_et": "Tooli satiinpaelad ja kaunistused",
-      "level": 3,
-      "parent_handle": "v4-peoinventar-pidu-ja-uritused",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-moobel-ja-sisustus-toolid-ja-istmed-kokkupandavad-toolid": {
-      "handle": "v4-moobel-ja-sisustus-toolid-ja-istmed-kokkupandavad-toolid",
-      "name_en": "Kokkupandavad peotoolid",
-      "name_et": "Kokkupandavad peotoolid",
-      "level": 3,
-      "parent_handle": "v4-peoinventar-pidu-ja-uritused",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-varjualused-telgid-ja-kasvuhooned-telgid-peotelgid": {
-      "handle": "v4-varjualused-telgid-ja-kasvuhooned-telgid-peotelgid",
-      "name_en": "Peotelgid",
-      "name_et": "Peotelgid",
-      "level": 3,
-      "parent_handle": "v4-peoinventar-pidu-ja-uritused",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-sport-ja-vaba-aeg-manguasjad-lastele-taispuhutavad-atraktsioonid": {
-      "handle": "v4-sport-ja-vaba-aeg-manguasjad-lastele-taispuhutavad-atraktsioonid",
-      "name_en": "Täispuhutavad atraktsioonid",
-      "name_et": "Täispuhutavad atraktsioonid",
-      "level": 3,
-      "parent_handle": "v4-peoinventar-pidu-ja-uritused",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-peoinventar-joulukuused": {
-      "handle": "v4-peoinventar-joulukuused",
-      "name_en": "Jõulukuused",
-      "name_et": "Jõulukuused",
-      "level": 3,
-      "parent_handle": "v4-peoinventar-pidu-ja-uritused",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-peoinventar-peo-ja-meelelahutusmasinad": {
-      "handle": "v4-peoinventar-peo-ja-meelelahutusmasinad",
-      "name_en": "Peo- ja meelelahutusmasinad",
-      "name_et": "Peo- ja meelelahutusmasinad",
-      "level": 3,
-      "parent_handle": "v4-peoinventar-pidu-ja-uritused",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-peoinventar-atraktsioonipuhurid": {
-      "handle": "v4-peoinventar-atraktsioonipuhurid",
-      "name_en": "Atraktsioonipuhurid",
-      "name_et": "Atraktsioonipuhurid",
-      "level": 3,
-      "parent_handle": "v4-peoinventar-pidu-ja-uritused",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-peoinventar-lavaefektide-masinad": {
-      "handle": "v4-peoinventar-lavaefektide-masinad",
-      "name_en": "Lavaefektide masinad",
-      "name_et": "Lavaefektide masinad",
-      "level": 3,
-      "parent_handle": "v4-peoinventar-pidu-ja-uritused",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-peoinventar-sammaspostide-koied": {
-      "handle": "v4-peoinventar-sammaspostide-koied",
-      "name_en": "Sammaspostide köied",
-      "name_et": "Sammaspostide köied",
-      "level": 3,
-      "parent_handle": "v4-peoinventar-pidu-ja-uritused",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-peoinventar-toolikarud-hoidikud": {
-      "handle": "v4-peoinventar-toolikarud-hoidikud",
-      "name_en": "Toolikärud & -hoidikud",
-      "name_et": "Toolikärud & -hoidikud",
-      "level": 3,
-      "parent_handle": "v4-peoinventar-pidu-ja-uritused",
+      "parent_handle": "v4-peoinventar-dekoratsioonid",
       "child_handles": [],
       "image_path": null,
       "image_source": "none"
@@ -20465,7 +20272,7 @@
       "name_en": "Lillealused & -statiivid",
       "name_et": "Lillealused & -statiivid",
       "level": 3,
-      "parent_handle": "v4-peoinventar-pidu-ja-uritused",
+      "parent_handle": "v4-peoinventar-dekoratsioonid",
       "child_handles": [],
       "image_path": null,
       "image_source": "none"
@@ -20475,7 +20282,236 @@
       "name_en": "Lillevaasid",
       "name_et": "Lillevaasid",
       "level": 3,
-      "parent_handle": "v4-peoinventar-pidu-ja-uritused",
+      "parent_handle": "v4-peoinventar-dekoratsioonid",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-peoinventar-dekoratiivlaternad-parjad": {
+      "handle": "v4-peoinventar-dekoratiivlaternad-parjad",
+      "name_en": "Dekoratiivlaternad ja pärjad",
+      "name_et": "Dekoratiivlaternad ja pärjad",
+      "level": 3,
+      "parent_handle": "v4-peoinventar-dekoratsioonid",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-peoinventar-tooli-satiinpaelad-kaunistused": {
+      "handle": "v4-peoinventar-tooli-satiinpaelad-kaunistused",
+      "name_en": "Tooli satiinpaelad ja kaunistused",
+      "name_et": "Tooli satiinpaelad ja kaunistused",
+      "level": 3,
+      "parent_handle": "v4-peoinventar-dekoratsioonid",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-peoinventar-taustaseinad-pulmakaared": {
+      "handle": "v4-peoinventar-taustaseinad-pulmakaared",
+      "name_en": "Taustaseinad & pulmakaared",
+      "name_et": "Taustaseinad & pulmakaared",
+      "level": 2,
+      "parent_handle": "v4-peoinventar-ja-dekoratsioonid",
+      "child_handles": [
+        "v4-peoinventar-backdrop-statiivid-taustad",
+        "v4-peoinventar-pulmakaared-lilledekoor",
+        "v4-peoinventar-ohupallikaared-raamid"
+      ],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-peoinventar-backdrop-statiivid-taustad": {
+      "handle": "v4-peoinventar-backdrop-statiivid-taustad",
+      "name_en": "Backdrop-statiivid ja taustad",
+      "name_et": "Backdrop-statiivid ja taustad",
+      "level": 3,
+      "parent_handle": "v4-peoinventar-taustaseinad-pulmakaared",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-peoinventar-pulmakaared-lilledekoor": {
+      "handle": "v4-peoinventar-pulmakaared-lilledekoor",
+      "name_en": "Pulmakaared & lilledekoor",
+      "name_et": "Pulmakaared & lilledekoor",
+      "level": 3,
+      "parent_handle": "v4-peoinventar-taustaseinad-pulmakaared",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-peoinventar-ohupallikaared-raamid": {
+      "handle": "v4-peoinventar-ohupallikaared-raamid",
+      "name_en": "Õhupallikaared & raamid",
+      "name_et": "Õhupallikaared & raamid",
+      "level": 3,
+      "parent_handle": "v4-peoinventar-taustaseinad-pulmakaared",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-peoinventar-meelelahutus-atraktsioonid": {
+      "handle": "v4-peoinventar-meelelahutus-atraktsioonid",
+      "name_en": "Meelelahutus & atraktsioonid",
+      "name_et": "Meelelahutus & atraktsioonid",
+      "level": 2,
+      "parent_handle": "v4-peoinventar-ja-dekoratsioonid",
+      "child_handles": [
+        "v4-peoinventar-peo-ja-meelelahutusmasinad",
+        "v4-peoinventar-atraktsioonipuhurid",
+        "v4-peoinventar-lavaefektide-masinad",
+        "v4-peoinventar-onne-loosimisrattad-trumlid",
+        "v4-peoinventar-taispuhutavad-atraktsioonid",
+        "v4-peoinventar-joulukuused",
+        "v4-peoinventar-peotelgid"
+      ],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-peoinventar-peo-ja-meelelahutusmasinad": {
+      "handle": "v4-peoinventar-peo-ja-meelelahutusmasinad",
+      "name_en": "Peo- ja meelelahutusmasinad",
+      "name_et": "Peo- ja meelelahutusmasinad",
+      "level": 3,
+      "parent_handle": "v4-peoinventar-meelelahutus-atraktsioonid",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-peoinventar-atraktsioonipuhurid": {
+      "handle": "v4-peoinventar-atraktsioonipuhurid",
+      "name_en": "Atraktsioonipuhurid",
+      "name_et": "Atraktsioonipuhurid",
+      "level": 3,
+      "parent_handle": "v4-peoinventar-meelelahutus-atraktsioonid",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-peoinventar-lavaefektide-masinad": {
+      "handle": "v4-peoinventar-lavaefektide-masinad",
+      "name_en": "Lavaefektide masinad",
+      "name_et": "Lavaefektide masinad",
+      "level": 3,
+      "parent_handle": "v4-peoinventar-meelelahutus-atraktsioonid",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-peoinventar-onne-loosimisrattad-trumlid": {
+      "handle": "v4-peoinventar-onne-loosimisrattad-trumlid",
+      "name_en": "Õnne- ja loosimisrattad ning -trumlid",
+      "name_et": "Õnne- ja loosimisrattad ning -trumlid",
+      "level": 3,
+      "parent_handle": "v4-peoinventar-meelelahutus-atraktsioonid",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-peoinventar-taispuhutavad-atraktsioonid": {
+      "handle": "v4-peoinventar-taispuhutavad-atraktsioonid",
+      "name_en": "Täispuhutavad atraktsioonid",
+      "name_et": "Täispuhutavad atraktsioonid",
+      "level": 3,
+      "parent_handle": "v4-peoinventar-meelelahutus-atraktsioonid",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-peoinventar-joulukuused": {
+      "handle": "v4-peoinventar-joulukuused",
+      "name_en": "Jõulukuused",
+      "name_et": "Jõulukuused",
+      "level": 3,
+      "parent_handle": "v4-peoinventar-meelelahutus-atraktsioonid",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-peoinventar-peotelgid": {
+      "handle": "v4-peoinventar-peotelgid",
+      "name_en": "Peotelgid",
+      "name_et": "Peotelgid",
+      "level": 3,
+      "parent_handle": "v4-peoinventar-meelelahutus-atraktsioonid",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-peoinventar-peomoobel-katted": {
+      "handle": "v4-peoinventar-peomoobel-katted",
+      "name_en": "Peomööbel & katted",
+      "name_et": "Peomööbel & katted",
+      "level": 2,
+      "parent_handle": "v4-peoinventar-ja-dekoratsioonid",
+      "child_handles": [
+        "v4-peoinventar-kokkupandavad-peotoolid",
+        "v4-peoinventar-toolikatted-umbrised",
+        "v4-peoinventar-laudlinad",
+        "v4-peoinventar-toolikarud-hoidikud",
+        "v4-peoinventar-piirdepostid-jarjekorratokked",
+        "v4-peoinventar-sammaspostide-koied"
+      ],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-peoinventar-kokkupandavad-peotoolid": {
+      "handle": "v4-peoinventar-kokkupandavad-peotoolid",
+      "name_en": "Kokkupandavad peotoolid",
+      "name_et": "Kokkupandavad peotoolid",
+      "level": 3,
+      "parent_handle": "v4-peoinventar-peomoobel-katted",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-peoinventar-toolikatted-umbrised": {
+      "handle": "v4-peoinventar-toolikatted-umbrised",
+      "name_en": "Toolikatted & -ümbrised",
+      "name_et": "Toolikatted & -ümbrised",
+      "level": 3,
+      "parent_handle": "v4-peoinventar-peomoobel-katted",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-peoinventar-laudlinad": {
+      "handle": "v4-peoinventar-laudlinad",
+      "name_en": "Laudlinad",
+      "name_et": "Laudlinad",
+      "level": 3,
+      "parent_handle": "v4-peoinventar-peomoobel-katted",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-peoinventar-toolikarud-hoidikud": {
+      "handle": "v4-peoinventar-toolikarud-hoidikud",
+      "name_en": "Toolikärud & -hoidikud",
+      "name_et": "Toolikärud & -hoidikud",
+      "level": 3,
+      "parent_handle": "v4-peoinventar-peomoobel-katted",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-peoinventar-piirdepostid-jarjekorratokked": {
+      "handle": "v4-peoinventar-piirdepostid-jarjekorratokked",
+      "name_en": "Piirdepostid & järjekorratõkked",
+      "name_et": "Piirdepostid & järjekorratõkked",
+      "level": 3,
+      "parent_handle": "v4-peoinventar-peomoobel-katted",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-peoinventar-sammaspostide-koied": {
+      "handle": "v4-peoinventar-sammaspostide-koied",
+      "name_en": "Sammaspostide köied",
+      "name_et": "Sammaspostide köied",
+      "level": 3,
+      "parent_handle": "v4-peoinventar-peomoobel-katted",
       "child_handles": [],
       "image_path": null,
       "image_source": "none"
@@ -20483,15 +20519,6 @@
   },
   "order": [
     "v4-tooriistad-ja-tarvikud",
-    "v4-tooriistad-ja-tarvikud-torutooriistad",
-    "v4-tooriistad-ja-tarvikud-kasitooriistad-toruvotmed-ja-torutangid",
-    "v4-tooriistad-ja-tarvikud-kasitooriistad-toru-joondusklambrid",
-    "v4-tooriistad-ja-tarvikud-kasitooriistad-toru-laiendus-ja-flaaringutooriistad",
-    "v4-tooriistad-ja-tarvikud-kasitooriistad-toru-valjatombajad",
-    "v4-tooriistad-ja-tarvikud-akutooriistad-toru-pressimistooriistad",
-    "v4-tooriistad-ja-tarvikud-torutooriistad-toru-keermestajad-ja-loikurid",
-    "v4-tooriistad-ja-tarvikud-metallitoo-ja-sepatoo-torupainutajad",
-    "v4-tooriistad-torutoed-ja-hoidikud",
     "v4-tooriistad-ja-tarvikud-viimistlustooriistad",
     "v4-tooriistad-ja-tarvikud-viimistlustooriistad-porandaloikurid",
     "v4-tooriistad-ja-tarvikud-kasitooriistad-vuugitooriistad",
@@ -20501,6 +20528,15 @@
     "v4-tooriistad-ja-tarvikud-viimistlustooriistad-varvipustolid-ja-pihustid",
     "v4-tooriistad-ja-tarvikud-viimistlus-joonte-margistus",
     "v4-tooriistad-ja-tarvikud-viimistlustooriistad-krohvimistooriistad",
+    "v4-tooriistad-ja-tarvikud-torutooriistad",
+    "v4-tooriistad-ja-tarvikud-kasitooriistad-toruvotmed-ja-torutangid",
+    "v4-tooriistad-ja-tarvikud-kasitooriistad-toru-joondusklambrid",
+    "v4-tooriistad-ja-tarvikud-kasitooriistad-toru-laiendus-ja-flaaringutooriistad",
+    "v4-tooriistad-ja-tarvikud-kasitooriistad-toru-valjatombajad",
+    "v4-tooriistad-ja-tarvikud-akutooriistad-toru-pressimistooriistad",
+    "v4-tooriistad-ja-tarvikud-torutooriistad-toru-keermestajad-ja-loikurid",
+    "v4-tooriistad-ja-tarvikud-metallitoo-ja-sepatoo-torupainutajad",
+    "v4-tooriistad-torutoed-ja-hoidikud",
     "v4-tooriistad-ja-tarvikud-kasitooriistad",
     "v4-tooriistad-ja-tarvikud-kasitooriistad-pressimistangid-ja-tooriistad",
     "v4-tooriistad-ja-tarvikud-kasitooriistad-uldtooriistakomplektid",
@@ -20788,14 +20824,14 @@
     "v4-tooriistad-ja-tarvikud-hvac-ja-torudiagnostika",
     "v4-tooriistad-ja-tarvikud-hvac-survetestrid",
     "v4-tooriistad-ja-tarvikud-hvac-inspektsioonikaamerad",
-    "v4-tooriistad-ja-tarvikud-tookoja-sisustus",
-    "v4-tooriistad-ja-tarvikud-tookoja-sisustus-toolauad",
-    "v4-tooriistad-ja-tarvikud-tookoja-sisustus-tootoolid-taburetid",
     "v4-tooriistad-ja-tarvikud-kliima-ja-kulmaaine-hooldus",
     "v4-tooriistad-ja-tarvikud-kliima-ac-vaakumpumbad",
     "v4-santehnika-kute-ja-ventilatsioon-ventilatsioon-ja-ventilaatorid-kliimaseadme-vasktorustik-ja-komplektid",
     "v4-garaaziseadmed-olivahetus-ja-hooldus-kulmaaine-taastusseadmed",
     "v4-santehnika-kute-ja-ventilatsioon-ventilatsioon-ja-ventilaatorid-kliimaseadme-manomeetrid-ja-teenindusvahendid",
+    "v4-tooriistad-ja-tarvikud-tookoja-sisustus",
+    "v4-tooriistad-ja-tarvikud-tookoja-sisustus-toolauad",
+    "v4-tooriistad-ja-tarvikud-tookoja-sisustus-tootoolid-taburetid",
     "v4-tooriistad-ja-tarvikud-tomburid-ja-pressid",
     "v4-garaaziseadmed-mehaaniku-tooriistad-hammasratta-ja-rihmaratta-tomburid",
     "v4-garaaziseadmed-mehaaniku-tooriistad-hudraulilised-pressid",
@@ -22062,9 +22098,9 @@
     "v4-sport-pottsepakettad-keraamikarattad",
     "v4-muusika-ja-helitehnika",
     "v4-muusika-ja-helitehnika-muusikariistad",
+    "v4-muusika-ja-helitehnika-muusikariistad-pillitarvikud",
     "v4-muusika-ja-helitehnika-muusikariistad-keelpillid",
     "v4-muusika-ja-helitehnika-muusikariistad-klahvpillid",
-    "v4-muusika-ja-helitehnika-muusikariistad-pillitarvikud",
     "v4-muusika-ja-helitehnika-muusikariistad-lookpillid",
     "v4-muusika-ja-helitehnika-muusikariistad-puhkpillid",
     "v4-muusika-ja-helitehnika-muusikariistad-ksulofonid-kellamangud",
@@ -22095,13 +22131,6 @@
     "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-sulatus-ja-poletusahjud",
     "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-vaakumvalamismasinad",
     "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-paindvolliga-lihvimismasinad",
-    "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign",
-    "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-reklaamlipud-ja-lipumastid",
-    "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-posteri-ja-bannerihoidikud",
-    "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-led-reklaamtahvlid-ja-ekraanid",
-    "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-naitustahvlid-ja-lauad",
-    "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-plotteri-paberirullid",
-    "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-vinuulloikurid-ja-plotterid",
     "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk",
     "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-maalimistarvikud-ja-molbertid",
     "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-omblusmasinad",
@@ -22119,6 +22148,13 @@
     "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-kuumpressi-tarvikud-ja-toolauad",
     "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-roivatrukk-vaibategemis-tuftingriistad",
     "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-roivatrukk-kasitoo-seadmed-tarvikud",
+    "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign",
+    "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-reklaamlipud-ja-lipumastid",
+    "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-posteri-ja-bannerihoidikud",
+    "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-led-reklaamtahvlid-ja-ekraanid",
+    "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-naitustahvlid-ja-lauad",
+    "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-plotteri-paberirullid",
+    "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-vinuulloikurid-ja-plotterid",
     "v4-reklaami-truki-ja-graveerimisseadmed-koitmine-ja-lamineerimine",
     "v4-reklaami-truki-ja-graveerimisseadmed-koitmine-ja-lamineerimine-paberiloikurid",
     "v4-reklaami-truki-ja-graveerimisseadmed-koitmine-ja-lamineerimine-koitmismasinad",
@@ -22183,12 +22219,12 @@
     "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-inkubaatorid-ja-munahaudejad",
     "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-linnutootlemise-masinad",
     "v4-pollumajandus-ja-loomakasvatus-kariloomad",
+    "v4-pollumajandus-ja-loomakasvatus-kariloomad-tra-ataiad-ja-aiapiirded",
+    "v4-pollumajandus-ja-loomakasvatus-hobuse-ja-tallitarvikud",
     "v4-pollumajandus-ja-loomakasvatus-kariloomad-heinasooturid-ja-heinavorgud",
     "v4-pollumajandus-ja-loomakasvatus-kariloomad-soodurid-ja-soodakuna",
-    "v4-pollumajandus-ja-loomakasvatus-kariloomad-kariloomade-sugamisharjad",
     "v4-pollumajandus-ja-loomakasvatus-kariloomad-elektrikarjused-ja-tarvikud",
-    "v4-pollumajandus-ja-loomakasvatus-hobuse-ja-tallitarvikud",
-    "v4-pollumajandus-ja-loomakasvatus-kariloomad-tra-ataiad-ja-aiapiirded",
+    "v4-pollumajandus-ja-loomakasvatus-kariloomad-kariloomade-sugamisharjad",
     "v4-pollumajandus-ja-loomakasvatus-kariloomad-eluspuugipuurid",
     "v4-pollumajandus-ja-loomakasvatus-talutehnika",
     "v4-pollumajandus-ja-loomakasvatus-talutehnika-pallikahvlid",
@@ -22297,27 +22333,30 @@
     "v4-tooriied-ja-isikukaitse-isikukaitsevahendid-kaitsekiivrid-ja-peakaitsmed",
     "v4-tooriied-ja-isikukaitse-isikukaitsevahendid-polvekaitsmed",
     "v4-peoinventar-ja-dekoratsioonid",
-    "v4-peoinventar-pidu-ja-uritused",
-    "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-laudlinad",
-    "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-ohupallikaared-ja-raamid",
-    "v4-reklaami-truki-ja-graveerimisseadmed-fotostuudio-ja-taustad-taustastatiivid",
-    "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-pulmakaared-ja-lilledekoor",
-    "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-toolikatted-ja-umbrised",
-    "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-kunsttaimed-ja-lilled",
-    "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-dekoratiivlaternad",
-    "v4-peoinventar-piirdepostid-jarjekorratokked",
-    "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-onne-ja-loosimisrattad-ning-trumlid",
-    "v4-moobel-ja-sisustus-lapsemoobel-tooli-satiinpaelad-ja-kaunistused",
-    "v4-moobel-ja-sisustus-toolid-ja-istmed-kokkupandavad-toolid",
-    "v4-varjualused-telgid-ja-kasvuhooned-telgid-peotelgid",
-    "v4-sport-ja-vaba-aeg-manguasjad-lastele-taispuhutavad-atraktsioonid",
-    "v4-peoinventar-joulukuused",
+    "v4-peoinventar-dekoratsioonid",
+    "v4-peoinventar-kunstlilled-taimed",
+    "v4-peoinventar-lillealused-statiivid",
+    "v4-peoinventar-lillevaasid",
+    "v4-peoinventar-dekoratiivlaternad-parjad",
+    "v4-peoinventar-tooli-satiinpaelad-kaunistused",
+    "v4-peoinventar-taustaseinad-pulmakaared",
+    "v4-peoinventar-backdrop-statiivid-taustad",
+    "v4-peoinventar-pulmakaared-lilledekoor",
+    "v4-peoinventar-ohupallikaared-raamid",
+    "v4-peoinventar-meelelahutus-atraktsioonid",
     "v4-peoinventar-peo-ja-meelelahutusmasinad",
     "v4-peoinventar-atraktsioonipuhurid",
     "v4-peoinventar-lavaefektide-masinad",
-    "v4-peoinventar-sammaspostide-koied",
+    "v4-peoinventar-onne-loosimisrattad-trumlid",
+    "v4-peoinventar-taispuhutavad-atraktsioonid",
+    "v4-peoinventar-joulukuused",
+    "v4-peoinventar-peotelgid",
+    "v4-peoinventar-peomoobel-katted",
+    "v4-peoinventar-kokkupandavad-peotoolid",
+    "v4-peoinventar-toolikatted-umbrised",
+    "v4-peoinventar-laudlinad",
     "v4-peoinventar-toolikarud-hoidikud",
-    "v4-peoinventar-lillealused-statiivid",
-    "v4-peoinventar-lillevaasid"
+    "v4-peoinventar-piirdepostid-jarjekorratokked",
+    "v4-peoinventar-sammaspostide-koied"
   ]
 }
