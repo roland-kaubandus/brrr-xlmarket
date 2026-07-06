@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-06T17:31:09.957Z",
+  "generated_at": "2026-07-06T17:54:48.370Z",
   "nodes": {
     "v4-tooriistad-ja-tarvikud": {
       "handle": "v4-tooriistad-ja-tarvikud",
@@ -13569,7 +13569,6 @@
       "level": 1,
       "parent_handle": null,
       "child_handles": [
-        "v4-elektritarvikud-ja-valgustus-elektroonika",
         "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid",
         "v4-elektritarvikud-ja-valgustus-mootorid-ja-osad",
         "v4-elektritarvikud-ja-valgustus-lambid-ja-valgustid",
@@ -13585,248 +13584,6 @@
       "description_et": "Elektritarvikud ja valgustus — tooted.",
       "tagline_en": "Elektritarvikud ja valgustus",
       "tagline_et": "Elektritarvikud ja valgustus"
-    },
-    "v4-elektritarvikud-ja-valgustus-elektroonika": {
-      "handle": "v4-elektritarvikud-ja-valgustus-elektroonika",
-      "name_en": "Elektroonika",
-      "name_et": "Elektroonika",
-      "level": 2,
-      "parent_handle": "v4-elektritarvikud-ja-valgustus",
-      "child_handles": [
-        "v4-elektritarvikud-ja-valgustus-elektroonika-arvutikorpused",
-        "v4-elektritarvikud-ja-valgustus-elektroonika-digitaalsed-diktofonid",
-        "v4-elektritarvikud-ja-valgustus-elektroonika-digitaalsed-fotoraamid",
-        "v4-elektritarvikud-ja-valgustus-elektroonika-gimbal-stabilisaatorid",
-        "v4-elektritarvikud-ja-valgustus-elektroonika-ilmajaamad",
-        "v4-elektritarvikud-ja-valgustus-elektroonika-kaasaskantavad-dvd-mangijad",
-        "v4-elektritarvikud-ja-valgustus-elektroonika-kaasaskantavad-monitorilaiendid",
-        "v4-elektritarvikud-ja-valgustus-elektroonika-kehakaamerad",
-        "v4-elektritarvikud-ja-valgustus-elektroonika-kiudoptika-keevitusseadmed",
-        "v4-elektritarvikud-ja-valgustus-elektroonika-kolarid",
-        "v4-elektritarvikud-ja-valgustus-elektroonika-nutikardinate-automaatika",
-        "v4-elektritarvikud-ja-valgustus-elektroonika-projektoriekraanid",
-        "v4-elektritarvikud-ja-valgustus-elektroonika-protsessori-vedelikjahutid",
-        "v4-elektritarvikud-ja-valgustus-elektroonika-satelliit-ja-vorgukaablid",
-        "v4-elektritarvikud-ja-valgustus-elektroonika-stuudiovarustuse-kohvrid",
-        "v4-elektritarvikud-ja-valgustus-elektroonika-tv-seinakinnitused",
-        "v4-elektritarvikud-ja-valgustus-elektroonika-teleprompterid",
-        "v4-elektritarvikud-ja-valgustus-elektroonika-termoprinterid",
-        "v4-elektritarvikud-ja-valgustus-elektroonika-tooajaarvestuse-terminalid",
-        "v4-elektritarvikud-ja-valgustus-elektroonika-unemasinad",
-        "v4-elektritarvikud-ja-valgustus-elektroonika-lulitid"
-      ],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-elektritarvikud-ja-valgustus-elektroonika-arvutikorpused": {
-      "handle": "v4-elektritarvikud-ja-valgustus-elektroonika-arvutikorpused",
-      "name_en": "Arvutikorpused",
-      "name_et": "Arvutikorpused",
-      "level": 3,
-      "parent_handle": "v4-elektritarvikud-ja-valgustus-elektroonika",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-elektritarvikud-ja-valgustus-elektroonika-digitaalsed-diktofonid": {
-      "handle": "v4-elektritarvikud-ja-valgustus-elektroonika-digitaalsed-diktofonid",
-      "name_en": "Digitaalsed diktofonid",
-      "name_et": "Digitaalsed diktofonid",
-      "level": 3,
-      "parent_handle": "v4-elektritarvikud-ja-valgustus-elektroonika",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-elektritarvikud-ja-valgustus-elektroonika-digitaalsed-fotoraamid": {
-      "handle": "v4-elektritarvikud-ja-valgustus-elektroonika-digitaalsed-fotoraamid",
-      "name_en": "Digitaalsed fotoraamid",
-      "name_et": "Digitaalsed fotoraamid",
-      "level": 3,
-      "parent_handle": "v4-elektritarvikud-ja-valgustus-elektroonika",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-elektritarvikud-ja-valgustus-elektroonika-gimbal-stabilisaatorid": {
-      "handle": "v4-elektritarvikud-ja-valgustus-elektroonika-gimbal-stabilisaatorid",
-      "name_en": "Gimbal-stabilisaatorid",
-      "name_et": "Gimbal-stabilisaatorid",
-      "level": 3,
-      "parent_handle": "v4-elektritarvikud-ja-valgustus-elektroonika",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-elektritarvikud-ja-valgustus-elektroonika-ilmajaamad": {
-      "handle": "v4-elektritarvikud-ja-valgustus-elektroonika-ilmajaamad",
-      "name_en": "Ilmajaamad",
-      "name_et": "Ilmajaamad",
-      "level": 3,
-      "parent_handle": "v4-elektritarvikud-ja-valgustus-elektroonika",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-elektritarvikud-ja-valgustus-elektroonika-kaasaskantavad-dvd-mangijad": {
-      "handle": "v4-elektritarvikud-ja-valgustus-elektroonika-kaasaskantavad-dvd-mangijad",
-      "name_en": "Kaasaskantavad DVD-mängijad",
-      "name_et": "Kaasaskantavad DVD-mängijad",
-      "level": 3,
-      "parent_handle": "v4-elektritarvikud-ja-valgustus-elektroonika",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-elektritarvikud-ja-valgustus-elektroonika-kaasaskantavad-monitorilaiendid": {
-      "handle": "v4-elektritarvikud-ja-valgustus-elektroonika-kaasaskantavad-monitorilaiendid",
-      "name_en": "Kaasaskantavad monitorilaiendid",
-      "name_et": "Kaasaskantavad monitorilaiendid",
-      "level": 3,
-      "parent_handle": "v4-elektritarvikud-ja-valgustus-elektroonika",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-elektritarvikud-ja-valgustus-elektroonika-kehakaamerad": {
-      "handle": "v4-elektritarvikud-ja-valgustus-elektroonika-kehakaamerad",
-      "name_en": "Kehakaamerad",
-      "name_et": "Kehakaamerad",
-      "level": 3,
-      "parent_handle": "v4-elektritarvikud-ja-valgustus-elektroonika",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-elektritarvikud-ja-valgustus-elektroonika-kiudoptika-keevitusseadmed": {
-      "handle": "v4-elektritarvikud-ja-valgustus-elektroonika-kiudoptika-keevitusseadmed",
-      "name_en": "Kiudoptika keevitusseadmed",
-      "name_et": "Kiudoptika keevitusseadmed",
-      "level": 3,
-      "parent_handle": "v4-elektritarvikud-ja-valgustus-elektroonika",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-elektritarvikud-ja-valgustus-elektroonika-kolarid": {
-      "handle": "v4-elektritarvikud-ja-valgustus-elektroonika-kolarid",
-      "name_en": "Kõlarid",
-      "name_et": "Kõlarid",
-      "level": 3,
-      "parent_handle": "v4-elektritarvikud-ja-valgustus-elektroonika",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-elektritarvikud-ja-valgustus-elektroonika-nutikardinate-automaatika": {
-      "handle": "v4-elektritarvikud-ja-valgustus-elektroonika-nutikardinate-automaatika",
-      "name_en": "Nutikardinate automaatika",
-      "name_et": "Nutikardinate automaatika",
-      "level": 3,
-      "parent_handle": "v4-elektritarvikud-ja-valgustus-elektroonika",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-elektritarvikud-ja-valgustus-elektroonika-projektoriekraanid": {
-      "handle": "v4-elektritarvikud-ja-valgustus-elektroonika-projektoriekraanid",
-      "name_en": "Projektoriekraanid",
-      "name_et": "Projektoriekraanid",
-      "level": 3,
-      "parent_handle": "v4-elektritarvikud-ja-valgustus-elektroonika",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-elektritarvikud-ja-valgustus-elektroonika-protsessori-vedelikjahutid": {
-      "handle": "v4-elektritarvikud-ja-valgustus-elektroonika-protsessori-vedelikjahutid",
-      "name_en": "Protsessori vedelikjahutid",
-      "name_et": "Protsessori vedelikjahutid",
-      "level": 3,
-      "parent_handle": "v4-elektritarvikud-ja-valgustus-elektroonika",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-elektritarvikud-ja-valgustus-elektroonika-satelliit-ja-vorgukaablid": {
-      "handle": "v4-elektritarvikud-ja-valgustus-elektroonika-satelliit-ja-vorgukaablid",
-      "name_en": "Satelliit- ja võrgukaablid",
-      "name_et": "Satelliit- ja võrgukaablid",
-      "level": 3,
-      "parent_handle": "v4-elektritarvikud-ja-valgustus-elektroonika",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-elektritarvikud-ja-valgustus-elektroonika-stuudiovarustuse-kohvrid": {
-      "handle": "v4-elektritarvikud-ja-valgustus-elektroonika-stuudiovarustuse-kohvrid",
-      "name_en": "Stuudiovarustuse kohvrid",
-      "name_et": "Stuudiovarustuse kohvrid",
-      "level": 3,
-      "parent_handle": "v4-elektritarvikud-ja-valgustus-elektroonika",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-elektritarvikud-ja-valgustus-elektroonika-tv-seinakinnitused": {
-      "handle": "v4-elektritarvikud-ja-valgustus-elektroonika-tv-seinakinnitused",
-      "name_en": "TV seinakinnitused",
-      "name_et": "TV seinakinnitused",
-      "level": 3,
-      "parent_handle": "v4-elektritarvikud-ja-valgustus-elektroonika",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-elektritarvikud-ja-valgustus-elektroonika-teleprompterid": {
-      "handle": "v4-elektritarvikud-ja-valgustus-elektroonika-teleprompterid",
-      "name_en": "Teleprompterid",
-      "name_et": "Teleprompterid",
-      "level": 3,
-      "parent_handle": "v4-elektritarvikud-ja-valgustus-elektroonika",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-elektritarvikud-ja-valgustus-elektroonika-termoprinterid": {
-      "handle": "v4-elektritarvikud-ja-valgustus-elektroonika-termoprinterid",
-      "name_en": "Termoprinterid",
-      "name_et": "Termoprinterid",
-      "level": 3,
-      "parent_handle": "v4-elektritarvikud-ja-valgustus-elektroonika",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-elektritarvikud-ja-valgustus-elektroonika-tooajaarvestuse-terminalid": {
-      "handle": "v4-elektritarvikud-ja-valgustus-elektroonika-tooajaarvestuse-terminalid",
-      "name_en": "Tööajaarvestuse terminalid",
-      "name_et": "Tööajaarvestuse terminalid",
-      "level": 3,
-      "parent_handle": "v4-elektritarvikud-ja-valgustus-elektroonika",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-elektritarvikud-ja-valgustus-elektroonika-unemasinad": {
-      "handle": "v4-elektritarvikud-ja-valgustus-elektroonika-unemasinad",
-      "name_en": "Unemasinad",
-      "name_et": "Unemasinad",
-      "level": 3,
-      "parent_handle": "v4-elektritarvikud-ja-valgustus-elektroonika",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-elektritarvikud-ja-valgustus-elektroonika-lulitid": {
-      "handle": "v4-elektritarvikud-ja-valgustus-elektroonika-lulitid",
-      "name_en": "Lülitid & nupud",
-      "name_et": "Lülitid & nupud",
-      "level": 3,
-      "parent_handle": "v4-elektritarvikud-ja-valgustus-elektroonika",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
     },
     "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid": {
       "handle": "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid",
@@ -14322,7 +14079,8 @@
         "v4-elektritarvikud-ja-valgustus-toitejaotus-ja-jaotussusteemid-kaablirullid-ja-pikenduskaablid",
         "v4-elektritarvikud-ja-valgustus-toitejaotus-ja-jaotussusteemid-pingemuundurid",
         "v4-elektritarvikud-ja-valgustus-toitejaotus-ja-jaotussusteemid-reguleeritavad-autotransformaatorid",
-        "v4-elektritarvikud-ja-valgustus-toitejaotus-ja-jaotussusteemid-sagedusmuundurid"
+        "v4-elektritarvikud-ja-valgustus-toitejaotus-ja-jaotussusteemid-sagedusmuundurid",
+        "v4-elektritarvikud-ja-valgustus-elektroonika-lulitid"
       ],
       "image_path": null,
       "image_source": "none"
@@ -14361,6 +14119,16 @@
       "handle": "v4-elektritarvikud-ja-valgustus-toitejaotus-ja-jaotussusteemid-sagedusmuundurid",
       "name_en": "Sagedusmuundurid",
       "name_et": "Sagedusmuundurid",
+      "level": 3,
+      "parent_handle": "v4-elektritarvikud-ja-valgustus-toitejaotus-ja-jaotussusteemid",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-elektritarvikud-ja-valgustus-elektroonika-lulitid": {
+      "handle": "v4-elektritarvikud-ja-valgustus-elektroonika-lulitid",
+      "name_en": "Lülitid & nupud",
+      "name_et": "Lülitid & nupud",
       "level": 3,
       "parent_handle": "v4-elektritarvikud-ja-valgustus-toitejaotus-ja-jaotussusteemid",
       "child_handles": [],
@@ -19829,9 +19597,20 @@
       "level": 2,
       "parent_handle": "v4-buroo-ja-kontoritarvikud",
       "child_handles": [
+        "v4-elektritarvikud-ja-valgustus-elektroonika-tooajaarvestuse-terminalid",
         "v4-buroo-raha-mundiloendusmasinad",
         "v4-buroo-kassasahtlid-pos-tarvikud"
       ],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-elektritarvikud-ja-valgustus-elektroonika-tooajaarvestuse-terminalid": {
+      "handle": "v4-elektritarvikud-ja-valgustus-elektroonika-tooajaarvestuse-terminalid",
+      "name_en": "Tööajaarvestuse terminalid",
+      "name_et": "Tööajaarvestuse terminalid",
+      "level": 3,
+      "parent_handle": "v4-buroo-raha-pos",
+      "child_handles": [],
       "image_path": null,
       "image_source": "none"
     },
@@ -20171,10 +19950,21 @@
       "level": 2,
       "parent_handle": "v4-ladu-hoiustamine-ja-pakendamine",
       "child_handles": [
+        "v4-elektritarvikud-ja-valgustus-elektroonika-termoprinterid",
         "v4-ladu-pakkimis-koitmistarvikud",
         "v4-ladu-pakkimis-sidumismasinad",
         "v4-ladu-posti-loenduskaalud"
       ],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-elektritarvikud-ja-valgustus-elektroonika-termoprinterid": {
+      "handle": "v4-elektritarvikud-ja-valgustus-elektroonika-termoprinterid",
+      "name_en": "Termoprinterid",
+      "name_et": "Termoprinterid",
+      "level": 3,
+      "parent_handle": "v4-ladu-pakendamine",
+      "child_handles": [],
       "image_path": null,
       "image_source": "none"
     },
@@ -20523,6 +20313,292 @@
       "name_et": "Välis-tuhatoosid & prügikastid",
       "level": 3,
       "parent_handle": "v4-ladu-kaupluse-sisustus",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-elektroonika-ja-multimeedia": {
+      "handle": "v4-elektroonika-ja-multimeedia",
+      "name_en": "Elektroonika & multimeedia",
+      "name_et": "Elektroonika & multimeedia",
+      "level": 1,
+      "parent_handle": null,
+      "child_handles": [
+        "v4-elektroonika-projektsioon",
+        "v4-elektroonika-heli",
+        "v4-elektroonika-foto-video",
+        "v4-elektroonika-arvutiriistvara",
+        "v4-elektroonika-vork",
+        "v4-elektroonika-nutikodu",
+        "v4-elektroonika-kinnitused"
+      ],
+      "image_path": null,
+      "image_source": "none",
+      "description_en": "Elektroonika & multimeedia — products.",
+      "description_et": "Elektroonika & multimeedia — tooted.",
+      "tagline_en": "Elektroonika & multimeedia",
+      "tagline_et": "Elektroonika & multimeedia"
+    },
+    "v4-elektroonika-projektsioon": {
+      "handle": "v4-elektroonika-projektsioon",
+      "name_en": "Projektsioon & kodukino",
+      "name_et": "Projektsioon & kodukino",
+      "level": 2,
+      "parent_handle": "v4-elektroonika-ja-multimeedia",
+      "child_handles": [
+        "v4-elektritarvikud-ja-valgustus-elektroonika-kaasaskantavad-dvd-mangijad",
+        "v4-elektritarvikud-ja-valgustus-elektroonika-projektoriekraanid"
+      ],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-elektritarvikud-ja-valgustus-elektroonika-kaasaskantavad-dvd-mangijad": {
+      "handle": "v4-elektritarvikud-ja-valgustus-elektroonika-kaasaskantavad-dvd-mangijad",
+      "name_en": "Kaasaskantavad DVD-mängijad",
+      "name_et": "Kaasaskantavad DVD-mängijad",
+      "level": 3,
+      "parent_handle": "v4-elektroonika-projektsioon",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-elektritarvikud-ja-valgustus-elektroonika-projektoriekraanid": {
+      "handle": "v4-elektritarvikud-ja-valgustus-elektroonika-projektoriekraanid",
+      "name_en": "Projektoriekraanid",
+      "name_et": "Projektoriekraanid",
+      "level": 3,
+      "parent_handle": "v4-elektroonika-projektsioon",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-elektroonika-heli": {
+      "handle": "v4-elektroonika-heli",
+      "name_en": "Heli & kõlarid",
+      "name_et": "Heli & kõlarid",
+      "level": 2,
+      "parent_handle": "v4-elektroonika-ja-multimeedia",
+      "child_handles": [
+        "v4-elektritarvikud-ja-valgustus-elektroonika-digitaalsed-diktofonid",
+        "v4-elektritarvikud-ja-valgustus-elektroonika-kolarid",
+        "v4-elektritarvikud-ja-valgustus-elektroonika-unemasinad"
+      ],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-elektritarvikud-ja-valgustus-elektroonika-digitaalsed-diktofonid": {
+      "handle": "v4-elektritarvikud-ja-valgustus-elektroonika-digitaalsed-diktofonid",
+      "name_en": "Digitaalsed diktofonid",
+      "name_et": "Digitaalsed diktofonid",
+      "level": 3,
+      "parent_handle": "v4-elektroonika-heli",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-elektritarvikud-ja-valgustus-elektroonika-kolarid": {
+      "handle": "v4-elektritarvikud-ja-valgustus-elektroonika-kolarid",
+      "name_en": "Kõlarid",
+      "name_et": "Kõlarid",
+      "level": 3,
+      "parent_handle": "v4-elektroonika-heli",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-elektritarvikud-ja-valgustus-elektroonika-unemasinad": {
+      "handle": "v4-elektritarvikud-ja-valgustus-elektroonika-unemasinad",
+      "name_en": "Unemasinad",
+      "name_et": "Unemasinad",
+      "level": 3,
+      "parent_handle": "v4-elektroonika-heli",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-elektroonika-foto-video": {
+      "handle": "v4-elektroonika-foto-video",
+      "name_en": "Foto & video",
+      "name_et": "Foto & video",
+      "level": 2,
+      "parent_handle": "v4-elektroonika-ja-multimeedia",
+      "child_handles": [
+        "v4-elektritarvikud-ja-valgustus-elektroonika-digitaalsed-fotoraamid",
+        "v4-elektritarvikud-ja-valgustus-elektroonika-gimbal-stabilisaatorid",
+        "v4-elektritarvikud-ja-valgustus-elektroonika-kehakaamerad",
+        "v4-elektritarvikud-ja-valgustus-elektroonika-stuudiovarustuse-kohvrid",
+        "v4-elektritarvikud-ja-valgustus-elektroonika-teleprompterid"
+      ],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-elektritarvikud-ja-valgustus-elektroonika-digitaalsed-fotoraamid": {
+      "handle": "v4-elektritarvikud-ja-valgustus-elektroonika-digitaalsed-fotoraamid",
+      "name_en": "Digitaalsed fotoraamid",
+      "name_et": "Digitaalsed fotoraamid",
+      "level": 3,
+      "parent_handle": "v4-elektroonika-foto-video",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-elektritarvikud-ja-valgustus-elektroonika-gimbal-stabilisaatorid": {
+      "handle": "v4-elektritarvikud-ja-valgustus-elektroonika-gimbal-stabilisaatorid",
+      "name_en": "Gimbal-stabilisaatorid",
+      "name_et": "Gimbal-stabilisaatorid",
+      "level": 3,
+      "parent_handle": "v4-elektroonika-foto-video",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-elektritarvikud-ja-valgustus-elektroonika-kehakaamerad": {
+      "handle": "v4-elektritarvikud-ja-valgustus-elektroonika-kehakaamerad",
+      "name_en": "Kehakaamerad",
+      "name_et": "Kehakaamerad",
+      "level": 3,
+      "parent_handle": "v4-elektroonika-foto-video",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-elektritarvikud-ja-valgustus-elektroonika-stuudiovarustuse-kohvrid": {
+      "handle": "v4-elektritarvikud-ja-valgustus-elektroonika-stuudiovarustuse-kohvrid",
+      "name_en": "Stuudiovarustuse kohvrid",
+      "name_et": "Stuudiovarustuse kohvrid",
+      "level": 3,
+      "parent_handle": "v4-elektroonika-foto-video",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-elektritarvikud-ja-valgustus-elektroonika-teleprompterid": {
+      "handle": "v4-elektritarvikud-ja-valgustus-elektroonika-teleprompterid",
+      "name_en": "Teleprompterid",
+      "name_et": "Teleprompterid",
+      "level": 3,
+      "parent_handle": "v4-elektroonika-foto-video",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-elektroonika-arvutiriistvara": {
+      "handle": "v4-elektroonika-arvutiriistvara",
+      "name_en": "Arvutiriistvara",
+      "name_et": "Arvutiriistvara",
+      "level": 2,
+      "parent_handle": "v4-elektroonika-ja-multimeedia",
+      "child_handles": [
+        "v4-elektritarvikud-ja-valgustus-elektroonika-arvutikorpused",
+        "v4-elektritarvikud-ja-valgustus-elektroonika-protsessori-vedelikjahutid"
+      ],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-elektritarvikud-ja-valgustus-elektroonika-arvutikorpused": {
+      "handle": "v4-elektritarvikud-ja-valgustus-elektroonika-arvutikorpused",
+      "name_en": "Arvutikorpused",
+      "name_et": "Arvutikorpused",
+      "level": 3,
+      "parent_handle": "v4-elektroonika-arvutiriistvara",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-elektritarvikud-ja-valgustus-elektroonika-protsessori-vedelikjahutid": {
+      "handle": "v4-elektritarvikud-ja-valgustus-elektroonika-protsessori-vedelikjahutid",
+      "name_en": "Protsessori vedelikjahutid",
+      "name_et": "Protsessori vedelikjahutid",
+      "level": 3,
+      "parent_handle": "v4-elektroonika-arvutiriistvara",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-elektroonika-vork": {
+      "handle": "v4-elektroonika-vork",
+      "name_en": "Võrk & satelliit",
+      "name_et": "Võrk & satelliit",
+      "level": 2,
+      "parent_handle": "v4-elektroonika-ja-multimeedia",
+      "child_handles": [
+        "v4-elektritarvikud-ja-valgustus-elektroonika-satelliit-ja-vorgukaablid"
+      ],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-elektritarvikud-ja-valgustus-elektroonika-satelliit-ja-vorgukaablid": {
+      "handle": "v4-elektritarvikud-ja-valgustus-elektroonika-satelliit-ja-vorgukaablid",
+      "name_en": "Satelliit- ja võrgukaablid",
+      "name_et": "Satelliit- ja võrgukaablid",
+      "level": 3,
+      "parent_handle": "v4-elektroonika-vork",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-elektroonika-nutikodu": {
+      "handle": "v4-elektroonika-nutikodu",
+      "name_en": "Nutikodu & ilm",
+      "name_et": "Nutikodu & ilm",
+      "level": 2,
+      "parent_handle": "v4-elektroonika-ja-multimeedia",
+      "child_handles": [
+        "v4-elektritarvikud-ja-valgustus-elektroonika-ilmajaamad",
+        "v4-elektritarvikud-ja-valgustus-elektroonika-nutikardinate-automaatika"
+      ],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-elektritarvikud-ja-valgustus-elektroonika-ilmajaamad": {
+      "handle": "v4-elektritarvikud-ja-valgustus-elektroonika-ilmajaamad",
+      "name_en": "Ilmajaamad",
+      "name_et": "Ilmajaamad",
+      "level": 3,
+      "parent_handle": "v4-elektroonika-nutikodu",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-elektritarvikud-ja-valgustus-elektroonika-nutikardinate-automaatika": {
+      "handle": "v4-elektritarvikud-ja-valgustus-elektroonika-nutikardinate-automaatika",
+      "name_en": "Nutikardinate automaatika",
+      "name_et": "Nutikardinate automaatika",
+      "level": 3,
+      "parent_handle": "v4-elektroonika-nutikodu",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-elektroonika-kinnitused": {
+      "handle": "v4-elektroonika-kinnitused",
+      "name_en": "TV- & monitorikinnitused",
+      "name_et": "TV- & monitorikinnitused",
+      "level": 2,
+      "parent_handle": "v4-elektroonika-ja-multimeedia",
+      "child_handles": [
+        "v4-elektritarvikud-ja-valgustus-elektroonika-kaasaskantavad-monitorilaiendid",
+        "v4-elektritarvikud-ja-valgustus-elektroonika-tv-seinakinnitused"
+      ],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-elektritarvikud-ja-valgustus-elektroonika-kaasaskantavad-monitorilaiendid": {
+      "handle": "v4-elektritarvikud-ja-valgustus-elektroonika-kaasaskantavad-monitorilaiendid",
+      "name_en": "Kaasaskantavad monitorilaiendid",
+      "name_et": "Kaasaskantavad monitorilaiendid",
+      "level": 3,
+      "parent_handle": "v4-elektroonika-kinnitused",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-elektritarvikud-ja-valgustus-elektroonika-tv-seinakinnitused": {
+      "handle": "v4-elektritarvikud-ja-valgustus-elektroonika-tv-seinakinnitused",
+      "name_en": "TV seinakinnitused",
+      "name_et": "TV seinakinnitused",
+      "level": 3,
+      "parent_handle": "v4-elektroonika-kinnitused",
       "child_handles": [],
       "image_path": null,
       "image_source": "none"
@@ -21747,28 +21823,6 @@
     "v4-santehnika-kute-ja-ventilatsioon-veesoojendid-ja-boilerid",
     "v4-santehnika-kute-ja-ventilatsioon-elektrilised-veesoojendid",
     "v4-elektritarvikud-ja-valgustus",
-    "v4-elektritarvikud-ja-valgustus-elektroonika",
-    "v4-elektritarvikud-ja-valgustus-elektroonika-arvutikorpused",
-    "v4-elektritarvikud-ja-valgustus-elektroonika-digitaalsed-diktofonid",
-    "v4-elektritarvikud-ja-valgustus-elektroonika-digitaalsed-fotoraamid",
-    "v4-elektritarvikud-ja-valgustus-elektroonika-gimbal-stabilisaatorid",
-    "v4-elektritarvikud-ja-valgustus-elektroonika-ilmajaamad",
-    "v4-elektritarvikud-ja-valgustus-elektroonika-kaasaskantavad-dvd-mangijad",
-    "v4-elektritarvikud-ja-valgustus-elektroonika-kaasaskantavad-monitorilaiendid",
-    "v4-elektritarvikud-ja-valgustus-elektroonika-kehakaamerad",
-    "v4-elektritarvikud-ja-valgustus-elektroonika-kiudoptika-keevitusseadmed",
-    "v4-elektritarvikud-ja-valgustus-elektroonika-kolarid",
-    "v4-elektritarvikud-ja-valgustus-elektroonika-nutikardinate-automaatika",
-    "v4-elektritarvikud-ja-valgustus-elektroonika-projektoriekraanid",
-    "v4-elektritarvikud-ja-valgustus-elektroonika-protsessori-vedelikjahutid",
-    "v4-elektritarvikud-ja-valgustus-elektroonika-satelliit-ja-vorgukaablid",
-    "v4-elektritarvikud-ja-valgustus-elektroonika-stuudiovarustuse-kohvrid",
-    "v4-elektritarvikud-ja-valgustus-elektroonika-tv-seinakinnitused",
-    "v4-elektritarvikud-ja-valgustus-elektroonika-teleprompterid",
-    "v4-elektritarvikud-ja-valgustus-elektroonika-termoprinterid",
-    "v4-elektritarvikud-ja-valgustus-elektroonika-tooajaarvestuse-terminalid",
-    "v4-elektritarvikud-ja-valgustus-elektroonika-unemasinad",
-    "v4-elektritarvikud-ja-valgustus-elektroonika-lulitid",
     "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid",
     "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-generaatori-katted",
     "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-inverterid",
@@ -21818,6 +21872,7 @@
     "v4-elektritarvikud-ja-valgustus-toitejaotus-ja-jaotussusteemid-pingemuundurid",
     "v4-elektritarvikud-ja-valgustus-toitejaotus-ja-jaotussusteemid-reguleeritavad-autotransformaatorid",
     "v4-elektritarvikud-ja-valgustus-toitejaotus-ja-jaotussusteemid-sagedusmuundurid",
+    "v4-elektritarvikud-ja-valgustus-elektroonika-lulitid",
     "v4-elektritarvikud-ja-valgustus-harukarbid-torud-ja-kinnitused",
     "v4-elektritarvikud-ja-valgustus-harukarbid-elektrikaablid",
     "v4-elektritarvikud-ja-valgustus-harukarbid-torud-ja-kinnitused-elektrikilbid-ja-jaotuskarbid",
@@ -22306,6 +22361,7 @@
     "v4-buroo-tahvlid",
     "v4-buroo-tahvlid-teadetetahvlid",
     "v4-buroo-raha-pos",
+    "v4-elektritarvikud-ja-valgustus-elektroonika-tooajaarvestuse-terminalid",
     "v4-buroo-raha-mundiloendusmasinad",
     "v4-buroo-kassasahtlid-pos-tarvikud",
     "v4-buroo-laminaatorid-koitmine",
@@ -22336,6 +22392,7 @@
     "v4-ladu-relvakapid-relvaseifid",
     "v4-ladu-tuleohtlike-ainete-hoiukapid",
     "v4-ladu-pakendamine",
+    "v4-elektritarvikud-ja-valgustus-elektroonika-termoprinterid",
     "v4-ladu-pakkimis-koitmistarvikud",
     "v4-ladu-pakkimis-sidumismasinad",
     "v4-ladu-posti-loenduskaalud",
@@ -22367,6 +22424,31 @@
     "v4-ladu-ostukorvid",
     "v4-ladu-roivariiulid-nagid",
     "v4-ladu-ekspositsioonistendid",
-    "v4-ladu-valis-tuhatoosid-prugikastid"
+    "v4-ladu-valis-tuhatoosid-prugikastid",
+    "v4-elektroonika-ja-multimeedia",
+    "v4-elektroonika-projektsioon",
+    "v4-elektritarvikud-ja-valgustus-elektroonika-kaasaskantavad-dvd-mangijad",
+    "v4-elektritarvikud-ja-valgustus-elektroonika-projektoriekraanid",
+    "v4-elektroonika-heli",
+    "v4-elektritarvikud-ja-valgustus-elektroonika-digitaalsed-diktofonid",
+    "v4-elektritarvikud-ja-valgustus-elektroonika-kolarid",
+    "v4-elektritarvikud-ja-valgustus-elektroonika-unemasinad",
+    "v4-elektroonika-foto-video",
+    "v4-elektritarvikud-ja-valgustus-elektroonika-digitaalsed-fotoraamid",
+    "v4-elektritarvikud-ja-valgustus-elektroonika-gimbal-stabilisaatorid",
+    "v4-elektritarvikud-ja-valgustus-elektroonika-kehakaamerad",
+    "v4-elektritarvikud-ja-valgustus-elektroonika-stuudiovarustuse-kohvrid",
+    "v4-elektritarvikud-ja-valgustus-elektroonika-teleprompterid",
+    "v4-elektroonika-arvutiriistvara",
+    "v4-elektritarvikud-ja-valgustus-elektroonika-arvutikorpused",
+    "v4-elektritarvikud-ja-valgustus-elektroonika-protsessori-vedelikjahutid",
+    "v4-elektroonika-vork",
+    "v4-elektritarvikud-ja-valgustus-elektroonika-satelliit-ja-vorgukaablid",
+    "v4-elektroonika-nutikodu",
+    "v4-elektritarvikud-ja-valgustus-elektroonika-ilmajaamad",
+    "v4-elektritarvikud-ja-valgustus-elektroonika-nutikardinate-automaatika",
+    "v4-elektroonika-kinnitused",
+    "v4-elektritarvikud-ja-valgustus-elektroonika-kaasaskantavad-monitorilaiendid",
+    "v4-elektritarvikud-ja-valgustus-elektroonika-tv-seinakinnitused"
   ]
 }

@@ -5096,95 +5096,6 @@ l1:
     hero_gradient: from-stone-950/80 via-stone-900/40 to-transparent
     product_count: 741
     subs:
-      - slug: v4-elektritarvikud-ja-valgustus-elektroonika
-        name_en: "Elektroonika"
-        name_et: "Elektroonika"
-        product_count: 0
-        subs:
-          - slug: v4-elektritarvikud-ja-valgustus-elektroonika-arvutikorpused
-            name_en: "Arvutikorpused"
-            name_et: "Arvutikorpused"
-            product_count: 0
-          - slug: v4-elektritarvikud-ja-valgustus-elektroonika-digitaalsed-diktofonid
-            name_en: "Digitaalsed diktofonid"
-            name_et: "Digitaalsed diktofonid"
-            product_count: 0
-          - slug: v4-elektritarvikud-ja-valgustus-elektroonika-digitaalsed-fotoraamid
-            name_en: "Digitaalsed fotoraamid"
-            name_et: "Digitaalsed fotoraamid"
-            product_count: 0
-          - slug: v4-elektritarvikud-ja-valgustus-elektroonika-gimbal-stabilisaatorid
-            name_en: "Gimbal-stabilisaatorid"
-            name_et: "Gimbal-stabilisaatorid"
-            product_count: 0
-          - slug: v4-elektritarvikud-ja-valgustus-elektroonika-ilmajaamad
-            name_en: "Ilmajaamad"
-            name_et: "Ilmajaamad"
-            product_count: 0
-          - slug: v4-elektritarvikud-ja-valgustus-elektroonika-kaasaskantavad-dvd-mangijad
-            name_en: "Kaasaskantavad DVD-mängijad"
-            name_et: "Kaasaskantavad DVD-mängijad"
-            product_count: 0
-          - slug: v4-elektritarvikud-ja-valgustus-elektroonika-kaasaskantavad-monitorilaiendid
-            name_en: "Kaasaskantavad monitorilaiendid"
-            name_et: "Kaasaskantavad monitorilaiendid"
-            product_count: 0
-          - slug: v4-elektritarvikud-ja-valgustus-elektroonika-kehakaamerad
-            name_en: "Kehakaamerad"
-            name_et: "Kehakaamerad"
-            product_count: 0
-          - slug: v4-elektritarvikud-ja-valgustus-elektroonika-kiudoptika-keevitusseadmed
-            name_en: "Kiudoptika keevitusseadmed"
-            name_et: "Kiudoptika keevitusseadmed"
-            product_count: 0
-          - slug: v4-elektritarvikud-ja-valgustus-elektroonika-kolarid
-            name_en: "Kõlarid"
-            name_et: "Kõlarid"
-            product_count: 0
-          - slug: v4-elektritarvikud-ja-valgustus-elektroonika-nutikardinate-automaatika
-            name_en: "Nutikardinate automaatika"
-            name_et: "Nutikardinate automaatika"
-            product_count: 0
-          - slug: v4-elektritarvikud-ja-valgustus-elektroonika-projektoriekraanid
-            name_en: "Projektoriekraanid"
-            name_et: "Projektoriekraanid"
-            product_count: 0
-          - slug: v4-elektritarvikud-ja-valgustus-elektroonika-protsessori-vedelikjahutid
-            name_en: "Protsessori vedelikjahutid"
-            name_et: "Protsessori vedelikjahutid"
-            product_count: 0
-          - slug: v4-elektritarvikud-ja-valgustus-elektroonika-satelliit-ja-vorgukaablid
-            name_en: "Satelliit- ja võrgukaablid"
-            name_et: "Satelliit- ja võrgukaablid"
-            product_count: 0
-          - slug: v4-elektritarvikud-ja-valgustus-elektroonika-stuudiovarustuse-kohvrid
-            name_en: "Stuudiovarustuse kohvrid"
-            name_et: "Stuudiovarustuse kohvrid"
-            product_count: 0
-          - slug: v4-elektritarvikud-ja-valgustus-elektroonika-tv-seinakinnitused
-            name_en: "TV seinakinnitused"
-            name_et: "TV seinakinnitused"
-            product_count: 0
-          - slug: v4-elektritarvikud-ja-valgustus-elektroonika-teleprompterid
-            name_en: "Teleprompterid"
-            name_et: "Teleprompterid"
-            product_count: 0
-          - slug: v4-elektritarvikud-ja-valgustus-elektroonika-termoprinterid
-            name_en: "Termoprinterid"
-            name_et: "Termoprinterid"
-            product_count: 0
-          - slug: v4-elektritarvikud-ja-valgustus-elektroonika-tooajaarvestuse-terminalid
-            name_en: "Tööajaarvestuse terminalid"
-            name_et: "Tööajaarvestuse terminalid"
-            product_count: 0
-          - slug: v4-elektritarvikud-ja-valgustus-elektroonika-unemasinad
-            name_en: "Unemasinad"
-            name_et: "Unemasinad"
-            product_count: 0
-          - slug: v4-elektritarvikud-ja-valgustus-elektroonika-lulitid
-            name_en: "Lülitid & nupud"
-            name_et: "Lülitid & nupud"
-            product_count: 0
       - slug: v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid
         name_en: "Taastuvenergia & generaatorid"
         name_et: "Taastuvenergia & generaatorid"
@@ -5385,6 +5296,10 @@ l1:
           - slug: v4-elektritarvikud-ja-valgustus-toitejaotus-ja-jaotussusteemid-sagedusmuundurid
             name_en: "Sagedusmuundurid"
             name_et: "Sagedusmuundurid"
+            product_count: 0
+          - slug: v4-elektritarvikud-ja-valgustus-elektroonika-lulitid
+            name_en: "Lülitid & nupud"
+            name_et: "Lülitid & nupud"
             product_count: 0
       - slug: v4-elektritarvikud-ja-valgustus-harukarbid-torud-ja-kinnitused
         name_en: "Harukarbid, torud & kinnitused"
@@ -7476,6 +7391,10 @@ l1:
         name_et: "Raha & POS"
         product_count: 0
         subs:
+          - slug: v4-elektritarvikud-ja-valgustus-elektroonika-tooajaarvestuse-terminalid
+            name_en: "Tööajaarvestuse terminalid"
+            name_et: "Tööajaarvestuse terminalid"
+            product_count: 0
           - slug: v4-buroo-raha-mundiloendusmasinad
             name_en: "Raha- & mündiloendusmasinad"
             name_et: "Raha- & mündiloendusmasinad"
@@ -7610,6 +7529,10 @@ l1:
         name_et: "Pakendamine"
         product_count: 0
         subs:
+          - slug: v4-elektritarvikud-ja-valgustus-elektroonika-termoprinterid
+            name_en: "Termoprinterid"
+            name_et: "Termoprinterid"
+            product_count: 0
           - slug: v4-ladu-pakkimis-koitmistarvikud
             name_en: "Pakkimis- ja köitmistarvikud"
             name_et: "Pakkimis- ja köitmistarvikud"
@@ -7742,4 +7665,119 @@ l1:
           - slug: v4-ladu-valis-tuhatoosid-prugikastid
             name_en: "Välis-tuhatoosid & prügikastid"
             name_et: "Välis-tuhatoosid & prügikastid"
+            product_count: 0
+  - slug: v4-elektroonika-ja-multimeedia
+    name_en: "Elektroonika & multimeedia"
+    name_et: "Elektroonika & multimeedia"
+    short_slug: elektroonika
+    tagline_en: "Elektroonika & multimeedia"
+    tagline_et: "Elektroonika & multimeedia"
+    description_en: "Elektroonika & multimeedia — products."
+    description_et: "Elektroonika & multimeedia — tooted."
+    hero_img: /images/branches/horeca.webp
+    hero_gradient: from-stone-950/80 via-stone-900/40 to-transparent
+    product_count: 123
+    subs:
+      - slug: v4-elektroonika-projektsioon
+        name_en: "Projektsioon & kodukino"
+        name_et: "Projektsioon & kodukino"
+        product_count: 0
+        subs:
+          - slug: v4-elektritarvikud-ja-valgustus-elektroonika-kaasaskantavad-dvd-mangijad
+            name_en: "Kaasaskantavad DVD-mängijad"
+            name_et: "Kaasaskantavad DVD-mängijad"
+            product_count: 0
+          - slug: v4-elektritarvikud-ja-valgustus-elektroonika-projektoriekraanid
+            name_en: "Projektoriekraanid"
+            name_et: "Projektoriekraanid"
+            product_count: 0
+      - slug: v4-elektroonika-heli
+        name_en: "Heli & kõlarid"
+        name_et: "Heli & kõlarid"
+        product_count: 0
+        subs:
+          - slug: v4-elektritarvikud-ja-valgustus-elektroonika-digitaalsed-diktofonid
+            name_en: "Digitaalsed diktofonid"
+            name_et: "Digitaalsed diktofonid"
+            product_count: 0
+          - slug: v4-elektritarvikud-ja-valgustus-elektroonika-kolarid
+            name_en: "Kõlarid"
+            name_et: "Kõlarid"
+            product_count: 0
+          - slug: v4-elektritarvikud-ja-valgustus-elektroonika-unemasinad
+            name_en: "Unemasinad"
+            name_et: "Unemasinad"
+            product_count: 0
+      - slug: v4-elektroonika-foto-video
+        name_en: "Foto & video"
+        name_et: "Foto & video"
+        product_count: 0
+        subs:
+          - slug: v4-elektritarvikud-ja-valgustus-elektroonika-digitaalsed-fotoraamid
+            name_en: "Digitaalsed fotoraamid"
+            name_et: "Digitaalsed fotoraamid"
+            product_count: 0
+          - slug: v4-elektritarvikud-ja-valgustus-elektroonika-gimbal-stabilisaatorid
+            name_en: "Gimbal-stabilisaatorid"
+            name_et: "Gimbal-stabilisaatorid"
+            product_count: 0
+          - slug: v4-elektritarvikud-ja-valgustus-elektroonika-kehakaamerad
+            name_en: "Kehakaamerad"
+            name_et: "Kehakaamerad"
+            product_count: 0
+          - slug: v4-elektritarvikud-ja-valgustus-elektroonika-stuudiovarustuse-kohvrid
+            name_en: "Stuudiovarustuse kohvrid"
+            name_et: "Stuudiovarustuse kohvrid"
+            product_count: 0
+          - slug: v4-elektritarvikud-ja-valgustus-elektroonika-teleprompterid
+            name_en: "Teleprompterid"
+            name_et: "Teleprompterid"
+            product_count: 0
+      - slug: v4-elektroonika-arvutiriistvara
+        name_en: "Arvutiriistvara"
+        name_et: "Arvutiriistvara"
+        product_count: 0
+        subs:
+          - slug: v4-elektritarvikud-ja-valgustus-elektroonika-arvutikorpused
+            name_en: "Arvutikorpused"
+            name_et: "Arvutikorpused"
+            product_count: 0
+          - slug: v4-elektritarvikud-ja-valgustus-elektroonika-protsessori-vedelikjahutid
+            name_en: "Protsessori vedelikjahutid"
+            name_et: "Protsessori vedelikjahutid"
+            product_count: 0
+      - slug: v4-elektroonika-vork
+        name_en: "Võrk & satelliit"
+        name_et: "Võrk & satelliit"
+        product_count: 0
+        subs:
+          - slug: v4-elektritarvikud-ja-valgustus-elektroonika-satelliit-ja-vorgukaablid
+            name_en: "Satelliit- ja võrgukaablid"
+            name_et: "Satelliit- ja võrgukaablid"
+            product_count: 0
+      - slug: v4-elektroonika-nutikodu
+        name_en: "Nutikodu & ilm"
+        name_et: "Nutikodu & ilm"
+        product_count: 0
+        subs:
+          - slug: v4-elektritarvikud-ja-valgustus-elektroonika-ilmajaamad
+            name_en: "Ilmajaamad"
+            name_et: "Ilmajaamad"
+            product_count: 0
+          - slug: v4-elektritarvikud-ja-valgustus-elektroonika-nutikardinate-automaatika
+            name_en: "Nutikardinate automaatika"
+            name_et: "Nutikardinate automaatika"
+            product_count: 0
+      - slug: v4-elektroonika-kinnitused
+        name_en: "TV- & monitorikinnitused"
+        name_et: "TV- & monitorikinnitused"
+        product_count: 0
+        subs:
+          - slug: v4-elektritarvikud-ja-valgustus-elektroonika-kaasaskantavad-monitorilaiendid
+            name_en: "Kaasaskantavad monitorilaiendid"
+            name_et: "Kaasaskantavad monitorilaiendid"
+            product_count: 0
+          - slug: v4-elektritarvikud-ja-valgustus-elektroonika-tv-seinakinnitused
+            name_en: "TV seinakinnitused"
+            name_et: "TV seinakinnitused"
             product_count: 0
