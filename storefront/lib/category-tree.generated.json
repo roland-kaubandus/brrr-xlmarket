@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-06T17:10:04.540Z",
+  "generated_at": "2026-07-06T17:31:09.957Z",
   "nodes": {
     "v4-tooriistad-ja-tarvikud": {
       "handle": "v4-tooriistad-ja-tarvikud",
@@ -5109,7 +5109,11 @@
         "v4-autovaruosad-ja-tarvikud-haagissuvila-ja-matkatarvikud-stabilisaator-ja-tugijalad",
         "v4-autovaruosad-ja-tarvikud-haagissuvila-ja-matkatarvikud-tasandusplokid-ja-kiilud",
         "v4-autovaruosad-ja-tarvikud-haagissuvila-ja-matkatarvikud-trepid-ja-astmed",
-        "v4-autovaruosad-ja-tarvikud-haagissuvila-ja-matkatarvikud-uksekaitsed-ja-vored"
+        "v4-autovaruosad-ja-tarvikud-haagissuvila-ja-matkatarvikud-uksekaitsed-ja-vored",
+        "v4-auto-automarkiisid",
+        "v4-auto-matka-haagissuvila-markiisid",
+        "v4-auto-mootor-rv-markiisid",
+        "v4-auto-rv-markiisi-paikesekaitsed"
       ],
       "image_path": null,
       "image_source": "none"
@@ -5228,6 +5232,46 @@
       "handle": "v4-autovaruosad-ja-tarvikud-haagissuvila-ja-matkatarvikud-uksekaitsed-ja-vored",
       "name_en": "Uksekaitsed ja võred",
       "name_et": "Uksekaitsed ja võred",
+      "level": 3,
+      "parent_handle": "v4-autovaruosad-ja-tarvikud-haagissuvila-ja-matkatarvikud",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-auto-automarkiisid": {
+      "handle": "v4-auto-automarkiisid",
+      "name_en": "Automarkiisid",
+      "name_et": "Automarkiisid",
+      "level": 3,
+      "parent_handle": "v4-autovaruosad-ja-tarvikud-haagissuvila-ja-matkatarvikud",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-auto-matka-haagissuvila-markiisid": {
+      "handle": "v4-auto-matka-haagissuvila-markiisid",
+      "name_en": "Matka- ja haagissuvila markiisid",
+      "name_et": "Matka- ja haagissuvila markiisid",
+      "level": 3,
+      "parent_handle": "v4-autovaruosad-ja-tarvikud-haagissuvila-ja-matkatarvikud",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-auto-mootor-rv-markiisid": {
+      "handle": "v4-auto-mootor-rv-markiisid",
+      "name_en": "Mootormarkiisid",
+      "name_et": "Mootormarkiisid",
+      "level": 3,
+      "parent_handle": "v4-autovaruosad-ja-tarvikud-haagissuvila-ja-matkatarvikud",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-auto-rv-markiisi-paikesekaitsed": {
+      "handle": "v4-auto-rv-markiisi-paikesekaitsed",
+      "name_en": "RV markiisi päikesekaitsed",
+      "name_et": "RV markiisi päikesekaitsed",
       "level": 3,
       "parent_handle": "v4-autovaruosad-ja-tarvikud-haagissuvila-ja-matkatarvikud",
       "child_handles": [],
@@ -11214,23 +11258,9 @@
       "level": 2,
       "parent_handle": "v4-varjualused-telgid-ja-kasvuhooned",
       "child_handles": [
-        "v4-varjualused-telgid-ja-kasvuhooned-markiisid-automarkiisid",
         "v4-varjualused-telgid-ja-kasvuhooned-markiisid-kasitsi-sissetommatavad-markiisid",
-        "v4-varjualused-telgid-ja-kasvuhooned-markiisid-kulgekraanid-ja-kulgseinad",
-        "v4-varjualused-telgid-ja-kasvuhooned-markiisid-matka-ja-haagissuvila-markiisid",
-        "v4-varjualused-telgid-ja-kasvuhooned-markiisid-mootormarkiisid",
-        "v4-varjualused-telgid-ja-kasvuhooned-markiisid-rv-markiisi-paikesekaitsed"
+        "v4-varjualused-telgid-ja-kasvuhooned-markiisid-kulgekraanid-ja-kulgseinad"
       ],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-varjualused-telgid-ja-kasvuhooned-markiisid-automarkiisid": {
-      "handle": "v4-varjualused-telgid-ja-kasvuhooned-markiisid-automarkiisid",
-      "name_en": "Automarkiisid",
-      "name_et": "Automarkiisid",
-      "level": 3,
-      "parent_handle": "v4-varjualused-telgid-ja-kasvuhooned-markiisid",
-      "child_handles": [],
       "image_path": null,
       "image_source": "none"
     },
@@ -11248,36 +11278,6 @@
       "handle": "v4-varjualused-telgid-ja-kasvuhooned-markiisid-kulgekraanid-ja-kulgseinad",
       "name_en": "Külgekraanid ja külgseinad",
       "name_et": "Külgekraanid ja külgseinad",
-      "level": 3,
-      "parent_handle": "v4-varjualused-telgid-ja-kasvuhooned-markiisid",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-varjualused-telgid-ja-kasvuhooned-markiisid-matka-ja-haagissuvila-markiisid": {
-      "handle": "v4-varjualused-telgid-ja-kasvuhooned-markiisid-matka-ja-haagissuvila-markiisid",
-      "name_en": "Matka- ja haagissuvila markiisid",
-      "name_et": "Matka- ja haagissuvila markiisid",
-      "level": 3,
-      "parent_handle": "v4-varjualused-telgid-ja-kasvuhooned-markiisid",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-varjualused-telgid-ja-kasvuhooned-markiisid-mootormarkiisid": {
-      "handle": "v4-varjualused-telgid-ja-kasvuhooned-markiisid-mootormarkiisid",
-      "name_en": "Mootormarkiisid",
-      "name_et": "Mootormarkiisid",
-      "level": 3,
-      "parent_handle": "v4-varjualused-telgid-ja-kasvuhooned-markiisid",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-varjualused-telgid-ja-kasvuhooned-markiisid-rv-markiisi-paikesekaitsed": {
-      "handle": "v4-varjualused-telgid-ja-kasvuhooned-markiisid-rv-markiisi-paikesekaitsed",
-      "name_en": "RV markiisi päikesekaitsed",
-      "name_et": "RV markiisi päikesekaitsed",
       "level": 3,
       "parent_handle": "v4-varjualused-telgid-ja-kasvuhooned-markiisid",
       "child_handles": [],
@@ -20999,6 +20999,10 @@
     "v4-autovaruosad-ja-tarvikud-haagissuvila-ja-matkatarvikud-tasandusplokid-ja-kiilud",
     "v4-autovaruosad-ja-tarvikud-haagissuvila-ja-matkatarvikud-trepid-ja-astmed",
     "v4-autovaruosad-ja-tarvikud-haagissuvila-ja-matkatarvikud-uksekaitsed-ja-vored",
+    "v4-auto-automarkiisid",
+    "v4-auto-matka-haagissuvila-markiisid",
+    "v4-auto-mootor-rv-markiisid",
+    "v4-auto-rv-markiisi-paikesekaitsed",
     "v4-autovaruosad-ja-tarvikud-salongitarvikud",
     "v4-autovaruosad-ja-tarvikud-salongitarvikud-auto-istmekatted",
     "pcat-a3m",
@@ -21536,12 +21540,8 @@
     "v4-varjualused-telgid-ja-kasvuhooned-telgid-rannatelgid-ja-varjualused",
     "v4-varjualused-telgid-ja-kasvuhooned-telgid-saasevorguga-varjualused-ja-paviljonid",
     "v4-varjualused-telgid-ja-kasvuhooned-markiisid",
-    "v4-varjualused-telgid-ja-kasvuhooned-markiisid-automarkiisid",
     "v4-varjualused-telgid-ja-kasvuhooned-markiisid-kasitsi-sissetommatavad-markiisid",
     "v4-varjualused-telgid-ja-kasvuhooned-markiisid-kulgekraanid-ja-kulgseinad",
-    "v4-varjualused-telgid-ja-kasvuhooned-markiisid-matka-ja-haagissuvila-markiisid",
-    "v4-varjualused-telgid-ja-kasvuhooned-markiisid-mootormarkiisid",
-    "v4-varjualused-telgid-ja-kasvuhooned-markiisid-rv-markiisi-paikesekaitsed",
     "v4-varjualused-telgid-ja-kasvuhooned-kasvuhooned",
     "v4-varjualused-telgid-ja-kasvuhooned-kasvuhooned-kasvuhoone-kiled-ja-katted",
     "v4-varjualused-telgid-ja-kasvuhooned-kasvuhooned-kasvuhoone-kinnitustarvikud",

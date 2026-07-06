@@ -1948,6 +1948,22 @@ l1:
             name_en: "Uksekaitsed ja võred"
             name_et: "Uksekaitsed ja võred"
             product_count: 0
+          - slug: v4-auto-automarkiisid
+            name_en: "Automarkiisid"
+            name_et: "Automarkiisid"
+            product_count: 0
+          - slug: v4-auto-matka-haagissuvila-markiisid
+            name_en: "Matka- ja haagissuvila markiisid"
+            name_et: "Matka- ja haagissuvila markiisid"
+            product_count: 0
+          - slug: v4-auto-mootor-rv-markiisid
+            name_en: "Mootormarkiisid"
+            name_et: "Mootormarkiisid"
+            product_count: 0
+          - slug: v4-auto-rv-markiisi-paikesekaitsed
+            name_en: "RV markiisi päikesekaitsed"
+            name_et: "RV markiisi päikesekaitsed"
+            product_count: 0
       - slug: v4-autovaruosad-ja-tarvikud-salongitarvikud
         name_en: "Salongitarvikud"
         name_et: "Salongitarvikud"
@@ -4199,10 +4215,6 @@ l1:
         name_et: "Markiisid"
         product_count: 0
         subs:
-          - slug: v4-varjualused-telgid-ja-kasvuhooned-markiisid-automarkiisid
-            name_en: "Automarkiisid"
-            name_et: "Automarkiisid"
-            product_count: 0
           - slug: v4-varjualused-telgid-ja-kasvuhooned-markiisid-kasitsi-sissetommatavad-markiisid
             name_en: "Käsitsi sissetõmmatavad markiisid"
             name_et: "Käsitsi sissetõmmatavad markiisid"
@@ -4210,18 +4222,6 @@ l1:
           - slug: v4-varjualused-telgid-ja-kasvuhooned-markiisid-kulgekraanid-ja-kulgseinad
             name_en: "Külgekraanid ja külgseinad"
             name_et: "Külgekraanid ja külgseinad"
-            product_count: 0
-          - slug: v4-varjualused-telgid-ja-kasvuhooned-markiisid-matka-ja-haagissuvila-markiisid
-            name_en: "Matka- ja haagissuvila markiisid"
-            name_et: "Matka- ja haagissuvila markiisid"
-            product_count: 0
-          - slug: v4-varjualused-telgid-ja-kasvuhooned-markiisid-mootormarkiisid
-            name_en: "Mootormarkiisid"
-            name_et: "Mootormarkiisid"
-            product_count: 0
-          - slug: v4-varjualused-telgid-ja-kasvuhooned-markiisid-rv-markiisi-paikesekaitsed
-            name_en: "RV markiisi päikesekaitsed"
-            name_et: "RV markiisi päikesekaitsed"
             product_count: 0
       - slug: v4-varjualused-telgid-ja-kasvuhooned-kasvuhooned
         name_en: "Kasvuhooned"
