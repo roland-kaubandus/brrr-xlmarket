@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-06T18:37:10.433Z",
+  "generated_at": "2026-07-06T19:13:56.971Z",
   "nodes": {
     "v4-tooriistad-ja-tarvikud": {
       "handle": "v4-tooriistad-ja-tarvikud",
@@ -14557,6 +14557,7 @@
         "v4-sport-ja-vaba-aeg-tailgating-ja-peoseadmed",
         "v4-sport-ja-vaba-aeg-jalgrattad-ja-tarvikud",
         "v4-sport-ja-vaba-aeg-reisikotid-ja-kohvrid",
+        "v4-sport-kulmakastid-jahutus",
         "v4-sport-ja-vaba-aeg-mangulauad-ja-sisemangud",
         "v4-sport-ja-vaba-aeg-pallimangud-ja-valjakusport",
         "v4-sport-ja-vaba-aeg-golf-ja-discgolf",
@@ -15460,8 +15461,6 @@
       "child_handles": [
         "v4-sport-ja-vaba-aeg-matka-hadaabi-ellujaamisvarustus",
         "v4-sport-ja-vaba-aeg-matkavarustus-ja-telkimine-hudratatsiooni-ja-seljakotid",
-        "v4-sport-ja-vaba-aeg-matkavarustus-ja-telkimine-jahutuskastid-ja-kotid",
-        "v4-aed-ja-aiatehnika-l4-jaakastid-ja-jookide-jahutuskarud",
         "v4-sport-ja-vaba-aeg-matkavarustus-ja-telkimine-matkalauad-ja-koogijaamad",
         "v4-sport-ja-vaba-aeg-matkavarustus-ja-telkimine-matkatekid",
         "v4-sport-matkatelgid",
@@ -15495,26 +15494,6 @@
       "handle": "v4-sport-ja-vaba-aeg-matkavarustus-ja-telkimine-hudratatsiooni-ja-seljakotid",
       "name_en": "Hüdratatsiooni- ja seljakotid",
       "name_et": "Hüdratatsiooni- ja seljakotid",
-      "level": 3,
-      "parent_handle": "v4-sport-ja-vaba-aeg-matkavarustus-ja-telkimine",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-sport-ja-vaba-aeg-matkavarustus-ja-telkimine-jahutuskastid-ja-kotid": {
-      "handle": "v4-sport-ja-vaba-aeg-matkavarustus-ja-telkimine-jahutuskastid-ja-kotid",
-      "name_en": "Jahutuskastid ja -kotid",
-      "name_et": "Jahutuskastid ja -kotid",
-      "level": 3,
-      "parent_handle": "v4-sport-ja-vaba-aeg-matkavarustus-ja-telkimine",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-aed-ja-aiatehnika-l4-jaakastid-ja-jookide-jahutuskarud": {
-      "handle": "v4-aed-ja-aiatehnika-l4-jaakastid-ja-jookide-jahutuskarud",
-      "name_en": "Jääkastid ja jahutuskärud",
-      "name_et": "Jääkastid ja jahutuskärud",
       "level": 3,
       "parent_handle": "v4-sport-ja-vaba-aeg-matkavarustus-ja-telkimine",
       "child_handles": [],
@@ -15899,8 +15878,6 @@
       "parent_handle": "v4-sport-ja-vaba-aeg",
       "child_handles": [
         "v4-sport-ja-vaba-aeg-tailgating-joogidosaatorid",
-        "v4-sport-ja-vaba-aeg-tailgating-ja-peoseadmed-kaasaskantavad-kulmakastid",
-        "v4-sport-ja-vaba-aeg-tailgating-ja-peoseadmed-ratastega-kulmakastid-ja-jahutuskarud",
         "v4-sport-ja-vaba-aeg-tailgating-ja-peoseadmed-staadioni-istmed-ja-toolid"
       ],
       "image_path": null,
@@ -15910,26 +15887,6 @@
       "handle": "v4-sport-ja-vaba-aeg-tailgating-joogidosaatorid",
       "name_en": "Joogidosaatorid ja -serverid",
       "name_et": "Joogidosaatorid ja -serverid",
-      "level": 3,
-      "parent_handle": "v4-sport-ja-vaba-aeg-tailgating-ja-peoseadmed",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-sport-ja-vaba-aeg-tailgating-ja-peoseadmed-kaasaskantavad-kulmakastid": {
-      "handle": "v4-sport-ja-vaba-aeg-tailgating-ja-peoseadmed-kaasaskantavad-kulmakastid",
-      "name_en": "Kaasaskantavad külmakastid",
-      "name_et": "Kaasaskantavad külmakastid",
-      "level": 3,
-      "parent_handle": "v4-sport-ja-vaba-aeg-tailgating-ja-peoseadmed",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-sport-ja-vaba-aeg-tailgating-ja-peoseadmed-ratastega-kulmakastid-ja-jahutuskarud": {
-      "handle": "v4-sport-ja-vaba-aeg-tailgating-ja-peoseadmed-ratastega-kulmakastid-ja-jahutuskarud",
-      "name_en": "Ratastega külmakastid ja jahutuskärud",
-      "name_et": "Ratastega külmakastid ja jahutuskärud",
       "level": 3,
       "parent_handle": "v4-sport-ja-vaba-aeg-tailgating-ja-peoseadmed",
       "child_handles": [],
@@ -16074,6 +16031,61 @@
       "name_et": "Vaakumkompressiooniga reisikotid",
       "level": 3,
       "parent_handle": "v4-sport-ja-vaba-aeg-reisikotid-ja-kohvrid",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-sport-kulmakastid-jahutus": {
+      "handle": "v4-sport-kulmakastid-jahutus",
+      "name_en": "Külmakastid & jahutus",
+      "name_et": "Külmakastid & jahutus",
+      "level": 2,
+      "parent_handle": "v4-sport-ja-vaba-aeg",
+      "child_handles": [
+        "v4-sport-ja-vaba-aeg-matkavarustus-ja-telkimine-jahutuskastid-ja-kotid",
+        "v4-sport-ja-vaba-aeg-tailgating-ja-peoseadmed-kaasaskantavad-kulmakastid",
+        "v4-sport-ja-vaba-aeg-tailgating-ja-peoseadmed-ratastega-kulmakastid-ja-jahutuskarud",
+        "v4-sport-ujuvad-kulmakastid"
+      ],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-sport-ja-vaba-aeg-matkavarustus-ja-telkimine-jahutuskastid-ja-kotid": {
+      "handle": "v4-sport-ja-vaba-aeg-matkavarustus-ja-telkimine-jahutuskastid-ja-kotid",
+      "name_en": "Pehmed jahutuskotid",
+      "name_et": "Pehmed jahutuskotid",
+      "level": 3,
+      "parent_handle": "v4-sport-kulmakastid-jahutus",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-sport-ja-vaba-aeg-tailgating-ja-peoseadmed-kaasaskantavad-kulmakastid": {
+      "handle": "v4-sport-ja-vaba-aeg-tailgating-ja-peoseadmed-kaasaskantavad-kulmakastid",
+      "name_en": "Kõvad kaasaskantavad külmakastid",
+      "name_et": "Kõvad kaasaskantavad külmakastid",
+      "level": 3,
+      "parent_handle": "v4-sport-kulmakastid-jahutus",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-sport-ja-vaba-aeg-tailgating-ja-peoseadmed-ratastega-kulmakastid-ja-jahutuskarud": {
+      "handle": "v4-sport-ja-vaba-aeg-tailgating-ja-peoseadmed-ratastega-kulmakastid-ja-jahutuskarud",
+      "name_en": "Ratastega külmakastid ja jahutuskärud",
+      "name_et": "Ratastega külmakastid ja jahutuskärud",
+      "level": 3,
+      "parent_handle": "v4-sport-kulmakastid-jahutus",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-sport-ujuvad-kulmakastid": {
+      "handle": "v4-sport-ujuvad-kulmakastid",
+      "name_en": "Ujuvad külmakastid",
+      "name_et": "Ujuvad külmakastid",
+      "level": 3,
+      "parent_handle": "v4-sport-kulmakastid-jahutus",
       "child_handles": [],
       "image_path": null,
       "image_source": "none"
@@ -22028,8 +22040,6 @@
     "v4-sport-ja-vaba-aeg-matkavarustus-ja-telkimine",
     "v4-sport-ja-vaba-aeg-matka-hadaabi-ellujaamisvarustus",
     "v4-sport-ja-vaba-aeg-matkavarustus-ja-telkimine-hudratatsiooni-ja-seljakotid",
-    "v4-sport-ja-vaba-aeg-matkavarustus-ja-telkimine-jahutuskastid-ja-kotid",
-    "v4-aed-ja-aiatehnika-l4-jaakastid-ja-jookide-jahutuskarud",
     "v4-sport-ja-vaba-aeg-matkavarustus-ja-telkimine-matkalauad-ja-koogijaamad",
     "v4-sport-ja-vaba-aeg-matkavarustus-ja-telkimine-matkatekid",
     "v4-sport-matkatelgid",
@@ -22067,8 +22077,6 @@
     "v4-sport-ja-vaba-aeg-trampoliinid-trampoliinid",
     "v4-sport-ja-vaba-aeg-tailgating-ja-peoseadmed",
     "v4-sport-ja-vaba-aeg-tailgating-joogidosaatorid",
-    "v4-sport-ja-vaba-aeg-tailgating-ja-peoseadmed-kaasaskantavad-kulmakastid",
-    "v4-sport-ja-vaba-aeg-tailgating-ja-peoseadmed-ratastega-kulmakastid-ja-jahutuskarud",
     "v4-sport-ja-vaba-aeg-tailgating-ja-peoseadmed-staadioni-istmed-ja-toolid",
     "v4-sport-ja-vaba-aeg-jalgrattad-ja-tarvikud",
     "v4-sport-ja-vaba-aeg-jalgrattad-ja-tarvikud-atv-tarvikud",
@@ -22082,6 +22090,11 @@
     "v4-sport-ja-vaba-aeg-reisikotid-ja-kohvrid-ratastega-sulearvutikotid",
     "v4-sport-ja-vaba-aeg-reisikotid-ja-kohvrid-tantsuvarustuse-reisikotid",
     "v4-sport-ja-vaba-aeg-reisikotid-ja-kohvrid-vaakumkompressiooniga-reisikotid",
+    "v4-sport-kulmakastid-jahutus",
+    "v4-sport-ja-vaba-aeg-matkavarustus-ja-telkimine-jahutuskastid-ja-kotid",
+    "v4-sport-ja-vaba-aeg-tailgating-ja-peoseadmed-kaasaskantavad-kulmakastid",
+    "v4-sport-ja-vaba-aeg-tailgating-ja-peoseadmed-ratastega-kulmakastid-ja-jahutuskarud",
+    "v4-sport-ujuvad-kulmakastid",
     "v4-sport-ja-vaba-aeg-mangulauad-ja-sisemangud",
     "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-arkaadimangud",
     "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-bowlingukoti-vankrid",

@@ -5810,14 +5810,6 @@ l1:
             name_en: "Hüdratatsiooni- ja seljakotid"
             name_et: "Hüdratatsiooni- ja seljakotid"
             product_count: 0
-          - slug: v4-sport-ja-vaba-aeg-matkavarustus-ja-telkimine-jahutuskastid-ja-kotid
-            name_en: "Jahutuskastid ja -kotid"
-            name_et: "Jahutuskastid ja -kotid"
-            product_count: 0
-          - slug: v4-aed-ja-aiatehnika-l4-jaakastid-ja-jookide-jahutuskarud
-            name_en: "Jääkastid ja jahutuskärud"
-            name_et: "Jääkastid ja jahutuskärud"
-            product_count: 0
           - slug: v4-sport-ja-vaba-aeg-matkavarustus-ja-telkimine-matkalauad-ja-koogijaamad
             name_en: "Matkalauad ja köögijaamad"
             name_et: "Matkalauad ja köögijaamad"
@@ -5969,14 +5961,6 @@ l1:
             name_en: "Joogidosaatorid ja -serverid"
             name_et: "Joogidosaatorid ja -serverid"
             product_count: 0
-          - slug: v4-sport-ja-vaba-aeg-tailgating-ja-peoseadmed-kaasaskantavad-kulmakastid
-            name_en: "Kaasaskantavad külmakastid"
-            name_et: "Kaasaskantavad külmakastid"
-            product_count: 0
-          - slug: v4-sport-ja-vaba-aeg-tailgating-ja-peoseadmed-ratastega-kulmakastid-ja-jahutuskarud
-            name_en: "Ratastega külmakastid ja jahutuskärud"
-            name_et: "Ratastega külmakastid ja jahutuskärud"
-            product_count: 0
           - slug: v4-sport-ja-vaba-aeg-tailgating-ja-peoseadmed-staadioni-istmed-ja-toolid
             name_en: "Staadioni istmed ja toolid"
             name_et: "Staadioni istmed ja toolid"
@@ -6030,6 +6014,27 @@ l1:
           - slug: v4-sport-ja-vaba-aeg-reisikotid-ja-kohvrid-vaakumkompressiooniga-reisikotid
             name_en: "Vaakumkompressiooniga reisikotid"
             name_et: "Vaakumkompressiooniga reisikotid"
+            product_count: 0
+      - slug: v4-sport-kulmakastid-jahutus
+        name_en: "Külmakastid & jahutus"
+        name_et: "Külmakastid & jahutus"
+        product_count: 0
+        subs:
+          - slug: v4-sport-ja-vaba-aeg-matkavarustus-ja-telkimine-jahutuskastid-ja-kotid
+            name_en: "Pehmed jahutuskotid"
+            name_et: "Pehmed jahutuskotid"
+            product_count: 0
+          - slug: v4-sport-ja-vaba-aeg-tailgating-ja-peoseadmed-kaasaskantavad-kulmakastid
+            name_en: "Kõvad kaasaskantavad külmakastid"
+            name_et: "Kõvad kaasaskantavad külmakastid"
+            product_count: 0
+          - slug: v4-sport-ja-vaba-aeg-tailgating-ja-peoseadmed-ratastega-kulmakastid-ja-jahutuskarud
+            name_en: "Ratastega külmakastid ja jahutuskärud"
+            name_et: "Ratastega külmakastid ja jahutuskärud"
+            product_count: 0
+          - slug: v4-sport-ujuvad-kulmakastid
+            name_en: "Ujuvad külmakastid"
+            name_et: "Ujuvad külmakastid"
             product_count: 0
       - slug: v4-sport-ja-vaba-aeg-mangulauad-ja-sisemangud
         name_en: "Mängulauad & sisemängud"
