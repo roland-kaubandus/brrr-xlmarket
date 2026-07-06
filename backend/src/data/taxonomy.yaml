@@ -4979,6 +4979,10 @@ l1:
             name_en: "Dušiuksed"
             name_et: "Dušiuksed"
             product_count: 0
+          - slug: v4-santehnika-kute-ja-ventilatsioon-elektrilised-veesoojendid
+            name_en: "Elektrilised veesoojendid"
+            name_et: "Elektrilised veesoojendid"
+            product_count: 0
           - slug: v4-santehnika-kute-ja-ventilatsioon-dusisusteemid-ja-dusikabiinid-dusisusteemid
             name_en: "Dušisüsteemid"
             name_et: "Dušisüsteemid"
@@ -5033,15 +5037,6 @@ l1:
           - slug: v4-santehnika-kute-ja-ventilatsioon-radiaatorid-ja-kuttekehad-termostaadid
             name_en: "Termostaadid"
             name_et: "Termostaadid"
-            product_count: 0
-      - slug: v4-santehnika-kute-ja-ventilatsioon-veesoojendid-ja-boilerid
-        name_en: "Veesoojendid & boilerid"
-        name_et: "Veesoojendid & boilerid"
-        product_count: 0
-        subs:
-          - slug: v4-santehnika-kute-ja-ventilatsioon-elektrilised-veesoojendid
-            name_en: "Elektrilised veesoojendid"
-            name_et: "Elektrilised veesoojendid"
             product_count: 0
       - slug: v4-santehnika-ratikukuivatid-elektrikute
         name_en: "Rätikukuivatid & elektriküte"

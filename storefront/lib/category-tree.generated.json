@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-06T19:53:04.776Z",
+  "generated_at": "2026-07-06T19:59:51.165Z",
   "nodes": {
     "v4-tooriistad-ja-tarvikud": {
       "handle": "v4-tooriistad-ja-tarvikud",
@@ -12518,7 +12518,6 @@
         "v4-santehnika-kute-ja-ventilatsioon-vannitoa-tarvikud-ja-hoiustamine",
         "v4-santehnika-kute-ja-ventilatsioon-aravool-ja-porandatrapid",
         "v4-santehnika-porandakute-kuttekaablid",
-        "v4-santehnika-kute-ja-ventilatsioon-veesoojendid-ja-boilerid",
         "v4-santehnika-ratikukuivatid-elektrikute"
       ],
       "image_path": null,
@@ -13223,6 +13222,7 @@
         "v4-santehnika-kute-ja-ventilatsioon-dusipingid-ja-istmed",
         "v4-santehnika-kute-ja-ventilatsioon-dusisusteemid-ja-dusikabiinid-dusiseinad",
         "v4-santehnika-kute-ja-ventilatsioon-dusisusteemid-ja-dusikabiinid-dusiuksed",
+        "v4-santehnika-kute-ja-ventilatsioon-elektrilised-veesoojendid",
         "v4-santehnika-kute-ja-ventilatsioon-dusisusteemid-ja-dusikabiinid-dusisusteemid"
       ],
       "image_path": null,
@@ -13282,6 +13282,16 @@
       "handle": "v4-santehnika-kute-ja-ventilatsioon-dusisusteemid-ja-dusikabiinid-dusiuksed",
       "name_en": "Dušiuksed",
       "name_et": "Dušiuksed",
+      "level": 3,
+      "parent_handle": "v4-santehnika-kute-ja-ventilatsioon-dusisusteemid-ja-dusikabiinid",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-santehnika-kute-ja-ventilatsioon-elektrilised-veesoojendid": {
+      "handle": "v4-santehnika-kute-ja-ventilatsioon-elektrilised-veesoojendid",
+      "name_en": "Elektrilised veesoojendid",
+      "name_et": "Elektrilised veesoojendid",
       "level": 3,
       "parent_handle": "v4-santehnika-kute-ja-ventilatsioon-dusisusteemid-ja-dusikabiinid",
       "child_handles": [],
@@ -13426,28 +13436,6 @@
       "name_et": "Termostaadid",
       "level": 3,
       "parent_handle": "v4-santehnika-porandakute-kuttekaablid",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-santehnika-kute-ja-ventilatsioon-veesoojendid-ja-boilerid": {
-      "handle": "v4-santehnika-kute-ja-ventilatsioon-veesoojendid-ja-boilerid",
-      "name_en": "Veesoojendid & boilerid",
-      "name_et": "Veesoojendid & boilerid",
-      "level": 2,
-      "parent_handle": "v4-santehnika-kute-ja-ventilatsioon",
-      "child_handles": [
-        "v4-santehnika-kute-ja-ventilatsioon-elektrilised-veesoojendid"
-      ],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-santehnika-kute-ja-ventilatsioon-elektrilised-veesoojendid": {
-      "handle": "v4-santehnika-kute-ja-ventilatsioon-elektrilised-veesoojendid",
-      "name_en": "Elektrilised veesoojendid",
-      "name_et": "Elektrilised veesoojendid",
-      "level": 3,
-      "parent_handle": "v4-santehnika-kute-ja-ventilatsioon-veesoojendid-ja-boilerid",
       "child_handles": [],
       "image_path": null,
       "image_source": "none"
@@ -21788,6 +21776,7 @@
     "v4-santehnika-kute-ja-ventilatsioon-dusipingid-ja-istmed",
     "v4-santehnika-kute-ja-ventilatsioon-dusisusteemid-ja-dusikabiinid-dusiseinad",
     "v4-santehnika-kute-ja-ventilatsioon-dusisusteemid-ja-dusikabiinid-dusiuksed",
+    "v4-santehnika-kute-ja-ventilatsioon-elektrilised-veesoojendid",
     "v4-santehnika-kute-ja-ventilatsioon-dusisusteemid-ja-dusikabiinid-dusisusteemid",
     "v4-santehnika-kute-ja-ventilatsioon-vannitoa-tarvikud-ja-hoiustamine",
     "v4-santehnika-kute-ja-ventilatsioon-vannitoa-tarvikud-ja-hoiustamine-dusinurga-riiulid-ja-postid",
@@ -21801,8 +21790,6 @@
     "v4-santehnika-kute-ja-ventilatsioon-radiaatorid-ja-kuttekehad-pex-al-pex-torud",
     "v4-santehnika-kute-ja-ventilatsioon-kuttekaablid-ja-lindid",
     "v4-santehnika-kute-ja-ventilatsioon-radiaatorid-ja-kuttekehad-termostaadid",
-    "v4-santehnika-kute-ja-ventilatsioon-veesoojendid-ja-boilerid",
-    "v4-santehnika-kute-ja-ventilatsioon-elektrilised-veesoojendid",
     "v4-santehnika-ratikukuivatid-elektrikute",
     "v4-santehnika-kute-ja-ventilatsioon-ratikukuivatid",
     "v4-santehnika-porandaliistkutte-katted",
