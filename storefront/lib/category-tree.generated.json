@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-06T19:13:56.971Z",
+  "generated_at": "2026-07-06T19:26:44.612Z",
   "nodes": {
     "v4-tooriistad-ja-tarvikud": {
       "handle": "v4-tooriistad-ja-tarvikud",
@@ -7954,7 +7954,6 @@
         "v4-moobel-ja-sisustus-esikumoobel-ja-jalatsikapid",
         "v4-moobel-ja-sisustus-aknakatted-ja-kardinatarvikud",
         "v4-moobel-ja-sisustus-vannitoamoobel",
-        "v4-moobel-ja-sisustus-tv-alused-ja-kinnitused",
         "v4-moobel-ja-sisustus-moobliosad-ja-komponendid",
         "v4-moobel-kodutekstiil",
         "v4-moobel-postkastid-pakiautomaadid"
@@ -8766,7 +8765,6 @@
       "parent_handle": "v4-moobel-ja-sisustus",
       "child_handles": [
         "v4-moobel-ja-sisustus-toolid-ja-istmed-baaritoolid",
-        "v4-moobel-ja-sisustus-toolid-ja-istmed-kontori-ja-tootoolid",
         "v4-moobel-ja-sisustus-toolid-ja-istmed-pingid",
         "v4-moobel-ja-sisustus-toolid-ja-istmed-soogitoolid",
         "v4-moobel-ja-sisustus-toolid-ja-istmed-taburetid-ja-tootoolid-ratastega",
@@ -8779,16 +8777,6 @@
       "handle": "v4-moobel-ja-sisustus-toolid-ja-istmed-baaritoolid",
       "name_en": "Baaritoolid",
       "name_et": "Baaritoolid",
-      "level": 3,
-      "parent_handle": "v4-moobel-ja-sisustus-toolid-ja-istmed",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-moobel-ja-sisustus-toolid-ja-istmed-kontori-ja-tootoolid": {
-      "handle": "v4-moobel-ja-sisustus-toolid-ja-istmed-kontori-ja-tootoolid",
-      "name_en": "Kontori- ja töötoolid",
-      "name_et": "Kontori- ja töötoolid",
       "level": 3,
       "parent_handle": "v4-moobel-ja-sisustus-toolid-ja-istmed",
       "child_handles": [],
@@ -8985,28 +8973,6 @@
       "name_et": "Peeglikapid",
       "level": 3,
       "parent_handle": "v4-moobel-ja-sisustus-vannitoamoobel",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-moobel-ja-sisustus-tv-alused-ja-kinnitused": {
-      "handle": "v4-moobel-ja-sisustus-tv-alused-ja-kinnitused",
-      "name_en": "TV-alused & kinnitused",
-      "name_et": "TV-alused & kinnitused",
-      "level": 2,
-      "parent_handle": "v4-moobel-ja-sisustus",
-      "child_handles": [
-        "v4-moobel-ja-sisustus-tv-alused-ja-kinnitused-teleri-seinakinnitused"
-      ],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-moobel-ja-sisustus-tv-alused-ja-kinnitused-teleri-seinakinnitused": {
-      "handle": "v4-moobel-ja-sisustus-tv-alused-ja-kinnitused-teleri-seinakinnitused",
-      "name_en": "Teleri seinakinnitused",
-      "name_et": "Teleri seinakinnitused",
-      "level": 3,
-      "parent_handle": "v4-moobel-ja-sisustus-tv-alused-ja-kinnitused",
       "child_handles": [],
       "image_path": null,
       "image_source": "none"
@@ -21440,7 +21406,6 @@
     "v4-moobel-ja-sisustus-lapsemoobel-riidepuud-ja-esikumoobel",
     "v4-moobel-ja-sisustus-toolid-ja-istmed",
     "v4-moobel-ja-sisustus-toolid-ja-istmed-baaritoolid",
-    "v4-moobel-ja-sisustus-toolid-ja-istmed-kontori-ja-tootoolid",
     "v4-moobel-ja-sisustus-toolid-ja-istmed-pingid",
     "v4-moobel-ja-sisustus-toolid-ja-istmed-soogitoolid",
     "v4-moobel-ja-sisustus-toolid-ja-istmed-taburetid-ja-tootoolid-ratastega",
@@ -21459,8 +21424,6 @@
     "v4-moobel-ja-sisustus-aknakatted-ja-kardinatarvikud-paneelkardinad",
     "v4-moobel-ja-sisustus-vannitoamoobel",
     "v4-moobel-ja-sisustus-vannitoamoobel-peeglikapid",
-    "v4-moobel-ja-sisustus-tv-alused-ja-kinnitused",
-    "v4-moobel-ja-sisustus-tv-alused-ja-kinnitused-teleri-seinakinnitused",
     "v4-moobel-ja-sisustus-moobliosad-ja-komponendid",
     "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-kontoritooli-alused",
     "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-lauajalad",

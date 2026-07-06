@@ -3281,10 +3281,6 @@ l1:
             name_en: "Baaritoolid"
             name_et: "Baaritoolid"
             product_count: 0
-          - slug: v4-moobel-ja-sisustus-toolid-ja-istmed-kontori-ja-tootoolid
-            name_en: "Kontori- ja töötoolid"
-            name_et: "Kontori- ja töötoolid"
-            product_count: 0
           - slug: v4-moobel-ja-sisustus-toolid-ja-istmed-pingid
             name_en: "Pingid"
             name_et: "Pingid"
@@ -3360,15 +3356,6 @@ l1:
           - slug: v4-moobel-ja-sisustus-vannitoamoobel-peeglikapid
             name_en: "Peeglikapid"
             name_et: "Peeglikapid"
-            product_count: 0
-      - slug: v4-moobel-ja-sisustus-tv-alused-ja-kinnitused
-        name_en: "TV-alused & kinnitused"
-        name_et: "TV-alused & kinnitused"
-        product_count: 0
-        subs:
-          - slug: v4-moobel-ja-sisustus-tv-alused-ja-kinnitused-teleri-seinakinnitused
-            name_en: "Teleri seinakinnitused"
-            name_et: "Teleri seinakinnitused"
             product_count: 0
       - slug: v4-moobel-ja-sisustus-moobliosad-ja-komponendid
         name_en: "Mööbliosad & -komponendid"
