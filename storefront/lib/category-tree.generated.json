@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-06T16:49:07.670Z",
+  "generated_at": "2026-07-06T17:10:04.540Z",
   "nodes": {
     "v4-tooriistad-ja-tarvikud": {
       "handle": "v4-tooriistad-ja-tarvikud",
@@ -267,7 +267,8 @@
         "v4-tooriistad-ja-tarvikud-kasitooriistad-poordmoment-votmed-ja-momendivotmed",
         "v4-tooriistad-ja-tarvikud-kasitooriistad-silmus-ja-lehtvotmete-komplektid",
         "v4-tooriistad-ja-tarvikud-kasitooriistad-tangid-ja-napitsad",
-        "v4-tooriistad-ja-tarvikud-kasitooriistad-uldtooriistakomplektid"
+        "v4-tooriistad-ja-tarvikud-kasitooriistad-uldtooriistakomplektid",
+        "v4-tooriistad-needipustolid"
       ],
       "image_path": null,
       "image_source": "none"
@@ -506,6 +507,16 @@
       "handle": "v4-tooriistad-ja-tarvikud-kasitooriistad-uldtooriistakomplektid",
       "name_en": "Üldtööriistakomplektid",
       "name_et": "Üldtööriistakomplektid",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-kasitooriistad",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-needipustolid": {
+      "handle": "v4-tooriistad-needipustolid",
+      "name_en": "Needipüstolid",
+      "name_et": "Needipüstolid",
       "level": 3,
       "parent_handle": "v4-tooriistad-ja-tarvikud-kasitooriistad",
       "child_handles": [],
@@ -1579,7 +1590,8 @@
         "v4-tooriistad-ja-tarvikud-keevitus-ja-jootmine-keevitustraadid",
         "v4-tooriistad-ja-tarvikud-keevitus-ja-jootmine-plasmaloikurid",
         "v4-tooriistad-ja-tarvikud-keevitus-ja-jootmine-plastikukeevitusseadmed-ja-pustolid",
-        "v4-tooriistad-ja-tarvikud-keevitus-ja-jootmine-punktkeevitusaparaadid-ja-molgieemaldusseadmed"
+        "v4-tooriistad-ja-tarvikud-keevitus-ja-jootmine-punktkeevitusaparaadid-ja-molgieemaldusseadmed",
+        "v4-tooriistad-kiudoptika-jatkuseadmed"
       ],
       "image_path": null,
       "image_source": "none"
@@ -1738,6 +1750,16 @@
       "handle": "v4-tooriistad-ja-tarvikud-keevitus-ja-jootmine-punktkeevitusaparaadid-ja-molgieemaldusseadmed",
       "name_en": "Punktkeevitusaparaadid ja mõlgieemaldusseadmed",
       "name_et": "Punktkeevitusaparaadid ja mõlgieemaldusseadmed",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-keevitus-ja-jootmine",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-kiudoptika-jatkuseadmed": {
+      "handle": "v4-tooriistad-kiudoptika-jatkuseadmed",
+      "name_en": "Kiudoptika jätkuseadmed",
+      "name_et": "Kiudoptika jätkuseadmed",
       "level": 3,
       "parent_handle": "v4-tooriistad-ja-tarvikud-keevitus-ja-jootmine",
       "child_handles": [],
@@ -3487,7 +3509,8 @@
         "v4-garaaziseadmed-tungrauad-silindertungrauad",
         "v4-garaaziseadmed-tungrauad-tostetoed-ja-tugistatiivid",
         "v4-garaaziseadmed-tungrauad-varba-ja-pikktungrauad",
-        "v4-garaaziseadmed-tungrauad-tookojapressid"
+        "v4-garaaziseadmed-tungrauad-tookojapressid",
+        "v4-garaaz-farm-jack-tungrauad"
       ],
       "image_path": null,
       "image_source": "none"
@@ -3626,6 +3649,16 @@
       "handle": "v4-garaaziseadmed-tungrauad-tookojapressid",
       "name_en": "Töökojapressid",
       "name_et": "Töökojapressid",
+      "level": 3,
+      "parent_handle": "v4-garaaziseadmed-tungrauad",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-garaaz-farm-jack-tungrauad": {
+      "handle": "v4-garaaz-farm-jack-tungrauad",
+      "name_en": "Farm-jack tungrauad",
+      "name_et": "Farm-jack tungrauad",
       "level": 3,
       "parent_handle": "v4-garaaziseadmed-tungrauad",
       "child_handles": [],
@@ -4334,7 +4367,8 @@
         "v4-autovaruosad-ja-tarvikud-pukseerimine-varuratta-hoidikud",
         "v4-autovaruosad-ja-tarvikud-pukseerimisseadmed-vintsi-trossid-ja-taasteplokid",
         "v4-autovaruosad-ja-tarvikud-pukseerimisseadmed-saklid-ja-d-rongad",
-        "v4-autovaruosad-ja-tarvikud-haagise-teisalduskarud"
+        "v4-autovaruosad-ja-tarvikud-haagise-teisalduskarud",
+        "v4-auto-koorma-kinnitusketid"
       ],
       "image_path": null,
       "image_source": "none"
@@ -4513,6 +4547,16 @@
       "handle": "v4-autovaruosad-ja-tarvikud-haagise-teisalduskarud",
       "name_en": "Haagise teisalduskärud",
       "name_et": "Haagise teisalduskärud",
+      "level": 3,
+      "parent_handle": "v4-autovaruosad-ja-tarvikud-pukseerimisseadmed",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-auto-koorma-kinnitusketid": {
+      "handle": "v4-auto-koorma-kinnitusketid",
+      "name_en": "Koorma kinnitusketid",
+      "name_et": "Koorma kinnitusketid",
       "level": 3,
       "parent_handle": "v4-autovaruosad-ja-tarvikud-pukseerimisseadmed",
       "child_handles": [],
@@ -5065,7 +5109,6 @@
         "v4-autovaruosad-ja-tarvikud-haagissuvila-ja-matkatarvikud-stabilisaator-ja-tugijalad",
         "v4-autovaruosad-ja-tarvikud-haagissuvila-ja-matkatarvikud-tasandusplokid-ja-kiilud",
         "v4-autovaruosad-ja-tarvikud-haagissuvila-ja-matkatarvikud-trepid-ja-astmed",
-        "v4-autovaruosad-ja-tarvikud-haagissuvila-ja-matkatarvikud-tungrauad-ja-alused",
         "v4-autovaruosad-ja-tarvikud-haagissuvila-ja-matkatarvikud-uksekaitsed-ja-vored"
       ],
       "image_path": null,
@@ -5175,16 +5218,6 @@
       "handle": "v4-autovaruosad-ja-tarvikud-haagissuvila-ja-matkatarvikud-trepid-ja-astmed",
       "name_en": "Trepid ja astmed",
       "name_et": "Trepid ja astmed",
-      "level": 3,
-      "parent_handle": "v4-autovaruosad-ja-tarvikud-haagissuvila-ja-matkatarvikud",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-autovaruosad-ja-tarvikud-haagissuvila-ja-matkatarvikud-tungrauad-ja-alused": {
-      "handle": "v4-autovaruosad-ja-tarvikud-haagissuvila-ja-matkatarvikud-tungrauad-ja-alused",
-      "name_en": "Tungrauad ja alused",
-      "name_et": "Tungrauad ja alused",
       "level": 3,
       "parent_handle": "v4-autovaruosad-ja-tarvikud-haagissuvila-ja-matkatarvikud",
       "child_handles": [],
@@ -9508,7 +9541,8 @@
         "v4-aed-ja-aiatehnika-l2-mullivannid-ja-jaavannid",
         "v4-aed-ja-aiatehnika-l2-ratikuhoidikud",
         "v4-aed-ja-aiatehnika-l2-taispuhutavad-ja-raamiga-basseinid",
-        "v4-aed-ja-aiatehnika-valisdusid"
+        "v4-aed-ja-aiatehnika-valisdusid",
+        "v4-aed-basseinivooderdised"
       ],
       "image_path": null,
       "image_source": "none"
@@ -9717,6 +9751,16 @@
       "handle": "v4-aed-ja-aiatehnika-valisdusid",
       "name_en": "Välisdušid",
       "name_et": "Välisdušid",
+      "level": 3,
+      "parent_handle": "v4-aed-ja-aiatehnika-basseinid-ja-spaa",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-aed-basseinivooderdised": {
+      "handle": "v4-aed-basseinivooderdised",
+      "name_en": "Basseinivooderdised",
+      "name_et": "Basseinivooderdised",
       "level": 3,
       "parent_handle": "v4-aed-ja-aiatehnika-basseinid-ja-spaa",
       "child_handles": [],
@@ -10134,7 +10178,6 @@
         "v4-aed-ja-aiatehnika-l6-lipumastid",
         "v4-aed-ja-aiatehnika-l6-taimede-tugiresti-ja-trellised",
         "v4-aed-ja-aiatehnika-l6-tee-ja-soidutee-margistused",
-        "v4-aed-ja-aiatehnika-l6-tulelauad-ja-tuulevarjud",
         "v4-aed-ja-aiatehnika-l6-tuulekellad",
         "v4-aed-ja-aiatehnika-l6-udumasinad",
         "v4-aed-ja-aiatehnika-l6-veejoad-ja-purskkaevud"
@@ -10216,16 +10259,6 @@
       "handle": "v4-aed-ja-aiatehnika-l6-tee-ja-soidutee-margistused",
       "name_en": "Tee- ja sõidutee märgistused",
       "name_et": "Tee- ja sõidutee märgistused",
-      "level": 3,
-      "parent_handle": "v4-aed-ja-aiatehnika-aiadekoor",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-aed-ja-aiatehnika-l6-tulelauad-ja-tuulevarjud": {
-      "handle": "v4-aed-ja-aiatehnika-l6-tulelauad-ja-tuulevarjud",
-      "name_en": "Tulelauad ja tuulevarjud",
-      "name_et": "Tulelauad ja tuulevarjud",
       "level": 3,
       "parent_handle": "v4-aed-ja-aiatehnika-aiadekoor",
       "child_handles": [],
@@ -17840,6 +17873,7 @@
       "parent_handle": "v4-lemmikloomatarbed",
       "child_handles": [
         "v4-lemmikloomatarbed-transport-ja-autotarvikud-auto-istmekatted-ja-porandakaitsed",
+        "v4-lemmikloomatarbed-pesad-ja-asemed-koera-autoistmed",
         "v4-lemmikloomatarbed-transport-ja-autotarvikud-lemmikloomade-autobarjaarid",
         "v4-lemmikloomatarbed-transport-ja-autotarvikud-lemmikloomade-jalgrattahaagised",
         "v4-lemmikloomatarbed-transport-ja-autotarvikud-lemmikloomade-jalutuskarud-ja-vankrid",
@@ -17852,6 +17886,16 @@
       "handle": "v4-lemmikloomatarbed-transport-ja-autotarvikud-auto-istmekatted-ja-porandakaitsed",
       "name_en": "Auto istmekatted & põrandakaitsed",
       "name_et": "Auto istmekatted & põrandakaitsed",
+      "level": 3,
+      "parent_handle": "v4-lemmikloomatarbed-transport-ja-autotarvikud",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-lemmikloomatarbed-pesad-ja-asemed-koera-autoistmed": {
+      "handle": "v4-lemmikloomatarbed-pesad-ja-asemed-koera-autoistmed",
+      "name_en": "Koera autoistmed",
+      "name_et": "Koera autoistmed",
       "level": 3,
       "parent_handle": "v4-lemmikloomatarbed-transport-ja-autotarvikud",
       "child_handles": [],
@@ -17907,7 +17951,6 @@
       "child_handles": [
         "v4-lemmikloomatarbed-pesad-ja-asemed-inimsuuruses-koeravoodid",
         "v4-lemmikloomatarbed-pesad-ja-asemed-kassimajad",
-        "v4-lemmikloomatarbed-pesad-ja-asemed-koera-autoistmed",
         "v4-lemmikloomatarbed-pesad-ja-asemed-koeravoodid-ja-pesad",
         "v4-lemmikloomatarbed-pesad-ja-asemed-lemmiklooma-voodid"
       ],
@@ -17928,16 +17971,6 @@
       "handle": "v4-lemmikloomatarbed-pesad-ja-asemed-kassimajad",
       "name_en": "Kassimajad",
       "name_et": "Kassimajad",
-      "level": 3,
-      "parent_handle": "v4-lemmikloomatarbed-pesad-ja-asemed",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-lemmikloomatarbed-pesad-ja-asemed-koera-autoistmed": {
-      "handle": "v4-lemmikloomatarbed-pesad-ja-asemed-koera-autoistmed",
-      "name_en": "Koera autoistmed",
-      "name_et": "Koera autoistmed",
       "level": 3,
       "parent_handle": "v4-lemmikloomatarbed-pesad-ja-asemed",
       "child_handles": [],
@@ -18019,8 +18052,7 @@
         "v4-lemmikloomatarbed-treening-ja-manguasjad-kassipuud",
         "v4-lemmikloomatarbed-treening-ja-manguasjad-koerte-agility-ja-treeningkomplektid",
         "v4-lemmikloomatarbed-treening-ja-manguasjad-koerte-jooksulindid",
-        "v4-lemmikloomad-kassi-seinariiulid",
-        "v4-lemmikloomad-kassipuurid-aedikud"
+        "v4-lemmikloomad-kassi-seinariiulid"
       ],
       "image_path": null,
       "image_source": "none"
@@ -18069,16 +18101,6 @@
       "handle": "v4-lemmikloomad-kassi-seinariiulid",
       "name_en": "Kassi seinariiulid",
       "name_et": "Kassi seinariiulid",
-      "level": 3,
-      "parent_handle": "v4-lemmikloomatarbed-treening-ja-manguasjad",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-lemmikloomad-kassipuurid-aedikud": {
-      "handle": "v4-lemmikloomad-kassipuurid-aedikud",
-      "name_en": "Kassipuurid & -aedikud",
-      "name_et": "Kassipuurid & -aedikud",
       "level": 3,
       "parent_handle": "v4-lemmikloomatarbed-treening-ja-manguasjad",
       "child_handles": [],
@@ -19080,9 +19102,9 @@
         "v4-meditsiin-ja-liikumisabi-meditsiinitarvikud-kukkumiskaitsevahendid-ja-voodialarmid",
         "v4-meditsiin-ja-liikumisabi-meditsiinitarvikud-lambumis-ja-hingamisabivahendid",
         "v4-meditsiin-ja-liikumisabi-meditsiinitarvikud-meditsiinilised-kaalud",
+        "v4-meditsiin-ja-liikumisabi-meditsiinitarvikud-oppe-ja-anatoomiamudelid",
         "v4-meditsiin-ja-liikumisabi-meditsiinitarvikud-suurendusseadmed",
         "v4-meditsiin-ja-liikumisabi-meditsiinitarvikud-uurimis-ja-protseduurilauad",
-        "v4-meditsiin-ja-liikumisabi-meditsiinitarvikud-oppe-ja-anatoomiamudelid",
         "v4-meditsiin-ja-liikumisabi-meditsiinitarvikud-uhekordsed-katte-ja-aluspaberid",
         "v4-meditsiin-ja-liikumisabi-meditsiinitarvikud-hambaravi-hambalaboriseadmed",
         "v4-meditsiin-anatoomilised-oppemudelid",
@@ -19161,6 +19183,16 @@
       "image_path": null,
       "image_source": "none"
     },
+    "v4-meditsiin-ja-liikumisabi-meditsiinitarvikud-oppe-ja-anatoomiamudelid": {
+      "handle": "v4-meditsiin-ja-liikumisabi-meditsiinitarvikud-oppe-ja-anatoomiamudelid",
+      "name_en": "Meditsiinilised simulatsioonivahendid",
+      "name_et": "Meditsiinilised simulatsioonivahendid",
+      "level": 3,
+      "parent_handle": "v4-meditsiin-ja-liikumisabi-meditsiinitarvikud",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
     "v4-meditsiin-ja-liikumisabi-meditsiinitarvikud-suurendusseadmed": {
       "handle": "v4-meditsiin-ja-liikumisabi-meditsiinitarvikud-suurendusseadmed",
       "name_en": "Suurendusseadmed",
@@ -19175,16 +19207,6 @@
       "handle": "v4-meditsiin-ja-liikumisabi-meditsiinitarvikud-uurimis-ja-protseduurilauad",
       "name_en": "Uurimis- ja protseduurilauad",
       "name_et": "Uurimis- ja protseduurilauad",
-      "level": 3,
-      "parent_handle": "v4-meditsiin-ja-liikumisabi-meditsiinitarvikud",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-meditsiin-ja-liikumisabi-meditsiinitarvikud-oppe-ja-anatoomiamudelid": {
-      "handle": "v4-meditsiin-ja-liikumisabi-meditsiinitarvikud-oppe-ja-anatoomiamudelid",
-      "name_en": "Õppe- ja anatoomiamudelid",
-      "name_et": "Õppe- ja anatoomiamudelid",
       "level": 3,
       "parent_handle": "v4-meditsiin-ja-liikumisabi-meditsiinitarvikud",
       "child_handles": [],
@@ -20150,7 +20172,8 @@
       "parent_handle": "v4-ladu-hoiustamine-ja-pakendamine",
       "child_handles": [
         "v4-ladu-pakkimis-koitmistarvikud",
-        "v4-ladu-pakkimis-sidumismasinad"
+        "v4-ladu-pakkimis-sidumismasinad",
+        "v4-ladu-posti-loenduskaalud"
       ],
       "image_path": null,
       "image_source": "none"
@@ -20169,6 +20192,16 @@
       "handle": "v4-ladu-pakkimis-sidumismasinad",
       "name_en": "Pakkimis- & sidumismasinad",
       "name_et": "Pakkimis- & sidumismasinad",
+      "level": 3,
+      "parent_handle": "v4-ladu-pakendamine",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-ladu-posti-loenduskaalud": {
+      "handle": "v4-ladu-posti-loenduskaalud",
+      "name_en": "Posti- & loenduskaalud",
+      "name_et": "Posti- & loenduskaalud",
       "level": 3,
       "parent_handle": "v4-ladu-pakendamine",
       "child_handles": [],
@@ -20540,6 +20573,7 @@
     "v4-tooriistad-ja-tarvikud-kasitooriistad-silmus-ja-lehtvotmete-komplektid",
     "v4-tooriistad-ja-tarvikud-kasitooriistad-tangid-ja-napitsad",
     "v4-tooriistad-ja-tarvikud-kasitooriistad-uldtooriistakomplektid",
+    "v4-tooriistad-needipustolid",
     "v4-tooriistad-ja-tarvikud-elektrilised-tooriistad",
     "v4-tooriistad-ja-tarvikud-elektrilised-tooriistad-betoonisaed",
     "v4-tooriistad-ja-tarvikud-elektrilised-tooriistad-betoonivibraatorid",
@@ -20652,6 +20686,7 @@
     "v4-tooriistad-ja-tarvikud-keevitus-ja-jootmine-plasmaloikurid",
     "v4-tooriistad-ja-tarvikud-keevitus-ja-jootmine-plastikukeevitusseadmed-ja-pustolid",
     "v4-tooriistad-ja-tarvikud-keevitus-ja-jootmine-punktkeevitusaparaadid-ja-molgieemaldusseadmed",
+    "v4-tooriistad-kiudoptika-jatkuseadmed",
     "v4-tooriistad-ja-tarvikud-moote-ja-markeriistad",
     "v4-tooriistad-ja-tarvikud-moote-ja-markeriistad-digitaalsed-mootenaidikud-dro",
     "v4-tooriistad-ja-tarvikud-moote-ja-markeriistad-endoskoopkaamerad",
@@ -20822,6 +20857,7 @@
     "v4-garaaziseadmed-tungrauad-tostetoed-ja-tugistatiivid",
     "v4-garaaziseadmed-tungrauad-varba-ja-pikktungrauad",
     "v4-garaaziseadmed-tungrauad-tookojapressid",
+    "v4-garaaz-farm-jack-tungrauad",
     "v4-garaaziseadmed-olivahetus-ja-maarimine",
     "v4-garaaziseadmed-olivahetus-ja-hooldus-kaigukastioli-pumbad-ja-vahetusjaamad",
     "v4-garaaziseadmed-olivahetus-ja-hooldus-maardepustolid-ja-otsikud",
@@ -20901,6 +20937,7 @@
     "v4-autovaruosad-ja-tarvikud-pukseerimisseadmed-vintsi-trossid-ja-taasteplokid",
     "v4-autovaruosad-ja-tarvikud-pukseerimisseadmed-saklid-ja-d-rongad",
     "v4-autovaruosad-ja-tarvikud-haagise-teisalduskarud",
+    "v4-auto-koorma-kinnitusketid",
     "v4-autovaruosad-ja-tarvikud-veoauto-tarvikud",
     "v4-autovaruosad-ja-tarvikud-veoauto-tarvikud-astmelauad-ja-astmepukid",
     "v4-autovaruosad-ja-tarvikud-veoauto-autohaagise-madratsid",
@@ -20961,7 +20998,6 @@
     "v4-autovaruosad-ja-tarvikud-haagissuvila-ja-matkatarvikud-stabilisaator-ja-tugijalad",
     "v4-autovaruosad-ja-tarvikud-haagissuvila-ja-matkatarvikud-tasandusplokid-ja-kiilud",
     "v4-autovaruosad-ja-tarvikud-haagissuvila-ja-matkatarvikud-trepid-ja-astmed",
-    "v4-autovaruosad-ja-tarvikud-haagissuvila-ja-matkatarvikud-tungrauad-ja-alused",
     "v4-autovaruosad-ja-tarvikud-haagissuvila-ja-matkatarvikud-uksekaitsed-ja-vored",
     "v4-autovaruosad-ja-tarvikud-salongitarvikud",
     "v4-autovaruosad-ja-tarvikud-salongitarvikud-auto-istmekatted",
@@ -21368,6 +21404,7 @@
     "v4-aed-ja-aiatehnika-l2-ratikuhoidikud",
     "v4-aed-ja-aiatehnika-l2-taispuhutavad-ja-raamiga-basseinid",
     "v4-aed-ja-aiatehnika-valisdusid",
+    "v4-aed-basseinivooderdised",
     "v4-aed-ja-aiatehnika-maastikukujundus",
     "v4-aed-ja-aiatehnika-l3-aiaaaristused-ja-peenraservad",
     "v4-aed-ja-aiatehnika-l3-astmekivid-ja-sillutusplaadid",
@@ -21413,7 +21450,6 @@
     "v4-aed-ja-aiatehnika-l6-lipumastid",
     "v4-aed-ja-aiatehnika-l6-taimede-tugiresti-ja-trellised",
     "v4-aed-ja-aiatehnika-l6-tee-ja-soidutee-margistused",
-    "v4-aed-ja-aiatehnika-l6-tulelauad-ja-tuulevarjud",
     "v4-aed-ja-aiatehnika-l6-tuulekellad",
     "v4-aed-ja-aiatehnika-l6-udumasinad",
     "v4-aed-ja-aiatehnika-l6-veejoad-ja-purskkaevud",
@@ -22097,6 +22133,7 @@
     "v4-lemmikloomatarbed-lemmiklooma-hooldus-lemmikloomade-pesemisvannid",
     "v4-lemmikloomatarbed-transport-ja-autotarvikud",
     "v4-lemmikloomatarbed-transport-ja-autotarvikud-auto-istmekatted-ja-porandakaitsed",
+    "v4-lemmikloomatarbed-pesad-ja-asemed-koera-autoistmed",
     "v4-lemmikloomatarbed-transport-ja-autotarvikud-lemmikloomade-autobarjaarid",
     "v4-lemmikloomatarbed-transport-ja-autotarvikud-lemmikloomade-jalgrattahaagised",
     "v4-lemmikloomatarbed-transport-ja-autotarvikud-lemmikloomade-jalutuskarud-ja-vankrid",
@@ -22104,7 +22141,6 @@
     "v4-lemmikloomatarbed-pesad-ja-asemed",
     "v4-lemmikloomatarbed-pesad-ja-asemed-inimsuuruses-koeravoodid",
     "v4-lemmikloomatarbed-pesad-ja-asemed-kassimajad",
-    "v4-lemmikloomatarbed-pesad-ja-asemed-koera-autoistmed",
     "v4-lemmikloomatarbed-pesad-ja-asemed-koeravoodid-ja-pesad",
     "v4-lemmikloomatarbed-pesad-ja-asemed-lemmiklooma-voodid",
     "v4-lemmikloomatarbed-sootmine-ja-jootmine",
@@ -22117,7 +22153,6 @@
     "v4-lemmikloomatarbed-treening-ja-manguasjad-koerte-agility-ja-treeningkomplektid",
     "v4-lemmikloomatarbed-treening-ja-manguasjad-koerte-jooksulindid",
     "v4-lemmikloomad-kassi-seinariiulid",
-    "v4-lemmikloomad-kassipuurid-aedikud",
     "v4-lemmikloomatarbed-lemmiklooma-uksed-ja-varavad",
     "v4-lemmikloomatarbed-lemmiklooma-uksed-ja-varavad-lemmiklooma-uksed",
     "v4-lemmikloomatarbed-lemmiklooma-varavad",
@@ -22213,9 +22248,9 @@
     "v4-meditsiin-ja-liikumisabi-meditsiinitarvikud-kukkumiskaitsevahendid-ja-voodialarmid",
     "v4-meditsiin-ja-liikumisabi-meditsiinitarvikud-lambumis-ja-hingamisabivahendid",
     "v4-meditsiin-ja-liikumisabi-meditsiinitarvikud-meditsiinilised-kaalud",
+    "v4-meditsiin-ja-liikumisabi-meditsiinitarvikud-oppe-ja-anatoomiamudelid",
     "v4-meditsiin-ja-liikumisabi-meditsiinitarvikud-suurendusseadmed",
     "v4-meditsiin-ja-liikumisabi-meditsiinitarvikud-uurimis-ja-protseduurilauad",
-    "v4-meditsiin-ja-liikumisabi-meditsiinitarvikud-oppe-ja-anatoomiamudelid",
     "v4-meditsiin-ja-liikumisabi-meditsiinitarvikud-uhekordsed-katte-ja-aluspaberid",
     "v4-meditsiin-ja-liikumisabi-meditsiinitarvikud-hambaravi-hambalaboriseadmed",
     "v4-meditsiin-anatoomilised-oppemudelid",
@@ -22303,6 +22338,7 @@
     "v4-ladu-pakendamine",
     "v4-ladu-pakkimis-koitmistarvikud",
     "v4-ladu-pakkimis-sidumismasinad",
+    "v4-ladu-posti-loenduskaalud",
     "v4-ladu-hoiukastid-konteinerid",
     "v4-ladu-veekindlad-kohvrid",
     "v4-ladu-hoiukastid-kirstud",

@@ -189,6 +189,10 @@ l1:
             name_en: "Üldtööriistakomplektid"
             name_et: "Üldtööriistakomplektid"
             product_count: 0
+          - slug: v4-tooriistad-needipustolid
+            name_en: "Needipüstolid"
+            name_et: "Needipüstolid"
+            product_count: 0
       - slug: v4-tooriistad-ja-tarvikud-elektrilised-tooriistad
         name_en: "Elektrilised tööriistad"
         name_et: "Elektrilised tööriistad"
@@ -642,6 +646,10 @@ l1:
           - slug: v4-tooriistad-ja-tarvikud-keevitus-ja-jootmine-punktkeevitusaparaadid-ja-molgieemaldusseadmed
             name_en: "Punktkeevitusaparaadid ja mõlgieemaldusseadmed"
             name_et: "Punktkeevitusaparaadid ja mõlgieemaldusseadmed"
+            product_count: 0
+          - slug: v4-tooriistad-kiudoptika-jatkuseadmed
+            name_en: "Kiudoptika jätkuseadmed"
+            name_et: "Kiudoptika jätkuseadmed"
             product_count: 0
       - slug: v4-tooriistad-ja-tarvikud-moote-ja-markeriistad
         name_en: "Mõõte- & märkeriistad"
@@ -1347,6 +1355,10 @@ l1:
             name_en: "Töökojapressid"
             name_et: "Töökojapressid"
             product_count: 0
+          - slug: v4-garaaz-farm-jack-tungrauad
+            name_en: "Farm-jack tungrauad"
+            name_et: "Farm-jack tungrauad"
+            product_count: 0
       - slug: v4-garaaziseadmed-olivahetus-ja-maarimine
         name_en: "Õlivahetus & määrimine"
         name_et: "Õlivahetus & määrimine"
@@ -1684,6 +1696,10 @@ l1:
             name_en: "Haagise teisalduskärud"
             name_et: "Haagise teisalduskärud"
             product_count: 0
+          - slug: v4-auto-koorma-kinnitusketid
+            name_en: "Koorma kinnitusketid"
+            name_et: "Koorma kinnitusketid"
+            product_count: 0
       - slug: v4-autovaruosad-ja-tarvikud-veoauto-tarvikud
         name_en: "Veoauto tarvikud"
         name_et: "Veoauto tarvikud"
@@ -1927,10 +1943,6 @@ l1:
           - slug: v4-autovaruosad-ja-tarvikud-haagissuvila-ja-matkatarvikud-trepid-ja-astmed
             name_en: "Trepid ja astmed"
             name_et: "Trepid ja astmed"
-            product_count: 0
-          - slug: v4-autovaruosad-ja-tarvikud-haagissuvila-ja-matkatarvikud-tungrauad-ja-alused
-            name_en: "Tungrauad ja alused"
-            name_et: "Tungrauad ja alused"
             product_count: 0
           - slug: v4-autovaruosad-ja-tarvikud-haagissuvila-ja-matkatarvikud-uksekaitsed-ja-vored
             name_en: "Uksekaitsed ja võred"
@@ -3635,6 +3647,10 @@ l1:
             name_en: "Välisdušid"
             name_et: "Välisdušid"
             product_count: 0
+          - slug: v4-aed-basseinivooderdised
+            name_en: "Basseinivooderdised"
+            name_et: "Basseinivooderdised"
+            product_count: 0
       - slug: v4-aed-ja-aiatehnika-maastikukujundus
         name_en: "Maastikukujundus"
         name_et: "Maastikukujundus"
@@ -3818,10 +3834,6 @@ l1:
           - slug: v4-aed-ja-aiatehnika-l6-tee-ja-soidutee-margistused
             name_en: "Tee- ja sõidutee märgistused"
             name_et: "Tee- ja sõidutee märgistused"
-            product_count: 0
-          - slug: v4-aed-ja-aiatehnika-l6-tulelauad-ja-tuulevarjud
-            name_en: "Tulelauad ja tuulevarjud"
-            name_et: "Tulelauad ja tuulevarjud"
             product_count: 0
           - slug: v4-aed-ja-aiatehnika-l6-tuulekellad
             name_en: "Tuulekellad"
@@ -6707,6 +6719,10 @@ l1:
             name_en: "Auto istmekatted & põrandakaitsed"
             name_et: "Auto istmekatted & põrandakaitsed"
             product_count: 0
+          - slug: v4-lemmikloomatarbed-pesad-ja-asemed-koera-autoistmed
+            name_en: "Koera autoistmed"
+            name_et: "Koera autoistmed"
+            product_count: 0
           - slug: v4-lemmikloomatarbed-transport-ja-autotarvikud-lemmikloomade-autobarjaarid
             name_en: "Lemmikloomade autobarjäärid"
             name_et: "Lemmikloomade autobarjäärid"
@@ -6735,10 +6751,6 @@ l1:
           - slug: v4-lemmikloomatarbed-pesad-ja-asemed-kassimajad
             name_en: "Kassimajad"
             name_et: "Kassimajad"
-            product_count: 0
-          - slug: v4-lemmikloomatarbed-pesad-ja-asemed-koera-autoistmed
-            name_en: "Koera autoistmed"
-            name_et: "Koera autoistmed"
             product_count: 0
           - slug: v4-lemmikloomatarbed-pesad-ja-asemed-koeravoodid-ja-pesad
             name_en: "Koeravoodid ja -pesad"
@@ -6789,10 +6801,6 @@ l1:
           - slug: v4-lemmikloomad-kassi-seinariiulid
             name_en: "Kassi seinariiulid"
             name_et: "Kassi seinariiulid"
-            product_count: 0
-          - slug: v4-lemmikloomad-kassipuurid-aedikud
-            name_en: "Kassipuurid & -aedikud"
-            name_et: "Kassipuurid & -aedikud"
             product_count: 0
       - slug: v4-lemmikloomatarbed-lemmiklooma-uksed-ja-varavad
         name_en: "Lemmiklooma-uksed & väravad"
@@ -7211,6 +7219,10 @@ l1:
             name_en: "Meditsiinilised kaalud"
             name_et: "Meditsiinilised kaalud"
             product_count: 0
+          - slug: v4-meditsiin-ja-liikumisabi-meditsiinitarvikud-oppe-ja-anatoomiamudelid
+            name_en: "Meditsiinilised simulatsioonivahendid"
+            name_et: "Meditsiinilised simulatsioonivahendid"
+            product_count: 0
           - slug: v4-meditsiin-ja-liikumisabi-meditsiinitarvikud-suurendusseadmed
             name_en: "Suurendusseadmed"
             name_et: "Suurendusseadmed"
@@ -7218,10 +7230,6 @@ l1:
           - slug: v4-meditsiin-ja-liikumisabi-meditsiinitarvikud-uurimis-ja-protseduurilauad
             name_en: "Uurimis- ja protseduurilauad"
             name_et: "Uurimis- ja protseduurilauad"
-            product_count: 0
-          - slug: v4-meditsiin-ja-liikumisabi-meditsiinitarvikud-oppe-ja-anatoomiamudelid
-            name_en: "Õppe- ja anatoomiamudelid"
-            name_et: "Õppe- ja anatoomiamudelid"
             product_count: 0
           - slug: v4-meditsiin-ja-liikumisabi-meditsiinitarvikud-uhekordsed-katte-ja-aluspaberid
             name_en: "Ühekordsed katte- ja aluspaberid"
@@ -7609,6 +7617,10 @@ l1:
           - slug: v4-ladu-pakkimis-sidumismasinad
             name_en: "Pakkimis- & sidumismasinad"
             name_et: "Pakkimis- & sidumismasinad"
+            product_count: 0
+          - slug: v4-ladu-posti-loenduskaalud
+            name_en: "Posti- & loenduskaalud"
+            name_et: "Posti- & loenduskaalud"
             product_count: 0
       - slug: v4-ladu-hoiukastid-konteinerid
         name_en: "Hoiukastid & -konteinerid"
