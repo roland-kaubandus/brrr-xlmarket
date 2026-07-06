@@ -3109,10 +3109,6 @@ l1:
             name_en: "Diivanilauad"
             name_et: "Diivanilauad"
             product_count: 0
-          - slug: v4-moobel-ja-sisustus-lauad-kokkupandavad
-            name_en: "Kokkupandavad lauad"
-            name_et: "Kokkupandavad lauad"
-            product_count: 0
           - slug: v4-moobel-ja-sisustus-lauad-konsoollauad
             name_en: "Konsoollauad"
             name_et: "Konsoollauad"
@@ -3281,17 +3277,13 @@ l1:
             name_en: "Baaritoolid"
             name_et: "Baaritoolid"
             product_count: 0
-          - slug: v4-moobel-ja-sisustus-toolid-ja-istmed-pingid
-            name_en: "Pingid"
-            name_et: "Pingid"
+          - slug: v4-moobel-ja-sisustus-toolid-ja-istmed-taburetid-ja-tootoolid-ratastega
+            name_en: "Rull- ja sadultaburetid"
+            name_et: "Rull- ja sadultaburetid"
             product_count: 0
           - slug: v4-moobel-ja-sisustus-toolid-ja-istmed-soogitoolid
             name_en: "Söögitoolid"
             name_et: "Söögitoolid"
-            product_count: 0
-          - slug: v4-moobel-ja-sisustus-toolid-ja-istmed-taburetid-ja-tootoolid-ratastega
-            name_en: "Taburetid ja töötoolid ratastega"
-            name_et: "Taburetid ja töötoolid ratastega"
             product_count: 0
           - slug: v4-moobel-ja-sisustus-toolid-ja-istmed-vannitoa-istmed
             name_en: "Vannitoa istmed"
@@ -5435,6 +5427,10 @@ l1:
           - slug: v4-peoinventar-toolikatted-umbrised
             name_en: "Toolikatted & -ümbrised"
             name_et: "Toolikatted & -ümbrised"
+            product_count: 0
+          - slug: v4-peoinventar-kokkupandavad-peolauad
+            name_en: "Kokkupandavad peolauad"
+            name_et: "Kokkupandavad peolauad"
             product_count: 0
           - slug: v4-peoinventar-laudlinad
             name_en: "Laudlinad"

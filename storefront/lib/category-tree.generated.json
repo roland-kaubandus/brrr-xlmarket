@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-06T19:26:44.612Z",
+  "generated_at": "2026-07-06T19:43:05.535Z",
   "nodes": {
     "v4-tooriistad-ja-tarvikud": {
       "handle": "v4-tooriistad-ja-tarvikud",
@@ -8293,7 +8293,6 @@
       "child_handles": [
         "v4-moobel-ja-sisustus-lauad-baarilauad-ja-komplektid",
         "v4-moobel-ja-sisustus-lauad-diivanilauad",
-        "v4-moobel-ja-sisustus-lauad-kokkupandavad",
         "v4-moobel-ja-sisustus-lauad-konsoollauad",
         "v4-moobel-ja-sisustus-lauad-kasitoo-ja-ombluslauad",
         "v4-moobel-ja-sisustus-lauad-korval-ja-kuljelauad",
@@ -8320,16 +8319,6 @@
       "handle": "v4-moobel-ja-sisustus-lauad-diivanilauad",
       "name_en": "Diivanilauad",
       "name_et": "Diivanilauad",
-      "level": 3,
-      "parent_handle": "v4-moobel-ja-sisustus-lauad",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-moobel-ja-sisustus-lauad-kokkupandavad": {
-      "handle": "v4-moobel-ja-sisustus-lauad-kokkupandavad",
-      "name_en": "Kokkupandavad lauad",
-      "name_et": "Kokkupandavad lauad",
       "level": 3,
       "parent_handle": "v4-moobel-ja-sisustus-lauad",
       "child_handles": [],
@@ -8765,9 +8754,8 @@
       "parent_handle": "v4-moobel-ja-sisustus",
       "child_handles": [
         "v4-moobel-ja-sisustus-toolid-ja-istmed-baaritoolid",
-        "v4-moobel-ja-sisustus-toolid-ja-istmed-pingid",
-        "v4-moobel-ja-sisustus-toolid-ja-istmed-soogitoolid",
         "v4-moobel-ja-sisustus-toolid-ja-istmed-taburetid-ja-tootoolid-ratastega",
+        "v4-moobel-ja-sisustus-toolid-ja-istmed-soogitoolid",
         "v4-moobel-ja-sisustus-toolid-ja-istmed-vannitoa-istmed"
       ],
       "image_path": null,
@@ -8783,10 +8771,10 @@
       "image_path": null,
       "image_source": "none"
     },
-    "v4-moobel-ja-sisustus-toolid-ja-istmed-pingid": {
-      "handle": "v4-moobel-ja-sisustus-toolid-ja-istmed-pingid",
-      "name_en": "Pingid",
-      "name_et": "Pingid",
+    "v4-moobel-ja-sisustus-toolid-ja-istmed-taburetid-ja-tootoolid-ratastega": {
+      "handle": "v4-moobel-ja-sisustus-toolid-ja-istmed-taburetid-ja-tootoolid-ratastega",
+      "name_en": "Rull- ja sadultaburetid",
+      "name_et": "Rull- ja sadultaburetid",
       "level": 3,
       "parent_handle": "v4-moobel-ja-sisustus-toolid-ja-istmed",
       "child_handles": [],
@@ -8797,16 +8785,6 @@
       "handle": "v4-moobel-ja-sisustus-toolid-ja-istmed-soogitoolid",
       "name_en": "Söögitoolid",
       "name_et": "Söögitoolid",
-      "level": 3,
-      "parent_handle": "v4-moobel-ja-sisustus-toolid-ja-istmed",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-moobel-ja-sisustus-toolid-ja-istmed-taburetid-ja-tootoolid-ratastega": {
-      "handle": "v4-moobel-ja-sisustus-toolid-ja-istmed-taburetid-ja-tootoolid-ratastega",
-      "name_en": "Taburetid ja töötoolid ratastega",
-      "name_et": "Taburetid ja töötoolid ratastega",
       "level": 3,
       "parent_handle": "v4-moobel-ja-sisustus-toolid-ja-istmed",
       "child_handles": [],
@@ -14449,6 +14427,7 @@
       "child_handles": [
         "v4-peoinventar-kokkupandavad-peotoolid",
         "v4-peoinventar-toolikatted-umbrised",
+        "v4-peoinventar-kokkupandavad-peolauad",
         "v4-peoinventar-laudlinad",
         "v4-peoinventar-toolikarud-hoidikud",
         "v4-peoinventar-piirdepostid-jarjekorratokked"
@@ -14470,6 +14449,16 @@
       "handle": "v4-peoinventar-toolikatted-umbrised",
       "name_en": "Toolikatted & -ümbrised",
       "name_et": "Toolikatted & -ümbrised",
+      "level": 3,
+      "parent_handle": "v4-peoinventar-peomoobel-katted",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-peoinventar-kokkupandavad-peolauad": {
+      "handle": "v4-peoinventar-kokkupandavad-peolauad",
+      "name_en": "Kokkupandavad peolauad",
+      "name_et": "Kokkupandavad peolauad",
       "level": 3,
       "parent_handle": "v4-peoinventar-peomoobel-katted",
       "child_handles": [],
@@ -21364,7 +21353,6 @@
     "v4-moobel-ja-sisustus-lauad",
     "v4-moobel-ja-sisustus-lauad-baarilauad-ja-komplektid",
     "v4-moobel-ja-sisustus-lauad-diivanilauad",
-    "v4-moobel-ja-sisustus-lauad-kokkupandavad",
     "v4-moobel-ja-sisustus-lauad-konsoollauad",
     "v4-moobel-ja-sisustus-lauad-kasitoo-ja-ombluslauad",
     "v4-moobel-ja-sisustus-lauad-korval-ja-kuljelauad",
@@ -21406,9 +21394,8 @@
     "v4-moobel-ja-sisustus-lapsemoobel-riidepuud-ja-esikumoobel",
     "v4-moobel-ja-sisustus-toolid-ja-istmed",
     "v4-moobel-ja-sisustus-toolid-ja-istmed-baaritoolid",
-    "v4-moobel-ja-sisustus-toolid-ja-istmed-pingid",
-    "v4-moobel-ja-sisustus-toolid-ja-istmed-soogitoolid",
     "v4-moobel-ja-sisustus-toolid-ja-istmed-taburetid-ja-tootoolid-ratastega",
+    "v4-moobel-ja-sisustus-toolid-ja-istmed-soogitoolid",
     "v4-moobel-ja-sisustus-toolid-ja-istmed-vannitoa-istmed",
     "v4-moobel-ja-sisustus-ruumijagajad-ja-akustika",
     "v4-moobel-ja-sisustus-ruumijagajad-helisummutus",
@@ -21916,6 +21903,7 @@
     "v4-peoinventar-peomoobel-katted",
     "v4-peoinventar-kokkupandavad-peotoolid",
     "v4-peoinventar-toolikatted-umbrised",
+    "v4-peoinventar-kokkupandavad-peolauad",
     "v4-peoinventar-laudlinad",
     "v4-peoinventar-toolikarud-hoidikud",
     "v4-peoinventar-piirdepostid-jarjekorratokked",
