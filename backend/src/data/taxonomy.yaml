@@ -1573,6 +1573,10 @@ l1:
             name_en: "Bensiinikanistrid & ohutuskanistrid"
             name_et: "Bensiinikanistrid & ohutuskanistrid"
             product_count: 0
+          - slug: v4-garaaz-gaasiballooni-soojendid
+            name_en: "Gaasiballooni soojendid"
+            name_et: "Gaasiballooni soojendid"
+            product_count: 0
       - slug: v4-garaaziseadmed-autopesu
         name_en: "Autopesu"
         name_et: "Autopesu"
@@ -5030,23 +5034,11 @@ l1:
             name_en: "Kanal- & renn-äravool"
             name_et: "Kanal- & renn-äravool"
             product_count: 0
-      - slug: v4-santehnika-kute-ja-ventilatsioon-radiaatorid-ja-kuttekehad
-        name_en: "Radiaatorid & küttekehad"
-        name_et: "Radiaatorid & küttekehad"
+      - slug: v4-santehnika-porandakute-kuttekaablid
+        name_en: "Põrandaküte & küttekaablid"
+        name_et: "Põrandaküte & küttekaablid"
         product_count: 0
         subs:
-          - slug: v4-santehnika-kute-ja-ventilatsioon-konvektorid
-            name_en: "Konvektorid"
-            name_et: "Konvektorid"
-            product_count: 0
-          - slug: v4-santehnika-kute-ja-ventilatsioon-ratikukuivatid
-            name_en: "Rätikukuivatid"
-            name_et: "Rätikukuivatid"
-            product_count: 0
-          - slug: v4-santehnika-kute-ja-ventilatsioon-kuttekaablid-ja-lindid
-            name_en: "Küttekaablid & -lindid"
-            name_et: "Küttekaablid & -lindid"
-            product_count: 0
           - slug: v4-santehnika-kute-ja-ventilatsioon-radiaatorid-ja-kuttekehad-porandakutte-kollektorid-ja-torud
             name_en: "Põrandakütte kollektorid ja torud"
             name_et: "Põrandakütte kollektorid ja torud"
@@ -5055,13 +5047,13 @@ l1:
             name_en: "PEX-AL-PEX torud"
             name_et: "PEX-AL-PEX torud"
             product_count: 0
+          - slug: v4-santehnika-kute-ja-ventilatsioon-kuttekaablid-ja-lindid
+            name_en: "Küttekaablid & -lindid"
+            name_et: "Küttekaablid & -lindid"
+            product_count: 0
           - slug: v4-santehnika-kute-ja-ventilatsioon-radiaatorid-ja-kuttekehad-termostaadid
             name_en: "Termostaadid"
             name_et: "Termostaadid"
-            product_count: 0
-          - slug: v4-santehnika-porandaliistkutte-katted
-            name_en: "Põrandaliistkütte katted"
-            name_et: "Põrandaliistkütte katted"
             product_count: 0
       - slug: v4-santehnika-kute-ja-ventilatsioon-veesoojendid-ja-boilerid
         name_en: "Veesoojendid & boilerid"
@@ -5071,6 +5063,23 @@ l1:
           - slug: v4-santehnika-kute-ja-ventilatsioon-elektrilised-veesoojendid
             name_en: "Elektrilised veesoojendid"
             name_et: "Elektrilised veesoojendid"
+            product_count: 0
+      - slug: v4-santehnika-ratikukuivatid-elektrikute
+        name_en: "Rätikukuivatid & elektriküte"
+        name_et: "Rätikukuivatid & elektriküte"
+        product_count: 0
+        subs:
+          - slug: v4-santehnika-kute-ja-ventilatsioon-ratikukuivatid
+            name_en: "Rätikukuivatid"
+            name_et: "Rätikukuivatid"
+            product_count: 0
+          - slug: v4-santehnika-porandaliistkutte-katted
+            name_en: "Põrandaliistkütte katted"
+            name_et: "Põrandaliistkütte katted"
+            product_count: 0
+          - slug: v4-santehnika-kute-ja-ventilatsioon-konvektorid
+            name_en: "Konvektorid"
+            name_et: "Konvektorid"
             product_count: 0
   - slug: v4-elektritarvikud-ja-valgustus
     name_en: "Elektritarvikud ja valgustus"

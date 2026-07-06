@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-06T18:18:03.955Z",
+  "generated_at": "2026-07-06T18:37:10.433Z",
   "nodes": {
     "v4-tooriistad-ja-tarvikud": {
       "handle": "v4-tooriistad-ja-tarvikud",
@@ -4171,7 +4171,8 @@
         "v4-garaaziseadmed-olivahetus-ja-hooldus-kutusemahutid-ja-konteinerid-ratastega",
         "v4-garaaziseadmed-olivahetus-ja-hooldus-kutusevooliku-rullid",
         "v4-garaaziseadmed-olivahetus-ja-hooldus-pneumaatilised-ja-membraanpumbad",
-        "v4-garaaziseadmed-kutus-bensiinikanistrid"
+        "v4-garaaziseadmed-kutus-bensiinikanistrid",
+        "v4-garaaz-gaasiballooni-soojendid"
       ],
       "image_path": null,
       "image_source": "none"
@@ -4220,6 +4221,16 @@
       "handle": "v4-garaaziseadmed-kutus-bensiinikanistrid",
       "name_en": "Bensiinikanistrid & ohutuskanistrid",
       "name_et": "Bensiinikanistrid & ohutuskanistrid",
+      "level": 3,
+      "parent_handle": "v4-garaaziseadmed-kutusekaitlus-ja-mahutid",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-garaaz-gaasiballooni-soojendid": {
+      "handle": "v4-garaaz-gaasiballooni-soojendid",
+      "name_en": "Gaasiballooni soojendid",
+      "name_et": "Gaasiballooni soojendid",
       "level": 3,
       "parent_handle": "v4-garaaziseadmed-kutusekaitlus-ja-mahutid",
       "child_handles": [],
@@ -12562,8 +12573,9 @@
         "v4-santehnika-kute-ja-ventilatsioon-dusisusteemid-ja-dusikabiinid",
         "v4-santehnika-kute-ja-ventilatsioon-vannitoa-tarvikud-ja-hoiustamine",
         "v4-santehnika-kute-ja-ventilatsioon-aravool-ja-porandatrapid",
-        "v4-santehnika-kute-ja-ventilatsioon-radiaatorid-ja-kuttekehad",
-        "v4-santehnika-kute-ja-ventilatsioon-veesoojendid-ja-boilerid"
+        "v4-santehnika-porandakute-kuttekaablid",
+        "v4-santehnika-kute-ja-ventilatsioon-veesoojendid-ja-boilerid",
+        "v4-santehnika-ratikukuivatid-elektrikute"
       ],
       "image_path": null,
       "image_source": "none",
@@ -13419,51 +13431,18 @@
       "image_path": null,
       "image_source": "none"
     },
-    "v4-santehnika-kute-ja-ventilatsioon-radiaatorid-ja-kuttekehad": {
-      "handle": "v4-santehnika-kute-ja-ventilatsioon-radiaatorid-ja-kuttekehad",
-      "name_en": "Radiaatorid & küttekehad",
-      "name_et": "Radiaatorid & küttekehad",
+    "v4-santehnika-porandakute-kuttekaablid": {
+      "handle": "v4-santehnika-porandakute-kuttekaablid",
+      "name_en": "Põrandaküte & küttekaablid",
+      "name_et": "Põrandaküte & küttekaablid",
       "level": 2,
       "parent_handle": "v4-santehnika-kute-ja-ventilatsioon",
       "child_handles": [
-        "v4-santehnika-kute-ja-ventilatsioon-konvektorid",
-        "v4-santehnika-kute-ja-ventilatsioon-ratikukuivatid",
-        "v4-santehnika-kute-ja-ventilatsioon-kuttekaablid-ja-lindid",
         "v4-santehnika-kute-ja-ventilatsioon-radiaatorid-ja-kuttekehad-porandakutte-kollektorid-ja-torud",
         "v4-santehnika-kute-ja-ventilatsioon-radiaatorid-ja-kuttekehad-pex-al-pex-torud",
-        "v4-santehnika-kute-ja-ventilatsioon-radiaatorid-ja-kuttekehad-termostaadid",
-        "v4-santehnika-porandaliistkutte-katted"
+        "v4-santehnika-kute-ja-ventilatsioon-kuttekaablid-ja-lindid",
+        "v4-santehnika-kute-ja-ventilatsioon-radiaatorid-ja-kuttekehad-termostaadid"
       ],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-santehnika-kute-ja-ventilatsioon-konvektorid": {
-      "handle": "v4-santehnika-kute-ja-ventilatsioon-konvektorid",
-      "name_en": "Konvektorid",
-      "name_et": "Konvektorid",
-      "level": 3,
-      "parent_handle": "v4-santehnika-kute-ja-ventilatsioon-radiaatorid-ja-kuttekehad",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-santehnika-kute-ja-ventilatsioon-ratikukuivatid": {
-      "handle": "v4-santehnika-kute-ja-ventilatsioon-ratikukuivatid",
-      "name_en": "Rätikukuivatid",
-      "name_et": "Rätikukuivatid",
-      "level": 3,
-      "parent_handle": "v4-santehnika-kute-ja-ventilatsioon-radiaatorid-ja-kuttekehad",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-santehnika-kute-ja-ventilatsioon-kuttekaablid-ja-lindid": {
-      "handle": "v4-santehnika-kute-ja-ventilatsioon-kuttekaablid-ja-lindid",
-      "name_en": "Küttekaablid & -lindid",
-      "name_et": "Küttekaablid & -lindid",
-      "level": 3,
-      "parent_handle": "v4-santehnika-kute-ja-ventilatsioon-radiaatorid-ja-kuttekehad",
-      "child_handles": [],
       "image_path": null,
       "image_source": "none"
     },
@@ -13472,7 +13451,7 @@
       "name_en": "Põrandakütte kollektorid ja torud",
       "name_et": "Põrandakütte kollektorid ja torud",
       "level": 3,
-      "parent_handle": "v4-santehnika-kute-ja-ventilatsioon-radiaatorid-ja-kuttekehad",
+      "parent_handle": "v4-santehnika-porandakute-kuttekaablid",
       "child_handles": [],
       "image_path": null,
       "image_source": "none"
@@ -13482,7 +13461,17 @@
       "name_en": "PEX-AL-PEX torud",
       "name_et": "PEX-AL-PEX torud",
       "level": 3,
-      "parent_handle": "v4-santehnika-kute-ja-ventilatsioon-radiaatorid-ja-kuttekehad",
+      "parent_handle": "v4-santehnika-porandakute-kuttekaablid",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-santehnika-kute-ja-ventilatsioon-kuttekaablid-ja-lindid": {
+      "handle": "v4-santehnika-kute-ja-ventilatsioon-kuttekaablid-ja-lindid",
+      "name_en": "Küttekaablid & -lindid",
+      "name_et": "Küttekaablid & -lindid",
+      "level": 3,
+      "parent_handle": "v4-santehnika-porandakute-kuttekaablid",
       "child_handles": [],
       "image_path": null,
       "image_source": "none"
@@ -13492,17 +13481,7 @@
       "name_en": "Termostaadid",
       "name_et": "Termostaadid",
       "level": 3,
-      "parent_handle": "v4-santehnika-kute-ja-ventilatsioon-radiaatorid-ja-kuttekehad",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-santehnika-porandaliistkutte-katted": {
-      "handle": "v4-santehnika-porandaliistkutte-katted",
-      "name_en": "Põrandaliistkütte katted",
-      "name_et": "Põrandaliistkütte katted",
-      "level": 3,
-      "parent_handle": "v4-santehnika-kute-ja-ventilatsioon-radiaatorid-ja-kuttekehad",
+      "parent_handle": "v4-santehnika-porandakute-kuttekaablid",
       "child_handles": [],
       "image_path": null,
       "image_source": "none"
@@ -13525,6 +13504,50 @@
       "name_et": "Elektrilised veesoojendid",
       "level": 3,
       "parent_handle": "v4-santehnika-kute-ja-ventilatsioon-veesoojendid-ja-boilerid",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-santehnika-ratikukuivatid-elektrikute": {
+      "handle": "v4-santehnika-ratikukuivatid-elektrikute",
+      "name_en": "Rätikukuivatid & elektriküte",
+      "name_et": "Rätikukuivatid & elektriküte",
+      "level": 2,
+      "parent_handle": "v4-santehnika-kute-ja-ventilatsioon",
+      "child_handles": [
+        "v4-santehnika-kute-ja-ventilatsioon-ratikukuivatid",
+        "v4-santehnika-porandaliistkutte-katted",
+        "v4-santehnika-kute-ja-ventilatsioon-konvektorid"
+      ],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-santehnika-kute-ja-ventilatsioon-ratikukuivatid": {
+      "handle": "v4-santehnika-kute-ja-ventilatsioon-ratikukuivatid",
+      "name_en": "Rätikukuivatid",
+      "name_et": "Rätikukuivatid",
+      "level": 3,
+      "parent_handle": "v4-santehnika-ratikukuivatid-elektrikute",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-santehnika-porandaliistkutte-katted": {
+      "handle": "v4-santehnika-porandaliistkutte-katted",
+      "name_en": "Põrandaliistkütte katted",
+      "name_et": "Põrandaliistkütte katted",
+      "level": 3,
+      "parent_handle": "v4-santehnika-ratikukuivatid-elektrikute",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-santehnika-kute-ja-ventilatsioon-konvektorid": {
+      "handle": "v4-santehnika-kute-ja-ventilatsioon-konvektorid",
+      "name_en": "Konvektorid",
+      "name_et": "Konvektorid",
+      "level": 3,
+      "parent_handle": "v4-santehnika-ratikukuivatid-elektrikute",
       "child_handles": [],
       "image_path": null,
       "image_source": "none"
@@ -20997,6 +21020,7 @@
     "v4-garaaziseadmed-olivahetus-ja-hooldus-kutusevooliku-rullid",
     "v4-garaaziseadmed-olivahetus-ja-hooldus-pneumaatilised-ja-membraanpumbad",
     "v4-garaaziseadmed-kutus-bensiinikanistrid",
+    "v4-garaaz-gaasiballooni-soojendid",
     "v4-garaaziseadmed-autopesu",
     "v4-garaaziseadmed-autopesu-ja-veetootlus",
     "v4-garaaziseadmed-garaaziuksed-ja-ajamid",
@@ -21821,16 +21845,17 @@
     "v4-santehnika-kute-ja-ventilatsioon-aravool-ja-porandatrapid",
     "v4-santehnika-kute-ja-ventilatsioon-lineaarsed-dusitrapid",
     "v4-santehnika-kute-ja-ventilatsioon-kanal-ja-renn-aravool",
-    "v4-santehnika-kute-ja-ventilatsioon-radiaatorid-ja-kuttekehad",
-    "v4-santehnika-kute-ja-ventilatsioon-konvektorid",
-    "v4-santehnika-kute-ja-ventilatsioon-ratikukuivatid",
-    "v4-santehnika-kute-ja-ventilatsioon-kuttekaablid-ja-lindid",
+    "v4-santehnika-porandakute-kuttekaablid",
     "v4-santehnika-kute-ja-ventilatsioon-radiaatorid-ja-kuttekehad-porandakutte-kollektorid-ja-torud",
     "v4-santehnika-kute-ja-ventilatsioon-radiaatorid-ja-kuttekehad-pex-al-pex-torud",
+    "v4-santehnika-kute-ja-ventilatsioon-kuttekaablid-ja-lindid",
     "v4-santehnika-kute-ja-ventilatsioon-radiaatorid-ja-kuttekehad-termostaadid",
-    "v4-santehnika-porandaliistkutte-katted",
     "v4-santehnika-kute-ja-ventilatsioon-veesoojendid-ja-boilerid",
     "v4-santehnika-kute-ja-ventilatsioon-elektrilised-veesoojendid",
+    "v4-santehnika-ratikukuivatid-elektrikute",
+    "v4-santehnika-kute-ja-ventilatsioon-ratikukuivatid",
+    "v4-santehnika-porandaliistkutte-katted",
+    "v4-santehnika-kute-ja-ventilatsioon-konvektorid",
     "v4-elektritarvikud-ja-valgustus",
     "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid",
     "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-generaatori-katted",
