@@ -129,10 +129,6 @@ l1:
             name_en: "Keermestamis- ja keermelõikamise komplektid"
             name_et: "Keermestamis- ja keermelõikamise komplektid"
             product_count: 0
-          - slug: v4-tooriistad-ja-tarvikud-kasitooriistad-kellaparandustooriistad
-            name_en: "Kellaparandustööriistad"
-            name_et: "Kellaparandustööriistad"
-            product_count: 0
           - slug: v4-tooriistad-ja-tarvikud-kasitooriistad-kruustangid
             name_en: "Kruustangid"
             name_et: "Kruustangid"
@@ -565,14 +561,6 @@ l1:
           - slug: v4-tooriistad-ja-tarvikud-metallitoo-ja-sepatoo-sepatangid
             name_en: "Sepatangid"
             name_et: "Sepatangid"
-            product_count: 0
-          - slug: v4-tooriistad-ja-tarvikud-sulatusahjud
-            name_en: "Sulatusahjud"
-            name_et: "Sulatusahjud"
-            product_count: 0
-          - slug: v4-tooriistad-ja-tarvikud-sulatustiiglid
-            name_en: "Sulatustiiglid"
-            name_et: "Sulatustiiglid"
             product_count: 0
           - slug: v4-tooriistad-ja-tarvikud-metallitoo-ja-sepatoo-treipingi-tooriistahoidikud
             name_en: "Treipingi tööriistahoidikud"
@@ -6388,18 +6376,6 @@ l1:
             name_en: "CNC freespingid ja graveerijad"
             name_et: "CNC freespingid ja graveerijad"
             product_count: 0
-          - slug: v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-graveerimispingid-ja-klambrid
-            name_en: "Graveerimispingid ja -klambrid"
-            name_et: "Graveerimispingid ja -klambrid"
-            product_count: 0
-          - slug: v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-juveelimikroskoobid
-            name_en: "Juveelimikroskoobid"
-            name_et: "Juveelimikroskoobid"
-            product_count: 0
-          - slug: v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-kivide-lihvimis-ja-poleerimismasinad
-            name_en: "Kivide lihvimis- ja poleerimismasinad"
-            name_et: "Kivide lihvimis- ja poleerimismasinad"
-            product_count: 0
           - slug: v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-lasergraveerija-kaitsekatted
             name_en: "Lasergraveerija kaitsekatted"
             name_et: "Lasergraveerija kaitsekatted"
@@ -6420,25 +6396,13 @@ l1:
             name_en: "Nahalõikus- ja pressimismasinad"
             name_et: "Nahalõikus- ja pressimismasinad"
             product_count: 0
-          - slug: v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-paindvolliga-lihvimismasinad
-            name_en: "Paindvõlliga lihvimismasinad"
-            name_et: "Paindvõlliga lihvimismasinad"
-            product_count: 0
           - slug: v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-spindelmootorid-ja-tarvikud
             name_en: "Spindelmootorid ja tarvikud"
             name_et: "Spindelmootorid ja tarvikud"
             product_count: 0
-          - slug: v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-sulatus-ja-poletusahjud
-            name_en: "Sulatus- ja põletusahjud"
-            name_et: "Sulatus- ja põletusahjud"
-            product_count: 0
           - slug: v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-toostuslikud-vesijahutid
             name_en: "Tööstuslikud vesijahutid"
             name_et: "Tööstuslikud vesijahutid"
-            product_count: 0
-          - slug: v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-vaakumvalamismasinad
-            name_en: "Vaakumvalamismasinad"
-            name_et: "Vaakumvalamismasinad"
             product_count: 0
           - slug: v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-ohupuhuri-komplektid-laserloikuritele
             name_en: "Õhupuhuri komplektid laserlõikuritele"
@@ -6533,6 +6497,47 @@ l1:
           - slug: v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-vinuulloikurid-ja-plotterid
             name_en: "Vinüüllõikurid & plotterid"
             name_et: "Vinüüllõikurid & plotterid"
+            product_count: 0
+      - slug: v4-reklaam-juveeli-metallitoo
+        name_en: "Juveeli- & metallitöö"
+        name_et: "Juveeli- & metallitöö"
+        product_count: 0
+        subs:
+          - slug: v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-sulatus-ja-poletusahjud
+            name_en: "Sulatus- ja põletusahjud"
+            name_et: "Sulatus- ja põletusahjud"
+            product_count: 0
+          - slug: v4-tooriistad-ja-tarvikud-sulatustiiglid
+            name_en: "Sulatustiiglid"
+            name_et: "Sulatustiiglid"
+            product_count: 0
+          - slug: v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-vaakumvalamismasinad
+            name_en: "Vaakumvalamismasinad"
+            name_et: "Vaakumvalamismasinad"
+            product_count: 0
+          - slug: v4-reklaam-ehte-rullpressid
+            name_en: "Ehte-rullpressid"
+            name_et: "Ehte-rullpressid"
+            product_count: 0
+          - slug: v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-paindvolliga-lihvimismasinad
+            name_en: "Paindvõlliga lihvimismasinad"
+            name_et: "Paindvõlliga lihvimismasinad"
+            product_count: 0
+          - slug: v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-kivide-lihvimis-ja-poleerimismasinad
+            name_en: "Kivide lihvimis- ja poleerimismasinad"
+            name_et: "Kivide lihvimis- ja poleerimismasinad"
+            product_count: 0
+          - slug: v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-graveerimispingid-ja-klambrid
+            name_en: "Graveerimispingid ja -klambrid"
+            name_et: "Graveerimispingid ja -klambrid"
+            product_count: 0
+          - slug: v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-juveelimikroskoobid
+            name_en: "Juveelimikroskoobid"
+            name_et: "Juveelimikroskoobid"
+            product_count: 0
+          - slug: v4-tooriistad-ja-tarvikud-kasitooriistad-kellaparandustooriistad
+            name_en: "Kellaparandustööriistad"
+            name_et: "Kellaparandustööriistad"
             product_count: 0
       - slug: v4-reklaami-truki-ja-graveerimisseadmed-koitmine-ja-lamineerimine
         name_en: "Köitmine & lamineerimine"
