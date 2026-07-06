@@ -5497,6 +5497,10 @@ l1:
             name_en: "Täispuhutavad projektsiooniekraanid"
             name_et: "Täispuhutavad projektsiooniekraanid"
             product_count: 0
+          - slug: v4-sport-kasitoo-hobiseadmed
+            name_en: "Käsitöö- & hobiseadmed"
+            name_et: "Käsitöö- & hobiseadmed"
+            product_count: 0
       - slug: v4-sport-ja-vaba-aeg-manguasjad-lastele
         name_en: "Mänguasjad lastele"
         name_et: "Mänguasjad lastele"
@@ -5606,10 +5610,6 @@ l1:
           - slug: v4-sport-ja-vaba-aeg-fitness-ja-treeningseadmed-inversioonlauad
             name_en: "Inversioonlauad"
             name_et: "Inversioonlauad"
-            product_count: 0
-          - slug: v4-sport-jooga-treeningmatid
-            name_en: "Jooga- & treeningmatid"
-            name_et: "Jooga- & treeningmatid"
             product_count: 0
           - slug: v4-sport-ja-vaba-aeg-fitness-ja-treeningseadmed-joogamatid-ja-tarvikud
             name_en: "Joogamatid ja tarvikud"
@@ -6465,10 +6465,6 @@ l1:
           - slug: v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-roivatrukk-vaibategemis-tuftingriistad
             name_en: "Vaibategemis- & tuftingriistad"
             name_et: "Vaibategemis- & tuftingriistad"
-            product_count: 0
-          - slug: v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-roivatrukk-kasitoo-seadmed-tarvikud
-            name_en: "Käsitöö-seadmed & -tarvikud"
-            name_et: "Käsitöö-seadmed & -tarvikud"
             product_count: 0
       - slug: v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign
         name_en: "Vinüül & sign"

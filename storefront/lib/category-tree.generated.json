@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-06T19:43:05.535Z",
+  "generated_at": "2026-07-06T19:53:04.776Z",
   "nodes": {
     "v4-tooriistad-ja-tarvikud": {
       "handle": "v4-tooriistad-ja-tarvikud",
@@ -14542,7 +14542,8 @@
         "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-staadionitoolid-ja-valipingid",
         "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-suusa-ja-kaitseprillid",
         "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-suusa-ja-lumelauakotid",
-        "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-taispuhutavad-projektsiooniekraanid"
+        "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-taispuhutavad-projektsiooniekraanid",
+        "v4-sport-kasitoo-hobiseadmed"
       ],
       "image_path": null,
       "image_source": "none"
@@ -14631,6 +14632,16 @@
       "handle": "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-taispuhutavad-projektsiooniekraanid",
       "name_en": "Täispuhutavad projektsiooniekraanid",
       "name_et": "Täispuhutavad projektsiooniekraanid",
+      "level": 3,
+      "parent_handle": "v4-sport-ja-vaba-aeg-ouetegevus-ja-hobi",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-sport-kasitoo-hobiseadmed": {
+      "handle": "v4-sport-kasitoo-hobiseadmed",
+      "name_en": "Käsitöö- & hobiseadmed",
+      "name_et": "Käsitöö- & hobiseadmed",
       "level": 3,
       "parent_handle": "v4-sport-ja-vaba-aeg-ouetegevus-ja-hobi",
       "child_handles": [],
@@ -14900,7 +14911,6 @@
         "v4-sport-ja-vaba-aeg-fitness-hokitreeningu-porandaplaadid",
         "v4-sport-ja-vaba-aeg-fitness-ja-treeningseadmed-huperekstensiooni-pingid",
         "v4-sport-ja-vaba-aeg-fitness-ja-treeningseadmed-inversioonlauad",
-        "v4-sport-jooga-treeningmatid",
         "v4-sport-ja-vaba-aeg-fitness-ja-treeningseadmed-joogamatid-ja-tarvikud",
         "v4-sport-ja-vaba-aeg-fitness-ja-treeningseadmed-jooksulindid",
         "v4-sport-ja-vaba-aeg-fitness-ja-treeningseadmed-joupuurid-ja-joutornid",
@@ -14961,16 +14971,6 @@
       "handle": "v4-sport-ja-vaba-aeg-fitness-ja-treeningseadmed-inversioonlauad",
       "name_en": "Inversioonlauad",
       "name_et": "Inversioonlauad",
-      "level": 3,
-      "parent_handle": "v4-sport-ja-vaba-aeg-fitness-ja-treeningseadmed",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-sport-jooga-treeningmatid": {
-      "handle": "v4-sport-jooga-treeningmatid",
-      "name_en": "Jooga- & treeningmatid",
-      "name_et": "Jooga- & treeningmatid",
       "level": 3,
       "parent_handle": "v4-sport-ja-vaba-aeg-fitness-ja-treeningseadmed",
       "child_handles": [],
@@ -17071,8 +17071,7 @@
         "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-sublimatsioonitoorikud-topsid-ja-termosed",
         "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-truki-ja-siiditrukikuivatid",
         "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-omblusmasinad",
-        "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-roivatrukk-vaibategemis-tuftingriistad",
-        "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-roivatrukk-kasitoo-seadmed-tarvikud"
+        "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-roivatrukk-vaibategemis-tuftingriistad"
       ],
       "image_path": null,
       "image_source": "none"
@@ -17211,16 +17210,6 @@
       "handle": "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-roivatrukk-vaibategemis-tuftingriistad",
       "name_en": "Vaibategemis- & tuftingriistad",
       "name_et": "Vaibategemis- & tuftingriistad",
-      "level": 3,
-      "parent_handle": "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-roivatrukk-kasitoo-seadmed-tarvikud": {
-      "handle": "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-roivatrukk-kasitoo-seadmed-tarvikud",
-      "name_en": "Käsitöö-seadmed & -tarvikud",
-      "name_et": "Käsitöö-seadmed & -tarvikud",
       "level": 3,
       "parent_handle": "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk",
       "child_handles": [],
@@ -21918,6 +21907,7 @@
     "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-suusa-ja-kaitseprillid",
     "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-suusa-ja-lumelauakotid",
     "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-taispuhutavad-projektsiooniekraanid",
+    "v4-sport-kasitoo-hobiseadmed",
     "v4-sport-ja-vaba-aeg-manguasjad-lastele",
     "v4-sport-ja-vaba-aeg-manguasjad-lastele-kaugjuhitavad-manguasjad",
     "v4-sport-ja-vaba-aeg-manguasjad-lastele-kiiged-ja-kiikhobud",
@@ -21945,7 +21935,6 @@
     "v4-sport-ja-vaba-aeg-fitness-hokitreeningu-porandaplaadid",
     "v4-sport-ja-vaba-aeg-fitness-ja-treeningseadmed-huperekstensiooni-pingid",
     "v4-sport-ja-vaba-aeg-fitness-ja-treeningseadmed-inversioonlauad",
-    "v4-sport-jooga-treeningmatid",
     "v4-sport-ja-vaba-aeg-fitness-ja-treeningseadmed-joogamatid-ja-tarvikud",
     "v4-sport-ja-vaba-aeg-fitness-ja-treeningseadmed-jooksulindid",
     "v4-sport-ja-vaba-aeg-fitness-ja-treeningseadmed-joupuurid-ja-joutornid",
@@ -22151,7 +22140,6 @@
     "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-truki-ja-siiditrukikuivatid",
     "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-omblusmasinad",
     "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-roivatrukk-vaibategemis-tuftingriistad",
-    "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-roivatrukk-kasitoo-seadmed-tarvikud",
     "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign",
     "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-led-reklaamtahvlid-ja-ekraanid",
     "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-naitustahvlid-ja-lauad",
