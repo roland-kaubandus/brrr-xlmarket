@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-07T11:21:28.895Z",
+  "generated_at": "2026-07-07T11:28:37.275Z",
   "nodes": {
     "v4-tooriistad-ja-tarvikud": {
       "handle": "v4-tooriistad-ja-tarvikud",
@@ -3433,8 +3433,7 @@
         "v4-garaaziseadmed-garaazi-hoiustamine-aiatooriistade-hoidikud",
         "v4-garaaziseadmed-hoiustamine-katuse-ja-uksehoiukarud",
         "v4-garaaziseadmed-muu-garaaziseadmed-parkimis-ja-peatusabivahendid",
-        "v4-garaaziseadmed-garaazi-hoiustamine-rehviriiulid-ja-hoidikud",
-        "v4-garaaziseadmed-garaazi-hoiustamine-toolauad"
+        "v4-garaaziseadmed-garaazi-hoiustamine-rehviriiulid-ja-hoidikud"
       ],
       "image_path": null,
       "image_source": "none"
@@ -3473,16 +3472,6 @@
       "handle": "v4-garaaziseadmed-garaazi-hoiustamine-rehviriiulid-ja-hoidikud",
       "name_en": "Rehviriiulid ja -hoidikud",
       "name_et": "Rehviriiulid ja -hoidikud",
-      "level": 3,
-      "parent_handle": "v4-garaaziseadmed-garaazi-hoiustamine",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-garaaziseadmed-garaazi-hoiustamine-toolauad": {
-      "handle": "v4-garaaziseadmed-garaazi-hoiustamine-toolauad",
-      "name_en": "Töölauad",
-      "name_et": "Töölauad",
       "level": 3,
       "parent_handle": "v4-garaaziseadmed-garaazi-hoiustamine",
       "child_handles": [],
@@ -20119,10 +20108,8 @@
         "v4-ladu-toimiku-dokumendikapid",
         "v4-ladu-telefonihoiukapid",
         "v4-ladu-tuleohtlike-ainete-hoiukapid",
-        "v4-ladu-valjatommatavad-kapiorganiserid",
         "v4-ladu-nurgakapi-organiserid",
-        "v4-ladu-ukse-organiserid-sahvririiulid",
-        "v4-ladu-valjatommatavad-prugikastid"
+        "v4-ladu-ukse-organiserid-sahvririiulid"
       ],
       "image_path": null,
       "image_source": "none"
@@ -20167,16 +20154,6 @@
       "image_path": null,
       "image_source": "none"
     },
-    "v4-ladu-valjatommatavad-kapiorganiserid": {
-      "handle": "v4-ladu-valjatommatavad-kapiorganiserid",
-      "name_en": "Väljatõmmatavad kapiorganiserid",
-      "name_et": "Väljatõmmatavad kapiorganiserid",
-      "level": 3,
-      "parent_handle": "v4-ladu-hoiukapid-sahtlid",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
     "v4-ladu-nurgakapi-organiserid": {
       "handle": "v4-ladu-nurgakapi-organiserid",
       "name_en": "Nurgakapi-organiserid",
@@ -20191,16 +20168,6 @@
       "handle": "v4-ladu-ukse-organiserid-sahvririiulid",
       "name_en": "Ukse-organiserid & sahvririiulid",
       "name_et": "Ukse-organiserid & sahvririiulid",
-      "level": 3,
-      "parent_handle": "v4-ladu-hoiukapid-sahtlid",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-ladu-valjatommatavad-prugikastid": {
-      "handle": "v4-ladu-valjatommatavad-prugikastid",
-      "name_en": "Väljatõmmatavad prügikastid",
-      "name_et": "Väljatõmmatavad prügikastid",
       "level": 3,
       "parent_handle": "v4-ladu-hoiukapid-sahtlid",
       "child_handles": [],
@@ -20895,7 +20862,6 @@
     "v4-garaaziseadmed-hoiustamine-katuse-ja-uksehoiukarud",
     "v4-garaaziseadmed-muu-garaaziseadmed-parkimis-ja-peatusabivahendid",
     "v4-garaaziseadmed-garaazi-hoiustamine-rehviriiulid-ja-hoidikud",
-    "v4-garaaziseadmed-garaazi-hoiustamine-toolauad",
     "v4-garaaziseadmed-tungrauad",
     "v4-garaaziseadmed-tungrauad-elektrilised-tungrauad",
     "v4-garaaziseadmed-tungrauad-haagise-tugijalad",
@@ -22389,10 +22355,8 @@
     "v4-ladu-toimiku-dokumendikapid",
     "v4-ladu-telefonihoiukapid",
     "v4-ladu-tuleohtlike-ainete-hoiukapid",
-    "v4-ladu-valjatommatavad-kapiorganiserid",
     "v4-ladu-nurgakapi-organiserid",
     "v4-ladu-ukse-organiserid-sahvririiulid",
-    "v4-ladu-valjatommatavad-prugikastid",
     "v4-ladu-seinapaneelid",
     "v4-ladu-seinapaneelid-pegboardid",
     "v4-ladu-seinale-kinnitatavad-hoiususteemid",
