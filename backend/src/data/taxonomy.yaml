@@ -3461,10 +3461,6 @@ l1:
             name_en: "Aiahargid ja sõnnikuhargid"
             name_et: "Aiahargid ja sõnnikuhargid"
             product_count: 0
-          - slug: v4-aed-ja-aiatehnika-l1-aiaistmed-ja-polvituspingid
-            name_en: "Aiaistmed ja põlvituspingid"
-            name_et: "Aiaistmed ja põlvituspingid"
-            product_count: 0
           - slug: v4-aed-aiakarud
             name_en: "Aiakärud"
             name_et: "Aiakärud"
@@ -3525,6 +3521,10 @@ l1:
             name_en: "Puuronimisnaastud"
             name_et: "Puuronimisnaastud"
             product_count: 0
+          - slug: v4-aed-ratastega-aiatoo-istmed
+            name_en: "Ratastega aiatöö-istmed"
+            name_et: "Ratastega aiatöö-istmed"
+            product_count: 0
           - slug: v4-aed-ja-aiatehnika-l1-rehad-ja-akked
             name_en: "Rehad ja äkked"
             name_et: "Rehad ja äkked"
@@ -3552,6 +3552,10 @@ l1:
           - slug: v4-aed-elektrilised-aiakarud
             name_en: "Elektrilised aiakärud"
             name_et: "Elektrilised aiakärud"
+            product_count: 0
+          - slug: v4-aed-aiapolvitajad
+            name_en: "Aiapõlvitajad"
+            name_et: "Aiapõlvitajad"
             product_count: 0
       - slug: v4-aed-ja-aiatehnika-basseinid-ja-spaa
         name_en: "Basseinid & spaa"

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-07T12:14:00.983Z",
+  "generated_at": "2026-07-07T13:10:09.648Z",
   "nodes": {
     "v4-tooriistad-ja-tarvikud": {
       "handle": "v4-tooriistad-ja-tarvikud",
@@ -9225,7 +9225,6 @@
       "child_handles": [
         "v4-aed-ja-aiatehnika-l1-aeraatorrehad",
         "v4-aed-ja-aiatehnika-l1-aiahargid-ja-sonnikuhargid",
-        "v4-aed-ja-aiatehnika-l1-aiaistmed-ja-polvituspingid",
         "v4-aed-aiakarud",
         "v4-aed-ja-aiatehnika-l1-aiatoolauad-ja-istutuslauad",
         "v4-aed-ja-aiatehnika-l1-istutuspuurid-ja-maaaugurid",
@@ -9241,13 +9240,15 @@
         "v4-aed-ja-aiatehnika-l1-palkide-tosteriistad-ja-konksud",
         "v4-aed-ja-aiatehnika-postitomburid",
         "v4-aed-ja-aiatehnika-l1-puuronimisnaastud",
+        "v4-aed-ratastega-aiatoo-istmed",
         "v4-aed-ja-aiatehnika-l1-rehad-ja-akked",
         "v4-aed-ja-aiatehnika-l1-taimetoed-ja-tugikonstruktsioonid",
         "v4-aed-ja-aiatehnika-l1-veekogude-umbrohutooriistad",
         "v4-aed-ja-aiatehnika-l1-vaetise-ja-seemnelaotajad",
         "v4-aed-atv-haagised-jarelkarud",
         "v4-aed-kallutuskarud",
-        "v4-aed-elektrilised-aiakarud"
+        "v4-aed-elektrilised-aiakarud",
+        "v4-aed-aiapolvitajad"
       ],
       "image_path": null,
       "image_source": "none"
@@ -9266,16 +9267,6 @@
       "handle": "v4-aed-ja-aiatehnika-l1-aiahargid-ja-sonnikuhargid",
       "name_en": "Aiahargid ja sõnnikuhargid",
       "name_et": "Aiahargid ja sõnnikuhargid",
-      "level": 3,
-      "parent_handle": "v4-aed-ja-aiatehnika-aiatooriistad",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-aed-ja-aiatehnika-l1-aiaistmed-ja-polvituspingid": {
-      "handle": "v4-aed-ja-aiatehnika-l1-aiaistmed-ja-polvituspingid",
-      "name_en": "Aiaistmed ja põlvituspingid",
-      "name_et": "Aiaistmed ja põlvituspingid",
       "level": 3,
       "parent_handle": "v4-aed-ja-aiatehnika-aiatooriistad",
       "child_handles": [],
@@ -9432,6 +9423,16 @@
       "image_path": null,
       "image_source": "none"
     },
+    "v4-aed-ratastega-aiatoo-istmed": {
+      "handle": "v4-aed-ratastega-aiatoo-istmed",
+      "name_en": "Ratastega aiatöö-istmed",
+      "name_et": "Ratastega aiatöö-istmed",
+      "level": 3,
+      "parent_handle": "v4-aed-ja-aiatehnika-aiatooriistad",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
     "v4-aed-ja-aiatehnika-l1-rehad-ja-akked": {
       "handle": "v4-aed-ja-aiatehnika-l1-rehad-ja-akked",
       "name_en": "Rehad ja äkked",
@@ -9496,6 +9497,16 @@
       "handle": "v4-aed-elektrilised-aiakarud",
       "name_en": "Elektrilised aiakärud",
       "name_et": "Elektrilised aiakärud",
+      "level": 3,
+      "parent_handle": "v4-aed-ja-aiatehnika-aiatooriistad",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-aed-aiapolvitajad": {
+      "handle": "v4-aed-aiapolvitajad",
+      "name_en": "Aiapõlvitajad",
+      "name_et": "Aiapõlvitajad",
       "level": 3,
       "parent_handle": "v4-aed-ja-aiatehnika-aiatooriistad",
       "child_handles": [],
@@ -21368,7 +21379,6 @@
     "v4-aed-ja-aiatehnika-aiatooriistad",
     "v4-aed-ja-aiatehnika-l1-aeraatorrehad",
     "v4-aed-ja-aiatehnika-l1-aiahargid-ja-sonnikuhargid",
-    "v4-aed-ja-aiatehnika-l1-aiaistmed-ja-polvituspingid",
     "v4-aed-aiakarud",
     "v4-aed-ja-aiatehnika-l1-aiatoolauad-ja-istutuslauad",
     "v4-aed-ja-aiatehnika-l1-istutuspuurid-ja-maaaugurid",
@@ -21384,6 +21394,7 @@
     "v4-aed-ja-aiatehnika-l1-palkide-tosteriistad-ja-konksud",
     "v4-aed-ja-aiatehnika-postitomburid",
     "v4-aed-ja-aiatehnika-l1-puuronimisnaastud",
+    "v4-aed-ratastega-aiatoo-istmed",
     "v4-aed-ja-aiatehnika-l1-rehad-ja-akked",
     "v4-aed-ja-aiatehnika-l1-taimetoed-ja-tugikonstruktsioonid",
     "v4-aed-ja-aiatehnika-l1-veekogude-umbrohutooriistad",
@@ -21391,6 +21402,7 @@
     "v4-aed-atv-haagised-jarelkarud",
     "v4-aed-kallutuskarud",
     "v4-aed-elektrilised-aiakarud",
+    "v4-aed-aiapolvitajad",
     "v4-aed-ja-aiatehnika-basseinid-ja-spaa",
     "v4-aed-ja-aiatehnika-l2-basseini-ionisaatorid-ja-kloorinaatorid",
     "v4-aed-ja-aiatehnika-l2-basseini-joad-ja-veeefektid",
