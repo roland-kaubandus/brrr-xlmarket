@@ -256,6 +256,8 @@ pm2 reload xlmarket-storefront
 6. **Domeeni-kontroll + cross-main dup-kontroll.** Domeen = kus OSTJA seda otsib (otstarbe primaar), mitte tootja-kategooria. Reegel: sama tüüp ERI domeenis = ÕIGE; sama tüüp + sama domeen eri kohas = DUP → koonda ÜHTE.
 7. **Seotud tüübid koos + luku lõpp-terviklikkus** (kas jäi 2 kohta? dup/orphan 0?).
 
+**HÜBRIID-REEGEL (Tarmo, samm 6 juurde):** kui toode on PÄRISELT kaheselt funktsionaalne (nt "Garden Cart with Seat 226kg" = iste+käru; "Scooter with Storage Bin" = iste+hoiu) ega ole selget primaar-kodu — **ÄRA põrgata lõputult**. Jäta kus on (kui pole vale), määra primaar sisust (istud → iste), **märgi CROSS-LISTING Phase-2** (kuvatakse hiljem mõlemas vaates — EI liiguta ega dubleeri andmeid nüüd), liigu edasi. *Mõlemad õiged, kumbki pole vale = aktsepteeritav.* Väldib ummikut/lõputut ümber-paigutamist.
+
 **Feed-põhimõtted (Powermat/BlackTools/KraftDele):**
 - **Tüübi-profiil = SSoT:** L3 `description` = "mis TÜÜP siia kuulub" (otstarve+tunnus), mille vastu feed-toode mappida — mitte nime järgi.
 - **Masintõlke-immuunsus:** kinnita tehnilisest spetsist + pildist, mitte tootja-nimest. Bränd A "garden wagon" ja Bränd B "beach cart" = SAMA üld-veovanker → sama L3.
