@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-07T11:28:37.275Z",
+  "generated_at": "2026-07-07T12:14:00.983Z",
   "nodes": {
     "v4-tooriistad-ja-tarvikud": {
       "handle": "v4-tooriistad-ja-tarvikud",
@@ -9247,8 +9247,6 @@
         "v4-aed-ja-aiatehnika-l1-vaetise-ja-seemnelaotajad",
         "v4-aed-atv-haagised-jarelkarud",
         "v4-aed-kallutuskarud",
-        "v4-aed-rannakarud",
-        "v4-aed-kokkupandavad-veovankrid",
         "v4-aed-elektrilised-aiakarud"
       ],
       "image_path": null,
@@ -9488,26 +9486,6 @@
       "handle": "v4-aed-kallutuskarud",
       "name_en": "Kallutuskärud",
       "name_et": "Kallutuskärud",
-      "level": 3,
-      "parent_handle": "v4-aed-ja-aiatehnika-aiatooriistad",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-aed-rannakarud": {
-      "handle": "v4-aed-rannakarud",
-      "name_en": "Rannakärud",
-      "name_et": "Rannakärud",
-      "level": 3,
-      "parent_handle": "v4-aed-ja-aiatehnika-aiatooriistad",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-aed-kokkupandavad-veovankrid": {
-      "handle": "v4-aed-kokkupandavad-veovankrid",
-      "name_en": "Kokkupandavad veovankrid",
-      "name_et": "Kokkupandavad veovankrid",
       "level": 3,
       "parent_handle": "v4-aed-ja-aiatehnika-aiatooriistad",
       "child_handles": [],
@@ -15457,9 +15435,10 @@
         "v4-sport-ja-vaba-aeg-matkavarustus-ja-telkimine-matkavalgustid-ja-laternad",
         "v4-sport-ja-vaba-aeg-matkavarustus-ja-telkimine-matkavoodid-ja-madratsid",
         "v4-sport-ja-vaba-aeg-matkavarustus-ja-telkimine-privaatsus-ja-dusitelgid",
-        "v4-sport-ja-vaba-aeg-matkavarustus-ja-telkimine-rannakarud-ja-vankrid",
+        "v4-sport-rannakarud",
         "v4-sport-ja-vaba-aeg-matkavarustus-ja-telkimine-rannatelgid-ja-varjualused",
         "v4-sport-ja-vaba-aeg-matkavarustus-ja-telkimine-telgipliidid-ja-matkapliidid",
+        "v4-sport-kokkupandavad-veovankrid",
         "v4-sport-auto-katusetelgid",
         "v4-sport-mull-sporditelgid",
         "v4-sport-bell-glampingtelgid"
@@ -15577,10 +15556,10 @@
       "image_path": null,
       "image_source": "none"
     },
-    "v4-sport-ja-vaba-aeg-matkavarustus-ja-telkimine-rannakarud-ja-vankrid": {
-      "handle": "v4-sport-ja-vaba-aeg-matkavarustus-ja-telkimine-rannakarud-ja-vankrid",
-      "name_en": "Rannakärud ja -vankrid",
-      "name_et": "Rannakärud ja -vankrid",
+    "v4-sport-rannakarud": {
+      "handle": "v4-sport-rannakarud",
+      "name_en": "Rannakärud",
+      "name_et": "Rannakärud",
       "level": 3,
       "parent_handle": "v4-sport-ja-vaba-aeg-matkavarustus-ja-telkimine",
       "child_handles": [],
@@ -15601,6 +15580,16 @@
       "handle": "v4-sport-ja-vaba-aeg-matkavarustus-ja-telkimine-telgipliidid-ja-matkapliidid",
       "name_en": "Telgipliidid ja matkapliidid",
       "name_et": "Telgipliidid ja matkapliidid",
+      "level": 3,
+      "parent_handle": "v4-sport-ja-vaba-aeg-matkavarustus-ja-telkimine",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-sport-kokkupandavad-veovankrid": {
+      "handle": "v4-sport-kokkupandavad-veovankrid",
+      "name_en": "Kokkupandavad veovankrid",
+      "name_et": "Kokkupandavad veovankrid",
       "level": 3,
       "parent_handle": "v4-sport-ja-vaba-aeg-matkavarustus-ja-telkimine",
       "child_handles": [],
@@ -21401,8 +21390,6 @@
     "v4-aed-ja-aiatehnika-l1-vaetise-ja-seemnelaotajad",
     "v4-aed-atv-haagised-jarelkarud",
     "v4-aed-kallutuskarud",
-    "v4-aed-rannakarud",
-    "v4-aed-kokkupandavad-veovankrid",
     "v4-aed-elektrilised-aiakarud",
     "v4-aed-ja-aiatehnika-basseinid-ja-spaa",
     "v4-aed-ja-aiatehnika-l2-basseini-ionisaatorid-ja-kloorinaatorid",
@@ -21946,9 +21933,10 @@
     "v4-sport-ja-vaba-aeg-matkavarustus-ja-telkimine-matkavalgustid-ja-laternad",
     "v4-sport-ja-vaba-aeg-matkavarustus-ja-telkimine-matkavoodid-ja-madratsid",
     "v4-sport-ja-vaba-aeg-matkavarustus-ja-telkimine-privaatsus-ja-dusitelgid",
-    "v4-sport-ja-vaba-aeg-matkavarustus-ja-telkimine-rannakarud-ja-vankrid",
+    "v4-sport-rannakarud",
     "v4-sport-ja-vaba-aeg-matkavarustus-ja-telkimine-rannatelgid-ja-varjualused",
     "v4-sport-ja-vaba-aeg-matkavarustus-ja-telkimine-telgipliidid-ja-matkapliidid",
+    "v4-sport-kokkupandavad-veovankrid",
     "v4-sport-auto-katusetelgid",
     "v4-sport-mull-sporditelgid",
     "v4-sport-bell-glampingtelgid",

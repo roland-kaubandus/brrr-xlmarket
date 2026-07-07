@@ -3549,14 +3549,6 @@ l1:
             name_en: "Kallutuskärud"
             name_et: "Kallutuskärud"
             product_count: 0
-          - slug: v4-aed-rannakarud
-            name_en: "Rannakärud"
-            name_et: "Rannakärud"
-            product_count: 0
-          - slug: v4-aed-kokkupandavad-veovankrid
-            name_en: "Kokkupandavad veovankrid"
-            name_et: "Kokkupandavad veovankrid"
-            product_count: 0
           - slug: v4-aed-elektrilised-aiakarud
             name_en: "Elektrilised aiakärud"
             name_et: "Elektrilised aiakärud"
@@ -5840,9 +5832,9 @@ l1:
             name_en: "Privaatsus- ja dušitelgid"
             name_et: "Privaatsus- ja dušitelgid"
             product_count: 0
-          - slug: v4-sport-ja-vaba-aeg-matkavarustus-ja-telkimine-rannakarud-ja-vankrid
-            name_en: "Rannakärud ja -vankrid"
-            name_et: "Rannakärud ja -vankrid"
+          - slug: v4-sport-rannakarud
+            name_en: "Rannakärud"
+            name_et: "Rannakärud"
             product_count: 0
           - slug: v4-sport-ja-vaba-aeg-matkavarustus-ja-telkimine-rannatelgid-ja-varjualused
             name_en: "Rannatelgid ja varjualused"
@@ -5851,6 +5843,10 @@ l1:
           - slug: v4-sport-ja-vaba-aeg-matkavarustus-ja-telkimine-telgipliidid-ja-matkapliidid
             name_en: "Telgipliidid ja matkapliidid"
             name_et: "Telgipliidid ja matkapliidid"
+            product_count: 0
+          - slug: v4-sport-kokkupandavad-veovankrid
+            name_en: "Kokkupandavad veovankrid"
+            name_et: "Kokkupandavad veovankrid"
             product_count: 0
           - slug: v4-sport-auto-katusetelgid
             name_en: "Auto- & katusetelgid"
