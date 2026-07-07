@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-07T10:41:31.165Z",
+  "generated_at": "2026-07-07T11:21:28.895Z",
   "nodes": {
     "v4-tooriistad-ja-tarvikud": {
       "handle": "v4-tooriistad-ja-tarvikud",
@@ -2915,7 +2915,6 @@
         "v4-tooriistad-ja-tarvikud-transpordikarud-vaadi-tunnikarud",
         "v4-tooriistad-ja-tarvikud-transpordikarud-pagasikarud",
         "v4-tooriistad-ja-tarvikud-transpordikarud-ostukarud-korvid",
-        "v4-tooriistad-ja-tarvikud-transpordikarud-teenindus-universaalkarud",
         "v4-tooriistad-lintkonveierid"
       ],
       "image_path": null,
@@ -3005,16 +3004,6 @@
       "handle": "v4-tooriistad-ja-tarvikud-transpordikarud-ostukarud-korvid",
       "name_en": "Ostukärud & -korvid",
       "name_et": "Ostukärud & -korvid",
-      "level": 3,
-      "parent_handle": "v4-tooriistad-ja-tarvikud-transpordikarud",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-tooriistad-ja-tarvikud-transpordikarud-teenindus-universaalkarud": {
-      "handle": "v4-tooriistad-ja-tarvikud-transpordikarud-teenindus-universaalkarud",
-      "name_en": "Teenindus- & universaalkärud",
-      "name_et": "Teenindus- & universaalkärud",
       "level": 3,
       "parent_handle": "v4-tooriistad-ja-tarvikud-transpordikarud",
       "child_handles": [],
@@ -20865,7 +20854,6 @@
     "v4-tooriistad-ja-tarvikud-transpordikarud-vaadi-tunnikarud",
     "v4-tooriistad-ja-tarvikud-transpordikarud-pagasikarud",
     "v4-tooriistad-ja-tarvikud-transpordikarud-ostukarud-korvid",
-    "v4-tooriistad-ja-tarvikud-transpordikarud-teenindus-universaalkarud",
     "v4-tooriistad-lintkonveierid",
     "v4-tooriistad-ja-tarvikud-redelid",
     "v4-tooriistad-ja-tarvikud-redelid-astmepukid",

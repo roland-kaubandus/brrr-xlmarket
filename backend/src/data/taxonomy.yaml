@@ -1110,10 +1110,6 @@ l1:
             name_en: "Ostukärud & -korvid"
             name_et: "Ostukärud & -korvid"
             product_count: 0
-          - slug: v4-tooriistad-ja-tarvikud-transpordikarud-teenindus-universaalkarud
-            name_en: "Teenindus- & universaalkärud"
-            name_et: "Teenindus- & universaalkärud"
-            product_count: 0
           - slug: v4-tooriistad-lintkonveierid
             name_en: "Lintkonveierid"
             name_et: "Lintkonveierid"
