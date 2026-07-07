@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-07T07:58:18.176Z",
+  "generated_at": "2026-07-07T09:39:14.618Z",
   "nodes": {
     "v4-tooriistad-ja-tarvikud": {
       "handle": "v4-tooriistad-ja-tarvikud",
@@ -19653,21 +19653,9 @@
       "level": 2,
       "parent_handle": "v4-buroo-ja-kontoritarvikud",
       "child_handles": [
-        "v4-buroo-kontoritarvikud-kulumaterjalid",
         "v4-buroo-etiketi-lindid-materjalid",
-        "v4-buroo-plotteri-paberirullid",
-        "v4-buroo-truki-termoprinterid"
+        "v4-buroo-plotteri-paberirullid"
       ],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-buroo-kontoritarvikud-kulumaterjalid": {
-      "handle": "v4-buroo-kontoritarvikud-kulumaterjalid",
-      "name_en": "Kontoritarvikud & kulumaterjalid",
-      "name_et": "Kontoritarvikud & kulumaterjalid",
-      "level": 3,
-      "parent_handle": "v4-buroo-kontoritarvikud",
-      "child_handles": [],
       "image_path": null,
       "image_source": "none"
     },
@@ -19685,16 +19673,6 @@
       "handle": "v4-buroo-plotteri-paberirullid",
       "name_en": "Plotteri paberirullid",
       "name_et": "Plotteri paberirullid",
-      "level": 3,
-      "parent_handle": "v4-buroo-kontoritarvikud",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-buroo-truki-termoprinterid": {
-      "handle": "v4-buroo-truki-termoprinterid",
-      "name_en": "Trüki- & termoprinterid",
-      "name_et": "Trüki- & termoprinterid",
       "level": 3,
       "parent_handle": "v4-buroo-kontoritarvikud",
       "child_handles": [],
@@ -22322,10 +22300,8 @@
     "v4-buroo-laminaatorid",
     "v4-buroo-koitmismasinad",
     "v4-buroo-kontoritarvikud",
-    "v4-buroo-kontoritarvikud-kulumaterjalid",
     "v4-buroo-etiketi-lindid-materjalid",
     "v4-buroo-plotteri-paberirullid",
-    "v4-buroo-truki-termoprinterid",
     "v4-buroo-turvakapid",
     "v4-buroo-seifid",
     "v4-buroo-tulekindlad-dokumendihoidikud",

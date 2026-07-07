@@ -7414,10 +7414,6 @@ l1:
         name_et: "Kontoritarvikud & kulumaterjalid"
         product_count: 0
         subs:
-          - slug: v4-buroo-kontoritarvikud-kulumaterjalid
-            name_en: "Kontoritarvikud & kulumaterjalid"
-            name_et: "Kontoritarvikud & kulumaterjalid"
-            product_count: 0
           - slug: v4-buroo-etiketi-lindid-materjalid
             name_en: "Etiketi-lindid & -materjalid"
             name_et: "Etiketi-lindid & -materjalid"
@@ -7425,10 +7421,6 @@ l1:
           - slug: v4-buroo-plotteri-paberirullid
             name_en: "Plotteri paberirullid"
             name_et: "Plotteri paberirullid"
-            product_count: 0
-          - slug: v4-buroo-truki-termoprinterid
-            name_en: "Trüki- & termoprinterid"
-            name_et: "Trüki- & termoprinterid"
             product_count: 0
       - slug: v4-buroo-turvakapid
         name_en: "Turvakapid & seifid"
