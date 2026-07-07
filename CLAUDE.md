@@ -240,6 +240,28 @@ pm2 reload xlmarket-storefront
 
 ---
 
+## 🧭 KATEGOORIA-PAIGUTUSE MEETOD (kehtib IGA toote-liigutuse + IGA feed-impordi juures)
+
+> Lisatud 2026-07-07 (Tarmo strateegiline). **Probleem:** iga tootja/masintõlge nimetab sama toodet erinevalt → nimepõhine paigutus tekitab topelt-kodusid, valed kokku, segadus kasvab feed-kasvul lõpmatuseni. **Reegel: paiguta KOGU info + TEGELIKU tüübi järgi, MITTE nime/tõlke järgi.** Detailid + wagon-testjuhtum: `reports/wagon-meetod.md`.
+
+**7 sammu (rakenda iga toote/feedi juures):**
+1. **Kogu KOGU info** — title_en + kirjeldus + tehniline spets (mõõt/materjal/võimsus/kandevõime) + pilt + otstarve. *Nimi = KÕIGE nõrgem signaal; tehniline + otstarve = tugevaim.*
+2. **Tuvasta TEGELIK tüüp semantiliselt** (mitte leksikaalselt). Masintõlge/tootja-nimi eksitab — nt "Beach Wagon Cart" spetsist võib olla ÜLD-veovanker (all-terrain folding), mitte ranna-spets. *Sisu otsustab, mitte sõna nimes.*
+3. **Kas see tüüp on JUBA olemas** (võib-olla teise nimega)? → semantiline otsing + loe kandidaat-L3-de sisu → **mappi sinna. [DUP-VÄRAV — hoiab ära topelt-kodu.]**
+4. **Kas sobib olemasolevasse** (laiuse-reegel)? Eelista LAIA L3 (mahutab variante); kitsas nimi ("Rannakärud") laiale sisule ≠ sundi. Liiga kitsas → laienda/rename VÕI eraldi L3.
+5. **UUS L3/L2 AINULT kui** pole kuskil (S3) JA ei sobi ühtegi (S4). Uue kategooria lävi KÕRGE; nimeta õige laiusega.
+6. **Domeeni-kontroll + cross-main dup-kontroll.** Domeen = kus OSTJA seda otsib (otstarbe primaar), mitte tootja-kategooria. Reegel: sama tüüp ERI domeenis = ÕIGE; sama tüüp + sama domeen eri kohas = DUP → koonda ÜHTE.
+7. **Seotud tüübid koos + luku lõpp-terviklikkus** (kas jäi 2 kohta? dup/orphan 0?).
+
+**Feed-põhimõtted (Powermat/BlackTools/KraftDele):**
+- **Tüübi-profiil = SSoT:** L3 `description` = "mis TÜÜP siia kuulub" (otstarve+tunnus), mille vastu feed-toode mappida — mitte nime järgi.
+- **Masintõlke-immuunsus:** kinnita tehnilisest spetsist + pildist, mitte tootja-nimest. Bränd A "garden wagon" ja Bränd B "beach cart" = SAMA üld-veovanker → sama L3.
+- **Kohustuslik DUP-värav** enne uue feed-toote lisamist (semantiline "kas juba olemas?").
+- **Perioodiline cross-main dup-skänn** feed-kasvul.
+- **Laiuse-reegel:** eelista laia tüübi-L3; kitsas ainult tõeliselt spetsiifilisele (nt ranna-spets sand-wheels).
+
+---
+
 ## 💎 TOKEN-SÄÄSTMISE REEGEL (lisatud 2026-04-30)
 
 1. **PowerShell skript >5 rida** → kirjuta .ps1 faili, käivita `-File` (mitte inline)
