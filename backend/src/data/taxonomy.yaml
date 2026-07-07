@@ -7435,6 +7435,10 @@ l1:
         name_et: "Turvakapid & seifid"
         product_count: 0
         subs:
+          - slug: v4-buroo-seifid
+            name_en: "Seifid"
+            name_et: "Seifid"
+            product_count: 0
           - slug: v4-buroo-tulekindlad-dokumendihoidikud
             name_en: "Tulekindlad dokumendihoidikud"
             name_et: "Tulekindlad dokumendihoidikud"
@@ -7499,23 +7503,6 @@ l1:
           - slug: v4-ladu-tooriistariiulid-kapid
             name_en: "Tööriistariiulid ja -kapid"
             name_et: "Tööriistariiulid ja -kapid"
-            product_count: 0
-      - slug: v4-ladu-turvakapid-seifid
-        name_en: "Turvakapid & seifid"
-        name_et: "Turvakapid & seifid"
-        product_count: 0
-        subs:
-          - slug: v4-ladu-seifid
-            name_en: "Seifid"
-            name_et: "Seifid"
-            product_count: 0
-          - slug: v4-ladu-relvakapid-relvaseifid
-            name_en: "Relvakapid ja relvaseifid"
-            name_et: "Relvakapid ja relvaseifid"
-            product_count: 0
-          - slug: v4-ladu-tuleohtlike-ainete-hoiukapid
-            name_en: "Tuleohtlike ainete hoiukapid"
-            name_et: "Tuleohtlike ainete hoiukapid"
             product_count: 0
       - slug: v4-ladu-pakendamine
         name_en: "Pakendamine"
@@ -7608,6 +7595,10 @@ l1:
           - slug: v4-ladu-telefonihoiukapid
             name_en: "Telefonihoiukapsel- & kapid"
             name_et: "Telefonihoiukapsel- & kapid"
+            product_count: 0
+          - slug: v4-ladu-tuleohtlike-ainete-hoiukapid
+            name_en: "Tuleohtlike ainete hoiukapid"
+            name_et: "Tuleohtlike ainete hoiukapid"
             product_count: 0
           - slug: v4-ladu-valjatommatavad-kapiorganiserid
             name_en: "Väljatõmmatavad kapiorganiserid"

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-06T19:59:51.165Z",
+  "generated_at": "2026-07-07T07:58:18.176Z",
   "nodes": {
     "v4-tooriistad-ja-tarvikud": {
       "handle": "v4-tooriistad-ja-tarvikud",
@@ -19708,10 +19708,21 @@
       "level": 2,
       "parent_handle": "v4-buroo-ja-kontoritarvikud",
       "child_handles": [
+        "v4-buroo-seifid",
         "v4-buroo-tulekindlad-dokumendihoidikud",
         "v4-buroo-votmekapid",
         "v4-buroo-rahaseifid-deposiidiseifid"
       ],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-buroo-seifid": {
+      "handle": "v4-buroo-seifid",
+      "name_en": "Seifid",
+      "name_et": "Seifid",
+      "level": 3,
+      "parent_handle": "v4-buroo-turvakapid",
+      "child_handles": [],
       "image_path": null,
       "image_source": "none"
     },
@@ -19753,7 +19764,6 @@
       "parent_handle": null,
       "child_handles": [
         "v4-ladu-riiulid-restid",
-        "v4-ladu-turvakapid-seifid",
         "v4-ladu-pakendamine",
         "v4-ladu-hoiukastid-konteinerid",
         "v4-ladu-mobiilsed-karud",
@@ -19874,50 +19884,6 @@
       "name_et": "Tööriistariiulid ja -kapid",
       "level": 3,
       "parent_handle": "v4-ladu-riiulid-restid",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-ladu-turvakapid-seifid": {
-      "handle": "v4-ladu-turvakapid-seifid",
-      "name_en": "Turvakapid & seifid",
-      "name_et": "Turvakapid & seifid",
-      "level": 2,
-      "parent_handle": "v4-ladu-hoiustamine-ja-pakendamine",
-      "child_handles": [
-        "v4-ladu-seifid",
-        "v4-ladu-relvakapid-relvaseifid",
-        "v4-ladu-tuleohtlike-ainete-hoiukapid"
-      ],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-ladu-seifid": {
-      "handle": "v4-ladu-seifid",
-      "name_en": "Seifid",
-      "name_et": "Seifid",
-      "level": 3,
-      "parent_handle": "v4-ladu-turvakapid-seifid",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-ladu-relvakapid-relvaseifid": {
-      "handle": "v4-ladu-relvakapid-relvaseifid",
-      "name_en": "Relvakapid ja relvaseifid",
-      "name_et": "Relvakapid ja relvaseifid",
-      "level": 3,
-      "parent_handle": "v4-ladu-turvakapid-seifid",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-ladu-tuleohtlike-ainete-hoiukapid": {
-      "handle": "v4-ladu-tuleohtlike-ainete-hoiukapid",
-      "name_en": "Tuleohtlike ainete hoiukapid",
-      "name_et": "Tuleohtlike ainete hoiukapid",
-      "level": 3,
-      "parent_handle": "v4-ladu-turvakapid-seifid",
       "child_handles": [],
       "image_path": null,
       "image_source": "none"
@@ -20130,6 +20096,7 @@
         "v4-ladu-metallkapid",
         "v4-ladu-toimiku-dokumendikapid",
         "v4-ladu-telefonihoiukapid",
+        "v4-ladu-tuleohtlike-ainete-hoiukapid",
         "v4-ladu-valjatommatavad-kapiorganiserid",
         "v4-ladu-nurgakapi-organiserid",
         "v4-ladu-ukse-organiserid-sahvririiulid",
@@ -20162,6 +20129,16 @@
       "handle": "v4-ladu-telefonihoiukapid",
       "name_en": "Telefonihoiukapsel- & kapid",
       "name_et": "Telefonihoiukapsel- & kapid",
+      "level": 3,
+      "parent_handle": "v4-ladu-hoiukapid-sahtlid",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-ladu-tuleohtlike-ainete-hoiukapid": {
+      "handle": "v4-ladu-tuleohtlike-ainete-hoiukapid",
+      "name_en": "Tuleohtlike ainete hoiukapid",
+      "name_et": "Tuleohtlike ainete hoiukapid",
       "level": 3,
       "parent_handle": "v4-ladu-hoiukapid-sahtlid",
       "child_handles": [],
@@ -22350,6 +22327,7 @@
     "v4-buroo-plotteri-paberirullid",
     "v4-buroo-truki-termoprinterid",
     "v4-buroo-turvakapid",
+    "v4-buroo-seifid",
     "v4-buroo-tulekindlad-dokumendihoidikud",
     "v4-buroo-votmekapid",
     "v4-buroo-rahaseifid-deposiidiseifid",
@@ -22364,10 +22342,6 @@
     "v4-ladu-filamendi-kunstirestid",
     "v4-ladu-pesumasina-pealsed-riiulid",
     "v4-ladu-tooriistariiulid-kapid",
-    "v4-ladu-turvakapid-seifid",
-    "v4-ladu-seifid",
-    "v4-ladu-relvakapid-relvaseifid",
-    "v4-ladu-tuleohtlike-ainete-hoiukapid",
     "v4-ladu-pakendamine",
     "v4-elektritarvikud-ja-valgustus-elektroonika-termoprinterid",
     "v4-ladu-pakkimis-koitmistarvikud",
@@ -22390,6 +22364,7 @@
     "v4-ladu-metallkapid",
     "v4-ladu-toimiku-dokumendikapid",
     "v4-ladu-telefonihoiukapid",
+    "v4-ladu-tuleohtlike-ainete-hoiukapid",
     "v4-ladu-valjatommatavad-kapiorganiserid",
     "v4-ladu-nurgakapi-organiserid",
     "v4-ladu-ukse-organiserid-sahvririiulid",
