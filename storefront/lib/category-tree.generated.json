@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-07T10:32:47.687Z",
+  "generated_at": "2026-07-07T10:41:31.165Z",
   "nodes": {
     "v4-tooriistad-ja-tarvikud": {
       "handle": "v4-tooriistad-ja-tarvikud",
@@ -552,7 +552,8 @@
         "v4-tooriistad-kaablitombelindid-tomburid",
         "v4-tooriistad-termotoru-loikurid",
         "v4-tooriistad-kaabliloikurid-juhtmeloikajad",
-        "v4-tooriistad-betoonisilurid"
+        "v4-tooriistad-betoonisilurid",
+        "v4-tooriistad-seinasooneloikurid"
       ],
       "image_path": null,
       "image_source": "none"
@@ -891,6 +892,16 @@
       "handle": "v4-tooriistad-betoonisilurid",
       "name_en": "Betoonisilurid",
       "name_et": "Betoonisilurid",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-elektrilised-tooriistad",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-seinasooneloikurid": {
+      "handle": "v4-tooriistad-seinasooneloikurid",
+      "name_en": "Seinasoonelõikurid",
+      "name_et": "Seinasoonelõikurid",
       "level": 3,
       "parent_handle": "v4-tooriistad-ja-tarvikud-elektrilised-tooriistad",
       "child_handles": [],
@@ -1380,7 +1391,9 @@
         "v4-tooriistad-ja-tarvikud-metallitoo-ja-sepatoo-sarruse-ja-armatuuripainutajad",
         "v4-tooriistad-ja-tarvikud-metallitoo-ja-sepatoo-sepaahjud",
         "v4-tooriistad-ja-tarvikud-metallitoo-ja-sepatoo-sepatangid",
-        "v4-tooriistad-ja-tarvikud-metallitoo-ja-sepatoo-treipingi-tooriistahoidikud"
+        "v4-tooriistad-ja-tarvikud-metallitoo-ja-sepatoo-treipingi-tooriistahoidikud",
+        "v4-tooriistad-metallifreespingid",
+        "v4-tooriistad-plekirullid"
       ],
       "image_path": null,
       "image_source": "none"
@@ -1529,6 +1542,26 @@
       "handle": "v4-tooriistad-ja-tarvikud-metallitoo-ja-sepatoo-treipingi-tooriistahoidikud",
       "name_en": "Treipingi tööriistahoidikud",
       "name_et": "Treipingi tööriistahoidikud",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-metallitoo-ja-sepatoo",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-metallifreespingid": {
+      "handle": "v4-tooriistad-metallifreespingid",
+      "name_en": "Metallifreespingid",
+      "name_et": "Metallifreespingid",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-metallitoo-ja-sepatoo",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-plekirullid": {
+      "handle": "v4-tooriistad-plekirullid",
+      "name_en": "Plekirullid",
+      "name_et": "Plekirullid",
       "level": 3,
       "parent_handle": "v4-tooriistad-ja-tarvikud-metallitoo-ja-sepatoo",
       "child_handles": [],
@@ -2882,7 +2915,8 @@
         "v4-tooriistad-ja-tarvikud-transpordikarud-vaadi-tunnikarud",
         "v4-tooriistad-ja-tarvikud-transpordikarud-pagasikarud",
         "v4-tooriistad-ja-tarvikud-transpordikarud-ostukarud-korvid",
-        "v4-tooriistad-ja-tarvikud-transpordikarud-teenindus-universaalkarud"
+        "v4-tooriistad-ja-tarvikud-transpordikarud-teenindus-universaalkarud",
+        "v4-tooriistad-lintkonveierid"
       ],
       "image_path": null,
       "image_source": "none"
@@ -2981,6 +3015,16 @@
       "handle": "v4-tooriistad-ja-tarvikud-transpordikarud-teenindus-universaalkarud",
       "name_en": "Teenindus- & universaalkärud",
       "name_et": "Teenindus- & universaalkärud",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-transpordikarud",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-lintkonveierid": {
+      "handle": "v4-tooriistad-lintkonveierid",
+      "name_en": "Lintkonveierid",
+      "name_et": "Lintkonveierid",
       "level": 3,
       "parent_handle": "v4-tooriistad-ja-tarvikud-transpordikarud",
       "child_handles": [],
@@ -3998,7 +4042,8 @@
         "v4-garaaziseadmed-mehaaniku-tooriistad-silindrivoodri-tooriistad",
         "v4-garaaziseadmed-mehaaniku-tooriistad-toru-laiendus-ja-aarestustooriistad",
         "v4-garaaziseadmed-mehaaniku-tooriistad-vedrukompressorid",
-        "v4-garaaziseadmed-mootori-remont-osade-pesurid"
+        "v4-garaaziseadmed-mootori-remont-osade-pesurid",
+        "v4-garaaz-veom-jouulekande-tooriistad"
       ],
       "image_path": null,
       "image_source": "none"
@@ -4077,6 +4122,16 @@
       "handle": "v4-garaaziseadmed-mootori-remont-osade-pesurid",
       "name_en": "Osade pesurid & lahustivannid",
       "name_et": "Osade pesurid & lahustivannid",
+      "level": 3,
+      "parent_handle": "v4-garaaziseadmed-mootori-remont",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-garaaz-veom-jouulekande-tooriistad": {
+      "handle": "v4-garaaz-veom-jouulekande-tooriistad",
+      "name_en": "Veom- & jõuülekande tööriistad",
+      "name_et": "Veom- & jõuülekande tööriistad",
       "level": 3,
       "parent_handle": "v4-garaaziseadmed-mootori-remont",
       "child_handles": [],
@@ -20618,6 +20673,7 @@
     "v4-tooriistad-termotoru-loikurid",
     "v4-tooriistad-kaabliloikurid-juhtmeloikajad",
     "v4-tooriistad-betoonisilurid",
+    "v4-tooriistad-seinasooneloikurid",
     "v4-tooriistad-ja-tarvikud-akutooriistad",
     "v4-tooriistad-ja-tarvikud-akutooriistad-akud-ja-laadijad",
     "v4-tooriistad-ja-tarvikud-akutooriistad-akuhoovlid",
@@ -20676,6 +20732,8 @@
     "v4-tooriistad-ja-tarvikud-metallitoo-ja-sepatoo-sepaahjud",
     "v4-tooriistad-ja-tarvikud-metallitoo-ja-sepatoo-sepatangid",
     "v4-tooriistad-ja-tarvikud-metallitoo-ja-sepatoo-treipingi-tooriistahoidikud",
+    "v4-tooriistad-metallifreespingid",
+    "v4-tooriistad-plekirullid",
     "v4-tooriistad-ja-tarvikud-keevitus-ja-jootmine",
     "v4-tooriistad-ja-tarvikud-keevitus-ja-jootmine-jooteauru-ja-suitsu-imurid",
     "v4-tooriistad-ja-tarvikud-keevitus-ja-jootmine-jootejaamad",
@@ -20808,6 +20866,7 @@
     "v4-tooriistad-ja-tarvikud-transpordikarud-pagasikarud",
     "v4-tooriistad-ja-tarvikud-transpordikarud-ostukarud-korvid",
     "v4-tooriistad-ja-tarvikud-transpordikarud-teenindus-universaalkarud",
+    "v4-tooriistad-lintkonveierid",
     "v4-tooriistad-ja-tarvikud-redelid",
     "v4-tooriistad-ja-tarvikud-redelid-astmepukid",
     "v4-tooriistad-ja-tarvikud-redelid-kokkupandavad",
@@ -20906,6 +20965,7 @@
     "v4-garaaziseadmed-mehaaniku-tooriistad-toru-laiendus-ja-aarestustooriistad",
     "v4-garaaziseadmed-mehaaniku-tooriistad-vedrukompressorid",
     "v4-garaaziseadmed-mootori-remont-osade-pesurid",
+    "v4-garaaz-veom-jouulekande-tooriistad",
     "v4-garaaziseadmed-pidurisysteem",
     "v4-garaaziseadmed-mehaaniku-tooriistad-piduri-ohutus-ja-remonditooriistad",
     "v4-garaaziseadmed-plekitoo-pdr",

@@ -330,6 +330,10 @@ l1:
             name_en: "Betoonisilurid"
             name_et: "Betoonisilurid"
             product_count: 0
+          - slug: v4-tooriistad-seinasooneloikurid
+            name_en: "Seinasoonelõikurid"
+            name_et: "Seinasoonelõikurid"
+            product_count: 0
       - slug: v4-tooriistad-ja-tarvikud-akutooriistad
         name_en: "Akutööriistad"
         name_et: "Akutööriistad"
@@ -565,6 +569,14 @@ l1:
           - slug: v4-tooriistad-ja-tarvikud-metallitoo-ja-sepatoo-treipingi-tooriistahoidikud
             name_en: "Treipingi tööriistahoidikud"
             name_et: "Treipingi tööriistahoidikud"
+            product_count: 0
+          - slug: v4-tooriistad-metallifreespingid
+            name_en: "Metallifreespingid"
+            name_et: "Metallifreespingid"
+            product_count: 0
+          - slug: v4-tooriistad-plekirullid
+            name_en: "Plekirullid"
+            name_et: "Plekirullid"
             product_count: 0
       - slug: v4-tooriistad-ja-tarvikud-keevitus-ja-jootmine
         name_en: "Keevitus & jootmine"
@@ -1102,6 +1114,10 @@ l1:
             name_en: "Teenindus- & universaalkärud"
             name_et: "Teenindus- & universaalkärud"
             product_count: 0
+          - slug: v4-tooriistad-lintkonveierid
+            name_en: "Lintkonveierid"
+            name_et: "Lintkonveierid"
+            product_count: 0
       - slug: v4-tooriistad-ja-tarvikud-redelid
         name_en: "Redelid"
         name_et: "Redelid"
@@ -1516,6 +1532,10 @@ l1:
           - slug: v4-garaaziseadmed-mootori-remont-osade-pesurid
             name_en: "Osade pesurid & lahustivannid"
             name_et: "Osade pesurid & lahustivannid"
+            product_count: 0
+          - slug: v4-garaaz-veom-jouulekande-tooriistad
+            name_en: "Veom- & jõuülekande tööriistad"
+            name_et: "Veom- & jõuülekande tööriistad"
             product_count: 0
       - slug: v4-garaaziseadmed-pidurisysteem
         name_en: "Pidurisüsteemi tööriistad"
