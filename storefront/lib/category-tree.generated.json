@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-07T09:39:14.618Z",
+  "generated_at": "2026-07-07T10:13:23.693Z",
   "nodes": {
     "v4-tooriistad-ja-tarvikud": {
       "handle": "v4-tooriistad-ja-tarvikud",
@@ -7678,19 +7678,20 @@
       "level": 2,
       "parent_handle": "v4-suurkoogiseadmed",
       "child_handles": [
-        "v4-suurkoogiseadmed-pakendamis-ja-taiteseadmed-lintkeevitusmasinad",
+        "v4-suurkoogiseadmed-pakendamis-ja-taiteseadmed-vedeliku-taitemasinad",
         "v4-suurkoogiseadmed-pakendamis-ja-taiteseadmed-pulbri-taiteseadmed",
         "v4-suurkook-topsisulgemismasinad",
+        "v4-suurkoogiseadmed-pakendamis-ja-taiteseadmed-lintkeevitusmasinad",
         "v4-suurkoogiseadmed-koogiseadmed-ja-elektriseadmed-vaakumpakendajad",
-        "v4-suurkoogiseadmed-pakendamis-ja-taiteseadmed-vedeliku-taitemasinad"
+        "v4-suurkook-etiketi-margistusmasinad"
       ],
       "image_path": null,
       "image_source": "none"
     },
-    "v4-suurkoogiseadmed-pakendamis-ja-taiteseadmed-lintkeevitusmasinad": {
-      "handle": "v4-suurkoogiseadmed-pakendamis-ja-taiteseadmed-lintkeevitusmasinad",
-      "name_en": "Lintkeevitusmasinad",
-      "name_et": "Lintkeevitusmasinad",
+    "v4-suurkoogiseadmed-pakendamis-ja-taiteseadmed-vedeliku-taitemasinad": {
+      "handle": "v4-suurkoogiseadmed-pakendamis-ja-taiteseadmed-vedeliku-taitemasinad",
+      "name_en": "Vedeliku täitemasinad",
+      "name_et": "Vedeliku täitemasinad",
       "level": 3,
       "parent_handle": "v4-suurkook-pakendamine-taitmine",
       "child_handles": [],
@@ -7717,6 +7718,16 @@
       "image_path": null,
       "image_source": "none"
     },
+    "v4-suurkoogiseadmed-pakendamis-ja-taiteseadmed-lintkeevitusmasinad": {
+      "handle": "v4-suurkoogiseadmed-pakendamis-ja-taiteseadmed-lintkeevitusmasinad",
+      "name_en": "Lintkeevitusmasinad",
+      "name_et": "Lintkeevitusmasinad",
+      "level": 3,
+      "parent_handle": "v4-suurkook-pakendamine-taitmine",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
     "v4-suurkoogiseadmed-koogiseadmed-ja-elektriseadmed-vaakumpakendajad": {
       "handle": "v4-suurkoogiseadmed-koogiseadmed-ja-elektriseadmed-vaakumpakendajad",
       "name_en": "Vaakumpakendajad",
@@ -7727,10 +7738,10 @@
       "image_path": null,
       "image_source": "none"
     },
-    "v4-suurkoogiseadmed-pakendamis-ja-taiteseadmed-vedeliku-taitemasinad": {
-      "handle": "v4-suurkoogiseadmed-pakendamis-ja-taiteseadmed-vedeliku-taitemasinad",
-      "name_en": "Vedeliku täitemasinad",
-      "name_et": "Vedeliku täitemasinad",
+    "v4-suurkook-etiketi-margistusmasinad": {
+      "handle": "v4-suurkook-etiketi-margistusmasinad",
+      "name_en": "Etiketi- & märgistusmasinad",
+      "name_et": "Etiketi- & märgistusmasinad",
       "level": 3,
       "parent_handle": "v4-suurkook-pakendamine-taitmine",
       "child_handles": [],
@@ -17388,7 +17399,6 @@
       "parent_handle": "v4-reklaami-truki-ja-graveerimisseadmed",
       "child_handles": [
         "v4-reklaami-truki-ja-graveerimisseadmed-koitmine-ja-lamineerimine-paberiloikurid",
-        "v4-reklaami-truki-ja-graveerimisseadmed-koitmine-ja-lamineerimine-etiketi-margistusmasinad",
         "v4-reklaami-truki-ja-graveerimisseadmed-koitmine-ja-lamineerimine-paberi-soonimis-voltimismasinad"
       ],
       "image_path": null,
@@ -17398,16 +17408,6 @@
       "handle": "v4-reklaami-truki-ja-graveerimisseadmed-koitmine-ja-lamineerimine-paberiloikurid",
       "name_en": "Paberilõikurid",
       "name_et": "Paberilõikurid",
-      "level": 3,
-      "parent_handle": "v4-reklaami-truki-ja-graveerimisseadmed-koitmine-ja-lamineerimine",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none"
-    },
-    "v4-reklaami-truki-ja-graveerimisseadmed-koitmine-ja-lamineerimine-etiketi-margistusmasinad": {
-      "handle": "v4-reklaami-truki-ja-graveerimisseadmed-koitmine-ja-lamineerimine-etiketi-margistusmasinad",
-      "name_en": "Etiketi- & märgistusmasinad",
-      "name_et": "Etiketi- & märgistusmasinad",
       "level": 3,
       "parent_handle": "v4-reklaami-truki-ja-graveerimisseadmed-koitmine-ja-lamineerimine",
       "child_handles": [],
@@ -21229,11 +21229,12 @@
     "v4-suurkoogiseadmed-toidu-soojas-hoidmine-isoleeritud-toidukandurid",
     "v4-suurkoogiseadmed-toidu-soojas-hoidmine-toidusoojendajad",
     "v4-suurkook-pakendamine-taitmine",
-    "v4-suurkoogiseadmed-pakendamis-ja-taiteseadmed-lintkeevitusmasinad",
+    "v4-suurkoogiseadmed-pakendamis-ja-taiteseadmed-vedeliku-taitemasinad",
     "v4-suurkoogiseadmed-pakendamis-ja-taiteseadmed-pulbri-taiteseadmed",
     "v4-suurkook-topsisulgemismasinad",
+    "v4-suurkoogiseadmed-pakendamis-ja-taiteseadmed-lintkeevitusmasinad",
     "v4-suurkoogiseadmed-koogiseadmed-ja-elektriseadmed-vaakumpakendajad",
-    "v4-suurkoogiseadmed-pakendamis-ja-taiteseadmed-vedeliku-taitemasinad",
+    "v4-suurkook-etiketi-margistusmasinad",
     "v4-suurkook-noudepesu",
     "v4-suurkook-klaasipesumasinad",
     "v4-suurkoogiseadmed-koogivalamud-roostevabast-terasest-valamud",
@@ -22100,7 +22101,6 @@
     "v4-tooriistad-ja-tarvikud-kasitooriistad-kellaparandustooriistad",
     "v4-reklaami-truki-ja-graveerimisseadmed-koitmine-ja-lamineerimine",
     "v4-reklaami-truki-ja-graveerimisseadmed-koitmine-ja-lamineerimine-paberiloikurid",
-    "v4-reklaami-truki-ja-graveerimisseadmed-koitmine-ja-lamineerimine-etiketi-margistusmasinad",
     "v4-reklaami-truki-ja-graveerimisseadmed-koitmine-ja-lamineerimine-paberi-soonimis-voltimismasinad",
     "v4-lemmikloomatarbed",
     "v4-lemmikloomatarbed-puurid-ja-aedikud",

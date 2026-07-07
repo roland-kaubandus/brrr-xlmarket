@@ -2868,9 +2868,9 @@ l1:
         name_et: "Pakendamine & täitmine"
         product_count: 0
         subs:
-          - slug: v4-suurkoogiseadmed-pakendamis-ja-taiteseadmed-lintkeevitusmasinad
-            name_en: "Lintkeevitusmasinad"
-            name_et: "Lintkeevitusmasinad"
+          - slug: v4-suurkoogiseadmed-pakendamis-ja-taiteseadmed-vedeliku-taitemasinad
+            name_en: "Vedeliku täitemasinad"
+            name_et: "Vedeliku täitemasinad"
             product_count: 0
           - slug: v4-suurkoogiseadmed-pakendamis-ja-taiteseadmed-pulbri-taiteseadmed
             name_en: "Pulbri täiteseadmed"
@@ -2880,13 +2880,17 @@ l1:
             name_en: "Topsisulgemismasinad"
             name_et: "Topsisulgemismasinad"
             product_count: 0
+          - slug: v4-suurkoogiseadmed-pakendamis-ja-taiteseadmed-lintkeevitusmasinad
+            name_en: "Lintkeevitusmasinad"
+            name_et: "Lintkeevitusmasinad"
+            product_count: 0
           - slug: v4-suurkoogiseadmed-koogiseadmed-ja-elektriseadmed-vaakumpakendajad
             name_en: "Vaakumpakendajad"
             name_et: "Vaakumpakendajad"
             product_count: 0
-          - slug: v4-suurkoogiseadmed-pakendamis-ja-taiteseadmed-vedeliku-taitemasinad
-            name_en: "Vedeliku täitemasinad"
-            name_et: "Vedeliku täitemasinad"
+          - slug: v4-suurkook-etiketi-margistusmasinad
+            name_en: "Etiketi- & märgistusmasinad"
+            name_et: "Etiketi- & märgistusmasinad"
             product_count: 0
       - slug: v4-suurkook-noudepesu
         name_en: "Nõudepesu"
@@ -6535,10 +6539,6 @@ l1:
           - slug: v4-reklaami-truki-ja-graveerimisseadmed-koitmine-ja-lamineerimine-paberiloikurid
             name_en: "Paberilõikurid"
             name_et: "Paberilõikurid"
-            product_count: 0
-          - slug: v4-reklaami-truki-ja-graveerimisseadmed-koitmine-ja-lamineerimine-etiketi-margistusmasinad
-            name_en: "Etiketi- & märgistusmasinad"
-            name_et: "Etiketi- & märgistusmasinad"
             product_count: 0
           - slug: v4-reklaami-truki-ja-graveerimisseadmed-koitmine-ja-lamineerimine-paberi-soonimis-voltimismasinad
             name_en: "Paberi soonimis- & voltimismasinad"
