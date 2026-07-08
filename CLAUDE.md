@@ -255,10 +255,12 @@ pm2 reload xlmarket-storefront
 - **EESMÄRK:** väldib iga kaheti-toote juures lõputut põrgatamist; feed-mahu kasvades (Powermat/BlackTools/KraftDele) deterministlik paigutus. Ühendab senised reeglid: **domeeni-reegel + eksklusiivsus-test + hübriid-reegel = üks üldreegel.**
 
 **SAMM 0 — KAARDISTA KOGU SEOTUD TEEMA ENNE (kohustuslik):** ära tegele ainult nimekirjas oleva üksik-tüübiga; vaata üle KÕIK seotud/naaber-tüübid samas domeenis (kõik mis on, kus on, miks on), sh naaber-L3-d kus sama-tüüpi võib PEIDUS olla. **Lahenda TERVIK, mitte tükk.** (Nt "rannakärud" → vaata KOGU käru/veovanker/istme-teema; "etiketimasin" → vaata KOGU pakendus-teema.)
+> **IMPERATIIV — Claude Code AVARDAB kitsa käsu ISE:** kui käsk on "tegele X kohas Y", kaardista **KOGU X-teema üle kõigi mainide ise** — käsu kitsus EI ole luba kitsaks tööks. **Ära oota, et kasutaja ütleks "kaardista terve teema".** Kehtib feed-impordil samuti (uus feed-toode → kaardista terve tüübi-pere enne paigutust).
 > **MIKS (Tarmo):** kitsalt tegeledes võib sama-tüüpi olla peidus naaber-L3-s (rannakäru töökoja-kärude hulgas; aiakäru "Aiaistmete" all) → jääks puutumata. **Feed-tulevikus sama:** kui uus feed toob "rannakäru"/"kanuukäru", peab meetod nägema KOGU käru-pilti (kus ranna/üld/töökoja/aia/kanuu kärud on) → siis on selge kas kodu olemas (mappi), sobib olemasolevasse (laiuse-reegel), või vajab uut (ainult kui pole ega sobi). Kitsas vaade → valesti-paigutus + peidus-dupid. Tervik-vaade → õige kodu + feed-kindlus. *(Positiivne näide: `pakendusmasinad-kaart.md` kaardistas terve pakendus-teema → õige. Negatiivne: wagon-lukk vaatas kitsalt → jättis "Aiaistmete" all peidus aiakärud puutumata.)*
 
 **7 sammu (rakenda iga toote/feedi juures, PEALE SAMM 0):**
 1. **Kogu KOGU info** — title_en + kirjeldus + tehniline spets (mõõt/materjal/võimsus/kandevõime) + pilt + otstarve. *Nimi = KÕIGE nõrgem signaal; tehniline + otstarve = tugevaim.*
+   - **PÕHJALIKKUSE-REEGEL — uuri IGA kahtlase toote juures KÕIK 9:** (1) nimetus/title_en (2) pilt (3) kirjeldus (4) tehniline info (5) praegused kategooriad (6) kuuluvus/domeen — kes ostab (7) olemasolevad mainid/L2/L3 — kas siht olemas (8) sarnasus — lähedased koos (9) otstarve/ostja-loogika — mida veel vajab. **Nimi = NÕRGIM signaal.**
 2. **Tuvasta TEGELIK tüüp semantiliselt** (mitte leksikaalselt). Masintõlge/tootja-nimi eksitab — nt "Beach Wagon Cart" spetsist võib olla ÜLD-veovanker (all-terrain folding), mitte ranna-spets. *Sisu otsustab, mitte sõna nimes.*
 3. **Kas see tüüp on JUBA olemas** (võib-olla teise nimega)? → semantiline otsing + loe kandidaat-L3-de sisu → **mappi sinna. [DUP-VÄRAV — hoiab ära topelt-kodu.]**
 4. **Kas sobib olemasolevasse** (laiuse-reegel)? Eelista LAIA L3 (mahutab variante); kitsas nimi ("Rannakärud") laiale sisule ≠ sundi. Liiga kitsas → laienda/rename VÕI eraldi L3.
@@ -266,6 +268,8 @@ pm2 reload xlmarket-storefront
    - **NIME-REEGEL — UUE L2/L3 NIMI (püsiv, kehtib nii praegu kui FEED-impordil, Tarmo — parima töövoo+lõpptulemuse nimel):** iga uus kategooria saab **LOOMISHETKEL** parima Eesti nime **Eesti müüjate etalonide järgi** (1a.ee kogu-kataloog · ajtooted.ee ladu/büroo/tööriist · storitgroup.com riiulid · hydroshop.ee/flexib.ee hüdraulika · ITAK med · jt CLAUDE.md/mälu etalon-loend). **MITTE masintõlge/inglise/tööversioon.** **PÕHJUS:** feed-impordil (Powermat/BlackTools/KraftDele) loodud kategooriatel EI OLE hilisemat nime-faasi — nimi peab olema õige **sünnihetkel**, muidu jääb vigane nimi püsima. Piiripealne nimi → paku parim + **MÄRGI nime-faasi ülevaatuseks** (masin pakub, etalon kontrollib, Tarmo kinnitab). **ERISTUS:** nime-**FAAS** (lõpus, ühekordne) = paranda OLEMASOLEVATE nimed; nime-**REEGEL** (see, püsiv) = iga UUS kategooria sünnib kohe õige nimega. Mõlemad vaja: faas puhastab vana, reegel hoiab uue puhtana + feed-kindel.
 6. **Domeeni-kontroll + cross-main dup-kontroll.** Domeen = kus OSTJA seda otsib (otstarbe primaar), mitte tootja-kategooria. Reegel: sama tüüp ERI domeenis = ÕIGE; sama tüüp + sama domeen eri kohas = DUP → koonda ÜHTE.
 7. **Seotud tüübid koos + luku lõpp-terviklikkus** (kas jäi 2 kohta? dup/orphan 0?).
+   - **LUKU LÕPP-CHECKLIST (kontrolli KÕIK):** 0 orb · 0 dead · 0 dup-L3-nimi · 0 global-handle-dup · 0 cross-main dup (sama tüüp üle mainide) · **distinct-tooteid säilinud (0 tootekadu)** · L1-arv õige · v4-scoped · **teostus TÄIELIK mitte osaline** (ükski L3 ei jäänud 2 kohta).
+   - **SEOTUD TÜÜBID KÕRVUTI (näited):** printer + kulumaterjal/lint koos · seade + varuosa kõrvuti · tootmisliin (täitja+sulgur+etiketeerija) koos · ranna-käru kõrval üld-veovanker. *Ostja leiab seotud tooted ühest kohast.*
 
 **HÜBRIID-REEGEL (Tarmo, samm 6 juurde):** kui toode on PÄRISELT kaheselt funktsionaalne (nt "Garden Cart with Seat 226kg" = iste+käru; "Scooter with Storage Bin" = iste+hoiu) ega ole selget primaar-kodu — **ÄRA põrgata lõputult**. Jäta kus on (kui pole vale), määra primaar sisust (istud → iste), **märgi CROSS-LISTING Phase-2** (kuvatakse hiljem mõlemas vaates — EI liiguta ega dubleeri andmeid nüüd), liigu edasi. *Mõlemad õiged, kumbki pole vale = aktsepteeritav.* Väldib ummikut/lõputut ümber-paigutamist.
 
@@ -275,6 +279,18 @@ pm2 reload xlmarket-storefront
 - **Kohustuslik DUP-värav** enne uue feed-toote lisamist (semantiline "kas juba olemas?").
 - **Perioodiline cross-main dup-skänn** feed-kasvul.
 - **Laiuse-reegel:** eelista laia tüübi-L3; kitsas ainult tõeliselt spetsiifilisele (nt ranna-spets sand-wheels).
+- **Domeeni-esimene paigutus:** otsusta PRIMAAR-domeen otstarbest (kus OSTJA otsib), mitte tootja-kategooriast (nt beach/camping wagon → vaba-aeg, mitte aiatööriist).
+
+### 🚀 IGA v4-LUKU DEPLOY = 4 KOHUSTUSLIKKU SAMMU (järjekorras, ükski ei tohi jääda)
+
+> **Lisatud 2026-07-08 — põhjustas 2026-07-07 #9 nav-stale bugi (push ununes).**
+
+1. **DB-migratsioon** — `docker cp` + `psql -f` (transaktsioonis, ON_ERROR_STOP).
+2. **Meili reindeks** — `index-meilisearch.mjs` (medusa konteineris). Leht loeb tootearvud Meili'st — muidu vanad arvud.
+3. **`git push origin taxonomy-v4`** — Coolify buildib **origin'ist**, mitte lokaalsest. Push puudu → nav vana (build vanast commit'ist).
+4. **Coolify storefront redeploy** — `category-tree.generated.json` on **build-time bundle**; redeploy rebuildib nav-puu (uued L3-d ilmuvad, kustutatud kaovad).
+
+**LÜNK ÜHESKI = vale seis:** DB õige aga Meili/nav vana. **Eile #9:** samm 3 (push) ununes → nav näitas "Lükanduste riistvara" 69 (vana) kuni push+redeploy. **KONTROLLI iga luku lõpus: kas kõik 4 tehtud?**
 
 ---
 
