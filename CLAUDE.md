@@ -283,6 +283,20 @@ pm2 reload xlmarket-storefront
 - **Laiuse-reegel:** eelista laia tüübi-L3; kitsas ainult tõeliselt spetsiifilisele (nt ranna-spets sand-wheels).
 - **Domeeni-esimene paigutus:** otsusta PRIMAAR-domeen otstarbest (kus OSTJA otsib), mitte tootja-kategooriast (nt beach/camping wagon → vaba-aeg, mitte aiatööriist).
 
+### 🔍 SKÄNNID RAKENDAVAD 9-PUNKTI SISU-REEGLIT ISE (mitte nime-põhine)
+
+> **Lisatud 2026-07-08 — nime-põhine skänn jättis RC-tanki Konstruktoritesse (süsteemne, feed-kriitiline).**
+
+Iga skänn/QA (grab-bag · cross-main dup · intra-L3 · feed-mapping) **LOEB toote kirjeldust/sisu**, MITTE ei usalda nime. Nime-põhine skänn jätab **NIME-LÕKSUD** püüdmata (nt "STEM Building Toys 554 PCS" nimi = konstruktor, aga kirjeldus = "remote control tank" = RC-sõiduk). *Tõestatud: nime-QA jättis 5 misfitti (2 RC-sõidukit + 3 baby-table), sügav sisu-QA püüdis.* **FEED-KRIITILINE:** tootjad panevad eksitavaid nimesid → skänn PEAB sisu lugema, muidu sadu feed-tooteid valesti.
+
+### 📋 KOLM QA-SKÄNNI TÜÜPI (täielik katvus)
+
+1. **GRAB-BAG** — heterogeenne L3 (mitu tüüpi ühes L3-s).
+2. **CROSS-MAIN DUP** — sama tüüp mitmes mainis.
+3. **INTRA-MAIN L3-QA** — toode vales L3-s OMA mainis (grab-bag ega cross-main EI näe seda).
+
+Kõik 3 rakendavad 9-punkti sisu-reeglit. **Uue maini / feed-impordi järel: jooksuta KÕIK 3.**
+
 ### 🚀 IGA v4-LUKU DEPLOY = 4 KOHUSTUSLIKKU SAMMU (järjekorras, ükski ei tohi jääda)
 
 > **Lisatud 2026-07-08 — põhjustas 2026-07-07 #9 nav-stale bugi (push ununes).**
@@ -293,6 +307,8 @@ pm2 reload xlmarket-storefront
 4. **Coolify storefront redeploy** — `category-tree.generated.json` on **build-time bundle**; redeploy rebuildib nav-puu (uued L3-d ilmuvad, kustutatud kaovad).
 
 **LÜNK ÜHESKI = vale seis:** DB õige aga Meili/nav vana. **Eile #9:** samm 3 (push) ununes → nav näitas "Lükanduste riistvara" 69 (vana) kuni push+redeploy. **KONTROLLI iga luku lõpus: kas kõik 4 tehtud?**
+
+**🚀 DEPLOY-NÜANSS (kergem tee):** kui **AINULT toote-lingid liiguvad** (0 L3 lisatud/kustutatud/nimetatud/reparent — **struktuur muutumatu**) → piisab **AINULT Meili reindeksist** (leht loeb arve Meili'st), EI vaja SSoT-regen/push/redeploy. **Täis-4-sammu ainult kui STRUKTUUR muutub** (uus/kustutatud/renamed/reparent L3/L2/L1).
 
 ---
 
