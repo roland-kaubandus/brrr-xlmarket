@@ -244,6 +244,16 @@ pm2 reload xlmarket-storefront
 
 > Lisatud 2026-07-07 (Tarmo strateegiline). **Probleem:** iga tootja/masintõlge nimetab sama toodet erinevalt → nimepõhine paigutus tekitab topelt-kodusid, valed kokku, segadus kasvab feed-kasvul lõpmatuseni. **Reegel: paiguta KOGU info + TEGELIKU tüübi järgi, MITTE nime/tõlke järgi.** Detailid + wagon-testjuhtum: `reports/wagon-meetod.md`.
 
+### ⭐ UNIVERSAALNE PAIGUTUS-REEGEL (segment vs tüüp — kehtib IGA toote + IGA feedi juures)
+
+> **Kõige tähtsam üld-reegel — ühendab domeeni-reegli + eksklusiivsuse-testi + hübriid-reegli üheks.** (Lisatud 2026-07-08, Tarmo strateegiline.)
+
+- **PRIMAARNE KODU = TÜÜP + funktsionaalne DOMEEN** (kus toode kuulub, kus ostja otsib), **MITTE ostja-segment** (kodu/kommerts/HoReCa/lapsed/sugu).
+- **OSTJA-SEGMENT = ristlõikav VAADE** (silt/virtuaal-osakond, Phase-2), pandud tüüp-kodu **PEALE** — mitte primaarne paigutus.
+- **ERAND — EKSKLUSIIVSUS:** kui toode on **AINULT ühe segmendi oma** (ainult kodu / ainult kommerts / ainult laps — teine segment EI kasuta), siis **segment ONGI ta tüüp** → elab selle segmendi kodus primaarselt.
+- **NÄITED:** murutraktor (hotell+kodu) → AED (tüüp, mitte "kellele"); köögikombain (kodu+kommerts) → köögitehnika (tüüp); sisseehitatud nõudepesumasin (ainult kodu) → kodu (eksklusiivne); tööstus-ahi (ainult kommerts) → suurköök (eksklusiivne); 3+ batuut (ainult laps) → lastele (eksklusiivne).
+- **EESMÄRK:** väldib iga kaheti-toote juures lõputut põrgatamist; feed-mahu kasvades (Powermat/BlackTools/KraftDele) deterministlik paigutus. Ühendab senised reeglid: **domeeni-reegel + eksklusiivsus-test + hübriid-reegel = üks üldreegel.**
+
 **SAMM 0 — KAARDISTA KOGU SEOTUD TEEMA ENNE (kohustuslik):** ära tegele ainult nimekirjas oleva üksik-tüübiga; vaata üle KÕIK seotud/naaber-tüübid samas domeenis (kõik mis on, kus on, miks on), sh naaber-L3-d kus sama-tüüpi võib PEIDUS olla. **Lahenda TERVIK, mitte tükk.** (Nt "rannakärud" → vaata KOGU käru/veovanker/istme-teema; "etiketimasin" → vaata KOGU pakendus-teema.)
 > **MIKS (Tarmo):** kitsalt tegeledes võib sama-tüüpi olla peidus naaber-L3-s (rannakäru töökoja-kärude hulgas; aiakäru "Aiaistmete" all) → jääks puutumata. **Feed-tulevikus sama:** kui uus feed toob "rannakäru"/"kanuukäru", peab meetod nägema KOGU käru-pilti (kus ranna/üld/töökoja/aia/kanuu kärud on) → siis on selge kas kodu olemas (mappi), sobib olemasolevasse (laiuse-reegel), või vajab uut (ainult kui pole ega sobi). Kitsas vaade → valesti-paigutus + peidus-dupid. Tervik-vaade → õige kodu + feed-kindlus. *(Positiivne näide: `pakendusmasinad-kaart.md` kaardistas terve pakendus-teema → õige. Negatiivne: wagon-lukk vaatas kitsalt → jättis "Aiaistmete" all peidus aiakärud puutumata.)*
 
