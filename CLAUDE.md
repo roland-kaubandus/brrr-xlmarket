@@ -273,6 +273,8 @@ pm2 reload xlmarket-storefront
 
 **HÜBRIID-REEGEL (Tarmo, samm 6 juurde):** kui toode on PÄRISELT kaheselt funktsionaalne (nt "Garden Cart with Seat 226kg" = iste+käru; "Scooter with Storage Bin" = iste+hoiu) ega ole selget primaar-kodu — **ÄRA põrgata lõputult**. Jäta kus on (kui pole vale), määra primaar sisust (istud → iste), **märgi CROSS-LISTING Phase-2** (kuvatakse hiljem mõlemas vaates — EI liiguta ega dubleeri andmeid nüüd), liigu edasi. *Mõlemad õiged, kumbki pole vale = aktsepteeritav.* Väldib ummikut/lõputut ümber-paigutamist.
 
+**📐 JÄRJEKORRA-REEGEL (suur plokk → kodu ENNE fine-koristust):** kui suur koherentne toote-plokk vajab uut kodu (uus main/L2), **loo see kodu ENNE fine-koristust** mainidest, kust plokk lahkub. Kodu-loomine lahendab vale-paigutused JUURTASANDIL; fine-koristus pärast on väiksem + väldib topelttööd. *Tõestatud: Peoinventar/Ladu/Büroo/Elektroonika (kodutu tüüp-plokk sai maini, siis fine-paigutus).* **FEED:** kui feed toob suure uue tüübi-ploki (nt soojuspumbad) → loo kodu enne, siis fine-paiguta.
+
 **Feed-põhimõtted (Powermat/BlackTools/KraftDele):**
 - **Tüübi-profiil = SSoT:** L3 `description` = "mis TÜÜP siia kuulub" (otstarve+tunnus), mille vastu feed-toode mappida — mitte nime järgi.
 - **Masintõlke-immuunsus:** kinnita tehnilisest spetsist + pildist, mitte tootja-nimest. Bränd A "garden wagon" ja Bränd B "beach cart" = SAMA üld-veovanker → sama L3.
