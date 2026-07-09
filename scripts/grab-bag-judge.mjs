@@ -10,9 +10,11 @@
  *
  * PERIOODILINE (mitte iga-luku): ~30 API-kutset 1595 L3 peale. Jooksuta uue maini/feedi järel.
  *
- * KASUTUS:  ANTHROPIC_API_KEY=sk-... node scripts/grab-bag-judge.mjs [--min N] [--limit M]
+ * KASUTUS:  ANTHROPIC_API_KEY=sk-... node scripts/grab-bag-judge.mjs [--min N] [--limit M] [--ids id1,id2]
+ *   (võti .env-st: `set -a; . /path/.env; set +a; node scripts/grab-bag-judge.mjs ...`)
  *   --min N   : ainult L3-d ≥N tootega (vaikimisi 8; alla selle harva grab-bag)
  *   --limit M : ainult esimesed M L3 (test-jooks)
+ *   --ids ... : AINULT loetletud L3-id (koma-eraldi) — odav sihitud test
  * Väljund: reports/grab-bag-judge-tulem.md + stdout kokkuvõte. EI muuda DB-d (ainult SELECT).
  */
 import { execSync } from "node:child_process";
@@ -24,6 +26,7 @@ const MODEL = "claude-opus-4-8";
 const args = process.argv.slice(2);
 const MIN = +(args[args.indexOf("--min") + 1]) || 8;
 const LIMIT = args.includes("--limit") ? +(args[args.indexOf("--limit") + 1]) : 0;
+const IDS = args.includes("--ids") ? args[args.indexOf("--ids") + 1].split(",").map((s) => s.trim()).filter(Boolean) : null;
 const BATCH = 8;         // L3 per API-kutse
 const SAMPLE = 24;       // title-näidist per L3
 
@@ -37,7 +40,7 @@ let rows = q(`SELECT l3.id, l3.name, (SELECT name FROM product_category WHERE id
   (SELECT count(*) FROM product_category_product WHERE product_category_id=l3.id) n
 FROM product_category l3 WHERE l3.mpath LIKE 'pcat_v4_l%' AND l3.deleted_at IS NULL
   AND (char_length(l3.mpath)-char_length(replace(l3.mpath,'.','')))=2
-  AND (SELECT count(*) FROM product_category_product WHERE product_category_id=l3.id) >= ${MIN}
+  AND ${IDS ? `l3.id IN (${IDS.map((i) => `'${i.replace(/[^a-zA-Z0-9_]/g, "")}'`).join(",")})` : `(SELECT count(*) FROM product_category_product WHERE product_category_id=l3.id) >= ${MIN}`}
 ORDER BY n DESC;`).split("\n").filter(Boolean).map((r) => { const [id, name, main, n] = r.split("\t"); return { id, name, main, n: +n }; });
 if (LIMIT) rows = rows.slice(0, LIMIT);
 console.error(`Hindan ${rows.length} L3 (≥${MIN} toodet), ${Math.ceil(rows.length / BATCH)} API-kutset...`);
