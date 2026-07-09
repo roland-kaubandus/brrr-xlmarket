@@ -110,6 +110,17 @@ else if (phase === "post") {
       } catch (e) { console.log("  ℹ️  grab-bag judge vahele: " + String(e.message).slice(0, 60)); }
     }
   } else console.log("  ℹ️  grab-bag inkrementaalne vahele (ANTHROPIC_API_KEY/migrate puudub) — jooksuta käsitsi vajadusel");
+  // intra-QA INKREMENTAALNE (WARN, mitte FAIL): toode vales L3-s samas mainis, puudutatud L3-del.
+  if (process.env.ANTHROPIC_API_KEY && migratePath && fs.existsSync(migratePath)) {
+    const catIds = [...new Set((fs.readFileSync(migratePath, "utf8").match(/pcat_[a-zA-Z0-9_]+/g) || []))].slice(0, 40);
+    if (catIds.length) {
+      try {
+        const o = execSync(`node ${resolve(HERE, "intra-qa-judge.mjs")} --ids ${catIds.join(",")}`, { encoding: "utf8", env: process.env });
+        const g = +((o.match(/Misfite:\s*(\d+)/) || [])[1] || 0);
+        console.log(`  ${g ? "🟡" : "✅"} intra-QA inkrementaalne: ${g} misfit ${catIds.length} puudutatud L3-s ${g ? "(WARN — vt reports/intra-qa-test-tulem.md, inimene otsustab)" : ""}`);
+      } catch (e) { console.log("  ℹ️  intra-QA vahele: " + String(e.message).slice(0, 60)); }
+    }
+  }
 }
 
 else { console.error("Kasuta: lock-harness.mjs pre <kaart.md> [<migrate.sql>]  |  post <migrate.sql> <baseline_distinct> <baseline_l3>"); process.exit(2); }
