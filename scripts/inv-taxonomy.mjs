@@ -121,29 +121,11 @@ ORDER BY n, l3.name;`);
 if (w1.length) { warns += w1.length; console.log(`  ${w1.length} L3 alla 3 toote (näita esimesed 15):`); w1.slice(0,15).forEach(([m,nm,n]) => console.log(`     ${n}  ${m} › ${nm}`)); if (w1.length>15) console.log(`     … +${w1.length-15}`); }
 else console.log("  ✓ puhas");
 
-// ============ INV-GRAB-01: heterogeenne L3 (top-märksõna katab <40%) ============
-sec("INV-GRAB-01", "WARN", "grab-bag kandidaat (dominantne märksõna katab <40% toodetest, ≥8 toodet)");
-const g1 = q(`
-WITH prods AS (
-  SELECT l3.id l3id, l3.name l3name, split_part(l3.mpath,'.',1) mainid, pcp.product_id, pr.title
-  FROM product_category l3 JOIN product_category_product pcp ON pcp.product_category_id=l3.id
-  JOIN product pr ON pr.id=pcp.product_id
-  WHERE l3.mpath LIKE 'pcat_v4_l%' AND l3.deleted_at IS NULL AND (char_length(l3.mpath)-char_length(replace(l3.mpath,'.','')))=2
-),
-tot AS (SELECT l3id, count(DISTINCT product_id) t FROM prods GROUP BY l3id HAVING count(DISTINCT product_id)>=8),
-words AS (
-  SELECT p.l3id, p.product_id, lower(w) w FROM prods p, regexp_split_to_table(p.title,'[^a-zA-Z]+') w
-  WHERE length(w)>=4 AND lower(w) NOT IN ('vevor','with','for','and','the','inch','pack','steel','duty','heavy','black','white','portable','stainless','outdoor','indoor')
-),
-tw AS (SELECT w2.l3id, w2.w, count(DISTINCT w2.product_id) c, row_number() OVER (PARTITION BY w2.l3id ORDER BY count(DISTINCT w2.product_id) DESC) rn FROM words w2 JOIN tot ON tot.l3id=w2.l3id GROUP BY w2.l3id, w2.w)
-SELECT (SELECT name FROM product_category WHERE id=tot.l3id) l3name,
-  (SELECT name FROM product_category WHERE id=(SELECT mainid FROM prods WHERE l3id=tot.l3id LIMIT 1)) main,
-  tot.t, tw.w, tw.c, round(tw.c::numeric/tot.t,2) dom
-FROM tot JOIN tw ON tw.l3id=tot.l3id AND tw.rn=1
-WHERE tw.c::numeric/tot.t < 0.40
-ORDER BY dom;`);
-if (g1.length) { warns += g1.length; console.log(`  ${g1.length} heterogeenset L3 (top-sõna dominants <40%):`); g1.slice(0,15).forEach(([l3,m,t,w,c,dom]) => console.log(`     dom=${dom} (${c}/${t} "${w}")  ${m} › ${l3}`)); if (g1.length>15) console.log(`     … +${g1.length-15}`); }
-else console.log("  ✓ puhas");
+// ============ INV-GRAB-01: EEMALDATUD keyword-heuristika (recall 0% — tõestatud vale-negatiiv) ============
+// Grab-bagid jagavad dominantset sõna (grill/desk/aquarium/cooking) → märksõna-heuristika ei näe sekundaar-klastrit.
+// Nime-signaal "X ja Y" = 85% recall aga 50% FP (805/1595). → SEMANTILINE tuvastus AINULT: scripts/grab-bag-judge.mjs (LLM).
+console.log("\n🟡 INV-GRAB-01 [INFO] grab-bag = scripts/grab-bag-judge.mjs (LLM-semantiline, perioodiline)");
+console.log("  ℹ️  keyword-heuristika EEMALDATUD (recall 0% — vt reports/detektor-valideerimine.md). Jooksuta judge uue maini/feedi järel.");
 
 // ============ INV-ORPHAN-01: kulumaterjal-L3 ilma paaris-seadmeta samas L2 ============
 sec("INV-ORPHAN-01", "WARN", "kulumaterjal-L3 (lint/tint/filter/kassett/tera) — kontrolli paaris-seade samas L2");
@@ -153,6 +135,8 @@ SELECT (SELECT name FROM product_category WHERE id=split_part(l3.mpath,'.',1)) m
 FROM product_category l3 WHERE l3.mpath LIKE 'pcat_v4_l%' AND l3.deleted_at IS NULL
   AND (char_length(l3.mpath)-char_length(replace(l3.mpath,'.','')))=2
   AND l3.name ~* '(lint|tint|kassett|cartridge|toner|filter|filtri|tera |terad|otsik|kulumaterjal|refill|padjake)'
+  -- välista L2, mis ISE on kulumaterjali/tarvikute/varuosade kodu (seal on koos = ÕIGE)
+  AND (SELECT name FROM product_category WHERE id=l3.parent_category_id) !~* '(tarvikud|kulumaterjal|varuosad|filtr)'
 ORDER BY l2, l3.name;`);
 if (o1.length) { warns += o1.length; console.log(`  ${o1.length} kulumaterjal-L3 (kontrolli seade kõrval):`); o1.forEach(([m,l2,nm]) => console.log(`     ${m} › ${l2} › ${nm}`)); }
 else console.log("  ✓ puhas");
