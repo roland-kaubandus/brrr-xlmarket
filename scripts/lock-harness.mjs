@@ -98,6 +98,18 @@ else if (phase === "post") {
     const mn = JSON.parse(mres).estimatedTotalHits;
     ok("Meili värske (sample-kategooria DB≈Meili)", Math.abs(dbn - mn) <= 2, `DB=${dbn} Meili=${mn}`);
   } catch (e) { console.log("  ℹ️  Meili-kontroll vahele (ei saanud päringut teha)"); }
+  // grab-bag INKREMENTAALNE (WARN, mitte FAIL — LLM pole deterministlik, inimene otsustab):
+  // judge AINULT lukus puudutatud L3-d (~$0.01). Vahele kui ANTHROPIC_API_KEY puudub.
+  if (process.env.ANTHROPIC_API_KEY && migratePath && fs.existsSync(migratePath)) {
+    const catIds = [...new Set((fs.readFileSync(migratePath, "utf8").match(/pcat_[a-zA-Z0-9_]+/g) || []))].slice(0, 40);
+    if (catIds.length) {
+      try {
+        const o = execSync(`node ${resolve(HERE, "grab-bag-judge.mjs")} --ids ${catIds.join(",")}`, { encoding: "utf8", env: process.env });
+        const g = +((o.match(/GRAB:\s*(\d+)/) || [])[1] || 0);
+        console.log(`  ${g ? "🟡" : "✅"} grab-bag inkrementaalne: ${g} GRAB ${catIds.length} puudutatud L3-s ${g ? "(WARN — vt reports/grab-judge-ids-tulem.md, inimene otsustab)" : ""}`);
+      } catch (e) { console.log("  ℹ️  grab-bag judge vahele: " + String(e.message).slice(0, 60)); }
+    }
+  } else console.log("  ℹ️  grab-bag inkrementaalne vahele (ANTHROPIC_API_KEY/migrate puudub) — jooksuta käsitsi vajadusel");
 }
 
 else { console.error("Kasuta: lock-harness.mjs pre <kaart.md> [<migrate.sql>]  |  post <migrate.sql> <baseline_distinct> <baseline_l3>"); process.exit(2); }

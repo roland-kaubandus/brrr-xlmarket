@@ -58,7 +58,7 @@ async function judgeBatch(batch) {
 ${blocks}
 
 Vasta AINULT JSON-massiiviga, üks objekt per L3, järjekorras:
-[{"id":"pcat_...","verdict":"GRAB"|"CLEAN","clusters":"kui GRAB: klastrid+arvud, muidu lühi-tüüp"}]`;
+[{"id":"pcat_...","verdict":"GRAB"|"CLEAN","confidence":"korge"|"kesk"|"madal","clusters":"kui GRAB: klastrid+arvud + split-soovitus, muidu lühi-tüüp"}]`;
 
   const res = await fetch("https://api.anthropic.com/v1/messages", {
     method: "POST",
@@ -67,11 +67,13 @@ Vasta AINULT JSON-massiiviga, üks objekt per L3, järjekorras:
   });
   if (!res.ok) throw new Error(`API ${res.status}: ${await res.text()}`);
   const data = await res.json();
+  if (data.usage) { USAGE.in += data.usage.input_tokens || 0; USAGE.out += data.usage.output_tokens || 0; }
   const txt = (data.content.find((b) => b.type === "text") || {}).text || "";
   const m = txt.match(/\[[\s\S]*\]/);
   if (!m) throw new Error("JSON massiivi ei leitud vastusest: " + txt.slice(0, 200));
   return JSON.parse(m[0]);
 }
+const USAGE = { in: 0, out: 0 };
 
 // 3. jooksuta batchidena
 const out = [];
@@ -81,17 +83,46 @@ for (let i = 0; i < rows.length; i += BATCH) {
     const verdicts = await judgeBatch(batch);
     for (const v of verdicts) {
       const r = rows.find((x) => x.id === v.id) || batch[verdicts.indexOf(v)];
-      out.push({ ...r, verdict: v.verdict, clusters: v.clusters });
+      out.push({ ...r, verdict: v.verdict, confidence: v.confidence || "", clusters: v.clusters });
     }
     console.error(`  [${Math.min(i + BATCH, rows.length)}/${rows.length}]`);
-  } catch (e) { console.error(`  batch ${i} VIGA: ${e.message}`); batch.forEach((r) => out.push({ ...r, verdict: "ERROR", clusters: e.message.slice(0, 80) })); }
+  } catch (e) { console.error(`  batch ${i} VIGA: ${e.message}`); batch.forEach((r) => out.push({ ...r, verdict: "ERROR", confidence: "", clusters: e.message.slice(0, 80) })); }
 }
 
-// 4. raport
-const grabs = out.filter((r) => r.verdict === "GRAB");
-const lines = ["# GRAB-BAG JUDGE — LLM-semantiline tulem\n",
-  `Mudel: ${MODEL} · L3 ≥${MIN} toodet: ${rows.length} · **GRAB: ${grabs.length}** · CLEAN: ${out.filter((r) => r.verdict === "CLEAN").length} · ERROR: ${out.filter((r) => r.verdict === "ERROR").length}\n`,
-  "## GRAB-BAG kandidaadid (kontrolli + split)\n", "| L3 | main | n | klastrid |", "|---|---|--:|---|",
-  ...grabs.sort((a, b) => b.n - a.n).map((r) => `| ${r.name} (${r.id}) | ${r.main} | ${r.n} | ${r.clusters} |`)];
-fs.writeFileSync("/opt/eumotors-tasks/reports/grab-bag-judge-tulem.md", lines.join("\n"));
-console.log(`\n🟢 GRAB: ${grabs.length} / ${rows.length}. Raport: reports/grab-bag-judge-tulem.md`);
+// 4a. VERDIKT-CACHE + muutus-tuvastus (võrdle eelmise jooksuga)
+const CACHE = "/opt/eumotors-tasks/reports/grab-verdiktid.json";
+const stamp = new Date().toISOString().slice(0, 10);
+let prev = {};
+try { prev = JSON.parse(fs.readFileSync(CACHE, "utf8")).verdicts || {}; } catch {}
+const changes = [];
+const verdicts = {};
+for (const r of out) {
+  verdicts[r.id] = { name: r.name, main: r.main, n: r.n, verdict: r.verdict, confidence: r.confidence, clusters: r.clusters, date: stamp };
+  const p = prev[r.id];
+  if (IDS) continue; // sihitud jooks ei uuenda cache muutus-loogikat tervikuna
+  if (!p) changes.push(`UUS L3 ${r.name} (${r.id}): ${r.verdict}`);
+  else if (p.verdict !== r.verdict) changes.push(`MUUTUS ${r.name} (${r.id}): ${p.verdict}→${r.verdict}`);
+}
+if (!IDS) { // täis/laiem jooks kirjutab cache; --ids jätab cache puutumata
+  for (const id of Object.keys(prev)) if (!verdicts[id]) changes.push(`KADUNUD L3 ${id} (${prev[id].name}): oli ${prev[id].verdict}`);
+  fs.writeFileSync(CACHE, JSON.stringify({ generated: stamp, model: MODEL, count: out.length, verdicts }, null, 1));
+}
+
+// 4b. raport
+const grabs = out.filter((r) => r.verdict === "GRAB").sort((a, b) => b.n - a.n);
+const conf = (c) => ({ korge: "🔴 kõrge", kesk: "🟠 kesk", madal: "🟡 madal" }[c] || c);
+const byMain = {}; grabs.forEach((r) => { (byMain[r.main] ||= []).push(r); });
+const lines = ["# GRAB-BAG JUDGE — LLM-semantiline täisnimekiri\n",
+  `**${stamp} · ${MODEL} · L3 ≥${MIN} toodet: ${rows.length}**\n`,
+  `**GRAB: ${grabs.length}** · CLEAN: ${out.filter((r) => r.verdict === "CLEAN").length} · ERROR: ${out.filter((r) => r.verdict === "ERROR").length}\n`,
+  changes.length ? `## MUUTUSED eelmisest jooksust (${changes.length})\n` + changes.map((c) => `- ${c}`).join("\n") + "\n" : "",
+  "## GRAB rankitud (toodete arv kahanevalt)\n", "| # | L3 | main | n | kindlus | klastrid + split |", "|--:|---|---|--:|---|---|",
+  ...grabs.map((r, i) => `| ${i + 1} | ${r.name} (${r.id}) | ${r.main} | ${r.n} | ${conf(r.confidence)} | ${r.clusters} |`),
+  "\n## GRAB main-kaupa (täis-passi planeerimiseks)\n",
+  ...Object.entries(byMain).sort((a, b) => b[1].length - a[1].length).map(([m, rs]) => `- **${m}** (${rs.length}): ${rs.map((r) => r.name).join(" · ")}`)];
+fs.writeFileSync(IDS ? "/opt/eumotors-tasks/reports/grab-judge-ids-tulem.md" : "/opt/eumotors-tasks/reports/grabbag-judge-taisnimekiri.md", lines.filter(Boolean).join("\n"));
+const cost = (USAGE.in / 1e6) * 5 + (USAGE.out / 1e6) * 25;
+console.log(`\n🟢 GRAB: ${grabs.length} / ${rows.length} · CLEAN ${out.filter((r) => r.verdict === "CLEAN").length} · ERROR ${out.filter((r) => r.verdict === "ERROR").length}`);
+if (!IDS) console.log(`   cache: reports/grab-verdiktid.json · muutusi: ${changes.length}`);
+console.log(`   raport: reports/grabbag-judge-taisnimekiri.md`);
+console.log(`💰 Token-kulu: input ${USAGE.in} · output ${USAGE.out} · ~$${cost.toFixed(4)} (Opus 4.8)`);
