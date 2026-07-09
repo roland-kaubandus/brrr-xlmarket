@@ -68,8 +68,5 @@
     "tolmuimejad": "kodu-tolmuimeja (#4 Kodumasinad) ≠ töökoja shop-vac/dust-collector (#1 Tööriistad) — eri domeen",
     "tööriistakastid": "truck-bed/underbody tool-box (#3 Auto) ≠ portable metal tool-box (#22 Ladu) — eri toode"
   },
-  "flag_unresolved_dup": {
-    "rannatelgidjavarjualused": "sama beach-tent/sun-shelter: #12 Sport Matkavarustus (14) vs Varjualused-telgid-main (20) — kumb primaar-kodu? Tarmo otsus.",
-    "õllepruulimisseadmed": "kodu-brewer 13-60L (#4 Kodumasinad) vs kommerts-fermentor-kettle 30-60L (#5 Suurköök) — 60L kattub, suurus-eksklusiivsus ebaselge. Tarmo otsus."
-  }
+  "_resolved_dup": "rannatelgid → Varjualused-main (34, kõik telgid) · õllepruulimine → #5 Suurköök (13, kõrvuti joogiseadmetega). Mõlemad lahendatud 2026-07-09, L3-d kustutatud."
 }
