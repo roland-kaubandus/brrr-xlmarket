@@ -271,9 +271,13 @@ pm2 reload xlmarket-storefront
 > **🥇 REEGLITE PINGERIDA (kui reeglid konfliktivad, KÕRGEM võidab):**
 > 1. **EKSKLUSIIVSUS-VÄRAV** (ainult-üks-segment → segment-kodu) — kõrgeim
 > 2. **TÜÜP + DOMEEN** (universaalne paigutus-reegel)
-> 3. **SEOTUD TÜÜBID KOOS**
-> 4. **HÜBRIID-REEGEL** (kaheti-funktsioon → primaar sisust + Phase-2)
-> 5. **LAIUSE-REEGEL** (eelista laia L3)
+> 3. **🚪 DUP-VÄRAV** (kas siht-L3 juba OLEMAS mujal? → liiguta sinna) — **VÕIDAB variant/laiuse üle**
+> 4. **SEOTUD TÜÜBID KOOS**
+> 5. **HÜBRIID-REEGEL** (kaheti-funktsioon → primaar sisust + Phase-2)
+> 6. **VARIANT vs ERI TÜÜP** (sama funktsioon+eri vorm → koos; eri funktsioon → split)
+> 7. **LAIUSE-REEGEL** (eelista laia L3)
+>
+> **🚪 DUP-VÄRAV ENNE VARIANT/LAIUSE-OTSUST:** enne kui otsustad "variant → jäta koos" või "loo uus L3", kontrolli ALATI, kas sihtkoht juba OLEMAS mujal. Kui kodu on olemas → **dup-värav VÕIDAB** (liiguta sinna), ka siis kui variant-reegel ütleks "jäta koos". *Tõestus: griddle'id jäeti "Praepannidesse" variant-reegli järgi, kuigi "Lauagrillid ja grillplaadid" L3 oli olemas → oleks pidanud sinna.*
 >
 > **NÄIDE (Code'i konflikt):** toddler-wagon "for Kids 250kg" → eksklusiivsus (1) võidab otstarbe/hübriidi üle → #24. AGA kui pealkiri "for Kids **AND Adults**" → pole eksklusiivne → reegel 2 (tüüp+domeen) → veovankrid. **Eksklusiivsuse tuvastamiseks:** signaali-hierarhia (vanus/disain/turundus = TUGEV; kandevõime = NÕRK).
 
@@ -296,7 +300,8 @@ pm2 reload xlmarket-storefront
    - **NIME-REEGEL — UUE L2/L3 NIMI (püsiv, kehtib nii praegu kui FEED-impordil, Tarmo — parima töövoo+lõpptulemuse nimel):** iga uus kategooria saab **LOOMISHETKEL** parima Eesti nime **Eesti müüjate etalonide järgi** (1a.ee kogu-kataloog · ajtooted.ee ladu/büroo/tööriist · storitgroup.com riiulid · hydroshop.ee/flexib.ee hüdraulika · ITAK med · jt CLAUDE.md/mälu etalon-loend). **MITTE masintõlge/inglise/tööversioon.** **PÕHJUS:** feed-impordil (Powermat/BlackTools/KraftDele) loodud kategooriatel EI OLE hilisemat nime-faasi — nimi peab olema õige **sünnihetkel**, muidu jääb vigane nimi püsima. Piiripealne nimi → paku parim + **MÄRGI nime-faasi ülevaatuseks** (masin pakub, etalon kontrollib, Tarmo kinnitab). **ERISTUS:** nime-**FAAS** (lõpus, ühekordne) = paranda OLEMASOLEVATE nimed; nime-**REEGEL** (see, püsiv) = iga UUS kategooria sünnib kohe õige nimega. Mõlemad vaja: faas puhastab vana, reegel hoiab uue puhtana + feed-kindel.
 6. **Domeeni-kontroll + cross-main dup-kontroll.** Domeen = kus OSTJA seda otsib (otstarbe primaar), mitte tootja-kategooria. Reegel: sama tüüp ERI domeenis = ÕIGE; sama tüüp + sama domeen eri kohas = DUP → koonda ÜHTE.
 7. **Seotud tüübid koos + luku lõpp-terviklikkus** (kas jäi 2 kohta? dup/orphan 0?).
-   - **LUKU LÕPP-CHECKLIST (kontrolli KÕIK):** 0 orb · 0 dead · 0 dup-L3-nimi · 0 global-handle-dup · 0 cross-main dup (sama tüüp üle mainide) · **distinct-tooteid säilinud (0 tootekadu)** · L1-arv õige · v4-scoped · **teostus TÄIELIK mitte osaline** (ükski L3 ei jäänud 2 kohta).
+   - **🔁 SPLIT ON REKURSIIVNE — KONTROLLI JÄÄKI:** pärast grab-bag splitti jooksuta judge/sisu-analüüs **JÄÄK-L3 peal uuesti, kuni CLEAN**. Split võib olla OSALINE (üks klaster välja, teised peidus). *Tõestus: "Potid" (49) → splititi bakeware (7), aga jääki (42) jäid peidus survepotid (5, rõhk=eri funktsioon) + aurutuspotid (6, aur=eri funktsioon).* **Lõpp-checklist: kas iga jääk-L3 on nüüd ÜHE tüübiga?**
+   - **LUKU LÕPP-CHECKLIST (kontrolli KÕIK):** 0 orb · 0 dead · 0 dup-L3-nimi · 0 global-handle-dup · 0 cross-main dup (sama tüüp üle mainide) · **distinct-tooteid säilinud (0 tootekadu)** · L1-arv õige · v4-scoped · **teostus TÄIELIK mitte osaline** (ükski L3 ei jäänud 2 kohta) · **jääk-L3 ühe-tüübiga (split rekursiivne)**.
    - **🔍 JOOKSUTA `node scripts/inv-taxonomy.mjs` IGA luku lõpus** (rules-as-checks — proosa-reegel ei peata vigu, kontroll peatab). **FAIL → paranda ENNE commit'i** (või lisa kinnitatud kaheti-toode `scripts/inv-whitelist.json`-i). WARN → vaata üle. Invariandid: SEG-01/02 (laste-eksklusiivsus) · DUP-01 (cross-main L3-nimi) · STRUCT-01 (orb/dead/dup-handle) · NAME-01 (inglise nimi) · WIDTH-01 (kitsas L3, info) · ORPHAN-01 (kulumaterjal, nime-põhine=müra) · COMPLETE-01 (dubleeriv L3-nimi ühes mainis).
    - **🔬 GRAB-BAG tuvastus = `scripts/grab-bag-judge.mjs`** (LLM-semantiline, EI ole inv-is — keyword recall 0% tõestatud vale-negatiiv, jagatud dominant-sõna maskeerib). Võti: `set -a; . /opt/eumotors-tasks/.env; set +a` (ANTHROPIC_API_KEY, **väärtust EI logi**). **⚠️ judge = WARN, MITTE FAIL — LLM pole deterministlik, inimene otsustab** (verdikt kindlus: kõrge=usalda, kesk=piiripealne vaata üle). Kolm kihti: inv (struktuur, FAIL) → harness (protsess, FAIL) → **judge (semantika, WARN)**.
      - **Inkrementaalne (iga lukk):** lock-harness POST kutsub judge automaatselt AINULT puudutatud L3-del (~$0.01, vahele kui võti puudub) → WARN kui uus heterogeensus.
