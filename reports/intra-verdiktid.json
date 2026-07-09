@@ -1,0 +1,3217 @@
+{
+ "generated": "2026-07-09",
+ "model": "claude-opus-4-8",
+ "targets": 1517,
+ "misfits": [
+  {
+   "product_id": "prod_01KNXX8YMW54JCD2DW8M3S5NWE",
+   "current_l3": "pcat_t3f_3_8",
+   "suggested_l3": "pcat_t3g_16_2",
+   "reason": "Silikoonipüstol, mitte kruvikeeraja",
+   "confidence": "korge",
+   "main": "Tööriistad ja tarvikud",
+   "current_name": "Akukruvikeerajad",
+   "suggested_name": "Silikooni- ja hermeetikupüstolid"
+  },
+  {
+   "product_id": "prod_01KNXXNN7SFDP1RFJP9X31E7AE",
+   "current_l3": "pcat_t3f_1_4",
+   "suggested_l3": "pcat_1screed",
+   "reason": "Concrete power screed kuulub Betoonisilurite alla",
+   "confidence": "korge",
+   "main": "Tööriistad ja tarvikud",
+   "current_name": "Betoonitööriistad",
+   "suggested_name": "Betoonisilurid"
+  },
+  {
+   "product_id": "prod_01KNXXNDZ8F0K538EDAQ8S1MHA",
+   "current_l3": "pcat_t3f_1_4",
+   "suggested_l3": "pcat_1screed",
+   "reason": "Concrete screed = betoonisilur",
+   "confidence": "korge",
+   "main": "Tööriistad ja tarvikud",
+   "current_name": "Betoonitööriistad",
+   "suggested_name": "Betoonisilurid"
+  },
+  {
+   "product_id": "prod_01KNXXNEX4DY9MRG7SNY6JZYSJ",
+   "current_l3": "pcat_t3f_1_4",
+   "suggested_l3": "pcat_1screed",
+   "reason": "Concrete screed = betoonisilur",
+   "confidence": "korge",
+   "main": "Tööriistad ja tarvikud",
+   "current_name": "Betoonitööriistad",
+   "suggested_name": "Betoonisilurid"
+  },
+  {
+   "product_id": "prod_01KNXXDCNB5Q3CVPEM61SSTRJY",
+   "current_l3": "pcat_t3f_1_4",
+   "suggested_l3": "pcat_1screed",
+   "reason": "Gas concrete power screed = betoonisilur",
+   "confidence": "korge",
+   "main": "Tööriistad ja tarvikud",
+   "current_name": "Betoonitööriistad",
+   "suggested_name": "Betoonisilurid"
+  },
+  {
+   "product_id": "prod_01KNXX8G6BN9NFDR18B3QTQ3HE",
+   "current_l3": "pcat_kt1",
+   "suggested_l3": "pcat_t3f_1_20",
+   "reason": "RJ45 krimpimistööriist, mitte koorimismasin",
+   "confidence": "korge",
+   "main": "Tööriistad ja tarvikud",
+   "current_name": "Juhtmekoorimismasinad",
+   "suggested_name": "Pressimistangid ja -tööriistad"
+  },
+  {
+   "product_id": "prod_01KPJVF6AP8XKWESQ16ZAM5NAW",
+   "current_l3": "pcat_t3f_1_9",
+   "suggested_l3": "pcat_t3f_9_2",
+   "reason": "Screw extractor set",
+   "confidence": "korge",
+   "main": "Tööriistad ja tarvikud",
+   "current_name": "Keermestamis- ja keermelõikamise komplektid",
+   "suggested_name": "Kruvi- ja poldieemaldajad"
+  },
+  {
+   "product_id": "prod_01KP6FFAC7XH6GXTTC36VY6AKC",
+   "current_l3": "pcat_t3f_1_9",
+   "suggested_l3": "pcat_t3f_9_2",
+   "reason": "Screw extractor set",
+   "confidence": "korge",
+   "main": "Tööriistad ja tarvikud",
+   "current_name": "Keermestamis- ja keermelõikamise komplektid",
+   "suggested_name": "Kruvi- ja poldieemaldajad"
+  },
+  {
+   "product_id": "prod_01KPJVF6GRM5K1M8AHE886JNJ9",
+   "current_l3": "pcat_t3f_1_9",
+   "suggested_l3": "pcat_t3f_9_2",
+   "reason": "Bolt/nut extractor set",
+   "confidence": "korge",
+   "main": "Tööriistad ja tarvikud",
+   "current_name": "Keermestamis- ja keermelõikamise komplektid",
+   "suggested_name": "Kruvi- ja poldieemaldajad"
+  },
+  {
+   "product_id": "prod_01KNXXHEPHC2WT3RWBSX9RB98V",
+   "current_l3": "pcat_t3f_7_2",
+   "suggested_l3": "pcat_t3f_7_5",
+   "reason": "Stud welder dent repair kit",
+   "confidence": "korge",
+   "main": "Tööriistad ja tarvikud",
+   "current_name": "Keevitusaparaadid",
+   "suggested_name": "Punktkeevitusaparaadid ja mõlgieemaldusseadmed"
+  },
+  {
+   "product_id": "prod_01KNXX69GZRP9RDQGHVZ4JB9FE",
+   "current_l3": "pcat_t3f_7_2",
+   "suggested_l3": "pcat_t3f_7_5",
+   "reason": "Spot welding dent puller",
+   "confidence": "korge",
+   "main": "Tööriistad ja tarvikud",
+   "current_name": "Keevitusaparaadid",
+   "suggested_name": "Punktkeevitusaparaadid ja mõlgieemaldusseadmed"
+  },
+  {
+   "product_id": "prod_01KNXX8BNNVZH76YM6G06WPDZZ",
+   "current_l3": "pcat_t3f_2_26",
+   "suggested_l3": "pcat_t3f_2_18",
+   "reason": "Abrasiiv-katkestussaag metalli lõikamiseks",
+   "confidence": "kesk",
+   "main": "Tööriistad ja tarvikud",
+   "current_name": "Ketassaed",
+   "suggested_name": "Metalli katkestussaed"
+  },
+  {
+   "product_id": "prod_01KNXXCM8W5TKNK7QMBKHPN6BZ",
+   "current_l3": "pcat_t3f_10_12",
+   "suggested_l3": "pcat_1cab1",
+   "reason": "Kaabli tõmbelint (mule tape), mitte koormarihm",
+   "confidence": "korge",
+   "main": "Tööriistad ja tarvikud",
+   "current_name": "Koormarihmad",
+   "suggested_name": "Kaablitõmbelindid & -tõmburid"
+  },
+  {
+   "product_id": "prod_01KNXXF2SMZ6SN8CFSQHKANBW3",
+   "current_l3": "pcat_t3g_16_1",
+   "suggested_l3": "pcat_1screed",
+   "reason": "Power trowel = betoonisilur",
+   "confidence": "korge",
+   "main": "Tööriistad ja tarvikud",
+   "current_name": "Krohvimistööriistad",
+   "suggested_name": "Betoonisilurid"
+  },
+  {
+   "product_id": "prod_01KNXXF6CAM1DW1PPZ78FVKPCQ",
+   "current_l3": "pcat_t3g_16_1",
+   "suggested_l3": "pcat_1screed",
+   "reason": "Power trowel = betoonisilur",
+   "confidence": "korge",
+   "main": "Tööriistad ja tarvikud",
+   "current_name": "Krohvimistööriistad",
+   "suggested_name": "Betoonisilurid"
+  },
+  {
+   "product_id": "prod_01KNXXF3N8GPW4KN2DQW7ANS77",
+   "current_l3": "pcat_t3g_16_1",
+   "suggested_l3": "pcat_1screed",
+   "reason": "Power trowel = betoonisilur",
+   "confidence": "korge",
+   "main": "Tööriistad ja tarvikud",
+   "current_name": "Krohvimistööriistad",
+   "suggested_name": "Betoonisilurid"
+  },
+  {
+   "product_id": "prod_01KNXX703C7PPSAK6KG76KYKM7",
+   "current_l3": "pcat_t3f_12_4",
+   "suggested_l3": "pcat_t3h_12_1",
+   "reason": "Survepesuri pinnapuhasti",
+   "confidence": "korge",
+   "main": "Tööriistad ja tarvikud",
+   "current_name": "Kuivjää- ja survepuhastusseadmed",
+   "suggested_name": "Survepesuri pinnapuhastid"
+  },
+  {
+   "product_id": "prod_01KNXXJ541WHYYN28EK64X418E",
+   "current_l3": "pcat_th1_1",
+   "suggested_l3": "pcat_t3f_10_19",
+   "reason": "Muruniiduki tõstetungraud, mitte käärtõstelaud",
+   "confidence": "kesk",
+   "main": "Tööriistad ja tarvikud",
+   "current_name": "Käärtõstelauad ja -tõstukid",
+   "suggested_name": "Montaažitungrauad ja tõsturid"
+  },
+  {
+   "product_id": "prod_01KNXX68KE2704DN4R4WM2FXSM",
+   "current_l3": "pcat_ku2",
+   "suggested_l3": "pcat_kl1_1",
+   "reason": "AC-vaakumpump, mitte survetester",
+   "confidence": "korge",
+   "main": "Tööriistad ja tarvikud",
+   "current_name": "Lekketuvastus ja survetestrid",
+   "suggested_name": "AC-vaakumpumbad"
+  },
+  {
+   "product_id": "prod_01KNXX6FHMTD98J4FFNA2RAAJD",
+   "current_l3": "pcat_ku2",
+   "suggested_l3": "pcat_ku1",
+   "reason": "Vaakumkamber",
+   "confidence": "korge",
+   "main": "Tööriistad ja tarvikud",
+   "current_name": "Lekketuvastus ja survetestrid",
+   "suggested_name": "Vaakumkambrid ja degassing"
+  },
+  {
+   "product_id": "prod_01KNXXB1Q6KAA42NPVR2QGKJJE",
+   "current_l3": "pcat_t3f_2_8",
+   "suggested_l3": "pcat_t3f_2_23",
+   "reason": "Toru/lintlihvija torudele",
+   "confidence": "korge",
+   "main": "Tööriistad ja tarvikud",
+   "current_name": "Lintlihvijad",
+   "suggested_name": "Torulihvijad"
+  },
+  {
+   "product_id": "prod_01KNXXAYZ92KFQXQ5DPGYNNFAR",
+   "current_l3": "pcat_t3f_2_8",
+   "suggested_l3": "pcat_t3f_2_23",
+   "reason": "Torulihvija",
+   "confidence": "korge",
+   "main": "Tööriistad ja tarvikud",
+   "current_name": "Lintlihvijad",
+   "suggested_name": "Torulihvijad"
+  },
+  {
+   "product_id": "prod_01KNXXAYZ3NAZV27F1PW0KHEE9",
+   "current_l3": "pcat_t3f_2_8",
+   "suggested_l3": "pcat_t3f_2_23",
+   "reason": "Torulihvija",
+   "confidence": "korge",
+   "main": "Tööriistad ja tarvikud",
+   "current_name": "Lintlihvijad",
+   "suggested_name": "Torulihvijad"
+  },
+  {
+   "product_id": "prod_01KPJVD6ZSGVJYJP8HSTGJD9TM",
+   "current_l3": "pcat_t3f_8_9",
+   "suggested_l3": "pcat_t3f_8_18",
+   "reason": "Depth micrometer/sügavusmõõtja",
+   "confidence": "kesk",
+   "main": "Tööriistad ja tarvikud",
+   "current_name": "Mikromeetrid",
+   "suggested_name": "Sügavusmõõtjad"
+  },
+  {
+   "product_id": "prod_01KNXXTE72HVP9MR85CQ3R6J6B",
+   "current_l3": "pcat_t3f_1_23",
+   "suggested_l3": "pcat_t3f_1_3",
+   "reason": "Padrunvõtmete komplekt (socket set)",
+   "confidence": "kesk",
+   "main": "Tööriistad ja tarvikud",
+   "current_name": "Otsakute komplektid",
+   "suggested_name": "Padrunvõtmete komplektid"
+  },
+  {
+   "product_id": "prod_01KNXXTE750X81D509RM8RS5S2",
+   "current_l3": "pcat_t3f_1_23",
+   "suggested_l3": "pcat_t3f_1_3",
+   "reason": "Padrunvõtmete komplekt (socket set)",
+   "confidence": "kesk",
+   "main": "Tööriistad ja tarvikud",
+   "current_name": "Otsakute komplektid",
+   "suggested_name": "Padrunvõtmete komplektid"
+  },
+  {
+   "product_id": "prod_01KNXXPZKG6JC2S2TNJ2WZDCEB",
+   "current_l3": "pcat_t3f_7_6",
+   "suggested_l3": "pcat_t3g_15_1",
+   "reason": "Toru lõikamis-/faasimismasin, mitte plasmalõikur",
+   "confidence": "kesk",
+   "main": "Tööriistad ja tarvikud",
+   "current_name": "Plasmalõikurid",
+   "suggested_name": "Toru-keermestajad ja -lõikurid"
+  },
+  {
+   "product_id": "prod_01KNXXK9BVNB6V01B696ZGXTYB",
+   "current_l3": "pcat_t3f_7_9",
+   "suggested_l3": "pcat_t3f_2_16",
+   "reason": "Kuumaõhupüstol, mitte plastikukeevitus",
+   "confidence": "kesk",
+   "main": "Tööriistad ja tarvikud",
+   "current_name": "Plastikukeevitusseadmed ja -püstolid",
+   "suggested_name": "Kuumaõhu-keevituspüstolid"
+  },
+  {
+   "product_id": "prod_01KNXXK7CNX9ECVWWTQG2VF5KN",
+   "current_l3": "pcat_t3f_7_9",
+   "suggested_l3": "pcat_t3f_2_16",
+   "reason": "Kuumaõhupüstol, mitte plastikukeevitus",
+   "confidence": "kesk",
+   "main": "Tööriistad ja tarvikud",
+   "current_name": "Plastikukeevitusseadmed ja -püstolid",
+   "suggested_name": "Kuumaõhu-keevituspüstolid"
+  },
+  {
+   "product_id": "prod_01KNXX9Q8JFKBCRGKZFHKS58CS",
+   "current_l3": "pcat_t3f_10_24",
+   "suggested_l3": "pcat_th1_4",
+   "reason": "Push beam trolley, mitte plokktali",
+   "confidence": "kesk",
+   "main": "Tööriistad ja tarvikud",
+   "current_name": "Plokk- ja köietalid",
+   "suggested_name": "Talid ja tõstetrollid"
+  },
+  {
+   "product_id": "prod_01KNXX9R443TNCXK1P4M2YG4ET",
+   "current_l3": "pcat_t3f_10_24",
+   "suggested_l3": "pcat_th1_4",
+   "reason": "Push beam trolley, mitte plokktali",
+   "confidence": "kesk",
+   "main": "Tööriistad ja tarvikud",
+   "current_name": "Plokk- ja köietalid",
+   "suggested_name": "Talid ja tõstetrollid"
+  },
+  {
+   "product_id": "prod_01KNXX6AF2400D1TERJW28E538",
+   "current_l3": "pcat_t3f_1_20",
+   "suggested_l3": "pcat_t3f_3_4",
+   "reason": "Vasktoru pressimistööriist, kuulub torupressimisse",
+   "confidence": "kesk",
+   "main": "Tööriistad ja tarvikud",
+   "current_name": "Pressimistangid ja -tööriistad",
+   "suggested_name": "Toru pressimistööriistad"
+  },
+  {
+   "product_id": "prod_01KNXX66PZ02T69N3KHYST8EBS",
+   "current_l3": "pcat_t3f_1_20",
+   "suggested_l3": "pcat_t3f_3_4",
+   "reason": "Komposiittoru pressimistangid, kuulub torupressimisse",
+   "confidence": "kesk",
+   "main": "Tööriistad ja tarvikud",
+   "current_name": "Pressimistangid ja -tööriistad",
+   "suggested_name": "Toru pressimistööriistad"
+  },
+  {
+   "product_id": "prod_01KNXXSTV2TD55FXCRF77R72AF",
+   "current_l3": "pcat_t3f_9_5",
+   "suggested_l3": "pcat_t3f_9_9",
+   "reason": "Rebar cutter tera, mitte saeketas",
+   "confidence": "korge",
+   "main": "Tööriistad ja tarvikud",
+   "current_name": "Saekettad",
+   "suggested_name": "Sarraua- ja armatuurilõikuri terad"
+  },
+  {
+   "product_id": "prod_01KNXXNTM2T5Z9E4MV44R184MT",
+   "current_l3": "pcat_t3f_11_7",
+   "suggested_l3": "pcat_t3f_9_19",
+   "reason": "Bench grinder alus kuulub lihvpingi alustesse",
+   "confidence": "kesk",
+   "main": "Tööriistad ja tarvikud",
+   "current_name": "Sae- ja masinaalused",
+   "suggested_name": "Lihvpingi ja -masina alused"
+  },
+  {
+   "product_id": "prod_01KNXXKC246NWB00D8CN6KRRSY",
+   "current_l3": "pcat_th1_4",
+   "suggested_l3": "pcat_tk1_8",
+   "reason": "Furniture Dolly on mööblikäru, mitte tal/tõstetroll",
+   "confidence": "kesk",
+   "main": "Tööriistad ja tarvikud",
+   "current_name": "Talid ja tõstetrollid",
+   "suggested_name": "Mööblikärud"
+  },
+  {
+   "product_id": "prod_01KNXX95VT88JHP5FR9ZPVDDYG",
+   "current_l3": "pcat_t3f_5_1",
+   "suggested_l3": "pcat_t3f_9_26",
+   "reason": "Kapisangade puurimisšabloon, mitte taskuaugu-jig",
+   "confidence": "kesk",
+   "main": "Tööriistad ja tarvikud",
+   "current_name": "Taskuaukude puurimisšabloonid",
+   "suggested_name": "Puurimisjuhikud"
+  },
+  {
+   "product_id": "prod_01KNXX95WDZCHRHEM6FM17W9TT",
+   "current_l3": "pcat_t3f_5_1",
+   "suggested_l3": "pcat_t3f_9_26",
+   "reason": "Kapisangade puurimisšabloon, mitte taskuaugu-jig",
+   "confidence": "kesk",
+   "main": "Tööriistad ja tarvikud",
+   "current_name": "Taskuaukude puurimisšabloonid",
+   "suggested_name": "Puurimisjuhikud"
+  },
+  {
+   "product_id": "prod_01KPJXAATXWQQHAGGS88FJN48K",
+   "current_l3": "pcat_t3f_12_2",
+   "suggested_l3": "pcat_t3f_12_8",
+   "reason": "Vortex cone dust collector, mitte tolmuimeja",
+   "confidence": "kesk",
+   "main": "Tööriistad ja tarvikud",
+   "current_name": "Tolmuimejad",
+   "suggested_name": "Tsüklonid & tolmukogujad"
+  },
+  {
+   "product_id": "prod_01KPJXAB0Y76TJZMJPHWT87H4Y",
+   "current_l3": "pcat_t3f_12_2",
+   "suggested_l3": "pcat_t3f_12_8",
+   "reason": "Vortex cone dust collector",
+   "confidence": "kesk",
+   "main": "Tööriistad ja tarvikud",
+   "current_name": "Tolmuimejad",
+   "suggested_name": "Tsüklonid & tolmukogujad"
+  },
+  {
+   "product_id": "prod_01KPJXAC3MWK8THP1MR4P4G10D",
+   "current_l3": "pcat_t3f_12_2",
+   "suggested_l3": "pcat_t3f_12_8",
+   "reason": "Vortex cone dust collector",
+   "confidence": "kesk",
+   "main": "Tööriistad ja tarvikud",
+   "current_name": "Tolmuimejad",
+   "suggested_name": "Tsüklonid & tolmukogujad"
+  },
+  {
+   "product_id": "prod_01KPJXACADZ94N5FMN814V32HB",
+   "current_l3": "pcat_t3f_12_2",
+   "suggested_l3": "pcat_t3f_12_8",
+   "reason": "Woodworking dust collector",
+   "confidence": "kesk",
+   "main": "Tööriistad ja tarvikud",
+   "current_name": "Tolmuimejad",
+   "suggested_name": "Tsüklonid & tolmukogujad"
+  },
+  {
+   "product_id": "prod_01KPJVGWG1G9S1W74F9YNKA3CS",
+   "current_l3": "pcat_t3g_15_1",
+   "suggested_l3": "pcat_t3f_1_30",
+   "reason": "PEX toru laiendustööriist, mitte keermestaja/lõikur",
+   "confidence": "korge",
+   "main": "Tööriistad ja tarvikud",
+   "current_name": "Toru-keermestajad ja -lõikurid",
+   "suggested_name": "Toru laiendus- ja flaaringutööriistad"
+  },
+  {
+   "product_id": "prod_01KNXXH21SFJHT73H1KK33M1W6",
+   "current_l3": "pcat_t3f_10_6",
+   "suggested_l3": "pcat_t3f_10_17",
+   "reason": "Proof coil kett pole tõstekett, kinnituskett",
+   "confidence": "kesk",
+   "main": "Tööriistad ja tarvikud",
+   "current_name": "Tõsteketid ja tropid",
+   "suggested_name": "Kinnituskettid"
+  },
+  {
+   "product_id": "prod_01KNXXF6C6BGRG59JS91A0624Q",
+   "current_l3": "pcat_t3f_10_6",
+   "suggested_l3": "pcat_t3f_10_17",
+   "reason": "Proof coil kinnituskett",
+   "confidence": "kesk",
+   "main": "Tööriistad ja tarvikud",
+   "current_name": "Tõsteketid ja tropid",
+   "suggested_name": "Kinnituskettid"
+  },
+  {
+   "product_id": "prod_01KNXXF6D1WND6WZGZX2TNQXK3",
+   "current_l3": "pcat_t3f_10_6",
+   "suggested_l3": "pcat_t3f_10_17",
+   "reason": "Proof coil kinnituskett",
+   "confidence": "kesk",
+   "main": "Tööriistad ja tarvikud",
+   "current_name": "Tõsteketid ja tropid",
+   "suggested_name": "Kinnituskettid"
+  },
+  {
+   "product_id": "prod_01KNXXFAC63RD1DXW6VHTMF3GK",
+   "current_l3": "pcat_t3f_10_6",
+   "suggested_l3": "pcat_t3f_10_17",
+   "reason": "Proof coil kinnituskett",
+   "confidence": "kesk",
+   "main": "Tööriistad ja tarvikud",
+   "current_name": "Tõsteketid ja tropid",
+   "suggested_name": "Kinnituskettid"
+  },
+  {
+   "product_id": "prod_01KNXXM8335YEZM5GT09KJR8B7",
+   "current_l3": "pcat_t3f_10_6",
+   "suggested_l3": "pcat_t3f_10_17",
+   "reason": "Proof coil kinnituskett",
+   "confidence": "kesk",
+   "main": "Tööriistad ja tarvikud",
+   "current_name": "Tõsteketid ja tropid",
+   "suggested_name": "Kinnituskettid"
+  },
+  {
+   "product_id": "prod_01KNXXF4JCHP7X0F3C5B2NYB4Q",
+   "current_l3": "pcat_t3f_10_6",
+   "suggested_l3": "pcat_t3f_10_17",
+   "reason": "Proof coil kinnituskett",
+   "confidence": "kesk",
+   "main": "Tööriistad ja tarvikud",
+   "current_name": "Tõsteketid ja tropid",
+   "suggested_name": "Kinnituskettid"
+  },
+  {
+   "product_id": "prod_01KNXXF9BY4H58CGBS9S5TYA9A",
+   "current_l3": "pcat_t3f_10_6",
+   "suggested_l3": "pcat_t3f_10_17",
+   "reason": "Proof coil kinnituskett",
+   "confidence": "kesk",
+   "main": "Tööriistad ja tarvikud",
+   "current_name": "Tõsteketid ja tropid",
+   "suggested_name": "Kinnituskettid"
+  },
+  {
+   "product_id": "prod_01KNXXFC8GJSN85S3VKZMJQ9WG",
+   "current_l3": "pcat_t3f_10_6",
+   "suggested_l3": "pcat_t3f_10_17",
+   "reason": "Proof coil kinnituskett",
+   "confidence": "kesk",
+   "main": "Tööriistad ja tarvikud",
+   "current_name": "Tõsteketid ja tropid",
+   "suggested_name": "Kinnituskettid"
+  },
+  {
+   "product_id": "prod_01KNXX6SEM9J9J72R8YWCHSRCA",
+   "current_l3": "pcat_ag2_varv",
+   "suggested_l3": "pcat_t3g_16_1",
+   "reason": "Tsement-/krohvipihusti, mitte värvipüstol",
+   "confidence": "kesk",
+   "main": "Tööriistad ja tarvikud",
+   "current_name": "Värvipüstolid ja pihustid",
+   "suggested_name": "Krohvimistööriistad"
+  },
+  {
+   "product_id": "prod_01KPJVAXRCKRCXQWBG2MB6R5V3",
+   "current_l3": "pcat_t3f_4_7",
+   "suggested_l3": "pcat_t3f_4_2",
+   "reason": "Rehvipump / tire inflator",
+   "confidence": "kesk",
+   "main": "Tööriistad ja tarvikud",
+   "current_name": "Õhukompressorid",
+   "suggested_name": "Rehvipumbad"
+  },
+  {
+   "product_id": "prod_01KP6FCRXHWVVYVQ046GYB8G85",
+   "current_l3": "pcat_t3f_4_7",
+   "suggested_l3": "pcat_t3f_4_2",
+   "reason": "Portable tire inflator",
+   "confidence": "kesk",
+   "main": "Tööriistad ja tarvikud",
+   "current_name": "Õhukompressorid",
+   "suggested_name": "Rehvipumbad"
+  },
+  {
+   "product_id": "prod_01KPJVAXHZF5Y6ENADJNYSNBBJ",
+   "current_l3": "pcat_t3f_4_7",
+   "suggested_l3": "pcat_t3f_4_2",
+   "reason": "Portable tire inflator",
+   "confidence": "kesk",
+   "main": "Tööriistad ja tarvikud",
+   "current_name": "Õhukompressorid",
+   "suggested_name": "Rehvipumbad"
+  },
+  {
+   "product_id": "prod_01KPJVAXBNDSV4AE9R4EMF4V90",
+   "current_l3": "pcat_t3f_4_7",
+   "suggested_l3": "pcat_t3f_4_2",
+   "reason": "Portable tire inflator",
+   "confidence": "kesk",
+   "main": "Tööriistad ja tarvikud",
+   "current_name": "Õhukompressorid",
+   "suggested_name": "Rehvipumbad"
+  },
+  {
+   "product_id": "prod_01KNXX8PHBJXFTBZFF97VQSH48",
+   "current_l3": "pcat_t3f_1_19",
+   "suggested_l3": "pcat_t3f_1_24",
+   "reason": "Multitööriist-tangid, mitte üldkomplekt",
+   "confidence": "kesk",
+   "main": "Tööriistad ja tarvikud",
+   "current_name": "Üldtööriistakomplektid",
+   "suggested_name": "Tangid ja näpitsad"
+  },
+  {
+   "product_id": "prod_01KNXX8PHGZ61MQVA4CQ5G98RF",
+   "current_l3": "pcat_t3f_1_19",
+   "suggested_l3": "pcat_t3f_1_24",
+   "reason": "Multitööriist-tangid, mitte üldkomplekt",
+   "confidence": "kesk",
+   "main": "Tööriistad ja tarvikud",
+   "current_name": "Üldtööriistakomplektid",
+   "suggested_name": "Tangid ja näpitsad"
+  },
+  {
+   "product_id": "prod_01KNXXPAZSPZP45SPQZ31TGA9T",
+   "current_l3": "pcat_t3f_1_19",
+   "suggested_l3": "pcat_t3f_1_6",
+   "reason": "Aasade paigalduskomplekt (grommet)",
+   "confidence": "korge",
+   "main": "Tööriistad ja tarvikud",
+   "current_name": "Üldtööriistakomplektid",
+   "suggested_name": "Aasade paigaldustööriistad"
+  },
+  {
+   "product_id": "prod_01KNXXPAZ27WE98FZKJAFKWH6X",
+   "current_l3": "pcat_t3f_1_19",
+   "suggested_l3": "pcat_t3f_1_6",
+   "reason": "Aasade paigalduskomplekt (grommet)",
+   "confidence": "korge",
+   "main": "Tööriistad ja tarvikud",
+   "current_name": "Üldtööriistakomplektid",
+   "suggested_name": "Aasade paigaldustööriistad"
+  },
+  {
+   "product_id": "prod_01KNXX8KT0YZ879T42RPEXQXSX",
+   "current_l3": "pcat_t3f_1_19",
+   "suggested_l3": "pcat_t3f_1_24",
+   "reason": "Seegeritangide komplekt",
+   "confidence": "kesk",
+   "main": "Tööriistad ja tarvikud",
+   "current_name": "Üldtööriistakomplektid",
+   "suggested_name": "Tangid ja näpitsad"
+  },
+  {
+   "product_id": "prod_01KNXXJRV6F5P6D6AC02KFX2AG",
+   "current_l3": "pcat_es_10x1_1",
+   "suggested_l3": "pcat_es_10x1_10",
+   "reason": "HVAC õhupuhasti, mitte kanalventilaator",
+   "confidence": "kesk",
+   "main": "Santehnika, küte ja ventilatsioon",
+   "current_name": "Kanalventilaatorid",
+   "suggested_name": "Õhupuhastid ja filtrid"
+  },
+  {
+   "product_id": "prod_01KNXXJTQSPKD7AKD1N6R3FPPG",
+   "current_l3": "pcat_es_10x1_1",
+   "suggested_l3": "pcat_es_10x1_10",
+   "reason": "UV õhupuhasti, mitte kanalventilaator",
+   "confidence": "kesk",
+   "main": "Santehnika, küte ja ventilatsioon",
+   "current_name": "Kanalventilaatorid",
+   "suggested_name": "Õhupuhastid ja filtrid"
+  },
+  {
+   "product_id": "prod_01KNXXA8H2KPDQHG78E04ZH4ZS",
+   "current_l3": "pcat_es_10x1_7",
+   "suggested_l3": "pcat_es_10x1_2",
+   "reason": "Kaasaskantav akutoitel ventilaator, mitte katuseventilaator",
+   "confidence": "korge",
+   "main": "Santehnika, küte ja ventilatsioon",
+   "current_name": "Katuse- ja päikeseenergia ventilaatorid",
+   "suggested_name": "Põranda- ja kaasaskantavad ventilaatorid"
+  },
+  {
+   "product_id": "prod_01KNXXDKVF698DXH9HSE84PE3C",
+   "current_l3": "pcat_es_10x1_5",
+   "suggested_l3": "pcat_es_10x1_6",
+   "reason": "Shutter exhaust fan = väljalaskeventilaator",
+   "confidence": "kesk",
+   "main": "Santehnika, küte ja ventilatsioon",
+   "current_name": "Lae- ja seinaventilaatorid",
+   "suggested_name": "Väljalaskeventilaatorid"
+  },
+  {
+   "product_id": "prod_01KNXXDKVQPCX0R9QVWR7VH6E4",
+   "current_l3": "pcat_es_10x1_5",
+   "suggested_l3": "pcat_es_10x1_6",
+   "reason": "Shutter exhaust fan = väljalaskeventilaator",
+   "confidence": "kesk",
+   "main": "Santehnika, küte ja ventilatsioon",
+   "current_name": "Lae- ja seinaventilaatorid",
+   "suggested_name": "Väljalaskeventilaatorid"
+  },
+  {
+   "product_id": "prod_01KNXXNJHDG16W9P1RAQ7F8RMM",
+   "current_l3": "pcat_es_10x1_2",
+   "suggested_l3": "pcat_es_10x1_3",
+   "reason": "Tornventilaator (tower fan)",
+   "confidence": "kesk",
+   "main": "Santehnika, küte ja ventilatsioon",
+   "current_name": "Põranda- ja kaasaskantavad ventilaatorid",
+   "suggested_name": "Tornventilaatorid"
+  },
+  {
+   "product_id": "prod_01KNXXK6G2JQ72DC8XTQGNG3J9",
+   "current_l3": "pcat_el_11x3_5",
+   "suggested_l3": "pcat_el_11x3_6",
+   "reason": "Harjaga (brushed) mootor",
+   "confidence": "kesk",
+   "main": "Elektritarvikud ja valgustus",
+   "current_name": "Alalisvoolu elektrimootorid",
+   "suggested_name": "Harjaga alalisvoolumootorid"
+  },
+  {
+   "product_id": "prod_01KNXXKFNNQ5KKWE5YSQBXF7CN",
+   "current_l3": "pcat_el_11x3_2",
+   "suggested_l3": "pcat_el_11x3_3",
+   "reason": "Brushless mootori KOMPLEKT",
+   "confidence": "korge",
+   "main": "Elektritarvikud ja valgustus",
+   "current_name": "Harjadeta alalisvoolumootorid",
+   "suggested_name": "Harjadeta alalisvoolumootorite komplektid"
+  },
+  {
+   "product_id": "prod_01KNXX6NAM26A68JWJ05S33V1V",
+   "current_l3": "pcat_el_11x3_2",
+   "suggested_l3": "pcat_el_11x3_3",
+   "reason": "Brushless mootori KOMPLEKT",
+   "confidence": "korge",
+   "main": "Elektritarvikud ja valgustus",
+   "current_name": "Harjadeta alalisvoolumootorid",
+   "suggested_name": "Harjadeta alalisvoolumootorite komplektid"
+  },
+  {
+   "product_id": "prod_01KNXXK6FZBJY2BMTMCY4A36JQ",
+   "current_l3": "pcat_el_11x3_2",
+   "suggested_l3": "pcat_el_11x3_3",
+   "reason": "Brushless mootori KOMPLEKT",
+   "confidence": "korge",
+   "main": "Elektritarvikud ja valgustus",
+   "current_name": "Harjadeta alalisvoolumootorid",
+   "suggested_name": "Harjadeta alalisvoolumootorite komplektid"
+  },
+  {
+   "product_id": "prod_01KNXXGT1SG4K3MT1WK44J01C0",
+   "current_l3": "pcat_el_11x2_8",
+   "suggested_l3": "pcat_el_11x2_9",
+   "reason": "Solar panel mounting brackets, mitte komplekt",
+   "confidence": "korge",
+   "main": "Elektritarvikud ja valgustus",
+   "current_name": "Päikeseenergia komplektid",
+   "suggested_name": "Päikesepaneeli kinnitused"
+  },
+  {
+   "product_id": "prod_01KNXXGT1EQ16R02VPZZ8WJQ9F",
+   "current_l3": "pcat_el_11x2_8",
+   "suggested_l3": "pcat_el_11x2_9",
+   "reason": "Solar panel mounting brackets, mitte komplekt",
+   "confidence": "korge",
+   "main": "Elektritarvikud ja valgustus",
+   "current_name": "Päikeseenergia komplektid",
+   "suggested_name": "Päikesepaneeli kinnitused"
+  },
+  {
+   "product_id": "prod_01KNXXT809CQ5ZEC4Q65KGBVPZ",
+   "current_l3": "pcat_el_12x4_18",
+   "suggested_l3": "pcat_12vints",
+   "reason": "Fishing windlass = paadivints",
+   "confidence": "kesk",
+   "main": "Sport ja vaba aeg",
+   "current_name": "Ankrud & ankrutarvikud",
+   "suggested_name": "Paadivintsid & püügiabivahendid"
+  },
+  {
+   "product_id": "prod_01KNXXT80AVHSARX9NF9SB33PJ",
+   "current_l3": "pcat_el_12x4_18",
+   "suggested_l3": "pcat_12vints",
+   "reason": "Fishing windlass = paadivints",
+   "confidence": "kesk",
+   "main": "Sport ja vaba aeg",
+   "current_name": "Ankrud & ankrutarvikud",
+   "suggested_name": "Paadivintsid & püügiabivahendid"
+  },
+  {
+   "product_id": "prod_01KNXXR3Z4EEGXZWBC4D0RKR2R",
+   "current_l3": "pcat_12gbag",
+   "suggested_l3": "pcat_12gcart",
+   "reason": "Golfikäru pagasihoidik, mitte kott",
+   "confidence": "kesk",
+   "main": "Sport ja vaba aeg",
+   "current_name": "Golfikotid & -reisikotid",
+   "suggested_name": "Golfikäru-katted & -tarvikud"
+  },
+  {
+   "product_id": "prod_01KNXXNJHE84C5FV6T75DSF068",
+   "current_l3": "pcat_el_12x1_3",
+   "suggested_l3": "pcat_el_12x1_37",
+   "reason": "Blocking dummy/kick shield on treeningmanekeen",
+   "confidence": "korge",
+   "main": "Sport ja vaba aeg",
+   "current_name": "Jalgpalli väravad ja treeningvõrgud",
+   "suggested_name": "Treeningmanekeenid ja -kilbid"
+  },
+  {
+   "product_id": "prod_01KNXXNHM0MC6JCQ0YCXEVJ9W4",
+   "current_l3": "pcat_el_12x1_3",
+   "suggested_l3": "pcat_el_12x1_37",
+   "reason": "Tackle wheel on treeningmanekeen",
+   "confidence": "korge",
+   "main": "Sport ja vaba aeg",
+   "current_name": "Jalgpalli väravad ja treeningvõrgud",
+   "suggested_name": "Treeningmanekeenid ja -kilbid"
+  },
+  {
+   "product_id": "prod_01KNXXNHM3E0F0G845496NC0YE",
+   "current_l3": "pcat_el_12x1_3",
+   "suggested_l3": "pcat_el_12x1_37",
+   "reason": "Tackling dummy on treeningmanekeen",
+   "confidence": "korge",
+   "main": "Sport ja vaba aeg",
+   "current_name": "Jalgpalli väravad ja treeningvõrgud",
+   "suggested_name": "Treeningmanekeenid ja -kilbid"
+  },
+  {
+   "product_id": "prod_01KNXXNJH9DPVP71QEKKJ09GJ8",
+   "current_l3": "pcat_el_12x1_3",
+   "suggested_l3": "pcat_el_12x1_37",
+   "reason": "Tackling dummy/blocking pad on treeningmanekeen",
+   "confidence": "korge",
+   "main": "Sport ja vaba aeg",
+   "current_name": "Jalgpalli väravad ja treeningvõrgud",
+   "suggested_name": "Treeningmanekeenid ja -kilbid"
+  },
+  {
+   "product_id": "prod_01KNXXDG7KDGFMVXZWRTWAQN3Y",
+   "current_l3": "pcat_el_12x1_6",
+   "suggested_l3": "pcat_el_12x1_34",
+   "reason": "Arkaad-korvpallimäng",
+   "confidence": "kesk",
+   "main": "Sport ja vaba aeg",
+   "current_name": "Korvpallirõngad ja -korvid",
+   "suggested_name": "Arkaadimängud"
+  },
+  {
+   "product_id": "prod_01KNXXDEEF27P0WPD25XPBGWQ6",
+   "current_l3": "pcat_el_12x1_6",
+   "suggested_l3": "pcat_el_12x1_34",
+   "reason": "Arkaad-korvpallimäng",
+   "confidence": "kesk",
+   "main": "Sport ja vaba aeg",
+   "current_name": "Korvpallirõngad ja -korvid",
+   "suggested_name": "Arkaadimängud"
+  },
+  {
+   "product_id": "prod_01KNXXDJXZMMMJDBXEZV5K9QJ9",
+   "current_l3": "pcat_el_12x1_6",
+   "suggested_l3": "pcat_el_12x1_34",
+   "reason": "Arkaad-korvpallimäng",
+   "confidence": "kesk",
+   "main": "Sport ja vaba aeg",
+   "current_name": "Korvpallirõngad ja -korvid",
+   "suggested_name": "Arkaadimängud"
+  },
+  {
+   "product_id": "prod_01KNXXDKTXEAA7551TP4SX429F",
+   "current_l3": "pcat_el_12x1_6",
+   "suggested_l3": "pcat_el_12x1_34",
+   "reason": "Arkaad-korvpallimäng",
+   "confidence": "kesk",
+   "main": "Sport ja vaba aeg",
+   "current_name": "Korvpallirõngad ja -korvid",
+   "suggested_name": "Arkaadimängud"
+  },
+  {
+   "product_id": "prod_01KNXX9XKWP31P5AV31A75DHV2",
+   "current_l3": "pcat_el_12x1_20",
+   "suggested_l3": "pcat_12adv",
+   "reason": "Slackline seiklusvarustus",
+   "confidence": "korge",
+   "main": "Sport ja vaba aeg",
+   "current_name": "Lasterollerid ja saanid",
+   "suggested_name": "Seiklusrajad (zipline & ninja)"
+  },
+  {
+   "product_id": "prod_01KNXXCAAYQZ8NZTD0SF4FXXDS",
+   "current_l3": "pcat_el_12x1_20",
+   "suggested_l3": "pcat_12adv",
+   "reason": "Zipline seiklusrada",
+   "confidence": "korge",
+   "main": "Sport ja vaba aeg",
+   "current_name": "Lasterollerid ja saanid",
+   "suggested_name": "Seiklusrajad (zipline & ninja)"
+  },
+  {
+   "product_id": "prod_01KNXXP957YT9JZ62DTGTPBE33",
+   "current_l3": "pcat_el_12x4_12",
+   "suggested_l3": "pcat_el_12x4_14",
+   "reason": "Paadiistme pedestal, mitte haarikujuht",
+   "confidence": "korge",
+   "main": "Sport ja vaba aeg",
+   "current_name": "Paadihaariku juhikud",
+   "suggested_name": "Paadiistmed"
+  },
+  {
+   "product_id": "prod_01KNXXAY26PANSA75NG6TYE3ES",
+   "current_l3": "pcat_el_12x4_1",
+   "suggested_l3": "pcat_el_12x4_2",
+   "reason": "Jet Ski kate on kate, mitte bimini/katus",
+   "confidence": "kesk",
+   "main": "Sport ja vaba aeg",
+   "current_name": "Paadikatused & biminid",
+   "suggested_name": "Paadikatted"
+  },
+  {
+   "product_id": "prod_01KNXXCY5NP3M2NEB1EAAA6DWG",
+   "current_l3": "pcat_el_12x1_32",
+   "suggested_l3": "pcat_el_12x1_31",
+   "reason": "Mahjong-laud on lauamäng, mitte pusle-hoiusüsteem",
+   "confidence": "kesk",
+   "main": "Sport ja vaba aeg",
+   "current_name": "Puslelauad ja hoiusüsteemid",
+   "suggested_name": "Lauamängud ja malekomplektid"
+  },
+  {
+   "product_id": "prod_01KNXXCZ1REXHV1Z7J54N3CPA7",
+   "current_l3": "pcat_el_12x1_32",
+   "suggested_l3": "pcat_el_12x1_31",
+   "reason": "Mahjong-laud on lauamäng, mitte pusle-hoiusüsteem",
+   "confidence": "kesk",
+   "main": "Sport ja vaba aeg",
+   "current_name": "Puslelauad ja hoiusüsteemid",
+   "suggested_name": "Lauamängud ja malekomplektid"
+  },
+  {
+   "product_id": "prod_01KNXXCY5M52TKACVRSE2PARTV",
+   "current_l3": "pcat_el_12x1_32",
+   "suggested_l3": "pcat_el_12x1_31",
+   "reason": "Mahjong-laud on lauamäng, mitte pusle-hoiusüsteem",
+   "confidence": "kesk",
+   "main": "Sport ja vaba aeg",
+   "current_name": "Puslelauad ja hoiusüsteemid",
+   "suggested_name": "Lauamängud ja malekomplektid"
+  },
+  {
+   "product_id": "prod_01KNXXEWDCDRX4HNC06CF11S9K",
+   "current_l3": "pcat_12gun",
+   "suggested_l3": "pcat_el_12x6_2",
+   "reason": "Hard pistol case, mitte seif",
+   "confidence": "kesk",
+   "main": "Sport ja vaba aeg",
+   "current_name": "Relvakapid & -seifid",
+   "suggested_name": "Püstolikohvrid"
+  },
+  {
+   "product_id": "prod_01KP6FAVX758KD8XYHXB6N8ZEA",
+   "current_l3": "pcat_el_12x3_31",
+   "suggested_l3": "pcat_el_12x3_28",
+   "reason": "Leverage gym lihasmasin, mitte rootsi redel",
+   "confidence": "kesk",
+   "main": "Sport ja vaba aeg",
+   "current_name": "Rootsi redelid ja võimlemisjaamad",
+   "suggested_name": "Lihasmasinad"
+  },
+  {
+   "product_id": "prod_01KNXXBJTS9C2BHJFAFKBXEMSR",
+   "current_l3": "pcat_el_12x1_24",
+   "suggested_l3": "pcat_el_12x1_30",
+   "reason": "Palli hoiu-/treeningkäru, mitte pallimasin",
+   "confidence": "kesk",
+   "main": "Sport ja vaba aeg",
+   "current_name": "Tennise- ja pallimasinad",
+   "suggested_name": "Spordikotid & -organiserid"
+  },
+  {
+   "product_id": "prod_01KNXXBJTPC0TQM742S8JXTK2X",
+   "current_l3": "pcat_el_12x1_24",
+   "suggested_l3": "pcat_el_12x1_30",
+   "reason": "Pallihoiukäru organiser",
+   "confidence": "kesk",
+   "main": "Sport ja vaba aeg",
+   "current_name": "Tennise- ja pallimasinad",
+   "suggested_name": "Spordikotid & -organiserid"
+  },
+  {
+   "product_id": "prod_01KNXXBMMZYYV1NTGKR10ZQ446",
+   "current_l3": "pcat_el_12x1_24",
+   "suggested_l3": "pcat_el_12x1_30",
+   "reason": "Pallihoiukäru organiser",
+   "confidence": "kesk",
+   "main": "Sport ja vaba aeg",
+   "current_name": "Tennise- ja pallimasinad",
+   "suggested_name": "Spordikotid & -organiserid"
+  },
+  {
+   "product_id": "prod_01KNXXBKQZ53DKEM5DEQYQ8MY2",
+   "current_l3": "pcat_el_12x1_24",
+   "suggested_l3": "pcat_el_12x1_30",
+   "reason": "Pallihoiukäru organiser",
+   "confidence": "kesk",
+   "main": "Sport ja vaba aeg",
+   "current_name": "Tennise- ja pallimasinad",
+   "suggested_name": "Spordikotid & -organiserid"
+  },
+  {
+   "product_id": "prod_01KPJXEZEH8JC7HPB468THVY5M",
+   "current_l3": "pcat_el_12x4_10",
+   "suggested_l3": "pcat_el_12x4_9",
+   "reason": "Ujuv dokk, mitte veemäng",
+   "confidence": "korge",
+   "main": "Sport ja vaba aeg",
+   "current_name": "Ujuvad veemängud",
+   "suggested_name": "Ujuvad dokid & platvormid"
+  },
+  {
+   "product_id": "prod_01KPJXF7V7RY8D4VMHZ55NKB52",
+   "current_l3": "pcat_el_12x4_10",
+   "suggested_l3": "pcat_el_12x4_9",
+   "reason": "Ujuv dokk",
+   "confidence": "korge",
+   "main": "Sport ja vaba aeg",
+   "current_name": "Ujuvad veemängud",
+   "suggested_name": "Ujuvad dokid & platvormid"
+  },
+  {
+   "product_id": "prod_01KPJXF825JF82WAC6ZR4FFTQ3",
+   "current_l3": "pcat_el_12x4_10",
+   "suggested_l3": "pcat_el_12x4_9",
+   "reason": "Ujuv dokk",
+   "confidence": "korge",
+   "main": "Sport ja vaba aeg",
+   "current_name": "Ujuvad veemängud",
+   "suggested_name": "Ujuvad dokid & platvormid"
+  },
+  {
+   "product_id": "prod_01KPJXEZ7HZVC3SH1PTBVHG6AT",
+   "current_l3": "pcat_el_12x4_10",
+   "suggested_l3": "pcat_el_12x4_9",
+   "reason": "Ujuv dokk",
+   "confidence": "korge",
+   "main": "Sport ja vaba aeg",
+   "current_name": "Ujuvad veemängud",
+   "suggested_name": "Ujuvad dokid & platvormid"
+  },
+  {
+   "product_id": "prod_01KPJXF0A65QQPPXFKSD0R3J4E",
+   "current_l3": "pcat_el_12x4_10",
+   "suggested_l3": "pcat_el_12x4_9",
+   "reason": "Ujuv dokk",
+   "confidence": "korge",
+   "main": "Sport ja vaba aeg",
+   "current_name": "Ujuvad veemängud",
+   "suggested_name": "Ujuvad dokid & platvormid"
+  },
+  {
+   "product_id": "prod_01KPJXF3WNJF5PWBWXFS5RYT4B",
+   "current_l3": "pcat_el_12x4_10",
+   "suggested_l3": "pcat_el_12x4_9",
+   "reason": "Ujuv dokk",
+   "confidence": "korge",
+   "main": "Sport ja vaba aeg",
+   "current_name": "Ujuvad veemängud",
+   "suggested_name": "Ujuvad dokid & platvormid"
+  },
+  {
+   "product_id": "prod_01KNXX75WNRPPT98SC09NCZ7X9",
+   "current_l3": "pcat_el_12x4_10",
+   "suggested_l3": "pcat_el_12x1_16",
+   "reason": "Zorb/walk on water pall",
+   "confidence": "korge",
+   "main": "Sport ja vaba aeg",
+   "current_name": "Ujuvad veemängud",
+   "suggested_name": "Täispuhutavad põrke- ja Zorb-pallid"
+  },
+  {
+   "product_id": "prod_01KPJXEYTNC3RX0HYY4KBP4FW3",
+   "current_l3": "pcat_el_12x3_17",
+   "suggested_l3": "pcat_el_12x9_2",
+   "reason": "Fitness mini-trampoliin",
+   "confidence": "korge",
+   "main": "Sport ja vaba aeg",
+   "current_name": "Velo- ja jalgrattatrenažöörid",
+   "suggested_name": "Fitness-trampoliinid"
+  },
+  {
+   "product_id": "prod_01KNXXHV8QF9T6DAZY1YDGJ1N8",
+   "current_l3": "pcat_el_12x3_17",
+   "suggested_l3": "pcat_el_12x9_2",
+   "reason": "Fitness mini-trampoliin",
+   "confidence": "korge",
+   "main": "Sport ja vaba aeg",
+   "current_name": "Velo- ja jalgrattatrenažöörid",
+   "suggested_name": "Fitness-trampoliinid"
+  },
+  {
+   "product_id": "prod_01KNXXHNWP0X76KRTSEXM39K69",
+   "current_l3": "pcat_el_12x3_17",
+   "suggested_l3": "pcat_el_12x9_2",
+   "reason": "Fitness mini-trampoliin",
+   "confidence": "korge",
+   "main": "Sport ja vaba aeg",
+   "current_name": "Velo- ja jalgrattatrenažöörid",
+   "suggested_name": "Fitness-trampoliinid"
+  },
+  {
+   "product_id": "prod_01KNXXBKRFWDH3P9XW1J8338DM",
+   "current_l3": "pcat_el_12x3_30",
+   "suggested_l3": "pcat_12m1",
+   "reason": "Air roller/tumble track",
+   "confidence": "kesk",
+   "main": "Sport ja vaba aeg",
+   "current_name": "Vibreerivad massaažirullid ja -pallid",
+   "suggested_name": "Air-track & võimlemismatid"
+  },
+  {
+   "product_id": "prod_01KNXXBKQY3E81PQ0M99ADA52B",
+   "current_l3": "pcat_el_12x3_30",
+   "suggested_l3": "pcat_12m1",
+   "reason": "Air roller/tumble track",
+   "confidence": "kesk",
+   "main": "Sport ja vaba aeg",
+   "current_name": "Vibreerivad massaažirullid ja -pallid",
+   "suggested_name": "Air-track & võimlemismatid"
+  },
+  {
+   "product_id": "prod_01KPJVA0JX45TF7CQ81S8VHKC9",
+   "current_l3": "pcat_f4_13xtex_13",
+   "suggested_l3": "pcat_f4_13x6_1",
+   "reason": "Elektriline paberilõikur",
+   "confidence": "korge",
+   "main": "Reklaami-, trüki- ja graveerimisseadmed",
+   "current_name": "Lõikemasinad & -tarvikud",
+   "suggested_name": "Paberilõikurid"
+  },
+  {
+   "product_id": "prod_01KNXXNEW2YM85DEWE4YNFPT4X",
+   "current_l3": "pcat_f4_13xtex_13",
+   "suggested_l3": "pcat_f4_13x6_1",
+   "reason": "Paberilõikuri tera",
+   "confidence": "kesk",
+   "main": "Reklaami-, trüki- ja graveerimisseadmed",
+   "current_name": "Lõikemasinad & -tarvikud",
+   "suggested_name": "Paberilõikurid"
+  },
+  {
+   "product_id": "prod_01KNXX7ZVQPYGC651DMV1DXQ3C",
+   "current_l3": "pcat_f4_13xtex_13",
+   "suggested_l3": "pcat_f4_13xtex_14",
+   "reason": "Stantsimis-/reljeefpressimismasin",
+   "confidence": "korge",
+   "main": "Reklaami-, trüki- ja graveerimisseadmed",
+   "current_name": "Lõikemasinad & -tarvikud",
+   "suggested_name": "Stantsimis- & reljeefpressimismasinad"
+  },
+  {
+   "product_id": "prod_01KNXX9SY2X3X214NSMZWWE6ME",
+   "current_l3": "pcat_f4_13xtex_14",
+   "suggested_l3": "pcat_f4_13x1_16",
+   "reason": "Nahalõikusmasin",
+   "confidence": "kesk",
+   "main": "Reklaami-, trüki- ja graveerimisseadmed",
+   "current_name": "Stantsimis- & reljeefpressimismasinad",
+   "suggested_name": "Nahalõikus- ja pressimismasinad"
+  },
+  {
+   "product_id": "prod_01KNXX9VRNT3TW9KSH80CP1938",
+   "current_l3": "pcat_f4_13xtex_14",
+   "suggested_l3": "pcat_f4_13x1_16",
+   "reason": "Nahalõikusmasin",
+   "confidence": "kesk",
+   "main": "Reklaami-, trüki- ja graveerimisseadmed",
+   "current_name": "Stantsimis- & reljeefpressimismasinad",
+   "suggested_name": "Nahalõikus- ja pressimismasinad"
+  },
+  {
+   "product_id": "prod_01KNXX9TV7C75RJN83FYRVFY6N",
+   "current_l3": "pcat_f4_13xtex_14",
+   "suggested_l3": "pcat_f4_13x1_16",
+   "reason": "Nahalõikusmasin",
+   "confidence": "kesk",
+   "main": "Reklaami-, trüki- ja graveerimisseadmed",
+   "current_name": "Stantsimis- & reljeefpressimismasinad",
+   "suggested_name": "Nahalõikus- ja pressimismasinad"
+  },
+  {
+   "product_id": "prod_01KNXX9VRQERZETD70TQGXRH5B",
+   "current_l3": "pcat_f4_13xtex_14",
+   "suggested_l3": "pcat_f4_13x1_16",
+   "reason": "Nahalõikusmasin",
+   "confidence": "kesk",
+   "main": "Reklaami-, trüki- ja graveerimisseadmed",
+   "current_name": "Stantsimis- & reljeefpressimismasinad",
+   "suggested_name": "Nahalõikus- ja pressimismasinad"
+  },
+  {
+   "product_id": "prod_01KNXX9TVA7EBJY1AE5NH3YAMX",
+   "current_l3": "pcat_f4_13xtex_14",
+   "suggested_l3": "pcat_f4_13x1_16",
+   "reason": "Nahalõikusmasin",
+   "confidence": "kesk",
+   "main": "Reklaami-, trüki- ja graveerimisseadmed",
+   "current_name": "Stantsimis- & reljeefpressimismasinad",
+   "suggested_name": "Nahalõikus- ja pressimismasinad"
+  },
+  {
+   "product_id": "prod_01KNXX6JBVEMNFC8Z5SBZSYRBC",
+   "current_l3": "pcat_f4_13x3_1",
+   "suggested_l3": "pcat_f4_13xtex_13",
+   "reason": "Lindilõikur, mitte vinüüllõikur",
+   "confidence": "kesk",
+   "main": "Reklaami-, trüki- ja graveerimisseadmed",
+   "current_name": "Vinüüllõikurid & plotterid",
+   "suggested_name": "Lõikemasinad & -tarvikud"
+  },
+  {
+   "product_id": "prod_01KNXXBKQQ3ETENSH8ZZ1QXMNG",
+   "current_l3": "pcat_lp_2_7",
+   "suggested_l3": "pcat_lp_5_3",
+   "reason": "Canister filter, mitte puhastustarve",
+   "confidence": "korge",
+   "main": "Lemmikloomatarbed",
+   "current_name": "Akvaariumi puhastustarbed",
+   "suggested_name": "Akvaariumifiltrid"
+  },
+  {
+   "product_id": "prod_01KNXXBTYQVPRNB8DZ8QY6Z50K",
+   "current_l3": "pcat_lp_1_4",
+   "suggested_l3": "pcat_lp_5_3",
+   "reason": "Canister filter",
+   "confidence": "korge",
+   "main": "Lemmikloomatarbed",
+   "current_name": "Akvaariumitarvikud",
+   "suggested_name": "Akvaariumifiltrid"
+  },
+  {
+   "product_id": "prod_01KNXXD91PNHMPPM2V87843AN5",
+   "current_l3": "pcat_lp_1_4",
+   "suggested_l3": "pcat_lp_2_7",
+   "reason": "Gravel cleaner = puhastustarve",
+   "confidence": "korge",
+   "main": "Lemmikloomatarbed",
+   "current_name": "Akvaariumitarvikud",
+   "suggested_name": "Akvaariumi puhastustarbed"
+  },
+  {
+   "product_id": "prod_01KNXXF4HGASX5S1H57AVV79KV",
+   "current_l3": "pcat_lp_3_6",
+   "suggested_l3": "pcat_lp_4_1",
+   "reason": "Dog booster car seat",
+   "confidence": "korge",
+   "main": "Lemmikloomatarbed",
+   "current_name": "Auto istmekatted & põrandakaitsed",
+   "suggested_name": "Koera autoistmed"
+  },
+  {
+   "product_id": "prod_01KNXXESMFY6J4ZANXA5KZVC5S",
+   "current_l3": "pcat_lp_3_6",
+   "suggested_l3": "pcat_lp_3_2",
+   "reason": "Dog stairs/ramp autole",
+   "confidence": "korge",
+   "main": "Lemmikloomatarbed",
+   "current_name": "Auto istmekatted & põrandakaitsed",
+   "suggested_name": "Lemmikloomade trepid & rambid"
+  },
+  {
+   "product_id": "prod_01KNXXEQT3JN022JHF49EPDPG1",
+   "current_l3": "pcat_lp_3_6",
+   "suggested_l3": "pcat_lp_3_2",
+   "reason": "Dog stairs/ramp autole",
+   "confidence": "korge",
+   "main": "Lemmikloomatarbed",
+   "current_name": "Auto istmekatted & põrandakaitsed",
+   "suggested_name": "Lemmikloomade trepid & rambid"
+  },
+  {
+   "product_id": "prod_01KNXXE1BHGYXT21D8YCVDEV65",
+   "current_l3": "pcat_lp_6_dedup",
+   "suggested_l3": "pcat_lp_2_9",
+   "reason": "Küünistuskaitse vaip, mitte kassipuu",
+   "confidence": "korge",
+   "main": "Lemmikloomatarbed",
+   "current_name": "Kassipuud",
+   "suggested_name": "Kassi küünistuskaitsed"
+  },
+  {
+   "product_id": "prod_01KNXX95VM7ZNY94HHH4BG0X8Y",
+   "current_l3": "pcat_lp_3_3",
+   "suggested_l3": "pcat_lp_1_9",
+   "reason": "Rolling cat carrier, mitte jalutuskäru",
+   "confidence": "kesk",
+   "main": "Lemmikloomatarbed",
+   "current_name": "Lemmikloomade jalutuskärud & vankrid",
+   "suggested_name": "Lemmikloomade kandekotid ratastel"
+  },
+  {
+   "product_id": "prod_01KNXXEN1CWTDK3TEXXB1V151N",
+   "current_l3": "pcat_lp_1_5",
+   "suggested_l3": "pcat_lp_1_2",
+   "reason": "Freestanding pet gate = lemmiklooma-värav",
+   "confidence": "korge",
+   "main": "Lemmikloomatarbed",
+   "current_name": "Mänguplatsid ja aedikud",
+   "suggested_name": "Lemmiklooma-väravad"
+  },
+  {
+   "product_id": "prod_01KNXXE8HYFTBNBS49BK1YBF1B",
+   "current_l3": "pcat_lp_1_5",
+   "suggested_l3": "pcat_lp_1_2",
+   "reason": "Freestanding pet gate = lemmiklooma-värav",
+   "confidence": "korge",
+   "main": "Lemmikloomatarbed",
+   "current_name": "Mänguplatsid ja aedikud",
+   "suggested_name": "Lemmiklooma-väravad"
+  },
+  {
+   "product_id": "prod_01KNXXD6AGQWY8PY3TNY3SHP7S",
+   "current_l3": "pcat_f4_15x1_1",
+   "suggested_l3": "pcat_f4_15x1_3",
+   "reason": "Red Light Therapy Wand on valgusteraapiaseade",
+   "confidence": "korge",
+   "main": "Tervis, hooldus ja ilu",
+   "current_name": "Massaažiseadmed",
+   "suggested_name": "Valgusteraapiaseadmed"
+  },
+  {
+   "product_id": "prod_01KNXXGTYSRQ0HPH3BQQVZQE4P",
+   "current_l3": "pcat_f4_15x1_1",
+   "suggested_l3": "pcat_f4_15x1_2",
+   "reason": "Far Infrared Heating Pad on soojendus-/infrapunaseade",
+   "confidence": "kesk",
+   "main": "Tervis, hooldus ja ilu",
+   "current_name": "Massaažiseadmed",
+   "suggested_name": "Infrapuna- ja soojendusseadmed"
+  },
+  {
+   "product_id": "prod_01KNXX6FHSCSPRA4HQZMS7DH2X",
+   "current_l3": "pcat_f4_15x3_2",
+   "suggested_l3": "pcat_15pesu",
+   "reason": "Juuksuripesualtaas, mitte mööbel",
+   "confidence": "korge",
+   "main": "Tervis, hooldus ja ilu",
+   "current_name": "Salongimööbel",
+   "suggested_name": "Juuksuripesualtaad"
+  },
+  {
+   "product_id": "prod_01KNXXK1ZQ5ACJTSNVWCZS8171",
+   "current_l3": "pcat_f4_15x3_2",
+   "suggested_l3": "pcat_15pesu",
+   "reason": "Shampoo bowl / pesualtaas",
+   "confidence": "korge",
+   "main": "Tervis, hooldus ja ilu",
+   "current_name": "Salongimööbel",
+   "suggested_name": "Juuksuripesualtaad"
+  },
+  {
+   "product_id": "prod_01KNXXK13H4YPFJHD3GQ6SQGCR",
+   "current_l3": "pcat_f4_15x3_2",
+   "suggested_l3": "pcat_15pesu",
+   "reason": "Shampoo bowl / pesualtaas",
+   "confidence": "korge",
+   "main": "Tervis, hooldus ja ilu",
+   "current_name": "Salongimööbel",
+   "suggested_name": "Juuksuripesualtaad"
+  },
+  {
+   "product_id": "prod_01KNXXD9YB2BK2821Y9XVGY590",
+   "current_l3": "pcat_f4_15x3_2",
+   "suggested_l3": "pcat_f4_15x1_1",
+   "reason": "Massaažilaud kuulub massaažiseadmete alla",
+   "confidence": "kesk",
+   "main": "Tervis, hooldus ja ilu",
+   "current_name": "Salongimööbel",
+   "suggested_name": "Massaažiseadmed"
+  },
+  {
+   "product_id": "prod_01KNXXQEZFC6GW1ZS09GF14PSQ",
+   "current_l3": "pcat_f4_16x1_6",
+   "suggested_l3": "pcat_f4_16x1_7",
+   "reason": "Bedside commode/tualettiaid, mitte dušitool",
+   "confidence": "kesk",
+   "main": "Meditsiin, labor & teadus",
+   "current_name": "Dušitoolid ja -pingid",
+   "suggested_name": "Tualetiabivahendid"
+  },
+  {
+   "product_id": "prod_01KNXXN7N0C91MZ6ARJ8V3K10J",
+   "current_l3": "pcat_f4_16x2_11",
+   "suggested_l3": "pcat_f4_16x2_4",
+   "reason": "Inkontinentsi imavad aluslinad, mitte katte-/aluspaber",
+   "confidence": "kesk",
+   "main": "Meditsiin, labor & teadus",
+   "current_name": "Ühekordsed katte- ja aluspaberid",
+   "suggested_name": "Inkontinentsitooted"
+  },
+  {
+   "product_id": "prod_01KNXXQ5X851Q18FSD7TB6AJPY",
+   "current_l3": "pcat_f4_17x2_5",
+   "suggested_l3": "pcat_f4_17x2_4",
+   "reason": "Welding cape sleeve on varrukas, mitte põll",
+   "confidence": "korge",
+   "main": "Tööriied ja isikukaitse",
+   "current_name": "Keevituspõlled",
+   "suggested_name": "Keevituskäised & -varrukad"
+  },
+  {
+   "product_id": "prod_01KPJVFP1R9JJ1Y6V37GY5RW9N",
+   "current_l3": "pcat_ag_3_3",
+   "suggested_l3": "pcat_ag_3_8",
+   "reason": "Tow-Behind Driveway Grader - greiderdamine",
+   "confidence": "kesk",
+   "main": "Põllumajandus ja loomakasvatus",
+   "current_name": "Mullaharimine (äkked ja kultivaatorid)",
+   "suggested_name": "Pinnasetöö ja greiderdamine"
+  },
+  {
+   "product_id": "prod_01KP6FFG0DB2CK07PZY1J3HVRK",
+   "current_l3": "pcat_ag_3_3",
+   "suggested_l3": "pcat_ag_3_8",
+   "reason": "Driveway Grader - greiderdamine",
+   "confidence": "kesk",
+   "main": "Põllumajandus ja loomakasvatus",
+   "current_name": "Mullaharimine (äkked ja kultivaatorid)",
+   "suggested_name": "Pinnasetöö ja greiderdamine"
+  },
+  {
+   "product_id": "prod_01KPJVFP81TTK8PQ72R6KFEXDR",
+   "current_l3": "pcat_ag_3_3",
+   "suggested_l3": "pcat_ag_3_8",
+   "reason": "Driveway Grader - greiderdamine",
+   "confidence": "kesk",
+   "main": "Põllumajandus ja loomakasvatus",
+   "current_name": "Mullaharimine (äkked ja kultivaatorid)",
+   "suggested_name": "Pinnasetöö ja greiderdamine"
+  },
+  {
+   "product_id": "prod_01KNXXKK9NCK7K2SHT224S4ETG",
+   "current_l3": "pcat_mu_1_1",
+   "suggested_l3": "pcat_mu_1_5",
+   "reason": "Kitarrikohver on tarvik, mitte pill",
+   "confidence": "kesk",
+   "main": "Muusika ja helitehnika",
+   "current_name": "Keelpillid",
+   "suggested_name": "Pillitarvikud"
+  },
+  {
+   "product_id": "prod_01KNXXHNXHK08284ET6T0RPRSV",
+   "current_l3": "pcat_mu_1_5",
+   "suggested_l3": "pcat_mu_2_2",
+   "reason": "Vinüülimängija alus/hoiustamine, mitte pillitarvik",
+   "confidence": "korge",
+   "main": "Muusika ja helitehnika",
+   "current_name": "Pillitarvikud",
+   "suggested_name": "Vinüülplaatide hoiustamine"
+  },
+  {
+   "product_id": "prod_01KNXXKPY43X9JHKK2GX4H6YDT",
+   "current_l3": "pcat_ag2_2x3_10",
+   "suggested_l3": "pcat_ag2_2x3_12",
+   "reason": "Electric Trailer Jack / tongue jack kuulub haagise tugijalgade alla",
+   "confidence": "korge",
+   "main": "Garaažiseadmed",
+   "current_name": "Elektrilised tungrauad",
+   "suggested_name": "Haagise tugijalad"
+  },
+  {
+   "product_id": "prod_01KPJV7T7PD6N43771C7BDWR8V",
+   "current_l3": "pcat_ag2_2x4_2",
+   "suggested_l3": "pcat_2kanist",
+   "reason": "Ohutuskanister, mitte ratastega kütusemahuti",
+   "confidence": "korge",
+   "main": "Garaažiseadmed",
+   "current_name": "Kütusemahutid ja -konteinerid ratastega",
+   "suggested_name": "Bensiinikanistrid & ohutuskanistrid"
+  },
+  {
+   "product_id": "prod_01KNXX6GFY9HRV1JYKMSH0RH16",
+   "current_l3": "pcat_ag2_2x1_18",
+   "suggested_l3": "pcat_2puks",
+   "reason": "Karteri lahutaja/separaator, mitte lohkude eemaldus",
+   "confidence": "kesk",
+   "main": "Garaažiseadmed",
+   "current_name": "Plekitööde ja lohkude eemalduskomplektid (PDR)",
+   "suggested_name": "Puksi- & laagritööriistad"
+  },
+  {
+   "product_id": "prod_01KNXX7YZXQ51B2RGN57AS5PWG",
+   "current_l3": "pcat_ag2_2x3_2",
+   "suggested_l3": "pcat_ag2_2x3_10",
+   "reason": "Elektriline hüdrauline tungraud",
+   "confidence": "kesk",
+   "main": "Garaažiseadmed",
+   "current_name": "Põrandatungrauad",
+   "suggested_name": "Elektrilised tungrauad"
+  },
+  {
+   "product_id": "prod_01KNXXT9T2NEPDQVB44X6RXCNH",
+   "current_l3": "pcat_ag2_2x6_5",
+   "suggested_l3": "pcat_ag2_2x6_4",
+   "reason": "Bead seater, mitte õhupüstol",
+   "confidence": "kesk",
+   "main": "Garaažiseadmed",
+   "current_name": "Rehvi õhupüstolid",
+   "suggested_name": "Rehvikorra paigaldus- ja täitevahendid (bead seater)"
+  },
+  {
+   "product_id": "prod_01KNXXBVTWJRYH5JYQZ6SDBASC",
+   "current_l3": "pcat_ag2_2x6_5",
+   "suggested_l3": "pcat_ag2_2x6_4",
+   "reason": "Tire bead blaster/seater",
+   "confidence": "kesk",
+   "main": "Garaažiseadmed",
+   "current_name": "Rehvi õhupüstolid",
+   "suggested_name": "Rehvikorra paigaldus- ja täitevahendid (bead seater)"
+  },
+  {
+   "product_id": "prod_01KNXXTAR7SQGRFMPFMQTGPHPT",
+   "current_l3": "pcat_ag2_2x6_3",
+   "suggested_l3": "pcat_ag2_2x6_4",
+   "reason": "Bead seater, mitte lõhkuja",
+   "confidence": "korge",
+   "main": "Garaažiseadmed",
+   "current_name": "Rehvikülje lahutajad ja lõhkujad",
+   "suggested_name": "Rehvikorra paigaldus- ja täitevahendid (bead seater)"
+  },
+  {
+   "product_id": "prod_01KNXXBBMRNVMD3X9NG3TARWMZ",
+   "current_l3": "pcat_ag2_2x3_5",
+   "suggested_l3": "pcat_ag2_2x3_6",
+   "reason": "Long ram jack, kuulub pikktungraudade alla",
+   "confidence": "korge",
+   "main": "Garaažiseadmed",
+   "current_name": "Silindertungrauad",
+   "suggested_name": "Varba- ja pikktungrauad"
+  },
+  {
+   "product_id": "prod_01KNXXB7ZHBXXPFX8TF3BANV17",
+   "current_l3": "pcat_ag2_2x3_5",
+   "suggested_l3": "pcat_ag2_2x3_6",
+   "reason": "Long ram jack, kuulub pikktungraudade alla",
+   "confidence": "korge",
+   "main": "Garaažiseadmed",
+   "current_name": "Silindertungrauad",
+   "suggested_name": "Varba- ja pikktungrauad"
+  },
+  {
+   "product_id": "prod_01KNXXFWKJ5Z44W03NMZ42SY3H",
+   "current_l3": "pcat_ag2_2x1_16",
+   "suggested_l3": "pcat_2drive",
+   "reason": "Differential housing spreader, mitte torutööriist",
+   "confidence": "kesk",
+   "main": "Garaažiseadmed",
+   "current_name": "Toru laiendus- ja äärestustööriistad",
+   "suggested_name": "Veom- & jõuülekande tööriistad"
+  },
+  {
+   "product_id": "prod_01KNXXGN5HFGJWE9C4EFEQYFBN",
+   "current_l3": "pcat_mv_6x1_13",
+   "suggested_l3": "pcat_mv_6x1_12",
+   "reason": "Flower Vase, mitte statiiv",
+   "confidence": "korge",
+   "main": "Peoinventar ja dekoratsioonid",
+   "current_name": "Pulma-lillestatiivid",
+   "suggested_name": "Pulma-lillevaasid"
+  },
+  {
+   "product_id": "prod_01KPJXB5QX2KKW80E14HDP3G6K",
+   "current_l3": "pcat_mv_6x1_12",
+   "suggested_l3": "pcat_mv_6x1_13",
+   "reason": "Flower Stand, mitte vaas",
+   "confidence": "korge",
+   "main": "Peoinventar ja dekoratsioonid",
+   "current_name": "Pulma-lillevaasid",
+   "suggested_name": "Pulma-lillestatiivid"
+  },
+  {
+   "product_id": "prod_01KNXXGN5NV0G2AG0P1PRBFZC3",
+   "current_l3": "pcat_mv_6x1_12",
+   "suggested_l3": "pcat_mv_6x1_13",
+   "reason": "Wedding Flower Stand, mitte vaas",
+   "confidence": "korge",
+   "main": "Peoinventar ja dekoratsioonid",
+   "current_name": "Pulma-lillevaasid",
+   "suggested_name": "Pulma-lillestatiivid"
+  },
+  {
+   "product_id": "prod_01KPJV9DAVRMECK30FSZ7YWVPV",
+   "current_l3": "pcat_mv_6x1_14",
+   "suggested_l3": "pcat_f4_13x7_1",
+   "reason": "Arch backdrop stand, mitte lilledekoor",
+   "confidence": "korge",
+   "main": "Peoinventar ja dekoratsioonid",
+   "current_name": "Pulmakaared & lilledekoor",
+   "suggested_name": "Backdrop-statiivid ja taustad"
+  },
+  {
+   "product_id": "prod_01KNXX9D8W5X9B6ZBD0ZYHX5C0",
+   "current_l3": "pcat_mv_6x1_14",
+   "suggested_l3": "pcat_mv_6x1_13",
+   "reason": "Wedding flower stand = pulma-lillestatiiv",
+   "confidence": "kesk",
+   "main": "Peoinventar ja dekoratsioonid",
+   "current_name": "Pulmakaared & lilledekoor",
+   "suggested_name": "Pulma-lillestatiivid"
+  },
+  {
+   "product_id": "prod_01KPJXA17GGEZ614WYF35VYNFK",
+   "current_l3": "pcat_mv_6x1_14",
+   "suggested_l3": "pcat_f4_13x7_1",
+   "reason": "Over-the-table rod stand, taust/statiiv",
+   "confidence": "kesk",
+   "main": "Peoinventar ja dekoratsioonid",
+   "current_name": "Pulmakaared & lilledekoor",
+   "suggested_name": "Backdrop-statiivid ja taustad"
+  },
+  {
+   "product_id": "prod_01KNXX7M6D5KQADQM35K794XMF",
+   "current_l3": "pcat_mv_6x3_12",
+   "suggested_l3": "pcat_5n17",
+   "reason": "Kassasahtel, mitte loendusmasin",
+   "confidence": "korge",
+   "main": "Büroo & kontoritarvikud",
+   "current_name": "Raha- & mündiloendusmasinad",
+   "suggested_name": "Kassasahtlid ja POS-tarvikud"
+  },
+  {
+   "product_id": "prod_01KNXX7M6F66131HX8J5FXGFBX",
+   "current_l3": "pcat_mv_6x3_12",
+   "suggested_l3": "pcat_5n17",
+   "reason": "Kassasahtel, mitte loendusmasin",
+   "confidence": "korge",
+   "main": "Büroo & kontoritarvikud",
+   "current_name": "Raha- & mündiloendusmasinad",
+   "suggested_name": "Kassasahtlid ja POS-tarvikud"
+  },
+  {
+   "product_id": "prod_01KNXX7M6EJTKX4QSH64K2MS6C",
+   "current_l3": "pcat_mv_6x3_12",
+   "suggested_l3": "pcat_5n17",
+   "reason": "Kassasahtel, mitte loendusmasin",
+   "confidence": "korge",
+   "main": "Büroo & kontoritarvikud",
+   "current_name": "Raha- & mündiloendusmasinad",
+   "suggested_name": "Kassasahtlid ja POS-tarvikud"
+  },
+  {
+   "product_id": "prod_01KNXXPZKNF5RN9KFRDD6WG430",
+   "current_l3": "pcat_el_12x2_4",
+   "suggested_l3": "pcat_el_12x2_13",
+   "reason": "Train Table = tegevuslaud, mitte mänguauto",
+   "confidence": "kesk",
+   "main": "Lastekaubad ja mänguasjad",
+   "current_name": "Mänguautod ja sõidukimänguasjad",
+   "suggested_name": "Mängu- ja tegevuslauad"
+  },
+  {
+   "product_id": "prod_01KNXXPYP2BC0FCXH97KXVAXZB",
+   "current_l3": "pcat_el_12x2_4",
+   "suggested_l3": "pcat_el_12x2_13",
+   "reason": "Train Table = tegevuslaud",
+   "confidence": "kesk",
+   "main": "Lastekaubad ja mänguasjad",
+   "current_name": "Mänguautod ja sõidukimänguasjad",
+   "suggested_name": "Mängu- ja tegevuslauad"
+  },
+  {
+   "product_id": "prod_01KNXXQ0FZ7H7RDTQBC6D7SJHK",
+   "current_l3": "pcat_el_12x2_4",
+   "suggested_l3": "pcat_el_12x2_13",
+   "reason": "Train Table = tegevuslaud",
+   "confidence": "kesk",
+   "main": "Lastekaubad ja mänguasjad",
+   "current_name": "Mänguautod ja sõidukimänguasjad",
+   "suggested_name": "Mängu- ja tegevuslauad"
+  },
+  {
+   "product_id": "prod_01KPJV62YHV6PPK6JHPJCATP76",
+   "current_l3": "pcat_el_12x2_24",
+   "suggested_l3": "pcat_el_12x2_19",
+   "reason": "Mootori mehaanikamänguasi, remondimänguasi",
+   "confidence": "korge",
+   "main": "Lastekaubad ja mänguasjad",
+   "current_name": "Õppemänguasjad",
+   "suggested_name": "Tööpingid ja remondimänguasjad"
+  },
+  {
+   "product_id": "prod_01KP6FAXMYWPJHAFSFJPD9H19A",
+   "current_l3": "pcat_el_12x2_24",
+   "suggested_l3": "pcat_el_12x2_19",
+   "reason": "Mootori mehaanikamänguasi, remondimänguasi",
+   "confidence": "korge",
+   "main": "Lastekaubad ja mänguasjad",
+   "current_name": "Õppemänguasjad",
+   "suggested_name": "Tööpingid ja remondimänguasjad"
+  },
+  {
+   "product_id": "prod_01KPJV62HPXJJ5YY7CRSF1YMNF",
+   "current_l3": "pcat_el_12x2_24",
+   "suggested_l3": "pcat_el_12x2_19",
+   "reason": "Mootori mehaanikamänguasi, remondimänguasi",
+   "confidence": "korge",
+   "main": "Lastekaubad ja mänguasjad",
+   "current_name": "Õppemänguasjad",
+   "suggested_name": "Tööpingid ja remondimänguasjad"
+  },
+  {
+   "product_id": "prod_01KPJV62R8MQJJVPHWY9QH61WZ",
+   "current_l3": "pcat_el_12x2_24",
+   "suggested_l3": "pcat_el_12x2_19",
+   "reason": "Mootori mehaanikamänguasi, remondimänguasi",
+   "confidence": "korge",
+   "main": "Lastekaubad ja mänguasjad",
+   "current_name": "Õppemänguasjad",
+   "suggested_name": "Tööpingid ja remondimänguasjad"
+  },
+  {
+   "product_id": "prod_01KNXXD4EJG976YGTPBSBA7A8B",
+   "current_l3": "pcat_ag2_3x6_10",
+   "suggested_l3": "pcat_vt_3",
+   "reason": "Jeep Wrangleri käepidemed, mitte rool",
+   "confidence": "kesk",
+   "main": "Autovaruosad ja -tarvikud",
+   "current_name": "Autoroolid",
+   "suggested_name": "Jeep/maasturi välisosad"
+  },
+  {
+   "product_id": "prod_01KNXXAJEG3EMY7M8XCX1Y93NC",
+   "current_l3": "pcat_ag2_3x1_1",
+   "suggested_l3": "pcat_ag2_3x1_6",
+   "reason": "Tegemist on haakeseadme/kuulkinnitusega (coupler), mitte lukuga",
+   "confidence": "kesk",
+   "main": "Autovaruosad ja -tarvikud",
+   "current_name": "Haagise lukud ja lukustusseadmed",
+   "suggested_name": "Haakeseadmed ja kuulkinnitused"
+  },
+  {
+   "product_id": "prod_01KNXXDJ0F80MDC76M993AEFNE",
+   "current_l3": "pcat_ag2_3x2_2",
+   "suggested_l3": "pcat_ag2_3x2_3",
+   "reason": "Roll-up tonneau koormakate, mitte hoiukast",
+   "confidence": "kesk",
+   "main": "Autovaruosad ja -tarvikud",
+   "current_name": "Hoiukastid ja -karbid",
+   "suggested_name": "Koormakatted ja presendid"
+  },
+  {
+   "product_id": "prod_01KNXXDH3FMX4D3KM197XV02V8",
+   "current_l3": "pcat_ag2_3x2_2",
+   "suggested_l3": "pcat_ag2_3x2_3",
+   "reason": "Roll-up tonneau koormakate, mitte hoiukast",
+   "confidence": "kesk",
+   "main": "Autovaruosad ja -tarvikud",
+   "current_name": "Hoiukastid ja -karbid",
+   "suggested_name": "Koormakatted ja presendid"
+  },
+  {
+   "product_id": "prod_01KNXXDH3DZSSZ6Z2694V8RFC3",
+   "current_l3": "pcat_ag2_3x2_2",
+   "suggested_l3": "pcat_ag2_3x2_3",
+   "reason": "Roll-up tonneau koormakate, mitte hoiukast",
+   "confidence": "kesk",
+   "main": "Autovaruosad ja -tarvikud",
+   "current_name": "Hoiukastid ja -karbid",
+   "suggested_name": "Koormakatted ja presendid"
+  },
+  {
+   "product_id": "prod_01KNXXAX67R18FZKA9XTE0MFAN",
+   "current_l3": "pcat_ag2_3x4_8",
+   "suggested_l3": "pcat_ag2_3x4_7",
+   "reason": "Exhaust manifold kuulub väljalaskesüsteemide alla",
+   "confidence": "korge",
+   "main": "Autovaruosad ja -tarvikud",
+   "current_name": "Katalüsaatorid",
+   "suggested_name": "Heitgaasi- ja väljalaskesüsteemid"
+  },
+  {
+   "product_id": "prod_01KNXXP4MK64Y7PCKMX89SPCB4",
+   "current_l3": "pcat_ag2_3x7_1",
+   "suggested_l3": "pcat_ag2_3x7_2",
+   "reason": "Roof Rack Basket = katusekorv",
+   "confidence": "korge",
+   "main": "Autovaruosad ja -tarvikud",
+   "current_name": "Katusekandurid",
+   "suggested_name": "Katusekorvid & -korvid"
+  },
+  {
+   "product_id": "prod_01KNXXP5GY6697PQ8MBAJ72ZCB",
+   "current_l3": "pcat_ag2_3x7_1",
+   "suggested_l3": "pcat_ag2_3x7_2",
+   "reason": "Roof Rack Basket = katusekorv",
+   "confidence": "korge",
+   "main": "Autovaruosad ja -tarvikud",
+   "current_name": "Katusekandurid",
+   "suggested_name": "Katusekorvid & -korvid"
+  },
+  {
+   "product_id": "prod_01KNXXAW8HTHGPM9SKQ7FTT03J",
+   "current_l3": "pcat_ag2_3x7_2",
+   "suggested_l3": "pcat_ag2_3x7_1",
+   "reason": "Cross Bars = katusekandur",
+   "confidence": "korge",
+   "main": "Autovaruosad ja -tarvikud",
+   "current_name": "Katusekorvid & -korvid",
+   "suggested_name": "Katusekandurid"
+  },
+  {
+   "product_id": "prod_01KNXXASJRY1EKJ3F403P0GGXC",
+   "current_l3": "pcat_ag2_3x7_2",
+   "suggested_l3": "pcat_ag2_3x7_1",
+   "reason": "Cross Bars = katusekandur",
+   "confidence": "korge",
+   "main": "Autovaruosad ja -tarvikud",
+   "current_name": "Katusekorvid & -korvid",
+   "suggested_name": "Katusekandurid"
+  },
+  {
+   "product_id": "prod_01KNXX8SA906ZE7MRW56KZG8P1",
+   "current_l3": "pcat_ag2_3x7_2",
+   "suggested_l3": "pcat_ag2_3x7_1",
+   "reason": "Cross Bars = katusekandur",
+   "confidence": "korge",
+   "main": "Autovaruosad ja -tarvikud",
+   "current_name": "Katusekorvid & -korvid",
+   "suggested_name": "Katusekandurid"
+  },
+  {
+   "product_id": "prod_01KNXXFN9EAJFDD1BZ4WQFYG7Z",
+   "current_l3": "pcat_ag2_3x7_2",
+   "suggested_l3": "pcat_ag2_3x7_1",
+   "reason": "Cross Bars = katusekandur",
+   "confidence": "korge",
+   "main": "Autovaruosad ja -tarvikud",
+   "current_name": "Katusekorvid & -korvid",
+   "suggested_name": "Katusekandurid"
+  },
+  {
+   "product_id": "prod_01KNXXFNAD1QRH8T5WAV7A6FYM",
+   "current_l3": "pcat_ag2_3x7_2",
+   "suggested_l3": "pcat_ag2_3x7_1",
+   "reason": "Cross Bars = katusekandur",
+   "confidence": "korge",
+   "main": "Autovaruosad ja -tarvikud",
+   "current_name": "Katusekorvid & -korvid",
+   "suggested_name": "Katusekandurid"
+  },
+  {
+   "product_id": "prod_01KNXXFN9DGBT5VTHDAX6RFMAQ",
+   "current_l3": "pcat_ag2_3x7_2",
+   "suggested_l3": "pcat_ag2_3x7_1",
+   "reason": "Crossbar = katusekandur",
+   "confidence": "korge",
+   "main": "Autovaruosad ja -tarvikud",
+   "current_name": "Katusekorvid & -korvid",
+   "suggested_name": "Katusekandurid"
+  },
+  {
+   "product_id": "prod_01KNXXARQ98GN5F69KN3V1DF7N",
+   "current_l3": "pcat_ag2_3x7_4",
+   "suggested_l3": "pcat_ag2_3x7_1",
+   "reason": "Cross Bars = katusekandur",
+   "confidence": "kesk",
+   "main": "Autovaruosad ja -tarvikud",
+   "current_name": "Katusereilingud",
+   "suggested_name": "Katusekandurid"
+  },
+  {
+   "product_id": "prod_01KNXXFNABBDT6YFNV3MSQGMVT",
+   "current_l3": "pcat_ag2_3x7_4",
+   "suggested_l3": "pcat_ag2_3x7_1",
+   "reason": "Crossbar = katusekandur",
+   "confidence": "kesk",
+   "main": "Autovaruosad ja -tarvikud",
+   "current_name": "Katusereilingud",
+   "suggested_name": "Katusekandurid"
+  },
+  {
+   "product_id": "prod_01KNXXFNAB3PKDKFCF607M3MNW",
+   "current_l3": "pcat_ag2_3x7_4",
+   "suggested_l3": "pcat_ag2_3x7_1",
+   "reason": "Crossbar = katusekandur",
+   "confidence": "kesk",
+   "main": "Autovaruosad ja -tarvikud",
+   "current_name": "Katusereilingud",
+   "suggested_name": "Katusekandurid"
+  },
+  {
+   "product_id": "prod_01KNXXHYVDD6W6P29EAFSP2SQN",
+   "current_l3": "pcat_ag2_3x7_9",
+   "suggested_l3": "pcat_ag2_3x7_8",
+   "reason": "Cargo Net = kaubavõrk",
+   "confidence": "korge",
+   "main": "Autovaruosad ja -tarvikud",
+   "current_name": "Koorma- & kaubakorvid",
+   "suggested_name": "Koorma- & kaubavõrgud"
+  },
+  {
+   "product_id": "prod_01KNXXJCAC5Z2JT8VPRDC97HKX",
+   "current_l3": "pcat_ag2_3x2_3",
+   "suggested_l3": "pcat_a3k",
+   "reason": "Truck Bed Mat = veoauto kasti tarvik",
+   "confidence": "kesk",
+   "main": "Autovaruosad ja -tarvikud",
+   "current_name": "Koormakatted ja presendid",
+   "suggested_name": "Veoauto kasti tarvikud"
+  },
+  {
+   "product_id": "prod_01KNXXS4ASKXYRPG9Q62RTTMXA",
+   "current_l3": "pcat_ag2_3x4_3",
+   "suggested_l3": "pcat_d3_2",
+   "reason": "Diiselsoojendi õhu sissevõtutoru, mitte kütusevoolik",
+   "confidence": "korge",
+   "main": "Autovaruosad ja -tarvikud",
+   "current_name": "Kütusevoolikud ja -torud",
+   "suggested_name": "Diiselsoojendi osad"
+  },
+  {
+   "product_id": "prod_01KPJXCDC30K9NQ0WB0NK1Q20M",
+   "current_l3": "pcat_ag2_3x4_1",
+   "suggested_l3": "pcat_ag2_3x2_6",
+   "reason": "Suur diislipaak pumbaga, mitte kanister",
+   "confidence": "kesk",
+   "main": "Autovaruosad ja -tarvikud",
+   "current_name": "Kütusekanistrid & ohutuskanistrid",
+   "suggested_name": "Kütusepaagid ja -mahutid"
+  },
+  {
+   "product_id": "prod_01KNXXMT1RS73XH7Y15ZCH0EQC",
+   "current_l3": "pcat_ag2_3x2_4",
+   "suggested_l3": "pcat_ag2_3x7_8",
+   "reason": "Cargo net kuulub kaubavõrkude alla",
+   "confidence": "korge",
+   "main": "Autovaruosad ja -tarvikud",
+   "current_name": "Lasti kinnitustarvikud",
+   "suggested_name": "Koorma- & kaubavõrgud"
+  },
+  {
+   "product_id": "prod_01KNXXHW6FM4W3AW95MWC4ZAQZ",
+   "current_l3": "pcat_ag2_3x2_4",
+   "suggested_l3": "pcat_ag2_3x7_8",
+   "reason": "Cargo net kuulub kaubavõrkude alla",
+   "confidence": "korge",
+   "main": "Autovaruosad ja -tarvikud",
+   "current_name": "Lasti kinnitustarvikud",
+   "suggested_name": "Koorma- & kaubavõrgud"
+  },
+  {
+   "product_id": "prod_01KNXXFWKHM5T6EW9ZYVKZWFFE",
+   "current_l3": "pcat_ag2_3x2_4",
+   "suggested_l3": "pcat_ag2_3x1_1",
+   "reason": "Konteineri/ukse lukk",
+   "confidence": "kesk",
+   "main": "Autovaruosad ja -tarvikud",
+   "current_name": "Lasti kinnitustarvikud",
+   "suggested_name": "Haagise lukud ja lukustusseadmed"
+  },
+  {
+   "product_id": "prod_01KNXX8H23EZX1HV72KY75JSD2",
+   "current_l3": "pcat_ag2_3x2_4",
+   "suggested_l3": "pcat_ag2_3x1_1",
+   "reason": "Konteineri/ukse lukk",
+   "confidence": "kesk",
+   "main": "Autovaruosad ja -tarvikud",
+   "current_name": "Lasti kinnitustarvikud",
+   "suggested_name": "Haagise lukud ja lukustusseadmed"
+  },
+  {
+   "product_id": "prod_01KNXXCN54Q9PXX6YG43M8583T",
+   "current_l3": "pcat_ag2_3x2_4",
+   "suggested_l3": "pcat_ag2_3x7_1",
+   "reason": "Truck ladder rack on katusekandur",
+   "confidence": "kesk",
+   "main": "Autovaruosad ja -tarvikud",
+   "current_name": "Lasti kinnitustarvikud",
+   "suggested_name": "Katusekandurid"
+  },
+  {
+   "product_id": "prod_01KNXXCN54QD7M426T7MN4KZEJ",
+   "current_l3": "pcat_ag2_3x2_4",
+   "suggested_l3": "pcat_ag2_3x7_1",
+   "reason": "Truck ladder rack on katusekandur",
+   "confidence": "kesk",
+   "main": "Autovaruosad ja -tarvikud",
+   "current_name": "Lasti kinnitustarvikud",
+   "suggested_name": "Katusekandurid"
+  },
+  {
+   "product_id": "prod_01KNXXCN52QCNTHYWPETG2AQ34",
+   "current_l3": "pcat_ag2_3x2_4",
+   "suggested_l3": "pcat_ag2_3x7_1",
+   "reason": "Truck ladder rack on katusekandur",
+   "confidence": "kesk",
+   "main": "Autovaruosad ja -tarvikud",
+   "current_name": "Lasti kinnitustarvikud",
+   "suggested_name": "Katusekandurid"
+  },
+  {
+   "product_id": "prod_01KNXXMT2831TWNXXQRB5QG6H4",
+   "current_l3": "pcat_mv_8x3_2",
+   "suggested_l3": "pcat_mv_8x3_1",
+   "reason": "Motoriseeritud markiis",
+   "confidence": "korge",
+   "main": "Autovaruosad ja -tarvikud",
+   "current_name": "Matka- ja haagissuvila markiisid",
+   "suggested_name": "Mootormarkiisid"
+  },
+  {
+   "product_id": "prod_01KNXXMTYJVKBQ5K1RARBTQ3GT",
+   "current_l3": "pcat_mv_8x3_2",
+   "suggested_l3": "pcat_mv_8x3_1",
+   "reason": "Motoriseeritud markiis",
+   "confidence": "korge",
+   "main": "Autovaruosad ja -tarvikud",
+   "current_name": "Matka- ja haagissuvila markiisid",
+   "suggested_name": "Mootormarkiisid"
+  },
+  {
+   "product_id": "prod_01KNXXMTYHN0YTX4F0KDD7TKWY",
+   "current_l3": "pcat_mv_8x3_2",
+   "suggested_l3": "pcat_mv_8x3_1",
+   "reason": "Motoriseeritud markiis",
+   "confidence": "korge",
+   "main": "Autovaruosad ja -tarvikud",
+   "current_name": "Matka- ja haagissuvila markiisid",
+   "suggested_name": "Mootormarkiisid"
+  },
+  {
+   "product_id": "prod_01KNXXSXPCZWGVZXV584PCP9TN",
+   "current_l3": "pcat_vt_7",
+   "suggested_l3": "pcat_ag2_3x6_13",
+   "reason": "Mootorratta saddlebag on kott",
+   "confidence": "kesk",
+   "main": "Autovaruosad ja -tarvikud",
+   "current_name": "Mootorratta välisosad",
+   "suggested_name": "Mootorratta kotid"
+  },
+  {
+   "product_id": "prod_01KNXXJRVC1BQ89NNCT1RY2BRC",
+   "current_l3": "pcat_vt_7",
+   "suggested_l3": "pcat_ag2_3x7_10",
+   "reason": "Mootorratta top case",
+   "confidence": "kesk",
+   "main": "Autovaruosad ja -tarvikud",
+   "current_name": "Mootorratta välisosad",
+   "suggested_name": "Mootorratta kohvrid & kandurid"
+  },
+  {
+   "product_id": "prod_01KNXXB2KH3ZT79S8CJFNC47SR",
+   "current_l3": "pcat_ag2_3x1_8",
+   "suggested_l3": "pcat_ag2_3x1_9",
+   "reason": "Ratchet chain binder = koormasidur/ratšettkinniti",
+   "confidence": "kesk",
+   "main": "Autovaruosad ja -tarvikud",
+   "current_name": "Pukseerimisketid ja -ahelad",
+   "suggested_name": "Koormasidurid ja ratšettkinnitid"
+  },
+  {
+   "product_id": "prod_01KPJXDHQ8PAFGDWWVY7WP1DZ5",
+   "current_l3": "pcat_ag2_3x1_8",
+   "suggested_l3": "pcat_ag2_3x1_9",
+   "reason": "Ratchet chain binder = koormasidur/ratšettkinniti",
+   "confidence": "kesk",
+   "main": "Autovaruosad ja -tarvikud",
+   "current_name": "Pukseerimisketid ja -ahelad",
+   "suggested_name": "Koormasidurid ja ratšettkinnitid"
+  },
+  {
+   "product_id": "prod_01KNXXAB60AVRP54VY22B6D78H",
+   "current_l3": "pcat_ag2_3x1_5",
+   "suggested_l3": "pcat_ag2_3x1_6",
+   "reason": "Tow bar/haakeseade, mitte pintle-haak",
+   "confidence": "kesk",
+   "main": "Autovaruosad ja -tarvikud",
+   "current_name": "Pintle-haagid ja konksud",
+   "suggested_name": "Haakeseadmed ja kuulkinnitused"
+  },
+  {
+   "product_id": "prod_01KNXXQ2943293PA8CFCP55P3W",
+   "current_l3": "pcat_ag2_3x5_4",
+   "suggested_l3": "pcat_ag2_3x5_5",
+   "reason": "RV leveling block, mitte tugijalg",
+   "confidence": "kesk",
+   "main": "Autovaruosad ja -tarvikud",
+   "current_name": "Stabilisaator- ja tugijalad",
+   "suggested_name": "Tasandusplokid ja -kiilud"
+  },
+  {
+   "product_id": "prod_01KNXXBWRH3BG4V7AS673Y8CSQ",
+   "current_l3": "pcat_ag2_3x5_4",
+   "suggested_l3": "pcat_ag2_3x5_5",
+   "reason": "RV leveling block, mitte tugijalg",
+   "confidence": "kesk",
+   "main": "Autovaruosad ja -tarvikud",
+   "current_name": "Stabilisaator- ja tugijalad",
+   "suggested_name": "Tasandusplokid ja -kiilud"
+  },
+  {
+   "product_id": "prod_01KNXX9TVE7SVHZSETHAFJ3SWB",
+   "current_l3": "pcat_ag2_3x2_8",
+   "suggested_l3": "pcat_ag2_3x2_1",
+   "reason": "Truck Bed Storage Box on tööriistakast, mitte veljekate",
+   "confidence": "korge",
+   "main": "Autovaruosad ja -tarvikud",
+   "current_name": "Veljekatted ja rattakatted",
+   "suggested_name": "Tööriistakastid"
+  },
+  {
+   "product_id": "prod_01KNXXF5E52WGZ8RJVMBBHV127",
+   "current_l3": "pcat_ag2_3x1_13",
+   "suggested_l3": "pcat_ag2_3x1_15",
+   "reason": "Traction/recovery boards maasturile, mitte tross",
+   "confidence": "korge",
+   "main": "Autovaruosad ja -tarvikud",
+   "current_name": "Vintsi trossid ja taasteplokid",
+   "suggested_name": "Maastikusõiduki taastekomplektid"
+  },
+  {
+   "product_id": "prod_01KNXXT3TQ7R6YNAKMN22KGVE8",
+   "current_l3": "pcat_ks_4x1_3",
+   "suggested_l3": "pcat_ks_4x1_6",
+   "reason": "Toode on jäätisemasin, mitte köögikombain",
+   "confidence": "kesk",
+   "main": "Kodumasinad ja kodutehnika",
+   "current_name": "Köögikombainid ja toiduprotsessorid",
+   "suggested_name": "Jäämasinad ja jäätisemasinad"
+  },
+  {
+   "product_id": "prod_01KNXXB2MFM937WM2G8570ZSYT",
+   "current_l3": "pcat_ks_4x3_2",
+   "suggested_l3": "pcat_ks_4x3_4",
+   "reason": "Pan and Pot Rack kuulub pottide/pannide korraldajate alla",
+   "confidence": "kesk",
+   "main": "Kodumasinad ja kodutehnika",
+   "current_name": "Väljatõmmatavad kappide korraldajad",
+   "suggested_name": "Pottide ja pannide korraldajad"
+  },
+  {
+   "product_id": "prod_01KNXXA4VWM4MVBFZVNBA4CQ4H",
+   "current_l3": "pcat_ks_4x3_2",
+   "suggested_l3": "pcat_ks_4x3_4",
+   "reason": "Pan and Pot Rack kuulub pottide/pannide korraldajate alla",
+   "confidence": "kesk",
+   "main": "Kodumasinad ja kodutehnika",
+   "current_name": "Väljatõmmatavad kappide korraldajad",
+   "suggested_name": "Pottide ja pannide korraldajad"
+  },
+  {
+   "product_id": "prod_01KNXXA5RQNAKAB1E0PQ0DGE5V",
+   "current_l3": "pcat_ks_4x3_2",
+   "suggested_l3": "pcat_ks_4x3_4",
+   "reason": "Pan and Pot Rack kuulub pottide/pannide korraldajate alla",
+   "confidence": "kesk",
+   "main": "Kodumasinad ja kodutehnika",
+   "current_name": "Väljatõmmatavad kappide korraldajad",
+   "suggested_name": "Pottide ja pannide korraldajad"
+  },
+  {
+   "product_id": "prod_01KNXXB9V0WARTT3KGJB2DS2HB",
+   "current_l3": "pcat_ks_5x1_24",
+   "suggested_l3": "pcat_ks_5x2_25",
+   "reason": "Mobiilne õlifilter kuulub fritüüriõli filtreerimistarvikute alla",
+   "confidence": "korge",
+   "main": "Suurköögiseadmed",
+   "current_name": "Fritüürid",
+   "suggested_name": "Fritüüriõli filtreerimistarvikud"
+  },
+  {
+   "product_id": "prod_01KNXXKY4AGQCFJ29RY615YHVX",
+   "current_l3": "pcat_ks_5x2_21",
+   "suggested_l3": "pcat_5barista",
+   "reason": "Espresso tamping station on baristatarvik, mitte kohvikann/press",
+   "confidence": "korge",
+   "main": "Suurköögiseadmed",
+   "current_name": "Kohvikannud & pressid",
+   "suggested_name": "Baristatarvikud & espressotarvikud"
+  },
+  {
+   "product_id": "prod_01KNXXN35HW659XQ4D495VB64S",
+   "current_l3": "pcat_ks_5x1_16",
+   "suggested_l3": "pcat_5n28",
+   "reason": "Tortillamasin sobib tortillapresside alla",
+   "confidence": "kesk",
+   "main": "Suurköögiseadmed",
+   "current_name": "Kreebi- ja pannkoogimasinad",
+   "suggested_name": "Tortillapressid"
+  },
+  {
+   "product_id": "prod_01KNXXNEW9NQ1V4SKYQGBSW7CJ",
+   "current_l3": "pcat_ks_5x1_21",
+   "suggested_l3": "pcat_ks_5x1_15",
+   "reason": "Donut depositor kuulub sõõrikumasinate alla",
+   "confidence": "korge",
+   "main": "Suurköögiseadmed",
+   "current_name": "Pitsataigna ja taignamasinad",
+   "suggested_name": "Sõõrikumasinad"
+  },
+  {
+   "product_id": "prod_01KNXX8PHFC5CAEWZMFDB1358C",
+   "current_l3": "pcat_ks_5x1_21",
+   "suggested_l3": "pcat_5n29",
+   "reason": "Pasta maker on pastamasin",
+   "confidence": "korge",
+   "main": "Suurköögiseadmed",
+   "current_name": "Pitsataigna ja taignamasinad",
+   "suggested_name": "Pastamasinad"
+  },
+  {
+   "product_id": "prod_01KNXXN428VVDTVEJKSM9CE5QQ",
+   "current_l3": "pcat_ks_5x1_21",
+   "suggested_l3": "pcat_5n28",
+   "reason": "Tortilla maker kuulub tortillapresside alla",
+   "confidence": "kesk",
+   "main": "Suurköögiseadmed",
+   "current_name": "Pitsataigna ja taignamasinad",
+   "suggested_name": "Tortillapressid"
+  },
+  {
+   "product_id": "prod_01KNXX7FSJQG4PABP3374QC30C",
+   "current_l3": "pcat_ks_5x2_20",
+   "suggested_l3": "pcat_ks_5x2_22",
+   "reason": "Veiniklaaside riiul kuulub veini-/baaririiulite alla",
+   "confidence": "kesk",
+   "main": "Suurköögiseadmed",
+   "current_name": "Seinariiulid ja ülariiulid",
+   "suggested_name": "Veini- ja baaririiulid"
+  },
+  {
+   "product_id": "prod_01KNXXGFCSJAFAEEG02QM90GFX",
+   "current_l3": "pcat_ks_5x2_20",
+   "suggested_l3": "pcat_ks_5x10_1",
+   "reason": "Ratastel bun pan rack on põrandariiul/ladustamisrest",
+   "confidence": "kesk",
+   "main": "Suurköögiseadmed",
+   "current_name": "Seinariiulid ja ülariiulid",
+   "suggested_name": "Põrandariiulid ja ladustamisrestid"
+  },
+  {
+   "product_id": "prod_01KNXXBCG79E01VWEYPC2V5X54",
+   "current_l3": "pcat_ks_5x2_20",
+   "suggested_l3": "pcat_ks_5x10_1",
+   "reason": "Ratastel bun pan rack on põrandariiul/ladustamisrest",
+   "confidence": "kesk",
+   "main": "Suurköögiseadmed",
+   "current_name": "Seinariiulid ja ülariiulid",
+   "suggested_name": "Põrandariiulid ja ladustamisrestid"
+  },
+  {
+   "product_id": "prod_01KNXX6KSRX36D1GKHP16994VM",
+   "current_l3": "pcat_ks_5x2_20",
+   "suggested_l3": "pcat_ks_5x10_1",
+   "reason": "5-tasandiline põrandal seisev ladustamisriiul",
+   "confidence": "kesk",
+   "main": "Suurköögiseadmed",
+   "current_name": "Seinariiulid ja ülariiulid",
+   "suggested_name": "Põrandariiulid ja ladustamisrestid"
+  },
+  {
+   "product_id": "prod_01KNXXQ35CPWC8DRTRTRRVM698",
+   "current_l3": "pcat_ks_5x1_15",
+   "suggested_l3": "pcat_ks_5x1_16",
+   "reason": "Mini pannkoogi/dorayaki masin, mitte sõõrikumasin",
+   "confidence": "kesk",
+   "main": "Suurköögiseadmed",
+   "current_name": "Sõõrikumasinad",
+   "suggested_name": "Kreebi- ja pannkoogimasinad"
+  },
+  {
+   "product_id": "prod_01KNXXFHP5DDY0A1ZFK1EKB9ZW",
+   "current_l3": "pcat_ks_5x1_15",
+   "suggested_l3": "pcat_ks_5x1_16",
+   "reason": "Mini Dutch pannkoogimasin",
+   "confidence": "kesk",
+   "main": "Suurköögiseadmed",
+   "current_name": "Sõõrikumasinad",
+   "suggested_name": "Kreebi- ja pannkoogimasinad"
+  },
+  {
+   "product_id": "prod_01KNXXR6M4GV94HJ0FMRJ4ZZYK",
+   "current_l3": "pcat_ks_5x1_15",
+   "suggested_l3": "pcat_ks_5x1_16",
+   "reason": "Mini pannkoogi/vahvli baker, mitte sõõrikumasin",
+   "confidence": "kesk",
+   "main": "Suurköögiseadmed",
+   "current_name": "Sõõrikumasinad",
+   "suggested_name": "Kreebi- ja pannkoogimasinad"
+  },
+  {
+   "product_id": "prod_01KNXX6GF52SEAGV469QWXBD3G",
+   "current_l3": "pcat_ks_5x1_34",
+   "suggested_l3": "pcat_ks_5x2_5",
+   "reason": "Köögivilja viilutaja/tükeldaja, mitte toiduprotsessor",
+   "confidence": "kesk",
+   "main": "Suurköögiseadmed",
+   "current_name": "Toiduprotsessorid",
+   "suggested_name": "Köögivilja viilutajad ja tükeldajad"
+  },
+  {
+   "product_id": "prod_01KNXX8DFJW6AV6351SN1MZSW3",
+   "current_l3": "pcat_ks_5x2_12",
+   "suggested_l3": "pcat_5n5",
+   "reason": "CO2 regulaator kuulub CO2 tarvikute alla",
+   "confidence": "kesk",
+   "main": "Suurköögiseadmed",
+   "current_name": "Õllesüsteemid ja -tornid",
+   "suggested_name": "CO2 balloonid ja tarvikud"
+  },
+  {
+   "product_id": "prod_01KNXXSNBQ1FA3BBW7FPJY4FZZ",
+   "current_l3": "pcat_mv_6x4_2",
+   "suggested_l3": "pcat_mv_6x4_3",
+   "reason": "C-kujuline diivani kõrvallaud, mitte diivanilaud",
+   "confidence": "kesk",
+   "main": "Mööbel ja sisustus",
+   "current_name": "Diivanilauad",
+   "suggested_name": "Kõrval- ja küljelauad"
+  },
+  {
+   "product_id": "prod_01KNXXSQ746FRZN26KD0V66QNT",
+   "current_l3": "pcat_mv_6x4_2",
+   "suggested_l3": "pcat_mv_6x4_3",
+   "reason": "C-kujuline kokkupandav kõrvallaud",
+   "confidence": "kesk",
+   "main": "Mööbel ja sisustus",
+   "current_name": "Diivanilauad",
+   "suggested_name": "Kõrval- ja küljelauad"
+  },
+  {
+   "product_id": "prod_01KNXXKK901GRBAVN7V6GWMDTE",
+   "current_l3": "pcat_mv_6x5_10",
+   "suggested_l3": "pcat_mv_6x13_1",
+   "reason": "Peegliga ravimikapp = peeglikapp",
+   "confidence": "korge",
+   "main": "Mööbel ja sisustus",
+   "current_name": "Ehtekapid & -laekad",
+   "suggested_name": "Peeglikapid"
+  },
+  {
+   "product_id": "prod_01KNXXSH0BMSHXPRDX6RGGFV56",
+   "current_l3": "pcat_mv_6x10_1",
+   "suggested_l3": "pcat_mv_6x10_2",
+   "reason": "Entryway shoe bench, mitte kapp",
+   "confidence": "korge",
+   "main": "Mööbel ja sisustus",
+   "current_name": "Jalatsikapid",
+   "suggested_name": "Jalatsipingid & istmed"
+  },
+  {
+   "product_id": "prod_01KNXX934KFZNTRSHQF8V520RZ",
+   "current_l3": "pcat_mv_6x1_28",
+   "suggested_l3": "pcat_6kpuu",
+   "reason": "Double rod curtain rods on kardinapuu",
+   "confidence": "korge",
+   "main": "Mööbel ja sisustus",
+   "current_name": "Kardinasiinid & -süsteemid",
+   "suggested_name": "Kardinapuud & -latid"
+  },
+  {
+   "product_id": "prod_01KNXXNXC4YH8GA6GX77TC6F1M",
+   "current_l3": "pcat_mv_6x3_3",
+   "suggested_l3": "pcat_mv_6x3_4",
+   "reason": "Reception desk / registratuurilaud",
+   "confidence": "korge",
+   "main": "Mööbel ja sisustus",
+   "current_name": "Kirjutus- & arvutilauad",
+   "suggested_name": "Vastuvõtu- & registratuurilauad"
+  },
+  {
+   "product_id": "prod_01KNXXNY8XF8EZZKZNMRPA040Q",
+   "current_l3": "pcat_mv_6x3_3",
+   "suggested_l3": "pcat_mv_6x3_4",
+   "reason": "Reception desk / registratuurilaud",
+   "confidence": "korge",
+   "main": "Mööbel ja sisustus",
+   "current_name": "Kirjutus- & arvutilauad",
+   "suggested_name": "Vastuvõtu- & registratuurilauad"
+  },
+  {
+   "product_id": "prod_01KNXXJTQTZAW6AYDZQBA9Q734",
+   "current_l3": "pcat_mv_6x3_3",
+   "suggested_l3": "pcat_mv_6x4_12",
+   "reason": "Õmbluslaud",
+   "confidence": "korge",
+   "main": "Mööbel ja sisustus",
+   "current_name": "Kirjutus- & arvutilauad",
+   "suggested_name": "Käsitöö- ja õmbluslauad"
+  },
+  {
+   "product_id": "prod_01KNXXJVNQ11QF12ZK2FWHN6VW",
+   "current_l3": "pcat_mv_6x3_3",
+   "suggested_l3": "pcat_mv_6x4_12",
+   "reason": "Õmbluslaud",
+   "confidence": "korge",
+   "main": "Mööbel ja sisustus",
+   "current_name": "Kirjutus- & arvutilauad",
+   "suggested_name": "Käsitöö- ja õmbluslauad"
+  },
+  {
+   "product_id": "prod_01KPJX9RGFHZKCM5W42HKDBS94",
+   "current_l3": "pcat_mv_6x3_3",
+   "suggested_l3": "pcat_mv_6x4_12",
+   "reason": "Õmbluslaud",
+   "confidence": "korge",
+   "main": "Mööbel ja sisustus",
+   "current_name": "Kirjutus- & arvutilauad",
+   "suggested_name": "Käsitöö- ja õmbluslauad"
+  },
+  {
+   "product_id": "prod_01KPJX9RQ9BGT08H12B2EQXHSV",
+   "current_l3": "pcat_mv_6x3_3",
+   "suggested_l3": "pcat_mv_6x4_12",
+   "reason": "Õmbluslaud",
+   "confidence": "korge",
+   "main": "Mööbel ja sisustus",
+   "current_name": "Kirjutus- & arvutilauad",
+   "suggested_name": "Käsitöö- ja õmbluslauad"
+  },
+  {
+   "product_id": "prod_01KNXX8WVMCE37AX0P4X79VKM4",
+   "current_l3": "pcat_mv_6x1_25",
+   "suggested_l3": "pcat_mv_6x1_24",
+   "reason": "Rattad, mitte alus",
+   "confidence": "kesk",
+   "main": "Mööbel ja sisustus",
+   "current_name": "Kontoritooli alused",
+   "suggested_name": "Mööblirattad"
+  },
+  {
+   "product_id": "prod_01KNXXKTH08RMVE3Y3F83QJN57",
+   "current_l3": "pcat_mv_6x3_5",
+   "suggested_l3": "pcat_mv_6x8_5",
+   "reason": "Rulltaburet",
+   "confidence": "korge",
+   "main": "Mööbel ja sisustus",
+   "current_name": "Kontoritoolid",
+   "suggested_name": "Rull- ja sadultaburetid"
+  },
+  {
+   "product_id": "prod_01KNXXKSN0ZGPPX94DWMY64C74",
+   "current_l3": "pcat_mv_6x3_5",
+   "suggested_l3": "pcat_mv_6x8_5",
+   "reason": "Rulltaburet",
+   "confidence": "korge",
+   "main": "Mööbel ja sisustus",
+   "current_name": "Kontoritoolid",
+   "suggested_name": "Rull- ja sadultaburetid"
+  },
+  {
+   "product_id": "prod_01KNXXKTH1S5G4B783SQWZXG9J",
+   "current_l3": "pcat_mv_6x3_5",
+   "suggested_l3": "pcat_mv_6x8_5",
+   "reason": "Rulltaburet",
+   "confidence": "korge",
+   "main": "Mööbel ja sisustus",
+   "current_name": "Kontoritoolid",
+   "suggested_name": "Rull- ja sadultaburetid"
+  },
+  {
+   "product_id": "prod_01KPJV6ZEWDRM0AB54Z9RH34DH",
+   "current_l3": "pcat_mv_6x5_1",
+   "suggested_l3": "pcat_mv_6x5_10",
+   "reason": "Ehtekapp, mitte kummut",
+   "confidence": "korge",
+   "main": "Mööbel ja sisustus",
+   "current_name": "Kummutid & sahtlikapid",
+   "suggested_name": "Ehtekapid & -laekad"
+  },
+  {
+   "product_id": "prod_01KNXXRN1BNDYQ4Z126QGHXZCX",
+   "current_l3": "pcat_mv_6x7_6",
+   "suggested_l3": "pcat_mv_6x7_8",
+   "reason": "Kokkupandav laste diivan/diivanvoodi",
+   "confidence": "korge",
+   "main": "Mööbel ja sisustus",
+   "current_name": "Laste toolid ja istmed",
+   "suggested_name": "Laste diivanid ja diivanvoodid"
+  },
+  {
+   "product_id": "prod_01KNXXRRHD2N8ZPSR4DV109V4G",
+   "current_l3": "pcat_mv_6x7_6",
+   "suggested_l3": "pcat_mv_6x7_8",
+   "reason": "Kokkupandav laste diivan",
+   "confidence": "korge",
+   "main": "Mööbel ja sisustus",
+   "current_name": "Laste toolid ja istmed",
+   "suggested_name": "Laste diivanid ja diivanvoodid"
+  },
+  {
+   "product_id": "prod_01KNXXGN686TDMV0GE5H0VS500",
+   "current_l3": "pcat_mv_6x7_6",
+   "suggested_l3": "pcat_mv_6x7_8",
+   "reason": "Laste diivan-voodi",
+   "confidence": "korge",
+   "main": "Mööbel ja sisustus",
+   "current_name": "Laste toolid ja istmed",
+   "suggested_name": "Laste diivanid ja diivanvoodid"
+  },
+  {
+   "product_id": "prod_01KNXXGM7DSZ2PY3V5RR3EA0N5",
+   "current_l3": "pcat_mv_6x7_6",
+   "suggested_l3": "pcat_mv_6x7_8",
+   "reason": "Laste diivan-voodi",
+   "confidence": "korge",
+   "main": "Mööbel ja sisustus",
+   "current_name": "Laste toolid ja istmed",
+   "suggested_name": "Laste diivanid ja diivanvoodid"
+  },
+  {
+   "product_id": "prod_01KNXXK9C5DWHQ9YW5KM48RBYS",
+   "current_l3": "pcat_mv_6x7_6",
+   "suggested_l3": "pcat_mv_6x6_1",
+   "reason": "Kott-tool",
+   "confidence": "kesk",
+   "main": "Mööbel ja sisustus",
+   "current_name": "Laste toolid ja istmed",
+   "suggested_name": "Kott-toolid"
+  },
+  {
+   "product_id": "prod_01KNXXJJK4T6NQGXAGFA1NEGD5",
+   "current_l3": "pcat_mv_6x6_5",
+   "suggested_l3": "pcat_mv_6x6_10",
+   "reason": "Rotangist kapp, mitte meediakapp",
+   "confidence": "kesk",
+   "main": "Mööbel ja sisustus",
+   "current_name": "Meediakapid",
+   "suggested_name": "Rotangmööbel"
+  },
+  {
+   "product_id": "prod_01KNXXHV9PF28ENZ1827855WD0",
+   "current_l3": "pcat_mv_6x2_1",
+   "suggested_l3": "pcat_mv_6x2_4",
+   "reason": "Vannitoa riiul, mitte raamaturiiul",
+   "confidence": "kesk",
+   "main": "Mööbel ja sisustus",
+   "current_name": "Raamaturiiulid",
+   "suggested_name": "Vannitoakapid & hoiustamine"
+  },
+  {
+   "product_id": "prod_01KNXXSKN6WNG99VRZT0H6X0C0",
+   "current_l3": "pcat_mv_6x2_3",
+   "suggested_l3": "pcat_mv_6x2_4",
+   "reason": "Vannitoakapp WC kohale, mitte üldine seinakapp",
+   "confidence": "kesk",
+   "main": "Mööbel ja sisustus",
+   "current_name": "Seinakapid",
+   "suggested_name": "Vannitoakapid & hoiustamine"
+  },
+  {
+   "product_id": "prod_01KNXXSKN3DWGKKHTR24P7TJXQ",
+   "current_l3": "pcat_mv_6x2_3",
+   "suggested_l3": "pcat_mv_6x2_4",
+   "reason": "Vannitoakapp WC kohale, mitte üldine seinakapp",
+   "confidence": "kesk",
+   "main": "Mööbel ja sisustus",
+   "current_name": "Seinakapid",
+   "suggested_name": "Vannitoakapid & hoiustamine"
+  },
+  {
+   "product_id": "prod_01KNXXH22JP45VWS1F95DBMKK6",
+   "current_l3": "pcat_mv_6x2_16",
+   "suggested_l3": "pcat_mv_6x2_2",
+   "reason": "Terve seinariiul (4-tier), mitte kandur",
+   "confidence": "kesk",
+   "main": "Mööbel ja sisustus",
+   "current_name": "Riiulikandurid & -kinnitused",
+   "suggested_name": "Seinariiulid"
+  },
+  {
+   "product_id": "prod_01KNXXH16RBBDYN8QH412JP21N",
+   "current_l3": "pcat_mv_6x2_16",
+   "suggested_l3": "pcat_mv_6x2_2",
+   "reason": "Terve seinariiul (5-tier), mitte kandur",
+   "confidence": "kesk",
+   "main": "Mööbel ja sisustus",
+   "current_name": "Riiulikandurid & -kinnitused",
+   "suggested_name": "Seinariiulid"
+  },
+  {
+   "product_id": "prod_01KNXXHTCR5QZHJ367ZTMT5CCV",
+   "current_l3": "pcat_mv_6x1_23",
+   "suggested_l3": "pcat_mv_6x1_4",
+   "reason": "Meigipeegel, mitte voodimehhanism",
+   "confidence": "korge",
+   "main": "Mööbel ja sisustus",
+   "current_name": "Seinavoodi mehhanismid",
+   "suggested_name": "Peeglid"
+  },
+  {
+   "product_id": "prod_01KPJVF9MEM3R7KRB9HS84EVRC",
+   "current_l3": "pcat_mv_6x1_11",
+   "suggested_l3": "pcat_mv_6x1_30",
+   "reason": "Hoiukast/kohver, mitte lilled",
+   "confidence": "korge",
+   "main": "Mööbel ja sisustus",
+   "current_name": "Säilivlilled kinkekarbis",
+   "suggested_name": "Ehte- & hoiukarbid"
+  },
+  {
+   "product_id": "prod_01KNXXQTPXMS5VDX18HKPZPBAS",
+   "current_l3": "pcat_mv_6x2_2",
+   "suggested_l3": "pcat_mv_6x2_1",
+   "reason": "Nurga raamaturiiul, vaba seisev",
+   "confidence": "kesk",
+   "main": "Mööbel ja sisustus",
+   "current_name": "Seinariiulid",
+   "suggested_name": "Raamaturiiulid"
+  },
+  {
+   "product_id": "prod_01KNXXQTPRHRR7P6R1EKPBDFMD",
+   "current_l3": "pcat_mv_6x2_2",
+   "suggested_l3": "pcat_mv_6x2_1",
+   "reason": "Nurga raamaturiiul, vaba seisev",
+   "confidence": "kesk",
+   "main": "Mööbel ja sisustus",
+   "current_name": "Seinariiulid",
+   "suggested_name": "Raamaturiiulid"
+  },
+  {
+   "product_id": "prod_01KNXXJHPHJAGWSQFVH1WN1RT4",
+   "current_l3": "pcat_mv_6x2_2",
+   "suggested_l3": "pcat_mv_6x2_1",
+   "reason": "Rotang raamaturiiul",
+   "confidence": "kesk",
+   "main": "Mööbel ja sisustus",
+   "current_name": "Seinariiulid",
+   "suggested_name": "Raamaturiiulid"
+  },
+  {
+   "product_id": "prod_01KPJVFTWQ4JZD0VVSBB426BTT",
+   "current_l3": "pcat_mv_6x6_4",
+   "suggested_l3": "pcat_mv_6x6_5",
+   "reason": "Meediakapp/CD-torn, mitte TV-alus",
+   "confidence": "korge",
+   "main": "Mööbel ja sisustus",
+   "current_name": "TV-alused",
+   "suggested_name": "Meediakapid"
+  },
+  {
+   "product_id": "prod_01KNXXT20RNH2EWEHYCTTSRNRD",
+   "current_l3": "pcat_mv_6x6_3",
+   "suggested_l3": "pcat_mv_6x6_2",
+   "reason": "Loveseat recliner sofa on diivan",
+   "confidence": "kesk",
+   "main": "Mööbel ja sisustus",
+   "current_name": "Tugitoolid",
+   "suggested_name": "Diivanid"
+  },
+  {
+   "product_id": "prod_01KNXXCHM4YYYM059GVYD5T667",
+   "current_l3": "pcat_t3a_7_5",
+   "suggested_l3": "pcat_t3a_7_2",
+   "reason": "Kiikpink/kiik, mitte aiapink",
+   "confidence": "korge",
+   "main": "Aed ja aiatehnika",
+   "current_name": "Aiapingid",
+   "suggested_name": "Aiakiiged ja võrkkiiged"
+  },
+  {
+   "product_id": "prod_01KNXXGS4TANJ0WXWW2S57JVH2",
+   "current_l3": "pcat_t3a_7_5",
+   "suggested_l3": "pcat_t3a_7_6",
+   "reason": "Adirondack toolide komplekt",
+   "confidence": "korge",
+   "main": "Aed ja aiatehnika",
+   "current_name": "Aiapingid",
+   "suggested_name": "Aiatoolid"
+  },
+  {
+   "product_id": "prod_01KNXXQWH3F2NT8RHNQ9D35Q6K",
+   "current_l3": "pcat_t3a_7_6",
+   "suggested_l3": "pcat_t3a_7_4",
+   "reason": "Chaise lounge lamamistool",
+   "confidence": "korge",
+   "main": "Aed ja aiatehnika",
+   "current_name": "Aiatoolid",
+   "suggested_name": "Päikesetoolid ja lamamistoolid"
+  },
+  {
+   "product_id": "prod_01KP6FEVY60WWPN5T6C264P62T",
+   "current_l3": "pcat_t3a_3_3",
+   "suggested_l3": "pcat_t3a_3_2",
+   "reason": "Multsimismatt, mitte ääristus",
+   "confidence": "kesk",
+   "main": "Aed ja aiatehnika",
+   "current_name": "Aiaääristused ja peenraservad",
+   "suggested_name": "Umbrohutõkked ja maastikukangad"
+  },
+  {
+   "product_id": "prod_01KNXXFGSFRX8EQ2VEX1J1E5Q8",
+   "current_l3": "pcat_t3a_2_10",
+   "suggested_l3": "pcat_t3a_2_5",
+   "reason": "Liivafilterpump on filtersüsteem",
+   "confidence": "kesk",
+   "main": "Aed ja aiatehnika",
+   "current_name": "Basseinipumbad",
+   "suggested_name": "Basseinifiltrid & filterpallid"
+  },
+  {
+   "product_id": "prod_01KNXXFE49S6E5RWX68C8BNQSP",
+   "current_l3": "pcat_t3a_2_10",
+   "suggested_l3": "pcat_t3a_2_5",
+   "reason": "Liivafilterpump on filtersüsteem",
+   "confidence": "kesk",
+   "main": "Aed ja aiatehnika",
+   "current_name": "Basseinipumbad",
+   "suggested_name": "Basseinifiltrid & filterpallid"
+  },
+  {
+   "product_id": "prod_01KNXXFEZM6G2YFGQTAD21S7J9",
+   "current_l3": "pcat_t3a_2_10",
+   "suggested_l3": "pcat_t3a_2_5",
+   "reason": "Liivafilterpump on filtersüsteem",
+   "confidence": "kesk",
+   "main": "Aed ja aiatehnika",
+   "current_name": "Basseinipumbad",
+   "suggested_name": "Basseinifiltrid & filterpallid"
+  },
+  {
+   "product_id": "prod_01KNXXRNXP38SCNAERA2EEWWAP",
+   "current_l3": "pcat_t3a_1_30",
+   "suggested_l3": "pcat_t3a_5_7",
+   "reason": "PTO jõuülekandevõll, mitte muruhooldusseade",
+   "confidence": "korge",
+   "main": "Aed ja aiatehnika",
+   "current_name": "Järelveetavad muruhooldusseadmed",
+   "suggested_name": "Ülekande- ja jõuülekandeosad"
+  },
+  {
+   "product_id": "prod_01KNXXJF0PK0191XS3KGS5DDRG",
+   "current_l3": "pcat_t3a_2",
+   "suggested_l3": "pcat_7cart5",
+   "reason": "Elektriline aiakäru",
+   "confidence": "korge",
+   "main": "Aed ja aiatehnika",
+   "current_name": "pcat_t3a_2",
+   "suggested_name": "Elektrilised aiakärud"
+  },
+  {
+   "product_id": "prod_01KNXXJF0S2Y9H6H4XK1PRAVMJ",
+   "current_l3": "pcat_t3a_2",
+   "suggested_l3": "pcat_7cart5",
+   "reason": "Elektriline aiakäru",
+   "confidence": "korge",
+   "main": "Aed ja aiatehnika",
+   "current_name": "pcat_t3a_2",
+   "suggested_name": "Elektrilised aiakärud"
+  },
+  {
+   "product_id": "prod_01KNXXSG2M0ZN06KPRSTNH3VJB",
+   "current_l3": "pcat_t3a_1_19",
+   "suggested_l3": "pcat_t3a_1_17",
+   "reason": "Bud/leaf trimmer, mitte oksasaag",
+   "confidence": "korge",
+   "main": "Aed ja aiatehnika",
+   "current_name": "Oksalõikurid ja saed",
+   "suggested_name": "Lehe- ja pungatrimmerid"
+  },
+  {
+   "product_id": "prod_01KNXXSQ69FX8GTS1GTVTN9KFV",
+   "current_l3": "pcat_t3a_1_19",
+   "suggested_l3": "pcat_t3a_1_17",
+   "reason": "Bud/leaf trimmer, mitte oksasaag",
+   "confidence": "korge",
+   "main": "Aed ja aiatehnika",
+   "current_name": "Oksalõikurid ja saed",
+   "suggested_name": "Lehe- ja pungatrimmerid"
+  },
+  {
+   "product_id": "prod_01KNXX99JABSH1CBA0KNAPYHH9",
+   "current_l3": "pcat_t3a_1_8",
+   "suggested_l3": "pcat_t3a_5_9",
+   "reason": "Muru pühkija",
+   "confidence": "korge",
+   "main": "Aed ja aiatehnika",
+   "current_name": "Rehad ja äkked",
+   "suggested_name": "Muruharjad ja pühkijad"
+  },
+  {
+   "product_id": "prod_01KNXX98NNMR4RWDPH5M3H6R73",
+   "current_l3": "pcat_t3a_1_8",
+   "suggested_l3": "pcat_t3a_5_9",
+   "reason": "Muru pühkija",
+   "confidence": "korge",
+   "main": "Aed ja aiatehnika",
+   "current_name": "Rehad ja äkked",
+   "suggested_name": "Muruharjad ja pühkijad"
+  },
+  {
+   "product_id": "prod_01KPJXEV42GCQB37FR456419B3",
+   "current_l3": "pcat_t3a_1_8",
+   "suggested_l3": "pcat_t3a_5_9",
+   "reason": "Muru pühkija",
+   "confidence": "korge",
+   "main": "Aed ja aiatehnika",
+   "current_name": "Rehad ja äkked",
+   "suggested_name": "Muruharjad ja pühkijad"
+  },
+  {
+   "product_id": "prod_01KPJXEVHS8PKTDPXQTAWJ523G",
+   "current_l3": "pcat_t3a_1_8",
+   "suggested_l3": "pcat_t3a_5_9",
+   "reason": "Muru pühkija",
+   "confidence": "korge",
+   "main": "Aed ja aiatehnika",
+   "current_name": "Rehad ja äkked",
+   "suggested_name": "Muruharjad ja pühkijad"
+  },
+  {
+   "product_id": "prod_01KNXXS4BNTKAN54G95KRGGHKA",
+   "current_l3": "pcat_t3a_8_1",
+   "suggested_l3": "pcat_t3a_5_1",
+   "reason": "Survepesuri voolikurull, mitte aiavoolik",
+   "confidence": "kesk",
+   "main": "Aed ja aiatehnika",
+   "current_name": "Voolikukärud ja voolikurullid",
+   "suggested_name": "Survepesurite tarvikud"
+  },
+  {
+   "product_id": "prod_01KNXXSBG1Y4ETC2PDP37R26GH",
+   "current_l3": "pcat_t3a_8_1",
+   "suggested_l3": "pcat_t3a_5_1",
+   "reason": "Survepesuri voolikurull",
+   "confidence": "kesk",
+   "main": "Aed ja aiatehnika",
+   "current_name": "Voolikukärud ja voolikurullid",
+   "suggested_name": "Survepesurite tarvikud"
+  },
+  {
+   "product_id": "prod_01KNXXS58FFSDQ3K6HE8MWBENN",
+   "current_l3": "pcat_t3a_8_1",
+   "suggested_l3": "pcat_t3a_5_1",
+   "reason": "Survepesuri voolikurull",
+   "confidence": "kesk",
+   "main": "Aed ja aiatehnika",
+   "current_name": "Voolikukärud ja voolikurullid",
+   "suggested_name": "Survepesurite tarvikud"
+  },
+  {
+   "product_id": "prod_01KNXX75WCN71H2NXE60GHHWAY",
+   "current_l3": "pcat_mv_8x5_1",
+   "suggested_l3": "pcat_mv_8x5_3",
+   "reason": "Mootorratta hoiuvarjualune, mitte autovarjualune",
+   "confidence": "kesk",
+   "main": "Varjualused, telgid ja kasvuhooned",
+   "current_name": "Autovarjualused",
+   "suggested_name": "Hoiutelgid & garaažitelgid"
+  },
+  {
+   "product_id": "prod_01KNXX7ABK3W2Y0594E3Q8K8FA",
+   "current_l3": "pcat_mv_8x5_1",
+   "suggested_l3": "pcat_mv_8x5_3",
+   "reason": "Mootorratta varjualune/garaažitelk",
+   "confidence": "kesk",
+   "main": "Varjualused, telgid ja kasvuhooned",
+   "current_name": "Autovarjualused",
+   "suggested_name": "Hoiutelgid & garaažitelgid"
+  },
+  {
+   "product_id": "prod_01KPJXC9EBXZ7DPCYCPNNM62QV",
+   "current_l3": "pcat_mv_8x5_1",
+   "suggested_l3": "pcat_mv_8x5_3",
+   "reason": "Mootorratta hoiutelk garaažiga",
+   "confidence": "kesk",
+   "main": "Varjualused, telgid ja kasvuhooned",
+   "current_name": "Autovarjualused",
+   "suggested_name": "Hoiutelgid & garaažitelgid"
+  },
+  {
+   "product_id": "prod_01KNXX75VTRA20EN7BMG03GYT8",
+   "current_l3": "pcat_mv_8x5_1",
+   "suggested_l3": "pcat_mv_8x5_3",
+   "reason": "Mootorratta garaažitelk",
+   "confidence": "kesk",
+   "main": "Varjualused, telgid ja kasvuhooned",
+   "current_name": "Autovarjualused",
+   "suggested_name": "Hoiutelgid & garaažitelgid"
+  },
+  {
+   "product_id": "prod_01KNXXQ364XA2VCQYAEG1MH38Q",
+   "current_l3": "pcat_mv_8x5_1",
+   "suggested_l3": "pcat_mv_8x5_3",
+   "reason": "Portable storage tent, hoiutelk",
+   "confidence": "korge",
+   "main": "Varjualused, telgid ja kasvuhooned",
+   "current_name": "Autovarjualused",
+   "suggested_name": "Hoiutelgid & garaažitelgid"
+  },
+  {
+   "product_id": "prod_01KP6FDAWJ8E9EDQ4WA34JD8PC",
+   "current_l3": "pcat_mv_8x4_2",
+   "suggested_l3": "pcat_mv_8x4_5",
+   "reason": "Crop cage taimekaitsetelk",
+   "confidence": "kesk",
+   "main": "Varjualused, telgid ja kasvuhooned",
+   "current_name": "Kasvuhooned",
+   "suggested_name": "Kasvutendid ja -telgid"
+  },
+  {
+   "product_id": "prod_01KPJVC5P59CQ43XVR575TTJVM",
+   "current_l3": "pcat_mv_8x4_2",
+   "suggested_l3": "pcat_mv_8x4_5",
+   "reason": "Crop cage taimekaitsetelk",
+   "confidence": "kesk",
+   "main": "Varjualused, telgid ja kasvuhooned",
+   "current_name": "Kasvuhooned",
+   "suggested_name": "Kasvutendid ja -telgid"
+  },
+  {
+   "product_id": "prod_01KPJV67DHY91P1Y9840GFREMK",
+   "current_l3": "pcat_mv_8x4_2",
+   "suggested_l3": "pcat_mv_8x4_5",
+   "reason": "Grow tent, kasvutelk",
+   "confidence": "kesk",
+   "main": "Varjualused, telgid ja kasvuhooned",
+   "current_name": "Kasvuhooned",
+   "suggested_name": "Kasvutendid ja -telgid"
+  },
+  {
+   "product_id": "prod_01KQC7G59MK3YJSR3D1M0930F4",
+   "current_l3": "pcat_mv_8x4_2",
+   "suggested_l3": "pcat_mv_8x4_1",
+   "reason": "Tunnelkasvuhoone",
+   "confidence": "korge",
+   "main": "Varjualused, telgid ja kasvuhooned",
+   "current_name": "Kasvuhooned",
+   "suggested_name": "Tunnelkasvuhooned"
+  },
+  {
+   "product_id": "prod_01KNXX7QRXV1GSRYDFRQ03GBJS",
+   "current_l3": "pcat_mv_8x4_2",
+   "suggested_l3": "pcat_mv_8x4_1",
+   "reason": "Tunnelkasvuhoone",
+   "confidence": "korge",
+   "main": "Varjualused, telgid ja kasvuhooned",
+   "current_name": "Kasvuhooned",
+   "suggested_name": "Tunnelkasvuhooned"
+  },
+  {
+   "product_id": "prod_01KNXXNQ17HNW6Q0S44JK181Y6",
+   "current_l3": "pcat_mv_8x1_8",
+   "suggested_l3": "pcat_mv_8x1_9",
+   "reason": "Gazebo netting replacement = sääsevõrk",
+   "confidence": "korge",
+   "main": "Varjualused, telgid ja kasvuhooned",
+   "current_name": "Paviljoni ja gasebo külgseinad ning kardinad",
+   "suggested_name": "Paviljoni ja gasebo sääsevõrgud"
+  },
+  {
+   "product_id": "prod_01KNXX6X0187DRAQPC7J7MEWPK",
+   "current_l3": "pcat_mv_8x1_5",
+   "suggested_l3": "pcat_mv_8x1_7",
+   "reason": "Hardtop gazebo, mitte pergola",
+   "confidence": "korge",
+   "main": "Varjualused, telgid ja kasvuhooned",
+   "current_name": "Pergolad",
+   "suggested_name": "Paviljonid ja gasebod"
+  },
+  {
+   "product_id": "prod_01KNXXDRB32Y5FXW2QEVJ12PNK",
+   "current_l3": "pcat_es_9x4_10",
+   "suggested_l3": "pcat_es_9x5_7",
+   "reason": "Cable railing post, mitte trosspiire",
+   "confidence": "korge",
+   "main": "Ehitus, remont ja värvid",
+   "current_name": "Kaabel- & trosspiirded",
+   "suggested_name": "Kaabelpiirde postid"
+  },
+  {
+   "product_id": "prod_01KNXXNDZBJDZP1TEQ61Y65JWP",
+   "current_l3": "pcat_es_9x4_10",
+   "suggested_l3": "pcat_es_9x5_7",
+   "reason": "Cable railing post",
+   "confidence": "korge",
+   "main": "Ehitus, remont ja värvid",
+   "current_name": "Kaabel- & trosspiirded",
+   "suggested_name": "Kaabelpiirde postid"
+  },
+  {
+   "product_id": "prod_01KNXXDRBEBZCXK1YDY97FAXRF",
+   "current_l3": "pcat_es_9x4_10",
+   "suggested_l3": "pcat_es_9x5_7",
+   "reason": "Cable railing post",
+   "confidence": "korge",
+   "main": "Ehitus, remont ja värvid",
+   "current_name": "Kaabel- & trosspiirded",
+   "suggested_name": "Kaabelpiirde postid"
+  },
+  {
+   "product_id": "prod_01KNXXDQFBK9GN8CWN8DMDB8E3",
+   "current_l3": "pcat_es_9x4_10",
+   "suggested_l3": "pcat_es_9x5_7",
+   "reason": "Cable railing post",
+   "confidence": "korge",
+   "main": "Ehitus, remont ja värvid",
+   "current_name": "Kaabel- & trosspiirded",
+   "suggested_name": "Kaabelpiirde postid"
+  },
+  {
+   "product_id": "prod_01KNXXFYBJ0F8YFZD2Q3X5BVGC",
+   "current_l3": "pcat_es_9x4_10",
+   "suggested_l3": "pcat_es_9x5_7",
+   "reason": "Cable railing post",
+   "confidence": "korge",
+   "main": "Ehitus, remont ja värvid",
+   "current_name": "Kaabel- & trosspiirded",
+   "suggested_name": "Kaabelpiirde postid"
+  },
+  {
+   "product_id": "prod_01KNXXDTZT76P53N3GCJK6S3N3",
+   "current_l3": "pcat_es_9x4_10",
+   "suggested_l3": "pcat_es_9x5_7",
+   "reason": "Cable railing post",
+   "confidence": "korge",
+   "main": "Ehitus, remont ja värvid",
+   "current_name": "Kaabel- & trosspiirded",
+   "suggested_name": "Kaabelpiirde postid"
+  },
+  {
+   "product_id": "prod_01KNXXDRB07NC3BERTHZXTRWNY",
+   "current_l3": "pcat_es_9x4_10",
+   "suggested_l3": "pcat_es_9x5_7",
+   "reason": "Cable railing post",
+   "confidence": "korge",
+   "main": "Ehitus, remont ja värvid",
+   "current_name": "Kaabel- & trosspiirded",
+   "suggested_name": "Kaabelpiirde postid"
+  },
+  {
+   "product_id": "prod_01KNXXRT9CYDRCX1VG5ZYNHBTV",
+   "current_l3": "pcat_es_9x12_1",
+   "suggested_l3": "pcat_9traf1",
+   "reason": "Delineaatorpost, mitte liigikoht",
+   "confidence": "korge",
+   "main": "Ehitus, remont ja värvid",
+   "current_name": "Liikluspostid ja -tõkked",
+   "suggested_name": "Liikluskoonused & delineaatorpostid"
+  },
+  {
+   "product_id": "prod_01KNXXRV751FFFFKPTR9A270A8",
+   "current_l3": "pcat_es_9x12_1",
+   "suggested_l3": "pcat_9traf1",
+   "reason": "Delineaatorpost",
+   "confidence": "korge",
+   "main": "Ehitus, remont ja värvid",
+   "current_name": "Liikluspostid ja -tõkked",
+   "suggested_name": "Liikluskoonused & delineaatorpostid"
+  },
+  {
+   "product_id": "prod_01KNXXRW3P5VXWEMG7H0W6HTSD",
+   "current_l3": "pcat_es_9x12_1",
+   "suggested_l3": "pcat_9traf1",
+   "reason": "Delineaatorpost",
+   "confidence": "korge",
+   "main": "Ehitus, remont ja värvid",
+   "current_name": "Liikluspostid ja -tõkked",
+   "suggested_name": "Liikluskoonused & delineaatorpostid"
+  },
+  {
+   "product_id": "prod_01KNXXRRHY8AX8R8DK60BVP3Z8",
+   "current_l3": "pcat_es_9x12_1",
+   "suggested_l3": "pcat_9traf1",
+   "reason": "Delineaatorpost",
+   "confidence": "korge",
+   "main": "Ehitus, remont ja värvid",
+   "current_name": "Liikluspostid ja -tõkked",
+   "suggested_name": "Liikluskoonused & delineaatorpostid"
+  },
+  {
+   "product_id": "prod_01KNXXRV70D5RT77G1JR1J1DAG",
+   "current_l3": "pcat_es_9x12_1",
+   "suggested_l3": "pcat_9traf1",
+   "reason": "Delineaatorpost",
+   "confidence": "korge",
+   "main": "Ehitus, remont ja värvid",
+   "current_name": "Liikluspostid ja -tõkked",
+   "suggested_name": "Liikluskoonused & delineaatorpostid"
+  },
+  {
+   "product_id": "prod_01KNXXAM91X2TH11GRMA8FGQXG",
+   "current_l3": "pcat_la9_1",
+   "suggested_l3": "pcat_la9_2",
+   "reason": "Quick attach plate on kinnitusplaat/adapter, mitte kahvel",
+   "confidence": "kesk",
+   "main": "Ehitus, remont ja värvid",
+   "current_name": "Pallikahvlid ja kahvlid",
+   "suggested_name": "Kinnitusplaadid ja adapterid"
+  },
+  {
+   "product_id": "prod_01KNXXDNNMT3N45F0QMVTFQGVM",
+   "current_l3": "pcat_la9_1",
+   "suggested_l3": "pcat_la9_2",
+   "reason": "Quick attach plate on kinnitusplaat/adapter",
+   "confidence": "kesk",
+   "main": "Ehitus, remont ja värvid",
+   "current_name": "Pallikahvlid ja kahvlid",
+   "suggested_name": "Kinnitusplaadid ja adapterid"
+  },
+  {
+   "product_id": "prod_01KNXXAQTQ5TJ5HWFGRN5NCVTY",
+   "current_l3": "pcat_es_9x3_12",
+   "suggested_l3": "pcat_es_9x5_5",
+   "reason": "Post base/ankrukronstein, mitte talakonks",
+   "confidence": "korge",
+   "main": "Ehitus, remont ja värvid",
+   "current_name": "Talakonksud & sarikakinnitused",
+   "suggested_name": "Postialused & -kinnitused"
+  },
+  {
+   "product_id": "prod_01KNXX9YGCMXMWVKJMNVZ746A9",
+   "current_l3": "pcat_es_9x3_12",
+   "suggested_l3": "pcat_es_9x5_2",
+   "reason": "Baluster shoes - balustrite tarvik",
+   "confidence": "kesk",
+   "main": "Ehitus, remont ja värvid",
+   "current_name": "Talakonksud & sarikakinnitused",
+   "suggested_name": "Trepibalustrid"
+  },
+  {
+   "product_id": "prod_01KNXX9ZC47SK6Y8CNT9K68RNT",
+   "current_l3": "pcat_es_9x3_12",
+   "suggested_l3": "pcat_es_9x5_2",
+   "reason": "Stair baluster shoe",
+   "confidence": "kesk",
+   "main": "Ehitus, remont ja värvid",
+   "current_name": "Talakonksud & sarikakinnitused",
+   "suggested_name": "Trepibalustrid"
+  },
+  {
+   "product_id": "prod_01KNXXQ6TNM6EV650J2P4PQJ15",
+   "current_l3": "pcat_es_9x5_9",
+   "suggested_l3": "pcat_es_9x5_10",
+   "reason": "Deck blocks - terrassi tugijalad",
+   "confidence": "korge",
+   "main": "Ehitus, remont ja värvid",
+   "current_name": "Terrassilaua kinnitused",
+   "suggested_name": "Terrassi tugijalad & pedestaalid"
+  },
+  {
+   "product_id": "prod_01KNXXA7KJP1Y8EDHE3GYZGNCK",
+   "current_l3": "pcat_es_9x4_4",
+   "suggested_l3": "pcat_9turvv",
+   "reason": "Kokkupandav turvavärav",
+   "confidence": "korge",
+   "main": "Ehitus, remont ja värvid",
+   "current_name": "Turvaväravad & -tõkked",
+   "suggested_name": "Turvavõred & kokkupandavad väravad"
+  },
+  {
+   "product_id": "prod_01KNXXR2Z56KSVJ635DKX168R2",
+   "current_l3": "pcat_es_9x4_4",
+   "suggested_l3": "pcat_9turvv",
+   "reason": "Kokkupandav turvavärav",
+   "confidence": "korge",
+   "main": "Ehitus, remont ja värvid",
+   "current_name": "Turvaväravad & -tõkked",
+   "suggested_name": "Turvavõred & kokkupandavad väravad"
+  },
+  {
+   "product_id": "prod_01KNXXR2Z89YV51EW13F4PQ0Q4",
+   "current_l3": "pcat_es_9x4_4",
+   "suggested_l3": "pcat_9turvv",
+   "reason": "Kokkupandav turvavärav",
+   "confidence": "korge",
+   "main": "Ehitus, remont ja värvid",
+   "current_name": "Turvaväravad & -tõkked",
+   "suggested_name": "Turvavõred & kokkupandavad väravad"
+  },
+  {
+   "product_id": "prod_01KNXXAN4YS97JA6HPY6P9W0A9",
+   "current_l3": "pcat_es_9x4_4",
+   "suggested_l3": "pcat_9turvv",
+   "reason": "Kokkupandav turvavärav",
+   "confidence": "korge",
+   "main": "Ehitus, remont ja värvid",
+   "current_name": "Turvaväravad & -tõkked",
+   "suggested_name": "Turvavõred & kokkupandavad väravad"
+  },
+  {
+   "product_id": "prod_01KNXXA7M9FM02WW8ZWZ513WEF",
+   "current_l3": "pcat_es_9x4_4",
+   "suggested_l3": "pcat_9turvv",
+   "reason": "Kokkupandav turvavärav",
+   "confidence": "korge",
+   "main": "Ehitus, remont ja värvid",
+   "current_name": "Turvaväravad & -tõkked",
+   "suggested_name": "Turvavõred & kokkupandavad väravad"
+  },
+  {
+   "product_id": "prod_01KNXXR3052VA1VDPJAYEAYGV0",
+   "current_l3": "pcat_es_9x4_4",
+   "suggested_l3": "pcat_9turvv",
+   "reason": "Kokkupandav turvavärav",
+   "confidence": "korge",
+   "main": "Ehitus, remont ja värvid",
+   "current_name": "Turvaväravad & -tõkked",
+   "suggested_name": "Turvavõred & kokkupandavad väravad"
+  },
+  {
+   "product_id": "prod_01KNXXQZ8122GH9HH270E9SNSF",
+   "current_l3": "pcat_es_9x4_4",
+   "suggested_l3": "pcat_9turvv",
+   "reason": "Kokkupandav turvavärav",
+   "confidence": "korge",
+   "main": "Ehitus, remont ja värvid",
+   "current_name": "Turvaväravad & -tõkked",
+   "suggested_name": "Turvavõred & kokkupandavad väravad"
+  },
+  {
+   "product_id": "prod_01KNXXR05CNW70GGCR8XMB1P94",
+   "current_l3": "pcat_es_9x4_4",
+   "suggested_l3": "pcat_9turvv",
+   "reason": "Kokkupandav turvavärav",
+   "confidence": "korge",
+   "main": "Ehitus, remont ja värvid",
+   "current_name": "Turvaväravad & -tõkked",
+   "suggested_name": "Turvavõred & kokkupandavad väravad"
+  },
+  {
+   "product_id": "prod_01KNXXC6PV8MA8TFJ6D3428KBT",
+   "current_l3": "pcat_es_9x4_4",
+   "suggested_l3": "pcat_9turvv",
+   "reason": "Kokkupandav turvavärav",
+   "confidence": "korge",
+   "main": "Ehitus, remont ja värvid",
+   "current_name": "Turvaväravad & -tõkked",
+   "suggested_name": "Turvavõred & kokkupandavad väravad"
+  },
+  {
+   "product_id": "prod_01KNXXPCVEKW961MKKEFNK01HM",
+   "current_l3": "pcat_es_9x1_3",
+   "suggested_l3": "pcat_es_9x1_12",
+   "reason": "Treadmilli seadmekaitsematt, mitte vaibaalus",
+   "confidence": "kesk",
+   "main": "Ehitus, remont ja värvid",
+   "current_name": "Vaibaalused ja aluskatted",
+   "suggested_name": "Tooli- ja seadmekaitsematid"
+  },
+  {
+   "product_id": "prod_01KNXX9YGMWMA4RXCARKXKGN5H",
+   "current_l3": "pcat_es_9x4_8",
+   "suggested_l3": "pcat_es_9x7_5",
+   "reason": "Pergola nurgakinnitus, mitte värav",
+   "confidence": "korge",
+   "main": "Ehitus, remont ja värvid",
+   "current_name": "Väravad & väravakomplektid",
+   "suggested_name": "Tala- ja nurgakinnitused"
+  }
+ ]
+}
