@@ -30,6 +30,7 @@ function q(sql) {
 
 const dualL3 = WL.dual_l3.map((s) => `'${s}'`).join(",") || "''";
 const dualProd = (WL.dual_products || []).map((s) => `'${s}'`).join(",") || "''";
+const dualIn24 = (WL.dual_in_24 || []).map((s) => `'${s}'`).join(",") || "''";
 
 let fails = 0, warns = 0;
 const sec = (id, sev, name) => console.log(`\n${sev === "FAIL" ? "🔴" : "🟡"} ${id} [${sev}] ${name}`);
@@ -46,8 +47,8 @@ WHERE l3.mpath LIKE 'pcat_v4_l%' AND l3.deleted_at IS NULL
   AND l3.parent_category_id NOT IN ('pcat_v4_l6_7','pcat_v4_l15_2')
   AND l3.id NOT IN (${dualL3})
   AND p.id NOT IN (${dualProd})
-  AND p.title ~* '(for kids|kids ages|for children|for toddler|toddler|[0-9] ?\\+ ?year|ages [3-9])'
-  AND p.title !~* '(adult|teen)'
+  AND p.title ~* '(for kids|kids ages|kids (piano|drum|keyboard|guitar|scooter|swing|trampoline|bike|nest)|for children|for toddler|toddler|[0-9] ?\\+ ?year|ages [3-9])'
+  AND p.title !~* '(adult|teen|beginner|youth|commercial|professional|spa |hot tub|classroom|starter|office|elderly)'
 GROUP BY p.id, p.title, l3.mpath, l3.name
 ORDER BY l3.name;`);
 if (seg01.length) {
@@ -66,6 +67,7 @@ FROM product_category_product pcp JOIN product p ON p.id=pcp.product_id
 JOIN product_category l3 ON l3.id=pcp.product_category_id
 WHERE l3.mpath LIKE 'pcat_v4_l24.%' AND l3.deleted_at IS NULL
   AND p.title ~* '(for adults|adult only| adult )' AND p.title !~* '(kids|child|toddler)'
+  AND p.id NOT IN (${dualIn24})
 GROUP BY p.id,p.title,l3.name ORDER BY l3.name;`);
 if (seg02.length) { fails += seg02.length; seg02.forEach(([pid,t,l3]) => console.log(`  ${l3}: ${pid}  ${t}`)); }
 else console.log("  ✓ puhas");

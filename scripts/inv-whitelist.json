@@ -1,12 +1,59 @@
 {
-  "_comment": "Kinnitatud KAHETI (for-Kids nimi, aga otstarve/sisu = dual) — INV-SEG-01 EI flag'i neid. Lisa L3-id kui Tarmo kinnitab, et 'for Kids' L3 on päriselt kaheti.",
+  "_comment": "Kinnitatud KAHETI/false-positive — INV-SEG-01 EI flag'i neid. dual_l3 = kogu L3 (kids-märksõna, aga sisu dual/päris/kommerts). dual_products = üksik-toode segatud L3-s.",
   "dual_l3": [
     "pcat_7cart4",
-    "pcat_el_12x1_29"
+    "pcat_el_12x1_29",
+    "pcat_mu_1_1",
+    "pcat_t3a_2_4",
+    "pcat_t3a_2_5",
+    "pcat_mv_6x7_12",
+    "pcat_el_12x1_22",
+    "pcat_f4_13xtex_11",
+    "pcat_f4_13xtex_10",
+    "pcat_ks_5x1_1",
+    "pcat_el_12x1_8",
+    "pcat_el_12x1_41",
+    "pcat_mv_6x7_11",
+    "pcat_es_9x5_1",
+    "pcat_el_12x1_16",
+    "pcat_6vaib",
+    "pcat_el_12x1_23",
+    "pcat_t3f_14_5",
+    "pcat_12cer1",
+    "pcat_el_12x3_13"
   ],
   "dual_l3_names": {
-    "pcat_7cart4": "Kokkupandavad veovankrid (utility hauling 80-250kg)",
-    "pcat_el_12x1_29": "Jalgratta transpordi- ja haagised (vanema-veetav)"
+    "pcat_7cart4": "Kokkupandavad veovankrid — utility hauling 80-250kg",
+    "pcat_el_12x1_29": "Jalgratta haagised — vanema-veetav",
+    "pcat_mu_1_1": "Keelpillid — päris klassikalised kitarrid (starter, kõik east)",
+    "pcat_t3a_2_4": "Basseiniaiad & väravad — bassein-turva (täisk paigaldab)",
+    "pcat_t3a_2_5": "Basseinifiltrid — spa/hot tub (märksõna-müra)",
+    "pcat_mv_6x7_12": "Maakerad — hariduslik dekoor (kool/kodu/kontor)",
+    "pcat_el_12x1_22": "Hokivärav — youth sport (dual)",
+    "pcat_f4_13xtex_11": "Maalimistarvikud — canvas art (dual)",
+    "pcat_f4_13xtex_10": "Nööpimasinad — commercial pin-maker",
+    "pcat_ks_5x1_1": "Suhkruvatimasinad — commercial",
+    "pcat_el_12x1_8": "Lauajalgpall/combo — pere game-room",
+    "pcat_el_12x1_41": "Shuffleboard — pere game-room",
+    "pcat_mv_6x7_11": "Chair pockets — classroom organiser",
+    "pcat_es_9x5_1": "Trepikäsipuud — ehitus-turva (kids/elderly)",
+    "pcat_el_12x1_16": "Zorb/bumper-pallid — dual sport/peo (suurus-variant)",
+    "pcat_6vaib": "Vaibad/stair treads — kodu-turva",
+    "pcat_el_12x1_23": "Võrkpalli/sulgpalli võrgud — dual sport",
+    "pcat_t3f_14_5": "Anatoomia-mudelid — med/õppe (kool)",
+    "pcat_12cer1": "Pottsepakettad — clay wheel 'for Kids and Beginners' (dual craft)",
+    "pcat_el_12x3_13": "Õhujooga/sensory swing — child+adult teraapia 136kg (dual)"
   },
-  "dual_products": []
+  "dual_products": [
+    "prod_01KNXXTF2YZ3NYSYD2ESG1TSCA",
+    "prod_01KNXXKPX8NDX7NK0F2AXE3TD4"
+  ],
+  "dual_products_note": "2× Electric Roll-up Drum Practice Pad (päris elektrooniline instrument, #19 Löökpillid) — mitte laste-mänguasi",
+  "dual_in_24": [
+    "prod_01KNXXFQ4Y86ZC089GR0FKRC9S",
+    "prod_01KNXXFR33DVNS8Z79R21RKS53",
+    "prod_01KNXXFS0002R0XXDCW7AYVCS5",
+    "prod_01KNXXFS119A9TZN8GZ6HZCZR0"
+  ],
+  "dual_in_24_note": "4× RC Boat 12km/h 'Gift for Adults Boys & Girls' = toy-grade dual-RC (kids+adults), jääb #24 Kaugjuhitavad. SEG-02 ei flag'i."
 }
