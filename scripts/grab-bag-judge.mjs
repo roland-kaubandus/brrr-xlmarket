@@ -53,7 +53,11 @@ for (const r of rows) {
 
 async function judgeBatch(batch) {
   const blocks = batch.map((r, i) => `### L3 #${i} — id=${r.id} — nimi="${r.name}" (${r.main}, ${r.n} toodet)\n${r.titles.join("\n")}`).join("\n\n");
-  const prompt = `Oled taksonoomia-QA. Hinda IGA L3 SEMANTILISELT (loe title_en sisu, MITTE märksõna): kas GRAB-BAG (2+ selgelt ERI toote-tüüpi, kumbki ≥3 toodet või ≥15%) või CLEAN (üks tüüp; eri suurused/värvid = sama tüüp; nime-paar "X ja Y" kus mõlemad present = CLEAN; üksik-outlier suures homogeenses = CLEAN).
+  const prompt = `Oled taksonoomia-QA. Hinda IGA L3 SEMANTILISELT (loe title_en sisu, MITTE märksõna): kas GRAB-BAG (2+ selgelt ERI toote-tüüpi, kumbki ≥3 toodet või ≥15%) või CLEAN.
+
+OTSUSTAV REEGEL — VARIANT vs ERI TÜÜP:
+- VARIANT (= CLEAN, ÄRA flag'i): sama FUNKTSIOON, erineb ainult vorm/kinnitus/suurus/materjal. Nt lae- vs seinaventilaator (mõlemad liigutavad õhku) · pitsakivi vs pitsateras (mõlemad küpsetuspind) · kastrul vs stockpot (mõlemad keetmine). Ka: eri suurused/värvid = sama tüüp; nime-paar "X ja Y" kus mõlemad present JA sama funktsioon = CLEAN; üksik-outlier suures homogeenses = CLEAN.
+- ERI TÜÜP (= GRAB, flag'i): FUNKTSIOON erineb. Nt õhuniisuti (lisab niiskust) vs jahuti (langetab temp) · kaminatööriist (tule-hooldus) vs tuhaämber (jäätmed) · pott (keetmine) vs küpsetusvorm (ahi) · seade vs kulumaterjal.
 
 ${blocks}
 
