@@ -81,6 +81,7 @@ SELECT regexp_replace(lower(l3.name),'[^a-zäöüõ0-9]','','g') nn,
 FROM product_category l3 WHERE l3.mpath LIKE 'pcat_v4_l%' AND l3.deleted_at IS NULL
   AND (char_length(l3.mpath)-char_length(replace(l3.mpath,'.','')))=2
 GROUP BY nn HAVING count(DISTINCT split_part(l3.mpath,'.',1))>1
+  AND regexp_replace(lower(min(l3.name)),'[^a-zäöüõ0-9]','','g') NOT IN (${(WL.domain_ok_dup||[]).map(s=>`'${s}'`).join(",")||"''"})
 ORDER BY nm DESC;`);
 if (dup01.length) { warns += dup01.length; dup01.forEach(([nn,mains,nm]) => console.log(`  "${nn}" (${nm} maini): ${mains}`)); }
 else console.log("  ✓ puhas");

@@ -55,5 +55,21 @@
     "prod_01KNXXFS0002R0XXDCW7AYVCS5",
     "prod_01KNXXFS119A9TZN8GZ6HZCZR0"
   ],
-  "dual_in_24_note": "4× RC Boat 12km/h 'Gift for Adults Boys & Girls' = toy-grade dual-RC (kids+adults), jääb #24 Kaugjuhitavad. SEG-02 ei flag'i."
+  "dual_in_24_note": "4× RC Boat 12km/h 'Gift for Adults Boys & Girls' = toy-grade dual-RC (kids+adults), jääb #24 Kaugjuhitavad. SEG-02 ei flag'i.",
+  "domain_ok_dup": [
+    "jalgrattahoidikud",
+    "seinariiulid",
+    "tolmuimejad",
+    "tööriistakastid"
+  ],
+  "domain_ok_dup_note": {
+    "jalgrattahoidikud": "auto-hitch/receiver bike-carrier (#3 Auto) ≠ kodu bike-storage-stand (#12 Sport) — eri domeen",
+    "seinariiulid": "garaaži heavy-duty riiul (#22 Ladu) ≠ kodu dekoor-riiul/bookshelf (#6 Mööbel) — eri domeen",
+    "tolmuimejad": "kodu-tolmuimeja (#4 Kodumasinad) ≠ töökoja shop-vac/dust-collector (#1 Tööriistad) — eri domeen",
+    "tööriistakastid": "truck-bed/underbody tool-box (#3 Auto) ≠ portable metal tool-box (#22 Ladu) — eri toode"
+  },
+  "flag_unresolved_dup": {
+    "rannatelgidjavarjualused": "sama beach-tent/sun-shelter: #12 Sport Matkavarustus (14) vs Varjualused-telgid-main (20) — kumb primaar-kodu? Tarmo otsus.",
+    "õllepruulimisseadmed": "kodu-brewer 13-60L (#4 Kodumasinad) vs kommerts-fermentor-kettle 30-60L (#5 Suurköök) — 60L kattub, suurus-eksklusiivsus ebaselge. Tarmo otsus."
+  }
 }
