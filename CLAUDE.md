@@ -266,6 +266,15 @@ pm2 reload xlmarket-storefront
 > - **NÕRK/EKSITAV: KANDEVÕIME** — see on RAAMI tugevus (turvavaru), MITTE kasutaja-vanus. **318kg laste-kiigekomplekt on ikka eksklusiivselt laste.** Kandevõime eristab AINULT üksik-istme puhul (saucer-kiik 750lbs = täiskasvanu istub päriselt = kaheti).
 > - *Tõestatud: Kids Swing Set (199-318kg) = #24 (disain otsustab), saucer-kiik (750lbs) = kaheti (üksik-iste, kandevõime asjakohane).*
 
+> **🥇 REEGLITE PINGERIDA (kui reeglid konfliktivad, KÕRGEM võidab):**
+> 1. **EKSKLUSIIVSUS-VÄRAV** (ainult-üks-segment → segment-kodu) — kõrgeim
+> 2. **TÜÜP + DOMEEN** (universaalne paigutus-reegel)
+> 3. **SEOTUD TÜÜBID KOOS**
+> 4. **HÜBRIID-REEGEL** (kaheti-funktsioon → primaar sisust + Phase-2)
+> 5. **LAIUSE-REEGEL** (eelista laia L3)
+>
+> **NÄIDE (Code'i konflikt):** toddler-wagon "for Kids 250kg" → eksklusiivsus (1) võidab otstarbe/hübriidi üle → #24. AGA kui pealkiri "for Kids **AND Adults**" → pole eksklusiivne → reegel 2 (tüüp+domeen) → veovankrid. **Eksklusiivsuse tuvastamiseks:** signaali-hierarhia (vanus/disain/turundus = TUGEV; kandevõime = NÕRK).
+
 **SAMM 0 — KAARDISTA KOGU SEOTUD TEEMA ENNE (kohustuslik):** ära tegele ainult nimekirjas oleva üksik-tüübiga; vaata üle KÕIK seotud/naaber-tüübid samas domeenis (kõik mis on, kus on, miks on), sh naaber-L3-d kus sama-tüüpi võib PEIDUS olla. **Lahenda TERVIK, mitte tükk.** (Nt "rannakärud" → vaata KOGU käru/veovanker/istme-teema; "etiketimasin" → vaata KOGU pakendus-teema.)
 > **IMPERATIIV — Claude Code AVARDAB kitsa käsu ISE:** kui käsk on "tegele X kohas Y", kaardista **KOGU X-teema üle kõigi mainide ise** — käsu kitsus EI ole luba kitsaks tööks. **Ära oota, et kasutaja ütleks "kaardista terve teema".** Kehtib feed-impordil samuti (uus feed-toode → kaardista terve tüübi-pere enne paigutust).
 > **MIKS (Tarmo):** kitsalt tegeledes võib sama-tüüpi olla peidus naaber-L3-s (rannakäru töökoja-kärude hulgas; aiakäru "Aiaistmete" all) → jääks puutumata. **Feed-tulevikus sama:** kui uus feed toob "rannakäru"/"kanuukäru", peab meetod nägema KOGU käru-pilti (kus ranna/üld/töökoja/aia/kanuu kärud on) → siis on selge kas kodu olemas (mappi), sobib olemasolevasse (laiuse-reegel), või vajab uut (ainult kui pole ega sobi). Kitsas vaade → valesti-paigutus + peidus-dupid. Tervik-vaade → õige kodu + feed-kindlus. *(Positiivne näide: `pakendusmasinad-kaart.md` kaardistas terve pakendus-teema → õige. Negatiivne: wagon-lukk vaatas kitsalt → jättis "Aiaistmete" all peidus aiakärud puutumata.)*
@@ -281,6 +290,7 @@ pm2 reload xlmarket-storefront
 6. **Domeeni-kontroll + cross-main dup-kontroll.** Domeen = kus OSTJA seda otsib (otstarbe primaar), mitte tootja-kategooria. Reegel: sama tüüp ERI domeenis = ÕIGE; sama tüüp + sama domeen eri kohas = DUP → koonda ÜHTE.
 7. **Seotud tüübid koos + luku lõpp-terviklikkus** (kas jäi 2 kohta? dup/orphan 0?).
    - **LUKU LÕPP-CHECKLIST (kontrolli KÕIK):** 0 orb · 0 dead · 0 dup-L3-nimi · 0 global-handle-dup · 0 cross-main dup (sama tüüp üle mainide) · **distinct-tooteid säilinud (0 tootekadu)** · L1-arv õige · v4-scoped · **teostus TÄIELIK mitte osaline** (ükski L3 ei jäänud 2 kohta).
+   - **🔍 JOOKSUTA `node scripts/inv-taxonomy.mjs` IGA luku lõpus** (rules-as-checks — proosa-reegel ei peata vigu, kontroll peatab). **FAIL → paranda ENNE commit'i** (või lisa kinnitatud kaheti-toode `scripts/inv-whitelist.json`-i). WARN → vaata üle. Invariandid: INV-SEG-01 (for-Kids väljaspool #24/Lapsemööbel/Beebi) · SEG-02 (adult #24-s) · DUP-01 (L3-nimi 2+ mainis) · STRUCT-01 (orb/dead/dup-handle) · NAME-01 (inglise sõna nimes).
    - **SEOTUD TÜÜBID KÕRVUTI (näited):** printer + kulumaterjal/lint koos · seade + varuosa kõrvuti · tootmisliin (täitja+sulgur+etiketeerija) koos · ranna-käru kõrval üld-veovanker. *Ostja leiab seotud tooted ühest kohast.*
 
 **HÜBRIID-REEGEL (Tarmo, samm 6 juurde):** kui toode on PÄRISELT kaheselt funktsionaalne (nt "Garden Cart with Seat 226kg" = iste+käru; "Scooter with Storage Bin" = iste+hoiu) ega ole selget primaar-kodu — **ÄRA põrgata lõputult**. Jäta kus on (kui pole vale), määra primaar sisust (istud → iste), **märgi CROSS-LISTING Phase-2** (kuvatakse hiljem mõlemas vaates — EI liiguta ega dubleeri andmeid nüüd), liigu edasi. *Mõlemad õiged, kumbki pole vale = aktsepteeritav.* Väldib ummikut/lõputut ümber-paigutamist.

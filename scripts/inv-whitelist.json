@@ -1,0 +1,12 @@
+{
+  "_comment": "Kinnitatud KAHETI (for-Kids nimi, aga otstarve/sisu = dual) — INV-SEG-01 EI flag'i neid. Lisa L3-id kui Tarmo kinnitab, et 'for Kids' L3 on päriselt kaheti.",
+  "dual_l3": [
+    "pcat_7cart4",
+    "pcat_el_12x1_29"
+  ],
+  "dual_l3_names": {
+    "pcat_7cart4": "Kokkupandavad veovankrid (utility hauling 80-250kg)",
+    "pcat_el_12x1_29": "Jalgratta transpordi- ja haagised (vanema-veetav)"
+  },
+  "dual_products": []
+}
