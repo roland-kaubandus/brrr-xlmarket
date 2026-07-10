@@ -7,6 +7,13 @@
       "a_name": "Kommertsjäämasinad",
       "b_name": "Helbejäämasinad",
       "reason": "VÄLJUND erineb: helbejää (kala/toidu katteks) vs kuubikjää (jookidesse) — EI vahetatav, ostja otsib spetsiifiliselt. Eri tüüp, mitte variant (Tarmo kinnitas 2026-07-10)."
+    },
+    {
+      "a": "pcat_es_10x1_2",
+      "b": "pcat_es_10x1_4",
+      "a_name": "Põranda-, torni- ja kaasaskantavad ventilaatorid",
+      "b_name": "Tööstuslikud ventilaatorid",
+      "reason": "Domeeni-eksklusiivsus (tööstus/töökoda vs kodu). Pretsedent: #4 Kodumasinad vs #5 Suurköök — sama üldtüüp, eri domeen, suurus-eksklusiivsus piiritleb (countertop jäämasin ≠ 75kg kommerts). 26in tööstus-trummelventilaator ≠ kodu-põrandaventilaator (Tarmo kinnitas 2026-07-10)."
     }
   ]
 }

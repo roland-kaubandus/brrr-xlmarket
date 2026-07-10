@@ -354,6 +354,8 @@ Kõik 4 rakendavad 9-punkti sisu-reeglit. **Uue maini / feed-impordi järel: joo
 
 **LÜNK ÜHESKI = vale seis:** DB õige aga Meili/nav vana. **Eile #9:** samm 3 (push) ununes → nav näitas "Lükanduste riistvara" 69 (vana) kuni push+redeploy. **KONTROLLI iga luku lõpus: kas kõik 4 tehtud?**
 
+> **⚠️ GENYM STALE-DUMP GOTCHA (SSoT-regen samm 1 juurde):** `genyM.mjs` EI lugenud DB-d otse, vaid `/tmp/x-l2.txt` + `/tmp/x-l3.txt` dumpe. Kui dumbid vanad → SSoT/nav-puu genereeriti VANA struktuuriga (uued/renamed/kustutatud L3 puuduvad), **kuigi DB on õige**. *Tõestus: torn-merge 1. deploy kasutas stale dumpe → torn jäi navi.* **JÕUSTUS (2026-07-10):** genyM.mjs algusesse lisatud **automaatne dump-värskendus DB-st** (docker exec psql → /tmp/x-l*.txt) — värskus nüüd garanteeritud igal jooksul, käsitsi dump ei ole enam vajalik. Kui genyM ei leia db-k33g konteinerit → WARN + kasutab olemasolevaid dumpe (võivad olla stale).
+
 **🚀 DEPLOY-NÜANSS (kergem tee):** kui **AINULT toote-lingid liiguvad** (0 L3 lisatud/kustutatud/nimetatud/reparent — **struktuur muutumatu**) → piisab **AINULT Meili reindeksist** (leht loeb arve Meili'st), EI vaja SSoT-regen/push/redeploy. **Täis-4-sammu ainult kui STRUKTUUR muutub** (uus/kustutatud/renamed/reparent L3/L2/L1).
 
 ---
