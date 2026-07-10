@@ -13,6 +13,9 @@
  */
 import { execSync } from "node:child_process";
 import fs from "node:fs";
+import { dirname, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
+const HERE = dirname(fileURLToPath(import.meta.url));
 
 const args = process.argv.slice(2);
 const MAIN = args.includes("--main") ? args[args.indexOf("--main") + 1] : null;
@@ -77,12 +80,20 @@ Vasta AINULT JSON-massiiviga (tühi [] kui merge-paare pole):
   return JSON.parse(m[0]);
 }
 
+// WHITELIST — kinnitatud EI-MERGE paarid (WARN ei kordu). Võti: sorteeritud id-paar.
+let WL = new Set();
+try { const w = JSON.parse(fs.readFileSync(resolve(HERE, "merge-whitelist.json"), "utf8")); (w.pairs || []).forEach((p) => WL.add([p.a, p.b].sort().join("|"))); } catch {}
+
 const nm = {}; l2s.forEach((l2) => l2.l3s.forEach((l3) => { nm[l3.id] = l3.name; }));
 const cands = [];
+let wlSkipped = 0;
 for (let i = 0; i < l2s.length; i++) {
   try {
     const r = await judgeL2(l2s[i]);
-    for (const p of r) if (p.l3_a && p.l3_b) cands.push({ ...p, l2: l2s[i].name, a_name: nm[p.l3_a] || p.l3_a, b_name: nm[p.l3_b] || p.l3_b });
+    for (const p of r) if (p.l3_a && p.l3_b) {
+      if (WL.has([p.l3_a, p.l3_b].sort().join("|"))) { wlSkipped++; continue; } // whitelistitud → vahele
+      cands.push({ ...p, l2: l2s[i].name, a_name: nm[p.l3_a] || p.l3_a, b_name: nm[p.l3_b] || p.l3_b });
+    }
     console.error(`  [${i + 1}/${l2s.length}] ${l2s[i].name} → ${r.length} merge`);
   } catch (e) { console.error(`  ${l2s[i].name} VIGA: ${e.message}`); }
 }
@@ -95,5 +106,5 @@ const L = ["# MERGE-KANDIDAADID — üle-fragmenteerimise detektor\n", `**${stam
   ...cands.sort((a, b) => (a.confidence === "korge" ? -1 : 1) - (b.confidence === "korge" ? -1 : 1)).map((c) => `| ${c.l2} | ${c.a_name} + ${c.b_name} | ${conf(c.confidence)} | ${(c.reason || "").slice(0, 60)} |`)];
 fs.writeFileSync("/opt/eumotors-tasks/reports/merge-kandidaadid.md", L.join("\n"));
 const cost = (USAGE.in / 1e6) * 5 + (USAGE.out / 1e6) * 25;
-console.log(`\n🔀 MERGE-kandidaate: ${cands.length}. Raport: reports/merge-kandidaadid.md`);
+console.log(`\n🔀 MERGE-kandidaate: ${cands.length}${wlSkipped ? ` (+${wlSkipped} whitelistitud vahele)` : ""}. Raport: reports/merge-kandidaadid.md`);
 console.log(`💰 input ${USAGE.in} · output ${USAGE.out} · ~$${cost.toFixed(4)}`);

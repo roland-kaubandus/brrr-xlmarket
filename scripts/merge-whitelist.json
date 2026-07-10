@@ -1,0 +1,12 @@
+{
+  "_comment": "Kinnitatud EI-MERGE paarid — merge-judge ei raporteeri neid (WARN ei kordu). Võti: sorteeritud id-paar. VÄLJUND erineb → eri tüüp, mitte variant.",
+  "pairs": [
+    {
+      "a": "pcat_ks_5x3_1",
+      "b": "pcat_ks_5x3_3",
+      "a_name": "Kommertsjäämasinad",
+      "b_name": "Helbejäämasinad",
+      "reason": "VÄLJUND erineb: helbejää (kala/toidu katteks) vs kuubikjää (jookidesse) — EI vahetatav, ostja otsib spetsiifiliselt. Eri tüüp, mitte variant (Tarmo kinnitas 2026-07-10)."
+    }
+  ]
+}
