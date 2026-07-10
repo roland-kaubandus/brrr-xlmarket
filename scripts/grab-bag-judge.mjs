@@ -56,8 +56,9 @@ async function judgeBatch(batch) {
   const prompt = `Oled taksonoomia-QA. Hinda IGA L3 SEMANTILISELT (loe title_en sisu, MITTE märksõna): kas GRAB-BAG (2+ selgelt ERI toote-tüüpi, kumbki ≥3 toodet või ≥15%) või CLEAN.
 
 OTSUSTAV REEGEL — VARIANT vs ERI TÜÜP:
-- VARIANT (= CLEAN, ÄRA flag'i): sama FUNKTSIOON, erineb ainult vorm/kinnitus/suurus/materjal. Nt lae- vs seinaventilaator (mõlemad liigutavad õhku) · pitsakivi vs pitsateras (mõlemad küpsetuspind) · kastrul vs stockpot (mõlemad keetmine). Ka: eri suurused/värvid = sama tüüp; nime-paar "X ja Y" kus mõlemad present JA sama funktsioon = CLEAN; üksik-outlier suures homogeenses = CLEAN.
-- ERI TÜÜP (= GRAB, flag'i): FUNKTSIOON erineb. Nt õhuniisuti (lisab niiskust) vs jahuti (langetab temp) · kaminatööriist (tule-hooldus) vs tuhaämber (jäätmed) · pott (keetmine) vs küpsetusvorm (ahi) · seade vs kulumaterjal.
+- VARIANT (= CLEAN, ÄRA flag'i): sama FUNKTSIOON JA VÄLJUND, erineb ainult vorm/kinnitus/suurus/materjal/energiaallikas. Nt lae- vs seinaventilaator (mõlemad liigutavad õhku) · tornventilaator vs põrandaventilaator (mõlemad õhuvool) · pitsakivi vs pitsateras (mõlemad küpsetuspind) · kastrul vs stockpot (mõlemad keetmine). Ka: eri suurused/värvid = sama tüüp; nime-paar "X ja Y" kus mõlemad present JA sama funktsioon = CLEAN; üksik-outlier suures homogeenses = CLEAN.
+- ERI TÜÜP (= GRAB, flag'i): FUNKTSIOON VÕI VÄLJUND erineb. Nt helbejäämasin (helbejää) vs kuubikjäämasin (kuubikud) — väljund erineb, EI vahetatav · õhuniisuti (lisab niiskust) vs jahuti (langetab temp) · kaminatööriist (tule-hooldus) vs tuhaämber (jäätmed) · pott (keetmine) vs küpsetusvorm (ahi) · seade vs kulumaterjal.
+- 🎯 VÄLJUND-TEST: "kas toode A asendab toote B, sama tulemus?" JAH → variant (CLEAN). EI → eri tüüp (GRAB).
 
 ${blocks}
 

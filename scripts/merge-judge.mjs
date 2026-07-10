@@ -54,8 +54,9 @@ async function judgeL2(l2) {
     return `### ${l3.id} = "${l3.name}" (${l3.n} toodet)\n${prods.join("\n")}`;
   }).join("\n\n");
   const prompt = `L2 "${l2.name}" sisaldab neid kõrvuti-L3-sid. Kas mõni PAAR on TEGELIKULT SAMA TÜÜP (VARIANT), mis peaks olema ÜKS L3 (üle-fragmenteerimine)?
-- VARIANT (→ MERGE): sama FUNKTSIOON, erineb ainult vorm/kinnitus/suurus/materjal. Nt lae- vs seinaventilaator (mõlemad liigutavad õhku) · pitsakivi vs pitsateras (mõlemad küpsetuspind).
-- ERI TÜÜP (→ jäta lahku, ÄRA soovita): funktsioon erineb. Nt õhuniisuti (niiskus) vs jahuti (temp) · pott (keetmine) vs küpsetusvorm (ahi) · kaminatööriist (hooldus) vs tuhaämber (jäätmed).
+- VARIANT (→ MERGE): sama FUNKTSIOON, erineb ainult vorm/kinnitus/suurus/materjal/energiaallikas. Nt lae- vs seinaventilaator (mõlemad liigutavad õhku) · tornventilaator vs põrandaventilaator (mõlemad õhuvool) · päikese- vs võrguventilaator · pitsakivi vs pitsateras (mõlemad küpsetuspind).
+- ERI TÜÜP (→ jäta lahku, ÄRA soovita): funktsioon VÕI VÄLJUND erineb. Nt helbejäämasin vs kuubikjäämasin (helbejää kala katteks; kuubik jookidesse — EI vahetatav) · õhuniisuti (niiskus) vs jahuti (temp) · pott (keetmine) vs küpsetusvorm (ahi) · kaminatööriist (hooldus) vs tuhaämber (jäätmed).
+- 🎯 VÄLJUND-TEST: "kas toode A saab asendada toote B, sama tulemus?" JAH → variant (merge). EI → eri tüüp (jäta lahku).
 Loe title_en SISU, mitte nime. Ole KONSERVATIIVNE — soovita merge AINULT kui päriselt sama funktsioon.
 
 ${blocks}
