@@ -110,6 +110,8 @@ for (const r of out) {
 if (!IDS) { // täis/laiem jooks kirjutab cache; --ids jätab cache puutumata
   for (const id of Object.keys(prev)) if (!verdicts[id]) changes.push(`KADUNUD L3 ${id} (${prev[id].name}): oli ${prev[id].verdict}`);
   fs.writeFileSync(CACHE, JSON.stringify({ generated: stamp, model: MODEL, count: out.length, verdicts }, null, 1));
+} else { // --ids: kirjuta täisverdiktid (GRAB+CLEAN) eraldi faili (re-score võrdluseks + cache-merge)
+  fs.writeFileSync("/opt/eumotors-tasks/reports/grab-rescore.json", JSON.stringify({ generated: stamp, model: MODEL, verdicts }, null, 1));
 }
 
 // 4b. raport

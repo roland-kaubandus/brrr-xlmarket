@@ -1,7 +1,7 @@
 {
  "generated": "2026-07-09",
  "model": "claude-opus-4-8",
- "count": 833,
+ "count": 832,
  "verdicts": {
   "pcat_mv_6x1_8": {
    "name": "Kunstlilled ja -taimed",
@@ -80,9 +80,10 @@
    "main": "Peoinventar ja dekoratsioonid",
    "n": 56,
    "verdict": "GRAB",
-   "confidence": "korge",
-   "clusters": "sammaste nöörid ~8 vs piirdepostid/komplektid ~16; jaga: 'Piirdenöörid' vs 'Piirdepostid'",
-   "date": "2026-07-09"
+   "confidence": "kesk",
+   "clusters": "Sammaspostid/stanchion-setid (~15) vs eraldi velvet-köied/tarvikud (~8) → tõsta köied eraldi",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_t3a_3_3": {
    "name": "Aiaääristused ja peenraservad",
@@ -124,10 +125,11 @@
    "name": "Basseinikatted",
    "main": "Aed ja aiatehnika",
    "n": 51,
-   "verdict": "GRAB",
-   "confidence": "kesk",
-   "clusters": "basseinikatted ~35 vs mullivanni/hot tub katted ~14; jaga: 'Basseinikatted' vs 'Mullivannikatted'",
-   "date": "2026-07-09"
+   "verdict": "CLEAN",
+   "confidence": "korge",
+   "clusters": "Katted (basseini + hot tub) – sama funktsioon",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_vk2": {
    "name": "Värvimiskabiinid ja -telgid",
@@ -171,26 +173,29 @@
    "n": 49,
    "verdict": "GRAB",
    "confidence": "kesk",
-   "clusters": "värvipüstolid/pihustid ~40, voolikud ~4, pihustuskabiinid 3 → eralda voolikud + kabiinid",
-   "date": "2026-07-09"
+   "clusters": "Värvipüstolid/sprayerid (põhi) + voolikud (tarvik, ~5) + pihustuskabiinid/booth (~3) → eralda booth ja voolikud",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_t3f_9_4": {
    "name": "Teemantpuurkroonid ja südamikpuurid",
    "main": "Tööriistad ja tarvikud",
    "n": 49,
    "verdict": "GRAB",
-   "confidence": "korge",
-   "clusters": "teemant-südamikpuurid ~15, annular cutters (metall) ~9 → eralda annular cutters",
-   "date": "2026-07-09"
+   "confidence": "kesk",
+   "clusters": "Teemant-südamikpuurid/hole saw (betoon) vs annular cutters / mag drill bits (metall, ~9) → eralda annular cutters",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_ks_5x2_8": {
    "name": "Potid ja potikomplektid",
    "main": "Suurköögiseadmed",
    "n": 49,
-   "verdict": "GRAB",
-   "confidence": "kesk",
-   "clusters": "potid/kastrulid/Dutch oven ~18, küpsetusplaadid/-vormid ~7 → eralda küpsetusplaadid",
-   "date": "2026-07-09"
+   "verdict": "CLEAN",
+   "confidence": "korge",
+   "clusters": "kõik keedunõud (saucepan/dutch oven/stockpot/komplektid) – sama funktsioon",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_mv_6x1_1": {
    "name": "Toolikatted & -ümbrised",
@@ -270,8 +275,9 @@
    "n": 41,
    "verdict": "GRAB",
    "confidence": "kesk",
-   "clusters": "kajakikärud ~13, hoiuriiulid ~3, istmed ~3, muud tarvikud; split: Kajakikärud / Hoiustamine / Istmed & tarvikud",
-   "date": "2026-07-09"
+   "clusters": "Kajaki-kärud/käru (~15) vs hoiuraamid (~3) vs istmed (~3) vs kajak ise/tarvikud → eralda hoiustus ja istmed",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_hv1_1": {
    "name": "Inspektsioonikaamerad",
@@ -295,10 +301,11 @@
    "name": "Kaugjuhitavad mänguasjad",
    "main": "Lastekaubad ja mänguasjad",
    "n": 41,
-   "verdict": "GRAB",
-   "confidence": "korge",
-   "clusters": "paadid ~5, kallurid ~5, kopterid 5, lennukid 7, robot 1 → jaga sõidukid/lennuvahendid/robot",
-   "date": "2026-07-09"
+   "verdict": "CLEAN",
+   "confidence": "kesk",
+   "clusters": "Kõik kaugjuhitavad mänguasjad – sama funktsioon",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_el_11x1_1": {
    "name": "Projektoriekraanid",
@@ -313,10 +320,11 @@
    "name": "Dokumendisorteerijad & -organisaatorid",
    "main": "Büroo & kontoritarvikud",
    "n": 40,
-   "verdict": "GRAB",
-   "confidence": "kesk",
-   "clusters": "literature organizers ~16, seina failihoidjad ~7 → jaga kirjasorteerijad vs seina failihoidjad",
-   "date": "2026-07-09"
+   "verdict": "CLEAN",
+   "confidence": "korge",
+   "clusters": "dokumendiorganisaatorid/seinariiulid",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_t3a_3_2": {
    "name": "Umbrohutõkked ja maastikukangad",
@@ -340,10 +348,11 @@
    "name": "Terasninaga tööjalatsid",
    "main": "Tööriied ja isikukaitse",
    "n": 40,
-   "verdict": "GRAB",
-   "confidence": "kesk",
-   "clusters": "terasninaga tossud ~20, tööjalatsid/saapad ~4 → jaga tossud vs saapad",
-   "date": "2026-07-09"
+   "verdict": "CLEAN",
+   "confidence": "korge",
+   "clusters": "Terasninaga jalatsid/saapad – sama tüüp, eri suurused",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_t3f_10_15": {
    "name": "Elektrilised talid",
@@ -359,9 +368,10 @@
    "main": "Ladu, hoiustamine & pakendamine",
    "n": 40,
    "verdict": "GRAB",
-   "confidence": "korge",
-   "clusters": "õhkpadikile 1, sidumiskärud ~5, sidumiskomplektid ~10, pakketeip ~8 → jaga sidumistarvikud vs teip",
-   "date": "2026-07-09"
+   "confidence": "kesk",
+   "clusters": "Köitmiskärud (seade, ~5) vs köitmiskomplektid/lint vs pakketeip vs õhkpadi-kile → eralda kärud ja teip",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_kl1_1": {
    "name": "AC-vaakumpumbad",
@@ -439,10 +449,11 @@
    "name": "Koormarihmad",
    "main": "Tööriistad ja tarvikud",
    "n": 36,
-   "verdict": "GRAB",
+   "verdict": "CLEAN",
    "confidence": "kesk",
-   "clusters": "bungee-nöörid (3) + ratchet/tie-down rihmad (~20) + telje-rihmad; eralda bungee'd",
-   "date": "2026-07-09"
+   "clusters": "koormarihmad/bungee/ratchet - kõik kinnitamine",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_lp_2_1": {
    "name": "Lemmikloomade pesemisvannid",
@@ -466,19 +477,21 @@
    "name": "Kaminad ja tarvikud",
    "main": "Santehnika, küte ja ventilatsioon",
    "n": 36,
-   "verdict": "GRAB",
+   "verdict": "CLEAN",
    "confidence": "korge",
-   "clusters": "kaminahalud (3) + tuhaämbrid (3) + halurestid (5) + kaminasimsid (~11) + kaminaekraanid; jaga tüüpideks",
-   "date": "2026-07-09"
+   "clusters": "kaminasimsid, eri suurused",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_el_12x1_3": {
    "name": "Jalgpalli väravad ja treeningvõrgud",
    "main": "Sport ja vaba aeg",
    "n": 36,
    "verdict": "GRAB",
-   "confidence": "korge",
-   "clusters": "viskevõrgud (7) + treeningdummy'd (4) + täispuhutavad sihtmärgid (3) + väravad (5) + rebound-trenažöörid; jaga",
-   "date": "2026-07-09"
+   "confidence": "kesk",
+   "clusters": "treeningvõrgud+väravad ~15 (võrk/pall) vs kontakt-treeningnukud/blokipadjad ~8 (tackling dummies). Split: soojenda 'treeningnukud/blokipadjad' eraldi",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_ag2_2x3_2": {
    "name": "Põrandatungrauad",
@@ -493,10 +506,11 @@
    "name": "Ronimismänguasjad ja ronimiskomplektid",
    "main": "Lastekaubad ja mänguasjad",
    "n": 35,
-   "verdict": "GRAB",
+   "verdict": "CLEAN",
    "confidence": "kesk",
-   "clusters": "ronimiskuplid (10) + vahtronimisklotsid (5) + sisemängu jungle gym'id (~8) + ninja rada; jaga",
-   "date": "2026-07-09"
+   "clusters": "ronimismänguasjad/kuplid/jõusaalid",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_el_12x4_3": {
    "name": "Hüdraulilised roolisüsteemid",
@@ -594,8 +608,9 @@
    "n": 33,
    "verdict": "GRAB",
    "confidence": "kesk",
-   "clusters": "terviklikud kompressorid (~28) vs pumbapead/Pump Head (~5) → eralda pumbapead",
-   "date": "2026-07-09"
+   "clusters": "terviklikud kompressorid ~27 vs pumbapead/mootorid ~6 (komponent vs seade). Split: 'kompressori pumbapead' eraldi",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_el_11x8_1": {
    "name": "Elektrikilbid ja jaotuskarbid",
@@ -610,10 +625,11 @@
    "name": "Ukselingid & uksekäepidemed",
    "main": "Ehitus, remont ja värvid",
    "n": 32,
-   "verdict": "GRAB",
-   "confidence": "kesk",
-   "clusters": "aiavärava/barn tõmbekäepidemed (~5) vs ukselingid+lukukomplektid (~19) → eralda barn handles",
-   "date": "2026-07-09"
+   "verdict": "CLEAN",
+   "confidence": "korge",
+   "clusters": "ukselingid/käepidemed/lukukomplektid",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_el_12x4_1": {
    "name": "Paadikatused & biminid",
@@ -628,19 +644,21 @@
    "name": "Serverikapid & -raamid",
    "main": "Elektritarvikud ja valgustus",
    "n": 32,
-   "verdict": "GRAB",
+   "verdict": "CLEAN",
    "confidence": "kesk",
-   "clusters": "serverikapid/raamid (~26) vs riiulid (~3) vs sahtlid (~3) → eralda tarvikud (riiulid+sahtlid)",
-   "date": "2026-07-09"
+   "clusters": "serverikapid/raamid+riiulid/sahtlid tarvikud",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_mv_6x10_1": {
    "name": "Jalatsikapid",
    "main": "Mööbel ja sisustus",
    "n": 32,
-   "verdict": "GRAB",
+   "verdict": "CLEAN",
    "confidence": "korge",
-   "clusters": "pöörlevad kingaredelid (~11) vs jalatsikapid (~10) + pink (1) → jaga redelid vs kapid",
-   "date": "2026-07-09"
+   "clusters": "jalatsihoiustus/kapid/riiulid",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_es_9x1_7": {
    "name": "Drenaažimatid ja -plaadid",
@@ -693,8 +711,9 @@
    "n": 31,
    "verdict": "GRAB",
    "confidence": "kesk",
-   "clusters": "lineaarjuhikud ~21 + alumiiniumprofiilid (T-slot extrusion) 3; soovitus eraldada profiilid",
-   "date": "2026-07-09"
+   "clusters": "lineaarjuhikud/liikurid ~25 vs alumiiniumprofiilid (T-slot extrusion) ~3+ (struktuurmaterjal, eri funktsioon); soovitus: eralda profiilid",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_mv_6x3_5": {
    "name": "Kontoritoolid",
@@ -736,19 +755,21 @@
    "name": "Kiiged ja kiikhobud",
    "main": "Lastekaubad ja mänguasjad",
    "n": 30,
-   "verdict": "GRAB",
-   "confidence": "kesk",
-   "clusters": "kiiged ~14 + kiikhobud ~6 + kiikvangid/seesaw ~6 → eralda seesaw'd",
-   "date": "2026-07-09"
+   "verdict": "CLEAN",
+   "confidence": "korge",
+   "clusters": "kõik kiiged/rippumisistmed",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_mv_6x3_3": {
    "name": "Kirjutus- & arvutilauad",
    "main": "Mööbel ja sisustus",
    "n": 30,
    "verdict": "GRAB",
-   "confidence": "kesk",
-   "clusters": "kirjutus/arvutilauad ~18 + konverentsilauad ~6 → eralda konverentsilauad",
-   "date": "2026-07-09"
+   "confidence": "korge",
+   "clusters": "kirjutus-/arvutilauad ~15 vs konverentsi-/koosolekulauad ~6 vs õmblus-/joonestuslaud ~3; eralda konverentsilauad",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_f4_15x1_1": {
    "name": "Massaažiseadmed",
@@ -801,8 +822,9 @@
    "n": 29,
    "verdict": "GRAB",
    "confidence": "korge",
-   "clusters": "jalasoojendajad ~4, infrapuna-soojenduspadjad ~11, rätikusoojendajad ~6, maandusmatt+tekk. Split: soojenduspadjad / rätikusoojendajad / jalasoojendajad",
-   "date": "2026-07-09"
+   "clusters": "infrapuna-/soojenduspadjad+jalasoojendajad ~14 vs rätikusoojendid (kabinet/ämber) ~7 vs maandusmatt ~1; eralda rätikusoojendid",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_el_12x3_13": {
    "name": "Õhujooga ja aerial jooga seadmed",
@@ -810,8 +832,9 @@
    "n": 29,
    "verdict": "GRAB",
    "confidence": "kesk",
-   "clusters": "aerial jooga hängmakid/raamid ~24, sensoorsed kiiged ~4, peapealseisu pink 1. Split: õhujooga vs sensoorsed kiiged",
-   "date": "2026-07-09"
+   "clusters": "õhujooga hängmakid/raamid ~19 vs sensoorsed kiiged (teraapia) ~4 vs peapealseisu-pink ~1; eralda sensoorsed kiiged",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_f4_16x1_7": {
    "name": "Tualetiabivahendid",
@@ -854,18 +877,20 @@
    "main": "Muusika ja helitehnika",
    "n": 29,
    "verdict": "GRAB",
-   "confidence": "korge",
-   "clusters": "pillikohvrid ~8, kitarristatiivid ~4, trummitoolid ~3, pedaalboardid ~3, klaveripingid ~3. Split: kohvrid / statiivid / toolid-pingid / pedaalboardid",
-   "date": "2026-07-09"
+   "confidence": "kesk",
+   "clusters": "pillikohvrid (viiul/tšello/kitarr) ~9 vs pukid/hoidikud ~7 vs pingid/toolid ~4 vs pedaaliplaadid/kotid ~5; eri funktsioonid, jaga alamtüüpideks",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_10kor": {
    "name": "Korsten ja korstnahooldus",
    "main": "Santehnika, küte ja ventilatsioon",
    "n": 28,
-   "verdict": "GRAB",
-   "confidence": "kesk",
-   "clusters": "korstnapühkimise komplektid ~23, korstnamütsid/-katted ~5. Split: pühkimiskomplektid vs korstnamütsid",
-   "date": "2026-07-09"
+   "verdict": "CLEAN",
+   "confidence": "korge",
+   "clusters": "korstnapühkimise komplektid",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_vt_1": {
    "name": "Veljed, rummukatted ja speisrid",
@@ -873,8 +898,9 @@
    "n": 28,
    "verdict": "GRAB",
    "confidence": "korge",
-   "clusters": "velje-/rummukatted ~16 + wheel spacers/adapterid ~8; split: 'Rummukatted' vs 'Speisrid/adapterid'",
-   "date": "2026-07-09"
+   "clusters": "rummukatted/veljekatted ~16 (katmine) vs velje-speisrid/adapterid ~8 (offset); eralda speisrid",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_f4_13x1_1": {
    "name": "Lasergraveerijad ja -lõikurid",
@@ -891,8 +917,9 @@
    "n": 28,
    "verdict": "GRAB",
    "confidence": "kesk",
-   "clusters": "äkked/harrows ~15 + kultivaatorid/tillerid ~6 (+ rehad 2); split: 'Äkked' vs 'Kultivaatorid'",
-   "date": "2026-07-09"
+   "clusters": "äkked/rehad (tõmmatavad) ~19 vs mullafreesid/kultivaatorid (mootoriga) ~5; eralda freesid",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_mv_6x7_6": {
    "name": "Laste toolid ja istmed",
@@ -934,10 +961,11 @@
    "name": "Relvakapid & -seifid",
    "main": "Sport ja vaba aeg",
    "n": 27,
-   "verdict": "GRAB",
-   "confidence": "kesk",
-   "clusters": "püssikapid/rifle safes ~15 + püstoli/handgun seifid ~9; split: 'Püssikapid' vs 'Püstoliseifid'",
-   "date": "2026-07-09"
+   "verdict": "CLEAN",
+   "confidence": "korge",
+   "clusters": "kõik relvaseifid/-kapid – sama funktsioon",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_es_9x9_1": {
    "name": "Akustilised paneelid ja plaadid",
@@ -962,9 +990,10 @@
    "main": "Autovaruosad ja -tarvikud",
    "n": 27,
    "verdict": "GRAB",
-   "confidence": "kesk",
-   "clusters": "tööriistakastid ~20 + tonneau/kastikatted 3 (~11%); soovitus: eralda 'kastikatted'",
-   "date": "2026-07-09"
+   "confidence": "korge",
+   "clusters": "tööriistakastid/hoiukastid ~21 vs tonneau kattekiled (bed cover) 3 → eralda truck bed covers",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_ks_5x2_2": {
    "name": "Peo- & serveerimisdispenserid",
@@ -981,17 +1010,19 @@
    "n": 27,
    "verdict": "GRAB",
    "confidence": "korge",
-   "clusters": "pukspuu/rohu-seinapaneelid ~14 + kunstmuru-matid/plaadid ~7 + kummimults-matid 3; soovitus: eralda kummimatid ja kunstmuru vs seinapaneelid",
-   "date": "2026-07-09"
+   "clusters": "boxwood/grass seina-dekoorpaneelid ~14 vs muru-plaadid/vaibad (põrand) ~7 vs kummimultš-matid 3 → eralda dekoorpaneelid, murukate ja kummimultš",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_ks_5x1_3": {
    "name": "Jäätisemasinad",
    "main": "Suurköögiseadmed",
    "n": 27,
-   "verdict": "GRAB",
-   "confidence": "kesk",
-   "clusters": "jäätisemasinad ~20 + jäätisepulga-/popsicle-masinad 3 + blender 1; soovitus: eralda popsicle-masinad",
-   "date": "2026-07-09"
+   "verdict": "CLEAN",
+   "confidence": "korge",
+   "clusters": "jäätisemasinad (blender-outlier 2 tk alla läve)",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_t3f_10_5": {
    "name": "Terastrossid",
@@ -1007,9 +1038,10 @@
    "main": "Mööbel ja sisustus",
    "n": 27,
    "verdict": "GRAB",
-   "confidence": "kesk",
-   "clusters": "nagid/hall tree ~15 + laste riidekapid ~7 + klassiruumi tooliseljakotid 3; soovitus: eralda chair pockets",
-   "date": "2026-07-09"
+   "confidence": "korge",
+   "clusters": "riidenagid/esikupingid/kapid ~23 vs klassiruumi tooli-taskud ~4 (eri funktsioon); eralda tooli-taskud",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_ag2_2x2_1": {
    "name": "Metallriiulid",
@@ -1025,18 +1057,20 @@
    "main": "Reklaami-, trüki- ja graveerimisseadmed",
    "n": 26,
    "verdict": "GRAB",
-   "confidence": "kesk",
-   "clusters": "nööbimasinad ~21 + nööbiosad/parts 4-5; split: 'Button parts' eraldi",
-   "date": "2026-07-09"
+   "confidence": "korge",
+   "clusters": "nööbimasinad ~20 vs nööbi-osade komplektid (kulumaterjal) 4 → eralda button parts",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_ks_4x1_7": {
    "name": "Mahla- ja veinipressid",
    "main": "Kodumasinad ja kodutehnika",
    "n": 26,
    "verdict": "GRAB",
-   "confidence": "korge",
-   "clusters": "veinipressid ~19, õunapurustajad 3, õlipress 2, tomatipress 1; split: purustajad+õlipress eraldi",
-   "date": "2026-07-09"
+   "confidence": "kesk",
+   "clusters": "veinipressid ~17 vs õuna-purustajad 3 vs õlipress 2 vs tomatipress 1 → eralda crushers/oil press",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_t3a_1_8": {
    "name": "Rehad ja äkked",
@@ -1044,8 +1078,9 @@
    "n": 26,
    "verdict": "GRAB",
    "confidence": "korge",
-   "clusters": "rehad(leaf/landscape/leveling) ~13, äkked/harrows 6, murupühkijad 4, teritajad 3; split tüüpide kaupa",
-   "date": "2026-07-09"
+   "clusters": "rehad/äkked ~15 vs murupühkijad 4 vs teritajad (kett/niiduki tera) 3 → eralda lawn sweepers ja sharpeners",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_lp_3_2": {
    "name": "Lemmikloomade trepid & rambid",
@@ -1179,8 +1214,9 @@
    "n": 25,
    "verdict": "GRAB",
    "confidence": "kesk",
-   "clusters": "föönid/stüüerid ~16, sirgendajad 3, lokitangid 1, juukselõikurid 4 → tükelda lõikurid eraldi",
-   "date": "2026-07-09"
+   "clusters": "juuksekuivatid/stüüljerid/sirgendajad/lokitangid ~20 vs juukselõikurid (clippers, lõikamine) 4 → eralda clippers",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_t3a_2_5": {
    "name": "Basseinifiltrid & filterpallid",
@@ -1204,10 +1240,11 @@
    "name": "Veini- & pudeliriiulid",
    "main": "Mööbel ja sisustus",
    "n": 25,
-   "verdict": "GRAB",
+   "verdict": "CLEAN",
    "confidence": "kesk",
-   "clusters": "veiniriiulid ~12, LED-pudelidisplaid ~12 → tükelda LED-displaid eraldi",
-   "date": "2026-07-09"
+   "clusters": "kõik pudelite hoidmis-/eksponeerimisriiulid (veini, alkoholi LED, veekann) – sama funktsioon",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_el_12x5_7": {
    "name": "Matkatoolid ja lamamistoolid",
@@ -1233,8 +1270,9 @@
    "n": 24,
    "verdict": "GRAB",
    "confidence": "korge",
-   "clusters": "ujuvad dokid/platvormid ~11, veebatuudid/pommid ~12, kõnnipall 1 → tõsta dokid eraldi",
-   "date": "2026-07-09"
+   "clusters": "ujuvad dokk-platvormid (~10, seismis/pind) vs veebatuudid/water bouncer (~12, hüppamine) + zorb-pall. Split: eralda 'ujuvad dokid' ja 'vee-batuudid'",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_t3a_2_3": {
    "name": "Basseini käsipuud",
@@ -1260,17 +1298,19 @@
    "n": 24,
    "verdict": "GRAB",
    "confidence": "kesk",
-   "clusters": "vaibaalused ~16, põranda aluskatted ~7 → jaga aluskatted eraldi",
-   "date": "2026-07-09"
+   "clusters": "põranda-aluskate/underlayment laminaadile+niiskustõke (~7, ehitusaluskiht) vs vaibaalused anti-slip (~15) + jooksulinamatt outlier. Split: eralda 'põranda aluskatted'",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_es_9x12_1": {
    "name": "Liikluspostid ja -tõkked",
    "main": "Ehitus, remont ja värvid",
    "n": 24,
    "verdict": "GRAB",
-   "confidence": "korge",
-   "clusters": "tõkkepostid/bollardid ~10, lamavad politseinikud ~5, tähispostid ~5, tõkkeposti-komplektid ~2 → jaga tüüpide järgi",
-   "date": "2026-07-09"
+   "confidence": "kesk",
+   "clusters": "lamavad teetõkked/kiiruslavad+kaablikaitse (~6, liikluse rahustamine maapinnal) vs postid/bollardid/delineaatorid/stanchionid (~18, vertikaalsed tõkkepostid). Split: eralda 'teekünnised ja kaablikaitsed'",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_t3a_7_2": {
    "name": "Aiakiiged ja võrkkiiged",
@@ -1341,8 +1381,9 @@
    "n": 24,
    "verdict": "GRAB",
    "confidence": "kesk",
-   "clusters": "postid/ankrud/alused (~15) vs okastraadi-käepikendajad & aia-pikendused (~7) → eralda pikendus-tarvikud",
-   "date": "2026-07-09"
+   "clusters": "aiapostid (~5) vs postialused/betoonankrud (~5, kinnitus) vs okastraat-harud/aia-pikendused (~8, laienduskronsteinid) vs maa-ankrud. Split: eralda 'postialused', 'aia-pikendused/okastraat-harud'",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_ks_5x1_18": {
    "name": "Vorstimasinad ja -täitjad",
@@ -1411,10 +1452,11 @@
    "name": "Lumelabidad ja lumetõsteseadmed",
    "main": "Aed ja aiatehnika",
    "n": 23,
-   "verdict": "GRAB",
+   "verdict": "CLEAN",
    "confidence": "korge",
-   "clusters": "lumelabidad/-lükkajad (~14) + katuse lumerehad (~9); split roof rakes eraldi",
-   "date": "2026-07-09"
+   "clusters": "lumelabidad/-tõukurid/katuserehad – kõik lumekoristus",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_f4_15x2_3": {
    "name": "Mängumatid ja -aiad",
@@ -1422,26 +1464,29 @@
    "n": 23,
    "verdict": "GRAB",
    "confidence": "korge",
-   "clusters": "mängumatid/gym-matid (~15) + mänguaiad/playpen (~6); split playpenid eraldi",
-   "date": "2026-07-09"
+   "clusters": "mängu-/roomamismatid+gym-matid (~15, pehme pind) vs mänguaiad/playpen (~6, piirdeaed) + activity center. Split: eralda 'mänguaiad (playpen)'",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_el_12x1_11": {
    "name": "Pokerilauad ja -komplektid",
    "main": "Sport ja vaba aeg",
    "n": 23,
    "verdict": "GRAB",
-   "confidence": "korge",
-   "clusters": "pokerilauad/lauaplaadid (~11) + beer pong lauad (~4) + pokerižetooni komplektid (~7); split 3 tüüpi",
-   "date": "2026-07-09"
+   "confidence": "kesk",
+   "clusters": "pokerilauad+topid+chipsetid (poker) vs beer pong lauad (4tk). Split: eralda beer pong lauad",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_el_12x5_6": {
    "name": "Matkalauad ja köögijaamad",
    "main": "Sport ja vaba aeg",
    "n": 23,
-   "verdict": "GRAB",
+   "verdict": "CLEAN",
    "confidence": "kesk",
-   "clusters": "matka-köögilauad/cook stations (~10) + üldised kokkupandavad matka-/kõrvallauad (~11); split köö- vs üldlauad",
-   "date": "2026-07-09"
+   "clusters": "matkalauad/köögijaamad – kõik kokkupandavad lauad, sama funktsioon",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_12t1": {
    "name": "Auto- & katusetelgid",
@@ -1476,8 +1521,9 @@
    "n": 23,
    "verdict": "GRAB",
    "confidence": "kesk",
-   "clusters": "pesumasina pealsed tööpinnad ~14 + pesuruumi riiulid/kuivatusrestid ~8; split: tööpinnad vs riiulid",
-   "date": "2026-07-09"
+   "clusters": "pealsetööpinnad/countertops (~15) vs pealsed riiul-/kuivatusrestid (~8). Split: eralda drying rack shelves",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_mv_6x4_9": {
    "name": "Meditsiinikärud ja -lauad",
@@ -1539,8 +1585,9 @@
    "n": 22,
    "verdict": "GRAB",
    "confidence": "kesk",
-   "clusters": "päikesepaneeli komplektid ~14 + portable power stations 6 (~27%); eralda power stations",
-   "date": "2026-07-09"
+   "clusters": "päikesepaneeli komplektid vs portatiivsed jõujaamad (~7) vs kinnituskronsteinid (2). Split: eralda power stations",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_t3a_1_6": {
    "name": "Väetise- ja seemnelaotajad",
@@ -1555,19 +1602,21 @@
    "name": "Kokkupandavad veovankrid",
    "main": "Sport ja vaba aeg",
    "n": 22,
-   "verdict": "GRAB",
-   "confidence": "kesk",
-   "clusters": "kokkupandavad veovankrid ~14 + laste pull-along vankrid 7 (~32%); eralda lastevankrid",
-   "date": "2026-07-09"
+   "verdict": "CLEAN",
+   "confidence": "korge",
+   "clusters": "kokkupandavad veovankrid (sh laste), kõik samad",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_es_10x1_15": {
    "name": "Kliimaseadme kaitsed ja katted",
    "main": "Santehnika, küte ja ventilatsioon",
    "n": 22,
-   "verdict": "GRAB",
-   "confidence": "kesk",
-   "clusters": "AC-seadme katted ~18 + line set cover (dekoratiivne torukate) 4 (~18%); eralda torukatted",
-   "date": "2026-07-09"
+   "verdict": "CLEAN",
+   "confidence": "korge",
+   "clusters": "AC-katted, eri suurused",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_t3f_1_11": {
    "name": "Pöördmoment-võtmed ja momendivõtmed",
@@ -1584,8 +1633,9 @@
    "n": 22,
    "verdict": "GRAB",
    "confidence": "korge",
-   "clusters": "jahivarjed ~13 + jäätelgid/ice shelters 7 (~32%) + deer blind brackets 2; eralda ice shelters",
-   "date": "2026-07-09"
+   "clusters": "jahivarjed+kronsteinid (jahindus) vs jäätelgid/ice fishing shelters (~7). Split: eralda ice fishing shelters",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_ks_4x3_2": {
    "name": "Väljatõmmatavad kappide korraldajad",
@@ -1636,10 +1686,11 @@
    "name": "Laste sõidukid ja pedaalautod",
    "main": "Lastekaubad ja mänguasjad",
    "n": 22,
-   "verdict": "GRAB",
+   "verdict": "CLEAN",
    "confidence": "korge",
-   "clusters": "push-car ~9, tricycles ~5, jalgrattad/balance ~4, scooter 2, go-kart 1 — jaga sõidukitüüpide kaupa",
-   "date": "2026-07-09"
+   "clusters": "laste sõidukid (jalgrattad, tõukekärud, tõukerattad, kolmerattalised) - sama funktsioon",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_la9_2": {
    "name": "Kinnitusplaadid ja adapterid",
@@ -1647,8 +1698,9 @@
    "n": 22,
    "verdict": "GRAB",
    "confidence": "korge",
-   "clusters": "skid steer kinnitusplaadid ~14, elektrivintsid ~7 — eralda vintsid",
-   "date": "2026-07-09"
+   "clusters": "skid steer kinnitusplaadid (~13) vs elektrivintsid (~7). Split: eralda vintsid",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_mv_6x3_7": {
    "name": "Tahvlid & teadetetahvlid",
@@ -1674,17 +1726,19 @@
    "n": 21,
    "verdict": "GRAB",
    "confidence": "korge",
-   "clusters": "pesukorvid/sorteerijad ~12, kuivatusrestid 3, triikimislauad 3, pesukärud ~4 → eralda kuivatusrestid + triikimislauad",
-   "date": "2026-07-09"
+   "clusters": "pesukorvid/sorteerijad ~12 vs kuivatusrestid ~3 vs triikimislauad ~3 vs käru; split: eralda 'Kuivatusrestid' ja 'Triikimislauad'",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_el_12x1_6": {
    "name": "Korvpallirõngad ja -korvid",
    "main": "Sport ja vaba aeg",
    "n": 21,
    "verdict": "GRAB",
-   "confidence": "kesk",
-   "clusters": "korvpallirõngad/statiivid ~13, poolipehmendused 4, arcade-mängud 4 → eralda pole pads + arcade games",
-   "date": "2026-07-09"
+   "confidence": "korge",
+   "clusters": "korvpallirõngad/statiivid ~14 vs postipehmendused (pole pad) ~4 vs arkaadimängud ~4; split: eralda 'Postipehmendused' ja 'Korvpalli arkaadimängud'",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_el_12x4_12": {
    "name": "Paadihaariku juhikud",
@@ -1692,17 +1746,19 @@
    "n": 21,
    "verdict": "GRAB",
    "confidence": "korge",
-   "clusters": "paadihaariku juhikud ~15, veeskamisrattad 4, istmepedestal 1 → eralda launching wheels",
-   "date": "2026-07-09"
+   "clusters": "Paadi vettelaskmisrattad ~4 (paadi liigutamine) vs treileri juhikud ~15 (joondamine) + seat pedestal 1. Split: 'Vettelaskmisrattad' vs 'Treileri juhikud'",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_t3f_1_9": {
    "name": "Keermestamis- ja keermelõikamise komplektid",
    "main": "Tööriistad ja tarvikud",
    "n": 21,
-   "verdict": "GRAB",
+   "verdict": "CLEAN",
    "confidence": "kesk",
-   "clusters": "tap&die ~11, keerme-chaserid 4, screw extractorid 3, helicoil 2 → eralda screw extractorid",
-   "date": "2026-07-09"
+   "clusters": "keermetööriistad (tap/die, thread chaser, helicoil, screw extractor) - sama valdkond",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_d3_2": {
    "name": "Diiselsoojendi osad",
@@ -1719,8 +1775,9 @@
    "n": 21,
    "verdict": "GRAB",
    "confidence": "korge",
-   "clusters": "tõsteketi tropid ~12, proof coil kett 8, grab hook 1 → eralda proof coil chain",
-   "date": "2026-07-09"
+   "clusters": "tõsteketid/tropid ~12 vs proof coil kett (üldkett) ~8; split: eralda 'Üldotstarbelised ketid'",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_lp_4_2": {
    "name": "Kassimajad",
@@ -1762,10 +1819,11 @@
    "name": "Õllesüsteemid ja -tornid",
    "main": "Suurköögiseadmed",
    "n": 21,
-   "verdict": "GRAB",
+   "verdict": "CLEAN",
    "confidence": "kesk",
-   "clusters": "kegeraatori-tornid/kitid ~14, growler tap-süsteemid 4, tarvikud (drip-alused 2, regulaator, puhastuskeg, korny-kegid 2); split: villimissüsteemid vs tornid vs tarvikud",
-   "date": "2026-07-09"
+   "clusters": "kõik õlle serveerimise/väljastuse süsteemid (growler+torn+kegerator kit)",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_es_9x4_5": {
    "name": "Privaatsusaiad & -ekraanid",
@@ -1807,10 +1865,11 @@
    "name": "Privaatsusekraanid ja kunsthekid",
    "main": "Aed ja aiatehnika",
    "n": 21,
-   "verdict": "GRAB",
+   "verdict": "CLEAN",
    "confidence": "korge",
-   "clusters": "taimekattega privaatsusekraanid ~11, metallsirmid ~9, puitsirmid 2 → split metall vs taimne",
-   "date": "2026-07-09"
+   "clusters": "privaatsusekraanid (kunsthekk, metall, puit) - sama funktsioon",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_lr1": {
    "name": "Laadimisrambid",
@@ -1818,8 +1877,9 @@
    "n": 21,
    "verdict": "GRAB",
    "confidence": "kesk",
-   "clusters": "sõidukirambid (alumiinium/teras) ~17, äärekivirambid (curb ramp) ~4 → eralda curb ramps",
-   "date": "2026-07-09"
+   "clusters": "laadimisrambid ~17 vs äärekivirambid (curb ramp) ~4; split: eralda 'Äärekivi-/sõiduteerambid'",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_el_12x1_12": {
    "name": "Õnne- ja loosimisrattad ning -trumlid",
@@ -1827,8 +1887,9 @@
    "n": 21,
    "verdict": "GRAB",
    "confidence": "korge",
-   "clusters": "õnnerattad ~15, loositrumlid ~6 → split rattad vs trumlid",
-   "date": "2026-07-09"
+   "clusters": "õnnerattad ~15 vs loosimistrumlid ~6; split: eralda 'Loosimistrumlid'",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_el_12x3_4": {
    "name": "Treeningkelgud ja -saanid",
@@ -1872,17 +1933,19 @@
    "n": 20,
    "verdict": "GRAB",
    "confidence": "korge",
-   "clusters": "laternad ~9, pärjad ~5, vanikud/girlandid ~6 → split laternad vs pärjad/vanikud",
-   "date": "2026-07-09"
+   "clusters": "Laternad ~9 (valgustusdekoor) vs pärjad ~5 + vanikud ~6 (rohelusdekoor). Split: 'Laternad' vs 'Pärjad/vanikud'",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_mv_8x5_1": {
    "name": "Autovarjualused",
    "main": "Varjualused, telgid ja kasvuhooned",
    "n": 20,
-   "verdict": "GRAB",
-   "confidence": "korge",
-   "clusters": "autovarjualused/carport ~15 + mootorratta varjualused 4 + hoiukuur 1 → eralda motohoidikud",
-   "date": "2026-07-09"
+   "verdict": "CLEAN",
+   "confidence": "kesk",
+   "clusters": "Sõidukivarjualused (carport + mootorratta varjualus + kuur) — sama funktsioon: sõiduki kaitse ilmastiku eest",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_ag2_2x2_8": {
    "name": "Metallkapid",
@@ -1970,9 +2033,10 @@
    "main": "Kodumasinad ja kodutehnika",
    "n": 20,
    "verdict": "GRAB",
-   "confidence": "kesk",
-   "clusters": "köögimikserid ~11, toiduprotsessorid/hakkijad ~4, muud (blender, jäätisemasin) — split: mikserid vs toiduprotsessorid",
-   "date": "2026-07-09"
+   "confidence": "korge",
+   "clusters": "Köögimikserid ~12 (taina segamine) vs toiduprotsessorid/hakkurid ~4 (hakkimine) + blender 1 + jäätisemasin 1. Split: 'Mikserid' vs 'Toiduprotsessorid'",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_ag2_3x5_4": {
    "name": "Stabilisaator- ja tugijalad",
@@ -2006,9 +2070,10 @@
    "main": "Sport ja vaba aeg",
    "n": 20,
    "verdict": "GRAB",
-   "confidence": "kesk",
-   "clusters": "jalgrattahoidikud/-rackid ~14, jalgratta remondialused ~6 — split: hoidikud vs remondistatiivid",
-   "date": "2026-07-09"
+   "confidence": "korge",
+   "clusters": "Rattahoidikud ~14 (hoiustamine) vs remondialused ~6 (hooldus). Split: 'Hoidikud' vs 'Remondialused'",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_mu_1_2": {
    "name": "Klahvpillid",
@@ -2025,8 +2090,9 @@
    "n": 20,
    "verdict": "GRAB",
    "confidence": "korge",
-   "clusters": "Hay/bale spears ~14 + pallet forks ~6 → split kaheks",
-   "date": "2026-07-09"
+   "clusters": "Heinahaarikud ~14 (pallide teisaldus) vs kaubaalusekahvlid ~6 (aluste tõstmine). Split: 'Heinahaarikud' vs 'Kaubaalusekahvlid'",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_el_12x4_11": {
    "name": "Pukseeritavad veetorud & mänguasjad",
@@ -2050,10 +2116,11 @@
    "name": "Koormakatted ja presendid",
    "main": "Autovaruosad ja -tarvikud",
    "n": 19,
-   "verdict": "GRAB",
-   "confidence": "korge",
-   "clusters": "mesh-presendid ~8 + tonneau/roll-up katted ~9 + bed mat → split",
-   "date": "2026-07-09"
+   "verdict": "CLEAN",
+   "confidence": "kesk",
+   "clusters": "Koormakatted (mesh-presendid + tonneau-katted) — sama funktsioon: koorma/kastikatte kate; üksik-outlier'id (mat, rullikomplekt)",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_es_10x7_4": {
    "name": "Dušialuste komplektid & tarvikud",
@@ -2095,19 +2162,21 @@
    "name": "Spordikotid & -organiserid",
    "main": "Sport ja vaba aeg",
    "n": 19,
-   "verdict": "GRAB",
-   "confidence": "korge",
-   "clusters": "miniatuurikotid 8, PS5-kohvrid 4, teleskoobikotid 6 → jaga tüüpideks",
-   "date": "2026-07-09"
+   "verdict": "CLEAN",
+   "confidence": "kesk",
+   "clusters": "Hoiu-/kandekotid ja -kohvrid (miniatuurid, PS5, teleskoop) — sama funktsioon: transport/kaitse",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_es_9x4_4": {
    "name": "Turvaväravad & -tõkked",
    "main": "Ehitus, remont ja värvid",
    "n": 19,
-   "verdict": "GRAB",
+   "verdict": "CLEAN",
    "confidence": "kesk",
-   "clusters": "laiendatavad tõkked 7, kokkupandavad turvaväravad 12 → jaga",
-   "date": "2026-07-09"
+   "clusters": "laiendatavad tõkked + kokkupandavad turvaväravad = sama funktsioon (ligipääsu tõkestus)",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_ag2_3x8_1": {
    "name": "Akulaadijad",
@@ -2132,9 +2201,10 @@
    "main": "Aed ja aiatehnika",
    "n": 19,
    "verdict": "GRAB",
-   "confidence": "korge",
-   "clusters": "basseinivooderdised 15, tiigivooderdised 4 → jaga",
-   "date": "2026-07-09"
+   "confidence": "kesk",
+   "clusters": "basseinivooderdised ~15 vs tiigivooderdised (pond liner) 4 — eri rakendus/toode; split: pool vs pond",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_mv_6x1_7": {
    "name": "Laudlinad",
@@ -2149,19 +2219,21 @@
    "name": "Kott-toolid",
    "main": "Mööbel ja sisustus",
    "n": 18,
-   "verdict": "GRAB",
+   "verdict": "CLEAN",
    "confidence": "kesk",
-   "clusters": "kott-toolid 12, põranda-/mängutoolid 5, koeravoodi 1 → jaga peatüübid",
-   "date": "2026-07-09"
+   "clusters": "kõik põranda-/kott-istmed; human dog bed üksik-outlier",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_1cab1": {
    "name": "Kaablitõmbelindid & -tõmburid",
    "main": "Tööriistad ja tarvikud",
    "n": 18,
-   "verdict": "GRAB",
+   "verdict": "CLEAN",
    "confidence": "kesk",
-   "clusters": "fish tape/juhtmetõmburid ~12, polüester pull-tape 5, kaablikäru 1 → jaga",
-   "date": "2026-07-09"
+   "clusters": "fish tape + pull tape = sama funktsioon (kaabli tõmbamine); spool rack üksik-outlier",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_es_9x5_2": {
    "name": "Trepibalustrid",
@@ -2178,8 +2250,9 @@
    "n": 18,
    "verdict": "GRAB",
    "confidence": "korge",
-   "clusters": "gaasihoovad/kaugjuhtimine (7), elektrimootorid/trolling (4), propellerid (7) → jaga 3 tüübiks",
-   "date": "2026-07-09"
+   "clusters": "throttle control (juhtimine 7) + trolling-mootorid (jõuallikas 4) + propellerid (osa 7); jaga kolmeks",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_t3f_6_4": {
    "name": "Alasid",
@@ -2232,17 +2305,19 @@
    "n": 18,
    "verdict": "GRAB",
    "confidence": "kesk",
-   "clusters": "salongikäruжид (~4), salongijaamad/kapid (~7), toolid (~2), shampoonivannid (~3), lauad → jaga tüübiti",
-   "date": "2026-07-09"
+   "clusters": "shampoo-vannid/backwash (pesu ~4) + toolid (istmed ~2) + käru/trolleyd (transport ~4) + jaamad/kapid (töökoht ~6); jaga funktsiooni järgi",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_el_12x3_8": {
    "name": "Jõupuurid ja jõutornid",
    "main": "Sport ja vaba aeg",
    "n": 18,
-   "verdict": "GRAB",
+   "verdict": "CLEAN",
    "confidence": "korge",
-   "clusters": "Power cage/squat rack(7); Power tower/dip station(11) → split kaheks",
-   "date": "2026-07-09"
+   "clusters": "jõupuurid/tornid/pull-up – jõutrenn",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_t3a_6_6": {
    "name": "Taimede tugiresti ja trellised",
@@ -2266,10 +2341,11 @@
    "name": "Mänguplatsid ja aedikud",
    "main": "Lemmikloomatarbed",
    "n": 18,
-   "verdict": "GRAB",
-   "confidence": "korge",
-   "clusters": "koera aedikud/playpen(11); kasside catio(2); koerte kennelid(3); tõkked(2) → jaga aedikud vs kennelid vs kassimaja",
-   "date": "2026-07-09"
+   "verdict": "CLEAN",
+   "confidence": "kesk",
+   "clusters": "lemmiklooma aedikud/kennelid/catio – kõik piirded",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_f4_17x1_1": {
    "name": "Taktikalised saapad",
@@ -2304,8 +2380,9 @@
    "n": 18,
    "verdict": "GRAB",
    "confidence": "korge",
-   "clusters": "jalgrattahaagised(9); reisikotid/kohvrid(4); tagakorvid(3); tailgate pad(2) → jaga haagised vs kotid vs korvid",
-   "date": "2026-07-09"
+   "clusters": "kaubahaagised 6 · lastehaagised 3 · reisikotid 4 · korvid 3 · tagaluugipadi 2; split funktsiooni järgi",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_el_12x1_18": {
    "name": "Staadionitoolid ja välipingid",
@@ -2313,8 +2390,9 @@
    "n": 18,
    "verdict": "GRAB",
    "confidence": "korge",
-   "clusters": "staadionitoolid ~9 + kokkupandavad pingid ~9; split kaheks",
-   "date": "2026-07-09"
+   "clusters": "staadioni-üksikistmed ~9 vs kokkupandavad meeskonnapingid ~9; split: stadium seat vs folding bench",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_el_11x9_1": {
    "name": "Kaablikaitsjad & põrandarambid",
@@ -2339,18 +2417,20 @@
    "main": "Elektritarvikud ja valgustus",
    "n": 18,
    "verdict": "GRAB",
-   "confidence": "korge",
-   "clusters": "valguskastid ~6 + valgusti-statiivid/C-stand ~5 + softbox-komplektid ~5; split tüüpide kaupa",
-   "date": "2026-07-09"
+   "confidence": "kesk",
+   "clusters": "valguskastid/softboxid (valgusallikad ~13) + statiivid/C-stand/boom (tugi ~5); eralda statiivid",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_ag2_2x4_5": {
    "name": "Määrdepüstolid ja otsikud",
    "main": "Garaažiseadmed",
    "n": 18,
    "verdict": "GRAB",
-   "confidence": "korge",
-   "clusters": "määrdepüstolid ~10 + määrdepumbad ~5 + otsikud/couplerid ~2; split püstolid vs pumbad",
-   "date": "2026-07-09"
+   "confidence": "kesk",
+   "clusters": "määrdepüstolid ~11 vs õhk-määrdepumbad 5 (bulk-seade) + otsikud 2; split: gun vs pump",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_mv_8x5_2": {
    "name": "Autovarjualuste asenduskatted",
@@ -2367,8 +2447,9 @@
    "n": 18,
    "verdict": "GRAB",
    "confidence": "korge",
-   "clusters": "SUP-lauad ~11 + pumbad ~7; split lauad vs pumbad",
-   "date": "2026-07-09"
+   "clusters": "SUP-lauad (~13, ujuk) + pumbad (~5, täispumpamine); eralda pumbad tarvikuteks",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_t3a_4_1": {
    "name": "Grilliplaadid ja kaitsekatted",
@@ -2376,17 +2457,19 @@
    "n": 18,
    "verdict": "GRAB",
    "confidence": "korge",
-   "clusters": "grilliplaadid ~9 + grillikatted ~8; split kaheks",
-   "date": "2026-07-09"
+   "clusters": "grilliplaadid ~10 (küpsetuspind) vs grillikatted 8 (kaitse); split: griddle vs cover",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_ag2_3x4_7": {
    "name": "Heitgaasi- ja väljalaskesüsteemid",
    "main": "Autovaruosad ja -tarvikud",
    "n": 17,
    "verdict": "GRAB",
-   "confidence": "kesk",
-   "clusters": "exhaust tips(4), exhaust cutouts(3), exhaust kits(8), manifold/header(2); soovitus jagada tips/cutouts/kits",
-   "date": "2026-07-09"
+   "confidence": "korge",
+   "clusters": "väljalasketorud-kitid ~8 vs exhaust tip'id ~4 (otsakud) vs electric cutout ventiilid ~3 vs header/tihend → jaga 3-4 tüüpi",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_el_12x2_16": {
    "name": "Tasakaalu- ja liikumismänguasjad",
@@ -2394,8 +2477,9 @@
    "n": 17,
    "verdict": "GRAB",
    "confidence": "kesk",
-   "clusters": "balance beams(~6), stepping stones(~7), crash pads(3); jaga beams/stones/crash",
-   "date": "2026-07-09"
+   "clusters": "tasakaalupoomid+astumiskivid ~13 (balance) vs crash pad/sensoorne matt ~3 → eralda crash padid",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_ag2_3x6_2": {
    "name": "Autovõimendid",
@@ -2447,9 +2531,10 @@
    "main": "Aed ja aiatehnika",
    "n": 17,
    "verdict": "GRAB",
-   "confidence": "kesk",
-   "clusters": "lawn sweepers(~6), dethatchers(4), aerators(3), rakes(~4); jaga sweeper/dethatcher/aerator/rake",
-   "date": "2026-07-09"
+   "confidence": "korge",
+   "clusters": "pühkijad (kogumine) ~6, dethatcherid ~4, rehad ~3, aeraatorid ~3, roller, PTO võll → eri funktsioonid, jaga",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_t3f_1_22": {
    "name": "Silmus- ja lehtvõtmete komplektid",
@@ -2492,9 +2577,10 @@
    "main": "Sport ja vaba aeg",
    "n": 17,
    "verdict": "GRAB",
-   "confidence": "korge",
-   "clusters": "jalgrattatrenažöörid ~8, velotrenažöörid ~6, minitrampoliinid ~3; jaga trenažöörid vs kardio-rattad vs trampoliinid",
-   "date": "2026-07-09"
+   "confidence": "kesk",
+   "clusters": "velotrenažöörid/rattad (~13) + minibatuudid (hüppamine 3) + all-laua pedaal; eralda batuudid",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_es_9x3_5": {
    "name": "Uksesulgurid & paanikalukud",
@@ -2502,8 +2588,9 @@
    "n": 17,
    "verdict": "GRAB",
    "confidence": "korge",
-   "clusters": "uksesulgurid ~11, paanikalukud/push-bar ~6; jaga uksesulgurid vs paanikalukud",
-   "date": "2026-07-09"
+   "clusters": "uksesulgurid ~11 (sulgeb ust) vs panic/push bar väljapääsulukud ~6 (avab) → eralda paanikalukud",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_t3h_12_1": {
    "name": "Survepesuri pinnapuhastid",
@@ -2538,8 +2625,9 @@
    "n": 17,
    "verdict": "GRAB",
    "confidence": "korge",
-   "clusters": "lõuendid ~9 + molbertid 3 + LED-valguslauad 5 → eralda valguslauad ja molbertid",
-   "date": "2026-07-09"
+   "clusters": "lõuendid ~9 (maalipind) + molbertid 3 (statiiv) + valguslauad/LED-padjad 5 (kalkeerimine); split lõuendid | molbertid | valguslauad",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_t3f_3_4": {
    "name": "Toru pressimistööriistad",
@@ -2547,8 +2635,9 @@
    "n": 17,
    "verdict": "GRAB",
    "confidence": "kesk",
-   "clusters": "pressimistööriistad ~14 + pressleuad(V15/V22/V28) 3 → eralda leuad",
-   "date": "2026-07-09"
+   "clusters": "pressimistööriistad ~13 vs pressimispakid/lõuad V15/V22/V28 ~3 (kulu/tarvik) → eralda lõuad",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_el_11x7_2": {
    "name": "Sagedusmuundurid",
@@ -2565,8 +2654,9 @@
    "n": 17,
    "verdict": "GRAB",
    "confidence": "kesk",
-   "clusters": "D-šaklid ~8 + hitch-receiverid 6 → eralda hitch receiverid",
-   "date": "2026-07-09"
+   "clusters": "D-rõngas šaklid ~8 vs shackle hitch receiver ~6 (haakekinnitus) vs soft shackle köied ~3 → eralda hitch receiverid",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_mv_8x4_1": {
    "name": "Tunnelkasvuhooned",
@@ -2626,19 +2716,21 @@
    "name": "Rehvitarvikud ja lumeketid",
    "main": "Autovaruosad ja -tarvikud",
    "n": 17,
-   "verdict": "GRAB",
-   "confidence": "kesk",
-   "clusters": "lumeketid ~14 + lumesokid 3; split: eralda 'Lumesokid'",
-   "date": "2026-07-09"
+   "verdict": "CLEAN",
+   "confidence": "korge",
+   "clusters": "lumeketid+lumesokid, sama funktsioon (veojõud)",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_el_12x2_10": {
    "name": "Mängumajad ja telgid",
    "main": "Lastekaubad ja mänguasjad",
    "n": 17,
-   "verdict": "GRAB",
-   "confidence": "korge",
-   "clusters": "mängutelgid ~11 + mängumajad ~6; split: 'Mängutelgid' vs 'Mängumajad'",
-   "date": "2026-07-09"
+   "verdict": "CLEAN",
+   "confidence": "kesk",
+   "clusters": "lastele mängutelgid/tunnelid/mängumajad — kõik mänguvarjualused",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_el_12x3_1": {
    "name": "Plüomeetrilised hüppekastid",
@@ -2654,9 +2746,10 @@
    "main": "Suurköögiseadmed",
    "n": 16,
    "verdict": "GRAB",
-   "confidence": "kesk",
-   "clusters": "pitsataigna pressid/rullid ~8 + taignajagajad 3 + pasta/tortilla masinad; split: 'Pitsataigna pressid/rullid' vs 'Taignajagajad' vs 'Pasta/tortilla masinad'",
-   "date": "2026-07-09"
+   "confidence": "korge",
+   "clusters": "taignajagajad (4) vs pitsataigna pressid (3) vs sheeter/rullid (4) vs mikser (1) — split funktsiooni järgi",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_t3a_11_1": {
    "name": "Lillepotid",
@@ -2734,19 +2827,21 @@
    "name": "Katusekandurid",
    "main": "Autovaruosad ja -tarvikud",
    "n": 16,
-   "verdict": "GRAB",
+   "verdict": "CLEAN",
    "confidence": "kesk",
-   "clusters": "soft roof pads (5), crossbars (4), ladder racks (4), cargo basket (2) — split pads/crossbars vs ladder racks",
-   "date": "2026-07-09"
+   "clusters": "katuseraami padjad/korvid/põikvardad/redeliraamid — kõik katusel veo süsteem",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_el_12x2_24": {
    "name": "Õppemänguasjad",
    "main": "Lastekaubad ja mänguasjad",
    "n": 16,
    "verdict": "GRAB",
-   "confidence": "korge",
-   "clusters": "busy boards (5), globes (3), marble runs (4), motorcycle engine toys (4), metal detector (1) — split eri tüüpideks",
-   "date": "2026-07-09"
+   "confidence": "kesk",
+   "clusters": "maakerad ×2 vs metallidetektor ×1; eralda metallidetektor",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_vt_3": {
    "name": "Jeep/maasturi välisosad",
@@ -2779,10 +2874,11 @@
    "name": "Ventilatsioonivõred ja restid",
    "main": "Santehnika, küte ja ventilatsioon",
    "n": 16,
-   "verdict": "GRAB",
-   "confidence": "kesk",
-   "clusters": "wall vent covers (8) vs return air filter grilles (8) — split kaheks",
-   "date": "2026-07-09"
+   "verdict": "CLEAN",
+   "confidence": "korge",
+   "clusters": "seina ventilatsioonivõred, eri suurused",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_ag2_3x1_13": {
    "name": "Vintsi trossid ja taasteplokid",
@@ -2870,9 +2966,10 @@
    "main": "Sport ja vaba aeg",
    "n": 16,
    "verdict": "GRAB",
-   "confidence": "kesk",
-   "clusters": "ronimisköied(7), ronimiskivid/seinad(5), ninja tree kits(3); soovitus: eralda ninja/kits eraldi L3-ks",
-   "date": "2026-07-09"
+   "confidence": "korge",
+   "clusters": "ronimisköied ~7 + kivid/haardepunktid ~5 + ninja-kitid 3 + dome-hammock 1; split köied | haardepunktid/kitid",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_el_12x1_23": {
    "name": "Võrkpalli ja mitmespordi võrgud",
@@ -2924,9 +3021,10 @@
    "main": "Lemmikloomatarbed",
    "n": 16,
    "verdict": "GRAB",
-   "confidence": "kesk",
-   "clusters": "valgustid ~8, alused/stand ~6, lisaks filter/jahuti/imur; jaga: akvaariumivalgustid | akvaariumialused | filtrid&hooldus",
-   "date": "2026-07-09"
+   "confidence": "korge",
+   "clusters": "valgustid ~7 + statiivid 6 + filter/jahuti/imur (eri funktsioonid); split valgustid | statiivid | hooldus/filter",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_ag_2_1": {
    "name": "Elektrikarjused ja tarvikud",
@@ -2934,8 +3032,9 @@
    "n": 16,
    "verdict": "GRAB",
    "confidence": "kesk",
-   "clusters": "traat/polywire ~7, karjusevõrk ~6, energiaandjad/laadijad ~4; jaga: karjuse-energiaandjad | karjusetraat/-lint | karjusevõrk",
-   "date": "2026-07-09"
+   "clusters": "karjuse-laadijad ~4 (seade) + traat/võrk/lint ~11 (juhe/materjal); split laadijad | juhtmed/võrgud",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_ag_1_2": {
    "name": "Pesakastid ja munemispesad",
@@ -2951,9 +3050,10 @@
    "main": "Meditsiin, labor & teadus",
    "n": 16,
    "verdict": "GRAB",
-   "confidence": "korge",
-   "clusters": "liikumisskuutrid ~11, põlveskuutrid 3, skuutri-korvid 2 → eralda põlveskuutrid + korvid",
-   "date": "2026-07-09"
+   "confidence": "kesk",
+   "clusters": "mobiilsusskuutrid ~11 + põlveskuutrid/knee walker 3 + tagakorvid 2; eralda põlvekõndijad ja korvid",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_f4_13x1_4": {
    "name": "CNC freespingid ja graveerijad",
@@ -2968,10 +3068,11 @@
    "name": "Taimetoed ja tugikonstruktsioonid",
    "main": "Aed ja aiatehnika",
    "n": 16,
-   "verdict": "GRAB",
+   "verdict": "CLEAN",
    "confidence": "kesk",
-   "clusters": "tomatipuurid ~7 vs maapostid/teibad ~8 → eralda puurid ja teibad",
-   "date": "2026-07-09"
+   "clusters": "taimetoed/tomatipuurid/vaiad — taimetugi; survey-vai üksik outlier",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_mv_6x1_3": {
    "name": "Mööblijalad",
@@ -2988,8 +3089,9 @@
    "n": 16,
    "verdict": "GRAB",
    "confidence": "korge",
-   "clusters": "piljardilauad ~7 vs kiid ~9 → eralda lauad ja kiid",
-   "date": "2026-07-09"
+   "clusters": "piljardilauad ~7 (mängupind) + kiid ~9 (löögikepp); split lauad | kiid",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_ks_5x2_20": {
    "name": "Seinariiulid ja ülariiulid",
@@ -2997,8 +3099,9 @@
    "n": 16,
    "verdict": "GRAB",
    "confidence": "kesk",
-   "clusters": "seinariiulid/ülariiulid ~9, pannirestid 2, nõude/klaasirestid ~4 → eralda pannirestid ja rippriiulid",
-   "date": "2026-07-09"
+   "clusters": "seina-/ülariiulid ~9 vs potiriiulid 2 + kruusihoidik 1 → eralda rippuvad potiriiulid",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_9traf1": {
    "name": "Liikluskoonused & delineaatorpostid",
@@ -3078,8 +3181,9 @@
    "n": 15,
    "verdict": "GRAB",
    "confidence": "korge",
-   "clusters": "nahatöö-komplektid 5, puitpõletus 3, seebi valmistamine/lõikur 3, vahasulatid 2, muud (vahtlõikur, scrapbook) — split: Nahatöö | Puitpõletus | Seebivalmistamine | Küünlavalmistamine",
-   "date": "2026-07-09"
+   "clusters": "nahatöö-komplektid 5 + seebilõikurid/seebikomplekt 3 + vahasulatid 2 + puitpõletuskomplektid 3 + vahtlõikur 1; eralda funktsioonide järgi",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_t3f_6_3": {
    "name": "Metallitreipingid",
@@ -3105,8 +3209,9 @@
    "n": 15,
    "verdict": "GRAB",
    "confidence": "kesk",
-   "clusters": "survepesurid ~12 (juhtmevaba+gaas) + pumbad 3 → eralda 'Survepesuri pumbad'",
-   "date": "2026-07-09"
+   "clusters": "survepesurid ~12 + survepesuri pumbad 3 (komponent); eralda pumbad",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_t3f_10_8": {
    "name": "E-track kinnitusrelsid ja komplektid",
@@ -3121,10 +3226,11 @@
    "name": "Tõstetoed ja tugistatiivid",
    "main": "Garaažiseadmed",
    "n": 15,
-   "verdict": "GRAB",
+   "verdict": "CLEAN",
    "confidence": "kesk",
-   "clusters": "jack stands ~6 + underhoist support stands ~8 → eralda 'Tõstetoed' vs 'Alustoed (under-hoist)'",
-   "date": "2026-07-09"
+   "clusters": "tugistatiivid/tõstetoed – sama tugifunktsioon",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_ag2_2x4_6": {
    "name": "Õlivahetuspannid ja tühjenduspaagid",
@@ -3177,8 +3283,9 @@
    "n": 15,
    "verdict": "GRAB",
    "confidence": "korge",
-   "clusters": "meigipeeglid ~8 + kosmeetikakohvrid/train case ~7 → split kaheks",
-   "date": "2026-07-09"
+   "clusters": "meigipeeglid ~8 (valgustus) + kosmeetikakohvrid 7 (hoiustus); eralda kaheks",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_rd1_2": {
    "name": "Kokkupandavad redelid",
@@ -3229,10 +3336,11 @@
    "name": "Muusikainstrumendid lastele",
    "main": "Lastekaubad ja mänguasjad",
    "n": 15,
-   "verdict": "GRAB",
+   "verdict": "CLEAN",
    "confidence": "korge",
-   "clusters": "tantsumatid 3 + trummikomplektid 7 + klahvpillid 5 → split kolmeks",
-   "date": "2026-07-09"
+   "clusters": "laste klaverid",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_mv_6x4_8": {
    "name": "Teenindus- & utility-kärud",
@@ -3247,10 +3355,11 @@
    "name": "Kettsaed ja mootorsaed",
    "main": "Aed ja aiatehnika",
    "n": 15,
-   "verdict": "GRAB",
+   "verdict": "CLEAN",
    "confidence": "kesk",
-   "clusters": "kettsaed ~9 + varrassaed ~6 → jaga kettsaed vs varssaed",
-   "date": "2026-07-09"
+   "clusters": "kõik kettsaed/varssaed – sama saagimisfunktsioon",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_1tootool": {
    "name": "Töötoolid & -taburetid",
@@ -3284,9 +3393,10 @@
    "main": "Autovaruosad ja -tarvikud",
    "n": 15,
    "verdict": "GRAB",
-   "confidence": "kesk",
-   "clusters": "cargo-latid ~8 + cargo-võrgud 2 + konteinerlukud 2 + katuseraamid 3 → eralda truck rack",
-   "date": "2026-07-09"
+   "confidence": "korge",
+   "clusters": "cargo bar ~8 (fikseerimine) + konteinerlukud 2 + cargo net 2 + redelirestid 3 (kandmine); eralda redelirestid ja lukud",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_el_11x1_3": {
    "name": "Kõlarid",
@@ -3319,10 +3429,11 @@
    "name": "Padrunvõtmete komplektid",
    "main": "Tööriistad ja tarvikud",
    "n": 15,
-   "verdict": "GRAB",
+   "verdict": "CLEAN",
    "confidence": "kesk",
-   "clusters": "padrunikomplektid ~10 + crowfoot-võtmed 3; eralda crowfoot",
-   "date": "2026-07-09"
+   "clusters": "padrun-/võtmekomplektid – sama kinnitite keeramise funktsioon",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_es_9x4_9": {
    "name": "Traataiad & -võrgud",
@@ -3346,10 +3457,11 @@
    "name": "Õhupuhastid ja filtrid",
    "main": "Santehnika, küte ja ventilatsioon",
    "n": 15,
-   "verdict": "GRAB",
+   "verdict": "CLEAN",
    "confidence": "kesk",
-   "clusters": "HVAC UV-valgustid 6 + osoonigeneraatorid 3 + filtrid 4 + õhupuhastid; eralda osoon+UV",
-   "date": "2026-07-09"
+   "clusters": "õhupuhastid/UV-desinfektsioon, sama funktsioon",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_t3f_11_3": {
    "name": "Tööriistakotid",
@@ -3393,8 +3505,9 @@
    "n": 14,
    "verdict": "GRAB",
    "confidence": "korge",
-   "clusters": "tappimismasinad/morticer ~8 + tapilõikurid (tenon cutter) ~5 → split kaheks",
-   "date": "2026-07-09"
+   "clusters": "tapilõikurid ~6 (tenon, lõikab tapi) vs tappimasinad/morticer ~8 (lõikab tapiava) - eri funktsioon; split tapilõikurid vs tappimasinad",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_es_10x1_6": {
    "name": "Väljalaskeventilaatorid",
@@ -3418,10 +3531,11 @@
    "name": "Lemmiklooma voodid",
    "main": "Lemmikloomatarbed",
    "n": 14,
-   "verdict": "GRAB",
+   "verdict": "CLEAN",
    "confidence": "korge",
-   "clusters": "narivoodid/window perch ~7 + lemmiklooma sohvad ~6 → split kaheks",
-   "date": "2026-07-09"
+   "clusters": "lemmiklooma voodid (narivoodi, tõstetud, diivan) - variandid",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_ag2_3x1_11": {
    "name": "Haagise tungrauad ja tugijalad",
@@ -3535,10 +3649,11 @@
    "name": "Üleujutuskaitse kotid ja barjäärid",
    "main": "Aed ja aiatehnika",
    "n": 14,
-   "verdict": "GRAB",
+   "verdict": "CLEAN",
    "confidence": "kesk",
-   "clusters": "tühjad liivakotid (6) vs veega-aktiveeruvad üleujutusbarjäärid (8) → jaga kaheks",
-   "date": "2026-07-09"
+   "clusters": "üleujutuskaitse (liivakotid + flood-barjäärid) - sama funktsioon",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_ks_5x3_3": {
    "name": "Helbejäämasinad",
@@ -3564,8 +3679,9 @@
    "n": 14,
    "verdict": "GRAB",
    "confidence": "kesk",
-   "clusters": "kipsplaadi silumislabidad/tarvikud (11) vs gaasi-jõuga betoonihõõrutid power trowel (3) → eralda power trowelid",
-   "date": "2026-07-09"
+   "clusters": "krohvi/pahtli käsitööriistad ~11 vs bensiini power trowel ~3 (masin) - split käsitööriistad vs jõu-siluja",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_6mail1": {
    "name": "Postkastid & pakikastid",
@@ -3589,10 +3705,11 @@
    "name": "Tolmuimejad",
    "main": "Tööriistad ja tarvikud",
    "n": 14,
-   "verdict": "GRAB",
+   "verdict": "CLEAN",
    "confidence": "kesk",
-   "clusters": "tuhaimejad (3), puidutolmu kollektorid (4), märg/kuiv töökojaimurid (7) — soovitan jagada kollektorid eraldi",
-   "date": "2026-07-09"
+   "clusters": "kõik imemis/kogumis-põhine (tuhaimeja, shop vac, tolmukoguja) - sama funktsioon",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_t3f_12_1": {
    "name": "Päikesepaneelide & akende puhastusvarrad ja -harjad",
@@ -3636,17 +3753,19 @@
    "n": 14,
    "verdict": "GRAB",
    "confidence": "korge",
-   "clusters": "küünefreesid (5), poolkuu-/laualambid (6), maniküürilauad (3) — jaga eraldi tüüpideks",
-   "date": "2026-07-09"
+   "clusters": "küünepuur ~5 + esteetiku valgusti/lambid ~6 + maniküürilaud ~3 - kolm eri tüüpi; split seadmed/valgustid/mööbel",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_ks_5x2_23": {
    "name": "Kondimentide serveerimisnõud",
    "main": "Suurköögiseadmed",
    "n": 14,
-   "verdict": "GRAB",
+   "verdict": "CLEAN",
    "confidence": "kesk",
-   "clusters": "toidu serveerimisnõud (6), jahutatud kondimentiserverid+prep-jaamad (8) — jaga jahutamata display vs külmutatud",
-   "date": "2026-07-09"
+   "clusters": "kõik toidu/kondimendi serveerimisnõud (jahutatud + display), sama funktsioon",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_mv_6x1_23": {
    "name": "Seinavoodi mehhanismid",
@@ -3708,8 +3827,9 @@
    "n": 14,
    "verdict": "GRAB",
    "confidence": "kesk",
-   "clusters": "Koera ratastoolid ~7, ortopeedilised toed/breces ~5. Split: 'Koera ratastoolid' vs 'Koera ortopeedilised toed'",
-   "date": "2026-07-09"
+   "clusters": "ratastoolid ~7 (liikumisabi) vs toed/breace ~6 (ortopeediline tugi) - split mobiilsusabi vs toed",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_t3f_6_2": {
    "name": "Plekikäärid",
@@ -3744,8 +3864,9 @@
    "n": 13,
    "verdict": "GRAB",
    "confidence": "korge",
-   "clusters": "katusekorvid ~9 + põikitalad/cross bars ~4 → jaga: 'Katusekorvid' vs 'Katuseraami põikitalad'",
-   "date": "2026-07-09"
+   "clusters": "katusekorvid/cargo (8) vs risttalad/crossbars (5) — split: eralda 'Katuse risttalad'",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_t3f_12_6": {
    "name": "Magnetpühkijad & magnetkoristajad",
@@ -3789,8 +3910,9 @@
    "n": 13,
    "verdict": "GRAB",
    "confidence": "korge",
-   "clusters": "lekketuvastid ~6 + survetestrpumbad ~5 + vaakumpumbad ~2 → jaga: 'Lekketuvastid' vs 'Survetesti pumbad'",
-   "date": "2026-07-09"
+   "clusters": "lekketuvastid ~6, surve/hüdrostaatilised testpumbad ~5, vaakumpumbad/-kamber ~2 — eralda seadmetüübid",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_mv_6x2_3": {
    "name": "Seinakapid",
@@ -3824,27 +3946,30 @@
    "main": "Sport ja vaba aeg",
    "n": 13,
    "verdict": "GRAB",
-   "confidence": "kesk",
-   "clusters": "masinad 3 + tarvikud/attachments 7 + pulley-süsteemid 3; split: masinad vs tarvikud",
-   "date": "2026-07-09"
+   "confidence": "korge",
+   "clusters": "lat-masinad (3) vs kaabli-otsikud/attachments (5) vs ploki-süsteemid (3) — split seade vs tarvikud",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_el_12x3_23": {
    "name": "Tõstekangid (barbell ja trap bar)",
    "main": "Sport ja vaba aeg",
    "n": 13,
-   "verdict": "GRAB",
+   "verdict": "CLEAN",
    "confidence": "korge",
-   "clusters": "barbell-kangid ~7 + trap/hex-bar ~6; split kaheks",
-   "date": "2026-07-09"
+   "clusters": "tõstekangid (barbell + trap/hex bar) — sama funktsioon",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_ag_2_3": {
    "name": "Heinasööturid ja heinavõrgud",
    "main": "Põllumajandus ja loomakasvatus",
    "n": 13,
-   "verdict": "GRAB",
-   "confidence": "korge",
-   "clusters": "heinasööturid ~5 + heinavõrgud/-kotid ~8; split kaheks",
-   "date": "2026-07-09"
+   "verdict": "CLEAN",
+   "confidence": "kesk",
+   "clusters": "heina söötmise vahendid (sööturid + võrgud/kotid) — sama funktsioon",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_el_12x3_28": {
    "name": "Lihasmasinad",
@@ -3859,10 +3984,11 @@
    "name": "Voodipõhjad & latialused",
    "main": "Mööbel ja sisustus",
    "n": 13,
-   "verdict": "GRAB",
+   "verdict": "CLEAN",
    "confidence": "korge",
-   "clusters": "box spring ~5 + bunkie board ~8; split kaheks",
-   "date": "2026-07-09"
+   "clusters": "voodialused (box spring + bunkie board) — sama funktsioon",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_t3f_1_5": {
    "name": "Pitskruvid",
@@ -3877,10 +4003,11 @@
    "name": "Praepannid ja pannikomplektid",
    "main": "Suurköögiseadmed",
    "n": 13,
-   "verdict": "GRAB",
+   "verdict": "CLEAN",
    "confidence": "kesk",
-   "clusters": "praepannid/skilletid ~7, grillplaadid/griddle 4, küpsetusplaadid 1, cookware-komplekt 1; eralda griddle'd + küpsetusplaadid",
-   "date": "2026-07-09"
+   "clusters": "praepannid/skilletid + üksik pannikomplekt-outlier",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_t3a_9_6": {
    "name": "Küttepuude hoidikud & kärud",
@@ -3895,10 +4022,11 @@
    "name": "Masina- ja konteinerikärud",
    "main": "Tööriistad ja tarvikud",
    "n": 13,
-   "verdict": "GRAB",
+   "verdict": "CLEAN",
    "confidence": "kesk",
-   "clusters": "masinaskeidid/dolly ~6, mobiilsed alused 3, konteinerirattad 4; eralda mobiilsed alused",
-   "date": "2026-07-09"
+   "clusters": "raskete objektide liigutamise abivahendid (dolly/mobile base/container wheels) — sama funktsioon",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_t3f_9_3": {
    "name": "Teemantlõikekettad",
@@ -3951,8 +4079,9 @@
    "n": 13,
    "verdict": "GRAB",
    "confidence": "korge",
-   "clusters": "väravad/kitid (8), nurgakinnitused (4), pergola-klamber (1) → tõsta hardware eraldi",
-   "date": "2026-07-09"
+   "clusters": "aiaväravad (4) vs värava-ehituskomplektid (4) vs nurgakronsteinid/hardware (5) — split väravad vs kinnitused",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_3dolly": {
    "name": "Haagise teisalduskärud",
@@ -3969,8 +4098,9 @@
    "n": 13,
    "verdict": "GRAB",
    "confidence": "kesk",
-   "clusters": "pocket hole jigid (9), kapifurnituuri/riiulitihvti šabloonid (4) → eralda",
-   "date": "2026-07-09"
+   "clusters": "pocket hole jig ~8, cabinet hardware/handle jig ~2, shelf pin jig ~1 — eri puurimisšabloonid; soovitus eraldada mööbli-furnituuri jig'id",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_2cw": {
    "name": "Autopesu ja veetöötlus",
@@ -4012,10 +4142,11 @@
    "name": "Põrandakütte kollektorid ja torud",
    "main": "Santehnika, küte ja ventilatsioon",
    "n": 13,
-   "verdict": "GRAB",
+   "verdict": "CLEAN",
    "confidence": "korge",
-   "clusters": "kollektorid (9), PEX-torud (4) → eralda torud",
-   "date": "2026-07-09"
+   "clusters": "PEX põrandakütte kollektorid, eri harude arv",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_t3a_6_3": {
    "name": "Veejoad ja purskkaevud",
@@ -4039,10 +4170,11 @@
    "name": "Õllepruulimisseadmed",
    "main": "Suurköögiseadmed",
    "n": 13,
-   "verdict": "GRAB",
+   "verdict": "CLEAN",
    "confidence": "kesk",
-   "clusters": "fermentorid ~4 + kompaktsed pruulimissüsteemid/masinad ~8 + pruulikotid 1; split: fermentorid vs pruulimasinad",
-   "date": "2026-07-09"
+   "clusters": "õllepruulimis-seadmed ja katlad (brew-kotid üksik-outlier)",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_es_10x2_7": {
    "name": "Käsipumbad",
@@ -4076,9 +4208,10 @@
    "main": "Elektroonika & multimeedia",
    "n": 13,
    "verdict": "GRAB",
-   "confidence": "kesk",
-   "clusters": "Starlink pikenduskaablid ~9 + kinnitused/mount ~4; split: kaablid vs kinnitused",
-   "date": "2026-07-09"
+   "confidence": "korge",
+   "clusters": "Starlink kaablid (9) vs kinnitused/mountid (4) — split: eralda 'Starlink kinnitused'",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_tk1_2": {
    "name": "Platvormkärud",
@@ -4102,10 +4235,11 @@
    "name": "Kõndimiskepid ja -raamid",
    "main": "Meditsiin, labor & teadus",
    "n": 13,
-   "verdict": "GRAB",
-   "confidence": "kesk",
-   "clusters": "kõndimisraamid ~4, kargud ~3, kepid ~5 — split kargud eraldi",
-   "date": "2026-07-09"
+   "verdict": "CLEAN",
+   "confidence": "korge",
+   "clusters": "kõik liikumisabivahendid (kepid, kargud, käimisraamid) — sama funktsioon",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_es_9x10_1": {
    "name": "Akustilised seinapaneelid",
@@ -4120,10 +4254,11 @@
    "name": "Bell- & glämpingtelgid",
    "main": "Sport ja vaba aeg",
    "n": 13,
-   "verdict": "GRAB",
-   "confidence": "kesk",
-   "clusters": "bell/canvas-telgid ~6 vs hot/tipi-telgid ~7 — split kuumtelgid eraldi",
-   "date": "2026-07-09"
+   "verdict": "CLEAN",
+   "confidence": "korge",
+   "clusters": "telkimistelgid (hot/bell/tipi) — sama funktsioon",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_t3f_8_2": {
    "name": "Kraanakaalud",
@@ -4176,8 +4311,9 @@
    "n": 13,
    "verdict": "GRAB",
    "confidence": "kesk",
-   "clusters": "istmekatted/hammockid ~11 + koeratrepid autole 2 (~15%); eralda 'Koeratrepid'",
-   "date": "2026-07-09"
+   "clusters": "istmekatted/hammockid+boosterseat (~11) vs auto-trepid koertele (2) — split: eralda 'Koera autotrepid'",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_t3a_1_16": {
    "name": "Murutasandusrehad",
@@ -4194,8 +4330,9 @@
    "n": 13,
    "verdict": "GRAB",
    "confidence": "kesk",
-   "clusters": "elektrijaamad 10 + lisaakud 3; eralda 'Lisaakud'",
-   "date": "2026-07-09"
+   "clusters": "elektrijaamad (10) vs lisaakud/laienduspatareid (3) — split: eralda 'Lisaakud elektrijaamadele'",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_ks_5x2_31": {
    "name": "Isoleeritud toidukandurid",
@@ -4284,8 +4421,9 @@
    "n": 12,
    "verdict": "GRAB",
    "confidence": "korge",
-   "clusters": "puslelauad/-boardid (9) + Mahjong/kaardilauad (3) — split: eralda Mahjong-lauad",
-   "date": "2026-07-09"
+   "clusters": "puslelauad/-hoidjad ~9 vs mahjong/mängulauad 3 → eralda mahjong-lauad",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_el_12x1_35": {
    "name": "Noolemängud ja -lauad",
@@ -4309,10 +4447,11 @@
    "name": "Hokivärava tarvikud",
    "main": "Sport ja vaba aeg",
    "n": 12,
-   "verdict": "GRAB",
+   "verdict": "CLEAN",
    "confidence": "kesk",
-   "clusters": "lacrosse-väravad (6), hokiväravad/võrgud (4), kombo (2) → jaga lacrosse vs hoki",
-   "date": "2026-07-09"
+   "clusters": "hoki-/lacrosse-väravad ja tagavõrgud, sama funktsioon (väravavõrk)",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_mv_6x7_11": {
    "name": "Tooli satiinpaelad ja kaunistused",
@@ -4320,8 +4459,9 @@
    "n": 12,
    "verdict": "GRAB",
    "confidence": "korge",
-   "clusters": "toolikotid klassiruumi (3), satiin-toolipaelad (9) → jaga kaheks",
-   "date": "2026-07-09"
+   "clusters": "satiin-toolipaelad ~9 vs klassiruumi toolitaskud 3 → eralda toolitaskud",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_mv_6x3_12": {
    "name": "Raha- & mündiloendusmasinad",
@@ -4329,8 +4469,9 @@
    "n": 12,
    "verdict": "GRAB",
    "confidence": "korge",
-   "clusters": "raha/mündiloendajad (9), kassasahtlid (3) → jaga loendajad vs kassasahtlid",
-   "date": "2026-07-09"
+   "clusters": "raha/mündiloendurid ~9 vs kassasahtlid 3 → eralda kassasahtlid",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_mv_6x2_14": {
    "name": "Hoiukastid & -kirstud",
@@ -4390,19 +4531,21 @@
    "name": "Pitsakivid ja -terad",
    "main": "Suurköögiseadmed",
    "n": 12,
-   "verdict": "GRAB",
+   "verdict": "CLEAN",
    "confidence": "korge",
-   "clusters": "pizza steel ~5 + pizza stone ~7; split: teraslehed vs kordieriitkivid",
-   "date": "2026-07-09"
+   "clusters": "pitsakivid/-terad, sama funktsioon (küpsetuspind)",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_ks_5x2_25": {
    "name": "Fritüüriõli filtreerimistarvikud",
    "main": "Suurköögiseadmed",
    "n": 12,
    "verdict": "GRAB",
-   "confidence": "kesk",
-   "clusters": "grease bucket ~8 + filtripaber 2 + mobiilne filter 2; split: õlifilter/paber vs jäätmeämbrid",
-   "date": "2026-07-09"
+   "confidence": "korge",
+   "clusters": "filtripaber-kulumaterjal ×2 vs mobiilne filtreerimisseade ×3; jaga kulumaterjal ja seade",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_ag2_2x1_15": {
    "name": "Piduri õhutus- ja remonditööriistad",
@@ -4410,17 +4553,19 @@
    "n": 12,
    "verdict": "GRAB",
    "confidence": "korge",
-   "clusters": "pidurite õhutus ~7 + torutööriistad/flaring ~5; split kaheks",
-   "date": "2026-07-09"
+   "clusters": "piduri õhutus/bleeder-tööriistad ~7 vs pidurtoru flaring/remont ~5 → split kaheks",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_t3f_2_7": {
    "name": "Teritusmasinad",
    "main": "Tööriistad ja tarvikud",
    "n": 12,
-   "verdict": "GRAB",
-   "confidence": "korge",
-   "clusters": "saeketta teritajad ~5 + puuriteritajad ~7; split kaheks",
-   "date": "2026-07-09"
+   "verdict": "CLEAN",
+   "confidence": "kesk",
+   "clusters": "teritusmasinad (saeketas + puuriterad), sama funktsioon",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_t3f_4_1": {
    "name": "Aerograafi komplektid",
@@ -4455,8 +4600,9 @@
    "n": 12,
    "verdict": "GRAB",
    "confidence": "korge",
-   "clusters": "udupihusti-ventilaatorid ~6, kaask. õhukliima/jahutid 3, õhuniisutajad+filtrid 3 → jaga ventilaatorid vs jahutid vs niisutajad",
-   "date": "2026-07-09"
+   "clusters": "õhuniisuti-seade ×1 vs asendusfiltrid-kulumaterjal ×2; jaga seade ja tarvikud",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_es_10x1_18": {
    "name": "Ventilatsioonitorud ja painduvad kanalid",
@@ -4527,8 +4673,9 @@
    "n": 12,
    "verdict": "GRAB",
    "confidence": "kesk",
-   "clusters": "privaatsus-/dušitelgid ~10 + pop-up gazebo/varjualused 2 (16%); eralda gazebod",
-   "date": "2026-07-09"
+   "clusters": "dušitelgid/privaatsustelgid ~10 vs pop-up gazebo päikesevari 2 (16%). Split: eralda gazebo-varjualused",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_12t2": {
    "name": "Mull- & sporditelgid",
@@ -4545,17 +4692,19 @@
    "n": 12,
    "verdict": "GRAB",
    "confidence": "korge",
-   "clusters": "jahisaagikärud ~5 + tõstukid/hoistid ~7; eralda hoistid",
-   "date": "2026-07-09"
+   "clusters": "jahisaagi-kärud/kelgud ~5 (vedu) vs tõstukid/hoistid ~6 (tõstmine). Split kaheks",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_f4_13x3_4": {
    "name": "LED-reklaamtahvlid & -ekraanid",
    "main": "Reklaami-, trüki- ja graveerimisseadmed",
    "n": 12,
    "verdict": "GRAB",
-   "confidence": "korge",
-   "clusters": "digisignage-ekraanid 2 + LED-kirjutustahvlid 3 + posterraamid 3 + programm. LED-sildid 4; jaga tüüpideks",
-   "date": "2026-07-09"
+   "confidence": "kesk",
+   "clusters": "programmeeritavad LED-sildid ~4, LED-kirjutustahvlid ~3, LED-plakatiraamid ~3, puutetundlik digikiosk ~2 — eri reklaamekraani tüübid",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_lp_1_1": {
    "name": "Linnupuurid",
@@ -4581,8 +4730,9 @@
    "n": 12,
    "verdict": "GRAB",
    "confidence": "korge",
-   "clusters": "voodipiirded 7 + trapetsvardad 5; eralda trapetsid",
-   "date": "2026-07-09"
+   "clusters": "voodipiirded 7 (kukkumiskaitse) vs trapetsid 5 (liikumisabi/tõstmine). Split kaheks",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_t3f_14_5": {
    "name": "Anatoomilised õppemudelid",
@@ -4606,10 +4756,11 @@
    "name": "Tarad ja võrgud",
    "main": "Põllumajandus ja loomakasvatus",
    "n": 12,
-   "verdict": "GRAB",
-   "confidence": "kesk",
-   "clusters": "Farm Fence tara (4) + Hardware Cloth traatvõrk (8); jaga kaheks",
-   "date": "2026-07-09"
+   "verdict": "CLEAN",
+   "confidence": "korge",
+   "clusters": "traatvõrk-tarad (mesh fencing), sama funktsioon",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_vt_8": {
    "name": "Astmelauad ja astmed",
@@ -4635,8 +4786,9 @@
    "n": 12,
    "verdict": "GRAB",
    "confidence": "korge",
-   "clusters": "jäämasinad (~6) + jäätisemasinad (~5); jaga kaheks",
-   "date": "2026-07-09"
+   "clusters": "jäämasinad ~7 vs jäätisemasinad ~5 → split kaheks",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_ks_4x3_8": {
    "name": "Seadmete libistusalused",
@@ -4678,10 +4830,11 @@
    "name": "Veekogude umbrohutööriistad",
    "main": "Aed ja aiatehnika",
    "n": 12,
-   "verdict": "GRAB",
+   "verdict": "CLEAN",
    "confidence": "korge",
-   "clusters": "reha ~4, weed cutter 3, weed roller 5 → jaga reha/lõikur/rull",
-   "date": "2026-07-09"
+   "clusters": "veekogu umbrohutööriistad (reha/lõikur/rull), sama funktsioon",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_t3a_9_5": {
    "name": "Lõkkekolded & tulekausid",
@@ -4759,28 +4912,31 @@
    "name": "Lae- ja seinaventilaatorid",
    "main": "Santehnika, küte ja ventilatsioon",
    "n": 11,
-   "verdict": "GRAB",
+   "verdict": "CLEAN",
    "confidence": "korge",
-   "clusters": "laeventilaatorid ~6, seinaventilaatorid ~3, väljatõmbeventilaatorid ~2; jaga laeventilaatorid vs sein/väljatõmme",
-   "date": "2026-07-09"
+   "clusters": "lae- ja seinaventilaatorid, sama õhuliigutus-funktsioon",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_el_12x2_22": {
    "name": "Laste reisikohvrid",
    "main": "Lastekaubad ja mänguasjad",
    "n": 11,
-   "verdict": "GRAB",
+   "verdict": "CLEAN",
    "confidence": "korge",
-   "clusters": "kohvrikomplektid ~7, pealistutav ride-on kohver ~4; jaga eraldi",
-   "date": "2026-07-09"
+   "clusters": "laste reisikohvrid (komplektid + ride-on), sama funktsioon",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_t3f_1_19": {
    "name": "Üldtööriistakomplektid",
    "main": "Tööriistad ja tarvikud",
    "n": 11,
    "verdict": "GRAB",
-   "confidence": "korge",
-   "clusters": "multitangid ~2, mehaaniku komplektid ~2, majapidamise tööriistakomplektid ~4, grommet/snap ring ~3; jaga tüüpide järgi",
-   "date": "2026-07-09"
+   "confidence": "kesk",
+   "clusters": "tööriistakomplektid/tangid ~8 vs grommet/luugi-paigalduskomplektid 2 + snap-ring. Split: eralda grommet-kitid",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_th1_2": {
    "name": "Tõstemagnetid",
@@ -4850,9 +5006,10 @@
    "main": "Sport ja vaba aeg",
    "n": 11,
    "verdict": "GRAB",
-   "confidence": "kesk",
-   "clusters": "joogamatid ~7 vs matihoidiku-rack 3 → eralda hoidikud",
-   "date": "2026-07-09"
+   "confidence": "korge",
+   "clusters": "joogamatid ~8 (harjutuspind) vs matihoidiku-riiulid 3 (hoiustus). Split: eralda hoiuriiulid",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_es_10x3_4": {
    "name": "Torutoed & -hoidikud",
@@ -4860,8 +5017,9 @@
    "n": 11,
    "verdict": "GRAB",
    "confidence": "kesk",
-   "clusters": "torutoed/jack-stand ~8 vs toru-kruustangid 3 → eralda vise",
-   "date": "2026-07-09"
+   "clusters": "toru-toed/stendid ~7 (tugi) vs toru-kruustangid 4 (kinnitus/töötlus) → eralda kruustangid",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_t3f_2_2": {
    "name": "Vahtplasti lõikurid",
@@ -4903,19 +5061,21 @@
    "name": "Lauasahtlid & -alused",
    "main": "Mööbel ja sisustus",
    "n": 11,
-   "verdict": "GRAB",
+   "verdict": "CLEAN",
    "confidence": "kesk",
-   "clusters": "lauasahtlid 8; klaviatuurialused 2 (~18%); monitorihoidik 1 → eralda alused/monitorihoidik",
-   "date": "2026-07-09"
+   "clusters": "laua-alused/sahtlid/tray, monitori-mount üksik-outlier",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_ag2_3x5_5": {
    "name": "Tasandusplokid ja -kiilud",
    "main": "Autovaruosad ja -tarvikud",
    "n": 11,
    "verdict": "GRAB",
-   "confidence": "korge",
-   "clusters": "tugipadjad 5; jack-plokid 3; rattatõkised 2; camper-leveler 1 → eralda tõkised/plokid/padjad",
-   "date": "2026-07-09"
+   "confidence": "kesk",
+   "clusters": "tasandusplokid/-padjad ~7 (tasandus) vs rattatõkised 2-3 (fikseerimine) - piiripealne",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_mv_6x3_2": {
    "name": "Kõnepuldid",
@@ -4975,10 +5135,11 @@
    "name": "Keskkonna- & õhukvaliteedi-mõõturid",
    "main": "Tööriistad ja tarvikud",
    "n": 11,
-   "verdict": "GRAB",
+   "verdict": "CLEAN",
    "confidence": "kesk",
-   "clusters": "CO2/õhukvaliteet ~7, EMF-mõõturid 2, anemomeeter 1, radoon 1; eralda EMF-mõõturid õhukvaliteedist",
-   "date": "2026-07-09"
+   "clusters": "keskkonnamõõturid, sama mõõtmisfunktsioon",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_5n21": {
    "name": "Termos-joogidispenserid",
@@ -4995,8 +5156,9 @@
    "n": 11,
    "verdict": "GRAB",
    "confidence": "kesk",
-   "clusters": "mikroskoobid ~9, endoskoopkaamerad 2; eralda endoskoobid",
-   "date": "2026-07-09"
+   "clusters": "mikroskoobid ~9 vs endoskoop/borescope inspektsioonikaamerad 2 (18%); split: eralda endoskoobid",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_ag2_3x7_8": {
    "name": "Koorma- & kaubavõrgud",
@@ -5056,10 +5218,11 @@
    "name": "Pulmakaared & lilledekoor",
    "main": "Peoinventar ja dekoratsioonid",
    "n": 11,
-   "verdict": "GRAB",
-   "confidence": "kesk",
-   "clusters": "lillekaunistus-kitid ~7 + kaare-/lillestatiivid ~4 → eralda statiivid",
-   "date": "2026-07-09"
+   "verdict": "CLEAN",
+   "confidence": "madal",
+   "clusters": "pulmadekoor (lillestatiivid+kaared+lilled), sama dekor-funktsioon",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_ks_5x1_20": {
    "name": "Pitsaahjud ja -küpsetajad",
@@ -5074,19 +5237,21 @@
    "name": "Basseinipuhastid & puhastustarvikud",
    "main": "Aed ja aiatehnika",
    "n": 11,
-   "verdict": "GRAB",
-   "confidence": "kesk",
-   "clusters": "tolmuimejad/basseinipuhastid ~6 + tarvikud (voolik, hari, varras, kit) ~5 → eralda tarvikud",
-   "date": "2026-07-09"
+   "verdict": "CLEAN",
+   "confidence": "korge",
+   "clusters": "basseinipuhastuse tööriistad/tarvikud",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_ks_5x1_15": {
    "name": "Sõõrikumasinad",
    "main": "Suurköögiseadmed",
    "n": 11,
-   "verdict": "GRAB",
+   "verdict": "CLEAN",
    "confidence": "korge",
-   "clusters": "sõõrikumasinad ~7 + pannkoogi-/dorayaki-tegijad ~4 → eralda pancake makers",
-   "date": "2026-07-09"
+   "clusters": "sõõrikumasinad+depositor, sama funktsioon",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_21bookcart": {
    "name": "Raamatu- ja raamatukogukärud",
@@ -5110,19 +5275,21 @@
    "name": "Söögiriistade ja lauanõude komplektid",
    "main": "Suurköögiseadmed",
    "n": 11,
-   "verdict": "GRAB",
+   "verdict": "CLEAN",
    "confidence": "korge",
-   "clusters": "söögiriistade komplektid ~8 + lauanõude/taldrikute komplektid ~3; jaga: flatware vs dinnerware",
-   "date": "2026-07-09"
+   "clusters": "kõik söögiriistade komplektid",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_el_11x6_2": {
    "name": "Tänava- ja välisvalgustid",
    "main": "Elektritarvikud ja valgustus",
    "n": 11,
-   "verdict": "GRAB",
-   "confidence": "kesk",
-   "clusters": "tänavavalgustid ~6 + post/aiapostvalgustid 2 + seina/aida-valgustid 3; jaga tüübiti",
-   "date": "2026-07-09"
+   "verdict": "CLEAN",
+   "confidence": "korge",
+   "clusters": "välisvalgustid, sama valgustusfunktsioon",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_ks_5x7_2": {
    "name": "Vedeliku täitemasinad",
@@ -5210,9 +5377,10 @@
    "main": "Autovaruosad ja -tarvikud",
    "n": 11,
    "verdict": "GRAB",
-   "confidence": "kesk",
-   "clusters": "käsivintsid ~6, vintsi-kinnitused/mount ~4 (+1 jack bracket); jaga 'Käsivintsid' ja 'Vintsi kinnitused'",
-   "date": "2026-07-09"
+   "confidence": "korge",
+   "clusters": "käsivintsid 6 (tõmbamine) vs vintsi-kinnitused 5 (mount/bracket) → eralda mount'id",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_es_9x9_2": {
    "name": "Soojusisolatsioonirullid ja -materjalid",
@@ -5281,10 +5449,11 @@
    "name": "Madratsivahe täidised",
    "main": "Mööbel ja sisustus",
    "n": 11,
-   "verdict": "GRAB",
-   "confidence": "kesk",
-   "clusters": "bed bridge converter kit (5) + bed wedge pillow (6); jaga kaheks",
-   "date": "2026-07-09"
+   "verdict": "CLEAN",
+   "confidence": "korge",
+   "clusters": "voodi-vahetäidised (bridge+wedge), sama funktsioon",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_es_9x7_3": {
    "name": "Kapihinged",
@@ -5300,9 +5469,10 @@
    "main": "Autovaruosad ja -tarvikud",
    "n": 11,
    "verdict": "GRAB",
-   "confidence": "korge",
-   "clusters": "guide-ons (~3) + steps (3) + winch stands (4) + dolly (1); jaga tüübiti",
-   "date": "2026-07-09"
+   "confidence": "kesk",
+   "clusters": "suunajad ~3, astmed 3, vintsi-stendid 4, dolly 1 - eri funktsioonid → jaga tüüpideks",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_es_10x1_17": {
    "name": "Külmaaine-manomeetrid ja tarvikud",
@@ -5310,8 +5480,9 @@
    "n": 11,
    "verdict": "GRAB",
    "confidence": "korge",
-   "clusters": "manifold gauges (6) + charging scales (2) + recovery tanks (3); jaga kolmeks",
-   "date": "2026-07-09"
+   "clusters": "manomeetrid 6 (mõõtmine) + digikaalud 2 + kogumispaagid 3 → eralda kaalud ja paagid",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_ag2_2x1_19": {
    "name": "Induktsioonkuumutid",
@@ -5319,17 +5490,19 @@
    "n": 11,
    "verdict": "GRAB",
    "confidence": "kesk",
-   "clusters": "induktsioonpoolid/tarvikud (~4) vs induktsioonkuumuti-komplektid (~7); eralda tarvikud",
-   "date": "2026-07-09"
+   "clusters": "induktsioonkuumutid ~7 vs pooli-/tarvikukomplektid ~4; split: eralda coil-kit tarvikud",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_f4_16x2_4": {
    "name": "Inkontinentsitooted",
    "main": "Meditsiin, labor & teadus",
    "n": 11,
-   "verdict": "GRAB",
-   "confidence": "korge",
-   "clusters": "kantavad mähkmed/aluspüksid (~6) vs voodialused/underpads (5); eralda underpads",
-   "date": "2026-07-09"
+   "verdict": "CLEAN",
+   "confidence": "kesk",
+   "clusters": "kõik inkontinentsi imavtooted (mähkmed, püksid, aluslinad)",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_t3f_6_5": {
    "name": "Plekipainutuspingid",
@@ -5346,8 +5519,9 @@
    "n": 10,
    "verdict": "GRAB",
    "confidence": "korge",
-   "clusters": "uurimislauad (~5) vs voodilauad/overbed (5); eralda overbed-lauad",
-   "date": "2026-07-09"
+   "clusters": "uuringulauad ~6 (läbivaatus) vs voodilauad/overbed ~4 (kõrvallaud) → jaga",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_f4_13xtex_12": {
    "name": "Sublimatsioonitoorikud (topsid & termosed)",
@@ -5362,10 +5536,11 @@
    "name": "Posteri- & bännerihoidikud",
    "main": "Reklaami-, trüki- ja graveerimisseadmed",
    "n": 10,
-   "verdict": "GRAB",
+   "verdict": "CLEAN",
    "confidence": "kesk",
-   "clusters": "bännerihoidikud/backdrop (~4) vs sildihoidikud/pedestal+post (~6); eralda sildihoidikud",
-   "date": "2026-07-09"
+   "clusters": "bänneri-/sildi-/posterialused — sama kuvamis-funktsioon",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_f4_13x1_5": {
    "name": "Spindelmootorid ja tarvikud",
@@ -5427,8 +5602,9 @@
    "n": 10,
    "verdict": "GRAB",
    "confidence": "korge",
-   "clusters": "balletipuurid 6 + tantsupostid 4; eralda 'Tantsupostid'",
-   "date": "2026-07-09"
+   "clusters": "balletipuud 6 (venitus) + tantsupostid 4 (pole dance) → eralda",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_19xylo": {
    "name": "Ksülofonid & kellamängud",
@@ -5488,10 +5664,11 @@
    "name": "Välisvalgustid",
    "main": "Elektritarvikud ja valgustus",
    "n": 10,
-   "verdict": "GRAB",
-   "confidence": "kesk",
-   "clusters": "post-lambid (3) vs seinavalgustid (7); split: postivalgustid vs seinavalgustid",
-   "date": "2026-07-09"
+   "verdict": "CLEAN",
+   "confidence": "korge",
+   "clusters": "välisvalgustid (post/wall), sama funktsioon",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_el_11x5_1": {
    "name": "Laualambid",
@@ -5542,10 +5719,11 @@
    "name": "Gravitatsioonilised veefiltrid",
    "main": "Santehnika, küte ja ventilatsioon",
    "n": 10,
-   "verdict": "GRAB",
+   "verdict": "CLEAN",
    "confidence": "kesk",
-   "clusters": "gravitatsioonisüsteemid ~8 + veefilter-kannud 2 (20%); split: kannud eraldi",
-   "date": "2026-07-09"
+   "clusters": "veefiltrid (gravitatsioon + kann) — sama funktsioon",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_ag2_3x7_10": {
    "name": "Mootorratta kohvrid & kandurid",
@@ -5560,46 +5738,51 @@
    "name": "Plaatsoojusvahetid",
    "main": "Santehnika, küte ja ventilatsioon",
    "n": 10,
-   "verdict": "GRAB",
+   "verdict": "CLEAN",
    "confidence": "korge",
-   "clusters": "vesi-õhk soojusvahetid 3 + joodetud plaatsoojusvahetid 7; split kaheks",
-   "date": "2026-07-09"
+   "clusters": "joodetud plaatsoojusvahetid, eri plaadiarv",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_tt9_2": {
    "name": "Tellingud ja töölavad",
    "main": "Ehitus, remont ja värvid",
    "n": 10,
-   "verdict": "GRAB",
-   "confidence": "kesk",
-   "clusters": "teleskoop-tööplangud 5 + kokkupandavad tööplatvormid/redelid 5; split kaheks",
-   "date": "2026-07-09"
+   "verdict": "CLEAN",
+   "confidence": "korge",
+   "clusters": "tellingud/töölavad-platvormid, sama funktsioon",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_12gcart": {
    "name": "Golfikäru-katted & -tarvikud",
    "main": "Sport ja vaba aeg",
    "n": 10,
-   "verdict": "GRAB",
+   "verdict": "CLEAN",
    "confidence": "kesk",
-   "clusters": "golfikäru katted+korpused 7 + golfihoiu-organizerid 2 + grab bar 1; split: organizerid/tarvikud eraldi",
-   "date": "2026-07-09"
+   "clusters": "golfikäru katted/piirded valdav, organizer 2 <3",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_t3f_9_11": {
    "name": "Lihvlindid ja lintlihvija tarvikud",
    "main": "Tööriistad ja tarvikud",
    "n": 10,
    "verdict": "GRAB",
-   "confidence": "kesk",
-   "clusters": "lihvlindid 5 + lintlihvija rattakomplektid 3 + jig/adapter 2; split: lindid vs tarvikud",
-   "date": "2026-07-09"
+   "confidence": "korge",
+   "clusters": "lihvlindid 5 (kulumaterjal) + rattakomplektid 3 + jig/adapter 2 → eralda kulumaterjal vs tarvikud",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_ag2_3x4_13": {
    "name": "Golfikäru ja go-kart osad",
    "main": "Autovaruosad ja -tarvikud",
    "n": 10,
    "verdict": "GRAB",
-   "confidence": "korge",
-   "clusters": "siduri-osad ~4 + kiiruskontrollerid 5 + pidurikit 1; split: sidurid vs kontrollerid",
-   "date": "2026-07-09"
+   "confidence": "kesk",
+   "clusters": "sidurid ~5 (jõuülekanne) vs kiiruskontrollerid ~5 (elektroonika) + pidurisilinder → jaga funktsiooni järgi",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_ag2_3x5_3": {
    "name": "Köetavad voolikud",
@@ -5632,10 +5815,11 @@
    "name": "Hüdraulilise rõhu testimiskomplektid",
    "main": "Tööriistad ja tarvikud",
    "n": 10,
-   "verdict": "GRAB",
+   "verdict": "CLEAN",
    "confidence": "kesk",
-   "clusters": "rõhu-testikomplektid ~5 + lämmastik-akumulaatori laadimiskomplektid 2 + digitaalne manomeeter 1; eralda lämmastiku laadimiskomplektid",
-   "date": "2026-07-09"
+   "clusters": "hüdrorõhu testkomplektid ja mõõdikud; N2-laadimiskomplekt outlier <3",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_ag2_3x7_6": {
    "name": "Suusa- & lumelauahoidikud",
@@ -5668,10 +5852,11 @@
    "name": "Lõikemasinad & -tarvikud",
    "main": "Reklaami-, trüki- ja graveerimisseadmed",
    "n": 10,
-   "verdict": "GRAB",
-   "confidence": "korge",
-   "clusters": "kangalõikurid 4 + seebilõikurid 2 + paberilõikurid 2 + rihma/die-cut/tera; eralda tüüpide kaupa",
-   "date": "2026-07-09"
+   "verdict": "CLEAN",
+   "confidence": "madal",
+   "clusters": "eri lõikemasinad, kuid ainult fabric ≥3, muud <3 → CLEAN",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_mv_6x1_19": {
    "name": "Kellamehhanismid & seinakellad",
@@ -5679,8 +5864,9 @@
    "n": 10,
    "verdict": "GRAB",
    "confidence": "korge",
-   "clusters": "seinakellad/põrandakellad 4 + watch winderid 6 → jaga kelladeks ja kellakeerajateks",
-   "date": "2026-07-09"
+   "clusters": "seinakellad (4) vs watch winders/kellakeerajad (6) — eri funktsioon; split: 'Seinakellad' + 'Kellakeerajad'",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_mv_6x10_2": {
    "name": "Jalatsipingid & istmed",
@@ -5695,10 +5881,11 @@
    "name": "Köögiriiulid & -kapid",
    "main": "Mööbel ja sisustus",
    "n": 10,
-   "verdict": "GRAB",
-   "confidence": "korge",
-   "clusters": "kapid 5 (pantry/shaker) + bakers rack riiulid 5 (+firewood 1) → jaga kappideks ja riiuliteks",
-   "date": "2026-07-09"
+   "verdict": "CLEAN",
+   "confidence": "kesk",
+   "clusters": "köögihoiustus (kapid/riiulid), firewood rack üksik-outlier",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_mv_6x4_6": {
    "name": "Seinale kinnitatavad kokkuklapitavad lauad",
@@ -5713,10 +5900,11 @@
    "name": "Toruvõtmed ja torutangid",
    "main": "Tööriistad ja tarvikud",
    "n": 10,
-   "verdict": "GRAB",
-   "confidence": "kesk",
-   "clusters": "sirged toruvõtmed 7 + ketasvõtmed (chain wrench) 3 → jaga toruvõtmeteks ja ketasvõtmeteks",
-   "date": "2026-07-09"
+   "verdict": "CLEAN",
+   "confidence": "korge",
+   "clusters": "toruvõtmed+ketivõtmed, sama funktsioon",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_1surv2": {
    "name": "Survepesuri pumbad",
@@ -5733,17 +5921,19 @@
    "n": 10,
    "verdict": "GRAB",
    "confidence": "korge",
-   "clusters": "talid/tõstukid ~5 + tõstetrollid ~4 (+furniture dolly 1) → jaga talideks ja trollideks",
-   "date": "2026-07-09"
+   "clusters": "talid 3 (tõstmine) + tõstetrollid 4 (liikumine talal) + mööblikäru 1 + tõstepink 1 → eralda talid vs trollid",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_mv_6x6_3": {
    "name": "Tugitoolid",
    "main": "Mööbel ja sisustus",
    "n": 10,
-   "verdict": "GRAB",
+   "verdict": "CLEAN",
    "confidence": "kesk",
-   "clusters": "tugitoolid 3 + chaise lounge 4 + recliner/loveseat 3 → jaga tugitoolideks ja lamamistoolideks/recliner'iteks",
-   "date": "2026-07-09"
+   "clusters": "tugitoolid/tumbad/lamamistoolid, sama funktsioon istumine",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_rd1_3": {
    "name": "Redeli stabilisaatorid ja tasandajad",
@@ -5751,8 +5941,9 @@
    "n": 10,
    "verdict": "GRAB",
    "confidence": "korge",
-   "clusters": "Redeli tasandajad (6) + redeli stabilisaatorid (4); split kaheks",
-   "date": "2026-07-09"
+   "clusters": "redeli tasandajad 6 (ebatasane pind) + stabilisaatorid/seinatoed 4 → eralda",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_mv_6x9_3": {
    "name": "Vaheseinad",
@@ -5776,10 +5967,11 @@
    "name": "Õhupuhasti filtrid ja tõmbekubud",
    "main": "Suurköögiseadmed",
    "n": 10,
-   "verdict": "GRAB",
+   "verdict": "CLEAN",
    "confidence": "korge",
-   "clusters": "tõmbekubud (6) + tõmbekubu filtrid (4); split kaheks",
-   "date": "2026-07-09"
+   "clusters": "kommerts-tõmbekubud, eri pikkused",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_t3a_1_17": {
    "name": "Lehe- ja pungatrimmerid",
@@ -5812,10 +6004,11 @@
    "name": "Traatvõrgud ja traataiad",
    "main": "Aed ja aiatehnika",
    "n": 10,
-   "verdict": "GRAB",
-   "confidence": "korge",
-   "clusters": "aiatarad/loomabarjäärid (3) + traatvõrk/hardware cloth (7); split kaheks",
-   "date": "2026-07-09"
+   "verdict": "CLEAN",
+   "confidence": "kesk",
+   "clusters": "traatvõrgud/aiad - sama barjääri-funktsioon",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_ks_5x1_25": {
    "name": "Jääpurustajad ja -hööveldajad",
@@ -5866,19 +6059,21 @@
    "name": "Toidusoojendajad",
    "main": "Suurköögiseadmed",
    "n": 10,
-   "verdict": "GRAB",
+   "verdict": "CLEAN",
    "confidence": "kesk",
-   "clusters": "buffet-soojendajad ~3, soojendusmatid ~3, kiipsoojendajad 2, supisoojendaja 1, riisialus 1 → jaga soojendusmatid eraldi",
-   "date": "2026-07-09"
+   "clusters": "toidusoojendajad, sama funktsioon",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_t3a_4_8": {
    "name": "Söe- ja gaasigrillid",
    "main": "Aed ja aiatehnika",
    "n": 10,
-   "verdict": "GRAB",
-   "confidence": "kesk",
-   "clusters": "söegrillid ~5, suitsuahjud/smokerid ~4, elektrigrill 1 → jaga smokerid eraldi",
-   "date": "2026-07-09"
+   "verdict": "CLEAN",
+   "confidence": "korge",
+   "clusters": "söe/gaasi grillid ja smokerid — sama küpsetusfunktsioon",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_el_11x2_3": {
    "name": "Elektriautode laadijad",
@@ -5902,10 +6097,11 @@
    "name": "Valgusmõõgad ja mängurelvad",
    "main": "Lastekaubad ja mänguasjad",
    "n": 10,
-   "verdict": "GRAB",
+   "verdict": "CLEAN",
    "confidence": "korge",
-   "clusters": "vibu+nooled (3) vs valgusmõõgad (7); jaga kaheks",
-   "date": "2026-07-09"
+   "clusters": "valgusmõõgad, variandid",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_el_11x1_18": {
    "name": "Ilmajaamad",
@@ -5931,8 +6127,9 @@
    "n": 10,
    "verdict": "GRAB",
    "confidence": "korge",
-   "clusters": "filamendihoiuriiulid (6) vs kunstikuivatusrestid (4); jaga kaheks",
-   "date": "2026-07-09"
+   "clusters": "filamendihoiustusrestid ~6 (hoiustamine) vs kunsti-kuivatusrestid ~4 (kuivatamine) → jaga",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_t3a_9_7": {
    "name": "Lõkkekoha sädekaitsed & katted",
@@ -5967,8 +6164,9 @@
    "n": 10,
    "verdict": "GRAB",
    "confidence": "kesk",
-   "clusters": "jahutuskotid ~4 + piknikuseljakotid 6 → jaga 'jahutuskotid' ja 'piknikuseljakotid'",
-   "date": "2026-07-09"
+   "clusters": "jahutuskotid 4 + piknikuseljakotid komplektiga 6 → eralda",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_t3f_10_4": {
    "name": "Pingutuskummid ja kinnitusköied",
@@ -6003,17 +6201,19 @@
    "n": 10,
    "verdict": "GRAB",
    "confidence": "kesk",
-   "clusters": "tagasilöögivõrgud/backstop 4 + rebounderid 4 (+golfivõrgud 2) → jaga barjäärvõrgud vs rebounderid",
-   "date": "2026-07-09"
+   "clusters": "barjäär-/tagavõrgud ~6 (peatavad palli) vs rebounderid ~4 (tagastavad palli) → jaga",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_15rinp": {
    "name": "Rinnapumbad & -tarvikud",
    "main": "Tervis, hooldus ja ilu",
    "n": 10,
    "verdict": "GRAB",
-   "confidence": "kesk",
-   "clusters": "rinnapumbad 2 (20%) + pumbakotid/seljakotid 8 → jaga pumbad ja tarvikukotid",
-   "date": "2026-07-09"
+   "confidence": "korge",
+   "clusters": "rinnapumba-kotid/seljakotid ~8 (tarvik) vs elektrilised rinnapumbad 2 (seade); split seade vs tarvik",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_lp_3_1": {
    "name": "Lemmikloomade autobarjäärid",
@@ -6039,8 +6239,9 @@
    "n": 9,
    "verdict": "GRAB",
    "confidence": "kesk",
-   "clusters": "metallaiapostid U-channel (4) vs puidust maapinnavaiad (5); split kaheks",
-   "date": "2026-07-09"
+   "clusters": "metallist aiapostid 4 (aia tugi) vs puitvaiad/mõõdistusvaiad 5 (taime/mõõt); split kaheks",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_vt_6": {
    "name": "Pukseerimispeeglid",
@@ -6129,8 +6330,9 @@
    "n": 9,
    "verdict": "GRAB",
    "confidence": "korge",
-   "clusters": "veojõuplaadid/traction boards (6) + väljapääsu-/vintsikomplektid recovery kit (3) → split kaheks",
-   "date": "2026-07-09"
+   "clusters": "veojõuplaadid(6) vs vintsi-taastekomplektid/rihmad(3) — erista",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_es_10x3_3": {
    "name": "Puhastuskaablid & trossid",
@@ -6192,8 +6394,9 @@
    "n": 9,
    "verdict": "GRAB",
    "confidence": "kesk",
-   "clusters": "oksasaed/pole saw ~7 + lehelõikur (bud trimmer) 2 (22%); eralda lehelõikurid",
-   "date": "2026-07-09"
+   "clusters": "oksasaed/lõikurid ~7 (lõikamine) vs pungatrimmerid 2 (trimmimine); eralda trimmerid",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_ag2_2x5_4": {
    "name": "Mootorratta tõstukid",
@@ -6219,17 +6422,19 @@
    "n": 9,
    "verdict": "GRAB",
    "confidence": "kesk",
-   "clusters": "juurdepääsuluugid 2 (22%) + kaevu-/mahutikaaned 7; eralda access panelid",
-   "date": "2026-07-09"
+   "clusters": "seinaluugid(2) vs septiku-luugid/manhole(7) — erista juurdepääsuluugid vs kaevuluugid",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_t3a_10_7": {
    "name": "Taimede kaitsevõrgud ja -puurid",
    "main": "Aed ja aiatehnika",
    "n": 9,
-   "verdict": "GRAB",
-   "confidence": "korge",
-   "clusters": "taimekaitse-puurid (chicken wire) 4 + crop cage telgid 5; eralda kaks tüüpi",
-   "date": "2026-07-09"
+   "verdict": "CLEAN",
+   "confidence": "kesk",
+   "clusters": "taimekaitse - traatpuurid ja kasvutelgid, sama kaitsefunktsioon",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_5n22": {
    "name": "Lihasegistid",
@@ -6253,28 +6458,31 @@
    "name": "Basseiniaiad & väravad",
    "main": "Aed ja aiatehnika",
    "n": 9,
-   "verdict": "GRAB",
-   "confidence": "kesk",
-   "clusters": "Väravad ~4 + aiad/tarad ~5; jaga 'Basseiniväravad' vs 'Basseiniaiad'",
-   "date": "2026-07-09"
+   "verdict": "CLEAN",
+   "confidence": "korge",
+   "clusters": "basseiniaiad+väravad, sama funktsioon (tõke)",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_el_11x6_3": {
    "name": "Lae- ja katusevalgustid",
    "main": "Elektritarvikud ja valgustus",
    "n": 9,
-   "verdict": "GRAB",
-   "confidence": "kesk",
-   "clusters": "Garaaživalgustid ~3 + canopy-valgustid ~3 + vapor tight ~2 + pendant ~1; jaga tüüpide kaupa",
-   "date": "2026-07-09"
+   "verdict": "CLEAN",
+   "confidence": "korge",
+   "clusters": "lae/katuse valgustid",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_t3a_2_11": {
    "name": "Basseiniküttekehad & soojuspumbad",
    "main": "Aed ja aiatehnika",
    "n": 9,
-   "verdict": "GRAB",
-   "confidence": "korge",
-   "clusters": "Soojuspumbad ~5 + päikese-basseinikütte ~4; jaga 'Soojuspumbad' vs 'Päikesekütte-paneelid'",
-   "date": "2026-07-09"
+   "verdict": "CLEAN",
+   "confidence": "kesk",
+   "clusters": "basseiniküte - soojuspumbad ja päikeseküte, sama funktsioon",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_el_12x1_17": {
    "name": "Cornhole ja viskemängud",
@@ -6282,8 +6490,9 @@
    "n": 9,
    "verdict": "GRAB",
    "confidence": "korge",
-   "clusters": "Bocce ~4 + Cornhole ~5; jaga 'Bocce' vs 'Cornhole'",
-   "date": "2026-07-09"
+   "clusters": "Bocce pallikomplektid 4 vs Cornhole viskemängud 5; eri mängud, split kaheks",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_t3a_2_14": {
    "name": "Hoiukorvid & -kärud",
@@ -6298,19 +6507,21 @@
    "name": "Meditsiinilised simulatsioonivahendid",
    "main": "Meditsiin, labor & teadus",
    "n": 9,
-   "verdict": "GRAB",
+   "verdict": "CLEAN",
    "confidence": "kesk",
-   "clusters": "Õppemanekeenid ~4 + flebootoomia/IV-harjutuskomplektid ~5; jaga manekeenid vs veenipunktsiooni-komplektid",
-   "date": "2026-07-09"
+   "clusters": "meditsiini treeningsimulaatorid (mannekeen+veeni harjutus), sama funktsioon",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_ks_5x1_22": {
    "name": "Kohvimasinad ja -urnid",
    "main": "Suurköögiseadmed",
    "n": 9,
-   "verdict": "GRAB",
+   "verdict": "CLEAN",
    "confidence": "korge",
-   "clusters": "Tilkkohvimasinad ~4 + kohviurnid ~5; jaga 'Kohvimasinad' vs 'Kohviurnid'",
-   "date": "2026-07-09"
+   "clusters": "kohvimasinad",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_el_11x9_3": {
    "name": "Kummikünnised & -kaitsjad",
@@ -6336,8 +6547,9 @@
    "n": 9,
    "verdict": "GRAB",
    "confidence": "kesk",
-   "clusters": "launching wheels 2 (22%) + transom savers 7; split: veeskamisrattad vs transomi tugi",
-   "date": "2026-07-09"
+   "clusters": "launching wheels 2 (~22%, paadi vedamine) vs transom saver 7 (mootori tugi). Split: veorattad | transom saverid",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_t3a_5_1": {
    "name": "Survepesurite tarvikud",
@@ -6345,8 +6557,9 @@
    "n": 9,
    "verdict": "GRAB",
    "confidence": "kesk",
-   "clusters": "teleskoopvardad ~4 + pinnapuhastid 2 + voolik/püstol; split: vardad / pinnapuhastid / muud",
-   "date": "2026-07-09"
+   "clusters": "pinnapuhastid(2) + teleskoopvardad(~5) + püstol(1) + voolik(1) — eri tarviku-tüübid",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_el_11x2_4": {
    "name": "Elektriautode laadimiskaablid",
@@ -6406,10 +6619,11 @@
    "name": "Liiva- ja veemängud",
    "main": "Lastekaubad ja mänguasjad",
    "n": 9,
-   "verdict": "GRAB",
+   "verdict": "CLEAN",
    "confidence": "korge",
-   "clusters": "liivakastid 6 + veemängulauad 3 → jaga kaheks",
-   "date": "2026-07-09"
+   "clusters": "liivakastid",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_el_12x3_20": {
    "name": "Reguleeritavad kettlebellid ja kettaste hoidikud",
@@ -6417,8 +6631,9 @@
    "n": 9,
    "verdict": "GRAB",
    "confidence": "korge",
-   "clusters": "kettlebellid 2 + kettahoidikud 7 → eralda kettlebellid",
-   "date": "2026-07-09"
+   "clusters": "kettlebellid (2, treeningraskus) vs kettaste hoidikud/racks (7, hoiustus) — eralda",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_ag2_2x2_5": {
    "name": "Veepudelite hoidikud ja riiulid",
@@ -6433,10 +6648,11 @@
    "name": "Trepiastmelauad ja stepperid",
    "main": "Sport ja vaba aeg",
    "n": 9,
-   "verdict": "GRAB",
-   "confidence": "korge",
-   "clusters": "stepilauad 4 + stepperid 5 → jaga kaheks",
-   "date": "2026-07-09"
+   "verdict": "CLEAN",
+   "confidence": "kesk",
+   "clusters": "astmelauad+stepperid, sama funktsioon (step-treening), nimepaar mõlemad present",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_ag2_2x2_7": {
    "name": "Gaasiballoonide hoidikud",
@@ -6462,8 +6678,9 @@
    "n": 9,
    "verdict": "GRAB",
    "confidence": "korge",
-   "clusters": "surfilaua-hoidikud 5 + veesuusad 3 (+bodyboard) → jaga hoidikud/veesuusad",
-   "date": "2026-07-09"
+   "clusters": "veespordi-varustus (bodyboard+veesuusad ~4) vs surfilaua hoidikud/seinakinnitused (~5) — jaga hoidikud eraldi",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_f4_13xtex_7": {
    "name": "Kuumülekande vinüül (HTV)",
@@ -6505,10 +6722,11 @@
    "name": "Külmikud ja sügavkülmikud",
    "main": "Kodumasinad ja kodutehnika",
    "n": 9,
-   "verdict": "GRAB",
-   "confidence": "korge",
-   "clusters": "veinikülmikud (3) + minikülmikud (6); jaga eraldi kategooriatesse",
-   "date": "2026-07-09"
+   "verdict": "CLEAN",
+   "confidence": "kesk",
+   "clusters": "veinikülmikud+minikülmikud, sama funktsioon (jahutus)",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_t3f_8_4": {
    "name": "Digitaalsed mõõtenäidikud (DRO)",
@@ -6579,8 +6797,9 @@
    "n": 9,
    "verdict": "GRAB",
    "confidence": "korge",
-   "clusters": "maakerad (5) + lilledekor/pärjad (4) → tükelda dekoratsioonid vs maakerad",
-   "date": "2026-07-09"
+   "clusters": "lilledekoor/pärjad(4) vs maakerad(5) — erista dekoratsioonid vs maakerad",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_t3f_5_11": {
    "name": "Paksushöövlid ja rihthöövlid",
@@ -6615,8 +6834,9 @@
    "n": 9,
    "verdict": "GRAB",
    "confidence": "korge",
-   "clusters": "cargo matid 4 + tagasitõmmatavad katted 5 → jaga kaheks",
-   "date": "2026-07-09"
+   "clusters": "pagasimatid(4, põrandakaitse) vs sissetõmmatavad katted(5, turvakate) — erista",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_mu_2_3": {
    "name": "Lavaefektid",
@@ -6624,8 +6844,9 @@
    "n": 9,
    "verdict": "GRAB",
    "confidence": "korge",
-   "clusters": "cold spark masinad 6 + disco kuulid 3 → jaga kaheks",
-   "date": "2026-07-09"
+   "clusters": "cold spark masinad 6 (sädeefekt) vs disko-peeglikuulid 3 (valgus). Split: sädemasinad | diskokuulid",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_mv_6x2_20": {
    "name": "Lauariiulid",
@@ -6649,19 +6870,21 @@
    "name": "Lintlihvijad",
    "main": "Tööriistad ja tarvikud",
    "n": 9,
-   "verdict": "GRAB",
-   "confidence": "kesk",
-   "clusters": "lintlihvijad 6 + torulihvijad 3 → jaga kaheks",
-   "date": "2026-07-09"
+   "verdict": "CLEAN",
+   "confidence": "korge",
+   "clusters": "lintlihvijad",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_el_12x1_5": {
    "name": "Disc golfi varustus",
    "main": "Sport ja vaba aeg",
    "n": 9,
    "verdict": "GRAB",
-   "confidence": "korge",
-   "clusters": "disc golfi korvid 4 + ketaste komplektid 5 → jaga kaheks",
-   "date": "2026-07-09"
+   "confidence": "kesk",
+   "clusters": "disc golf korv/sihtmärk 4 vs ketaste komplektid 5. Split: korvid | kettad",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_mv_6x4_3": {
    "name": "Kõrval- ja küljelauad",
@@ -6703,10 +6926,11 @@
    "name": "Augusaed ja kroonsaed",
    "main": "Tööriistad ja tarvikud",
    "n": 9,
-   "verdict": "GRAB",
-   "confidence": "kesk",
-   "clusters": "augusaed/hole saw ~5 vs annular cutter set 4 → split augusaed vs südamikpuurid",
-   "date": "2026-07-09"
+   "verdict": "CLEAN",
+   "confidence": "korge",
+   "clusters": "augu-/kroonsaed ja lõikurid",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_f4_16x1_10": {
    "name": "Tõstetoolid",
@@ -6714,8 +6938,9 @@
    "n": 9,
    "verdict": "GRAB",
    "confidence": "korge",
-   "clusters": "patsiendi tõstetoolid/ratastoolid 5 vs power lift tugitoolid 4 → split",
-   "date": "2026-07-09"
+   "clusters": "patsiendi tõstetoolid/transfer (mobiilsus, ~4) vs lift-lamamistoolid recliner (mugavus, ~4) — eralda",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_ph1_1": {
    "name": "Rennipuhastusharjad",
@@ -6740,9 +6965,10 @@
    "main": "Kodumasinad ja kodutehnika",
    "n": 8,
    "verdict": "GRAB",
-   "confidence": "kesk",
-   "clusters": "toidukuivatid 6 vs vaakum-külmkuivatid 2 (25%) → split",
-   "date": "2026-07-09"
+   "confidence": "korge",
+   "clusters": "toidukuivatid ~6 (kuum-õhk dehüdraator) vs vaakum-külmkuivatid 2 (~25%, eri tehnoloogia/funktsioon). Split: 'Toidukuivatid' vs 'Külmkuivatid'",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_t3f_9_2": {
    "name": "Kruvi- ja poldieemaldajad",
@@ -6830,9 +7056,10 @@
    "main": "Põllumajandus ja loomakasvatus",
    "n": 8,
    "verdict": "GRAB",
-   "confidence": "kesk",
-   "clusters": "külvikud/laoturid 6 + PTO ülekandevõll & libis/slip clutch 2 (25%); eralda ülekandeosad",
-   "date": "2026-07-09"
+   "confidence": "korge",
+   "clusters": "külvi/laoturid (~6, levitamine) vs PTO võll + slip clutch (2, ülekanne). Split: spreaders | PTO drivetrain osad",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_es_9x10_2": {
    "name": "Laepaneelid & laeplaadid",
@@ -6847,10 +7074,11 @@
    "name": "Beebitoolid ja -lamamistoolid",
    "main": "Tervis, hooldus ja ilu",
    "n": 8,
-   "verdict": "GRAB",
-   "confidence": "korge",
-   "clusters": "beebi-lamamistool/bouncer 4 + beebikiik/swing 4; eralda kiiged",
-   "date": "2026-07-09"
+   "verdict": "CLEAN",
+   "confidence": "kesk",
+   "clusters": "beebi lamamistoolid/kiiged — sama funktsioon imiku rahustamine/istumine",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_el_12x6_9": {
    "name": "Kalapüügikomplektid",
@@ -6939,8 +7167,9 @@
    "n": 8,
    "verdict": "GRAB",
    "confidence": "korge",
-   "clusters": "heitgaasi toru laiendajad ~5 + pidurdustoru flaring-tööriistad 3; split: eralda pipe expanders vs brake flaring tools",
-   "date": "2026-07-09"
+   "clusters": "summuti-toru laiendajad (~4, laiendus) vs pidurivooliku äärestustööriistad (~3, flaring) + diff-housing spreader (1). Split: pipe expanders | brake flaring tools",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_lp_6_3": {
    "name": "Koerte agility- ja treeningkomplektid",
@@ -7090,19 +7319,21 @@
    "name": "Golfi löögi- & puttimismatid",
    "main": "Sport ja vaba aeg",
    "n": 8,
-   "verdict": "GRAB",
+   "verdict": "CLEAN",
    "confidence": "korge",
-   "clusters": "golfi löögimatid (5) + puttimismatid (3); jaga kaheks",
-   "date": "2026-07-09"
+   "clusters": "golfi löögi- ja puttimismatid — mõlemad nimes, sama funktsioon golfitreening",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_el_11x6_1": {
    "name": "Töövalgustid",
    "main": "Elektritarvikud ja valgustus",
    "n": 8,
-   "verdict": "GRAB",
-   "confidence": "kesk",
-   "clusters": "statiiviga töövalgustid (6) + kapotialune töövalgusti (2, 25%); kaalu eraldamist",
-   "date": "2026-07-09"
+   "verdict": "CLEAN",
+   "confidence": "korge",
+   "clusters": "kaasaskantavad LED-töövalgustid (statiiviga + kapotialune) – sama funktsioon",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_7cart1": {
    "name": "ATV-haagised & järelkärud",
@@ -7153,10 +7384,11 @@
    "name": "Riidekapid & garderoobisüsteemid",
    "main": "Mööbel ja sisustus",
    "n": 8,
-   "verdict": "GRAB",
-   "confidence": "korge",
-   "clusters": "kummutid (3) + garderoobisüsteemid (3) + riidenagid (2); jaga: kummutid vs garderoobisüsteemid vs riidenagid",
-   "date": "2026-07-09"
+   "verdict": "CLEAN",
+   "confidence": "kesk",
+   "clusters": "riietehoiu mööbel (kummutid, garderoobisüsteemid, riidepuud) – sama funktsioon",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_el_12x5_5": {
    "name": "Hüdratatsiooni- ja seljakotid",
@@ -7182,8 +7414,9 @@
    "n": 8,
    "verdict": "GRAB",
    "confidence": "kesk",
-   "clusters": "pallihoiukärud/-restid (4) + tenniseballimasinad/hopperid (4); jaga: pallihoiustus vs tenniseballi masinad",
-   "date": "2026-07-09"
+   "clusters": "pallide hoiustus (kärud/hopperid) ~6 vs tennisepallimasin 2 (laskur). Split: hoiustus | pallimasinad",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_ag2_2x2_4": {
    "name": "Tuleohtlike ainete hoiukapid",
@@ -7218,8 +7451,9 @@
    "n": 8,
    "verdict": "GRAB",
    "confidence": "kesk",
-   "clusters": "foolium-stantsimismasinad (2) + naha lõike/die-cutter masinad (6); split: eralda hot foil stamping vs die cutting",
-   "date": "2026-07-09"
+   "clusters": "kuumfooliumpressid/embossing (2, reljeef) vs die cutting/lõikemasinad (6, lõikamine). Split: foil stamping | die cutting",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_ks_5x2_24": {
    "name": "Kokteili- ja baaritarvikud",
@@ -7279,10 +7513,11 @@
    "name": "Basseini ionisaatorid & kloorinaatorid",
    "main": "Aed ja aiatehnika",
    "n": 8,
-   "verdict": "GRAB",
-   "confidence": "korge",
-   "clusters": "kloorinaatorid(3) + solar ionisaatorid(5); split kaheks",
-   "date": "2026-07-09"
+   "verdict": "CLEAN",
+   "confidence": "kesk",
+   "clusters": "basseinivee töötlus (kloorinaatorid+ionisaatorid), sama funktsioon eri meetod",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_ag2_2x3_4": {
    "name": "Käärtungrauad",
@@ -7315,10 +7550,11 @@
    "name": "Poleerimismasinad",
    "main": "Tööriistad ja tarvikud",
    "n": 8,
-   "verdict": "GRAB",
-   "confidence": "kesk",
-   "clusters": "autopoleerijad(3)+betooni märgpoleerijad(3)+burnishing(2); split poleerimine vs betoonilihv",
-   "date": "2026-07-09"
+   "verdict": "CLEAN",
+   "confidence": "madal",
+   "clusters": "poleerimis/lihvimismasinad (auto-, märg-, burnisher) — sama funktsioon pinnatöötlus",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_t3a_2_19": {
    "name": "Mullivannid & jäävannid",
@@ -7326,8 +7562,9 @@
    "n": 8,
    "verdict": "GRAB",
    "confidence": "korge",
-   "clusters": "jäävannid(3) + mullivannid(5); split kaheks",
-   "date": "2026-07-09"
+   "clusters": "jäävannid 3 (külmateraapia) vs mullivannid 5 (soe). Split: jäävannid | mullivannid",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_mv_8x2_4": {
    "name": "Pop-up telgid ja varjualused",
@@ -7360,10 +7597,11 @@
    "name": "Kommertskülmikud",
    "main": "Suurköögiseadmed",
    "n": 8,
-   "verdict": "GRAB",
-   "confidence": "kesk",
-   "clusters": "külmikud(sügavkülmik 2 + jahutuskülmik 3 + jookide vitriinkülmik 3); split: sügavkülmikud vs jahekülmikud vs vitriinid",
-   "date": "2026-07-09"
+   "verdict": "CLEAN",
+   "confidence": "korge",
+   "clusters": "kommertskülmikud",
+   "date": "2026-07-10",
+   "rescored": true
   },
   "pcat_mv_8x2_5": {
    "name": "Jalgrattahoidlad ja -tendid",
@@ -7491,5 +7729,6 @@
    "clusters": "postiaugurid/maapuurid; üks post-driver outlier",
    "date": "2026-07-09"
   }
- }
+ },
+ "rescored": "2026-07-10 variant-reegel (uus prompt)"
 }
