@@ -222,6 +222,7 @@ pm2 reload xlmarket-storefront
 - `storefront/lib/category-tree.ts` — SSoT helpers (getBreadcrumbTrail, firstKnownHandle, getL1Ancestor)
 - `backend/src/data/taxonomy.yaml` — SSoT (F2.1)
 - `backend/src/data/taxonomy-image-aliases.yaml` — Image alias map (F5b, 176/176 kate)
+- `scripts/genyM.mjs` — nav-puu SSoT generaator (DB → `taxonomy-music.yaml`); auto-värskendab dumbid DB-st; data-snapshot `scripts/data/2026-06-15-final-tree.json`. **Kanooniline git-koopia** (eumotors-tasks/ai-classification-trial/genyM.mjs = symlink siia)
 - `scripts/gen-category-tree.mjs` — YAML → JSON snapshot (`--check`, `--report`)
 - `scripts/check-taxonomy-invariants.mjs` — 23 invariants, `--json` CI mode
 - `docs/runbooks/taxonomy-invariant-failures.md` — per-INV remediation steps
@@ -355,6 +356,8 @@ Kõik 4 rakendavad 9-punkti sisu-reeglit. **Uue maini / feed-impordi järel: joo
 **LÜNK ÜHESKI = vale seis:** DB õige aga Meili/nav vana. **Eile #9:** samm 3 (push) ununes → nav näitas "Lükanduste riistvara" 69 (vana) kuni push+redeploy. **KONTROLLI iga luku lõpus: kas kõik 4 tehtud?**
 
 > **⚠️ GENYM STALE-DUMP GOTCHA (SSoT-regen samm 1 juurde):** `genyM.mjs` EI lugenud DB-d otse, vaid `/tmp/x-l2.txt` + `/tmp/x-l3.txt` dumpe. Kui dumbid vanad → SSoT/nav-puu genereeriti VANA struktuuriga (uued/renamed/kustutatud L3 puuduvad), **kuigi DB on õige**. *Tõestus: torn-merge 1. deploy kasutas stale dumpe → torn jäi navi.* **JÕUSTUS (2026-07-10):** genyM.mjs algusesse lisatud **automaatne dump-värskendus DB-st** (docker exec psql → /tmp/x-l*.txt) — värskus nüüd garanteeritud igal jooksul, käsitsi dump ei ole enam vajalik. Kui genyM ei leia db-k33g konteinerit → WARN + kasutab olemasolevaid dumpe (võivad olla stale).
+
+> **🔧 TÖÖRIISTAD GIT-IS (2026-07-10):** kõik kriitilised skriptid (genyM, inv-taxonomy, lock-harness, grab-bag-judge, merge-judge, intra-qa-judge, gen-category-tree, check-taxonomy-invariants) elavad **xlmarket-github/scripts/ repos**, mitte scratch-kaustas. **Uus tööriist → KOHE git'i** (asendamatu tööriist ilma versioonihalduseta ühel hostil = risk). genyM data-snapshot: `scripts/data/2026-06-15-final-tree.json`. Ajaloolised ühekordsed lock-build skriptid (`ai-classification-trial/*-lock.mjs`, `*-build.mjs`) jäävad scratch'i (migratsioonid v4-staging/*.sql-is juba jäädvustatud). **Saladused (.env, secrets/, backups/*.dump) EI lähe git'i** (.gitignore katab).
 
 **🚀 DEPLOY-NÜANSS (kergem tee):** kui **AINULT toote-lingid liiguvad** (0 L3 lisatud/kustutatud/nimetatud/reparent — **struktuur muutumatu**) → piisab **AINULT Meili reindeksist** (leht loeb arve Meili'st), EI vaja SSoT-regen/push/redeploy. **Täis-4-sammu ainult kui STRUKTUUR muutub** (uus/kustutatud/renamed/reparent L3/L2/L1).
 
