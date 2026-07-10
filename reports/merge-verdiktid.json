@@ -1,0 +1,33 @@
+{
+ "generated": "2026-07-10",
+ "model": "claude-opus-4-8",
+ "candidates": [
+  {
+   "l3_a": "pcat_ks_5x3_1",
+   "l3_b": "pcat_ks_5x3_4",
+   "confidence": "kesk",
+   "reason": "Mõlemad on kommertsjää tootmise masinad; 'pead' on lihtsalt bunkrita moodulversioon samast funktsioonist (jää valmistamine) — ka põhikategooria sisaldab juba 'Head'-tüüpe",
+   "l2": "Külmaseadmed",
+   "a_name": "Kommertsjäämasinad",
+   "b_name": "Jäämasina pead"
+  },
+  {
+   "l3_a": "pcat_ks_5x3_5",
+   "l3_b": "pcat_ks_5x2_19",
+   "confidence": "kesk",
+   "reason": "Mõlemad on roostevabast terasest jää hoiu-/kogumismahutid; sama funktsioon (jää hoiustamine), erineb vaid vorm/paigutus",
+   "l2": "Külmaseadmed",
+   "a_name": "Jää hoiukonteinerid",
+   "b_name": "Jääkastid"
+  },
+  {
+   "l3_a": "pcat_es_10x1_7",
+   "l3_b": "pcat_es_10x1_6",
+   "confidence": "kesk",
+   "reason": "Mõlemad sisaldavad pööningu/viilu väljatõmbeventilaatoreid (Gable/Attic exhaust); sama funktsioon, erineb vaid toiteallikas (päike vs võrk)",
+   "l2": "Ventilatsioon & ventilaatorid",
+   "a_name": "Katuse- ja päikeseenergia ventilaatorid",
+   "b_name": "Väljalaskeventilaatorid"
+  }
+ ]
+}

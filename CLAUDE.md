@@ -328,13 +328,16 @@ pm2 reload xlmarket-storefront
 
 Iga skänn/QA (grab-bag · cross-main dup · intra-L3 · feed-mapping) **LOEB toote kirjeldust/sisu**, MITTE ei usalda nime. Nime-põhine skänn jätab **NIME-LÕKSUD** püüdmata (nt "STEM Building Toys 554 PCS" nimi = konstruktor, aga kirjeldus = "remote control tank" = RC-sõiduk). *Tõestatud: nime-QA jättis 5 misfitti (2 RC-sõidukit + 3 baby-table), sügav sisu-QA püüdis.* **FEED-KRIITILINE:** tootjad panevad eksitavaid nimesid → skänn PEAB sisu lugema, muidu sadu feed-tooteid valesti.
 
-### 📋 KOLM QA-SKÄNNI TÜÜPI (täielik katvus)
+### 📋 NELI QA-SKÄNNI TÜÜPI (täielik katvus)
 
-1. **GRAB-BAG** — heterogeenne L3 (mitu tüüpi ühes L3-s).
-2. **CROSS-MAIN DUP** — sama tüüp mitmes mainis.
-3. **INTRA-MAIN L3-QA** — toode vales L3-s OMA mainis (grab-bag ega cross-main EI näe seda).
+1. **GRAB-BAG** (`grab-bag-judge.mjs`) — heterogeenne L3 (mitu tüüpi ühes L3-s → split).
+2. **CROSS-MAIN DUP** (inv DUP-01) — sama tüüp mitmes mainis.
+3. **INTRA-MAIN L3-QA** (`intra-qa-judge.mjs`) — toode vales L3-s OMA mainis.
+4. **🔀 MERGE** (`merge-judge.mjs`) — kaks KÕRVUTI-L3 (sama L2) on TEGELIKULT SAMA TÜÜP (VARIANT) → üle-fragmenteerimine → merge.
 
-Kõik 3 rakendavad 9-punkti sisu-reeglit. **Uue maini / feed-impordi järel: jooksuta KÕIK 3.**
+**🔀 MERGE-DETEKTOR (4. kontroll, lisatud 2026-07-10):** split-detektor leiab heterogeensuse; merge-detektor leiab **üle-fragmenteerimise** (kõrvuti-L3 = sama tüüp). **Jooksuta pärast IGA split-lukku + nime-faasis.** **VARIANT (sama funktsioon, eri vorm) → merge; eri funktsioon → jäta lahku.** WARN, inimene otsustab. *Kalibratsioon: Kaminatööriistad/Tuhaämbrid, Potid/Küpsetusvormid, Õhuniisutid/Õhujahutid EI merge'itud (eri funktsioon) ✓.* Käsk: `node scripts/merge-judge.mjs --l2 <id,id>` või `--main <L1-id>`.
+
+Kõik 4 rakendavad 9-punkti sisu-reeglit. **Uue maini / feed-impordi järel: jooksuta KÕIK 4.**
 
 ### 🚀 IGA v4-LUKU DEPLOY = 4 KOHUSTUSLIKKU SAMMU (järjekorras, ükski ei tohi jääda)
 
