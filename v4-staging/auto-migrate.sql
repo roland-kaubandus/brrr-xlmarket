@@ -1,0 +1,34 @@
+BEGIN;
+-- FAAS 1 #3 Auto kombineeritud lukk
+UPDATE product_category_product SET product_category_id='pcat_ag2_3x2_8' WHERE product_id IN ('prod_01KQ12ECSK4N2VKPNJW4ZXMQGG','prod_01KPZS81VT0ZH0NZMNZS8834CZ','prod_01KQ4Y1GXA99VKRCH81T23QCKM','prod_01KQ8SMHGDFJMAX3MDWYG473TZ','prod_01KQ12ECJ2Y8CVWAGZR81ZZ6BB','prod_01KNXXJKFQ4BY1WFRBPRF5TF3W','prod_01KNXXHX3E2FFMX64Y7ARBAVN0','prod_01KNXXHXZ42RFW0ZC92QCQAFDW','prod_01KNXXHXZ83KJ3QPQ8M8BWABY3','prod_01KNXXHXZVD6QHS293ZH6GREFB','prod_01KNXXHX2R95TMADVG9GDH6VKM','prod_01KNXXJBEDQ6QYPVPPV5Z1W3GY','prod_01KNXXHX2QYAJN1Z5N7Z5DS9FZ','prod_01KNXXHW6Q78ERDXVJRXARB3CS','prod_01KNXXJ7T7PHJVPHSMNRBKRWRK','prod_01KNXXK4PQ83WESG3XNN79B60W');
+UPDATE product_category_product SET product_category_id='pcat_el_12x4_12' WHERE product_id IN ('prod_01KP6FDVYN96SX20XZTDDXJK9Y','prod_01KNXXH21T8MTGBMKH07HH92H4','prod_01KNXXAN49FCTJAJ5KTR3R6HH7');
+UPDATE product_category_product SET product_category_id='pcat_ag2_3x6_4' WHERE product_id IN ('prod_01KNXXK3T50H4DBB1ZF82ZN2P4','prod_01KNXXK5JTBNR617WS5PHWK0CS','prod_01KNXXK5K9X6Y7ZB26VQYR9YG0','prod_01KNXXK4PHB9YQRJK6Y843C95C');
+UPDATE product_category_product SET product_category_id='pcat_ag2_3x1_7' WHERE product_id IN ('prod_01KNXXC5TNZV6W2KH57YBK3YMY','prod_01KNXXC5SXT2MQQEHDVPF5QS78','prod_01KNXXC6PQ6H9W6FX0JEMPX1FM');
+UPDATE product_category_product SET product_category_id='pcat_ag2_3x1_6' WHERE product_id IN ('prod_01KNXXR7GHRVNNW9FR2SEF56DD','prod_01KNXXR8F5YFZ2R05F8N9Z7F7Z','prod_01KNXXR9BCRDKFC05Q12ESGWCB','prod_01KNXXR9B89H5RZ1W69PW1JSMC','prod_01KNXXAJEG3EMY7M8XCX1Y93NC','prod_01KNXXAB60AVRP54VY22B6D78H');
+UPDATE product_category_product SET product_category_id='pcat_ag2_3x4_7' WHERE product_id IN ('prod_01KNXXAX67R18FZKA9XTE0MFAN');
+UPDATE product_category_product SET product_category_id='pcat_ag2_3x7_2' WHERE product_id IN ('prod_01KNXXP4MK64Y7PCKMX89SPCB4','prod_01KNXXP5GY6697PQ8MBAJ72ZCB');
+UPDATE product_category_product SET product_category_id='pcat_ag2_3x7_1' WHERE product_id IN ('prod_01KNXXAW8HTHGPM9SKQ7FTT03J','prod_01KNXXASJRY1EKJ3F403P0GGXC','prod_01KNXX8SA906ZE7MRW56KZG8P1','prod_01KNXXFN9EAJFDD1BZ4WQFYG7Z','prod_01KNXXFNAD1QRH8T5WAV7A6FYM','prod_01KNXXFN9DGBT5VTHDAX6RFMAQ','prod_01KNXXARQ98GN5F69KN3V1DF7N','prod_01KNXXFNABBDT6YFNV3MSQGMVT','prod_01KNXXFNAB3PKDKFCF607M3MNW','prod_01KNXXCN54Q9PXX6YG43M8583T','prod_01KNXXCN54QD7M426T7MN4KZEJ','prod_01KNXXCN52QCNTHYWPETG2AQ34');
+UPDATE product_category_product SET product_category_id='pcat_ag2_3x7_8' WHERE product_id IN ('prod_01KNXXHYVDD6W6P29EAFSP2SQN','prod_01KNXXMT1RS73XH7Y15ZCH0EQC','prod_01KNXXHW6FM4W3AW95MWC4ZAQZ');
+UPDATE product_category_product SET product_category_id='pcat_d3_2' WHERE product_id IN ('prod_01KNXXS4ASKXYRPG9Q62RTTMXA');
+UPDATE product_category_product SET product_category_id='pcat_mv_8x3_1' WHERE product_id IN ('prod_01KNXXMT2831TWNXXQRB5QG6H4','prod_01KNXXMTYJVKBQ5K1RARBTQ3GT','prod_01KNXXMTYHN0YTX4F0KDD7TKWY');
+UPDATE product_category_product SET product_category_id='pcat_ag2_3x1_15' WHERE product_id IN ('prod_01KNXXF5E52WGZ8RJVMBBHV127');
+UPDATE product_category_product SET product_category_id='pcat_vt_3' WHERE product_id IN ('prod_01KNXXD4EJG976YGTPBSBA7A8B');
+UPDATE product_category_product SET product_category_id='pcat_ag2_3x2_3' WHERE product_id IN ('prod_01KNXXDJ0F80MDC76M993AEFNE','prod_01KNXXDH3FMX4D3KM197XV02V8','prod_01KNXXDH3DZSSZ6Z2694V8RFC3');
+UPDATE product_category_product SET product_category_id='pcat_a3k' WHERE product_id IN ('prod_01KNXXJCAC5Z2JT8VPRDC97HKX');
+UPDATE product_category_product SET product_category_id='pcat_ag2_3x2_6' WHERE product_id IN ('prod_01KPJXCDC30K9NQ0WB0NK1Q20M');
+UPDATE product_category_product SET product_category_id='pcat_ag2_3x1_1' WHERE product_id IN ('prod_01KNXXFWKHM5T6EW9ZYVKZWFFE','prod_01KNXX8H23EZX1HV72KY75JSD2');
+UPDATE product_category_product SET product_category_id='pcat_ag2_3x6_13' WHERE product_id IN ('prod_01KNXXSXPCZWGVZXV584PCP9TN');
+UPDATE product_category_product SET product_category_id='pcat_ag2_3x7_10' WHERE product_id IN ('prod_01KNXXJRVC1BQ89NNCT1RY2BRC');
+UPDATE product_category_product SET product_category_id='pcat_ag2_3x1_9' WHERE product_id IN ('prod_01KNXXB2KH3ZT79S8CJFNC47SR','prod_01KPJXDHQ8PAFGDWWVY7WP1DZ5');
+UPDATE product_category_product SET product_category_id='pcat_ag2_3x5_5' WHERE product_id IN ('prod_01KNXXQ2943293PA8CFCP55P3W','prod_01KNXXBWRH3BG4V7AS673Y8CSQ');
+UPDATE product_category_product SET product_category_id='pcat_ag2_3x2_1' WHERE product_id IN ('prod_01KNXX9TVE7SVHZSETHAFJ3SWB');
+-- Hoiukastid dissolve: jääk(24) → Tööriistakastid, tühjenenud kustuta
+UPDATE product_category_product SET product_category_id='pcat_ag2_3x2_1' WHERE product_category_id='pcat_ag2_3x2_2';
+DELETE FROM taxonomy_node_meta WHERE node_id='pcat_ag2_3x2_2';
+UPDATE product_category SET deleted_at=now(), updated_at=now() WHERE id='pcat_ag2_3x2_2';
+INSERT INTO slug_redirect (from_slug,to_slug,reason,created_at) VALUES ((SELECT handle FROM product_category WHERE id='pcat_ag2_3x2_2'),(SELECT handle FROM product_category WHERE id='pcat_ag2_3x2_1'),'merge',now());
+UPDATE product_category SET name='Rummuvahed (speisrid) ja rattaadapterid', updated_at=now() WHERE id='pcat_vt_1';
+UPDATE product_category SET name='Tööriista- ja hoiukastid', updated_at=now() WHERE id='pcat_ag2_3x2_1';
+UPDATE product_category SET name='Pagasiruumi katted', updated_at=now() WHERE id='pcat_ag2_3x6_5';
+UPDATE product_category SET name='Maastikusõiduki haardeplaadid', updated_at=now() WHERE id='pcat_ag2_3x1_15';
+COMMIT;
