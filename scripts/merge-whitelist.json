@@ -14,6 +14,13 @@
       "a_name": "Põranda-, torni- ja kaasaskantavad ventilaatorid",
       "b_name": "Tööstuslikud ventilaatorid",
       "reason": "Domeeni-eksklusiivsus (tööstus/töökoda vs kodu). Pretsedent: #4 Kodumasinad vs #5 Suurköök — sama üldtüüp, eri domeen, suurus-eksklusiivsus piiritleb (countertop jäämasin ≠ 75kg kommerts). 26in tööstus-trummelventilaator ≠ kodu-põrandaventilaator (Tarmo kinnitas 2026-07-10)."
+    },
+    {
+      "a": "pcat_hyd_1",
+      "b": "pcat_hyd_2",
+      "a_name": "Hüdroagregaadid",
+      "b_name": "Hüdropumbad ja -mootorid",
+      "reason": "Eri tüüp: agregaat = komplekt-SEADE (Hydraulic Power Unit: pump+paak+mootor integreeritud) vs pump/mootor = KOMPONENT/element (bare pump). Nagu kompressor vs pumbapea. Ostja otsib kas terviklikku agregaati või varuosa-pumpa (Tarmo FLAG 2026-07-11)."
     }
   ]
 }
