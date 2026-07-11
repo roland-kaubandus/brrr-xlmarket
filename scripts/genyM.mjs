@@ -36,5 +36,6 @@ block(yl,"v4-buroo-ja-kontoritarvikud","Büroo & kontoritarvikud","buroo",124,(y
 block(yl,"v4-ladu-hoiustamine-ja-pakendamine","Ladu, hoiustamine & pakendamine","ladu",447,(y)=>subsDB(y,"pcat_v4_l22"));
 block(yl,"v4-elektroonika-ja-multimeedia","Elektroonika & multimeedia","elektroonika",123,(y)=>subsDB(y,"pcat_v4_l23"));
 block(yl,"v4-lastekaubad-ja-manguasjad","Lastekaubad ja mänguasjad","lastekaubad",293,(y)=>subsDB(y,"pcat_v4_l24"));
+block(yl,"v4-hobi-ja-kasitoo","Hobi ja käsitöö","hobi",99,(y)=>subsDB(y,"pcat_v4_l25"));
 fs.writeFileSync(`${OUT}/taxonomy-music.yaml`,yl.join("\n")+"\n");
-console.log("yaml: 24 L1");
+console.log("yaml: 25 L1");
