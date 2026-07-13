@@ -28,6 +28,13 @@
       "a_name": "Virnastatavad hoiukastid & -bin'id",
       "b_name": "Hoiukastid & -kirstud",
       "reason": "VÄLJUND erineb: kokkupandav+KAANEGA üldhoiustus (45-65L riide/mänguasja-kastid, fold-flat) vs JÄIK väikeosade-organiseerimine (27cm kruvi/kontori-binid, 8-24 pakk, hanging pick-binid). Kokkupandav 45L riide-kast ≠ jäik väikeosa-bin — eri suurus/vorm/otstarve, eri tüüp mitte variant. Merge-judge kesk = nime-põhine false-positive (mõlemad 'hoiukastid') (Tarmo FLAG 2026-07-13)."
+    },
+    {
+      "a": "pcat_mv_6x1_12",
+      "b": "pcat_mv_6x1_13",
+      "a_name": "Pulma-lillevaasid",
+      "b_name": "Pulma-lillestatiivid",
+      "reason": "VÄLJUND erineb: statiiv KANNAB/tõstab lilleseadet (struktuur-tugi, kuiv) vs vaas HOIAB vett+lilli (mahuti). Eri funktsioon, mitte variant. Merge-judge kesk = nime-põhine (mõlemad 'pulma-lille') (Tarmo FLAG 2026-07-13)."
     }
   ]
 }
