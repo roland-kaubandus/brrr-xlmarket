@@ -35,6 +35,13 @@
       "a_name": "Pulma-lillevaasid",
       "b_name": "Pulma-lillestatiivid",
       "reason": "VÄLJUND erineb: statiiv KANNAB/tõstab lilleseadet (struktuur-tugi, kuiv) vs vaas HOIAB vett+lilli (mahuti). Eri funktsioon, mitte variant. Merge-judge kesk = nime-põhine (mõlemad 'pulma-lille') (Tarmo FLAG 2026-07-13)."
+    },
+    {
+      "a": "pcat_7cart2",
+      "b": "pcat_t3a_1_1",
+      "a_name": "Kallutuskärud",
+      "b_name": "Aiakärud",
+      "reason": "VÄLJUND erineb: kallutuskäru = TIPPING/kallutus-mehhanism (90° quick-dump, tühjendad koorma kallutades — raske pinnas/kruus) vs aiakäru = flatbed/mesh käsitsi-tühjendus. Buyer-relevantne funktsionaalne eristus + feed-deterministlik ('Garden Dump Cart' → selge kodu). Piir teravdatud (2 elektri-dump-carti misfit→Kallutuskärud). Eri tüüp, mitte variant (Tarmo FLAG 2026-07-13)."
     }
   ]
 }
