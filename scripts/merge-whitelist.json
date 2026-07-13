@@ -21,6 +21,13 @@
       "a_name": "Hüdroagregaadid",
       "b_name": "Hüdropumbad ja -mootorid",
       "reason": "Eri tüüp: agregaat = komplekt-SEADE (Hydraulic Power Unit: pump+paak+mootor integreeritud) vs pump/mootor = KOMPONENT/element (bare pump). Nagu kompressor vs pumbapea. Ostja otsib kas terviklikku agregaati või varuosa-pumpa (Tarmo FLAG 2026-07-11)."
+    },
+    {
+      "a": "pcat_22bin",
+      "b": "pcat_mv_6x2_14",
+      "a_name": "Virnastatavad hoiukastid & -bin'id",
+      "b_name": "Hoiukastid & -kirstud",
+      "reason": "VÄLJUND erineb: kokkupandav+KAANEGA üldhoiustus (45-65L riide/mänguasja-kastid, fold-flat) vs JÄIK väikeosade-organiseerimine (27cm kruvi/kontori-binid, 8-24 pakk, hanging pick-binid). Kokkupandav 45L riide-kast ≠ jäik väikeosa-bin — eri suurus/vorm/otstarve, eri tüüp mitte variant. Merge-judge kesk = nime-põhine false-positive (mõlemad 'hoiukastid') (Tarmo FLAG 2026-07-13)."
     }
   ]
 }
