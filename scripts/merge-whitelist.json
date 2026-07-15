@@ -42,6 +42,20 @@
       "a_name": "Kallutuskärud",
       "b_name": "Aiakärud",
       "reason": "VÄLJUND erineb: kallutuskäru = TIPPING/kallutus-mehhanism (90° quick-dump, tühjendad koorma kallutades — raske pinnas/kruus) vs aiakäru = flatbed/mesh käsitsi-tühjendus. Buyer-relevantne funktsionaalne eristus + feed-deterministlik ('Garden Dump Cart' → selge kodu). Piir teravdatud (2 elektri-dump-carti misfit→Kallutuskärud). Eri tüüp, mitte variant (Tarmo FLAG 2026-07-13)."
+    },
+    {
+      "a": "pcat_ag2_3x1_2",
+      "b": "pcat_ag2_3x1_3",
+      "a_name": "Elektrilised vintsid",
+      "b_name": "Käsivintsid",
+      "reason": "Energia-allikas SIIN funktsionaalne (mitte fan-tüüpi variant): elektrivints = 12V mootor, nupu/kaugjuhtimine, ATV/UTV recovery koorma all (töötab ise) vs käsivints = vänt, füüsiline jõud, paadihaagise-laadimine (kontrollitud käsi-vinnamine). EI vabalt vahetatavad — käsi-vints ei asenda mootori-recovery't, eri kasutus+võimekus. Eri tüüp (Tarmo FLAG 2026-07-15)."
+    },
+    {
+      "a": "pcat_10konv",
+      "b": "pcat_d9_1",
+      "a_name": "Konvektorid",
+      "b_name": "Kaasaskantavad ruumisoojendid",
+      "reason": "Mõlemad soojendavad ruumi õhku (sama L2), AGA eri TÜÜP: konvektor = elektri-konvektsioon, plug-in, kodu-ruum, madal võimsus vs kaasaskantav ruumisoojendi = diisel/kerosiin forced-air torpedo, jobsite/garaaž, 20-50kW, mobiilne, kütust põletav. Eri kütus/vorm/kasutus/võimekus — buyer EI cross-shop (kodu-konvektor ≠ ehitusplatsi-torpedo). Eri tüüp, mitte variant (Tarmo FLAG 2026-07-15)."
     }
   ]
 }
