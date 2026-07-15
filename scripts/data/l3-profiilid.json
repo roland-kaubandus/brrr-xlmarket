@@ -1,7 +1,7 @@
 {
  "generated": "2026-07-15",
  "model": "claude-opus-4-8",
- "count": 1696,
+ "count": 1695,
  "profiles": [
   {
    "l3_id": "pcat_t3a_5_8",
@@ -1943,7 +1943,8 @@
    "exclude": [
     "seljas kantav pritsija / backpack sprayer → Seljapritsijad ja pihustuspumbad",
     "ratastel/kärul pritsija / wheeled cart sprayer → Ratastega ja veetavad aiapritsijad",
-    "sprinkler / sprinkler → Sprinklerid"
+    "sprinkler / sprinkler → Sprinklerid",
+    "ratastega/ATV-veetav suur pihusti 15-60L / wheeled tow-behind sprayer → Ratastega ja veetavad aiapritsijad"
    ],
    "naaber_piirid": [
     "kui tootel on rattad või kärualus → Ratastega ja veetavad aiapritsijad",
@@ -2016,7 +2017,8 @@
    "exclude": [
     "käes hoitav pihustuspump / handheld sprayer → Käsipritsijad ja käsipihustuspumbad",
     "seljas kantav pritsija / backpack sprayer → Seljapritsijad ja pihustuspumbad",
-    "sprinkler / sprinkler → Sprinklerid"
+    "sprinkler / sprinkler → Sprinklerid",
+    "käes-kantav väike pihusti 4-14L / handheld carried pump sprayer → Käsipritsijad ja käsipihustuspumbad"
    ],
    "naaber_piirid": [
     "eristub ratastel/kärul/sõiduki külge liikuvuse poolest — kui käes hoitav → Käsipritsijad; kui seljas → Seljapritsijad"
@@ -8433,17 +8435,18 @@
   },
   {
    "l3_id": "pcat_el_11x3_2",
-   "l3_nimi": "Harjadeta alalisvoolumootorid",
+   "l3_nimi": "Harjadeta alalisvoolumootorid ja -komplektid",
    "main": "Elektritarvikud ja valgustus",
    "l2": "Mootorid & osad",
-   "n": 10,
+   "n": 26,
    "umbrella": false,
    "umbrella_pohjus": "",
    "domeen": "Harjadeta (brushless) alalisvoolumootorid — kõrge kiiruse ja töökindlusega DC-mootorid go-kartidele, tõukeratastele, elektriratastele, väljundiks pöörlev mehaaniline jõud ilma harjade kulumiseta.",
    "include": [
     "harjadeta DC-mootor / brushless DC motor (BLDC) / silnik bezszczotkowy DC",
     "kõrgekiiruseline elektroskuutri mootor / high speed electric scooter motor / silnik do hulajnogi elektrycznej",
-    "reduktoriga harjadeta mootor / brushless motor with gear reduction / silnik bezszczotkowy z przekładnią"
+    "reduktoriga harjadeta mootor / brushless motor with gear reduction / silnik bezszczotkowy z przekładnią",
+    "mootori-komplekt kontrolleriga+throttle / brushless motor kit with speed controller / zestaw silnika bezszczotkowego"
    ],
    "exclude": [
     "harjaga mootor / brushed DC motor → Harjaga alalisvoolumootorid",
@@ -8456,29 +8459,6 @@
     "Üksik brushless-mootor (võib olla ka kontrolleriga, aga mitte 'kit') → siin"
    ],
    "valjundi_test": "Kas müüakse harjadeta mootorit üksiktootena (mitte tervikkomplektina)? Jah → siin; komplekt → naaber."
-  },
-  {
-   "l3_id": "pcat_el_11x3_3",
-   "l3_nimi": "Harjadeta alalisvoolumootorite komplektid",
-   "main": "Elektritarvikud ja valgustus",
-   "l2": "Mootorid & osad",
-   "n": 16,
-   "umbrella": false,
-   "umbrella_pohjus": "",
-   "domeen": "Harjadeta alalisvoolumootorite tervikkomplektid — mootor koos kiiruskontrolleri, gaasipedaali ja juhtmestikuga, mis pakuvad valmis-lahenduse elektrisõiduki ehitamiseks.",
-   "include": [
-    "harjadeta mootori komplekt / brushless DC motor kit / zestaw silnika bezszczotkowego DC",
-    "mootor + kontroller + pedaal + juhtmestik / motor with controller and throttle pedal / silnik z kontrolerem i pedałem gazu"
-   ],
-   "exclude": [
-    "üksik harjadeta mootor ilma komplektita / standalone brushless motor → Harjadeta alalisvoolumootorid",
-    "harjaga mootori komplekt / brushed motor kit → Harjaga alalisvoolumootorid"
-   ],
-   "naaber_piirid": [
-    "Erineb Harjadeta alalisvoolumootorid'est komplekti-terviklikkuse poolest (kontroller+pedaal+juhtmed koos)",
-    "Kui komplekt on harjaga (brushed) mootoriga → Harjaga alalisvoolumootorid"
-   ],
-   "valjundi_test": "Kas toode sisaldab mootorit KOOS kontrolleri/pedaali/juhtmestikuga ühe kit-paketina? Jah → siin; üksik mootor → naaber."
   },
   {
    "l3_id": "pcat_el_11x3_6",

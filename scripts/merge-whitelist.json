@@ -56,6 +56,13 @@
       "a_name": "Konvektorid",
       "b_name": "Kaasaskantavad ruumisoojendid",
       "reason": "Mõlemad soojendavad ruumi õhku (sama L2), AGA eri TÜÜP: konvektor = elektri-konvektsioon, plug-in, kodu-ruum, madal võimsus vs kaasaskantav ruumisoojendi = diisel/kerosiin forced-air torpedo, jobsite/garaaž, 20-50kW, mobiilne, kütust põletav. Eri kütus/vorm/kasutus/võimekus — buyer EI cross-shop (kodu-konvektor ≠ ehitusplatsi-torpedo). Eri tüüp, mitte variant (Tarmo FLAG 2026-07-15)."
+    },
+    {
+      "a": "pcat_t3a_8_10",
+      "b": "pcat_t3a_8_12",
+      "a_name": "Käsipritsijad ja käsipihustuspumbad",
+      "b_name": "Ratastega ja veetavad aiapritsijad",
+      "reason": "VÄLJUND erineb: käes-kantav pihusti 4-14L (kannad käes/seljas, väike aed/põrand) vs ratastega/ATV-veetav pihusti 15-60L (lükkad/veetav, suur ala). Eri mobiilsus+maht — 60L ratas-pritsijat ei kanna käes, 4L käsi-pritsijat ei veeta. Ostja valib mastaabi järgi, EI vabalt vahetatav. Sama toode (Industrial Concrete Sprayer) esineb mõlemas vormis (käsi 14L vs wheeled-cart 14L) = form-split õige. Eri tüüp (Tarmo FLAG 2026-07-16)."
     }
   ]
 }
