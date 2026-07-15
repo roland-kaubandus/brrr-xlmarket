@@ -12292,7 +12292,7 @@
    ],
    "exclude": [
     "toidukuivati / food dehydrator → Toidukuivatid ja külmkuivatid",
-    "alkohol/piiritusdestill / alcohol still moonshine → (õlle/piirituse tootmine, mitte siia)",
+    "alkohol-/piiritusdestill / alcohol still moonshine → Piiritus- ja destilleerimisaparaadid (#5)",
     "veefilter/dosaator ilma destillita / water dispenser → Veedosaatorid & -pumbad"
    ],
    "naaber_piirid": [
@@ -27384,14 +27384,14 @@
     "piiritusaparaat / moonshine still / bimber aparatura",
     "alkoholidestillaator / alcohol distiller still / destylator alkoholu",
     "viskidestillaator / whiskey distillery kit / destylator whisky",
-    "vee-destillaator / water distiller / destylator wody",
     "eeterliku õli destillaator / essential oil distiller / destylator olejków eterycznych",
     "vasktoruga destill / copper tube still / destylator z rurką miedzianą"
    ],
    "exclude": [
     "õlle pruulimise all-in-one katel / beer brewer boiler → Õllepruulimisseadmed",
     "koonusfermentor käärimiseks / conical fermenter → Õllefermentorid",
-    "veini/õuna mahlapress / fruit wine press → Veini- ja siidripressid"
+    "veini/õuna mahlapress / fruit wine press → Veini- ja siidripressid",
+    "puhas joogivee-destillaator / water distiller (pure water) → Veedestillaatorid (#4 Kodumasinad)"
    ],
    "naaber_piirid": [
     "Piir vs Õllepruulimisseadmed: destill eraldab aurustades alkoholi/vedelikke, ei pruuli virret",
