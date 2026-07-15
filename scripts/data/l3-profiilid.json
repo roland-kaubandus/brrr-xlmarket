@@ -27297,32 +27297,6 @@
    "valjundi_test": "Kas seadmel on elektriline jahutus/ringlus jae hoiab jooki külmana? Jah → siia, ei → peo-dispenser."
   },
   {
-   "l3_id": "pcat_5keg",
-   "l3_nimi": "Kegid ja õllesüsteemi tarvikud",
-   "main": "Suurköögiseadmed",
-   "l2": "Joogiseadmed",
-   "n": 5,
-   "umbrella": true,
-   "umbrella_pohjus": "Koondab keg-mahutid ja õllesüsteemi tarvikud/kulumaterjalid (drip tray, puhastuskomplekt, konnektorid) — seade+tarvik teadlikult koos.",
-   "include": [
-    "õlle-keg / corny keg ball lock / keg beczka",
-    "kegeraatori tilgaalus / kegerator drip tray / tacka ociekowa",
-    "liinipuhastuskomplekt / keg line cleaning kit / zestaw do czyszczenia linii",
-    "keg-konnektor/coupler / keg coupler D-type / złączka do kega",
-    "cold brew keg / cold brew keg / keg do cold brew"
-   ],
-   "exclude": [
-    "täielik õllesüsteem-torn / beer tower tap system / kolumna nalewowa → Õllesüsteemid ja -tornid",
-    "CO2 balloon/regulaator / CO2 tank regulator / butla CO2 → CO2 balloonid ja tarvikud",
-    "ÄRA splitti alamtüüpideks — teadlik umbrella"
-   ],
-   "naaber_piirid": [
-    "Kegid+tarvikud vs õllesüsteemid: torn/tapp on serveerimisosa → eri L3",
-    "CO2 gaasivarustus → oma L3"
-   ],
-   "valjundi_test": "Kas toode on keg-mahuti või selle otsene liini-/hooldustarvik? Jah → siia, torn/CO2 → naaber."
-  },
-  {
    "l3_id": "pcat_ks_5x1_17",
    "l3_nimi": "Mahlapressid",
    "main": "Suurköögiseadmed",
@@ -41691,6 +41665,35 @@
     "Mullivann (spaa/soojus) → Mullivannid; siin külmveebassein ujumiseks"
    ],
    "valjundi_test": "Kas toode on iseseisev vett mahutav basseini-konstruktsioon? Jah → siia; kui on komponent/kate/spaa → naaber."
+  },
+  {
+   "l3_id": "pcat_5keg",
+   "l3_nimi": "Kegid ja õllesüsteemi tarvikud",
+   "main": "Suurköögiseadmed",
+   "l2": "Joogiseadmed",
+   "n": 5,
+   "umbrella": false,
+   "umbrella_pohjus": "",
+   "domeen": "Õlle/jookide serveerimis- ja säilitussüsteemi kegid ning nende hooldus-/serveerimistarvikud — väljund on villitud/serveeritav vaht-jook survesüsteemi kaudu.",
+   "include": [
+    "õllekeg / corny keg ball lock keg / keg",
+    "keg-tilgaalus / kegerator drip tray / tacka ociekowa",
+    "kegi puhastuskomplekt / keg line cleaning kit / zestaw czyszczacy do kegow",
+    "kegi ühendused ja liitmikud / keg coupler connection / zlaczka do kega",
+    "külmpruuli keg / cold brew keg / keg cold brew"
+   ],
+   "exclude": [
+    "CO2 balloon ja regulaator / CO2 tank regulator → CO2 balloonid ja tarvikud",
+    "õlletorn ja tap-süsteem / beer tower tap system → Õllesüsteemid ja -tornid",
+    "fermentor õlle käärimiseks / fermenter → Õllefermentorid",
+    "pruulimispott ja -seade / brewing kettle → Õllepruulimisseadmed",
+    "jahutusega dispenser / cooling drink dispenser → Jahutusega joogidispenserid"
+   ],
+   "naaber_piirid": [
+    "kegi salvestus/serveerimistarvik jääb siia; kui toode on iseseisev CO2-surve allikas → CO2 balloonid; kui täielik torn/dispenser-agregaat → Õllesüsteemid ja -tornid",
+    "fermentatsiooni-/pruulimisprotsessi seadmed → Õllefermentorid / Õllepruulimisseadmed"
+   ],
+   "valjundi_test": "Kas toode on keg-anum või selle otsene hooldus/serveerimistarvik? Jah → siia; kui see toodab/kääritab jooki (fermentor, pruulimispott) või on CO2-allikas → eri tüüp."
   }
  ]
 }
