@@ -1,0 +1,28 @@
+BEGIN;
+-- DOMEENI-MISFIT parandus (domain-placement-judge, Tarmo kinnitatud)
+UPDATE product_category_product SET product_category_id='pcat_ag_3_3' WHERE product_category_id='pcat_7akked';
+DELETE FROM taxonomy_node_meta WHERE node_id='pcat_7akked';
+UPDATE product_category SET deleted_at=now(), updated_at=now() WHERE id='pcat_7akked';
+UPDATE product_category_product SET product_category_id='pcat_es_9x9_4' WHERE product_category_id='pcat_t3a_3_1';
+DELETE FROM taxonomy_node_meta WHERE node_id='pcat_t3a_3_1';
+UPDATE product_category SET deleted_at=now(), updated_at=now() WHERE id='pcat_t3a_3_1';
+UPDATE product_category_product SET product_category_id='pcat_ag2_3x1_11' WHERE product_category_id='pcat_ag2_2x3_12';
+DELETE FROM taxonomy_node_meta WHERE node_id='pcat_ag2_2x3_12';
+UPDATE product_category SET deleted_at=now(), updated_at=now() WHERE id='pcat_ag2_2x3_12';
+UPDATE product_category_product SET product_category_id='pcat_12m2' WHERE product_category_id='pcat_es_9x1_8';
+DELETE FROM taxonomy_node_meta WHERE node_id='pcat_es_9x1_8';
+UPDATE product_category SET deleted_at=now(), updated_at=now() WHERE id='pcat_es_9x1_8';
+UPDATE product_category_product SET product_category_id='pcat_5snack' WHERE product_category_id='pcat_ks_4x1_13';
+DELETE FROM taxonomy_node_meta WHERE node_id='pcat_ks_4x1_13';
+UPDATE product_category SET deleted_at=now(), updated_at=now() WHERE id='pcat_ks_4x1_13';
+UPDATE product_category SET parent_category_id='pcat_v4_l3_10', mpath='pcat_v4_l3.pcat_v4_l3_10.pcat_el_12x1_13', rank=(SELECT COALESCE(max(rank),0)+1 FROM product_category WHERE parent_category_id='pcat_v4_l3_10' AND deleted_at IS NULL), name='Mootorrattakiivrid', updated_at=now() WHERE id='pcat_el_12x1_13';
+UPDATE product_category SET parent_category_id='pcat_v4_l4_5', mpath='pcat_v4_l4.pcat_v4_l4_5.pcat_22dry', rank=(SELECT COALESCE(max(rank),0)+1 FROM product_category WHERE parent_category_id='pcat_v4_l4_5' AND deleted_at IS NULL), updated_at=now() WHERE id='pcat_22dry';
+UPDATE product_category SET parent_category_id='pcat_23foto', mpath='pcat_v4_l23.pcat_23foto.pcat_el_11x6_5', rank=(SELECT COALESCE(max(rank),0)+1 FROM product_category WHERE parent_category_id='pcat_23foto' AND deleted_at IS NULL), updated_at=now() WHERE id='pcat_el_11x6_5';
+UPDATE product_category SET parent_category_id='pcat_t3l2_11', mpath='pcat_v4_l1.pcat_t3l2_11.pcat_t3f_11_1', rank=(SELECT COALESCE(max(rank),0)+1 FROM product_category WHERE parent_category_id='pcat_t3l2_11' AND deleted_at IS NULL), updated_at=now() WHERE id='pcat_t3f_11_1';
+UPDATE product_category SET parent_category_id='pcat_t3l2_11', mpath='pcat_v4_l1.pcat_t3l2_11.pcat_t3f_11_3', rank=(SELECT COALESCE(max(rank),0)+1 FROM product_category WHERE parent_category_id='pcat_t3l2_11' AND deleted_at IS NULL), updated_at=now() WHERE id='pcat_t3f_11_3';
+UPDATE product_category SET parent_category_id='pcat_v4_l18_3', mpath='pcat_v4_l18.pcat_v4_l18_3.pcat_ag2_3x4_11', rank=(SELECT COALESCE(max(rank),0)+1 FROM product_category WHERE parent_category_id='pcat_v4_l18_3' AND deleted_at IS NULL), updated_at=now() WHERE id='pcat_ag2_3x4_11';
+UPDATE product_category SET parent_category_id='pcat_23net', mpath='pcat_v4_l23.pcat_23net.pcat_1fiber', rank=(SELECT COALESCE(max(rank),0)+1 FROM product_category WHERE parent_category_id='pcat_23net' AND deleted_at IS NULL), updated_at=now() WHERE id='pcat_1fiber';
+UPDATE product_category SET parent_category_id='pcat_v4_l3_3', mpath='pcat_v4_l3.pcat_v4_l3_3.pcat_9ramp', rank=(SELECT COALESCE(max(rank),0)+1 FROM product_category WHERE parent_category_id='pcat_v4_l3_3' AND deleted_at IS NULL), updated_at=now() WHERE id='pcat_9ramp';
+UPDATE product_category SET parent_category_id='pcat_v4_l12_11', mpath='pcat_v4_l12.pcat_v4_l12_11.pcat_t3f_13_8', rank=(SELECT COALESCE(max(rank),0)+1 FROM product_category WHERE parent_category_id='pcat_v4_l12_11' AND deleted_at IS NULL), updated_at=now() WHERE id='pcat_t3f_13_8';
+UPDATE product_category SET parent_category_id='pcat_22pack', mpath='pcat_v4_l22.pcat_22pack.pcat_5n4', rank=(SELECT COALESCE(max(rank),0)+1 FROM product_category WHERE parent_category_id='pcat_22pack' AND deleted_at IS NULL), updated_at=now() WHERE id='pcat_5n4';
+COMMIT;
