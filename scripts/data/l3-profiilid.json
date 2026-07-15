@@ -1,7 +1,7 @@
 {
  "generated": "2026-07-15",
  "model": "claude-opus-4-8",
- "count": 1695,
+ "count": 1693,
  "profiles": [
   {
    "l3_id": "pcat_t3a_5_8",
@@ -8408,32 +8408,6 @@
    "valjundi_test": "Ilmastikukindel püsipaigaldusega välivalgusti — sisevalgusti ei asenda, sest puudub veekindlus/väliskinnitus."
   },
   {
-   "l3_id": "pcat_el_11x3_5",
-   "l3_nimi": "Alalisvoolu elektrimootorid",
-   "main": "Elektritarvikud ja valgustus",
-   "l2": "Mootorid & osad",
-   "n": 5,
-   "umbrella": false,
-   "umbrella_pohjus": "",
-   "domeen": "Alalisvoolutoitel (DC) püsimagnet-elektrimootorid, mis muundavad alalisvoolu pöörleva mehaanilise väljundiga — üldotstarbeline pöördjõud go-kartidele, tööpinkidele jm.",
-   "include": [
-    "püsimagnet DC-mootor / permanent magnet DC motor / silnik prądu stałego z magnesem trwałym",
-    "harjaga DC-mootor üldnimetusega / brushed DC electric motor / silnik szczotkowy DC",
-    "12V/24V/36V/90V DC-mootor / DC electric motor with speed rating / silnik elektryczny DC"
-   ],
-   "exclude": [
-    "harjadeta mootor / brushless DC motor → Harjadeta alalisvoolumootorid",
-    "mootor+kontroller-komplekt / brushed motor kit with controller → Harjaga alalisvoolumootorid",
-    "lineaarne tõukur / linear actuator → Lineaaraktuaatorid",
-    "puhurimootor / furnace blower motor → Puhuri- & ventilaatorimootorid"
-   ],
-   "naaber_piirid": [
-    "Kui feed rõhutab 'brushless' → Harjadeta alalisvoolumootorid; kui 'brushed' + komplekt → Harjaga alalisvoolumootorid",
-    "AC-toide (220V üksik-/kolmefaas) → Üksikfaasilised/Kolmefaasilised elektrimootorid"
-   ],
-   "valjundi_test": "Kas toode on üldine DC-püsimagnetmootor ILMA harjadeta-tehnoloogia või tervikkomplekti rõhuta? Jah → siin; ei → naaber-L3."
-  },
-  {
    "l3_id": "pcat_el_11x3_2",
    "l3_nimi": "Harjadeta alalisvoolumootorid ja -komplektid",
    "main": "Elektritarvikud ja valgustus",
@@ -8452,7 +8426,8 @@
     "harjaga mootor / brushed DC motor → Harjaga alalisvoolumootorid",
     "tervikkomplekt kontrolleri+gaasipedaaliga selgelt kit-tootena / brushless motor kit → Harjadeta alalisvoolumootorite komplektid",
     "püsimagnet üld-DC / permanent magnet DC motor → Alalisvoolu elektrimootorid",
-    "lineaartõukur / linear actuator → Lineaaraktuaatorid"
+    "lineaartõukur / linear actuator → Lineaaraktuaatorid",
+    "harjaga/brushed DC mootor (mehaanilised harjad) → Harjaga alalisvoolumootorid"
    ],
    "naaber_piirid": [
     "Kui pealkiri rõhutab 'Kit' + kontroller + pedaal komplektina → Harjadeta alalisvoolumootorite komplektid",
@@ -8465,19 +8440,21 @@
    "l3_nimi": "Harjaga alalisvoolumootorid",
    "main": "Elektritarvikud ja valgustus",
    "l2": "Mootorid & osad",
-   "n": 4,
+   "n": 9,
    "umbrella": false,
    "umbrella_pohjus": "",
    "domeen": "Harjaga (brushed) alalisvoolumootorid, sageli reduktori ja/või kontrolleriga — DC-mootorid go-kartidele ja skuutritele, väljundiks pöörlev jõud harjadega kommutaatoriga.",
    "include": [
     "harjaga DC-mootor / brushed DC electric motor / silnik szczotkowy DC",
     "reduktoriga harjaga mootor / brushed motor with gear reduction / silnik szczotkowy z przekładnią",
-    "harjaga mootori komplekt kontrolleriga / brushed motor kit with controller → siin"
+    "harjaga mootori komplekt kontrolleriga / brushed motor kit with controller → siin",
+    "püsimagnet-alalisvoolumootor tööstuslik / permanent magnet DC motor 12V 90V / silnik DC magnes trwały"
    ],
    "exclude": [
     "harjadeta mootor / brushless DC motor → Harjadeta alalisvoolumootorid",
     "harjadeta mootori komplekt / brushless motor kit → Harjadeta alalisvoolumootorite komplektid",
-    "püsimagnet üld-DC ilma harja-täpsustuseta / permanent magnet DC → Alalisvoolu elektrimootorid"
+    "püsimagnet üld-DC ilma harja-täpsustuseta / permanent magnet DC → Alalisvoolu elektrimootorid",
+    "harjadeta/brushless BLDC mootor (elektrooniline kommutatsioon) → Harjadeta alalisvoolumootorid ja -komplektid"
    ],
    "naaber_piirid": [
     "Peamine piir: 'brushed' vs 'brushless' — tehnoloogia määrab L3",
@@ -8534,17 +8511,18 @@
   },
   {
    "l3_id": "pcat_el_11x3_4",
-   "l3_nimi": "Üksikfaasilised elektrimootorid",
+   "l3_nimi": "Vahelduvvoolu elektrimootorid",
    "main": "Elektritarvikud ja valgustus",
    "l2": "Mootorid & osad",
-   "n": 12,
+   "n": 14,
    "umbrella": false,
    "umbrella_pohjus": "",
-   "domeen": "Ühefaasiline AC-elektrimootor (220-240V), mis muundab ühefaasilise vahelduvvoolu mehaaniliseks pöördeliikumiseks kompressorite, pumpade ja masinate ajamiks.",
+   "domeen": "Ühefaasiline AC-elektrimootor (220-240V), mis muundab ühefaasilise vahelduvvoolu mehaaniliseks pöördeliikumiseks kompressorite, pumpade ja masinate ajamiks — sh üksik- ja kolmefaasilised (faas/pinge=variant-spets, feed disambiguerib 3-Phase/400V vs Single-Phase/230V).",
    "include": [
     "üksikfaasiline elektrimootor / single phase electric motor / silnik elektryczny jednofazowy",
     "kompressorimootor 220V / air compressor motor / silnik do kompresora",
-    "B3/B34 raamiga AC-mootor / AC motor B3 B34 frame / silnik AC kołnierzowy"
+    "B3/B34 raamiga AC-mootor / AC motor B3 B34 frame / silnik AC kołnierzowy",
+    "kolmefaasiline AC-mootor / three-phase electric motor 400V / silnik trójfazowy"
    ],
    "exclude": [
     "kolmefaasiline mootor 380V / three phase motor → Kolmefaasilised elektrimootorid",
@@ -38517,32 +38495,6 @@
     "Üldmootorid (üksik-/kolmefaasilised) on universaalsed; siin spetsiifiline basseinipumba raam (56J) ja niiske-keskkonna disain"
    ],
    "valjundi_test": "Kas mootor on ehitatud basseinipumba raamile (56J) veepumpamiseks? Jah = siia; kui üldotstarbeline mootor, siis mootori-L3."
-  },
-  {
-   "l3_id": "pcat_11ac3",
-   "l3_nimi": "Kolmefaasilised elektrimootorid",
-   "main": "Elektritarvikud ja valgustus",
-   "l2": "Mootorid & osad",
-   "n": 2,
-   "umbrella": false,
-   "umbrella_pohjus": "",
-   "domeen": "Tööstuslikud vahelduvvoolu-elektrimootorid 3-faasilise 400V toitega (mootor pöörab võlli mehaanilise jõu andmiseks kompressoritele, pumpadele, masinatele).",
-   "include": [
-    "kolmefaasiline elektrimootor / three-phase electric motor / silnik elektryczny trójfazowy",
-    "AC induktsioonmootor 400V / 3-phase AC induction motor / silnik indukcyjny trójfazowy",
-    "B3 raamiga tööstusmootor / B3 frame industrial motor / silnik przemysłowy B3"
-   ],
-   "exclude": [
-    "üksikfaasiline 230V mootor / single-phase motor → Üksikfaasilised elektrimootorid",
-    "alalisvoolumootor DC / DC motor → Alalisvoolu elektrimootorid",
-    "vibratsioonimootor / vibrating motor → Vibratsioonimootorid",
-    "pumba-/basseinimootor / pool pump motor → Basseini- & pumbamootorid"
-   ],
-   "naaber_piirid": [
-    "3-faasiline (400V, 3 juhet) vs üksikfaasiline (230V) — eristab faaside arv ja toitepinge",
-    "AC induktsioon vs DC-mootorid — toitetüüp erineb"
-   ],
-   "valjundi_test": "Kas toode annab tööstusliku mehaanilise võlli-jõu 3-faasiliselt 400V võrgust? Jah → siia; üksikfaasiline 230V → naaber."
   },
   {
    "l3_id": "pcat_11vib",

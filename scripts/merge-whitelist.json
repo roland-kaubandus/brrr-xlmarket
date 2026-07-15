@@ -63,6 +63,13 @@
       "a_name": "Käsipritsijad ja käsipihustuspumbad",
       "b_name": "Ratastega ja veetavad aiapritsijad",
       "reason": "VÄLJUND erineb: käes-kantav pihusti 4-14L (kannad käes/seljas, väike aed/põrand) vs ratastega/ATV-veetav pihusti 15-60L (lükkad/veetav, suur ala). Eri mobiilsus+maht — 60L ratas-pritsijat ei kanna käes, 4L käsi-pritsijat ei veeta. Ostja valib mastaabi järgi, EI vabalt vahetatav. Sama toode (Industrial Concrete Sprayer) esineb mõlemas vormis (käsi 14L vs wheeled-cart 14L) = form-split õige. Eri tüüp (Tarmo FLAG 2026-07-16)."
+    },
+    {
+      "a": "pcat_el_11x3_2",
+      "b": "pcat_el_11x3_6",
+      "a_name": "Harjadeta alalisvoolumootorid ja -komplektid",
+      "b_name": "Harjaga alalisvoolumootorid",
+      "reason": "Eri kommutatsiooni-TEHNOLOOGIA: harjadeta (brushless BLDC) = elektrooniline kommutatsioon, vajab kontrollerit, kõrgem efektiivsus/hind vs harjaga (brushed) = mehaanilised harjad, lihtsam/odavam. Buyer valib teadlikult brushed vs brushless (eri hind/jõudlus/eluiga), EI vabalt vahetatav (eri kontroller). Recognized product-eristus. Eri tüüp, mitte variant (Tarmo FLAG 2026-07-16)."
     }
   ]
 }
