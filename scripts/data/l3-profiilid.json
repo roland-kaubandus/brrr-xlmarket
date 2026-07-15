@@ -1,7 +1,7 @@
 {
  "generated": "2026-07-15",
  "model": "claude-opus-4-8",
- "count": 1697,
+ "count": 1696,
  "profiles": [
   {
    "l3_id": "pcat_t3a_5_8",
@@ -686,7 +686,8 @@
    "exclude": [
     "püstine aiatool / garden chair → Aiatoolid",
     "jalatugi / ottoman → Jalatoed (ottomanid)",
-    "padi / cushion → Päikesetooli ja toolipadjad"
+    "padi / cushion → Päikesetooli ja toolipadjad",
+    "sise-mööbel pehmendatud chaise lounge / indoor upholstered chaise → Tugitoolid"
    ],
    "naaber_piirid": [
     "lamamis-/kaldasend või kiikumis-funktsioon → eristub püstisest aiatoolist",
@@ -1460,7 +1461,8 @@
    ],
    "exclude": [
     "basseinipuhasti imivoolik / pool vacuum hose → Basseinipuhastid & puhastustarvikud",
-    "basseinipump / pool pump → Basseinipumbad"
+    "basseinipump / pool pump → Basseinipumbad",
+    "pumba imivoolik/komplekt / water pump suction hose kit → Pumbavoolikud & -komplektid"
    ],
    "naaber_piirid": [
     "Erineb puhastustarvikutest: see on jäika vee väljalasevoolik, mitte imemispuhasti tarvik"
@@ -1681,7 +1683,7 @@
    "l3_nimi": "Basseinipumbad",
    "main": "Aed ja aiatehnika",
    "l2": "Basseinid & spaa",
-   "n": 26,
+   "n": 22,
    "umbrella": false,
    "umbrella_pohjus": "",
    "domeen": "Basseini vee ringlust tagavad pumbad ja pumbamootorid filtratsioonisüsteemi jaoks.",
@@ -1694,7 +1696,8 @@
    "exclude": [
     "imur-puhastusvoolik / pool vacuum hose → Basseinipuhastid & puhastustarvikud",
     "filter/filterpallid / pool filter → Basseinifiltrid & filterpallid",
-    "küttepump/soojuspump / heat pump → Basseiniküttekehad & soojuspumbad"
+    "küttepump/soojuspump / heat pump → Basseiniküttekehad & soojuspumbad",
+    "asendus-pumbamootor komponent ilma pumbata / replacement pool pump motor (56J/56Y frame) → Basseini- & pumbamootorid"
    ],
    "naaber_piirid": [
     "Pump = ringlus/vool; filter = mehaaniline puhastus → Basseinifiltrid & filterpallid",
@@ -1953,7 +1956,7 @@
    "l3_nimi": "Külmakindlad maaveepostid ja hüdrandid",
    "main": "Aed ja aiatehnika",
    "l2": "Kastmine & niisutus",
-   "n": 10,
+   "n": 13,
    "umbrella": false,
    "umbrella_pohjus": "",
    "domeen": "Maasse kaevatav külmakindel veevõtupost/hüdrant, mida ostja otsib aastaringseks jäätumisvabaks välisveevõtuks.",
@@ -16553,7 +16556,8 @@
    "exclude": [
     "mitmekohaline diivan / sofa couch → Diivanid",
     "kott-tool / bean bag → Kott-toolid",
-    "hoiupink/tumba / storage bench ottoman → Hoiupingid ja tumbad"
+    "hoiupink/tumba / storage bench ottoman → Hoiupingid ja tumbad",
+    "väli/patio päikese-chaise lounge / outdoor patio sun-lounger → Päikesetoolid ja lamamistoolid"
    ],
    "naaber_piirid": [
     "Kui istemööbel on 2+ kohta / diivan → Diivanid",
@@ -21256,31 +21260,6 @@
    "valjundi_test": "Kas valamu on vannitoas käte pesuks? Köögi nõudepesu → Köögivalamud."
   },
   {
-   "l3_id": "pcat_es_10x5_12",
-   "l3_nimi": "Õuekraanid",
-   "main": "Santehnika, küte ja ventilatsioon",
-   "l2": "Segistid & valamud",
-   "n": 3,
-   "umbrella": false,
-   "umbrella_pohjus": "",
-   "domeen": "Külmakindlad õue-veevõtukraanid ja aiahüdrandid, mis annavad välitingimustes külmumisvaba veevoolu maasügavuselt.",
-   "include": [
-    "külmakindel aiahüdrant / frost proof yard hydrant / hydrant mrozoodporny",
-    "õue-veekraan / freeze-proof outdoor faucet / kran zewnętrzny mrozoodporny",
-    "maasügavusega veevõtupost / bury depth water faucet / kran ogrodowy z głębokim montażem"
-   ],
-   "exclude": [
-    "köögikraan / kitchen faucet → Köögisegistid",
-    "vannitoa valamukraan / bathroom sink faucet → Kraanisegistid",
-    "joogivee-filtersegisti / drinking water faucet → Joogivee- & filtersegistid",
-    "dušisegisti / shower faucet → Dušisegistid"
-   ],
-   "naaber_piirid": [
-    "Kui segisti on sisemine ruumikraan → Kraanisegistid; õue-/aiakasutus + külmakaitse + maasügavus jääb siia."
-   ],
-   "valjundi_test": "Kas toode annab õues külmumisvaba veevoolu maa alt (jah=siia); tavaline sisekraan ei asenda seda."
-  },
-  {
    "l3_id": "pcat_es_10x8_2",
    "l3_nimi": "Dušinurga riiulid & postid",
    "main": "Santehnika, küte ja ventilatsioon",
@@ -21716,7 +21695,8 @@
    "exclude": [
     "veepump ise (voolikuta seade) / water pump unit → vastav pumba-L3",
     "tsirkulatsioonipumba torustik / heating pipe → Tsirkulatsioonipumbad",
-    "üldine aiakastmisvoolik / garden watering hose → aiakategooria (mitte pumba-L2)"
+    "üldine aiakastmisvoolik / garden watering hose → aiakategooria (mitte pumba-L2)",
+    "bassein-spetsiifiline tagasiloputus-/äravooluvoolik / pool backwash discharge hose → Basseini äravooluvoolikud"
    ],
    "naaber_piirid": [
     "Kõik pumba-L3-d sisaldavad SEADET; siia kuuluvad ainult voolikud/komplektid ILMA pumbata.",
@@ -38538,7 +38518,7 @@
    "l3_nimi": "Basseini- & pumbamootorid",
    "main": "Elektritarvikud ja valgustus",
    "l2": "Mootorid & osad",
-   "n": 2,
+   "n": 6,
    "umbrella": false,
    "umbrella_pohjus": "",
    "domeen": "Basseinipumba käitamine — spetsiaalse raamiga (56J) elektrimootorid, mis annavad pöördemomendi basseini veepumbale.",
@@ -38550,7 +38530,8 @@
     "harjadeta DC mootor / brushless DC motor → Harjadeta alalisvoolumootorid",
     "lineaaraktuaator / linear actuator → Lineaaraktuaatorid",
     "puhuri-ventilaatorimootor / blower fan motor → Puhuri- & ventilaatorimootorid",
-    "üksikfaasiline üldmootor / single-phase general motor → Üksikfaasilised elektrimootorid"
+    "üksikfaasiline üldmootor / single-phase general motor → Üksikfaasilised elektrimootorid",
+    "terviklik basseinipump vooluhulgaga L/h + strainer / complete pool pump → Basseinipumbad"
    ],
    "naaber_piirid": [
     "Üldmootorid (üksik-/kolmefaasilised) on universaalsed; siin spetsiifiline basseinipumba raam (56J) ja niiske-keskkonna disain"
