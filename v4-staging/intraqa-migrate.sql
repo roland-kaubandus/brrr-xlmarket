@@ -1,39 +1,62 @@
 BEGIN;
--- ===== SAMM 1: 19 KINDLAT =====
--- 2 RC-building (STEM Building 461/554 = puldiga Car/Robot/Tank) Konstruktorid → Kaugjuhitavad
-UPDATE product_category_product SET product_category_id='pcat_el_12x2_3'
-WHERE product_category_id='pcat_el_12x2_14' AND product_id IN ('prod_01KNXXGP54XVK4R7WVZG5R1F0R','prod_01KNXXGP4W70YCH93DPYFF968G');
--- 5 busy-board + 4 marble-run tegevuslauad → Õppemänguasjad
-UPDATE product_category_product SET product_category_id='pcat_el_12x2_24'
-WHERE product_category_id='pcat_el_12x2_13' AND product_id IN ('prod_01KNXXNP4QYJRRZAPS16TKQ88K','prod_01KNXXNP4KVTFY91N0W7YYWG5Y','prod_01KNXXNQ16002TYPKWN0ZQ4F1C','prod_01KNXXNRSQ29SKR9Q13XDPNAKY','prod_01KNXXNQ1WEG7ZDWCSNPC89BVM','prod_01KNXXJN9A3TGQDQ68FKTESRGJ','prod_01KNXXJP4SG73BGWMNFFT345W6','prod_01KNXXKJCM5KG5Z5YATEVR5FYK','prod_01KNXXKJBX50HZVYX8J61E2SC0');
--- 3 baby musical activity table (1×_15 + 2×_24) → tegevuslauad
-UPDATE product_category_product SET product_category_id='pcat_el_12x2_13'
-WHERE product_category_id IN ('pcat_el_12x2_15','pcat_el_12x2_24') AND product_id IN ('prod_01KPJVDNBPZVBS12M0N62A02NT','prod_01KPJVDN5E3M4VDFYSJKEX034K','prod_01KP6FDZJQ4YT807889ZZMGQV9');
--- 3 ride-on-luggage tõukerattad → reisikohvrid
-UPDATE product_category_product SET product_category_id='pcat_el_12x2_22'
-WHERE product_category_id='pcat_el_12x2_1' AND product_id IN ('prod_01KNXXPW0PQ4YWSPXKQ5KBQSY6','prod_01KNXXPS9Z7VG6KBQPVECNNPF7','prod_01KNXXPS9ZHK4J7CGT2CHE5B7F');
--- 2 jungle-gym Mänguväljakud → Ronimismänguasjad
-UPDATE product_category_product SET product_category_id='pcat_el_12x2_5'
-WHERE product_category_id='pcat_el_12x2_17' AND product_id IN ('prod_01KNXXT3SZTYTCBCSJJZ2H8A5A','prod_01KNXXHA6PX3S481WJ9YJF2MQ4');
-
--- ===== SAMM 2: PIIRIPEALSED (Tarmo otsus) =====
--- 4 motorcycle engine mechanic set Mänguautod → Õppemänguasjad (STEM-õpe)
-UPDATE product_category_product SET product_category_id='pcat_el_12x2_24'
-WHERE product_category_id='pcat_el_12x2_4' AND product_id IN ('prod_01KPJV62YHV6PPK6JHPJCATP76','prod_01KP6FAXMYWPJHAFSFJPD9H19A','prod_01KPJV62HPXJJ5YY7CRSF1YMNF','prod_01KPJV62R8MQJJVPHWY9QH61WZ');
--- 2 drift ride-on tõukerattad → Laste sõidukid
-UPDATE product_category_product SET product_category_id='pcat_el_12x2_2'
-WHERE product_category_id='pcat_el_12x2_1' AND product_id IN ('prod_01KNXXJ9N4SHT22M1QJ3EHC29M','prod_01KNXXJCB10XERZ031M6J57YZQ');
--- 1 bike-trailer Laste sõidukid → #12 Jalgrattad haagised (main-tasandi)
-UPDATE product_category_product SET product_category_id='pcat_el_12x1_29'
-WHERE product_category_id='pcat_el_12x2_2' AND product_id='prod_01KNXXC8HY509VMV4A917P4STX';
--- (3 train-table JÄÄB pcat_el_12x2_4 — Tarmo otsus, hübriid)
+-- INTRA-QA HIGH: üksik-toote misfit → õige L3 (väljundi-test, judge kõrge)
+UPDATE product_category_product SET product_category_id='pcat_1annular' WHERE product_id='prod_01KPJXFB5EK3K1KQSY9YHV01DY' AND product_category_id='pcat_t3f_9_10';
+UPDATE product_category_product SET product_category_id='pcat_1annular' WHERE product_id='prod_01KPJXFBBVPVHWXABT98ZQAJE3' AND product_category_id='pcat_t3f_9_10';
+UPDATE product_category_product SET product_category_id='pcat_1annular' WHERE product_id='prod_01KPJXEFHEB6AMJR8N0NSGB6YA' AND product_category_id='pcat_t3f_9_10';
+UPDATE product_category_product SET product_category_id='pcat_1annular' WHERE product_id='prod_01KNXX933QBEYQKY19W2VE60C6' AND product_category_id='pcat_t3f_9_10';
+UPDATE product_category_product SET product_category_id='pcat_t3f_7_12' WHERE product_id='prod_01KNXXAX6CS33SGRKEPW5AYYFE' AND product_category_id='pcat_t3f_7_3';
+UPDATE product_category_product SET product_category_id='pcat_t3f_10_4' WHERE product_id='prod_01KNXXGGPGYGFGGF8RBCWKFZZ7' AND product_category_id='pcat_t3f_10_12';
+UPDATE product_category_product SET product_category_id='pcat_t3f_10_4' WHERE product_id='prod_01KNXXGFCMXK8VYSV6DBW5FAHX' AND product_category_id='pcat_t3f_10_12';
+UPDATE product_category_product SET product_category_id='pcat_t3f_10_4' WHERE product_id='prod_01KNXXGR7JQH9A0ACZP72M0VH8' AND product_category_id='pcat_t3f_10_12';
+UPDATE product_category_product SET product_category_id='pcat_1ntoruvise' WHERE product_id='prod_01KNXXNC5R3HJZR7C1GJEBVGC1' AND product_category_id='pcat_t3f_1_27';
+UPDATE product_category_product SET product_category_id='pcat_1ntoruvise' WHERE product_id='prod_01KNXXN7NG58WHNKVH963FCSJT' AND product_category_id='pcat_t3f_1_27';
+UPDATE product_category_product SET product_category_id='pcat_1ntoruvise' WHERE product_id='prod_01KNXXND36489868TBSS56RK4S' AND product_category_id='pcat_t3f_1_27';
+UPDATE product_category_product SET product_category_id='pcat_tk1_6' WHERE product_id='prod_01KNXXHV8SWCT20NP8A0E9B0CQ' AND product_category_id='pcat_tk1_1';
+UPDATE product_category_product SET product_category_id='pcat_11spool' WHERE product_id='prod_01KNXXQHNQDZP8434TRVVP96KJ' AND product_category_id='pcat_1cab1';
+UPDATE product_category_product SET product_category_id='pcat_el_11x2_9' WHERE product_id='prod_01KNXXGT1SG4K3MT1WK44J01C0' AND product_category_id='pcat_el_11x2_8';
+UPDATE product_category_product SET product_category_id='pcat_el_11x2_9' WHERE product_id='prod_01KNXXGT1EQ16R02VPZZ8WJQ9F' AND product_category_id='pcat_el_11x2_8';
+UPDATE product_category_product SET product_category_id='pcat_12gnet' WHERE product_id='prod_01KNXXCWB6DH5T6ZJ0QBYV6ZPG' AND product_category_id='pcat_el_12x1_38';
+UPDATE product_category_product SET product_category_id='pcat_12gnet' WHERE product_id='prod_01KNXXCTJRS0JTCJ06S75NNQ11' AND product_category_id='pcat_el_12x1_38';
+UPDATE product_category_product SET product_category_id='pcat_lp_5_3' WHERE product_id='prod_01KNXXBKQQ3ETENSH8ZZ1QXMNG' AND product_category_id='pcat_lp_2_7';
+UPDATE product_category_product SET product_category_id='pcat_lp_3_2' WHERE product_id='prod_01KNXXESMFY6J4ZANXA5KZVC5S' AND product_category_id='pcat_lp_3_6';
+UPDATE product_category_product SET product_category_id='pcat_lp_3_2' WHERE product_id='prod_01KNXXEQT3JN022JHF49EPDPG1' AND product_category_id='pcat_lp_3_6';
+UPDATE product_category_product SET product_category_id='pcat_lp_4_1' WHERE product_id='prod_01KNXXF4HGASX5S1H57AVV79KV' AND product_category_id='pcat_lp_3_6';
+UPDATE product_category_product SET product_category_id='pcat_lp_1_9' WHERE product_id='prod_01KNXX95VM7ZNY94HHH4BG0X8Y' AND product_category_id='pcat_lp_3_3';
+UPDATE product_category_product SET product_category_id='pcat_f4_17x2_4' WHERE product_id='prod_01KNXXQ5X851Q18FSD7TB6AJPY' AND product_category_id='pcat_f4_17x2_5';
+UPDATE product_category_product SET product_category_id='pcat_mu_1_3' WHERE product_id='prod_01KPJXC6FA56DC9RY3RH6G7XYF' AND product_category_id='pcat_mu_1_5';
+UPDATE product_category_product SET product_category_id='pcat_mu_1_3' WHERE product_id='prod_01KNXXD91QYYFCDV02DDMBMM6A' AND product_category_id='pcat_mu_1_5';
+UPDATE product_category_product SET product_category_id='pcat_mu_1_3' WHERE product_id='prod_01KNXXCZ11NNJ7JDM37ZBF76KY' AND product_category_id='pcat_mu_1_5';
+UPDATE product_category_product SET product_category_id='pcat_mu_1_3' WHERE product_id='prod_01KPJXC74EEZHE7WQ4WZZRXXCB' AND product_category_id='pcat_mu_1_5';
+UPDATE product_category_product SET product_category_id='pcat_2kanist' WHERE product_id='prod_01KPJV7T7PD6N43771C7BDWR8V' AND product_category_id='pcat_ag2_2x4_2';
+UPDATE product_category_product SET product_category_id='pcat_ag2_2x6_4' WHERE product_id='prod_01KNXXTAR7SQGRFMPFMQTGPHPT' AND product_category_id='pcat_ag2_2x6_3';
+UPDATE product_category_product SET product_category_id='pcat_ag2_2x6_4' WHERE product_id='prod_01KNXXT9T7Z701BMG621A0DFVB' AND product_category_id='pcat_ag2_2x6_1';
+UPDATE product_category_product SET product_category_id='pcat_ag2_2x6_4' WHERE product_id='prod_01KNXXT9TT48HT1PRZ31RMBSJS' AND product_category_id='pcat_ag2_2x6_1';
+UPDATE product_category_product SET product_category_id='pcat_ag2_2x6_4' WHERE product_id='prod_01KNXXAQTFKJHG8WK573R9NRA5' AND product_category_id='pcat_ag2_2x6_1';
+UPDATE product_category_product SET product_category_id='pcat_ag2_2x3_6' WHERE product_id='prod_01KNXXBBMRNVMD3X9NG3TARWMZ' AND product_category_id='pcat_ag2_2x3_5';
+UPDATE product_category_product SET product_category_id='pcat_ag2_2x3_6' WHERE product_id='prod_01KNXXB7ZHBXXPFX8TF3BANV17' AND product_category_id='pcat_ag2_2x3_5';
+UPDATE product_category_product SET product_category_id='pcat_mv_6x1_12' WHERE product_id='prod_01KNXXGN5HFGJWE9C4EFEQYFBN' AND product_category_id='pcat_mv_6x1_13';
+UPDATE product_category_product SET product_category_id='pcat_mv_6x1_13' WHERE product_id='prod_01KPJXB5QX2KKW80E14HDP3G6K' AND product_category_id='pcat_mv_6x1_12';
+UPDATE product_category_product SET product_category_id='pcat_mv_6x1_13' WHERE product_id='prod_01KNXXGN5NV0G2AG0P1PRBFZC3' AND product_category_id='pcat_mv_6x1_12';
+UPDATE product_category_product SET product_category_id='pcat_f4_13x7_1' WHERE product_id='prod_01KPJV9DAVRMECK30FSZ7YWVPV' AND product_category_id='pcat_mv_6x1_14';
+UPDATE product_category_product SET product_category_id='pcat_ag2_3x7_12' WHERE product_id='prod_01KNXXPFFFDW7ZX78226M0GY1E' AND product_category_id='pcat_ag2_3x7_8';
+UPDATE product_category_product SET product_category_id='pcat_mv_6x7_13' WHERE product_id='prod_01KNXXAVCCKDNK340JCBHNPZPQ' AND product_category_id='pcat_mv_6x7_6';
+UPDATE product_category_product SET product_category_id='pcat_7mults' WHERE product_id='prod_01KP6FEVY60WWPN5T6C264P62T' AND product_category_id='pcat_t3a_3_3';
+UPDATE product_category_product SET product_category_id='pcat_t3a_9_4' WHERE product_id='prod_01KNXXF1WTG61P8NTS91ZB7ESZ' AND product_category_id='pcat_t3a_9_5';
+UPDATE product_category_product SET product_category_id='pcat_mv_8x5_3' WHERE product_id='prod_01KNXX75WCN71H2NXE60GHHWAY' AND product_category_id='pcat_mv_8x5_1';
+UPDATE product_category_product SET product_category_id='pcat_mv_8x5_3' WHERE product_id='prod_01KNXX7ABK3W2Y0594E3Q8K8FA' AND product_category_id='pcat_mv_8x5_1';
+UPDATE product_category_product SET product_category_id='pcat_mv_8x5_3' WHERE product_id='prod_01KPJXC9EBXZ7DPCYCPNNM62QV' AND product_category_id='pcat_mv_8x5_1';
+UPDATE product_category_product SET product_category_id='pcat_mv_8x5_3' WHERE product_id='prod_01KNXX75VTRA20EN7BMG03GYT8' AND product_category_id='pcat_mv_8x5_1';
+UPDATE product_category_product SET product_category_id='pcat_mv_8x5_3' WHERE product_id='prod_01KNXXQ364XA2VCQYAEG1MH38Q' AND product_category_id='pcat_mv_8x5_1';
+UPDATE product_category_product SET product_category_id='pcat_mv_8x4_5' WHERE product_id='prod_01KPJV67DHY91P1Y9840GFREMK' AND product_category_id='pcat_mv_8x4_2';
+UPDATE product_category_product SET product_category_id='pcat_mv_8x1_9' WHERE product_id='prod_01KNXXNQ17HNW6Q0S44JK181Y6' AND product_category_id='pcat_mv_8x1_8';
+UPDATE product_category_product SET product_category_id='pcat_mv_8x1_7' WHERE product_id='prod_01KNXX6X0187DRAQPC7J7MEWPK' AND product_category_id='pcat_mv_8x1_5';
+UPDATE product_category_product SET product_category_id='pcat_es_9x5_7' WHERE product_id='prod_01KNXXDRB32Y5FXW2QEVJ12PNK' AND product_category_id='pcat_es_9x4_10';
+UPDATE product_category_product SET product_category_id='pcat_es_9x5_7' WHERE product_id='prod_01KNXXNDZBJDZP1TEQ61Y65JWP' AND product_category_id='pcat_es_9x4_10';
+UPDATE product_category_product SET product_category_id='pcat_es_9x5_7' WHERE product_id='prod_01KNXXDRBEBZCXK1YDY97FAXRF' AND product_category_id='pcat_es_9x4_10';
+UPDATE product_category_product SET product_category_id='pcat_es_9x5_7' WHERE product_id='prod_01KNXXDQFBK9GN8CWN8DMDB8E3' AND product_category_id='pcat_es_9x4_10';
+UPDATE product_category_product SET product_category_id='pcat_es_9x5_7' WHERE product_id='prod_01KNXXFYBJ0F8YFZD2Q3X5BVGC' AND product_category_id='pcat_es_9x4_10';
+UPDATE product_category_product SET product_category_id='pcat_es_9x5_7' WHERE product_id='prod_01KNXXDTZT76P53N3GCJK6S3N3' AND product_category_id='pcat_es_9x4_10';
+UPDATE product_category_product SET product_category_id='pcat_es_9x5_7' WHERE product_id='prod_01KNXXDRB07NC3BERTHZXTRWNY' AND product_category_id='pcat_es_9x4_10';
+UPDATE product_category_product SET product_category_id='pcat_es_9x5_5' WHERE product_id='prod_01KNXXAQTQ5TJ5HWFGRN5NCVTY' AND product_category_id='pcat_es_9x3_12';
+UPDATE product_category_product SET product_category_id='pcat_es_9x5_10' WHERE product_id='prod_01KNXXQ6TNM6EV650J2P4PQJ15' AND product_category_id='pcat_es_9x5_9';
 COMMIT;
-
-\echo '--- tulem: mõjutatud L3-de arvud ---'
-SELECT c.name, (SELECT count(*) FROM product_category_product WHERE product_category_id=c.id) n
-FROM product_category c WHERE c.id IN ('pcat_el_12x2_14','pcat_el_12x2_3','pcat_el_12x2_13','pcat_el_12x2_24','pcat_el_12x2_1','pcat_el_12x2_22','pcat_el_12x2_5','pcat_el_12x2_17','pcat_el_12x2_4','pcat_el_12x2_2','pcat_el_12x2_15','pcat_el_12x1_29') ORDER BY c.name;
-\echo '--- Konstruktorid puhas (20)? RC eemaldatud? ---'
-SELECT count(*) konstruktorid FROM product_category_product WHERE product_category_id='pcat_el_12x2_14';
-\echo '--- distinct (17425) + L1 (24) ---'
-SELECT count(DISTINCT product_id) FROM product_category_product;
-SELECT count(*) FROM product_category WHERE mpath LIKE 'pcat_v4_l%' AND parent_category_id IS NULL AND deleted_at IS NULL;
