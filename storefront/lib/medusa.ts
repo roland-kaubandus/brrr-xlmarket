@@ -23,7 +23,11 @@ function acquireSlot(): Promise<void> {
       if (idx >= 0) waitQueue.splice(idx, 1)
       reject(new Error("Medusa semaphore timeout"))
     }, SEMAPHORE_TIMEOUT_MS)
-    const entry = () => { clearTimeout(timer); activeFetches++; resolve() }
+    // NB: EI tee activeFetches++ siin — handoff'il läheb vabastava fetch'i slot
+    // otse sellele ootajale (releaseSlot ei dekrementi handoff-harus). Varem oli
+    // siin ++, mis topelt-loendas (leke +1 iga kontenditud handoff'il → activeFetches
+    // ratchet üles → püsivalt ≥MAX → kõik acquireSlot 5s timeout → getProduct hang).
+    const entry = () => { clearTimeout(timer); resolve() }
     waitQueue.push(entry)
   })
 }
