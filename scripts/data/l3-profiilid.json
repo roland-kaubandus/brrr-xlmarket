@@ -7112,19 +7112,19 @@
    "l3_nimi": "Garaažipõrandad ja -matid",
    "main": "Ehitus ja remont",
    "l2": "Põrandakatted & tarvikud",
-   "n": 38,
+   "n": 49,
    "umbrella": false,
    "umbrella_pohjus": "",
    "domeen": "Auto/garaažipõranda kaitsekate mis kogub ja hoiab vett/lund/õli/muda pinnal — veekindel containment-matt ja garaaži moodulpõranda süsteem.",
    "include": [
     "garaaži containment-matt / garage containment mat / mata garażowa zbierająca",
     "veekindel garaažipõranda matt / waterproof garage floor mat / wodoodporna mata garażowa",
-    "garaažipõranda üleminekuääre komplekt (osana süsteemist) / garage floor transition edge kit / listwa krawędziowa"
+    "garaažipõranda üleminekuääre komplekt (osana süsteemist) / garage floor transition edge kit / listwa krawędziowa",
+    "kummi/SBR garaažipõranda rull / rubber garage floor roll diamond-plate / gumowa mata garażowa",
+    "modulaarpõranda üleminekuserv/ääreliist-komplekt / garage floor transition edge kit / listwa krawędziowa"
    ],
    "exclude": [
-    "vee-läbilaskev drenaažimatt / drainage mat → Drenaažimatid ja -plaadid",
-    "diamond-plate kummirull-põrand / rubber flooring roll → Kummimatid ja -põrandad",
-    "eraldi müüdav ääreliistu-komplekt põhitootena / edge kit standalone → Põrandamatide ääreliistud ja komplektid"
+    "vee-läbilaskev drenaažimatt / drainage mat → Drenaažimatid ja -plaadid"
    ],
    "naaber_piirid": [
     "Drenaažimatt laseb vee läbi; garaažimatt hoiab vedeliku pinnal (containment) — vastupidine väljund",
@@ -7132,54 +7132,6 @@
     "Kui toode on AINULT ääreliist komplekt → Põrandamatide ääreliistud"
    ],
    "valjundi_test": "Kas veekindel matt kogub vedeliku pinnale garaažis autole? JAH → siia; kui laseb vee läbi → Drenaažimatid; kui on kummirull → Kummimatid."
-  },
-  {
-   "l3_id": "pcat_es_9x1_10",
-   "l3_nimi": "Kummimatid ja -põrandad",
-   "main": "Ehitus ja remont",
-   "l2": "Põrandakatted & tarvikud",
-   "n": 7,
-   "umbrella": false,
-   "umbrella_pohjus": "",
-   "domeen": "Vastupidav kummist põrandakate (rull/plaat) kulumis-, löögi- ja libisemiskaitseks — SBR-kumm diamond-plate mustriga garaaži/töökoja põrandale.",
-   "include": [
-    "kummipõrand rull / rubber flooring roll / wykładzina gumowa w rolce",
-    "diamond-plate kummimatt garaažile / diamond-plate rubber garage mat / mata gumowa ryflowana",
-    "SBR-kummipõrand / SBR rubber flooring / podłoga gumowa SBR"
-   ],
-   "exclude": [
-    "PVC containment garaažimatt / PVC containment mat → Garaažipõrandad ja -matid",
-    "vee-äravoolu drenaažimatt / drainage mat → Drenaažimatid ja -plaadid",
-    "treening-/jõusaali põrandaplaat / gym floor tile → (spordikategooria)"
-   ],
-   "naaber_piirid": [
-    "Kummipõrand = materjal (SBR kumm) vastupidavuseks/vibratsiooniks; garaažimatt = PVC containment vedeliku kogumiseks — eri materjal ja väljund"
-   ],
-   "valjundi_test": "Kas toode on kummist (SBR) rull/matt kulumis- ja löögikaitseks? JAH → siia; kui PVC vedeliku-containment → Garaažipõrandad."
-  },
-  {
-   "l3_id": "pcat_es_9x1_14",
-   "l3_nimi": "Põrandamatide ääreliistud ja komplektid",
-   "main": "Ehitus ja remont",
-   "l2": "Põrandakatted & tarvikud",
-   "n": 4,
-   "umbrella": false,
-   "umbrella_pohjus": "",
-   "domeen": "Põrandamati/moodulpõranda viimistlus-lisatarvikud — ääreliistud, nurgad ja üleminekud mis lõpetavad põranda serva ja seovad plaate.",
-   "include": [
-    "üleminekuääre komplekt / transition edge kit / zestaw listew przejściowych",
-    "moodulpõranda ääreliist ja nurgad / interlocking modular floor edging corners / krawędzie i narożniki modułowe",
-    "isane/emane ülemineku-serv / male female transition edge / krawędź męska żeńska"
-   ],
-   "exclude": [
-    "terve garaažipõranda matt/plaat / garage floor mat → Garaažipõrandad ja -matid",
-    "kummipõranda rull / rubber flooring roll → Kummimatid ja -põrandad",
-    "drenaažiplaat ise / drainage tile → Drenaažimatid ja -plaadid"
-   ],
-   "naaber_piirid": [
-    "See L3 = AINULT serva-/ülemineku-tarvik; kui tootes on ka põrandaplaadid ise → vastav põranda-L3"
-   ],
-   "valjundi_test": "Kas toode on üksnes serva/nurga/ülemineku lisatarvik (mitte põrandapind ise)? JAH → siia."
   },
   {
    "l3_id": "pcat_es_9x1_15",
@@ -7425,17 +7377,17 @@
    "l3_nimi": "Seinapaneelide komplektid",
    "main": "Ehitus ja remont",
    "l2": "Seinapaneelid & liistud",
-   "n": 7,
+   "n": 9,
    "umbrella": false,
    "umbrella_pohjus": "",
    "domeen": "Wainscoting/seinaliistu komplektid (polüstüreen, värvitav) dekoratiivsete seinaraamide loomiseks, väljund on paneelraami komplekt seinal.",
    "include": [
     "wainscoting komplekt / wainscoting panels kit / zestaw boazerii",
     "seinaliistu komplekt / wall molding kit / listwy ścienne zestaw",
-    "värvitav polüstüreen raam / paintable polystyrene molding / panel polistyrenowy"
+    "värvitav polüstüreen raam / paintable polystyrene molding / panel polistyrenowy",
+    "wainscoting seinaliist-komplekt/dekoorliist / wall molding wainscoting panels kit / listwy ścienne"
    ],
    "exclude": [
-    "üksik dekoratiivliist / single molding trim → Liistud & raamid",
     "dekoratiivne 3D plaat / 3D wall panel → 3D seinapaneelid",
     "akustiline paneel / acoustic panel → Akustilised seinapaneelid"
    ],
@@ -38225,34 +38177,6 @@
     "Üleujutuskaitse = vee tõkestamine, mitte inimeste eraldamine"
    ],
    "valjundi_test": "Kas toode on läbipaistev ekraan inimeste/tsooni eraldamiseks? JAH → siin; kui tõkestab sissepääsu või vett → naaber."
-  },
-  {
-   "l3_id": "pcat_es_9x10_5",
-   "l3_nimi": "Liistud & raamid",
-   "main": "Ehitus ja remont",
-   "l2": "Seinapaneelid & liistud",
-   "n": 2,
-   "umbrella": false,
-   "umbrella_pohjus": "",
-   "domeen": "Dekoratiivsed seinaliistud ja raamiprofiilid (wainscoting/molding), väljund: seinale paigaldatav dekoratiivne liistu/raami profiil.",
-   "include": [
-    "seinaliist / wall molding / listwa ścienna",
-    "wainscoting paneeliraam / wainscoting panel kit / panele boazeryjne",
-    "polüstürool-dekoorliist / polystyrene molding / listwa polistyrenowa",
-    "dekoratiivne raamiprofiil / decorative frame profile / profil dekoracyjny"
-   ],
-   "exclude": [
-    "3D seinapaneel / 3d wall panel → 3D seinapaneelid",
-    "akustiline paneel / acoustic panel → Akustilised seinapaneelid",
-    "laepaneel / ceiling tile → Laepaneelid & laeplaadid",
-    "nurgakaitseprofiil / corner guard → Nurgakaitseprofiilid",
-    "tapeet / wallpaper → Tapeet & seinakatted"
-   ],
-   "naaber_piirid": [
-    "3D/akustilised paneelid = pinnakattev paneel, MITTE lineaarne dekoorliist/raam",
-    "Nurgakaitseprofiil = funktsionaalne kaitse, mitte dekoratiivne raamiliist"
-   ],
-   "valjundi_test": "Kas toode on lineaarne dekoorliist või raamiprofiil seinale? JAH → siin; kui katab pinda paneelina või kaitseb nurka → naaber."
   },
   {
    "l3_id": "pcat_9tapeet",
