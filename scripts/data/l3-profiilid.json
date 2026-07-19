@@ -7995,7 +7995,7 @@
    "l3_nimi": "Kaablikaitsjad ja põrandarambid",
    "main": "Elektritarvikud ja valgustus",
    "l2": "Kaablihaldus ja -kaitse",
-   "n": 18,
+   "n": 27,
    "umbrella": false,
    "umbrella_pohjus": "",
    "domeen": "Põrandal lebavate kaablite/voolikute kaitse pealesõidu eest — kanalitega kummi/PVC ramp, mille peale sõidetakse autoga.",
@@ -8038,31 +8038,6 @@
     "Kaablitõmbelint tõmbab juhet läbi toru — pooli hoidik hoiab/keritab poolilt maha; eri funktsioon"
    ],
    "valjundi_test": "Toode hoiab ja keritab kaablipooli töö ajal — ei kaitse põrandal juhet ega tõmba juhet läbi kanali."
-  },
-  {
-   "l3_id": "pcat_el_11x9_3",
-   "l3_nimi": "Kummikünnised ja -kaitsjad",
-   "main": "Elektritarvikud ja valgustus",
-   "l2": "Kaablihaldus ja -kaitse",
-   "n": 9,
-   "umbrella": false,
-   "umbrella_pohjus": "",
-   "domeen": "Kummist pealesõidu-künnised ja kanalitega kaitsjad sissesõiduteel — kiiruse piiramine ja/või kaablikaitse maapinnal.",
-   "include": [
-    "kummi kiirus-künnis / rubber speed bump driveway / prog zwalniajacy gumowy",
-    "modulaarne künnis-ramp / modular speed bump hump / rampa modulowa gumowa",
-    "mitmekanaline kummi kaablikaitse / multi-channel rubber cable protector ramp / gumowa oslona wielokanalowa"
-   ],
-   "exclude": [
-    "õhuke kaabli-ülekate / drop over thin cable cover → Kaablikaitsjad & põrandarambid",
-    "kaablipooli rest / spool rack → Kaablipoolihoidikud & -restid",
-    "painduv kaablitoru / PVC conduit → Kaablikaitsetorud"
-   ],
-   "naaber_piirid": [
-    "WHITELIST-NAABER puudub; tugeva kaablikaitse-funktsiooniga õhuke ramp kuulub Kaablikaitsjatesse, raske kummikünnis/moodulkünnis siia",
-    "Piir Kaablikaitsjatega hägune — otsusta künnis/kiirus-piiraja domineeriva funktsiooni järgi"
-   ],
-   "valjundi_test": "Raske kummikünnis maapinnal kiiruse piiramiseks (võib olla kaablikanaliga) — ei ole kerge põranda-kaablikate ega toru."
   },
   {
    "l3_id": "pcat_el_11x5_7",
@@ -10152,7 +10127,7 @@
    "l3_nimi": "Rataste joondamise ja suunamise seadmed",
    "main": "Garaažiseadmed ja autoremont",
    "l2": "Rehvitööd",
-   "n": 5,
+   "n": 6,
    "umbrella": false,
    "umbrella_pohjus": "",
    "domeen": "Rataste joondamise mõõteseadmed (toe/camber plaadid, ratta-klambrid), mille väljund on sõiduki rataste nurkade mõõtmine ja seadistus.",
@@ -10177,7 +10152,7 @@
    "l3_nimi": "Rehvikorra paigaldus- ja täitevahendid (bead seater)",
    "main": "Garaažiseadmed ja autoremont",
    "l2": "Rehvitööd",
-   "n": 5,
+   "n": 7,
    "umbrella": false,
    "umbrella_pohjus": "",
    "domeen": "Rehvikorra paigalduse õhupaak-tööriistad (bead seater/blaster), mille väljund on rehvikülje kiire istutamine veljele õhupurske abil.",
@@ -11358,7 +11333,7 @@
    "l3_nimi": "Kodumasinate alused",
    "main": "Kodumasinad ja kodutehnika",
    "l2": "Kodumasinate alused ja varuosad",
-   "n": 4,
+   "n": 15,
    "umbrella": false,
    "umbrella_pohjus": "",
    "domeen": "Külmiku/kodumasina mobiilne alusraam ratastega või reguleeritav jalus, mille väljund on seadme tõstmine ja liigutamine.",
@@ -11400,30 +11375,6 @@
     "Kuivati õhu/niiskuse äravool (voolik+komplekt) → siia; kuivati kõrgendus/alus → Pesumasina alused"
    ],
    "valjundi_test": "Kas toode suunab kuivati heitõhku (vent/voolik/ämber)? Jah → siia; kui on alus/kõrgendus → Pesumasina alused."
-  },
-  {
-   "l3_id": "pcat_ks_4x4_1",
-   "l3_nimi": "Pesumasina alused",
-   "main": "Kodumasinad ja kodutehnika",
-   "l2": "Kodumasinate alused ja varuosad",
-   "n": 11,
-   "umbrella": false,
-   "umbrella_pohjus": "",
-   "domeen": "Pesumasina/kuivati kõrgendusalus (laundry pedestal) sahtli või hoiuriiuliga, mille väljund on seadme tõstmine ergonoomilisele kõrgusele + hoiuruum.",
-   "include": [
-    "pesumasina kõrgendusalus / laundry pedestal / podest pod pralkę",
-    "pesumasina-kuivati alusplatvorm sahtliga / washer dryer base stand with drawer / podest z szufladą",
-    "pesumasina alus hoiuriiuliga / laundry pedestal with storage shelf / podest z półką"
-   ],
-   "exclude": [
-    "kuivati ventilatsioonikomplekt / dryer vent kit → Kuivati ventilatsioonikomplektid",
-    "külmiku/üldine kodumasina alus / fridge stand → Kodumasinate alused",
-    "tolmuimeja hoidik / vacuum stand → Tolmuimeja hoidikud"
-   ],
-   "naaber_piirid": [
-    "Pesumasina-kuivati kõrgendus/kõrguse-alus → siia; külmiku/üldalus → Kodumasinate alused"
-   ],
-   "valjundi_test": "Kas alus on spetsiifiliselt pesumasinale/kuivatile (pedestal, kõrgus/sahtel)? Jah → siia."
   },
   {
    "l3_id": "pcat_ks_4x4_2",
@@ -11579,32 +11530,6 @@
    "valjundi_test": "Kas toode on käepidemetega paberist kandekott? Jah → siia; jäik säilituskonteiner → Toiduainete hoiukonteinerid."
   },
   {
-   "l3_id": "pcat_ks_4x3_4",
-   "l3_nimi": "Pottide ja pannide korraldajad",
-   "main": "Kodumasinad ja kodutehnika",
-   "l2": "Köögi hoiustamine ja korraldus",
-   "n": 4,
-   "umbrella": false,
-   "umbrella_pohjus": "",
-   "domeen": "Pottide, pannide ja küpsetusplaatide korraldusrestid — sh väljatõmmatavad kapialused organiseerijad kööginõude hoidmiseks.",
-   "include": [
-    "pottide ja pannide rest / pan and pot rack / organizer na garnki",
-    "väljatõmmatav kapialune korraldaja / pull out under cabinet organizer / wysuwany organizer",
-    "küpsetusplaatide korraldaja / cookie sheet baking pan organizer / organizer na blachy",
-    "laiendatav nõuderest / expandable cookware rack / regulowany stojak"
-   ],
-   "exclude": [
-    "maitseaine-korraldaja / spice rack → Maitseaineriiulid ja -hoidikud",
-    "nõudekuivatusrest / dish drying rack → Nõudekuivatus- & kraanikausitarvikud",
-    "üldine kapitõmme muu sisuga / general pull out drawer → Väljatõmmatavad kappide korraldajad"
-   ],
-   "naaber_piirid": [
-    "Väljatõmmatavad kappide korraldajad = üldine kapisisu; siin = spetsiifiliselt potid/pannid/küpsetusplaadid",
-    "Nõudekuivatus = kuivatusfunktsioon, mitte säilituskorraldus"
-   ],
-   "valjundi_test": "Kas toode organiseerib potte/panne/küpsetusplaate hoiustamiseks? Jah → siia; kuivatab nõusid → Nõudekuivatus-tarvikud."
-  },
-  {
    "l3_id": "pcat_ks_4x3_8",
    "l3_nimi": "Seadmete libistusalused",
    "main": "Kodumasinad ja kodutehnika",
@@ -11681,7 +11606,7 @@
    "l3_nimi": "Väljatõmmatavad kappide korraldajad",
    "main": "Kodumasinad ja kodutehnika",
    "l2": "Köögi hoiustamine ja korraldus",
-   "n": 19,
+   "n": 23,
    "umbrella": false,
    "umbrella_pohjus": "",
    "domeen": "Kappi/sahvrisse paigaldatavad väljatõmmatavad liugriiulid ja korvid, mis tõmbuvad välja sisu ligipääsuks (mitte prügile).",
@@ -12970,30 +12895,6 @@
    "valjundi_test": "Kas toode hoiab surugaasi-/külmaaineballooni veeremis- ja kukkumiskindlalt? Kui EI → üldriiul (Metallriiulid)."
   },
   {
-   "l3_id": "pcat_mv_6x2_23",
-   "l3_nimi": "Kokkupandavad hoiuriiulid",
-   "main": "Ladu, hoiustamine ja pakendamine",
-   "l2": "Riiulid ja restid",
-   "n": 6,
-   "umbrella": false,
-   "umbrella_pohjus": "",
-   "domeen": "Ilma tööriistadeta kokkupandav/volditav mitmetasandiline hoiuriiul, väljundiks kiirelt paigaldatav ja hoiustatav teisaldatav riiul.",
-   "include": [
-    "kokkupandav hoiuriiul / foldable storage shelf / składany regał magazynowy",
-    "volditav metallriiul / folding metal rack shelving unit / składany metalowy regał"
-   ],
-   "exclude": [
-    "püsimonteeritav metallriiul / stainless steel shelving → Metallriiulid",
-    "seinale kinnitatav riiul / wall mounted shelving → Seinariiulid",
-    "lae-hoiustamisrest / overhead ceiling rack → Lae-hoiustamisrestid"
-   ],
-   "naaber_piirid": [
-    "Erineb Metallriiulitest: võtmeomadus on volditavus/tööriistavaba kokkupanek, mitte püsiv fikseeritud raam.",
-    "EI kinnitu seinale ega lakke — vabalt seisev teisaldatav."
-   ],
-   "valjundi_test": "Kas riiul voldib kokku ilma tööriistadeta? Kui EI → püsiv Metallriiul."
-  },
-  {
    "l3_id": "pcat_ag2_2x2_12",
    "l3_nimi": "Lae-hoiustamisrestid",
    "main": "Ladu, hoiustamine ja pakendamine",
@@ -13021,7 +12922,7 @@
    "l3_nimi": "Metallriiulid",
    "main": "Ladu, hoiustamine ja pakendamine",
    "l2": "Riiulid ja restid",
-   "n": 26,
+   "n": 32,
    "umbrella": false,
    "umbrella_pohjus": "",
    "domeen": "Vabalt seisev püsimonteeritav metallist mitmetasandiline hoiuriiul garaaži/lao üldkaupadele, väljundiks suure kandevõimega üldotstarbeline riiulisüsteem.",
@@ -14362,35 +14263,11 @@
    "valjundi_test": "Kas toode on kinnine seintega maja/varjualune kassile? Jah = Kassimajad, avatud ase = voodi."
   },
   {
-   "l3_id": "pcat_lp_4_4",
-   "l3_nimi": "Koeravoodid ja -pesad",
-   "main": "Lemmikloomatarbed",
-   "l2": "Pesad ja asemed",
-   "n": 5,
-   "umbrella": false,
-   "umbrella_pohjus": "",
-   "domeen": "Koerale mõeldud voodi, tõstetud lamamisase (cot) või välismaja/kuut — koera lamamis-/peavarjukoht.",
-   "include": [
-    "tõstetud koeravoodi / elevated dog bed / podniesione lozko dla psa",
-    "metallraamiga koera lamamisase / raised dog cot / lezanka dla psa na ramie",
-    "veekindel koera välismaja / outdoor dog house / buda dla psa zewnetrzna"
-   ],
-   "exclude": [
-    "inimsuuruses koeravoodi / human sized dog bed → Inimsuuruses koeravoodid",
-    "soojendusega kassimaja / heated cat house → Kassimajad",
-    "üldine mitmeloomavoodi / generic pet bunk bed → Lemmiklooma voodid"
-   ],
-   "naaber_piirid": [
-    "Spetsiifiliselt koerale (dog cot/dog house); üldise liigi-agnostilise pet bed puhul → Lemmiklooma voodid"
-   ],
-   "valjundi_test": "Kas toode on spetsiaalselt koerale (dog bed/cot/house)? Jah = see L3, kass-spetsiifiline maja = Kassimajad."
-  },
-  {
    "l3_id": "pcat_lp_4_6",
    "l3_nimi": "Lemmiklooma voodid",
    "main": "Lemmikloomatarbed",
    "l2": "Pesad ja asemed",
-   "n": 14,
+   "n": 19,
    "umbrella": false,
    "umbrella_pohjus": "",
    "domeen": "Universaalne liigi-agnostiline lemmikloomavoodi/-lamamisase, sh mitmetasandilised narivoodid ja aknatugi (perch) koerale/kassile.",
@@ -16275,31 +16152,6 @@
    "valjundi_test": "Kas iste on täidisega vormuv raamita kott (bean bag)? Jah → siia."
   },
   {
-   "l3_id": "pcat_mv_6x6_5",
-   "l3_nimi": "Meediakapid",
-   "main": "Mööbel ja sisustus",
-   "l2": "Elutoamööbel",
-   "n": 20,
-   "umbrella": false,
-   "umbrella_pohjus": "",
-   "domeen": "Meediakandjate ja AV-seadmete hoiustamiseks mõeldud mööbel — CD/DVD-riiulid ja audio/video-alused — ostja otsib meediakogu või seadmete korrastuslahendust.",
-   "include": [
-    "meediakapp CD/DVD / media storage cabinet / szafka na płyty",
-    "DVD-riiul / DVD shelf organizer / regał na DVD",
-    "AV-alus / AV media stand / stojak audio-video",
-    "audio-video-riiul / audio/video stand / stojak na sprzęt av"
-   ],
-   "exclude": [
-    "TV-alus/tugi / TV stand → TV-alused",
-    "üldine hoiukapp / general storage cabinet → Kapid ja kummutid",
-    "baarikapp / bar cabinet → Kohvibaari- ja baarikapid"
-   ],
-   "naaber_piirid": [
-    "Kui mööbel on meediakandjate (CD/DVD) hoiustamiseks või AV-seadmete aluseks → siia; kui peamiselt telerite tugi/alus → TV-alused"
-   ],
-   "valjundi_test": "Kas toode on mõeldud meediakandjate/AV-seadmete hoiustamiseks (mitte teleri aluseks)? Jah → siia."
-  },
-  {
    "l3_id": "pcat_mv_6x6_10",
    "l3_nimi": "Rotangmööbel",
    "main": "Mööbel ja sisustus",
@@ -16329,7 +16181,7 @@
    "l3_nimi": "TV-alused",
    "main": "Mööbel ja sisustus",
    "l2": "Elutoamööbel",
-   "n": 36,
+   "n": 56,
    "umbrella": false,
    "umbrella_pohjus": "",
    "domeen": "Teleri paigutus- ja tugimööbel: alused, kärud ja seinale kinnituvad meediakeskused, mille väljund on teleri hoidmine ja AV-seadmete korrastamine elutoas.",
@@ -17513,10 +17365,10 @@
   },
   {
    "l3_id": "pcat_mv_6x1_2",
-   "l3_nimi": "Lauajalad",
+   "l3_nimi": "Mööblijalad",
    "main": "Mööbel ja sisustus",
    "l2": "Mööbliosad ja -komponendid",
-   "n": 33,
+   "n": 49,
    "umbrella": false,
    "umbrella_pohjus": "",
    "domeen": "Laua- ja töölaua tugijalad — reguleeritavad ja fikseeritud metalljalad laua- ja söögilauaplaatide toetamiseks.",
@@ -17586,33 +17438,6 @@
     "Ainult horisontaalne tööpind; jalad ja alused eraldi L3-des (Lauajalad, Mööblijalad)."
    ],
    "valjundi_test": "Kas toode on kandev tasapind millele midagi peale panna? JAH → siia; kui see on tugistruktuur (jalg) → Lauajalad/Mööblijalad."
-  },
-  {
-   "l3_id": "pcat_mv_6x1_3",
-   "l3_nimi": "Mööblijalad",
-   "main": "Mööbel ja sisustus",
-   "l2": "Mööbliosad ja -komponendid",
-   "n": 16,
-   "umbrella": false,
-   "umbrella_pohjus": "",
-   "domeen": "Mööbli tugijalad (hairpin, terastrapets, reguleeritav) laua/kummuti/pingi alla — ostja otsib jalgu DIY-mööbli püstitamiseks.",
-   "include": [
-    "mööblijalg / furniture legs / nogi meblowe",
-    "hairpin-jalg / hairpin legs / nogi hairpin",
-    "reguleeritav lauajalg / adjustable table legs / regulowane nogi stołowe",
-    "terasjalg / steel table legs / stalowe nogi"
-   ],
-   "exclude": [
-    "lauaplaat / table top → Lauaplaadid",
-    "kontoritooli alus / office chair base → Kontoritooli alused",
-    "mööbliratas / caster → Mööblirattad",
-    "reguleeritav tugijalg-ratas / leveling caster → Mööblirattad"
-   ],
-   "naaber_piirid": [
-    "Kui jalg lõpeb rattaga (caster) → Mööblirattad; fikseeritud/reguleeritav jalg ilma veeremiseta → siia.",
-    "Tooli ristikujuline pöördalus → Kontoritooli alused."
-   ],
-   "valjundi_test": "Kas toode on fikseeritud kandejalg (ei veere)? JAH → siia; kui veereb → Mööblirattad."
   },
   {
    "l3_id": "pcat_mv_6x1_24",
@@ -20956,7 +20781,7 @@
    "l3_nimi": "Kraanisegistid",
    "main": "Santehnika, küte ja ventilatsioon",
    "l2": "Segistid ja valamud",
-   "n": 16,
+   "n": 18,
    "umbrella": false,
    "umbrella_pohjus": "",
    "domeen": "Vannitoa/valamu üldsegistid — ühe kangi ja sensor-segistid valamule vee andmiseks.",
@@ -28808,7 +28633,7 @@
    "l3_nimi": "Soemarmiidid ja bain-marie",
    "main": "Suurköögiseadmed",
    "l2": "Toidu soojas hoidmine",
-   "n": 37,
+   "n": 47,
    "umbrella": false,
    "umbrella_pohjus": "",
    "domeen": "Professionaalne veevann-soojendus (steam table / bain-marie), kus GN-anumad seisavad kuumas vees toidu serveerimislämmastikuni soojas hoidmiseks.",
@@ -28852,33 +28677,6 @@
     "Piir vitriiniga: lamp on ainult ülalt-kiirgav soojusallikas ilma korpuseta; vitriin on suletud eksponeerimiskapp → Toidusoojendusvitriinid"
    ],
    "valjundi_test": "Kas toode soojendab ülalt kiirgusega ilma anuma/korpuseta? JAH = lamp; suletud klaaskorpus = vitriin."
-  },
-  {
-   "l3_id": "pcat_5warm",
-   "l3_nimi": "Toidusoojendajad",
-   "main": "Suurköögiseadmed",
-   "l2": "Toidu soojas hoidmine",
-   "n": 10,
-   "umbrella": true,
-   "umbrella_pohjus": "Sisu koondab erinevaid lauapealseid elektrisoojendeid: buffet-warmer klaassirmiga, spetsiaal-warmer (nacho chip, soup kettle) ja soojendusmatt — kõik üldotstarbelised toidusoojendajad ilma ühte kitsasse alamtüüpi kuulumata.",
-   "domeen": "[UMBRELLA] Lauapealsed elektrilised üldsoojendajad ja spetsialiseeritud soojendid (buffet, supp, nacho-krõpsud, soojendusmatt), mis hoiavad toitu serveerimissoojas.",
-   "include": [
-    "lauapealne elektriline buffet-soojendi klaassirmiga / countertop electric food warmer buffet / podgrzewacz bufetowy",
-    "supisoojendi/supikann-soojendi / soup warmer soup kettle / podgrzewacz do zupy",
-    "nacho-krõpsu soojendi / nacho chip warmer / podgrzewacz do nachos",
-    "soojendusmatt/soojendusalus / warming tray mat / mata grzewcza"
-   ],
-   "exclude": [
-    "veevann-steam-table / steam table → Soemarmiidid & bain-marie",
-    "kütuseküünlaga chafing dish / chafing dish → Toidusoojendajad (chafing dish)",
-    "soojenduslamp / heating lamp → Soojenduslambid",
-    "sahtli/kappmudel / hot box drawer warmer → Toidusoojenduskapid",
-    "ÄRA splitti alamtüüpideks — teadlik umbrella"
-   ],
-   "naaber_piirid": [
-    "Piir steam table'iga: siia kuulub üldine buffet-warmer ilma tervikliku vee-vann GN-süsteemita; täisvann → Soemarmiidid & bain-marie"
-   ],
-   "valjundi_test": "Kas toode on lauapealne elektriline üldsoojendi/spetsiaalsoojendi ilma vann-, lamp- või kapp-tüübi selge kuuluvuseta? JAH = siia."
   },
   {
    "l3_id": "pcat_ks_5x2_3",
@@ -29964,7 +29762,7 @@
    "l3_nimi": "Soojendusega dressipluusid",
    "main": "Tööriied ja isikukaitse",
    "l2": "Soojendusega riietus",
-   "n": 17,
+   "n": 24,
    "umbrella": false,
    "umbrella_pohjus": "",
    "domeen": "Akutoitel elektriliselt köetav pusa/kapuutsiga dressipluus — kehasooja andmine kütteelementidega pehme trikoo-ülariidena.",
@@ -30035,31 +29833,6 @@
     "Täisvarrukas + jope-lõige (mitte varrukateta) eristab vestist"
    ],
    "valjundi_test": "Kas toode on tuule-/veekindel soft shell täisvarrukaga välisjope? Jah → siia (mitte fliis ega kapuutsiga pusa)."
-  },
-  {
-   "l3_id": "pcat_f4_17x3_5",
-   "l3_nimi": "Soojendusega kapuutsiga pusad",
-   "main": "Tööriied ja isikukaitse",
-   "l2": "Soojendusega riietus",
-   "n": 7,
-   "umbrella": false,
-   "umbrella_pohjus": "",
-   "domeen": "Akutoitel elektriliselt soojendatavad kapuutsiga pusad (hoodie), mis pakuvad soojendust ülakehale koos peakaitsega vabaajas ja töös.",
-   "include": [
-    "soojendusega kapuutsiga pusa / heated hoodie / bluza z kapturem podgrzewana",
-    "soojendusega dressipusa kapuutsiga / heated sweatshirt hoodie / bluza grzewcza z kapturem"
-   ],
-   "exclude": [
-    "soojendusega fliisjakk / heated fleece jacket → Soojendusega fliisjakid",
-    "soojendusega tuulekindel jope / heated soft shell jacket → Soojendusega joped",
-    "soojendusega dressipluus (kapuutsita) / heated sweatshirt → Soojendusega dressipluusid",
-    "soojendusega vest / heated vest → Soojendusega vestid"
-   ],
-   "naaber_piirid": [
-    "Kapuutsi olemasolu eristab pusa fliisjakist ja dressipluusist",
-    "Pehme dressi-/pusamaterjal eristab tuulekindlast jopest"
-   ],
-   "valjundi_test": "Kas tootel on kapuuts ja see on pehme pusa/hoodie tüüpi? Jah → siia."
   },
   {
    "l3_id": "pcat_f4_17x3_6",
@@ -32276,7 +32049,7 @@
    "l3_nimi": "Kruustangid",
    "main": "Tööriistad ja tarvikud",
    "l2": "Käsitööriistad",
-   "n": 33,
+   "n": 34,
    "umbrella": false,
    "umbrella_pohjus": "",
    "domeen": "Kruustangid ja pingikinnitusrakised, mis fikseerivad tooriku töötlemiseks — väljundiks paigalhoidmine puurimisel, freesimisel, viilimisel.",
@@ -35375,7 +35148,7 @@
    "l3_nimi": "Käsitõstukid",
    "main": "Tööriistad ja tarvikud",
    "l2": "Tõsteseadmed ja talid",
-   "n": 6,
+   "n": 10,
    "umbrella": true,
    "umbrella_pohjus": "Koondab erinevat tüüpi käsijõul tõste/teisaldusseadmed (pallipukk, kangjõu-tõstur, materjalitõstur, kang-käbel), mis kõik on käsikäitatavad põranda-tasandi tõste/liigutusvahendid.",
    "domeen": "[UMBRELLA] Käsijõul käitatavad tõste- ja teisaldusseadmed materjalide liigutamiseks ja tõstmiseks põranda tasandil, väljundiks manuaalne koorma tõste/vedamine.",
@@ -35420,30 +35193,6 @@
     "Kui platvorm tõstetakse kääristmehhanismiga → siia; kahvlitõste (pallet) → Käsitõstukid."
    ],
    "valjundi_test": "Kas koorem tõstetakse platvormil kääristmehhanismiga? JAH → siia, EI → muu tõstuk."
-  },
-  {
-   "l3_id": "pcat_t3f_10_19",
-   "l3_nimi": "Montaažitungrauad ja tõsturid",
-   "main": "Tööriistad ja tarvikud",
-   "l2": "Tõsteseadmed ja talid",
-   "n": 4,
-   "umbrella": false,
-   "umbrella_pohjus": "",
-   "domeen": "Käsitsi kangi- või mehaanilise hooparmi abil raskuste tõstmine ja hooldusel objekti (nt murutraktor, mööbel) tõstmine/toestamine.",
-   "include": [
-    "jõusäästlik hooparm-tõstur / labor saving arm jack / podnośnik dźwigniowy",
-    "hooldustungraud murutraktorile / ride-on mower lift jack / podnośnik do kosiarki",
-    "montaažitungraud / positioning jack / podnośnik montażowy"
-   ],
-   "exclude": [
-    "käärtõstelaud / scissor lift table → Käärtõstelauad ja -tõstukid",
-    "käsihüdrauliline tõstuk / hydraulic hand lift → Käsitõstukid",
-    "kipsplaadi/paneelitõstuk / drywall panel hoist → Kipsplaaditõstukid ja paneelitõstukid"
-   ],
-   "naaber_piirid": [
-    "Väljundiks objekti hetkeline tõstmine hooparmi/tungraua jõul; kui pikem tõstesüsteem käär- või vintsimehhanismiga → vastav naaber-L3."
-   ],
-   "valjundi_test": "Kang/hooparm annab lokaalse tõstejõu punkti all — kui tegemist on platvormi (käär) või rippteliga (tali), on eri tüüp."
   },
   {
    "l3_id": "pcat_t3f_10_3",
@@ -37006,32 +36755,6 @@
    "valjundi_test": "Kas toode on küljele vertikaalselt avatav privaatsus-/tuuleekraan (mitte ülalt varjav markiis) — kui jah, siia."
   },
   {
-   "l3_id": "pcat_mv_8x2_2",
-   "l3_nimi": "Ekraan- ja sõeltelgid",
-   "main": "Telgid, varjualused ja kasvuhooned",
-   "l2": "Telgid",
-   "n": 9,
-   "umbrella": false,
-   "umbrella_pohjus": "",
-   "domeen": "Sääsevõrgu-seintega pop-up paviljon/telk (gazebo screen tent), mille väljundiks on putukakindel õhutatud varjualune telkimiseks/õueks.",
-   "include": [
-    "ekraan-/sõeltelk võrguseintega / gazebo screen tent / namiot z moskitierą",
-    "pop-up sõeltelk / pop-up screen house tent / namiot altana z siatką",
-    "SUV pakiruumi sõeltelk / tailgate screen tent / namiot samochodowy siatkowy"
-   ],
-   "exclude": [
-    "jalgratta hoiutent / bike storage tent → Jalgrattahoidlad ja -tendid",
-    "matkatelk magamiseks / camping dome tent → Matka- & telkimistelgid",
-    "kinnisseintega paviljon ilma võrguta / gazebo canopy → Sääsevõrguga varjualused ja paviljonid",
-    "rannavarjualune / beach shelter → Rannatelgid ja -varjualused"
-   ],
-   "naaber_piirid": [
-    "Magamiseks mõeldud kupli-/matkatelk → Matka- & telkimistelgid",
-    "Tekstiilseintega paviljon (WHITELIST kontrolli) → Sääsevõrguga varjualused ja paviljonid; võrguseintega sõeltelk jääb siia"
-   ],
-   "valjundi_test": "Kas toode on võrk-/sõelseintega õhutatud varjualune (mitte kinnine magamistelk ega esemehoidla) — kui jah, siia."
-  },
-  {
    "l3_id": "pcat_mv_8x2_5",
    "l3_nimi": "Jalgrattahoidlad ja -tendid",
    "main": "Telgid, varjualused ja kasvuhooned",
@@ -37139,7 +36862,7 @@
    "l3_nimi": "Sääsevõrguga varjualused ja paviljonid",
    "main": "Telgid, varjualused ja kasvuhooned",
    "l2": "Telgid",
-   "n": 15,
+   "n": 24,
    "umbrella": false,
    "umbrella_pohjus": "",
    "domeen": "Sääsevõrguga varjualused ja paviljonid (screen tent) — putukakindlate võrkseintega varikatus välitegevuse kaitseks.",
@@ -37320,7 +37043,7 @@
    "l3_nimi": "Pergola kinnitustarvikud",
    "main": "Telgid, varjualused ja kasvuhooned",
    "l2": "Varikatused ja pergolad",
-   "n": 10,
+   "n": 18,
    "umbrella": false,
    "umbrella_pohjus": "",
    "domeen": "Pergola ehitus-/kinnitustarvikud — DIY puitprussi kinnitusklambrid ja komplektid pergola raami koostamiseks (sh kald- ja T-kujulised liitmikud).",
@@ -37339,30 +37062,6 @@
     "EI merge Pergola nurgatarvikutega (whitelistitud, eri väljund) — nurgatarvikud on spetsiifiliselt nurga-liitmikud, kinnitustarvikud katavad üldise raami-/vahekinnituse."
    ],
    "valjundi_test": "Toode on pergala prussi koostamise klamber/komplekt (üldkinnitus), mitte terviklik pergola ega puhas nurga-liitmik."
-  },
-  {
-   "l3_id": "pcat_mv_8x1_3",
-   "l3_nimi": "Pergola nurgatarvikud",
-   "main": "Telgid, varjualused ja kasvuhooned",
-   "l2": "Varikatused ja pergolad",
-   "n": 8,
-   "umbrella": false,
-   "umbrella_pohjus": "",
-   "domeen": "Pergola nurgatarvikud — spetsiifilised nurga-liitmikklambrid (4-way/3-way corner bracket), mis ühendavad pergola prussid nurkades.",
-   "include": [
-    "pergola nurgaklamber / pergola corner bracket / wspornik narożny pergoli",
-    "4-suunaline nurgaliitmik / 4-way corner bracket / narożnik 4-drożny",
-    "3-suunaline nurgaklamber / 3-way corner bracket / narożnik 3-drożny"
-   ],
-   "exclude": [
-    "terviklik pergola / pergola structure → Pergolad",
-    "kald-/T-kujuline üldkinnitus / slanted T bracket → Pergola kinnitustarvikud",
-    "tarp-kinnitus / tarp fastener → Katete ja tarpide tarvikud"
-   ],
-   "naaber_piirid": [
-    "EI merge Pergola kinnitustarvikutega (whitelistitud, eri väljund) — siin ainult nurga-liitmikud (corner bracket), üldised/kald-/T-kinnitused kuuluvad kinnitustarvikutesse."
-   ],
-   "valjundi_test": "Toode on spetsiifiline nurga-ühendusklamber, mitte üldine raami-/kald-kinnitus ega terviklik pergola."
   },
   {
    "l3_id": "pcat_mv_8x1_5",
@@ -38443,55 +38142,6 @@
    "valjundi_test": "Kas komplekt pressib hülsside/kruvi abil pukse-laagreid sisse/välja? JAH → siia; kui raamipress → töökojapress."
   },
   {
-   "l3_id": "pcat_2align",
-   "l3_nimi": "Rattarihtimis-pöördplaadid",
-   "main": "Garaažiseadmed ja autoremont",
-   "l2": "Rehvitööd",
-   "n": 1,
-   "umbrella": false,
-   "umbrella_pohjus": "",
-   "domeen": "Rattarihtimise pöördplaadid, millele auto esirattad asetatakse rihtimise ajal — väljund on rataste vaba pöörlemine nurkade mõõtmiseks.",
-   "include": [
-    "rattarihtimis-pöördplaat / wheel alignment turn plate / płyta obrotowa do geometrii kół",
-    "rihtimise pöördlaud skaalaga / alignment turntable dial / obrotnica do zbieżności kół"
-   ],
-   "exclude": [
-    "rataste joondamise mõõteseade / alignment gauge system → Rataste joondamise ja suunamise seadmed",
-    "põrandatungraud / floor jack → Põrandatungrauad",
-    "rattadolly / wheel dolly → Rattadollyd"
-   ],
-   "naaber_piirid": [
-    "Passiivne pöördplaat ratta all, EI mõõtmiselektroonika → Rataste joondamise ja suunamise seadmed (whitelist eristus)",
-    "Toetab ratast rihtimisel, mitte ei tõsta autot → tungrauad eraldi"
-   ],
-   "valjundi_test": "Kas toode on pöörlev plaat, millele ratas rihtimisel asetatakse? JAH → siia; kui mõõteseade/andur → joondamisseadmed."
-  },
-  {
-   "l3_id": "pcat_ag2_2x6_5",
-   "l3_nimi": "Rehvi õhupüstolid",
-   "main": "Garaažiseadmed ja autoremont",
-   "l2": "Rehvitööd",
-   "n": 2,
-   "umbrella": false,
-   "umbrella_pohjus": "",
-   "domeen": "Rehvi bead-seater õhupüstolid ja -paagid, mis annavad kiire suruõhupurske rehviserva valjele istutamiseks — väljund on rehvi bead'i tihend valjele.",
-   "include": [
-    "rehvi bead-seater õhupüstol / air tire bead seater / pistolet do osadzania stopki opony",
-    "rehvi õhupurske paak / tire bead blaster tank / zbiornik do pompowania opon",
-    "käeshoitav rehvipuhur / handheld tire blaster / ręczny bead blaster"
-   ],
-   "exclude": [
-    "rehvikorra paigaldusvahend üldiselt / bead seater generic → Rehvikorra paigaldus- ja täitevahendid (bead seater)",
-    "rehvivahetusmasin / tire changer → Rehvivahetusseadmed ja -vahetid",
-    "rehvikülje lõhkuja / bead breaker → Rehvikülje lahutajad ja lõhkujad"
-   ],
-   "naaber_piirid": [
-    "Õhupurske-tööriist bead istutamiseks (blaster/seater püstol/paak), mitte mehaaniline lahutaja → Rehvikülje lahutajad ja lõhkujad",
-    "Piir bead-seater L3-ga: kui klassikaline õhupüstol-blaster → siia"
-   ],
-   "valjundi_test": "Kas toode paiskab suruõhupurske rehvi bead'i istutamiseks? JAH → siia; kui murrab bead'i lahti → lahutajad/lõhkujad."
-  },
-  {
    "l3_id": "pcat_2press",
    "l3_nimi": "Töökojapressid",
    "main": "Garaažiseadmed ja autoremont",
@@ -39454,33 +39104,6 @@
     "EI merge naabriga Kaasaskantavad ruumisoojendid (whitelistitud, eri väljund — paneelkonvektsioon vs mobiilne punktsoojendus)"
    ],
    "valjundi_test": "Kas seade on paneel-konvektor püsipaigaldusega? JAH → konvektor, EI → kaasaskantav soojendi."
-  },
-  {
-   "l3_id": "pcat_es_10x5_6",
-   "l3_nimi": "Köögisegistid",
-   "main": "Santehnika, küte ja ventilatsioon",
-   "l2": "Segistid ja valamud",
-   "n": 2,
-   "umbrella": false,
-   "umbrella_pohjus": "",
-   "domeen": "Köögivalamu segisti, mille väljund on joogi-/tarbeveevoolu juhtimine köögivalamu juures.",
-   "include": [
-    "köögisegisti / kitchen faucet / bateria kuchenna",
-    "väljatõmmatava dušiga köögisegisti / pull-out kitchen faucet / bateria kuchenna z wyciąganą wylewką",
-    "puutevaba köögisegisti / touchless sensor kitchen faucet / bateria kuchenna bezdotykowa"
-   ],
-   "exclude": [
-    "vannitoa valamu segisti / bathroom basin faucet → Kraanisegistid",
-    "dušisegisti / shower mixer → Dušisegistid",
-    "vannisegisti / bath mixer → Vannisegistid",
-    "joogivee/filter-segisti / filter faucet → Joogivee- & filtersegistid",
-    "köögivalamu ise / kitchen sink → Köögivalamud",
-    "õuekraan / outdoor tap → Õuekraanid"
-   ],
-   "naaber_piirid": [
-    "Köögivalamu juurde kuuluv segisti; vannitoa/valamu segistid → vastavad L3-d"
-   ],
-   "valjundi_test": "Kas segisti on mõeldud köögivalamu juurde (kõrge vool, sageli pull-out)? JAH → köögisegisti, EI → vannitoa/dušisegisti."
   },
   {
    "l3_id": "pcat_es_10x2_13",
@@ -40458,32 +40081,6 @@
     "Nurklihvija on üldotstarbeline; chaser spetsiaalne kaksikketta soonesüvend"
    ],
    "valjundi_test": "Kas toode lõikab seina kindla laiuse/sügavusega soone kaabli/toru jaoks? Jah = siia."
-  },
-  {
-   "l3_id": "pcat_t3f_1_31",
-   "l3_nimi": "Freespingid ja lisad",
-   "main": "Tööriistad ja tarvikud",
-   "l2": "Käsitööriistad",
-   "n": 1,
-   "umbrella": false,
-   "umbrella_pohjus": "",
-   "domeen": "Freespingi/puurpingi kinnitusklambrid ja lisatarvikud tooriku fikseerimiseks, väljundiks täppis-kinnitatud toorik töötluseks.",
-   "include": [
-    "freespingi kruustangid / milling vise / imadło maszynowe",
-    "pingikinnitus-klamber / bench clamp vise / imadło do frezarki",
-    "freespingi lisatarvikud / milling machine accessories / akcesoria do frezarki"
-   ],
-   "exclude": [
-    "üldotstarbelised lauakruustangid / bench vise → Kruustangid",
-    "freespink ise (masin) / milling machine → Metallifreespingid",
-    "treipingi tööriistahoidik / lathe tool post → Treipingi tööriistahoidikud",
-    "jaotuslaud / rotary table → Jaotuslauad ja jagamispead"
-   ],
-   "naaber_piirid": [
-    "Kruustangid on üldtöölaua näpits; siia kuulub täppis-freespingi kinnitus koos pinnaga liidesega",
-    "Metallifreespingid on masin, siin ainult lisad/kinnitused"
-   ],
-   "valjundi_test": "Kas toode on freespingile monteeritav täppis-fikseerimislisa (mitte iseseisev masin ega üldkruustang)? Jah = siia."
   },
   {
    "l3_id": "pcat_t3f_6_10",

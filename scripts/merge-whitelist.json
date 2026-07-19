@@ -77,6 +77,272 @@
       "a_name": "Pilliroo- ja bambusaiad",
       "b_name": "Privaatsusekraanid ja kunsthekid",
       "reason": "Naturaalne bambus/pilliroog vs tehis-kunsthekk = MATERJAL on ostja põhikriteerium, teadlik valik (mitte variant). Sama üldotstarve (privaatsus), aga ostja otsib spetsiifiliselt kas naturaalset bambus-/pillirooru rulli või tehis-kunsthekk-paneeli — EI vabalt vahetatav (looduslik ilme vs hooldusvaba plastik). Eri tüüp, mitte variant (Tarmo FLAG 2026-07-19)."
+    },
+    {
+      "a": "pcat_6kpuu",
+      "b": "pcat_mv_6x1_28",
+      "a_name": "Kardinapuud ja -latid",
+      "b_name": "Kardinasiinid ja -süsteemid",
+      "reason": "Eri mehhanism: kardinapuu/latt (nähtav dekoratiivne varras+rõngad) vs laesiin (peidetud liugrada) — ostja valib stiili/paigalduse järgi. (merge-puhastus-pass 2026-07-19, Tarmo)"
+    },
+    {
+      "a": "pcat_t3f_9_6",
+      "b": "pcat_t3f_9_22",
+      "a_name": "Lineaarjuhikud",
+      "b_name": "Lineaarvõllid",
+      "reason": "Eri komponent: profiiljuhik+kelk (guideway rail+block) vs ümar liikumisvõll (round motion rod) — eri lineaarliikumise osa, ostja valib disaini järgi. (merge-puhastus-pass 2026-07-19, Tarmo)"
+    },
+    {
+      "a": "pcat_ag2_2_uks",
+      "b": "pcat_2ajam",
+      "a_name": "Garaažiukse osad ja vedrud",
+      "b_name": "Ukseajamid ja mootorid",
+      "reason": "Eri funktsioon: passiivsed osad (vedrud, tihendid) vs automaatika-mootor (door opener) — ostja otsib spetsiifiliselt ajamit; feed-kasvul eraldi. (merge-puhastus-pass 2026-07-19, Tarmo)"
+    },
+    {
+      "a": "pcat_mv_8x3_2",
+      "b": "pcat_mv_8x3_7",
+      "a_name": "Matka- ja haagissuvila markiisid",
+      "b_name": "Automarkiisid",
+      "reason": "Eri vorm/sõiduk: RV külgmarkiis (lineaarne) vs 270° auto-markiis (wraparound, offroad) — eri sõidukitüüp+kate. (merge-puhastus-pass 2026-07-19, Tarmo)"
+    },
+    {
+      "a": "pcat_ks_5x10_1",
+      "b": "pcat_ks_5x2_20",
+      "a_name": "Põrandariiulid ja ladustamisrestid",
+      "b_name": "Seinariiulid ja ülariiulid",
+      "reason": "Eri paigaldus: põranda-dunnage-rest vs seinariiul — ostja valib kinnituse järgi. (merge-puhastus-pass 2026-07-19, Tarmo)"
+    },
+    {
+      "a": "pcat_t3a_8_10",
+      "b": "pcat_t3a_8_3",
+      "a_name": "Käsipritsijad ja käsipihustuspumbad",
+      "b_name": "Seljapritsijad ja pihustuspumbad",
+      "reason": "Eri mobiilsus: käes-kantav pihusti vs seljakotti-pihusti (backpack fogger) — kandeviis+maht, ostja valib mastaabi järgi. (merge-puhastus-pass 2026-07-19, Tarmo)"
+    },
+    {
+      "a": "pcat_mv_8x4_1",
+      "b": "pcat_mv_8x4_2",
+      "a_name": "Tunnelkasvuhooned",
+      "b_name": "Kasvuhooned",
+      "reason": "Eri struktuur: kõnnitav tunnel-kasvuhoone vs taimekaitse-puur/muu — eri katte-tüüp. (merge-puhastus-pass 2026-07-19, Tarmo)"
+    },
+    {
+      "a": "pcat_ag2_3x7_3",
+      "b": "pcat_ag2_3x7_12",
+      "a_name": "Katuseboksid ja -kohvrid",
+      "b_name": "Koormakandjate kotid",
+      "reason": "Eri materjal/vorm: kõvakest-boks (hard shell) vs pehme kott (soft bag) — ostja valib kõva vs pehme järgi. (merge-puhastus-pass 2026-07-19, Tarmo)"
+    },
+    {
+      "a": "pcat_t3f_10_4",
+      "b": "pcat_t3f_10_12",
+      "a_name": "Pingutuskummid ja kinnitusköied",
+      "b_name": "Koormarihmad",
+      "reason": "Eri pingutus: elastne bungee-kumm vs jäik koormarihm (ratchet strap) — eri kinnitusmehhanism (elastne vs fikseeritud). (merge-puhastus-pass 2026-07-19, Tarmo)"
+    },
+    {
+      "a": "pcat_el_12x10_1",
+      "b": "pcat_el_12x10_2",
+      "a_name": "Kõvad kaasaskantavad külmakastid",
+      "b_name": "Ratastega külmakastid ja jahutuskärud",
+      "reason": "Eri mobiilsus: kantav külmakast vs ratastega jahutuskäru — ostja valib kande vs veeretamise järgi. (merge-puhastus-pass 2026-07-19, Tarmo)"
+    },
+    {
+      "a": "pcat_ks_5x5_2",
+      "b": "pcat_5n13",
+      "a_name": "Kondiitritoodete külmvitriinid",
+      "b_name": "Sushi külmvitriinid",
+      "reason": "Eri vorm/spets: kondiitri-tiered vitriin (kõrge) vs sushi lame üleletti-vitriin — ostja otsib spetsiifiliselt. (merge-puhastus-pass 2026-07-19, Tarmo)"
+    },
+    {
+      "a": "pcat_7cart4",
+      "b": "pcat_el_12x5_4",
+      "a_name": "Kokkupandavad veovankrid",
+      "b_name": "Rannakärud",
+      "reason": "Eri terrain-spets: üld-kokkupandav veovanker vs ranna-käru suurte liivaratastega — sand-wheels eristab. (merge-puhastus-pass 2026-07-19, Tarmo)"
+    },
+    {
+      "a": "pcat_mv_6x2_20",
+      "b": "pcat_mv_6x2_1",
+      "a_name": "Lauariiulid",
+      "b_name": "Raamaturiiulid",
+      "reason": "Eri suurus/paigutus: laua-mini-riiul (desktop) vs põranda-raamaturiiul (tall floor bookcase). (merge-puhastus-pass 2026-07-19, Tarmo)"
+    },
+    {
+      "a": "pcat_ag2_2x2_1",
+      "b": "pcat_ag2_2x2_2",
+      "a_name": "Metallriiulid",
+      "b_name": "Seinariiulid",
+      "reason": "Eri paigaldus: vabalt-seisev metallriiul vs seinale-kinnitatav riiul — ostja valib kinnituse järgi. (merge-puhastus-pass 2026-07-19, Tarmo)"
+    },
+    {
+      "a": "pcat_mv_6x9_1",
+      "b": "pcat_mv_6x9_3",
+      "a_name": "Ruumijagajad",
+      "b_name": "Vaheseinad",
+      "reason": "Eri skaala/mount: põranda-ruumijagaja (suur, vabalt) vs laua-vahesein (desk-clamp, väike privaatsuspaneel). (merge-puhastus-pass 2026-07-19, Tarmo)"
+    },
+    {
+      "a": "pcat_f4_17x3_2",
+      "b": "pcat_f4_17x3_3",
+      "a_name": "Soojendusega fliisjakid",
+      "b_name": "Soojendusega joped",
+      "reason": "Eri materjal/stiil: soojendusega fliisjakk vs soft-shell jope — materjal ostja kriteerium. (merge-puhastus-pass 2026-07-19, Tarmo)"
+    },
+    {
+      "a": "pcat_lp_3_3",
+      "b": "pcat_lp_1_9",
+      "a_name": "Lemmikloomade jalutuskärud ja vankrid",
+      "b_name": "Lemmikloomade kandekotid ratastel",
+      "reason": "Eri vorm/otstarve: lükatav jalutusvanker (walking stroller) vs veeretav lennureisi-kandekott (airline rolling tote) — eri kasutus. (merge-puhastus-pass 2026-07-19, Tarmo)"
+    },
+    {
+      "a": "pcat_ag2_2x3_5",
+      "b": "pcat_ag2_2x3_6",
+      "a_name": "Silindertungrauad",
+      "b_name": "Varba- ja pikktungrauad",
+      "reason": "Eri mehhanism/kasutus: õõnes silinder-ram-tungraud (pressimine, tööstus) vs pikk-ram-tungraud (mootori-tõste) — eri rakendus. (merge-puhastus-pass 2026-07-19, Tarmo)"
+    },
+    {
+      "a": "pcat_1annular",
+      "b": "pcat_t3f_9_10",
+      "a_name": "Annulaarfreesid",
+      "b_name": "Augusaed ja kroonsaed",
+      "reason": "Eri tööriist/mehhanism: annulaarfrees (mag-trell, metall-südamik) vs augusaag (trell, üld/puit) — ostja otsib spetsiifiliselt. (merge-puhastus-pass 2026-07-19, Tarmo)"
+    },
+    {
+      "a": "pcat_es_10x2_13",
+      "b": "pcat_es_10x2_12",
+      "a_name": "Akupumbad",
+      "b_name": "Bensiinimootoriga pumbad",
+      "reason": "Energia+skaala funktsionaalne: aku-cordless (väike, kaasaskantav) vs bensiinimootor (suur, kõrge-vool) — oluline võimekuse-vahe, ostja valib rakenduse järgi. (merge-puhastus-pass 2026-07-19, Tarmo)"
+    },
+    {
+      "a": "pcat_ag2_3x2_5",
+      "b": "pcat_a3k",
+      "a_name": "Laadimismatid ja -põrandakatted",
+      "b_name": "Veoauto kasti tarvikud",
+      "reason": "Eri tüüp: veoauto-kasti matt (põrandakate) vs kasti-tarvikud (headache rack, bike pad) — eri otstarve. (merge-puhastus-pass 2026-07-19, Tarmo)"
+    },
+    {
+      "a": "pcat_t3a_5_2",
+      "b": "pcat_t3a_5_7",
+      "a_name": "Traktori lisaseadmed ja tarvikud",
+      "b_name": "Ülekande- ja jõuülekandeosad",
+      "reason": "Eri tüüp: traktori haakeseadmed/lisad vs jõuülekande-komponendid (PTO-võllid, sidurid) — attachment vs transmission-osa. Overlap PTO-osadel = üksik-toote misfit (intra-QA), mitte L3-merge. (merge-puhastus-pass R2 2026-07-19, Tarmo)"
+    },
+    {
+      "a": "pcat_mv_6x6_11",
+      "b": "pcat_mv_6x6_6",
+      "a_name": "Kapid ja kummutid",
+      "b_name": "Kohvibaari- ja baarikapid",
+      "reason": "Eri tüüp: üldkapp/kummut vs baarikapp (spetsiifiline joogi-hoiustus) — ostja otsib baarikappi eraldi. (merge-puhastus-pass R2 2026-07-19, Tarmo)"
+    },
+    {
+      "a": "pcat_mv_8x3_3",
+      "b": "pcat_ag2_3x5_12",
+      "a_name": "RV markiisi päikesekaitsed",
+      "b_name": "Markiisid ja varikatuse osad",
+      "reason": "Eri tüüp: markiisi päikesekaitse-ekraan (lisatarvik) vs markiisi struktuuri-osad — eri tarvik-tüüp. (merge-puhastus-pass R2 2026-07-19, Tarmo)"
+    },
+    {
+      "a": "pcat_mv_6x5_12",
+      "b": "pcat_mv_6x5_4",
+      "a_name": "Madratsivahe täidised",
+      "b_name": "Padjad ja magamispadjad",
+      "reason": "Eri tüüp: madratsi-kate/topper vs padjad — magamis-tekstiili eri element. Wedge-padi overlap = üksik-toote misfit (intra-QA). (merge-puhastus-pass R2 2026-07-19, Tarmo)"
+    },
+    {
+      "a": "pcat_t3a_9_4",
+      "b": "pcat_t3a_9_5",
+      "a_name": "Lõkkekoha rõngad ja alused",
+      "b_name": "Lõkkekolded ja tulekausid",
+      "reason": "Eri tüüp: lõkke-rõngas/alus (insert/liner) vs terviklik lõkkekolle/tulekauss — komponent vs komplekt. Fire-pit pere teadlikult splitatud. Ring-toote overlap = intra-QA misfit. (merge-puhastus-pass R2 2026-07-19, Tarmo)"
+    },
+    {
+      "a": "pcat_t3a_9_10",
+      "b": "pcat_t3a_9_5",
+      "a_name": "Gaasipõletid lõkkekohale",
+      "b_name": "Lõkkekolded ja tulekausid",
+      "reason": "Eri tüüp: gaasipõleti drop-in pann vs lõkkekolle/tulekauss. Fire-pit pere. Drop-in overlap = intra-QA misfit. (merge-puhastus-pass R2 2026-07-19, Tarmo)"
+    },
+    {
+      "a": "pcat_t3a_9_2",
+      "b": "pcat_t3a_9_5",
+      "a_name": "Lauakaminad ja küünlad",
+      "b_name": "Lõkkekolded ja tulekausid",
+      "reason": "Eri tüüp: lauakamin/küünal (laua-peal) vs õue-lõkkekolle. Tabletop-fire-pit overlap = intra-QA misfit. (merge-puhastus-pass R2 2026-07-19, Tarmo)"
+    },
+    {
+      "a": "pcat_ks_5x2_3",
+      "b": "pcat_ks_5x1_4",
+      "a_name": "Toidusoojendajad (chafing dish)",
+      "b_name": "Soemarmiidid ja bain-marie",
+      "reason": "Eri kuumusallikas: chafing dish (kütus/passiivne, gastronorm) vs bain-marie/soemarmiit (elektri, veevann) — ostja valib kütus vs elektri järgi. (merge-puhastus-pass R2 2026-07-19, Tarmo)"
+    },
+    {
+      "a": "pcat_14cat1",
+      "b": "pcat_lp_6_dedup",
+      "a_name": "Kassi seinariiulid",
+      "b_name": "Kassipuud",
+      "reason": "Eri paigaldus: kassi seinariiul (wall-mounted) vs kassipuu (vabalt-seisev põranda) — mount ostja kriteerium. (merge-puhastus-pass R2 2026-07-19, Tarmo)"
+    },
+    {
+      "a": "pcat_t3f_10_15",
+      "b": "pcat_t3f_10_13",
+      "a_name": "Elektrilised talid",
+      "b_name": "Vintsid",
+      "reason": "Eri tüüp: tali (vertikaalne tõste) vs vints (horisontaalne tõmbamine) — eri liikumissuund/otstarve. Electric-hoist-winch overlap = intra-QA misfit. (merge-puhastus-pass R2 2026-07-19, Tarmo)"
+    },
+    {
+      "a": "pcat_t3f_10_15",
+      "b": "pcat_t3f_10_2",
+      "a_name": "Elektrilised talid",
+      "b_name": "Kett-talid",
+      "reason": "Eri energia-allikas funktsionaalne: elektritali (mootor, nupp) vs ketttali (käsi-kett, füüsiline jõud) — nagu elektri- vs käsivints, eri kasutus+võimekus. (merge-puhastus-pass R2 2026-07-19, Tarmo)"
+    },
+    {
+      "a": "pcat_t3f_11_5",
+      "b": "pcat_t3f_11_10",
+      "a_name": "Saepukid",
+      "b_name": "Kokkupandavad töötoed",
+      "reason": "Eri tüüp: saepukk (saagimis-tugi, spetsiifiline) vs üld kokkupandav töötugi — ostja otsib saepukki eraldi. (merge-puhastus-pass R2 2026-07-19, Tarmo)"
+    },
+    {
+      "a": "pcat_t3f_1_1",
+      "b": "pcat_t3f_1_20",
+      "a_name": "Hüdraulilised pressimistööriistad",
+      "b_name": "Pressimistangid ja -tööriistad",
+      "reason": "Eri mehhanism/jõud: hüdrauliline press-tööriist (võimendus) vs käsi-pressimistangid (manuaal) — nagu elektri- vs käsivints, eri võimekus/kasutus. (merge-puhastus-pass R3 2026-07-19, Tarmo)"
+    },
+    {
+      "a": "pcat_ag2_2x6_2",
+      "b": "pcat_ag2_2x6_1",
+      "a_name": "Rehvivahetuse tööriistakomplektid",
+      "b_name": "Rehvivahetusseadmed ja -vahetid",
+      "reason": "Eri tüüp: käsi-tööriistakomplekt (mount/demount) vs rehvivahetus-seade/masin — tööriist vs seade, ostja valib mastaabi järgi. (merge-puhastus-pass R3 2026-07-19, Tarmo)"
+    },
+    {
+      "a": "pcat_ag_3_3",
+      "b": "pcat_ag_3_8",
+      "a_name": "Mullaharimine (äkked ja kultivaatorid)",
+      "b_name": "Pinnasetöö ja greiderdamine",
+      "reason": "Eri operatsioon: mullaharimine (äke/kultivaator, kobestus) vs pinnase-greiderdamine (tasandus) — eri töö. Drag-harrow overlap = intra-QA misfit. (merge-puhastus-pass R3 2026-07-19, Tarmo)"
+    },
+    {
+      "a": "pcat_21safebox",
+      "b": "pcat_t3f_13_3",
+      "a_name": "Rahaseifid ja deposiidiseifid",
+      "b_name": "Seifid",
+      "reason": "Eri tüüp: deposiidi-/rahaseif (pilu-sissevise, kassa) vs üld-turvaseif — deposiidi-funktsioon ostja spetsiifiline otsing. (merge-puhastus-pass R3 2026-07-19, Tarmo)"
+    },
+    {
+      "a": "pcat_es_10x1_5",
+      "b": "pcat_es_10x1_2",
+      "a_name": "Lae- ja seinaventilaatorid",
+      "b_name": "Põranda-, torni- ja kaasaskantavad ventilaatorid",
+      "reason": "Eri paigaldus: lae-/seina-fikseeritud ventilaator vs põranda-/kaasaskantav ventilaator — mount (fikseeritud vs mobiilne) ostja kriteerium. (merge-puhastus-pass R3 2026-07-19, Tarmo)"
     }
   ]
 }
