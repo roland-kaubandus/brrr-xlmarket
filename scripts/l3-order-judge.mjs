@@ -17,8 +17,9 @@ const MODEL = "claude-opus-4-8";
 const args = process.argv.slice(2);
 const MAINS = args.includes("--main") ? args[args.indexOf("--main") + 1].split(",") : null;
 const OUT = args.includes("--out") ? args[args.indexOf("--out") + 1] : "piloot";
+const L2FILTER = args.includes("--l2") ? new Set(args[args.indexOf("--l2") + 1].split(",")) : null;
 if (!MAINS) { console.error("🔴 --main vajalik"); process.exit(2); }
-const BATCH = 5;
+const BATCH = args.includes("--batch") ? +(args[args.indexOf("--batch") + 1]) : 5;
 
 let DB = "";
 try { DB = execSync("docker ps --format '{{.Names}}' | grep '^db-k33g' | head -1", { encoding: "utf8" }).trim(); } catch {}
@@ -35,20 +36,23 @@ for (const l2 of l2rows) {
     FROM product_category l3 WHERE l3.parent_category_id='${l2.id}' AND l3.deleted_at IS NULL ORDER BY l3.rank;`)
     .split("\n").filter(Boolean).map((r) => { const [id, name, n] = r.split("\t"); return { id, name, n: +n }; });
 }
-const todo = l2rows.filter((l2) => l2.l3.length >= 2);
+const todo = l2rows.filter((l2) => l2.l3.length >= 2 && (!L2FILTER || L2FILTER.has(l2.id)));
 const single = l2rows.filter((l2) => l2.l3.length < 2);
 console.error(`L3-order: ${l2rows.length} L2 (${todo.length} järjestatavat ≥2 L3, ${single.length} üksik-L3). ${Math.ceil(todo.length / BATCH)} kutset.`);
 
 const USAGE = { in: 0, out: 0, cache_r: 0, cache_w: 0 };
 const STATIC = `Oled taksonoomia järjestus-QA. Järjesta iga L2 sees L3-d selle algoritmiga:
 
-a. SEOTUD GRUPID: L3-d mis kuuluvad kokku (põhiseade + selle tarvikud/varuosad/lisaseadmed/kulumaterjal). Signaalid: nime-muster ("X" + "X tarvikud/varuosad/osad/terad/kettad"), tüübi-perekond (nt "Mootorsaed"+"Saeketid"; "Survepesurid"+"Survepesuri otsikud").
-b. Järjesta GRUPID grupi-juhi (põhiseade, tavaliselt suurim tootearv) populaarsuse järgi — suurim juht ees.
-c. GRUPI SEES: põhiseade ees → tarvikud/varuosad järel (kahanevalt).
+a. SEOTUD GRUPID — 2 TÜÜPI:
+   - TÜÜP A (seade + tarvikud): põhiseade + selle tarvikud/varuosad/lisaseadmed/kulumaterjal. Signaalid: nime-muster ("X"+"X tarvikud/varuosad/osad/terad/kettad"), tüübi-perekond (nt "Mootorsaed"+"Saeketid"; "Survepesurid"+"Survepesuri otsikud"). JUHT = põhiseade, roll "juht"; liikmed roll "tarvik".
+   - TÜÜP B (seotud tüübi-perekond ILMA ühe vanem-seadmeta): grupeeri omavahel-seotud L3-d kokku, kui nad kuuluvad samasse funktsionaalsesse alamdomeeni, isegi kui pole ühte põhiseadet. Nt rigging: "Tõstetropid ja -ketid"+"Tõstekonksud"+"Tõstemagnetid"+"Tõsterihmade komplektid" = tõste-tarvikute klaster. Signaal: sama alamdomeen (kõik = tõste-koorma-kinnitus), sama nime-tüvi ("Tõste-"). Klastri KÕIK liikmed roll "tarvik" (grupp ühine); klaster asetseb ühes kohas.
+b. Järjesta GRUPID populaarsuse järgi: TÜÜP A grupi juht-L3 VÕI TÜÜP B klastri suurima liikme tootearv määrab grupi positsiooni — suurim ees.
+c. GRUPI SEES: TÜÜP A põhiseade ees → tarvikud järel (kahanevalt); TÜÜP B klastri liikmed kahanevalt tootearvu järgi.
 d. ÜKSIKUD L3-d (grupita): tootearvu-positsioonil, gruppide vahel.
 e. GRAB-BAG ("Muud X"/"Üldtarvikud"/üld-varuosad): L2 LÕPPU.
 
-Rollid: "juht" (grupi põhiseade) · "tarvik" (grupi liige) · "üksik" (grupita) · "lopp" (grab-bag lõppu).
+Rollid: "juht" (TÜÜP A põhiseade) · "tarvik" (TÜÜP A liige VÕI TÜÜP B klastri liige) · "üksik" (grupita) · "lopp" (grab-bag lõppu).
+NB: TÜÜP B klastris pole "juht"-i — kõik liikmed "tarvik", ühine grupp-nimi. Kasuta grupeerimist HELDELT (seotud tüübid kõrvuti > lahjalt laiali), aga ainult tõeliselt seotud alamdomeen.
 
 Vasta AINULT JSON-objektiga {l2_id: [{"id":"pcat_...","role":"juht|tarvik|üksik|lopp","grupp":"lühi-nimi või tühi"}]}, KÕIK L3-d õiges järjekorras (ükski ei tohi kaduda), grupi liikmed järjestikku (juht kohe tarvikute ees).`;
 
@@ -56,7 +60,7 @@ async function judge(batch) {
   const blocks = batch.map((l2) => `### L2 id=${l2.id} — "${l2.name}" (main: ${l2.main})\nL3-d (id | nimi | tootearv):\n${l2.l3.map((x) => `${x.id} | ${x.name} | ${x.n}`).join("\n")}`).join("\n\n");
   const res = await fetch("https://api.anthropic.com/v1/messages", {
     method: "POST", headers: { "content-type": "application/json", "x-api-key": KEY, "anthropic-version": "2023-06-01" },
-    body: JSON.stringify({ model: MODEL, max_tokens: 8000, thinking: { type: "adaptive" }, output_config: { effort: "low" },
+    body: JSON.stringify({ model: MODEL, max_tokens: 16000, thinking: { type: "adaptive" }, output_config: { effort: "low" },
       messages: [{ role: "user", content: [
         { type: "text", text: STATIC, cache_control: { type: "ephemeral" } },
         { type: "text", text: "\n\nJÄRJESTA:\n\n" + blocks }] }] }),
