@@ -12297,8 +12297,8 @@
   {
    "l3_id": "pcat_6pull2",
    "l3_nimi": "Nurgakapi-organiserid",
-   "main": "Ladu, hoiustamine ja pakendamine",
-   "l2": "Hoiukapid ja -sahtlid",
+   "main": "Kodumasinad ja kodutehnika",
+   "l2": "Köögi hoiustamine ja korraldus",
    "n": 7,
    "umbrella": false,
    "umbrella_pohjus": "",
@@ -13046,8 +13046,8 @@
   {
    "l3_id": "pcat_mv_6x2_11",
    "l3_nimi": "Pesumasina pealsed riiulid",
-   "main": "Ladu, hoiustamine ja pakendamine",
-   "l2": "Riiulid ja restid",
+   "main": "Kodumasinad ja kodutehnika",
+   "l2": "Puhastus ja pesuhooldus",
    "n": 23,
    "umbrella": false,
    "umbrella_pohjus": "",
@@ -13095,8 +13095,8 @@
   {
    "l3_id": "pcat_ag2_2x2_9",
    "l3_nimi": "Tööriistariiulid ja -kapid",
-   "main": "Ladu, hoiustamine ja pakendamine",
-   "l2": "Riiulid ja restid",
+   "main": "Tööriistad ja tarvikud",
+   "l2": "Tööriistade hoiustamine",
    "n": 6,
    "umbrella": false,
    "umbrella_pohjus": "",
@@ -14441,7 +14441,7 @@
    "l3_id": "pcat_lp_1_9",
    "l3_nimi": "Lemmikloomade kandekotid ratastel",
    "main": "Lemmikloomatarbed",
-   "l2": "Puurid ja aedikud",
+   "l2": "Transport ja autotarvikud",
    "n": 3,
    "umbrella": false,
    "umbrella_pohjus": "",
@@ -30792,7 +30792,7 @@
    "l3_id": "pcat_1cab3",
    "l3_nimi": "Kaablilõikurid ja juhtmelõikajad",
    "main": "Tööriistad ja tarvikud",
-   "l2": "Elektrilised tööriistad",
+   "l2": "Käsitööriistad",
    "n": 6,
    "umbrella": false,
    "umbrella_pohjus": "",
@@ -30816,9 +30816,9 @@
   {
    "l3_id": "pcat_1cab1",
    "l3_nimi": "Kaablitõmbelindid ja -tõmburid",
-   "main": "Tööriistad ja tarvikud",
-   "l2": "Elektrilised tööriistad",
-   "n": 19,
+   "main": "Elektritarvikud ja valgustus",
+   "l2": "Kaablihaldus ja -kaitse",
+   "n": 21,
    "umbrella": false,
    "umbrella_pohjus": "",
    "domeen": "Kaablitõmbelint (fish tape) ja tõmbelint kaabli vedamiseks läbi torude/kanalite — väljund: kaabel tõmmatud läbi peidetud kanali/toru.",
@@ -33411,9 +33411,9 @@
   },
   {
    "l3_id": "pcat_ku1",
-   "l3_nimi": "Vaakumkambrid ja degassing",
+   "l3_nimi": "Vaakumkambrid ja vaakumpumbad",
    "main": "Tööriistad ja tarvikud",
-   "l2": "Mõõte- ja märkeriistad",
+   "l2": "Kliima- ja külmaaine-hooldus",
    "n": 16,
    "umbrella": false,
    "umbrella_pohjus": "",
@@ -38203,30 +38203,6 @@
     "Elektrikilbid/jaotuskarbid on kestad/karbid, mitte juhtiv kaabel"
    ],
    "valjundi_test": "Kas toode kannab voolu vasksüdamikuna? Jah = siia; kui tühi kaitsev kest/toru, siis kaitse-L3."
-  },
-  {
-   "l3_id": "pcat_11fish",
-   "l3_nimi": "Kaablitõmbelindid ja juhikud",
-   "main": "Elektritarvikud ja valgustus",
-   "l2": "Kaablihaldus ja -kaitse",
-   "n": 2,
-   "umbrella": false,
-   "umbrella_pohjus": "",
-   "domeen": "Kaabli läbitõmbamine torudest/kanalitest — jäigad klaaskiust fish tape'id ja juhikud, millega tõmmatakse juhe läbi ummiku.",
-   "include": [
-    "kaablitõmbelint / fish tape wire puller / taśma do przeciągania kabli",
-    "klaaskiust juhtvarras / fiberglass duct rodder / prowadnica z włókna szklanego",
-    "kaablijuhik läbitõmbeks / cable runner wire puller / przeciągacz kabli"
-   ],
-   "exclude": [
-    "kaablikaitsja põrandaramp / cable protector floor ramp → Kaablikaitsjad & põrandarambid",
-    "kaablipoolihoidik / cable spool rack → Kaablipoolihoidikud & -restid",
-    "kummikünnis / rubber threshold → Kummikünnised & -kaitsjad"
-   ],
-   "naaber_piirid": [
-    "Kaablikaitsjad katavad juba paigaldatud kaablit põrandal; fish tape on paigaldustööriist (tõmbamiseks)"
-   ],
-   "valjundi_test": "Kas toode tõmbab kaabli läbi toru? Jah = siia; kui kaitseb/hoiab valmis kaablit, siis naaber-L3."
   },
   {
    "l3_id": "pcat_11grow",

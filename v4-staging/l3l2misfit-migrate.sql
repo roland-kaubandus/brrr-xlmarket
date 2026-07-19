@@ -1,0 +1,10 @@
+BEGIN;
+-- L3→L2 MISFIT TEOSTUS (6. detektor, 7 misfit, Tarmo kinnitas)
+UPDATE product_category SET parent_category_id='pcat_v4_l4_3', mpath='pcat_v4_l4.pcat_v4_l4_3.pcat_6pull2', rank=(SELECT COALESCE(max(rank),0)+1 FROM product_category WHERE parent_category_id='pcat_v4_l4_3' AND deleted_at IS NULL), updated_at=now() WHERE id='pcat_6pull2';
+UPDATE product_category SET parent_category_id='pcat_v4_l4_5', mpath='pcat_v4_l4.pcat_v4_l4_5.pcat_mv_6x2_11', rank=(SELECT COALESCE(max(rank),0)+1 FROM product_category WHERE parent_category_id='pcat_v4_l4_5' AND deleted_at IS NULL), updated_at=now() WHERE id='pcat_mv_6x2_11';
+UPDATE product_category SET parent_category_id='pcat_v4_l11_9', mpath='pcat_v4_l11.pcat_v4_l11_9.pcat_1cab1', rank=(SELECT COALESCE(max(rank),0)+1 FROM product_category WHERE parent_category_id='pcat_v4_l11_9' AND deleted_at IS NULL), updated_at=now() WHERE id='pcat_1cab1';
+UPDATE product_category SET parent_category_id='pcat_t3l2_11', mpath='pcat_v4_l1.pcat_t3l2_11.pcat_ag2_2x2_9', rank=(SELECT COALESCE(max(rank),0)+1 FROM product_category WHERE parent_category_id='pcat_t3l2_11' AND deleted_at IS NULL), updated_at=now() WHERE id='pcat_ag2_2x2_9';
+UPDATE product_category SET parent_category_id='pcat_v4_l14_3', mpath='pcat_v4_l14.pcat_v4_l14_3.pcat_lp_1_9', rank=(SELECT COALESCE(max(rank),0)+1 FROM product_category WHERE parent_category_id='pcat_v4_l14_3' AND deleted_at IS NULL), updated_at=now() WHERE id='pcat_lp_1_9';
+UPDATE product_category SET parent_category_id='pcat_t3l2_1', mpath='pcat_v4_l1.pcat_t3l2_1.pcat_1cab3', rank=(SELECT COALESCE(max(rank),0)+1 FROM product_category WHERE parent_category_id='pcat_t3l2_1' AND deleted_at IS NULL), updated_at=now() WHERE id='pcat_1cab3';
+UPDATE product_category SET parent_category_id='pcat_kl1', mpath='pcat_v4_l1.pcat_kl1.pcat_ku1', rank=(SELECT COALESCE(max(rank),0)+1 FROM product_category WHERE parent_category_id='pcat_kl1' AND deleted_at IS NULL), name='Vaakumkambrid ja vaakumpumbad', updated_at=now() WHERE id='pcat_ku1';
+COMMIT;
