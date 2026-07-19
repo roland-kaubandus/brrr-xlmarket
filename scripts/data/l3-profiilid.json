@@ -768,7 +768,8 @@
    ],
    "naaber_piirid": [
     "Naturaalne roo-/bambusmaterjal privaatsuseks → siia; sünteetiline haljasekraan → Privaatsusekraanid ja kunsthekid",
-    "Metallvõrk-barjäär → Traatvõrgud ja traataiad"
+    "Metallvõrk-barjäär → Traatvõrgud ja traataiad",
+    "EI merge naabriga Privaatsusekraanid ja kunsthekid ↔ Pilliroo- ja bambusaiad (naturaalne vs tehis-privaatsus = materjal ostja põhikriteerium, whitelistitud)"
    ],
    "valjundi_test": "Kas toode on looduslikust roost/bambusest sirmimatt? Jah → siia; sünteetiline või metall → naaber."
   },
@@ -792,7 +793,8 @@
     "taime kaitsepuur / crop cage → Taimede kaitsevõrgud ja -puurid"
    ],
    "naaber_piirid": [
-    "Sünteetiline dekoratiivne haljasekraan → siia; looduslik roomaterjal → Pilliroo- ja bambusaiad"
+    "Sünteetiline dekoratiivne haljasekraan → siia; looduslik roomaterjal → Pilliroo- ja bambusaiad",
+    "EI merge naabriga Privaatsusekraanid ja kunsthekid ↔ Pilliroo- ja bambusaiad (naturaalne vs tehis-privaatsus = materjal ostja põhikriteerium, whitelistitud)"
    ],
    "valjundi_test": "Kas toode on kunstlik roheline paneel/hekk visuaalseks katteks? Jah → siia; looduslik materjal → bambusaiad."
   },

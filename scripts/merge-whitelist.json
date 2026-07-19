@@ -70,6 +70,13 @@
       "a_name": "Harjadeta alalisvoolumootorid ja -komplektid",
       "b_name": "Harjaga alalisvoolumootorid",
       "reason": "Eri kommutatsiooni-TEHNOLOOGIA: harjadeta (brushless BLDC) = elektrooniline kommutatsioon, vajab kontrollerit, kõrgem efektiivsus/hind vs harjaga (brushed) = mehaanilised harjad, lihtsam/odavam. Buyer valib teadlikult brushed vs brushless (eri hind/jõudlus/eluiga), EI vabalt vahetatav (eri kontroller). Recognized product-eristus. Eri tüüp, mitte variant (Tarmo FLAG 2026-07-16)."
+    },
+    {
+      "a": "pcat_t3a_10_8",
+      "b": "pcat_t3a_10_5",
+      "a_name": "Pilliroo- ja bambusaiad",
+      "b_name": "Privaatsusekraanid ja kunsthekid",
+      "reason": "Naturaalne bambus/pilliroog vs tehis-kunsthekk = MATERJAL on ostja põhikriteerium, teadlik valik (mitte variant). Sama üldotstarve (privaatsus), aga ostja otsib spetsiifiliselt kas naturaalset bambus-/pillirooru rulli või tehis-kunsthekk-paneeli — EI vabalt vahetatav (looduslik ilme vs hooldusvaba plastik). Eri tüüp, mitte variant (Tarmo FLAG 2026-07-19)."
     }
   ]
 }
