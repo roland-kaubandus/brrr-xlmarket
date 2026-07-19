@@ -18,24 +18,42 @@ try {
   console.error(`⚠️  dump-värskendus VAHELE (${e.message.slice(0,60)}) — kasutan olemasolevaid /tmp/x-l*.txt (VÕIVAD OLLA STALE!)`);
 }
 
-const tree=JSON.parse(fs.readFileSync(TREE_JSON,"utf8"));
 const J=s=>JSON.stringify(s);
 const dbL2={}; for(const l of fs.readFileSync("/tmp/x-l2.txt","utf8").trim().split("\n")){const[l1id,rank,h,n]=l.split("|");(dbL2[l1id]=dbL2[l1id]||[]).push({rank:+rank,h,n});}
 for(const k in dbL2)dbL2[k].sort((a,b)=>a.rank-b.rank);
 const dbL3={}; for(const l of fs.readFileSync("/tmp/x-l3.txt","utf8").trim().split("\n")){const[l2h,l3h,l3n]=l.split("|");(dbL3[l2h]=dbL3[l2h]||[]).push([l3h,l3n]);}
-const allDB={}; for(let i=1;i<=17;i++)allDB[i]="pcat_v4_l"+i;
 function block(yl,h,name,short,count,subsFn){yl.push(`  - slug: ${h}`,`    name_en: ${J(name)}`,`    name_et: ${J(name)}`,`    short_slug: ${short}`,`    tagline_en: ${J(name)}`,`    tagline_et: ${J(name)}`,`    description_en: ${J(name+" — products.")}`,`    description_et: ${J(name+" — tooted.")}`,`    hero_img: /images/branches/horeca.webp`,`    hero_gradient: from-stone-950/80 via-stone-900/40 to-transparent`,`    product_count: ${count}`,`    subs:`);subsFn(yl);}
 function subsDB(y,l1id){for(const l2 of (dbL2[l1id]||[])){y.push(`      - slug: ${l2.h}`,`        name_en: ${J(l2.n)}`,`        name_et: ${J(l2.n)}`,`        product_count: 0`);const l3s=dbL3[l2.h]||[];if(l3s.length){y.push(`        subs:`);for(const[a,b] of l3s)y.push(`          - slug: ${a}`,`            name_en: ${J(b)}`,`            name_et: ${J(b)}`,`            product_count: 0`);}}}
-const yl=["version: 4","updated: '2026-06-19'","source: v4 + #20 Peoinventar (nav #11 järel) + #19 Muusika (#12 järel) + #18 (#14 järel)","l1:"];
-for(const l1 of tree.l1){block(yl,"v4-"+l1.slug,l1.name,l1.slug,l1.count,(y)=>subsDB(y,allDB[l1.n]));
-  if(l1.n===11)block(yl,"v4-peoinventar-ja-dekoratsioonid","Peoinventar ja dekoratsioonid","peoinventar",413,(y)=>subsDB(y,"pcat_v4_l20"));
-  if(l1.n===12)block(yl,"v4-muusika-ja-helitehnika","Muusika ja helitehnika","muusika",201,(y)=>subsDB(y,"pcat_v4_l19"));
-  if(l1.n===14)block(yl,"v4-pollumajandus-ja-loomakasvatus","Põllumajandus ja loomakasvatus","pollumajandus",238,(y)=>subsDB(y,"pcat_v4_l18"));
-}
-block(yl,"v4-buroo-ja-kontoritarvikud","Büroo & kontoritarvikud","buroo",124,(y)=>subsDB(y,"pcat_v4_l21"));
-block(yl,"v4-ladu-hoiustamine-ja-pakendamine","Ladu, hoiustamine & pakendamine","ladu",447,(y)=>subsDB(y,"pcat_v4_l22"));
-block(yl,"v4-elektroonika-ja-multimeedia","Elektroonika & multimeedia","elektroonika",123,(y)=>subsDB(y,"pcat_v4_l23"));
-block(yl,"v4-lastekaubad-ja-manguasjad","Lastekaubad ja mänguasjad","lastekaubad",293,(y)=>subsDB(y,"pcat_v4_l24"));
-block(yl,"v4-hobi-ja-kasitoo","Hobi ja käsitöö","hobi",99,(y)=>subsDB(y,"pcat_v4_l25"));
+// 25 MAINI LÕPLIK JÄRJEKORD + nimi + slug (Tarmo nägemus 2026-07-19). SSoT = see massiiv (mitte snapshot).
+// Slug ilma v4- prefiksita (block lisab). Count = reaalne distinct tootearv DB-st (2026-07-19).
+const MAINS=[
+  {id:"pcat_v4_l1", slug:"tooriistad-ja-tarvikud",              name:"Tööriistad ja tarvikud",              count:2697},
+  {id:"pcat_v4_l2", slug:"garaaziseadmed-ja-autoremont",        name:"Garaažiseadmed ja autoremont",        count:591},
+  {id:"pcat_v4_l5", slug:"suurkoogiseadmed",                    name:"Suurköögiseadmed",                    count:1371},
+  {id:"pcat_v4_l4", slug:"kodumasinad-ja-kodutehnika",          name:"Kodumasinad ja kodutehnika",          count:270},
+  {id:"pcat_v4_l6", slug:"moobel-ja-sisustus",                  name:"Mööbel ja sisustus",                  count:1303},
+  {id:"pcat_v4_l7", slug:"aed-ja-aiatehnika",                   name:"Aed ja aiatehnika",                   count:1663},
+  {id:"pcat_v4_l8", slug:"telgid-varjualused-ja-kasvuhooned",   name:"Telgid, varjualused ja kasvuhooned",  count:345},
+  {id:"pcat_v4_l3", slug:"autovaruosad-ja-tarvikud",            name:"Autovaruosad ja -tarvikud",           count:1291},
+  {id:"pcat_v4_l12",slug:"sport-ja-vaba-aeg",                   name:"Sport ja vaba aeg",                   count:1729},
+  {id:"pcat_v4_l9", slug:"ehitus-ja-remont",                    name:"Ehitus ja remont",                    count:1022},
+  {id:"pcat_v4_l11",slug:"elektritarvikud-ja-valgustus",        name:"Elektritarvikud ja valgustus",        count:479},
+  {id:"pcat_v4_l10",slug:"santehnika-kute-ja-ventilatsioon",    name:"Santehnika, küte ja ventilatsioon",   count:797},
+  {id:"pcat_v4_l22",slug:"ladu-hoiustamine-ja-pakendamine",     name:"Ladu, hoiustamine ja pakendamine",    count:387},
+  {id:"pcat_v4_l21",slug:"buroo-ja-kontoritarvikud",            name:"Büroo ja kontoritarvikud",            count:185},
+  {id:"pcat_v4_l13",slug:"reklaami-truki-ja-graveerimisseadmed",name:"Reklaami-, trüki- ja graveerimisseadmed",count:434},
+  {id:"pcat_v4_l23",slug:"elektroonika-ja-multimeedia",         name:"Elektroonika ja multimeedia",         count:169},
+  {id:"pcat_v4_l19",slug:"muusika-ja-helitehnika",              name:"Muusika ja helitehnika",              count:168},
+  {id:"pcat_v4_l20",slug:"peoinventar-ja-dekoratsioonid",       name:"Peoinventar ja dekoratsioonid",       count:411},
+  {id:"pcat_v4_l25",slug:"hobi-ja-kasitoo",                     name:"Hobi ja käsitöö",                     count:149},
+  {id:"pcat_v4_l24",slug:"lastekaubad-ja-manguasjad",           name:"Lastekaubad ja mänguasjad",           count:353},
+  {id:"pcat_v4_l14",slug:"lemmikloomatarbed",                   name:"Lemmikloomatarbed",                   count:427},
+  {id:"pcat_v4_l18",slug:"pollumajandus-ja-loomakasvatus",      name:"Põllumajandus ja loomakasvatus",      count:251},
+  {id:"pcat_v4_l15",slug:"tervis-hooldus-ja-ilu",               name:"Tervis, hooldus ja ilu",              count:314},
+  {id:"pcat_v4_l16",slug:"meditsiin-labor-ja-teadus",           name:"Meditsiin, labor ja teadus",          count:374},
+  {id:"pcat_v4_l17",slug:"tooriied-ja-isikukaitse",             name:"Tööriied ja isikukaitse",             count:244},
+];
+const yl=["version: 4","updated: '2026-07-19'","source: v4 nav-järjekord LÕPLIK (Tarmo 2026-07-19, 25 maini 1-25, & → ja)","l1:"];
+for(const m of MAINS) block(yl,"v4-"+m.slug,m.name,m.slug,m.count,(y)=>subsDB(y,m.id));
 fs.writeFileSync(`${OUT}/taxonomy-music.yaml`,yl.join("\n")+"\n");
 console.log("yaml: 25 L1");
