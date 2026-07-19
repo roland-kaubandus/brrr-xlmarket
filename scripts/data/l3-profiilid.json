@@ -237,7 +237,7 @@
    "l3_id": "pcat_t3a_6_14",
    "l3_nimi": "Aiakaared ja väravad",
    "main": "Aed ja aiatehnika",
-   "l2": "Aiadekoor",
+   "l2": "Aiapiirded ja väravad",
    "n": 3,
    "umbrella": false,
    "umbrella_pohjus": "",
@@ -282,9 +282,9 @@
   },
   {
    "l3_id": "pcat_t3a_6_1",
-   "l3_nimi": "Hoiukastid",
+   "l3_nimi": "Õuehoiukastid",
    "main": "Aed ja aiatehnika",
-   "l2": "Aiadekoor",
+   "l2": "Aiamööbel",
    "n": 3,
    "umbrella": false,
    "umbrella_pohjus": "",
@@ -376,8 +376,8 @@
   {
    "l3_id": "pcat_t3a_6_5",
    "l3_nimi": "Tee- ja sõidutee märgistused",
-   "main": "Aed ja aiatehnika",
-   "l2": "Aiadekoor",
+   "main": "Ehitus ja remont",
+   "l2": "Liikluskorraldus ja teeohutus",
    "n": 9,
    "umbrella": false,
    "umbrella_pohjus": "",
@@ -396,29 +396,6 @@
     "EI merge Aiakonksud ja postid — markerpost tähistab tee piire peegeldusega, ei ole struktuurne post"
    ],
    "valjundi_test": "Kas post on peegelduv/tähistab tee või sõidutee piiri? JAH → siin; kui üldstruktuurne post → Aiakonksud ja postid."
-  },
-  {
-   "l3_id": "pcat_7pond",
-   "l3_nimi": "Tiigivooderdised",
-   "main": "Aed ja aiatehnika",
-   "l2": "Aiadekoor",
-   "n": 4,
-   "umbrella": false,
-   "umbrella_pohjus": "",
-   "domeen": "Veekindlad membraan-vooderdised (EPDM/LLDPE) tiikide ja veekogude vundamendi hüdroisolatsiooniks.",
-   "include": [
-    "tiigivooderdis / pond liner / folia do oczka wodnego",
-    "EPDM tiigimembraan / EPDM pond skin / membrana EPDM",
-    "LLDPE veekindel vooderdis / LLDPE liner / wykładzina LLDPE"
-   ],
-   "exclude": [
-    "kunstkivi kate / faux rock → Kunstkivi dekoratiivkatted",
-    "purskkaev/veejuga / fountain → Veejoad ja purskkaevud"
-   ],
-   "naaber_piirid": [
-    "EI merge Veejoad ja purskkaevud — vooderdis on passiivne membraan, mitte aktiivne veeseade"
-   ],
-   "valjundi_test": "Kas toode on painduv veekindel membraan tiigi vooderdamiseks? JAH → siin; kui pumpav/purskav seade → Veejoad ja purskkaevud."
   },
   {
    "l3_id": "pcat_t3a_6_15",
@@ -2129,7 +2106,7 @@
    "l3_id": "pcat_t3a_12_3",
    "l3_nimi": "Kokkupandavad kalatiigid",
    "main": "Aed ja aiatehnika",
-   "l2": "Lemmikloomad ja tiigid",
+   "l2": "Aiatiigid ja veekogud",
    "n": 7,
    "umbrella": false,
    "umbrella_pohjus": "",
@@ -2152,7 +2129,7 @@
    "l3_id": "pcat_t3a_12_4",
    "l3_nimi": "Loomapüünised ja lõksud",
    "main": "Aed ja aiatehnika",
-   "l2": "Lemmikloomad ja tiigid",
+   "l2": "Aiatööriistad",
    "n": 3,
    "umbrella": false,
    "umbrella_pohjus": "",
@@ -2175,7 +2152,7 @@
    "l3_id": "pcat_t3a_12_6",
    "l3_nimi": "Nutikad linnusöötjad kaameraga",
    "main": "Aed ja aiatehnika",
-   "l2": "Lemmikloomad ja tiigid",
+   "l2": "Aiadekoor",
    "n": 6,
    "umbrella": false,
    "umbrella_pohjus": "",
@@ -2198,8 +2175,8 @@
    "l3_id": "pcat_7tv",
    "l3_nimi": "Tiigivooderdised",
    "main": "Aed ja aiatehnika",
-   "l2": "Lemmikloomad ja tiigid",
-   "n": 3,
+   "l2": "Aiatiigid ja veekogud",
+   "n": 7,
    "umbrella": false,
    "umbrella_pohjus": "",
    "domeen": "Tiigi veepidav vooderdiskile — painduv membraan (LLDPE/EPDM), mis vooderdab kaevatud tiigi/juga; väljundiks lekkekindel tiigipõhi.",
@@ -6555,33 +6532,6 @@
    "valjundi_test": "Kas toode tihendab vibratsiooniga pinnast/täidet (või on selle masina tarvik)? Jah → siia."
   },
   {
-   "l3_id": "pcat_es_9x9_1",
-   "l3_nimi": "Akustilised paneelid ja plaadid",
-   "main": "Ehitus ja remont",
-   "l2": "Isolatsioon ja soojustus",
-   "n": 27,
-   "umbrella": false,
-   "umbrella_pohjus": "",
-   "domeen": "Ruumi helisummutus ja -isolatsioon — akustilised vahtpaneelid, klaaskiudplaadid ja heli-summutavad tekid.",
-   "include": [
-    "akustiline vahtpaneel / acoustic foam panel soundproof / panel akustyczny piankowy",
-    "klaaskiust heliplaat / fiberglass sound absorbing panel / panel dźwiękochłonny z włókna szklanego",
-    "helisummutav tekk / sound dampening soundproof blanket / koc wygłuszający",
-    "isekleepuv akustiline paneel / self-adhesive acoustic panel / panel akustyczny samoprzylepny"
-   ],
-   "exclude": [
-    "läbipaistev plast-/akrüülleht / plexiglass acrylic sheet → Ehitusplaadid ja -lehed",
-    "kiirgusbarjäär-rull / radiant barrier insulation → Kiirgusbarjäär-isolatsioonirullid",
-    "aurutõke/kile / vapor barrier film → Aurutõkked ja kilekatted",
-    "tolmutõke / dust barrier → Tolmubarjäärid ja -tõkkesüsteemid"
-   ],
-   "naaber_piirid": [
-    "Kiirgusbarjäär isoleerib soojust (fooliumrull) — akustiline paneel summutab heli, eri väljund",
-    "Aurutõke tõkestab niiskust kilena — EI summuta heli"
-   ],
-   "valjundi_test": "Kas toode summutab/neelab heli või vähendab kaja? Jah → siia; kui isoleerib soojust/niiskust → naaber."
-  },
-  {
    "l3_id": "pcat_es_9x9_4",
    "l3_nimi": "Aurutõkked ja kilekatted",
    "main": "Ehitus ja remont",
@@ -6636,8 +6586,8 @@
   {
    "l3_id": "pcat_es_9x6_6",
    "l3_nimi": "Tolmubarjäärid ja -tõkkesüsteemid",
-   "main": "Ehitus ja remont",
-   "l2": "Isolatsioon ja soojustus",
+   "main": "Tööriistad ja tarvikud",
+   "l2": "Töökoha ohutus- ja hädaabivarustus",
    "n": 6,
    "umbrella": false,
    "umbrella_pohjus": "",
@@ -6864,7 +6814,7 @@
    "l3_nimi": "Liikluskoonused ja delineaatorpostid",
    "main": "Ehitus ja remont",
    "l2": "Liikluskorraldus ja teeohutus",
-   "n": 20,
+   "n": 34,
    "umbrella": false,
    "umbrella_pohjus": "",
    "domeen": "Vertikaalsed liiklusmärgistuse tähised — koonused ja delineaatorpostid raskustatud/täidetava alusega liikluse suunamiseks.",
@@ -7308,7 +7258,7 @@
    "l3_nimi": "Akustilised seinapaneelid",
    "main": "Ehitus ja remont",
    "l2": "Seinapaneelid ja liistud",
-   "n": 13,
+   "n": 40,
    "umbrella": false,
    "umbrella_pohjus": "",
    "domeen": "Puitliist-tüüpi (MDF) akustilised seinapaneelid heli summutamiseks ja seina dekoreerimiseks, väljund on helisummutav dekoorsein.",
@@ -25634,8 +25584,8 @@
   {
    "l3_id": "pcat_el_12x10_3",
    "l3_nimi": "Staadioni istmed ja toolid",
-   "main": "Sport ja vaba aeg",
-   "l2": "Tailgating ja peoseadmed",
+   "main": "Peoinventar ja dekoratsioonid",
+   "l2": "Peomööbel ja katted",
    "n": 7,
    "umbrella": false,
    "umbrella_pohjus": "",
@@ -27171,7 +27121,7 @@
    "l3_nimi": "Peo- ja serveerimisdispenserid",
    "main": "Suurköögiseadmed",
    "l2": "Joogiseadmed",
-   "n": 27,
+   "n": 28,
    "umbrella": false,
    "umbrella_pohjus": "",
    "domeen": "Passiivne gravitatsiooni-joogidispenser (klaas/plast kannu kraaniga) pidudeks ja serveerimiseks — väljund on jook kraanist, ilma elektri/jahutuseta.",
@@ -34910,9 +34860,9 @@
   },
   {
    "l3_id": "pcat_1conv",
-   "l3_nimi": "Lintkonveierid",
-   "main": "Tööriistad ja tarvikud",
-   "l2": "Transpordikärud",
+   "l3_nimi": "Konveierid",
+   "main": "Ladu, hoiustamine ja pakendamine",
+   "l2": "Mobiilsed hoiukärud ja -restid",
    "n": 3,
    "umbrella": false,
    "umbrella_pohjus": "",
@@ -35129,7 +35079,7 @@
    "l3_id": "pcat_t3f_13_4",
    "l3_nimi": "Lekke- ja üleujutustõrje",
    "main": "Tööriistad ja tarvikud",
-   "l2": "Turva- ja objektivarustus",
+   "l2": "Töökoha ohutus- ja hädaabivarustus",
    "n": 5,
    "umbrella": false,
    "umbrella_pohjus": "",
@@ -35151,34 +35101,10 @@
    "valjundi_test": "Peatab või imab vett/vedelikku — ükski naaber ei täida sama tulva/lekke-tõrje väljundit."
   },
   {
-   "l3_id": "pcat_t3f_13_1",
-   "l3_nimi": "Liikluskoonused",
-   "main": "Tööriistad ja tarvikud",
-   "l2": "Turva- ja objektivarustus",
-   "n": 14,
-   "umbrella": false,
-   "umbrella_pohjus": "",
-   "domeen": "Oranž liiklus- ja märgistuskoonus liikluse/tööala suunamiseks ja hoiatamiseks, väljund: visuaalne piiritlemine ja liikluse juhtimine.",
-   "include": [
-    "liikluskoonus / traffic cone / pachołek drogowy",
-    "ohutuskoonus helkurribaga / safety cone reflective collar / stożek bezpieczeństwa",
-    "märgistuspost delineator / traffic delineator post / słupek drogowy"
-   ],
-   "exclude": [
-    "üleujutustõke / flood barrier → Lekke- ja üleujutustõrje",
-    "lockout-tagout komplekt / loto kit → Lockout-tagout komplektid",
-    "silmaloputusjaam / eye wash → Silmaloputus- ja hädaabidušijaamad"
-   ],
-   "naaber_piirid": [
-    "Visuaalne liiklusmärgistus eristab füüsilisest tõkkest (üleujutustõke) ja lukustusvahenditest"
-   ],
-   "valjundi_test": "Juhib liiklust ja piiritleb ala visuaalselt — ei tõkesta vett ega lukusta seadmeid."
-  },
-  {
    "l3_id": "pcat_t3f_13_9",
    "l3_nimi": "Lockout-tagout komplektid",
    "main": "Tööriistad ja tarvikud",
-   "l2": "Turva- ja objektivarustus",
+   "l2": "Töökoha ohutus- ja hädaabivarustus",
    "n": 7,
    "umbrella": false,
    "umbrella_pohjus": "",
@@ -35202,7 +35128,7 @@
    "l3_id": "pcat_t3f_13_11",
    "l3_nimi": "Signaali blokeerivad Faraday tarvikud",
    "main": "Tööriistad ja tarvikud",
-   "l2": "Turva- ja objektivarustus",
+   "l2": "Töökoha ohutus- ja hädaabivarustus",
    "n": 4,
    "umbrella": false,
    "umbrella_pohjus": "",
@@ -35226,7 +35152,7 @@
    "l3_id": "pcat_t3f_13_10",
    "l3_nimi": "Silmaloputus- ja hädaabidušijaamad",
    "main": "Tööriistad ja tarvikud",
-   "l2": "Turva- ja objektivarustus",
+   "l2": "Töökoha ohutus- ja hädaabivarustus",
    "n": 4,
    "umbrella": false,
    "umbrella_pohjus": "",
@@ -39875,29 +39801,6 @@
     "Remonditarvikud → Jalgratta remondipukid"
    ],
    "valjundi_test": "Kas toode lisab/asendab e-ajami osa olemasolevale rattale? Jah → siia; kui terviklik sõiduk → Jalgrattad."
-  },
-  {
-   "l3_id": "pcat_12jd",
-   "l3_nimi": "Joogidosaatorid ja -serverid",
-   "main": "Sport ja vaba aeg",
-   "l2": "Tailgating ja peoseadmed",
-   "n": 1,
-   "umbrella": false,
-   "umbrella_pohjus": "",
-   "domeen": "Peo- ja tailgating-kontekstis jookide serveerimiseks ja jaotamiseks mõeldud dosaatorid/serverid (väljund: jook portsjonitena kraanist).",
-   "include": [
-    "isoleeritud joogidosaator / insulated beverage dispenser / dyspenser napojów izolowany",
-    "kuum-külm joogiserver / hot and cold drink server / serwer napojów gorących i zimnych",
-    "joogimahuti kraaniga / drink dispenser with tap / pojemnik na napoje z kranem"
-   ],
-   "exclude": [
-    "staadioni iste / stadium seat → Staadioni istmed ja toolid",
-    "professionaalne jooginõu pesumasin → (köögiseadmed)"
-   ],
-   "naaber_piirid": [
-    "Istmed peole → Staadioni istmed ja toolid"
-   ],
-   "valjundi_test": "Kas toode hoiab ja jaotab jooki serveerimiseks? Jah → siia; kui istumiseks → Staadioni istmed."
   },
   {
    "l3_id": "pcat_5n24",
