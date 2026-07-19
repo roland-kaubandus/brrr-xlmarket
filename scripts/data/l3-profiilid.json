@@ -777,7 +777,7 @@
    "l3_nimi": "Privaatsusekraanid ja kunsthekid",
    "main": "Aed ja aiatehnika",
    "l2": "Aiapiirded & väravad",
-   "n": 36,
+   "n": 57,
    "umbrella": false,
    "umbrella_pohjus": "",
    "domeen": "Sünteetilised haljasseinapaneelid ja privaatsusekraanid (kunstlik pukspuu/muru) dekoratiivseks varjeks ja fooniks.",
@@ -825,7 +825,7 @@
    "l3_nimi": "Traatvõrgud ja traataiad",
    "main": "Aed ja aiatehnika",
    "l2": "Aiapiirded & väravad",
-   "n": 10,
+   "n": 25,
    "umbrella": false,
    "umbrella_pohjus": "",
    "domeen": "Tsingitud traatvõrk-rullid ja no-dig traataiad perimeetri piirdeks ja loomatõkkeks aias.",
@@ -6170,8 +6170,8 @@
   {
    "l3_id": "pcat_es_9x4_11",
    "l3_nimi": "Aiapostid & -ankrud",
-   "main": "Ehitus, remont ja värvid",
-   "l2": "Aiad, väravad & piirded",
+   "main": "Aed ja aiatehnika",
+   "l2": "Aiapiirded & väravad",
    "n": 24,
    "umbrella": false,
    "umbrella_pohjus": "",
@@ -6184,22 +6184,22 @@
     "sildiposti U-profiil / U-channel sign post / słupek na znak"
    ],
    "exclude": [
-    "aiavõrk/traatvõrk / wire mesh fencing → Traataiad & -võrgud",
+    "aiavõrk/traatvõrk / wire mesh fencing → Traatvõrgud ja traataiad",
     "trosspiirde komplekt / cable rail kit → Kaabel- & trosspiirded",
     "värav / gate → Väravad & väravakomplektid",
     "märgipostide alus (mitte post ise) / sign post base → Märgipostide alused",
     "okastraat / barbed wire → Okastraat & teratraat"
    ],
    "naaber_piirid": [
-    "Kui toode on postialus/tald → Märgipostide alused; kui võrk või traat → Traataiad & -võrgud; siin ainult vertikaalne post/ankur"
+    "Kui toode on postialus/tald → Märgipostide alused; kui võrk või traat → Traatvõrgud ja traataiad; siin ainult vertikaalne post/ankur"
    ],
    "valjundi_test": "Kas toode on vertikaalne kandev post/ankur mida maasse kinnitatakse? Jah → siin; kui täidispiire või alus, ei."
   },
   {
    "l3_id": "pcat_es_9x4_14",
    "l3_nimi": "Erosiooni- & settetõkked",
-   "main": "Ehitus, remont ja värvid",
-   "l2": "Aiad, väravad & piirded",
+   "main": "Aed ja aiatehnika",
+   "l2": "Maastikukujundus",
    "n": 4,
    "umbrella": false,
    "umbrella_pohjus": "",
@@ -6212,7 +6212,7 @@
    ],
    "exclude": [
     "dekoratiivne/turvapiire / privacy fence → Privaatsusaiad & -ekraanid",
-    "üldine traatvõrk-tara / wire mesh fence → Traataiad & -võrgud"
+    "üldine traatvõrk-tara / wire mesh fence → Traatvõrgud ja traataiad"
    ],
    "naaber_piirid": [
     "Erosioonitõke = ajutine pinnase/setteohje geotekstiil; PÜSIV piire läheb Traataiad või Privaatsusaiad alla"
@@ -6222,8 +6222,8 @@
   {
    "l3_id": "pcat_es_9x4_10",
    "l3_nimi": "Kaabel- & trosspiirded",
-   "main": "Ehitus, remont ja värvid",
-   "l2": "Aiad, väravad & piirded",
+   "main": "Ehitus ja remont",
+   "l2": "Piirded ja käsipuud",
    "n": 23,
    "umbrella": false,
    "umbrella_pohjus": "",
@@ -6236,7 +6236,7 @@
    ],
    "exclude": [
     "klaasipiirde klamber / glass clamp → Klaaspiirded & kinnitused",
-    "traatvõrk-tara / wire mesh fence → Traataiad & -võrgud",
+    "traatvõrk-tara / wire mesh fence → Traatvõrgud ja traataiad",
     "okastraat / barbed wire → Okastraat & teratraat"
    ],
    "naaber_piirid": [
@@ -6247,8 +6247,8 @@
   {
    "l3_id": "pcat_es_9x4_3",
    "l3_nimi": "Klaaspiirded & kinnitused",
-   "main": "Ehitus, remont ja värvid",
-   "l2": "Aiad, väravad & piirded",
+   "main": "Ehitus ja remont",
+   "l2": "Piirded ja käsipuud",
    "n": 10,
    "umbrella": false,
    "umbrella_pohjus": "",
@@ -6270,8 +6270,8 @@
   {
    "l3_id": "pcat_9karivar",
    "l3_nimi": "Kääriturvaväravad",
-   "main": "Ehitus, remont ja värvid",
-   "l2": "Aiad, väravad & piirded",
+   "main": "Ehitus ja remont",
+   "l2": "Liikluskorraldus & teeohutus",
    "n": 9,
    "umbrella": false,
    "umbrella_pohjus": "",
@@ -6293,8 +6293,8 @@
   {
    "l3_id": "pcat_es_9x4_4",
    "l3_nimi": "Laiendatavad tõkkepuud",
-   "main": "Ehitus, remont ja värvid",
-   "l2": "Aiad, väravad & piirded",
+   "main": "Ehitus ja remont",
+   "l2": "Liikluskorraldus & teeohutus",
    "n": 10,
    "umbrella": false,
    "umbrella_pohjus": "",
@@ -6316,8 +6316,8 @@
   {
    "l3_id": "pcat_es_9x4_7",
    "l3_nimi": "Liugvärava rullikud & komplektid",
-   "main": "Ehitus, remont ja värvid",
-   "l2": "Aiad, väravad & piirded",
+   "main": "Aed ja aiatehnika",
+   "l2": "Aiapiirded & väravad",
    "n": 11,
    "umbrella": false,
    "umbrella_pohjus": "",
@@ -6341,8 +6341,8 @@
   {
    "l3_id": "pcat_es_9x4_12",
    "l3_nimi": "Märgipostide alused",
-   "main": "Ehitus, remont ja värvid",
-   "l2": "Aiad, väravad & piirded",
+   "main": "Ehitus ja remont",
+   "l2": "Liikluskorraldus & teeohutus",
    "n": 3,
    "umbrella": false,
    "umbrella_pohjus": "",
@@ -6364,8 +6364,8 @@
   {
    "l3_id": "pcat_es_9x4_13",
    "l3_nimi": "Okastraat & teratraat",
-   "main": "Ehitus, remont ja värvid",
-   "l2": "Aiad, väravad & piirded",
+   "main": "Aed ja aiatehnika",
+   "l2": "Aiapiirded & väravad",
    "n": 5,
    "umbrella": false,
    "umbrella_pohjus": "",
@@ -6376,68 +6376,19 @@
     "teratraadi rull / razor ribbon roll / concertina / spirala żyletkowa"
    ],
    "exclude": [
-    "galvaniseeritud võrkrull / hardware cloth / wire mesh → Traataiad & -võrgud",
+    "galvaniseeritud võrkrull / hardware cloth / wire mesh → Traatvõrgud ja traataiad",
     "trosspiire / cable fence → Kaabel- & trosspiirded"
    ],
    "naaber_piirid": [
-    "Teravate turvateradega traat → siia; sile võrk/traatvõrk aiaks → Traataiad & -võrgud."
+    "Teravate turvateradega traat → siia; sile võrk/traatvõrk aiaks → Traatvõrgud ja traataiad."
    ],
    "valjundi_test": "Toode on teravatega turvatraat sissetungi tõkestamiseks — kui oleks sile aiavõrk, ei asendaks."
   },
   {
-   "l3_id": "pcat_es_9x4_5",
-   "l3_nimi": "Privaatsusaiad & -ekraanid",
-   "main": "Ehitus, remont ja värvid",
-   "l2": "Aiad, väravad & piirded",
-   "n": 21,
-   "umbrella": false,
-   "umbrella_pohjus": "",
-   "domeen": "Privaatsust ja tuulevarju loovad paneelid, ekraanid ja lamellid aia katmiseks õues.",
-   "include": [
-    "vinüül-privaatsuspaneel / vinyl privacy fence panel / panel prywatności winylowy",
-    "privaatsusekraan / outdoor privacy screen / ekran prywatności",
-    "ketaskergaia lamellid / privacy slats for chain-link fence / listwy prywatności do siatki",
-    "konditsioneeri varjeekraan / air conditioner fence screen / osłona klimatyzatora"
-   ],
-   "exclude": [
-    "läbipaistev klaaspiire / glass panel → Klaaspiirded & kinnitused",
-    "traatvõrk ilma katteta / wire mesh → Traataiad & -võrgud",
-    "täisvärav / gate → Väravad & väravakomplektid"
-   ],
-   "naaber_piirid": [
-    "Katab/varjab nähtavust (privaatsus) → siia; struktuurne läbipaistev klaas → Klaaspiirded & kinnitused."
-   ],
-   "valjundi_test": "Toode blokeerib nähtavuse/loob privaatsuse — kui oleks läbipaistev või avatud võrk, ei täidaks funktsiooni."
-  },
-  {
-   "l3_id": "pcat_es_9x4_9",
-   "l3_nimi": "Traataiad & -võrgud",
-   "main": "Ehitus, remont ja värvid",
-   "l2": "Aiad, väravad & piirded",
-   "n": 15,
-   "umbrella": false,
-   "umbrella_pohjus": "",
-   "domeen": "Galvaniseeritud traatvõrgu rullid aedade, loomapuuride ja kaitsevõrkude ehitamiseks.",
-   "include": [
-    "riistvarakangas / hardware cloth / siatka drobnooczkowa",
-    "galvaniseeritud traatvõrgu rull / galvanized wire mesh roll / siatka ocynkowana w rolce",
-    "kanavõrk / chicken wire mesh / siatka na kurnik"
-   ],
-   "exclude": [
-    "žiletttraat / razor wire → Okastraat & teratraat",
-    "privaatsuslamellid võrgu katteks / privacy slats → Privaatsusaiad & -ekraanid",
-    "trosspiire / cable fence → Kaabel- & trosspiirded"
-   ],
-   "naaber_piirid": [
-    "Sile ava-võrk barjääriks/loomapuuriks → siia; teravate teradega turvatraat → Okastraat & teratraat."
-   ],
-   "valjundi_test": "Toode on sile võrkrull füüsiliseks barjääriks — kui oleks teravatega turvatraat, oleks vale tüüp."
-  },
-  {
    "l3_id": "pcat_es_9x4_6",
    "l3_nimi": "Väravaajamid & -mootorid",
-   "main": "Ehitus, remont ja värvid",
-   "l2": "Aiad, väravad & piirded",
+   "main": "Aed ja aiatehnika",
+   "l2": "Aiapiirded & väravad",
    "n": 18,
    "umbrella": false,
    "umbrella_pohjus": "",
@@ -6459,8 +6410,8 @@
   {
    "l3_id": "pcat_es_9x4_8",
    "l3_nimi": "Väravad & väravakomplektid",
-   "main": "Ehitus, remont ja värvid",
-   "l2": "Aiad, väravad & piirded",
+   "main": "Aed ja aiatehnika",
+   "l2": "Aiapiirded & väravad",
    "n": 13,
    "umbrella": false,
    "umbrella_pohjus": "",
@@ -6483,7 +6434,7 @@
   {
    "l3_id": "pcat_es_9x11_4",
    "l3_nimi": "Betooni pitsati- ja tekstuurimatid",
-   "main": "Ehitus, remont ja värvid",
+   "main": "Ehitus ja remont",
    "l2": "Betoonitööd & ehitusmaterjalid",
    "n": 9,
    "umbrella": false,
@@ -6508,7 +6459,7 @@
   {
    "l3_id": "pcat_es_9x11_3",
    "l3_nimi": "Betooni põlvelauad ja liugurid",
-   "main": "Ehitus, remont ja värvid",
+   "main": "Ehitus ja remont",
    "l2": "Betoonitööd & ehitusmaterjalid",
    "n": 6,
    "umbrella": false,
@@ -6532,7 +6483,7 @@
   {
    "l3_id": "pcat_es_9x11_5",
    "l3_nimi": "Ehitusplaadid ja -lehed",
-   "main": "Ehitus, remont ja värvid",
+   "main": "Ehitus ja remont",
    "l2": "Betoonitööd & ehitusmaterjalid",
    "n": 5,
    "umbrella": false,
@@ -6556,7 +6507,7 @@
   {
    "l3_id": "pcat_es_9x11_6",
    "l3_nimi": "Kipsplaaditöö tarvikud",
-   "main": "Ehitus, remont ja värvid",
+   "main": "Ehitus ja remont",
    "l2": "Betoonitööd & ehitusmaterjalid",
    "n": 6,
    "umbrella": true,
@@ -6580,7 +6531,7 @@
   {
    "l3_id": "pcat_9comp",
    "l3_nimi": "Pinnasetihendajad",
-   "main": "Ehitus, remont ja värvid",
+   "main": "Ehitus ja remont",
    "l2": "Betoonitööd & ehitusmaterjalid",
    "n": 7,
    "umbrella": false,
@@ -6604,7 +6555,7 @@
   {
    "l3_id": "pcat_es_9x9_1",
    "l3_nimi": "Akustilised paneelid ja plaadid",
-   "main": "Ehitus, remont ja värvid",
+   "main": "Ehitus ja remont",
    "l2": "Isolatsioon & soojustus",
    "n": 27,
    "umbrella": false,
@@ -6631,7 +6582,7 @@
   {
    "l3_id": "pcat_es_9x9_4",
    "l3_nimi": "Aurutõkked ja kilekatted",
-   "main": "Ehitus, remont ja värvid",
+   "main": "Ehitus ja remont",
    "l2": "Isolatsioon & soojustus",
    "n": 16,
    "umbrella": false,
@@ -6658,7 +6609,7 @@
   {
    "l3_id": "pcat_es_9x9_2",
    "l3_nimi": "Kiirgusbarjäär-isolatsioonirullid",
-   "main": "Ehitus, remont ja värvid",
+   "main": "Ehitus ja remont",
    "l2": "Isolatsioon & soojustus",
    "n": 19,
    "umbrella": false,
@@ -6683,7 +6634,7 @@
   {
    "l3_id": "pcat_es_9x6_6",
    "l3_nimi": "Tolmubarjäärid ja -tõkkesüsteemid",
-   "main": "Ehitus, remont ja värvid",
+   "main": "Ehitus ja remont",
    "l2": "Isolatsioon & soojustus",
    "n": 6,
    "umbrella": false,
@@ -6707,7 +6658,7 @@
   {
    "l3_id": "pcat_es_9x14_2",
    "l3_nimi": "EPDM kummikatted",
-   "main": "Ehitus, remont ja värvid",
+   "main": "Ehitus ja remont",
    "l2": "Katusematerjalid",
    "n": 7,
    "umbrella": false,
@@ -6731,7 +6682,7 @@
   {
    "l3_id": "pcat_es_9x14_1",
    "l3_nimi": "Katuseläbiviigu tihendid",
-   "main": "Ehitus, remont ja värvid",
+   "main": "Ehitus ja remont",
    "l2": "Katusematerjalid",
    "n": 6,
    "umbrella": false,
@@ -6754,7 +6705,7 @@
   {
    "l3_id": "pcat_9thumb",
    "l3_nimi": "Ekskavaatori pöidlad",
-   "main": "Ehitus, remont ja värvid",
+   "main": "Ehitus ja remont",
    "l2": "Laaduri- ja skid-steer haakeseadmed",
    "n": 6,
    "umbrella": false,
@@ -6779,7 +6730,7 @@
   {
    "l3_id": "pcat_la9_4",
    "l3_nimi": "Greiferid ja haaratsid",
-   "main": "Ehitus, remont ja värvid",
+   "main": "Ehitus ja remont",
    "l2": "Laaduri- ja skid-steer haakeseadmed",
    "n": 8,
    "umbrella": false,
@@ -6806,7 +6757,7 @@
   {
    "l3_id": "pcat_la9_2",
    "l3_nimi": "Kinnitusplaadid ja adapterid",
-   "main": "Ehitus, remont ja värvid",
+   "main": "Ehitus ja remont",
    "l2": "Laaduri- ja skid-steer haakeseadmed",
    "n": 15,
    "umbrella": false,
@@ -6832,7 +6783,7 @@
   {
    "l3_id": "pcat_la9_5",
    "l3_nimi": "Kopad ja sahad",
-   "main": "Ehitus, remont ja värvid",
+   "main": "Ehitus ja remont",
    "l2": "Laaduri- ja skid-steer haakeseadmed",
    "n": 6,
    "umbrella": false,
@@ -6858,7 +6809,7 @@
   {
    "l3_id": "pcat_la9_1",
    "l3_nimi": "Pallikahvlid ja kahvlid",
-   "main": "Ehitus, remont ja värvid",
+   "main": "Ehitus ja remont",
    "l2": "Laaduri- ja skid-steer haakeseadmed",
    "n": 37,
    "umbrella": false,
@@ -6885,7 +6836,7 @@
   {
    "l3_id": "pcat_9speedbump",
    "l3_nimi": "Lamavad politseinikud ja kiirustõkked",
-   "main": "Ehitus, remont ja värvid",
+   "main": "Ehitus ja remont",
    "l2": "Liikluskorraldus & teeohutus",
    "n": 6,
    "umbrella": false,
@@ -6909,7 +6860,7 @@
   {
    "l3_id": "pcat_9traf1",
    "l3_nimi": "Liikluskoonused & delineaatorpostid",
-   "main": "Ehitus, remont ja värvid",
+   "main": "Ehitus ja remont",
    "l2": "Liikluskorraldus & teeohutus",
    "n": 20,
    "umbrella": false,
@@ -6933,7 +6884,7 @@
   {
    "l3_id": "pcat_9traf2",
    "l3_nimi": "Pollarid ja parkimistõkked",
-   "main": "Ehitus, remont ja värvid",
+   "main": "Ehitus ja remont",
    "l2": "Liikluskorraldus & teeohutus",
    "n": 12,
    "umbrella": false,
@@ -6959,7 +6910,7 @@
   {
    "l3_id": "pcat_es_9x7_3",
    "l3_nimi": "Kapihinged",
-   "main": "Ehitus, remont ja värvid",
+   "main": "Ehitus ja remont",
    "l2": "Mööbli- & kapifurnituur",
    "n": 11,
    "umbrella": false,
@@ -6985,7 +6936,7 @@
   {
    "l3_id": "pcat_es_9x7_2",
    "l3_nimi": "Mööblinupud ja -käepidemed",
-   "main": "Ehitus, remont ja värvid",
+   "main": "Ehitus ja remont",
    "l2": "Mööbli- & kapifurnituur",
    "n": 16,
    "umbrella": false,
@@ -7009,7 +6960,7 @@
   {
    "l3_id": "pcat_es_9x7_4",
    "l3_nimi": "Riiulikandurid ja -klambrid",
-   "main": "Ehitus, remont ja värvid",
+   "main": "Ehitus ja remont",
    "l2": "Mööbli- & kapifurnituur",
    "n": 3,
    "umbrella": false,
@@ -7034,7 +6985,7 @@
   {
    "l3_id": "pcat_es_9x7_1",
    "l3_nimi": "Sahtlisiinid ja -liugurid",
-   "main": "Ehitus, remont ja värvid",
+   "main": "Ehitus ja remont",
    "l2": "Mööbli- & kapifurnituur",
    "n": 78,
    "umbrella": false,
@@ -7058,7 +7009,7 @@
   {
    "l3_id": "pcat_es_9x7_5",
    "l3_nimi": "Tala- ja nurgakinnitused",
-   "main": "Ehitus, remont ja värvid",
+   "main": "Ehitus ja remont",
    "l2": "Mööbli- & kapifurnituur",
    "n": 5,
    "umbrella": false,
@@ -7083,7 +7034,7 @@
   {
    "l3_id": "pcat_9turvv",
    "l3_nimi": "Turvavõred & kokkupandavad väravad",
-   "main": "Ehitus, remont ja värvid",
+   "main": "Ehitus ja remont",
    "l2": "Ohutus & turvalisus",
    "n": 7,
    "umbrella": false,
@@ -7108,7 +7059,7 @@
   {
    "l3_id": "pcat_9uleuj",
    "l3_nimi": "Üleujutuskaitse & -tõkked",
-   "main": "Ehitus, remont ja värvid",
+   "main": "Ehitus ja remont",
    "l2": "Ohutus & turvalisus",
    "n": 3,
    "umbrella": false,
@@ -7132,7 +7083,7 @@
   {
    "l3_id": "pcat_es_9x1_7",
    "l3_nimi": "Drenaažimatid ja -plaadid",
-   "main": "Ehitus, remont ja värvid",
+   "main": "Ehitus ja remont",
    "l2": "Põrandakatted & tarvikud",
    "n": 32,
    "umbrella": false,
@@ -7157,7 +7108,7 @@
   {
    "l3_id": "pcat_es_9x1_6",
    "l3_nimi": "Garaažipõrandad ja -matid",
-   "main": "Ehitus, remont ja värvid",
+   "main": "Ehitus ja remont",
    "l2": "Põrandakatted & tarvikud",
    "n": 38,
    "umbrella": false,
@@ -7183,7 +7134,7 @@
   {
    "l3_id": "pcat_es_9x1_10",
    "l3_nimi": "Kummimatid ja -põrandad",
-   "main": "Ehitus, remont ja värvid",
+   "main": "Ehitus ja remont",
    "l2": "Põrandakatted & tarvikud",
    "n": 7,
    "umbrella": false,
@@ -7207,7 +7158,7 @@
   {
    "l3_id": "pcat_es_9x1_14",
    "l3_nimi": "Põrandamatide ääreliistud ja komplektid",
-   "main": "Ehitus, remont ja värvid",
+   "main": "Ehitus ja remont",
    "l2": "Põrandakatted & tarvikud",
    "n": 4,
    "umbrella": false,
@@ -7231,7 +7182,7 @@
   {
    "l3_id": "pcat_es_9x1_15",
    "l3_nimi": "Tantsupõrandad ja -plaadid",
-   "main": "Ehitus, remont ja värvid",
+   "main": "Ehitus ja remont",
    "l2": "Põrandakatted & tarvikud",
    "n": 4,
    "umbrella": false,
@@ -7255,7 +7206,7 @@
   {
    "l3_id": "pcat_es_9x1_12",
    "l3_nimi": "Tooli- ja seadmekaitsematid",
-   "main": "Ehitus, remont ja värvid",
+   "main": "Ehitus ja remont",
    "l2": "Põrandakatted & tarvikud",
    "n": 7,
    "umbrella": false,
@@ -7280,7 +7231,7 @@
   {
    "l3_id": "pcat_es_9x1_11",
    "l3_nimi": "Uksematid ja välimatid",
-   "main": "Ehitus, remont ja värvid",
+   "main": "Ehitus ja remont",
    "l2": "Põrandakatted & tarvikud",
    "n": 9,
    "umbrella": false,
@@ -7304,7 +7255,7 @@
   {
    "l3_id": "pcat_es_9x1_3",
    "l3_nimi": "Vaibaalused ja aluskatted",
-   "main": "Ehitus, remont ja värvid",
+   "main": "Ehitus ja remont",
    "l2": "Põrandakatted & tarvikud",
    "n": 24,
    "umbrella": false,
@@ -7328,7 +7279,7 @@
   {
    "l3_id": "pcat_es_9x1_13",
    "l3_nimi": "Vaibakaitsekiled ja -tarvikud",
-   "main": "Ehitus, remont ja värvid",
+   "main": "Ehitus ja remont",
    "l2": "Põrandakatted & tarvikud",
    "n": 8,
    "umbrella": false,
@@ -7352,7 +7303,7 @@
   {
    "l3_id": "pcat_es_9x1_4",
    "l3_nimi": "Vinüülpõrandaplaadid",
-   "main": "Ehitus, remont ja värvid",
+   "main": "Ehitus ja remont",
    "l2": "Põrandakatted & tarvikud",
    "n": 12,
    "umbrella": false,
@@ -7376,7 +7327,7 @@
   {
    "l3_id": "pcat_es_9x10_3",
    "l3_nimi": "3D seinapaneelid",
-   "main": "Ehitus, remont ja värvid",
+   "main": "Ehitus ja remont",
    "l2": "Seinapaneelid & liistud",
    "n": 6,
    "umbrella": false,
@@ -7401,7 +7352,7 @@
   {
    "l3_id": "pcat_es_9x10_1",
    "l3_nimi": "Akustilised seinapaneelid",
-   "main": "Ehitus, remont ja värvid",
+   "main": "Ehitus ja remont",
    "l2": "Seinapaneelid & liistud",
    "n": 13,
    "umbrella": false,
@@ -7424,7 +7375,7 @@
   {
    "l3_id": "pcat_es_9x10_2",
    "l3_nimi": "Laepaneelid & laeplaadid",
-   "main": "Ehitus, remont ja värvid",
+   "main": "Ehitus ja remont",
    "l2": "Seinapaneelid & liistud",
    "n": 8,
    "umbrella": false,
@@ -7448,7 +7399,7 @@
   {
    "l3_id": "pcat_es_9x10_6",
    "l3_nimi": "Nurgakaitseprofiilid",
-   "main": "Ehitus, remont ja värvid",
+   "main": "Ehitus ja remont",
    "l2": "Seinapaneelid & liistud",
    "n": 5,
    "umbrella": false,
@@ -7470,7 +7421,7 @@
   {
    "l3_id": "pcat_es_9x10_4",
    "l3_nimi": "Seinapaneelide komplektid",
-   "main": "Ehitus, remont ja värvid",
+   "main": "Ehitus ja remont",
    "l2": "Seinapaneelid & liistud",
    "n": 7,
    "umbrella": false,
@@ -7494,7 +7445,7 @@
   {
    "l3_id": "pcat_tt9_2",
    "l3_nimi": "Tellingud ja töölavad",
-   "main": "Ehitus, remont ja värvid",
+   "main": "Ehitus ja remont",
    "l2": "Tellingud ja toestus",
    "n": 10,
    "umbrella": false,
@@ -7517,7 +7468,7 @@
   {
    "l3_id": "pcat_tt9_1",
    "l3_nimi": "Toestuspostid ja tungrauad",
-   "main": "Ehitus, remont ja värvid",
+   "main": "Ehitus ja remont",
    "l2": "Tellingud ja toestus",
    "n": 11,
    "umbrella": false,
@@ -7540,7 +7491,7 @@
   {
    "l3_id": "pcat_es_9x5_7",
    "l3_nimi": "Kaabelpiirde postid",
-   "main": "Ehitus, remont ja värvid",
+   "main": "Ehitus ja remont",
    "l2": "Terrassilauad & välispõrand",
    "n": 33,
    "umbrella": false,
@@ -7564,7 +7515,7 @@
   {
    "l3_id": "pcat_es_9x5_5",
    "l3_nimi": "Postialused & -kinnitused",
-   "main": "Ehitus, remont ja värvid",
+   "main": "Ehitus ja remont",
    "l2": "Terrassilauad & välispõrand",
    "n": 19,
    "umbrella": false,
@@ -7588,7 +7539,7 @@
   {
    "l3_id": "pcat_es_9x5_10",
    "l3_nimi": "Terrassi tugijalad & pedestaalid",
-   "main": "Ehitus, remont ja värvid",
+   "main": "Ehitus ja remont",
    "l2": "Terrassilauad & välispõrand",
    "n": 4,
    "umbrella": false,
@@ -7612,7 +7563,7 @@
   {
    "l3_id": "pcat_es_9x5_9",
    "l3_nimi": "Terrassilaua kinnitused",
-   "main": "Ehitus, remont ja värvid",
+   "main": "Ehitus ja remont",
    "l2": "Terrassilauad & välispõrand",
    "n": 8,
    "umbrella": false,
@@ -7635,7 +7586,7 @@
   {
    "l3_id": "pcat_es_9x5_8",
    "l3_nimi": "Terrassiplaadid",
-   "main": "Ehitus, remont ja värvid",
+   "main": "Ehitus ja remont",
    "l2": "Terrassilauad & välispõrand",
    "n": 10,
    "umbrella": false,
@@ -7659,7 +7610,7 @@
   {
    "l3_id": "pcat_rd1_5",
    "l3_nimi": "Pööningutrepid & luugiga trepid",
-   "main": "Ehitus, remont ja värvid",
+   "main": "Ehitus ja remont",
    "l2": "Trepid ja trepiosad",
    "n": 7,
    "umbrella": false,
@@ -7686,7 +7637,7 @@
   {
    "l3_id": "pcat_es_9x5_2",
    "l3_nimi": "Trepibalustrid",
-   "main": "Ehitus, remont ja värvid",
+   "main": "Ehitus ja remont",
    "l2": "Trepid ja trepiosad",
    "n": 18,
    "umbrella": false,
@@ -7711,7 +7662,7 @@
   {
    "l3_id": "pcat_es_9x5_1",
    "l3_nimi": "Trepikäsipuud",
-   "main": "Ehitus, remont ja värvid",
+   "main": "Ehitus ja remont",
    "l2": "Trepid ja trepiosad",
    "n": 84,
    "umbrella": false,
@@ -7736,7 +7687,7 @@
   {
    "l3_id": "pcat_es_9x3_6",
    "l3_nimi": "Garaažiuste tihendid & vedrud",
-   "main": "Ehitus, remont ja värvid",
+   "main": "Ehitus ja remont",
    "l2": "Uksed, aknad & luugid",
    "n": 12,
    "umbrella": false,
@@ -7762,7 +7713,7 @@
   {
    "l3_id": "pcat_9slid",
    "l3_nimi": "Liuguksed",
-   "main": "Ehitus, remont ja värvid",
+   "main": "Ehitus ja remont",
    "l2": "Uksed, aknad & luugid",
    "n": 20,
    "umbrella": false,
@@ -7787,7 +7738,7 @@
   {
    "l3_id": "pcat_es_9x3_1",
    "l3_nimi": "Lükanduste riistvara & komplektid",
-   "main": "Ehitus, remont ja värvid",
+   "main": "Ehitus ja remont",
    "l2": "Uksed, aknad & luugid",
    "n": 40,
    "umbrella": false,
@@ -7813,7 +7764,7 @@
   {
    "l3_id": "pcat_es_9x3_4",
    "l3_nimi": "PVC ribakardinad & -eesriided",
-   "main": "Ehitus, remont ja värvid",
+   "main": "Ehitus ja remont",
    "l2": "Uksed, aknad & luugid",
    "n": 30,
    "umbrella": false,
@@ -7837,7 +7788,7 @@
   {
    "l3_id": "pcat_9panic",
    "l3_nimi": "Paanikalatid ja avariiväljapääsud",
-   "main": "Ehitus, remont ja värvid",
+   "main": "Ehitus ja remont",
    "l2": "Uksed, aknad & luugid",
    "n": 6,
    "umbrella": false,
@@ -7860,7 +7811,7 @@
   {
    "l3_id": "pcat_9pkt",
    "l3_nimi": "Pocket-ukse raamikomplektid",
-   "main": "Ehitus, remont ja värvid",
+   "main": "Ehitus ja remont",
    "l2": "Uksed, aknad & luugid",
    "n": 7,
    "umbrella": false,
@@ -7883,7 +7834,7 @@
   {
    "l3_id": "pcat_es_9x3_10",
    "l3_nimi": "Revisiooni- & juurdepääsuluugid",
-   "main": "Ehitus, remont ja värvid",
+   "main": "Ehitus ja remont",
    "l2": "Uksed, aknad & luugid",
    "n": 9,
    "umbrella": true,
@@ -7908,7 +7859,7 @@
   {
    "l3_id": "pcat_es_9x3_7",
    "l3_nimi": "Saloon- & pöörduksed",
-   "main": "Ehitus, remont ja värvid",
+   "main": "Ehitus ja remont",
    "l2": "Uksed, aknad & luugid",
    "n": 6,
    "umbrella": false,
@@ -7932,7 +7883,7 @@
   {
    "l3_id": "pcat_es_9x3_12",
    "l3_nimi": "Talakonksud & sarikakinnitused",
-   "main": "Ehitus, remont ja värvid",
+   "main": "Ehitus ja remont",
    "l2": "Uksed, aknad & luugid",
    "n": 7,
    "umbrella": true,
@@ -7958,7 +7909,7 @@
   {
    "l3_id": "pcat_es_9x3_2",
    "l3_nimi": "Ukselingid & uksekäepidemed",
-   "main": "Ehitus, remont ja värvid",
+   "main": "Ehitus ja remont",
    "l2": "Uksed, aknad & luugid",
    "n": 32,
    "umbrella": false,
@@ -7986,7 +7937,7 @@
   {
    "l3_id": "pcat_es_9x3_3",
    "l3_nimi": "Ukselukud & koodlukud",
-   "main": "Ehitus, remont ja värvid",
+   "main": "Ehitus ja remont",
    "l2": "Uksed, aknad & luugid",
    "n": 16,
    "umbrella": false,
@@ -8012,7 +7963,7 @@
   {
    "l3_id": "pcat_es_9x3_5",
    "l3_nimi": "Uksesulgurid",
-   "main": "Ehitus, remont ja värvid",
+   "main": "Ehitus ja remont",
    "l2": "Uksed, aknad & luugid",
    "n": 11,
    "umbrella": false,
@@ -8037,7 +7988,7 @@
   {
    "l3_id": "pcat_es_9x3_8",
    "l3_nimi": "Voldik-liuguksed",
-   "main": "Ehitus, remont ja värvid",
+   "main": "Ehitus ja remont",
    "l2": "Uksed, aknad & luugid",
    "n": 7,
    "umbrella": false,
@@ -8063,7 +8014,7 @@
   {
    "l3_id": "pcat_es_9x13_2",
    "l3_nimi": "Renni- ja räästakaitsevõrgud",
-   "main": "Ehitus, remont ja värvid",
+   "main": "Ehitus ja remont",
    "l2": "Vihmaveesüsteemid & drenaaž",
    "n": 5,
    "umbrella": false,
@@ -38226,7 +38177,7 @@
   {
    "l3_id": "pcat_es_9x6_11",
    "l3_nimi": "Ämbrisisud segamiseks",
-   "main": "Ehitus, remont ja värvid",
+   "main": "Ehitus ja remont",
    "l2": "Betoonitööd & ehitusmaterjalid",
    "n": 2,
    "umbrella": false,
@@ -38251,7 +38202,7 @@
   {
    "l3_id": "pcat_9kaitse",
    "l3_nimi": "Kaitseekraanid & vaheseinad",
-   "main": "Ehitus, remont ja värvid",
+   "main": "Ehitus ja remont",
    "l2": "Ohutus & turvalisus",
    "n": 1,
    "umbrella": false,
@@ -38275,7 +38226,7 @@
   {
    "l3_id": "pcat_es_9x10_5",
    "l3_nimi": "Liistud & raamid",
-   "main": "Ehitus, remont ja värvid",
+   "main": "Ehitus ja remont",
    "l2": "Seinapaneelid & liistud",
    "n": 2,
    "umbrella": false,
@@ -38303,7 +38254,7 @@
   {
    "l3_id": "pcat_9tapeet",
    "l3_nimi": "Tapeet & seinakatted",
-   "main": "Ehitus, remont ja värvid",
+   "main": "Ehitus ja remont",
    "l2": "Seinapaneelid & liistud",
    "n": 2,
    "umbrella": false,
@@ -38328,7 +38279,7 @@
   {
    "l3_id": "pcat_9terr",
    "l3_nimi": "Terrassipiirde balustrid & liistud",
-   "main": "Ehitus, remont ja värvid",
+   "main": "Ehitus ja remont",
    "l2": "Terrassilauad & välispõrand",
    "n": 2,
    "umbrella": false,
@@ -38356,7 +38307,7 @@
   {
    "l3_id": "pcat_9drenrenn",
    "l3_nimi": "Drenaažirennid & kanalid",
-   "main": "Ehitus, remont ja värvid",
+   "main": "Ehitus ja remont",
    "l2": "Vihmaveesüsteemid & drenaaž",
    "n": 1,
    "umbrella": false,
