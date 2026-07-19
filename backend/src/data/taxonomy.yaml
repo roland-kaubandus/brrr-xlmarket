@@ -3487,15 +3487,6 @@ l1:
             name_en: "Madratsivahe täidised"
             name_et: "Madratsivahe täidised"
             product_count: 0
-      - slug: v4-moobel-postkastid-pakiautomaadid
-        name_en: "Postkastid & pakiautomaadid"
-        name_et: "Postkastid & pakiautomaadid"
-        product_count: 0
-        subs:
-          - slug: v4-moobel-postkastid-pakikastid
-            name_en: "Postkastid & pakikastid"
-            name_et: "Postkastid & pakikastid"
-            product_count: 0
   - slug: v4-aed-ja-aiatehnika
     name_en: "Aed ja aiatehnika"
     name_et: "Aed ja aiatehnika"
@@ -4735,6 +4726,15 @@ l1:
           - slug: v4-ehitus-remont-ja-varvid-aiad-varavad-ja-piirded-margipostide-alused
             name_en: "Märgipostide alused"
             name_et: "Märgipostide alused"
+            product_count: 0
+      - slug: v4-moobel-postkastid-pakiautomaadid
+        name_en: "Postkastid & pakiautomaadid"
+        name_et: "Postkastid & pakiautomaadid"
+        product_count: 0
+        subs:
+          - slug: v4-moobel-postkastid-pakikastid
+            name_en: "Postkastid & pakikastid"
+            name_et: "Postkastid & pakikastid"
             product_count: 0
   - slug: v4-santehnika-kute-ja-ventilatsioon
     name_en: "Santehnika, küte ja ventilatsioon"
