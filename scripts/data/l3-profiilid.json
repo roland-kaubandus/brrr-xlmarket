@@ -17791,7 +17791,7 @@
   {
    "l3_id": "pcat_6mail1",
    "l3_nimi": "Postkastid & pakikastid",
-   "main": "Mööbel ja sisustus",
+   "main": "Ehitus ja remont",
    "l2": "Postkastid & pakiautomaadid",
    "n": 14,
    "umbrella": true,
@@ -17809,7 +17809,8 @@
     "ÄRA splitti alamtüüpideks — teadlik umbrella"
    ],
    "naaber_piirid": [
-    "Sama L2 ainus L3; kõik posti/paki vastuvõtu tooted koos."
+    "Sama L2 ainus L3; kõik posti/paki vastuvõtu tooted koos.",
+    "Postkast/pakikast/drop-box = välis-hoone-infrastruktuur (Ehitus), mitte sisustusmööbel — post/seina/kinnitusega väliselement."
    ],
    "valjundi_test": "Kas toode võtab vastu/hoiab välist posti või pakke? JAH → siia (post, kast, pakikast koos umbrellas)."
   },
