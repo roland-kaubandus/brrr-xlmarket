@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-19T21:04:12.380Z",
+  "generated_at": "2026-07-20T19:52:34.754Z",
   "nodes": {
     "v4-tooriistad-ja-tarvikud": {
       "handle": "v4-tooriistad-ja-tarvikud",
@@ -21400,6 +21400,20 @@
       "child_handles": [],
       "image_path": null,
       "image_source": "none"
+    },
+    "v4-outlet": {
+      "handle": "v4-outlet",
+      "name_en": "Outlet",
+      "name_et": "Outlet",
+      "level": 1,
+      "parent_handle": null,
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none",
+      "description_en": "Outlet — products.",
+      "description_et": "Outlet — tooted.",
+      "tagline_en": "Outlet",
+      "tagline_et": "Outlet"
     }
   },
   "order": [
@@ -23318,6 +23332,7 @@
     "v4-tooriied-ja-isikukaitse-kukkumiskaitse-ja-korgustoo",
     "v4-tooriied-ja-isikukaitse-kukkumiskaitse-ja-korgustoo-kolmjalad-paastestatiivid",
     "v4-tooriied-ja-isikukaitse-kukkumiskaitse-ja-korgustoo-fliplinid-kukkumissummutid",
-    "v4-tooriied-ja-isikukaitse-kukkumiskaitse-ja-korgustoo-ohutuskoied-lifelined"
+    "v4-tooriied-ja-isikukaitse-kukkumiskaitse-ja-korgustoo-ohutuskoied-lifelined",
+    "v4-outlet"
   ]
 }

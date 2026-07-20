@@ -52,8 +52,10 @@ const MAINS=[
   {id:"pcat_v4_l15",slug:"tervis-hooldus-ja-ilu",               name:"Tervis, hooldus ja ilu",              count:314},
   {id:"pcat_v4_l16",slug:"meditsiin-labor-ja-teadus",           name:"Meditsiin, labor ja teadus",          count:374},
   {id:"pcat_v4_l17",slug:"tooriied-ja-isikukaitse",             name:"Tööriied ja isikukaitse",             count:244},
+  // 26. main (Tarmo 2026-07-20) — Outlet: tagastatud/rikutud-pakend kaup, eraldi osakond. FLAT (ei L2/L3).
+  {id:"pcat_v4_l26",slug:"outlet",                              name:"Outlet",                              count:1},
 ];
-const yl=["version: 4","updated: '2026-07-19'","source: v4 nav-järjekord LÕPLIK (Tarmo 2026-07-19, 25 maini 1-25, & → ja)","l1:"];
+const yl=["version: 4","updated: '2026-07-20'","source: v4 nav-järjekord LÕPLIK + Outlet 26. main (Tarmo 2026-07-20)","l1:"];
 for(const m of MAINS) block(yl,"v4-"+m.slug,m.name,m.slug,m.count,(y)=>subsDB(y,m.id));
 fs.writeFileSync(`${OUT}/taxonomy-music.yaml`,yl.join("\n")+"\n");
-console.log("yaml: 25 L1");
+console.log("yaml: 26 L1 (sh Outlet)");
