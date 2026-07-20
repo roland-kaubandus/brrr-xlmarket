@@ -1,6 +1,6 @@
 version: 4
-updated: '2026-07-19'
-source: v4 nav-järjekord LÕPLIK (Tarmo 2026-07-19, 25 maini 1-25, & → ja)
+updated: '2026-07-20'
+source: v4 nav-järjekord LÕPLIK + Outlet 26. main (Tarmo 2026-07-20)
 l1:
   - slug: v4-tooriistad-ja-tarvikud
     name_en: "Tööriistad ja tarvikud"
@@ -8090,3 +8090,15 @@ l1:
             name_en: "Ohutusköied ja lifeline'd"
             name_et: "Ohutusköied ja lifeline'd"
             product_count: 0
+  - slug: v4-outlet
+    name_en: "Outlet"
+    name_et: "Outlet"
+    short_slug: outlet
+    tagline_en: "Outlet"
+    tagline_et: "Outlet"
+    description_en: "Outlet — products."
+    description_et: "Outlet — tooted."
+    hero_img: /images/branches/horeca.webp
+    hero_gradient: from-stone-950/80 via-stone-900/40 to-transparent
+    product_count: 1
+    subs:
