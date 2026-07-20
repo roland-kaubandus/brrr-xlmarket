@@ -78,7 +78,7 @@ export default function WishlistPage() {
               </Link>
               <div className="flex-1 min-w-0">
                 <Link href={`/${locale}/toode/${item.handle}`}>
-                  <p className="text-[13px] font-[500] font-[family-name:var(--font-dm-sans)] text-[#1a1a2e] leading-[1.4] line-clamp-2 hover:text-[#0ea5a0] transition-colors mb-[6px]">
+                  <p className="text-[13px] font-[500] font-[family-name:var(--font-dm-sans)] text-[#1a1a2e] leading-[1.4] line-clamp-2 hover:text-[#0b7d79] transition-colors mb-[6px]">
                     {item.title}
                   </p>
                 </Link>

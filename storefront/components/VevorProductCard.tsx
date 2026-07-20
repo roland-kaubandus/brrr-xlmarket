@@ -182,7 +182,7 @@ export default function VevorProductCard({ product, locale }: { product: Product
         className={`absolute bottom-3 right-3 z-20 flex items-center gap-1.5 px-3 h-8 rounded-full shadow-sm text-[12px] font-semibold transition-colors ${
           isCompared
             ? "bg-[#0ea5a0] text-white hover:bg-[#0b7d79]"
-            : "bg-white hover:bg-[#f0fdf9] text-[#475569] hover:text-[#0ea5a0] border border-[#E2E8F0]"
+            : "bg-white hover:bg-[#f0fdf9] text-[#475569] hover:text-[#0b7d79] border border-[#E2E8F0]"
         }`}
       >
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

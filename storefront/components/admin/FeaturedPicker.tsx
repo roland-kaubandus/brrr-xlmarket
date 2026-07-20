@@ -142,7 +142,7 @@ export default function FeaturedPicker({ l1Handle, locale, currentFeatured }: Pr
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className="inline-flex items-center gap-1 text-[11px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-[#FCD34D] border border-[#0b7d79] text-[#1a1a2e] hover:bg-[#FBBF24]"
+        className="inline-flex items-center gap-1 text-[11px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-[#FCD34D] border border-[#0b7d79] text-[#1a1a2e] hover:bg-[#2dd4bf]"
       >
         ✎ 6 alakategooriat
       </button>
@@ -263,7 +263,7 @@ export default function FeaturedPicker({ l1Handle, locale, currentFeatured }: Pr
                           className={
                             "w-full text-left px-3 py-2 text-[13px] rounded flex items-start gap-2 border " +
                             (isPicked
-                              ? "bg-[#FEF3C7] border-[#FCD34D] text-[#1a1a2e]"
+                              ? "bg-[#ccfbf1] border-[#FCD34D] text-[#1a1a2e]"
                               : atLimit
                                 ? "bg-[#F8FAFC] border-transparent text-[#94A3B8] cursor-not-allowed"
                                 : "bg-white border-[#F1F5F9] hover:bg-[#F8FAFC] text-[#334155]")
@@ -295,7 +295,7 @@ export default function FeaturedPicker({ l1Handle, locale, currentFeatured }: Pr
               <div className="px-6 py-2 bg-red-50 border-t border-red-200 text-sm text-red-700">{error}</div>
             )}
             {status && (
-              <div className="px-6 py-2 bg-[#FEF3C7] border-t border-[#FCD34D] text-sm text-[#1a1a2e]">
+              <div className="px-6 py-2 bg-[#ccfbf1] border-t border-[#FCD34D] text-sm text-[#1a1a2e]">
                 {status}
               </div>
             )}

@@ -15,8 +15,8 @@ export default function AddToCompareButton({ item, locale }: Props) {
       onClick={() => isCompared ? remove(item.id) : add(item)}
       className={`inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium border transition-colors ${
         isCompared
-          ? "bg-[#0ea5a0]/10 border-[#0ea5a0] text-[#0ea5a0]"
-          : "border-[#E2E8F0] text-[#64748B] hover:border-[#0ea5a0] hover:text-[#0ea5a0]"
+          ? "bg-[#0ea5a0]/10 border-[#0ea5a0] text-[#0b7d79]"
+          : "border-[#E2E8F0] text-[#64748B] hover:border-[#0ea5a0] hover:text-[#0b7d79]"
       }`}
     >
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

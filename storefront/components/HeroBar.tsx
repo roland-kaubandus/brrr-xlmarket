@@ -120,11 +120,11 @@ export default function HeroBar({ locale = "en" }: { locale?: string }) {
       {/* Stats pill — desktop only */}
       <div className="hidden md:flex absolute bottom-5 right-16 gap-8 z-10">
         <div className="text-right">
-          <div className="text-[1.3rem] font-extrabold text-[#F59E0B] tabular-nums">16K+</div>
+          <div className="text-[1.3rem] font-extrabold text-[#0b7d79] tabular-nums">16K+</div>
           <div className="text-[0.65rem] text-white/60 uppercase tracking-widest">Products</div>
         </div>
         <div className="text-right">
-          <div className="text-[1.3rem] font-extrabold text-[#F59E0B] tabular-nums">22</div>
+          <div className="text-[1.3rem] font-extrabold text-[#0b7d79] tabular-nums">22</div>
           <div className="text-[0.65rem] text-white/60 uppercase tracking-widest">Categories</div>
         </div>
       </div>

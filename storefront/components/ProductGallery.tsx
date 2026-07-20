@@ -96,7 +96,7 @@ export default function ProductGallery({ images, title }: Props) {
                 className="shrink-0 rounded-lg border-2 border-transparent bg-silver hover:border-soft-border transition-all duration-200 flex flex-col items-center justify-center gap-0"
                 style={{ width: thumbSize, height: thumbSize }}
               >
-                <span className="text-[#0ea5a0] font-bold text-xs font-[family-name:var(--font-dm-sans)]">+{remaining}</span>
+                <span className="text-[#0b7d79] font-bold text-xs font-[family-name:var(--font-dm-sans)]">+{remaining}</span>
               </button>
             )}
           </div>
@@ -164,7 +164,7 @@ export default function ProductGallery({ images, title }: Props) {
                 onClick={() => setLightbox(true)}
                 className="shrink-0 w-[52px] h-[52px] bg-silver rounded-lg border-2 border-transparent flex items-center justify-center"
               >
-                <span className="text-[#0ea5a0] font-bold text-xs">+{images.length - 8}</span>
+                <span className="text-[#0b7d79] font-bold text-xs">+{images.length - 8}</span>
               </button>
             )}
           </div>

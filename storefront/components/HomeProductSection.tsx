@@ -37,7 +37,7 @@ export default function HomeProductSection({
           </div>
           <Link
             href={seeAllHref}
-            className="text-[13px] md:text-[16px] font-semibold text-[#0ea5a0] flex items-center gap-1 hover:gap-2 transition-all"
+            className="text-[13px] md:text-[16px] font-semibold text-[#0b7d79] flex items-center gap-1 hover:gap-2 transition-all"
           >
             {clearable
               ? "Clear"

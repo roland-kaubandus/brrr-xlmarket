@@ -145,7 +145,7 @@ export default function ProductPurchasePanel({ locale, title, variants, options 
                       className={
                         "px-3.5 py-2 rounded-lg border text-sm transition-colors duration-200 " +
                         (isActive
-                          ? "border-[#0ea5a0] bg-[#f0fdf9] text-[#0ea5a0] font-semibold"
+                          ? "border-[#0ea5a0] bg-[#f0fdf9] text-[#0b7d79] font-semibold"
                           : "border-[#E2E8F0] bg-white text-[#1a1a2e] hover:border-[#0ea5a0]/40")
                       }
                     >

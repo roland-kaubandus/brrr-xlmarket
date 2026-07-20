@@ -83,7 +83,7 @@ function ProductCard({ item, locale, onClick }: { item: ProductItem; locale: str
       </div>
       <div className="px-2 py-1.5">
         <p className="text-[11px] text-[#475569] leading-tight line-clamp-2 mb-1">{item.title}</p>
-        <p className="text-[12px] font-semibold text-[#0ea5a0]">{formatPrice(item.price)}</p>
+        <p className="text-[12px] font-semibold text-[#0b7d79]">{formatPrice(item.price)}</p>
       </div>
     </button>
   )
@@ -373,7 +373,7 @@ export default function AiSearchPalette({ locale = "en" }: { locale?: string }) 
                   handleClose()
                   router.push(action.url(locale))
                 }}
-                className="px-3 py-1.5 rounded-full border border-[#E2E8F0] text-[12px] text-[#475569] hover:border-[#0ea5a0] hover:text-[#0ea5a0] transition-colors"
+                className="px-3 py-1.5 rounded-full border border-[#E2E8F0] text-[12px] text-[#475569] hover:border-[#0ea5a0] hover:text-[#0b7d79] transition-colors"
               >
                 {action.label}
               </button>

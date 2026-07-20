@@ -24,7 +24,7 @@ export default function NotFound() {
         </Link>
         <Link
           href="/et/kategooriad"
-          className="inline-flex items-center gap-[8px] border border-[#E8E8E8] text-[#555555] px-[24px] py-[12px] text-[15px] font-[500] font-[family-name:var(--font-dm-sans)] hover:border-[#E8650A] hover:text-[#0ea5a0] transition-colors"
+          className="inline-flex items-center gap-[8px] border border-[#E8E8E8] text-[#555555] px-[24px] py-[12px] text-[15px] font-[500] font-[family-name:var(--font-dm-sans)] hover:border-[#E8650A] hover:text-[#0b7d79] transition-colors"
         >
           Browse Categories
         </Link>

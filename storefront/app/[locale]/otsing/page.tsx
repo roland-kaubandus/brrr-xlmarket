@@ -167,7 +167,7 @@ export default async function SearchPage({ searchParams, params }: Props) {
     <div className="bg-[#F8FAFC]">
       <div className="max-w-[1360px] mx-auto px-4 sm:px-6 py-7 sm:py-10">
         <nav className="text-xs text-[#64748B] mb-4 min-h-[24px] flex items-center">
-          <Link href={`/${locale}`} className="text-[#64748B] hover:text-[#0ea5a0] transition-colors duration-200">{locale === "et" ? "Avaleht" : "Home"}</Link>
+          <Link href={`/${locale}`} className="text-[#64748B] hover:text-[#0b7d79] transition-colors duration-200">{locale === "et" ? "Avaleht" : "Home"}</Link>
           <span className="mx-1.5 text-[#CBD5E1]">&gt;</span>
           <span className="text-[#1a1a2e] transition-opacity duration-200">
             {TAG_TITLES[activeTag] || SORT_TITLES[currentSort] || (locale === "et" ? "Otsingutulemused" : "Search Results")}
@@ -231,7 +231,7 @@ export default async function SearchPage({ searchParams, params }: Props) {
             <p className="text-sm text-[#64748B] mb-4">
               {locale === "et" ? `Päringule "${query}" tulemusi ei leitud.` : `No results found for "${query}".`}
             </p>
-            <Link href={categoryPath(locale as "et" | "en")} className="text-[#0ea5a0] hover:underline font-medium">
+            <Link href={categoryPath(locale as "et" | "en")} className="text-[#0b7d79] hover:underline font-medium">
               {locale === "et" ? "Sirvi kõiki kategooriaid" : "Browse all categories"}
             </Link>
           </div>
@@ -331,7 +331,7 @@ export default async function SearchPage({ searchParams, params }: Props) {
                         <Link
                           key={cat}
                           href={`/${locale}/otsing?q=${encodeURIComponent(cat)}${currentQuickFilter ? `&filters=${encodeURIComponent(currentQuickFilter)}` : ""}`}
-                          className="px-4 py-2 rounded-full text-sm font-medium bg-[#F8FAFC] border border-[#E2E8F0] text-[#1a1a2e] hover:border-[#0ea5a0] hover:text-[#0ea5a0] transition-colors"
+                          className="px-4 py-2 rounded-full text-sm font-medium bg-[#F8FAFC] border border-[#E2E8F0] text-[#1a1a2e] hover:border-[#0ea5a0] hover:text-[#0b7d79] transition-colors"
                         >
                           {cat}
                         </Link>

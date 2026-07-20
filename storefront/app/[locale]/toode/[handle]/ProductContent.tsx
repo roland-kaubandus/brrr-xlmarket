@@ -87,7 +87,7 @@ export default function ProductContent(props: ProductContentProps) {
               {isLast ? (
                 <span aria-current="page" className="text-[#1a1a2e] font-semibold">{seg.name}</span>
               ) : (
-                <Link href={seg.url} className="text-[#64748B] hover:text-[#0ea5a0] transition-colors duration-200">
+                <Link href={seg.url} className="text-[#64748B] hover:text-[#0b7d79] transition-colors duration-200">
                   {seg.name}
                 </Link>
               )}
@@ -145,7 +145,7 @@ export default function ProductContent(props: ProductContentProps) {
               {specs.length > 4 && (
                 <a
                   href="#full-specifications"
-                  className="inline-block mt-2 text-[13px] text-[#64748B] underline decoration-[#CBD5E1] underline-offset-[3px] hover:text-[#0ea5a0] hover:decoration-[#0ea5a0]"
+                  className="inline-block mt-2 text-[13px] text-[#64748B] underline decoration-[#CBD5E1] underline-offset-[3px] hover:text-[#0b7d79] hover:decoration-[#0ea5a0]"
                 >
                   {locale === "et" ? "Vaata kõiki spetsifikatsioone" : "View all specifications"}
                 </a>
@@ -269,10 +269,10 @@ export default function ProductContent(props: ProductContentProps) {
                   href={manual.href}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center gap-2 rounded-lg border border-[#E2E8F0] bg-white px-4 py-3 text-sm font-medium text-[#1a1a2e] hover:border-[#0ea5a0]/40 hover:text-[#0ea5a0] transition-colors duration-200"
+                  className="inline-flex items-center gap-2 rounded-lg border border-[#E2E8F0] bg-white px-4 py-3 text-sm font-medium text-[#1a1a2e] hover:border-[#0ea5a0]/40 hover:text-[#0b7d79] transition-colors duration-200"
                 >
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0ea5a0" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                  <span className="text-[#0ea5a0] font-bold">PDF</span>
+                  <span className="text-[#0b7d79] font-bold">PDF</span>
                   <span>{manual.label}</span>
                 </a>
               ))}

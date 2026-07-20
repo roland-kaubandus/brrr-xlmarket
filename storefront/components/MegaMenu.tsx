@@ -358,7 +358,7 @@ export default function MegaMenu({ locale = "en", menuData }: MegaMenuProps) {
         aria-haspopup="true"
         aria-expanded={isOpen}
         className={`hidden md:flex items-center gap-2 px-3 py-1.5 font-bold text-[14px] rounded-md hover:bg-white/10 transition-colors ${
-          isCategoriesActive || isOpen ? "text-[#0ea5a0]" : "text-white"
+          isCategoriesActive || isOpen ? "text-[#0b7d79]" : "text-white"
         }`}
       >
         {isOpen ? <X size={18} strokeWidth={2} /> : <Menu size={18} strokeWidth={2} />}
@@ -375,7 +375,7 @@ export default function MegaMenu({ locale = "en", menuData }: MegaMenuProps) {
         aria-expanded={isOpen}
         aria-haspopup="true"
         className={`md:hidden flex items-center gap-2 px-3 py-1.5 font-bold text-[14px] rounded-md hover:bg-white/10 transition-colors ${
-          isCategoriesActive || isOpen ? "text-[#0ea5a0]" : "text-white"
+          isCategoriesActive || isOpen ? "text-[#0b7d79]" : "text-white"
         }`}
       >
         {isOpen ? <X size={18} strokeWidth={2} /> : <Menu size={18} strokeWidth={2} />}
@@ -407,7 +407,7 @@ export default function MegaMenu({ locale = "en", menuData }: MegaMenuProps) {
               <Link
                 href={`/${loc}/kategooriad`}
                 onClick={() => setIsOpen(false)}
-                className="block px-4 py-1.5 text-[12px] font-bold text-[#0ea5a0] uppercase tracking-wider border-b border-[#ECEEF1] mb-0.5 hover:underline"
+                className="block px-4 py-1.5 text-[12px] font-bold text-[#0b7d79] uppercase tracking-wider border-b border-[#ECEEF1] mb-0.5 hover:underline"
               >
                 {loc === "et" ? "Vaata kõiki kategooriaid" : "Shop All Categories"}
               </Link>
@@ -426,7 +426,7 @@ export default function MegaMenu({ locale = "en", menuData }: MegaMenuProps) {
                     data-l1-handle={l1.handle}
                     aria-haspopup={(menuData.l2ByL1[l1.handle]?.length ?? 0) > 0 ? "true" : undefined}
                     className={`flex items-center gap-3 px-4 py-[7px] text-[15px] transition-colors ${
-                      isActive ? "bg-[#FFF8F3] text-[#0ea5a0]" : "text-[#1a1a2e] hover:bg-[#F8FAFC]"
+                      isActive ? "bg-[#FFF8F3] text-[#0b7d79]" : "text-[#1a1a2e] hover:bg-[#F8FAFC]"
                     }`}
                   >
                     {Icon && (
@@ -459,7 +459,7 @@ export default function MegaMenu({ locale = "en", menuData }: MegaMenuProps) {
                 <Link
                   href={categoryPath(loc, activeL1.handle)}
                   onClick={() => setIsOpen(false)}
-                  className="block px-4 py-1.5 text-[12px] font-bold text-[#0ea5a0] uppercase tracking-wider border-b border-[#ECEEF1] mb-0.5 hover:underline"
+                  className="block px-4 py-1.5 text-[12px] font-bold text-[#0b7d79] uppercase tracking-wider border-b border-[#ECEEF1] mb-0.5 hover:underline"
                 >
                   {loc === "et" ? `Vaata kõiki — ${nodeName(activeL1, loc)}` : `Shop All ${nodeName(activeL1, loc)}`}
                 </Link>
@@ -477,7 +477,7 @@ export default function MegaMenu({ locale = "en", menuData }: MegaMenuProps) {
                       data-mega-l2="true"
                       aria-haspopup={hasKids ? "true" : undefined}
                       className={`flex items-center gap-3 px-4 py-[6px] transition-colors ${
-                        isActive ? "bg-[#FFF8F3] text-[#0ea5a0]" : "text-[#1a1a2e] hover:bg-[#F8FAFC]"
+                        isActive ? "bg-[#FFF8F3] text-[#0b7d79]" : "text-[#1a1a2e] hover:bg-[#F8FAFC]"
                       }`}
                     >
                       <CategoryThumb
@@ -520,7 +520,7 @@ export default function MegaMenu({ locale = "en", menuData }: MegaMenuProps) {
                     <Link
                       href={categoryPath(loc, parent.handle)}
                       onClick={() => setIsOpen(false)}
-                      className="block px-4 py-1.5 text-[12px] font-bold text-[#0ea5a0] uppercase tracking-wider border-b border-[#ECEEF1] mb-0.5 hover:underline"
+                      className="block px-4 py-1.5 text-[12px] font-bold text-[#0b7d79] uppercase tracking-wider border-b border-[#ECEEF1] mb-0.5 hover:underline"
                     >
                       {loc === "et" ? `Vaata kõiki — ${nodeName(parent, loc)}` : `Shop All ${nodeName(parent, loc)}`}
                     </Link>
@@ -538,7 +538,7 @@ export default function MegaMenu({ locale = "en", menuData }: MegaMenuProps) {
                         role="menuitem"
                         aria-haspopup={hasKids ? "true" : undefined}
                         className={`flex items-center gap-3 px-4 py-[6px] text-[15px] transition-colors ${
-                          isActive ? "bg-[#FFF8F3] text-[#0ea5a0]" : "text-[#1a1a2e] hover:bg-[#F8FAFC]"
+                          isActive ? "bg-[#FFF8F3] text-[#0b7d79]" : "text-[#1a1a2e] hover:bg-[#F8FAFC]"
                         }`}
                       >
                         <CategoryThumb
@@ -599,7 +599,7 @@ export default function MegaMenu({ locale = "en", menuData }: MegaMenuProps) {
                 setIsOpen(false)
                 setMobileStack([])
               }}
-              className="block px-4 py-3.5 text-[14px] font-bold text-[#0ea5a0] border-b border-[#E2E8F0] bg-[#f0fdf9]"
+              className="block px-4 py-3.5 text-[14px] font-bold text-[#0b7d79] border-b border-[#E2E8F0] bg-[#f0fdf9]"
             >
               {loc === "et" ? "Vaata kõiki" : "View All"} {nodeName(mobileTop, loc)} &rarr;
             </Link>
@@ -656,7 +656,7 @@ export default function MegaMenu({ locale = "en", menuData }: MegaMenuProps) {
                       setIsOpen(false)
                       setMobileStack([])
                     }}
-                    className="pl-4 pr-4 min-h-[56px] text-[14px] font-medium text-[#1a1a2e] border-b border-[#F1F5F9] active:bg-[#f0fdf9] active:text-[#0ea5a0] transition-colors flex items-center gap-3"
+                    className="pl-4 pr-4 min-h-[56px] text-[14px] font-medium text-[#1a1a2e] border-b border-[#F1F5F9] active:bg-[#f0fdf9] active:text-[#0b7d79] transition-colors flex items-center gap-3"
                   >
                     <CategoryThumb
                       handle={child.handle}

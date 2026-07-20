@@ -9,7 +9,7 @@ export default function VevorFooter({ locale = "en" }: { locale?: string }) {
           {/* Brand */}
           <div>
             <Link href={`/${locale}`} className="inline-block mb-4" style={{ fontSize: "32px", fontWeight: 700, letterSpacing: "-0.5px", lineHeight: 1 }}>
-              <span className="text-[#0ea5a0]">XL</span><span className="text-white">Market</span>
+              <span className="text-[#0b7d79]">XL</span><span className="text-white">Market</span>
             </Link>
             <p className="text-[14px] text-[#94A3B8] leading-relaxed max-w-[260px]">
               {locale === "et" ? "Sinu usaldusväärne professionaalsete tööriistade, seadmete ja kodukaupade pood üle Euroopa." : "Your trusted source for professional tools, equipment, and home improvement products across Europe."}
@@ -64,7 +64,7 @@ export default function VevorFooter({ locale = "en" }: { locale?: string }) {
               <input
                 type="email"
                 placeholder="your@email.com"
-                className="flex-1 px-4 py-2.5 rounded-full border border-[#334155] bg-[#12121f] text-white text-[13px] outline-none placeholder:text-[#475569] focus:border-[#0ea5a0] min-w-0"
+                className="flex-1 px-4 py-2.5 rounded-full border border-[#e2e8f0] bg-white text-[#1a1a2e] text-[13px] outline-none placeholder:text-[#94a3b8] focus:border-[#0ea5a0] focus:shadow-[0_0_0_3px_rgba(14,165,160,0.12)] min-w-0"
               />
               <button
                 type="submit"

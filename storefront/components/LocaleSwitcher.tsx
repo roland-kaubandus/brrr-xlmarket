@@ -26,7 +26,7 @@ export default function LocaleSwitcher({ locale, variant = "light" }: { locale: 
       <Link
         href={etHref}
         className={`px-1.5 py-1 rounded-l transition-colors ${
-          locale === "et" ? "text-[#0ea5a0]" : inactiveClass
+          locale === "et" ? "text-[#0b7d79]" : inactiveClass
         }`}
         aria-current={locale === "et" ? "page" : undefined}
         aria-label="Switch to Estonian"
@@ -37,7 +37,7 @@ export default function LocaleSwitcher({ locale, variant = "light" }: { locale: 
       <Link
         href={enHref}
         className={`px-1.5 py-1 rounded-r transition-colors ${
-          locale === "en" ? "text-[#0ea5a0]" : inactiveClass
+          locale === "en" ? "text-[#0b7d79]" : inactiveClass
         }`}
         aria-current={locale === "en" ? "page" : undefined}
         aria-label="Switch to English"

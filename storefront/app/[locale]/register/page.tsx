@@ -45,7 +45,7 @@ export default function RegisterPage() {
         <h1 className="text-[28px] font-bold text-[#1a1a2e] mb-2">{locale === "et" ? "Loo konto" : "Create Account"}</h1>
         <p className="text-sm text-[#64748B] mb-8">
           {locale === "et" ? "Sul on juba konto?" : "Already have an account?"}{" "}
-          <Link href={`/${locale}/login`} className="text-[#0ea5a0] font-medium hover:underline">
+          <Link href={`/${locale}/login`} className="text-[#0b7d79] font-medium hover:underline">
             {locale === "et" ? "Logi sisse" : "Sign In"}
           </Link>
         </p>

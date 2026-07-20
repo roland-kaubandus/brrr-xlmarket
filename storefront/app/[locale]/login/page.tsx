@@ -43,7 +43,7 @@ export default function LoginPage() {
         <h1 className="text-[28px] font-bold text-[#1a1a2e] mb-2">{locale === "et" ? "Logi sisse" : "Sign In"}</h1>
         <p className="text-sm text-[#64748B] mb-8">
           {locale === "et" ? "Pole veel kontot?" : "Don't have an account yet?"}{" "}
-          <Link href={`/${locale}/register`} className="text-[#0ea5a0] font-medium hover:underline">
+          <Link href={`/${locale}/register`} className="text-[#0b7d79] font-medium hover:underline">
             {locale === "et" ? "Loo konto" : "Create Account"}
           </Link>
         </p>

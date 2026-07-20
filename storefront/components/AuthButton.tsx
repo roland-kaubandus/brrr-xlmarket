@@ -22,7 +22,7 @@ export default function AuthButton() {
     return (
       <Link
         href={`/${locale}/account`}
-        className="hidden md:flex items-center gap-2 text-[#475569] text-[13px] hover:text-[#0ea5a0] transition-colors"
+        className="hidden md:flex items-center gap-2 text-[#475569] text-[13px] hover:text-[#0b7d79] transition-colors"
       >
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
           <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" /><circle cx="12" cy="7" r="4" />
@@ -35,7 +35,7 @@ export default function AuthButton() {
   return (
     <Link
       href={`/${locale}/login`}
-      className="hidden md:flex items-center gap-2 text-[#475569] text-[13px] hover:text-[#0ea5a0] transition-colors"
+      className="hidden md:flex items-center gap-2 text-[#475569] text-[13px] hover:text-[#0b7d79] transition-colors"
     >
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" /><circle cx="12" cy="7" r="4" />

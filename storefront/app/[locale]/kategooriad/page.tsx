@@ -144,7 +144,7 @@ export default async function CategoriesIndexPage({ params }: { params: Promise<
   return (
     <main className="mx-auto max-w-[1440px] px-4 md:px-8 py-8 md:py-12">
       <nav className="text-[14px] text-[#64748B] mb-4" aria-label="Breadcrumb">
-        <Link href={`/${locale}`} className="hover:text-[#0ea5a0]">{locale === "et" ? "Avaleht" : "Home"}</Link>
+        <Link href={`/${locale}`} className="hover:text-[#0b7d79]">{locale === "et" ? "Avaleht" : "Home"}</Link>
         <span className="mx-2.5 text-[#CBD5E1]">&rsaquo;</span>
         <span className="text-[#1a1a2e] font-semibold">{heading}</span>
       </nav>

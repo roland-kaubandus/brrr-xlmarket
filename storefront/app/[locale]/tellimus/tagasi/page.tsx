@@ -173,7 +173,7 @@ export default function PaymentReturnPage() {
           {status === "pending" && (
             <>
               <div className="w-14 h-14 rounded-full bg-amber-100 flex items-center justify-center mb-5">
-                <span className="text-[#0ea5a0] text-[28px]">&#8987;</span>
+                <span className="text-[#0b7d79] text-[28px]">&#8987;</span>
               </div>
               <h1 className="text-xl font-semibold text-[#1a1a2e] mb-4">{t.pendingTitle}</h1>
               <p className="text-[14px] text-[#64748B] mb-8 max-w-[420px]">{t.pendingSub}</p>

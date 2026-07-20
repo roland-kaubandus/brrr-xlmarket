@@ -104,7 +104,7 @@ export default function CategoryPicker({
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className="ml-2 inline-flex items-center gap-1 text-[11px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-[#FCD34D] border border-[#0b7d79] text-[#1a1a2e] hover:bg-[#FBBF24] align-middle"
+        className="ml-2 inline-flex items-center gap-1 text-[11px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-[#FCD34D] border border-[#0b7d79] text-[#1a1a2e] hover:bg-[#2dd4bf] align-middle"
       >
         ✎ Muuda kategooriat
       </button>
@@ -163,7 +163,7 @@ export default function CategoryPicker({
                             className={
                               "w-full text-left px-3 py-2 text-[13px] flex items-center justify-between gap-2 border-b border-[#F1F5F9] " +
                               (isSelected
-                                ? "bg-[#FEF3C7] text-[#1a1a2e] font-semibold"
+                                ? "bg-[#ccfbf1] text-[#1a1a2e] font-semibold"
                                 : "hover:bg-[#F8FAFC] text-[#334155]")
                             }
                           >
