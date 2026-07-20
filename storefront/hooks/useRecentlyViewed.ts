@@ -30,6 +30,9 @@ export interface RecentlyViewedItem {
 
 export interface UseRecentlyViewedReturn {
   ids: string[]
+  /** Product handles in the same (newest-first) order as `ids`. Meili `id` is
+   *  NOT filterable, so consumers filter by `handle IN [...]` instead. */
+  handles: string[]
   record: (item: RecentlyViewedItem) => void
 }
 
@@ -133,6 +136,7 @@ export function useRecentlyViewed(): UseRecentlyViewedReturn {
 
   return {
     ids: items.map((i) => i.id),
+    handles: items.map((i) => i.handle),
     record,
   }
 }
