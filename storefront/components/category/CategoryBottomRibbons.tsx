@@ -6,8 +6,8 @@
  *
  *   1. History        — products the user has recently viewed, scoped to the
  *                       current L1 branch. Fed by `useRecentlyViewed()` +
- *                       Meili `id IN [...]` filter. Order preserved from
- *                       localStorage (newest first).
+ *                       Meili `handle IN [...]` filter (`id` is NOT filterable).
+ *                       Order preserved from localStorage (newest first).
  *   2. Deals          — lowest-priced in-stock items in the current L1 branch.
  *                       TODO: switch to `discount_pct:desc` when Meili field
  *                       is live (blueprint RISK-1).
@@ -145,7 +145,7 @@ export default function CategoryBottomRibbons({
   l1Handle,
   locale,
 }: CategoryBottomRibbonsProps): JSX.Element | null {
-  const { ids: recentIds } = useRecentlyViewed()
+  const { handles: recentHandles } = useRecentlyViewed()
 
   const [history, setHistory] = useState<RibbonProduct[]>([])
   const [deals, setDeals] = useState<RibbonProduct[]>([])
@@ -153,28 +153,30 @@ export default function CategoryBottomRibbons({
 
   const safeL1 = useMemo(() => (isSafeToken(l1Handle) ? l1Handle : null), [l1Handle])
 
-  // Stable string key so the effect re-runs only when the id list changes.
-  const recentKey = useMemo(() => recentIds.join("|"), [recentIds])
+  // Stable string key so the effect re-runs only when the handle list changes.
+  const recentKey = useMemo(() => recentHandles.join("|"), [recentHandles])
 
-  // History ribbon — depends on localStorage IDs + current L1 branch.
+  // History ribbon — depends on localStorage handles + current L1 branch.
   useEffect(() => {
     if (!safeL1) {
       setHistory([])
       return
     }
-    const safeIds = recentIds.filter(isSafeToken).slice(0, RIBBON_LIMIT * 2)
-    if (safeIds.length === 0) {
+    const safeHandles = recentHandles.filter(isSafeToken).slice(0, RIBBON_LIMIT * 2)
+    if (safeHandles.length === 0) {
       setHistory([])
       return
     }
 
     const controller = new AbortController()
-    const idList = safeIds.map((id) => `"${id}"`).join(", ")
+    // Meili `id` on MITTE-filterable → filtreeri `handle IN [...]` (handle ON
+    // filterable). Parandab brauseri 400 "Attribute `id` is not filterable".
+    const handleList = safeHandles.map((h) => `"${h}"`).join(", ")
     const body = {
       q: "",
       limit: RIBBON_LIMIT * 2,
       filter: [
-        `id IN [${idList}]`,
+        `handle IN [${handleList}]`,
         `taxonomy.ancestors = "${safeL1}"`,
         "in_stock = true",
       ],
@@ -182,10 +184,10 @@ export default function CategoryBottomRibbons({
 
     fetchMeili(body, controller.signal).then((hits) => {
       // Preserve localStorage order (newest first) — Meili does not guarantee it.
-      const byId = new Map(hits.map((h) => [h.id, h]))
+      const byHandle = new Map(hits.map((h) => [h.handle, h]))
       const ordered: RibbonProduct[] = []
-      for (const id of safeIds) {
-        const hit = byId.get(id)
+      for (const h of safeHandles) {
+        const hit = byHandle.get(h)
         if (hit) ordered.push(mapMeiliHitToProduct(hit, locale))
         if (ordered.length >= RIBBON_LIMIT) break
       }
