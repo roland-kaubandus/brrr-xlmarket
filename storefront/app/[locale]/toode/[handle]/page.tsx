@@ -4,7 +4,7 @@ import { notFound } from "next/navigation"
 import JsonLdProduct from "@/components/JsonLdProduct"
 import JsonLdBreadcrumb from "@/components/JsonLdBreadcrumb"
 import ProductPageClient from "./ProductPageClient"
-import { firstKnownHandle, getBreadcrumbTrail } from "@/lib/category-tree"
+import { deepestKnownHandle, getBreadcrumbTrail } from "@/lib/category-tree"
 import { categoryPath } from "@/lib/i18n"
 
 export const revalidate = 3600
@@ -66,7 +66,7 @@ export default async function ProductPage({ params }: Props) {
   const taxonomyAncestors = meiliHit?.taxonomy?.ancestors || []
   const meiliHandles = meiliHit?.category_handles || []
   const medusaHandles = (product.categories || []).map((c) => c.handle).filter(Boolean) as string[]
-  const canonicalNode = firstKnownHandle([...taxonomyAncestors, ...meiliHandles, ...medusaHandles])
+  const canonicalNode = deepestKnownHandle([...taxonomyAncestors, ...meiliHandles, ...medusaHandles])
   const breadcrumbItems = [
     { name: "Home", url: `https://xlmarket.ee/${locale}` },
     ...(canonicalNode

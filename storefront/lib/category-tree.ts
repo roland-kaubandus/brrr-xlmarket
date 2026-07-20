@@ -229,6 +229,22 @@ export function firstKnownHandle(candidates: string[]): CategoryNode | null {
 }
 
 /**
+ * Sügavaim teadaolev sõlm kandidaatide seast (suurim `level`). Breadcrumb'i jaoks:
+ * toote kandidaadid sisaldavad nii ancestor-teed (L1/L2, ilma leht-L3-ta) kui ka
+ * toote tegelikku kategooriat (L3). firstKnownHandle tagastaks esimese (madala L1/L2)
+ * ja jätaks L3 vahele — deepestKnownHandle valib SÜGAVAIMA (L3), et getBreadcrumbTrail
+ * ehitaks täis L1›L2›L3 tee. Võrdse leveli korral jääb esimene (kandidaadi-järjekord).
+ */
+export function deepestKnownHandle(candidates: string[]): CategoryNode | null {
+  let best: CategoryNode | null = null
+  for (const h of candidates) {
+    const node = getNode(h)
+    if (node && (!best || node.level > best.level)) best = node
+  }
+  return best
+}
+
+/**
  * Total node count — useful for CI checks.
  */
 export function totalNodes(): number {
