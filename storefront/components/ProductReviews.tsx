@@ -9,12 +9,12 @@ export default function ProductReviews() {
   return (
     <section className="mt-12 pt-10 border-t border-[#E2E8F0]">
       <div className="flex items-center justify-between mb-6">
-        <h2 className="text-[20px] font-bold text-[#1E293B]">
+        <h2 className="text-[20px] font-bold text-[#1a1a2e]">
           Reviews
         </h2>
         {!submitted && (
           <button
-            className="px-4 py-2 text-sm font-medium border border-[#D97706] text-[#D97706] hover:bg-[#FFFBEB] rounded-lg transition-colors duration-200"
+            className="px-4 py-2 text-sm font-medium border border-[#0ea5a0] text-[#0ea5a0] hover:bg-[#f0fdf9] rounded-lg transition-colors duration-200"
             type="button"
             onClick={() => setSubmitted(true)}
           >
@@ -42,7 +42,7 @@ export default function ProductReviews() {
               </svg>
             ))}
           </div>
-          <p className="text-[15px] font-bold text-[#1E293B] mb-1.5">
+          <p className="text-[15px] font-bold text-[#1a1a2e] mb-1.5">
             This product has no reviews yet
           </p>
           <p className="text-sm text-[#64748B] text-center max-w-[320px]">

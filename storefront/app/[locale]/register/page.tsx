@@ -42,10 +42,10 @@ export default function RegisterPage() {
   return (
     <div className="min-h-[70vh] flex items-center justify-center px-4 py-12">
       <div className="w-full max-w-[420px]">
-        <h1 className="text-[28px] font-bold text-[#1E293B] mb-2">{locale === "et" ? "Loo konto" : "Create Account"}</h1>
+        <h1 className="text-[28px] font-bold text-[#1a1a2e] mb-2">{locale === "et" ? "Loo konto" : "Create Account"}</h1>
         <p className="text-sm text-[#64748B] mb-8">
           {locale === "et" ? "Sul on juba konto?" : "Already have an account?"}{" "}
-          <Link href={`/${locale}/login`} className="text-[#D97706] font-medium hover:underline">
+          <Link href={`/${locale}/login`} className="text-[#0ea5a0] font-medium hover:underline">
             {locale === "et" ? "Logi sisse" : "Sign In"}
           </Link>
         </p>
@@ -59,7 +59,7 @@ export default function RegisterPage() {
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label htmlFor="firstName" className="block text-sm font-medium text-[#1E293B] mb-1.5">
+              <label htmlFor="firstName" className="block text-sm font-medium text-[#1a1a2e] mb-1.5">
                 {locale === "et" ? "Eesnimi" : "First Name"}
               </label>
               <input
@@ -68,11 +68,11 @@ export default function RegisterPage() {
                 required
                 value={firstName}
                 onChange={(e) => setFirstName(e.target.value)}
-                className="w-full px-4 py-3 rounded-xl border border-[#E2E8F0] text-[#1E293B] text-sm focus:outline-none focus:ring-2 focus:ring-[#D97706]/30 focus:border-[#D97706] transition-all"
+                className="w-full px-4 py-3 rounded-xl border border-[#E2E8F0] text-[#1a1a2e] text-sm focus:outline-none focus:ring-2 focus:ring-[#0ea5a0]/30 focus:border-[#0ea5a0] transition-all"
               />
             </div>
             <div>
-              <label htmlFor="lastName" className="block text-sm font-medium text-[#1E293B] mb-1.5">
+              <label htmlFor="lastName" className="block text-sm font-medium text-[#1a1a2e] mb-1.5">
                 {locale === "et" ? "Perekonnanimi" : "Last Name"}
               </label>
               <input
@@ -81,13 +81,13 @@ export default function RegisterPage() {
                 required
                 value={lastName}
                 onChange={(e) => setLastName(e.target.value)}
-                className="w-full px-4 py-3 rounded-xl border border-[#E2E8F0] text-[#1E293B] text-sm focus:outline-none focus:ring-2 focus:ring-[#D97706]/30 focus:border-[#D97706] transition-all"
+                className="w-full px-4 py-3 rounded-xl border border-[#E2E8F0] text-[#1a1a2e] text-sm focus:outline-none focus:ring-2 focus:ring-[#0ea5a0]/30 focus:border-[#0ea5a0] transition-all"
               />
             </div>
           </div>
 
           <div>
-            <label htmlFor="email" className="block text-sm font-medium text-[#1E293B] mb-1.5">
+            <label htmlFor="email" className="block text-sm font-medium text-[#1a1a2e] mb-1.5">
               {locale === "et" ? "E-post" : "Email"}
             </label>
             <input
@@ -96,13 +96,13 @@ export default function RegisterPage() {
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full px-4 py-3 rounded-xl border border-[#E2E8F0] text-[#1E293B] text-sm focus:outline-none focus:ring-2 focus:ring-[#D97706]/30 focus:border-[#D97706] transition-all"
+              className="w-full px-4 py-3 rounded-xl border border-[#E2E8F0] text-[#1a1a2e] text-sm focus:outline-none focus:ring-2 focus:ring-[#0ea5a0]/30 focus:border-[#0ea5a0] transition-all"
               placeholder="you@email.com"
             />
           </div>
 
           <div>
-            <label htmlFor="password" className="block text-sm font-medium text-[#1E293B] mb-1.5">
+            <label htmlFor="password" className="block text-sm font-medium text-[#1a1a2e] mb-1.5">
               {locale === "et" ? "Parool" : "Password"}
             </label>
             <input
@@ -112,7 +112,7 @@ export default function RegisterPage() {
               minLength={8}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-4 py-3 rounded-xl border border-[#E2E8F0] text-[#1E293B] text-sm focus:outline-none focus:ring-2 focus:ring-[#D97706]/30 focus:border-[#D97706] transition-all"
+              className="w-full px-4 py-3 rounded-xl border border-[#E2E8F0] text-[#1a1a2e] text-sm focus:outline-none focus:ring-2 focus:ring-[#0ea5a0]/30 focus:border-[#0ea5a0] transition-all"
               placeholder={locale === "et" ? "Vähemalt 8 tähemärki" : "At least 8 characters"}
             />
           </div>
@@ -120,7 +120,7 @@ export default function RegisterPage() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full py-3.5 bg-[#D97706] hover:bg-[#B45309] disabled:bg-[#D97706]/50 text-white font-semibold rounded-xl transition-colors text-sm"
+            className="w-full py-3.5 bg-[#0ea5a0] hover:bg-[#0b7d79] disabled:bg-[#0ea5a0]/50 text-white font-semibold rounded-xl transition-colors text-sm"
           >
             {loading ? (locale === "et" ? "Loon kontot..." : "Creating account...") : (locale === "et" ? "Loo konto" : "Create Account")}
           </button>

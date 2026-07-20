@@ -1,17 +1,17 @@
 @import "tailwindcss";
 
 @theme {
-  --color-accent: #D97706;
-  --color-accent-dark: #B45309;
-  --color-accent-light: #FFFBEB;
-  --color-off-black: #1E293B;
+  --color-accent: #0ea5a0;
+  --color-accent-dark: #0b7d79;
+  --color-accent-light: #f0fdf9;
+  --color-off-black: #1a1a2e;
   --color-off-white: #FFFFFF;
   --color-silver: #F1F5F9;
   --color-silver-dark: #E2E8F0;
   --color-muted: #64748B;
   --color-soft-border: #E2E8F0;
-  --color-navy: #1E293B;
-  --color-navy-dark: #0F172A;
+  --color-navy: #1a1a2e;
+  --color-navy-dark: #12121f;
   --color-success: #059669;
   --color-danger: #DC2626;
   --color-surface: #F8FAFC;
@@ -42,10 +42,10 @@ body {
 
 h1, h2, h3, h4, h5, h6 { font-family: var(--font-dm-sans); }
 
-*:focus-visible { outline: 2px solid #D97706; outline-offset: 2px; }
+*:focus-visible { outline: 2px solid #0ea5a0; outline-offset: 2px; }
 *:focus:not(:focus-visible) { outline: none; }
 
-::selection { background-color: #FFFBEB; color: #1E293B; }
+::selection { background-color: #f0fdf9; color: #1a1a2e; }
 
 a, button, input, select, textarea {
   transition-property: color, background-color, border-color, box-shadow, transform, opacity;
@@ -98,8 +98,8 @@ a, button, input, select, textarea {
 .desc-expanded::after { display: none; }
 
 .product-tab { padding: 12px 20px; font-size: 14px; font-weight: 600; color: #6B7280; border-bottom: 2px solid transparent; cursor: pointer; transition: all 0.3s cubic-bezier(0.32, 0.72, 0, 1); white-space: nowrap; }
-.product-tab:hover { color: #1E293B; }
-.product-tab.active { color: #D97706; border-bottom-color: #D97706; }
+.product-tab:hover { color: #1a1a2e; }
+.product-tab.active { color: #0ea5a0; border-bottom-color: #0ea5a0; }
 .tab-panel { display: none; }
 .tab-panel.active { display: block; }
 

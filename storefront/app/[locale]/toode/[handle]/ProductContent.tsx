@@ -85,9 +85,9 @@ export default function ProductContent(props: ProductContentProps) {
             <span key={`bc-${index}-${seg.url}`} className="inline-flex items-center">
               {index > 0 && <span className="mx-2.5 text-[#CBD5E1]">&rsaquo;</span>}
               {isLast ? (
-                <span aria-current="page" className="text-[#1E293B] font-semibold">{seg.name}</span>
+                <span aria-current="page" className="text-[#1a1a2e] font-semibold">{seg.name}</span>
               ) : (
-                <Link href={seg.url} className="text-[#64748B] hover:text-[#E8920A] transition-colors duration-200">
+                <Link href={seg.url} className="text-[#64748B] hover:text-[#0ea5a0] transition-colors duration-200">
                   {seg.name}
                 </Link>
               )}
@@ -115,7 +115,7 @@ export default function ProductContent(props: ProductContentProps) {
             initialValue={localizedTitle}
             onSaved={() => window.location.reload()}
           >
-            <h1 className="text-lg md:text-xl font-bold text-[#1E293B] leading-tight tracking-tight mb-3">
+            <h1 className="text-lg md:text-xl font-bold text-[#1a1a2e] leading-tight tracking-tight mb-3">
               {localizedTitle}
             </h1>
           </EditableText>
@@ -145,7 +145,7 @@ export default function ProductContent(props: ProductContentProps) {
               {specs.length > 4 && (
                 <a
                   href="#full-specifications"
-                  className="inline-block mt-2 text-[13px] text-[#64748B] underline decoration-[#CBD5E1] underline-offset-[3px] hover:text-[#E8920A] hover:decoration-[#E8920A]"
+                  className="inline-block mt-2 text-[13px] text-[#64748B] underline decoration-[#CBD5E1] underline-offset-[3px] hover:text-[#0ea5a0] hover:decoration-[#0ea5a0]"
                 >
                   {locale === "et" ? "Vaata kõiki spetsifikatsioone" : "View all specifications"}
                 </a>
@@ -156,7 +156,7 @@ export default function ProductContent(props: ProductContentProps) {
           {/* Trust list — Delivery, Warranty, Returns, Support */}
           <ul className="mt-5 pt-4 border-t border-[#E2E8F0] space-y-2.5 text-[13.5px] text-[#64748B]">
             <li className="flex items-start gap-2.5 leading-[1.45]">
-              <svg className="shrink-0 mt-[1px]" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E8920A" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+              <svg className="shrink-0 mt-[1px]" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0ea5a0" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
                 <rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>
               </svg>
               <span>
@@ -166,7 +166,7 @@ export default function ProductContent(props: ProductContentProps) {
               </span>
             </li>
             <li className="flex items-start gap-2.5 leading-[1.45]">
-              <svg className="shrink-0 mt-[1px]" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E8920A" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+              <svg className="shrink-0 mt-[1px]" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0ea5a0" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/>
               </svg>
               <span>
@@ -176,7 +176,7 @@ export default function ProductContent(props: ProductContentProps) {
               </span>
             </li>
             <li className="flex items-start gap-2.5 leading-[1.45]">
-              <svg className="shrink-0 mt-[1px]" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E8920A" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+              <svg className="shrink-0 mt-[1px]" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0ea5a0" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M3 12a9 9 0 1 0 3-6.7"/><polyline points="3 4 3 10 9 10"/>
               </svg>
               <span>
@@ -186,7 +186,7 @@ export default function ProductContent(props: ProductContentProps) {
               </span>
             </li>
             <li className="flex items-start gap-2.5 leading-[1.45]">
-              <svg className="shrink-0 mt-[1px]" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E8920A" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+              <svg className="shrink-0 mt-[1px]" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0ea5a0" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
               </svg>
               <span>
@@ -207,7 +207,7 @@ export default function ProductContent(props: ProductContentProps) {
           if (!descHtml) return null
           return (
             <div className="border-b border-[#E2E8F0] pb-6 mb-0">
-              <h2 className="text-[17px] font-bold text-[#1E293B] mb-4 flex items-center gap-2">
+              <h2 className="text-[17px] font-bold text-[#1a1a2e] mb-4 flex items-center gap-2">
                 {locale === "et" ? "Toote kirjeldus" : "Product Description"}
                 <EditableText
                   productId={product.id}
@@ -249,7 +249,7 @@ export default function ProductContent(props: ProductContentProps) {
                           <span className="text-xs font-medium text-[#64748B]">{spec.key}</span>
                         </div>
                         <div className="flex-1 px-4 py-3">
-                          <span className="text-xs text-[#1E293B]">{spec.value}</span>
+                          <span className="text-xs text-[#1a1a2e]">{spec.value}</span>
                         </div>
                       </div>
                     ))}
@@ -269,10 +269,10 @@ export default function ProductContent(props: ProductContentProps) {
                   href={manual.href}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center gap-2 rounded-lg border border-[#E2E8F0] bg-white px-4 py-3 text-sm font-medium text-[#1E293B] hover:border-[#E8920A]/40 hover:text-[#E8920A] transition-colors duration-200"
+                  className="inline-flex items-center gap-2 rounded-lg border border-[#E2E8F0] bg-white px-4 py-3 text-sm font-medium text-[#1a1a2e] hover:border-[#0ea5a0]/40 hover:text-[#0ea5a0] transition-colors duration-200"
                 >
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E8920A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                  <span className="text-[#E8920A] font-bold">PDF</span>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0ea5a0" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                  <span className="text-[#0ea5a0] font-bold">PDF</span>
                   <span>{manual.label}</span>
                 </a>
               ))}

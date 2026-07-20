@@ -62,17 +62,17 @@ export default function StickyBuyBar({ variantId, title, price }: Props) {
     >
       <div className="max-w-[1360px] mx-auto px-4 sm:px-6 py-3 flex items-center justify-between gap-4">
         <div className="hidden sm:flex flex-col min-w-0">
-          <p className="text-sm font-semibold text-[#1E293B] truncate max-w-[400px]">
+          <p className="text-sm font-semibold text-[#1a1a2e] truncate max-w-[400px]">
             {title}
           </p>
-          <p className="text-base font-bold text-[#D97706]">
+          <p className="text-base font-bold text-[#0ea5a0]">
             {price}
           </p>
         </div>
         <div className="flex items-center gap-2.5 ml-auto">
           <a
             href={`/${locale}/ostukorv`}
-            className="px-4 py-2.5 border border-[#D97706] text-[#D97706] text-sm font-semibold hover:bg-[#FFFBEB] rounded-lg transition-colors duration-200"
+            className="px-4 py-2.5 border border-[#0ea5a0] text-[#0ea5a0] text-sm font-semibold hover:bg-[#f0fdf9] rounded-lg transition-colors duration-200"
           >
             {locale === "et" ? "Ostukorv" : "Cart"}
           </a>
@@ -81,7 +81,7 @@ export default function StickyBuyBar({ variantId, title, price }: Props) {
             disabled={adding}
             className={
               "flex items-center gap-2 px-5 py-2.5 text-sm font-semibold rounded-lg transition-colors duration-200 disabled:opacity-60 " +
-              (added ? "bg-green-600 text-white" : "bg-[#D97706] text-white hover:bg-[#B45309]")
+              (added ? "bg-green-600 text-white" : "bg-[#0ea5a0] text-white hover:bg-[#0b7d79]")
             }
           >
             <ShoppingCart size={16} strokeWidth={1.5} />

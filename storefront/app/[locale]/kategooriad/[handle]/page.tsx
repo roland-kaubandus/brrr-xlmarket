@@ -299,7 +299,7 @@ export default async function CategoryPage({ params, searchParams }: Props) {
         >
           <Link
             href={`/${locale}`}
-            className="text-[#64748B] hover:text-[#E8920A] transition-colors duration-200"
+            className="text-[#64748B] hover:text-[#0ea5a0] transition-colors duration-200"
           >
             {locale === "et" ? "Avaleht" : "Home"}
           </Link>
@@ -309,11 +309,11 @@ export default async function CategoryPage({ params, searchParams }: Props) {
               <span key={t.handle} className="flex items-center">
                 <span className="mx-2.5 text-[#CBD5E1]">&rsaquo;</span>
                 {isLast ? (
-                  <span className="text-[#1E293B] font-semibold">{t.name}</span>
+                  <span className="text-[#1a1a2e] font-semibold">{t.name}</span>
                 ) : (
                   <Link
                     href={categoryPath(locale as "et" | "en", t.handle)}
-                    className="text-[#64748B] hover:text-[#E8920A] transition-colors duration-200"
+                    className="text-[#64748B] hover:text-[#0ea5a0] transition-colors duration-200"
                   >
                     {t.name}
                   </Link>
@@ -323,7 +323,7 @@ export default async function CategoryPage({ params, searchParams }: Props) {
           })}
         </nav>
         <div className="pt-2 pb-6 md:pt-4 md:pb-8">
-          <h1 className="text-[28px] md:text-[34px] font-bold text-[#1E293B] tracking-tight leading-tight">
+          <h1 className="text-[28px] md:text-[34px] font-bold text-[#1a1a2e] tracking-tight leading-tight">
             {displayName}
           </h1>
         </div>
@@ -410,7 +410,7 @@ export default async function CategoryPage({ params, searchParams }: Props) {
             {/* Main content — products + pagination (no inline subcat grid; carousel above handles it). */}
             <main className="flex-1 min-w-0">
               <div className="mb-4 text-sm text-[#64748B]">
-                <span className="font-semibold text-[#1E293B]">
+                <span className="font-semibold text-[#1a1a2e]">
                   {totalCount.toLocaleString("et")}
                 </span>{" "}
                 {locale === "et" ? "toodet" : "products"}
@@ -443,7 +443,7 @@ export default async function CategoryPage({ params, searchParams }: Props) {
             </p>
             <Link
               href={`/${locale}`}
-              className="text-[#E8920A] hover:underline font-medium"
+              className="text-[#0ea5a0] hover:underline font-medium"
             >
               {locale === "et" ? "Sirvi kõiki kategooriaid" : "Browse all categories"}
             </Link>

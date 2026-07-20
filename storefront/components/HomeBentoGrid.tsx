@@ -27,7 +27,7 @@ function CategoryCard({ cat, locale }: { cat: Category; locale: string }) {
           style={{ transitionTimingFunction: "cubic-bezier(.16,1,.3,1)" }}
         />
       </div>
-      <div className="font-semibold text-[#0F172A] text-[11px] sm:text-[13px] md:text-[15px] leading-tight line-clamp-2">
+      <div className="font-semibold text-[#12121f] text-[11px] sm:text-[13px] md:text-[15px] leading-tight line-clamp-2">
         {cat.name}
       </div>
     </Link>
@@ -71,12 +71,12 @@ export default function HomeBentoGrid({ locale }: { locale: string }) {
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-8">
         {/* Section header */}
         <div className="flex items-center justify-between mb-4 sm:mb-5 md:mb-8">
-          <h2 className="text-[18px] sm:text-[22px] md:text-[32px] font-bold text-[#0F172A] tracking-tight" style={{ letterSpacing: "-0.3px" }}>
+          <h2 className="text-[18px] sm:text-[22px] md:text-[32px] font-bold text-[#12121f] tracking-tight" style={{ letterSpacing: "-0.3px" }}>
             Shop by Category
           </h2>
           <Link
             href={`/${locale}/kategooriad`}
-            className="text-[13px] md:text-[16px] font-semibold text-[#D97706] flex items-center gap-1 hover:gap-2 transition-all"
+            className="text-[13px] md:text-[16px] font-semibold text-[#0ea5a0] flex items-center gap-1 hover:gap-2 transition-all"
           >
             All categories
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>

@@ -142,7 +142,7 @@ export default function FeaturedPicker({ l1Handle, locale, currentFeatured }: Pr
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className="inline-flex items-center gap-1 text-[11px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-[#FCD34D] border border-[#B45309] text-[#1E293B] hover:bg-[#FBBF24]"
+        className="inline-flex items-center gap-1 text-[11px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-[#FCD34D] border border-[#0b7d79] text-[#1a1a2e] hover:bg-[#FBBF24]"
       >
         ✎ 6 alakategooriat
       </button>
@@ -160,14 +160,14 @@ export default function FeaturedPicker({ l1Handle, locale, currentFeatured }: Pr
           <div className="w-full max-w-[1000px] max-h-[88vh] bg-white rounded-xl shadow-2xl flex flex-col overflow-hidden">
             <header className="px-6 py-4 border-b border-[#E2E8F0] flex items-start justify-between bg-[#F8FAFC] gap-3">
               <div className="min-w-0">
-                <h2 className="text-[18px] font-bold text-[#1E293B]">
+                <h2 className="text-[18px] font-bold text-[#1a1a2e]">
                   Vali 6 alakategooriat
                 </h2>
                 <p className="text-[12px] text-[#64748B] mt-0.5 truncate">
                   L1: <code className="text-[11px] bg-[#F1F5F9] px-1.5 py-0.5 rounded">{l1Handle}</code>
                   <span className="mx-1">·</span>
                   <span>
-                    Valitud: <span className="font-semibold text-[#1E293B]">{selected.length} / 6</span>
+                    Valitud: <span className="font-semibold text-[#1a1a2e]">{selected.length} / 6</span>
                   </span>
                 </p>
               </div>
@@ -175,7 +175,7 @@ export default function FeaturedPicker({ l1Handle, locale, currentFeatured }: Pr
                 type="button"
                 onClick={() => !busy && setOpen(false)}
                 disabled={busy}
-                className="text-[#64748B] hover:text-[#1E293B] text-2xl leading-none px-2 -my-1"
+                className="text-[#64748B] hover:text-[#1a1a2e] text-2xl leading-none px-2 -my-1"
                 aria-label="Sulge"
               >
                 ×
@@ -184,7 +184,7 @@ export default function FeaturedPicker({ l1Handle, locale, currentFeatured }: Pr
 
             <div className="flex-1 overflow-hidden grid grid-cols-1 md:grid-cols-[300px_1fr] divide-x divide-[#E2E8F0]">
               {/* Selected list */}
-              <aside className="p-4 overflow-y-auto bg-[#FFFBEB]">
+              <aside className="p-4 overflow-y-auto bg-[#f0fdf9]">
                 <div className="text-[11px] font-bold uppercase tracking-wider text-[#64748B] mb-2">
                   Praegune järjestus
                 </div>
@@ -201,7 +201,7 @@ export default function FeaturedPicker({ l1Handle, locale, currentFeatured }: Pr
                           key={h}
                           className="flex items-center gap-2 px-2 py-1.5 bg-white border border-[#FCD34D] rounded text-[13px]"
                         >
-                          <span className="font-bold text-[#B45309] text-[12px] w-4">{idx + 1}.</span>
+                          <span className="font-bold text-[#0b7d79] text-[12px] w-4">{idx + 1}.</span>
                           <span className="flex-1 truncate">
                             {node ? nodeName(node, locale) : h}
                           </span>
@@ -209,7 +209,7 @@ export default function FeaturedPicker({ l1Handle, locale, currentFeatured }: Pr
                             type="button"
                             onClick={() => move(h, -1)}
                             disabled={idx === 0 || busy}
-                            className="text-[#64748B] hover:text-[#1E293B] disabled:opacity-30 px-1"
+                            className="text-[#64748B] hover:text-[#1a1a2e] disabled:opacity-30 px-1"
                             aria-label="Liiguta üles"
                           >
                             ▲
@@ -218,7 +218,7 @@ export default function FeaturedPicker({ l1Handle, locale, currentFeatured }: Pr
                             type="button"
                             onClick={() => move(h, 1)}
                             disabled={idx === selected.length - 1 || busy}
-                            className="text-[#64748B] hover:text-[#1E293B] disabled:opacity-30 px-1"
+                            className="text-[#64748B] hover:text-[#1a1a2e] disabled:opacity-30 px-1"
                             aria-label="Liiguta alla"
                           >
                             ▼
@@ -247,7 +247,7 @@ export default function FeaturedPicker({ l1Handle, locale, currentFeatured }: Pr
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
                     placeholder="Otsi nime või handle järgi..."
-                    className="w-full px-3 py-2 text-[13px] border border-[#CBD5E1] rounded focus:outline-none focus:ring-2 focus:ring-[#D97706]/30 focus:border-[#D97706]"
+                    className="w-full px-3 py-2 text-[13px] border border-[#CBD5E1] rounded focus:outline-none focus:ring-2 focus:ring-[#0ea5a0]/30 focus:border-[#0ea5a0]"
                   />
                 </div>
                 <ul className="p-3 space-y-1">
@@ -263,7 +263,7 @@ export default function FeaturedPicker({ l1Handle, locale, currentFeatured }: Pr
                           className={
                             "w-full text-left px-3 py-2 text-[13px] rounded flex items-start gap-2 border " +
                             (isPicked
-                              ? "bg-[#FEF3C7] border-[#FCD34D] text-[#1E293B]"
+                              ? "bg-[#FEF3C7] border-[#FCD34D] text-[#1a1a2e]"
                               : atLimit
                                 ? "bg-[#F8FAFC] border-transparent text-[#94A3B8] cursor-not-allowed"
                                 : "bg-white border-[#F1F5F9] hover:bg-[#F8FAFC] text-[#334155]")
@@ -295,7 +295,7 @@ export default function FeaturedPicker({ l1Handle, locale, currentFeatured }: Pr
               <div className="px-6 py-2 bg-red-50 border-t border-red-200 text-sm text-red-700">{error}</div>
             )}
             {status && (
-              <div className="px-6 py-2 bg-[#FEF3C7] border-t border-[#FCD34D] text-sm text-[#1E293B]">
+              <div className="px-6 py-2 bg-[#FEF3C7] border-t border-[#FCD34D] text-sm text-[#1a1a2e]">
                 {status}
               </div>
             )}
@@ -305,7 +305,7 @@ export default function FeaturedPicker({ l1Handle, locale, currentFeatured }: Pr
                 type="button"
                 onClick={reset}
                 disabled={busy}
-                className="text-[12px] text-[#64748B] hover:text-[#1E293B] underline disabled:opacity-50"
+                className="text-[12px] text-[#64748B] hover:text-[#1a1a2e] underline disabled:opacity-50"
               >
                 Lähtesta automaatsele valikule
               </button>
@@ -314,7 +314,7 @@ export default function FeaturedPicker({ l1Handle, locale, currentFeatured }: Pr
                   type="button"
                   onClick={() => !busy && setOpen(false)}
                   disabled={busy}
-                  className="px-4 py-2 text-sm rounded bg-white border border-[#CBD5E1] text-[#1E293B] hover:bg-[#F1F5F9]"
+                  className="px-4 py-2 text-sm rounded bg-white border border-[#CBD5E1] text-[#1a1a2e] hover:bg-[#F1F5F9]"
                 >
                   Tühista
                 </button>
@@ -322,7 +322,7 @@ export default function FeaturedPicker({ l1Handle, locale, currentFeatured }: Pr
                   type="button"
                   onClick={save}
                   disabled={busy || selected.length === 0}
-                  className="px-4 py-2 text-sm rounded bg-[#1E293B] text-white font-semibold hover:bg-[#0F172A] disabled:opacity-40"
+                  className="px-4 py-2 text-sm rounded bg-[#1a1a2e] text-white font-semibold hover:bg-[#12121f] disabled:opacity-40"
                 >
                   {busy ? "Salvestan..." : "Salvesta"}
                 </button>

@@ -27,11 +27,11 @@ export default function FlashSaleTimer() {
 
   return (
     <div className="flex items-center gap-2 ml-4">
-      <span className="px-2 py-1 rounded-md bg-[#1E293B] text-white text-[14px] font-bold tabular-nums min-w-[34px] text-center">{pad(time.h)}</span>
-      <span className="text-[#1E293B] font-bold text-[16px]">:</span>
-      <span className="px-2 py-1 rounded-md bg-[#1E293B] text-white text-[14px] font-bold tabular-nums min-w-[34px] text-center">{pad(time.m)}</span>
-      <span className="text-[#1E293B] font-bold text-[16px]">:</span>
-      <span className="px-2 py-1 rounded-md bg-[#1E293B] text-white text-[14px] font-bold tabular-nums min-w-[34px] text-center">{pad(time.s)}</span>
+      <span className="px-2 py-1 rounded-md bg-[#1a1a2e] text-white text-[14px] font-bold tabular-nums min-w-[34px] text-center">{pad(time.h)}</span>
+      <span className="text-[#1a1a2e] font-bold text-[16px]">:</span>
+      <span className="px-2 py-1 rounded-md bg-[#1a1a2e] text-white text-[14px] font-bold tabular-nums min-w-[34px] text-center">{pad(time.m)}</span>
+      <span className="text-[#1a1a2e] font-bold text-[16px]">:</span>
+      <span className="px-2 py-1 rounded-md bg-[#1a1a2e] text-white text-[14px] font-bold tabular-nums min-w-[34px] text-center">{pad(time.s)}</span>
     </div>
   )
 }

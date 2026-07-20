@@ -39,7 +39,7 @@ export default function CookieConsent({ locale = "en" }: { locale?: string }) {
           </p>
         </div>
         <div className="flex gap-[8px] shrink-0">
-          <button type="button" onClick={acceptNecessary} className="px-[14px] py-[8px] text-[13px] font-[500] font-[family-name:var(--font-dm-sans)] border border-[#E8E8E8] text-[#555555] hover:border-[#E8650A] hover:text-[#D97706] transition-colors">{t.necessary}</button>
+          <button type="button" onClick={acceptNecessary} className="px-[14px] py-[8px] text-[13px] font-[500] font-[family-name:var(--font-dm-sans)] border border-[#E8E8E8] text-[#555555] hover:border-[#E8650A] hover:text-[#0ea5a0] transition-colors">{t.necessary}</button>
           <button type="button" onClick={accept} className="px-[14px] py-[8px] text-[13px] font-[600] font-[family-name:var(--font-dm-sans)] bg-[#E8650A] text-white hover:bg-[#CF5A08] transition-colors">{t.acceptAll}</button>
         </div>
       </div>

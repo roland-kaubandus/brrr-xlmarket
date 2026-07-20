@@ -104,7 +104,7 @@ export default function CategoryPicker({
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className="ml-2 inline-flex items-center gap-1 text-[11px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-[#FCD34D] border border-[#B45309] text-[#1E293B] hover:bg-[#FBBF24] align-middle"
+        className="ml-2 inline-flex items-center gap-1 text-[11px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-[#FCD34D] border border-[#0b7d79] text-[#1a1a2e] hover:bg-[#FBBF24] align-middle"
       >
         ✎ Muuda kategooriat
       </button>
@@ -122,10 +122,10 @@ export default function CategoryPicker({
           <div className="w-full max-w-[1100px] max-h-[85vh] bg-white rounded-xl shadow-2xl flex flex-col overflow-hidden">
             <header className="px-6 py-4 border-b border-[#E2E8F0] flex items-center justify-between bg-[#F8FAFC]">
               <div>
-                <h2 className="text-[18px] font-bold text-[#1E293B]">Vali kategooria</h2>
+                <h2 className="text-[18px] font-bold text-[#1a1a2e]">Vali kategooria</h2>
                 <p className="text-[12px] text-[#64748B] mt-0.5">
                   Valitud:{" "}
-                  <span className="font-semibold text-[#1E293B]">
+                  <span className="font-semibold text-[#1a1a2e]">
                     {selectedNode ? nodeName(selectedNode, locale) : "—"}
                   </span>
                   {selectedNode && (
@@ -138,7 +138,7 @@ export default function CategoryPicker({
               <button
                 type="button"
                 onClick={() => !busy && setOpen(false)}
-                className="text-[#64748B] hover:text-[#1E293B] text-xl leading-none px-2"
+                className="text-[#64748B] hover:text-[#1a1a2e] text-xl leading-none px-2"
                 aria-label="Sulge"
               >
                 ×
@@ -163,7 +163,7 @@ export default function CategoryPicker({
                             className={
                               "w-full text-left px-3 py-2 text-[13px] flex items-center justify-between gap-2 border-b border-[#F1F5F9] " +
                               (isSelected
-                                ? "bg-[#FEF3C7] text-[#1E293B] font-semibold"
+                                ? "bg-[#FEF3C7] text-[#1a1a2e] font-semibold"
                                 : "hover:bg-[#F8FAFC] text-[#334155]")
                             }
                           >
@@ -187,7 +187,7 @@ export default function CategoryPicker({
                 type="button"
                 onClick={() => !busy && setOpen(false)}
                 disabled={busy}
-                className="px-4 py-2 text-sm rounded bg-white border border-[#CBD5E1] text-[#1E293B] hover:bg-[#F1F5F9]"
+                className="px-4 py-2 text-sm rounded bg-white border border-[#CBD5E1] text-[#1a1a2e] hover:bg-[#F1F5F9]"
               >
                 Tühista
               </button>
@@ -195,7 +195,7 @@ export default function CategoryPicker({
                 type="button"
                 onClick={save}
                 disabled={busy || !selectedHandle || selectedHandle === currentHandle}
-                className="px-4 py-2 text-sm rounded bg-[#1E293B] text-white font-semibold hover:bg-[#0F172A] disabled:opacity-40"
+                className="px-4 py-2 text-sm rounded bg-[#1a1a2e] text-white font-semibold hover:bg-[#12121f] disabled:opacity-40"
               >
                 {busy ? "Salvestan..." : "Salvesta"}
               </button>

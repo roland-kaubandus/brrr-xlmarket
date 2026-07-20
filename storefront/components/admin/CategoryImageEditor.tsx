@@ -84,7 +84,7 @@ export default function CategoryImageEditor({ handle, displayName }: Props) {
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className="inline-flex items-center gap-1 text-[11px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-[#FCD34D] border border-[#B45309] text-[#1E293B] hover:bg-[#FBBF24]"
+        className="inline-flex items-center gap-1 text-[11px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-[#FCD34D] border border-[#0b7d79] text-[#1a1a2e] hover:bg-[#FBBF24]"
       >
         ✎ Pilt
       </button>
@@ -100,7 +100,7 @@ export default function CategoryImageEditor({ handle, displayName }: Props) {
           }}
         >
           <div className="w-full max-w-[480px] bg-white rounded-xl shadow-2xl p-6">
-            <h2 className="text-[18px] font-bold text-[#1E293B] mb-1">Vaheta kategooria pilt</h2>
+            <h2 className="text-[18px] font-bold text-[#1a1a2e] mb-1">Vaheta kategooria pilt</h2>
             <p className="text-[12px] text-[#64748B] mb-4">
               Handle:{" "}
               <code className="px-1.5 py-0.5 bg-[#F1F5F9] rounded text-[11px]">{handle}</code>
@@ -133,7 +133,7 @@ export default function CategoryImageEditor({ handle, displayName }: Props) {
                   type="button"
                   onClick={pick}
                   disabled={busy}
-                  className="px-3 py-2 bg-[#1E293B] text-white text-sm font-semibold rounded hover:bg-[#0F172A] disabled:opacity-40"
+                  className="px-3 py-2 bg-[#1a1a2e] text-white text-sm font-semibold rounded hover:bg-[#12121f] disabled:opacity-40"
                 >
                   Vali fail
                 </button>
@@ -152,7 +152,7 @@ export default function CategoryImageEditor({ handle, displayName }: Props) {
             />
 
             {status && (
-              <p className="text-[13px] text-[#1E293B] bg-[#FEF3C7] border border-[#FCD34D] rounded px-3 py-2 mb-3">
+              <p className="text-[13px] text-[#1a1a2e] bg-[#FEF3C7] border border-[#FCD34D] rounded px-3 py-2 mb-3">
                 {status}
               </p>
             )}
@@ -167,7 +167,7 @@ export default function CategoryImageEditor({ handle, displayName }: Props) {
                 type="button"
                 onClick={redeploy}
                 disabled={busy}
-                className="w-full mb-2 px-4 py-2 bg-[#D97706] hover:bg-[#B45309] disabled:opacity-50 text-white font-semibold rounded text-sm"
+                className="w-full mb-2 px-4 py-2 bg-[#0ea5a0] hover:bg-[#0b7d79] disabled:opacity-50 text-white font-semibold rounded text-sm"
               >
                 {busy ? "Värskendan..." : "Värskenda live storefront (~5s)"}
               </button>

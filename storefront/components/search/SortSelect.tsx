@@ -49,7 +49,7 @@ export default function SortSelect({
     <select
       value={currentSort}
       onChange={(e) => router.push(buildUrl(e.target.value))}
-      className="border border-[#E2E8F0] rounded-lg px-3 py-1.5 text-sm bg-white text-[#1E293B] focus:border-[#D97706] focus:outline-none transition-colors duration-200 cursor-pointer appearance-none bg-[length:16px] bg-[right_8px_center] bg-no-repeat"
+      className="border border-[#E2E8F0] rounded-lg px-3 py-1.5 text-sm bg-white text-[#1a1a2e] focus:border-[#0ea5a0] focus:outline-none transition-colors duration-200 cursor-pointer appearance-none bg-[length:16px] bg-[right_8px_center] bg-no-repeat"
       style={{
         backgroundImage: `url("data:image/svg+xml,%3Csvg width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748B' stroke-width='2.5' stroke-linecap='round' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E")`,
         paddingRight: "2rem",

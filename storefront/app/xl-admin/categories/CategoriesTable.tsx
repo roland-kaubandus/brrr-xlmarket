@@ -71,14 +71,14 @@ export default function CategoriesTable({ rows }: { rows: CatRow[] }) {
           </thead>
           <tbody>
             {filtered.slice(0, 1500).map((r) => (
-              <tr key={r.handle} className="border-t border-[#F1F5F9] hover:bg-[#FFFBEB]">
-                <td className="px-3 py-1.5 text-[#1E293B]">
-                  <a href={`/et/kategooriad/${r.handle}`} target="_blank" rel="noreferrer" className="hover:text-[#E8920A]">{r.name}</a>
+              <tr key={r.handle} className="border-t border-[#F1F5F9] hover:bg-[#f0fdf9]">
+                <td className="px-3 py-1.5 text-[#1a1a2e]">
+                  <a href={`/et/kategooriad/${r.handle}`} target="_blank" rel="noreferrer" className="hover:text-[#0ea5a0]">{r.name}</a>
                   {!r.isLeaf && <span className="ml-1 text-[10px] text-[#94A3B8]">(vanem)</span>}
                 </td>
                 <td className="px-3 py-1.5 text-[#94A3B8] font-mono text-[11px]">{r.handle}</td>
                 <td className="px-3 py-1.5 text-[#64748B]">L{r.level}</td>
-                <td className={`px-3 py-1.5 text-right tabular-nums ${r.count === 0 ? "text-red-500" : r.count <= 2 ? "text-amber-600" : "text-[#1E293B]"}`}>{r.count}</td>
+                <td className={`px-3 py-1.5 text-right tabular-nums ${r.count === 0 ? "text-red-500" : r.count <= 2 ? "text-amber-600" : "text-[#1a1a2e]"}`}>{r.count}</td>
                 <td className="px-3 py-1.5 text-[#94A3B8] font-mono text-[11px]">{r.parent}</td>
               </tr>
             ))}

@@ -43,7 +43,7 @@ export default function LoginForm({ next }: { next: string }) {
         </div>
       )}
       <div>
-        <label htmlFor="admin-email" className="block text-sm font-medium text-[#1E293B] mb-1.5">
+        <label htmlFor="admin-email" className="block text-sm font-medium text-[#1a1a2e] mb-1.5">
           Email
         </label>
         <input
@@ -53,11 +53,11 @@ export default function LoginForm({ next }: { next: string }) {
           required
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="w-full px-4 py-3 rounded-xl border border-[#E2E8F0] text-[#1E293B] text-sm focus:outline-none focus:ring-2 focus:ring-[#D97706]/30 focus:border-[#D97706]"
+          className="w-full px-4 py-3 rounded-xl border border-[#E2E8F0] text-[#1a1a2e] text-sm focus:outline-none focus:ring-2 focus:ring-[#0ea5a0]/30 focus:border-[#0ea5a0]"
         />
       </div>
       <div>
-        <label htmlFor="admin-pass" className="block text-sm font-medium text-[#1E293B] mb-1.5">
+        <label htmlFor="admin-pass" className="block text-sm font-medium text-[#1a1a2e] mb-1.5">
           Parool
         </label>
         <input
@@ -67,13 +67,13 @@ export default function LoginForm({ next }: { next: string }) {
           required
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          className="w-full px-4 py-3 rounded-xl border border-[#E2E8F0] text-[#1E293B] text-sm focus:outline-none focus:ring-2 focus:ring-[#D97706]/30 focus:border-[#D97706]"
+          className="w-full px-4 py-3 rounded-xl border border-[#E2E8F0] text-[#1a1a2e] text-sm focus:outline-none focus:ring-2 focus:ring-[#0ea5a0]/30 focus:border-[#0ea5a0]"
         />
       </div>
       <button
         type="submit"
         disabled={busy}
-        className="w-full py-3.5 bg-[#D97706] hover:bg-[#B45309] disabled:bg-[#D97706]/50 text-white font-semibold rounded-xl transition-colors text-sm"
+        className="w-full py-3.5 bg-[#0ea5a0] hover:bg-[#0b7d79] disabled:bg-[#0ea5a0]/50 text-white font-semibold rounded-xl transition-colors text-sm"
       >
         {busy ? "Sisselogimine..." : "Logi sisse"}
       </button>

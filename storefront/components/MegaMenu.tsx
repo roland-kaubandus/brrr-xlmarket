@@ -358,7 +358,7 @@ export default function MegaMenu({ locale = "en", menuData }: MegaMenuProps) {
         aria-haspopup="true"
         aria-expanded={isOpen}
         className={`hidden md:flex items-center gap-2 px-3 py-1.5 font-bold text-[14px] rounded-md hover:bg-white/10 transition-colors ${
-          isCategoriesActive || isOpen ? "text-[#D97706]" : "text-white"
+          isCategoriesActive || isOpen ? "text-[#0ea5a0]" : "text-white"
         }`}
       >
         {isOpen ? <X size={18} strokeWidth={2} /> : <Menu size={18} strokeWidth={2} />}
@@ -375,7 +375,7 @@ export default function MegaMenu({ locale = "en", menuData }: MegaMenuProps) {
         aria-expanded={isOpen}
         aria-haspopup="true"
         className={`md:hidden flex items-center gap-2 px-3 py-1.5 font-bold text-[14px] rounded-md hover:bg-white/10 transition-colors ${
-          isCategoriesActive || isOpen ? "text-[#D97706]" : "text-white"
+          isCategoriesActive || isOpen ? "text-[#0ea5a0]" : "text-white"
         }`}
       >
         {isOpen ? <X size={18} strokeWidth={2} /> : <Menu size={18} strokeWidth={2} />}
@@ -407,7 +407,7 @@ export default function MegaMenu({ locale = "en", menuData }: MegaMenuProps) {
               <Link
                 href={`/${loc}/kategooriad`}
                 onClick={() => setIsOpen(false)}
-                className="block px-4 py-1.5 text-[12px] font-bold text-[#D97706] uppercase tracking-wider border-b border-[#ECEEF1] mb-0.5 hover:underline"
+                className="block px-4 py-1.5 text-[12px] font-bold text-[#0ea5a0] uppercase tracking-wider border-b border-[#ECEEF1] mb-0.5 hover:underline"
               >
                 {loc === "et" ? "Vaata kõiki kategooriaid" : "Shop All Categories"}
               </Link>
@@ -426,21 +426,21 @@ export default function MegaMenu({ locale = "en", menuData }: MegaMenuProps) {
                     data-l1-handle={l1.handle}
                     aria-haspopup={(menuData.l2ByL1[l1.handle]?.length ?? 0) > 0 ? "true" : undefined}
                     className={`flex items-center gap-3 px-4 py-[7px] text-[15px] transition-colors ${
-                      isActive ? "bg-[#FFF8F3] text-[#D97706]" : "text-[#1E293B] hover:bg-[#F8FAFC]"
+                      isActive ? "bg-[#FFF8F3] text-[#0ea5a0]" : "text-[#1a1a2e] hover:bg-[#F8FAFC]"
                     }`}
                   >
                     {Icon && (
                       <Icon
                         size={22}
                         strokeWidth={1.4}
-                        style={{ color: isActive ? "#D97706" : "#94A3B8" }}
+                        style={{ color: isActive ? "#0ea5a0" : "#94A3B8" }}
                         className="flex-shrink-0"
                       />
                     )}
                     <span className="font-medium flex-1 truncate">{nodeName(l1, loc)}</span>
                     <ChevronRight
                       size={15}
-                      style={{ color: isActive ? "#D97706" : "#CBD5E1" }}
+                      style={{ color: isActive ? "#0ea5a0" : "#CBD5E1" }}
                       className="flex-shrink-0"
                     />
                   </Link>
@@ -459,7 +459,7 @@ export default function MegaMenu({ locale = "en", menuData }: MegaMenuProps) {
                 <Link
                   href={categoryPath(loc, activeL1.handle)}
                   onClick={() => setIsOpen(false)}
-                  className="block px-4 py-1.5 text-[12px] font-bold text-[#D97706] uppercase tracking-wider border-b border-[#ECEEF1] mb-0.5 hover:underline"
+                  className="block px-4 py-1.5 text-[12px] font-bold text-[#0ea5a0] uppercase tracking-wider border-b border-[#ECEEF1] mb-0.5 hover:underline"
                 >
                   {loc === "et" ? `Vaata kõiki — ${nodeName(activeL1, loc)}` : `Shop All ${nodeName(activeL1, loc)}`}
                 </Link>
@@ -477,7 +477,7 @@ export default function MegaMenu({ locale = "en", menuData }: MegaMenuProps) {
                       data-mega-l2="true"
                       aria-haspopup={hasKids ? "true" : undefined}
                       className={`flex items-center gap-3 px-4 py-[6px] transition-colors ${
-                        isActive ? "bg-[#FFF8F3] text-[#D97706]" : "text-[#1E293B] hover:bg-[#F8FAFC]"
+                        isActive ? "bg-[#FFF8F3] text-[#0ea5a0]" : "text-[#1a1a2e] hover:bg-[#F8FAFC]"
                       }`}
                     >
                       <CategoryThumb
@@ -493,7 +493,7 @@ export default function MegaMenu({ locale = "en", menuData }: MegaMenuProps) {
                       {hasKids && (
                         <ChevronRight
                           size={14}
-                          style={{ color: isActive ? "#D97706" : "#CBD5E1" }}
+                          style={{ color: isActive ? "#0ea5a0" : "#CBD5E1" }}
                           className="flex-shrink-0"
                         />
                       )}
@@ -520,7 +520,7 @@ export default function MegaMenu({ locale = "en", menuData }: MegaMenuProps) {
                     <Link
                       href={categoryPath(loc, parent.handle)}
                       onClick={() => setIsOpen(false)}
-                      className="block px-4 py-1.5 text-[12px] font-bold text-[#D97706] uppercase tracking-wider border-b border-[#ECEEF1] mb-0.5 hover:underline"
+                      className="block px-4 py-1.5 text-[12px] font-bold text-[#0ea5a0] uppercase tracking-wider border-b border-[#ECEEF1] mb-0.5 hover:underline"
                     >
                       {loc === "et" ? `Vaata kõiki — ${nodeName(parent, loc)}` : `Shop All ${nodeName(parent, loc)}`}
                     </Link>
@@ -538,7 +538,7 @@ export default function MegaMenu({ locale = "en", menuData }: MegaMenuProps) {
                         role="menuitem"
                         aria-haspopup={hasKids ? "true" : undefined}
                         className={`flex items-center gap-3 px-4 py-[6px] text-[15px] transition-colors ${
-                          isActive ? "bg-[#FFF8F3] text-[#D97706]" : "text-[#1E293B] hover:bg-[#F8FAFC]"
+                          isActive ? "bg-[#FFF8F3] text-[#0ea5a0]" : "text-[#1a1a2e] hover:bg-[#F8FAFC]"
                         }`}
                       >
                         <CategoryThumb
@@ -552,7 +552,7 @@ export default function MegaMenu({ locale = "en", menuData }: MegaMenuProps) {
                         {hasKids && (
                           <ChevronRight
                             size={14}
-                            style={{ color: isActive ? "#D97706" : "#CBD5E1" }}
+                            style={{ color: isActive ? "#0ea5a0" : "#CBD5E1" }}
                             className="flex-shrink-0"
                           />
                         )}
@@ -569,7 +569,7 @@ export default function MegaMenu({ locale = "en", menuData }: MegaMenuProps) {
       {/* Mobile full-screen drill-down */}
       {isOpen && (
         <div className="md:hidden fixed inset-0 z-50 bg-white flex flex-col">
-          <div className="flex items-center justify-between px-4 h-[56px] border-b border-[#E2E8F0] bg-[#1E293B] flex-shrink-0">
+          <div className="flex items-center justify-between px-4 h-[56px] border-b border-[#E2E8F0] bg-[#1a1a2e] flex-shrink-0">
             {mobileStack.length > 0 ? (
               <button
                 onClick={() => setMobileStack((s) => s.slice(0, -1))}
@@ -599,7 +599,7 @@ export default function MegaMenu({ locale = "en", menuData }: MegaMenuProps) {
                 setIsOpen(false)
                 setMobileStack([])
               }}
-              className="block px-4 py-3.5 text-[14px] font-bold text-[#D97706] border-b border-[#E2E8F0] bg-[#FFFBEB]"
+              className="block px-4 py-3.5 text-[14px] font-bold text-[#0ea5a0] border-b border-[#E2E8F0] bg-[#f0fdf9]"
             >
               {loc === "et" ? "Vaata kõiki" : "View All"} {nodeName(mobileTop, loc)} &rarr;
             </Link>
@@ -613,7 +613,7 @@ export default function MegaMenu({ locale = "en", menuData }: MegaMenuProps) {
                   <button
                     key={l1.handle}
                     onClick={() => setMobileStack([l1])}
-                    className="w-full flex items-center justify-between pl-4 pr-4 min-h-[52px] text-[15px] text-[#1E293B] font-medium border-b border-[#F1F5F9] active:bg-[#FFFBEB] transition-colors"
+                    className="w-full flex items-center justify-between pl-4 pr-4 min-h-[52px] text-[15px] text-[#1a1a2e] font-medium border-b border-[#F1F5F9] active:bg-[#f0fdf9] transition-colors"
                   >
                     <span className="flex items-center gap-3">
                       {Icon && <Icon size={20} strokeWidth={1.4} className="text-[#94A3B8]" />}
@@ -632,7 +632,7 @@ export default function MegaMenu({ locale = "en", menuData }: MegaMenuProps) {
                     <button
                       key={child.handle}
                       onClick={() => setMobileStack((s) => [...s, child])}
-                      className="w-full flex items-center justify-between pl-4 pr-4 min-h-[56px] text-[14px] font-medium text-[#1E293B] border-b border-[#F1F5F9] active:bg-[#FFFBEB] transition-colors"
+                      className="w-full flex items-center justify-between pl-4 pr-4 min-h-[56px] text-[14px] font-medium text-[#1a1a2e] border-b border-[#F1F5F9] active:bg-[#f0fdf9] transition-colors"
                     >
                       <span className="flex items-center flex-1 text-left gap-3">
                         <CategoryThumb
@@ -656,7 +656,7 @@ export default function MegaMenu({ locale = "en", menuData }: MegaMenuProps) {
                       setIsOpen(false)
                       setMobileStack([])
                     }}
-                    className="pl-4 pr-4 min-h-[56px] text-[14px] font-medium text-[#1E293B] border-b border-[#F1F5F9] active:bg-[#FFFBEB] active:text-[#D97706] transition-colors flex items-center gap-3"
+                    className="pl-4 pr-4 min-h-[56px] text-[14px] font-medium text-[#1a1a2e] border-b border-[#F1F5F9] active:bg-[#f0fdf9] active:text-[#0ea5a0] transition-colors flex items-center gap-3"
                   >
                     <CategoryThumb
                       handle={child.handle}

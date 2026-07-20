@@ -24,18 +24,18 @@ export default function AdminBar() {
     <div
       role="region"
       aria-label="Admin toolbar"
-      className="w-full bg-[#FCD34D] border-b border-[#B45309] text-[#1E293B] text-[13px] font-semibold"
+      className="w-full bg-[#FCD34D] border-b border-[#0b7d79] text-[#1a1a2e] text-[13px] font-semibold"
     >
       <div className="max-w-[1440px] mx-auto px-4 md:px-6 py-1.5 flex items-center justify-between gap-3">
         <span className="flex items-center gap-2">
-          <span className="inline-block w-2 h-2 rounded-full bg-[#B45309]" aria-hidden />
+          <span className="inline-block w-2 h-2 rounded-full bg-[#0b7d79]" aria-hidden />
           Admin režiim — sisselogitud: <span className="font-bold">{email}</span>
         </span>
         <button
           type="button"
           onClick={logout}
           disabled={busy}
-          className="text-[12px] uppercase tracking-wider px-3 py-1 rounded bg-[#1E293B] text-white hover:bg-[#0F172A] disabled:opacity-50"
+          className="text-[12px] uppercase tracking-wider px-3 py-1 rounded bg-[#1a1a2e] text-white hover:bg-[#12121f] disabled:opacity-50"
         >
           {busy ? "..." : "Logi välja"}
         </button>

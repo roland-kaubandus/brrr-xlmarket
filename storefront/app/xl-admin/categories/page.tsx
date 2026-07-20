@@ -40,7 +40,7 @@ export default function AdminCategoriesPage() {
 
   return (
     <main className="mx-auto max-w-[1200px] px-4 md:px-8 py-8">
-      <h1 className="text-2xl font-bold text-[#1E293B] mb-1">Kategooriad — ülevaade</h1>
+      <h1 className="text-2xl font-bold text-[#1a1a2e] mb-1">Kategooriad — ülevaade</h1>
       <p className="text-sm text-[#64748B] mb-5">
         Kokku <b>{total}</b> kategooriat · tühje (0 toodet) <b>{empty}</b> · õhukesi (1–2) <b>{thin}</b>.
         Bulk-haldus: <code className="bg-[#F1F5F9] px-1 rounded">scripts/category-export.mjs</code> +{" "}

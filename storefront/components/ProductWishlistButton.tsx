@@ -36,7 +36,7 @@ export default function ProductWishlistButton({ item, locale }: Props) {
       type="button"
       onClick={toggleWishlist}
       aria-label={label}
-      className="w-full h-11 flex items-center justify-center gap-2 rounded-lg border border-[#E2E8F0] bg-white text-[13.5px] font-semibold text-[#1E293B] hover:border-[#E8920A] hover:text-[#E8920A] transition-colors"
+      className="w-full h-11 flex items-center justify-center gap-2 rounded-lg border border-[#E2E8F0] bg-white text-[13.5px] font-semibold text-[#1a1a2e] hover:border-[#0ea5a0] hover:text-[#0ea5a0] transition-colors"
     >
       <svg width="16" height="16" viewBox="0 0 24 24" fill={wishlisted ? "#DC2626" : "none"} stroke={wishlisted ? "#DC2626" : "currentColor"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />

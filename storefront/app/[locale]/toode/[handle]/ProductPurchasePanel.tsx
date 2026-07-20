@@ -84,7 +84,7 @@ export default function ProductPurchasePanel({ locale, title, variants, options 
         <>
           <div className="h-px bg-[#E2E8F0] mb-4" />
           <div className="flex flex-wrap items-baseline gap-3 mb-1">
-            <p className="text-[32px] font-bold text-[#1E293B] tracking-tight leading-tight">
+            <p className="text-[32px] font-bold text-[#1a1a2e] tracking-tight leading-tight">
               {formatPrice(price.calculated_amount, price.currency_code)}
             </p>
             {price.original_amount > price.calculated_amount && (
@@ -116,7 +116,7 @@ export default function ProductPurchasePanel({ locale, title, variants, options 
         )}
         {adminQty !== null && (
           <span
-            className="inline-flex items-center gap-1 text-[12px] font-semibold text-[#1E293B] bg-[#FCD34D] border border-[#B45309] rounded px-2 py-0.5"
+            className="inline-flex items-center gap-1 text-[12px] font-semibold text-[#1a1a2e] bg-[#FCD34D] border border-[#0b7d79] rounded px-2 py-0.5"
             title="Admin only — laoseis Medusa API-st"
           >
             ADMIN: {adminQty} tk
@@ -128,7 +128,7 @@ export default function ProductPurchasePanel({ locale, title, variants, options 
         <div className="space-y-5 mb-6">
           {usableOptions.map((option) => (
             <div key={option.id}>
-              <p className="text-sm font-semibold text-[#1E293B] mb-2">
+              <p className="text-sm font-semibold text-[#1a1a2e] mb-2">
                 {option.title}
               </p>
               <div className="flex flex-wrap gap-2">
@@ -145,8 +145,8 @@ export default function ProductPurchasePanel({ locale, title, variants, options 
                       className={
                         "px-3.5 py-2 rounded-lg border text-sm transition-colors duration-200 " +
                         (isActive
-                          ? "border-[#D97706] bg-[#FFFBEB] text-[#D97706] font-semibold"
-                          : "border-[#E2E8F0] bg-white text-[#1E293B] hover:border-[#D97706]/40")
+                          ? "border-[#0ea5a0] bg-[#f0fdf9] text-[#0ea5a0] font-semibold"
+                          : "border-[#E2E8F0] bg-white text-[#1a1a2e] hover:border-[#0ea5a0]/40")
                       }
                     >
                       {value}
@@ -164,7 +164,7 @@ export default function ProductPurchasePanel({ locale, title, variants, options 
           <AddToCartButton variantId={selectedVariant.id} />
           <Link
             href={`/${locale}/ostukorv`}
-            className="block w-full text-center h-12 leading-[48px] text-sm font-bold bg-[#1E293B] text-white hover:bg-[#0F172A] rounded-lg transition-colors duration-200"
+            className="block w-full text-center h-12 leading-[48px] text-sm font-bold bg-[#1a1a2e] text-white hover:bg-[#12121f] rounded-lg transition-colors duration-200"
           >
             {locale === "et" ? "Osta kohe" : "Buy Now"}
           </Link>

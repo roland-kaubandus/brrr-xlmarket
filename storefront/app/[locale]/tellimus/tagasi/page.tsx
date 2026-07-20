@@ -133,8 +133,8 @@ export default function PaymentReturnPage() {
         <div className="flex flex-col items-center justify-center py-16 bg-white border border-[#E2E8F0] rounded-lg text-center">
           {status === "checking" && (
             <>
-              <div className="w-14 h-14 rounded-full border-4 border-[#E2E8F0] border-t-[#D97706] animate-spin mb-5" />
-              <h1 className="text-xl font-semibold text-[#1E293B] mb-2">{t.checking}</h1>
+              <div className="w-14 h-14 rounded-full border-4 border-[#E2E8F0] border-t-[#0ea5a0] animate-spin mb-5" />
+              <h1 className="text-xl font-semibold text-[#1a1a2e] mb-2">{t.checking}</h1>
               <p className="text-[14px] text-[#64748B]">{t.checkingSub}</p>
             </>
           )}
@@ -144,13 +144,13 @@ export default function PaymentReturnPage() {
               <div className="w-14 h-14 rounded-full bg-green-100 flex items-center justify-center mb-5">
                 <span className="text-[#059669] text-[28px]">&#10003;</span>
               </div>
-              <h1 className="text-xl font-semibold text-[#1E293B] mb-4">{t.doneTitle}</h1>
+              <h1 className="text-xl font-semibold text-[#1a1a2e] mb-4">{t.doneTitle}</h1>
               <p className="text-[14px] text-[#64748B] mb-2">
                 {t.doneSub}
                 {email ? (
                   <>
                     {" "}
-                    <strong className="text-[#1E293B]">{email}</strong>.
+                    <strong className="text-[#1a1a2e]">{email}</strong>.
                   </>
                 ) : (
                   "."
@@ -158,12 +158,12 @@ export default function PaymentReturnPage() {
               </p>
               {orderId && (
                 <p className="text-[14px] text-[#64748B] mb-8">
-                  {t.order} <span className="font-medium text-[#1E293B]">{orderId}</span>
+                  {t.order} <span className="font-medium text-[#1a1a2e]">{orderId}</span>
                 </p>
               )}
               <Link
                 href={`/${locale}`}
-                className="inline-flex items-center bg-[#D97706] text-white px-6 py-3 text-[15px] font-semibold rounded-lg hover:bg-[#B45309] transition-colors"
+                className="inline-flex items-center bg-[#0ea5a0] text-white px-6 py-3 text-[15px] font-semibold rounded-lg hover:bg-[#0b7d79] transition-colors"
               >
                 {t.home}
               </Link>
@@ -173,13 +173,13 @@ export default function PaymentReturnPage() {
           {status === "pending" && (
             <>
               <div className="w-14 h-14 rounded-full bg-amber-100 flex items-center justify-center mb-5">
-                <span className="text-[#D97706] text-[28px]">&#8987;</span>
+                <span className="text-[#0ea5a0] text-[28px]">&#8987;</span>
               </div>
-              <h1 className="text-xl font-semibold text-[#1E293B] mb-4">{t.pendingTitle}</h1>
+              <h1 className="text-xl font-semibold text-[#1a1a2e] mb-4">{t.pendingTitle}</h1>
               <p className="text-[14px] text-[#64748B] mb-8 max-w-[420px]">{t.pendingSub}</p>
               <Link
                 href={`/${locale}`}
-                className="inline-flex items-center bg-[#D97706] text-white px-6 py-3 text-[15px] font-semibold rounded-lg hover:bg-[#B45309] transition-colors"
+                className="inline-flex items-center bg-[#0ea5a0] text-white px-6 py-3 text-[15px] font-semibold rounded-lg hover:bg-[#0b7d79] transition-colors"
               >
                 {t.home}
               </Link>
@@ -191,11 +191,11 @@ export default function PaymentReturnPage() {
               <div className="w-14 h-14 rounded-full bg-red-100 flex items-center justify-center mb-5">
                 <span className="text-[#DC2626] text-[28px]">&#10005;</span>
               </div>
-              <h1 className="text-xl font-semibold text-[#1E293B] mb-4">{t.failedTitle}</h1>
+              <h1 className="text-xl font-semibold text-[#1a1a2e] mb-4">{t.failedTitle}</h1>
               <p className="text-[14px] text-[#64748B] mb-8">{t.failedSub}</p>
               <Link
                 href={`/${locale}/ostukorv`}
-                className="inline-flex items-center bg-[#D97706] text-white px-6 py-3 text-[15px] font-semibold rounded-lg hover:bg-[#B45309] transition-colors"
+                className="inline-flex items-center bg-[#0ea5a0] text-white px-6 py-3 text-[15px] font-semibold rounded-lg hover:bg-[#0b7d79] transition-colors"
               >
                 {t.retry}
               </Link>

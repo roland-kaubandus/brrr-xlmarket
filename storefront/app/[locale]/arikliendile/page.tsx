@@ -97,7 +97,7 @@ export default async function AriklendileePage({ params }: { params: Promise<{ l
         className="w-full"
         style={{
           background:
-            "linear-gradient(135deg, #0F172A 0%, #1E293B 60%, #0F172A 100%)",
+            "linear-gradient(135deg, #12121f 0%, #1a1a2e 60%, #12121f 100%)",
         }}
       >
         <div className="max-w-[1280px] mx-auto px-[16px] sm:px-[24px] py-[56px] sm:py-[80px]">
@@ -105,13 +105,13 @@ export default async function AriklendileePage({ params }: { params: Promise<{ l
             className="text-[12px] font-[family-name:var(--font-dm-sans)] text-white/55 mb-[24px] flex items-center"
             aria-label="Breadcrumb"
           >
-            <Link href={`/${locale}`} className="hover:text-[#D97706] transition-colors">
+            <Link href={`/${locale}`} className="hover:text-[#0ea5a0] transition-colors">
               {et ? "Avaleht" : "Home"}
             </Link>
             <span className="mx-[8px] text-white/30">/</span>
             <span className="text-white/90">{et ? "Ärikliendile" : "Business Customers"}</span>
           </nav>
-          <span className="inline-block bg-[#D97706] text-white text-[11px] font-bold uppercase tracking-[0.12em] px-[10px] py-[4px] mb-[18px]">
+          <span className="inline-block bg-[#0ea5a0] text-white text-[11px] font-bold uppercase tracking-[0.12em] px-[10px] py-[4px] mb-[18px]">
             {et ? "B2B konto" : "B2B Account"}
           </span>
           <h1 className="text-[36px] sm:text-[48px] lg:text-[56px] font-[800] leading-[1.05] text-white tracking-[-0.025em] max-w-[880px] mb-[18px] font-[family-name:var(--font-dm-sans)]">
@@ -125,7 +125,7 @@ export default async function AriklendileePage({ params }: { params: Promise<{ l
           <div className="flex flex-wrap gap-[10px]">
             <a
               href="#quote"
-              className="inline-flex items-center gap-[8px] px-[22px] py-[13px] bg-[#D97706] text-white text-[14px] font-[600] hover:bg-[#B45309] transition-colors font-[family-name:var(--font-dm-sans)]"
+              className="inline-flex items-center gap-[8px] px-[22px] py-[13px] bg-[#0ea5a0] text-white text-[14px] font-[600] hover:bg-[#0b7d79] transition-colors font-[family-name:var(--font-dm-sans)]"
             >
               {et ? "Küsi pakkumist" : "Request a quote"} <ArrowRight size={15} strokeWidth={2.5} />
             </a>
@@ -141,10 +141,10 @@ export default async function AriklendileePage({ params }: { params: Promise<{ l
 
       {/* Benefits grid */}
       <section className="max-w-[1280px] mx-auto px-[16px] sm:px-[24px] py-[56px] sm:py-[72px]">
-        <p className="text-[11px] uppercase tracking-[0.14em] text-[#D97706] font-[700] mb-[6px] font-[family-name:var(--font-dm-sans)]">
+        <p className="text-[11px] uppercase tracking-[0.14em] text-[#0ea5a0] font-[700] mb-[6px] font-[family-name:var(--font-dm-sans)]">
           {et ? "Miks osta B2B leti kaudu" : "Why buy through the B2B desk"}
         </p>
-        <h2 className="text-[24px] sm:text-[32px] font-[800] text-[#1E293B] mb-[32px] font-[family-name:var(--font-dm-sans)] max-w-[680px]">
+        <h2 className="text-[24px] sm:text-[32px] font-[800] text-[#1a1a2e] mb-[32px] font-[family-name:var(--font-dm-sans)] max-w-[680px]">
           {et ? "Kuus asja, mida avalik kassa sulle teha ei suuda." : "Six things the public checkout cannot do for you."}
         </h2>
 
@@ -152,11 +152,11 @@ export default async function AriklendileePage({ params }: { params: Promise<{ l
           {BENEFITS.map(b => {
             const Icon = b.icon
             return (
-              <div key={b.title_en} className="border border-[#E2E8F0] p-[22px] bg-white hover:border-[#D97706] transition-colors">
-                <div className="w-[38px] h-[38px] bg-[#FFFBEB] flex items-center justify-center mb-[16px]">
-                  <Icon size={18} strokeWidth={1.6} className="text-[#D97706]" />
+              <div key={b.title_en} className="border border-[#E2E8F0] p-[22px] bg-white hover:border-[#0ea5a0] transition-colors">
+                <div className="w-[38px] h-[38px] bg-[#f0fdf9] flex items-center justify-center mb-[16px]">
+                  <Icon size={18} strokeWidth={1.6} className="text-[#0ea5a0]" />
                 </div>
-                <h3 className="text-[16px] font-[700] text-[#1E293B] mb-[8px] font-[family-name:var(--font-dm-sans)]">
+                <h3 className="text-[16px] font-[700] text-[#1a1a2e] mb-[8px] font-[family-name:var(--font-dm-sans)]">
                   {et ? b.title_et : b.title_en}
                 </h3>
                 <p className="text-[13px] text-[#475569] leading-relaxed font-[family-name:var(--font-dm-sans)]">
@@ -182,7 +182,7 @@ export default async function AriklendileePage({ params }: { params: Promise<{ l
                 <div className="text-[11px] uppercase tracking-[0.12em] text-[#94A3B8] mb-[4px] font-[600] font-[family-name:var(--font-dm-sans)]">
                   {item.k}
                 </div>
-                <div className="text-[28px] font-[800] text-[#1E293B] tabular-nums font-[family-name:var(--font-dm-sans)]">
+                <div className="text-[28px] font-[800] text-[#1a1a2e] tabular-nums font-[family-name:var(--font-dm-sans)]">
                   {item.v}
                 </div>
               </div>
@@ -193,20 +193,20 @@ export default async function AriklendileePage({ params }: { params: Promise<{ l
 
       {/* 3-step process */}
       <section className="max-w-[1280px] mx-auto px-[16px] sm:px-[24px] py-[56px] sm:py-[72px]">
-        <p className="text-[11px] uppercase tracking-[0.14em] text-[#D97706] font-[700] mb-[6px] font-[family-name:var(--font-dm-sans)]">
+        <p className="text-[11px] uppercase tracking-[0.14em] text-[#0ea5a0] font-[700] mb-[6px] font-[family-name:var(--font-dm-sans)]">
           {et ? "Kuidas see käib" : "How it works"}
         </p>
-        <h2 className="text-[24px] sm:text-[32px] font-[800] text-[#1E293B] mb-[32px] font-[family-name:var(--font-dm-sans)] max-w-[680px]">
+        <h2 className="text-[24px] sm:text-[32px] font-[800] text-[#1a1a2e] mb-[32px] font-[family-name:var(--font-dm-sans)] max-w-[680px]">
           {et ? "Kolm sammu. Esimesed kaks on tasuta." : "Three steps. First two are free."}
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-[20px]">
           {STEPS.map(step => (
-            <div key={step.n} className="border-t-2 border-[#D97706] pt-[18px]">
-              <div className="text-[36px] font-[800] text-[#D97706] tabular-nums leading-none mb-[10px] font-[family-name:var(--font-dm-sans)]">
+            <div key={step.n} className="border-t-2 border-[#0ea5a0] pt-[18px]">
+              <div className="text-[36px] font-[800] text-[#0ea5a0] tabular-nums leading-none mb-[10px] font-[family-name:var(--font-dm-sans)]">
                 {step.n}
               </div>
-              <h3 className="text-[18px] font-[700] text-[#1E293B] mb-[10px] font-[family-name:var(--font-dm-sans)]">
+              <h3 className="text-[18px] font-[700] text-[#1a1a2e] mb-[10px] font-[family-name:var(--font-dm-sans)]">
                 {et ? step.title_et : step.title_en}
               </h3>
               <p className="text-[13.5px] text-[#475569] leading-relaxed font-[family-name:var(--font-dm-sans)]">
@@ -218,11 +218,11 @@ export default async function AriklendileePage({ params }: { params: Promise<{ l
       </section>
 
       {/* Quote form block */}
-      <section id="quote" className="bg-[#0F172A]">
+      <section id="quote" className="bg-[#12121f]">
         <div className="max-w-[1280px] mx-auto px-[16px] sm:px-[24px] py-[56px] sm:py-[80px]">
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-[32px] lg:gap-[56px]">
             <div className="lg:col-span-2">
-              <span className="inline-block bg-[#D97706] text-white text-[11px] font-bold uppercase tracking-[0.12em] px-[10px] py-[4px] mb-[18px]">
+              <span className="inline-block bg-[#0ea5a0] text-white text-[11px] font-bold uppercase tracking-[0.12em] px-[10px] py-[4px] mb-[18px]">
                 {et ? "Alusta siit" : "Start here"}
               </span>
               <h2 className="text-[28px] sm:text-[36px] font-[800] text-white tracking-[-0.02em] mb-[16px] font-[family-name:var(--font-dm-sans)]">
@@ -236,13 +236,13 @@ export default async function AriklendileePage({ params }: { params: Promise<{ l
               <div className="flex flex-col gap-[10px]">
                 <a
                   href="mailto:b2b@xlmarket.ee?subject=B2B quote request"
-                  className="inline-flex items-center gap-[10px] text-[14px] text-white/90 hover:text-[#D97706] transition-colors font-[family-name:var(--font-dm-sans)]"
+                  className="inline-flex items-center gap-[10px] text-[14px] text-white/90 hover:text-[#0ea5a0] transition-colors font-[family-name:var(--font-dm-sans)]"
                 >
                   <Mail size={15} strokeWidth={1.8} /> b2b@xlmarket.ee
                 </a>
                 <a
                   href="/sample-b2b-agreement.pdf"
-                  className="inline-flex items-center gap-[10px] text-[14px] text-white/90 hover:text-[#D97706] transition-colors font-[family-name:var(--font-dm-sans)]"
+                  className="inline-flex items-center gap-[10px] text-[14px] text-white/90 hover:text-[#0ea5a0] transition-colors font-[family-name:var(--font-dm-sans)]"
                 >
                   <FileText size={15} strokeWidth={1.8} /> {et ? "Näidis B2B leping (PDF)" : "Sample B2B agreement (PDF)"}
                 </a>
@@ -258,26 +258,26 @@ export default async function AriklendileePage({ params }: { params: Promise<{ l
               <div className="grid grid-cols-1 md:grid-cols-2 gap-[14px]">
                 <label className="flex flex-col gap-[6px]">
                   <span className="text-[11px] uppercase tracking-[0.08em] font-[600] text-[#64748B] font-[family-name:var(--font-dm-sans)]">{et ? "Ettevõte" : "Company"}</span>
-                  <input required name="company" type="text" className="border border-[#CBD5E1] px-[12px] py-[10px] text-[14px] font-[family-name:var(--font-dm-sans)] focus:outline-none focus:border-[#D97706]" />
+                  <input required name="company" type="text" className="border border-[#CBD5E1] px-[12px] py-[10px] text-[14px] font-[family-name:var(--font-dm-sans)] focus:outline-none focus:border-[#0ea5a0]" />
                 </label>
                 <label className="flex flex-col gap-[6px]">
                   <span className="text-[11px] uppercase tracking-[0.08em] font-[600] text-[#64748B] font-[family-name:var(--font-dm-sans)]">{et ? "KMKR number" : "VAT number"}</span>
-                  <input name="vat" type="text" className="border border-[#CBD5E1] px-[12px] py-[10px] text-[14px] font-[family-name:var(--font-dm-sans)] focus:outline-none focus:border-[#D97706]" />
+                  <input name="vat" type="text" className="border border-[#CBD5E1] px-[12px] py-[10px] text-[14px] font-[family-name:var(--font-dm-sans)] focus:outline-none focus:border-[#0ea5a0]" />
                 </label>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-[14px]">
                 <label className="flex flex-col gap-[6px]">
                   <span className="text-[11px] uppercase tracking-[0.08em] font-[600] text-[#64748B] font-[family-name:var(--font-dm-sans)]">{et ? "Kontaktisik" : "Contact name"}</span>
-                  <input required name="name" type="text" className="border border-[#CBD5E1] px-[12px] py-[10px] text-[14px] font-[family-name:var(--font-dm-sans)] focus:outline-none focus:border-[#D97706]" />
+                  <input required name="name" type="text" className="border border-[#CBD5E1] px-[12px] py-[10px] text-[14px] font-[family-name:var(--font-dm-sans)] focus:outline-none focus:border-[#0ea5a0]" />
                 </label>
                 <label className="flex flex-col gap-[6px]">
                   <span className="text-[11px] uppercase tracking-[0.08em] font-[600] text-[#64748B] font-[family-name:var(--font-dm-sans)]">{et ? "E-post" : "Email"}</span>
-                  <input required name="email" type="email" className="border border-[#CBD5E1] px-[12px] py-[10px] text-[14px] font-[family-name:var(--font-dm-sans)] focus:outline-none focus:border-[#D97706]" />
+                  <input required name="email" type="email" className="border border-[#CBD5E1] px-[12px] py-[10px] text-[14px] font-[family-name:var(--font-dm-sans)] focus:outline-none focus:border-[#0ea5a0]" />
                 </label>
               </div>
               <label className="flex flex-col gap-[6px]">
                 <span className="text-[11px] uppercase tracking-[0.08em] font-[600] text-[#64748B] font-[family-name:var(--font-dm-sans)]">{et ? "Mida sa sisustad?" : "What are you setting up?"}</span>
-                <select name="industry" className="border border-[#CBD5E1] px-[12px] py-[10px] text-[14px] font-[family-name:var(--font-dm-sans)] focus:outline-none focus:border-[#D97706] bg-white">
+                <select name="industry" className="border border-[#CBD5E1] px-[12px] py-[10px] text-[14px] font-[family-name:var(--font-dm-sans)] focus:outline-none focus:border-[#0ea5a0] bg-white">
                   <option>{et ? "Kohvik / HoReCa" : "Café / HoReCa"}</option>
                   <option>{et ? "Autoremonditöökoda" : "Auto workshop"}</option>
                   <option>{et ? "Juuksur / salong" : "Barber / salon"}</option>
@@ -292,9 +292,9 @@ export default async function AriklendileePage({ params }: { params: Promise<{ l
               </label>
               <label className="flex flex-col gap-[6px]">
                 <span className="text-[11px] uppercase tracking-[0.08em] font-[600] text-[#64748B] font-[family-name:var(--font-dm-sans)]">{et ? "Räägi paari lausega" : "Tell us in a few sentences"}</span>
-                <textarea required name="message" rows={4} className="border border-[#CBD5E1] px-[12px] py-[10px] text-[14px] font-[family-name:var(--font-dm-sans)] focus:outline-none focus:border-[#D97706] resize-y" placeholder={et ? "Ruumi suurus, ligikaudne eelarve, ajakava, juba olemasolevad seadmed." : "Size of space, rough budget, timeline, any equipment you already have."} />
+                <textarea required name="message" rows={4} className="border border-[#CBD5E1] px-[12px] py-[10px] text-[14px] font-[family-name:var(--font-dm-sans)] focus:outline-none focus:border-[#0ea5a0] resize-y" placeholder={et ? "Ruumi suurus, ligikaudne eelarve, ajakava, juba olemasolevad seadmed." : "Size of space, rough budget, timeline, any equipment you already have."} />
               </label>
-              <button type="submit" className="mt-[6px] inline-flex items-center justify-center gap-[8px] px-[22px] py-[13px] bg-[#D97706] text-white text-[14px] font-[700] hover:bg-[#B45309] transition-colors font-[family-name:var(--font-dm-sans)]">
+              <button type="submit" className="mt-[6px] inline-flex items-center justify-center gap-[8px] px-[22px] py-[13px] bg-[#0ea5a0] text-white text-[14px] font-[700] hover:bg-[#0b7d79] transition-colors font-[family-name:var(--font-dm-sans)]">
                 {et ? "Saada päring" : "Send request"} <ArrowRight size={15} strokeWidth={2.5} />
               </button>
               <p className="text-[11px] text-[#94A3B8] font-[family-name:var(--font-dm-sans)]">

@@ -58,7 +58,7 @@ export default function AccountPage() {
       {/* Header */}
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-[28px] font-bold text-[#1E293B]">{locale === "et" ? "Minu konto" : "My Account"}</h1>
+          <h1 className="text-[28px] font-bold text-[#1a1a2e]">{locale === "et" ? "Minu konto" : "My Account"}</h1>
           <p className="text-sm text-[#64748B] mt-1">
             {locale === "et" ? "Tere tulemast tagasi, " : "Welcome back, "}{customer.first_name || customer.email}
           </p>
@@ -73,22 +73,22 @@ export default function AccountPage() {
 
       {/* Profile card */}
       <div className="border border-[#E2E8F0] rounded-xl p-6 mb-6">
-        <h2 className="text-lg font-semibold text-[#1E293B] mb-4">{locale === "et" ? "Profiil" : "Profile"}</h2>
+        <h2 className="text-lg font-semibold text-[#1a1a2e] mb-4">{locale === "et" ? "Profiil" : "Profile"}</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
           <div>
             <p className="text-[#94A3B8] text-xs mb-0.5">{locale === "et" ? "Nimi" : "Name"}</p>
-            <p className="text-[#1E293B] font-medium">
+            <p className="text-[#1a1a2e] font-medium">
               {customer.first_name} {customer.last_name}
             </p>
           </div>
           <div>
             <p className="text-[#94A3B8] text-xs mb-0.5">{locale === "et" ? "E-post" : "Email"}</p>
-            <p className="text-[#1E293B] font-medium">{customer.email}</p>
+            <p className="text-[#1a1a2e] font-medium">{customer.email}</p>
           </div>
           {customer.phone && (
             <div>
               <p className="text-[#94A3B8] text-xs mb-0.5">{locale === "et" ? "Telefon" : "Phone"}</p>
-              <p className="text-[#1E293B] font-medium">{customer.phone}</p>
+              <p className="text-[#1a1a2e] font-medium">{customer.phone}</p>
             </div>
           )}
         </div>
@@ -96,17 +96,17 @@ export default function AccountPage() {
 
       {/* Addresses */}
       <div className="border border-[#E2E8F0] rounded-xl p-6 mb-6">
-        <h2 className="text-lg font-semibold text-[#1E293B] mb-4">{locale === "et" ? "Salvestatud aadressid" : "Saved Addresses"}</h2>
+        <h2 className="text-lg font-semibold text-[#1a1a2e] mb-4">{locale === "et" ? "Salvestatud aadressid" : "Saved Addresses"}</h2>
         {customer.addresses.length > 0 ? (
           <div className="grid gap-3">
             {customer.addresses.map((addr) => (
               <div key={addr.id} className="p-4 bg-[#F8FAFC] rounded-lg text-sm">
-                <p className="font-medium text-[#1E293B]">{addr.first_name} {addr.last_name}</p>
+                <p className="font-medium text-[#1a1a2e]">{addr.first_name} {addr.last_name}</p>
                 <p className="text-[#64748B]">{addr.address_1}</p>
                 {addr.address_2 && <p className="text-[#64748B]">{addr.address_2}</p>}
                 <p className="text-[#64748B]">{addr.postal_code} {addr.city}, {addr.country_code?.toUpperCase()}</p>
                 {addr.is_default_shipping && (
-                  <span className="inline-block mt-2 text-xs text-[#D97706] font-medium">{locale === "et" ? "Vaikimisi tarneaadress" : "Default shipping address"}</span>
+                  <span className="inline-block mt-2 text-xs text-[#0ea5a0] font-medium">{locale === "et" ? "Vaikimisi tarneaadress" : "Default shipping address"}</span>
                 )}
               </div>
             ))}
@@ -118,13 +118,13 @@ export default function AccountPage() {
 
       {/* Orders */}
       <div className="border border-[#E2E8F0] rounded-xl p-6">
-        <h2 className="text-lg font-semibold text-[#1E293B] mb-4">{locale === "et" ? "Tellimuste ajalugu" : "Order History"}</h2>
+        <h2 className="text-lg font-semibold text-[#1a1a2e] mb-4">{locale === "et" ? "Tellimuste ajalugu" : "Order History"}</h2>
         {orders.length > 0 ? (
           <div className="space-y-3">
             {orders.map((order: any) => (
               <div key={order.id} className="flex items-center justify-between p-4 bg-[#F8FAFC] rounded-lg">
                 <div>
-                  <p className="font-medium text-sm text-[#1E293B]">
+                  <p className="font-medium text-sm text-[#1a1a2e]">
                     {locale === "et" ? "Tellimus nr " : "Order #"}{order.display_id}
                   </p>
                   <p className="text-xs text-[#64748B]">
@@ -132,7 +132,7 @@ export default function AccountPage() {
                   </p>
                 </div>
                 <div className="text-right">
-                  <p className="font-semibold text-sm text-[#1E293B]">
+                  <p className="font-semibold text-sm text-[#1a1a2e]">
                     {formatPrice(order.total, order.currency_code)}
                   </p>
                   <p className="text-xs text-[#64748B] capitalize">{order.fulfillment_status || (locale === "et" ? "ootel" : "pending")}</p>
@@ -145,7 +145,7 @@ export default function AccountPage() {
             <p className="text-sm text-[#94A3B8] mb-3">{locale === "et" ? "Tellimusi veel pole." : "No orders yet."}</p>
             <Link
               href={`/${locale}`}
-              className="text-sm text-[#D97706] font-medium hover:underline"
+              className="text-sm text-[#0ea5a0] font-medium hover:underline"
             >
               {locale === "et" ? "Alusta ostlemist" : "Start Shopping"}
             </Link>

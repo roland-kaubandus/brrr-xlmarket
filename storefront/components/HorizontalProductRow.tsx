@@ -16,8 +16,8 @@ export default function HorizontalProductRow({ title, products, locale }: Props)
     <section className="py-5 md:py-8">
       <div className="max-w-[1360px] mx-auto px-4">
         <div className="flex items-center gap-2 mb-3 md:mb-5">
-          <div className="w-1 h-5 rounded-full bg-[#D97706]" />
-          <h2 className="font-bold text-[17px] md:text-xl text-[#1E293B] tracking-tight">
+          <div className="w-1 h-5 rounded-full bg-[#0ea5a0]" />
+          <h2 className="font-bold text-[17px] md:text-xl text-[#1a1a2e] tracking-tight">
             {title}
           </h2>
         </div>

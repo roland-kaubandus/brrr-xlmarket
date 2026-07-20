@@ -36,11 +36,11 @@ function DealCard({ product, locale }: { product: DealProduct; locale: string })
         />
       </div>
       <div className="p-3 flex flex-col flex-1">
-        <div className="text-[12px] sm:text-[13px] font-semibold text-[#0F172A] leading-tight line-clamp-2 mb-2 flex-1">
+        <div className="text-[12px] sm:text-[13px] font-semibold text-[#12121f] leading-tight line-clamp-2 mb-2 flex-1">
           {product.title}
         </div>
         <div className="flex items-baseline gap-2">
-          <span className="text-[16px] sm:text-[18px] font-extrabold text-[#0F172A]">
+          <span className="text-[16px] sm:text-[18px] font-extrabold text-[#12121f]">
             {formatPrice(product.price)}
           </span>
         </div>
@@ -109,14 +109,14 @@ export default function HeroDeals({ locale }: { locale: string }) {
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-8">
         <div className="flex items-center justify-between mb-4 sm:mb-5">
           <h2
-            className="text-[16px] sm:text-[20px] md:text-[24px] font-bold text-[#0F172A] tracking-tight"
+            className="text-[16px] sm:text-[20px] md:text-[24px] font-bold text-[#12121f] tracking-tight"
             style={{ letterSpacing: "-0.3px" }}
           >
             Top Deals
           </h2>
           <Link
             href={`/${locale}/otsing?sort=deals`}
-            className="text-[13px] md:text-[15px] font-semibold text-[#D97706] flex items-center gap-1 hover:gap-2 transition-all"
+            className="text-[13px] md:text-[15px] font-semibold text-[#0ea5a0] flex items-center gap-1 hover:gap-2 transition-all"
           >
             All deals
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M12 5l7 7-7 7" /></svg>

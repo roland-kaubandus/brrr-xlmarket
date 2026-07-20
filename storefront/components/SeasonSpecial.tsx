@@ -12,7 +12,7 @@ import type { SeasonSpecialData, SeasonItem } from "@/lib/season-special-data"
  * cream) sitting confidently in the middle, and a strip of smaller
  * outdoor-catering machines beneath them.
  *
- * Brand palette honored: amber #E8920A is the only chromatic accent;
+ * Brand palette honored: amber #0ea5a0 is the only chromatic accent;
  * navy #0F1B2D is the dark register; #FAF7F1 paper-cream is the warm
  * register. No generic e-commerce gradients, no card-grid mediocrity.
  *

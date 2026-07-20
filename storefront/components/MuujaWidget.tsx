@@ -118,10 +118,10 @@ function MuujaBall({
       <defs>
         <radialGradient id="ballGrad" cx="40%" cy="35%" r="60%">
           <stop offset="0%" stopColor="#FDBA74" />
-          <stop offset="100%" stopColor="#D97706" />
+          <stop offset="100%" stopColor="#0ea5a0" />
         </radialGradient>
         <filter id="ballShadow" x="-20%" y="-20%" width="140%" height="140%">
-          <feDropShadow dx="0" dy="2" stdDeviation="3" floodColor="#D97706" floodOpacity="0.35" />
+          <feDropShadow dx="0" dy="2" stdDeviation="3" floodColor="#0ea5a0" floodOpacity="0.35" />
         </filter>
       </defs>
       <circle cx="28" cy="28" r="26" fill="url(#ballGrad)" filter="url(#ballShadow)" />
@@ -496,7 +496,7 @@ export default function MuujaWidget() {
                 onChange={(e) => setInput(e.target.value)}
                 placeholder={t.placeholder}
                 autoFocus
-                className="flex-1 px-3.5 py-2.5 rounded-xl bg-gray-100 text-sm outline-none focus:ring-2 focus:ring-[#D97706]/30 transition-all placeholder:text-gray-400"
+                className="flex-1 px-3.5 py-2.5 rounded-xl bg-gray-100 text-sm outline-none focus:ring-2 focus:ring-[#0ea5a0]/30 transition-all placeholder:text-gray-400"
               />
               <button
                 type="submit"

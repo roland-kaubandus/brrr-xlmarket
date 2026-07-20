@@ -25,12 +25,12 @@ export default async function VevorHeader({ locale = "en" }: { locale?: string }
   const menuData = getMenuSlice()
 
   return (
-    <header className="sticky top-0 z-30" style={{ background: "linear-gradient(135deg, #1E293B 0%, #0F172A 60%, #1E293B 100%)" }}>
+    <header className="sticky top-0 z-30" style={{ background: "linear-gradient(135deg, #1a1a2e 0%, #12121f 60%, #1a1a2e 100%)" }}>
       {/* === Row 1: Logo + Search + Actions === */}
       <div className="max-w-[1440px] mx-auto flex items-center px-4 md:px-8 gap-3 md:gap-6 h-[56px] md:h-[68px]">
         {/* Logo */}
         <Link href={`/${locale}`} className="shrink-0 flex items-baseline" style={{ letterSpacing: "-0.03em" }}>
-          <span className="text-[1.4rem] md:text-[1.8rem] font-extrabold text-[#D97706] leading-none">XL</span>
+          <span className="text-[1.4rem] md:text-[1.8rem] font-extrabold text-[#0ea5a0] leading-none">XL</span>
           <span className="text-[1.4rem] md:text-[1.8rem] font-semibold text-white leading-none"> Market</span>
         </Link>
 
