@@ -5,7 +5,7 @@ import { getVevorFeedEntryAsync } from "@/lib/vevor-feed"
 import { getMeiliProductByHandle, getProductDescription, getProductTitle } from "@/lib/meilisearch"
 import { sanitizeHtml } from "@/lib/sanitize"
 import { categoryPath } from "@/lib/i18n"
-import { firstKnownHandle, getBreadcrumbTrail } from "@/lib/category-tree"
+import { deepestKnownHandle, firstKnownHandle, getBreadcrumbTrail } from "@/lib/category-tree"
 
 function stringifyScalar(value: unknown): string | null {
   if (value === null || value === undefined) return null
@@ -293,7 +293,7 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
     const meiliCandidates: string[] = meiliHit?.category_handles || []
     const medusaCandidates: string[] = (product.categories || []).map((c) => c.handle).filter(Boolean)
     const candidates = [...taxonomyAncestors, ...meiliCandidates, ...medusaCandidates]
-    const canonicalNode = firstKnownHandle(candidates)
+    const canonicalNode = deepestKnownHandle(candidates)
 
     // Breadcrumb trail from SSoT only — NEVER fall back to VEVOR taxonomy.
     // Invariant 1 (§1) + INV-31: "portaalis on täpselt üks taksonoomia".
