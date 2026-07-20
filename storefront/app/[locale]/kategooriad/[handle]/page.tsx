@@ -10,6 +10,7 @@ import { notFound } from "next/navigation"
 import JsonLdCategory from "@/components/JsonLdCategory"
 import JsonLdBreadcrumb from "@/components/JsonLdBreadcrumb"
 import SubcategoryCarousel from "@/components/category/SubcategoryCarousel"
+import CategoryTreeNav from "@/components/category/CategoryTreeNav"
 import CategoryBottomRibbons from "@/components/category/CategoryBottomRibbons"
 import { categoryPath } from "@/lib/i18n"
 import { buildQuickFilters } from "@/lib/quick-filters"
@@ -201,6 +202,21 @@ export default async function CategoryPage({ params, searchParams }: Props) {
     // MeiliSearch unavailable — leave counts empty; page still renders.
   }
 
+  // Akordioni (CategoryTreeNav) tootearvud — ÜKS globaalne scope-vaba facet (identne igal
+  // lehel, ISR-cached revalidate 3600 → mitte per-request koormus). l1_slug (25) + l2_slug
+  // (224) = TÄPSED (alla 500-cap → ei truncate'i). taxonomy.ancestors EI SOBI: see
+  // truncate'itakse 500-le ALFABEETILISELT → hilise-tähestiku L1-d (v4-suurkoog…) kaovad
+  // suurest tootearvust hoolimata. l3_slug (1667) on best-effort (top-500), aga L3-arv
+  // pole akordionis kriitiline (nimi kuvatakse ka ilma arvuta).
+  let globalCatCounts: Record<string, number> = {}
+  try {
+    const g = await searchProducts({ q: "", limit: 0, offset: 0, facets: ["taxonomy.l1_slug", "taxonomy.l2_slug", "taxonomy.l3_slug"] })
+    const fd = g.facetDistribution || {}
+    globalCatCounts = { ...(fd["taxonomy.l3_slug"] || {}), ...(fd["taxonomy.l2_slug"] || {}), ...(fd["taxonomy.l1_slug"] || {}) }
+  } catch {
+    // Meili puudub — akordion töötab ilma arvudeta (navigatsioon SSoT-st).
+  }
+
   // --- Build subcategory carousel data (INV-25: filter 0-count children) ---
   const childrenWithCounts: ChildWithCount[] = node
     ? getChildrenWithProductCounts(handle, rawAncestorFacets)
@@ -343,7 +359,7 @@ export default async function CategoryPage({ params, searchParams }: Props) {
                 currentQuickFilter={currentQuickFilter}
                 locale={locale}
                 basePath={categoryBasePath}
-                suppressSubcategoryFacet={false}
+                suppressSubcategoryFacet={true}
               />
             </Suspense>
           </div>
@@ -364,7 +380,8 @@ export default async function CategoryPage({ params, searchParams }: Props) {
           <div className="flex gap-8">
             {/* Desktop sidebar */}
             <aside className="hidden md:block w-[260px] flex-shrink-0">
-              <div className="sticky top-4">
+              <div className="sticky top-4 space-y-3">
+                <CategoryTreeNav currentHandle={handle} locale={locale} counts={globalCatCounts} />
                 <Suspense fallback={null}>
                   <VevorSearchFilters
                     totalHits={totalCount}
@@ -381,7 +398,7 @@ export default async function CategoryPage({ params, searchParams }: Props) {
                     currentQuickFilter={currentQuickFilter}
                     locale={locale}
                     basePath={categoryBasePath}
-                    suppressSubcategoryFacet={false}
+                    suppressSubcategoryFacet={true}
                   />
                 </Suspense>
               </div>
@@ -389,6 +406,16 @@ export default async function CategoryPage({ params, searchParams }: Props) {
 
             {/* Main content — products + pagination (no inline subcat grid; carousel above handles it). */}
             <main className="flex-1 min-w-0">
+              {/* Mobiil: kategooria-akordion kokkupandavas paneelis (desktopil vasak-sidebaris) */}
+              <details className="md:hidden mb-4 group">
+                <summary className="flex items-center justify-between cursor-pointer bg-white rounded-xl border border-[#E2E8F0] px-4 py-3 text-[14px] font-semibold text-[#1a1a2e] list-none">
+                  {locale === "et" ? "Kategooriad" : "Categories"}
+                  <span aria-hidden className="text-[#94A3B8] group-open:rotate-90 transition-transform">&rsaquo;</span>
+                </summary>
+                <div className="mt-2">
+                  <CategoryTreeNav currentHandle={handle} locale={locale} counts={globalCatCounts} />
+                </div>
+              </details>
               <div className="mb-4 text-sm text-[#64748B]">
                 <span className="font-semibold text-[#1a1a2e]">
                   {totalCount.toLocaleString("et")}
