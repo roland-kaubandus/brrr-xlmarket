@@ -80,31 +80,43 @@ export default function ProductGrid({ initialProducts, fetchParams, locale, colu
     if (fetchParams.filter) params.set("filter", fetchParams.filter)
     if (fetchParams.facets) params.set("facets", fetchParams.facets)
 
-    fetch(`/api/products?${params.toString()}`, {
-      method: "GET",
-      signal: controller.signal,
-    })
-      .then(async (r) => {
+    const url = `/api/products?${params.toString()}`
+
+    // Retry 1× transient-tõrke korral (net-blip VÕI 5xx). Peapõhjus: staging'i
+    // deploy-swap (üks konteiner, ei rolling) tekitab paar sekundit 502/conn-reset,
+    // kui Traefik marsruudib veel-boot'ivasse Next.js'i → ilma retry'ta näeb kasutaja
+    // "temporarily unavailable". 4xx (nt vigane filter) EI ole transient → ära korda.
+    const attempt = async (retriesLeft: number): Promise<void> => {
+      try {
+        const r = await fetch(url, { method: "GET", signal: controller.signal })
         if (!r.ok) {
+          const transient = r.status >= 500 || r.status === 0
+          if (transient && retriesLeft > 0) {
+            await new Promise((res) => setTimeout(res, 1200))
+            if (controller.signal.aborted) return
+            return attempt(retriesLeft - 1)
+          }
           console.error(`[ProductGrid] products API ${r.status} ${r.statusText}`)
           throw new Error(`Products API ${r.status}`)
         }
-        return r.json()
-      })
-      .then((data) => {
-        if (data?.products) {
-          setProducts(data.products)
-        } else {
-          setProducts([])
+        const data = await r.json()
+        setProducts(data?.products ? data.products : [])
+        setLoading(false)
+      } catch (e) {
+        const err = e as Error
+        if (err.name === "AbortError") return
+        // Võrgu-tõrge (fetch reject) = transient (deploy-swap / blip) → korda 1×.
+        if (retriesLeft > 0) {
+          await new Promise((res) => setTimeout(res, 1200))
+          if (controller.signal.aborted) return
+          return attempt(retriesLeft - 1)
         }
+        console.error("[ProductGrid] fetch failed:", err.message)
+        setFetchError(err.message)
         setLoading(false)
-      })
-      .catch((e: Error) => {
-        if (e.name === "AbortError") return
-        console.error("[ProductGrid] fetch failed:", e.message)
-        setFetchError(e.message)
-        setLoading(false)
-      })
+      }
+    }
+    attempt(1)
 
     return () => controller.abort()
     // eslint-disable-next-line react-hooks/exhaustive-deps
