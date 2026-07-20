@@ -10,6 +10,7 @@ import { notFound } from "next/navigation"
 import JsonLdCategory from "@/components/JsonLdCategory"
 import JsonLdBreadcrumb from "@/components/JsonLdBreadcrumb"
 import SubcategoryCarousel from "@/components/category/SubcategoryCarousel"
+import CategoryTreeNav from "@/components/category/CategoryTreeNav"
 import CategoryBottomRibbons from "@/components/category/CategoryBottomRibbons"
 import { categoryPath } from "@/lib/i18n"
 import { buildQuickFilters } from "@/lib/quick-filters"
@@ -208,6 +209,13 @@ export default async function CategoryPage({ params, searchParams }: Props) {
     // MeiliSearch unavailable — leave counts empty; page still renders.
   }
 
+  // Globaalne kategooria-tootearv (scope-vaba taxonomy.ancestors facet) vasak tree-nav'ile.
+  let globalCatCounts: Record<string, number> = {}
+  try {
+    const g = await searchProducts({ q: "", limit: 0, offset: 0, facets: ["taxonomy.ancestors"] })
+    globalCatCounts = g.facetDistribution?.["taxonomy.ancestors"] || {}
+  } catch { /* Meili puudub — jäta tühjaks */ }
+
   // --- Build subcategory carousel data (INV-25: filter 0-count children) ---
   const childrenWithCounts: ChildWithCount[] = node
     ? getChildrenWithProductCounts(handle, rawAncestorFacets)
@@ -366,7 +374,7 @@ export default async function CategoryPage({ params, searchParams }: Props) {
                 currentQuickFilter={currentQuickFilter}
                 locale={locale}
                 basePath={categoryBasePath}
-                suppressSubcategoryFacet={false}
+                suppressSubcategoryFacet={true}
               />
             </Suspense>
           </div>
@@ -386,8 +394,9 @@ export default async function CategoryPage({ params, searchParams }: Props) {
         {totalCount > 0 ? (
           <div className="flex gap-8">
             {/* Desktop sidebar */}
-            <aside className="hidden md:block w-[240px] flex-shrink-0">
-              <div className="sticky top-4">
+            <aside className="hidden md:block w-[260px] flex-shrink-0">
+              <div className="sticky top-4 space-y-3">
+                <CategoryTreeNav currentHandle={handle} locale={locale} counts={globalCatCounts} />
                 <Suspense fallback={null}>
                   <VevorSearchFilters
                     totalHits={totalCount}
@@ -404,7 +413,7 @@ export default async function CategoryPage({ params, searchParams }: Props) {
                     currentQuickFilter={currentQuickFilter}
                     locale={locale}
                     basePath={categoryBasePath}
-                    suppressSubcategoryFacet={false}
+                    suppressSubcategoryFacet={true}
                   />
                 </Suspense>
               </div>
@@ -412,6 +421,16 @@ export default async function CategoryPage({ params, searchParams }: Props) {
 
             {/* Main content — products + pagination (no inline subcat grid; carousel above handles it). */}
             <main className="flex-1 min-w-0">
+              {/* Mobile kategooria-nav (kokkupandav) — L3-l tagab nav ka mobiilis */}
+              <details className="md:hidden mb-4 group">
+                <summary className="flex items-center justify-between cursor-pointer bg-white rounded-xl border border-[#E2E8F0] px-4 py-3 text-[14px] font-semibold text-[#1a1a2e] list-none">
+                  {locale === "et" ? "Kategooriad" : "Categories"}
+                  <span aria-hidden className="text-[#94A3B8] group-open:rotate-90 transition-transform">&rsaquo;</span>
+                </summary>
+                <div className="mt-2">
+                  <CategoryTreeNav currentHandle={handle} locale={locale} counts={globalCatCounts} />
+                </div>
+              </details>
               <div className="mb-4 text-sm text-[#64748B]">
                 <span className="font-semibold text-[#1a1a2e]">
                   {totalCount.toLocaleString("et")}
