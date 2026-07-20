@@ -90,7 +90,7 @@ export default function EditableText({
           type="button"
           onClick={() => setEditing(true)}
           aria-label={`Muuda ${field === "title" ? "pealkirja" : "kirjeldust"}`}
-          className="ml-2 align-middle text-[11px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-[#FCD34D] border border-[#0b7d79] text-[#1a1a2e] hover:bg-[#FBBF24]"
+          className="ml-2 align-middle text-[11px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-[#FCD34D] border border-[#0b7d79] text-[#1a1a2e] hover:bg-[#2dd4bf]"
         >
           ✎ Muuda
         </button>

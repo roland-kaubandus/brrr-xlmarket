@@ -117,7 +117,7 @@ function MuujaBall({
     <svg viewBox="0 0 56 56" width="56" height="56" className="block">
       <defs>
         <radialGradient id="ballGrad" cx="40%" cy="35%" r="60%">
-          <stop offset="0%" stopColor="#FDBA74" />
+          <stop offset="0%" stopColor="#5eead4" />
           <stop offset="100%" stopColor="#0ea5a0" />
         </radialGradient>
         <filter id="ballShadow" x="-20%" y="-20%" width="140%" height="140%">

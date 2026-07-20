@@ -119,11 +119,11 @@ export default async function VerticalPage(
             className="text-[12px] font-[family-name:var(--font-dm-sans)] text-white/55 mb-[24px] flex items-center flex-wrap"
             aria-label="Breadcrumb"
           >
-            <Link href={`/${locale}`} className="hover:text-[#0ea5a0] transition-colors">
+            <Link href={`/${locale}`} className="hover:text-[#0b7d79] transition-colors">
               Home
             </Link>
             <span className="mx-[8px] text-white/30">/</span>
-            <Link href={`/${locale}/alustajale`} className="hover:text-[#0ea5a0] transition-colors">
+            <Link href={`/${locale}/alustajale`} className="hover:text-[#0b7d79] transition-colors">
               Getting Started
             </Link>
             <span className="mx-[8px] text-white/30">/</span>
@@ -171,7 +171,7 @@ export default async function VerticalPage(
       <section id="kits" className="bg-[#F8FAFC] border-y border-[#E2E8F0]">
         <div className="max-w-[1280px] mx-auto px-[16px] sm:px-[24px] py-[56px] sm:py-[72px]">
           <div className="mb-[32px]">
-            <p className="text-[11px] uppercase tracking-[0.14em] text-[#0ea5a0] font-[700] mb-[6px] font-[family-name:var(--font-dm-sans)]">
+            <p className="text-[11px] uppercase tracking-[0.14em] text-[#0b7d79] font-[700] mb-[6px] font-[family-name:var(--font-dm-sans)]">
               Three Tiers
             </p>
             <h2 className="text-[24px] sm:text-[32px] font-[800] text-[#1a1a2e] font-[family-name:var(--font-dm-sans)]">
@@ -233,13 +233,13 @@ export default async function VerticalPage(
                         <CheckCircle2
                           size={14}
                           strokeWidth={2.2}
-                          className="text-[#0ea5a0] mt-[3px] shrink-0"
+                          className="text-[#0b7d79] mt-[3px] shrink-0"
                         />
                         <div className="flex-1">
                           {item.product ? (
                             <Link
                               href={`/${locale}/toode/${item.product.handle}`}
-                              className="hover:text-[#0ea5a0]"
+                              className="hover:text-[#0b7d79]"
                             >
                               {item.displayTitle}
                             </Link>
@@ -277,7 +277,7 @@ export default async function VerticalPage(
         <section className="max-w-[1280px] mx-auto px-[16px] sm:px-[24px] py-[56px] sm:py-[72px]">
           <div className="flex items-end justify-between mb-[24px] flex-wrap gap-[12px]">
             <div>
-              <p className="text-[11px] uppercase tracking-[0.14em] text-[#0ea5a0] font-[700] mb-[6px] font-[family-name:var(--font-dm-sans)]">
+              <p className="text-[11px] uppercase tracking-[0.14em] text-[#0b7d79] font-[700] mb-[6px] font-[family-name:var(--font-dm-sans)]">
                 All Products
               </p>
               <h2 className="text-[22px] sm:text-[28px] font-[800] text-[#1a1a2e] font-[family-name:var(--font-dm-sans)]">
@@ -295,7 +295,7 @@ export default async function VerticalPage(
           <div className="max-w-[1280px] mx-auto px-[16px] sm:px-[24px] py-[56px] sm:py-[72px]">
             <div className="grid grid-cols-1 lg:grid-cols-[320px_1fr] gap-[32px] lg:gap-[48px]">
               <div>
-                <p className="text-[11px] uppercase tracking-[0.14em] text-[#0ea5a0] font-[700] mb-[6px] font-[family-name:var(--font-dm-sans)]">
+                <p className="text-[11px] uppercase tracking-[0.14em] text-[#0b7d79] font-[700] mb-[6px] font-[family-name:var(--font-dm-sans)]">
                   FAQ
                 </p>
                 <h2 className="text-[24px] sm:text-[32px] font-[800] text-[#1a1a2e] tracking-[-0.015em] font-[family-name:var(--font-dm-sans)]">
@@ -312,7 +312,7 @@ export default async function VerticalPage(
                       <h3 className="text-[15px] sm:text-[16px] font-[700] text-[#1a1a2e] font-[family-name:var(--font-dm-sans)]">
                         {f.q_en}
                       </h3>
-                      <span className="text-[#0ea5a0] text-[18px] font-[700] shrink-0 group-open:rotate-45 transition-transform">
+                      <span className="text-[#0b7d79] text-[18px] font-[700] shrink-0 group-open:rotate-45 transition-transform">
                         +
                       </span>
                     </summary>
@@ -332,7 +332,7 @@ export default async function VerticalPage(
         <div className="grid grid-cols-1 md:grid-cols-2 gap-[20px]">
           {loc.deliveryNote && (
             <div className="border border-[#E2E8F0] p-[24px] flex gap-[16px]">
-              <Truck size={22} strokeWidth={1.8} className="text-[#0ea5a0] shrink-0 mt-[2px]" />
+              <Truck size={22} strokeWidth={1.8} className="text-[#0b7d79] shrink-0 mt-[2px]" />
               <div>
                 <h3 className="text-[14px] font-[700] text-[#1a1a2e] mb-[6px] font-[family-name:var(--font-dm-sans)]">
                   Delivery
@@ -345,7 +345,7 @@ export default async function VerticalPage(
           )}
           {loc.financingNote && (
             <div className="border border-[#E2E8F0] p-[24px] flex gap-[16px]">
-              <CheckCircle2 size={22} strokeWidth={1.8} className="text-[#0ea5a0] shrink-0 mt-[2px]" />
+              <CheckCircle2 size={22} strokeWidth={1.8} className="text-[#0b7d79] shrink-0 mt-[2px]" />
               <div>
                 <h3 className="text-[14px] font-[700] text-[#1a1a2e] mb-[6px] font-[family-name:var(--font-dm-sans)]">
                   Pricing & Financing
@@ -391,11 +391,11 @@ export default async function VerticalPage(
       <section className="max-w-[1280px] mx-auto px-[16px] sm:px-[24px] pb-[64px]">
         <p className="text-[13px] text-[#64748B] font-[family-name:var(--font-dm-sans)]">
           Prefer to browse yourself?{" "}
-          <Link href={`/${locale}`} className="text-[#0ea5a0] font-[600] hover:underline">
+          <Link href={`/${locale}`} className="text-[#0b7d79] font-[600] hover:underline">
             Open category browser
           </Link>
           {" "}or{" "}
-          <Link href={`/${locale}/alustajale`} className="text-[#0ea5a0] font-[600] hover:underline">
+          <Link href={`/${locale}/alustajale`} className="text-[#0b7d79] font-[600] hover:underline">
             see other starter kits
           </Link>.
         </p>
@@ -418,7 +418,7 @@ function ProductGridSimple({ products, locale }: { products: MeiliHit[]; locale:
             style={{ backgroundImage: p.thumbnail ? `url(${p.thumbnail})` : undefined }}
           />
           <div className="p-[14px] flex flex-col flex-1">
-            <h3 className="text-[12.5px] font-[600] text-[#1a1a2e] leading-snug line-clamp-2 mb-[8px] font-[family-name:var(--font-dm-sans)] group-hover:text-[#0ea5a0]">
+            <h3 className="text-[12.5px] font-[600] text-[#1a1a2e] leading-snug line-clamp-2 mb-[8px] font-[family-name:var(--font-dm-sans)] group-hover:text-[#0b7d79]">
               {getProductTitle(p, locale)}
             </h3>
             <div className="mt-auto text-[15px] font-[800] text-[#1a1a2e] tabular-nums font-[family-name:var(--font-dm-sans)]">

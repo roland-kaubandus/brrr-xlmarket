@@ -18,8 +18,8 @@
   --color-card-border: #F1F5F9;
   --color-text-secondary: #475569;
   --color-text-muted: #94A3B8;
-  --color-amber-light: #F59E0B;
-  --color-amber-glow: rgba(217, 119, 6, 0.10);
+  --color-amber-light: #0ea5a0;
+  --color-amber-glow: rgba(14,165,160, 0.10);
 }
 
 :root {

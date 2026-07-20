@@ -39,8 +39,8 @@ export default function NavCartButton({ variant = "light" }: { variant?: "light"
       href={`/${locale}/ostukorv`}
       className={`relative flex items-center justify-center w-[40px] h-[40px] active:scale-95 ${
         isDark
-          ? "text-white/80 hover:text-[#0ea5a0] hover:bg-white/10"
-          : "text-[#1a1a2e] hover:text-[#0ea5a0] hover:bg-[#f0fdf9]"
+          ? "text-white/80 hover:text-[#0b7d79] hover:bg-white/10"
+          : "text-[#1a1a2e] hover:text-[#0b7d79] hover:bg-[#f0fdf9]"
       }`}
       aria-label="Cart"
     >

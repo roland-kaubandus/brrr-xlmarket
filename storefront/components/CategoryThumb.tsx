@@ -62,7 +62,7 @@ export default function CategoryThumb({
 
   return (
     <span
-      className={`flex-shrink-0 rounded-md bg-[#FEF3C7] border border-[#FDE68A] flex items-center justify-center ${className}`}
+      className={`flex-shrink-0 rounded-md bg-[#ccfbf1] border border-[#FDE68A] flex items-center justify-center ${className}`}
       style={{ width: size, height: size }}
       aria-hidden={!alt}
     >

@@ -37,7 +37,7 @@ export default function MobileSearchToggle({ locale }: MobileSearchToggleProps) 
         aria-label={open ? "Close search" : "Open search"}
         aria-expanded={open}
         onClick={() => setOpen((v) => !v)}
-        className="relative flex items-center justify-center w-9 h-9 rounded-lg text-white/80 hover:text-[#0ea5a0] hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0ea5a0] transition-[color,background-color] duration-200"
+        className="relative flex items-center justify-center w-9 h-9 rounded-lg text-white/80 hover:text-[#0b7d79] hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0ea5a0] transition-[color,background-color] duration-200"
         style={{ transitionTimingFunction: "cubic-bezier(0.32, 0.72, 0, 1)" }}
       >
         {open ? <X size={20} strokeWidth={2} /> : <Search size={20} strokeWidth={2} />}

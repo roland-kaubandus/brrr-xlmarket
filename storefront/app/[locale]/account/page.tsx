@@ -106,7 +106,7 @@ export default function AccountPage() {
                 {addr.address_2 && <p className="text-[#64748B]">{addr.address_2}</p>}
                 <p className="text-[#64748B]">{addr.postal_code} {addr.city}, {addr.country_code?.toUpperCase()}</p>
                 {addr.is_default_shipping && (
-                  <span className="inline-block mt-2 text-xs text-[#0ea5a0] font-medium">{locale === "et" ? "Vaikimisi tarneaadress" : "Default shipping address"}</span>
+                  <span className="inline-block mt-2 text-xs text-[#0b7d79] font-medium">{locale === "et" ? "Vaikimisi tarneaadress" : "Default shipping address"}</span>
                 )}
               </div>
             ))}
@@ -145,7 +145,7 @@ export default function AccountPage() {
             <p className="text-sm text-[#94A3B8] mb-3">{locale === "et" ? "Tellimusi veel pole." : "No orders yet."}</p>
             <Link
               href={`/${locale}`}
-              className="text-sm text-[#0ea5a0] font-medium hover:underline"
+              className="text-sm text-[#0b7d79] font-medium hover:underline"
             >
               {locale === "et" ? "Alusta ostlemist" : "Start Shopping"}
             </Link>

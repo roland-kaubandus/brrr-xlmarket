@@ -1294,7 +1294,7 @@ const homepageStyles = `
 }
 
 .hp-cat-sublist-all:hover {
-  color: #92400E;
+  color: #0b7d79;
 }
 
 .hp-cat-sublist-all .hp-cat-sublist-name {

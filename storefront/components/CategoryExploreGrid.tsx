@@ -47,12 +47,12 @@ export default function CategoryExploreGrid({
                       loading="lazy"
                     />
                   ) : (
-                    <div className="w-12 h-12 rounded-full flex items-center justify-center bg-gradient-to-br from-[#FEF3C7] to-[#FDE68A]">
+                    <div className="w-12 h-12 rounded-full flex items-center justify-center bg-gradient-to-br from-[#ccfbf1] to-[#FDE68A]">
                       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0ea5a0" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2" /><path d="M16 7V5a4 4 0 0 0-8 0v2" /></svg>
                     </div>
                   )}
                 </div>
-                <span className="text-[12px] md:text-[12px] text-center text-[#475569] group-hover:text-[#0ea5a0] transition-colors leading-snug line-clamp-2 font-medium">
+                <span className="text-[12px] md:text-[12px] text-center text-[#475569] group-hover:text-[#0b7d79] transition-colors leading-snug line-clamp-2 font-medium">
                   {display}
                 </span>
               </Link>

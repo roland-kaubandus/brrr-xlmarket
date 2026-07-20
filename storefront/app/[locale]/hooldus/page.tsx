@@ -120,7 +120,7 @@ export default async function HooldusPage({ params }: { params: Promise<{ locale
             className="text-[12px] font-[family-name:var(--font-dm-sans)] text-white/55 mb-[24px] flex items-center"
             aria-label="Breadcrumb"
           >
-            <Link href={`/${locale}`} className="hover:text-[#0ea5a0] transition-colors">
+            <Link href={`/${locale}`} className="hover:text-[#0b7d79] transition-colors">
               Home
             </Link>
             <span className="mx-[8px] text-white/30">/</span>
@@ -154,7 +154,7 @@ export default async function HooldusPage({ params }: { params: Promise<{ locale
 
       {/* Plans */}
       <section id="plans" className="max-w-[1280px] mx-auto px-[16px] sm:px-[24px] py-[56px] sm:py-[72px]">
-        <p className="text-[11px] uppercase tracking-[0.14em] text-[#0ea5a0] font-[700] mb-[6px] font-[family-name:var(--font-dm-sans)]">
+        <p className="text-[11px] uppercase tracking-[0.14em] text-[#0b7d79] font-[700] mb-[6px] font-[family-name:var(--font-dm-sans)]">
           Three service tiers
         </p>
         <h2 className="text-[24px] sm:text-[32px] font-[800] text-[#1a1a2e] mb-[32px] font-[family-name:var(--font-dm-sans)] max-w-[720px]">
@@ -174,7 +174,7 @@ export default async function HooldusPage({ params }: { params: Promise<{ locale
               ) : null}
               <div className="flex items-center gap-[10px] mb-[14px]">
                 <div className={`w-[36px] h-[36px] flex items-center justify-center ${plan.popular ? "bg-[#0ea5a0]" : "bg-[#F1F5F9]"}`}>
-                  {plan.slug === "warranty" ? <ShieldCheck size={17} strokeWidth={1.8} className={plan.popular ? "text-white" : "text-[#0ea5a0]"} /> : plan.slug === "basic" ? <ClipboardCheck size={17} strokeWidth={1.8} className={plan.popular ? "text-white" : "text-[#0ea5a0]"} /> : <Wrench size={17} strokeWidth={1.8} className={plan.popular ? "text-white" : "text-[#0ea5a0]"} />}
+                  {plan.slug === "warranty" ? <ShieldCheck size={17} strokeWidth={1.8} className={plan.popular ? "text-white" : "text-[#0b7d79]"} /> : plan.slug === "basic" ? <ClipboardCheck size={17} strokeWidth={1.8} className={plan.popular ? "text-white" : "text-[#0b7d79]"} /> : <Wrench size={17} strokeWidth={1.8} className={plan.popular ? "text-white" : "text-[#0b7d79]"} />}
                 </div>
                 <h3 className="text-[18px] font-[700] text-[#1a1a2e] font-[family-name:var(--font-dm-sans)]">{plan.name}</h3>
               </div>
@@ -192,7 +192,7 @@ export default async function HooldusPage({ params }: { params: Promise<{ locale
               <ul className="flex flex-col gap-[6px] mb-[20px] flex-1">
                 {plan.bullets.map(b => (
                   <li key={b} className="flex items-start gap-[8px] text-[13px] text-[#334155] font-[family-name:var(--font-dm-sans)]">
-                    <span className="text-[#0ea5a0] mt-[2px]">•</span>
+                    <span className="text-[#0b7d79] mt-[2px]">•</span>
                     <span>{b}</span>
                   </li>
                 ))}
@@ -208,7 +208,7 @@ export default async function HooldusPage({ params }: { params: Promise<{ locale
         </div>
 
         <div className="mt-[28px] flex flex-wrap items-center gap-[16px] text-[12.5px] text-[#64748B] font-[family-name:var(--font-dm-sans)]">
-          <a href="/sample-service-agreement.pdf" className="inline-flex items-center gap-[6px] hover:text-[#0ea5a0]">
+          <a href="/sample-service-agreement.pdf" className="inline-flex items-center gap-[6px] hover:text-[#0b7d79]">
             <FileText size={13} strokeWidth={1.8} /> Sample service agreement (PDF)
           </a>
           <span className="text-[#CBD5E1]">·</span>
@@ -219,7 +219,7 @@ export default async function HooldusPage({ params }: { params: Promise<{ locale
       {/* Maintenance articles */}
       <section id="guides" className="bg-[#F8FAFC] border-y border-[#E2E8F0]">
         <div className="max-w-[1280px] mx-auto px-[16px] sm:px-[24px] py-[56px] sm:py-[72px]">
-          <p className="text-[11px] uppercase tracking-[0.14em] text-[#0ea5a0] font-[700] mb-[6px] font-[family-name:var(--font-dm-sans)]">
+          <p className="text-[11px] uppercase tracking-[0.14em] text-[#0b7d79] font-[700] mb-[6px] font-[family-name:var(--font-dm-sans)]">
             Maintenance library
           </p>
           <h2 className="text-[24px] sm:text-[32px] font-[800] text-[#1a1a2e] mb-[8px] font-[family-name:var(--font-dm-sans)] max-w-[680px]">
@@ -235,7 +235,7 @@ export default async function HooldusPage({ params }: { params: Promise<{ locale
               return (
                 <article key={a.title} className="bg-white border border-[#E2E8F0] p-[22px] flex flex-col hover:border-[#0ea5a0] transition-colors">
                   <div className="flex items-center gap-[8px] mb-[14px]">
-                    <Icon size={15} strokeWidth={1.8} className="text-[#0ea5a0]" />
+                    <Icon size={15} strokeWidth={1.8} className="text-[#0b7d79]" />
                     <span className="text-[10px] uppercase tracking-[0.14em] text-[#64748B] font-[700] font-[family-name:var(--font-dm-sans)]">
                       {a.tag}
                     </span>

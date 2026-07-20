@@ -34,7 +34,7 @@ export default function ComparePage() {
     <div className="max-w-[1360px] mx-auto px-4 py-8">
       {/* Breadcrumb */}
       <nav className="text-xs text-[#64748B] mb-4 flex items-center">
-        <Link href={`/${locale}`} className="text-[#64748B] hover:text-[#0ea5a0]">
+        <Link href={`/${locale}`} className="text-[#64748B] hover:text-[#0b7d79]">
           {locale === "et" ? "Avaleht" : "Home"}
         </Link>
         <span className="mx-1.5 text-[#CBD5E1]">&gt;</span>
@@ -77,7 +77,7 @@ export default function ComparePage() {
                           <div className="w-full h-full flex items-center justify-center text-[#CBD5E1]">—</div>
                         )}
                       </div>
-                      <p className="text-xs font-medium text-[#1a1a2e] line-clamp-2 hover:text-[#0ea5a0] transition-colors">{item.title}</p>
+                      <p className="text-xs font-medium text-[#1a1a2e] line-clamp-2 hover:text-[#0b7d79] transition-colors">{item.title}</p>
                     </Link>
                   </div>
                 </th>

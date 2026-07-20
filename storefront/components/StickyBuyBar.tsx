@@ -65,14 +65,14 @@ export default function StickyBuyBar({ variantId, title, price }: Props) {
           <p className="text-sm font-semibold text-[#1a1a2e] truncate max-w-[400px]">
             {title}
           </p>
-          <p className="text-base font-bold text-[#0ea5a0]">
+          <p className="text-base font-bold text-[#0b7d79]">
             {price}
           </p>
         </div>
         <div className="flex items-center gap-2.5 ml-auto">
           <a
             href={`/${locale}/ostukorv`}
-            className="px-4 py-2.5 border border-[#0ea5a0] text-[#0ea5a0] text-sm font-semibold hover:bg-[#f0fdf9] rounded-lg transition-colors duration-200"
+            className="px-4 py-2.5 border border-[#0ea5a0] text-[#0b7d79] text-sm font-semibold hover:bg-[#f0fdf9] rounded-lg transition-colors duration-200"
           >
             {locale === "et" ? "Ostukorv" : "Cart"}
           </a>

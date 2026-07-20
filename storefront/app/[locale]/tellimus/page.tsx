@@ -337,9 +337,9 @@ export default function CheckoutPage() {
       <div className="max-w-[1360px] mx-auto px-4 sm:px-6 py-8 sm:py-12">
         {/* Breadcrumb */}
         <nav className="text-[12px] text-[#64748B] mb-7 flex items-center" aria-label="Breadcrumb">
-          <Link href={`/${locale}`} className="text-[#64748B] hover:text-[#0ea5a0] transition-colors">{locale === "et" ? "Avaleht" : "Home"}</Link>
+          <Link href={`/${locale}`} className="text-[#64748B] hover:text-[#0b7d79] transition-colors">{locale === "et" ? "Avaleht" : "Home"}</Link>
           <span className="mx-2 text-[#CBD5E1]">/</span>
-          <Link href={`/${locale}/ostukorv`} className="text-[#64748B] hover:text-[#0ea5a0] transition-colors">{locale === "et" ? "Ostukorv" : "Cart"}</Link>
+          <Link href={`/${locale}/ostukorv`} className="text-[#64748B] hover:text-[#0b7d79] transition-colors">{locale === "et" ? "Ostukorv" : "Cart"}</Link>
           <span className="mx-2 text-[#CBD5E1]">/</span>
           <span className="text-[#1a1a2e] font-medium">{locale === "et" ? "Kassa" : "Checkout"}</span>
         </nav>
@@ -578,7 +578,7 @@ export default function CheckoutPage() {
                 <div className="border-t border-[#E2E8F0] mt-4 pt-4">
                   <div className="flex items-center justify-between">
                     <span className="text-[15px] font-semibold text-[#1a1a2e]">{locale === "et" ? "Kokku" : "Total"}</span>
-                    <span className="text-xl font-bold text-[#0ea5a0]">
+                    <span className="text-xl font-bold text-[#0b7d79]">
                       {formatPrice(cart.total, cart.currency_code)}
                     </span>
                   </div>

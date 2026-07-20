@@ -154,7 +154,7 @@ export default async function AlustajalePage({ params }: { params: Promise<{ loc
             className="text-[12px] font-[family-name:var(--font-dm-sans)] text-white/55 mb-[24px] flex items-center"
             aria-label="Breadcrumb"
           >
-            <Link href={`/${locale}`} className="hover:text-[#0ea5a0] transition-colors">
+            <Link href={`/${locale}`} className="hover:text-[#0b7d79] transition-colors">
               {et ? "Avaleht" : "Home"}
             </Link>
             <span className="mx-[8px] text-white/30">/</span>
@@ -192,7 +192,7 @@ export default async function AlustajalePage({ params }: { params: Promise<{ loc
       <section className="max-w-[1280px] mx-auto px-[16px] sm:px-[24px] pt-[48px] sm:pt-[64px] pb-[16px]">
         <div className="flex items-end justify-between mb-[24px] flex-wrap gap-[12px]">
           <div>
-            <p className="text-[11px] uppercase tracking-[0.14em] text-[#0ea5a0] font-[700] mb-[6px] font-[family-name:var(--font-dm-sans)]">
+            <p className="text-[11px] uppercase tracking-[0.14em] text-[#0b7d79] font-[700] mb-[6px] font-[family-name:var(--font-dm-sans)]">
               {et ? "Nüüd elus · 3 valdkonda" : "Now live · 3 verticals"}
             </p>
             <h2 className="text-[24px] sm:text-[32px] font-[800] text-[#1a1a2e] font-[family-name:var(--font-dm-sans)]">
@@ -216,7 +216,7 @@ export default async function AlustajalePage({ params }: { params: Promise<{ loc
                   <span className="inline-block bg-[#0ea5a0] text-white text-[10px] font-bold uppercase tracking-[0.12em] px-[8px] py-[3px]">
                     {et ? "Valdkond" : "Vertical"}
                   </span>
-                  <ArrowRight size={16} strokeWidth={2.2} className="text-white/40 group-hover:text-[#0ea5a0] group-hover:translate-x-[2px] transition-all" />
+                  <ArrowRight size={16} strokeWidth={2.2} className="text-white/40 group-hover:text-[#0b7d79] group-hover:translate-x-[2px] transition-all" />
                 </div>
                 <h3 className="text-[20px] font-[800] mb-[8px] font-[family-name:var(--font-dm-sans)]">
                   {l.name}
@@ -237,7 +237,7 @@ export default async function AlustajalePage({ params }: { params: Promise<{ loc
       <section id="kits" className="max-w-[1280px] mx-auto px-[16px] sm:px-[24px] py-[56px] sm:py-[72px]">
         <div className="flex items-end justify-between mb-[28px] flex-wrap gap-[12px]">
           <div>
-            <p className="text-[11px] uppercase tracking-[0.14em] text-[#0ea5a0] font-[700] mb-[6px] font-[family-name:var(--font-dm-sans)]">
+            <p className="text-[11px] uppercase tracking-[0.14em] text-[#0b7d79] font-[700] mb-[6px] font-[family-name:var(--font-dm-sans)]">
               {et ? "Kuus valmis komplekti" : "Six ready kits"}
             </p>
             <h2 className="text-[24px] sm:text-[32px] font-[800] text-[#1a1a2e] font-[family-name:var(--font-dm-sans)]">
@@ -264,7 +264,7 @@ export default async function AlustajalePage({ params }: { params: Promise<{ loc
                 <div className="p-[22px] flex flex-col flex-1">
                   <div className="flex items-center gap-[10px] mb-[12px]">
                     <div className="w-[32px] h-[32px] bg-[#f0fdf9] flex items-center justify-center">
-                      <Icon size={16} strokeWidth={1.8} className="text-[#0ea5a0]" />
+                      <Icon size={16} strokeWidth={1.8} className="text-[#0b7d79]" />
                     </div>
                     <h3 className="text-[18px] font-[700] text-[#1a1a2e] font-[family-name:var(--font-dm-sans)] flex-1">
                       {kit.name}
@@ -276,7 +276,7 @@ export default async function AlustajalePage({ params }: { params: Promise<{ loc
                   <ul className="flex flex-col gap-[6px] mb-[18px] flex-1">
                     {kit.includes.map(item => (
                       <li key={item} className="flex items-start gap-[8px] text-[12.5px] text-[#334155] font-[family-name:var(--font-dm-sans)]">
-                        <CheckCircle2 size={13} strokeWidth={2} className="text-[#0ea5a0] mt-[3px] shrink-0" />
+                        <CheckCircle2 size={13} strokeWidth={2} className="text-[#0b7d79] mt-[3px] shrink-0" />
                         <span>{item}</span>
                       </li>
                     ))}
@@ -295,7 +295,7 @@ export default async function AlustajalePage({ params }: { params: Promise<{ loc
                     </div>
                     <Link
                       href={`/${locale}/arikliendile#quote`}
-                      className="inline-flex items-center gap-[6px] text-[13px] font-[600] text-[#0ea5a0] hover:text-[#0b7d79] font-[family-name:var(--font-dm-sans)]"
+                      className="inline-flex items-center gap-[6px] text-[13px] font-[600] text-[#0b7d79] hover:text-[#0b7d79] font-[family-name:var(--font-dm-sans)]"
                     >
                       {et ? "Küsi pakkumist" : "Request quote"} <ArrowRight size={13} strokeWidth={2.5} />
                     </Link>

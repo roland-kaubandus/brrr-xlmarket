@@ -37,7 +37,7 @@ export default function VevorPagination({ currentPage, totalPages, buildUrl }: P
 
   const linkBase = "inline-flex items-center justify-center min-w-[36px] h-9 px-2 rounded-lg text-sm font-medium transition-colors"
   const linkActive = "bg-[#0ea5a0] text-white"
-  const linkInactive = "border border-[#E2E8F0] text-[#1a1a2e] hover:border-[#0ea5a0] hover:text-[#0ea5a0]"
+  const linkInactive = "border border-[#E2E8F0] text-[#1a1a2e] hover:border-[#0ea5a0] hover:text-[#0b7d79]"
 
   return (
     <nav className="flex justify-center items-center gap-2 mt-10" aria-label="Pagination">

@@ -84,7 +84,7 @@ export default function CategoryImageEditor({ handle, displayName }: Props) {
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className="inline-flex items-center gap-1 text-[11px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-[#FCD34D] border border-[#0b7d79] text-[#1a1a2e] hover:bg-[#FBBF24]"
+        className="inline-flex items-center gap-1 text-[11px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-[#FCD34D] border border-[#0b7d79] text-[#1a1a2e] hover:bg-[#2dd4bf]"
       >
         ✎ Pilt
       </button>
@@ -152,7 +152,7 @@ export default function CategoryImageEditor({ handle, displayName }: Props) {
             />
 
             {status && (
-              <p className="text-[13px] text-[#1a1a2e] bg-[#FEF3C7] border border-[#FCD34D] rounded px-3 py-2 mb-3">
+              <p className="text-[13px] text-[#1a1a2e] bg-[#ccfbf1] border border-[#FCD34D] rounded px-3 py-2 mb-3">
                 {status}
               </p>
             )}

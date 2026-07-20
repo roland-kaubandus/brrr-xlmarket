@@ -73,7 +73,7 @@ export default function CategoriesTable({ rows }: { rows: CatRow[] }) {
             {filtered.slice(0, 1500).map((r) => (
               <tr key={r.handle} className="border-t border-[#F1F5F9] hover:bg-[#f0fdf9]">
                 <td className="px-3 py-1.5 text-[#1a1a2e]">
-                  <a href={`/et/kategooriad/${r.handle}`} target="_blank" rel="noreferrer" className="hover:text-[#0ea5a0]">{r.name}</a>
+                  <a href={`/et/kategooriad/${r.handle}`} target="_blank" rel="noreferrer" className="hover:text-[#0b7d79]">{r.name}</a>
                   {!r.isLeaf && <span className="ml-1 text-[10px] text-[#94A3B8]">(vanem)</span>}
                 </td>
                 <td className="px-3 py-1.5 text-[#94A3B8] font-mono text-[11px]">{r.handle}</td>

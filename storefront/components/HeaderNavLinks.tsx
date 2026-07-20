@@ -44,7 +44,7 @@ export default function HeaderNavLinks({ links }: { links: NavLink[] }) {
             href={link.href}
             className={`px-4 py-1.5 text-[0.95rem] font-semibold rounded-md transition-colors whitespace-nowrap ${
               active
-                ? "text-[#0ea5a0] hover:text-[#F59E0B] hover:bg-white/10"
+                ? "text-[#0b7d79] hover:text-[#0b7d79] hover:bg-white/10"
                 : "text-[#94A3B8] hover:text-white hover:bg-white/10"
             }`}
           >

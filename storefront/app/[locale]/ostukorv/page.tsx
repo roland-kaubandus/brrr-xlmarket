@@ -139,7 +139,7 @@ export default function CartPage() {
       <div className="max-w-[1360px] mx-auto px-4 sm:px-6 py-8 sm:py-12">
         {/* Breadcrumb */}
         <nav className="text-[12px] text-[#64748B] mb-7 flex items-center" aria-label="Breadcrumb">
-          <Link href={`/${locale}`} className="text-[#64748B] hover:text-[#0ea5a0] transition-colors">{locale === "et" ? "Avaleht" : "Home"}</Link>
+          <Link href={`/${locale}`} className="text-[#64748B] hover:text-[#0b7d79] transition-colors">{locale === "et" ? "Avaleht" : "Home"}</Link>
           <span className="mx-2 text-[#CBD5E1]">/</span>
           <span className="text-[#1a1a2e] font-medium">{locale === "et" ? "Ostukorv" : "Cart"}</span>
         </nav>
@@ -186,9 +186,9 @@ export default function CartPage() {
               {toFreeShipping > 0 && (
                 <div className="flex flex-col gap-2 p-4 bg-[#f0fdf9] border border-[#0ea5a0]/15 rounded-lg mb-1">
                   <div className="flex items-center gap-1.5">
-                    <Truck size={14} strokeWidth={1.5} className="text-[#0ea5a0] shrink-0" />
+                    <Truck size={14} strokeWidth={1.5} className="text-[#0b7d79] shrink-0" />
                     <span className="text-[13px] text-[#64748B]">
-                      {locale === "et" ? "Lisa veel " : "Add "}<strong className="text-[#0ea5a0]">{formatPrice(toFreeShipping, cart?.currency_code ?? "EUR")}</strong>{locale === "et" ? " tasuta tarneks" : " more for free shipping"}
+                      {locale === "et" ? "Lisa veel " : "Add "}<strong className="text-[#0b7d79]">{formatPrice(toFreeShipping, cart?.currency_code ?? "EUR")}</strong>{locale === "et" ? " tasuta tarneks" : " more for free shipping"}
                     </span>
                   </div>
                   <div className="h-1 bg-[#E2E8F0] rounded-full overflow-hidden">
@@ -240,7 +240,7 @@ export default function CartPage() {
                         </div>
                       </Link>
                       <Link href={`/${locale}/toode/${item.product_handle ?? ""}`} className="min-w-0">
-                        <p className="text-[13px] font-medium text-[#1a1a2e] hover:text-[#0ea5a0] line-clamp-2 leading-[1.4] transition-colors">
+                        <p className="text-[13px] font-medium text-[#1a1a2e] hover:text-[#0b7d79] line-clamp-2 leading-[1.4] transition-colors">
                           {item.product_title ?? item.title}
                         </p>
                       </Link>
@@ -315,11 +315,11 @@ export default function CartPage() {
                     </Link>
                     <div className="flex-1 min-w-0">
                       <Link href={`/${locale}/toode/${item.product_handle ?? ""}`}>
-                        <p className="text-[13px] font-medium text-[#1a1a2e] hover:text-[#0ea5a0] line-clamp-2 leading-[1.4] mb-1 transition-colors">
+                        <p className="text-[13px] font-medium text-[#1a1a2e] hover:text-[#0b7d79] line-clamp-2 leading-[1.4] mb-1 transition-colors">
                           {item.product_title ?? item.title}
                         </p>
                       </Link>
-                      <p className="text-[15px] font-bold text-[#0ea5a0] mb-2.5">
+                      <p className="text-[15px] font-bold text-[#0b7d79] mb-2.5">
                         {cart && formatPrice(item.total, cart.currency_code)}
                       </p>
                       <div className="flex items-center justify-between">
@@ -361,7 +361,7 @@ export default function CartPage() {
 
               <Link
                 href={categoryPath(locale as "et" | "en")}
-                className="inline-flex items-center gap-1.5 text-[13px] font-medium text-[#0ea5a0] hover:text-[#0b7d79] mt-1 self-start transition-colors"
+                className="inline-flex items-center gap-1.5 text-[13px] font-medium text-[#0b7d79] hover:text-[#0b7d79] mt-1 self-start transition-colors"
               >
                 ← {locale === "et" ? "Jätka ostlemist" : "Continue Shopping"}
               </Link>
@@ -401,7 +401,7 @@ export default function CartPage() {
                   <div className="border-t border-[#E2E8F0] pt-4 mb-5">
                     <div className="flex items-center justify-between">
                       <span className="text-[15px] font-semibold text-[#1a1a2e]">{locale === "et" ? "Kokku" : "Total"}</span>
-                      <span className="text-xl font-bold text-[#0ea5a0]">
+                      <span className="text-xl font-bold text-[#0b7d79]">
                         {formatPrice(cart.total, cart.currency_code)}
                       </span>
                     </div>

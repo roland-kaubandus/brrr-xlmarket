@@ -105,7 +105,7 @@ export default async function AriklendileePage({ params }: { params: Promise<{ l
             className="text-[12px] font-[family-name:var(--font-dm-sans)] text-white/55 mb-[24px] flex items-center"
             aria-label="Breadcrumb"
           >
-            <Link href={`/${locale}`} className="hover:text-[#0ea5a0] transition-colors">
+            <Link href={`/${locale}`} className="hover:text-[#0b7d79] transition-colors">
               {et ? "Avaleht" : "Home"}
             </Link>
             <span className="mx-[8px] text-white/30">/</span>
@@ -141,7 +141,7 @@ export default async function AriklendileePage({ params }: { params: Promise<{ l
 
       {/* Benefits grid */}
       <section className="max-w-[1280px] mx-auto px-[16px] sm:px-[24px] py-[56px] sm:py-[72px]">
-        <p className="text-[11px] uppercase tracking-[0.14em] text-[#0ea5a0] font-[700] mb-[6px] font-[family-name:var(--font-dm-sans)]">
+        <p className="text-[11px] uppercase tracking-[0.14em] text-[#0b7d79] font-[700] mb-[6px] font-[family-name:var(--font-dm-sans)]">
           {et ? "Miks osta B2B leti kaudu" : "Why buy through the B2B desk"}
         </p>
         <h2 className="text-[24px] sm:text-[32px] font-[800] text-[#1a1a2e] mb-[32px] font-[family-name:var(--font-dm-sans)] max-w-[680px]">
@@ -154,7 +154,7 @@ export default async function AriklendileePage({ params }: { params: Promise<{ l
             return (
               <div key={b.title_en} className="border border-[#E2E8F0] p-[22px] bg-white hover:border-[#0ea5a0] transition-colors">
                 <div className="w-[38px] h-[38px] bg-[#f0fdf9] flex items-center justify-center mb-[16px]">
-                  <Icon size={18} strokeWidth={1.6} className="text-[#0ea5a0]" />
+                  <Icon size={18} strokeWidth={1.6} className="text-[#0b7d79]" />
                 </div>
                 <h3 className="text-[16px] font-[700] text-[#1a1a2e] mb-[8px] font-[family-name:var(--font-dm-sans)]">
                   {et ? b.title_et : b.title_en}
@@ -193,7 +193,7 @@ export default async function AriklendileePage({ params }: { params: Promise<{ l
 
       {/* 3-step process */}
       <section className="max-w-[1280px] mx-auto px-[16px] sm:px-[24px] py-[56px] sm:py-[72px]">
-        <p className="text-[11px] uppercase tracking-[0.14em] text-[#0ea5a0] font-[700] mb-[6px] font-[family-name:var(--font-dm-sans)]">
+        <p className="text-[11px] uppercase tracking-[0.14em] text-[#0b7d79] font-[700] mb-[6px] font-[family-name:var(--font-dm-sans)]">
           {et ? "Kuidas see käib" : "How it works"}
         </p>
         <h2 className="text-[24px] sm:text-[32px] font-[800] text-[#1a1a2e] mb-[32px] font-[family-name:var(--font-dm-sans)] max-w-[680px]">
@@ -203,7 +203,7 @@ export default async function AriklendileePage({ params }: { params: Promise<{ l
         <div className="grid grid-cols-1 md:grid-cols-3 gap-[20px]">
           {STEPS.map(step => (
             <div key={step.n} className="border-t-2 border-[#0ea5a0] pt-[18px]">
-              <div className="text-[36px] font-[800] text-[#0ea5a0] tabular-nums leading-none mb-[10px] font-[family-name:var(--font-dm-sans)]">
+              <div className="text-[36px] font-[800] text-[#0b7d79] tabular-nums leading-none mb-[10px] font-[family-name:var(--font-dm-sans)]">
                 {step.n}
               </div>
               <h3 className="text-[18px] font-[700] text-[#1a1a2e] mb-[10px] font-[family-name:var(--font-dm-sans)]">
@@ -236,13 +236,13 @@ export default async function AriklendileePage({ params }: { params: Promise<{ l
               <div className="flex flex-col gap-[10px]">
                 <a
                   href="mailto:b2b@xlmarket.ee?subject=B2B quote request"
-                  className="inline-flex items-center gap-[10px] text-[14px] text-white/90 hover:text-[#0ea5a0] transition-colors font-[family-name:var(--font-dm-sans)]"
+                  className="inline-flex items-center gap-[10px] text-[14px] text-white/90 hover:text-[#0b7d79] transition-colors font-[family-name:var(--font-dm-sans)]"
                 >
                   <Mail size={15} strokeWidth={1.8} /> b2b@xlmarket.ee
                 </a>
                 <a
                   href="/sample-b2b-agreement.pdf"
-                  className="inline-flex items-center gap-[10px] text-[14px] text-white/90 hover:text-[#0ea5a0] transition-colors font-[family-name:var(--font-dm-sans)]"
+                  className="inline-flex items-center gap-[10px] text-[14px] text-white/90 hover:text-[#0b7d79] transition-colors font-[family-name:var(--font-dm-sans)]"
                 >
                   <FileText size={15} strokeWidth={1.8} /> {et ? "Näidis B2B leping (PDF)" : "Sample B2B agreement (PDF)"}
                 </a>

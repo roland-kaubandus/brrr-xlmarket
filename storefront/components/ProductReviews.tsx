@@ -14,7 +14,7 @@ export default function ProductReviews() {
         </h2>
         {!submitted && (
           <button
-            className="px-4 py-2 text-sm font-medium border border-[#0ea5a0] text-[#0ea5a0] hover:bg-[#f0fdf9] rounded-lg transition-colors duration-200"
+            className="px-4 py-2 text-sm font-medium border border-[#0ea5a0] text-[#0b7d79] hover:bg-[#f0fdf9] rounded-lg transition-colors duration-200"
             type="button"
             onClick={() => setSubmitted(true)}
           >

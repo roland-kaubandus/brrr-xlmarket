@@ -94,7 +94,7 @@ export default function CartSlideOver({ locale = "en" }: { locale?: string }) {
         {/* Header */}
         <div className="flex items-center justify-between px-5 py-4 border-b border-[#E2E8F0]">
           <div className="flex items-center gap-2.5">
-            <ShoppingCart size={20} strokeWidth={1.5} className="text-[#0ea5a0]" />
+            <ShoppingCart size={20} strokeWidth={1.5} className="text-[#0b7d79]" />
             <h2 className="text-[17px] font-semibold text-[#1a1a2e]">
               {locale === "et" ? "Ostukorv" : "Shopping Cart"}
             </h2>
@@ -154,7 +154,7 @@ export default function CartSlideOver({ locale = "en" }: { locale?: string }) {
                     <p className="text-[13px] font-medium text-[#1a1a2e] leading-[1.4] line-clamp-2 mb-1.5">
                       {item.title}
                     </p>
-                    <p className="text-[14px] font-bold text-[#0ea5a0]">
+                    <p className="text-[14px] font-bold text-[#0b7d79]">
                       {formatPrice(item.unit_price * item.quantity, item.currency_code)}
                     </p>
                     <div className="flex items-center gap-2 mt-2">

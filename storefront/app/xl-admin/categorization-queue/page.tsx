@@ -134,7 +134,7 @@ export default async function CategorizationQueuePage() {
                 <td className="px-4 py-3">
                   <Link
                     href={`/et/toode/${h.handle}`}
-                    className="text-[#0ea5a0] hover:underline font-medium"
+                    className="text-[#0b7d79] hover:underline font-medium"
                     target="_blank"
                   >
                     {h.title_en || h.title || h.handle}
