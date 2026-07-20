@@ -140,13 +140,12 @@ export default async function CategoryPage({ params, searchParams }: Props) {
     if (isFinite(maxVal) && maxVal >= 0) searchFilters.push(`price <= ${maxVal}`)
   }
   if (inStock) searchFilters.push("in_stock = true")
-  if (selectedCategories.length > 0) {
-    // Vasak KATEGOORIAD-filter = sama mehhanism mis otsing: `categories` väli
-    // (kategooria-NIMED, kõik tasemed) — mitte taxonomy.ancestors (handled).
-    const catFilters = selectedCategories.map(
-      (c) => `categories = "${c.replace(/"/g, '\\"')}"`
-    )
-    searchFilters.push(`(${catFilters.join(" OR ")})`)
+  // Vasak KATEGOORIAD-filter = handle-põhine (taxonomy.ancestors). Iga valik läheb
+  // ERALDI tavaelemendina (mitte "(a OR b)" ümbris) — /api/products parseFilter loeb
+  // AINULT lihtsaid `väli = "väärtus"` paare (";"-eraldus = AND); sulg/OR lükati maha
+  // → klõps ei kitsendanud. Mitmikvalik = AND (ristumine); üksikvalik (tavajuht) = õige.
+  for (const c of selectedCategories) {
+    searchFilters.push(`taxonomy.ancestors = "${c.replace(/"/g, '\\"')}"`)
   }
   if (currentQuickFilter) {
     // Multi-select: comma-separated tokens become AND conditions.
@@ -161,7 +160,6 @@ export default async function CategoryPage({ params, searchParams }: Props) {
   // --- Meili facet query (limit:0) — child counts + total + quick filters ---
   let totalCount = 0
   let rawAncestorFacets: Record<string, number> = {}
-  let rawCategoriesFacet: Record<string, number> = {}
   let quickFilterFacets: Record<string, number> = {}
   try {
     const meiliResult = await searchProducts({
@@ -172,7 +170,6 @@ export default async function CategoryPage({ params, searchParams }: Props) {
       filter: searchFilters,
       facets: [
         "taxonomy.ancestors",
-        "categories",
         "price",
         "in_stock",
         "filter_tokens",
@@ -181,10 +178,6 @@ export default async function CategoryPage({ params, searchParams }: Props) {
     totalCount = meiliResult.totalHits || meiliResult.estimatedTotalHits || 0
     const fd = meiliResult.facetDistribution || {}
     rawAncestorFacets = fd["taxonomy.ancestors"] || {}
-    // KATEGOORIAD vasak-filter = sama väli mis otsing (`categories`, kategooria-
-    // nimed kõigil tasemetel). Scope = jooksva kategooria tooted → EI kao tühjaks
-    // ühelgi tasandil (L3 tooted kannavad ancestor-nimesid), erinevalt childrenWithCounts'ist.
-    rawCategoriesFacet = fd["categories"] || {}
     quickFilterFacets = fd["filter_tokens"] || {}
 
     // Adaptive filters: disjunctive facet pattern. When the user selects
@@ -214,11 +207,21 @@ export default async function CategoryPage({ params, searchParams }: Props) {
     : []
   const hasCarousel = childrenWithCounts.length > 0
 
-  // KATEGOORIAD vasak-filter = TÄPSELT sama komponent + väli mis otsing:
-  // `categories` facet (kategooria-nimed) jooksva kategooria scope's. EI kao
-  // tühjaks ühelgi tasandil (L1/L2/L3), erinevalt childrenWithCounts'ist (L3-l tühi).
-  // Labeleid EI anta — nagu otsing, facet-võti ISE on nimi.
-  const categoryFacets: Record<string, number> = rawCategoriesFacet
+  // KATEGOORIAD vasak-filter = HANDLE-põhine `taxonomy.ancestors` facet jooksva
+  // kategooria scope's. Sama kategooria-hulk mis otsingu `categories` facet, AGA
+  // handle-võtmega — sest /api/products allowlist aktsepteerib AINULT handle-välju
+  // + isSafeHandleToken (kategooria-NIMED tühiku/äöü-ga lükati 400/maha → klõps ei
+  // kitsendanud). Scope = jooksva kategooria tooted → sisaldab ancestoreid → EI kao
+  // tühjaks ühelgi tasandil (L3-l ancestorid alles), erinevalt childrenWithCounts'ist.
+  const categoryFacets: Record<string, number> = {}
+  const categoryLabels: Record<string, string> = {}
+  for (const [h, count] of Object.entries(rawAncestorFacets)) {
+    if (h === handle || count <= 0) continue // jäta praegune kategooria välja
+    const cn = getNode(h)
+    if (!cn) continue // ainult SSoT-tuntud handle → korralik nimi (mitte toores handle)
+    categoryFacets[h] = count
+    categoryLabels[h] = nodeName(cn, locale)
+  }
 
   // No products AND unknown to SSoT AND Medusa → 404
   if (totalCount === 0 && !node && !category) notFound()
@@ -334,6 +337,7 @@ export default async function CategoryPage({ params, searchParams }: Props) {
                 currentCategories={selectedCategories}
                 currentInStock={inStock}
                 categoryFacets={categoryFacets}
+                categoryLabels={categoryLabels}
                 quickFilters={quickFilters}
                 filterGroups={filterGroups}
                 currentQuickFilter={currentQuickFilter}
@@ -371,6 +375,7 @@ export default async function CategoryPage({ params, searchParams }: Props) {
                     currentCategories={selectedCategories}
                     currentInStock={inStock}
                     categoryFacets={categoryFacets}
+                    categoryLabels={categoryLabels}
                     quickFilters={quickFilters}
                     filterGroups={filterGroups}
                     currentQuickFilter={currentQuickFilter}
