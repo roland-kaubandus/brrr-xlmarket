@@ -234,13 +234,16 @@ export default async function CategoryPage({ params, searchParams }: Props) {
     const prev = mergedHandleFacet[h] || 0
     mergedHandleFacet[h] = Math.max(prev, n)
   }
+  // KATEGOORIAD vasak-filter: OTSESED alamkategooriad (selle kategooria lapsed) +
+  // tootearvud — sama allikas mis SubcategoryCarousel (childrenWithCounts), et vasak-
+  // filter näitaks täpselt alamkategooriaid (mitte ancestor/L2+L3-segu mergedHandleFacet'ist).
+  void mergedHandleFacet
   const categoryFacets: Record<string, number> = {}
   const categoryLabels: Record<string, string> = {}
-  for (const [h, n] of Object.entries(mergedHandleFacet)) {
-    const childNode = getNode(h)
-    if (!childNode) continue
-    categoryFacets[h] = n
-    categoryLabels[h] = nodeName(childNode, locale)
+  for (const c of childrenWithCounts) {
+    if (c.count <= 0) continue
+    categoryFacets[c.handle] = c.count
+    categoryLabels[c.handle] = nodeName(c, locale)
   }
 
   // No products AND unknown to SSoT AND Medusa → 404
@@ -363,7 +366,7 @@ export default async function CategoryPage({ params, searchParams }: Props) {
                 currentQuickFilter={currentQuickFilter}
                 locale={locale}
                 basePath={categoryBasePath}
-                suppressSubcategoryFacet={hasCarousel}
+                suppressSubcategoryFacet={false}
               />
             </Suspense>
           </div>
@@ -401,7 +404,7 @@ export default async function CategoryPage({ params, searchParams }: Props) {
                     currentQuickFilter={currentQuickFilter}
                     locale={locale}
                     basePath={categoryBasePath}
-                    suppressSubcategoryFacet={hasCarousel}
+                    suppressSubcategoryFacet={false}
                   />
                 </Suspense>
               </div>
