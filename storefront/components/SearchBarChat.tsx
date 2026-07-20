@@ -183,9 +183,9 @@ export default function SearchBarChat({ locale, initialQuery, onClose }: Props) 
   return (
     <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-xl shadow-[0_10px_40px_rgba(0,0,0,0.18)] z-50 overflow-hidden border border-[#E2E8F0] flex flex-col max-h-[min(680px,80vh)]">
       {/* Header */}
-      <div className="px-4 py-3 bg-gradient-to-r from-[#1E293B] to-[#0F172A] text-white flex items-center justify-between">
+      <div className="px-4 py-3 bg-gradient-to-r from-[#1a1a2e] to-[#12121f] text-white flex items-center justify-between">
         <div className="flex items-center gap-2.5">
-          <span className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-[#D97706] text-white text-[13px] font-bold">
+          <span className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-[#0ea5a0] text-white text-[13px] font-bold">
             C
           </span>
           <div>
@@ -214,8 +214,8 @@ export default function SearchBarChat({ locale, initialQuery, onClose }: Props) 
               className={
                 "max-w-[85%] rounded-2xl px-3.5 py-2 text-[14px] leading-snug " +
                 (m.role === "user"
-                  ? "bg-[#D97706] text-white rounded-br-sm"
-                  : "bg-white border border-[#E2E8F0] text-[#1E293B] rounded-bl-sm")
+                  ? "bg-[#0ea5a0] text-white rounded-br-sm"
+                  : "bg-white border border-[#E2E8F0] text-[#1a1a2e] rounded-bl-sm")
               }
             >
               {m.text || (
@@ -262,12 +262,12 @@ export default function SearchBarChat({ locale, initialQuery, onClose }: Props) 
                     ) : null}
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="text-[13px] text-[#1E293B] truncate font-medium">{p.title}</p>
+                    <p className="text-[13px] text-[#1a1a2e] truncate font-medium">{p.title}</p>
                     {p.categories?.[0] && (
                       <p className="text-[11px] text-[#64748B] mt-0.5 truncate">{p.categories[0]}</p>
                     )}
                   </div>
-                  <span className="text-[13px] font-semibold text-[#1E293B] whitespace-nowrap">
+                  <span className="text-[13px] font-semibold text-[#1a1a2e] whitespace-nowrap">
                     {formatPrice(p.price)}
                   </span>
                 </Link>
@@ -286,12 +286,12 @@ export default function SearchBarChat({ locale, initialQuery, onClose }: Props) 
           onChange={(e) => setInput(e.target.value)}
           placeholder={t.askPlaceholder}
           disabled={busy}
-          className="flex-1 px-3.5 py-2 text-[14px] border border-[#E2E8F0] rounded-full focus:outline-none focus:ring-2 focus:ring-[#D97706]/30 focus:border-[#D97706] disabled:opacity-50"
+          className="flex-1 px-3.5 py-2 text-[14px] border border-[#E2E8F0] rounded-full focus:outline-none focus:ring-2 focus:ring-[#0ea5a0]/30 focus:border-[#0ea5a0] disabled:opacity-50"
         />
         <button
           type="submit"
           disabled={busy || !input.trim()}
-          className="w-9 h-9 flex-shrink-0 rounded-full bg-[#D97706] hover:bg-[#B45309] text-white flex items-center justify-center disabled:opacity-40"
+          className="w-9 h-9 flex-shrink-0 rounded-full bg-[#0ea5a0] hover:bg-[#0b7d79] text-white flex items-center justify-center disabled:opacity-40"
           aria-label={t.sendLabel}
         >
           <Send size={16} strokeWidth={2} />

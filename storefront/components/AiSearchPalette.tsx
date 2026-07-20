@@ -47,7 +47,7 @@ function AgentAvatar({ agent }: { agent?: "claudia" | "specialist" }) {
   return (
     <div
       className={`w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold text-white shrink-0 ${
-        isSpecialist ? "bg-[#0F766E]" : "bg-[#1E293B]"
+        isSpecialist ? "bg-[#0F766E]" : "bg-[#1a1a2e]"
       }`}
     >
       {isSpecialist ? "S" : "C"}
@@ -59,7 +59,7 @@ function ProductCard({ item, locale, onClick }: { item: ProductItem; locale: str
   return (
     <button
       onClick={onClick}
-      className="shrink-0 w-[120px] rounded-lg border border-[#F1F5F9] overflow-hidden text-left hover:border-[#D97706] transition-colors"
+      className="shrink-0 w-[120px] rounded-lg border border-[#F1F5F9] overflow-hidden text-left hover:border-[#0ea5a0] transition-colors"
     >
       <div className="w-full h-[80px] bg-[#F8FAFC] overflow-hidden relative">
         {item.thumbnail ? (
@@ -83,7 +83,7 @@ function ProductCard({ item, locale, onClick }: { item: ProductItem; locale: str
       </div>
       <div className="px-2 py-1.5">
         <p className="text-[11px] text-[#475569] leading-tight line-clamp-2 mb-1">{item.title}</p>
-        <p className="text-[12px] font-semibold text-[#D97706]">{formatPrice(item.price)}</p>
+        <p className="text-[12px] font-semibold text-[#0ea5a0]">{formatPrice(item.price)}</p>
       </div>
     </button>
   )
@@ -340,19 +340,19 @@ export default function AiSearchPalette({ locale = "en" }: { locale?: string }) 
             onKeyDown={handleKeyDown}
             placeholder={placeholder}
             disabled={isStreaming}
-            className="flex-1 border-none outline-none text-[15px] text-[#0F172A] bg-transparent placeholder:text-[#94A3B8] disabled:opacity-60"
+            className="flex-1 border-none outline-none text-[15px] text-[#12121f] bg-transparent placeholder:text-[#94A3B8] disabled:opacity-60"
           />
           <div className="flex items-center gap-2 shrink-0">
             <span
               className="px-2 py-0.5 rounded-md text-white text-[0.6rem] font-bold uppercase tracking-wider"
-              style={{ background: "linear-gradient(135deg, #D97706, #E8910A)" }}
+              style={{ background: "linear-gradient(135deg, #0ea5a0, #E8910A)" }}
             >
               AI
             </span>
             <button
               onClick={sendMessage}
               disabled={isStreaming || !input.trim()}
-              className="w-7 h-7 rounded-full bg-[#D97706] text-white flex items-center justify-center disabled:opacity-40 transition-opacity"
+              className="w-7 h-7 rounded-full bg-[#0ea5a0] text-white flex items-center justify-center disabled:opacity-40 transition-opacity"
               aria-label={sendLabel}
             >
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -373,7 +373,7 @@ export default function AiSearchPalette({ locale = "en" }: { locale?: string }) 
                   handleClose()
                   router.push(action.url(locale))
                 }}
-                className="px-3 py-1.5 rounded-full border border-[#E2E8F0] text-[12px] text-[#475569] hover:border-[#D97706] hover:text-[#D97706] transition-colors"
+                className="px-3 py-1.5 rounded-full border border-[#E2E8F0] text-[12px] text-[#475569] hover:border-[#0ea5a0] hover:text-[#0ea5a0] transition-colors"
               >
                 {action.label}
               </button>
@@ -412,7 +412,7 @@ export default function AiSearchPalette({ locale = "en" }: { locale?: string }) 
             if (msg.role === "user") {
               return (
                 <div key={msg.id} className="flex justify-end">
-                  <div className="max-w-[75%] px-3.5 py-2.5 rounded-[12px_4px_12px_12px] bg-[#1E293B] text-[13px] text-white leading-relaxed">
+                  <div className="max-w-[75%] px-3.5 py-2.5 rounded-[12px_4px_12px_12px] bg-[#1a1a2e] text-[13px] text-white leading-relaxed">
                     {msg.content}
                   </div>
                 </div>

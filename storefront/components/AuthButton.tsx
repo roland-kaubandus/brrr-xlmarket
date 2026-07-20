@@ -22,12 +22,12 @@ export default function AuthButton() {
     return (
       <Link
         href={`/${locale}/account`}
-        className="hidden md:flex items-center gap-2 text-[#475569] text-[13px] hover:text-[#D97706] transition-colors"
+        className="hidden md:flex items-center gap-2 text-[#475569] text-[13px] hover:text-[#0ea5a0] transition-colors"
       >
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
           <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" /><circle cx="12" cy="7" r="4" />
         </svg>
-        <span className="text-[#1E293B] font-medium">{name}</span>
+        <span className="text-[#1a1a2e] font-medium">{name}</span>
       </Link>
     )
   }
@@ -35,12 +35,12 @@ export default function AuthButton() {
   return (
     <Link
       href={`/${locale}/login`}
-      className="hidden md:flex items-center gap-2 text-[#475569] text-[13px] hover:text-[#D97706] transition-colors"
+      className="hidden md:flex items-center gap-2 text-[#475569] text-[13px] hover:text-[#0ea5a0] transition-colors"
     >
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" /><circle cx="12" cy="7" r="4" />
       </svg>
-      <span className="text-[#94A3B8]">Hello, <strong className="text-[#1E293B]">Sign In</strong></span>
+      <span className="text-[#94A3B8]">Hello, <strong className="text-[#1a1a2e]">Sign In</strong></span>
     </Link>
   )
 }

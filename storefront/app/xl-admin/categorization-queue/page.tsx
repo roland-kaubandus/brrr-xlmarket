@@ -110,7 +110,7 @@ export default async function CategorizationQueuePage() {
         <p className="text-sm mb-2">
           <strong>Drain command</strong> (runs classify pipeline with updated rules):
         </p>
-        <pre className="bg-[#1E293B] text-[#E2E8F0] p-3 rounded text-xs overflow-x-auto">
+        <pre className="bg-[#1a1a2e] text-[#E2E8F0] p-3 rounded text-xs overflow-x-auto">
           node scripts/drain-review-queue.mjs --limit=100
         </pre>
       </div>
@@ -134,7 +134,7 @@ export default async function CategorizationQueuePage() {
                 <td className="px-4 py-3">
                   <Link
                     href={`/et/toode/${h.handle}`}
-                    className="text-[#D97706] hover:underline font-medium"
+                    className="text-[#0ea5a0] hover:underline font-medium"
                     target="_blank"
                   >
                     {h.title_en || h.title || h.handle}

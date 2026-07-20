@@ -107,21 +107,21 @@ export default function SearchBar({ locale = "en", variant = "dark" }: { locale?
 
   // Variant-based styling
   const wrapperCls = variant === "light"
-    ? "flex items-center bg-[#F8FAFC] border-[1.5px] border-[#E2E8F0] rounded-lg overflow-hidden h-[36px] transition-colors focus-within:bg-white focus-within:border-[#D97706] focus-within:shadow-[0_0_0_3px_rgba(217,119,6,0.10)]"
-    : "flex items-center bg-white/10 border border-white/20 rounded-full overflow-hidden h-[44px] md:h-[40px] transition-colors focus-within:bg-white/[0.18] focus-within:border-[#D97706]"
+    ? "flex items-center bg-[#F8FAFC] border-[1.5px] border-[#E2E8F0] rounded-lg overflow-hidden h-[36px] transition-colors focus-within:bg-white focus-within:border-[#0ea5a0] focus-within:shadow-[0_0_0_3px_rgba(217,119,6,0.10)]"
+    : "flex items-center bg-white/10 border border-white/20 rounded-full overflow-hidden h-[44px] md:h-[40px] transition-colors focus-within:bg-white/[0.18] focus-within:border-[#0ea5a0]"
   const inputCls = variant === "light"
-    ? "w-full bg-transparent pl-4 pr-2 py-2.5 md:py-2 text-[15px] md:text-[14px] text-[#0F172A] placeholder:text-[#94A3B8] focus:outline-none"
+    ? "w-full bg-transparent pl-4 pr-2 py-2.5 md:py-2 text-[15px] md:text-[14px] text-[#12121f] placeholder:text-[#94A3B8] focus:outline-none"
     : "w-full bg-transparent pl-4 pr-2 py-2.5 md:py-2 text-[15px] md:text-[14px] text-white placeholder:text-white/50 focus:outline-none"
   const placeholderCls = variant === "light" ? "text-[#94A3B8]" : "text-white/50"
-  const clearBtnCls = variant === "light" ? "px-3 text-[#94A3B8] hover:text-[#0F172A]" : "px-3 text-white/50 hover:text-white"
+  const clearBtnCls = variant === "light" ? "px-3 text-[#94A3B8] hover:text-[#12121f]" : "px-3 text-white/50 hover:text-white"
   const searchBtnCls = variant === "light"
     ? "h-[36px] w-[52px] bg-transparent hover:bg-[#E2E8F0] flex items-center justify-center rounded-r-lg transition-colors"
-    : "h-[44px] md:h-[40px] w-[52px] bg-[#D97706] hover:bg-[#B45309] flex items-center justify-center rounded-r-full transition-colors"
+    : "h-[44px] md:h-[40px] w-[52px] bg-[#0ea5a0] hover:bg-[#0b7d79] flex items-center justify-center rounded-r-full transition-colors"
   const searchIconCls = variant === "light" ? "text-[#94A3B8]" : "text-white"
   const chatBtnCls = variant === "light"
     ? "h-[36px] w-[44px] bg-transparent hover:bg-[#FEF3C7] flex items-center justify-center transition-colors border-l border-[#E2E8F0]"
     : "h-[44px] md:h-[40px] w-[44px] bg-white/5 hover:bg-white/15 flex items-center justify-center transition-colors border-l border-white/15"
-  const chatIconCls = variant === "light" ? "text-[#D97706]" : "text-[#FCD34D]"
+  const chatIconCls = variant === "light" ? "text-[#0ea5a0]" : "text-[#FCD34D]"
 
   // Rotate placeholder text. Every 3rd rotation we show a long AI prompt hint
   // instead of a single keyword, so the user discovers Claudia naturally.
@@ -302,7 +302,7 @@ export default function SearchBar({ locale = "en", variant = "dark" }: { locale?
               key={hit.id}
               onClick={() => goToProduct(hit.handle)}
               className={`flex items-center gap-3 w-full px-4 py-3 text-left transition-colors ${
-                activeIdx === i ? "bg-[#FFFBEB]" : "hover:bg-[#FAFAFA]"
+                activeIdx === i ? "bg-[#f0fdf9]" : "hover:bg-[#FAFAFA]"
               }`}
             >
               {hit.thumbnail ? (
@@ -314,14 +314,14 @@ export default function SearchBar({ locale = "en", variant = "dark" }: { locale?
               )}
               <div className="flex-1 min-w-0">
                 <p
-                  className="text-[14px] text-[#1E293B] truncate [&>mark]:bg-[#FFFBEB] [&>mark]:text-[#D97706] [&>mark]:font-semibold"
+                  className="text-[14px] text-[#1a1a2e] truncate [&>mark]:bg-[#f0fdf9] [&>mark]:text-[#0ea5a0] [&>mark]:font-semibold"
                   dangerouslySetInnerHTML={{ __html: safeHighlightedTitle(hit._formatted?.title, hit.title) }}
                 />
                 {hit.categories?.[0] && (
                   <p className="text-[12px] text-[#64748B] mt-0.5">{hit.categories[0]}</p>
                 )}
               </div>
-              <span className="text-[14px] font-semibold text-[#1E293B] whitespace-nowrap">
+              <span className="text-[14px] font-semibold text-[#1a1a2e] whitespace-nowrap">
                 {formatPrice(hit.price)}
               </span>
             </button>
@@ -329,8 +329,8 @@ export default function SearchBar({ locale = "en", variant = "dark" }: { locale?
           {results.totalHits > results.hits.length && (
             <button
               onClick={goToResults}
-              className={`w-full px-4 py-3.5 text-center text-[14px] font-medium text-[#D97706] hover:bg-[#FFFBEB] border-t border-[#E2E8F0] transition-colors ${
-                activeIdx === results.hits.length ? "bg-[#FFFBEB]" : ""
+              className={`w-full px-4 py-3.5 text-center text-[14px] font-medium text-[#0ea5a0] hover:bg-[#f0fdf9] border-t border-[#E2E8F0] transition-colors ${
+                activeIdx === results.hits.length ? "bg-[#f0fdf9]" : ""
               }`}
             >
               View all results ({results.totalHits.toLocaleString("en-IE")}) &rarr;

@@ -11,14 +11,14 @@ export default function ComparePage() {
   if (items.length === 0) {
     return (
       <div className="max-w-[1360px] mx-auto px-4 py-12 text-center">
-        <h1 className="text-2xl font-bold text-[#1E293B] mb-4">
+        <h1 className="text-2xl font-bold text-[#1a1a2e] mb-4">
           {locale === "et" ? "Toodete võrdlus" : "Product Comparison"}
         </h1>
         <p className="text-[#64748B] mb-6">
           {locale === "et" ? "Võrdlusesse pole tooteid lisatud. Sirvi tooteid ja vajuta \"Lisa võrdlusse\", et alustada." : "No products added to compare. Browse products and click \"Add to Compare\" to start."}
         </p>
         <Link href={`/${locale}`}
-          className="inline-block px-6 py-3 bg-[#D97706] text-white rounded-lg font-semibold hover:bg-[#B45309] transition-colors">
+          className="inline-block px-6 py-3 bg-[#0ea5a0] text-white rounded-lg font-semibold hover:bg-[#0b7d79] transition-colors">
           {locale === "et" ? "Sirvi tooteid" : "Browse Products"}
         </Link>
       </div>
@@ -34,17 +34,17 @@ export default function ComparePage() {
     <div className="max-w-[1360px] mx-auto px-4 py-8">
       {/* Breadcrumb */}
       <nav className="text-xs text-[#64748B] mb-4 flex items-center">
-        <Link href={`/${locale}`} className="text-[#64748B] hover:text-[#D97706]">
+        <Link href={`/${locale}`} className="text-[#64748B] hover:text-[#0ea5a0]">
           {locale === "et" ? "Avaleht" : "Home"}
         </Link>
         <span className="mx-1.5 text-[#CBD5E1]">&gt;</span>
-        <span className="text-[#1E293B] font-medium">
+        <span className="text-[#1a1a2e] font-medium">
           {locale === "et" ? "Võrdle tooteid" : "Compare Products"}
         </span>
       </nav>
 
       <div className="flex items-center justify-between mb-6">
-        <h1 className="text-2xl font-bold text-[#1E293B]">
+        <h1 className="text-2xl font-bold text-[#1a1a2e]">
           {locale === "et" ? "Võrdle tooteid" : "Compare Products"}
           <span className="text-base font-normal text-[#64748B] ml-2">({items.length})</span>
         </h1>
@@ -77,7 +77,7 @@ export default function ComparePage() {
                           <div className="w-full h-full flex items-center justify-center text-[#CBD5E1]">—</div>
                         )}
                       </div>
-                      <p className="text-xs font-medium text-[#1E293B] line-clamp-2 hover:text-[#D97706] transition-colors">{item.title}</p>
+                      <p className="text-xs font-medium text-[#1a1a2e] line-clamp-2 hover:text-[#0ea5a0] transition-colors">{item.title}</p>
                     </Link>
                   </div>
                 </th>
@@ -90,7 +90,7 @@ export default function ComparePage() {
               </th>
               {items.map(item => (
                 <td key={item.id} className="p-4 text-center">
-                  <span className="font-bold text-lg text-[#1E293B]">{item.price || "—"}</span>
+                  <span className="font-bold text-lg text-[#1a1a2e]">{item.price || "—"}</span>
                 </td>
               ))}
             </tr>
@@ -101,7 +101,7 @@ export default function ComparePage() {
               <tr key={key} className={`border-b border-[#E2E8F0] ${i % 2 === 0 ? "bg-[#F8FAFC]" : "bg-white"}`}>
                 <td className="p-4 text-sm font-medium text-[#64748B]">{key}</td>
                 {items.map(item => (
-                  <td key={item.id} className="p-4 text-sm text-[#1E293B] text-center">
+                  <td key={item.id} className="p-4 text-sm text-[#1a1a2e] text-center">
                     {item.specs[key] || "—"}
                   </td>
                 ))}

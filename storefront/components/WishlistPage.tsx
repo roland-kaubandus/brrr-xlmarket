@@ -36,7 +36,7 @@ export default function WishlistPage() {
     <div className="max-w-[1280px] mx-auto px-[16px] sm:px-[24px] py-[40px]">
       <div className="flex items-center gap-[10px] mb-[32px]">
         <Heart size={22} strokeWidth={1.5} className="text-[#E8650A]" />
-        <h1 className="text-[28px] font-[700] font-[family-name:var(--font-dm-sans)] text-[#1E293B]">
+        <h1 className="text-[28px] font-[700] font-[family-name:var(--font-dm-sans)] text-[#1a1a2e]">
           {locale === "et" ? "Lemmikud" : "Wishlist"}
         </h1>
         {items.length > 0 && (
@@ -49,7 +49,7 @@ export default function WishlistPage() {
       {items.length === 0 ? (
         <div className="flex flex-col items-center justify-center py-[80px] text-center">
           <Heart size={56} strokeWidth={1} className="text-[#E8E8E8] mb-[20px]" />
-          <p className="text-[18px] font-[600] font-[family-name:var(--font-dm-sans)] text-[#1E293B] mb-[8px]">
+          <p className="text-[18px] font-[600] font-[family-name:var(--font-dm-sans)] text-[#1a1a2e] mb-[8px]">
             {locale === "et" ? "Sinu lemmikute nimekiri on tühi" : "Your wishlist is empty"}
           </p>
           <p className="text-[14px] font-[family-name:var(--font-dm-sans)] text-[#999999] mb-[24px]">
@@ -78,7 +78,7 @@ export default function WishlistPage() {
               </Link>
               <div className="flex-1 min-w-0">
                 <Link href={`/${locale}/toode/${item.handle}`}>
-                  <p className="text-[13px] font-[500] font-[family-name:var(--font-dm-sans)] text-[#1E293B] leading-[1.4] line-clamp-2 hover:text-[#D97706] transition-colors mb-[6px]">
+                  <p className="text-[13px] font-[500] font-[family-name:var(--font-dm-sans)] text-[#1a1a2e] leading-[1.4] line-clamp-2 hover:text-[#0ea5a0] transition-colors mb-[6px]">
                     {item.title}
                   </p>
                 </Link>

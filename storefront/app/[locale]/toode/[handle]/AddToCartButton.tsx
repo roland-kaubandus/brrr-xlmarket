@@ -76,17 +76,17 @@ export default function AddToCartButton({ variantId }: { variantId: string }) {
           <button
             onClick={() => setQty(Math.max(1, qty - 1))}
             aria-label="Decrease quantity"
-            className="w-10 h-12 flex items-center justify-center hover:bg-[#F8FAFC] active:bg-[#E2E8F0] text-[#1E293B] font-medium text-base transition-colors duration-200"
+            className="w-10 h-12 flex items-center justify-center hover:bg-[#F8FAFC] active:bg-[#E2E8F0] text-[#1a1a2e] font-medium text-base transition-colors duration-200"
           >
             -
           </button>
-          <span className="w-12 h-12 flex items-center justify-center border-x border-[#E2E8F0] text-sm text-[#1E293B] font-medium tabular-nums">
+          <span className="w-12 h-12 flex items-center justify-center border-x border-[#E2E8F0] text-sm text-[#1a1a2e] font-medium tabular-nums">
             {qty}
           </span>
           <button
             onClick={() => setQty(Math.min(99, qty + 1))}
             aria-label="Increase quantity"
-            className="w-10 h-12 flex items-center justify-center hover:bg-[#F8FAFC] active:bg-[#E2E8F0] text-[#1E293B] font-medium text-base transition-colors duration-200"
+            className="w-10 h-12 flex items-center justify-center hover:bg-[#F8FAFC] active:bg-[#E2E8F0] text-[#1a1a2e] font-medium text-base transition-colors duration-200"
           >
             +
           </button>
@@ -100,7 +100,7 @@ export default function AddToCartButton({ variantId }: { variantId: string }) {
             "flex-1 flex items-center justify-center gap-2 h-12 px-6 font-bold text-base rounded-lg disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200 " +
             (added
               ? "bg-green-600 text-white hover:bg-green-700"
-              : "bg-[#D97706] text-white hover:bg-[#B45309]")
+              : "bg-[#0ea5a0] text-white hover:bg-[#0b7d79]")
           }
         >
           {loading ? (

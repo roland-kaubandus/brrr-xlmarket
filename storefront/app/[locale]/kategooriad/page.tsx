@@ -58,7 +58,7 @@ function CategoryCard({ node, locale }: CategoryCardProps) {
       <Link
         href={`/${locale}/kategooriad/${node.handle}`}
         prefetch={false}
-        className="flex flex-col items-center justify-start text-center p-3 rounded-xl bg-white border border-[#E2E8F0] hover:border-[#E8920A] hover:shadow-sm transition-all"
+        className="flex flex-col items-center justify-start text-center p-3 rounded-xl bg-white border border-[#E2E8F0] hover:border-[#0ea5a0] hover:shadow-sm transition-all"
       >
         <div className="w-full aspect-square rounded-lg overflow-hidden mb-2.5 bg-[#F8FAFC] flex items-center justify-center">
           <CategoryThumb
@@ -69,7 +69,7 @@ function CategoryCard({ node, locale }: CategoryCardProps) {
             l1_handle={l1Handle}
           />
         </div>
-        <span className="text-[13px] font-semibold text-[#1E293B] line-clamp-2 leading-snug min-h-[34px] group-hover:text-[#B45309]">
+        <span className="text-[13px] font-semibold text-[#1a1a2e] line-clamp-2 leading-snug min-h-[34px] group-hover:text-[#0b7d79]">
           {name}
         </span>
         {count > 0 ? (
@@ -144,13 +144,13 @@ export default async function CategoriesIndexPage({ params }: { params: Promise<
   return (
     <main className="mx-auto max-w-[1440px] px-4 md:px-8 py-8 md:py-12">
       <nav className="text-[14px] text-[#64748B] mb-4" aria-label="Breadcrumb">
-        <Link href={`/${locale}`} className="hover:text-[#E8920A]">{locale === "et" ? "Avaleht" : "Home"}</Link>
+        <Link href={`/${locale}`} className="hover:text-[#0ea5a0]">{locale === "et" ? "Avaleht" : "Home"}</Link>
         <span className="mx-2.5 text-[#CBD5E1]">&rsaquo;</span>
-        <span className="text-[#1E293B] font-semibold">{heading}</span>
+        <span className="text-[#1a1a2e] font-semibold">{heading}</span>
       </nav>
 
       <header className="mb-10 md:mb-14 max-w-[760px]">
-        <h1 className="text-[36px] md:text-[52px] font-bold text-[#1E293B] tracking-tight mb-3 leading-[1.05]">
+        <h1 className="text-[36px] md:text-[52px] font-bold text-[#1a1a2e] tracking-tight mb-3 leading-[1.05]">
           {heading}
         </h1>
         <p className="text-[15px] md:text-[17px] text-[#64748B]">

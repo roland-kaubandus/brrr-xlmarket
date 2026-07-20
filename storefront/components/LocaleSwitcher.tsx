@@ -18,7 +18,7 @@ export default function LocaleSwitcher({ locale, variant = "light" }: { locale: 
   const isDark = variant === "dark"
   const inactiveClass = isDark
     ? "text-white/50 hover:text-white"
-    : "text-[#94A3B8] hover:text-[#1E293B]"
+    : "text-[#94A3B8] hover:text-[#1a1a2e]"
   const dividerClass = isDark ? "text-white/20" : "text-[#CBD5E1]"
 
   return (
@@ -26,7 +26,7 @@ export default function LocaleSwitcher({ locale, variant = "light" }: { locale: 
       <Link
         href={etHref}
         className={`px-1.5 py-1 rounded-l transition-colors ${
-          locale === "et" ? "text-[#D97706]" : inactiveClass
+          locale === "et" ? "text-[#0ea5a0]" : inactiveClass
         }`}
         aria-current={locale === "et" ? "page" : undefined}
         aria-label="Switch to Estonian"
@@ -37,7 +37,7 @@ export default function LocaleSwitcher({ locale, variant = "light" }: { locale: 
       <Link
         href={enHref}
         className={`px-1.5 py-1 rounded-r transition-colors ${
-          locale === "en" ? "text-[#D97706]" : inactiveClass
+          locale === "en" ? "text-[#0ea5a0]" : inactiveClass
         }`}
         aria-current={locale === "en" ? "page" : undefined}
         aria-label="Switch to English"

@@ -24,7 +24,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
   if (!session) redirect("/admin-login")
   return (
     <div className="min-h-screen bg-[#F8FAFC]">
-      <header className="bg-[#1E293B] text-white px-6 py-4 flex items-center gap-6">
+      <header className="bg-[#1a1a2e] text-white px-6 py-4 flex items-center gap-6">
         <span className="font-bold text-lg">XL Admin</span>
         <nav className="flex gap-4 text-sm">
           <Link href="/xl-admin/taxonomy-health" className="hover:text-[#FDE68A]">

@@ -10,7 +10,7 @@ export default function CollapsibleSection({ title, children, defaultOpen = fals
         onClick={() => setOpen(!open)}
         className="w-full flex items-center justify-between py-5 text-left group"
       >
-        <h2 className="text-[17px] font-bold text-[#1E293B]">{title}</h2>
+        <h2 className="text-[17px] font-bold text-[#1a1a2e]">{title}</h2>
         <ChevronDown
           size={20}
           className={`text-[#94A3B8] transition-transform duration-200 flex-shrink-0 ${open ? "rotate-180" : ""}`}

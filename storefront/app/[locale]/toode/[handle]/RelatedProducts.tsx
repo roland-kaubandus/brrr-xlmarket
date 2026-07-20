@@ -37,7 +37,7 @@ function HorizontalRow({ title, products, locale }: { title: string; products: R
   if (products.length === 0) return null
   return (
     <section className="mt-8 md:mt-12 pt-6 md:pt-8 border-t border-[#E2E8F0]">
-      <h2 className="text-[15px] md:text-[20px] font-bold text-[#1E293B] mb-3 md:mb-5">
+      <h2 className="text-[15px] md:text-[20px] font-bold text-[#1a1a2e] mb-3 md:mb-5">
         {title}
       </h2>
       <div className="overflow-x-auto scrollbar-hide -mx-4 px-4 md:-mx-6 md:px-6">

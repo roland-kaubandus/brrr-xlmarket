@@ -124,14 +124,14 @@ export default function VevorProductCard({ product, locale }: { product: Product
 
         {/* Product info */}
         <div className="p-3 sm:p-3.5 md:p-5 pt-2.5 sm:pt-3 md:pt-4">
-          <h3 className="text-[13px] md:text-[16px] text-[#334155] line-clamp-2 leading-snug group-hover:text-[#1E293B] transition-colors">
+          <h3 className="text-[13px] md:text-[16px] text-[#334155] line-clamp-2 leading-snug group-hover:text-[#1a1a2e] transition-colors">
             {product.title}
           </h3>
 
           {/* Price */}
           {price && (
             <div className="mt-2 md:mt-3 flex items-baseline gap-2 flex-wrap">
-              <span className="font-bold text-[16px] sm:text-[17px] md:text-[22px] text-[#1E293B]">
+              <span className="font-bold text-[16px] sm:text-[17px] md:text-[22px] text-[#1a1a2e]">
                 {formatPrice(price.calculated_amount, price.currency_code)}
               </span>
               {discount > 0 && (
@@ -181,8 +181,8 @@ export default function VevorProductCard({ product, locale }: { product: Product
         aria-label={isCompared ? "Remove from compare" : "Add to compare"}
         className={`absolute bottom-3 right-3 z-20 flex items-center gap-1.5 px-3 h-8 rounded-full shadow-sm text-[12px] font-semibold transition-colors ${
           isCompared
-            ? "bg-[#D97706] text-white hover:bg-[#B45309]"
-            : "bg-white hover:bg-[#FFFBEB] text-[#475569] hover:text-[#D97706] border border-[#E2E8F0]"
+            ? "bg-[#0ea5a0] text-white hover:bg-[#0b7d79]"
+            : "bg-white hover:bg-[#f0fdf9] text-[#475569] hover:text-[#0ea5a0] border border-[#E2E8F0]"
         }`}
       >
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

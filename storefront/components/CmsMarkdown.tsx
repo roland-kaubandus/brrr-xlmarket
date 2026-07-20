@@ -108,14 +108,14 @@ export function CmsMarkdown({ body }: { body: string }) {
       {blocks.map((block, i) => {
         if (block.type === "h2") {
           return (
-            <h2 key={i} className="text-[18px] font-[600] font-[family-name:var(--font-dm-sans)] text-[#1E293B] mt-[32px] mb-[12px]">
+            <h2 key={i} className="text-[18px] font-[600] font-[family-name:var(--font-dm-sans)] text-[#1a1a2e] mt-[32px] mb-[12px]">
               {block.text}
             </h2>
           )
         }
         if (block.type === "h3") {
           return (
-            <h3 key={i} className="text-[15px] font-[600] font-[family-name:var(--font-dm-sans)] text-[#1E293B] mt-[24px] mb-[8px]">
+            <h3 key={i} className="text-[15px] font-[600] font-[family-name:var(--font-dm-sans)] text-[#1a1a2e] mt-[24px] mb-[8px]">
               {block.text}
             </h3>
           )
@@ -139,7 +139,7 @@ export function CmsMarkdown({ body }: { body: string }) {
                 <thead>
                   <tr>
                     {block.headers.map((h, j) => (
-                      <th key={j} className="text-left border-b border-[#E2E8F0] py-[8px] pr-[16px] font-[600] text-[#1E293B] whitespace-nowrap">{h}</th>
+                      <th key={j} className="text-left border-b border-[#E2E8F0] py-[8px] pr-[16px] font-[600] text-[#1a1a2e] whitespace-nowrap">{h}</th>
                     ))}
                   </tr>
                 </thead>

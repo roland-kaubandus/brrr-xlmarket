@@ -62,7 +62,7 @@ export default function ProductPageClient({ handle, locale }: Props) {
         </p>
         <button
           onClick={() => { setError(false); setData(null) }}
-          className="px-4 py-2 bg-[#D97706] text-white rounded-lg text-sm font-medium"
+          className="px-4 py-2 bg-[#0ea5a0] text-white rounded-lg text-sm font-medium"
         >
           Try again
         </button>

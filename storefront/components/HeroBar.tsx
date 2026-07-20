@@ -78,7 +78,7 @@ export default function HeroBar({ locale = "en" }: { locale?: string }) {
         >
           <div className="max-w-[1440px] mx-auto w-full px-6 sm:px-10 md:px-16">
             <div className="max-w-[520px]">
-              <span className="inline-block bg-[#D97706]/90 text-white text-[11px] font-bold px-3 py-1 uppercase tracking-wider mb-4">
+              <span className="inline-block bg-[#0ea5a0]/90 text-white text-[11px] font-bold px-3 py-1 uppercase tracking-wider mb-4">
                 {slide.badge}
               </span>
               <h2
@@ -92,7 +92,7 @@ export default function HeroBar({ locale = "en" }: { locale?: string }) {
               </p>
               <Link
                 href={`/${locale}${slide.ctaHref}`}
-                className="inline-block px-7 py-3 bg-[#D97706] text-white font-semibold text-[14px] hover:bg-[#B45309] transition-colors"
+                className="inline-block px-7 py-3 bg-[#0ea5a0] text-white font-semibold text-[14px] hover:bg-[#0b7d79] transition-colors"
               >
                 {slide.cta} &rarr;
               </Link>
@@ -110,7 +110,7 @@ export default function HeroBar({ locale = "en" }: { locale?: string }) {
             aria-label={`Slide ${i + 1}`}
             className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
               i === current
-                ? "bg-[#D97706] w-7"
+                ? "bg-[#0ea5a0] w-7"
                 : "bg-white/40 hover:bg-white/70"
             }`}
           />

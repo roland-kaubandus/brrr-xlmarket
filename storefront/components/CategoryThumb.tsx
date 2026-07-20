@@ -67,14 +67,14 @@ export default function CategoryThumb({
       aria-hidden={!alt}
     >
       {Icon ? (
-        <Icon size={iconSize} strokeWidth={1.4} color="#D97706" />
+        <Icon size={iconSize} strokeWidth={1.4} color="#0ea5a0" />
       ) : (
         <svg
           width={iconSize}
           height={iconSize}
           viewBox="0 0 24 24"
           fill="none"
-          stroke="#D97706"
+          stroke="#0ea5a0"
           strokeWidth="1.5"
           strokeLinecap="round"
           strokeLinejoin="round"

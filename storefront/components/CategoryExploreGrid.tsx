@@ -21,8 +21,8 @@ export default function CategoryExploreGrid({
       <div className="max-w-[1360px] mx-auto px-4">
         {/* Section heading */}
         <div className="flex items-center gap-2 mb-4">
-          <div className="w-1 h-5 rounded-full bg-[#D97706]" />
-          <h2 className="font-bold text-[17px] md:text-[20px] text-[#1E293B] tracking-tight">
+          <div className="w-1 h-5 rounded-full bg-[#0ea5a0]" />
+          <h2 className="font-bold text-[17px] md:text-[20px] text-[#1a1a2e] tracking-tight">
             Categories
           </h2>
         </div>
@@ -38,7 +38,7 @@ export default function CategoryExploreGrid({
                 href={`/${locale}/kategooriad/${cat.handle}`}
                 className="flex-shrink-0 flex flex-col items-center gap-2 w-[110px] md:w-[120px] group"
               >
-                <div className="w-[90px] h-[90px] md:w-[100px] md:h-[100px] rounded-xl bg-white border border-[#E2E8F0] group-hover:border-[#D97706] group-hover:shadow-md transition-all duration-200 overflow-hidden flex items-center justify-center">
+                <div className="w-[90px] h-[90px] md:w-[100px] md:h-[100px] rounded-xl bg-white border border-[#E2E8F0] group-hover:border-[#0ea5a0] group-hover:shadow-md transition-all duration-200 overflow-hidden flex items-center justify-center">
                   {imgUrl ? (
                     <img
                       src={imgUrl}
@@ -48,11 +48,11 @@ export default function CategoryExploreGrid({
                     />
                   ) : (
                     <div className="w-12 h-12 rounded-full flex items-center justify-center bg-gradient-to-br from-[#FEF3C7] to-[#FDE68A]">
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D97706" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2" /><path d="M16 7V5a4 4 0 0 0-8 0v2" /></svg>
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0ea5a0" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2" /><path d="M16 7V5a4 4 0 0 0-8 0v2" /></svg>
                     </div>
                   )}
                 </div>
-                <span className="text-[12px] md:text-[12px] text-center text-[#475569] group-hover:text-[#D97706] transition-colors leading-snug line-clamp-2 font-medium">
+                <span className="text-[12px] md:text-[12px] text-center text-[#475569] group-hover:text-[#0ea5a0] transition-colors leading-snug line-clamp-2 font-medium">
                   {display}
                 </span>
               </Link>

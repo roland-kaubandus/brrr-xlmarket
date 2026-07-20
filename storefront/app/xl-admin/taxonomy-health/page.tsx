@@ -109,7 +109,7 @@ export default async function TaxonomyHealthPage() {
         <div className={`text-lg font-semibold ${overallText}`}>
           {overall === "green" ? "ALL GREEN" : overall === "amber" ? "WARNINGS" : "CRITICAL FAILURES"}
         </div>
-        <div className="text-sm mt-1 text-[#1E293B]">
+        <div className="text-sm mt-1 text-[#1a1a2e]">
           {passes} pass · {warnFails} warn · {critFails} crit
         </div>
       </div>
@@ -138,7 +138,7 @@ export default async function TaxonomyHealthPage() {
                 </td>
                 <td className="px-4 py-3 font-mono text-xs text-[#64748B]">{r.id}</td>
                 <td className="px-4 py-3">
-                  <div className="font-medium text-[#1E293B]">{r.title}</div>
+                  <div className="font-medium text-[#1a1a2e]">{r.title}</div>
                   {r.detail && <div className="text-xs text-[#64748B] mt-1">{r.detail}</div>}
                 </td>
                 <td className="px-4 py-3 text-xs text-[#94A3B8]">{r.severity}</td>
@@ -152,7 +152,7 @@ export default async function TaxonomyHealthPage() {
         <p className="mb-2">
           <strong>Rerun via CLI:</strong>
         </p>
-        <pre className="bg-[#1E293B] text-[#E2E8F0] p-3 rounded text-xs overflow-x-auto">
+        <pre className="bg-[#1a1a2e] text-[#E2E8F0] p-3 rounded text-xs overflow-x-auto">
           node scripts/check-taxonomy-invariants.mjs
         </pre>
         <p className="mt-3">

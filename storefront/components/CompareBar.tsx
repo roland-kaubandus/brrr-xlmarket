@@ -11,7 +11,7 @@ export default function CompareBar() {
   if (count === 0) return null
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 bg-white border-t-2 border-[#D97706] shadow-[0_-4px_20px_rgba(0,0,0,0.1)]">
+    <div className="fixed bottom-0 left-0 right-0 z-50 bg-white border-t-2 border-[#0ea5a0] shadow-[0_-4px_20px_rgba(0,0,0,0.1)]">
       <div className="max-w-[1360px] mx-auto px-4 py-3 flex items-center gap-4">
         {/* Product thumbnails */}
         <div className="flex items-center gap-2 flex-1 overflow-x-auto">
@@ -43,7 +43,7 @@ export default function CompareBar() {
 
         {/* Actions */}
         <div className="flex items-center gap-3 flex-shrink-0">
-          <span className="text-sm font-medium text-[#1E293B]">
+          <span className="text-sm font-medium text-[#1a1a2e]">
             {count} / 4
           </span>
           <button
@@ -56,7 +56,7 @@ export default function CompareBar() {
             href={`/${locale}/vordlus`}
             className={`px-5 py-2.5 rounded-lg text-sm font-semibold transition-colors ${
               count >= 2
-                ? "bg-[#D97706] text-white hover:bg-[#B45309]"
+                ? "bg-[#0ea5a0] text-white hover:bg-[#0b7d79]"
                 : "bg-[#E2E8F0] text-[#94A3B8] pointer-events-none"
             }`}
           >

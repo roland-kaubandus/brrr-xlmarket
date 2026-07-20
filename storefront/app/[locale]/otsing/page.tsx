@@ -167,9 +167,9 @@ export default async function SearchPage({ searchParams, params }: Props) {
     <div className="bg-[#F8FAFC]">
       <div className="max-w-[1360px] mx-auto px-4 sm:px-6 py-7 sm:py-10">
         <nav className="text-xs text-[#64748B] mb-4 min-h-[24px] flex items-center">
-          <Link href={`/${locale}`} className="text-[#64748B] hover:text-[#D97706] transition-colors duration-200">{locale === "et" ? "Avaleht" : "Home"}</Link>
+          <Link href={`/${locale}`} className="text-[#64748B] hover:text-[#0ea5a0] transition-colors duration-200">{locale === "et" ? "Avaleht" : "Home"}</Link>
           <span className="mx-1.5 text-[#CBD5E1]">&gt;</span>
-          <span className="text-[#1E293B] transition-opacity duration-200">
+          <span className="text-[#1a1a2e] transition-opacity duration-200">
             {TAG_TITLES[activeTag] || SORT_TITLES[currentSort] || (locale === "et" ? "Otsingutulemused" : "Search Results")}
           </span>
         </nav>
@@ -177,11 +177,11 @@ export default async function SearchPage({ searchParams, params }: Props) {
         {/* Title row: heading + result count + sort + mobile filter button */}
         <div className="flex items-start md:items-center justify-between gap-3 mb-6 flex-wrap">
           <div>
-            <h1 className="text-2xl md:text-[30px] font-bold text-[#1E293B] tracking-tight">
+            <h1 className="text-2xl md:text-[30px] font-bold text-[#1a1a2e] tracking-tight">
               {pageTitle}
             </h1>
             <p className="text-sm text-[#64748B] mt-1">
-              <span className="font-semibold text-[#1E293B]">{totalHits.toLocaleString("en-IE")}</span> {locale === "et" ? "toodet" : "products"}
+              <span className="font-semibold text-[#1a1a2e]">{totalHits.toLocaleString("en-IE")}</span> {locale === "et" ? "toodet" : "products"}
               {query && (
                 <span> {locale === "et" ? `päringule "${query}"` : `for "${query}"`}</span>
               )}
@@ -231,7 +231,7 @@ export default async function SearchPage({ searchParams, params }: Props) {
             <p className="text-sm text-[#64748B] mb-4">
               {locale === "et" ? `Päringule "${query}" tulemusi ei leitud.` : `No results found for "${query}".`}
             </p>
-            <Link href={categoryPath(locale as "et" | "en")} className="text-[#D97706] hover:underline font-medium">
+            <Link href={categoryPath(locale as "et" | "en")} className="text-[#0ea5a0] hover:underline font-medium">
               {locale === "et" ? "Sirvi kõiki kategooriaid" : "Browse all categories"}
             </Link>
           </div>
@@ -264,7 +264,7 @@ export default async function SearchPage({ searchParams, params }: Props) {
               {query && Object.keys(categoryFacets).length > 0 && (
                 <div className="bg-white rounded-2xl border border-[#E2E8F0] shadow-sm p-4 sm:p-5">
                   <div className="flex items-center justify-between mb-3">
-                    <h2 className="text-sm font-semibold text-[#1E293B]">
+                    <h2 className="text-sm font-semibold text-[#1a1a2e]">
                       {locale === "et" ? "Populaarsed kategooriad" : "Popular categories"}
                     </h2>
                     <span className="text-xs text-[#94A3B8]">
@@ -281,8 +281,8 @@ export default async function SearchPage({ searchParams, params }: Props) {
                           href={`/${locale}/otsing?q=${encodeURIComponent(query)}&categories=${encodeURIComponent(cat)}${currentQuickFilter ? `&filters=${encodeURIComponent(currentQuickFilter)}` : ""}`}
                           className={`flex-shrink-0 inline-flex items-center gap-2 px-4 h-10 rounded-full text-sm font-medium border transition-colors ${
                             selectedCategories.includes(cat)
-                              ? "bg-[#D97706] text-white border-[#D97706]"
-                              : "bg-[#F8FAFC] text-[#1E293B] border-[#E2E8F0] hover:border-[#D97706]"
+                              ? "bg-[#0ea5a0] text-white border-[#0ea5a0]"
+                              : "bg-[#F8FAFC] text-[#1a1a2e] border-[#E2E8F0] hover:border-[#0ea5a0]"
                           }`}
                         >
                           {cat} <span className="text-xs opacity-60">({count})</span>
@@ -320,7 +320,7 @@ export default async function SearchPage({ searchParams, params }: Props) {
               {/* Recommended searches */}
               {query && Object.keys(categoryFacets).length > 0 && (
                 <section className="bg-white rounded-2xl border border-[#E2E8F0] shadow-sm p-4 sm:p-5">
-                  <h2 className="text-sm font-semibold text-[#1E293B] mb-3">
+                  <h2 className="text-sm font-semibold text-[#1a1a2e] mb-3">
                     {locale === "et" ? "Soovitatud otsingud" : "Recommended searches"}
                   </h2>
                   <div className="flex flex-wrap gap-2">
@@ -331,7 +331,7 @@ export default async function SearchPage({ searchParams, params }: Props) {
                         <Link
                           key={cat}
                           href={`/${locale}/otsing?q=${encodeURIComponent(cat)}${currentQuickFilter ? `&filters=${encodeURIComponent(currentQuickFilter)}` : ""}`}
-                          className="px-4 py-2 rounded-full text-sm font-medium bg-[#F8FAFC] border border-[#E2E8F0] text-[#1E293B] hover:border-[#D97706] hover:text-[#D97706] transition-colors"
+                          className="px-4 py-2 rounded-full text-sm font-medium bg-[#F8FAFC] border border-[#E2E8F0] text-[#1a1a2e] hover:border-[#0ea5a0] hover:text-[#0ea5a0] transition-colors"
                         >
                           {cat}
                         </Link>

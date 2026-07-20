@@ -90,7 +90,7 @@ export default function EditableText({
           type="button"
           onClick={() => setEditing(true)}
           aria-label={`Muuda ${field === "title" ? "pealkirja" : "kirjeldust"}`}
-          className="ml-2 align-middle text-[11px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-[#FCD34D] border border-[#B45309] text-[#1E293B] hover:bg-[#FBBF24]"
+          className="ml-2 align-middle text-[11px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-[#FCD34D] border border-[#0b7d79] text-[#1a1a2e] hover:bg-[#FBBF24]"
         >
           ✎ Muuda
         </button>
@@ -99,10 +99,10 @@ export default function EditableText({
   }
 
   const baseClass =
-    "w-full max-w-[800px] border-2 border-[#B45309] rounded p-2 text-[#1E293B] font-medium focus:outline-none focus:ring-2 focus:ring-[#D97706]/30"
+    "w-full max-w-[800px] border-2 border-[#0b7d79] rounded p-2 text-[#1a1a2e] font-medium focus:outline-none focus:ring-2 focus:ring-[#0ea5a0]/30"
 
   return (
-    <div className="my-2 p-3 rounded-lg bg-[#FFFBEB] border border-[#FCD34D]">
+    <div className="my-2 p-3 rounded-lg bg-[#f0fdf9] border border-[#FCD34D]">
       {multiline ? (
         <textarea
           ref={ref as React.RefObject<HTMLTextAreaElement>}
@@ -130,7 +130,7 @@ export default function EditableText({
           type="button"
           onClick={save}
           disabled={busy || value === initialValue}
-          className="px-3 py-1 rounded bg-[#1E293B] text-white font-semibold hover:bg-[#0F172A] disabled:opacity-40"
+          className="px-3 py-1 rounded bg-[#1a1a2e] text-white font-semibold hover:bg-[#12121f] disabled:opacity-40"
         >
           {busy ? "Salvestan..." : "Salvesta"}
         </button>
@@ -138,7 +138,7 @@ export default function EditableText({
           type="button"
           onClick={cancel}
           disabled={busy}
-          className="px-3 py-1 rounded bg-white border border-[#CBD5E1] text-[#1E293B] hover:bg-[#F8FAFC]"
+          className="px-3 py-1 rounded bg-white border border-[#CBD5E1] text-[#1a1a2e] hover:bg-[#F8FAFC]"
         >
           Tühista
         </button>

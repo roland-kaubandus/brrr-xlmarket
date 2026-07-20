@@ -57,7 +57,7 @@ const initialForm: FormData = {
   country_code: "ee",
 }
 
-const inputClass = "w-full border border-[#E2E8F0] rounded-lg px-3 py-2.5 text-[13px] text-[#1E293B] bg-white focus:outline-none focus:border-[#D97706] focus:ring-1 focus:ring-[#D97706]/20 transition-colors"
+const inputClass = "w-full border border-[#E2E8F0] rounded-lg px-3 py-2.5 text-[13px] text-[#1a1a2e] bg-white focus:outline-none focus:border-[#0ea5a0] focus:ring-1 focus:ring-[#0ea5a0]/20 transition-colors"
 const labelClass = "block text-[12px] font-medium text-[#64748B] mb-1.5"
 
 export default function CheckoutPage() {
@@ -270,9 +270,9 @@ export default function CheckoutPage() {
     return (
       <div className="min-h-screen bg-white">
         <div className="max-w-[1360px] mx-auto px-4 sm:px-6 py-12">
-          <h1 className="text-xl font-semibold text-[#1E293B] mb-6">{locale === "et" ? "Kassa" : "Checkout"}</h1>
+          <h1 className="text-xl font-semibold text-[#1a1a2e] mb-6">{locale === "et" ? "Kassa" : "Checkout"}</h1>
           <div className="flex items-center justify-center py-20">
-            <div className="w-8 h-8 border-2 border-[#E2E8F0] border-t-[#D97706] rounded-full animate-spin" />
+            <div className="w-8 h-8 border-2 border-[#E2E8F0] border-t-[#0ea5a0] rounded-full animate-spin" />
           </div>
         </div>
       </div>
@@ -284,12 +284,12 @@ export default function CheckoutPage() {
     return (
       <div className="min-h-screen bg-white">
         <div className="max-w-[1360px] mx-auto px-4 sm:px-6 py-12">
-          <h1 className="text-xl font-semibold text-[#1E293B] mb-6">{locale === "et" ? "Kassa" : "Checkout"}</h1>
+          <h1 className="text-xl font-semibold text-[#1a1a2e] mb-6">{locale === "et" ? "Kassa" : "Checkout"}</h1>
           <div className="flex flex-col items-center justify-center py-16 bg-white border border-[#E2E8F0] rounded-lg">
             <p className="text-[14px] text-[#64748B] mb-7">{locale === "et" ? "Sinu ostukorv on tühi." : "Your cart is empty."}</p>
             <Link
               href={`/${locale}`}
-              className="inline-flex items-center bg-[#D97706] text-white px-6 py-3 text-[15px] font-semibold rounded-lg hover:bg-[#B45309] transition-colors"
+              className="inline-flex items-center bg-[#0ea5a0] text-white px-6 py-3 text-[15px] font-semibold rounded-lg hover:bg-[#0b7d79] transition-colors"
             >
               {locale === "et" ? "Sirvi tooteid" : "Browse Products"}
             </Link>
@@ -308,19 +308,19 @@ export default function CheckoutPage() {
             <div className="w-14 h-14 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-5">
               <span className="text-[#059669] text-[28px]">&#10003;</span>
             </div>
-            <h1 className="text-xl font-semibold text-[#1E293B] mb-4">{locale === "et" ? "Tellimus kinnitatud!" : "Order Confirmed!"}</h1>
+            <h1 className="text-xl font-semibold text-[#1a1a2e] mb-4">{locale === "et" ? "Tellimus kinnitatud!" : "Order Confirmed!"}</h1>
             <p className="text-[14px] text-[#64748B] mb-2">
               {locale === "et" ? "Täname ostu eest. Saadame kinnituse aadressile" : "Thank you for your purchase. We will send a confirmation to"}{" "}
-              <strong className="text-[#1E293B]">{form.email}</strong>.
+              <strong className="text-[#1a1a2e]">{form.email}</strong>.
             </p>
             {orderId && (
               <p className="text-[14px] text-[#64748B] mb-8">
-                {locale === "et" ? "Tellimuse number:" : "Order number:"} <span className="font-medium text-[#1E293B]">{orderId}</span>
+                {locale === "et" ? "Tellimuse number:" : "Order number:"} <span className="font-medium text-[#1a1a2e]">{orderId}</span>
               </p>
             )}
             <Link
               href={`/${locale}`}
-              className="inline-flex items-center bg-[#D97706] text-white px-6 py-3 text-[15px] font-semibold rounded-lg hover:bg-[#B45309] transition-colors"
+              className="inline-flex items-center bg-[#0ea5a0] text-white px-6 py-3 text-[15px] font-semibold rounded-lg hover:bg-[#0b7d79] transition-colors"
             >
               {locale === "et" ? "Tagasi avalehele" : "Back to Home"}
             </Link>
@@ -337,14 +337,14 @@ export default function CheckoutPage() {
       <div className="max-w-[1360px] mx-auto px-4 sm:px-6 py-8 sm:py-12">
         {/* Breadcrumb */}
         <nav className="text-[12px] text-[#64748B] mb-7 flex items-center" aria-label="Breadcrumb">
-          <Link href={`/${locale}`} className="text-[#64748B] hover:text-[#D97706] transition-colors">{locale === "et" ? "Avaleht" : "Home"}</Link>
+          <Link href={`/${locale}`} className="text-[#64748B] hover:text-[#0ea5a0] transition-colors">{locale === "et" ? "Avaleht" : "Home"}</Link>
           <span className="mx-2 text-[#CBD5E1]">/</span>
-          <Link href={`/${locale}/ostukorv`} className="text-[#64748B] hover:text-[#D97706] transition-colors">{locale === "et" ? "Ostukorv" : "Cart"}</Link>
+          <Link href={`/${locale}/ostukorv`} className="text-[#64748B] hover:text-[#0ea5a0] transition-colors">{locale === "et" ? "Ostukorv" : "Cart"}</Link>
           <span className="mx-2 text-[#CBD5E1]">/</span>
-          <span className="text-[#1E293B] font-medium">{locale === "et" ? "Kassa" : "Checkout"}</span>
+          <span className="text-[#1a1a2e] font-medium">{locale === "et" ? "Kassa" : "Checkout"}</span>
         </nav>
 
-        <h1 className="text-[28px] font-bold text-[#1E293B] mb-6">{locale === "et" ? "Kassa" : "Checkout"}</h1>
+        <h1 className="text-[28px] font-bold text-[#1a1a2e] mb-6">{locale === "et" ? "Kassa" : "Checkout"}</h1>
 
         {error && (
           <div className="mb-5 px-4 py-3 bg-red-50 border border-red-200 rounded-lg text-[#DC2626] text-[13px]" role="alert">
@@ -358,7 +358,7 @@ export default function CheckoutPage() {
             <div className="lg:col-span-2 flex flex-col gap-5">
               {/* Personal info */}
               <div className="bg-white border border-[#E2E8F0] rounded-lg p-5">
-                <h2 className="text-base font-semibold text-[#1E293B] mb-4">{locale === "et" ? "Kliendiandmed" : "Customer Details"}</h2>
+                <h2 className="text-base font-semibold text-[#1a1a2e] mb-4">{locale === "et" ? "Kliendiandmed" : "Customer Details"}</h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label htmlFor="first_name" className={labelClass}>
@@ -417,7 +417,7 @@ export default function CheckoutPage() {
 
               {/* Address */}
               <div className="bg-white border border-[#E2E8F0] rounded-lg p-5">
-                <h2 className="text-base font-semibold text-[#1E293B] mb-4">{locale === "et" ? "Tarneaadress" : "Shipping Address"}</h2>
+                <h2 className="text-base font-semibold text-[#1a1a2e] mb-4">{locale === "et" ? "Tarneaadress" : "Shipping Address"}</h2>
                 <div className="flex flex-col gap-4">
                   <div>
                     <label htmlFor="address_1" className={labelClass}>
@@ -479,7 +479,7 @@ export default function CheckoutPage() {
 
               {/* Shipping */}
               <div className="bg-white border border-[#E2E8F0] rounded-lg p-5">
-                <h2 className="text-base font-semibold text-[#1E293B] mb-4">{locale === "et" ? "Tarneviis" : "Shipping Method"}</h2>
+                <h2 className="text-base font-semibold text-[#1a1a2e] mb-4">{locale === "et" ? "Tarneviis" : "Shipping Method"}</h2>
                 {shippingOptions.length === 0 ? (
                   <p className="text-[12px] text-[#64748B]">{locale === "et" ? "Laen tarneviise..." : "Loading shipping options..."}</p>
                 ) : (
@@ -489,8 +489,8 @@ export default function CheckoutPage() {
                         key={opt.id}
                         className={`flex items-center justify-between p-3 border rounded-lg cursor-pointer transition ${
                           selectedShipping === opt.id
-                            ? "border-[#D97706] bg-[#FFFBEB]"
-                            : "border-[#E2E8F0] hover:border-[#D97706]"
+                            ? "border-[#0ea5a0] bg-[#f0fdf9]"
+                            : "border-[#E2E8F0] hover:border-[#0ea5a0]"
                         }`}
                       >
                         <div className="flex items-center gap-3">
@@ -500,12 +500,12 @@ export default function CheckoutPage() {
                             value={opt.id}
                             checked={selectedShipping === opt.id}
                             onChange={() => setSelectedShipping(opt.id)}
-                            className="accent-[#D97706]"
+                            className="accent-[#0ea5a0]"
                           />
-                          <span className="text-[13px] font-medium text-[#1E293B]">{opt.name}</span>
+                          <span className="text-[13px] font-medium text-[#1a1a2e]">{opt.name}</span>
                         </div>
                         {typeof opt.amount === "number" && (
-                          <span className="text-[13px] font-bold text-[#1E293B]">
+                          <span className="text-[13px] font-bold text-[#1a1a2e]">
                             {opt.amount === 0 ? (locale === "et" ? "Tasuta" : "Free") : formatPrice(opt.amount, cart.currency_code)}
                           </span>
                         )}
@@ -519,7 +519,7 @@ export default function CheckoutPage() {
             {/* Right: Order summary */}
             <div className="lg:col-span-1">
               <div className="bg-white border border-[#E2E8F0] rounded-lg p-5 sticky top-20">
-                <h2 className="text-base font-semibold text-[#1E293B] mb-4">{locale === "et" ? "Tellimuse kokkuvõte" : "Order Summary"}</h2>
+                <h2 className="text-base font-semibold text-[#1a1a2e] mb-4">{locale === "et" ? "Tellimuse kokkuvõte" : "Order Summary"}</h2>
 
                 {/* Items */}
                 <div className="flex flex-col gap-2.5 mb-4">
@@ -541,14 +541,14 @@ export default function CheckoutPage() {
                         )}
                       </div>
                       <div className="flex-1 min-w-0">
-                        <p className="text-[12px] font-medium text-[#1E293B] leading-[1.4] line-clamp-2">
+                        <p className="text-[12px] font-medium text-[#1a1a2e] leading-[1.4] line-clamp-2">
                           {item.product_title || item.title}
                         </p>
                         <p className="text-[12px] text-[#64748B]">
                           {item.quantity} {locale === "et" ? "tk" : "pcs"} &times; {formatPrice(item.unit_price, cart.currency_code)}
                         </p>
                       </div>
-                      <p className="text-[13px] font-bold text-[#1E293B] shrink-0">
+                      <p className="text-[13px] font-bold text-[#1a1a2e] shrink-0">
                         {formatPrice(item.total, cart.currency_code)}
                       </p>
                     </div>
@@ -559,26 +559,26 @@ export default function CheckoutPage() {
                 <div className="border-t border-[#E2E8F0] pt-3 flex flex-col gap-2">
                   <div className="flex justify-between text-[13px]">
                     <span className="text-[#64748B]">{locale === "et" ? "Vahesumma" : "Subtotal"}</span>
-                    <span className="text-[#1E293B]">{formatPrice(cart.subtotal, cart.currency_code)}</span>
+                    <span className="text-[#1a1a2e]">{formatPrice(cart.subtotal, cart.currency_code)}</span>
                   </div>
                   {cart.shipping_total > 0 && (
                     <div className="flex justify-between text-[13px]">
                       <span className="text-[#64748B]">{locale === "et" ? "Tarne" : "Shipping"}</span>
-                      <span className="text-[#1E293B]">{formatPrice(cart.shipping_total, cart.currency_code)}</span>
+                      <span className="text-[#1a1a2e]">{formatPrice(cart.shipping_total, cart.currency_code)}</span>
                     </div>
                   )}
                   {cart.tax_total > 0 && (
                     <div className="flex justify-between text-[13px]">
                       <span className="text-[#64748B]">{locale === "et" ? "Käibemaks" : "VAT"}</span>
-                      <span className="text-[#1E293B]">{formatPrice(cart.tax_total, cart.currency_code)}</span>
+                      <span className="text-[#1a1a2e]">{formatPrice(cart.tax_total, cart.currency_code)}</span>
                     </div>
                   )}
                 </div>
 
                 <div className="border-t border-[#E2E8F0] mt-4 pt-4">
                   <div className="flex items-center justify-between">
-                    <span className="text-[15px] font-semibold text-[#1E293B]">{locale === "et" ? "Kokku" : "Total"}</span>
-                    <span className="text-xl font-bold text-[#D97706]">
+                    <span className="text-[15px] font-semibold text-[#1a1a2e]">{locale === "et" ? "Kokku" : "Total"}</span>
+                    <span className="text-xl font-bold text-[#0ea5a0]">
                       {formatPrice(cart.total, cart.currency_code)}
                     </span>
                   </div>
@@ -587,7 +587,7 @@ export default function CheckoutPage() {
                 <button
                   type="submit"
                   disabled={submitting || !selectedShipping}
-                  className="w-full mt-5 py-3.5 bg-[#D97706] text-white text-[15px] font-semibold rounded-lg hover:bg-[#B45309] disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+                  className="w-full mt-5 py-3.5 bg-[#0ea5a0] text-white text-[15px] font-semibold rounded-lg hover:bg-[#0b7d79] disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
                   style={{ boxShadow: "0 4px 16px rgba(255,106,0,0.25)" }}
                 >
                   {submitting ? (locale === "et" ? "Töötlen..." : "Processing...") : (locale === "et" ? "Kinnita tellimus" : "Confirm Order")}
