@@ -2,9 +2,11 @@ import Link from "@/components/SafeLink"
 import NavCartButton from "@/components/NavCartButton"
 import SearchBar from "@/components/SearchBar"
 import MegaMenu from "@/components/MegaMenu"
+import CategoryTreeMenu from "@/components/CategoryTreeMenu"
 import MobileSearchToggle from "@/components/MobileSearchToggle"
 import HeaderNavLinks from "@/components/HeaderNavLinks"
 import LocaleSwitcher from "@/components/LocaleSwitcher"
+import { getMenuSlice } from "@/lib/menu-data"
 import { getTranslations, t } from "@/lib/i18n"
 
 // Nav labels pulled from messages/{locale}.json nav.* — `matchPrefix` is used
@@ -19,8 +21,9 @@ const getNavLinks = (locale: string, labels: ReturnType<typeof getTranslations>)
 export default async function VevorHeader({ locale = "en" }: { locale?: string }) {
   const labels = getTranslations(locale as "et" | "en")
   const NAV_LINKS = getNavLinks(locale, labels)
-  // MegaMenu = akordion-dropdown (CategoryTreeNav, SSoT-puu client-side) — ei vaja
-  // server-menu-slice'i ega lazy-fetchi.
+  // Compute menu slice server-side — only L1 + L2 (~30KB) goes to the client.
+  // L3+ is fetched lazily by MegaMenu via /api/category-children.
+  const menuData = getMenuSlice()
 
   return (
     <header className="sticky top-0 z-30" style={{ background: "linear-gradient(135deg, #1a1a2e 0%, #12121f 60%, #1a1a2e 100%)" }}>
@@ -59,15 +62,18 @@ export default async function VevorHeader({ locale = "en" }: { locale?: string }
       {/* === Row 2: Menu + Nav links — desktop only === */}
       <div className="hidden md:block border-t border-white/10">
         <div className="max-w-[1440px] mx-auto flex items-center px-8 h-[48px] gap-1">
-          <MegaMenu locale={locale} variant="dark" />
+          <MegaMenu locale={locale} variant="dark" menuData={menuData} />
+          {/* "Kategooriapuu" — akordion-dropdown (eraldi vanast hover-mega-menüüst) */}
+          <CategoryTreeMenu locale={locale} placement="down" />
           <HeaderNavLinks links={NAV_LINKS} />
         </div>
       </div>
 
       {/* === Mobile: hamburger row === */}
       <div className="md:hidden border-t border-white/10">
-        <div className="flex items-center px-4 h-[44px]">
-          <MegaMenu locale={locale} variant="dark" />
+        <div className="flex items-center px-4 h-[44px] gap-1">
+          <MegaMenu locale={locale} variant="dark" menuData={menuData} />
+          <CategoryTreeMenu locale={locale} placement="down" />
         </div>
       </div>
     </header>

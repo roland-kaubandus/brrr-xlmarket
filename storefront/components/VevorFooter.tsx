@@ -1,4 +1,5 @@
 import Link from "@/components/SafeLink"
+import CategoryTreeMenu from "@/components/CategoryTreeMenu"
 
 export default function VevorFooter({ locale = "en" }: { locale?: string }) {
   return (
@@ -23,6 +24,7 @@ export default function VevorFooter({ locale = "en" }: { locale?: string }) {
             </h4>
             <ul className="flex flex-col gap-2.5">
               <li><Link href={`/${locale}/kategooriad`} className="text-[14px] text-[#cbd5e1] hover:text-[#0ea5a0] transition-colors">{locale === "et" ? "Kõik kategooriad" : "All Categories"}</Link></li>
+              <li><CategoryTreeMenu locale={locale} placement="up" triggerClassName="flex items-center gap-1.5 text-[14px] text-[#cbd5e1] hover:text-[#0ea5a0] transition-colors" /></li>
               <li><Link href={`/${locale}/otsing?sort=newest`} className="text-[14px] text-[#cbd5e1] hover:text-[#0ea5a0] transition-colors">{locale === "et" ? "Uued tooted" : "New Arrivals"}</Link></li>
               <li><Link href={`/${locale}/otsing?sort=best`} className="text-[14px] text-[#cbd5e1] hover:text-[#0ea5a0] transition-colors">{locale === "et" ? "Enimmüüdud" : "Best Sellers"}</Link></li>
               <li><Link href={`/${locale}/otsing?sort=deals`} className="text-[14px] text-[#cbd5e1] hover:text-[#0ea5a0] transition-colors">{locale === "et" ? "Pakkumised" : "Deals"}</Link></li>
