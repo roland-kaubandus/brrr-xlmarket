@@ -8,8 +8,8 @@ export default function VevorFooter({ locale = "en" }: { locale?: string }) {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr_1.2fr] gap-10 mb-12">
           {/* Brand */}
           <div>
-            <Link href={`/${locale}`} className="inline-block mb-4" style={{ fontSize: "32px", fontWeight: 700, letterSpacing: "-0.5px", lineHeight: 1 }}>
-              <span className="text-[#0b7d79]">XL</span><span className="text-white">Market</span>
+            <Link href={`/${locale}`} className="inline-block mb-4" aria-label="XLmarket — avalehele">
+              <img src="/logos/xlmarket-wordmark-dark.svg" alt="XLmarket" className="h-[30px] w-auto" />
             </Link>
             <p className="text-[14px] text-[#94A3B8] leading-relaxed max-w-[260px]">
               {locale === "et" ? "Sinu usaldusväärne professionaalsete tööriistade, seadmete ja kodukaupade pood üle Euroopa." : "Your trusted source for professional tools, equipment, and home improvement products across Europe."}
