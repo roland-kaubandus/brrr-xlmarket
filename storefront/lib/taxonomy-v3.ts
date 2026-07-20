@@ -11,11 +11,13 @@
 import {
   UtensilsCrossed, Building2, Wrench, Sparkles, ShieldCheck, Armchair,
   Scissors, Dumbbell, Ship, HeartPulse, Music, Zap, Palette,
-  PawPrint, Baby, Trees, Car, Warehouse,
+  PawPrint, Baby, Trees, Car, Warehouse, BadgePercent,
   type LucideIcon,
 } from "lucide-react"
 
 export const V3_ICONS: Record<string, LucideIcon> = {
+  // v4-main ikoon (v4-handle võtmega — kood teeb V3_ICONS[handle]). Outlet = soodus-osakond.
+  "v4-outlet": BadgePercent,
   "horeca-food-service": UtensilsCrossed,
   "construction-building": Building2,
   "hand-power-tools": Wrench,
