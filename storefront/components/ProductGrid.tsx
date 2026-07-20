@@ -82,19 +82,21 @@ export default function ProductGrid({ initialProducts, fetchParams, locale, colu
 
     const url = `/api/products?${params.toString()}`
 
-    // Retry 1× transient-tõrke korral (net-blip VÕI 5xx). Peapõhjus: staging'i
-    // deploy-swap (üks konteiner, ei rolling) tekitab paar sekundit 502/conn-reset,
-    // kui Traefik marsruudib veel-boot'ivasse Next.js'i → ilma retry'ta näeb kasutaja
-    // "temporarily unavailable". 4xx (nt vigane filter) EI ole transient → ära korda.
-    const attempt = async (retriesLeft: number): Promise<void> => {
+    // Retry transient-tõrke korral (net-reject VÕI 5xx). Peapõhjus MÕÕDETUD
+    // (deploy-monitor 2026-07-20 16:36): staging'i stack-redeploy'l tuleb storefront
+    // üles ENNE kui Meili valmis → /api/products = 503 ~6s → grid näitab
+    // "temporarily unavailable". Backoff katab ~6s akna (1.5+3+4.5 = 9s, 3 kordust);
+    // grid taastub ise ilma kasutaja-veata. 4xx (nt vigane filter) EI ole transient.
+    const RETRY_DELAYS = [1500, 3000, 4500]
+    const attempt = async (n: number): Promise<void> => {
       try {
         const r = await fetch(url, { method: "GET", signal: controller.signal })
         if (!r.ok) {
           const transient = r.status >= 500 || r.status === 0
-          if (transient && retriesLeft > 0) {
-            await new Promise((res) => setTimeout(res, 1200))
+          if (transient && n < RETRY_DELAYS.length) {
+            await new Promise((res) => setTimeout(res, RETRY_DELAYS[n]))
             if (controller.signal.aborted) return
-            return attempt(retriesLeft - 1)
+            return attempt(n + 1)
           }
           console.error(`[ProductGrid] products API ${r.status} ${r.statusText}`)
           throw new Error(`Products API ${r.status}`)
@@ -105,18 +107,18 @@ export default function ProductGrid({ initialProducts, fetchParams, locale, colu
       } catch (e) {
         const err = e as Error
         if (err.name === "AbortError") return
-        // Võrgu-tõrge (fetch reject) = transient (deploy-swap / blip) → korda 1×.
-        if (retriesLeft > 0) {
-          await new Promise((res) => setTimeout(res, 1200))
+        // Võrgu-tõrge (fetch reject) = transient (deploy-swap / blip) → korda backoff'iga.
+        if (n < RETRY_DELAYS.length) {
+          await new Promise((res) => setTimeout(res, RETRY_DELAYS[n]))
           if (controller.signal.aborted) return
-          return attempt(retriesLeft - 1)
+          return attempt(n + 1)
         }
         console.error("[ProductGrid] fetch failed:", err.message)
         setFetchError(err.message)
         setLoading(false)
       }
     }
-    attempt(1)
+    attempt(0)
 
     return () => controller.abort()
     // eslint-disable-next-line react-hooks/exhaustive-deps
