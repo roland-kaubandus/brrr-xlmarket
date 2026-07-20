@@ -358,7 +358,7 @@ export default function MegaMenu({ locale = "en", menuData }: MegaMenuProps) {
         aria-haspopup="true"
         aria-expanded={isOpen}
         className={`hidden md:flex items-center gap-2 px-3 py-1.5 font-bold text-[14px] rounded-md hover:bg-white/10 transition-colors ${
-          isCategoriesActive || isOpen ? "text-[#0b7d79]" : "text-white"
+          isCategoriesActive || isOpen ? "text-[#0ea5a0]" : "text-white"
         }`}
       >
         {isOpen ? <X size={18} strokeWidth={2} /> : <Menu size={18} strokeWidth={2} />}
@@ -375,7 +375,7 @@ export default function MegaMenu({ locale = "en", menuData }: MegaMenuProps) {
         aria-expanded={isOpen}
         aria-haspopup="true"
         className={`md:hidden flex items-center gap-2 px-3 py-1.5 font-bold text-[14px] rounded-md hover:bg-white/10 transition-colors ${
-          isCategoriesActive || isOpen ? "text-[#0b7d79]" : "text-white"
+          isCategoriesActive || isOpen ? "text-[#0ea5a0]" : "text-white"
         }`}
       >
         {isOpen ? <X size={18} strokeWidth={2} /> : <Menu size={18} strokeWidth={2} />}
@@ -426,7 +426,7 @@ export default function MegaMenu({ locale = "en", menuData }: MegaMenuProps) {
                     data-l1-handle={l1.handle}
                     aria-haspopup={(menuData.l2ByL1[l1.handle]?.length ?? 0) > 0 ? "true" : undefined}
                     className={`flex items-center gap-3 px-4 py-[7px] text-[15px] transition-colors ${
-                      isActive ? "bg-[#FFF8F3] text-[#0b7d79]" : "text-[#1a1a2e] hover:bg-[#F8FAFC]"
+                      isActive ? "bg-[#f0fdf9] text-[#0b7d79]" : "text-[#1a1a2e] hover:bg-[#F8FAFC]"
                     }`}
                   >
                     {Icon && (
@@ -477,7 +477,7 @@ export default function MegaMenu({ locale = "en", menuData }: MegaMenuProps) {
                       data-mega-l2="true"
                       aria-haspopup={hasKids ? "true" : undefined}
                       className={`flex items-center gap-3 px-4 py-[6px] transition-colors ${
-                        isActive ? "bg-[#FFF8F3] text-[#0b7d79]" : "text-[#1a1a2e] hover:bg-[#F8FAFC]"
+                        isActive ? "bg-[#f0fdf9] text-[#0b7d79]" : "text-[#1a1a2e] hover:bg-[#F8FAFC]"
                       }`}
                     >
                       <CategoryThumb
@@ -538,7 +538,7 @@ export default function MegaMenu({ locale = "en", menuData }: MegaMenuProps) {
                         role="menuitem"
                         aria-haspopup={hasKids ? "true" : undefined}
                         className={`flex items-center gap-3 px-4 py-[6px] text-[15px] transition-colors ${
-                          isActive ? "bg-[#FFF8F3] text-[#0b7d79]" : "text-[#1a1a2e] hover:bg-[#F8FAFC]"
+                          isActive ? "bg-[#f0fdf9] text-[#0b7d79]" : "text-[#1a1a2e] hover:bg-[#F8FAFC]"
                         }`}
                       >
                         <CategoryThumb
