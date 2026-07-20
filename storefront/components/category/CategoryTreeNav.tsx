@@ -27,9 +27,12 @@ type Props = {
   locale: string
   /** handle → tootearv (üks globaalne taxonomy.ancestors facet). Puudumisel arve ei näita. */
   counts?: Record<string, number>
+  /** Kutsutakse nimel-klõpsul (navigatsioon) — nt mega-menüü-dropdowni sulgemiseks.
+   *  Vasak-sidebar ei anna → no-op (non-breaking). */
+  onNavigate?: () => void
 }
 
-export default function CategoryTreeNav({ currentHandle, locale, counts = {} }: Props) {
+export default function CategoryTreeNav({ currentHandle, locale, counts = {}, onNavigate }: Props) {
   const loc = (locale === "et" ? "et" : "en") as "et" | "en"
 
   // Current-haru = ancestors + self. ALATI avatud (arvutatakse igal renderil currentHandle'ist
@@ -86,6 +89,7 @@ export default function CategoryTreeNav({ currentHandle, locale, counts = {} }: 
           <Link
             href={categoryPath(loc, node.handle)}
             aria-current={isCurrent ? "page" : undefined}
+            onClick={onNavigate}
             className={`flex-1 min-w-0 flex items-center justify-between gap-2 py-1.5 text-[13.5px] transition-colors ${
               isCurrent
                 ? "text-[#0b7d79] font-semibold"
@@ -116,6 +120,7 @@ export default function CategoryTreeNav({ currentHandle, locale, counts = {} }: 
     >
       <Link
         href={`/${loc}/kategooriad`}
+        onClick={onNavigate}
         className="flex items-center justify-between gap-2 rounded-md px-2.5 py-2 mb-1.5 text-[12px] font-bold uppercase tracking-[1px] text-[#0b7d79] hover:bg-[#f0fdf9] transition-colors border-b border-[#F1F5F9]"
       >
         {loc === "et" ? "Kõik kategooriad" : "All categories"}
