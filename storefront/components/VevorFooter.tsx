@@ -2,7 +2,7 @@ import Link from "@/components/SafeLink"
 
 export default function VevorFooter({ locale = "en" }: { locale?: string }) {
   return (
-    <footer className="mt-20 bg-[#1a1a2e] text-[#CBD5E1]" style={{ fontFamily: "'Mulish', system-ui, sans-serif", padding: "64px 0 32px" }}>
+    <footer className="mt-20 bg-[#1a1a2e] text-[#CBD5E1]" style={{ padding: "64px 0 32px" }}>
       <div className="max-w-[1320px] mx-auto px-6">
         {/* Top grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr_1.2fr] gap-10 mb-12">
@@ -18,43 +18,43 @@ export default function VevorFooter({ locale = "en" }: { locale?: string }) {
 
           {/* Shop */}
           <div>
-            <h4 className="text-[12px] font-bold text-[#64748B] uppercase tracking-[1.5px] mb-4">
+            <h4 className="text-[12px] font-bold text-white uppercase tracking-[1.5px] mb-4">
               {locale === "et" ? "Pood" : "Shop"}
             </h4>
             <ul className="flex flex-col gap-2.5">
-              <li><Link href={`/${locale}/kategooriad`} className="text-[14px] text-[#94A3B8] hover:text-white transition-colors">{locale === "et" ? "Kõik kategooriad" : "All Categories"}</Link></li>
-              <li><Link href={`/${locale}/otsing?sort=newest`} className="text-[14px] text-[#94A3B8] hover:text-white transition-colors">{locale === "et" ? "Uued tooted" : "New Arrivals"}</Link></li>
-              <li><Link href={`/${locale}/otsing?sort=best`} className="text-[14px] text-[#94A3B8] hover:text-white transition-colors">{locale === "et" ? "Enimmüüdud" : "Best Sellers"}</Link></li>
-              <li><Link href={`/${locale}/otsing?sort=deals`} className="text-[14px] text-[#94A3B8] hover:text-white transition-colors">{locale === "et" ? "Pakkumised" : "Deals"}</Link></li>
+              <li><Link href={`/${locale}/kategooriad`} className="text-[14px] text-[#cbd5e1] hover:text-[#0ea5a0] transition-colors">{locale === "et" ? "Kõik kategooriad" : "All Categories"}</Link></li>
+              <li><Link href={`/${locale}/otsing?sort=newest`} className="text-[14px] text-[#cbd5e1] hover:text-[#0ea5a0] transition-colors">{locale === "et" ? "Uued tooted" : "New Arrivals"}</Link></li>
+              <li><Link href={`/${locale}/otsing?sort=best`} className="text-[14px] text-[#cbd5e1] hover:text-[#0ea5a0] transition-colors">{locale === "et" ? "Enimmüüdud" : "Best Sellers"}</Link></li>
+              <li><Link href={`/${locale}/otsing?sort=deals`} className="text-[14px] text-[#cbd5e1] hover:text-[#0ea5a0] transition-colors">{locale === "et" ? "Pakkumised" : "Deals"}</Link></li>
             </ul>
           </div>
 
           {/* Support */}
           <div>
-            <h4 className="text-[12px] font-bold text-[#64748B] uppercase tracking-[1.5px] mb-4">
+            <h4 className="text-[12px] font-bold text-white uppercase tracking-[1.5px] mb-4">
               {locale === "et" ? "Klienditugi" : "Support"}
             </h4>
             <ul className="flex flex-col gap-2.5">
-              <li><Link href={`/${locale}/kontakt`} className="text-[14px] text-[#94A3B8] hover:text-white transition-colors">{locale === "et" ? "Võta ühendust" : "Contact Us"}</Link></li>
-              <li><Link href={`/${locale}/tarne`} className="text-[14px] text-[#94A3B8] hover:text-white transition-colors">{locale === "et" ? "Tarneinfo" : "Shipping Info"}</Link></li>
-              <li><Link href={`/${locale}/tagastamine`} className="text-[14px] text-[#94A3B8] hover:text-white transition-colors">{locale === "et" ? "Tagastused" : "Returns"}</Link></li>
-              <li><Link href={`/${locale}/kontakt`} className="text-[14px] text-[#94A3B8] hover:text-white transition-colors">{locale === "et" ? "KKK" : "FAQ"}</Link></li>
+              <li><Link href={`/${locale}/kontakt`} className="text-[14px] text-[#cbd5e1] hover:text-[#0ea5a0] transition-colors">{locale === "et" ? "Võta ühendust" : "Contact Us"}</Link></li>
+              <li><Link href={`/${locale}/tarne`} className="text-[14px] text-[#cbd5e1] hover:text-[#0ea5a0] transition-colors">{locale === "et" ? "Tarneinfo" : "Shipping Info"}</Link></li>
+              <li><Link href={`/${locale}/tagastamine`} className="text-[14px] text-[#cbd5e1] hover:text-[#0ea5a0] transition-colors">{locale === "et" ? "Tagastused" : "Returns"}</Link></li>
+              <li><Link href={`/${locale}/kontakt`} className="text-[14px] text-[#cbd5e1] hover:text-[#0ea5a0] transition-colors">{locale === "et" ? "KKK" : "FAQ"}</Link></li>
             </ul>
           </div>
 
           {/* Company */}
           <div>
-            <h4 className="text-[12px] font-bold text-[#64748B] uppercase tracking-[1.5px] mb-4">
+            <h4 className="text-[12px] font-bold text-white uppercase tracking-[1.5px] mb-4">
               {locale === "et" ? "Ettevõte" : "Company"}
             </h4>
             <ul className="flex flex-col gap-2.5">
-              <li><Link href={`/${locale}/meist`} className="text-[14px] text-[#94A3B8] hover:text-white transition-colors">{locale === "et" ? "Meist" : "About Us"}</Link></li>
+              <li><Link href={`/${locale}/meist`} className="text-[14px] text-[#cbd5e1] hover:text-[#0ea5a0] transition-colors">{locale === "et" ? "Meist" : "About Us"}</Link></li>
             </ul>
           </div>
 
           {/* Newsletter */}
           <div>
-            <h4 className="text-[12px] font-bold text-[#64748B] uppercase tracking-[1.5px] mb-4">
+            <h4 className="text-[12px] font-bold text-white uppercase tracking-[1.5px] mb-4">
               {locale === "et" ? "Uudiskiri" : "Newsletter"}
             </h4>
             <p className="text-[13px] text-[#94A3B8] leading-relaxed mb-3.5">
@@ -77,12 +77,12 @@ export default function VevorFooter({ locale = "en" }: { locale?: string }) {
         </div>
 
         {/* Bottom bar */}
-        <div className="border-t border-white/[.06] pt-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 text-[12px] text-[#475569]">
+        <div className="border-t border-white/[.06] pt-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 text-[12px] text-[#94A3B8]">
           <span>{locale === "et" ? "© 2026 Roland Kaubandus OÜ. Kõik õigused kaitstud." : "© 2026 Roland Kaubandus OÜ. All rights reserved."}</span>
           <div className="flex gap-5">
-            <Link href={`/${locale}/privaatsus`} className="text-[#64748B] hover:text-[#94A3B8] transition-colors">{locale === "et" ? "Privaatsus" : "Privacy"}</Link>
-            <Link href={`/${locale}/tingimused`} className="text-[#64748B] hover:text-[#94A3B8] transition-colors">{locale === "et" ? "Tingimused" : "Terms"}</Link>
-            <Link href={`/${locale}/kupsised`} className="text-[#64748B] hover:text-[#94A3B8] transition-colors">{locale === "et" ? "Küpsised" : "Cookies"}</Link>
+            <Link href={`/${locale}/privaatsus`} className="text-[#cbd5e1] hover:text-[#0ea5a0] transition-colors">{locale === "et" ? "Privaatsus" : "Privacy"}</Link>
+            <Link href={`/${locale}/tingimused`} className="text-[#cbd5e1] hover:text-[#0ea5a0] transition-colors">{locale === "et" ? "Tingimused" : "Terms"}</Link>
+            <Link href={`/${locale}/kupsised`} className="text-[#cbd5e1] hover:text-[#0ea5a0] transition-colors">{locale === "et" ? "Küpsised" : "Cookies"}</Link>
           </div>
         </div>
       </div>
