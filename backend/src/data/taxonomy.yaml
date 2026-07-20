@@ -8102,3 +8102,11 @@ l1:
     hero_gradient: from-stone-950/80 via-stone-900/40 to-transparent
     product_count: 1
     subs:
+      - slug: v4-outlet-rikutud-pakend
+        name_en: "Rikutud pakend"
+        name_et: "Rikutud pakend"
+        product_count: 0
+      - slug: v4-outlet-avatud-pakend
+        name_en: "Avatud pakend"
+        name_et: "Avatud pakend"
+        product_count: 0
