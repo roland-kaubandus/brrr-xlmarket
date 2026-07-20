@@ -9,7 +9,7 @@ const ALLOWED_SORTS = new Set([
 ])
 
 const ALLOWED_FILTER_FIELDS = new Set([
-  "category_handles", "taxonomy.ancestors", "taxonomy.l1_slug",
+  "categories", "category_handles", "taxonomy.ancestors", "taxonomy.l1_slug",
   "taxonomy.l2_slug", "taxonomy.l3_slug", "vertical_slugs",
   "in_stock", "brand",
 ])
@@ -18,6 +18,18 @@ const ALLOWED_FACETS = new Set([
   "category_handles", "taxonomy.ancestors", "taxonomy.l1_slug",
   "taxonomy.l2_slug", "taxonomy.l3_slug", "in_stock", "brand",
 ])
+
+// Kategooria-NIMED sisaldavad tuhikuid + eesti tahti (nt "Autovaruosad ja -tarvikud")
+// -> isSafeHandleToken lukkab need tagasi. Luba piiratud prinditav nimi; injection'i
+// hoiab ara escapeMeiliFilterValue push-hetkel. Kontrolli-margid + jutumark + kaldkriips valja.
+function isSafeCategoryName(v: string): boolean {
+  if (typeof v !== "string" || v.length < 1 || v.length > 200) return false
+  for (let i = 0; i < v.length; i++) {
+    const c = v.charCodeAt(i)
+    if (c < 0x20 || c === 0x22 || c === 0x5c) return false // kontrollmark, " voi \
+  }
+  return true
+}
 
 function parseFilter(raw: string | null): string[] | undefined {
   if (!raw) return undefined
@@ -29,7 +41,7 @@ function parseFilter(raw: string | null): string[] | undefined {
     if (!ALLOWED_FILTER_FIELDS.has(field)) continue
     if (value === "true" || value === "false") {
       out.push(`${field} = ${value}`)
-    } else if (isSafeHandleToken(value)) {
+    } else if (field === "categories" ? isSafeCategoryName(value) : isSafeHandleToken(value)) {
       out.push(`${field} = "${escapeMeiliFilterValue(value)}"`)
     }
   }
