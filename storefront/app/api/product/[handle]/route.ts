@@ -5,7 +5,7 @@ import { getVevorFeedEntryAsync } from "@/lib/vevor-feed"
 import { getMeiliProductByHandle, getProductDescription, getProductTitle } from "@/lib/meilisearch"
 import { sanitizeHtml } from "@/lib/sanitize"
 import { categoryPath } from "@/lib/i18n"
-import { deepestKnownHandle, firstKnownHandle, getBreadcrumbTrail } from "@/lib/category-tree"
+import { deepestKnownHandle, getBreadcrumbTrail } from "@/lib/category-tree"
 
 function stringifyScalar(value: unknown): string | null {
   if (value === null || value === undefined) return null
@@ -416,6 +416,9 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
           name: seg.name,
           url: `https://xlmarket.ee${categoryPath(locale as "et" | "en", seg.handle)}`,
         })),
+        // Toote-nimi = viimane element (current-page, mitteklõpsatav). Ilma selleta
+        // märgiks render viimase KATEGOORIA (L3) current'iks → L3 poleks klõpsatav.
+        { name: localizedTitle, url: `https://xlmarket.ee/${locale}/toode/${product.handle}` },
       ],
     }, {
       headers: { "Cache-Control": "public, s-maxage=3600, stale-while-revalidate=86400" },
