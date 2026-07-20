@@ -91,9 +91,12 @@ export default async function SearchPage({ searchParams, params }: Props) {
   if (min) searchFilters.push(`price >= ${parseFloat(min)}`)
   if (max) searchFilters.push(`price <= ${parseFloat(max)}`)
   if (inStock) searchFilters.push(`in_stock = true`)
-  if (selectedCategories.length > 0) {
-    const catFilters = selectedCategories.map(c => `categories = "${c.replace(/"/g, '\\"')}"`)
-    searchFilters.push(`(${catFilters.join(" OR ")})`)
+  // Iga valik ERALDI tavaelemendina (mitte "(a OR b)" ümbris) — /api/products
+  // parseFilter loeb AINULT lihtsaid `väli = "väärtus"` paare (";"=AND); sulg/OR
+  // lükati maha → kategooria-chip/-filter andis 400 "unavailable". Sama muster mis
+  // kategooria-lehel (ae1bb88a). Mitmikvalik = AND; üksikvalik (chip, tavajuht) = õige.
+  for (const c of selectedCategories) {
+    searchFilters.push(`categories = "${c.replace(/"/g, '\\"')}"`)
   }
   if (currentQuickFilter) {
     // Multi-select: `filters=voltage_v:220V,amperage_a:100-200A` produces
