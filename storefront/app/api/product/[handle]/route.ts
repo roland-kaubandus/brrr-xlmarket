@@ -308,6 +308,18 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
     }
     const CANON_FIRST = ["voimsus", "pinge", "kaal", "poorlemiskiirus", "rpm", "rohk", "max_rohk", "maht", "paagi_maht", "ohuvool", "vooluhulk", "myra", "materjal", "maarimine"]
     const humanize = (k: string) => { const s = k.replace(/_/g, " ").trim(); return s.charAt(0).toUpperCase() + s.slice(1) }
+    // #3 Sulgude-lihv (KONSERVATIIVNE): eemalda AINULT exact-identne kordus ("1800 W (1800W)",
+    // "8 bar (8 bar)", "1400 W (1400 W US)"). KASULIKUD teisendused (imperiaal HP/PSI/tolli, °F)
+    // + vahemikud ("10 kg (5–10 kg)") JÄÄVAD. Kuva-tasand (andmed puutumata, pööratav).
+    const cleanParens = (d: string): string => {
+      const m = d.match(/^(.+?)\s*\(([^)]+)\)\s*$/)
+      if (!m) return d
+      const outside = m[1].trim(), inside = m[2].trim()
+      if (/[-–]|kuni/i.test(inside)) return d // vahemik → jäta
+      const norm = (s: string) => s.toLowerCase().replace(/\s+/g, "").replace(",", ".")
+      const ni = norm(inside).replace(/us$/, "") // "1400 W US" → "1400w"
+      return ni === norm(outside) ? outside : d // exact-identne → eemalda sulg
+    }
     const loc2 = locale === "et" ? "et" : "en"
     const compareSpecsMap: Record<string, string> = {}
     const canon = metadata.specs as Record<string, { v?: number; d?: string } | string | null> | undefined
@@ -317,7 +329,8 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
       for (const k of ordered) {
         const val = canon[k]
         if (val == null) continue
-        const disp = typeof val === "string" ? val : (val.d || (typeof val.v === "number" ? String(val.v) : ""))
+        const rawDisp = typeof val === "string" ? val : (val.d || (typeof val.v === "number" ? String(val.v) : ""))
+        const disp = cleanParens(rawDisp)
         if (!disp) continue
         const label = SPEC_LABELS[k] ? SPEC_LABELS[k][loc2] : humanize(k)
         compareSpecsMap[label] = disp
