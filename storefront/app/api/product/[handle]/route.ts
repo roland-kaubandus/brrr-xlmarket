@@ -256,6 +256,28 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
     if (specs.length === 0 && product.description) specs = parseSpecs(product.description)
     if (specs.length === 0 && feedEntry?.descriptionHtml) specs = parseSpecs(feedEntry.descriptionHtml)
 
+    // Struktureeritud mõõdud + kaal metadata'st (USALDUSVÄÄRNE — EI tekst-parse) →
+    // PREPEND spec-loendisse (usaldusväärne struktuur parseSpecs'i peale). Locale-aware
+    // labelid. Tingimuslik: puuduvat rida ei näidata.
+    const structuredSpecs: Array<{ key: string; value: string }> = []
+    const dim = metadata.dimensions as { high?: number; wide?: number; long?: number; unit?: string } | null | undefined
+    if (dim && typeof dim === "object") {
+      const { high, wide, long } = dim
+      const unit = typeof dim.unit === "string" && dim.unit ? dim.unit : "cm"
+      if (typeof high === "number" && high > 0 && typeof wide === "number" && wide > 0 && typeof long === "number" && long > 0) {
+        // K×L×P = kõrgus × laius × pikkus.
+        structuredSpecs.push({
+          key: locale === "et" ? "Mõõdud (K×L×P)" : "Dimensions (H×W×L)",
+          value: `${high} × ${wide} × ${long} ${unit}`,
+        })
+      }
+    }
+    const wkg = metadata.weight_kg
+    if (typeof wkg === "number" && wkg > 0) {
+      structuredSpecs.push({ key: locale === "et" ? "Kaal" : "Weight", value: `${wkg} kg` })
+    }
+    if (structuredSpecs.length > 0) specs = [...structuredSpecs, ...specs]
+
     // Manuals
     const manualLinks = [...media.manuals]
     const manualKeys = ["manuals", "manual_urls", "pdfs", "pdf_urls", "manual_files"]
