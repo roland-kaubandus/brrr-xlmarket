@@ -1,7 +1,7 @@
 import Link from "@/components/SafeLink"
 import { Suspense } from "react"
 import { getCategoryByHandle } from "@/lib/medusa"
-import { searchProducts, isSafeHandleToken, getProductTitle } from "@/lib/meilisearch"
+import { searchProducts, isSafeHandleToken } from "@/lib/meilisearch"
 import ProductGrid from "@/components/ProductGrid"
 import VevorSearchFilters from "@/components/search/VevorSearchFilters"
 import VevorPagination from "@/components/search/VevorPagination"
@@ -10,7 +10,6 @@ import { notFound } from "next/navigation"
 import JsonLdCategory from "@/components/JsonLdCategory"
 import JsonLdBreadcrumb from "@/components/JsonLdBreadcrumb"
 import SubcategoryCarousel from "@/components/category/SubcategoryCarousel"
-import SpecComparisonTable from "@/components/category/SpecComparisonTable"
 import CategoryTreeNav from "@/components/category/CategoryTreeNav"
 import CategoryBottomRibbons from "@/components/category/CategoryBottomRibbons"
 import { categoryPath } from "@/lib/i18n"
@@ -218,24 +217,6 @@ export default async function CategoryPage({ params, searchParams }: Props) {
     // Meili puudub — akordion töötab ilma arvudeta (navigatsioon SSoT-st).
   }
 
-  // Spec-võrdlus (piloot: Õhukompressorid) — too selle kategooria tooted compare_specs'iga.
-  // Komponent SpecComparisonTable renderdub AINULT kui ≥2 tootel on compare_specs → auto-peidus
-  // kategooriates kus spece pole. Kerge päring (limit 30, current-scope).
-  let compareProducts: Array<{ handle: string; title: string; thumbnail?: string | null; compare_specs?: Record<string, unknown> | null }> = []
-  try {
-    const cp = await searchProducts({ q: q || "", limit: 30, offset: 0, filter: searchFilters, sort: SORT_MAP[currentSort] || undefined })
-    compareProducts = (cp.hits || [])
-      .filter((h) => (h as { compare_specs?: unknown }).compare_specs)
-      .map((h) => ({
-        handle: h.handle,
-        title: getProductTitle(h, locale),
-        thumbnail: h.thumbnail || null,
-        compare_specs: (h as { compare_specs?: Record<string, unknown> }).compare_specs,
-      }))
-  } catch {
-    // Meili puudub — võrdlustabel jääb tühjaks (ei renderdu).
-  }
-
   // --- Build subcategory carousel data (INV-25: filter 0-count children) ---
   const childrenWithCounts: ChildWithCount[] = node
     ? getChildrenWithProductCounts(handle, rawAncestorFacets)
@@ -435,8 +416,6 @@ export default async function CategoryPage({ params, searchParams }: Props) {
                   <CategoryTreeNav currentHandle={handle} locale={locale} counts={globalCatCounts} />
                 </div>
               </details>
-              {/* Spec-võrdlustabel (renderdub ainult kui ≥2 tootel compare_specs — nt Õhukompressorid) */}
-              <SpecComparisonTable products={compareProducts} locale={locale} />
               <div className="mb-4 text-sm text-[#64748B]">
                 <span className="font-semibold text-[#1a1a2e]">
                   {totalCount.toLocaleString("et")}
