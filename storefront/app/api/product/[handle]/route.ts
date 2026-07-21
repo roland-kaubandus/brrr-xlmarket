@@ -232,14 +232,21 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
           .map((url, i) => ({ id: `meta_gallery_${i}`, url: url.replace(/\/goods_img-/, "/original_img-") }))
       : []
 
+    // Peapilt (kaardi thumbnail) ESIMESENA — gallery_images EI sisalda thumbnail'i (100% toodetest),
+    // seega ilma selleta puuduks kaardi peapilt tootelehe galeriist. Map-dedup url-i järgi hoiab
+    // thumbnail-esimese järjekorra + väldib topelt kui thumbnail juba gallery-s (harv).
+    const thumbImage = product.thumbnail
+      ? [{ id: "thumb", url: product.thumbnail.replace(/\/goods_img-/, "/original_img-") }]
+      : []
+
     const images = Array.from(
       new Map(
         [
+          ...thumbImage,
           ...metaGalleryImages,
-          ...(metaGalleryImages.length === 0 ? [
-            ...(product.images || []).map((img) => ({ ...img, url: img.url.replace(/\/goods_img-/, "/original_img-") })),
-            ...(product.thumbnail ? [{ id: "thumb", url: product.thumbnail.replace(/\/goods_img-/, "/original_img-") }] : []),
-          ] : []),
+          ...(metaGalleryImages.length === 0
+            ? (product.images || []).map((img) => ({ ...img, url: img.url.replace(/\/goods_img-/, "/original_img-") }))
+            : []),
         ]
           .filter((image) => Boolean(image?.url))
           .map((image, index) => [image.url, { id: image.id || `img_${index}`, url: image.url }])
