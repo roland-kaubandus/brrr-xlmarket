@@ -1,12 +1,40 @@
 "use client"
 import { useCompare } from "@/components/CompareContext"
 import { usePathname } from "next/navigation"
+import { useEffect, useState } from "react"
 import Link from "@/components/SafeLink"
 
 export default function ComparePage() {
   const { items, remove, clear } = useCompare()
   const pathname = usePathname()
   const locale = pathname.split("/")[1] || "en"
+
+  // Robustsus: tõmba VÄRSKED kanoonilised specid toote-API-st. Väldib stale localStorage-
+  // snapshot'i (vana/tühi specs) — picker näitab alati jooksvaid compare_specs'e. Fallback =
+  // salvestatud item.specs kui API kättesaamatu.
+  const [freshSpecs, setFreshSpecs] = useState<Record<string, Record<string, string>>>({})
+  const handleKey = items.map((i) => i.handle).join(",")
+  useEffect(() => {
+    let cancelled = false
+    ;(async () => {
+      const out: Record<string, Record<string, string>> = {}
+      await Promise.all(
+        items.map(async (it) => {
+          try {
+            const r = await fetch(`/api/product/${encodeURIComponent(it.handle)}?locale=${locale}`)
+            if (!r.ok) return
+            const j = await r.json()
+            const s = j?.compareItem?.specs
+            if (s && typeof s === "object" && Object.keys(s).length > 0) out[it.id] = s
+          } catch { /* jäta salvestatud specs alles */ }
+        })
+      )
+      if (!cancelled) setFreshSpecs(out)
+    })()
+    return () => { cancelled = true }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [handleKey, locale])
+  const specsOf = (it: { id: string; specs: Record<string, string> }) => freshSpecs[it.id] || it.specs || {}
 
   if (items.length === 0) {
     return (
@@ -27,7 +55,7 @@ export default function ComparePage() {
 
   // Collect all unique spec keys across all items
   const allSpecKeys = Array.from(
-    new Set(items.flatMap(item => Object.keys(item.specs)))
+    new Set(items.flatMap(item => Object.keys(specsOf(item))))
   )
 
   return (
@@ -102,7 +130,7 @@ export default function ComparePage() {
                 <td className="p-4 text-sm font-medium text-[#64748B]">{key}</td>
                 {items.map(item => (
                   <td key={item.id} className="p-4 text-sm text-[#1a1a2e] text-center">
-                    {item.specs[key] || "—"}
+                    {specsOf(item)[key] || "—"}
                   </td>
                 ))}
               </tr>
