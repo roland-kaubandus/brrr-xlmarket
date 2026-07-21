@@ -265,6 +265,7 @@ function transform(row) {
     subcategory: subcategory,
     filter_tokens,
     specs,
+    compare_specs: meta.specs || null,
     in_stock: !isOosFromFeed(row.sku),
     translated: meta.translated === true,
     created_at: Math.floor(new Date(row.created_at).getTime() / 1000),
