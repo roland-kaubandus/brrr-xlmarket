@@ -1,0 +1,46 @@
+{
+ "l3": "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-seinavoodi-mehhanismid",
+ "name": "Seinavoodi mehhanismid",
+ "fields": [
+  {
+   "key": "kasta_suurus_pikkus_mm",
+   "label_et": "Kasti suurus - pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "kasta_suurus_laius_mm",
+   "label_et": "Kasti suurus - laius",
+   "unit": "mm"
+  },
+  {
+   "key": "kasta_suurus_korgus_mm",
+   "label_et": "Kasti suurus - kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "kandevoimsus_kg",
+   "label_et": "Kandevõimsus",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "mehhanismi_tyyp",
+   "label_et": "Mehhanismi tüüp",
+   "unit": ""
+  },
+  {
+   "key": "paigaldusorientatsiooni",
+   "label_et": "Paigalduse orientatsioon",
+   "unit": ""
+  },
+  {
+   "key": "kaal_kg",
+   "label_et": "Kaal",
+   "unit": "kg"
+  }
+ ]
+}

@@ -1,0 +1,41 @@
+{
+ "l3": "v4-meditsiin-labor-laborikaalud",
+ "name": "Laborikaalud",
+ "fields": [
+  {
+   "key": "maksimaalne_kaal",
+   "label_et": "Maksimaalne kaalumissuutlikkus",
+   "unit": "g"
+  },
+  {
+   "key": "tapsus",
+   "label_et": "Lugemitapsus",
+   "unit": "g"
+  },
+  {
+   "key": "veaklass",
+   "label_et": "Lubatud mõõteviga",
+   "unit": "g"
+  },
+  {
+   "key": "stabiliseerimisaeg",
+   "label_et": "Stabiliseerimisaeg",
+   "unit": "s"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Seadme kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "yksikoide_arv",
+   "label_et": "Ühikute teisendamise funktsioonid",
+   "unit": "tk"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Kaaluplati materjal",
+   "unit": ""
+  }
+ ]
+}

@@ -1,0 +1,36 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-kasitooriistad-pitskruvid",
+ "name": "Pitskruvid",
+ "fields": [
+  {
+   "key": "avamine_pikkus",
+   "label_et": "Avamine pikkus",
+   "unit": "cm"
+  },
+  {
+   "key": "kandevoimsus",
+   "label_et": "Kandevõimsus",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kuur_syvis",
+   "label_et": "Kuur sügavus",
+   "unit": "mm"
+  },
+  {
+   "key": "klemmide_arv",
+   "label_et": "Klemmide arv pakis",
+   "unit": "tk"
+  },
+  {
+   "key": "klammerituup",
+   "label_et": "Klammerituup",
+   "unit": ""
+  }
+ ]
+}

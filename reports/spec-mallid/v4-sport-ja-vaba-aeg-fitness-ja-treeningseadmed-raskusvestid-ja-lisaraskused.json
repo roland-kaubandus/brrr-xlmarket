@@ -1,0 +1,36 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-fitness-ja-treeningseadmed-raskusvestid-ja-lisaraskused",
+ "name": "Raskusvestid ja lisaraskused",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "reguleeritavus",
+   "label_et": "Reguleeritavus",
+   "unit": ""
+  },
+  {
+   "key": "bust_suurus",
+   "label_et": "Rinnakõõlu suurus",
+   "unit": "cm"
+  },
+  {
+   "key": "pindala_mootmed",
+   "label_et": "Plaadi mõõtmed",
+   "unit": "mm"
+  },
+  {
+   "key": "tyyp",
+   "label_et": "Tüüp",
+   "unit": ""
+  }
+ ]
+}

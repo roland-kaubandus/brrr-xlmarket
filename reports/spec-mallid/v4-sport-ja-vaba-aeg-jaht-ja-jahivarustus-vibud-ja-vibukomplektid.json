@@ -1,0 +1,41 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-jaht-ja-jahivarustus-vibud-ja-vibukomplektid",
+ "name": "Vibud ja vibukomplektid",
+ "fields": [
+  {
+   "key": "vibu_tyyp",
+   "label_et": "Vibu tüüp",
+   "unit": ""
+  },
+  {
+   "key": "joonistus_pikkus",
+   "label_et": "Joonistuse pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "vibu_pikkus",
+   "label_et": "Vibu pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "joonistus_kaal",
+   "label_et": "Joonistuse kaal (Draw Weight)",
+   "unit": "lbs"
+  },
+  {
+   "key": "nool_kiirus",
+   "label_et": "Noole maksimaalne kiirus",
+   "unit": "fps"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Vibu kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  }
+ ]
+}

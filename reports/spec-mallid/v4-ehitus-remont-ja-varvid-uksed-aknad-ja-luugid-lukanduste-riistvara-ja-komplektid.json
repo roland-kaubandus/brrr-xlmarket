@@ -1,0 +1,41 @@
+{
+ "l3": "v4-ehitus-remont-ja-varvid-uksed-aknad-ja-luugid-lukanduste-riistvara-ja-komplektid",
+ "name": "Lükanduste riistvara ja komplektid",
+ "fields": [
+  {
+   "key": "rööbastee_pikkus_cm",
+   "label_et": "Rööbastee pikkus",
+   "unit": "cm"
+  },
+  {
+   "key": "maksimaalne_kandevõime_kg",
+   "label_et": "Maksimaalne kandevõime",
+   "unit": "kg"
+  },
+  {
+   "key": "uste_arv",
+   "label_et": "Uste arv",
+   "unit": "tk"
+  },
+  {
+   "key": "maksimum_ukse_laius_cm",
+   "label_et": "Maksimum ukse laius",
+   "unit": "cm"
+  },
+  {
+   "key": "ukse_paksus_mm",
+   "label_et": "Sobiv ukse paksus",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Komplekti kaal",
+   "unit": "kg"
+  }
+ ]
+}

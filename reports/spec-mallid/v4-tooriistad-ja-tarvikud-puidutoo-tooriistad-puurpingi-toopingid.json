@@ -1,0 +1,41 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-puidutoo-tooriistad-puurpingi-toopingid",
+ "name": "Puurpingi tööpingid",
+ "fields": [
+  {
+   "key": "tooplaadi_pikkus",
+   "label_et": "Tööplaadi pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "tooplaadi_laius",
+   "label_et": "Tööplaadi laius",
+   "unit": "mm"
+  },
+  {
+   "key": "tooplaadi_paksus",
+   "label_et": "Tööplaadi paksus",
+   "unit": "mm"
+  },
+  {
+   "key": "kandevoimsus",
+   "label_et": "Kandevõimsus",
+   "unit": "kg"
+  },
+  {
+   "key": "t_pilu_laius",
+   "label_et": "T-pilu laius",
+   "unit": "mm"
+  },
+  {
+   "key": "t_pilu_kaugus",
+   "label_et": "T-pilu vahekaugus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  }
+ ]
+}

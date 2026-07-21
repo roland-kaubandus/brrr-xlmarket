@@ -1,0 +1,41 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine-kinnise-ruumi-paastekolmjalad",
+ "name": "Kinnise ruumi päästekolmjalad",
+ "fields": [
+  {
+   "key": "tõstejõud_kg",
+   "label_et": "Tõstejõud",
+   "unit": "kg"
+  },
+  {
+   "key": "jalad_pikkus_m",
+   "label_et": "Jalgade reguleeritav pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "kaabel_pikkus_m",
+   "label_et": "Teraskaabli pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "kaabel_labamoot_mm",
+   "label_et": "Teraskaabli läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal_kg",
+   "label_et": "Seadme kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "kukkumiskaitse_m",
+   "label_et": "Kukkumiskaitse kõrgus",
+   "unit": "m"
+  },
+  {
+   "key": "tootmise_korgus_m",
+   "label_et": "Töökõrgus",
+   "unit": "m"
+  }
+ ]
+}

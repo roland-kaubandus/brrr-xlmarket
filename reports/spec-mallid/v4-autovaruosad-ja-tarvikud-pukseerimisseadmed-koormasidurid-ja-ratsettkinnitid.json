@@ -1,0 +1,46 @@
+{
+ "l3": "v4-autovaruosad-ja-tarvikud-pukseerimisseadmed-koormasidurid-ja-ratsettkinnitid",
+ "name": "Koormasidurid ja ratšettkinnitid",
+ "fields": [
+  {
+   "key": "toeimitud_kett_suurus_mm",
+   "label_et": "Ühilduv keti suurus",
+   "unit": "mm"
+  },
+  {
+   "key": "turvaline_tootmisvoimsus_kg",
+   "label_et": "Turvaline töömisvõimsus",
+   "unit": "kg"
+  },
+  {
+   "key": "purunemistugevus_kg",
+   "label_et": "Purunemistugevus",
+   "unit": "kg"
+  },
+  {
+   "key": "reguleeritav_pikkus_mm",
+   "label_et": "Reguleeritav pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "kael_kg",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "konks_tyyp",
+   "label_et": "Konksu tüüp",
+   "unit": ""
+  },
+  {
+   "key": "pakett_kogus",
+   "label_et": "Pakett kogus",
+   "unit": "tk"
+  }
+ ]
+}

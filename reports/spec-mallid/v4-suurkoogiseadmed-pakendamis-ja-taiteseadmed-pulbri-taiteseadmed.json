@@ -1,0 +1,36 @@
+{
+ "l3": "v4-suurkoogiseadmed-pakendamis-ja-taiteseadmed-pulbri-taiteseadmed",
+ "name": "Pulbri täiteseadmed",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "taitetavus_min",
+   "label_et": "Täitevahemik (minimaalne)",
+   "unit": "g"
+  },
+  {
+   "key": "taitetavus_max",
+   "label_et": "Täitevahemik (maksimaalne)",
+   "unit": "g"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "taitest_tyyp",
+   "label_et": "Täitamise tüüp",
+   "unit": ""
+  }
+ ]
+}

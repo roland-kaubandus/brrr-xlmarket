@@ -1,0 +1,41 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-matkavarustus-ja-telkimine-matkalauad-ja-koogijaamad",
+ "name": "Matkalauad ja köögijaamad",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "avatud_suurus_pikkus",
+   "label_et": "Avatud suurus (pikkus)",
+   "unit": "cm"
+  },
+  {
+   "key": "avatud_suurus_laius",
+   "label_et": "Avatud suurus (laius)",
+   "unit": "cm"
+  },
+  {
+   "key": "korgus",
+   "label_et": "Kõrgus",
+   "unit": "cm"
+  },
+  {
+   "key": "kandevõime",
+   "label_et": "Kandevõime",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "lisa_funktsioonid",
+   "label_et": "Lisafunktsioonid",
+   "unit": ""
+  }
+ ]
+}

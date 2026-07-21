@@ -1,0 +1,41 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-ouetegevus-kiige-kinnitused",
+ "name": "Kiige-kinnitused ja furnituur",
+ "fields": [
+  {
+   "key": "koormus_mahutavus",
+   "label_et": "Maksimaalne koormusmaht",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "kogus",
+   "label_et": "Tükkide arv komplektis",
+   "unit": "tk"
+  },
+  {
+   "key": "yhilduv_puidu_suurus",
+   "label_et": "Ühilduv puidu suurus",
+   "unit": "mm"
+  },
+  {
+   "key": "paigaldus_liitmik",
+   "label_et": "Paigalduse liitmik",
+   "unit": "mm"
+  },
+  {
+   "key": "laagri_tyyp",
+   "label_et": "Laagri tüüp",
+   "unit": ""
+  }
+ ]
+}

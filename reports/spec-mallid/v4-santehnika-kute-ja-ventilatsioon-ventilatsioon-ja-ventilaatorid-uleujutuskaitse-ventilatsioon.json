@@ -1,0 +1,41 @@
+{
+ "l3": "v4-santehnika-kute-ja-ventilatsioon-ventilatsioon-ja-ventilaatorid-uleujutuskaitse-ventilatsioon",
+ "name": "Üleujutuskaitse ventilatsioon",
+ "fields": [
+  {
+   "key": "avanemise_laius_mm",
+   "label_et": "Avanemise laius",
+   "unit": "mm"
+  },
+  {
+   "key": "avanemise_korgus_mm",
+   "label_et": "Avanemise kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "paksus_mm",
+   "label_et": "Paksus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "varv",
+   "label_et": "Värvus",
+   "unit": ""
+  },
+  {
+   "key": "konstruktsioon",
+   "label_et": "Konstruktsioon",
+   "unit": ""
+  }
+ ]
+}

@@ -1,0 +1,41 @@
+{
+ "l3": "v4-ehitus-remont-ja-varvid-ohutus-kaitseekraanid-ja-vaheseinad",
+ "name": "Kaitseekraanid ja vaheseinad",
+ "fields": [
+  {
+   "key": "laius_mm",
+   "label_et": "Laiusscreeni laius",
+   "unit": "mm"
+  },
+  {
+   "key": "korgus_mm",
+   "label_et": "Screeni kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "paksus_mm",
+   "label_et": "Akrüülplaadi paksus",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": "kategooria"
+  },
+  {
+   "key": "kaal_kg",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "aken_laius_mm",
+   "label_et": "Tehingulukuse akna laius",
+   "unit": "mm"
+  },
+  {
+   "key": "aken_korgus_mm",
+   "label_et": "Tehingulukuse akna kõrgus",
+   "unit": "mm"
+  }
+ ]
+}

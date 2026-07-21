@@ -1,0 +1,41 @@
+{
+ "l3": "v4-moobel-ja-sisustus-kontorimoobel-ja-tarvikud-konepuldid",
+ "name": "Kõnepuldid",
+ "fields": [
+  {
+   "key": "korgus",
+   "label_et": "Kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "kandevoimesus",
+   "label_et": "Kandevõime",
+   "unit": "kg"
+  },
+  {
+   "key": "lugemispinna_suurus",
+   "label_et": "Lugemispinna suurus",
+   "unit": "mm"
+  },
+  {
+   "key": "kasutatavus",
+   "label_et": "Kasutatavus",
+   "unit": ""
+  },
+  {
+   "key": "liikumine",
+   "label_et": "Liikumine (ratastega)",
+   "unit": ""
+  }
+ ]
+}

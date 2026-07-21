@@ -1,0 +1,36 @@
+{
+ "l3": "v4-kodumasinad-koogitehnika-slushiemasinad",
+ "name": "Slushiemasinad",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Paagi maht",
+   "unit": "L"
+  },
+  {
+   "key": "voimsus",
+   "label_et": "Nimivõimsus",
+   "unit": "W"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "paagi_arv",
+   "label_et": "Paakide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "jahutustemperatuur",
+   "label_et": "Jahutustemperatuur",
+   "unit": "°C"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Paagi materjal",
+   "unit": ""
+  }
+ ]
+}

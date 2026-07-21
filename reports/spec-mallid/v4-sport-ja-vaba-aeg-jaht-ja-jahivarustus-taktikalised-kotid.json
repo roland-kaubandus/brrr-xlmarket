@@ -1,0 +1,41 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-jaht-ja-jahivarustus-taktikalised-kotid",
+ "name": "Taktikalised kotid",
+ "fields": [
+  {
+   "key": "pistol_capacity",
+   "label_et": "Püstolite mahutavus",
+   "unit": "tk"
+  },
+  {
+   "key": "magazine_capacity",
+   "label_et": "Ajakirjade mahutavus",
+   "unit": "tk"
+  },
+  {
+   "key": "maht",
+   "label_et": "Kogu maht",
+   "unit": "L"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "strap_type",
+   "label_et": "Kandmise viis",
+   "unit": ""
+  },
+  {
+   "key": "molle_system",
+   "label_et": "MOLLE süsteem",
+   "unit": ""
+  }
+ ]
+}

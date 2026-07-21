@@ -1,0 +1,42 @@
+{
+ "l3": "v4-santehnika-kute-ja-ventilatsioon-ventilatsioon-ja-ventilaatorid-ohupuhastid-ja-filtrid",
+ "name": "Õhupuhastid",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "vooluhulk",
+   "label_et": "Õhuvool",
+   "unit": "L/min",
+   "unit_orig": "CFM"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "filtri_aste",
+   "label_et": "Filtreerimise astmed",
+   "unit": "tk"
+  },
+  {
+   "key": "juhe_pikkus",
+   "label_et": "Toitejuhtme pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "ava_suurus",
+   "label_et": "Õhu inlet suurus",
+   "unit": "mm"
+  },
+  {
+   "key": "technoloogia",
+   "label_et": "Puhastamise tehnoloogia",
+   "unit": "tüüp"
+  }
+ ]
+}

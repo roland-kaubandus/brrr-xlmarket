@@ -1,0 +1,46 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-turva-ja-objektivarustus-lockout-tagout-komplektid",
+ "name": "Lockout-tagout komplektid",
+ "fields": [
+  {
+   "key": "komplekti_suurus_tk",
+   "label_et": "Komplekti suurus (tükid)",
+   "unit": "tk"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Põhimaterjalid",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "hoiustamise_tyyp",
+   "label_et": "Hoiustamise tüüp",
+   "unit": ""
+  },
+  {
+   "key": "lukud_arv",
+   "label_et": "Padlockide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "klemmide_arv",
+   "label_et": "Klemmide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "silte_arv",
+   "label_et": "Siltide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "lukustuse_jaad",
+   "label_et": "Lukustusseadmete tüübid",
+   "unit": ""
+  }
+ ]
+}

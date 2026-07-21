@@ -1,0 +1,36 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-valjakumargistajad",
+ "name": "Väljakumärgistajad",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kaalu (tühi)",
+   "unit": "kg"
+  },
+  {
+   "key": "pulbri_maht",
+   "label_et": "Pulbri mahutavus",
+   "unit": "kg"
+  },
+  {
+   "key": "rattad_arv",
+   "label_et": "Rataste arv",
+   "unit": "tk"
+  },
+  {
+   "key": "ratta_labamoot",
+   "label_et": "Ratta läbimõõt",
+   "unit": "inch"
+  },
+  {
+   "key": "joon_laius",
+   "label_et": "Joone laius",
+   "unit": "inch"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Keha materjal",
+   "unit": ""
+  }
+ ]
+}

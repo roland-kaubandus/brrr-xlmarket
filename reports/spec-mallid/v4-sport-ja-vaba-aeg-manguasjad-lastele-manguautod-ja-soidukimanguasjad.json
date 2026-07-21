@@ -1,0 +1,41 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-manguasjad-lastele-manguautod-ja-soidukimanguasjad",
+ "name": "Mänguautod ja sõidukimänguasjad",
+ "fields": [
+  {
+   "key": "osade_arv",
+   "label_et": "Osade arv (tk)",
+   "unit": "pcs"
+  },
+  {
+   "key": "sihtrühm_vanus",
+   "label_et": "Soovituslik vanus (aastat)",
+   "unit": "years"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Põhimaterjal",
+   "unit": "text"
+  },
+  {
+   "key": "juhtimine",
+   "label_et": "Juhtimine",
+   "unit": "text"
+  },
+  {
+   "key": "magnetiga_rongi",
+   "label_et": "Magnetiga rongid",
+   "unit": "bool"
+  },
+  {
+   "key": "lisaaccessuaarid",
+   "label_et": "Lisaaccessuaarid",
+   "unit": "text"
+  },
+  {
+   "key": "hoiukarpi",
+   "label_et": "Hoiukarp kaasas",
+   "unit": "bool"
+  }
+ ]
+}

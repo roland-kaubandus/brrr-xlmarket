@@ -1,0 +1,41 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-keevitus-ja-jootmine-plastikukeevitusseadmed-ja-pustolid",
+ "name": "Plastikukeevituspüstolid ja klamberkomplektid",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "klambrite_kogus",
+   "label_et": "Klambrite arv komplektis",
+   "unit": "tk"
+  },
+  {
+   "key": "keevitusvool",
+   "label_et": "Keevitusvool",
+   "unit": "A"
+  },
+  {
+   "key": "aku_maht",
+   "label_et": "Aku mahtuvus",
+   "unit": "Wh"
+  },
+  {
+   "key": "juhtme_pikkus",
+   "label_et": "Juhtme pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  }
+ ]
+}

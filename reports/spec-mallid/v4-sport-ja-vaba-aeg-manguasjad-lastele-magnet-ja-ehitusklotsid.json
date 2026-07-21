@@ -1,0 +1,41 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-manguasjad-lastele-magnet-ja-ehitusklotsid",
+ "name": "Magnet- ja ehitusklotsid",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "kogus_uksused",
+   "label_et": "Kokku tükke",
+   "unit": "tk"
+  },
+  {
+   "key": "magnetiline_uksus",
+   "label_et": "Magnetilised plaadid",
+   "unit": "tk"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Magnet materjal",
+   "unit": ""
+  },
+  {
+   "key": "max_suurus",
+   "label_et": "Max. mõõde",
+   "unit": "mm"
+  },
+  {
+   "key": "min_vanus",
+   "label_et": "Soovitatav vanus",
+   "unit": "a"
+  },
+  {
+   "key": "lisafunktsioon",
+   "label_et": "Lisaaccessooriumi tüüp",
+   "unit": ""
+  }
+ ]
+}

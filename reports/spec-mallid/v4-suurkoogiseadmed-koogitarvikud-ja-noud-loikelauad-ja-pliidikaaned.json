@@ -1,0 +1,41 @@
+{
+ "l3": "v4-suurkoogiseadmed-koogitarvikud-ja-noud-loikelauad-ja-pliidikaaned",
+ "name": "Lõikelauad ja pliidikaaned",
+ "fields": [
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "pikkus",
+   "label_et": "Pikkus",
+   "unit": "cm"
+  },
+  {
+   "key": "laius",
+   "label_et": "Laius",
+   "unit": "cm"
+  },
+  {
+   "key": "paksus",
+   "label_et": "Paksus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "kaepide_tyyp",
+   "label_et": "Käepideme tüüp",
+   "unit": ""
+  },
+  {
+   "key": "mahla_soon",
+   "label_et": "Mahla soon",
+   "unit": "jah/ei"
+  }
+ ]
+}

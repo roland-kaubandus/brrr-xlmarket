@@ -1,0 +1,41 @@
+{
+ "l3": "v4-aed-ja-aiatehnika-l9-lokkekolded-ja-tulekausid",
+ "name": "Lõkkekolded ja tulekausid",
+ "fields": [
+  {
+   "key": "diameeter",
+   "label_et": "Ülemise läbimõõt",
+   "unit": "cm"
+  },
+  {
+   "key": "korgus",
+   "label_et": "Kõrgus",
+   "unit": "cm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kütus_tüüp",
+   "label_et": "Kütuse tüüp",
+   "unit": ""
+  },
+  {
+   "key": "soojusvõimsus",
+   "label_et": "Soojusvõimsus",
+   "unit": "BTU"
+  },
+  {
+   "key": "maht",
+   "label_et": "Mahutavus",
+   "unit": "L"
+  }
+ ]
+}

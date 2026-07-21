@@ -1,0 +1,41 @@
+{
+ "l3": "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-paindvolliga-lihvimismasinad",
+ "name": "Paindvõlliga lihvimismasinad",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "poorlemiskiirus",
+   "label_et": "Pöörlemiskiirus (maksimum)",
+   "unit": "RPM"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "haft_pikkus",
+   "label_et": "Paindvõlle pikkus",
+   "unit": "cm"
+  },
+  {
+   "key": "kilu_vahemik",
+   "label_et": "Kilu vahemik",
+   "unit": "mm"
+  },
+  {
+   "key": "kiilu_tup",
+   "label_et": "Kiilu tüüp",
+   "unit": ""
+  }
+ ]
+}

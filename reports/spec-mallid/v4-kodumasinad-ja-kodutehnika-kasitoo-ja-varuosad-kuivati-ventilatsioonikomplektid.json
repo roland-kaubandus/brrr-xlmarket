@@ -1,0 +1,46 @@
+{
+ "l3": "v4-kodumasinad-ja-kodutehnika-kasitoo-ja-varuosad-kuivati-ventilatsioonikomplektid",
+ "name": "Kuivati ventilatsioonikomplektid",
+ "fields": [
+  {
+   "key": "ketta_labamoot",
+   "label_et": "Väljalaskeavuse läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Peamine materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Neto kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "maht",
+   "label_et": "Veetangi maht",
+   "unit": "L"
+  },
+  {
+   "key": "toru_pikkus",
+   "label_et": "Väljalasketoru pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "reguleeritav_pikkus",
+   "label_et": "Reguleeritava paneeli maksimaalne pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "filtri_komplekt",
+   "label_et": "Kaasas olevad filtripadjad",
+   "unit": "tk"
+  },
+  {
+   "key": "veetank_olemas",
+   "label_et": "Veetank",
+   "unit": ""
+  }
+ ]
+}

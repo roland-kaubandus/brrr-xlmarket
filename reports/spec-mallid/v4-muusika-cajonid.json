@@ -1,0 +1,46 @@
+{
+ "l3": "v4-muusika-cajonid",
+ "name": "Cajonid",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Keha materjal",
+   "unit": ""
+  },
+  {
+   "key": "paneeli_materjal",
+   "label_et": "Paneeli materjal",
+   "unit": ""
+  },
+  {
+   "key": "kõrgus",
+   "label_et": "Kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "laius",
+   "label_et": "Laius",
+   "unit": "mm"
+  },
+  {
+   "key": "snaer_tyyp",
+   "label_et": "Snaari tüüp",
+   "unit": ""
+  },
+  {
+   "key": "heli_auk",
+   "label_et": "Heli ava tüüp",
+   "unit": ""
+  },
+  {
+   "key": "värv",
+   "label_et": "Värvus",
+   "unit": ""
+  }
+ ]
+}

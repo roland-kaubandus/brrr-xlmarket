@@ -1,0 +1,41 @@
+{
+ "l3": "v4-aed-ja-aiatehnika-l2-basseinivooderdised-ja-vooderdised",
+ "name": "Basseinivooderdised",
+ "fields": [
+  {
+   "key": "kuju",
+   "label_et": "Basseiini kuju",
+   "unit": ""
+  },
+  {
+   "key": "pikkus",
+   "label_et": "Pikkus",
+   "unit": "ft"
+  },
+  {
+   "key": "laius",
+   "label_et": "Laius",
+   "unit": "ft"
+  },
+  {
+   "key": "seina_korgus",
+   "label_et": "Seina kõrgus",
+   "unit": "in"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "paigalduse_tyyp",
+   "label_et": "Paigalduse tüüp",
+   "unit": ""
+  }
+ ]
+}

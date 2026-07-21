@@ -1,0 +1,46 @@
+{
+ "l3": "v4-ehitus-remont-ja-varvid-porandakatted-vinuulporandaplaadid",
+ "name": "Vinüülpõrandaplaadid",
+ "fields": [
+  {
+   "key": "paksus_mm",
+   "label_et": "Plaadi paksus",
+   "unit": "mm"
+  },
+  {
+   "key": "kattelkihi_paksus_mm",
+   "label_et": "Kulumiskihi paksus",
+   "unit": "mm"
+  },
+  {
+   "key": "pind_m2",
+   "label_et": "Katvus kasti kohta",
+   "unit": "m²"
+  },
+  {
+   "key": "kaal_kg",
+   "label_et": "Kaal kasti kohta",
+   "unit": "kg"
+  },
+  {
+   "key": "paigaldusviis",
+   "label_et": "Paigaldusviis",
+   "unit": ""
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "plaatide_arv",
+   "label_et": "Plaatide arv kasti kohta",
+   "unit": "tk"
+  },
+  {
+   "key": "mustri_tyyp",
+   "label_et": "Mustri tüüp",
+   "unit": ""
+  }
+ ]
+}

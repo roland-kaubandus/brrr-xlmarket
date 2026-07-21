@@ -1,0 +1,46 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-kaablileidjad-ja-juhtmeotsijad",
+ "name": "Kaablileidjad ja juhtmeotsijad",
+ "fields": [
+  {
+   "key": "avastamissügavus_max",
+   "label_et": "Maksimaalne avastamissügavus",
+   "unit": "m"
+  },
+  {
+   "key": "avastamisulatuse_max",
+   "label_et": "Maksimaalne avastamisulatuse",
+   "unit": "m"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge vahemik",
+   "unit": "V"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Kere materjal",
+   "unit": ""
+  },
+  {
+   "key": "aku_tyyp",
+   "label_et": "Aku tüüp",
+   "unit": ""
+  },
+  {
+   "key": "tootmistemp_min_max",
+   "label_et": "Töötemperatuur vahemik",
+   "unit": "°C"
+  },
+  {
+   "key": "juhtide_arvukus",
+   "label_et": "Tuvastatavate juhtide arv",
+   "unit": ""
+  }
+ ]
+}

@@ -1,0 +1,41 @@
+{
+ "l3": "v4-sport-jaht-relvakapid-seifid",
+ "name": "Relvakapid ja -seifid",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "relvamaht",
+   "label_et": "Relvamaht",
+   "unit": "tk"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "ukse_paksus",
+   "label_et": "Ukse paksus",
+   "unit": "mm"
+  },
+  {
+   "key": "lukustusviisid",
+   "label_et": "Lukustusviisid",
+   "unit": ""
+  },
+  {
+   "key": "sisemised_mootmed",
+   "label_et": "Sisemised mõõtmed (L×K×S)",
+   "unit": "mm"
+  },
+  {
+   "key": "lukustuspoldi_arv",
+   "label_et": "Lukustuspoldi arv",
+   "unit": "tk"
+  }
+ ]
+}

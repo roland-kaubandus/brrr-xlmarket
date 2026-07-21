@@ -1,0 +1,41 @@
+{
+ "l3": "v4-suurkook-blenderid-smuutimasinad",
+ "name": "Blenderid ja smuutimasinad",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Nimivõimsus",
+   "unit": "W"
+  },
+  {
+   "key": "maht",
+   "label_et": "Mahutavus",
+   "unit": "L"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "funktsioonid_arv",
+   "label_et": "Funktsioonide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "kiirused_arv",
+   "label_et": "Kiiruste arv",
+   "unit": "tk"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Toitepinge",
+   "unit": "V"
+  },
+  {
+   "key": "anuma_materjal",
+   "label_et": "Anuma materjal",
+   "unit": ""
+  }
+ ]
+}

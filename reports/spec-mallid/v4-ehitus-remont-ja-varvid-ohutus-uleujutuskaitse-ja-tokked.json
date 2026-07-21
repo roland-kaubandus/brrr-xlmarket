@@ -1,0 +1,41 @@
+{
+ "l3": "v4-ehitus-remont-ja-varvid-ohutus-uleujutuskaitse-ja-tokked",
+ "name": "Üleujutuskaitse ja -tõkked",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "pakkuse_suurus",
+   "label_et": "Pakkuse suurus (tk)",
+   "unit": "tk"
+  },
+  {
+   "key": "avamise_laius",
+   "label_et": "Avamise laius",
+   "unit": "mm"
+  },
+  {
+   "key": "avamise_korgus",
+   "label_et": "Avamise kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "jahvitus_paksus",
+   "label_et": "Jähhvituse paksus",
+   "unit": "mm"
+  },
+  {
+   "key": "paigaldus_liik",
+   "label_et": "Paigalduse liik",
+   "unit": ""
+  }
+ ]
+}

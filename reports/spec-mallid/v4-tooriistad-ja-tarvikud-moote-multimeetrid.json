@@ -1,0 +1,41 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-moote-multimeetrid",
+ "name": "Multimeetrid ja klamberampermeetrid",
+ "fields": [
+  {
+   "key": "maksimaalse_pinge",
+   "label_et": "Maksimaalse pinge mõõtmine (DC/AC)",
+   "unit": "V"
+  },
+  {
+   "key": "maksimaalse_voolu",
+   "label_et": "Maksimaalse voolu mõõtmine (DC/AC)",
+   "unit": "A"
+  },
+  {
+   "key": "displeii_loendus",
+   "label_et": "Displeii loendus (täpsus)",
+   "unit": "counts"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "takistuse_ulatus",
+   "label_et": "Takistuse mõõtmise vahemik",
+   "unit": "Ω-MΩ"
+  },
+  {
+   "key": "tahistu_funktsionaalid",
+   "label_et": "Täiendavad funktsioonid (automaatne vahemik, NCV, temperatuur)",
+   "unit": "boolean"
+  },
+  {
+   "key": "akulaimine",
+   "label_et": "Automaatne väljalülitus",
+   "unit": "min"
+  }
+ ]
+}

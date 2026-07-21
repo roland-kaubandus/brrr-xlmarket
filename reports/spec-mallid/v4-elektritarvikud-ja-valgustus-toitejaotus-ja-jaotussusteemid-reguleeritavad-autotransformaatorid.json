@@ -1,0 +1,47 @@
+{
+ "l3": "v4-elektritarvikud-ja-valgustus-toitejaotus-ja-jaotussusteemid-reguleeritavad-autotransformaatorid",
+ "name": "Reguleeritavad autotransformaatorid",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Maksimaalne väljundvõimsus",
+   "unit": "W",
+   "unit_orig": "VA"
+  },
+  {
+   "key": "voolu_max",
+   "label_et": "Maksimaalne väljundvool",
+   "unit": "A"
+  },
+  {
+   "key": "pinge_sisend",
+   "label_et": "Sisendpinge",
+   "unit": "V"
+  },
+  {
+   "key": "pinge_vahemik",
+   "label_et": "Väljundpinge vahemik",
+   "unit": "V"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Netokaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Juhtivad materjalid",
+   "unit": ""
+  },
+  {
+   "key": "lcd_display",
+   "label_et": "LCD-ekraan",
+   "unit": ""
+  },
+  {
+   "key": "termaalkaitse",
+   "label_et": "Termaalne kaitseconnector",
+   "unit": ""
+  }
+ ]
+}

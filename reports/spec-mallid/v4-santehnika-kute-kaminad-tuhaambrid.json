@@ -1,0 +1,36 @@
+{
+ "l3": "v4-santehnika-kute-kaminad-tuhaambrid",
+ "name": "Tuhaämbrid",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Mahutavus",
+   "unit": "L"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "komplekti_koosseis",
+   "label_et": "Komplekti osad",
+   "unit": ""
+  },
+  {
+   "key": "soojaisolatsioon",
+   "label_et": "Soojaisolatsioon",
+   "unit": ""
+  },
+  {
+   "key": "paigutus",
+   "label_et": "Kasutamise koht",
+   "unit": ""
+  }
+ ]
+}

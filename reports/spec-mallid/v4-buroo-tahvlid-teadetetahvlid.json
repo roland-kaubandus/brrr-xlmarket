@@ -1,0 +1,41 @@
+{
+ "l3": "v4-buroo-tahvlid-teadetetahvlid",
+ "name": "Kirjutustahvlid",
+ "fields": [
+  {
+   "key": "lahus_cm",
+   "label_et": "Laius",
+   "unit": "cm"
+  },
+  {
+   "key": "korgus_cm",
+   "label_et": "Kõrgus",
+   "unit": "cm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "magnetiline",
+   "label_et": "Magnetiline",
+   "unit": ""
+  },
+  {
+   "key": "kahekuline",
+   "label_et": "Kahekuline",
+   "unit": ""
+  },
+  {
+   "key": "liikuv",
+   "label_et": "Liikuv (rattad)",
+   "unit": ""
+  }
+ ]
+}

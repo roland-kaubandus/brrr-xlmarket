@@ -1,0 +1,41 @@
+{
+ "l3": "v4-ehitus-remont-ja-varvid-trepid-trepikasipuud",
+ "name": "Trepikäsipuud",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "astmete_arv",
+   "label_et": "Sobib astmete arvule",
+   "unit": "tk"
+  },
+  {
+   "key": "kandvove",
+   "label_et": "Kandevõime",
+   "unit": "kg"
+  },
+  {
+   "key": "pikkus",
+   "label_et": "Pikkus",
+   "unit": "cm"
+  },
+  {
+   "key": "korgus",
+   "label_et": "Kõrgus",
+   "unit": "cm"
+  },
+  {
+   "key": "nurga_reguleeritavus",
+   "label_et": "Nurga reguleeritavus",
+   "unit": "°"
+  }
+ ]
+}

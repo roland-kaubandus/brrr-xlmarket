@@ -1,0 +1,42 @@
+{
+ "l3": "v4-autovaruosad-ja-tarvikud-kute-soiduki-konditsioneerid",
+ "name": "Sõiduki konditsioneerid",
+ "fields": [
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "jahutusvoimsus",
+   "label_et": "Jahutusvõimsus",
+   "unit": "BTU/h"
+  },
+  {
+   "key": "vooluhulk",
+   "label_et": "Õhuvoolu kiirus",
+   "unit": "L/min",
+   "unit_orig": "m³/h"
+  },
+  {
+   "key": "myra",
+   "label_et": "Müra tase",
+   "unit": "dB"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "maarimine",
+   "label_et": "Toitevoolu vahemik",
+   "unit": "A"
+  },
+  {
+   "key": "jooksuaeg",
+   "label_et": "Maksimaalne jooksutundide arv",
+   "unit": "h"
+  }
+ ]
+}

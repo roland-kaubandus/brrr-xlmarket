@@ -1,0 +1,41 @@
+{
+ "l3": "v4-aed-ja-aiatehnika-l5-traktori-lisaseadmed-ja-tarvikud",
+ "name": "Traktori lisaseadmed ja tarvikud",
+ "fields": [
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "poorlemiskiirus",
+   "label_et": "Poorlemiskiirus",
+   "unit": "RPM"
+  },
+  {
+   "key": "maksimaalne_voimsus",
+   "label_et": "Maksimaalne võimsus",
+   "unit": "kW"
+  },
+  {
+   "key": "ühenduse_suurus",
+   "label_et": "Ühenduse suurus",
+   "unit": "tolli"
+  },
+  {
+   "key": "pikkus",
+   "label_et": "Pikkus (pikendatud)",
+   "unit": "mm"
+  },
+  {
+   "key": "paigaldatavus",
+   "label_et": "Ühilduvus/paigaldatavus",
+   "unit": ""
+  }
+ ]
+}

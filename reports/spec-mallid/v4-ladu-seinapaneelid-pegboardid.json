@@ -1,0 +1,41 @@
+{
+ "l3": "v4-ladu-seinapaneelid-pegboardid",
+ "name": "Seinapaneelid ja pegboardid",
+ "fields": [
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "paneeli_laius_mm",
+   "label_et": "Paneeli laius",
+   "unit": "mm"
+  },
+  {
+   "key": "paneeli_korgus_mm",
+   "label_et": "Paneeli kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "paneelide_arv",
+   "label_et": "Paneelide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "auk_diameter_mm",
+   "label_et": "Augu läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "kande_voimsus_kg",
+   "label_et": "Kande võimekus",
+   "unit": "kg"
+  }
+ ]
+}

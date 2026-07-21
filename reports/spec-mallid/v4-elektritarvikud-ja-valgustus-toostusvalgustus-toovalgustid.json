@@ -1,0 +1,41 @@
+{
+ "l3": "v4-elektritarvikud-ja-valgustus-toostusvalgustus-toovalgustid",
+ "name": "Töövalgustid",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "aku_maht",
+   "label_et": "Aku mahtuvus",
+   "unit": "Wh"
+  },
+  {
+   "key": "heledus",
+   "label_et": "Heledus",
+   "unit": "lm"
+  },
+  {
+   "key": "varvatemperatuur",
+   "label_et": "Värvatemperatuur",
+   "unit": "K"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "lampihead",
+   "label_et": "Lampihead",
+   "unit": "tk"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  }
+ ]
+}

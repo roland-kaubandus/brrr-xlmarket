@@ -1,0 +1,36 @@
+{
+ "l3": "v4-meditsiin-ja-liikumisabi-meditsiinitarvikud-esmaabivahendid",
+ "name": "Esmaabivahendid",
+ "fields": [
+  {
+   "key": "arv_tooteid",
+   "label_et": "Esmaabivahendite arv",
+   "unit": "tk"
+  },
+  {
+   "key": "maht",
+   "label_et": "Mahutavus",
+   "unit": "L"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "paigaldus_tyyp",
+   "label_et": "Paigaldusviis",
+   "unit": ""
+  },
+  {
+   "key": "kaasaskantavus",
+   "label_et": "Kaasaskantav",
+   "unit": ""
+  }
+ ]
+}

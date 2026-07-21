@@ -1,0 +1,41 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-metallitoo-ja-sepatoo-jaotuslauad-ja-jagamispead",
+ "name": "Jaotuslauad ja jagamispead",
+ "fields": [
+  {
+   "key": "ketta_labamoot",
+   "label_et": "Tööpinna läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "vahetusmehhanismi_suhe",
+   "label_et": "Vahetusmehhanismi suhe",
+   "unit": "1:x"
+  },
+  {
+   "key": "tsentri_korgus",
+   "label_et": "Tsentri kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "klambitava_detaili_max_diameeter",
+   "label_et": "Klambitud detaili max läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "orientatsioon",
+   "label_et": "Orientatsioon",
+   "unit": ""
+  }
+ ]
+}

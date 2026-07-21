@@ -1,0 +1,46 @@
+{
+ "l3": "v4-tooriistad-varvi-rohupaagid",
+ "name": "Värvi-rõhupaagid",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Paagi maht",
+   "unit": "L"
+  },
+  {
+   "key": "rohk",
+   "label_et": "Maksimaalne töörõhk",
+   "unit": "bar"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Neto kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "ohuvool",
+   "label_et": "Õhukulutus",
+   "unit": "L/min"
+  },
+  {
+   "key": "pihustusmuster",
+   "label_et": "Pihustusmustri laius",
+   "unit": "mm"
+  },
+  {
+   "key": "hari_labimaoot",
+   "label_et": "Dyüüsi läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "vooluhulk",
+   "label_et": "Vedeliku vooluhulk",
+   "unit": "L/min"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Paagi materjal",
+   "unit": "tüüp"
+  }
+ ]
+}

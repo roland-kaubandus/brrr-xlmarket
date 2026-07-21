@@ -1,0 +1,41 @@
+{
+ "l3": "v4-autovaruosad-ja-tarvikud-veoauto-tarvikud-aarekivi-rambid",
+ "name": "Äärekivi rambid",
+ "fields": [
+  {
+   "key": "kandevoimsus_kg",
+   "label_et": "Kandevõime",
+   "unit": "kg"
+  },
+  {
+   "key": "toustuskorgus_mm",
+   "label_et": "Tõusukõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "pikkus_mm",
+   "label_et": "Pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "laius_mm",
+   "label_et": "Laius",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal_kg",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kogus_tk",
+   "label_et": "Kogus paketis",
+   "unit": "tk"
+  }
+ ]
+}

@@ -1,0 +1,46 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-manguasjad-lastele-trampoliinid-ja-batuudid",
+ "name": "Trampoliinid ja batuudid",
+ "fields": [
+  {
+   "key": "diameetrit_cm",
+   "label_et": "Trampoliini läbimõõt",
+   "unit": "cm"
+  },
+  {
+   "key": "maksimaalne_kaal",
+   "label_et": "Maksimaalne lubatud kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Trampoliini enda kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "elastsed_elemendid",
+   "label_et": "Elastsete elementide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "volditav",
+   "label_et": "Volditav",
+   "unit": ""
+  },
+  {
+   "key": "turvakaar",
+   "label_et": "Turvakaar/võrk",
+   "unit": ""
+  },
+  {
+   "key": "lisaaccessuaarid",
+   "label_et": "Lisaaccessuaarid",
+   "unit": ""
+  }
+ ]
+}

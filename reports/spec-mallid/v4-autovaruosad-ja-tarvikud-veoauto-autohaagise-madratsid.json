@@ -1,0 +1,36 @@
+{
+ "l3": "v4-autovaruosad-ja-tarvikud-veoauto-autohaagise-madratsid",
+ "name": "Autohaagise madratsid",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Pump'i võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pump'i pinge",
+   "unit": "V"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Maksimaalne kandevõime",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjalid",
+   "unit": ""
+  },
+  {
+   "key": "voodilaiuseks",
+   "label_et": "Veoki peale sobiv pikkus",
+   "unit": "ft"
+  },
+  {
+   "key": "madratsimootmed",
+   "label_et": "Madratsimõõtmed",
+   "unit": "in"
+  }
+ ]
+}

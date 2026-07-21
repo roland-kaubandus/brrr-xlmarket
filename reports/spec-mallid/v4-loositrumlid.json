@@ -1,0 +1,36 @@
+{
+ "l3": "v4-loositrumlid",
+ "name": "Loositrumlid",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Mahutavus (piletid)",
+   "unit": "tk"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "trumli_laameter",
+   "label_et": "Trumli läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "trumli_pikkus",
+   "label_et": "Trumli pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "lukk",
+   "label_et": "Turvalukkude arv",
+   "unit": "tk"
+  }
+ ]
+}

@@ -1,0 +1,41 @@
+{
+ "l3": "v4-aed-ja-aiatehnika-l2-basseinikatte-rullid-ja-tarvikud",
+ "name": "Basseinikatte rullid",
+ "fields": [
+  {
+   "key": "maksimaalne_basseini_laius_m",
+   "label_et": "Maksimaalane basseini laius",
+   "unit": "m"
+  },
+  {
+   "key": "minimaalne_basseini_laius_m",
+   "label_et": "Minimaalne basseini laius",
+   "unit": "m"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kandevõime",
+   "unit": "kg"
+  },
+  {
+   "key": "aksi_korgus_maapinnast_mm",
+   "label_et": "Aksi kõrgus maapinnast",
+   "unit": "mm"
+  },
+  {
+   "key": "kokkupandud_alumiiniumtoru_pikkus_m",
+   "label_et": "Kokkupandud alumiiniumtoru pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjalid",
+   "unit": ""
+  },
+  {
+   "key": "turu_tyyp",
+   "label_et": "Paigaldamise tüüp",
+   "unit": ""
+  }
+ ]
+}

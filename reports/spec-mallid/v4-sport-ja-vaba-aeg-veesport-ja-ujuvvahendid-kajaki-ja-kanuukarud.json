@@ -1,0 +1,41 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-veesport-ja-ujuvvahendid-kajaki-ja-kanuukarud",
+ "name": "Kajaki- ja kanuukärud",
+ "fields": [
+  {
+   "key": "kandevõime",
+   "label_et": "Kandevõime",
+   "unit": "kg"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "ratta_läbimõõt",
+   "label_et": "Ratta läbimõõt",
+   "unit": "cm"
+  },
+  {
+   "key": "ratta_tüüp",
+   "label_et": "Ratta tüüp",
+   "unit": "materjal"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Raam materjal",
+   "unit": "materjal"
+  },
+  {
+   "key": "kokkupanek",
+   "label_et": "Kokkupanek",
+   "unit": "tüüp"
+  },
+  {
+   "key": "kandja_laius",
+   "label_et": "Kandja reguleeritav laius",
+   "unit": "mm"
+  }
+ ]
+}

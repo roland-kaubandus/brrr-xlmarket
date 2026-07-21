@@ -1,0 +1,41 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-suruohutooriistad-pneumaatilised-neetimispustolid",
+ "name": "Pneumaatilised neetimispüstolid",
+ "fields": [
+  {
+   "key": "rohk",
+   "label_et": "Töörõhk",
+   "unit": "bar"
+  },
+  {
+   "key": "poorlemiskiirus",
+   "label_et": "Mootori kiirus",
+   "unit": "RPM"
+  },
+  {
+   "key": "tõmbejõud",
+   "label_et": "Tõmbejõud",
+   "unit": "kN"
+  },
+  {
+   "key": "käigu_pikkus",
+   "label_et": "Käigu pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "silindri_diamet",
+   "label_et": "Silindri läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "noosikute_arv",
+   "label_et": "Noosikute arv komplektis",
+   "unit": "tk"
+  }
+ ]
+}

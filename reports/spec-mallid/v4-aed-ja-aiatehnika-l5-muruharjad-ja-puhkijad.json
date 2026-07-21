@@ -1,0 +1,46 @@
+{
+ "l3": "v4-aed-ja-aiatehnika-l5-muruharjad-ja-puhkijad",
+ "name": "Muruharjad ja pühkijad",
+ "fields": [
+  {
+   "key": "puhkimislaius_mm",
+   "label_et": "Pühkimislaius",
+   "unit": "mm"
+  },
+  {
+   "key": "maht_l",
+   "label_et": "Hopperikoti maht",
+   "unit": "L"
+  },
+  {
+   "key": "kaal_kg",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "harjade_arv",
+   "label_et": "Harjade arv",
+   "unit": "tk"
+  },
+  {
+   "key": "rataste_diameetr_mm",
+   "label_et": "Rataste läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "pintsli_ratas_suhe",
+   "label_et": "Harjade-rataste suhe",
+   "unit": "1:n"
+  },
+  {
+   "key": "tyyp",
+   "label_et": "Tüüp",
+   "unit": "text"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": "text"
+  }
+ ]
+}

@@ -1,0 +1,41 @@
+{
+ "l3": "v4-muusika-ja-helitehnika-muusikariistad-ksulofonid-kellamangud",
+ "name": "Ksülofonid ja kellamängud",
+ "fields": [
+  {
+   "key": "arvu_nootidest",
+   "label_et": "Nootide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Võtmete materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kogukaal",
+   "unit": "kg"
+  },
+  {
+   "key": "nootide_ulatus",
+   "label_et": "Nootide ulatus",
+   "unit": ""
+  },
+  {
+   "key": "seisaku_kaasas",
+   "label_et": "Seisak kaasas",
+   "unit": ""
+  },
+  {
+   "key": "seisaku_reguleerimise_ulatus",
+   "label_et": "Seisaku kõrguse reguleerimine",
+   "unit": "mm"
+  },
+  {
+   "key": "aksessuaarid_kaasas",
+   "label_et": "Aksessuaarid (kepid, kott jne)",
+   "unit": ""
+  }
+ ]
+}

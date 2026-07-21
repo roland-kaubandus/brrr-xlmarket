@@ -1,0 +1,46 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-fitness-ja-treeningseadmed-jooksulindid",
+ "name": "Jooksulindid",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "max_kiirus",
+   "label_et": "Maksimaalne kiirus",
+   "unit": "km/h"
+  },
+  {
+   "key": "kandevoimetus",
+   "label_et": "Kandevõime",
+   "unit": "kg"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "jooksulindi_pikkus",
+   "label_et": "Jooksulindi pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "jooksulindi_laius",
+   "label_et": "Jooksulindi laius",
+   "unit": "mm"
+  },
+  {
+   "key": "kallakuaste",
+   "label_et": "Kallak",
+   "unit": "%"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  }
+ ]
+}

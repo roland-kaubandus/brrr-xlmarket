@@ -1,0 +1,46 @@
+{
+ "l3": "v4-tooriied-ja-isikukaitse-kukkumiskaitse-ja-korgustoo-kolmjalad-paastestatiivid",
+ "name": "Kolmjalad ja päästestatiivid",
+ "fields": [
+  {
+   "key": "vintsitakistus_kg",
+   "label_et": "Vintsitakistus",
+   "unit": "kg"
+  },
+  {
+   "key": "kaabli_pikkus_m",
+   "label_et": "Kaabli pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "kaabli_diamee_mm",
+   "label_et": "Kaabli läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "jalg_pikkus_m",
+   "label_et": "Jala reguleeritav pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "tootmismaterjal",
+   "label_et": "Materjalid",
+   "unit": "tekst"
+  },
+  {
+   "key": "kaal_kg",
+   "label_et": "Toote kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "max_koormus_kg",
+   "label_et": "Maksimaalne koormus",
+   "unit": "kg"
+  },
+  {
+   "key": "tootmiskõrgus_m",
+   "label_et": "Tööde kõrgus",
+   "unit": "m"
+  }
+ ]
+}

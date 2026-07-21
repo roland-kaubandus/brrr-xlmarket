@@ -1,0 +1,46 @@
+{
+ "l3": "v4-ladu-filamendi-kunstirestid",
+ "name": "3D-printeri filamendiriiulid",
+ "fields": [
+  {
+   "key": "kihid",
+   "label_et": "Riiuli kihid (tk)",
+   "unit": "tk"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "laius",
+   "label_et": "Laius",
+   "unit": "mm"
+  },
+  {
+   "key": "sügavus",
+   "label_et": "Sügavus",
+   "unit": "mm"
+  },
+  {
+   "key": "korgus",
+   "label_et": "Kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "paigaldus_tyyp",
+   "label_et": "Paigalduse tüüp",
+   "unit": ""
+  },
+  {
+   "key": "ratastega",
+   "label_et": "Ratastega (jah/ei)",
+   "unit": ""
+  }
+ ]
+}

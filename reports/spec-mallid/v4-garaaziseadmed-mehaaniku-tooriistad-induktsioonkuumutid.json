@@ -1,0 +1,41 @@
+{
+ "l3": "v4-garaaziseadmed-mehaaniku-tooriistad-induktsioonkuumutid",
+ "name": "Induktsioonkuumutid",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Väljundvõimsus",
+   "unit": "W"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Sisendpinge",
+   "unit": "V"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "keevik_diameeter",
+   "label_et": "Vasejuhtme läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "karkvahtide_arv",
+   "label_et": "Kaasas olevate keekide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "maksimaalne_kuumutustemperatuur",
+   "label_et": "Maksimaalne kuumutustemperatuur",
+   "unit": "°C"
+  },
+  {
+   "key": "jahutus_vooluhulk",
+   "label_et": "Jahutusveе vooluhulk",
+   "unit": "L/min"
+  }
+ ]
+}

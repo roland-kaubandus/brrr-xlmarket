@@ -1,0 +1,41 @@
+{
+ "l3": "v4-suurkoogiseadmed-koogitarvikud-ja-noud-jaapressid-ja-jaatarvikud",
+ "name": "Jääpressid ja jäätarvikud",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "jaa_kuju",
+   "label_et": "Jää kuju",
+   "unit": ""
+  },
+  {
+   "key": "jaa_suurus",
+   "label_et": "Jää suurus",
+   "unit": "mm"
+  },
+  {
+   "key": "mahutavus",
+   "label_et": "Mahutavus (tükkide arv)",
+   "unit": "tk"
+  },
+  {
+   "key": "tootmismeetod",
+   "label_et": "Tootmismeetod",
+   "unit": ""
+  },
+  {
+   "key": "komplekti_koosseis",
+   "label_et": "Komplekti koosseis",
+   "unit": ""
+  }
+ ]
+}

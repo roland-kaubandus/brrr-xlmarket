@@ -1,0 +1,41 @@
+{
+ "l3": "v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-voodipeatsid",
+ "name": "Voodipeatsid",
+ "fields": [
+  {
+   "key": "laius_mm",
+   "label_et": "Laius",
+   "unit": "mm"
+  },
+  {
+   "key": "korgus_mm",
+   "label_et": "Kõrgus (reguleeritav)",
+   "unit": "mm"
+  },
+  {
+   "key": "sügavus_mm",
+   "label_et": "Sügavus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Toote kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "kandevõime_kg",
+   "label_et": "Kandevõime",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "lisavarustus",
+   "label_et": "Lisavarustus (pistikud, USB, riiulid)",
+   "unit": ""
+  }
+ ]
+}

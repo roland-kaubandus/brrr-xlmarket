@@ -1,0 +1,41 @@
+{
+ "l3": "v4-aed-ja-aiatehnika-l10-ajutised-aiapiirded",
+ "name": "Ajutised aiapiirded",
+ "fields": [
+  {
+   "key": "korgus",
+   "label_et": "Piirde kõrgus",
+   "unit": "m"
+  },
+  {
+   "key": "pikkus",
+   "label_et": "Piirde pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "postide_arv",
+   "label_et": "Postide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "posti_materjal",
+   "label_et": "Posti materjal",
+   "unit": ""
+  },
+  {
+   "key": "vork_suurus",
+   "label_et": "Võrgu silma suurus",
+   "unit": "mm"
+  }
+ ]
+}

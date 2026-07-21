@@ -1,0 +1,36 @@
+{
+ "l3": "v4-aed-ja-aiatehnika-paikesevarjud",
+ "name": "Päikesevarjud",
+ "fields": [
+  {
+   "key": "läbimõõt_mm",
+   "label_et": "Läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "ribide_arv",
+   "label_et": "Metallist ribide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "kallutus_funktsioon",
+   "label_et": "Kallutus reguleerimise funktsioon",
+   "unit": ""
+  },
+  {
+   "key": "kõrgus_paigaldatud",
+   "label_et": "Kõrgus (paigaldatud)",
+   "unit": "mm"
+  }
+ ]
+}

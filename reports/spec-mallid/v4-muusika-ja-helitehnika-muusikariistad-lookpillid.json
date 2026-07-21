@@ -1,0 +1,46 @@
+{
+ "l3": "v4-muusika-ja-helitehnika-muusikariistad-lookpillid",
+ "name": "Trummikomplektid ja -tarvikud",
+ "fields": [
+  {
+   "key": "arv_komplektid",
+   "label_et": "Trummikomplektide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "helide_arv",
+   "label_et": "Helide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "trummide_arv",
+   "label_et": "Trummide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "baskimbu_suurus",
+   "label_et": "Baskimbu suurus",
+   "unit": "in"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "midi_tugi",
+   "label_et": "USB MIDI tugi",
+   "unit": ""
+  },
+  {
+   "key": "maksimaalne_kandekaal",
+   "label_et": "Maksimaalne kandekaal",
+   "unit": "kg"
+  }
+ ]
+}

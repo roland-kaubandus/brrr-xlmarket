@@ -1,0 +1,46 @@
+{
+ "l3": "v4-garaaziseadmed-tungrauad-elektrilised-tungrauad",
+ "name": "Elektrilised tungrauad",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Maksimaalne võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Tööpinge",
+   "unit": "V"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Netokaal",
+   "unit": "kg"
+  },
+  {
+   "key": "tostuvoimsus",
+   "label_et": "Maksimaalne tostuvõimsus",
+   "unit": "kg"
+  },
+  {
+   "key": "tostekorgus",
+   "label_et": "Tõstekõrguse vahemik",
+   "unit": "mm"
+  },
+  {
+   "key": "vooluhulk",
+   "label_et": "Õhuvoolu kiirus (pumpade puhul)",
+   "unit": "L/min"
+  },
+  {
+   "key": "rohk",
+   "label_et": "Maksimaalrõhk",
+   "unit": "bar"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Peamised materjalid",
+   "unit": ""
+  }
+ ]
+}

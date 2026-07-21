@@ -1,0 +1,36 @@
+{
+ "l3": "v4-autovaruosad-ja-tarvikud-pukseerimisseadmed-maastikusoiduki-taastekomplektid",
+ "name": "Maastikusõiduki haardeplaadid",
+ "fields": [
+  {
+   "key": "kandevoimsus",
+   "label_et": "Kandevõimsuus (tonnides)",
+   "unit": "t"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal (paar)",
+   "unit": "kg"
+  },
+  {
+   "key": "pikkus",
+   "label_et": "Pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "laius",
+   "label_et": "Laius",
+   "unit": "mm"
+  },
+  {
+   "key": "paksus",
+   "label_et": "Paksus",
+   "unit": "mm"
+  }
+ ]
+}

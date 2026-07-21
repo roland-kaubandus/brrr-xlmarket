@@ -1,0 +1,36 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-veesport-ja-paadindus-veesoidukite-karud",
+ "name": "Veesõidukite kärud",
+ "fields": [
+  {
+   "key": "maksimaalne_koormus_kg",
+   "label_et": "Maksimaalne koormus",
+   "unit": "kg"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Käru kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "bungi_korgus",
+   "label_et": "Bungi kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "maarimine",
+   "label_et": "Maarimine (materjal)",
+   "unit": "text"
+  },
+  {
+   "key": "reguleeritavad_bungid",
+   "label_et": "Reguleeritavad bungid",
+   "unit": "text"
+  },
+  {
+   "key": "jarelhambad_ja_pidurid",
+   "label_et": "Jarehambad ja pidurid",
+   "unit": "count"
+  }
+ ]
+}

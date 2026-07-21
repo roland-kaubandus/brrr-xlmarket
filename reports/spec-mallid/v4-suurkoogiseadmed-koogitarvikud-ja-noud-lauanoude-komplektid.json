@@ -1,0 +1,46 @@
+{
+ "l3": "v4-suurkoogiseadmed-koogitarvikud-ja-noud-lauanoude-komplektid",
+ "name": "Lauanõude komplektid",
+ "fields": [
+  {
+   "key": "teenindatavate_inimeste_arv",
+   "label_et": "Teenindatavate inimeste arv",
+   "unit": "tk"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "dessertitaldrikute_arv",
+   "label_et": "Dessertitaldrikute arv",
+   "unit": "tk"
+  },
+  {
+   "key": "supikausi_arv",
+   "label_et": "Supikausi arv",
+   "unit": "tk"
+  },
+  {
+   "key": "supikausi_maht",
+   "label_et": "Supikausi maht",
+   "unit": "ml"
+  },
+  {
+   "key": "peaplate_diameetr",
+   "label_et": "Peaplate läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "nõudepesumasina_sobivus",
+   "label_et": "Nõudepesumasina sobivus",
+   "unit": ""
+  },
+  {
+   "key": "mikrolaineahju_sobivus",
+   "label_et": "Mikrolaineastja sobivus",
+   "unit": ""
+  }
+ ]
+}

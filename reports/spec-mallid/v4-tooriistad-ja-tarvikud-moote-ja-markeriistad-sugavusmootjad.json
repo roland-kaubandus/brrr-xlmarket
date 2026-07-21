@@ -1,0 +1,36 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-moote-ja-markeriistad-sugavusmootjad",
+ "name": "Sügavusmõõtjad",
+ "fields": [
+  {
+   "key": "mootmisulatused",
+   "label_et": "Mõõtmisulatus",
+   "unit": "mm"
+  },
+  {
+   "key": "resolutsioon",
+   "label_et": "Resolutsioon",
+   "unit": "mm"
+  },
+  {
+   "key": "kuju_tyyp",
+   "label_et": "Kuibisid arv",
+   "unit": "tk"
+  },
+  {
+   "key": "standard_vardad",
+   "label_et": "Standardvardad komplektis",
+   "unit": "tk"
+  },
+  {
+   "key": "displei_tyyp",
+   "label_et": "Kuva tüüp",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  }
+ ]
+}

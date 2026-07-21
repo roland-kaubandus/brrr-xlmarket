@@ -1,0 +1,41 @@
+{
+ "l3": "v4-santehnika-kute-ja-ventilatsioon-veepumbad-ja-vaakumpumbad-akupumbad",
+ "name": "Akupumbad",
+ "fields": [
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "vooluhulk",
+   "label_et": "Maksimaalne vooluhulk",
+   "unit": "L/min"
+  },
+  {
+   "key": "tõstekõrgus",
+   "label_et": "Maksimaalne tõstekõrgus",
+   "unit": "m"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "aku_tyyp",
+   "label_et": "Aku ühilduvus",
+   "unit": "brand"
+  },
+  {
+   "key": "max_vool",
+   "label_et": "Maksimaalne vool",
+   "unit": "A"
+  },
+  {
+   "key": "pumbatyyp",
+   "label_et": "Pumbatüüp",
+   "unit": "type"
+  }
+ ]
+}

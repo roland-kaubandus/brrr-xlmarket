@@ -1,0 +1,41 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-ohuhokilauad",
+ "name": "Õhuhokilauad",
+ "fields": [
+  {
+   "key": "pikkus_cm",
+   "label_et": "Laua pikkus",
+   "unit": "cm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "voimsus",
+   "label_et": "Õhupadjapuhuri võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Laua materjal",
+   "unit": ""
+  },
+  {
+   "key": "led_valgustus",
+   "label_et": "LED valgustus",
+   "unit": ""
+  },
+  {
+   "key": "skoorisusteem",
+   "label_et": "Elektrooniline skoorimine",
+   "unit": ""
+  },
+  {
+   "key": "komplekt",
+   "label_et": "Komplektis tarvikud",
+   "unit": ""
+  }
+ ]
+}

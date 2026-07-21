@@ -1,0 +1,41 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-kaablikoorimistooriistad",
+ "name": "Kaablikoorimistööriistad",
+ "fields": [
+  {
+   "key": "juhe_diameetri_vahemik_min_mm",
+   "label_et": "Min. juhtme läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "juhe_diameetri_vahemik_max_mm",
+   "label_et": "Max. juhtme läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Raam materjal",
+   "unit": ""
+  },
+  {
+   "key": "operatsioonirežiim",
+   "label_et": "Operatsioonirežiim",
+   "unit": ""
+  },
+  {
+   "key": "koorija_kiirus",
+   "label_et": "Koorija kiirus",
+   "unit": "ft/min"
+  },
+  {
+   "key": "kanalid",
+   "label_et": "Juhtekanalite arv",
+   "unit": "tk"
+  }
+ ]
+}

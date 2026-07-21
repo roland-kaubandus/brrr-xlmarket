@@ -1,0 +1,46 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-reisikotid-ja-kohvrid-tantsuvarustuse-reisikotid",
+ "name": "Tantsuvarustuse reisikotid",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Neto kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "maht",
+   "label_et": "Mahutavus (ligikaudne)",
+   "unit": "L"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjalide koostis",
+   "unit": ""
+  },
+  {
+   "key": "mootori_suurus",
+   "label_et": "Koti suurus (tollidel)",
+   "unit": "in"
+  },
+  {
+   "key": "mootmete_pikkus",
+   "label_et": "Mõõtmed - pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "mootmete_laius",
+   "label_et": "Mõõtmed - laius",
+   "unit": "mm"
+  },
+  {
+   "key": "mootmete_korgus",
+   "label_et": "Mõõtmed - kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "usb_port",
+   "label_et": "USB laadimisport",
+   "unit": ""
+  }
+ ]
+}

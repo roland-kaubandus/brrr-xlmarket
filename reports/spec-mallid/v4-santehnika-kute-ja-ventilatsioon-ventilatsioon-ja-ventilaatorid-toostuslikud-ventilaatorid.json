@@ -1,0 +1,42 @@
+{
+ "l3": "v4-santehnika-kute-ja-ventilatsioon-ventilatsioon-ja-ventilaatorid-toostuslikud-ventilaatorid",
+ "name": "Tööstuslikud ventilaatorid",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "vooluhulk",
+   "label_et": "Õhuvooluhulk",
+   "unit": "L/min",
+   "unit_orig": "CFM/m³h"
+  },
+  {
+   "key": "ketta_labamoot",
+   "label_et": "Ventilaatori läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "poorlemiskiirus",
+   "label_et": "Pöörlemiskiirus",
+   "unit": "RPM"
+  },
+  {
+   "key": "myra",
+   "label_et": "Müra tase",
+   "unit": "dB"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Toitepinge",
+   "unit": "V"
+  }
+ ]
+}

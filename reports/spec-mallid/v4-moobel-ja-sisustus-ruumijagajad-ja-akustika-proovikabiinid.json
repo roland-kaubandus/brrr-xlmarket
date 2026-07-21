@@ -1,0 +1,46 @@
+{
+ "l3": "v4-moobel-ja-sisustus-ruumijagajad-ja-akustika-proovikabiinid",
+ "name": "Proovikabiinid",
+ "fields": [
+  {
+   "key": "kuju",
+   "label_et": "Kuju",
+   "unit": ""
+  },
+  {
+   "key": "laius_cm",
+   "label_et": "Laius",
+   "unit": "cm"
+  },
+  {
+   "key": "sügavus_cm",
+   "label_et": "Sügavus",
+   "unit": "cm"
+  },
+  {
+   "key": "korgus_cm",
+   "label_et": "Kõrgus",
+   "unit": "cm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "paneelidearv",
+   "label_et": "Paneelide arv",
+   "unit": ""
+  },
+  {
+   "key": "materja",
+   "label_et": "Materja",
+   "unit": ""
+  },
+  {
+   "key": "kasutusvoimsus_kg",
+   "label_et": "Kandevõime",
+   "unit": "kg"
+  }
+ ]
+}

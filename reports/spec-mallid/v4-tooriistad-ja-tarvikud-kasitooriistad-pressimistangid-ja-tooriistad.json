@@ -1,0 +1,41 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-kasitooriistad-pressimistangid-ja-tooriistad",
+ "name": "Pressimistangid ja -tööriistad",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "pressimis_vahemik",
+   "label_et": "Pressimise vahemik (AWG)",
+   "unit": ""
+  },
+  {
+   "key": "pressimis_pindala",
+   "label_et": "Pressimise pindala (mm²)",
+   "unit": "mm²"
+  },
+  {
+   "key": "otsik_tyyp",
+   "label_et": "Otsiku tüüp",
+   "unit": ""
+  },
+  {
+   "key": "kaasas_olev_komplekt",
+   "label_et": "Kaasas olevad tarvikud",
+   "unit": ""
+  },
+  {
+   "key": "ratšetimehhanism",
+   "label_et": "Ratšetimehhanism",
+   "unit": ""
+  }
+ ]
+}

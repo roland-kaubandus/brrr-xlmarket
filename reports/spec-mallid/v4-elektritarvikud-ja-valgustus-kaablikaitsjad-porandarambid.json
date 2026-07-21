@@ -1,0 +1,46 @@
+{
+ "l3": "v4-elektritarvikud-ja-valgustus-kaablikaitsjad-porandarambid",
+ "name": "Kaablikaitsjad ja põrandarambid",
+ "fields": [
+  {
+   "key": "kanal_arv",
+   "label_et": "Kabelikanalite arv",
+   "unit": "tk"
+  },
+  {
+   "key": "kanali_suurus_laius",
+   "label_et": "Kanali laius",
+   "unit": "cm"
+  },
+  {
+   "key": "kanali_suurus_korgus",
+   "label_et": "Kanali kõrgus",
+   "unit": "cm"
+  },
+  {
+   "key": "koormuse_maht",
+   "label_et": "Lubatud koormus (telg)",
+   "unit": "kg"
+  },
+  {
+   "key": "pikkus",
+   "label_et": "Pikkus",
+   "unit": "cm"
+  },
+  {
+   "key": "laius",
+   "label_et": "Laius",
+   "unit": "cm"
+  },
+  {
+   "key": "korgus",
+   "label_et": "Kõrgus",
+   "unit": "cm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal (ühik)",
+   "unit": "kg"
+  }
+ ]
+}

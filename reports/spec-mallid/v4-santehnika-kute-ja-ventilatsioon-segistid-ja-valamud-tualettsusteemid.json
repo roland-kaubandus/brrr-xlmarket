@@ -1,0 +1,36 @@
+{
+ "l3": "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-tualettsusteemid",
+ "name": "Tualettsüsteemid",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Pump võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "maht",
+   "label_et": "Veebasteni maht",
+   "unit": "L"
+  },
+  {
+   "key": "sisselasked_arv",
+   "label_et": "Sisselaskete arv",
+   "unit": "tk"
+  },
+  {
+   "key": "transpordikaugus",
+   "label_et": "Horisontaalne transpordikaugus",
+   "unit": "m"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Pump kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Pump materjal",
+   "unit": ""
+  }
+ ]
+}

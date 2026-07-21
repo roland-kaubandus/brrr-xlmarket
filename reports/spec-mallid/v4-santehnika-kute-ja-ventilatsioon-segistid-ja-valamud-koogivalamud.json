@@ -1,0 +1,46 @@
+{
+ "l3": "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-koogivalamud",
+ "name": "Köögivalamud",
+ "fields": [
+  {
+   "key": "laius_cm",
+   "label_et": "Valamu laius",
+   "unit": "cm"
+  },
+  {
+   "key": "sügavus_mm",
+   "label_et": "Valamu sügavus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "paigaldusviis",
+   "label_et": "Paigaldusviis",
+   "unit": ""
+  },
+  {
+   "key": "auk_asukoht",
+   "label_et": "Dreeniaugu asukoht",
+   "unit": ""
+  },
+  {
+   "key": "valjund_laius_mm",
+   "label_et": "Paigaldusava laius",
+   "unit": "mm"
+  },
+  {
+   "key": "valjund_pikkus_mm",
+   "label_et": "Paigaldusava pikkus",
+   "unit": "mm"
+  }
+ ]
+}

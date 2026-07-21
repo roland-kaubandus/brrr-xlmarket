@@ -1,0 +1,46 @@
+{
+ "l3": "v4-tervis-ratikusoojendid",
+ "name": "Rätikusoojendid",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Mahutavus",
+   "unit": "L"
+  },
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "max_temp",
+   "label_et": "Maksimaalne temperatuur",
+   "unit": "°C"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Nimipinge",
+   "unit": "V"
+  },
+  {
+   "key": "ajastus_funktsioon",
+   "label_et": "Ajastuse funktsioon",
+   "unit": "min"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Sisematerjal",
+   "unit": ""
+  },
+  {
+   "key": "uv_desinfektsioon",
+   "label_et": "UV-desinfektsioon",
+   "unit": ""
+  }
+ ]
+}

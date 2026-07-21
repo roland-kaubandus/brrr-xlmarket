@@ -1,0 +1,46 @@
+{
+ "l3": "v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika-kanalisatsiooni-puhastusmasinad",
+ "name": "Kanalisatsiooni puhastusmasinad",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "poorlemiskiirus",
+   "label_et": "Pöörlemiskiirus",
+   "unit": "RPM"
+  },
+  {
+   "key": "kaabli_pikkus",
+   "label_et": "Kaabli pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "kaabli_diameetr",
+   "label_et": "Kaabli läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "toru_diameetr_min_max",
+   "label_et": "Toru läbimõõt (min-max)",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "automaatne_toide",
+   "label_et": "Automaatne söötmine",
+   "unit": "jah/ei"
+  }
+ ]
+}

@@ -1,0 +1,41 @@
+{
+ "l3": "v4-pollumajandus-ja-loomakasvatus-kariloomad-soodurid-ja-soodakuna",
+ "name": "Söödurid ja söödaküna",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Mahutavus (gallonid)",
+   "unit": "gal"
+  },
+  {
+   "key": "looma_arv",
+   "label_et": "Söödav loomade arv",
+   "unit": "tk"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "pikkus",
+   "label_et": "Pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "laius",
+   "label_et": "Laius",
+   "unit": "mm"
+  },
+  {
+   "key": "korgus",
+   "label_et": "Kõrgus",
+   "unit": "mm"
+  }
+ ]
+}

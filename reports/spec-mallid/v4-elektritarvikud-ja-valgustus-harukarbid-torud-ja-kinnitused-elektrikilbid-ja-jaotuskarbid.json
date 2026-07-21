@@ -1,0 +1,41 @@
+{
+ "l3": "v4-elektritarvikud-ja-valgustus-harukarbid-torud-ja-kinnitused-elektrikilbid-ja-jaotuskarbid",
+ "name": "Elektrikilbid ja jaotuskarbid",
+ "fields": [
+  {
+   "key": "korgus_cm",
+   "label_et": "Kõrgus",
+   "unit": "cm"
+  },
+  {
+   "key": "laius_cm",
+   "label_et": "Laius",
+   "unit": "cm"
+  },
+  {
+   "key": "sügavus_cm",
+   "label_et": "Sügavus",
+   "unit": "cm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "ip_kaitseaste",
+   "label_et": "IP kaitseaste",
+   "unit": ""
+  },
+  {
+   "key": "nema_rating",
+   "label_et": "NEMA hinne",
+   "unit": ""
+  }
+ ]
+}

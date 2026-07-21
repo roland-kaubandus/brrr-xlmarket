@@ -1,0 +1,36 @@
+{
+ "l3": "v4-pollumajandus-ja-loomakasvatus-talutehnika-pallikahvlid",
+ "name": "Heinatöö ja pallikäsitlus",
+ "fields": [
+  {
+   "key": "kandevoimsus_kg",
+   "label_et": "Kandvõime",
+   "unit": "kg"
+  },
+  {
+   "key": "pikkus_mm",
+   "label_et": "Peaspea pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal_kg",
+   "label_et": "Kogumass",
+   "unit": "kg"
+  },
+  {
+   "key": "spea_diameetr_mm",
+   "label_et": "Peaspea läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "stabilisaator_spearid",
+   "label_et": "Stabilisaatorspearide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  }
+ ]
+}

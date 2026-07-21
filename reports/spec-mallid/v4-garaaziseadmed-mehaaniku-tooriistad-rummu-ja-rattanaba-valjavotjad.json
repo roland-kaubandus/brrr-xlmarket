@@ -1,0 +1,41 @@
+{
+ "l3": "v4-garaaziseadmed-mehaaniku-tooriistad-rummu-ja-rattanaba-valjavotjad",
+ "name": "Rummu- ja rattanaba väljavõtjad",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "maksimaalne_tossukraft",
+   "label_et": "Maksimaalne tõstejõud",
+   "unit": "t"
+  },
+  {
+   "key": "ava_laius",
+   "label_et": "Maksimaalne ava laius",
+   "unit": "mm"
+  },
+  {
+   "key": "tootmisarvud",
+   "label_et": "Tööriistade arv komplektis",
+   "unit": "tk"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": "tekst"
+  },
+  {
+   "key": "kasutusviisid",
+   "label_et": "Paindlikkus (2/3 leuad, vertikaalne/horisontaalne)",
+   "unit": "tekst"
+  },
+  {
+   "key": "ühilduvus",
+   "label_et": "Ühilduvus",
+   "unit": "tekst"
+  }
+ ]
+}

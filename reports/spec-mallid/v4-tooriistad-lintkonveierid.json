@@ -1,0 +1,36 @@
+{
+ "l3": "v4-tooriistad-lintkonveierid",
+ "name": "Konveierid",
+ "fields": [
+  {
+   "key": "koormus_kogus",
+   "label_et": "Maksimaalne koormus",
+   "unit": "kg"
+  },
+  {
+   "key": "rihma_kiirus",
+   "label_et": "Rihma kiirus",
+   "unit": "m/min"
+  },
+  {
+   "key": "rihma_pikkus",
+   "label_et": "Rihma pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "rihma_laius",
+   "label_et": "Rihma laius",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  }
+ ]
+}

@@ -1,0 +1,46 @@
+{
+ "l3": "v4-meditsiin-ja-liikumisabi-meditsiinitarvikud-suurendusseadmed",
+ "name": "Suurendusseadmed",
+ "fields": [
+  {
+   "key": "suurendus_vahemik",
+   "label_et": "Suurendus (X)",
+   "unit": "X"
+  },
+  {
+   "key": "ekraani_suurus",
+   "label_et": "Ekraani suurus (toll)",
+   "unit": "in"
+  },
+  {
+   "key": "ekraani_lahutus",
+   "label_et": "Ekraani lahutus (px)",
+   "unit": "px"
+  },
+  {
+   "key": "kaamera_megapikslid",
+   "label_et": "Kaamera (MP)",
+   "unit": "MP"
+  },
+  {
+   "key": "varv_reziimid",
+   "label_et": "Värvirežiimid",
+   "unit": "tk"
+  },
+  {
+   "key": "aku_maht",
+   "label_et": "Aku maht (Wh)",
+   "unit": "Wh"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal (kg)",
+   "unit": "kg"
+  },
+  {
+   "key": "väljundid",
+   "label_et": "Väljundid",
+   "unit": ""
+  }
+ ]
+}

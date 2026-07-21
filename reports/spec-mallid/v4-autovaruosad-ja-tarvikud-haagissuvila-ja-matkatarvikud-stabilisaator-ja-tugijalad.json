@@ -1,0 +1,41 @@
+{
+ "l3": "v4-autovaruosad-ja-tarvikud-haagissuvila-ja-matkatarvikud-stabilisaator-ja-tugijalad",
+ "name": "Stabilisaator- ja tugijalad",
+ "fields": [
+  {
+   "key": "kandevoimsus_kg",
+   "label_et": "Kandevõime",
+   "unit": "kg"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "reguleerimiskorkus_mm",
+   "label_et": "Reguleerimiskõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "komplekti_suurus",
+   "label_et": "Komplekti suurus",
+   "unit": "tk"
+  },
+  {
+   "key": "tyyp",
+   "label_et": "Jalade tüüp",
+   "unit": ""
+  },
+  {
+   "key": "sobivus",
+   "label_et": "Ühilduvus",
+   "unit": ""
+  }
+ ]
+}

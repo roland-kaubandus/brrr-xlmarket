@@ -1,0 +1,46 @@
+{
+ "l3": "v4-suurkoogiseadmed-koogiseadmed-ja-elektriseadmed-hot-dog-ja-viineri-seadmed",
+ "name": "Hot dog ja viineri seadmed",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "poorlemiskiirus",
+   "label_et": "Poorlemiskiirus",
+   "unit": "RPM"
+  },
+  {
+   "key": "maht",
+   "label_et": "Maht",
+   "unit": "L"
+  },
+  {
+   "key": "kuumutusulatus",
+   "label_et": "Kuumutusulatus",
+   "unit": "°C"
+  },
+  {
+   "key": "hot_dog_maht",
+   "label_et": "Hot dog'ide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  }
+ ]
+}

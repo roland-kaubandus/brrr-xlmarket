@@ -1,0 +1,46 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-moote-ja-markeriistad-termokaamerad",
+ "name": "Termokaamerad",
+ "fields": [
+  {
+   "key": "ir_resolution_pixels",
+   "label_et": "IR lahutuse",
+   "unit": "px"
+  },
+  {
+   "key": "temp_range_min",
+   "label_et": "Minimaalse temperatuuri",
+   "unit": "°C"
+  },
+  {
+   "key": "temp_range_max",
+   "label_et": "Maksimaalse temperatuuri",
+   "unit": "°C"
+  },
+  {
+   "key": "refresh_rate",
+   "label_et": "Värskendamise sagedus",
+   "unit": "Hz"
+  },
+  {
+   "key": "ekraani_suurus",
+   "label_et": "Ekraani diagonaal",
+   "unit": "in"
+  },
+  {
+   "key": "visuaalse_kaamera_resolutsioon",
+   "label_et": "Visuaalse kaamera lahutus",
+   "unit": "MP"
+  },
+  {
+   "key": "aku_maht",
+   "label_et": "Aku maht",
+   "unit": "Wh"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  }
+ ]
+}

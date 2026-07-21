@@ -1,0 +1,36 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-metallitoo-ja-sepatoo-treipingi-tooriistahoidikud",
+ "name": "Treipingi tööriistahoidikud",
+ "fields": [
+  {
+   "key": "yhilduv_swing_min_mm",
+   "label_et": "Ühilduv treipingi swing (min)",
+   "unit": "mm"
+  },
+  {
+   "key": "yhilduv_swing_max_mm",
+   "label_et": "Ühilduv treipingi swing (max)",
+   "unit": "mm"
+  },
+  {
+   "key": "toolholderi_arv",
+   "label_et": "Toolholderi arv komplektis",
+   "unit": "tk"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "tool_post_type",
+   "label_et": "Tool post tüüp",
+   "unit": ""
+  }
+ ]
+}

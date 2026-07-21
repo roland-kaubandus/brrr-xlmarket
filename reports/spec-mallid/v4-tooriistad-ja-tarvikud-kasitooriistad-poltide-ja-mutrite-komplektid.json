@@ -1,0 +1,41 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-kasitooriistad-poltide-ja-mutrite-komplektid",
+ "name": "Poltide ja mutrite komplektid",
+ "fields": [
+  {
+   "key": "kogus_tk",
+   "label_et": "Kogus (tk)",
+   "unit": "pcs"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "mehhaaniline_klass",
+   "label_et": "Mehaaniline klass",
+   "unit": ""
+  },
+  {
+   "key": "standard",
+   "label_et": "Standard (meetermõõt/tolliosa)",
+   "unit": ""
+  },
+  {
+   "key": "suurused",
+   "label_et": "Saadaolevad suurused",
+   "unit": ""
+  },
+  {
+   "key": "kattevariandid",
+   "label_et": "Kattevariandid",
+   "unit": ""
+  },
+  {
+   "key": "kast_olemasolu",
+   "label_et": "Kast/säilituskast",
+   "unit": ""
+  }
+ ]
+}

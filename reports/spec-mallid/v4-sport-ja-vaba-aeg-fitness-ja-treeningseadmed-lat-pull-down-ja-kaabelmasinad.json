@@ -1,0 +1,46 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-fitness-ja-treeningseadmed-lat-pull-down-ja-kaabelmasinad",
+ "name": "Lat pull-down ja kaabelmasinad",
+ "fields": [
+  {
+   "key": "maksimaalne_koormus",
+   "label_et": "Maksimaalne koormus",
+   "unit": "kg"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Seadme kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "mootori_voimsus",
+   "label_et": "Mootori võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "iste_reguleerimise_tasemed",
+   "label_et": "Istme reguleerimise tasemed",
+   "unit": "tk"
+  },
+  {
+   "key": "korguse_reguleerimise_tasemed",
+   "label_et": "Kõrguse reguleerimise tasemed",
+   "unit": "tk"
+  },
+  {
+   "key": "pikkus_x_laius_x_korgus",
+   "label_et": "Mõõtmed (P × L × K)",
+   "unit": "mm"
+  },
+  {
+   "key": "harjutuste_arv",
+   "label_et": "Harjutuste arv",
+   "unit": "tk"
+  },
+  {
+   "key": "myra",
+   "label_et": "Müra tase",
+   "unit": "dB"
+  }
+ ]
+}

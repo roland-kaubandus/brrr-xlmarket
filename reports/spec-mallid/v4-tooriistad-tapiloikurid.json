@@ -1,0 +1,36 @@
+{
+ "l3": "v4-tooriistad-tapiloikurid",
+ "name": "Tapilõikurid",
+ "fields": [
+  {
+   "key": "ketta_labamoot",
+   "label_et": "Lõikeketta läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "teradearv",
+   "label_et": "Teralde arv",
+   "unit": "tk"
+  },
+  {
+   "key": "tera_tyyp",
+   "label_et": "Tera tüüp",
+   "unit": "kategoriseeritud"
+  },
+  {
+   "key": "diameetrid_komplektis",
+   "label_et": "Saadaolevad diameetrid",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Keermestatud materjal",
+   "unit": "kategoriseeritud"
+  },
+  {
+   "key": "ketta_tasapind",
+   "label_et": "Lõikepindade kvaliteet",
+   "unit": "kategoriseeritud"
+  }
+ ]
+}

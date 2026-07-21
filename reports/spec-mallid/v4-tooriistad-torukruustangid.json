@@ -1,0 +1,41 @@
+{
+ "l3": "v4-tooriistad-torukruustangid",
+ "name": "Torukruustangid",
+ "fields": [
+  {
+   "key": "torude_maht_min_mm",
+   "label_et": "Torude läbimõõdu vahemik (min)",
+   "unit": "mm"
+  },
+  {
+   "key": "torude_maht_max_mm",
+   "label_et": "Torude läbimõõdu vahemik (max)",
+   "unit": "mm"
+  },
+  {
+   "key": "kael_pikkus_mm",
+   "label_et": "Ahela pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kandevoime_kg",
+   "label_et": "Kandevõime",
+   "unit": "kg"
+  },
+  {
+   "key": "kaasaskantavus",
+   "label_et": "Kaasaskantavus",
+   "unit": ""
+  }
+ ]
+}

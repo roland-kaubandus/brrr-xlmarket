@@ -1,0 +1,47 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-kasitooriistad-otsakute-komplektid",
+ "name": "Otsakute komplektid",
+ "fields": [
+  {
+   "key": "komplekti_suurus",
+   "label_et": "Komplekti suurus (tk)",
+   "unit": "pieces"
+  },
+  {
+   "key": "torx_vahemik",
+   "label_et": "Torx vahemik (T-suurused)",
+   "unit": "designation"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal (bitid/pistikud)",
+   "unit": "designation"
+  },
+  {
+   "key": "kõvadus_bitid",
+   "label_et": "Bittide kõvadus (HRC)",
+   "unit": "HRC"
+  },
+  {
+   "key": "kõvadus_pistikud",
+   "label_et": "Pistikute kõvadus (HRC)",
+   "unit": "HRC"
+  },
+  {
+   "key": "ketta_labamoot",
+   "label_et": "Käepideme suurus (toll)",
+   "unit": "mm",
+   "unit_orig": "in"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kogukaal",
+   "unit": "kg"
+  },
+  {
+   "key": "kaasas_etasuused",
+   "label_et": "Väliskruvide tüübid (E-Torx)",
+   "unit": "boolean"
+  }
+ ]
+}

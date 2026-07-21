@@ -1,0 +1,41 @@
+{
+ "l3": "v4-moobel-ja-sisustus-kontorimoobel-ja-tarvikud-kontoritoolid",
+ "name": "Kontoritoolid",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "koormus_piir",
+   "label_et": "Maksimaalne koormus",
+   "unit": "kg"
+  },
+  {
+   "key": "korgus_reguleeritav",
+   "label_et": "Kõrguse reguleerimise vahemik",
+   "unit": "cm"
+  },
+  {
+   "key": "istukoha_laius",
+   "label_et": "Istumiskoha laius",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "lumbar_tugi",
+   "label_et": "Lumbatugi",
+   "unit": ""
+  },
+  {
+   "key": "kaar_nurk",
+   "label_et": "Kaldenurk",
+   "unit": "°"
+  }
+ ]
+}

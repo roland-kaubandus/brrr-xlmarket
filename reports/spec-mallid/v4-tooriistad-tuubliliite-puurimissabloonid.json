@@ -1,0 +1,36 @@
+{
+ "l3": "v4-tooriistad-tuubliliite-puurimissabloonid",
+ "name": "Tüübliliite puurimisšabloonid",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Korpuse materjal",
+   "unit": ""
+  },
+  {
+   "key": "pooraste_arv",
+   "label_et": "Puurimisvarraste arv",
+   "unit": "tk"
+  },
+  {
+   "key": "varrastega_suurus",
+   "label_et": "Varraste suurused (max)",
+   "unit": "mm"
+  },
+  {
+   "key": "puurbittide_arv",
+   "label_et": "Puurbittide arv komplektis",
+   "unit": "tk"
+  },
+  {
+   "key": "max_laius",
+   "label_et": "Maksimaalne reguleeritav laius",
+   "unit": "mm"
+  }
+ ]
+}

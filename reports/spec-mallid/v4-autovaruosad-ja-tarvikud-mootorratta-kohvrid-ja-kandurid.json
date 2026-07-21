@@ -1,0 +1,36 @@
+{
+ "l3": "v4-autovaruosad-ja-tarvikud-mootorratta-kohvrid-ja-kandurid",
+ "name": "Mootorratta kohvrid ja kandurid",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Mahutavus",
+   "unit": "L"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "jargi_arvudus",
+   "label_et": "Arvutatud jäärkogus",
+   "unit": "mm"
+  },
+  {
+   "key": "kandevoimsus",
+   "label_et": "Kandevõimsus",
+   "unit": "kg"
+  },
+  {
+   "key": "lock_ja_pad",
+   "label_et": "Lukk ja nahast polsterdus",
+   "unit": ""
+  }
+ ]
+}

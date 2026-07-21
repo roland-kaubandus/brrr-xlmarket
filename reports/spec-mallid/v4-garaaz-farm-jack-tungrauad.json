@@ -1,0 +1,41 @@
+{
+ "l3": "v4-garaaz-farm-jack-tungrauad",
+ "name": "Farm-jack tungrauad",
+ "fields": [
+  {
+   "key": "kandevoimsus_kg",
+   "label_et": "Kandevõimsus",
+   "unit": "kg"
+  },
+  {
+   "key": "kõrgus_mm",
+   "label_et": "Pikkus (kokkuvolditult)",
+   "unit": "mm"
+  },
+  {
+   "key": "tõstekõrgus_min_mm",
+   "label_et": "Minimaalne tõstekõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "tõstekõrgus_max_mm",
+   "label_et": "Maksimaalne tõstekõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "alus_olemas",
+   "label_et": "Alus (stabiilsus)",
+   "unit": ""
+  }
+ ]
+}

@@ -1,0 +1,46 @@
+{
+ "l3": "v4-ehitus-remont-ja-varvid-katusematerjalid-katuselabiviigu-tihendid",
+ "name": "Katuseläbiviigu tihendid",
+ "fields": [
+  {
+   "key": "toru_od_min_mm",
+   "label_et": "Toru välisläbimõõt min",
+   "unit": "mm"
+  },
+  {
+   "key": "toru_od_max_mm",
+   "label_et": "Toru välisläbimõõt max",
+   "unit": "mm"
+  },
+  {
+   "key": "temperatuurivahemik_min_c",
+   "label_et": "Temperatuurivahemik min",
+   "unit": "°C"
+  },
+  {
+   "key": "temperatuurivahemik_max_c",
+   "label_et": "Temperatuurivahemik max",
+   "unit": "°C"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "aluse_kuju",
+   "label_et": "Aluse kuju",
+   "unit": ""
+  },
+  {
+   "key": "kogus_pakis",
+   "label_et": "Kogus pakis",
+   "unit": "tk"
+  },
+  {
+   "key": "aluse_laius_mm",
+   "label_et": "Aluse laius",
+   "unit": "mm"
+  }
+ ]
+}

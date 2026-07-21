@@ -1,0 +1,46 @@
+{
+ "l3": "v4-garaaziseadmed-tungrauad-kaartungrauad",
+ "name": "Käärtungrauad",
+ "fields": [
+  {
+   "key": "maksimaalne_kandevoimsus",
+   "label_et": "Maksimaalne kandevõimsus",
+   "unit": "kg"
+  },
+  {
+   "key": "tostukõrgus_min",
+   "label_et": "Tõstukõrgus (miinimum)",
+   "unit": "mm"
+  },
+  {
+   "key": "tostukõrgus_max",
+   "label_et": "Tõstukõrgus (maksimum)",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "juhtimine",
+   "label_et": "Juhtimine",
+   "unit": ""
+  }
+ ]
+}

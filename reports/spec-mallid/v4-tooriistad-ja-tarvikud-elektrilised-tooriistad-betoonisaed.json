@@ -1,0 +1,41 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-elektrilised-tooriistad-betoonisaed",
+ "name": "Betoonisaed",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "ketta_labamoot",
+   "label_et": "Ketta läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "poorlemiskiirus",
+   "label_et": "Pöörlemiskiirus",
+   "unit": "RPM"
+  },
+  {
+   "key": "lohkelugavus",
+   "label_et": "Lõikesügavus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "maarimine",
+   "label_et": "Märamine",
+   "unit": "tekst"
+  }
+ ]
+}

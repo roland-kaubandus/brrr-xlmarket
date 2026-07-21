@@ -1,0 +1,46 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-fitness-ja-treeningseadmed-treeningkelgud-ja-saanid",
+ "name": "Treeningkelgud ja -saanid",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Toote kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "max_koormus",
+   "label_et": "Maksimaalne koormusmaht",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "ketta_labamoot",
+   "label_et": "Ketta labamõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "pikkus",
+   "label_et": "Pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "laius",
+   "label_et": "Laius",
+   "unit": "mm"
+  },
+  {
+   "key": "korgus",
+   "label_et": "Kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "vormikihistu_tip",
+   "label_et": "Vormkihistuse tüüp",
+   "unit": ""
+  }
+ ]
+}

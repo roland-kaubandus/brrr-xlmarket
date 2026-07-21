@@ -1,0 +1,46 @@
+{
+ "l3": "v4-aed-ja-aiatehnika-l2-basseinikatted",
+ "name": "Basseinikatted",
+ "fields": [
+  {
+   "key": "kate_pikkus_m",
+   "label_et": "Katte pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "kate_laius_m",
+   "label_et": "Katte laius",
+   "unit": "m"
+  },
+  {
+   "key": "kate_kuju",
+   "label_et": "Katte kuju",
+   "unit": "valik"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": "tüüp"
+  },
+  {
+   "key": "katte_paksus_mm",
+   "label_et": "Katte paksus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "drenaaž_auk_mm",
+   "label_et": "Drenaaži ava läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "pinnaviimistlus",
+   "label_et": "Pinnaviimistlus",
+   "unit": "tüüp"
+  }
+ ]
+}

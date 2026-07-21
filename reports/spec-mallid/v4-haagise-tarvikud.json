@@ -1,0 +1,41 @@
+{
+ "l3": "v4-haagise-tarvikud",
+ "name": "Haagise tarvikud",
+ "fields": [
+  {
+   "key": "max_koormus_kg",
+   "label_et": "Maksimaalne koormus",
+   "unit": "kg"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Toote kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "paigalduse_tyyp",
+   "label_et": "Paigalduse tüüp",
+   "unit": ""
+  },
+  {
+   "key": "slot_arv",
+   "label_et": "Slottide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "lukustus",
+   "label_et": "Lukustuse tüüp",
+   "unit": ""
+  },
+  {
+   "key": "sobitavus",
+   "label_et": "Sobitavus",
+   "unit": ""
+  }
+ ]
+}

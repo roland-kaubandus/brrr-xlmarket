@@ -1,0 +1,41 @@
+{
+ "l3": "v4-autovaruosad-ja-tarvikud-haagissuvila-ja-matkatarvikud-markiisid-ja-varikatuse-osad",
+ "name": "Markiisid ja varikatuse osad",
+ "fields": [
+  {
+   "key": "pikkus_cm",
+   "label_et": "Pikkus",
+   "unit": "cm"
+  },
+  {
+   "key": "laius_cm",
+   "label_et": "Laius",
+   "unit": "cm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "vesi_ja_paike_kaitse",
+   "label_et": "Vee- ja päikesekindlus",
+   "unit": ""
+  },
+  {
+   "key": "uv_filter",
+   "label_et": "UV-filter",
+   "unit": ""
+  },
+  {
+   "key": "sobiv_markiisi_suurus",
+   "label_et": "Sobiv markiisi suurus",
+   "unit": "m"
+  }
+ ]
+}

@@ -1,0 +1,46 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-alumiiniumprofiilid",
+ "name": "Alumiiniumprofiilid",
+ "fields": [
+  {
+   "key": "pikkus_mm",
+   "label_et": "Pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "profiiil_suurus",
+   "label_et": "Profiili suurus",
+   "unit": "mm"
+  },
+  {
+   "key": "kogo_pikkus",
+   "label_et": "Kogupikkus (tk × pikkus)",
+   "unit": "m"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "pinnaviimistlus",
+   "label_et": "Pinnaviimistlus",
+   "unit": ""
+  },
+  {
+   "key": "uh_polt_suurus",
+   "label_et": "Ühilduvad poldid",
+   "unit": "mm"
+  },
+  {
+   "key": "keskava_mm",
+   "label_et": "Keskavade ava",
+   "unit": "mm"
+  },
+  {
+   "key": "tk_koguses",
+   "label_et": "Kogus paketis",
+   "unit": "tk"
+  }
+ ]
+}

@@ -1,0 +1,46 @@
+{
+ "l3": "v4-ehitus-remont-ja-varvid-moobli-ja-kapifurnituur-mooblinupud-ja-kaepidemed",
+ "name": "Mööblinupud ja -käepidemed",
+ "fields": [
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "kogus",
+   "label_et": "Kogus pakendis",
+   "unit": "tk"
+  },
+  {
+   "key": "ava_kaugus",
+   "label_et": "Avanäitaja kaugus",
+   "unit": "mm"
+  },
+  {
+   "key": "pikkus",
+   "label_et": "Pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "diameeter",
+   "label_et": "Diameeter/laius",
+   "unit": "mm"
+  },
+  {
+   "key": "kuju",
+   "label_et": "Kuju",
+   "unit": ""
+  },
+  {
+   "key": "varv",
+   "label_et": "Värvus",
+   "unit": ""
+  }
+ ]
+}

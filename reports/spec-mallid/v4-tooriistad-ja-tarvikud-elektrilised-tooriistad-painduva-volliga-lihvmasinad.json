@@ -1,0 +1,41 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-elektrilised-tooriistad-painduva-volliga-lihvmasinad",
+ "name": "Painduva võlliga lihvmasinad",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "poorlemiskiirus",
+   "label_et": "Maksimaalne pöörlemiskiirus",
+   "unit": "RPM"
+  },
+  {
+   "key": "kael",
+   "label_et": "Kael/padrunisuuruse vahemik",
+   "unit": "mm"
+  },
+  {
+   "key": "painduva_voli_pikkus",
+   "label_et": "Painduva võlli pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Toitepinge",
+   "unit": "V"
+  },
+  {
+   "key": "myra",
+   "label_et": "Müratase",
+   "unit": "dB"
+  }
+ ]
+}

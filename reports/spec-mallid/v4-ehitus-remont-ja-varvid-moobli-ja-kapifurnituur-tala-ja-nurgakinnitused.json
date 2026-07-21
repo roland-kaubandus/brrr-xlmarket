@@ -1,0 +1,36 @@
+{
+ "l3": "v4-ehitus-remont-ja-varvid-moobli-ja-kapifurnituur-tala-ja-nurgakinnitused",
+ "name": "Tala- ja nurgakinnitused",
+ "fields": [
+  {
+   "key": "kogus",
+   "label_et": "Kogus (tk)",
+   "unit": "pcs"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "paksus",
+   "label_et": "Paksus (mm)",
+   "unit": "mm"
+  },
+  {
+   "key": "kandevoimevus",
+   "label_et": "Kandevõime (kg)",
+   "unit": "kg"
+  },
+  {
+   "key": "sisenurgamootmed",
+   "label_et": "Sisenurga mõõtmed (mm)",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal_tk",
+   "label_et": "Kaal ühe tk kohta (kg)",
+   "unit": "kg"
+  }
+ ]
+}

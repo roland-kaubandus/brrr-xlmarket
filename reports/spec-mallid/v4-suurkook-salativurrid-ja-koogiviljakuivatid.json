@@ -1,0 +1,36 @@
+{
+ "l3": "v4-suurkook-salativurrid-ja-koogiviljakuivatid",
+ "name": "Salativurrid ja köögiviljakuivatid",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Piatsi maht",
+   "unit": "L"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Piatsi materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "poorlemiskiirus",
+   "label_et": "Kuivatamise kiirus",
+   "unit": "RPM"
+  },
+  {
+   "key": "seest_korvi_maht",
+   "label_et": "Sisekorvi maht",
+   "unit": "L"
+  },
+  {
+   "key": "seest_korvi_materjal",
+   "label_et": "Sisekorvi materjal",
+   "unit": ""
+  }
+ ]
+}

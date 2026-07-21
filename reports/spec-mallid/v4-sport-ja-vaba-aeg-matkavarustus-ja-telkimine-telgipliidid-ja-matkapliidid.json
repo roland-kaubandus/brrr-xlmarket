@@ -1,0 +1,41 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-matkavarustus-ja-telkimine-telgipliidid-ja-matkapliidid",
+ "name": "Telgipliidid ja matkapliidid",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "firebox_maht",
+   "label_et": "Tulekasti maht",
+   "unit": "L"
+  },
+  {
+   "key": "toru_diameter",
+   "label_et": "Toru läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "kõrgus",
+   "label_et": "Kõrgus",
+   "unit": "cm"
+  },
+  {
+   "key": "pliidi_tüüp",
+   "label_et": "Pliidi tüüp",
+   "unit": ""
+  },
+  {
+   "key": "kütus",
+   "label_et": "Kütus",
+   "unit": ""
+  }
+ ]
+}

@@ -1,0 +1,46 @@
+{
+ "l3": "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-ehte-ja-hoiukarbid",
+ "name": "Ehte- ja hoiukarbid",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Neto kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "maht",
+   "label_et": "Maht / Mahutavus",
+   "unit": "L"
+  },
+  {
+   "key": "pikkus",
+   "label_et": "Pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "laius",
+   "label_et": "Laius",
+   "unit": "mm"
+  },
+  {
+   "key": "korgus",
+   "label_et": "Kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "varv",
+   "label_et": "Värv",
+   "unit": ""
+  },
+  {
+   "key": "kannete_arv",
+   "label_et": "Käepideme arv",
+   "unit": "tk"
+  }
+ ]
+}

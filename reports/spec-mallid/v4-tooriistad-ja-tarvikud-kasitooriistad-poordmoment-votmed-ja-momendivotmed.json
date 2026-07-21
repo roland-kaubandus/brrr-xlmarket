@@ -1,0 +1,46 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-kasitooriistad-poordmoment-votmed-ja-momendivotmed",
+ "name": "Pöördmoment-võtmed ja momendivõtmed",
+ "fields": [
+  {
+   "key": "pöördemoment_min",
+   "label_et": "Minimaalne pöördemoment",
+   "unit": "N.m"
+  },
+  {
+   "key": "pöördemoment_max",
+   "label_et": "Maksimaalne pöördemoment",
+   "unit": "N.m"
+  },
+  {
+   "key": "ketas_labamoot",
+   "label_et": "Ketta labamoot (ruut)",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "tyyp",
+   "label_et": "Tüüp",
+   "unit": "kategorija"
+  },
+  {
+   "key": "täpsus",
+   "label_et": "Täpsus",
+   "unit": "%"
+  },
+  {
+   "key": "hammasratta_hammaste_arv",
+   "label_et": "Hammasratta hammaste arv",
+   "unit": "tk"
+  },
+  {
+   "key": "pöördemoment_suhe",
+   "label_et": "Pöördemoment suhe (kordaja)",
+   "unit": "1:N"
+  }
+ ]
+}

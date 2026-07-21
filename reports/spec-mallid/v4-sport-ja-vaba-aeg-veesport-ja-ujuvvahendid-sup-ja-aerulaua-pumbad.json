@@ -1,0 +1,41 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-veesport-ja-ujuvvahendid-sup-ja-aerulaua-pumbad",
+ "name": "SUP- ja aerulaua pumbad",
+ "fields": [
+  {
+   "key": "rohk",
+   "label_et": "Maksimaalne rõhk",
+   "unit": "bar"
+  },
+  {
+   "key": "ohuvool",
+   "label_et": "Õhuvoolu kiirus",
+   "unit": "L/min"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Toitepinge",
+   "unit": "V"
+  },
+  {
+   "key": "aku_maht",
+   "label_et": "Aku mahtuvus",
+   "unit": "Wh"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaalu",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Peamine materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaheastmeline",
+   "label_et": "Kaheastmeline (täitmine/tühjendumine)",
+   "unit": ""
+  }
+ ]
+}

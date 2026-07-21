@@ -1,0 +1,46 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-kasitooriistad-neetmutri-tooriistad",
+ "name": "Neetmutri tööriistad",
+ "fields": [
+  {
+   "key": "kael",
+   "label_et": "Käel (pikkus)",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "mandrell_arv",
+   "label_et": "Mandrelite arv",
+   "unit": "tk"
+  },
+  {
+   "key": "mutt_arv",
+   "label_et": "Neetmutrite arv",
+   "unit": "tk"
+  },
+  {
+   "key": "max_suurus",
+   "label_et": "Maksimaalne neetmutri suurus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaitel_tyyp",
+   "label_et": "Käepideme tüüp",
+   "unit": ""
+  },
+  {
+   "key": "lubatud_toortsükkel",
+   "label_et": "Max töötsükkel",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Käepideme materjal",
+   "unit": ""
+  }
+ ]
+}

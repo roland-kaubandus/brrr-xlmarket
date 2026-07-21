@@ -1,0 +1,47 @@
+{
+ "l3": "v4-pollumajandus-ja-loomakasvatus-piimakari-piimaseparaatorid",
+ "name": "Piimaseparaatorid ja koorimasinad",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "poorlemiskiirus",
+   "label_et": "Pöörlemiskiirus",
+   "unit": "RPM"
+  },
+  {
+   "key": "vooluhulk",
+   "label_et": "Tootlikkus",
+   "unit": "L/min",
+   "unit_orig": "L/h"
+  },
+  {
+   "key": "maht",
+   "label_et": "Piimakaussi maht",
+   "unit": "L"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "rasva_sisaldus_jargi",
+   "label_et": "Rasvasisaldus pärast eraldamist",
+   "unit": "%"
+  }
+ ]
+}

@@ -1,0 +1,42 @@
+{
+ "l3": "v4-elektritarvikud-ja-valgustus-mootorid-ja-osad-uksikfaasilised-elektrimootorid",
+ "name": "Vahelduvvoolu elektrimootorid",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "poorlemiskiirus",
+   "label_et": "Pöörlemiskiirus",
+   "unit": "RPM"
+  },
+  {
+   "key": "ohuvool",
+   "label_et": "Käivitusvool",
+   "unit": "L/min",
+   "unit_orig": "A"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "raam_suurus",
+   "label_et": "Raami suurus",
+   "unit": ""
+  },
+  {
+   "key": "shaft_diameetrit",
+   "label_et": "Võlli läbimõõt",
+   "unit": "mm"
+  }
+ ]
+}

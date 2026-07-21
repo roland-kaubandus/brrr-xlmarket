@@ -1,0 +1,41 @@
+{
+ "l3": "v4-tooriistad-survepesuri-pinnapuhastid",
+ "name": "Survepesuri pinnapuhastid",
+ "fields": [
+  {
+   "key": "rohk_max",
+   "label_et": "Maksimaalne rõhk",
+   "unit": "bar"
+  },
+  {
+   "key": "vooluhulk_max",
+   "label_et": "Maksimaalne vooluhulk",
+   "unit": "Lmin"
+  },
+  {
+   "key": "puhastusala_diameetr",
+   "label_et": "Puhastusala läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "ühenduse_suurus",
+   "label_et": "Kiirühenduse suurus",
+   "unit": "inch"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Puhastuskettas materjal",
+   "unit": ""
+  },
+  {
+   "key": "otsikute_arv",
+   "label_et": "Otsikute arv",
+   "unit": ""
+  }
+ ]
+}

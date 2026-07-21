@@ -1,0 +1,36 @@
+{
+ "l3": "v4-autovaruosad-ja-tarvikud-salongitarvikud-auto-porandamatid",
+ "name": "Auto põrandamatid",
+ "fields": [
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "paksus",
+   "label_et": "Paksus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "komplekti_pohimood",
+   "label_et": "Komplekti põhimood",
+   "unit": ""
+  },
+  {
+   "key": "yhilduvus_mudel",
+   "label_et": "Ühilduvus (mudel/aasta)",
+   "unit": ""
+  },
+  {
+   "key": "maarimine",
+   "label_et": "Märimine",
+   "unit": ""
+  }
+ ]
+}

@@ -1,0 +1,46 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-lineaarjuhikud",
+ "name": "Lineaarjuhikud",
+ "fields": [
+  {
+   "key": "rail_length_mm",
+   "label_et": "Rööpade pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "rail_diameter_mm",
+   "label_et": "Rööpa läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "static_load_capacity_kg",
+   "label_et": "Staatiline koormusvõimsus",
+   "unit": "kg"
+  },
+  {
+   "key": "dynamic_load_capacity_kg",
+   "label_et": "Dünaamiline koormusvõimsus",
+   "unit": "kg"
+  },
+  {
+   "key": "straightness_mm",
+   "label_et": "Sirgjoonelisus",
+   "unit": "mm/1000mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": "—"
+  },
+  {
+   "key": "block_count",
+   "label_et": "Libisemisplokkide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  }
+ ]
+}

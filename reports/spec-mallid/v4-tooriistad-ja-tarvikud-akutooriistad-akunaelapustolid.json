@@ -1,0 +1,41 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-akutooriistad-akunaelapustolid",
+ "name": "Akunaelapüstolid",
+ "fields": [
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "aku_maht",
+   "label_et": "Aku mahtuvus",
+   "unit": "Wh"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "laskesagedus",
+   "label_et": "Laskesagedus",
+   "unit": "shots/min"
+  },
+  {
+   "key": "max_naela_pikkus",
+   "label_et": "Max naela pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "funktsioonid",
+   "label_et": "Funktsioonid",
+   "unit": "tükid"
+  },
+  {
+   "key": "salv_maht",
+   "label_et": "Salve mahtuvus",
+   "unit": "tükid"
+  }
+ ]
+}

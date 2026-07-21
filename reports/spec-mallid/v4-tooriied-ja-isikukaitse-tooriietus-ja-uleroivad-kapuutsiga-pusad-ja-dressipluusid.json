@@ -1,0 +1,41 @@
+{
+ "l3": "v4-tooriied-ja-isikukaitse-tooriietus-ja-uleroivad-kapuutsiga-pusad-ja-dressipluusid",
+ "name": "Kapuutsiga pusad ja dressipluusid",
+ "fields": [
+  {
+   "key": "suurus",
+   "label_et": "Suurus",
+   "unit": "EU-suurus"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjali koostis",
+   "unit": "%"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "sugu",
+   "label_et": "Sugu",
+   "unit": "kategooria"
+  },
+  {
+   "key": "varis",
+   "label_et": "Värv",
+   "unit": "kategooria"
+  },
+  {
+   "key": "funktsioon",
+   "label_et": "Kasutusotstarve",
+   "unit": "kategooria"
+  },
+  {
+   "key": "aastaaeg",
+   "label_et": "Soovitatud aastaajad",
+   "unit": "kategooria"
+  }
+ ]
+}

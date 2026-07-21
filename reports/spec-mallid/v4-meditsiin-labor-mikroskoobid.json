@@ -1,0 +1,41 @@
+{
+ "l3": "v4-meditsiin-labor-mikroskoobid",
+ "name": "Mikroskoobid",
+ "fields": [
+  {
+   "key": "magnification_min",
+   "label_et": "Minimaalne suurendus",
+   "unit": "X"
+  },
+  {
+   "key": "magnification_max",
+   "label_et": "Maksimaalne suurendus",
+   "unit": "X"
+  },
+  {
+   "key": "microscope_type",
+   "label_et": "Mikroskoopi tüüp",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materijal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "valgusallikas",
+   "label_et": "Valgusallikas",
+   "unit": ""
+  },
+  {
+   "key": "stage_size",
+   "label_et": "Lava suurus",
+   "unit": "mm"
+  }
+ ]
+}

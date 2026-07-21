@@ -1,0 +1,46 @@
+{
+ "l3": "v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-padjad-ja-magamispadjad",
+ "name": "Padjad ja magamispadjad",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Täidismaterjal",
+   "unit": ""
+  },
+  {
+   "key": "pikkus_mm",
+   "label_et": "Pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "laius_mm",
+   "label_et": "Laius",
+   "unit": "mm"
+  },
+  {
+   "key": "korgus_mm",
+   "label_et": "Kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "pillow_shape",
+   "label_et": "Kujund",
+   "unit": ""
+  },
+  {
+   "key": "cover_material",
+   "label_et": "Kate materjal",
+   "unit": ""
+  },
+  {
+   "key": "removable_cover",
+   "label_et": "Eemaldatav kate",
+   "unit": ""
+  }
+ ]
+}

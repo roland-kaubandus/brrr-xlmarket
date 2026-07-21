@@ -1,0 +1,41 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-ronimiskoied-ja-seinad",
+ "name": "Ronimisköied",
+ "fields": [
+  {
+   "key": "pikkus_m",
+   "label_et": "Pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "diameetr_mm",
+   "label_et": "Diameetr",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "murdetugevus_kn",
+   "label_et": "Murdetugevus",
+   "unit": "kN"
+  },
+  {
+   "key": "roopetyyp",
+   "label_et": "Köie tüüp",
+   "unit": ""
+  },
+  {
+   "key": "lohkejaug_kn",
+   "label_et": "Löökjõud (80 kg)",
+   "unit": "kN"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  }
+ ]
+}

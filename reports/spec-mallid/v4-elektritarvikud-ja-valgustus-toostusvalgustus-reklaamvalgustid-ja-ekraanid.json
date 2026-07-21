@@ -1,0 +1,46 @@
+{
+ "l3": "v4-elektritarvikud-ja-valgustus-toostusvalgustus-reklaamvalgustid-ja-ekraanid",
+ "name": "Reklaamvalgustid ja -ekraanid",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "pixel_pitch",
+   "label_et": "Pikselsamm",
+   "unit": "mm"
+  },
+  {
+   "key": "ekraani_laius",
+   "label_et": "Ekraani laius",
+   "unit": "cm"
+  },
+  {
+   "key": "ekraani_korgus",
+   "label_et": "Ekraani kõrgus",
+   "unit": "cm"
+  },
+  {
+   "key": "juhtimine",
+   "label_et": "Juhtimine",
+   "unit": ""
+  }
+ ]
+}

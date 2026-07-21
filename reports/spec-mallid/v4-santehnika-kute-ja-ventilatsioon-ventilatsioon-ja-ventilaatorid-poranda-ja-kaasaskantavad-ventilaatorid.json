@@ -1,0 +1,47 @@
+{
+ "l3": "v4-santehnika-kute-ja-ventilatsioon-ventilatsioon-ja-ventilaatorid-poranda-ja-kaasaskantavad-ventilaatorid",
+ "name": "Põranda-, torni- ja kaasaskantavad ventilaatorid",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "vooluhulk",
+   "label_et": "Õhuvool",
+   "unit": "L/min",
+   "unit_orig": "Lmin"
+  },
+  {
+   "key": "tuulekiirus",
+   "label_et": "Tuulekiirus",
+   "unit": "m/s"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "myra",
+   "label_et": "Müra",
+   "unit": "dB"
+  },
+  {
+   "key": "ketta_labamoot",
+   "label_et": "Ketta läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "aku_maht",
+   "label_et": "Aku maht",
+   "unit": "Wh"
+  },
+  {
+   "key": "kiiruste_arv",
+   "label_et": "Kiiruste arv",
+   "unit": "tk"
+  }
+ ]
+}

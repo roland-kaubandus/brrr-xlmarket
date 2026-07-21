@@ -1,0 +1,46 @@
+{
+ "l3": "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-mutsi-ja-kruusipressid",
+ "name": "Mütsi- ja kruusipressid",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "max_temp",
+   "label_et": "Maksimaalne temperatuur",
+   "unit": "°C"
+  },
+  {
+   "key": "aeg_vahemik",
+   "label_et": "Ajavahemik",
+   "unit": "s"
+  },
+  {
+   "key": "plaadi_labamoot",
+   "label_et": "Plaadi läbimõõt / suurus",
+   "unit": "mm"
+  },
+  {
+   "key": "max_maht",
+   "label_et": "Maksimaalne mahutavus",
+   "unit": "oz/ml"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  }
+ ]
+}

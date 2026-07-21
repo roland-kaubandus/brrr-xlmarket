@@ -1,0 +1,47 @@
+{
+ "l3": "v4-autovaruosad-ja-tarvikud-haagissuvila-ja-matkatarvikud-katuseventilaatorid",
+ "name": "Katuseventilaatorid",
+ "fields": [
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "kiiruste_arv",
+   "label_et": "Kiiruste arv",
+   "unit": "tk"
+  },
+  {
+   "key": "ketta_labamoot",
+   "label_et": "Ketta läbamõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "avaraavimine",
+   "label_et": "Avaraavimine",
+   "unit": "mm"
+  },
+  {
+   "key": "vooluhulk",
+   "label_et": "Õhuvool",
+   "unit": "L/min",
+   "unit_orig": "Lmin"
+  },
+  {
+   "key": "myra",
+   "label_et": "Müra",
+   "unit": "dB"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "juhtimine",
+   "label_et": "Juhtimine",
+   "unit": "tüüp"
+  }
+ ]
+}

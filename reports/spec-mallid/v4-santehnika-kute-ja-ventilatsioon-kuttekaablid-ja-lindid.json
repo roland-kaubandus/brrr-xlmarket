@@ -1,0 +1,46 @@
+{
+ "l3": "v4-santehnika-kute-ja-ventilatsioon-kuttekaablid-ja-lindid",
+ "name": "Küttekaablid ja -lindid",
+ "fields": [
+  {
+   "key": "kaabli_pikkus",
+   "label_et": "Kaabli pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "voimsus_tihedus",
+   "label_et": "Võimsus pikkusühiku kohta",
+   "unit": "W/m"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "termostaat_tyyp",
+   "label_et": "Termostaat",
+   "unit": ""
+  },
+  {
+   "key": "sisselaskulumi",
+   "label_et": "Sisselülitumistemperatuur",
+   "unit": "°C"
+  },
+  {
+   "key": "valjasulumistemperatuur",
+   "label_et": "Väljalülitumistemperatuur",
+   "unit": "°C"
+  },
+  {
+   "key": "juhtme_pikkus",
+   "label_et": "Toitejuhtme pikkus",
+   "unit": "m"
+  }
+ ]
+}

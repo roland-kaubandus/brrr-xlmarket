@@ -1,0 +1,46 @@
+{
+ "l3": "v4-lamavad-politseinikud",
+ "name": "Lamavad politseinikud ja kiirustõkked",
+ "fields": [
+  {
+   "key": "pikkus_mm",
+   "label_et": "Pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "laius_mm",
+   "label_et": "Laius",
+   "unit": "mm"
+  },
+  {
+   "key": "korgus_mm",
+   "label_et": "Kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "kanali_arv",
+   "label_et": "Kanalite arv",
+   "unit": "tk"
+  },
+  {
+   "key": "kanali_suurus_mm",
+   "label_et": "Kanali suurus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "maksimaalne_koormus",
+   "label_et": "Maksimaalne koormus",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  }
+ ]
+}

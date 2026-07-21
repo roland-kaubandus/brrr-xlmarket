@@ -1,0 +1,41 @@
+{
+ "l3": "v4-suurkook-survepotid",
+ "name": "Survepotid",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Mahutavus",
+   "unit": "L"
+  },
+  {
+   "key": "rohk",
+   "label_et": "Maksimaalne rõhk",
+   "unit": "kPa"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "poti_diameetr",
+   "label_et": "Poti läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "poti_sygavus",
+   "label_et": "Poti sügavus",
+   "unit": "mm"
+  },
+  {
+   "key": "rõhu_tasemed",
+   "label_et": "Rõhu tasemete arv",
+   "unit": ""
+  }
+ ]
+}

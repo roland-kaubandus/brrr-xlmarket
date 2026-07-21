@@ -1,0 +1,36 @@
+{
+ "l3": "v4-tooriistad-plekirullid",
+ "name": "Plekirullid",
+ "fields": [
+  {
+   "key": "rullimislaius_mm",
+   "label_et": "Maksimaalne rullimislaius",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Ühilduvad materjalid",
+   "unit": ""
+  },
+  {
+   "key": "rulleri_diameter_mm",
+   "label_et": "Rulleri läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "min_rullimisdiameeter_mm",
+   "label_et": "Minimaalne rullimise läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "max_paksus_mm",
+   "label_et": "Maksimaalne materjali paksus",
+   "unit": "mm"
+  },
+  {
+   "key": "paigaldis_tyyp",
+   "label_et": "Paigaldise tüüp",
+   "unit": ""
+  }
+ ]
+}

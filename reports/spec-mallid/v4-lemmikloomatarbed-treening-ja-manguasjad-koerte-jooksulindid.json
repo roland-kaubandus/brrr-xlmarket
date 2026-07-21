@@ -1,0 +1,36 @@
+{
+ "l3": "v4-lemmikloomatarbed-treening-ja-manguasjad-koerte-jooksulindid",
+ "name": "Koerte jooksulindid",
+ "fields": [
+  {
+   "key": "maksimaalne_kaal",
+   "label_et": "Maksimaalne koera kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "jooksurada_laius",
+   "label_et": "Jooksurada laius",
+   "unit": "cm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Jooksulindi kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "kallanurk_ulatus",
+   "label_et": "Kallanurga reguleerimise ulatus",
+   "unit": "mm"
+  },
+  {
+   "key": "elekter",
+   "label_et": "Elektriline jooksulint",
+   "unit": "jah/ei"
+  },
+  {
+   "key": "voimsus",
+   "label_et": "Mootori võimsus",
+   "unit": "W"
+  }
+ ]
+}

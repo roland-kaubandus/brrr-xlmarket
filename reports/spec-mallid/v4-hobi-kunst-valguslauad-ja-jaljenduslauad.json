@@ -1,0 +1,37 @@
+{
+ "l3": "v4-hobi-kunst-valguslauad-ja-jaljenduslauad",
+ "name": "Valguslauad ja jäljenduslauad",
+ "fields": [
+  {
+   "key": "vaatamisala_pindala",
+   "label_et": "Vaatamisala (mm × mm)",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "paksus",
+   "label_et": "Paksus",
+   "unit": "mm"
+  },
+  {
+   "key": "aku_maht",
+   "label_et": "Aku mahtuvus",
+   "unit": "Wh",
+   "unit_orig": "mAh"
+  },
+  {
+   "key": "heleduse_tasemed",
+   "label_et": "Heleduse tasemed",
+   "unit": "arv"
+  },
+  {
+   "key": "toide",
+   "label_et": "Toiteallikas",
+   "unit": "tüüp"
+  }
+ ]
+}

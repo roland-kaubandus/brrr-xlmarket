@@ -1,0 +1,46 @@
+{
+ "l3": "v4-aed-ja-aiatehnika-valisdusid",
+ "name": "Välisdušid",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Paagi maht",
+   "unit": "L"
+  },
+  {
+   "key": "rohk",
+   "label_et": "Maksimaalne veesurve",
+   "unit": "bar"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal (koos tarvikutega)",
+   "unit": "kg"
+  },
+  {
+   "key": "dushi_korgus",
+   "label_et": "Dušipihusti kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Paagi materjal",
+   "unit": ""
+  },
+  {
+   "key": "lisatarvikud",
+   "label_et": "Kaasas olevad tarvikud",
+   "unit": ""
+  },
+  {
+   "key": "jahtumiskiirus",
+   "label_et": "Päikese soojendus",
+   "unit": ""
+  },
+  {
+   "key": "jalg_kraan",
+   "label_et": "Jala kraani olemasolu",
+   "unit": ""
+  }
+ ]
+}

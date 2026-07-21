@@ -1,0 +1,36 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-fitness-ja-treeningseadmed-ohujooga-ja-aerial-jooga-seadmed",
+ "name": "Õhujooga ja aerial jooga seadmed",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Toote kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "max_koormus",
+   "label_et": "Maksimaalne koormus",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "pikkus",
+   "label_et": "Kangase pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "laius",
+   "label_et": "Kangase laius",
+   "unit": "m"
+  },
+  {
+   "key": "kanga_tihedus",
+   "label_et": "Kanga tihedus",
+   "unit": "gsm"
+  }
+ ]
+}

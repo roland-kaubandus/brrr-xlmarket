@@ -1,0 +1,41 @@
+{
+ "l3": "v4-aed-ja-aiatehnika-l5-maapuurid-ja-postiaugurid",
+ "name": "Maapuurid ja postiaugurid",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "poorlemiskiirus",
+   "label_et": "Pöörlemiskiirus",
+   "unit": "RPM"
+  },
+  {
+   "key": "ketta_labamoot",
+   "label_et": "Ketta läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "puurimis_syvus",
+   "label_et": "Puurimissügavus",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Käepideme materjal",
+   "unit": ""
+  },
+  {
+   "key": "pikkus",
+   "label_et": "Pikkus",
+   "unit": "mm"
+  }
+ ]
+}

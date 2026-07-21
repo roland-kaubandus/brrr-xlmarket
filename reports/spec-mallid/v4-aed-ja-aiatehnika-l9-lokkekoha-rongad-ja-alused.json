@@ -1,0 +1,46 @@
+{
+ "l3": "v4-aed-ja-aiatehnika-l9-lokkekoha-rongad-ja-alused",
+ "name": "Lõkkekoha rõngad ja alused",
+ "fields": [
+  {
+   "key": "sisemise_diameeter_mm",
+   "label_et": "Sisemise ava läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "valimise_diameeter_mm",
+   "label_et": "Välimise ava läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "korgus_mm",
+   "label_et": "Rõnga kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "paksus_mm",
+   "label_et": "Terase paksus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "sektsioonide_arv",
+   "label_et": "Sektsioonide arv",
+   "unit": ""
+  },
+  {
+   "key": "kuju",
+   "label_et": "Kuju",
+   "unit": ""
+  }
+ ]
+}

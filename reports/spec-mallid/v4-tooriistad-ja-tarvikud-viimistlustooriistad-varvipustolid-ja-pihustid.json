@@ -1,0 +1,36 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-viimistlustooriistad-varvipustolid-ja-pihustid",
+ "name": "Värvipüstolid ja pihustusseadmed",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Mootorivõimsus",
+   "unit": "W"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "rohk",
+   "label_et": "Maksimaalne rõhk",
+   "unit": "bar"
+  },
+  {
+   "key": "vooluhulk",
+   "label_et": "Maksimaalne vooluhulk",
+   "unit": "L/min"
+  },
+  {
+   "key": "kwal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "toru_pikkus",
+   "label_et": "Kõrgsurveslange pikkus",
+   "unit": "m"
+  }
+ ]
+}

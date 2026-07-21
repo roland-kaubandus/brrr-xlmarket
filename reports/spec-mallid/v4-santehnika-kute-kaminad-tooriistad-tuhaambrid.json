@@ -1,0 +1,36 @@
+{
+ "l3": "v4-santehnika-kute-kaminad-tooriistad-tuhaambrid",
+ "name": "Kaminatööriistad",
+ "fields": [
+  {
+   "key": "komplekti_suuruus",
+   "label_et": "Komplekti suuruus (osade arv)",
+   "unit": "tk"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "seisutoe_tyyp",
+   "label_et": "Seisutoe tüüp",
+   "unit": ""
+  },
+  {
+   "key": "pikkus",
+   "label_et": "Pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaasas_olevad_tooriistad",
+   "label_et": "Kaasas olevad tööriistad",
+   "unit": ""
+  }
+ ]
+}

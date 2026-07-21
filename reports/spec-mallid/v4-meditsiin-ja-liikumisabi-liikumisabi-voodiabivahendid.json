@@ -1,0 +1,41 @@
+{
+ "l3": "v4-meditsiin-ja-liikumisabi-liikumisabi-voodiabivahendid",
+ "name": "Voodipiirded ja tugiraamid",
+ "fields": [
+  {
+   "key": "koormus_maht",
+   "label_et": "Maksimaalne koormus",
+   "unit": "kg"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Toote kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "pikkus",
+   "label_et": "Pikkus/Laius",
+   "unit": "cm"
+  },
+  {
+   "key": "korgus_reguleeritav",
+   "label_et": "Kõrguse reguleerimise vahemik",
+   "unit": "cm"
+  },
+  {
+   "key": "painduvus",
+   "label_et": "Painduvus (kokkupandav)",
+   "unit": ""
+  },
+  {
+   "key": "kahe_kae_tugi",
+   "label_et": "Kahe käe tugi (võrreldes ühele käele)",
+   "unit": ""
+  }
+ ]
+}

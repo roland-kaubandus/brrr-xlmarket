@@ -1,0 +1,46 @@
+{
+ "l3": "v4-aed-ratastega-aiatoo-istmed",
+ "name": "Ratastega aiatöö-istmed",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Tootekaal",
+   "unit": "kg"
+  },
+  {
+   "key": "koormus_voimsus",
+   "label_et": "Maksimaalne koormatavus",
+   "unit": "kg"
+  },
+  {
+   "key": "istme_korgus",
+   "label_et": "Istme kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "ratta_labamoot",
+   "label_et": "Ratta läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Raam materjal",
+   "unit": ""
+  },
+  {
+   "key": "pööramise_ulatus",
+   "label_et": "Istme pööramine",
+   "unit": "°"
+  },
+  {
+   "key": "hoiumaht",
+   "label_et": "Salvestusruumi maht",
+   "unit": "L"
+  },
+  {
+   "key": "istehoovatus",
+   "label_et": "Istme paksus",
+   "unit": "mm"
+  }
+ ]
+}

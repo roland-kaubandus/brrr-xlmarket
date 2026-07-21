@@ -1,0 +1,46 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-moote-keskkonna-ohukvaliteet",
+ "name": "Keskkonna- ja õhukvaliteedi-mõõturid",
+ "fields": [
+  {
+   "key": "meastav_vahemik",
+   "label_et": "Meastav vahemik (primaarne)",
+   "unit": "vt. toote tüüp"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "aku_maht",
+   "label_et": "Aku maht",
+   "unit": "Wh"
+  },
+  {
+   "key": "ekraan_suurus",
+   "label_et": "Ekraani suurus",
+   "unit": "in"
+  },
+  {
+   "key": "mootmise_aeg",
+   "label_et": "Mootmise aeg / Reaktsiooniaja",
+   "unit": "s"
+  },
+  {
+   "key": "operatsiooni_temp",
+   "label_et": "Operatsiooni temperatuur",
+   "unit": "°C"
+  },
+  {
+   "key": "paigutamise_viis",
+   "label_et": "Paigutamise viis",
+   "unit": "kategooria"
+  },
+  {
+   "key": "sensori_tyyp",
+   "label_et": "Sensori tüüp",
+   "unit": "kategooria"
+  }
+ ]
+}

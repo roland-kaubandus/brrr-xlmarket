@@ -1,0 +1,41 @@
+{
+ "l3": "v4-suurkook-leivaloikurid",
+ "name": "Leivalõikurid",
+ "fields": [
+  {
+   "key": "lõikepaksu_min_max",
+   "label_et": "Lõikepaksus (reguleeritav)",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": "text"
+  },
+  {
+   "key": "teraatüüp",
+   "label_et": "Tera tüüp",
+   "unit": "text"
+  },
+  {
+   "key": "pikkus",
+   "label_et": "Pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "laius",
+   "label_et": "Laius",
+   "unit": "mm"
+  },
+  {
+   "key": "kasutusala",
+   "label_et": "Kasutusala",
+   "unit": "text"
+  }
+ ]
+}

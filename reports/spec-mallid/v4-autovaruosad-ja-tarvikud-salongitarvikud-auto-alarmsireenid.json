@@ -1,0 +1,36 @@
+{
+ "l3": "v4-autovaruosad-ja-tarvikud-salongitarvikud-auto-alarmsireenid",
+ "name": "Auto alarmsireenid",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Väljundvõimsus",
+   "unit": "W"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Nimipinge",
+   "unit": "V"
+  },
+  {
+   "key": "myra",
+   "label_et": "Helitase",
+   "unit": "dB"
+  },
+  {
+   "key": "heli_rejiiim_arv",
+   "label_et": "Hoiatushelade arv",
+   "unit": "tk"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Korpuse materjal",
+   "unit": ""
+  }
+ ]
+}

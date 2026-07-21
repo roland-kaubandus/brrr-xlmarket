@@ -1,0 +1,42 @@
+{
+ "l3": "v4-kodumasinad-ja-kodutehnika-kliima-ohuniisutajad",
+ "name": "Õhuniisutajad",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Veetangi maht",
+   "unit": "L"
+  },
+  {
+   "key": "vooluhulk",
+   "label_et": "Niisutamise võimsus",
+   "unit": "L/min",
+   "unit_orig": "mL/min"
+  },
+  {
+   "key": "katel_pindala",
+   "label_et": "Katteala",
+   "unit": "sqft"
+  },
+  {
+   "key": "myra",
+   "label_et": "Müratase",
+   "unit": "dB"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "kiiruste_arv",
+   "label_et": "Kiirustasemete arv",
+   "unit": "tk"
+  },
+  {
+   "key": "taimer",
+   "label_et": "Taimeriga reguleeritav aeg",
+   "unit": "h"
+  }
+ ]
+}

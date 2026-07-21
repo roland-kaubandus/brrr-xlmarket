@@ -1,0 +1,41 @@
+{
+ "l3": "v4-suurkook-koogi-taignamikserid",
+ "name": "Köögi- ja taignamikserid",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Kausi maht",
+   "unit": "L"
+  },
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "poorlemiskiirus",
+   "label_et": "Poorlemiskiirus (kõrgeim)",
+   "unit": "RPM"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Kausi materjal",
+   "unit": ""
+  },
+  {
+   "key": "kiharite_arv",
+   "label_et": "Segamiskiharite arv",
+   "unit": "tk"
+  },
+  {
+   "key": "kiiruste_arv",
+   "label_et": "Reguleeritavate kiiruste arv",
+   "unit": "tk"
+  }
+ ]
+}

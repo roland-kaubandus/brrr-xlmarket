@@ -1,0 +1,36 @@
+{
+ "l3": "v4-aed-ja-aiatehnika-l13-kompostrid-ja-kompostimisnoud",
+ "name": "Kompostrid ja kompostimisnõud",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Mahutavus",
+   "unit": "L"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kambrite_arv",
+   "label_et": "Kambrite arv",
+   "unit": ""
+  },
+  {
+   "key": "komposterimise_meetod",
+   "label_et": "Komposterimise meetod",
+   "unit": ""
+  },
+  {
+   "key": "max_kaal_koormamine",
+   "label_et": "Maksimaalne kaalukoormamine",
+   "unit": "kg"
+  }
+ ]
+}

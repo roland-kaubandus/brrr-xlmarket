@@ -1,0 +1,41 @@
+{
+ "l3": "v4-kombineeritud-tahvlid",
+ "name": "Kombineeritud valge- ja korktahvlid",
+ "fields": [
+  {
+   "key": "laius_mm",
+   "label_et": "Laius",
+   "unit": "mm"
+  },
+  {
+   "key": "korgus_mm",
+   "label_et": "Kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "magnetiline",
+   "label_et": "Magnetiline",
+   "unit": ""
+  },
+  {
+   "key": "sein_paigaldus",
+   "label_et": "Seinale paigaldus",
+   "unit": ""
+  },
+  {
+   "key": "korgus_arv",
+   "label_et": "Konksu arv",
+   "unit": "tk"
+  },
+  {
+   "key": "avalik_pakkuja",
+   "label_et": "Värvi valikud",
+   "unit": ""
+  }
+ ]
+}

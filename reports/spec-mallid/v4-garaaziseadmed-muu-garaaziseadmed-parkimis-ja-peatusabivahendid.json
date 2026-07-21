@@ -1,0 +1,36 @@
+{
+ "l3": "v4-garaaziseadmed-muu-garaaziseadmed-parkimis-ja-peatusabivahendid",
+ "name": "Parkimis- ja peatusabivahendid",
+ "fields": [
+  {
+   "key": "pikkus",
+   "label_et": "Pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "kogus",
+   "label_et": "Kogus pakis",
+   "unit": "tk"
+  },
+  {
+   "key": "reflektiivsus",
+   "label_et": "Reflektiivsed triibud",
+   "unit": ""
+  },
+  {
+   "key": "koormussuutlikkus",
+   "label_et": "Koormussuutlikkus",
+   "unit": "kg"
+  }
+ ]
+}

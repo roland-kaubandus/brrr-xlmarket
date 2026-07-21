@@ -1,0 +1,41 @@
+{
+ "l3": "v4-varjualused-telgid-ja-kasvuhooned-kasvuhooned-kasvuhoone-kiled-ja-katted",
+ "name": "Kasvuhoone kiled ja katted",
+ "fields": [
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "paksus_mm",
+   "label_et": "Paksus",
+   "unit": "mm"
+  },
+  {
+   "key": "laius_m",
+   "label_et": "Laius",
+   "unit": "m"
+  },
+  {
+   "key": "pikkus_m",
+   "label_et": "Pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "pindala_m2",
+   "label_et": "Pindala",
+   "unit": "m²"
+  },
+  {
+   "key": "kaal_kg",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "uv_kaitsekestus_aastaid",
+   "label_et": "UV kaitse kestus",
+   "unit": "aastat"
+  }
+ ]
+}

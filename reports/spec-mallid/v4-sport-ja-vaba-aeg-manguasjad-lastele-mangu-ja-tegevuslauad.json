@@ -1,0 +1,46 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-manguasjad-lastele-mangu-ja-tegevuslauad",
+ "name": "Mängu- ja tegevuslauad",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Netokaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Peamised materjalid",
+   "unit": ""
+  },
+  {
+   "key": "maksimaalne_koormuse_voimsus",
+   "label_et": "Maksimaalne koormuse võimsus",
+   "unit": "kg"
+  },
+  {
+   "key": "poolteatri_laius",
+   "label_et": "Lauaplaadi laius",
+   "unit": "mm"
+  },
+  {
+   "key": "poolteatri_pikkus",
+   "label_et": "Lauaplaadi pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "tuelemuste_arv",
+   "label_et": "Detailide/tükkide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "salvestusruumi_arv",
+   "label_et": "Salvestusruumide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "sihtgrupp_vanus",
+   "label_et": "Soovitatav vanus",
+   "unit": "a"
+  }
+ ]
+}

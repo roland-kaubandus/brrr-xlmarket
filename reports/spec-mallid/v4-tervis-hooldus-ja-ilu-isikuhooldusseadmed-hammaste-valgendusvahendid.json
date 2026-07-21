@@ -1,0 +1,41 @@
+{
+ "l3": "v4-tervis-hooldus-ja-ilu-isikuhooldusseadmed-hammaste-valgendusvahendid",
+ "name": "Hammaste valgendusvahendid",
+ "fields": [
+  {
+   "key": "pinge",
+   "label_et": "Töötuspinge",
+   "unit": "V"
+  },
+  {
+   "key": "aku_maht",
+   "label_et": "Aku mahtuvus",
+   "unit": "Wh"
+  },
+  {
+   "key": "led_arv",
+   "label_et": "LED-ide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "valguse_spekter",
+   "label_et": "Valguse lainepikkus",
+   "unit": "nm"
+  },
+  {
+   "key": "valgusrežiimid",
+   "label_et": "Valgusrežiimide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Peamised materjalid",
+   "unit": ""
+  },
+  {
+   "key": "gel_siirup_arv",
+   "label_et": "Geel-süstalde arv komplektis",
+   "unit": "tk"
+  }
+ ]
+}

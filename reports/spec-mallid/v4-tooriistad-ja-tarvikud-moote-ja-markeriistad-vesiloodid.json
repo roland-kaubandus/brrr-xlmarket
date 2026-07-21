@@ -1,0 +1,41 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-moote-ja-markeriistad-vesiloodid",
+ "name": "Vesiloodid",
+ "fields": [
+  {
+   "key": "pikkus_mm",
+   "label_et": "Pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "taipsus_mpm",
+   "label_et": "Täpsus",
+   "unit": "mm/m"
+  },
+  {
+   "key": "magnetiline",
+   "label_et": "Magnetiline",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "led_valgustus",
+   "label_et": "LED valgustus",
+   "unit": ""
+  },
+  {
+   "key": "myra",
+   "label_et": "Müra",
+   "unit": "dB"
+  }
+ ]
+}

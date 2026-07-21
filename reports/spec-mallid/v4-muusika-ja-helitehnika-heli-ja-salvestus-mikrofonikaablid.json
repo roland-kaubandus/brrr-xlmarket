@@ -1,0 +1,36 @@
+{
+ "l3": "v4-muusika-ja-helitehnika-heli-ja-salvestus-mikrofonikaablid",
+ "name": "Mikrofonikaablid",
+ "fields": [
+  {
+   "key": "kaabli_pikkus",
+   "label_et": "Kaabli pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "pakendi_kogus",
+   "label_et": "Kaablite arv pakendis",
+   "unit": "tk"
+  },
+  {
+   "key": "konnektor_tyyp",
+   "label_et": "Konnektori tüüp",
+   "unit": "XLR 3-pin"
+  },
+  {
+   "key": "varjestus",
+   "label_et": "Varjestus (ekraneerimine)",
+   "unit": "jah/ei"
+  },
+  {
+   "key": "konnektori_materjal",
+   "label_et": "Konnektori materjal",
+   "unit": "kuld-pinnetatud"
+  },
+  {
+   "key": "kaabl_varv",
+   "label_et": "Kaabli värvus",
+   "unit": "must/värviline"
+  }
+ ]
+}

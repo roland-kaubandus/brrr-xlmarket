@@ -1,0 +1,41 @@
+{
+ "l3": "v4-aed-ja-aiatehnika-l5-hekitrimmerid-ja-hekikaarid",
+ "name": "Hekitrimmerid ja hekikäärid",
+ "fields": [
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "poorlemiskiirus",
+   "label_et": "Poorlemiskiirus",
+   "unit": "RPM"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "ketta_labamoot",
+   "label_et": "Ketta/Terä pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "maht",
+   "label_et": "Kütuse/Akumaht",
+   "unit": "L / Wh"
+  },
+  {
+   "key": "energiatyyp",
+   "label_et": "Energiatüüp",
+   "unit": ""
+  },
+  {
+   "key": "ulatus",
+   "label_et": "Maksimaalne ulatus",
+   "unit": "mm"
+  }
+ ]
+}

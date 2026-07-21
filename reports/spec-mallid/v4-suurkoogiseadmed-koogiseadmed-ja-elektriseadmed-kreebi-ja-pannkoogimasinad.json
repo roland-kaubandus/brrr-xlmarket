@@ -1,0 +1,41 @@
+{
+ "l3": "v4-suurkoogiseadmed-koogiseadmed-ja-elektriseadmed-kreebi-ja-pannkoogimasinad",
+ "name": "Kreebi- ja pannkoogimasinad",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "pannkoogi_arv",
+   "label_et": "Pannkookide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "pannkoogi_labamoot",
+   "label_et": "Pannkoogi läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "pinna_labamoot",
+   "label_et": "Kuumutuspinna läbimõõt",
+   "unit": "inch"
+  },
+  {
+   "key": "temperatuuri_juhtimine",
+   "label_et": "Temperatuuri juhtimine",
+   "unit": ""
+  }
+ ]
+}

@@ -1,0 +1,36 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-manguasjad-lastele-valgusmoogad-ja-mangurelvad",
+ "name": "Valgusmõõgad",
+ "fields": [
+  {
+   "key": "pikkus_mm",
+   "label_et": "Mõõga pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "rgb_varvid",
+   "label_et": "RGB värvid",
+   "unit": "tk"
+  },
+  {
+   "key": "helirežiimid",
+   "label_et": "Helirežiimid",
+   "unit": "tk"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Laadimispinge",
+   "unit": "V"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Tera materjal",
+   "unit": ""
+  }
+ ]
+}

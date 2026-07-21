@@ -1,0 +1,36 @@
+{
+ "l3": "v4-elektritarvikud-ja-valgustus-elektroonika-kaasaskantavad-dvd-mangijad",
+ "name": "Kaasaskantavad DVD-mängijad",
+ "fields": [
+  {
+   "key": "ekraani_suurus_toll",
+   "label_et": "Ekraani suurus",
+   "unit": "inch"
+  },
+  {
+   "key": "lahutus",
+   "label_et": "Ekraani lahutus",
+   "unit": "px"
+  },
+  {
+   "key": "aku_maht",
+   "label_et": "Aku mahtuvus",
+   "unit": "Wh"
+  },
+  {
+   "key": "esitusaeg",
+   "label_et": "Taasesituse aeg",
+   "unit": "h"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "sulletud_paksus",
+   "label_et": "Paksus (suletud)",
+   "unit": "mm"
+  }
+ ]
+}

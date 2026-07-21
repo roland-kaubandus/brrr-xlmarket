@@ -1,0 +1,46 @@
+{
+ "l3": "v4-hobi-pusled-puslelauad-ja-alused",
+ "name": "Puslelauad ja -alused",
+ "fields": [
+  {
+   "key": "puzzle_capacity",
+   "label_et": "Pusle tükkide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "work_surface_length",
+   "label_et": "Töötasandi pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "work_surface_width",
+   "label_et": "Töötasandi laius",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "drawer_count",
+   "label_et": "Sahtlite arv",
+   "unit": "tk"
+  },
+  {
+   "key": "rotation_feature",
+   "label_et": "360° pööramine",
+   "unit": "bool"
+  },
+  {
+   "key": "tilt_angles",
+   "label_et": "Kaldenurgad",
+   "unit": "tk"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  }
+ ]
+}

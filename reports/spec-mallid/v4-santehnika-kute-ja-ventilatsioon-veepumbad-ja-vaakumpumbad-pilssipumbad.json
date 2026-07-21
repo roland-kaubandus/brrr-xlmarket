@@ -1,0 +1,42 @@
+{
+ "l3": "v4-santehnika-kute-ja-ventilatsioon-veepumbad-ja-vaakumpumbad-pilssipumbad",
+ "name": "Pilssipumbad",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "vooluhulk",
+   "label_et": "Maksimaalne vooluhulk",
+   "unit": "L/min",
+   "unit_orig": "Lmin"
+  },
+  {
+   "key": "tõstekõrgus",
+   "label_et": "Maksimaalne tõstekõrgus",
+   "unit": "m"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "väljalaskava_läbimõõt",
+   "label_et": "Väljalaskava läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  }
+ ]
+}

@@ -1,0 +1,41 @@
+{
+ "l3": "v4-ehitus-remont-ja-varvid-seinapaneelid-ja-liistud-seinapaneelide-komplektid",
+ "name": "Seinapaneelide komplektid",
+ "fields": [
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "pakk_kogus",
+   "label_et": "Pakkide arv komplektis",
+   "unit": "tk"
+  },
+  {
+   "key": "paneel_pikkus",
+   "label_et": "Paneeli pikkus",
+   "unit": "cm"
+  },
+  {
+   "key": "paneel_laius",
+   "label_et": "Paneeli laius",
+   "unit": "cm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kogukaal",
+   "unit": "kg"
+  },
+  {
+   "key": "profiil_stiil",
+   "label_et": "Profiili stiil",
+   "unit": ""
+  },
+  {
+   "key": "veekaitsus",
+   "label_et": "Veekindlus",
+   "unit": ""
+  }
+ ]
+}

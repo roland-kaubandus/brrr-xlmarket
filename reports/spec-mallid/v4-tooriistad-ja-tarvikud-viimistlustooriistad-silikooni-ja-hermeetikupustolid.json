@@ -1,0 +1,41 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-viimistlustooriistad-silikooni-ja-hermeetikupustolid",
+ "name": "Silikooni- ja hermeetikupüstolid",
+ "fields": [
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "aku_maht",
+   "label_et": "Aku maht",
+   "unit": "Wh"
+  },
+  {
+   "key": "maht",
+   "label_et": "Paagi maht",
+   "unit": "ml"
+  },
+  {
+   "key": "andistamise_kiirus",
+   "label_et": "Andistamise kiirus",
+   "unit": "mm/min"
+  },
+  {
+   "key": "jahujoud",
+   "label_et": "Jõu",
+   "unit": "N"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  }
+ ]
+}

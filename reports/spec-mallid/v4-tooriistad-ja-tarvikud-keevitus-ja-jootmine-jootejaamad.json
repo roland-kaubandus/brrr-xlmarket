@@ -1,0 +1,36 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-keevitus-ja-jootmine-jootejaamad",
+ "name": "Jootejaamad",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "temp_max",
+   "label_et": "Maksimaalne temperatuur",
+   "unit": "°C"
+  },
+  {
+   "key": "ohuvool",
+   "label_et": "Õhuvool",
+   "unit": "L/min"
+  },
+  {
+   "key": "tarvikute_arv",
+   "label_et": "Kaasas olevad tarvikud",
+   "unit": "tk"
+  }
+ ]
+}

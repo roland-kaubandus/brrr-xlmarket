@@ -1,0 +1,41 @@
+{
+ "l3": "v4-suurkook-rull-jaatise-masinad",
+ "name": "Rull-jäätise masinad",
+ "fields": [
+  {
+   "key": "ketta_labamoot",
+   "label_et": "Panni suurus (mm)",
+   "unit": "mm"
+  },
+  {
+   "key": "pannide_arv",
+   "label_et": "Pannide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Netokaal",
+   "unit": "kg"
+  },
+  {
+   "key": "myra",
+   "label_et": "Müra",
+   "unit": "dB"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "jahutusvoim",
+   "label_et": "Jahutusvoim",
+   "unit": "W"
+  },
+  {
+   "key": "kasutustemperatuur",
+   "label_et": "Kasutustemperatuur",
+   "unit": "°C"
+  }
+ ]
+}

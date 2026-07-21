@@ -1,0 +1,36 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-lihvlindid-ja-lintlihvija-tarvikud",
+ "name": "Lintlihvija tarvikud ja teritusrakised",
+ "fields": [
+  {
+   "key": "ketta_labamoot",
+   "label_et": "Ketta läbimõõt (juht/peamine)",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": "tekst"
+  },
+  {
+   "key": "nurga_reguleering",
+   "label_et": "Nurga reguleerimise vahemik",
+   "unit": "°"
+  },
+  {
+   "key": "lindi_pikkus",
+   "label_et": "Lindi pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "aku_maht",
+   "label_et": "Aku maht (kui on)",
+   "unit": "Wh"
+  }
+ ]
+}

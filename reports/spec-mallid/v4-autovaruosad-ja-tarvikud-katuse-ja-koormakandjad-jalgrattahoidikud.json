@@ -1,0 +1,46 @@
+{
+ "l3": "v4-autovaruosad-ja-tarvikud-katuse-ja-koormakandjad-jalgrattahoidikud",
+ "name": "Jalgrattahoidikud",
+ "fields": [
+  {
+   "key": "kandevoimsus",
+   "label_et": "Kandevõimsus",
+   "unit": "kg"
+  },
+  {
+   "key": "jalgrattate_arv",
+   "label_et": "Jalgrattate arv",
+   "unit": "tk"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "paigaldamise_tyyp",
+   "label_et": "Paigaldamise tüüp",
+   "unit": "kategooria"
+  },
+  {
+   "key": "voltimine",
+   "label_et": "Voltimisfunktsioon",
+   "unit": "bool"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": "kategooria"
+  },
+  {
+   "key": "lukustus",
+   "label_et": "Lukustussüsteem",
+   "unit": "bool"
+  },
+  {
+   "key": "max_rehvi_laius",
+   "label_et": "Max rehvi laius",
+   "unit": "mm"
+  }
+ ]
+}

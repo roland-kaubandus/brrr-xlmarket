@@ -1,0 +1,41 @@
+{
+ "l3": "v4-piljardikiid",
+ "name": "Piljardikiid ja -tarvikud",
+ "fields": [
+  {
+   "key": "pikkus_mm",
+   "label_et": "Pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "otsa_labimaoot_mm",
+   "label_et": "Otsa läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "liitumisviis",
+   "label_et": "Liitumisviis",
+   "unit": ""
+  },
+  {
+   "key": "otsa_tyyp",
+   "label_et": "Otsa tüüp",
+   "unit": ""
+  },
+  {
+   "key": "karp_materjal",
+   "label_et": "Karp/kohver",
+   "unit": ""
+  }
+ ]
+}

@@ -1,0 +1,41 @@
+{
+ "l3": "v4-kodumasinad-ja-kodutehnika-koogi-hoiustamine-ja-korraldus-toiduainete-hoiukonteinerid",
+ "name": "Toiduainete hoiukonteinerid",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Mahutavus",
+   "unit": "L"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "kogus",
+   "label_et": "Pakis olevate konteinerite arv",
+   "unit": "tk"
+  },
+  {
+   "key": "õhukindel_kaas",
+   "label_et": "Õhukindel kaas",
+   "unit": ""
+  },
+  {
+   "key": "rattad",
+   "label_et": "Liikumisrattad",
+   "unit": ""
+  },
+  {
+   "key": "mõõtekaussid",
+   "label_et": "Kaasas olevad mõõtekaussid",
+   "unit": "tk"
+  }
+ ]
+}

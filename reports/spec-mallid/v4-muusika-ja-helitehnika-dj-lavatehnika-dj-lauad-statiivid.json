@@ -1,0 +1,41 @@
+{
+ "l3": "v4-muusika-ja-helitehnika-dj-lavatehnika-dj-lauad-statiivid",
+ "name": "DJ-lauad ja -statiivid",
+ "fields": [
+  {
+   "key": "platvorm_laius_mm",
+   "label_et": "Platvorm laius",
+   "unit": "mm"
+  },
+  {
+   "key": "platvorm_sügavus_mm",
+   "label_et": "Platvorm sügavus",
+   "unit": "mm"
+  },
+  {
+   "key": "korgus_min_max_mm",
+   "label_et": "Reguleeritav kõrgus (min-max)",
+   "unit": "mm"
+  },
+  {
+   "key": "kandevoimsuus_kg",
+   "label_et": "Kandevõime",
+   "unit": "kg"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kokkupandavus",
+   "label_et": "Kokkupandav",
+   "unit": ""
+  }
+ ]
+}

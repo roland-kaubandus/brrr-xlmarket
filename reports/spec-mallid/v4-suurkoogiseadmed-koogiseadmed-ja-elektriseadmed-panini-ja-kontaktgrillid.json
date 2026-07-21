@@ -1,0 +1,36 @@
+{
+ "l3": "v4-suurkoogiseadmed-koogiseadmed-ja-elektriseadmed-panini-ja-kontaktgrillid",
+ "name": "Panini- ja kontaktgrillid",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Elektriline võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "plaat_pindala",
+   "label_et": "Grillplaadi pindala",
+   "unit": "cm²"
+  },
+  {
+   "key": "max_temperatuur",
+   "label_et": "Maksimaalne temperatuur",
+   "unit": "°C"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjalide kvaliteet",
+   "unit": "text"
+  },
+  {
+   "key": "plaat_tyyp",
+   "label_et": "Plaadi pinnatüüp",
+   "unit": "text"
+  }
+ ]
+}

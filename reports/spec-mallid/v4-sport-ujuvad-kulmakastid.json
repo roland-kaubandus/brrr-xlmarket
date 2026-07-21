@@ -1,0 +1,41 @@
+{
+ "l3": "v4-sport-ujuvad-kulmakastid",
+ "name": "Ujuvad külmakastid",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Mahutavus",
+   "unit": "L"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kuivvarus",
+   "label_et": "Kuivhoiumaht",
+   "unit": "L"
+  },
+  {
+   "key": "rattad",
+   "label_et": "Rattad",
+   "unit": ""
+  },
+  {
+   "key": "paitsikomplett",
+   "label_et": "Paitsikomplekt",
+   "unit": ""
+  },
+  {
+   "key": "ujuvvõime",
+   "label_et": "Ujuvvõime",
+   "unit": ""
+  }
+ ]
+}

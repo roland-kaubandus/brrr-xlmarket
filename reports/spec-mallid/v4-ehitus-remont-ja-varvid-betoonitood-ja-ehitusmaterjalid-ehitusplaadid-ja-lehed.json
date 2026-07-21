@@ -1,0 +1,36 @@
+{
+ "l3": "v4-ehitus-remont-ja-varvid-betoonitood-ja-ehitusmaterjalid-ehitusplaadid-ja-lehed",
+ "name": "Ehitusplaadid ja -lehed",
+ "fields": [
+  {
+   "key": "paksus_mm",
+   "label_et": "Paksus",
+   "unit": "mm"
+  },
+  {
+   "key": "laius_mm",
+   "label_et": "Laius",
+   "unit": "mm"
+  },
+  {
+   "key": "pikkus_mm",
+   "label_et": "Pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kogus",
+   "label_et": "Kogus (tk)",
+   "unit": "tk"
+  }
+ ]
+}

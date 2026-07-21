@@ -1,0 +1,46 @@
+{
+ "l3": "v4-varjualused-telgid-ja-kasvuhooned-matka-telkimistelgid",
+ "name": "Matka- ja telkimistelgid",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Mahutavus (inimesed)",
+   "unit": "tk"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": "string"
+  },
+  {
+   "key": "pikkus",
+   "label_et": "Pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "laius",
+   "label_et": "Laius",
+   "unit": "m"
+  },
+  {
+   "key": "korgus",
+   "label_et": "Kõrgus",
+   "unit": "m"
+  },
+  {
+   "key": "tuulekindlus",
+   "label_et": "Tuulekindlus",
+   "unit": "string"
+  },
+  {
+   "key": "aastaaeg",
+   "label_et": "Kasutamisperiood",
+   "unit": "string"
+  }
+ ]
+}

@@ -1,0 +1,46 @@
+{
+ "l3": "v4-suurkoogiseadmed-pakendamis-ja-taiteseadmed-lintkeevitusmasinad",
+ "name": "Lintkeevitusmasinad",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "keevituslaius",
+   "label_et": "Keevituslaius",
+   "unit": "mm"
+  },
+  {
+   "key": "keevituskiirus",
+   "label_et": "Keevituskiirus",
+   "unit": "m/min"
+  },
+  {
+   "key": "kott_paksus_max",
+   "label_et": "Koti maksimaalne paksus",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjalitüüp",
+   "unit": ""
+  },
+  {
+   "key": "orientatsioon",
+   "label_et": "Orientatsioon",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "temperatuur_max",
+   "label_et": "Maksimaalne temperatuur",
+   "unit": "°C"
+  }
+ ]
+}

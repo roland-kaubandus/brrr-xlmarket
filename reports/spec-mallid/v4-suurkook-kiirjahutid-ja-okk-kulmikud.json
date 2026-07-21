@@ -1,0 +1,41 @@
+{
+ "l3": "v4-suurkook-kiirjahutid-ja-okk-kulmikud",
+ "name": "Kiirjahutid ja šokk-külmikud",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Mahutavus",
+   "unit": "L"
+  },
+  {
+   "key": "min_temp",
+   "label_et": "Minimaalne temperatuur",
+   "unit": "°C"
+  },
+  {
+   "key": "max_temp",
+   "label_et": "Maksimaalne temperatuur",
+   "unit": "°C"
+  },
+  {
+   "key": "salved",
+   "label_et": "Salvepalettide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  }
+ ]
+}

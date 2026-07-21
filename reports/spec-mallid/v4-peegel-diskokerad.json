@@ -1,0 +1,26 @@
+{
+ "l3": "v4-peegel-diskokerad",
+ "name": "Peegel-diskokerad",
+ "fields": [
+  {
+   "key": "diameter_mm",
+   "label_et": "Läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "varv",
+   "label_et": "Värvus",
+   "unit": ""
+  }
+ ]
+}

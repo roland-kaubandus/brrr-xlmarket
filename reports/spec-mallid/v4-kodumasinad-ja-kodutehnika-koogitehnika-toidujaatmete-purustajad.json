@@ -1,0 +1,37 @@
+{
+ "l3": "v4-kodumasinad-ja-kodutehnika-koogitehnika-toidujaatmete-purustajad",
+ "name": "Toidujäätmete purustajad",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus (HP)",
+   "unit": "W",
+   "unit_orig": "HP"
+  },
+  {
+   "key": "poorlemiskiirus",
+   "label_et": "Pöörlemiskiirus",
+   "unit": "RPM"
+  },
+  {
+   "key": "myra",
+   "label_et": "Müra tase",
+   "unit": "dB"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjalid",
+   "unit": ""
+  },
+  {
+   "key": "paigaldus_tyyp",
+   "label_et": "Paigalduse tüüp",
+   "unit": ""
+  }
+ ]
+}

@@ -1,0 +1,41 @@
+{
+ "l3": "v4-autovaruosad-ja-tarvikud-valistarvikud-rehvirahu-jalgimissusteemid",
+ "name": "Rehvirõhu jälgimissüsteemid",
+ "fields": [
+  {
+   "key": "rohk_min",
+   "label_et": "Minimaalne röhk",
+   "unit": "bar"
+  },
+  {
+   "key": "rohk_max",
+   "label_et": "Maksimaalne röhk",
+   "unit": "bar"
+  },
+  {
+   "key": "andur_arv",
+   "label_et": "Andurite arv",
+   "unit": "tk"
+  },
+  {
+   "key": "alarm_režiimid",
+   "label_et": "Alarmi režiimid",
+   "unit": "tk"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "laadimisviis",
+   "label_et": "Laadimisviis",
+   "unit": "text"
+  },
+  {
+   "key": "maarimine",
+   "label_et": "Veekindlus",
+   "unit": "text"
+  }
+ ]
+}

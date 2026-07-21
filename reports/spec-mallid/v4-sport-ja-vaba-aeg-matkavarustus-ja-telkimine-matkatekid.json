@@ -1,0 +1,36 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-matkavarustus-ja-telkimine-matkatekid",
+ "name": "Matkatekid",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "pindala",
+   "label_et": "Pindala (pikkus x laius)",
+   "unit": "m"
+  },
+  {
+   "key": "gsm",
+   "label_et": "Tihedus (GSM)",
+   "unit": "g/m²"
+  },
+  {
+   "key": "veetihedus",
+   "label_et": "Veetihedus",
+   "unit": "PU"
+  },
+  {
+   "key": "maarimine",
+   "label_et": "Märgimiskindlus",
+   "unit": ""
+  }
+ ]
+}

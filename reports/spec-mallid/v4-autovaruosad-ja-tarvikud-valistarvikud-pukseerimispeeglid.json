@@ -1,0 +1,46 @@
+{
+ "l3": "v4-autovaruosad-ja-tarvikud-valistarvikud-pukseerimispeeglid",
+ "name": "Pukseerimispeeglid",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kaal (paar)",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "sopivus_margi",
+   "label_et": "Sobivus (auto mark/mudel)",
+   "unit": ""
+  },
+  {
+   "key": "soojendus",
+   "label_et": "Soojendus/Defrost",
+   "unit": ""
+  },
+  {
+   "key": "valgusfunktsioonid",
+   "label_et": "Valgus (signaal/puddle/juht)",
+   "unit": ""
+  },
+  {
+   "key": "teleskoopiline_voltimine",
+   "label_et": "Teleskoopiline/Voltiv",
+   "unit": ""
+  },
+  {
+   "key": "klaasi_tyyp",
+   "label_et": "Klaasi tüüp (tasapind/kumer)",
+   "unit": ""
+  },
+  {
+   "key": "varv",
+   "label_et": "Värv",
+   "unit": ""
+  }
+ ]
+}

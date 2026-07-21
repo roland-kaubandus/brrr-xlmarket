@@ -1,0 +1,36 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-fitness-ja-treeningseadmed-kohulihaste-treeningpingid-ja-masinad",
+ "name": "Kõhulihaste treeningpingid ja -masinad",
+ "fields": [
+  {
+   "key": "max_kaal_kg",
+   "label_et": "Maksimaalne kasutaja kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "seadme_kaal_kg",
+   "label_et": "Seadme enda kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "koorgus_tasemed",
+   "label_et": "Reguleeritavate kõrguse/nurga tasemete arv",
+   "unit": "tk"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Põhimaterja",
+   "unit": ""
+  },
+  {
+   "key": "voolamisavus",
+   "label_et": "Kokkusobivus (voltimatu/voltiv)",
+   "unit": ""
+  },
+  {
+   "key": "padi_suurus_mm",
+   "label_et": "Istumispinna pikkus x laius",
+   "unit": "mm"
+  }
+ ]
+}

@@ -1,0 +1,46 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-kasitooriistad-kruustangid",
+ "name": "Kruustangid",
+ "fields": [
+  {
+   "key": "leuade_laius_mm",
+   "label_et": "Leuade laius",
+   "unit": "mm"
+  },
+  {
+   "key": "leuade_avanemine_mm",
+   "label_et": "Leuade avanemine",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "paigutamiskraft_kn",
+   "label_et": "Paigutamiskraft",
+   "unit": "kN"
+  },
+  {
+   "key": "korgus_mm",
+   "label_et": "Kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "poremine_kraadi",
+   "label_et": "Pöörlemine",
+   "unit": "°"
+  },
+  {
+   "key": "kurgu_sügavus_mm",
+   "label_et": "Kõri sügavus",
+   "unit": "mm"
+  }
+ ]
+}

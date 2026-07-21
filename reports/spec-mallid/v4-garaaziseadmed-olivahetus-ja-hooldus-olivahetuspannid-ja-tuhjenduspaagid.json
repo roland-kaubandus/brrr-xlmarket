@@ -1,0 +1,47 @@
+{
+ "l3": "v4-garaaziseadmed-olivahetus-ja-hooldus-olivahetuspannid-ja-tuhjenduspaagid",
+ "name": "Õlivahetuspannid ja tühjenduspaagid",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Paagi mahutavus",
+   "unit": "L"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kogukaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Paagi materjal",
+   "unit": ""
+  },
+  {
+   "key": "vooluhulk",
+   "label_et": "Pumba vooluhulk",
+   "unit": "L/min",
+   "unit_orig": "Lmin"
+  },
+  {
+   "key": "rohk",
+   "label_et": "Töörõhk",
+   "unit": "bar"
+  },
+  {
+   "key": "tyhjendusmeetod",
+   "label_et": "Tühjendamise viis",
+   "unit": ""
+  },
+  {
+   "key": "kursi_labimaot",
+   "label_et": "Rattaste läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "toosi_pikkus",
+   "label_et": "Tühjendusliigu pikkus",
+   "unit": "m"
+  }
+ ]
+}

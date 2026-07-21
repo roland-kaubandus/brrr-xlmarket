@@ -1,0 +1,41 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-manguasjad-lastele-laste-soidukid-ja-pedaalautod",
+ "name": "Laste sõidukid ja pedaalautod",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Toote kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "maksimaalne_koormus",
+   "label_et": "Maksimaalne koormus",
+   "unit": "kg"
+  },
+  {
+   "key": "soovitatav_vanus",
+   "label_et": "Soovitatav vanus",
+   "unit": "aastat"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Raam/põhimaterjal",
+   "unit": ""
+  },
+  {
+   "key": "rehvi_tipus",
+   "label_et": "Rehvi tüüp",
+   "unit": ""
+  },
+  {
+   "key": "istme_reguleeritavus",
+   "label_et": "Istme reguleeritavuse ulatus",
+   "unit": "mm"
+  },
+  {
+   "key": "ratastamise_diameeter",
+   "label_et": "Ratta/rataste diameeter",
+   "unit": "mm"
+  }
+ ]
+}

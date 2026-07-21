@@ -1,0 +1,41 @@
+{
+ "l3": "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-vannisegistid",
+ "name": "Vannisegistid",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "montaaz_tyyp",
+   "label_et": "Paigaldusviis",
+   "unit": ""
+  },
+  {
+   "key": "vooluhulk",
+   "label_et": "Vooluhulk",
+   "unit": "L/min"
+  },
+  {
+   "key": "käepide_arv",
+   "label_et": "Käepideme arv",
+   "unit": ""
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "värv",
+   "label_et": "Värvus",
+   "unit": ""
+  },
+  {
+   "key": "spout_funktsioon",
+   "label_et": "Spout funktsioonid",
+   "unit": ""
+  }
+ ]
+}

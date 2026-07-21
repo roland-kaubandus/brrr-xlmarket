@@ -1,0 +1,41 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-reisikotid-ja-kohvrid-vaakumkompressiooniga-reisikotid",
+ "name": "Vaakumkompressiooniga reisikotid",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Efektiivne maht",
+   "unit": "L"
+  },
+  {
+   "key": "rohk",
+   "label_et": "Vaakumpumba rõhk",
+   "unit": "bar"
+  },
+  {
+   "key": "voimsus",
+   "label_et": "Pump nimivõimsus",
+   "unit": "W"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Sisendpinge",
+   "unit": "V"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "pump_kaasasolev",
+   "label_et": "Pump kaasasolev",
+   "unit": ""
+  },
+  {
+   "key": "veekaitsetus",
+   "label_et": "Veekindlus",
+   "unit": ""
+  }
+ ]
+}

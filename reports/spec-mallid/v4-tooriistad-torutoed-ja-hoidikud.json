@@ -1,0 +1,46 @@
+{
+ "l3": "v4-tooriistad-torutoed-ja-hoidikud",
+ "name": "Torutoed ja -pukid",
+ "fields": [
+  {
+   "key": "kandevoimsus",
+   "label_et": "Kandevõimekus",
+   "unit": "kg"
+  },
+  {
+   "key": "toru_min_diameetr",
+   "label_et": "Toru minimaalne läbimõõt",
+   "unit": "cm"
+  },
+  {
+   "key": "toru_max_diameetr",
+   "label_et": "Toru maksimaalne läbimõõt",
+   "unit": "cm"
+  },
+  {
+   "key": "korgus_min",
+   "label_et": "Miinimum kõrgus",
+   "unit": "cm"
+  },
+  {
+   "key": "korgus_max",
+   "label_et": "Maksimum kõrgus",
+   "unit": "cm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "pea_tyyp",
+   "label_et": "Pea tüüp",
+   "unit": "kategooria"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": "kategooria"
+  }
+ ]
+}

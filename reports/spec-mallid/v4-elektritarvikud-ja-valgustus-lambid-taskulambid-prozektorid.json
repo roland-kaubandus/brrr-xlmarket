@@ -1,0 +1,46 @@
+{
+ "l3": "v4-elektritarvikud-ja-valgustus-lambid-taskulambid-prozektorid",
+ "name": "Taskulambid ja prožektorid",
+ "fields": [
+  {
+   "key": "valgustugevus_lm",
+   "label_et": "Valgustugevus",
+   "unit": "lm"
+  },
+  {
+   "key": "aku_maht",
+   "label_et": "Aku mahtuvus",
+   "unit": "Wh"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "maarimine",
+   "label_et": "Veekindlus",
+   "unit": "IP-klass"
+  },
+  {
+   "key": "toorglad",
+   "label_et": "Režiimide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "laetav",
+   "label_et": "Laetav",
+   "unit": "jah/ei"
+  }
+ ]
+}

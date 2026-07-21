@@ -1,0 +1,47 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-moote-ja-markeriistad-endoskoopkaamerad",
+ "name": "Endoskoopkaamerad",
+ "fields": [
+  {
+   "key": "ekraani_suurus_toll",
+   "label_et": "Ekraani suurus",
+   "unit": "in"
+  },
+  {
+   "key": "kaabli_pikkus_m",
+   "label_et": "Kaabli pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "objektiivide_arv",
+   "label_et": "Objektiivide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "aku_maht",
+   "label_et": "Aku maht",
+   "unit": "Wh",
+   "unit_orig": "mAh"
+  },
+  {
+   "key": "led_tuled",
+   "label_et": "LED tuled",
+   "unit": "tk"
+  },
+  {
+   "key": "zoom_kordaja",
+   "label_et": "Zoom",
+   "unit": "x"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "lahutus_px",
+   "label_et": "Objektiivi lahutus",
+   "unit": "px"
+  }
+ ]
+}

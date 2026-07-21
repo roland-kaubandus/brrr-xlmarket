@@ -1,0 +1,46 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-manguasjad-lastele-mangumajad-ja-telgid",
+ "name": "Mängumajad ja telgid",
+ "fields": [
+  {
+   "key": "vanuseryhm",
+   "label_et": "Soovitatav vanuserühm (aastad)",
+   "unit": "years"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Peamine materjal",
+   "unit": ""
+  },
+  {
+   "key": "kujund",
+   "label_et": "Mängumaja kujund",
+   "unit": ""
+  },
+  {
+   "key": "mootmed_pindala",
+   "label_et": "Mõõtmed (pikk × lai × kõrg)",
+   "unit": "cm"
+  },
+  {
+   "key": "aknad_uksed",
+   "label_et": "Aknad ja uksed (arv)",
+   "unit": ""
+  },
+  {
+   "key": "kaasas_tarvikud",
+   "label_et": "Kaasas olevad tarvikud",
+   "unit": ""
+  },
+  {
+   "key": "kasutuskoht",
+   "label_et": "Kasutuskoht (sise-/välistingimus)",
+   "unit": ""
+  }
+ ]
+}

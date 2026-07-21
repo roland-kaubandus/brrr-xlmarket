@@ -1,0 +1,36 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-metallitoo-ja-sepatoo-sarruse-ja-armatuuripainutajad",
+ "name": "Sarruse- ja armatuuripainutajad",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Nimivõimsus",
+   "unit": "W"
+  },
+  {
+   "key": "max_painutus_diameetr",
+   "label_et": "Maksimaalse painutamise läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "painutamise_aeg",
+   "label_et": "Painutamise aeg",
+   "unit": "s"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Peamised materjalid",
+   "unit": ""
+  },
+  {
+   "key": "painutamise_nurk",
+   "label_et": "Painutamise nurk vahemik",
+   "unit": "°"
+  }
+ ]
+}

@@ -1,0 +1,41 @@
+{
+ "l3": "v4-ehitus-laaduri-haakeseadmed-greiferid-ja-haaratsid",
+ "name": "Greiferid ja haaratsid",
+ "fields": [
+  {
+   "key": "grip_size_mm",
+   "label_et": "Haardesuurus",
+   "unit": "mm"
+  },
+  {
+   "key": "max_load_capacity_kg",
+   "label_et": "Maksimaalne koormus",
+   "unit": "kg"
+  },
+  {
+   "key": "claw_count",
+   "label_et": "Klaasude arv",
+   "unit": "tk"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Toote kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "dynamic_load_capacity_kg",
+   "label_et": "Dünaamiline koormus",
+   "unit": "kg"
+  },
+  {
+   "key": "max_opening_size_mm",
+   "label_et": "Maksimaalse avamise suurus",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  }
+ ]
+}

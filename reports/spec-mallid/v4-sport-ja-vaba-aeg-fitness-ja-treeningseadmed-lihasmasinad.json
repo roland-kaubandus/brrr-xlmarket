@@ -1,0 +1,36 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-fitness-ja-treeningseadmed-lihasmasinad",
+ "name": "Lihasmasinad",
+ "fields": [
+  {
+   "key": "kandevoimsus_kg",
+   "label_et": "Kandevõimsus",
+   "unit": "kg"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Toote kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "seadistused_arv",
+   "label_et": "Reguleerimiste arv",
+   "unit": ""
+  },
+  {
+   "key": "istme_suurus_mm",
+   "label_et": "Istme padi (pikkus × laius)",
+   "unit": "mm"
+  },
+  {
+   "key": "seljatugi_suurus_mm",
+   "label_et": "Seljatugi (pikkus × laius)",
+   "unit": "mm"
+  }
+ ]
+}

@@ -1,0 +1,41 @@
+{
+ "l3": "v4-garaaziseadmed-tungrauad-tostetoed-ja-tugistatiivid",
+ "name": "Tõstetoed ja tugistatiivid",
+ "fields": [
+  {
+   "key": "kandevoimsus_kg",
+   "label_et": "Kandevõimekus",
+   "unit": "kg"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Toote kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "miinimum_korgus_mm",
+   "label_et": "Minimaalne kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "maksimum_korgus_mm",
+   "label_et": "Maksimaalne kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "seadmete_arv",
+   "label_et": "Seadmete arv komplektis",
+   "unit": "tk"
+  },
+  {
+   "key": "reguleerimise_viis",
+   "label_et": "Reguleerimise viis",
+   "unit": ""
+  }
+ ]
+}

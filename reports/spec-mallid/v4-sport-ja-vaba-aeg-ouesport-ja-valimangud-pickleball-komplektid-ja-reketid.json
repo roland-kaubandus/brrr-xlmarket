@@ -1,0 +1,36 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-pickleball-komplektid-ja-reketid",
+ "name": "Pickleball-komplektid ja -reketid",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "pala_pikkus",
+   "label_et": "Pala pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "tugiosa_paksus",
+   "label_et": "Tugiosa paksus",
+   "unit": "mm"
+  },
+  {
+   "key": "kae_pikkus",
+   "label_et": "Käe pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "komplekti_tyyp",
+   "label_et": "Komplekti tüüp",
+   "unit": ""
+  }
+ ]
+}

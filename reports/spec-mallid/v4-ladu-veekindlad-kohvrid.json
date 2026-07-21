@@ -1,0 +1,46 @@
+{
+ "l3": "v4-ladu-veekindlad-kohvrid",
+ "name": "Veekindlad kohvrid",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Maht",
+   "unit": "L"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "veekindlus_rating",
+   "label_et": "Veekindluse rating",
+   "unit": "IP"
+  },
+  {
+   "key": "lukustamise_augud",
+   "label_et": "Lukustamise aukude arv",
+   "unit": "tk"
+  },
+  {
+   "key": "klamber_arv",
+   "label_et": "Klamberite arv",
+   "unit": "tk"
+  },
+  {
+   "key": "handlite_arv",
+   "label_et": "Käepidemetega arv",
+   "unit": "tk"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "liikuvad_rattad",
+   "label_et": "Liikuvad rattad",
+   "unit": "jah/ei"
+  }
+ ]
+}

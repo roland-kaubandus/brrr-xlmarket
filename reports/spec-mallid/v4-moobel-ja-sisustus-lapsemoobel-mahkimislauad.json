@@ -1,0 +1,41 @@
+{
+ "l3": "v4-moobel-ja-sisustus-lapsemoobel-mahkimislauad",
+ "name": "Mähkimislauad",
+ "fields": [
+  {
+   "key": "maksimaalne_kaal",
+   "label_et": "Maksimaalne koormus",
+   "unit": "kg"
+  },
+  {
+   "key": "kõrgus_vahemik",
+   "label_et": "Kõrguse reguleerimise vahemik",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Toote kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjalidest",
+   "unit": ""
+  },
+  {
+   "key": "salvestusruumi_arv",
+   "label_et": "Salvestusjaotiste arv",
+   "unit": "tk"
+  },
+  {
+   "key": "reguleerimistasemed",
+   "label_et": "Kõrguse reguleerimise tasemete arv",
+   "unit": "tk"
+  },
+  {
+   "key": "paigaldus_tyyp",
+   "label_et": "Paigaldusviis",
+   "unit": ""
+  }
+ ]
+}

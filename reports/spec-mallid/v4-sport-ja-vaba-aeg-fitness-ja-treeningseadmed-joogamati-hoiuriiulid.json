@@ -1,0 +1,46 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-fitness-ja-treeningseadmed-joogamati-hoiuriiulid",
+ "name": "Joogamati hoiuriiulid",
+ "fields": [
+  {
+   "key": "korgus",
+   "label_et": "Kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "laius",
+   "label_et": "Laius",
+   "unit": "mm"
+  },
+  {
+   "key": "sügavus",
+   "label_et": "Sügavus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "esimese_kihi_kandevoime",
+   "label_et": "Esimese kihi kandevõime",
+   "unit": "kg"
+  },
+  {
+   "key": "kihtide_arv",
+   "label_et": "Kihtide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "rattad_olemas",
+   "label_et": "Rattad (liikuvad)",
+   "unit": ""
+  }
+ ]
+}

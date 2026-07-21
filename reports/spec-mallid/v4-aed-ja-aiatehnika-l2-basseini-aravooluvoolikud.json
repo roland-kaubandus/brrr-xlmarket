@@ -1,0 +1,46 @@
+{
+ "l3": "v4-aed-ja-aiatehnika-l2-basseini-aravooluvoolikud",
+ "name": "Basseini äravooluvoolikud",
+ "fields": [
+  {
+   "key": "pikkus_m",
+   "label_et": "Vooliku pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "sisemine_diameetr_mm",
+   "label_et": "Sisemine läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "lame_laius_mm",
+   "label_et": "Lameda vooliku laius",
+   "unit": "mm"
+  },
+  {
+   "key": "rohk_bar",
+   "label_et": "Tööpaine",
+   "unit": "bar"
+  },
+  {
+   "key": "kaal_kg",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "armeeringud",
+   "label_et": "Tugevdusstruktuur",
+   "unit": ""
+  },
+  {
+   "key": "temp_vahemik",
+   "label_et": "Töötemperatuuri vahemik",
+   "unit": "°C"
+  }
+ ]
+}

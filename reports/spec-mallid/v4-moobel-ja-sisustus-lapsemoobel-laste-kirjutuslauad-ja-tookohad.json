@@ -1,0 +1,46 @@
+{
+ "l3": "v4-moobel-ja-sisustus-lapsemoobel-laste-kirjutuslauad-ja-tookohad",
+ "name": "Laste kirjutuslauad ja töökohad",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Toote kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "laua_korgus_min",
+   "label_et": "Laua minimaalne kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "laua_korgus_max",
+   "label_et": "Laua maksimaalne kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "toolikorgus_min",
+   "label_et": "Tooli minimaalne kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "toolikorgus_max",
+   "label_et": "Tooli maksimaalne kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "laua_pindala",
+   "label_et": "Tööpinna laius × sügavus",
+   "unit": "mm"
+  },
+  {
+   "key": "koormustakistus_laud",
+   "label_et": "Laua kandevõime",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  }
+ ]
+}

@@ -1,0 +1,46 @@
+{
+ "l3": "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-posteri-ja-bannerihoidikud",
+ "name": "Posteri- ja bännerihoidikud",
+ "fields": [
+  {
+   "key": "kõrgus_mm",
+   "label_et": "Maksimaalne kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "postituse_laius_mm",
+   "label_et": "Postituse laius",
+   "unit": "mm"
+  },
+  {
+   "key": "postituse_korgus_mm",
+   "label_et": "Postituse kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "kanduvus_kg",
+   "label_et": "Kanduvus",
+   "unit": "kg"
+  },
+  {
+   "key": "aluse_diameeter_mm",
+   "label_et": "Aluse diameeter",
+   "unit": "mm"
+  },
+  {
+   "key": "vee_maht",
+   "label_et": "Vee maht",
+   "unit": "L"
+  }
+ ]
+}

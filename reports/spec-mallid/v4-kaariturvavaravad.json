@@ -1,0 +1,46 @@
+{
+ "l3": "v4-kaariturvavaravad",
+ "name": "Kääriturvaväravad",
+ "fields": [
+  {
+   "key": "laiendatud_laius_cm",
+   "label_et": "Laiendatud laius",
+   "unit": "cm"
+  },
+  {
+   "key": "laiendatud_korgus_cm",
+   "label_et": "Laiendatud kõrgus",
+   "unit": "cm"
+  },
+  {
+   "key": "ahendatud_laius_cm",
+   "label_et": "Ahendatud laius",
+   "unit": "cm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "uks_tyyp",
+   "label_et": "Ukse tüüp",
+   "unit": ""
+  },
+  {
+   "key": "rataste_liikumisraadius",
+   "label_et": "Rataste liikumisraadius",
+   "unit": "kraadi"
+  },
+  {
+   "key": "lukustus_tyyp",
+   "label_et": "Lukustuse tüüp",
+   "unit": ""
+  }
+ ]
+}

@@ -1,0 +1,46 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-jalgrattad-ja-tarvikud-jalgrattad",
+ "name": "Jalgrattad",
+ "fields": [
+  {
+   "key": "rataste_labimaoot",
+   "label_et": "Rataste läbimõõt",
+   "unit": "in"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "maksimaalne_koormus",
+   "label_et": "Maksimaalne koormus",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Raami materjal",
+   "unit": ""
+  },
+  {
+   "key": "kiirused",
+   "label_et": "Käigud",
+   "unit": "tk"
+  },
+  {
+   "key": "suspended_type",
+   "label_et": "Suspensiooni tüüp",
+   "unit": ""
+  },
+  {
+   "key": "pidurid",
+   "label_et": "Pidurite tüüp",
+   "unit": ""
+  },
+  {
+   "key": "bike_type",
+   "label_et": "Jalgratta tüüp",
+   "unit": ""
+  }
+ ]
+}

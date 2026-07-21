@@ -1,0 +1,46 @@
+{
+ "l3": "v4-meditsiin-ja-liikumisabi-meditsiinitarvikud-lambumis-ja-hingamisabivahendid",
+ "name": "Lämbumis- ja hingamisabivahendid",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "vooluhulk",
+   "label_et": "Vooluhulk",
+   "unit": "L/min"
+  },
+  {
+   "key": "maht",
+   "label_et": "Paagi maht",
+   "unit": "L"
+  },
+  {
+   "key": "myra",
+   "label_et": "Müra",
+   "unit": "dB"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "mask_kogus",
+   "label_et": "Maskide arv",
+   "unit": "tk"
+  }
+ ]
+}

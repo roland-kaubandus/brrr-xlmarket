@@ -1,0 +1,36 @@
+{
+ "l3": "v4-santehnika-kute-korsten-mutsid-katted",
+ "name": "Korstnamütsid ja -katted",
+ "fields": [
+  {
+   "key": "ava_laius_mm",
+   "label_et": "Ava laius",
+   "unit": "mm"
+  },
+  {
+   "key": "ava_korgus_mm",
+   "label_et": "Ava kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "paigaldise_korgus_mm",
+   "label_et": "Paigaldise kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "tuulekindlus",
+   "label_et": "Tuulekindlus",
+   "unit": ""
+  }
+ ]
+}

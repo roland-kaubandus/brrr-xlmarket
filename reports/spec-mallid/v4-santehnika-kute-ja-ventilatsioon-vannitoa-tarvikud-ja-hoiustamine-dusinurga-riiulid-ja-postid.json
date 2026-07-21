@@ -1,0 +1,41 @@
+{
+ "l3": "v4-santehnika-kute-ja-ventilatsioon-vannitoa-tarvikud-ja-hoiustamine-dusinurga-riiulid-ja-postid",
+ "name": "Dušinurga riiulid ja postid",
+ "fields": [
+  {
+   "key": "korgus_min_mm",
+   "label_et": "Minimaalne kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "korgus_max_mm",
+   "label_et": "Maksimaalne kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Netokaal",
+   "unit": "kg"
+  },
+  {
+   "key": "kandevõime_kg",
+   "label_et": "Maksimaalne kandevõime",
+   "unit": "kg"
+  },
+  {
+   "key": "riiulite_arv",
+   "label_et": "Riiulite arv",
+   "unit": "tk"
+  },
+  {
+   "key": "riiuli_kuju",
+   "label_et": "Riiuli kuju",
+   "unit": ""
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  }
+ ]
+}

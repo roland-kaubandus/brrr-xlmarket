@@ -1,0 +1,46 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-rooli-ja-voidusoidusimulaatorid",
+ "name": "Rooli- ja võidusõidusimulaatorid",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Netokaal",
+   "unit": "kg"
+  },
+  {
+   "key": "max_koormus",
+   "label_et": "Maksimaalne koormus",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "korgus_reguleerimise_vahemik",
+   "label_et": "Kõrguse reguleerimise vahemik",
+   "unit": "mm"
+  },
+  {
+   "key": "pedaali_nurga_reguleerimise_vahemik",
+   "label_et": "Pedaali nurga reguleerimise vahemik",
+   "unit": "°"
+  },
+  {
+   "key": "istme_nurga_reguleerimise_vahemik",
+   "label_et": "Istme nurga reguleerimise vahemik",
+   "unit": "°"
+  },
+  {
+   "key": "lahti_mootmed",
+   "label_et": "Laiendatud mõõtmed (L×L×K)",
+   "unit": "mm"
+  },
+  {
+   "key": "kokkupanutavus",
+   "label_et": "Kokkupandavus",
+   "unit": ""
+  }
+ ]
+}

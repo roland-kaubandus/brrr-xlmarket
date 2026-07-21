@@ -1,0 +1,41 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-treipingi-loiketerad",
+ "name": "Treipingi lõiketerad",
+ "fields": [
+  {
+   "key": "tukk_arv",
+   "label_et": "Tükkide arv komplektis",
+   "unit": "tk"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Tera materjal",
+   "unit": ""
+  },
+  {
+   "key": "ketta_labamoot",
+   "label_et": "Maksimaalne teraläbimõõt / inserti mõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "max_pikkus",
+   "label_et": "Maksimaalse pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "tara_tyyp",
+   "label_et": "Paigutus / säilitus",
+   "unit": ""
+  },
+  {
+   "key": "kasutusnaemik",
+   "label_et": "Rakendus / kasutusnaemik",
+   "unit": ""
+  }
+ ]
+}

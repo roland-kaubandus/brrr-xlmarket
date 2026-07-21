@@ -1,0 +1,41 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-elektrilised-tooriistad-teritusmasinad",
+ "name": "Puuritera-teritajad",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Nimivõimsus",
+   "unit": "W"
+  },
+  {
+   "key": "poorlemiskiirus",
+   "label_et": "Pöörlemiskiirus",
+   "unit": "RPM"
+  },
+  {
+   "key": "max_bit_diameter",
+   "label_et": "Maksimaalne puurteri läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "point_angle_range",
+   "label_et": "Reguleeritav teratip nurk",
+   "unit": "°"
+  },
+  {
+   "key": "collets_count",
+   "label_et": "Kiilspindlite arv",
+   "unit": "tk"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Korpuse materjal",
+   "unit": ""
+  }
+ ]
+}

@@ -1,0 +1,46 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-moote-ja-markeriistad-digitaalsed-mootenaidikud-dro",
+ "name": "Digitaalsed mõõtenäidikud (DRO)",
+ "fields": [
+  {
+   "key": "aksel_arv",
+   "label_et": "Telgede arv",
+   "unit": "tk"
+  },
+  {
+   "key": "lahutusaste",
+   "label_et": "Lahutusaste (resolutsioon)",
+   "unit": "µm"
+  },
+  {
+   "key": "mootmisvahemik",
+   "label_et": "Mõõtmisvahemik (maksimaalne)",
+   "unit": "mm"
+  },
+  {
+   "key": "tapsus",
+   "label_et": "Täpsus",
+   "unit": "mm"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Toitepinge",
+   "unit": "V"
+  },
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "kaabli_pikkus",
+   "label_et": "Kaabli pikkus",
+   "unit": "m"
+  }
+ ]
+}

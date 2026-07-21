@@ -1,0 +1,42 @@
+{
+ "l3": "v4-aed-ja-aiatehnika-l5-survepesurid",
+ "name": "Survepesurid",
+ "fields": [
+  {
+   "key": "rohk",
+   "label_et": "Maksimaalne rõhk",
+   "unit": "bar"
+  },
+  {
+   "key": "vooluhulk",
+   "label_et": "Vee vooluhulk",
+   "unit": "L/min",
+   "unit_orig": "Lmin"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Netokaal",
+   "unit": "kg"
+  },
+  {
+   "key": "aku_maht",
+   "label_et": "Aku mahtuvus",
+   "unit": "Wh"
+  },
+  {
+   "key": "paagutamaht",
+   "label_et": "Kütuse paagi maht",
+   "unit": "L"
+  },
+  {
+   "key": "surveleese_pikkus",
+   "label_et": "Rõhutoru pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "toiteallikas",
+   "label_et": "Toiteallikas",
+   "unit": ""
+  }
+ ]
+}

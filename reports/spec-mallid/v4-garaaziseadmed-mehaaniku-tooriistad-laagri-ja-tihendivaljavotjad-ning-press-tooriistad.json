@@ -1,0 +1,41 @@
+{
+ "l3": "v4-garaaziseadmed-mehaaniku-tooriistad-laagri-ja-tihendivaljavotjad-ning-press-tooriistad",
+ "name": "Laagri- ja tihendiväljavõtjad ning press-tööriistad",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "toorikute_arv",
+   "label_et": "Tööriistade arv (tk)",
+   "unit": "pcs"
+  },
+  {
+   "key": "max_survetugevus",
+   "label_et": "Maksimaalse survejõu/surve",
+   "unit": "T/bar"
+  },
+  {
+   "key": "kladushtevahe_diameeter",
+   "label_et": "Maksimaalne töödiameeter",
+   "unit": "mm"
+  },
+  {
+   "key": "jahtumine_koe",
+   "label_et": "Kõvadus (HRC)",
+   "unit": "HRC"
+  },
+  {
+   "key": "umber_kasutus",
+   "label_et": "Rakendusala (tüüp)",
+   "unit": ""
+  }
+ ]
+}

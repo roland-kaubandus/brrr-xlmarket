@@ -1,0 +1,36 @@
+{
+ "l3": "v4-garaaziseadmed-tostukid-mootorratta-tostukid",
+ "name": "Mootorratta tõstukid",
+ "fields": [
+  {
+   "key": "maksimaalne_kandevoimsus",
+   "label_et": "Maksimaalne kandevõimsus",
+   "unit": "kg"
+  },
+  {
+   "key": "tostukorgus_min_max",
+   "label_et": "Tõstukõrgus (min-max)",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "platvormi_suurus",
+   "label_et": "Platvormi suurus (pikkus × laius)",
+   "unit": "mm"
+  },
+  {
+   "key": "toitesusteem",
+   "label_et": "Toitesüsteem",
+   "unit": "valik"
+  },
+  {
+   "key": "rohk",
+   "label_et": "Töörõhk",
+   "unit": "bar"
+  }
+ ]
+}

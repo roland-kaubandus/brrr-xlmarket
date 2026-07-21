@@ -1,0 +1,46 @@
+{
+ "l3": "v4-ehitus-remont-ja-varvid-aiad-varavad-ja-piirded-varavad-ja-varavakomplektid",
+ "name": "Väravad ja väravakomplektid",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "laius_min_mm",
+   "label_et": "Minimaalne laius",
+   "unit": "mm"
+  },
+  {
+   "key": "laius_max_mm",
+   "label_et": "Maksimaalne laius",
+   "unit": "mm"
+  },
+  {
+   "key": "korgus_min_mm",
+   "label_et": "Minimaalne kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "korgus_max_mm",
+   "label_et": "Maksimaalne kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "trossi_diameeter_mm",
+   "label_et": "Trrossi/traadi läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "komplekti_osad",
+   "label_et": "Komplekti osade arv",
+   "unit": "tk"
+  }
+ ]
+}

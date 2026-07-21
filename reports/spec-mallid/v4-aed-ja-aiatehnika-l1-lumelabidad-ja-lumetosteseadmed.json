@@ -1,0 +1,41 @@
+{
+ "l3": "v4-aed-ja-aiatehnika-l1-lumelabidad-ja-lumetosteseadmed",
+ "name": "Lumelabidad ja lumetõsteseadmed",
+ "fields": [
+  {
+   "key": "ketta_laius_mm",
+   "label_et": "Labida laius",
+   "unit": "mm"
+  },
+  {
+   "key": "ketta_korgus_mm",
+   "label_et": "Labida kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "ulatus_mm",
+   "label_et": "Käepideme/ulatuse pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Labida materjal",
+   "unit": ""
+  },
+  {
+   "key": "rattad",
+   "label_et": "Rattad",
+   "unit": ""
+  },
+  {
+   "key": "handle_reguleeritav",
+   "label_et": "Reguleeritav käepide",
+   "unit": ""
+  }
+ ]
+}

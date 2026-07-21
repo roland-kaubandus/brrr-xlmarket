@@ -1,0 +1,41 @@
+{
+ "l3": "v4-moobel-ja-sisustus-riiulid-ja-hoiustamine-seinariiulid",
+ "name": "Seinariiulid",
+ "fields": [
+  {
+   "key": "arv_astmeid",
+   "label_et": "Astmete arv",
+   "unit": "tk"
+  },
+  {
+   "key": "laius_mm",
+   "label_et": "Laius",
+   "unit": "mm"
+  },
+  {
+   "key": "sügavus_mm",
+   "label_et": "Sügavus",
+   "unit": "mm"
+  },
+  {
+   "key": "korgus_mm",
+   "label_et": "Kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "koormus_kg",
+   "label_et": "Kandevõime astme kohta",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaalu",
+   "unit": "kg"
+  }
+ ]
+}

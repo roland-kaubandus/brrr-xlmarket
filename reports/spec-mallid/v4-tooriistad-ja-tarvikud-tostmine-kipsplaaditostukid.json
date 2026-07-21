@@ -1,0 +1,46 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-tostmine-kipsplaaditostukid",
+ "name": "Kipsplaaditõstukid ja paneelitõstukid",
+ "fields": [
+  {
+   "key": "maksimaalne_koormus",
+   "label_et": "Maksimaalne koormus",
+   "unit": "kg"
+  },
+  {
+   "key": "maksimaalne_korgus",
+   "label_et": "Maksimaalne tõstekõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "teleskoopraki_pikkus",
+   "label_et": "Teleskoopraki pikkusevahemik",
+   "unit": "mm"
+  },
+  {
+   "key": "paneeli_maksimaalne_paksus",
+   "label_et": "Maksimaalse paneeli suurus (pikkus)",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Seadme kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kiilad",
+   "label_et": "Lukustatavate rataste arv",
+   "unit": "tk"
+  },
+  {
+   "key": "kaldenurk",
+   "label_et": "Maksimaalse kaldenurk",
+   "unit": "°"
+  }
+ ]
+}

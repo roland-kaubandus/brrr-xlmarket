@@ -1,0 +1,41 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-puurimisjuhikud",
+ "name": "Puurimisjuhikud",
+ "fields": [
+  {
+   "key": "materjal",
+   "label_et": "Keha materjalid",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "ketta_labamoot",
+   "label_et": "Puurimisava vahemik",
+   "unit": "mm"
+  },
+  {
+   "key": "nurga_valikud",
+   "label_et": "Reguleeritavad nurgad",
+   "unit": "°"
+  },
+  {
+   "key": "maksimaalne_korgus",
+   "label_et": "Maksimaalne reguleeritav kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "abimahu_kogus",
+   "label_et": "Kaasas olevad puuri hülsid",
+   "unit": "tk"
+  },
+  {
+   "key": "laius",
+   "label_et": "Aluse laius",
+   "unit": "mm"
+  }
+ ]
+}

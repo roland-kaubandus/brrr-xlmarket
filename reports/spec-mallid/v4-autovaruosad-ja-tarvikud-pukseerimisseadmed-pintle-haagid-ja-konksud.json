@@ -1,0 +1,41 @@
+{
+ "l3": "v4-autovaruosad-ja-tarvikud-pukseerimisseadmed-pintle-haagid-ja-konksud",
+ "name": "Pintle-haagid ja konksud",
+ "fields": [
+  {
+   "key": "towing_capacity_kg",
+   "label_et": "Veojõu võimsus",
+   "unit": "kg"
+  },
+  {
+   "key": "load_capacity_kg",
+   "label_et": "Koormavõimsus",
+   "unit": "kg"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "hitch_ball_diameter_mm",
+   "label_et": "Haagise kuuli läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "lunette_ring_diameter_mm",
+   "label_et": "Lunette ringi sobivus",
+   "unit": "mm"
+  },
+  {
+   "key": "adjustability",
+   "label_et": "Reguleeritavus (tõus/langus)",
+   "unit": "mm"
+  }
+ ]
+}

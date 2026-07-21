@@ -1,0 +1,46 @@
+{
+ "l3": "v4-lemmikloomatarbed-pesad-ja-asemed-lemmiklooma-voodid",
+ "name": "Lemmiklooma voodid",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Toote kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Peamine materjal",
+   "unit": ""
+  },
+  {
+   "key": "kandevõime",
+   "label_et": "Kandevõime",
+   "unit": "kg"
+  },
+  {
+   "key": "pikkus",
+   "label_et": "Pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "laius",
+   "label_et": "Laius",
+   "unit": "mm"
+  },
+  {
+   "key": "korgus",
+   "label_et": "Kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "magamiskohtade_arv",
+   "label_et": "Magamiskohtade arv",
+   "unit": ""
+  },
+  {
+   "key": "trepiastmete_arv",
+   "label_et": "Trepiaste arv",
+   "unit": ""
+  }
+ ]
+}

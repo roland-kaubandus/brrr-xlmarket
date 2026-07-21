@@ -1,0 +1,41 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-fitness-ja-treeningseadmed-voimlemise-tasakaalupoomid-ja-talad",
+ "name": "Balletitangid (barre)",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Toote kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Peamine materjal",
+   "unit": ""
+  },
+  {
+   "key": "koormusvoimsus",
+   "label_et": "Maksimaalne koormusvõimsus",
+   "unit": "kg"
+  },
+  {
+   "key": "korgus_reguleeritavus",
+   "label_et": "Kõrguse reguleeritavus",
+   "unit": ""
+  },
+  {
+   "key": "laius",
+   "label_et": "Barri laius",
+   "unit": "mm"
+  },
+  {
+   "key": "syvus",
+   "label_et": "Seadme sügavus",
+   "unit": "mm"
+  },
+  {
+   "key": "barride_arv",
+   "label_et": "Barride arv",
+   "unit": ""
+  }
+ ]
+}

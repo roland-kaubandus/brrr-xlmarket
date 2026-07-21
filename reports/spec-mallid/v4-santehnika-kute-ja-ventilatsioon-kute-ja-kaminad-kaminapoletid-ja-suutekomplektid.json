@@ -1,0 +1,46 @@
+{
+ "l3": "v4-santehnika-kute-ja-ventilatsioon-kute-ja-kaminad-kaminapoletid-ja-suutekomplektid",
+ "name": "Kaminapõletid ja süütekomplektid",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "gaasi_tyyp",
+   "label_et": "Gaasi tüüp",
+   "unit": ""
+  },
+  {
+   "key": "varv",
+   "label_et": "Värv",
+   "unit": ""
+  },
+  {
+   "key": "oe_numbrid",
+   "label_et": "OE osanumbrid",
+   "unit": ""
+  },
+  {
+   "key": "sobivus",
+   "label_et": "Sobivus mudelid",
+   "unit": ""
+  },
+  {
+   "key": "komplekti_koosseis",
+   "label_et": "Komplekti koosseis",
+   "unit": ""
+  },
+  {
+   "key": "paigaldus_lihtne",
+   "label_et": "Lihtne paigaldus",
+   "unit": ""
+  },
+  {
+   "key": "kiire_kuumenemine",
+   "label_et": "Kiire kuumenemine",
+   "unit": ""
+  }
+ ]
+}

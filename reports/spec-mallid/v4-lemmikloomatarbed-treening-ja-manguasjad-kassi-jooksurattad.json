@@ -1,0 +1,46 @@
+{
+ "l3": "v4-lemmikloomatarbed-treening-ja-manguasjad-kassi-jooksurattad",
+ "name": "Kassi jooksurattad",
+ "fields": [
+  {
+   "key": "välimine_läbimõõt_mm",
+   "label_et": "Välimine läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "sisemine_läbimõõt_mm",
+   "label_et": "Sisemine läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Toote kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "maksimaalne_kass_kaal_kg",
+   "label_et": "Sobiv kassi kaal (max)",
+   "unit": "kg"
+  },
+  {
+   "key": "kandevõime_kg",
+   "label_et": "Kandevõime",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "myra_dB",
+   "label_et": "Müra tase",
+   "unit": "dB"
+  },
+  {
+   "key": "jalusta_laius_mm",
+   "label_et": "Jalusta laius",
+   "unit": "mm"
+  }
+ ]
+}

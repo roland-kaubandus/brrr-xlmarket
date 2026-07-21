@@ -1,0 +1,46 @@
+{
+ "l3": "v4-garaaziseadmed-mehaaniku-tooriistad-kutusepihustite-puhastid-ja-testrid",
+ "name": "Kütusepihustite puhastid ja testrid",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Ultraheli puhastuse võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Tööpinge",
+   "unit": "V"
+  },
+  {
+   "key": "rohk",
+   "label_et": "Maksimaalne süsteemi rõhk",
+   "unit": "bar"
+  },
+  {
+   "key": "maht",
+   "label_et": "Kütuse paagi maht",
+   "unit": "L"
+  },
+  {
+   "key": "silindrite_arv",
+   "label_et": "Silindrite arv",
+   "unit": ""
+  },
+  {
+   "key": "poorlemiskiirus",
+   "label_et": "Maksimaalne põõramiskiirus",
+   "unit": "RPM"
+  },
+  {
+   "key": "ultraheli_sagedus",
+   "label_et": "Ultraheli sagedus",
+   "unit": "kHz"
+  },
+  {
+   "key": "pwm_pulse_max",
+   "label_et": "PWM impulsi maksimaalne kestus",
+   "unit": "ms"
+  }
+ ]
+}

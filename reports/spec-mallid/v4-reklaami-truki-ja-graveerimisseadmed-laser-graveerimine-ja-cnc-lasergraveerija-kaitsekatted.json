@@ -1,0 +1,46 @@
+{
+ "l3": "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-lasergraveerija-kaitsekatted",
+ "name": "Lasergraveerija kaitsekatted",
+ "fields": [
+  {
+   "key": "sisemised_mootmed_l",
+   "label_et": "Sisemised mõõtmed (pikkus)",
+   "unit": "mm"
+  },
+  {
+   "key": "sisemised_mootmed_w",
+   "label_et": "Sisemised mõõtmed (laius)",
+   "unit": "mm"
+  },
+  {
+   "key": "sisemised_mootmed_h",
+   "label_et": "Sisemised mõõtmed (kõrgus)",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": "—"
+  },
+  {
+   "key": "vaatteaknad",
+   "label_et": "Vaatteaknad",
+   "unit": "—"
+  },
+  {
+   "key": "vooluhulk_exhaust",
+   "label_et": "Väljapuhumise vooluhulk",
+   "unit": "Lmin"
+  },
+  {
+   "key": "led_voimsus",
+   "label_et": "LED-valgustuse võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "kaitseomadused",
+   "label_et": "Kaitse omadused",
+   "unit": "—"
+  }
+ ]
+}

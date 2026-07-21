@@ -1,0 +1,36 @@
+{
+ "l3": "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-paikesepaneeli-kinnitused",
+ "name": "Päikesepaneeli kinnitused",
+ "fields": [
+  {
+   "key": "koormus_max",
+   "label_et": "Maksimaalne koormustaluvus",
+   "unit": "kg"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "paanelite_arv",
+   "label_et": "Toetatud päikesepaneelide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "reguleeritavus_kraadid",
+   "label_et": "Nurga reguleeritavus",
+   "unit": "°"
+  },
+  {
+   "key": "voimsus_max",
+   "label_et": "Toetatud maksimaalne võimsus",
+   "unit": "W"
+  }
+ ]
+}

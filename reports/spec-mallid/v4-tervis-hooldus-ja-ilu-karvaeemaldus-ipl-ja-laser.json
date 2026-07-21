@@ -1,0 +1,37 @@
+{
+ "l3": "v4-tervis-hooldus-ja-ilu-karvaeemaldus-ipl-ja-laser",
+ "name": "Karvaeemaldus (IPL ja laser)",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Impulssienergia",
+   "unit": "W",
+   "unit_orig": "J"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Tööpinge",
+   "unit": "V"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Netokaal",
+   "unit": "kg"
+  },
+  {
+   "key": "valgusemissiooni_pindala",
+   "label_et": "Valgusemissiooni pindala",
+   "unit": "cm²"
+  },
+  {
+   "key": "intensiivsuse_tasemed",
+   "label_et": "Intensiivsuse tasemete arv",
+   "unit": "tk"
+  },
+  {
+   "key": "lainepikkus",
+   "label_et": "Lainepikkuse vahemik",
+   "unit": "nm"
+  }
+ ]
+}

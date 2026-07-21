@@ -1,0 +1,46 @@
+{
+ "l3": "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-loikemasinad-ja-tarvikud",
+ "name": "Lõikemasinad ja -tarvikud",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "poorlemiskiirus",
+   "label_et": "Pöörlemiskiirus",
+   "unit": "RPM"
+  },
+  {
+   "key": "ketta_labamoot",
+   "label_et": "Ketta läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "maksimum_lõikesügavus",
+   "label_et": "Maksimum lõikesügavus",
+   "unit": "mm"
+  },
+  {
+   "key": "lõikelaius",
+   "label_et": "Lõikelaiused",
+   "unit": "mm"
+  },
+  {
+   "key": "lõikekiirus",
+   "label_et": "Lõikekiirus",
+   "unit": "cut/min"
+  }
+ ]
+}

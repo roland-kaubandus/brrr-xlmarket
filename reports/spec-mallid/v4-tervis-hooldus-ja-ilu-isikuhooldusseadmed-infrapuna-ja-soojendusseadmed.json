@@ -1,0 +1,46 @@
+{
+ "l3": "v4-tervis-hooldus-ja-ilu-isikuhooldusseadmed-infrapuna-ja-soojendusseadmed",
+ "name": "Infrapuna- ja soojendusseadmed",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "pindala",
+   "label_et": "Küttepinna suurus",
+   "unit": "cm²"
+  },
+  {
+   "key": "min_temp",
+   "label_et": "Minimaalne temperatuur",
+   "unit": "°C"
+  },
+  {
+   "key": "max_temp",
+   "label_et": "Maksimaalne temperatuur",
+   "unit": "°C"
+  },
+  {
+   "key": "soojendusastmete_arv",
+   "label_et": "Soojendusastmete arv",
+   "unit": "tk"
+  },
+  {
+   "key": "taimer",
+   "label_et": "Taimer",
+   "unit": "h"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  }
+ ]
+}

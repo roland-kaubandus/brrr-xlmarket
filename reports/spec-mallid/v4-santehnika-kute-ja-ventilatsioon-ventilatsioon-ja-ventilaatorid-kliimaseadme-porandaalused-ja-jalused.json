@@ -1,0 +1,46 @@
+{
+ "l3": "v4-santehnika-kute-ja-ventilatsioon-ventilatsioon-ja-ventilaatorid-kliimaseadme-porandaalused-ja-jalused",
+ "name": "Kliimaseadme põrandaalused ja jalused",
+ "fields": [
+  {
+   "key": "maksimaalne_kandevoimsus",
+   "label_et": "Maksimaalne kandevõimsus",
+   "unit": "kg"
+  },
+  {
+   "key": "kliimaseade_jahedus_ulatus",
+   "label_et": "Kliimaseade jahedus ulatus",
+   "unit": "BTU"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "laius",
+   "label_et": "Laius",
+   "unit": "mm"
+  },
+  {
+   "key": "pikkus",
+   "label_et": "Pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "korgus",
+   "label_et": "Kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "vibratsioonidampening",
+   "label_et": "Vibratsioonidämpening",
+   "unit": ""
+  }
+ ]
+}

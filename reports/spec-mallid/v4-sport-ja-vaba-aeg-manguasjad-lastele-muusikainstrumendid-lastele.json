@@ -1,0 +1,41 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-manguasjad-lastele-muusikainstrumendid-lastele",
+ "name": "Laste klaverid ja klahvpillid",
+ "fields": [
+  {
+   "key": "klahvide_arv",
+   "label_et": "Klahvide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "helitugevuse_tasemed",
+   "label_et": "Helitugevuse tasemed",
+   "unit": "tk"
+  },
+  {
+   "key": "toiteallikas",
+   "label_et": "Toiteallikas",
+   "unit": ""
+  },
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "vari",
+   "label_et": "Väri",
+   "unit": ""
+  }
+ ]
+}

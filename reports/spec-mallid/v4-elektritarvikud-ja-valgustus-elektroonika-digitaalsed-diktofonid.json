@@ -1,0 +1,46 @@
+{
+ "l3": "v4-elektritarvikud-ja-valgustus-elektroonika-digitaalsed-diktofonid",
+ "name": "Digitaalsed diktofonid",
+ "fields": [
+  {
+   "key": "malu_maht",
+   "label_et": "Mälu maht",
+   "unit": "GB"
+  },
+  {
+   "key": "aku_maht",
+   "label_et": "Aku mahtuvus",
+   "unit": "Wh"
+  },
+  {
+   "key": "akutööaeg",
+   "label_et": "Akutööaeg",
+   "unit": "h"
+  },
+  {
+   "key": "salvestusaeg",
+   "label_et": "Maksimaalne salvestusaeg",
+   "unit": "h"
+  },
+  {
+   "key": "display_suurus",
+   "label_et": "Ekraani diagonaal",
+   "unit": "in"
+  },
+  {
+   "key": "haaletus_aktivatsioon",
+   "label_et": "Häälega aktivatsioon",
+   "unit": "bool"
+  },
+  {
+   "key": "muratuse_vaigistumine",
+   "label_et": "Müra vaigistamine",
+   "unit": "bool"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Kere materjal",
+   "unit": ""
+  }
+ ]
+}

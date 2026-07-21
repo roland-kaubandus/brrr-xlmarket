@@ -1,0 +1,41 @@
+{
+ "l3": "v4-autovaruosad-ja-tarvikud-pukseerimisseadmed-haagise-lukud-ja-lukustusseadmed",
+ "name": "Haagise lukud ja lukustusseadmed",
+ "fields": [
+  {
+   "key": "ühilduv_siduri_suurus_mm",
+   "label_et": "Ühilduv siduri suurus",
+   "unit": "mm"
+  },
+  {
+   "key": "siduri_tyyp",
+   "label_et": "Siduri tüüp",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "seina_paksus",
+   "label_et": "Seina paksus",
+   "unit": "mm"
+  },
+  {
+   "key": "lukud_kogus",
+   "label_et": "Võtmete arv",
+   "unit": "tk"
+  },
+  {
+   "key": "sisemise_sügavus",
+   "label_et": "Sisemise ava sügavus",
+   "unit": "mm"
+  }
+ ]
+}

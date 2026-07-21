@@ -1,0 +1,36 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-kasitooriistad-uldtooriistakomplektid",
+ "name": "Üldtööriistakomplektid",
+ "fields": [
+  {
+   "key": "tooriistad_arv",
+   "label_et": "Tööriistade arv",
+   "unit": "tk"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "pakkimise_maht",
+   "label_et": "Pakkimise maht",
+   "unit": "mm"
+  },
+  {
+   "key": "poordemoment_max",
+   "label_et": "Maksimaalne pöördemoment",
+   "unit": "Nm"
+  },
+  {
+   "key": "kaasas_elektritooriistad",
+   "label_et": "Kaasas elektritööristad",
+   "unit": ""
+  }
+ ]
+}

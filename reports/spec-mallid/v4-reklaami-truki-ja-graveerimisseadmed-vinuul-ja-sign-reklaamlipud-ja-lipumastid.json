@@ -1,0 +1,46 @@
+{
+ "l3": "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-reklaamlipud-ja-lipumastid",
+ "name": "Reklaamlipud ja lipumastid",
+ "fields": [
+  {
+   "key": "korkeus_kokonainen",
+   "label_et": "Kogukõrgus (maapinnamõõtmega)",
+   "unit": "ft"
+  },
+  {
+   "key": "mastikorkeus",
+   "label_et": "Mastikõrgus (ilma maapinnamõõtmeta)",
+   "unit": "ft"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "komplekt_kogus",
+   "label_et": "Komplektide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "lipp_suurus",
+   "label_et": "Lipu suurus",
+   "unit": "ft"
+  },
+  {
+   "key": "maapinnamõõt_suurus",
+   "label_et": "Maapinnamõõdu suurus",
+   "unit": "ft"
+  },
+  {
+   "key": "toru_diameeter",
+   "label_et": "Toru läbimõõt",
+   "unit": "mm"
+  }
+ ]
+}

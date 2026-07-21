@@ -1,0 +1,36 @@
+{
+ "l3": "v4-aed-ja-aiatehnika-muruniiduki-rehvid-ja-rattad",
+ "name": "Muruniiduki rehvid ja rattad",
+ "fields": [
+  {
+   "key": "rehvi_suurus",
+   "label_et": "Rehvi suurus (tollis)",
+   "unit": "in"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "max_koormus",
+   "label_et": "Maksimaalne koormus",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "naba_laius",
+   "label_et": "Naba sügavus",
+   "unit": "mm"
+  },
+  {
+   "key": "bushing_id",
+   "label_et": "Bushing siseläbimõõt",
+   "unit": "in"
+  }
+ ]
+}

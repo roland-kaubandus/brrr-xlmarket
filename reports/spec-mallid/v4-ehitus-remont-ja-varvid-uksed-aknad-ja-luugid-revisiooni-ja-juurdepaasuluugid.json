@@ -1,0 +1,36 @@
+{
+ "l3": "v4-ehitus-remont-ja-varvid-uksed-aknad-ja-luugid-revisiooni-ja-juurdepaasuluugid",
+ "name": "Revisiooni- ja juurdepääsuluugid",
+ "fields": [
+  {
+   "key": "avamise_suurus_mm",
+   "label_et": "Avamise suurus (mm)",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "sügavus_mm",
+   "label_et": "Sügavus",
+   "unit": "mm"
+  },
+  {
+   "key": "lukustamisviis",
+   "label_et": "Lukustamisviis",
+   "unit": ""
+  },
+  {
+   "key": "paindlikkus",
+   "label_et": "Avamise nurk",
+   "unit": "°"
+  }
+ ]
+}

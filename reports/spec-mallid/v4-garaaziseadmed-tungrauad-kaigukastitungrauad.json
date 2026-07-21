@@ -1,0 +1,41 @@
+{
+ "l3": "v4-garaaziseadmed-tungrauad-kaigukastitungrauad",
+ "name": "Käigukastitungrauad",
+ "fields": [
+  {
+   "key": "kandevõime_kg",
+   "label_et": "Kandevõime",
+   "unit": "kg"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "tõstekõrgus_min_cm",
+   "label_et": "Minimaalne tõstekõrgus",
+   "unit": "cm"
+  },
+  {
+   "key": "tõstekõrgus_max_cm",
+   "label_et": "Maksimaalne tõstekõrgus",
+   "unit": "cm"
+  },
+  {
+   "key": "tõstekäik_mm",
+   "label_et": "Tõstekäik",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "sadula_pöörlemine",
+   "label_et": "Sadula pöörlemine",
+   "unit": "°"
+  }
+ ]
+}

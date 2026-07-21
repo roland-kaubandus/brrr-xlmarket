@@ -1,0 +1,41 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-moote-ja-markeriistad-seinaskannerid",
+ "name": "Seinaskannerid",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "skaneerimismood",
+   "label_et": "Skaneerimisviisid",
+   "unit": "tk"
+  },
+  {
+   "key": "tuvastamisulatuse",
+   "label_et": "Tuvastamisulatuse",
+   "unit": "mm"
+  },
+  {
+   "key": "lcd_ekraan",
+   "label_et": "LCD-ekraan",
+   "unit": "jah/ei"
+  },
+  {
+   "key": "helialar",
+   "label_et": "Helialar",
+   "unit": "jah/ei"
+  },
+  {
+   "key": "aku_tyyp",
+   "label_et": "Akutüüp",
+   "unit": "tekst"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": "tekst"
+  }
+ ]
+}

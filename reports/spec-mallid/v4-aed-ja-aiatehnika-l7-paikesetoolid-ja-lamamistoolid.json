@@ -1,0 +1,46 @@
+{
+ "l3": "v4-aed-ja-aiatehnika-l7-paikesetoolid-ja-lamamistoolid",
+ "name": "Päikesetoolid ja lamamistoolid",
+ "fields": [
+  {
+   "key": "kandevoimsusvõimsus",
+   "label_et": "Kandevõime",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "reguleerimisasendite_arv",
+   "label_et": "Reguleerimisasendite arv",
+   "unit": "tk"
+  },
+  {
+   "key": "komplekti_suurus",
+   "label_et": "Komplekti suurus",
+   "unit": "tk"
+  },
+  {
+   "key": "lahendatud_mootmed_pikkus",
+   "label_et": "Pikkus (lahendatud)",
+   "unit": "mm"
+  },
+  {
+   "key": "lahendatud_mootmed_laius",
+   "label_et": "Laius (lahendatud)",
+   "unit": "mm"
+  },
+  {
+   "key": "lahendatud_mootmed_korgus",
+   "label_et": "Kõrgus (lahendatud)",
+   "unit": "mm"
+  }
+ ]
+}

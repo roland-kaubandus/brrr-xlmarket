@@ -1,0 +1,41 @@
+{
+ "l3": "v4-moobel-ja-sisustus-elutoamoobel-tugitoolid",
+ "name": "Tugitoolid",
+ "fields": [
+  {
+   "key": "pikkus_mm",
+   "label_et": "Pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "maksimaalne_koormus_kg",
+   "label_et": "Maksimaalne koormus",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Raam-materjal",
+   "unit": ""
+  },
+  {
+   "key": "istme_lammus_mm",
+   "label_et": "Istme sügavus",
+   "unit": "mm"
+  },
+  {
+   "key": "seljatugi_korgus_mm",
+   "label_et": "Seljatugi kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "alusmaterjal",
+   "label_et": "Alusmaterjal",
+   "unit": ""
+  }
+ ]
+}

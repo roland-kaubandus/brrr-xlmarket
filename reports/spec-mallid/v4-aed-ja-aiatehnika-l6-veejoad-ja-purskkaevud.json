@@ -1,0 +1,46 @@
+{
+ "l3": "v4-aed-ja-aiatehnika-l6-veejoad-ja-purskkaevud",
+ "name": "Veejoad ja purskkaevud",
+ "fields": [
+  {
+   "key": "laius",
+   "label_et": "Laiuus (cm)",
+   "unit": "cm"
+  },
+  {
+   "key": "korgus",
+   "label_et": "Kõrgus (cm)",
+   "unit": "cm"
+  },
+  {
+   "key": "syvus",
+   "label_et": "Sügavus (cm)",
+   "unit": "cm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "konnektori_diameetr",
+   "label_et": "Konnektori siseläbimõõt (mm)",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal (kg)",
+   "unit": "kg"
+  },
+  {
+   "key": "led_taha",
+   "label_et": "LED-valgustus",
+   "unit": ""
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge (V)",
+   "unit": "V"
+  }
+ ]
+}

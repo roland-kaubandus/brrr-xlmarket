@@ -1,0 +1,41 @@
+{
+ "l3": "v4-elektritarvikud-ja-valgustus-toostusvalgustus-fotostuudio-valgustid",
+ "name": "Fotostuudio valgustid",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Maksimaalne võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "varvatemperatuur",
+   "label_et": "Värvatemperatuur vahemik",
+   "unit": "K"
+  },
+  {
+   "key": "valgusvoog",
+   "label_et": "Maksimaalne valgusvoog",
+   "unit": "lm"
+  },
+  {
+   "key": "vari_renderdamise_indeks",
+   "label_et": "Värvitaastusindeks (CRI)",
+   "unit": "≥"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Neto kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "softbox_pindala",
+   "label_et": "Softboxi suurus (laius×kõrgus)",
+   "unit": "mm"
+  },
+  {
+   "key": "toiteallikas",
+   "label_et": "Toiteallikas",
+   "unit": ""
+  }
+ ]
+}

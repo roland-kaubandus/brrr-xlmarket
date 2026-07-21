@@ -1,0 +1,36 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-lineaarvollid",
+ "name": "Lineaarvõllid",
+ "fields": [
+  {
+   "key": "diameter_mm",
+   "label_et": "Läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "length_mm",
+   "label_et": "Pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "runout_tolerance_mm",
+   "label_et": "Täpsus (vooluerinevus)",
+   "unit": "mm"
+  },
+  {
+   "key": "surface_finish",
+   "label_et": "Pinnakvaliteet",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  }
+ ]
+}

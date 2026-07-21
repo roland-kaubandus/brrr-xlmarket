@@ -1,0 +1,46 @@
+{
+ "l3": "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-inverterid",
+ "name": "Inverterid",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Väljundvõimsus",
+   "unit": "W"
+  },
+  {
+   "key": "pinge_sisend",
+   "label_et": "Sisendpinge",
+   "unit": "V"
+  },
+  {
+   "key": "pinge_valjaund",
+   "label_et": "Väljundpinge",
+   "unit": "V"
+  },
+  {
+   "key": "mppt_kontroller_vool",
+   "label_et": "MPPT kontrolleri max vool",
+   "unit": "A"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "maarimine",
+   "label_et": "Kaitseklass",
+   "unit": "IP"
+  },
+  {
+   "key": "myra",
+   "label_et": "Müratase",
+   "unit": "dB"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Kere materjal",
+   "unit": ""
+  }
+ ]
+}

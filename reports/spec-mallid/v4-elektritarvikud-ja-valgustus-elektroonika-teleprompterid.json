@@ -1,0 +1,46 @@
+{
+ "l3": "v4-elektritarvikud-ja-valgustus-elektroonika-teleprompterid",
+ "name": "Teleprompterid",
+ "fields": [
+  {
+   "key": "ekraani_suurus_tolli",
+   "label_et": "Ekraani suurus",
+   "unit": "in"
+  },
+  {
+   "key": "paigalduse_tyyp",
+   "label_et": "Paigalduse tüüp",
+   "unit": ""
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "murdumisuhe",
+   "label_et": "Murdumisuhe",
+   "unit": ""
+  },
+  {
+   "key": "poollitsa_minimumfookus",
+   "label_et": "Minimaalse fokaalse pikkuse tugi",
+   "unit": "mm"
+  },
+  {
+   "key": "juhtimine",
+   "label_et": "Juhtimisviis",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "toetatud_seadmed",
+   "label_et": "Toetatud seadmed",
+   "unit": ""
+  }
+ ]
+}

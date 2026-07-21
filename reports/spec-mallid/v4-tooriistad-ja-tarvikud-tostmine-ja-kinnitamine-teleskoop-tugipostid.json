@@ -1,0 +1,41 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine-teleskoop-tugipostid",
+ "name": "Teleskoop-tugipostid",
+ "fields": [
+  {
+   "key": "maksimaalne_koormus",
+   "label_et": "Maksimaalne koormus",
+   "unit": "kg"
+  },
+  {
+   "key": "min_pikkus",
+   "label_et": "Minimaalne pikkus",
+   "unit": "cm"
+  },
+  {
+   "key": "max_pikkus",
+   "label_et": "Maksimaalne pikkus",
+   "unit": "cm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "komplekti_kogus",
+   "label_et": "Komplekti kogus (tk)",
+   "unit": "tk"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "tugi_jalade_labamoot",
+   "label_et": "Tüüpi mõõtmed",
+   "unit": "mm"
+  }
+ ]
+}

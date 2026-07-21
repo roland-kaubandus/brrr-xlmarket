@@ -1,0 +1,41 @@
+{
+ "l3": "v4-elektritarvikud-ja-valgustus-toostusvalgustus-lae-ja-katusevalgustid",
+ "name": "Lae- ja katusevalgustid",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "valgusvoog",
+   "label_et": "Valgustugevus",
+   "unit": "lm"
+  },
+  {
+   "key": "varit_temp",
+   "label_et": "Värvitemperatuur",
+   "unit": "K"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "ip_rating",
+   "label_et": "IP-kaitseaste",
+   "unit": ""
+  },
+  {
+   "key": "montaaz_suurus",
+   "label_et": "Montaažisuurus",
+   "unit": "mm"
+  }
+ ]
+}

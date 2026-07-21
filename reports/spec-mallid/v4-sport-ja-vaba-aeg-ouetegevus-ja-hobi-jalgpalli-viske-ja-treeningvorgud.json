@@ -1,0 +1,46 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-ouetegevus-ja-hobi-jalgpalli-viske-ja-treeningvorgud",
+ "name": "Jalgpalli viske- ja treeningvõrgud",
+ "fields": [
+  {
+   "key": "net_width_mm",
+   "label_et": "Võrgu laius",
+   "unit": "mm"
+  },
+  {
+   "key": "net_height_mm",
+   "label_et": "Võrgu kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "target_pockets_count",
+   "label_et": "Sihtmärkide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "mesh_hole_size_mm",
+   "label_et": "Võrgupesa suurus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Toote kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "steel_pipe_diameter_mm",
+   "label_et": "Terastoru läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Võrgu äärise materjal",
+   "unit": ""
+  },
+  {
+   "key": "frame_type",
+   "label_et": "Raamitüüp",
+   "unit": ""
+  }
+ ]
+}

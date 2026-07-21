@@ -1,0 +1,36 @@
+{
+ "l3": "v4-aed-ja-aiatehnika-maastikukujundus-kunstmuru-kummimatid",
+ "name": "Kunstmuru",
+ "fields": [
+  {
+   "key": "pindala",
+   "label_et": "Pindala",
+   "unit": "m²"
+  },
+  {
+   "key": "kõrgus",
+   "label_et": "Pile kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "omme_tihedus",
+   "label_et": "Omme tihedus",
+   "unit": "stitches/m²"
+  },
+  {
+   "key": "drenaaz",
+   "label_et": "Drenaažiaugu olemasolu",
+   "unit": ""
+  },
+  {
+   "key": "paigaldus",
+   "label_et": "Paigaldustüüp",
+   "unit": ""
+  }
+ ]
+}

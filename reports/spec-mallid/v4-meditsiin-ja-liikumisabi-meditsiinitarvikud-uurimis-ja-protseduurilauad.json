@@ -1,0 +1,46 @@
+{
+ "l3": "v4-meditsiin-ja-liikumisabi-meditsiinitarvikud-uurimis-ja-protseduurilauad",
+ "name": "Uurimis- ja protseduurilauad",
+ "fields": [
+  {
+   "key": "maksimaalne_koormus",
+   "label_et": "Maksimaalne koormus",
+   "unit": "kg"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Raam materjal",
+   "unit": ""
+  },
+  {
+   "key": "seljatugi_reguleeritavus",
+   "label_et": "Seljatugi reguleeritavus",
+   "unit": "°"
+  },
+  {
+   "key": "padjastuse_paksus",
+   "label_et": "Padjastuse paksus",
+   "unit": "cm"
+  },
+  {
+   "key": "salvestusmaht",
+   "label_et": "Salvestusmaht",
+   "unit": ""
+  },
+  {
+   "key": "pikkus",
+   "label_et": "Pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "laius",
+   "label_et": "Laius",
+   "unit": "mm"
+  }
+ ]
+}

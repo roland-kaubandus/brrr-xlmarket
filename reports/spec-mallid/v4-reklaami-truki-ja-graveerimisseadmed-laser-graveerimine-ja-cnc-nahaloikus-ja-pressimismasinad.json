@@ -1,0 +1,36 @@
+{
+ "l3": "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-nahaloikus-ja-pressimismasinad",
+ "name": "Nahalõikus- ja pressimismasinad",
+ "fields": [
+  {
+   "key": "plaadi_suurus_mm",
+   "label_et": "Surve-plaadi suurus (mm)",
+   "unit": "mm"
+  },
+  {
+   "key": "rohk",
+   "label_et": "Maksimaalne surve",
+   "unit": "bar"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Neto kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "max_lõike_paksus",
+   "label_et": "Maksimaalene lõike paksus",
+   "unit": "mm"
+  },
+  {
+   "key": "insuldi_korgus",
+   "label_et": "Insuldi (käigu) kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Plaadi materjal",
+   "unit": ""
+  }
+ ]
+}

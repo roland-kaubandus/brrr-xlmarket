@@ -1,0 +1,42 @@
+{
+ "l3": "v4-elektritarvikud-ja-valgustus-mootorid-vibratsioonimootorid",
+ "name": "Vibratsioonimootorid",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "poorlemiskiirus",
+   "label_et": "Pöörlemiskiirus",
+   "unit": "RPM"
+  },
+  {
+   "key": "vibratsioonijoud",
+   "label_et": "Vibratsiooni jõud",
+   "unit": "kg"
+  },
+  {
+   "key": "ohuvool",
+   "label_et": "Ühefaasiline vool",
+   "unit": "L/min",
+   "unit_orig": "A"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaitseklass",
+   "label_et": "Kaitseklass",
+   "unit": ""
+  }
+ ]
+}

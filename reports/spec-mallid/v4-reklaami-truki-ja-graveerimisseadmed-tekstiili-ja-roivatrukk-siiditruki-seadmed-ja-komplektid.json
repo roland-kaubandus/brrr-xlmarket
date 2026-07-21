@@ -1,0 +1,36 @@
+{
+ "l3": "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-siiditruki-seadmed-ja-komplektid",
+ "name": "Siiditrüki seadmed ja komplektid",
+ "fields": [
+  {
+   "key": "karkass_materjal",
+   "label_et": "Karkassi materjal",
+   "unit": "string"
+  },
+  {
+   "key": "sildi_suurus_cm",
+   "label_et": "Sildi suurus (pikkus × laius)",
+   "unit": "cm"
+  },
+  {
+   "key": "sildi_loendus",
+   "label_et": "Võrgu peenust (mesh count)",
+   "unit": "DPI"
+  },
+  {
+   "key": "sildi_kogus",
+   "label_et": "Sildite/jaamade arv",
+   "unit": "tk"
+  },
+  {
+   "key": "varviarvud",
+   "label_et": "Värvide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  }
+ ]
+}

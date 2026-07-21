@@ -1,0 +1,48 @@
+{
+ "l3": "v4-elektritarvikud-ja-valgustus-toitejaotus-ja-jaotussusteemid-pingemuundurid",
+ "name": "Pingemuundurid",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W",
+   "unit_orig": "VA"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge (sisend/väljund)",
+   "unit": "V"
+  },
+  {
+   "key": "ohuvool",
+   "label_et": "Ülekoormuse kaitsekaitse",
+   "unit": "L/min",
+   "unit_orig": "A"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "pesade_arv",
+   "label_et": "Väljundpesade arv",
+   "unit": "tk"
+  },
+  {
+   "key": "automaatne_pinge_tuvastus",
+   "label_et": "Automaatne pingetus",
+   "unit": "bool"
+  },
+  {
+   "key": "usb_valjund",
+   "label_et": "USB väljund",
+   "unit": "bool"
+  },
+  {
+   "key": "lcd_monitor",
+   "label_et": "LCD ekraan",
+   "unit": "bool"
+  }
+ ]
+}

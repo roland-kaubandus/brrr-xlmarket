@@ -1,0 +1,46 @@
+{
+ "l3": "v4-garaaziseadmed-mehaaniku-tooriistad-suitsu-lekketestrid",
+ "name": "Suitsu-lekketestrid",
+ "fields": [
+  {
+   "key": "pinge",
+   "label_et": "Toitepinge",
+   "unit": "V"
+  },
+  {
+   "key": "vooluhulk",
+   "label_et": "Väljundvoolu kiirus",
+   "unit": "L/min"
+  },
+  {
+   "key": "rohk",
+   "label_et": "Väljundrõhk",
+   "unit": "bar"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "maht",
+   "label_et": "Vedeliku mahtuvus",
+   "unit": "L"
+  },
+  {
+   "key": "tootematerjal",
+   "label_et": "Peamised materjalid",
+   "unit": ""
+  },
+  {
+   "key": "toimimistemperatuur",
+   "label_et": "Töötemperatuur vahemik",
+   "unit": "°C"
+  },
+  {
+   "key": "detektsioonrežiimid",
+   "label_et": "Detektsiooni režiimid",
+   "unit": ""
+  }
+ ]
+}

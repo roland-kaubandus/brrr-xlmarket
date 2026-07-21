@@ -1,0 +1,46 @@
+{
+ "l3": "v4-reklaami-truki-ja-graveerimisseadmed-koitmine-ja-lamineerimine-paberiloikurid",
+ "name": "Paberilõikurid",
+ "fields": [
+  {
+   "key": "lõike_laius_mm",
+   "label_et": "Lõike laius",
+   "unit": "mm"
+  },
+  {
+   "key": "lõike_paksus_mm",
+   "label_et": "Maksimaalne lõike paksus",
+   "unit": "mm"
+  },
+  {
+   "key": "lehekülgede_arv",
+   "label_et": "Lõikekiirus (lehekülgede arv korraga)",
+   "unit": "tk"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Mata materjal",
+   "unit": ""
+  },
+  {
+   "key": "lõike_täpsus_mm",
+   "label_et": "Lõike täpsus",
+   "unit": "mm"
+  },
+  {
+   "key": "tootmistüüp",
+   "label_et": "Tootmistüüp",
+   "unit": ""
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  }
+ ]
+}

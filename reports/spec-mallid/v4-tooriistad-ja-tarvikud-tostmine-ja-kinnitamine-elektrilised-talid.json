@@ -1,0 +1,41 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine-elektrilised-talid",
+ "name": "Elektrilised talid",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Mootori võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "tostevoi",
+   "label_et": "Tõstevõimsus",
+   "unit": "kg"
+  },
+  {
+   "key": "tostekorgus",
+   "label_et": "Tõstekõrgus",
+   "unit": "m"
+  },
+  {
+   "key": "tostekiirus",
+   "label_et": "Tõstekiirus",
+   "unit": "m/min"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Toote kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "kaabli_labimaoot",
+   "label_et": "Kaabli läbimõõt",
+   "unit": "mm"
+  }
+ ]
+}

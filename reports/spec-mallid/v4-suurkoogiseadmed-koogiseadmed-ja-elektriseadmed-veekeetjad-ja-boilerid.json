@@ -1,0 +1,41 @@
+{
+ "l3": "v4-suurkoogiseadmed-koogiseadmed-ja-elektriseadmed-veekeetjad-ja-boilerid",
+ "name": "Veekeetjad ja -boilerid",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "maht",
+   "label_et": "Mahutavus",
+   "unit": "L"
+  },
+  {
+   "key": "max_temp",
+   "label_et": "Maksimaalne temperatuur",
+   "unit": "°C"
+  },
+  {
+   "key": "vooluhulk",
+   "label_et": "Veesoojendamise kiirus",
+   "unit": "L/min"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "min_temp",
+   "label_et": "Minimaalne temperatuur",
+   "unit": "°C"
+  }
+ ]
+}

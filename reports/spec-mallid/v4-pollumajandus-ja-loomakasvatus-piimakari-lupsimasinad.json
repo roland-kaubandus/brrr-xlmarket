@@ -1,0 +1,46 @@
+{
+ "l3": "v4-pollumajandus-ja-loomakasvatus-piimakari-lupsimasinad",
+ "name": "Lüpsimasinad",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Mahutavus",
+   "unit": "L"
+  },
+  {
+   "key": "rohk",
+   "label_et": "Vaakumrõhk",
+   "unit": "kPa"
+  },
+  {
+   "key": "pulsatsioon_sagedus",
+   "label_et": "Pulsatsiooni sagedus",
+   "unit": "1/min"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "tite_kuppide_arv",
+   "label_et": "Tite-kuppide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "aku_maht",
+   "label_et": "Aku maht",
+   "unit": "Wh"
+  }
+ ]
+}

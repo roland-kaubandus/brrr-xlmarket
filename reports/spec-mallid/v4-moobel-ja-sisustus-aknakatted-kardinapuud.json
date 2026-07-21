@@ -1,0 +1,46 @@
+{
+ "l3": "v4-moobel-ja-sisustus-aknakatted-kardinapuud",
+ "name": "Kardinapuud ja -latid",
+ "fields": [
+  {
+   "key": "pikkus_min_max",
+   "label_et": "Reguleeritav pikkus (min-max)",
+   "unit": "cm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal (koos tarvikutega)",
+   "unit": "kg"
+  },
+  {
+   "key": "varras_1_diam",
+   "label_et": "Esimene varras - läbimõõt",
+   "unit": "cm"
+  },
+  {
+   "key": "varras_2_diam",
+   "label_et": "Teine varras - läbimõõt",
+   "unit": "cm"
+  },
+  {
+   "key": "maksimaalne_koormus",
+   "label_et": "Maksimaalne koormus (2 vardale)",
+   "unit": "kg"
+  },
+  {
+   "key": "lõpp_kuju",
+   "label_et": "Lõppu kujundus (finaal)",
+   "unit": ""
+  },
+  {
+   "key": "tugikonksud",
+   "label_et": "Tugikonksude arv",
+   "unit": "tk"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  }
+ ]
+}

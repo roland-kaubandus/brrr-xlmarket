@@ -1,0 +1,46 @@
+{
+ "l3": "v4-suurkoogiseadmed-toidu-soojas-hoidmine-isoleeritud-toidukandurid",
+ "name": "Isoleeritud toidukandurid",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Maht",
+   "unit": "L"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "soojapidavus",
+   "label_et": "Soojapidavus",
+   "unit": "h"
+  },
+  {
+   "key": "jahutuspidavus",
+   "label_et": "Jahutuspidavus",
+   "unit": "h"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "isolatsiooniakne",
+   "label_et": "Isolatsiooni paksus",
+   "unit": "mm"
+  },
+  {
+   "key": "laadimisviis",
+   "label_et": "Laadimisviis",
+   "unit": ""
+  },
+  {
+   "key": "staffable",
+   "label_et": "Kõrvutispaigutav",
+   "unit": ""
+  }
+ ]
+}

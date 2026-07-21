@@ -1,0 +1,46 @@
+{
+ "l3": "v4-tooriied-ja-isikukaitse-kukkumiskaitse-ja-korgustoo-ohutuskoied-lifelined",
+ "name": "Ohutusköied ja lifeline'd",
+ "fields": [
+  {
+   "key": "pikkus_m",
+   "label_et": "Pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "murdetugevus_kn",
+   "label_et": "Murdetugevus",
+   "unit": "kN"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "diameetr_mm",
+   "label_et": "Diameetr",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal_kg",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "shokiimeja",
+   "label_et": "Šokiimeja",
+   "unit": ""
+  },
+  {
+   "key": "konksude_arv",
+   "label_et": "Konksude arv",
+   "unit": "tk"
+  },
+  {
+   "key": "varustis",
+   "label_et": "Varustis (köis, konksud, kipur)",
+   "unit": ""
+  }
+ ]
+}

@@ -1,0 +1,46 @@
+{
+ "l3": "v4-varjualused-telgid-ja-kasvuhooned-varikatused-ja-pergolad-pergola-kinnitustarvikud",
+ "name": "Pergola kinnitustarvikud",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kogukaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "tala_suurus",
+   "label_et": "Tala suurus",
+   "unit": "mm"
+  },
+  {
+   "key": "sisemine_suurus",
+   "label_et": "Sisemine suurus",
+   "unit": "mm"
+  },
+  {
+   "key": "toed_arv",
+   "label_et": "Toetuste arv",
+   "unit": "tk"
+  },
+  {
+   "key": "toed_tyyp",
+   "label_et": "Toetuste tüüp",
+   "unit": ""
+  },
+  {
+   "key": "kogus",
+   "label_et": "Komplektis",
+   "unit": "tk"
+  },
+  {
+   "key": "paigaldusviis",
+   "label_et": "Paigaldusviis",
+   "unit": ""
+  }
+ ]
+}

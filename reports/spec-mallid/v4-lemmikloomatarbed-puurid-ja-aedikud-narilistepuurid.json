@@ -1,0 +1,46 @@
+{
+ "l3": "v4-lemmikloomatarbed-puurid-ja-aedikud-narilistepuurid",
+ "name": "Närilistepuurid",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "pikkus",
+   "label_et": "Pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "laius",
+   "label_et": "Laius",
+   "unit": "mm"
+  },
+  {
+   "key": "korgus",
+   "label_et": "Kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "astmete_arv",
+   "label_et": "Astmete arv",
+   "unit": "tk"
+  },
+  {
+   "key": "vaatamise_nurk",
+   "label_et": "Vaatamise nurk",
+   "unit": "°"
+  },
+  {
+   "key": "liikuvus",
+   "label_et": "Liikuvus (ratastega)",
+   "unit": ""
+  }
+ ]
+}

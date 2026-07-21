@@ -1,0 +1,37 @@
+{
+ "l3": "v4-santehnika-kute-poorandakutte-kollektorid",
+ "name": "Põrandakütte kollektorid",
+ "fields": [
+  {
+   "key": "haru_arv",
+   "label_et": "Harude arv",
+   "unit": "tk"
+  },
+  {
+   "key": "vooluhulk",
+   "label_et": "Maksimaalne vooluhulk",
+   "unit": "L/min",
+   "unit_orig": "Lmin"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "pex_torulugemõõt",
+   "label_et": "PEX-torulugemõõt",
+   "unit": "tuuma"
+  },
+  {
+   "key": "sisenemispesa_tüüp",
+   "label_et": "Sisene-/väljumispesa threads",
+   "unit": ""
+  }
+ ]
+}

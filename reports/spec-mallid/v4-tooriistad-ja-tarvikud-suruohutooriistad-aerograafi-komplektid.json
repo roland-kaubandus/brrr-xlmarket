@@ -1,0 +1,41 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-suruohutooriistad-aerograafi-komplektid",
+ "name": "Aerograafi komplektid",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "ohuvool",
+   "label_et": "Õhuvool",
+   "unit": "L/min"
+  },
+  {
+   "key": "maht",
+   "label_et": "Paagi maht",
+   "unit": "L"
+  },
+  {
+   "key": "aerograafi_arv",
+   "label_et": "Aerograafide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "otsa_labamoot",
+   "label_et": "Otsa läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  }
+ ]
+}

@@ -1,0 +1,41 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-fitness-ja-treeningseadmed-kukimasinad-ja-seadmed",
+ "name": "Kükimasinad ja -seadmed",
+ "fields": [
+  {
+   "key": "maksimaalne_koormus",
+   "label_et": "Maksimaalne koormus",
+   "unit": "kg"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Seadme kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "vastupanu_tyyp",
+   "label_et": "Vastupanu tüüp",
+   "unit": "tekst"
+  },
+  {
+   "key": "vastupanu_tasemed",
+   "label_et": "Vastupanu tasemete arv",
+   "unit": "tk"
+  },
+  {
+   "key": "reguleerimise_positsioonid",
+   "label_et": "Reguleerimise positsioonid",
+   "unit": "tk"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Peamised materjalid",
+   "unit": "tekst"
+  },
+  {
+   "key": "kokkupandavus",
+   "label_et": "Kokkupandavus",
+   "unit": "jah/ei"
+  }
+ ]
+}

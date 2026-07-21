@@ -1,0 +1,37 @@
+{
+ "l3": "v4-peoinventar-huppelossi-batuudipuhurid",
+ "name": "Hüppelossi- ja batuudipuhurid",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "ohuvool",
+   "label_et": "Õhuvool",
+   "unit": "L/min",
+   "unit_orig": "m³/h"
+  },
+  {
+   "key": "poorlemiskiirus",
+   "label_et": "Pöörlemiskiirus",
+   "unit": "RPM"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "myra",
+   "label_et": "Müra",
+   "unit": "dB"
+  },
+  {
+   "key": "rohk",
+   "label_et": "Rõhk",
+   "unit": "Pa"
+  }
+ ]
+}

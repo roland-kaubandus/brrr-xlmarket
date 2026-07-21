@@ -1,0 +1,41 @@
+{
+ "l3": "v4-mangukonsooli-tarvikud",
+ "name": "Mängukonsooli tarvikud",
+ "fields": [
+  {
+   "key": "materjal",
+   "label_et": "Välis-materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "mahud_mm",
+   "label_et": "Mõõtmed (P × L × K)",
+   "unit": "mm"
+  },
+  {
+   "key": "sisekate",
+   "label_et": "Sisekatte materjal",
+   "unit": ""
+  },
+  {
+   "key": "kandmisviis",
+   "label_et": "Kandmisviis",
+   "unit": ""
+  },
+  {
+   "key": "sobivus_mudelid",
+   "label_et": "Sobib mudelitele",
+   "unit": ""
+  },
+  {
+   "key": "veetihedus",
+   "label_et": "Veetihedus (PU-aste)",
+   "unit": ""
+  }
+ ]
+}

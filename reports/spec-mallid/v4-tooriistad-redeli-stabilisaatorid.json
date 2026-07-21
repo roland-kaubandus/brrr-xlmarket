@@ -1,0 +1,41 @@
+{
+ "l3": "v4-tooriistad-redeli-stabilisaatorid",
+ "name": "Redeli stabilisaatorid ja seinatoed",
+ "fields": [
+  {
+   "key": "kandevõimekus_kg",
+   "label_et": "Kandevõimekus",
+   "unit": "kg"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "pikkus_reguleerimise_asendid",
+   "label_et": "Pikkuse reguleerimise asendid",
+   "unit": ""
+  },
+  {
+   "key": "paigutuse_viisid",
+   "label_et": "Paigutuse viisid (horisontaal/vertikal)",
+   "unit": ""
+  },
+  {
+   "key": "komplekteeritus",
+   "label_et": "Komplekteeritus (tk)",
+   "unit": "tk"
+  },
+  {
+   "key": "redelisamba_tugi_tyyp",
+   "label_et": "Redelisamba tüüp",
+   "unit": ""
+  }
+ ]
+}

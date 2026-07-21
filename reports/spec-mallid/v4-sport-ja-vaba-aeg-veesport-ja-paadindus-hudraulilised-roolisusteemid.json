@@ -1,0 +1,47 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-veesport-ja-paadindus-hudraulilised-roolisusteemid",
+ "name": "Hüdraulilised roolisüsteemid",
+ "fields": [
+  {
+   "key": "max_hp",
+   "label_et": "Maksimaalne võimsus",
+   "unit": "HP"
+  },
+  {
+   "key": "rohk",
+   "label_et": "Maksimaalne rõhk",
+   "unit": "bar"
+  },
+  {
+   "key": "vooluhulk",
+   "label_et": "Väljundvool",
+   "unit": "L/min",
+   "unit_orig": "Lmin"
+  },
+  {
+   "key": "hose_length",
+   "label_et": "Torude pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Netomass",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Peamised materjalid",
+   "unit": ""
+  },
+  {
+   "key": "stroke",
+   "label_et": "Silindri käik",
+   "unit": "mm"
+  },
+  {
+   "key": "systeem_tyyp",
+   "label_et": "Süsteemi tüüp",
+   "unit": ""
+  }
+ ]
+}

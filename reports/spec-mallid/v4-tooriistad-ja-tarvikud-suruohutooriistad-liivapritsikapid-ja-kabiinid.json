@@ -1,0 +1,41 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-suruohutooriistad-liivapritsikapid-ja-kabiinid",
+ "name": "Liivapritsikapid ja -kabiinid",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Kabiini mahtuvus",
+   "unit": "L"
+  },
+  {
+   "key": "rohk",
+   "label_et": "Tööpaine",
+   "unit": "bar"
+  },
+  {
+   "key": "voimsus",
+   "label_et": "Tolmuimeja võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Netokaal",
+   "unit": "kg"
+  },
+  {
+   "key": "liiva_mahtuvus",
+   "label_et": "Liiva maksimaalne laadimismaht",
+   "unit": "kg"
+  },
+  {
+   "key": "tooruumi_suurus",
+   "label_et": "Tööruumi laius × sügavus × kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  }
+ ]
+}

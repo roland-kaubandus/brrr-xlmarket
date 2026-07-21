@@ -1,0 +1,37 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-fitness-ja-treeningseadmed-vibreerivad-massaazirullid-ja-pallid",
+ "name": "Vibreerivad massaažirullid ja -pallid",
+ "fields": [
+  {
+   "key": "aku_maht",
+   "label_et": "Aku maht",
+   "unit": "Wh",
+   "unit_orig": "mAh"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "vibratsioon_astmeid",
+   "label_et": "Vibratsiooni astmeid",
+   "unit": "tk"
+  },
+  {
+   "key": "pikkus",
+   "label_et": "Pikkus",
+   "unit": "inch"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "laadimise_tyyp",
+   "label_et": "Laadimise tüüp",
+   "unit": ""
+  }
+ ]
+}

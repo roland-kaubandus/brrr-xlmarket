@@ -1,0 +1,46 @@
+{
+ "l3": "v4-autovaruosad-ja-tarvikud-katuse-ja-koormakandjad-katuseboksid-ja-kohvrid",
+ "name": "Katuseboksid ja -kohvrid",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Salvestusmaht",
+   "unit": "L"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Netto kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "max_koormus",
+   "label_et": "Maksimaalne koormustugevus",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "pikkus",
+   "label_et": "Pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "laius",
+   "label_et": "Laius",
+   "unit": "mm"
+  },
+  {
+   "key": "korgus",
+   "label_et": "Kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "avatuvus",
+   "label_et": "Kahepoolne avatus",
+   "unit": ""
+  }
+ ]
+}

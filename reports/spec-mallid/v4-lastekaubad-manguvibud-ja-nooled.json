@@ -1,0 +1,46 @@
+{
+ "l3": "v4-lastekaubad-manguvibud-ja-nooled",
+ "name": "Mänguvibud ja -nooled",
+ "fields": [
+  {
+   "key": "kaar_pikkus_cm",
+   "label_et": "Kaare pikkus",
+   "unit": "cm"
+  },
+  {
+   "key": "noolte_arv",
+   "label_et": "Noolte arv komplektis",
+   "unit": "tk"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Toote kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "siht_tyyp",
+   "label_et": "Sihtmärgi tüüp",
+   "unit": ""
+  },
+  {
+   "key": "komplektide_arv",
+   "label_et": "Kaarde/komplektide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "led_valgustus",
+   "label_et": "LED valgustus",
+   "unit": ""
+  },
+  {
+   "key": "sihtmargi_suurus_mm",
+   "label_et": "Sihtmärgi suurus",
+   "unit": "mm"
+  },
+  {
+   "key": "sihver_kaasas",
+   "label_et": "Sihveri arv komplektis",
+   "unit": "tk"
+  }
+ ]
+}

@@ -1,0 +1,41 @@
+{
+ "l3": "v4-lemmikloomatarbed-treening-ja-manguasjad-kassipuud",
+ "name": "Kassipuud",
+ "fields": [
+  {
+   "key": "korgus",
+   "label_et": "Kõrgus",
+   "unit": "cm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "kanduvus",
+   "label_et": "Kandevõime",
+   "unit": "kg"
+  },
+  {
+   "key": "kihtide_arv",
+   "label_et": "Kihtide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "kondode_arv",
+   "label_et": "Kondode arv",
+   "unit": "tk"
+  },
+  {
+   "key": "pohja_suurus",
+   "label_et": "Aluse pindala",
+   "unit": "cm²"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjalid",
+   "unit": ""
+  }
+ ]
+}

@@ -1,0 +1,46 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-ouetegevus-ja-hobi-meeskonna-ja-vahetuspingid",
+ "name": "Meeskonna- ja vahetuspingid",
+ "fields": [
+  {
+   "key": "istekohtade_arv",
+   "label_et": "Istekohad (tk)",
+   "unit": "tk"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "pikkus",
+   "label_et": "Pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "korgus",
+   "label_et": "Kõrgus (lahtine)",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": "text"
+  },
+  {
+   "key": "tagatugi",
+   "label_et": "Tagatugi",
+   "unit": "bool"
+  },
+  {
+   "key": "paevavarjuke",
+   "label_et": "Päevavarjuke",
+   "unit": "bool"
+  },
+  {
+   "key": "kastiga_transport",
+   "label_et": "Kott kaasas",
+   "unit": "bool"
+  }
+ ]
+}

@@ -1,0 +1,36 @@
+{
+ "l3": "v4-elektritarvikud-ja-valgustus-elektroonika-nutikardinate-automaatika",
+ "name": "Nutikardinate automaatika",
+ "fields": [
+  {
+   "key": "max_curtain_weight",
+   "label_et": "Maksimaalse kardinatekaal",
+   "unit": "kg"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Seadme kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "compatible_rod_diameter",
+   "label_et": "Ühilduv vardaläbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "compatible_tracks",
+   "label_et": "Ühilduvad rajad",
+   "unit": ""
+  },
+  {
+   "key": "smart_home_integration",
+   "label_et": "Nutika kodu integratsioon",
+   "unit": ""
+  }
+ ]
+}

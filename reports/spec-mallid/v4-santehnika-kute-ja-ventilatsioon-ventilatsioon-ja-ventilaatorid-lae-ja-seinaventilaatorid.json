@@ -1,0 +1,47 @@
+{
+ "l3": "v4-santehnika-kute-ja-ventilatsioon-ventilatsioon-ja-ventilaatorid-lae-ja-seinaventilaatorid",
+ "name": "Lae- ja seinaventilaatorid",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "vooluhulk",
+   "label_et": "Õhuvooluhulk",
+   "unit": "L/min",
+   "unit_orig": "CFM"
+  },
+  {
+   "key": "ketta_labamoot",
+   "label_et": "Laba läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "poorlemiskiirus",
+   "label_et": "Pöörlemiskiirus",
+   "unit": "RPM"
+  },
+  {
+   "key": "myra",
+   "label_et": "Müratase",
+   "unit": "dB"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kiiruste_arv",
+   "label_et": "Kiirusetasemete arv",
+   "unit": ""
+  }
+ ]
+}

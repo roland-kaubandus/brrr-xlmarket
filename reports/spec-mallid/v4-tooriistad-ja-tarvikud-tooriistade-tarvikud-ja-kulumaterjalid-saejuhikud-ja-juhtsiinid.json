@@ -1,0 +1,41 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-saejuhikud-ja-juhtsiinid",
+ "name": "Saejuhikud ja juhtsiinid",
+ "fields": [
+  {
+   "key": "lõikeulatus_mm",
+   "label_et": "Lõikeulatus",
+   "unit": "mm"
+  },
+  {
+   "key": "juhtsiini_pikkus_mm",
+   "label_et": "Juhtsiini pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "juhtsiinide_arv",
+   "label_et": "Juhtsiinide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "konnektorite_arv",
+   "label_et": "Konnektorite arv",
+   "unit": "tk"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "oberflaehi_kaitmine",
+   "label_et": "Pinna kaitmine",
+   "unit": ""
+  }
+ ]
+}

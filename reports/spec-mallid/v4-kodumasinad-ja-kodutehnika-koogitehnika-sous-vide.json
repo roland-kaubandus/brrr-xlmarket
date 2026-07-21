@@ -1,0 +1,41 @@
+{
+ "l3": "v4-kodumasinad-ja-kodutehnika-koogitehnika-sous-vide",
+ "name": "Sous vide ja täppisküpsetus",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "maht",
+   "label_et": "Soovituslik paagi maht",
+   "unit": "L"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "temp_tapsus",
+   "label_et": "Temperatuuri täpsus",
+   "unit": "°C"
+  },
+  {
+   "key": "max_temp",
+   "label_et": "Maksimaalne temperatuur",
+   "unit": "°C"
+  },
+  {
+   "key": "kuumutamise_kiirus",
+   "label_et": "Kuumutamise kiirus",
+   "unit": "°C/min"
+  },
+  {
+   "key": "wifi_juhtimine",
+   "label_et": "WiFi ja rakenduse juhtimine",
+   "unit": "jah/ei"
+  }
+ ]
+}

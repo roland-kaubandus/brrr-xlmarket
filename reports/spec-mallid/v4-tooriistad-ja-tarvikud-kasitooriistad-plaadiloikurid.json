@@ -1,0 +1,41 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-kasitooriistad-plaadiloikurid",
+ "name": "Plaadilõikurid",
+ "fields": [
+  {
+   "key": "max_cutting_length_mm",
+   "label_et": "Maksimaalne lõikepikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "max_cutting_thickness_mm",
+   "label_et": "Maksimaalne lõikesügavus",
+   "unit": "mm"
+  },
+  {
+   "key": "min_cutting_width_mm",
+   "label_et": "Minimaalne lõikelaius",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjalraam",
+   "unit": ""
+  },
+  {
+   "key": "guide_rails",
+   "label_et": "Juhtrailid",
+   "unit": ""
+  },
+  {
+   "key": "laser_positioning",
+   "label_et": "Laserpositsioneerimine",
+   "unit": ""
+  }
+ ]
+}

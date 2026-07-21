@@ -1,0 +1,46 @@
+{
+ "l3": "v4-santehnika-kute-ja-ventilatsioon-veefiltrid-ja-puhastus-asenduspatronid-ja-filtrikassetid",
+ "name": "Asenduspatronid ja filtrikassetid",
+ "fields": [
+  {
+   "key": "filtri_tyyp",
+   "label_et": "Filtri tüüp",
+   "unit": ""
+  },
+  {
+   "key": "filtreerimismaht",
+   "label_et": "Filtreerimismaht",
+   "unit": "L"
+  },
+  {
+   "key": "vooluhulk",
+   "label_et": "Vooluhulk",
+   "unit": "L/min"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "kasutusiga",
+   "label_et": "Kasutusiga",
+   "unit": "kuud"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "ühendus_suurus",
+   "label_et": "Ühenduse suurus",
+   "unit": "mm"
+  },
+  {
+   "key": "kogus",
+   "label_et": "Kogus pakendis",
+   "unit": "tk"
+  }
+ ]
+}

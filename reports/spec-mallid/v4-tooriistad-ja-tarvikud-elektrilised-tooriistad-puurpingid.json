@@ -1,0 +1,46 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-elektrilised-tooriistad-puurpingid",
+ "name": "Puurpingid",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "poorlemiskiirus_min",
+   "label_et": "Minimaalne pöörlemiskiirus",
+   "unit": "RPM"
+  },
+  {
+   "key": "poorlemiskiirus_max",
+   "label_et": "Maksimaalne pöörlemiskiirus",
+   "unit": "RPM"
+  },
+  {
+   "key": "ketta_labamoot",
+   "label_et": "Puurpea läbimõõt (Swing)",
+   "unit": "mm"
+  },
+  {
+   "key": "max_puurimise_diameter",
+   "label_et": "Maksimaalne puurimise läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "spindle_stroke",
+   "label_et": "Spindle'i käik",
+   "unit": "mm"
+  },
+  {
+   "key": "toepingi_kaldenurk",
+   "label_et": "Töepingi kaldenurk",
+   "unit": "°"
+  },
+  {
+   "key": "kiiruse_reguleerimise_tyyp",
+   "label_et": "Kiiruse reguleerimise tüüp",
+   "unit": ""
+  }
+ ]
+}

@@ -1,0 +1,46 @@
+{
+ "l3": "v4-autovaruosad-ja-tarvikud-katuse-ja-koormakandjad-katusekandurid",
+ "name": "Katusekandurid",
+ "fields": [
+  {
+   "key": "kandevoimsus_kg",
+   "label_et": "Kandevõimsus",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "pikkus_mm",
+   "label_et": "Pikkus (reguleeritav)",
+   "unit": "mm"
+  },
+  {
+   "key": "laius_mm",
+   "label_et": "Laius",
+   "unit": "mm"
+  },
+  {
+   "key": "korgus_mm",
+   "label_et": "Kõrgus (reguleeritav)",
+   "unit": "mm"
+  },
+  {
+   "key": "paigaldusviis",
+   "label_et": "Paigaldusviis",
+   "unit": ""
+  },
+  {
+   "key": "ribade_arv",
+   "label_et": "Ribade arv",
+   "unit": "tk"
+  }
+ ]
+}

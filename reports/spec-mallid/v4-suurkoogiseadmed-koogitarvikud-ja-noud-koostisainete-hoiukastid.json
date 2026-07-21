@@ -1,0 +1,46 @@
+{
+ "l3": "v4-suurkoogiseadmed-koogitarvikud-ja-noud-koostisainete-hoiukastid",
+ "name": "Koostisainete hoiukastid",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Mahutavus ühe kastiga",
+   "unit": "L"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kogukaal (komplektis)",
+   "unit": "kg"
+  },
+  {
+   "key": "komplekti_kogus",
+   "label_et": "Kastide arv komplektis",
+   "unit": "tk"
+  },
+  {
+   "key": "lahus_y",
+   "label_et": "Pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "lahus_x",
+   "label_et": "Laius",
+   "unit": "mm"
+  },
+  {
+   "key": "lahus_z",
+   "label_et": "Kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "liikuvus",
+   "label_et": "Rattad (liikuvus)",
+   "unit": ""
+  }
+ ]
+}

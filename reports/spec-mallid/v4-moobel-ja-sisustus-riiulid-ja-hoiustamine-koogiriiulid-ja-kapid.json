@@ -1,0 +1,46 @@
+{
+ "l3": "v4-moobel-ja-sisustus-riiulid-ja-hoiustamine-koogiriiulid-ja-kapid",
+ "name": "Köögiriiulid ja -kapid",
+ "fields": [
+  {
+   "key": "laius_mm",
+   "label_et": "Laius",
+   "unit": "mm"
+  },
+  {
+   "key": "sügavus_mm",
+   "label_et": "Sügavus",
+   "unit": "mm"
+  },
+  {
+   "key": "kõrgus_mm",
+   "label_et": "Kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Neto kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "max_koormus_kg",
+   "label_et": "Maksimaalne koormuse võimekus",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "riiulite_arv",
+   "label_et": "Reguleeritavate riiulite arv",
+   "unit": ""
+  },
+  {
+   "key": "uuste_arv",
+   "label_et": "Uste arv",
+   "unit": ""
+  }
+ ]
+}

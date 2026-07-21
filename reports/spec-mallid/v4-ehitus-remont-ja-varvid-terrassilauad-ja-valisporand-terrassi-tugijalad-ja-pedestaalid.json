@@ -1,0 +1,41 @@
+{
+ "l3": "v4-ehitus-remont-ja-varvid-terrassilauad-ja-valisporand-terrassi-tugijalad-ja-pedestaalid",
+ "name": "Terrassi tugijalad ja pedestaalid",
+ "fields": [
+  {
+   "key": "max_load_capacity",
+   "label_et": "Maksimaalne kandevõime",
+   "unit": "kg"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kogukaal (komplekt)",
+   "unit": "kg"
+  },
+  {
+   "key": "pakett_kogus",
+   "label_et": "Komplekti kogus",
+   "unit": "tk"
+  },
+  {
+   "key": "reguleeritav_korgus_min",
+   "label_et": "Reguleeritav kõrgus (miinimum)",
+   "unit": "mm"
+  },
+  {
+   "key": "reguleeritav_korgus_max",
+   "label_et": "Reguleeritav kõrgus (maksimum)",
+   "unit": "mm"
+  },
+  {
+   "key": "aluse_labamoot",
+   "label_et": "Aluse laius",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  }
+ ]
+}

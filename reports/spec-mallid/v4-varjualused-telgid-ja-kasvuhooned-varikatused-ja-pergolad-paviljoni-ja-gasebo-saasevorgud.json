@@ -1,0 +1,46 @@
+{
+ "l3": "v4-varjualused-telgid-ja-kasvuhooned-varikatused-ja-pergolad-paviljoni-ja-gasebo-saasevorgud",
+ "name": "Paviljoni ja gasebo sääsevõrgud",
+ "fields": [
+  {
+   "key": "pavilljoni_laius_ft",
+   "label_et": "Pavilljoni laius",
+   "unit": "ft"
+  },
+  {
+   "key": "pavilljoni_pikkus_ft",
+   "label_et": "Pavilljoni pikkus",
+   "unit": "ft"
+  },
+  {
+   "key": "pavilljoni_korgus_ft",
+   "label_et": "Pavilljoni kõrgus",
+   "unit": "ft"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaalu",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "varv",
+   "label_et": "Värv",
+   "unit": ""
+  },
+  {
+   "key": "paneelide_arv",
+   "label_et": "Külgpaneelidde arv",
+   "unit": "tk"
+  },
+  {
+   "key": "siber_tup",
+   "label_et": "Siber/kinnitus tüüp",
+   "unit": ""
+  }
+ ]
+}

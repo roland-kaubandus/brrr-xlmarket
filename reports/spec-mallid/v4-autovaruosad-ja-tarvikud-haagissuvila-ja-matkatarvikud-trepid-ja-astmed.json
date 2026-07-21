@@ -1,0 +1,41 @@
+{
+ "l3": "v4-autovaruosad-ja-tarvikud-haagissuvila-ja-matkatarvikud-trepid-ja-astmed",
+ "name": "Trepid ja astmed",
+ "fields": [
+  {
+   "key": "arv_astmeid",
+   "label_et": "Astmete arv",
+   "unit": "tk"
+  },
+  {
+   "key": "kandevoimasus",
+   "label_et": "Kandevõimekus",
+   "unit": "kg"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaepidemed",
+   "label_et": "Käepidemed",
+   "unit": "tk"
+  },
+  {
+   "key": "volditav",
+   "label_et": "Volditav",
+   "unit": ""
+  },
+  {
+   "key": "libisemisvastane",
+   "label_et": "Libisemisvastane pind",
+   "unit": ""
+  }
+ ]
+}

@@ -1,0 +1,46 @@
+{
+ "l3": "v4-garaaziseadmed-mehaaniku-tooriistad-mehaaniku-lamamiskaru-creeper",
+ "name": "Mehaaniku lamamiskäru (creeper)",
+ "fields": [
+  {
+   "key": "max_load_capacity",
+   "label_et": "Maksimaalne kandevõime",
+   "unit": "kg"
+  },
+  {
+   "key": "pikkus",
+   "label_et": "Pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Oma kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "kotkasuhe",
+   "label_et": "Kasutussuhe (kandevõime/oma kaal)",
+   "unit": "ratio"
+  },
+  {
+   "key": "rataste_arv",
+   "label_et": "Rataste arv",
+   "unit": "tk"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Raam materjal",
+   "unit": "text"
+  },
+  {
+   "key": "kohandatavus",
+   "label_et": "Kõrguse kohandatavus",
+   "unit": "bool"
+  },
+  {
+   "key": "kasutusviis",
+   "label_et": "Kasutusviis",
+   "unit": "text"
+  }
+ ]
+}

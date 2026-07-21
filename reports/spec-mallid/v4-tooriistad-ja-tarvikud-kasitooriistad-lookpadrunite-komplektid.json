@@ -1,0 +1,41 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-kasitooriistad-lookpadrunite-komplektid",
+ "name": "Löökpadrunite komplektid",
+ "fields": [
+  {
+   "key": "arv_tykke",
+   "label_et": "Pätsside arv (tk)",
+   "unit": "pcs"
+  },
+  {
+   "key": "ketas_suurus_mm",
+   "label_et": "Pätsside suuruste vahemik (mm)",
+   "unit": "mm"
+  },
+  {
+   "key": "ajam_suurus_toll",
+   "label_et": "Ajami suurus (toll)",
+   "unit": "in"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "koval",
+   "label_et": "Kõvadus (HRC)",
+   "unit": "HRC"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "pattside_tyyp",
+   "label_et": "Pätsside tüüp",
+   "unit": ""
+  }
+ ]
+}

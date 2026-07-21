@@ -1,0 +1,41 @@
+{
+ "l3": "v4-ladu-tooriistakastid",
+ "name": "Tööriistakastid",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "pikkus",
+   "label_et": "Pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "laius",
+   "label_et": "Laius",
+   "unit": "mm"
+  },
+  {
+   "key": "korgus",
+   "label_et": "Kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "sahkude_arv",
+   "label_et": "Sahkude arv",
+   "unit": "tk"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "lukustus_tip",
+   "label_et": "Lukustuse tüüp",
+   "unit": ""
+  }
+ ]
+}

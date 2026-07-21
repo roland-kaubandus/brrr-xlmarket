@@ -1,0 +1,41 @@
+{
+ "l3": "v4-garaaziseadmed-tungrauad-rattadollyd",
+ "name": "Rattadollyd",
+ "fields": [
+  {
+   "key": "max_capacity_kg",
+   "label_et": "Maksimaalne kandevõime (üks/kogum)",
+   "unit": "kg"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaalu",
+   "unit": "kg"
+  },
+  {
+   "key": "ketta_labamoot",
+   "label_et": "Kastri läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "komplekti_kogus",
+   "label_et": "Komplekti kogus",
+   "unit": "tk"
+  },
+  {
+   "key": "korkus_reguleerimise_vahemik",
+   "label_et": "Kõrguse reguleerimisvahemik",
+   "unit": "mm"
+  },
+  {
+   "key": "rehvi_laius_sobivus",
+   "label_et": "Rehvi laiuse sobivus",
+   "unit": "mm"
+  },
+  {
+   "key": "tõstemehhanism",
+   "label_et": "Tõstemehhanism",
+   "unit": "tüüp"
+  }
+ ]
+}

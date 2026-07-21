@@ -1,0 +1,36 @@
+{
+ "l3": "v4-aed-ja-aiatehnika-ouekaminad-ja-ahjud",
+ "name": "Õuekaminad ja -ahjud",
+ "fields": [
+  {
+   "key": "läbimõõt_mm",
+   "label_et": "Läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "kõrgus_mm",
+   "label_et": "Kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kuju",
+   "label_et": "Kuju",
+   "unit": ""
+  },
+  {
+   "key": "grill_olemas",
+   "label_et": "Pöörattav grill",
+   "unit": ""
+  }
+ ]
+}

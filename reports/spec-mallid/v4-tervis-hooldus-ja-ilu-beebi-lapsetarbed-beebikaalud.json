@@ -1,0 +1,46 @@
+{
+ "l3": "v4-tervis-hooldus-ja-ilu-beebi-lapsetarbed-beebikaalud",
+ "name": "Beebikaalud",
+ "fields": [
+  {
+   "key": "maksimaalne_kaal",
+   "label_et": "Maksimaalne kaalumise võimsus",
+   "unit": "kg"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Seadme kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "mootmed_pikkus",
+   "label_et": "Mõõtmed (pikkus)",
+   "unit": "mm"
+  },
+  {
+   "key": "mootmed_laius",
+   "label_et": "Mõõtmed (laius)",
+   "unit": "mm"
+  },
+  {
+   "key": "mootmed_korgus",
+   "label_et": "Mõõtmed (kõrgus)",
+   "unit": "mm"
+  },
+  {
+   "key": "bluetooth_ühendus",
+   "label_et": "Bluetooth ühendus",
+   "unit": "bool"
+  },
+  {
+   "key": "mõõtetape",
+   "label_et": "Integeeritud mõõtetape",
+   "unit": "bool"
+  },
+  {
+   "key": "eraldatav_pann",
+   "label_et": "Eraldatav pann",
+   "unit": "bool"
+  }
+ ]
+}

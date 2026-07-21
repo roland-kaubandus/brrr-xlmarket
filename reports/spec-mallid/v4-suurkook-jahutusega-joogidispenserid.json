@@ -1,0 +1,46 @@
+{
+ "l3": "v4-suurkook-jahutusega-joogidispenserid",
+ "name": "Jahutusega joogidispenserid",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Elektriline võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "maht_total",
+   "label_et": "Kogu mahutavus",
+   "unit": "L"
+  },
+  {
+   "key": "tanke_arv",
+   "label_et": "Paakide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "jahutustemperatuur_min",
+   "label_et": "Jahutustemperatuur (min)",
+   "unit": "°C"
+  },
+  {
+   "key": "jahutustemperatuur_max",
+   "label_et": "Jahutustemperatuur (max)",
+   "unit": "°C"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": "tekst"
+  },
+  {
+   "key": "footprint_laius_x_sügavus",
+   "label_et": "Footprint (laius × sügavus)",
+   "unit": "mm"
+  }
+ ]
+}

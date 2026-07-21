@@ -1,0 +1,36 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-kasitooriistad-toru-valjatombajad",
+ "name": "Toru väljatõmbajad",
+ "fields": [
+  {
+   "key": "komplekti_suurus",
+   "label_et": "Komplekti maht (tükid)",
+   "unit": "tk"
+  },
+  {
+   "key": "min_torulabiameter",
+   "label_et": "Min. toruläbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "max_torulabiameter",
+   "label_et": "Max. toruläbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": "-"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "hoiustamine",
+   "label_et": "Hoiustamine",
+   "unit": "-"
+  }
+ ]
+}

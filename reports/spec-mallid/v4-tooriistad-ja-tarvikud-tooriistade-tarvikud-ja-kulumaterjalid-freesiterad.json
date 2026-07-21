@@ -1,0 +1,36 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-freesiterad",
+ "name": "Freesiterad",
+ "fields": [
+  {
+   "key": "komplekti_kogus",
+   "label_et": "Komplekti kogus (tk)",
+   "unit": "tk"
+  },
+  {
+   "key": "ketta_labamoot",
+   "label_et": "Šangi läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": "-"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "kotikese_tyyp",
+   "label_et": "Kotikesetüüp",
+   "unit": "-"
+  },
+  {
+   "key": "kotikese_maastmed",
+   "label_et": "Kotikese mõõtmed (pikkus × laius × kõrgus)",
+   "unit": "mm"
+  }
+ ]
+}

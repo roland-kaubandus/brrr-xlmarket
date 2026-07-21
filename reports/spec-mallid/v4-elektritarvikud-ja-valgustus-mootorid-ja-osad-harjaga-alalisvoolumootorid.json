@@ -1,0 +1,41 @@
+{
+ "l3": "v4-elektritarvikud-ja-valgustus-mootorid-ja-osad-harjaga-alalisvoolumootorid",
+ "name": "Harjaga alalisvoolumootorid",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Nimivõimsus",
+   "unit": "W"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Nimiuuritus",
+   "unit": "V"
+  },
+  {
+   "key": "poorlemiskiirus",
+   "label_et": "Nimirotatsiooni kiirus",
+   "unit": "RPM"
+  },
+  {
+   "key": "voolutugevus",
+   "label_et": "Nimivool",
+   "unit": "A"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Toote mass",
+   "unit": "kg"
+  },
+  {
+   "key": "myra",
+   "label_et": "Müratase",
+   "unit": "dB"
+  },
+  {
+   "key": "poordemomendid",
+   "label_et": "Pöördemoment",
+   "unit": "N·m"
+  }
+ ]
+}

@@ -1,0 +1,46 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-kasitooriistad-silmus-ja-lehtvotmete-komplektid",
+ "name": "Silmus- ja lehtvõtmete komplektid",
+ "fields": [
+  {
+   "key": "tool_count",
+   "label_et": "Tööriistade arv",
+   "unit": "tk"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "hammasrate",
+   "label_et": "Hammasrate",
+   "unit": "tk"
+  },
+  {
+   "key": "paigalduse_tyyp",
+   "label_et": "Paigalduse tüüp",
+   "unit": ""
+  },
+  {
+   "key": "min_suuruse_mm",
+   "label_et": "Minimaalne suurus",
+   "unit": "mm"
+  },
+  {
+   "key": "max_suuruse_mm",
+   "label_et": "Maksimaalne suurus",
+   "unit": "mm"
+  },
+  {
+   "key": "standardid",
+   "label_et": "Standardid (Metric/SAE)",
+   "unit": ""
+  }
+ ]
+}

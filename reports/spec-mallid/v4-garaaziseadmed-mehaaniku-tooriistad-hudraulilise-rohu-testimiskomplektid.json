@@ -1,0 +1,46 @@
+{
+ "l3": "v4-garaaziseadmed-mehaaniku-tooriistad-hudraulilise-rohu-testimiskomplektid",
+ "name": "Hüdraulilise rõhu testimiskomplektid",
+ "fields": [
+  {
+   "key": "rohk_max",
+   "label_et": "Maksimaalne rõhk",
+   "unit": "bar"
+  },
+  {
+   "key": "manomeetrite_arv",
+   "label_et": "Manomeetrite arv",
+   "unit": "tk"
+  },
+  {
+   "key": "sidumike_arv",
+   "label_et": "Sidumike (coupling) arv",
+   "unit": "tk"
+  },
+  {
+   "key": "kang_arv",
+   "label_et": "Testkangi arv",
+   "unit": "tk"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Korpuse materjal",
+   "unit": ""
+  },
+  {
+   "key": "kang_pikkus",
+   "label_et": "Kangi pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "digitaalne_ekraan",
+   "label_et": "Digitaalne ekraan",
+   "unit": ""
+  }
+ ]
+}

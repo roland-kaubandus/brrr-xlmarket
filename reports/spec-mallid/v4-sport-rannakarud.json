@@ -1,0 +1,46 @@
+{
+ "l3": "v4-sport-rannakarud",
+ "name": "Rannakärud",
+ "fields": [
+  {
+   "key": "kandevoimsus_kg",
+   "label_et": "Kandevõimsus",
+   "unit": "kg"
+  },
+  {
+   "key": "ketta_labamoot_mm",
+   "label_et": "Ratta läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal_kg",
+   "label_et": "Kaalu",
+   "unit": "kg"
+  },
+  {
+   "key": "platoo_pikkus_mm",
+   "label_et": "Platoo pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "platoo_laius_mm",
+   "label_et": "Platoo laius",
+   "unit": "mm"
+  },
+  {
+   "key": "kogukas_korgus_min_mm",
+   "label_et": "Reguleeritav kõrgus (min)",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Raam materjal",
+   "unit": ""
+  },
+  {
+   "key": "ratta_tyyp",
+   "label_et": "Ratta tüüp",
+   "unit": ""
+  }
+ ]
+}

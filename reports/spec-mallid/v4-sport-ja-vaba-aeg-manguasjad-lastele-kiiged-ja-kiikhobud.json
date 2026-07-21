@@ -1,0 +1,46 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-manguasjad-lastele-kiiged-ja-kiikhobud",
+ "name": "Kiiged",
+ "fields": [
+  {
+   "key": "maksimaalne_koormus",
+   "label_et": "Maksimaalne koormus",
+   "unit": "kg"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Toote kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Raammaterjal",
+   "unit": ""
+  },
+  {
+   "key": "istme_labamoot",
+   "label_et": "Istme läbimõõt/suurus",
+   "unit": "cm"
+  },
+  {
+   "key": "istmete_arv",
+   "label_et": "Istmete arv",
+   "unit": "tk"
+  },
+  {
+   "key": "soovitatud_vanus",
+   "label_et": "Soovitatud vanus",
+   "unit": "aastad"
+  },
+  {
+   "key": "tuge_tyyp",
+   "label_et": "Tugiraammi tüüp",
+   "unit": ""
+  },
+  {
+   "key": "taielik_mootmed",
+   "label_et": "Mõõtmed (K x L x S)",
+   "unit": "cm"
+  }
+ ]
+}

@@ -1,0 +1,41 @@
+{
+ "l3": "v4-garaaziseadmed-hoiustamine-katuse-ja-uksehoiukarud",
+ "name": "Katuse- ja uksehoiukärud",
+ "fields": [
+  {
+   "key": "koormus_jaotus",
+   "label_et": "Maksimaalne koormus",
+   "unit": "kg"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Käru kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "ulatus",
+   "label_et": "Sisemõõtmed (pikkus × laius × kõrgus)",
+   "unit": "mm"
+  },
+  {
+   "key": "katteobjektide_arv",
+   "label_et": "Mahutatud objektide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "korguse_reguleerimine",
+   "label_et": "Kõrguse reguleerimine",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Pinna kaitsematerjal",
+   "unit": "tüüp"
+  },
+  {
+   "key": "paigalduse_tuup",
+   "label_et": "Paigaldus",
+   "unit": "tüüp"
+  }
+ ]
+}

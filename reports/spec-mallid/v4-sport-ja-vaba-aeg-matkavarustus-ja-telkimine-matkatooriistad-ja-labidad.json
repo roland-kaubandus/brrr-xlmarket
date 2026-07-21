@@ -1,0 +1,36 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-matkavarustus-ja-telkimine-matkatooriistad-ja-labidad",
+ "name": "Matkatööriistad ja labidad",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "toorikute_arv",
+   "label_et": "Tööriistade arv komplektis",
+   "unit": "tk"
+  },
+  {
+   "key": "pikkus",
+   "label_et": "Pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "laius",
+   "label_et": "Laius",
+   "unit": "mm"
+  },
+  {
+   "key": "kasutusvaldkond",
+   "label_et": "Peamised kasutusalad",
+   "unit": ""
+  }
+ ]
+}

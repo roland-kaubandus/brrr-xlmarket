@@ -1,0 +1,41 @@
+{
+ "l3": "v4-suurkoogiseadmed-koogitarvikud-ja-noud-gastronoomianoud-hotel-pan",
+ "name": "Gastronoomianõud (hotel pan)",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Mahutavus",
+   "unit": "L"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "panl_syvyys",
+   "label_et": "Panni sügavus",
+   "unit": "mm"
+  },
+  {
+   "key": "panl_mootmed",
+   "label_et": "Panni mõõtmed (pikkus × laius)",
+   "unit": "mm"
+  },
+  {
+   "key": "pakendi_kogus",
+   "label_et": "Pakendi kogus",
+   "unit": "tk"
+  },
+  {
+   "key": "panl_paksus",
+   "label_et": "Panni paksus",
+   "unit": "mm"
+  }
+ ]
+}

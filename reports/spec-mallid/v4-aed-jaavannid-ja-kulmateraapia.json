@@ -1,0 +1,36 @@
+{
+ "l3": "v4-aed-jaavannid-ja-kulmateraapia",
+ "name": "Jäävannid ja külmateraapia",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Mahutavus",
+   "unit": "L"
+  },
+  {
+   "key": "pikkus",
+   "label_et": "Pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "min_temperatuur",
+   "label_et": "Minimaalne temperatuur",
+   "unit": "°C"
+  },
+  {
+   "key": "max_temperatuur",
+   "label_et": "Maksimaalne temperatuur",
+   "unit": "°C"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  }
+ ]
+}

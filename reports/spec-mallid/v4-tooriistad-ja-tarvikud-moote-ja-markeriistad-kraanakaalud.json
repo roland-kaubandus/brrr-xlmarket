@@ -1,0 +1,41 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-moote-ja-markeriistad-kraanakaalud",
+ "name": "Kraanakaalud",
+ "fields": [
+  {
+   "key": "maksimaalne_koormus",
+   "label_et": "Maksimaalne koormus",
+   "unit": "kg"
+  },
+  {
+   "key": "minimaalne_koormus",
+   "label_et": "Minimaalne koormus",
+   "unit": "kg"
+  },
+  {
+   "key": "tapsus",
+   "label_et": "Täpsus",
+   "unit": "kg"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "ekraani_tyyp",
+   "label_et": "Ekraani tüüp",
+   "unit": ""
+  },
+  {
+   "key": "kaug_juhtimine",
+   "label_et": "Kaug-juhtimine",
+   "unit": ""
+  }
+ ]
+}

@@ -1,0 +1,46 @@
+{
+ "l3": "v4-moobel-ja-sisustus-riiulid-ja-hoiustamine-veini-ja-pudeliriiulid",
+ "name": "Veini- ja pudeliriiulid",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Pudelite arv (tk)",
+   "unit": "tk"
+  },
+  {
+   "key": "korgus",
+   "label_et": "Kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "laius",
+   "label_et": "Laius",
+   "unit": "mm"
+  },
+  {
+   "key": "syvyus",
+   "label_et": "Sügavus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "maksimaalne_koormus",
+   "label_et": "Maksimaalne koormus",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "led_valgustus",
+   "label_et": "LED valgustus",
+   "unit": ""
+  }
+ ]
+}

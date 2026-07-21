@@ -1,0 +1,36 @@
+{
+ "l3": "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-kaasaskantavad-elektrijaamad",
+ "name": "Kaasaskantavad elektrijaamad",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "AC väljundvõimsus",
+   "unit": "W"
+  },
+  {
+   "key": "aku_maht",
+   "label_et": "Akumulaatori maht",
+   "unit": "Wh"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "väljundpordid",
+   "label_et": "Väljundpordid",
+   "unit": "tk"
+  },
+  {
+   "key": "laadimisvõimsus",
+   "label_et": "Maksimaalne AC sisendvõimsus",
+   "unit": "W"
+  },
+  {
+   "key": "patarei_tyyp",
+   "label_et": "Akutüüp",
+   "unit": ""
+  }
+ ]
+}

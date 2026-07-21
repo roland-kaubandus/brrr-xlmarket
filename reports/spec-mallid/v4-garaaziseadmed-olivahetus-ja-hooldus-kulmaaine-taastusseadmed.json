@@ -1,0 +1,41 @@
+{
+ "l3": "v4-garaaziseadmed-olivahetus-ja-hooldus-kulmaaine-taastusseadmed",
+ "name": "Külmaaine taaskasutus-masinad",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "poorlemiskiirus",
+   "label_et": "Pöörlemiskiirus",
+   "unit": "RPM"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "taaskasutuse_kiirus",
+   "label_et": "Taaskasutuse kiirus",
+   "unit": "kg/min"
+  },
+  {
+   "key": "silindrite_arv",
+   "label_et": "Silindrite arv",
+   "unit": "tk"
+  },
+  {
+   "key": "maksimaalne_rohk",
+   "label_et": "Maksimaalset rõhk",
+   "unit": "bar"
+  }
+ ]
+}

@@ -1,0 +1,46 @@
+{
+ "l3": "v4-moobel-ja-sisustus-kontorimoobel-lauasahtlid-alused",
+ "name": "Lauasahtlid ja -alused",
+ "fields": [
+  {
+   "key": "laius_mm",
+   "label_et": "Sahtli laius",
+   "unit": "mm"
+  },
+  {
+   "key": "sügavus_mm",
+   "label_et": "Sahtli sügavus",
+   "unit": "mm"
+  },
+  {
+   "key": "korgus_mm",
+   "label_et": "Sahtli kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "kihtide_arv",
+   "label_et": "Sahtli kihtide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "kandevoimsus_kg",
+   "label_et": "Kandevõime",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "lukustus",
+   "label_et": "Lukustus",
+   "unit": ""
+  }
+ ]
+}

@@ -1,0 +1,41 @@
+{
+ "l3": "v4-autovaruosad-ja-tarvikud-akulaadijad-ja-elektrisusteemid-akulaadijad",
+ "name": "Akulaadijad",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "laadimisvoolu",
+   "label_et": "Laadimisvoolu (max)",
+   "unit": "A"
+  },
+  {
+   "key": "aku_tyyp_yhteensopivus",
+   "label_et": "Aku tüüpide ühteensopivus",
+   "unit": "-"
+  },
+  {
+   "key": "sisendpinge",
+   "label_et": "Sisendpinge",
+   "unit": "V"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Kere materjal",
+   "unit": "-"
+  },
+  {
+   "key": "kaabli_pikkus",
+   "label_et": "Kaabli pikkus",
+   "unit": "m"
+  }
+ ]
+}

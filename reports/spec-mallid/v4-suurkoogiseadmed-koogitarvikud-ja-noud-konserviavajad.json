@@ -1,0 +1,36 @@
+{
+ "l3": "v4-suurkoogiseadmed-koogitarvikud-ja-noud-konserviavajad",
+ "name": "Konserviavajad",
+ "fields": [
+  {
+   "key": "max_can_height",
+   "label_et": "Maksimaalne purgi kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "installation_type",
+   "label_et": "Paigaldusviis",
+   "unit": ""
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "blade_material",
+   "label_et": "Teratera materjal",
+   "unit": ""
+  },
+  {
+   "key": "gear_material",
+   "label_et": "Käigaste materjal",
+   "unit": ""
+  }
+ ]
+}

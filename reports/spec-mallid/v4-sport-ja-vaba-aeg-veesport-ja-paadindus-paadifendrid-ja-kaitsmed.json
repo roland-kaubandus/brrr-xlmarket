@@ -1,0 +1,41 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-veesport-ja-paadindus-paadifendrid-ja-kaitsmed",
+ "name": "Paadifendrid ja kaitsmed",
+ "fields": [
+  {
+   "key": "fender_diameter",
+   "label_et": "Fendri läbimõõt",
+   "unit": "cm"
+  },
+  {
+   "key": "fender_length",
+   "label_et": "Fendri pikkus",
+   "unit": "cm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "maht",
+   "label_et": "Maht",
+   "unit": "L"
+  },
+  {
+   "key": "rope_length",
+   "label_et": "Köie pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "quantity",
+   "label_et": "Kogus",
+   "unit": "tk"
+  }
+ ]
+}

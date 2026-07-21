@@ -1,0 +1,39 @@
+{
+ "l3": "v4-aed-ja-aiatehnika-l5-lehepuhurid-ja-lehekogujad",
+ "name": "Lehepuhurid ja lehekogujad",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Mootorivõimsus (CC)",
+   "unit": "W",
+   "unit_orig": "cc"
+  },
+  {
+   "key": "ohuvool",
+   "label_et": "Õhuvool",
+   "unit": "L/min",
+   "unit_orig": "CFM"
+  },
+  {
+   "key": "tuulekiirus",
+   "label_et": "Maksimaalne tuulekiirus",
+   "unit": "m/s",
+   "unit_orig": "MPH"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "maht",
+   "label_et": "Kütuse paagi maht",
+   "unit": "L"
+  },
+  {
+   "key": "tyyp",
+   "label_et": "Kasutamise tüüp",
+   "unit": "kategooria"
+  }
+ ]
+}

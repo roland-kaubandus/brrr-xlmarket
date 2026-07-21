@@ -1,0 +1,46 @@
+{
+ "l3": "v4-tooriied-ja-isikukaitse-tooriietus-ja-uleroivad-meeste-sargid-ja-pluusid",
+ "name": "Meeste särgid ja pluusid",
+ "fields": [
+  {
+   "key": "vari",
+   "label_et": "Värv",
+   "unit": ""
+  },
+  {
+   "key": "suurus",
+   "label_et": "Suurus",
+   "unit": ""
+  },
+  {
+   "key": "kaela_umbermaat",
+   "label_et": "Kaela ümbermõõt",
+   "unit": "cm"
+  },
+  {
+   "key": "vöö_umbermaat",
+   "label_et": "Vöö ümbermõõt",
+   "unit": "cm"
+  },
+  {
+   "key": "varrukas_pikkus",
+   "label_et": "Varre pikkus",
+   "unit": "cm"
+  },
+  {
+   "key": "seljapikkus",
+   "label_et": "Seljapikkus",
+   "unit": "cm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "sobivus",
+   "label_et": "Sobivus",
+   "unit": ""
+  }
+ ]
+}

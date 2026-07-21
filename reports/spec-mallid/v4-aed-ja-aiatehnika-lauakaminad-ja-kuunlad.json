@@ -1,0 +1,41 @@
+{
+ "l3": "v4-aed-ja-aiatehnika-lauakaminad-ja-kuunlad",
+ "name": "Lauakaminad ja küünlad",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "maht",
+   "label_et": "Põlemiskambri maht",
+   "unit": "L"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "avamise_labamoot",
+   "label_et": "Avamise läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "kujundus",
+   "label_et": "Kujundus",
+   "unit": ""
+  },
+  {
+   "key": "korgus",
+   "label_et": "Kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "lahter_kaasas",
+   "label_et": "Kustutaja kaasas",
+   "unit": ""
+  }
+ ]
+}

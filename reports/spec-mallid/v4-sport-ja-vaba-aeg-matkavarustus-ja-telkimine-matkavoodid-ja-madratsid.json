@@ -1,0 +1,46 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-matkavarustus-ja-telkimine-matkavoodid-ja-madratsid",
+ "name": "Matkavoodid ja madratsid",
+ "fields": [
+  {
+   "key": "pikkus",
+   "label_et": "Madratsipikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "laius",
+   "label_et": "Madratssilaius",
+   "unit": "mm"
+  },
+  {
+   "key": "korgus",
+   "label_et": "Madratsikõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Toote kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "kanduvus",
+   "label_et": "Maksimaalne kanduvus",
+   "unit": "kg"
+  },
+  {
+   "key": "pumpimisaeg",
+   "label_et": "Pumpimisaeg",
+   "unit": "min"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "isikute_arv",
+   "label_et": "Soovituslik isikute arv",
+   "unit": "tk"
+  }
+ ]
+}

@@ -1,0 +1,41 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-matkavarustus-ja-telkimine-matkatoolid-ja-lamamistoolid",
+ "name": "Matkatoolid ja lamamistoolid",
+ "fields": [
+  {
+   "key": "kandevõime_kg",
+   "label_et": "Kandevõime",
+   "unit": "kg"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Toote kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "asend_arv",
+   "label_et": "Asendite arv",
+   "unit": ""
+  },
+  {
+   "key": "pikkus_cm",
+   "label_et": "Pikkus (lahti)",
+   "unit": "cm"
+  },
+  {
+   "key": "laius_cm",
+   "label_et": "Laius",
+   "unit": "cm"
+  },
+  {
+   "key": "lisafunktsioonid",
+   "label_et": "Lisafunktsioonid",
+   "unit": ""
+  }
+ ]
+}

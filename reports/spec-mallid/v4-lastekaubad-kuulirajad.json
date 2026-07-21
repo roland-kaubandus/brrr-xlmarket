@@ -1,0 +1,41 @@
+{
+ "l3": "v4-lastekaubad-kuulirajad",
+ "name": "Kuulirajad",
+ "fields": [
+  {
+   "key": "kogus_tk",
+   "label_et": "Osade arv (tk)",
+   "unit": "tk"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "marmoride_arv",
+   "label_et": "Marmoride arv",
+   "unit": "tk"
+  },
+  {
+   "key": "rajad_pikkus",
+   "label_et": "Raja pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "motoreeritud",
+   "label_et": "Motoreeritud tõstuk",
+   "unit": ""
+  },
+  {
+   "key": "luminotsentne",
+   "label_et": "Luminotsentne marmorid",
+   "unit": "tk"
+  }
+ ]
+}

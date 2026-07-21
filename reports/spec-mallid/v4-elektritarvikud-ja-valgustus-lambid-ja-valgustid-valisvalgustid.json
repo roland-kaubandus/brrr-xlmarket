@@ -1,0 +1,46 @@
+{
+ "l3": "v4-elektritarvikud-ja-valgustus-lambid-ja-valgustid-valisvalgustid",
+ "name": "Välisvalgustid",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Nimivõimsus",
+   "unit": "W"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Sisendpinge",
+   "unit": "V"
+  },
+  {
+   "key": "varvatemperatuur",
+   "label_et": "Värvatemperatuur",
+   "unit": "K"
+  },
+  {
+   "key": "pikkus",
+   "label_et": "Pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "veekindlus",
+   "label_et": "Veekindluse klass",
+   "unit": "IP"
+  },
+  {
+   "key": "heledus",
+   "label_et": "Heledus",
+   "unit": "lm"
+  },
+  {
+   "key": "reguleeritav",
+   "label_et": "Reguleeritav valgus",
+   "unit": "jah/ei"
+  },
+  {
+   "key": "maarimine",
+   "label_et": "Materjal",
+   "unit": ""
+  }
+ ]
+}

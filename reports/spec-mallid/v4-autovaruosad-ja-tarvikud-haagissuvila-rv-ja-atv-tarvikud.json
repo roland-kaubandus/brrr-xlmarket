@@ -1,0 +1,36 @@
+{
+ "l3": "v4-autovaruosad-ja-tarvikud-haagissuvila-rv-ja-atv-tarvikud",
+ "name": "RV- ja ATV-tarvikud",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Mahutavus",
+   "unit": "L"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "paigutus_viis",
+   "label_et": "Paigutusviis",
+   "unit": ""
+  },
+  {
+   "key": "ühilduvus",
+   "label_et": "Ühilduvus mudelitega",
+   "unit": ""
+  },
+  {
+   "key": "montaazi_tyyp",
+   "label_et": "Montaaži tüüp",
+   "unit": ""
+  }
+ ]
+}

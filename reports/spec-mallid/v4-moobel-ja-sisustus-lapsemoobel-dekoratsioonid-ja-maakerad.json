@@ -1,0 +1,46 @@
+{
+ "l3": "v4-moobel-ja-sisustus-lapsemoobel-dekoratsioonid-ja-maakerad",
+ "name": "Maakerad ja gloobused",
+ "fields": [
+  {
+   "key": "kera_diameeter",
+   "label_et": "Kera läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "poelemisNurk",
+   "label_et": "Pöörlemise maksimaalne nurk",
+   "unit": "°"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Kera materjal",
+   "unit": ""
+  },
+  {
+   "key": "alus_materjal",
+   "label_et": "Aluse materjal",
+   "unit": ""
+  },
+  {
+   "key": "LED_valgustus",
+   "label_et": "LED valgustus",
+   "unit": ""
+  },
+  {
+   "key": "ajavyohik_naitaja",
+   "label_et": "Ajavööndi näitaja",
+   "unit": ""
+  },
+  {
+   "key": "taevakaardi_teema",
+   "label_et": "Tähtkujude valgustus",
+   "unit": ""
+  }
+ ]
+}

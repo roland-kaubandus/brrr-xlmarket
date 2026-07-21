@@ -1,0 +1,46 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine-e-track-kinnitusrelsid-ja-komplektid",
+ "name": "E-track kinnitusrelsid ja komplektid",
+ "fields": [
+  {
+   "key": "rail_length",
+   "label_et": "Relsii pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "load_capacity",
+   "label_et": "Kandevõime",
+   "unit": "kg"
+  },
+  {
+   "key": "number_of_rails",
+   "label_et": "Relside arv",
+   "unit": "tk"
+  },
+  {
+   "key": "slot_interval",
+   "label_et": "Pesa vahe",
+   "unit": "mm"
+  },
+  {
+   "key": "material",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kogukaal",
+   "unit": "kg"
+  },
+  {
+   "key": "breaking_strength",
+   "label_et": "Katkemistugevus",
+   "unit": "kg"
+  },
+  {
+   "key": "kit_piece_count",
+   "label_et": "Komplekti osade arv",
+   "unit": "tk"
+  }
+ ]
+}

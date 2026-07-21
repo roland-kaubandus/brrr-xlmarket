@@ -1,0 +1,41 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-veesport-ja-paadindus-livewell-pumbad",
+ "name": "Livewell-pumbad",
+ "fields": [
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "vooluhulk",
+   "label_et": "Maksimaalne vooluhulk",
+   "unit": "L/min"
+  },
+  {
+   "key": "maksimaalne_tostekorgus",
+   "label_et": "Maksimaalne tõstekõrgus",
+   "unit": "m"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Korpuse materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaitseklassifikatsioon",
+   "label_et": "Kaitseklassifikatsioon",
+   "unit": ""
+  },
+  {
+   "key": "sisendava_suurused",
+   "label_et": "Sisendava suurused",
+   "unit": "mm"
+  }
+ ]
+}

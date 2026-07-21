@@ -1,0 +1,41 @@
+{
+ "l3": "v4-aed-ja-aiatehnika-l11-taimeriiulid-kasvulampidega",
+ "name": "Taimeriiulid kasvulampidega",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Kasvulambi koguvõimsus",
+   "unit": "W"
+  },
+  {
+   "key": "korgus",
+   "label_et": "Riiuli kogukõrgus",
+   "unit": "cm"
+  },
+  {
+   "key": "riiulite_arv",
+   "label_et": "Riiulite arv",
+   "unit": "tk"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Riiuli kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "kandevõime",
+   "label_et": "Maksimaalne kandevõime",
+   "unit": "kg"
+  },
+  {
+   "key": "varvatemperatuur",
+   "label_et": "Kasvulambi värvatemperatuur",
+   "unit": "K"
+  },
+  {
+   "key": "lamp_arv",
+   "label_et": "Kasvulampide arv",
+   "unit": "tk"
+  }
+ ]
+}

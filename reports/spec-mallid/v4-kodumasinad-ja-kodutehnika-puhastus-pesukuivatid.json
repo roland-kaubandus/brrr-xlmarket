@@ -1,0 +1,41 @@
+{
+ "l3": "v4-kodumasinad-ja-kodutehnika-puhastus-pesukuivatid",
+ "name": "Pesukuivatid ja -masinad",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "kuivatuse_mahutavus",
+   "label_et": "Kuivatuse mahutavus",
+   "unit": "riided"
+  },
+  {
+   "key": "kuivatuse_ruumala",
+   "label_et": "Kuivatuse ruumala",
+   "unit": "m³"
+  },
+  {
+   "key": "kuivatuse_temperatuur",
+   "label_et": "Kuivatuse temperatuur",
+   "unit": "°C"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "ajastaja_maksimaalne_aeg",
+   "label_et": "Ajastaja maksimaalne aeg",
+   "unit": "h"
+  },
+  {
+   "key": "myra",
+   "label_et": "Müra",
+   "unit": "dB"
+  }
+ ]
+}

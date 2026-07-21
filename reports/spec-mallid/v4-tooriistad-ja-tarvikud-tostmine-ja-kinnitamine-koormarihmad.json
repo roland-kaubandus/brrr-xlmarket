@@ -1,0 +1,46 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine-koormarihmad",
+ "name": "Koormarihmad",
+ "fields": [
+  {
+   "key": "max_break_strength",
+   "label_et": "Maksimaalne murdepinge",
+   "unit": "kg"
+  },
+  {
+   "key": "rated_load_strength",
+   "label_et": "Nimikoormus",
+   "unit": "kg"
+  },
+  {
+   "key": "strap_width",
+   "label_et": "Rihma laius",
+   "unit": "mm"
+  },
+  {
+   "key": "strap_length",
+   "label_et": "Rihma pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": "-"
+  },
+  {
+   "key": "hook_type",
+   "label_et": "Konksu tüüp",
+   "unit": "-"
+  },
+  {
+   "key": "pakendi_kogus",
+   "label_et": "Pakendi kogus",
+   "unit": "tk"
+  }
+ ]
+}

@@ -1,0 +1,36 @@
+{
+ "l3": "v4-autovaruosad-ja-tarvikud-mootorratta-ja-jalgrattatarvikud-mootorratta-tostestatiivid",
+ "name": "Mootorratta tõstestatiivid",
+ "fields": [
+  {
+   "key": "kandevõime_kg",
+   "label_et": "Kandevõime",
+   "unit": "kg"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "tüüp",
+   "label_et": "Tüüp",
+   "unit": ""
+  },
+  {
+   "key": "reguleeritav_laius_mm",
+   "label_et": "Reguleeritav laius",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "stabiilsus_alus",
+   "label_et": "Stabiilsuse alus",
+   "unit": ""
+  }
+ ]
+}

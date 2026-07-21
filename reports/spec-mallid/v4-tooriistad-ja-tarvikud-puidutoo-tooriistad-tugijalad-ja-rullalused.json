@@ -1,0 +1,41 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-puidutoo-tooriistad-tugijalad-ja-rullalused",
+ "name": "Tugijalad ja rullalused",
+ "fields": [
+  {
+   "key": "koormus_kg",
+   "label_et": "Maksimaalne koormus",
+   "unit": "kg"
+  },
+  {
+   "key": "korgus_min_mm",
+   "label_et": "Minimaalne kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "korgus_max_mm",
+   "label_et": "Maksimaalne kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "roller_pikkus_mm",
+   "label_et": "Roller pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaal_kg",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "voltitav",
+   "label_et": "Voltitav disain",
+   "unit": ""
+  }
+ ]
+}

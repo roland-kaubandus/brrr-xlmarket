@@ -1,0 +1,46 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-metallitoo-ja-sepatoo-torupainutajad",
+ "name": "Torupainutajad",
+ "fields": [
+  {
+   "key": "tooru_diameeter_min_mm",
+   "label_et": "Torude läbimõõdu vahemik (min)",
+   "unit": "mm"
+  },
+  {
+   "key": "tooru_diameeter_max_mm",
+   "label_et": "Torude läbimõõdu vahemik (max)",
+   "unit": "mm"
+  },
+  {
+   "key": "paindejoud_kn",
+   "label_et": "Maksimaalne paindejõud",
+   "unit": "kN"
+  },
+  {
+   "key": "paidemurnurgad_kraadi",
+   "label_et": "Painde- või murvurgad",
+   "unit": "°"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "surmad_kokku",
+   "label_et": "Surmaliikmete arv",
+   "unit": "tk"
+  },
+  {
+   "key": "toru_seinapaksus_mm",
+   "label_et": "Torude seina paksus",
+   "unit": "mm"
+  }
+ ]
+}

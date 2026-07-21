@@ -1,0 +1,31 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-veesport-ja-paadindus-paastevestid",
+ "name": "Päästevestid",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "ujuvus",
+   "label_et": "Ujuvus",
+   "unit": "N"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "suurus",
+   "label_et": "Suurus",
+   "unit": ""
+  },
+  {
+   "key": "maht",
+   "label_et": "Mahutavus (jakke arv)",
+   "unit": "tk"
+  }
+ ]
+}

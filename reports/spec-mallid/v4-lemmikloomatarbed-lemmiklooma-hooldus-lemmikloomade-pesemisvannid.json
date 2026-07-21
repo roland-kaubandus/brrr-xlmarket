@@ -1,0 +1,41 @@
+{
+ "l3": "v4-lemmikloomatarbed-lemmiklooma-hooldus-lemmikloomade-pesemisvannid",
+ "name": "Lemmikloomade pesemisvannid",
+ "fields": [
+  {
+   "key": "pikkus_mm",
+   "label_et": "Vanni pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Netokaal",
+   "unit": "kg"
+  },
+  {
+   "key": "kandvovoimsus_kg",
+   "label_et": "Kandvõimekus",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "sissepaasumine",
+   "label_et": "Ligipääs (ramp/trepp)",
+   "unit": ""
+  },
+  {
+   "key": "hoiuossa",
+   "label_et": "Salvestuskast",
+   "unit": ""
+  },
+  {
+   "key": "elektrilised_juhid",
+   "label_et": "Elektriline kõrguse reguleerimine",
+   "unit": ""
+  }
+ ]
+}

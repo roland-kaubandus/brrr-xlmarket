@@ -1,0 +1,37 @@
+{
+ "l3": "v4-aed-ja-aiatehnika-l6-udumasinad",
+ "name": "Udumasinad",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "vooluhulk",
+   "label_et": "Udu toodang",
+   "unit": "L/min",
+   "unit_orig": "mL/h"
+  },
+  {
+   "key": "pead",
+   "label_et": "Udupeade arv",
+   "unit": "tk"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "pinge",
+   "label_et": "Toitepinge",
+   "unit": "V"
+  }
+ ]
+}

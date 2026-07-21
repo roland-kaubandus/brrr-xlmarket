@@ -1,0 +1,46 @@
+{
+ "l3": "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-laadimiskontrollerid",
+ "name": "Laadimiskontrollerid",
+ "fields": [
+  {
+   "key": "laadimisvoolu",
+   "label_et": "Laadimisvoolu",
+   "unit": "A"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Patarei pinge",
+   "unit": "V"
+  },
+  {
+   "key": "max_paneeli_pinge",
+   "label_et": "Max. paneeli pinge",
+   "unit": "V"
+  },
+  {
+   "key": "laadimise_efektiivsus",
+   "label_et": "Laadimise efektiivsus",
+   "unit": "%"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "toetatud_patarei_tyyp",
+   "label_et": "Toetatud aku tüüp",
+   "unit": ""
+  },
+  {
+   "key": "tootemootmed",
+   "label_et": "Tootmõõtmed (L×L×K)",
+   "unit": "mm"
+  },
+  {
+   "key": "tootamiste_temperatuur",
+   "label_et": "Töötamistemperatuur",
+   "unit": "°C"
+  }
+ ]
+}

@@ -1,0 +1,46 @@
+{
+ "l3": "v4-aed-ja-aiatehnika-l2-basseinipuhastid-ja-puhastustarvikud",
+ "name": "Basseinipuhastid ja puhastustarvikud",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "vooluhulk",
+   "label_et": "Voolu hulk / Jõudlus",
+   "unit": "L/min"
+  },
+  {
+   "key": "aku_maht",
+   "label_et": "Aku mahtuvus",
+   "unit": "Wh"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "maht",
+   "label_et": "Filtri / Jäätmebaki maht",
+   "unit": "L"
+  },
+  {
+   "key": "maksimaalne_pooli_suurus",
+   "label_et": "Maksimaalse basseini suurus",
+   "unit": "m²"
+  },
+  {
+   "key": "maksimaalne_pikkus",
+   "label_et": "Maksimaalne pikkus / ulatus",
+   "unit": "m"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  }
+ ]
+}

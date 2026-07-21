@@ -1,0 +1,46 @@
+{
+ "l3": "v4-ehitus-remont-ja-varvid-moobli-ja-kapifurnituur-kapihinged",
+ "name": "Kapihinged",
+ "fields": [
+  {
+   "key": "kogus",
+   "label_et": "Hinged kogus pakis",
+   "unit": "tk"
+  },
+  {
+   "key": "avanemis_nurk",
+   "label_et": "Avanemise nurk",
+   "unit": "°"
+  },
+  {
+   "key": "overlay_tyyp",
+   "label_et": "Overlay tüüp",
+   "unit": "valik"
+  },
+  {
+   "key": "kabineti_tyyp",
+   "label_et": "Kabinetitüüp",
+   "unit": "valik"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kogukaal",
+   "unit": "kg"
+  },
+  {
+   "key": "reguleerimise_mootmed",
+   "label_et": "Reguleerimise mõõtmed",
+   "unit": "valik"
+  },
+  {
+   "key": "pehme_sulgemine",
+   "label_et": "Pehme sulgemine",
+   "unit": "jah/ei"
+  },
+  {
+   "key": "kuppide_labamoot",
+   "label_et": "Kuppide läbamõõt",
+   "unit": "mm"
+  }
+ ]
+}

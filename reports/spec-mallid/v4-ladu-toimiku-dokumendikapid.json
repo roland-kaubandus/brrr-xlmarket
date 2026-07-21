@@ -1,0 +1,46 @@
+{
+ "l3": "v4-ladu-toimiku-dokumendikapid",
+ "name": "Toimiku- ja dokumendikapid",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "koormus_maht",
+   "label_et": "Maksimaalne koormus",
+   "unit": "kg"
+  },
+  {
+   "key": "laiad",
+   "label_et": "Lademete arv",
+   "unit": "tk"
+  },
+  {
+   "key": "maht_L",
+   "label_et": "Sisemised mõõtmed (laius × sügavus × kõrgus)",
+   "unit": "cm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "lukk",
+   "label_et": "Lukk",
+   "unit": ""
+  },
+  {
+   "key": "rattal",
+   "label_et": "Liikuvad rattad",
+   "unit": "tk"
+  },
+  {
+   "key": "osakond",
+   "label_et": "Osakondade/riiulite arv",
+   "unit": "tk"
+  }
+ ]
+}

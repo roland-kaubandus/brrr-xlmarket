@@ -1,0 +1,41 @@
+{
+ "l3": "v4-aed-ja-aiatehnika-l8-puude-kastmiskotid",
+ "name": "Puude kastmiskotid",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Maht",
+   "unit": "L"
+  },
+  {
+   "key": "kogus",
+   "label_et": "Komplekti kogus",
+   "unit": "tk"
+  },
+  {
+   "key": "vooluhulk",
+   "label_et": "Vooluhulk",
+   "unit": "L/min"
+  },
+  {
+   "key": "kastmisaeg",
+   "label_et": "Aeglase vabanemise aeg",
+   "unit": "h"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "soose_diameet",
+   "label_et": "Ühilduv soose läbimõõt",
+   "unit": "mm"
+  }
+ ]
+}

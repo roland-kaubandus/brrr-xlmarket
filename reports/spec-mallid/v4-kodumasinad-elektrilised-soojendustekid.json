@@ -1,0 +1,41 @@
+{
+ "l3": "v4-kodumasinad-elektrilised-soojendustekid",
+ "name": "Elektrilised soojendustekid ja -madratsikaitsed",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "soojustasemed",
+   "label_et": "Soojustasemete arv",
+   "unit": "tk"
+  },
+  {
+   "key": "ajastuse_kestus",
+   "label_et": "Maksimaalne ajastuse kestus",
+   "unit": "h"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "pindala",
+   "label_et": "Pindala (pikkus × laius)",
+   "unit": "cm"
+  }
+ ]
+}

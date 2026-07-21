@@ -1,0 +1,41 @@
+{
+ "l3": "v4-ehitus-remont-ja-varvid-porandakatted-ja-tarvikud-vaibakaitsekiled-ja-tarvikud",
+ "name": "Vaibakaitsekiled ja -tarvikud",
+ "fields": [
+  {
+   "key": "laius_mm",
+   "label_et": "Laiius (mm)",
+   "unit": "mm"
+  },
+  {
+   "key": "pikkus_m",
+   "label_et": "Pikkus (m)",
+   "unit": "m"
+  },
+  {
+   "key": "paksus_mm",
+   "label_et": "Paksus (mm)",
+   "unit": "mm"
+  },
+  {
+   "key": "kattealune_m2",
+   "label_et": "Kattealune (m²)",
+   "unit": "m²"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal (kg)",
+   "unit": "kg"
+  },
+  {
+   "key": "kleepuv",
+   "label_et": "Iselepiklevav",
+   "unit": ""
+  }
+ ]
+}

@@ -1,0 +1,41 @@
+{
+ "l3": "v4-aed-ja-aiatehnika-l2-infrapunasaunad",
+ "name": "Infrapunasaunad",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "max_temperatuur",
+   "label_et": "Maksimaaltemperatuur",
+   "unit": "°C"
+  },
+  {
+   "key": "kasutajate_arv",
+   "label_et": "Kasutajate arv",
+   "unit": "tk"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Peamine materjal",
+   "unit": ""
+  },
+  {
+   "key": "max_kasutusaeg",
+   "label_et": "Maksimaalse kasutusaeg",
+   "unit": "min"
+  }
+ ]
+}

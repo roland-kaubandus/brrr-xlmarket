@@ -1,0 +1,36 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-fitness-ja-treeningseadmed-treeningkoied-battle-rope",
+ "name": "Treeningköied (battle rope)",
+ "fields": [
+  {
+   "key": "pikkus",
+   "label_et": "Pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "diameetr",
+   "label_et": "Läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaitsekate",
+   "label_et": "Kaitsekate",
+   "unit": ""
+  },
+  {
+   "key": "ankur",
+   "label_et": "Ankur kaasas",
+   "unit": ""
+  }
+ ]
+}

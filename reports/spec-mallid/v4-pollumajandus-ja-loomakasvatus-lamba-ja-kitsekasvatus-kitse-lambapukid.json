@@ -1,0 +1,46 @@
+{
+ "l3": "v4-pollumajandus-ja-loomakasvatus-lamba-ja-kitsekasvatus-kitse-lambapukid",
+ "name": "Kitse- ja lambapukid",
+ "fields": [
+  {
+   "key": "platvormi_pikkus_mm",
+   "label_et": "Platvormi pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "platvormi_laius_mm",
+   "label_et": "Platvormi laius",
+   "unit": "mm"
+  },
+  {
+   "key": "korgus_min_mm",
+   "label_et": "Minimaalne kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "korgus_max_mm",
+   "label_et": "Maksimaalne kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "kandevoimetus_kg",
+   "label_et": "Kandevõimetus",
+   "unit": "kg"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "pea_reguleerimise_ulatus_mm",
+   "label_et": "Pea reguleerimise ulatus",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  }
+ ]
+}

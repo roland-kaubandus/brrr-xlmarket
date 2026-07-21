@@ -1,0 +1,46 @@
+{
+ "l3": "v4-voodilauad",
+ "name": "Voodilauad",
+ "fields": [
+  {
+   "key": "korgus_reguleerimise_vahemik_mm",
+   "label_et": "Kõrguse reguleerimise vahemik",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "kandevoimasus_kg",
+   "label_et": "Kandevõimsus (keskosa)",
+   "unit": "kg"
+  },
+  {
+   "key": "tööpinna_suurus_cm2",
+   "label_et": "Tööpinna suurus",
+   "unit": "cm²"
+  },
+  {
+   "key": "kaldenurk_aste",
+   "label_et": "Kaldenurk",
+   "unit": "°"
+  },
+  {
+   "key": "materijal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "reguleerimismehanism",
+   "label_et": "Reguleerimissüsteem",
+   "unit": ""
+  },
+  {
+   "key": "lisavarustus",
+   "label_et": "Lisavarustus",
+   "unit": ""
+  }
+ ]
+}

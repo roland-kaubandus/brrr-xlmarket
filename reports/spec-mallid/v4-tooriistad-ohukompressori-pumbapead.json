@@ -1,0 +1,42 @@
+{
+ "l3": "v4-tooriistad-ohukompressori-pumbapead",
+ "name": "Õhukompressori pumbapead",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W",
+   "unit_orig": "HP"
+  },
+  {
+   "key": "ohuvool",
+   "label_et": "Õhuvool (90 PSI juures)",
+   "unit": "L/min"
+  },
+  {
+   "key": "rohk",
+   "label_et": "Maksimaalne rõhk",
+   "unit": "bar"
+  },
+  {
+   "key": "silindrite_arv",
+   "label_et": "Silindrite arv",
+   "unit": "tk"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": "tekst"
+  },
+  {
+   "key": "poorlemiskiirus",
+   "label_et": "Pöörlemiskiirus",
+   "unit": "RPM"
+  }
+ ]
+}

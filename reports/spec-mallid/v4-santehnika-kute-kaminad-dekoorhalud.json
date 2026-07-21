@@ -1,0 +1,41 @@
+{
+ "l3": "v4-santehnika-kute-kaminad-dekoorhalud",
+ "name": "Dekoratiivsed kaminahalud",
+ "fields": [
+  {
+   "key": "kogus",
+   "label_et": "Tükkide arv pakendis",
+   "unit": "tk"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "pikkus",
+   "label_et": "Pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "laius",
+   "label_et": "Laius",
+   "unit": "mm"
+  },
+  {
+   "key": "korgus",
+   "label_et": "Kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "maksimaalne_temp",
+   "label_et": "Maksimaalne töötemperatuur",
+   "unit": "°C"
+  },
+  {
+   "key": "puu_tyyp",
+   "label_et": "Puutüüp/välimuse stiil",
+   "unit": ""
+  }
+ ]
+}

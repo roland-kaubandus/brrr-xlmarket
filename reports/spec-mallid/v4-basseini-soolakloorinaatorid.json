@@ -1,0 +1,36 @@
+{
+ "l3": "v4-basseini-soolakloorinaatorid",
+ "name": "Basseini soolakloorinaatorid",
+ "fields": [
+  {
+   "key": "kloorintoote_paevased",
+   "label_et": "Kloorinitoodang",
+   "unit": "g/h"
+  },
+  {
+   "key": "basseini_maht",
+   "label_et": "Basseine mahutavus",
+   "unit": "L"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "elektroodi_tyyp",
+   "label_et": "Elektroodi materjal",
+   "unit": ""
+  },
+  {
+   "key": "paigalduse_komplekssus",
+   "label_et": "Paigalduse kiirus",
+   "unit": ""
+  }
+ ]
+}

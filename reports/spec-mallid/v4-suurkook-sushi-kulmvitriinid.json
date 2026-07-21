@@ -1,0 +1,46 @@
+{
+ "l3": "v4-suurkook-sushi-kulmvitriinid",
+ "name": "Sushi külmvitriinid",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Mahutavus",
+   "unit": "L"
+  },
+  {
+   "key": "pange_arv",
+   "label_et": "Panide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Sisemine materjal",
+   "unit": "text"
+  },
+  {
+   "key": "laius",
+   "label_et": "Laius",
+   "unit": "mm"
+  },
+  {
+   "key": "korgus",
+   "label_et": "Kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "syvus",
+   "label_et": "Sügavus",
+   "unit": "mm"
+  },
+  {
+   "key": "led_valgustus",
+   "label_et": "LED valgustus",
+   "unit": "boolean"
+  }
+ ]
+}

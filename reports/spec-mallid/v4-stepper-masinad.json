@@ -1,0 +1,36 @@
+{
+ "l3": "v4-stepper-masinad",
+ "name": "Stepper-treeningmasinad",
+ "fields": [
+  {
+   "key": "koormusmaht",
+   "label_et": "Maksimaalne koormusmaht",
+   "unit": "kg"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Seadme kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "sammupikkus",
+   "label_et": "Sammupikkuse reguleeritavus",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Peamised materjalid",
+   "unit": ""
+  },
+  {
+   "key": "pooltaitud",
+   "label_et": "Kokkupalanduv",
+   "unit": ""
+  },
+  {
+   "key": "kasutatajainteraktsioon",
+   "label_et": "LCD-monitor ja juhtnupud",
+   "unit": ""
+  }
+ ]
+}

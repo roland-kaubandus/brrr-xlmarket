@@ -1,0 +1,36 @@
+{
+ "l3": "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-lauakaitsed-ja-kiled",
+ "name": "Lauakaitsed ja -kiled",
+ "fields": [
+  {
+   "key": "paksus_mm",
+   "label_et": "Paksus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "pindala_m2",
+   "label_et": "Pindala",
+   "unit": "m²"
+  },
+  {
+   "key": "max_temperatuur",
+   "label_et": "Max. temperatuur",
+   "unit": "°C"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kuju",
+   "label_et": "Kuju",
+   "unit": ""
+  }
+ ]
+}

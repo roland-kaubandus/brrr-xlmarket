@@ -1,0 +1,46 @@
+{
+ "l3": "v4-moobel-postkastid-pakikastid",
+ "name": "Postkastid ja pakikastid",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "maht",
+   "label_et": "Maksimaalne pakiruumala (L)",
+   "unit": "L"
+  },
+  {
+   "key": "suurim_paketi_mootmed",
+   "label_et": "Suurim paketi mõõtmed",
+   "unit": "cm"
+  },
+  {
+   "key": "sisestusavause_mootmed",
+   "label_et": "Sisestusavause mõõtmed",
+   "unit": "cm"
+  },
+  {
+   "key": "paigalduse_tyyp",
+   "label_et": "Paigalduse tüüp",
+   "unit": ""
+  },
+  {
+   "key": "veekaitse_klass",
+   "label_et": "Veekaitse klass",
+   "unit": ""
+  },
+  {
+   "key": "lukustityyp",
+   "label_et": "Lukustiitüüp",
+   "unit": ""
+  }
+ ]
+}

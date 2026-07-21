@@ -1,0 +1,41 @@
+{
+ "l3": "v4-autovaruosad-ja-tarvikud-veoauto-tarvikud-ohususteemi-komplektid",
+ "name": "Õhusüsteemi komplektid",
+ "fields": [
+  {
+   "key": "pikkus_m",
+   "label_et": "Pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "rohk",
+   "label_et": "Maksimaalne rõhk",
+   "unit": "bar"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Maksimaalne pinge",
+   "unit": "V"
+  },
+  {
+   "key": "voolutugevus_max",
+   "label_et": "Maksimaalne voolutugevus",
+   "unit": "A"
+  },
+  {
+   "key": "gladhand_kaasas",
+   "label_et": "Gladhand kaasas",
+   "unit": "jah/ei"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Õhujoone materjal",
+   "unit": ""
+  }
+ ]
+}

@@ -1,0 +1,41 @@
+{
+ "l3": "v4-ladu-veepudelite-hoidikud-riiulid",
+ "name": "Veepudelite hoidikud ja riiulid",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Pudeli mahutavus (gallonid)",
+   "unit": "gal"
+  },
+  {
+   "key": "pudelite_arv",
+   "label_et": "Pudeli mahutavus (tk)",
+   "unit": "tk"
+  },
+  {
+   "key": "kihid",
+   "label_et": "Kihtide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "read",
+   "label_et": "Ridade arv",
+   "unit": "tk"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Netokaalu",
+   "unit": "kg"
+  },
+  {
+   "key": "koormavoimsus",
+   "label_et": "Kogu koormavõime",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  }
+ ]
+}

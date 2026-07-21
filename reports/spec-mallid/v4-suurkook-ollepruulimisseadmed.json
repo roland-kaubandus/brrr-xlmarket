@@ -1,0 +1,41 @@
+{
+ "l3": "v4-suurkook-ollepruulimisseadmed",
+ "name": "Õllepruulimisseadmed",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Mahutavus",
+   "unit": "L"
+  },
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "temp_vahemik",
+   "label_et": "Temperatuuri vahemik",
+   "unit": "°C"
+  },
+  {
+   "key": "rohk",
+   "label_et": "Rõhk (max)",
+   "unit": "bar"
+  },
+  {
+   "key": "ajataimeri",
+   "label_et": "Ajataimeri",
+   "unit": "min"
+  }
+ ]
+}

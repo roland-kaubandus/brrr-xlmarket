@@ -1,0 +1,41 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-akutooriistad-akukruvikeerajad",
+ "name": "Akukruvikeerajad",
+ "fields": [
+  {
+   "key": "poorlemiskiirus",
+   "label_et": "Pöörlemiskiirus",
+   "unit": "RPM"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "aku_maht",
+   "label_et": "Akumaht",
+   "unit": "Wh"
+  },
+  {
+   "key": "max_moment",
+   "label_et": "Maksimaalne moment",
+   "unit": "N·m"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "bitide_arv",
+   "label_et": "Bitide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Biti materjal",
+   "unit": ""
+  }
+ ]
+}

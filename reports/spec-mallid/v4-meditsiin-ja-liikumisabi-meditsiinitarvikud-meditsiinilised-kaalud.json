@@ -1,0 +1,46 @@
+{
+ "l3": "v4-meditsiin-ja-liikumisabi-meditsiinitarvikud-meditsiinilised-kaalud",
+ "name": "Meditsiinilised kaalud",
+ "fields": [
+  {
+   "key": "maksimaalne_kaal",
+   "label_et": "Maksimaalne kaalumispiir",
+   "unit": "kg"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Seadme enda kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "platvorm_laius",
+   "label_et": "Kaalumisplatvorm (laius)",
+   "unit": "mm"
+  },
+  {
+   "key": "platvorm_pikkus",
+   "label_et": "Kaalumisplatvorm (pikkus)",
+   "unit": "mm"
+  },
+  {
+   "key": "korgus",
+   "label_et": "Seadme kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "pildis",
+   "label_et": "Kaalu- ja pikkusmõõtmine",
+   "unit": "bool"
+  },
+  {
+   "key": "kaasaskantavus",
+   "label_et": "Kaasaskantav",
+   "unit": "bool"
+  },
+  {
+   "key": "poweri_toiteallikad",
+   "label_et": "Toiteallikad (aku + võrk)",
+   "unit": "bool"
+  }
+ ]
+}

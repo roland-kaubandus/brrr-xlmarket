@@ -1,0 +1,41 @@
+{
+ "l3": "v4-suurkoogiseadmed-koogitarvikud-ja-noud-noad-ja-noakomplektid",
+ "name": "Noad ja noakomplektid",
+ "fields": [
+  {
+   "key": "komplekti_maht",
+   "label_et": "Nõadel komplektis (tk)",
+   "unit": "pcs"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Terase tüüp",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kogukaal",
+   "unit": "kg"
+  },
+  {
+   "key": "handi_materjal",
+   "label_et": "Käepideme materjal",
+   "unit": ""
+  },
+  {
+   "key": "tarvikud_komplektis",
+   "label_et": "Kaasas tarvikud",
+   "unit": ""
+  },
+  {
+   "key": "terase_kihid",
+   "label_et": "Damaskuse terase kihid",
+   "unit": "tk"
+  },
+  {
+   "key": "bloki_type",
+   "label_et": "Nõaplokkide tüüp",
+   "unit": ""
+  }
+ ]
+}

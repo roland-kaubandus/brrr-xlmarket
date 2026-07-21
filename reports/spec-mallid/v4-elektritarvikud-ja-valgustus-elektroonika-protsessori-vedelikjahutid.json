@@ -1,0 +1,41 @@
+{
+ "l3": "v4-elektritarvikud-ja-valgustus-elektroonika-protsessori-vedelikjahutid",
+ "name": "Protsessori vedelikjahutid",
+ "fields": [
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "poorlemiskiirus",
+   "label_et": "Poorlemiskiirus",
+   "unit": "RPM"
+  },
+  {
+   "key": "fanide_arv",
+   "label_et": "Fänide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "displeii_suurus",
+   "label_et": "Displeii suurus",
+   "unit": "in"
+  }
+ ]
+}

@@ -1,0 +1,36 @@
+{
+ "l3": "v4-lemmikloomatarbed-sootmine-ja-jootmine-soodahoidjad",
+ "name": "Söödahoidjad",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Mahutavus",
+   "unit": "L"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "paiste_omadus",
+   "label_et": "Paiste/Õhutõrje",
+   "unit": ""
+  },
+  {
+   "key": "volditavus",
+   "label_et": "Ruumikokkuhoid (volditav)",
+   "unit": ""
+  },
+  {
+   "key": "ratastega",
+   "label_et": "Ratasega variandid",
+   "unit": ""
+  }
+ ]
+}

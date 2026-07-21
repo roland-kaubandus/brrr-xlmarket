@@ -1,0 +1,46 @@
+{
+ "l3": "v4-suurkoogiseadmed-koogitarvikud-ja-noud-pitsakivid-ja-terad",
+ "name": "Pitsakivid ja -terad",
+ "fields": [
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kuju",
+   "label_et": "Kuju",
+   "unit": ""
+  },
+  {
+   "key": "pikkus",
+   "label_et": "Pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "laius",
+   "label_et": "Laius",
+   "unit": "mm"
+  },
+  {
+   "key": "paksus",
+   "label_et": "Paksus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "maksimaalne_temperatuur",
+   "label_et": "Maksimaalne temperatuur",
+   "unit": "°C"
+  },
+  {
+   "key": "tarvikud",
+   "label_et": "Kaasaolev tarvikud",
+   "unit": ""
+  }
+ ]
+}

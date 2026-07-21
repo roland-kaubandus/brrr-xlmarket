@@ -1,0 +1,41 @@
+{
+ "l3": "v4-santehnika-kute-ja-ventilatsioon-veepumbad-pinna-ja-iseimevad-pumbad",
+ "name": "Pinna- ja iseimevad pumbad",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "vooluhulk",
+   "label_et": "Maksimaalne vooluhulk",
+   "unit": "L/min"
+  },
+  {
+   "key": "imemiskorgus",
+   "label_et": "Imemiskõrgus",
+   "unit": "m"
+  },
+  {
+   "key": "tõstekõrgus",
+   "label_et": "Tõstekõrgus",
+   "unit": "m"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  }
+ ]
+}

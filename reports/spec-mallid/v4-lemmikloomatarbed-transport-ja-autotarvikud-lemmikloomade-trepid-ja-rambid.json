@@ -1,0 +1,41 @@
+{
+ "l3": "v4-lemmikloomatarbed-transport-ja-autotarvikud-lemmikloomade-trepid-ja-rambid",
+ "name": "Lemmikloomade trepid ja rambid",
+ "fields": [
+  {
+   "key": "maksimaalne_kaal",
+   "label_et": "Maksimaalne kandevõime",
+   "unit": "kg"
+  },
+  {
+   "key": "astmete_arv",
+   "label_et": "Astmete arv",
+   "unit": "tk"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Toote kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Peamine materjal",
+   "unit": ""
+  },
+  {
+   "key": "pikkus_lahtivolditult",
+   "label_et": "Pikkus lahtivolditult",
+   "unit": "mm"
+  },
+  {
+   "key": "astme_korgus",
+   "label_et": "Astme kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "lahtivoldituse_kordsus",
+   "label_et": "Reguleeritavate kõrguste arv",
+   "unit": "tk"
+  }
+ ]
+}

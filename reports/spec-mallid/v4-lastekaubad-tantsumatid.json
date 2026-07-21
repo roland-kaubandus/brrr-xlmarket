@@ -1,0 +1,46 @@
+{
+ "l3": "v4-lastekaubad-tantsumatid",
+ "name": "Tantsumatid",
+ "fields": [
+  {
+   "key": "tantsupaikade_arv",
+   "label_et": "Tantsupaikade arv",
+   "unit": "tk"
+  },
+  {
+   "key": "sisseehitatud_laulud",
+   "label_et": "Sisseehitatud laule",
+   "unit": "tk"
+  },
+  {
+   "key": "mängurežiimid",
+   "label_et": "Mängurežiimid",
+   "unit": "tk"
+  },
+  {
+   "key": "funktsiooniklahvid",
+   "label_et": "Funktsiooniklahve",
+   "unit": "tk"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "akud",
+   "label_et": "Toiteallikad (AA patareid)",
+   "unit": "tk"
+  },
+  {
+   "key": "bluetooth",
+   "label_et": "Bluetooth-ühendus",
+   "unit": "jah/ei"
+  },
+  {
+   "key": "led_valgustus",
+   "label_et": "LED-valgustus",
+   "unit": "jah/ei"
+  }
+ ]
+}

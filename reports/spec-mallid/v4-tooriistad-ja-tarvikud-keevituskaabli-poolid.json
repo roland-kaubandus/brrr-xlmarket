@@ -1,0 +1,41 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-keevituskaabli-poolid",
+ "name": "Keevituskaabli poolid",
+ "fields": [
+  {
+   "key": "kaabli_ristloige",
+   "label_et": "Kaabli ristlõige",
+   "unit": "mm²"
+  },
+  {
+   "key": "kaabli_pikkus",
+   "label_et": "Kaabli pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "rullide_arv",
+   "label_et": "Rullide arv",
+   "unit": ""
+  },
+  {
+   "key": "lukustus_mehhanism",
+   "label_et": "Lukustus mehhanism",
+   "unit": ""
+  },
+  {
+   "key": "mahud",
+   "label_et": "Mõõtmed (P×L×K)",
+   "unit": "mm"
+  }
+ ]
+}

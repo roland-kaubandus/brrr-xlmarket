@@ -1,0 +1,46 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-piljardi-ja-snookerilauad-ning-kiid",
+ "name": "Piljardilauad",
+ "fields": [
+  {
+   "key": "pikkus_cm",
+   "label_et": "Laua pikkus",
+   "unit": "cm"
+  },
+  {
+   "key": "laius_cm",
+   "label_et": "Laua laius",
+   "unit": "cm"
+  },
+  {
+   "key": "korgus_cm",
+   "label_et": "Laua kõrgus",
+   "unit": "cm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "panni_vari",
+   "label_et": "Pannivärvus",
+   "unit": ""
+  },
+  {
+   "key": "volditav",
+   "label_et": "Volditav",
+   "unit": ""
+  },
+  {
+   "key": "reguleeritavad_jalad",
+   "label_et": "Reguleeritavad jalad",
+   "unit": ""
+  }
+ ]
+}

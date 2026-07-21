@@ -1,0 +1,46 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-taispuhutavad-projektsiooniekraanid",
+ "name": "Täispuhutavad projektsiooniekraanid",
+ "fields": [
+  {
+   "key": "ekraani_diagonaal_ft",
+   "label_et": "Ekraani diagonaal (ft)",
+   "unit": "ft"
+  },
+  {
+   "key": "kuvasuhe",
+   "label_et": "Kuvasuhte (aspect ratio)",
+   "unit": "ratio"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": "–"
+  },
+  {
+   "key": "voimsus",
+   "label_et": "Ventilaatori võimsus (W)",
+   "unit": "W"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal (kg)",
+   "unit": "kg"
+  },
+  {
+   "key": "puhutamise_aeg",
+   "label_et": "Puhutamise aeg (min)",
+   "unit": "min"
+  },
+  {
+   "key": "projitseerimise_tyyp",
+   "label_et": "Projektseerimise tüüp",
+   "unit": "–"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge (V)",
+   "unit": "V"
+  }
+ ]
+}

@@ -1,0 +1,41 @@
+{
+ "l3": "v4-suurkoogiseadmed-koogitarvikud-ja-noud-frituurioli-filtreerimistarvikud",
+ "name": "Fritüüriõli filtreerimistarvikud",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Paagi maht",
+   "unit": "L"
+  },
+  {
+   "key": "vooluhulk",
+   "label_et": "Filtreerimiskiirus",
+   "unit": "L/min"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "filter_leht_pikkus",
+   "label_et": "Filtrilehe pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "filter_leht_laius",
+   "label_et": "Filtrilehe laius",
+   "unit": "mm"
+  },
+  {
+   "key": "filter_lehtede_arv",
+   "label_et": "Filtrilehti pakis",
+   "unit": "tk"
+  }
+ ]
+}

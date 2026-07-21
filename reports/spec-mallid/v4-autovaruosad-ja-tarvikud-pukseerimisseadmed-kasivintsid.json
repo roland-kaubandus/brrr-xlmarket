@@ -1,0 +1,41 @@
+{
+ "l3": "v4-autovaruosad-ja-tarvikud-pukseerimisseadmed-kasivintsid",
+ "name": "Käsivintsid",
+ "fields": [
+  {
+   "key": "tõmbejõud_kg",
+   "label_et": "Maksimaalne tõmbejõud",
+   "unit": "kg"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Toote kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "nöör_pikkus_cm",
+   "label_et": "Nööri/kaabli pikkus",
+   "unit": "cm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Nööri/kaabli materjal",
+   "unit": ""
+  },
+  {
+   "key": "ratšett_tüüp",
+   "label_et": "Ratšeti suunad",
+   "unit": ""
+  },
+  {
+   "key": "kiirused",
+   "label_et": "Käigute arv",
+   "unit": ""
+  },
+  {
+   "key": "käepide_pikkus_mm",
+   "label_et": "Käepideme pikkus",
+   "unit": "mm"
+  }
+ ]
+}

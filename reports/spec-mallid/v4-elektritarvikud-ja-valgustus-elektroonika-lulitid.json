@@ -1,0 +1,42 @@
+{
+ "l3": "v4-elektritarvikud-ja-valgustus-elektroonika-lulitid",
+ "name": "Lülitid ja nupud",
+ "fields": [
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "ohuvool",
+   "label_et": "Ohuvool",
+   "unit": "L/min",
+   "unit_orig": "A"
+  },
+  {
+   "key": "kontakti_tyyp",
+   "label_et": "Kontakti tüüp",
+   "unit": ""
+  },
+  {
+   "key": "toimingu_tyyp",
+   "label_et": "Toimingu tüüp",
+   "unit": ""
+  },
+  {
+   "key": "kaitse_aste",
+   "label_et": "Kaitse aste",
+   "unit": "IP"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "juhtme_pikkus",
+   "label_et": "Juhtme pikkus",
+   "unit": "mm"
+  }
+ ]
+}

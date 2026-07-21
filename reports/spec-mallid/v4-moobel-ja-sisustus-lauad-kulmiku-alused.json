@@ -1,0 +1,41 @@
+{
+ "l3": "v4-moobel-ja-sisustus-lauad-kulmiku-alused",
+ "name": "Külmiku alused",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Toote kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "tööpinna_kandevõime",
+   "label_et": "Tööpinna kandevõime",
+   "unit": "kg"
+  },
+  {
+   "key": "salvestusruumi_kandevõime",
+   "label_et": "Salvestusruumi kandevõime",
+   "unit": "kg"
+  },
+  {
+   "key": "tööpinna_mõõdud",
+   "label_et": "Tööpinna mõõdud (L×L)",
+   "unit": "mm"
+  },
+  {
+   "key": "kogumõõdud",
+   "label_et": "Kogu mõõdud (L×W×H)",
+   "unit": "mm"
+  },
+  {
+   "key": "salvestusvarustus",
+   "label_et": "Salvestusvarustus",
+   "unit": "tüüp"
+  },
+  {
+   "key": "rataste_arv",
+   "label_et": "Rataste arv",
+   "unit": "tk"
+  }
+ ]
+}

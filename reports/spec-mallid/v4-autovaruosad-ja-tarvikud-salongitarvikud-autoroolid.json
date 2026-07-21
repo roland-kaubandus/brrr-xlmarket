@@ -1,0 +1,41 @@
+{
+ "l3": "v4-autovaruosad-ja-tarvikud-salongitarvikud-autoroolid",
+ "name": "Autoroolid",
+ "fields": [
+  {
+   "key": "yhilduv_automudel",
+   "label_et": "Ühilduv automudel",
+   "unit": ""
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "läbimõõt_mm",
+   "label_et": "Läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "kujundus",
+   "label_et": "Kujundus (D-kujuline/ümar)",
+   "unit": ""
+  },
+  {
+   "key": "kuumutus",
+   "label_et": "Kuumutuse funktsioon",
+   "unit": ""
+  },
+  {
+   "key": "käepide_materjal",
+   "label_et": "Käepide materjal",
+   "unit": ""
+  }
+ ]
+}

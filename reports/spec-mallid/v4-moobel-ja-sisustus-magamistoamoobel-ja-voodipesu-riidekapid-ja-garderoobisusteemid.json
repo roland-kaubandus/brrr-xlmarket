@@ -1,0 +1,46 @@
+{
+ "l3": "v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-riidekapid-ja-garderoobisusteemid",
+ "name": "Riidekapid ja garderoobisüsteemid",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "laius",
+   "label_et": "Laius",
+   "unit": "mm"
+  },
+  {
+   "key": "korgus",
+   "label_et": "Kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "sügavus",
+   "label_et": "Sügavus",
+   "unit": "mm"
+  },
+  {
+   "key": "riidepuu_varjad",
+   "label_et": "Riidepuude arv",
+   "unit": "tk"
+  },
+  {
+   "key": "sahtlite_arv",
+   "label_et": "Sahtlite arv",
+   "unit": "tk"
+  },
+  {
+   "key": "maksimaalne_koormus",
+   "label_et": "Maksimaalne koormus",
+   "unit": "kg"
+  }
+ ]
+}

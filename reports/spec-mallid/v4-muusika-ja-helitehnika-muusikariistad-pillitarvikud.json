@@ -1,0 +1,41 @@
+{
+ "l3": "v4-muusika-ja-helitehnika-muusikariistad-pillitarvikud",
+ "name": "Pillitarvikud",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "kandevoimsuus",
+   "label_et": "Kandevõimsus",
+   "unit": "kg"
+  },
+  {
+   "key": "reguleeritav_korgus",
+   "label_et": "Reguleeritav kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "maarimine",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "pooltavus",
+   "label_et": "Pöördatavad/reguleeritavad haakmed",
+   "unit": "°"
+  },
+  {
+   "key": "mahutavus",
+   "label_et": "Mahutavus",
+   "unit": "tk"
+  },
+  {
+   "key": "salvesti_maht",
+   "label_et": "Salvestusmaht",
+   "unit": "mm"
+  }
+ ]
+}

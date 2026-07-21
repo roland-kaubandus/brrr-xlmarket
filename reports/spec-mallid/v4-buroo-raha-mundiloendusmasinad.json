@@ -1,0 +1,46 @@
+{
+ "l3": "v4-buroo-raha-mundiloendusmasinad",
+ "name": "Raha- ja mündiloendusmasinad",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Energiatarbimine",
+   "unit": "W"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "loenduskiirus",
+   "label_et": "Loenduskiirus",
+   "unit": "tk/min"
+  },
+  {
+   "key": "mahutavus",
+   "label_et": "Mahutavus (sisendhopper)",
+   "unit": "tk"
+  },
+  {
+   "key": "myra",
+   "label_et": "Müra",
+   "unit": "dB"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "vastukvaliteedi_kontroll",
+   "label_et": "Vastukvaliteedi kontroll",
+   "unit": ""
+  }
+ ]
+}

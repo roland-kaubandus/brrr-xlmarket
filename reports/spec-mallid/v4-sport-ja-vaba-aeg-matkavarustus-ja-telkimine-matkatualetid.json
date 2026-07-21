@@ -1,0 +1,41 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-matkavarustus-ja-telkimine-matkatualetid",
+ "name": "Matkatualetid",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Jäätangi maht",
+   "unit": "L"
+  },
+  {
+   "key": "vee_maht",
+   "label_et": "Veetangi maht",
+   "unit": "L"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Toote kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "koormus_paigal",
+   "label_et": "Maksimaalne staatilise koormuse võimsus",
+   "unit": "kg"
+  },
+  {
+   "key": "fluši_arv",
+   "label_et": "Ligikaudne fluši arv",
+   "unit": "kord"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kokkupanemise_omadused",
+   "label_et": "Kokkupanemise omadused",
+   "unit": ""
+  }
+ ]
+}

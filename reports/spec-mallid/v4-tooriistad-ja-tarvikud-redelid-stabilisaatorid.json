@@ -1,0 +1,36 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-redelid-stabilisaatorid",
+ "name": "Redeli tasandajad",
+ "fields": [
+  {
+   "key": "max_load_capacity_kg",
+   "label_et": "Maksimaalne koormus",
+   "unit": "kg"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Toote kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "support_surface_length_mm",
+   "label_et": "Toetuspinna pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "adjustable_length_mm",
+   "label_et": "Reguleeritav pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "support_surface_height_range_mm",
+   "label_et": "Toetuspinna kõrguse vahemik",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  }
+ ]
+}

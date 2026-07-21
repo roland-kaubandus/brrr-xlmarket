@@ -1,0 +1,46 @@
+{
+ "l3": "v4-santehnika-kute-ja-ventilatsioon-dusisusteemid-ja-dusikabiinid-dusisusteemid",
+ "name": "Dušisüsteemid",
+ "fields": [
+  {
+   "key": "vooluhulk",
+   "label_et": "Maksimaalne vooluhulk",
+   "unit": "L/min"
+  },
+  {
+   "key": "dushi_pea_suurus",
+   "label_et": "Dušipea suurus",
+   "unit": "cm"
+  },
+  {
+   "key": "dushi_pea_kuju",
+   "label_et": "Dušipea kuju",
+   "unit": ""
+  },
+  {
+   "key": "paigaldus_tyyp",
+   "label_et": "Paigaldusviis",
+   "unit": ""
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "varvus",
+   "label_et": "Värv",
+   "unit": ""
+  },
+  {
+   "key": "slang_pikkus",
+   "label_et": "Käepideme slang pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "thread_suurus",
+   "label_et": "Keermestandardne G",
+   "unit": "inch"
+  }
+ ]
+}

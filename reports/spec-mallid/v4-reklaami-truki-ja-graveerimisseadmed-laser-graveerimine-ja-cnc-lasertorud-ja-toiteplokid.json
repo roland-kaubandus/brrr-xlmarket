@@ -1,0 +1,41 @@
+{
+ "l3": "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-lasertorud-ja-toiteplokid",
+ "name": "Lasertorud ja toiteplokid",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Väljundpinge (max)",
+   "unit": "V"
+  },
+  {
+   "key": "vool",
+   "label_et": "Väljundvool (max)",
+   "unit": "A"
+  },
+  {
+   "key": "toru_labamoot",
+   "label_et": "Toru välisläbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "toru_pikkus",
+   "label_et": "Toru pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "tootmisiga",
+   "label_et": "Tootmisiga",
+   "unit": "h"
+  }
+ ]
+}

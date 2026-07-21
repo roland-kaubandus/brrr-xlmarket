@@ -1,0 +1,36 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine-kett-talid",
+ "name": "Kett-talid",
+ "fields": [
+  {
+   "key": "kandevoimsus_kg",
+   "label_et": "Kandevõimekus",
+   "unit": "kg"
+  },
+  {
+   "key": "tostukorgus_m",
+   "label_et": "Tõstukõrgus",
+   "unit": "m"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "kette_labimaot_mm",
+   "label_et": "Kette läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "toemaksimaalne_joud_n",
+   "label_et": "Käsijõu maksimum",
+   "unit": "N"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  }
+ ]
+}

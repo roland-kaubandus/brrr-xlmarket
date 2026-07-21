@@ -1,0 +1,46 @@
+{
+ "l3": "v4-lemmikloomatarbed-transport-ja-autotarvikud-lemmikloomade-jalgrattahaagised",
+ "name": "Lemmikloomade jalgrattahaagised",
+ "fields": [
+  {
+   "key": "max_load_capacity",
+   "label_et": "Maksimaalne koormus",
+   "unit": "kg"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Haagise kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "pet_cabin_length",
+   "label_et": "Lemmikute kabiin - pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "pet_cabin_width",
+   "label_et": "Lemmikute kabiin - laius",
+   "unit": "mm"
+  },
+  {
+   "key": "pet_cabin_height",
+   "label_et": "Lemmikute kabiin - kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "wheel_size",
+   "label_et": "Ratta suurus",
+   "unit": "in"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjalid",
+   "unit": ""
+  },
+  {
+   "key": "dual_use",
+   "label_et": "Kahekordne kasutus (haagis + käru)",
+   "unit": ""
+  }
+ ]
+}

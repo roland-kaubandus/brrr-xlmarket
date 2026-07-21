@@ -1,0 +1,41 @@
+{
+ "l3": "v4-tervis-ripsme-valgustid",
+ "name": "Ripsme- ja iluteeninduse valgustid",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "kael",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "varit_temp_min",
+   "label_et": "Värvitemperatuur (min)",
+   "unit": "K"
+  },
+  {
+   "key": "varit_temp_max",
+   "label_et": "Värvitemperatuur (max)",
+   "unit": "K"
+  },
+  {
+   "key": "lamp_tyyp",
+   "label_et": "Lambi tüüp",
+   "unit": ""
+  },
+  {
+   "key": "paigaldus_tyyp",
+   "label_et": "Paigalduse tüüp",
+   "unit": ""
+  },
+  {
+   "key": "telefoni_holder",
+   "label_et": "Telefoni hoidik",
+   "unit": ""
+  }
+ ]
+}

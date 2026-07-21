@@ -1,0 +1,46 @@
+{
+ "l3": "v4-elektritarvikud-ja-valgustus-elektroonika-kaasaskantavad-monitorilaiendid",
+ "name": "Kaasaskantavad monitorilaiendid",
+ "fields": [
+  {
+   "key": "ekraani_diagonaal_inch",
+   "label_et": "Ekraani diagonaal",
+   "unit": "in"
+  },
+  {
+   "key": "eraldusvoimsus",
+   "label_et": "Eraldusvõime",
+   "unit": "px"
+  },
+  {
+   "key": "heledus",
+   "label_et": "Heledus",
+   "unit": "cd/m²"
+  },
+  {
+   "key": "värskendussamm",
+   "label_et": "Värskendussagedus",
+   "unit": "Hz"
+  },
+  {
+   "key": "kontrasti_suhe",
+   "label_et": "Kontrastisuhte",
+   "unit": "1"
+  },
+  {
+   "key": "värvigamma",
+   "label_et": "Värvigamma",
+   "unit": "%"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "ühendused",
+   "label_et": "Ühendusliideste arv",
+   "unit": "tk"
+  }
+ ]
+}

@@ -1,0 +1,46 @@
+{
+ "l3": "v4-elektritarvikud-ja-valgustus-lambid-ja-valgustid-kiudoptilised-tahistaevavalgustid",
+ "name": "Kiudoptilised tähistaevavalgustid",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "kiudoptika_punktide_arv",
+   "label_et": "Kiudoptika punktide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "kiudoptika_pikkus",
+   "label_et": "Kiudoptika pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "bluetooth_juhtimine",
+   "label_et": "Bluetooth juhtimine",
+   "unit": "boolean"
+  },
+  {
+   "key": "muusika_sinkroonimine",
+   "label_et": "Muusika sinkroonimine",
+   "unit": "boolean"
+  },
+  {
+   "key": "tootemperatuuri_vahemik",
+   "label_et": "Töötemperatuuri vahemik",
+   "unit": "°C"
+  }
+ ]
+}

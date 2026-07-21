@@ -1,0 +1,46 @@
+{
+ "l3": "v4-sport-auto-katusetelgid",
+ "name": "Auto- ja katusetelgid",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "pikkus",
+   "label_et": "Pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "laius",
+   "label_et": "Laius",
+   "unit": "mm"
+  },
+  {
+   "key": "korgus",
+   "label_et": "Kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "maarimine",
+   "label_et": "Veekindlus",
+   "unit": "mm"
+  },
+  {
+   "key": "isikute_arv",
+   "label_et": "Isikute arv",
+   "unit": "tk"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "tardi_tyyp",
+   "label_et": "Tardi tüüp",
+   "unit": ""
+  }
+ ]
+}

@@ -1,0 +1,46 @@
+{
+ "l3": "v4-tervis-hooldus-ja-ilu-isikuhooldusseadmed-valgusteraapiaseadmed",
+ "name": "Valgusteraapiaseadmed",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "lainepikkus",
+   "label_et": "Lainepikkus",
+   "unit": "nm"
+  },
+  {
+   "key": "led_arv",
+   "label_et": "LED-ide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "kiirgus",
+   "label_et": "Kiirgus (max)",
+   "unit": "mW/cm²"
+  },
+  {
+   "key": "aku_maht",
+   "label_et": "Aku maht",
+   "unit": "Wh"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Sisendpinge",
+   "unit": "V"
+  },
+  {
+   "key": "kasutusala",
+   "label_et": "Kasutusala",
+   "unit": "kategooria"
+  }
+ ]
+}

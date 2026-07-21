@@ -1,0 +1,36 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-moote-ja-markeriistad-moote-ja-seadistusplokkide-komplektid",
+ "name": "Mõõte- ja seadistusplokkide komplektid",
+ "fields": [
+  {
+   "key": "kogus_kappades",
+   "label_et": "Komplekti kogus (tk)",
+   "unit": "pcs"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "max_korgus",
+   "label_et": "Maksimaalse mõõteploki kõrgus",
+   "unit": "inch"
+  },
+  {
+   "key": "mootmiste_variatsioonid",
+   "label_et": "Mõõtmiste variatsioone",
+   "unit": "tk"
+  },
+  {
+   "key": "hoiukasti_marud",
+   "label_et": "Hoiukasti mõõtmed",
+   "unit": "mm"
+  },
+  {
+   "key": "pinna_tratment",
+   "label_et": "Pinna töötlemine",
+   "unit": ""
+  }
+ ]
+}

@@ -1,0 +1,36 @@
+{
+ "l3": "v4-aed-ja-aiatehnika-l1-muruvaltsid",
+ "name": "Muruvaltsid",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Mahutavus",
+   "unit": "L"
+  },
+  {
+   "key": "ketta_labamoot",
+   "label_et": "Trumli läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal (tühi)",
+   "unit": "kg"
+  },
+  {
+   "key": "kaal_täis",
+   "label_et": "Kaal (täis)",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": "-"
+  },
+  {
+   "key": "inlet_diameter",
+   "label_et": "Sisselaske läbimõõt",
+   "unit": "mm"
+  }
+ ]
+}

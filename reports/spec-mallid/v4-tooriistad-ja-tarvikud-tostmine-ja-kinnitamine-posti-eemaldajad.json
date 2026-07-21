@@ -1,0 +1,41 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine-posti-eemaldajad",
+ "name": "Posti eemaldajad",
+ "fields": [
+  {
+   "key": "pikkus_cm",
+   "label_et": "Posti eemaldaja pikkus",
+   "unit": "cm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "ahela_pikkus_cm",
+   "label_et": "Tõstmisahela pikkus",
+   "unit": "cm"
+  },
+  {
+   "key": "maksimaalne_post_diameetr_mm",
+   "label_et": "Maksimaalne posti läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kandevoimsus_kg",
+   "label_et": "Kandevõimekus",
+   "unit": "kg"
+  },
+  {
+   "key": "maarimine",
+   "label_et": "Maarimine",
+   "unit": ""
+  }
+ ]
+}

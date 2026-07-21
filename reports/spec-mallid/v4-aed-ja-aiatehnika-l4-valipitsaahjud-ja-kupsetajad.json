@@ -1,0 +1,36 @@
+{
+ "l3": "v4-aed-ja-aiatehnika-l4-valipitsaahjud-ja-kupsetajad",
+ "name": "Välipitsaahjud ja -küpsetajad",
+ "fields": [
+  {
+   "key": "kambri_maht",
+   "label_et": "Kambri maht (tolli/cm)",
+   "unit": "in/cm"
+  },
+  {
+   "key": "maksimaalne_temperatuur",
+   "label_et": "Maksimaalne temperatuur",
+   "unit": "°C/°F"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "kütuse_tüüp",
+   "label_et": "Kütuse tüüp",
+   "unit": "tekst"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Põhimaterjal",
+   "unit": "tekst"
+  },
+  {
+   "key": "portaablus",
+   "label_et": "Portaablus (ratad/kätekandja)",
+   "unit": "tekst"
+  }
+ ]
+}

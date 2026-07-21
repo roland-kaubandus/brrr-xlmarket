@@ -1,0 +1,41 @@
+{
+ "l3": "v4-suurkoogiseadmed-koogitarvikud-ja-noud-koogivilja-viilutajad-ja-tukeldajad",
+ "name": "Köögivilja viilutajad ja tükeldajad",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "ketta_labamoot",
+   "label_et": "Lõiketera suurus",
+   "unit": "mm"
+  },
+  {
+   "key": "poorlemiskiirus",
+   "label_et": "Lõiketera pöörlemiskiirus",
+   "unit": "RPM"
+  },
+  {
+   "key": "teradearv",
+   "label_et": "Teradearv / Funktsioonide arv",
+   "unit": ""
+  },
+  {
+   "key": "tyyp",
+   "label_et": "Tüüp (elektriline/käsitsi)",
+   "unit": ""
+  }
+ ]
+}

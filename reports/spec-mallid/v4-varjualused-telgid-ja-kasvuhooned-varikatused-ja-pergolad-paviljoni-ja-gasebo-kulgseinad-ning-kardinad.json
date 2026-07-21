@@ -1,0 +1,41 @@
+{
+ "l3": "v4-varjualused-telgid-ja-kasvuhooned-varikatused-ja-pergolad-paviljoni-ja-gasebo-kulgseinad-ning-kardinad",
+ "name": "Paviljoni ja gasebo külgseinad ning kardinad",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "sobiv_paviljoni_suurus",
+   "label_et": "Sobiv paviljoni suurus",
+   "unit": "m"
+  },
+  {
+   "key": "korgus",
+   "label_et": "Kõrgus",
+   "unit": "m"
+  },
+  {
+   "key": "paneelidearv",
+   "label_et": "Paneelide arv",
+   "unit": ""
+  },
+  {
+   "key": "vari",
+   "label_et": "Väri",
+   "unit": ""
+  },
+  {
+   "key": "veekindlus",
+   "label_et": "Veekindlus",
+   "unit": ""
+  }
+ ]
+}

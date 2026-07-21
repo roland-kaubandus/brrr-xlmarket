@@ -1,0 +1,46 @@
+{
+ "l3": "v4-tervis-hooldus-ja-ilu-salongi-ja-spaaseadmed-salongimatid",
+ "name": "Salongimatid",
+ "fields": [
+  {
+   "key": "pikkus_mm",
+   "label_et": "Pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "laius_mm",
+   "label_et": "Laius",
+   "unit": "mm"
+  },
+  {
+   "key": "paksus_mm",
+   "label_et": "Paksus",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "kuju",
+   "label_et": "Kuju",
+   "unit": ""
+  },
+  {
+   "key": "aussaare_laius_mm",
+   "label_et": "Aussaare laius",
+   "unit": "mm"
+  },
+  {
+   "key": "aussaare_pikkus_mm",
+   "label_et": "Aussaare pikkus",
+   "unit": "mm"
+  }
+ ]
+}

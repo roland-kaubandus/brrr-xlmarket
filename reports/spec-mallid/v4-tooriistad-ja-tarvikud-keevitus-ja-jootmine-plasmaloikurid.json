@@ -1,0 +1,46 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-keevitus-ja-jootmine-plasmaloikurid",
+ "name": "Plasmalõikurid",
+ "fields": [
+  {
+   "key": "keevitusvool",
+   "label_et": "Maksimaalne lõikevool",
+   "unit": "A"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Sisendpinge",
+   "unit": "V"
+  },
+  {
+   "key": "puhas_lõikevõimsus",
+   "label_et": "Puhas lõikesügavus",
+   "unit": "mm"
+  },
+  {
+   "key": "maksimaalne_lõikesügavus",
+   "label_et": "Maksimaalne lõikesügavus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "kontakti_tüüp",
+   "label_et": "Kontakti tüüp",
+   "unit": "tüüp"
+  },
+  {
+   "key": "2t_4t_funktsioon",
+   "label_et": "2T/4T funktsioon",
+   "unit": "bool"
+  },
+  {
+   "key": "igbt_tehnoloogia",
+   "label_et": "IGBT inverter",
+   "unit": "bool"
+  }
+ ]
+}

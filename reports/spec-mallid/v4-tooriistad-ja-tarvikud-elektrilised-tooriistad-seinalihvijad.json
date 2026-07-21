@@ -1,0 +1,46 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-elektrilised-tooriistad-seinalihvijad",
+ "name": "Seinalihvijad",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "poorlemiskiirus",
+   "label_et": "Pöörlemiskiirus (vahemik)",
+   "unit": "RPM"
+  },
+  {
+   "key": "ketta_labamoot",
+   "label_et": "Kettas läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "kiiruste_arv",
+   "label_et": "Kiirusteepositsioonide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "tolmu_kogumise_tyyp",
+   "label_et": "Tolmu kogumise tüüp",
+   "unit": ""
+  },
+  {
+   "key": "maarimine",
+   "label_et": "Märkimine",
+   "unit": ""
+  },
+  {
+   "key": "teleskoop_varras",
+   "label_et": "Teleskoovarsi pikkus",
+   "unit": "m"
+  }
+ ]
+}

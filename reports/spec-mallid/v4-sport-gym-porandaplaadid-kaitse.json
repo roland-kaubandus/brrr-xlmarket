@@ -1,0 +1,46 @@
+{
+ "l3": "v4-sport-gym-porandaplaadid-kaitse",
+ "name": "Gym-põrandaplaadid ja -kaitse",
+ "fields": [
+  {
+   "key": "paksus",
+   "label_et": "Paksus",
+   "unit": "mm"
+  },
+  {
+   "key": "kattepind",
+   "label_et": "Kattepind",
+   "unit": "m²"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "plaadi_suurus",
+   "label_et": "Plaadi suurus (ühe tüki)",
+   "unit": "mm"
+  },
+  {
+   "key": "kogus",
+   "label_et": "Plaatide kogus pakis",
+   "unit": "tk"
+  },
+  {
+   "key": "paigaldus_tyyp",
+   "label_et": "Paigalduse tüüp",
+   "unit": ""
+  },
+  {
+   "key": "vesi_tihti",
+   "label_et": "Veekindel",
+   "unit": ""
+  }
+ ]
+}

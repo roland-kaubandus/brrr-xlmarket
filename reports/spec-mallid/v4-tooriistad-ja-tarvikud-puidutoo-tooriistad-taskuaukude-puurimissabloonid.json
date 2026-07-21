@@ -1,0 +1,46 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-puidutoo-tooriistad-taskuaukude-puurimissabloonid",
+ "name": "Taskuaukude puurimisšabloonid",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "reguleerimise_vahemik",
+   "label_et": "Reguleerimise vahemik",
+   "unit": "mm"
+  },
+  {
+   "key": "poripesade_arv",
+   "label_et": "Põripesat/puuraukude arv",
+   "unit": "tk"
+  },
+  {
+   "key": "komplekti_osad",
+   "label_et": "Komplekti osad",
+   "unit": "tk"
+  },
+  {
+   "key": "klemmi_ulatus",
+   "label_et": "C-klemmi ulatus",
+   "unit": "mm"
+  },
+  {
+   "key": "puurimise_sügavus",
+   "label_et": "Puurimise sügavus",
+   "unit": "mm"
+  },
+  {
+   "key": "kihveli_suurus",
+   "label_et": "Puuribiti suurus",
+   "unit": "mm"
+  }
+ ]
+}

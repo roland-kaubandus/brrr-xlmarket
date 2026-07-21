@@ -1,0 +1,36 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-ouetegevus-seiklusrajad",
+ "name": "Seiklusrajad (zipline ja ninja)",
+ "fields": [
+  {
+   "key": "pikkus_m",
+   "label_et": "Zipline pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "maksimaalne_kaal",
+   "label_et": "Maksimaalne lubatud kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Zipline materjal",
+   "unit": ""
+  },
+  {
+   "key": "pidurdussysteem",
+   "label_et": "Pidurdussüsteem",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Komplekti kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "komplekti_sisaldus",
+   "label_et": "Põhikomponendid",
+   "unit": ""
+  }
+ ]
+}

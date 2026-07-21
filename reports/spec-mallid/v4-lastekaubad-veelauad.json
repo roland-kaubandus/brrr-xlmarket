@@ -1,0 +1,46 @@
+{
+ "l3": "v4-lastekaubad-veelauad",
+ "name": "Veelauad",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Mahutavus (vee/liiva)",
+   "unit": "L"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "pikkus",
+   "label_et": "Pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "laius",
+   "label_et": "Laius",
+   "unit": "mm"
+  },
+  {
+   "key": "korgus",
+   "label_et": "Kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "aksessuaarid_arv",
+   "label_et": "Aksessuaaride arv (tk)",
+   "unit": "tk"
+  },
+  {
+   "key": "vanus_miinimum",
+   "label_et": "Minimaalne vanus",
+   "unit": "aastat"
+  }
+ ]
+}

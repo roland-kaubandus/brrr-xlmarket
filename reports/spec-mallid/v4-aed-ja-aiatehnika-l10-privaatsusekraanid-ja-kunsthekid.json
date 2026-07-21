@@ -1,0 +1,46 @@
+{
+ "l3": "v4-aed-ja-aiatehnika-l10-privaatsusekraanid-ja-kunsthekid",
+ "name": "Privaatsusekraanid ja kunsthekid",
+ "fields": [
+  {
+   "key": "kogus",
+   "label_et": "Paneelide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "paneeli_suurus",
+   "label_et": "Ühe paneeli mõõtmed",
+   "unit": "cm"
+  },
+  {
+   "key": "kogupindala",
+   "label_et": "Kogupindala",
+   "unit": "m²"
+  },
+  {
+   "key": "paksus",
+   "label_et": "Paksus",
+   "unit": "cm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kogukaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "privaatsuse_tyyp",
+   "label_et": "Privaatsuse tüüp",
+   "unit": ""
+  },
+  {
+   "key": "tuulekindlus",
+   "label_et": "Tuulekindlus",
+   "unit": ""
+  }
+ ]
+}

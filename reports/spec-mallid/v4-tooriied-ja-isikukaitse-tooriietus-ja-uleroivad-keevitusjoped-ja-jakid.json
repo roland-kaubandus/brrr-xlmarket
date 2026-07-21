@@ -1,0 +1,46 @@
+{
+ "l3": "v4-tooriied-ja-isikukaitse-tooriietus-ja-uleroivad-keevitusjoped-ja-jakid",
+ "name": "Keevitusjoped ja -jakid",
+ "fields": [
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kude_kaal",
+   "label_et": "Kude kaal",
+   "unit": "oz"
+  },
+  {
+   "key": "rinnasuuris",
+   "label_et": "Rinna ümbermõõt",
+   "unit": "in"
+  },
+  {
+   "key": "hihavahetus",
+   "label_et": "Hiha pikkus",
+   "unit": "in"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "taskute_arv",
+   "label_et": "Taskute arv",
+   "unit": ""
+  },
+  {
+   "key": "veeimikindel",
+   "label_et": "Veeimikindel",
+   "unit": ""
+  },
+  {
+   "key": "nupp_tyyp",
+   "label_et": "Nupu tüüp",
+   "unit": ""
+  }
+ ]
+}

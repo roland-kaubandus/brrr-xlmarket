@@ -1,0 +1,46 @@
+{
+ "l3": "v4-aed-ja-aiatehnika-l7-aiamoobli-kaitsekatted",
+ "name": "Aiamööbli kaitsekatted",
+ "fields": [
+  {
+   "key": "pikkus",
+   "label_et": "Pikkus",
+   "unit": "cm"
+  },
+  {
+   "key": "laius",
+   "label_et": "Laius",
+   "unit": "cm"
+  },
+  {
+   "key": "korgus",
+   "label_et": "Kõrgus",
+   "unit": "cm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "vedelsoojakaitseklass",
+   "label_et": "Veekindlus (Oxford)",
+   "unit": "D"
+  },
+  {
+   "key": "ventilatsiooni_varustus",
+   "label_et": "Ventilatsiooni varustus",
+   "unit": ""
+  },
+  {
+   "key": "komplekti_tykid",
+   "label_et": "Komplekti tükid",
+   "unit": "tk"
+  }
+ ]
+}

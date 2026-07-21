@@ -1,0 +1,41 @@
+{
+ "l3": "v4-ladu-tooriistariiulid-kapid",
+ "name": "Tööriistariiulid ja -kapid",
+ "fields": [
+  {
+   "key": "koormus_paigutus",
+   "label_et": "Maksimaalne koormuse võimsus",
+   "unit": "kg"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Toote kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "pikkus",
+   "label_et": "Pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "korgus",
+   "label_et": "Kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "astmete_arv",
+   "label_et": "Astmete/kihtide arv",
+   "unit": ""
+  },
+  {
+   "key": "hoidjate_arv",
+   "label_et": "Hoidjate/aukude arv",
+   "unit": ""
+  }
+ ]
+}

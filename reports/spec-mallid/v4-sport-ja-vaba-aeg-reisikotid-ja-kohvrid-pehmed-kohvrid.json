@@ -1,0 +1,41 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-reisikotid-ja-kohvrid-pehmed-kohvrid",
+ "name": "Pehmed kohvrid",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "maht",
+   "label_et": "Maht",
+   "unit": "L"
+  },
+  {
+   "key": "suurus_cm",
+   "label_et": "Suurus (tolli)",
+   "unit": "in"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": "text"
+  },
+  {
+   "key": "laiendatav",
+   "label_et": "Laiendatav",
+   "unit": "bool"
+  },
+  {
+   "key": "veetihe",
+   "label_et": "Veekindel",
+   "unit": "bool"
+  },
+  {
+   "key": "rattad",
+   "label_et": "Pöörlevad rattad",
+   "unit": "bool"
+  }
+ ]
+}

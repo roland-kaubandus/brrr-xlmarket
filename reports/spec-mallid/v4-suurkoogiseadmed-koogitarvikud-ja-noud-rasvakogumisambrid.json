@@ -1,0 +1,41 @@
+{
+ "l3": "v4-suurkoogiseadmed-koogitarvikud-ja-noud-rasvakogumisambrid",
+ "name": "Rasvakogumisämbrid",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Mahutavus",
+   "unit": "L"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "kastrid",
+   "label_et": "Liikuvad kastrid",
+   "unit": "jah/ei"
+  },
+  {
+   "key": "lukk_mehhanism",
+   "label_et": "Lukuklambrid",
+   "unit": "jah/ei"
+  },
+  {
+   "key": "filterkott",
+   "label_et": "Filterkott kaasas",
+   "unit": "jah/ei"
+  },
+  {
+   "key": "katte_tyyp",
+   "label_et": "Kaitsekate",
+   "unit": ""
+  }
+ ]
+}

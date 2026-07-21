@@ -1,0 +1,46 @@
+{
+ "l3": "v4-santehnika-kute-ja-ventilatsioon-ventilatsioon-ja-ventilaatorid-ohuniisutajad-ja-jahutid",
+ "name": "Õhuniisutid",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Veemahuti maht",
+   "unit": "L"
+  },
+  {
+   "key": "niisutamise_vooluhtulk",
+   "label_et": "Niisutamise tootlikkus",
+   "unit": "mL/h"
+  },
+  {
+   "key": "kattealade_pindala",
+   "label_et": "Kattealade pindala",
+   "unit": "m²"
+  },
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "myra",
+   "label_et": "Müra tase",
+   "unit": "dB"
+  },
+  {
+   "key": "kiirused",
+   "label_et": "Kiiruste arv",
+   "unit": "tk"
+  },
+  {
+   "key": "taimer",
+   "label_et": "Taimer",
+   "unit": "h"
+  }
+ ]
+}

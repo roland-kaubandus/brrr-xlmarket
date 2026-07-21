@@ -1,0 +1,41 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-metallitoo-ja-sepatoo-metallipainutajad",
+ "name": "Metallipainutajad",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "paindevoime_umber",
+   "label_et": "Paindamisvõime (ümarmaterjalile)",
+   "unit": "mm"
+  },
+  {
+   "key": "paindevoime_flat",
+   "label_et": "Paindamisvõime (tasasele)",
+   "unit": "mm"
+  },
+  {
+   "key": "paindevoime_ruudule",
+   "label_et": "Paindamisvõime (ruudule)",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Konstruktsioonimaterjaali",
+   "unit": "tekst"
+  },
+  {
+   "key": "kaardi_lubamoot",
+   "label_et": "Maksimum rõngaläbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "otsa_pikkus",
+   "label_et": "Käepide/hoova pikkus",
+   "unit": "mm"
+  }
+ ]
+}

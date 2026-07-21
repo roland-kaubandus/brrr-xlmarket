@@ -1,0 +1,36 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-kasitooriistad-aasade-paigaldustooriistad",
+ "name": "Aasade paigaldustööriistad",
+ "fields": [
+  {
+   "key": "ketta_labamoot",
+   "label_et": "Silmuse suurus (mm)",
+   "unit": "mm"
+  },
+  {
+   "key": "grommeti_kogus",
+   "label_et": "Silmuste arv (tk)",
+   "unit": "pcs"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal (kg)",
+   "unit": "kg"
+  },
+  {
+   "key": "sobiv_paksus",
+   "label_et": "Sobiv materiali paksus (mm)",
+   "unit": "mm"
+  },
+  {
+   "key": "grommeti_korgus",
+   "label_et": "Silmuse kõrgus (mm)",
+   "unit": "mm"
+  },
+  {
+   "key": "barve_variandid",
+   "label_et": "Värvivariandid",
+   "unit": "text"
+  }
+ ]
+}

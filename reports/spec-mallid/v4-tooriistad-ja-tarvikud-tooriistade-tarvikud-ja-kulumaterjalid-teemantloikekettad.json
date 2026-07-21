@@ -1,0 +1,46 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-teemantloikekettad",
+ "name": "Teemantlõikekettad",
+ "fields": [
+  {
+   "key": "ketta_labamoot",
+   "label_et": "Ketta läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "segmendi_korgus",
+   "label_et": "Segmendi kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "hammas_tyyp",
+   "label_et": "Hambaste tüüp",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "kogus",
+   "label_et": "Kogus pakendis",
+   "unit": "tk"
+  },
+  {
+   "key": "suurte_auk",
+   "label_et": "Keskaugi läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "maarimine",
+   "label_et": "Märg-/kuivlõikus",
+   "unit": ""
+  },
+  {
+   "key": "materjal",
+   "label_et": "Aines",
+   "unit": ""
+  }
+ ]
+}

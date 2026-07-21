@@ -1,0 +1,41 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-veesport-ja-ujuvvahendid-kajaki-ja-sup-istmed",
+ "name": "Kajaki- ja SUP-istmed",
+ "fields": [
+  {
+   "key": "kork_mm",
+   "label_et": "Istme kork",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjalid",
+   "unit": ""
+  },
+  {
+   "key": "seljatugi",
+   "label_et": "Reguleeritav seljatugi",
+   "unit": ""
+  },
+  {
+   "key": "kogus",
+   "label_et": "Kogus pakis",
+   "unit": "tk"
+  },
+  {
+   "key": "volditav",
+   "label_et": "Volditav disain",
+   "unit": ""
+  },
+  {
+   "key": "veekindel_kott",
+   "label_et": "Veekindel hoiukott",
+   "unit": ""
+  }
+ ]
+}

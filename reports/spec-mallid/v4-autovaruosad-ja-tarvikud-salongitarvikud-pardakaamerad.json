@@ -1,0 +1,46 @@
+{
+ "l3": "v4-autovaruosad-ja-tarvikud-salongitarvikud-pardakaamerad",
+ "name": "Pardakaamerad",
+ "fields": [
+  {
+   "key": "pinge",
+   "label_et": "Toitepinge",
+   "unit": "V"
+  },
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "esikaamera_nurk",
+   "label_et": "Esikaamera vaatenurk",
+   "unit": "°"
+  },
+  {
+   "key": "tagakaamera_nurk",
+   "label_et": "Tagakaamera vaatenurk",
+   "unit": "°"
+  },
+  {
+   "key": "ekraan_suurus",
+   "label_et": "Ekraani suurus",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaardi_maht",
+   "label_et": "Kaartide komplekt",
+   "unit": "GB"
+  }
+ ]
+}

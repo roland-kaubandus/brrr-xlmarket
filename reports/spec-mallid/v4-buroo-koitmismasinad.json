@@ -1,0 +1,46 @@
+{
+ "l3": "v4-buroo-koitmismasinad",
+ "name": "Köitmismasinad",
+ "fields": [
+  {
+   "key": "kohavajadus_laius_mm",
+   "label_et": "Masina laius",
+   "unit": "mm"
+  },
+  {
+   "key": "kohavajadus_sügavus_mm",
+   "label_et": "Masina sügavus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "sidumisvoimsus_lehed",
+   "label_et": "Sidumismaht (paberid)",
+   "unit": "sheets"
+  },
+  {
+   "key": "max_sidumistevik_mm",
+   "label_et": "Maksimaalne sidumistevik",
+   "unit": "mm"
+  },
+  {
+   "key": "sopivad_paberi_suurused",
+   "label_et": "Sobivad paberisuurused",
+   "unit": "text"
+  },
+  {
+   "key": "side_tyyp",
+   "label_et": "Sidumise tüüp",
+   "unit": "text"
+  },
+  {
+   "key": "voimsus",
+   "label_et": "Elektrivõimsus",
+   "unit": "W"
+  }
+ ]
+}

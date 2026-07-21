@@ -1,0 +1,47 @@
+{
+ "l3": "v4-varjualused-telgid-ja-kasvuhooned-kuppel-mullitelgid",
+ "name": "Kuppel- ja mullitelgid",
+ "fields": [
+  {
+   "key": "pikkus_mm",
+   "label_et": "Pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "laius_mm",
+   "label_et": "Laius",
+   "unit": "mm"
+  },
+  {
+   "key": "korgus_mm",
+   "label_et": "Kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "tuulekiirus",
+   "label_et": "Max tuulekiirus",
+   "unit": "m/s",
+   "unit_orig": "mph"
+  },
+  {
+   "key": "lumekoormus_kg",
+   "label_et": "Max lumekoormus",
+   "unit": "kg"
+  },
+  {
+   "key": "mahutavus",
+   "label_et": "Mahutavus",
+   "unit": "inimest"
+  }
+ ]
+}

@@ -1,0 +1,41 @@
+{
+ "l3": "v4-tooriied-ja-isikukaitse-soojendusega-riietus-soojendusega-joped",
+ "name": "Soojendusega joped",
+ "fields": [
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kuumitustsoonid",
+   "label_et": "Kuumitustsooonide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "soojastamise_tasemed",
+   "label_et": "Soojastamise tasemed",
+   "unit": "tk"
+  },
+  {
+   "key": "maksimum_temperatuur",
+   "label_et": "Maksimaalne temperatuur",
+   "unit": "°C"
+  }
+ ]
+}

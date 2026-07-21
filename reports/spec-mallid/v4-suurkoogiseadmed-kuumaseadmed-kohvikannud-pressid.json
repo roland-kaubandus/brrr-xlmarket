@@ -1,0 +1,36 @@
+{
+ "l3": "v4-suurkoogiseadmed-kuumaseadmed-kohvikannud-pressid",
+ "name": "Kohvikannud ja pressid",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Maht",
+   "unit": "L"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "soojaisolatsioon",
+   "label_et": "Soojaisolatsioon (kahekihiline)",
+   "unit": ""
+  },
+  {
+   "key": "varv",
+   "label_et": "Värv",
+   "unit": ""
+  },
+  {
+   "key": "kaantaksja_tyyp",
+   "label_et": "Kaanetaksjate tüüp",
+   "unit": ""
+  }
+ ]
+}

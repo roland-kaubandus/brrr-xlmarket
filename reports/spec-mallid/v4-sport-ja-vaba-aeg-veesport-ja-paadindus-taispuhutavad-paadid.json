@@ -1,0 +1,46 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-veesport-ja-paadindus-taispuhutavad-paadid",
+ "name": "Täispuhutavad paadid",
+ "fields": [
+  {
+   "key": "isikute_arv",
+   "label_et": "Isikute arv",
+   "unit": "tk"
+  },
+  {
+   "key": "kandeevotus",
+   "label_et": "Kandeevõtus",
+   "unit": "kg"
+  },
+  {
+   "key": "pikkus",
+   "label_et": "Pikkus (puhutud)",
+   "unit": "mm"
+  },
+  {
+   "key": "laius",
+   "label_et": "Laius (puhutud)",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kambrite_arv",
+   "label_et": "Kambrite arv",
+   "unit": "tk"
+  },
+  {
+   "key": "elektrimootor",
+   "label_et": "Elektrimootor ühilduv",
+   "unit": ""
+  }
+ ]
+}

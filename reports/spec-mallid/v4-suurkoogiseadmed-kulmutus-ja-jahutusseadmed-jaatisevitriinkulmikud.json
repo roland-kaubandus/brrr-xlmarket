@@ -1,0 +1,41 @@
+{
+ "l3": "v4-suurkoogiseadmed-kulmutus-ja-jahutusseadmed-jaatisevitriinkulmikud",
+ "name": "Jäätisevitriinkülmikud",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Koguvõimsus",
+   "unit": "L"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Netokaal",
+   "unit": "kg"
+  },
+  {
+   "key": "min_temp",
+   "label_et": "Minimaalne temperatuur",
+   "unit": "°C"
+  },
+  {
+   "key": "max_temp",
+   "label_et": "Maksimaalne temperatuur",
+   "unit": "°C"
+  },
+  {
+   "key": "jahtutusmeetod",
+   "label_et": "Jahtutusmeetod",
+   "unit": ""
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  }
+ ]
+}

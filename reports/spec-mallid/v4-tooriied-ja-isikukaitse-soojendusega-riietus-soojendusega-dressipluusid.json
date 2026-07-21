@@ -1,0 +1,41 @@
+{
+ "l3": "v4-tooriied-ja-isikukaitse-soojendusega-riietus-soojendusega-dressipluusid",
+ "name": "Soojendusega dressipluusid",
+ "fields": [
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "soojustsoonide_arv",
+   "label_et": "Soojustsooniode arv",
+   "unit": "tk"
+  },
+  {
+   "key": "max_temperatura",
+   "label_et": "Maksimaalse soojus temperatuur",
+   "unit": "°C"
+  },
+  {
+   "key": "kuumutamise_kestvus",
+   "label_et": "Kuumutamise kestvus",
+   "unit": "h"
+  },
+  {
+   "key": "suurus",
+   "label_et": "Suurus",
+   "unit": ""
+  },
+  {
+   "key": "kinnitus_tyyp",
+   "label_et": "Kinnitus tüüp",
+   "unit": ""
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  }
+ ]
+}

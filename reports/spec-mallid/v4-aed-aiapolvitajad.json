@@ -1,0 +1,46 @@
+{
+ "l3": "v4-aed-aiapolvitajad",
+ "name": "Aiapõlvitajad",
+ "fields": [
+  {
+   "key": "kandevoimsus_kg",
+   "label_et": "Kandevõimsus",
+   "unit": "kg"
+  },
+  {
+   "key": "kael_laius_mm",
+   "label_et": "Põlvitamispadi laius",
+   "unit": "mm"
+  },
+  {
+   "key": "padi_paksus_mm",
+   "label_et": "Padi paksus",
+   "unit": "mm"
+  },
+  {
+   "key": "istumiskorgus_mm",
+   "label_et": "Istumise kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "kael_korgus_mm",
+   "label_et": "Põlvitamise kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal_kg",
+   "label_et": "Kaalu",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": "kategooria"
+  },
+  {
+   "key": "toorikotte_arv",
+   "label_et": "Töörikottide arv",
+   "unit": "tk"
+  }
+ ]
+}

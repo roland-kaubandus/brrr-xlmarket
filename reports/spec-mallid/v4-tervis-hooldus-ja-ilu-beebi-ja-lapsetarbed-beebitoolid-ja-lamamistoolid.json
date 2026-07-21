@@ -1,0 +1,47 @@
+{
+ "l3": "v4-tervis-hooldus-ja-ilu-beebi-ja-lapsetarbed-beebitoolid-ja-lamamistoolid",
+ "name": "Beebitoolid ja -lamamistoolid",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Nettokaal",
+   "unit": "kg"
+  },
+  {
+   "key": "maksimaalne_koormus",
+   "label_et": "Maksimaalne koormuse võimsus",
+   "unit": "kg"
+  },
+  {
+   "key": "poorlemiskiirus",
+   "label_et": "Kiikumise kiirused",
+   "unit": "RPM",
+   "unit_orig": "tasemed"
+  },
+  {
+   "key": "istumisasendi_reguleerimise_tasemed",
+   "label_et": "Istumisasendi reguleerimise tasemed",
+   "unit": "tasemed"
+  },
+  {
+   "key": "ohutusvoe_tyyp",
+   "label_et": "Ohutusvöö tüüp",
+   "unit": "punktid"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Peamine materjal",
+   "unit": "tekst"
+  },
+  {
+   "key": "funktsioonid",
+   "label_et": "Lisamuseused (Bluetooth, pult, jne)",
+   "unit": "arv"
+  },
+  {
+   "key": "voldimiskohasus",
+   "label_et": "Volditav/kaasaskantav",
+   "unit": "jah/ei"
+  }
+ ]
+}

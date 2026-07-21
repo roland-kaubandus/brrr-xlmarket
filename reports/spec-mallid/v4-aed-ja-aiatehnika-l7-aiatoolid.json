@@ -1,0 +1,41 @@
+{
+ "l3": "v4-aed-ja-aiatehnika-l7-aiatoolid",
+ "name": "Aiatoolid",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kaal (ühe tooli)",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kandevõimsus",
+   "label_et": "Kandevõimsus",
+   "unit": "kg"
+  },
+  {
+   "key": "kopikogus",
+   "label_et": "Komplekti suurus",
+   "unit": "tk"
+  },
+  {
+   "key": "kopse_maht",
+   "label_et": "Kopi mahutavus",
+   "unit": "mm"
+  },
+  {
+   "key": "volditav",
+   "label_et": "Volditav",
+   "unit": ""
+  },
+  {
+   "key": "varv",
+   "label_et": "Värvus",
+   "unit": ""
+  }
+ ]
+}

@@ -1,0 +1,36 @@
+{
+ "l3": "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-ohupuhuri-komplektid-laserloikuritele",
+ "name": "Õhupuhuri komplektid laserlõikuritele",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Sisendvõimsus",
+   "unit": "W"
+  },
+  {
+   "key": "ohuvool",
+   "label_et": "Maksimaalne õhuvool",
+   "unit": "L/min"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Toitepinge",
+   "unit": "V"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Neto kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Peamine materjal",
+   "unit": ""
+  },
+  {
+   "key": "maarimine",
+   "label_et": "Ühilduvus laserlõikuritega",
+   "unit": "W"
+  }
+ ]
+}

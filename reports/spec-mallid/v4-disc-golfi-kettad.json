@@ -1,0 +1,46 @@
+{
+ "l3": "v4-disc-golfi-kettad",
+ "name": "Disc golfi kettad",
+ "fields": [
+  {
+   "key": "ketta_labamoot",
+   "label_et": "Ketta läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "ketta_paksus",
+   "label_et": "Ketta paksus",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaalu (komplekti)",
+   "unit": "kg"
+  },
+  {
+   "key": "kettade_arv",
+   "label_et": "Kettade arv komplektis",
+   "unit": "tk"
+  },
+  {
+   "key": "ketta_tyyp",
+   "label_et": "Ketta tüüp (putter/mid-range/driver)",
+   "unit": ""
+  },
+  {
+   "key": "pdga_sertifitseeritud",
+   "label_et": "PDGA sertifitseeritud",
+   "unit": ""
+  },
+  {
+   "key": "kaasas_mugavus",
+   "label_et": "Kaasas mugavus (markeri-ketas/seljakott)",
+   "unit": ""
+  }
+ ]
+}

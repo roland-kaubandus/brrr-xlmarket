@@ -1,0 +1,41 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-veesport-ja-ujuvvahendid-paadi-soukruvid",
+ "name": "Paadi sõukruvid (propellerid)",
+ "fields": [
+  {
+   "key": "diameter_mm",
+   "label_et": "Propelleri läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "pitch_mm",
+   "label_et": "Samm (Pitch)",
+   "unit": "mm"
+  },
+  {
+   "key": "blade_count",
+   "label_et": "Labade arv",
+   "unit": "tk"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "spline_teeth",
+   "label_et": "Hammasratta hambad",
+   "unit": "tk"
+  },
+  {
+   "key": "rotation_direction",
+   "label_et": "Pöörlemissuund",
+   "unit": ""
+  }
+ ]
+}

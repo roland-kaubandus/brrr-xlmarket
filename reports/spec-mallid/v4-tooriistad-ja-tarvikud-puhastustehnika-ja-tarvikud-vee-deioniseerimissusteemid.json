@@ -1,0 +1,41 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-puhastustehnika-ja-tarvikud-vee-deioniseerimissusteemid",
+ "name": "Vee deioniseerimissüsteemid",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Vaigust mahutite kogumahu",
+   "unit": "L"
+  },
+  {
+   "key": "rohk",
+   "label_et": "Sisselaskeavamise tööriistade rõhk",
+   "unit": "bar"
+  },
+  {
+   "key": "vooluhulk",
+   "label_et": "Maksimaalne vooluhulk",
+   "unit": "L/min"
+  },
+  {
+   "key": "tds_valimine",
+   "label_et": "TDS-i väljundtase",
+   "unit": "ppm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Seadme kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "temperatuuri_vahemik",
+   "label_et": "Töötemperatuuri vahemik",
+   "unit": "°C"
+  },
+  {
+   "key": "maarimine",
+   "label_et": "Bypass-klapp",
+   "unit": "jah/ei"
+  }
+ ]
+}

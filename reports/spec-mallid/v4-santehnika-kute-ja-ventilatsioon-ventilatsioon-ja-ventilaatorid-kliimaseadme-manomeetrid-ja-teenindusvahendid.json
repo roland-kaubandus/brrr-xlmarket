@@ -1,0 +1,46 @@
+{
+ "l3": "v4-santehnika-kute-ja-ventilatsioon-ventilatsioon-ja-ventilaatorid-kliimaseadme-manomeetrid-ja-teenindusvahendid",
+ "name": "Külmaaine-manomeetrid ja laadimiskaalud",
+ "fields": [
+  {
+   "key": "tyyp",
+   "label_et": "Tüüp",
+   "unit": "3-way/4-way/kaal"
+  },
+  {
+   "key": "rohk_max",
+   "label_et": "Maksimaalne rõhk",
+   "unit": "bar"
+  },
+  {
+   "key": "rohk_min",
+   "label_et": "Minimaalne rõhk",
+   "unit": "bar"
+  },
+  {
+   "key": "torupaelt_pikkus",
+   "label_et": "Torupikkus",
+   "unit": "m"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "jahutusaine_uhildus",
+   "label_et": "Jahutusaine ühilduvus",
+   "unit": "ühikut"
+  },
+  {
+   "key": "kaalimine_paisu",
+   "label_et": "Täpsus",
+   "unit": "g"
+  },
+  {
+   "key": "mahutavus",
+   "label_et": "Mahutavus (kaalud)",
+   "unit": "kg"
+  }
+ ]
+}

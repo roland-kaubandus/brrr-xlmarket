@@ -1,0 +1,41 @@
+{
+ "l3": "v4-elektritarvikud-ja-valgustus-toitejaotus-ja-jaotussusteemid-kaablirullid-ja-pikenduskaablid",
+ "name": "Kaablirullid ja pikenduskaablid",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Maksimaalne koormus",
+   "unit": "W"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "kaabli_pikkus",
+   "label_et": "Kaabli pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "juhtme_ristloige",
+   "label_et": "Juhtme ristlõige",
+   "unit": "mm²"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Juhtme materjal",
+   "unit": ""
+  },
+  {
+   "key": "montaaz_tyyp",
+   "label_et": "Paigaldusviis",
+   "unit": ""
+  }
+ ]
+}

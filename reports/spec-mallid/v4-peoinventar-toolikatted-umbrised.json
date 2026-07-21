@@ -1,0 +1,46 @@
+{
+ "l3": "v4-peoinventar-toolikatted-umbrised",
+ "name": "Toolikatted ja -ümbrised",
+ "fields": [
+  {
+   "key": "kogus",
+   "label_et": "Kogus (tk)",
+   "unit": "tk"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kogukaal",
+   "unit": "kg"
+  },
+  {
+   "key": "laius_max",
+   "label_et": "Maksimaalne laius",
+   "unit": "mm"
+  },
+  {
+   "key": "sügavus_max",
+   "label_et": "Maksimaalne sügavus",
+   "unit": "mm"
+  },
+  {
+   "key": "korgus_max",
+   "label_et": "Maksimaalne kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "varv",
+   "label_et": "Värvus",
+   "unit": ""
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kujundus_tyyp",
+   "label_et": "Kujunduse tüüp",
+   "unit": ""
+  }
+ ]
+}

@@ -1,0 +1,41 @@
+{
+ "l3": "v4-santehnika-kute-kaminad-simsid",
+ "name": "Kaminasimsid",
+ "fields": [
+  {
+   "key": "pikkus_mm",
+   "label_et": "Pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "sügavus_mm",
+   "label_et": "Sügavus",
+   "unit": "mm"
+  },
+  {
+   "key": "kõrgus_mm",
+   "label_et": "Kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaalu",
+   "unit": "kg"
+  },
+  {
+   "key": "kandevõime_kg",
+   "label_et": "Kandevõime",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "varv",
+   "label_et": "Värv",
+   "unit": ""
+  }
+ ]
+}

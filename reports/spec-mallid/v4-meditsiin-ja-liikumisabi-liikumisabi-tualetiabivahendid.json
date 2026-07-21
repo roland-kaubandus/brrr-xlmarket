@@ -1,0 +1,46 @@
+{
+ "l3": "v4-meditsiin-ja-liikumisabi-liikumisabi-tualetiabivahendid",
+ "name": "Tõstetud WC-istmed",
+ "fields": [
+  {
+   "key": "kandevoimsus",
+   "label_et": "Kandevõime",
+   "unit": "kg"
+  },
+  {
+   "key": "tostekorgus",
+   "label_et": "Tõstekõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Toote kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Peamine materjal",
+   "unit": ""
+  },
+  {
+   "key": "istme_laius",
+   "label_et": "Istme laius",
+   "unit": "mm"
+  },
+  {
+   "key": "kasitiigid",
+   "label_et": "Käsitiiged",
+   "unit": ""
+  },
+  {
+   "key": "paigutamise_tyyp",
+   "label_et": "Paigutamise tüüp",
+   "unit": ""
+  },
+  {
+   "key": "korguse_reguleeritavus",
+   "label_et": "Kõrguse reguleeritavus",
+   "unit": ""
+  }
+ ]
+}

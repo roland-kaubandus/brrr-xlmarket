@@ -1,0 +1,41 @@
+{
+ "l3": "v4-suurkoogiseadmed-piiritus-ja-destilleerimisaparaadid",
+ "name": "Piiritus- ja destilleerimisaparaadid",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Boileri maht",
+   "unit": "L"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kogukaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "ketta_labamoot",
+   "label_et": "Vaskspiraali läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "voimsus",
+   "label_et": "Pumba võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Toitepinge",
+   "unit": "V"
+  },
+  {
+   "key": "destillaatprodukt",
+   "label_et": "Destillaadi kogus",
+   "unit": "kg"
+  }
+ ]
+}

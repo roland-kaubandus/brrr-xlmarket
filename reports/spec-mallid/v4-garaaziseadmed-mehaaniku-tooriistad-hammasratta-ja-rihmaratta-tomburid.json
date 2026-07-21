@@ -1,0 +1,36 @@
+{
+ "l3": "v4-garaaziseadmed-mehaaniku-tooriistad-hammasratta-ja-rihmaratta-tomburid",
+ "name": "Hammasratta- ja rihmaratta tõmburid",
+ "fields": [
+  {
+   "key": "max_joud_tonnides",
+   "label_et": "Maksimaalne tõmbejõud",
+   "unit": "t"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "max_laetus",
+   "label_et": "Maksimaalne hammasratta/rihmaratta läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "leuad_arv",
+   "label_et": "Leukade arv (2 või 3)",
+   "unit": "tk"
+  },
+  {
+   "key": "teljehoog",
+   "label_et": "Telje käigukaugus",
+   "unit": "mm"
+  },
+  {
+   "key": "jaahidrauliline",
+   "label_et": "Jõuallika tüüp",
+   "unit": "tüüp"
+  }
+ ]
+}

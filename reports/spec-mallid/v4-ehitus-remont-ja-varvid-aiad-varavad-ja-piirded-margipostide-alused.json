@@ -1,0 +1,46 @@
+{
+ "l3": "v4-ehitus-remont-ja-varvid-aiad-varavad-ja-piirded-margipostide-alused",
+ "name": "Märgipostide alused",
+ "fields": [
+  {
+   "key": "pikkus_mm",
+   "label_et": "Pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "paksus_mm",
+   "label_et": "Seinapaksus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "augu_arv",
+   "label_et": "Eelkaevatud aukude arv",
+   "unit": "tk"
+  },
+  {
+   "key": "augu_labimaot",
+   "label_et": "Augu läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "liikuv",
+   "label_et": "Liikuv alus",
+   "unit": ""
+  },
+  {
+   "key": "kattekihike",
+   "label_et": "Pinnakatte",
+   "unit": ""
+  }
+ ]
+}

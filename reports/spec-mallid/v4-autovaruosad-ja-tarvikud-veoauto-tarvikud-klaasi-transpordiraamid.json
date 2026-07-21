@@ -1,0 +1,41 @@
+{
+ "l3": "v4-autovaruosad-ja-tarvikud-veoauto-tarvikud-klaasi-transpordiraamid",
+ "name": "Klaasi transpordiraamid",
+ "fields": [
+  {
+   "key": "klaasi_maht",
+   "label_et": "Klaasi mahutavus (liitreid)",
+   "unit": "lite"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "laius",
+   "label_et": "Laius",
+   "unit": "mm"
+  },
+  {
+   "key": "sügavus",
+   "label_et": "Sügavus",
+   "unit": "mm"
+  },
+  {
+   "key": "korgus",
+   "label_et": "Kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "jahutus",
+   "label_et": "Jahutuspadja tüüp",
+   "unit": ""
+  }
+ ]
+}

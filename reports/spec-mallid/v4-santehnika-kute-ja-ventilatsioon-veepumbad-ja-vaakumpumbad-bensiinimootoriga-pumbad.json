@@ -1,0 +1,46 @@
+{
+ "l3": "v4-santehnika-kute-ja-ventilatsioon-veepumbad-ja-vaakumpumbad-bensiinimootoriga-pumbad",
+ "name": "Bensiinimootoriga pumbad",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "vooluhulk",
+   "label_et": "Vooluhulk",
+   "unit": "L/min"
+  },
+  {
+   "key": "toru_diameetr",
+   "label_et": "Sissevõtu/väljunditoru läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "voimalik_tostekorgus",
+   "label_et": "Võimalik tõstekõrgus",
+   "unit": "m"
+  },
+  {
+   "key": "imusuurus",
+   "label_et": "Imemiskõrgus",
+   "unit": "m"
+  },
+  {
+   "key": "kütusemahuti",
+   "label_et": "Kütusemahuti maht",
+   "unit": "L"
+  },
+  {
+   "key": "kool",
+   "label_et": "Kuulub kasutada",
+   "unit": "h"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  }
+ ]
+}

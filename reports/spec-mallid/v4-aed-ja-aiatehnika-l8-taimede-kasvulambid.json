@@ -1,0 +1,41 @@
+{
+ "l3": "v4-aed-ja-aiatehnika-l8-taimede-kasvulambid",
+ "name": "Taimede kasvulambid",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "spektri_ulatus",
+   "label_et": "Spektri ulatus",
+   "unit": "nm"
+  },
+  {
+   "key": "heleduse_astmed",
+   "label_et": "Heleduse reguleerimise astmed",
+   "unit": "tk"
+  },
+  {
+   "key": "kate_pindala",
+   "label_et": "Katetava pindala",
+   "unit": "ft²"
+  },
+  {
+   "key": "kael_voimalus",
+   "label_et": "Aheldamise võimalus",
+   "unit": "tk"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  }
+ ]
+}

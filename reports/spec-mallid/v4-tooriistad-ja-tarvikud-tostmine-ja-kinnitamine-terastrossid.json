@@ -1,0 +1,46 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine-terastrossid",
+ "name": "Terastrossid",
+ "fields": [
+  {
+   "key": "ketta_labamoot",
+   "label_et": "Kaabli läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "maht",
+   "label_et": "Kaabli pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "rohk",
+   "label_et": "Purutusjõud",
+   "unit": "kN"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": "tüüp"
+  },
+  {
+   "key": "konstruktsioon",
+   "label_et": "Ehitus (juhtmete arv)",
+   "unit": "x"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "maarimine",
+   "label_et": "Pinnakaitse",
+   "unit": "tüüp"
+  },
+  {
+   "key": "tootjagarantii",
+   "label_et": "Kasutuskoht",
+   "unit": "kategooria"
+  }
+ ]
+}

@@ -1,0 +1,41 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-sulatustiiglid",
+ "name": "Sulatustiiglid",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Mahutavus (ligikaudne)",
+   "unit": "L"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "maksimaalne_temperatuur",
+   "label_et": "Maksimaalne töötemperatuur",
+   "unit": "°C"
+  },
+  {
+   "key": "sisemine_diameet",
+   "label_et": "Sisemine läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "korgus",
+   "label_et": "Kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "puhtus",
+   "label_et": "Materjali puhtus",
+   "unit": "%"
+  }
+ ]
+}

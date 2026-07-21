@@ -1,0 +1,46 @@
+{
+ "l3": "v4-sport-mull-sporditelgid",
+ "name": "Mull- ja sporditelgid",
+ "fields": [
+  {
+   "key": "mahutavus_inimesed",
+   "label_et": "Mahutavus (inimesed)",
+   "unit": "tk"
+  },
+  {
+   "key": "pindala",
+   "label_et": "Pindala",
+   "unit": "m²"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": "text"
+  },
+  {
+   "key": "tpu_paksus",
+   "label_et": "TPU kattekihi paksus",
+   "unit": "mm"
+  },
+  {
+   "key": "kiired_pop_up",
+   "label_et": "Kiired pop-up külgede arv",
+   "unit": "tk"
+  },
+  {
+   "key": "ventilatsioon",
+   "label_et": "Ventilatsiooniaknate arv",
+   "unit": "tk"
+  },
+  {
+   "key": "vaade",
+   "label_et": "Vaatevinkel",
+   "unit": "°"
+  }
+ ]
+}

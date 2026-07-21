@@ -1,0 +1,46 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-suruohutooriistad-pneumaatilised-naelapustolid",
+ "name": "Pneumaatilised naelapüstolid",
+ "fields": [
+  {
+   "key": "rohk_min_max",
+   "label_et": "Töörõhk vahemik",
+   "unit": "bar"
+  },
+  {
+   "key": "naela_pikkus_min_max",
+   "label_et": "Naela pikkus vahemik",
+   "unit": "mm"
+  },
+  {
+   "key": "naela_shank_diameetr",
+   "label_et": "Naela šangi minimaalne läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "ajakirja_mahtuvus",
+   "label_et": "Ajakirja mahtuvus (naelade arv)",
+   "unit": "tk"
+  },
+  {
+   "key": "syvausregulatsioon",
+   "label_et": "Süvausregulatsioon",
+   "unit": "jah/ei"
+  },
+  {
+   "key": "kollimatsiooni_nurk",
+   "label_et": "Kollimatsiooni nurk",
+   "unit": "°"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Peamised materjalid",
+   "unit": "tekstis"
+  }
+ ]
+}

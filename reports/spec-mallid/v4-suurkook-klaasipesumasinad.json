@@ -1,0 +1,36 @@
+{
+ "l3": "v4-suurkook-klaasipesumasinad",
+ "name": "Klaasipesumasinad",
+ "fields": [
+  {
+   "key": "tootlikkus_klaasid_tunnis",
+   "label_et": "Tootlikkus (klaase/tunnis)",
+   "unit": "cups/h"
+  },
+  {
+   "key": "harjade_arv",
+   "label_et": "Harjade arv",
+   "unit": "tk"
+  },
+  {
+   "key": "klaasi_diameetri_vahemik",
+   "label_et": "Klaasi diameetri vahemik",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "muara",
+   "label_et": "Müra",
+   "unit": "dB"
+  },
+  {
+   "key": "mahud_l_x_s_x_k",
+   "label_et": "Mõõtmed (pikkus × laius × kõrgus)",
+   "unit": "mm"
+  }
+ ]
+}

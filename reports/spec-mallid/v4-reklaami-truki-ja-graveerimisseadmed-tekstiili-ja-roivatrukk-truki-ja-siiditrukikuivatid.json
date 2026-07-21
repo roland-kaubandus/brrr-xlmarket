@@ -1,0 +1,36 @@
+{
+ "l3": "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-truki-ja-siiditrukikuivatid",
+ "name": "Trüki- ja siiditrükikuivatid",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "kuivatusala",
+   "label_et": "Kuivatusala",
+   "unit": "cm²"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "temp_max",
+   "label_et": "Maksimaalne temperatuur",
+   "unit": "°C"
+  },
+  {
+   "key": "korgus_reguleeritav",
+   "label_et": "Reguleeritav kõrgus",
+   "unit": "cm"
+  }
+ ]
+}

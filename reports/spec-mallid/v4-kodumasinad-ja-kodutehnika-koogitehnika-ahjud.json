@@ -1,0 +1,36 @@
+{
+ "l3": "v4-kodumasinad-ja-kodutehnika-koogitehnika-ahjud",
+ "name": "Ahjud",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "maht",
+   "label_et": "Mahutavus",
+   "unit": "L"
+  },
+  {
+   "key": "max_temp",
+   "label_et": "Maksimaalne temperatuur",
+   "unit": "°C"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "keetmise_funktsioonid",
+   "label_et": "Küpsetus-funktsioonide arv",
+   "unit": "tk"
+  }
+ ]
+}

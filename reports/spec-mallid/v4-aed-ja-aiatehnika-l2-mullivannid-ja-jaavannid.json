@@ -1,0 +1,36 @@
+{
+ "l3": "v4-aed-ja-aiatehnika-l2-mullivannid-ja-jaavannid",
+ "name": "Mullivannid",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Vee maht",
+   "unit": "L"
+  },
+  {
+   "key": "istekohad",
+   "label_et": "Istekohad",
+   "unit": "tk"
+  },
+  {
+   "key": "jetsid",
+   "label_et": "Jetsid",
+   "unit": "tk"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "vormivorm",
+   "label_et": "Vorm",
+   "unit": "ring/ruut"
+  },
+  {
+   "key": "soojustamine_kiirus",
+   "label_et": "Soojustamise kiirus",
+   "unit": "°C/h"
+  }
+ ]
+}

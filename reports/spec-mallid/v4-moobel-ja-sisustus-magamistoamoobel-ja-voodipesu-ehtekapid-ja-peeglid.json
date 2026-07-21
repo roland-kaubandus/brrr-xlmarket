@@ -1,0 +1,46 @@
+{
+ "l3": "v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-ehtekapid-ja-peeglid",
+ "name": "Ehtekapid ja -laekad",
+ "fields": [
+  {
+   "key": "kõrgus_mm",
+   "label_et": "Kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "paigaldusviis",
+   "label_et": "Paigaldusviis",
+   "unit": ""
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "peegli_laius_mm",
+   "label_et": "Peegli laius",
+   "unit": "mm"
+  },
+  {
+   "key": "led_valgustus",
+   "label_et": "LED valgustus",
+   "unit": ""
+  },
+  {
+   "key": "pöörlemistoimetus",
+   "label_et": "360° pöörlemistoimetus",
+   "unit": ""
+  },
+  {
+   "key": "sahtlite_arv",
+   "label_et": "Sahtlite arv",
+   "unit": ""
+  }
+ ]
+}

@@ -1,0 +1,46 @@
+{
+ "l3": "v4-tooriistad-otsikute-padrunite-hoidikud",
+ "name": "Otsikute ja padrunite hoidikud",
+ "fields": [
+  {
+   "key": "mahutavus_tükkides",
+   "label_et": "Mahutavus (tükid)",
+   "unit": "pcs"
+  },
+  {
+   "key": "sahtlite_arv",
+   "label_et": "Sahtlite arv",
+   "unit": "tk"
+  },
+  {
+   "key": "jaotuste_arv",
+   "label_et": "Jaotuste arv",
+   "unit": "tk"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "sokkeli_suurus",
+   "label_et": "Sokkeli suurus",
+   "unit": "inch"
+  },
+  {
+   "key": "magneetiline",
+   "label_et": "Magneetiline alus",
+   "unit": "jah/ei"
+  },
+  {
+   "key": "kaasaskantav",
+   "label_et": "Kaasaskantav",
+   "unit": "jah/ei"
+  }
+ ]
+}

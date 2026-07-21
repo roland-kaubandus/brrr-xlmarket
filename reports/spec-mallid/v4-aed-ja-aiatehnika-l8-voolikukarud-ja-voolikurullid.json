@@ -1,0 +1,46 @@
+{
+ "l3": "v4-aed-ja-aiatehnika-l8-voolikukarud-ja-voolikurullid",
+ "name": "Voolikukärud ja voolikurullid",
+ "fields": [
+  {
+   "key": "vooliku_pikkus",
+   "label_et": "Vooliku pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "vooliku_diameeter",
+   "label_et": "Vooliku läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "paigaldus_tyyp",
+   "label_et": "Paigalduse tüüp",
+   "unit": "kategooria"
+  },
+  {
+   "key": "trell_diameeter",
+   "label_et": "Trelli läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "rattad",
+   "label_et": "Rattad",
+   "unit": "arv"
+  },
+  {
+   "key": "hoiutassi",
+   "label_et": "Hoiutassi olemasolu",
+   "unit": "jah/ei"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": "kategooria"
+  }
+ ]
+}

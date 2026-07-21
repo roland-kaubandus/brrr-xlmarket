@@ -1,0 +1,36 @@
+{
+ "l3": "v4-garaaz-gaasiballooni-soojendid",
+ "name": "Gaasiballooni soojendid",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "silindri_maht",
+   "label_et": "Silindri maht",
+   "unit": "kg"
+  },
+  {
+   "key": "temp_reguleerimise_vahemik",
+   "label_et": "Temperatuuri reguleerimise vahemik",
+   "unit": "°C"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "opereerimise_temp_vahemik",
+   "label_et": "Opereerimise temperatuuri vahemik",
+   "unit": "°C"
+  }
+ ]
+}

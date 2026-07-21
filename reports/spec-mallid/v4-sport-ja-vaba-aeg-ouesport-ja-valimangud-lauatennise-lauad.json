@@ -1,0 +1,46 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-lauatennise-lauad",
+ "name": "Lauatennise lauad",
+ "fields": [
+  {
+   "key": "pikkus_mm",
+   "label_et": "Laua pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "laius_mm",
+   "label_et": "Laua laius",
+   "unit": "mm"
+  },
+  {
+   "key": "korgus_mm",
+   "label_et": "Laua kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Laua materjal",
+   "unit": ""
+  },
+  {
+   "key": "tahvli_paksus_mm",
+   "label_et": "Tahvli paksus",
+   "unit": "mm"
+  },
+  {
+   "key": "kokkupaigutatud_pikkus_mm",
+   "label_et": "Kokkupandud pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "kokkupaigutatud_laius_mm",
+   "label_et": "Kokkupandud laius",
+   "unit": "mm"
+  }
+ ]
+}

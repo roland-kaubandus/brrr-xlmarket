@@ -1,0 +1,41 @@
+{
+ "l3": "v4-santehnika-kute-ja-ventilatsioon-konvektorid",
+ "name": "Konvektorid",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Nimivõimsus",
+   "unit": "W"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "soojusala",
+   "label_et": "Soojendatav pindala",
+   "unit": "m²"
+  },
+  {
+   "key": "temp_vahemik",
+   "label_et": "Temperatuuri reguleerimise vahemik",
+   "unit": "°C"
+  },
+  {
+   "key": "paigutuse_viis",
+   "label_et": "Paigutuse võimalused",
+   "unit": ""
+  },
+  {
+   "key": "myra",
+   "label_et": "Müra tase",
+   "unit": "dB"
+  }
+ ]
+}

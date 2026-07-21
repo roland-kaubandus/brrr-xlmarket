@@ -1,0 +1,41 @@
+{
+ "l3": "v4-ehitus-remont-ja-varvid-isolatsioon-ja-soojustus-tolmubarjaarid",
+ "name": "Tolmubarjäärid ja -tõkkesüsteemid",
+ "fields": [
+  {
+   "key": "max_korgus",
+   "label_et": "Maksimaalne kõrgus",
+   "unit": "ft"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "barjaar_pindala",
+   "label_et": "Barjääri pindala",
+   "unit": "m²"
+  },
+  {
+   "key": "barjaar_laius",
+   "label_et": "Barjääri laius",
+   "unit": "ft"
+  },
+  {
+   "key": "barjaar_korgus",
+   "label_et": "Barjääri kõrgus",
+   "unit": "ft"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "sulgemismehhanismm",
+   "label_et": "Sulgemismehhanism",
+   "unit": ""
+  }
+ ]
+}

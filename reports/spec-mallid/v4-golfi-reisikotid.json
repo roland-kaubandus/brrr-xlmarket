@@ -1,0 +1,41 @@
+{
+ "l3": "v4-golfi-reisikotid",
+ "name": "Golfi reisikotid ja -kaaned",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "pikkus",
+   "label_et": "Pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "laius",
+   "label_et": "Laius",
+   "unit": "mm"
+  },
+  {
+   "key": "korgus",
+   "label_et": "Kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "vesi_kaitse",
+   "label_et": "Veekindlus",
+   "unit": ""
+  },
+  {
+   "key": "rattad",
+   "label_et": "Rattad olemas",
+   "unit": ""
+  }
+ ]
+}

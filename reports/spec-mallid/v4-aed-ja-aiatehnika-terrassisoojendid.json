@@ -1,0 +1,41 @@
+{
+ "l3": "v4-aed-ja-aiatehnika-terrassisoojendid",
+ "name": "Terrassisoojendid",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Maksimaalne võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Toitepinge",
+   "unit": "V"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "kiirenduste_arv",
+   "label_et": "Soojenduse astmete arv",
+   "unit": "tk"
+  },
+  {
+   "key": "kaitse_klass",
+   "label_et": "Kaitseklass",
+   "unit": "IP"
+  },
+  {
+   "key": "soojendi_tyyp",
+   "label_et": "Soojendi tüüp",
+   "unit": ""
+  },
+  {
+   "key": "paigalduse_viis",
+   "label_et": "Paigalduse viis",
+   "unit": ""
+  }
+ ]
+}

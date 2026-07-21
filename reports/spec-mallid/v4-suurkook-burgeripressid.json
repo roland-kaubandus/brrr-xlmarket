@@ -1,0 +1,41 @@
+{
+ "l3": "v4-suurkook-burgeripressid",
+ "name": "Burgeripressid",
+ "fields": [
+  {
+   "key": "ketta_labamoot",
+   "label_et": "Pattide läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "tootlikkus",
+   "label_et": "Tootlikkus",
+   "unit": "pattid/h"
+  },
+  {
+   "key": "hopper_maht",
+   "label_et": "Hopperite mahutavus",
+   "unit": "kg"
+  },
+  {
+   "key": "muudid_arv",
+   "label_et": "Saadaolevad muudid",
+   "unit": "tk"
+  },
+  {
+   "key": "patti_paksus",
+   "label_et": "Patti maksimaalse paksus",
+   "unit": "mm"
+  }
+ ]
+}

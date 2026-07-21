@@ -1,0 +1,46 @@
+{
+ "l3": "v4-kodumasinad-ja-kodutehnika-koogi-hoiustamine-ja-korraldus-tassihoidjad-ja-riiulid",
+ "name": "Tassihoidjad ja -riiulid",
+ "fields": [
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "konkide_arv",
+   "label_et": "Konkide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "paigaldamise_viis",
+   "label_et": "Paigaldamise viis",
+   "unit": ""
+  },
+  {
+   "key": "riiul_olemasolu",
+   "label_et": "Riiulite arv",
+   "unit": "tk"
+  },
+  {
+   "key": "pikkus",
+   "label_et": "Pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "korgus",
+   "label_et": "Kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "syvus",
+   "label_et": "Sügavus",
+   "unit": "mm"
+  }
+ ]
+}

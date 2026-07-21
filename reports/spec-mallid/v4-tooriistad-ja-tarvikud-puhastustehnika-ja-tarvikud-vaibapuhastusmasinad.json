@@ -1,0 +1,36 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-puhastustehnika-ja-tarvikud-vaibapuhastusmasinad",
+ "name": "Vaibapuhastusmasinad",
+ "fields": [
+  {
+   "key": "puhastuslaius_mm",
+   "label_et": "Puhastuslaius",
+   "unit": "mm"
+  },
+  {
+   "key": "tolmukoguse_maht",
+   "label_et": "Tolmukoguse maht",
+   "unit": "ml"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Peamine materjal",
+   "unit": ""
+  },
+  {
+   "key": "harjaste_tyyp",
+   "label_et": "Harjaste tüüp",
+   "unit": ""
+  },
+  {
+   "key": "pea_poeoramine",
+   "label_et": "Pea pööramine",
+   "unit": "°"
+  }
+ ]
+}

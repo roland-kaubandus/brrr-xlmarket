@@ -1,0 +1,41 @@
+{
+ "l3": "v4-keha-massoorid",
+ "name": "Keha-massöörid",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "aku_maht",
+   "label_et": "Aku mahtuvus",
+   "unit": "Wh"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "masaazhireziimid",
+   "label_et": "Massaaži režiimid",
+   "unit": "tk"
+  },
+  {
+   "key": "temperatuur_max",
+   "label_et": "Maksimaalne temperatuur",
+   "unit": "°C"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "veetihedus",
+   "label_et": "Veetihedus (IPX)",
+   "unit": ""
+  }
+ ]
+}

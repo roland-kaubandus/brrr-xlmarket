@@ -1,0 +1,41 @@
+{
+ "l3": "v4-aed-ja-aiatehnika-l7-aialauad",
+ "name": "Aialauad",
+ "fields": [
+  {
+   "key": "pindala_cm2",
+   "label_et": "Tööpinna pindala",
+   "unit": "cm²"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "max_koormus_kg",
+   "label_et": "Maksimaalne koormus",
+   "unit": "kg"
+  },
+  {
+   "key": "materijal",
+   "label_et": "Materiaalne konstruktsioon",
+   "unit": ""
+  },
+  {
+   "key": "kokkupaigutatavus",
+   "label_et": "Kokkupaigutatav",
+   "unit": ""
+  },
+  {
+   "key": "koljetus_laius_cm",
+   "label_et": "Kinnituse laius vahemik",
+   "unit": "cm"
+  },
+  {
+   "key": "oigused_seadistus",
+   "label_et": "Kõrguse reguleeritavus",
+   "unit": ""
+  }
+ ]
+}

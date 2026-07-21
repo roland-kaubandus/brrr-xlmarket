@@ -1,0 +1,31 @@
+{
+ "l3": "v4-suurkook-lihasegistid",
+ "name": "Lihasegistid",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Paagi maht",
+   "unit": "L"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Netokaal",
+   "unit": "kg"
+  },
+  {
+   "key": "paagi_tyyp",
+   "label_et": "Paagi tüüp",
+   "unit": ""
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kasulik_omadus",
+   "label_et": "Käsitsi või käigukastiga",
+   "unit": ""
+  }
+ ]
+}

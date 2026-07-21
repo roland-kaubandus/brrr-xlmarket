@@ -1,0 +1,41 @@
+{
+ "l3": "v4-tervis-hooldus-ja-ilu-isikuhooldusseadmed-proteesid-ja-kehakujundusvahendid",
+ "name": "Proteesid ja kehakujundusvahendid",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": "text"
+  },
+  {
+   "key": "suurus",
+   "label_et": "Suurus/Tass",
+   "unit": "text"
+  },
+  {
+   "key": "venivus",
+   "label_et": "Venivus (mugav)",
+   "unit": "%"
+  },
+  {
+   "key": "taittemaine",
+   "label_et": "Täittemaine",
+   "unit": "text"
+  },
+  {
+   "key": "toodetyyp",
+   "label_et": "Toote tüüp",
+   "unit": "text"
+  },
+  {
+   "key": "vari",
+   "label_et": "Väri",
+   "unit": "text"
+  }
+ ]
+}

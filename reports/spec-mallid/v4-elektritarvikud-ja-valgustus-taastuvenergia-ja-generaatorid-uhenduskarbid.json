@@ -1,0 +1,46 @@
+{
+ "l3": "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-uhenduskarbid",
+ "name": "Ühenduskarbid",
+ "fields": [
+  {
+   "key": "stringide_arv",
+   "label_et": "Stringide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Nimipinge",
+   "unit": "V"
+  },
+  {
+   "key": "max_sisendvool_string",
+   "label_et": "Max sisendvool stringi kohta",
+   "unit": "A"
+  },
+  {
+   "key": "peakaitselüliti",
+   "label_et": "Peakaitselüliti",
+   "unit": "A"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Korpuse materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaitse_klass",
+   "label_et": "Kaitseklass",
+   "unit": ""
+  },
+  {
+   "key": "surge_protector",
+   "label_et": "Ülepingekaitse",
+   "unit": "kA"
+  }
+ ]
+}

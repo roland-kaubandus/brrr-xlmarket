@@ -1,0 +1,46 @@
+{
+ "l3": "v4-varjualused-telgid-ja-kasvuhooned-varikatused-ja-pergolad-paviljonid-ja-gasebod",
+ "name": "Paviljonid ja gasebod",
+ "fields": [
+  {
+   "key": "pikkus_m",
+   "label_et": "Pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "laius_m",
+   "label_et": "Laius",
+   "unit": "m"
+  },
+  {
+   "key": "korgus_m",
+   "label_et": "Kõrgus",
+   "unit": "m"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Kaark materjal",
+   "unit": "text"
+  },
+  {
+   "key": "alus_materjal",
+   "label_et": "Aluse materjal",
+   "unit": "text"
+  },
+  {
+   "key": "moskito_vork",
+   "label_et": "Moskiitovõrk",
+   "unit": "boolean"
+  },
+  {
+   "key": "koljed",
+   "label_et": "Koljed/Külgseinad",
+   "unit": "boolean"
+  }
+ ]
+}

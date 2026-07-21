@@ -1,0 +1,46 @@
+{
+ "l3": "v4-ehitus-remont-ja-varvid-uksed-aknad-ja-luugid-garaaziuste-tihendid-ja-vedrud",
+ "name": "Garaažiuste tihendid ja vedrud",
+ "fields": [
+  {
+   "key": "pikkus_m",
+   "label_et": "Pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "laius_mm",
+   "label_et": "Laius",
+   "unit": "mm"
+  },
+  {
+   "key": "paksus_mm",
+   "label_et": "Paksus",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaal_kg",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "tihendite_tyyp",
+   "label_et": "Tihendite tüüp",
+   "unit": ""
+  },
+  {
+   "key": "komplekti_koosseis",
+   "label_et": "Komplekti koosseis",
+   "unit": ""
+  },
+  {
+   "key": "kinnitusviis",
+   "label_et": "Kinnitusviis",
+   "unit": ""
+  }
+ ]
+}

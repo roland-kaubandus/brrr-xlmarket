@@ -1,0 +1,41 @@
+{
+ "l3": "v4-aed-ja-aiatehnika-l9-lokkekoha-sadekaitsed-ja-katted",
+ "name": "Lõkkekoha sädekaitsed ja katted",
+ "fields": [
+  {
+   "key": "sisemine_diameter",
+   "label_et": "Sisemise ava läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "korgus",
+   "label_et": "Kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "vorkitraadi_diameet",
+   "label_et": "Võrgutraadi läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "vorkiava_diameet",
+   "label_et": "Võrgu ava läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "kaepideme_tyyp",
+   "label_et": "Käepideme tüüp",
+   "unit": ""
+  }
+ ]
+}

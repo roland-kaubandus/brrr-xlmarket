@@ -1,0 +1,46 @@
+{
+ "l3": "v4-santehnika-kute-ja-ventilatsioon-veepumbad-reovee-ja-fekaalpumbad",
+ "name": "Reovee- ja fekaalpumbad",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "vooluhulk",
+   "label_et": "Vooluhulk",
+   "unit": "L/min"
+  },
+  {
+   "key": "rohk",
+   "label_et": "Maksimaalne tõstekõrgus",
+   "unit": "m"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "sisselaskeavade_arv",
+   "label_et": "Sisselaskeavade arv",
+   "unit": "tk"
+  },
+  {
+   "key": "sisselaskeavade_diameeter",
+   "label_et": "Peamise sisselaskeavause diameeter",
+   "unit": "mm"
+  },
+  {
+   "key": "valjalaskeavause_diameeter",
+   "label_et": "Väljalaskeavause diameeter",
+   "unit": "mm"
+  },
+  {
+   "key": "kaitse_klass",
+   "label_et": "Kaitse klass",
+   "unit": "IP"
+  }
+ ]
+}

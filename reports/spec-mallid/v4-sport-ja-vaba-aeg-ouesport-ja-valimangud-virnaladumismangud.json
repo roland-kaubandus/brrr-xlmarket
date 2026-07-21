@@ -1,0 +1,41 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-virnaladumismangud",
+ "name": "Virnaladumismängud",
+ "fields": [
+  {
+   "key": "blokkide_arv",
+   "label_et": "Blokikogus",
+   "unit": "tk"
+  },
+  {
+   "key": "maksimaalse_korguus",
+   "label_et": "Maksimaalse kuhi kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "blokkide_suurus",
+   "label_et": "Ühe bloki mõõtmed",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Toote kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "hoiutuse_tyyp",
+   "label_et": "Hoiumise tüüp",
+   "unit": ""
+  },
+  {
+   "key": "domino_blokid",
+   "label_et": "Domino-blokide arv",
+   "unit": "tk"
+  }
+ ]
+}

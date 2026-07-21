@@ -1,0 +1,41 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine-tosterihmade-komplektid",
+ "name": "Tõsterihmade komplektid",
+ "fields": [
+  {
+   "key": "maksimaalne_koormus",
+   "label_et": "Maksimaalne koormus",
+   "unit": "kg"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Komplekti kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "harnesside_arv",
+   "label_et": "Harnesside arv",
+   "unit": "tk"
+  },
+  {
+   "key": "kandvoogude_arv",
+   "label_et": "Kandvoogude arv",
+   "unit": "tk"
+  },
+  {
+   "key": "kannusteemade_arv",
+   "label_et": "Kannuste arv",
+   "unit": "tk"
+  },
+  {
+   "key": "tostetehnoloogia",
+   "label_et": "Tõstetehnikas",
+   "unit": ""
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  }
+ ]
+}

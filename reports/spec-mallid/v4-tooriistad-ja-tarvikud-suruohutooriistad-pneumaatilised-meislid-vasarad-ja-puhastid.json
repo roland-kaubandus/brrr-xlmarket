@@ -1,0 +1,41 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-suruohutooriistad-pneumaatilised-meislid-vasarad-ja-puhastid",
+ "name": "Pneumaatilised meislid, vasarad ja puhastid",
+ "fields": [
+  {
+   "key": "loeokiirus_bpm",
+   "label_et": "Löögisagedus",
+   "unit": "BPM"
+  },
+  {
+   "key": "rohk",
+   "label_et": "Tööpaine",
+   "unit": "bar"
+  },
+  {
+   "key": "insuldi_pikkus",
+   "label_et": "Insuldi pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "ohuvool",
+   "label_et": "Õhukulutus",
+   "unit": "L/min"
+  },
+  {
+   "key": "meisli_pikkus",
+   "label_et": "Meisli pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "meisli_diameetr",
+   "label_et": "Meisli läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  }
+ ]
+}

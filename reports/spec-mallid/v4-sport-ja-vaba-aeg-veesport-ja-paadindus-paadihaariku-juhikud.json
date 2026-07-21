@@ -1,0 +1,41 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-veesport-ja-paadindus-paadihaariku-juhikud",
+ "name": "Paadihaagise juhikud",
+ "fields": [
+  {
+   "key": "pikkus_mm",
+   "label_et": "Juhiku pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "reguleeritav_laius",
+   "label_et": "Reguleeritav laius",
+   "unit": ""
+  },
+  {
+   "key": "kaitsekate",
+   "label_et": "Kaitsekate tüüp",
+   "unit": ""
+  },
+  {
+   "key": "led_tuled",
+   "label_et": "LED tuled",
+   "unit": ""
+  },
+  {
+   "key": "paigaldusviisid",
+   "label_et": "Paigaldusviisid",
+   "unit": ""
+  }
+ ]
+}

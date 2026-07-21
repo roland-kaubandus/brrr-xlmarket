@@ -1,0 +1,41 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-veesport-ja-paadindus-veesuusad-ja-lauad",
+ "name": "Veesuusad ja lainelauad",
+ "fields": [
+  {
+   "key": "pikkus_mm",
+   "label_et": "Pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "maksimaalne_kaal",
+   "label_et": "Maksimaalse kasutaja kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "sidumine_tyyp",
+   "label_et": "Sidumine",
+   "unit": ""
+  },
+  {
+   "key": "kasutusvaldkond",
+   "label_et": "Kasutusvaldkond",
+   "unit": ""
+  },
+  {
+   "key": "soovituslik_kiirus",
+   "label_et": "Soovituslik kiirus",
+   "unit": "km/h"
+  }
+ ]
+}

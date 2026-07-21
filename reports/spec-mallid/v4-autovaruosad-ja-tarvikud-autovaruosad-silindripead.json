@@ -1,0 +1,36 @@
+{
+ "l3": "v4-autovaruosad-ja-tarvikud-autovaruosad-silindripead",
+ "name": "Silindripead ja mootoriosad",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Mootori maht",
+   "unit": "L"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "silindrite_arv",
+   "label_et": "Silindrite arv",
+   "unit": ""
+  },
+  {
+   "key": "klapid_kokku",
+   "label_et": "Klappide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "sobivus_sõiduk",
+   "label_et": "Sõiduki ühilduvus",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  }
+ ]
+}

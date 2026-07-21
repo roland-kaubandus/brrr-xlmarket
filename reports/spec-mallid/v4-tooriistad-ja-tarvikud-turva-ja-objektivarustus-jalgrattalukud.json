@@ -1,0 +1,41 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-turva-ja-objektivarustus-jalgrattalukud",
+ "name": "Jalgrattalukud",
+ "fields": [
+  {
+   "key": "pikkus_mm",
+   "label_et": "Ahela pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "ahela_paksus_mm",
+   "label_et": "Ahela paksus",
+   "unit": "mm"
+  },
+  {
+   "key": "lukustamise_mehhanism",
+   "label_et": "Lukustamise mehhanism",
+   "unit": ""
+  },
+  {
+   "key": "votmete_arv",
+   "label_et": "Võtmete arv",
+   "unit": "tk"
+  },
+  {
+   "key": "ahela_kuju",
+   "label_et": "Ahela kuju",
+   "unit": ""
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  }
+ ]
+}

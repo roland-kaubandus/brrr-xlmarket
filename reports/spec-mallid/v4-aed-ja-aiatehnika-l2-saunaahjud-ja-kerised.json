@@ -1,0 +1,46 @@
+{
+ "l3": "v4-aed-ja-aiatehnika-l2-saunaahjud-ja-kerised",
+ "name": "Saunaahjud ja kerised",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "sauna_maht",
+   "label_et": "Saunaruumi maht",
+   "unit": "m³"
+  },
+  {
+   "key": "max_temperatuur",
+   "label_et": "Maksimaalne temperatuur",
+   "unit": "°C"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kontroller_tyyp",
+   "label_et": "Kontrolleri tüüp",
+   "unit": ""
+  },
+  {
+   "key": "taimer",
+   "label_et": "Taimer",
+   "unit": "h"
+  },
+  {
+   "key": "vool",
+   "label_et": "Elektrivool",
+   "unit": "A"
+  }
+ ]
+}

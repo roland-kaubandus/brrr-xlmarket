@@ -1,0 +1,41 @@
+{
+ "l3": "v4-ehitus-liikluskoonused-delineaatorpostid",
+ "name": "Liikluskoonused ja delineaatorpostid",
+ "fields": [
+  {
+   "key": "korgus_mm",
+   "label_et": "Kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal_kg",
+   "label_et": "Kaal (üks tk)",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "alus_mootmed_mm",
+   "label_et": "Aluse mõõtmed",
+   "unit": "mm"
+  },
+  {
+   "key": "reflektiivsus_laius_mm",
+   "label_et": "Reflektiivse riba laius",
+   "unit": "mm"
+  },
+  {
+   "key": "ahela_pikkus_m",
+   "label_et": "Ahela pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "kogus",
+   "label_et": "Kogus pakendis",
+   "unit": "tk"
+  }
+ ]
+}

@@ -1,0 +1,36 @@
+{
+ "l3": "v4-ehitus-remont-ja-varvid-aiad-varavad-ja-piirded-okastraat-ja-teratraat",
+ "name": "Okastraat ja teratraat",
+ "fields": [
+  {
+   "key": "pikkus",
+   "label_et": "Kogupikkus",
+   "unit": "m"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "rullide_arv",
+   "label_et": "Rullide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "keeruse_tyyp",
+   "label_et": "Keeruse tüüp",
+   "unit": "text"
+  },
+  {
+   "key": "ketta_labamoot",
+   "label_et": "Rulli läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "materjalid",
+   "label_et": "Materjal ja katte",
+   "unit": "text"
+  }
+ ]
+}

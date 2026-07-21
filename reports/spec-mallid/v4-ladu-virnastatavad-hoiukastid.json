@@ -1,0 +1,41 @@
+{
+ "l3": "v4-ladu-virnastatavad-hoiukastid",
+ "name": "Virnastatavad hoiukastid ja -bin'id",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Mahutavus (ühe kastiga)",
+   "unit": "L"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kogukaal (komplekt)",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kogus",
+   "label_et": "Kastide arv komplektis",
+   "unit": "tk"
+  },
+  {
+   "key": "mahavõimed",
+   "label_et": "Välismõõtmed (P × L × K)",
+   "unit": "mm"
+  },
+  {
+   "key": "varv",
+   "label_et": "Värvus",
+   "unit": ""
+  },
+  {
+   "key": "virnatavus",
+   "label_et": "Virnatavus",
+   "unit": ""
+  }
+ ]
+}

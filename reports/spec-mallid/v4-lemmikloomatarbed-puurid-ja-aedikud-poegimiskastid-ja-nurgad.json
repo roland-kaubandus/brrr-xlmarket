@@ -1,0 +1,46 @@
+{
+ "l3": "v4-lemmikloomatarbed-puurid-ja-aedikud-poegimiskastid-ja-nurgad",
+ "name": "Poegimiskastid ja -nurgad",
+ "fields": [
+  {
+   "key": "pikkus_mm",
+   "label_et": "Pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "laius_mm",
+   "label_et": "Laius",
+   "unit": "mm"
+  },
+  {
+   "key": "korgus_mm",
+   "label_et": "Kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "uste_arv",
+   "label_et": "Eemaldatavate uste arv",
+   "unit": "tk"
+  },
+  {
+   "key": "aknad",
+   "label_et": "Aknad",
+   "unit": ""
+  },
+  {
+   "key": "suuruse_kategooria",
+   "label_et": "Sobib koera suurusele",
+   "unit": ""
+  }
+ ]
+}

@@ -1,0 +1,36 @@
+{
+ "l3": "v4-kodumasinad-ja-kodutehnika-koogitehnika-gaseeritud-vee-valmistajad",
+ "name": "Gaseeritud vee valmistajad",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Seadme kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "pudelite_arv",
+   "label_et": "Kaasasolev pudelite arv",
+   "unit": "tk"
+  },
+  {
+   "key": "pudelimaht",
+   "label_et": "Pudeli maht",
+   "unit": "L"
+  },
+  {
+   "key": "co2_silindrid",
+   "label_et": "Kaasasolev CO2 silindrite arv",
+   "unit": "tk"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "co2_ühilduvus",
+   "label_et": "CO2 silindri ühilduvus",
+   "unit": "L"
+  }
+ ]
+}

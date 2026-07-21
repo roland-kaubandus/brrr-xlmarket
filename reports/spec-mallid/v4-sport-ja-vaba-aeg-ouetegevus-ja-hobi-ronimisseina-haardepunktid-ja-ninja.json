@@ -1,0 +1,41 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-ouetegevus-ja-hobi-ronimisseina-haardepunktid-ja-ninja",
+ "name": "Ronimisseina haardepunktid ja ninja-komplektid",
+ "fields": [
+  {
+   "key": "arv_haardepunkte",
+   "label_et": "Haardepunktide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kogukaal",
+   "unit": "kg"
+  },
+  {
+   "key": "maksimaalne_koormus",
+   "label_et": "Maksimaalne koormus",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "arv_rihmu",
+   "label_et": "Rihade arv (komplekti puhul)",
+   "unit": "tk"
+  },
+  {
+   "key": "rihmade_pikkus",
+   "label_et": "Rihade pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "sisaldab_tarose",
+   "label_et": "Sisaldab tara/redelit",
+   "unit": ""
+  }
+ ]
+}

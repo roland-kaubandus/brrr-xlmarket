@@ -1,0 +1,42 @@
+{
+ "l3": "v4-kodumasinad-ja-kodutehnika-kliima-kaasaskantavad-konditsioneerid",
+ "name": "Kaasaskantavad konditsioneerid",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "jahutusmaht",
+   "label_et": "Jahutusmaht",
+   "unit": "BTU/h"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "vooluhulk",
+   "label_et": "Õhuringlus",
+   "unit": "L/min",
+   "unit_orig": "m³/h"
+  },
+  {
+   "key": "temp_vahemik",
+   "label_et": "Temperatuuri reguleerimise vahemik",
+   "unit": "°C"
+  },
+  {
+   "key": "funktsioonid",
+   "label_et": "Funktsioonide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "taimer",
+   "label_et": "Taimer",
+   "unit": "h"
+  }
+ ]
+}

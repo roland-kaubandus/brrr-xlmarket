@@ -1,0 +1,36 @@
+{
+ "l3": "v4-garaaziseadmed-varvimine-liivapritsimiskabiinid",
+ "name": "Liivapritsimiskabiinid",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Kabiini maht",
+   "unit": "L"
+  },
+  {
+   "key": "rohk",
+   "label_et": "Töörõhk",
+   "unit": "bar"
+  },
+  {
+   "key": "liiva_mahutavus",
+   "label_et": "Liiva mahutavus",
+   "unit": "kg"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Seadme kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "otsikute_arv",
+   "label_et": "Otsikute arv",
+   "unit": "tk"
+  }
+ ]
+}

@@ -1,0 +1,41 @@
+{
+ "l3": "v4-lemmikloomatarbed-transport-ja-autotarvikud-auto-istmekatted-ja-porandakaitsed",
+ "name": "Auto istmekatted ja põrandakaitsed",
+ "fields": [
+  {
+   "key": "pohja_pikkus_mm",
+   "label_et": "Põhja pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "pohja_laius_mm",
+   "label_et": "Põhja laius",
+   "unit": "mm"
+  },
+  {
+   "key": "maksimaalne_kaal_kg",
+   "label_et": "Maksimaalne kandevõime",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kogumahutavus_l",
+   "label_et": "Salvestuskapaalsus",
+   "unit": "L"
+  },
+  {
+   "key": "kaal_kg",
+   "label_et": "Kaalu toote kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "voimsus_w",
+   "label_et": "Võimsus",
+   "unit": "W"
+  }
+ ]
+}

@@ -1,0 +1,46 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-puhastustehnika-ultrahelipuhastid",
+ "name": "Ultrahelipuhastid",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Paagi maht",
+   "unit": "L"
+  },
+  {
+   "key": "voimsus",
+   "label_et": "Ultrahelimootorite võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "kootus_voimsus",
+   "label_et": "Kuumutuse võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "sagedus",
+   "label_et": "Ultraheli sagedus",
+   "unit": "kHz"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "maksimaalne_temperatuur",
+   "label_et": "Kuumutuse maksimaalne temperatuur",
+   "unit": "°C"
+  },
+  {
+   "key": "tooaeg",
+   "label_et": "Maksimaalne tööaeg",
+   "unit": "min"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Paagi materjal",
+   "unit": ""
+  }
+ ]
+}

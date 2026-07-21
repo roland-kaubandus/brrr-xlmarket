@@ -1,0 +1,46 @@
+{
+ "l3": "v4-ehitus-remont-ja-varvid-porandakatted-ja-tarvikud-drenaazimatid-ja-plaadid",
+ "name": "Drenaažimatid ja -plaadid",
+ "fields": [
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "plaadi_suurus",
+   "label_et": "Plaadi suurus",
+   "unit": "mm"
+  },
+  {
+   "key": "paksus",
+   "label_et": "Paksus",
+   "unit": "mm"
+  },
+  {
+   "key": "kogus",
+   "label_et": "Kogus pakis",
+   "unit": "tk"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kogukaal",
+   "unit": "kg"
+  },
+  {
+   "key": "vari",
+   "label_et": "Värvus",
+   "unit": ""
+  },
+  {
+   "key": "libisemiskindel",
+   "label_et": "Libisemiskindel pind",
+   "unit": ""
+  },
+  {
+   "key": "drenaaži_augud",
+   "label_et": "Drenaažiaugud",
+   "unit": ""
+  }
+ ]
+}

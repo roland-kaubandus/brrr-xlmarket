@@ -1,0 +1,47 @@
+{
+ "l3": "v4-elektritarvikud-ja-valgustus-elektroonika-kehakaamerad",
+ "name": "Kehakaamerad",
+ "fields": [
+  {
+   "key": "video_resolution_p",
+   "label_et": "Video resolutsioon",
+   "unit": "p"
+  },
+  {
+   "key": "aku_maht",
+   "label_et": "Aku mahtuvus",
+   "unit": "Wh",
+   "unit_orig": "mAh"
+  },
+  {
+   "key": "malu_maht",
+   "label_et": "Salvestusmaht",
+   "unit": "GB"
+  },
+  {
+   "key": "ekraani_suurus",
+   "label_et": "Ekraani suurus",
+   "unit": "in"
+  },
+  {
+   "key": "foto_resolutsioon_mp",
+   "label_et": "Foto resolutsioon",
+   "unit": "MP"
+  },
+  {
+   "key": "aku_kasutuseaeg",
+   "label_et": "Aku kestus",
+   "unit": "h"
+  },
+  {
+   "key": "gps_funktsioon",
+   "label_et": "GPS funktsioon",
+   "unit": "jah/ei"
+  },
+  {
+   "key": "voim_yod",
+   "label_et": "Öö nägemise funktsioon",
+   "unit": "jah/ei"
+  }
+ ]
+}

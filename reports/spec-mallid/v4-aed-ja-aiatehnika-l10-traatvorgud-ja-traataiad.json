@@ -1,0 +1,46 @@
+{
+ "l3": "v4-aed-ja-aiatehnika-l10-traatvorgud-ja-traataiad",
+ "name": "Traatvõrgud ja traataiad",
+ "fields": [
+  {
+   "key": "korgus_mm",
+   "label_et": "Kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "pikkus_mm",
+   "label_et": "Pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "silmamoot_mm",
+   "label_et": "Silmamõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "traadi_jarsk_gauge",
+   "label_et": "Traadi järsk (Gauge)",
+   "unit": "AWG"
+  },
+  {
+   "key": "katteviis",
+   "label_et": "Katteviis",
+   "unit": ""
+  },
+  {
+   "key": "paneelidearv",
+   "label_et": "Paneelide arv",
+   "unit": "tk"
+  }
+ ]
+}

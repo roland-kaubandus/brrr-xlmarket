@@ -1,0 +1,46 @@
+{
+ "l3": "v4-aed-ja-aiatehnika-l8-kokkupandavad-veemahutid-ja-vihmaveepaagid",
+ "name": "Kokkupandavad veemahutid ja vihmaveepaagid",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Mahutavus",
+   "unit": "L"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "pvc_tihedus",
+   "label_et": "PVC tihedus",
+   "unit": "D"
+  },
+  {
+   "key": "seina_paksus",
+   "label_et": "Seina paksus",
+   "unit": "mm"
+  },
+  {
+   "key": "toepuude_arv",
+   "label_et": "Toepuude arv",
+   "unit": "tk"
+  },
+  {
+   "key": "temp_vahemik_min",
+   "label_et": "Minimaalne töötemperatuur",
+   "unit": "°C"
+  },
+  {
+   "key": "temp_vahemik_max",
+   "label_et": "Maksimaalne töötemperatuur",
+   "unit": "°C"
+  }
+ ]
+}

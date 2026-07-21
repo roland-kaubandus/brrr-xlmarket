@@ -1,0 +1,41 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-puhastustehnika-ja-tarvikud-paikesepaneelide-ja-akende-puhastusvarrad-ja-harjad",
+ "name": "Päikesepaneelide ja akende puhastusvarrad ja -harjad",
+ "fields": [
+  {
+   "key": "pikkus_max_mm",
+   "label_et": "Maksimaalne pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "sektsioonide_arv",
+   "label_et": "Teleskoobi sektsioonide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Pooluse materjal",
+   "unit": ""
+  },
+  {
+   "key": "hoose_pikkus",
+   "label_et": "Vooliku pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "harja_tyyp",
+   "label_et": "Harja tüüp",
+   "unit": ""
+  },
+  {
+   "key": "poerane_pea",
+   "label_et": "180° pööratiav pea",
+   "unit": ""
+  }
+ ]
+}

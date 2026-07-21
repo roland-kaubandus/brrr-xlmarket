@@ -1,0 +1,46 @@
+{
+ "l3": "v4-suurkook-laagerdumiskulmikud-dry-aging",
+ "name": "Laagerdumiskülmikud (dry aging)",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Sisemahu maht",
+   "unit": "L"
+  },
+  {
+   "key": "koormus_kuivikus",
+   "label_et": "Kuivkülmutuse maksimaalne koormus",
+   "unit": "kg"
+  },
+  {
+   "key": "temperatuur_min_max",
+   "label_et": "Temperatuuri reguleerimise vahemik",
+   "unit": "°C"
+  },
+  {
+   "key": "niiskus_min_max",
+   "label_et": "Niiskuse reguleerimise vahemik",
+   "unit": "%"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Seinte materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Seadme kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "voimsus",
+   "label_et": "Elektrilise võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "myra",
+   "label_et": "Müra tase",
+   "unit": "dB"
+  }
+ ]
+}

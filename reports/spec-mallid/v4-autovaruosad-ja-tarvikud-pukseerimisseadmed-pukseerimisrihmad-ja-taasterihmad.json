@@ -1,0 +1,46 @@
+{
+ "l3": "v4-autovaruosad-ja-tarvikud-pukseerimisseadmed-pukseerimisrihmad-ja-taasterihmad",
+ "name": "Pukseerimisrihmad ja taasterihmad",
+ "fields": [
+  {
+   "key": "pikkus_m",
+   "label_et": "Pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "laius_mm",
+   "label_et": "Laius",
+   "unit": "mm"
+  },
+  {
+   "key": "murdemaksimaalne_kg",
+   "label_et": "Murdetugevus (maksimum)",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "elastsus_protsent",
+   "label_et": "Elastsus",
+   "unit": "%"
+  },
+  {
+   "key": "paksus_mm",
+   "label_et": "Paksus",
+   "unit": "mm"
+  },
+  {
+   "key": "komplektis_shackleid",
+   "label_et": "Shackled komplektis",
+   "unit": "tk"
+  }
+ ]
+}

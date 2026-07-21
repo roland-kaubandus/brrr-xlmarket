@@ -1,0 +1,46 @@
+{
+ "l3": "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-kuumpressi-tarvikud-ja-toolauad",
+ "name": "Kuumpressi tarvikud ja töölauad",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "riiulite_arv",
+   "label_et": "Riiulite arv",
+   "unit": "tk"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjaali tüüp",
+   "unit": ""
+  },
+  {
+   "key": "lahendus_laadimisjaama",
+   "label_et": "Laadimisjaama funktsioon",
+   "unit": ""
+  },
+  {
+   "key": "ac_pistikud",
+   "label_et": "AC pistikute arv",
+   "unit": "tk"
+  },
+  {
+   "key": "usb_pordid",
+   "label_et": "USB-portide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "rattad_tyyp",
+   "label_et": "Rattade tüüp",
+   "unit": ""
+  },
+  {
+   "key": "kokkupaigutatavus",
+   "label_et": "Kokkupandav",
+   "unit": ""
+  }
+ ]
+}

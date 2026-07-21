@@ -1,0 +1,36 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-kasitooriistad-toruvotmed-ja-torutangid",
+ "name": "Toruvõtmed ja torutangid",
+ "fields": [
+  {
+   "key": "pikkus_mm",
+   "label_et": "Kogupikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "pakkimine_max_mm",
+   "label_et": "Max toru läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "rohk_nm",
+   "label_et": "Moment (pöördemoment)",
+   "unit": "N·m"
+  },
+  {
+   "key": "tyyp",
+   "label_et": "Tüüp",
+   "unit": ""
+  }
+ ]
+}

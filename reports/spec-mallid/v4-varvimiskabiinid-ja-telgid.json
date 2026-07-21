@@ -1,0 +1,46 @@
+{
+ "l3": "v4-varvimiskabiinid-ja-telgid",
+ "name": "Värvimiskabiinid ja -telgid",
+ "fields": [
+  {
+   "key": "voimsus_ventilatsiooni",
+   "label_et": "Ventilatsiooni võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "voimsus_inflatsioon",
+   "label_et": "Inflatsiooni võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "myra",
+   "label_et": "Müra",
+   "unit": "dB"
+  },
+  {
+   "key": "sisemaht",
+   "label_et": "Sisemahu (töötuba)",
+   "unit": "m³"
+  },
+  {
+   "key": "ulkomitat",
+   "label_et": "Välismõõtmed (pikkus × laius × kõrgus)",
+   "unit": "m"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  }
+ ]
+}

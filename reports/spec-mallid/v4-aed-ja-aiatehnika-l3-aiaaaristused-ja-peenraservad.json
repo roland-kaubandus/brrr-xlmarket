@@ -1,0 +1,46 @@
+{
+ "l3": "v4-aed-ja-aiatehnika-l3-aiaaaristused-ja-peenraservad",
+ "name": "Aiaääristused ja peenraservad",
+ "fields": [
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "korgus_mm",
+   "label_et": "Kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "kogupikkus_m",
+   "label_et": "Kogupikkus",
+   "unit": "m"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "kogus_komplektis",
+   "label_et": "Kogus komplektis",
+   "unit": "tk"
+  },
+  {
+   "key": "paigaldusklamber",
+   "label_et": "Paigaldusklamber kaasas",
+   "unit": "tk"
+  },
+  {
+   "key": "paigaldusnaelad",
+   "label_et": "Paigaldusnaelad kaasas",
+   "unit": "tk"
+  },
+  {
+   "key": "paksus_mm",
+   "label_et": "Paksus",
+   "unit": "mm"
+  }
+ ]
+}

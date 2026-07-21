@@ -1,0 +1,31 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-kasitooriistad-postirammijad",
+ "name": "Postirammijad",
+ "fields": [
+  {
+   "key": "sisemine_diameter_mm",
+   "label_et": "Sisemise avause läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "pikkus",
+   "label_et": "Pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "kael_laius",
+   "label_et": "Käepide laius",
+   "unit": "mm"
+  }
+ ]
+}

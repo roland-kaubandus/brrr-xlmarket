@@ -1,0 +1,41 @@
+{
+ "l3": "v4-garaaziseadmed-mehaaniku-tooriistad-jahutus-ja-radiaatori-survetestrid",
+ "name": "Jahutus- ja radiaatori survetestrid",
+ "fields": [
+  {
+   "key": "rohk_maksimaalne",
+   "label_et": "Maksimaalne rõhk",
+   "unit": "bar"
+  },
+  {
+   "key": "rohk_minimaalne",
+   "label_et": "Minimaalne rõhk (vaakum)",
+   "unit": "bar"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "adapter_kogus",
+   "label_et": "Adapterite arv",
+   "unit": "tk"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Peamised materjalid",
+   "unit": ""
+  },
+  {
+   "key": "manomeetri_skala",
+   "label_et": "Manomeetri skaalaulatusmaht",
+   "unit": "psi"
+  },
+  {
+   "key": "komplekti_maht",
+   "label_et": "Komplekti osade arv",
+   "unit": "tk"
+  }
+ ]
+}

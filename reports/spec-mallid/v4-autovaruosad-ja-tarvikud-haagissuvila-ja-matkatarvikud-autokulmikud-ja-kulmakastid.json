@@ -1,0 +1,46 @@
+{
+ "l3": "v4-autovaruosad-ja-tarvikud-haagissuvila-ja-matkatarvikud-autokulmikud-ja-kulmakastid",
+ "name": "Autokülmikud ja külmakastid",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Maht",
+   "unit": "L"
+  },
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "myra",
+   "label_et": "Müra tase",
+   "unit": "dB"
+  },
+  {
+   "key": "jahutuse_ulatus",
+   "label_et": "Jahutuse ulatus",
+   "unit": "°C"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal (väliskest)",
+   "unit": ""
+  },
+  {
+   "key": "tsooniline_jahutus",
+   "label_et": "Tsooniline jahutus",
+   "unit": ""
+  }
+ ]
+}

@@ -1,0 +1,47 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-suruohutooriistad-pneumaatilised-lookmutrivotmed-ja-keerajad",
+ "name": "Pneumaatilised löökmutrivõtmed ja -keerajad",
+ "fields": [
+  {
+   "key": "ruudukujuline_ketas_mm",
+   "label_et": "Ruudukujuline ketas (Drive)",
+   "unit": "mm"
+  },
+  {
+   "key": "max_poorlemiskiirus",
+   "label_et": "Maksimaalse kiirusel pöörlemiskiirus",
+   "unit": "RPM"
+  },
+  {
+   "key": "max_paevitus_voime",
+   "label_et": "Maksimaalse pöördemomendi jõud",
+   "unit": "Nm"
+  },
+  {
+   "key": "tootmise_rõhk",
+   "label_et": "Tööoperatsiooni rõhk",
+   "unit": "bar"
+  },
+  {
+   "key": "ohuvool",
+   "label_et": "Õhuvool",
+   "unit": "L/min",
+   "unit_orig": "Lmin"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Peamine materjal",
+   "unit": "text"
+  },
+  {
+   "key": "myra",
+   "label_et": "Müra tase",
+   "unit": "dB"
+  }
+ ]
+}

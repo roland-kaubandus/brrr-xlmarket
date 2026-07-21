@@ -1,0 +1,46 @@
+{
+ "l3": "v4-autovaruosad-ja-tarvikud-autovaruosad-helisignaalid",
+ "name": "Helisignaalid",
+ "fields": [
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "maht",
+   "label_et": "Paagi maht",
+   "unit": "L"
+  },
+  {
+   "key": "rohk",
+   "label_et": "Maksimaalne rõhk",
+   "unit": "bar"
+  },
+  {
+   "key": "myra",
+   "label_et": "Maksimaalne helitase",
+   "unit": "dB"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "torude_arv",
+   "label_et": "Torupillide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "ohuvoolu_max",
+   "label_et": "Maksimaalne voolutarbimine",
+   "unit": "A"
+  }
+ ]
+}

@@ -1,0 +1,46 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-tailgating-ja-peoseadmed-kaasaskantavad-kulmakastid",
+ "name": "Kõvad kaasaskantavad külmakastid",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Mahutavus",
+   "unit": "L"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "jäätamise_kestus_0c",
+   "label_et": "Jäätamise kestus (≤0°C)",
+   "unit": "h"
+  },
+  {
+   "key": "jäätamise_kestus_20c",
+   "label_et": "Jäätamise kestus (20°C)",
+   "unit": "h"
+  },
+  {
+   "key": "pikkus",
+   "label_et": "Pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "laius",
+   "label_et": "Laius",
+   "unit": "mm"
+  },
+  {
+   "key": "korgus",
+   "label_et": "Kõrgus",
+   "unit": "mm"
+  }
+ ]
+}

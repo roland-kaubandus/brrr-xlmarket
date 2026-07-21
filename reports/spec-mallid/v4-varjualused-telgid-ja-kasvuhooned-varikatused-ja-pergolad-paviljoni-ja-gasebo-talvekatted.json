@@ -1,0 +1,41 @@
+{
+ "l3": "v4-varjualused-telgid-ja-kasvuhooned-varikatused-ja-pergolad-paviljoni-ja-gasebo-talvekatted",
+ "name": "Paviljoni ja gasebo talvekatted",
+ "fields": [
+  {
+   "key": "pikkus_m",
+   "label_et": "Pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "laius_m",
+   "label_et": "Laius",
+   "unit": "m"
+  },
+  {
+   "key": "korgus_m",
+   "label_et": "Kõrgus (hari)",
+   "unit": "m"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaal_kg",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "pindala_m2",
+   "label_et": "Katteala",
+   "unit": "m²"
+  },
+  {
+   "key": "küljeseina_aken",
+   "label_et": "Küljeseinad ja aknad",
+   "unit": ""
+  }
+ ]
+}

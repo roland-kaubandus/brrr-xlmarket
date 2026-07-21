@@ -1,0 +1,36 @@
+{
+ "l3": "v4-tervis-hooldus-ja-ilu-isikuhooldusseadmed-vesinikuvee-generaatorid",
+ "name": "Vesinikuvee generaatorid",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Mahutavus",
+   "unit": "ml"
+  },
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "vesinik_kontsentratsioon",
+   "label_et": "Vesinikukontsentratsioon",
+   "unit": "ppb"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "inhalatsioonitoiming",
+   "label_et": "Inhalatsioonitoiming",
+   "unit": ""
+  }
+ ]
+}

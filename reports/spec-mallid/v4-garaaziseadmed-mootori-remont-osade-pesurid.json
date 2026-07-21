@@ -1,0 +1,36 @@
+{
+ "l3": "v4-garaaziseadmed-mootori-remont-osade-pesurid",
+ "name": "Osade pesurid ja lahustivannid",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Pesuvedeliku maht",
+   "unit": "L"
+  },
+  {
+   "key": "lahustivann_maht",
+   "label_et": "Lahustivanni maht",
+   "unit": "L"
+  },
+  {
+   "key": "vooluhulk",
+   "label_et": "Pumba maksimaalne vooluhulk",
+   "unit": "L/min"
+  },
+  {
+   "key": "voimsus",
+   "label_et": "Elektrimootori võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Korpuse materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Netokaal",
+   "unit": "kg"
+  }
+ ]
+}

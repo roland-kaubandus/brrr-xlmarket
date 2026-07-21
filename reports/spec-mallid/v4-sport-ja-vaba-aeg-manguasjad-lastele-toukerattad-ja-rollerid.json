@@ -1,0 +1,46 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-manguasjad-lastele-toukerattad-ja-rollerid",
+ "name": "Laste tõukerattad",
+ "fields": [
+  {
+   "key": "rattade_arv",
+   "label_et": "Rataste arv",
+   "unit": "tk"
+  },
+  {
+   "key": "maksimaalne_kaal",
+   "label_et": "Maksimaalne lubatud kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "ketta_labamoot",
+   "label_et": "Ratta läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Tõukeratta kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Raam materjal",
+   "unit": ""
+  },
+  {
+   "key": "voib_palistada",
+   "label_et": "Kokkupandav",
+   "unit": ""
+  },
+  {
+   "key": "valgustus",
+   "label_et": "Valgustusega rattad",
+   "unit": ""
+  },
+  {
+   "key": "reguleeritav_korgus",
+   "label_et": "Reguleeritav käepide",
+   "unit": ""
+  }
+ ]
+}

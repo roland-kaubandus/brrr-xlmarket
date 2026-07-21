@@ -1,0 +1,41 @@
+{
+ "l3": "v4-tooriied-ja-isikukaitse-toojalatsid-terasninaga-toojalatsid",
+ "name": "Terasninaga tööjalatsid",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kaal (paar)",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "jalatsi_suurus",
+   "label_et": "Jalatsisuurused (US)",
+   "unit": ""
+  },
+  {
+   "key": "jalatsi_laius",
+   "label_et": "Jalatsi laius",
+   "unit": ""
+  },
+  {
+   "key": "pikkus_mm",
+   "label_et": "Pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "laius_mm",
+   "label_et": "Laius",
+   "unit": "mm"
+  },
+  {
+   "key": "korgus_mm",
+   "label_et": "Kõrgus",
+   "unit": "mm"
+  }
+ ]
+}

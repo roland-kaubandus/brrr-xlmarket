@@ -1,0 +1,41 @@
+{
+ "l3": "v4-tooriistad-needipustolid",
+ "name": "Needipüstolid",
+ "fields": [
+  {
+   "key": "kael",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "käitamise_tüüp",
+   "label_et": "Käitamise tüüp",
+   "unit": ""
+  },
+  {
+   "key": "käepide_materjal",
+   "label_et": "Käepide materjal",
+   "unit": ""
+  },
+  {
+   "key": "nokaotsikute_arv",
+   "label_et": "Vahetatavate nokaotsikute arv",
+   "unit": "tk"
+  },
+  {
+   "key": "puuribitide_arv",
+   "label_et": "Puuribitide arv komplektis",
+   "unit": "tk"
+  },
+  {
+   "key": "blindniitide_arv",
+   "label_et": "Blindniitide arv komplektis",
+   "unit": "tk"
+  },
+  {
+   "key": "produkt_suurus",
+   "label_et": "Mõõtmed (P x L x K)",
+   "unit": "mm"
+  }
+ ]
+}

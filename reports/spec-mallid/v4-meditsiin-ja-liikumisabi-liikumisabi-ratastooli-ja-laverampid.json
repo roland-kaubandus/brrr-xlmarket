@@ -1,0 +1,41 @@
+{
+ "l3": "v4-meditsiin-ja-liikumisabi-liikumisabi-ratastooli-ja-laverampid",
+ "name": "Ratastooli- ja läverampid",
+ "fields": [
+  {
+   "key": "koormus_kg",
+   "label_et": "Maksimaalne koormus",
+   "unit": "kg"
+  },
+  {
+   "key": "korgus_cm",
+   "label_et": "Tõusu kõrgus",
+   "unit": "cm"
+  },
+  {
+   "key": "pikkus_cm",
+   "label_et": "Pikkus",
+   "unit": "cm"
+  },
+  {
+   "key": "laius_cm",
+   "label_et": "Laius",
+   "unit": "cm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Toote kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "pinna_tekstuur",
+   "label_et": "Pinna tekstuur",
+   "unit": ""
+  }
+ ]
+}

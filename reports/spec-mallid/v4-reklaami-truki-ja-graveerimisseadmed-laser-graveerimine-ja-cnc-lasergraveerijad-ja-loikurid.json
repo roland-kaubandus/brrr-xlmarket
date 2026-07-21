@@ -1,0 +1,46 @@
+{
+ "l3": "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-lasergraveerijad-ja-loikurid",
+ "name": "Lasergraveerijad ja -lõikurid",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Laser võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "tootmisala_x",
+   "label_et": "Töötamise ala (pikkus)",
+   "unit": "mm"
+  },
+  {
+   "key": "tootmisala_y",
+   "label_et": "Töötamise ala (laius)",
+   "unit": "mm"
+  },
+  {
+   "key": "kiirus_max",
+   "label_et": "Maksimaalne töökiirus",
+   "unit": "mm/s"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Toitepinge",
+   "unit": "V"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "myra",
+   "label_et": "Müra tase",
+   "unit": "dB"
+  },
+  {
+   "key": "laser_tyyp",
+   "label_et": "Laseri tüüp",
+   "unit": ""
+  }
+ ]
+}

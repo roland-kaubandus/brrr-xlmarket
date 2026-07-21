@@ -1,0 +1,41 @@
+{
+ "l3": "v4-tooriied-ja-isikukaitse-isikukaitsevahendid-polvekaitsmed",
+ "name": "Põlvekaitsmed",
+ "fields": [
+  {
+   "key": "tyyp",
+   "label_et": "Tüüp",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "kandevoimasus",
+   "label_et": "Kandevõimekus",
+   "unit": "kg"
+  },
+  {
+   "key": "polve_padi_suurus",
+   "label_et": "Põlvepadja suurus",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "paksus",
+   "label_et": "Paksus",
+   "unit": "mm"
+  },
+  {
+   "key": "varustus",
+   "label_et": "Varustus",
+   "unit": ""
+  }
+ ]
+}

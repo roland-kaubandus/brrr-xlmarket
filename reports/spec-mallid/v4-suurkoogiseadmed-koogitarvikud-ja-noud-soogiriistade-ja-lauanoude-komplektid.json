@@ -1,0 +1,41 @@
+{
+ "l3": "v4-suurkoogiseadmed-koogitarvikud-ja-noud-soogiriistade-ja-lauanoude-komplektid",
+ "name": "Söögiriistade komplektid",
+ "fields": [
+  {
+   "key": "kogus",
+   "label_et": "Komplekti suurus (tk)",
+   "unit": "pcs"
+  },
+  {
+   "key": "koolitus_isikute_arv",
+   "label_et": "Teenindatavate isikute arv",
+   "unit": "persons"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "vari",
+   "label_et": "Värv",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "noa_tüübid",
+   "label_et": "Noa tüübid (nt steakknifid)",
+   "unit": ""
+  },
+  {
+   "key": "pesumasin_ohtu",
+   "label_et": "Pesumasinas ohutu",
+   "unit": ""
+  }
+ ]
+}

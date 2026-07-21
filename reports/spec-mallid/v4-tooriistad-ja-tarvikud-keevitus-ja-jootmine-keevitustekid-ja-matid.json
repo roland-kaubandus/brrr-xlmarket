@@ -1,0 +1,41 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-keevitus-ja-jootmine-keevitustekid-ja-matid",
+ "name": "Keevitustekid ja -matid",
+ "fields": [
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "pindala_m2",
+   "label_et": "Pindala",
+   "unit": "m²"
+  },
+  {
+   "key": "paksus_mm",
+   "label_et": "Paksus",
+   "unit": "mm"
+  },
+  {
+   "key": "maksimaalne_temperatuur_c",
+   "label_et": "Maksimaalne temperatuur",
+   "unit": "°C"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "komplekti_kogus",
+   "label_et": "Komplekti kogus",
+   "unit": "tk"
+  },
+  {
+   "key": "vari",
+   "label_et": "Värvus",
+   "unit": ""
+  }
+ ]
+}

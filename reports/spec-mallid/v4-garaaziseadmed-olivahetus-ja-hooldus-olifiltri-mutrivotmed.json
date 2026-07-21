@@ -1,0 +1,41 @@
+{
+ "l3": "v4-garaaziseadmed-olivahetus-ja-hooldus-olifiltri-mutrivotmed",
+ "name": "Õlifiltri mutrivõtmed",
+ "fields": [
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "tootmise_arv",
+   "label_et": "Tootmiste arv",
+   "unit": "tk"
+  },
+  {
+   "key": "pikkus",
+   "label_et": "Pikkus/Suurus",
+   "unit": "mm"
+  },
+  {
+   "key": "min_torude_laigendus",
+   "label_et": "Min. torude laiendus",
+   "unit": "mm"
+  },
+  {
+   "key": "max_torude_laigendus",
+   "label_et": "Max. torude laiendus",
+   "unit": "mm"
+  },
+  {
+   "key": "kinnitus_tip",
+   "label_et": "Kinnitus tüüp",
+   "unit": ""
+  }
+ ]
+}

@@ -1,0 +1,41 @@
+{
+ "l3": "v4-garaaziseadmed-olivahetus-ja-hooldus-oliimurid-ja-vaakumoliekstraktorid",
+ "name": "Õliimurid ja vaakumõliekstraktorid",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Paagi mahutavus",
+   "unit": "L"
+  },
+  {
+   "key": "tootmisviis",
+   "label_et": "Tootmisviis",
+   "unit": ""
+  },
+  {
+   "key": "rohk",
+   "label_et": "Tööpaine",
+   "unit": "bar"
+  },
+  {
+   "key": "vooluhulk",
+   "label_et": "Õhukulutus",
+   "unit": "L/min"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Paagi materjal",
+   "unit": ""
+  },
+  {
+   "key": "imemise_toru_pikkus",
+   "label_et": "Imemistoru pikkus",
+   "unit": "cm"
+  }
+ ]
+}

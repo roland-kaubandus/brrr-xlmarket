@@ -1,0 +1,37 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-suruohutooriistad-suruohupustolid-ja-puhastusotsikud",
+ "name": "Suruõhupüstolid ja puhastusotsikud",
+ "fields": [
+  {
+   "key": "rohk",
+   "label_et": "Tööõhurõhk",
+   "unit": "bar"
+  },
+  {
+   "key": "ohuvool",
+   "label_et": "Õhukulutus",
+   "unit": "L/min",
+   "unit_orig": "Lmin"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "maht",
+   "label_et": "Vedeliku paagi maht",
+   "unit": "L"
+  },
+  {
+   "key": "pihustava_kahe_suund",
+   "label_et": "360° pöörlevate otsikud",
+   "unit": "bool"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Pöörlevate toru materjal",
+   "unit": "string"
+  }
+ ]
+}

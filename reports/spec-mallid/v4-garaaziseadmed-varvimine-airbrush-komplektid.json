@@ -1,0 +1,37 @@
+{
+ "l3": "v4-garaaziseadmed-varvimine-airbrush-komplektid",
+ "name": "Airbrush-komplektid",
+ "fields": [
+  {
+   "key": "düüsi_diameeter_mm",
+   "label_et": "Düüsi läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "tassid_maht_ml",
+   "label_et": "Mahutite mahud",
+   "unit": "ml"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "manustamismeetod",
+   "label_et": "Manustamismeetod",
+   "unit": ""
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "ohuvool",
+   "label_et": "Õhuvool",
+   "unit": "L/min",
+   "unit_orig": "Lmin"
+  }
+ ]
+}

@@ -1,0 +1,41 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-veesport-ja-paadindus-paadikatted",
+ "name": "Paadikatted",
+ "fields": [
+  {
+   "key": "pikkus_min_mm",
+   "label_et": "Pikkus (min)",
+   "unit": "mm"
+  },
+  {
+   "key": "pikkus_max_mm",
+   "label_et": "Pikkus (max)",
+   "unit": "mm"
+  },
+  {
+   "key": "laius_mm",
+   "label_et": "Laius",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "katetud_tyyp",
+   "label_et": "Kaetud paaditüüp",
+   "unit": ""
+  },
+  {
+   "key": "kinnitusrihmade_arv",
+   "label_et": "Kinnitusrihmade arv",
+   "unit": "tk"
+  }
+ ]
+}

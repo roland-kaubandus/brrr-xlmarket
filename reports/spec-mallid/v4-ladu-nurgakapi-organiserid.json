@@ -1,0 +1,46 @@
+{
+ "l3": "v4-ladu-nurgakapi-organiserid",
+ "name": "Nurgakapi-organiserid",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "maht",
+   "label_et": "Kogu maht",
+   "unit": "L"
+  },
+  {
+   "key": "riiulite_arv",
+   "label_et": "Riiulite arv",
+   "unit": ""
+  },
+  {
+   "key": "korvapaigutis_suurus",
+   "label_et": "Korvide suurus (L×S×K mm)",
+   "unit": "mm"
+  },
+  {
+   "key": "paigalduse_min_suurus",
+   "label_et": "Paigalduse minimaalne suurus (L×S×K mm)",
+   "unit": "mm"
+  },
+  {
+   "key": "poormehhanismid",
+   "label_et": "Pöörlemise tüüp",
+   "unit": ""
+  },
+  {
+   "key": "korvapaigutiste_arv",
+   "label_et": "Korvapaigutiste arv",
+   "unit": ""
+  }
+ ]
+}

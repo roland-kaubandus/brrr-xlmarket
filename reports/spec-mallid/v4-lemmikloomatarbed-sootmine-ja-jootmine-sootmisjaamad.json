@@ -1,0 +1,41 @@
+{
+ "l3": "v4-lemmikloomatarbed-sootmine-ja-jootmine-sootmisjaamad",
+ "name": "Söötmisjaamad",
+ "fields": [
+  {
+   "key": "laius_mm",
+   "label_et": "Laius",
+   "unit": "mm"
+  },
+  {
+   "key": "sügavus_mm",
+   "label_et": "Sügavus",
+   "unit": "mm"
+  },
+  {
+   "key": "korgus_mm",
+   "label_et": "Kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaussi_labimaoot_mm",
+   "label_et": "Kaussi läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "salvestusmaht_L",
+   "label_et": "Salvestusmaht",
+   "unit": "L"
+  }
+ ]
+}

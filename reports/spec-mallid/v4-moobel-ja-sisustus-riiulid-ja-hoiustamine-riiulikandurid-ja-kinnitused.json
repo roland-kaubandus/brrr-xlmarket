@@ -1,0 +1,46 @@
+{
+ "l3": "v4-moobel-ja-sisustus-riiulid-ja-hoiustamine-riiulikandurid-ja-kinnitused",
+ "name": "Riiulikandurid ja -kinnitused",
+ "fields": [
+  {
+   "key": "kandevoimsus_kg",
+   "label_et": "Kandevõimsuks (kg)",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "paksus_mm",
+   "label_et": "Paksus",
+   "unit": "mm"
+  },
+  {
+   "key": "pikkus_mm",
+   "label_et": "Pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "laius_mm",
+   "label_et": "Laius",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal_kg",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "kogus",
+   "label_et": "Kogus pakendis",
+   "unit": "tk"
+  },
+  {
+   "key": "kujutyyp",
+   "label_et": "Konstruktsiooni tüüp",
+   "unit": ""
+  }
+ ]
+}

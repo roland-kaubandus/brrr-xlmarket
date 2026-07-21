@@ -1,0 +1,46 @@
+{
+ "l3": "v4-santehnika-kute-ja-ventilatsioon-dusisusteemid-ja-dusikabiinid-dusipaneelid",
+ "name": "Dušipaneelid",
+ "fields": [
+  {
+   "key": "massage_jets_count",
+   "label_et": "Massaaži düüside arv",
+   "unit": "tk"
+  },
+  {
+   "key": "shower_modes",
+   "label_et": "Dušimoodide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "kõrgus",
+   "label_et": "Paneelis kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "led_display",
+   "label_et": "LED ekraan",
+   "unit": ""
+  },
+  {
+   "key": "handheld_settings",
+   "label_et": "Käsidušši seaded",
+   "unit": "tk"
+  },
+  {
+   "key": "waterfall_function",
+   "label_et": "Veejoa funktsioon",
+   "unit": ""
+  }
+ ]
+}

@@ -1,0 +1,41 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-akutooriistad-toru-pressimistooriistad",
+ "name": "Toru pressimistööriistad",
+ "fields": [
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "aku_maht",
+   "label_et": "Aku mahtuvus",
+   "unit": "Wh"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "rohk",
+   "label_et": "Pressijõud",
+   "unit": "kN"
+  },
+  {
+   "key": "toru_diameetrid",
+   "label_et": "Toru diameetrid",
+   "unit": "mm"
+  },
+  {
+   "key": "kramitud_ajad",
+   "label_et": "Pressimisaeg tsüklis",
+   "unit": "s"
+  },
+  {
+   "key": "seadme_tyyp",
+   "label_et": "Seadme tüüp",
+   "unit": "kategooria"
+  }
+ ]
+}

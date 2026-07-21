@@ -1,0 +1,46 @@
+{
+ "l3": "v4-kodumasinad-ja-kodutehnika-kliima-ohupuhastid-uv",
+ "name": "Õhupuhastid ja UV-lambid",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "uv_lainepikkus",
+   "label_et": "UV lainepikkus",
+   "unit": "nm"
+  },
+  {
+   "key": "kattetava_pindala",
+   "label_et": "Katettava pindala",
+   "unit": "m²"
+  },
+  {
+   "key": "timer_seaded",
+   "label_et": "Taimeri seaded",
+   "unit": "min"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": "text"
+  },
+  {
+   "key": "osooni_funktsioon",
+   "label_et": "Osooni funktsioon",
+   "unit": "bool"
+  },
+  {
+   "key": "kaugjuhtimine",
+   "label_et": "Kaugjuhtimine",
+   "unit": "bool"
+  }
+ ]
+}

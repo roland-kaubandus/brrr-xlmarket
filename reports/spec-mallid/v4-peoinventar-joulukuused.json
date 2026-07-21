@@ -1,0 +1,41 @@
+{
+ "l3": "v4-peoinventar-joulukuused",
+ "name": "Jõulukuused",
+ "fields": [
+  {
+   "key": "korgus_cm",
+   "label_et": "Kõrgus",
+   "unit": "cm"
+  },
+  {
+   "key": "okste_arv",
+   "label_et": "Okste tipud",
+   "unit": "tk"
+  },
+  {
+   "key": "led_arv",
+   "label_et": "LED-tuled",
+   "unit": "tk"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "alus_diameetr_mm",
+   "label_et": "Aluse läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "valgus_tyyp",
+   "label_et": "Valguse tüüp",
+   "unit": ""
+  }
+ ]
+}

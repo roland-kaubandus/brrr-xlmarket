@@ -1,0 +1,41 @@
+{
+ "l3": "v4-kodumasinad-koogi-ja-taignamikserid",
+ "name": "Köögi- ja taignamikserid",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "maht",
+   "label_et": "Tüüp/Suuruse kategooria",
+   "unit": "L"
+  },
+  {
+   "key": "poorlemiskiirus",
+   "label_et": "Pöörlemiskiirus",
+   "unit": "RPM"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "kiiruste_arv",
+   "label_et": "Kiiruseastmete arv",
+   "unit": "tk"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Kausi materjal",
+   "unit": ""
+  },
+  {
+   "key": "lisatarvikud",
+   "label_et": "Komplektis olevad tarvikud",
+   "unit": ""
+  }
+ ]
+}

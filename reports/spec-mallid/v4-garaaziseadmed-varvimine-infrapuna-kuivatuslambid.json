@@ -1,0 +1,46 @@
+{
+ "l3": "v4-garaaziseadmed-varvimine-infrapuna-kuivatuslambid",
+ "name": "Infrapuna-kuivatuslambid ja -seadmed",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "kuivatuspind",
+   "label_et": "Kuivatuspind",
+   "unit": "m²"
+  },
+  {
+   "key": "timer",
+   "label_et": "Ajastus",
+   "unit": "min"
+  },
+  {
+   "key": "korkus_regulatsioon",
+   "label_et": "Kõrguse reguleerimise ulatus",
+   "unit": "mm"
+  },
+  {
+   "key": "emitteri_eluiga",
+   "label_et": "Emitteri eluiga",
+   "unit": "h"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  }
+ ]
+}

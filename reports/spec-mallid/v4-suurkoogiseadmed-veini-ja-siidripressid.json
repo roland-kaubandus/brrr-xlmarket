@@ -1,0 +1,36 @@
+{
+ "l3": "v4-suurkoogiseadmed-veini-ja-siidripressid",
+ "name": "Veini- ja siidripressid",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Mahutavus",
+   "unit": "L"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "paigaldus_tyyp",
+   "label_et": "Paigalduse tüüp",
+   "unit": ""
+  },
+  {
+   "key": "koti_diameter",
+   "label_et": "Korvi/Anuma sisediameeter",
+   "unit": "mm"
+  },
+  {
+   "key": "kanti_tyyp",
+   "label_et": "Kandi/Käepideme tüüp",
+   "unit": ""
+  }
+ ]
+}

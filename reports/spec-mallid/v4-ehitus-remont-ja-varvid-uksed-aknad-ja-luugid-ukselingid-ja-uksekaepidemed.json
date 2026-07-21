@@ -1,0 +1,46 @@
+{
+ "l3": "v4-ehitus-remont-ja-varvid-uksed-aknad-ja-luugid-ukselingid-ja-uksekaepidemed",
+ "name": "Ukselingid ja uksekäepidemed",
+ "fields": [
+  {
+   "key": "materjal",
+   "label_et": "Käepideme materjal",
+   "unit": ""
+  },
+  {
+   "key": "uks_paksus_mm",
+   "label_et": "Sobiv ukse paksus",
+   "unit": "mm"
+  },
+  {
+   "key": "lukustus_tyyp",
+   "label_et": "Lukustuse tüüp",
+   "unit": ""
+  },
+  {
+   "key": "kohl_arv",
+   "label_et": "Kogus pakendis",
+   "unit": "tk"
+  },
+  {
+   "key": "kael_mm",
+   "label_et": "Käepideme pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "auk_kaugus_mm",
+   "label_et": "Reguleeritav aukude vahekaugus",
+   "unit": "mm"
+  },
+  {
+   "key": "varv",
+   "label_et": "Värvus",
+   "unit": ""
+  }
+ ]
+}

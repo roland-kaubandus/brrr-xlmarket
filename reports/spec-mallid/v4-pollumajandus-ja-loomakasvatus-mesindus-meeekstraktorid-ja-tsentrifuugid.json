@@ -1,0 +1,41 @@
+{
+ "l3": "v4-pollumajandus-ja-loomakasvatus-mesindus-meeekstraktorid-ja-tsentrifuugid",
+ "name": "Mee-ekstraktorid ja -tsentrifuugid",
+ "fields": [
+  {
+   "key": "raamide_arv",
+   "label_et": "Raamide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "maht",
+   "label_et": "Mee mahutavus",
+   "unit": "L"
+  },
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "poorlemiskiirus",
+   "label_et": "Pöörlemiskiirus",
+   "unit": "RPM"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "opereerimine",
+   "label_et": "Opereerimise tüüp",
+   "unit": ""
+  }
+ ]
+}

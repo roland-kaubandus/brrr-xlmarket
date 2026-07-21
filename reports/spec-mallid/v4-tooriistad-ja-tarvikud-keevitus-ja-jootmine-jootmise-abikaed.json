@@ -1,0 +1,46 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-keevitus-ja-jootmine-jootmise-abikaed",
+ "name": "Jootmise abikäed",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "käte_arv",
+   "label_et": "Paindlevate käte arv",
+   "unit": "tk"
+  },
+  {
+   "key": "käe_pikkus",
+   "label_et": "Käe pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "käe_läbimõõt",
+   "label_et": "Käe läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "led_suurendus",
+   "label_et": "LED-lambi suurendus",
+   "unit": "x"
+  },
+  {
+   "key": "pcb_hoidikute_arv",
+   "label_et": "PCB-hoidikute arv",
+   "unit": "tk"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "lisavarustus",
+   "label_et": "Lisavarustus",
+   "unit": ""
+  }
+ ]
+}

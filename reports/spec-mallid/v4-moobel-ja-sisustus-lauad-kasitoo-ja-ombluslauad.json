@@ -1,0 +1,46 @@
+{
+ "l3": "v4-moobel-ja-sisustus-lauad-kasitoo-ja-ombluslauad",
+ "name": "Käsitöö- ja õmbluslauad",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Neto kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kandevõime",
+   "label_et": "Kandevõime",
+   "unit": "kg"
+  },
+  {
+   "key": "pikkus_avatud",
+   "label_et": "Pikkus avatud",
+   "unit": "mm"
+  },
+  {
+   "key": "pikkus_suletud",
+   "label_et": "Pikkus suletud",
+   "unit": "mm"
+  },
+  {
+   "key": "laius",
+   "label_et": "Laius",
+   "unit": "mm"
+  },
+  {
+   "key": "koguus",
+   "label_et": "Kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "sailutamise_funktsioon",
+   "label_et": "Salvetusfunktsioon",
+   "unit": ""
+  }
+ ]
+}

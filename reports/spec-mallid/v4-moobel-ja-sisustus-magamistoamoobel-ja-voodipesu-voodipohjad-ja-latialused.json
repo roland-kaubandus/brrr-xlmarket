@@ -1,0 +1,41 @@
+{
+ "l3": "v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-voodipohjad-ja-latialused",
+ "name": "Voodipõhjad ja latialused",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "pikkus",
+   "label_et": "Pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "laius",
+   "label_et": "Laius",
+   "unit": "mm"
+  },
+  {
+   "key": "korgus",
+   "label_et": "Kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "kandjevoimet",
+   "label_et": "Kandevõimet",
+   "unit": "kg"
+  },
+  {
+   "key": "tukid_arv",
+   "label_et": "Tükid (arv)",
+   "unit": ""
+  }
+ ]
+}

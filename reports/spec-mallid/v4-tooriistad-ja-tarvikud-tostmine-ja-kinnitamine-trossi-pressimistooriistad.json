@@ -1,0 +1,41 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine-trossi-pressimistooriistad",
+ "name": "Trossi pressimistööriistad",
+ "fields": [
+  {
+   "key": "pikkus_cm",
+   "label_et": "Trossi pressimise käepide pikkus",
+   "unit": "cm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjalid ja kõvadus",
+   "unit": "HRC"
+  },
+  {
+   "key": "pressimise_mootmed",
+   "label_et": "Pressimise võimsus (äärised/trossid)",
+   "unit": "mm"
+  },
+  {
+   "key": "lõikamise_maht",
+   "label_et": "Lõikamise maht",
+   "unit": "mm"
+  },
+  {
+   "key": "õõtsade_arv",
+   "label_et": "Õõtsade/õõnte arv",
+   "unit": "tk"
+  },
+  {
+   "key": "kinnitus_tyyp",
+   "label_et": "Kinnitus tüüp",
+   "unit": "tüüp"
+  }
+ ]
+}

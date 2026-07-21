@@ -1,0 +1,36 @@
+{
+ "l3": "v4-molbertid",
+ "name": "Molbertid",
+ "fields": [
+  {
+   "key": "max_load_capacity",
+   "label_et": "Maksimaalne kandevõime",
+   "unit": "kg"
+  },
+  {
+   "key": "max_canvas_height",
+   "label_et": "Maksimaalne lõuendi suurus",
+   "unit": "inch"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Korpuse kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "adjustment_angle_range",
+   "label_et": "Reguleeritav nurk",
+   "unit": "°"
+  },
+  {
+   "key": "portable",
+   "label_et": "Kaasaskantavus (voltitav)",
+   "unit": ""
+  }
+ ]
+}

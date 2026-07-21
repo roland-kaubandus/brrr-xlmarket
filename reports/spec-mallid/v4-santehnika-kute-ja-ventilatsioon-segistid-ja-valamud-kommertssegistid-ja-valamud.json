@@ -1,0 +1,36 @@
+{
+ "l3": "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-kommertssegistid-ja-valamud",
+ "name": "Kommertssegistid ja -valamud",
+ "fields": [
+  {
+   "key": "korgus",
+   "label_et": "Kõrgus",
+   "unit": "cm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "paigaldus_tyyp",
+   "label_et": "Paigalduse tüüp",
+   "unit": ""
+  },
+  {
+   "key": "vohmik_pikkus",
+   "label_et": "Võhviku pikkus",
+   "unit": "cm"
+  },
+  {
+   "key": "keskpaigalduse_laius",
+   "label_et": "Keskpaigalduse laius",
+   "unit": "cm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  }
+ ]
+}

@@ -1,0 +1,41 @@
+{
+ "l3": "v4-garaaziseadmed-garaaziuksed-uksed-osad-ja-vedrud",
+ "name": "Garaažiukse osad ja vedrud",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kogukaal (koos tarvikutega)",
+   "unit": "kg"
+  },
+  {
+   "key": "traat_diameteers",
+   "label_et": "Traadi läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "sise_diameteers",
+   "label_et": "Siseläbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "pikkus",
+   "label_et": "Vedru pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "tsukkel_arv",
+   "label_et": "Töötsüklite arv",
+   "unit": "cycles"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal ja katted",
+   "unit": ""
+  },
+  {
+   "key": "joud",
+   "label_et": "Tõmbejõud (800-1000N klassis)",
+   "unit": "N"
+  }
+ ]
+}

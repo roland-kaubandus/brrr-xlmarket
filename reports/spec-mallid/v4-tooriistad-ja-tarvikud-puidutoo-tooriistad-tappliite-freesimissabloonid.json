@@ -1,0 +1,46 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-puidutoo-tooriistad-tappliite-freesimissabloonid",
+ "name": "Kalasabaliite freesimisšabloonid",
+ "fields": [
+  {
+   "key": "max_processing_width_mm",
+   "label_et": "Maksimaalne töötluslaius (ülemine)",
+   "unit": "mm"
+  },
+  {
+   "key": "max_clamping_thickness_top_mm",
+   "label_et": "Maksimaalne kinnitusvahveldus (ülemine)",
+   "unit": "mm"
+  },
+  {
+   "key": "max_clamping_thickness_side_mm",
+   "label_et": "Maksimaalne kinnitusvahveldus (külg)",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "mallidetearv",
+   "label_et": "Mallide arv komplektis",
+   "unit": "tk"
+  },
+  {
+   "key": "freesiharjade_arv",
+   "label_et": "Freesiharjade arv komplektis",
+   "unit": "tk"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "halb_pime_liigid",
+   "label_et": "Toetatud halb-pime liigid",
+   "unit": ""
+  }
+ ]
+}

@@ -1,0 +1,41 @@
+{
+ "l3": "v4-autovaruosad-multimeediaseadmed",
+ "name": "Multimeediaseadmed",
+ "fields": [
+  {
+   "key": "ekraani_suurus_mm",
+   "label_et": "Ekraani suurus",
+   "unit": "mm"
+  },
+  {
+   "key": "ekraani_lahutus",
+   "label_et": "Ekraani lahutus",
+   "unit": "px"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "kaamera_ees",
+   "label_et": "Esikaamerate tugi",
+   "unit": "bool"
+  },
+  {
+   "key": "kaamera_tagumine",
+   "label_et": "Tagakaamerate tugi",
+   "unit": "bool"
+  },
+  {
+   "key": "carplay_android_auto",
+   "label_et": "CarPlay ja Android Auto",
+   "unit": "bool"
+  },
+  {
+   "key": "juhe_pikkus",
+   "label_et": "Jõujuhe pikkus",
+   "unit": "m"
+  }
+ ]
+}

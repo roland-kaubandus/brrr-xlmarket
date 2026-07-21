@@ -1,0 +1,46 @@
+{
+ "l3": "v4-aed-ja-aiatehnika-l5-ulekande-ja-jouulekandeosad",
+ "name": "Ülekande- ja jõuülekandeosad",
+ "fields": [
+  {
+   "key": "poorlemiskiirus",
+   "label_et": "Tööpöörlemiskiirus",
+   "unit": "RPM"
+  },
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Neto kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "sisendkohde_diameet",
+   "label_et": "Juhtava ratta sisediameeter",
+   "unit": "mm"
+  },
+  {
+   "key": "valjaandkohde_diameet",
+   "label_et": "Veetava ratta sisediameeter",
+   "unit": "mm"
+  },
+  {
+   "key": "min_pooerlemiskiirus",
+   "label_et": "Minimaalne pöörlemiskiirus",
+   "unit": "RPM"
+  },
+  {
+   "key": "pikkus_ulatus",
+   "label_et": "Pikkuse vahemik",
+   "unit": "mm"
+  }
+ ]
+}

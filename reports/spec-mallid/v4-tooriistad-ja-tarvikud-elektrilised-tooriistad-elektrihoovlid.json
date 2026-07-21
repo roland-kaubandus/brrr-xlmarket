@@ -1,0 +1,36 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-elektrilised-tooriistad-elektrihoovlid",
+ "name": "Elektrihöövlid",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Nimivõimsus",
+   "unit": "W"
+  },
+  {
+   "key": "poorlemiskiirus",
+   "label_et": "Pöörlemisvõimsus",
+   "unit": "RPM"
+  },
+  {
+   "key": "lõike_laius",
+   "label_et": "Lõike laius",
+   "unit": "mm"
+  },
+  {
+   "key": "maksimaalne_lõike_sügavus",
+   "label_et": "Maksimaalne lõike sügavus",
+   "unit": "mm"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  }
+ ]
+}

@@ -1,0 +1,36 @@
+{
+ "l3": "v4-veekogu-umbrohurehad",
+ "name": "Veekogu-umbrohurehad",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "pea_laius",
+   "label_et": "Peaosa laius",
+   "unit": "mm"
+  },
+  {
+   "key": "hambaste_suurus",
+   "label_et": "Hambaste suurus",
+   "unit": "mm"
+  },
+  {
+   "key": "material",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "handle_pikkus",
+   "label_et": "Käepideme pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "kujundus",
+   "label_et": "Kujundus",
+   "unit": ""
+  }
+ ]
+}

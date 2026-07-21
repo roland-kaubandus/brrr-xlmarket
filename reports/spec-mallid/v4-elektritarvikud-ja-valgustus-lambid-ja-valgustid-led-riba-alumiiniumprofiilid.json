@@ -1,0 +1,41 @@
+{
+ "l3": "v4-elektritarvikud-ja-valgustus-lambid-ja-valgustid-led-riba-alumiiniumprofiilid",
+ "name": "LED-riba alumiiniumprofiilid",
+ "fields": [
+  {
+   "key": "pikkus_m",
+   "label_et": "Pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "kuju",
+   "label_et": "Profiilikuju",
+   "unit": ""
+  },
+  {
+   "key": "kogus_tk",
+   "label_et": "Kogus pakis",
+   "unit": "tk"
+  },
+  {
+   "key": "katte_tyyp",
+   "label_et": "Kaane tüüp",
+   "unit": ""
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kasutusala",
+   "label_et": "Kasutusala",
+   "unit": ""
+  },
+  {
+   "key": "komplekt_sisaldus",
+   "label_et": "Komplekti sisaldus",
+   "unit": ""
+  }
+ ]
+}

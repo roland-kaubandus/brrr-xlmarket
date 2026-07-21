@@ -1,0 +1,41 @@
+{
+ "l3": "v4-reklaami-truki-ja-graveerimisseadmed-koitmine-ja-lamineerimine-paberi-soonimis-voltimismasinad",
+ "name": "Paberi soonimis- ja voltimismasinad",
+ "fields": [
+  {
+   "key": "max_creasing_width_mm",
+   "label_et": "Maksimaalne soonimislaius",
+   "unit": "mm"
+  },
+  {
+   "key": "max_paper_weight_g",
+   "label_et": "Maksimaalne paberikaal",
+   "unit": "g"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Seadme kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "elektriline",
+   "label_et": "Elektriline / Käsitsi",
+   "unit": "tüüp"
+  },
+  {
+   "key": "funktsioonid",
+   "label_et": "Funktsioonide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "indentatsiooni_sügavus",
+   "label_et": "Indentatsiooni sügavus",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Korpuse materjal",
+   "unit": "tüüp"
+  }
+ ]
+}

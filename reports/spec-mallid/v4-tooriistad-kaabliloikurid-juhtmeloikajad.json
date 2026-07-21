@@ -1,0 +1,36 @@
+{
+ "l3": "v4-tooriistad-kaabliloikurid-juhtmeloikajad",
+ "name": "Kaablilõikurid ja juhtmelõikajad",
+ "fields": [
+  {
+   "key": "pikkus_mm",
+   "label_et": "Pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "max_lõikepindala",
+   "label_et": "Maksimaalne lõikepindala",
+   "unit": "mm²"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Tera materjal",
+   "unit": ""
+  },
+  {
+   "key": "tera_kõvadus",
+   "label_et": "Tera kõvadus",
+   "unit": "HRC"
+  },
+  {
+   "key": "mehhanismityyp",
+   "label_et": "Mehhanismi tüüp",
+   "unit": ""
+  }
+ ]
+}

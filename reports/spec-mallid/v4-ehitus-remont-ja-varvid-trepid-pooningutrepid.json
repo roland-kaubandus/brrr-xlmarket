@@ -1,0 +1,46 @@
+{
+ "l3": "v4-ehitus-remont-ja-varvid-trepid-pooningutrepid",
+ "name": "Pööningutrepid ja luugiga trepid",
+ "fields": [
+  {
+   "key": "maksimaalne_koormus",
+   "label_et": "Maksimaalne koormus",
+   "unit": "kg"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Omakaalu",
+   "unit": "kg"
+  },
+  {
+   "key": "astmete_arv",
+   "label_et": "Astmete arv",
+   "unit": "tk"
+  },
+  {
+   "key": "astme_laius",
+   "label_et": "Astme laius",
+   "unit": "mm"
+  },
+  {
+   "key": "astme_sügavus",
+   "label_et": "Astme sügavus",
+   "unit": "mm"
+  },
+  {
+   "key": "sobituskooji_korgus",
+   "label_et": "Sobituslagi kõrgus",
+   "unit": "m"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "trepitüüp",
+   "label_et": "Trepitüüp",
+   "unit": ""
+  }
+ ]
+}

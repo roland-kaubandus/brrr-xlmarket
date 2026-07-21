@@ -1,0 +1,46 @@
+{
+ "l3": "v4-ehitus-remont-ja-varvid-tellingud-toestuspostid",
+ "name": "Toestuspostid ja tungrauad",
+ "fields": [
+  {
+   "key": "max_load_capacity_kg",
+   "label_et": "Maksimaalne koormusvõimsus",
+   "unit": "kg"
+  },
+  {
+   "key": "min_height_cm",
+   "label_et": "Minimaalne kõrgus",
+   "unit": "cm"
+  },
+  {
+   "key": "max_height_cm",
+   "label_et": "Maksimaalne kõrgus",
+   "unit": "cm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Toote kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "quantity",
+   "label_et": "Pakendis olevate ühikute arv",
+   "unit": "tk"
+  },
+  {
+   "key": "base_plate_length_mm",
+   "label_et": "Alusketta pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "base_plate_width_mm",
+   "label_et": "Alusketta laius",
+   "unit": "mm"
+  }
+ ]
+}

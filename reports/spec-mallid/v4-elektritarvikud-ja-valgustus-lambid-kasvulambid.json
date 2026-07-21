@@ -1,0 +1,41 @@
+{
+ "l3": "v4-elektritarvikud-ja-valgustus-lambid-kasvulambid",
+ "name": "Kasvulambid",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "spektri_tyyp",
+   "label_et": "Spektri tüüp",
+   "unit": ""
+  },
+  {
+   "key": "valgustatav_pind",
+   "label_et": "Valgustav pind",
+   "unit": "m²"
+  },
+  {
+   "key": "reguleeritavus",
+   "label_et": "Heleduse reguleeritavus",
+   "unit": "astmeid"
+  },
+  {
+   "key": "ketti_uhendamise_arv",
+   "label_et": "Ketis ühendatavate lampide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  }
+ ]
+}

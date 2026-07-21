@@ -1,0 +1,46 @@
+{
+ "l3": "v4-ladu-tookarud",
+ "name": "Töökärud",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "kandevoimusus_kokku",
+   "label_et": "Kandevõimekus (kokku)",
+   "unit": "kg"
+  },
+  {
+   "key": "kandevoimusus_uksikul_riiulil",
+   "label_et": "Kandevõimekus (üksikul riiulil)",
+   "unit": "kg"
+  },
+  {
+   "key": "riiulite_arv",
+   "label_et": "Riiulite arv",
+   "unit": "tk"
+  },
+  {
+   "key": "sailumaht",
+   "label_et": "Säilitusmaht (ligikaudne)",
+   "unit": "L"
+  },
+  {
+   "key": "maarimine",
+   "label_et": "Mõõtmed (P×L×K)",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "lukustussusteem",
+   "label_et": "Lukustussüsteem",
+   "unit": ""
+  }
+ ]
+}

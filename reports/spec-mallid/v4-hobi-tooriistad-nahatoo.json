@@ -1,0 +1,41 @@
+{
+ "l3": "v4-hobi-tooriistad-nahatoo",
+ "name": "Nahatöö-tööriistad",
+ "fields": [
+  {
+   "key": "komplekti_suurus",
+   "label_et": "Tööriistade arv komplektis",
+   "unit": "tk"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "maarimine",
+   "label_et": "Säilituskoti materjal",
+   "unit": "kategoriaalne"
+  },
+  {
+   "key": "pikkus",
+   "label_et": "Pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "laius",
+   "label_et": "Laius",
+   "unit": "mm"
+  },
+  {
+   "key": "korgus",
+   "label_et": "Kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "funktsioonid",
+   "label_et": "Funktsioonid",
+   "unit": "kategoriaalne"
+  }
+ ]
+}

@@ -1,0 +1,46 @@
+{
+ "l3": "v4-moobel-ja-sisustus-toolid-ja-istmed-vannitoa-istmed",
+ "name": "Vannitoa istmed",
+ "fields": [
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "korgus_mm",
+   "label_et": "Kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "laius_mm",
+   "label_et": "Laius",
+   "unit": "mm"
+  },
+  {
+   "key": "sügavus_mm",
+   "label_et": "Sügavus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "max_koormus_kg",
+   "label_et": "Maksimaalne koormus",
+   "unit": "kg"
+  },
+  {
+   "key": "riiuli_pindala_mm2",
+   "label_et": "Riiuli pindala",
+   "unit": "mm²"
+  },
+  {
+   "key": "dreenimisavad",
+   "label_et": "Dreenimisavad",
+   "unit": ""
+  }
+ ]
+}

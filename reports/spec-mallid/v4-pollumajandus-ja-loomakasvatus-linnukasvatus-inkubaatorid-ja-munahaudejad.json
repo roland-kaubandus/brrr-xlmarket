@@ -1,0 +1,46 @@
+{
+ "l3": "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-inkubaatorid-ja-munahaudejad",
+ "name": "Inkubaatorid ja munahaudejad",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Mahutavus (munade arv)",
+   "unit": "tk"
+  },
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "temperatuuri_vahemik",
+   "label_et": "Temperatuuri reguleerimise vahemik",
+   "unit": "°C"
+  },
+  {
+   "key": "niiskuse_kontroll",
+   "label_et": "Niiskuse kontroll",
+   "unit": "automaatne/käsitsi"
+  },
+  {
+   "key": "muna_pööramine",
+   "label_et": "Automaatne muna pööramine",
+   "unit": "jah/ei"
+  },
+  {
+   "key": "materijal",
+   "label_et": "Materjal",
+   "unit": "tekstuaalne"
+  }
+ ]
+}

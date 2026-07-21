@@ -1,0 +1,46 @@
+{
+ "l3": "v4-ehitus-remont-ja-varvid-uksed-aknad-ja-luugid-ukselukud-ja-koodlukud",
+ "name": "Ukselukud ja koodlukud",
+ "fields": [
+  {
+   "key": "lock_type",
+   "label_et": "Lukumehhanism",
+   "unit": ""
+  },
+  {
+   "key": "keypad_keys",
+   "label_et": "Klahvide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "code_digits",
+   "label_et": "Koodi numbrite vahemik",
+   "unit": "numbrit"
+  },
+  {
+   "key": "installation_type",
+   "label_et": "Paigalduse tüüp",
+   "unit": ""
+  },
+  {
+   "key": "suitable_door_thickness",
+   "label_et": "Sobiv ukse paksus",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Peamine materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "access_sides",
+   "label_et": "Juurdepääsu külgede arv",
+   "unit": "tk"
+  }
+ ]
+}

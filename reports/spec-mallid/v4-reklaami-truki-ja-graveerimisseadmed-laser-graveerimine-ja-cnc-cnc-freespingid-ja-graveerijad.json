@@ -1,0 +1,46 @@
+{
+ "l3": "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-cnc-freespingid-ja-graveerijad",
+ "name": "CNC freespingid ja graveerijad",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Laser/spindle võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "poorlemiskiirus",
+   "label_et": "Spindle kiirus",
+   "unit": "RPM"
+  },
+  {
+   "key": "tooala_x",
+   "label_et": "Töötingimused X-telg",
+   "unit": "mm"
+  },
+  {
+   "key": "tooala_y",
+   "label_et": "Töötingimused Y-telg",
+   "unit": "mm"
+  },
+  {
+   "key": "tooala_z",
+   "label_et": "Töötingimused Z-telg (sügavus)",
+   "unit": "mm"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Sisendpinge",
+   "unit": "V"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Ehitusmaterjalid",
+   "unit": ""
+  },
+  {
+   "key": "ketta_labamoot",
+   "label_et": "Lõikeketta läbimõõt",
+   "unit": "mm"
+  }
+ ]
+}

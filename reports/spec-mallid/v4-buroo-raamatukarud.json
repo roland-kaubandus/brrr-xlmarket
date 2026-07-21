@@ -1,0 +1,46 @@
+{
+ "l3": "v4-buroo-raamatukarud",
+ "name": "Raamatu- ja raamatukogukärud",
+ "fields": [
+  {
+   "key": "kogumaht_kg",
+   "label_et": "Maksimaalne kandevõime (kogu kärul)",
+   "unit": "kg"
+  },
+  {
+   "key": "yhele_riiulile_kg",
+   "label_et": "Maksimaalne kandevõime (üks riiulilava)",
+   "unit": "kg"
+  },
+  {
+   "key": "riiulite_arv",
+   "label_et": "Riiulite arv",
+   "unit": "tk"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Käru enda kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "riiuli_kaugus_mm",
+   "label_et": "Riiulite vaheline kaugus",
+   "unit": "mm"
+  },
+  {
+   "key": "rataste_labimaoot_mm",
+   "label_et": "Rataste läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "motu_tyyp",
+   "label_et": "Riiulite kuju",
+   "unit": ""
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  }
+ ]
+}

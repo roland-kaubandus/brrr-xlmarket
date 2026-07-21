@@ -1,0 +1,41 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-tookoja-sisustus-tootoolid-taburetid",
+ "name": "Töötoolid ja -taburetid",
+ "fields": [
+  {
+   "key": "kannatus_kg",
+   "label_et": "Kandevõime",
+   "unit": "kg"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaalu",
+   "unit": "kg"
+  },
+  {
+   "key": "korguse_vahemik_cm",
+   "label_et": "Kõrguse reguleerimise vahemik",
+   "unit": "cm"
+  },
+  {
+   "key": "rataste_diameetr_mm",
+   "label_et": "Rataste läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "istme_suurus_cm",
+   "label_et": "Istme suurus",
+   "unit": "cm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Raam- ja istmematerjal",
+   "unit": ""
+  },
+  {
+   "key": "toos_mahutavus",
+   "label_et": "Tööriistade mahutavus",
+   "unit": ""
+  }
+ ]
+}

@@ -1,0 +1,36 @@
+{
+ "l3": "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-kardinasiinid-ja-susteemid",
+ "name": "Kardinasiinid ja -süsteemid",
+ "fields": [
+  {
+   "key": "pikkus",
+   "label_et": "Rööpa pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "roopad_arv",
+   "label_et": "Rööpade arv",
+   "unit": "tk"
+  },
+  {
+   "key": "paigaldusviis",
+   "label_et": "Paigaldusviis",
+   "unit": ""
+  },
+  {
+   "key": "riba_laius",
+   "label_et": "Riba laius",
+   "unit": "mm"
+  }
+ ]
+}

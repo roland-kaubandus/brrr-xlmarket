@@ -1,0 +1,41 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-elektrilised-tooriistad-torulihvijad",
+ "name": "Torulihvijad",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "poorlemiskiirus",
+   "label_et": "Poorlemiskiirus",
+   "unit": "RPM"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "max_toru_diameetr",
+   "label_et": "Max toru läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "liivavoore_suurus",
+   "label_et": "Liivavöö suurus",
+   "unit": "mm"
+  },
+  {
+   "key": "kiiruste_arv",
+   "label_et": "Kiiruste arv",
+   "unit": "tk"
+  }
+ ]
+}

@@ -1,0 +1,46 @@
+{
+ "l3": "v4-garaaziseadmed-rehvitood-rataste-joondamise-ja-suunamise-seadmed",
+ "name": "Rataste joondamise ja suunamise seadmed",
+ "fields": [
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "maksimaalne_koormus",
+   "label_et": "Maksimaalne koormus",
+   "unit": "kg"
+  },
+  {
+   "key": "mootmise_ulatus",
+   "label_et": "Mõõtmise ulatus",
+   "unit": "mm"
+  },
+  {
+   "key": "tapsus",
+   "label_et": "Täpsus",
+   "unit": "°"
+  },
+  {
+   "key": "pöörlemisvõimalus",
+   "label_et": "Pöörlemisplaat",
+   "unit": ""
+  },
+  {
+   "key": "paigaldusasukoht",
+   "label_et": "Paigaldusasukoht",
+   "unit": ""
+  },
+  {
+   "key": "komplekti_koosseis",
+   "label_et": "Komplekti koosseis",
+   "unit": ""
+  }
+ ]
+}

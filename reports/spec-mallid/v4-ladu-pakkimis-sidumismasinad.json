@@ -1,0 +1,42 @@
+{
+ "l3": "v4-ladu-pakkimis-sidumismasinad",
+ "name": "Pakkimis- ja sidumismasinad",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "rohk",
+   "label_et": "Tööpaine",
+   "unit": "bar"
+  },
+  {
+   "key": "pingutusjoud",
+   "label_et": "Pingutusjõud",
+   "unit": "N"
+  },
+  {
+   "key": "rihma_laius",
+   "label_et": "Rihmade laius",
+   "unit": "mm"
+  },
+  {
+   "key": "aku_maht",
+   "label_et": "Aku mahtuvus",
+   "unit": "Wh",
+   "unit_orig": "mAh"
+  }
+ ]
+}

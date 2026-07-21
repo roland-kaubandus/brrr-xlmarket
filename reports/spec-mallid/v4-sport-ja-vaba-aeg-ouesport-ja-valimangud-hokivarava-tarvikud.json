@@ -1,0 +1,46 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-hokivarava-tarvikud",
+ "name": "Hokivärava tarvikud",
+ "fields": [
+  {
+   "key": "laius",
+   "label_et": "Laius",
+   "unit": "ft"
+  },
+  {
+   "key": "korgus",
+   "label_et": "Kõrgus",
+   "unit": "ft"
+  },
+  {
+   "key": "sügavus",
+   "label_et": "Sügavus",
+   "unit": "ft"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Raam materjal",
+   "unit": ""
+  },
+  {
+   "key": "torude_diameeter",
+   "label_et": "Torude läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "vorgupeenuse",
+   "label_et": "Võrgupeenuse suurus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaasaskantavus",
+   "label_et": "Kaasaskantavus",
+   "unit": ""
+  }
+ ]
+}

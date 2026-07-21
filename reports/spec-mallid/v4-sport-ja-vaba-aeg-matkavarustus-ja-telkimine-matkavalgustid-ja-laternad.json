@@ -1,0 +1,46 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-matkavarustus-ja-telkimine-matkavalgustid-ja-laternad",
+ "name": "Matkavalgustid ja laternad",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "aku_maht",
+   "label_et": "Aku mahtuvus",
+   "unit": "Wh"
+  },
+  {
+   "key": "heledus",
+   "label_et": "Heledus",
+   "unit": "lm"
+  },
+  {
+   "key": "tuulekiirus",
+   "label_et": "Maksimaalne tuulekiirus",
+   "unit": "m/s"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "valgustuse_režiimid",
+   "label_et": "Valgustuse režiimid",
+   "unit": "tk"
+  },
+  {
+   "key": "laadimismeetod",
+   "label_et": "Laadimismeetod",
+   "unit": ""
+  }
+ ]
+}

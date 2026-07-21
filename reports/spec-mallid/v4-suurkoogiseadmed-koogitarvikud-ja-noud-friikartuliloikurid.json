@@ -1,0 +1,41 @@
+{
+ "l3": "v4-suurkoogiseadmed-koogitarvikud-ja-noud-friikartuliloikurid",
+ "name": "Friikartulilõikurid",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "toing_tyyp",
+   "label_et": "Tüüp (käsitsi/elektriline)",
+   "unit": ""
+  },
+  {
+   "key": "teralisuurused",
+   "label_et": "Tera suurused",
+   "unit": "mm/tolline"
+  },
+  {
+   "key": "teade_arv",
+   "label_et": "Teradude arv",
+   "unit": "tk"
+  },
+  {
+   "key": "pindala",
+   "label_et": "Lõikeala",
+   "unit": "mm"
+  }
+ ]
+}

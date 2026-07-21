@@ -1,0 +1,41 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-veesport-ja-paadindus-sukeldumisvarustus",
+ "name": "Sukeldumisvarustus",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Paagi maht",
+   "unit": "L"
+  },
+  {
+   "key": "rohk",
+   "label_et": "Maksimaalne rõhk",
+   "unit": "bar"
+  },
+  {
+   "key": "kael",
+   "label_et": "Kaal (koos tarvikutega)",
+   "unit": "kg"
+  },
+  {
+   "key": "sukeldumissügavus",
+   "label_et": "Maksimaalne sukeldumissügavus",
+   "unit": "m"
+  },
+  {
+   "key": "kasutusaeg",
+   "label_et": "Kasutusaeg vee all",
+   "unit": "min"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Paagi materjal",
+   "unit": ""
+  },
+  {
+   "key": "suu_materijal",
+   "label_et": "Suuosa materjal",
+   "unit": ""
+  }
+ ]
+}

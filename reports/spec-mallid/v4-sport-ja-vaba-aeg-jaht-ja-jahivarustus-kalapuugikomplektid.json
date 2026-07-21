@@ -1,0 +1,46 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-jaht-ja-jahivarustus-kalapuugikomplektid",
+ "name": "Kalapüügikomplektid",
+ "fields": [
+  {
+   "key": "kala_liik",
+   "label_et": "Kalamis tüüp",
+   "unit": ""
+  },
+  {
+   "key": "kota_pikkus",
+   "label_et": "Kota pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kogukaal",
+   "unit": "kg"
+  },
+  {
+   "key": "line_weight",
+   "label_et": "Siima kaal",
+   "unit": "LB"
+  },
+  {
+   "key": "gear_ratio",
+   "label_et": "Ülekande suhe",
+   "unit": "1"
+  },
+  {
+   "key": "kuuli_laagreid",
+   "label_et": "Kuuli-laagreid",
+   "unit": "tk"
+  },
+  {
+   "key": "kota_power",
+   "label_et": "Kota tugevus",
+   "unit": ""
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  }
+ ]
+}

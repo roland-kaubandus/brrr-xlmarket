@@ -1,0 +1,46 @@
+{
+ "l3": "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-automaatsed-kanamajauksed",
+ "name": "Automaatsed kanamajauksed",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "uste_suurus",
+   "label_et": "Ukse suurus",
+   "unit": "mm"
+  },
+  {
+   "key": "valgustundlik",
+   "label_et": "Valgustundlik andur",
+   "unit": ""
+  },
+  {
+   "key": "toiteallikas",
+   "label_et": "Toiteallikas",
+   "unit": ""
+  },
+  {
+   "key": "kaugjuhtimine",
+   "label_et": "Kaugjuhtimine",
+   "unit": ""
+  }
+ ]
+}

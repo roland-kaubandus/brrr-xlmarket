@@ -1,0 +1,41 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-surve-lekketestrid",
+ "name": "Surve- ja lekketestrid",
+ "fields": [
+  {
+   "key": "max_rohk",
+   "label_et": "Maksimaalne rõhk",
+   "unit": "bar"
+  },
+  {
+   "key": "maht",
+   "label_et": "Paagi maht",
+   "unit": "L"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "imemismaht_loobimise_kohta",
+   "label_et": "Imemismaht löögis",
+   "unit": "mL"
+  },
+  {
+   "key": "manomeetri_tyyp",
+   "label_et": "Manomeetri tüüp",
+   "unit": "ühikud"
+  },
+  {
+   "key": "toru_pikkus",
+   "label_et": "Testtooru pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  }
+ ]
+}

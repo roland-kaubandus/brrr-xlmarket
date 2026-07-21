@@ -1,0 +1,41 @@
+{
+ "l3": "v4-santehnika-kute-ja-ventilatsioon-veefiltrid-ja-puhastus-veepehmendussusteemid",
+ "name": "Veepehmendussüsteemid",
+ "fields": [
+  {
+   "key": "vooluhulk",
+   "label_et": "Maksimaalne vooluhulk",
+   "unit": "L/min"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Toote kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "vee_kovadus_maht",
+   "label_et": "Vee kovaduse maht",
+   "unit": "gallon"
+  },
+  {
+   "key": "katlisus_tase",
+   "label_et": "Katlisuse ennetamise efektiivsus",
+   "unit": "%"
+  },
+  {
+   "key": "voimsus",
+   "label_et": "Nimivoimsus",
+   "unit": "W"
+  },
+  {
+   "key": "ühenduse_suurus",
+   "label_et": "Ühenduse suurus",
+   "unit": "inch"
+  },
+  {
+   "key": "pereinimeste_arv",
+   "label_et": "Sobib perekonna suurusele",
+   "unit": "isik"
+  }
+ ]
+}

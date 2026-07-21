@@ -1,0 +1,36 @@
+{
+ "l3": "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-noopide-ja-markide-valmistamise-masinad",
+ "name": "Nööpide ja märkide valmistamise masinad",
+ "fields": [
+  {
+   "key": "ketta_labamoot",
+   "label_et": "Nööbi/märgi läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjalikomplekt",
+   "unit": ""
+  },
+  {
+   "key": "komplekti_kogus",
+   "label_et": "Komplektide/nööpide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "kasutusvigurid",
+   "label_et": "Kasutusviis",
+   "unit": ""
+  },
+  {
+   "key": "maarimine",
+   "label_et": "Dimensioonid (L×K×S)",
+   "unit": "cm"
+  }
+ ]
+}

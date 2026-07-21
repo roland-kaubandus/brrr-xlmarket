@@ -1,0 +1,41 @@
+{
+ "l3": "v4-elektritarvikud-ja-valgustus-elektroonika-termoprinterid",
+ "name": "Termoprinterid",
+ "fields": [
+  {
+   "key": "lahutus_dpi",
+   "label_et": "Lahutus (DPI)",
+   "unit": "DPI"
+  },
+  {
+   "key": "printimiskiirus",
+   "label_et": "Printimiskiirus",
+   "unit": "mm/s"
+  },
+  {
+   "key": "aku_maht",
+   "label_et": "Aku maht",
+   "unit": "Wh"
+  },
+  {
+   "key": "ühendus_tyyp",
+   "label_et": "Ühenduse tüüp",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "etiketi_suurus",
+   "label_et": "Etiketi suurus",
+   "unit": "mm"
+  },
+  {
+   "key": "paberite_tyyp",
+   "label_et": "Paberite tüüp",
+   "unit": ""
+  }
+ ]
+}

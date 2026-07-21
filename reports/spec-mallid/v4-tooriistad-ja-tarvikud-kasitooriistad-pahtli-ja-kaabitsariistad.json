@@ -1,0 +1,36 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-kasitooriistad-pahtli-ja-kaabitsariistad",
+ "name": "Pahtli- ja kaabitsariistad",
+ "fields": [
+  {
+   "key": "materjal",
+   "label_et": "Tera materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "teraade_arv",
+   "label_et": "Kaasas olevate teradega",
+   "unit": "tk"
+  },
+  {
+   "key": "pidemiku_materjal",
+   "label_et": "Käepideme materjal",
+   "unit": ""
+  },
+  {
+   "key": "tera_pikkus",
+   "label_et": "Tera pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "reguleeritav_nurk",
+   "label_et": "Reguleeritav käepideme nurk",
+   "unit": ""
+  }
+ ]
+}

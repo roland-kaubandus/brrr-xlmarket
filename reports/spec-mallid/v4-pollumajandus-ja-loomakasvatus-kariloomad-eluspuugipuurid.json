@@ -1,0 +1,41 @@
+{
+ "l3": "v4-pollumajandus-ja-loomakasvatus-kariloomad-eluspuugipuurid",
+ "name": "Eluspüügipuurid ja loomapüünised",
+ "fields": [
+  {
+   "key": "pikkus_mm",
+   "label_et": "Pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "laius_mm",
+   "label_et": "Laius",
+   "unit": "mm"
+  },
+  {
+   "key": "korgus_mm",
+   "label_et": "Kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "voltimisv_oimeline",
+   "label_et": "Voltimisega kokkusobiv",
+   "unit": ""
+  },
+  {
+   "key": "uks_tyyp",
+   "label_et": "Ukse tüüp",
+   "unit": ""
+  }
+ ]
+}

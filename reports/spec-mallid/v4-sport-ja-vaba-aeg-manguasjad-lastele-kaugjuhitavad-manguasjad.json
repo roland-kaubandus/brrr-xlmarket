@@ -1,0 +1,46 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-manguasjad-lastele-kaugjuhitavad-manguasjad",
+ "name": "Kaugjuhitavad mänguasjad",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "aku_maht",
+   "label_et": "Aku mahtuvus",
+   "unit": "Wh"
+  },
+  {
+   "key": "maksimaalne_kiirus",
+   "label_et": "Maksimaalne kiirus",
+   "unit": "km/h"
+  },
+  {
+   "key": "juhtimiskaugus",
+   "label_et": "Juhtimiskaugus",
+   "unit": "m"
+  },
+  {
+   "key": "tooaeg",
+   "label_et": "Töötamisaeg",
+   "unit": "min"
+  },
+  {
+   "key": "laadimisaeg",
+   "label_et": "Laadimisaeg",
+   "unit": "min"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Korpuse materjal",
+   "unit": ""
+  },
+  {
+   "key": "veetihedus",
+   "label_et": "Veekindlus",
+   "unit": ""
+  }
+ ]
+}

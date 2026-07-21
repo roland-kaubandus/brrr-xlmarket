@@ -1,0 +1,41 @@
+{
+ "l3": "v4-suurkoogiseadmed-jaamasinad-helbejaamasinad",
+ "name": "Helbejäämasinad",
+ "fields": [
+  {
+   "key": "jaa_tootmine_24h",
+   "label_et": "Jääproduktsioon 24h",
+   "unit": "kg"
+  },
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "maht",
+   "label_et": "Paagi maht",
+   "unit": "L"
+  },
+  {
+   "key": "jahutus_viis",
+   "label_et": "Jahutusviis",
+   "unit": "kategooria"
+  },
+  {
+   "key": "jaahutus_kiirus",
+   "label_et": "Eeljahutuse kiirus",
+   "unit": "s"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Peamine materjal",
+   "unit": "kategooria"
+  }
+ ]
+}

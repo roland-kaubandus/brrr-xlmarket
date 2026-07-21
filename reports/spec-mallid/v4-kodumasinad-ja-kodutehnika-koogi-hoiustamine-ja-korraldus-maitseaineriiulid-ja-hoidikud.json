@@ -1,0 +1,46 @@
+{
+ "l3": "v4-kodumasinad-ja-kodutehnika-koogi-hoiustamine-ja-korraldus-maitseaineriiulid-ja-hoidikud",
+ "name": "Maitseaineriiulid ja -hoidikud",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Mahutavus (purkide arv)",
+   "unit": "tk"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Toote netokaal",
+   "unit": "kg"
+  },
+  {
+   "key": "kandevoimsus",
+   "label_et": "Maksimaalne kandevõime",
+   "unit": "kg"
+  },
+  {
+   "key": "pooglite_arv",
+   "label_et": "Riiulite/tasandite arv",
+   "unit": "tk"
+  },
+  {
+   "key": "laius",
+   "label_et": "Laiussuurus",
+   "unit": "mm"
+  },
+  {
+   "key": "korgus",
+   "label_et": "Kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Peamine materjal",
+   "unit": ""
+  },
+  {
+   "key": "paigutus_tyyp",
+   "label_et": "Paigutustüüp",
+   "unit": ""
+  }
+ ]
+}

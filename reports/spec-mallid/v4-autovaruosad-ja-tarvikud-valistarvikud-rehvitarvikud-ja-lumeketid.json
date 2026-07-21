@@ -1,0 +1,41 @@
+{
+ "l3": "v4-autovaruosad-ja-tarvikud-valistarvikud-rehvitarvikud-ja-lumeketid",
+ "name": "Rehvitarvikud ja lumeketid",
+ "fields": [
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "ristlõike_mõõtmed",
+   "label_et": "Ristlõike mõõtmed",
+   "unit": "mm"
+  },
+  {
+   "key": "ahela_pikkus",
+   "label_et": "Ahela pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "kogupikkus",
+   "label_et": "Kogupikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "tüüp",
+   "label_et": "Tüüp",
+   "unit": ""
+  },
+  {
+   "key": "kogus",
+   "label_et": "Kogus",
+   "unit": "tk"
+  }
+ ]
+}

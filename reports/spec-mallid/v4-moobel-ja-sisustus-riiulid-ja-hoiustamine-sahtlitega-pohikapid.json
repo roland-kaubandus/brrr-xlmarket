@@ -1,0 +1,41 @@
+{
+ "l3": "v4-moobel-ja-sisustus-riiulid-ja-hoiustamine-sahtlitega-pohikapid",
+ "name": "Sahtlitega põhikapid",
+ "fields": [
+  {
+   "key": "laius_mm",
+   "label_et": "Laius",
+   "unit": "mm"
+  },
+  {
+   "key": "sügavus_mm",
+   "label_et": "Sügavus",
+   "unit": "mm"
+  },
+  {
+   "key": "korgus_mm",
+   "label_et": "Kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "sahtlite_arv",
+   "label_et": "Sahtlite arv",
+   "unit": "tk"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "sulgemismehhanism",
+   "label_et": "Sahtli sulgemismehhanism",
+   "unit": ""
+  }
+ ]
+}

@@ -1,0 +1,36 @@
+{
+ "l3": "v4-tooriistad-metallifreespingid",
+ "name": "Metallifreespingid",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "poorlemiskiirus",
+   "label_et": "Pöörlemiskiirus",
+   "unit": "RPM"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "tabel_suurused",
+   "label_et": "Lauavõimsus",
+   "unit": "T"
+  },
+  {
+   "key": "kaldenurk",
+   "label_et": "Kaldenurk",
+   "unit": "°"
+  }
+ ]
+}

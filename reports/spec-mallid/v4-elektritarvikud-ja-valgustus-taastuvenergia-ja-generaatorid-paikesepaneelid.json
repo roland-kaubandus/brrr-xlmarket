@@ -1,0 +1,46 @@
+{
+ "l3": "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-paikesepaneelid",
+ "name": "Päikesepaneelid",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "kasutegur",
+   "label_et": "Konversioonikasutegur",
+   "unit": "%"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "vool",
+   "label_et": "Tööpinge vool",
+   "unit": "A"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "tyyp",
+   "label_et": "Paneeli tüüp",
+   "unit": ""
+  },
+  {
+   "key": "kaitseklass",
+   "label_et": "Kaitseklass",
+   "unit": "IP"
+  },
+  {
+   "key": "opetav_temp",
+   "label_et": "Töötemperatuurivahemik",
+   "unit": "°C"
+  }
+ ]
+}

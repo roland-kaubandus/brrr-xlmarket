@@ -1,0 +1,41 @@
+{
+ "l3": "v4-elektritarvikud-ja-valgustus-elektroonika-unemasinad",
+ "name": "Unemasinad",
+ "fields": [
+  {
+   "key": "helide_arv",
+   "label_et": "Rahustava helideid",
+   "unit": "tk"
+  },
+  {
+   "key": "voimsus",
+   "label_et": "Nimivõimsus",
+   "unit": "W"
+  },
+  {
+   "key": "myra",
+   "label_et": "Maksimaalne helitugevus",
+   "unit": "dB"
+  },
+  {
+   "key": "aku_maht",
+   "label_et": "Aku mahtuvus",
+   "unit": "Wh"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "vari_arv",
+   "label_et": "LED värvid",
+   "unit": "tk"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Aku pinge",
+   "unit": "V"
+  }
+ ]
+}

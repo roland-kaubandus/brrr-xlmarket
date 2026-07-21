@@ -1,0 +1,42 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-paaditehnika-paadivintsid",
+ "name": "Paadivintsid ja püügiabivahendid",
+ "fields": [
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "max_trahv",
+   "label_et": "Maksimaalne tõmbejõud",
+   "unit": "kg"
+  },
+  {
+   "key": "poorlemiskiirus",
+   "label_et": "Retriimise kiirus",
+   "unit": "RPM",
+   "unit_orig": "m/min"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "paadi_suurus",
+   "label_et": "Paadi sobiv suurus",
+   "unit": "m"
+  }
+ ]
+}

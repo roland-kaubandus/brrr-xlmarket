@@ -1,0 +1,36 @@
+{
+ "l3": "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-graveerimispingid-ja-klambrid",
+ "name": "Graveerimispingid ja -klambrid",
+ "fields": [
+  {
+   "key": "kera_diameetral_mm",
+   "label_et": "Kera läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "max_avanemine_mm",
+   "label_et": "Maksimaalne avanemine",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "lisatarvikute_arv",
+   "label_et": "Lisatarvikute arv",
+   "unit": "tk"
+  },
+  {
+   "key": "pöörlemine",
+   "label_et": "Pöörlemine",
+   "unit": "°"
+  }
+ ]
+}

@@ -1,0 +1,36 @@
+{
+ "l3": "v4-kodumasinad-ja-kodutehnika-koogitehnika-pliidid-ja-keeduplaadid",
+ "name": "Pliidid ja keeduplaadid",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "paagutite_arv",
+   "label_et": "Päägivate arv",
+   "unit": "tk"
+  },
+  {
+   "key": "max_noustepingu_diameeter",
+   "label_et": "Max nõustepingu läbimõõt",
+   "unit": "mm"
+  }
+ ]
+}

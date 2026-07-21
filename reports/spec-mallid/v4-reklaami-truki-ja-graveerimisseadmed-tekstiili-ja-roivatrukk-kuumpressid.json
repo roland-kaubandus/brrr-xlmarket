@@ -1,0 +1,41 @@
+{
+ "l3": "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-kuumpressid",
+ "name": "Kuumpressid",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "max_temperatura",
+   "label_et": "Maksimaalne temperatuur",
+   "unit": "°C"
+  },
+  {
+   "key": "plaadi_suurus",
+   "label_et": "Peaplaat suurus",
+   "unit": "cm"
+  },
+  {
+   "key": "funktsioonide_arv",
+   "label_et": "Kombinatsioonide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "taimer",
+   "label_et": "Taimer",
+   "unit": "s"
+  }
+ ]
+}

@@ -1,0 +1,36 @@
+{
+ "l3": "v4-hobi-tekstiil-omblusmasinad",
+ "name": "Õmblusmasinad",
+ "fields": [
+  {
+   "key": "poorlemiskiirus",
+   "label_et": "Maksimaalne õmbluskiirus",
+   "unit": "RPM"
+  },
+  {
+   "key": "omblusmustreid",
+   "label_et": "Õmbluste arv",
+   "unit": "tk"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "max_omluse_pikkus",
+   "label_et": "Maksimaalne õmbluse pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "niidi_arv",
+   "label_et": "Niitide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  }
+ ]
+}

@@ -1,0 +1,46 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-veesport-ja-ujuvvahendid-kajaki-sup-ja-lainelaua-hoiuriiulid",
+ "name": "Kajaki-, SUP- ja lainelaua hoiuriiulid",
+ "fields": [
+  {
+   "key": "mahutavus_arv",
+   "label_et": "Mahutavus (laude arv)",
+   "unit": "tk"
+  },
+  {
+   "key": "kandevoimsus",
+   "label_et": "Kandevõimekus",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "paigaldusviis",
+   "label_et": "Paigaldusviis",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Riiuli kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "reguleeritavus",
+   "label_et": "Reguleeritavus",
+   "unit": ""
+  },
+  {
+   "key": "pikkus",
+   "label_et": "Pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "korgus",
+   "label_et": "Kõrgus",
+   "unit": "mm"
+  }
+ ]
+}

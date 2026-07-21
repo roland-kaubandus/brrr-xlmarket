@@ -1,0 +1,41 @@
+{
+ "l3": "v4-lemmikloomatarbed-lemmiklooma-uksed-ja-varavad-lemmiklooma-uksed",
+ "name": "Lemmiklooma-uksed",
+ "fields": [
+  {
+   "key": "kere_mater",
+   "label_et": "Kere materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "kere_laius",
+   "label_et": "Kere laius",
+   "unit": "mm"
+  },
+  {
+   "key": "kere_korgus",
+   "label_et": "Kere kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "klapilukk_tyyp",
+   "label_et": "Klapi lukk tüüp",
+   "unit": ""
+  },
+  {
+   "key": "paigaldus_tyyp",
+   "label_et": "Paigaldus tüüp",
+   "unit": ""
+  },
+  {
+   "key": "seina_paksus_min",
+   "label_et": "Seina paksus min",
+   "unit": "mm"
+  }
+ ]
+}

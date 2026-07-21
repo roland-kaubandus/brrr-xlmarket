@@ -1,0 +1,36 @@
+{
+ "l3": "v4-suurkoogiseadmed-koogitarvikud-ja-noud-potid-ja-potikomplektid",
+ "name": "Potid ja potikomplektid",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Maht",
+   "unit": "L"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "seinapaksus",
+   "label_et": "Seinapaksus",
+   "unit": "mm"
+  },
+  {
+   "key": "pohja_tyyp",
+   "label_et": "Põhja tüüp",
+   "unit": ""
+  },
+  {
+   "key": "kogus_komplektis",
+   "label_et": "Kogus komplektis",
+   "unit": "tk"
+  }
+ ]
+}

@@ -1,0 +1,41 @@
+{
+ "l3": "v4-autovaruosad-ja-tarvikud-katuse-ja-koormakandjad-kajakihoidikud",
+ "name": "Kajakihoidikud",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kaalu (ühe paari)",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kajakute_arv",
+   "label_et": "Kajakute arv (mahutavus)",
+   "unit": "tk"
+  },
+  {
+   "key": "paarde_arv",
+   "label_et": "J-kujuliste paarde arv",
+   "unit": "tk"
+  },
+  {
+   "key": "pikkus",
+   "label_et": "Pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "korgus",
+   "label_et": "Kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "voltimisruum",
+   "label_et": "Voltitav (0-180°)",
+   "unit": ""
+  }
+ ]
+}

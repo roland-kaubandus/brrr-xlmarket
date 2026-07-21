@@ -1,0 +1,36 @@
+{
+ "l3": "v4-varjualused-telgid-ja-kasvuhooned-kasvuhooned-kasvutendid-ja-telgid",
+ "name": "Kasvutendid ja -telgid",
+ "fields": [
+  {
+   "key": "sisumaht",
+   "label_et": "Sisemõõtmete maht (L×W×H cm)",
+   "unit": "cm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal ja peegeldavus",
+   "unit": "D (denier)"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kandevõime",
+   "unit": "kg"
+  },
+  {
+   "key": "voimsus",
+   "label_et": "Soovitatud kasvulamp",
+   "unit": "W"
+  },
+  {
+   "key": "tuulikus_diameter",
+   "label_et": "Sobiv ventilatsioonioos",
+   "unit": "inch"
+  },
+  {
+   "key": "ventilatsiooniavad",
+   "label_et": "Ventilatsiooniavade arv",
+   "unit": "tk"
+  }
+ ]
+}

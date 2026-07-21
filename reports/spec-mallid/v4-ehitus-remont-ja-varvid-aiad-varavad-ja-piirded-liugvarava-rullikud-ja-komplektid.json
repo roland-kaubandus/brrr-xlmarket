@@ -1,0 +1,41 @@
+{
+ "l3": "v4-ehitus-remont-ja-varvid-aiad-varavad-ja-piirded-liugvarava-rullikud-ja-komplektid",
+ "name": "Liugvärava rullikud ja komplektid",
+ "fields": [
+  {
+   "key": "ratta_labamoot",
+   "label_et": "Ratta läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "maksimaalne_koormus",
+   "label_et": "Maksimaalne koormus",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Ratta materjal",
+   "unit": ""
+  },
+  {
+   "key": "klamber_tyyp",
+   "label_et": "Klambri tüüp",
+   "unit": ""
+  },
+  {
+   "key": "klamber_paksus",
+   "label_et": "Klambri paksus",
+   "unit": "mm"
+  },
+  {
+   "key": "ühilduvus_toru_diameetriga",
+   "label_et": "Ühilduvus toru välisdiameetriga",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  }
+ ]
+}

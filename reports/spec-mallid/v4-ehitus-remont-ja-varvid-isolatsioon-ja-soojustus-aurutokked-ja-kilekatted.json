@@ -1,0 +1,41 @@
+{
+ "l3": "v4-ehitus-remont-ja-varvid-isolatsioon-ja-soojustus-aurutokked-ja-kilekatted",
+ "name": "Aurutõkked ja kilekatted",
+ "fields": [
+  {
+   "key": "paksus_mm",
+   "label_et": "Paksus",
+   "unit": "mm"
+  },
+  {
+   "key": "laius_m",
+   "label_et": "Laius",
+   "unit": "m"
+  },
+  {
+   "key": "pikkus_m",
+   "label_et": "Pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "vesitihedus_kpa",
+   "label_et": "Vesitihedus",
+   "unit": "kPa"
+  },
+  {
+   "key": "kakskihilised",
+   "label_et": "Kakskihiline (must/valge)",
+   "unit": ""
+  }
+ ]
+}

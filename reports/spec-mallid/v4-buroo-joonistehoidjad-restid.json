@@ -1,0 +1,41 @@
+{
+ "l3": "v4-buroo-joonistehoidjad-restid",
+ "name": "Joonistehoidjad ja -restid",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Toote kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "slot_arv",
+   "label_et": "Pesade/astmete arv",
+   "unit": "tk"
+  },
+  {
+   "key": "maksimaalne_koormus",
+   "label_et": "Maksimaalne kandekoormus",
+   "unit": "kg"
+  },
+  {
+   "key": "paigaldamistyyp",
+   "label_et": "Paigaldamise tüüp",
+   "unit": ""
+  },
+  {
+   "key": "mootorimine",
+   "label_et": "Mobiilsus (ratastega)",
+   "unit": ""
+  },
+  {
+   "key": "ulatus",
+   "label_et": "Pesa/astme suurus",
+   "unit": "mm"
+  }
+ ]
+}

@@ -1,0 +1,41 @@
+{
+ "l3": "v4-peoinventar-onne-loosimisrattad-trumlid",
+ "name": "Õnnerattad",
+ "fields": [
+  {
+   "key": "ketta_labamoot",
+   "label_et": "Ketta läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "aidade_arv",
+   "label_et": "Aiadi arv",
+   "unit": "tk"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "seisukohver",
+   "label_et": "Seisukohver",
+   "unit": "tüüp"
+  },
+  {
+   "key": "seisukohveri_reguleeritav_korgus",
+   "label_et": "Reguleeritav kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "laager_labamoot",
+   "label_et": "Laagri läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "kuiva_kustutuse_kylg",
+   "label_et": "Kuiva kustutuse funktsioon",
+   "unit": "jah/ei"
+  }
+ ]
+}

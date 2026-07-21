@@ -1,0 +1,36 @@
+{
+ "l3": "v4-ehitus-remont-ja-varvid-betoonitood-ja-ehitusmaterjalid-ambrisisud-segamiseks",
+ "name": "Ämbrisisud segamiseks",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Mahutavus",
+   "unit": "L"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "seinapaistus",
+   "label_et": "Seinapaksus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "kogus",
+   "label_et": "Komplektis",
+   "unit": "tk"
+  },
+  {
+   "key": "varus_mardid",
+   "label_et": "Mahust märgistus",
+   "unit": ""
+  }
+ ]
+}

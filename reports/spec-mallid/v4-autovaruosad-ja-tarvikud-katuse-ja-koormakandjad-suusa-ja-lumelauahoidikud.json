@@ -1,0 +1,46 @@
+{
+ "l3": "v4-autovaruosad-ja-tarvikud-katuse-ja-koormakandjad-suusa-ja-lumelauahoidikud",
+ "name": "Suusa- ja lumelauahoidikud",
+ "fields": [
+  {
+   "key": "monteerimisviis",
+   "label_et": "Paigaldusviis",
+   "unit": ""
+  },
+  {
+   "key": "kanduvus_paaride_arv",
+   "label_et": "Suuskade paaride arv",
+   "unit": "tk"
+  },
+  {
+   "key": "kanduvus_lumelauad",
+   "label_et": "Lumelaudade arv",
+   "unit": "tk"
+  },
+  {
+   "key": "laadimislaius",
+   "label_et": "Laadimislaius",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "lukusüsteem",
+   "label_et": "Lukusüsteem",
+   "unit": ""
+  },
+  {
+   "key": "padding",
+   "label_et": "Kaitsepadi",
+   "unit": ""
+  }
+ ]
+}

@@ -1,0 +1,41 @@
+{
+ "l3": "v4-ehitus-remont-ja-varvid-terrassilauad-ja-valisporand-postialused-ja-kinnitused",
+ "name": "Postialused ja -kinnitused",
+ "fields": [
+  {
+   "key": "välimine_mõõt_mm",
+   "label_et": "Välimine mõõt (mm)",
+   "unit": "mm"
+  },
+  {
+   "key": "sisemine_mõõt_mm",
+   "label_et": "Sisemine mõõt (mm)",
+   "unit": "mm"
+  },
+  {
+   "key": "kõrgus_mm",
+   "label_et": "Kõrgus (mm)",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kogus_tk",
+   "label_et": "Kogus (tk)",
+   "unit": "tk"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal (kg)",
+   "unit": "kg"
+  },
+  {
+   "key": "postisuuruse_toll",
+   "label_et": "Posti suurus (toll)",
+   "unit": "in"
+  }
+ ]
+}

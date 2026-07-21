@@ -1,0 +1,46 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-inspektsioonikaamerad",
+ "name": "Inspektsioonikaamerad",
+ "fields": [
+  {
+   "key": "ekraani_suurus_toll",
+   "label_et": "Ekraani suurus",
+   "unit": "toll"
+  },
+  {
+   "key": "kaabli_pikkus_m",
+   "label_et": "Kaabli pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "aku_maht",
+   "label_et": "Aku mahtuvus",
+   "unit": "Wh"
+  },
+  {
+   "key": "kamera_labaluum_mm",
+   "label_et": "Kamera läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "led_tuled_tk",
+   "label_et": "LED-tuled",
+   "unit": "tk"
+  },
+  {
+   "key": "vaatenurk_kraad",
+   "label_et": "Vaatenurk",
+   "unit": "°"
+  },
+  {
+   "key": "resolutsioon",
+   "label_et": "Resolutsioon",
+   "unit": "TVL/MP"
+  },
+  {
+   "key": "sonde_sagedus_hz",
+   "label_et": "Sonde sagedus",
+   "unit": "Hz"
+  }
+ ]
+}

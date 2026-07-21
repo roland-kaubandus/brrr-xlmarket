@@ -1,0 +1,41 @@
+{
+ "l3": "v4-pollumajandus-ja-loomakasvatus-kariloomad-kariloomade-sugamisharjad",
+ "name": "Kariloomade sügamisharjad",
+ "fields": [
+  {
+   "key": "pakendis_tk",
+   "label_et": "Harjade arv pakendis",
+   "unit": "tk"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kogukaal",
+   "unit": "kg"
+  },
+  {
+   "key": "harja_pikkus",
+   "label_et": "Harja pikkus (osa)",
+   "unit": "mm"
+  },
+  {
+   "key": "harja_laius",
+   "label_et": "Harja laius",
+   "unit": "mm"
+  },
+  {
+   "key": "sisemine_diameeter",
+   "label_et": "Sisemise rõnga läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "kinnituskruvid",
+   "label_et": "Kinnituskruvide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  }
+ ]
+}

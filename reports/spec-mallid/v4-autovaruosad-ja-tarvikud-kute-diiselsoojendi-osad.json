@@ -1,0 +1,42 @@
+{
+ "l3": "v4-autovaruosad-ja-tarvikud-kute-diiselsoojendi-osad",
+ "name": "Diiselsoojendi osad",
+ "fields": [
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "torusisemoot",
+   "label_et": "Toru sisediameeter",
+   "unit": "mm"
+  },
+  {
+   "key": "pikkus",
+   "label_et": "Pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "vooluhulk",
+   "label_et": "Vooluhulk",
+   "unit": "L/min",
+   "unit_orig": "mL/1000 tsüklit"
+  }
+ ]
+}

@@ -1,0 +1,41 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-tostmine-kaartostelauad",
+ "name": "Käärtõstelauad ja -tõstukid",
+ "fields": [
+  {
+   "key": "kandevoimsuus_kg",
+   "label_et": "Kandevõimsuus",
+   "unit": "kg"
+  },
+  {
+   "key": "tostukorgus_mm",
+   "label_et": "Tõstukõrgus (maksimaalne)",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal_kg",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "platvorm_pikkus_mm",
+   "label_et": "Platvormi pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "platvorm_laius_mm",
+   "label_et": "Platvormi laius",
+   "unit": "mm"
+  },
+  {
+   "key": "mehhanismi_tyyp",
+   "label_et": "Mehhanismi tüüp",
+   "unit": "enum"
+  },
+  {
+   "key": "jouduallikas",
+   "label_et": "Jõuallika tüüp",
+   "unit": "enum"
+  }
+ ]
+}

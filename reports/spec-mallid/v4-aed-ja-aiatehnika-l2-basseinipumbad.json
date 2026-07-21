@@ -1,0 +1,42 @@
+{
+ "l3": "v4-aed-ja-aiatehnika-l2-basseinipumbad",
+ "name": "Basseinipumbad",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "vooluhulk",
+   "label_et": "Vooluhulk (max)",
+   "unit": "L/min",
+   "unit_orig": "L/h"
+  },
+  {
+   "key": "poorlemiskiirus",
+   "label_et": "Pöörlemiskiirus",
+   "unit": "RPM"
+  },
+  {
+   "key": "rohk",
+   "label_et": "Max. tõstekõrgus",
+   "unit": "m"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kiirus_mode",
+   "label_et": "Kiiruse režiim",
+   "unit": ""
+  }
+ ]
+}

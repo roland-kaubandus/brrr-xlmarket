@@ -1,0 +1,46 @@
+{
+ "l3": "v4-elektritarvikud-ja-valgustus-elektroonika-satelliit-ja-vorgukaablid",
+ "name": "Satelliit- ja võrgukaablid",
+ "fields": [
+  {
+   "key": "pikkus_m",
+   "label_et": "Kaabli pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "ülekande_kiirus_mbps",
+   "label_et": "Ülekande kiirus",
+   "unit": "Mbps"
+  },
+  {
+   "key": "juhtme_kalibr_awg",
+   "label_et": "Juhtme kalibr",
+   "unit": "AWG"
+  },
+  {
+   "key": "juhtme_ristloige_mm2",
+   "label_et": "Juhtme ristlõige",
+   "unit": "mm²"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaabeli_tyyp",
+   "label_et": "Kaabeli tüüp",
+   "unit": ""
+  },
+  {
+   "key": "ühilduvus_generatsioon",
+   "label_et": "Ühilduvus",
+   "unit": ""
+  }
+ ]
+}

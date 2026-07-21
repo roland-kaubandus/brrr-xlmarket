@@ -1,0 +1,41 @@
+{
+ "l3": "v4-tooriistad-airless-varvivoolikud",
+ "name": "Airless-värvivoolikud ja komplektid",
+ "fields": [
+  {
+   "key": "rohk",
+   "label_et": "Maksimaalne töörõhk",
+   "unit": "bar"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "voolik_pikkus",
+   "label_et": "Vooliku pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "voolik_diameetr",
+   "label_et": "Vooliku siseläbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "ühendus_suurus",
+   "label_et": "Ühenduse suurus",
+   "unit": "tolli"
+  },
+  {
+   "key": "komplektis_nipp",
+   "label_et": "Komplektis spreipea",
+   "unit": ""
+  }
+ ]
+}

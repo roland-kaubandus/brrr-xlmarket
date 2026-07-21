@@ -1,0 +1,46 @@
+{
+ "l3": "v4-autovaruosad-ja-tarvikud-autovaruosad-kutusevoolikud-ja-torud",
+ "name": "Kütusevoolikud ja -torud",
+ "fields": [
+  {
+   "key": "an_suurus",
+   "label_et": "AN suurus (vooluhulga nominaal)",
+   "unit": "AN"
+  },
+  {
+   "key": "pikkus",
+   "label_et": "Kütusevooliku pikkus",
+   "unit": "ft"
+  },
+  {
+   "key": "sisemine_diameetr",
+   "label_et": "Sisemine läbimõõt",
+   "unit": "in"
+  },
+  {
+   "key": "valimine_diameetr",
+   "label_et": "Välimine läbimõõt",
+   "unit": "in"
+  },
+  {
+   "key": "rohk",
+   "label_et": "Maksimaalne tööõhurõhk",
+   "unit": "bar"
+  },
+  {
+   "key": "puhkeminek_rohk",
+   "label_et": "Purskamise rõhk",
+   "unit": "bar"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "toetatud_kustuseliigid",
+   "label_et": "Toetatud kütuse liigid",
+   "unit": ""
+  }
+ ]
+}

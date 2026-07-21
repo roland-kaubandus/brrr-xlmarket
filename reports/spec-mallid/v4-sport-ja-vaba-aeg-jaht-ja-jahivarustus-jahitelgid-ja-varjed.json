@@ -1,0 +1,41 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-jaht-ja-jahivarustus-jahitelgid-ja-varjed",
+ "name": "Jahivarjed",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "isikute_arv",
+   "label_et": "Isikute arv",
+   "unit": "tk"
+  },
+  {
+   "key": "vaatevinkel",
+   "label_et": "Vaatevinkel",
+   "unit": "°"
+  },
+  {
+   "key": "pohja_laius",
+   "label_et": "Põhja laius",
+   "unit": "mm"
+  },
+  {
+   "key": "korgus",
+   "label_et": "Kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kandeevotus",
+   "label_et": "Kandevõimsus",
+   "unit": "kg"
+  }
+ ]
+}

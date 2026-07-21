@@ -1,0 +1,36 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-fitness-ja-treeningseadmed-trepiastmelauad-ja-stepperid",
+ "name": "Aeroobika stepp-platvormid",
+ "fields": [
+  {
+   "key": "platvormi_pikkus",
+   "label_et": "Platvormi pikkus",
+   "unit": "inch"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "maksimaalne_koormuse_piirang",
+   "label_et": "Maksimaalne koormuse piirang",
+   "unit": "kg"
+  },
+  {
+   "key": "korgusvahemik",
+   "label_et": "Kõrguse astmete arv",
+   "unit": "tk"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "pind",
+   "label_et": "Pind",
+   "unit": ""
+  }
+ ]
+}

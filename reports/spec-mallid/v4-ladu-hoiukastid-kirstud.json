@@ -1,0 +1,41 @@
+{
+ "l3": "v4-ladu-hoiukastid-kirstud",
+ "name": "Hoiukastid ja -kirstud",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Maht ühe kasti kohta",
+   "unit": "L"
+  },
+  {
+   "key": "maksimaalne_koormus",
+   "label_et": "Maksimaalne kandmisvõime ühe kasti kohta",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kasti_arv",
+   "label_et": "Kastide arv komplektis",
+   "unit": "tk"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Komplekti kogukaal",
+   "unit": "kg"
+  },
+  {
+   "key": "sulgemine",
+   "label_et": "Kaaneta/Kaanega",
+   "unit": ""
+  },
+  {
+   "key": "moone_korgus",
+   "label_et": "Kõrgus kokku pandud olekus",
+   "unit": "mm"
+  }
+ ]
+}

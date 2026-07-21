@@ -1,0 +1,42 @@
+{
+ "l3": "v4-santehnika-kute-ja-ventilatsioon-veefiltrid-ja-puhastus-settefiltrid",
+ "name": "Settefiltrid",
+ "fields": [
+  {
+   "key": "vooluhulk",
+   "label_et": "Vooluhulk",
+   "unit": "L/min",
+   "unit_orig": "T/H"
+  },
+  {
+   "key": "filtreerimise_peensus",
+   "label_et": "Filtreerimise peensus",
+   "unit": "μm"
+  },
+  {
+   "key": "sisendi_otsa_suurus",
+   "label_et": "Sisendi otsa suurus",
+   "unit": "inch"
+  },
+  {
+   "key": "väljundi_otsa_suurus",
+   "label_et": "Väljundi otsa suurus",
+   "unit": "inch"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "automaatne_tagasipesu",
+   "label_et": "Automaatne tagasipesu",
+   "unit": "bool"
+  },
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  }
+ ]
+}

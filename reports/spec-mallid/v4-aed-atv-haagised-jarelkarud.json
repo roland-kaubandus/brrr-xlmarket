@@ -1,0 +1,41 @@
+{
+ "l3": "v4-aed-atv-haagised-jarelkarud",
+ "name": "ATV-haagised ja järelkärud",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Mahutavus",
+   "unit": "L"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Ownersweight (omakaalu)",
+   "unit": "kg"
+  },
+  {
+   "key": "kandevoimsus",
+   "label_et": "Kandevõimsus",
+   "unit": "kg"
+  },
+  {
+   "key": "rataste_laius",
+   "label_et": "Rataste suurus",
+   "unit": "in"
+  },
+  {
+   "key": "pikkus",
+   "label_et": "Pikkus",
+   "unit": "cm"
+  },
+  {
+   "key": "laius",
+   "label_et": "Laius",
+   "unit": "cm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  }
+ ]
+}

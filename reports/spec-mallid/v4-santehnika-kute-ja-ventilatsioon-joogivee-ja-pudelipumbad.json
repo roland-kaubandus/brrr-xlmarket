@@ -1,0 +1,36 @@
+{
+ "l3": "v4-santehnika-kute-ja-ventilatsioon-joogivee-ja-pudelipumbad",
+ "name": "Joogivee- ja pudelipumbad",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Nimivõimsus",
+   "unit": "W"
+  },
+  {
+   "key": "rohk",
+   "label_et": "Tööpaine",
+   "unit": "bar"
+  },
+  {
+   "key": "vooluhulk",
+   "label_et": "Vooluhulk",
+   "unit": "L/min"
+  },
+  {
+   "key": "maht",
+   "label_et": "Mahutavus",
+   "unit": "L"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "myra",
+   "label_et": "Müra tase",
+   "unit": "dB"
+  }
+ ]
+}

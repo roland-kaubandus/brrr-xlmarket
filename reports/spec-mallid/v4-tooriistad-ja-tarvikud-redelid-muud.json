@@ -1,0 +1,36 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-redelid-muud",
+ "name": "Evakuatsiooniredelid",
+ "fields": [
+  {
+   "key": "pikkus",
+   "label_et": "Lahti käidud pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "koormus_max",
+   "label_et": "Maksimaalne koormus",
+   "unit": "kg"
+  },
+  {
+   "key": "astme_laius",
+   "label_et": "Astme laius",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "korused",
+   "label_et": "Koruste arv",
+   "unit": "tk"
+  }
+ ]
+}

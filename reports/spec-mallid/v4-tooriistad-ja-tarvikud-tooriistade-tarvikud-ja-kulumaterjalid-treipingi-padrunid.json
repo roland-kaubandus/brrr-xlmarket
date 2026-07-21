@@ -1,0 +1,46 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-treipingi-padrunid",
+ "name": "Treipingi padrunid",
+ "fields": [
+  {
+   "key": "chuck_diameter_mm",
+   "label_et": "Padrungi välisläbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "jaw_count",
+   "label_et": "Lõuade arv",
+   "unit": "tk"
+  },
+  {
+   "key": "internal_clamping_range_mm",
+   "label_et": "Sisemise kinnitusulatuse vahemik",
+   "unit": "mm"
+  },
+  {
+   "key": "external_clamping_range_mm",
+   "label_et": "Välimise kinnitusulatuse vahemik",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "mounting_thread",
+   "label_et": "Kinnituskeere",
+   "unit": ""
+  },
+  {
+   "key": "accuracy_mm",
+   "label_et": "Täpsus",
+   "unit": "mm"
+  }
+ ]
+}

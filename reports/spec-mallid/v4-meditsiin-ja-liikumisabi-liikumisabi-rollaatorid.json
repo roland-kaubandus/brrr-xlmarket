@@ -1,0 +1,46 @@
+{
+ "l3": "v4-meditsiin-ja-liikumisabi-liikumisabi-rollaatorid",
+ "name": "Rollaatorid",
+ "fields": [
+  {
+   "key": "kandevõime_kg",
+   "label_et": "Kandevõime",
+   "unit": "kg"
+  },
+  {
+   "key": "rataste_arv",
+   "label_et": "Rataste arv",
+   "unit": "tk"
+  },
+  {
+   "key": "esirataste_läbimõõt_mm",
+   "label_et": "Esirataste läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "tagarataste_läbimõõt_mm",
+   "label_et": "Tagarataste läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "käepideme_reguleeritav_kõrgus_mm",
+   "label_et": "Käepideme reguleeritav kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "käetugi_sisemõõt_mm",
+   "label_et": "Käetugide sisemõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "funktsioon",
+   "label_et": "Funktsioon",
+   "unit": ""
+  }
+ ]
+}

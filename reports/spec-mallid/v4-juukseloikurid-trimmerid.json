@@ -1,0 +1,36 @@
+{
+ "l3": "v4-juukseloikurid-trimmerid",
+ "name": "Juukselõikurid ja -trimmerid",
+ "fields": [
+  {
+   "key": "poorlemiskiirus",
+   "label_et": "Mootori kiirus",
+   "unit": "RPM"
+  },
+  {
+   "key": "aku_maht",
+   "label_et": "Aku maht",
+   "unit": "Wh"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Teraleht materjal",
+   "unit": ""
+  },
+  {
+   "key": "juhtmed_arv",
+   "label_et": "Juhtide arv komplektis",
+   "unit": "tk"
+  }
+ ]
+}

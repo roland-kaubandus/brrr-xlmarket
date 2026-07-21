@@ -1,0 +1,41 @@
+{
+ "l3": "v4-kodumasinad-ja-kodutehnika-puhastus-ja-koristustehnika-katekuivatid",
+ "name": "Kätekuivatid",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "poorlemiskiirus",
+   "label_et": "Mootorin pöörlemiskiirus",
+   "unit": "RPM"
+  },
+  {
+   "key": "kuivatusaeg",
+   "label_et": "Kuivatusaeg",
+   "unit": "s"
+  },
+  {
+   "key": "myra",
+   "label_et": "Müra taseme",
+   "unit": "dB"
+  },
+  {
+   "key": "tuulekiirus",
+   "label_et": "Õhuvoolu kiirus",
+   "unit": "m/s"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  }
+ ]
+}

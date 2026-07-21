@@ -1,0 +1,41 @@
+{
+ "l3": "v4-suurkoogiseadmed-koogiseadmed-ja-elektriseadmed-kohviurnid",
+ "name": "Kohviurnid",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Maht",
+   "unit": "L"
+  },
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "keeduaeg",
+   "label_et": "Keeduaeg (täis paak)",
+   "unit": "min"
+  },
+  {
+   "key": "hooldustemperatuur",
+   "label_et": "Hooldustemperatuur",
+   "unit": "°C"
+  }
+ ]
+}

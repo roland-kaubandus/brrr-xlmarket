@@ -1,0 +1,46 @@
+{
+ "l3": "v4-tervis-hooldus-ja-ilu-beebi-ja-lapsetarbed-pesapadjad-ja-pesad",
+ "name": "Pesapadjad ja -pesad",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "pikkus",
+   "label_et": "Pikkus",
+   "unit": "cm"
+  },
+  {
+   "key": "laius",
+   "label_et": "Laius",
+   "unit": "cm"
+  },
+  {
+   "key": "korgus",
+   "label_et": "Kõrgus",
+   "unit": "cm"
+  },
+  {
+   "key": "katteid_arv",
+   "label_et": "Katteid arv",
+   "unit": "tk"
+  },
+  {
+   "key": "sulgemisviiis",
+   "label_et": "Sulgemisviis",
+   "unit": ""
+  },
+  {
+   "key": "sisetop",
+   "label_et": "Sisetop",
+   "unit": ""
+  }
+ ]
+}

@@ -1,0 +1,36 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-kasitooriistad-isoleeritud-kruvikeerajate-komplektid",
+ "name": "Isoleeritud kruvikeerajate komplektid",
+ "fields": [
+  {
+   "key": "pinge",
+   "label_et": "Isolatsiooni nimipinge",
+   "unit": "V"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Komplekti kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "tooriistad_arv",
+   "label_et": "Tööriistade arv komplektis",
+   "unit": "tk"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Teraõõne materjal",
+   "unit": "text"
+  },
+  {
+   "key": "magnetiline_ots",
+   "label_et": "Magnetiline otsakummut",
+   "unit": "bool"
+  },
+  {
+   "key": "kaasavad_tooriistad",
+   "label_et": "Lisatööristad (tangid, testid jne)",
+   "unit": "text"
+  }
+ ]
+}

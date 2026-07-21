@@ -1,0 +1,31 @@
+{
+ "l3": "v4-suurkook-klaasipoleerimismasinad",
+ "name": "Klaasipoleerimismasinad",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "myra",
+   "label_et": "Müra",
+   "unit": "dB"
+  },
+  {
+   "key": "harjade_arv",
+   "label_et": "Harjade arv",
+   "unit": "tk"
+  },
+  {
+   "key": "tootlikkus",
+   "label_et": "Tootlikkus",
+   "unit": "tk/h"
+  }
+ ]
+}

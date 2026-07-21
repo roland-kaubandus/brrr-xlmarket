@@ -1,0 +1,41 @@
+{
+ "l3": "v4-autovaruosad-ja-tarvikud-hudraulika-klapid-jagajad",
+ "name": "Hüdroklapid ja -jagajad",
+ "fields": [
+  {
+   "key": "vooluhulk",
+   "label_et": "Nominaalvooluhulk",
+   "unit": "L/min"
+  },
+  {
+   "key": "rohk",
+   "label_et": "Maksimaalne töörõhk",
+   "unit": "bar"
+  },
+  {
+   "key": "kael",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "spooli_arv",
+   "label_et": "Spooli arv",
+   "unit": "tk"
+  },
+  {
+   "key": "keskuse_susteemi_tyyp",
+   "label_et": "Keskuse süsteemi tüüp",
+   "unit": ""
+  },
+  {
+   "key": "rõhu_regulaator",
+   "label_et": "Rõhu regulaator",
+   "unit": ""
+  },
+  {
+   "key": "juhtimine",
+   "label_et": "Juhtimine",
+   "unit": ""
+  }
+ ]
+}

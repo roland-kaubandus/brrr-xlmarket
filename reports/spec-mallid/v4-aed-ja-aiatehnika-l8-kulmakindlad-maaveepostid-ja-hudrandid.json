@@ -1,0 +1,41 @@
+{
+ "l3": "v4-aed-ja-aiatehnika-l8-kulmakindlad-maaveepostid-ja-hudrandid",
+ "name": "Külmakindlad maaveepostid ja hüdrandid",
+ "fields": [
+  {
+   "key": "kogu_pikkus",
+   "label_et": "Kogu pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "maatmise_sügavus",
+   "label_et": "Maatmise sügavus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "sissevoolu_ühendus",
+   "label_et": "Sissevoolu ühendus (toruühendus)",
+   "unit": "G-toll"
+  },
+  {
+   "key": "väljundvoolu_ühendus",
+   "label_et": "Väljundvoolu ühendus (voolikuühendus)",
+   "unit": "G-toll"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "juhtimismehhanism",
+   "label_et": "Juhtimismehhanism",
+   "unit": ""
+  }
+ ]
+}

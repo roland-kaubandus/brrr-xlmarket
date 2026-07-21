@@ -1,0 +1,46 @@
+{
+ "l3": "v4-pollumajandus-talutehnika-pinnasetoo-greiderdamine",
+ "name": "Pinnasetöö ja greiderdamine",
+ "fields": [
+  {
+   "key": "töölaiuse_laius",
+   "label_et": "Töölaiuse laius",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "shank_pikkus",
+   "label_et": "Shank'i pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "reguleeritavate_avade_arv",
+   "label_et": "Reguleeritavate avade arv",
+   "unit": ""
+  },
+  {
+   "key": "hammaseid_arv",
+   "label_et": "Hammaseid arv",
+   "unit": ""
+  },
+  {
+   "key": "maht_liitrites",
+   "label_et": "Maht",
+   "unit": "L"
+  },
+  {
+   "key": "kandevõime",
+   "label_et": "Kandevõime",
+   "unit": "kg"
+  }
+ ]
+}

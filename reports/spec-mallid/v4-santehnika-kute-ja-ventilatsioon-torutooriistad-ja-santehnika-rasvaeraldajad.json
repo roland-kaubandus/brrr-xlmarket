@@ -1,0 +1,46 @@
+{
+ "l3": "v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika-rasvaeraldajad",
+ "name": "Rasvaeraldajad",
+ "fields": [
+  {
+   "key": "vooluhulk",
+   "label_et": "Vooluhulk",
+   "unit": "L/min"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "maht",
+   "label_et": "Mahutavus",
+   "unit": "L"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "sissetulemise_viis",
+   "label_et": "Sissetulemise viis",
+   "unit": ""
+  },
+  {
+   "key": "sisselaskeavad",
+   "label_et": "Sisselaskeavade arv",
+   "unit": "tk"
+  },
+  {
+   "key": "sissetulemise_suurus",
+   "label_et": "Sissetulemise ava suurus",
+   "unit": "mm"
+  },
+  {
+   "key": "valjutulemise_suurus",
+   "label_et": "Väljutulemise ava suurus",
+   "unit": "mm"
+  }
+ ]
+}

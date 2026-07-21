@@ -1,0 +1,41 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-veesport-ja-paadindus-ujuvad-dokid-ja-platvormid",
+ "name": "Ujuvad dokid ja platvormid",
+ "fields": [
+  {
+   "key": "pindala_m2",
+   "label_et": "Platvormi pindala",
+   "unit": "m²"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "korgus",
+   "label_et": "Kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "trampoliin_olemas",
+   "label_et": "Trampoliini võrguga",
+   "unit": ""
+  },
+  {
+   "key": "maksimaalne_koormus",
+   "label_et": "Maksimaalne koormus",
+   "unit": "kg"
+  },
+  {
+   "key": "kaasaskantav_kott",
+   "label_et": "Kaasaskantav kott",
+   "unit": ""
+  }
+ ]
+}

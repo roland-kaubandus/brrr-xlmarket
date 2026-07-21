@@ -1,0 +1,36 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine-trossikoied",
+ "name": "Trossiköied",
+ "fields": [
+  {
+   "key": "pikkus_m",
+   "label_et": "Pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "diameetr_mm",
+   "label_et": "Läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "purunemistugevus_kn",
+   "label_et": "Purunemistugevus",
+   "unit": "kN"
+  },
+  {
+   "key": "tootud_koormus_kn",
+   "label_et": "Töötav koormus",
+   "unit": "kN"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kiudude_arv",
+   "label_et": "Kiudude arv",
+   "unit": "tk"
+  }
+ ]
+}

@@ -1,0 +1,41 @@
+{
+ "l3": "v4-autovaruosad-ja-tarvikud-autovaruosad-mootori-ja-kaigukasti-kinnitused",
+ "name": "Mootori ja käigukasti kinnitused",
+ "fields": [
+  {
+   "key": "kogus",
+   "label_et": "Komplekti kogus (tk)",
+   "unit": "pcs"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "oe_numbrid",
+   "label_et": "OE asendatavad numbrid",
+   "unit": ""
+  },
+  {
+   "key": "soebilik_mootorit",
+   "label_et": "Ühilduv mootorit (L/V)",
+   "unit": ""
+  },
+  {
+   "key": "sobivad_autod",
+   "label_et": "Sobivad auto mudelid (aasta)",
+   "unit": ""
+  },
+  {
+   "key": "mount_tyyp",
+   "label_et": "Kinnituse tüüp",
+   "unit": ""
+  }
+ ]
+}

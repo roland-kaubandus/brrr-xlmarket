@@ -1,0 +1,41 @@
+{
+ "l3": "v4-ehitus-remont-ja-varvid-moobli-ja-kapifurnituur-sahtlisiinid-ja-liugurid",
+ "name": "Sahtlisiinid ja -liugurid",
+ "fields": [
+  {
+   "key": "pikkus",
+   "label_et": "Sahtli pikkus",
+   "unit": "cm"
+  },
+  {
+   "key": "kandmisvoimsus",
+   "label_et": "Kandevõime",
+   "unit": "kg"
+  },
+  {
+   "key": "ulevalik_pikkus",
+   "label_et": "Täielik väljatõmbe pikkus",
+   "unit": "cm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "paksus",
+   "label_et": "Jämedus",
+   "unit": "mm"
+  },
+  {
+   "key": "laius",
+   "label_et": "Sahtli laius",
+   "unit": "mm"
+  },
+  {
+   "key": "lukustus",
+   "label_et": "Lukustus",
+   "unit": ""
+  }
+ ]
+}

@@ -1,0 +1,37 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-elektrilised-tooriistad-poleerimismasinad",
+ "name": "Poleerimismasinad",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "poorlemiskiirus",
+   "label_et": "Pöörlemiskiirus",
+   "unit": "RPM"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "ketta_labamoot",
+   "label_et": "Ketta/Padi läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "vooluhulk",
+   "label_et": "Vee vooluhulk",
+   "unit": "L/min",
+   "unit_orig": "Lmin"
+  },
+  {
+   "key": "tyyp",
+   "label_et": "Poleerimise tüüp",
+   "unit": "kategooria"
+  }
+ ]
+}

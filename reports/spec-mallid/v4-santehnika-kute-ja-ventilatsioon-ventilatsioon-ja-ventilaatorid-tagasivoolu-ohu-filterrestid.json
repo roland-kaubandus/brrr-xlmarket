@@ -1,0 +1,36 @@
+{
+ "l3": "v4-santehnika-kute-ja-ventilatsioon-ventilatsioon-ja-ventilaatorid-tagasivoolu-ohu-filterrestid",
+ "name": "Tagasivooluõhu filterrestid",
+ "fields": [
+  {
+   "key": "ava_laius_mm",
+   "label_et": "Avause laius",
+   "unit": "mm"
+  },
+  {
+   "key": "ava_korgus_mm",
+   "label_et": "Avause kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "filtri_paksus_mm",
+   "label_et": "Filtri paksus",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "filter_kaasas",
+   "label_et": "Filter kaasas",
+   "unit": ""
+  },
+  {
+   "key": "paigalduse_syvyus_mm",
+   "label_et": "Paigalduse sügavus",
+   "unit": "mm"
+  }
+ ]
+}

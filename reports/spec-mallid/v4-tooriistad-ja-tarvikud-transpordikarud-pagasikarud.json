@@ -1,0 +1,36 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-transpordikarud-pagasikarud",
+ "name": "Pagasikärud",
+ "fields": [
+  {
+   "key": "koormusvoimsus_kg",
+   "label_et": "Maksimaalne koormusvõimsus",
+   "unit": "kg"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Pagasikäru kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "ratta_laabamoot",
+   "label_et": "Ratta välisläbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "raammaterjal",
+   "label_et": "Raami materjal ja paksus",
+   "unit": "mm"
+  },
+  {
+   "key": "raamdiameeter",
+   "label_et": "Raami läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Üldmaterjal",
+   "unit": "text"
+  }
+ ]
+}

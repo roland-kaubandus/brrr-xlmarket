@@ -1,0 +1,41 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-suusa-ja-kaitseprillid",
+ "name": "Suusa- ja kaitseprillid",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "lens_type",
+   "label_et": "Läätsekuju",
+   "unit": ""
+  },
+  {
+   "key": "lens_color",
+   "label_et": "Läätsevärv / Kattis",
+   "unit": ""
+  },
+  {
+   "key": "vlt",
+   "label_et": "Valguse läbilaskvus (VLT)",
+   "unit": "%"
+  },
+  {
+   "key": "frame_type",
+   "label_et": "Raami tüüp",
+   "unit": ""
+  },
+  {
+   "key": "otg_compatible",
+   "label_et": "OTG ühilduv",
+   "unit": ""
+  },
+  {
+   "key": "magnet_lens",
+   "label_et": "Magnetväljalt vahetatav lääts",
+   "unit": ""
+  }
+ ]
+}

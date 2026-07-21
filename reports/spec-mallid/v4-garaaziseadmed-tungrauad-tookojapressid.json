@@ -1,0 +1,36 @@
+{
+ "l3": "v4-garaaziseadmed-tungrauad-tookojapressid",
+ "name": "Töökojapressid",
+ "fields": [
+  {
+   "key": "nimikoormus",
+   "label_et": "Nimikoormus",
+   "unit": "t"
+  },
+  {
+   "key": "rohk",
+   "label_et": "Töörõhk",
+   "unit": "bar"
+  },
+  {
+   "key": "silindri_kang",
+   "label_et": "Silindri käik",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "pindade_vahekaugus",
+   "label_et": "Plaatide max vahekaugus",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Raam materjal",
+   "unit": ""
+  }
+ ]
+}

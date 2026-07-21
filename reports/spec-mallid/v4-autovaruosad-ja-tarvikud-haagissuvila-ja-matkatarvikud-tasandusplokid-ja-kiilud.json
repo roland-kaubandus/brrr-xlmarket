@@ -1,0 +1,41 @@
+{
+ "l3": "v4-autovaruosad-ja-tarvikud-haagissuvila-ja-matkatarvikud-tasandusplokid-ja-kiilud",
+ "name": "Tasandusplokid ja -kiilud",
+ "fields": [
+  {
+   "key": "koormus_maht",
+   "label_et": "Max koormus võimsus",
+   "unit": "lbs"
+  },
+  {
+   "key": "toetus_korgus",
+   "label_et": "Toetusvõime kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Toote kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjalid",
+   "unit": ""
+  },
+  {
+   "key": "kogus_pakis",
+   "label_et": "Tükkide arv pakis",
+   "unit": "tk"
+  },
+  {
+   "key": "ühilduvus_jack_jalg",
+   "label_et": "Jack jala ühilduvus",
+   "unit": "mm"
+  },
+  {
+   "key": "rattalaius_ulatus",
+   "label_et": "Ratta vahe ulatus",
+   "unit": "mm"
+  }
+ ]
+}

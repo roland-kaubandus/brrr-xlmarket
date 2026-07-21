@@ -1,0 +1,36 @@
+{
+ "l3": "v4-lastekaubad-mootori-ja-mehaanika-manguasjad",
+ "name": "Mootori- ja mehaanika-mänguasjad",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "osade_arv",
+   "label_et": "Osade arv",
+   "unit": "tk"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "soovitatav_vanus",
+   "label_et": "Soovitatav vanus",
+   "unit": "aastat"
+  },
+  {
+   "key": "funktsioonid",
+   "label_et": "Funktsioonid (helid, LED, funktsioon)",
+   "unit": ""
+  },
+  {
+   "key": "vorm",
+   "label_et": "Vorm",
+   "unit": ""
+  }
+ ]
+}

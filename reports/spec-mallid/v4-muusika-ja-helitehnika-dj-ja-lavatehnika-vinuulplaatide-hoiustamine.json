@@ -1,0 +1,41 @@
+{
+ "l3": "v4-muusika-ja-helitehnika-dj-ja-lavatehnika-vinuulplaatide-hoiustamine",
+ "name": "Vinüülplaatide hoiustamine",
+ "fields": [
+  {
+   "key": "album_capacity",
+   "label_et": "Plaatide mahutavus",
+   "unit": "tk"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "weight_capacity",
+   "label_et": "Maksimaalne koormus",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "shelf_count",
+   "label_et": "Riiulite arv",
+   "unit": "tk"
+  },
+  {
+   "key": "dimensions_height",
+   "label_et": "Kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "special_features",
+   "label_et": "Spetsiaalsed omadused",
+   "unit": ""
+  }
+ ]
+}

@@ -1,0 +1,41 @@
+{
+ "l3": "v4-aed-ja-aiatehnika-l3-umbrohutokked-ja-maastikukangad",
+ "name": "Umbrohutõkked ja maastikukangad",
+ "fields": [
+  {
+   "key": "pikkus_m",
+   "label_et": "Pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "laius_m",
+   "label_et": "Laius",
+   "unit": "m"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": "tüüp"
+  },
+  {
+   "key": "tihedus_gsm",
+   "label_et": "Tihedus",
+   "unit": "g/m²"
+  },
+  {
+   "key": "tõmbekindlus_n",
+   "label_et": "Tõmbekindlus",
+   "unit": "N"
+  },
+  {
+   "key": "maarimine",
+   "label_et": "Veeläbitavus",
+   "unit": "kvalitatiiv"
+  }
+ ]
+}

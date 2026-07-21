@@ -1,0 +1,47 @@
+{
+ "l3": "v4-autovaruosad-ja-tarvikud-hudraulika-voolikud-liitmikud",
+ "name": "Hüdrovoolikud ja liitmikud",
+ "fields": [
+  {
+   "key": "rohk",
+   "label_et": "Maksimaalne töörõhk",
+   "unit": "bar"
+  },
+  {
+   "key": "vooluhulk",
+   "label_et": "Nimivooluhulk",
+   "unit": "L/min",
+   "unit_orig": "Lmin"
+  },
+  {
+   "key": "sisemine_diameetr",
+   "label_et": "Sisemine läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "pikkus",
+   "label_et": "Pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "liidese_suurus",
+   "label_et": "Liidese suurus (NPT)",
+   "unit": "inch"
+  },
+  {
+   "key": "temperatuurivahemik_min",
+   "label_et": "Minimaalne töötäperatuur",
+   "unit": "°C"
+  },
+  {
+   "key": "temperatuurivahemik_max",
+   "label_et": "Maksimaalne töötäperatuur",
+   "unit": "°C"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": "text"
+  }
+ ]
+}

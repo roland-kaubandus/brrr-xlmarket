@@ -1,0 +1,46 @@
+{
+ "l3": "v4-massaazipistolid",
+ "name": "Massaažipüstolid",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "poorlemiskiirus",
+   "label_et": "Löökide arv",
+   "unit": "RPM"
+  },
+  {
+   "key": "aku_maht",
+   "label_et": "Aku maht",
+   "unit": "Wh"
+  },
+  {
+   "key": "kestus",
+   "label_et": "Tööaeg laadimise järel",
+   "unit": "min"
+  },
+  {
+   "key": "massaazhipead",
+   "label_et": "Massaažipeade arv",
+   "unit": "tk"
+  },
+  {
+   "key": "kiirusastmed",
+   "label_et": "Kiiruse astmeid",
+   "unit": "tk"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  }
+ ]
+}

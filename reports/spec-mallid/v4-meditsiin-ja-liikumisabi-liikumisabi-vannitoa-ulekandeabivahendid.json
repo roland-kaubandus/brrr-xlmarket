@@ -1,0 +1,41 @@
+{
+ "l3": "v4-meditsiin-ja-liikumisabi-liikumisabi-vannitoa-ulekandeabivahendid",
+ "name": "Vannitoa ülekandeabivahendid",
+ "fields": [
+  {
+   "key": "maksimaalne_koormus_kg",
+   "label_et": "Maksimaalne koormus",
+   "unit": "kg"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Toote kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "korguse_reguleerimise_astmeid",
+   "label_et": "Kõrguse reguleerimise astmeid",
+   "unit": "tk"
+  },
+  {
+   "key": "istme_laius_mm",
+   "label_et": "Istme laius",
+   "unit": "mm"
+  },
+  {
+   "key": "istme_syvyys_mm",
+   "label_et": "Istme sügavus",
+   "unit": "mm"
+  },
+  {
+   "key": "tagasillase_laius_mm",
+   "label_et": "Tagasisel laius",
+   "unit": "mm"
+  },
+  {
+   "key": "360_kraadi_poorlemine",
+   "label_et": "360° pöörlemine",
+   "unit": "jah/ei"
+  }
+ ]
+}

@@ -1,0 +1,41 @@
+{
+ "l3": "v4-ehitus-remont-ja-varvid-aiad-varavad-ja-piirded-klaaspiirded-ja-kinnitused",
+ "name": "Klaaspiirded ja kinnitused",
+ "fields": [
+  {
+   "key": "klaasi_paksus_min",
+   "label_et": "Klaasi paksus (min)",
+   "unit": "mm"
+  },
+  {
+   "key": "klaasi_paksus_max",
+   "label_et": "Klaasi paksus (max)",
+   "unit": "mm"
+  },
+  {
+   "key": "klamber_tyyp",
+   "label_et": "Klamber tüüp",
+   "unit": ""
+  },
+  {
+   "key": "kogus",
+   "label_et": "Kogus komplektis",
+   "unit": "tk"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "pikkus",
+   "label_et": "Pikkus",
+   "unit": "mm"
+  }
+ ]
+}

@@ -1,0 +1,46 @@
+{
+ "l3": "v4-lastekaubad-lastesoidukid-laste-jalgrattahaagised",
+ "name": "Laste jalgrattahaagised ja jooksukärud",
+ "fields": [
+  {
+   "key": "max_koormus_kg",
+   "label_et": "Maksimaalne koormus",
+   "unit": "kg"
+  },
+  {
+   "key": "istekohad",
+   "label_et": "Istekohti",
+   "unit": "tk"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Toote kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": "tekst"
+  },
+  {
+   "key": "sisetasandi_pikkus_mm",
+   "label_et": "Sisetasandi pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "sisetasandi_laius_mm",
+   "label_et": "Sisetasandi laius",
+   "unit": "mm"
+  },
+  {
+   "key": "sisetasandi_korgus_mm",
+   "label_et": "Sisetasandi kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "2in1_funktsioon",
+   "label_et": "Haagis + Jalakäru (2-in-1)",
+   "unit": "jah/ei"
+  }
+ ]
+}

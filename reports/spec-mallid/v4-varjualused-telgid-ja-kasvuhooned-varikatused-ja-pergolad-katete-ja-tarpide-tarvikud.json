@@ -1,0 +1,41 @@
+{
+ "l3": "v4-varjualused-telgid-ja-kasvuhooned-varikatused-ja-pergolad-katete-ja-tarpide-tarvikud",
+ "name": "Katete ja tarpide tarvikud",
+ "fields": [
+  {
+   "key": "pindala_m2",
+   "label_et": "Katete pindala",
+   "unit": "m²"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "paksus_mm",
+   "label_et": "Paksus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "veetihedus_kpa",
+   "label_et": "Veetihendus",
+   "unit": "kPa"
+  },
+  {
+   "key": "kude_tihedus",
+   "label_et": "Kude tihedus",
+   "unit": "niidid/tolli"
+  },
+  {
+   "key": "kinnitus_samm_m",
+   "label_et": "Kinnitusilmade samm",
+   "unit": "m"
+  }
+ ]
+}

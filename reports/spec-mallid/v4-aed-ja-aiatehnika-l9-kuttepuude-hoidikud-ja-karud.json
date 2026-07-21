@@ -1,0 +1,46 @@
+{
+ "l3": "v4-aed-ja-aiatehnika-l9-kuttepuude-hoidikud-ja-karud",
+ "name": "Küttepuude hoidikud ja kärud",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Netoweight",
+   "unit": "kg"
+  },
+  {
+   "key": "maht",
+   "label_et": "Storage Capacity (Cord)",
+   "unit": "cord"
+  },
+  {
+   "key": "maksimaalne_kandevoimsus",
+   "label_et": "Max Weight Capacity",
+   "unit": "kg"
+  },
+  {
+   "key": "pikkus",
+   "label_et": "Length",
+   "unit": "cm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Frame Material",
+   "unit": ""
+  },
+  {
+   "key": "kate_tyyp",
+   "label_et": "Cover Type",
+   "unit": ""
+  },
+  {
+   "key": "ratta_diameetr",
+   "label_et": "Wheel Diameter (Carts only)",
+   "unit": "mm"
+  },
+  {
+   "key": "toru_laius",
+   "label_et": "Tube Size",
+   "unit": "mm"
+  }
+ ]
+}

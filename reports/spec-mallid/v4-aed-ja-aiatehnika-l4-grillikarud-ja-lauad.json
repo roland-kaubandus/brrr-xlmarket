@@ -1,0 +1,41 @@
+{
+ "l3": "v4-aed-ja-aiatehnika-l4-grillikarud-ja-lauad",
+ "name": "Grillikärud ja -lauad",
+ "fields": [
+  {
+   "key": "tööpinna_suurus_mm",
+   "label_et": "Tööpinna suurus (mm)",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "koormuse_piir_kg",
+   "label_et": "Maksimaalne koormuse võimsus",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "riiulite_arv",
+   "label_et": "Riiulite arv",
+   "unit": "tk"
+  },
+  {
+   "key": "rataste_arv",
+   "label_et": "Rataste arv",
+   "unit": "tk"
+  },
+  {
+   "key": "kokkupanevus",
+   "label_et": "Kokkupanevus",
+   "unit": ""
+  }
+ ]
+}

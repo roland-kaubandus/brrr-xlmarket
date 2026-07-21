@@ -1,0 +1,39 @@
+{
+ "l3": "v4-ehitus-pinnasetihendajad",
+ "name": "Pinnasetihendajad",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W",
+   "unit_orig": "HP"
+  },
+  {
+   "key": "poorlemiskiirus",
+   "label_et": "Vibratsiooni sagedus",
+   "unit": "RPM",
+   "unit_orig": "VPM"
+  },
+  {
+   "key": "tihenemisrohk",
+   "label_et": "Tihenemisrõhk",
+   "unit": "kN"
+  },
+  {
+   "key": "ketta_labamoot",
+   "label_et": "Plaadi mõõtmed",
+   "unit": "mm",
+   "unit_orig": "cm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "tihenemissügavus",
+   "label_et": "Tihenemissügavus",
+   "unit": "cm"
+  }
+ ]
+}

@@ -1,0 +1,41 @@
+{
+ "l3": "v4-ehitus-remont-ja-varvid-seinapaneelid-ja-liistud-akustilised-seinapaneelid",
+ "name": "Akustilised seinapaneelid",
+ "fields": [
+  {
+   "key": "kogus",
+   "label_et": "Tükkide arv pakis",
+   "unit": "tk"
+  },
+  {
+   "key": "paneli_suurus",
+   "label_et": "Paneli suurus (pikkus × laius × paksus)",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kogukaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kuju",
+   "label_et": "Paneli kuju",
+   "unit": ""
+  },
+  {
+   "key": "isekleepuv",
+   "label_et": "Isekleepuv",
+   "unit": ""
+  },
+  {
+   "key": "tihedus",
+   "label_et": "Polüuretaani tihedus",
+   "unit": "kg/m³"
+  }
+ ]
+}

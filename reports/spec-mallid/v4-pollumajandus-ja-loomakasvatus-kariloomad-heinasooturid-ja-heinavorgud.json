@@ -1,0 +1,41 @@
+{
+ "l3": "v4-pollumajandus-ja-loomakasvatus-kariloomad-heinasooturid-ja-heinavorgud",
+ "name": "Heinasööturid ja heinavõrgud",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Mahutavus",
+   "unit": "L"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "silmsuurus_mm",
+   "label_et": "Silmade suurus",
+   "unit": "mm"
+  },
+  {
+   "key": "pikkus_mm",
+   "label_et": "Pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "paigaldus_viis",
+   "label_et": "Paigaldusviis",
+   "unit": ""
+  },
+  {
+   "key": "loomatyybid",
+   "label_et": "Sobib loomadele",
+   "unit": ""
+  }
+ ]
+}

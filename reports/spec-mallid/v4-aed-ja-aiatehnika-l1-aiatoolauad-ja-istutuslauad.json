@@ -1,0 +1,46 @@
+{
+ "l3": "v4-aed-ja-aiatehnika-l1-aiatoolauad-ja-istutuslauad",
+ "name": "Aiatöölauad ja istutuslauad",
+ "fields": [
+  {
+   "key": "pindala_laius_cm",
+   "label_et": "Tööpinna laius",
+   "unit": "cm"
+  },
+  {
+   "key": "pindala_sügavus_cm",
+   "label_et": "Tööpinna sügavus",
+   "unit": "cm"
+  },
+  {
+   "key": "kogukorgus_cm",
+   "label_et": "Kogu kõrgus",
+   "unit": "cm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Tööpinna materjal",
+   "unit": ""
+  },
+  {
+   "key": "riiulite_arv",
+   "label_et": "Riiulite arv",
+   "unit": "tk"
+  },
+  {
+   "key": "kastid_kappid",
+   "label_et": "Hoiukappe/kastid",
+   "unit": "tk"
+  },
+  {
+   "key": "rattad",
+   "label_et": "Liikuvad rattad",
+   "unit": "tk"
+  }
+ ]
+}

@@ -1,0 +1,36 @@
+{
+ "l3": "v4-garaaziseadmed-tungrauad-pudelitungrauad",
+ "name": "Pudelitungrauad",
+ "fields": [
+  {
+   "key": "tootvus_ton",
+   "label_et": "Tõstevõimsus",
+   "unit": "ton"
+  },
+  {
+   "key": "tostukaugus_mm",
+   "label_et": "Tõstukaugus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjalid",
+   "unit": ""
+  },
+  {
+   "key": "reguleerimiskorgus_mm",
+   "label_et": "Reguleerimiskõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "sadula_laius_mm",
+   "label_et": "Sadula laius",
+   "unit": "mm"
+  }
+ ]
+}

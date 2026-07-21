@@ -1,0 +1,41 @@
+{
+ "l3": "v4-elektritarvikud-ja-valgustus-kaablipoolihoidikud",
+ "name": "Kaablipoolihoidikud ja -restid",
+ "fields": [
+  {
+   "key": "kandevõimekus",
+   "label_et": "Kandevõimekus",
+   "unit": "kg"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "max_pool_diameeter",
+   "label_et": "Max pooli läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "poolide_arv",
+   "label_et": "Poolide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "paigaldus_viis",
+   "label_et": "Paigaldusviis",
+   "unit": "kategoriseeritud"
+  },
+  {
+   "key": "kaalutatavus",
+   "label_et": "Liikuvus (ratastega/kannataval)",
+   "unit": "jah/ei"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": "kategoriseeritud"
+  }
+ ]
+}

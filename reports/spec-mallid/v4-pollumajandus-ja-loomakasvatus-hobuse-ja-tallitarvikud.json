@@ -1,0 +1,46 @@
+{
+ "l3": "v4-pollumajandus-ja-loomakasvatus-hobuse-ja-tallitarvikud",
+ "name": "Hobuse- ja tallitarvikud",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kihtide_arv",
+   "label_et": "Kihtide arv",
+   "unit": ""
+  },
+  {
+   "key": "montaazi_tyyp",
+   "label_et": "Montaažitüüp",
+   "unit": ""
+  },
+  {
+   "key": "laius_mm",
+   "label_et": "Laius",
+   "unit": "mm"
+  },
+  {
+   "key": "korgus_mm",
+   "label_et": "Kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "syvus_mm",
+   "label_et": "Sügavus",
+   "unit": "mm"
+  },
+  {
+   "key": "komplekti_kogus",
+   "label_et": "Komplekti kogus",
+   "unit": ""
+  }
+ ]
+}

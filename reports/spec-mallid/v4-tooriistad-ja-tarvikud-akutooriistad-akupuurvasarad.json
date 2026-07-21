@@ -1,0 +1,46 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-akutooriistad-akupuurvasarad",
+ "name": "Akupuurvasarad",
+ "fields": [
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "aku_maht",
+   "label_et": "Aku mahtuvus",
+   "unit": "Wh"
+  },
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "poorlemiskiirus",
+   "label_et": "Pöörlemiskiirus",
+   "unit": "RPM"
+  },
+  {
+   "key": "lohkimine_sagedus",
+   "label_et": "Lõhkimise sagedus",
+   "unit": "BPM"
+  },
+  {
+   "key": "lohkimine_energia",
+   "label_et": "Lõhkimisenergia",
+   "unit": "J"
+  },
+  {
+   "key": "ketta_labamoot",
+   "label_et": "Maksimaalne puurimisläbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  }
+ ]
+}

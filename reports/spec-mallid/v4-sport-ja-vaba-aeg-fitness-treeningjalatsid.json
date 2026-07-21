@@ -1,0 +1,46 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-fitness-treeningjalatsid",
+ "name": "Treeningjalatsid",
+ "fields": [
+  {
+   "key": "suurus_uk",
+   "label_et": "Suurus (UK)",
+   "unit": "UK"
+  },
+  {
+   "key": "laius",
+   "label_et": "Jalanõu laius",
+   "unit": "M/W"
+  },
+  {
+   "key": "vari",
+   "label_et": "Värvus",
+   "unit": "värv"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Pealmateriali koostis",
+   "unit": "materjal"
+  },
+  {
+   "key": "pohja_materjal",
+   "label_et": "Pohja materiali tüüp",
+   "unit": "materjal"
+  },
+  {
+   "key": "mõõdud",
+   "label_et": "Mõõdud (pikkus x laius x kõrgus)",
+   "unit": "mm"
+  },
+  {
+   "key": "toetus_tyyp",
+   "label_et": "Kaare toetus",
+   "unit": "omadus"
+  }
+ ]
+}

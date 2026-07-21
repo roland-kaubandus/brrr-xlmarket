@@ -1,0 +1,36 @@
+{
+ "l3": "v4-aed-ja-aiatehnika-l1-veekogude-umbrohutooriistad",
+ "name": "Veekogu-umbrohurullurid",
+ "fields": [
+  {
+   "key": "pikkus",
+   "label_et": "Käepideme pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Toote kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "hammaste_arv",
+   "label_et": "Rulli hammastel arv",
+   "unit": "tk"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Rulli hammastel materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaepideme_arv",
+   "label_et": "Käepideme segmentide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "rulli_laius",
+   "label_et": "Rulli laius",
+   "unit": "mm"
+  }
+ ]
+}

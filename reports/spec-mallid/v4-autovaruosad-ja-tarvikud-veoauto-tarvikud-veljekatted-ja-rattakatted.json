@@ -1,0 +1,41 @@
+{
+ "l3": "v4-autovaruosad-ja-tarvikud-veoauto-tarvikud-veljekatted-ja-rattakatted",
+ "name": "Veljekatted ja rattakatted",
+ "fields": [
+  {
+   "key": "ketta_labamoot",
+   "label_et": "Veljekatte läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "ketta_paksus",
+   "label_et": "Veljekatte paksus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "ühilduv_veljemõõt",
+   "label_et": "Ühilduv veljemõõt",
+   "unit": "in"
+  },
+  {
+   "key": "design_tyyp",
+   "label_et": "Disaini tüüp",
+   "unit": ""
+  },
+  {
+   "key": "paigaldus",
+   "label_et": "Paigaldusviis",
+   "unit": ""
+  }
+ ]
+}

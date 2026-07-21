@@ -1,0 +1,41 @@
+{
+ "l3": "v4-lemmikloomatarbed-treening-ja-manguasjad-koerte-agility-ja-treeningkomplektid",
+ "name": "Koerte agility- ja treeningkomplektid",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Komplekti kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Põhimaterja",
+   "unit": ""
+  },
+  {
+   "key": "komplekti_suurus",
+   "label_et": "Komplekti suuruse kood",
+   "unit": "PCS"
+  },
+  {
+   "key": "takistuste_arv",
+   "label_et": "Erinevate takistuste tüüpide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "reguleeritavus",
+   "label_et": "Kõrguse reguleeritavus",
+   "unit": ""
+  },
+  {
+   "key": "tarvikud",
+   "label_et": "Kaasa antud tarvikud",
+   "unit": ""
+  },
+  {
+   "key": "salvestuskotid",
+   "label_et": "Salvestuskottide arv",
+   "unit": "tk"
+  }
+ ]
+}

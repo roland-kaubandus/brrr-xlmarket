@@ -1,0 +1,46 @@
+{
+ "l3": "v4-tooriied-ja-isikukaitse-tooriietus-ja-uleroivad-tulekindlad-toopluusid",
+ "name": "Tulekindlad tööpluusid",
+ "fields": [
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "rinnalaiusega",
+   "label_et": "Rinnalaiusega",
+   "unit": "mm"
+  },
+  {
+   "key": "seljapikeusega",
+   "label_et": "Seljapikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaeprikkus",
+   "label_et": "Käepikeusega",
+   "unit": "mm"
+  },
+  {
+   "key": "pargi_suurus",
+   "label_et": "Pargi suurus",
+   "unit": ""
+  },
+  {
+   "key": "vari",
+   "label_et": "Väri",
+   "unit": ""
+  },
+  {
+   "key": "taskud",
+   "label_et": "Taskud",
+   "unit": ""
+  }
+ ]
+}

@@ -1,0 +1,46 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-suruohutooriistad-suruohu-torustiku-komplektid",
+ "name": "Suruõhu torustiku komplektid",
+ "fields": [
+  {
+   "key": "torustiku_pikkus_m",
+   "label_et": "Torustiku pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "sisemine_diameter_mm",
+   "label_et": "Sisemine läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "valimis_diameter_mm",
+   "label_et": "Välimine läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "rohk",
+   "label_et": "Tööpinge",
+   "unit": "bar"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "filtreerimise_presitsoon_mikroon",
+   "label_et": "Filtreerimise täpsus",
+   "unit": "μm"
+  },
+  {
+   "key": "ühenduse_suurus_tolli",
+   "label_et": "Ühenduse suurus",
+   "unit": "tolli"
+  }
+ ]
+}

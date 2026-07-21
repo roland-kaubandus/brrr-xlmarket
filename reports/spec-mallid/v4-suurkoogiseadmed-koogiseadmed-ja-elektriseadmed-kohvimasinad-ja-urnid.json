@@ -1,0 +1,41 @@
+{
+ "l3": "v4-suurkoogiseadmed-koogiseadmed-ja-elektriseadmed-kohvimasinad-ja-urnid",
+ "name": "Kohvimasinad",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Veetangi maht",
+   "unit": "L"
+  },
+  {
+   "key": "kaarafi_maht",
+   "label_et": "Kaarafi maht",
+   "unit": "L"
+  },
+  {
+   "key": "kaarafi_tyyp",
+   "label_et": "Kaarafi tüüp",
+   "unit": "text"
+  },
+  {
+   "key": "kaarafi_arv",
+   "label_et": "Karafide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "soojendusplaatide_arv",
+   "label_et": "Soojendusplaatide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": "text"
+  }
+ ]
+}

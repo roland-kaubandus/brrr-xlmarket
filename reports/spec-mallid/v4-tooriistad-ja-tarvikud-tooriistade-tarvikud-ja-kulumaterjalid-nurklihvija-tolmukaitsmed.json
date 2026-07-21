@@ -1,0 +1,37 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-nurklihvija-tolmukaitsmed",
+ "name": "Nurklihvija tolmukaitsmed",
+ "fields": [
+  {
+   "key": "ketta_labamoot",
+   "label_et": "Ketta läbimõõt",
+   "unit": "mm",
+   "unit_orig": "in"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Korpuse materjal",
+   "unit": ""
+  },
+  {
+   "key": "tolmuimeja_yhildus",
+   "label_et": "Tolmuimeja ühildus",
+   "unit": ""
+  },
+  {
+   "key": "kinnitusdetailid",
+   "label_et": "Kinnitusdetailide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "reguleeritav_sügavus",
+   "label_et": "Reguleeritav lõikesügavus",
+   "unit": ""
+  }
+ ]
+}

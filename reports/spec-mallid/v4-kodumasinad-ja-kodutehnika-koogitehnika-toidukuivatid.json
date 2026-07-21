@@ -1,0 +1,46 @@
+{
+ "l3": "v4-kodumasinad-ja-kodutehnika-koogitehnika-toidukuivatid",
+ "name": "Toidukuivatid ja külmkuivatid",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "maht",
+   "label_et": "Maht",
+   "unit": "L"
+  },
+  {
+   "key": "myra",
+   "label_et": "Müra",
+   "unit": "dB"
+  },
+  {
+   "key": "salve_arv",
+   "label_et": "Salvedele arv",
+   "unit": "tk"
+  },
+  {
+   "key": "temp_ulatus",
+   "label_et": "Temperatuuri ulatus",
+   "unit": "°C"
+  },
+  {
+   "key": "kuivatuse_tup",
+   "label_et": "Kuivatuse tüüp",
+   "unit": "-"
+  }
+ ]
+}

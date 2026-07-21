@@ -1,0 +1,46 @@
+{
+ "l3": "v4-tervis-hooldus-ja-ilu-isikuhooldusseadmed-massaaziseadmed",
+ "name": "Massaažitoolid",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Toote kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "maksimaalne_koormus",
+   "label_et": "Maksimaalne koormus",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Istme materjal",
+   "unit": ""
+  },
+  {
+   "key": "massaaž_dimensioonid",
+   "label_et": "Massaaži jälg",
+   "unit": ""
+  },
+  {
+   "key": "massaaž_suunad",
+   "label_et": "Massaaži suunad (3D/4D)",
+   "unit": ""
+  },
+  {
+   "key": "automaatsed_programmid",
+   "label_et": "Automaatsed programmid",
+   "unit": "tk"
+  },
+  {
+   "key": "funktsioonid",
+   "label_et": "Lisafunktsioonid",
+   "unit": ""
+  },
+  {
+   "key": "kontroll",
+   "label_et": "Juhtimine",
+   "unit": ""
+  }
+ ]
+}

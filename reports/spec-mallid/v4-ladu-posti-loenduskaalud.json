@@ -1,0 +1,42 @@
+{
+ "l3": "v4-ladu-posti-loenduskaalud",
+ "name": "Posti- ja loenduskaalud",
+ "fields": [
+  {
+   "key": "maksimaalne_kaal",
+   "label_et": "Maksimaalne kaalumise võimsus",
+   "unit": "kg"
+  },
+  {
+   "key": "taepsus",
+   "label_et": "Täpsus",
+   "unit": "g"
+  },
+  {
+   "key": "miinimaalne_kaal",
+   "label_et": "Minimaalne kaalumise võimsus",
+   "unit": "g"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Seadme kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Platvormi materjal",
+   "unit": ""
+  },
+  {
+   "key": "pinge",
+   "label_et": "Toiteallikas",
+   "unit": "V",
+   "unit_orig": ""
+  },
+  {
+   "key": "platvormi_suurus",
+   "label_et": "Platvormi suurus (L × W)",
+   "unit": "mm"
+  }
+ ]
+}

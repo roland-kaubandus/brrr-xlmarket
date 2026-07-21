@@ -1,0 +1,41 @@
+{
+ "l3": "v4-ehitus-remont-ja-varvid-seinapaneelid-tapeet-ja-seinakatted",
+ "name": "Tapeet ja seinakatted",
+ "fields": [
+  {
+   "key": "leveys",
+   "label_et": "Rulli laius",
+   "unit": "cm"
+  },
+  {
+   "key": "pikkus",
+   "label_et": "Rulli pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "paksus",
+   "label_et": "Paksus",
+   "unit": "mm"
+  },
+  {
+   "key": "muster",
+   "label_et": "Muster",
+   "unit": ""
+  },
+  {
+   "key": "varis",
+   "label_et": "Värv",
+   "unit": ""
+  }
+ ]
+}

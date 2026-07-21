@@ -1,0 +1,41 @@
+{
+ "l3": "v4-moobel-ja-sisustus-elutoamoobel-kott-toolid",
+ "name": "Kott-toolid",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Toote kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "max_koormus",
+   "label_et": "Maksimaalne koormuse võimsus",
+   "unit": "kg"
+  },
+  {
+   "key": "istme_laius",
+   "label_et": "Istme laius",
+   "unit": "mm"
+  },
+  {
+   "key": "istme_korgus",
+   "label_et": "Istme kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "kogumahud",
+   "label_et": "Kogumõõtmed (pikkus × laius × kõrgus)",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "pesitav_kate",
+   "label_et": "Pesitav kate",
+   "unit": ""
+  }
+ ]
+}

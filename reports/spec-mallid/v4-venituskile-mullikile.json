@@ -1,0 +1,46 @@
+{
+ "l3": "v4-venituskile-mullikile",
+ "name": "Venituskile ja mullikile",
+ "fields": [
+  {
+   "key": "levius_mm",
+   "label_et": "Kile laius",
+   "unit": "mm"
+  },
+  {
+   "key": "pikkus_m",
+   "label_et": "Kile pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "paksus_mikron",
+   "label_et": "Kile paksus",
+   "unit": "μm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "sirutavus_protsent",
+   "label_et": "Sirutavus",
+   "unit": "%"
+  },
+  {
+   "key": "kandvovoimsus_kg",
+   "label_et": "Kandvõimsus",
+   "unit": "kg"
+  },
+  {
+   "key": "rullirakis_kogus",
+   "label_et": "Rullirakis kogus",
+   "unit": "tk"
+  }
+ ]
+}

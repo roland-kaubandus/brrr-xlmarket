@@ -1,0 +1,31 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-trampoliinid-trampoliini-huppematid",
+ "name": "Trampoliini hüppematid",
+ "fields": [
+  {
+   "key": "raam_diameeter",
+   "label_et": "Raami läbimõõt",
+   "unit": "ft"
+  },
+  {
+   "key": "huppepaidi_diameeter",
+   "label_et": "Hüppepadi läbimõõt",
+   "unit": "cm"
+  },
+  {
+   "key": "vedru_pikkus",
+   "label_et": "Vedru pikkus",
+   "unit": "cm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  }
+ ]
+}

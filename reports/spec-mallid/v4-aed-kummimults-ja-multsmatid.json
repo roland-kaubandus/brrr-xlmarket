@@ -1,0 +1,46 @@
+{
+ "l3": "v4-aed-kummimults-ja-multsmatid",
+ "name": "Kummimultš ja multšmatid",
+ "fields": [
+  {
+   "key": "pikkus_cm",
+   "label_et": "Pikkus",
+   "unit": "cm"
+  },
+  {
+   "key": "laius_cm",
+   "label_et": "Laius",
+   "unit": "cm"
+  },
+  {
+   "key": "paksus_mm",
+   "label_et": "Paksus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "rullude_arv",
+   "label_et": "Rullude arv",
+   "unit": "tk"
+  },
+  {
+   "key": "pindala_m2",
+   "label_et": "Kogupindala",
+   "unit": "m²"
+  },
+  {
+   "key": "vari",
+   "label_et": "Värvus",
+   "unit": ""
+  }
+ ]
+}

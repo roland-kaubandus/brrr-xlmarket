@@ -1,0 +1,41 @@
+{
+ "l3": "v4-autovaruosad-ja-tarvikud-autovaruosad-nukkvollid-ja-komplektid",
+ "name": "Nukkvõllid ja -komplektid",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Toote kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Peamine materjal",
+   "unit": ""
+  },
+  {
+   "key": "komplekti_suurus",
+   "label_et": "Komplekti osade arv",
+   "unit": "tk"
+  },
+  {
+   "key": "mootori_mahud",
+   "label_et": "Ühilduvad mootori mahud",
+   "unit": "L"
+  },
+  {
+   "key": "pikkus",
+   "label_et": "Nukkvõlli pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "oe_kood",
+   "label_et": "OE katalooginumber",
+   "unit": ""
+  },
+  {
+   "key": "ühilduvus_automarkid",
+   "label_et": "Ühilduvad automarkid",
+   "unit": ""
+  }
+ ]
+}

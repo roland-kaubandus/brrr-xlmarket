@@ -1,0 +1,41 @@
+{
+ "l3": "v4-lemmikloomatarbed-puurid-ja-aedikud-manguplatsid-ja-aedikud",
+ "name": "Mänguplatsid ja aedikud",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "pikkus",
+   "label_et": "Pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "laius",
+   "label_et": "Laius",
+   "unit": "mm"
+  },
+  {
+   "key": "korgus",
+   "label_et": "Kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "paneelide_arv",
+   "label_et": "Paneelide arv",
+   "unit": ""
+  },
+  {
+   "key": "veeimbus",
+   "label_et": "Veekindel",
+   "unit": ""
+  }
+ ]
+}

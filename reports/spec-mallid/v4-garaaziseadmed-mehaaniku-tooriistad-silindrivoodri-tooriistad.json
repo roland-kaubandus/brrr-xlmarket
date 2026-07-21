@@ -1,0 +1,36 @@
+{
+ "l3": "v4-garaaziseadmed-mehaaniku-tooriistad-silindrivoodri-tooriistad",
+ "name": "Silindrivoodri tööriistad",
+ "fields": [
+  {
+   "key": "dismantling_size_min_mm",
+   "label_et": "Minimaalne silindri läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "dismantling_size_max_mm",
+   "label_et": "Maksimaalne silindri läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "juhtskruvi_pikkus_max_mm",
+   "label_et": "Juhtskruvi maksimaalne pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "tihend_paksus_mm",
+   "label_et": "Tihendi paksus",
+   "unit": "mm"
+  }
+ ]
+}

@@ -1,0 +1,36 @@
+{
+ "l3": "v4-tooriied-ja-isikukaitse-tooriietus-ja-uleroivad-keevituspolled",
+ "name": "Keevituspõlled",
+ "fields": [
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "suurus",
+   "label_et": "Suurus",
+   "unit": ""
+  },
+  {
+   "key": "tookapsite_arv",
+   "label_et": "Töökapsite arv",
+   "unit": "tk"
+  },
+  {
+   "key": "pikkus",
+   "label_et": "Pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "laius",
+   "label_et": "Laius",
+   "unit": "mm"
+  }
+ ]
+}

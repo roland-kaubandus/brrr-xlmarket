@@ -1,0 +1,41 @@
+{
+ "l3": "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-vinuulloikurid-ja-plotterid",
+ "name": "Vinüüllõikurid ja plotterid",
+ "fields": [
+  {
+   "key": "max_paper_feed_mm",
+   "label_et": "Maksimaalne paberi etteanne",
+   "unit": "mm"
+  },
+  {
+   "key": "max_cutter_width_mm",
+   "label_et": "Maksimaalne lõikepäa laius",
+   "unit": "mm"
+  },
+  {
+   "key": "cutting_speed_mm_s",
+   "label_et": "Lõikekiirus",
+   "unit": "mm/s"
+  },
+  {
+   "key": "cutter_pressure_g",
+   "label_et": "Lõikerõhk (vahemik)",
+   "unit": "g"
+  },
+  {
+   "key": "repetition_accuracy_mm",
+   "label_et": "Korduse täpsus",
+   "unit": "mm"
+  },
+  {
+   "key": "memory_mb",
+   "label_et": "Mälu",
+   "unit": "MB"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  }
+ ]
+}

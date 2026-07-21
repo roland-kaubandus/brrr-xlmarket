@@ -1,0 +1,36 @@
+{
+ "l3": "v4-autovaruosad-ja-tarvikud-salongitarvikud-heliisolatsioonimaterjalid",
+ "name": "Heliisolatsioonimaterjalid",
+ "fields": [
+  {
+   "key": "paksus_mm",
+   "label_et": "Paksus",
+   "unit": "mm"
+  },
+  {
+   "key": "pindala_m2",
+   "label_et": "Kogupindala",
+   "unit": "m²"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": "tüüp"
+  },
+  {
+   "key": "tukid_arv",
+   "label_et": "Tükkide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "vari",
+   "label_et": "Värvus",
+   "unit": "tüüp"
+  }
+ ]
+}

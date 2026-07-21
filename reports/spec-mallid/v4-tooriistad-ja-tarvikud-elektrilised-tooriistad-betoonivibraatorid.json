@@ -1,0 +1,41 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-elektrilised-tooriistad-betoonivibraatorid",
+ "name": "Betoonivibraatorid",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "poorlemiskiirus",
+   "label_et": "Pöörlemiskiirus",
+   "unit": "RPM"
+  },
+  {
+   "key": "vibratsioon_sagedus",
+   "label_et": "Vibratsiooni sagedus",
+   "unit": "VPM"
+  },
+  {
+   "key": "varras_pikkus",
+   "label_et": "Varda pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "varras_diameeter",
+   "label_et": "Varda diameeter",
+   "unit": "mm"
+  }
+ ]
+}

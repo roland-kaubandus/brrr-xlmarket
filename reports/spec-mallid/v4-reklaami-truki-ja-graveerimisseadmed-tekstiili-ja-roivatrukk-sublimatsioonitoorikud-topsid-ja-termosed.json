@@ -1,0 +1,36 @@
+{
+ "l3": "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-sublimatsioonitoorikud-topsid-ja-termosed",
+ "name": "Sublimatsioonitoorikud (topsid ja termosed)",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Mahutavus",
+   "unit": "ml"
+  },
+  {
+   "key": "kogus",
+   "label_et": "Pakendis tükke",
+   "unit": "tk"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kogu kaal (aksessuaaridega)",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "soojusisolatsioon",
+   "label_et": "Kahekordne seinad",
+   "unit": ""
+  },
+  {
+   "key": "mudel",
+   "label_et": "Kuju/Stiil",
+   "unit": ""
+  }
+ ]
+}

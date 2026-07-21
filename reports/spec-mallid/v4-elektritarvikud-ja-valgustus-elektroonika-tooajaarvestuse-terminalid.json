@@ -1,0 +1,46 @@
+{
+ "l3": "v4-elektritarvikud-ja-valgustus-elektroonika-tooajaarvestuse-terminalid",
+ "name": "Tööajaarvestuse terminalid",
+ "fields": [
+  {
+   "key": "tunnistamismeetodid",
+   "label_et": "Tunnistamismeetodid",
+   "unit": ""
+  },
+  {
+   "key": "keel_valikud",
+   "label_et": "Keelte arv",
+   "unit": "tk"
+  },
+  {
+   "key": "aku_maht",
+   "label_et": "Akumahtuvus",
+   "unit": "Wh"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Toitepinge",
+   "unit": "V"
+  },
+  {
+   "key": "voimsus",
+   "label_et": "Hetkeline võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Netokaal",
+   "unit": "kg"
+  },
+  {
+   "key": "ekraani_suurus",
+   "label_et": "Ekraani suurus",
+   "unit": "in"
+  },
+  {
+   "key": "paigaldusmeetod",
+   "label_et": "Paigaldusmeetod",
+   "unit": ""
+  }
+ ]
+}

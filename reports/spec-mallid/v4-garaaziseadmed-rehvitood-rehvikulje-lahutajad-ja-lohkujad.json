@@ -1,0 +1,36 @@
+{
+ "l3": "v4-garaaziseadmed-rehvitood-rehvikulje-lahutajad-ja-lohkujad",
+ "name": "Rehvikülje lahutajad ja lõhkujad",
+ "fields": [
+  {
+   "key": "rohk_max",
+   "label_et": "Maksimaalne töörõhk",
+   "unit": "bar"
+  },
+  {
+   "key": "ketta_labamoot",
+   "label_et": "Rehvi läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Netokaalu",
+   "unit": "kg"
+  },
+  {
+   "key": "lahutuskraft",
+   "label_et": "Rehvi lahutuskraft",
+   "unit": "t"
+  },
+  {
+   "key": "tootmismaterjal",
+   "label_et": "Materjaali",
+   "unit": ""
+  },
+  {
+   "key": "tootmise_tyyp",
+   "label_et": "Tüüp (käsitsi/hüdrauliline)",
+   "unit": ""
+  }
+ ]
+}

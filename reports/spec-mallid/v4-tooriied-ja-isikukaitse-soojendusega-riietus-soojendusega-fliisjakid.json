@@ -1,0 +1,41 @@
+{
+ "l3": "v4-tooriied-ja-isikukaitse-soojendusega-riietus-soojendusega-fliisjakid",
+ "name": "Soojendusega fliisjakid",
+ "fields": [
+  {
+   "key": "pinge",
+   "label_et": "Patarei pinge",
+   "unit": "V"
+  },
+  {
+   "key": "aku_maht",
+   "label_et": "Patarei mahtuvus",
+   "unit": "Wh"
+  },
+  {
+   "key": "soojustsoonide_arv",
+   "label_et": "Soojustsooniде arv",
+   "unit": "tk"
+  },
+  {
+   "key": "soojuse_tasemed",
+   "label_et": "Soojuse tasemete arv",
+   "unit": "tk"
+  },
+  {
+   "key": "tooaeg_maksimaalne",
+   "label_et": "Maksimaalne tööaeg",
+   "unit": "h"
+  },
+  {
+   "key": "sugu",
+   "label_et": "Sugu",
+   "unit": ""
+  },
+  {
+   "key": "suurus",
+   "label_et": "Riietuse suurus",
+   "unit": ""
+  }
+ ]
+}

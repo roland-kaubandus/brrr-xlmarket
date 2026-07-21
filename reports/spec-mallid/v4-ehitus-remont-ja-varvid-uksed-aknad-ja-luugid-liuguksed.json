@@ -1,0 +1,46 @@
+{
+ "l3": "v4-ehitus-remont-ja-varvid-uksed-aknad-ja-luugid-liuguksed",
+ "name": "Liuguksed",
+ "fields": [
+  {
+   "key": "uks_laius_mm",
+   "label_et": "Ukse laius",
+   "unit": "mm"
+  },
+  {
+   "key": "uks_korgus_mm",
+   "label_et": "Ukse kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal (koos tarvikutega)",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "paneeli_paksus_mm",
+   "label_et": "Paneeli paksus",
+   "unit": "mm"
+  },
+  {
+   "key": "raudtee_pikkus_mm",
+   "label_et": "Raudtee pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaardi_tyyp",
+   "label_et": "Kaardi tüüp",
+   "unit": ""
+  },
+  {
+   "key": "metallimaterjal",
+   "label_et": "Metalliosa materjal",
+   "unit": ""
+  }
+ ]
+}

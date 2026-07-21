@@ -1,0 +1,41 @@
+{
+ "l3": "v4-ehitus-remont-ja-varvid-betoonitood-ja-ehitusmaterjalid-betooni-pitsati-ja-tekstuurimatid",
+ "name": "Betooni pitsati- ja tekstuurimatid",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "pindala",
+   "label_et": "Pindala",
+   "unit": "mm²"
+  },
+  {
+   "key": "paksus",
+   "label_et": "Paksus",
+   "unit": "mm"
+  },
+  {
+   "key": "tekstuuri_stiil",
+   "label_et": "Tekstuuri stiil",
+   "unit": ""
+  },
+  {
+   "key": "tyyp",
+   "label_et": "Tüüp",
+   "unit": ""
+  },
+  {
+   "key": "kogus",
+   "label_et": "Kogus komplektis",
+   "unit": "tk"
+  }
+ ]
+}

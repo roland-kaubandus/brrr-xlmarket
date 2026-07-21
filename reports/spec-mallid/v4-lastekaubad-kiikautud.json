@@ -1,0 +1,41 @@
+{
+ "l3": "v4-lastekaubad-kiikautud",
+ "name": "Kiikautud",
+ "fields": [
+  {
+   "key": "maksimaalne_kaal_istekoha_kohta",
+   "label_et": "Maksimaalne kaal istekoha kohta",
+   "unit": "kg"
+  },
+  {
+   "key": "istekohtade_arv",
+   "label_et": "Istekohtade arv",
+   "unit": "tk"
+  },
+  {
+   "key": "rotatsiooni_mogelvus",
+   "label_et": "360° pöörlemine",
+   "unit": "jah/ei"
+  },
+  {
+   "key": "tugi_jalad",
+   "label_et": "Tugi- ja jalgade tüüp",
+   "unit": "tekst"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": "tekst"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Toote kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "pinna_katted",
+   "label_et": "Pinnakate",
+   "unit": "tekst"
+  }
+ ]
+}

@@ -1,0 +1,41 @@
+{
+ "l3": "v4-autovaruosad-ja-tarvikud-valistarvikud-jeep-maasturi-valisosad",
+ "name": "Jeep/maasturi välisosad",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "uksed_arv",
+   "label_et": "Uksed (arv)",
+   "unit": "tk"
+  },
+  {
+   "key": "jeep_mudel",
+   "label_et": "Jeep mudel / aastaaeg",
+   "unit": ""
+  },
+  {
+   "key": "peauks_laius",
+   "label_et": "Peauksuse laius",
+   "unit": "mm"
+  },
+  {
+   "key": "peauks_korgus",
+   "label_et": "Peauksuse kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "suhted",
+   "label_et": "Lisasuhted (peeglid/padded)",
+   "unit": ""
+  }
+ ]
+}

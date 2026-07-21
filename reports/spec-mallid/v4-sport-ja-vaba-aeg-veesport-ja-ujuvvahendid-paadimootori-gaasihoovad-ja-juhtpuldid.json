@@ -1,0 +1,46 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-veesport-ja-ujuvvahendid-paadimootori-gaasihoovad-ja-juhtpuldid",
+ "name": "Paadimootori gaasihoovad ja juhtpuldid",
+ "fields": [
+  {
+   "key": "pinge",
+   "label_et": "Tööpinge",
+   "unit": "V"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "paigalduse_tyyp",
+   "label_et": "Paigaldusviis",
+   "unit": ""
+  },
+  {
+   "key": "aku_pikkus",
+   "label_et": "Kaabli pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "mootorimarka",
+   "label_et": "Mootori ühilduv mark",
+   "unit": ""
+  },
+  {
+   "key": "takt_tyyp",
+   "label_et": "Takt (2T/4T)",
+   "unit": ""
+  },
+  {
+   "key": "juhtmete_arv",
+   "label_et": "Juhtmete arv",
+   "unit": "pin"
+  },
+  {
+   "key": "ohutusvool",
+   "label_et": "Tööstroom",
+   "unit": "A"
+  }
+ ]
+}

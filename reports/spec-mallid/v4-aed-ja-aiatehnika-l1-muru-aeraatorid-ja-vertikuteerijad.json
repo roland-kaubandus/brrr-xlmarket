@@ -1,0 +1,41 @@
+{
+ "l3": "v4-aed-ja-aiatehnika-l1-muru-aeraatorid-ja-vertikuteerijad",
+ "name": "Muru aeraatorid ja vertikuteerijad",
+ "fields": [
+  {
+   "key": "kaeitus_laius_mm",
+   "label_et": "Käituse laius",
+   "unit": "mm"
+  },
+  {
+   "key": "kael_kg",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "spike_arv",
+   "label_et": "Naelte/hamaste arv",
+   "unit": "tk"
+  },
+  {
+   "key": "spike_pikkus_mm",
+   "label_et": "Naela/hamaste pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaeitus_sügavus_mm",
+   "label_et": "Käituse sügavus",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Peamine materjal",
+   "unit": ""
+  },
+  {
+   "key": "tüüp",
+   "label_et": "Käituse tüüp",
+   "unit": ""
+  }
+ ]
+}

@@ -1,0 +1,36 @@
+{
+ "l3": "v4-autovaruosad-ja-tarvikud-salong-faraday-karbid",
+ "name": "Faraday-karbid ja võtme-kaitse",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Maht (kuupjalga)",
+   "unit": "cu.ft"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "material",
+   "label_et": "Materjal",
+   "unit": "-"
+  },
+  {
+   "key": "votme_maht",
+   "label_et": "Võtmete mahutavus",
+   "unit": "tk"
+  },
+  {
+   "key": "kaitse_kaugus",
+   "label_et": "Signaalte blokeerimise kaugus",
+   "unit": "cm"
+  },
+  {
+   "key": "labamoot",
+   "label_et": "Mõõtmed (pikkus × laius × kõrgus)",
+   "unit": "mm"
+  }
+ ]
+}

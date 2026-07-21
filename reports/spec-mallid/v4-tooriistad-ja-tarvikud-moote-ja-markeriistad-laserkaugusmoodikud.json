@@ -1,0 +1,41 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-moote-ja-markeriistad-laserkaugusmoodikud",
+ "name": "Laserkaugusmõõdikud",
+ "fields": [
+  {
+   "key": "laser_ulatus",
+   "label_et": "Laseri mõõteulatus",
+   "unit": "m"
+  },
+  {
+   "key": "mootmis_täpsus",
+   "label_et": "Mõõtmistäpsus",
+   "unit": "mm"
+  },
+  {
+   "key": "mootmis_reziimid",
+   "label_et": "Mõõtmisrežiimide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "mõõdulint_pikkus",
+   "label_et": "Magnetiline mõõdulint",
+   "unit": "m"
+  },
+  {
+   "key": "aku_maht",
+   "label_et": "Aku mahtuvus",
+   "unit": "Wh"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "skaala_tüüp",
+   "label_et": "Mõõtühikud (skaala)",
+   "unit": "tüüp"
+  }
+ ]
+}

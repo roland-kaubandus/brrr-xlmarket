@@ -1,0 +1,41 @@
+{
+ "l3": "v4-autovaruosad-ja-tarvikud-valistarvikud-rattatakked-ja-rattalukud",
+ "name": "Rattatõkked ja rattalukud",
+ "fields": [
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "ratta_diameeter",
+   "label_et": "Ratta sobiv läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "imemisnoka_diameeter",
+   "label_et": "Imemisnoka läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "maksimaalne_koormus",
+   "label_et": "Maksimaalne koormus",
+   "unit": "kg"
+  },
+  {
+   "key": "kogus",
+   "label_et": "Pakendi kogus",
+   "unit": "tk"
+  },
+  {
+   "key": "lukud_kaasas",
+   "label_et": "Võtmeid kaasas",
+   "unit": "tk"
+  }
+ ]
+}

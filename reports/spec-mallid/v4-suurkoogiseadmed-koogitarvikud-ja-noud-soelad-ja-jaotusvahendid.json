@@ -1,0 +1,36 @@
+{
+ "l3": "v4-suurkoogiseadmed-koogitarvikud-ja-noud-soelad-ja-jaotusvahendid",
+ "name": "Sõelad ja jaotusvahendid",
+ "fields": [
+  {
+   "key": "ketta_labamoot",
+   "label_et": "Sõela läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "silma_suurus",
+   "label_et": "Silma suurus (avause)",
+   "unit": "mm"
+  },
+  {
+   "key": "mesh_arv",
+   "label_et": "Võrgu tihedus",
+   "unit": "mesh"
+  },
+  {
+   "key": "traat_paksus",
+   "label_et": "Traadi paksus",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  }
+ ]
+}

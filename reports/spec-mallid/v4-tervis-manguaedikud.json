@@ -1,0 +1,41 @@
+{
+ "l3": "v4-tervis-manguaedikud",
+ "name": "Mänguaedikud",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "sisemised_maailmad_pikkus",
+   "label_et": "Sisemise ruumi pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "sisemised_maailmad_laius",
+   "label_et": "Sisemise ruumi laius",
+   "unit": "mm"
+  },
+  {
+   "key": "korgeuse",
+   "label_et": "Väliskõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Raam materjal",
+   "unit": "string"
+  },
+  {
+   "key": "max_kaal",
+   "label_et": "Maksimaalne lubatud kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "kaasas_aksessuaarid",
+   "label_et": "Kaasas aksessuaarid",
+   "unit": "string"
+  }
+ ]
+}

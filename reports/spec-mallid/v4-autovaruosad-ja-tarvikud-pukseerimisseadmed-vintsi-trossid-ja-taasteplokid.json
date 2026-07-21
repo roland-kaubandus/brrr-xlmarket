@@ -1,0 +1,41 @@
+{
+ "l3": "v4-autovaruosad-ja-tarvikud-pukseerimisseadmed-vintsi-trossid-ja-taasteplokid",
+ "name": "Vintsi trossid ja taasteplokid",
+ "fields": [
+  {
+   "key": "diameeter_mm",
+   "label_et": "Läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "pikkus_m",
+   "label_et": "Pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "katkemistugevus_kN",
+   "label_et": "Katkemistugevus",
+   "unit": "kN"
+  },
+  {
+   "key": "ohutuslast_kN",
+   "label_et": "Ohutuslast (turvateisus)",
+   "unit": "kN"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaal_kg",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "hook_type",
+   "label_et": "Konks-tüüp",
+   "unit": ""
+  }
+ ]
+}

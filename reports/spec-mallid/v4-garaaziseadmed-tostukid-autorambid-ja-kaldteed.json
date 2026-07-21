@@ -1,0 +1,41 @@
+{
+ "l3": "v4-garaaziseadmed-tostukid-autorambid-ja-kaldteed",
+ "name": "Autorambid ja kaldteed",
+ "fields": [
+  {
+   "key": "kandevoimsus",
+   "label_et": "Kandevõimsus (GVW)",
+   "unit": "kg"
+  },
+  {
+   "key": "tostukorgus",
+   "label_et": "Tõstukõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kogus",
+   "label_et": "Kogus (tk)",
+   "unit": "pcs"
+  },
+  {
+   "key": "profiilikorgus",
+   "label_et": "Profiil (madal/kõrge)",
+   "unit": ""
+  },
+  {
+   "key": "juhtimine",
+   "label_et": "Juhtimine (mehhaaniline/hüdrauliline)",
+   "unit": ""
+  }
+ ]
+}

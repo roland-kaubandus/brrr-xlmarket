@@ -1,0 +1,46 @@
+{
+ "l3": "v4-suurkook-sugavkulmikud-ja-kulmakirstud",
+ "name": "Sügavkülmikud ja külmakirstud",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Maht",
+   "unit": "L"
+  },
+  {
+   "key": "tyyp",
+   "label_et": "Külmiku tüüp",
+   "unit": ""
+  },
+  {
+   "key": "temp_min",
+   "label_et": "Minimaalne temperatuur",
+   "unit": "°C"
+  },
+  {
+   "key": "temp_max",
+   "label_et": "Maksimaalne temperatuur",
+   "unit": "°C"
+  },
+  {
+   "key": "myra",
+   "label_et": "Müra tase",
+   "unit": "dB"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Välismaterjal",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "riiulite_arv",
+   "label_et": "Riiulite arv",
+   "unit": ""
+  }
+ ]
+}

@@ -1,0 +1,46 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-staadionitoolid-ja-valipingid",
+ "name": "Staadionitoolid",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "istme_laius",
+   "label_et": "Istme laius",
+   "unit": "mm"
+  },
+  {
+   "key": "istme_sügavus",
+   "label_et": "Istme sügavus",
+   "unit": "mm"
+  },
+  {
+   "key": "padjandi_paksus",
+   "label_et": "Padjandi paksus",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kuumendamisfunktsioon",
+   "label_et": "Kuumendamine",
+   "unit": ""
+  },
+  {
+   "key": "seadistusastmed",
+   "label_et": "Seadistusastmed",
+   "unit": ""
+  },
+  {
+   "key": "volditud_suurus",
+   "label_et": "Volditud suurus",
+   "unit": "mm"
+  }
+ ]
+}

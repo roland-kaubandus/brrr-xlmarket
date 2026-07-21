@@ -1,0 +1,41 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-elektrilised-tooriistad-posti-ja-vaiarammijad",
+ "name": "Posti- ja vaiarammijad",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "poorlemiskiirus",
+   "label_et": "Põhirotatsiooni kiirus",
+   "unit": "RPM"
+  },
+  {
+   "key": "paakimaht",
+   "label_et": "Bensiini paagi maht",
+   "unit": "L"
+  },
+  {
+   "key": "lohkumisenergia",
+   "label_et": "Löögieneergia",
+   "unit": "J"
+  },
+  {
+   "key": "paad_diameetrid",
+   "label_et": "Juhtvarda diameetrid",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Peamised materjalid",
+   "unit": ""
+  }
+ ]
+}

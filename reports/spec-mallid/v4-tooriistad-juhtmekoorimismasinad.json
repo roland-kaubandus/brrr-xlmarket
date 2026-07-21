@@ -1,0 +1,41 @@
+{
+ "l3": "v4-tooriistad-juhtmekoorimismasinad",
+ "name": "Juhtmekoorimismasinad",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "juhtme_diameetri_vahemik",
+   "label_et": "Juhtme diameetri vahemik",
+   "unit": "mm"
+  },
+  {
+   "key": "koorimise_kiirus",
+   "label_et": "Koorimise kiirus",
+   "unit": "m/min"
+  },
+  {
+   "key": "kanalite_arv",
+   "label_et": "Kanalite arv",
+   "unit": "tk"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  }
+ ]
+}

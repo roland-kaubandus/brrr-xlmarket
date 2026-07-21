@@ -1,0 +1,41 @@
+{
+ "l3": "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-toostuslikud-vesijahutid",
+ "name": "Tööstuslikud vesijahutid",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Nimivõimsus",
+   "unit": "W"
+  },
+  {
+   "key": "jahutusvoimsus",
+   "label_et": "Jahutusmahtuvus",
+   "unit": "W"
+  },
+  {
+   "key": "maht",
+   "label_et": "Veemahuti maht",
+   "unit": "L"
+  },
+  {
+   "key": "vooluhulk",
+   "label_et": "Maksimaalne vooluhulk",
+   "unit": "L/min"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "myra",
+   "label_et": "Töömüra",
+   "unit": "dB"
+  },
+  {
+   "key": "jahutusviis",
+   "label_et": "Jahutusviis",
+   "unit": ""
+  }
+ ]
+}

@@ -1,0 +1,41 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-transpordikarud-platvormkarud",
+ "name": "Platvormkärud",
+ "fields": [
+  {
+   "key": "maksimaalne_koormus_kg",
+   "label_et": "Maksimaalne koormus",
+   "unit": "kg"
+  },
+  {
+   "key": "platvormi_pikkus_mm",
+   "label_et": "Platvormi pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "platvormi_laius_mm",
+   "label_et": "Platvormi laius",
+   "unit": "mm"
+  },
+  {
+   "key": "korgus_mm",
+   "label_et": "Kogukõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "ratta_diameeter_mm",
+   "label_et": "Ratta diameeter",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Põhimaterjal",
+   "unit": ""
+  },
+  {
+   "key": "kokkupandav",
+   "label_et": "Kokkupandav",
+   "unit": ""
+  }
+ ]
+}

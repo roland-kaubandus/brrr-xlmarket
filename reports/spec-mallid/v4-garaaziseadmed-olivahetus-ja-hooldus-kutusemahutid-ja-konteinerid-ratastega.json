@@ -1,0 +1,46 @@
+{
+ "l3": "v4-garaaziseadmed-olivahetus-ja-hooldus-kutusemahutid-ja-konteinerid-ratastega",
+ "name": "Kütusemahutid ja -konteinerid ratastega",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Mahutavus",
+   "unit": "L"
+  },
+  {
+   "key": "vooluhulk",
+   "label_et": "Max. vooluhulk",
+   "unit": "L/min"
+  },
+  {
+   "key": "voimsus",
+   "label_et": "Pump võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Mahuti materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "pump_tyyp",
+   "label_et": "Pump tüüp",
+   "unit": ""
+  },
+  {
+   "key": "hos_pikkus",
+   "label_et": "Hos pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "ratta_diameeter",
+   "label_et": "Ratta diameeter (taha)",
+   "unit": "cm"
+  }
+ ]
+}

@@ -1,0 +1,31 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-saelindid-ja-lintsaelehed",
+ "name": "Saelindid ja lintsaelehed",
+ "fields": [
+  {
+   "key": "pikkus_mm",
+   "label_et": "Saelehed pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "laius_mm",
+   "label_et": "Saelehed laius",
+   "unit": "mm"
+  },
+  {
+   "key": "tpi",
+   "label_et": "Hammaste tihedus (TPI)",
+   "unit": "TPI"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kovadus_hrc",
+   "label_et": "Hammaste kovadus",
+   "unit": "HRC"
+  }
+ ]
+}

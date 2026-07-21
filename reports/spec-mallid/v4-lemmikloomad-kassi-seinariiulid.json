@@ -1,0 +1,41 @@
+{
+ "l3": "v4-lemmikloomad-kassi-seinariiulid",
+ "name": "Kassi seinariiulid",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Komplekti kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "kandevõime",
+   "label_et": "Kandevõime",
+   "unit": "kg"
+  },
+  {
+   "key": "tükkide_arv",
+   "label_et": "Tükkide arv komplektis",
+   "unit": "tk"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Peamine materjal",
+   "unit": ""
+  },
+  {
+   "key": "platvorm_suurus",
+   "label_et": "Platvormide suurus (pikim)",
+   "unit": "cm"
+  },
+  {
+   "key": "kõrgus",
+   "label_et": "Maksimaalne kõrgus",
+   "unit": "cm"
+  },
+  {
+   "key": "värvus",
+   "label_et": "Värvus",
+   "unit": ""
+  }
+ ]
+}

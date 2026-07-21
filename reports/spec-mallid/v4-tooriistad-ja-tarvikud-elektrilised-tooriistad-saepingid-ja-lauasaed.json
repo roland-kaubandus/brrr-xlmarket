@@ -1,0 +1,41 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-elektrilised-tooriistad-saepingid-ja-lauasaed",
+ "name": "Saepingid ja lauasaed",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "poorlemiskiirus",
+   "label_et": "Pöörlemiskiirus",
+   "unit": "RPM"
+  },
+  {
+   "key": "ketta_labamoot",
+   "label_et": "Ketta läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "ribi_maht",
+   "label_et": "Ribi maht",
+   "unit": "mm"
+  },
+  {
+   "key": "lohke_sügavus",
+   "label_et": "Lõike sügavus (90°)",
+   "unit": "mm"
+  },
+  {
+   "key": "kaldenurk_ulatus",
+   "label_et": "Kaldenurkade vahemik",
+   "unit": "°"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  }
+ ]
+}

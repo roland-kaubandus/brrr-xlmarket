@@ -1,0 +1,36 @@
+{
+ "l3": "v4-elektritarvikud-ja-valgustus-toostusvalgustus-avarii-ja-hadavalgustid",
+ "name": "Avarii- ja hädavalgustid",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Nimivõimsus",
+   "unit": "W"
+  },
+  {
+   "key": "aku_maht",
+   "label_et": "Aku maht",
+   "unit": "Wh"
+  },
+  {
+   "key": "varustusaeg",
+   "label_et": "Varustusaeg",
+   "unit": "min"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Nimipinge",
+   "unit": "V"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal (pakett)",
+   "unit": "kg"
+  },
+  {
+   "key": "arv_komplektis",
+   "label_et": "Valgustite arv",
+   "unit": "tk"
+  }
+ ]
+}

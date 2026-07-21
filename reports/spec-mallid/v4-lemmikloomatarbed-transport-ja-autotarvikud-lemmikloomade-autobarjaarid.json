@@ -1,0 +1,36 @@
+{
+ "l3": "v4-lemmikloomatarbed-transport-ja-autotarvikud-lemmikloomade-autobarjaarid",
+ "name": "Lemmikloomade autobarjäärid",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kaal koos tarvikutega",
+   "unit": "kg"
+  },
+  {
+   "key": "max_laius",
+   "label_et": "Maksimaalne laius",
+   "unit": "mm"
+  },
+  {
+   "key": "max_korgus",
+   "label_et": "Maksimaalne kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "paigalduskoht",
+   "label_et": "Paigalduskoht",
+   "unit": "kategooria"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Peamine materjal",
+   "unit": "tüüp"
+  },
+  {
+   "key": "reguleeritavus",
+   "label_et": "Reguleeritavus",
+   "unit": "tüüp"
+  }
+ ]
+}

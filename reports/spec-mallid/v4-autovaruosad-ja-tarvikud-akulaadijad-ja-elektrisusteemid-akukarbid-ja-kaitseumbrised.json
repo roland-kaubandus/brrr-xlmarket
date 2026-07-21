@@ -1,0 +1,46 @@
+{
+ "l3": "v4-autovaruosad-ja-tarvikud-akulaadijad-ja-elektrisusteemid-akukarbid-ja-kaitseumbrised",
+ "name": "Akukarbid ja kaitseümbrised",
+ "fields": [
+  {
+   "key": "aku_grupp",
+   "label_et": "Aku grupp (ühilduvus)",
+   "unit": "Group"
+  },
+  {
+   "key": "sisemine_pikkus",
+   "label_et": "Sisemised mõõtmed - pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "sisemine_laius",
+   "label_et": "Sisemised mõõtmed - laius",
+   "unit": "mm"
+  },
+  {
+   "key": "sisemine_korgus",
+   "label_et": "Sisemised mõõtmed - kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": "text"
+  },
+  {
+   "key": "aku_tyyp",
+   "label_et": "Ühilduvad akutüübid",
+   "unit": "text"
+  },
+  {
+   "key": "lukk",
+   "label_et": "Lukk",
+   "unit": "yes/no"
+  }
+ ]
+}

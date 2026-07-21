@@ -1,0 +1,41 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-veesport-ja-paadindus-ujuvad-veemangud",
+ "name": "Veetrampoliinid ja -batuudid",
+ "fields": [
+  {
+   "key": "diameetr_ft",
+   "label_et": "Läbimõõt",
+   "unit": "ft"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "trepiastmed",
+   "label_et": "Trepiastmete arv",
+   "unit": "tk"
+  },
+  {
+   "key": "slaid_olemas",
+   "label_et": "Slaid kaasas",
+   "unit": ""
+  },
+  {
+   "key": "elektripump",
+   "label_et": "Elektripump kaasas",
+   "unit": ""
+  },
+  {
+   "key": "kasutuskoht",
+   "label_et": "Kasutuskoht",
+   "unit": ""
+  }
+ ]
+}

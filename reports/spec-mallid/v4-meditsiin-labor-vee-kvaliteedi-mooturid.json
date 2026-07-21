@@ -1,0 +1,47 @@
+{
+ "l3": "v4-meditsiin-labor-vee-kvaliteedi-mooturid",
+ "name": "Vee kvaliteedi mõõturid",
+ "fields": [
+  {
+   "key": "moodetava_parameetri_vahemik",
+   "label_et": "Mõõtevahemik",
+   "unit": "mg/L või NTU"
+  },
+  {
+   "key": "tapsus",
+   "label_et": "Täpsus",
+   "unit": "% või mg/L"
+  },
+  {
+   "key": "elektroodi_pikkus",
+   "label_et": "Elektroodi kaabel/pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "maht",
+   "label_et": "Lahuse maht (kalibreerimisel)",
+   "unit": "ml"
+  },
+  {
+   "key": "andmehulga_salvestus",
+   "label_et": "Andmekogumite salvestus",
+   "unit": "tk"
+  },
+  {
+   "key": "vooluhulk",
+   "label_et": "Mõõtevalguse lainepikkus",
+   "unit": "L/min",
+   "unit_orig": "nm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "tootevahemik_komplektis",
+   "label_et": "Komplekti osad",
+   "unit": "tk"
+  }
+ ]
+}

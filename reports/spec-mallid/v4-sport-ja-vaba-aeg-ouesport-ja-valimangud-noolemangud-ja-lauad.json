@@ -1,0 +1,46 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-noolemangud-ja-lauad",
+ "name": "Noolemängud ja -lauad",
+ "fields": [
+  {
+   "key": "ketta_labamoot",
+   "label_et": "Sihtala läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "tüüp",
+   "label_et": "Lauamängu tüüp",
+   "unit": ""
+  },
+  {
+   "key": "mängude_arv",
+   "label_et": "Mängude arv",
+   "unit": "tk"
+  },
+  {
+   "key": "max_mängijad",
+   "label_et": "Maksimaalne mängijate arv",
+   "unit": "inimest"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Toitepinge",
+   "unit": "V"
+  },
+  {
+   "key": "ekraani_tüüp",
+   "label_et": "Ekraani tüüp",
+   "unit": ""
+  }
+ ]
+}

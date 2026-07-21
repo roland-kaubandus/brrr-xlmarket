@@ -1,0 +1,36 @@
+{
+ "l3": "v4-aed-ja-aiatehnika-l4-grilliplaadid-ja-kaitsekatted",
+ "name": "Grilliplaadid",
+ "fields": [
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "keetmispind_pikkus",
+   "label_et": "Keetmispinna pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "keetmispind_laius",
+   "label_et": "Keetmispinna laius",
+   "unit": "mm"
+  },
+  {
+   "key": "keetmispind_pindala",
+   "label_et": "Keetmispinna pindala",
+   "unit": "cm²"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "max_temperatuur",
+   "label_et": "Maksimaalne temperatuur",
+   "unit": "°C"
+  }
+ ]
+}

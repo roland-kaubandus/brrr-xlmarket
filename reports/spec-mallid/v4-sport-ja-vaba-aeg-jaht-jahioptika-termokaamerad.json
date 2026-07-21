@@ -1,0 +1,46 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-jaht-jahioptika-termokaamerad",
+ "name": "Jahioptika ja termokaamerad",
+ "fields": [
+  {
+   "key": "suurendus",
+   "label_et": "Suurendus (zoom)",
+   "unit": "x"
+  },
+  {
+   "key": "termokaamera_eraldusvoimasus",
+   "label_et": "Termaalne eraldusvõime",
+   "unit": "px"
+  },
+  {
+   "key": "oled_eraldusvoimasus",
+   "label_et": "OLED ekraani eraldusvõime",
+   "unit": "px"
+  },
+  {
+   "key": "naegemisväli",
+   "label_et": "Nägemisväli",
+   "unit": "°"
+  },
+  {
+   "key": "lainepikkus_vahemik",
+   "label_et": "Lainepikkuste vahemik",
+   "unit": "μm"
+  },
+  {
+   "key": "fokuseerimise_kaugus",
+   "label_et": "Fokuseerimise minimaalne kaugus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "tootamistemperatuur",
+   "label_et": "Töötemperatuur",
+   "unit": "°C"
+  }
+ ]
+}

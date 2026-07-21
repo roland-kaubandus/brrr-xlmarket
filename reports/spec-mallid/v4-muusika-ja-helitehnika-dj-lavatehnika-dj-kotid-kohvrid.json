@@ -1,0 +1,46 @@
+{
+ "l3": "v4-muusika-ja-helitehnika-dj-lavatehnika-dj-kotid-kohvrid",
+ "name": "DJ-kotid ja -kohvrid",
+ "fields": [
+  {
+   "key": "sisemine_maht_L",
+   "label_et": "Sisemised mõõtmed (L × W × H cm)",
+   "unit": "cm"
+  },
+  {
+   "key": "valismaht_L",
+   "label_et": "Välismõõtmed (L × W × H cm)",
+   "unit": "cm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal ja niiskuskindlus",
+   "unit": ""
+  },
+  {
+   "key": "jaotajate_arv",
+   "label_et": "Jaotajate arv (eemaldatavad)",
+   "unit": "tk"
+  },
+  {
+   "key": "taskute_arv",
+   "label_et": "Välistaskute arv",
+   "unit": "tk"
+  },
+  {
+   "key": "kandmine",
+   "label_et": "Kandmise viis",
+   "unit": ""
+  },
+  {
+   "key": "ratta_suurus_mm",
+   "label_et": "Rattamõõt (kui olemas)",
+   "unit": "mm"
+  }
+ ]
+}

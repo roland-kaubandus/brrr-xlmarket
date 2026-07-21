@@ -1,0 +1,41 @@
+{
+ "l3": "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-dusisegistid",
+ "name": "Dušisegistid",
+ "fields": [
+  {
+   "key": "temperatuur_vahemik_min",
+   "label_et": "Minimaalne väljundtemperatuur",
+   "unit": "°C"
+  },
+  {
+   "key": "temperatuur_vahemik_max",
+   "label_et": "Maksimaalne väljundtemperatuur",
+   "unit": "°C"
+  },
+  {
+   "key": "turvatemperatuur",
+   "label_et": "Turvaline lukustustemperatuur",
+   "unit": "°C"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Peamaine materjal",
+   "unit": ""
+  },
+  {
+   "key": "inlet_thread",
+   "label_et": "Sisendühenduse keere",
+   "unit": "inch"
+  },
+  {
+   "key": "hole_spacing",
+   "label_et": "Montaažiavade vahe",
+   "unit": "cm"
+  },
+  {
+   "key": "varv",
+   "label_et": "Pindkatted värvus",
+   "unit": ""
+  }
+ ]
+}

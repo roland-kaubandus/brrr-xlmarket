@@ -1,0 +1,36 @@
+{
+ "l3": "v4-suurkook-ollefermentorid",
+ "name": "Õllefermentorid",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Mahutavus",
+   "unit": "L"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "seina_paksus",
+   "label_et": "Seina paksus",
+   "unit": "mm"
+  },
+  {
+   "key": "koonuse_pohja",
+   "label_et": "Koonuse põhi",
+   "unit": "boolean"
+  },
+  {
+   "key": "jalad_tyyp",
+   "label_et": "Jalad/Rattad",
+   "unit": ""
+  }
+ ]
+}

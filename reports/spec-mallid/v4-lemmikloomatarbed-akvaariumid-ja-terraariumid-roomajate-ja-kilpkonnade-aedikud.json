@@ -1,0 +1,46 @@
+{
+ "l3": "v4-lemmikloomatarbed-akvaariumid-ja-terraariumid-roomajate-ja-kilpkonnade-aedikud",
+ "name": "Roomajate ja kilpkonnade aedikud",
+ "fields": [
+  {
+   "key": "pikkus_mm",
+   "label_et": "Pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "laius_mm",
+   "label_et": "Laius",
+   "unit": "mm"
+  },
+  {
+   "key": "korgus_mm",
+   "label_et": "Kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "ruumide_arv",
+   "label_et": "Ruumide arv",
+   "unit": ""
+  },
+  {
+   "key": "valgustus_kaasas",
+   "label_et": "Valgustusjärg kaasas",
+   "unit": ""
+  },
+  {
+   "key": "liikumisvoimalus",
+   "label_et": "Liikumisalus (jalg/ratastega)",
+   "unit": ""
+  }
+ ]
+}

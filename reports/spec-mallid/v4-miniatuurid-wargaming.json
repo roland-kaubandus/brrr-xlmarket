@@ -1,0 +1,46 @@
+{
+ "l3": "v4-miniatuurid-wargaming",
+ "name": "Miniatuuride hoiukohvrid ja wargaming",
+ "fields": [
+  {
+   "key": "mahutavus_miniatyure",
+   "label_et": "Miniatuuride mahutavus",
+   "unit": "tk"
+  },
+  {
+   "key": "skaal",
+   "label_et": "Mudeli skaala",
+   "unit": "suhe"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "maht",
+   "label_et": "Mahutite mahutavus",
+   "unit": "L"
+  },
+  {
+   "key": "sahtlite_arv",
+   "label_et": "Sahtlite/kihtide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Peamine materjal",
+   "unit": ""
+  },
+  {
+   "key": "magnet_kinnitamine",
+   "label_et": "Magnetline kinnitamine",
+   "unit": "jah/ei"
+  },
+  {
+   "key": "kandmise_optioon",
+   "label_et": "Kandmise viis",
+   "unit": ""
+  }
+ ]
+}

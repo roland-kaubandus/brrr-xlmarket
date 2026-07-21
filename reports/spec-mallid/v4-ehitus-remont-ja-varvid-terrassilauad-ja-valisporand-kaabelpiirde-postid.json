@@ -1,0 +1,46 @@
+{
+ "l3": "v4-ehitus-remont-ja-varvid-terrassilauad-ja-valisporand-kaabelpiirde-postid",
+ "name": "Kaabelpiirde postid",
+ "fields": [
+  {
+   "key": "pikkus_mm",
+   "label_et": "Pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "laius_mm",
+   "label_et": "Laius",
+   "unit": "mm"
+  },
+  {
+   "key": "syvus_mm",
+   "label_et": "Sügavus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "auke_arv",
+   "label_et": "Eelfreesitud aukude arv",
+   "unit": "tk"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "augu_tyyp",
+   "label_et": "Aukude tüüp",
+   "unit": ""
+  },
+  {
+   "key": "kogus_pakis",
+   "label_et": "Kogus pakis",
+   "unit": "tk"
+  }
+ ]
+}

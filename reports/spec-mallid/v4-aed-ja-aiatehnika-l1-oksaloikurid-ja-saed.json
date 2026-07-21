@@ -1,0 +1,41 @@
+{
+ "l3": "v4-aed-ja-aiatehnika-l1-oksaloikurid-ja-saed",
+ "name": "Oksasaed ja varrelõikurid",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "max_pikkus",
+   "label_et": "Maksimaalne pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "lõikediameeter",
+   "label_et": "Maksimaalne lõikediameeter",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Varda materjal",
+   "unit": ""
+  },
+  {
+   "key": "ketta_labamoot",
+   "label_et": "Ketiratta või teralehtede paksus",
+   "unit": "mm"
+  },
+  {
+   "key": "maht",
+   "label_et": "Kütuse- või õlipaagi maht",
+   "unit": "L"
+  }
+ ]
+}

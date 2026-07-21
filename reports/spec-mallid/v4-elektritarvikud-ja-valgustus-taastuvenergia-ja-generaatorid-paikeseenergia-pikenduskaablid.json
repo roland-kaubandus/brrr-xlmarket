@@ -1,0 +1,47 @@
+{
+ "l3": "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-paikeseenergia-pikenduskaablid",
+ "name": "Päikeseenergia pikenduskaablid",
+ "fields": [
+  {
+   "key": "pikkus",
+   "label_et": "Kaabli pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "juhe_ristlõige",
+   "label_et": "Juhe ristlõige",
+   "unit": "mm²"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Nimipinge",
+   "unit": "V"
+  },
+  {
+   "key": "ohuvool",
+   "label_et": "Nimivoolutugevus",
+   "unit": "L/min",
+   "unit_orig": "A"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaabli kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Juhi materjal",
+   "unit": ""
+  },
+  {
+   "key": "veekaitseklass",
+   "label_et": "Veekaitse",
+   "unit": ""
+  },
+  {
+   "key": "tüüp",
+   "label_et": "Kaabli tüüp",
+   "unit": ""
+  }
+ ]
+}

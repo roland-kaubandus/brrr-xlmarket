@@ -1,0 +1,46 @@
+{
+ "l3": "v4-moobel-ja-sisustus-lapsemoobel-laste-diivanid-ja-diivanvoodid",
+ "name": "Laste diivanid ja diivanvoodid",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Toote kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "maksimaalne_koormus",
+   "label_et": "Maksimaalne koormuse piir",
+   "unit": "kg"
+  },
+  {
+   "key": "istumiskohtade_arv",
+   "label_et": "Istumiskohtade arv",
+   "unit": ""
+  },
+  {
+   "key": "modulaarsed_osad",
+   "label_et": "Modulaarsete osade arv",
+   "unit": ""
+  },
+  {
+   "key": "pikkus",
+   "label_et": "Pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "lahti_voltimise_funktsioon",
+   "label_et": "Lahti voltimise funktsioon",
+   "unit": ""
+  },
+  {
+   "key": "helkiva_materjali_olemas",
+   "label_et": "Helkiva materjali olemasolu",
+   "unit": ""
+  }
+ ]
+}

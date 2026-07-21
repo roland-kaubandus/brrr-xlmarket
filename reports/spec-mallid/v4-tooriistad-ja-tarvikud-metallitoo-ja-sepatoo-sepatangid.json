@@ -1,0 +1,36 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-metallitoo-ja-sepatoo-sepatangid",
+ "name": "Sepatangid",
+ "fields": [
+  {
+   "key": "pikkus",
+   "label_et": "Kogu pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": "text"
+  },
+  {
+   "key": "leuad_tyyp",
+   "label_et": "Leude tüüp",
+   "unit": "text"
+  },
+  {
+   "key": "max_leuade_nurk",
+   "label_et": "Max leude avamise nurk",
+   "unit": "°"
+  },
+  {
+   "key": "otsik_laius",
+   "label_et": "Otsiku laius",
+   "unit": "mm"
+  }
+ ]
+}

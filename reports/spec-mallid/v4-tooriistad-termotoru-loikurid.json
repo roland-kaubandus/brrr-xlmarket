@@ -1,0 +1,46 @@
+{
+ "l3": "v4-tooriistad-termotoru-loikurid",
+ "name": "Termotoru-lõikurid",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "lõike_laius",
+   "label_et": "Lõike laius",
+   "unit": "mm"
+  },
+  {
+   "key": "lõike_läbimõõt",
+   "label_et": "Lõike läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "lõike_kiirus",
+   "label_et": "Lõike kiirus",
+   "unit": "cut/min"
+  },
+  {
+   "key": "lõike_täpsus",
+   "label_et": "Lõike täpsus",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  }
+ ]
+}

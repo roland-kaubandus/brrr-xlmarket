@@ -1,0 +1,36 @@
+{
+ "l3": "v4-tooriistad-annulaarfreesid",
+ "name": "Annulaarfreesid",
+ "fields": [
+  {
+   "key": "ketta_labamoot",
+   "label_et": "Lõikediameeter (min-max)",
+   "unit": "mm"
+  },
+  {
+   "key": "sügavus_lõikamine",
+   "label_et": "Lõikesügavus",
+   "unit": "mm"
+  },
+  {
+   "key": "komplekti_maht",
+   "label_et": "Komplekti kogus (tk)",
+   "unit": "tk"
+  },
+  {
+   "key": "kael_tüüp",
+   "label_et": "Kael tüüp",
+   "unit": "tüüp"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": "tüüp"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal (komplektiga)",
+   "unit": "kg"
+  }
+ ]
+}

@@ -1,0 +1,41 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-tooriistade-hoiustamine-saepukid",
+ "name": "Saepukid",
+ "fields": [
+  {
+   "key": "kandevoimsus_kg",
+   "label_et": "Kandevõime",
+   "unit": "kg"
+  },
+  {
+   "key": "kõrgus_mm",
+   "label_et": "Tööpinna kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "reguleeritavus",
+   "label_et": "Kõrguse reguleeritavus",
+   "unit": "tüüp"
+  },
+  {
+   "key": "materjaliga_ühildumine_mm",
+   "label_et": "Materjali ühildumise vahemik",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal_kg",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Konstruktsiooni materjal",
+   "unit": "tüüp"
+  },
+  {
+   "key": "kogus",
+   "label_et": "Komplekti kogus",
+   "unit": "tk"
+  }
+ ]
+}

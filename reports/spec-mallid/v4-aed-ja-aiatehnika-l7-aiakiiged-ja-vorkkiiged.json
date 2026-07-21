@@ -1,0 +1,46 @@
+{
+ "l3": "v4-aed-ja-aiatehnika-l7-aiakiiged-ja-vorkkiiged",
+ "name": "Aiakiiged ja võrkkiiged",
+ "fields": [
+  {
+   "key": "maksimaalne_koormus_kg",
+   "label_et": "Maksimaalne koormus",
+   "unit": "kg"
+  },
+  {
+   "key": "istme_laius_mm",
+   "label_et": "Istme laius",
+   "unit": "mm"
+  },
+  {
+   "key": "istme_sügavus_mm",
+   "label_et": "Istme sügavus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal_kg",
+   "label_et": "Toote kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kogumarud_mm",
+   "label_et": "Kogumõõt (pikkus)",
+   "unit": "mm"
+  },
+  {
+   "key": "uksed_arv",
+   "label_et": "Istukohtade arv",
+   "unit": "tk"
+  },
+  {
+   "key": "varjualuse_tyyp",
+   "label_et": "Varjualuse tüüp",
+   "unit": ""
+  }
+ ]
+}

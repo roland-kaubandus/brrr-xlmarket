@@ -1,0 +1,46 @@
+{
+ "l3": "v4-meditsiin-ja-liikumisabi-liikumisabi-elektrilised-liikumisskuutrid",
+ "name": "Elektrilised liikumisskuutrid",
+ "fields": [
+  {
+   "key": "max_load_capacity",
+   "label_et": "Maksimaalne koormusvõimsus",
+   "unit": "kg"
+  },
+  {
+   "key": "voimsus",
+   "label_et": "Mootorivõimsus",
+   "unit": "W"
+  },
+  {
+   "key": "aku_maht",
+   "label_et": "Aku mahtuvus",
+   "unit": "Wh"
+  },
+  {
+   "key": "max_soidukaugus",
+   "label_et": "Maksimaalne sõidukaugus",
+   "unit": "km"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Seadme kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "max_kiirus",
+   "label_et": "Maksimaalne kiirus",
+   "unit": "km/h"
+  },
+  {
+   "key": "ronimis_nurk",
+   "label_et": "Maksimaalne ronimise nurk",
+   "unit": "°"
+  },
+  {
+   "key": "rattad_arv",
+   "label_et": "Rataste arv",
+   "unit": "tk"
+  }
+ ]
+}

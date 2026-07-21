@@ -1,0 +1,41 @@
+{
+ "l3": "v4-aed-ja-aiatehnika-l1-rehad-ja-akked",
+ "name": "Rehad",
+ "fields": [
+  {
+   "key": "pea_laius_mm",
+   "label_et": "Rehapea laius",
+   "unit": "mm"
+  },
+  {
+   "key": "kael_pikkus_mm",
+   "label_et": "Käepideme pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "hambad_arv",
+   "label_et": "Hambate arv",
+   "unit": "tk"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": "tekst"
+  },
+  {
+   "key": "uke_tyyp",
+   "label_et": "Ühenduse tüüp",
+   "unit": "tekst"
+  },
+  {
+   "key": "reguleeritavus",
+   "label_et": "Reguleeritav käepideme/pea",
+   "unit": "JAH/EI"
+  }
+ ]
+}

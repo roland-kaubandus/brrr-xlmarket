@@ -1,0 +1,46 @@
+{
+ "l3": "v4-moobel-ja-sisustus-lapsemoobel-laste-toolid-ja-istmed",
+ "name": "Laste toolid ja istmed",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Toote kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "maksimaalne_koormus",
+   "label_et": "Maksimaalne koormus",
+   "unit": "kg"
+  },
+  {
+   "key": "soovituslik_vanus",
+   "label_et": "Soovituslik vanus",
+   "unit": "aastat"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "mootmed_pikkus",
+   "label_et": "Pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "mootmed_laius",
+   "label_et": "Laius",
+   "unit": "mm"
+  },
+  {
+   "key": "mootmed_korgus",
+   "label_et": "Kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "reguleeritavus",
+   "label_et": "Reguleeritavus",
+   "unit": ""
+  }
+ ]
+}

@@ -1,0 +1,41 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-moote-ja-markeriistad-laserkiire-vastuvotjad",
+ "name": "Laserkiire vastuvõtjad",
+ "fields": [
+  {
+   "key": "mõõteulatuse_maksimaalne",
+   "label_et": "Mõõteulatuse vahemik",
+   "unit": "m"
+  },
+  {
+   "key": "tasandamise_täpsus",
+   "label_et": "Tasandamise täpsus",
+   "unit": "mm"
+  },
+  {
+   "key": "tööaeg_maksimaalne",
+   "label_et": "Pidev töötunnid",
+   "unit": "h"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Toitepinge",
+   "unit": "V"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kiire_värv",
+   "label_et": "Laserkiire värvus",
+   "unit": ""
+  }
+ ]
+}

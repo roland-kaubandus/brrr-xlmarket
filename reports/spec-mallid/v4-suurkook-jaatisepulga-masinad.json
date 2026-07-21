@@ -1,0 +1,31 @@
+{
+ "l3": "v4-suurkook-jaatisepulga-masinad",
+ "name": "Jäätisepulga masinad",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "vormi_kogus",
+   "label_et": "Vormide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "jaaatise_kogus",
+   "label_et": "Jäätisepulkade kogus",
+   "unit": "tk"
+  },
+  {
+   "key": "vormi_tyyp",
+   "label_et": "Vormi tüüp",
+   "unit": ""
+  }
+ ]
+}

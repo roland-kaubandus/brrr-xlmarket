@@ -1,0 +1,41 @@
+{
+ "l3": "v4-autovaruosad-ja-tarvikud-akulaadijad-ja-elektrisusteemid-kaivitusabid",
+ "name": "Käivitusabid",
+ "fields": [
+  {
+   "key": "tippsool",
+   "label_et": "Tippsool",
+   "unit": "A"
+  },
+  {
+   "key": "aku_maht",
+   "label_et": "Aku mahtuvus",
+   "unit": "Wh"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "bensiin_mootorite_ulatus",
+   "label_et": "Bensiinimootori ulatus",
+   "unit": "L"
+  },
+  {
+   "key": "diisel_mootorite_ulatus",
+   "label_et": "Diiselmootori ulatus",
+   "unit": "L"
+  },
+  {
+   "key": "lisafunktsioonid",
+   "label_et": "Lisafunktsioonid",
+   "unit": ""
+  }
+ ]
+}

@@ -1,0 +1,46 @@
+{
+ "l3": "v4-lemmikloomatarbed-puurid-ja-aedikud-lemmikloomade-kandekotid-ratastel",
+ "name": "Lemmikloomade kandekotid ratastel",
+ "fields": [
+  {
+   "key": "max_load_capacity",
+   "label_et": "Maksimaalne koormusvõimekus",
+   "unit": "kg"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kandekoti kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Tõmbvarda materjal",
+   "unit": ""
+  },
+  {
+   "key": "mesh_windows_count",
+   "label_et": "Ventilatsiooniakende arv",
+   "unit": "tk"
+  },
+  {
+   "key": "storage_pockets",
+   "label_et": "Salvestamiskottide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "bag_length",
+   "label_et": "Kandekoti pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "bag_width",
+   "label_et": "Kandekoti laius",
+   "unit": "mm"
+  },
+  {
+   "key": "bag_height",
+   "label_et": "Kandekoti kõrgus",
+   "unit": "mm"
+  }
+ ]
+}

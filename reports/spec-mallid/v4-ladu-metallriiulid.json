@@ -1,0 +1,46 @@
+{
+ "l3": "v4-ladu-metallriiulid",
+ "name": "Metallriiulid",
+ "fields": [
+  {
+   "key": "kogu_kandevoimsus",
+   "label_et": "Kogukanduvõime",
+   "unit": "kg"
+  },
+  {
+   "key": "shelf_kandevoimsus",
+   "label_et": "Kanduvõime riiuli kohta",
+   "unit": "kg"
+  },
+  {
+   "key": "kõrgus",
+   "label_et": "Kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "laius",
+   "label_et": "Laius",
+   "unit": "mm"
+  },
+  {
+   "key": "sügavus",
+   "label_et": "Sügavus",
+   "unit": "mm"
+  },
+  {
+   "key": "riiulite_arv",
+   "label_et": "Riiulite arv",
+   "unit": "tk"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  }
+ ]
+}

@@ -1,0 +1,41 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-golf-ja-discgolf-golfimooturid",
+ "name": "Golfimõõturid",
+ "fields": [
+  {
+   "key": "maatetoimetus_yardides",
+   "label_et": "Maatetoimetus (jardides)",
+   "unit": "yd"
+  },
+  {
+   "key": "maatetoimetus_meetrites",
+   "label_et": "Maatetoimetus (meetrites)",
+   "unit": "m"
+  },
+  {
+   "key": "suurendus",
+   "label_et": "Suurendus",
+   "unit": "x"
+  },
+  {
+   "key": "dioptriate_reguleeritavus",
+   "label_et": "Dioptriate reguleeritavus",
+   "unit": "°"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "lipp_lukk",
+   "label_et": "Lippude lukk (Flag Lock)",
+   "unit": ""
+  }
+ ]
+}

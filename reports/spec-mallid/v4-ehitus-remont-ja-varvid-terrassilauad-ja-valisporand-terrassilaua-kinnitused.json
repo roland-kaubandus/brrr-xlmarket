@@ -1,0 +1,36 @@
+{
+ "l3": "v4-ehitus-remont-ja-varvid-terrassilauad-ja-valisporand-terrassilaua-kinnitused",
+ "name": "Terrassilaua kinnitused",
+ "fields": [
+  {
+   "key": "kogus",
+   "label_et": "Klipsude kogus",
+   "unit": "tk"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Neto kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "sobiv_lahe",
+   "label_et": "Sobiv laua vahe",
+   "unit": "mm"
+  },
+  {
+   "key": "laua_paksus",
+   "label_et": "Laua paksus",
+   "unit": "mm"
+  },
+  {
+   "key": "kripsu_moot",
+   "label_et": "Kripsu mõõtmed",
+   "unit": "mm"
+  }
+ ]
+}

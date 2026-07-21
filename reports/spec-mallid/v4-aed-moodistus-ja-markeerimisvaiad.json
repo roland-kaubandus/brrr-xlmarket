@@ -1,0 +1,36 @@
+{
+ "l3": "v4-aed-moodistus-ja-markeerimisvaiad",
+ "name": "Mõõdistus- ja markeerimisvaiad",
+ "fields": [
+  {
+   "key": "pikkus",
+   "label_et": "Vaia pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "laius",
+   "label_et": "Vaia laius",
+   "unit": "mm"
+  },
+  {
+   "key": "paksus",
+   "label_et": "Vaia paksus",
+   "unit": "mm"
+  },
+  {
+   "key": "kogus",
+   "label_et": "Vaiade arv pakis",
+   "unit": "tk"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kogu paketi kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  }
+ ]
+}

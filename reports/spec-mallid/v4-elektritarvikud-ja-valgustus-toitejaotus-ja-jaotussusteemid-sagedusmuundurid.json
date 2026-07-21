@@ -1,0 +1,37 @@
+{
+ "l3": "v4-elektritarvikud-ja-valgustus-toitejaotus-ja-jaotussusteemid-sagedusmuundurid",
+ "name": "Sagedusmuundurid",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Sisendpinge",
+   "unit": "V"
+  },
+  {
+   "key": "ohuvool",
+   "label_et": "Väljundvool",
+   "unit": "L/min",
+   "unit_orig": "A"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "maksimaalne_valjund_sagedus",
+   "label_et": "Maksimaalse väljundsagedus",
+   "unit": "Hz"
+  },
+  {
+   "key": "vibratsioon",
+   "label_et": "Vibratsioon",
+   "unit": "G"
+  }
+ ]
+}

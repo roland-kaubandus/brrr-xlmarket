@@ -1,0 +1,41 @@
+{
+ "l3": "v4-suurkoogiseadmed-koogiseadmed-ja-elektriseadmed-jaatisemasinad",
+ "name": "Jäätisemasinad",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "toodang",
+   "label_et": "Jäätise toodang",
+   "unit": "L/h"
+  },
+  {
+   "key": "hopperite_maht",
+   "label_et": "Hopperite kogumaht",
+   "unit": "L"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "maiudega",
+   "label_et": "Maitsevariandid",
+   "unit": "tk"
+  },
+  {
+   "key": "myra",
+   "label_et": "Müra",
+   "unit": "dB"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Hopper materjal",
+   "unit": ""
+  }
+ ]
+}

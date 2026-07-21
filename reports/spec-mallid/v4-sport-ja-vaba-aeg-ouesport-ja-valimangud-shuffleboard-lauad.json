@@ -1,0 +1,41 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-shuffleboard-lauad",
+ "name": "Shuffleboard-lauad",
+ "fields": [
+  {
+   "key": "pikkus_ft",
+   "label_et": "Laua pikkus (jalad)",
+   "unit": "ft"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Mänguplatsii materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaks_poolt",
+   "label_et": "Kahepoolne laud",
+   "unit": "jah/ei"
+  },
+  {
+   "key": "led_valgustus",
+   "label_et": "LED valgustus",
+   "unit": "jah/ei"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Toitepinge",
+   "unit": "V"
+  },
+  {
+   "key": "kaasas_aksessuaarid",
+   "label_et": "Kaasas aksessuaarid",
+   "unit": ""
+  }
+ ]
+}

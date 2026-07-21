@@ -1,0 +1,46 @@
+{
+ "l3": "v4-meditsiin-labor-viskosimeetrid",
+ "name": "Viskosimeetrid",
+ "fields": [
+  {
+   "key": "viskoossuse_ulatus_min",
+   "label_et": "Viskoossuse mõõteulatus (min)",
+   "unit": "mPa·s"
+  },
+  {
+   "key": "viskoossuse_ulatus_max",
+   "label_et": "Viskoossuse mõõteulatus (max)",
+   "unit": "mPa·s"
+  },
+  {
+   "key": "poorlemiskiirus",
+   "label_et": "Poorlemiskiirus (vahemik)",
+   "unit": "RPM"
+  },
+  {
+   "key": "mootmise_tapsus",
+   "label_et": "Mõõtmise täpsus",
+   "unit": "%"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "rootorite_arv",
+   "label_et": "Rootorite arv",
+   "unit": "tk"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  }
+ ]
+}

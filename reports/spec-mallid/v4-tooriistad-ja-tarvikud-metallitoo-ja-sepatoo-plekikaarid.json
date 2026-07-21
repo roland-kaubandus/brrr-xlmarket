@@ -1,0 +1,42 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-metallitoo-ja-sepatoo-plekikaarid",
+ "name": "Plekikäärid",
+ "fields": [
+  {
+   "key": "max_cutting_thickness",
+   "label_et": "Maksimaalne lõikepaksus",
+   "unit": "mm"
+  },
+  {
+   "key": "max_cutting_length",
+   "label_et": "Maksimaalne lõikepikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Terala materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "poorlemiskiirus",
+   "label_et": "Töötaktsus / Löögisagedus",
+   "unit": "RPM",
+   "unit_orig": "SPM"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  }
+ ]
+}

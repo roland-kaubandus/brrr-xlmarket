@@ -1,0 +1,41 @@
+{
+ "l3": "v4-tooriied-ja-isikukaitse-kukkumiskaitse-ja-korgustoo-fliplinid-kukkumissummutid",
+ "name": "Fliplinid ja kukkumissummutid",
+ "fields": [
+  {
+   "key": "pikkus",
+   "label_et": "Pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "kore_diameetr",
+   "label_et": "Teraasüdamiku läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "murdevoimsus",
+   "label_et": "Murdevoimsus",
+   "unit": "kN"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "jahvhooks_murdevoimsus",
+   "label_et": "Jahvhooksi murdevoimsus",
+   "unit": "kN"
+  },
+  {
+   "key": "karabiin_murdevoimsus",
+   "label_et": "Karabiinikaarikute murdevoimsus",
+   "unit": "kN"
+  },
+  {
+   "key": "noeor_murdevoimsus",
+   "label_et": "Noeori murdevoimsus",
+   "unit": "kN"
+  }
+ ]
+}

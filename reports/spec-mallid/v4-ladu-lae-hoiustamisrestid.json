@@ -1,0 +1,41 @@
+{
+ "l3": "v4-ladu-lae-hoiustamisrestid",
+ "name": "Lae-hoiustamisrestid",
+ "fields": [
+  {
+   "key": "kandevoimsus_kg",
+   "label_et": "Kandevõime",
+   "unit": "kg"
+  },
+  {
+   "key": "laius_cm",
+   "label_et": "Laius",
+   "unit": "cm"
+  },
+  {
+   "key": "pikkus_cm",
+   "label_et": "Pikkus",
+   "unit": "cm"
+  },
+  {
+   "key": "reguleeritav_korgus_cm",
+   "label_et": "Reguleeritav kõrgus",
+   "unit": "cm"
+  },
+  {
+   "key": "maht_m3",
+   "label_et": "Hoiumaht",
+   "unit": "m³"
+  },
+  {
+   "key": "kaal_kg",
+   "label_et": "Toote kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  }
+ ]
+}

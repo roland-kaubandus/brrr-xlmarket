@@ -1,0 +1,46 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-golf-ja-discgolf-golfikotid-reisikotid",
+ "name": "Golfikotid",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "divider_count",
+   "label_et": "Jagajate arv",
+   "unit": ""
+  },
+  {
+   "key": "pocket_count",
+   "label_et": "Taskute arv",
+   "unit": ""
+  },
+  {
+   "key": "height",
+   "label_et": "Kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "width",
+   "label_et": "Laius",
+   "unit": "mm"
+  },
+  {
+   "key": "depth",
+   "label_et": "Sügavus",
+   "unit": "mm"
+  },
+  {
+   "key": "handle_type",
+   "label_et": "Käepideme tüüp",
+   "unit": ""
+  }
+ ]
+}

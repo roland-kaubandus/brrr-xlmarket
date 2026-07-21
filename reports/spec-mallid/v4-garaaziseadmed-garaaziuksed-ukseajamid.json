@@ -1,0 +1,41 @@
+{
+ "l3": "v4-garaaziseadmed-garaaziuksed-ukseajamid",
+ "name": "Ukseajamid ja mootorid",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Mootori võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Mootori pinge",
+   "unit": "V"
+  },
+  {
+   "key": "tyo_joud",
+   "label_et": "Tõmbe- ja tõukejõud",
+   "unit": "N"
+  },
+  {
+   "key": "kiirus",
+   "label_et": "Käigukiirus",
+   "unit": "mm/s"
+  },
+  {
+   "key": "myra",
+   "label_et": "Töämüra",
+   "unit": "dB"
+  },
+  {
+   "key": "pikkus",
+   "label_et": "Rööpa pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "kaugus_juhtimise_sagedus",
+   "label_et": "Kaugjuhtimise sagedus",
+   "unit": "MHz"
+  }
+ ]
+}

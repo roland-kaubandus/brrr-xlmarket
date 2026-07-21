@@ -1,0 +1,41 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-arkaadimangud",
+ "name": "Arkaadimängud",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "lahemootmed",
+   "label_et": "Mõõtmed (P×L×K)",
+   "unit": "mm"
+  },
+  {
+   "key": "mängijate_arv",
+   "label_et": "Mängijate arv",
+   "unit": "tk"
+  },
+  {
+   "key": "mängumudelid",
+   "label_et": "Mängurežiimid",
+   "unit": "tk"
+  },
+  {
+   "key": "komplekti_kuulub_pallid",
+   "label_et": "Komplektis pallid",
+   "unit": "tk"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  }
+ ]
+}

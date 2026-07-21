@@ -1,0 +1,41 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-jalgrattad-ja-tarvikud-jalgratta-remondipukid",
+ "name": "Jalgratta remondipukid",
+ "fields": [
+  {
+   "key": "maksimaalne_koormus",
+   "label_et": "Maksimaalne koormuse võimsus",
+   "unit": "kg"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Toote kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "kõrguse_reguleerimise_vahemik",
+   "label_et": "Reguleeritav kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "klamber_avamise_vahemik",
+   "label_et": "Klambri avamise vahemik",
+   "unit": "mm"
+  },
+  {
+   "key": "tugijalgade_arv",
+   "label_et": "Tugijalgade arv",
+   "unit": "tk"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Põhimaterjalid",
+   "unit": ""
+  },
+  {
+   "key": "pöördumise_nurk",
+   "label_et": "Klamber pöörlemisunurk",
+   "unit": "°"
+  }
+ ]
+}

@@ -1,0 +1,41 @@
+{
+ "l3": "v4-autovaruosad-ja-tarvikud-katuse-ja-koormakandjad-katusekorvid-ja-korvid",
+ "name": "Katusekorvid ja -korvid",
+ "fields": [
+  {
+   "key": "max_load_capacity",
+   "label_et": "Maksimaalne koormustaluvus",
+   "unit": "kg"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Toote kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "pikkus",
+   "label_et": "Pikkus (välismõõt)",
+   "unit": "mm"
+  },
+  {
+   "key": "laius",
+   "label_et": "Laius (välismõõt)",
+   "unit": "mm"
+  },
+  {
+   "key": "korgus",
+   "label_et": "Kõrgus (välismõõt)",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "sisemine_maht",
+   "label_et": "Sisemise ruumi maht",
+   "unit": "L"
+  }
+ ]
+}

@@ -1,0 +1,46 @@
+{
+ "l3": "v4-tervis-hooldus-ja-ilu-isikuhooldusseadmed-meigipeeglid-ja-kosmeetikakohvrid",
+ "name": "Meigipeeglid",
+ "fields": [
+  {
+   "key": "peegeli_suurus_tuumades",
+   "label_et": "Peegeli suurus (tolli)",
+   "unit": "in"
+  },
+  {
+   "key": "peegeli_kuju",
+   "label_et": "Peegeli kuju",
+   "unit": ""
+  },
+  {
+   "key": "suurendus",
+   "label_et": "Suurendus",
+   "unit": "x"
+  },
+  {
+   "key": "valgustuse_reziimid",
+   "label_et": "Valgustuse värvireziimid",
+   "unit": "tk"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "pindade_materjalid",
+   "label_et": "Kaadri materjalid",
+   "unit": ""
+  },
+  {
+   "key": "otstarve",
+   "label_et": "Paigalduse viis",
+   "unit": ""
+  },
+  {
+   "key": "valgusallikad",
+   "label_et": "Valgusallikate arv",
+   "unit": "tk"
+  }
+ ]
+}

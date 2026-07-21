@@ -1,0 +1,46 @@
+{
+ "l3": "v4-aed-aiakarud",
+ "name": "Aiakärud",
+ "fields": [
+  {
+   "key": "max_load_capacity",
+   "label_et": "Maksimaalne koormus",
+   "unit": "kg"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Käru kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "ketta_labamoot",
+   "label_et": "Ratta läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Raam materjal",
+   "unit": ""
+  },
+  {
+   "key": "cart_length",
+   "label_et": "Käru pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "cart_width",
+   "label_et": "Käru laius",
+   "unit": "mm"
+  },
+  {
+   "key": "voimsus",
+   "label_et": "Mootor võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "aku_maht",
+   "label_et": "Aku maht",
+   "unit": "Wh"
+  }
+ ]
+}

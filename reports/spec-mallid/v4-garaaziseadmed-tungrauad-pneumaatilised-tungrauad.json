@@ -1,0 +1,46 @@
+{
+ "l3": "v4-garaaziseadmed-tungrauad-pneumaatilised-tungrauad",
+ "name": "Pneumaatilised tungrauad",
+ "fields": [
+  {
+   "key": "nostovoima_kg",
+   "label_et": "Nostovoima",
+   "unit": "kg"
+  },
+  {
+   "key": "rohk_bar",
+   "label_et": "Töörõhk",
+   "unit": "bar"
+  },
+  {
+   "key": "maksimaalne_korgus_mm",
+   "label_et": "Maksimaalne tõstekõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "minimaalne_korgus_mm",
+   "label_et": "Minimaalne kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal_kg",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "tostev_aeg_s",
+   "label_et": "Tõstev aeg",
+   "unit": "s"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "operatsioon_tyyp",
+   "label_et": "Operatsiooni tüüp",
+   "unit": ""
+  }
+ ]
+}

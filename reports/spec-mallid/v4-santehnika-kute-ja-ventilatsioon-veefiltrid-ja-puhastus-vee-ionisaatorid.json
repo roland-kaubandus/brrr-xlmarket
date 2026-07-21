@@ -1,0 +1,47 @@
+{
+ "l3": "v4-santehnika-kute-ja-ventilatsioon-veefiltrid-ja-puhastus-vee-ionisaatorid",
+ "name": "Vee ionisaatorid",
+ "fields": [
+  {
+   "key": "ph_range",
+   "label_et": "pH vahemik",
+   "unit": "pH"
+  },
+  {
+   "key": "orp_max",
+   "label_et": "Maksimaalne ORP",
+   "unit": "mV"
+  },
+  {
+   "key": "maht",
+   "label_et": "Filtri mahtuvus",
+   "unit": "L"
+  },
+  {
+   "key": "hydrogen_content",
+   "label_et": "Vesiniku sisaldus",
+   "unit": "ppb"
+  },
+  {
+   "key": "vooluhulk",
+   "label_et": "Filtrite arv",
+   "unit": "L/min",
+   "unit_orig": "tk"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Neto kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "uv_funktsioon",
+   "label_et": "UV funktsioon",
+   "unit": "jah/ei"
+  },
+  {
+   "key": "kuumutamine",
+   "label_et": "Vee kuumutamine",
+   "unit": "jah/ei"
+  }
+ ]
+}

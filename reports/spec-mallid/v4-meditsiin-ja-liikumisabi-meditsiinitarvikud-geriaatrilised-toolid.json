@@ -1,0 +1,41 @@
+{
+ "l3": "v4-meditsiin-ja-liikumisabi-meditsiinitarvikud-geriaatrilised-toolid",
+ "name": "Geriaatrilised toolid",
+ "fields": [
+  {
+   "key": "kandevoimasus_kg",
+   "label_et": "Kandevõimekus",
+   "unit": "kg"
+  },
+  {
+   "key": "istme_laius_mm",
+   "label_et": "Istme laius",
+   "unit": "mm"
+  },
+  {
+   "key": "istme_sügavus_mm",
+   "label_et": "Istme sügavus",
+   "unit": "mm"
+  },
+  {
+   "key": "seadistusasendid",
+   "label_et": "Seljatugi seadistusasendeid",
+   "unit": "tk"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Istme/seljatugi materjal",
+   "unit": ""
+  },
+  {
+   "key": "ratastel_liikuvus",
+   "label_et": "Ratastel liikumise võimalus",
+   "unit": ""
+  },
+  {
+   "key": "lisavarustus",
+   "label_et": "Kaasas olev varustus",
+   "unit": ""
+  }
+ ]
+}

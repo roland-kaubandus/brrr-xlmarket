@@ -1,0 +1,46 @@
+{
+ "l3": "v4-meditsiin-ja-liikumisabi-liikumisabi-tostetoolid",
+ "name": "Tõstetoolid",
+ "fields": [
+  {
+   "key": "kandevoimsus_kg",
+   "label_et": "Maksimaalne kandevõimekus",
+   "unit": "kg"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Toote kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "tostekorgus_mm",
+   "label_et": "Tõstekõrguse reguleerimise vahemik",
+   "unit": "mm"
+  },
+  {
+   "key": "pealmine_laius_mm",
+   "label_et": "Istme laius",
+   "unit": "mm"
+  },
+  {
+   "key": "voimsus",
+   "label_et": "Mootori võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "funktsioonid",
+   "label_et": "Lisafunktsioonid (massage, soojus)",
+   "unit": "boolean"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Peamised materjalid",
+   "unit": "string"
+  },
+  {
+   "key": "vedelastusklassid",
+   "label_et": "Veetiivsus (IP-klass)",
+   "unit": "string"
+  }
+ ]
+}

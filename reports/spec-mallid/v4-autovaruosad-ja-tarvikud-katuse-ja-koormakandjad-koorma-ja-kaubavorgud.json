@@ -1,0 +1,41 @@
+{
+ "l3": "v4-autovaruosad-ja-tarvikud-katuse-ja-koormakandjad-koorma-ja-kaubavorgud",
+ "name": "Koorma- ja kaubavõrgud",
+ "fields": [
+  {
+   "key": "pikkus_mm",
+   "label_et": "Võrgu pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "laius_mm",
+   "label_et": "Võrgu laius",
+   "unit": "mm"
+  },
+  {
+   "key": "max_koormus_kg",
+   "label_et": "Maksimaalne kandevõime",
+   "unit": "kg"
+  },
+  {
+   "key": "rohk_bar",
+   "label_et": "Purunemistugevus",
+   "unit": "bar"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "ketta_labamoot_mm",
+   "label_et": "Võrgupesa suurus",
+   "unit": "mm"
+  },
+  {
+   "key": "mariimine",
+   "label_et": "Veekindlus",
+   "unit": ""
+  }
+ ]
+}

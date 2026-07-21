@@ -1,0 +1,46 @@
+{
+ "l3": "v4-ehitus-remont-ja-varvid-uksed-aknad-ja-luugid-pvc-ribakardinad-ja-eesriided",
+ "name": "PVC ribakardinad ja -eesriided",
+ "fields": [
+  {
+   "key": "pikkus",
+   "label_et": "Pikkus",
+   "unit": "cm"
+  },
+  {
+   "key": "laius",
+   "label_et": "Laius",
+   "unit": "cm"
+  },
+  {
+   "key": "paksus",
+   "label_et": "Paksus",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": "text"
+  },
+  {
+   "key": "pinna_tekstuur",
+   "label_et": "Pinna tekstuur",
+   "unit": "text"
+  },
+  {
+   "key": "temperatuurivahemik",
+   "label_et": "Temperatuurivahemik",
+   "unit": "°C"
+  },
+  {
+   "key": "kogus_komplektis",
+   "label_et": "Kogus komplektis",
+   "unit": "tk"
+  },
+  {
+   "key": "kasutuskoht",
+   "label_et": "Soovitatav kasutuskoht",
+   "unit": "text"
+  }
+ ]
+}

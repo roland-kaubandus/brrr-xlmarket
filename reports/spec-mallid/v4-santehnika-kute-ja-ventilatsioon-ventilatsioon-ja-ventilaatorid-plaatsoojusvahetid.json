@@ -1,0 +1,46 @@
+{
+ "l3": "v4-santehnika-kute-ja-ventilatsioon-ventilatsioon-ja-ventilaatorid-plaatsoojusvahetid",
+ "name": "Plaatsoojusvahetid",
+ "fields": [
+  {
+   "key": "soojusjaama_rij",
+   "label_et": "Soojusjaama võimsus",
+   "unit": "kW"
+  },
+  {
+   "key": "plaatide_arv",
+   "label_et": "Plaatide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "rohk_maksimaalne",
+   "label_et": "Maksimaalne töörõhk",
+   "unit": "bar"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "soojusvahetamise_pindala",
+   "label_et": "Soojusvahetamise pindala",
+   "unit": "mm²"
+  },
+  {
+   "key": "kujundustemperatuur_min",
+   "label_et": "Minimaalne kujundustemperatuur",
+   "unit": "°C"
+  },
+  {
+   "key": "vooluhulk_maksimaalne",
+   "label_et": "Maksimaalne vooluhulk",
+   "unit": "L/min"
+  },
+  {
+   "key": "soojuslik_kasutegur",
+   "label_et": "Soojuslik kasutegur",
+   "unit": "%"
+  }
+ ]
+}

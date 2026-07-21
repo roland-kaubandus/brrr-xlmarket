@@ -1,0 +1,41 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-manguasjad-lastele-mangukoogid-ja-toidumangud",
+ "name": "Mänguköögid ja toidumängud",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "tarvikute_arv",
+   "label_et": "Tarvikute arv (tk)",
+   "unit": "tk"
+  },
+  {
+   "key": "poiste_vanus",
+   "label_et": "Soovitatav vanus",
+   "unit": "aastad"
+  },
+  {
+   "key": "interaktiivsus",
+   "label_et": "Interaktiivsed funktsioonid",
+   "unit": ""
+  },
+  {
+   "key": "tyyp",
+   "label_et": "Mängu tüüp",
+   "unit": ""
+  },
+  {
+   "key": "disain",
+   "label_et": "Disain / paigutus",
+   "unit": ""
+  }
+ ]
+}

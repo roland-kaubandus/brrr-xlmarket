@@ -1,0 +1,36 @@
+{
+ "l3": "v4-autovaruosad-ja-tarvikud-salongitarvikud-auto-istmekatted",
+ "name": "Auto istmekatted",
+ "fields": [
+  {
+   "key": "kattekogus",
+   "label_et": "Istmekatete arv (tk)",
+   "unit": "tk"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "katteulatus",
+   "label_et": "Katteulatus",
+   "unit": ""
+  },
+  {
+   "key": "disain_tyyp",
+   "label_et": "Disaini tüüp",
+   "unit": ""
+  },
+  {
+   "key": "vari",
+   "label_et": "Värvus",
+   "unit": ""
+  }
+ ]
+}

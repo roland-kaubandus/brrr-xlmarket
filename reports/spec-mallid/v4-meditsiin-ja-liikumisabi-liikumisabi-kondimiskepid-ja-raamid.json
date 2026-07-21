@@ -1,0 +1,41 @@
+{
+ "l3": "v4-meditsiin-ja-liikumisabi-liikumisabi-kondimiskepid-ja-raamid",
+ "name": "Kõndimiskepid ja -raamid",
+ "fields": [
+  {
+   "key": "max_weight_capacity_kg",
+   "label_et": "Maksimaalne koormus",
+   "unit": "kg"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Toote kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "height_adjustment_levels",
+   "label_et": "Kõrguse reguleerimise tasemed",
+   "unit": "tk"
+  },
+  {
+   "key": "adjustable_height_range_cm",
+   "label_et": "Reguleeritava kõrguse vahemik",
+   "unit": "cm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "wheel_size_inch",
+   "label_et": "Ratta suurus",
+   "unit": "inch"
+  },
+  {
+   "key": "folding_capability",
+   "label_et": "Kokku voltimise võimalus",
+   "unit": ""
+  }
+ ]
+}

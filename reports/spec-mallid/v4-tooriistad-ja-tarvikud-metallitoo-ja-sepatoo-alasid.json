@@ -1,0 +1,46 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-metallitoo-ja-sepatoo-alasid",
+ "name": "Alasid",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "pikkus",
+   "label_et": "Pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "korkeus",
+   "label_et": "Kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "tooteplaat_suurus",
+   "label_et": "Töötuspinna suurus",
+   "unit": "mm"
+  },
+  {
+   "key": "kovalus",
+   "label_et": "Kõvadus",
+   "unit": "HRC/HB"
+  },
+  {
+   "key": "hardy_ava_suurus",
+   "label_et": "Hardy-ava suurus",
+   "unit": "mm"
+  },
+  {
+   "key": "sarv_pikkus",
+   "label_et": "Sarve pikkus",
+   "unit": "mm"
+  }
+ ]
+}

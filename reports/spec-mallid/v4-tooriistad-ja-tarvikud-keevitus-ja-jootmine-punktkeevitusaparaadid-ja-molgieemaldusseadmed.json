@@ -1,0 +1,36 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-keevitus-ja-jootmine-punktkeevitusaparaadid-ja-molgieemaldusseadmed",
+ "name": "Punktkeevitusaparaadid ja mõlgieemaldusseadmed",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Sisendvõimsus",
+   "unit": "W"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Sisendpinge",
+   "unit": "V"
+  },
+  {
+   "key": "keevitusvool",
+   "label_et": "Maksimaalne keevitusvool",
+   "unit": "A"
+  },
+  {
+   "key": "keevitus_paksus",
+   "label_et": "Maksimaalne keevituspaksus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "myra",
+   "label_et": "Müra",
+   "unit": "dB"
+  }
+ ]
+}

@@ -1,0 +1,41 @@
+{
+ "l3": "v4-suurkook-tortillapressid",
+ "name": "Tortilla- ja pitsataignapressid",
+ "fields": [
+  {
+   "key": "ketta_labamoot",
+   "label_et": "Pressitava materjali läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Peamine materjal",
+   "unit": ""
+  },
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "toormaterjali_paksus",
+   "label_et": "Reguleeritav taignasuse paksus",
+   "unit": "mm"
+  },
+  {
+   "key": "tootmisvõimsus",
+   "label_et": "Tootmisvõimsus",
+   "unit": "tk/min"
+  }
+ ]
+}

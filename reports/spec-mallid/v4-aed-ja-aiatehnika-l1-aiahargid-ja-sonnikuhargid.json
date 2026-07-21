@@ -1,0 +1,41 @@
+{
+ "l3": "v4-aed-ja-aiatehnika-l1-aiahargid-ja-sonnikuhargid",
+ "name": "Aiahargid ja sõnnikuhargid",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "kogu_pikkus",
+   "label_et": "Kogu pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "käepideme_pikkus",
+   "label_et": "Käepideme pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "laba_laius",
+   "label_et": "Laba laius",
+   "unit": "mm"
+  },
+  {
+   "key": "hargade_arv",
+   "label_et": "Hargade/hammaste arv",
+   "unit": "tk"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaepideme_tyyp",
+   "label_et": "Käepideme tüüp",
+   "unit": ""
+  }
+ ]
+}

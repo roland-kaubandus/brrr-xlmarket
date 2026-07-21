@@ -1,0 +1,46 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-cnc-kuulkruvid",
+ "name": "Kuulkruvid",
+ "fields": [
+  {
+   "key": "pikkus_mm",
+   "label_et": "Pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "diameetr_mm",
+   "label_et": "Kruvi läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "samm_mm",
+   "label_et": "Samm (lead)",
+   "unit": "mm"
+  },
+  {
+   "key": "taaksusmood",
+   "label_et": "Taaksuse vähendamine",
+   "unit": "tüüp"
+  },
+  {
+   "key": "taepsusvõi_klass",
+   "label_et": "Täpsusklass",
+   "unit": "klass"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": "tekst"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "flansi_diameetr_mm",
+   "label_et": "Flanši läbimõõt",
+   "unit": "mm"
+  }
+ ]
+}

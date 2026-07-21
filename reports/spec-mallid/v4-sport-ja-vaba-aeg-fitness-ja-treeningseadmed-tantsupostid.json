@@ -1,0 +1,36 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-fitness-ja-treeningseadmed-tantsupostid",
+ "name": "Tantsupostid (pole dance)",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Toote kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "ketta_labamoot",
+   "label_et": "Pulga läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "max_koormus",
+   "label_et": "Maksimaalne koormus",
+   "unit": "kg"
+  },
+  {
+   "key": "kõrgus",
+   "label_et": "Reguleeritav kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Pulga materjal",
+   "unit": ""
+  },
+  {
+   "key": "režiimid",
+   "label_et": "Pöörlemisrežiimid",
+   "unit": ""
+  }
+ ]
+}

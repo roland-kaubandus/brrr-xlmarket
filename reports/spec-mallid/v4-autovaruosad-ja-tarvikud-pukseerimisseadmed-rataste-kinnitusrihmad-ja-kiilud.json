@@ -1,0 +1,46 @@
+{
+ "l3": "v4-autovaruosad-ja-tarvikud-pukseerimisseadmed-rataste-kinnitusrihmad-ja-kiilud",
+ "name": "Rataste kinnitusrihmad ja -kiilud",
+ "fields": [
+  {
+   "key": "tooriistu_tyyp",
+   "label_et": "Kinnitusrihmade tüüp",
+   "unit": ""
+  },
+  {
+   "key": "tooriistu_paigalduse_tyyp",
+   "label_et": "Paigalduse tüüp (rattale/aksele/platvormi)",
+   "unit": ""
+  },
+  {
+   "key": "rohk",
+   "label_et": "Töökoormuse kandevõime",
+   "unit": "kg"
+  },
+  {
+   "key": "murdevõime",
+   "label_et": "Murdevõime",
+   "unit": "kg"
+  },
+  {
+   "key": "rihmade_pikkus",
+   "label_et": "Rihmade pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "koukude_tyyp",
+   "label_et": "Koukude tüüp",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  }
+ ]
+}

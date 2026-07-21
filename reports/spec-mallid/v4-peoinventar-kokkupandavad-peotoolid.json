@@ -1,0 +1,46 @@
+{
+ "l3": "v4-peoinventar-kokkupandavad-peotoolid",
+ "name": "Kokkupandavad peotoolid",
+ "fields": [
+  {
+   "key": "kogus",
+   "label_et": "Toolide arv komplektis",
+   "unit": "tk"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kogukaal",
+   "unit": "kg"
+  },
+  {
+   "key": "kandevõime",
+   "label_et": "Kandevõime tooli kohta",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Istme materjal",
+   "unit": ""
+  },
+  {
+   "key": "raam_materjal",
+   "label_et": "Raami materjal",
+   "unit": ""
+  },
+  {
+   "key": "maarimine",
+   "label_et": "Istme maarimine",
+   "unit": ""
+  },
+  {
+   "key": "pikkus_lahti_cm",
+   "label_et": "Pikkus lahti",
+   "unit": "cm"
+  },
+  {
+   "key": "varis_lahti_cm",
+   "label_et": "Laiuskaal lahti",
+   "unit": "cm"
+  }
+ ]
+}

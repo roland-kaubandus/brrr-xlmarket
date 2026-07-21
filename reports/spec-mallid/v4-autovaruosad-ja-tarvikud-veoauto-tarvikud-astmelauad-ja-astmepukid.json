@@ -1,0 +1,36 @@
+{
+ "l3": "v4-autovaruosad-ja-tarvikud-veoauto-tarvikud-astmelauad-ja-astmepukid",
+ "name": "Astmelauad ja astmepukid",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kandjevõimsus",
+   "label_et": "Kandjevõimsus",
+   "unit": "kg"
+  },
+  {
+   "key": "astme_laius",
+   "label_et": "Astme laius",
+   "unit": "mm"
+  },
+  {
+   "key": "pikkus",
+   "label_et": "Pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "sõiduki_ühilduvus",
+   "label_et": "Sõiduki ühilduvus",
+   "unit": ""
+  }
+ ]
+}

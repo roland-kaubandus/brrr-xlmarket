@@ -1,0 +1,41 @@
+{
+ "l3": "v4-ehitus-laaduri-haakeseadmed-kinnitusplaadid-ja-adapterid",
+ "name": "Kinnitusplaadid ja adapterid",
+ "fields": [
+  {
+   "key": "plaat_paksus_mm",
+   "label_et": "Plaadi paksus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "siselaius_mm",
+   "label_et": "Siselaius",
+   "unit": "mm"
+  },
+  {
+   "key": "korgus_mm",
+   "label_et": "Kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "baarikaalu_piirang_kg",
+   "label_et": "Baarikaalude piirang",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "receiver_laius_mm",
+   "label_et": "Receiver laius",
+   "unit": "mm"
+  }
+ ]
+}

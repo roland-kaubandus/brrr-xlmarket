@@ -1,0 +1,46 @@
+{
+ "l3": "v4-kodumasinad-ja-kodutehnika-koogitehnika-jaamasinad-ja-jaatisemasinad",
+ "name": "Jäämasinad",
+ "fields": [
+  {
+   "key": "paev_tootlikkus",
+   "label_et": "Jää päevaväljund",
+   "unit": "kg/24h"
+  },
+  {
+   "key": "voimsus",
+   "label_et": "Elektriline võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Toitepinge",
+   "unit": "V"
+  },
+  {
+   "key": "jaa_tsykli_aeg",
+   "label_et": "Jää valmimisaeg",
+   "unit": "min"
+  },
+  {
+   "key": "jaa_salvestus",
+   "label_et": "Jää salvestusmaht",
+   "unit": "kg"
+  },
+  {
+   "key": "myra",
+   "label_et": "Müratase",
+   "unit": "dB"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Seadme kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "veemaht",
+   "label_et": "Veemahuti maht",
+   "unit": "L"
+  }
+ ]
+}

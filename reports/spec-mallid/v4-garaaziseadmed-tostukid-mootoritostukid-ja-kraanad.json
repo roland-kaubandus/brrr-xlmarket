@@ -1,0 +1,41 @@
+{
+ "l3": "v4-garaaziseadmed-tostukid-mootoritostukid-ja-kraanad",
+ "name": "Mootoritõstukid ja kraanad",
+ "fields": [
+  {
+   "key": "max_load_capacity",
+   "label_et": "Maksimaalne koormus",
+   "unit": "kg"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Seadme kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "boom_reach",
+   "label_et": "Boomu ulatus",
+   "unit": "mm"
+  },
+  {
+   "key": "rotation_angle",
+   "label_et": "Pöördenurk",
+   "unit": "°"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "juhtimis_viis",
+   "label_et": "Juhtimisviis",
+   "unit": ""
+  },
+  {
+   "key": "kasutusala",
+   "label_et": "Kasutusala",
+   "unit": ""
+  }
+ ]
+}

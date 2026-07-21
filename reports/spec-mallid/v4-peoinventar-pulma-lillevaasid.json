@@ -1,0 +1,36 @@
+{
+ "l3": "v4-peoinventar-pulma-lillevaasid",
+ "name": "Pulma-lillevaasid",
+ "fields": [
+  {
+   "key": "korgus",
+   "label_et": "Kõrgus",
+   "unit": "cm"
+  },
+  {
+   "key": "diameetr",
+   "label_et": "Läbimõõt (alus)",
+   "unit": "cm"
+  },
+  {
+   "key": "kogus",
+   "label_et": "Kogus pakis",
+   "unit": "tk"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "vari",
+   "label_et": "Värvus",
+   "unit": ""
+  }
+ ]
+}

@@ -1,0 +1,36 @@
+{
+ "l3": "v4-aed-ja-aiatehnika-labidad-ja-kaevamistooriistad",
+ "name": "Labidad ja kaevamistööriistad",
+ "fields": [
+  {
+   "key": "kael_pikkus",
+   "label_et": "Kaela pikkus",
+   "unit": "cm"
+  },
+  {
+   "key": "labamoot",
+   "label_et": "Labade mõõt",
+   "unit": "cm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": "tekst"
+  },
+  {
+   "key": "kael_kuju",
+   "label_et": "Kaela kuju",
+   "unit": "tekst"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "kael_materjal",
+   "label_et": "Kaela materjal",
+   "unit": "tekst"
+  }
+ ]
+}

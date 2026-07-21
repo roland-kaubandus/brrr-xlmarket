@@ -1,0 +1,41 @@
+{
+ "l3": "v4-aed-ja-aiatehnika-l7-aiapingid",
+ "name": "Aiapingid",
+ "fields": [
+  {
+   "key": "pikkus_cm",
+   "label_et": "Pikkus",
+   "unit": "cm"
+  },
+  {
+   "key": "korgus_cm",
+   "label_et": "Kõrgus",
+   "unit": "cm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "kandevoimasus_kg",
+   "label_et": "Kandevõime",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "maht",
+   "label_et": "Salvestusmaht",
+   "unit": "L"
+  },
+  {
+   "key": "istukohtade_arv",
+   "label_et": "Istukohtade arv",
+   "unit": "tk"
+  }
+ ]
+}

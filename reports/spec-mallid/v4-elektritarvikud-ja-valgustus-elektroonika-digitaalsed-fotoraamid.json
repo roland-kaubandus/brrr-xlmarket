@@ -1,0 +1,46 @@
+{
+ "l3": "v4-elektritarvikud-ja-valgustus-elektroonika-digitaalsed-fotoraamid",
+ "name": "Digitaalsed fotoraamid",
+ "fields": [
+  {
+   "key": "ekraani_suurus_toll",
+   "label_et": "Ekraani suurus",
+   "unit": "toll"
+  },
+  {
+   "key": "lahutus",
+   "label_et": "Lahutus",
+   "unit": "px"
+  },
+  {
+   "key": "maht",
+   "label_et": "Sisemälu maht",
+   "unit": "GB"
+  },
+  {
+   "key": "voimsus",
+   "label_et": "Energiatarve (aktiivne)",
+   "unit": "W"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "ekraani_tyyp",
+   "label_et": "Ekraani tüüp",
+   "unit": ""
+  },
+  {
+   "key": "wifi_tugi",
+   "label_et": "Wi-Fi ühendus",
+   "unit": ""
+  }
+ ]
+}

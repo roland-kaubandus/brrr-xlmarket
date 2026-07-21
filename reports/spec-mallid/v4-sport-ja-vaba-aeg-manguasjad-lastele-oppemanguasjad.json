@@ -1,0 +1,41 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-manguasjad-lastele-oppemanguasjad",
+ "name": "Õppemänguasjad",
+ "fields": [
+  {
+   "key": "diameeter_mm",
+   "label_et": "Maakera läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "interaktiivsus",
+   "label_et": "Interaktiivsed funktsioonid",
+   "unit": ""
+  },
+  {
+   "key": "pinge",
+   "label_et": "Toitepinge",
+   "unit": "V"
+  },
+  {
+   "key": "myra",
+   "label_et": "Helitase",
+   "unit": "dB"
+  },
+  {
+   "key": "vaatavus_vahemik",
+   "label_et": "Vaatavuse vahemik",
+   "unit": "cm"
+  }
+ ]
+}

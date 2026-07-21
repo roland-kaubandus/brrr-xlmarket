@@ -1,0 +1,41 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-fitness-ja-treeningseadmed-reguleeritavad-kettlebellid-ja-kettaste-hoidikud",
+ "name": "Kettaste hoidikud ja -restid",
+ "fields": [
+  {
+   "key": "kandevoimsus_kg",
+   "label_et": "Kandevõimekus",
+   "unit": "kg"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Toote kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "ketta_labamoot",
+   "label_et": "Ketta labaaugus",
+   "unit": "mm"
+  },
+  {
+   "key": "konstruktsiooni_tyyp",
+   "label_et": "Konstruktsiooni tüüp",
+   "unit": ""
+  },
+  {
+   "key": "montaazivorm",
+   "label_et": "Paigaldus",
+   "unit": ""
+  },
+  {
+   "key": "moottorite_arv",
+   "label_et": "Kastide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  }
+ ]
+}

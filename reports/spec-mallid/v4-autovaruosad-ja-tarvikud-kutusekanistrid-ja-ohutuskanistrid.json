@@ -1,0 +1,41 @@
+{
+ "l3": "v4-autovaruosad-ja-tarvikud-kutusekanistrid-ja-ohutuskanistrid",
+ "name": "Kütusekanistrid ja ohutuskanistrid",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Maht",
+   "unit": "L"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "vooluhulk",
+   "label_et": "Maksimaalne vooluhulk",
+   "unit": "L/min"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "ohutusstandard",
+   "label_et": "Ohutusstandard (Type I/II)",
+   "unit": ""
+  },
+  {
+   "key": "kork_tyyp",
+   "label_et": "Kork tüüp",
+   "unit": ""
+  },
+  {
+   "key": "spout_labamoot",
+   "label_et": "Spout läbimõõt",
+   "unit": "mm"
+  }
+ ]
+}

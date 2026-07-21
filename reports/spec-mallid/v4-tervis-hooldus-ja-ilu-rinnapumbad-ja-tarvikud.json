@@ -1,0 +1,47 @@
+{
+ "l3": "v4-tervis-hooldus-ja-ilu-rinnapumbad-ja-tarvikud",
+ "name": "Rinnapumbad ja -tarvikud",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "rohk",
+   "label_et": "Maksimaalne vaakum",
+   "unit": "mmHg"
+  },
+  {
+   "key": "aku_maht",
+   "label_et": "Aku maht",
+   "unit": "Wh",
+   "unit_orig": "mAh"
+  },
+  {
+   "key": "myra",
+   "label_et": "Müratase",
+   "unit": "dB"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "pumpimisrežiimid",
+   "label_et": "Pumpimisrežiimid",
+   "unit": "tk"
+  },
+  {
+   "key": "imemisketta_suurus",
+   "label_et": "Imemisketta suurus",
+   "unit": "mm"
+  },
+  {
+   "key": "maht",
+   "label_et": "Piima mahutavus",
+   "unit": "mL"
+  }
+ ]
+}

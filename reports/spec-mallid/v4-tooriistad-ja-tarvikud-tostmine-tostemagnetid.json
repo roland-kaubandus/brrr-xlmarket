@@ -1,0 +1,46 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-tostmine-tostemagnetid",
+ "name": "Tõstemagnetid",
+ "fields": [
+  {
+   "key": "tostevoimsus_kg",
+   "label_et": "Tõstevõimsus",
+   "unit": "kg"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "turvategur",
+   "label_et": "Turvategur",
+   "unit": ""
+  },
+  {
+   "key": "magnet_materaal",
+   "label_et": "Magnetmaterjal",
+   "unit": ""
+  },
+  {
+   "key": "pohja_pikkus",
+   "label_et": "Aluse pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "pohja_laius",
+   "label_et": "Aluse laius",
+   "unit": "mm"
+  },
+  {
+   "key": "pohja_korgus",
+   "label_et": "Aluse kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "opereerimistemperatuur_min",
+   "label_et": "Min. opereerimistemperatuur",
+   "unit": "°C"
+  }
+ ]
+}

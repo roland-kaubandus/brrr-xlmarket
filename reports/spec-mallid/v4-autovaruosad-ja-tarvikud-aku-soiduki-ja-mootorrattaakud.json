@@ -1,0 +1,41 @@
+{
+ "l3": "v4-autovaruosad-ja-tarvikud-aku-soiduki-ja-mootorrattaakud",
+ "name": "Sõiduki- ja mootorrattaakud",
+ "fields": [
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "aku_maht",
+   "label_et": "Akumulaatori maht",
+   "unit": "Wh"
+  },
+  {
+   "key": "maht",
+   "label_et": "Mahutavus",
+   "unit": "Ah"
+  },
+  {
+   "key": "kald_cranking_amps",
+   "label_et": "Külma käivitusvoolu võimsus (CCA)",
+   "unit": "A"
+  },
+  {
+   "key": "cranking_amps",
+   "label_et": "Käivitusvoolu võimsus (CA)",
+   "unit": "A"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Aku tüüp",
+   "unit": ""
+  }
+ ]
+}

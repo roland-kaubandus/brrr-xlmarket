@@ -1,0 +1,46 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine-pingutuskummid-ja-kinnituskoied",
+ "name": "Pingutuskummid ja kinnitusköied",
+ "fields": [
+  {
+   "key": "kogus",
+   "label_et": "Kogus (tk)",
+   "unit": "pcs"
+  },
+  {
+   "key": "pikkus",
+   "label_et": "Pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "laius",
+   "label_et": "Laius/Läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "maksimaalne_koormus",
+   "label_et": "Maksimaalne koormus",
+   "unit": "N/kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "maksimaalne_venivus",
+   "label_et": "Maksimaalne venivus",
+   "unit": "m"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "kaastu_tyyp",
+   "label_et": "Kaasu tüüp",
+   "unit": ""
+  }
+ ]
+}

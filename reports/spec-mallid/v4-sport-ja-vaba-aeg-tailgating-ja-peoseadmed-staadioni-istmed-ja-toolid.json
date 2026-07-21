@@ -1,0 +1,46 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-tailgating-ja-peoseadmed-staadioni-istmed-ja-toolid",
+ "name": "Staadioni istmed ja toolid",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "istme_laius",
+   "label_et": "Istme laius",
+   "unit": "mm"
+  },
+  {
+   "key": "istme_sügavus",
+   "label_et": "Istme sügavus",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "seljatugi",
+   "label_et": "Seljatugi",
+   "unit": ""
+  },
+  {
+   "key": "käetugi",
+   "label_et": "Käetugi",
+   "unit": ""
+  },
+  {
+   "key": "kokkupandavus",
+   "label_et": "Kokkupandavus",
+   "unit": ""
+  },
+  {
+   "key": "kogus_pakis",
+   "label_et": "Kogus pakis",
+   "unit": "tk"
+  }
+ ]
+}

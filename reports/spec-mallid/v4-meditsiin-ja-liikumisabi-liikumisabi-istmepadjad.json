@@ -1,0 +1,41 @@
+{
+ "l3": "v4-meditsiin-ja-liikumisabi-liikumisabi-istmepadjad",
+ "name": "Istmepadjad",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kogukaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Täitematerjal",
+   "unit": ""
+  },
+  {
+   "key": "paksus",
+   "label_et": "Paksus",
+   "unit": "mm"
+  },
+  {
+   "key": "maarimine",
+   "label_et": "Kattematerja",
+   "unit": ""
+  },
+  {
+   "key": "mahud",
+   "label_et": "Mõõtmed (P×L×K)",
+   "unit": "mm"
+  },
+  {
+   "key": "eemaldatav_kate",
+   "label_et": "Eemaldatav kate",
+   "unit": ""
+  },
+  {
+   "key": "jahutus_omadused",
+   "label_et": "Jahutus",
+   "unit": ""
+  }
+ ]
+}

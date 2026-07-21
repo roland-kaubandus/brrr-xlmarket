@@ -1,0 +1,41 @@
+{
+ "l3": "v4-aed-ja-aiatehnika-l2-taispuhutavad-ja-raamiga-basseinid",
+ "name": "Täispuhutavad ja raamiga basseinid",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Maksimaalne veemaht",
+   "unit": "L"
+  },
+  {
+   "key": "pikkus",
+   "label_et": "Pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "laius",
+   "label_et": "Laius",
+   "unit": "mm"
+  },
+  {
+   "key": "sügavus",
+   "label_et": "Sügavus",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "baseini_tyyp",
+   "label_et": "Baseini tüüp",
+   "unit": ""
+  }
+ ]
+}

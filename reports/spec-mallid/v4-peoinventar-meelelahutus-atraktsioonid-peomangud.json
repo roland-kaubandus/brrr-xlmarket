@@ -1,0 +1,46 @@
+{
+ "l3": "v4-peoinventar-meelelahutus-atraktsioonid-peomangud",
+ "name": "Peomängud",
+ "fields": [
+  {
+   "key": "pikkus_mm",
+   "label_et": "Pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "laius_mm",
+   "label_et": "Laius",
+   "unit": "mm"
+  },
+  {
+   "key": "korgus_mm",
+   "label_et": "Kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "kandevõime_kg",
+   "label_et": "Kandevõime",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus (puhuri)",
+   "unit": "W"
+  },
+  {
+   "key": "seadistusaeg_min",
+   "label_et": "Seadistusaeg",
+   "unit": "min"
+  }
+ ]
+}

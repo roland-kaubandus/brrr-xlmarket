@@ -1,0 +1,41 @@
+{
+ "l3": "v4-kodumasinad-ja-kodutehnika-ohuhooldus-ja-isikuhooldus-lohna-ja-aroomidifuuserid",
+ "name": "Lõhna- ja aroomidifuuserid",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Mahutavus",
+   "unit": "mL"
+  },
+  {
+   "key": "voimsus",
+   "label_et": "Nominaalvõimsus",
+   "unit": "W"
+  },
+  {
+   "key": "atomiseerimise_kiirus",
+   "label_et": "Atomiseerimiskiirus",
+   "unit": "g/h"
+  },
+  {
+   "key": "katteala",
+   "label_et": "Kattealue",
+   "unit": "ft²"
+  },
+  {
+   "key": "myra",
+   "label_et": "Müratase",
+   "unit": "dB"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Nettokaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Kere materjal",
+   "unit": ""
+  }
+ ]
+}

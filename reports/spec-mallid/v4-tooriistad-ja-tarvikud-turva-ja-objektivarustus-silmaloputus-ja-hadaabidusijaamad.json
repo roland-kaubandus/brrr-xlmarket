@@ -1,0 +1,41 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-turva-ja-objektivarustus-silmaloputus-ja-hadaabidusijaamad",
+ "name": "Silmaloputus- ja hädaabidušijaamad",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Veetanki maht",
+   "unit": "L"
+  },
+  {
+   "key": "ohuvool",
+   "label_et": "Silmaloputuse vooluhulk",
+   "unit": "L/min"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "rohk",
+   "label_et": "Veetruki nõutav rõhk",
+   "unit": "bar"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "paigaldusviis",
+   "label_et": "Paigaldusviis",
+   "unit": ""
+  },
+  {
+   "key": "duusside_arv",
+   "label_et": "Duuside arv",
+   "unit": ""
+  }
+ ]
+}

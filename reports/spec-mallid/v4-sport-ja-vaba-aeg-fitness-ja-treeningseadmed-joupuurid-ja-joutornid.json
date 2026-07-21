@@ -1,0 +1,46 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-fitness-ja-treeningseadmed-joupuurid-ja-joutornid",
+ "name": "Jõupuurid ja jõutornid",
+ "fields": [
+  {
+   "key": "max_load_capacity",
+   "label_et": "Maksimaalne kandevõime",
+   "unit": "kg"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Netokaal",
+   "unit": "kg"
+  },
+  {
+   "key": "kõrgus",
+   "label_et": "Kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "laius",
+   "label_et": "Laius",
+   "unit": "mm"
+  },
+  {
+   "key": "sügavus",
+   "label_et": "Sügavus",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "reguleeritavus",
+   "label_et": "Reguleeritavuse tasemed",
+   "unit": "tk"
+  },
+  {
+   "key": "kokkupandavus",
+   "label_et": "Kokkupandavus",
+   "unit": ""
+  }
+ ]
+}

@@ -1,0 +1,37 @@
+{
+ "l3": "v4-suurkoogiseadmed-koogitarvikud-ja-noud-gaasipliidid",
+ "name": "Gaasipliidid",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W",
+   "unit_orig": "kW"
+  },
+  {
+   "key": "polte_arv",
+   "label_et": "Põlte arv",
+   "unit": "tk"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "gaasi_tyyp",
+   "label_et": "Gaasi tüüp",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "kabinett",
+   "label_et": "Kabinett",
+   "unit": ""
+  }
+ ]
+}

@@ -1,0 +1,41 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-transpordikarud-mooblikarud",
+ "name": "Mööblikärud",
+ "fields": [
+  {
+   "key": "kandevoimsus_kg",
+   "label_et": "Kandevõime (kg)",
+   "unit": "kg"
+  },
+  {
+   "key": "ketta_labamoot",
+   "label_et": "Ratta läbimõõt (mm)",
+   "unit": "mm"
+  },
+  {
+   "key": "rataste_arv",
+   "label_et": "Rataste arv",
+   "unit": "tk"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal (kg)",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "platoo_suurus_mm",
+   "label_et": "Platoo suurus (mm)",
+   "unit": "mm"
+  },
+  {
+   "key": "jarglukustus",
+   "label_et": "Järglukustus (rattal)",
+   "unit": "tk"
+  }
+ ]
+}

@@ -1,0 +1,41 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-veesport-ja-paadindus-paadimootorid-ja-osad",
+ "name": "Elektrilised paadimootorid",
+ "fields": [
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "thrust",
+   "label_et": "Tõukejõud",
+   "unit": "lbs"
+  },
+  {
+   "key": "poorlemiskiirus",
+   "label_et": "Pöörlemiskiirus",
+   "unit": "RPM"
+  },
+  {
+   "key": "kiiruste_arv",
+   "label_et": "Kiiruste arv",
+   "unit": "tk"
+  },
+  {
+   "key": "juhtimistyyp",
+   "label_et": "Juhtimisviis",
+   "unit": ""
+  },
+  {
+   "key": "varre_pikkus",
+   "label_et": "Varre pikkus",
+   "unit": "in"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  }
+ ]
+}

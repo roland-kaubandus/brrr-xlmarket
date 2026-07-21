@@ -1,0 +1,41 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-golf-ja-discgolf-aiagolf-mangud",
+ "name": "Aiagolf ja mängud",
+ "fields": [
+  {
+   "key": "augu_arv",
+   "label_et": "Augude arv",
+   "unit": "tk"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "palli_diameter",
+   "label_et": "Palli läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "lipukepi_pikkus",
+   "label_et": "Lipukepi pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "lipu_suurused",
+   "label_et": "Lipu mõõtmed",
+   "unit": "mm"
+  },
+  {
+   "key": "korvi_reguleerimiskorge",
+   "label_et": "Korvi reguleerimise maksimaalne kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  }
+ ]
+}

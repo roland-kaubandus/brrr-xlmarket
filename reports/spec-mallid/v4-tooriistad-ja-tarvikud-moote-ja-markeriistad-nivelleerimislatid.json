@@ -1,0 +1,41 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-moote-ja-markeriistad-nivelleerimislatid",
+ "name": "Nivelleerimislatid",
+ "fields": [
+  {
+   "key": "pikkus_pikendatud_m",
+   "label_et": "Pikendatud pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "pikkus_kokku_pandud_mm",
+   "label_et": "Kokku pandud pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "sektsioonide_arv",
+   "label_et": "Sektsioonide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "jaotus_peene_pool_mm",
+   "label_et": "Jaotus (peene pool)",
+   "unit": "mm"
+  },
+  {
+   "key": "jaotus_jame_pool_cm",
+   "label_et": "Jaotus (järme pool)",
+   "unit": "cm"
+  }
+ ]
+}

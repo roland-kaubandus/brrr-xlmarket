@@ -1,0 +1,41 @@
+{
+ "l3": "v4-ehitus-remont-ja-varvid-aiad-varavad-ja-piirded-aiapostid-ja-ankrud",
+ "name": "Aiapostid ja -ankrud",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "pikkus",
+   "label_et": "Pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "sisemine_laius",
+   "label_et": "Sisemine laius",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kogus",
+   "label_et": "Kogus (tk)",
+   "unit": "tk"
+  },
+  {
+   "key": "paksus",
+   "label_et": "Materjali paksus",
+   "unit": "mm"
+  },
+  {
+   "key": "ankru_tup",
+   "label_et": "Ankru tüüp",
+   "unit": ""
+  }
+ ]
+}

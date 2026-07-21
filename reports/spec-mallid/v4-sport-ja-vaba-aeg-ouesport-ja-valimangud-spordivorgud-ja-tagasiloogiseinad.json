@@ -1,0 +1,41 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-spordivorgud-ja-tagasiloogiseinad",
+ "name": "Barjääri- ja praktikavõrgud",
+ "fields": [
+  {
+   "key": "laius_ft",
+   "label_et": "Võrgu laius (jalad)",
+   "unit": "ft"
+  },
+  {
+   "key": "korgus_ft",
+   "label_et": "Võrgu kõrgus (jalad)",
+   "unit": "ft"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "toru_diameetri_mm",
+   "label_et": "Torupinna läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "toru_seina_paksus_mm",
+   "label_et": "Toruseinaks",
+   "unit": "mm"
+  },
+  {
+   "key": "maarimine",
+   "label_et": "Teisaldatavus (kandes)",
+   "unit": ""
+  }
+ ]
+}

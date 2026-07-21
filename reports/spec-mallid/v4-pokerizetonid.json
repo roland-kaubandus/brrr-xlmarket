@@ -1,0 +1,36 @@
+{
+ "l3": "v4-pokerizetonid",
+ "name": "Pokerižetonid ja mängukomplektid",
+ "fields": [
+  {
+   "key": "chip_count",
+   "label_et": "Žetonite arv",
+   "unit": "tk"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kogukaal",
+   "unit": "kg"
+  },
+  {
+   "key": "chip_weight",
+   "label_et": "Žetoni kaal",
+   "unit": "g"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Žetoni materjal",
+   "unit": ""
+  },
+  {
+   "key": "case_materjal",
+   "label_et": "Kasti materjal",
+   "unit": ""
+  },
+  {
+   "key": "chip_diameter",
+   "label_et": "Žetoni läbimõõt",
+   "unit": "mm"
+  }
+ ]
+}

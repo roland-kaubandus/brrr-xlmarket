@@ -1,0 +1,46 @@
+{
+ "l3": "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-vaakumvalamismasinad",
+ "name": "Vaakumvalamismasinad",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Vaakumipumba võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "ohuvool",
+   "label_et": "Pumpamisjõudlus",
+   "unit": "L/min"
+  },
+  {
+   "key": "rohk",
+   "label_et": "Minimaalne tööõhk",
+   "unit": "bar"
+  },
+  {
+   "key": "maht",
+   "label_et": "Vaakumkambri maht",
+   "unit": "L"
+  },
+  {
+   "key": "ketta_labamoot",
+   "label_et": "Tööplatvorm",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Seadme mass",
+   "unit": "kg"
+  },
+  {
+   "key": "sulavi_voimsus",
+   "label_et": "Sulamisahju võimsus (kui olemas)",
+   "unit": "W"
+  },
+  {
+   "key": "sulavi_temp",
+   "label_et": "Sulamisahju maksimaalne temperatuur",
+   "unit": "°C"
+  }
+ ]
+}

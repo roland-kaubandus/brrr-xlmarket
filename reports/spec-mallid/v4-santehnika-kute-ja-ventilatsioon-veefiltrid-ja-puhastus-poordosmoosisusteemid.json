@@ -1,0 +1,42 @@
+{
+ "l3": "v4-santehnika-kute-ja-ventilatsioon-veefiltrid-ja-puhastus-poordosmoosisusteemid",
+ "name": "Pöördosmoosisüsteemid",
+ "fields": [
+  {
+   "key": "vooluhulk",
+   "label_et": "Jõudlus (GPD)",
+   "unit": "L/min",
+   "unit_orig": "GPD"
+  },
+  {
+   "key": "rohk",
+   "label_et": "Töötamisrõhk",
+   "unit": "MPa"
+  },
+  {
+   "key": "filtri_astmete_arv",
+   "label_et": "Filtri astmete arv",
+   "unit": "tk"
+  },
+  {
+   "key": "puhas_vesi_suhe",
+   "label_et": "Puhta vee ja reovee suhe",
+   "unit": "ratio"
+  },
+  {
+   "key": "tootemperratuur",
+   "label_et": "Töötamistäistemperatuur",
+   "unit": "°C"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "filtri_kasutusiga",
+   "label_et": "Filtri kasutusiga",
+   "unit": "kuu"
+  }
+ ]
+}

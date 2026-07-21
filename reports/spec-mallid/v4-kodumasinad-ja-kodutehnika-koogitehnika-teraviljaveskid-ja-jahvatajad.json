@@ -1,0 +1,41 @@
+{
+ "l3": "v4-kodumasinad-ja-kodutehnika-koogitehnika-teraviljaveskid-ja-jahvatajad",
+ "name": "Teraviljaveskid ja -jahvatajad",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "maht",
+   "label_et": "Mahutavus",
+   "unit": "g"
+  },
+  {
+   "key": "poorlemiskiirus",
+   "label_et": "Mootoripöörlemiskiirus",
+   "unit": "RPM"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Netokaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "jahvatus_peensus",
+   "label_et": "Jahvatuse peensus",
+   "unit": "Mesh"
+  },
+  {
+   "key": "operatsiooniajad",
+   "label_et": "Ühekordne operatsiooniaeg",
+   "unit": "min"
+  }
+ ]
+}

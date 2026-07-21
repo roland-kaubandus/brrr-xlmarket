@@ -1,0 +1,36 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-viimistlustooriistad-krohvimistooriistad",
+ "name": "Kipsplaadi silumistööriistad",
+ "fields": [
+  {
+   "key": "labamoot",
+   "label_et": "Labade laius",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "pikendatav_pikkus",
+   "label_et": "Pikendatav pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "labade_arv",
+   "label_et": "Labade arv komplektis",
+   "unit": "tk"
+  },
+  {
+   "key": "labade_paksus",
+   "label_et": "Labade paksus",
+   "unit": "mm"
+  }
+ ]
+}

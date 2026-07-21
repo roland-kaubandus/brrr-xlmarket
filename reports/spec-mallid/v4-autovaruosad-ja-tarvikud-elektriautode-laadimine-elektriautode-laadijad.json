@@ -1,0 +1,47 @@
+{
+ "l3": "v4-autovaruosad-ja-tarvikud-elektriautode-laadimine-elektriautode-laadijad",
+ "name": "Elektriautode laadijad",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Maksimaalvõimsus",
+   "unit": "W"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Sisendpinge",
+   "unit": "V"
+  },
+  {
+   "key": "ohuvool",
+   "label_et": "Maksimaalne vool",
+   "unit": "L/min",
+   "unit_orig": "A"
+  },
+  {
+   "key": "kaabel_pikkus",
+   "label_et": "Laadimiskaabli pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "faaside_arv",
+   "label_et": "Faasid",
+   "unit": "faasi"
+  },
+  {
+   "key": "konnektori_tyyp",
+   "label_et": "Konnektori tüüp",
+   "unit": ""
+  },
+  {
+   "key": "ip_reitingud",
+   "label_et": "IP-kaitse",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  }
+ ]
+}

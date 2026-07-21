@@ -1,0 +1,46 @@
+{
+ "l3": "v4-garaaziseadmed-mehaaniku-tooriistad-plekitoode-ja-lohkude-eemalduskomplektid-pdr",
+ "name": "Plekitööde ja lohkude eemalduskomplektid (PDR)",
+ "fields": [
+  {
+   "key": "pikkus_mm",
+   "label_et": "Tõmbevarsi pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjalid",
+   "unit": ""
+  },
+  {
+   "key": "konksude_arv",
+   "label_et": "Konksude arv",
+   "unit": "tk"
+  },
+  {
+   "key": "voimsus",
+   "label_et": "Kuumaliimapistoli võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "komplekti_tyyp",
+   "label_et": "Komplekti tüüp",
+   "unit": ""
+  },
+  {
+   "key": "tiisuction_force_kg",
+   "label_et": "Iminaalne tõmbejõud",
+   "unit": "kg"
+  },
+  {
+   "key": "tooriistu_hulk",
+   "label_et": "Tööriistade arv komplektis",
+   "unit": "tk"
+  }
+ ]
+}

@@ -1,0 +1,46 @@
+{
+ "l3": "v4-pollumajandus-ja-loomakasvatus-kariloomad-elektrikarjused-ja-tarvikud",
+ "name": "Elektrikarjused ja tarvikud",
+ "fields": [
+  {
+   "key": "pikkus_m",
+   "label_et": "Pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "korgus_cm",
+   "label_et": "Kõrgus",
+   "unit": "cm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjalid",
+   "label_et": "Põhimaterjalid",
+   "unit": "text"
+  },
+  {
+   "key": "juhtmete_arv",
+   "label_et": "Juhtmete/niitide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "toomis_joud",
+   "label_et": "Tõmbejõud",
+   "unit": "lbf"
+  },
+  {
+   "key": "paigalduse_komplekt",
+   "label_et": "Paigalduse komplekt kaasas",
+   "unit": "bool"
+  },
+  {
+   "key": "pingsaallikas",
+   "label_et": "Pingeallikas",
+   "unit": "text"
+  }
+ ]
+}

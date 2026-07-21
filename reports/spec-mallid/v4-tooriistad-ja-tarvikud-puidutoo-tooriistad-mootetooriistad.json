@@ -1,0 +1,46 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-puidutoo-tooriistad-mootetooriistad",
+ "name": "Mõõtetööriistad",
+ "fields": [
+  {
+   "key": "mootmisulatuse",
+   "label_et": "Mõõtmisulatuse",
+   "unit": "°C"
+  },
+  {
+   "key": "mootmistäpsus",
+   "label_et": "Mõõtmistäpsus",
+   "unit": "%/°C"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "mootmisulatuse_pikkus",
+   "label_et": "Mõõteskaala pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "nurga_reguleerimise_ulatus",
+   "label_et": "Nurga reguleerimise ulatus",
+   "unit": "°"
+  },
+  {
+   "key": "positiivsed_peatused",
+   "label_et": "Positiivsete peatuste arv",
+   "unit": "tk"
+  }
+ ]
+}

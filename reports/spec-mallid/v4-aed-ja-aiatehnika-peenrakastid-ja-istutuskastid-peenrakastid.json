@@ -1,0 +1,46 @@
+{
+ "l3": "v4-aed-ja-aiatehnika-peenrakastid-ja-istutuskastid-peenrakastid",
+ "name": "Peenrakastid",
+ "fields": [
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "pikkus_cm",
+   "label_et": "Pikkus",
+   "unit": "cm"
+  },
+  {
+   "key": "laius_cm",
+   "label_et": "Laius",
+   "unit": "cm"
+  },
+  {
+   "key": "korgus_cm",
+   "label_et": "Kõrgus",
+   "unit": "cm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "kandevoimsuus_kg",
+   "label_et": "Kandevõime",
+   "unit": "kg"
+  },
+  {
+   "key": "maht_l",
+   "label_et": "Mahutavus (ligikaudne)",
+   "unit": "L"
+  },
+  {
+   "key": "pohja_ava",
+   "label_et": "Põhja ava",
+   "unit": ""
+  }
+ ]
+}

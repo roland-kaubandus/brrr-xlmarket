@@ -1,0 +1,46 @@
+{
+ "l3": "v4-ehitus-remont-ja-varvid-vihmavesi-drenaazirennid-ja-kanalid",
+ "name": "Drenaažirennid ja kanalid",
+ "fields": [
+  {
+   "key": "sisemine_laius_mm",
+   "label_et": "Sisemise kanali laius",
+   "unit": "mm"
+  },
+  {
+   "key": "sisemine_sygavus_mm",
+   "label_et": "Sisemise kanali sügavus",
+   "unit": "mm"
+  },
+  {
+   "key": "pikkus_mm",
+   "label_et": "Kanali pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal ühe elemendi kohta",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kandevoimsus_klass",
+   "label_et": "Kandevõimeklass",
+   "unit": ""
+  },
+  {
+   "key": "min_toistustempel",
+   "label_et": "Minimaalne töötemperatuur",
+   "unit": "°C"
+  },
+  {
+   "key": "max_toistustempel",
+   "label_et": "Maksimaalne töötemperatuur",
+   "unit": "°C"
+  }
+ ]
+}

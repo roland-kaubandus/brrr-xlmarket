@@ -1,0 +1,41 @@
+{
+ "l3": "v4-korktahvlid",
+ "name": "Korktahvlid ja teadetetahvlid",
+ "fields": [
+  {
+   "key": "laius_mm",
+   "label_et": "Laius",
+   "unit": "mm"
+  },
+  {
+   "key": "korgus_mm",
+   "label_et": "Kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "pinna_tyyp",
+   "label_et": "Pinna tüüp",
+   "unit": ""
+  },
+  {
+   "key": "kinnituskrookide_arv",
+   "label_et": "Kinnituskrookide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "lukustamine",
+   "label_et": "Lukustamine",
+   "unit": ""
+  }
+ ]
+}

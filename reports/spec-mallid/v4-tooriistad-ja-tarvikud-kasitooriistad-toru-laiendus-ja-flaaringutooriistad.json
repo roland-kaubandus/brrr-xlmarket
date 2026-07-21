@@ -1,0 +1,46 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-kasitooriistad-toru-laiendus-ja-flaaringutooriistad",
+ "name": "Toru laiendus- ja flaaringutööriistad",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "min_torulabimaout",
+   "label_et": "Minimaalne toru läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "max_torulabimaout",
+   "label_et": "Maksimaalne toru läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "toruseina_paksus",
+   "label_et": "Toru seina paksus",
+   "unit": "mm"
+  },
+  {
+   "key": "laienduspead_arv",
+   "label_et": "Laienduspead (arv)",
+   "unit": "tk"
+  },
+  {
+   "key": "tootmismaterjal",
+   "label_et": "Toru materjal",
+   "unit": "tekst"
+  },
+  {
+   "key": "kaeitusmehanism",
+   "label_et": "Käitamismehanism",
+   "unit": "tekst"
+  },
+  {
+   "key": "flaaringu_nurk",
+   "label_et": "Flaaringu nurk",
+   "unit": "°"
+  }
+ ]
+}

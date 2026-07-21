@@ -1,0 +1,41 @@
+{
+ "l3": "v4-paanikalatid",
+ "name": "Paanikalatid ja avariiväljapääsud",
+ "fields": [
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "pani_pikkus",
+   "label_et": "Paanikal pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "ukselevalik",
+   "label_et": "Uksele sobiv laius",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "tsüklikestus",
+   "label_et": "Tsükli kestus",
+   "unit": "tsüklit"
+  },
+  {
+   "key": "konstruktsioon",
+   "label_et": "Konstruktsiooni tüüp",
+   "unit": ""
+  },
+  {
+   "key": "väliskaitse",
+   "label_et": "Välispöördventiili käepide",
+   "unit": ""
+  }
+ ]
+}

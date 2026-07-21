@@ -1,0 +1,46 @@
+{
+ "l3": "v4-lemmikloomatarbed-lemmiklooma-hooldus-koera-ortopeedilised-toed",
+ "name": "Koera ortopeedilised toed",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Toote kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "tugi_tyyp",
+   "label_et": "Toetuse tüüp",
+   "unit": ""
+  },
+  {
+   "key": "suurus",
+   "label_et": "Suurus",
+   "unit": ""
+  },
+  {
+   "key": "pikkus",
+   "label_et": "Pikkus",
+   "unit": "cm"
+  },
+  {
+   "key": "laius",
+   "label_et": "Laius",
+   "unit": "cm"
+  },
+  {
+   "key": "reguleeritavus",
+   "label_et": "Reguleeritavus",
+   "unit": ""
+  },
+  {
+   "key": "peegeldav_trim",
+   "label_et": "Peegeldav trim",
+   "unit": ""
+  }
+ ]
+}

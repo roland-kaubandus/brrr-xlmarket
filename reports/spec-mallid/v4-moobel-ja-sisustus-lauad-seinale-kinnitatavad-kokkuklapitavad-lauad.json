@@ -1,0 +1,41 @@
+{
+ "l3": "v4-moobel-ja-sisustus-lauad-seinale-kinnitatavad-kokkuklapitavad-lauad",
+ "name": "Seinale kinnitatavad kokkuklapitavad lauad",
+ "fields": [
+  {
+   "key": "laua_pikkus_mm",
+   "label_et": "Laua pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "laua_laius_mm",
+   "label_et": "Laua laius",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "kandevoimekus_kg",
+   "label_et": "Kandevõimekus",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "plaadi_paksus_mm",
+   "label_et": "Plaadi paksus",
+   "unit": "mm"
+  },
+  {
+   "key": "syvyys_mm",
+   "label_et": "Sügavus (kokkuklapitult)",
+   "unit": "mm"
+  }
+ ]
+}

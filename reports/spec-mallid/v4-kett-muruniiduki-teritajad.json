@@ -1,0 +1,46 @@
+{
+ "l3": "v4-kett-muruniiduki-teritajad",
+ "name": "Kett- ja muruniidukitera-teritajad",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "poorlemiskiirus",
+   "label_et": "Pöörlemiskiirus",
+   "unit": "RPM"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "ketta_labamoot",
+   "label_et": "Ketta läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "terituskohta_nurk",
+   "label_et": "Teritamise reguleeritav nurk",
+   "unit": "°"
+  },
+  {
+   "key": "tera_pikkus",
+   "label_et": "Ühilduv tera pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  }
+ ]
+}

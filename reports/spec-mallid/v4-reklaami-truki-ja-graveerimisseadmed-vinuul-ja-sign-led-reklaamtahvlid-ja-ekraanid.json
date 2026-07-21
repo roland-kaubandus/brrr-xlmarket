@@ -1,0 +1,41 @@
+{
+ "l3": "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign-led-reklaamtahvlid-ja-ekraanid",
+ "name": "LED-reklaamtahvlid ja -ekraanid",
+ "fields": [
+  {
+   "key": "ekraani_suurus_tolli",
+   "label_et": "Ekraani suurus (tolli)",
+   "unit": "in"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "heledus",
+   "label_et": "Heledus",
+   "unit": "Lux/Nits"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "pikslite_samm",
+   "label_et": "Pikslite samm (P-väärtus)",
+   "unit": "mm"
+  }
+ ]
+}

@@ -1,0 +1,36 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-puhastus-jalatsikile-dosaatorid",
+ "name": "Jalatsikile-dosaatorid",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "max_jalanumber",
+   "label_et": "Maksimaalne jalanumber",
+   "unit": "EU"
+  },
+  {
+   "key": "sisemised_mootmed",
+   "label_et": "Sisemised mõõtmed",
+   "unit": "mm"
+  },
+  {
+   "key": "poorlemiskiirus",
+   "label_et": "Pöörlemiskiirus",
+   "unit": "RPM"
+  },
+  {
+   "key": "katetega_komplektis",
+   "label_et": "Katetega komplektis",
+   "unit": "tk"
+  },
+  {
+   "key": "maht",
+   "label_et": "Mahutavus",
+   "unit": "L"
+  }
+ ]
+}

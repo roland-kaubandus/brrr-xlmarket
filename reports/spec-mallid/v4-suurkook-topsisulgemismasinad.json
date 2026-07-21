@@ -1,0 +1,41 @@
+{
+ "l3": "v4-suurkook-topsisulgemismasinad",
+ "name": "Topsisulgemismasinad",
+ "fields": [
+  {
+   "key": "tootlikkus_kps",
+   "label_et": "Tootlikkus (topsid/h)",
+   "unit": "cups/h"
+  },
+  {
+   "key": "max_topi_korgus",
+   "label_et": "Max topi kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "topi_diameeter",
+   "label_et": "Toetatud topi läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "temperatuuri_vahemik",
+   "label_et": "Temperatuuri vahemik",
+   "unit": "°C"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "juhtpaneel",
+   "label_et": "Juhtimine",
+   "unit": "type"
+  }
+ ]
+}

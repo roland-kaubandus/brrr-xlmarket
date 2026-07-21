@@ -1,0 +1,41 @@
+{
+ "l3": "v4-kodumasinad-ja-kodutehnika-puhastus-aurutid-triikimine",
+ "name": "Aurutid ja triikimine",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "maht",
+   "label_et": "Veemahuti maht",
+   "unit": "L"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Alusplaat / Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kuumutamise_aeg",
+   "label_et": "Kuumutamise aeg",
+   "unit": "s"
+  },
+  {
+   "key": "reguleeritav_korgus",
+   "label_et": "Reguleeritav kõrgus",
+   "unit": "mm"
+  }
+ ]
+}

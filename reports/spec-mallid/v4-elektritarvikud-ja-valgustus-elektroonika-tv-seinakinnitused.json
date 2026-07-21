@@ -1,0 +1,41 @@
+{
+ "l3": "v4-elektritarvikud-ja-valgustus-elektroonika-tv-seinakinnitused",
+ "name": "TV seinakinnitused",
+ "fields": [
+  {
+   "key": "tv_suurus_toll",
+   "label_et": "TV suurus (tollides)",
+   "unit": "in"
+  },
+  {
+   "key": "kandevõime",
+   "label_et": "Kandevõime",
+   "unit": "kg"
+  },
+  {
+   "key": "vesa_standard",
+   "label_et": "VESA standard",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "liikumistüüp",
+   "label_et": "Liikumistüüp",
+   "unit": ""
+  },
+  {
+   "key": "reguleerimise_ulatus",
+   "label_et": "Reguleerimise ulatus",
+   "unit": "°"
+  }
+ ]
+}

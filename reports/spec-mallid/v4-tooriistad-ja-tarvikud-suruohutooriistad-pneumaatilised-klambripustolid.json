@@ -1,0 +1,36 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-suruohutooriistad-pneumaatilised-klambripustolid",
+ "name": "Pneumaatilised klambripüstolid",
+ "fields": [
+  {
+   "key": "rohk_bar",
+   "label_et": "Tööpinge",
+   "unit": "bar"
+  },
+  {
+   "key": "kaliber_gauge",
+   "label_et": "Kaliber",
+   "unit": "gauge"
+  },
+  {
+   "key": "ketta_labamoot_mm",
+   "label_et": "Kroonlaius",
+   "unit": "mm"
+  },
+  {
+   "key": "klambri_pikkus_mm",
+   "label_et": "Klamber pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "majasin_maht_pcs",
+   "label_et": "Mahuti maht",
+   "unit": "tk"
+  },
+  {
+   "key": "konstruktsioon_tyyp",
+   "label_et": "Konstruktsiooni tüüp",
+   "unit": ""
+  }
+ ]
+}

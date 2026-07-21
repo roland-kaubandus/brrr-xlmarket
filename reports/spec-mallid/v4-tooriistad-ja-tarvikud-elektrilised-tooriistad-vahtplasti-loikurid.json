@@ -1,0 +1,46 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-elektrilised-tooriistad-vahtplasti-loikurid",
+ "name": "Vahtplasti lõikurid",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "max_lõike_pikkus",
+   "label_et": "Maksimaalne lõikepikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "max_lõike_paksus",
+   "label_et": "Maksimaalne lõikepaksus",
+   "unit": "mm"
+  },
+  {
+   "key": "tootmistemperatuur",
+   "label_et": "Töötamistemperatuur",
+   "unit": "°C"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "nurk_vahemik",
+   "label_et": "Nurgalõike vahemik",
+   "unit": "°"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Raam/korpuse materjal",
+   "unit": ""
+  }
+ ]
+}

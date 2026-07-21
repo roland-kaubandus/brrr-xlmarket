@@ -1,0 +1,36 @@
+{
+ "l3": "v4-elektritarvikud-ja-valgustus-toostusvalgustus-laovalgustid",
+ "name": "Laovalgustid",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "valgusvoog",
+   "label_et": "Valgusvoog",
+   "unit": "lm"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "varvatemperatuur",
+   "label_et": "Värvatemperatuur",
+   "unit": "K"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "kaitseklass",
+   "label_et": "Kaitseklass",
+   "unit": "IP"
+  }
+ ]
+}

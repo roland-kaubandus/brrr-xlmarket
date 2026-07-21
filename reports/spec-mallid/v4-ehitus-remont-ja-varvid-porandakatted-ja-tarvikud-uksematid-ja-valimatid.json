@@ -1,0 +1,46 @@
+{
+ "l3": "v4-ehitus-remont-ja-varvid-porandakatted-ja-tarvikud-uksematid-ja-valimatid",
+ "name": "Uksematid ja välimatid",
+ "fields": [
+  {
+   "key": "pikkus_mm",
+   "label_et": "Pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "laius_mm",
+   "label_et": "Laius",
+   "unit": "mm"
+  },
+  {
+   "key": "paksus_mm",
+   "label_et": "Paksus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "pohjamaterja",
+   "label_et": "Põhja materjal",
+   "unit": ""
+  },
+  {
+   "key": "vari",
+   "label_et": "Värvus",
+   "unit": ""
+  },
+  {
+   "key": "karpet_tyyp",
+   "label_et": "Vaip tüüp",
+   "unit": ""
+  }
+ ]
+}

@@ -1,0 +1,41 @@
+{
+ "l3": "v4-suurkoogiseadmed-koogiseadmed-ja-elektriseadmed-vaakumpakendajad",
+ "name": "Vaakumpakendajad",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "rohk",
+   "label_et": "Maksimaalne vaakumrõhk",
+   "unit": "kPa"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "pakendusjahus",
+   "label_et": "Pakendusahela pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "myra",
+   "label_et": "Müra",
+   "unit": "dB"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Kest-materjal",
+   "unit": ""
+  },
+  {
+   "key": "kambri_maht",
+   "label_et": "Kambri suurus",
+   "unit": "mm"
+  }
+ ]
+}

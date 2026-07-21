@@ -1,0 +1,42 @@
+{
+ "l3": "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-paikese-akulaadijad",
+ "name": "Päikese-akulaadijad",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Maksimaalne võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "ohuvool",
+   "label_et": "Laadimisvoolu tugevus",
+   "unit": "L/min",
+   "unit_orig": "A"
+  },
+  {
+   "key": "kontroller_tyyp",
+   "label_et": "Kontrolleritüüp",
+   "unit": ""
+  },
+  {
+   "key": "veekaitse_klass",
+   "label_et": "Veekaitse klass",
+   "unit": "IP"
+  },
+  {
+   "key": "paneeli_pindala",
+   "label_et": "Paneeli pindala",
+   "unit": "cm²"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  }
+ ]
+}

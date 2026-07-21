@@ -1,0 +1,31 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-metallitoo-ja-sepatoo-sepaahjud",
+ "name": "Sepaahjud",
+ "fields": [
+  {
+   "key": "arv_poletid",
+   "label_et": "Põletite arv",
+   "unit": "tk"
+  },
+  {
+   "key": "max_temperatura",
+   "label_et": "Maksimaalne temperatuur",
+   "unit": "°C"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kuju",
+   "label_et": "Kuju",
+   "unit": ""
+  },
+  {
+   "key": "regulaator_standard",
+   "label_et": "Regulaatori standard",
+   "unit": ""
+  }
+ ]
+}

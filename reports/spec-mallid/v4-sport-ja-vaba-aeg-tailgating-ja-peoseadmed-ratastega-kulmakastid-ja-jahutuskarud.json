@@ -1,0 +1,46 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-tailgating-ja-peoseadmed-ratastega-kulmakastid-ja-jahutuskarud",
+ "name": "Ratastega külmakastid ja jahutuskärud",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Mahutavus",
+   "unit": "L"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Neto kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Peamised materjalid",
+   "unit": ""
+  },
+  {
+   "key": "isolatsiooni_kestvus",
+   "label_et": "Isolatsiooni kestvus",
+   "unit": "h"
+  },
+  {
+   "key": "rattad_tyyp",
+   "label_et": "Rattade tüüp",
+   "unit": ""
+  },
+  {
+   "key": "mootmed_pikkus",
+   "label_et": "Pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "mootmed_laius",
+   "label_et": "Laius",
+   "unit": "mm"
+  },
+  {
+   "key": "mootmed_korgus",
+   "label_et": "Kõrgus",
+   "unit": "mm"
+  }
+ ]
+}

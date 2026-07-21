@@ -1,0 +1,46 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-bowlingukoti-vankrid",
+ "name": "Bowlingukoti vankrid",
+ "fields": [
+  {
+   "key": "palli_maht",
+   "label_et": "Bowling pallide mahutavus",
+   "unit": "tk"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "käru_tüüp",
+   "label_et": "Käru tüüp (rattad)",
+   "unit": "tk"
+  },
+  {
+   "key": "handle_pikkus",
+   "label_et": "Pikendatava käepideme maksimaalne pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "mõõtmed_pikkus",
+   "label_et": "Pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "mõõtmed_laius",
+   "label_et": "Laius",
+   "unit": "mm"
+  },
+  {
+   "key": "mõõtmed_kõrgus",
+   "label_et": "Kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  }
+ ]
+}

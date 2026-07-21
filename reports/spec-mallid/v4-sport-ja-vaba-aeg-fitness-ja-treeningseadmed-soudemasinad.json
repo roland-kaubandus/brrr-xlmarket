@@ -1,0 +1,41 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-fitness-ja-treeningseadmed-soudemasinad",
+ "name": "Sõudemasinad",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Masina kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "max_kasutaja_kaal",
+   "label_et": "Maksimaalne kasutaja kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "takistuse_tasemed",
+   "label_et": "Takistuse tasemete arv",
+   "unit": "tk"
+  },
+  {
+   "key": "takistuse_tyyp",
+   "label_et": "Takistuse tüüp",
+   "unit": ""
+  },
+  {
+   "key": "maht",
+   "label_et": "Veereservuaari maht",
+   "unit": "L"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Raammaterjal",
+   "unit": ""
+  },
+  {
+   "key": "bluetooth_yhildus",
+   "label_et": "Bluetooth ühilduvus",
+   "unit": ""
+  }
+ ]
+}

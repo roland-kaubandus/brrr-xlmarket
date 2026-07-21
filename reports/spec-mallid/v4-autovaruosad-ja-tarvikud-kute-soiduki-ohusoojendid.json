@@ -1,0 +1,46 @@
+{
+ "l3": "v4-autovaruosad-ja-tarvikud-kute-soiduki-ohusoojendid",
+ "name": "Sõiduki õhusoojendid",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "maht",
+   "label_et": "Paagi maht",
+   "unit": "L"
+  },
+  {
+   "key": "kütuse_tarbimine",
+   "label_et": "Kütuse tarbimine",
+   "unit": "L/h"
+  },
+  {
+   "key": "myra",
+   "label_et": "Müra",
+   "unit": "dB"
+  },
+  {
+   "key": "temp_min",
+   "label_et": "Min. temp",
+   "unit": "°C"
+  },
+  {
+   "key": "temp_max",
+   "label_et": "Max. temp",
+   "unit": "°C"
+  },
+  {
+   "key": "ohuvoolud_arv",
+   "label_et": "Õhuvoolude arv",
+   "unit": "tk"
+  }
+ ]
+}

@@ -1,0 +1,41 @@
+{
+ "l3": "v4-pollumajandus-ja-loomakasvatus-talutehnika-traktori-kolmepunkti-haakeadapterid",
+ "name": "Haakeadapterid (3-point)",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "vastuvotja_laius",
+   "label_et": "Vastuvõtja laius",
+   "unit": "mm"
+  },
+  {
+   "key": "kandevoimasus",
+   "label_et": "Kandevõime",
+   "unit": "lbs"
+  },
+  {
+   "key": "kategooria",
+   "label_et": "Traktor-kategooria",
+   "unit": ""
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "juhtmiku_funktsioon",
+   "label_et": "Juhtmiku funktsioon",
+   "unit": ""
+  },
+  {
+   "key": "kaasas_kuulid",
+   "label_et": "Kaasas hitsareid palle",
+   "unit": "tk"
+  }
+ ]
+}

@@ -1,0 +1,46 @@
+{
+ "l3": "v4-kodumasinad-jaatisemasinad",
+ "name": "Jäätisemasinad",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Mahutavus",
+   "unit": "L"
+  },
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "myra",
+   "label_et": "Müra tase",
+   "unit": "dB"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Kere materjal",
+   "unit": ""
+  },
+  {
+   "key": "kompressor_sisseehitatud",
+   "label_et": "Sisseehitatud kompressor",
+   "unit": ""
+  },
+  {
+   "key": "toorežiimide_arv",
+   "label_et": "Tööreziimide arv",
+   "unit": ""
+  }
+ ]
+}

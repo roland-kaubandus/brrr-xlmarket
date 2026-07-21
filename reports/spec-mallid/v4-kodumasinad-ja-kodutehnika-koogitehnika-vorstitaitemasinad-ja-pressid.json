@@ -1,0 +1,36 @@
+{
+ "l3": "v4-kodumasinad-ja-kodutehnika-koogitehnika-vorstitaitemasinad-ja-pressid",
+ "name": "Vorstitäitemasinad ja -pressid",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Mahutavus",
+   "unit": "L"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Põhimaterjal",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "toru_arv",
+   "label_et": "Täiteteruude arv",
+   "unit": "tk"
+  },
+  {
+   "key": "paigaldamine",
+   "label_et": "Paigaldamise viis",
+   "unit": ""
+  },
+  {
+   "key": "joudud",
+   "label_et": "Käitamisviis",
+   "unit": ""
+  }
+ ]
+}

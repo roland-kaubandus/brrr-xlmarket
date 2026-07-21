@@ -1,0 +1,46 @@
+{
+ "l3": "v4-tooriied-ja-isikukaitse-toojalatsid-kummisaapad-ja-kummikud",
+ "name": "Kummisaapad ja kummikud",
+ "fields": [
+  {
+   "key": "suurus_us",
+   "label_et": "Suurus (US)",
+   "unit": "US"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "toe_protection",
+   "label_et": "Terasteeline kaitsevarvas",
+   "unit": ""
+  },
+  {
+   "key": "boot_type",
+   "label_et": "Saapa tüüp",
+   "unit": ""
+  },
+  {
+   "key": "sugu",
+   "label_et": "Sugu",
+   "unit": ""
+  },
+  {
+   "key": "veekindlus",
+   "label_et": "Veekindlus",
+   "unit": ""
+  },
+  {
+   "key": "libisemiskindlus",
+   "label_et": "Libisemiskindlus",
+   "unit": ""
+  }
+ ]
+}

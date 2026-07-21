@@ -1,0 +1,36 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-puhastustehnika-ja-tarvikud-kuivjaa-ja-survepuhastusseadmed",
+ "name": "Kuivjää- ja survepuhastusseadmed",
+ "fields": [
+  {
+   "key": "kuivjaa_maht",
+   "label_et": "Kuivjää mahutavus",
+   "unit": "kg"
+  },
+  {
+   "key": "kuivjaa_vooluhulk",
+   "label_et": "Kuivjää pihustamise kiirus",
+   "unit": "kg/min"
+  },
+  {
+   "key": "rohk",
+   "label_et": "Õhurõhu vahemik",
+   "unit": "MPa"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Seadme kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "dyysid",
+   "label_et": "Düüside arv",
+   "unit": "tk"
+  },
+  {
+   "key": "jaakude_suurus",
+   "label_et": "Kuivjää osakeste suurus",
+   "unit": "mm"
+  }
+ ]
+}

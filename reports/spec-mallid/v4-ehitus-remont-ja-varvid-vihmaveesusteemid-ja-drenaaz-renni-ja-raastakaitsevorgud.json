@@ -1,0 +1,41 @@
+{
+ "l3": "v4-ehitus-remont-ja-varvid-vihmaveesusteemid-ja-drenaaz-renni-ja-raastakaitsevorgud",
+ "name": "Renni- ja räästakaitsevõrgud",
+ "fields": [
+  {
+   "key": "laius_mm",
+   "label_et": "Renni laius",
+   "unit": "mm"
+  },
+  {
+   "key": "kogupikkus_m",
+   "label_et": "Kogupikkus",
+   "unit": "m"
+  },
+  {
+   "key": "kogus_tk",
+   "label_et": "Tükkide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "auk_diameeter_mm",
+   "label_et": "Ava diameeter",
+   "unit": "mm"
+  },
+  {
+   "key": "paksus_mm",
+   "label_et": "Materjali paksus",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaal_kg",
+   "label_et": "Kogukaal",
+   "unit": "kg"
+  }
+ ]
+}

@@ -1,0 +1,46 @@
+{
+ "l3": "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-kuumpressi-ja-vinuulloikuri-komplektid",
+ "name": "Kuumpressi ja vinüüllõikuri komplektid",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "kuumutusplaat_laius",
+   "label_et": "Kuumutusplaat (laius × kõrgus)",
+   "unit": "cm"
+  },
+  {
+   "key": "vinuullotaja_laius",
+   "label_et": "Vinüüllõikuri max paberi feed",
+   "unit": "mm"
+  },
+  {
+   "key": "loikekiirus",
+   "label_et": "Lõikekiirus",
+   "unit": "mm/s"
+  },
+  {
+   "key": "loike_rohk",
+   "label_et": "Lõike rõhk",
+   "unit": "g"
+  },
+  {
+   "key": "temperatuur_min_max",
+   "label_et": "Temperatuuri vahemik",
+   "unit": "°C"
+  },
+  {
+   "key": "taimer_max",
+   "label_et": "Ajasturin max",
+   "unit": "s"
+  },
+  {
+   "key": "taepsus",
+   "label_et": "Kordamise täpsus",
+   "unit": "mm"
+  }
+ ]
+}

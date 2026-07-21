@@ -1,0 +1,36 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-viimistlus-joonte-margistus",
+ "name": "Joonte märgistusmasinad",
+ "fields": [
+  {
+   "key": "raiduse_reguleeritavus",
+   "label_et": "Joone laiuse vahemik",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Kere materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "kandevoimsus",
+   "label_et": "Kandevõime",
+   "unit": "kg"
+  },
+  {
+   "key": "rataste_suurus",
+   "label_et": "Rataste suurus",
+   "unit": "in"
+  },
+  {
+   "key": "mahuti_maht",
+   "label_et": "Värvimahuti maht",
+   "unit": "L"
+  }
+ ]
+}

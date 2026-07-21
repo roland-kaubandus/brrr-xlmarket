@@ -1,0 +1,46 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-fitness-ja-treeningseadmed-treeningliivakotid-ja-kotid",
+ "name": "Treeningliivakotid ja -kotid",
+ "fields": [
+  {
+   "key": "max_kaal",
+   "label_et": "Maksimaalne kandevõime",
+   "unit": "kg"
+  },
+  {
+   "key": "tüüp",
+   "label_et": "Kotitüüp",
+   "unit": ""
+  },
+  {
+   "key": "reguleerimine",
+   "label_et": "Kaalu reguleerimine",
+   "unit": ""
+  },
+  {
+   "key": "materjal",
+   "label_et": "Välismaterjalai",
+   "unit": ""
+  },
+  {
+   "key": "mõõtmed_pikkus",
+   "label_et": "Pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "mõõtmed_laius",
+   "label_et": "Laius/Läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "ise_kaal",
+   "label_et": "Ise koti kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "käepidemed",
+   "label_et": "Käepideme olemasolu",
+   "unit": ""
+  }
+ ]
+}

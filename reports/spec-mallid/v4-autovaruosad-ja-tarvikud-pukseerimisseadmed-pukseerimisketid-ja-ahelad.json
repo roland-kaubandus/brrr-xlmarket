@@ -1,0 +1,46 @@
+{
+ "l3": "v4-autovaruosad-ja-tarvikud-pukseerimisseadmed-pukseerimisketid-ja-ahelad",
+ "name": "Pukseerimisketid ja -ahelad",
+ "fields": [
+  {
+   "key": "chain_diameter",
+   "label_et": "Ahela läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "chain_length",
+   "label_et": "Ahela pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "safe_working_load",
+   "label_et": "Ohutu töökoormus",
+   "unit": "kg"
+  },
+  {
+   "key": "breaking_strength",
+   "label_et": "Murdumiskindlus",
+   "unit": "kg"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Toote kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "hook_type",
+   "label_et": "Konksude tüüp",
+   "unit": ""
+  },
+  {
+   "key": "quantity",
+   "label_et": "Kogus pakendis",
+   "unit": "tk"
+  }
+ ]
+}

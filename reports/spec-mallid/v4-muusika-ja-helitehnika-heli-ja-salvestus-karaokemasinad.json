@@ -1,0 +1,41 @@
+{
+ "l3": "v4-muusika-ja-helitehnika-heli-ja-salvestus-karaokemasinad",
+ "name": "Karaokemasinad",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "kaitin_suurus",
+   "label_et": "Kaitin suurus",
+   "unit": "in"
+  },
+  {
+   "key": "mikrofon_arv",
+   "label_et": "Mikrofonide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "tundlikkus",
+   "label_et": "Tundlikkus",
+   "unit": "dB"
+  },
+  {
+   "key": "bluetooth_versioon",
+   "label_et": "Bluetooth versioon",
+   "unit": "versioon"
+  },
+  {
+   "key": "yhendused",
+   "label_et": "Ühendused (USB, AUX, TF)",
+   "unit": "tüübid"
+  },
+  {
+   "key": "teisaldatavus",
+   "label_et": "Teisaldatavus (käepide/rattad)",
+   "unit": "omadus"
+  }
+ ]
+}

@@ -1,0 +1,41 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-elektrilised-tooriistad-naelapustolid",
+ "name": "Naelapüstolid",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "nael_pikkus_max",
+   "label_et": "Naela maksimaalne pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "tulistamiskiirus",
+   "label_et": "Tulistamiskiirus",
+   "unit": "fastenerit/min"
+  },
+  {
+   "key": "ajakirja_maht",
+   "label_et": "Ajakirja mahutavus",
+   "unit": "tk"
+  },
+  {
+   "key": "kahe_1_uldus",
+   "label_et": "2-in-1 ühilduvus",
+   "unit": "bool"
+  }
+ ]
+}

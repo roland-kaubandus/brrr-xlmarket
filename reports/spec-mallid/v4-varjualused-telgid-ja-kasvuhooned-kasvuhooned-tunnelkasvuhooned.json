@@ -1,0 +1,46 @@
+{
+ "l3": "v4-varjualused-telgid-ja-kasvuhooned-kasvuhooned-tunnelkasvuhooned",
+ "name": "Tunnelkasvuhooned",
+ "fields": [
+  {
+   "key": "pikkus",
+   "label_et": "Pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "laius",
+   "label_et": "Laius",
+   "unit": "m"
+  },
+  {
+   "key": "korgus",
+   "label_et": "Kõrgus",
+   "unit": "m"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Raammaterjal",
+   "unit": ""
+  },
+  {
+   "key": "kate_materjal",
+   "label_et": "Katte materjal",
+   "unit": ""
+  },
+  {
+   "key": "aknaid_arv",
+   "label_et": "Akende arv",
+   "unit": "tk"
+  },
+  {
+   "key": "oksed_arv",
+   "label_et": "Uksed arv",
+   "unit": "tk"
+  }
+ ]
+}

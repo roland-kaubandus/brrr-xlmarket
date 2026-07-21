@@ -1,0 +1,46 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-viimistlustooriistad-porandaloikurid",
+ "name": "Põranda- ja vinüüllõikurid",
+ "fields": [
+  {
+   "key": "maksimaalne_lõikelaiusad_mm",
+   "label_et": "Maksimaalne lõike pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "maksimaalne_lõikesügavus_mm",
+   "label_et": "Maksimaalne lõike sügavus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "reguleeritavad_lõikenurgad",
+   "label_et": "Reguleeritavad lõikenurgad",
+   "unit": "°"
+  },
+  {
+   "key": "teradeg_materjal",
+   "label_et": "Teraga materjal",
+   "unit": ""
+  },
+  {
+   "key": "liikuvad_rattad",
+   "label_et": "Liikuvad rattad",
+   "unit": ""
+  },
+  {
+   "key": "teleskoopiline_tugi",
+   "label_et": "Teleskoopiline tugi",
+   "unit": ""
+  }
+ ]
+}

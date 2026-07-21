@@ -1,0 +1,41 @@
+{
+ "l3": "v4-elektritarvikud-ja-valgustus-elektroonika-arvutikorpused",
+ "name": "Arvutikorpused",
+ "fields": [
+  {
+   "key": "gpu_max_length",
+   "label_et": "Maksimaalne GPU pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "korpuse_tyyp",
+   "label_et": "Korpuse tüüp",
+   "unit": ""
+  },
+  {
+   "key": "emaplaadi_yhilduvus",
+   "label_et": "Emaplaadi ühilduvus",
+   "unit": ""
+  },
+  {
+   "key": "toetatud_fanide_arv",
+   "label_et": "Toetatud fanide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "paiksed_fanid",
+   "label_et": "Kaasaarvatud fanid",
+   "unit": "tk"
+  },
+  {
+   "key": "laienduspesade_arv",
+   "label_et": "Laienduspesade arv",
+   "unit": "tk"
+  },
+  {
+   "key": "pordid",
+   "label_et": "Ühendusportide tüübid",
+   "unit": ""
+  }
+ ]
+}

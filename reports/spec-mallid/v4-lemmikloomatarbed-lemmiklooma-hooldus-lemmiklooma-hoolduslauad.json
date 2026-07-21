@@ -1,0 +1,46 @@
+{
+ "l3": "v4-lemmikloomatarbed-lemmiklooma-hooldus-lemmiklooma-hoolduslauad",
+ "name": "Lemmiklooma hoolduslauad",
+ "fields": [
+  {
+   "key": "desktop_width_mm",
+   "label_et": "Töölaua laius",
+   "unit": "mm"
+  },
+  {
+   "key": "desktop_depth_mm",
+   "label_et": "Töölaua sügavus",
+   "unit": "mm"
+  },
+  {
+   "key": "desktop_height_mm",
+   "label_et": "Töölaua kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Toote kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "static_load_capacity_kg",
+   "label_et": "Staatiline kandevõime",
+   "unit": "kg"
+  },
+  {
+   "key": "arm_count",
+   "label_et": "Käte arv",
+   "unit": "tk"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Peamine materjal",
+   "unit": ""
+  },
+  {
+   "key": "height_adjustable",
+   "label_et": "Kõrgus reguleeritav",
+   "unit": ""
+  }
+ ]
+}

@@ -1,0 +1,36 @@
+{
+ "l3": "v4-suurkook-saumikserid",
+ "name": "Saumikserid",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "varsi_pikkus",
+   "label_et": "Varsi pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Tera materjal",
+   "unit": ""
+  },
+  {
+   "key": "kiirus_reguleerimine",
+   "label_et": "Kiiruse reguleerimine",
+   "unit": ""
+  }
+ ]
+}

@@ -1,0 +1,36 @@
+{
+ "l3": "v4-tooriistad-survepesuri-pumbad",
+ "name": "Survepesuri pumbad",
+ "fields": [
+  {
+   "key": "rohk",
+   "label_et": "Maksimaalne rõhk",
+   "unit": "bar"
+  },
+  {
+   "key": "vooluhulk",
+   "label_et": "Vooluhulk",
+   "unit": "L/min"
+  },
+  {
+   "key": "ketta_labamoot",
+   "label_et": "Võlli läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "poompaigutus",
+   "label_et": "Poompaigutus",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "mootorivoimsus",
+   "label_et": "Mootori soovituslik võimsus",
+   "unit": "HP"
+  }
+ ]
+}

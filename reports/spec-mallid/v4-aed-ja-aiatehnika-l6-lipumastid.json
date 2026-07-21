@@ -1,0 +1,41 @@
+{
+ "l3": "v4-aed-ja-aiatehnika-l6-lipumastid",
+ "name": "Lipumastid",
+ "fields": [
+  {
+   "key": "pikkus",
+   "label_et": "Pikkus",
+   "unit": "ft"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "diameetr",
+   "label_et": "Läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "konstruktsioon_tyyp",
+   "label_et": "Konstruktsiooni tüüp",
+   "unit": ""
+  },
+  {
+   "key": "lipp_kaasas",
+   "label_et": "Lipp kaasas",
+   "unit": ""
+  },
+  {
+   "key": "vari",
+   "label_et": "Väri",
+   "unit": ""
+  }
+ ]
+}

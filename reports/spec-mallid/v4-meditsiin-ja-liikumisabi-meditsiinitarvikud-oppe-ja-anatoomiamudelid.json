@@ -1,0 +1,41 @@
+{
+ "l3": "v4-meditsiin-ja-liikumisabi-meditsiinitarvikud-oppe-ja-anatoomiamudelid",
+ "name": "Meditsiinilised simulatsioonivahendid",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "mudeli_tyyp",
+   "label_et": "Mudeli tüüp",
+   "unit": ""
+  },
+  {
+   "key": "sugu",
+   "label_et": "Sugu/sugupoolitamine",
+   "unit": ""
+  },
+  {
+   "key": "skala",
+   "label_et": "Mudeli skaala",
+   "unit": ""
+  },
+  {
+   "key": "reguleeritav_alus",
+   "label_et": "Reguleeritav alus",
+   "unit": ""
+  },
+  {
+   "key": "asendatavad_osad",
+   "label_et": "Asendatavad osad",
+   "unit": ""
+  }
+ ]
+}

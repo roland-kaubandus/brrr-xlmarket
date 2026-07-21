@@ -1,0 +1,46 @@
+{
+ "l3": "v4-aed-ja-aiatehnika-l2-basseini-ionisaatorid-ja-kloorinaatorid",
+ "name": "Basseini ionisaatorid",
+ "fields": [
+  {
+   "key": "basseim_maht",
+   "label_et": "Sobiv basseini maht",
+   "unit": "L"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjalid",
+   "unit": ""
+  },
+  {
+   "key": "kuju",
+   "label_et": "Ionisaatori kuju",
+   "unit": ""
+  },
+  {
+   "key": "anood_materjal",
+   "label_et": "Anoodi materjal",
+   "unit": ""
+  },
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "energiaallikas",
+   "label_et": "Energiaallikas",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal (koos tarvikutega)",
+   "unit": "kg"
+  },
+  {
+   "key": "veekindlus",
+   "label_et": "Veekindluse klass",
+   "unit": ""
+  }
+ ]
+}

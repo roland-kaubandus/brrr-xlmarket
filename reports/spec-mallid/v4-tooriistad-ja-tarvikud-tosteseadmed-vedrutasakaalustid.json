@@ -1,0 +1,36 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-tosteseadmed-vedrutasakaalustid",
+ "name": "Vedrutasakaalustid",
+ "fields": [
+  {
+   "key": "kandevoimsus_kg",
+   "label_et": "Kandevõimekus",
+   "unit": "kg"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Seadme kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "pikkus",
+   "label_et": "Nööri/kaabli pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": "tekst"
+  },
+  {
+   "key": "reguleeritavus",
+   "label_et": "Reguleeritav kandevõimekus",
+   "unit": "bool"
+  },
+  {
+   "key": "ohutusmehhanism",
+   "label_et": "Ohutusmehhanism",
+   "unit": "tekst"
+  }
+ ]
+}

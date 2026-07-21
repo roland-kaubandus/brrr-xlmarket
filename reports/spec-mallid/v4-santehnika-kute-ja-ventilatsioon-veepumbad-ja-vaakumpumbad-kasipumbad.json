@@ -1,0 +1,41 @@
+{
+ "l3": "v4-santehnika-kute-ja-ventilatsioon-veepumbad-ja-vaakumpumbad-kasipumbad",
+ "name": "Käsipumbad",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "max_tostekorgus",
+   "label_et": "Maksimaalne tõstekõrgus",
+   "unit": "m"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "silindri_diameetr",
+   "label_et": "Silindri läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "pohja_diameetr",
+   "label_et": "Aluse läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "korgus",
+   "label_et": "Kõrgus",
+   "unit": "cm"
+  },
+  {
+   "key": "ühenduse_thread",
+   "label_et": "Ühenduse thread",
+   "unit": "in"
+  }
+ ]
+}

@@ -1,0 +1,46 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-suruohutooriistad-pcp-korgsurvekompressorid",
+ "name": "PCP kõrgsurvekompressorid",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Nimivõimsus",
+   "unit": "W"
+  },
+  {
+   "key": "rohk",
+   "label_et": "Maksimaalrõhk",
+   "unit": "bar"
+  },
+  {
+   "key": "ohuvool",
+   "label_et": "Õhuvoolu kiirus",
+   "unit": "L/min"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Netokaal",
+   "unit": "kg"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Tööpinge",
+   "unit": "V"
+  },
+  {
+   "key": "myra",
+   "label_et": "Maksimaalne müra",
+   "unit": "dB"
+  },
+  {
+   "key": "silindrite_arv",
+   "label_et": "Silindrite arv",
+   "unit": "tk"
+  },
+  {
+   "key": "jahutussysteem",
+   "label_et": "Jahutussüsteem",
+   "unit": "tüüp"
+  }
+ ]
+}

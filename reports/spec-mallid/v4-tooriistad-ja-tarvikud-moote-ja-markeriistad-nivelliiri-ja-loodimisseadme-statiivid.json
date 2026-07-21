@@ -1,0 +1,41 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-moote-ja-markeriistad-nivelliiri-ja-loodimisseadme-statiivid",
+ "name": "Nivelliiri ja loodimisseadme statiivid",
+ "fields": [
+  {
+   "key": "kõrgus_min_mm",
+   "label_et": "Minimaalne kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "kõrgus_max_mm",
+   "label_et": "Maksimaalne kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "kandevõime_kg",
+   "label_et": "Kandevõime",
+   "unit": "kg"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "keerme_standard",
+   "label_et": "Keerme suurus",
+   "unit": ""
+  },
+  {
+   "key": "jaluste_tüüp",
+   "label_et": "Jaluste konstruktsioon",
+   "unit": ""
+  }
+ ]
+}

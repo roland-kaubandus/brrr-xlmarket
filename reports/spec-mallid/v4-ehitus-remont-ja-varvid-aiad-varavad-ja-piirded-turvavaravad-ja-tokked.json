@@ -1,0 +1,41 @@
+{
+ "l3": "v4-ehitus-remont-ja-varvid-aiad-varavad-ja-piirded-turvavaravad-ja-tokked",
+ "name": "Laiendatavad tõkkepuud",
+ "fields": [
+  {
+   "key": "laiendatud_pikkus",
+   "label_et": "Laiendatud pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "taandatud_pikkus",
+   "label_et": "Taandatud pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "maandusvahe",
+   "label_et": "Maandus kõrgus (laiendatud)",
+   "unit": "mm"
+  },
+  {
+   "key": "topelt_tookepuu",
+   "label_et": "Topelt-tõkkepuu",
+   "unit": ""
+  },
+  {
+   "key": "rotatsioon",
+   "label_et": "Pöördatav nurk",
+   "unit": "°"
+  }
+ ]
+}

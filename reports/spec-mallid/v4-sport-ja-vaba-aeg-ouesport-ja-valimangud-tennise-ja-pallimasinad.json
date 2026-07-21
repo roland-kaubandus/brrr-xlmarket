@@ -1,0 +1,46 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-tennise-ja-pallimasinad",
+ "name": "Tennise pallimasinad ja -korvid",
+ "fields": [
+  {
+   "key": "palli_mahtuvus",
+   "label_et": "Pallide mahtuvus",
+   "unit": "tk"
+  },
+  {
+   "key": "maksimaalne_palli_kiirus",
+   "label_et": "Maksimaalne pallide kiirus",
+   "unit": "km/h"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Raam materjal",
+   "unit": ""
+  },
+  {
+   "key": "aku_maht",
+   "label_et": "Aku mahtuvus",
+   "unit": "Wh"
+  },
+  {
+   "key": "bluetooth_ulatus",
+   "label_et": "Bluetooth ühenduse ulatus",
+   "unit": "m"
+  },
+  {
+   "key": "voltimine",
+   "label_et": "Voltimine (masinad)",
+   "unit": "tk"
+  },
+  {
+   "key": "kokkupandav",
+   "label_et": "Kokkupandav disain",
+   "unit": ""
+  }
+ ]
+}

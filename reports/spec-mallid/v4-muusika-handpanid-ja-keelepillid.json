@@ -1,0 +1,41 @@
+{
+ "l3": "v4-muusika-handpanid-ja-keelepillid",
+ "name": "Handpanid ja keelepillid",
+ "fields": [
+  {
+   "key": "diameter_mm",
+   "label_et": "Läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "notes_count",
+   "label_et": "Nootide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "musical_key",
+   "label_et": "Muusikaline võti",
+   "unit": "-"
+  },
+  {
+   "key": "height_mm",
+   "label_et": "Kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": "-"
+  },
+  {
+   "key": "tuning_frequency",
+   "label_et": "Häälestusfrekvents",
+   "unit": "Hz"
+  }
+ ]
+}

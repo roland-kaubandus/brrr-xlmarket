@@ -1,0 +1,46 @@
+{
+ "l3": "v4-kunsti-kuivatusrestid",
+ "name": "Kunsti-kuivatusrestid",
+ "fields": [
+  {
+   "key": "riiulike_arv",
+   "label_et": "Riiulike arv",
+   "unit": "tk"
+  },
+  {
+   "key": "riiuli_labamoot_mm",
+   "label_et": "Riiuli pindala (mm)",
+   "unit": "mm²"
+  },
+  {
+   "key": "maksimaalne_koormus_kg",
+   "label_et": "Maksimaalne koormus riiuli kohta",
+   "unit": "kg"
+  },
+  {
+   "key": "kõrgus_mm",
+   "label_et": "Seadme kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Seadme kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Konstruktsiooni materjal",
+   "unit": ""
+  },
+  {
+   "key": "riiulike_vahe_mm",
+   "label_et": "Minimaalne riiulike vahe",
+   "unit": "mm"
+  },
+  {
+   "key": "ratastega",
+   "label_et": "Lukustatavad rattad",
+   "unit": ""
+  }
+ ]
+}

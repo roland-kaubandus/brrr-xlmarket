@@ -1,0 +1,46 @@
+{
+ "l3": "v4-muusika-ja-helitehnika-muusikariistad-klahvpillid",
+ "name": "Klahvpillid",
+ "fields": [
+  {
+   "key": "klaviaturid",
+   "label_et": "Klaviatuuride arv",
+   "unit": "tk"
+  },
+  {
+   "key": "klahvide_arv",
+   "label_et": "Klahvide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "tooniused",
+   "label_et": "Tooniuste arv",
+   "unit": "tk"
+  },
+  {
+   "key": "rütmid",
+   "label_et": "Rütmide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "polüfoonia",
+   "label_et": "Polüfoonia (samaaegsed helid)",
+   "unit": "tk"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "aku_maht",
+   "label_et": "Aku mahtuvus",
+   "unit": "Wh"
+  },
+  {
+   "key": "klahvide_tüüp",
+   "label_et": "Klahvide tüüp",
+   "unit": "kategooria"
+  }
+ ]
+}

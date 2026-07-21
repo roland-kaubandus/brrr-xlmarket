@@ -1,0 +1,41 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-kasitooriistad-vuugitooriistad",
+ "name": "Vuugitööriistad",
+ "fields": [
+  {
+   "key": "imetus_tass_laabimoot",
+   "label_et": "Imutuslasude läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "nurga_reguleerimine",
+   "label_et": "Nurga reguleerimise vahemik",
+   "unit": "°"
+  },
+  {
+   "key": "kogumahud_pikkus",
+   "label_et": "Maksimaalse suuruse pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "kogumahud_laius",
+   "label_et": "Maksimaalse suuruse laius",
+   "unit": "mm"
+  },
+  {
+   "key": "kogumahud_korgus",
+   "label_et": "Maksimaalse suuruse kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "komplektis_kogus",
+   "label_et": "Tükkide arv komplektis",
+   "unit": "tk"
+  }
+ ]
+}

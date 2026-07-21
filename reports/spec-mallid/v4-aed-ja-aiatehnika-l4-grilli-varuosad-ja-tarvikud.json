@@ -1,0 +1,36 @@
+{
+ "l3": "v4-aed-ja-aiatehnika-l4-grilli-varuosad-ja-tarvikud",
+ "name": "Grilli varuosad ja tarvikud",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "pikkus",
+   "label_et": "Pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "laius",
+   "label_et": "Laius",
+   "unit": "mm"
+  },
+  {
+   "key": "paksus",
+   "label_et": "Paksus",
+   "unit": "mm"
+  },
+  {
+   "key": "kogus",
+   "label_et": "Komplektis ühikuid",
+   "unit": "tk"
+  }
+ ]
+}

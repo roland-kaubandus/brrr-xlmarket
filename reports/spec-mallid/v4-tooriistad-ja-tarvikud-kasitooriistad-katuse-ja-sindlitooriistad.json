@@ -1,0 +1,41 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-kasitooriistad-katuse-ja-sindlitooriistad",
+ "name": "Katuse- ja sindlitööriistad",
+ "fields": [
+  {
+   "key": "kogus",
+   "label_et": "Kogus (tk)",
+   "unit": "pcs"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kogukaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "laba_paksus",
+   "label_et": "Laba paksus",
+   "unit": "mm"
+  },
+  {
+   "key": "laba_korgus",
+   "label_et": "Laba kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "max_koormus",
+   "label_et": "Maksimaalne koormus",
+   "unit": "kg"
+  },
+  {
+   "key": "pind_treatment",
+   "label_et": "Pinna käsitlus",
+   "unit": ""
+  }
+ ]
+}

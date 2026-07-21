@@ -1,0 +1,36 @@
+{
+ "l3": "v4-pollumajandus-ja-loomakasvatus-mesindus-mesitarud-ja-komplektid",
+ "name": "Mesitarud ja komplektid",
+ "fields": [
+  {
+   "key": "raam_arv",
+   "label_et": "Raamide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "kastide_arv",
+   "label_et": "Kastide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "syvus_mm",
+   "label_et": "Sügavus (Deep/Medium)",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "akendega",
+   "label_et": "Akrüülaknad",
+   "unit": ""
+  }
+ ]
+}

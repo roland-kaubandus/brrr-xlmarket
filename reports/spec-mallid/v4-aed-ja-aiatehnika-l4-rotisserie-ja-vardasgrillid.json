@@ -1,0 +1,41 @@
+{
+ "l3": "v4-aed-ja-aiatehnika-l4-rotisserie-ja-vardasgrillid",
+ "name": "Rotisserie- ja vardasgrillid",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Mootori võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "poorlemiskiirus",
+   "label_et": "Poorlemiskiirus",
+   "unit": "RPM"
+  },
+  {
+   "key": "max_koormus",
+   "label_et": "Maksimaalne koormus",
+   "unit": "kg"
+  },
+  {
+   "key": "varra_pikkus",
+   "label_et": "Varraosa pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Seadme kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "korguse_reguleerimine",
+   "label_et": "Kõrguse reguleerimise vahemik",
+   "unit": "cm"
+  }
+ ]
+}

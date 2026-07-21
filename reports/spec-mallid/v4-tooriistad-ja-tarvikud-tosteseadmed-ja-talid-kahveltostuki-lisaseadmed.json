@@ -1,0 +1,36 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-tosteseadmed-ja-talid-kahveltostuki-lisaseadmed",
+ "name": "Kahveltõstuki lisaseadmed",
+ "fields": [
+  {
+   "key": "kandevoimsus_kg",
+   "label_et": "Kandevõimsus",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "parempikkus_mm",
+   "label_et": "Paumi pikkus / ulatus",
+   "unit": "mm"
+  },
+  {
+   "key": "kogumahud_mm",
+   "label_et": "Mõõtmed (pikkus × laius × kõrgus)",
+   "unit": "mm"
+  },
+  {
+   "key": "rotatsioon",
+   "label_et": "360° pööramine",
+   "unit": ""
+  }
+ ]
+}

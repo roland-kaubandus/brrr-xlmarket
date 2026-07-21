@@ -1,0 +1,36 @@
+{
+ "l3": "v4-santehnika-kute-ja-ventilatsioon-ventilatsioon-ja-ventilaatorid-ohufiltrid-varufiltrid",
+ "name": "Õhufiltrid ja varufiltrid",
+ "fields": [
+  {
+   "key": "filtratsioon_klass",
+   "label_et": "Filtratsiooniklass",
+   "unit": "HEPA/G4/aktiivsüsi"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": "tekstiil"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "mõõtmed_mm",
+   "label_et": "Mõõtmed (pikkus × laius × paksus)",
+   "unit": "mm"
+  },
+  {
+   "key": "tarvik_kogus",
+   "label_et": "Komplektis olevate filtrite arv",
+   "unit": "tk"
+  },
+  {
+   "key": "otstarve",
+   "label_et": "Otstarve",
+   "unit": "filtreerimise etapp"
+  }
+ ]
+}

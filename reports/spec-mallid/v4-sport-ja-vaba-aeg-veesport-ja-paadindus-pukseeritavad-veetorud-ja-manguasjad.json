@@ -1,0 +1,46 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-veesport-ja-paadindus-pukseeritavad-veetorud-ja-manguasjad",
+ "name": "Pukseeritavad veetorud ja mänguasjad",
+ "fields": [
+  {
+   "key": "maksimaalne_koormus",
+   "label_et": "Maksimaalne koormus",
+   "unit": "kg"
+  },
+  {
+   "key": "ratsanikute_arv",
+   "label_et": "Ratsanikute arv",
+   "unit": "tk"
+  },
+  {
+   "key": "pikkus",
+   "label_et": "Pikkus (täis)",
+   "unit": "mm"
+  },
+  {
+   "key": "laius",
+   "label_et": "Laius (täis)",
+   "unit": "mm"
+  },
+  {
+   "key": "korkus",
+   "label_et": "Kõrgus (täis)",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "paaditorje_punktide_arv",
+   "label_et": "Paaditorje punktide arv",
+   "unit": "tk"
+  }
+ ]
+}

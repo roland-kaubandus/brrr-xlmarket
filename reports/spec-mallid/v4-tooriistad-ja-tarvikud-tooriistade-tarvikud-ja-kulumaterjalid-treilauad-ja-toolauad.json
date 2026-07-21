@@ -1,0 +1,46 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-treilauad-ja-toolauad",
+ "name": "Treilauad ja töölauad",
+ "fields": [
+  {
+   "key": "tootable_pikkus",
+   "label_et": "Töölaua pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "tootable_laius",
+   "label_et": "Töölaua laius",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "max_tootuke_kaal",
+   "label_et": "Maksimaalne detaili kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "t_sura_laius",
+   "label_et": "T-pilu laius",
+   "unit": "mm"
+  },
+  {
+   "key": "liikumise_ulatus_y",
+   "label_et": "Pikisuunaline liikumise ulatus",
+   "unit": "mm"
+  },
+  {
+   "key": "liikumise_ulatus_x",
+   "label_et": "Põikisuunaline liikumise ulatus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaldenurga_ulatus",
+   "label_et": "Kaldenurga ulatus",
+   "unit": "°"
+  }
+ ]
+}

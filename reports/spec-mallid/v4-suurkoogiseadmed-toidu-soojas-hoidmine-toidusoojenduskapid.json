@@ -1,0 +1,46 @@
+{
+ "l3": "v4-suurkoogiseadmed-toidu-soojas-hoidmine-toidusoojenduskapid",
+ "name": "Toidusoojenduskapid",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "riulidearv",
+   "label_et": "Riiulite arv",
+   "unit": "tk"
+  },
+  {
+   "key": "tempepatuuri_vahemik",
+   "label_et": "Temperatuuri vahemik",
+   "unit": "°C"
+  },
+  {
+   "key": "soojendamise_aeg",
+   "label_et": "Soojendamise aeg maksimaalse temperatuurini",
+   "unit": "min"
+  },
+  {
+   "key": "riuli_korgus",
+   "label_et": "Riiuli kõrgus",
+   "unit": "cm"
+  },
+  {
+   "key": "uks_tyyp",
+   "label_et": "Ukse tüüp",
+   "unit": ""
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  }
+ ]
+}

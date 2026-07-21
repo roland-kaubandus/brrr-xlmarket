@@ -1,0 +1,36 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-matkavarustus-ja-telkimine-hudratatsiooni-ja-seljakotid",
+ "name": "Hüdratatsiooni- ja seljakotid",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Seljakoti maht",
+   "unit": "L"
+  },
+  {
+   "key": "vee_mahuti_maht",
+   "label_et": "Vee mahuti maht",
+   "unit": "L"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Seljakoti kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "veetihedus",
+   "label_et": "Veetihendus",
+   "unit": ""
+  },
+  {
+   "key": "vari",
+   "label_et": "Värvus",
+   "unit": ""
+  }
+ ]
+}

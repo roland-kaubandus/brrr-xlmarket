@@ -1,0 +1,41 @@
+{
+ "l3": "v4-tooriistad-kulmaaine-taastustankid",
+ "name": "Külmaaine-taastustankid",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Mahtuvus",
+   "unit": "L"
+  },
+  {
+   "key": "rohk",
+   "label_et": "Tööpaine",
+   "unit": "bar"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Netokaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "yhilduvad_külmaained",
+   "label_et": "Ühilduvad külmaained",
+   "unit": ""
+  },
+  {
+   "key": "testpaine",
+   "label_et": "Testpaine",
+   "unit": "bar"
+  },
+  {
+   "key": "sisseehitatud_ujurlüliti",
+   "label_et": "Ujurlüliti",
+   "unit": ""
+  }
+ ]
+}

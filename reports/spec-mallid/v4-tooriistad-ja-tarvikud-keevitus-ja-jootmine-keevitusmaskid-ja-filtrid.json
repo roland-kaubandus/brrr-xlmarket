@@ -1,0 +1,41 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-keevitus-ja-jootmine-keevitusmaskid-ja-filtrid",
+ "name": "Keevitusmaskid ja filtrid",
+ "fields": [
+  {
+   "key": "vaateaken_pindala",
+   "label_et": "Vaateakna suurus (pikkus × laius)",
+   "unit": "mm"
+  },
+  {
+   "key": "varjundite_vahemik",
+   "label_et": "Varjundite vahemik (DIN)",
+   "unit": "DIN"
+  },
+  {
+   "key": "andurite_arv",
+   "label_et": "Kaarekaivu andurite arv",
+   "unit": "tk"
+  },
+  {
+   "key": "vastuseaeg",
+   "label_et": "Vastuseaeg",
+   "unit": "s"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "varjunditase_hele",
+   "label_et": "Varjunditase heledas olekus",
+   "unit": "DIN"
+  },
+  {
+   "key": "toiteallikas",
+   "label_et": "Toiteallikas",
+   "unit": ""
+  }
+ ]
+}

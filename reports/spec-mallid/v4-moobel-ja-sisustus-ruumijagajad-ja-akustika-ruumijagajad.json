@@ -1,0 +1,41 @@
+{
+ "l3": "v4-moobel-ja-sisustus-ruumijagajad-ja-akustika-ruumijagajad",
+ "name": "Ruumijagajad",
+ "fields": [
+  {
+   "key": "korgus",
+   "label_et": "Kõrgus",
+   "unit": "cm"
+  },
+  {
+   "key": "laius",
+   "label_et": "Laius (lahti)",
+   "unit": "cm"
+  },
+  {
+   "key": "paneelide_arv",
+   "label_et": "Paneelide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjalid",
+   "unit": ""
+  },
+  {
+   "key": "ratastega",
+   "label_et": "Liikumisvõimalus (rattad)",
+   "unit": ""
+  },
+  {
+   "key": "paigutatud_laius",
+   "label_et": "Paneeli laius",
+   "unit": "cm"
+  }
+ ]
+}

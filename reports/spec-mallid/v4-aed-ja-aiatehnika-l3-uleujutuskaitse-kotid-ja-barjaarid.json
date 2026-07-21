@@ -1,0 +1,46 @@
+{
+ "l3": "v4-aed-ja-aiatehnika-l3-uleujutuskaitse-kotid-ja-barjaarid",
+ "name": "Üleujutuskaitse kotid ja barjäärid",
+ "fields": [
+  {
+   "key": "pikkus_mm",
+   "label_et": "Pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "laius_mm",
+   "label_et": "Laius",
+   "unit": "mm"
+  },
+  {
+   "key": "korgus_mm",
+   "label_et": "Kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "maht",
+   "label_et": "Maht (täis)",
+   "unit": "L"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal (tühi)",
+   "unit": "kg"
+  },
+  {
+   "key": "maksimaalne_kaal",
+   "label_et": "Maksimaalne kaal (täis)",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kogus",
+   "label_et": "Pakett kogus",
+   "unit": "tk"
+  }
+ ]
+}

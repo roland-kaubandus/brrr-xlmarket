@@ -1,0 +1,41 @@
+{
+ "l3": "v4-ehitus-remont-ja-varvid-seinapaneelid-ja-liistud-nurgakaitseprofiilid",
+ "name": "Nurgakaitseprofiilid",
+ "fields": [
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "nurga_suurus_mm",
+   "label_et": "Nurga suurus",
+   "unit": "mm"
+  },
+  {
+   "key": "pikkus_mm",
+   "label_et": "Pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "paksus_mm",
+   "label_et": "Paneeli paksus",
+   "unit": "mm"
+  },
+  {
+   "key": "kogus_tk",
+   "label_et": "Kogus pakis",
+   "unit": "tk"
+  },
+  {
+   "key": "paite_valimine",
+   "label_et": "Pinna viimistlus",
+   "unit": ""
+  },
+  {
+   "key": "kleeplinti_laius_mm",
+   "label_et": "Kleeplindi laius",
+   "unit": "mm"
+  }
+ ]
+}

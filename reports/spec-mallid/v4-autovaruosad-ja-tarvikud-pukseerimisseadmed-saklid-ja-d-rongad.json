@@ -1,0 +1,46 @@
+{
+ "l3": "v4-autovaruosad-ja-tarvikud-pukseerimisseadmed-saklid-ja-d-rongad",
+ "name": "Šaklid ja D-rõngad",
+ "fields": [
+  {
+   "key": "murde_tugevus",
+   "label_et": "Murde tugevus",
+   "unit": "T"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "tootmise_tyyp",
+   "label_et": "Tüüp",
+   "unit": ""
+  },
+  {
+   "key": "sisemise_diameetri",
+   "label_et": "Sisemise diameetri",
+   "unit": "mm"
+  },
+  {
+   "key": "juhi_diameetri",
+   "label_et": "Juhi diameetri",
+   "unit": "mm"
+  },
+  {
+   "key": "kogus",
+   "label_et": "Kogus",
+   "unit": "tk"
+  },
+  {
+   "key": "töökoormuse_piirang",
+   "label_et": "Töökoormuse piirang",
+   "unit": "T"
+  }
+ ]
+}

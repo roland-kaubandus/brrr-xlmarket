@@ -1,0 +1,41 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-fitness-hokitreeningu-porandaplaadid",
+ "name": "Hokitreeningu põrandaplaadid",
+ "fields": [
+  {
+   "key": "kattepind",
+   "label_et": "Kattepind",
+   "unit": "m²"
+  },
+  {
+   "key": "plaadi_suurus",
+   "label_et": "Plaadi suurus",
+   "unit": "mm"
+  },
+  {
+   "key": "plaatide_arv",
+   "label_et": "Plaatide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "maksimaalne_koormus_plaadi_kohta",
+   "label_et": "Maksimaalne koormus plaadi kohta",
+   "unit": "kg"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "paksus",
+   "label_et": "Paksus",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  }
+ ]
+}

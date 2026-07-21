@@ -1,0 +1,41 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-metallitoo-ja-sepatoo-pressid",
+ "name": "Pressid",
+ "fields": [
+  {
+   "key": "tonnazh",
+   "label_et": "Maksimaalne surve",
+   "unit": "ton"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "maksimaalne_korgus",
+   "label_et": "Maksimaalne töökõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "plaadi_diameeter",
+   "label_et": "Plaadi läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "kurkutamine",
+   "label_et": "Kurkutamise sügavus",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "tyyp",
+   "label_et": "Tüüp",
+   "unit": ""
+  }
+ ]
+}

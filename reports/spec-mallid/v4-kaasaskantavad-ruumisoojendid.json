@@ -1,0 +1,42 @@
+{
+ "l3": "v4-kaasaskantavad-ruumisoojendid",
+ "name": "Kaasaskantavad ruumisoojendid",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Soojusväljund",
+   "unit": "W",
+   "unit_orig": "kW"
+  },
+  {
+   "key": "maht",
+   "label_et": "Paagitüüp",
+   "unit": "L"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "kuumutus_pindala",
+   "label_et": "Soojustatud ruumi maht",
+   "unit": "m³"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "kusimisaeg",
+   "label_et": "Tööaeg paagiga",
+   "unit": "h"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Konstruktsioon",
+   "unit": ""
+  }
+ ]
+}

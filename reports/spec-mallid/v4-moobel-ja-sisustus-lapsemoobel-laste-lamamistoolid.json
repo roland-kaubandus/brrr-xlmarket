@@ -1,0 +1,41 @@
+{
+ "l3": "v4-moobel-ja-sisustus-lapsemoobel-laste-lamamistoolid",
+ "name": "Laste lamamistoolid",
+ "fields": [
+  {
+   "key": "koormus_max",
+   "label_et": "Maksimaalne koormus",
+   "unit": "kg"
+  },
+  {
+   "key": "seljatugi_nurk_min",
+   "label_et": "Seljatugi minimaalne nurk",
+   "unit": "°"
+  },
+  {
+   "key": "seljatugi_nurk_max",
+   "label_et": "Seljatugi maksimaalne nurk",
+   "unit": "°"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Istme materjal",
+   "unit": ""
+  },
+  {
+   "key": "koonuse_arv",
+   "label_et": "Koonuste arv",
+   "unit": "tk"
+  },
+  {
+   "key": "taskute_arv",
+   "label_et": "Taskute arv",
+   "unit": "tk"
+  },
+  {
+   "key": "laius",
+   "label_et": "Istme laius (101°-127° asendis)",
+   "unit": "cm"
+  }
+ ]
+}

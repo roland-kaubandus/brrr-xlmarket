@@ -1,0 +1,36 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-puuri-ja-kruvikeerajaotsikute-komplektid",
+ "name": "Puuri- ja kruvikeerajaotsikute komplektid",
+ "fields": [
+  {
+   "key": "kogus",
+   "label_et": "Komplekti kogus (tk)",
+   "unit": "pcs"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kogumass",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Otsikute materjal",
+   "unit": ""
+  },
+  {
+   "key": "kasta_maht",
+   "label_et": "Kasti maht (L×W×H)",
+   "unit": "mm"
+  },
+  {
+   "key": "yhilduvus",
+   "label_et": "Ühilduvus (puuri tüüp)",
+   "unit": ""
+  },
+  {
+   "key": "rakendused",
+   "label_et": "Rakendused",
+   "unit": ""
+  }
+ ]
+}

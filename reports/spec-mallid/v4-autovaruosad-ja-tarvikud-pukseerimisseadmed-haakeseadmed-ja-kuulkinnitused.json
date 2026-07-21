@@ -1,0 +1,41 @@
+{
+ "l3": "v4-autovaruosad-ja-tarvikud-pukseerimisseadmed-haakeseadmed-ja-kuulkinnitused",
+ "name": "Haakeseadmed ja kuulkinnitused",
+ "fields": [
+  {
+   "key": "max_towing_capacity_kg",
+   "label_et": "Maksimaalne veotakistus",
+   "unit": "kg"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Toote kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "hitch_ball_size_mm",
+   "label_et": "Haakesilmuse suurus",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "receiver_opening_size_mm",
+   "label_et": "Vastuvõtja ava suurus",
+   "unit": "mm"
+  },
+  {
+   "key": "tongue_weight_capacity_kg",
+   "label_et": "Keele koormuse mahtuvus",
+   "unit": "kg"
+  },
+  {
+   "key": "drop_rise_mm",
+   "label_et": "Languse/tõusu reguleerimise ulatus",
+   "unit": "mm"
+  }
+ ]
+}

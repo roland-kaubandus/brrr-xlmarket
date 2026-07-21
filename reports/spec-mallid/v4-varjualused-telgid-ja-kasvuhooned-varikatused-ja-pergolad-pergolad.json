@@ -1,0 +1,41 @@
+{
+ "l3": "v4-varjualused-telgid-ja-kasvuhooned-varikatused-ja-pergolad-pergolad",
+ "name": "Pergolad",
+ "fields": [
+  {
+   "key": "pikkus_m",
+   "label_et": "Pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "laius_m",
+   "label_et": "Laius",
+   "unit": "m"
+  },
+  {
+   "key": "korgus_m",
+   "label_et": "Kõrgus",
+   "unit": "m"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "uv_kaitse",
+   "label_et": "UV-kaitse",
+   "unit": "UPF"
+  },
+  {
+   "key": "varjutamissusteemi_tyyp",
+   "label_et": "Varjutamissüsteemi tüüp",
+   "unit": ""
+  }
+ ]
+}

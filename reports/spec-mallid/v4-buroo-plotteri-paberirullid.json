@@ -1,0 +1,36 @@
+{
+ "l3": "v4-buroo-plotteri-paberirullid",
+ "name": "Plotteri paberirullid",
+ "fields": [
+  {
+   "key": "laius_mm",
+   "label_et": "Rulli laius",
+   "unit": "mm"
+  },
+  {
+   "key": "pikkus_m",
+   "label_et": "Rulli pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "grammaaz",
+   "label_et": "Paberikaal",
+   "unit": "g/m²"
+  },
+  {
+   "key": "tuuma_labamoot_mm",
+   "label_et": "Tuuma läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "kogus_pakis",
+   "label_et": "Rulle pakis",
+   "unit": "tk"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Paberitüüp",
+   "unit": ""
+  }
+ ]
+}

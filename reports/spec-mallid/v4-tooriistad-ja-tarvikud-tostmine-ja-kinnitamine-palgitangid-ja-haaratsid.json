@@ -1,0 +1,36 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine-palgitangid-ja-haaratsid",
+ "name": "Palgitangid ja -haaratsid",
+ "fields": [
+  {
+   "key": "maksimaalne_koormus_kg",
+   "label_et": "Maksimaalne koormus",
+   "unit": "kg"
+  },
+  {
+   "key": "haarde_suurus_mm",
+   "label_et": "Haarde suurus",
+   "unit": "mm"
+  },
+  {
+   "key": "maksimaalne_avanemissuurus_mm",
+   "label_et": "Maksimaalne avanemissuurus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Toote kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": "tüüp"
+  },
+  {
+   "key": "torgamise_viis",
+   "label_et": "Torgamise viis",
+   "unit": "tüüp"
+  }
+ ]
+}

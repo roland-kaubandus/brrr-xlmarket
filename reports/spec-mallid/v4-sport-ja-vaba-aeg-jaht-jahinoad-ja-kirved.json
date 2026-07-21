@@ -1,0 +1,41 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-jaht-jahinoad-ja-kirved",
+ "name": "Jahinoad ja -kirved",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kogukaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": "tekst"
+  },
+  {
+   "key": "terase_tyyp",
+   "label_et": "Terase tüüp",
+   "unit": "tekst"
+  },
+  {
+   "key": "pikkus",
+   "label_et": "Pikkus (kirvespea)",
+   "unit": "mm"
+  },
+  {
+   "key": "laius",
+   "label_et": "Laius (kirvespea)",
+   "unit": "mm"
+  },
+  {
+   "key": "komplekti_osad",
+   "label_et": "Komplekti osad",
+   "unit": "tk"
+  },
+  {
+   "key": "kaitsmete_olemasolu",
+   "label_et": "Kaitsmete olemasolu",
+   "unit": "jah/ei"
+  }
+ ]
+}

@@ -1,0 +1,46 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-tookoja-sisustus-toolauad",
+ "name": "Töölauad",
+ "fields": [
+  {
+   "key": "pindala_mm2",
+   "label_et": "Töölaua pindala",
+   "unit": "mm²"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Toote kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "kandevõime",
+   "label_et": "Maksimaalne kandevõime",
+   "unit": "kg"
+  },
+  {
+   "key": "kõrguse_reguleerimise_vahemik",
+   "label_et": "Kõrguse reguleerimise vahemik",
+   "unit": "cm"
+  },
+  {
+   "key": "tööpinna_materjal",
+   "label_et": "Tööpinna materjal",
+   "unit": "materjal"
+  },
+  {
+   "key": "tööpinna_paksus",
+   "label_et": "Tööpinna paksus",
+   "unit": "mm"
+  },
+  {
+   "key": "kastid_ja_hoiukoht",
+   "label_et": "Kastid ja hoiukoht",
+   "unit": "arv"
+  },
+  {
+   "key": "elektrisokli_olemasolu",
+   "label_et": "Elektrisokkel/võimsuse juurdepääs",
+   "unit": "jah/ei"
+  }
+ ]
+}

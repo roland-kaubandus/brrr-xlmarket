@@ -1,0 +1,46 @@
+{
+ "l3": "v4-garaaziseadmed-tungrauad-varba-ja-pikktungrauad",
+ "name": "Varba- ja pikktungrauad",
+ "fields": [
+  {
+   "key": "tootmisvõimsus_tonni",
+   "label_et": "Tõstevõimsus (tonnides)",
+   "unit": "t"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "min_tostekorgus",
+   "label_et": "Minimaalne tõstekõrgus",
+   "unit": "cm"
+  },
+  {
+   "key": "max_tostekorgus",
+   "label_et": "Maksimaalne tõstekõrgus",
+   "unit": "cm"
+  },
+  {
+   "key": "tostekorguse_vahemik",
+   "label_et": "Tõstekõrguse vahemik",
+   "unit": "cm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "pump_tyyp",
+   "label_et": "Pumba tüüp",
+   "unit": ""
+  },
+  {
+   "key": "alus_tyyp",
+   "label_et": "Aluse tüüp",
+   "unit": ""
+  }
+ ]
+}

@@ -1,0 +1,36 @@
+{
+ "l3": "v4-autovaruosad-ja-tarvikud-haagissuvila-ja-matkatarvikud-koetavad-voolikud",
+ "name": "Köetavad voolikud",
+ "fields": [
+  {
+   "key": "pikkus",
+   "label_et": "Pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "sisemine_diameet",
+   "label_et": "Sisemise diameetri (ID)",
+   "unit": "inch"
+  },
+  {
+   "key": "min_temp",
+   "label_et": "Minimaalne töötemperatuur",
+   "unit": "°C"
+  },
+  {
+   "key": "pinna_tyyp",
+   "label_et": "Pinna tüüp",
+   "unit": ""
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  }
+ ]
+}

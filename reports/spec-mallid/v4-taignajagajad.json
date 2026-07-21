@@ -1,0 +1,41 @@
+{
+ "l3": "v4-taignajagajad",
+ "name": "Taignajagajad",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "poorlemiskiirus",
+   "label_et": "Pöörlemiskiirus",
+   "unit": "RPM"
+  },
+  {
+   "key": "taigu_portsioonide_arv",
+   "label_et": "Taigu portsioonide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "taigu_portsioon_mass",
+   "label_et": "Taigu portsioon (min-max)",
+   "unit": "g"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "juhtimisviis",
+   "label_et": "Juhtimisviis",
+   "unit": ""
+  }
+ ]
+}

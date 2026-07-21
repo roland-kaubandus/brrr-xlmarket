@@ -1,0 +1,47 @@
+{
+ "l3": "v4-peoinventar-peotelgid",
+ "name": "Peotelgid",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Puhuri võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "ohuvool",
+   "label_et": "Puhuri õhuvoolu maht",
+   "unit": "L/min",
+   "unit_orig": "m³/h"
+  },
+  {
+   "key": "poorlemiskiirus",
+   "label_et": "Puhuri pöörlemiskiirus",
+   "unit": "RPM"
+  },
+  {
+   "key": "pikkus",
+   "label_et": "Telgi pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "laius",
+   "label_et": "Telgi laius",
+   "unit": "m"
+  },
+  {
+   "key": "korgus",
+   "label_et": "Telgi kõrgus",
+   "unit": "m"
+  },
+  {
+   "key": "pind_ala",
+   "label_et": "Soovitatud katteala",
+   "unit": "sq ft"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  }
+ ]
+}

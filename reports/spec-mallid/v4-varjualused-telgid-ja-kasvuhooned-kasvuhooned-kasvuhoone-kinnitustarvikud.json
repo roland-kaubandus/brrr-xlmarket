@@ -1,0 +1,36 @@
+{
+ "l3": "v4-varjualused-telgid-ja-kasvuhooned-kasvuhooned-kasvuhoone-kinnitustarvikud",
+ "name": "Kasvuhoone kinnitustarvikud",
+ "fields": [
+  {
+   "key": "kogus",
+   "label_et": "Komplektis olevate osade arv",
+   "unit": "tk"
+  },
+  {
+   "key": "kanali_pikkus",
+   "label_et": "U-kanali pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "kanali_laius",
+   "label_et": "U-kanali laius",
+   "unit": "cm"
+  },
+  {
+   "key": "kanali_paksus",
+   "label_et": "U-kanali paksus",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Kanali materjal",
+   "unit": ""
+  },
+  {
+   "key": "traat_materjal",
+   "label_et": "Vedrupirni materjal",
+   "unit": ""
+  }
+ ]
+}

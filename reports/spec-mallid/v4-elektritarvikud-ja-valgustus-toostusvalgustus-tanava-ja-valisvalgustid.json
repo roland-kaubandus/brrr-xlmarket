@@ -1,0 +1,46 @@
+{
+ "l3": "v4-elektritarvikud-ja-valgustus-toostusvalgustus-tanava-ja-valisvalgustid",
+ "name": "Tänava- ja välisvalgustid",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "valgusvoog",
+   "label_et": "Valgusvoog",
+   "unit": "lm"
+  },
+  {
+   "key": "aku_maht",
+   "label_et": "Aku mahtuvus",
+   "unit": "Wh"
+  },
+  {
+   "key": "maarimine",
+   "label_et": "Kaitseklass",
+   "unit": "IP"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Peamaterjalid",
+   "unit": ""
+  },
+  {
+   "key": "varbapikkus",
+   "label_et": "Varba/postpikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "valgusvarja_temp",
+   "label_et": "Värvitemperatuur",
+   "unit": "K"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  }
+ ]
+}

@@ -1,0 +1,46 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-elektrilised-tooriistad-kuumaohu-keevituspustolid",
+ "name": "Kuumaõhu-keevituspüstolid",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "ohuvool",
+   "label_et": "Õhuvool",
+   "unit": "L/min"
+  },
+  {
+   "key": "tuulekiirus",
+   "label_et": "Tuulekiirus",
+   "unit": "m/s"
+  },
+  {
+   "key": "max_temp",
+   "label_et": "Maksimaalne temperatuur",
+   "unit": "°C"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "myra",
+   "label_et": "Müra",
+   "unit": "dB"
+  },
+  {
+   "key": "aksessuaarid",
+   "label_et": "Aksessuaaride arv",
+   "unit": "tk"
+  }
+ ]
+}

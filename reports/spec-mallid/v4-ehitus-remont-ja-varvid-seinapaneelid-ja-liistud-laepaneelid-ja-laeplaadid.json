@@ -1,0 +1,41 @@
+{
+ "l3": "v4-ehitus-remont-ja-varvid-seinapaneelid-ja-liistud-laepaneelid-ja-laeplaadid",
+ "name": "Laepaneelid ja laeplaadid",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kogukaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "plaadi_suurus",
+   "label_et": "Plaadi suurus",
+   "unit": "mm"
+  },
+  {
+   "key": "paksus",
+   "label_et": "Plaadi paksus",
+   "unit": "mm"
+  },
+  {
+   "key": "kogus",
+   "label_et": "Kogus pakis",
+   "unit": "tk"
+  },
+  {
+   "key": "tule_klass",
+   "label_et": "Tuleklassifikatsioon",
+   "unit": ""
+  },
+  {
+   "key": "tihedus",
+   "label_et": "Tihedus",
+   "unit": "g/cm³"
+  }
+ ]
+}

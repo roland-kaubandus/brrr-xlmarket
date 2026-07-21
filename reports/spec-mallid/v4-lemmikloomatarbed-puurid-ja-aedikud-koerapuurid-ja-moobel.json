@@ -1,0 +1,46 @@
+{
+ "l3": "v4-lemmikloomatarbed-puurid-ja-aedikud-koerapuurid-ja-moobel",
+ "name": "Koerapuurid ja -mööbel",
+ "fields": [
+  {
+   "key": "pikkus_cm",
+   "label_et": "Pikkus",
+   "unit": "cm"
+  },
+  {
+   "key": "laius_cm",
+   "label_et": "Laius",
+   "unit": "cm"
+  },
+  {
+   "key": "korgus_cm",
+   "label_et": "Kõrgus",
+   "unit": "cm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "koormusvoimekus_kg",
+   "label_et": "Koormusvoimekus",
+   "unit": "kg"
+  },
+  {
+   "key": "uste_arv",
+   "label_et": "Uste arv",
+   "unit": "tk"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "koera_arv",
+   "label_et": "Sobib koerte arvule",
+   "unit": "tk"
+  }
+ ]
+}

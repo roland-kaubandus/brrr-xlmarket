@@ -1,0 +1,41 @@
+{
+ "l3": "v4-aed-ja-aiatehnika-l3-astmekivid-ja-sillutusplaadid",
+ "name": "Astmekivid ja sillutusplaadid",
+ "fields": [
+  {
+   "key": "kogus",
+   "label_et": "Astmekivide arv komplektis",
+   "unit": "tk"
+  },
+  {
+   "key": "plaadi_suurus",
+   "label_et": "Plaadi mõõtmed (pikkus × laius)",
+   "unit": "mm"
+  },
+  {
+   "key": "plaadi_paksus",
+   "label_et": "Plaadi paksus",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "varv",
+   "label_et": "Värvus",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kogukaal",
+   "unit": "kg"
+  },
+  {
+   "key": "pinnakatte_tyyp",
+   "label_et": "Pinnakatete tüüp",
+   "unit": ""
+  }
+ ]
+}

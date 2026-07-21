@@ -1,0 +1,46 @@
+{
+ "l3": "v4-suurkoogiseadmed-koogitarvikud-ja-noud-kokteili-ja-baaritarvikud",
+ "name": "Kokteili- ja baaritarvikud",
+ "fields": [
+  {
+   "key": "komplekti_osade_arv",
+   "label_et": "Komplekti osade arv",
+   "unit": "tk"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "shaakerityyp",
+   "label_et": "Shakerityyp",
+   "unit": ""
+  },
+  {
+   "key": "alus_tyyp",
+   "label_et": "Aluse tüüp",
+   "unit": ""
+  },
+  {
+   "key": "aluse_varv",
+   "label_et": "Aluse värv",
+   "unit": ""
+  },
+  {
+   "key": "shakerite_varv",
+   "label_et": "Shakerite värv",
+   "unit": ""
+  },
+  {
+   "key": "kogu_pikkus",
+   "label_et": "Kogu pikkus",
+   "unit": "mm"
+  }
+ ]
+}

@@ -1,0 +1,46 @@
+{
+ "l3": "v4-meditsiin-ja-liikumisabi-liikumisabi-trepironimisabivahendid",
+ "name": "Trepironimisabivahendid",
+ "fields": [
+  {
+   "key": "kandevõime",
+   "label_et": "Kandevõime",
+   "unit": "kg"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Toote kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "istme_laius",
+   "label_et": "Istme laius",
+   "unit": "mm"
+  },
+  {
+   "key": "istme_sügavus",
+   "label_et": "Istme sügavus",
+   "unit": "mm"
+  },
+  {
+   "key": "kõrgus_lahtivolditult",
+   "label_et": "Kõrgus lahtivolditult",
+   "unit": "mm"
+  },
+  {
+   "key": "rattad",
+   "label_et": "Rattade arv",
+   "unit": "tk"
+  },
+  {
+   "key": "kokkuvolditav",
+   "label_et": "Kokkuvolditav",
+   "unit": ""
+  }
+ ]
+}

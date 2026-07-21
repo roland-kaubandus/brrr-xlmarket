@@ -1,0 +1,41 @@
+{
+ "l3": "v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-tekid",
+ "name": "Tekid",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "labamoot_laius",
+   "label_et": "Laius",
+   "unit": "mm"
+  },
+  {
+   "key": "labamoot_pikkus",
+   "label_et": "Pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "soovitatud_kehakaal_min",
+   "label_et": "Soovitatud kehakaal (min)",
+   "unit": "kg"
+  },
+  {
+   "key": "soovitatud_kehakaal_max",
+   "label_et": "Soovitatud kehakaal (max)",
+   "unit": "kg"
+  },
+  {
+   "key": "taidise_tyyp",
+   "label_et": "Täidise tüüp",
+   "unit": ""
+  }
+ ]
+}

@@ -1,0 +1,41 @@
+{
+ "l3": "v4-santehnika-kute-ja-ventilatsioon-dusipingid-ja-istmed",
+ "name": "Dušipingid ja -istmed",
+ "fields": [
+  {
+   "key": "koormus_pb",
+   "label_et": "Kandevõime",
+   "unit": "kg"
+  },
+  {
+   "key": "pikkus_cm",
+   "label_et": "Pikkus",
+   "unit": "cm"
+  },
+  {
+   "key": "laius_cm",
+   "label_et": "Laius",
+   "unit": "cm"
+  },
+  {
+   "key": "korgus_cm",
+   "label_et": "Kõrgus",
+   "unit": "cm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "veetihedus",
+   "label_et": "Veetihedus",
+   "unit": ""
+  }
+ ]
+}

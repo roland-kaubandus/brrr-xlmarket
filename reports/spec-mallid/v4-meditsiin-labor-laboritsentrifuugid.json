@@ -1,0 +1,36 @@
+{
+ "l3": "v4-meditsiin-labor-laboritsentrifuugid",
+ "name": "Laboritsentrifuugid",
+ "fields": [
+  {
+   "key": "poorlemiskiirus",
+   "label_et": "Poorlemiskiirus (RPM)",
+   "unit": "RPM"
+  },
+  {
+   "key": "rcf_max",
+   "label_et": "Maksimaalne tsentrifuugimisala (RCF)",
+   "unit": "xg"
+  },
+  {
+   "key": "tooru_maht",
+   "label_et": "Torude mahutavus",
+   "unit": "ml"
+  },
+  {
+   "key": "myra",
+   "label_et": "Müra tase",
+   "unit": "dB"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  }
+ ]
+}

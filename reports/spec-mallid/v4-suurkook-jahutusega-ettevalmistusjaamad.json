@@ -1,0 +1,46 @@
+{
+ "l3": "v4-suurkook-jahutusega-ettevalmistusjaamad",
+ "name": "Jahutusega ettevalmistusjaamad",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Kaitseklaasi materjal",
+   "unit": ""
+  },
+  {
+   "key": "pikkus_mm",
+   "label_et": "Pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "laius_mm",
+   "label_et": "Laius",
+   "unit": "mm"
+  },
+  {
+   "key": "korgus_mm",
+   "label_et": "Kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "panide_maht",
+   "label_et": "Panide arv ja suurus",
+   "unit": ""
+  },
+  {
+   "key": "temperatuurivahemik",
+   "label_et": "Temperatuurivahemik",
+   "unit": "°C"
+  }
+ ]
+}

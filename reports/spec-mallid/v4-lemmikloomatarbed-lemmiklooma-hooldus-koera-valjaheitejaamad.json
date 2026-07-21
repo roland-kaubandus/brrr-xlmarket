@@ -1,0 +1,36 @@
+{
+ "l3": "v4-lemmikloomatarbed-lemmiklooma-hooldus-koera-valjaheitejaamad",
+ "name": "Koera väljaheitejaamad",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Prügikonteineeri maht",
+   "unit": "L"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Toote kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "korgus",
+   "label_et": "Kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Peamine materjal",
+   "unit": ""
+  },
+  {
+   "key": "kottide_arv",
+   "label_et": "Kaasas olevate kotide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "paigaldamise_viisid",
+   "label_et": "Paigaldamise viisid",
+   "unit": ""
+  }
+ ]
+}

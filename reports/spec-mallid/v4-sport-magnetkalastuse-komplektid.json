@@ -1,0 +1,41 @@
+{
+ "l3": "v4-sport-magnetkalastuse-komplektid",
+ "name": "Magnetkalastuse komplektid",
+ "fields": [
+  {
+   "key": "magnetiline_joud_kg",
+   "label_et": "Magnetiline jõud",
+   "unit": "kg"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "magneti_diameetr_mm",
+   "label_et": "Magneti läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "pöördkülg_tüüp",
+   "label_et": "Pöördkülg",
+   "unit": "tüüp"
+  },
+  {
+   "key": "köie_pikkus_m",
+   "label_et": "Köie pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "köie_diameetr_mm",
+   "label_et": "Köie läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "komplekt_tüüp",
+   "label_et": "Komplekti tüüp",
+   "unit": "tüüp"
+  }
+ ]
+}

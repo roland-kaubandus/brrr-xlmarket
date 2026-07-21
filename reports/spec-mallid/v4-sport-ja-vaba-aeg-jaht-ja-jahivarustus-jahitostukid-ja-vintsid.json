@@ -1,0 +1,41 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-jaht-ja-jahivarustus-jahitostukid-ja-vintsid",
+ "name": "Jahitõstukid ja -vintsid",
+ "fields": [
+  {
+   "key": "kandevõime_kg",
+   "label_et": "Kandevõime",
+   "unit": "kg"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Omakaalu",
+   "unit": "kg"
+  },
+  {
+   "key": "paigaldamistüüp",
+   "label_et": "Paigaldamistüüp",
+   "unit": ""
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "pöördenurk",
+   "label_et": "Pöördenurk",
+   "unit": "°"
+  },
+  {
+   "key": "kõrgus_mm",
+   "label_et": "Mõõtmed (pikkus x laius x kõrgus)",
+   "unit": "mm"
+  },
+  {
+   "key": "käsijõuks",
+   "label_et": "Käsitsi käitatav",
+   "unit": ""
+  }
+ ]
+}

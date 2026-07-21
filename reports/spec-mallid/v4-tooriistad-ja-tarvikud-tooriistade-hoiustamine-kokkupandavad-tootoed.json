@@ -1,0 +1,36 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-tooriistade-hoiustamine-kokkupandavad-tootoed",
+ "name": "Kokkupandavad töötoed",
+ "fields": [
+  {
+   "key": "koormus_maht",
+   "label_et": "Kandevõime",
+   "unit": "kg"
+  },
+  {
+   "key": "pind_pikkus",
+   "label_et": "Tööpinna pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "pind_laius",
+   "label_et": "Tööpinna laius",
+   "unit": "mm"
+  },
+  {
+   "key": "toed_arv",
+   "label_et": "Tugijalgade arv",
+   "unit": "tk"
+  },
+  {
+   "key": "korgusereguleering",
+   "label_et": "Kõrguse reguleerimine",
+   "unit": "tasemed"
+  },
+  {
+   "key": "tootob_korgus",
+   "label_et": "Töötasandi kõrgus",
+   "unit": "mm"
+  }
+ ]
+}

@@ -1,0 +1,46 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine-kinnituskettid",
+ "name": "Kinnituskettid",
+ "fields": [
+  {
+   "key": "keti_labimaoot_mm",
+   "label_et": "Keti läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "keti_pikkus_m",
+   "label_et": "Keti pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "turvaline_koormus_kg",
+   "label_et": "Turvaline töökoormus",
+   "unit": "kg"
+  },
+  {
+   "key": "murde_koormus_kg",
+   "label_et": "Murde koormus",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "maarimine",
+   "label_et": "Pindkatte liik",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "kinnituse_tyyp",
+   "label_et": "Kinnituse tüüp",
+   "unit": ""
+  }
+ ]
+}

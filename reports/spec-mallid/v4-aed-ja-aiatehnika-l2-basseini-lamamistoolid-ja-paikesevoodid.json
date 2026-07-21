@@ -1,0 +1,46 @@
+{
+ "l3": "v4-aed-ja-aiatehnika-l2-basseini-lamamistoolid-ja-paikesevoodid",
+ "name": "Basseini lamamistoolid ja päikesevoodid",
+ "fields": [
+  {
+   "key": "koormus_maht",
+   "label_et": "Maksimaalne koormus",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "pikkus",
+   "label_et": "Pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "laius",
+   "label_et": "Laius",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "ujuvus_tyyp",
+   "label_et": "Ujuvuse tüüp",
+   "unit": ""
+  },
+  {
+   "key": "isikute_arv",
+   "label_et": "Isikute arv",
+   "unit": ""
+  },
+  {
+   "key": "uv_kaitse",
+   "label_et": "UV kaitse",
+   "unit": ""
+  }
+ ]
+}

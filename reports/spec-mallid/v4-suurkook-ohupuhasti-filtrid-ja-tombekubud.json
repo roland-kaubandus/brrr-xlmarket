@@ -1,0 +1,41 @@
+{
+ "l3": "v4-suurkook-ohupuhasti-filtrid-ja-tombekubud",
+ "name": "Tõmbekubud",
+ "fields": [
+  {
+   "key": "pikkus",
+   "label_et": "Kapuutsina pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "filtri_arv",
+   "label_et": "Eemaldutatavate filtrite arv",
+   "unit": "tk"
+  },
+  {
+   "key": "filtri_laius",
+   "label_et": "Filtri maksimaalne laius",
+   "unit": "mm"
+  },
+  {
+   "key": "korgus",
+   "label_et": "Kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "syvus",
+   "label_et": "Sügavus",
+   "unit": "mm"
+  }
+ ]
+}

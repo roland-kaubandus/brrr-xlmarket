@@ -1,0 +1,41 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-turva-ja-objektivarustus-lekke-ja-uleujutustorje",
+ "name": "Lekke- ja üleujutustõrje",
+ "fields": [
+  {
+   "key": "pikkus_cm",
+   "label_et": "Pikkus",
+   "unit": "cm"
+  },
+  {
+   "key": "korgus_cm",
+   "label_et": "Kõrgus",
+   "unit": "cm"
+  },
+  {
+   "key": "maht",
+   "label_et": "Veemaht",
+   "unit": "L"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Netokaalu",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kogus_pakis",
+   "label_et": "Kogus paketis",
+   "unit": "tk"
+  },
+  {
+   "key": "imamisvolimekus",
+   "label_et": "Imamisvõimsus",
+   "unit": "kordne"
+  }
+ ]
+}

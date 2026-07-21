@@ -1,0 +1,41 @@
+{
+ "l3": "v4-varjualused-telgid-ja-kasvuhooned-markiisid-kulgekraanid-ja-kulgseinad",
+ "name": "Külgekraanid ja külgseinad",
+ "fields": [
+  {
+   "key": "laius_cm",
+   "label_et": "Laiusega (cm)",
+   "unit": "cm"
+  },
+  {
+   "key": "korgus_cm",
+   "label_et": "Kõrgusega (cm)",
+   "unit": "cm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Raam materjal",
+   "unit": ""
+  },
+  {
+   "key": "kangasmass",
+   "label_et": "Kangas kaal (g/m²)",
+   "unit": "g/m²"
+  },
+  {
+   "key": "kange_materjal",
+   "label_et": "Kangas materjal",
+   "unit": ""
+  },
+  {
+   "key": "vari_klass",
+   "label_et": "UV kaitse",
+   "unit": ""
+  },
+  {
+   "key": "vari",
+   "label_et": "Värvus",
+   "unit": ""
+  }
+ ]
+}

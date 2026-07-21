@@ -1,0 +1,46 @@
+{
+ "l3": "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-vannitoavalamud",
+ "name": "Vannitoavalamud",
+ "fields": [
+  {
+   "key": "pikkus",
+   "label_et": "Pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "laius",
+   "label_et": "Laius",
+   "unit": "mm"
+  },
+  {
+   "key": "korgus",
+   "label_et": "Kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "paigaldamise_tyyp",
+   "label_et": "Paigaldamise tüüp",
+   "unit": ""
+  },
+  {
+   "key": "kraaniauke",
+   "label_et": "Kraaniaugud (tk)",
+   "unit": "tk"
+  },
+  {
+   "key": "min_korgus",
+   "label_et": "Miinimumkõrgus",
+   "unit": "mm"
+  }
+ ]
+}

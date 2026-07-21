@@ -1,0 +1,41 @@
+{
+ "l3": "v4-suurkoogiseadmed-toitlustusaknad-ja-toiduveoki-tarvikud-toiduveoki-teenindusaknad",
+ "name": "Toiduveoki teenindusaknad",
+ "fields": [
+  {
+   "key": "avaamissuurus_pikkus_mm",
+   "label_et": "Avamise suurus pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "avaamissuurus_laius_mm",
+   "label_et": "Avamise suurus laius",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "sügavus_mm",
+   "label_et": "Sügavus",
+   "unit": "mm"
+  },
+  {
+   "key": "avamise_nurk_max",
+   "label_et": "Maksimaalse avamise nurk",
+   "unit": "°"
+  },
+  {
+   "key": "liuguaknete_arv",
+   "label_et": "Liuguaknete arv",
+   "unit": "tk"
+  }
+ ]
+}

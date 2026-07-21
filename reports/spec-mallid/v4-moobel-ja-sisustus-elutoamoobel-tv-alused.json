@@ -1,0 +1,46 @@
+{
+ "l3": "v4-moobel-ja-sisustus-elutoamoobel-tv-alused",
+ "name": "TV-alused",
+ "fields": [
+  {
+   "key": "max_tv_size_inch",
+   "label_et": "Maksimaalse TV suurus",
+   "unit": "inch"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Toote kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "kandevõime_kg",
+   "label_et": "Kandevõime",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "voimsus",
+   "label_et": "Elektripesa võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "kõrgus_reguleeritav",
+   "label_et": "Kõrguse reguleeritavus",
+   "unit": "mm"
+  },
+  {
+   "key": "riulidemaarimine",
+   "label_et": "Riiulite arv",
+   "unit": ""
+  },
+  {
+   "key": "liikumisomadus",
+   "label_et": "Liikumisomadus",
+   "unit": ""
+  }
+ ]
+}

@@ -1,0 +1,41 @@
+{
+ "l3": "v4-riidekuivatusrestid",
+ "name": "Riidekuivatusrestid",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "kandevoimsus",
+   "label_et": "Kandevõimsus",
+   "unit": "kg"
+  },
+  {
+   "key": "koruste_arv",
+   "label_et": "Koruste arv",
+   "unit": "tk"
+  },
+  {
+   "key": "kuivatusvarrad",
+   "label_et": "Kuivatusvarrad",
+   "unit": "tk"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "korgusjusteeritavus",
+   "label_et": "Kõrgus reguleeritav",
+   "unit": ""
+  },
+  {
+   "key": "mahavolditavus",
+   "label_et": "Mahavolditav",
+   "unit": ""
+  }
+ ]
+}

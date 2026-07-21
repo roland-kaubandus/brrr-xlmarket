@@ -1,0 +1,41 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-jaht-ja-jahivarustus-vibumarklauad",
+ "name": "Vibumärklauad",
+ "fields": [
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "laius",
+   "label_et": "Laius",
+   "unit": "cm"
+  },
+  {
+   "key": "korgus",
+   "label_et": "Kõrgus",
+   "unit": "cm"
+  },
+  {
+   "key": "kihtide_arv",
+   "label_et": "Kihtide arv",
+   "unit": ""
+  },
+  {
+   "key": "kande_handle",
+   "label_et": "Kandekandel",
+   "unit": ""
+  },
+  {
+   "key": "iseparandav",
+   "label_et": "Iseparandav pind",
+   "unit": ""
+  }
+ ]
+}

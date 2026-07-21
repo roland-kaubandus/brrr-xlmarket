@@ -1,0 +1,46 @@
+{
+ "l3": "v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika-puhastuskaablid-ja-trossid",
+ "name": "Puhastuskaablid ja trossid",
+ "fields": [
+  {
+   "key": "pikkus_m",
+   "label_et": "Kaabli pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "kabel_diameter_mm",
+   "label_et": "Kaabli läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "toru_diameter_min_mm",
+   "label_et": "Sobiv toru minimaalne läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "toru_diameter_max_mm",
+   "label_et": "Sobiv toru maksimaalne läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "lõikurite_arv",
+   "label_et": "Kaasas olevate lõikurite arv",
+   "unit": "tk"
+  },
+  {
+   "key": "toitamise_tyyp",
+   "label_et": "Toitamise tüüp",
+   "unit": ""
+  }
+ ]
+}

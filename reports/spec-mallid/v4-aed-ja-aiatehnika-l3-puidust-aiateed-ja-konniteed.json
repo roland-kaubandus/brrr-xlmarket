@@ -1,0 +1,46 @@
+{
+ "l3": "v4-aed-ja-aiatehnika-l3-puidust-aiateed-ja-konniteed",
+ "name": "Puidust aiateed ja kõnniteed",
+ "fields": [
+  {
+   "key": "pikkus",
+   "label_et": "Pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "laius",
+   "label_et": "Laius",
+   "unit": "m"
+  },
+  {
+   "key": "paksus",
+   "label_et": "Paksus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kujundus",
+   "label_et": "Kujundus (sirge/kaarjas)",
+   "unit": ""
+  },
+  {
+   "key": "libisemiskindlus",
+   "label_et": "Libisemiskindlus",
+   "unit": ""
+  },
+  {
+   "key": "pind_pindala",
+   "label_et": "Kasutuspind",
+   "unit": "m²"
+  }
+ ]
+}

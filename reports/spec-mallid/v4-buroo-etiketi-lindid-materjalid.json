@@ -1,0 +1,46 @@
+{
+ "l3": "v4-buroo-etiketi-lindid-materjalid",
+ "name": "Etiketi-lindid ja -materjalid",
+ "fields": [
+  {
+   "key": "lint_laius_mm",
+   "label_et": "Lindi laius",
+   "unit": "mm"
+  },
+  {
+   "key": "lindi_pikkus_m",
+   "label_et": "Lindi pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "komplekti_kogus",
+   "label_et": "Lindide arv komplektis",
+   "unit": "tk"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "teksti_vari",
+   "label_et": "Teksti värv",
+   "unit": ""
+  },
+  {
+   "key": "foni_vari",
+   "label_et": "Foni värv",
+   "unit": ""
+  },
+  {
+   "key": "uehtus",
+   "label_et": "Veekindlus",
+   "unit": ""
+  },
+  {
+   "key": "uthilduvus",
+   "label_et": "Ühilduvus",
+   "unit": ""
+  }
+ ]
+}

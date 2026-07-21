@@ -1,0 +1,46 @@
+{
+ "l3": "v4-autovaruosad-ja-tarvikud-veoauto-tarvikud-kutusepaagid-ja-mahutid",
+ "name": "Kütusepaagid ja -mahutid",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Paagi maht",
+   "unit": "L"
+  },
+  {
+   "key": "vooluhulk",
+   "label_et": "Maksimaalne vooluhulk",
+   "unit": "L/min"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pumba pinge",
+   "unit": "V"
+  },
+  {
+   "key": "voimsus",
+   "label_et": "Pumba võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Paagi kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Paagi materjal",
+   "unit": ""
+  },
+  {
+   "key": "kütuse_tyyp",
+   "label_et": "Sobiv kütuse tüüp",
+   "unit": ""
+  },
+  {
+   "key": "slang_pikkus",
+   "label_et": "Tarnitava toru pikkus",
+   "unit": "m"
+  }
+ ]
+}

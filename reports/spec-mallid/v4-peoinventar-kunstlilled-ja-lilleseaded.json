@@ -1,0 +1,46 @@
+{
+ "l3": "v4-peoinventar-kunstlilled-ja-lilleseaded",
+ "name": "Kunstlilled ja lilleseaded",
+ "fields": [
+  {
+   "key": "kogus",
+   "label_et": "Lillede/komplektide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "lille_tip",
+   "label_et": "Lille tüüp",
+   "unit": ""
+  },
+  {
+   "key": "varv",
+   "label_et": "Värv",
+   "unit": ""
+  },
+  {
+   "key": "korgus",
+   "label_et": "Kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "diameetr",
+   "label_et": "Lille/komplekti läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "komplekti_tyyp",
+   "label_et": "Komplekti tüüp",
+   "unit": ""
+  }
+ ]
+}

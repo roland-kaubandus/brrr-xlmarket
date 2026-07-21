@@ -1,0 +1,36 @@
+{
+ "l3": "v4-autovaruosad-ja-tarvikud-autovaruosad-pidurikomplektid",
+ "name": "Pidurikomplektid",
+ "fields": [
+  {
+   "key": "ketta_labamoot",
+   "label_et": "Pidurdiski läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "ketta_paksus",
+   "label_et": "Pidurdiski paksus",
+   "unit": "mm"
+  },
+  {
+   "key": "padi_suurus",
+   "label_et": "Pidurpadi suurus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Komplekti kogukaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Pidurdiski materjal",
+   "unit": ""
+  },
+  {
+   "key": "sobivad_mudelid",
+   "label_et": "Sõiduki mudelid",
+   "unit": ""
+  }
+ ]
+}

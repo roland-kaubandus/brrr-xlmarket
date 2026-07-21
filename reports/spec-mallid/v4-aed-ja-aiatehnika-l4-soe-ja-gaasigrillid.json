@@ -1,0 +1,41 @@
+{
+ "l3": "v4-aed-ja-aiatehnika-l4-soe-ja-gaasigrillid",
+ "name": "Söe- ja gaasigrillid",
+ "fields": [
+  {
+   "key": "cooking_area",
+   "label_et": "Grillimispind",
+   "unit": "m²"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "grill_type",
+   "label_et": "Grill tüüp",
+   "unit": ""
+  },
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "temp_range",
+   "label_et": "Temperatuurivahemik",
+   "unit": "°C"
+  },
+  {
+   "key": "portable",
+   "label_et": "Kaasaskantav",
+   "unit": ""
+  }
+ ]
+}

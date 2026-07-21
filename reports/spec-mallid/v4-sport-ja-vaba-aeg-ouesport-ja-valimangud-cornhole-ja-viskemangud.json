@@ -1,0 +1,41 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-cornhole-ja-viskemangud",
+ "name": "Muru- ja õuemängud",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kogukaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "palli_diameet",
+   "label_et": "Palli läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "uksiku_palli_kaal",
+   "label_et": "Üksiku palli kaal",
+   "unit": "g"
+  },
+  {
+   "key": "laua_laius",
+   "label_et": "Laua laius",
+   "unit": "mm"
+  },
+  {
+   "key": "laua_pikkus",
+   "label_et": "Laua pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "varjestatud_suurus",
+   "label_et": "Voltitud suurus pikkus",
+   "unit": "mm"
+  }
+ ]
+}

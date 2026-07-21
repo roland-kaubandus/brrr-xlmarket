@@ -1,0 +1,41 @@
+{
+ "l3": "v4-elektritarvikud-ja-valgustus-serverikapid-raamid",
+ "name": "Serverikapid ja -raamid",
+ "fields": [
+  {
+   "key": "korgus_u",
+   "label_et": "Kõrgus (U ühikud)",
+   "unit": "U"
+  },
+  {
+   "key": "syvus_mm",
+   "label_et": "Sügavus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "max_koormus_kg",
+   "label_et": "Maksimaalne koormus",
+   "unit": "kg"
+  },
+  {
+   "key": "tyyp",
+   "label_et": "Tüüp",
+   "unit": "kategorija"
+  },
+  {
+   "key": "paigaldus",
+   "label_et": "Paigaldusviis",
+   "unit": "kategorija"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materaal",
+   "unit": "kategorija"
+  }
+ ]
+}

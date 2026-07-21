@@ -1,0 +1,41 @@
+{
+ "l3": "v4-aed-grillikatted",
+ "name": "Grillikatted",
+ "fields": [
+  {
+   "key": "pikkus_cm",
+   "label_et": "Pikkus",
+   "unit": "cm"
+  },
+  {
+   "key": "laius_cm",
+   "label_et": "Laius",
+   "unit": "cm"
+  },
+  {
+   "key": "korgus_cm",
+   "label_et": "Kõrgus",
+   "unit": "cm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "tugevdus_tyyp",
+   "label_et": "Tugevduse tüüp",
+   "unit": ""
+  },
+  {
+   "key": "veeimavus",
+   "label_et": "Veeimavus",
+   "unit": ""
+  }
+ ]
+}

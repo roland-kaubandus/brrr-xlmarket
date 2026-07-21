@@ -1,0 +1,46 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-suruohutooriistad-suruohuvoolikud-ja-poolid",
+ "name": "Suruõhuvoolikud ja -poolid",
+ "fields": [
+  {
+   "key": "hose_length",
+   "label_et": "Voolik pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "hose_diameter",
+   "label_et": "Voolik läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "rohk",
+   "label_et": "Maksimaalne tööpaine",
+   "unit": "bar"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Voolik materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "lead_in_length",
+   "label_et": "Sisseviidu pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "reel_type",
+   "label_et": "Poolide tüüp",
+   "unit": ""
+  },
+  {
+   "key": "swivel_bracket",
+   "label_et": "Keerduv kinnitus",
+   "unit": ""
+  }
+ ]
+}

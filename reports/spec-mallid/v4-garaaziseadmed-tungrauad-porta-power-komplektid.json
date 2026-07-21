@@ -1,0 +1,36 @@
+{
+ "l3": "v4-garaaziseadmed-tungrauad-porta-power-komplektid",
+ "name": "Porta power komplektid",
+ "fields": [
+  {
+   "key": "kandevoimsus_ton",
+   "label_et": "Kandevõimekus",
+   "unit": "ton"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "tõstekorgus",
+   "label_et": "Maksimaalne tõstekõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "olijohe_pikkus",
+   "label_et": "Õlijoohe pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "käepideme_pikkus",
+   "label_et": "Käepideme pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  }
+ ]
+}

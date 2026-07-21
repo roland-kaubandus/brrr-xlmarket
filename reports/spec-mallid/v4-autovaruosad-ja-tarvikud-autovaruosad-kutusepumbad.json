@@ -1,0 +1,42 @@
+{
+ "l3": "v4-autovaruosad-ja-tarvikud-autovaruosad-kutusepumbad",
+ "name": "Kütusepumbad",
+ "fields": [
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "ohuvool",
+   "label_et": "Tööstroom",
+   "unit": "L/min",
+   "unit_orig": "A"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Peamine materjal",
+   "unit": ""
+  },
+  {
+   "key": "silindrite_arv",
+   "label_et": "Mootori silindrite arv",
+   "unit": ""
+  },
+  {
+   "key": "silindri_maht",
+   "label_et": "Silindri maht",
+   "unit": "L"
+  },
+  {
+   "key": "uldmootmed",
+   "label_et": "Üldmõõtmed",
+   "unit": "mm"
+  }
+ ]
+}

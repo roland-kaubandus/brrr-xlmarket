@@ -1,0 +1,36 @@
+{
+ "l3": "v4-suurkook-co2-balloonid-ja-tarvikud",
+ "name": "CO2 balloonid ja tarvikud",
+ "fields": [
+  {
+   "key": "rohk",
+   "label_et": "Maksimaalne tööpinge",
+   "unit": "PSI"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Netokaal",
+   "unit": "kg"
+  },
+  {
+   "key": "maht",
+   "label_et": "Paagi maht",
+   "unit": "L"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "ühendus_tyyp",
+   "label_et": "Ühenduse standard",
+   "unit": ""
+  },
+  {
+   "key": "ohuklapp",
+   "label_et": "Ohuklapi väärtus",
+   "unit": "PSI"
+  }
+ ]
+}

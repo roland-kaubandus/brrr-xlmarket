@@ -1,0 +1,46 @@
+{
+ "l3": "v4-massaazilauad",
+ "name": "Massaažilauad",
+ "fields": [
+  {
+   "key": "laius_cm",
+   "label_et": "Laua laius",
+   "unit": "cm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "staatikakoormus",
+   "label_et": "Staatiline kandevõime",
+   "unit": "kg"
+  },
+  {
+   "key": "dynaamikakoormus",
+   "label_et": "Dünaamiline kandevõime",
+   "unit": "kg"
+  },
+  {
+   "key": "korguse_reguleerimise_vahemik",
+   "label_et": "Kõrguse reguleerimise vahemik",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Pinna materjal",
+   "unit": ""
+  },
+  {
+   "key": "voimsus",
+   "label_et": "Elektrimootorite võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "funktsioonid",
+   "label_et": "Spetsiaalfunktsioonid",
+   "unit": ""
+  }
+ ]
+}

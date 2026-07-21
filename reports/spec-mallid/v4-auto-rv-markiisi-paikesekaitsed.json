@@ -1,0 +1,41 @@
+{
+ "l3": "v4-auto-rv-markiisi-paikesekaitsed",
+ "name": "RV markiisi päikesekaitsed",
+ "fields": [
+  {
+   "key": "laius",
+   "label_et": "Markiisi laius",
+   "unit": "m"
+  },
+  {
+   "key": "pikkus",
+   "label_et": "Päikesekaitse pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "uv_kaitse",
+   "label_et": "UV-kaitse tase",
+   "unit": "UPF/UVA"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "omanik_haakering",
+   "label_et": "Omaniku markiisi suurus",
+   "unit": "m"
+  },
+  {
+   "key": "tihveld",
+   "label_et": "Tihveldite arv",
+   "unit": "tk"
+  }
+ ]
+}

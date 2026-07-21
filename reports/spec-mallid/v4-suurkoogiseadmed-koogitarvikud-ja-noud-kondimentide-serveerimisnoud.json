@@ -1,0 +1,46 @@
+{
+ "l3": "v4-suurkoogiseadmed-koogitarvikud-ja-noud-kondimentide-serveerimisnoud",
+ "name": "Kondimentide serveerimisnõud",
+ "fields": [
+  {
+   "key": "arv_kambrid",
+   "label_et": "Kambrite arv",
+   "unit": "tk"
+  },
+  {
+   "key": "maht",
+   "label_et": "Kogumahu (kambrid)",
+   "unit": "L"
+  },
+  {
+   "key": "jaa_maht",
+   "label_et": "Jää/jahutuse mahutavus",
+   "unit": "L"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "uliste_labamoot",
+   "label_et": "Välismõõt (pikk × lai × kõrg)",
+   "unit": "mm"
+  },
+  {
+   "key": "jahtumis_funktsioon",
+   "label_et": "Jahutus-/soojendamisfunktsioon",
+   "unit": ""
+  },
+  {
+   "key": "kaas_tyyp",
+   "label_et": "Kaane tüüp",
+   "unit": ""
+  }
+ ]
+}

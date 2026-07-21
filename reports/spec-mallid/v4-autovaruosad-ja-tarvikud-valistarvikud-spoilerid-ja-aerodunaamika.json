@@ -1,0 +1,41 @@
+{
+ "l3": "v4-autovaruosad-ja-tarvikud-valistarvikud-spoilerid-ja-aerodunaamika",
+ "name": "Spoilerid ja aerodünaamika",
+ "fields": [
+  {
+   "key": "pikkus_mm",
+   "label_et": "Pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "konstruktsioon",
+   "label_et": "Konstruktsioon",
+   "unit": ""
+  },
+  {
+   "key": "klambritevahekaugus_mm",
+   "label_et": "Klammrite vahekaugus",
+   "unit": "mm"
+  },
+  {
+   "key": "pindbehandlus",
+   "label_et": "Pindbehandlus",
+   "unit": ""
+  },
+  {
+   "key": "sobivus",
+   "label_et": "Autode sobivus",
+   "unit": ""
+  }
+ ]
+}

@@ -1,0 +1,41 @@
+{
+ "l3": "v4-autovaruosad-ja-tarvikud-autovaruosad-sidurikomplektid",
+ "name": "Sidurikomplektid",
+ "fields": [
+  {
+   "key": "ketta_labamoot",
+   "label_et": "Ketta läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "ketta_paksus",
+   "label_et": "Ketta paksus",
+   "unit": "mm"
+  },
+  {
+   "key": "katteseadme_labamoot",
+   "label_et": "Katteseadme läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "katteseadme_paksus",
+   "label_et": "Katteseadme paksus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "teenuse_kestus",
+   "label_et": "Teenuse kestus",
+   "unit": "km/aasta"
+  },
+  {
+   "key": "sobivus_mudelid",
+   "label_et": "Sobivus auto mudelid",
+   "unit": ""
+  }
+ ]
+}

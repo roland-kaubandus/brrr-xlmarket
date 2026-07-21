@@ -1,0 +1,36 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine-plaadikandjad-ja-klambrid",
+ "name": "Plaadikandjad ja -klambrid",
+ "fields": [
+  {
+   "key": "koormus_kandevõime_kg",
+   "label_et": "Ühe klambi kandevõime",
+   "unit": "kg"
+  },
+  {
+   "key": "paksus_vahemik_mm",
+   "label_et": "Plaadi paksuse vahemik",
+   "unit": "mm"
+  },
+  {
+   "key": "klampi_arv",
+   "label_et": "Klambite arv komplektis",
+   "unit": "tk"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Konstruktsioonmaterjal",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaalu (komplekt)",
+   "unit": "kg"
+  },
+  {
+   "key": "maarimine",
+   "label_et": "Kulumikaitse / maarimine",
+   "unit": ""
+  }
+ ]
+}

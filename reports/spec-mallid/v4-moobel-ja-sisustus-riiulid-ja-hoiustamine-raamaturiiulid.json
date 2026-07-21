@@ -1,0 +1,46 @@
+{
+ "l3": "v4-moobel-ja-sisustus-riiulid-ja-hoiustamine-raamaturiiulid",
+ "name": "Raamaturiiulid",
+ "fields": [
+  {
+   "key": "kõrgus_mm",
+   "label_et": "Kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "laius_mm",
+   "label_et": "Laius",
+   "unit": "mm"
+  },
+  {
+   "key": "sügavus_mm",
+   "label_et": "Sügavus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "riiumite_arv",
+   "label_et": "Riiumite arv",
+   "unit": "tk"
+  },
+  {
+   "key": "kandevõime_kiht",
+   "label_et": "Kandevõime (kihi kohta)",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "montaaz_tüüp",
+   "label_et": "Paigaldus",
+   "unit": ""
+  }
+ ]
+}

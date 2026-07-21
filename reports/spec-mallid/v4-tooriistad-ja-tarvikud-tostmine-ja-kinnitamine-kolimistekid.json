@@ -1,0 +1,36 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine-kolimistekid",
+ "name": "Kolimistekid",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Ühe tekki kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "kogus",
+   "label_et": "Komplekti kogus",
+   "unit": "tk"
+  },
+  {
+   "key": "pikkus",
+   "label_et": "Tekki pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "laius",
+   "label_et": "Tekki laius",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kihtide_arv",
+   "label_et": "Kihtide arv",
+   "unit": "tk"
+  }
+ ]
+}

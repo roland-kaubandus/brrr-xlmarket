@@ -1,0 +1,36 @@
+{
+ "l3": "v4-autovaruosad-ja-tarvikud-autovaruosad-generaatorid-alternaatorid",
+ "name": "Generaatorid (alternaatorid)",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Väljundvõimsus",
+   "unit": "W"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Nimipinge",
+   "unit": "V"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "mootori_maht",
+   "label_et": "Ühilduvate mootorite maht",
+   "unit": "L"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "pooli_tyyp",
+   "label_et": "Pooli tüüp",
+   "unit": ""
+  }
+ ]
+}

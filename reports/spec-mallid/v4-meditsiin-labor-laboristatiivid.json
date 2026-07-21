@@ -1,0 +1,41 @@
+{
+ "l3": "v4-meditsiin-labor-laboristatiivid",
+ "name": "Laboristatiivid",
+ "fields": [
+  {
+   "key": "korgus_cm",
+   "label_et": "Statiivi kõrgus",
+   "unit": "cm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "pohja_suurus_mm",
+   "label_et": "Aluse mõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "ringide_arv",
+   "label_et": "Retordringide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "max_kinnitus_diameter_mm",
+   "label_et": "Maksimaalne kinnituse läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "komplekti_kogus",
+   "label_et": "Komplektide arv",
+   "unit": "tk"
+  }
+ ]
+}

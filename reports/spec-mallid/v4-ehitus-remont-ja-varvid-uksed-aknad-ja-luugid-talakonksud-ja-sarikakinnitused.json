@@ -1,0 +1,36 @@
+{
+ "l3": "v4-ehitus-remont-ja-varvid-uksed-aknad-ja-luugid-talakonksud-ja-sarikakinnitused",
+ "name": "Talakonksud ja sarikakinnitused",
+ "fields": [
+  {
+   "key": "kits_kogus",
+   "label_et": "Komplekti kogus (tk)",
+   "unit": "pcs"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "seina_paksus",
+   "label_et": "Seina paksus",
+   "unit": "mm"
+  },
+  {
+   "key": "sisemised_mootmed",
+   "label_et": "Sisemised mõõtmed",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "viimistlus",
+   "label_et": "Viimistlus",
+   "unit": ""
+  }
+ ]
+}

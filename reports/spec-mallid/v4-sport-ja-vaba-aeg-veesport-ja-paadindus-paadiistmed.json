@@ -1,0 +1,41 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-veesport-ja-paadindus-paadiistmed",
+ "name": "Paadiistmed",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "seljatoetus_korgus",
+   "label_et": "Seljatoetuse kõrgus",
+   "unit": "cm"
+  },
+  {
+   "key": "istmekohtade_arv",
+   "label_et": "Istmekohtade arv",
+   "unit": "tk"
+  },
+  {
+   "key": "voltimisfunktsioon",
+   "label_et": "Voltimisfunktsioon",
+   "unit": ""
+  },
+  {
+   "key": "mootorsuse_sobituvus",
+   "label_et": "Mootorsuse sobituvus",
+   "unit": "tolli"
+  },
+  {
+   "key": "istme_pikkus",
+   "label_et": "Istme pikkus",
+   "unit": "cm"
+  }
+ ]
+}

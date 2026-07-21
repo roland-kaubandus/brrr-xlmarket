@@ -1,0 +1,41 @@
+{
+ "l3": "v4-ladu-prugikastialused",
+ "name": "Prügikastialused",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Toote kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "kandevõime",
+   "label_et": "Maksimaalne kandevõime",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "reguleeritav_suurus",
+   "label_et": "Reguleeritav suurus",
+   "unit": "mm"
+  },
+  {
+   "key": "sobivad_prügikastid",
+   "label_et": "Sobivad prügikastid",
+   "unit": "gal"
+  },
+  {
+   "key": "rataste_arv",
+   "label_et": "Rataste arv (lukustamisega)",
+   "unit": ""
+  },
+  {
+   "key": "kogus",
+   "label_et": "Pakendis olevate ühikute arv",
+   "unit": ""
+  }
+ ]
+}

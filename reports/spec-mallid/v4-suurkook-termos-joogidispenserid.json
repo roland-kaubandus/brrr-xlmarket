@@ -1,0 +1,41 @@
+{
+ "l3": "v4-suurkook-termos-joogidispenserid",
+ "name": "Termos-joogidispenserid",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Maht",
+   "unit": "L"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "isolatsioon_paksus",
+   "label_et": "Isolatsiooni paksus",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Sisemus materjal",
+   "unit": ""
+  },
+  {
+   "key": "ulismõõtmed",
+   "label_et": "Välismõõtmed",
+   "unit": "mm"
+  },
+  {
+   "key": "välise_materjal",
+   "label_et": "Välismaterjal",
+   "unit": ""
+  },
+  {
+   "key": "kraani_tüüp",
+   "label_et": "Kraani tüüp",
+   "unit": ""
+  }
+ ]
+}

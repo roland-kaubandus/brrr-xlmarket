@@ -1,0 +1,46 @@
+{
+ "l3": "v4-kodumasinad-ja-kodutehnika-koogitehnika-grillid-ja-hotpot-seadmed",
+ "name": "Grillid ja hotpot-seadmed",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "maht",
+   "label_et": "Hotpoti maht",
+   "unit": "L"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "temp_vahemik",
+   "label_et": "Temperatuuri vahemik",
+   "unit": "°C"
+  },
+  {
+   "key": "kasutajate_arv",
+   "label_et": "Soovitatav kasutajate arv",
+   "unit": "inimest"
+  },
+  {
+   "key": "dual_temp_control",
+   "label_et": "Eraldi temperatuurijuhtimine",
+   "unit": ""
+  }
+ ]
+}

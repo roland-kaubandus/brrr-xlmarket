@@ -1,0 +1,46 @@
+{
+ "l3": "v4-varjualused-telgid-ja-kasvuhooned-varikatused-ja-pergolad-kunstlikud-olg-ja-tikikatused",
+ "name": "Kunstlikud õlg- ja tikikatused",
+ "fields": [
+  {
+   "key": "pikkus_m",
+   "label_et": "Pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "laius_m",
+   "label_et": "Laius",
+   "unit": "m"
+  },
+  {
+   "key": "pindala_m2",
+   "label_et": "Pindala",
+   "unit": "m²"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "varvus",
+   "label_et": "Värv",
+   "unit": ""
+  },
+  {
+   "key": "tulekindel",
+   "label_et": "Tulekindel",
+   "unit": ""
+  },
+  {
+   "key": "veekindel",
+   "label_et": "Veekindel",
+   "unit": ""
+  }
+ ]
+}

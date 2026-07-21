@@ -1,0 +1,36 @@
+{
+ "l3": "v4-autovaruosad-ja-tarvikud-autovaruosad-turbokompressorid",
+ "name": "Turbokompressorid",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kaal (koos tarvikutega)",
+   "unit": "kg"
+  },
+  {
+   "key": "mudeli_number",
+   "label_et": "Mudeli number",
+   "unit": ""
+  },
+  {
+   "key": "mootori_maht",
+   "label_et": "Mootori maht",
+   "unit": "L"
+  },
+  {
+   "key": "sobivus",
+   "label_et": "Sobivus (auto mudel/aasta)",
+   "unit": ""
+  },
+  {
+   "key": "materjal",
+   "label_et": "Impelleri materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaasas_tarvikud",
+   "label_et": "Kaasas olevad tarvikud",
+   "unit": ""
+  }
+ ]
+}

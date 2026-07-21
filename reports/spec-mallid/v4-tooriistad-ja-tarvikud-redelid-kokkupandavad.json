@@ -1,0 +1,41 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-redelid-kokkupandavad",
+ "name": "Astmeredelid ja -pukid",
+ "fields": [
+  {
+   "key": "kandevoimsus_kg",
+   "label_et": "Kandevõimsus",
+   "unit": "kg"
+  },
+  {
+   "key": "astmete_arv",
+   "label_et": "Astmete arv",
+   "unit": "tk"
+  },
+  {
+   "key": "max_korgus_m",
+   "label_et": "Maksimaalne kõrgus",
+   "unit": "m"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Toote kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "astme_laius_mm",
+   "label_et": "Astme laius",
+   "unit": "mm"
+  },
+  {
+   "key": "kokkupaigutatav",
+   "label_et": "Kokkupaigutatav",
+   "unit": ""
+  }
+ ]
+}

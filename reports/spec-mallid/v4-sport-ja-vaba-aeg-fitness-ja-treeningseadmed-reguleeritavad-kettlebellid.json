@@ -1,0 +1,36 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-fitness-ja-treeningseadmed-reguleeritavad-kettlebellid",
+ "name": "Reguleeritavad kettlebellid",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Maksimaalne kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "kaalutaseme_arv",
+   "label_et": "Kaalu reguleerimise tasemed",
+   "unit": "tk"
+  },
+  {
+   "key": "miinimum_kaal",
+   "label_et": "Minimaalne kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kande_diameetr",
+   "label_et": "Käepideme läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "mahud",
+   "label_et": "Mõõtmed (pikkus × laius × kõrgus)",
+   "unit": "mm"
+  }
+ ]
+}

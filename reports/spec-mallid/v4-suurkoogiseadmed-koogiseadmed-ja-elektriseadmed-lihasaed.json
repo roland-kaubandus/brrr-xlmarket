@@ -1,0 +1,46 @@
+{
+ "l3": "v4-suurkoogiseadmed-koogiseadmed-ja-elektriseadmed-lihasaed",
+ "name": "Lihasaed",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "max_lõikesügavus",
+   "label_et": "Maksimaalne lõikesügavus",
+   "unit": "mm"
+  },
+  {
+   "key": "tööpinna_suurus",
+   "label_et": "Tööpinna suurus",
+   "unit": "mm"
+  },
+  {
+   "key": "lõikekõrgus",
+   "label_et": "Lõikekõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "lõikeefektiivsus",
+   "label_et": "Lõikeefektiivsus",
+   "unit": "kg/h"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  }
+ ]
+}

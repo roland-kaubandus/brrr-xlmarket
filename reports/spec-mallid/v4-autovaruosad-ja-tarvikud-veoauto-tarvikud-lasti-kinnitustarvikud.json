@@ -1,0 +1,46 @@
+{
+ "l3": "v4-autovaruosad-ja-tarvikud-veoauto-tarvikud-lasti-kinnitustarvikud",
+ "name": "Lasti kinnitustarvikud",
+ "fields": [
+  {
+   "key": "pikkus_min_mm",
+   "label_et": "Minimaalne pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "pikkus_max_mm",
+   "label_et": "Maksimaalne pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "kandevoimasus_kg",
+   "label_et": "Kandevõimekus",
+   "unit": "kg"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kogus",
+   "label_et": "Kogus pakis",
+   "unit": "tk"
+  },
+  {
+   "key": "paksus_mm",
+   "label_et": "Ribade paksus",
+   "unit": "mm"
+  },
+  {
+   "key": "libisemiskindlus",
+   "label_et": "Libisemiskindel",
+   "unit": ""
+  }
+ ]
+}

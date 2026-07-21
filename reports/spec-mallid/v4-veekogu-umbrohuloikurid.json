@@ -1,0 +1,31 @@
+{
+ "l3": "v4-veekogu-umbrohuloikurid",
+ "name": "Veekogu-umbrohulõikurid",
+ "fields": [
+  {
+   "key": "lõikepinna_maksimaalne_laius",
+   "label_et": "Lõikepinna maksimaalne laius",
+   "unit": "mm"
+  },
+  {
+   "key": "lõikepinna_minimaalne_laius",
+   "label_et": "Lõikepinna minimaalne laius",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "nööri_pikkus",
+   "label_et": "Nööri pikkus",
+   "unit": "m"
+  }
+ ]
+}

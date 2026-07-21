@@ -1,0 +1,46 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-tooriistade-hoiustamine-tooriistavood",
+ "name": "Tööriistavööd",
+ "fields": [
+  {
+   "key": "arv_taskuid",
+   "label_et": "Taskute arv",
+   "unit": "tk"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "voe_vahemik",
+   "label_et": "Vöö reguleerimise vahemik",
+   "unit": "cm"
+  },
+  {
+   "key": "laiuskraad",
+   "label_et": "Vöö laius",
+   "unit": "cm"
+  },
+  {
+   "key": "pandlad",
+   "label_et": "Pandlad kaasas",
+   "unit": "jah/ei"
+  },
+  {
+   "key": "magneetilised_tasku",
+   "label_et": "Magneetilised taskud",
+   "unit": "jah/ei"
+  },
+  {
+   "key": "eemaldatav_kott",
+   "label_et": "Eemaldatav töökott",
+   "unit": "jah/ei"
+  }
+ ]
+}

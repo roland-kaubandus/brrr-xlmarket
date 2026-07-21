@@ -1,0 +1,36 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-ouetegevus-ja-hobi-rebounderid-ja-tagasiloogivorgud",
+ "name": "Rebounderid ja tagasilöögivõrgud",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "pindala_laius",
+   "label_et": "Võrgu laius",
+   "unit": "mm"
+  },
+  {
+   "key": "pindala_korgus",
+   "label_et": "Võrgu kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "reguleerimise_tasemed",
+   "label_et": "Nurga reguleerimise tasemed",
+   "unit": "tk"
+  },
+  {
+   "key": "silma_suurus",
+   "label_et": "Võrgu silma suurus",
+   "unit": "mm"
+  }
+ ]
+}

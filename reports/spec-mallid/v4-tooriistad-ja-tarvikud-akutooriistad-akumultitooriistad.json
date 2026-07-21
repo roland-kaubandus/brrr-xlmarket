@@ -1,0 +1,38 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-akutooriistad-akumultitooriistad",
+ "name": "Akumultitööriistad",
+ "fields": [
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "poorlemiskiirus",
+   "label_et": "Kiirus (max)",
+   "unit": "RPM",
+   "unit_orig": "RPM / OPM"
+  },
+  {
+   "key": "aku_maht",
+   "label_et": "Aku maht",
+   "unit": "Wh",
+   "unit_orig": "Wh / mAh"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "kiiruste_arv",
+   "label_et": "Kiiruste tasemeid",
+   "unit": "tk"
+  },
+  {
+   "key": "aksessuaaride_arv",
+   "label_et": "Aksessuaaride komplekt",
+   "unit": "tk"
+  }
+ ]
+}

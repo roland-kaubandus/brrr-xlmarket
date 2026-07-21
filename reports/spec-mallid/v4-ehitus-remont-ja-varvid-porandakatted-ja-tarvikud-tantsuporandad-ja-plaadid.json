@@ -1,0 +1,41 @@
+{
+ "l3": "v4-ehitus-remont-ja-varvid-porandakatted-ja-tarvikud-tantsuporandad-ja-plaadid",
+ "name": "Tantsupõrandad ja -plaadid",
+ "fields": [
+  {
+   "key": "kattealad",
+   "label_et": "Katteala",
+   "unit": "m²"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "paksus",
+   "label_et": "Paksus",
+   "unit": "mm"
+  },
+  {
+   "key": "maksimaalne_koormus_paneeli_kohta",
+   "label_et": "Maksimaalne koormus paneeli kohta",
+   "unit": "kg"
+  },
+  {
+   "key": "paneelidekogus",
+   "label_et": "Paneelide kogus",
+   "unit": "tk"
+  },
+  {
+   "key": "paigalduse_tyyp",
+   "label_et": "Paigalduse tüüp",
+   "unit": ""
+  }
+ ]
+}

@@ -1,0 +1,41 @@
+{
+ "l3": "v4-autovaruosad-ja-tarvikud-veoauto-kraanad",
+ "name": "Veoauto-kraanad",
+ "fields": [
+  {
+   "key": "max_load_capacity",
+   "label_et": "Maksimaalne koormusvõimsus",
+   "unit": "kg"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Toote kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "pöörlemiskiirus",
+   "label_et": "Pöörlemisnihe",
+   "unit": "°"
+  },
+  {
+   "key": "juhtimisviis",
+   "label_et": "Juhtimisviis",
+   "unit": ""
+  },
+  {
+   "key": "voim",
+   "label_et": "Tõstejõud",
+   "unit": "lbs"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "paigaldamistyyp",
+   "label_et": "Paigaldamistüüp",
+   "unit": ""
+  }
+ ]
+}

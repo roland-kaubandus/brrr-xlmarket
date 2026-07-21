@@ -1,0 +1,36 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-elektrilised-tooriistad-lammutushaamrid",
+ "name": "Lammutushaamrid",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "loigid_minutis",
+   "label_et": "Löögid minutis",
+   "unit": "BPM"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal (ilma lisaaccessoaariteta)",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Vasara korpuse materjal",
+   "unit": ""
+  },
+  {
+   "key": "kassid_kogus",
+   "label_et": "Kiilude arv komplektis",
+   "unit": "tk"
+  },
+  {
+   "key": "kiilu_tuum",
+   "label_et": "Kiilu šangi tüüp",
+   "unit": ""
+  }
+ ]
+}

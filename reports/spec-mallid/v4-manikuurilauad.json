@@ -1,0 +1,46 @@
+{
+ "l3": "v4-manikuurilauad",
+ "name": "Maniküürilauad",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "moodu_pikkus",
+   "label_et": "Pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "moodu_laius",
+   "label_et": "Laius",
+   "unit": "mm"
+  },
+  {
+   "key": "moodu_korgus",
+   "label_et": "Kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "rataste_arv",
+   "label_et": "Rataste arv",
+   "unit": ""
+  },
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "salvestusruumi_mahutavus",
+   "label_et": "Salvestusruumi mahutavus",
+   "unit": ""
+  }
+ ]
+}

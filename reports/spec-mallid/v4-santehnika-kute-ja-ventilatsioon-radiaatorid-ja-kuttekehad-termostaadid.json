@@ -1,0 +1,46 @@
+{
+ "l3": "v4-santehnika-kute-ja-ventilatsioon-radiaatorid-ja-kuttekehad-termostaadid",
+ "name": "Termostaadid",
+ "fields": [
+  {
+   "key": "temperatuuri_vahemik_min",
+   "label_et": "Minimaalne temperatuur",
+   "unit": "°C"
+  },
+  {
+   "key": "temperatuuri_vahemik_max",
+   "label_et": "Maksimaalne temperatuur",
+   "unit": "°C"
+  },
+  {
+   "key": "juhtimisrežiimid",
+   "label_et": "Kuumutamise ja jahutamise režiimid",
+   "unit": "tk"
+  },
+  {
+   "key": "programmeerimine",
+   "label_et": "Programmeerimise päevade arv",
+   "unit": "päeva"
+  },
+  {
+   "key": "displeii_tyyp",
+   "label_et": "Displei tüüp",
+   "unit": ""
+  },
+  {
+   "key": "juhtimismeetod",
+   "label_et": "Juhtimismeetod",
+   "unit": ""
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  }
+ ]
+}

@@ -1,0 +1,46 @@
+{
+ "l3": "v4-elektritarvikud-ja-valgustus-mootorid-ja-osad-lineaaraktuaatorid",
+ "name": "Lineaaraktuaatorid",
+ "fields": [
+  {
+   "key": "pinge",
+   "label_et": "Nimipinge",
+   "unit": "V"
+  },
+  {
+   "key": "joud",
+   "label_et": "Maksimaalne jõud",
+   "unit": "N"
+  },
+  {
+   "key": "kiirus",
+   "label_et": "Liikumiskiirus",
+   "unit": "mm/s"
+  },
+  {
+   "key": "tõmme",
+   "label_et": "Käigu pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "kaitseklass",
+   "label_et": "Kaitseklass",
+   "unit": "IP"
+  },
+  {
+   "key": "myra",
+   "label_et": "Müratase",
+   "unit": "dB"
+  },
+  {
+   "key": "materijal",
+   "label_et": "Peamine materjal",
+   "unit": ""
+  }
+ ]
+}

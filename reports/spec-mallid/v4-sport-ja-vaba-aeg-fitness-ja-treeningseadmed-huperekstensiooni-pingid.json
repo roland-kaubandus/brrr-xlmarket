@@ -1,0 +1,36 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-fitness-ja-treeningseadmed-huperekstensiooni-pingid",
+ "name": "Hüperekstensiooni pingid",
+ "fields": [
+  {
+   "key": "kandevõimekus_kg",
+   "label_et": "Kandevõimekus",
+   "unit": "kg"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "reguleeritavus",
+   "label_et": "Reguleeritavus",
+   "unit": ""
+  },
+  {
+   "key": "kokkupanevus",
+   "label_et": "Kokkupanevus (voltitav)",
+   "unit": ""
+  },
+  {
+   "key": "lisamised",
+   "label_et": "Lisamised",
+   "unit": ""
+  }
+ ]
+}

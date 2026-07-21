@@ -1,0 +1,46 @@
+{
+ "l3": "v4-sport-kokkupandavad-veovankrid",
+ "name": "Kokkupandavad veovankrid",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Mahutavus",
+   "unit": "L"
+  },
+  {
+   "key": "kandevoimesus",
+   "label_et": "Kandevõime",
+   "unit": "kg"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Oma kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "ratta_labamoot",
+   "label_et": "Ratta läbimõõt",
+   "unit": "cm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Raam materjal",
+   "unit": ""
+  },
+  {
+   "key": "katte_materjaL",
+   "label_et": "Katte materjal",
+   "unit": ""
+  },
+  {
+   "key": "kokkupandud_suurus",
+   "label_et": "Kokkupandud suurus",
+   "unit": "mm"
+  },
+  {
+   "key": "avatud_suurus",
+   "label_et": "Avatud suurus",
+   "unit": "mm"
+  }
+ ]
+}

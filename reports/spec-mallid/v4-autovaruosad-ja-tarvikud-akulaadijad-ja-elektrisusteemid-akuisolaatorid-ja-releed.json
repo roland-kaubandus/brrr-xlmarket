@@ -1,0 +1,46 @@
+{
+ "l3": "v4-autovaruosad-ja-tarvikud-akulaadijad-ja-elektrisusteemid-akuisolaatorid-ja-releed",
+ "name": "Akuisolaatorid ja releed",
+ "fields": [
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "max_vool",
+   "label_et": "Maksimaalne vool",
+   "unit": "A"
+  },
+  {
+   "key": "pidev_vool",
+   "label_et": "Pidev vool",
+   "unit": "A"
+  },
+  {
+   "key": "kaabel_pikkus",
+   "label_et": "Kaabli pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "aku_typ_yhildus",
+   "label_et": "Aku tüübi ühildus",
+   "unit": ""
+  },
+  {
+   "key": "opetamisrežiim",
+   "label_et": "Opereerimisrežiim",
+   "unit": ""
+  }
+ ]
+}

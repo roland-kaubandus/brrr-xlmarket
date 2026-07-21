@@ -1,0 +1,46 @@
+{
+ "l3": "v4-tervis-hooldus-ja-ilu-beebi-ja-lapsetarbed-turvavaravad",
+ "name": "Turvaväravad",
+ "fields": [
+  {
+   "key": "min_width_cm",
+   "label_et": "Minimaalne laius",
+   "unit": "cm"
+  },
+  {
+   "key": "max_width_cm",
+   "label_et": "Maksimaalne laius",
+   "unit": "cm"
+  },
+  {
+   "key": "height_cm",
+   "label_et": "Kõrgus",
+   "unit": "cm"
+  },
+  {
+   "key": "ketta_labamoot",
+   "label_et": "Vardade vahekaugus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "tensile_strength_kg",
+   "label_et": "Venituskindlus",
+   "unit": "kg"
+  },
+  {
+   "key": "impact_resistance_kg",
+   "label_et": "Löögikindlus",
+   "unit": "kg"
+  }
+ ]
+}

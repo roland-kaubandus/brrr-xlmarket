@@ -1,0 +1,36 @@
+{
+ "l3": "v4-aed-ja-aiatehnika-l5-lumesahad-ja-lumeaderid",
+ "name": "Lumesahad ja lumeaderid",
+ "fields": [
+  {
+   "key": "laba_laius",
+   "label_et": "Laba laius",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "reguleeritavus",
+   "label_et": "Kõrguse ja külgsuunalise reguleerimise võimalus",
+   "unit": ""
+  },
+  {
+   "key": "kiirjahtimine",
+   "label_et": "Kiirühendus/eraldus süsteem",
+   "unit": ""
+  },
+  {
+   "key": "kummiribad",
+   "label_et": "Kummiribad olemas",
+   "unit": ""
+  }
+ ]
+}

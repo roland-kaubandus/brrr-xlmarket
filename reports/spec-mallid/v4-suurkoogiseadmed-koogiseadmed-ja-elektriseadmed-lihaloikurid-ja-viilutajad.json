@@ -1,0 +1,46 @@
+{
+ "l3": "v4-suurkoogiseadmed-koogiseadmed-ja-elektriseadmed-lihaloikurid-ja-viilutajad",
+ "name": "Lihalõikurid ja -viilutajad",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "poorlemiskiirus",
+   "label_et": "Pöörlemiskiirus",
+   "unit": "RPM"
+  },
+  {
+   "key": "ketta_labamoot",
+   "label_et": "Ketta läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "paksus_vahemik",
+   "label_et": "Lõike paksuse vahemik",
+   "unit": "mm"
+  },
+  {
+   "key": "tera_materjal",
+   "label_et": "Tera materjal",
+   "unit": ""
+  },
+  {
+   "key": "myra",
+   "label_et": "Müra",
+   "unit": "dB"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "tootlikkus",
+   "label_et": "Tootlikkus",
+   "unit": "kg/h"
+  }
+ ]
+}

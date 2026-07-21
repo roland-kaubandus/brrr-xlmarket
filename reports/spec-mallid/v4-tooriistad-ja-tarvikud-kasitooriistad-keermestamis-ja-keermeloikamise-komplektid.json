@@ -1,0 +1,41 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-kasitooriistad-keermestamis-ja-keermeloikamise-komplektid",
+ "name": "Keermestamis- ja keermelõikamise komplektid",
+ "fields": [
+  {
+   "key": "kogus_tk",
+   "label_et": "Komplekti maht (tükid)",
+   "unit": "pcs"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": "text"
+  },
+  {
+   "key": "keerme_standard",
+   "label_et": "Keerme standard",
+   "unit": "text"
+  },
+  {
+   "key": "min_keerme_suurus",
+   "label_et": "Minimaalne keerme suurus",
+   "unit": "mm"
+  },
+  {
+   "key": "max_keerme_suurus",
+   "label_et": "Maksimaalne keerme suurus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "kovadus_HRC",
+   "label_et": "Kõvadus",
+   "unit": "HRC"
+  }
+ ]
+}

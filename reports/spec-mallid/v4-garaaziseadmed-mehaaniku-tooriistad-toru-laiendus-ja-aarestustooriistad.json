@@ -1,0 +1,46 @@
+{
+ "l3": "v4-garaaziseadmed-mehaaniku-tooriistad-toru-laiendus-ja-aarestustooriistad",
+ "name": "Toru laiendus- ja äärestustööriistad",
+ "fields": [
+  {
+   "key": "max_rohk",
+   "label_et": "Maksimaalne tööröhk",
+   "unit": "bar"
+  },
+  {
+   "key": "laiendus_vahemik_min",
+   "label_et": "Laienduse vahemik (miinimum)",
+   "unit": "mm"
+  },
+  {
+   "key": "laiendus_vahemik_max",
+   "label_et": "Laienduse vahemik (maksimum)",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "kolletid_arv",
+   "label_et": "Kolletite arv komplektis",
+   "unit": "tk"
+  },
+  {
+   "key": "juhtnaru_pikkus",
+   "label_et": "Juhtnaru pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "pump_tyyp",
+   "label_et": "Pumba tüüp",
+   "unit": ""
+  }
+ ]
+}

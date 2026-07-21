@@ -1,0 +1,41 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-puhastustehnika-ja-tarvikud-porandapesumasinad-ja-tarvikud",
+ "name": "Põrandapesumasinad ja -tarvikud",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "poorlemiskiirus",
+   "label_et": "Pöörlemiskiirus",
+   "unit": "RPM"
+  },
+  {
+   "key": "maht",
+   "label_et": "Mahutavus",
+   "unit": "L"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "puhastuslaius",
+   "label_et": "Puhastuslaius",
+   "unit": "mm"
+  },
+  {
+   "key": "myra",
+   "label_et": "Müra",
+   "unit": "dB"
+  },
+  {
+   "key": "aku_kestus",
+   "label_et": "Akukestvus",
+   "unit": "min"
+  }
+ ]
+}

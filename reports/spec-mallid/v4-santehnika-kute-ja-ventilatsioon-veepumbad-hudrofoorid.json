@@ -1,0 +1,42 @@
+{
+ "l3": "v4-santehnika-kute-ja-ventilatsioon-veepumbad-hudrofoorid",
+ "name": "Hüdrofoorid",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "vooluhulk",
+   "label_et": "Vooluhulk",
+   "unit": "L/min",
+   "unit_orig": "Lmin"
+  },
+  {
+   "key": "rohk",
+   "label_et": "Rõhk (lüliti)",
+   "unit": "bar"
+  },
+  {
+   "key": "maht",
+   "label_et": "Paagi maht",
+   "unit": "L"
+  },
+  {
+   "key": "tõstekõrgus",
+   "label_et": "Tõstekõrgus",
+   "unit": "m"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Pump-pea materjal",
+   "unit": ""
+  }
+ ]
+}

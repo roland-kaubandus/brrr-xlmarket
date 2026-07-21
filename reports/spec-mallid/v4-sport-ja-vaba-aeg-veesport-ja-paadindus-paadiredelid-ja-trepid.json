@@ -1,0 +1,46 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-veesport-ja-paadindus-paadiredelid-ja-trepid",
+ "name": "Paadiredelid ja trepid",
+ "fields": [
+  {
+   "key": "astmete_arv",
+   "label_et": "Astmete arv",
+   "unit": "tk"
+  },
+  {
+   "key": "koormustaluvus",
+   "label_et": "Maksimaalne koormustaluvus",
+   "unit": "kg"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Toote kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materijal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "astme_laius",
+   "label_et": "Astme laius",
+   "unit": "mm"
+  },
+  {
+   "key": "kogukorgus",
+   "label_et": "Kogukõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "reguleeritavus",
+   "label_et": "Kõrguse reguleeritavus",
+   "unit": ""
+  },
+  {
+   "key": "kaasas_kaepuud",
+   "label_et": "Käepuud kaasas",
+   "unit": ""
+  }
+ ]
+}

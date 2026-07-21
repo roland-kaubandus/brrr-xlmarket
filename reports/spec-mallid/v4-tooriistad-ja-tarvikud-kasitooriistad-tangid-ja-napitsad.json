@@ -1,0 +1,36 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-kasitooriistad-tangid-ja-napitsad",
+ "name": "Tangid ja näpitsad",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "koverus",
+   "label_et": "Kõvadus (HRC)",
+   "unit": "HRC"
+  },
+  {
+   "key": "tookoriste_arv",
+   "label_et": "Töökoriste arv",
+   "unit": "tk"
+  },
+  {
+   "key": "max_pikkus",
+   "label_et": "Maksimaalne pikkus",
+   "unit": "cm"
+  },
+  {
+   "key": "koriste_tyyp",
+   "label_et": "Peamised töökorised",
+   "unit": ""
+  }
+ ]
+}

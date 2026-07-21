@@ -1,0 +1,46 @@
+{
+ "l3": "v4-moobel-laste-nagid-ja-garderoob",
+ "name": "Laste nagid ja garderoob",
+ "fields": [
+  {
+   "key": "arv_sektsioonid",
+   "label_et": "Sektsioonide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "arv_konksud",
+   "label_et": "Konksude arv",
+   "unit": "tk"
+  },
+  {
+   "key": "arv_kaubikud",
+   "label_et": "Kuubikute arv",
+   "unit": "tk"
+  },
+  {
+   "key": "korgus",
+   "label_et": "Kõrgus",
+   "unit": "cm"
+  },
+  {
+   "key": "laius",
+   "label_et": "Laius",
+   "unit": "cm"
+  },
+  {
+   "key": "sügavus",
+   "label_et": "Sügavus",
+   "unit": "cm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  }
+ ]
+}

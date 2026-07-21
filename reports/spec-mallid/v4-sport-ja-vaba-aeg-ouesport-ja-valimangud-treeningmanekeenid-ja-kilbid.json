@@ -1,0 +1,46 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-treeningmanekeenid-ja-kilbid",
+ "name": "Treeningmanekeenid ja -kilbid",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kaal (üksik)",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "pikkus",
+   "label_et": "Pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "laius",
+   "label_et": "Laius",
+   "unit": "mm"
+  },
+  {
+   "key": "syvus",
+   "label_et": "Sügavus/Paksus",
+   "unit": "mm"
+  },
+  {
+   "key": "kogus",
+   "label_et": "Kogus pakis",
+   "unit": "tk"
+  },
+  {
+   "key": "tyyp",
+   "label_et": "Tüüp",
+   "unit": ""
+  },
+  {
+   "key": "taitmine",
+   "label_et": "Täidismaterjal",
+   "unit": ""
+  }
+ ]
+}

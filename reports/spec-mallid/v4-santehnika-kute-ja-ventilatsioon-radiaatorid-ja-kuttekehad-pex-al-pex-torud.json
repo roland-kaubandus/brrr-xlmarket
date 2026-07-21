@@ -1,0 +1,36 @@
+{
+ "l3": "v4-santehnika-kute-ja-ventilatsioon-radiaatorid-ja-kuttekehad-pex-al-pex-torud",
+ "name": "PEX-AL-PEX torud",
+ "fields": [
+  {
+   "key": "pikkus_m",
+   "label_et": "Pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "valisdiameeter_mm",
+   "label_et": "Välisdiameeter",
+   "unit": "mm"
+  },
+  {
+   "key": "seinapaksus_mm",
+   "label_et": "Seinapaksus",
+   "unit": "mm"
+  },
+  {
+   "key": "rohk_bar",
+   "label_et": "Maksimaalrõhk",
+   "unit": "bar"
+  },
+  {
+   "key": "kaal_kg",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "alumiiniumkihi_paksus_mm",
+   "label_et": "Alumiiniumkihi paksus",
+   "unit": "mm"
+  }
+ ]
+}

@@ -1,0 +1,46 @@
+{
+ "l3": "v4-aed-ja-aiatehnika-l8-hudropoonika",
+ "name": "Hüdropoonika",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Veemahutavus",
+   "unit": "L"
+  },
+  {
+   "key": "kasvatuskohad",
+   "label_et": "Kasvatuskohade arv",
+   "unit": "tk"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "kihtide_arv",
+   "label_et": "Kihtide/tasandite arv",
+   "unit": "tk"
+  },
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus (pump/valgus)",
+   "unit": "W"
+  },
+  {
+   "key": "kasvumeetod",
+   "label_et": "Kasvumeetod",
+   "unit": "tüüp"
+  },
+  {
+   "key": "kasvatusmahutite_arv",
+   "label_et": "Mahutite/ämbrite arv",
+   "unit": "tk"
+  },
+  {
+   "key": "kasvatusvalgus",
+   "label_et": "Kasvatusvalgus kaasas",
+   "unit": "jah/ei"
+  }
+ ]
+}

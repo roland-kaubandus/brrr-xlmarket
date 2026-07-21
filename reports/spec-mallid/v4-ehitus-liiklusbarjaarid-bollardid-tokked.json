@@ -1,0 +1,46 @@
+{
+ "l3": "v4-ehitus-liiklusbarjaarid-bollardid-tokked",
+ "name": "Pollarid ja parkimistõkked",
+ "fields": [
+  {
+   "key": "korgus",
+   "label_et": "Kõrgus",
+   "unit": "cm"
+  },
+  {
+   "key": "toru_diameetir",
+   "label_et": "Toru läbimõõt",
+   "unit": "cm"
+  },
+  {
+   "key": "toru_paksus",
+   "label_et": "Toru paksus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "pohja_suurus",
+   "label_et": "Aluse mõõtmed (L×L)",
+   "unit": "cm"
+  },
+  {
+   "key": "tostmise_aeg",
+   "label_et": "Tõstmise aeg",
+   "unit": "s"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  }
+ ]
+}

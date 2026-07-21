@@ -1,0 +1,36 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-elektrilised-tooriistad-teemantpuurmasinad",
+ "name": "Teemantpuurmasinad",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Maksimaalne võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "poorlemiskiirus",
+   "label_et": "Pöörlemiskiirus",
+   "unit": "RPM"
+  },
+  {
+   "key": "puurimisdiameeter_max",
+   "label_et": "Maksimaalne puurimisdiameeter",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Neto kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "operatsioonityyp",
+   "label_et": "Operatsiooni tüüp",
+   "unit": "kategooria"
+  },
+  {
+   "key": "niisutamisfunktsioon",
+   "label_et": "Kuiv/märg puurimine",
+   "unit": "kategooria"
+  }
+ ]
+}

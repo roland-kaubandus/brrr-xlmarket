@@ -1,0 +1,36 @@
+{
+ "l3": "v4-autovaruosad-ja-tarvikud-mootorratta-kotid",
+ "name": "Mootorratta kotid",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Mahutavus",
+   "unit": "L"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "veetihedus",
+   "label_et": "Veetiiusus",
+   "unit": ""
+  },
+  {
+   "key": "kotityyp",
+   "label_et": "Koti tüüp",
+   "unit": ""
+  },
+  {
+   "key": "universaalne_sobivus",
+   "label_et": "Universaalne sobivus",
+   "unit": ""
+  }
+ ]
+}

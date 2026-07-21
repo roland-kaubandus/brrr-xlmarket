@@ -1,0 +1,46 @@
+{
+ "l3": "v4-ladu-mobiilsed-hoiustusrestid-karud",
+ "name": "Mobiilsed hoiustusrestid ja -kärud",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "riiulite_arv",
+   "label_et": "Riiulite arv",
+   "unit": "tk"
+  },
+  {
+   "key": "kastide_arv",
+   "label_et": "Kastide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "maksimaalne_koormus",
+   "label_et": "Maksimaalne koormus",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kahepoolne",
+   "label_et": "Kahepoolne",
+   "unit": ""
+  },
+  {
+   "key": "rattad",
+   "label_et": "Rattad (360° pöörlevad)",
+   "unit": "tk"
+  },
+  {
+   "key": "myra",
+   "label_et": "Müra",
+   "unit": "dB"
+  }
+ ]
+}

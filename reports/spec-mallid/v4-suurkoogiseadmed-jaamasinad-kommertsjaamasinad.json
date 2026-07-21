@@ -1,0 +1,41 @@
+{
+ "l3": "v4-suurkoogiseadmed-jaamasinad-kommertsjaamasinad",
+ "name": "Kommertsjäämasinad",
+ "fields": [
+  {
+   "key": "jaaatootmine_kg24h",
+   "label_et": "Jääatootmine 24h",
+   "unit": "kg"
+  },
+  {
+   "key": "jaaaladustus_kg",
+   "label_et": "Jääladustuse maht",
+   "unit": "kg"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Seadme kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "myra",
+   "label_et": "Müra tase",
+   "unit": "dB"
+  },
+  {
+   "key": "jaakuubikute_arv",
+   "label_et": "Jääkuubikute arv",
+   "unit": "tk"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Kere materjal",
+   "unit": ""
+  },
+  {
+   "key": "veetank_liitrid",
+   "label_et": "Veetangi maht",
+   "unit": "L"
+  }
+ ]
+}

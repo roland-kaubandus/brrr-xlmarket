@@ -1,0 +1,36 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-trampoliinid-trampoliinid",
+ "name": "Trampoliinid",
+ "fields": [
+  {
+   "key": "läbimõõt_ft",
+   "label_et": "Trampoliini läbimõõt",
+   "unit": "ft"
+  },
+  {
+   "key": "max_koormus",
+   "label_et": "Maksimaalne koormus",
+   "unit": "kg"
+  },
+  {
+   "key": "vedrud_arv",
+   "label_et": "Vedrudude arv",
+   "unit": "tk"
+  },
+  {
+   "key": "hüppemati_mass",
+   "label_et": "Hüppemati mass",
+   "unit": "g/m²"
+  },
+  {
+   "key": "redeli_kõrgus",
+   "label_et": "Redeli kõrgus",
+   "unit": "cm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  }
+ ]
+}

@@ -1,0 +1,37 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-pesapalli-treeningvorgud-ja-puurid",
+ "name": "Pesapalli treeningvõrgud ja -puurid",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Võrgu materjal",
+   "unit": ""
+  },
+  {
+   "key": "suurus_cm",
+   "label_et": "Suurus (pikkus × laius)",
+   "unit": "cm"
+  },
+  {
+   "key": "tyyp",
+   "label_et": "Tüüp",
+   "unit": ""
+  },
+  {
+   "key": "kaasasolevad_tarvikud",
+   "label_et": "Kaasasolevad tarvikud",
+   "unit": ""
+  },
+  {
+   "key": "poorlemiskiirus",
+   "label_et": "Kõrguse reguleeritavus",
+   "unit": "RPM",
+   "unit_orig": ""
+  }
+ ]
+}

@@ -1,0 +1,46 @@
+{
+ "l3": "v4-autovaruosad-ja-tarvikud-autovaruosad-traktori-ja-tostuki-istmed",
+ "name": "Traktori ja tõstuki istmed",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "montaaži_pilu_suurus",
+   "label_et": "Montaaži pilu suurus",
+   "unit": "mm"
+  },
+  {
+   "key": "reguleeritav_tagaseljatugi",
+   "label_et": "Reguleeritava tagaseljatugi nurk",
+   "unit": "°"
+  },
+  {
+   "key": "ette_taha_liikumise_ulatus",
+   "label_et": "Ette-taha liikumise ulatus",
+   "unit": "mm"
+  },
+  {
+   "key": "turvavöö",
+   "label_et": "Turvavöö olemasolu",
+   "unit": "bool"
+  },
+  {
+   "key": "käetoed",
+   "label_et": "Käetoed",
+   "unit": "bool"
+  },
+  {
+   "key": "pöögipea_tugi",
+   "label_et": "Pöögipea tugi",
+   "unit": "bool"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": "text"
+  }
+ ]
+}

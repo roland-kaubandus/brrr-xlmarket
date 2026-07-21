@@ -1,0 +1,46 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-tostmine-talid-trollid",
+ "name": "Tõstetrollid ja talakärud",
+ "fields": [
+  {
+   "key": "kandevoimsus_kg",
+   "label_et": "Kandevõimekus",
+   "unit": "kg"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Toote kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "i_kiire_laius_min_mm",
+   "label_et": "I-kiire laius (min)",
+   "unit": "mm"
+  },
+  {
+   "key": "i_kiire_laius_max_mm",
+   "label_et": "I-kiire laius (max)",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "rattad_tyyp",
+   "label_et": "Rattad (dual-axle)",
+   "unit": ""
+  },
+  {
+   "key": "pikkus_mm",
+   "label_et": "Pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "laius_mm",
+   "label_et": "Laius",
+   "unit": "mm"
+  }
+ ]
+}

@@ -1,0 +1,42 @@
+{
+ "l3": "v4-suurkook-restorani-kutsungisusteemid-ja-piiparid",
+ "name": "Restorani kutsungisüsteemid ja piiparid",
+ "fields": [
+  {
+   "key": "ulatus_m",
+   "label_et": "Juhtmevaba ulatus",
+   "unit": "m"
+  },
+  {
+   "key": "vastuvotjate_arv",
+   "label_et": "Vastuvõtjate (kutsungite) arv",
+   "unit": "tk"
+  },
+  {
+   "key": "kanalid",
+   "label_et": "Kanalite arv",
+   "unit": "tk"
+  },
+  {
+   "key": "aku_maht",
+   "label_et": "Aku maht",
+   "unit": "Wh",
+   "unit_orig": "mAh"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaalu",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "helisignaali_funktsioonid",
+   "label_et": "Signaalimisfunktsioonid",
+   "unit": ""
+  }
+ ]
+}

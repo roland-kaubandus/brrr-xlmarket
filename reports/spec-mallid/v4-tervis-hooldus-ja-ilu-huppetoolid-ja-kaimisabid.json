@@ -1,0 +1,46 @@
+{
+ "l3": "v4-tervis-hooldus-ja-ilu-huppetoolid-ja-kaimisabid",
+ "name": "Hüppetoolid ja käimisabid",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Toote kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "max_koormus",
+   "label_et": "Maksimaalne koormus",
+   "unit": "kg"
+  },
+  {
+   "key": "korguse_reguleeritavus",
+   "label_et": "Kõrguse reguleeritavus",
+   "unit": "taseme_arv"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Konstruktsiooni materjalid",
+   "unit": "kirjeldus"
+  },
+  {
+   "key": "vanusevahemik",
+   "label_et": "Soovituslik vanusevahemik",
+   "unit": "kuud"
+  },
+  {
+   "key": "mootoriseadmed",
+   "label_et": "Funktsioonid (360° pöörlemine, muusika, valgus)",
+   "unit": "arv"
+  },
+  {
+   "key": "voltimine",
+   "label_et": "Kokkuvolditavus",
+   "unit": "jah/ei"
+  },
+  {
+   "key": "dimensioonid",
+   "label_et": "Mõõtmed (pikkus x laius x kõrgus)",
+   "unit": "mm"
+  }
+ ]
+}

@@ -1,0 +1,36 @@
+{
+ "l3": "v4-pollumajandus-ja-loomakasvatus-talutehnika-traktori-ballastkastid",
+ "name": "Ballast ja raskused",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Maht",
+   "unit": "L"
+  },
+  {
+   "key": "koormus_paigaldus",
+   "label_et": "Koormustusvõimsus",
+   "unit": "kg"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Oma kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kuulmik_suurus",
+   "label_et": "Kuulmiku suurus",
+   "unit": "mm"
+  },
+  {
+   "key": "hoide_kategooria",
+   "label_et": "Hoide kategooria",
+   "unit": ""
+  }
+ ]
+}

@@ -1,0 +1,46 @@
+{
+ "l3": "v4-buroo-brosuuri-ajakirjahoidikud",
+ "name": "Brošüüri- ja ajakirjahoidikud",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Toote kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "mahutavus",
+   "label_et": "Mahutavus (taskud/kastid)",
+   "unit": "tk"
+  },
+  {
+   "key": "tasandite_arv",
+   "label_et": "Tasandite/astmete arv",
+   "unit": "tk"
+  },
+  {
+   "key": "kandevõime",
+   "label_et": "Kandevõime tasandi kohta",
+   "unit": "kg"
+  },
+  {
+   "key": "mootmed_laius",
+   "label_et": "Laius",
+   "unit": "mm"
+  },
+  {
+   "key": "mootmed_sygavus",
+   "label_et": "Sügavus",
+   "unit": "mm"
+  },
+  {
+   "key": "mootmed_korgus",
+   "label_et": "Kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": "text"
+  }
+ ]
+}

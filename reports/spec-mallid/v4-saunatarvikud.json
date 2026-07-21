@@ -1,0 +1,46 @@
+{
+ "l3": "v4-saunatarvikud",
+ "name": "Saunatarvikud",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "maksimaalne_temperatuur",
+   "label_et": "Maksimaalse temperatuur",
+   "unit": "°C"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "maatmed",
+   "label_et": "Mõõtmed (pikkus × laius)",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjaali tüüp",
+   "unit": ""
+  },
+  {
+   "key": "temperatuuri_tasemed",
+   "label_et": "Reguleerimistasemed",
+   "unit": "tk"
+  },
+  {
+   "key": "ajastus",
+   "label_et": "Maksimaalse ajastus",
+   "unit": "min"
+  },
+  {
+   "key": "kaasahoidmise_tunnused",
+   "label_et": "Kätekohad olemas",
+   "unit": ""
+  }
+ ]
+}

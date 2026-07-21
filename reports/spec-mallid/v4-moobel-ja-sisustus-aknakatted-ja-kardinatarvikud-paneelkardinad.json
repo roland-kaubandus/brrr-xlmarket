@@ -1,0 +1,36 @@
+{
+ "l3": "v4-moobel-ja-sisustus-aknakatted-ja-kardinatarvikud-paneelkardinad",
+ "name": "Paneelkardinad",
+ "fields": [
+  {
+   "key": "laius_min_cm",
+   "label_et": "Miinimum laiusega (cm)",
+   "unit": "cm"
+  },
+  {
+   "key": "laius_max_cm",
+   "label_et": "Maksimum laiusega (cm)",
+   "unit": "cm"
+  },
+  {
+   "key": "korgus_max_cm",
+   "label_et": "Maksimum kõrgus (cm)",
+   "unit": "cm"
+  },
+  {
+   "key": "valguse_blokeering",
+   "label_et": "Valguse blokeerimise tase",
+   "unit": "valik"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal ja värvus",
+   "unit": "kirjeldus"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  }
+ ]
+}

@@ -1,0 +1,41 @@
+{
+ "l3": "v4-suurkoogiseadmed-koogiseadmed-ja-elektriseadmed-pitsataigna-ja-taignamasinad",
+ "name": "Taignarullid ja -sheeterid",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "pizza_diameeter_max",
+   "label_et": "Maksimaalse pitsa läbimõõt",
+   "unit": "inch"
+  },
+  {
+   "key": "teigikindluse_ulatus",
+   "label_et": "Teigikindluse ulatus",
+   "unit": "mm"
+  },
+  {
+   "key": "tootlikkus",
+   "label_et": "Tootlikkus",
+   "unit": "tükki/h"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Peamised materjalid",
+   "unit": ""
+  },
+  {
+   "key": "tyyp",
+   "label_et": "Käitamise tüüp",
+   "unit": ""
+  }
+ ]
+}

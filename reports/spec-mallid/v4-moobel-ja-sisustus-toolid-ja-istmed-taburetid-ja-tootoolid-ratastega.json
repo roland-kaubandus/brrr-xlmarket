@@ -1,0 +1,46 @@
+{
+ "l3": "v4-moobel-ja-sisustus-toolid-ja-istmed-taburetid-ja-tootoolid-ratastega",
+ "name": "Rull- ja sadultaburetid",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Netokaal",
+   "unit": "kg"
+  },
+  {
+   "key": "max_koormus",
+   "label_et": "Maksimaalne koormus",
+   "unit": "kg"
+  },
+  {
+   "key": "iste_kuju",
+   "label_et": "Istme kuju",
+   "unit": ""
+  },
+  {
+   "key": "reguleeritav_korgus_min",
+   "label_et": "Reguleeritav kõrgus (min)",
+   "unit": "cm"
+  },
+  {
+   "key": "reguleeritav_korgus_max",
+   "label_et": "Reguleeritav kõrgus (max)",
+   "unit": "cm"
+  },
+  {
+   "key": "tugi",
+   "label_et": "Seljatugi",
+   "unit": ""
+  },
+  {
+   "key": "jalatoe",
+   "label_et": "Jalajätk",
+   "unit": ""
+  },
+  {
+   "key": "materjal",
+   "label_et": "Istme materjal",
+   "unit": ""
+  }
+ ]
+}

@@ -1,0 +1,46 @@
+{
+ "l3": "v4-suurkoogiseadmed-kuumaseadmed-vahvlimasinad",
+ "name": "Vahvlimasinad",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "vaheplate_suurus",
+   "label_et": "Vaheplaat(id)",
+   "unit": "tk"
+  },
+  {
+   "key": "vaheplaat_kuju",
+   "label_et": "Vaheplaat kuju",
+   "unit": ""
+  },
+  {
+   "key": "max_temperatuur",
+   "label_et": "Maksimaalne temperatuur",
+   "unit": "°C"
+  },
+  {
+   "key": "timer",
+   "label_et": "Ajastus",
+   "unit": "min"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  }
+ ]
+}

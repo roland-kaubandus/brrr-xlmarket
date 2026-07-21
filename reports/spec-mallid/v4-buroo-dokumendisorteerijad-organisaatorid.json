@@ -1,0 +1,46 @@
+{
+ "l3": "v4-buroo-dokumendisorteerijad-organisaatorid",
+ "name": "Dokumendisorteerijad ja -organisaatorid",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Toote kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "osakute_arv",
+   "label_et": "Osakute/sahtelite arv",
+   "unit": "tk"
+  },
+  {
+   "key": "kandvoe_koormus",
+   "label_et": "Kandvõime ühe osaküe kohta",
+   "unit": "kg"
+  },
+  {
+   "key": "pohimootmed_laius",
+   "label_et": "Laius",
+   "unit": "mm"
+  },
+  {
+   "key": "pohimootmed_sygavus",
+   "label_et": "Sügavus",
+   "unit": "mm"
+  },
+  {
+   "key": "pohimootmed_korgus",
+   "label_et": "Kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "reguleeritav_riiulitega",
+   "label_et": "Reguleeritavad riiul",
+   "unit": ""
+  }
+ ]
+}

@@ -1,0 +1,36 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-ouetegevus-toukerattad",
+ "name": "Tõukerattad",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "max_koormus",
+   "label_et": "Maksimaalne koormus",
+   "unit": "kg"
+  },
+  {
+   "key": "ketta_labamoot",
+   "label_et": "Ratta läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "reguleeritav_korgus",
+   "label_et": "Reguleeritav käepide (pikkus)",
+   "unit": "mm"
+  },
+  {
+   "key": "tyyp",
+   "label_et": "Tõukeratta tüüp",
+   "unit": ""
+  }
+ ]
+}

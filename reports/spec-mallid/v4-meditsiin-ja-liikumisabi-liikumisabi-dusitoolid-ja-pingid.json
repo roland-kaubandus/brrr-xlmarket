@@ -1,0 +1,41 @@
+{
+ "l3": "v4-meditsiin-ja-liikumisabi-liikumisabi-dusitoolid-ja-pingid",
+ "name": "Dušitoolid ja -pingid",
+ "fields": [
+  {
+   "key": "koormus_kg",
+   "label_et": "Maksimaalne koormus",
+   "unit": "kg"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Toote kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "korgus_mm",
+   "label_et": "Kõrgus / Kõrgusevahemik",
+   "unit": "mm"
+  },
+  {
+   "key": "istumisvoyimalused",
+   "label_et": "Istumisvõimalused",
+   "unit": ""
+  },
+  {
+   "key": "reguleerimisastmed",
+   "label_et": "Kõrguse reguleerimise astmed",
+   "unit": "tk"
+  },
+  {
+   "key": "lisafunktsioonid",
+   "label_et": "Lisafunktsioonid",
+   "unit": ""
+  }
+ ]
+}

@@ -1,0 +1,41 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-torutooriistad-toru-keermestajad-ja-loikurid",
+ "name": "Toru-keermestajad ja -lõikurid",
+ "fields": [
+  {
+   "key": "kaarivahemik_mm",
+   "label_et": "Kaarivahemik (min-max)",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Toru materjal",
+   "unit": ""
+  },
+  {
+   "key": "tera_materjal",
+   "label_et": "Tera materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "toru_paksus_mm",
+   "label_et": "Max toru paksus",
+   "unit": "mm"
+  },
+  {
+   "key": "tera_paksus_mm",
+   "label_et": "Tera paksus",
+   "unit": "mm"
+  },
+  {
+   "key": "tops",
+   "label_et": "Funktsioon",
+   "unit": ""
+  }
+ ]
+}

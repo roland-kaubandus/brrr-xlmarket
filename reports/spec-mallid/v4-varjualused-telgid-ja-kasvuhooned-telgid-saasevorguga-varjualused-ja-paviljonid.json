@@ -1,0 +1,46 @@
+{
+ "l3": "v4-varjualused-telgid-ja-kasvuhooned-telgid-saasevorguga-varjualused-ja-paviljonid",
+ "name": "Sääsevõrguga varjualused ja paviljonid",
+ "fields": [
+  {
+   "key": "pindala_m2",
+   "label_et": "Varjualuse pindala",
+   "unit": "m²"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "max_korgus",
+   "label_et": "Maksimaalne kõrgus",
+   "unit": "m"
+  },
+  {
+   "key": "maht_inimesi",
+   "label_et": "Mahutavus (inimesi)",
+   "unit": "tk"
+  },
+  {
+   "key": "kujuline_poolumine",
+   "label_et": "Kuju (külgede arv)",
+   "unit": "tk"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": "tekst"
+  },
+  {
+   "key": "tuulekaitse_kangas",
+   "label_et": "Tuulekaitsekangad",
+   "unit": "tk"
+  },
+  {
+   "key": "veetihedus_mm",
+   "label_et": "Veetihedus",
+   "unit": "mm"
+  }
+ ]
+}

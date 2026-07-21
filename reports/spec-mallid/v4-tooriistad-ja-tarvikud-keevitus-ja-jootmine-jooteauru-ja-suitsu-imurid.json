@@ -1,0 +1,42 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-keevitus-ja-jootmine-jooteauru-ja-suitsu-imurid",
+ "name": "Jooteauru ja -suitsu imurid",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "vooluhulk",
+   "label_et": "Õhuvool",
+   "unit": "L/min",
+   "unit_orig": "m³/h"
+  },
+  {
+   "key": "myra",
+   "label_et": "Müra",
+   "unit": "dB"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "poorlemiskiirus",
+   "label_et": "Pöörlemiskiirus",
+   "unit": "RPM"
+  },
+  {
+   "key": "filtratsiooni_aste",
+   "label_et": "Filtreerimise aste",
+   "unit": "astmed"
+  },
+  {
+   "key": "kiiruste_arv",
+   "label_et": "Kiiruseastmete arv",
+   "unit": "tk"
+  }
+ ]
+}

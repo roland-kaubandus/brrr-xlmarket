@@ -1,0 +1,46 @@
+{
+ "l3": "v4-kodumasinad-ja-kodutehnika-koogitehnika-kulmikud-ja-sugavkulmikud",
+ "name": "Külmikud ja sügavkülmikud",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Maht",
+   "unit": "L"
+  },
+  {
+   "key": "voimsus",
+   "label_et": "Jahutamisvõimsus",
+   "unit": "W"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "myra",
+   "label_et": "Müra taseme",
+   "unit": "dB"
+  },
+  {
+   "key": "jahutusulatus",
+   "label_et": "Jahutusulatus",
+   "unit": "°C"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Toitepinge",
+   "unit": "V"
+  },
+  {
+   "key": "klaasi_tyyp",
+   "label_et": "Klaasi tüüp (veinikülmikutele)",
+   "unit": ""
+  },
+  {
+   "key": "kahekordne_tsoon",
+   "label_et": "Kahekordne temperatuuritsoon",
+   "unit": ""
+  }
+ ]
+}

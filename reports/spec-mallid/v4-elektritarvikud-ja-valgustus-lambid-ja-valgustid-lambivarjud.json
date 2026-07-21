@@ -1,0 +1,41 @@
+{
+ "l3": "v4-elektritarvikud-ja-valgustus-lambid-ja-valgustid-lambivarjud",
+ "name": "Lambivarjud",
+ "fields": [
+  {
+   "key": "korgus_mm",
+   "label_et": "Kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "ulemine_diameeter_mm",
+   "label_et": "Ülemise avause läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "alumine_diameeter_mm",
+   "label_et": "Alumise avause läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "varjude_arv",
+   "label_et": "Varjude arv komplektis",
+   "unit": "tk"
+  },
+  {
+   "key": "varv",
+   "label_et": "Värvus/Disain",
+   "unit": ""
+  }
+ ]
+}

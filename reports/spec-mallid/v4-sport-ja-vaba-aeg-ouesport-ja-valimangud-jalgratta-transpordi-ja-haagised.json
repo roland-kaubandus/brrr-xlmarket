@@ -1,0 +1,46 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-jalgratta-transpordi-ja-haagised",
+ "name": "Jalgratta haagised",
+ "fields": [
+  {
+   "key": "max_load_capacity",
+   "label_et": "Maksimaalne koormusvõimsus",
+   "unit": "kg"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Haagise kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "haagise_ratta_labamoot",
+   "label_et": "Haagise ratta läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "aku_jalgratta_ratta_suurus",
+   "label_et": "Ühilduv jalgratta ratta suurus",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Raami materjal",
+   "unit": ""
+  },
+  {
+   "key": "kinnituskoht",
+   "label_et": "Kinnituskoht jalgrattale",
+   "unit": ""
+  },
+  {
+   "key": "transport_mahutavus",
+   "label_et": "Transpordi karbi mõõtmed",
+   "unit": "mm"
+  },
+  {
+   "key": "maarimine",
+   "label_et": "Veekindlusomadused",
+   "unit": ""
+  }
+ ]
+}

@@ -1,0 +1,36 @@
+{
+ "l3": "v4-autovaruosad-ja-tarvikud-autovaruosad-golfikaru-ja-go-kart-osad",
+ "name": "Golfikäru ja go-kart osad",
+ "fields": [
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "keevitusvool",
+   "label_et": "Maksimaalne vool",
+   "unit": "A"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "poorlemiskiirus",
+   "label_et": "Pöörlemiskiirus",
+   "unit": "RPM"
+  },
+  {
+   "key": "kaitseklass",
+   "label_et": "Kaitseklass",
+   "unit": ""
+  }
+ ]
+}

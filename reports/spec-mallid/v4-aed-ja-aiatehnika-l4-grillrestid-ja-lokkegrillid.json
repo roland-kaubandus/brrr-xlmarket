@@ -1,0 +1,41 @@
+{
+ "l3": "v4-aed-ja-aiatehnika-l4-grillrestid-ja-lokkegrillid",
+ "name": "Grillrestid ja lõkkegrillid",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "kokkupandavus",
+   "label_et": "Kokkupandavus",
+   "unit": "boolean"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": "text"
+  },
+  {
+   "key": "max_temp",
+   "label_et": "Maksimaalne temperatuuritaluvus",
+   "unit": "°C"
+  },
+  {
+   "key": "kandevõime",
+   "label_et": "Kandevõime",
+   "unit": "kg"
+  },
+  {
+   "key": "toidupinna_pindala",
+   "label_et": "Toidupinna pindala",
+   "unit": "cm²"
+  },
+  {
+   "key": "mootmed",
+   "label_et": "Mõõtmed",
+   "unit": "cm"
+  }
+ ]
+}

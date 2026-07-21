@@ -1,0 +1,46 @@
+{
+ "l3": "v4-tooriied-ja-isikukaitse-tooriietus-ja-uleroivad-saepuksid-ja-mootorsae-kaitsepuksid",
+ "name": "Saepüksid ja mootorsae kaitsepüksid",
+ "fields": [
+  {
+   "key": "ohutustase",
+   "label_et": "Ohutustase",
+   "unit": "Class A/B"
+  },
+  {
+   "key": "suurus",
+   "label_et": "Suurus",
+   "unit": "XS-XL"
+  },
+  {
+   "key": "pikkus",
+   "label_et": "Pikkus",
+   "unit": "cm"
+  },
+  {
+   "key": "vöö_ümbermõõt",
+   "label_et": "Vöö ümbermõõt",
+   "unit": "cm"
+  },
+  {
+   "key": "jala_laius",
+   "label_et": "Jala laius",
+   "unit": "mm"
+  },
+  {
+   "key": "kihtide_arv",
+   "label_et": "Kaitsekilhtide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": "tekst"
+  },
+  {
+   "key": "varv",
+   "label_et": "Värv",
+   "unit": "tekst"
+  }
+ ]
+}

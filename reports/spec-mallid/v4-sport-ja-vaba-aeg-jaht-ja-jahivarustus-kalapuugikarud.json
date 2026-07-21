@@ -1,0 +1,41 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-jaht-ja-jahivarustus-kalapuugikarud",
+ "name": "Kalapüügikärud",
+ "fields": [
+  {
+   "key": "max_load_capacity",
+   "label_et": "Maksimaalne koormus",
+   "unit": "kg"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Toote kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "wheel_diameter",
+   "label_et": "Ratta läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "wheel_count",
+   "label_et": "Rataste arv",
+   "unit": "tk"
+  },
+  {
+   "key": "rod_holders",
+   "label_et": "Vardihoiuste arv",
+   "unit": "tk"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Raami materjal",
+   "unit": ""
+  },
+  {
+   "key": "foldable",
+   "label_et": "Kokkupandav",
+   "unit": ""
+  }
+ ]
+}

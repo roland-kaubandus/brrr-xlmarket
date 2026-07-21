@@ -1,0 +1,41 @@
+{
+ "l3": "v4-basseinikatte-veekotid",
+ "name": "Basseinikatte veekotid ja raskused",
+ "fields": [
+  {
+   "key": "kogus_komplektis",
+   "label_et": "Kogus komplektis",
+   "unit": "tk"
+  },
+  {
+   "key": "pikkus",
+   "label_et": "Pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "laius",
+   "label_et": "Laius",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal_paksus",
+   "label_et": "Materjali paksus",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": "—"
+  },
+  {
+   "key": "kambrite_arv",
+   "label_et": "Kambrite arv",
+   "unit": "tk"
+  },
+  {
+   "key": "tihedus_omadus",
+   "label_et": "Tiheduse omadus",
+   "unit": "—"
+  }
+ ]
+}

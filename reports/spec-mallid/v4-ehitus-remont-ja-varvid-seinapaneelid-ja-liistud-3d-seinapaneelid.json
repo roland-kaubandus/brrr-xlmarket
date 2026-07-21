@@ -1,0 +1,46 @@
+{
+ "l3": "v4-ehitus-remont-ja-varvid-seinapaneelid-ja-liistud-3d-seinapaneelid",
+ "name": "3D seinapaneelid",
+ "fields": [
+  {
+   "key": "kogus_tk",
+   "label_et": "Paneelidest pakis (tk)",
+   "unit": "tk"
+  },
+  {
+   "key": "paneeli_suurus_cm",
+   "label_et": "Ühe paneeli suurus (L×L)",
+   "unit": "cm"
+  },
+  {
+   "key": "paneeli_korgus_mm",
+   "label_et": "Paneeli sügavus (3D kõrgus)",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kogu paketi kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "kattepind_m2",
+   "label_et": "Kattepind (32 sq.ft standard)",
+   "unit": "m²"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": "tekst"
+  },
+  {
+   "key": "disain_stiil",
+   "label_et": "Disain/Stiil",
+   "unit": "tekst"
+  },
+  {
+   "key": "varvus",
+   "label_et": "Värvus",
+   "unit": "tekst"
+  }
+ ]
+}

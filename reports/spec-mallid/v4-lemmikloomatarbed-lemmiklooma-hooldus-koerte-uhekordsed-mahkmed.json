@@ -1,0 +1,46 @@
+{
+ "l3": "v4-lemmikloomatarbed-lemmiklooma-hooldus-koerte-uhekordsed-mahkmed",
+ "name": "Koerte ühekordsed mähkmed",
+ "fields": [
+  {
+   "key": "tyyp",
+   "label_et": "Tüüp (nais/isane)",
+   "unit": ""
+  },
+  {
+   "key": "suurus",
+   "label_et": "Suurus",
+   "unit": ""
+  },
+  {
+   "key": "vöö_suurus_min",
+   "label_et": "Vöö suurus (min)",
+   "unit": "cm"
+  },
+  {
+   "key": "vöö_suurus_max",
+   "label_et": "Vöö suurus (max)",
+   "unit": "cm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Pakendi kogukaal",
+   "unit": "kg"
+  },
+  {
+   "key": "kogus",
+   "label_et": "Kogus pakendis",
+   "unit": "tk"
+  },
+  {
+   "key": "imavus",
+   "label_et": "Imavus",
+   "unit": "Super-absorbeeriv"
+  },
+  {
+   "key": "leak_proof",
+   "label_et": "Lekekindlus",
+   "unit": "360°"
+  }
+ ]
+}

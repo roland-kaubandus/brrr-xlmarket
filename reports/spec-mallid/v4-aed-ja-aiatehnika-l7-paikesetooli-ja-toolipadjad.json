@@ -1,0 +1,41 @@
+{
+ "l3": "v4-aed-ja-aiatehnika-l7-paikesetooli-ja-toolipadjad",
+ "name": "Päikesetooli ja toolipadjad",
+ "fields": [
+  {
+   "key": "pikkus_cm",
+   "label_et": "Kogupikkus",
+   "unit": "cm"
+  },
+  {
+   "key": "laius_cm",
+   "label_et": "Laius",
+   "unit": "cm"
+  },
+  {
+   "key": "paksus_cm",
+   "label_et": "Paksus",
+   "unit": "cm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "varvus",
+   "label_et": "Värv",
+   "unit": ""
+  },
+  {
+   "key": "komplekt_kogus",
+   "label_et": "Komplekti kogus",
+   "unit": "tk"
+  }
+ ]
+}

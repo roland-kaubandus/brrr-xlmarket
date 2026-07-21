@@ -1,0 +1,46 @@
+{
+ "l3": "v4-peoinventar-piirdepostid-jarjekorratokked",
+ "name": "Piirdepostid ja järjekorratõkked",
+ "fields": [
+  {
+   "key": "kogus",
+   "label_et": "Komplekti kogus (tk)",
+   "unit": "pcs"
+  },
+  {
+   "key": "korgus",
+   "label_et": "Postisüsteemi kõrgus",
+   "unit": "cm"
+  },
+  {
+   "key": "aluse_diameeter",
+   "label_et": "Aluse läbimõõt",
+   "unit": "cm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kogukaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Postmaterjal",
+   "unit": "text"
+  },
+  {
+   "key": "trossi_tyyp",
+   "label_et": "Trossi/vöö tüüp",
+   "unit": "text"
+  },
+  {
+   "key": "trossi_pikkus",
+   "label_et": "Trossi/vöö pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "trossi_vari",
+   "label_et": "Trossi/vöö värvus",
+   "unit": "text"
+  }
+ ]
+}

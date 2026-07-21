@@ -1,0 +1,46 @@
+{
+ "l3": "v4-elektritarvikud-ja-valgustus-elektroonika-projektoriekraanid",
+ "name": "Projektoriekraanid",
+ "fields": [
+  {
+   "key": "diagonaal_tuumad",
+   "label_et": "Ekraani diagonaal",
+   "unit": "cm"
+  },
+  {
+   "key": "kuvari_suhe",
+   "label_et": "Kuvasuhte",
+   "unit": "-"
+  },
+  {
+   "key": "vaatamis_nurk",
+   "label_et": "Vaatamis nurk",
+   "unit": "°"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Ekraani materjal",
+   "unit": "-"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "paigalduse_tyyp",
+   "label_et": "Paigalduse tüüp",
+   "unit": "-"
+  },
+  {
+   "key": "resolutsioon",
+   "label_et": "Resolutsioon",
+   "unit": "-"
+  },
+  {
+   "key": "kaadrite_pindala",
+   "label_et": "Kaadri pindala (L×K)",
+   "unit": "cm"
+  }
+ ]
+}

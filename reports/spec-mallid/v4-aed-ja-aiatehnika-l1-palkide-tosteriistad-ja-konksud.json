@@ -1,0 +1,36 @@
+{
+ "l3": "v4-aed-ja-aiatehnika-l1-palkide-tosteriistad-ja-konksud",
+ "name": "Palkide tõsteriistad ja konksud",
+ "fields": [
+  {
+   "key": "kael",
+   "label_et": "Käepideme pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "max_palkide_diameetr",
+   "label_et": "Maksimaalne palgi läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "avamise_laius",
+   "label_et": "Avamise laius",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "funktsioonide_arv",
+   "label_et": "Funktsioonide arv",
+   "unit": "tk"
+  }
+ ]
+}

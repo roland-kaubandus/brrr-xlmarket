@@ -1,0 +1,46 @@
+{
+ "l3": "v4-moobel-ja-sisustus-lauad-korval-ja-kuljelauad",
+ "name": "Kõrval- ja küljelauad",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kandevõime",
+   "label_et": "Kandevõime",
+   "unit": "kg"
+  },
+  {
+   "key": "pindala_laius_cm",
+   "label_et": "Pinda laius",
+   "unit": "cm"
+  },
+  {
+   "key": "pindala_sügavus_cm",
+   "label_et": "Pinda sügavus",
+   "unit": "cm"
+  },
+  {
+   "key": "korgus_cm",
+   "label_et": "Kõrgus",
+   "unit": "cm"
+  },
+  {
+   "key": "paksus_mm",
+   "label_et": "Paksus",
+   "unit": "mm"
+  },
+  {
+   "key": "volditav",
+   "label_et": "Volditav",
+   "unit": ""
+  }
+ ]
+}

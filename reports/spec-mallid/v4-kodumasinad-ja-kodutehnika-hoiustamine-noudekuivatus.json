@@ -1,0 +1,41 @@
+{
+ "l3": "v4-kodumasinad-ja-kodutehnika-hoiustamine-noudekuivatus",
+ "name": "Nõudekuivatus- ja kraanikausitarvikud",
+ "fields": [
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": "tekst"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "maht",
+   "label_et": "Mahutavus (taldrikud)",
+   "unit": "tk"
+  },
+  {
+   "key": "tasandite_arv",
+   "label_et": "Tasandite arv",
+   "unit": "tk"
+  },
+  {
+   "key": "pikkus_laius_korgus",
+   "label_et": "Mõõtmed (P×L×K)",
+   "unit": "mm"
+  },
+  {
+   "key": "kruusid_mahutavus",
+   "label_et": "Kruusid (mahutavus)",
+   "unit": "tk"
+  },
+  {
+   "key": "rooste_kaitsetus",
+   "label_et": "Roostekaitsetus",
+   "unit": "tekst"
+  }
+ ]
+}

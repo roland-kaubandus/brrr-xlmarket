@@ -1,0 +1,41 @@
+{
+ "l3": "v4-suurkoogiseadmed-koogiseadmed-ja-elektriseadmed-popkornimasinad",
+ "name": "Popkornimasinad",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "katel_maht",
+   "label_et": "Katla maht",
+   "unit": "oz"
+  },
+  {
+   "key": "toodang_partii",
+   "label_et": "Toodang partii kohta",
+   "unit": "cups"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "koos_karbiga",
+   "label_et": "Koos karbiga",
+   "unit": ""
+  },
+  {
+   "key": "led_valgus",
+   "label_et": "LED valgus",
+   "unit": ""
+  }
+ ]
+}

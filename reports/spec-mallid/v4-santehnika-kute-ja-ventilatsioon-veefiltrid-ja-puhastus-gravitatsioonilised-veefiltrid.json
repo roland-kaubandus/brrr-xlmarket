@@ -1,0 +1,46 @@
+{
+ "l3": "v4-santehnika-kute-ja-ventilatsioon-veefiltrid-ja-puhastus-gravitatsioonilised-veefiltrid",
+ "name": "Gravitatsioonilised veefiltrid",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Kogumaht",
+   "unit": "L"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "filter_tyyp",
+   "label_et": "Filtri tüüp",
+   "unit": ""
+  },
+  {
+   "key": "vooluhulk",
+   "label_et": "Vooluhulk",
+   "unit": "L/min"
+  },
+  {
+   "key": "filtri_ressurss",
+   "label_et": "Filtri ressurss",
+   "unit": "L"
+  },
+  {
+   "key": "diameetr",
+   "label_et": "Diameter",
+   "unit": "mm"
+  },
+  {
+   "key": "korgus",
+   "label_et": "Kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "jaigus",
+   "label_et": "Jaigus (klaas/metall)",
+   "unit": ""
+  }
+ ]
+}

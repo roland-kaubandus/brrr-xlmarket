@@ -1,0 +1,41 @@
+{
+ "l3": "v4-suurkook-kaalud-ja-mootevahendid",
+ "name": "Kaalud ja mõõtevahendid",
+ "fields": [
+  {
+   "key": "maksimaalne_kaal",
+   "label_et": "Maksimaalne kaalumismaht",
+   "unit": "kg"
+  },
+  {
+   "key": "tapsus",
+   "label_et": "Kaalumise täpsus",
+   "unit": "g"
+  },
+  {
+   "key": "minimaalne_kaal",
+   "label_et": "Minimaalne kaalumismaht",
+   "unit": "g"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Seadme kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Korpuse materjal",
+   "unit": ""
+  },
+  {
+   "key": "staibiliseerimise_aeg",
+   "label_et": "Stabiliseerimisaeg",
+   "unit": "s"
+  },
+  {
+   "key": "toiteallikas",
+   "label_et": "Toiteallikas",
+   "unit": ""
+  }
+ ]
+}

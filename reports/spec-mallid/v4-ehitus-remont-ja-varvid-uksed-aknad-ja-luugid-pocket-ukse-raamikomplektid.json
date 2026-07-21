@@ -1,0 +1,41 @@
+{
+ "l3": "v4-ehitus-remont-ja-varvid-uksed-aknad-ja-luugid-pocket-ukse-raamikomplektid",
+ "name": "Pocket-ukse raamikomplektid",
+ "fields": [
+  {
+   "key": "uks_laius_min_mm",
+   "label_et": "Ukse laius (min)",
+   "unit": "mm"
+  },
+  {
+   "key": "uks_laius_max_mm",
+   "label_et": "Ukse laius (max)",
+   "unit": "mm"
+  },
+  {
+   "key": "uks_korgus_mm",
+   "label_et": "Ukse kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "soovitatud_ukse_kaal_min_kg",
+   "label_et": "Soovitatud ukse kaal (min)",
+   "unit": "kg"
+  },
+  {
+   "key": "soovitatud_ukse_kaal_max_kg",
+   "label_et": "Soovitatud ukse kaal (max)",
+   "unit": "kg"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Raamikomplekti kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  }
+ ]
+}

@@ -1,0 +1,46 @@
+{
+ "l3": "v4-garaaziseadmed-garaazi-hoiustamine-rehviriiulid-ja-hoidikud",
+ "name": "Rehviriiulid ja -hoidikud",
+ "fields": [
+  {
+   "key": "koormus_kg",
+   "label_et": "Maksimaalne koormus",
+   "unit": "kg"
+  },
+  {
+   "key": "rehvide_arv",
+   "label_et": "Rehvide ladustamise maht",
+   "unit": "tk"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Toote kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "rehvi_laius_max",
+   "label_et": "Maksimaalne rehvi laius",
+   "unit": "mm"
+  },
+  {
+   "key": "rehvi_suurus",
+   "label_et": "Ühilduv rehvi suurus",
+   "unit": "R-toll"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "hylle_arv",
+   "label_et": "Riiulite arv",
+   "unit": "tk"
+  },
+  {
+   "key": "reguleeritavus",
+   "label_et": "Reguleeritav pikkus / kõrgus",
+   "unit": "mm"
+  }
+ ]
+}

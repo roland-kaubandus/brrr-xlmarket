@@ -1,0 +1,41 @@
+{
+ "l3": "v4-ladu-pakkimis-koitmistarvikud",
+ "name": "Pantimis- ja rihmastamistarvikud",
+ "fields": [
+  {
+   "key": "materjal",
+   "label_et": "Rihma materjal",
+   "unit": "tüüp"
+  },
+  {
+   "key": "pikkus",
+   "label_et": "Rihma pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "laius",
+   "label_et": "Rihma laius",
+   "unit": "mm"
+  },
+  {
+   "key": "paksus",
+   "label_et": "Rihma paksus",
+   "unit": "mm"
+  },
+  {
+   "key": "murdemomendid",
+   "label_et": "Murdemomendid",
+   "unit": "kg"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Toote kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "tarvikud_komplektis",
+   "label_et": "Tarvikud komplektis",
+   "unit": "kogus"
+  }
+ ]
+}

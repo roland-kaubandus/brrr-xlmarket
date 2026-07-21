@@ -1,0 +1,46 @@
+{
+ "l3": "v4-suurkoogiseadmed-koogiseadmed-ja-elektriseadmed-konvektsioon-ja-rostimisahjud",
+ "name": "Konvektsioon- ja röstimisahjud",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "maht",
+   "label_et": "Maht",
+   "unit": "L"
+  },
+  {
+   "key": "kihid",
+   "label_et": "Küpsetuskihid",
+   "unit": "tk"
+  },
+  {
+   "key": "tootmiskiirus",
+   "label_et": "Tootmiskiirus",
+   "unit": "tk/h"
+  },
+  {
+   "key": "temp_max",
+   "label_et": "Maksimaalne temperatuur",
+   "unit": "°C"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  }
+ ]
+}

@@ -1,0 +1,41 @@
+{
+ "l3": "v4-suurkoogiseadmed-koogiseadmed-ja-elektriseadmed-vorstimasinad-ja-taitjad",
+ "name": "Vorstimasinad ja -täitjad",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Mahutavus",
+   "unit": "L"
+  },
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "operatsiooni_tyyp",
+   "label_et": "Operatsioonitüüp",
+   "unit": ""
+  },
+  {
+   "key": "kiiruste_arv",
+   "label_et": "Kiiruste arv",
+   "unit": ""
+  },
+  {
+   "key": "toru_arv",
+   "label_et": "Täiteavade arv",
+   "unit": ""
+  }
+ ]
+}

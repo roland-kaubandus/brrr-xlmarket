@@ -1,0 +1,41 @@
+{
+ "l3": "v4-moobel-ja-sisustus-sisustusdekoor-vaibad",
+ "name": "Vaibad",
+ "fields": [
+  {
+   "key": "pikkus_m",
+   "label_et": "Pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "laius_m",
+   "label_et": "Laius",
+   "unit": "m"
+  },
+  {
+   "key": "paksus_mm",
+   "label_et": "Paksus",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaal_kg",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "libisemiskindlus",
+   "label_et": "Libisemiskindlus",
+   "unit": ""
+  },
+  {
+   "key": "kogus_tk",
+   "label_et": "Kogus",
+   "unit": "tk"
+  }
+ ]
+}

@@ -1,0 +1,46 @@
+{
+ "l3": "v4-lemmikloomatarbed-pesad-ja-asemed-kassimajad",
+ "name": "Kassimajad",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "pikkus",
+   "label_et": "Pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "laius",
+   "label_et": "Laius",
+   "unit": "mm"
+  },
+  {
+   "key": "korgus",
+   "label_et": "Kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "korruseid",
+   "label_et": "Korruseid",
+   "unit": "tk"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus (küte)",
+   "unit": "W"
+  },
+  {
+   "key": "temperatuuri_vahemik",
+   "label_et": "Temperatuuri vahemik",
+   "unit": "°C"
+  }
+ ]
+}

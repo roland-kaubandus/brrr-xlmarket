@@ -1,0 +1,36 @@
+{
+ "l3": "v4-auto-matka-haagissuvila-markiisid",
+ "name": "Matka- ja haagissuvila markiisid",
+ "fields": [
+  {
+   "key": "laius_ft",
+   "label_et": "Markiisi laius",
+   "unit": "ft"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kogukaal",
+   "unit": "kg"
+  },
+  {
+   "key": "tootmisviis",
+   "label_et": "Juhtimine",
+   "unit": ""
+  },
+  {
+   "key": "pinge",
+   "label_et": "Toitepinge",
+   "unit": "V"
+  },
+  {
+   "key": "vari",
+   "label_et": "Värvus",
+   "unit": ""
+  },
+  {
+   "key": "materjal",
+   "label_et": "Raam",
+   "unit": ""
+  }
+ ]
+}

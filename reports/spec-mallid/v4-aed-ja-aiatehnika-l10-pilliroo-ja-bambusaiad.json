@@ -1,0 +1,41 @@
+{
+ "l3": "v4-aed-ja-aiatehnika-l10-pilliroo-ja-bambusaiad",
+ "name": "Pilliroo- ja bambusaiad",
+ "fields": [
+  {
+   "key": "kõrgus_m",
+   "label_et": "Kõrgus",
+   "unit": "m"
+  },
+  {
+   "key": "pikkus_m",
+   "label_et": "Pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "pinda_m2",
+   "label_et": "Pinda",
+   "unit": "m²"
+  },
+  {
+   "key": "värv",
+   "label_et": "Värv",
+   "unit": ""
+  },
+  {
+   "key": "kogus",
+   "label_et": "Kogus (komplekti)",
+   "unit": "tk"
+  }
+ ]
+}

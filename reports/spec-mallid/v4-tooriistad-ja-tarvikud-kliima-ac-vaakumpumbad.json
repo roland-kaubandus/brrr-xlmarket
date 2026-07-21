@@ -1,0 +1,46 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-kliima-ac-vaakumpumbad",
+ "name": "AC-vaakumpumbad",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "ohuvool",
+   "label_et": "Õhuvool",
+   "unit": "L/min"
+  },
+  {
+   "key": "poorlemiskiirus",
+   "label_et": "Pöörlemiskiirus",
+   "unit": "RPM"
+  },
+  {
+   "key": "viimane_vakuum",
+   "label_et": "Lõppvakuum",
+   "unit": "Pa"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "olimaht",
+   "label_et": "Õlimaht",
+   "unit": "mL"
+  },
+  {
+   "key": "astmed",
+   "label_et": "Astmed",
+   "unit": "tk"
+  }
+ ]
+}

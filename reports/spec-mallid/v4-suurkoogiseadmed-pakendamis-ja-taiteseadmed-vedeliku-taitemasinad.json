@@ -1,0 +1,46 @@
+{
+ "l3": "v4-suurkoogiseadmed-pakendamis-ja-taiteseadmed-vedeliku-taitemasinad",
+ "name": "Vedeliku täitemasinad",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Täitemaht (ühe täituse kohta)",
+   "unit": "ml"
+  },
+  {
+   "key": "vooluhulk",
+   "label_et": "Maksimaalne vooluhulk",
+   "unit": "L/min"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Seadme kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": "tekstiline"
+  },
+  {
+   "key": "kontroll_tyyp",
+   "label_et": "Juhtimisviis",
+   "unit": "tekstiline"
+  },
+  {
+   "key": "noolide_arv",
+   "label_et": "Täitenoolide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "rohk",
+   "label_et": "Töösurvepinge",
+   "unit": "bar"
+  },
+  {
+   "key": "taigsus",
+   "label_et": "Täitmise täpsus",
+   "unit": "%"
+  }
+ ]
+}

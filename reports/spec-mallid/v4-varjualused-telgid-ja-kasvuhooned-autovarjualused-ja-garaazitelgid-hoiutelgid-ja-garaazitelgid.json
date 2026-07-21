@@ -1,0 +1,41 @@
+{
+ "l3": "v4-varjualused-telgid-ja-kasvuhooned-autovarjualused-ja-garaazitelgid-hoiutelgid-ja-garaazitelgid",
+ "name": "Hoiutelgid ja garaažitelgid",
+ "fields": [
+  {
+   "key": "pikkus_cm",
+   "label_et": "Pikkus",
+   "unit": "cm"
+  },
+  {
+   "key": "laius_cm",
+   "label_et": "Laius",
+   "unit": "cm"
+  },
+  {
+   "key": "korgus_cm",
+   "label_et": "Kõrgus",
+   "unit": "cm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "siseruumala_m3",
+   "label_et": "Siseruumala",
+   "unit": "m³"
+  },
+  {
+   "key": "uksed",
+   "label_et": "Uksed",
+   "unit": "tk"
+  }
+ ]
+}

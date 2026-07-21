@@ -1,0 +1,36 @@
+{
+ "l3": "v4-garaaziseadmed-rehvitood-rehvivahetuse-tooriistakomplektid",
+ "name": "Rehvivahetuse tööriistakomplektid",
+ "fields": [
+  {
+   "key": "ketta_labamoot",
+   "label_et": "Rehvi läbimõõdu vahemik",
+   "unit": "mm"
+  },
+  {
+   "key": "tooriistad_arv",
+   "label_et": "Tööriistade arv komplektis",
+   "unit": "tk"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Komplekti kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Peamise materjali tüüp",
+   "unit": "tekst"
+  },
+  {
+   "key": "pikkus",
+   "label_et": "Tööriista maksimaalne pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "tugevus_klass",
+   "label_et": "Kasutusklassi tüüp",
+   "unit": "tekst"
+  }
+ ]
+}

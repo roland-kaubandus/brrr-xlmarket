@@ -1,0 +1,41 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-akutooriistad-akud-ja-laadijad",
+ "name": "Akud ja laadijad",
+ "fields": [
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "aku_maht",
+   "label_et": "Aku mahtuvus",
+   "unit": "Wh"
+  },
+  {
+   "key": "mahtuvus_ah",
+   "label_et": "Mahtuvus",
+   "unit": "Ah"
+  },
+  {
+   "key": "max_vooluhulk",
+   "label_et": "Maksimaalne väljundvool",
+   "unit": "A"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "laadimisaeg",
+   "label_et": "Laadimisaeg",
+   "unit": "min"
+  },
+  {
+   "key": "aku_tehnoloogia",
+   "label_et": "Aku tehnoloogia",
+   "unit": ""
+  }
+ ]
+}

@@ -1,0 +1,41 @@
+{
+ "l3": "v4-suurkoogiseadmed-koogitarvikud-ja-noud-praepannid-ja-pannikomplektid",
+ "name": "Praepannid ja pannikomplektid",
+ "fields": [
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "suurim_diameter_mm",
+   "label_et": "Suurim panni läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kogukaal",
+   "unit": "kg"
+  },
+  {
+   "key": "max_temperatuur_celsius",
+   "label_et": "Maksimaalne temperatuur",
+   "unit": "°C"
+  },
+  {
+   "key": "pannikomplementi_kogus",
+   "label_et": "Pannide arv komplektis",
+   "unit": "tk"
+  },
+  {
+   "key": "seina_paksus_mm",
+   "label_et": "Seina paksus",
+   "unit": "mm"
+  },
+  {
+   "key": "mittepigistav_katte",
+   "label_et": "Mittepigistav kate",
+   "unit": ""
+  }
+ ]
+}

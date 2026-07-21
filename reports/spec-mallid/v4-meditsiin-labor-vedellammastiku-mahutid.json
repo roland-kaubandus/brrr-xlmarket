@@ -1,0 +1,41 @@
+{
+ "l3": "v4-meditsiin-labor-vedellammastiku-mahutid",
+ "name": "Vedellämmastiku mahutid",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Mahutavus",
+   "unit": "L"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "paevane_auramine",
+   "label_et": "Päevane auramine",
+   "unit": "g/päev"
+  },
+  {
+   "key": "seisuaeg",
+   "label_et": "Staatiline hoiuaeg",
+   "unit": "päev"
+  },
+  {
+   "key": "kaliber",
+   "label_et": "Ava läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "kanistrite_arv",
+   "label_et": "Kanistrite arv",
+   "unit": "tk"
+  }
+ ]
+}

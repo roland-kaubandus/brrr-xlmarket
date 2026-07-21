@@ -1,0 +1,36 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-fitness-ja-treeningseadmed-tostekangid-barbell-ja-trap-bar",
+ "name": "Tõstekangid (barbell ja trap bar)",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kangide kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "pikkus",
+   "label_et": "Kangide pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "maksimaalne_koormus",
+   "label_et": "Maksimaalne koormus",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "ketta_labamoot",
+   "label_et": "Ketta läbamõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "kangide_tyyp",
+   "label_et": "Kangide tüüp",
+   "unit": ""
+  }
+ ]
+}

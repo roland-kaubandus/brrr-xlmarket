@@ -1,0 +1,41 @@
+{
+ "l3": "v4-aed-ja-aiatehnika-l2-ratikuhoidikud",
+ "name": "Rätikuhoidikud",
+ "fields": [
+  {
+   "key": "arv_raideid",
+   "label_et": "Raideid arv",
+   "unit": "tk"
+  },
+  {
+   "key": "kuju",
+   "label_et": "Kuju",
+   "unit": "kategooria"
+  },
+  {
+   "key": "kandevõime",
+   "label_et": "Kandevõime",
+   "unit": "kg"
+  },
+  {
+   "key": "kõrgus",
+   "label_et": "Kõrgus",
+   "unit": "cm"
+  },
+  {
+   "key": "laius",
+   "label_et": "Laius",
+   "unit": "cm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": "kategooria"
+  },
+  {
+   "key": "värvus",
+   "label_et": "Värvus",
+   "unit": "kategooria"
+  }
+ ]
+}

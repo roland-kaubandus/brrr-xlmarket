@@ -1,0 +1,46 @@
+{
+ "l3": "v4-autovaruosad-ja-tarvikud-pukseerimisseadmed-elektrilised-vintsid",
+ "name": "Elektrilised vintsid",
+ "fields": [
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "toejaama_tugevus",
+   "label_et": "Tõmbejõud",
+   "unit": "kg"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Kaabli/köie materjal",
+   "unit": ""
+  },
+  {
+   "key": "maarimine",
+   "label_et": "Kaitseklass",
+   "unit": ""
+  },
+  {
+   "key": "kontrolli_tyyp",
+   "label_et": "Juhtimisviis",
+   "unit": ""
+  },
+  {
+   "key": "kable_pikkus",
+   "label_et": "Kaabli/köie pikkus",
+   "unit": "m"
+  }
+ ]
+}

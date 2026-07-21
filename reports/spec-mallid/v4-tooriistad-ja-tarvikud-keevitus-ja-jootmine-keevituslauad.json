@@ -1,0 +1,46 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-keevitus-ja-jootmine-keevituslauad",
+ "name": "Keevituslauad",
+ "fields": [
+  {
+   "key": "koormus_maht",
+   "label_et": "Maksimaalne koormus",
+   "unit": "kg"
+  },
+  {
+   "key": "pinna_pikkus",
+   "label_et": "Tööpinna pikkus",
+   "unit": "cm"
+  },
+  {
+   "key": "pinna_laius",
+   "label_et": "Tööpinna laius",
+   "unit": "cm"
+  },
+  {
+   "key": "kõrgus",
+   "label_et": "Tööpinna kõrgus",
+   "unit": "cm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaalu",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "reguleeritav_kõrgus",
+   "label_et": "Reguleeritav kõrgus",
+   "unit": ""
+  },
+  {
+   "key": "haagised",
+   "label_et": "Haagiste olemasolul",
+   "unit": ""
+  }
+ ]
+}

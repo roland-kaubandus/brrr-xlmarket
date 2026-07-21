@@ -1,0 +1,41 @@
+{
+ "l3": "v4-garaaziseadmed-kutus-bensiinikanistrid",
+ "name": "Bensiinikanistrid ja ohutuskanistrid",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Mahutavus",
+   "unit": "L"
+  },
+  {
+   "key": "kaniistri_tyyp",
+   "label_et": "Kanistri tüüp",
+   "unit": ""
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "leek_kaitse",
+   "label_et": "Leekkaitse (Flame Arrester)",
+   "unit": ""
+  },
+  {
+   "key": "isesuletav_kaas",
+   "label_et": "Isesuletav kaas",
+   "unit": ""
+  },
+  {
+   "key": "otsik_tyyp",
+   "label_et": "Otsiku tüüp",
+   "unit": ""
+  }
+ ]
+}

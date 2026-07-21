@@ -1,0 +1,46 @@
+{
+ "l3": "v4-moobel-ja-sisustus-esikumoobel-ja-jalatsikapid-jalatsipingid-ja-istmed",
+ "name": "Jalatsipingid ja istmed",
+ "fields": [
+  {
+   "key": "koormus_mahutavus",
+   "label_et": "Maksimaalne koormus",
+   "unit": "kg"
+  },
+  {
+   "key": "pikkus",
+   "label_et": "Pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "korgus",
+   "label_et": "Kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "sügavus",
+   "label_et": "Sügavus",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Raam materjal",
+   "unit": ""
+  },
+  {
+   "key": "kihid",
+   "label_et": "Salvestusastmeid",
+   "unit": ""
+  },
+  {
+   "key": "istmega",
+   "label_et": "Istmekohver",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Neto kaal",
+   "unit": "kg"
+  }
+ ]
+}

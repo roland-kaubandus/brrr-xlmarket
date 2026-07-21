@@ -1,0 +1,46 @@
+{
+ "l3": "v4-aed-ja-aiatehnika-l2-mullivanni-katte-tostemehhanismid",
+ "name": "Mullivanni katte tõstemehhanismid",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "laius_min",
+   "label_et": "Laiuse vahemik (min)",
+   "unit": "mm"
+  },
+  {
+   "key": "laius_max",
+   "label_et": "Laiuse vahemik (max)",
+   "unit": "mm"
+  },
+  {
+   "key": "korgus_min",
+   "label_et": "Kõrguse vahemik (min)",
+   "unit": "mm"
+  },
+  {
+   "key": "korgus_max",
+   "label_et": "Kõrguse vahemik (max)",
+   "unit": "mm"
+  },
+  {
+   "key": "paigalduse_asukoht",
+   "label_et": "Paigalduse asukoht",
+   "unit": ""
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "mehhanismi_tyyp",
+   "label_et": "Mehhanismi tüüp",
+   "unit": ""
+  }
+ ]
+}

@@ -1,0 +1,46 @@
+{
+ "l3": "v4-tooriied-ja-isikukaitse-isikukaitsevahendid-kaitsekiivrid-ja-peakaitsmed",
+ "name": "Kaitsekiivrid ja peakaitsmed",
+ "fields": [
+  {
+   "key": "materjal",
+   "label_et": "Kesta materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "pea_suurus_min",
+   "label_et": "Pea suurus (min)",
+   "unit": "cm"
+  },
+  {
+   "key": "pea_suurus_max",
+   "label_et": "Pea suurus (max)",
+   "unit": "cm"
+  },
+  {
+   "key": "suspensiooni_punktid",
+   "label_et": "Suspensiooni punktid",
+   "unit": ""
+  },
+  {
+   "key": "tuuletus",
+   "label_et": "Tuuletus",
+   "unit": ""
+  },
+  {
+   "key": "kaitseklipp",
+   "label_et": "Kaitseklipp",
+   "unit": ""
+  },
+  {
+   "key": "kõrvakaitsmik",
+   "label_et": "Kõrvakaitsmik",
+   "unit": ""
+  }
+ ]
+}

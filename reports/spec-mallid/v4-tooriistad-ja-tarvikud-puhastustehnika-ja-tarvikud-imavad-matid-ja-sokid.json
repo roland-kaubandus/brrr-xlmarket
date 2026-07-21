@@ -1,0 +1,36 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-puhastustehnika-ja-tarvikud-imavad-matid-ja-sokid",
+ "name": "Imavad matid ja sokid",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Neeldumismaht",
+   "unit": "L"
+  },
+  {
+   "key": "materijal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kogukaal pakendis",
+   "unit": "kg"
+  },
+  {
+   "key": "kogus",
+   "label_et": "Tk kogus pakendis",
+   "unit": "tk"
+  },
+  {
+   "key": "paksus_mm",
+   "label_et": "Paksus",
+   "unit": "mm"
+  },
+  {
+   "key": "mootmed_mm",
+   "label_et": "Mõõtmed (P×L)",
+   "unit": "mm"
+  }
+ ]
+}

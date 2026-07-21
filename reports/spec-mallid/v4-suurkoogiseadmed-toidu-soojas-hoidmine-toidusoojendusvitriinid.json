@@ -1,0 +1,41 @@
+{
+ "l3": "v4-suurkoogiseadmed-toidu-soojas-hoidmine-toidusoojendusvitriinid",
+ "name": "Toidusoojendusvitriinid",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Elektrivõimsus",
+   "unit": "W"
+  },
+  {
+   "key": "maht",
+   "label_et": "Sisemaht",
+   "unit": "L"
+  },
+  {
+   "key": "kihid",
+   "label_et": "Riiulite arv",
+   "unit": "tk"
+  },
+  {
+   "key": "max_temp",
+   "label_et": "Maksimaalne temperatuur",
+   "unit": "°C"
+  },
+  {
+   "key": "kool",
+   "label_et": "Kuumutusviis",
+   "unit": "tüüp"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaalu",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Raam/materjal",
+   "unit": "materjal"
+  }
+ ]
+}

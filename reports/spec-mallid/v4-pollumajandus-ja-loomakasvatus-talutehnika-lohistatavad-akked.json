@@ -1,0 +1,41 @@
+{
+ "l3": "v4-pollumajandus-ja-loomakasvatus-talutehnika-lohistatavad-akked",
+ "name": "Mullaharimine (äkked ja kultivaatorid)",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "tootamis_laius",
+   "label_et": "Töötamislaius",
+   "unit": "mm"
+  },
+  {
+   "key": "tootamis_sügavus",
+   "label_et": "Töötamissügavus",
+   "unit": "mm"
+  },
+  {
+   "key": "hammasad_või_külad",
+   "label_et": "Hambad/külad arv",
+   "unit": "tk"
+  },
+  {
+   "key": "mootor_tyyp",
+   "label_et": "Mootori tüüp",
+   "unit": "tüüp"
+  },
+  {
+   "key": "silinder_maht",
+   "label_et": "Silindri maht",
+   "unit": "cm³"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": "tüüp"
+  }
+ ]
+}

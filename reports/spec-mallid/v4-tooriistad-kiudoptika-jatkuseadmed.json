@@ -1,0 +1,46 @@
+{
+ "l3": "v4-tooriistad-kiudoptika-jatkuseadmed",
+ "name": "Kiudoptika jätkuseadmed",
+ "fields": [
+  {
+   "key": "motorite_arv",
+   "label_et": "Motorite arv",
+   "unit": "tk"
+  },
+  {
+   "key": "joondamise_meetod",
+   "label_et": "Joondamise meetod",
+   "unit": "tüüp"
+  },
+  {
+   "key": "keevitusaeg",
+   "label_et": "Keevitusaeg (kiire)",
+   "unit": "s"
+  },
+  {
+   "key": "kuumutusaeg",
+   "label_et": "Kuumutusaeg",
+   "unit": "s"
+  },
+  {
+   "key": "ekraani_suurus",
+   "label_et": "Ekraani suurus",
+   "unit": "in"
+  },
+  {
+   "key": "aku_maht",
+   "label_et": "Aku maht",
+   "unit": "Wh"
+  },
+  {
+   "key": "keevituskadu",
+   "label_et": "Keevituskadu (SM)",
+   "unit": "dB"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  }
+ ]
+}

@@ -1,0 +1,41 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-keevitus-ja-jootmine-keevituskarud",
+ "name": "Keevituskärud",
+ "fields": [
+  {
+   "key": "koormus_staatiline_kg",
+   "label_et": "Staatiline koormusmaht",
+   "unit": "kg"
+  },
+  {
+   "key": "koormus_duraamiline_kg",
+   "label_et": "Dünaamiline koormusmaht",
+   "unit": "kg"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Käru kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "rattad_suurus_mm",
+   "label_et": "Rataste läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "silindri_mahutamise_arv",
+   "label_et": "Gaassilindrite arv",
+   "unit": "tk"
+  },
+  {
+   "key": "turvaahelid_arv",
+   "label_et": "Turvaahelite arv",
+   "unit": "tk"
+  },
+  {
+   "key": "lukustav_kapp",
+   "label_et": "Lukustav kapp",
+   "unit": "bool"
+  }
+ ]
+}

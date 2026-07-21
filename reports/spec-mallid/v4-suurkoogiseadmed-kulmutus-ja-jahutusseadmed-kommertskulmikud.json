@@ -1,0 +1,46 @@
+{
+ "l3": "v4-suurkoogiseadmed-kulmutus-ja-jahutusseadmed-kommertskulmikud",
+ "name": "Kommertskülmikud",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Maht",
+   "unit": "L"
+  },
+  {
+   "key": "uste_arv",
+   "label_et": "Uste arv",
+   "unit": "tk"
+  },
+  {
+   "key": "min_temp",
+   "label_et": "Minimaalne temperatuur",
+   "unit": "°C"
+  },
+  {
+   "key": "max_temp",
+   "label_et": "Maksimaalne temperatuur",
+   "unit": "°C"
+  },
+  {
+   "key": "kylmutatud_pindade_arv",
+   "label_et": "Külmutatud pindade arv",
+   "unit": "tk"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  }
+ ]
+}

@@ -1,0 +1,46 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-moote-ja-markeriistad-mikromeetrid",
+ "name": "Mikromeetrid",
+ "fields": [
+  {
+   "key": "mootmisulatus_mm",
+   "label_et": "Mõõtmisulatus",
+   "unit": "mm"
+  },
+  {
+   "key": "tapsus_mm",
+   "label_et": "Täpsus",
+   "unit": "mm"
+  },
+  {
+   "key": "resolutsioon_mm",
+   "label_et": "Resolutsioon",
+   "unit": "mm"
+  },
+  {
+   "key": "komplekti_suurus_tk",
+   "label_et": "Komplekti suurus",
+   "unit": "tk"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "digitaalne_ekraan",
+   "label_et": "Digitaalne ekraan",
+   "unit": ""
+  },
+  {
+   "key": "lukustus_mehhanism",
+   "label_et": "Lukustusmehhanisme",
+   "unit": ""
+  },
+  {
+   "key": "kaitsekorpus",
+   "label_et": "Kaitsekarpus",
+   "unit": ""
+  }
+ ]
+}

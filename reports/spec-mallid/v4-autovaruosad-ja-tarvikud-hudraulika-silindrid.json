@@ -1,0 +1,46 @@
+{
+ "l3": "v4-autovaruosad-ja-tarvikud-hudraulika-silindrid",
+ "name": "Hüdrosilindrid",
+ "fields": [
+  {
+   "key": "rohk",
+   "label_et": "Maksimaalne töörõhk",
+   "unit": "bar"
+  },
+  {
+   "key": "toekaik",
+   "label_et": "Tõstevõimsus",
+   "unit": "kg"
+  },
+  {
+   "key": "silindri_labimoot",
+   "label_et": "Silindri läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "kolvi_labimoot",
+   "label_et": "Kolvipuldiga läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "koolus",
+   "label_et": "Käigu pikkus (koolus)",
+   "unit": "mm"
+  },
+  {
+   "key": "maht",
+   "label_et": "Hüdraulikaõli maht",
+   "unit": "L"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Korpuse materjal",
+   "unit": ""
+  }
+ ]
+}

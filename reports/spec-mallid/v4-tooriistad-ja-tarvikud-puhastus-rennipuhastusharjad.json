@@ -1,0 +1,36 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-puhastus-rennipuhastusharjad",
+ "name": "Rennipuhastusharjad",
+ "fields": [
+  {
+   "key": "pikkus_m",
+   "label_et": "Kogupikkus",
+   "unit": "m"
+  },
+  {
+   "key": "ketta_labamoot",
+   "label_et": "Harja läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "kogus_tk",
+   "label_et": "Kogus pakis",
+   "unit": "tk"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "renni_suurus_cm",
+   "label_et": "Sobib renni suurusele",
+   "unit": "cm"
+  }
+ ]
+}

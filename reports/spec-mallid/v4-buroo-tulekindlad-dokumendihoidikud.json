@@ -1,0 +1,41 @@
+{
+ "l3": "v4-buroo-tulekindlad-dokumendihoidikud",
+ "name": "Tulekindlad dokumendihoidikud",
+ "fields": [
+  {
+   "key": "tulekindlus_temp",
+   "label_et": "Tulekindluse temperatuur",
+   "unit": "°C"
+  },
+  {
+   "key": "maht",
+   "label_et": "Mahutavus",
+   "unit": "L"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "tyyp",
+   "label_et": "Tüüp",
+   "unit": "kategooria"
+  },
+  {
+   "key": "kinnitus",
+   "label_et": "Kinnitusmehhanisim",
+   "unit": "kategooria"
+  },
+  {
+   "key": "kihtide_arv",
+   "label_et": "Kihilisus",
+   "unit": "tk"
+  },
+  {
+   "key": "jaotiste_arv",
+   "label_et": "Jaotiste arv",
+   "unit": "tk"
+  }
+ ]
+}

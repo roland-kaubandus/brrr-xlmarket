@@ -1,0 +1,36 @@
+{
+ "l3": "v4-suurkoogiseadmed-koogiseadmed-ja-elektriseadmed-vibrosoelad",
+ "name": "Vibrosõelad",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "poorlemiskiirus",
+   "label_et": "Mootoripöörded",
+   "unit": "RPM"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Netokaal",
+   "unit": "kg"
+  },
+  {
+   "key": "koormuse_maht",
+   "label_et": "Maksimaalse koormuse maht",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "soonumahedad",
+   "label_et": "Võrgurakud (Mesh)",
+   "unit": ""
+  }
+ ]
+}

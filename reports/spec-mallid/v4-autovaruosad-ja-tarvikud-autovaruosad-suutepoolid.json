@@ -1,0 +1,36 @@
+{
+ "l3": "v4-autovaruosad-ja-tarvikud-autovaruosad-suutepoolid",
+ "name": "Süütepoolid ja süütesüsteem",
+ "fields": [
+  {
+   "key": "pinge_min",
+   "label_et": "Minimaalne väljundpinge",
+   "unit": "V"
+  },
+  {
+   "key": "poolide_arv",
+   "label_et": "Süütepoolide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "ühilduvus_mootorid",
+   "label_et": "Ühilduvus mootoritega",
+   "unit": ""
+  },
+  {
+   "key": "kere_materjal",
+   "label_et": "Kere materjal",
+   "unit": ""
+  },
+  {
+   "key": "mootori_maht",
+   "label_et": "Mootori maht",
+   "unit": "L"
+  }
+ ]
+}

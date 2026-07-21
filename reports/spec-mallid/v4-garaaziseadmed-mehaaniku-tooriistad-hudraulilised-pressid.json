@@ -1,0 +1,36 @@
+{
+ "l3": "v4-garaaziseadmed-mehaaniku-tooriistad-hudraulilised-pressid",
+ "name": "Hüdraulilised pressid",
+ "fields": [
+  {
+   "key": "rated_load_ton",
+   "label_et": "Nimikoormus (tonni)",
+   "unit": "t"
+  },
+  {
+   "key": "rohk",
+   "label_et": "Tööpressuur",
+   "unit": "MPa"
+  },
+  {
+   "key": "silindri_löök",
+   "label_et": "Silindri löök",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "reguleeritav_korgus",
+   "label_et": "Reguleeritav kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  }
+ ]
+}

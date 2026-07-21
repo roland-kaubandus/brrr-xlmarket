@@ -1,0 +1,36 @@
+{
+ "l3": "v4-autovaruosad-ja-tarvikud-valistarvikud-ja-rehvitarvikud-lumeharjad-jaakraabitsad",
+ "name": "Lumeharjad ja jääkraabitsad",
+ "fields": [
+  {
+   "key": "pikkus_cm",
+   "label_et": "Pikendatava pikkuse vahemik",
+   "unit": "cm"
+  },
+  {
+   "key": "labamoot_mm",
+   "label_et": "Labida laius",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Labida materjal",
+   "unit": ""
+  },
+  {
+   "key": "pyvot_nurk",
+   "label_et": "Harja pöördenurk",
+   "unit": "°"
+  },
+  {
+   "key": "kaepide_tyyp",
+   "label_et": "Käepideme tüüp",
+   "unit": ""
+  }
+ ]
+}

@@ -1,0 +1,46 @@
+{
+ "l3": "v4-aed-ja-aiatehnika-l6-taimede-tugiresti-ja-trellised",
+ "name": "Taimede tugiresti ja trellised",
+ "fields": [
+  {
+   "key": "korgus_cm",
+   "label_et": "Kõrgus",
+   "unit": "cm"
+  },
+  {
+   "key": "laius_cm",
+   "label_et": "Laius",
+   "unit": "cm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kogus",
+   "label_et": "Kogus pakis",
+   "unit": "tk"
+  },
+  {
+   "key": "volle_suurus_cm",
+   "label_et": "Võrguruudu suurus",
+   "unit": "cm"
+  },
+  {
+   "key": "paandumissuurus_cm",
+   "label_et": "Maapinnasse ulatav osa",
+   "unit": "cm"
+  },
+  {
+   "key": "vari",
+   "label_et": "Värvus",
+   "unit": ""
+  }
+ ]
+}

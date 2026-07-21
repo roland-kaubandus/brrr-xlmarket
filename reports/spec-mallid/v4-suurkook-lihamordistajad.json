@@ -1,0 +1,41 @@
+{
+ "l3": "v4-suurkook-lihamordistajad",
+ "name": "Lihamördistajad",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjalid",
+   "unit": ""
+  },
+  {
+   "key": "teriade_arv",
+   "label_et": "Terjade arv",
+   "unit": "tk"
+  },
+  {
+   "key": "jahvatamise_pikkus",
+   "label_et": "Jahvatamise pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "jahvatamise_paksus",
+   "label_et": "Jahvatamise paksus",
+   "unit": "mm"
+  },
+  {
+   "key": "sisendava",
+   "label_et": "Sisendava suurus",
+   "unit": "mm"
+  }
+ ]
+}

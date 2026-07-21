@@ -1,0 +1,42 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-puhastustehnika-ja-tarvikud-tsuklonid-ja-tolmukogujad",
+ "name": "Tsüklonid ja tolmukogujad",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "ohuvool",
+   "label_et": "Õhuvool",
+   "unit": "L/min",
+   "unit_orig": "CFM/m³h"
+  },
+  {
+   "key": "maht",
+   "label_et": "Tolmupaagi maht",
+   "unit": "L"
+  },
+  {
+   "key": "filtri_otsustuslikkus",
+   "label_et": "Filtri otsustuslikkus",
+   "unit": "μm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "poorlemiskiirus",
+   "label_et": "Pöörlemiskiirus",
+   "unit": "RPM"
+  }
+ ]
+}

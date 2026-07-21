@@ -1,0 +1,37 @@
+{
+ "l3": "v4-santehnika-kute-ja-ventilatsioon-ventilatsioon-ja-ventilaatorid-ohukardinad",
+ "name": "Õhukardinad",
+ "fields": [
+  {
+   "key": "pikkus",
+   "label_et": "Õhukardinaiseade pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "ohuvool",
+   "label_et": "Maksimaalne õhuvool",
+   "unit": "L/min",
+   "unit_orig": "Lmin"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Toitepinge",
+   "unit": "V"
+  },
+  {
+   "key": "kihtide_arv",
+   "label_et": "Kiiruste arv",
+   "unit": "tk"
+  },
+  {
+   "key": "ukseavaus_korgus",
+   "label_et": "Sobiv ukseavause kõrgus",
+   "unit": "m"
+  },
+  {
+   "key": "lubatud_kõrgus",
+   "label_et": "Ukseavause lubatud kõrguste vahemik",
+   "unit": "m"
+  }
+ ]
+}

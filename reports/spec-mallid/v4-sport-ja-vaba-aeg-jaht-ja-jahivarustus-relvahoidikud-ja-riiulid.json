@@ -1,0 +1,41 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-jaht-ja-jahivarustus-relvahoidikud-ja-riiulid",
+ "name": "Relvahoidikud ja -riiulid",
+ "fields": [
+  {
+   "key": "paigutuse_tyyp",
+   "label_et": "Paigutuse tüüp",
+   "unit": "kategoriaalne"
+  },
+  {
+   "key": "relva_mahtuvus",
+   "label_et": "Relva mahutavus (relvad)",
+   "unit": "tk"
+  },
+  {
+   "key": "pistolite_mahtuvus",
+   "label_et": "Pistolite mahutavus",
+   "unit": "tk"
+  },
+  {
+   "key": "kandevoimsus",
+   "label_et": "Kandevõimsuus",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": "kategoriaalne"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Omakaalu",
+   "unit": "kg"
+  },
+  {
+   "key": "paigaldus_vahe",
+   "label_et": "Paigalduse vähendus",
+   "unit": "kategoriaalne"
+  }
+ ]
+}

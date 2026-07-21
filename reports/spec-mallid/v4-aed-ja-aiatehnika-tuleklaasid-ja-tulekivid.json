@@ -1,0 +1,36 @@
+{
+ "l3": "v4-aed-ja-aiatehnika-tuleklaasid-ja-tulekivid",
+ "name": "Tuleklaasid ja tulekivid",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Neto kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "ketta_labamoot",
+   "label_et": "Osakeste suurus",
+   "unit": "mm"
+  },
+  {
+   "key": "max_temp",
+   "label_et": "Maksimaalne kuumakindlus",
+   "unit": "°C"
+  },
+  {
+   "key": "kogus",
+   "label_et": "Tükkide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "varis",
+   "label_et": "Värvus/otsik",
+   "unit": ""
+  }
+ ]
+}

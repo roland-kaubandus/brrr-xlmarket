@@ -1,0 +1,41 @@
+{
+ "l3": "v4-autovaruosad-ja-tarvikud-autovaruosad-istme-vedrustuskomplektid",
+ "name": "Istme vedrustuskomplektid",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Netokaal",
+   "unit": "kg"
+  },
+  {
+   "key": "amortisaatori_kaugus",
+   "label_et": "Amortisaatori käik",
+   "unit": "mm"
+  },
+  {
+   "key": "ees_taha_reguleeritavus",
+   "label_et": "Ees-taha reguleerimise ulatus",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Konstruktsiooni materjal",
+   "unit": ""
+  },
+  {
+   "key": "paigalduskohad",
+   "label_et": "Lisapaigalduskohad",
+   "unit": "tk"
+  },
+  {
+   "key": "pikenduskaabli_pikkus",
+   "label_et": "Lüliti pikenduskaabli pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "universaalne_sobivus",
+   "label_et": "Universaalne ühilduvus",
+   "unit": ""
+  }
+ ]
+}

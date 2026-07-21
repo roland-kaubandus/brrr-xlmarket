@@ -1,0 +1,41 @@
+{
+ "l3": "v4-ehitus-remont-ja-varvid-aarekivirambid",
+ "name": "Äärekivi- ja kaldrambid",
+ "fields": [
+  {
+   "key": "koormus_maht",
+   "label_et": "Maksimaalne koormusmaht",
+   "unit": "kg"
+  },
+  {
+   "key": "tõusu_korgus",
+   "label_et": "Tõusu kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "pikkus",
+   "label_et": "Pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "laius",
+   "label_et": "Laius",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kogus",
+   "label_et": "Komplektis olevate ramppide arv",
+   "unit": "tk"
+  }
+ ]
+}

@@ -1,0 +1,36 @@
+{
+ "l3": "v4-autovaruosad-autokolarid-bassikolarid",
+ "name": "Autokõlarid ja bassikõlarid",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus (RMS)",
+   "unit": "W"
+  },
+  {
+   "key": "kolar_suurus",
+   "label_et": "Kõlari suurus",
+   "unit": "in"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "sageduse_vahemik",
+   "label_et": "Sageduse vahemik",
+   "unit": "Hz"
+  },
+  {
+   "key": "paigutus_tyyp",
+   "label_et": "Paigutuse tüüp",
+   "unit": ""
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  }
+ ]
+}

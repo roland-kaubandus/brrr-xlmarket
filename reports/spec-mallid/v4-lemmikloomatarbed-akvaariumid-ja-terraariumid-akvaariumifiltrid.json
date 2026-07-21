@@ -1,0 +1,46 @@
+{
+ "l3": "v4-lemmikloomatarbed-akvaariumid-ja-terraariumid-akvaariumifiltrid",
+ "name": "Akvaariumifiltrid",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Pumba võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "vooluhulk",
+   "label_et": "Maksimaalne vooluhulk",
+   "unit": "L/min"
+  },
+  {
+   "key": "maht",
+   "label_et": "Soovituslik akvaariumite maht",
+   "unit": "L"
+  },
+  {
+   "key": "myra",
+   "label_et": "Müra tase",
+   "unit": "dB"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Toote kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "filtri_kihid",
+   "label_et": "Filtreerimiskihtide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "uv_lamp_voimsus",
+   "label_et": "UV-lambi võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "pea_korgus",
+   "label_et": "Tõstekõrgus",
+   "unit": "m"
+  }
+ ]
+}

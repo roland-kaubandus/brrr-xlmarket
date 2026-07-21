@@ -1,0 +1,41 @@
+{
+ "l3": "v4-tervis-kosmeetikakohvrid",
+ "name": "Kosmeetikakohvrid",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "maht",
+   "label_et": "Maht (ligikaudne)",
+   "unit": "L"
+  },
+  {
+   "key": "astmete_arv",
+   "label_et": "Astmete/Sahtlite arv",
+   "unit": "tk"
+  },
+  {
+   "key": "avamatud_mootmed",
+   "label_et": "Avamatud mõõtmed",
+   "unit": "mm"
+  },
+  {
+   "key": "lukuga",
+   "label_et": "Lukuga",
+   "unit": ""
+  },
+  {
+   "key": "valgustusega",
+   "label_et": "Valgustusega",
+   "unit": ""
+  }
+ ]
+}

@@ -1,0 +1,36 @@
+{
+ "l3": "v4-tooriied-ja-isikukaitse-toojalatsid-taktikalised-saapad",
+ "name": "Taktikalised saapad",
+ "fields": [
+  {
+   "key": "korgus",
+   "label_et": "Saapa kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "varv",
+   "label_et": "Värvus",
+   "unit": ""
+  },
+  {
+   "key": "zipper",
+   "label_et": "Külgne tõmblukk",
+   "unit": ""
+  },
+  {
+   "key": "libisemiskindlus",
+   "label_et": "Libisemiskindel tald",
+   "unit": ""
+  }
+ ]
+}

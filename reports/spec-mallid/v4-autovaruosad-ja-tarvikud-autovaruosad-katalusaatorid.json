@@ -1,0 +1,41 @@
+{
+ "l3": "v4-autovaruosad-ja-tarvikud-autovaruosad-katalusaatorid",
+ "name": "Katalüsaatorid",
+ "fields": [
+  {
+   "key": "materjal",
+   "label_et": "Kere materaal",
+   "unit": "tekst"
+  },
+  {
+   "key": "substraadi_materjal",
+   "label_et": "Substraadi materaal",
+   "unit": "tekst"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "inlet_diameter",
+   "label_et": "Inlet siseläbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "ohuport",
+   "label_et": "O₂ anduriport",
+   "unit": "jah/ei"
+  },
+  {
+   "key": "rakutihedus",
+   "label_et": "Rakutihedus",
+   "unit": "rakud/tollin²"
+  },
+  {
+   "key": "standard",
+   "label_et": "Compliance standard",
+   "unit": "tekst"
+  }
+ ]
+}

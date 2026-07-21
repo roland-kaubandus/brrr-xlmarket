@@ -1,0 +1,36 @@
+{
+ "l3": "v4-moobel-ja-sisustus-ruumijagajad-helisummutus",
+ "name": "Helisummutus ja akustika",
+ "fields": [
+  {
+   "key": "pindala",
+   "label_et": "Helisummutuse pindala",
+   "unit": "m²"
+  },
+  {
+   "key": "myra",
+   "label_et": "Helisummutuse võimekus",
+   "unit": "dB"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Sisemise täitematerjali tüüp",
+   "unit": ""
+  },
+  {
+   "key": "pinnakate",
+   "label_et": "Välimine pinnamaterjal",
+   "unit": ""
+  },
+  {
+   "key": "vastupidavus",
+   "label_et": "Pikidõmbluse ja õmbluste tugevus",
+   "unit": "kategooria"
+  }
+ ]
+}

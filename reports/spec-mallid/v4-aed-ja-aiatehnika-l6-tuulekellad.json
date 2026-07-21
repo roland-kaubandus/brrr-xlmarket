@@ -1,0 +1,41 @@
+{
+ "l3": "v4-aed-ja-aiatehnika-l6-tuulekellad",
+ "name": "Tuulekellad",
+ "fields": [
+  {
+   "key": "pikkus",
+   "label_et": "Pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "toru_arv",
+   "label_et": "Torude arv",
+   "unit": "tk"
+  },
+  {
+   "key": "diameter",
+   "label_et": "Läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "tone",
+   "label_et": "Toon",
+   "unit": ""
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "vari",
+   "label_et": "Väri",
+   "unit": ""
+  }
+ ]
+}

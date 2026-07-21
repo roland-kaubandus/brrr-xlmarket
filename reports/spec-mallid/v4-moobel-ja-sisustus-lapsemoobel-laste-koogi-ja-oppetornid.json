@@ -1,0 +1,46 @@
+{
+ "l3": "v4-moobel-ja-sisustus-lapsemoobel-laste-koogi-ja-oppetornid",
+ "name": "Laste köögi- ja õppetornid",
+ "fields": [
+  {
+   "key": "max_koormus",
+   "label_et": "Maksimaalne koormuse võimsus",
+   "unit": "kg"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Toote kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "platvormi_korgus_min",
+   "label_et": "Platvormi minimaalne kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "platvormi_korgus_max",
+   "label_et": "Platvormi maksimaalne kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "korgusjärke_arv",
+   "label_et": "Kõrgusastmete arv",
+   "unit": ""
+  },
+  {
+   "key": "volditav",
+   "label_et": "Volditav disain",
+   "unit": ""
+  },
+  {
+   "key": "turvakaide",
+   "label_et": "Turvakaitse",
+   "unit": ""
+  }
+ ]
+}

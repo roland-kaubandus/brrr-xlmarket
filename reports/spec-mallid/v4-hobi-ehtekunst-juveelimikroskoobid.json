@@ -1,0 +1,46 @@
+{
+ "l3": "v4-hobi-ehtekunst-juveelimikroskoobid",
+ "name": "Juveelimikroskoobid",
+ "fields": [
+  {
+   "key": "suurendus_min_max",
+   "label_et": "Suurendus (min-max)",
+   "unit": "X"
+  },
+  {
+   "key": "tootmise_kaugus_mm",
+   "label_et": "Töötamise kaugus",
+   "unit": "mm"
+  },
+  {
+   "key": "objektiivi_labimaoot",
+   "label_et": "Objektiivi läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "silmateepildi_suurendus",
+   "label_et": "Okulaariotika suurendus",
+   "unit": "X"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "valgusti_tyyp",
+   "label_et": "Valgustus",
+   "unit": ""
+  },
+  {
+   "key": "vahe_silmade_vahel",
+   "label_et": "Silmateepildi vahekaugus",
+   "unit": "mm"
+  }
+ ]
+}

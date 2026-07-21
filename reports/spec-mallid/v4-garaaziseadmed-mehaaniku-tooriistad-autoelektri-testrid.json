@@ -1,0 +1,41 @@
+{
+ "l3": "v4-garaaziseadmed-mehaaniku-tooriistad-autoelektri-testrid",
+ "name": "Autoelektri testrid",
+ "fields": [
+  {
+   "key": "pinge_min_max",
+   "label_et": "Pingevahemik",
+   "unit": "V"
+  },
+  {
+   "key": "kabel_pikkus",
+   "label_et": "Kaabli pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "test_pinge_max",
+   "label_et": "Maksimaalse testi pinge",
+   "unit": "V"
+  },
+  {
+   "key": "ekraan_tyyp",
+   "label_et": "Ekraani tüüp",
+   "unit": ""
+  },
+  {
+   "key": "test_reziimide_arv",
+   "label_et": "Testimisreziimide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  }
+ ]
+}

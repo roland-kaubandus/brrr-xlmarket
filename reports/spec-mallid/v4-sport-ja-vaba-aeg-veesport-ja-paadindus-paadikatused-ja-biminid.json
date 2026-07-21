@@ -1,0 +1,46 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-veesport-ja-paadindus-paadikatused-ja-biminid",
+ "name": "Paadikatused ja biminid",
+ "fields": [
+  {
+   "key": "pikkus_mm",
+   "label_et": "Pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "laius_mm",
+   "label_et": "Laius",
+   "unit": "mm"
+  },
+  {
+   "key": "korgus_mm",
+   "label_et": "Kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Kangas/materjal",
+   "unit": "denier"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "vihmakindlus",
+   "label_et": "Vihmakindlus",
+   "unit": "tase"
+  },
+  {
+   "key": "uv_kaitseaste",
+   "label_et": "UV-kaitseaste",
+   "unit": "UPF"
+  },
+  {
+   "key": "kaarte_arv",
+   "label_et": "Kaarte arv",
+   "unit": "tk"
+  }
+ ]
+}

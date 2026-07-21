@@ -1,0 +1,46 @@
+{
+ "l3": "v4-auto-automarkiisid",
+ "name": "Automarkiisid",
+ "fields": [
+  {
+   "key": "pind_pindala",
+   "label_et": "Varjualune pindala",
+   "unit": "m²"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "vee_tihedus",
+   "label_et": "Veekindlus (PU-tase)",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Kangas",
+   "unit": "G/m²"
+  },
+  {
+   "key": "uv_kaitseaste",
+   "label_et": "UV-kaitse",
+   "unit": "UPF"
+  },
+  {
+   "key": "nurk_aste",
+   "label_et": "Katusekate nurk",
+   "unit": "°"
+  },
+  {
+   "key": "korgus_m",
+   "label_et": "Maksimaalse kõrgus",
+   "unit": "m"
+  },
+  {
+   "key": "led_tuled",
+   "label_et": "LED-tuled",
+   "unit": "tk"
+  }
+ ]
+}

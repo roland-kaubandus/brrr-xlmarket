@@ -1,0 +1,41 @@
+{
+ "l3": "v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-vooditelgid",
+ "name": "Vooditelgid",
+ "fields": [
+  {
+   "key": "pikkus",
+   "label_et": "Pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "laius",
+   "label_et": "Laius",
+   "unit": "mm"
+  },
+  {
+   "key": "korgus",
+   "label_et": "Kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "uste_arv",
+   "label_et": "Uste arv",
+   "unit": "tk"
+  },
+  {
+   "key": "blackout_protsent",
+   "label_et": "Valguse blokeerimine",
+   "unit": "%"
+  },
+  {
+   "key": "pooluse_labimaot",
+   "label_et": "Pooluse läbimõõt",
+   "unit": "mm"
+  }
+ ]
+}

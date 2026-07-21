@@ -1,0 +1,37 @@
+{
+ "l3": "v4-tervis-hooldus-ja-ilu-isikuhooldusseadmed-mikronoelamisseadmed",
+ "name": "Mikronõelamisseadmed",
+ "fields": [
+  {
+   "key": "aku_maht",
+   "label_et": "Aku mahtuvus",
+   "unit": "Wh",
+   "unit_orig": "mAh"
+  },
+  {
+   "key": "kiirus_tasemed",
+   "label_et": "Kiiruse tasemete arv",
+   "unit": "tk"
+  },
+  {
+   "key": "noel_pikkus_max",
+   "label_et": "Maksimaalne nõela pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "kartriidz_arv",
+   "label_et": "Kaasas olevate kartriidžide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "kartriidz_tyyp",
+   "label_et": "Kartriidži tüüp",
+   "unit": "-"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  }
+ ]
+}

@@ -1,0 +1,46 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-veesport-ja-paadindus-sup-lauad-ja-tarvikud",
+ "name": "SUP-lauad ja aerulauad",
+ "fields": [
+  {
+   "key": "pikkus",
+   "label_et": "Pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "laius",
+   "label_et": "Laius",
+   "unit": "cm"
+  },
+  {
+   "key": "paksus",
+   "label_et": "Paksus",
+   "unit": "cm"
+  },
+  {
+   "key": "kandevõime",
+   "label_et": "Kandevõime",
+   "unit": "kg"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "rohk",
+   "label_et": "Tööõhurõhk",
+   "unit": "bar"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Laua materjal",
+   "unit": ""
+  },
+  {
+   "key": "istmega",
+   "label_et": "Eemaldatav istme",
+   "unit": ""
+  }
+ ]
+}

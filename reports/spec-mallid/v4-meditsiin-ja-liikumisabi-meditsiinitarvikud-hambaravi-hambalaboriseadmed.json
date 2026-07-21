@@ -1,0 +1,46 @@
+{
+ "l3": "v4-meditsiin-ja-liikumisabi-meditsiinitarvikud-hambaravi-hambalaboriseadmed",
+ "name": "Hambaravi- ja hambalaboriseadmed",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "rohk",
+   "label_et": "Töörõhk",
+   "unit": "bar"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "maht",
+   "label_et": "Tolmupaagi maht",
+   "unit": "L"
+  },
+  {
+   "key": "pihustussuu_labimaout",
+   "label_et": "Pihustusotsiku läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Pihustusotsiku materjal",
+   "unit": "text"
+  },
+  {
+   "key": "osakeste_suurus",
+   "label_et": "Osakeste suurus",
+   "unit": "μm"
+  }
+ ]
+}

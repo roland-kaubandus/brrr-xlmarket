@@ -1,0 +1,46 @@
+{
+ "l3": "v4-peoinventar-pulmakaared-lilledekoor",
+ "name": "Pulmakaared ja lilledekoor",
+ "fields": [
+  {
+   "key": "komplekti_suurus",
+   "label_et": "Komplekti suurus (osa)",
+   "unit": "tk"
+  },
+  {
+   "key": "lilleseadete_arv",
+   "label_et": "Lilleseadete arv",
+   "unit": "tk"
+  },
+  {
+   "key": "kardinite_arv",
+   "label_et": "Kardinite/drapeeringute arv",
+   "unit": "tk"
+  },
+  {
+   "key": "kardiini_pikkus",
+   "label_et": "Kardiini pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "varv",
+   "label_et": "Värvi kombinatsioon",
+   "unit": ""
+  },
+  {
+   "key": "korgus",
+   "label_et": "Kõrgus (reguleeritav vahemik)",
+   "unit": "mm"
+  },
+  {
+   "key": "kandevoimasus",
+   "label_et": "Kandevõimekus",
+   "unit": "kg"
+  }
+ ]
+}

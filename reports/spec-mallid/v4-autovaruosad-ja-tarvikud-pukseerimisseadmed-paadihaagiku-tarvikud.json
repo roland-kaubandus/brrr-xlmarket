@@ -1,0 +1,41 @@
+{
+ "l3": "v4-autovaruosad-ja-tarvikud-pukseerimisseadmed-paadihaagiku-tarvikud",
+ "name": "Paadihaagiku tarvikud",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kandevõime",
+   "label_et": "Kandevõime",
+   "unit": "kg"
+  },
+  {
+   "key": "pikkus",
+   "label_et": "Pikkus (reguleeritav)",
+   "unit": "mm"
+  },
+  {
+   "key": "ketta_labamoot",
+   "label_et": "Rattaste läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "paigalduse_tüüp",
+   "label_et": "Paigalduse tüüp",
+   "unit": ""
+  },
+  {
+   "key": "reguleeritav_kõrgus",
+   "label_et": "Reguleeritav kõrgus",
+   "unit": "mm"
+  }
+ ]
+}

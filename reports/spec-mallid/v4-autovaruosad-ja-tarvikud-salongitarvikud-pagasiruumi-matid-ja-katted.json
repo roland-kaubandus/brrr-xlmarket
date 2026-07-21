@@ -1,0 +1,41 @@
+{
+ "l3": "v4-autovaruosad-ja-tarvikud-salongitarvikud-pagasiruumi-matid-ja-katted",
+ "name": "Pagasiruumi katted",
+ "fields": [
+  {
+   "key": "max_extension_length",
+   "label_et": "Maksimaalne pikenduspikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "end_cap_width",
+   "label_et": "Otsekapi laius",
+   "unit": "mm"
+  },
+  {
+   "key": "end_cap_height",
+   "label_et": "Otsekapi kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "waterproof",
+   "label_et": "Veekindel",
+   "unit": ""
+  },
+  {
+   "key": "uv_resistant",
+   "label_et": "UV-kiirguskindel",
+   "unit": ""
+  }
+ ]
+}

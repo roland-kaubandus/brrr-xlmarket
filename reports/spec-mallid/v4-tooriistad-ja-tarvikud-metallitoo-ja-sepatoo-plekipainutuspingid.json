@@ -1,0 +1,41 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-metallitoo-ja-sepatoo-plekipainutuspingid",
+ "name": "Plekipainutuspingid",
+ "fields": [
+  {
+   "key": "painutuslaius_mm",
+   "label_et": "Maksimaalne painutuslaius",
+   "unit": "mm"
+  },
+  {
+   "key": "painutuspaksus_gauge",
+   "label_et": "Maksimaalne painutuspaksus (terased)",
+   "unit": "gauge"
+  },
+  {
+   "key": "painutuspaksus_mm",
+   "label_et": "Maksimaalne painutuspaksus",
+   "unit": "mm"
+  },
+  {
+   "key": "painutusnurk_kraadi",
+   "label_et": "Maksimaalne painutusnurk",
+   "unit": "°"
+  },
+  {
+   "key": "sormede_arv",
+   "label_et": "Segmenteeritud sormede arv",
+   "unit": "tk"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Konstruktsioonmaterjal",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  }
+ ]
+}

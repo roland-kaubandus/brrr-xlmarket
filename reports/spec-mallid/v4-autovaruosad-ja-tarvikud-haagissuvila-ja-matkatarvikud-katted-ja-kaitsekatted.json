@@ -1,0 +1,41 @@
+{
+ "l3": "v4-autovaruosad-ja-tarvikud-haagissuvila-ja-matkatarvikud-katted-ja-kaitsekatted",
+ "name": "Katted ja kaitsekatted",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "pikkus_min",
+   "label_et": "Minimaalne pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "pikkus_max",
+   "label_et": "Maksimaalne pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "laius",
+   "label_et": "Laius",
+   "unit": "m"
+  },
+  {
+   "key": "korgus",
+   "label_et": "Kõrgus",
+   "unit": "m"
+  },
+  {
+   "key": "kihtide_arv",
+   "label_et": "Kihtide arv",
+   "unit": ""
+  }
+ ]
+}

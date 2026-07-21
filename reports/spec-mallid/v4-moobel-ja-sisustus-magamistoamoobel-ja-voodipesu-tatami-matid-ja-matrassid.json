@@ -1,0 +1,46 @@
+{
+ "l3": "v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-tatami-matid-ja-matrassid",
+ "name": "Tatami matid ja matrassid",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "pikkus",
+   "label_et": "Pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "laius",
+   "label_et": "Laius",
+   "unit": "mm"
+  },
+  {
+   "key": "paksus",
+   "label_et": "Paksus",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "mittelijumine",
+   "label_et": "Mitteliugumine",
+   "unit": "bool"
+  },
+  {
+   "key": "volditavus",
+   "label_et": "Volditud osade arv",
+   "unit": "tk"
+  },
+  {
+   "key": "temperatuur_regulatsioon",
+   "label_et": "Temperatuuri regulatsioon",
+   "unit": "bool"
+  }
+ ]
+}

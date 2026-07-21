@@ -1,0 +1,36 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-pneumaatilised-pressimistooriistad",
+ "name": "Pneumaatilised pressimistööriistad",
+ "fields": [
+  {
+   "key": "rohk",
+   "label_et": "Tööpaine",
+   "unit": "bar"
+  },
+  {
+   "key": "max_pressimissuurus",
+   "label_et": "Maksimaalne pressimissuurus",
+   "unit": "mm²"
+  },
+  {
+   "key": "pressimisyks",
+   "label_et": "Pressimisyks",
+   "unit": "T"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "stampsside_komplektid",
+   "label_et": "Stampsside komplektid",
+   "unit": "tk"
+  }
+ ]
+}

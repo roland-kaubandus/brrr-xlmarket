@@ -1,0 +1,36 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-puidutoo-tooriistad-tolmuimemisvoolikud",
+ "name": "Tolmuimemisvoolikud",
+ "fields": [
+  {
+   "key": "kaliber_mm",
+   "label_et": "Sisemõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "pikkus_m",
+   "label_et": "Pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "armeerimise_tyyp",
+   "label_et": "Armeerimine",
+   "unit": ""
+  },
+  {
+   "key": "ühenduste_arv",
+   "label_et": "Terasklemmide arv",
+   "unit": "tk"
+  }
+ ]
+}

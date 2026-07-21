@@ -1,0 +1,41 @@
+{
+ "l3": "v4-ladu-seinariiulid",
+ "name": "Seinariiulid",
+ "fields": [
+  {
+   "key": "laius_mm",
+   "label_et": "Riiuli laius",
+   "unit": "mm"
+  },
+  {
+   "key": "sügavus_mm",
+   "label_et": "Riiuli sügavus",
+   "unit": "mm"
+  },
+  {
+   "key": "korgus_mm",
+   "label_et": "Kogu kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "kastimaht_kg",
+   "label_et": "Kandelvõime ühe riiuli kohta",
+   "unit": "kg"
+  },
+  {
+   "key": "kihtide_arv",
+   "label_et": "Riiulite arv",
+   "unit": "tk"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Toote kaal",
+   "unit": "kg"
+  }
+ ]
+}

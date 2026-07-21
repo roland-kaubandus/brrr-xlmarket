@@ -1,0 +1,41 @@
+{
+ "l3": "v4-garaaziseadmed-olivahetus-ja-hooldus-pneumaatilised-ja-membraanpumbad",
+ "name": "Pneumaatilised ja membraanpumbad",
+ "fields": [
+  {
+   "key": "vooluhulk",
+   "label_et": "Maksimaalne vooluhulk",
+   "unit": "L/min"
+  },
+  {
+   "key": "rohk",
+   "label_et": "Maksimaalne töörõhk",
+   "unit": "bar"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Korpuse materjal",
+   "unit": ""
+  },
+  {
+   "key": "diafragma_materjal",
+   "label_et": "Membraani materjal",
+   "unit": ""
+  },
+  {
+   "key": "inlet_outlet_size",
+   "label_et": "Sisend-/väljundava suurus",
+   "unit": "inch"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Netokaal",
+   "unit": "kg"
+  },
+  {
+   "key": "imustusvõime",
+   "label_et": "Kuiva imustusvõime",
+   "unit": "m"
+  }
+ ]
+}

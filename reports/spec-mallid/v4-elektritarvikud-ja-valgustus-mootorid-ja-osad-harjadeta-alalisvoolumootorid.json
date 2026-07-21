@@ -1,0 +1,41 @@
+{
+ "l3": "v4-elektritarvikud-ja-valgustus-mootorid-ja-osad-harjadeta-alalisvoolumootorid",
+ "name": "Harjadeta alalisvoolumootorid ja -komplektid",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Nimivõimsus",
+   "unit": "W"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "poorlemiskiirus",
+   "label_et": "Nimipöörlemiskiirus",
+   "unit": "RPM"
+  },
+  {
+   "key": "max_vool",
+   "label_et": "Maksimaalne vool",
+   "unit": "A"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "pordamise_moment",
+   "label_et": "Pöördemoment",
+   "unit": "N·m"
+  },
+  {
+   "key": "kasutegur",
+   "label_et": "Kasutegur",
+   "unit": "%"
+  }
+ ]
+}

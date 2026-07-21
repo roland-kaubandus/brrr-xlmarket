@@ -1,0 +1,46 @@
+{
+ "l3": "v4-suurkoogiseadmed-kuumaseadmed-soorikumasinad",
+ "name": "Sõõrikumasinad",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "maht",
+   "label_et": "Mahuti maht",
+   "unit": "L"
+  },
+  {
+   "key": "ridade_arv",
+   "label_et": "Ridade arv",
+   "unit": "tk"
+  },
+  {
+   "key": "toodangu_mahtkogus",
+   "label_et": "Toodang/tund",
+   "unit": "tk/h"
+  },
+  {
+   "key": "material",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "sooritused_suurused",
+   "label_et": "Sõõrikute suurused",
+   "unit": "mm"
+  }
+ ]
+}

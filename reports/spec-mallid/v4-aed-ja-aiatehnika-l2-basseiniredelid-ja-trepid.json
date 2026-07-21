@@ -1,0 +1,41 @@
+{
+ "l3": "v4-aed-ja-aiatehnika-l2-basseiniredelid-ja-trepid",
+ "name": "Basseiniredelid ja trepid",
+ "fields": [
+  {
+   "key": "arv_astmeid",
+   "label_et": "Astmete arv",
+   "unit": "tk"
+  },
+  {
+   "key": "maksimaalne_koormus",
+   "label_et": "Maksimaalne koormuse võimekus",
+   "unit": "kg"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "astme_laius",
+   "label_et": "Astme laius",
+   "unit": "mm"
+  },
+  {
+   "key": "kogu_korgus",
+   "label_et": "Kogukõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "lubisemine_kaitse",
+   "label_et": "Libisemisevastane kaitse",
+   "unit": ""
+  }
+ ]
+}

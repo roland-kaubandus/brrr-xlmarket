@@ -1,0 +1,36 @@
+{
+ "l3": "v4-ehitus-remont-ja-varvid-terrassilauad-ja-valisporand-terrassipiirde-balustrid-liistud",
+ "name": "Terrassipiirde balustrid ja liistud",
+ "fields": [
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "balusteri_pikkus_mm",
+   "label_et": "Balusteri pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "balusteri_laius_mm",
+   "label_et": "Balusteri laius",
+   "unit": "mm"
+  },
+  {
+   "key": "balusteri_kogus",
+   "label_et": "Balusteri kogus",
+   "unit": "tk"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "pitsipindkatte",
+   "label_et": "Pinnakatte tüüp",
+   "unit": ""
+  }
+ ]
+}

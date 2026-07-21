@@ -1,0 +1,41 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-golf-ja-discgolf-golfi-loogi-puttimismatid",
+ "name": "Golfi löögi- ja puttimismatid",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "mat_pindala",
+   "label_et": "Mati pindala",
+   "unit": "m²"
+  },
+  {
+   "key": "mat_liik",
+   "label_et": "Mati tüüp",
+   "unit": ""
+  },
+  {
+   "key": "auk_arv",
+   "label_et": "Aukude arv (puttimismatid)",
+   "unit": "tk"
+  },
+  {
+   "key": "lisatarvikud",
+   "label_et": "Lisatarvikud komplektis",
+   "unit": ""
+  },
+  {
+   "key": "pall_tagastus",
+   "label_et": "Automaatne pallitagastus",
+   "unit": ""
+  }
+ ]
+}

@@ -1,0 +1,36 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-keevitus-ja-jootmine-keevituspositsioneerijad",
+ "name": "Keevituspositsioneerijad",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Mootori võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "koormus_paigal",
+   "label_et": "Maksimaalne koormus",
+   "unit": "kg"
+  },
+  {
+   "key": "poorlemiskiirus",
+   "label_et": "Pöörlemiskiirus",
+   "unit": "RPM"
+  },
+  {
+   "key": "kaldenurk",
+   "label_et": "Kaldenurga vahemik",
+   "unit": "°"
+  },
+  {
+   "key": "ketta_labamoot",
+   "label_et": "Tööpinna läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Netokaal",
+   "unit": "kg"
+  }
+ ]
+}

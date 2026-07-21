@@ -1,0 +1,41 @@
+{
+ "l3": "v4-aed-ja-aiatehnika-l5-muruniidukid",
+ "name": "Muruniidukid",
+ "fields": [
+  {
+   "key": "lõikepraotus",
+   "label_et": "Lõikepraotus",
+   "unit": "mm"
+  },
+  {
+   "key": "lõikekõrgus_min",
+   "label_et": "Lõikekõrgus (min)",
+   "unit": "mm"
+  },
+  {
+   "key": "lõikekõrgus_max",
+   "label_et": "Lõikekõrgus (max)",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "terablokk_arv",
+   "label_et": "Terablokk (arv)",
+   "unit": "tk"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Terablokk materjal",
+   "unit": ""
+  },
+  {
+   "key": "kõrgus_max",
+   "label_et": "Käepide kõrgus",
+   "unit": "mm"
+  }
+ ]
+}

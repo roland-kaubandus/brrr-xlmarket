@@ -1,0 +1,46 @@
+{
+ "l3": "v4-moobel-ja-sisustus-kontorimoobel-ja-tarvikud-seisulauad-ja-lauaraamid",
+ "name": "Seisulauad ja lauaraamid",
+ "fields": [
+  {
+   "key": "korkeus_reguleeritavus_min",
+   "label_et": "Miinimum kõrgus",
+   "unit": "cm"
+  },
+  {
+   "key": "korkeus_reguleeritavus_max",
+   "label_et": "Maksimum kõrgus",
+   "unit": "cm"
+  },
+  {
+   "key": "pikkus_reguleeritavus_min",
+   "label_et": "Miinimum pikkus",
+   "unit": "cm"
+  },
+  {
+   "key": "pikkus_reguleeritavus_max",
+   "label_et": "Maksimum pikkus",
+   "unit": "cm"
+  },
+  {
+   "key": "maksimaalne_kandevoimasus",
+   "label_et": "Maksimaalne kandevõimekus",
+   "unit": "kg"
+  },
+  {
+   "key": "myra",
+   "label_et": "Müra",
+   "unit": "dB"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Raam materjal",
+   "unit": ""
+  },
+  {
+   "key": "mootor_tyyp",
+   "label_et": "Mootorite arv",
+   "unit": ""
+  }
+ ]
+}

@@ -1,0 +1,41 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-kaitse-ja-motokiivrid",
+ "name": "Mootorrattakiivrid",
+ "fields": [
+  {
+   "key": "kiivri_tyyp",
+   "label_et": "Kiivri tüüp",
+   "unit": ""
+  },
+  {
+   "key": "pea_suurus",
+   "label_et": "Pea suurus (circumference)",
+   "unit": "cm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "bluetooth_funktsioon",
+   "label_et": "Bluetooth funktsioon",
+   "unit": ""
+  },
+  {
+   "key": "vahetatav_lääts",
+   "label_et": "Vahetatav lääts",
+   "unit": ""
+  },
+  {
+   "key": "ventilatsiooni_omadused",
+   "label_et": "Ventilatsiooni omadused",
+   "unit": ""
+  }
+ ]
+}

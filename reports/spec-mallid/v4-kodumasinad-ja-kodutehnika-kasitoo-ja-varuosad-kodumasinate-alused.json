@@ -1,0 +1,46 @@
+{
+ "l3": "v4-kodumasinad-ja-kodutehnika-kasitoo-ja-varuosad-kodumasinate-alused",
+ "name": "Kodumasinate alused",
+ "fields": [
+  {
+   "key": "koormus_jaak_kg",
+   "label_et": "Maksimaalne koormus",
+   "unit": "kg"
+  },
+  {
+   "key": "kõrgus_mm",
+   "label_et": "Kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "laius_mm",
+   "label_et": "Laius",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal_kg",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "reguleeritav",
+   "label_et": "Reguleeritav (kõrgus/laius)",
+   "unit": "mm"
+  },
+  {
+   "key": "jalad_tyyp",
+   "label_et": "Jalad/Ratastega",
+   "unit": ""
+  },
+  {
+   "key": "lisafunktsioon",
+   "label_et": "Lisafunktsioon (sahtli/riiul)",
+   "unit": ""
+  }
+ ]
+}

@@ -1,0 +1,36 @@
+{
+ "l3": "v4-meditsiin-labor-laboritostukid",
+ "name": "Laboritõstukid",
+ "fields": [
+  {
+   "key": "kandevoimasus_kg",
+   "label_et": "Kandevõimasus",
+   "unit": "kg"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "pohja_labamoot",
+   "label_et": "Põhja labasuurus",
+   "unit": "cm"
+  },
+  {
+   "key": "min_korgus",
+   "label_et": "Minimaalne kõrgus",
+   "unit": "cm"
+  },
+  {
+   "key": "max_korgus",
+   "label_et": "Maksimaalne kõrgus",
+   "unit": "cm"
+  }
+ ]
+}

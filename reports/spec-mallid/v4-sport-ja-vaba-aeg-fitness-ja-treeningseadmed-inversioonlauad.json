@@ -1,0 +1,31 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-fitness-ja-treeningseadmed-inversioonlauad",
+ "name": "Inversioonlauad",
+ "fields": [
+  {
+   "key": "kandevoimsus_kg",
+   "label_et": "Kandevõimsus",
+   "unit": "kg"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "korgus_reguleeritavus",
+   "label_et": "Kõrguse reguleeritavus",
+   "unit": "ft"
+  },
+  {
+   "key": "omadused",
+   "label_et": "Omadused",
+   "unit": ""
+  }
+ ]
+}

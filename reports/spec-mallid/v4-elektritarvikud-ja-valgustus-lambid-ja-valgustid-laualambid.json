@@ -1,0 +1,41 @@
+{
+ "l3": "v4-elektritarvikud-ja-valgustus-lambid-ja-valgustid-laualambid",
+ "name": "Laualambid",
+ "fields": [
+  {
+   "key": "aku_maht",
+   "label_et": "Aku maht",
+   "unit": "Wh"
+  },
+  {
+   "key": "varvatemp_min",
+   "label_et": "Värvatemperatuur (min)",
+   "unit": "K"
+  },
+  {
+   "key": "varvatemp_max",
+   "label_et": "Värvatemperatuur (max)",
+   "unit": "K"
+  },
+  {
+   "key": "korgus",
+   "label_et": "Kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "reguleerimise_tasemed",
+   "label_et": "Reguleerimise tasemed",
+   "unit": ""
+  }
+ ]
+}

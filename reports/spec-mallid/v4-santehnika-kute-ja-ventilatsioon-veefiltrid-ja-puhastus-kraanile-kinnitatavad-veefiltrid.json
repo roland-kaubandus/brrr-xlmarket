@@ -1,0 +1,41 @@
+{
+ "l3": "v4-santehnika-kute-ja-ventilatsioon-veefiltrid-ja-puhastus-kraanile-kinnitatavad-veefiltrid",
+ "name": "Kraanile kinnitatavad veefiltrid",
+ "fields": [
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "filtri_arv",
+   "label_et": "Filtrite arv",
+   "unit": ""
+  },
+  {
+   "key": "teenuse_elu",
+   "label_et": "Filtri teenuslik eluiga",
+   "unit": "L"
+  },
+  {
+   "key": "vee_režiimid",
+   "label_et": "Vee režiimide arv",
+   "unit": ""
+  },
+  {
+   "key": "orientatsioon",
+   "label_et": "Paigalduse suund",
+   "unit": ""
+  },
+  {
+   "key": "filter_tyyp",
+   "label_et": "Filtri tüüp",
+   "unit": ""
+  }
+ ]
+}

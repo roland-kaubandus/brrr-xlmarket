@@ -1,0 +1,41 @@
+{
+ "l3": "v4-suurkook-pastamasinad",
+ "name": "Pastamasinad",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "paksus_astmed",
+   "label_et": "Pastaühenduse paksuse astmed",
+   "unit": "tk"
+  },
+  {
+   "key": "paksus_vahemik",
+   "label_et": "Pastaühenduse paksuse vahemik",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "lõike_tüübid",
+   "label_et": "Lõike tüübid",
+   "unit": "tk"
+  },
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "pastarollerite_laius",
+   "label_et": "Pastarollerite laius",
+   "unit": "mm"
+  }
+ ]
+}

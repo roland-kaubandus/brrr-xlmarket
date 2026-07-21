@@ -1,0 +1,41 @@
+{
+ "l3": "v4-muusika-ja-helitehnika-heli-salvestus-mikrofonistatiivid-kasivarred",
+ "name": "Mikrofonistatiivid ja -käsivarred",
+ "fields": [
+  {
+   "key": "maksimaalne_koormus",
+   "label_et": "Maksimaalne koormus",
+   "unit": "kg"
+  },
+  {
+   "key": "pöörlemisnurk",
+   "label_et": "Pöörlemisnurk",
+   "unit": "°"
+  },
+  {
+   "key": "maksimaalne_pikenemine",
+   "label_et": "Maksimaalne pikenemine",
+   "unit": "cm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "adapter_pesa_suurus",
+   "label_et": "Adapter (pesa)",
+   "unit": "\""
+  },
+  {
+   "key": "mikrofoni_kinnitus_ulatus",
+   "label_et": "Mikrofoni kinnitus",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  }
+ ]
+}

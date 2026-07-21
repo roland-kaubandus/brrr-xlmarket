@@ -1,0 +1,46 @@
+{
+ "l3": "v4-tooriied-ja-isikukaitse-soojendusega-riietus-soojendusega-vestid",
+ "name": "Soojendusega vestid",
+ "fields": [
+  {
+   "key": "aku_maht",
+   "label_et": "Aku maht",
+   "unit": "Wh"
+  },
+  {
+   "key": "soojustsoonide_arv",
+   "label_et": "Soojustsoonide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "maksimaalne_temperatuur",
+   "label_et": "Maksimaalne temperatuur",
+   "unit": "°C"
+  },
+  {
+   "key": "soojendamise_kestus_maksimum",
+   "label_et": "Soojendamise kestus (maksimum)",
+   "unit": "h"
+  },
+  {
+   "key": "temperatuuri_tasemed",
+   "label_et": "Temperatuuri tasemete arv",
+   "unit": "tk"
+  },
+  {
+   "key": "sugu",
+   "label_et": "Sugu",
+   "unit": ""
+  },
+  {
+   "key": "suurus",
+   "label_et": "Suurus",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  }
+ ]
+}

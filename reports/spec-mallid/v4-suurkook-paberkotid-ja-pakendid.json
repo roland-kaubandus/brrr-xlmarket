@@ -1,0 +1,46 @@
+{
+ "l3": "v4-suurkook-paberkotid-ja-pakendid",
+ "name": "Paberkotid ja pakendid",
+ "fields": [
+  {
+   "key": "kogus_komplektis",
+   "label_et": "Kogus komplektis",
+   "unit": "tk"
+  },
+  {
+   "key": "kõrgus",
+   "label_et": "Kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "laius",
+   "label_et": "Laius",
+   "unit": "mm"
+  },
+  {
+   "key": "sügavus",
+   "label_et": "Sügavus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kogukaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "värvus",
+   "label_et": "Värvus",
+   "unit": ""
+  },
+  {
+   "key": "käepidemed",
+   "label_et": "Käepidemed",
+   "unit": ""
+  }
+ ]
+}

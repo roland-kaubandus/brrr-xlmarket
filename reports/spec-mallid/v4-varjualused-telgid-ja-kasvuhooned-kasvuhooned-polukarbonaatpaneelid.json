@@ -1,0 +1,36 @@
+{
+ "l3": "v4-varjualused-telgid-ja-kasvuhooned-kasvuhooned-polukarbonaatpaneelid",
+ "name": "Polükarbonaatpaneelid",
+ "fields": [
+  {
+   "key": "paksus_mm",
+   "label_et": "Paksus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kogukaal",
+   "unit": "kg"
+  },
+  {
+   "key": "kogus_tk",
+   "label_et": "Kogus pakis",
+   "unit": "tk"
+  },
+  {
+   "key": "kaal_m2",
+   "label_et": "Kaal ruutmeetri kohta",
+   "unit": "kg/m²"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "pindala_m2",
+   "label_et": "Ühe paneeli pindala",
+   "unit": "m²"
+  }
+ ]
+}

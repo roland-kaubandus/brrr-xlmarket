@@ -1,0 +1,41 @@
+{
+ "l3": "v4-teleskoobikohvrid",
+ "name": "Teleskoobikohvrid",
+ "fields": [
+  {
+   "key": "pikkus",
+   "label_et": "Kohvri pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kinnitusrihmade_arv",
+   "label_et": "Kinnitusrihmade arv",
+   "unit": ""
+  },
+  {
+   "key": "valiskohvrid",
+   "label_et": "Väliskohvrid",
+   "unit": ""
+  },
+  {
+   "key": "sisekohvrid",
+   "label_et": "Sisekohvrid",
+   "unit": ""
+  },
+  {
+   "key": "mahutavus",
+   "label_et": "Mahutavus (L x K x S)",
+   "unit": "mm"
+  }
+ ]
+}

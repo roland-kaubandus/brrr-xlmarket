@@ -1,0 +1,31 @@
+{
+ "l3": "v4-tooriistad-pressimislouad",
+ "name": "Pressimislõuad ja -tarvikud",
+ "fields": [
+  {
+   "key": "toru_suurus_mm",
+   "label_et": "Toru suurus",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "toru_tyyp",
+   "label_et": "Toru tüüp",
+   "unit": ""
+  },
+  {
+   "key": "ühilduvus",
+   "label_et": "Ühilduvus standardse pressimistööriistaga",
+   "unit": ""
+  }
+ ]
+}

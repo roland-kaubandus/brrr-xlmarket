@@ -1,0 +1,46 @@
+{
+ "l3": "v4-suurkoogiseadmed-kulmutus-ja-jahutusseadmed-kondiitritoodete-kulmvitriinid",
+ "name": "Kondiitritoodete külmvitriinid",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Mahutavus",
+   "unit": "L"
+  },
+  {
+   "key": "voimsus",
+   "label_et": "Elektriline võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Neto kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "myra",
+   "label_et": "Töömüra",
+   "unit": "dB"
+  },
+  {
+   "key": "temp_min",
+   "label_et": "Minimaaltemperatuur",
+   "unit": "°C"
+  },
+  {
+   "key": "temp_max",
+   "label_et": "Maksimaaltemperatuur",
+   "unit": "°C"
+  },
+  {
+   "key": "riiulite_arv",
+   "label_et": "Riiulite arv",
+   "unit": "tk"
+  },
+  {
+   "key": "paev_energiakulu",
+   "label_et": "Ööpäevane energiatarbimine",
+   "unit": "kWh"
+  }
+ ]
+}

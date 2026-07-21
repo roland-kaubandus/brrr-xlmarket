@@ -1,0 +1,46 @@
+{
+ "l3": "v4-kodumasinad-ja-kodutehnika-puhastus-ja-koristustehnika-jalatsikuivatid",
+ "name": "Jalatsikuivatid",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "torude_arv",
+   "label_et": "Torude arv",
+   "unit": "tk"
+  },
+  {
+   "key": "temperatuur_max",
+   "label_et": "Maksimaalne temperatuur",
+   "unit": "°C"
+  },
+  {
+   "key": "timer",
+   "label_et": "Ajastaja",
+   "unit": "min"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "myra",
+   "label_et": "Müra",
+   "unit": "dB"
+  },
+  {
+   "key": "erifunktsioon",
+   "label_et": "Erifunktsioon",
+   "unit": ""
+  }
+ ]
+}

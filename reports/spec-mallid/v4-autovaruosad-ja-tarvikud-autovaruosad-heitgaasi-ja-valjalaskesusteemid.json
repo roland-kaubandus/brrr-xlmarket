@@ -1,0 +1,46 @@
+{
+ "l3": "v4-autovaruosad-ja-tarvikud-autovaruosad-heitgaasi-ja-valjalaskesusteemid",
+ "name": "Heitgaasi- ja väljalaskesüsteemid",
+ "fields": [
+  {
+   "key": "kiekogus",
+   "label_et": "Tükkide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "toru_diameetr",
+   "label_et": "Toru läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "seina_paksus",
+   "label_et": "Seina paksus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "paigalduse_tyyp",
+   "label_et": "Paigalduse tüüp",
+   "unit": ""
+  },
+  {
+   "key": "uurogud_mahud",
+   "label_et": "U-toru suurus (läbimõõt x pikkus)",
+   "unit": "mm"
+  },
+  {
+   "key": "sobivus",
+   "label_et": "Sõiduki sobivus",
+   "unit": ""
+  }
+ ]
+}

@@ -1,0 +1,41 @@
+{
+ "l3": "v4-muusika-ja-helitehnika-muusikariistad-puhkpillid",
+ "name": "Puhkpillid",
+ "fields": [
+  {
+   "key": "keel",
+   "label_et": "Keel (pitch)",
+   "unit": "Hz"
+  },
+  {
+   "key": "klaavid",
+   "label_et": "Klaaviside arv",
+   "unit": "tk"
+  },
+  {
+   "key": "kujutulp",
+   "label_et": "Toru kuju",
+   "unit": "tüüp"
+  },
+  {
+   "key": "diapasoon",
+   "label_et": "Diapasoon (toonid)",
+   "unit": "tk"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Peamine materjal",
+   "unit": "aine"
+  },
+  {
+   "key": "komplekt_sisaldus",
+   "label_et": "Komplekti kuuluvad osad",
+   "unit": "nimetus"
+  }
+ ]
+}

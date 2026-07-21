@@ -1,0 +1,36 @@
+{
+ "l3": "v4-kodumasinad-ja-kodutehnika-koogitehnika-espresso-ja-kohvimasinad",
+ "name": "Espresso- ja kohvimasinad",
+ "fields": [
+  {
+   "key": "rohk",
+   "label_et": "Maksimaalrõhk",
+   "unit": "bar"
+  },
+  {
+   "key": "maht",
+   "label_et": "Veetanki maht",
+   "unit": "L"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Toote kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "jahvatamise_astmed",
+   "label_et": "Jahvatamise astmete arv",
+   "unit": "tk"
+  },
+  {
+   "key": "oad_mahutavus",
+   "label_et": "Kaalikauberi mahutavus",
+   "unit": "g"
+  }
+ ]
+}

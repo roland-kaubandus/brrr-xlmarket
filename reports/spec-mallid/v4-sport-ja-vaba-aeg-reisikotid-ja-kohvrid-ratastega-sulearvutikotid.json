@@ -1,0 +1,36 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-reisikotid-ja-kohvrid-ratastega-sulearvutikotid",
+ "name": "Ratastega sülearvutikotid",
+ "fields": [
+  {
+   "key": "ekraani_suurus_toll",
+   "label_et": "Ekraani suurus (tolli)",
+   "unit": "inch"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Peamaine materjal",
+   "unit": ""
+  },
+  {
+   "key": "rattad_arv",
+   "label_et": "Rattade arv",
+   "unit": "tk"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "vardaastmed_cm",
+   "label_et": "Pikkus × Laius × Sügavus",
+   "unit": "cm"
+  },
+  {
+   "key": "reguleeritavad_vardatasemed",
+   "label_et": "Reguleeritavad vardatasemed",
+   "unit": "tk"
+  }
+ ]
+}

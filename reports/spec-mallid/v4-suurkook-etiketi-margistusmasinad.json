@@ -1,0 +1,46 @@
+{
+ "l3": "v4-suurkook-etiketi-margistusmasinad",
+ "name": "Etiketi- ja märgistusmasinad",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "labimisikiirus",
+   "label_et": "Labimise kiirus",
+   "unit": "pcs/min"
+  },
+  {
+   "key": "pudeldiameeter_min",
+   "label_et": "Pudeli läbimõõdu vahemik (min)",
+   "unit": "mm"
+  },
+  {
+   "key": "pudeldiameeter_max",
+   "label_et": "Pudeli läbimõõdu vahemik (max)",
+   "unit": "mm"
+  },
+  {
+   "key": "etiketi_laius_min",
+   "label_et": "Etiketi laiuse vahemik (min)",
+   "unit": "mm"
+  },
+  {
+   "key": "etiketi_laius_max",
+   "label_et": "Etiketi laiuse vahemik (max)",
+   "unit": "mm"
+  }
+ ]
+}

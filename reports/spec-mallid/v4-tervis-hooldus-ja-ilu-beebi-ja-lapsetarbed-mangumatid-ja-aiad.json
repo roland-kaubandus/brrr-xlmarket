@@ -1,0 +1,41 @@
+{
+ "l3": "v4-tervis-hooldus-ja-ilu-beebi-ja-lapsetarbed-mangumatid-ja-aiad",
+ "name": "Mängumatid",
+ "fields": [
+  {
+   "key": "pindala",
+   "label_et": "Pindala (ruutjalga)",
+   "unit": "sq.ft"
+  },
+  {
+   "key": "paksus",
+   "label_et": "Paksus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "komplekti_kogus",
+   "label_et": "Komplekti kogus (tükkide arv)",
+   "unit": "tk"
+  },
+  {
+   "key": "mootmed",
+   "label_et": "Mõõtmed (pikkus x laius)",
+   "unit": "mm"
+  },
+  {
+   "key": "maarimine",
+   "label_et": "Märjastamiskindlus",
+   "unit": ""
+  }
+ ]
+}

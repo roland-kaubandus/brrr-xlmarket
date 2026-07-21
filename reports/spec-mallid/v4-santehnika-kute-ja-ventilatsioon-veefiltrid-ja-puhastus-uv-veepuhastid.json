@@ -1,0 +1,37 @@
+{
+ "l3": "v4-santehnika-kute-ja-ventilatsioon-veefiltrid-ja-puhastus-uv-veepuhastid",
+ "name": "UV-veepuhastid",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "UV-lambi võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "vooluhulk",
+   "label_et": "Maksimaalne veevool",
+   "unit": "L/min",
+   "unit_orig": "Lmin"
+  },
+  {
+   "key": "rohk",
+   "label_et": "Maksimaalne sisselaskmisrõhk",
+   "unit": "bar"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Netokaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Maja materjal",
+   "unit": ""
+  }
+ ]
+}

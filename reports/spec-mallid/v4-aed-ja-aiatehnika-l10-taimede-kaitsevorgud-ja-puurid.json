@@ -1,0 +1,41 @@
+{
+ "l3": "v4-aed-ja-aiatehnika-l10-taimede-kaitsevorgud-ja-puurid",
+ "name": "Taimede kaitsevõrgud ja -puurid",
+ "fields": [
+  {
+   "key": "pikkus",
+   "label_et": "Pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "laius",
+   "label_et": "Laius",
+   "unit": "m"
+  },
+  {
+   "key": "korgus",
+   "label_et": "Kõrgus",
+   "unit": "m"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "pakkekogus",
+   "label_et": "Pakke kogus",
+   "unit": "tk"
+  },
+  {
+   "key": "kujund",
+   "label_et": "Kujund",
+   "unit": ""
+  }
+ ]
+}

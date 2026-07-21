@@ -1,0 +1,46 @@
+{
+ "l3": "v4-sport-matkatelgid",
+ "name": "Matkatelgid",
+ "fields": [
+  {
+   "key": "mahutavus_inimesi",
+   "label_et": "Mahutavus (inimesi)",
+   "unit": "tk"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "pikkus",
+   "label_et": "Pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "laius",
+   "label_et": "Laius",
+   "unit": "m"
+  },
+  {
+   "key": "korgus",
+   "label_et": "Kõrgus",
+   "unit": "m"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "telu_tyyp",
+   "label_et": "Telgu tüüp",
+   "unit": ""
+  },
+  {
+   "key": "rohk",
+   "label_et": "Maksimaalse rõhk",
+   "unit": "bar"
+  }
+ ]
+}

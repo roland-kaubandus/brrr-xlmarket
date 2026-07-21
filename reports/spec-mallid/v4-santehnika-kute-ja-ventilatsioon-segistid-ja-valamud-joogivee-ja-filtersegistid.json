@@ -1,0 +1,41 @@
+{
+ "l3": "v4-santehnika-kute-ja-ventilatsioon-segistid-ja-valamud-joogivee-ja-filtersegistid",
+ "name": "Joogivee- ja filtersegistid",
+ "fields": [
+  {
+   "key": "materjal",
+   "label_et": "Keha materjal",
+   "unit": ""
+  },
+  {
+   "key": "vooluhulk",
+   "label_et": "Vooluhulk",
+   "unit": "L/min"
+  },
+  {
+   "key": "paigaldus_auk_diameter",
+   "label_et": "Paigaldusava läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "max_paigaldus_paksus",
+   "label_et": "Maksimaalse paigalduspaksus",
+   "unit": "mm"
+  },
+  {
+   "key": "kartriidz_materjal",
+   "label_et": "Kartuši materjal",
+   "unit": ""
+  },
+  {
+   "key": "varv",
+   "label_et": "Värvus",
+   "unit": ""
+  },
+  {
+   "key": "pliibivabus",
+   "label_et": "Pliivaba",
+   "unit": ""
+  }
+ ]
+}

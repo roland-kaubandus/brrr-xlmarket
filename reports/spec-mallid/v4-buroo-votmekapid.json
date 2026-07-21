@@ -1,0 +1,46 @@
+{
+ "l3": "v4-buroo-votmekapid",
+ "name": "Võtmekapid",
+ "fields": [
+  {
+   "key": "mahutavus",
+   "label_et": "Võtmete mahutavus",
+   "unit": "tk"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "lukustusmehhanismi_tyyp",
+   "label_et": "Lukustus",
+   "unit": ""
+  },
+  {
+   "key": "suurused_pikkus_laius_sygavus",
+   "label_et": "Mõõtmed (P × L × S)",
+   "unit": "mm"
+  },
+  {
+   "key": "seina_paksus",
+   "label_et": "Seina paksus",
+   "unit": "mm"
+  },
+  {
+   "key": "reguleeritavad_riulid",
+   "label_et": "Reguleeritavad riulid",
+   "unit": ""
+  },
+  {
+   "key": "komplektis_sildid",
+   "label_et": "Komplektis sildid",
+   "unit": "tk"
+  }
+ ]
+}

@@ -1,0 +1,36 @@
+{
+ "l3": "v4-aed-ja-aiatehnika-l2-basseinifiltrid-ja-filterpallid",
+ "name": "Basseinifiltrid ja filterpallid",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "vooluhulk",
+   "label_et": "Vooluhulk",
+   "unit": "L/min"
+  },
+  {
+   "key": "filtri_pindala",
+   "label_et": "Filtri pindala",
+   "unit": "m²"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "filtri_labamoot",
+   "label_et": "Filtri läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  }
+ ]
+}

@@ -1,0 +1,36 @@
+{
+ "l3": "v4-garaaziseadmed-mehaaniku-tooriistad-mootorite-kompressiooni-ja-survetestrid",
+ "name": "Mootorite kompressiooni- ja survetestrid",
+ "fields": [
+  {
+   "key": "rohk_max",
+   "label_et": "Maksimaalne rõhk",
+   "unit": "bar"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "adapter_arv",
+   "label_et": "Adapterite arv",
+   "unit": "tk"
+  },
+  {
+   "key": "sobivus",
+   "label_et": "Mootori tüüp",
+   "unit": "kategoriseering"
+  },
+  {
+   "key": "materjalid",
+   "label_et": "Peamised materjalid",
+   "unit": "tekst"
+  },
+  {
+   "key": "komplekti_maht",
+   "label_et": "Komplekti detailide arv",
+   "unit": "tk"
+  }
+ ]
+}

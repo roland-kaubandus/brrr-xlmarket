@@ -1,0 +1,36 @@
+{
+ "l3": "v4-kodumasinad-ja-kodutehnika-koogi-hoiustamine-ja-korraldus-valjatommatavad-prugikastid",
+ "name": "Väljatõmmatavad prügikastid",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Mahutavus",
+   "unit": "L"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "kandevoimasus",
+   "label_et": "Kandevõime",
+   "unit": "kg"
+  },
+  {
+   "key": "bin_count",
+   "label_et": "Prügikastide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "monteerimisviis",
+   "label_et": "Paigaldusviis",
+   "unit": ""
+  }
+ ]
+}

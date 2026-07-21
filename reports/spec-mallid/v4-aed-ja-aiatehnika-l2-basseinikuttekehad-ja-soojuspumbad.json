@@ -1,0 +1,46 @@
+{
+ "l3": "v4-aed-ja-aiatehnika-l2-basseinikuttekehad-ja-soojuspumbad",
+ "name": "Basseiniküttekehad ja soojuspumbad",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "basseini_maht",
+   "label_et": "Basseini maht",
+   "unit": "m³"
+  },
+  {
+   "key": "cop",
+   "label_et": "COP (energiatõhusus)",
+   "unit": "ratio"
+  },
+  {
+   "key": "rohk",
+   "label_et": "Maksimaalne töörõhk",
+   "unit": "bar"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "paaneli_pindala",
+   "label_et": "Paneeli pindala",
+   "unit": "m²"
+  }
+ ]
+}

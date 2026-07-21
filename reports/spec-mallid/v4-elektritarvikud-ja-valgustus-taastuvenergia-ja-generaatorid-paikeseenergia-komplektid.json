@@ -1,0 +1,46 @@
+{
+ "l3": "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-paikeseenergia-komplektid",
+ "name": "Päikeseenergia komplektid",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Päikesepaneelide koguvõimsus",
+   "unit": "W"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Süsteemi nimipinge",
+   "unit": "V"
+  },
+  {
+   "key": "aku_maht",
+   "label_et": "Akupatarei maht",
+   "unit": "Wh"
+  },
+  {
+   "key": "inverteri_voimsus",
+   "label_et": "Inverteri väljundvõimsus",
+   "unit": "W"
+  },
+  {
+   "key": "kontrolleri_vool",
+   "label_et": "Laadimiskontrolleri nimivool",
+   "unit": "A"
+  },
+  {
+   "key": "paneeli_arv",
+   "label_et": "Päikesepaneelide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "muundamisefektiivsus",
+   "label_et": "Päikesepaneeli muundamisefektiivsus",
+   "unit": "%"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Komplekti kogukaal",
+   "unit": "kg"
+  }
+ ]
+}

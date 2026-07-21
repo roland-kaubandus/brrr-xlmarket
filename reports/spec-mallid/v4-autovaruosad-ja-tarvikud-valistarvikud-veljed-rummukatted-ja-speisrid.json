@@ -1,0 +1,46 @@
+{
+ "l3": "v4-autovaruosad-ja-tarvikud-valistarvikud-veljed-rummukatted-ja-speisrid",
+ "name": "Rummuvahed (speisrid) ja rattaadapterid",
+ "fields": [
+  {
+   "key": "paksus_mm",
+   "label_et": "Paksus",
+   "unit": "mm"
+  },
+  {
+   "key": "ketta_labamoot",
+   "label_et": "Kesknõela läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "poltide_arv",
+   "label_et": "Poltide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "ratta_mudel",
+   "label_et": "Ratta mudel (intsid x intsid)",
+   "unit": "in"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "arv_pakis",
+   "label_et": "Speisride arv pakis",
+   "unit": "tk"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "poldisisestik",
+   "label_et": "Poldisisestik (M-suurus)",
+   "unit": ""
+  }
+ ]
+}

@@ -1,0 +1,47 @@
+{
+ "l3": "v4-aed-ja-aiatehnika-l8-tiigi-aeraatorid-ja-aeratsioonisusteemid",
+ "name": "Tiigi aeraatorid ja aeratsioonisüsteemid",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "ohuvool",
+   "label_et": "Õhuvool (CFM)",
+   "unit": "L/min",
+   "unit_orig": "CFM"
+  },
+  {
+   "key": "myra",
+   "label_et": "Müra",
+   "unit": "dB"
+  },
+  {
+   "key": "tiigi_pindala",
+   "label_et": "Tiigi maksimaalne pindala",
+   "unit": "acres"
+  },
+  {
+   "key": "õhujoone_pikkus",
+   "label_et": "Õhujoone pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "difuusorite_arv",
+   "label_et": "Difuusorite arv",
+   "unit": "tk"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  }
+ ]
+}

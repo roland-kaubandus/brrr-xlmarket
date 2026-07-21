@@ -1,0 +1,31 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-kasitooriistad-toru-joondusklambrid",
+ "name": "Toru joondusklambrid",
+ "fields": [
+  {
+   "key": "min_diameter",
+   "label_et": "Minimaalne toru läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "max_diameter",
+   "label_et": "Maksimaalne toru läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "haardeplaat_paksus",
+   "label_et": "Haardeplaadi paksus",
+   "unit": "mm"
+  }
+ ]
+}

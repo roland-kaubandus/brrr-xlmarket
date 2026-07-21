@@ -1,0 +1,36 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-moote-lekketuvastus",
+ "name": "Toruvee-lekkedetektorid",
+ "fields": [
+  {
+   "key": "sagedus_vahemik_hz",
+   "label_et": "Sageduse vahemik",
+   "unit": "Hz"
+  },
+  {
+   "key": "aku_maht",
+   "label_et": "Aku mahtuvus",
+   "unit": "Wh"
+  },
+  {
+   "key": "andurite_arv",
+   "label_et": "Andurite arv",
+   "unit": "tk"
+  },
+  {
+   "key": "tuvitamise_sügavus",
+   "label_et": "Tuvitamise sügavus",
+   "unit": "m"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Kere materjal",
+   "unit": ""
+  },
+  {
+   "key": "kuularudade_arv",
+   "label_et": "Kuularuumide arv",
+   "unit": "tk"
+  }
+ ]
+}

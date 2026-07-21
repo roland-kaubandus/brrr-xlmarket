@@ -1,0 +1,36 @@
+{
+ "l3": "v4-santehnika-kute-korsten",
+ "name": "Korstnapühkimise komplektid",
+ "fields": [
+  {
+   "key": "kogu_pikkus",
+   "label_et": "Kogupikkus",
+   "unit": "m"
+  },
+  {
+   "key": "ketta_labamoot",
+   "label_et": "Pühkimisdiameeter",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "pintsel_pikkus",
+   "label_et": "Püteli pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "ühenduse_tüüp",
+   "label_et": "Ühendus",
+   "unit": ""
+  }
+ ]
+}

@@ -1,0 +1,41 @@
+{
+ "l3": "v4-peoinventar-laua-ohupallistatiivid",
+ "name": "Laua-õhupallistatiivid",
+ "fields": [
+  {
+   "key": "korgus_min_max",
+   "label_et": "Reguleeritav kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "pikkus_min_max",
+   "label_et": "Reguleeritav pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "koormus_kapasiteet",
+   "label_et": "Maksimaalne koormus",
+   "unit": "kg"
+  },
+  {
+   "key": "toru_kaliber",
+   "label_et": "Toru ristlõige",
+   "unit": "mm"
+  },
+  {
+   "key": "varv",
+   "label_et": "Värvus",
+   "unit": ""
+  },
+  {
+   "key": "kogus",
+   "label_et": "Komplektis olevate ühikute arv",
+   "unit": "tk"
+  }
+ ]
+}

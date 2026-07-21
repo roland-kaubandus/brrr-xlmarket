@@ -1,0 +1,41 @@
+{
+ "l3": "v4-garaaz-veom-jouulekande-tooriistad",
+ "name": "Veom- ja jõuülekande tööriistad",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "maksimaalne_jargi",
+   "label_et": "Maksimaalne järgi (pull force)",
+   "unit": "kN"
+  },
+  {
+   "key": "adapter_suurus",
+   "label_et": "Adaptri suurus",
+   "unit": "mm"
+  },
+  {
+   "key": "drive_suurus",
+   "label_et": "Drive suurus",
+   "unit": "\""
+  },
+  {
+   "key": "komplekti_osad",
+   "label_et": "Komplekti osade arv",
+   "unit": "tk"
+  },
+  {
+   "key": "reguleeritavus",
+   "label_et": "Reguleeritavus",
+   "unit": ""
+  }
+ ]
+}

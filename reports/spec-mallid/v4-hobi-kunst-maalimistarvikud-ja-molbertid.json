@@ -1,0 +1,36 @@
+{
+ "l3": "v4-hobi-kunst-maalimistarvikud-ja-molbertid",
+ "name": "Maalilõuendid",
+ "fields": [
+  {
+   "key": "kõrgus_mm",
+   "label_et": "Kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "laius_mm",
+   "label_et": "Laius",
+   "unit": "mm"
+  },
+  {
+   "key": "kogus",
+   "label_et": "Kogus pakis",
+   "unit": "tk"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kogukaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "pint_sobivus",
+   "label_et": "Sobib värvidele",
+   "unit": ""
+  }
+ ]
+}

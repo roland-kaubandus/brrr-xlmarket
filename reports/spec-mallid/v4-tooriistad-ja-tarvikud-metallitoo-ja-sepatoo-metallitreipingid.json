@@ -1,0 +1,46 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-metallitoo-ja-sepatoo-metallitreipingid",
+ "name": "Metallitreipingid",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Mootori võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "poorlemiskiirus",
+   "label_et": "Spindli pöörlemiskiirus",
+   "unit": "RPM"
+  },
+  {
+   "key": "chuck_diameter",
+   "label_et": "Chuck läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "swing_over_bed",
+   "label_et": "Maksimaalne töödetava materjali läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "centers_distance",
+   "label_et": "Keskpunktide vaheline kaugus",
+   "unit": "mm"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "spindle_bore",
+   "label_et": "Spindli auk",
+   "unit": "mm"
+  }
+ ]
+}

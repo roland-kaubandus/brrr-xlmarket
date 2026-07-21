@@ -1,0 +1,41 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-golf-ja-discgolf-golfikaru-katted-tarvikud",
+ "name": "Golfikäru-katted ja -tarvikud",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "pikkus",
+   "label_et": "Pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "laius",
+   "label_et": "Laius",
+   "unit": "mm"
+  },
+  {
+   "key": "korgus",
+   "label_et": "Kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "yheildus",
+   "label_et": "Ühilduvus",
+   "unit": ""
+  },
+  {
+   "key": "omadused",
+   "label_et": "Peamised omadused",
+   "unit": ""
+  }
+ ]
+}

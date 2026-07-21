@@ -1,0 +1,41 @@
+{
+ "l3": "v4-buroo-kassasahtlid-pos-tarvikud",
+ "name": "Kassasahtlid ja POS-tarvikud",
+ "fields": [
+  {
+   "key": "laius_cm",
+   "label_et": "Laius",
+   "unit": "cm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "arved_sahtel",
+   "label_et": "Arvepaberite sahtlid",
+   "unit": "tk"
+  },
+  {
+   "key": "mündid_sahtel",
+   "label_et": "Müntide sahtlid",
+   "unit": "tk"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "avalukustamise_viisid",
+   "label_et": "Avalukustamise viisid",
+   "unit": "tk"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Raam materjal",
+   "unit": "text"
+  }
+ ]
+}

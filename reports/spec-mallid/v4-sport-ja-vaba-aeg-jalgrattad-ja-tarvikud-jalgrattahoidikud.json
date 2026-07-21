@@ -1,0 +1,36 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-jalgrattad-ja-tarvikud-jalgrattahoidikud",
+ "name": "Jalgrattahoidikud",
+ "fields": [
+  {
+   "key": "paigaldusviis",
+   "label_et": "Paigaldusviis",
+   "unit": "kategooria"
+  },
+  {
+   "key": "jalgrattaholdikute_arv",
+   "label_et": "Jalgrattaholdikute arv",
+   "unit": "tk"
+  },
+  {
+   "key": "maksimaalne_koormusvoime",
+   "label_et": "Maksimaalne koormusvoime",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": "kategooria"
+  },
+  {
+   "key": "pikkus",
+   "label_et": "Pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  }
+ ]
+}

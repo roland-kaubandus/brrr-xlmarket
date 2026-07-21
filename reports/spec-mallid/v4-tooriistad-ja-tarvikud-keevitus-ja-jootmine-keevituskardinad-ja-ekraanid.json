@@ -1,0 +1,46 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-keevitus-ja-jootmine-keevituskardinad-ja-ekraanid",
+ "name": "Keevituskardinad ja -ekraanid",
+ "fields": [
+  {
+   "key": "laius_m",
+   "label_et": "Laius",
+   "unit": "m"
+  },
+  {
+   "key": "korgus_m",
+   "label_et": "Kõrgus",
+   "unit": "m"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "paneelide_arv",
+   "label_et": "Paneelide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "rattad_lockable",
+   "label_et": "Lukustatavad rattad",
+   "unit": "tk"
+  },
+  {
+   "key": "uv_kaitse_tase",
+   "label_et": "UV-kaitse tase",
+   "unit": ""
+  },
+  {
+   "key": "akna_olemas",
+   "label_et": "Läbipaistva akna olemasolu",
+   "unit": ""
+  }
+ ]
+}

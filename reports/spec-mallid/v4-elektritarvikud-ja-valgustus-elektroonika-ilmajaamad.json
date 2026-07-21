@@ -1,0 +1,46 @@
+{
+ "l3": "v4-elektritarvikud-ja-valgustus-elektroonika-ilmajaamad",
+ "name": "Ilmajaamad",
+ "fields": [
+  {
+   "key": "sensori_arv",
+   "label_et": "Sensorite arv (in-1)",
+   "unit": "tk"
+  },
+  {
+   "key": "ekraani_suurus",
+   "label_et": "Ekraani suurus",
+   "unit": "mm"
+  },
+  {
+   "key": "ekraani_tyyp",
+   "label_et": "Ekraani tüüp",
+   "unit": "text"
+  },
+  {
+   "key": "wifi_yhedus",
+   "label_et": "Wi-Fi ühendus",
+   "unit": "jah/ei"
+  },
+  {
+   "key": "aku_maht",
+   "label_et": "Aku maht",
+   "unit": "Wh"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "sensorite_ulekande_kaugus",
+   "label_et": "Sensorite edastuskaugus",
+   "unit": "m"
+  },
+  {
+   "key": "veetihedus",
+   "label_et": "Veetiihedus (IP-rating)",
+   "unit": "text"
+  }
+ ]
+}

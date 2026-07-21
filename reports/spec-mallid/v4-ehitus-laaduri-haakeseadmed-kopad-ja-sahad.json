@@ -1,0 +1,36 @@
+{
+ "l3": "v4-ehitus-laaduri-haakeseadmed-kopad-ja-sahad",
+ "name": "Kopad ja sahad",
+ "fields": [
+  {
+   "key": "pikkus_mm",
+   "label_et": "Pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "hammaste_arv",
+   "label_et": "Hammaste arv",
+   "unit": "tk"
+  },
+  {
+   "key": "kandevoimevus_kg",
+   "label_et": "Kandevõimevus",
+   "unit": "kg"
+  },
+  {
+   "key": "kasti_paksus_mm",
+   "label_et": "Kasti paksus",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  }
+ ]
+}

@@ -1,0 +1,41 @@
+{
+ "l3": "v4-aed-ja-aiatehnika-l6-aiakonksud-ja-postid",
+ "name": "Aiakonksud ja postid",
+ "fields": [
+  {
+   "key": "pikkus",
+   "label_et": "Pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "maksimaalne_koormus_topelt",
+   "label_et": "Maksimaalne koormus (topeltkonks)",
+   "unit": "kg"
+  },
+  {
+   "key": "maksimaalne_koormus_uksik",
+   "label_et": "Maksimaalne koormus (üksik konks)",
+   "unit": "kg"
+  },
+  {
+   "key": "konkside_arv",
+   "label_et": "Konkside arv paaris",
+   "unit": "tk"
+  },
+  {
+   "key": "toru_paksus",
+   "label_et": "Toru paksus",
+   "unit": "mm"
+  },
+  {
+   "key": "komplekti_suurus",
+   "label_et": "Komplekti suurus",
+   "unit": "tk"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": "tekst"
+  }
+ ]
+}

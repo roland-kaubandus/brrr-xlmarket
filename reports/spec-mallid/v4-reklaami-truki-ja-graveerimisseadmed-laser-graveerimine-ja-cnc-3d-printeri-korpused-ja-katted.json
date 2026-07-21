@@ -1,0 +1,47 @@
+{
+ "l3": "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-3d-printeri-korpused-ja-katted",
+ "name": "3D-printeri korpused ja katted",
+ "fields": [
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "maarimine",
+   "label_et": "Mõõtmed (L×W×H)",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "vooluhulk",
+   "label_et": "Ventilatsiooni jõudlus",
+   "unit": "L/min",
+   "unit_orig": "Lmin"
+  },
+  {
+   "key": "myra",
+   "label_et": "Mürataseme vähendamine",
+   "unit": "dB"
+  },
+  {
+   "key": "led_valgustus",
+   "label_et": "LED valgustus",
+   "unit": ""
+  },
+  {
+   "key": "temperatuuri_kontroll",
+   "label_et": "Temperatuuri stabiilisus",
+   "unit": ""
+  },
+  {
+   "key": "prinaabilitaatega_mudelid",
+   "label_et": "Ühilduvad 3D-prinderi mudelid",
+   "unit": ""
+  }
+ ]
+}

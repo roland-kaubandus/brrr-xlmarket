@@ -1,0 +1,41 @@
+{
+ "l3": "v4-elektritarvikud-ja-valgustus-toostusvalgustus-ehitusvalgustus",
+ "name": "Ehitusvalgustus",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "valgusvoog",
+   "label_et": "Valgusvoog",
+   "unit": "lm"
+  },
+  {
+   "key": "pikkus",
+   "label_et": "Kogu pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "lampidevaarv",
+   "label_et": "Lambite arv",
+   "unit": "tk"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "maksimaalne_ahelsose",
+   "label_et": "Maksimaalne ketise pikendatavus",
+   "unit": "tk"
+  },
+  {
+   "key": "varvitemperatuur",
+   "label_et": "Värvitemperatuur",
+   "unit": "K"
+  }
+ ]
+}

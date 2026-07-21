@@ -1,0 +1,41 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-korvpallirongad-ja-korvid",
+ "name": "Korvpallirõngad, -korvid ja tarvikud",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "reguleerimisvahemik_korgus",
+   "label_et": "Reguleeritav kõrgus",
+   "unit": "cm"
+  },
+  {
+   "key": "ring_diameetr",
+   "label_et": "Rõnga läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "padjapaksus",
+   "label_et": "Padja paksus",
+   "unit": "mm"
+  },
+  {
+   "key": "padjakorgus",
+   "label_et": "Padja kõrgus",
+   "unit": "cm"
+  },
+  {
+   "key": "padjumattyyp",
+   "label_et": "Padja tüüp",
+   "unit": ""
+  }
+ ]
+}

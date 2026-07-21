@@ -1,0 +1,36 @@
+{
+ "l3": "v4-suurkook-suhkruvatimasinad",
+ "name": "Suhkruvatimasinad",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "maht",
+   "label_et": "Kaussi mahtuvus",
+   "unit": "L"
+  },
+  {
+   "key": "tootmiskiirus",
+   "label_et": "Tootmiskiirus",
+   "unit": "tk/min"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Kausi materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaal_category",
+   "label_et": "Kategooria (statiiviga/katega)",
+   "unit": ""
+  }
+ ]
+}

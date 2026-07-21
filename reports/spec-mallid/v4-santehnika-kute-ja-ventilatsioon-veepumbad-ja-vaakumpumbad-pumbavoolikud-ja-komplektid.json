@@ -1,0 +1,46 @@
+{
+ "l3": "v4-santehnika-kute-ja-ventilatsioon-veepumbad-ja-vaakumpumbad-pumbavoolikud-ja-komplektid",
+ "name": "Pumbavoolikud ja -komplektid",
+ "fields": [
+  {
+   "key": "ketta_labamoot",
+   "label_et": "Voolikupesa läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "pikkus",
+   "label_et": "Voolikupikkus",
+   "unit": "m"
+  },
+  {
+   "key": "rohk",
+   "label_et": "Maksimaalne töörõhk",
+   "unit": "bar"
+  },
+  {
+   "key": "voolikunaksusus",
+   "label_et": "Voolikuse seinapaisu",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Voolikuse materjal",
+   "unit": ""
+  },
+  {
+   "key": "konnektori_materjal",
+   "label_et": "Konnektori materjal",
+   "unit": ""
+  },
+  {
+   "key": "komplekti_tyyp",
+   "label_et": "Komplekti koosseis",
+   "unit": ""
+  },
+  {
+   "key": "tootemperratuur",
+   "label_et": "Töötamistemperatuurivahemik",
+   "unit": "°C"
+  }
+ ]
+}

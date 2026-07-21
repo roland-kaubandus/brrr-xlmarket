@@ -1,0 +1,41 @@
+{
+ "l3": "v4-santehnika-kute-ja-ventilatsioon-ventilatsioon-ja-ventilaatorid-vesi-ohk-soojusvahetid",
+ "name": "Vesi-õhk soojusvahetid",
+ "fields": [
+  {
+   "key": "pindala",
+   "label_et": "Plaadi pindala",
+   "unit": "cm²"
+  },
+  {
+   "key": "soojusjaavitus",
+   "label_et": "Soojusmahtuvus",
+   "unit": "kBTU"
+  },
+  {
+   "key": "rohk",
+   "label_et": "Maksimaalne tööriistapinge",
+   "unit": "bar"
+  },
+  {
+   "key": "kylmavool",
+   "label_et": "Kupari toru ridade arv",
+   "unit": "rida"
+  },
+  {
+   "key": "fins_arv",
+   "label_et": "Alumiiniumist ribade arv",
+   "unit": "tk"
+  },
+  {
+   "key": "tootemperaturale",
+   "label_et": "Töötemperatuurivahemik",
+   "unit": "°C"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaalu",
+   "unit": "kg"
+  }
+ ]
+}

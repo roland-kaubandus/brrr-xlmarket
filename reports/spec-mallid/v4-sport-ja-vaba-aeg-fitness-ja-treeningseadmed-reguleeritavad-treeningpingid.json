@@ -1,0 +1,46 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-fitness-ja-treeningseadmed-reguleeritavad-treeningpingid",
+ "name": "Reguleeritavad treeningpingid",
+ "fields": [
+  {
+   "key": "max_kaal",
+   "label_et": "Maksimaalne koormuse võimsus",
+   "unit": "kg"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Toote kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "pikkus",
+   "label_et": "Pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "laius",
+   "label_et": "Laius",
+   "unit": "mm"
+  },
+  {
+   "key": "korgus",
+   "label_et": "Kõrgus (täielik)",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "reguleeritav_nurk",
+   "label_et": "Reguleeritav nurk",
+   "unit": "°"
+  },
+  {
+   "key": "voldav",
+   "label_et": "Voldatav",
+   "unit": ""
+  }
+ ]
+}

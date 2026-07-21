@@ -1,0 +1,46 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-fitness-ja-treeningseadmed-treeningu-laualauad",
+ "name": "Treeningu laualauad",
+ "fields": [
+  {
+   "key": "laualaua_pikkus",
+   "label_et": "Laualaua pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "laualaua_laius",
+   "label_et": "Laualaua laius",
+   "unit": "mm"
+  },
+  {
+   "key": "laualaua_paksus",
+   "label_et": "Laualaua paksus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "max_koormus",
+   "label_et": "Maksimaalne koormus",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "korgus_reguleeritavus",
+   "label_et": "Kõrguse reguleeritavus",
+   "unit": ""
+  },
+  {
+   "key": "liikuvus",
+   "label_et": "Liikuvus (ratastega)",
+   "unit": ""
+  }
+ ]
+}

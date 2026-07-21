@@ -1,0 +1,41 @@
+{
+ "l3": "v4-santehnika-kute-ja-ventilatsioon-ventilatsioon-ja-ventilaatorid-ventilatsioonivored-ja-restid",
+ "name": "Seina ventilatsioonivõred",
+ "fields": [
+  {
+   "key": "avaussuurus_mm",
+   "label_et": "Avaussuurus",
+   "unit": "mm"
+  },
+  {
+   "key": "kuju",
+   "label_et": "Kuju",
+   "unit": ""
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaitsevork",
+   "label_et": "Kaitsevork",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "varr",
+   "label_et": "Värvus",
+   "unit": ""
+  },
+  {
+   "key": "kontrollventiiil",
+   "label_et": "Kontrollventiiil",
+   "unit": ""
+  }
+ ]
+}

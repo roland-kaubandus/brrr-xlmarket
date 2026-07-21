@@ -1,0 +1,41 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-puidutoo-tooriistad-tapiloikurid-ja-tappimismasinad",
+ "name": "Tappimismasinad",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "poorlemiskiirus",
+   "label_et": "Pöörlemiskiirus",
+   "unit": "RPM"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "chuck_mahutavus",
+   "label_et": "Chuck'i mahutavus",
+   "unit": "mm"
+  },
+  {
+   "key": "kiilude_mahutavus",
+   "label_et": "Kiilude mahutavus",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "bushing_suurus",
+   "label_et": "Bushingi suurus",
+   "unit": "mm"
+  }
+ ]
+}

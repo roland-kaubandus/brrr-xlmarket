@@ -1,0 +1,36 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-veesport-ja-paadindus-paaditransomi-tarvikud",
+ "name": "Paadi transomitoed",
+ "fields": [
+  {
+   "key": "pikkus_min_mm",
+   "label_et": "Minimaalne pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "pikkus_max_mm",
+   "label_et": "Maksimaalne pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "mootorivoimsus_hp",
+   "label_et": "Mootori võimsus (max)",
+   "unit": "HP"
+  },
+  {
+   "key": "pea_tyyp",
+   "label_et": "Pea tüüp",
+   "unit": ""
+  }
+ ]
+}

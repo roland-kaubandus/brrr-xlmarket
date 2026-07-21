@@ -1,0 +1,46 @@
+{
+ "l3": "v4-ladu-pesukorvid-sorteerijad",
+ "name": "Pesusorteerijad ja -korvid",
+ "fields": [
+  {
+   "key": "osade_arv",
+   "label_et": "Jaotiste arv",
+   "unit": "tk"
+  },
+  {
+   "key": "maht",
+   "label_et": "Ühe jaotise maht",
+   "unit": "L"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Toote kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Kott-materjal",
+   "unit": ""
+  },
+  {
+   "key": "kannatajavus_kogu",
+   "label_et": "Kogu kandevõime",
+   "unit": "kg"
+  },
+  {
+   "key": "rattad",
+   "label_et": "Liikuvad rattad",
+   "unit": "bool"
+  },
+  {
+   "key": "puidust_tööpind",
+   "label_et": "Puidust tööpind",
+   "unit": "bool"
+  },
+  {
+   "key": "riputusriba",
+   "label_et": "Riputusriba olemasolu",
+   "unit": "bool"
+  }
+ ]
+}

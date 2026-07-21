@@ -1,0 +1,41 @@
+{
+ "l3": "v4-aed-ja-aiatehnika-l7-aiamoobli-komplektid",
+ "name": "Aiamööbli komplektid",
+ "fields": [
+  {
+   "key": "komplekti_suurus",
+   "label_et": "Komplekti suurus (tk)",
+   "unit": "pc"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kogukaal",
+   "unit": "kg"
+  },
+  {
+   "key": "laua_kandevoimsus",
+   "label_et": "Laua kandevõime",
+   "unit": "kg"
+  },
+  {
+   "key": "tooli_kandevoimsus",
+   "label_et": "Tooli kandevõime",
+   "unit": "kg"
+  },
+  {
+   "key": "laua_kuju",
+   "label_et": "Laua kuju",
+   "unit": ""
+  },
+  {
+   "key": "vari",
+   "label_et": "Väri",
+   "unit": ""
+  }
+ ]
+}

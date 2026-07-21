@@ -1,0 +1,36 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-jaht-ja-jahivarustus-pcp-kasipumbad",
+ "name": "PCP käsipumbad",
+ "fields": [
+  {
+   "key": "max_rohk",
+   "label_et": "Maksimaalne rõhk",
+   "unit": "bar"
+  },
+  {
+   "key": "astmete_arv",
+   "label_et": "Pumba astmete arv",
+   "unit": "tk"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "torujuhe_pikkus",
+   "label_et": "Torujohtme pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "manomeetri_ulatus",
+   "label_et": "Manomeetri mõõtevahemik",
+   "unit": "bar"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Peamise keha materjal",
+   "unit": ""
+  }
+ ]
+}

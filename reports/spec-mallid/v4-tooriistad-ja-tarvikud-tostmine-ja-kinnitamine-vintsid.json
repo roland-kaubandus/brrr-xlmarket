@@ -1,0 +1,46 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine-vintsid",
+ "name": "Vintsid",
+ "fields": [
+  {
+   "key": "toekaik_kg",
+   "label_et": "Tõstevõimekus",
+   "unit": "kg"
+  },
+  {
+   "key": "voimsus",
+   "label_et": "Mootorivõimsus",
+   "unit": "W"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "tostekiirus",
+   "label_et": "Tõstekiirus",
+   "unit": "m/min"
+  },
+  {
+   "key": "tostekorgus",
+   "label_et": "Tõstekõrgus",
+   "unit": "m"
+  },
+  {
+   "key": "kaabli_pikkus",
+   "label_et": "Kaabli pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Toote kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "juhtimisviisid",
+   "label_et": "Juhtimisviisid",
+   "unit": "arv"
+  }
+ ]
+}

@@ -1,0 +1,41 @@
+{
+ "l3": "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-sigarihumidorid",
+ "name": "Sigarihumidorid",
+ "fields": [
+  {
+   "key": "sigarite_maht",
+   "label_et": "Sigarite mahtuvus (tk)",
+   "unit": "tk"
+  },
+  {
+   "key": "maht",
+   "label_et": "Sisemahutavus (L)",
+   "unit": "L"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Neto kaal (kg)",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": "tekst"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge (V)",
+   "unit": "V"
+  },
+  {
+   "key": "niiskuse_reguleering",
+   "label_et": "Niiskuse reguleerimise vahemik (%)",
+   "unit": "%"
+  },
+  {
+   "key": "temperatuuri_tapsus",
+   "label_et": "Temperatuuri täpsus (°C)",
+   "unit": "°C"
+  }
+ ]
+}

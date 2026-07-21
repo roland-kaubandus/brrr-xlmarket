@@ -1,0 +1,46 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-fitness-ja-treeningseadmed-reflekskotid-ja-poksitarvikud",
+ "name": "Reflekskotid ja poksitarvikud",
+ "fields": [
+  {
+   "key": "maksimaalne_koormus",
+   "label_et": "Maksimaalne koormus",
+   "unit": "kg"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Toote kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "reguleeritav_korgus",
+   "label_et": "Reguleeritav kõrgus",
+   "unit": ""
+  },
+  {
+   "key": "paigutuse_tyyp",
+   "label_et": "Paigutuse tüüp",
+   "unit": ""
+  },
+  {
+   "key": "aluse_stabiilsus",
+   "label_et": "Alusega/seinale kinnitatud",
+   "unit": ""
+  },
+  {
+   "key": "komplekti_sisaldus",
+   "label_et": "Komplekti sisaldus",
+   "unit": ""
+  },
+  {
+   "key": "dimensioonid_korgus",
+   "label_et": "Kõrgus",
+   "unit": "cm"
+  }
+ ]
+}

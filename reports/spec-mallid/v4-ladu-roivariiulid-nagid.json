@@ -1,0 +1,46 @@
+{
+ "l3": "v4-ladu-roivariiulid-nagid",
+ "name": "Rõivariiulid ja -nagid",
+ "fields": [
+  {
+   "key": "koormus_kogu_kg",
+   "label_et": "Kogukoormus (kg)",
+   "unit": "kg"
+  },
+  {
+   "key": "riiulite_arv",
+   "label_et": "Riiulite arv",
+   "unit": "tk"
+  },
+  {
+   "key": "riiuli_kandevoimsus_kg",
+   "label_et": "Riiuli kandevõimsus (kg)",
+   "unit": "kg"
+  },
+  {
+   "key": "riputusvardad_arv",
+   "label_et": "Riputusvardad (tk)",
+   "unit": "tk"
+  },
+  {
+   "key": "vardade_kandevoimsus_kg",
+   "label_et": "Varda kandevõimsus (kg)",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaal_kg",
+   "label_et": "Toote kaal (kg)",
+   "unit": "kg"
+  },
+  {
+   "key": "liikuv",
+   "label_et": "Liikuv (rattad)",
+   "unit": ""
+  }
+ ]
+}

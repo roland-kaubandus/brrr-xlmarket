@@ -1,0 +1,41 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-puidutoo-tooriistad-treipingi-tarvikud-ja-terad",
+ "name": "Treipingi tarvikud ja terad",
+ "fields": [
+  {
+   "key": "komplekti_suurus",
+   "label_et": "Komplekti suurus (tükid)",
+   "unit": "tk"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Terja materjal",
+   "unit": ""
+  },
+  {
+   "key": "katte_pikkus",
+   "label_et": "Käepideme pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "tera_pikkus",
+   "label_et": "Terja pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kogukaal",
+   "unit": "kg"
+  },
+  {
+   "key": "handle_material",
+   "label_et": "Käepideme materjal",
+   "unit": ""
+  },
+  {
+   "key": "pakkekohver",
+   "label_et": "Pakkekohver",
+   "unit": ""
+  }
+ ]
+}

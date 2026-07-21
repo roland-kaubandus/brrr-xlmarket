@@ -1,0 +1,46 @@
+{
+ "l3": "v4-varjualused-telgid-ja-kasvuhooned-varikatused-ja-pergolad-paikesevarjukatted-ja-kangad",
+ "name": "Päikesevarjukatted ja -kangad",
+ "fields": [
+  {
+   "key": "pindala_m2",
+   "label_et": "Katteala",
+   "unit": "m²"
+  },
+  {
+   "key": "pikkus_mm",
+   "label_et": "Pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "laius_mm",
+   "label_et": "Laius",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": "—"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "gsm_gramm",
+   "label_et": "Kangastihedus (GSM)",
+   "unit": "g/m²"
+  },
+  {
+   "key": "varjutamise_protsent",
+   "label_et": "Varjutamise aste",
+   "unit": "%"
+  },
+  {
+   "key": "varv",
+   "label_et": "Värvus",
+   "unit": "—"
+  }
+ ]
+}

@@ -1,0 +1,41 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-kasitooriistad-kellaparandustooriistad",
+ "name": "Kellaparandustööriistad",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "max_kellapuhvri_laius",
+   "label_et": "Max kellapuhvri laius",
+   "unit": "mm"
+  },
+  {
+   "key": "min_kellapuhvri_laius",
+   "label_et": "Min kellapuhvri laius",
+   "unit": "mm"
+  },
+  {
+   "key": "poliitika_komplekt",
+   "label_et": "Matriitsid komplektis",
+   "unit": "tk"
+  },
+  {
+   "key": "aluse_pikkus",
+   "label_et": "Aluse pikkus",
+   "unit": "cm"
+  },
+  {
+   "key": "aluse_laius",
+   "label_et": "Aluse laius",
+   "unit": "cm"
+  }
+ ]
+}
