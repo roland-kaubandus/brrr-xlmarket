@@ -106,7 +106,7 @@ export default function VevorProductCard({ product, locale }: { product: Product
         )}
 
         {/* Product image — 1:1 */}
-        <div className="aspect-square flex items-center justify-center overflow-hidden bg-[#FAFAFA] p-4 md:p-6">
+        <div className="aspect-square flex items-center justify-center overflow-hidden bg-[#F4F4F5] p-2 md:p-3">
           {thumbnailUrl ? (
             <Image
               src={thumbnailUrl}
@@ -114,7 +114,7 @@ export default function VevorProductCard({ product, locale }: { product: Product
               width={400}
               height={400}
               loading="lazy"
-              className="max-h-full object-contain transition-transform duration-500 ease-out group-hover:scale-[1.06]"
+              className="w-full h-full object-contain transition-transform duration-500 ease-out group-hover:scale-[1.06]"
               sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
             />
           ) : (
