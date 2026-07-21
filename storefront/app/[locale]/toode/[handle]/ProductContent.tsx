@@ -232,6 +232,36 @@ export default function ProductContent(props: ProductContentProps) {
           )
         })()}
 
+        {/* Omadused ja üksikasjad — feature-bulletid (metadata.selling_points, locale-aware ET-overlay).
+            Formaat "Pealkiri: tekst" → bold-pealkiri + kirjeldus; ilma koolonita → tervik. */}
+        {sellingPoints.length > 0 && (
+          <div className="border-b border-[#E2E8F0] pb-6 mb-0 pt-6">
+            <h2 className="text-[17px] font-bold text-[#1a1a2e] mb-4">
+              {locale === "et" ? "Omadused ja üksikasjad" : "Features & Details"}
+            </h2>
+            <ul className="max-w-[800px] space-y-3">
+              {sellingPoints.map((point, i) => {
+                const colon = point.indexOf(":")
+                const hasTitle = colon > 0 && colon <= 60
+                const title = hasTitle ? point.slice(0, colon).trim() : null
+                const body = hasTitle ? point.slice(colon + 1).trim() : point.trim()
+                if (!body && !title) return null
+                return (
+                  <li key={i} className="flex items-start gap-2.5 text-[14.5px] leading-[1.55] text-[#334155]">
+                    <svg className="shrink-0 mt-[3px]" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0ea5a0" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                      <polyline points="20 6 9 17 4 12" />
+                    </svg>
+                    <span>
+                      {title && <span className="font-semibold text-[#1a1a2e]">{title}: </span>}
+                      {body}
+                    </span>
+                  </li>
+                )
+              })}
+            </ul>
+          </div>
+        )}
+
         {specs.length > 0 && (
           <div id="full-specifications" className="scroll-mt-20" />
         )}
