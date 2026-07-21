@@ -81,6 +81,9 @@ export default function VevorProductCard({ product, locale }: { product: Product
 
   // Don't decodeURIComponent — VEVOR CDN requires encoded paths (%2F, %2B etc.)
   const thumbnailUrl = product.thumbnail || null
+  // Hover-pildivahetus (VEVOR-stiil): teine pilt (gallery_images[0], Meili hover_image).
+  // Tühi (5% ilma galeriita) → null → kaart ei vaheta, ainult thumbnail.
+  const hoverImage = (product as unknown as { hover_image?: string | null }).hover_image || null
   const freeShipping = price && price.calculated_amount >= 9900
 
   // VEVOR-look: valge-taustaga foto + mix-blend-multiply hallil → toode hõljub, valge taust sulandub.
@@ -114,18 +117,32 @@ export default function VevorProductCard({ product, locale }: { product: Product
           </span>
         )}
 
-        {/* Product image — 1:1 */}
-        <div className={"aspect-square flex items-center justify-center overflow-hidden p-2 md:p-3 " + (whiteBg ? "bg-[#EBEBEB]" : "bg-[#F4F4F5]")}>
+        {/* Product image — 1:1, hover → crossfade teisele pildile (hover_image) */}
+        <div className={"aspect-square overflow-hidden p-2 md:p-3 " + (whiteBg ? "bg-[#EBEBEB]" : "bg-[#F4F4F5]")}>
           {thumbnailUrl ? (
-            <Image
-              src={thumbnailUrl}
-              alt={product.title}
-              width={400}
-              height={400}
-              loading="lazy"
-              className={"w-full h-full object-contain transition-transform duration-500 ease-out group-hover:scale-[1.06]" + (whiteBg ? " mix-blend-multiply" : "")}
-              sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
-            />
+            <div className="relative w-full h-full">
+              <Image
+                src={thumbnailUrl}
+                alt={product.title}
+                width={400}
+                height={400}
+                loading="lazy"
+                className={"absolute inset-0 w-full h-full object-contain transition-all duration-300 ease-out group-hover:scale-[1.06]" + (whiteBg ? " mix-blend-multiply" : "") + (hoverImage ? " group-hover:opacity-0" : "")}
+                sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
+              />
+              {hoverImage && (
+                <Image
+                  src={hoverImage}
+                  alt={product.title}
+                  width={400}
+                  height={400}
+                  loading="lazy"
+                  aria-hidden="true"
+                  className={"absolute inset-0 w-full h-full object-contain opacity-0 transition-all duration-300 ease-out group-hover:opacity-100 group-hover:scale-[1.06]" + (whiteBg ? " mix-blend-multiply" : "")}
+                  sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
+                />
+              )}
+            </div>
           ) : (
             <div className="flex items-center justify-center h-full text-[#CBD5E1] text-sm md:text-base">{resolvedLocale === "et" ? "Pilt puudub" : "No image"}</div>
           )}

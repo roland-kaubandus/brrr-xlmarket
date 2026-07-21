@@ -7,6 +7,7 @@ export interface MappedProduct {
   handle: string
   description: string
   thumbnail: string | null
+  hover_image: string | null
   images: Array<{ id: string; url: string }>
   variants: Array<{
     id: string
@@ -33,6 +34,7 @@ export function mapMeiliHitToProduct(hit: MeiliHit, locale: string = "en"): Mapp
     handle: hit.handle,
     description: getProductDescription(hit, locale),
     thumbnail: hit.thumbnail ?? null,
+    hover_image: (hit as { hover_image?: string | null }).hover_image ?? null,
     images: [],
     variants: [
       {
