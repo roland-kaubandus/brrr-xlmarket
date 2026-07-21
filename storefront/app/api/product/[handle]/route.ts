@@ -289,22 +289,38 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
     // → ühilduvad väljad (Võimsus/Max.rõhk/... ET metric), MITTE toore parseSpecs (Tank Capacity/
     // Horsepower raw, imperial, inglise). Nii 2 toote väljad ÜHTIVAD → võrreldavad. Sama allikas
     // mis SpecComparisonTable. Struktureeritud Mõõdud+Kaal alati kaasa; fallback = toore parseSpecs.
-    const CANON_ORDER = ["voimsus", "max_rohk", "paagi_maht", "ohuvool", "myra", "maarimine", "rpm", "pinge", "materjal"]
-    const CANON_LABELS: Record<string, { et: string; en: string }> = {
-      voimsus: { et: "Võimsus", en: "Power" }, max_rohk: { et: "Max. rõhk", en: "Max. pressure" },
-      paagi_maht: { et: "Paagi maht", en: "Tank volume" }, ohuvool: { et: "Õhuvool", en: "Air flow" },
-      myra: { et: "Müra", en: "Noise" }, maarimine: { et: "Määrimine", en: "Lubrication" },
-      rpm: { et: "Pöörlemiskiirus", en: "Speed" }, pinge: { et: "Pinge", en: "Voltage" }, materjal: { et: "Materjal", en: "Material" },
+    // GENEERILINE: näita IGA toote OMA metadata.specs väljad (mitte hardcoded kompressori-loend).
+    // Nii inverter → inverteri väljad (lainekuju/THD/sisendpinge), kompressor → kompressori, pump → pumba.
+    // Jagatud sõnavara-väljad esimesena (ristlõikav järjekord), tüübi-spetsiifilised järel.
+    // Label: SPEC_LABELS kaardist; tundmatu võti → humanize snake_case (nt "pinge_sisend" → "Pinge sisend").
+    const SPEC_LABELS: Record<string, { et: string; en: string }> = {
+      voimsus: { et: "Võimsus", en: "Power" }, pinge: { et: "Pinge", en: "Voltage" }, kaal: { et: "Kaal", en: "Weight" },
+      poorlemiskiirus: { et: "Pöörlemiskiirus", en: "Speed" }, rpm: { et: "Pöörlemiskiirus", en: "Speed" },
+      rohk: { et: "Rõhk", en: "Pressure" }, max_rohk: { et: "Max. rõhk", en: "Max. pressure" },
+      maht: { et: "Maht", en: "Volume" }, paagi_maht: { et: "Paagi maht", en: "Tank volume" },
+      ohuvool: { et: "Õhuvool", en: "Air flow" }, vooluhulk: { et: "Vooluhulk", en: "Flow rate" },
+      myra: { et: "Müra", en: "Noise" }, maarimine: { et: "Määrimine", en: "Lubrication" }, materjal: { et: "Materjal", en: "Material" },
+      keevitusvool: { et: "Keevitusvool", en: "Welding current" }, ketta_labamoot: { et: "Ketta läbimõõt", en: "Disc diameter" },
+      tuulekiirus: { et: "Tuulekiirus", en: "Wind speed" }, aku_maht: { et: "Aku maht", en: "Battery capacity" },
+      lainekuju: { et: "Lainekuju", en: "Waveform" }, thd: { et: "THD", en: "THD" },
+      pinge_sisend: { et: "Sisendpinge", en: "Input voltage" }, puhkevoimsus: { et: "Tippvõimsus", en: "Peak power" },
+      usb_otsikud: { et: "USB-pesad", en: "USB ports" },
     }
+    const CANON_FIRST = ["voimsus", "pinge", "kaal", "poorlemiskiirus", "rpm", "rohk", "max_rohk", "maht", "paagi_maht", "ohuvool", "vooluhulk", "myra", "materjal", "maarimine"]
+    const humanize = (k: string) => { const s = k.replace(/_/g, " ").trim(); return s.charAt(0).toUpperCase() + s.slice(1) }
     const loc2 = locale === "et" ? "et" : "en"
     const compareSpecsMap: Record<string, string> = {}
     const canon = metadata.specs as Record<string, { v?: number; d?: string } | string | null> | undefined
     if (canon && typeof canon === "object") {
-      for (const k of CANON_ORDER) {
+      const allKeys = Object.keys(canon)
+      const ordered = [...CANON_FIRST.filter((k) => k in canon), ...allKeys.filter((k) => !CANON_FIRST.includes(k))]
+      for (const k of ordered) {
         const val = canon[k]
         if (val == null) continue
         const disp = typeof val === "string" ? val : (val.d || (typeof val.v === "number" ? String(val.v) : ""))
-        if (disp) compareSpecsMap[CANON_LABELS[k][loc2]] = disp
+        if (!disp) continue
+        const label = SPEC_LABELS[k] ? SPEC_LABELS[k][loc2] : humanize(k)
+        compareSpecsMap[label] = disp
       }
     }
     for (const s of structuredSpecs) compareSpecsMap[s.key] = s.value // Mõõdud + Kaal (alati head)
