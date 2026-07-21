@@ -278,6 +278,31 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
     }
     if (structuredSpecs.length > 0) specs = [...structuredSpecs, ...specs]
 
+    // "Võrdle tooteid" picker (compareItem.specs): KANOONILISED compare_specs (metadata.specs)
+    // → ühilduvad väljad (Võimsus/Max.rõhk/... ET metric), MITTE toore parseSpecs (Tank Capacity/
+    // Horsepower raw, imperial, inglise). Nii 2 toote väljad ÜHTIVAD → võrreldavad. Sama allikas
+    // mis SpecComparisonTable. Struktureeritud Mõõdud+Kaal alati kaasa; fallback = toore parseSpecs.
+    const CANON_ORDER = ["voimsus", "max_rohk", "paagi_maht", "ohuvool", "myra", "maarimine", "rpm", "pinge", "materjal"]
+    const CANON_LABELS: Record<string, { et: string; en: string }> = {
+      voimsus: { et: "Võimsus", en: "Power" }, max_rohk: { et: "Max. rõhk", en: "Max. pressure" },
+      paagi_maht: { et: "Paagi maht", en: "Tank volume" }, ohuvool: { et: "Õhuvool", en: "Air flow" },
+      myra: { et: "Müra", en: "Noise" }, maarimine: { et: "Määrimine", en: "Lubrication" },
+      rpm: { et: "Pöörlemiskiirus", en: "Speed" }, pinge: { et: "Pinge", en: "Voltage" }, materjal: { et: "Materjal", en: "Material" },
+    }
+    const loc2 = locale === "et" ? "et" : "en"
+    const compareSpecsMap: Record<string, string> = {}
+    const canon = metadata.specs as Record<string, { v?: number; d?: string } | string | null> | undefined
+    if (canon && typeof canon === "object") {
+      for (const k of CANON_ORDER) {
+        const val = canon[k]
+        if (val == null) continue
+        const disp = typeof val === "string" ? val : (val.d || (typeof val.v === "number" ? String(val.v) : ""))
+        if (disp) compareSpecsMap[CANON_LABELS[k][loc2]] = disp
+      }
+    }
+    for (const s of structuredSpecs) compareSpecsMap[s.key] = s.value // Mõõdud + Kaal (alati head)
+    if (Object.keys(compareSpecsMap).length === 0) for (const s of specs) compareSpecsMap[s.key] = s.value // fallback
+
     // Manuals
     const manualLinks = [...media.manuals]
     const manualKeys = ["manuals", "manual_urls", "pdfs", "pdf_urls", "manual_files"]
@@ -430,7 +455,7 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
         title: localizedTitle,
         thumbnail: product.thumbnail || null,
         price: priceFormatted,
-        specs: Object.fromEntries(specs.map(s => [s.key, s.value])),
+        specs: compareSpecsMap,
       },
       breadcrumbItems: [
         { name: "Home", url: `https://xlmarket.ee/${locale}` },
