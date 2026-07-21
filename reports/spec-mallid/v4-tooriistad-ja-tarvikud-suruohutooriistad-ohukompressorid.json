@@ -1,0 +1,46 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-suruohutooriistad-ohukompressorid",
+ "name": "Õhukompressorid",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "maht",
+   "label_et": "Paagi maht",
+   "unit": "L"
+  },
+  {
+   "key": "rohk",
+   "label_et": "Maksimaalne rõhk",
+   "unit": "bar"
+  },
+  {
+   "key": "ohuvool",
+   "label_et": "Õhuvoolu kiirus",
+   "unit": "L/min"
+  },
+  {
+   "key": "myra",
+   "label_et": "Müratase",
+   "unit": "dB"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "maarimine",
+   "label_et": "Määrimine",
+   "unit": ""
+  }
+ ]
+}

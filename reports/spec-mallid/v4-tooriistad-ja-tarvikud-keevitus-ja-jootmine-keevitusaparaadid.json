@@ -1,0 +1,36 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-keevitus-ja-jootmine-keevitusaparaadid",
+ "name": "Keevitusaparaadid",
+ "fields": [
+  {
+   "key": "keevitusvool",
+   "label_et": "Keevitusvool",
+   "unit": "A"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Sisendpinge",
+   "unit": "V"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "keevitusprotsessid",
+   "label_et": "Keevitusprotsessid",
+   "unit": ""
+  },
+  {
+   "key": "keevituspaiskond",
+   "label_et": "Maksimaalne keevituspaiskond",
+   "unit": "mm"
+  },
+  {
+   "key": "tyybimuutuvus_astmeid",
+   "label_et": "Sisendvõimsus",
+   "unit": "kVA"
+  }
+ ]
+}

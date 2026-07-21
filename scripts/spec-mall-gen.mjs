@@ -2,6 +2,18 @@
 // sõnavara → ristlõikav järjekindlus) + ekstraktib tooted. Ei ehita prod-pipeline'i — proof.
 // Käsk: node spec-mall-gen.mjs <l3-handle> [--write]   (--write → metadata.specs DB-sse)
 import { execSync } from "node:child_process"
+import fs from "node:fs"
+
+// #2 ÜHIKU-GUARD — üheselt-mõistetavad kanoonilised väljad → lubatud ühik. Kui mall annab
+// vale ühiku (nt grinder pinge=A), guard PARANDAB mallis → ekstraktsioon küsib õiget.
+// Mitmetähenduslikke (rohk=bar VÕI pump-head=m, kiirus) EI forsseeri.
+const UNIT_GUARD = {
+  voimsus: "W", pinge: "V", kaal: "kg", myra: "dB", poorlemiskiirus: "RPM",
+  keevitusvool: "A", ketta_labamoot: "mm", ohuvool: "L/min", vooluhulk: "L/min",
+  tuulekiirus: "m/s", tuulekiirus_algus: "m/s", tuulekiirus_startup: "m/s",
+  tuulekiirus_nimitootmine: "m/s", aku_maht: "Wh",
+}
+
 const KEY = process.env.ANTHROPIC_API_KEY
 if (!KEY) { console.error("ANTHROPIC_API_KEY puudub"); process.exit(1) }
 const L3 = process.argv[2]
@@ -52,17 +64,37 @@ async function main() {
   console.log(`\n### ${name} (${rows.length} toodet) — ${L3}`)
   let inTok = 0, outTok = 0
 
-  // FAAS 1: mall (LLM tuletab kanoonilise skeemi sample'ist)
-  const sample = rows.slice(0, 14).map((r, i) => `${i + 1}. ${r.title}\n${(r.desc || "").slice(0, 700)}`).join("\n\n")
-  const mallPrompt = `Sa oled toote-kategooria "${name}" spec-analüütik. Allpool ${Math.min(14, rows.length)} toote andmed. Tuleta VÕRDLUS-KRIITILINE kanooniline spec-skeem (mis väljad ostja võrdleks). Väljasta AINULT JSON:
+  // FAAS 1: mall — #1 CACHE-REGISTRY (tuleta 1×/L3, taaskasuta → järjekindlus + feed-kindlus).
+  const REG_DIR = new URL("../reports/spec-mallid/", import.meta.url)
+  const regPath = new URL(`${L3}.json`, REG_DIR)
+  let mall, mallSource
+  if (fs.existsSync(regPath)) {
+    mall = JSON.parse(fs.readFileSync(regPath, "utf8"))
+    mallSource = "cache"
+  } else {
+    const sample = rows.slice(0, 14).map((r, i) => `${i + 1}. ${r.title}\n${(r.desc || "").slice(0, 700)}`).join("\n\n")
+    const mallPrompt = `Sa oled toote-kategooria "${name}" spec-analüütik. Allpool ${Math.min(14, rows.length)} toote andmed. Tuleta VÕRDLUS-KRIITILINE kanooniline spec-skeem (mis väljad ostja võrdleks). Väljasta AINULT JSON:
 {"fields":[{"key":"<snake_case, JAGATUD sõnavarast kui asjakohane>","label_et":"<ET>","unit":"<EU-metric>"}]}
 ${VOCAB}
 Vali 4-8 KÕIGE võrreldavamat välja. Eelista jagatud sõnavara võtmeid.
 
 TOOTED:\n${sample}`
-  const mr = await llm(mallPrompt, 600); inTok += mr.usage.input_tokens; outTok += mr.usage.output_tokens
-  const mall = parseJson(mr.txt)
-  console.log("MALL:", (mall.fields || []).map(f => `${f.key}(${f.unit})`).join(" · "))
+    const mr = await llm(mallPrompt, 600); inTok += mr.usage.input_tokens; outTok += mr.usage.output_tokens
+    mall = parseJson(mr.txt)
+    mallSource = "tuletatud"
+  }
+  // #2 ÜHIKU-GUARD: paranda tuntud kanooniliste väljade ühik (nt grinder pinge=A → V).
+  let guardFixes = 0
+  for (const f of (mall.fields || [])) {
+    const g = UNIT_GUARD[f.key]
+    if (g && f.unit !== g) { f.unit_orig = f.unit; f.unit = g; guardFixes++ }
+  }
+  // salvesta registry (kui äsja tuletatud) — guard-parandatud kujul.
+  if (mallSource === "tuletatud") {
+    fs.mkdirSync(REG_DIR, { recursive: true })
+    fs.writeFileSync(regPath, JSON.stringify({ l3: L3, name, fields: mall.fields }, null, 1) + "\n")
+  }
+  console.log(`MALL [${mallSource}${guardFixes ? `, guard-fix ${guardFixes}` : ""}]:`, (mall.fields || []).map(f => `${f.key}(${f.unit})`).join(" · "))
 
   // FAAS 2: ekstrakti iga toode malli järgi. Tekstiväljad (maarimine/materjal/protsess/tüüp)
   // = string; mõõdetavad = {v:number, d:"<metric-number> <ühik> (orig kui erineb)"}.
@@ -83,7 +115,6 @@ TOODE:\ntitle: ${r.title}\nkirjeldus: ${(r.desc || "").slice(0, 1300)}`
   console.log(`\nkulu: $${cost.toFixed(4)} (${rows.length} toodet) | per-toode $${(cost / rows.length).toFixed(5)}`)
 
   // kirjuta faili (valikuline DB)
-  const fs = await import("node:fs")
   const out = { l3: L3, name, mall, extracted, tokens: { in: inTok, out: outTok }, cost }
   fs.writeFileSync(`/tmp/mall-${L3.slice(-20)}.json`, JSON.stringify(out, null, 1))
   if (WRITE) {

@@ -1,0 +1,36 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-elektrilised-tooriistad-nurklihvijad",
+ "name": "Nurklihvijad",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "poorlemiskiirus",
+   "label_et": "Pöörlemiskiirus",
+   "unit": "RPM"
+  },
+  {
+   "key": "ketta_labamoot",
+   "label_et": "Ketta läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "voolutugevus",
+   "label_et": "Voolutugevus",
+   "unit": "A"
+  },
+  {
+   "key": "reguleeritav_tolmukaitse",
+   "label_et": "Reguleeritav tolmukaitse",
+   "unit": "jah/ei"
+  }
+ ]
+}

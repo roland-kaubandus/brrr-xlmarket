@@ -1,0 +1,36 @@
+{
+ "l3": "v4-garaaziseadmed-olivahetus-ja-hooldus-kutuse-ulepumpamis-ja-ulekandepumbad",
+ "name": "Kütuse ülepumpamis- ja ülekandepumbad",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "vooluhulk",
+   "label_et": "Vooluhulk",
+   "unit": "L/min"
+  },
+  {
+   "key": "imemiskorgus",
+   "label_et": "Imemiskõrgus",
+   "unit": "m"
+  },
+  {
+   "key": "survekohe",
+   "label_et": "Survekõrgus",
+   "unit": "m"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  }
+ ]
+}
