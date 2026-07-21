@@ -258,6 +258,11 @@ function transform(row) {
     description_en,
     description_et,
     thumbnail: row.thumbnail || '',
+    // Hover-pildivahetus (VEVOR-stiil): gallery_images[0] = TEINE pilt (≠ thumbnail).
+    // Kaart näitab hover'il seda; tühi gallery (5%) → null → kaart ei vaheta.
+    hover_image: (Array.isArray(meta.gallery_images) && typeof meta.gallery_images[0] === 'string' && meta.gallery_images[0])
+      ? meta.gallery_images[0].replace(/\/goods_img-/, '/original_img-')
+      : null,
     sku: row.sku || '',
     price: row.price_cents ? Math.round(row.price_cents) / 100 : 0,
     categories: row.categories || [],
