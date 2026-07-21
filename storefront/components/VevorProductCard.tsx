@@ -83,6 +83,15 @@ export default function VevorProductCard({ product, locale }: { product: Product
   const thumbnailUrl = product.thumbnail || null
   const freeShipping = price && price.calculated_amount >= 9900
 
+  // VEVOR-look: valge-taustaga foto + mix-blend-multiply hallil → toode hõljub, valge taust sulandub.
+  // Tuvastus (tarnija-agnostiline): metadata.image_bg lipp VÕIDAB (Phase-2 feed import-time sharp-tuvastus);
+  // muidu VEVOR CDN m100 thumbnail = ALATI valge (tõestatud piksel-analüüsiga 255,255,255).
+  // Tundmatu tarnija (mitte-valge / pole lippu) → EI blend (ohutu: valge ruut + hall äär, ei katki).
+  const imageBg = (product.metadata as Record<string, unknown> | undefined)?.image_bg
+  const whiteBg =
+    imageBg === "white" ||
+    (imageBg !== "other" && typeof thumbnailUrl === "string" && thumbnailUrl.includes("image.vevor.com"))
+
   return (
     <article className="bg-white rounded-xl overflow-hidden border border-transparent hover:border-[#E2E8F0] hover:shadow-[0_4px_20px_rgba(0,0,0,0.06)] transition-all duration-300 relative group">
       <Link href={`/${resolvedLocale}/toode/${product.handle}`} prefetch={false} className="block">
@@ -106,7 +115,7 @@ export default function VevorProductCard({ product, locale }: { product: Product
         )}
 
         {/* Product image — 1:1 */}
-        <div className="aspect-square flex items-center justify-center overflow-hidden bg-[#F4F4F5] p-2 md:p-3">
+        <div className={"aspect-square flex items-center justify-center overflow-hidden p-2 md:p-3 " + (whiteBg ? "bg-[#EBEBEB]" : "bg-[#F4F4F5]")}>
           {thumbnailUrl ? (
             <Image
               src={thumbnailUrl}
@@ -114,7 +123,7 @@ export default function VevorProductCard({ product, locale }: { product: Product
               width={400}
               height={400}
               loading="lazy"
-              className="w-full h-full object-contain transition-transform duration-500 ease-out group-hover:scale-[1.06]"
+              className={"w-full h-full object-contain transition-transform duration-500 ease-out group-hover:scale-[1.06]" + (whiteBg ? " mix-blend-multiply" : "")}
               sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
             />
           ) : (
