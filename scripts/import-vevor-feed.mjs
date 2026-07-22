@@ -78,6 +78,10 @@ const UPDATE_EXISTING = args.includes("--update");
 // TURVAREŽIIM: --skip-new = uuenda AINULT olemasolevaid (hinnad/laoseis), ÄRA loo uusi tooteid.
 // Kasutus: esimene taastuv sync → värskenda laoseisu ilma 956 kodutut toodet korraga loomata.
 const SKIP_NEW = args.includes("--skip-new");
+// TÄIELIK OVERRIDE: --defer-categories = loo tooted KATEGOORIATA (ega sunni review-bucket'it draft'iks).
+// Paigutuse teeb AINUS kirjutaja — eraldi apply-skript (Opus 956-klassifikatsioon + override-kaart).
+// Põhjus (Tarmo): kaks järjestikust kirjutust samale kategooria-väljale = koht kus asjad vaikselt valesti lähevad.
+const DEFER_CATEGORIES = args.includes("--defer-categories");
 const LIMIT = args.includes("--limit")
   ? parseInt(args[args.indexOf("--limit") + 1])
   : 0;
@@ -651,13 +655,14 @@ async function createProductFromGroup(spuGroup, token, catMap, catIds, pgClient)
     sales_channels: [{ id: SALES_CHANNEL_ID }],
   }
 
-  if (categoryId) {
+  if (!DEFER_CATEGORIES && categoryId) {
     productData.categories = [{ id: categoryId }]
   }
 
   // If review bucket, force status=draft so the product is never publicly visible
   // (spec §5.3 — conf <0.60 must not appear on storefront).
-  if (classification.review_bucket) {
+  // --defer-categories: ära sunni draft'iks — apply-skript paigutab kõik 956 valideeritud kodu → published.
+  if (!DEFER_CATEGORIES && classification.review_bucket) {
     productData.status = "draft"
   }
 
@@ -739,12 +744,13 @@ async function createProduct(row, token, catMap, catIds, pgClient) {
     sales_channels: [{ id: SALES_CHANNEL_ID }],
   };
 
-  if (categoryId) {
+  if (!DEFER_CATEGORIES && categoryId) {
     productData.categories = [{ id: categoryId }];
   }
 
   // Force draft for review-bucket products
-  if (classification.review_bucket) {
+  // --defer-categories: ära sunni draft'iks — apply-skript paigutab kõik 956 valideeritud kodu → published.
+  if (!DEFER_CATEGORIES && classification.review_bucket) {
     productData.status = "draft";
   }
 

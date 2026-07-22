@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-20T20:26:28.587Z",
+  "generated_at": "2026-07-22T18:01:00.961Z",
   "nodes": {
     "v4-tooriistad-ja-tarvikud": {
       "handle": "v4-tooriistad-ja-tarvikud",
@@ -3170,7 +3170,8 @@
         "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-sarraua-ja-armatuuriloikuri-terad",
         "v4-tooriistad-rattad-rullikud-dollid",
         "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-freesiterad",
-        "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-hoovliterad"
+        "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-hoovliterad",
+        "v4-tooriistad-tarvikud-sds-meislid"
       ],
       "image_path": null,
       "image_source": "none"
@@ -3399,6 +3400,16 @@
       "handle": "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-hoovliterad",
       "name_en": "Höövliterad",
       "name_et": "Höövliterad",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-tarvikud-sds-meislid": {
+      "handle": "v4-tooriistad-tarvikud-sds-meislid",
+      "name_en": "SDS meislid ja purustusterad",
+      "name_et": "SDS meislid ja purustusterad",
       "level": 3,
       "parent_handle": "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid",
       "child_handles": [],
@@ -12774,7 +12785,9 @@
         "v4-sport-ja-vaba-aeg-jaht-ja-jahivarustus-kalapuugikomplektid",
         "v4-sport-ja-vaba-aeg-jaht-ja-jahivarustus-ongehoidikud",
         "v4-sport-ja-vaba-aeg-jaht-ja-jahivarustus-kalapuugikarud",
-        "v4-sport-ja-vaba-aeg-jaht-ja-jahivarustus-jaapuurid"
+        "v4-sport-ja-vaba-aeg-jaht-ja-jahivarustus-jaapuurid",
+        "v4-sport-kalastus-kahvad-ja-saagivorgud",
+        "v4-sport-kalastus-kalapuunised"
       ],
       "image_path": null,
       "image_source": "none"
@@ -12823,6 +12836,26 @@
       "handle": "v4-sport-ja-vaba-aeg-jaht-ja-jahivarustus-jaapuurid",
       "name_en": "Jääpuurid",
       "name_et": "Jääpuurid",
+      "level": 3,
+      "parent_handle": "v4-sport-kalastus",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-sport-kalastus-kahvad-ja-saagivorgud": {
+      "handle": "v4-sport-kalastus-kahvad-ja-saagivorgud",
+      "name_en": "Kahvad ja saagivõrgud",
+      "name_et": "Kahvad ja saagivõrgud",
+      "level": 3,
+      "parent_handle": "v4-sport-kalastus",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-sport-kalastus-kalapuunised": {
+      "handle": "v4-sport-kalastus-kalapuunised",
+      "name_en": "Kalapüünised",
+      "name_et": "Kalapüünised",
       "level": 3,
       "parent_handle": "v4-sport-kalastus",
       "child_handles": [],
@@ -16408,7 +16441,8 @@
         "v4-ladu-gaasiballoonide-pudelite-hoidikud",
         "v4-ladu-veepudelite-hoidikud-riiulid",
         "v4-ladu-filamendi-kunstirestid",
-        "v4-ladu-lae-hoiustamisrestid"
+        "v4-ladu-lae-hoiustamisrestid",
+        "v4-ladu-riiulid-kaubaalused"
       ],
       "image_path": null,
       "image_source": "none"
@@ -16467,6 +16501,16 @@
       "handle": "v4-ladu-lae-hoiustamisrestid",
       "name_en": "Lae-hoiustamisrestid",
       "name_et": "Lae-hoiustamisrestid",
+      "level": 3,
+      "parent_handle": "v4-ladu-riiulid-restid",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-ladu-riiulid-kaubaalused": {
+      "handle": "v4-ladu-riiulid-kaubaalused",
+      "name_en": "Kaubaalused",
+      "name_et": "Kaubaalused",
       "level": 3,
       "parent_handle": "v4-ladu-riiulid-restid",
       "child_handles": [],
@@ -16550,7 +16594,8 @@
         "v4-ladu-toimiku-dokumendikapid",
         "v4-ladu-tuleohtlike-ainete-hoiukapid",
         "v4-ladu-ukse-organiserid-sahvririiulid",
-        "v4-ladu-telefonihoiukapid"
+        "v4-ladu-telefonihoiukapid",
+        "v4-ladu-hoiukapid-lekketokkealused"
       ],
       "image_path": null,
       "image_source": "none"
@@ -16599,6 +16644,16 @@
       "handle": "v4-ladu-telefonihoiukapid",
       "name_en": "Telefonihoiukapsel- ja kapid",
       "name_et": "Telefonihoiukapsel- ja kapid",
+      "level": 3,
+      "parent_handle": "v4-ladu-hoiukapid-sahtlid",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-ladu-hoiukapid-lekketokkealused": {
+      "handle": "v4-ladu-hoiukapid-lekketokkealused",
+      "name_en": "Lekketõkkealused ja lekkevannid",
+      "name_et": "Lekketõkkealused ja lekkevannid",
       "level": 3,
       "parent_handle": "v4-ladu-hoiukapid-sahtlid",
       "child_handles": [],
@@ -21747,6 +21802,7 @@
     "v4-tooriistad-rattad-rullikud-dollid",
     "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-freesiterad",
     "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-hoovliterad",
+    "v4-tooriistad-tarvikud-sds-meislid",
     "v4-tooriistad-ja-tarvikud-turva-ja-objektivarustus",
     "v4-tooriistad-ja-tarvikud-turva-ja-objektivarustus-lockout-tagout-komplektid",
     "v4-ehitus-remont-ja-varvid-isolatsioon-ja-soojustus-tolmubarjaarid",
@@ -22592,6 +22648,8 @@
     "v4-sport-ja-vaba-aeg-jaht-ja-jahivarustus-ongehoidikud",
     "v4-sport-ja-vaba-aeg-jaht-ja-jahivarustus-kalapuugikarud",
     "v4-sport-ja-vaba-aeg-jaht-ja-jahivarustus-jaapuurid",
+    "v4-sport-kalastus-kahvad-ja-saagivorgud",
+    "v4-sport-kalastus-kalapuunised",
     "v4-sport-ja-vaba-aeg-veesport-ja-ujuvvahendid",
     "v4-sport-ja-vaba-aeg-veesport-ja-paadindus-ujuvad-dokid-ja-platvormid",
     "v4-sport-ja-vaba-aeg-veesport-ja-paadindus-pukseeritavad-veetorud-ja-manguasjad",
@@ -22918,6 +22976,7 @@
     "v4-ladu-veepudelite-hoidikud-riiulid",
     "v4-ladu-filamendi-kunstirestid",
     "v4-ladu-lae-hoiustamisrestid",
+    "v4-ladu-riiulid-kaubaalused",
     "v4-ladu-mobiilsed-karud",
     "v4-ladu-teenindus-utility-karud",
     "v4-ladu-mobiilsed-hoiustusrestid-karud",
@@ -22930,6 +22989,7 @@
     "v4-ladu-tuleohtlike-ainete-hoiukapid",
     "v4-ladu-ukse-organiserid-sahvririiulid",
     "v4-ladu-telefonihoiukapid",
+    "v4-ladu-hoiukapid-lekketokkealused",
     "v4-ladu-hoiukastid-konteinerid",
     "v4-ladu-hoiukastid-kirstud",
     "v4-ladu-virnastatavad-hoiukastid",
