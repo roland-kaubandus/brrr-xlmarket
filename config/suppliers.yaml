@@ -1,0 +1,70 @@
+# config/suppliers.yaml — TARNIJATE SSoT (hinnastamise + kulu-mootori alus)
+#
+# Iga hinna-parameeter on PER-TARNIJA. Globaalseid hinna-konstante EI OLE.
+# Vana `PRICE_MARKUP = 1.15` konstant (import-vevor-feed.mjs) on SIIT asendatud.
+#
+# Uue tarnija lisamine (Powermat/KraftDele/BlackTools) = UUS PLOKK siia + andmed,
+# MITTE koodimuudatus. Vt migratsiooni-tõestus: reports/hinnastamise-laoseisu-arhitektuur.md §I.
+#
+# Loeb: scripts/lib/cost-engine.mjs (loadSuppliers)
+
+version: 1
+
+# Vaikeväärtused — iga tarnija võib üle kirjutada. Puuduv väli tarnijal → siit.
+defaults:
+  feed_format: xlsx           # xlsx | csv | xml  (→ scripts/adapters/<format>.mjs)
+  price_includes_vat: true    # kas feedi hind on KM-ga (bruto)
+  source_vat_rate: 0.22       # tarnija-riigi KM (kulu-arvutuseks maha)
+  currency: EUR               # EUR → fx vahele; muu → config/fx.yaml teisendus
+  discount_model: flat        # flat | tiered_by_volume | per_category | contract
+  discount_value: 0.0         # edasimüüja-allahindlus (kulu-vähendus), 0..1
+  fulfillment_model: dropship # dropship | stock | mixed
+  shipping_model: per_order   # per_order | per_batch | included
+  default_location: null      # oma-lao asukoht (StockLocation) kui stock/mixed
+  markup_override: null        # kui täidetud → see markup, muidu config/pricing-rules.yaml
+
+suppliers:
+  # ── VEVOR (aktiivne, ainus praegu) ──────────────────────────────────
+  vevor:
+    name: "VEVOR"
+    active: true
+    feed_format: xlsx
+    field_map:
+      sku: "SKU"
+      price: "MAP (Minimum Advertised Price)"
+      price_fallback: "after coupon price"
+      title: "Product title"
+      description: "Product description"
+      weight: "Product weight(KG)"
+      brand: "Brand"
+      product_type: "Product type"
+      availability: "Availability"
+    price_includes_vat: true
+    source_vat_rate: 0.22        # VEVOR MAP = 22% KM sees
+    currency: EUR
+    discount_model: tiered_by_volume
+    discount_value: 0.05          # praegune PRO-tase (aste 2%..15%)
+    fulfillment_model: dropship
+    shipping_model: per_order
+    default_location: null
+    markup_override: null         # → default_markup pricing-rules.yaml (1.15)
+
+  # ── POWERMAT (ŠABLOON — täida kui koostöö algab; migratsiooni-tõestus #5) ──
+  # Kõik allolev = KONF. Kood ei muutu (v.a eksootiline transport → adapters/powermat.mjs).
+  powermat:
+    name: "Powermat"
+    active: false                 # ← lülita true kui feed olemas
+    feed_format: csv              # ⚠️ täpsusta PL-feedi formaat (csv/xml/xlsx)
+    field_map:
+      sku: "?"
+      price: "?"
+      weight: "?"
+    price_includes_vat: true
+    source_vat_rate: 0.23         # Poola KM
+    currency: PLN                 # → config/fx.yaml teisendab EUR-i
+    discount_model: contract
+    discount_value: 0.0
+    fulfillment_model: stock      # oma lattu (EE)
+    shipping_model: per_batch     # partii-veokulu → acquisition_cost
+    default_location: EE
+    markup_override: null
