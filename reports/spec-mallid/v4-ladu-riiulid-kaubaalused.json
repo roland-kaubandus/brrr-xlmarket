@@ -1,0 +1,46 @@
+{
+ "l3": "v4-ladu-riiulid-kaubaalused",
+ "name": "Kaubaalused",
+ "fields": [
+  {
+   "key": "pikkus",
+   "label_et": "Pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "laius",
+   "label_et": "Laius",
+   "unit": "mm"
+  },
+  {
+   "key": "korgus",
+   "label_et": "Kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal (üks tükk)",
+   "unit": "kg"
+  },
+  {
+   "key": "staatiline_koormus",
+   "label_et": "Staatiline koormus",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "taidus_tyyp",
+   "label_et": "Täidis tüüp",
+   "unit": ""
+  },
+  {
+   "key": "kogus",
+   "label_et": "Kogus pakis",
+   "unit": "tk"
+  }
+ ]
+}

@@ -1,0 +1,41 @@
+{
+ "l3": "v4-ladu-hoiukapid-lekketokkealused",
+ "name": "Lekketõkkealused ja lekkevannid",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Summamaht (L)",
+   "unit": "L"
+  },
+  {
+   "key": "static_load_capacity",
+   "label_et": "Staatiline koormavõimsus (kg)",
+   "unit": "kg"
+  },
+  {
+   "key": "dynamic_load_capacity",
+   "label_et": "Dünaamiline koormavõimsus (kg)",
+   "unit": "kg"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Neto kaal (kg)",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "trumli_mahutavus",
+   "label_et": "Trummide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "drain_outlet",
+   "label_et": "Drenaaž",
+   "unit": ""
+  }
+ ]
+}

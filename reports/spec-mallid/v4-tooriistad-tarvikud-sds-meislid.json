@@ -1,0 +1,36 @@
+{
+ "l3": "v4-tooriistad-tarvikud-sds-meislid",
+ "name": "SDS meislid ja purustusterad",
+ "fields": [
+  {
+   "key": "sds_standard",
+   "label_et": "SDS standard",
+   "unit": "SDS Plus / SDS Max"
+  },
+  {
+   "key": "ketta_labamoot",
+   "label_et": "Chisel pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "chisel_laius",
+   "label_et": "Chisel laius",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": "materjal"
+  },
+  {
+   "key": "tykid",
+   "label_et": "Tükkide arv",
+   "unit": "tk"
+  }
+ ]
+}

@@ -1,0 +1,41 @@
+{
+ "l3": "v4-sport-kalastus-kalapuunised",
+ "name": "Kalapüünised",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Neto kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kujund",
+   "label_et": "Kujund",
+   "unit": ""
+  },
+  {
+   "key": "mesh_suurus",
+   "label_et": "Võrgusilma suurus",
+   "unit": "mm"
+  },
+  {
+   "key": "paadi_suurus",
+   "label_et": "Paadi/Rõnga ülemine mõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "sügavus",
+   "label_et": "Sügavus",
+   "unit": "mm"
+  },
+  {
+   "key": "komplekti_kogus",
+   "label_et": "Komplektis",
+   "unit": "tk"
+  }
+ ]
+}
