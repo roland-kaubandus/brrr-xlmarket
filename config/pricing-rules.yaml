@@ -51,9 +51,11 @@ rules:
     markup: 1.28
     priority: 100
     enabled: true
+  # Kolm ülemist astet praegu SAMA markup (1.15) → kallid tooted ei muutu.
+  # Piirid jäävad tulevikuks alles (diferentseeri kui tarnetariif teada).
   - id: tier-100-300
     when: { cost_min: 100, cost_max: 300 }
-    markup: 1.20
+    markup: 1.15
     priority: 100
     enabled: true
   - id: tier-300-800
@@ -63,7 +65,7 @@ rules:
     enabled: true
   - id: tier-800-plus
     when: { cost_min: 800 }
-    markup: 1.12
+    markup: 1.15
     priority: 100
     enabled: true
 
