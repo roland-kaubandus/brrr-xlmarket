@@ -199,7 +199,9 @@ function readFeed() {
   for (const r of raw) {
     const sku = String(r["SKU"] || "").trim();
     if (!sku) continue;
-    const price = parsePrice(r["Price"]);
+    // VEVOR eemaldas "Price" veeru (2026-07) → MAP (min reklaam-hind, = vana Price 94%).
+    // Fallback after-coupon kui MAP tühi (ei kuku rida). parsePrice ekstrakti numbri "330.90EUR"-ist.
+    const price = parsePrice(r["MAP (Minimum Advertised Price)"] || r["after coupon price"]);
     if (!price) continue;
 
     // Parse selling points

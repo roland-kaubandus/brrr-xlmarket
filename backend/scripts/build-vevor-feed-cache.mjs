@@ -97,7 +97,8 @@ function mapRow(headers, row) {
     descriptionText,
     link: normalizeText(values["Product link"]),
     condition: normalizeText(values["Product condition"]),
-    priceEur: normalizeDecimal(values["Price"]),
+    // "Price" eemaldatud 2026-07 → MAP (= vana Price 94%); fallback after-coupon. normalizeDecimal strip'ib "EUR".
+    priceEur: normalizeDecimal(values["MAP (Minimum Advertised Price)"] || values["after coupon price"]),
     availability: normalizeText(values["Availability"])?.toLowerCase() || null,
     inventoryQuantity: normalizeInteger(values["Inventory quantity"]),
     weightKg: normalizeDecimal(values["Product weight(KG)"]),
