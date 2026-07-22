@@ -1260,6 +1260,10 @@ l1:
             name_en: "Höövliterad"
             name_et: "Höövliterad"
             product_count: 0
+          - slug: v4-tooriistad-tarvikud-sds-meislid
+            name_en: "SDS meislid ja purustusterad"
+            name_et: "SDS meislid ja purustusterad"
+            product_count: 0
       - slug: v4-tooriistad-ja-tarvikud-turva-ja-objektivarustus
         name_en: "Töökoha ohutus- ja hädaabivarustus"
         name_et: "Töökoha ohutus- ja hädaabivarustus"
@@ -4795,6 +4799,14 @@ l1:
             name_en: "Jääpuurid"
             name_et: "Jääpuurid"
             product_count: 0
+          - slug: v4-sport-kalastus-kahvad-ja-saagivorgud
+            name_en: "Kahvad ja saagivõrgud"
+            name_et: "Kahvad ja saagivõrgud"
+            product_count: 0
+          - slug: v4-sport-kalastus-kalapuunised
+            name_en: "Kalapüünised"
+            name_et: "Kalapüünised"
+            product_count: 0
       - slug: v4-sport-ja-vaba-aeg-veesport-ja-ujuvvahendid
         name_en: "Veesport ja ujuvvahendid"
         name_et: "Veesport ja ujuvvahendid"
@@ -6174,6 +6186,10 @@ l1:
             name_en: "Lae-hoiustamisrestid"
             name_et: "Lae-hoiustamisrestid"
             product_count: 0
+          - slug: v4-ladu-riiulid-kaubaalused
+            name_en: "Kaubaalused"
+            name_et: "Kaubaalused"
+            product_count: 0
       - slug: v4-ladu-mobiilsed-karud
         name_en: "Mobiilsed hoiukärud ja -restid"
         name_et: "Mobiilsed hoiukärud ja -restid"
@@ -6223,6 +6239,10 @@ l1:
           - slug: v4-ladu-telefonihoiukapid
             name_en: "Telefonihoiukapsel- ja kapid"
             name_et: "Telefonihoiukapsel- ja kapid"
+            product_count: 0
+          - slug: v4-ladu-hoiukapid-lekketokkealused
+            name_en: "Lekketõkkealused ja lekkevannid"
+            name_et: "Lekketõkkealused ja lekkevannid"
             product_count: 0
       - slug: v4-ladu-hoiukastid-konteinerid
         name_en: "Hoiukastid ja -konteinerid"
