@@ -9,7 +9,8 @@ const MEILI_HOST = process.env.MEILISEARCH_HOST || "http://127.0.0.1:7700"
 const MEILI_KEY = process.env.MEILISEARCH_KEY
 const INDEX = "products"
 const BATCH = 500
-const FEED_CACHE_PATH = new URL("../data/feeds/vevor-feed-cache.json", import.meta.url)
+// Cache-path env-override (nt kui ../data/feeds pole kirjutatav — Coolify konteiner → /tmp).
+const FEED_CACHE_PATH = process.env.FEED_CACHE_PATH || new URL("../data/feeds/vevor-feed-cache.json", import.meta.url)
 
 let feedCacheBySku = null
 let feedCacheByUpc = null
@@ -123,14 +124,24 @@ function loadFeedCache() {
 }
 
 // PR #3: derive stock status from VEVOR feed cache (availability + inventoryQuantity)
-function isOosFromFeed(sku) {
+// Churned-fix (2026-07-22): feed-managed toode, mis KADUS feedist → OOS (dropship'i ei saa
+// tarnida kui tarnija ei paku). Feed-managed = variant-sku === vevor_sku. Käsitsi/Outlet
+// (custom sku ≠ vevor_sku, nt "...-OUTLET") → EI OOS (jäta saadavaks).
+function isOosFromFeed(sku, meta) {
   if (!sku) return false
   const cache = loadFeedCache()
-  const entry = cache.bySku?.[String(sku).trim()]
-  if (!entry) return false
-  if (entry.availability && entry.availability !== "in stock") return true
-  if ((entry.inventoryQuantity || 0) === 0) return true
-  return false
+  // SAFETY-GUARD: kui feed-cache tühi/puudub → ÄRA OOS'i kõike (churned-loogika vajab TÖÖTAVAT cache't).
+  // Ilma selleta: cache puudub → iga toode "pole feedis" → kõik OOS. Tühi cache → vana ohutu käitumine (laos).
+  if (!cache.bySku || Object.keys(cache.bySku).length === 0) return false
+  const entry = cache.bySku[String(sku).trim()]
+  if (entry) {
+    if (entry.availability && entry.availability !== "in stock") return true
+    if ((entry.inventoryQuantity || 0) === 0) return true
+    return false
+  }
+  // POLE feedis: churned dropship → OOS AINULT kui feed-managed (variant-sku === vevor_sku).
+  const vevorSku = meta && meta.vevor_sku ? String(meta.vevor_sku).trim() : null
+  return vevorSku && vevorSku === String(sku).trim() ? true : false
 }
 
 async function fetchProducts(client) {
@@ -271,7 +282,7 @@ function transform(row) {
     filter_tokens,
     specs,
     compare_specs: meta.specs || null,
-    in_stock: !isOosFromFeed(row.sku),
+    in_stock: !isOosFromFeed(row.sku, meta),
     translated: meta.translated === true,
     created_at: Math.floor(new Date(row.created_at).getTime() / 1000),
     // Taxonomy v3 SSoT fields (F2.8). vertical_slugs populated by F4 materializer.
