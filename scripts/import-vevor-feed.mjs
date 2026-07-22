@@ -63,6 +63,9 @@ const args = process.argv.slice(2);
 const EXECUTE = args.includes("--execute");
 const REFRESH = args.includes("--refresh");
 const UPDATE_EXISTING = args.includes("--update");
+// TURVAREŽIIM: --skip-new = uuenda AINULT olemasolevaid (hinnad/laoseis), ÄRA loo uusi tooteid.
+// Kasutus: esimene taastuv sync → värskenda laoseisu ilma 956 kodutut toodet korraga loomata.
+const SKIP_NEW = args.includes("--skip-new");
 const LIMIT = args.includes("--limit")
   ? parseInt(args[args.indexOf("--limit") + 1])
   : 0;
@@ -890,7 +893,7 @@ async function main() {
   console.log("");
 
   const mode = EXECUTE ? "EXECUTE" : "DRY RUN";
-  log("Mode: " + mode + (UPDATE_EXISTING ? " + UPDATE" : ""));
+  log("Mode: " + mode + (UPDATE_EXISTING ? " + UPDATE" : "") + (SKIP_NEW ? " + SKIP-NEW (ainult uuendused)" : ""));
   if (LIMIT) log("Limit: " + LIMIT + " products");
   console.log("");
 
@@ -1021,7 +1024,10 @@ async function main() {
   // SPU grouping removed 2026-04-20: every VEVOR SKU becomes its own Medusa product.
   // SPU ID stays on metadata.vevor_spu for future "related products" widgets.
   const rowsToCreate = LIMIT ? newRows.slice(0, LIMIT) : newRows;
-  if (rowsToCreate.length > 0) {
+  if (SKIP_NEW && newRows.length > 0) {
+    log("⏭  --skip-new: JÄTAN " + newRows.length + " uut toodet LOOMATA (ainult uuendused). Uued ootavad kontrollitud importi.");
+  }
+  if (rowsToCreate.length > 0 && !SKIP_NEW) {
     log("Creating " + rowsToCreate.length + " products (1 product per SKU, batch delay: " + API_DELAY_MS + "ms)...");
     const startTime = Date.now();
 
