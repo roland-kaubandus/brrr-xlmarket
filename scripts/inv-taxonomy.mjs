@@ -98,6 +98,27 @@ let stFail = 0;
 for (const [k, v] of st) { const n = +v; if (n > 0) { stFail += n; console.log(`  🔴 ${k}: ${n}`); } else console.log(`  ✓ ${k}: 0`); }
 fails += stFail;
 
+// ============ INV-META-01: iga v4 kategooria omab taxonomy_node_meta rea (õige level) ============
+// JUUR: L3-loomine migrate-SQL-iga jättis meta-rea lisamata (956-import) → meta-põhised
+//   tööriistad (whole-catalog spec-backfill, nav-gen) jätsid tooted vaikselt vahele.
+//   Jõustus: create-l3.mjs teeb kategooria+meta atomaarselt; SEE invariant püüab käsitsi-augud.
+sec("INV-META-01", "FAIL", "v4 kategooria ilma meta-reata / vale level");
+const meta01 = q(`
+WITH v4 AS (SELECT id, name, mpath, (char_length(mpath)-char_length(replace(mpath,'.','')))+1 AS depth
+  FROM product_category WHERE mpath LIKE 'pcat_v4_l%' AND deleted_at IS NULL)
+SELECT v4.depth::text, v4.id, v4.name,
+  CASE WHEN m.node_id IS NULL THEN 'META-PUUDU' ELSE 'LEVEL-VALE('||m.level||'≠'||v4.depth||')' END
+FROM v4 LEFT JOIN taxonomy_node_meta m ON m.node_id=v4.id
+WHERE m.node_id IS NULL OR m.level <> v4.depth
+ORDER BY v4.depth, v4.name;`);
+if (meta01.length) {
+  fails += meta01.length;
+  console.log(`  ${meta01.length} v4-node ilma korrektse meta-reata:`);
+  meta01.slice(0, 15).forEach(([d, id, nm, issue]) => console.log(`     L${d} ${id}  ${nm}  → ${issue}`));
+  if (meta01.length > 15) console.log(`     … +${meta01.length - 15}`);
+  console.log(`  → soovitus: L3-loomine läbi scripts/create-l3.mjs (kategooria+meta atomaarselt); käsitsi-parand: taxonomy_node_meta INSERT (vt new5-l3-meta-fix-migrate.sql)`);
+} else console.log("  ✓ puhas");
+
 // ============ INV-NAME-01: L2/L3 nimi inglise sõnaga (nime-faasi kandidaat) ============
 sec("INV-NAME-01", "WARN", "L2/L3 nimi sisaldab inglise sõna");
 const nm01 = q(`
