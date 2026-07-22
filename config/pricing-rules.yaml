@@ -32,22 +32,40 @@ rounding:
 #   supplier — suppliers.yaml võti
 #   stock_source — dropship | own | both
 rules:
-  # ── Astmeline hinnastamine (VALMIS, VÄLJAS) ──────────────────────────
-  - id: tier-cheap
-    when: { cost_min: 0, cost_max: 50 }
-    markup: 1.35
+  # ── Astmeline hinnastamine (AKTIIVNE 2026-07-22, Tarmo) ──────────────
+  # cost_net peal. Esialgsed väärtused — täpsustuvad kui VEVOR tarnetariif teada.
+  # Põhjus SISSE-lülituseks: hinnad muutuvad alles järgmisel impordil → üks
+  # hinnamuutus (mitte kaks) = parem Omnibus + kliendi-usaldus.
+  - id: tier-0-15
+    when: { cost_min: 0, cost_max: 15 }
+    markup: 1.60
     priority: 100
-    enabled: false
-  - id: tier-mid
-    when: { cost_min: 50, cost_max: 200 }
-    markup: 1.25
+    enabled: true
+  - id: tier-15-40
+    when: { cost_min: 15, cost_max: 40 }
+    markup: 1.40
     priority: 100
-    enabled: false
-  - id: tier-high
-    when: { cost_min: 200 }
+    enabled: true
+  - id: tier-40-100
+    when: { cost_min: 40, cost_max: 100 }
+    markup: 1.28
+    priority: 100
+    enabled: true
+  - id: tier-100-300
+    when: { cost_min: 100, cost_max: 300 }
+    markup: 1.20
+    priority: 100
+    enabled: true
+  - id: tier-300-800
+    when: { cost_min: 300, cost_max: 800 }
     markup: 1.15
     priority: 100
-    enabled: false
+    enabled: true
+  - id: tier-800-plus
+    when: { cost_min: 800 }
+    markup: 1.12
+    priority: 100
+    enabled: true
 
   # ── Näited (VÄLJAS) — tarnija-põhine / kaalu-surcharge ───────────────
   # - id: powermat-markup

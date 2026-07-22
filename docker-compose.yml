@@ -147,6 +147,12 @@ services:
       EMAIL_ADMIN: ${EMAIL_ADMIN:-tarmo@naissaar.eu}
       EMAIL_INVOICE: ${EMAIL_INVOICE:-tarmo@naissaar.eu}
       STORE_URL: ${NEXT_PUBLIC_BASE_URL:-https://xlmarket.ee}
+      # Feed-cache püsivus (2026-07-22): churned→OOS loogika vajab feed-cache't
+      # üle redeploy'de. /app on read-only + /tmp kaob → named volume /data alla.
+      # Loevad: import-vevor-feed.mjs + backend/scripts/index-meilisearch.mjs.
+      FEED_CACHE_PATH: /data/vevor-feed-cache.json
+    volumes:
+      - xlmarket_feeddata:/data
     networks:
       default:
         # Stabiilne alias (prod=xlmarket-medusa, staging=eraldi env) → manuaalne
@@ -193,6 +199,9 @@ services:
     environment:
       <<: *medusa-env
       MEDUSA_WORKER_MODE: worker
+    # Sama feed-cache volume kui medusa-web (FEED_CACHE_PATH tuleb *medusa-env ankrust).
+    volumes:
+      - xlmarket_feeddata:/data
     # Stagger 60s (oli 900s): annab medusa-web'ile boot-edumaa, väldib samaaegset rasket boot'i.
     # Lühendatud 2026-06-10 — boot-storm'i juur (host audit-reeglid uid=1001) eemaldatud, host-load
     # ~1.4 → 15min pime-aken (webhook'id ei töötle) kaob. Kui boot-koormust tekib, tõsta tagasi.
@@ -300,6 +309,8 @@ volumes:
   xlmarket_pgdata:
   xlmarket_redis:
   xlmarket_meili:
+  # Feed-cache püsivus (churned→OOS üle redeploy'de). Mount /data medusa+worker.
+  xlmarket_feeddata:
 
 networks:
   default:
