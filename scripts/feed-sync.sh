@@ -185,10 +185,10 @@ async function main(){
     if(!d.hits||!d.hits.length)break;
     const docs=[];
     for(const h of d.hits){
+      if(!feed.bySku[h.sku])continue; // pole feedis → jäta puutumata (full-reindex määras churned→OOS / käsitsi→in_stock)
       const shouldOOS=oos.has(h.sku);
-      const shouldIS=!shouldOOS;
       if(shouldOOS&&h.in_stock!==false)docs.push({id:h.id,in_stock:false});
-      else if(shouldIS&&h.in_stock!==true)docs.push({id:h.id,in_stock:true});
+      else if(!shouldOOS&&h.in_stock!==true)docs.push({id:h.id,in_stock:true});
     }
     if(docs.length){
       await fetch(MEILI+'/indexes/products/documents',{method:'PUT',headers:{'Authorization':'Bearer '+KEY,'Content-Type':'application/json'},body:JSON.stringify(docs)});
