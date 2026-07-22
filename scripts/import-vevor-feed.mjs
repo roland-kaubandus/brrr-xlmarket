@@ -22,6 +22,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import { loadV3Map, resolveV3Slug } from "../backend/src/scripts/resolve-v3-category.mjs";
 import { classifyProductSync, loadRules } from "../backend/src/taxonomy/resolver.mjs";
+import { computeRetail } from "./lib/pricing-engine.mjs";
 
 // Rollback switch (spec §10 rollback) — set USE_LEGACY_RESOLVER=1 to fall back
 // to the v1 map-based resolver. Defaults to v2 (resolver-v2 pipeline).
@@ -53,7 +54,18 @@ const MEILI_HOST = process.env.MEILISEARCH_HOST || "http://127.0.0.1:7700";
 const MEILI_KEY = process.env.MEILISEARCH_ADMIN_KEY || process.env.MEILISEARCH_KEY || process.env.MEILI_MASTER_KEY;
 const MEILI_INDEX = "products";
 
-const PRICE_MARKUP = 1.15;
+// HINNASTAMISE MOOTOR asendab vana `PRICE_MARKUP = 1.15` konstandi.
+// Hind arvutatakse config/suppliers.yaml (source_vat, discount) + config/pricing-rules.yaml
+// (markup KULULE, sell_vat) järgi. VEVOR: MAP ÷1,22 ×0,95 ×1,15 ×1,24 (−3,44% vs vana MAP×1,15).
+// Vt reports/hinnastamise-laoseisu-arhitektuur.md §0.
+const PRICE_SUPPLIER = "vevor";
+/** Feedi rida → kliendi hind sentides (kogu kulu→markup→KM ahel). */
+function retailCents(row) {
+  const r = computeRetail({ priceRaw: row.price, supplierId: PRICE_SUPPLIER, weight: row.weight || 0 });
+  if (!r) throw new Error(`Hinna-arvutus ebaõnnestus SKU ${row.sku} (price=${row.price})`);
+  return r.amount_cents;
+}
+
 const BATCH_SIZE = 50;
 const API_DELAY_MS = 100;
 const SALES_CHANNEL_ID = "sc_01KMRWP84555JPGA6M0QMG409M";
@@ -596,7 +608,7 @@ async function createProductFromGroup(spuGroup, token, catMap, catIds, pgClient)
     sku: v.row.sku,
     manage_inventory: true,
     allow_backorder: false,
-    prices: [{ amount: Math.round(v.row.price * PRICE_MARKUP * 100), currency_code: "eur" }],
+    prices: [{ amount: retailCents(v.row), currency_code: "eur" }],
     options: { [option.name]: v.label },
   }))
 
@@ -670,7 +682,7 @@ async function createProductFromGroup(spuGroup, token, catMap, catIds, pgClient)
 
 // Legacy single-product creation (backwards compat)
 async function createProduct(row, token, catMap, catIds, pgClient) {
-  const finalPrice = Math.round(row.price * PRICE_MARKUP * 100); // cents
+  const finalPrice = retailCents(row); // cents (kulu→markup→KM mootor)
   const handle = makeHandle(row.sku, row.title);
   const isInStock = row.availability === "in stock";
 
@@ -758,7 +770,7 @@ async function createProduct(row, token, catMap, catIds, pgClient) {
 }
 
 async function updateProduct(productId, row, token, catIds, auditPg, existingMeta) {
-  const finalPrice = Math.round(row.price * PRICE_MARKUP * 100);
+  const finalPrice = retailCents(row);
   const isInStock = row.availability === "in stock";
   existingMeta = existingMeta || {};
 
@@ -983,7 +995,7 @@ async function main() {
 
   // Price stats for new products
   if (newRows.length > 0) {
-    const prices = newRows.map((r) => r.price * PRICE_MARKUP);
+    const prices = newRows.map((r) => retailCents(r) / 100);
     log("Price stats (new, after markup):");
     log("  Min: EUR " + Math.min(...prices).toFixed(2));
     log("  Max: EUR " + Math.max(...prices).toFixed(2));

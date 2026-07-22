@@ -1,0 +1,27 @@
+# config/fx.yaml — VALUUTA-TEISENDUS (mitte-EUR tarnijad)
+#
+# Probleem: Powermat PLN, kurss kõigub päevas. JAEHIND EI TOHI kõikuda kursi tõttu.
+# Lahendus: KAKS kurssi, KAKS otstarvet (KINNITATUD Tarmo 2026-07-22):
+#   - pricing_cost (hinnastamine, marginaali-monitooring) → KUU KESKMINE → stabiilne
+#   - actual_cost (oma-lao partii, P&L)                    → OSTUHETKE kurss → fikseeritud acquisition_cost'i
+#
+# EUR-tarnija (VEVOR): fx-samm vahele (currency==EUR → kurss 1.0).
+#
+# Loeb: scripts/lib/cost-engine.mjs (loadFx, convertToEur)
+
+version: 1
+
+source: ecb                   # Euroopa Keskpank päevakurss (tasuta, ametlik)
+update: daily
+base: EUR
+
+# Kurss = mitu ühikut valuutat 1 EUR kohta (nt 1 EUR = 4.32 PLN)
+rates:
+  PLN: 4.32                   # cache; ECB päevakurss uuendab
+
+# Kuu keskmine (hinnastamiseks — stabiilne, cost_net ei võbele päevas)
+monthly_average:
+  PLN: 4.30                   # eelmise kuu keskmine; uuendub kuu vahetusel
+
+fixing_rule_pricing: monthly_average   # pricing_cost → kuu keskmine
+fixing_rule_actual: purchase_moment    # actual_cost → ostuhetke rates[] kurss

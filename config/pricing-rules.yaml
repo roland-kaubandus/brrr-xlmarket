@@ -1,0 +1,65 @@
+# config/pricing-rules.yaml — HINNASTAMISE REEGLI-MOOTORI SSoT
+#
+# Markup rakendub KULULE (cost_net), MITTE MAP-ile. Vt kinnitatud valem:
+#   MAP ÷source_vat ×(1−discount) = cost_net → ×MARKUP = retail_net → ×sell_vat = kliendi hind
+#
+# PRAEGU: 1 aktiivne reegel (default_markup 1.15) = IDENTNE tänase käitumisega.
+# Astmeline hinnastamine on VALMIS ehitatud, aga enabled:false — Tarmo lülitab konfis.
+#
+# Loeb: scripts/lib/pricing-engine.mjs (loadPricingRules)
+
+version: 1
+
+# Kliendi (müügi-)riigi KM — lisandub retail_net-ile lõpuks (tax-inclusive hind)
+sell_vat_rate: 0.24            # Eesti KM 24%
+
+# Vaikimisi markup kui ükski enabled reegel ei sobi = TÄNANE käitumine
+default_markup: 1.15
+
+# Mille peal astmed hinnatakse (mitte-tsirkulaarne — KINNITATUD Tarmo 2026-07-22)
+band_variable: cost_net       # cost_net | map | weight
+
+# Ümardus (senti). VEVOR praegu: ümardus puudub (Math.round sentideni). psych = .99-lõpp.
+rounding:
+  mode: none                  # none | psychological | up_to_x9
+  # psychological: 296.32 → 296.99 ; up_to_x9: → 299.00 (valikuline, väljas)
+
+# ── REEGLID (kõrgeim sobiv priority võidab; võrdsel → kitsam band) ──
+# Tingimused (KÕIK toetatud kohe, ka kui enabled:false):
+#   cost_min / cost_max  — hinna-aste (band_variable peal)
+#   weight_min / weight_max — kaalu-põhine
+#   category — L1/L2/L3 handle
+#   supplier — suppliers.yaml võti
+#   stock_source — dropship | own | both
+rules:
+  # ── Astmeline hinnastamine (VALMIS, VÄLJAS) ──────────────────────────
+  - id: tier-cheap
+    when: { cost_min: 0, cost_max: 50 }
+    markup: 1.35
+    priority: 100
+    enabled: false
+  - id: tier-mid
+    when: { cost_min: 50, cost_max: 200 }
+    markup: 1.25
+    priority: 100
+    enabled: false
+  - id: tier-high
+    when: { cost_min: 200 }
+    markup: 1.15
+    priority: 100
+    enabled: false
+
+  # ── Näited (VÄLJAS) — tarnija-põhine / kaalu-surcharge ───────────────
+  # - id: powermat-markup
+  #   when: { supplier: powermat }
+  #   markup: 1.30
+  #   priority: 200
+  #   enabled: false
+  # - id: heavy-surcharge      # stäkib markupiga (surcharge, mitte asendus)
+  #   when: { weight_min: 30 }
+  #   surcharge_pct: 0.05
+  #   priority: 50
+  #   enabled: false
+
+# ── Tarnekulu (jälgitav; esialgu hinda EI mõjuta) ──────────────────────
+shipping_cost_mode: absorbed  # absorbed | passed_to_customer
