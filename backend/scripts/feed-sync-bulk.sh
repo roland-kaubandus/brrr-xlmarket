@@ -1,4 +1,10 @@
 #!/bin/bash
+# ⚠️ AEGUNUD — kasutab flat MAP×1.15, mis on asendatud pricing-engine'iga
+# (kulu+astmed, reprice-existing.mjs 34f07615). Cronina jooksutamine
+# kirjutab hinnad üle = vaikne revert. Ära cron'i enne kui
+# feed-bulk-price.mjs on viidud pricing-engine'ile.
+# Cache/reindeks/laoseis käib refresh-feed-cache.sh'ist (stock-only, hinna-vaba).
+#
 # feed-sync-bulk.sh — KIIRE feed-sync Coolify medusa-konteinerile (Scheduled Task).
 #
 # Erinevus vanast feed-sync.sh-st: EI uuenda tooteid Medusa Admin API kaudu
@@ -16,6 +22,17 @@
 # Env (medusa-konteineris olemas): DATABASE_URL, MEILISEARCH_HOST, MEILISEARCH_KEY
 
 set -uo pipefail
+
+# 🛑 AEGUNUD-KAITSE: keeldu jooksmast ilma teadliku liputa. feed-bulk-price.mjs (flat MAP×1.15)
+# revertiks pricing-engine-hinnad. Töötav-välimusega skript, mis kirjutab üle uuemat loogikat,
+# on täpselt vaiksete revertide muster → nõua eksplitsiitset kinnitust.
+if [ "${1:-}" != "--i-know-this-is-outdated" ]; then
+  echo "🛑 feed-sync-bulk.sh on AEGUNUD (flat MAP×1.15 revertiks pricing-engine-hinnad)." >&2
+  echo "   Laoseis/cache/reindeks → sh /app/scripts/refresh-feed-cache.sh (stock-only, hinna-vaba)." >&2
+  echo "   Kui tõesti soovid seda vana skripti jooksutada: lisa lipp --i-know-this-is-outdated." >&2
+  exit 2
+fi
+
 cd /app
 
 FEED_URL="${FEED_URL:-https://ads-feed.s3.us-west-2.amazonaws.com/ads/business/571/vevor-571.xlsx}"
