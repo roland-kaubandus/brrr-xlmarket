@@ -96,3 +96,28 @@ Command:  sh /app/scripts/refresh-feed-cache.sh
 Cron:     0 */4 * * *
 ```
 Eeltingimus: redeploy ≥ commit (Dockerfile-fix) värskest build'ist. `/data` juba chown'itud medusa:nogroup.
+
+## "Success 58s, null tegevust" — fail-loud kõvendus (2026-07-23)
+
+**Sümptom:** Scheduled Task raporteeris "Success 58s", AGA /data puutumata (xlsx mtime 08:12,
+cache 12:00, task 09:43) ja **Meili viimane reindeks = 12:00:54 UTC** (task#10010–10015) — 09:43
+EI reindekseerinud. "Roheline tuli, null tegevust" (sama muster mis feed-sync 3 kuud + guard "töötas").
+
+**Diagnoos (tõestatud):** task ei kirjutanud /data-t ega reindekseerinud jagatud Meili't. Kestus
+**58s ≈ täis-ahela aeg** (verifitseeritud: päris-jooks download+build+stamp+reindeks = ~64s) → task
+**jooksis tõenäoliselt täies mahus, aga ephemeral/vale konteineris**, mille /data kadus; exit maskiti
+0-ks. Lõplik Coolify-põhjus (one-off vs exec, volume-mount) vajab dashboard'i task-configi.
+
+**Parandus — `refresh-feed-cache.sh` FAIL-LOUD (iga samm tõestab tulemuse):**
+- `[prep]` /data kirjutatavus (vale-volume nähtavaks — testitud: exit 1).
+- `[1/4]` wget rc + suurus ≥1 MB + zip-magic "PK" + edukas mv (testitud vigane URL → exit 1).
+- `[2/4]` cache tekkis + **mtime ≥ RUN_START** + ≥10k SKU + **ei kukkunud >20% vs eelmine** (osalise
+  feedi mass-vale-OOS kaitse).
+- `[3/4]` stamp rc.
+- `[4/4]` reindeks rc + Meili doc-count ≥15k + **viimane reindeks-task finishedAt ≥ RUN_START**
+  (jagatud Meili = ainus, mida ephemeral-konteiner EI võltsi → "green-no-op" võimatu).
+- Lõpp: cache mtime ≥ RUN_START. Iga lünk → `exit != 0` → Coolify "Failed".
+
+**Jääk-tegevus Tarmole:** (1) redeploy taxonomy-v4 värskest build'ist (skriptid image'i). (2) Kontrolli,
+et Scheduled Task jookseb medusa SERVICE-konteineris (õige /data named-volume), MITTE ephemeral one-off'is
+ilma mount'ita. Uue skripti Meili-värav kaitseb kasutaja-mõju sõltumata, aga õige mount = cache püsib.
