@@ -87,11 +87,17 @@ fi
 echo "  OK $NEW_SKU SKU-d (eelmine $PREV_SKU), mtime=$CACHE_MTIME"
 
 # ---- 3. STAMP feed_status + last_seen_in_feed (EI delist'i) ------------------------------------
-echo "[3/4] stamp feed_status + last_seen_in_feed"
+echo "[3/5] stamp feed_status + last_seen_in_feed"
 FEED_CACHE_PATH="$CACHE" node "$SCRIPTS/feed-status-stamp.mjs" || fail "stamp" "feed-status-stamp.mjs rc!=0"
 
-# ---- 4. REINDEKS — exit + Meili doc-count + viimane reindeks-task PÄRAST RUN_START'i ------------
-echo "[4/4] reindeks Meili (churned→OOS + archived vahele)"
+# ---- 4. SYNC MEDUSA INVENTORY — churned/OOS → stocked_quantity=0 (serveripoole ostu-blokk) ------
+# Sama isOosFromFeed otsus mis Meili-indeks (lib/feed-stock.mjs) → tooteleht/ostukorv/checkout
+# näevad SAMA tõde mis kategooria-kaart. Ilma selleta: Medusa dummy inventory=100 → churned ostetav.
+echo "[4/5] sync Medusa inventory (churned/OOS → 0, tagasitulek → restore)"
+FEED_CACHE_PATH="$CACHE" node "$SCRIPTS/sync-medusa-inventory.mjs" || fail "inventory" "sync-medusa-inventory.mjs rc!=0"
+
+# ---- 5. REINDEKS — exit + Meili doc-count + viimane reindeks-task PÄRAST RUN_START'i ------------
+echo "[5/5] reindeks Meili (churned→OOS + archived vahele)"
 FEED_CACHE_PATH="$CACHE" node "$SCRIPTS/index-meilisearch.mjs" || fail "reindeks" "index-meilisearch.mjs rc!=0"
 
 # Lõpp-värav: KÜSI jagatud Meili't — see on ainus allikas, mida ephemeral-konteiner ei võltsi.

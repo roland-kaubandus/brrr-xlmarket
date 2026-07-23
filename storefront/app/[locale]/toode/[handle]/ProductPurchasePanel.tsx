@@ -13,6 +13,9 @@ type Props = {
   title: string
   variants: ProductVariant[]
   options?: ProductOption[]
+  // Feed-juhitud saadavus Meili `in_stock`-ist (sama tõde mis kategooria-kaart). false =
+  // churned/OOS → EI näita ostunuppu. undefined = fallback Medusa inventory-loogikale (hasInventory).
+  feedInStock?: boolean
 }
 
 function normalizeValue(value: unknown): string {
@@ -43,7 +46,7 @@ function hasInventory(variant: ProductVariant): boolean {
   return true
 }
 
-export default function ProductPurchasePanel({ locale, title, variants, options = [] }: Props) {
+export default function ProductPurchasePanel({ locale, title, variants, options = [], feedInStock }: Props) {
   const usableOptions = useMemo(
     () => options.filter((option) => optionValues(option).length > 1 || normalizeValue(option.title) !== "default"),
     [options]
@@ -72,7 +75,10 @@ export default function ProductPurchasePanel({ locale, title, variants, options 
   }, [selection, usableOptions, variants])
 
   const price = selectedVariant?.calculated_price
-  const inStock = selectedVariant ? hasInventory(selectedVariant) : false
+  // Saadavus = feed-tõde (Meili `in_stock`, sama mis kaart) JA Medusa inventory (hasInventory).
+  // feedInStock===false (churned/OOS) → alati "pole saadaval" + ostunupp peidus, sõltumata
+  // Medusa dummy inventory'st. undefined → langeb hasInventory peale (tagurpidi-ühilduv).
+  const inStock = selectedVariant ? (feedInStock !== false && hasInventory(selectedVariant)) : false
   const { isAdmin } = useAdmin()
   const adminQty = isAdmin && selectedVariant && typeof selectedVariant.inventory_quantity === "number"
     ? selectedVariant.inventory_quantity
