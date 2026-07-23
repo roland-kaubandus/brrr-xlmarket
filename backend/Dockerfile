@@ -36,7 +36,14 @@ RUN apk add --no-cache dumb-init wget && \
 # Copy the entire built .medusa/server/ as the runtime root
 COPY --from=builder --chown=medusa:medusa /app/.medusa/server/ ./
 COPY --from=builder --chown=medusa:medusa /app/scripts/index-meilisearch.mjs ./scripts/index-meilisearch.mjs
-# Feed-sync-bulk skriptid (Coolify Scheduled Task → bash scripts/feed-sync-bulk.sh)
+# AKTIIVNE Scheduled Task (churned→OOS + cache-värskus): sh scripts/refresh-feed-cache.sh
+#   Stock-only (download → build-cache /data → reindeks), wget-põhine (konteineris pole curl-i),
+#   EI puutu hindu. Vt reports/churned-oos-juur-2026-07-23.md.
+COPY --from=builder --chown=medusa:medusa /app/scripts/refresh-feed-cache.sh ./scripts/refresh-feed-cache.sh
+# Feed-sync-bulk skriptid (build-cache + reindeks + synonyms). ⚠️ feed-sync-bulk.sh ISE EI ole
+#   praegu cron-ohutu: selle [2/5] feed-bulk-price.mjs = flat MAP×1.15, mis KONFLIKTIB uue
+#   pricing-engine'iga (computeRetail kulu+kaal) → revertiks hinnad iga 4h. Ära wire'i cronina
+#   enne kui feed-bulk-price viiakse pricing-engine'ile. Cache/reindeks käib refresh-feed-cache.sh'ist.
 COPY --from=builder --chown=medusa:medusa /app/scripts/build-vevor-feed-cache.mjs ./scripts/build-vevor-feed-cache.mjs
 COPY --from=builder --chown=medusa:medusa /app/scripts/feed-bulk-price.mjs ./scripts/feed-bulk-price.mjs
 COPY --from=builder --chown=medusa:medusa /app/scripts/sync-synonyms.mjs ./scripts/sync-synonyms.mjs

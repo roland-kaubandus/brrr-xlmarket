@@ -65,3 +65,34 @@ Cron:     0 */4 * * *
 - Git commit = püsiv allikas; järgmine Coolify redeploy toob need image'ist.
 - **SKOOP:** refresh hoiab cache värske + laoseisu õige. Toote-IMPORT (uued tooted feedist)
   EI ole siin — see on eraldi auto-klassifikaator B-etapp.
+
+## Scheduled Task file-not-found (2026-07-23, järelkontroll)
+
+**Sümptom:** `sh: can't open '/app/scripts/refresh-feed-cache.sh': No such file or directory`.
+
+**Juurpõhjus:** `backend/Dockerfile` runner-etapp EI kopeeri `scripts/` kausta tervikuna — teeb
+**valikulise per-fail COPY** (read 38–48). `refresh-feed-cache.sh` polnud loends → ei jõudnud image'i.
+**Parandus:** lisatud Dockerfile COPY-ritta (aktiivne task, wget-põhine → curl pole vajalik).
+
+**⚠️ feed-sync-bulk.sh EI ole cron-ohutu (uus leid — vastab "kas veel midagi revertiks"):**
+- Selle `[2/5] feed-bulk-price.mjs --execute` = **flat MAP×1.15**, aga eile ühtlustati kogu
+  kataloog **pricing-engine'ile** (`computeRetail`, kulu+kaal-astmed; `reprice-existing.mjs`, 34f07615).
+- Kontroll-arvutus (MAP → sent): flat vs computeRetail erineb **+396…+1009 c** (kerged) ja **−990 c**
+  (rasked). → feed-sync-bulk.sh cronina **kirjutaks hinnad iga 4h üle = eilse ühtlustuse revert**.
+- Lisaks: `[1/5]` kasutab **curl-i** (konteineris pole → sureb 1. sammul); `set -uo pipefail` +
+  seadmata `CF_API_TOKEN` → aborts 7. sammul.
+- **Otsus:** feed-sync-bulk.sh JÄÄB repos (tulevik, kui pricing-engine greenlit), aga **EI wire'ita
+  cronina praegu**. Cache/reindeks/laoseis käib **refresh-feed-cache.sh**'ist (stock-only, hinna-vaba).
+
+**⚠️ Image ei sisaldanud commit 3ee1d4c9:** 09:00 redeploy build'is vanast koodist (Coolify cache) —
+`grep preflightFeedCache` + `process.env.FEED_CACHE_PATH` image-failides = 0, kuigi `origin/main`=3ee1d4c9.
+**Järgmine redeploy peab build'ima värskest commit'ist** (vajadusel force rebuild / no-cache),
+muidu ka Dockerfile COPY-lisa ei ilmu.
+
+### Coolify Scheduled Task (parandatud — Tarmo registreerib)
+```
+Service:  medusa
+Command:  sh /app/scripts/refresh-feed-cache.sh
+Cron:     0 */4 * * *
+```
+Eeltingimus: redeploy ≥ commit (Dockerfile-fix) värskest build'ist. `/data` juba chown'itud medusa:nogroup.
