@@ -312,8 +312,29 @@ async function waitDone() {
   console.log(" valmis!")
 }
 
+// SAFETY-VÄRAV (2026-07-23): reindeks ilma feed-cache'ita OOS'is churned-loogika kaudu MITTE ühtki
+// (isOosFromFeed tagastab tühja cache'i puhul false) → KÕIK tooted in_stock=true → vaikne revert.
+// 2026-07-22 juhtum: konteineri /data-volume tühi → 3 reindeksit → OOS 6420 → 0. Parem katkestada
+// VALJULT kui vaikselt kõik laos-tada. Override: ALLOW_EMPTY_FEED_CACHE=1 (esmakäivitus / teadlik test).
+function preflightFeedCache() {
+  if (process.env.ALLOW_EMPTY_FEED_CACHE === "1") {
+    console.warn("⚠️  ALLOW_EMPTY_FEED_CACHE=1 — luban tühja feed-cache'i (kõik jäävad laos). Ainult esmakäivitus/test.")
+    return
+  }
+  const { bySku } = loadFeedCache()
+  const n = bySku ? Object.keys(bySku).length : 0
+  if (n === 0) {
+    console.error("❌ ABORT: feed-cache tühi/puudub (" + String(FEED_CACHE_PATH) + ").")
+    console.error("   Reindeks ilma cache'ita määraks KÕIK tooted in_stock=true (churned→OOS revert).")
+    console.error("   Paranda: värskenda cache (scripts/refresh-feed-cache.sh) VÕI sea ALLOW_EMPTY_FEED_CACHE=1 kui tõesti soovid.")
+    process.exit(2)
+  }
+  console.log("✓ feed-cache OK (" + n + " SKU) — churned→OOS aktiivne.")
+}
+
 async function main() {
   const t0 = Date.now()
+  preflightFeedCache()
   const client = new pg.Client({ connectionString: DB_URL })
   await client.connect()
   try {
