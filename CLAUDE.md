@@ -19,6 +19,27 @@
 
 ---
 
+## 🛑 HARD RULE #4 — IGA COMMIT LÄHEB MÕLEMALE HARULE (main + taxonomy-v4)
+
+**Iga commit läheb MÕLEMALE harule (`main` + `taxonomy-v4`), kuni harud on eraldi.**
+Staging deploy'b **taxonomy-v4-st** — ainult main-i pushimine tähendab, et fix ei jõua
+staging'usse ja redeploy ehitab **vana koodi** (23.07: viis redeploy'd, tund segadust).
+
+**Kuidas:** push mõlemale (`git push origin main` + cherry-pick/push taxonomy-v4-le).
+Kui harud on lahknenud (main palju ees) → **cherry-pick** ainult uued commitid v4-le
+(mitte täis-merge, mis tooks sadu commit'e).
+
+**KONTROLL (raporti/deploy-teate lõpus näita MÕLEMA haru SHA, mitte ühte):**
+```bash
+git fetch -q origin
+echo "origin/main:        $(git rev-parse --short origin/main)"
+echo "origin/taxonomy-v4: $(git rev-parse --short origin/taxonomy-v4)  (Coolify buildib seda)"
+```
+Kui SHA-d lahknevad ootamatult → fix ei ole staging'us. **Ära raporteeri "deployed" enne
+kui taxonomy-v4 SHA sisaldab fix'i.**
+
+---
+
 ## Sessioon 2026-05-02 muudatused (hommikune pool)
 
 **Sessioonilogi:** `xlmarket/memory/sessions/2026-05-02-xl.md`
@@ -222,6 +243,7 @@ pm2 reload xlmarket-storefront
 - `storefront/lib/category-tree.ts` — SSoT helpers (getBreadcrumbTrail, firstKnownHandle, getL1Ancestor)
 - `backend/src/data/taxonomy.yaml` — SSoT (F2.1)
 - `backend/src/data/taxonomy-image-aliases.yaml` — Image alias map (F5b, 176/176 kate)
+- `scripts/genyM.mjs` — nav-puu SSoT generaator (DB → `taxonomy-music.yaml`); auto-värskendab dumbid DB-st; data-snapshot `scripts/data/2026-06-15-final-tree.json`. **Kanooniline git-koopia** (eumotors-tasks/ai-classification-trial/genyM.mjs = symlink siia)
 - `scripts/gen-category-tree.mjs` — YAML → JSON snapshot (`--check`, `--report`)
 - `scripts/check-taxonomy-invariants.mjs` — 23 invariants, `--json` CI mode
 - `docs/runbooks/taxonomy-invariant-failures.md` — per-INV remediation steps
@@ -237,6 +259,148 @@ pm2 reload xlmarket-storefront
 - Tarmole peab admin olema lihtne ja eestikeelne
 - Tootehinnad ALATI * 1.15
 
+
+---
+
+## 🧭 KATEGOORIA-PAIGUTUSE MEETOD (kehtib IGA toote-liigutuse + IGA feed-impordi juures)
+
+> Lisatud 2026-07-07 (Tarmo strateegiline). **Probleem:** iga tootja/masintõlge nimetab sama toodet erinevalt → nimepõhine paigutus tekitab topelt-kodusid, valed kokku, segadus kasvab feed-kasvul lõpmatuseni. **Reegel: paiguta KOGU info + TEGELIKU tüübi järgi, MITTE nime/tõlke järgi.** Detailid + wagon-testjuhtum: `reports/wagon-meetod.md`.
+
+> **🔒 META-REEGEL — ÜKSKI REEGEL ILMA KONTROLLITA (Code'i ettepanek, 2026-07-09):** iga uus reegel lisatakse **KOOS jõustusmehhanismiga** — (a) **invariant** (andme-kontroll `scripts/inv-taxonomy.mjs`), (b) **protsessi-värav** (`scripts/lock-harness.mjs`), või (c) **WARN-detektor**. Kui reeglit EI SAA masinaga kontrollida, märgitakse ta selgelt **⚠️ OTSUS — vajab inimest** (ei jõustu ise; feed-impordil ei kaitse). **Proosa-reegel ilma kontrollita EI TOIMI** — *tõestatud: signaali-hierarhia kirjutati ja rikuti samas lukus (750lbs "for Kids" kiik jäi Sporti); invariant (INV-SEG-01) püüdis.* Reeglite kontroll-katvus: `reports/reegel-kontroll-maatriks.md`.
+
+### ⭐ UNIVERSAALNE PAIGUTUS-REEGEL (segment vs tüüp — kehtib IGA toote + IGA feedi juures)
+
+> **Kõige tähtsam üld-reegel — ühendab domeeni-reegli + eksklusiivsuse-testi + hübriid-reegli üheks.** (Lisatud 2026-07-08, Tarmo strateegiline.)
+
+- **PRIMAARNE KODU = TÜÜP + funktsionaalne DOMEEN** (kus toode kuulub, kus ostja otsib), **MITTE ostja-segment** (kodu/kommerts/HoReCa/lapsed/sugu).
+- **OSTJA-SEGMENT = ristlõikav VAADE** (silt/virtuaal-osakond, Phase-2), pandud tüüp-kodu **PEALE** — mitte primaarne paigutus.
+- **ERAND — EKSKLUSIIVSUS:** kui toode on **AINULT ühe segmendi oma** (ainult kodu / ainult kommerts / ainult laps — teine segment EI kasuta), siis **segment ONGI ta tüüp** → elab selle segmendi kodus primaarselt.
+- **NÄITED:** murutraktor (hotell+kodu) → AED (tüüp, mitte "kellele"); köögikombain (kodu+kommerts) → köögitehnika (tüüp); sisseehitatud nõudepesumasin (ainult kodu) → kodu (eksklusiivne); tööstus-ahi (ainult kommerts) → suurköök (eksklusiivne); 3+ batuut (ainult laps) → lastele (eksklusiivne).
+- **EESMÄRK:** väldib iga kaheti-toote juures lõputut põrgatamist; feed-mahu kasvades (Powermat/BlackTools/KraftDele) deterministlik paigutus. Ühendab senised reeglid: **domeeni-reegel + eksklusiivsus-test + hübriid-reegel = üks üldreegel.**
+
+> **🚪 EKSKLUSIIVSUS-VÄRAV (kehtib IGA toote-liigutuse juures — ka misfile-koristusel + feed-impordil):** ENNE kui paigutad toote TÜÜBI-koju, kontrolli EKSKLUSIIVSUS — kas toode on **AINULT ühe segmendi oma** (ainult laps / ainult kodu / ainult kommerts)? Kui JAH → **segmendi kodu, MITTE tüüp-kodu.**
+> - **SIGNAALID (loe title+kirjeldus):** vanus ("for Kids Ages 3", "Toddler", "3+ Years", "Ages 6-8") · suurus/kandevõime (91cm mini-batuut, 25kg limiit, laste-mõõt) · disain (laste-teema, mängu-otstarve).
+> - **LÕKS:** tüübi-põhine marsruutimine ("scooter → Sport scooterid") VIIB EKSITUSSE, kui toode on **toddler-scooter (eksklusiivselt laps → Lastele)**. Sama: laste-kiik ≠ üld-aiakiik; laste-batuut 91cm ≠ üld-batuut.
+> - **Tõestatud:** Lastele-lukus B-koristus marsruutis TÜÜBI järgi → toddler-scooter (Ages 3) jäi ekslikult Sporti. **FEED-KRIITILINE:** feed toob laste-versioone, mis tüübi järgi satuvad täiskasvanu-kodudesse — värav peab iga liigutuse juures eksklusiivsust uuesti kontrollima.
+
+> **🌍 SEGMENT-KODU LOOMISEL → SKÄNNI KOGU KATALOOG (mitte ainult allikas-main):** kui lood segment-kodu (Lastele / Kodu-köök / Kommerts vms), skänni ENNE lukku **KÕIK mainid** selle segmendi EKSKLUSIIVSETE toodete järele. Allikas-maini vaatamine EI PIISA — eksklusiivsed tooted peituvad mujal. *Tõestatud: Lastele-lukk vaatas #12 Sporti; 13× laste batuut-loss "Ages 3-8" peitus #20 Peoinventaris, jäi nägemata; leiti alles kogu-kataloogi eksklusiivsuse-skänniga.* See on **SAMM 0 laiendus:** segment-kodu = kogu-kataloogi skänn, mitte teema-skänn. **FEED:** sama uue tüübi-kodu loomisel.
+
+> **⚖️ EKSKLUSIIVSUSE SIGNAALI-HIERARHIA (mis tõestab, mis eksitab):**
+> - **TUGEV (otsustab):** vanus title/kirjelduses ("Ages 3-8", "Toddler", "3+ Years") · **DISAIN/otstarve** (kiigekomplekt liumäega = laste mänguväljak; bucket-iste turvarihmadega) · turundus ("for Kids", "for Children").
+> - **NÕRK/EKSITAV: KANDEVÕIME** — see on RAAMI tugevus (turvavaru), MITTE kasutaja-vanus. **318kg laste-kiigekomplekt on ikka eksklusiivselt laste.** Kandevõime eristab AINULT üksik-istme puhul (saucer-kiik 750lbs = täiskasvanu istub päriselt = kaheti).
+> - *Tõestatud: Kids Swing Set (199-318kg) = #24 (disain otsustab), saucer-kiik (750lbs) = kaheti (üksik-iste, kandevõime asjakohane).*
+
+> **🥇 REEGLITE PINGERIDA (kui reeglid konfliktivad, KÕRGEM võidab):**
+> 1. **EKSKLUSIIVSUS-VÄRAV** (ainult-üks-segment → segment-kodu) — kõrgeim
+> 2. **TÜÜP + DOMEEN** (universaalne paigutus-reegel)
+> 3. **🚪 DUP-VÄRAV** (kas siht-L3 juba OLEMAS mujal? → liiguta sinna) — **VÕIDAB variant/laiuse üle**
+> 4. **SEOTUD TÜÜBID KOOS**
+> 5. **HÜBRIID-REEGEL** (kaheti-funktsioon → primaar sisust + Phase-2)
+> 6. **VARIANT vs ERI TÜÜP** (sama funktsioon+eri vorm → koos; eri funktsioon → split)
+> 7. **LAIUSE-REEGEL** (eelista laia L3)
+>
+> **🚪 DUP-VÄRAV ENNE VARIANT/LAIUSE-OTSUST:** enne kui otsustad "variant → jäta koos" või "loo uus L3", kontrolli ALATI, kas sihtkoht juba OLEMAS mujal. Kui kodu on olemas → **dup-värav VÕIDAB** (liiguta sinna), ka siis kui variant-reegel ütleks "jäta koos". *Tõestus: griddle'id jäeti "Praepannidesse" variant-reegli järgi, kuigi "Lauagrillid ja grillplaadid" L3 oli olemas → oleks pidanud sinna.*
+>
+> **NÄIDE (Code'i konflikt):** toddler-wagon "for Kids 250kg" → eksklusiivsus (1) võidab otstarbe/hübriidi üle → #24. AGA kui pealkiri "for Kids **AND Adults**" → pole eksklusiivne → reegel 2 (tüüp+domeen) → veovankrid. **Eksklusiivsuse tuvastamiseks:** signaali-hierarhia (vanus/disain/turundus = TUGEV; kandevõime = NÕRK).
+
+**SAMM 0 — KAARDISTA KOGU SEOTUD TEEMA ENNE (kohustuslik):** ära tegele ainult nimekirjas oleva üksik-tüübiga; vaata üle KÕIK seotud/naaber-tüübid samas domeenis (kõik mis on, kus on, miks on), sh naaber-L3-d kus sama-tüüpi võib PEIDUS olla. **Lahenda TERVIK, mitte tükk.** (Nt "rannakärud" → vaata KOGU käru/veovanker/istme-teema; "etiketimasin" → vaata KOGU pakendus-teema.)
+> **IMPERATIIV — Claude Code AVARDAB kitsa käsu ISE:** kui käsk on "tegele X kohas Y", kaardista **KOGU X-teema üle kõigi mainide ise** — käsu kitsus EI ole luba kitsaks tööks. **Ära oota, et kasutaja ütleks "kaardista terve teema".** Kehtib feed-impordil samuti (uus feed-toode → kaardista terve tüübi-pere enne paigutust).
+> **MIKS (Tarmo):** kitsalt tegeledes võib sama-tüüpi olla peidus naaber-L3-s (rannakäru töökoja-kärude hulgas; aiakäru "Aiaistmete" all) → jääks puutumata. **Feed-tulevikus sama:** kui uus feed toob "rannakäru"/"kanuukäru", peab meetod nägema KOGU käru-pilti (kus ranna/üld/töökoja/aia/kanuu kärud on) → siis on selge kas kodu olemas (mappi), sobib olemasolevasse (laiuse-reegel), või vajab uut (ainult kui pole ega sobi). Kitsas vaade → valesti-paigutus + peidus-dupid. Tervik-vaade → õige kodu + feed-kindlus. *(Positiivne näide: `pakendusmasinad-kaart.md` kaardistas terve pakendus-teema → õige. Negatiivne: wagon-lukk vaatas kitsalt → jättis "Aiaistmete" all peidus aiakärud puutumata.)*
+
+**7 sammu (rakenda iga toote/feedi juures, PEALE SAMM 0):**
+1. **Kogu KOGU info** — title_en + kirjeldus + tehniline spets (mõõt/materjal/võimsus/kandevõime) + pilt + otstarve. *Nimi = KÕIGE nõrgem signaal; tehniline + otstarve = tugevaim.*
+   - **PÕHJALIKKUSE-REEGEL — uuri IGA kahtlase toote juures KÕIK 9:** (1) nimetus/title_en (2) pilt (3) kirjeldus (4) tehniline info (5) praegused kategooriad (6) kuuluvus/domeen — kes ostab (7) olemasolevad mainid/L2/L3 — kas siht olemas (8) sarnasus — lähedased koos (9) otstarve/ostja-loogika — mida veel vajab. **Nimi = NÕRGIM signaal.**
+2. **Tuvasta TEGELIK tüüp semantiliselt** (mitte leksikaalselt). Masintõlge/tootja-nimi eksitab — nt "Beach Wagon Cart" spetsist võib olla ÜLD-veovanker (all-terrain folding), mitte ranna-spets. *Sisu otsustab, mitte sõna nimes.*
+3. **Kas see tüüp on JUBA olemas** (võib-olla teise nimega)? → semantiline otsing + loe kandidaat-L3-de sisu → **mappi sinna. [DUP-VÄRAV — hoiab ära topelt-kodu.]**
+4. **Kas sobib olemasolevasse** (laiuse-reegel)? Eelista LAIA L3 (mahutab variante); kitsas nimi ("Rannakärud") laiale sisule ≠ sundi. Liiga kitsas → laienda/rename VÕI eraldi L3.
+   - **🔬 VARIANT vs ERI TÜÜP (otsustab, kas "X ja Y" L3 splitida — FEED-KRIITILINE, sest tüübi-profiil kirjeldab ÜHT tüüpi):**
+     - **VARIANT (jäta KOOS):** funktsioon SAMA, erineb kinnitus/suurus/värv/materjal. Nt lae- vs seinaventilaator (mõlemad liigutavad õhku, eri paigaldus) · väline vs kammer-vaakumpakendaja.
+     - **ERI TÜÜP (SPLIT):** FUNKTSIOON erineb. Nt õhuniisuti (lisab niiskust) ≠ jahuti (langetab temp) · kaminasims ≠ kaminatööriist ≠ kaminarest.
+     - **TEST:** "kas ostja otsib sama asja, ainult teises vormis?" JAH → variant. "Kas need teevad eri asja?" JAH → eri tüüp.
+     - **🎯 VARIANT-TESTI TÄPSUSTUS — VÄLJUND OTSUSTAB:** kui masina/toote **VÄLJUND (tulem)** erineb, on tegu **ERI TÜÜBIGA**, isegi kui üldfunktsioon kõlab sama.
+       - **ERI TÜÜP (väljund erineb):** helbejäämasin ≠ kuubikjäämasin (helbejää katab kala; kuubik jookidesse — ei ole vahetatavad; ostja otsib spetsiifiliselt) · õhuniisuti ≠ jahuti (niiskus vs temp).
+       - **VARIANT (väljund sama, erineb vorm/paigaldus/energiaallikas/materjal):** tornventilaator ≈ põrandaventilaator (mõlemad õhuvool) · lae- ≈ seinaventilaator · päikese- ≈ võrguventilaator · pitsakivi ≈ pitsateras.
+       - **TEST:** "kas toode A saab asendada toote B, sama tulemus?" JAH → variant. EI → eri tüüp. *(Rakendub ka merge-judge + grab-bag-judge promptis.)*
+     - **PÕHJUS:** L3 = üks tüüp = üks profiil, mille vastu feed mapib. "X ja Y" nimi → ähmane profiil → feed mapib valesti. Nime aususe test ("nimi katab mõlemad") EI PIISA feed-determinismiks.
+5. **UUS L3/L2 AINULT kui** pole kuskil (S3) JA ei sobi ühtegi (S4). Uue kategooria lävi KÕRGE; nimeta õige laiusega.
+   - **NIME-REEGEL — UUE L2/L3 NIMI (püsiv, kehtib nii praegu kui FEED-impordil, Tarmo — parima töövoo+lõpptulemuse nimel):** iga uus kategooria saab **LOOMISHETKEL** parima Eesti nime **Eesti müüjate etalonide järgi** (1a.ee kogu-kataloog · ajtooted.ee ladu/büroo/tööriist · storitgroup.com riiulid · hydroshop.ee/flexib.ee hüdraulika · ITAK med · jt CLAUDE.md/mälu etalon-loend). **MITTE masintõlge/inglise/tööversioon.** **PÕHJUS:** feed-impordil (Powermat/BlackTools/KraftDele) loodud kategooriatel EI OLE hilisemat nime-faasi — nimi peab olema õige **sünnihetkel**, muidu jääb vigane nimi püsima. Piiripealne nimi → paku parim + **MÄRGI nime-faasi ülevaatuseks** (masin pakub, etalon kontrollib, Tarmo kinnitab). **ERISTUS:** nime-**FAAS** (lõpus, ühekordne) = paranda OLEMASOLEVATE nimed; nime-**REEGEL** (see, püsiv) = iga UUS kategooria sünnib kohe õige nimega. Mõlemad vaja: faas puhastab vana, reegel hoiab uue puhtana + feed-kindel.
+6. **Domeeni-kontroll + cross-main dup-kontroll.** Domeen = kus OSTJA seda otsib (otstarbe primaar), mitte tootja-kategooria. Reegel: sama tüüp ERI domeenis = ÕIGE; sama tüüp + sama domeen eri kohas = DUP → koonda ÜHTE.
+7. **Seotud tüübid koos + luku lõpp-terviklikkus** (kas jäi 2 kohta? dup/orphan 0?).
+   - **🔁 SPLIT ON REKURSIIVNE — KONTROLLI JÄÄKI:** pärast grab-bag splitti jooksuta judge/sisu-analüüs **JÄÄK-L3 peal uuesti, kuni CLEAN**. Split võib olla OSALINE (üks klaster välja, teised peidus). *Tõestus: "Potid" (49) → splititi bakeware (7), aga jääki (42) jäid peidus survepotid (5, rõhk=eri funktsioon) + aurutuspotid (6, aur=eri funktsioon).* **Lõpp-checklist: kas iga jääk-L3 on nüüd ÜHE tüübiga?**
+   - **🪤 KEYWORD-SPLIT KOMBINATSIOON-LÕKS (feed-kriitiline):** kui SPLIT põhineb keyword-mustril (nt "rope", "post", "distiller"), **KONTROLLI: kas liigutatud tooted sisaldavad MÕLEMAT tüüpi märksõna?** "post + stanchion + ROPE" = post+nöör-KOMPLEKT (üks süsteem) → EI ole puhas nöör → **ÄRA liiguta**. **Keyword-match ≠ tüübi-match** — toode kahe märksõnaga = tõenäoliselt kombinatsioon/süsteem. **ENFORCEMENT: iga keyword-põhise SPLIT'i järel JOOKSUTA merge-judge väljalõigatud L3-l ENNE commit'i** — kõrge merge-verdikt = revert. *Pretsedent: Piirdepostid — 36 "rope"-toodet olid post+nöör-komplektid, merge-judge kõrge → SPLIT REVERTED (a1019dcb).* **FEED-RELEVANTS:** feedid mappivad keyword-mustri järgi → sama lõks kordub igal feed-impordil; reegel kandub feed-mapping'usse.
+   - **LUKU LÕPP-CHECKLIST (kontrolli KÕIK):** 0 orb · 0 dead · 0 dup-L3-nimi · 0 global-handle-dup · 0 cross-main dup (sama tüüp üle mainide) · **distinct-tooteid säilinud (0 tootekadu)** · L1-arv õige · v4-scoped · **teostus TÄIELIK mitte osaline** (ükski L3 ei jäänud 2 kohta) · **jääk-L3 ühe-tüübiga (split rekursiivne)**.
+   - **🔍 JOOKSUTA `node scripts/inv-taxonomy.mjs` IGA luku lõpus** (rules-as-checks — proosa-reegel ei peata vigu, kontroll peatab). **FAIL → paranda ENNE commit'i** (või lisa kinnitatud kaheti-toode `scripts/inv-whitelist.json`-i). WARN → vaata üle. Invariandid: SEG-01/02 (laste-eksklusiivsus) · DUP-01 (cross-main L3-nimi) · STRUCT-01 (orb/dead/dup-handle) · NAME-01 (inglise nimi) · WIDTH-01 (kitsas L3, info) · ORPHAN-01 (kulumaterjal, nime-põhine=müra) · COMPLETE-01 (dubleeriv L3-nimi ühes mainis).
+   - **🔬 GRAB-BAG tuvastus = `scripts/grab-bag-judge.mjs`** (LLM-semantiline, EI ole inv-is — keyword recall 0% tõestatud vale-negatiiv, jagatud dominant-sõna maskeerib). Võti: `set -a; . /opt/eumotors-tasks/.env; set +a` (ANTHROPIC_API_KEY, **väärtust EI logi**). **⚠️ judge = WARN, MITTE FAIL — LLM pole deterministlik, inimene otsustab** (verdikt kindlus: kõrge=usalda, kesk=piiripealne vaata üle). Kolm kihti: inv (struktuur, FAIL) → harness (protsess, FAIL) → **judge (semantika, WARN)**.
+     - **Inkrementaalne (iga lukk):** lock-harness POST kutsub judge automaatselt AINULT puudutatud L3-del (~$0.01, vahele kui võti puudub) → WARN kui uus heterogeensus.
+     - **Täis-skänn (verstapostidel — enne feed-importi, enne cutoverit):** `node scripts/grab-bag-judge.mjs` (834 L3 ≥8 toodet, ~$6, ~8 min). Cache `reports/grab-verdiktid.json` → järgmine jooks raporteerib ainult MUUTUSED. Raport: `reports/grabbag-judge-taisnimekiri.md` (rankitud + main-kaupa). Valideerimine: `reports/detektor-valideerimine.md`.
+     - **Õppetund: nime/märksõna-põhine detektsioon EI TÖÖTA semantika jaoks — vajab LLM-judge'i.**
+   - **🚦 JOOKSUTA `node scripts/lock-harness.mjs`** — protsessi-väravad: `pre <kaart.md> [<migrate.sql>]` (ENNE: kaart+backup+baseline-inv+evidence olemas) · `post <migrate.sql> <baseline_distinct> <baseline_l3>` (PÄRAST: inv 0 FAIL · distinct säilinud · mpath terve · struktuur-muutus→push kontroll · Meili värske). **POST FAIL → EI ole "valmis".**
+   - **SEOTUD TÜÜBID KÕRVUTI (näited):** printer + kulumaterjal/lint koos · seade + varuosa kõrvuti · tootmisliin (täitja+sulgur+etiketeerija) koos · ranna-käru kõrval üld-veovanker. *Ostja leiab seotud tooted ühest kohast.*
+
+**HÜBRIID-REEGEL (Tarmo, samm 6 juurde):** kui toode on PÄRISELT kaheselt funktsionaalne (nt "Garden Cart with Seat 226kg" = iste+käru; "Scooter with Storage Bin" = iste+hoiu) ega ole selget primaar-kodu — **ÄRA põrgata lõputult**. Jäta kus on (kui pole vale), määra primaar sisust (istud → iste), **märgi CROSS-LISTING Phase-2** (kuvatakse hiljem mõlemas vaates — EI liiguta ega dubleeri andmeid nüüd), liigu edasi. *Mõlemad õiged, kumbki pole vale = aktsepteeritav.* Väldib ummikut/lõputut ümber-paigutamist.
+
+**📐 JÄRJEKORRA-REEGEL (suur plokk → kodu ENNE fine-koristust):** kui suur koherentne toote-plokk vajab uut kodu (uus main/L2), **loo see kodu ENNE fine-koristust** mainidest, kust plokk lahkub. Kodu-loomine lahendab vale-paigutused JUURTASANDIL; fine-koristus pärast on väiksem + väldib topelttööd. *Tõestatud: Peoinventar/Ladu/Büroo/Elektroonika (kodutu tüüp-plokk sai maini, siis fine-paigutus).* **FEED:** kui feed toob suure uue tüübi-ploki (nt soojuspumbad) → loo kodu enne, siis fine-paiguta.
+
+**Feed-põhimõtted (Powermat/BlackTools/KraftDele):**
+- **Tüübi-profiil = SSoT:** L3 `description` = "mis TÜÜP siia kuulub" (otstarve+tunnus), mille vastu feed-toode mappida — mitte nime järgi.
+- **Masintõlke-immuunsus:** kinnita tehnilisest spetsist + pildist, mitte tootja-nimest. Bränd A "garden wagon" ja Bränd B "beach cart" = SAMA üld-veovanker → sama L3.
+- **Kohustuslik DUP-värav** enne uue feed-toote lisamist (semantiline "kas juba olemas?").
+- **Perioodiline cross-main dup-skänn** feed-kasvul.
+- **Laiuse-reegel:** eelista laia tüübi-L3; kitsas ainult tõeliselt spetsiifilisele (nt ranna-spets sand-wheels).
+- **Domeeni-esimene paigutus:** otsusta PRIMAAR-domeen otstarbest (kus OSTJA otsib), mitte tootja-kategooriast (nt beach/camping wagon → vaba-aeg, mitte aiatööriist).
+
+### 🔍 SKÄNNID RAKENDAVAD 9-PUNKTI SISU-REEGLIT ISE (mitte nime-põhine)
+
+> **Lisatud 2026-07-08 — nime-põhine skänn jättis RC-tanki Konstruktoritesse (süsteemne, feed-kriitiline).**
+
+Iga skänn/QA (grab-bag · cross-main dup · intra-L3 · feed-mapping) **LOEB toote kirjeldust/sisu**, MITTE ei usalda nime. Nime-põhine skänn jätab **NIME-LÕKSUD** püüdmata (nt "STEM Building Toys 554 PCS" nimi = konstruktor, aga kirjeldus = "remote control tank" = RC-sõiduk). *Tõestatud: nime-QA jättis 5 misfitti (2 RC-sõidukit + 3 baby-table), sügav sisu-QA püüdis.* **FEED-KRIITILINE:** tootjad panevad eksitavaid nimesid → skänn PEAB sisu lugema, muidu sadu feed-tooteid valesti.
+
+### 📋 NELI QA-SKÄNNI TÜÜPI (täielik katvus)
+
+1. **GRAB-BAG** (`grab-bag-judge.mjs`) — heterogeenne L3 (mitu tüüpi ühes L3-s → split).
+2. **CROSS-MAIN DUP** (inv DUP-01) — sama tüüp mitmes mainis.
+3. **INTRA-MAIN L3-QA** (`intra-qa-judge.mjs`) — toode vales L3-s OMA mainis.
+4. **🔀 MERGE** (`merge-judge.mjs`) — kaks KÕRVUTI-L3 (sama L2) on TEGELIKULT SAMA TÜÜP (VARIANT) → üle-fragmenteerimine → merge.
+
+**🔀 MERGE-DETEKTOR (4. kontroll, lisatud 2026-07-10):** split-detektor leiab heterogeensuse; merge-detektor leiab **üle-fragmenteerimise** (kõrvuti-L3 = sama tüüp). **Jooksuta pärast IGA split-lukku + nime-faasis.** **VARIANT (sama funktsioon, eri vorm) → merge; eri funktsioon → jäta lahku.** WARN, inimene otsustab. *Kalibratsioon: Kaminatööriistad/Tuhaämbrid, Potid/Küpsetusvormid, Õhuniisutid/Õhujahutid EI merge'itud (eri funktsioon) ✓.* Käsk: `node scripts/merge-judge.mjs --l2 <id,id>` või `--main <L1-id>`.
+
+Kõik 4 rakendavad 9-punkti sisu-reeglit. **Uue maini / feed-impordi järel: jooksuta KÕIK 4.**
+
+### 🚀 IGA v4-LUKU DEPLOY = 4 KOHUSTUSLIKKU SAMMU (järjekorras, ükski ei tohi jääda)
+
+> **Lisatud 2026-07-08 — põhjustas 2026-07-07 #9 nav-stale bugi (push ununes).**
+
+1. **DB-migratsioon** — `docker cp` + `psql -f` (transaktsioonis, ON_ERROR_STOP).
+2. **Meili reindeks** — `index-meilisearch.mjs` (medusa konteineris). Leht loeb tootearvud Meili'st — muidu vanad arvud.
+3. **`git push origin taxonomy-v4`** — Coolify buildib **origin'ist**, mitte lokaalsest. Push puudu → nav vana (build vanast commit'ist).
+4. **Coolify storefront redeploy** — `category-tree.generated.json` on **build-time bundle**; redeploy rebuildib nav-puu (uued L3-d ilmuvad, kustutatud kaovad).
+
+**LÜNK ÜHESKI = vale seis:** DB õige aga Meili/nav vana. **Eile #9:** samm 3 (push) ununes → nav näitas "Lükanduste riistvara" 69 (vana) kuni push+redeploy. **KONTROLLI iga luku lõpus: kas kõik 4 tehtud?**
+
+> **⚠️ GENYM STALE-DUMP GOTCHA (SSoT-regen samm 1 juurde):** `genyM.mjs` EI lugenud DB-d otse, vaid `/tmp/x-l2.txt` + `/tmp/x-l3.txt` dumpe. Kui dumbid vanad → SSoT/nav-puu genereeriti VANA struktuuriga (uued/renamed/kustutatud L3 puuduvad), **kuigi DB on õige**. *Tõestus: torn-merge 1. deploy kasutas stale dumpe → torn jäi navi.* **JÕUSTUS (2026-07-10):** genyM.mjs algusesse lisatud **automaatne dump-värskendus DB-st** (docker exec psql → /tmp/x-l*.txt) — värskus nüüd garanteeritud igal jooksul, käsitsi dump ei ole enam vajalik. Kui genyM ei leia db-k33g konteinerit → WARN + kasutab olemasolevaid dumpe (võivad olla stale).
+
+> **🔧 TÖÖRIISTAD GIT-IS (2026-07-10):** kõik kriitilised skriptid (genyM, inv-taxonomy, lock-harness, grab-bag-judge, merge-judge, intra-qa-judge, gen-category-tree, check-taxonomy-invariants) elavad **xlmarket-github/scripts/ repos**, mitte scratch-kaustas. **Uus tööriist → KOHE git'i** (asendamatu tööriist ilma versioonihalduseta ühel hostil = risk). genyM data-snapshot: `scripts/data/2026-06-15-final-tree.json`. Ajaloolised ühekordsed lock-build skriptid (`ai-classification-trial/*-lock.mjs`, `*-build.mjs`) jäävad scratch'i (migratsioonid v4-staging/*.sql-is juba jäädvustatud). **Saladused (.env, secrets/, backups/*.dump) EI lähe git'i** (.gitignore katab).
+
+**🚀 DEPLOY-NÜANSS (kergem tee):** kui **AINULT toote-lingid liiguvad** (0 L3 lisatud/kustutatud/nimetatud/reparent — **struktuur muutumatu**) → piisab **AINULT Meili reindeksist** (leht loeb arve Meili'st), EI vaja SSoT-regen/push/redeploy. **Täis-4-sammu ainult kui STRUKTUUR muutub** (uus/kustutatud/renamed/reparent L3/L2/L1).
+
+---
+
+## 🤖 AUTO-KLASSIFIKAATOR (feed-cron) — PROPOSE-NOT-CREATE (Tarmo, 2026-07-22)
+
+> Kinnitatud siht: **Opus-klassifikaator jääb tootmises, resolver-v2 asendub** (resolver-v2 ei tunne uusi tüüpe → kalastus/ladu/SDS satuvad review-bucketisse, ja jääb VEVOR-sortimeni kasvades aina kaugemale). Ehitatakse **pärast** 956-backlogi importi (see = eraldi B-etapp).
+
+**🔒 PÕHIREEGEL — cron EI LOO L3-sid ise.** Sama propose-not-create reegel, mis kogu taksonoomia-töös:
+- Cron **auto-paigutab AINULT olemas-L3-desse** (auto ≥0.85).
+- **Uus tüüp / madal kindlus → review-bucket → INIMENE otsustab** L3-loomise.
+- Cron ei kasvata struktuuri ise. Muidu triivib teistpidi — mitte paigutus, vaid kontrollimatu kategooria-plahvatus (täpselt see, mille vältimiseks taksonoomia korrastati).
+- **Jõustus:** INV-STRUCT-01 keelab tühja L3 → cron ei saaks niikuinii tühja L3 luua; + `--defer/propose` režiim ei kirjuta struktuuri.
+
+**👁 REVIEW-BUCKET VAJAB NÄHTAVUST** (Tarmo lisa — muidu täitub vaikselt: tooted imporditud + hinnaga, aga kodutud = otsingus/kategoorias puudu = praktikas müügil olematud):
+1. **Teade** kui bucketisse tuleb (nt nädalane kokkuvõte "12 uut tüüpi ootab").
+2. **Ülevaatus KLASTRITE kaupa, mitte tootekaupa** (nagu kalastuse-haru täna — semantiline klaster, mitte 956 üksik-rida).
+3. **Näita klastri kohta:** mis tüüp · mitu toodet · mis L2 alla sobiks · kas on juba lähedane olemas-L3 (DUP-värav).
+
+**Kaks paigutajat = triivi-oht:** kui resolver-v2 JA Opus mõlemad jäävad live, hakkavad lahknema. Seega resolver-v2 → **fallback ainult** (API maas / Opus madal-kindlus), mitte teine primaar-paigutaja. Detailne B-disain: [[b-disain-opus-klassifikaator-feed]].
 
 ---
 
