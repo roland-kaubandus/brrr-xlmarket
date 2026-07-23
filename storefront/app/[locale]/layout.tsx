@@ -5,6 +5,7 @@ import type { Locale } from "@/lib/i18n"
 import CookieConsent from "@/components/CookieConsent"
 import CartSlideOver from "@/components/CartSlideOver"
 import MetaPixel from "@/components/MetaPixel"
+import UmamiAnalytics from "@/components/UmamiAnalytics"
 import SetHtmlLang from "@/components/SetHtmlLang"
 import MuujaWidget from "@/components/MuujaWidget"
 import VevorHeader from "@/components/VevorHeader"
@@ -74,6 +75,7 @@ export default async function LocaleLayout({ children, params }: Props) {
       <CookieConsent locale={locale} />
       {/* MuujaWidget disabled — not smart enough yet, re-enable when AI search works */}
       <MetaPixel />
+      <UmamiAnalytics />
     </CompareProvider>
   )
 }

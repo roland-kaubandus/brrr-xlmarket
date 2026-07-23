@@ -23,6 +23,7 @@ import { fileURLToPath } from "url";
 import { loadV3Map, resolveV3Slug } from "../backend/src/scripts/resolve-v3-category.mjs";
 import { classifyProductSync, loadRules } from "../backend/src/taxonomy/resolver.mjs";
 import { computeRetail } from "./lib/pricing-engine.mjs";
+import { sanitizeHtml, cleanRichDescription } from "./lib/vevor-content.mjs";
 
 // Rollback switch (spec §10 rollback) — set USE_LEGACY_RESOLVER=1 to fall back
 // to the v1 map-based resolver. Defaults to v2 (resolver-v2 pipeline).
@@ -413,105 +414,15 @@ async function writeAuditRow(pgClient, productId, cls) {
   }
 }
 
-// ── HTML sanitization (pre-computed at import time) ─────────────────
-
-const ALLOWED_TAGS = new Set([
-  "br", "p", "strong", "em", "b", "i", "ul", "ol", "li", "h1", "h2", "h3",
-  "h4", "h5", "h6", "span", "div", "table", "tr", "td", "th", "thead",
-  "tbody", "a", "img",
-])
-const ALLOWED_ATTRS = {
-  a: new Set(["href"]),
-  img: new Set(["src", "alt", "width", "height"]),
-}
-
-function sanitizeHtml(html) {
-  if (!html) return ""
-  return html
-    .replace(/\/\*[\s\S]*?\*\//g, "")
-    .replace(/\.[a-z][\w-]{0,50}[^{}]{0,300}\{[^}]{0,5000}\}/gi, "")
-    .replace(/<style[^>]*>[\s\S]*?<\/style\s*>/gi, "")
-    .replace(/<script[^>]*>[\s\S]*?<\/script\s*>/gi, "")
-    .replace(/<(iframe|object|embed|form|input|textarea|select)[\s\S]*?<\/\1\s*>/gi, "")
-    .replace(/<(script|style|iframe|object|embed|form|input|textarea|select|label)[^>]*\/?>/gi, "")
-    .replace(/<\/?([a-zA-Z][a-zA-Z0-9]*)\b([^>]*)>/gi, (match, tag, attrs) => {
-      const tagLower = tag.toLowerCase()
-      if (!ALLOWED_TAGS.has(tagLower)) return ""
-      const isClosing = match.startsWith("</")
-      if (isClosing) return `</${tagLower}>`
-      const allowedAttrs = ALLOWED_ATTRS[tagLower]
-      if (!allowedAttrs) return `<${tagLower}>`
-      const safeAttrs = []
-      const attrRegex = /([a-zA-Z-]+)\s*=\s*(?:"([^"]*)"|'([^']*)'|(\S+))/g
-      let attrMatch
-      while ((attrMatch = attrRegex.exec(attrs)) !== null) {
-        const attrName = attrMatch[1].toLowerCase()
-        const attrValue = attrMatch[2] ?? attrMatch[3] ?? attrMatch[4] ?? ""
-        if (!allowedAttrs.has(attrName)) continue
-        if ((attrName === "href" || attrName === "src") && /^\s*javascript:/i.test(attrValue)) continue
-        safeAttrs.push(`${attrName}="${attrValue.replace(/"/g, "&quot;")}"`)
-      }
-      if (tagLower === "a") {
-        safeAttrs.push('rel="noopener noreferrer nofollow"', 'target="_blank"')
-      }
-      const attrStr = safeAttrs.length ? " " + safeAttrs.join(" ") : ""
-      return `<${tagLower}${attrStr}>`
-    })
-}
-
-// ── Image & rich description cleanup ────────────────────────────────
-
-function normalizeImageUrl(url) {
-  if (!url) return ""
-  return decodeURIComponent(url.trim()).replace(/^https?:\/\//, "").replace(/[?#].*$/, "").replace(/\/+$/, "").toLowerCase()
-}
+// ── HTML sanitization + rich cleanup — JAGATUD lib (drift-vaba, vt lib/vevor-content.mjs) ─────
+// sanitizeHtml, cleanRichDescription, normalizeImageUrl, ALLOWED_TAGS/ATTRS elavad nüüd
+// scripts/lib/vevor-content.mjs-is, et backfill-content-fields.mjs toodaks IDENTSE tulemuse.
 
 function upgradeToOriginalImg(url) {
   // VEVOR goods_img are thumbnails; original_img are full resolution
   return url.replace(/\/goods_img-/, "/original_img-")
 }
 
-function cleanRichDescription(html, galleryUrls) {
-  if (!html) return null
-
-  // Normalize gallery URLs for comparison
-  const gallerySet = new Set((galleryUrls || []).map(normalizeImageUrl))
-
-  let cleaned = html
-    // Remove mobile section entirely (<!-- h5 --> to end)
-    .replace(/<!--\s*h5\s*-->[\s\S]*$/gi, "")
-    // Remove m-banner divs (mobile duplicates)
-    .replace(/<div[^>]*class="m-banner"[^>]*>[\s\S]*?<\/div>\s*<\/div>/gi, "")
-    // Remove VEVOR boutique banner images
-    .replace(/<img[^>]*src=["'][^"']*vevor-bmp-prm[^"']*["'][^>]*\/?>/gi, "")
-    .replace(/<img[^>]*src=["'][^"']*boutique-banner[^"']*["'][^>]*\/?>/gi, "")
-    // Remove mobile image variants (-m.jpg suffix)
-    .replace(/<img[^>]*src=["'][^"']*-m\.[^"']*["'][^>]*\/?>/gi, "")
-    // Remove VEVOR company boilerplate text
-    .replace(/VEVOR is a leading brand[\s\S]*?global members\./gi, "")
-    .replace(/Along with thousands[\s\S]*?global members\./gi, "")
-    // Remove raw CSS (outside <style> tags)
-    .replace(/\/\*[\s\S]*?\*\//g, "")
-    .replace(/\.[a-z][\w-]{0,50}[^{}]{0,300}\{[^}]{0,5000}\}/gi, "")
-    // Remove style/script/input tags
-    .replace(/<style[^>]*>[\s\S]*?<\/style\s*>/gi, "")
-    .replace(/<script[^>]*>[\s\S]*?<\/script\s*>/gi, "")
-    .replace(/<(input|label|iframe|object|embed|form|textarea|select)[^>]*\/?>/gi, "")
-
-  // Deduplicate images by URL + remove images that are already in gallery
-  const seenUrls = new Set()
-  cleaned = cleaned.replace(/<img[^>]*src=["']([^"'>]+)["'][^>]*\/?>/gi, (match, src) => {
-    const norm = normalizeImageUrl(src)
-    if (seenUrls.has(norm) || gallerySet.has(norm)) return "" // duplicate or in gallery
-    seenUrls.add(norm)
-    return match
-  })
-
-  // Trim empty whitespace
-  cleaned = cleaned.replace(/\n\s*\n\s*\n/g, "\n\n").trim()
-
-  return cleaned.length > 50 ? cleaned : null
-}
 
 // ── SPU Grouping & Variant Extraction (WO-107) ─────────────────────
 
