@@ -302,6 +302,42 @@ async function waitDone() {
   console.log(" valmis!")
 }
 
+// DELETE-BATCH SAMM (2026-07-23): index-meilisearch on upsert-only (addDocuments) — arhiveeritud
+// (feed_status='archived') või DB-st kustutatud/unpublished tooted JÄID indeksisse (fetchProducts
+// juba filtreerib nad upsertist välja, aga vana doc jääb alles). Tulem: iga archive järel prügi
+// indeksis (täna: 3242 käsitsi kustutatud). See samm koristab: kõik Meili doc-id-d, mida upsertitud
+// `keepIds`-komplektis EI OLE, on aegunud → delete-batch. keepIds = fetchProducts'i tulem (published
+// + mitte-kustutatud + mitte-arhiveeritud), seega kate on täielik (archived + deleted + unpublished).
+async function fetchAllMeiliIds() {
+  const ids = []
+  const PAGE = 10000
+  for (let offset = 0; ; offset += PAGE) {
+    const res = await meili("/indexes/" + INDEX + "/documents?fields=id&limit=" + PAGE + "&offset=" + offset)
+    const results = res.results || []
+    for (const d of results) ids.push(d.id)
+    if (results.length < PAGE) break
+  }
+  return ids
+}
+
+async function pruneStale(keepIds) {
+  console.log("🧹 Otsin aegunud dokumente (arhiveeritud/kustutatud/unpublished)...")
+  const keep = keepIds instanceof Set ? keepIds : new Set(keepIds)
+  const allIds = await fetchAllMeiliIds()
+  const stale = allIds.filter(id => !keep.has(id))
+  if (stale.length === 0) {
+    console.log("🧹 Aegunud dokumente ei ole (indeks juba puhas).")
+    return 0
+  }
+  console.log("🧹 Kustutan " + stale.length + " aegunud dokumenti indeksist...")
+  for (let i = 0; i < stale.length; i += BATCH) {
+    await meili("/indexes/" + INDEX + "/documents/delete-batch", "POST", stale.slice(i, i + BATCH))
+  }
+  await waitDone()
+  console.log("🧹 Kustutatud: " + stale.length + " aegunud dokumenti.")
+  return stale.length
+}
+
 // SAFETY-VÄRAV (2026-07-23): reindeks ilma feed-cache'ita OOS'is churned-loogika kaudu MITTE ühtki
 // (isOosFromFeed tagastab tühja cache'i puhul false) → KÕIK tooted in_stock=true → vaikne revert.
 // 2026-07-22 juhtum: konteineri /data-volume tühi → 3 reindeksit → OOS 6420 → 0. Parem katkestada
@@ -334,8 +370,14 @@ async function main() {
     const docs = rows.map(transform)
     await indexDocs(docs)
     await waitDone()
+    // Korista aegunud: upsert lisas/uuendas `docs`, aga ei kustuta vanu. keepIds = elus tooted.
+    const keepIds = new Set(docs.map(d => d.id))
+    await pruneStale(keepIds)
     const stats = await meili("/indexes/" + INDEX + "/stats")
-    console.log("📊 Indeks: " + stats.numberOfDocuments + " dokumenti")
+    console.log("📊 Indeks: " + stats.numberOfDocuments + " dokumenti (oodatud: " + keepIds.size + ")")
+    if (stats.numberOfDocuments !== keepIds.size) {
+      console.warn("⚠️  Doc-count EI ÜHTI oodatuga (" + stats.numberOfDocuments + " ≠ " + keepIds.size + ") — kontrolli indeksit.")
+    }
     console.log("⏱  " + ((Date.now() - t0) / 1000).toFixed(1) + "s")
   } finally { await client.end() }
 }
