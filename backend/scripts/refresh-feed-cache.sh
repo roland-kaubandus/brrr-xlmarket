@@ -36,10 +36,13 @@ fi
 mv "$XLSX.new" "$XLSX"
 echo "  OK ($SIZE baiti)"
 
-echo "[2/3] Ehitan cache → $CACHE"
+echo "[2/4] Ehitan cache → $CACHE"
 FEED_XLSX_PATH="$XLSX" FEED_CACHE_PATH="$CACHE" node "$SCRIPTS/build-vevor-feed-cache.mjs"
 
-echo "[3/3] Reindeks Meili (churned→OOS aktiivne, guard nõuab mitte-tühja cache'i)"
+echo "[3/4] Stamp feed_status + last_seen_in_feed (churn-jälg arhiveerimiseks; EI delist'i)"
+FEED_CACHE_PATH="$CACHE" node "$SCRIPTS/feed-status-stamp.mjs"
+
+echo "[4/4] Reindeks Meili (churned→OOS aktiivne + archived jäetakse vahele; guard nõuab mitte-tühja cache'i)"
 FEED_CACHE_PATH="$CACHE" node "$SCRIPTS/index-meilisearch.mjs"
 
 echo "=== DONE $(date -u +%Y-%m-%dT%H:%M:%SZ) ==="
