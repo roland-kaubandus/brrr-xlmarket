@@ -156,7 +156,10 @@ async function fetchProducts(client) {
     "LEFT JOIN price_set ps ON ps.id = pvps.price_set_id " +
     "LEFT JOIN price pp ON pp.price_set_id = ps.id AND pp.currency_code = 'eur' " +
     "LEFT JOIN product_category_product pcp ON pcp.product_id = p.id " +
+    // Arhiveeritud (feed_status='archived') → EI indekseerita → kaob otsingust/listingust.
+    // Toode jääb Medusa's published → toote-API loeb Medusa'st → LEHT+URL renderdub (SEO). Vt archive-proposals.mjs.
     "WHERE p.status = 'published' AND p.deleted_at IS NULL " +
+    "AND (p.metadata->>'feed_status' IS DISTINCT FROM 'archived') " +
     "GROUP BY p.id, p.title, p.handle, p.description, p.thumbnail, " +
     "p.status, p.created_at, p.metadata, v.sku, pp.amount"
   )

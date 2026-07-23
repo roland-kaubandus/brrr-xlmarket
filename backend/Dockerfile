@@ -40,6 +40,10 @@ COPY --from=builder --chown=medusa:medusa /app/scripts/index-meilisearch.mjs ./s
 #   Stock-only (download → build-cache /data → reindeks), wget-põhine (konteineris pole curl-i),
 #   EI puutu hindu. Vt reports/churned-oos-juur-2026-07-23.md.
 COPY --from=builder --chown=medusa:medusa /app/scripts/refresh-feed-cache.sh ./scripts/refresh-feed-cache.sh
+# Arhiveerimis-loogika: feed-status-stamp (last_seen_in_feed + feed_status, refresh sammu 3/4) +
+#   archive-proposals (>90p kadunud → ettepanek; --execute delist'ib, leht+URL jäävad SEO-le).
+COPY --from=builder --chown=medusa:medusa /app/scripts/feed-status-stamp.mjs ./scripts/feed-status-stamp.mjs
+COPY --from=builder --chown=medusa:medusa /app/scripts/archive-proposals.mjs ./scripts/archive-proposals.mjs
 # Feed-sync-bulk skriptid (build-cache + reindeks + synonyms). ⚠️ feed-sync-bulk.sh ISE EI ole
 #   praegu cron-ohutu: selle [2/5] feed-bulk-price.mjs = flat MAP×1.15, mis KONFLIKTIB uue
 #   pricing-engine'iga (computeRetail kulu+kaal) → revertiks hinnad iga 4h. Ära wire'i cronina
