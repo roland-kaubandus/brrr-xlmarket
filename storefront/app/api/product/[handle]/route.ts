@@ -458,6 +458,11 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
 
     const priceFormatted = price ? formatPrice(price.calculated_amount, price.currency_code) : ""
 
+    // Saadavus SAMAST tõe-allikast mis kategooria-kaart: Meili `in_stock` (feed-juhitud,
+    // isOosFromFeed). Enne luges tooteleht Medusa dummy inventory=100 → alati "Laos" + ostunupp,
+    // ka churned toodetel (split-brain). undefined (Meili-hit puudub) → jäta true (fallback laos).
+    const feedInStock = (meiliHit as { in_stock?: boolean } | null)?.in_stock
+
     return NextResponse.json({
       product: {
         id: product.id,
@@ -467,6 +472,7 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
         variants: product.variants || [],
         options: product.options,
         categories: product.categories,
+        in_stock: feedInStock,
       },
       localizedTitle,
       images,

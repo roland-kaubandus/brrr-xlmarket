@@ -44,6 +44,10 @@ COPY --from=builder --chown=medusa:medusa /app/scripts/refresh-feed-cache.sh ./s
 #   archive-proposals (>90p kadunud → ettepanek; --execute delist'ib, leht+URL jäävad SEO-le).
 COPY --from=builder --chown=medusa:medusa /app/scripts/feed-status-stamp.mjs ./scripts/feed-status-stamp.mjs
 COPY --from=builder --chown=medusa:medusa /app/scripts/archive-proposals.mjs ./scripts/archive-proposals.mjs
+# Saadavuse ÜKS tõde: sync-medusa-inventory (churned/OOS → Medusa stocked=0, ostukorv/checkout
+# blokk) + lib/feed-stock (jagatud isOosFromFeed otsus, mida impordib ka index-meilisearch).
+COPY --from=builder --chown=medusa:medusa /app/scripts/sync-medusa-inventory.mjs ./scripts/sync-medusa-inventory.mjs
+COPY --from=builder --chown=medusa:medusa /app/scripts/lib/feed-stock.mjs ./scripts/lib/feed-stock.mjs
 # Feed-sync-bulk skriptid (build-cache + reindeks + synonyms). ⚠️ feed-sync-bulk.sh ISE EI ole
 #   praegu cron-ohutu: selle [2/5] feed-bulk-price.mjs = flat MAP×1.15, mis KONFLIKTIB uue
 #   pricing-engine'iga (computeRetail kulu+kaal) → revertiks hinnad iga 4h. Ära wire'i cronina
