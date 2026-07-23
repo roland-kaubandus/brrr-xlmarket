@@ -6,8 +6,10 @@ import path from "path"
 import { fileURLToPath } from "url"
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
-const FEED_PATH = path.join(__dirname, "..", "data", "feeds", "vevor-571.xlsx")
-const OUTPUT_PATH = path.join(__dirname, "..", "data", "feeds", "vevor-feed-cache.json")
+// Tee-lahendus (2026-07-23): austa env-i, et konteiner kirjutaks püsivasse /data-volume'i
+// (FEED_CACHE_PATH). Vaikeväärtus = host bare-metal backend/data/feeds/ (tagurpidi-ühilduv).
+const FEED_PATH = process.env.FEED_XLSX_PATH || path.join(__dirname, "..", "data", "feeds", "vevor-571.xlsx")
+const OUTPUT_PATH = process.env.FEED_CACHE_PATH || path.join(__dirname, "..", "data", "feeds", "vevor-feed-cache.json")
 
 function normalizeText(value) {
   if (value === null || value === undefined) return null
