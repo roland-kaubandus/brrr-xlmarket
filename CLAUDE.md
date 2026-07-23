@@ -19,6 +19,27 @@
 
 ---
 
+## 🛑 HARD RULE #4 — IGA COMMIT LÄHEB MÕLEMALE HARULE (main + taxonomy-v4)
+
+**Iga commit läheb MÕLEMALE harule (`main` + `taxonomy-v4`), kuni harud on eraldi.**
+Staging deploy'b **taxonomy-v4-st** — ainult main-i pushimine tähendab, et fix ei jõua
+staging'usse ja redeploy ehitab **vana koodi** (23.07: viis redeploy'd, tund segadust).
+
+**Kuidas:** push mõlemale (`git push origin main` + cherry-pick/push taxonomy-v4-le).
+Kui harud on lahknenud (main palju ees) → **cherry-pick** ainult uued commitid v4-le
+(mitte täis-merge, mis tooks sadu commit'e).
+
+**KONTROLL (raporti/deploy-teate lõpus näita MÕLEMA haru SHA, mitte ühte):**
+```bash
+git fetch -q origin
+echo "origin/main:        $(git rev-parse --short origin/main)"
+echo "origin/taxonomy-v4: $(git rev-parse --short origin/taxonomy-v4)  (Coolify buildib seda)"
+```
+Kui SHA-d lahknevad ootamatult → fix ei ole staging'us. **Ära raporteeri "deployed" enne
+kui taxonomy-v4 SHA sisaldab fix'i.**
+
+---
+
 ## Sessioon 2026-05-02 muudatused (hommikune pool)
 
 **Sessioonilogi:** `xlmarket/memory/sessions/2026-05-02-xl.md`
@@ -361,6 +382,25 @@ Kõik 4 rakendavad 9-punkti sisu-reeglit. **Uue maini / feed-impordi järel: joo
 > **🔧 TÖÖRIISTAD GIT-IS (2026-07-10):** kõik kriitilised skriptid (genyM, inv-taxonomy, lock-harness, grab-bag-judge, merge-judge, intra-qa-judge, gen-category-tree, check-taxonomy-invariants) elavad **xlmarket-github/scripts/ repos**, mitte scratch-kaustas. **Uus tööriist → KOHE git'i** (asendamatu tööriist ilma versioonihalduseta ühel hostil = risk). genyM data-snapshot: `scripts/data/2026-06-15-final-tree.json`. Ajaloolised ühekordsed lock-build skriptid (`ai-classification-trial/*-lock.mjs`, `*-build.mjs`) jäävad scratch'i (migratsioonid v4-staging/*.sql-is juba jäädvustatud). **Saladused (.env, secrets/, backups/*.dump) EI lähe git'i** (.gitignore katab).
 
 **🚀 DEPLOY-NÜANSS (kergem tee):** kui **AINULT toote-lingid liiguvad** (0 L3 lisatud/kustutatud/nimetatud/reparent — **struktuur muutumatu**) → piisab **AINULT Meili reindeksist** (leht loeb arve Meili'st), EI vaja SSoT-regen/push/redeploy. **Täis-4-sammu ainult kui STRUKTUUR muutub** (uus/kustutatud/renamed/reparent L3/L2/L1).
+
+---
+
+## 🤖 AUTO-KLASSIFIKAATOR (feed-cron) — PROPOSE-NOT-CREATE (Tarmo, 2026-07-22)
+
+> Kinnitatud siht: **Opus-klassifikaator jääb tootmises, resolver-v2 asendub** (resolver-v2 ei tunne uusi tüüpe → kalastus/ladu/SDS satuvad review-bucketisse, ja jääb VEVOR-sortimeni kasvades aina kaugemale). Ehitatakse **pärast** 956-backlogi importi (see = eraldi B-etapp).
+
+**🔒 PÕHIREEGEL — cron EI LOO L3-sid ise.** Sama propose-not-create reegel, mis kogu taksonoomia-töös:
+- Cron **auto-paigutab AINULT olemas-L3-desse** (auto ≥0.85).
+- **Uus tüüp / madal kindlus → review-bucket → INIMENE otsustab** L3-loomise.
+- Cron ei kasvata struktuuri ise. Muidu triivib teistpidi — mitte paigutus, vaid kontrollimatu kategooria-plahvatus (täpselt see, mille vältimiseks taksonoomia korrastati).
+- **Jõustus:** INV-STRUCT-01 keelab tühja L3 → cron ei saaks niikuinii tühja L3 luua; + `--defer/propose` režiim ei kirjuta struktuuri.
+
+**👁 REVIEW-BUCKET VAJAB NÄHTAVUST** (Tarmo lisa — muidu täitub vaikselt: tooted imporditud + hinnaga, aga kodutud = otsingus/kategoorias puudu = praktikas müügil olematud):
+1. **Teade** kui bucketisse tuleb (nt nädalane kokkuvõte "12 uut tüüpi ootab").
+2. **Ülevaatus KLASTRITE kaupa, mitte tootekaupa** (nagu kalastuse-haru täna — semantiline klaster, mitte 956 üksik-rida).
+3. **Näita klastri kohta:** mis tüüp · mitu toodet · mis L2 alla sobiks · kas on juba lähedane olemas-L3 (DUP-värav).
+
+**Kaks paigutajat = triivi-oht:** kui resolver-v2 JA Opus mõlemad jäävad live, hakkavad lahknema. Seega resolver-v2 → **fallback ainult** (API maas / Opus madal-kindlus), mitte teine primaar-paigutaja. Detailne B-disain: [[b-disain-opus-klassifikaator-feed]].
 
 ---
 
