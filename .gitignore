@@ -70,3 +70,8 @@ storefront/*.xlsx
 
 # Operatsiooni-väljundid (env vars, secrets, raportid)
 outputs/
+
+# Backup-dumbid (EI lähe git'i — mälu-reegel)
+backups/
+reports/backups/
+*.bak-stale
