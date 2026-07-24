@@ -69,6 +69,12 @@ async function configureIndex() {
 // Build category ID → ancestor handles map (for adding all ancestor handles to products)
 let categoryAncestorMap = {}
 
+// OMNIBUS: product_id → 30-päeva-viitehind sentides (madalaim hind ENNE praeguse
+// hinna jõustumist). Täidab buildOmnibusRefMap; transform loeb closure'ist (sama
+// muster mis categoryAncestorMap). Sisaldab AINULT tooteid, mille hind on viimase
+// 30p jooksul MUUTUNUD — stabiilse hinnaga toode ei ole "alandus" → pole kaardil.
+let omnibusRefMap = new Map()
+
 async function buildCategoryAncestorMap(client) {
   console.log("🗂  Laen kategooriapuud...")
   const { rows } = await client.query(
@@ -210,6 +216,54 @@ function deriveBrandSlug(meta) {
   return null
 }
 
+/**
+ * OMNIBUS 30-päeva viitehind (EL hinnaalanduse-direktiiv / Eesti THS §14^1).
+ *
+ * Reegel: hinnaalanduse teatamisel tuleb näidata "eelmine hind" = MADALAIM hind,
+ * mida rakendati 30 päeva jooksul ENNE alanduse jõustumist. Seega:
+ *   omnibus_ref = min(amount) price_history's, aknas [now-30d .. hetk enne praeguse
+ *                 hinna jõustumist].
+ *
+ * cur_amount   = viimane (praegune aktiivne) price_history amount toote kohta.
+ * prior_until  = viimane hetk, mil hind ERINES praegusest (= praeguse hinna-ajastu
+ *                algusest vahetult enne). NULL kui hind pole 30p jooksul muutunud
+ *                → toode EI ole "alanduses" → jäetakse tulemist välja → transform
+ *                ei emiteeri sale_price/omnibus_ref_price → storefront ei näita
+ *                läbikriipsutust. Nii ei teki fiktiivseid soodustusi.
+ *
+ * NB: seed-only ajalooga (üks rida/toode) prior_until=NULL kõigil → 0 toodet. Kell
+ * hakkab tiksuma alles päevaste reprice-jooksudega (iga tõeline alandus → uus rida).
+ */
+async function buildOmnibusRefMap(client) {
+  console.log("💶 Arvutan Omnibus 30p-viitehinnad (price_history)...")
+  const { rows } = await client.query(
+    `WITH recent AS (
+       SELECT product_id, amount, changed_at,
+              first_value(amount) OVER (
+                PARTITION BY product_id ORDER BY changed_at DESC, id DESC
+              ) AS cur_amount
+         FROM price_history
+        WHERE currency_code = 'eur'
+          AND changed_at >= now() - interval '30 days'
+     ),
+     lastchg AS (
+       SELECT product_id,
+              max(changed_at) FILTER (WHERE amount <> cur_amount) AS prior_until
+         FROM recent
+        GROUP BY product_id
+     )
+     SELECT r.product_id, min(r.amount)::bigint AS ref_cents
+       FROM recent r
+       JOIN lastchg l ON l.product_id = r.product_id
+      WHERE l.prior_until IS NOT NULL
+        AND r.changed_at <= l.prior_until
+      GROUP BY r.product_id`
+  )
+  omnibusRefMap = new Map()
+  for (const r of rows) omnibusRefMap.set(r.product_id, Number(r.ref_cents))
+  console.log("💶 " + omnibusRefMap.size + " toodet aktiivse alandusega (Omnibus-viide)")
+}
+
 function transform(row) {
   const meta = row.metadata || {}
   const categoryHandles = [...(row.category_handles || [])]
@@ -248,7 +302,7 @@ function transform(row) {
   const brandSlug = deriveBrandSlug(meta)
   if (brandSlug) filter_tokens.push(`brand:${brandSlug}`)
 
-  return {
+  const doc = {
     id: row.id,
     title: row.title || '',        // display field (current active title)
     title_en,                       // search: English
@@ -279,6 +333,18 @@ function transform(row) {
     taxonomy: row.taxonomy || { l1_slug: null, l2_slug: null, l3_slug: null, ancestors: [] },
     vertical_slugs: [],
   }
+
+  // OMNIBUS: emiteeri sale_price + omnibus_ref_price AINULT kui toode on tõelises
+  // aktiivses alanduses (30p-viitehind > praegune hind). Storefront (map-meili-hit.ts
+  // omnibusValid, product/[handle]/route.ts omnibusOkD) näitab läbikriipsutust ainult
+  // siis kui sale_price < omnibus_ref_price. Mõlemad väljad korraga või kumbki ei.
+  const refCents = omnibusRefMap.get(row.id)
+  if (refCents != null && row.price_cents && refCents > row.price_cents) {
+    doc.sale_price = Math.round(row.price_cents) / 100
+    doc.omnibus_ref_price = Math.round(refCents) / 100
+  }
+
+  return doc
 }
 
 async function indexDocs(docs) {
@@ -366,6 +432,7 @@ async function main() {
   try {
     await configureIndex()
     await buildCategoryAncestorMap(client)
+    await buildOmnibusRefMap(client)
     const rows = await fetchProducts(client)
     const docs = rows.map(transform)
     await indexDocs(docs)
