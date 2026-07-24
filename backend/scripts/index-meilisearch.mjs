@@ -375,8 +375,14 @@ async function main() {
     await pruneStale(keepIds)
     const stats = await meili("/indexes/" + INDEX + "/stats")
     console.log("📊 Indeks: " + stats.numberOfDocuments + " dokumenti (oodatud: " + keepIds.size + ")")
+    // ISEKOHANDUV verifikatsioon: võrdle Meili doc-count'i ELUSATE toodete arvuga (keepIds =
+    // fetchProducts tulem = DB published/¬deleted/¬archived). Peavad kokku langema. EI kasuta
+    // fikseeritud läve (nt 15000) — see lõheneb iga kord kui kataloog kahaneb (archive) või kasvab.
+    // keepIds.size = ainus tõde "mitu dokki PEAB olema". EXPECTED_DOCS = masinloetav rida
+    // refresh-feed-cache.sh lõpp-värava jaoks (isekohanduv, mitte fikseeritud arv).
+    console.log("EXPECTED_DOCS=" + keepIds.size)
     if (stats.numberOfDocuments !== keepIds.size) {
-      console.warn("⚠️  Doc-count EI ÜHTI oodatuga (" + stats.numberOfDocuments + " ≠ " + keepIds.size + ") — kontrolli indeksit.")
+      console.warn("⚠️  Doc-count EI ÜHTI elusate toodete arvuga (" + stats.numberOfDocuments + " ≠ " + keepIds.size + ") — kontrolli indeksit.")
     }
     console.log("⏱  " + ((Date.now() - t0) / 1000).toFixed(1) + "s")
   } finally { await client.end() }

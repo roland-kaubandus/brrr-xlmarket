@@ -30,8 +30,13 @@ DATADIR="$(dirname "$CACHE")"
 # Alammäärad (kaitse osalise/katkise feedi vastu → väldib mass-vale-OOS'i)
 MIN_XLSX_BYTES=1000000     # xlsx < 1 MB = katkine download
 MIN_CACHE_SKU=10000        # cache < 10k SKU = osaline feed (normaal ~14–15k)
-MIN_MEILI_DOCS=15000       # index < 15k dokki = mittetäielik reindeks (kataloog ~18k)
 MAX_CACHE_DROP_PCT=20      # uus cache ei tohi kukkuda >20% vs eelmine (osalise feedi lõks)
+# Meili doc-count'i EI kontrolli fikseeritud lävega (vana MIN_MEILI_DOCS=15000 lõhenes iga kord kui
+# kataloog kahaneb — nt archive 18062→14820 < 15000 → vale-alarm, kuigi reindeks õnnestus).
+# ISEKOHANDUV: võrdle Meili doc-count'i index-meilisearch'i väljastatud EXPECTED_DOCS'iga (= elusate
+# toodete arv DB-s). Lubatud väike hälve (async reindeks / paralleelne kirjutus jooksu ajal).
+MEILI_DOC_TOL_PCT=1        # lubatud hälve Meili doc-count vs oodatud (%, min MEILI_DOC_TOL_ABS)
+MEILI_DOC_TOL_ABS=50       # lubatud absoluut-hälve (kumb suurem)
 
 MEILI_HOST="${MEILISEARCH_HOST:-http://meili:7700}"
 MEILI_KEY="${MEILISEARCH_KEY:-}"
@@ -96,26 +101,37 @@ FEED_CACHE_PATH="$CACHE" node "$SCRIPTS/feed-status-stamp.mjs" || fail "stamp" "
 echo "[4/5] sync Medusa inventory (churned/OOS → 0, tagasitulek → restore)"
 FEED_CACHE_PATH="$CACHE" node "$SCRIPTS/sync-medusa-inventory.mjs" || fail "inventory" "sync-medusa-inventory.mjs rc!=0"
 
-# ---- 5. REINDEKS — exit + Meili doc-count + viimane reindeks-task PÄRAST RUN_START'i ------------
+# ---- 5. REINDEKS — exit + Meili doc-count vs elusate arv + viimane reindeks-task PÄRAST RUN_START'i
 echo "[5/5] reindeks Meili (churned→OOS + archived vahele)"
-FEED_CACHE_PATH="$CACHE" node "$SCRIPTS/index-meilisearch.mjs" || fail "reindeks" "index-meilisearch.mjs rc!=0"
+# Capture väljund → EXPECTED_DOCS (elusate toodete arv, index-meilisearch arvutab keepIds.size'ist).
+MEILI_OUT=$(FEED_CACHE_PATH="$CACHE" node "$SCRIPTS/index-meilisearch.mjs" 2>&1) \
+  || { printf '%s\n' "$MEILI_OUT"; fail "reindeks" "index-meilisearch.mjs rc!=0"; }
+printf '%s\n' "$MEILI_OUT" | tail -5
+EXPECTED_DOCS=$(printf '%s\n' "$MEILI_OUT" | grep '^EXPECTED_DOCS=' | tail -1 | cut -d= -f2)
+[ -n "$EXPECTED_DOCS" ] || fail "verify" "index-meilisearch ei väljastanud EXPECTED_DOCS — ei saa isekohanduvat väravat rakendada (vana script image'is? redeploy vajalik)"
 
 # Lõpp-värav: KÜSI jagatud Meili't — see on ainus allikas, mida ephemeral-konteiner ei võltsi.
 [ -n "$MEILI_KEY" ] || fail "verify" "MEILISEARCH_KEY puudub — ei saa reindeksit valideerida"
 STATS_JSON=$(wget -qO- --header="Authorization: Bearer $MEILI_KEY" "$MEILI_HOST/indexes/products/stats" 2>/dev/null || echo "")
 TASK_JSON=$(wget -qO- --header="Authorization: Bearer $MEILI_KEY" "$MEILI_HOST/tasks?indexUids=products&types=documentAdditionOrUpdate&statuses=succeeded&limit=1" 2>/dev/null || echo "")
-VERDICT=$(RS="$RUN_START" MD="$MIN_MEILI_DOCS" node -e '
+VERDICT=$(RS="$RUN_START" EXP="$EXPECTED_DOCS" TP="$MEILI_DOC_TOL_PCT" TA="$MEILI_DOC_TOL_ABS" node -e '
   let stats="", tasks=""
   const [s, t] = [process.argv[1], process.argv[2]]
   try { stats = JSON.parse(s) } catch(e){ console.log("FAIL stats-parse"); process.exit(0) }
   try { tasks = JSON.parse(t) } catch(e){ console.log("FAIL tasks-parse"); process.exit(0) }
   const docs = stats.numberOfDocuments || 0
-  if (docs < Number(process.env.MD)) { console.log("FAIL docs="+docs+" < "+process.env.MD); process.exit(0) }
+  const exp = Number(process.env.EXP)
+  if (!exp || exp <= 0) { console.log("FAIL oodatud-arv-puudub (EXPECTED_DOCS="+process.env.EXP+")"); process.exit(0) }
+  // ISEKOHANDUV: Meili doc-count PEAB langema kokku elusate toodete arvuga (exp). Lubatud väike
+  // hälve (async / paralleelne kirjutus). Fikseeritud läve EI ole → ei lõhene kataloogi muutudes.
+  const tol = Math.max(Number(process.env.TA), Math.floor(exp * Number(process.env.TP) / 100))
+  const dev = Math.abs(docs - exp)
+  if (dev > tol) { console.log("FAIL docs="+docs+" vs elus="+exp+" (halve "+dev+" > lubatud "+tol+") — indeks lahkneb DB-st"); process.exit(0) }
   const last = (tasks.results||[])[0]
   if (!last || !last.finishedAt) { console.log("FAIL no-reindeks-task"); process.exit(0) }
   const finEpoch = Math.floor(new Date(last.finishedAt).getTime()/1000)
   if (finEpoch < Number(process.env.RS)) { console.log("FAIL viimane-reindeks "+last.finishedAt+" < run-start"); process.exit(0) }
-  console.log("OK docs="+docs+" reindeks="+last.finishedAt)
+  console.log("OK docs="+docs+" elus="+exp+" (halve "+dev+" <= "+tol+") reindeks="+last.finishedAt)
 ' "$STATS_JSON" "$TASK_JSON" 2>/dev/null || echo "FAIL verify-crash")
 case "$VERDICT" in
   OK\ *) echo "  ✅ $VERDICT" ;;
