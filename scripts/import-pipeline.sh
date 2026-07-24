@@ -61,34 +61,44 @@ else
   echo "  [DRY] cache vanus ${CACHE_AGE}s (live-jooksul refresh uuendaks)"
 fi
 
-# ── [3] IMPORT-NEW — ⚠️ OTSUS (propose-not-create): AINULT uued SKU-d → draft, KATEGOORIATA ──
-# import-feed-v2.mjs EI SOBI: loob feed-teekonnast kategooriad (rikub SSoT/propose-not-create)
-# + status:"published" (kodutu-nähtav toode). Vaja ERALDI draft-importerit (eraldi ehitus-samm,
-# OOTAB Tarmo import-env otsust — vt reports/cron-wiring-kaardistus.md samm [3]).
-# Kuni seda pole: loe uute SKU-de arv (feed-cache SKU-d, mida DB-s pole) ja RAPORTEERI.
+# ── [3] IMPORT-NEW (propose-not-create): AINULT uued SKU-d → draft, KATEGOORIATA ──
+# import-new-drafts.mjs (konteiner-natiivne) loob uued SKU-d status="draft", KATEGOORIATA — EI loo
+# kategooriaid ega publitseeri (erinevalt import-feed-v2.mjs-st, mis rikuks SSoT/propose-not-create).
+# Kodu määrab [4] classify (draft→published alles paigutusel); autoriteetse hinna [5] reprice.
 echo "[3/7] import-new (draft, kategooriata)"
-# UUTE SKU-de loend = feed-cache SKU-d MIINUS DB-s olevad vevor_sku-d.
+# UUTE SKU-de loend = feed-cache SKU-d MIINUS DB-s olevad vevor_sku-d (comm = orchestraatori tõde).
 docker exec "$MEDUSA_NAME" node -e '
   try { const c=require("/data/vevor-feed-cache.json"); console.log(Object.keys(c.bySku||{}).join("\n")); }
   catch(e){ }' 2>/dev/null | sort -u > /tmp/pl-feed-skus.txt || true
 dbq "SELECT metadata->>'vevor_sku' FROM product WHERE deleted_at IS NULL AND metadata->>'vevor_sku' IS NOT NULL" 2>/dev/null | sort -u > /tmp/pl-db-skus.txt || true
-NEW_N=$(comm -23 /tmp/pl-feed-skus.txt /tmp/pl-db-skus.txt 2>/dev/null | grep -c . || echo 0)
+comm -23 /tmp/pl-feed-skus.txt /tmp/pl-db-skus.txt 2>/dev/null > /tmp/pl-new-skus.txt || true
+NEW_N=$(grep -c . /tmp/pl-new-skus.txt || echo 0)
 echo "  feed SKU=$(wc -l < /tmp/pl-feed-skus.txt|tr -d ' ') · DB SKU=$(wc -l < /tmp/pl-db-skus.txt|tr -d ' ') · UUSI (feed∖DB)=$NEW_N"
 if [ "$EXECUTE" = "1" ]; then
   if [ -n "${IMPORT_CMD:-}" ]; then
-    echo "  IMPORT_CMD antud → jooksutan"; eval "$IMPORT_CMD" || fail "import-new" "IMPORT_CMD rc!=0"
+    echo "  IMPORT_CMD antud (override) → jooksutan"; eval "$IMPORT_CMD" || fail "import-new" "IMPORT_CMD rc!=0"
   elif [ "$NEW_N" -gt 0 ]; then
-    fail "import-new" "$NEW_N uut SKU-d ootab, aga draft-importer pole veel ehitatud/IMPORT_CMD puudub (OTSUS: Tarmo import-env). Pipeline EI jätka pooliku impordiga."
+    # Anna eel-arvutatud uute-SKU loend konteinerisse (kiire tee — väldib toote-mooduli täisloopi).
+    docker cp /tmp/pl-new-skus.txt "$MEDUSA_NAME":/tmp/pl-new-skus.txt || fail "import-new" "docker cp uute-SKU loend nurjus"
+    # `medusa exec` = framework-konteiner (workflow'd) ILMA REST-auth'ita. Positsioon: <skus-fail> execute.
+    docker exec "$MEDUSA_NAME" sh -c 'cd /app && npx medusa exec scripts/import-new-drafts.mjs /tmp/pl-new-skus.txt execute' \
+      || fail "import-new" "import-new-drafts.mjs rc!=0 ($NEW_N uut SKU-d)"
   else
     echo "  0 uut SKU-d → import-samm vahele (steady-state)"
   fi
 else
-  echo "  [DRY] $NEW_N uut SKU-d imporditaks draft'ina (kategooriata); klassifikaator [4] otsustab kodu"
+  if [ "$NEW_N" -gt 0 ]; then
+    docker cp /tmp/pl-new-skus.txt "$MEDUSA_NAME":/tmp/pl-new-skus.txt 2>/dev/null || true
+    docker exec "$MEDUSA_NAME" sh -c 'cd /app && npx medusa exec scripts/import-new-drafts.mjs /tmp/pl-new-skus.txt dry 2>&1' | grep -E 'NEW_DRAFTS=|DRY|·|puudub' | sed 's/^/  /' || true
+  else
+    echo "  [DRY] 0 uut SKU-d → import vahele"
+  fi
 fi
 
 # ── [4] CLASSIFY (host, propose-not-create) ──────────────────────────────────
 echo "[4/7] classify (Opus propose-not-create)"
-node "$ROOT/scripts/pipeline-classify.mjs" $EXFLAG --out /tmp/pipeline-classify-results.json \
+# source=unhomed: kata VÄRSKED draftid [3] + olemas-backlog (kõik kategooriata, draft VÕI published).
+node "$ROOT/scripts/pipeline-classify.mjs" --source unhomed $EXFLAG --out /tmp/pipeline-classify-results.json \
   || fail "classify" "pipeline-classify.mjs rc!=0"
 
 # ── [5] PRICE (host; HIND=ainus SSoT-erand) ──────────────────────────────────

@@ -9,6 +9,7 @@
 // Sisend (--source):
 //   homeless   (vaikimisi) — live tooted ILMA kategooriata (product_category_product puudub)
 //   new-drafts — status='draft' tooted (värske import, kategooriata)
+//   unhomed    — KÕIK kodutud (draft VÕI published, kategooriata) — pipeline kasutab seda ([3] draftid + backlog)
 //   skus <fail>— SKU-list failist (üks rea kohta)
 //
 // DB: docker exec db-k33g psql (host-run; konteineri-nimi re-resolve iga write'i juures).
@@ -95,6 +96,9 @@ function loadTargets() {
     where = `p.metadata->>'vevor_sku' IN (SELECT trim(x) FROM regexp_split_to_table(pg_read_file('/tmp/classify-skus.txt'),E'\\n') x WHERE trim(x)<>'')`;
   } else if (SOURCE === "new-drafts") {
     where = `p.status='draft' AND NOT EXISTS (SELECT 1 FROM product_category_product pcp WHERE pcp.product_id=p.id)`;
+  } else if (SOURCE === "unhomed") {
+    // KÕIK kodutud (draft VÕI published, kategooriata) — kata värsked draftid [3] + olemas-backlog ühes jooksus.
+    where = `p.status IN ('draft','published') AND NOT EXISTS (SELECT 1 FROM product_category_product pcp WHERE pcp.product_id=p.id)`;
   } else { // homeless
     where = `p.status='published' AND NOT EXISTS (SELECT 1 FROM product_category_product pcp WHERE pcp.product_id=p.id)`;
   }
