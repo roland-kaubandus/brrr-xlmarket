@@ -217,6 +217,7 @@ pm2 reload xlmarket-storefront
 - **Meili index WIPED (price/taxonomy puudu):** Medusa plugin kirjutab cron restart'i järel indeksi üle minimaalsete väljadega. Taastamine: `cd /home/brrr/xlmarket && set -a && source .env && set +a && unset DATABASE_URL && node backend/scripts/index-meilisearch.mjs && node scripts/sync-existing-synonyms.mjs` + `find /home/brrr/xlmarket/storefront/.next/cache -type f -delete` + `pm2 reload xlmarket-storefront`. feed-sync.sh EXIT trap + Slack alerts peaks nüüd kaitsma (2026-04-22 acff4d7).
 - **admin@xlmarket.eu jagab login + feed-sync cron auth:** Parooli vahetades UUENDA `.env` MEDUSA_ADMIN_PASS ka, muidu cron hängib [3/6] Medusa import sammu juures, [4/6] Meili reindex ei käivitu, sait näitab €0.00.
 - **Meili settings PATCH panics:** Meili 1.41 teadaolev bug — `PUT /indexes/products/settings/searchable-attributes` crashib internal error'iga. Kui vaja muuta, tee kogu index uuesti (`index-meilisearch.mjs` loob õiged settings'id).
+- **Valideerimise väravad EI TOHI sisaldada fikseeritud numbreid** (doc-count, tootearv, hinnalävi). Võrdle ALATI tõe-allikaga ja luba hälve. Fikseeritud lävi aegub vaikselt ja annab vale-alarme. *(24.07: `MIN_MEILI_DOCS=15000` aegus arhiveerimisel (18062→14820<15000), cron oli punane 3 jooksu, kuigi reindeks õnnestus. Fix: võrdle Meili doc-count'i elusate toodete arvuga (`EXPECTED_DOCS` DB-st) + `max(50, 1%)` hälve — isekohanduv.)*
 
 ---
 
