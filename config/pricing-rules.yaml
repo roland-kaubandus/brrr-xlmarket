@@ -19,6 +19,11 @@ default_markup: 1.15
 # Mille peal astmed hinnatakse (mitte-tsirkulaarne — KINNITATUD Tarmo 2026-07-22)
 band_variable: cost_net       # cost_net | map | weight
 
+# Marginaali-alarm (pipeline-reprice.mjs). DELTA-põhine, MITTE absoluutne läve:
+#   alarm kui uus marginaal langeb >= N protsendipunkti vs EELMINE (price_history) marginaal.
+#   (Absoluutne "marginaal<15%" annaks 5107 vale-alarmi — pooled tooted on juba 13% põhjal.)
+margin_alert_drop_pp: 5        # protsendipunkti langus mis vallandab alarmi
+
 # Ümardus (senti). VEVOR praegu: ümardus puudub (Math.round sentideni). psych = .99-lõpp.
 rounding:
   mode: none                  # none | psychological | up_to_x9
