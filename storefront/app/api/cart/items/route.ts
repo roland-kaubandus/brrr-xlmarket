@@ -24,7 +24,11 @@ export async function POST(req: NextRequest) {
   }
 
   try {
-    const res = await medusaProxy(`/store/carts/${cart_id}/line-items`, {
+    // HINNA-LUKK: custom backend-route lisab rea + külmutab add-time hinna
+    // (is_custom_price=true), et feed-reprice ei muudaks juba-korvis hinda.
+    // Hind arvutatakse server-side (klient EI saa süstida). Vt backend
+    // src/api/store/carts/[id]/line-items-locked/route.ts.
+    const res = await medusaProxy(`/store/carts/${cart_id}/line-items-locked`, {
       method: "POST",
       body: JSON.stringify({ variant_id, quantity }),
     })
