@@ -221,8 +221,17 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
     // concurrency'l ujutab event-loop'i (cart-stall juur 2026-06-07). Fallback
     // Medusa calc_price'ile kui Meili-hit puudub.
     const meiliPriceEur = typeof (meiliHit as { price?: number } | null)?.price === "number" ? (meiliHit as { price: number }).price : null
+    // OMNIBUS-VÄRAV (98/6/EÜ art 6a): allahindlus (original>calculated) AINULT kui
+    // tegelik soodushind + 30p-viitehind (omnibus_ref_price price_history'st) olemas.
+    // Puudub → original = calculated (allahindluse UI pime). Vt lib/map-meili-hit.ts.
+    const omnibusHit = meiliHit as { sale_price?: number; omnibus_ref_price?: number } | null
+    const salePriceD = typeof omnibusHit?.sale_price === "number" ? omnibusHit.sale_price : null
+    const omnibusRefD = typeof omnibusHit?.omnibus_ref_price === "number" ? omnibusHit.omnibus_ref_price : null
+    const omnibusOkD = meiliPriceEur != null && salePriceD != null && omnibusRefD != null && salePriceD < omnibusRefD
+    const calcEur = omnibusOkD ? salePriceD! : meiliPriceEur
+    const origEur = omnibusOkD ? omnibusRefD! : meiliPriceEur
     const price = meiliPriceEur != null
-      ? { calculated_amount: Math.round(meiliPriceEur * 100), original_amount: Math.round(meiliPriceEur * 100), currency_code: "eur" }
+      ? { calculated_amount: Math.round(calcEur! * 100), original_amount: Math.round(origEur! * 100), currency_code: "eur" }
       : variant?.calculated_price
 
     // Gallery images
