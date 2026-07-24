@@ -129,6 +129,47 @@ export const GET = async (req: MedusaRequest, res: MedusaResponse) => {
       return res.json({ stats })
     }
 
+    // view=clusters — UUS feed-pipeline review-bucket (classification_review),
+    // KLASTRITE kaupa (tüüp · arv · lähim-L3). Propose-not-create: cron paigutas
+    // AINULT olemas-L3-desse; review/new_l3/quarantine ootavad INIMEST siin.
+    // Tabel tekib alles klassifikaatori --execute'il → guard tühja seisu vastu.
+    if (view === "clusters") {
+      const data = await withPg(async c => {
+        const ex = await c.query(
+          `SELECT to_regclass('public.classification_review') IS NOT NULL AS ok`
+        )
+        if (!ex.rows[0]?.ok) {
+          return { table_exists: false, total: 0, by_bucket: [], clusters: [] }
+        }
+        // Klaster = (bucket, tüüp-silt). Silt = suggest_name (uus tüüp) VÕI
+        // proposed_l3 (lähim olemas). suggest_l2 = kuhu L2 alla; nearest_l3 = DUP-värav.
+        const clusters = await c.query(
+          `SELECT bucket,
+                  COALESCE(NULLIF(suggest_name,''), NULLIF(proposed_l3,''), '(määramata)') AS label,
+                  max(NULLIF(suggest_l2,''))  AS suggest_l2,
+                  max(NULLIF(proposed_l3,'')) AS nearest_l3,
+                  count(*)::int               AS n,
+                  round(avg(confidence)::numeric, 2)::float AS avg_conf,
+                  (array_agg(title ORDER BY confidence DESC NULLS LAST))[1:6] AS samples,
+                  (array_agg(NULLIF(sku,'') ORDER BY confidence DESC NULLS LAST))[1:6] AS skus
+             FROM classification_review
+            WHERE status = 'pending'
+            GROUP BY bucket, label
+            ORDER BY (bucket='new_l3') DESC, (bucket='quarantine') DESC, (bucket='review') DESC, n DESC
+            LIMIT $1`,
+          [limit]
+        )
+        const byBucket = await c.query(
+          `SELECT bucket, count(*)::int AS n
+             FROM classification_review WHERE status='pending'
+            GROUP BY bucket ORDER BY n DESC`
+        )
+        const total = byBucket.rows.reduce((s, r) => s + r.n, 0)
+        return { table_exists: true, total, by_bucket: byBucket.rows, clusters: clusters.rows }
+      })
+      return res.json(data)
+    }
+
     // default: list open items (joined with product title)
     const rows = await withPg(c =>
       c.query(
