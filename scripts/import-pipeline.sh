@@ -101,9 +101,23 @@ echo "[4/7] classify (Opus propose-not-create)"
 node "$ROOT/scripts/pipeline-classify.mjs" --source unhomed $EXFLAG --out /tmp/pipeline-classify-results.json \
   || fail "classify" "pipeline-classify.mjs rc!=0"
 
+# ── FEED-SNAPSHOT ÜHTLUSTUS (gap-fix 2026-07-25) ─────────────────────────────
+# [3] import loeb /data/vevor-feed-cache.json; [5] reprice loeb xlsx-i. MÕLEMAD peavad
+# tulema SAMAST allikast — /data/vevor-571.xlsx, mille [1] refresh laadis JA millest cache
+# ehitati. Reprice vaikefeed oli repo-koopia backend/data/feeds/vevor-571.xlsx, mida refresh
+# (konteiner /data) EI puutu → aegus (nähtud: repo 3 päeva vana, /data värske) → import ja
+# hind töötasid LAHKNEVATE feedide peal. Kopeeri konteineri värske xlsx hostile → sama snapshot.
+FEED_XLSX_HOST=/tmp/pl-feed.xlsx
+if docker cp "$MEDUSA_NAME":/data/vevor-571.xlsx "$FEED_XLSX_HOST" 2>/dev/null; then
+  echo "  feed-snapshot ühtlustatud: /data/vevor-571.xlsx → $FEED_XLSX_HOST (import-cache + reprice = SAMA allikas)"
+else
+  FEED_XLSX_HOST=""
+  echo "  ⚠️ /data/vevor-571.xlsx puudub konteineris → reprice kasutab repo-vaikefeed'i (VÕIB lahkneda import-cache'ist!)"
+fi
+
 # ── [5] PRICE (host; HIND=ainus SSoT-erand) ──────────────────────────────────
 echo "[5/7] price (computeRetail + Omnibus + marginaali-alarm)"
-node "$ROOT/scripts/pipeline-reprice.mjs" $EXFLAG || fail "price" "pipeline-reprice.mjs rc!=0"
+node "$ROOT/scripts/pipeline-reprice.mjs" $EXFLAG ${FEED_XLSX_HOST:+--feed "$FEED_XLSX_HOST"} || fail "price" "pipeline-reprice.mjs rc!=0"
 
 # ── [6] SPEC (host) ──────────────────────────────────────────────────────────
 echo "[6/7] spec-extract (specita tooted)"
