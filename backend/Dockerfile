@@ -36,6 +36,11 @@ RUN apk add --no-cache dumb-init wget && \
 # Copy the entire built .medusa/server/ as the runtime root
 COPY --from=builder --chown=medusa:medusa /app/.medusa/server/ ./
 COPY --from=builder --chown=medusa:medusa /app/scripts/index-meilisearch.mjs ./scripts/index-meilisearch.mjs
+# Feed-pipeline draft-importer (samm [3]): loob feedist UUSI SKU-sid status='draft', ilma
+#   kategooria/hinnata (klass [4] + reprice [5] täidavad). AINULT Medusa framework + node
+#   builtins (crypto/fs) — 0 lokaalset lib-dep'i. VAJALIK cronile: runtime-stage kopeerib
+#   skriptid nimekaupa (COPY . . on ainult builderis) → ilma selleta importer image'ist puudu.
+COPY --from=builder --chown=medusa:medusa /app/scripts/import-new-drafts.mjs ./scripts/import-new-drafts.mjs
 # AKTIIVNE Scheduled Task (churned→OOS + cache-värskus): sh scripts/refresh-feed-cache.sh
 #   Stock-only (download → build-cache /data → reindeks), wget-põhine (konteineris pole curl-i),
 #   EI puutu hindu. Vt reports/churned-oos-juur-2026-07-23.md.
