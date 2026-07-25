@@ -205,6 +205,18 @@ await Promise.all(Array.from({ length: CONC }, worker));
 results.sort((a, b) => targets.findIndex(p => p.id === a.id) - targets.findIndex(p => p.id === b.id));
 fs.writeFileSync(OUT, JSON.stringify(results, null, 1));
 
+// SPEC-SAMM [6] SISEND (gap-fix 2026-07-25): kirjuta klassifitseeritud SKU-loend, et
+// orkestraatori [6] spec-extract seda loeks. ILMA selleta [6] `[ -s /tmp/classify-skus.txt ]`
+// oli väär → spec JÄI VAHELE ka --execute'is → uued tooted jäid specita (nagu 956 backlog).
+// Ainult source=skus kirjutas seda varem (loadTargets) — unhomed/new-drafts/homeless mitte.
+// Kirjuta auto (= paigutatud+publitseeritud → spec vaja) + review (kaasa; spec JOIN
+// product_category_product filtreerib kategoriseerimata read niikuinii välja).
+if (SOURCE !== "skus") {                      // source=skus kirjutas selle juba loadTargets'is
+  const specSkus = results.filter(r => (r.bucket === "auto" || r.bucket === "review") && r.sku).map(r => r.sku);
+  fs.writeFileSync("/tmp/classify-skus.txt", specSkus.join("\n"));
+  console.log(`Spec-loend [6]: ${specSkus.length} SKU (auto+review) → /tmp/classify-skus.txt`);
+}
+
 // --- KOKKUVÕTE ---------------------------------------------------------------
 const bk = results.reduce((a, r) => { a[r.bucket] = (a[r.bucket] || 0) + 1; return a; }, {});
 const cost = cIn + cOut + cCacheW + cCacheR;
