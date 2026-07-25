@@ -61,19 +61,28 @@ const rows = q(`SELECT jsonb_build_object('price_id',pr.id,'variant_id',pv.id,'p
 const updates = [], alarms = [], backfill = [];
 let noFeed = 0, same = 0;
 for (const row of rows) {
-  if (!row.has_hist) backfill.push(row);                        // pre-Omnibus toode → baseline vaja
   const f = feedNew.get(row.sku);
   const old = Number(row.cents);
-  if (!f) { noFeed++; continue; }                               // churn feedist → EI puutu
-  if (!old) continue;
-  const pct = (f.cents - old) / old * 100;
-  if (Math.abs(pct) < 0.5) { same++; continue; }
-  const u = { ...row, old, neu: f.cents, markup: f.markup, margin: f.margin, pct };
-  updates.push(u);
-  // DELTA-alarm: eelmine marginaal olemas JA langus >= läve
-  const prev = row.prev_margin == null ? null : Number(row.prev_margin);
-  if (prev != null && (prev - f.margin) * 100 >= DROP_PP)
-    alarms.push({ sku: row.sku, prev, neu: f.margin, dropPp: ((prev - f.margin) * 100).toFixed(1), oldE: old, newE: f.cents });
+  let updated = false;
+  if (f && old) {
+    const pct = (f.cents - old) / old * 100;
+    if (Math.abs(pct) < 0.5) { same++; }                        // hind ei liigu
+    else {
+      const u = { ...row, old, neu: f.cents, markup: f.markup, margin: f.margin, pct };
+      updates.push(u);
+      updated = true;
+      // DELTA-alarm: eelmine marginaal olemas JA langus >= läve
+      const prev = row.prev_margin == null ? null : Number(row.prev_margin);
+      if (prev != null && (prev - f.margin) * 100 >= DROP_PP)
+        alarms.push({ sku: row.sku, prev, neu: f.margin, dropPp: ((prev - f.margin) * 100).toFixed(1), oldE: old, newE: f.cents });
+    }
+  } else if (!f) { noFeed++; }                                  // churn feedist → EI puutu
+  // BASELINE-BACKFILL: ainult kui puudub ajalugu JA toodet EI uuendata sel jooksul.
+  // 🛑 OMNIBUS-KAITSE: värske draft kannab importeri PLATSHOIDJA-hinda (feed MAP×1.15);
+  // reprice asendab autoriteetse computeRetail'iga → see toode ON `updates`-is. Platshoidja-
+  // hinda EI TOHI baseline'ina jäädvustada — seda ei pakutud KUNAGI avalikult (draft, Meilis
+  // puudu) → Omnibus näitaks võltssoodustust. Uuendatava toote reprice-cycle rida ON ta baseline.
+  if (!row.has_hist && !updated) backfill.push(row);
 }
 
 const up = updates.filter(u => u.pct > 0).length;
@@ -91,7 +100,9 @@ if (DRY) { console.log(`\n[DRY-RUN] EI kirjutatud. ${updates.length} hinda + ${b
 // ============================ EXECUTE ========================================
 q(`ALTER TABLE price_history ADD COLUMN IF NOT EXISTS margin numeric;`, false);
 
-// (1) BASELINE-BACKFILL: post-Omnibus toodete praegune hind ajalukku (Omnibus 30p-min terviklikkus)
+// (1) BASELINE-BACKFILL: ajaloota toodete praegune hind ajalukku (Omnibus 30p-min terviklikkus).
+// EI sisalda sel jooksul uuendatavaid tooteid (nt värsked draftid) — need saavad reprice-cycle
+// rea, mis ON nende baseline; platshoidja-hinda ei jäädvustata (vt loop-kommentaar ülal).
 if (backfill.length) {
   const sql = ["BEGIN;"];
   for (const b of backfill)
