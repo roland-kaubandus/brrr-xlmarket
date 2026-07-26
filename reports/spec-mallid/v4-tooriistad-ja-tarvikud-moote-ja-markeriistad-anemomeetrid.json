@@ -1,0 +1,38 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-moote-ja-markeriistad-anemomeetrid",
+ "name": "Anemomeetrid",
+ "fields": [
+  {
+   "key": "tuule_kiirus_max",
+   "label_et": "Maksimaalne tuule kiirus",
+   "unit": "km/h"
+  },
+  {
+   "key": "ohuvool",
+   "label_et": "Õhuvool (CFM)",
+   "unit": "L/min",
+   "unit_orig": "CFM"
+  },
+  {
+   "key": "temperatuuri_ulatus",
+   "label_et": "Temperatuuriulatus",
+   "unit": "°C"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg",
+   "unit_orig": "g"
+  },
+  {
+   "key": "kaitseklass",
+   "label_et": "Kaitseklass",
+   "unit": ""
+  },
+  {
+   "key": "andurite_paigutus",
+   "label_et": "Andurite paigutus",
+   "unit": ""
+  }
+ ]
+}

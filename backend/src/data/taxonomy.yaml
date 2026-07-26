@@ -635,6 +635,10 @@ l1:
         name_et: "Mõõte- ja märkeriistad"
         product_count: 0
         subs:
+          - slug: v4-tooriistad-ja-tarvikud-moote-ja-markeriistad-anemomeetrid
+            name_en: "Anemomeetrid"
+            name_et: "Anemomeetrid"
+            product_count: 0
           - slug: v4-tooriistad-ja-tarvikud-moote-ja-markeriistad-termokaamerad
             name_en: "Termokaamerad"
             name_et: "Termokaamerad"

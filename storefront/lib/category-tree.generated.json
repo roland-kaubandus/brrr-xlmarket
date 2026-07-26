@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-22T18:01:00.961Z",
+  "generated_at": "2026-07-26T09:36:14.414Z",
   "nodes": {
     "v4-tooriistad-ja-tarvikud": {
       "handle": "v4-tooriistad-ja-tarvikud",
@@ -1718,6 +1718,7 @@
       "level": 2,
       "parent_handle": "v4-tooriistad-ja-tarvikud",
       "child_handles": [
+        "v4-tooriistad-ja-tarvikud-moote-ja-markeriistad-anemomeetrid",
         "v4-tooriistad-ja-tarvikud-moote-ja-markeriistad-termokaamerad",
         "v4-tooriistad-ja-tarvikud-moote-ja-markeriistad-nivelliirid",
         "v4-tooriistad-ja-tarvikud-moote-ja-markeriistad-nivelliiri-ja-loodimisseadme-statiivid",
@@ -1742,6 +1743,16 @@
         "v4-tooriistad-ja-tarvikud-moote-ja-markeriistad-laserkaugusmoodikud",
         "v4-tooriistad-ja-tarvikud-moote-ja-markeriistad-siseava-moodikud"
       ],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-moote-ja-markeriistad-anemomeetrid": {
+      "handle": "v4-tooriistad-ja-tarvikud-moote-ja-markeriistad-anemomeetrid",
+      "name_en": "Anemomeetrid",
+      "name_et": "Anemomeetrid",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-moote-ja-markeriistad",
+      "child_handles": [],
       "image_path": null,
       "image_source": "none"
     },
@@ -21649,6 +21660,7 @@
     "v4-tooriistad-ja-tarvikud-viimistlustooriistad-silikooni-ja-hermeetikupustolid",
     "v4-tooriistad-ja-tarvikud-viimistlus-joonte-margistus",
     "v4-tooriistad-ja-tarvikud-moote-ja-markeriistad",
+    "v4-tooriistad-ja-tarvikud-moote-ja-markeriistad-anemomeetrid",
     "v4-tooriistad-ja-tarvikud-moote-ja-markeriistad-termokaamerad",
     "v4-tooriistad-ja-tarvikud-moote-ja-markeriistad-nivelliirid",
     "v4-tooriistad-ja-tarvikud-moote-ja-markeriistad-nivelliiri-ja-loodimisseadme-statiivid",
