@@ -35,10 +35,15 @@ EXFLAG=$([ "$EXECUTE" = "1" ] && echo "--execute" || echo "--dry")
 MEDUSA_NAME="$(docker ps --format '{{.Names}}' | grep '^medusa' | head -1 || true)"
 DB_NAME="$(docker ps --format '{{.Names}}' | grep '^db-k33g' | head -1 || true)"
 SLACK="${SLACK_WEBHOOK_URL:-}"
+NOTIFY="$ROOT/scripts/lib/notify-telegram.sh"   # Telegram fail-loud + digest (sama bot/chat = Uptime Kuma)
 RUN_START=$(date -u +%s)
 
-slack() { [ -n "$SLACK" ] && wget -qO- --header="content-type: application/json" \
-  --post-data="{\"text\":\"$1\"}" "$SLACK" >/dev/null 2>&1 || true; }
+# notify → Slack (kui webhook seatud) + Telegram (kui bot/chat seatud). Kumbki puudu → vaikselt vahele.
+slack() {
+  [ -n "$SLACK" ] && wget -qO- --header="content-type: application/json" \
+    --post-data="{\"text\":\"$1\"}" "$SLACK" >/dev/null 2>&1 || true
+  [ -x "$NOTIFY" ] && "$NOTIFY" "$1" >/dev/null 2>&1 || true
+}
 fail() { echo "❌ IMPORT-PIPELINE FAIL [$1]: $2" >&2; slack "❌ XLM import-pipeline FAIL [$1]: $2"; exit "${3:-1}"; }
 trap 'rc=$?; [ "$rc" -ne 0 ] && echo "❌ import-pipeline KATKES (rc=$rc) $(date -u +%FT%TZ)" >&2' EXIT
 
@@ -137,12 +142,18 @@ else
 fi
 
 # ── review-bucket nähtavus (alati — ka DRY) ──────────────────────────────────
+# Telegram-push ainult EXECUTE'l JA kui midagi ootab (digest ise gate'ib items>0 → ei spämmi).
 echo ""
 node "$ROOT/scripts/pipeline-review-digest.mjs" \
   $([ "$EXECUTE" = "1" ] && echo "" || echo "--from-json /tmp/pipeline-classify-results.json") \
+  $([ "$EXECUTE" = "1" ] && echo "--telegram" || echo "") \
   $([ -n "$SLACK" ] && [ "$EXECUTE" = "1" ] && echo "--slack" || echo "") || true
 
 echo ""
 echo "=== IMPORT-PIPELINE DONE ($MODE) $(date -u +%FT%TZ) — kestus $(( $(date -u +%s) - RUN_START ))s ==="
-[ "$EXECUTE" = "1" ] && slack "✅ XLM import-pipeline OK ($(( $(date -u +%s) - RUN_START ))s)"
+if [ "$EXECUTE" = "1" ]; then
+  REVIEW_N=$(dbq "SELECT count(*) FROM classification_review WHERE status='pending'" 2>/dev/null || echo "?")
+  DUR=$(( $(date -u +%s) - RUN_START ))
+  slack "$(printf '✅ XLM import-pipeline OK (%ss)\nUusi tooteid: %s · Review-bucketis ootab: %s' "$DUR" "${NEW_N:-?}" "$REVIEW_N")"
+fi
 trap - EXIT

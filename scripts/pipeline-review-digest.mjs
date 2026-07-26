@@ -75,13 +75,34 @@ for (const c of ordered) {
 const text = L.join("\n");
 console.log(text);
 
+// --- lühikokkuvõte (Slack/Telegram jaoks) ------------------------------------
+const shortSummary = () => {
+  const s = [`📋 XLM review-bucket: ${items.length} toodet, ${ordered.length} klastrit ootab otsust`];
+  for (const c of ordered.slice(0, 8)) s.push(`• ${c.kind === "new_l3" ? "🆕" : c.kind === "review" ? "❓" : "⚠️"} ${c.name} — ${c.items.length}`);
+  return s.join("\n");
+};
+
 // --- Slack (valikuline) ------------------------------------------------------
 if (SLACK) {
   const url = process.env.SLACK_WEBHOOK_URL;
-  if (!url) { console.error("\nSLACK_WEBHOOK_URL puudub — Slack vahele jäetud."); process.exit(0); }
-  if (!items.length) { console.error("\n0 ootel — Slack vahele jäetud."); process.exit(0); }
-  const short = [`📋 XLM review-bucket: ${items.length} toodet, ${ordered.length} klastrit ootab otsust`];
-  for (const c of ordered.slice(0, 8)) short.push(`• ${c.kind === "new_l3" ? "🆕" : c.kind === "review" ? "❓" : "⚠️"} ${c.name} — ${c.items.length}`);
-  await fetch(url, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ text: short.join("\n") }) });
-  console.error("\n✓ Slack saadetud.");
+  if (!url) { console.error("\nSLACK_WEBHOOK_URL puudub — Slack vahele jäetud."); }
+  else if (!items.length) { console.error("\n0 ootel — Slack vahele jäetud."); }
+  else {
+    await fetch(url, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ text: shortSummary() }) });
+    console.error("\n✓ Slack saadetud.");
+  }
+}
+
+// --- Telegram (valikuline) — sama bot/chat mis Uptime Kuma --------------------
+if (argv.includes("--telegram")) {
+  const bot = process.env.TELEGRAM_BOT_TOKEN, chat = process.env.TELEGRAM_CHAT_ID;
+  if (!bot || !chat) { console.error("\nTELEGRAM_BOT_TOKEN/CHAT_ID puudub — Telegram vahele jäetud."); }
+  else if (!items.length) { console.error("\n0 ootel — Telegram vahele jäetud (ei spämmi)."); }
+  else {
+    const r = await fetch(`https://api.telegram.org/bot${bot}/sendMessage`, {
+      method: "POST", headers: { "content-type": "application/json" },
+      body: JSON.stringify({ chat_id: chat, text: shortSummary(), disable_web_page_preview: true }),
+    });
+    console.error(r.ok ? "\n✓ Telegram saadetud." : `\n⚠️ Telegram HTTP ${r.status}`);
+  }
 }
