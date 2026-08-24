@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-26T09:36:14.414Z",
+  "generated_at": "2026-08-24T10:00:11.998Z",
   "nodes": {
     "v4-tooriistad-ja-tarvikud": {
       "handle": "v4-tooriistad-ja-tarvikud",
@@ -19507,6 +19507,7 @@
       "child_handles": [
         "v4-lemmikloomatarbed-puurid-ja-aedikud-manguplatsid-ja-aedikud",
         "v4-lemmikloomatarbed-puurid-ja-aedikud-linnupuurid",
+        "v4-lemmikloomatarbed-puurid-ja-aedikud-kassipuurid-ja-aedikud",
         "v4-lemmikloomatarbed-puurid-ja-aedikud-narilistepuurid",
         "v4-lemmikloomatarbed-puurid-ja-aedikud-poegimiskastid-ja-nurgad",
         "v4-lemmikloomatarbed-puurid-ja-aedikud-koerapuurid-ja-moobel"
@@ -19528,6 +19529,16 @@
       "handle": "v4-lemmikloomatarbed-puurid-ja-aedikud-linnupuurid",
       "name_en": "Linnupuurid",
       "name_et": "Linnupuurid",
+      "level": 3,
+      "parent_handle": "v4-lemmikloomatarbed-puurid-ja-aedikud",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-lemmikloomatarbed-puurid-ja-aedikud-kassipuurid-ja-aedikud": {
+      "handle": "v4-lemmikloomatarbed-puurid-ja-aedikud-kassipuurid-ja-aedikud",
+      "name_en": "Kassipuurid ja aedikud",
+      "name_et": "Kassipuurid ja aedikud",
       "level": 3,
       "parent_handle": "v4-lemmikloomatarbed-puurid-ja-aedikud",
       "child_handles": [],
@@ -23255,6 +23266,7 @@
     "v4-lemmikloomatarbed-puurid-ja-aedikud",
     "v4-lemmikloomatarbed-puurid-ja-aedikud-manguplatsid-ja-aedikud",
     "v4-lemmikloomatarbed-puurid-ja-aedikud-linnupuurid",
+    "v4-lemmikloomatarbed-puurid-ja-aedikud-kassipuurid-ja-aedikud",
     "v4-lemmikloomatarbed-puurid-ja-aedikud-narilistepuurid",
     "v4-lemmikloomatarbed-puurid-ja-aedikud-poegimiskastid-ja-nurgad",
     "v4-lemmikloomatarbed-puurid-ja-aedikud-koerapuurid-ja-moobel",
