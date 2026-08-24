@@ -78,6 +78,7 @@ docker exec "$MEDUSA_NAME" node -e '
 dbq "SELECT metadata->>'vevor_sku' FROM product WHERE deleted_at IS NULL AND metadata->>'vevor_sku' IS NOT NULL" 2>/dev/null | sort -u > /tmp/pl-db-skus.txt || true
 comm -23 /tmp/pl-feed-skus.txt /tmp/pl-db-skus.txt 2>/dev/null > /tmp/pl-new-skus.txt || true
 NEW_N=$(grep -c . /tmp/pl-new-skus.txt || echo 0)
+CREATED_N=0; SKIPPED_N=0   # tegelik loodud / dup-skip (import-new-drafts väljundist; digest kasutab neid)
 echo "  feed SKU=$(wc -l < /tmp/pl-feed-skus.txt|tr -d ' ') · DB SKU=$(wc -l < /tmp/pl-db-skus.txt|tr -d ' ') · UUSI (feed∖DB)=$NEW_N"
 if [ "$EXECUTE" = "1" ]; then
   if [ -n "${IMPORT_CMD:-}" ]; then
@@ -86,8 +87,12 @@ if [ "$EXECUTE" = "1" ]; then
     # Anna eel-arvutatud uute-SKU loend konteinerisse (kiire tee — väldib toote-mooduli täisloopi).
     docker cp /tmp/pl-new-skus.txt "$MEDUSA_NAME":/tmp/pl-new-skus.txt || fail "import-new" "docker cp uute-SKU loend nurjus"
     # `medusa exec` = framework-konteiner (workflow'd) ILMA REST-auth'ita. Positsioon: <skus-fail> execute.
-    docker exec "$MEDUSA_NAME" sh -c 'cd /app && npx medusa exec scripts/import-new-drafts.mjs /tmp/pl-new-skus.txt execute' \
-      || fail "import-new" "import-new-drafts.mjs rc!=0 ($NEW_N uut SKU-d)"
+    IMPORT_OUT=$(docker exec "$MEDUSA_NAME" sh -c 'cd /app && npx medusa exec scripts/import-new-drafts.mjs /tmp/pl-new-skus.txt execute' 2>&1) \
+      || { echo "$IMPORT_OUT"; fail "import-new" "import-new-drafts.mjs rc!=0 ($NEW_N uut SKU-d)"; }
+    echo "$IMPORT_OUT"
+    # DUP-värav skibib VEVOR-reformaadid → digest raporteerib TEGELIKU CREATED + skip, mitte pre-dedup NEW_N.
+    CREATED_N=$(printf '%s' "$IMPORT_OUT" | grep -oE 'CREATED=[0-9]+' | tail -1 | grep -oE '[0-9]+' || echo 0)
+    SKIPPED_N=$(printf '%s' "$IMPORT_OUT" | grep -oE 'SKIPPED_DUP=[0-9]+' | tail -1 | grep -oE '[0-9]+' || echo 0)
   else
     echo "  0 uut SKU-d → import-samm vahele (steady-state)"
   fi
@@ -154,6 +159,6 @@ echo "=== IMPORT-PIPELINE DONE ($MODE) $(date -u +%FT%TZ) — kestus $(( $(date 
 if [ "$EXECUTE" = "1" ]; then
   REVIEW_N=$(dbq "SELECT count(*) FROM classification_review WHERE status='pending'" 2>/dev/null || echo "?")
   DUR=$(( $(date -u +%s) - RUN_START ))
-  slack "$(printf '✅ XLM import-pipeline OK (%ss)\nUusi tooteid: %s · Review-bucketis ootab: %s' "$DUR" "${NEW_N:-?}" "$REVIEW_N")"
+  slack "$(printf '✅ XLM import-pipeline OK (%ss)\nUusi tooteid: %s · dup-skip: %s · Review-bucketis ootab: %s' "$DUR" "${CREATED_N:-0}" "${SKIPPED_N:-0}" "$REVIEW_N")"
 fi
 trap - EXIT

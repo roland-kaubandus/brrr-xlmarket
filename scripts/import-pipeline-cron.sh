@@ -42,12 +42,16 @@ echo "=== CRON import-pipeline END rc=$RC $(date -u +%FT%TZ) ===" | tee -a "$LOG
 
 # Masinloetav STATUS (hommikune ülevaatus ilma logi lehitsemata)
 NEW_SKUS="$(grep 'UUSI' "$LOG" | tail -1 | grep -oE '[0-9]+$' || true)"
+CREATED_N="$(grep -oE 'CREATED=[0-9]+' "$LOG" | tail -1 | grep -oE '[0-9]+' || true)"   # tegelik loodud (pärast DUP-väravat)
+SKIPPED_N="$(grep -oE 'SKIPPED_DUP=[0-9]+' "$LOG" | tail -1 | grep -oE '[0-9]+' || true)" # VEVOR-reformaadid skibitud
 REVIEW_N="$(grep 'REVIEW-BUCKET' "$LOG" | grep -oE '— [0-9]+' | grep -oE '[0-9]+' | tail -1 || true)"
 {
   echo "last_run_utc=$(date -u +%FT%TZ)"
   echo "rc=$RC"
   echo "result=$([ "$RC" -eq 0 ] && echo OK || echo FAIL)"
-  echo "new_skus=${NEW_SKUS:-?}"
+  echo "new_candidates=${NEW_SKUS:-?}"   # feed∖DB (dedup-eelne)
+  echo "created=${CREATED_N:-?}"          # päris uued draftid loodud
+  echo "dup_skipped=${SKIPPED_N:-?}"      # barcode/inventory reformaadid vahele
   echo "review_waiting=${REVIEW_N:-?}"
   echo "log=$LOG"
 } >"$LOGDIR/STATUS"
