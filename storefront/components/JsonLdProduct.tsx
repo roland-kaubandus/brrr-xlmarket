@@ -16,6 +16,27 @@ type Props = {
   locale?: string
 }
 
+/**
+ * Brändi kuvanimi TOOTEMETADATA'st — MITTE title'st. Kriitiline peale VEVOR-title-stripi
+ * (2026-08-24): title ei sisalda enam brändi, seega schema.org Product.brand peab tulema
+ * metadata'st (peegeldab backend deriveBrandSlug loogikat). Multi-brand: Powermat/KraftDele.
+ */
+const BRAND_NAMES: Record<string, string> = {
+  vevor: "VEVOR", powermat: "Powermat", kraftdele: "KraftDele", blacktools: "BlackTools",
+}
+function deriveBrandName(product: Product): string {
+  const m = ((product as any).metadata || {}) as Record<string, any>
+  const src = String(m.source || "").trim().toLowerCase()
+  const ssku = String(m.supplier_sku || "").trim().toUpperCase()
+  let slug: string | null = null
+  if (src) slug = src
+  else if (ssku.startsWith("PM-")) slug = "powermat"
+  else if (ssku.startsWith("VV-")) slug = "vevor"
+  else if (m.vevor_sku || m.vevor_product_type || m.vevor_upc) slug = "vevor"
+  // Fallback VEVOR: praegu 100% kataloogist on VEVOR; tundmatu metadata → ära jäta brändita.
+  return slug ? (BRAND_NAMES[slug] || slug) : "VEVOR"
+}
+
 export default function JsonLdProduct({ product, price, locale = "en" }: Props) {
   const variant = product.variants?.[0]
   const sku =
@@ -34,7 +55,7 @@ export default function JsonLdProduct({ product, price, locale = "en" }: Props) 
     sku,
     brand: {
       "@type": "Brand",
-      name: "VEVOR",
+      name: deriveBrandName(product),
     },
   }
 

@@ -44,7 +44,11 @@ async function configureIndex() {
   }
   // All settings in one call
   await meili("/indexes/" + INDEX + "/settings", "PATCH", {
-    searchableAttributes: ["title_et", "title_en", "description_et", "description_en", "categories", "sku", "handle"],
+    // brand_name searchable: peale VEVOR-title-stripi (2026-08-24) "vevor" tekstiotsing
+    // EI TOHI enam sõltuda title'st (title on strippitud). Bränd tuleb metadata'st
+    // (deriveBrandSlug), on otsitav siin ja filtreeritav filter_tokens'i kaudu. Multi-brand
+    // tulevik (Powermat/KraftDele): sama muster, "powermat" otsing leiab ilma title-brändita.
+    searchableAttributes: ["title_et", "title_en", "brand_name", "description_et", "description_en", "categories", "sku", "handle"],
     filterableAttributes: [
       "categories", "category_handles", "subcategory", "price", "in_stock", "translated", "filter_tokens",
       // Taxonomy v3 SSoT fields (F2.8). See docs/superpowers/specs/2026-04-18-taxonomy-final-design.md §6.
@@ -206,6 +210,9 @@ function resolveFeedEntry(row) {
  * Prioriteet: 1) multi-feed `source`, 2) `supplier_sku` prefiks (VV-/PM-),
  * 3) VEVOR-i legacy metadata (vevor_*). Tundmatu → null (brand-tokenit ei lisa).
  */
+// Brändi-slug → kuvanimi (otsitav brand_name väli). cms/brands.yaml SSoT-nimed.
+const BRAND_NAMES = { vevor: "VEVOR", powermat: "Powermat", kraftdele: "KraftDele", blacktools: "BlackTools" }
+
 function deriveBrandSlug(meta) {
   const src = String(meta.source || "").trim().toLowerCase()
   if (src) return src
@@ -301,6 +308,9 @@ function transform(row) {
   // Tuletus: multi-feed source → supplier_sku prefix → VEVOR metadata fallback.
   const brandSlug = deriveBrandSlug(meta)
   if (brandSlug) filter_tokens.push(`brand:${brandSlug}`)
+  // Bränd otsitava väljana (searchableAttributes: brand_name). Peale title-stripi on see
+  // AINUS koht kust "vevor" tekstiotsing tuleb (title ei sisalda enam brändi).
+  const brandName = brandSlug ? (BRAND_NAMES[brandSlug] || brandSlug) : ''
 
   const doc = {
     id: row.id,
@@ -308,6 +318,8 @@ function transform(row) {
     title_en,                       // search: English
     title_et,                       // search: Estonian
     // future: title_ru, title_fi — same pattern
+    brand: brandSlug || '',         // slug (filter/URL)
+    brand_name: brandName,          // search: bränd (nt "VEVOR") — sõltumatu title'st
     handle: row.handle || '',
     description: cleanDesc,
     description_en,

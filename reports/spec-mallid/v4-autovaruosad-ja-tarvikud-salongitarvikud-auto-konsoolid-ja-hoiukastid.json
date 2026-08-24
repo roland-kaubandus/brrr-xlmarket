@@ -1,0 +1,41 @@
+{
+ "l3": "v4-autovaruosad-ja-tarvikud-salongitarvikud-auto-konsoolid-ja-hoiukastid",
+ "name": "Auto konsoolid ja hoiukastid",
+ "fields": [
+  {
+   "key": "paigutus_tyyp",
+   "label_et": "Paigutus tüüp",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "maht",
+   "label_et": "Maht",
+   "unit": "L"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaasikute_arv",
+   "label_et": "Kaasikute arv",
+   "unit": "tk"
+  },
+  {
+   "key": "telefoni_hoidja",
+   "label_et": "Telefonihoidja",
+   "unit": ""
+  },
+  {
+   "key": "sobitavad_soidukid",
+   "label_et": "Sobivad sõidukid",
+   "unit": ""
+  }
+ ]
+}
