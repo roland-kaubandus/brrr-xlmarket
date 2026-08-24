@@ -111,13 +111,19 @@ fi
 # BRÄND-TEADLIK (deriveBrandSlug SSoT, mitte VEVOR-hardcode). Töötab AINULT delta (/tmp/pl-new-skus.txt,
 # variant.sku järgi), idempotentne (topelt-strip võimatu), handle EI muutu. FAIL-LOUD: süsteemne→exit!=0;
 # üksik katkine title (E1) → skip+logi, EI peata. Backfill = sama skript --all (scripts/pipeline-strip-titles.mjs).
-echo "[3.5/7] title-strip (brändi-prefiks, delta)"
+echo "[3.5/7] title-strip (brändi-prefiks, delta) — KÕIK title-keeled (HARD RULE #5)"
 STRIP_SKIP_N=0
 if [ "$NEW_N" -gt 0 ] && [ -s /tmp/pl-new-skus.txt ]; then
-  STRIP_OUT=$(node "$ROOT/scripts/pipeline-strip-titles.mjs" --skus /tmp/pl-new-skus.txt $([ "$EXECUTE" = "1" ] && echo --execute || echo --dry) 2>&1) \
-    || { echo "$STRIP_OUT"; fail "title-strip" "pipeline-strip-titles.mjs rc!=0 (SÜSTEEMNE)"; }
-  echo "$STRIP_OUT" | sed 's/^/  /'
-  STRIP_SKIP_N=$(printf '%s' "$STRIP_OUT" | grep -oE 'SKIPPED=[0-9]+' | tail -1 | grep -oE '[0-9]+' || echo 0)
+  # Strip katab KÕIK title-väljad: EN product.title + title_et (+capitalize). title_et delta = täna
+  # no-op (uue toote title_et tühi kuni generaator jookseb) — hoitakse ohutusvõrguks (tulevane title_et-kirjutaja).
+  # Uue keele lisamine → uus väli siia loendisse (sama transform, eri --field).
+  for FLD in title title_et; do
+    STRIP_OUT=$(node "$ROOT/scripts/pipeline-strip-titles.mjs" --skus /tmp/pl-new-skus.txt --field "$FLD" $([ "$EXECUTE" = "1" ] && echo --execute || echo --dry) 2>&1) \
+      || { echo "$STRIP_OUT"; fail "title-strip" "pipeline-strip-titles.mjs --field $FLD rc!=0 (SÜSTEEMNE)"; }
+    echo "$STRIP_OUT" | sed "s/^/  [$FLD] /"
+    FLD_SKIP=$(printf '%s' "$STRIP_OUT" | grep -oE 'SKIPPED=[0-9]+' | tail -1 | grep -oE '[0-9]+' || echo 0)
+    STRIP_SKIP_N=$((STRIP_SKIP_N + FLD_SKIP))
+  done
   # E1-tüüpi skip (katkine tootenimi) = nähtav käsitsi-parandusse, EI peata pipeline'i (HARD RULE #5).
   [ "$EXECUTE" = "1" ] && [ "${STRIP_SKIP_N:-0}" -gt 0 ] \
     && slack "⚠️ XLM import: ${STRIP_SKIP_N} title strip-skip (katkine tootenimi) → reports/title-parandus-nimekiri.md"

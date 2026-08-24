@@ -28,7 +28,7 @@
 
 import { execFileSync } from "child_process"
 import fs from "fs"
-import { deriveBrandSlug, stripBrandPrefix } from "./lib/brand-strip.mjs"
+import { deriveBrandSlug, stripBrandPrefix, capitalizeFirst } from "./lib/brand-strip.mjs"
 
 // ── argumendid ───────────────────────────────────────────────────────────────
 const argv = process.argv.slice(2)
@@ -37,8 +37,21 @@ const val = (f) => { const i = argv.indexOf(f); return i >= 0 ? argv[i + 1] : ""
 const EXECUTE = has("--execute")
 const ALL = has("--all")
 const SKUS_FILE = val("--skus")
-const BACKUP_TABLE = "title_strip_backup_20260824"
 const SAMPLES = parseInt(val("--samples") || "8", 10)
+
+// ── väli (HARD RULE #5: strip katab KÕIK title-keeled, mitte ainult EN product.title) ──
+// title    = EN baseline (veerg product.title). Esitäht juba suur → capitalize OFF.
+// title_et = ET tõlge (metadata->>'title_et', jsonb_set). Prefiksi maha → esitäht ET-suureks (capitalize ON).
+// Uue keele lisamine (title_ru…) = uus rida siia (sama transform, eri väli/backup).
+const FIELD = val("--field") || "title"
+const FIELD_CONF = {
+  title:    { sel: "p.title",                    setExpr: "title = d.new",
+              whereMatch: "p.title = d.old",      backup: "title_strip_backup_20260824", cap: false },
+  title_et: { sel: "p.metadata->>'title_et'",     setExpr: "metadata = jsonb_set(p.metadata, '{title_et}', to_jsonb(d.new), true)",
+              whereMatch: "p.metadata->>'title_et' = d.old", backup: "title_et_strip_backup", cap: true },
+}[FIELD]
+if (!FIELD_CONF) { console.error(`❌ tundmatu --field '${FIELD}' (lubatud: title | title_et)`); process.exit(2) }
+const BACKUP_TABLE = FIELD_CONF.backup
 
 if (!ALL && !SKUS_FILE) { console.error("❌ vaja kas --all VÕI --skus <fail>"); process.exit(2) }
 
@@ -65,19 +78,23 @@ function psql(sql, { capture = true } = {}) {
   }
 }
 
-console.log(`=== TITLE-STRIP [3.5] (${EXECUTE ? "EXECUTE" : "DRY-RUN"}) · ${ALL ? "BACKFILL --all" : "DELTA --skus"} ===`)
+console.log(`=== TITLE-STRIP [3.5] (${EXECUTE ? "EXECUTE" : "DRY-RUN"}) · ${ALL ? "BACKFILL --all" : "DELTA --skus"} · väli=${FIELD}${FIELD_CONF.cap ? " (+capitalize)" : ""} ===`)
 console.log(`  db=${DB_NAME}`)
+
+// Sihtväli aliasitud kui `val` — muidu ühine skeem. Filtreeri tühjad välja (title_et sageli null uutel).
+const META_COLS =
+  `p.metadata->>'source' AS source, p.metadata->>'supplier_sku' AS supplier_sku,
+   p.metadata->>'vevor_sku' AS vevor_sku, p.metadata->>'vevor_product_type' AS vevor_product_type,
+   p.metadata->>'vevor_upc' AS vevor_upc`
+const NOT_EMPTY = `${FIELD_CONF.sel} IS NOT NULL AND ${FIELD_CONF.sel} <> ''`
 
 // ── sihtread: --skus (delta, join variant.sku) VÕI --all (kogu korpus) ────────
 let selectSql
 if (ALL) {
   selectSql =
     `SELECT row_to_json(t) FROM (
-       SELECT p.id, p.title,
-              p.metadata->>'source' AS source, p.metadata->>'supplier_sku' AS supplier_sku,
-              p.metadata->>'vevor_sku' AS vevor_sku, p.metadata->>'vevor_product_type' AS vevor_product_type,
-              p.metadata->>'vevor_upc' AS vevor_upc
-       FROM product p WHERE p.deleted_at IS NULL
+       SELECT p.id, ${FIELD_CONF.sel} AS val, ${META_COLS}
+       FROM product p WHERE p.deleted_at IS NULL AND ${NOT_EMPTY}
      ) t;`
 } else {
   if (!fs.existsSync(SKUS_FILE)) { console.error(`❌ --skus fail puudub: ${SKUS_FILE}`); process.exit(1) }
@@ -87,14 +104,11 @@ if (ALL) {
   const jsonArr = JSON.stringify(skus)
   selectSql =
     `SELECT row_to_json(t) FROM (
-       SELECT DISTINCT p.id, p.title,
-              p.metadata->>'source' AS source, p.metadata->>'supplier_sku' AS supplier_sku,
-              p.metadata->>'vevor_sku' AS vevor_sku, p.metadata->>'vevor_product_type' AS vevor_product_type,
-              p.metadata->>'vevor_upc' AS vevor_upc
+       SELECT DISTINCT p.id, ${FIELD_CONF.sel} AS val, ${META_COLS}
        FROM product p
        JOIN product_variant v ON v.product_id = p.id AND v.deleted_at IS NULL
        JOIN (SELECT jsonb_array_elements_text($JSON$${jsonArr}$JSON$::jsonb) AS sku) s ON s.sku = v.sku
-       WHERE p.deleted_at IS NULL
+       WHERE p.deleted_at IS NULL AND ${NOT_EMPTY}
      ) t;`
 }
 
@@ -112,9 +126,12 @@ for (const r of rows) {
     vevor_sku: r.vevor_sku, vevor_product_type: r.vevor_product_type, vevor_upc: r.vevor_upc,
   }
   const brand = deriveBrandSlug(meta)
-  const res = stripBrandPrefix(r.title, brand)
-  if (res.changed) changed.push({ id: r.id, old: r.title, new: res.newTitle, brand: brand || "?" })
-  else if (res.skip) skipped.push({ id: r.id, title: r.title, brand: brand || "?", reason: res.reason })
+  const res = stripBrandPrefix(r.val, brand)
+  if (res.changed) {
+    // capitalize AINULT lokaliseeritud väljal (title_et) — prefiksi maha võttes jäi esitäht väikeseks.
+    const finalTitle = FIELD_CONF.cap ? capitalizeFirst(res.newTitle) : res.newTitle
+    changed.push({ id: r.id, old: r.val, new: finalTitle, brand: brand || "?" })
+  } else if (res.skip) skipped.push({ id: r.id, title: r.val, brand: brand || "?", reason: res.reason })
   else noop++
 }
 
@@ -148,9 +165,9 @@ if (!EXECUTE) {
        SELECT id, old, new FROM jsonb_to_recordset($JSON$${payload}$JSON$::jsonb) AS d(id text, old text, new text)
        ON CONFLICT (product_id) DO NOTHING;
      WITH upd AS (
-       UPDATE product p SET title = d.new, updated_at = now()
+       UPDATE product p SET ${FIELD_CONF.setExpr}, updated_at = now()
        FROM jsonb_to_recordset($JSON$${payload}$JSON$::jsonb) AS d(id text, old text, new text)
-       WHERE p.id = d.id AND p.title = d.old
+       WHERE p.id = d.id AND ${FIELD_CONF.whereMatch}
        RETURNING p.id
      )
      SELECT 'STRIP_APPLIED=' || count(*)::text FROM upd;
