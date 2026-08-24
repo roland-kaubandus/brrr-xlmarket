@@ -24,8 +24,11 @@
  *   arg2 = limit       piira loodavate arv (valikuline)
  * Näide: npx medusa exec scripts/import-new-drafts.mjs /tmp/pl-new-skus.txt execute
  *
- * Väljund (masin-loetav, orchestraatorile): read `NEW_DRAFTS=<n>` ja `CREATED=<n>`.
- * FAIL-LOUD: cache puudub / cache liiga väike / mõni create nurjus (execute) → throw (exit != 0).
+ * Väljund (masin-loetav, orchestraatorile): read `NEW_DRAFTS=<n>`, `SKIPPED_DUP=<n>`, `CREATED=<n>`.
+ * DUP-VÄRAV (muster, mitte nimekiri): barcode/inventory_item juba DB-s (VEVOR SKU-reformaat / orb) →
+ *   SKIP + jätka (ise-hoolduv, ei vaja nimekirja). Vt DUP-loogika allpool.
+ * FAIL-LOUD: cache puudub / cache liiga väike / create nurjus OOTAMATU veaga → throw (exit != 0).
+ *   Tuntud dup-skip EI ole viga (muidu 1 reformaat = kogu öine cron punane).
  */
 
 import { Modules, ContainerRegistrationKeys } from "@medusajs/framework/utils"
@@ -169,6 +172,45 @@ export default async function importNewDrafts({ container, args = [] }) {
     )
   }
 
+  // ── DUP-VÄRAV (MUSTER, mitte nimekiri): filtreeri tuntud dubleerijad ENNE loomist ──
+  // VEVOR reformaadib SKU-sid pidevalt (nt "…99V9" → "…99002V9") — sama barcode (GTIN) = sama
+  // füüsiline toode, mis juba kataloogis. + orb inventory_item sama SKU-ga (pooleli-create jääk).
+  // Neid EI SAA luua (unique-piirang barcode / inventory_item.sku "WHERE deleted_at IS NULL") →
+  // SKIP, MITTE fail. Ise-hoolduv: uued reformaadid püütakse automaatselt, ilma nimekirja-hoolduseta.
+  const skippedDup = []
+  {
+    const upcs = [...new Set(newSkus.map((s) => bySku[s].upc).filter(Boolean).map(String))]
+    const existBarcode = new Set()
+    if (upcs.length) {
+      const rows = await knex("product_variant").whereIn("barcode", upcs).whereNull("deleted_at").select("barcode")
+      for (const r of rows) existBarcode.add(String(r.barcode))
+    }
+    const existInvSku = new Set()
+    {
+      const rows = await knex("inventory_item").whereIn("sku", newSkus).whereNull("deleted_at").select("sku")
+      for (const r of rows) existInvSku.add(String(r.sku))
+    }
+    const keep = []
+    for (const s of newSkus) {
+      const upc = bySku[s].upc ? String(bySku[s].upc) : ""
+      if (upc && existBarcode.has(upc)) { skippedDup.push(`${s}: barcode ${upc} juba DB-s (VEVOR reformaat)`); continue }
+      if (existInvSku.has(s)) { skippedDup.push(`${s}: inventory_item juba DB-s (orb/reformaat)`); continue }
+      keep.push(s)
+    }
+    if (skippedDup.length) {
+      console.log(`  DUP-värav: ${skippedDup.length} SKU-d juba DB-s (barcode/inventory) → SKIP (päris-uus=${keep.length})`)
+      for (const d of skippedDup.slice(0, 30)) console.log(`     ⏭  ${d}`)
+      if (skippedDup.length > 30) console.log(`     … +${skippedDup.length - 30} veel`)
+    }
+    newSkus = keep
+  }
+  console.log(`SKIPPED_DUP=${skippedDup.length}`)
+  if (newSkus.length === 0) { console.log("  0 päris-uut SKU-d pärast DUP-väravat → import-samm vahele"); console.log("CREATED=0"); return }
+
+  // Reaktiivne turvavõrk: kui DUP-värav jättis midagi püüdmata (nt race feed-refresh'iga), klassifitseeri
+  // viga — TUNTUD dup ("already exists" + barcode/inventory) → skip; AINULT OOTAMATU viga → throw (peatab).
+  const isKnownDup = (msg) => /already exists/i.test(msg) && /(barcode|inventory item)/i.test(msg)
+
   // ── Loo draftid (kaupa 25 — workflow talub batch'i; väldib üht-hiigel-transaktsiooni) ──
   const products = newSkus.map((s) => buildDraftPayload(bySku[s], salesChannelId))
   let created = 0
@@ -184,19 +226,25 @@ export default async function importNewDrafts({ container, args = [] }) {
     } catch (e) {
       // Batch nurjus → proovi ükshaaval, et üks halb rida ei tapaks tervet batch'i.
       for (const p of batch) {
+        const sku = p.variants?.[0]?.sku
         try {
           const { result } = await createProductsWorkflow(container).run({ input: { products: [p] } })
           await attachShippingProfiles((result || []).map((r) => r.id).filter(Boolean))
           created++
-        } catch (e2) { if (failed.length < 20) failed.push(`${p.variants?.[0]?.sku}: ${String(e2.message).slice(0, 140)}`) }
+        } catch (e2) {
+          const msg = String(e2.message || "")
+          if (isKnownDup(msg)) { skippedDup.push(`${sku}: ${msg.slice(0, 120)}`) }   // tuntud dup → skip, mitte fail
+          else if (failed.length < 20) failed.push(`${sku}: ${msg.slice(0, 140)}`)   // ootamatu → koguneb throw'ni
+        }
       }
     }
   }
   console.log(`CREATED=${created}`)
-  console.log(`  loodud=${created} · vigu=${failed.length}`)
+  console.log(`  loodud=${created} · dup-skip=${skippedDup.length} · ootamatuid-vigu=${failed.length}`)
+  // FAIL-LOUD AINULT ootamatu vea peale — tuntud dup-skip ei peata pipeline'i (muidu 1 reformaat = kogu cron punane).
   if (failed.length > 0) {
-    console.error(`❌ ${failed.length} draft'i loomine NURJUS (näited):`)
+    console.error(`❌ ${failed.length} draft'i loomine NURJUS OOTAMATULT (näited):`)
     for (const f of failed) console.error(`     · ${f}`)
-    throw new Error(`${failed.length} draft'i loomine nurjus — pipeline ei tohi jätkata poolikult`)
+    throw new Error(`${failed.length} draft'i loomine nurjus ootamatu veaga — pipeline peatub (dup-skip ei loe)`)
   }
 }
