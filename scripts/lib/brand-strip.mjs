@@ -61,6 +61,28 @@ function brandPrefixRe(brandSlug) {
  *   changed=false, skip=false → prefiksit polnud (idempotentne no-op)
  *   changed=false, skip=true  → prefiks OLI, aga strip teeks katkise (E1: tühi/liiga lühike) → JÄTA, logi
  */
+/**
+ * ET-teadlik esitähe-suurendus. Kasutatakse AINULT lokaliseeritud title-väljadel (title_et, title_ru…),
+ * MITTE EN `product.title`-l (seal tootenimi juba suurtäht). Loogiline osa stripist: juuni-tõlge oli
+ * "VEVOR " + väiketäht-kirjeldus → prefiksi maha võttes jääks lause VALE väiketähega ("käsitsi valmistatud").
+ *
+ * Reeglid (konservatiivne — ei riku pärisnimesid/lühendeid):
+ *   - Puuduta AINULT esimest tähte (keskosa = 100% puutumatu → "kg", "3D", "iPhone" keskel jäävad).
+ *   - Esimene mitte-tühik peab olema VÄIKETÄHT → suurtäht. Number/sümbol/juba-suurtäht → jäta.
+ *   - Esimene SÕNA sisaldab sisemist suurtähte (iPhone, eBike) → tahtlik casing → jäta.
+ * @returns {string} title parandatud esitähega (või muutmata)
+ */
+export function capitalizeFirst(title) {
+  const s = String(title == null ? "" : title)
+  const i = s.search(/\S/)
+  if (i < 0) return s
+  const ch = s[i]
+  if (!/\p{Ll}/u.test(ch)) return s                 // number / sümbol / juba suurtäht → jäta
+  const firstWord = s.slice(i).split(/[\s,.;:!?()]/)[0]
+  if (/\p{Lu}/u.test(firstWord)) return s           // iPhone / eBike — sisemine suurtäht → tahtlik, jäta
+  return s.slice(0, i) + ch.toLocaleUpperCase("et") + s.slice(i + 1)
+}
+
 export function stripBrandPrefix(title, brandSlug) {
   const orig = String(title == null ? "" : title)
   const re = brandPrefixRe(brandSlug)
