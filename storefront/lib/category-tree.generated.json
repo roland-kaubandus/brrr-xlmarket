@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-24T10:00:11.998Z",
+  "generated_at": "2026-08-24T10:22:03.117Z",
   "nodes": {
     "v4-tooriistad-ja-tarvikud": {
       "handle": "v4-tooriistad-ja-tarvikud",
@@ -10711,6 +10711,7 @@
         "v4-auto-madratsid",
         "v4-autovaruosad-ja-tarvikud-salongitarvikud-pagasiruumi-matid-ja-katted",
         "v4-autovaruosad-ja-tarvikud-salongitarvikud-voidusoiduistmed",
+        "v4-autovaruosad-ja-tarvikud-salongitarvikud-auto-konsoolid-ja-hoiukastid",
         "v4-autovaruosad-ja-tarvikud-salongitarvikud-autoroolid"
       ],
       "image_path": null,
@@ -10760,6 +10761,16 @@
       "handle": "v4-autovaruosad-ja-tarvikud-salongitarvikud-voidusoiduistmed",
       "name_en": "Võidusõiduistmed",
       "name_et": "Võidusõiduistmed",
+      "level": 3,
+      "parent_handle": "v4-autovaruosad-ja-tarvikud-salongitarvikud",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-autovaruosad-ja-tarvikud-salongitarvikud-auto-konsoolid-ja-hoiukastid": {
+      "handle": "v4-autovaruosad-ja-tarvikud-salongitarvikud-auto-konsoolid-ja-hoiukastid",
+      "name_en": "Auto konsoolid ja hoiukastid",
+      "name_et": "Auto konsoolid ja hoiukastid",
       "level": 3,
       "parent_handle": "v4-autovaruosad-ja-tarvikud-salongitarvikud",
       "child_handles": [],
@@ -22483,6 +22494,7 @@
     "v4-auto-madratsid",
     "v4-autovaruosad-ja-tarvikud-salongitarvikud-pagasiruumi-matid-ja-katted",
     "v4-autovaruosad-ja-tarvikud-salongitarvikud-voidusoiduistmed",
+    "v4-autovaruosad-ja-tarvikud-salongitarvikud-auto-konsoolid-ja-hoiukastid",
     "v4-autovaruosad-ja-tarvikud-salongitarvikud-autoroolid",
     "v4-autovaruosad-ja-tarvikud-valistarvikud-ja-rehvitarvikud",
     "v4-autovaruosad-ja-tarvikud-valistarvikud-jeep-maasturi-valisosad",
