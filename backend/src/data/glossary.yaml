@@ -1,0 +1,972 @@
+# glossary.yaml — EN → ET tõlke-glossary (SSoT, HARD RULE #5)
+#
+# EESMÄRK: ühtne terminoloogia sisu-/tõlke-generaatorile. Üks EN-termin =
+# üks kanooniline ET-vaste (hiljem RU/DE). Generaator LOEB seda; glossary EI ole
+# per-toote transform, vaid viide-SSoT, mille vastu generaatori väljundit kontrollitakse.
+#
+# STRUKTUUR (üks EN-SSoT, N sihtkeelt — RU/DE = uus võti samale reale):
+#   - en:      lähtemõiste (kanooniline vorm)
+#     et:      eesti vaste (lukus)
+#     freq:    tootearv (title+desc+sp+rich, korpus ~17446) — prioriteet
+#     cluster: tööriistad | tehniline | materjalid | ühikud | turundus
+#     status:  locked (lukus, kasuta) | review (ootab otsust)
+#     aliases: [valikuline] muud EN-kirjapildid, mis mappivad samale et-vastele
+#
+# JÕUSTUS: generaatori väljundil glossary-adherence kontroll (kanoonilised terminid
+# kasutusel? violation → review-bucket/skip, fail-loud). Uue termini tuvastus →
+# propose-not-create review-bucket, MITTE auto-lisa.
+#
+# ⚠️ MATCH-JÄRJEKORD = LONGEST-MATCH-FIRST (kohustuslik): mitmesõnaline fraas ENNE
+#    lühemat. Nt "hardware mounting" → kruvikinnitus PEAB matchima enne "hardware"
+#    → tarvikud, muidu spetsiifiline fraas lipsab üldreegli alla. Sama "steam room
+#    generator" vs "steam generator" jne. Adherence-kontroll sordib EN pikkuse järgi kahanevalt.
+#
+# STATUS: locked = otsustatud + rakendub (sagedus > 0). defer = vaste otsustatud, aga
+#    sagedus 0 (ükski praegune toode ei kasuta) → aktiveerub, kui feed toob sellise toote.
+#
+# Allikas: ai-translation-trial/glossary-v1-review.md (2026-06-13 Opus judge-pass, 186 kand.)
+# Batch 1 lukustatud 2026-08-24 (Tarmo otsused, kõrgeim sagedus).
+
+terms:
+  # ── Batch 1 · kõrgeim sagedus · LUKUS 2026-08-24 ──────────────────────────
+  - en: "RV"
+    et: "matkaauto"
+    freq: 5957
+    cluster: turundus
+    status: locked
+  - en: "Carbon Steel"
+    et: "süsinikteras"
+    freq: 1887
+    cluster: materjalid
+    status: locked
+  - en: "rust-resistant"
+    et: "roostekindel"
+    freq: 1401
+    cluster: tehniline
+    status: locked
+  - en: "storage space"
+    et: "hoiuruum"
+    freq: 1213
+    cluster: tehniline
+    status: locked
+  - en: "foam"
+    et: "vahtmaterjal"
+    freq: 1174
+    cluster: materjalid
+    status: locked
+  - en: "corrosion resistance"
+    et: "korrosioonikindlus"
+    freq: 1121
+    cluster: tehniline
+    status: locked
+  - en: "Multi-Functional"
+    et: "multifunktsionaalne"
+    freq: 810
+    cluster: tehniline
+    status: locked
+  - en: "food-grade"
+    et: "toidukõlblik"
+    freq: 668
+    cluster: materjalid
+    status: locked
+    aliases: ["Food Grade Material", "food grade"]   # dedup: 3 rida → üks vaste
+  - en: "powder coating"
+    et: "pulberkate"
+    freq: 577
+    cluster: materjalid
+    status: locked   # tegevusena "pulberkatmine" eraldi, kui vaja
+  - en: "all-in-one"
+    et: "kõik-ühes"
+    freq: 433
+    cluster: turundus
+    status: locked
+  - en: "Plumbing"
+    et: "torustik"
+    freq: 300
+    cluster: tehniline
+    status: locked
+  - en: "car trunk"
+    et: "auto pagasiruum"
+    freq: 294
+    cluster: tehniline
+    status: locked
+  - en: "tensile strength"
+    et: "tõmbetugevus"
+    freq: 263
+    cluster: ühikud
+    status: locked
+  - en: "Humanized Design"
+    et: "kasutajasõbralik disain"
+    freq: 247
+    cluster: turundus
+    status: locked
+  - en: "skin-friendly"
+    et: "nahasõbralik"
+    freq: 229
+    cluster: turundus
+    status: locked
+  - en: "Portable Handle"
+    et: "kandekäepide"
+    freq: 220
+    cluster: tehniline
+    status: locked   # "portable" kirjeldab toodet, käepide = kandmiseks
+  - en: "Particle Board"
+    et: "puitlaastplaat"
+    freq: 210
+    cluster: materjalid
+    status: locked
+  - en: "Water Pump"
+    et: "veepump"
+    freq: 200
+    cluster: tööriistad
+    status: locked
+  - en: "resolution"
+    et: "eraldusvõime"
+    freq: 195
+    cluster: ühikud
+    status: locked   # ekraani/kaamera kontekst, ET e-poodide levinum (Hansapost/Kaup24)
+
+  # ── Batch 2 · sagedus ~50–336 · LUKUS 2026-08-24 ─────────────────────────
+  - en: "toughness"
+    et: "vastupidavus"
+    freq: 336
+    cluster: ühikud
+    status: locked
+  - en: "Spray Paint"
+    et: "pihustusvärv"
+    freq: 154
+    cluster: tehniline
+    status: locked
+  - en: "steel cable"
+    et: "terastross"
+    freq: 154
+    cluster: materjalid
+    status: locked
+  - en: "steel wire rope"
+    et: "terastross"
+    freq: 68
+    cluster: materjalid
+    status: locked   # dedup: sama vaste mis "steel cable" (2 EN → 1 ET)
+  - en: "breaking strength"
+    et: "purustuskoormus"
+    freq: 153
+    cluster: ühikud
+    status: locked   # materjalitehnika standard (mitte purunemiskoormus)
+  - en: "base plate"
+    et: "alusplaat"
+    freq: 136
+    cluster: tööriistad
+    status: locked   # masina jalus = alusplaat; ehituslik kontekst = "alustald" (harv)
+  - en: "mounting bracket"
+    et: "paigaldusklamber"
+    freq: 134
+    cluster: tehniline
+    status: locked
+  - en: "Self-Cleaning"
+    et: "isepuhastuv"
+    freq: 128
+    cluster: tehniline
+    status: locked
+  - en: "Repair Kit"
+    et: "remondikomplekt"
+    freq: 122
+    cluster: tehniline
+    status: locked
+  - en: "rubber grip"
+    et: "kummikäepide"
+    freq: 116
+    cluster: materjalid
+    status: locked
+  - en: "thermal conductivity"
+    et: "soojusjuhtivus"
+    freq: 109
+    cluster: tehniline
+    status: locked
+  - en: "stroller"
+    et: "lapsevanker"
+    freq: 101
+    cluster: tehniline
+    status: locked
+  - en: "cuffs"
+    et: "mansetid"
+    freq: 101
+    cluster: tehniline
+    status: locked   # rõivas (varruka-) = mansetid; meditsiin (vererõhu-) = "manseti"
+  - en: "Engraving Machine"
+    et: "graveerimismasin"
+    freq: 85
+    cluster: tööriistad
+    status: locked
+  - en: "premium metal"
+    et: "kvaliteetne metall"
+    freq: 82
+    cluster: turundus
+    status: locked
+  - en: "golf cart"
+    et: "golfiauto"
+    freq: 81
+    cluster: tehniline
+    status: locked   # ride-on; pushitav = "golfikäru"
+  - en: "Cable Railing"
+    et: "kaabelpiire"
+    freq: 69
+    cluster: tehniline
+    status: locked
+  - en: "exhaust valve"
+    et: "väljalaskeklapp"
+    freq: 64
+    cluster: tehniline
+    status: locked
+  - en: "pressure relief valve"
+    et: "rõhu leevendusklapp"
+    freq: 61
+    cluster: tööriistad
+    status: locked
+  - en: "tube wall"
+    et: "toru sein"
+    freq: 59
+    cluster: tööriistad
+    status: locked
+  - en: "Copper Coil"
+    et: "vaskspiraal"
+    freq: 58
+    cluster: tehniline
+    status: locked
+  - en: "essential oil"
+    et: "eeterlik õli"
+    freq: 58
+    cluster: tehniline
+    status: locked
+  - en: "funnel"
+    et: "lehter"
+    freq: 58
+    cluster: tehniline
+    status: locked
+  - en: "sling"
+    et: "tropp"
+    freq: 58
+    cluster: tehniline
+    status: locked   # tõste-rigging; NB topelt-p (mitte "trop")
+  - en: "electric winch"
+    et: "elektriline vints"
+    freq: 57
+    cluster: tööriistad
+    status: locked
+  - en: "fruit wine"
+    et: "puuviljavein"
+    freq: 55
+    cluster: tehniline
+    status: locked
+  - en: "Diesel Air Heater"
+    et: "diisli õhukütteseade"
+    freq: 54
+    cluster: tööriistad
+    status: locked
+  - en: "mild steel"
+    et: "pehme teras"
+    freq: 53
+    cluster: materjalid
+    status: locked
+  - en: "Baby Gate"
+    et: "turvavärav"
+    freq: 51
+    cluster: tööriistad
+    status: locked   # katab laste + lemmiklooma kasutuse; "Dog Gate" = sama termin (variant)
+  - en: "electric hoist"
+    et: "elektriline tõstuk"
+    freq: 50
+    cluster: tööriistad
+    status: locked
+  - en: "Hardware"
+    et: "tarvikud"
+    freq: 955
+    cluster: tehniline
+    status: locked   # lai vaste; mounting-kontekstis täpsem "kinnitusdetailid"
+  - en: "Iron Frame"
+    et: "metallraam"
+    freq: 138
+    cluster: materjalid
+    status: locked   # "raudraam" arhailine; enamik "iron frame" tegelikult teras
+  - en: "sheet metal"
+    et: "lehtmetall"
+    freq: 129
+    cluster: materjalid
+    status: locked   # "plekk" = kõnekeelne
+
+  # ── Kobar A · Tööriista-/tootetüübid (saba <50) · LUKUS 2026-08-24 ────────
+  - en: "Dog Gate"
+    et: "turvavärav"
+    freq: 42
+    cluster: tööriistad
+    status: locked   # sama termin mis "Baby Gate" (variant, mitte eraldi)
+  - en: "Angle Grinder"
+    et: "nurklihvija"
+    freq: 42
+    cluster: tööriistad
+    status: locked
+  - en: "Allen wrench"
+    et: "sisekuuskantvõti"
+    freq: 38
+    cluster: tööriistad
+    status: locked
+  - en: "Blender"
+    et: "blender"
+    freq: 34
+    cluster: tööriistad
+    status: locked
+  - en: "Heat Pump"
+    et: "soojuspump"
+    freq: 30
+    cluster: tööriistad
+    status: locked
+  - en: "Rocker Plate"
+    et: "kiikplaat"
+    freq: 15
+    cluster: tööriistad
+    status: locked
+  - en: "flathead screwdriver"
+    et: "lamepeaga kruvikeeraja"
+    freq: 14
+    cluster: tööriistad
+    status: locked
+  - en: "electric hoist winch"
+    et: "elektriline tõstukvints"
+    freq: 14
+    cluster: tööriistad
+    status: locked
+  - en: "pressure mount"
+    et: "survekinnitus"
+    freq: 13
+    cluster: tööriistad
+    status: locked
+  - en: "Pitcher Pump"
+    et: "kannukujuline pump"
+    freq: 13
+    cluster: tööriistad
+    status: locked
+  - en: "Raffle Drum"
+    et: "loositrummel"
+    freq: 11
+    cluster: tööriistad
+    status: locked
+  - en: "Spinning Cage"
+    et: "loosipuur"
+    freq: 11
+    cluster: tööriistad
+    status: locked
+  - en: "Power Winch"
+    et: "vints"
+    freq: 11
+    cluster: tööriistad
+    status: locked
+  - en: "Kneeling Chair"
+    et: "põlvitustool"
+    freq: 10
+    cluster: tööriistad
+    status: locked
+  - en: "gas hedge trimmer"
+    et: "bensiinimootoriga hekitrimmer"
+    freq: 8
+    cluster: tööriistad
+    status: locked
+  - en: "Fryer Grease Bucket"
+    et: "fritüüri rasvaämber"
+    freq: 8
+    cluster: tööriistad
+    status: locked
+  - en: "Oil Disposal Caddy"
+    et: "õlikogumiskäru"
+    freq: 8
+    cluster: tööriistad
+    status: locked
+  - en: "Shearing Stand"
+    et: "pügamisstatiiv"
+    freq: 7
+    cluster: tööriistad
+    status: locked
+  - en: "Livestock Stand"
+    et: "loomastatiiv"
+    freq: 7
+    cluster: tööriistad
+    status: locked
+  - en: "Countertop Blender"
+    et: "lauablender"
+    freq: 5
+    cluster: tööriistad
+    status: locked
+  - en: "Raffle Ticket Spinner"
+    et: "loosipiletite ketraja"
+    freq: 5
+    cluster: tööriistad
+    status: locked
+  - en: "Nail Tool"
+    et: "küünetööriist"
+    freq: 5
+    cluster: tööriistad
+    status: locked   # ainsus
+  - en: "Steam Generator"
+    et: "aurugeneraator"
+    freq: 4
+    cluster: tööriistad
+    status: locked
+  - en: "Office Stool"
+    et: "kontoritool"
+    freq: 4
+    cluster: tööriistad
+    status: locked
+  - en: "grass trimmer line"
+    et: "murutrimmeri jõhv"
+    freq: 3
+    cluster: tööriistad
+    status: locked
+  - en: "Steam Room Generator"
+    et: "aururuumi generaator"
+    freq: 2
+    cluster: tööriistad
+    status: locked
+  - en: "Shrinker Stretcher"
+    et: "kokkutõmbaja-venitaja"
+    freq: 1
+    cluster: tööriistad
+    status: locked
+  - en: "Stool Wheels"
+    et: "tooli rattad"
+    freq: 1
+    cluster: tööriistad
+    status: locked
+  - en: "Knee Support Chair"
+    et: "põlvetoega tool"
+    freq: 1
+    cluster: tööriistad
+    status: locked
+  - en: "circulator pump"
+    et: "tsirkulatsioonipump"
+    freq: 0
+    cluster: tööriistad
+    status: defer
+    aliases: ["circulation pump", "recirculating pump"]   # 3 EN → 1 ET
+
+  # ── Kobar B · Tehnilised (saba <50) · LUKUS 2026-08-24 ───────────────────
+  - en: "rolled edges"
+    et: "ümardatud servad"
+    freq: 49
+    cluster: tehniline
+    status: locked
+  - en: "tile floors"
+    et: "plaatpõrandad"
+    freq: 45
+    cluster: tehniline
+    status: locked
+  - en: "anvil"
+    et: "alasi"
+    freq: 42
+    cluster: tehniline
+    status: locked
+  - en: "Beauty Salons"
+    et: "ilusalongid"
+    freq: 41
+    cluster: tehniline
+    status: locked
+  - en: "Linear Guide Rail"
+    et: "lineaarjuhtsiin"
+    freq: 40
+    cluster: tehniline
+    status: locked
+  - en: "limit switch"
+    et: "piirlüliti"
+    freq: 38
+    cluster: tehniline
+    status: locked
+  - en: "Tempered Glass Door"
+    et: "karastatud klaasuks"
+    freq: 37
+    cluster: tehniline
+    status: locked
+  - en: "overcurrent protection"
+    et: "ülevoolukaitse"
+    freq: 34
+    cluster: tehniline
+    status: locked
+  - en: "milkshakes"
+    et: "piimakokteilid"
+    freq: 33
+    cluster: tehniline
+    status: locked
+  - en: "Line Set"
+    et: "torustiku komplekt"
+    freq: 33
+    cluster: tehniline
+    status: locked
+  - en: "drainage mat"
+    et: "drenaažimatt"
+    freq: 32
+    cluster: tehniline
+    status: locked
+  - en: "junction box"
+    et: "klemmikarp"
+    freq: 32
+    cluster: tehniline
+    status: locked
+  - en: "Slide Block"
+    et: "liugurplokk"
+    freq: 32
+    cluster: tehniline
+    status: locked
+  - en: "chafing dish"
+    et: "toidusoojendusalus"
+    freq: 31
+    cluster: tehniline
+    status: locked
+  - en: "fan blade"
+    et: "ventilaatori laba"
+    freq: 30
+    cluster: tehniline
+    status: locked
+  - en: "security latch"
+    et: "turvariiv"
+    freq: 29
+    cluster: tehniline
+    status: locked
+  - en: "Interlocking Drainage Mat"
+    et: "ühenduv drenaažimatt"
+    freq: 28
+    cluster: tehniline
+    status: locked
+  - en: "cargo pants"
+    et: "cargopüksid"
+    freq: 28
+    cluster: tehniline
+    status: locked
+  - en: "drainage floor tile"
+    et: "drenaažipõrandaplaat"
+    freq: 26
+    cluster: tehniline
+    status: locked
+  - en: "jeans"
+    et: "teksad"
+    freq: 26
+    cluster: tehniline
+    status: locked
+  - en: "overvoltage protection"
+    et: "ülepingekaitse"
+    freq: 25
+    cluster: tehniline
+    status: locked
+  - en: "guide bar"
+    et: "juhtlatt"
+    freq: 24
+    cluster: tehniline
+    status: locked
+  - en: "fiberglass support poles"
+    et: "klaaskiust tugipostid"
+    freq: 24
+    cluster: tehniline
+    status: locked
+  - en: "Full Size Pan"
+    et: "täismõõdus anum"
+    freq: 22
+    cluster: tehniline
+    status: locked
+  - en: "Fuel Holder"
+    et: "kütusehoidik"
+    freq: 22
+    cluster: tehniline
+    status: locked
+  - en: "drawings"
+    et: "loosimised"
+    freq: 21
+    cluster: tehniline
+    status: locked   # raffle-kontekst (mitte "joonistused")
+  - en: "Catering Warmer Server"
+    et: "cateringi soojendusserveerija"
+    freq: 20
+    cluster: tehniline
+    status: locked
+  - en: "mixing bottle"
+    et: "segamispudel"
+    freq: 19
+    cluster: tehniline
+    status: locked
+  - en: "locking tabs"
+    et: "lukustussakid"
+    freq: 19
+    cluster: tehniline
+    status: locked
+  - en: "Snap-Together"
+    et: "klõpsuga kokkupandav"
+    freq: 19
+    cluster: tehniline
+    status: locked
+  - en: "Food Processor"
+    et: "toiduprotsessor"
+    freq: 19
+    cluster: tehniline
+    status: locked
+  - en: "lead-acid battery"
+    et: "pliihappeaku"
+    freq: 19
+    cluster: tehniline
+    status: locked
+  - en: "pullover hoodie"
+    et: "kapuutsiga pusa"
+    freq: 18
+    cluster: tehniline
+    status: locked
+  - en: "Ping Pong Balls"
+    et: "lauatennise pallid"
+    freq: 17
+    cluster: tehniline
+    status: locked
+  - en: "with posts"
+    et: "postidega"
+    freq: 15
+    cluster: tehniline
+    status: locked
+  - en: "drains quickly"
+    et: "juhib vee kiiresti ära"
+    freq: 13
+    cluster: tehniline
+    status: locked
+  - en: "joggers"
+    et: "dressipüksid"
+    freq: 12
+    cluster: tehniline
+    status: locked
+  - en: "kangaroo pocket"
+    et: "kängurutasku"
+    freq: 12
+    cluster: tehniline
+    status: locked   # kokku
+  - en: "raffle ticket"
+    et: "loosipilet"
+    freq: 11
+    cluster: tehniline
+    status: locked
+  - en: "Copper Lines"
+    et: "vasktorud"
+    freq: 11
+    cluster: tehniline
+    status: locked
+  - en: "lifting hook"
+    et: "tõstekonks"
+    freq: 11
+    cluster: tehniline
+    status: locked
+  - en: "Boiler Barrel"
+    et: "katlavaat"
+    freq: 11
+    cluster: tehniline
+    status: locked
+  - en: "Binder Chain"
+    et: "pingutuskett"
+    freq: 10
+    cluster: tehniline
+    status: locked
+  - en: "double-spike stakes"
+    et: "kahe teravikuga vaiad"
+    freq: 10
+    cluster: tehniline
+    status: locked
+  - en: "Strapping Tape"
+    et: "kinnituslint"
+    freq: 9
+    cluster: tehniline
+    status: locked
+  - en: "Flared Nuts"
+    et: "äärikmutrid"
+    freq: 9
+    cluster: tehniline
+    status: locked
+  - en: "suction line"
+    et: "imiliin"
+    freq: 9
+    cluster: tehniline
+    status: locked
+  - en: "lint roller"
+    et: "ebemerull"
+    freq: 9
+    cluster: tehniline
+    status: locked
+  - en: "tea gardens"
+    et: "teeistandused"
+    freq: 8
+    cluster: tehniline
+    status: locked
+  - en: "Lock Clips"
+    et: "lukustusklambrid"
+    freq: 8
+    cluster: tehniline
+    status: locked
+  - en: "hot pot restaurants"
+    et: "hot pot -restoranid"
+    freq: 8
+    cluster: tehniline
+    status: locked
+  - en: "hardware mounting"
+    et: "kruvikinnitus"
+    freq: 7
+    cluster: tehniline
+    status: locked   # LONGEST-MATCH enne "hardware" → tarvikud
+  - en: "integrated molding process"
+    et: "integreeritud vormimisprotsess"
+    freq: 7
+    cluster: tehniline
+    status: locked
+  - en: "cup body"
+    et: "karikakere"
+    freq: 6
+    cluster: tehniline
+    status: locked
+  - en: "Swage Tensioner"
+    et: "pressitav pingutaja"
+    freq: 5
+    cluster: tehniline
+    status: locked
+  - en: "different connection systems"
+    et: "erinevad ühendussüsteemid"
+    freq: 5
+    cluster: tehniline
+    status: locked
+  - en: "snap ring connector"
+    et: "klamberrõnga ühendus"
+    freq: 5
+    cluster: tehniline
+    status: locked
+  - en: "hoof trimming"
+    et: "sõrgade trimmimine"
+    freq: 5
+    cluster: tehniline
+    status: locked
+  - en: "shop equipment"
+    et: "töökoja seadmed"
+    freq: 5
+    cluster: tehniline
+    status: locked
+  - en: "resistant to falls"
+    et: "kukkumiskindel"
+    freq: 4
+    cluster: tehniline
+    status: locked
+  - en: "Clamping Washers"
+    et: "kinnitusseibid"
+    freq: 4
+    cluster: tehniline
+    status: locked
+  - en: "Dust Shroud"
+    et: "tolmukate"
+    freq: 4
+    cluster: tehniline
+    status: locked
+  - en: "angled washers"
+    et: "nurkseibid"
+    freq: 4
+    cluster: tehniline
+    status: locked
+  - en: "Steam Shower"
+    et: "auruduši"
+    freq: 4
+    cluster: tehniline
+    status: locked
+  - en: "Swage Stud End"
+    et: "pressitav tihvtots"
+    freq: 3
+    cluster: tehniline
+    status: locked
+  - en: "Glow Plug"
+    et: "hõõgküünal"
+    freq: 3
+    cluster: tehniline
+    status: locked
+  - en: "electric pruners"
+    et: "elektrilised oksalõikurid"
+    freq: 3
+    cluster: tehniline
+    status: locked
+  - en: "ride-on vehicles"
+    et: "pealistutavad sõidukid"
+    freq: 3
+    cluster: tehniline
+    status: locked
+  - en: "trickle charging maintainer"
+    et: "hooldav tilklaadija"
+    freq: 3
+    cluster: tehniline
+    status: locked
+  - en: "kyphosis"
+    et: "küfoos"
+    freq: 3
+    cluster: tehniline
+    status: locked
+  - en: "Glow Ignition Plug"
+    et: "hõõgsüüteküünal"
+    freq: 2
+    cluster: tehniline
+    status: locked
+  - en: "Atomization Mesh"
+    et: "pihustusvõrk"
+    freq: 2
+    cluster: tehniline
+    status: locked
+  - en: "check the power"
+    et: "kontrollige toidet"
+    freq: 2
+    cluster: tehniline
+    status: locked
+  - en: "Clevis Snap Hook"
+    et: "klevis-haakkonks"
+    freq: 1
+    cluster: tehniline
+    status: locked
+  - en: "connection arm"
+    et: "ühendusõlg"
+    freq: 1
+    cluster: tehniline
+    status: locked
+  - en: "uncooperative"
+    et: "koostöövõimetu"
+    freq: 1
+    cluster: tehniline
+    status: locked
+  - en: "hardened jaws"
+    et: "karastatud lõuad"
+    freq: 1
+    cluster: tehniline
+    status: locked
+  - en: "hand-operated lever"
+    et: "käsitsi käitatav hoob"
+    freq: 1
+    cluster: tehniline
+    status: locked
+  - en: "relief cuts"
+    et: "vabastuslõiked"
+    freq: 1
+    cluster: tehniline
+    status: locked
+  - en: "hammer-forming"
+    et: "haamervormimine"
+    freq: 1
+    cluster: tehniline
+    status: locked
+  - en: "Storage Bins/Crates"
+    et: "hoiukastid"
+    freq: 0
+    cluster: tehniline
+    status: defer
+  - en: "Caster Base"
+    et: "rullikutega alus"
+    freq: 0
+    cluster: tehniline
+    status: defer
+    aliases: ["casters"]
+  - en: "Radiant Floor"
+    et: "põrandaküte"
+    freq: 0
+    cluster: tehniline
+    status: defer
+    aliases: ["Radiant Heat"]
+  - en: "Guy Ropes"
+    et: "toetrossid"
+    freq: 0
+    cluster: tehniline
+    status: defer
+    aliases: ["guy lines"]
+  - en: "Nose Loop"
+    et: "ninarõngas"
+    freq: 0
+    cluster: tehniline
+    status: defer
+    aliases: ["Nose Ring Chain"]   # "Nose Ring Chain" → ninarõnga kett
+  - en: "scale (limescale)"
+    et: "katlakivi"
+    freq: 0
+    cluster: tehniline
+    status: defer
+
+  # ── Kobar C · Materjalid / Ühikud / Turundus (saba <50) · LUKUS 2026-08-24 ─
+  - en: "P2 CARB board"
+    et: "P2 CARB plaat"
+    freq: 8
+    cluster: materjalid
+    status: locked
+  - en: "silicon nitride"
+    et: "räninitriid"
+    freq: 3
+    cluster: materjalid
+    status: locked
+  - en: "high-hardness carbon steel shafts"
+    et: "kõrge kõvadusega süsinikterasvõllid"
+    freq: 3
+    cluster: materjalid
+    status: locked
+  - en: "measuring range"
+    et: "mõõtevahemik"
+    freq: 41
+    cluster: ühikud
+    status: locked
+  - en: "Safe Working Load"
+    et: "ohutu töökoormus"
+    freq: 35
+    cluster: ühikud
+    status: locked
+  - en: "straightness"
+    et: "sirgus"
+    freq: 27
+    cluster: ühikud
+    status: locked
+  - en: "unit conversion"
+    et: "ühikute teisendus"
+    freq: 25
+    cluster: ühikud
+    status: locked
+  - en: "throat depth"
+    et: "kurgu sügavus"
+    freq: 20
+    cluster: ühikud
+    status: locked
+  - en: "Adjustable Cutting Depth"
+    et: "reguleeritav lõikesügavus"
+    freq: 11
+    cluster: ühikud
+    status: locked
+  - en: "DOT Standard Compliant"
+    et: "DOT-standardile vastav"
+    freq: 6
+    cluster: ühikud
+    status: locked
+  - en: "security factor"
+    et: "ohutustegur"
+    freq: 0
+    cluster: ühikud
+    status: defer
+    aliases: ["safety factor"]
+  - en: "Bar Spacing"
+    et: "lativahe"
+    freq: 0
+    cluster: ühikud
+    status: defer
+    aliases: ["rail spacing"]
+  - en: "Aerospace-Grade"
+    et: "lennundusklassi"
+    freq: 26
+    cluster: turundus
+    status: locked
+  - en: "Thoughtful Tool"
+    et: "läbimõeldud tööriist"
+    freq: 20
+    cluster: turundus
+    status: locked
+  - en: "Hand-Friendly Design"
+    et: "kätesõbralik disain"
+    freq: 11
+    cluster: turundus
+    status: locked
+  - en: "Operational Safety"
+    et: "tööohutus"
+    freq: 9
+    cluster: turundus
+    status: locked
+  - en: "game changer"
+    et: "murranguline"
+    freq: 3
+    cluster: turundus
+    status: locked
