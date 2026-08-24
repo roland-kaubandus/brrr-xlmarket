@@ -1,0 +1,36 @@
+{
+ "l3": "v4-moobel-ja-sisustus-lapsemoobel-laste-laua-ja-toolikomplektid",
+ "name": "Laste laua- ja toolikomplektid",
+ "fields": [
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "sihtgrupp_vanus",
+   "label_et": "Sihtrühm (vanus)",
+   "unit": "aastad"
+  },
+  {
+   "key": "laua_korgus_reguleeritav",
+   "label_et": "Laua kõrgus reguleeritav",
+   "unit": ""
+  },
+  {
+   "key": "toolide_arv",
+   "label_et": "Toolide arv komplektis",
+   "unit": "tk"
+  },
+  {
+   "key": "lisafunktsioonid",
+   "label_et": "Lisafunktsioonid",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  }
+ ]
+}
