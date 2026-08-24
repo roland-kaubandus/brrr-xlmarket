@@ -40,6 +40,32 @@ kui taxonomy-v4 SHA sisaldab fix'i.**
 
 ---
 
+## 🛑 HARD RULE #5 — IGA SISU-TÖÖ = BACKFILL + HOOK (mõlemad kohustuslikud)
+
+> Lisatud 2026-08-24 (Tarmo strateegiline, VEVOR-title-stripi järel).
+
+**Ükski sisu-transform (title-strip · glossary · sisu-generaator · sünonüümid · tõlge · tulevased RU/brändid) ei ole valmis ainult backfilliga.** Iga selline töö = KAKS osa:
+
+1. **BACKFILL** — olemasolevad tooted, ühekordne (**kogu korpus**, ~18k).
+2. **HOOK** — uus toode läbib SAMA transformi automaatselt öises `import-pipeline.sh`-s.
+
+**Why:** backfill ilma hookita → uued öised tooted kogunevad toorena (vale nimi/keel/SEO) → **vaikne kvaliteedi-lagunemine**. *Tõestatud 2026-08-24: VEVOR-strip backfill (18278) tehtud, hook puudus → iga öine toode oleks tulnud "VEVOR"-prefiksiga sisse.*
+
+**Kuidas (muster — üks transform, kaks kutsujat):** kirjuta transform-funktsioon **ÜKS kord** → kutsu (a) backfill-runnerist ja (b) pipeline-sammust. Sama kood → backfill ja hook ei lahkne kunagi.
+
+- **🔑 HOOK TÖÖTAB DELTA PEAL:** pipeline-hook töötab **AINULT äsja-puudutatud SKU-de nimekirja peal** (öine delta ~100 toodet), **MITTE kogu 18k uuesti**. Backfill-runner = kogu korpus üks kord. **Sama transform, eri sisend** (delta vs täis-korpus). *(Iga pipeline-samm väljastab juba puudutatud-SKU nimekirja — hook võtab sama, nagu [6] spec loeb `/tmp/classify-skus.txt`.)*
+
+- **🔊 FAIL-LOUD kohustuslik igal hookil:** kui sisu-transform kukub (API-viga, glossary-miss, tõlke-timeout), samm annab `exit != 0` → **Telegram**, täpselt nagu [4]–[7]. **Uus toode EI tohi vaikselt toore sisuga läbi lipsata.**
+  - **Kukkumis-granulaarsus — otsusta transform-põhiselt:** üksik toode kukub → **skip + jätka** (nagu B-fix), **ÄRA peata kogu pipeline'i ühe title/kirjelduse pärast**. Telegram raporteerib skipitud-SKU-de arvu (review-bucketi kõrvale). Pipeline peatub AINULT süsteemse vea korral (API täiesti maas, kogu partii kukub).
+
+**Asukoht:** sisu-transform, mis mõjutab klassifikatsiooni/paigutust (nt title-strip), läheb **peale [3] import-new, ENNE [4] classify** — muidu klassifikaator loeb toore sisendi. Sisu/keel-transformid (glossary, generaator) peale seda; sünonüümid [7] reindeksi juures.
+
+**🌍 MULTI-FEED (KRIITILINE, osa hooki ehitusest — MITTE hiljem):** title-strip [3.5] ja iga bränd-sõltuv hook peab olema **bränd-teadlik `deriveBrandSlug` SSoT kaudu**, **MITTE VEVOR-hardcode**. Powermat/KraftDele/BlackTools prefiks erineb (per-bränd muster). Üks bränd-tuvastus-SSoT (sama, mis juba Meili `brand_name` + `JsonLdProduct` kasutavad) → kõik feedid läbivad sama masina.
+
+**Kontroll (iga uue sisu-töö ülevaates näita MÕLEMAT):** "backfill: X toodet" JA "hook: pipeline samm [N], delta-peal, per-bränd, fail-loud". **Ainult backfill = pooleli, MITTE valmis.**
+
+---
+
 ## Sessioon 2026-05-02 muudatused (hommikune pool)
 
 **Sessioonilogi:** `xlmarket/memory/sessions/2026-05-02-xl.md`
