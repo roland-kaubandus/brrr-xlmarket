@@ -5,6 +5,7 @@
 #   [1] cache-refresh      — download + build-cache + stamp + churn/OOS   (KONTEINER: refresh-feed-cache.sh)
 #   [2] (osa [1]-st: stock/churn→OOS + reindeks juba refresh'is)
 #   [3] IMPORT-NEW         — AINULT uued SKU-d → draft, KATEGOORIATA        (⚠️ OTSUS — vt allpool)
+#   [3.5] TITLE-STRIP      — brändi-prefiks maha (delta) ENNE classify      (HOST: pipeline-strip-titles.mjs)
 #   [4] CLASSIFY           — Opus propose-not-create, olemas-L3 auto        (HOST: pipeline-classify.mjs)
 #   [5] PRICE              — computeRetail; HIND=ainus SSoT-erand           (HOST: pipeline-reprice.mjs)
 #   [6] SPEC               — Haiku spec-ekstrakt L3-mallist                 (HOST: spec-extract-skus.mjs)
@@ -103,6 +104,25 @@ else
   else
     echo "  [DRY] 0 uut SKU-d → import vahele"
   fi
+fi
+
+# ── [3.5] TITLE-STRIP (HARD RULE #5 hook): brändi-prefiks maha ENNE classify ──
+# Uus draft [3] tuleb feed'ist toore "VEVOR …" title'iga; classify [4] LOEB title'it → strip ENNE.
+# BRÄND-TEADLIK (deriveBrandSlug SSoT, mitte VEVOR-hardcode). Töötab AINULT delta (/tmp/pl-new-skus.txt,
+# variant.sku järgi), idempotentne (topelt-strip võimatu), handle EI muutu. FAIL-LOUD: süsteemne→exit!=0;
+# üksik katkine title (E1) → skip+logi, EI peata. Backfill = sama skript --all (scripts/pipeline-strip-titles.mjs).
+echo "[3.5/7] title-strip (brändi-prefiks, delta)"
+STRIP_SKIP_N=0
+if [ "$NEW_N" -gt 0 ] && [ -s /tmp/pl-new-skus.txt ]; then
+  STRIP_OUT=$(node "$ROOT/scripts/pipeline-strip-titles.mjs" --skus /tmp/pl-new-skus.txt $([ "$EXECUTE" = "1" ] && echo --execute || echo --dry) 2>&1) \
+    || { echo "$STRIP_OUT"; fail "title-strip" "pipeline-strip-titles.mjs rc!=0 (SÜSTEEMNE)"; }
+  echo "$STRIP_OUT" | sed 's/^/  /'
+  STRIP_SKIP_N=$(printf '%s' "$STRIP_OUT" | grep -oE 'SKIPPED=[0-9]+' | tail -1 | grep -oE '[0-9]+' || echo 0)
+  # E1-tüüpi skip (katkine tootenimi) = nähtav käsitsi-parandusse, EI peata pipeline'i (HARD RULE #5).
+  [ "$EXECUTE" = "1" ] && [ "${STRIP_SKIP_N:-0}" -gt 0 ] \
+    && slack "⚠️ XLM import: ${STRIP_SKIP_N} title strip-skip (katkine tootenimi) → reports/title-parandus-nimekiri.md"
+else
+  echo "  0 uut SKU-d → strip vahele"
 fi
 
 # ── [4] CLASSIFY (host, propose-not-create) ──────────────────────────────────
