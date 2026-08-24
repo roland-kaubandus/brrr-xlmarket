@@ -4030,6 +4030,10 @@ l1:
             name_en: "Võidusõiduistmed"
             name_et: "Võidusõiduistmed"
             product_count: 0
+          - slug: v4-autovaruosad-ja-tarvikud-salongitarvikud-auto-konsoolid-ja-hoiukastid
+            name_en: "Auto konsoolid ja hoiukastid"
+            name_et: "Auto konsoolid ja hoiukastid"
+            product_count: 0
           - slug: v4-autovaruosad-ja-tarvikud-salongitarvikud-autoroolid
             name_en: "Autoroolid"
             name_et: "Autoroolid"
