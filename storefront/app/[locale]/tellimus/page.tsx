@@ -201,7 +201,13 @@ export default function CheckoutPage() {
 
       if (!paymentRes.ok) {
         posthog.capture("checkout_failed", { step: "payment", cart_id: cart.id })
-        setError(locale === "et" ? "Makse ettevalmistus ebaõnnestus" : "Failed to prepare payment")
+        // Selge + rahustav: see samm on ENNE panka-suunamist (payment prepare,
+        // /api/cart/payment loob AINULT makse-kollektsiooni + sessiooni, EI liiguta
+        // raha) → "raha EI võetud" on korrektne. Korv säilib (localStorage.removeItem
+        // ainult õnnestumisel) → klient saab kohe uuesti proovida.
+        setError(locale === "et"
+          ? "Makset EI algatatud — sinu kontolt ei võetud raha. Palun proovi uuesti mõne minuti pärast või vali teine makseviis."
+          : "Payment was not started — no money was taken from your account. Please try again in a few minutes or choose another payment method.")
         setSubmitting(false)
         return
       }
