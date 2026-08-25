@@ -21,6 +21,11 @@
 //   Vaikimisi = --dry (loeb + klassifitseerib + raport, EI kirjuta DB-sse).
 import { execSync } from "node:child_process";
 import fs from "node:fs";
+import { isCreditError } from "./lib/credit-guard.mjs";
+
+// Mid-run krediidi-tõrge (probe läbis, aga krediit sai OTSA jooksu ajal) → DEGRADE (exit 3),
+// MITTE fail. Orkestraator [4] näeb rc=3 → tühjendab classify-skus.txt → [6]/[6.5] skibivad → laoseis JÄTKUB.
+let CREDIT_HIT = false;
 
 const KEY = process.env.ANTHROPIC_API_KEY;
 if (!KEY) { console.error("ANTHROPIC_API_KEY puudub (set -a; . /opt/eumotors-tasks/.env; set +a)"); process.exit(2); }
@@ -128,7 +133,11 @@ async function call(system, user, maxTok) {
       });
       if (r.status === 429 || r.status >= 500) { await new Promise(x => setTimeout(x, 2000 * (a + 1))); continue; }
       const j = await r.json();
-      if (j.error) { console.error("API err:", JSON.stringify(j.error).slice(0, 160)); await new Promise(x => setTimeout(x, 2000 * (a + 1))); continue; }
+      if (j.error) {
+        // Krediidi-tõrge: EI retry'ta (pointless) — sea DEGRADE-lipp + katkesta kohe (return "").
+        if (isCreditError(JSON.stringify(j.error))) { CREDIT_HIT = true; console.error("💳 KREDIIT maas (mid-run) — DEGRADE"); return ""; }
+        console.error("API err:", JSON.stringify(j.error).slice(0, 160)); await new Promise(x => setTimeout(x, 2000 * (a + 1))); continue;
+      }
       const u = j.usage || {};
       cIn += (u.input_tokens || 0) * PRICE[0] / 1e6; cOut += (u.output_tokens || 0) * PRICE[1] / 1e6;
       cCacheW += (u.cache_creation_input_tokens || 0) * PRICE[0] * 1.25 / 1e6;
@@ -239,7 +248,11 @@ if (reviewItems.length) {
   }
 }
 
-if (DRY) { console.log(`\n[DRY-RUN] EI kirjutatud. Tulemused: ${OUT}`); process.exit(0); }
+if (DRY) {
+  console.log(`\n[DRY-RUN] EI kirjutatud. Tulemused: ${OUT}`);
+  if (CREDIT_HIT) { console.log(`CREDIT_DEGRADE=1\nCREDIT_PENDING=${targets.length}`); process.exit(3); }
+  process.exit(0);
+}
 
 // ============================ EXECUTE ========================================
 // classification_review tabel (idempotentne)
@@ -288,3 +301,13 @@ if (reviews.length) {
   console.log(`✅ REVIEW-BUCKETISSE: ${reviews.length} toodet (INIMENE otsustab; EI paigutatud, EI publitseeritud).`);
 }
 console.log(`\nTulemused: ${OUT}`);
+
+// Mid-run krediidi-tõrge → DEGRADE-signaal orkestraatorile (peale õnnestunud osa kirjutust).
+// Shell [4] näeb rc=3 → tühjendab classify-skus.txt → [6]/[6.5] skibivad → [5]/[7] JÄTKUVAD.
+if (CREDIT_HIT) {
+  const bkq = results.filter(r => r.bucket === "quarantine").length;
+  console.log(`CREDIT_DEGRADE=1`);
+  console.log(`CREDIT_PENDING=${bkq}`);
+  console.error(`💳 KREDIIT-DEGRADE [4]: krediit sai jooksu ajal otsa — ${bkq} toodet ootab klassifikatsiooni (re-run kui krediit tagasi).`);
+  process.exit(3);
+}
