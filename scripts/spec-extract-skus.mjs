@@ -6,6 +6,10 @@
 // Käsk: node spec-extract-skus.mjs --skus <fail> [--concurrency 5] [--dry]
 import { execSync } from "node:child_process"
 import fs from "node:fs"
+import { isCreditError } from "./lib/credit-guard.mjs"
+
+// Mid-run krediidi-tõrge → DEGRADE (exit 3), MITTE fail. Shell [6] näeb rc=3 → laoseis [7] JÄTKUB.
+let CREDIT_HIT = false
 
 const KEY = process.env.ANTHROPIC_API_KEY
 if (!KEY) { console.error("ANTHROPIC_API_KEY puudub"); process.exit(1) }
@@ -53,7 +57,11 @@ const isText = (k) => /maarimine|materjal|protsess|tuup|tyyp|type|kutus/i.test(k
 async function llm(prompt, maxTok) {
   const r = await fetch("https://api.anthropic.com/v1/messages", { method: "POST", headers: { "x-api-key": KEY, "anthropic-version": "2023-06-01", "content-type": "application/json" }, body: JSON.stringify({ model: MODEL, max_tokens: maxTok, messages: [{ role: "user", content: prompt }] }) })
   const j = await r.json()
-  if (!j.content) throw new Error("API " + JSON.stringify(j).slice(0, 120))
+  if (!j.content) {
+    const em = JSON.stringify(j).slice(0, 200)
+    if (isCreditError(em)) { CREDIT_HIT = true }  // krediit → märgi degrade, throw allpool skibitakse
+    throw new Error("API " + em.slice(0, 120))
+  }
   return { txt: j.content.map(c => c.text || "").join(""), usage: j.usage }
 }
 const parseJson = (t) => { const m = t.match(/\{[\s\S]*\}/); return m ? JSON.parse(m[0]) : {} }
@@ -83,6 +91,7 @@ console.log(`SKU sisend: ${SKUS.length} | L3 ekstraktimiseks: ${l3s.length} | to
 let doneP = 0, specced = 0, empty = 0, fails = 0, inTok = 0, outTok = 0, derived = 0
 const newMalls = [], anomalies = []
 for (const l3 of l3s) {
+  if (CREDIT_HIT) break  // krediit sai otsa → lõpeta graatsiliselt (jäänud tooted jäävad specs IS NULL → re-run)
   const regPath = new URL(`${l3}.json`, REG_DIR)
   let mall, source
   if (fs.existsSync(regPath)) { mall = JSON.parse(fs.readFileSync(regPath, "utf8")); source = "cache" }
@@ -96,7 +105,10 @@ ${VOCAB}
 Vali 4-8 KÕIGE võrreldavamat välja. Eelista jagatud sõnavara võtmeid.
 
 TOOTED:\n${sample}`
-    const mr = await llm(mallPrompt, 600); inTok += mr.usage.input_tokens; outTok += mr.usage.output_tokens
+    let mr
+    try { mr = await llm(mallPrompt, 600) }
+    catch (e) { if (CREDIT_HIT) break; anomalies.push(`${l3}: mall-tuletus fail ${String(e.message).slice(0, 60)}`); continue }
+    inTok += mr.usage.input_tokens; outTok += mr.usage.output_tokens
     mall = parseJson(mr.txt); source = "tuletatud"
     let guardFixes = 0
     for (const f of (mall.fields || [])) { const g = UNIT_GUARD[f.key]; if (g && f.unit !== g) { f.unit_orig = f.unit; f.unit = g; guardFixes++ } }
@@ -128,3 +140,13 @@ const cost = inTok / 1e6 + outTok / 1e6 * 5
 fs.writeFileSync("/tmp/spec-extract-956-anomalies.txt", anomalies.join("\n"))
 console.log(`\nVALMIS${DRY ? " [DRY]" : ""}: tooteid ${doneP} | specced ${specced} | tühi ${empty} | fail ${fails} | uusi malle ${derived} | kate ${totalP ? (specced / totalP * 100).toFixed(1) : 0}% | kulu $${cost.toFixed(2)}`)
 if (newMalls.length) { console.log("\nUUED MALLID:"); for (const m of newMalls) console.log(`  ${m.name}: ${m.fields.join(" · ")}${m.guardFixes ? ` [guard ${m.guardFixes}]` : ""}`) }
+
+// KREDIIT-DEGRADE (exit 3): krediit sai jooksu ajal otsa → EI ole "fail". Juba-specced tooted salvestatud;
+// jäänud (specs IS NULL) ootavad re-run'i. Shell [6] näeb rc=3 → laoseis [7] JÄTKUB (degrade-kaskaad).
+if (CREDIT_HIT) {
+  const pending = totalP - specced
+  console.log(`CREDIT_DEGRADE=1`)
+  console.log(`CREDIT_PENDING=${pending}`)
+  console.error(`💳 KREDIIT-DEGRADE [6]: krediit sai jooksu ajal otsa — ${pending} toodet ootab spec-ekstraktsiooni (re-run kui krediit tagasi).`)
+  process.exit(3)
+}

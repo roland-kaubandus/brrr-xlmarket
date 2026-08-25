@@ -31,6 +31,7 @@ import path from "node:path";
 import { execFileSync } from "node:child_process";
 import { loadGlossary, buildGlossaryAssets, generateContent, DEFAULT_MODEL } from "./lib/content-gen.mjs";
 import { filterNeedsGen, writeRecords, dbContainer } from "./lib/content-write.mjs";
+import { isCreditError } from "./lib/credit-guard.mjs"; // ÜKS SSoT — jagatud [4]/[6]/[6.5]/probe (DRY)
 
 const ROOT = "/opt/xlmarket-github";
 const GLOSSARY = path.join(ROOT, "backend/src/data/glossary.yaml");
@@ -44,12 +45,7 @@ const CONC = parseInt(val("--conc") || "4", 10);
 const MODEL = val("--model") || DEFAULT_MODEL;
 const FAIL_RATIO = 0.5; // >50% partiist kukub → süsteemne → exit 1
 const CREDIT_DOMINANT = 0.8; // ≥80% kukkumistest = krediit → DEGRADE (exit 3), mitte API-maas (exit 1)
-
-// Krediidi-/arve-tõrge (HTTP 400/402 "credit balance too low") ≠ API maas. DEGRADE, ära blokeeri laoseisu.
-// (400/402 EI retry'ta content-gen'is → tuleb otse r.error stringina.)
-function isCreditError(err) {
-  return /credit balance|credit_balance|billing|insufficient.?(?:quota|funds|credit)|HTTP 402|Plans & Billing/i.test(String(err || ""));
-}
+// isCreditError → scripts/lib/credit-guard.mjs (jagatud SSoT, DRY — [4]/[6]/[6.5]/probe sama definitsioon).
 
 const KEY = process.env.ANTHROPIC_API_KEY;
 if (!KEY) { console.error("❌ ANTHROPIC_API_KEY puudub (set -a; . /opt/eumotors-tasks/.env; set +a) — SÜSTEEMNE"); process.exit(1); }

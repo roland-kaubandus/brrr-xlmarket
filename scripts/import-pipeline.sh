@@ -56,6 +56,25 @@ echo "  medusa=$MEDUSA_NAME  db=$DB_NAME  root=$ROOT"
 
 dbq() { docker exec -i "$DB_NAME" psql -U xlmarket -d xlmarket -tA -v ON_ERROR_STOP=1 -c "$1"; }
 
+# ── KREDIIT-PROBE (LLM-väravate eeltingimus, pipeline'i alguses) ──────────────
+# 1-token proov ENNE [4] → seab CREDIT_OK. Väldib 18k×retry ASJATUT API-katset kui krediit juba maas.
+# ERISTUS KRIITILINE ("ära aja segamini", Tarmo): krediit maas → DEGRADE (LLM skip, laoseis JÄTKUB);
+#   API maas (timeout/5xx) → süsteemne (LLM skip + laoseis JÄTKUB, aga HOIATUS et API katki, mitte krediit).
+# Kummalgi juhul laoseis/hind/reindeks EI blokeeru (Tarmo #1 prioriteet: pood uueneb katkestuse ajal).
+CREDIT_OK=1
+if [ -n "${ANTHROPIC_API_KEY:-}" ]; then
+  node "$ROOT/scripts/credit-probe.mjs" && PROBE_RC=0 || PROBE_RC=$?
+  case "$PROBE_RC" in
+    0) echo "  💳 probe: krediit OK — LLM-sammud [4][6][6.5] jooksevad"; CREDIT_OK=1 ;;
+    3) echo "  💳 probe: krediit maas — LLM-sammud [4][6][6.5] SKIP (degrade); laoseis/hind/reindeks JÄTKUB"; CREDIT_OK=0
+       slack "⚠️ XLM import-pipeline: krediit maas (probe) — LLM-rikastus [4][6][6.5] vahele, pood+laoseis+hind uueneb. Console makse korda → 'bash scripts/drain-pending.sh' (või järgmine öö kui krediit tagasi)." ;;
+    *) echo "  ⚠️ probe: API maas (rc=$PROBE_RC, MITTE krediit) — LLM-sammud SKIP, laoseis JÄTKUB (süsteemne, vaata üle)"; CREDIT_OK=0
+       slack "⚠️ XLM import-pipeline: API-probe nurjus (rc=$PROBE_RC — timeout/5xx, MITTE krediit) — LLM-sammud [4][6][6.5] vahele, laoseis+hind+reindeks jätkub. Vaata üle: Anthropic API maas?" ;;
+  esac
+else
+  echo "  ⚠️ probe: ANTHROPIC_API_KEY puudub → LLM-sammud [4][6][6.5] SKIP (degrade)"; CREDIT_OK=0
+fi
+
 # ── [1][2] CACHE-REFRESH + churn/OOS (konteiner-natiivne) ────────────────────
 # refresh-feed-cache.sh = download+cache+stamp+inventory+reindeks, ise fail-loud.
 # EI ole dry-võimeline (kirjutab cache+inventory). DRY-s ainult TÕESTA, et cache värske.
@@ -134,8 +153,24 @@ fi
 # ── [4] CLASSIFY (host, propose-not-create) ──────────────────────────────────
 echo "[4/7] classify (Opus propose-not-create)"
 # source=unhomed: kata VÄRSKED draftid [3] + olemas-backlog (kõik kategooriata, draft VÕI published).
-node "$ROOT/scripts/pipeline-classify.mjs" --source unhomed $EXFLAG --out /tmp/pipeline-classify-results.json \
-  || fail "classify" "pipeline-classify.mjs rc!=0"
+# KREDIIT-DEGRADE: probe maas → SKIP + tühjenda classify-skus (kaskaad [6]/[6.5] skip); mid-run krediit (rc=3)
+#   → degrade HOIATUS, laoseis/hind/reindeks JÄTKUB. Muu rc → süsteemne fail.
+if [ "$CREDIT_OK" = "1" ]; then
+  CL_OUT=$(node "$ROOT/scripts/pipeline-classify.mjs" --source unhomed $EXFLAG --out /tmp/pipeline-classify-results.json 2>&1) && CL_RC=0 || CL_RC=$?
+  echo "$CL_OUT" | sed 's/^/  /'
+  CL_PENDING=$( { echo "$CL_OUT" | grep -oE 'CREDIT_PENDING=[0-9]+' | tail -1 | cut -d= -f2; } || true); CL_PENDING=${CL_PENDING:-0}
+  case "$CL_RC" in
+    0) : ;;  # OK
+    3) echo "  ⚠️ [4] KREDIIT-DEGRADE — klass vahele, laoseis/hind/reindeks JÄTKUB (${CL_PENDING} ootab kodu)"
+       CREDIT_OK=0                    # kaskaad: [6]/[6.5] skibivad automaatselt
+       : > /tmp/classify-skus.txt     # tühja loend → [6]/[6.5] gate `-s` false → skip
+       slack "⚠️ XLM classify [4] KREDIIT-DEGRADE (HOIATUS, mitte FAIL): ${CL_PENDING} toodet ootab klassifikatsiooni (krediit maas jooksu ajal). Laoseis+hind+reindeks JÄTKUB — pood uueneb." ;;
+    *) fail "classify" "pipeline-classify.mjs rc=$CL_RC (süsteemne — API/DB maas?)" ;;
+  esac
+else
+  echo "  💳 krediit/API maas (probe) → classify SKIP; kodutud draftid ootavad (degrade)"
+  : > /tmp/classify-skus.txt          # tagab [6]/[6.5] skip (vana loend ei tohi lekkida)
+fi
 
 # ── FEED-SNAPSHOT ÜHTLUSTUS (gap-fix 2026-07-25) ─────────────────────────────
 # [3] import loeb /data/vevor-feed-cache.json; [5] reprice loeb xlsx-i. MÕLEMAD peavad
@@ -157,11 +192,20 @@ node "$ROOT/scripts/pipeline-reprice.mjs" $EXFLAG ${FEED_XLSX_HOST:+--feed "$FEE
 
 # ── [6] SPEC (host) ──────────────────────────────────────────────────────────
 echo "[6/7] spec-extract (specita tooted)"
-if [ -s /tmp/classify-skus.txt ]; then
-  node "$ROOT/scripts/spec-extract-skus.mjs" --skus /tmp/classify-skus.txt $([ "$EXECUTE" = "1" ] || echo --dry) \
-    || fail "spec" "spec-extract-skus.mjs rc!=0"
+# KREDIIT-DEGRADE: CREDIT_OK=0 (probe/[4]) → skip; mid-run krediit (rc=3) → degrade HOIATUS + [7] JÄTKUB.
+if [ "$CREDIT_OK" = "1" ] && [ -s /tmp/classify-skus.txt ]; then
+  SP_OUT=$(node "$ROOT/scripts/spec-extract-skus.mjs" --skus /tmp/classify-skus.txt $([ "$EXECUTE" = "1" ] || echo --dry) 2>&1) && SP_RC=0 || SP_RC=$?
+  echo "$SP_OUT" | sed 's/^/  /'
+  SP_PENDING=$( { echo "$SP_OUT" | grep -oE 'CREDIT_PENDING=[0-9]+' | tail -1 | cut -d= -f2; } || true); SP_PENDING=${SP_PENDING:-0}
+  case "$SP_RC" in
+    0) : ;;
+    3) echo "  ⚠️ [6] KREDIIT-DEGRADE — spec vahele, [7] reindeks JÄTKUB (${SP_PENDING} ootab spec)"
+       CREDIT_OK=0                    # kaskaad: [6.5] skip
+       slack "⚠️ XLM spec [6] KREDIIT-DEGRADE (HOIATUS, mitte FAIL): ${SP_PENDING} toodet ootab spec-ekstraktsiooni (krediit maas). Laoseis+hind+reindeks JÄTKUB." ;;
+    *) fail "spec" "spec-extract-skus.mjs rc=$SP_RC (süsteemne — API/DB maas?)" ;;
+  esac
 else
-  echo "  klassifitseeritud SKU-loend puudub → spec vahele"
+  [ "$CREDIT_OK" = "1" ] && echo "  klassifitseeritud SKU-loend puudub → spec vahele" || echo "  krediit/API maas → spec SKIP (degrade)"
 fi
 
 # ── [6.5] SISU-GEN (host) — HARD RULE #5 HOOK (ET-sisu uutele, ENNE reindeks) ─
@@ -169,7 +213,8 @@ fi
 # sama kui [6] spec). Multi-feed: content-gen loeb toote OMA EN-allikat (bränd-agnostiline).
 # FAIL-LOUD: süsteemne (API maas / >50% kukub) → fail()/Telegram; üksik toode → skip+count.
 echo "[6.5/7] sisu-gen (ET-sisu uutele — title_et/description_et/selling_points/rich_et)"
-if [ -s /tmp/classify-skus.txt ]; then
+# KREDIIT-DEGRADE: CREDIT_OK=0 (probe/[4]/[6]) → skip KOHE (ei proovi ühtki API-katset).
+if [ "$CREDIT_OK" = "1" ] && [ -s /tmp/classify-skus.txt ]; then
   # RC-püüdmine set -e all: && RC=0 || RC=$? (muidu set -e katkestaks enne haru-valikut).
   CG_OUT=$(node "$ROOT/scripts/pipeline-content-gen.mjs" --skus /tmp/classify-skus.txt \
     $([ "$EXECUTE" = "1" ] && echo --execute || echo --dry) 2>&1) && CG_RC=0 || CG_RC=$?
@@ -195,7 +240,7 @@ if [ -s /tmp/classify-skus.txt ]; then
       ;;
   esac
 else
-  echo "  klassifitseeritud SKU-loend puudub → sisu-gen vahele"
+  [ "$CREDIT_OK" = "1" ] && echo "  klassifitseeritud SKU-loend puudub → sisu-gen vahele" || echo "  krediit/API maas → sisu-gen SKIP (degrade)"
 fi
 
 # ── [7] REINDEX (konteiner) — ainult EXECUTE (uued tooted + hinnad nähtavaks) ─
