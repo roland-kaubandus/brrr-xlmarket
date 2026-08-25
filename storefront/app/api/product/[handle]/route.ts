@@ -469,8 +469,27 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
 
     // Saadavus SAMAST tõe-allikast mis kategooria-kaart: Meili `in_stock` (feed-juhitud,
     // isOosFromFeed). Enne luges tooteleht Medusa dummy inventory=100 → alati "Laos" + ostunupp,
-    // ka churned toodetel (split-brain). undefined (Meili-hit puudub) → jäta true (fallback laos).
-    const feedInStock = (meiliHit as { in_stock?: boolean } | null)?.in_stock
+    // ka churned toodetel (split-brain).
+    //
+    // MEILI-MAAS FALLBACK (meiliHit === null): EI eelda enam "laos" (oleks OOS-risk →
+    // klient saaks osta tarnimatu toote). Tõe-allika valik Meili-maas:
+    //   1. FEED-CACHE (feedEntry) kui olemas — SAMA lokaalne JSON + SAMA predikaat, mille
+    //      põhjal feed-sync.sh Meili `in_stock`'i seab (identne feed-tõde, Meili-sõltumatu).
+    //   2. Muidu → false (BLOKEERI ost). Medusa store-API `inventory_quantity` EI kõlba
+    //      siin: churned toodetel tagastab dummy 100 (split-brain, tõestatud) + veab kaasa
+    //      `calculated_price` pricing-mooduli (= cart-stall juur). "Laoseis teadmata → ei saa
+    //      osta" on neutraalne ja OHUTU, parem kui "eelda laos → tarnimatu ost".
+    // NB: server-pool reservatsioon EI ole usaldusväärne topeltkaitse feed-churned OOS-ile —
+    //     Medusa oma inventory näeb dummy 100, mitte feed-tõde 0 → UI/feed-värav on AINUS kaitse.
+    let feedInStock: boolean | undefined
+    if (meiliHit) {
+      feedInStock = (meiliHit as { in_stock?: boolean }).in_stock
+    } else if (feedEntry) {
+      // mirror feed-sync.sh: OOS kui availability!=='in stock' VÕI inventoryQuantity===0
+      feedInStock = feedEntry.availability === "in stock" && (feedEntry.inventoryQuantity || 0) > 0
+    } else {
+      feedInStock = false
+    }
 
     return NextResponse.json({
       product: {
