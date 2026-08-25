@@ -14,25 +14,39 @@ type Props = {
 }
 
 export async function generateMetadata({ params }: Props) {
-  const { handle } = await params
+  const { handle, locale } = await params
   const product = await getProduct(handle)
   if (!product) return { title: "Product — XLMARKET" }
   const ogImage = product.thumbnail
-  const desc = product.description
-    ? product.description.replace(/<[^>]*>/g, "").substring(0, 160)
-    : product.title
+  const md = (product.metadata || {}) as Record<string, unknown>
+  const titleEt = typeof md.title_et === "string" && md.title_et.trim() ? md.title_et : null
+  const descEt = typeof md.description_et === "string" && md.description_et.trim() ? md.description_et : null
+  const title = locale === "et" && titleEt ? titleEt : product.title
+  const desc =
+    locale === "et" && descEt
+      ? descEt.replace(/<[^>]*>/g, "").substring(0, 160)
+      : product.description
+      ? product.description.replace(/<[^>]*>/g, "").substring(0, 160)
+      : product.title
   return {
-    title: product.title + " — XLMARKET",
+    title: title + " — XLMARKET",
     description: desc,
+    alternates: {
+      canonical: `https://xlmarket.ee/${locale}/toode/${handle}`,
+      languages: {
+        et: `https://xlmarket.ee/et/toode/${handle}`,
+        en: `https://xlmarket.ee/en/toode/${handle}`,
+      },
+    },
     openGraph: {
-      title: product.title,
+      title: title,
       description: desc,
       images: ogImage ? [{ url: ogImage }] : [],
       type: "website",
     },
     twitter: {
       card: ogImage ? "summary_large_image" : "summary",
-      title: product.title,
+      title: title,
       description: desc,
       images: ogImage ? [ogImage] : [],
     },
