@@ -8122,23 +8122,3 @@ l1:
             name_en: "Ohutusköied ja lifeline'd"
             name_et: "Ohutusköied ja lifeline'd"
             product_count: 0
-  - slug: v4-outlet
-    name_en: "Outlet"
-    name_et: "Outlet"
-    short_slug: outlet
-    tagline_en: "Outlet"
-    tagline_et: "Outlet"
-    description_en: "Outlet — products."
-    description_et: "Outlet — tooted."
-    hero_img: /images/branches/horeca.webp
-    hero_gradient: from-stone-950/80 via-stone-900/40 to-transparent
-    product_count: 1
-    subs:
-      - slug: v4-outlet-rikutud-pakend
-        name_en: "Rikutud pakend"
-        name_et: "Rikutud pakend"
-        product_count: 0
-      - slug: v4-outlet-avatud-pakend
-        name_en: "Avatud pakend"
-        name_et: "Avatud pakend"
-        product_count: 0
