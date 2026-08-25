@@ -72,7 +72,7 @@ SELECT jsonb_build_object('id',p.id,'l3',pc.handle,'name',pc.name,'title',p.titl
 FROM product p
 JOIN product_category_product pcp ON pcp.product_id=p.id
 JOIN product_category pc ON pc.id=pcp.product_category_id
-WHERE p.metadata->>'vevor_sku' IN (SELECT sku FROM _spec_skus) AND p.metadata->'specs' IS NULL
+WHERE p.deleted_at IS NULL AND p.metadata->>'vevor_sku' IN (SELECT sku FROM _spec_skus) AND p.metadata->'specs' IS NULL
 ORDER BY pc.handle;` })
 const byL3 = new Map(); const l3name = {}
 for (const line of raw.trim().split("\n")) { if (!line || !line.startsWith("{")) continue; let r; try { r = JSON.parse(line) } catch { continue }; if (!byL3.has(r.l3)) byL3.set(r.l3, []); byL3.get(r.l3).push(r); l3name[r.l3] = r.name }

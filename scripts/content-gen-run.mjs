@@ -55,7 +55,7 @@ const COLS = `json_build_object(
 // ---- Seed: garanteeri carbon-steel toode (Fix-1 kontroll) ----
 function selectCarbon(k) {
   return psqlJSON(`SELECT ${COLS} FROM product p
-    WHERE p.status='published'
+    WHERE p.status='published' AND p.deleted_at IS NULL
       AND (p.title ILIKE '%carbon steel%' OR p.metadata->>'sanitized_rich_description' ILIKE '%carbon steel%' OR p.description ILIKE '%carbon steel%')
       AND LENGTH(COALESCE(p.metadata->>'sanitized_rich_description','')) BETWEEN 200 AND 8000
     ORDER BY md5(p.id) LIMIT ${k};`);
@@ -67,11 +67,11 @@ function selectPilot(n) {
   const richRows = psqlJSON(`SELECT ${COLS} FROM (
       SELECT DISTINCT ON (p.metadata->>'vevor_product_type') p.*
       FROM product p
-      WHERE p.status='published' AND LENGTH(COALESCE(p.metadata->>'sanitized_rich_description','')) BETWEEN 400 AND 8000
+      WHERE p.status='published' AND p.deleted_at IS NULL AND LENGTH(COALESCE(p.metadata->>'sanitized_rich_description','')) BETWEEN 400 AND 8000
       ORDER BY p.metadata->>'vevor_product_type', md5(p.id)
     ) p LIMIT ${richN};`);
   const composedRows = psqlJSON(`SELECT ${COLS} FROM product p
-    WHERE p.status='published' AND LENGTH(COALESCE(p.metadata->>'sanitized_rich_description','')) < 40
+    WHERE p.status='published' AND p.deleted_at IS NULL AND LENGTH(COALESCE(p.metadata->>'sanitized_rich_description','')) < 40
       AND p.thumbnail IS NOT NULL
     ORDER BY md5(p.id) LIMIT ${composedN};`);
   return [...richRows, ...composedRows];
@@ -84,11 +84,11 @@ function selectBySkus(file) {
   const list = raw.map(q).join(',');
   // toeta nii product.id kui vevor_sku
   return psqlJSON(`SELECT ${COLS} FROM product p
-    WHERE p.status='published' AND (p.id IN (${list}) OR p.metadata->>'vevor_sku' IN (${list}));`);
+    WHERE p.status='published' AND p.deleted_at IS NULL AND (p.id IN (${list}) OR p.metadata->>'vevor_sku' IN (${list}));`);
 }
 
 function selectAll() {
-  return psqlJSON(`SELECT ${COLS} FROM product p WHERE p.status='published';`);
+  return psqlJSON(`SELECT ${COLS} FROM product p WHERE p.status='published' AND p.deleted_at IS NULL;`);
 }
 
 function dedupById(arr) {
