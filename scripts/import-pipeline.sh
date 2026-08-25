@@ -61,18 +61,22 @@ dbq() { docker exec -i "$DB_NAME" psql -U xlmarket -d xlmarket -tA -v ON_ERROR_S
 # ERISTUS KRIITILINE ("ära aja segamini", Tarmo): krediit maas → DEGRADE (LLM skip, laoseis JÄTKUB);
 #   API maas (timeout/5xx) → süsteemne (LLM skip + laoseis JÄTKUB, aga HOIATUS et API katki, mitte krediit).
 # Kummalgi juhul laoseis/hind/reindeks EI blokeeru (Tarmo #1 prioriteet: pood uueneb katkestuse ajal).
-CREDIT_OK=1
+CREDIT_OK=1; PROBE_STATUS=ok
 if [ -n "${ANTHROPIC_API_KEY:-}" ]; then
   node "$ROOT/scripts/credit-probe.mjs" && PROBE_RC=0 || PROBE_RC=$?
   case "$PROBE_RC" in
-    0) echo "  💳 probe: krediit OK — LLM-sammud [4][6][6.5] jooksevad"; CREDIT_OK=1 ;;
-    3) echo "  💳 probe: krediit maas — LLM-sammud [4][6][6.5] SKIP (degrade); laoseis/hind/reindeks JÄTKUB"; CREDIT_OK=0
-       slack "⚠️ XLM import-pipeline: krediit maas (probe) — LLM-rikastus [4][6][6.5] vahele, pood+laoseis+hind uueneb. Console makse korda → 'bash scripts/drain-pending.sh' (või järgmine öö kui krediit tagasi)." ;;
-    *) echo "  ⚠️ probe: API maas (rc=$PROBE_RC, MITTE krediit) — LLM-sammud SKIP, laoseis JÄTKUB (süsteemne, vaata üle)"; CREDIT_OK=0
-       slack "⚠️ XLM import-pipeline: API-probe nurjus (rc=$PROBE_RC — timeout/5xx, MITTE krediit) — LLM-sammud [4][6][6.5] vahele, laoseis+hind+reindeks jätkub. Vaata üle: Anthropic API maas?" ;;
+    0) echo "  💳 probe: krediit OK — LLM-sammud [4][6][6.5] jooksevad"; CREDIT_OK=1; PROBE_STATUS=ok ;;
+    3) echo "  💳 probe: krediit maas — LLM-sammud [4][6][6.5] SKIP (degrade); laoseis/hind/reindeks JÄTKUB"; CREDIT_OK=0; PROBE_STATUS=credit ;;
+    *) echo "  ⚠️ probe: API maas (rc=$PROBE_RC, MITTE krediit) — LLM-sammud SKIP, laoseis JÄTKUB (süsteemne)"; CREDIT_OK=0; PROBE_STATUS=api ;;
   esac
 else
-  echo "  ⚠️ probe: ANTHROPIC_API_KEY puudub → LLM-sammud [4][6][6.5] SKIP (degrade)"; CREDIT_OK=0
+  echo "  ⚠️ probe: ANTHROPIC_API_KEY puudub → LLM-sammud [4][6][6.5] SKIP (degrade)"; CREDIT_OK=0; PROBE_STATUS=api
+fi
+# ANTI-SPÄMM digest + taastumis-teade (reports/credit-outage.state): 1 teade/päev, mitte igal jooksul
+# (õppetund: 26 identset = müra). Skript otsustab kas teavitada; tühi väljund = vaikus. EXECUTE-only.
+if [ "$EXECUTE" = "1" ]; then
+  NOTIFY_MSG=$(node "$ROOT/scripts/credit-outage-state.mjs" --status "$PROBE_STATUS" 2>/dev/null || true)
+  [ -n "$NOTIFY_MSG" ] && slack "$NOTIFY_MSG"
 fi
 
 # ── [1][2] CACHE-REFRESH + churn/OOS (konteiner-natiivne) ────────────────────

@@ -75,3 +75,4 @@ outputs/
 backups/
 reports/backups/
 *.bak-stale
+reports/credit-outage.state
