@@ -578,10 +578,10 @@ terms:
     cluster: tehniline
     status: locked   # raffle-kontekst (mitte "joonistused")
   - en: "Catering Warmer Server"
-    et: "cateringi soojendusserveerija"
+    et: "toidusoojendusalus"
     freq: 20
     cluster: tehniline
-    status: locked
+    status: locked   # vaste parandatud 2026-08-25 (piloot: "soojendusserveerija" kohmakas; joondub [[chafing dish]] vastega — sama tüüp)
   - en: "mixing bottle"
     et: "segamispudel"
     freq: 19
@@ -856,8 +856,7 @@ terms:
     et: "rullikutega alus"
     freq: 0
     cluster: tehniline
-    status: defer
-    aliases: ["casters"]
+    status: defer   # alias "casters" eemaldatud 2026-08-25 (piloot: liiga lai — casters=rattad, mitte alus)
   - en: "Radiant Floor"
     et: "põrandaküte"
     freq: 0
