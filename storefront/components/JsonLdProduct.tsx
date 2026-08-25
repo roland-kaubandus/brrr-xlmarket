@@ -44,19 +44,33 @@ export default function JsonLdProduct({ product, price, locale = "en" }: Props) 
     ((product as any).metadata?.vevor_sku as string | undefined) ||
     product.id
 
+  const m = ((product as any).metadata || {}) as Record<string, any>
+  const titleEt = typeof m.title_et === "string" && m.title_et.trim() ? m.title_et : null
+  const descEt = typeof m.description_et === "string" && m.description_et.trim() ? m.description_et : null
+  const name = locale === "et" && titleEt ? titleEt : product.title
+  const description =
+    locale === "et" && descEt
+      ? descEt.replace(/<[^>]*>/g, "").substring(0, 500)
+      : product.description
+      ? product.description.replace(/<[^>]*>/g, "").substring(0, 500)
+      : product.title
+
   const jsonLd: Record<string, any> = {
     "@context": "https://schema.org",
     "@type": "Product",
-    name: product.title,
+    name,
     url: `https://xlmarket.ee/${locale}/toode/${product.handle}`,
-    description: product.description
-      ? product.description.replace(/<[^>]*>/g, "").substring(0, 500)
-      : product.title,
+    description,
     sku,
     brand: {
       "@type": "Brand",
       name: deriveBrandName(product),
     },
+  }
+
+  const gtin = typeof m.vevor_upc === "string" && m.vevor_upc.trim() ? m.vevor_upc : null
+  if (gtin) {
+    jsonLd.gtin = gtin
   }
 
   if (product.thumbnail) {

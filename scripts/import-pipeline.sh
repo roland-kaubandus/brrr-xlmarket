@@ -164,6 +164,22 @@ else
   echo "  klassifitseeritud SKU-loend puudub → spec vahele"
 fi
 
+# ── [6.5] SISU-GEN (host) — HARD RULE #5 HOOK (ET-sisu uutele, ENNE reindeks) ─
+# SAMA transform+write kui backfill (content-gen-run.mjs --all). DELTA-peal (classify-skus.txt,
+# sama kui [6] spec). Multi-feed: content-gen loeb toote OMA EN-allikat (bränd-agnostiline).
+# FAIL-LOUD: süsteemne (API maas / >50% kukub) → fail()/Telegram; üksik toode → skip+count.
+echo "[6.5/7] sisu-gen (ET-sisu uutele — title_et/description_et/selling_points/rich_et)"
+if [ -s /tmp/classify-skus.txt ]; then
+  CG_OUT=$(node "$ROOT/scripts/pipeline-content-gen.mjs" --skus /tmp/classify-skus.txt \
+    $([ "$EXECUTE" = "1" ] && echo --execute || echo --dry) 2>&1) \
+    || fail "content-gen" "pipeline-content-gen.mjs rc!=0 (süsteemne — API/DB maas?)"
+  echo "$CG_OUT" | sed 's/^/  /'
+  CG_SKIPPED=$(echo "$CG_OUT" | grep -oE 'SKIPPED=[0-9]+' | tail -1 | cut -d= -f2 || echo 0)
+  [ "${CG_SKIPPED:-0}" -gt 0 ] && slack "⚠️ XLM sisu-gen [6.5]: $CG_SKIPPED toodet skipiti (review) — ET-sisu puudu, vaata üle"
+else
+  echo "  klassifitseeritud SKU-loend puudub → sisu-gen vahele"
+fi
+
 # ── [7] REINDEX (konteiner) — ainult EXECUTE (uued tooted + hinnad nähtavaks) ─
 echo "[7/7] reindeks Meili"
 if [ "$EXECUTE" = "1" ]; then

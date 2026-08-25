@@ -176,6 +176,33 @@ const SCHEMA = {
 // ---------------------------------------------------------------------------
 const sleep = (ms) => new Promise(r => setTimeout(r, ms));
 
+// Ehita API request-body (jagatud: realtime generateContent + Batch API). Sama sisend → sama päring.
+export function buildRequestBody(product, opts = {}) {
+  const { model = DEFAULT_MODEL, termBlock, useVision = false, maxTokens = 8000 } = opts;
+  const mode = detectSourceMode(product.sanitized_rich_description);
+  const userContent = [{ type: 'text', text: userMessage(product, mode) }];
+  if (useVision && mode === 'composed' && product.thumbnail) {
+    // VEVOR CDN URL — ÄRA decode (%2B peab jääma), anna URL-allikana
+    userContent.push({ type: 'image', source: { type: 'url', url: product.thumbnail } });
+  }
+  const body = {
+    model,
+    max_tokens: maxTokens,
+    system: [{ type: 'text', text: systemPrompt(termBlock), cache_control: { type: 'ephemeral' } }],
+    messages: [{ role: 'user', content: userContent }],
+    output_config: { format: { type: 'json_schema', schema: SCHEMA } },
+  };
+  return { body, mode };
+}
+
+// Parsi API vastuse content-plokk → struktuur (jagatud realtime + batch).
+export function parseMessage(json) {
+  const textBlock = (json.content || []).find(b => b.type === 'text');
+  let parsed = null, parseErr = null;
+  try { parsed = JSON.parse(textBlock?.text || ''); } catch (e) { parseErr = String(e); }
+  return { parsed, parseErr, raw: parsed ? undefined : (textBlock?.text || '').slice(0, 500) };
+}
+
 export async function generateContent(product, opts = {}) {
   const {
     apiKey = process.env.ANTHROPIC_API_KEY,
@@ -187,22 +214,7 @@ export async function generateContent(product, opts = {}) {
   if (!apiKey) return { ok: false, error: 'ANTHROPIC_API_KEY puudub' };
   if (!termBlock) return { ok: false, error: 'termBlock puudub (buildGlossaryAssets)' };
 
-  const mode = detectSourceMode(product.sanitized_rich_description);
-
-  // User content: tekst + (valikuline) pilt õhuke-teksti puhul
-  const userContent = [{ type: 'text', text: userMessage(product, mode) }];
-  if (useVision && mode === 'composed' && product.thumbnail) {
-    // VEVOR CDN URL — ÄRA decode (%2B peab jääma), anna URL-allikana
-    userContent.push({ type: 'image', source: { type: 'url', url: product.thumbnail } });
-  }
-
-  const body = {
-    model,
-    max_tokens: maxTokens,
-    system: [{ type: 'text', text: systemPrompt(termBlock), cache_control: { type: 'ephemeral' } }],
-    messages: [{ role: 'user', content: userContent }],
-    output_config: { format: { type: 'json_schema', schema: SCHEMA } },
-  };
+  const { body, mode } = buildRequestBody(product, { model, termBlock, useVision, maxTokens });
 
   const maxAttempts = 6;
   let lastErr;
@@ -232,9 +244,7 @@ export async function generateContent(product, opts = {}) {
       }
       const json = await res.json();
       if (!res.ok) return { ok: false, error: `HTTP ${res.status}: ${JSON.stringify(json).slice(0, 300)}`, ms, mode };
-      const textBlock = (json.content || []).find(b => b.type === 'text');
-      let parsed = null, parseErr = null;
-      try { parsed = JSON.parse(textBlock?.text || ''); } catch (e) { parseErr = String(e); }
+      const { parsed, parseErr, raw } = parseMessage(json);
       return {
         ok: !!parsed,
         stop_reason: json.stop_reason,
@@ -242,7 +252,7 @@ export async function generateContent(product, opts = {}) {
         ms, mode,
         content: parsed,
         parseErr,
-        raw: parsed ? undefined : (textBlock?.text || '').slice(0, 500),
+        raw,
       };
     } catch (e) {
       lastErr = String(e);

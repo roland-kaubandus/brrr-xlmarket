@@ -1,14 +1,14 @@
 # Sisu-generaator — PILOOT (10 toodet)
 
-- Mudel: **claude-sonnet-5** · vision: jah · content-minipilot
+- Mudel: **claude-sonnet-5** · vision: ei · batch: ei · write: JAH
 - Režiimid: rich=8, composed=2
-- Kulu: in=23030 tok, out=26592 tok, cache_read=46120 → **~$0.321** (piloot)
-- Ekstrapoleeritud täis-jooks (18745 toodet): **~$602** (Batch API −50% → ~$301)
-
+- **DB: kirjutatud 0, backup 0, idempotent-skip 10**
+- Kulu: in=23030 tok, out=26592 tok, cache_read=46120 → **~$0.321**
+- Ekstrapoleeritud täis (18745): ~$602 (Batch −50% ~$301)
 ---
 
-## 1. Commercial Hood Filter, 15.5W x 19.5H Inch Range Hood Filters, Stainless Steel R…
-`SYYYZLYQ1620LROVJV0` · tüüp: Appliances > Appliance Parts > Range Hood Parts > Fume Hood Filter · režiim: **rich** · 36237ms
+## 1. Commercial Hood Filter, 15.5W x 19.5H Inch Range Hood Filters, Stainless Steel R
+`SYYYZLYQ1620LROVJV0` · tüüp: Appliances > Appliance Parts > Range Hood Parts > Fume Hood Filter · režiim: **rich**
 
 **title_et:** Restorani kubu rasvafilter, 430 roostevaba teras, 393x493 mm, 6 tk
 
@@ -31,8 +31,8 @@ _qc_notes:_ Lähtetekst on terviklik ja selge, ilmseid vigu ega vastuolusid ei t
 
 ---
 
-## 2. 3-in-1 Indoor Dryer Vent Kit,Premium ABS Material Fits 99 mm Exhaust Port, Smart…
-`HGJTFTJRMGLQAAZJW001V0` · tüüp: Appliances > Appliance Parts > Dryer Parts > Dryer Vent Kit · režiim: **rich** · 37363ms
+## 2. 3-in-1 Indoor Dryer Vent Kit,Premium ABS Material Fits 99 mm Exhaust Port, Smart
+`HGJTFTJRMGLQAAZJW001V0` · tüüp: Appliances > Appliance Parts > Dryer Parts > Dryer Vent Kit · režiim: **rich**
 
 **title_et:** Kuivati ventilatsioonikomplekt 99 mm, ABS-materjal, 4 filtripatja
 
@@ -55,8 +55,8 @@ _qc_notes:_ Lähteallikas sisaldab spetsifikatsioonis välja 'Water Tank: No', m
 
 ---
 
-## 3. Mini Fridge Stand with Storage, 198 lbs Mini Fridge Table with Movable Storage C…
-`DTCKMNBXZJ1C1W7AXV0` · tüüp: Appliances > Appliance Parts > Mini Fridge Stand · režiim: **rich** · 40723ms
+## 3. Mini Fridge Stand with Storage, 198 lbs Mini Fridge Table with Movable Storage C
+`DTCKMNBXZJ1C1W7AXV0` · tüüp: Appliances > Appliance Parts > Mini Fridge Stand · režiim: **rich**
 
 **title_et:** Mini-külmiku alus hoiuruumiga ja ratastega, 90 kg
 
@@ -79,8 +79,8 @@ _qc_notes:_ Lähtetekstis mainitud '15cm thick E1-grade wood' tundub ebatäpne (
 
 ---
 
-## 4. Fryer Grease Bucket, 10 Gal Oil Disposal Caddy with Caster Base, Carbon Steel Ru…
-`DJLZGYZTTG10NGAG5V0` · tüüp: Outdoors > Outdoor Cooking > Outdoor Cookers > Fryer Accessories > Fryer Grease Bucket · režiim: **rich** · 41242ms
+## 4. Fryer Grease Bucket, 10 Gal Oil Disposal Caddy with Caster Base, Carbon Steel Ru
+`DJLZGYZTTG10NGAG5V0` · tüüp: Outdoors > Outdoor Cooking > Outdoor Cookers > Fryer Accessories > Fryer Grease Bucket · režiim: **rich**
 
 **title_et:** Frituuriõli kogumisämber 37.8L (10 gal), ratastega alusega
 
@@ -103,8 +103,8 @@ _qc_notes:_ Lähtetekst sisaldas peamiselt pildipõhist marketingsisu ilma tehni
 
 ---
 
-## 5. Heavy Duty Clothes Rack, Rolling Clothing Garment Rack with 4 Hang Rods & 8 Stor…
-`FZKCYJ6878348I8KKV0` · tüüp: Storage & Organization > Closet Organizers > Cabinet style Garment Rack · režiim: **rich** · 46654ms
+## 5. Heavy Duty Clothes Rack, Rolling Clothing Garment Rack with 4 Hang Rods & 8 Stor
+`FZKCYJ6878348I8KKV0` · tüüp: Storage & Organization > Closet Organizers > Cabinet style Garment Rack · režiim: **rich**
 
 **title_et:** Raske koormusega riidenagi ratastel: 4 rõivavart, 8 riiulit, 362,9 kg
 
@@ -127,8 +127,8 @@ _qc_notes:_ Lähtetekstis esineb kaalu ja koormuse väärtuste erinev täpsus (n
 
 ---
 
-## 6. 91x76 cm Stainless Steel Backsplash for Stove, Ultra Flat Splatter Guard with St…
-`YYJDBDTJ1JZBTY5H8001V0` · tüüp: Appliances > Appliance Parts > Range Hood Parts > Stainless Backsplash · režiim: **rich** · 29266ms
+## 6. 91x76 cm Stainless Steel Backsplash for Stove, Ultra Flat Splatter Guard with St
+`YYJDBDTJ1JZBTY5H8001V0` · tüüp: Appliances > Appliance Parts > Range Hood Parts > Stainless Backsplash · režiim: **rich**
 
 **title_et:** 91x76 cm roostevaba pliidi pritsmekaitse, riiuli ja riputiga
 
@@ -151,8 +151,8 @@ _qc_notes:_ Spetsis esinev materjali kirje "Nertsesahl (SUS430)" mõjub masintõ
 
 ---
 
-## 7. Plastic Collapsible Storage Bins with Lids, 65L 3 Packs, Stackable Folding Stora…
-`KZDSLCWXHHS671U7U001V0` · tüüp: Storage & Organization > Storage Containers > Storage Bins > Folding Plastic Crate · režiim: **composed** · 27551ms
+## 7. Plastic Collapsible Storage Bins with Lids, 65L 3 Packs, Stackable Folding Stora
+`KZDSLCWXHHS671U7U001V0` · tüüp: Storage & Organization > Storage Containers > Storage Bins > Folding Plastic Crate · režiim: **composed**
 
 **title_et:** Kokkupandavad plastkastid kaanega, 65L, 3 tk, kandekäepidemetega
 
@@ -173,8 +173,8 @@ _qc_notes:_ Spetsis esinev materjali kirje "Nertsesahl (SUS430)" mõjub masintõ
 
 ---
 
-## 8. Foldable Racing Steering Wheel Stand, Height Adjustable Universal Base Compatibl…
-`XXZJXXXH0000H4274V0` · tüüp: Appliances > Appliance Parts > Small Appliance Parts > Steering Wheel Stand · režiim: **rich** · 37280ms
+## 8. Foldable Racing Steering Wheel Stand, Height Adjustable Universal Base Compatibl
+`XXZJXXXH0000H4274V0` · tüüp: Appliances > Appliance Parts > Small Appliance Parts > Steering Wheel Stand · režiim: **rich**
 
 **title_et:** Kokkupandav rooliraam Logitech ja Thrustmasterile, reguleeritav
 
@@ -197,8 +197,8 @@ _qc_notes:_ Lähtetekstis esineb kirjaviga "createing" (peaks olema "creating") 
 
 ---
 
-## 9. Noodle Board Stove Cover, Stove Top Cover Board for Gas Burners & Electric Stove…
-`WLBSK3022INCVPSJ9V0` · tüüp: Appliances > Appliance Parts > Stove Parts > Gas Stove Cover · režiim: **rich** · 37971ms
+## 9. Noodle Board Stove Cover, Stove Top Cover Board for Gas Burners & Electric Stove
+`WLBSK3022INCVPSJ9V0` · tüüp: Appliances > Appliance Parts > Stove Parts > Gas Stove Cover · režiim: **rich**
 
 **title_et:** Männipuidust pliidikate käepidemetega, 76,2x55,88 cm
 
@@ -221,8 +221,8 @@ _qc_notes:_ Lähtetekstis on kaks erinevat paksuse väärtust (12 mm ja 15 mm) e
 
 ---
 
-## 10. Chafing Dish Buffet Set, 8 Qt 6 Pack, Stainless Steel Chafer with 6 Full Size Pa…
-`ZFXBXGSTGK6JYRMTSV0` · tüüp: Kitchen > Tableware & Bar > Serveware > Chafing Dish · režiim: **composed** · 37860ms
+## 10. Chafing Dish Buffet Set, 8 Qt 6 Pack, Stainless Steel Chafer with 6 Full Size Pa
+`ZFXBXGSTGK6JYRMTSV0` · tüüp: Kitchen > Tableware & Bar > Serveware > Chafing Dish · režiim: **composed**
 
 **title_et:** Toidusoojendusalused 8Qt, 6 tk, roostevaba teras, kaanega
 

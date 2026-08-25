@@ -1,16 +1,27 @@
 #!/usr/bin/env node
-// content-gen-run.mjs — SISU-GENERAATORI kutsuja (HARD RULE #5).
-//   --pilot N        : vali N mitmekesist toodet, genereeri, kirjuta raport (EI puuduta DB-d)
-//   --skus a,b,c     : delta (öine hook) — genereeri nimekirjale  [pipeline-hook, hiljem]
-//   --all            : backfill kogu korpus                       [backfill-runner, hiljem]
-//   --write          : (mitte-pilot) kirjuta tulemused DB metadata'sse
+// content-gen-run.mjs — SISU-GENERAATORI kutsuja (HARD RULE #5 backfill-runner).
 //
-// PILOOT EI KIRJUTA DB-sse — ainult reports/*.ndjson + reports/*.md ülevaatuseks.
+// SELEKTSIOON (üks nendest):
+//   --pilot N        : vali N mitmekesist toodet (raport, EI kirjuta DB-d vaikimisi)
+//   --skus FILE      : id- või vevor_sku-nimekiri (delta — hook kasutab sama teed)
+//   --all            : backfill kogu korpus (published)
+// GENEREERIMINE:
+//   (vaikimisi realtime pool)     --conc 4
+//   --batch [--chunk 2000]        : Anthropic Batch API (−50%), osade kaupa
+// KIRJUTUS:
+//   --write          : kirjuta DB-sse (backup + idempotent hash-guard, content-write.mjs SSoT)
+//   (ilma --write → ainult raport reports/*.md, DB puutumata)
+// MUU: --model X  --vision  --out LABEL  --carbon K (seed carbon-steel)
+//
+// HARD RULE #5: SAMA transform (content-gen.mjs) + SAMA write (content-write.mjs) kutsutakse
+// nii siit (backfill) kui pipeline-content-gen.mjs-st (öine hook). Ei lahkne kunagi.
 
 import fs from 'node:fs';
 import path from 'node:path';
 import { execFileSync } from 'node:child_process';
-import { loadGlossary, buildGlossaryAssets, generateContent, detectSourceMode, DEFAULT_MODEL } from './lib/content-gen.mjs';
+import { loadGlossary, buildGlossaryAssets, generateContent, buildRequestBody, parseMessage, detectSourceMode, DEFAULT_MODEL } from './lib/content-gen.mjs';
+import { filterNeedsGen, writeRecords, dbContainer, psqlJSON } from './lib/content-write.mjs';
+import { runChunk, chunk as chunkArr } from './lib/content-batch.mjs';
 
 const ROOT = '/opt/xlmarket-github';
 const GLOSSARY = path.join(ROOT, 'backend/src/data/glossary.yaml');
@@ -19,85 +30,91 @@ const OUT_DIR = path.join(ROOT, 'reports');
 const args = process.argv.slice(2);
 const getFlag = (name) => { const i = args.indexOf(name); return i >= 0 ? (args[i + 1] || true) : null; };
 const pilotN = getFlag('--pilot') ? parseInt(getFlag('--pilot'), 10) : null;
+const skusFile = getFlag('--skus');
+const doAll = args.includes('--all');
+const doWrite = args.includes('--write');
+const useBatch = args.includes('--batch');
+const chunkSize = parseInt(getFlag('--chunk') || '2000', 10);
 const model = getFlag('--model') || DEFAULT_MODEL;
 const useVision = args.includes('--vision');
+const CONCURRENCY = parseInt(getFlag('--conc') || '4', 10);
+const OUT_LABEL = getFlag('--out') || 'content-pilot-latest';
+const carbonN = args.includes('--carbon') ? Math.max(1, parseInt(getFlag('--carbon') !== true ? getFlag('--carbon') : '2', 10)) : 0;
 
 const KEY = process.env.ANTHROPIC_API_KEY;
 if (!KEY) { console.error('ERR: ANTHROPIC_API_KEY puudub (set -a; . /opt/eumotors-tasks/.env; set +a)'); process.exit(1); }
 
-// ---- DB helper (dünaamiline konteineri-nimi) ----
-function dbContainer() {
-  const names = execFileSync('docker', ['ps', '--format', '{{.Names}}'], { encoding: 'utf8' });
-  const c = names.split('\n').find(n => n.startsWith('db-k33g'));
-  if (!c) throw new Error('db-k33g konteinerit ei leitud');
-  return c.trim();
-}
-function psqlJSON(sql) {
-  const c = dbContainer();
-  const out = execFileSync('docker', ['exec', '-i', c, 'psql', '-U', 'xlmarket', '-d', 'xlmarket', '-t', '-A', '-c', sql], { encoding: 'utf8', maxBuffer: 256 * 1024 * 1024 });
-  return out.split('\n').filter(Boolean).map(l => JSON.parse(l));
-}
+// ---- Toote-veerud (üks SSoT SELECT-fragment) ----
+const COLS = `json_build_object(
+  'id', p.id, 'sku', p.metadata->>'vevor_sku', 'title', p.title,
+  'description', p.description, 'ptype', p.metadata->>'vevor_product_type',
+  'specs', p.metadata->'specs', 'sanitized_description', p.metadata->>'sanitized_description',
+  'sanitized_rich_description', p.metadata->>'sanitized_rich_description',
+  'thumbnail', p.thumbnail )`;
 
-// ---- Seed: garanteeri vähemalt üks "carbon steel" toode (Fix-1 kontroll) ----
+// ---- Seed: garanteeri carbon-steel toode (Fix-1 kontroll) ----
 function selectCarbon(k) {
-  const cols = `json_build_object(
-    'id', p.id, 'sku', p.metadata->>'vevor_sku', 'title', p.title,
-    'description', p.description, 'ptype', p.metadata->>'vevor_product_type',
-    'specs', p.metadata->'specs', 'sanitized_description', p.metadata->>'sanitized_description',
-    'sanitized_rich_description', p.metadata->>'sanitized_rich_description',
-    'thumbnail', p.thumbnail )`;
-  return psqlJSON(`
-    SELECT ${cols} FROM product p
+  return psqlJSON(`SELECT ${COLS} FROM product p
     WHERE p.status='published'
-      AND (p.title ILIKE '%carbon steel%'
-        OR p.metadata->>'sanitized_rich_description' ILIKE '%carbon steel%'
-        OR p.description ILIKE '%carbon steel%')
+      AND (p.title ILIKE '%carbon steel%' OR p.metadata->>'sanitized_rich_description' ILIKE '%carbon steel%' OR p.description ILIKE '%carbon steel%')
       AND LENGTH(COALESCE(p.metadata->>'sanitized_rich_description','')) BETWEEN 200 AND 8000
     ORDER BY md5(p.id) LIMIT ${k};`);
 }
 
-// ---- Piloodi valik: mitmekesised klastrid + junk-allikas + õhuke-tekst ----
 function selectPilot(n) {
-  // Jaotus: ~70% rich-olemas (mitmekesised tüübid), ~30% composed (rich puudub, sh õhuke → pilt)
   const richN = Math.max(1, Math.round(n * 0.7));
   const composedN = n - richN;
-  const cols = `json_build_object(
-    'id', p.id, 'sku', p.metadata->>'vevor_sku', 'title', p.title,
-    'description', p.description, 'ptype', p.metadata->>'vevor_product_type',
-    'specs', p.metadata->'specs', 'sanitized_description', p.metadata->>'sanitized_description',
-    'sanitized_rich_description', p.metadata->>'sanitized_rich_description',
-    'thumbnail', p.thumbnail )`;
-  // rich-olemas: DISTINCT ON vevor_product_type → mitmekesisus
-  const richRows = psqlJSON(`
-    SELECT ${cols} FROM (
+  const richRows = psqlJSON(`SELECT ${COLS} FROM (
       SELECT DISTINCT ON (p.metadata->>'vevor_product_type') p.*
       FROM product p
-      WHERE p.status='published'
-        AND LENGTH(COALESCE(p.metadata->>'sanitized_rich_description','')) BETWEEN 400 AND 8000
+      WHERE p.status='published' AND LENGTH(COALESCE(p.metadata->>'sanitized_rich_description','')) BETWEEN 400 AND 8000
       ORDER BY p.metadata->>'vevor_product_type', md5(p.id)
     ) p LIMIT ${richN};`);
-  // composed: rich puudub (sh õhuke-tekst → pilt-kandidaat)
-  const composedRows = psqlJSON(`
-    SELECT ${cols} FROM product p
-    WHERE p.status='published'
-      AND LENGTH(COALESCE(p.metadata->>'sanitized_rich_description','')) < 40
+  const composedRows = psqlJSON(`SELECT ${COLS} FROM product p
+    WHERE p.status='published' AND LENGTH(COALESCE(p.metadata->>'sanitized_rich_description','')) < 40
       AND p.thumbnail IS NOT NULL
     ORDER BY md5(p.id) LIMIT ${composedN};`);
   return [...richRows, ...composedRows];
 }
 
-// ---- Markdown-raport (TÄIELIK, kõik 4 välja — kvaliteedi hindamiseks) ----
+function selectBySkus(file) {
+  const raw = fs.readFileSync(file, 'utf8').split('\n').map(s => s.trim()).filter(Boolean);
+  if (!raw.length) return [];
+  const q = (s) => `'${s.replace(/'/g, "''")}'`;
+  const list = raw.map(q).join(',');
+  // toeta nii product.id kui vevor_sku
+  return psqlJSON(`SELECT ${COLS} FROM product p
+    WHERE p.status='published' AND (p.id IN (${list}) OR p.metadata->>'vevor_sku' IN (${list}));`);
+}
+
+function selectAll() {
+  return psqlJSON(`SELECT ${COLS} FROM product p WHERE p.status='published';`);
+}
+
+function dedupById(arr) {
+  const seen = new Set(); return arr.filter(p => !seen.has(p.id) && seen.add(p.id));
+}
+
+// ---- Realtime pool ----
+async function runPool(items, worker, conc) {
+  let idx = 0;
+  await Promise.all(Array.from({ length: Math.min(conc, items.length) }, async () => {
+    while (true) { const i = idx++; if (i >= items.length) break; await worker(items[i], i); }
+  }));
+}
+
+// ---- Markdown-raport (kõik 4 välja) ----
 function renderMd(records, meta) {
   const L = [];
-  L.push(`# Sisu-generaator — PILOOT (${records.length} toodet)\n`);
-  L.push(`- Mudel: **${meta.model}** · vision: ${meta.useVision ? 'jah' : 'ei'} · ${meta.ts}`);
+  L.push(`# Sisu-generaator — ${meta.label} (${records.length} toodet)\n`);
+  L.push(`- Mudel: **${meta.model}** · vision: ${meta.useVision ? 'jah' : 'ei'} · batch: ${meta.useBatch ? 'jah' : 'ei'} · write: ${meta.doWrite ? 'JAH' : 'ei'}`);
   L.push(`- Režiimid: rich=${meta.modeRich}, composed=${meta.modeComposed}`);
-  L.push(`- Kulu: in=${meta.inTok} tok, out=${meta.outTok} tok, cache_read=${meta.cacheRead} → **~$${meta.costUsd.toFixed(3)}** (piloot)`);
-  L.push(`- Ekstrapoleeritud täis-jooks (${meta.corpusN} toodet): **~$${meta.costFull.toFixed(0)}** (Batch API −50% → ~$${(meta.costFull/2).toFixed(0)})\n`);
-  L.push(`---\n`);
+  if (meta.doWrite) L.push(`- **DB: kirjutatud ${meta.applied}, backup ${meta.backedUp}, idempotent-skip ${meta.idemSkip}**`);
+  L.push(`- Kulu: in=${meta.inTok} tok, out=${meta.outTok} tok, cache_read=${meta.cacheRead} → **~$${meta.costUsd.toFixed(3)}**`);
+  L.push(`- Ekstrapoleeritud täis (${meta.corpusN}): ~$${meta.costFull.toFixed(0)} (Batch −50% ~$${(meta.costFull / 2).toFixed(0)})\n---\n`);
   records.forEach((r, i) => {
-    L.push(`## ${i + 1}. ${r.product.title.slice(0, 80)}${r.product.title.length > 80 ? '…' : ''}`);
-    L.push(`\`${r.product.sku || r.product.id}\` · tüüp: ${r.product.ptype || '—'} · režiim: **${r.mode}** · ${r.ms}ms${r.ok ? '' : ' · **VIGA**'}`);
+    L.push(`## ${i + 1}. ${(r.product.title || '').slice(0, 80)}`);
+    L.push(`\`${r.product.sku || r.product.id}\` · tüüp: ${r.product.ptype || '—'} · režiim: **${r.mode}**${r.ok ? '' : ' · **VIGA**'}`);
     if (!r.ok) { L.push(`\n> ⛔ ${r.error || r.parseErr}\n`); return; }
     const c = r.content;
     L.push(`\n**title_et:** ${c.title_et}`);
@@ -111,93 +128,120 @@ function renderMd(records, meta) {
   return L.join('\n');
 }
 
-const CONCURRENCY = parseInt(getFlag('--conc') || '4', 10);
-const OUT_LABEL = getFlag('--out') || 'content-pilot-latest';
-
-async function runPool(items, worker, conc) {
-  let idx = 0;
-  const runners = Array.from({ length: Math.min(conc, items.length) }, async () => {
-    while (true) {
-      const i = idx++;
-      if (i >= items.length) break;
-      await worker(items[i], i);
-    }
-  });
-  await Promise.all(runners);
-}
-
 async function main() {
-  if (!pilotN) { console.error('Kasuta: --pilot N [--model X] [--vision] [--conc 4]'); process.exit(1); }
+  if (!pilotN && !skusFile && !doAll) { console.error('Kasuta üks: --pilot N | --skus FILE | --all'); process.exit(1); }
 
   console.log(`[glossary] laadin ${GLOSSARY}`);
   const entries = loadGlossary(GLOSSARY);
   const { termBlock, matchList, lockedCount } = buildGlossaryAssets(entries);
-  console.log(`[glossary] ${entries.length} kirjet, ${lockedCount} locked → term-blokk ${termBlock.length} tähemärki, match-nimekiri ${matchList.length}`);
+  console.log(`[glossary] ${entries.length} kirjet, ${lockedCount} locked → term-blokk ${termBlock.length} ch, match ${matchList.length}`);
 
   fs.mkdirSync(OUT_DIR, { recursive: true });
   const ndjsonPath = path.join(OUT_DIR, `${OUT_LABEL}.ndjson`);
   fs.writeFileSync(path.join(OUT_DIR, `${OUT_LABEL}.matchlist.json`), JSON.stringify(matchList));
 
-  // RESUME: loe olemasolev NDJSON, jäta juba-tehtud id-d vahele
+  // RESUME
   const records = [];
   const doneIds = new Set();
   if (fs.existsSync(ndjsonPath)) {
     for (const line of fs.readFileSync(ndjsonPath, 'utf8').trim().split('\n').filter(Boolean)) {
       try { const rec = JSON.parse(line); records.push(rec); doneIds.add(rec.product.id); } catch {}
     }
-    console.log(`[resume] ${doneIds.size} juba tehtud (jätkan)`);
+    console.log(`[resume] ${doneIds.size} juba tehtud`);
   }
 
-  console.log(`[valik] piloot ${pilotN} toodet…`);
-  const carbonN = args.includes('--carbon') ? Math.max(1, parseInt(getFlag('--carbon') !== true ? getFlag('--carbon') : '2', 10)) : 0;
-  let picked = [];
-  if (carbonN > 0) {
-    const carbon = selectCarbon(carbonN);
-    console.log(`[valik] +${carbon.length} carbon-steel seed`);
-    picked = [...carbon, ...selectPilot(pilotN - carbon.length)];
-    // dedup id
-    const seen = new Set(); picked = picked.filter(p => !seen.has(p.id) && seen.add(p.id));
-  } else {
-    picked = selectPilot(pilotN);
+  // SELEKTSIOON
+  let picked;
+  if (doAll) picked = selectAll();
+  else if (skusFile) picked = selectBySkus(skusFile);
+  else {
+    picked = carbonN > 0 ? [...selectCarbon(carbonN), ...selectPilot(pilotN - carbonN)] : selectPilot(pilotN);
   }
-  const products = picked.filter(p => !doneIds.has(p.id));
-  console.log(`[valik] ${products.length} genereerida (conc=${CONCURRENCY})`);
+  picked = dedupById(picked);
+  console.log(`[valik] ${picked.length} toodet`);
+
+  // IDEMPOTENT SKIP (ainult write-režiimis: jäta juba-genereeritud vahele)
+  let idemSkip = 0;
+  if (doWrite) {
+    const f = filterNeedsGen(picked);
+    idemSkip = f.skipped;
+    picked = f.toWrite;
+    console.log(`[idempotent] ${idemSkip} juba genereeritud (hash sama) → vahele; ${picked.length} genereerida`);
+  }
+  let products = picked.filter(p => !doneIds.has(p.id));
 
   let done = 0;
-  await runPool(products, async (p) => {
-    const r = await generateContent(p, { apiKey: KEY, model, termBlock, useVision });
-    const u = r.usage || {};
-    const rec = { product: p, mode: r.mode, ms: r.ms, ok: r.ok, error: r.error, parseErr: r.parseErr, content: r.content, usage: u };
-    records.push(rec);
-    fs.appendFileSync(ndjsonPath, JSON.stringify(rec) + '\n');   // CHECKPOINT per toode
-    done++;
-    console.log(`  [${done}/${products.length}] ${p.sku || p.id} mode=${r.mode} ok=${r.ok} ${r.ms}ms in=${u.input_tokens} out=${u.output_tokens} cr=${u.cache_read_input_tokens || 0}${r.ok ? '' : ' ERR=' + (r.error || r.parseErr)}`);
-  }, CONCURRENCY);
+  const pushRec = (rec) => { records.push(rec); fs.appendFileSync(ndjsonPath, JSON.stringify(rec) + '\n'); };
 
-  // agregeeri KÕIGIST (resume + uued)
+  if (useBatch) {
+    // ---- BATCH API osade kaupa ----
+    const chunks = chunkArr(products, chunkSize);
+    console.log(`[batch] ${products.length} toodet → ${chunks.length} chunk(i) × ~${chunkSize}`);
+    for (let ci = 0; ci < chunks.length; ci++) {
+      const part = chunks[ci];
+      const reqs = part.map(p => ({ custom_id: p.id, params: buildRequestBody(p, { model, termBlock, useVision }).body }));
+      console.log(`[batch ${ci + 1}/${chunks.length}] submit ${reqs.length}…`);
+      const { batchId, counts, results } = await runChunk(reqs, KEY, {
+        onTick: (s) => process.stdout.write(`\r  batch ${batchId || ''} ${JSON.stringify(s.request_counts || {})}   `),
+      });
+      process.stdout.write('\n');
+      const byId = new Map(part.map(p => [p.id, p]));
+      const chunkRecs = [];
+      for (const r of results) {
+        const p = byId.get(r.custom_id); if (!p) continue;
+        const mode = detectSourceMode(p.sanitized_rich_description);
+        if (!r.ok) { pushRec({ product: p, mode, ok: false, error: `batch ${r.errorType}: ${r.error}`, usage: {} }); continue; }
+        const { parsed, parseErr } = parseMessage(r.message);
+        const rec = { product: p, mode, ok: !!parsed, parseErr, content: parsed, usage: r.message.usage || {} };
+        pushRec(rec); if (rec.ok) chunkRecs.push(rec);
+      }
+      if (doWrite && chunkRecs.length) {
+        const w = writeRecords(chunkRecs, { execute: true });
+        console.log(`  [batch ${ci + 1}] DB: applied=${w.applied} backup=${w.backedUp}`);
+      }
+      console.log(`  [batch ${ci + 1}/${chunks.length}] valmis (${counts ? JSON.stringify(counts) : ''})`);
+    }
+  } else {
+    // ---- REALTIME pool ----
+    await runPool(products, async (p) => {
+      const r = await generateContent(p, { apiKey: KEY, model, termBlock, useVision });
+      const u = r.usage || {};
+      pushRec({ product: p, mode: r.mode, ms: r.ms, ok: r.ok, error: r.error, parseErr: r.parseErr, content: r.content, usage: u });
+      done++;
+      console.log(`  [${done}/${products.length}] ${p.sku || p.id} mode=${r.mode} ok=${r.ok} ${r.ms}ms in=${u.input_tokens} out=${u.output_tokens} cr=${u.cache_read_input_tokens || 0}${r.ok ? '' : ' ERR=' + (r.error || r.parseErr)}`);
+    }, CONCURRENCY);
+    if (doWrite) {
+      const okRecs = records.filter(r => r.ok && r.content);
+      const w = writeRecords(okRecs, { execute: true });
+      console.log(`[write] DB: applied=${w.applied} backup=${w.backedUp} considered=${w.considered}`);
+      main._w = w;
+    }
+  }
+
+  // agregeeri
   let inTok = 0, outTok = 0, cacheRead = 0, modeRich = 0, modeComposed = 0;
   for (const rec of records) {
     const u = rec.usage || {};
     inTok += u.input_tokens || 0; outTok += u.output_tokens || 0; cacheRead += u.cache_read_input_tokens || 0;
     if (rec.mode === 'rich') modeRich++; else modeComposed++;
   }
-  const ts = OUT_LABEL;
-
-  // Kulu (Sonnet 5 intro: $2/1M in, $10/1M out; cache_read 10% in-hinnast)
   const IN = 2 / 1e6, OUT = 10 / 1e6, CR = 0.2 / 1e6;
   const costUsd = inTok * IN + outTok * OUT + cacheRead * CR;
-  const perProduct = costUsd / Math.max(1, records.length);
   const corpusN = 18745;
-  const costFull = perProduct * corpusN;
+  const costFull = (costUsd / Math.max(1, records.length)) * corpusN;
+  const w = main._w || {};
 
-  const mdPath = path.join(OUT_DIR, `${ts}.md`);
-  fs.writeFileSync(mdPath, renderMd(records, { model, useVision, ts, inTok, outTok, cacheRead, modeRich, modeComposed, costUsd, costFull, corpusN }));
+  const mdPath = path.join(OUT_DIR, `${OUT_LABEL}.md`);
+  fs.writeFileSync(mdPath, renderMd(records, {
+    label: doAll ? 'BACKFILL' : (skusFile ? 'DELTA' : 'PILOOT'), model, useVision, useBatch, doWrite,
+    inTok, outTok, cacheRead, modeRich, modeComposed, costUsd, costFull, corpusN,
+    applied: w.applied || 0, backedUp: w.backedUp || 0, idemSkip,
+  }));
 
-  console.log(`\n✅ PILOOT VALMIS`);
-  console.log(`   NDJSON: ${ndjsonPath}`);
+  console.log(`\n✅ VALMIS · ok=${records.filter(r => r.ok).length}/${records.length} · rich=${modeRich} composed=${modeComposed}`);
   console.log(`   Raport: ${mdPath}`);
-  console.log(`   Kulu piloot: ~$${costUsd.toFixed(3)} · täis-jooks ~$${costFull.toFixed(0)} (Batch −50% ~$${(costFull/2).toFixed(0)})`);
-  console.log(`   ok=${records.filter(r => r.ok).length}/${records.length} · rich=${modeRich} composed=${modeComposed}`);
+  console.log(`   Kulu: ~$${costUsd.toFixed(3)} · täis ~$${costFull.toFixed(0)} (Batch ~$${(costFull / 2).toFixed(0)})`);
+  if (doWrite) console.log(`   DB: applied=${w.applied || 0} backup=${w.backedUp || 0} idempotent-skip=${idemSkip}`);
 }
 
 main().catch(e => { console.error('FATAL', e); process.exit(1); });
