@@ -170,12 +170,30 @@ fi
 # FAIL-LOUD: süsteemne (API maas / >50% kukub) → fail()/Telegram; üksik toode → skip+count.
 echo "[6.5/7] sisu-gen (ET-sisu uutele — title_et/description_et/selling_points/rich_et)"
 if [ -s /tmp/classify-skus.txt ]; then
+  # RC-püüdmine set -e all: && RC=0 || RC=$? (muidu set -e katkestaks enne haru-valikut).
   CG_OUT=$(node "$ROOT/scripts/pipeline-content-gen.mjs" --skus /tmp/classify-skus.txt \
-    $([ "$EXECUTE" = "1" ] && echo --execute || echo --dry) 2>&1) \
-    || fail "content-gen" "pipeline-content-gen.mjs rc!=0 (süsteemne — API/DB maas?)"
+    $([ "$EXECUTE" = "1" ] && echo --execute || echo --dry) 2>&1) && CG_RC=0 || CG_RC=$?
   echo "$CG_OUT" | sed 's/^/  /'
-  CG_SKIPPED=$(echo "$CG_OUT" | grep -oE 'SKIPPED=[0-9]+' | tail -1 | cut -d= -f2 || echo 0)
-  [ "${CG_SKIPPED:-0}" -gt 0 ] && slack "⚠️ XLM sisu-gen [6.5]: $CG_SKIPPED toodet skipiti (review) — ET-sisu puudu, vaata üle"
+  # || true: grep no-match (exit 1) + pipefail muidu katkestaks set -e all enne :-0 default'it.
+  CG_SKIPPED=$( { echo "$CG_OUT" | grep -oE 'SKIPPED=[0-9]+' | tail -1 | cut -d= -f2; } || true); CG_SKIPPED=${CG_SKIPPED:-0}
+  CG_PENDING=$( { echo "$CG_OUT" | grep -oE 'CREDIT_PENDING=[0-9]+' | tail -1 | cut -d= -f2; } || true); CG_PENDING=${CG_PENDING:-0}
+  case "$CG_RC" in
+    0)
+      # OK — üksik-skipid on review (mitte krediit); Telegram HOIATUS kui skippe oli.
+      [ "$CG_SKIPPED" -gt 0 ] && slack "⚠️ XLM sisu-gen [6.5]: $CG_SKIPPED toodet skipiti (review) — ET-sisu puudu, vaata üle"
+      ;;
+    3)
+      # KREDIIT-DEGRADE (rc=3): sisu OOTAB, AGA laoseis/hind/spec + [7] reindeks JÄTKUB.
+      #   Krediidi-tõrge (mitte sisu-viga) EI TOHI laoseisu-uuendust blokeerida (Tarmo 2026-08-25).
+      #   Sama muster kui B-fix: mitte-kriitiline tõrge ei peata kogu pipeline'i. Sisu → re-run/järgmine öö.
+      echo "  ⚠️ [6.5] KREDIIT-DEGRADE — sisu vahele, [7] reindeks JÄTKUB (${CG_PENDING} toodet ootab sisu)"
+      slack "⚠️ XLM sisu-gen [6.5] KREDIIT-DEGRADE (HOIATUS, mitte FAIL): ${CG_PENDING} toodet ootab ET-sisu (krediit maas). Laoseis+hind+spec+reindeks JÄTKUS — pood uueneb. Sisu täidab: Console makse korda → 'bash scripts/run-content-backfill.sh' (või järgmine öö kui krediit tagasi)."
+      ;;
+    *)
+      # MUU süsteemne (API täiesti maas / DB kaos) → PEATA (Telegram punane).
+      fail "content-gen" "pipeline-content-gen.mjs rc=$CG_RC (süsteemne — API/DB maas?)"
+      ;;
+  esac
 else
   echo "  klassifitseeritud SKU-loend puudub → sisu-gen vahele"
 fi
