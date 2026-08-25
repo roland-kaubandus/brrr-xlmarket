@@ -53,9 +53,12 @@ const MAINS=[
   {id:"pcat_v4_l16",slug:"meditsiin-labor-ja-teadus",           name:"Meditsiin, labor ja teadus",          count:374},
   {id:"pcat_v4_l17",slug:"tooriied-ja-isikukaitse",             name:"Tööriied ja isikukaitse",             count:244},
   // 26. main (Tarmo 2026-07-20) — Outlet: tagastatud/rikutud-pakend kaup, eraldi osakond. FLAT (ei L2/L3).
-  {id:"pcat_v4_l26",slug:"outlet",                              name:"Outlet",                              count:1},
+  // OUTLET PEIDETUD NAVIST 2026-08-25 (Tarmo, hübriid-b+c). Tuleviku-kontseptsioon, praktikas
+  // populeerimata (0 reaalset sortimenti). Struktuur säilib DB-s (v4-outlet + 2 L2, is_internal=true)
+  // + whitelist'is (dead_l2_ok). TAGASI NAVI: taasta rida + eemalda is_internal kui sortiment tekib.
+  // {id:"pcat_v4_l26",slug:"outlet", name:"Outlet", count:1},
 ];
 const yl=["version: 4","updated: '2026-07-20'","source: v4 nav-järjekord LÕPLIK + Outlet 26. main (Tarmo 2026-07-20)","l1:"];
 for(const m of MAINS) block(yl,"v4-"+m.slug,m.name,m.slug,m.count,(y)=>subsDB(y,m.id));
 fs.writeFileSync(`${OUT}/taxonomy-music.yaml`,yl.join("\n")+"\n");
-console.log("yaml: 26 L1 (sh Outlet)");
+console.log(`yaml: ${MAINS.length} L1 (Outlet peidetud navist — is_internal + whitelist)`);

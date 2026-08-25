@@ -88,14 +88,21 @@ else console.log("  ✓ puhas");
 
 // ============ INV-STRUCT-01: orb L3 / dead L2 / dup-handle ============
 sec("INV-STRUCT-01", "FAIL", "orb L3 · dead L2 · dup-handle");
+// dead_L2 erand: kinnitatud tuleviku-kontseptsioonid (nt Outlet — 2-tasandiline
+// L1→L2→toode struktuur, populeeritakse kui outlet-sortiment tekib). Vt inv-whitelist.json → dead_l2_ok.
+const deadL2Ok = WL.dead_l2_ok || [];
+const deadL2Excl = deadL2Ok.length
+  ? `AND l2.handle NOT IN (${deadL2Ok.map((h) => `'${String(h).replace(/'/g, "''")}'`).join(",")})`
+  : "";
 const st = q(`
 WITH v4 AS (SELECT * FROM product_category WHERE mpath LIKE 'pcat_v4_l%' AND deleted_at IS NULL)
 SELECT 'orphan_L3', count(*)::text FROM v4 c WHERE (char_length(c.mpath)-char_length(replace(c.mpath,'.','')))=2 AND NOT EXISTS(SELECT 1 FROM v4 p WHERE p.id=c.parent_category_id)
 UNION ALL SELECT 'empty_L3', count(*)::text FROM v4 c WHERE (char_length(c.mpath)-char_length(replace(c.mpath,'.','')))=2 AND NOT EXISTS(SELECT 1 FROM product_category_product pcp WHERE pcp.product_category_id=c.id)
-UNION ALL SELECT 'dead_L2', count(*)::text FROM v4 l2 WHERE (char_length(l2.mpath)-char_length(replace(l2.mpath,'.','')))=1 AND NOT EXISTS(SELECT 1 FROM v4 l3 WHERE l3.parent_category_id=l2.id)
+UNION ALL SELECT 'dead_L2', count(*)::text FROM v4 l2 WHERE (char_length(l2.mpath)-char_length(replace(l2.mpath,'.','')))=1 AND NOT EXISTS(SELECT 1 FROM v4 l3 WHERE l3.parent_category_id=l2.id) ${deadL2Excl}
 UNION ALL SELECT 'dup_handle', count(*)::text FROM (SELECT handle FROM v4 GROUP BY handle HAVING count(*)>1) h;`);
 let stFail = 0;
 for (const [k, v] of st) { const n = +v; if (n > 0) { stFail += n; console.log(`  🔴 ${k}: ${n}`); } else console.log(`  ✓ ${k}: 0`); }
+if (deadL2Ok.length) console.log(`  ℹ️ dead_L2 whitelist-erand: ${deadL2Ok.length} (${deadL2Ok.join(", ")}) — vt inv-whitelist.json`);
 fails += stFail;
 
 // ============ INV-META-01: iga v4 kategooria omab taxonomy_node_meta rea (õige level) ============

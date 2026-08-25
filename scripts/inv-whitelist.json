@@ -1,5 +1,10 @@
 {
   "_comment": "Kinnitatud KAHETI/false-positive — INV-SEG-01 EI flag'i neid. dual_l3 = kogu L3 (kids-märksõna, aga sisu dual/päris/kommerts). dual_products = üksik-toode segatud L3-s.",
+  "dead_l2_ok": [
+    "v4-outlet-avatud-pakend",
+    "v4-outlet-rikutud-pakend"
+  ],
+  "dead_l2_ok_note": "Outlet = tuleviku-kontseptsioon (tagastatud/rikutud/avatud-pakend kaup), 2-tasandiline struktuur (L1→L2→toode, ilma L3-kihita) → dead_L2 invariant flag'ib L3-laste puudumise, aga see on TAHTLIK. Populeeritakse kui outlet-sortiment tekib. Outlet L1+L2 on peidetud navist (is_internal=true + eemaldatud genyM MAINS-ist) kuni avamiseni. Kinnitatud 2026-08-25 (Tarmo, hübriid-b+c).",
   "dual_l3": [
     "pcat_7cart4",
     "pcat_el_12x1_29",
