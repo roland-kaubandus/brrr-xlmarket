@@ -160,6 +160,10 @@ export default async function CategoryPage({ params, searchParams }: Props) {
 
   // --- Meili facet query (limit:0) — child counts + total + quick filters ---
   let totalCount = 0
+  // Meili-maas vs päriselt-tühi eristus: catch (503/timeout/võrk) → meiliDown=true.
+  // 0-hit Meili-UP korral EI viska → meiliDown jääb false → "tooteid ei leitud"
+  // (õige teade). Vt maas-haru render allpool (totalCount===0 branch).
+  let meiliDown = false
   let rawAncestorFacets: Record<string, number> = {}
   let quickFilterFacets: Record<string, number> = {}
   try {
@@ -199,7 +203,11 @@ export default async function CategoryPage({ params, searchParams }: Props) {
       quickFilterFacets = disjRes.facetDistribution?.["filter_tokens"] || quickFilterFacets
     }
   } catch {
-    // MeiliSearch unavailable — leave counts empty; page still renders.
+    // MeiliSearch unavailable (503/timeout/network) — leave counts empty; page
+    // still renders. Flag it so the empty-state shows "search temporarily down"
+    // instead of the misleading "no products in this category". Defensive: no
+    // throw, no spinner — SSR renders a static message.
+    meiliDown = true
   }
 
   // Akordioni (CategoryTreeNav) tootearvud — ÜKS globaalne scope-vaba facet (identne igal
@@ -442,6 +450,26 @@ export default async function CategoryPage({ params, searchParams }: Props) {
                 locale={locale}
               />
             </main>
+          </div>
+        ) : meiliDown ? (
+          // Meili-maas (mitte tühi kategooria) — eksitava "tooteid ei leitud"
+          // asemel selge ajutine-tõrke teade + proovi-uuesti (sama leht, SSR
+          // re-fetch). ET + EN. Defensiivne: staatiline, ei spinnerit.
+          <div className="bg-white rounded-xl p-12 text-center" role="status" aria-live="polite">
+            <p className="text-base font-semibold text-[#1a1a2e] mb-2">
+              {locale === "et" ? "Otsing on ajutiselt kättesaamatu" : "Search is temporarily unavailable"}
+            </p>
+            <p className="text-sm text-[#64748B] mb-4">
+              {locale === "et"
+                ? "See kategooria EI ole tühi — otsingumootor taastub. Proovi palun mõne minuti pärast uuesti."
+                : "This category is not empty — the search engine is recovering. Please try again in a few minutes."}
+            </p>
+            <Link
+              href={categoryBasePath}
+              className="text-[#0b7d79] hover:underline font-medium"
+            >
+              {locale === "et" ? "Proovi uuesti" : "Try again"}
+            </Link>
           </div>
         ) : (
           <div className="bg-white rounded-xl p-12 text-center">
