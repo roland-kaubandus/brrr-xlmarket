@@ -52,6 +52,29 @@
 
 ---
 
+## Prod-valmiduse kontroll — kas k33g talub prod-koormust? (2026-08-26)
+
+> Strateegia A eeldab, et k33g infra kannab prod-koormust. Kolm kontrolli, kõik **read-only serveri-inspektsioon**.
+
+**🔑 Otsustav avastus: uo28 ja k33g on SAMAL füüsilisel Hetzner-boxil** (sama docker-daemon, 50 konteinerit kokku: mõlemad xlmarket-stackid + xlrent.eu appid + mailcow + coolify). **Strateegia A ei koli riistvarale** — sama server, mis juba prod'i (uo28) hostib; cutover = domeen osutab teisele juba-jooksvale stackile samas boxis.
+
+### 1. Kas server talub prod-liiklust?
+**JAH, ülekaalukalt.** Host: **12 CPU-tuuma · 62 GiB RAM · 436 GB RAID (20% täis) · load ~0.6 (~5%) · 54p uptime.**
+- k33g stack live-kasutus: storefront 81 MB · medusa 172 MB · meili 197 MB · db 179 MB → **kogu stack ~860 MB RAM, ~5% ühest tuumast.**
+- Mõlemad stackid koos < 2 GB RAM. E-pood 18k kataloogiga + Meili (indeks ~200 MB) ei ole raske. **Tohutu varu** päris-liikluseks.
+
+### 2. Prod-tasemel backup + monitooring?
+- **Backup: JAH — öine 02:00 → offsite Hetzner Storage Box** (rsync/SSH). k33g DB kaetud **alates 2026-08-24** (KRIITILINE fix: 3 kuud varundati AINULT uo28 prod'i (külmutatud coming-soon), k33g staging — kus 18k+ toodet + kogu töö — oli katmata; nüüd kaetud). `pg_dump -Fc` (pg_restore-taastatav). Meili taastub reindeksiga pg'st. **= see on "backup verifitseeritud".**
+- **Monitooring: JAH** — uptime-kuma (väline uptime) + coolify-sentinel (host-meetrikad/alarmid) + per-konteiner healthcheck (kõik `healthy`) + Telegram fail-loud feed-pipeline'il.
+- **Väiksed augud:** (a) kinnita uptime-kumas xlmarket.ee monitor (mitte ainult xlrent) · (b) k33g Meili eraldi snapshot puudub (OK — reindeks pg'st).
+
+### 3. Coolify-setup prod-stabiilne (mitte "staging-katsetus")?
+**JAH — konfiguratsioon identne uo28 prod'iga.** Restart-policy = **`unless-stopped`** (elab üle reboot/crash) · healthcheck kõigil teenustel · püsivad named-volume'id · sama 7-teenuse compose. **Ainus jagatud omadus prod'iga:** resource-limiidid puuduvad (`unlim`) — AGA uo28 prod on samuti `unlim`, seega k33g on **täpselt sama karastatud kui praegune prod.** Pole throwaway.
+
+**⭐ Verdikt: k33g ON prod-tasemel → strateegia A on selge valik.** (Sama box + identne config + offsite-backup + monitooring. Cutover = domeeni-swap samas riistvaras, mitte migratsioon.)
+
+---
+
 ## Cutover-strateegia: A vs B
 
 ### ⭐ A — PROMOTE k33g → prod (domeeni-swap) — SOOVITATUD
