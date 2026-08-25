@@ -20,12 +20,24 @@ echo "=== SISU-BACKFILL START $(date -u +%FT%TZ) ==="
 node "$ROOT/scripts/content-gen-run.mjs" --all --batch --write --chunk "$CHUNK" --out "$LABEL" 2>&1 | tee -a "$LOG"
 RC=${PIPESTATUS[0]}
 
-SUMMARY=$(grep -E '✅ VALMIS|Kulu:|DB: applied' "$LOG" | tail -3 | tr '\n' ' ')
-if [ "$RC" -eq 0 ]; then
-  echo "=== DONE OK $(date -u +%FT%TZ) ==="
-  notify "✅ XLM sisu-backfill VALMIS $(date -u +%FT%TZ) — $SUMMARY"
-else
-  echo "=== FAIL rc=$RC $(date -u +%FT%TZ) ==="
-  notify "❌ XLM sisu-backfill FAIL (rc=$RC) $(date -u +%FT%TZ) — viimane: $(tail -2 "$LOG" | tr '\n' ' ') · re-run ohutu (hash-guard)"
-fi
+# Masin-loetav STATUS-rida runnerist (STATUS=OK|PARTIAL|SYSTEMIC ok=.. errored=.. ratio=..)
+STATUS_LINE=$(grep -E '^STATUS=' "$LOG" | tail -1)
+SUMMARY=$(grep -E 'Kulu:|DB: applied' "$LOG" | tail -2 | tr '\n' ' ')
+
+# RC on runneri fail-loud lävi: 0=OK (errored==0) · 2=OSALINE (0<err≤50%) · 1=SÜSTEEMNE (err>50%)
+# VALMIS-teade AINULT rc=0 (errored==0) — muidu EI väida "valmis".
+case "$RC" in
+  0)
+    echo "=== DONE OK $(date -u +%FT%TZ) ==="
+    notify "✅ XLM sisu-backfill VALMIS (kõik tehtud, 0 errored) $(date -u +%FT%TZ) — $STATUS_LINE · $SUMMARY"
+    ;;
+  2)
+    echo "=== PARTIAL rc=2 $(date -u +%FT%TZ) ==="
+    notify "⚠️ XLM sisu-backfill OSALINE — MITTE valmis $(date -u +%FT%TZ) — $STATUS_LINE · $SUMMARY · FIX: re-run 'bash scripts/run-content-backfill.sh' (hash-guard võtab AINULT puuduvad)"
+    ;;
+  *)
+    echo "=== SYSTEMIC/FAIL rc=$RC $(date -u +%FT%TZ) ==="
+    notify "❌ XLM sisu-backfill SÜSTEEMNE (rc=$RC) $(date -u +%FT%TZ) — ${STATUS_LINE:-'(STATUS-rida puudub — runner kukkus enne lõppu)'} · viimane: $(tail -2 "$LOG" | tr '\n' ' ') · re-run ohutu (hash-guard)"
+    ;;
+esac
 exit "$RC"

@@ -262,10 +262,33 @@ async function main() {
     applied: w.applied || 0, backedUp: w.backedUp || 0, idemSkip,
   }));
 
-  console.log(`\n✅ VALMIS · ok=${records.filter(r => r.ok).length}/${records.length} · rich=${modeRich} composed=${modeComposed}`);
+  // ── FAIL-LOUD lävi (HARD RULE #5) — VALMIS ⟺ errored==0; muidu exit≠0 ──────────
+  //   errored==0            → exit 0  STATUS=OK       (tõesti kõik tehtud)
+  //   0 < errored ≤ 50%     → exit 2  STATUS=PARTIAL  (osaline — re-run võtab puuduvad, hash-guard)
+  //   errored  > 50%        → exit 1  STATUS=SYSTEMIC (kogu partii kukub — API/krediit/DB maas)
+  // Sama FAIL_RATIO=0.5 kui hookil (pipeline-content-gen.mjs). Wrapper loeb STATUS-rea.
+  const FAIL_RATIO = 0.5;
+  const okCount = records.filter(r => r.ok).length;
+  const errCount = records.length - okCount;
+  const errRatio = records.length ? errCount / records.length : 0;
+  const status = errCount === 0 ? 'OK' : (errRatio > FAIL_RATIO ? 'SYSTEMIC' : 'PARTIAL');
+  const mark = status === 'OK' ? '✅ VALMIS' : (status === 'SYSTEMIC' ? '❌ SÜSTEEMNE' : '⚠️ OSALINE');
+
+  console.log(`\n${mark} · ok=${okCount}/${records.length} · errored=${errCount} (${(errRatio * 100).toFixed(1)}%) · rich=${modeRich} composed=${modeComposed}`);
   console.log(`   Raport: ${mdPath}`);
   console.log(`   Kulu: ~$${costUsd.toFixed(3)} · täis ~$${costFull.toFixed(0)} (Batch ~$${(costFull / 2).toFixed(0)})`);
   if (doWrite) console.log(`   DB: applied=${w.applied || 0} backup=${w.backedUp || 0} idempotent-skip=${idemSkip}`);
+  // masin-loetav rida wrapperile (grep STATUS=)
+  console.log(`STATUS=${status} ok=${okCount} errored=${errCount} ratio=${(errRatio * 100).toFixed(1)}%`);
+
+  if (status === 'SYSTEMIC') {
+    // näita esimesed vead (juurpõhjus — nt krediit otsas / API maas)
+    const ex = records.filter(r => !r.ok).slice(0, 3).map(r => (r.error || r.parseErr || '?').slice(0, 90));
+    for (const e of ex) console.error(`   ⛔ ${e}`);
+    process.exit(1);
+  }
+  if (status === 'PARTIAL') process.exit(2);
+  // OK → exit 0 (default)
 }
 
 main().catch(e => { console.error('FATAL', e); process.exit(1); });
