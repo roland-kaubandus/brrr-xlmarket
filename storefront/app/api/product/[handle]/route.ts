@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server"
 import { getProduct, getCategoryByHandle, formatPrice } from "@/lib/medusa"
 import { getProductMedia } from "@/lib/product-media"
-import { getVevorFeedEntryAsync } from "@/lib/vevor-feed"
+import { getVevorFeedEntryAsync, deriveInStock } from "@/lib/vevor-feed"
 import { getMeiliProductByHandle, getProductDescription, getProductTitle } from "@/lib/meilisearch"
 import { sanitizeHtml } from "@/lib/sanitize"
 import { categoryPath } from "@/lib/i18n"
@@ -481,15 +481,11 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
     //      osta" on neutraalne ja OHUTU, parem kui "eelda laos → tarnimatu ost".
     // NB: server-pool reservatsioon EI ole usaldusväärne topeltkaitse feed-churned OOS-ile —
     //     Medusa oma inventory näeb dummy 100, mitte feed-tõde 0 → UI/feed-värav on AINUS kaitse.
-    let feedInStock: boolean | undefined
-    if (meiliHit) {
-      feedInStock = (meiliHit as { in_stock?: boolean }).in_stock
-    } else if (feedEntry) {
-      // mirror feed-sync.sh: OOS kui availability!=='in stock' VÕI inventoryQuantity===0
-      feedInStock = feedEntry.availability === "in stock" && (feedEntry.inventoryQuantity || 0) > 0
-    } else {
-      feedInStock = false
-    }
+    // ÜKS tõde: sama deriveInStock SSoT, mida JsonLd `availability` kasutab (SEO/Google Shopping).
+    const feedInStock: boolean | undefined = deriveInStock({
+      meiliHit: meiliHit as { in_stock?: boolean } | null,
+      feedEntry,
+    })
 
     return NextResponse.json({
       product: {

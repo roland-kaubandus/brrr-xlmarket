@@ -1,5 +1,6 @@
 import { getProduct } from "@/lib/medusa"
 import { getMeiliProductByHandle } from "@/lib/meilisearch"
+import { getVevorFeedEntryAsync, deriveInStock } from "@/lib/vevor-feed"
 import { notFound } from "next/navigation"
 import JsonLdProduct from "@/components/JsonLdProduct"
 import JsonLdBreadcrumb from "@/components/JsonLdBreadcrumb"
@@ -71,6 +72,19 @@ export default async function ProductPage({ params }: Props) {
   const variant = product.variants?.[0]
   const price = variant?.calculated_price
 
+  // Laoseis JsonLd `availability`'le — SAMA deriveInStock SSoT, mida toote-detaili OOS-fallback
+  // (route.ts) kasutab. Meili-up → meiliHit.in_stock (feed-tõde); MEILI-MAAS → feed-cache
+  // predikaat (loeme feed-entry AINULT siis, kuum tee ei koorma); mõlemad maas → false
+  // (konservatiivne OOS). Vale "InStock" OOS-tootel = Google-karistus → in_stock !== true = OutOfStock.
+  const md = (product.metadata || {}) as Record<string, unknown>
+  const feedEntry = meiliHit
+    ? null
+    : await getVevorFeedEntryAsync({
+        vevorSku: md.vevor_sku != null ? String(md.vevor_sku) : null,
+        vevorUpc: md.vevor_upc != null ? String(md.vevor_upc) : null,
+      })
+  const inStock = deriveInStock({ meiliHit: meiliHit as { in_stock?: boolean } | null, feedEntry })
+
   // BreadcrumbList JSON-LD — derive from SSoT category-tree.
   // Same candidate priority as /api/product route:
   //   1. Meili taxonomy.ancestors (resolver v2 authoritative path)
@@ -97,7 +111,7 @@ export default async function ProductPage({ params }: Props) {
 
   return (
     <div className="max-w-[1360px] mx-auto px-4 sm:px-6 py-8 sm:py-12">
-      <JsonLdProduct product={product} price={price} locale={locale} />
+      <JsonLdProduct product={product} price={price} locale={locale} inStock={inStock} />
       <JsonLdBreadcrumb items={breadcrumbItems} />
       <ProductPageClient handle={handle} locale={locale} />
     </div>

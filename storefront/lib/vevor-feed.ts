@@ -111,6 +111,37 @@ export async function getVevorFeedEntryAsync(params: { vevorSku?: string | null;
   return null
 }
 
+/**
+ * Feed-cache OOS-predikaat — SAMA loogika, mille põhjal feed-sync.sh Meili `in_stock`'i seab
+ * (feed-sync.sh:179: `availability!=='in stock' || inventoryQuantity===0` → OOS). ÜKS tõde.
+ */
+export function feedEntryInStock(entry: VevorFeedEntry): boolean {
+  return entry.availability === "in stock" && (entry.inventoryQuantity || 0) > 0
+}
+
+/**
+ * SSoT laoseisu-derivatsioon — ÜKS tõde nii toote-detaili OOS-fallback'ile (route.ts) kui
+ * schema.org JsonLd `availability`'le (SEO / Google Shopping). Väldib teist hardcode'i.
+ *
+ * Prioriteet:
+ *   1. Meili `in_stock` (feed-juhitud, autoritatiivne) — kui meiliHit olemas.
+ *   2. MEILI-MAAS → feed-cache predikaat (feedEntryInStock) — Meili-sõltumatu, sama feed-tõde.
+ *   3. Muidu (Meili maas + feed-cache puudub) → false (KONSERVATIIVNE: laoseis teadmata → OOS,
+ *      MITTE eelda "laos"; väldib tarnimatu toote müüki + Google-karistust vale "InStock" eest).
+ *
+ * Tagastab: true=laos · false=OOS · undefined=Meili annab in_stock-välja ilma väärtuseta
+ * (harv; JsonLd + ostuvärav kohtlevad !==true konservatiivselt OOS-ina).
+ */
+export function deriveInStock(args: {
+  meiliHit: { in_stock?: boolean } | null
+  feedEntry: VevorFeedEntry | null
+}): boolean | undefined {
+  const { meiliHit, feedEntry } = args
+  if (meiliHit) return meiliHit.in_stock
+  if (feedEntry) return feedEntryInStock(feedEntry)
+  return false
+}
+
 export function getVevorFeedEntry(params: { vevorSku?: string | null; vevorUpc?: string | null }): VevorFeedEntry | null {
   const feed = readFeedCache()
   if (!feed) return null
