@@ -69,10 +69,13 @@ type PromoItem = CmsPromo
 const MEILI_KEY = process.env.NEXT_PUBLIC_MEILI_KEY || process.env.NEXT_PUBLIC_MEILISEARCH_SEARCH_KEY || ""
 const MEILI_BASE = process.env.NEXT_PUBLIC_MEILI_URL || "/meili"
 
+// Tagastab { ok, hits }: ok=false → Meili maas (503/timeout/võrk), ok=true + tühi
+// hits → päring õnnestus, 0 tulemust. See eristus toidab avalehe "otsing taastub"
+// riba (ainult ok=false korral), MITTE 0-hit korral. Defensiivne: ei viska.
 async function searchMeili(
   query: string,
   options: { limit?: number; sort?: string[]; filter?: string } = {}
-): Promise<MeiliProduct[]> {
+): Promise<{ ok: boolean; hits: MeiliProduct[] }> {
   try {
     const res = await fetch(`${MEILI_BASE}/indexes/products/search`, {
       method: "POST",
@@ -87,11 +90,11 @@ async function searchMeili(
         filter: options.filter,
       }),
     })
-    if (!res.ok) return []
+    if (!res.ok) return { ok: false, hits: [] }
     const data = await res.json()
-    return (data.hits ?? []) as MeiliProduct[]
+    return { ok: true, hits: (data.hits ?? []) as MeiliProduct[] }
   } catch {
-    return []
+    return { ok: false, hits: [] }
   }
 }
 
@@ -151,13 +154,19 @@ export default function HomepageShell({ locale, l1Nodes, slides, promos, navShor
     { query: "outdoor patio heater propane", category: "Outdoor Catering",   discountPct: 15 },
   ]
   const [deals, setDeals] = useState<Deal[]>([])
+  // Meili-maas indikaator: true AINULT kui deal-päringud kukkusid (503/timeout)
+  // JA ükski deal ei laadinud → näita "otsing taastub" riba. Meili-UP + 0-hit
+  // ei näita riba (jääks kummaline). Ülejäänud avaleht = SSoT, renderdub alati.
+  const [meiliDown, setMeiliDown] = useState(false)
 
   useEffect(() => {
     let cancelled = false
     async function loadDeals() {
+      let anyFailure = false
       const results = await Promise.all(
         DEAL_SEEDS.map(async (seed, idx) => {
-          const hits = await searchMeili(seed.query, { limit: 1 })
+          const { ok, hits } = await searchMeili(seed.query, { limit: 1 })
+          if (!ok) anyFailure = true
           const hit = hits[0]
           if (!hit) return null
           // Meili `price` is euros (float). We store cents in Deal for the
@@ -177,7 +186,12 @@ export default function HomepageShell({ locale, l1Nodes, slides, promos, navShor
           } as Deal
         }),
       )
-      if (!cancelled) setDeals(results.filter((d): d is Deal => d !== null))
+      if (!cancelled) {
+        const loaded = results.filter((d): d is Deal => d !== null)
+        setDeals(loaded)
+        // Riba ainult tõelise maas-oleku korral (päring kukkus + 0 laetud).
+        setMeiliDown(anyFailure && loaded.length === 0)
+      }
     }
     loadDeals()
     return () => {
@@ -259,7 +273,21 @@ export default function HomepageShell({ locale, l1Nodes, slides, promos, navShor
 
           {/* Deal Cards — mockup v2 layout: aspect-[4/3] product image,
               red percentage badge top-left, category small + title + amber
-              price + struck-through old price below. */}
+              price + struck-through old price below.
+              Meili-maas: deals-riba jääks tühjaks ILMA teateta → klient arvab
+              pood katki. Näita ühte nähtavat "otsing taastub" riba (ET+EN),
+              defensiivne (ei spinnerit). Riba AINULT meiliDown korral —
+              Meili-UP käitumine muutumatu. */}
+          {meiliDown ? (
+            <div className="hp-meili-recover" role="status" aria-live="polite">
+              <span className="hp-meili-recover-dot" aria-hidden="true" />
+              <span>
+                {loc === "et"
+                  ? "Soovitused laadimisel — otsing taastub, proovi hetke pärast uuesti."
+                  : "Loading recommendations — search is recovering, please try again shortly."}
+              </span>
+            </div>
+          ) : (
           <div className="hp-deals-row">
             {deals.map((deal) => (
               <SafeLink
@@ -287,6 +315,7 @@ export default function HomepageShell({ locale, l1Nodes, slides, promos, navShor
               </SafeLink>
             ))}
           </div>
+          )}
         </div>
       </div>
 
@@ -809,6 +838,39 @@ const homepageStyles = `
   grid-template-columns: repeat(4, 1fr);
   gap: 16px;
   margin-top: 16px;
+}
+
+/* Meili-maas taastumis-riba — asendab tühja deals-rida kui otsing ajutiselt maas.
+   Rahulik (mitte alarm): kreem taust + navi tekst + pulseeriv teal-täpp (mitte
+   suur spinner). Reduced-motion → täpp ei pulseeri. */
+.hp-meili-recover {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 16px;
+  padding: 16px 20px;
+  background: #FAF7F1;
+  border: 1px solid #D9CEB8;
+  border-radius: 8px;
+  font-family: 'Mulish', system-ui, sans-serif;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #475569;
+}
+.hp-meili-recover-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #0ea5a0;
+  flex-shrink: 0;
+  animation: hp-meili-pulse 1.4s ease-in-out infinite;
+}
+@keyframes hp-meili-pulse {
+  0%, 100% { opacity: 0.35; }
+  50% { opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hp-meili-recover-dot { animation: none; opacity: 0.8; }
 }
 
 /* Deal cards — mockup v2 spec.
