@@ -40,9 +40,10 @@ function runSqlFile(sqlText) {
   } finally { try { fs.unlinkSync(host); } catch {} }
 }
 export function psqlJSON(sql) {
+  // SQL stdin-ist (-f -) — väldib MAX_ARG_STRLEN (128KB) piiri suurte IN-loendite juures (18745 id).
   const c = dbContainer();
   const out = execFileSync('docker', ['exec', '-i', c, 'psql', '-U', 'xlmarket', '-d', 'xlmarket',
-    '-t', '-A', '-c', sql], { encoding: 'utf8', maxBuffer: 256 * 1024 * 1024 });
+    '-tA', '-v', 'ON_ERROR_STOP=1', '-f', '-'], { input: sql, encoding: 'utf8', maxBuffer: 768 * 1024 * 1024 });
   return out.split('\n').filter(Boolean).map(l => JSON.parse(l));
 }
 

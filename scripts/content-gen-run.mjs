@@ -21,7 +21,7 @@ import path from 'node:path';
 import { execFileSync } from 'node:child_process';
 import { loadGlossary, buildGlossaryAssets, generateContent, buildRequestBody, parseMessage, detectSourceMode, DEFAULT_MODEL } from './lib/content-gen.mjs';
 import { filterNeedsGen, writeRecords, dbContainer, psqlJSON } from './lib/content-write.mjs';
-import { runChunk, chunk as chunkArr } from './lib/content-batch.mjs';
+import { submitBatch, pollBatch, retrieveResults, chunk as chunkArr } from './lib/content-batch.mjs';
 
 const ROOT = '/opt/xlmarket-github';
 const GLOSSARY = path.join(ROOT, 'backend/src/data/glossary.yaml');
@@ -174,21 +174,42 @@ async function main() {
   const pushRec = (rec) => { records.push(rec); fs.appendFileSync(ndjsonPath, JSON.stringify(rec) + '\n'); };
 
   if (useBatch) {
-    // ---- BATCH API osade kaupa ----
-    const chunks = chunkArr(products, chunkSize);
-    console.log(`[batch] ${products.length} toodet → ${chunks.length} chunk(i) × ~${chunkSize}`);
-    for (let ci = 0; ci < chunks.length; ci++) {
-      const part = chunks[ci];
-      const reqs = part.map(p => ({ custom_id: p.id, params: buildRequestBody(p, { model, termBlock, useVision }).body }));
-      console.log(`[batch ${ci + 1}/${chunks.length}] submit ${reqs.length}…`);
-      const { batchId, counts, results } = await runChunk(reqs, KEY, {
-        onTick: (s) => process.stdout.write(`\r  batch ${batchId || ''} ${JSON.stringify(s.request_counts || {})}   `),
+    // ---- BATCH API: submit KÕIK chunkid ette (Anthropic töötleb paralleelselt server-pool),
+    //      SIIS poll+write igaüks kui valmis. State-fail → resume (dies → juba-esitatud batchid loetakse). ----
+    const statePath = path.join(OUT_DIR, `${OUT_LABEL}.batches.json`);
+    const byIdAll = new Map(products.map(p => [p.id, p]));
+    let submitted = [];
+    if (fs.existsSync(statePath)) {
+      try { submitted = JSON.parse(fs.readFileSync(statePath, 'utf8')); } catch {}
+      if (submitted.length) console.log(`[batch] resume: ${submitted.length} juba-esitatud batchi (${statePath})`);
+    }
+    if (!submitted.length) {
+      const chunks = chunkArr(products, chunkSize);
+      console.log(`[batch] ${products.length} toodet → ${chunks.length} chunk(i) × ~${chunkSize} — esitan KÕIK…`);
+      for (let ci = 0; ci < chunks.length; ci++) {
+        const part = chunks[ci];
+        const reqs = part.map(p => ({ custom_id: p.id, params: buildRequestBody(p, { model, termBlock, useVision }).body }));
+        const batch = await submitBatch(reqs, KEY);
+        submitted.push({ ci, batchId: batch.id, ids: part.map(p => p.id) });
+        fs.writeFileSync(statePath, JSON.stringify(submitted));  // persist iga submit järel
+        console.log(`  [submit ${ci + 1}/${chunks.length}] batch=${batch.id} n=${reqs.length}`);
+      }
+      console.log(`[batch] KÕIK ${submitted.length} batchi esitatud → poll+write`);
+    }
+    let batchApplied = 0, batchBacked = 0;
+    const doneChunks = new Set(records.length ? [] : []); // records/ndjson kannab juba-tehtut (resume dedup allpool)
+    for (const s of submitted) {
+      const already = records.some(r => s.ids.includes(r.product.id));
+      if (already) { console.log(`  [poll ${s.ci + 1}] juba töödeldud (ndjson) → vahele`); continue; }
+      console.log(`  [poll ${s.ci + 1}/${submitted.length}] batch=${s.batchId}…`);
+      const ended = await pollBatch(s.batchId, KEY, {
+        onTick: (st) => process.stdout.write(`\r    ${s.batchId} ${JSON.stringify(st.request_counts || {})}   `),
       });
       process.stdout.write('\n');
-      const byId = new Map(part.map(p => [p.id, p]));
+      const results = await retrieveResults(ended, KEY);
       const chunkRecs = [];
       for (const r of results) {
-        const p = byId.get(r.custom_id); if (!p) continue;
+        const p = byIdAll.get(r.custom_id); if (!p) continue;
         const mode = detectSourceMode(p.sanitized_rich_description);
         if (!r.ok) { pushRec({ product: p, mode, ok: false, error: `batch ${r.errorType}: ${r.error}`, usage: {} }); continue; }
         const { parsed, parseErr } = parseMessage(r.message);
@@ -197,10 +218,13 @@ async function main() {
       }
       if (doWrite && chunkRecs.length) {
         const w = writeRecords(chunkRecs, { execute: true });
-        console.log(`  [batch ${ci + 1}] DB: applied=${w.applied} backup=${w.backedUp}`);
+        batchApplied += w.applied; batchBacked += w.backedUp;
+        console.log(`  [poll ${s.ci + 1}] valmis (${JSON.stringify(ended.request_counts || {})}) · DB applied=${w.applied} backup=${w.backedUp} (kumulatiiv applied=${batchApplied})`);
+      } else {
+        console.log(`  [poll ${s.ci + 1}] valmis (${JSON.stringify(ended.request_counts || {})})`);
       }
-      console.log(`  [batch ${ci + 1}/${chunks.length}] valmis (${counts ? JSON.stringify(counts) : ''})`);
     }
+    if (doWrite) main._w = { applied: batchApplied, backedUp: batchBacked, considered: records.filter(r => r.ok).length };
   } else {
     // ---- REALTIME pool ----
     await runPool(products, async (p) => {
