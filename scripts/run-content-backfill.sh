@@ -17,6 +17,14 @@ notify() { [ -x "$NOTIFY" ] && "$NOTIFY" "$1" >/dev/null 2>&1 || true; }
 notify "🚀 XLM sisu-backfill START (Batch API, ~18.7k toodet, chunk $CHUNK) $(date -u +%FT%TZ)"
 echo "=== SISU-BACKFILL START $(date -u +%FT%TZ) ==="
 
+# STALE-STATE PUHASTUS (re-run kindlus): iga wrapper-jooks = PUHAS submit.
+#   Vana batches.json → resume-loogika re-poll'iks vanu (juba-ended) batche → uued EI esitataks.
+#   DB hash-guard on TÕELINE idempotentsus: filterNeedsGen esitab AINULT puuduvad (hash=NULL).
+#   Seega kustuta per-jooks checkpoint (batches.json + ndjson); LOG jääb (append, ajalugu).
+#   (Mid-run protsessi-surma resume = jooksuta content-gen-run.mjs OTSE, mitte wrapperist.)
+rm -f "$ROOT/reports/${LABEL}.batches.json" "$ROOT/reports/${LABEL}.ndjson"
+echo "  [stale-clear] batches.json + ndjson kustutatud → puhas submit (hash-guard võtab ainult puuduvad)"
+
 node "$ROOT/scripts/content-gen-run.mjs" --all --batch --write --chunk "$CHUNK" --out "$LABEL" 2>&1 | tee -a "$LOG"
 RC=${PIPESTATUS[0]}
 
