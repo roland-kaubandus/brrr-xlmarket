@@ -14,6 +14,12 @@ type Props = {
   product: Product
   price?: { calculated_amount: number; currency_code: string }
   locale?: string
+  /**
+   * Päris laoseis SSoT-st (deriveInStock: Meili in_stock → feed-cache → false). true=laos ·
+   * false=OOS · undefined=teadmata. Google Shopping vajab õiget saadavust — vale "InStock"
+   * OOS-tootel = Merchant-karistus + klient klikib tarnimatut. !==true → OutOfStock (konservatiivne).
+   */
+  inStock?: boolean
 }
 
 /**
@@ -37,7 +43,7 @@ function deriveBrandName(product: Product): string {
   return slug ? (BRAND_NAMES[slug] || slug) : "VEVOR"
 }
 
-export default function JsonLdProduct({ product, price, locale = "en" }: Props) {
+export default function JsonLdProduct({ product, price, locale = "en", inStock }: Props) {
   const variant = product.variants?.[0]
   const sku =
     (variant as any)?.sku ||
@@ -82,7 +88,12 @@ export default function JsonLdProduct({ product, price, locale = "en" }: Props) 
       "@type": "Offer",
       price: (price.calculated_amount / 100).toFixed(2),
       priceCurrency: price.currency_code?.toUpperCase() || "EUR",
-      availability: "https://schema.org/InStock",
+      // Päris laoseis SSoT-st (deriveInStock), MITTE hardcode. Prop → fallback product.in_stock.
+      // !==true (OOS VÕI teadmata) → OutOfStock (konservatiivne, väldib Google-karistust).
+      availability:
+        (inStock !== undefined ? inStock : product.in_stock) === true
+          ? "https://schema.org/InStock"
+          : "https://schema.org/OutOfStock",
       itemCondition: "https://schema.org/NewCondition",
       url: `https://xlmarket.ee/${locale}/toode/${product.handle}`,
       seller: {
