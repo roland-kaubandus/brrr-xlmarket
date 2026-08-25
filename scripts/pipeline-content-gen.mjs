@@ -43,6 +43,13 @@ const SKUS_FILE = val("--skus");
 const CONC = parseInt(val("--conc") || "4", 10);
 const MODEL = val("--model") || DEFAULT_MODEL;
 const FAIL_RATIO = 0.5; // >50% partiist kukub → süsteemne → exit 1
+const CREDIT_DOMINANT = 0.8; // ≥80% kukkumistest = krediit → DEGRADE (exit 3), mitte API-maas (exit 1)
+
+// Krediidi-/arve-tõrge (HTTP 400/402 "credit balance too low") ≠ API maas. DEGRADE, ära blokeeri laoseisu.
+// (400/402 EI retry'ta content-gen'is → tuleb otse r.error stringina.)
+function isCreditError(err) {
+  return /credit balance|credit_balance|billing|insufficient.?(?:quota|funds|credit)|HTTP 402|Plans & Billing/i.test(String(err || ""));
+}
 
 const KEY = process.env.ANTHROPIC_API_KEY;
 if (!KEY) { console.error("❌ ANTHROPIC_API_KEY puudub (set -a; . /opt/eumotors-tasks/.env; set +a) — SÜSTEEMNE"); process.exit(1); }
@@ -121,19 +128,31 @@ async function main() {
     }
   }, CONC);
 
-  // ── süsteemse vea lävi: kogu partii / enamik kukub → exit 1 (Telegram) ──
+  // ── kukkumis-analüüs: KREDIIT (degrade) vs MUU süsteemne (API maas → peata) ──
   const failRatio = failedItems.length / toWrite.length;
-  if (failRatio > FAIL_RATIO) {
+  const creditFails = failedItems.filter((f) => isCreditError(f.err)).length;
+  // enamik kukkumisi = krediit → DEGRADE (skip sisu, lase reindeks joosta), MITTE API-maas.
+  const creditDegrade = creditFails > 0 && creditFails >= failedItems.length * CREDIT_DOMINANT;
+
+  // MUU SÜSTEEMNE (API täiesti maas / DB kaos, EI krediit) → exit 1 (peata, Telegram punane).
+  if (failRatio > FAIL_RATIO && !creditDegrade) {
     console.error(`❌ SÜSTEEMNE: ${failedItems.length}/${toWrite.length} (${Math.round(failRatio * 100)}%) kukkus — API maas? Näited:`);
     for (const f of failedItems.slice(0, 5)) console.error(`   ⛔ ${f.sku || f.id}: ${f.err}`);
     process.exit(1);
   }
-  if (failedItems.length) {
+
+  // KREDIIT-DEGRADE: krediidi-tõrge ≠ API-maas. Sisu OOTAB, aga laoseis/hind/spec/reindeks JÄTKUB.
+  //   (Sama muster kui B-fix: üksik/mitte-kriitiline tõrge ei peata kogu pipeline'i. Sisu re-run'iga hiljem.)
+  if (creditDegrade) {
+    console.error(`⚠️ KREDIIT-DEGRADE: ${creditFails}/${toWrite.length} kukkus krediidi-veaga (${Math.round(failRatio * 100)}% kokku) — sisu OOTAB, laoseis/reindeks JÄTKUB. Näide:`);
+    const ex = failedItems.find((f) => isCreditError(f.err));
+    if (ex) console.error(`   💳 ${ex.sku || ex.id}: ${ex.err}`);
+  } else if (failedItems.length) {
     console.log(`  ⚠️ ${failedItems.length} üksik-toodet kukkus → SKIP (review), EI peata:`);
     for (const f of failedItems.slice(0, 8)) console.log(`     ⏭  ${f.sku || f.id}: ${f.err}`);
   }
 
-  // ── kirjuta (backup + idempotent hash-guard) ──
+  // ── kirjuta õnnestunud (ka DEGRADE'i puhul — mis JÕUDIS enne krediidi-lõppu läbi) ──
   let applied = 0;
   if (!EXECUTE) {
     console.log(`  [DRY] EI kirjuta. (--execute kirjutaks ${records.length} toodet)`);
@@ -149,6 +168,9 @@ async function main() {
   console.log(`SKIPPED=${failedItems.length}`);
   console.log(`FAILED=${failedItems.length}`);
   console.log(`IDEMPOTENT=${idempotent}`);
+  console.log(`CREDIT_PENDING=${creditFails}`);
+  // exit 3 = KREDIIT-DEGRADE signaal orkestraatorile (import-pipeline.sh [6.5]): ära fail(), lase [7] joosta.
+  if (creditDegrade) { console.log(`CREDIT_DEGRADE=1`); process.exit(3); }
 }
 
 main().catch((e) => { console.error(`❌ FATAL (SÜSTEEMNE): ${e.stack || e}`); process.exit(1); });
