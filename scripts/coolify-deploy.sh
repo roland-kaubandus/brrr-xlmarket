@@ -11,8 +11,14 @@ UUID="k33g510dw19uyjau3ca7dqpi"           # k33g compose-app uuid (= volume/proj
 API="http://localhost:8000/api/v1/deploy"
 
 [ -f "$ENV_FILE" ] || { echo "❌ $ENV_FILE puudub"; exit 1; }
-# shellcheck disable=SC1090
-set -a; . "$ENV_FILE"; set +a
+# Loe token ILMA source-imata: Coolify token algab 'N|' mustriga ('|' = shell toru-operaator),
+# `. "$ENV_FILE"` teeks süntaksivea. grep+cut = |-kindel, ei tõlgenda väärtust shellina.
+COOLIFY_TOKEN="$(grep -m1 '^COOLIFY_TOKEN=' "$ENV_FILE" | cut -d= -f2- || true)"
+# Eemalda ümbritsevad jutumärgid, kui kasutaja lisas need (echo 'COOLIFY_TOKEN="..."')
+COOLIFY_TOKEN="${COOLIFY_TOKEN%\"}"; COOLIFY_TOKEN="${COOLIFY_TOKEN#\"}"
+COOLIFY_TOKEN="${COOLIFY_TOKEN%\'}"; COOLIFY_TOKEN="${COOLIFY_TOKEN#\'}"
+# Eemalda kohatäite-nurksulud, kui kasutaja kopeeris juhise <...> koos sulgudega
+COOLIFY_TOKEN="${COOLIFY_TOKEN#<}"; COOLIFY_TOKEN="${COOLIFY_TOKEN%>}"
 [ -n "${COOLIFY_TOKEN:-}" ] || { echo "❌ COOLIFY_TOKEN puudub $ENV_FILE-is. Lisa: echo 'COOLIFY_TOKEN=...' >> $ENV_FILE"; exit 1; }
 
 FORCE="false"; [ "${1:-}" = "--force" ] && FORCE="true"
