@@ -85,7 +85,7 @@ function buildTree() {
     const ex = samplesById[r.id] ? ` :: ${samplesById[r.id]}` : "";
     const line = `[${r.handle}] ${path}${ex}`;
     lines.push(line);
-    byHandle[r.handle] = { path, name: r.name };
+    byHandle[r.handle] = { path, name: r.name, l1id: segs[0] };
   }
   return { text: lines.join("\n"), byHandle, count: lines.length };
 }
@@ -169,6 +169,9 @@ new_l3=true AINULT kui TÕESTATUD, et kogu puus pole ühtki sobivat tüüpi.
 KOGU L3-PUU:
 ${tree.text}`;
 
+// Kids-signaal — IDENTNE INV-SEG-01 regexiga (scripts/inv-taxonomy.mjs). Muuda MÕLEMAT koos.
+const KIDS_SEG_RE = /(for kids|kids ages|kids (piano|drum|keyboard|guitar|scooter|swing|trampoline|bike|nest)|for children|for toddler|toddler|[0-9] ?\+ ?year|ages [3-9])/i;
+
 const BATCH = 6, batches = [];
 for (let i = 0; i < targets.length; i += BATCH) batches.push(targets.slice(i, i + BATCH));
 
@@ -192,6 +195,16 @@ async function doBatch(bi) {
     else if (l3ok && conf >= CONF_REVIEW) bucket = "review";      // olemas-L3, madal kindlus
     else if (!l3ok && conf >= CONF_REVIEW) bucket = "new_l3";     // kindel tüüp, kodu puudub → uue-L3 kandidaat
     else bucket = "quarantine";                                   // ei tea (madal kindlus + kodu puudub)
+    // KIDS-EKSKLUSIIVSUSE GUARD (rules-as-checks — INV-SEG-01 kordumise vältimine):
+    //   kids-signaal title'is (Ages N+/Toddler/Ride-on Toy/for Kids) + pakutud L3 EI ole #24
+    //   (pcat_v4_l24) all → auto→review. Klassifikaator eksib "scooter→Sport" lõksu (68kg=NÕRK
+    //   signaal, raami tugevus mitte vanus) → INIMENE otsustab, MITTE vaikne misfile igal öösel.
+    //   Sama regex kui INV-SEG-01 (inv-taxonomy.mjs) → guard (uus) + invariant (olemas) = paar.
+    if (bucket === "auto" && l3ok && tree.byHandle[o.l3].l1id !== "pcat_v4_l24"
+        && KIDS_SEG_RE.test(p.title || "")) {
+      bucket = "review";
+      o.reason = `[KIDS-GUARD] ${o.reason || ""}`.slice(0, 118);
+    }
     // proposedType = klastri nimi inimese-vaates
     const proposedType = bucket === "auto" ? tree.byHandle[o.l3].path
       : (o.suggest_name || (l3ok ? tree.byHandle[o.l3].name : "") || (o.reason || "").slice(0, 60) || "?");
