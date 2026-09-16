@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-16T13:27:12.339Z",
+  "generated_at": "2026-09-16T17:33:03.140Z",
   "nodes": {
     "v4-tooriistad-ja-tarvikud": {
       "handle": "v4-tooriistad-ja-tarvikud",
@@ -32,13 +32,13 @@
         "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid",
         "v4-tooriistad-ja-tarvikud-turva-ja-objektivarustus"
       ],
-      "image_path": "/cat-thumbs/v4-tooriistad-ja-tarvikud-torutooriistad-toru-keermestajad-ja-loikurid.webp",
+      "image_path": "/cat-thumbs/v4-tooriistad-ja-tarvikud-kasitooriistad-kruustangid.webp",
       "image_source": "inherited",
       "description_en": "Tööriistad ja tarvikud — products.",
       "description_et": "Tööriistad ja tarvikud — tooted.",
       "tagline_en": "Tööriistad ja tarvikud",
       "tagline_et": "Tööriistad ja tarvikud",
-      "image_donor": "v4-tooriistad-ja-tarvikud-torutooriistad"
+      "image_donor": "v4-tooriistad-ja-tarvikud-kasitooriistad-kruustangid"
     },
     "v4-tooriistad-ja-tarvikud-kasitooriistad": {
       "handle": "v4-tooriistad-ja-tarvikud-kasitooriistad",
@@ -1752,9 +1752,9 @@
         "v4-tooriistad-ja-tarvikud-moote-ja-markeriistad-laserkaugusmoodikud",
         "v4-tooriistad-ja-tarvikud-moote-ja-markeriistad-siseava-moodikud"
       ],
-      "image_path": "/cat-thumbs/v4-tooriistad-ja-tarvikud-moote-ja-markeriistad-anemomeetrid.webp",
+      "image_path": "/cat-thumbs/v4-tooriistad-ja-tarvikud-moote-ja-markeriistad-endoskoopkaamerad.webp",
       "image_source": "inherited",
-      "image_donor": "v4-tooriistad-ja-tarvikud-moote-ja-markeriistad-anemomeetrid"
+      "image_donor": "v4-tooriistad-ja-tarvikud-moote-ja-markeriistad-endoskoopkaamerad"
     },
     "v4-tooriistad-ja-tarvikud-moote-ja-markeriistad-anemomeetrid": {
       "handle": "v4-tooriistad-ja-tarvikud-moote-ja-markeriistad-anemomeetrid",
@@ -2994,9 +2994,9 @@
         "v4-tooriistad-ja-tarvikud-cnc-kuulkruvid",
         "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-alumiiniumprofiilid"
       ],
-      "image_path": "/cat-thumbs/v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-lineaarjuhikud.webp",
+      "image_path": "/cat-thumbs/v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-alumiiniumprofiilid.webp",
       "image_source": "inherited",
-      "image_donor": "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-lineaarjuhikud"
+      "image_donor": "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-alumiiniumprofiilid"
     },
     "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-lineaarjuhikud": {
       "handle": "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-lineaarjuhikud",
@@ -3054,9 +3054,9 @@
         "v4-tooriistad-ja-tarvikud-tooriistade-hoiustamine-saepukid",
         "v4-ladu-tooriistariiulid-kapid"
       ],
-      "image_path": "/cat-thumbs/v4-tooriistad-otsikute-padrunite-hoidikud.webp",
+      "image_path": "/cat-thumbs/v4-ladu-tooriistakotid.webp",
       "image_source": "inherited",
-      "image_donor": "v4-tooriistad-otsikute-padrunite-hoidikud"
+      "image_donor": "v4-ladu-tooriistakotid"
     },
     "v4-tooriistad-otsikute-padrunite-hoidikud": {
       "handle": "v4-tooriistad-otsikute-padrunite-hoidikud",
@@ -3570,13 +3570,13 @@
         "v4-garaaziseadmed-garaazi-hoiustamine",
         "v4-garaaziseadmed-garaaziuksed-ja-ajamid"
       ],
-      "image_path": "/cat-thumbs/v4-garaaziseadmed-mehaaniku-tooriistad-plekitoode-ja-lohkude-eemalduskomplektid-pdr.webp",
+      "image_path": "/cat-thumbs/v4-garaaziseadmed-tungrauad-pneumaatilised-tungrauad.webp",
       "image_source": "inherited",
       "description_en": "Garaažiseadmed ja autoremont — products.",
       "description_et": "Garaažiseadmed ja autoremont — tooted.",
       "tagline_en": "Garaažiseadmed ja autoremont",
       "tagline_et": "Garaažiseadmed ja autoremont",
-      "image_donor": "v4-garaaziseadmed-plekitoo-pdr"
+      "image_donor": "v4-garaaziseadmed-tungrauad-pneumaatilised-tungrauad"
     },
     "v4-garaaziseadmed-tungrauad": {
       "handle": "v4-garaaziseadmed-tungrauad",
@@ -4038,9 +4038,9 @@
         "v4-garaaziseadmed-rehvitood-rataste-joondamise-ja-suunamise-seadmed",
         "v4-garaaziseadmed-rehvitood-mootorratta-rattaste-tasakaalustusseadmed"
       ],
-      "image_path": "/cat-thumbs/v4-garaaziseadmed-rehvitood-rehvivahetusseadmed-ja-vahetid.webp",
+      "image_path": "/cat-thumbs/v4-garaaziseadmed-rehvitood-rehvikorra-paigaldus-ja-taitevahendid-bead-seater.webp",
       "image_source": "inherited",
-      "image_donor": "v4-garaaziseadmed-rehvitood-rehvivahetusseadmed-ja-vahetid"
+      "image_donor": "v4-garaaziseadmed-rehvitood-rehvikorra-paigaldus-ja-taitevahendid-bead-seater"
     },
     "v4-garaaziseadmed-rehvitood-rehvivahetusseadmed-ja-vahetid": {
       "handle": "v4-garaaziseadmed-rehvitood-rehvivahetusseadmed-ja-vahetid",
@@ -4115,9 +4115,9 @@
         "v4-garaaziseadmed-mehaaniku-tooriistad-kutusepihustite-puhastid-ja-testrid",
         "v4-garaaziseadmed-mehaaniku-tooriistad-mootorite-kompressiooni-ja-survetestrid"
       ],
-      "image_path": "/cat-thumbs/v4-garaaziseadmed-mehaaniku-tooriistad-autoelektri-testrid.webp",
+      "image_path": "/cat-thumbs/v4-garaaziseadmed-mehaaniku-tooriistad-suitsu-lekketestrid.webp",
       "image_source": "inherited",
-      "image_donor": "v4-garaaziseadmed-mehaaniku-tooriistad-autoelektri-testrid"
+      "image_donor": "v4-garaaziseadmed-mehaaniku-tooriistad-suitsu-lekketestrid"
     },
     "v4-garaaziseadmed-mehaaniku-tooriistad-autoelektri-testrid": {
       "handle": "v4-garaaziseadmed-mehaaniku-tooriistad-autoelektri-testrid",
@@ -4283,9 +4283,9 @@
         "v4-garaaziseadmed-olivahetus-ja-hooldus-kutusevooliku-rullid",
         "v4-garaaz-gaasiballooni-soojendid"
       ],
-      "image_path": "/cat-thumbs/v4-garaaziseadmed-olivahetus-ja-hooldus-kutuse-ulepumpamis-ja-ulekandepumbad.webp",
+      "image_path": "/cat-thumbs/v4-garaaziseadmed-olivahetus-ja-hooldus-kutusemahutid-ja-konteinerid-ratastega.webp",
       "image_source": "inherited",
-      "image_donor": "v4-garaaziseadmed-olivahetus-ja-hooldus-kutuse-ulepumpamis-ja-ulekandepumbad"
+      "image_donor": "v4-garaaziseadmed-olivahetus-ja-hooldus-kutusemahutid-ja-konteinerid-ratastega"
     },
     "v4-garaaziseadmed-olivahetus-ja-hooldus-kutuse-ulepumpamis-ja-ulekandepumbad": {
       "handle": "v4-garaaziseadmed-olivahetus-ja-hooldus-kutuse-ulepumpamis-ja-ulekandepumbad",
@@ -4381,9 +4381,9 @@
         "v4-garaaziseadmed-hoiustamine-katuse-ja-uksehoiukarud",
         "v4-garaaziseadmed-garaazi-hoiustamine-aiatooriistade-hoidikud"
       ],
-      "image_path": "/cat-thumbs/v4-garaaziseadmed-garaazi-hoiustamine-rehviriiulid-ja-hoidikud.webp",
+      "image_path": "/cat-thumbs/v4-garaaziseadmed-garaazi-hoiustamine-aiatooriistade-hoidikud.webp",
       "image_source": "inherited",
-      "image_donor": "v4-garaaziseadmed-garaazi-hoiustamine-rehviriiulid-ja-hoidikud"
+      "image_donor": "v4-garaaziseadmed-garaazi-hoiustamine-aiatooriistade-hoidikud"
     },
     "v4-garaaziseadmed-garaazi-hoiustamine-rehviriiulid-ja-hoidikud": {
       "handle": "v4-garaaziseadmed-garaazi-hoiustamine-rehviriiulid-ja-hoidikud",
@@ -4481,13 +4481,13 @@
         "v4-suurkoogiseadmed-toitlustusaknad-ja-toiduveoki-tarvikud",
         "v4-suurkook-restorani-tehnika"
       ],
-      "image_path": "/cat-thumbs/v4-suurkoogiseadmed-toitlustusaknad-ja-toiduveoki-tarvikud-toiduveoki-teenindusaknad.webp",
+      "image_path": "/cat-thumbs/v4-suurkoogiseadmed-koogiseadmed-ja-elektriseadmed-lihaloikurid-ja-viilutajad.webp",
       "image_source": "inherited",
       "description_en": "Suurköögiseadmed — products.",
       "description_et": "Suurköögiseadmed — tooted.",
       "tagline_en": "Suurköögiseadmed",
       "tagline_et": "Suurköögiseadmed",
-      "image_donor": "v4-suurkoogiseadmed-toitlustusaknad-ja-toiduveoki-tarvikud"
+      "image_donor": "v4-suurkoogiseadmed-koogiseadmed-ja-elektriseadmed-lihaloikurid-ja-viilutajad"
     },
     "v4-suurkoogiseadmed-ettevalmistus-ja-tootlus": {
       "handle": "v4-suurkoogiseadmed-ettevalmistus-ja-tootlus",
@@ -5364,9 +5364,9 @@
         "v4-suurkoogiseadmed-koogiseadmed-ja-elektriseadmed-kohvimasinad-ja-urnid",
         "v4-suurkoogiseadmed-kuumaseadmed-baristatarvikud-espressotarvikud"
       ],
-      "image_path": "/cat-thumbs/v4-suurkoogiseadmed-kuumaseadmed-kohvikannud-pressid.webp",
+      "image_path": "/cat-thumbs/v4-suurkoogiseadmed-koogiseadmed-ja-elektriseadmed-kohviurnid.webp",
       "image_source": "inherited",
-      "image_donor": "v4-suurkoogiseadmed-kuumaseadmed-kohvikannud-pressid"
+      "image_donor": "v4-suurkoogiseadmed-koogiseadmed-ja-elektriseadmed-kohviurnid"
     },
     "v4-suurkoogiseadmed-kuumaseadmed-kohvikannud-pressid": {
       "handle": "v4-suurkoogiseadmed-kuumaseadmed-kohvikannud-pressid",
@@ -5754,9 +5754,9 @@
         "v4-suurkook-veini-ja-baaririiulid",
         "v4-suurkoogiseadmed-koogitarvikud-ja-noud-koostisainete-hoiukastid"
       ],
-      "image_path": "/cat-thumbs/v4-suurkoogiseadmed-hoiustamine-ja-riiulid-porandariiulid-ja-ladustamisrestid.webp",
+      "image_path": "/cat-thumbs/v4-suurkoogiseadmed-koogitarvikud-ja-noud-seinariiulid-ja-ulariiulid.webp",
       "image_source": "inherited",
-      "image_donor": "v4-suurkoogiseadmed-hoiustamine-ja-riiulid-porandariiulid-ja-ladustamisrestid"
+      "image_donor": "v4-suurkoogiseadmed-koogitarvikud-ja-noud-seinariiulid-ja-ulariiulid"
     },
     "v4-suurkoogiseadmed-hoiustamine-ja-riiulid-porandariiulid-ja-ladustamisrestid": {
       "handle": "v4-suurkoogiseadmed-hoiustamine-ja-riiulid-porandariiulid-ja-ladustamisrestid",
@@ -5822,9 +5822,9 @@
         "v4-suurkook-etiketi-margistusmasinad",
         "v4-suurkook-topsisulgemismasinad"
       ],
-      "image_path": "/cat-thumbs/v4-suurkoogiseadmed-pakendamis-ja-taiteseadmed-vedeliku-taitemasinad.webp",
+      "image_path": "/cat-thumbs/v4-suurkoogiseadmed-pakendamis-ja-taiteseadmed-pulbri-taiteseadmed.webp",
       "image_source": "inherited",
-      "image_donor": "v4-suurkoogiseadmed-pakendamis-ja-taiteseadmed-vedeliku-taitemasinad"
+      "image_donor": "v4-suurkoogiseadmed-pakendamis-ja-taiteseadmed-pulbri-taiteseadmed"
     },
     "v4-suurkoogiseadmed-pakendamis-ja-taiteseadmed-vedeliku-taitemasinad": {
       "handle": "v4-suurkoogiseadmed-pakendamis-ja-taiteseadmed-vedeliku-taitemasinad",
@@ -6023,13 +6023,13 @@
         "v4-kodumasinad-ja-kodutehnika-puhastus-ja-pesuhooldus",
         "v4-kodumasinad-ja-kodutehnika-kasitoo-ja-varuosad"
       ],
-      "image_path": "/cat-thumbs/v4-koogitehnika-veedestillaatorid.webp",
+      "image_path": "/cat-thumbs/v4-kodumasinad-ja-kodutehnika-koogitehnika-koogikombainid-ja-toiduprotsessorid.webp",
       "image_source": "inherited",
       "description_en": "Kodumasinad ja kodutehnika — products.",
       "description_et": "Kodumasinad ja kodutehnika — tooted.",
       "tagline_en": "Kodumasinad ja kodutehnika",
       "tagline_et": "Kodumasinad ja kodutehnika",
-      "image_donor": "v4-koogitehnika-veedestillaatorid"
+      "image_donor": "v4-kodumasinad-ja-kodutehnika-koogitehnika-koogikombainid-ja-toiduprotsessorid"
     },
     "v4-kodumasinad-ja-kodutehnika-koogitehnika": {
       "handle": "v4-kodumasinad-ja-kodutehnika-koogitehnika",
@@ -6480,9 +6480,9 @@
         "v4-ladu-pesumasina-pealsed-riiulid",
         "v4-kodumasinad-ja-kodutehnika-puhastus-aurupesurid"
       ],
-      "image_path": "/cat-thumbs/v4-kodumasinad-ja-kodutehnika-puhastus-ja-koristustehnika-katekuivatid.webp",
+      "image_path": "/cat-thumbs/v4-ladu-pesumasina-pealsed-riiulid.webp",
       "image_source": "inherited",
-      "image_donor": "v4-kodumasinad-ja-kodutehnika-puhastus-ja-koristustehnika-katekuivatid"
+      "image_donor": "v4-ladu-pesumasina-pealsed-riiulid"
     },
     "v4-kodumasinad-ja-kodutehnika-puhastus-ja-koristustehnika-katekuivatid": {
       "handle": "v4-kodumasinad-ja-kodutehnika-puhastus-ja-koristustehnika-katekuivatid",
@@ -6586,9 +6586,9 @@
         "v4-kodumasinad-ja-kodutehnika-kasitoo-ja-varuosad-veski-varuosad",
         "v4-kodumasinad-ja-kodutehnika-kasitoo-ja-varuosad-kodumasinate-alused"
       ],
-      "image_path": "/cat-thumbs/v4-kodumasinad-ja-kodutehnika-kasitoo-ja-varuosad-tolmuimeja-hoidikud.webp",
+      "image_path": "/cat-thumbs/v4-kodumasinad-ja-kodutehnika-kasitoo-ja-varuosad-kodumasinate-alused.webp",
       "image_source": "inherited",
-      "image_donor": "v4-kodumasinad-ja-kodutehnika-kasitoo-ja-varuosad-tolmuimeja-hoidikud"
+      "image_donor": "v4-kodumasinad-ja-kodutehnika-kasitoo-ja-varuosad-kodumasinate-alused"
     },
     "v4-kodumasinad-ja-kodutehnika-kasitoo-ja-varuosad-tolmuimeja-hoidikud": {
       "handle": "v4-kodumasinad-ja-kodutehnika-kasitoo-ja-varuosad-tolmuimeja-hoidikud",
@@ -6652,13 +6652,13 @@
         "v4-moobel-ja-sisustus-aknakatted-ja-kardinatarvikud",
         "v4-moobel-ja-sisustus-moobliosad-ja-komponendid"
       ],
-      "image_path": "/cat-thumbs/v4-moobel-ja-sisustus-vannitoamoobel-peeglikapid.webp",
+      "image_path": "/cat-thumbs/v4-moobel-ja-sisustus-elutoamoobel-hoiupingid-ja-tumbad.webp",
       "image_source": "inherited",
       "description_en": "Mööbel ja sisustus — products.",
       "description_et": "Mööbel ja sisustus — tooted.",
       "tagline_en": "Mööbel ja sisustus",
       "tagline_et": "Mööbel ja sisustus",
-      "image_donor": "v4-moobel-ja-sisustus-vannitoamoobel"
+      "image_donor": "v4-moobel-ja-sisustus-elutoamoobel-hoiupingid-ja-tumbad"
     },
     "v4-moobel-ja-sisustus-elutoamoobel": {
       "handle": "v4-moobel-ja-sisustus-elutoamoobel",
@@ -7762,9 +7762,9 @@
         "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-mooblirattad",
         "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-kontoritooli-alused"
       ],
-      "image_path": "/cat-thumbs/v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-lauakaitsed-ja-kiled.webp",
+      "image_path": "/cat-thumbs/v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-lauajalad.webp",
       "image_source": "inherited",
-      "image_donor": "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-lauakaitsed-ja-kiled"
+      "image_donor": "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-lauajalad"
     },
     "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-lauakaitsed-ja-kiled": {
       "handle": "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-lauakaitsed-ja-kiled",
@@ -7859,13 +7859,13 @@
         "v4-aed-ja-aiatehnika-aiadekoor",
         "v4-aed-ja-aiatehnika-aiapiirded-ja-varavad"
       ],
-      "image_path": "/cat-thumbs/v4-aed-ja-aiatehnika-maastikukujundus-kunstmuru-kummimatid.webp",
+      "image_path": "/cat-thumbs/v4-aed-ja-aiatehnika-l1-lumelabidad-ja-lumetosteseadmed.webp",
       "image_source": "inherited",
       "description_en": "Aed ja aiatehnika — products.",
       "description_et": "Aed ja aiatehnika — tooted.",
       "tagline_en": "Aed ja aiatehnika",
       "tagline_et": "Aed ja aiatehnika",
-      "image_donor": "v4-aed-ja-aiatehnika-maastikukujundus"
+      "image_donor": "v4-aed-ja-aiatehnika-l1-lumelabidad-ja-lumetosteseadmed"
     },
     "v4-aed-ja-aiatehnika-aiatooriistad": {
       "handle": "v4-aed-ja-aiatehnika-aiatooriistad",
@@ -8929,9 +8929,9 @@
         "v4-aed-ja-aiatehnika-l2-infrapunasaunad",
         "v4-saunatarvikud"
       ],
-      "image_path": "/cat-thumbs/v4-aed-ja-aiatehnika-l2-saunaahjud-ja-kerised.webp",
+      "image_path": "/cat-thumbs/v4-saunatarvikud.webp",
       "image_source": "inherited",
-      "image_donor": "v4-aed-ja-aiatehnika-l2-saunaahjud-ja-kerised"
+      "image_donor": "v4-saunatarvikud"
     },
     "v4-aed-ja-aiatehnika-l2-saunaahjud-ja-kerised": {
       "handle": "v4-aed-ja-aiatehnika-l2-saunaahjud-ja-kerised",
@@ -9160,9 +9160,9 @@
         "v4-aed-ja-aiatehnika-ouekaminad-ja-ahjud",
         "v4-aed-ja-aiatehnika-terrassisoojendid"
       ],
-      "image_path": "/cat-thumbs/v4-aed-ja-aiatehnika-l9-lokkekolded-ja-tulekausid.webp",
+      "image_path": "/cat-thumbs/v4-aed-ja-aiatehnika-tuleklaasid-ja-tulekivid.webp",
       "image_source": "inherited",
-      "image_donor": "v4-aed-ja-aiatehnika-l9-lokkekolded-ja-tulekausid"
+      "image_donor": "v4-aed-ja-aiatehnika-tuleklaasid-ja-tulekivid"
     },
     "v4-aed-ja-aiatehnika-l9-lokkekolded-ja-tulekausid": {
       "handle": "v4-aed-ja-aiatehnika-l9-lokkekolded-ja-tulekausid",
@@ -9665,13 +9665,13 @@
         "v4-varjualused-telgid-ja-kasvuhooned-kasvuhooned",
         "v4-varjualused-telgid-ja-kasvuhooned-aiamajad-ja-kuurid"
       ],
-      "image_path": "/cat-thumbs/v4-varjualused-telgid-ja-kasvuhooned-aiakuurid-aiamajad.webp",
+      "image_path": "/cat-thumbs/v4-varjualused-telgid-ja-kasvuhooned-varikatused-ja-pergolad-pergola-kinnitustarvikud.webp",
       "image_source": "inherited",
       "description_en": "Telgid, varjualused ja kasvuhooned — products.",
       "description_et": "Telgid, varjualused ja kasvuhooned — tooted.",
       "tagline_en": "Telgid, varjualused ja kasvuhooned",
       "tagline_et": "Telgid, varjualused ja kasvuhooned",
-      "image_donor": "v4-varjualused-telgid-ja-kasvuhooned-aiamajad-ja-kuurid"
+      "image_donor": "v4-varjualused-telgid-ja-kasvuhooned-varikatused-ja-pergolad-pergola-kinnitustarvikud"
     },
     "v4-varjualused-telgid-ja-kasvuhooned-varikatused-ja-pergolad": {
       "handle": "v4-varjualused-telgid-ja-kasvuhooned-varikatused-ja-pergolad",
@@ -9884,9 +9884,9 @@
         "v4-varjualused-telgid-ja-kasvuhooned-autovarjualused-ja-garaazitelgid-autovarjualuste-asenduskatted",
         "v4-varjualused-telgid-ja-kasvuhooned-autovarjualused-ja-garaazitelgid-hoiutelgid-ja-garaazitelgid"
       ],
-      "image_path": "/cat-thumbs/v4-varjualused-telgid-ja-kasvuhooned-autovarjualused-ja-garaazitelgid-autovarjualused.webp",
+      "image_path": "/cat-thumbs/v4-varjualused-telgid-ja-kasvuhooned-autovarjualused-ja-garaazitelgid-autovarjualuste-asenduskatted.webp",
       "image_source": "inherited",
-      "image_donor": "v4-varjualused-telgid-ja-kasvuhooned-autovarjualused-ja-garaazitelgid-autovarjualused"
+      "image_donor": "v4-varjualused-telgid-ja-kasvuhooned-autovarjualused-ja-garaazitelgid-autovarjualuste-asenduskatted"
     },
     "v4-varjualused-telgid-ja-kasvuhooned-autovarjualused-ja-garaazitelgid-autovarjualused": {
       "handle": "v4-varjualused-telgid-ja-kasvuhooned-autovarjualused-ja-garaazitelgid-autovarjualused",
@@ -10096,13 +10096,13 @@
         "v4-autovaruosad-ja-tarvikud-mootorrattatarvikud",
         "v4-autovaruosad-ja-tarvikud-elektriautode-laadimine"
       ],
-      "image_path": "/cat-thumbs/v4-autovaruosad-ja-tarvikud-pukseerimisseadmed-elektrilised-vintsid.webp",
+      "image_path": "/cat-thumbs/v4-autovaruosad-ja-tarvikud-pukseerimisseadmed-haakeseadmed-ja-kuulkinnitused.webp",
       "image_source": "inherited",
       "description_en": "Autovaruosad ja -tarvikud — products.",
       "description_et": "Autovaruosad ja -tarvikud — tooted.",
       "tagline_en": "Autovaruosad ja -tarvikud",
       "tagline_et": "Autovaruosad ja -tarvikud",
-      "image_donor": "v4-autovaruosad-ja-tarvikud-pukseerimisseadmed-elektrilised-vintsid"
+      "image_donor": "v4-autovaruosad-ja-tarvikud-pukseerimisseadmed-haakeseadmed-ja-kuulkinnitused"
     },
     "v4-autovaruosad-ja-tarvikud-pukseerimisseadmed": {
       "handle": "v4-autovaruosad-ja-tarvikud-pukseerimisseadmed",
@@ -11636,13 +11636,13 @@
         "v4-sport-kulmakastid-jahutus",
         "v4-sport-ja-vaba-aeg-reisikotid-ja-kohvrid"
       ],
-      "image_path": "/cat-thumbs/v4-sport-ja-vaba-aeg-tailgating-ja-peoseadmed-ratastega-kulmakastid-ja-jahutuskarud.webp",
+      "image_path": "/cat-thumbs/v4-sport-ja-vaba-aeg-fitness-ja-treeningseadmed-raskusvestid-ja-lisaraskused.webp",
       "image_source": "inherited",
       "description_en": "Sport ja vaba aeg — products.",
       "description_et": "Sport ja vaba aeg — tooted.",
       "tagline_en": "Sport ja vaba aeg",
       "tagline_et": "Sport ja vaba aeg",
-      "image_donor": "v4-sport-kulmakastid-jahutus"
+      "image_donor": "v4-sport-ja-vaba-aeg-fitness-ja-treeningseadmed-raskusvestid-ja-lisaraskused"
     },
     "v4-sport-ja-vaba-aeg-fitness-ja-treeningseadmed": {
       "handle": "v4-sport-ja-vaba-aeg-fitness-ja-treeningseadmed",
@@ -11694,9 +11694,9 @@
         "v4-sport-ja-vaba-aeg-fitness-ja-treeningseadmed-treeningu-laualauad",
         "v4-sport-ja-vaba-aeg-fitness-ja-treeningseadmed-rootsi-redelid-ja-voimlemisjaamad"
       ],
-      "image_path": "/cat-thumbs/v4-sport-ja-vaba-aeg-fitness-ja-treeningseadmed-ohujooga-ja-aerial-jooga-seadmed.webp",
+      "image_path": "/cat-thumbs/v4-sport-air-track-voimlemismatid.webp",
       "image_source": "inherited",
-      "image_donor": "v4-sport-ja-vaba-aeg-fitness-ja-treeningseadmed-ohujooga-ja-aerial-jooga-seadmed"
+      "image_donor": "v4-sport-air-track-voimlemismatid"
     },
     "v4-sport-ja-vaba-aeg-fitness-ja-treeningseadmed-ohujooga-ja-aerial-jooga-seadmed": {
       "handle": "v4-sport-ja-vaba-aeg-fitness-ja-treeningseadmed-ohujooga-ja-aerial-jooga-seadmed",
@@ -12409,9 +12409,9 @@
         "v4-sport-ja-vaba-aeg-matka-hadaabi-ellujaamisvarustus",
         "v4-sport-ja-vaba-aeg-matkavarustus-ja-telkimine-matkavoodid-ja-madratsid"
       ],
-      "image_path": "/cat-thumbs/v4-sport-ja-vaba-aeg-matkavarustus-ja-telkimine-matkatoolid-ja-lamamistoolid.webp",
+      "image_path": "/cat-thumbs/v4-sport-ja-vaba-aeg-matkavarustus-ja-telkimine-matkalauad-ja-koogijaamad.webp",
       "image_source": "inherited",
-      "image_donor": "v4-sport-ja-vaba-aeg-matkavarustus-ja-telkimine-matkatoolid-ja-lamamistoolid"
+      "image_donor": "v4-sport-ja-vaba-aeg-matkavarustus-ja-telkimine-matkalauad-ja-koogijaamad"
     },
     "v4-sport-ja-vaba-aeg-matkavarustus-ja-telkimine-matkatoolid-ja-lamamistoolid": {
       "handle": "v4-sport-ja-vaba-aeg-matkavarustus-ja-telkimine-matkatoolid-ja-lamamistoolid",
@@ -13848,13 +13848,13 @@
         "v4-ehitus-remont-ja-varvid-ohutus-ja-turvalisus",
         "v4-moobel-postkastid-pakiautomaadid"
       ],
-      "image_path": "/cat-thumbs/v4-ehitus-remont-ja-varvid-vihmaveesusteemid-ja-drenaaz-renni-ja-raastakaitsevorgud.webp",
+      "image_path": "/cat-thumbs/v4-ehitus-remont-ja-varvid-uksed-aknad-ja-luugid-ukselingid-ja-uksekaepidemed.webp",
       "image_source": "inherited",
       "description_en": "Ehitus ja remont — products.",
       "description_et": "Ehitus ja remont — tooted.",
       "tagline_en": "Ehitus ja remont",
       "tagline_et": "Ehitus ja remont",
-      "image_donor": "v4-ehitus-remont-ja-varvid-vihmaveesusteemid-ja-drenaaz"
+      "image_donor": "v4-ehitus-remont-ja-varvid-uksed-aknad-ja-luugid-ukselingid-ja-uksekaepidemed"
     },
     "v4-ehitus-remont-ja-varvid-uksed-aknad-ja-luugid": {
       "handle": "v4-ehitus-remont-ja-varvid-uksed-aknad-ja-luugid",
@@ -14345,9 +14345,9 @@
         "v4-ehitus-remont-ja-varvid-isolatsioon-ja-soojustus-soojusisolatsioonirullid-ja-materjalid",
         "v4-ehitus-remont-ja-varvid-isolatsioon-ja-soojustus-aurutokked-ja-kilekatted"
       ],
-      "image_path": "/cat-thumbs/v4-ehitus-remont-ja-varvid-isolatsioon-ja-soojustus-soojusisolatsioonirullid-ja-materjalid.webp",
+      "image_path": "/cat-thumbs/v4-ehitus-remont-ja-varvid-isolatsioon-ja-soojustus-aurutokked-ja-kilekatted.webp",
       "image_source": "inherited",
-      "image_donor": "v4-ehitus-remont-ja-varvid-isolatsioon-ja-soojustus-soojusisolatsioonirullid-ja-materjalid"
+      "image_donor": "v4-ehitus-remont-ja-varvid-isolatsioon-ja-soojustus-aurutokked-ja-kilekatted"
     },
     "v4-ehitus-remont-ja-varvid-isolatsioon-ja-soojustus-soojusisolatsioonirullid-ja-materjalid": {
       "handle": "v4-ehitus-remont-ja-varvid-isolatsioon-ja-soojustus-soojusisolatsioonirullid-ja-materjalid",
@@ -14864,13 +14864,13 @@
         "v4-elektritarvikud-ja-valgustus-kaablihaldus-ja-kaitse",
         "v4-elektritarvikud-ja-valgustus-serverikapid-ja-vorgukapid"
       ],
-      "image_path": "/cat-thumbs/v4-elektritarvikud-ja-valgustus-lambid-ja-valgustid-laualambid.webp",
+      "image_path": "/cat-thumbs/v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-paikesepaneelid.webp",
       "image_source": "inherited",
       "description_en": "Elektritarvikud ja valgustus — products.",
       "description_et": "Elektritarvikud ja valgustus — tooted.",
       "tagline_en": "Elektritarvikud ja valgustus",
       "tagline_et": "Elektritarvikud ja valgustus",
-      "image_donor": "v4-elektritarvikud-ja-valgustus-lambid-ja-valgustid-laualambid"
+      "image_donor": "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-paikesepaneelid"
     },
     "v4-elektritarvikud-ja-valgustus-lambid-ja-valgustid": {
       "handle": "v4-elektritarvikud-ja-valgustus-lambid-ja-valgustid",
@@ -14890,9 +14890,9 @@
         "v4-elektritarvikud-ja-valgustus-lambid-taskulambid-prozektorid",
         "v4-elektritarvikud-ja-valgustus-lambid-kasvulambid"
       ],
-      "image_path": "/cat-thumbs/v4-elektritarvikud-ja-valgustus-lambid-ja-valgustid-laualambid.webp",
+      "image_path": "/cat-thumbs/v4-elektritarvikud-ja-valgustus-lambid-ja-valgustid-lambivarjud.webp",
       "image_source": "inherited",
-      "image_donor": "v4-elektritarvikud-ja-valgustus-lambid-ja-valgustid-laualambid"
+      "image_donor": "v4-elektritarvikud-ja-valgustus-lambid-ja-valgustid-lambivarjud"
     },
     "v4-elektritarvikud-ja-valgustus-lambid-ja-valgustid-laualambid": {
       "handle": "v4-elektritarvikud-ja-valgustus-lambid-ja-valgustid-laualambid",
@@ -15103,9 +15103,9 @@
         "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-tuulegeneraatorid",
         "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-generaatori-katted"
       ],
-      "image_path": "/cat-thumbs/v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-paikesepaneelid.webp",
+      "image_path": "/cat-thumbs/v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-paikeseenergia-komplektid.webp",
       "image_source": "inherited",
-      "image_donor": "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-paikesepaneelid"
+      "image_donor": "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-paikeseenergia-komplektid"
     },
     "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-paikesepaneelid": {
       "handle": "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-paikesepaneelid",
@@ -15439,9 +15439,9 @@
         "v4-elektritarvikud-ja-valgustus-kaablikaitsjad-porandarambid",
         "v4-elektritarvikud-ja-valgustus-kaablipoolihoidikud"
       ],
-      "image_path": "/cat-thumbs/v4-tooriistad-kaablitombelindid-tomburid.webp",
+      "image_path": "/cat-thumbs/v4-elektritarvikud-ja-valgustus-kaablikaitsjad-porandarambid.webp",
       "image_source": "inherited",
-      "image_donor": "v4-tooriistad-kaablitombelindid-tomburid"
+      "image_donor": "v4-elektritarvikud-ja-valgustus-kaablikaitsjad-porandarambid"
     },
     "v4-tooriistad-kaablitombelindid-tomburid": {
       "handle": "v4-tooriistad-kaablitombelindid-tomburid",
@@ -15555,9 +15555,9 @@
         "v4-santehnika-kute-ja-ventilatsioon-ventilatsioon-ja-ventilaatorid-ohujahutid",
         "v4-santehnika-kute-ja-ventilatsioon-ohukuivatid"
       ],
-      "image_path": "/cat-thumbs/v4-santehnika-kute-ja-ventilatsioon-ventilatsioon-ja-ventilaatorid-toostuslikud-ventilaatorid.webp",
+      "image_path": "/cat-thumbs/v4-santehnika-kute-ja-ventilatsioon-ventilatsioon-ja-ventilaatorid-valjalaskeventilaatorid.webp",
       "image_source": "inherited",
-      "image_donor": "v4-santehnika-kute-ja-ventilatsioon-ventilatsioon-ja-ventilaatorid-toostuslikud-ventilaatorid"
+      "image_donor": "v4-santehnika-kute-ja-ventilatsioon-ventilatsioon-ja-ventilaatorid-valjalaskeventilaatorid"
     },
     "v4-santehnika-kute-ja-ventilatsioon-ventilatsioon-ja-ventilaatorid-toostuslikud-ventilaatorid": {
       "handle": "v4-santehnika-kute-ja-ventilatsioon-ventilatsioon-ja-ventilaatorid-toostuslikud-ventilaatorid",
@@ -16365,9 +16365,9 @@
         "v4-santehnika-kute-ja-ventilatsioon-lineaarsed-dusitrapid",
         "v4-santehnika-kute-ja-ventilatsioon-kanal-ja-renn-aravool"
       ],
-      "image_path": "/cat-thumbs/v4-santehnika-kute-ja-ventilatsioon-lineaarsed-dusitrapid.webp",
+      "image_path": "/cat-thumbs/v4-santehnika-kute-ja-ventilatsioon-kanal-ja-renn-aravool.webp",
       "image_source": "inherited",
-      "image_donor": "v4-santehnika-kute-ja-ventilatsioon-lineaarsed-dusitrapid"
+      "image_donor": "v4-santehnika-kute-ja-ventilatsioon-kanal-ja-renn-aravool"
     },
     "v4-santehnika-kute-ja-ventilatsioon-lineaarsed-dusitrapid": {
       "handle": "v4-santehnika-kute-ja-ventilatsioon-lineaarsed-dusitrapid",
@@ -16627,13 +16627,13 @@
         "v4-ladu-kaupluse-sisustus",
         "v4-ladu-pakendamine"
       ],
-      "image_path": "/cat-thumbs/v4-suurkoogiseadmed-hoiustamine-ja-riiulid-porandariiulid-ja-ladustamisrestid.webp",
+      "image_path": "/cat-thumbs/v4-ladu-metallriiulid.webp",
       "image_source": "inherited",
       "description_en": "Ladu, hoiustamine ja pakendamine — products.",
       "description_et": "Ladu, hoiustamine ja pakendamine — tooted.",
       "tagline_en": "Ladu, hoiustamine ja pakendamine",
       "tagline_et": "Ladu, hoiustamine ja pakendamine",
-      "image_donor": "v4-ladu-riiulid-restid"
+      "image_donor": "v4-ladu-metallriiulid"
     },
     "v4-ladu-riiulid-restid": {
       "handle": "v4-ladu-riiulid-restid",
@@ -17049,9 +17049,9 @@
         "v4-elektritarvikud-ja-valgustus-elektroonika-termoprinterid",
         "v4-ladu-posti-loenduskaalud"
       ],
-      "image_path": "/cat-thumbs/v4-ladu-pakkimis-sidumismasinad.webp",
+      "image_path": "/cat-thumbs/v4-ladu-pakkimis-koitmistarvikud.webp",
       "image_source": "inherited",
-      "image_donor": "v4-ladu-pakkimis-sidumismasinad"
+      "image_donor": "v4-ladu-pakkimis-koitmistarvikud"
     },
     "v4-ladu-pakkimis-sidumismasinad": {
       "handle": "v4-ladu-pakkimis-sidumismasinad",
@@ -17137,13 +17137,13 @@
         "v4-buroo-laminaatorid-koitmine",
         "v4-buroo-kontoritarvikud"
       ],
-      "image_path": "/cat-thumbs/v4-buroo-tahvlid-teadetetahvlid.webp",
+      "image_path": "/cat-thumbs/v4-buroo-brosuuri-ajakirjahoidikud.webp",
       "image_source": "inherited",
       "description_en": "Büroo ja kontoritarvikud — products.",
       "description_et": "Büroo ja kontoritarvikud — tooted.",
       "tagline_en": "Büroo ja kontoritarvikud",
       "tagline_et": "Büroo ja kontoritarvikud",
-      "image_donor": "v4-buroo-tahvlid"
+      "image_donor": "v4-buroo-brosuuri-ajakirjahoidikud"
     },
     "v4-buroo-dokumendihaldus-organiseerijad": {
       "handle": "v4-buroo-dokumendihaldus-organiseerijad",
@@ -17437,13 +17437,13 @@
         "v4-reklaami-truki-ja-graveerimisseadmed-vinuul-ja-sign",
         "v4-reklaami-truki-ja-graveerimisseadmed-koitmine-ja-lamineerimine"
       ],
-      "image_path": "/cat-thumbs/v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-kuumpressid.webp",
+      "image_path": "/cat-thumbs/v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-noopide-ja-markide-valmistamise-masinad.webp",
       "image_source": "inherited",
       "description_en": "Reklaami-, trüki- ja graveerimisseadmed — products.",
       "description_et": "Reklaami-, trüki- ja graveerimisseadmed — tooted.",
       "tagline_en": "Reklaami-, trüki- ja graveerimisseadmed",
       "tagline_et": "Reklaami-, trüki- ja graveerimisseadmed",
-      "image_donor": "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-kuumpressid"
+      "image_donor": "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-noopide-ja-markide-valmistamise-masinad"
     },
     "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk": {
       "handle": "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk",
@@ -17849,13 +17849,13 @@
         "v4-elektroonika-arvutiriistvara",
         "v4-elektroonika-nutikodu"
       ],
-      "image_path": "/cat-thumbs/v4-elektritarvikud-ja-valgustus-elektroonika-tv-seinakinnitused.webp",
+      "image_path": "/cat-thumbs/v4-elektritarvikud-ja-valgustus-elektroonika-kaasaskantavad-dvd-mangijad.webp",
       "image_source": "inherited",
       "description_en": "Elektroonika ja multimeedia — products.",
       "description_et": "Elektroonika ja multimeedia — tooted.",
       "tagline_en": "Elektroonika ja multimeedia",
       "tagline_et": "Elektroonika ja multimeedia",
-      "image_donor": "v4-elektroonika-kinnitused"
+      "image_donor": "v4-elektritarvikud-ja-valgustus-elektroonika-kaasaskantavad-dvd-mangijad"
     },
     "v4-elektroonika-projektsioon": {
       "handle": "v4-elektroonika-projektsioon",
@@ -18182,13 +18182,13 @@
         "v4-muusika-ja-helitehnika-dj-ja-lavatehnika",
         "v4-muusika-ja-helitehnika-heli-ja-salvestus"
       ],
-      "image_path": "/cat-thumbs/v4-muusika-ja-helitehnika-muusikariistad-keelpillid.webp",
+      "image_path": "/cat-thumbs/v4-muusika-ja-helitehnika-muusikariistad-lookpillid.webp",
       "image_source": "inherited",
       "description_en": "Muusika ja helitehnika — products.",
       "description_et": "Muusika ja helitehnika — tooted.",
       "tagline_en": "Muusika ja helitehnika",
       "tagline_et": "Muusika ja helitehnika",
-      "image_donor": "v4-muusika-ja-helitehnika-muusikariistad-keelpillid"
+      "image_donor": "v4-muusika-ja-helitehnika-muusikariistad-lookpillid"
     },
     "v4-muusika-ja-helitehnika-muusikariistad": {
       "handle": "v4-muusika-ja-helitehnika-muusikariistad",
@@ -18206,9 +18206,9 @@
         "v4-muusika-ja-helitehnika-muusikariistad-puhkpillid",
         "v4-muusika-ja-helitehnika-muusikariistad-pillitarvikud"
       ],
-      "image_path": "/cat-thumbs/v4-muusika-ja-helitehnika-muusikariistad-keelpillid.webp",
+      "image_path": "/cat-thumbs/v4-muusika-ja-helitehnika-muusikariistad-pillitarvikud.webp",
       "image_source": "inherited",
-      "image_donor": "v4-muusika-ja-helitehnika-muusikariistad-keelpillid"
+      "image_donor": "v4-muusika-ja-helitehnika-muusikariistad-pillitarvikud"
     },
     "v4-muusika-ja-helitehnika-muusikariistad-keelpillid": {
       "handle": "v4-muusika-ja-helitehnika-muusikariistad-keelpillid",
@@ -18302,9 +18302,9 @@
         "v4-muusika-ja-helitehnika-dj-ja-lavatehnika-vinuulplaadimangijad",
         "v4-muusika-ja-helitehnika-dj-ja-lavatehnika-vinuulplaatide-hoiustamine"
       ],
-      "image_path": "/cat-thumbs/v4-muusika-ja-helitehnika-dj-lavatehnika-dj-kotid-kohvrid.webp",
+      "image_path": "/cat-thumbs/v4-muusika-ja-helitehnika-dj-ja-lavatehnika-vinuulplaatide-hoiustamine.webp",
       "image_source": "inherited",
-      "image_donor": "v4-muusika-ja-helitehnika-dj-lavatehnika-dj-kotid-kohvrid"
+      "image_donor": "v4-muusika-ja-helitehnika-dj-ja-lavatehnika-vinuulplaatide-hoiustamine"
     },
     "v4-muusika-ja-helitehnika-dj-lavatehnika-dj-kotid-kohvrid": {
       "handle": "v4-muusika-ja-helitehnika-dj-lavatehnika-dj-kotid-kohvrid",
@@ -18403,13 +18403,13 @@
         "v4-peoinventar-taustaseinad-pulmakaared",
         "v4-peoinventar-meelelahutus-atraktsioonid"
       ],
-      "image_path": "/cat-thumbs/v4-peoinventar-meelelahutus-atraktsioonid-peomangud.webp",
+      "image_path": "/cat-thumbs/v4-peoinventar-pulma-lillestatiivid.webp",
       "image_source": "inherited",
       "description_en": "Peoinventar ja dekoratsioonid — products.",
       "description_et": "Peoinventar ja dekoratsioonid — tooted.",
       "tagline_en": "Peoinventar ja dekoratsioonid",
       "tagline_et": "Peoinventar ja dekoratsioonid",
-      "image_donor": "v4-peoinventar-meelelahutus-atraktsioonid"
+      "image_donor": "v4-peoinventar-pulma-lillestatiivid"
     },
     "v4-peoinventar-dekoratsioonid": {
       "handle": "v4-peoinventar-dekoratsioonid",
@@ -18780,13 +18780,13 @@
         "v4-hobi-pusled-ja-mudelitood",
         "v4-hobi-kasitoo-tooriistad-ja-seadmed"
       ],
-      "image_path": "/cat-thumbs/v4-hobi-tekstiil-omblusmasinad.webp",
+      "image_path": "/cat-thumbs/v4-hobi-ehtekunst-ehte-rullpressid.webp",
       "image_source": "inherited",
       "description_en": "Hobi ja käsitöö — products.",
       "description_et": "Hobi ja käsitöö — tooted.",
       "tagline_en": "Hobi ja käsitöö",
       "tagline_et": "Hobi ja käsitöö",
-      "image_donor": "v4-hobi-omblus-ja-tekstiil"
+      "image_donor": "v4-hobi-ehtekunst-ehte-rullpressid"
     },
     "v4-hobi-ehtekunst": {
       "handle": "v4-hobi-ehtekunst",
@@ -19105,13 +19105,13 @@
         "v4-lastekaubad-lastesoidukid",
         "v4-lastekaubad-manguasoidukid"
       ],
-      "image_path": "/cat-thumbs/v4-lastekaubad-ouemanguasjad-taispuhutavad-batuudid.webp",
+      "image_path": "/cat-thumbs/v4-sport-ja-vaba-aeg-manguasjad-lastele-ronimismanguasjad-ja-ronimiskomplektid.webp",
       "image_source": "inherited",
       "description_en": "Lastekaubad ja mänguasjad — products.",
       "description_et": "Lastekaubad ja mänguasjad — tooted.",
       "tagline_en": "Lastekaubad ja mänguasjad",
       "tagline_et": "Lastekaubad ja mänguasjad",
-      "image_donor": "v4-lastekaubad-ouemanguasjad"
+      "image_donor": "v4-sport-ja-vaba-aeg-manguasjad-lastele-ronimismanguasjad-ja-ronimiskomplektid"
     },
     "v4-lastekaubad-ouemanguasjad": {
       "handle": "v4-lastekaubad-ouemanguasjad",
@@ -19316,9 +19316,9 @@
         "v4-sport-ja-vaba-aeg-manguasjad-lastele-oppemanguasjad",
         "v4-lastekaubad-tantsumatid"
       ],
-      "image_path": "/cat-thumbs/v4-lastekaubad-laste-trummikomplektid.webp",
+      "image_path": "/cat-thumbs/v4-lastekaubad-tegevustahvlid.webp",
       "image_source": "inherited",
-      "image_donor": "v4-lastekaubad-laste-trummikomplektid"
+      "image_donor": "v4-lastekaubad-tegevustahvlid"
     },
     "v4-lastekaubad-laste-trummikomplektid": {
       "handle": "v4-lastekaubad-laste-trummikomplektid",
@@ -19563,13 +19563,13 @@
         "v4-lemmikloomatarbed-lemmiklooma-uksed-ja-varavad",
         "v4-lemmikloomatarbed-transport-ja-autotarvikud"
       ],
-      "image_path": "/cat-thumbs/v4-lemmikloomatarbed-lemmiklooma-uksed-ja-varavad-lemmiklooma-uksed.webp",
+      "image_path": "/cat-thumbs/v4-lemmikloomatarbed-lemmiklooma-hooldus-kassiliivakastid-ja-tualetimoobel.webp",
       "image_source": "inherited",
       "description_en": "Lemmikloomatarbed — products.",
       "description_et": "Lemmikloomatarbed — tooted.",
       "tagline_en": "Lemmikloomatarbed",
       "tagline_et": "Lemmikloomatarbed",
-      "image_donor": "v4-lemmikloomatarbed-lemmiklooma-uksed-ja-varavad"
+      "image_donor": "v4-lemmikloomatarbed-lemmiklooma-hooldus-kassiliivakastid-ja-tualetimoobel"
     },
     "v4-lemmikloomatarbed-lemmiklooma-hooldus": {
       "handle": "v4-lemmikloomatarbed-lemmiklooma-hooldus",
@@ -19853,9 +19853,9 @@
         "v4-lemmikloomatarbed-akvaariumid-ja-terraariumid-akvaariumitarvikud",
         "v4-lemmikloomatarbed-akvaariumid-ja-terraariumid-roomajate-ja-kilpkonnade-aedikud"
       ],
-      "image_path": "/cat-thumbs/v4-akvaariumivalgustid.webp",
+      "image_path": "/cat-thumbs/v4-lemmikloomatarbed-akvaariumid-ja-terraariumid-akvaariumifiltrid.webp",
       "image_source": "inherited",
-      "image_donor": "v4-akvaariumivalgustid"
+      "image_donor": "v4-lemmikloomatarbed-akvaariumid-ja-terraariumid-akvaariumifiltrid"
     },
     "v4-akvaariumivalgustid": {
       "handle": "v4-akvaariumivalgustid",
@@ -20120,13 +20120,13 @@
         "v4-pollumajandus-ja-loomakasvatus-lamba-ja-kitsekasvatus",
         "v4-pollumajandus-ja-loomakasvatus-mesindus"
       ],
-      "image_path": "/cat-thumbs/v4-pollumajandus-ja-loomakasvatus-lamba-ja-kitsekasvatus-kitse-lambapukid.webp",
+      "image_path": "/cat-thumbs/v4-pollumajandus-ja-loomakasvatus-talutehnika-pallikahvlid.webp",
       "image_source": "inherited",
       "description_en": "Põllumajandus ja loomakasvatus — products.",
       "description_et": "Põllumajandus ja loomakasvatus — tooted.",
       "tagline_en": "Põllumajandus ja loomakasvatus",
       "tagline_et": "Põllumajandus ja loomakasvatus",
-      "image_donor": "v4-pollumajandus-ja-loomakasvatus-lamba-ja-kitsekasvatus"
+      "image_donor": "v4-pollumajandus-ja-loomakasvatus-talutehnika-pallikahvlid"
     },
     "v4-pollumajandus-ja-loomakasvatus-talutehnika": {
       "handle": "v4-pollumajandus-ja-loomakasvatus-talutehnika",
@@ -20221,9 +20221,9 @@
         "v4-pollumajandus-ja-loomakasvatus-hobuse-ja-tallitarvikud",
         "v4-pollumajandus-ja-loomakasvatus-kariloomad-eluspuugipuurid"
       ],
-      "image_path": "/cat-thumbs/v4-pollumajandus-ja-loomakasvatus-kariloomad-elektrikarjused-ja-tarvikud.webp",
+      "image_path": "/cat-thumbs/v4-pollumajandus-ja-loomakasvatus-kariloomad-kariloomade-sugamisharjad.webp",
       "image_source": "inherited",
-      "image_donor": "v4-pollumajandus-ja-loomakasvatus-kariloomad-elektrikarjused-ja-tarvikud"
+      "image_donor": "v4-pollumajandus-ja-loomakasvatus-kariloomad-kariloomade-sugamisharjad"
     },
     "v4-pollumajandus-ja-loomakasvatus-kariloomad-elektrikarjused-ja-tarvikud": {
       "handle": "v4-pollumajandus-ja-loomakasvatus-kariloomad-elektrikarjused-ja-tarvikud",
@@ -20485,13 +20485,13 @@
         "v4-tervis-hooldus-ja-ilu-salongi-ja-spaaseadmed",
         "v4-tervis-hooldus-ja-ilu-beebi-ja-lapsetarbed"
       ],
-      "image_path": "/cat-thumbs/v4-tervis-hooldus-ja-ilu-isikuhooldusseadmed-juuksehooldusseadmed.webp",
+      "image_path": "/cat-thumbs/v4-tervis-hooldus-ja-ilu-isikuhooldusseadmed-infrapuna-ja-soojendusseadmed.webp",
       "image_source": "inherited",
       "description_en": "Tervis, hooldus ja ilu — products.",
       "description_et": "Tervis, hooldus ja ilu — tooted.",
       "tagline_en": "Tervis, hooldus ja ilu",
       "tagline_et": "Tervis, hooldus ja ilu",
-      "image_donor": "v4-tervis-hooldus-ja-ilu-isikuhooldusseadmed-juuksehooldusseadmed"
+      "image_donor": "v4-tervis-hooldus-ja-ilu-isikuhooldusseadmed-infrapuna-ja-soojendusseadmed"
     },
     "v4-tervis-hooldus-ja-ilu-isikuhooldusseadmed": {
       "handle": "v4-tervis-hooldus-ja-ilu-isikuhooldusseadmed",
@@ -20968,9 +20968,9 @@
         "v4-meditsiin-ja-liikumisabi-liikumisabi-tugipostid",
         "v4-meditsiin-ja-liikumisabi-liikumisabi-trepironimisabivahendid"
       ],
-      "image_path": "/cat-thumbs/v4-meditsiin-ja-liikumisabi-liikumisabi-dusitoolid-ja-pingid.webp",
+      "image_path": "/cat-thumbs/v4-meditsiin-ja-liikumisabi-liikumisabi-ratastooli-ja-laverampid.webp",
       "image_source": "inherited",
-      "image_donor": "v4-meditsiin-ja-liikumisabi-liikumisabi-dusitoolid-ja-pingid"
+      "image_donor": "v4-meditsiin-ja-liikumisabi-liikumisabi-ratastooli-ja-laverampid"
     },
     "v4-meditsiin-ja-liikumisabi-liikumisabi-dusitoolid-ja-pingid": {
       "handle": "v4-meditsiin-ja-liikumisabi-liikumisabi-dusitoolid-ja-pingid",
@@ -21466,13 +21466,13 @@
         "v4-tooriied-ja-isikukaitse-isikukaitsevahendid",
         "v4-tooriied-ja-isikukaitse-kukkumiskaitse-ja-korgustoo"
       ],
-      "image_path": "/cat-thumbs/v4-tooriied-ja-isikukaitse-tooriietus-ja-uleroivad-kapuutsiga-pusad-ja-dressipluusid.webp",
+      "image_path": "/cat-thumbs/v4-tooriied-ja-isikukaitse-tooriietus-ja-uleroivad-tulekindlad-toopuksid.webp",
       "image_source": "inherited",
       "description_en": "Tööriied ja isikukaitse — products.",
       "description_et": "Tööriied ja isikukaitse — tooted.",
       "tagline_en": "Tööriied ja isikukaitse",
       "tagline_et": "Tööriied ja isikukaitse",
-      "image_donor": "v4-tooriied-ja-isikukaitse-tooriietus-ja-uleroivad-kapuutsiga-pusad-ja-dressipluusid"
+      "image_donor": "v4-tooriied-ja-isikukaitse-tooriietus-ja-uleroivad-tulekindlad-toopuksid"
     },
     "v4-tooriied-ja-isikukaitse-tooriietus-ja-uleroivad": {
       "handle": "v4-tooriied-ja-isikukaitse-tooriietus-ja-uleroivad",
