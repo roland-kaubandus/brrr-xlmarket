@@ -440,6 +440,19 @@ export default function HomepageShell({ locale, l1Nodes, slides, promos, navShor
                         </SafeLink>
                       )
                     })}
+                    {l1Data && l1Data.l2_count > l2List.length ? (
+                      <SafeLink
+                        href={categoryPath(loc, cat.slug)}
+                        className="hp-cat-sublist-item hp-cat-sublist-more"
+                      >
+                        <span className="hp-cat-sublist-dot" aria-hidden="true" />
+                        <span className="hp-cat-sublist-name">
+                          {loc === "et"
+                            ? `veel ${l1Data.l2_count - l2List.length} →`
+                            : `${l1Data.l2_count - l2List.length} more →`}
+                        </span>
+                      </SafeLink>
+                    ) : null}
                   </nav>
                 ) : null}
 
@@ -1362,6 +1375,20 @@ const homepageStyles = `
 
 .hp-cat-sublist-item:hover {
   color: #0b7d79;
+}
+
+/* "veel N →" — muted teal link when an L1 has more L2 than the 6 shown.
+   Points to the L1 page; keeps the sublist at 6 rows = 6 cards (balanced). */
+.hp-cat-sublist-more {
+  margin-top: 4px;
+}
+.hp-cat-sublist-more .hp-cat-sublist-name {
+  color: #0b7d79;
+  font-weight: 600;
+  font-size: 15px;
+}
+.hp-cat-sublist-more .hp-cat-sublist-dot {
+  background: transparent;
 }
 
 .hp-cat-sublist-item:hover .hp-cat-sublist-dot {
