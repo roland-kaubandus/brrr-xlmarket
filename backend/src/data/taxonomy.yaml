@@ -1268,6 +1268,18 @@ l1:
             name_en: "SDS meislid ja purustusterad"
             name_et: "SDS meislid ja purustusterad"
             product_count: 0
+          - slug: v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-tsangid-ja-tsangihoidikud
+            name_en: "Tsangid ja tsangihoidikud"
+            name_et: "Tsangid ja tsangihoidikud"
+            product_count: 0
+          - slug: v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-t-soone-kinnituskomplektid
+            name_en: "T-soone kinnituskomplektid"
+            name_et: "T-soone kinnituskomplektid"
+            product_count: 0
+          - slug: v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-puurpead-ja-siseavatooriistad
+            name_en: "Puurpead ja siseavatööriistad"
+            name_et: "Puurpead ja siseavatööriistad"
+            product_count: 0
       - slug: v4-tooriistad-ja-tarvikud-turva-ja-objektivarustus
         name_en: "Töökoha ohutus- ja hädaabivarustus"
         name_et: "Töökoha ohutus- ja hädaabivarustus"
@@ -6531,6 +6543,14 @@ l1:
             name_en: "Vaibategemis- ja tuftingriistad"
             name_et: "Vaibategemis- ja tuftingriistad"
             product_count: 0
+          - slug: v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-kuumstantsimise-fooliumid
+            name_en: "Kuumstantsimise fooliumid"
+            name_et: "Kuumstantsimise fooliumid"
+            product_count: 0
+          - slug: v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-kuumstantsimise-stambid
+            name_en: "Kuumstantsimise stambid"
+            name_et: "Kuumstantsimise stambid"
+            product_count: 0
       - slug: v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc
         name_en: "Laser, graveerimine ja CNC"
         name_et: "Laser, graveerimine ja CNC"
@@ -7369,13 +7389,13 @@ l1:
             name_en: "Mänguplatsid ja aedikud"
             name_et: "Mänguplatsid ja aedikud"
             product_count: 0
-          - slug: v4-lemmikloomatarbed-puurid-ja-aedikud-linnupuurid
-            name_en: "Linnupuurid"
-            name_et: "Linnupuurid"
-            product_count: 0
           - slug: v4-lemmikloomatarbed-puurid-ja-aedikud-kassipuurid-ja-aedikud
             name_en: "Kassipuurid ja aedikud"
             name_et: "Kassipuurid ja aedikud"
+            product_count: 0
+          - slug: v4-lemmikloomatarbed-puurid-ja-aedikud-linnupuurid
+            name_en: "Linnupuurid"
+            name_et: "Linnupuurid"
             product_count: 0
           - slug: v4-lemmikloomatarbed-puurid-ja-aedikud-narilistepuurid
             name_en: "Närilistepuurid"
