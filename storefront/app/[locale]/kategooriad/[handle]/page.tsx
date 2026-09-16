@@ -13,6 +13,7 @@ import SubcategoryCarousel from "@/components/category/SubcategoryCarousel"
 import CategoryTreeNav from "@/components/category/CategoryTreeNav"
 import CategoryBottomRibbons from "@/components/category/CategoryBottomRibbons"
 import { categoryPath } from "@/lib/i18n"
+import { V3_ICONS } from "@/lib/taxonomy-v3"
 import { buildQuickFilters } from "@/lib/quick-filters"
 import { buildFilterGroups } from "@/lib/filter-groups"
 import {
@@ -348,9 +349,29 @@ export default async function CategoryPage({ params, searchParams }: Props) {
           })}
         </nav>
         <div className="pt-2 pb-6 md:pt-4 md:pb-8">
-          <h1 className="text-[28px] md:text-[34px] font-bold text-[#1a1a2e] tracking-tight leading-tight">
-            {displayName}
-          </h1>
+          <div className="flex items-center gap-3">
+            {(() => {
+              const L1Icon = node?.level === 1 ? V3_ICONS[handle] : null
+              return L1Icon ? (
+                <span
+                  className="inline-flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-xl bg-[#0b7d79] text-white shrink-0"
+                  aria-hidden="true"
+                >
+                  <L1Icon size={26} strokeWidth={1.5} />
+                </span>
+              ) : null
+            })()}
+            <h1 className="text-[28px] md:text-[34px] font-bold text-[#1a1a2e] tracking-tight leading-tight">
+              {displayName}
+            </h1>
+          </div>
+          {node?.level === 1 && childrenWithCounts.length > 0 ? (
+            <p className="mt-2 text-sm text-[#64748B]">
+              {locale === "et"
+                ? `${childrenWithCounts.length} alamkategooriat`
+                : `${childrenWithCounts.length} subcategories`}
+            </p>
+          ) : null}
         </div>
       </div>
 
