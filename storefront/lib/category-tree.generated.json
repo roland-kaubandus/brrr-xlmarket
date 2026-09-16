@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-16T17:33:03.140Z",
+  "generated_at": "2026-09-16T22:09:31.844Z",
   "nodes": {
     "v4-tooriistad-ja-tarvikud": {
       "handle": "v4-tooriistad-ja-tarvikud",
@@ -21764,6 +21764,32 @@
       "child_handles": [],
       "image_path": "/cat-thumbs/v4-tooriied-ja-isikukaitse-kukkumiskaitse-ja-korgustoo-ohutuskoied-lifelined.webp",
       "image_source": "direct"
+    },
+    "v4-outlet": {
+      "handle": "v4-outlet",
+      "name_en": "Outlet",
+      "name_et": "Outlet",
+      "level": 1,
+      "parent_handle": null,
+      "child_handles": [
+        "v4-outlet-rikutud-pakend"
+      ],
+      "image_path": null,
+      "image_source": "none",
+      "description_en": "Outlet — discounted, open-box and damaged-packaging products, full quality.",
+      "description_et": "Outlet — soodushinnaga, avatud ja rikutud pakendiga tooted, täisväärtuslikud.",
+      "tagline_en": "Outlet — discounted & open-box",
+      "tagline_et": "Outlet — soodushinnaga ja avatud pakend"
+    },
+    "v4-outlet-rikutud-pakend": {
+      "handle": "v4-outlet-rikutud-pakend",
+      "name_en": "Rikutud pakend",
+      "name_et": "Rikutud pakend",
+      "level": 2,
+      "parent_handle": "v4-outlet",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
     }
   },
   "order": [
@@ -23695,6 +23721,8 @@
     "v4-tooriied-ja-isikukaitse-kukkumiskaitse-ja-korgustoo",
     "v4-tooriied-ja-isikukaitse-kukkumiskaitse-ja-korgustoo-kolmjalad-paastestatiivid",
     "v4-tooriied-ja-isikukaitse-kukkumiskaitse-ja-korgustoo-fliplinid-kukkumissummutid",
-    "v4-tooriied-ja-isikukaitse-kukkumiskaitse-ja-korgustoo-ohutuskoied-lifelined"
+    "v4-tooriied-ja-isikukaitse-kukkumiskaitse-ja-korgustoo-ohutuskoied-lifelined",
+    "v4-outlet",
+    "v4-outlet-rikutud-pakend"
   ]
 }

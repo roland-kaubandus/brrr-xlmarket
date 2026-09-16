@@ -8142,3 +8142,22 @@ l1:
             name_en: "Ohutusköied ja lifeline'd"
             name_et: "Ohutusköied ja lifeline'd"
             product_count: 0
+  # ═══════ 26. OUTLET (Tarmo 2026-07-20; taastatud nähtavaks 2026-09-17) ═══════
+  # Käsitsi-hallatav (mitte-VEVOR-feed). Ainult "Rikutud pakend" L2 nähtav;
+  # "Avatud pakend" jääb peidus (is_internal, DB) kuni sisu lisatakse.
+  - slug: v4-outlet
+    name_en: "Outlet"
+    name_et: "Outlet"
+    short_slug: outlet
+    tagline_en: "Outlet — discounted & open-box"
+    tagline_et: "Outlet — soodushinnaga ja avatud pakend"
+    description_en: "Outlet — discounted, open-box and damaged-packaging products, full quality."
+    description_et: "Outlet — soodushinnaga, avatud ja rikutud pakendiga tooted, täisväärtuslikud."
+    hero_img: /images/branches/horeca.webp
+    hero_gradient: from-stone-950/80 via-stone-900/40 to-transparent
+    product_count: 1
+    subs:
+      - slug: v4-outlet-rikutud-pakend
+        name_en: "Rikutud pakend"
+        name_et: "Rikutud pakend"
+        product_count: 1

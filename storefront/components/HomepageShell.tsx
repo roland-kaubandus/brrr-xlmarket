@@ -28,6 +28,39 @@ interface HomepageCategory {
 // Mulish — rounded, humanist, quietly premium. User-locked 2026-04-19.
 const CATEGORY_FONT_FAMILY = "'Mulish', system-ui, sans-serif"
 
+// ═══════ ATMOSPHERE BANNERS (v4-handle → v3 AI-atmosphere webp) ═══════
+// The atmosphere set (37 AI scenes, public/images/cat-atmosphere/) is keyed by
+// v3 slugs; after the v3→v4 rename the banners 404'd and fell back to a random
+// inherited product thumbnail (Osa 34). This map restores a category-representative
+// banner for the 21 v4 mains that reuse an existing atmosphere image.
+// 5 mains are intentionally ABSENT → they keep the inherited image_path fallback
+// until their own AI image lands (Elektroonika, Peoinventar, Büroo, Põllumajandus,
+// Outlet). Kodumasinad points at `kitchen` as a placeholder — its dedicated image
+// is part of the same pending 6-image batch (Osa 41).
+const ATMOSPHERE_BANNERS: Record<string, string> = {
+  "v4-tooriistad-ja-tarvikud": "/images/cat-atmosphere/tools.webp",
+  "v4-garaaziseadmed-ja-autoremont": "/images/cat-atmosphere/automotive-workshop.webp",
+  "v4-suurkoogiseadmed": "/images/cat-atmosphere/horeca-food-service.webp",
+  "v4-kodumasinad-ja-kodutehnika": "/images/cat-atmosphere/kitchen.webp", // placeholder — dedicated image pending (Osa 41)
+  "v4-moobel-ja-sisustus": "/images/cat-atmosphere/office-commercial-interiors.webp",
+  "v4-aed-ja-aiatehnika": "/images/cat-atmosphere/backyard-landscaping-farm.webp",
+  "v4-telgid-varjualused-ja-kasvuhooned": "/images/cat-atmosphere/outdoor-living.webp",
+  "v4-autovaruosad-ja-tarvikud": "/images/cat-atmosphere/automotive.webp",
+  "v4-sport-ja-vaba-aeg": "/images/cat-atmosphere/fitness-sports-recreation.webp",
+  "v4-ehitus-ja-remont": "/images/cat-atmosphere/construction-building.webp",
+  "v4-elektritarvikud-ja-valgustus": "/images/cat-atmosphere/electrical-energy.webp",
+  "v4-santehnika-kute-ja-ventilatsioon": "/images/cat-atmosphere/plumbing-water-systems.webp",
+  "v4-ladu-hoiustamine-ja-pakendamine": "/images/cat-atmosphere/warehousing-material-handling.webp",
+  "v4-reklaami-truki-ja-graveerimisseadmed": "/images/cat-atmosphere/printing-packaging-signage.webp",
+  "v4-muusika-ja-helitehnika": "/images/cat-atmosphere/music-entertainment.webp",
+  "v4-hobi-ja-kasitoo": "/images/cat-atmosphere/crafts-sewing-printing.webp",
+  "v4-lastekaubad-ja-manguasjad": "/images/cat-atmosphere/kids-playgrounds.webp",
+  "v4-lemmikloomatarbed": "/images/cat-atmosphere/pets-wildlife-clinic.webp",
+  "v4-tervis-hooldus-ja-ilu": "/images/cat-atmosphere/salon-spa-wellness.webp",
+  "v4-meditsiin-labor-ja-teadus": "/images/cat-atmosphere/health-medical-supply.webp",
+  "v4-tooriied-ja-isikukaitse": "/images/cat-atmosphere/safety-security-workwear.webp",
+}
+
 
 /* ═══════════════════════════════════════════════
    TYPES
@@ -358,12 +391,14 @@ export default function HomepageShell({ locale, l1Nodes, slides, promos, navShor
             const l1Data = l1Nodes.find((n) => n.handle === cat.slug)
             const l2List = l1Data?.l2_list ?? []
             const featured = l1Data?.featured ?? []
-            // Banner image reuses the inherited category thumbnail (image_path,
-            // gen-tree post-pass) — the same working source as the featured cards.
-            // The old /images/cat-atmosphere/<v3-slug>.webp set 404'd after the
-            // v3→v4 handle rename (Osa 34 diagnoos). image_path is decoded like
-            // the featured cards (line ~445) for filename-consistency.
-            const bannerImg = l1Data?.image_path ? decodeURIComponent(l1Data.image_path) : null
+            // Banner image: prefer the category-representative AI atmosphere image
+            // (ATMOSPHERE_BANNERS, keyed by v4-handle → v3 slug). Mains without an
+            // atmosphere image fall back to the inherited category thumbnail
+            // (image_path, gen-tree post-pass) — the same working source as the
+            // featured cards, decoded for filename-consistency (Osa 34/41).
+            const bannerImg =
+              ATMOSPHERE_BANNERS[cat.slug] ??
+              (l1Data?.image_path ? decodeURIComponent(l1Data.image_path) : null)
             return (
               <section
                 key={cat.id}
