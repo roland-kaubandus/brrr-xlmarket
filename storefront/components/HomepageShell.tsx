@@ -1547,6 +1547,32 @@ const homepageStyles = `
   .hp-cat-sublist-name { font-size: 16px; }
 }
 
+/* ═══════ DESKTOP + TABLET (≥768) — sublist ei balloonu, kaardid ei veni ═══════
+   Garaaži-tüüpi pikkade L2-nimedega plokis murrab kitsas keskveerg (eriti
+   768-1024px) nimed 3+ reale → sublist-veerg kõrgem kui kaardi-ruudustik →
+   jagatud grid-rida venitas kaarte üle nende aspect'i → contain-pildid ujusid
+   liiga suures kastis = "kaovad poolikult". Suurköögil (lühemad nimed) ei murra
+   → ei veninud. Fix: (a) sublist-nimed max 2 rida (desktopil nagunii ≤2 rida →
+   no-op; tabletiribal kärbib ellipsis'iga), (b) kaardid hoiavad OMA aspect'i
+   ega veni jagatud rea järgi. Mobiilis (<768) EI kehti — seal on flex-column
+   stack ja align-self:start rikuks kaardiruudustiku laiuse. */
+@media (min-width: 768px) {
+  .hp-cat-sublist-name {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    min-width: 0;
+  }
+  .hp-cat-sublist-item,
+  .hp-cat-sublist-all,
+  .hp-cat-sublist-more { min-width: 0; }
+  .hp-cat-cards {
+    align-self: start;
+    grid-auto-rows: min-content;
+  }
+}
+
 /* ═══════ MOBILE (<768) ═══════ */
 @media (max-width: 767px) {
   .hp-hero-container { padding: 12px 16px; }
