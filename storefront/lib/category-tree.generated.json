@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-16T10:41:04.747Z",
+  "generated_at": "2026-09-16T13:27:12.339Z",
   "nodes": {
     "v4-tooriistad-ja-tarvikud": {
       "handle": "v4-tooriistad-ja-tarvikud",
@@ -273,9 +273,8 @@
       "level": 3,
       "parent_handle": "v4-tooriistad-ja-tarvikud-kasitooriistad",
       "child_handles": [],
-      "image_path": null,
-      "image_source": "none",
-      "productless": true
+      "image_path": "/cat-thumbs/v4-tooriistad-ja-tarvikud-kasitooriistad-poldi-ja-trossiloikurid.webp",
+      "image_source": "direct"
     },
     "v4-tooriistad-ja-tarvikud-kasitooriistad-betoonitooriistad": {
       "handle": "v4-tooriistad-ja-tarvikud-kasitooriistad-betoonitooriistad",
@@ -570,9 +569,8 @@
       "level": 3,
       "parent_handle": "v4-tooriistad-ja-tarvikud-elektrilised-tooriistad",
       "child_handles": [],
-      "image_path": null,
-      "image_source": "none",
-      "productless": true
+      "image_path": "/cat-thumbs/v4-tooriistad-ja-tarvikud-elektrilised-tooriistad-torulihvijad.webp",
+      "image_source": "direct"
     },
     "v4-tooriistad-ja-tarvikud-elektrilised-tooriistad-posti-ja-vaiarammijad": {
       "handle": "v4-tooriistad-ja-tarvikud-elektrilised-tooriistad-posti-ja-vaiarammijad",
@@ -1577,9 +1575,8 @@
       "level": 3,
       "parent_handle": "v4-tooriistad-ja-tarvikud-puidutoo-tooriistad",
       "child_handles": [],
-      "image_path": null,
-      "image_source": "none",
-      "productless": true
+      "image_path": "/cat-thumbs/v4-tooriistad-ja-tarvikud-puidutoo-tooriistad-tolmuimemisvoolikud.webp",
+      "image_source": "direct"
     },
     "v4-tooriistad-ja-tarvikud-puidutoo-tooriistad-teritusrakised": {
       "handle": "v4-tooriistad-ja-tarvikud-puidutoo-tooriistad-teritusrakised",
@@ -1926,9 +1923,8 @@
       "level": 3,
       "parent_handle": "v4-tooriistad-ja-tarvikud-moote-ja-markeriistad",
       "child_handles": [],
-      "image_path": null,
-      "image_source": "none",
-      "productless": true
+      "image_path": "/cat-thumbs/v4-tooriistad-ja-tarvikud-moote-ja-markeriistad-mooterattad.webp",
+      "image_source": "direct"
     },
     "v4-tooriistad-ja-tarvikud-kaablileidjad-ja-juhtmeotsijad": {
       "handle": "v4-tooriistad-ja-tarvikud-kaablileidjad-ja-juhtmeotsijad",
@@ -2312,9 +2308,8 @@
       "level": 3,
       "parent_handle": "v4-tooriistad-ja-tarvikud-tosteseadmed-ja-talid",
       "child_handles": [],
-      "image_path": null,
-      "image_source": "none",
-      "productless": true
+      "image_path": "/cat-thumbs/v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine-tosteketid-ja-tropid.webp",
+      "image_source": "direct"
     },
     "v4-tooriistad-ja-tarvikud-tostmine-tostemagnetid": {
       "handle": "v4-tooriistad-ja-tarvikud-tostmine-tostemagnetid",
@@ -2473,9 +2468,8 @@
       "level": 3,
       "parent_handle": "v4-tooriistad-ja-tarvikud-tosteseadmed-ja-talid",
       "child_handles": [],
-      "image_path": null,
-      "image_source": "none",
-      "productless": true
+      "image_path": "/cat-thumbs/v4-tooriistad-ja-tarvikud-tosteseadmed-vedrutasakaalustid.webp",
+      "image_source": "direct"
     },
     "v4-tooriistad-ja-tarvikud-tomburid-ja-pressid": {
       "handle": "v4-tooriistad-ja-tarvikud-tomburid-ja-pressid",
@@ -3031,9 +3025,8 @@
       "level": 3,
       "parent_handle": "v4-tooriistad-ja-tarvikud-cnc-ja-lineaarkomponendid",
       "child_handles": [],
-      "image_path": null,
-      "image_source": "none",
-      "productless": true
+      "image_path": "/cat-thumbs/v4-tooriistad-ja-tarvikud-cnc-kuulkruvid.webp",
+      "image_source": "direct"
     },
     "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-alumiiniumprofiilid": {
       "handle": "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-alumiiniumprofiilid",
@@ -3435,9 +3428,8 @@
       "level": 3,
       "parent_handle": "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid",
       "child_handles": [],
-      "image_path": null,
-      "image_source": "none",
-      "productless": true
+      "image_path": "/cat-thumbs/v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-freesiterad.webp",
+      "image_source": "direct"
     },
     "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-hoovliterad": {
       "handle": "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-hoovliterad",
@@ -3553,9 +3545,8 @@
       "level": 3,
       "parent_handle": "v4-tooriistad-ja-tarvikud-turva-ja-objektivarustus",
       "child_handles": [],
-      "image_path": null,
-      "image_source": "none",
-      "productless": true
+      "image_path": "/cat-thumbs/v4-tooriistad-ja-tarvikud-turva-ja-objektivarustus-signaali-blokeerivad-faraday-tarvikud.webp",
+      "image_source": "direct"
     },
     "v4-garaaziseadmed-ja-autoremont": {
       "handle": "v4-garaaziseadmed-ja-autoremont",
@@ -3579,13 +3570,13 @@
         "v4-garaaziseadmed-garaazi-hoiustamine",
         "v4-garaaziseadmed-garaaziuksed-ja-ajamid"
       ],
-      "image_path": "/cat-thumbs/v4-garaaziseadmed-mootori-remont-osade-pesurid.webp",
+      "image_path": "/cat-thumbs/v4-garaaziseadmed-mehaaniku-tooriistad-plekitoode-ja-lohkude-eemalduskomplektid-pdr.webp",
       "image_source": "inherited",
       "description_en": "Garaažiseadmed ja autoremont — products.",
       "description_et": "Garaažiseadmed ja autoremont — tooted.",
       "tagline_en": "Garaažiseadmed ja autoremont",
       "tagline_et": "Garaažiseadmed ja autoremont",
-      "image_donor": "v4-garaaziseadmed-mootori-remont"
+      "image_donor": "v4-garaaziseadmed-plekitoo-pdr"
     },
     "v4-garaaziseadmed-tungrauad": {
       "handle": "v4-garaaziseadmed-tungrauad",
@@ -3849,8 +3840,9 @@
         "v4-garaaziseadmed-mootori-remont-osade-pesurid",
         "v4-garaaziseadmed-mootori-remont-puksi-ja-laagritooriistad"
       ],
-      "image_path": "/cat-thumbs/v4-garaaziseadmed-mootori-remont-osade-pesurid.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/v4-garaaziseadmed-mehaaniku-tooriistad-induktsioonkuumutid.webp",
+      "image_source": "inherited",
+      "image_donor": "v4-garaaziseadmed-mehaaniku-tooriistad-induktsioonkuumutid"
     },
     "v4-garaaziseadmed-mehaaniku-tooriistad-induktsioonkuumutid": {
       "handle": "v4-garaaziseadmed-mehaaniku-tooriistad-induktsioonkuumutid",
@@ -3939,9 +3931,8 @@
       "level": 3,
       "parent_handle": "v4-garaaziseadmed-mootori-remont",
       "child_handles": [],
-      "image_path": null,
-      "image_source": "none",
-      "productless": true
+      "image_path": "/cat-thumbs/v4-garaaziseadmed-mootori-remont-puksi-ja-laagritooriistad.webp",
+      "image_source": "direct"
     },
     "v4-garaaziseadmed-olivahetus-ja-maarimine": {
       "handle": "v4-garaaziseadmed-olivahetus-ja-maarimine",
@@ -4265,9 +4256,8 @@
       "level": 3,
       "parent_handle": "v4-garaaziseadmed-varvimine-ja-viimistlus",
       "child_handles": [],
-      "image_path": null,
-      "image_source": "none",
-      "productless": true
+      "image_path": "/cat-thumbs/v4-garaaziseadmed-varvimine-airbrush-komplektid.webp",
+      "image_source": "direct"
     },
     "v4-garaaziseadmed-varvimine-liivapritsimiskabiinid": {
       "handle": "v4-garaaziseadmed-varvimine-liivapritsimiskabiinid",
@@ -4783,9 +4773,8 @@
       "level": 3,
       "parent_handle": "v4-suurkoogiseadmed-ettevalmistus-ja-tootlus",
       "child_handles": [],
-      "image_path": null,
-      "image_source": "none",
-      "productless": true
+      "image_path": "/cat-thumbs/v4-suurkook-munakoorimismasinad.webp",
+      "image_source": "direct"
     },
     "v4-suurkoogiseadmed-kuum": {
       "handle": "v4-suurkoogiseadmed-kuum",
@@ -5085,9 +5074,8 @@
       "level": 3,
       "parent_handle": "v4-suurkoogiseadmed-kulm",
       "child_handles": [],
-      "image_path": null,
-      "image_source": "none",
-      "productless": true
+      "image_path": "/cat-thumbs/v4-suurkook-kiirjahutid-ja-okk-kulmikud.webp",
+      "image_source": "direct"
     },
     "v4-suurkook-sushi-kulmvitriinid": {
       "handle": "v4-suurkook-sushi-kulmvitriinid",
@@ -5550,9 +5538,8 @@
       "level": 3,
       "parent_handle": "v4-suurkoogiseadmed-noud",
       "child_handles": [],
-      "image_path": null,
-      "image_source": "none",
-      "productless": true
+      "image_path": "/cat-thumbs/v4-suurkoogiseadmed-koogitarvikud-ja-noud-kokteili-ja-baaritarvikud.webp",
+      "image_source": "direct"
     },
     "v4-suurkoogiseadmed-koogitarvikud-ja-noud-kypsetusplaadid-ja-vormid": {
       "handle": "v4-suurkoogiseadmed-koogitarvikud-ja-noud-kypsetusplaadid-ja-vormid",
@@ -5661,9 +5648,8 @@
       "level": 3,
       "parent_handle": "v4-suurkoogiseadmed-noud",
       "child_handles": [],
-      "image_path": null,
-      "image_source": "none",
-      "productless": true
+      "image_path": "/cat-thumbs/v4-suurkook-salativurrid-ja-koogiviljakuivatid.webp",
+      "image_source": "direct"
     },
     "v4-suurkook-noudepesu": {
       "handle": "v4-suurkook-noudepesu",
@@ -5699,9 +5685,8 @@
       "level": 3,
       "parent_handle": "v4-suurkook-noudepesu",
       "child_handles": [],
-      "image_path": null,
-      "image_source": "none",
-      "productless": true
+      "image_path": "/cat-thumbs/v4-suurkook-valamukaitsevored-ja-tarvikud.webp",
+      "image_source": "direct"
     },
     "v4-suurkook-klaasipesumasinad": {
       "handle": "v4-suurkook-klaasipesumasinad",
@@ -5810,9 +5795,8 @@
       "level": 3,
       "parent_handle": "v4-suurkoogiseadmed-taara",
       "child_handles": [],
-      "image_path": null,
-      "image_source": "none",
-      "productless": true
+      "image_path": "/cat-thumbs/v4-suurkook-veini-ja-baaririiulid.webp",
+      "image_source": "direct"
     },
     "v4-suurkoogiseadmed-koogitarvikud-ja-noud-koostisainete-hoiukastid": {
       "handle": "v4-suurkoogiseadmed-koogitarvikud-ja-noud-koostisainete-hoiukastid",
@@ -6369,9 +6353,8 @@
       "level": 3,
       "parent_handle": "v4-kodumasinad-ja-kodutehnika-koogi-hoiustamine-ja-korraldus",
       "child_handles": [],
-      "image_path": null,
-      "image_source": "none",
-      "productless": true
+      "image_path": "/cat-thumbs/v4-kodumasinad-ja-kodutehnika-koogi-hoiustamine-ja-korraldus-tassihoidjad-ja-riiulid.webp",
+      "image_source": "direct"
     },
     "v4-kodumasinad-ja-kodutehnika-koogi-hoiustamine-ja-korraldus-paberkotid": {
       "handle": "v4-kodumasinad-ja-kodutehnika-koogi-hoiustamine-ja-korraldus-paberkotid",
@@ -6390,9 +6373,8 @@
       "level": 3,
       "parent_handle": "v4-kodumasinad-ja-kodutehnika-koogi-hoiustamine-ja-korraldus",
       "child_handles": [],
-      "image_path": null,
-      "image_source": "none",
-      "productless": true
+      "image_path": "/cat-thumbs/v4-kodumasinad-ja-kodutehnika-hoiustamine-noudekuivatus.webp",
+      "image_source": "direct"
     },
     "v4-kodumasinad-ja-kodutehnika-hoiustamine-noahoidikud": {
       "handle": "v4-kodumasinad-ja-kodutehnika-hoiustamine-noahoidikud",
@@ -6401,9 +6383,8 @@
       "level": 3,
       "parent_handle": "v4-kodumasinad-ja-kodutehnika-koogi-hoiustamine-ja-korraldus",
       "child_handles": [],
-      "image_path": null,
-      "image_source": "none",
-      "productless": true
+      "image_path": "/cat-thumbs/v4-kodumasinad-ja-kodutehnika-hoiustamine-noahoidikud.webp",
+      "image_source": "direct"
     },
     "v4-kodumasinad-ja-kodutehnika-hoiustamine-pliidi-pritsmekaitsed": {
       "handle": "v4-kodumasinad-ja-kodutehnika-hoiustamine-pliidi-pritsmekaitsed",
@@ -6469,9 +6450,8 @@
       "level": 3,
       "parent_handle": "v4-kodumasinad-ja-kodutehnika-kliima-ja-ohuhooldus",
       "child_handles": [],
-      "image_path": null,
-      "image_source": "none",
-      "productless": true
+      "image_path": "/cat-thumbs/v4-kodumasinad-ja-kodutehnika-kliima-ohuniisutajad.webp",
+      "image_source": "direct"
     },
     "v4-kodumasinad-ja-kodutehnika-kliima-ohupuhastid-uv": {
       "handle": "v4-kodumasinad-ja-kodutehnika-kliima-ohupuhastid-uv",
@@ -6591,9 +6571,8 @@
       "level": 3,
       "parent_handle": "v4-kodumasinad-ja-kodutehnika-puhastus-ja-pesuhooldus",
       "child_handles": [],
-      "image_path": null,
-      "image_source": "none",
-      "productless": true
+      "image_path": "/cat-thumbs/v4-kodumasinad-ja-kodutehnika-puhastus-aurupesurid.webp",
+      "image_source": "direct"
     },
     "v4-kodumasinad-ja-kodutehnika-kasitoo-ja-varuosad": {
       "handle": "v4-kodumasinad-ja-kodutehnika-kasitoo-ja-varuosad",
@@ -7615,9 +7594,8 @@
       "level": 3,
       "parent_handle": "v4-moobel-ja-sisustus-sisustusdekoor",
       "child_handles": [],
-      "image_path": null,
-      "image_source": "none",
-      "productless": true
+      "image_path": "/cat-thumbs/v4-moobel-ja-sisustus-lapsemoobel-dekoratsioonid-ja-maakerad.webp",
+      "image_source": "direct"
     },
     "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-vitriinkarbid-ja-spordisuveniirid": {
       "handle": "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-vitriinkarbid-ja-spordisuveniirid",
@@ -7646,9 +7624,8 @@
       "level": 3,
       "parent_handle": "v4-moobel-ja-sisustus-sisustusdekoor",
       "child_handles": [],
-      "image_path": null,
-      "image_source": "none",
-      "productless": true
+      "image_path": "/cat-thumbs/v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-kellamehhanismid-ja-seinakellad.webp",
+      "image_source": "direct"
     },
     "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-puuvillakoiest-korvid": {
       "handle": "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-puuvillakoiest-korvid",
@@ -7693,9 +7670,8 @@
       "level": 3,
       "parent_handle": "v4-moobel-kodutekstiil",
       "child_handles": [],
-      "image_path": null,
-      "image_source": "none",
-      "productless": true
+      "image_path": "/cat-thumbs/v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-madratsivahe-taidised.webp",
+      "image_source": "direct"
     },
     "v4-moobel-kodutekstiil-madratsikaitsed": {
       "handle": "v4-moobel-kodutekstiil-madratsikaitsed",
@@ -7857,9 +7833,8 @@
       "level": 3,
       "parent_handle": "v4-moobel-ja-sisustus-moobliosad-ja-komponendid",
       "child_handles": [],
-      "image_path": null,
-      "image_source": "none",
-      "productless": true
+      "image_path": "/cat-thumbs/v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-kontoritooli-alused.webp",
+      "image_source": "direct"
     },
     "v4-aed-ja-aiatehnika": {
       "handle": "v4-aed-ja-aiatehnika",
@@ -8322,9 +8297,8 @@
       "level": 3,
       "parent_handle": "v4-aed-ja-aiatehnika-aia-jouseadmed",
       "child_handles": [],
-      "image_path": null,
-      "image_source": "none",
-      "productless": true
+      "image_path": "/cat-thumbs/v4-aed-ja-aiatehnika-generaatorite-tarvikud.webp",
+      "image_source": "direct"
     },
     "v4-aed-ja-aiatehnika-oksapurustid-ja-hakkurid": {
       "handle": "v4-aed-ja-aiatehnika-oksapurustid-ja-hakkurid",
@@ -8333,9 +8307,8 @@
       "level": 3,
       "parent_handle": "v4-aed-ja-aiatehnika-aia-jouseadmed",
       "child_handles": [],
-      "image_path": null,
-      "image_source": "none",
-      "productless": true
+      "image_path": "/cat-thumbs/v4-aed-ja-aiatehnika-oksapurustid-ja-hakkurid.webp",
+      "image_source": "direct"
     },
     "v4-aed-ja-aiatehnika-l5-ulekande-ja-jouulekandeosad": {
       "handle": "v4-aed-ja-aiatehnika-l5-ulekande-ja-jouulekandeosad",
@@ -8741,9 +8714,8 @@
       "level": 3,
       "parent_handle": "v4-aed-ja-aiatehnika-basseinid-ja-spaa",
       "child_handles": [],
-      "image_path": null,
-      "image_source": "none",
-      "productless": true
+      "image_path": "/cat-thumbs/v4-aed-ja-aiatehnika-l2-basseinikatte-rullid-ja-tarvikud.webp",
+      "image_source": "direct"
     },
     "v4-aed-ja-aiatehnika-l2-basseinifiltrid-ja-filterpallid": {
       "handle": "v4-aed-ja-aiatehnika-l2-basseinifiltrid-ja-filterpallid",
@@ -8912,9 +8884,8 @@
       "level": 3,
       "parent_handle": "v4-aed-ja-aiatehnika-basseinid-ja-spaa",
       "child_handles": [],
-      "image_path": null,
-      "image_source": "none",
-      "productless": true
+      "image_path": "/cat-thumbs/v4-basseini-soolakloorinaatorid.webp",
+      "image_source": "direct"
     },
     "v4-aed-ja-aiatehnika-l2-taispuhutavad-ja-raamiga-basseinid": {
       "handle": "v4-aed-ja-aiatehnika-l2-taispuhutavad-ja-raamiga-basseinid",
@@ -9270,9 +9241,8 @@
       "level": 3,
       "parent_handle": "v4-aed-ja-aiatehnika-lokkekolded-ja-tuleasemed",
       "child_handles": [],
-      "image_path": null,
-      "image_source": "none",
-      "productless": true
+      "image_path": "/cat-thumbs/v4-aed-ja-aiatehnika-l9-gaasipoletid-lokkekohale.webp",
+      "image_source": "direct"
     },
     "v4-aed-ja-aiatehnika-lauakaminad-ja-kuunlad": {
       "handle": "v4-aed-ja-aiatehnika-lauakaminad-ja-kuunlad",
@@ -9534,9 +9504,8 @@
       "level": 3,
       "parent_handle": "v4-aed-ja-aiatehnika-aiadekoor",
       "child_handles": [],
-      "image_path": null,
-      "image_source": "none",
-      "productless": true
+      "image_path": "/cat-thumbs/v4-aed-ja-aiatehnika-l6-udumasinad.webp",
+      "image_source": "direct"
     },
     "v4-aed-ja-aiatehnika-aiapiirded-ja-varavad": {
       "handle": "v4-aed-ja-aiatehnika-aiapiirded-ja-varavad",
@@ -9901,9 +9870,8 @@
       "level": 3,
       "parent_handle": "v4-varjualused-telgid-ja-kasvuhooned-telgid",
       "child_handles": [],
-      "image_path": null,
-      "image_source": "none",
-      "productless": true
+      "image_path": "/cat-thumbs/v4-varjualused-telgid-ja-kasvuhooned-matka-telkimistelgid.webp",
+      "image_source": "direct"
     },
     "v4-varjualused-telgid-ja-kasvuhooned-autovarjualused-ja-garaazitelgid": {
       "handle": "v4-varjualused-telgid-ja-kasvuhooned-autovarjualused-ja-garaazitelgid",
@@ -10103,9 +10071,8 @@
       "level": 3,
       "parent_handle": "v4-varjualused-telgid-ja-kasvuhooned-aiamajad-ja-kuurid",
       "child_handles": [],
-      "image_path": null,
-      "image_source": "none",
-      "productless": true
+      "image_path": "/cat-thumbs/v4-varjualused-telgid-ja-kasvuhooned-prugikasti-hoiukuurid.webp",
+      "image_source": "direct"
     },
     "v4-autovaruosad-ja-tarvikud": {
       "handle": "v4-autovaruosad-ja-tarvikud",
@@ -10760,9 +10727,8 @@
       "level": 3,
       "parent_handle": "v4-autovaruosad-auto-elektritarvikud",
       "child_handles": [],
-      "image_path": null,
-      "image_source": "none",
-      "productless": true
+      "image_path": "/cat-thumbs/v4-autovaruosad-autovalgustus-led-tuled.webp",
+      "image_source": "direct"
     },
     "v4-autovaruosad-ja-tarvikud-salongitarvikud-auto-alarmsireenid": {
       "handle": "v4-autovaruosad-ja-tarvikud-salongitarvikud-auto-alarmsireenid",
@@ -10771,9 +10737,8 @@
       "level": 3,
       "parent_handle": "v4-autovaruosad-auto-elektritarvikud",
       "child_handles": [],
-      "image_path": null,
-      "image_source": "none",
-      "productless": true
+      "image_path": "/cat-thumbs/v4-autovaruosad-ja-tarvikud-salongitarvikud-auto-alarmsireenid.webp",
+      "image_source": "direct"
     },
     "v4-autovaruosad-ja-tarvikud-autovaruosad-helisignaalid": {
       "handle": "v4-autovaruosad-ja-tarvikud-autovaruosad-helisignaalid",
@@ -10802,9 +10767,8 @@
       "level": 3,
       "parent_handle": "v4-autovaruosad-auto-elektritarvikud",
       "child_handles": [],
-      "image_path": null,
-      "image_source": "none",
-      "productless": true
+      "image_path": "/cat-thumbs/v4-autovaruosad-ja-tarvikud-salong-faraday-karbid.webp",
+      "image_source": "direct"
     },
     "v4-autovaruosad-autoaudio": {
       "handle": "v4-autovaruosad-autoaudio",
@@ -11051,9 +11015,8 @@
       "level": 3,
       "parent_handle": "v4-autovaruosad-ja-tarvikud-valistarvikud-ja-rehvitarvikud",
       "child_handles": [],
-      "image_path": null,
-      "image_source": "none",
-      "productless": true
+      "image_path": "/cat-thumbs/v4-autovaruosad-ja-tarvikud-valistarvikud-pukseerimispeeglid.webp",
+      "image_source": "direct"
     },
     "v4-ehitus-remont-ja-varvid-aarekivirambid": {
       "handle": "v4-ehitus-remont-ja-varvid-aarekivirambid",
@@ -11547,9 +11510,8 @@
       "level": 3,
       "parent_handle": "v4-autovaruosad-ja-tarvikud-haagissuvila-ja-matkatarvikud",
       "child_handles": [],
-      "image_path": null,
-      "image_source": "none",
-      "productless": true
+      "image_path": "/cat-thumbs/v4-autovaruosad-ja-tarvikud-haagissuvila-rv-ja-atv-tarvikud.webp",
+      "image_source": "direct"
     },
     "v4-autovaruosad-ja-tarvikud-mootorrattatarvikud": {
       "handle": "v4-autovaruosad-ja-tarvikud-mootorrattatarvikud",
@@ -12123,9 +12085,8 @@
       "level": 3,
       "parent_handle": "v4-sport-ja-vaba-aeg-fitness-ja-treeningseadmed",
       "child_handles": [],
-      "image_path": null,
-      "image_source": "none",
-      "productless": true
+      "image_path": "/cat-thumbs/v4-sport-ja-vaba-aeg-fitness-ja-treeningseadmed-vibreerivad-massaazirullid-ja-pallid.webp",
+      "image_source": "direct"
     },
     "v4-sport-ja-vaba-aeg-fitness-ja-treeningseadmed-reguleeritavad-kettlebellid": {
       "handle": "v4-sport-ja-vaba-aeg-fitness-ja-treeningseadmed-reguleeritavad-kettlebellid",
@@ -12589,9 +12550,8 @@
       "level": 3,
       "parent_handle": "v4-sport-ja-vaba-aeg-matkavarustus-ja-telkimine",
       "child_handles": [],
-      "image_path": null,
-      "image_source": "none",
-      "productless": true
+      "image_path": "/cat-thumbs/v4-sport-ja-vaba-aeg-matkavarustus-ja-telkimine-matkatooriistad-ja-labidad.webp",
+      "image_source": "direct"
     },
     "v4-sport-ja-vaba-aeg-matkavarustus-ja-telkimine-matkavalgustid-ja-laternad": {
       "handle": "v4-sport-ja-vaba-aeg-matkavarustus-ja-telkimine-matkavalgustid-ja-laternad",
@@ -12610,9 +12570,8 @@
       "level": 3,
       "parent_handle": "v4-sport-ja-vaba-aeg-matkavarustus-ja-telkimine",
       "child_handles": [],
-      "image_path": null,
-      "image_source": "none",
-      "productless": true
+      "image_path": "/cat-thumbs/v4-sport-ja-vaba-aeg-matka-hadaabi-ellujaamisvarustus.webp",
+      "image_source": "direct"
     },
     "v4-sport-ja-vaba-aeg-matkavarustus-ja-telkimine-matkavoodid-ja-madratsid": {
       "handle": "v4-sport-ja-vaba-aeg-matkavarustus-ja-telkimine-matkavoodid-ja-madratsid",
@@ -12698,9 +12657,8 @@
       "level": 3,
       "parent_handle": "v4-sport-ja-vaba-aeg-ouetegevus-ja-hobi",
       "child_handles": [],
-      "image_path": null,
-      "image_source": "none",
-      "productless": true
+      "image_path": "/cat-thumbs/v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-suusa-ja-kaitseprillid.webp",
+      "image_source": "direct"
     },
     "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-suusa-ja-lumelauakotid": {
       "handle": "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-suusa-ja-lumelauakotid",
@@ -12866,9 +12824,8 @@
       "level": 3,
       "parent_handle": "v4-sport-ja-vaba-aeg-jaht-ja-jahivarustus",
       "child_handles": [],
-      "image_path": null,
-      "image_source": "none",
-      "productless": true
+      "image_path": "/cat-thumbs/v4-sport-ja-vaba-aeg-jaht-ja-jahivarustus-taktikalised-kotid.webp",
+      "image_source": "direct"
     },
     "v4-sport-ja-vaba-aeg-jaht-ja-jahivarustus-jahitelgid-ja-varjed": {
       "handle": "v4-sport-ja-vaba-aeg-jaht-ja-jahivarustus-jahitelgid-ja-varjed",
@@ -12967,9 +12924,8 @@
       "level": 3,
       "parent_handle": "v4-sport-ja-vaba-aeg-jaht-ja-jahivarustus",
       "child_handles": [],
-      "image_path": null,
-      "image_source": "none",
-      "productless": true
+      "image_path": "/cat-thumbs/v4-sport-ja-vaba-aeg-jaht-jahioptika-termokaamerad.webp",
+      "image_source": "direct"
     },
     "v4-sport-ja-vaba-aeg-jaht-jahinoad-ja-kirved": {
       "handle": "v4-sport-ja-vaba-aeg-jaht-jahinoad-ja-kirved",
@@ -12978,9 +12934,8 @@
       "level": 3,
       "parent_handle": "v4-sport-ja-vaba-aeg-jaht-ja-jahivarustus",
       "child_handles": [],
-      "image_path": null,
-      "image_source": "none",
-      "productless": true
+      "image_path": "/cat-thumbs/v4-sport-ja-vaba-aeg-jaht-jahinoad-ja-kirved.webp",
+      "image_source": "direct"
     },
     "v4-sport-kalastus": {
       "handle": "v4-sport-kalastus",
@@ -13048,9 +13003,8 @@
       "level": 3,
       "parent_handle": "v4-sport-kalastus",
       "child_handles": [],
-      "image_path": null,
-      "image_source": "none",
-      "productless": true
+      "image_path": "/cat-thumbs/v4-sport-ja-vaba-aeg-jaht-ja-jahivarustus-jaapuurid.webp",
+      "image_source": "direct"
     },
     "v4-sport-kalastus-kahvad-ja-saagivorgud": {
       "handle": "v4-sport-kalastus-kahvad-ja-saagivorgud",
@@ -13525,9 +13479,8 @@
       "level": 3,
       "parent_handle": "v4-sport-ja-vaba-aeg-golf-ja-discgolf",
       "child_handles": [],
-      "image_path": null,
-      "image_source": "none",
-      "productless": true
+      "image_path": "/cat-thumbs/v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-disc-golfi-varustus.webp",
+      "image_source": "direct"
     },
     "v4-sport-ja-vaba-aeg-golf-ja-discgolf-aiagolf-mangud": {
       "handle": "v4-sport-ja-vaba-aeg-golf-ja-discgolf-aiagolf-mangud",
@@ -13546,9 +13499,8 @@
       "level": 3,
       "parent_handle": "v4-sport-ja-vaba-aeg-golf-ja-discgolf",
       "child_handles": [],
-      "image_path": null,
-      "image_source": "none",
-      "productless": true
+      "image_path": "/cat-thumbs/v4-sport-ja-vaba-aeg-golf-ja-discgolf-golfimooturid.webp",
+      "image_source": "direct"
     },
     "v4-sport-ja-vaba-aeg-mangulauad-ja-sisemangud": {
       "handle": "v4-sport-ja-vaba-aeg-mangulauad-ja-sisemangud",
@@ -13783,9 +13735,8 @@
       "level": 3,
       "parent_handle": "v4-sport-kulmakastid-jahutus",
       "child_handles": [],
-      "image_path": null,
-      "image_source": "none",
-      "productless": true
+      "image_path": "/cat-thumbs/v4-sport-ja-vaba-aeg-matkavarustus-ja-telkimine-jahutuskastid-ja-kotid.webp",
+      "image_source": "direct"
     },
     "v4-sport-ja-vaba-aeg-tailgating-ja-peoseadmed-ratastega-kulmakastid-ja-jahutuskarud": {
       "handle": "v4-sport-ja-vaba-aeg-tailgating-ja-peoseadmed-ratastega-kulmakastid-ja-jahutuskarud",
@@ -14871,9 +14822,8 @@
       "level": 3,
       "parent_handle": "v4-ehitus-remont-ja-varvid-ohutus-ja-turvalisus",
       "child_handles": [],
-      "image_path": null,
-      "image_source": "none",
-      "productless": true
+      "image_path": "/cat-thumbs/v4-ehitus-remont-ja-varvid-ohutus-kaitseekraanid-ja-vaheseinad.webp",
+      "image_source": "direct"
     },
     "v4-moobel-postkastid-pakiautomaadid": {
       "handle": "v4-moobel-postkastid-pakiautomaadid",
@@ -14914,13 +14864,13 @@
         "v4-elektritarvikud-ja-valgustus-kaablihaldus-ja-kaitse",
         "v4-elektritarvikud-ja-valgustus-serverikapid-ja-vorgukapid"
       ],
-      "image_path": "/cat-thumbs/v4-elektritarvikud-ja-valgustus-harukarbid-torud-ja-kinnitused-elektrikilbid-ja-jaotuskarbid.webp",
+      "image_path": "/cat-thumbs/v4-elektritarvikud-ja-valgustus-lambid-ja-valgustid-laualambid.webp",
       "image_source": "inherited",
       "description_en": "Elektritarvikud ja valgustus — products.",
       "description_et": "Elektritarvikud ja valgustus — tooted.",
       "tagline_en": "Elektritarvikud ja valgustus",
       "tagline_et": "Elektritarvikud ja valgustus",
-      "image_donor": "v4-elektritarvikud-ja-valgustus-harukarbid-torud-ja-kinnitused"
+      "image_donor": "v4-elektritarvikud-ja-valgustus-lambid-ja-valgustid-laualambid"
     },
     "v4-elektritarvikud-ja-valgustus-lambid-ja-valgustid": {
       "handle": "v4-elektritarvikud-ja-valgustus-lambid-ja-valgustid",
@@ -15001,9 +14951,8 @@
       "level": 3,
       "parent_handle": "v4-elektritarvikud-ja-valgustus-lambid-ja-valgustid",
       "child_handles": [],
-      "image_path": null,
-      "image_source": "none",
-      "productless": true
+      "image_path": "/cat-thumbs/v4-elektritarvikud-ja-valgustus-lambid-ja-valgustid-kiudoptilised-tahistaevavalgustid.webp",
+      "image_source": "direct"
     },
     "v4-elektritarvikud-ja-valgustus-lambid-ja-valgustid-luubid-valgustusega": {
       "handle": "v4-elektritarvikud-ja-valgustus-lambid-ja-valgustid-luubid-valgustusega",
@@ -15012,9 +14961,8 @@
       "level": 3,
       "parent_handle": "v4-elektritarvikud-ja-valgustus-lambid-ja-valgustid",
       "child_handles": [],
-      "image_path": null,
-      "image_source": "none",
-      "productless": true
+      "image_path": "/cat-thumbs/v4-elektritarvikud-ja-valgustus-lambid-ja-valgustid-luubid-valgustusega.webp",
+      "image_source": "direct"
     },
     "v4-elektritarvikud-ja-valgustus-lambid-ja-valgustid-rippvalgustid": {
       "handle": "v4-elektritarvikud-ja-valgustus-lambid-ja-valgustid-rippvalgustid",
@@ -15033,9 +14981,8 @@
       "level": 3,
       "parent_handle": "v4-elektritarvikud-ja-valgustus-lambid-ja-valgustid",
       "child_handles": [],
-      "image_path": null,
-      "image_source": "none",
-      "productless": true
+      "image_path": "/cat-thumbs/v4-elektritarvikud-ja-valgustus-lambid-taskulambid-prozektorid.webp",
+      "image_source": "direct"
     },
     "v4-elektritarvikud-ja-valgustus-lambid-kasvulambid": {
       "handle": "v4-elektritarvikud-ja-valgustus-lambid-kasvulambid",
@@ -15277,9 +15224,8 @@
       "level": 3,
       "parent_handle": "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid",
       "child_handles": [],
-      "image_path": null,
-      "image_source": "none",
-      "productless": true
+      "image_path": "/cat-thumbs/v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-generaatori-katted.webp",
+      "image_source": "direct"
     },
     "v4-elektritarvikud-ja-valgustus-mootorid-ja-osad": {
       "handle": "v4-elektritarvikud-ja-valgustus-mootorid-ja-osad",
@@ -15449,7 +15395,8 @@
         "v4-elektritarvikud-ja-valgustus-harukarbid-elektrikaablid"
       ],
       "image_path": "/cat-thumbs/v4-elektritarvikud-ja-valgustus-harukarbid-torud-ja-kinnitused-elektrikilbid-ja-jaotuskarbid.webp",
-      "image_source": "fuzzy"
+      "image_source": "inherited",
+      "image_donor": "v4-elektritarvikud-ja-valgustus-harukarbid-torud-ja-kinnitused-elektrikilbid-ja-jaotuskarbid"
     },
     "v4-elektritarvikud-ja-valgustus-harukarbid-torud-ja-kinnitused-elektrikilbid-ja-jaotuskarbid": {
       "handle": "v4-elektritarvikud-ja-valgustus-harukarbid-torud-ja-kinnitused-elektrikilbid-ja-jaotuskarbid",
@@ -15468,9 +15415,8 @@
       "level": 3,
       "parent_handle": "v4-elektritarvikud-ja-valgustus-harukarbid-torud-ja-kinnitused",
       "child_handles": [],
-      "image_path": null,
-      "image_source": "none",
-      "productless": true
+      "image_path": "/cat-thumbs/v4-elektritarvikud-ja-valgustus-harukarbid-torud-ja-kinnitused-kaablikaitsetorud.webp",
+      "image_source": "direct"
     },
     "v4-elektritarvikud-ja-valgustus-harukarbid-elektrikaablid": {
       "handle": "v4-elektritarvikud-ja-valgustus-harukarbid-elektrikaablid",
@@ -15790,9 +15736,8 @@
       "level": 3,
       "parent_handle": "v4-santehnika-kute-ja-ventilatsioon-ventilatsioon-ja-ventilaatorid",
       "child_handles": [],
-      "image_path": null,
-      "image_source": "none",
-      "productless": true
+      "image_path": "/cat-thumbs/v4-santehnika-kute-ja-ventilatsioon-ventilatsioon-ja-ventilaatorid-uleujutuskaitse-ventilatsioon.webp",
+      "image_source": "direct"
     },
     "v4-santehnika-kute-ja-ventilatsioon-ventilatsioon-ja-ventilaatorid-ohufiltrid-varufiltrid": {
       "handle": "v4-santehnika-kute-ja-ventilatsioon-ventilatsioon-ja-ventilaatorid-ohufiltrid-varufiltrid",
@@ -16252,9 +16197,8 @@
       "level": 3,
       "parent_handle": "v4-santehnika-kute-ja-ventilatsioon-veepumbad",
       "child_handles": [],
-      "image_path": null,
-      "image_source": "none",
-      "productless": true
+      "image_path": "/cat-thumbs/v4-santehnika-kute-ja-ventilatsioon-veepumbad-ja-vaakumpumbad-akupumbad.webp",
+      "image_source": "direct"
     },
     "v4-santehnika-kute-ja-ventilatsioon-joogivee-ja-pudelipumbad": {
       "handle": "v4-santehnika-kute-ja-ventilatsioon-joogivee-ja-pudelipumbad",
@@ -16313,9 +16257,8 @@
       "level": 3,
       "parent_handle": "v4-santehnika-kute-ja-ventilatsioon-veefiltrid-ja-puhastus",
       "child_handles": [],
-      "image_path": null,
-      "image_source": "none",
-      "productless": true
+      "image_path": "/cat-thumbs/v4-santehnika-kute-ja-ventilatsioon-veefiltrid-ja-puhastus-kraanile-kinnitatavad-veefiltrid.webp",
+      "image_source": "direct"
     },
     "v4-santehnika-kute-ja-ventilatsioon-veefiltrid-ja-puhastus-veepehmendussusteemid": {
       "handle": "v4-santehnika-kute-ja-ventilatsioon-veefiltrid-ja-puhastus-veepehmendussusteemid",
@@ -16364,9 +16307,8 @@
       "level": 3,
       "parent_handle": "v4-santehnika-kute-ja-ventilatsioon-veefiltrid-ja-puhastus",
       "child_handles": [],
-      "image_path": null,
-      "image_source": "none",
-      "productless": true
+      "image_path": "/cat-thumbs/v4-santehnika-kute-ja-ventilatsioon-veefiltrid-ja-puhastus-vee-ionisaatorid.webp",
+      "image_source": "direct"
     },
     "v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika": {
       "handle": "v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika",
@@ -16410,9 +16352,8 @@
       "level": 3,
       "parent_handle": "v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika",
       "child_handles": [],
-      "image_path": null,
-      "image_source": "none",
-      "productless": true
+      "image_path": "/cat-thumbs/v4-santehnika-kute-ja-ventilatsioon-torutooriistad-ja-santehnika-rasvaeraldajad.webp",
+      "image_source": "direct"
     },
     "v4-santehnika-kute-ja-ventilatsioon-aravool-ja-porandatrapid": {
       "handle": "v4-santehnika-kute-ja-ventilatsioon-aravool-ja-porandatrapid",
@@ -16769,9 +16710,8 @@
       "level": 3,
       "parent_handle": "v4-ladu-riiulid-restid",
       "child_handles": [],
-      "image_path": null,
-      "image_source": "none",
-      "productless": true
+      "image_path": "/cat-thumbs/v4-ladu-lae-hoiustamisrestid.webp",
+      "image_source": "direct"
     },
     "v4-ladu-riiulid-kaubaalused": {
       "handle": "v4-ladu-riiulid-kaubaalused",
@@ -17081,9 +17021,8 @@
       "level": 3,
       "parent_handle": "v4-ladu-kaupluse-sisustus",
       "child_handles": [],
-      "image_path": null,
-      "image_source": "none",
-      "productless": true
+      "image_path": "/cat-thumbs/v4-ladu-valis-tuhatoosid-prugikastid.webp",
+      "image_source": "direct"
     },
     "v4-ladu-ekspositsioonistendid": {
       "handle": "v4-ladu-ekspositsioonistendid",
@@ -17151,9 +17090,8 @@
       "level": 3,
       "parent_handle": "v4-ladu-pakendamine",
       "child_handles": [],
-      "image_path": null,
-      "image_source": "none",
-      "productless": true
+      "image_path": "/cat-thumbs/v4-venituskile-mullikile.webp",
+      "image_source": "direct"
     },
     "v4-suurkook-paberkotid-ja-pakendid": {
       "handle": "v4-suurkook-paberkotid-ja-pakendid",
@@ -17650,9 +17588,8 @@
       "level": 3,
       "parent_handle": "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk",
       "child_handles": [],
-      "image_path": null,
-      "image_source": "none",
-      "productless": true
+      "image_path": "/cat-thumbs/v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-roivatrukk-vaibategemis-tuftingriistad.webp",
+      "image_source": "direct"
     },
     "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-kuumstantsimise-fooliumid": {
       "handle": "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-kuumstantsimise-fooliumid",
@@ -17733,9 +17670,8 @@
       "level": 3,
       "parent_handle": "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc",
       "child_handles": [],
-      "image_path": null,
-      "image_source": "none",
-      "productless": true
+      "image_path": "/cat-thumbs/v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-lasergraveerija-kaitsekatted.webp",
+      "image_source": "direct"
     },
     "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-ohupuhuri-komplektid-laserloikuritele": {
       "handle": "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-ohupuhuri-komplektid-laserloikuritele",
@@ -17744,9 +17680,8 @@
       "level": 3,
       "parent_handle": "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc",
       "child_handles": [],
-      "image_path": null,
-      "image_source": "none",
-      "productless": true
+      "image_path": "/cat-thumbs/v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-ohupuhuri-komplektid-laserloikuritele.webp",
+      "image_source": "direct"
     },
     "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-cnc-freespingid-ja-graveerijad": {
       "handle": "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-cnc-freespingid-ja-graveerijad",
@@ -17953,9 +17888,8 @@
       "level": 3,
       "parent_handle": "v4-elektroonika-projektsioon",
       "child_handles": [],
-      "image_path": null,
-      "image_source": "none",
-      "productless": true
+      "image_path": "/cat-thumbs/v4-elektritarvikud-ja-valgustus-elektroonika-kaasaskantavad-dvd-mangijad.webp",
+      "image_source": "direct"
     },
     "v4-elektroonika-heli": {
       "handle": "v4-elektroonika-heli",
@@ -17999,9 +17933,8 @@
       "level": 3,
       "parent_handle": "v4-elektroonika-heli",
       "child_handles": [],
-      "image_path": null,
-      "image_source": "none",
-      "productless": true
+      "image_path": "/cat-thumbs/v4-elektritarvikud-ja-valgustus-elektroonika-digitaalsed-diktofonid.webp",
+      "image_source": "direct"
     },
     "v4-elektroonika-foto-video": {
       "handle": "v4-elektroonika-foto-video",
@@ -18049,9 +17982,8 @@
       "level": 3,
       "parent_handle": "v4-elektroonika-foto-video",
       "child_handles": [],
-      "image_path": null,
-      "image_source": "none",
-      "productless": true
+      "image_path": "/cat-thumbs/v4-elektritarvikud-ja-valgustus-elektroonika-teleprompterid.webp",
+      "image_source": "direct"
     },
     "v4-elektritarvikud-ja-valgustus-elektroonika-stuudiovarustuse-kohvrid": {
       "handle": "v4-elektritarvikud-ja-valgustus-elektroonika-stuudiovarustuse-kohvrid",
@@ -18080,9 +18012,8 @@
       "level": 3,
       "parent_handle": "v4-elektroonika-foto-video",
       "child_handles": [],
-      "image_path": null,
-      "image_source": "none",
-      "productless": true
+      "image_path": "/cat-thumbs/v4-elektritarvikud-ja-valgustus-elektroonika-gimbal-stabilisaatorid.webp",
+      "image_source": "direct"
     },
     "v4-elektritarvikud-ja-valgustus-elektroonika-digitaalsed-fotoraamid": {
       "handle": "v4-elektritarvikud-ja-valgustus-elektroonika-digitaalsed-fotoraamid",
@@ -18091,9 +18022,8 @@
       "level": 3,
       "parent_handle": "v4-elektroonika-foto-video",
       "child_handles": [],
-      "image_path": null,
-      "image_source": "none",
-      "productless": true
+      "image_path": "/cat-thumbs/v4-elektritarvikud-ja-valgustus-elektroonika-digitaalsed-fotoraamid.webp",
+      "image_source": "direct"
     },
     "v4-elektroonika-kinnitused": {
       "handle": "v4-elektroonika-kinnitused",
@@ -18204,9 +18134,8 @@
       "level": 3,
       "parent_handle": "v4-elektroonika-arvutiriistvara",
       "child_handles": [],
-      "image_path": null,
-      "image_source": "none",
-      "productless": true
+      "image_path": "/cat-thumbs/v4-mangukonsooli-tarvikud.webp",
+      "image_source": "direct"
     },
     "v4-elektroonika-nutikodu": {
       "handle": "v4-elektroonika-nutikodu",
@@ -18253,13 +18182,13 @@
         "v4-muusika-ja-helitehnika-dj-ja-lavatehnika",
         "v4-muusika-ja-helitehnika-heli-ja-salvestus"
       ],
-      "image_path": "/cat-thumbs/v4-muusika-ja-helitehnika-heli-ja-salvestus-mikrofonikaablid.webp",
+      "image_path": "/cat-thumbs/v4-muusika-ja-helitehnika-muusikariistad-keelpillid.webp",
       "image_source": "inherited",
       "description_en": "Muusika ja helitehnika — products.",
       "description_et": "Muusika ja helitehnika — tooted.",
       "tagline_en": "Muusika ja helitehnika",
       "tagline_et": "Muusika ja helitehnika",
-      "image_donor": "v4-muusika-ja-helitehnika-heli-ja-salvestus"
+      "image_donor": "v4-muusika-ja-helitehnika-muusikariistad-keelpillid"
     },
     "v4-muusika-ja-helitehnika-muusikariistad": {
       "handle": "v4-muusika-ja-helitehnika-muusikariistad",
@@ -18429,7 +18358,8 @@
         "v4-muusika-ja-helitehnika-heli-ja-salvestus-karaokemasinad"
       ],
       "image_path": "/cat-thumbs/v4-muusika-ja-helitehnika-heli-ja-salvestus-mikrofonikaablid.webp",
-      "image_source": "fuzzy"
+      "image_source": "inherited",
+      "image_donor": "v4-muusika-ja-helitehnika-heli-ja-salvestus-mikrofonikaablid"
     },
     "v4-muusika-ja-helitehnika-heli-ja-salvestus-mikrofonikaablid": {
       "handle": "v4-muusika-ja-helitehnika-heli-ja-salvestus-mikrofonikaablid",
@@ -18448,9 +18378,8 @@
       "level": 3,
       "parent_handle": "v4-muusika-ja-helitehnika-heli-ja-salvestus",
       "child_handles": [],
-      "image_path": null,
-      "image_source": "none",
-      "productless": true
+      "image_path": "/cat-thumbs/v4-muusika-ja-helitehnika-heli-salvestus-mikrofonistatiivid-kasivarred.webp",
+      "image_source": "direct"
     },
     "v4-muusika-ja-helitehnika-heli-ja-salvestus-karaokemasinad": {
       "handle": "v4-muusika-ja-helitehnika-heli-ja-salvestus-karaokemasinad",
@@ -18459,9 +18388,8 @@
       "level": 3,
       "parent_handle": "v4-muusika-ja-helitehnika-heli-ja-salvestus",
       "child_handles": [],
-      "image_path": null,
-      "image_source": "none",
-      "productless": true
+      "image_path": "/cat-thumbs/v4-muusika-ja-helitehnika-heli-ja-salvestus-karaokemasinad.webp",
+      "image_source": "direct"
     },
     "v4-peoinventar-ja-dekoratsioonid": {
       "handle": "v4-peoinventar-ja-dekoratsioonid",
@@ -19370,9 +19298,8 @@
       "level": 3,
       "parent_handle": "v4-lastekaubad-rollimangud",
       "child_handles": [],
-      "image_path": null,
-      "image_source": "none",
-      "productless": true
+      "image_path": "/cat-thumbs/v4-lastekaubad-manguvibud-ja-nooled.webp",
+      "image_source": "direct"
     },
     "v4-lastekaubad-loov-oppe": {
       "handle": "v4-lastekaubad-loov-oppe",
@@ -19460,9 +19387,8 @@
       "level": 3,
       "parent_handle": "v4-lastekaubad-loov-oppe",
       "child_handles": [],
-      "image_path": null,
-      "image_source": "none",
-      "productless": true
+      "image_path": "/cat-thumbs/v4-lastekaubad-tantsumatid.webp",
+      "image_source": "direct"
     },
     "v4-lastekaubad-konstruktorid": {
       "handle": "v4-lastekaubad-konstruktorid",
@@ -19722,9 +19648,8 @@
       "level": 3,
       "parent_handle": "v4-lemmikloomatarbed-lemmiklooma-hooldus",
       "child_handles": [],
-      "image_path": null,
-      "image_source": "none",
-      "productless": true
+      "image_path": "/cat-thumbs/v4-lemmikloomatarbed-lemmiklooma-hooldus-koera-ortopeedilised-toed.webp",
+      "image_source": "direct"
     },
     "v4-lemmikloomatarbed-lemmiklooma-hooldus-koera-valjaheitejaamad": {
       "handle": "v4-lemmikloomatarbed-lemmiklooma-hooldus-koera-valjaheitejaamad",
@@ -19969,9 +19894,8 @@
       "level": 3,
       "parent_handle": "v4-lemmikloomatarbed-akvaariumid-ja-terraariumid",
       "child_handles": [],
-      "image_path": null,
-      "image_source": "none",
-      "productless": true
+      "image_path": "/cat-thumbs/v4-lemmikloomatarbed-akvaariumid-ja-terraariumid-akvaariumi-puhastustarbed.webp",
+      "image_source": "direct"
     },
     "v4-lemmikloomatarbed-akvaariumid-ja-terraariumid-akvaariumitarvikud": {
       "handle": "v4-lemmikloomatarbed-akvaariumid-ja-terraariumid-akvaariumitarvikud",
@@ -20139,9 +20063,8 @@
       "level": 3,
       "parent_handle": "v4-lemmikloomatarbed-transport-ja-autotarvikud",
       "child_handles": [],
-      "image_path": null,
-      "image_source": "none",
-      "productless": true
+      "image_path": "/cat-thumbs/v4-lemmikloomatarbed-transport-ja-autotarvikud-auto-istmekatted-ja-porandakaitsed.webp",
+      "image_source": "direct"
     },
     "v4-lemmikloomatarbed-transport-ja-autotarvikud-lemmikloomade-jalgrattahaagised": {
       "handle": "v4-lemmikloomatarbed-transport-ja-autotarvikud-lemmikloomade-jalgrattahaagised",
@@ -20492,9 +20415,8 @@
       "level": 3,
       "parent_handle": "v4-pollumajandus-ja-loomakasvatus-piimakari-ja-lupsitehnika",
       "child_handles": [],
-      "image_path": null,
-      "image_source": "none",
-      "productless": true
+      "image_path": "/cat-thumbs/v4-pollumajandus-ja-loomakasvatus-piimakari-piimanoud.webp",
+      "image_source": "direct"
     },
     "v4-pollumajandus-ja-loomakasvatus-lamba-ja-kitsekasvatus": {
       "handle": "v4-pollumajandus-ja-loomakasvatus-lamba-ja-kitsekasvatus",
@@ -20772,9 +20694,8 @@
       "level": 3,
       "parent_handle": "v4-tervis-hooldus-ja-ilu-isikuhooldusseadmed",
       "child_handles": [],
-      "image_path": null,
-      "image_source": "none",
-      "productless": true
+      "image_path": "/cat-thumbs/v4-manikuurilauad.webp",
+      "image_source": "direct"
     },
     "v4-tervis-hooldus-ja-ilu-isikuhooldusseadmed-vesinikuvee-generaatorid": {
       "handle": "v4-tervis-hooldus-ja-ilu-isikuhooldusseadmed-vesinikuvee-generaatorid",
@@ -20783,9 +20704,8 @@
       "level": 3,
       "parent_handle": "v4-tervis-hooldus-ja-ilu-isikuhooldusseadmed",
       "child_handles": [],
-      "image_path": null,
-      "image_source": "none",
-      "productless": true
+      "image_path": "/cat-thumbs/v4-tervis-hooldus-ja-ilu-isikuhooldusseadmed-vesinikuvee-generaatorid.webp",
+      "image_source": "direct"
     },
     "v4-tervis-hooldus-ja-ilu-isikuhooldusseadmed-hammaste-valgendusvahendid": {
       "handle": "v4-tervis-hooldus-ja-ilu-isikuhooldusseadmed-hammaste-valgendusvahendid",
@@ -20794,9 +20714,8 @@
       "level": 3,
       "parent_handle": "v4-tervis-hooldus-ja-ilu-isikuhooldusseadmed",
       "child_handles": [],
-      "image_path": null,
-      "image_source": "none",
-      "productless": true
+      "image_path": "/cat-thumbs/v4-tervis-hooldus-ja-ilu-isikuhooldusseadmed-hammaste-valgendusvahendid.webp",
+      "image_source": "direct"
     },
     "v4-tervis-hooldus-ja-ilu-isikuhooldusseadmed-kristallheli-teraapiavahendid": {
       "handle": "v4-tervis-hooldus-ja-ilu-isikuhooldusseadmed-kristallheli-teraapiavahendid",
@@ -20983,9 +20902,8 @@
       "level": 3,
       "parent_handle": "v4-tervis-hooldus-ja-ilu-beebi-ja-lapsetarbed",
       "child_handles": [],
-      "image_path": null,
-      "image_source": "none",
-      "productless": true
+      "image_path": "/cat-thumbs/v4-tervis-hooldus-ja-ilu-beebi-ja-lapsetarbed-pesapadjad-ja-pesad.webp",
+      "image_source": "direct"
     },
     "v4-tervis-hooldus-ja-ilu-beebi-lapsetarbed-beebikaalud": {
       "handle": "v4-tervis-hooldus-ja-ilu-beebi-lapsetarbed-beebikaalud",
@@ -20994,9 +20912,8 @@
       "level": 3,
       "parent_handle": "v4-tervis-hooldus-ja-ilu-beebi-ja-lapsetarbed",
       "child_handles": [],
-      "image_path": null,
-      "image_source": "none",
-      "productless": true
+      "image_path": "/cat-thumbs/v4-tervis-hooldus-ja-ilu-beebi-lapsetarbed-beebikaalud.webp",
+      "image_source": "direct"
     },
     "v4-tervis-hooldus-ja-ilu-huppetoolid-ja-kaimisabid": {
       "handle": "v4-tervis-hooldus-ja-ilu-huppetoolid-ja-kaimisabid",
@@ -21192,9 +21109,8 @@
       "level": 3,
       "parent_handle": "v4-meditsiin-ja-liikumisabi-liikumisabi",
       "child_handles": [],
-      "image_path": null,
-      "image_source": "none",
-      "productless": true
+      "image_path": "/cat-thumbs/v4-meditsiin-ja-liikumisabi-liikumisabi-istmepadjad.webp",
+      "image_source": "direct"
     },
     "v4-meditsiin-ja-liikumisabi-liikumisabi-tugipostid": {
       "handle": "v4-meditsiin-ja-liikumisabi-liikumisabi-tugipostid",
@@ -21524,9 +21440,8 @@
       "level": 3,
       "parent_handle": "v4-meditsiin-labor-ja-teadus-labor",
       "child_handles": [],
-      "image_path": null,
-      "image_source": "none",
-      "productless": true
+      "image_path": "/cat-thumbs/v4-meditsiin-labor-laborihomogenisaatorid.webp",
+      "image_source": "direct"
     },
     "v4-meditsiin-labor-laboritostukid": {
       "handle": "v4-meditsiin-labor-laboritostukid",
@@ -21551,13 +21466,13 @@
         "v4-tooriied-ja-isikukaitse-isikukaitsevahendid",
         "v4-tooriied-ja-isikukaitse-kukkumiskaitse-ja-korgustoo"
       ],
-      "image_path": "/cat-thumbs/v4-tooriied-ja-isikukaitse-kukkumiskaitse-ja-korgustoo-kolmjalad-paastestatiivid.webp",
+      "image_path": "/cat-thumbs/v4-tooriied-ja-isikukaitse-tooriietus-ja-uleroivad-kapuutsiga-pusad-ja-dressipluusid.webp",
       "image_source": "inherited",
       "description_en": "Tööriied ja isikukaitse — products.",
       "description_et": "Tööriied ja isikukaitse — tooted.",
       "tagline_en": "Tööriied ja isikukaitse",
       "tagline_et": "Tööriied ja isikukaitse",
-      "image_donor": "v4-tooriied-ja-isikukaitse-kukkumiskaitse-ja-korgustoo"
+      "image_donor": "v4-tooriied-ja-isikukaitse-tooriietus-ja-uleroivad-kapuutsiga-pusad-ja-dressipluusid"
     },
     "v4-tooriied-ja-isikukaitse-tooriietus-ja-uleroivad": {
       "handle": "v4-tooriied-ja-isikukaitse-tooriietus-ja-uleroivad",
@@ -21656,9 +21571,8 @@
       "level": 3,
       "parent_handle": "v4-tooriied-ja-isikukaitse-tooriietus-ja-uleroivad",
       "child_handles": [],
-      "image_path": null,
-      "image_source": "none",
-      "productless": true
+      "image_path": "/cat-thumbs/v4-tooriied-ja-isikukaitse-tooriietus-ja-uleroivad-saepuksid-ja-mootorsae-kaitsepuksid.webp",
+      "image_source": "direct"
     },
     "v4-tooriied-ja-isikukaitse-toojalatsid": {
       "handle": "v4-tooriied-ja-isikukaitse-toojalatsid",
@@ -21818,7 +21732,8 @@
         "v4-tooriied-ja-isikukaitse-kukkumiskaitse-ja-korgustoo-ohutuskoied-lifelined"
       ],
       "image_path": "/cat-thumbs/v4-tooriied-ja-isikukaitse-kukkumiskaitse-ja-korgustoo-kolmjalad-paastestatiivid.webp",
-      "image_source": "fuzzy"
+      "image_source": "inherited",
+      "image_donor": "v4-tooriied-ja-isikukaitse-kukkumiskaitse-ja-korgustoo-kolmjalad-paastestatiivid"
     },
     "v4-tooriied-ja-isikukaitse-kukkumiskaitse-ja-korgustoo-kolmjalad-paastestatiivid": {
       "handle": "v4-tooriied-ja-isikukaitse-kukkumiskaitse-ja-korgustoo-kolmjalad-paastestatiivid",
@@ -21837,9 +21752,8 @@
       "level": 3,
       "parent_handle": "v4-tooriied-ja-isikukaitse-kukkumiskaitse-ja-korgustoo",
       "child_handles": [],
-      "image_path": null,
-      "image_source": "none",
-      "productless": true
+      "image_path": "/cat-thumbs/v4-tooriied-ja-isikukaitse-kukkumiskaitse-ja-korgustoo-fliplinid-kukkumissummutid.webp",
+      "image_source": "direct"
     },
     "v4-tooriied-ja-isikukaitse-kukkumiskaitse-ja-korgustoo-ohutuskoied-lifelined": {
       "handle": "v4-tooriied-ja-isikukaitse-kukkumiskaitse-ja-korgustoo-ohutuskoied-lifelined",
@@ -21848,9 +21762,8 @@
       "level": 3,
       "parent_handle": "v4-tooriied-ja-isikukaitse-kukkumiskaitse-ja-korgustoo",
       "child_handles": [],
-      "image_path": null,
-      "image_source": "none",
-      "productless": true
+      "image_path": "/cat-thumbs/v4-tooriied-ja-isikukaitse-kukkumiskaitse-ja-korgustoo-ohutuskoied-lifelined.webp",
+      "image_source": "direct"
     }
   },
   "order": [
