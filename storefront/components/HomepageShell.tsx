@@ -358,7 +358,12 @@ export default function HomepageShell({ locale, l1Nodes, slides, promos, navShor
             const l1Data = l1Nodes.find((n) => n.handle === cat.slug)
             const l2List = l1Data?.l2_list ?? []
             const featured = l1Data?.featured ?? []
-            const atmosphere = `/images/cat-atmosphere/${cat.slug}.webp`
+            // Banner image reuses the inherited category thumbnail (image_path,
+            // gen-tree post-pass) — the same working source as the featured cards.
+            // The old /images/cat-atmosphere/<v3-slug>.webp set 404'd after the
+            // v3→v4 handle rename (Osa 34 diagnoos). image_path is decoded like
+            // the featured cards (line ~445) for filename-consistency.
+            const bannerImg = l1Data?.image_path ? decodeURIComponent(l1Data.image_path) : null
             return (
               <section
                 key={cat.id}
@@ -368,23 +373,25 @@ export default function HomepageShell({ locale, l1Nodes, slides, promos, navShor
                 aria-labelledby={`cat-${cat.id}-title`}
                 style={{ ["--hp-cat-font" as string]: CATEGORY_FONT_FAMILY }}
               >
-                {/* 1 — Atmosphere banner with huge title overlaid (full image clickable → L1 page) */}
+                {/* 1 — Category banner with huge title overlaid (full image clickable → L1 page) */}
                 <SafeLink
                   href={categoryPath(loc, cat.slug)}
                   className="hp-cat-banner"
                   aria-label={loc === "et" ? `Sirvi: ${cat.name}` : `Shop ${cat.name}`}
                 >
-                  <img
-                    src={atmosphere}
-                    alt=""
-                    loading="lazy"
-                    onError={(e) => {
-                      const img = e.currentTarget
-                      img.style.display = "none"
-                      const parent = img.parentElement
-                      if (parent) parent.classList.add("hp-cat-banner--placeholder")
-                    }}
-                  />
+                  {bannerImg ? (
+                    <img
+                      src={bannerImg}
+                      alt=""
+                      loading="lazy"
+                      onError={(e) => {
+                        const img = e.currentTarget
+                        img.style.display = "none"
+                        const parent = img.parentElement
+                        if (parent) parent.classList.add("hp-cat-banner--placeholder")
+                      }}
+                    />
+                  ) : null}
                   {Icon ? (
                     <span className="hp-cat-banner-fallback" aria-hidden="true">
                       <Icon size={160} strokeWidth={1} />
