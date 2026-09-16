@@ -170,6 +170,12 @@ export function getBreadcrumbTrail(
  */
 export interface ChildWithCount extends CategoryNode {
   count: number
+  /**
+   * LÜNK 1b: mitu `count`-ist on väljamüüdud/otsas (in_stock=false — nii archived kui churned).
+   * Kuvatakse kaardil "N (M väljamüüdud)". 0 kui kõik ostetavad. Optional-scope: kui kutsuja ei
+   * anna soldOutMap'i (nt Meili-maas), jääb 0 → kuvatakse ainult koguarv (tagurpidi-ühilduv).
+   */
+  soldOutCount: number
 }
 
 /**
@@ -181,18 +187,23 @@ export interface ChildWithCount extends CategoryNode {
  *
  * Spec §3.5.4 + INV-25: zero-count children MUST NOT appear in the carousel.
  *
- * @param handle   current node handle
- * @param facetMap Meili `facetDistribution["taxonomy.ancestors"]` object —
- *                 keys are category handles, values are product counts.
+ * @param handle     current node handle
+ * @param facetMap   Meili `facetDistribution["taxonomy.ancestors"]` object —
+ *                   keys are category handles, values are TOTAL product counts.
+ * @param soldOutMap same facet re-queried with `in_stock = false` — keys are
+ *                   category handles, values are sold-out/OOS counts (LÜNK 1b).
+ *                   Optional; absent → soldOutCount 0 everywhere.
  */
 export function getChildrenWithProductCounts(
   handle: string,
-  facetMap: Record<string, number>
+  facetMap: Record<string, number>,
+  soldOutMap?: Record<string, number>
 ): ChildWithCount[] {
   const children = getChildren(handle)
   const enriched: ChildWithCount[] = children.map((child) => ({
     ...child,
     count: facetMap[child.handle] ?? 0,
+    soldOutCount: soldOutMap?.[child.handle] ?? 0,
   }))
   // Filter 0-count children (INV-25).
   const visible = enriched.filter((c) => c.count > 0)

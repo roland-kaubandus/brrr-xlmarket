@@ -16,6 +16,8 @@ type Props = {
   // Feed-juhitud saadavus Meili `in_stock`-ist (sama tõde mis kategooria-kaart). false =
   // churned/OOS → EI näita ostunuppu. undefined = fallback Medusa inventory-loogikale (hasInventory).
   feedInStock?: boolean
+  // LÜNK 1b: archived=true → "Väljamüüdud" (lõplikult kadunud); in_stock=false ¬archived → "Ajutiselt otsas".
+  archived?: boolean
 }
 
 function normalizeValue(value: unknown): string {
@@ -46,7 +48,7 @@ function hasInventory(variant: ProductVariant): boolean {
   return true
 }
 
-export default function ProductPurchasePanel({ locale, title, variants, options = [], feedInStock }: Props) {
+export default function ProductPurchasePanel({ locale, title, variants, options = [], feedInStock, archived }: Props) {
   const usableOptions = useMemo(
     () => options.filter((option) => optionValues(option).length > 1 || normalizeValue(option.title) !== "default"),
     [options]
@@ -114,10 +116,15 @@ export default function ProductPurchasePanel({ locale, title, variants, options 
             <span className="w-2 h-2 rounded-full bg-[#059669]" />
             {locale === "et" ? "Laos" : "In Stock"}
           </span>
+        ) : archived ? (
+          <span className="inline-flex items-center gap-1.5 text-sm font-medium text-[#64748B]">
+            <span className="w-2 h-2 rounded-full bg-[#94A3B8]" />
+            {locale === "et" ? "Väljamüüdud" : "Sold out"}
+          </span>
         ) : (
-          <span className="inline-flex items-center gap-1.5 text-sm font-medium text-red-600">
-            <span className="w-2 h-2 rounded-full bg-red-500" />
-            {locale === "et" ? "Hetkel pole saadaval" : "Currently Unavailable"}
+          <span className="inline-flex items-center gap-1.5 text-sm font-medium text-[#D97706]">
+            <span className="w-2 h-2 rounded-full bg-[#D97706]" />
+            {locale === "et" ? "Ajutiselt otsas" : "Temporarily out of stock"}
           </span>
         )}
         {adminQty !== null && (

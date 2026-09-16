@@ -235,7 +235,7 @@ export default function VevorSearchFilters({
         <div className="py-4">
           <label className="flex items-center justify-between cursor-pointer group">
             <h3 className="text-xs uppercase tracking-wider text-[#64748B] font-bold group-hover:text-[#1a1a2e] transition-colors duration-150">
-              {locale === "et" ? "Laos" : "In Stock"}
+              {locale === "et" ? "Ainult laos" : "Only in stock"}
             </h3>
             <button
               onClick={() => router.push(buildUrl({ in_stock: currentInStock ? "" : "1" }))}

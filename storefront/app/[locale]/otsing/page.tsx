@@ -142,7 +142,11 @@ export default async function SearchPage({ searchParams, params }: Props) {
 
   // Build filter string for client-side ProductGrid fetch
   const searchFilterStr = searchFilters.join(";")
-  const sortStr = (SORT_MAP[currentSort] || (!query ? ["created_at:desc"] : []))[0] || ""
+  // LÜNK 1b / otsus 1: väljamüüdud jäävad nähtavaks, aga vajuvad tulemuste lõppu → prepend in_stock:desc.
+  // Erand: kui kasutaja on tekstiotsingus (query) ilma sortimuseta, jätab Meili relevantsuse esikohale —
+  // seal EI prepend'i (relevantsus on tähtsam), muidu (sirvimine / valitud sort) vajuta väljamüüdud lõppu.
+  const baseSort = SORT_MAP[currentSort] || (!query ? ["created_at:desc"] : [])
+  const sortStr = baseSort.length ? ["in_stock:desc", ...baseSort].join(",") : ""
 
   const totalPages = Math.ceil(totalHits / ITEMS_PER_PAGE)
   const quickFilters = buildQuickFilters(quickFilterFacets, totalHits)

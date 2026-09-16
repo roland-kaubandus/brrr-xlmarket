@@ -52,13 +52,14 @@ const { rows } = await c.query(`
          p.metadata->>'vevor_sku'          AS vevor_sku,
          v.sku                             AS variant_sku,
          p.metadata->>'last_seen_in_feed'  AS last_seen,
-         p.metadata->>'feed_status'        AS feed_status
+         p.metadata->>'feed_status'        AS feed_status,
+         COALESCE((p.metadata->>'feed_return_count')::int, 0) AS return_count
   FROM product p
   JOIN product_variant v ON v.product_id = p.id AND v.deleted_at IS NULL
   WHERE p.metadata->>'vevor_sku' IS NOT NULL AND p.deleted_at IS NULL
 `)
 
-const ids = [], lastSeens = [], statuses = []
+const ids = [], lastSeens = [], statuses = [], returnCounts = []
 const stat = { in_feed: 0, missing: 0, archived: 0, returns: 0, bootstrapped: 0, skippedNonManaged: 0 }
 
 for (const r of rows) {
@@ -67,12 +68,17 @@ for (const r of rows) {
 
   const sku = String(r.vevor_sku).trim()
   let feedStatus, lastSeen
+  // KORDUV-CHURN loendur (LÜNK 1b, otsus 4): iga kord kui arhiveeritud toode NAASEB feedi
+  // (archived→in_feed), suurenda. archive-removal-proposals.mjs loeb seda: return_count>0 =
+  // "korduv-churn" → EI soft-delete'ita (tuleb tõenäoliselt taas). Ajaloolist backfilli EI OLE
+  // (churnit ei salvestatud varem) → alustab 0-st, muutub sisukaks kui churn edaspidi kordub.
+  let returnCount = Number(r.return_count) || 0
 
   if (inFeed.has(sku)) {
     // IN-FEED: bump last_seen, un-archive kui vaja.
     feedStatus = "in_feed"
     lastSeen = TODAY
-    if (r.feed_status === "archived") stat.returns++ // tagasitulek: leiti SKU järgi, EI loo uut
+    if (r.feed_status === "archived") { stat.returns++; returnCount++ } // tagasitulek: SKU-match, EI loo uut, loenda churn
     stat.in_feed++
   } else {
     // KADUNUD: säilita arhiveeritu-olek; muidu 'missing'. last_seen = säilita VÕI bootstrap created_at.
@@ -86,7 +92,7 @@ for (const r of rows) {
     if (feedStatus === "archived") stat.archived++; else stat.missing++
   }
 
-  ids.push(r.id); lastSeens.push(lastSeen); statuses.push(feedStatus)
+  ids.push(r.id); lastSeens.push(lastSeen); statuses.push(feedStatus); returnCounts.push(String(returnCount))
 }
 
 console.log(
@@ -105,14 +111,14 @@ if (DRY) { console.log("\n[DRY-RUN] Midagi ei kirjutatud."); await c.end(); proc
 const CHUNK = 2000
 let written = 0
 for (let i = 0; i < ids.length; i += CHUNK) {
-  const idc = ids.slice(i, i + CHUNK), lsc = lastSeens.slice(i, i + CHUNK), fsc = statuses.slice(i, i + CHUNK)
+  const idc = ids.slice(i, i + CHUNK), lsc = lastSeens.slice(i, i + CHUNK), fsc = statuses.slice(i, i + CHUNK), rcc = returnCounts.slice(i, i + CHUNK)
   await c.query(
     `UPDATE product p
      SET metadata = COALESCE(p.metadata, '{}'::jsonb)
-                    || jsonb_build_object('last_seen_in_feed', d.ls, 'feed_status', d.fs)
-     FROM (SELECT unnest($1::text[]) AS id, unnest($2::text[]) AS ls, unnest($3::text[]) AS fs) d
+                    || jsonb_build_object('last_seen_in_feed', d.ls, 'feed_status', d.fs, 'feed_return_count', d.rc::int)
+     FROM (SELECT unnest($1::text[]) AS id, unnest($2::text[]) AS ls, unnest($3::text[]) AS fs, unnest($4::text[]) AS rc) d
      WHERE p.id = d.id`,
-    [idc, lsc, fsc]
+    [idc, lsc, fsc, rcc]
   )
   written += idc.length
   process.stdout.write(`  kirjutatud ${written}/${ids.length}\r`)

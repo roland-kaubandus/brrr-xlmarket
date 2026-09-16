@@ -122,7 +122,7 @@ export default function BranchFilters({
             currentInStock ? "text-accent bg-accent-light" : "text-off-black hover:bg-silver"
           }`}
         >
-          {locale === "et" ? "Laos" : "In Stock"}
+          {locale === "et" ? "Ainult laos" : "Only in stock"}
         </button>
 
         {/* More filters toggle */}

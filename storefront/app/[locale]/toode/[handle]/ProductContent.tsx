@@ -26,6 +26,7 @@ export type ProductContentProps = {
     options?: any[]
     categories?: Array<{ id: string; name: string; handle: string; parent_category_id: string | null }>
     in_stock?: boolean
+    archived?: boolean
   }
   localizedTitle: string
   images: Array<{ id: string; url: string }>
@@ -127,6 +128,7 @@ export default function ProductContent(props: ProductContentProps) {
             variants={product.variants || []}
             options={product.options}
             feedInStock={product.in_stock}
+            archived={product.archived}
           />
 
           {/* Favorites + Compare — below Buy Now, 2-up grid, full labels */}

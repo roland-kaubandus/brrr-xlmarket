@@ -156,7 +156,10 @@ export default async function CategoryPage({ params, searchParams }: Props) {
     }
   }
   const searchFilterStr = searchFilters.join(";")
-  const sortStr = (SORT_MAP[currentSort] || [])[0] || ""
+  // LÜNK 1b / otsus 1: väljamüüdud jäävad nähtavaks, aga vajuvad grid'i lõppu → prepend in_stock:desc
+  // iga sortimuse ette (ka vaikimisi). Kui "ainult laos" (inStock) sees, on kõik in_stock=true → efekt puudub.
+  // Kombineeritud multi-sort (komadega) → /api/products parseSort splitib + ALLOWED_SORTS valideerib.
+  const sortStr = ["in_stock:desc", ...(SORT_MAP[currentSort] || [])].join(",")
 
   // --- Meili facet query (limit:0) — child counts + total + quick filters ---
   let totalCount = 0
@@ -165,6 +168,7 @@ export default async function CategoryPage({ params, searchParams }: Props) {
   // (õige teade). Vt maas-haru render allpool (totalCount===0 branch).
   let meiliDown = false
   let rawAncestorFacets: Record<string, number> = {}
+  let soldOutAncestorFacets: Record<string, number> = {}
   let quickFilterFacets: Record<string, number> = {}
   try {
     const meiliResult = await searchProducts({
@@ -184,6 +188,23 @@ export default async function CategoryPage({ params, searchParams }: Props) {
     const fd = meiliResult.facetDistribution || {}
     rawAncestorFacets = fd["taxonomy.ancestors"] || {}
     quickFilterFacets = fd["filter_tokens"] || {}
+
+    // LÜNK 1b: laste-kaartide "N (M väljamüüdud)" jaoks vaja per-handle väljamüüdud-arvu.
+    // Sama scope (searchFilters) + in_stock=false → facet taxonomy.ancestors. Kui kasutaja on
+    // "ainult laos" sisse lülitanud (searchFilters sisaldab in_stock=true) → vastuolu → 0 (õige:
+    // väljamüüdud on peidetud). Eraldi päring (mitte üks facet-jooks), sest Meili facet ei ristu.
+    try {
+      const soldRes = await searchProducts({
+        q: q || "",
+        limit: 0,
+        offset: 0,
+        filter: [...searchFilters, "in_stock = false"],
+        facets: ["taxonomy.ancestors"],
+      })
+      soldOutAncestorFacets = soldRes.facetDistribution?.["taxonomy.ancestors"] || {}
+    } catch {
+      // Väljamüüdud-facet ebaõnnestus → jäta tühjaks (kaardid näitavad ainult koguarvu).
+    }
 
     // Adaptive filters: disjunctive facet pattern. When the user selects
     // tokens (AND across groups), we still want to show *alternative*
@@ -227,7 +248,7 @@ export default async function CategoryPage({ params, searchParams }: Props) {
 
   // --- Build subcategory carousel data (INV-25: filter 0-count children) ---
   const childrenWithCounts: ChildWithCount[] = node
-    ? getChildrenWithProductCounts(handle, rawAncestorFacets)
+    ? getChildrenWithProductCounts(handle, rawAncestorFacets, soldOutAncestorFacets)
     : []
   const hasCarousel = childrenWithCounts.length > 0
 
