@@ -21,6 +21,7 @@ export interface MappedProduct {
   categories: Array<{ id: string; name: string; handle: string; parent_category_id: null }>
   created_at: string
   in_stock: boolean
+  archived: boolean
 }
 
 export function mapMeiliHitToProduct(hit: MeiliHit, locale: string = "en"): MappedProduct {
@@ -71,5 +72,6 @@ export function mapMeiliHitToProduct(hit: MeiliHit, locale: string = "en"): Mapp
     })),
     created_at: new Date(createdAt * 1000).toISOString(),
     in_stock: hit.in_stock ?? true,
+    archived: hit.archived ?? false,
   }
 }

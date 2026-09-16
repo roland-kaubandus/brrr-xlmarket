@@ -50,7 +50,7 @@ async function configureIndex() {
     // tulevik (Powermat/KraftDele): sama muster, "powermat" otsing leiab ilma title-brändita.
     searchableAttributes: ["title_et", "title_en", "brand_name", "description_et", "description_en", "categories", "sku", "handle"],
     filterableAttributes: [
-      "categories", "category_handles", "subcategory", "price", "in_stock", "translated", "filter_tokens",
+      "categories", "category_handles", "subcategory", "price", "in_stock", "archived", "translated", "filter_tokens",
       // Taxonomy v3 SSoT fields (F2.8). See docs/superpowers/specs/2026-04-18-taxonomy-final-design.md §6.
       "taxonomy.l1_slug", "taxonomy.l2_slug", "taxonomy.l3_slug", "taxonomy.ancestors",
       "vertical_slugs",
@@ -60,7 +60,9 @@ async function configureIndex() {
       // return [] for products whose categories are not publicly listed.
       "handle",
     ],
-    sortableAttributes: ["price", "created_at", "title_en"],
+    // in_stock sortable → kategooria/otsingu-listing saab tõsta väljamüüdud/otsas tooted LÕPPU
+    // (sort "in_stock:desc" enne kasutaja-sorti). Väljamüüdud jäävad NÄHTAVAKS (Tarmo soov), aga alla.
+    sortableAttributes: ["price", "created_at", "title_en", "in_stock"],
     displayedAttributes: ["*"],
     rankingRules: ["words", "typo", "proximity", "attribute", "sort", "exactness"],
     typoTolerance: { enabled: true, minWordSizeForTypos: { oneTypo: 4, twoTypos: 8 } },
@@ -153,10 +155,12 @@ async function fetchProducts(client) {
     "LEFT JOIN price_set ps ON ps.id = pvps.price_set_id " +
     "LEFT JOIN price pp ON pp.price_set_id = ps.id AND pp.currency_code = 'eur' " +
     "LEFT JOIN product_category_product pcp ON pcp.product_id = p.id " +
-    // Arhiveeritud (feed_status='archived') → EI indekseerita → kaob otsingust/listingust.
-    // Toode jääb Medusa's published → toote-API loeb Medusa'st → LEHT+URL renderdub (SEO). Vt archive-proposals.mjs.
+    // LÜNK 1(b) (2026-09-16): arhiveeritud (feed_status='archived') tooted on nüüd KAASATUD indeksisse
+    // (enne välistati). Nad kuvatakse otsingus/listingus VÄLJAMÜÜDUD-sildiga (in_stock=false, archived=true),
+    // sorditakse lõppu. Tarmo soov: "toode jääb väljamüüduna nähtavaks, ei kao". Päris-eemaldus alles
+    // ~365p pärast (archive-removal-proposals.mjs → soft-delete deleted_at, siis kaob siit filtriga).
+    // Ainus välistus siin: deleted_at (soft-delete) + unpublished. Doc-count kasvab ~15.4k → ~18.6k.
     "WHERE p.status = 'published' AND p.deleted_at IS NULL " +
-    "AND (p.metadata->>'feed_status' IS DISTINCT FROM 'archived') " +
     "GROUP BY p.id, p.title, p.handle, p.description, p.thumbnail, " +
     "p.status, p.created_at, p.metadata, v.sku, pp.amount"
   )
@@ -339,6 +343,9 @@ function transform(row) {
     specs,
     compare_specs: meta.specs || null,
     in_stock: !isOosFromFeed(row.sku, meta, loadFeedCache().bySku),
+    // ERISTUS (LÜNK 1b): archived=true → "Väljamüüdud" (feed'ist lõplikult kadunud, ~90p+); archived=false
+    // + in_stock=false → "Ajutiselt otsas" (missing/churned, võib tagasi tulla). Storefront-badge loeb neid.
+    archived: meta.feed_status === "archived",
     translated: meta.translated === true,
     created_at: Math.floor(new Date(row.created_at).getTime() / 1000),
     // Taxonomy v3 SSoT fields (F2.8). vertical_slugs populated by F4 materializer.
@@ -380,12 +387,12 @@ async function waitDone() {
   console.log(" valmis!")
 }
 
-// DELETE-BATCH SAMM (2026-07-23): index-meilisearch on upsert-only (addDocuments) — arhiveeritud
-// (feed_status='archived') või DB-st kustutatud/unpublished tooted JÄID indeksisse (fetchProducts
-// juba filtreerib nad upsertist välja, aga vana doc jääb alles). Tulem: iga archive järel prügi
-// indeksis (täna: 3242 käsitsi kustutatud). See samm koristab: kõik Meili doc-id-d, mida upsertitud
-// `keepIds`-komplektis EI OLE, on aegunud → delete-batch. keepIds = fetchProducts'i tulem (published
-// + mitte-kustutatud + mitte-arhiveeritud), seega kate on täielik (archived + deleted + unpublished).
+// DELETE-BATCH SAMM (2026-07-23, uuend. 2026-09-16): index-meilisearch on upsert-only (addDocuments) —
+// DB-st soft-kustutatud (deleted_at) või unpublished tooted JÄID indeksisse (fetchProducts filtreerib
+// nad upsertist välja, aga vana doc jääb alles). See samm koristab: kõik Meili doc-id-d, mida upsertitud
+// `keepIds`-komplektis EI OLE, on aegunud → delete-batch. keepIds = fetchProducts'i tulem (published +
+// ¬deleted). NB: arhiveeritud (feed_status='archived') EI ole enam aegunud — nad on keepIds'is (LÜNK 1b),
+// jäävad indeksisse väljamüüdud-sildiga; kaovad alles ~365p soft-delete'il (deleted_at → väljub keepIds'ist).
 async function fetchAllMeiliIds() {
   const ids = []
   const PAGE = 10000
@@ -455,7 +462,7 @@ async function main() {
     const stats = await meili("/indexes/" + INDEX + "/stats")
     console.log("📊 Indeks: " + stats.numberOfDocuments + " dokumenti (oodatud: " + keepIds.size + ")")
     // ISEKOHANDUV verifikatsioon: võrdle Meili doc-count'i ELUSATE toodete arvuga (keepIds =
-    // fetchProducts tulem = DB published/¬deleted/¬archived). Peavad kokku langema. EI kasuta
+    // fetchProducts tulem = DB published/¬deleted, ARHIVEERITUD KAASA). Peavad kokku langema. EI kasuta
     // fikseeritud läve (nt 15000) — see lõheneb iga kord kui kataloog kahaneb (archive) või kasvab.
     // keepIds.size = ainus tõde "mitu dokki PEAB olema". EXPECTED_DOCS = masinloetav rida
     // refresh-feed-cache.sh lõpp-värava jaoks (isekohanduv, mitte fikseeritud arv).

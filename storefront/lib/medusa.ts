@@ -138,6 +138,9 @@ export type Product = {
   created_at: string
   metadata?: Record<string, unknown>
   in_stock?: boolean
+  // LÜNK 1b: archived=true → feed'ist lõplikult kadunud → "Väljamüüdud" (vs in_stock=false ¬archived
+  // = "Ajutiselt otsas"). Meili `archived` väljast (map-meili-hit.ts).
+  archived?: boolean
 }
 
 // --- Products ---

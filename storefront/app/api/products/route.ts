@@ -13,6 +13,9 @@ const ALLOWED_SORTS = new Set([
   "title_en:asc", "title_en:desc",
   "created_at:asc", "created_at:desc",
   "popularity:desc", "discount_pct:desc",
+  // LÜNK 1b / otsus 1: väljamüüdud/otsas tooted jäävad NÄHTAVAKS, aga vajuvad
+  // listingu LÕPPU (in_stock=true enne false). Prepend'itakse iga sortimuse ette.
+  "in_stock:desc", "in_stock:asc",
 ])
 
 // Allowlist filter fields — each accepts a safe token value or a boolean.

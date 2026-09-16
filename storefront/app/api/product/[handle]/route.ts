@@ -497,6 +497,8 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
         options: product.options,
         categories: product.categories,
         in_stock: feedInStock,
+        // LÜNK 1b: erista "Väljamüüdud" (archived) vs "Ajutiselt otsas" (in_stock=false ¬archived).
+        archived: (meiliHit as { archived?: boolean } | null)?.archived === true,
       },
       localizedTitle,
       images,

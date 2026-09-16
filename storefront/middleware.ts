@@ -11,6 +11,9 @@ const EXCLUDED = ['/api/', '/hooks/', '/meili/', '/_next/', '/favicon', '/images
 // Category URL segments where slug_redirect applies.
 // Extend if new category URL prefixes are introduced.
 const REDIRECT_PREFIXES = ['/kategooriad/', '/haru/']
+// LÜNK 1b / otsus 4: soft-kustutatud toote 301 → vanem kategooria. Toote-URL, EI ole kategooria.
+const PRODUCT_PREFIX = '/toode/'
+const CATEGORY_PREFIX = '/kategooriad/'
 const LEGACY_SEARCH_SEGMENT = '/search'
 const SEARCH_SEGMENT = '/otsing'
 
@@ -29,6 +32,12 @@ function isDynamicUserPath(pathname: string): boolean {
 const SLUG_REDIRECTS: Record<string, string> = (slugRedirectsData as {
   redirects: Record<string, string>
 }).redirects
+
+// LÜNK 1b / otsus 4: toote-handle → vanem-kategooria-handle (soft-kustutatud tooted).
+// Võib puududa vanas generated-JSON-is → tühi map (guard).
+const PRODUCT_REDIRECTS: Record<string, string> = (slugRedirectsData as {
+  productRedirects?: Record<string, string>
+}).productRedirects ?? {}
 
 /**
  * If `pathname` points to a category URL whose handle has been renamed,
@@ -60,6 +69,29 @@ function categorySlugRedirect(pathname: string): string | null {
   return null
 }
 
+/**
+ * If `pathname` points to a soft-removed product URL whose handle has a
+ * recorded redirect target, return the parent-category pathname; else null.
+ *
+ *   /et/toode/old-archived-product -> /et/kategooriad/v4-tooriistad-...-kruustangid
+ *
+ * LÜNK 1b / otsus 4: >365p arhiveeritud tooted soft-kustutatakse; nende /toode/URL
+ * suunatakse 301-ga vanemasse kategooriasse (SEO säilib, MITTE 404).
+ */
+function productSlugRedirect(pathname: string): string | null {
+  for (const locale of locales) {
+    const base = `/${locale}${PRODUCT_PREFIX}`
+    if (!pathname.startsWith(base)) continue
+    const after = pathname.slice(base.length)
+    const slashIdx = after.indexOf('/')
+    const handle = slashIdx === -1 ? after : after.slice(0, slashIdx)
+    const target = PRODUCT_REDIRECTS[handle]
+    if (!target) return null
+    return `/${locale}${CATEGORY_PREFIX}${target}`
+  }
+  return null
+}
+
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
 
@@ -69,6 +101,14 @@ export function middleware(request: NextRequest) {
     EXCLUDED.some(p => pathname.startsWith(p))
   ) {
     return NextResponse.next()
+  }
+
+  // Product slug 301s — soft-removed products redirect to their parent category.
+  const productRewritten = productSlugRedirect(pathname)
+  if (productRewritten) {
+    const url = request.nextUrl.clone()
+    url.pathname = productRewritten
+    return NextResponse.redirect(url, 301)
   }
 
   // Category slug 301s (runs before locale detection because URL is already locale-prefixed).

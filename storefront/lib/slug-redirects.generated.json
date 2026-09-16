@@ -1,6 +1,7 @@
 {
   "generatedAt": "2026-04-29T18:08:07.749Z",
   "count": 556,
+  "productCount": 0,
   "redirects": {
     "12-volt-dc-automotive-circuit-tester": "automotive-electrical-tools",
     "20v-power-tool-batteries": "power-tool-batteries",
@@ -558,5 +559,6 @@
     "work-light-with-tripod": "jobsite-lighting",
     "work-pants": "bottom-wear",
     "workwear": "safety-security-workwear"
-  }
+  },
+  "productRedirects": {}
 }

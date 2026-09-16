@@ -168,12 +168,18 @@ export default function VevorProductCard({ product, locale }: { product: Product
             </div>
           )}
 
-          {/* Badges row */}
+          {/* Badges row — kolmene (LÜNK 1b): archived → "Väljamüüdud" (feed'ist lõplikult kadunud);
+              in_stock=false ¬archived → "Ajutiselt otsas" (churned/missing, võib tagasi tulla); muidu "Laos". */}
           <div className="mt-2 md:mt-3 flex items-center gap-2.5 text-[11px] md:text-[14px]">
-            {product.in_stock === false ? (
+            {product.archived === true ? (
               <span className="inline-flex items-center gap-1 text-[#94A3B8]">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#94A3B8] inline-block" />
-                {resolvedLocale === "et" ? "Otsas" : "Out of stock"}
+                {resolvedLocale === "et" ? "Väljamüüdud" : "Sold out"}
+              </span>
+            ) : product.in_stock === false ? (
+              <span className="inline-flex items-center gap-1 text-[#D97706]">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#D97706] inline-block" />
+                {resolvedLocale === "et" ? "Ajutiselt otsas" : "Temporarily out of stock"}
               </span>
             ) : (
               <span className="inline-flex items-center gap-1 text-[#059669]">

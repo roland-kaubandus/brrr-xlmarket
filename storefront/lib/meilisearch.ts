@@ -30,6 +30,9 @@ export type MeiliHit = {
   spec_filters?: string[]
   filter_tokens?: string[]
   in_stock?: boolean
+  // LÜNK 1b: archived=true → feed'ist lõplikult kadunud (≥90p) → "Väljamüüdud" silt. Eristub
+  // in_stock=false ¬archived ("Ajutiselt otsas"). Optional — vana doc enne reindeksit ei sisalda.
+  archived?: boolean
   translated?: boolean
   created_at?: number
   // Faas 5c — taxonomy v3 + ranking fields.

@@ -24,6 +24,7 @@
 import { writeFileSync, mkdirSync } from "node:fs"
 import { join, dirname } from "node:path"
 import { fileURLToPath } from "node:url"
+import { fetchInStockIds } from "./lib/feed-instock.mjs"
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const PROJECT_ROOT = join(__dirname, "..")
@@ -109,14 +110,21 @@ async function fetchAllProducts() {
 }
 
 // Generate XML feed
-function generateXml(products) {
+function generateXml(products, inStockIds) {
   const lines = []
   lines.push('<?xml version="1.0" encoding="UTF-8"?>')
   lines.push("<offers>")
 
   let skipped = 0
+  let skippedOos = 0
 
   for (const product of products) {
+    // LÜNK 1b / otsus 5: väljas-feedis AINULT ostetavad (Meili in_stock=true). Väljamüüdud/otsas/
+    // arhiveeritud jäetakse vahele — storefront'il nähtavad "väljamüüdud"-sildiga, aga osta.ee-l ei paku.
+    if (!inStockIds.has(String(product.id))) {
+      skippedOos++
+      continue
+    }
     // Get first variant with price
     const variant = product.variants?.[0]
     if (!variant?.calculated_price?.calculated_amount) {
@@ -157,7 +165,10 @@ function generateXml(products) {
 
   lines.push("</offers>")
 
-  console.log(`  Products in feed: ${products.length - skipped}`)
+  console.log(`  Products in feed: ${products.length - skipped - skippedOos}`)
+  if (skippedOos > 0) {
+    console.log(`  Skipped (väljamüüdud/otsas — not in_stock): ${skippedOos}`)
+  }
   if (skipped > 0) {
     console.log(`  Skipped (no price/title): ${skipped}`)
   }
@@ -179,8 +190,14 @@ async function main() {
   console.log(`Total products fetched: ${products.length}`)
   console.log("")
 
+  // Otsus 5: väljas-feed AINULT ostetavad. Meili in_stock=true id-komplekt (fail-loud kui Meili maas).
+  console.log("Fetching in-stock set from Meili...")
+  const inStockIds = await fetchInStockIds()
+  console.log(`In-stock products (Meili): ${inStockIds.size}`)
+  console.log("")
+
   console.log("Generating XML...")
-  const xml = generateXml(products)
+  const xml = generateXml(products, inStockIds)
 
   // Ensure output directory exists
   mkdirSync(dirname(OUTPUT_PATH), { recursive: true })

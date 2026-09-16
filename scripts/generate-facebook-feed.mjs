@@ -14,6 +14,7 @@
 import { writeFileSync, mkdirSync } from "node:fs"
 import { join, dirname } from "node:path"
 import { fileURLToPath } from "node:url"
+import { fetchInStockIds } from "./lib/feed-instock.mjs"
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const PROJECT_ROOT = join(__dirname, "..")
@@ -114,7 +115,7 @@ async function fetchAllProducts() {
 }
 
 // Generate Facebook Commerce XML feed
-function generateXml(products) {
+function generateXml(products, inStockIds) {
   const lines = []
   lines.push('<?xml version="1.0" encoding="UTF-8"?>')
   lines.push('<rss version="2.0" xmlns:g="http://base.google.com/ns/1.0">')
@@ -124,8 +125,15 @@ function generateXml(products) {
   lines.push("  <description>Kvaliteetsed tööriistad, seadmed ja kodukaup soodsa hinnaga.</description>")
 
   let skipped = 0
+  let skippedOos = 0
 
   for (const product of products) {
+    // LÜNK 1b / otsus 5: Facebook Commerce'i AINULT ostetavad (Meili in_stock=true). Väljamüüdud/otsas
+    // ei ekspordi (g:availability oleks "in stock" = tarnimatu toote pakkumine). Storefront'il jäävad nähtavaks.
+    if (!inStockIds.has(String(product.id))) {
+      skippedOos++
+      continue
+    }
     const variant = product.variants?.[0]
     if (!variant?.calculated_price?.calculated_amount) {
       skipped++
@@ -169,7 +177,10 @@ function generateXml(products) {
   lines.push("</channel>")
   lines.push("</rss>")
 
-  console.log(`  Products in feed: ${products.length - skipped}`)
+  console.log(`  Products in feed: ${products.length - skipped - skippedOos}`)
+  if (skippedOos > 0) {
+    console.log(`  Skipped (väljamüüdud/otsas — not in_stock): ${skippedOos}`)
+  }
   if (skipped > 0) {
     console.log(`  Skipped (no price/title/image): ${skipped}`)
   }
@@ -191,8 +202,14 @@ async function main() {
   console.log(`Total products fetched: ${products.length}`)
   console.log("")
 
+  // Otsus 5: väljas-feed AINULT ostetavad. Meili in_stock=true id-komplekt (fail-loud kui Meili maas).
+  console.log("Fetching in-stock set from Meili...")
+  const inStockIds = await fetchInStockIds()
+  console.log(`In-stock products (Meili): ${inStockIds.size}`)
+  console.log("")
+
   console.log("Generating XML...")
-  const xml = generateXml(products)
+  const xml = generateXml(products, inStockIds)
 
   mkdirSync(dirname(OUTPUT_PATH), { recursive: true })
   writeFileSync(OUTPUT_PATH, xml, "utf-8")

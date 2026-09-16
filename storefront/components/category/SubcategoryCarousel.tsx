@@ -188,7 +188,14 @@ export default function SubcategoryCarousel({
                 {childName}
               </span>
               <span className="text-[11px] tabular-nums text-[#94A3B8]">
-                {child.count.toLocaleString("en-GB")} products
+                {child.count.toLocaleString("en-GB")}{" "}
+                {locale === "et" ? "toodet" : "products"}
+                {child.soldOutCount > 0 && (
+                  <span className="text-[#B45309]">
+                    {" "}({child.soldOutCount.toLocaleString("en-GB")}{" "}
+                    {locale === "et" ? "väljamüüdud" : "sold out"})
+                  </span>
+                )}
               </span>
             </Link>
           )
