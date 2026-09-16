@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-25T20:35:05.539Z",
+  "generated_at": "2026-09-16T07:39:35.064Z",
   "nodes": {
     "v4-tooriistad-ja-tarvikud": {
       "handle": "v4-tooriistad-ja-tarvikud",
@@ -3182,7 +3182,10 @@
         "v4-tooriistad-rattad-rullikud-dollid",
         "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-freesiterad",
         "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-hoovliterad",
-        "v4-tooriistad-tarvikud-sds-meislid"
+        "v4-tooriistad-tarvikud-sds-meislid",
+        "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-tsangid-ja-tsangihoidikud",
+        "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-t-soone-kinnituskomplektid",
+        "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-puurpead-ja-siseavatooriistad"
       ],
       "image_path": null,
       "image_source": "none"
@@ -3421,6 +3424,36 @@
       "handle": "v4-tooriistad-tarvikud-sds-meislid",
       "name_en": "SDS meislid ja purustusterad",
       "name_et": "SDS meislid ja purustusterad",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-tsangid-ja-tsangihoidikud": {
+      "handle": "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-tsangid-ja-tsangihoidikud",
+      "name_en": "Tsangid ja tsangihoidikud",
+      "name_et": "Tsangid ja tsangihoidikud",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-t-soone-kinnituskomplektid": {
+      "handle": "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-t-soone-kinnituskomplektid",
+      "name_en": "T-soone kinnituskomplektid",
+      "name_et": "T-soone kinnituskomplektid",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-puurpead-ja-siseavatooriistad": {
+      "handle": "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-puurpead-ja-siseavatooriistad",
+      "name_en": "Puurpead ja siseavatööriistad",
+      "name_et": "Puurpead ja siseavatööriistad",
       "level": 3,
       "parent_handle": "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid",
       "child_handles": [],
@@ -17268,7 +17301,9 @@
         "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-kuumulekande-vinuul-htv",
         "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-loikemasinad-ja-tarvikud",
         "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-stantsimis-ja-reljeefpressimismasinad",
-        "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-roivatrukk-vaibategemis-tuftingriistad"
+        "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-roivatrukk-vaibategemis-tuftingriistad",
+        "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-kuumstantsimise-fooliumid",
+        "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-kuumstantsimise-stambid"
       ],
       "image_path": null,
       "image_source": "none"
@@ -17387,6 +17422,26 @@
       "handle": "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-roivatrukk-vaibategemis-tuftingriistad",
       "name_en": "Vaibategemis- ja tuftingriistad",
       "name_et": "Vaibategemis- ja tuftingriistad",
+      "level": 3,
+      "parent_handle": "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-kuumstantsimise-fooliumid": {
+      "handle": "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-kuumstantsimise-fooliumid",
+      "name_en": "Kuumstantsimise fooliumid",
+      "name_et": "Kuumstantsimise fooliumid",
+      "level": 3,
+      "parent_handle": "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none"
+    },
+    "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-kuumstantsimise-stambid": {
+      "handle": "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-kuumstantsimise-stambid",
+      "name_en": "Kuumstantsimise stambid",
+      "name_et": "Kuumstantsimise stambid",
       "level": 3,
       "parent_handle": "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk",
       "child_handles": [],
@@ -19517,8 +19572,8 @@
       "parent_handle": "v4-lemmikloomatarbed",
       "child_handles": [
         "v4-lemmikloomatarbed-puurid-ja-aedikud-manguplatsid-ja-aedikud",
-        "v4-lemmikloomatarbed-puurid-ja-aedikud-linnupuurid",
         "v4-lemmikloomatarbed-puurid-ja-aedikud-kassipuurid-ja-aedikud",
+        "v4-lemmikloomatarbed-puurid-ja-aedikud-linnupuurid",
         "v4-lemmikloomatarbed-puurid-ja-aedikud-narilistepuurid",
         "v4-lemmikloomatarbed-puurid-ja-aedikud-poegimiskastid-ja-nurgad",
         "v4-lemmikloomatarbed-puurid-ja-aedikud-koerapuurid-ja-moobel"
@@ -19536,20 +19591,20 @@
       "image_path": null,
       "image_source": "none"
     },
-    "v4-lemmikloomatarbed-puurid-ja-aedikud-linnupuurid": {
-      "handle": "v4-lemmikloomatarbed-puurid-ja-aedikud-linnupuurid",
-      "name_en": "Linnupuurid",
-      "name_et": "Linnupuurid",
+    "v4-lemmikloomatarbed-puurid-ja-aedikud-kassipuurid-ja-aedikud": {
+      "handle": "v4-lemmikloomatarbed-puurid-ja-aedikud-kassipuurid-ja-aedikud",
+      "name_en": "Kassipuurid ja aedikud",
+      "name_et": "Kassipuurid ja aedikud",
       "level": 3,
       "parent_handle": "v4-lemmikloomatarbed-puurid-ja-aedikud",
       "child_handles": [],
       "image_path": null,
       "image_source": "none"
     },
-    "v4-lemmikloomatarbed-puurid-ja-aedikud-kassipuurid-ja-aedikud": {
-      "handle": "v4-lemmikloomatarbed-puurid-ja-aedikud-kassipuurid-ja-aedikud",
-      "name_en": "Kassipuurid ja aedikud",
-      "name_et": "Kassipuurid ja aedikud",
+    "v4-lemmikloomatarbed-puurid-ja-aedikud-linnupuurid": {
+      "handle": "v4-lemmikloomatarbed-puurid-ja-aedikud-linnupuurid",
+      "name_en": "Linnupuurid",
+      "name_et": "Linnupuurid",
       "level": 3,
       "parent_handle": "v4-lemmikloomatarbed-puurid-ja-aedikud",
       "child_handles": [],
@@ -21800,6 +21855,9 @@
     "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-freesiterad",
     "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-hoovliterad",
     "v4-tooriistad-tarvikud-sds-meislid",
+    "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-tsangid-ja-tsangihoidikud",
+    "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-t-soone-kinnituskomplektid",
+    "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-puurpead-ja-siseavatooriistad",
     "v4-tooriistad-ja-tarvikud-turva-ja-objektivarustus",
     "v4-tooriistad-ja-tarvikud-turva-ja-objektivarustus-lockout-tagout-komplektid",
     "v4-ehitus-remont-ja-varvid-isolatsioon-ja-soojustus-tolmubarjaarid",
@@ -23051,6 +23109,8 @@
     "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-loikemasinad-ja-tarvikud",
     "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-stantsimis-ja-reljeefpressimismasinad",
     "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-roivatrukk-vaibategemis-tuftingriistad",
+    "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-kuumstantsimise-fooliumid",
+    "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-kuumstantsimise-stambid",
     "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc",
     "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-lineaarjuhikud-ja-liikumissusteemid",
     "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-lasergraveerijad-ja-loikurid",
@@ -23240,8 +23300,8 @@
     "v4-lemmikloomatarbed-pesad-ja-asemed-inimsuuruses-koeravoodid",
     "v4-lemmikloomatarbed-puurid-ja-aedikud",
     "v4-lemmikloomatarbed-puurid-ja-aedikud-manguplatsid-ja-aedikud",
-    "v4-lemmikloomatarbed-puurid-ja-aedikud-linnupuurid",
     "v4-lemmikloomatarbed-puurid-ja-aedikud-kassipuurid-ja-aedikud",
+    "v4-lemmikloomatarbed-puurid-ja-aedikud-linnupuurid",
     "v4-lemmikloomatarbed-puurid-ja-aedikud-narilistepuurid",
     "v4-lemmikloomatarbed-puurid-ja-aedikud-poegimiskastid-ja-nurgad",
     "v4-lemmikloomatarbed-puurid-ja-aedikud-koerapuurid-ja-moobel",
