@@ -46,6 +46,9 @@ const ALIAS_PATH = resolve(ROOT, "backend/src/data/taxonomy-image-aliases.yaml")
 const OUT_PATH = resolve(ROOT, "storefront/lib/category-tree.generated.json")
 const LEGACY_IMG_PATH = resolve(ROOT, "storefront/lib/category-images.json")
 const CAT_THUMBS_DIR = resolve(ROOT, "storefront/public/cat-thumbs")
+// L3-lehed, millel on 0 live-toodet (build-cat-thumbs-l3.mjs väljund). Neil EI SAA pilti genereerida
+// (pole toodet) → ikoon-fallback on õige lõppseis. INV-20 aktsepteerib productless=true sõlme ilma pildita.
+const PRODUCTLESS_PATH = resolve(ROOT, "scripts/data/productless-leaves.json")
 
 function loadTaxonomy() {
   const doc = yaml.load(readFileSync(YAML_PATH, "utf8"))
@@ -69,6 +72,12 @@ function loadAliasMap() {
     if (typeof v === "string") map[k] = v
   }
   return map
+}
+
+function loadProductlessSet() {
+  if (!existsSync(PRODUCTLESS_PATH)) return new Set()
+  const doc = JSON.parse(readFileSync(PRODUCTLESS_PATH, "utf8"))
+  return new Set(Array.isArray(doc.handles) ? doc.handles : [])
 }
 
 function loadThumbFiles() {
@@ -189,6 +198,15 @@ function buildTree(doc) {
       n.image_source = "inherited"
       n.image_donor = inherit.donor
     }
+  }
+
+  // Productless-stamp: leaf ilma pildita, mis on tootetute-loendis (Meilis 0 live-toodet) → ikoon-fallback
+  // on õige lõppseis (mitte bug). INV-20 aktsepteerib productless=true. Iseparanduv: kui leaf saab tooteid,
+  // kaob järgmisel pildi-jooksul loendist ja INV-20 nõuab pilti.
+  const productlessSet = loadProductlessSet()
+  for (const handle of order) {
+    const n = nodes[handle]
+    if (!n.image_path && productlessSet.has(handle)) n.productless = true
   }
 
   return {

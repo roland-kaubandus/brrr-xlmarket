@@ -17,7 +17,7 @@
  *   node build-cat-thumbs-l3.mjs --tree <tree.json> --out <cat-thumbs-dir> [--only h1,h2] [--limit N]
  */
 
-import { readFileSync, existsSync, mkdirSync, readdirSync } from "node:fs"
+import { readFileSync, writeFileSync, existsSync, mkdirSync, readdirSync } from "node:fs"
 import path from "node:path"
 import sharp from "sharp"
 
@@ -27,6 +27,7 @@ const TREE_PATH = getArg("--tree")
 const OUT_DIR = getArg("--out")
 const ONLY = getArg("--only") ? new Set(getArg("--only").split(",")) : null
 const LIMIT = getArg("--limit") ? parseInt(getArg("--limit"), 10) : null
+const PRODUCTLESS_OUT = getArg("--productless")  // kuhu kirjutada tootetute-L3 loend (INV-20 aktsepteerib ikoon-fallbacki)
 const MEILI_HOST = process.env.MEILISEARCH_HOST
 const MEILI_KEY = process.env.MEILISEARCH_KEY
 
@@ -62,7 +63,12 @@ function scoreProduct(hit, idx, total, ps) {
 
 // Vali esinduslik toode → tema thumbnail-URL (või null)
 async function pickThumb(handle, name) {
-  const hits = await meiliSearch(name, handle, 20)
+  let hits = await meiliSearch(name, handle, 20)
+  // Nimi-päring võib anda 0 (ET kat-nimi ei matchi EN toote-title'i; "-" = Meili negatsiooni-operaator,
+  // nt "Betoonisilurid ja -hõõrutid" välistab "hõõrutid"). Fallback: tühi päring → kogu kategooria,
+  // skoori parim (hind + pildi-kvaliteet). 1430 juba-olemas jäetakse vahele (idempotentne), muutub AINULT
+  // katteta L3-de käitumine.
+  if (!hits.length) hits = await meiliSearch("", handle, 20)
   if (!hits.length) return { url: null, title: null, reason: "noProducts" }
   const prices = hits.map((h) => h.price).filter((p) => p > 0)
   const ps = { min: Math.min(...prices), max: Math.max(...prices), range: prices.length > 1 ? Math.max(...prices) - Math.min(...prices) : 0 }
@@ -93,13 +99,14 @@ async function main() {
   const existing = new Set(readdirSync(OUT_DIR).filter((f) => f.endsWith(".webp")).map((f) => f.replace(/\.webp$/, "")))
   let found = 0, skippedExist = 0, noProduct = 0, dlFail = 0, wrote = 0
   const samples = []
+  const productless = []  // L3-lehed, mis jäid ilma tooteta (Meilis 0 live-toodet) → ikoon-fallback
 
   for (const n of l3) {
     if (existing.has(n.handle)) { skippedExist++; continue }  // idempotent: olemas → vahele
     let pick
     try { pick = await pickThumb(n.handle, n.name_et || n.name_en || n.handle) }
     catch (e) { console.error(`[MEILI-FAIL] ${n.handle}: ${e.message}`); dlFail++; continue }
-    if (pick.reason !== "found") { noProduct++; continue }
+    if (pick.reason !== "found") { noProduct++; productless.push(n.handle); continue }
     found++
     const dest = path.join(OUT_DIR, `${n.handle}.webp`)
     try {
@@ -112,8 +119,22 @@ async function main() {
     }
   }
 
+  // Tootetute-loend on täielik AINULT täis-jooksul (ilma --only/--limit). Osalisel jooksul jäta kirjutamata,
+  // et mitte kirjutada üle poolikut loendit (iseparanduse eeldus: sama Meili-snapshot kui pildid).
+  if (PRODUCTLESS_OUT && !ONLY && !LIMIT) {
+    const payload = {
+      generated_at: new Date().toISOString(),
+      source: "build-cat-thumbs-l3.mjs — L3-lehed, millel Meilis 0 live-toodet → ikoon-fallback (INV-20 aktsepteerib)",
+      note: "Iseparanduv: uueneb iga täis-jooksuga. EI ole käsitsi-loend.",
+      count: productless.length,
+      handles: productless.sort(),
+    }
+    writeFileSync(PRODUCTLESS_OUT, JSON.stringify(payload, null, 2))
+  }
+
   console.log(JSON.stringify({
-    l3_total: l3.length, found, wrote, skippedExist, noProduct, dlFail, samples,
+    l3_total: l3.length, found, wrote, skippedExist, noProduct, dlFail,
+    productless_written: PRODUCTLESS_OUT && !ONLY && !LIMIT ? productless.length : null, samples,
   }))
 }
 

@@ -340,13 +340,18 @@ check("INV-19", "WARN", "Unmapped VEVOR paths last import ≤10 new (skipped)", 
 // Faas 5b extensions — image coverage & drift
 // ==========================================================================
 
-check("INV-20", "CRIT", "100% v3 nodes have resolvable image_path", () => {
-  const missing = Object.values(tree.nodes).filter((n) => !n.image_path)
+check("INV-20", "CRIT", "100% v3 nodes have image (või pärivad, või on tootetu leaf → ikoon-fallback)", () => {
+  // Sõlm on kaetud kui: (a) tal on image_path (direct/alias/fuzzy/inherited), VÕI
+  // (b) ta on tootetu leaf (productless=true — Meilis 0 live-toodet, gen-tree stamp
+  //     productless-leaves.json'ist) → ikoon-fallback on õige lõppseis, mitte bug.
+  // FAIL AINULT kui sõlmel on tooteid (pole productless) aga pilti pole → päris kate-lünk.
+  const uncovered = Object.values(tree.nodes).filter((n) => !n.image_path && !n.productless)
+  const productless = Object.values(tree.nodes).filter((n) => !n.image_path && n.productless).length
   return {
-    pass: missing.length === 0,
-    detail: missing.length
-      ? `${missing.length} nodes with no image: ${missing.slice(0, 5).map((n) => n.handle).join(", ")}…`
-      : `${Object.keys(tree.nodes).length} nodes, all have image_path`,
+    pass: uncovered.length === 0,
+    detail: uncovered.length
+      ? `${uncovered.length} sõlme pildita JA pole tootetu (päris-lünk): ${uncovered.slice(0, 8).map((n) => n.handle).join(", ")}…`
+      : `${Object.keys(tree.nodes).length} sõlme kaetud (pilt/pärimine) + ${productless} tootetut leaf'i ikoon-fallbackil`,
   }
 })
 
@@ -516,13 +521,16 @@ check("INV-25", "WARN", "Subcategory carousel hides 0-product children (skipped 
   }
 })
 
-check("INV-26", "CRIT", "Every node has image_source !== 'none' (carousel cards have image)", () => {
-  const offenders = Object.values(tree.nodes).filter((n) => !n.image_source || n.image_source === "none")
+check("INV-26", "CRIT", "Every node has image_source !== 'none' (carousel cards have image; tootetu leaf = ikoon-fallback OK)", () => {
+  // Sama loogika kui INV-20: tootetu leaf (productless=true) tohib olla image_source=none → ikoon-fallback.
+  // FAIL ainult kui sõlmel pole pilti EGA ta pole tootetu.
+  const offenders = Object.values(tree.nodes).filter((n) => (!n.image_source || n.image_source === "none") && !n.productless)
+  const productless = Object.values(tree.nodes).filter((n) => (!n.image_source || n.image_source === "none") && n.productless).length
   return {
     pass: offenders.length === 0,
     detail: offenders.length
-      ? `${offenders.length} nodes with image_source=none: ${offenders.slice(0, 5).map((n) => n.handle).join(", ")}…`
-      : `${Object.keys(tree.nodes).length} nodes have resolvable image_source`,
+      ? `${offenders.length} sõlme image_source=none JA pole tootetu: ${offenders.slice(0, 8).map((n) => n.handle).join(", ")}…`
+      : `${Object.keys(tree.nodes).length} sõlme kaetud + ${productless} tootetut leaf'i ikoon-fallbackil`,
   }
 })
 
