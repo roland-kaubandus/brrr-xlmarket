@@ -1214,7 +1214,10 @@ const homepageStyles = `
    Cards:   aspect-ratio 1:1, image top (10 percent padding), DM Sans 14px SemiBold name. */
 .hp-category-section {
   display: grid;
-  grid-template-columns: 280px 200px 1fr;
+  /* Voolavad proportsioonid (~20% / 15% / 65%, säilitab desktopi 280:200:880
+     suhte) — mitte fikseeritud px, et kogu plokk skaleeruks lehe laiusega:
+     bänner + sublist + pildid kahanevad ühtlaselt, nagu /kategooriad indeks. */
+  grid-template-columns: minmax(190px, 1.4fr) minmax(140px, 1fr) minmax(0, 4.4fr);
   margin-bottom: 20px;
   background: #fff;
   overflow: hidden;
@@ -1510,7 +1513,8 @@ const homepageStyles = `
   .hp-deals-row { grid-template-columns: repeat(2, 1fr); }
   .hp-category-explorer { padding: 20px 20px 40px; gap: 16px; }
   .hp-explorer-header { padding: 36px 20px 0; }
-  .hp-category-section { grid-template-columns: 240px 180px 1fr; }
+  /* Grid-template jääb voolavaks fr-suhtele (skaleerub ise) — ei tagasta
+     fikseeritud px-veergudele. Ainult tüpograafia kohandub siin. */
   .hp-cat-banner-title { font-size: 22px; }
   .hp-cat-sublist { padding: 16px 14px; }
   .hp-cat-sublist-name { font-size: 16px; }
