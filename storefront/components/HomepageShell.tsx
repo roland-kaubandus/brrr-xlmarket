@@ -399,6 +399,11 @@ export default function HomepageShell({ locale, l1Nodes, slides, promos, navShor
                   ) : null}
                   <div className="hp-cat-banner-overlay" />
                   <div className="hp-cat-banner-title-wrap">
+                    {Icon ? (
+                      <span className="hp-cat-banner-badge" aria-hidden="true">
+                        <Icon size={20} strokeWidth={1.6} />
+                      </span>
+                    ) : null}
                     <h2 id={`cat-${cat.id}-title`} className="hp-cat-banner-title">{cat.name}</h2>
                     {l1Data && l1Data.l2_count > 0 ? (
                       <p className="hp-cat-banner-sub">
@@ -1275,6 +1280,20 @@ const homepageStyles = `
   right: 20px;
   bottom: 18px;
   z-index: 2;
+}
+
+.hp-cat-banner-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  margin-bottom: 6px;
+  border-radius: 9px;
+  color: #fff;
+  background: rgba(11,125,121,0.9);
+  backdrop-filter: blur(2px);
+  box-shadow: 0 1px 6px rgba(0,0,0,0.28);
 }
 
 .hp-cat-banner-title {
