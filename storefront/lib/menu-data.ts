@@ -127,9 +127,13 @@ export function getHomepageL1Nodes(
     const isUsable = (n: CategoryNode) =>
       !!n.image_path && n.image_source !== "fuzzy"
 
-    // Sublist: min 6, max 10. L2 in count order; backfill with L3 (also by count).
+    // Sublist: exactly 6 to match the 6 featured cards → every homepage L1
+    // block stays balanced (text column height = card grid height). Blocks with
+    // >6 L2 surface the remainder via a "veel N →" link to the L1 page, so no
+    // subcategory is lost (Osa 39: 10-vs-6 mismatch made tall blocks look uneven).
+    // L2 in count order; backfill with L3 (also by count) when an L1 has <6 L2.
     const MIN_SUBLIST = 6
-    const MAX_SUBLIST = 10
+    const MAX_SUBLIST = 6
     const sublist: Array<{ handle: string; name_en: string; name_et?: string; image_path: string | null }> = []
     const sublistSeen = new Set<string>()
     for (const l2 of l2List) {
