@@ -405,16 +405,10 @@ export default function HomepageShell({ locale, l1Nodes, slides, promos, navShor
             const bannerImg =
               ATMOSPHERE_BANNERS[cat.slug] ??
               (l1Data?.image_path ? decodeURIComponent(l1Data.image_path) : null)
-            // Banner-only mode: a card with no featured products AND no sublist has
-            // NOTHING to give the section height (the section height is driven by the
-            // card grid — banner/icon are position:absolute). Without this it collapses
-            // to ~2px and disappears (Outlet-tüüpi concept-kat: %-ikoon, 0 toodet).
-            // Render it as a full-width banner with the concept icon instead.
-            const bannerOnly = featured.length === 0 && l2List.length === 0
             return (
               <section
                 key={cat.id}
-                className={`hp-category-section${bannerOnly ? " hp-category-section--banner" : ""}`}
+                className="hp-category-section"
                 data-cat-id={cat.id}
                 ref={(el) => { sectionRefs.current[cat.id] = el }}
                 aria-labelledby={`cat-${cat.id}-title`}
@@ -1323,23 +1317,13 @@ const homepageStyles = `
   opacity: 0.45;
 }
 
+/* Show the concept icon whenever a banner has no <img> at all (general rule,
+   mirrors .hp-cat-card-image:not(:has(img)) below). A main without an atmosphere
+   image — e.g. Outlet, which carries the % icon until an image ships — then still
+   shows its icon. No <img> means the onError --placeholder path never fires, so
+   :not(:has(img)) is what catches it. */
+.hp-cat-banner:not(:has(img)) .hp-cat-banner-fallback,
 .hp-cat-banner--placeholder .hp-cat-banner-fallback { display: flex; }
-
-/* Banner-only card (concept-kat, nt Outlet: %-ikoon, 0 toodet). The 3-col grid
-   would collapse to ~2px because nothing has layout height — so give it a real
-   min-height, span the banner full width, and force the concept icon visible
-   (there is no <img> to trigger the onError placeholder path). */
-.hp-category-section--banner {
-  min-height: 240px;
-}
-.hp-category-section--banner .hp-cat-banner {
-  grid-column: 1 / -1;
-  min-height: 240px;
-}
-.hp-category-section--banner .hp-cat-banner-fallback {
-  display: flex;
-  opacity: 0.6;
-}
 
 /* Subtle bottom scrim — keeps title readable without washing the photo. */
 .hp-cat-banner-overlay {
