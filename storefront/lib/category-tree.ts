@@ -132,17 +132,17 @@ export function getNavChildren(handle: string): CategoryNode[] {
 }
 
 /**
- * Homepage L1 sublist children: like getNavChildren, but NEVER collapses the L1
- * node itself. A single-child L1 (e.g. Outlet → Rikutud pakend) must still
- * surface its own L2 row on the homepage card. getNavChildren runs
- * collapseChain(L1) first, which for a single-child L1 walks past L1 down to the
- * leaf and returns that leaf's (empty) children → the sublist comes back empty
- * and the whole section collapses to ~0px. Here we take the L1's DIRECT children
- * and only chain-collapse each child. For any L1 with >1 child the result is
- * identical to getNavChildren (collapseChain(L1) is a no-op there), so this only
- * changes the single-child mains.
+ * A main's (L1's) direct children — like getNavChildren, but NEVER collapses the
+ * L1 node itself. A single-child L1 (e.g. Outlet → Rikutud pakend) must still
+ * surface its own L2 row on both the homepage card and the mega-menu panel.
+ * getNavChildren runs collapseChain(L1) first, which for a single-child L1 walks
+ * past L1 down to the leaf and returns that leaf's (empty) children → the sublist
+ * comes back empty (homepage section collapses to ~0px; menu panel shows no L2).
+ * Here we take the L1's DIRECT children and only chain-collapse each child. For
+ * any L1 with >1 child the result is identical to getNavChildren (collapseChain
+ * on the L1 is a no-op there), so this only changes the single-child mains.
  */
-export function getHomepageChildren(handle: string): CategoryNode[] {
+export function getMainChildren(handle: string): CategoryNode[] {
   const node = getNode(handle)
   if (!node) return []
   return node.child_handles
