@@ -8,7 +8,7 @@
  */
 
 import "server-only"
-import { getVisibleL1, getChildren, getNavChildren, getNode, type CategoryNode } from "./category-tree"
+import { getVisibleL1, getChildren, getNavChildren, getHomepageChildren, getNode, type CategoryNode } from "./category-tree"
 import countsDoc from "./category-counts.generated.json"
 
 const COUNTS: Record<string, number> = (countsDoc as { counts: Record<string, number> }).counts || {}
@@ -120,7 +120,11 @@ export function getHomepageL1Nodes(
   featuredOverrides?: Record<string, string[]>
 ): HomepageL1Node[] {
   return getVisibleL1().map((l1Node) => {
-    const l2ListRaw = getNavChildren(l1Node.handle)
+    // Homepage sublist uses the L1's DIRECT children (never collapsing the L1
+    // itself). A single-child L1 like Outlet (→ Rikutud pakend) would otherwise
+    // come back with an empty sublist and the section would collapse to ~0px.
+    // Identical to getNavChildren for every multi-child main.
+    const l2ListRaw = getHomepageChildren(l1Node.handle)
     // Sort L2 by product count (biggest first). Meili snapshot source.
     const l2List = [...l2ListRaw].sort((a, b) => countOf(b.handle) - countOf(a.handle))
 
