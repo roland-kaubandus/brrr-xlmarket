@@ -8,7 +8,7 @@
  */
 
 import "server-only"
-import { getVisibleL1, getChildren, getNavChildren, getHomepageChildren, getNode, type CategoryNode } from "./category-tree"
+import { getVisibleL1, getChildren, getNavChildren, getMainChildren, getNode, type CategoryNode } from "./category-tree"
 import countsDoc from "./category-counts.generated.json"
 
 const COUNTS: Record<string, number> = (countsDoc as { counts: Record<string, number> }).counts || {}
@@ -78,7 +78,10 @@ export function getMenuSlice(): {
 
   const l2ByL1: Record<string, MenuNode[]> = {}
   for (const l1Node of l1Nodes) {
-    l2ByL1[l1Node.handle] = getNavChildren(l1Node.handle).map((c) =>
+    // getMainChildren (not getNavChildren) so a single-child L1 like Outlet
+    // (→ Rikutud pakend) still shows its L2 in the mega-menu panel instead of an
+    // empty column. Identical to getNavChildren for every multi-child main.
+    l2ByL1[l1Node.handle] = getMainChildren(l1Node.handle).map((c) =>
       toMenuNode(c, l1Node.handle)
     )
   }
@@ -124,7 +127,7 @@ export function getHomepageL1Nodes(
     // itself). A single-child L1 like Outlet (→ Rikutud pakend) would otherwise
     // come back with an empty sublist and the section would collapse to ~0px.
     // Identical to getNavChildren for every multi-child main.
-    const l2ListRaw = getHomepageChildren(l1Node.handle)
+    const l2ListRaw = getMainChildren(l1Node.handle)
     // Sort L2 by product count (biggest first). Meili snapshot source.
     const l2List = [...l2ListRaw].sort((a, b) => countOf(b.handle) - countOf(a.handle))
 
