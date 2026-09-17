@@ -37,10 +37,12 @@ export interface HomepageL1Node {
   /** Direct L2 children (name + handle + image for the sublist). */
   l2_list: Array<{ handle: string; name_en: string; name_et?: string; image_path: string | null }>
   /**
-   * Up to 6 featured leaf nodes for the bento card grid.
-   * BFS walk through subtree, filtered to nodes with usable image_path.
+   * Up to 6 featured cards for the bento grid — mirror the sublist 1:1 (same
+   * handles, same order). `image_path` is null when neither the node nor its
+   * subtree has a usable image (e.g. concept_only Outlet) → the card renders an
+   * icon fallback instead of dropping, so cards never disagree with the sublist.
    */
-  featured: Array<{ handle: string; name_en: string; name_et?: string; image_path: string }>
+  featured: Array<{ handle: string; name_en: string; name_et?: string; image_path: string | null }>
 }
 
 /** Slim node for MegaMenu L2/L3 panels. */
@@ -128,8 +130,15 @@ export function getHomepageL1Nodes(
     // come back with an empty sublist and the section would collapse to ~0px.
     // Identical to getNavChildren for every multi-child main.
     const l2ListRaw = getMainChildren(l1Node.handle)
-    // Sort L2 by product count (biggest first). Meili snapshot source.
-    const l2List = [...l2ListRaw].sort((a, b) => countOf(b.handle) - countOf(a.handle))
+    // Osa 45 (Tarmo): the homepage box shows only the BIGGEST-AVAILABLE
+    // subcategories — L2 that ACTUALLY have products (countOf>0, aggregate
+    // subtree count from the Meili snapshot). Empty L2 never occupy a slot; when
+    // a slot's product count drops to 0 it is filtered out and the next-biggest
+    // available L2 takes its place → the box stays full, no hole. Sort
+    // biggest-first ("suurimad-saadaolevad"). (Snapshot refreshes on reindex,
+    // so "next fills" happens each counts-regen, not live per-request.)
+    const l2Available = l2ListRaw.filter((n) => countOf(n.handle) > 0)
+    const l2List = [...l2Available].sort((a, b) => countOf(b.handle) - countOf(a.handle))
 
     const isUsable = (n: CategoryNode) =>
       !!n.image_path && n.image_source !== "fuzzy"
@@ -155,7 +164,8 @@ export function getHomepageL1Nodes(
         for (const l3h of l2.child_handles) {
           if (sublistSeen.has(l3h)) continue
           const l3 = getNode(l3h)
-          if (l3) l3Pool.push(l3)
+          // count>0 only — same rule as L2: backfill never adds an empty L3.
+          if (l3 && countOf(l3.handle) > 0) l3Pool.push(l3)
         }
       }
       l3Pool.sort((a, b) => countOf(b.handle) - countOf(a.handle))
@@ -184,25 +194,24 @@ export function getHomepageL1Nodes(
       }
       return null
     }
-    const featured: Array<{ handle: string; name_en: string; name_et?: string; image_path: string }> = []
+    const featured: Array<{ handle: string; name_en: string; name_et?: string; image_path: string | null }> = []
     const overrideList = featuredOverrides?.[l1Node.handle]
     if (Array.isArray(overrideList) && overrideList.length > 0) {
       for (const handle of overrideList.slice(0, 6)) {
         const node = getNode(handle)
         if (!node) continue
         const resolved = resolveUsable(handle)
-        if (resolved) {
-          featured.push({ handle: node.handle, name_en: node.name_en, name_et: node.name_et, image_path: resolved.image_path })
-        }
+        // Keep the card even without an image (icon fallback) — never drop.
+        featured.push({ handle: node.handle, name_en: node.name_en, name_et: node.name_et, image_path: resolved ? resolved.image_path : null })
       }
     }
     if (featured.length === 0) {
-      // Default: top-6 sublist with image fallback.
-      for (const entry of sublist.slice(0, 6)) {
+      // Default: cards MIRROR the sublist 1:1 (same handles, same order). An
+      // entry without a usable image keeps its card with image_path=null (icon
+      // fallback in HomepageShell) → cards and sublist never disagree.
+      for (const entry of sublist) {
         const resolved = resolveUsable(entry.handle)
-        if (resolved) {
-          featured.push({ handle: entry.handle, name_en: entry.name_en, name_et: entry.name_et, image_path: resolved.image_path })
-        }
+        featured.push({ handle: entry.handle, name_en: entry.name_en, name_et: entry.name_et, image_path: resolved ? resolved.image_path : null })
       }
     }
 
@@ -212,7 +221,9 @@ export function getHomepageL1Nodes(
       name_et: l1Node.name_et,
       image_path: l1Node.image_path,
       level: 1 as const,
-      l2_count: l2ListRaw.length,
+      // Available (count>0) L2 only — drives the "N alamkategooriat" subtitle and
+      // the "veel N →" link, so both reflect what the shopper can actually reach.
+      l2_count: l2Available.length,
       l2_list: sublist,
       featured,
     }
