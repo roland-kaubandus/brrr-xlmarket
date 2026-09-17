@@ -8170,6 +8170,14 @@ l1:
     name_et: "Outlet"
     short_slug: outlet
     concept_only: true
+    # fixed_l2 (Tarmo 2026-09-17, Osa 46): esilehe-kast näitab KÕIK Outleti L2
+    # (ka tühjad) — need on tahtlikud kureeritud SEISUND-ämbrid (Avatud/kahjustatud,
+    # Defektiga, Leiunurk), mis "ootavad tooteid", mitte feed-müra. Tavamainidel
+    # (feed-veetud) EI ole seda lippu → count>0 filter jääb (tühi L2 ei raiska
+    # slotti, suuruselt järgmine täidab). Lipp on AINULT L1-l (ei päri), puudutab
+    # AINULT getHomepageL1Nodes esilehe-filtrit — mitte pilti (concept_only teeb
+    # seda eraldi), mitte kategooria-lehe karusselli (jääb count>0), mitte mega-menu.
+    fixed_l2: true
     tagline_en: "Outlet — discounted & open-box"
     tagline_et: "Outlet — soodushinnaga ja avatud pakend"
     description_en: "Outlet — discounted, open-box and damaged-packaging products, full quality."
