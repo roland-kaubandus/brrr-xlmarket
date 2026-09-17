@@ -8143,15 +8143,27 @@ l1:
             name_et: "Ohutusköied ja lifeline'd"
             product_count: 0
   # ═══════ 26. OUTLET (Tarmo 2026-07-20; taastatud nähtavaks 2026-09-17) ═══════
-  # Käsitsi-hallatav (mitte-VEVOR-feed). Ainult "Rikutud pakend" L2 nähtav;
-  # "Avatud pakend" jääb peidus (is_internal, DB) kuni sisu lisatakse.
+  # Käsitsi-hallatav (mitte-VEVOR-feed).
+  #
+  # 3 L2 (Tarmo lõplik struktuur 2026-09-17, Osa 46) — SAMA loogika kui teised
+  # mainid, POLE erijuht:
+  #   1. "Avatud/kahjustatud pakend" (v4-outlet-rikutud-pakend, slug säilib et
+  #      Wind Turbine seos + URL ei katkeks) — nähtav, count>0 (Wind Turbine siin).
+  #      Jaguneb L3-ks vajadusel (Avatud + Kahjustatud).
+  #   2. "Defektiga toode" (v4-outlet-defektiga-toode) — tootel defekt, muidu
+  #      korras. Tühi, ootab tooteid.
+  #   3. "Leiunurk" (v4-outlet-leiunurk) — segakaubad. Tühi, ootab tooteid.
+  # Tühjad L2 (2 + 3): count>0 loogika peidab kategooria-lehe karussellist kuni
+  # tooteid, AGA struktuuris olemas (generated.json → getNode leiab → EI 404-i,
+  # näitab 0 toodet). Tahtlikult struktuuris, "lisa vajadusel, struktuur paigas".
+  # Kast kasvab automaatselt kui L2-d täituvad (top-6 count>0, Osa 45).
   #
   # concept_only (Tarmo 2026-09-17): Outlet = SEISUND (rikutud pakend, ükskõik
   # mis toode), MITTE tüüp. EI tohi pärida toote-pilti (nagu 25 tüüp-kat) —
   # ühe toote pilt (nt tuulik) EI esinda "outletit" ja eksitab klienti
   # ("Outlet = tuulikud?"). Vajab KONTSEPTUAALSET pilti: %-ikoon (BadgePercent,
-  # nüüd) või atmosphere ("pruun pakend -20%", hiljem). gen-category-tree
-  # sunnib kogu selle alampuu image_source=none → frontend kuvab ikooni.
+  # nüüd) või atmosphere ("pruun pakend -20%", hiljem). L2-pildid hiljem.
+  # gen-category-tree sunnib kogu selle alampuu image_source=none → ikoon.
   # INV-20/26 aktsepteerivad concept_only=true ilma pildita (nagu productless).
   - slug: v4-outlet
     name_en: "Outlet"
@@ -8167,6 +8179,14 @@ l1:
     product_count: 1
     subs:
       - slug: v4-outlet-rikutud-pakend
-        name_en: "Rikutud pakend"
-        name_et: "Rikutud pakend"
+        name_en: "Open/damaged packaging"
+        name_et: "Avatud/kahjustatud pakend"
         product_count: 1
+      - slug: v4-outlet-defektiga-toode
+        name_en: "Defective product"
+        name_et: "Defektiga toode"
+        product_count: 0
+      - slug: v4-outlet-leiunurk
+        name_en: "Lost & found"
+        name_et: "Leiunurk"
+        product_count: 0

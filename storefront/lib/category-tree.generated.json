@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-17T06:19:18.661Z",
+  "generated_at": "2026-09-17T09:29:50.208Z",
   "nodes": {
     "v4-tooriistad-ja-tarvikud": {
       "handle": "v4-tooriistad-ja-tarvikud",
@@ -21772,7 +21772,9 @@
       "level": 1,
       "parent_handle": null,
       "child_handles": [
-        "v4-outlet-rikutud-pakend"
+        "v4-outlet-rikutud-pakend",
+        "v4-outlet-defektiga-toode",
+        "v4-outlet-leiunurk"
       ],
       "image_path": null,
       "image_source": "none",
@@ -21784,8 +21786,30 @@
     },
     "v4-outlet-rikutud-pakend": {
       "handle": "v4-outlet-rikutud-pakend",
-      "name_en": "Rikutud pakend",
-      "name_et": "Rikutud pakend",
+      "name_en": "Open/damaged packaging",
+      "name_et": "Avatud/kahjustatud pakend",
+      "level": 2,
+      "parent_handle": "v4-outlet",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none",
+      "concept_only": true
+    },
+    "v4-outlet-defektiga-toode": {
+      "handle": "v4-outlet-defektiga-toode",
+      "name_en": "Defective product",
+      "name_et": "Defektiga toode",
+      "level": 2,
+      "parent_handle": "v4-outlet",
+      "child_handles": [],
+      "image_path": null,
+      "image_source": "none",
+      "concept_only": true
+    },
+    "v4-outlet-leiunurk": {
+      "handle": "v4-outlet-leiunurk",
+      "name_en": "Lost & found",
+      "name_et": "Leiunurk",
       "level": 2,
       "parent_handle": "v4-outlet",
       "child_handles": [],
@@ -23725,6 +23749,8 @@
     "v4-tooriied-ja-isikukaitse-kukkumiskaitse-ja-korgustoo-fliplinid-kukkumissummutid",
     "v4-tooriied-ja-isikukaitse-kukkumiskaitse-ja-korgustoo-ohutuskoied-lifelined",
     "v4-outlet",
-    "v4-outlet-rikutud-pakend"
+    "v4-outlet-rikutud-pakend",
+    "v4-outlet-defektiga-toode",
+    "v4-outlet-leiunurk"
   ]
 }
