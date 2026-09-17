@@ -137,7 +137,17 @@ export function getHomepageL1Nodes(
     // available L2 takes its place → the box stays full, no hole. Sort
     // biggest-first ("suurimad-saadaolevad"). (Snapshot refreshes on reindex,
     // so "next fills" happens each counts-regen, not live per-request.)
-    const l2Available = l2ListRaw.filter((n) => countOf(n.handle) > 0)
+    //
+    // Osa 46 (Tarmo): EXCEPTION for fixed_l2 mains (Outlet). A fixed_l2 L1 has a
+    // deliberate, curated set of L2 buckets (Avatud/kahjustatud pakend, Defektiga
+    // toode, Leiunurk) that must ALL stay visible even when empty — they are
+    // "waiting for products", not feed-noise. So we skip the count>0 filter for
+    // that L1 ONLY; every other (feed-driven) main keeps count>0 unchanged. The
+    // biggest-first sort still applies → the populated bucket leads, empties trail.
+    const keepEmptyL2 = l1Node.fixed_l2 === true
+    const l2Available = keepEmptyL2
+      ? l2ListRaw
+      : l2ListRaw.filter((n) => countOf(n.handle) > 0)
     const l2List = [...l2Available].sort((a, b) => countOf(b.handle) - countOf(a.handle))
 
     const isUsable = (n: CategoryNode) =>

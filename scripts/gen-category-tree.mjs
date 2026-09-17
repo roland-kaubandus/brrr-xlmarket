@@ -183,6 +183,10 @@ function buildTree(doc) {
       ...img,
     }
     if (isConcept) attrs.concept_only = true
+    // fixed_l2 (Osa 46): L1-only, NOT inherited (reads node.fixed_l2 directly, not
+    // the conceptOnly-style param). Homepage box shows ALL L2 of this main (even
+    // empty) — see getHomepageL1Nodes. Orthogonal to concept_only (image layer).
+    if (isObj && node.fixed_l2 === true) attrs.fixed_l2 = true
     if (isObj && node.description_en != null) attrs.description_en = node.description_en
     if (isObj && node.description_et != null) attrs.description_et = node.description_et
     if (isObj && node.tagline_en != null) attrs.tagline_en = node.tagline_en

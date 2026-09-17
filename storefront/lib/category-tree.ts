@@ -25,6 +25,15 @@ export interface CategoryNode {
   child_handles: string[]
   image_path: string | null
   image_source: "direct" | "alias" | "fuzzy" | "none"
+  /** SEISUND main (Outlet): forces image_source="none" on the whole subtree → icon. */
+  concept_only?: boolean
+  /**
+   * L1-only (Osa 46): the homepage box shows ALL of this main's structural L2
+   * even when empty (count===0), bypassing the count>0 filter. Used for curated
+   * SEISUND mains (Outlet) whose empty L2 are deliberate "waiting" buckets. Feed
+   * mains omit it → count>0 filter keeps the box full with the biggest-available.
+   */
+  fixed_l2?: boolean
   description_en?: string | null
   tagline_en?: string | null
   // EN-only store — `*_et` fields stay optional so legacy JSON rows don't
