@@ -343,15 +343,18 @@ check("INV-19", "WARN", "Unmapped VEVOR paths last import ≤10 new (skipped)", 
 check("INV-20", "CRIT", "100% v3 nodes have image (või pärivad, või on tootetu leaf → ikoon-fallback)", () => {
   // Sõlm on kaetud kui: (a) tal on image_path (direct/alias/fuzzy/inherited), VÕI
   // (b) ta on tootetu leaf (productless=true — Meilis 0 live-toodet, gen-tree stamp
-  //     productless-leaves.json'ist) → ikoon-fallback on õige lõppseis, mitte bug.
-  // FAIL AINULT kui sõlmel on tooteid (pole productless) aga pilti pole → päris kate-lünk.
-  const uncovered = Object.values(tree.nodes).filter((n) => !n.image_path && !n.productless)
+  //     productless-leaves.json'ist) → ikoon-fallback on õige lõppseis, mitte bug, VÕI
+  // (c) ta on concept_only (Outlet-tüüpi SEISUND-kategooria) — ei tohi toote-pilti kanda
+  //     (eksitab), vajab kontseptuaalset ikooni/atmosphere'i → ikoon-fallback on õige.
+  // FAIL AINULT kui sõlmel on tooteid (pole productless/concept) aga pilti pole → kate-lünk.
+  const uncovered = Object.values(tree.nodes).filter((n) => !n.image_path && !n.productless && !n.concept_only)
   const productless = Object.values(tree.nodes).filter((n) => !n.image_path && n.productless).length
+  const concept = Object.values(tree.nodes).filter((n) => !n.image_path && n.concept_only).length
   return {
     pass: uncovered.length === 0,
     detail: uncovered.length
-      ? `${uncovered.length} sõlme pildita JA pole tootetu (päris-lünk): ${uncovered.slice(0, 8).map((n) => n.handle).join(", ")}…`
-      : `${Object.keys(tree.nodes).length} sõlme kaetud (pilt/pärimine) + ${productless} tootetut leaf'i ikoon-fallbackil`,
+      ? `${uncovered.length} sõlme pildita JA pole tootetu/concept (päris-lünk): ${uncovered.slice(0, 8).map((n) => n.handle).join(", ")}…`
+      : `${Object.keys(tree.nodes).length} sõlme kaetud (pilt/pärimine) + ${productless} tootetut + ${concept} concept-leaf'i ikoon-fallbackil`,
   }
 })
 
@@ -522,15 +525,17 @@ check("INV-25", "WARN", "Subcategory carousel hides 0-product children (skipped 
 })
 
 check("INV-26", "CRIT", "Every node has image_source !== 'none' (carousel cards have image; tootetu leaf = ikoon-fallback OK)", () => {
-  // Sama loogika kui INV-20: tootetu leaf (productless=true) tohib olla image_source=none → ikoon-fallback.
-  // FAIL ainult kui sõlmel pole pilti EGA ta pole tootetu.
-  const offenders = Object.values(tree.nodes).filter((n) => (!n.image_source || n.image_source === "none") && !n.productless)
+  // Sama loogika kui INV-20: tootetu leaf (productless=true) VÕI concept_only (Outlet-tüüpi
+  // SEISUND-kat) tohib olla image_source=none → ikoon-fallback.
+  // FAIL ainult kui sõlmel pole pilti EGA ta pole tootetu/concept.
+  const offenders = Object.values(tree.nodes).filter((n) => (!n.image_source || n.image_source === "none") && !n.productless && !n.concept_only)
   const productless = Object.values(tree.nodes).filter((n) => (!n.image_source || n.image_source === "none") && n.productless).length
+  const concept = Object.values(tree.nodes).filter((n) => (!n.image_source || n.image_source === "none") && n.concept_only).length
   return {
     pass: offenders.length === 0,
     detail: offenders.length
-      ? `${offenders.length} sõlme image_source=none JA pole tootetu: ${offenders.slice(0, 8).map((n) => n.handle).join(", ")}…`
-      : `${Object.keys(tree.nodes).length} sõlme kaetud + ${productless} tootetut leaf'i ikoon-fallbackil`,
+      ? `${offenders.length} sõlme image_source=none JA pole tootetu/concept: ${offenders.slice(0, 8).map((n) => n.handle).join(", ")}…`
+      : `${Object.keys(tree.nodes).length} sõlme kaetud + ${productless} tootetut + ${concept} concept-leaf'i ikoon-fallbackil`,
   }
 })
 

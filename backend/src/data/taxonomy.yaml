@@ -8145,10 +8145,19 @@ l1:
   # ═══════ 26. OUTLET (Tarmo 2026-07-20; taastatud nähtavaks 2026-09-17) ═══════
   # Käsitsi-hallatav (mitte-VEVOR-feed). Ainult "Rikutud pakend" L2 nähtav;
   # "Avatud pakend" jääb peidus (is_internal, DB) kuni sisu lisatakse.
+  #
+  # concept_only (Tarmo 2026-09-17): Outlet = SEISUND (rikutud pakend, ükskõik
+  # mis toode), MITTE tüüp. EI tohi pärida toote-pilti (nagu 25 tüüp-kat) —
+  # ühe toote pilt (nt tuulik) EI esinda "outletit" ja eksitab klienti
+  # ("Outlet = tuulikud?"). Vajab KONTSEPTUAALSET pilti: %-ikoon (BadgePercent,
+  # nüüd) või atmosphere ("pruun pakend -20%", hiljem). gen-category-tree
+  # sunnib kogu selle alampuu image_source=none → frontend kuvab ikooni.
+  # INV-20/26 aktsepteerivad concept_only=true ilma pildita (nagu productless).
   - slug: v4-outlet
     name_en: "Outlet"
     name_et: "Outlet"
     short_slug: outlet
+    concept_only: true
     tagline_en: "Outlet — discounted & open-box"
     tagline_et: "Outlet — soodushinnaga ja avatud pakend"
     description_en: "Outlet — discounted, open-box and damaged-packaging products, full quality."
