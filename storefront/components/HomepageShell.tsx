@@ -33,10 +33,11 @@ const CATEGORY_FONT_FAMILY = "'Mulish', system-ui, sans-serif"
 // v3 slugs; after the v3→v4 rename the banners 404'd and fell back to a random
 // inherited product thumbnail (Osa 34). This map restores a category-representative
 // banner for the 21 v4 mains that reuse an existing atmosphere image.
-// 5 mains are intentionally ABSENT → they keep the inherited image_path fallback
-// until their own AI image lands (Elektroonika, Peoinventar, Büroo, Põllumajandus,
-// Outlet). Kodumasinad points at `kitchen` as a placeholder — its dedicated image
-// is part of the same pending 6-image batch (Osa 41).
+// Mains ABSENT here keep the inherited image_path fallback (real product thumb
+// via gen-tree post-pass). Outlet inherits the Wind Turbine cat-thumb like the
+// other 25 mains (Osa 41 fix — no AI image needed). Elektroonika, Peoinventar,
+// Büroo, Põllumajandus still await a dedicated AI atmosphere scene; Kodumasinad
+// points at `kitchen` as a placeholder — its dedicated image is part of that batch.
 const ATMOSPHERE_BANNERS: Record<string, string> = {
   "v4-tooriistad-ja-tarvikud": "/images/cat-atmosphere/tools.webp",
   "v4-garaaziseadmed-ja-autoremont": "/images/cat-atmosphere/automotive-workshop.webp",
