@@ -34,10 +34,15 @@ const CATEGORY_FONT_FAMILY = "'Mulish', system-ui, sans-serif"
 // inherited product thumbnail (Osa 34). This map restores a category-representative
 // banner for the 21 v4 mains that reuse an existing atmosphere image.
 // Mains ABSENT here keep the inherited image_path fallback (real product thumb
-// via gen-tree post-pass). Outlet inherits the Wind Turbine cat-thumb like the
-// other 25 mains (Osa 41 fix — no AI image needed). Elektroonika, Peoinventar,
-// Büroo, Põllumajandus still await a dedicated AI atmosphere scene; Kodumasinad
-// points at `kitchen` as a placeholder — its dedicated image is part of that batch.
+// via gen-tree post-pass). EXCEPTION — Outlet (v4-outlet): a SEISUND-category
+// (rikutud pakend / open-box), NOT a type. It must NOT carry a product photo —
+// one product's image (e.g. a wind turbine) does not represent "outlet" and
+// misleads the customer ("Outlet = turbines?"). Outlet is concept_only=true in
+// taxonomy.yaml → gen-tree forces image_source=none → it renders the % icon
+// (BadgePercent, correct "discount" message). A dedicated atmosphere scene
+// ("brown package -20%") can replace the icon later (Osa 42, Tarmo). Elektroonika,
+// Peoinventar, Büroo, Põllumajandus still await a dedicated AI atmosphere scene;
+// Kodumasinad points at `kitchen` as a placeholder — its dedicated image is part of that batch.
 const ATMOSPHERE_BANNERS: Record<string, string> = {
   "v4-tooriistad-ja-tarvikud": "/images/cat-atmosphere/tools.webp",
   "v4-garaaziseadmed-ja-autoremont": "/images/cat-atmosphere/automotive-workshop.webp",

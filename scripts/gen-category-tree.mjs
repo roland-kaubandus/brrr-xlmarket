@@ -154,7 +154,7 @@ function buildTree(doc) {
   // Recursive walker — supports L1..Ln (bootstrap-v3 uses up to L7).
   // Each node in YAML is: { slug, name_en, name_et?, description_en?, description_et?,
   //                         tagline_en?, tagline_et?, image_alias?, subs?: [child...] }
-  function walk(node, level, parentHandle) {
+  function walk(node, level, parentHandle, conceptOnly = false) {
     const handle = typeof node === "string" ? node : node.slug
     if (!handle) return
     const isObj = typeof node === "object" && node !== null
@@ -163,7 +163,14 @@ function buildTree(doc) {
       : handle.split("-").map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(" ")
     const nameEt = isObj ? (node.name_et || nameEn) : nameEn
     const alias = (isObj ? node.image_alias : null) || aliasMap[handle]
-    const img = pickImage(handle, alias, legacyKeys, thumbFiles)
+    // concept_only (Outlet, Tarmo 2026-09-17): SEISUND-kategooria, MITTE tüüp.
+    // Ei tohi kanda toote-pilti (eksitab: "Outlet = tuulikud?"). Sunni image=none
+    // kogu alampuul → frontend kuvab kontseptuaalse ikooni (BadgePercent).
+    // Päritav: kui L1 on concept_only, on ka L2/L3 seda. Post-pass jätab need vahele.
+    const isConcept = conceptOnly || (isObj && node.concept_only === true)
+    const img = isConcept
+      ? { image_path: null, image_source: "none" }
+      : pickImage(handle, alias, legacyKeys, thumbFiles)
     const subs = isObj ? (node.subs || []) : []
     const childHandles = subs.map((s) => (typeof s === "string" ? s : s.slug)).filter(Boolean)
 
@@ -175,13 +182,14 @@ function buildTree(doc) {
       child_handles: childHandles,
       ...img,
     }
+    if (isConcept) attrs.concept_only = true
     if (isObj && node.description_en != null) attrs.description_en = node.description_en
     if (isObj && node.description_et != null) attrs.description_et = node.description_et
     if (isObj && node.tagline_en != null) attrs.tagline_en = node.tagline_en
     if (isObj && node.tagline_et != null) attrs.tagline_et = node.tagline_et
     add(handle, attrs)
 
-    for (const child of subs) walk(child, level + 1, handle)
+    for (const child of subs) walk(child, level + 1, handle, isConcept)
   }
 
   for (const l1 of doc.l1) walk(l1, 1, null)
@@ -234,6 +242,9 @@ function buildTree(doc) {
   for (const handle of byLevelDesc) {
     const n = nodes[handle]
     if (hasDirect.has(handle)) continue
+    // concept_only (Outlet): SEISUND-kategooria ei päri KUNAGI toote-pilti, ka siis
+    // kui alampuus tekib toode+thumb. Jääb image_source=none → ikoon-fallback.
+    if (n.concept_only) continue
     const ranked = rankedDescendantImages(n)
     if (ranked.length === 0) continue
 
