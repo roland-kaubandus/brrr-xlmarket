@@ -507,8 +507,10 @@ export default function HomepageShell({ locale, l1Nodes, slides, promos, navShor
                 </div>
                 <div className="hp-cat-cards">
                   {featured.map((child) => {
-                    // image_path guaranteed non-null by getHomepageL1Nodes BFS filter.
-                    const imgSrc = decodeURIComponent(child.image_path)
+                    // image_path may be null (concept_only / imageless subtree) —
+                    // the card still renders, falling back to the L1 icon, so the
+                    // card grid always mirrors the sublist (Osa 45).
+                    const imgSrc = child.image_path ? decodeURIComponent(child.image_path) : null
                     const childEt = (child as { name_et?: string }).name_et
                     const childName = loc === "et" && childEt ? childEt : child.name_en
                     return (
@@ -518,11 +520,18 @@ export default function HomepageShell({ locale, l1Nodes, slides, promos, navShor
                         className="hp-cat-card"
                       >
                         <div className="hp-cat-card-image">
-                          <img
-                            src={imgSrc}
-                            alt={childName}
-                            loading="lazy"
-                          />
+                          {imgSrc ? (
+                            <img
+                              src={imgSrc}
+                              alt={childName}
+                              loading="lazy"
+                            />
+                          ) : null}
+                          {Icon ? (
+                            <span className="hp-cat-card-fallback" aria-hidden="true">
+                              <Icon size={72} strokeWidth={1} />
+                            </span>
+                          ) : null}
                         </div>
                         <div className="hp-cat-card-name">{childName}</div>
                       </SafeLink>
