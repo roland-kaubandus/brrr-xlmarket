@@ -42,7 +42,21 @@ MEILI_HOST="${MEILISEARCH_HOST:-http://meili:7700}"
 MEILI_KEY="${MEILISEARCH_KEY:-}"
 
 fail() { echo "❌ REFRESH FAIL [$1]: $2" >&2; exit "${3:-1}"; }
-trap 'rc=$?; [ "$rc" -ne 0 ] && echo "❌ refresh-feed-cache KATKES (rc=$rc) $(date -u +%FT%TZ) — Coolify peab näitama Failed" >&2' EXIT
+
+# Kuma push dead-man (TEINE kiht Coolify "Failed" fail-loud'i kõrvale — sama muster kui
+# import-pipeline'il + /root/backup.sh-l). Lõpus rc=0 → up; tõrke-trap rc!=0 → down. Kui
+# Coolify Scheduled Task EI JOOKSE üldse (scheduler surnud / task disabled), kuma heartbeat
+# aegub → kuma alertib ISE (Telegram+Email). Feed = hind+laoseis → kriitilisem kui pipeline.
+# ⚠️ Konteineris on AINULT wget (curl PUUDUB); avalik DNS lahendab status.xlrent.eu → --resolve
+# pole vaja (tõestatud: wget konteinerist kumani rc=0). Ping ei tohi KUNAGI tõrke-throwida (|| echo).
+KUMA_PUSH_TOKEN="ac983535758f6c29dd73229414ca6b14"
+kuma_push() {  # $1=up|down  $2=msg (ilma tühikuteta)
+  wget -q -T 10 -O /dev/null \
+    "https://status.xlrent.eu/api/push/${KUMA_PUSH_TOKEN}?status=$1&msg=$2" 2>/dev/null \
+    || echo "kuma_push: ping nurjus ($1)" >&2
+}
+
+trap 'rc=$?; [ "$rc" -ne 0 ] && { echo "❌ refresh-feed-cache KATKES (rc=$rc) $(date -u +%FT%TZ) — Coolify peab näitama Failed" >&2; kuma_push down "feed-fail-rc$rc"; }' EXIT
 
 RUN_START=$(date -u +%s)
 echo "=== refresh-feed-cache START host=$(hostname) pid=$$ $(date -u +%FT%TZ) (epoch=$RUN_START) ==="
@@ -143,4 +157,6 @@ FINAL_MTIME=$(stat -c %Y "$CACHE" 2>/dev/null || echo 0)
 [ "$FINAL_MTIME" -ge "$RUN_START" ] || fail "verify" "LÕPP: cache mtime ($FINAL_MTIME) < run-start ($RUN_START) — töö ei püsinud"
 
 echo "=== DONE $(date -u +%FT%TZ) — cache $NEW_SKU SKU, Meili reindekseeritud, kõik väravad läbitud ==="
+# Dead-man heartbeat: kõik väravad läbitud → kuma up. Puuduv heartbeat 4h+ → kuma alert.
+kuma_push up "feed-ok-${NEW_SKU}sku"
 trap - EXIT
