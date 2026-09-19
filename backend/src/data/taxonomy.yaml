@@ -8187,8 +8187,8 @@ l1:
     product_count: 1
     subs:
       - slug: v4-outlet-rikutud-pakend
-        name_en: "Open/damaged packaging"
-        name_et: "Avatud/kahjustatud pakend"
+        name_en: "Damaged packaging"
+        name_et: "Kahjustatud pakend"
         product_count: 1
       - slug: v4-outlet-defektiga-toode
         name_en: "Defective product"

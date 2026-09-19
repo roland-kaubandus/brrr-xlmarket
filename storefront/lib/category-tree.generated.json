@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-17T10:10:10.305Z",
+  "generated_at": "2026-09-19T07:50:42.729Z",
   "nodes": {
     "v4-tooriistad-ja-tarvikud": {
       "handle": "v4-tooriistad-ja-tarvikud",
@@ -21787,8 +21787,8 @@
     },
     "v4-outlet-rikutud-pakend": {
       "handle": "v4-outlet-rikutud-pakend",
-      "name_en": "Open/damaged packaging",
-      "name_et": "Avatud/kahjustatud pakend",
+      "name_en": "Damaged packaging",
+      "name_et": "Kahjustatud pakend",
       "level": 2,
       "parent_handle": "v4-outlet",
       "child_handles": [],
