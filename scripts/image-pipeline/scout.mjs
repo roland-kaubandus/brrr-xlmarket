@@ -14,7 +14,7 @@ import { readFileSync } from 'node:fs';
 const handle = process.argv[2];
 if (!handle) { console.error('usage: scout.mjs <handle>'); process.exit(2); }
 
-const tree = JSON.parse(readFileSync('/home/brrr/brrr-xlmarket/storefront/lib/category-tree.generated.json', 'utf8'));
+const tree = JSON.parse(readFileSync('/opt/xlmarket-github/storefront/lib/category-tree.generated.json', 'utf8'));
 const node = tree.nodes[handle];
 if (!node) { console.error(`handle not in taxonomy: ${handle}`); process.exit(3); }
 

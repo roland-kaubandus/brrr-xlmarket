@@ -22,10 +22,10 @@ import { readFileSync, writeFileSync, existsSync, mkdirSync, appendFileSync, cop
 import { join, dirname } from 'node:path';
 import { pathToFileURL } from 'node:url';
 
-const REPORTS = '/home/brrr/brrr-xlmarket/reports/image-gen-2026-04-19';
-const CAT_THUMBS = '/home/brrr/brrr-xlmarket/storefront/public/cat-thumbs';
-const ALIAS_YAML = '/home/brrr/brrr-xlmarket/backend/src/data/taxonomy-image-aliases.yaml';
-const SCRIPT_DIR = '/home/brrr/brrr-xlmarket/scripts/image-pipeline';
+const REPORTS = '/opt/xlmarket-github/reports/image-gen-2026-04-19';
+const CAT_THUMBS = '/opt/xlmarket-github/storefront/public/cat-thumbs';
+const ALIAS_YAML = '/opt/xlmarket-github/backend/src/data/taxonomy-image-aliases.yaml';
+const SCRIPT_DIR = '/opt/xlmarket-github/scripts/image-pipeline';
 const STATE_FILE = join(REPORTS, 'state.json');
 const REJECTIONS = join(REPORTS, 'rejections.jsonl');
 const REVIEW_QUEUE = join(REPORTS, 'review-queue.json');
@@ -250,7 +250,7 @@ async function main() {
     process.exit(0);
   }
 
-  const tree = JSON.parse(readFileSync('/home/brrr/brrr-xlmarket/storefront/lib/category-tree.generated.json', 'utf8'));
+  const tree = JSON.parse(readFileSync('/opt/xlmarket-github/storefront/lib/category-tree.generated.json', 'utf8'));
 
   // Simple concurrency via chunk processing
   const conc = Math.max(1, args.concurrency);

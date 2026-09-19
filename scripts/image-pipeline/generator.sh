@@ -8,13 +8,14 @@ HANDLE="${1:?handle required}"
 OUTPUT="${2:?output path required}"
 PROMPT="${3:?prompt required}"
 
-SKILL_DIR="/home/brrr/.claude/plugins/cache/buildatscale-claude-code/nano-banana/4f1bf867bb62/skills/generate"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 : "${GEMINI_API_KEY:?GEMINI_API_KEY must be set}"
 
 mkdir -p "$(dirname "$OUTPUT")"
 
-uv run --quiet "${SKILL_DIR}/scripts/image.py" \
+# Otse Gemini API (nano-banana plugin + uv EI OLE vaja — vt gemini-image.py)
+python3 "${SCRIPT_DIR}/gemini-image.py" \
   --prompt "$PROMPT" \
   --output "$OUTPUT" \
   --model pro \
