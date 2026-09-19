@@ -100,7 +100,7 @@ Kõik LIVE storefront-konteineris (tag 93c1f8b3):
 
 ### P2. 🔴 CRITICAL — FAAS 1 SAMM 3: Sisu-generaator backfill POOLELI (5347 puudu)
 - **Seis:** täis-batch-jooks (18733 toodet, Sonnet 5, Batch API) käivitati 2026-08-25, aga **kukkus osaliselt krediidi otsasaamisel** (~29%). DB: `content_gen_hash` olemas **13259**, NULL **5347**.
-- **PUUDU:** re-run 5347 puuduvale. Käsk: `bash scripts/run-content-backfill.sh` (hash-guard võtab AINULT NULL-hash tooted, idempotentne). Sõltuvus: **krediit/makse OK** — mälu järgi HELD kuni kasutaja console-kinnitus (saldo + auto-reload + makseviis). Krediidi-probe 2026-09-19 = HTTP 200 OK (Osa 49), seega tehniliselt saab jooksutada, kuid Tarmo hoid kehtib kuni eksplitsiitne "krediit laetud".
+- **KÄIVITATUD 2026-09-19 õhtul** (Osa 53, Tarmo otsus "saldo pole blokeerija" — Batch maksab ainult edukate eest, Telegram fail-loud, hash-guard resume). `bash scripts/run-content-backfill.sh` → 3 chunki esitatud (2000+2000+1347). Chunk 1/3 VALMIS (2000 ok, **0 krediidi-viga** — erinevalt 08-25-st), 2-3 protsessivad. Krediit peab. Lõpul → sisu 100%.
 - **Verifitseeri pärast:** `content_gen_hash` NULL → 0 (või lähedal); STATUS=OK (mitte PARTIAL). Batch fail-loud garantii "VALMIS ⟺ errored==0" on ehitatud (`reports/multi-feed-valmidus.md` #5).
 - **Tõestus:** DB 5347; Osa 10-15; mälu `sisu-kihid-vana-tolge-asendatakse.md`.
 - **Seotud pooleli-detail:** description_et jääb VEVOR-toorest tõlkest kuni generaator selle asendab (title_et on juba strippitud). Vana juuni-tõlke kiht asendub generaatoriga, EI lapita.
