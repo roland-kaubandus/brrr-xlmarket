@@ -4,7 +4,7 @@
  */
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 
-const REPORTS = '/home/brrr/brrr-xlmarket/reports/image-gen-2026-04-19';
+const REPORTS = '/opt/xlmarket-github/reports/image-gen-2026-04-19';
 const state = JSON.parse(readFileSync(`${REPORTS}/state.json`, 'utf8'));
 const missing = JSON.parse(readFileSync(`${REPORTS}/missing-handles.json`, 'utf8'));
 
