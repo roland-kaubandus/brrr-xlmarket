@@ -1,0 +1,20 @@
+{
+  "generated_at": "2026-09-19T08:00:09.361Z",
+  "labels": {
+    "v4-outlet-rikutud-pakend": {
+      "et": "Kahjustatud pakend",
+      "en": "Damaged packaging",
+      "main": "v4-outlet"
+    },
+    "v4-outlet-defektiga-toode": {
+      "et": "Defektiga toode",
+      "en": "Defective product",
+      "main": "v4-outlet"
+    },
+    "v4-outlet-leiunurk": {
+      "et": "Leiunurk",
+      "en": "Lost & found",
+      "main": "v4-outlet"
+    }
+  }
+}

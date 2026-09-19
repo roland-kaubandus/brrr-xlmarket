@@ -44,6 +44,10 @@ const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..")
 const YAML_PATH = resolve(ROOT, "backend/src/data/taxonomy.yaml")
 const ALIAS_PATH = resolve(ROOT, "backend/src/data/taxonomy-image-aliases.yaml")
 const OUT_PATH = resolve(ROOT, "storefront/lib/category-tree.generated.json")
+// SEISUND-silt SSoT: fixed_l2 mainide (Outlet) L2-lapsed → toote-sildi tekst per-locale.
+// Klient (VevorProductCard/ProductContent) risutab toote category_handles nende võtmetega.
+// Genereeritud siit → nimi ei vanane kunagi (nt L2 ümbernimetus levib automaatselt).
+const OUTLET_LABELS_PATH = resolve(ROOT, "storefront/lib/outlet-labels.generated.json")
 const LEGACY_IMG_PATH = resolve(ROOT, "storefront/lib/category-images.json")
 const CAT_THUMBS_DIR = resolve(ROOT, "storefront/public/cat-thumbs")
 const COUNTS_PATH = resolve(ROOT, "storefront/lib/category-counts.generated.json")
@@ -334,6 +338,24 @@ function main() {
 
   writeFileSync(OUT_PATH, json)
   console.log("Wrote " + Object.keys(tree.nodes).length + " nodes to " + OUT_PATH)
+
+  // SEISUND-silt map: iga fixed_l2 maini (Outlet) L2-laps → sildi tekst.
+  // Ainult L2 (otsesed lapsed) — silt ütleb TOOTE seisundi (Kahjustatud pakend /
+  // Defektiga toode / Leiunurk), mitte sügavamat tüüpi. Toode päritakse handle'i
+  // (stabiilne slug) järgi; nimi tuleb SSoT-st → ümbernimetus levib ise.
+  const outletLabels = {}
+  for (const h of tree.order) {
+    const n = tree.nodes[h]
+    if (n.fixed_l2 !== true) continue
+    for (const ch of n.child_handles) {
+      const c = tree.nodes[ch]
+      if (!c) continue
+      outletLabels[ch] = { et: c.name_et || c.name_en, en: c.name_en, main: h }
+    }
+  }
+  writeFileSync(OUTLET_LABELS_PATH, JSON.stringify({ generated_at: tree.generated_at, labels: outletLabels }, null, 2) + "\n")
+  console.log("Wrote " + Object.keys(outletLabels).length + " SEISUND labels to " + OUTLET_LABELS_PATH)
+
   report(tree)
 }
 

@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation"
 import { Product, formatPrice } from "@/lib/medusa"
 import { useCompare } from "./CompareContext"
 import { safeReadJSON, safeWriteJSON } from "@/lib/safe-storage"
+import { getOutletLabel } from "@/lib/outlet-labels"
 
 // TODO: add Stars component back when real ratings are available (see Huly XLM-???)
 // Previously rendered a deterministic hash-based fake rating (3.5–5.0). Removed
@@ -79,6 +80,13 @@ export default function VevorProductCard({ product, locale }: { product: Product
     ? Math.round((1 - price.calculated_amount / price.original_amount) * 100)
     : 0
 
+  // SEISUND-silt (Outlet): tuletatud toote kategooria-handle'itest (SSoT). Selgitab
+  // ristkuvamist — kui outlet-toode on ka oma tüübi-kategoorias, ütleb silt miks.
+  const outletLabel = getOutletLabel(
+    product.categories?.map((c) => c.handle),
+    resolvedLocale
+  )
+
   // Don't decodeURIComponent — VEVOR CDN requires encoded paths (%2F, %2B etc.)
   const thumbnailUrl = product.thumbnail || null
   // Hover-pildivahetus (VEVOR-stiil): teine pilt (gallery_images[0], Meili hover_image).
@@ -110,11 +118,21 @@ export default function VevorProductCard({ product, locale }: { product: Product
           </svg>
         </button>
 
-        {/* Discount badge */}
-        {discount > 0 && (
-          <span className="absolute top-3 left-3 z-10 px-2.5 py-1 bg-[#DC2626] text-white text-[11px] font-bold rounded-md">
-            -{discount}%
-          </span>
+        {/* Top-left badge stack: SEISUND (Outlet condition) above discount, so
+            they never overlap when an outlet product is also discounted. */}
+        {(outletLabel || discount > 0) && (
+          <div className="absolute top-3 left-3 z-10 flex flex-col items-start gap-1.5">
+            {outletLabel && (
+              <span className="px-2.5 py-1 bg-[#B45309] text-white text-[11px] font-bold rounded-md shadow-sm">
+                {outletLabel}
+              </span>
+            )}
+            {discount > 0 && (
+              <span className="px-2.5 py-1 bg-[#DC2626] text-white text-[11px] font-bold rounded-md">
+                -{discount}%
+              </span>
+            )}
+          </div>
         )}
 
         {/* Product image — 1:1, hover → crossfade teisele pildile (hover_image) */}
