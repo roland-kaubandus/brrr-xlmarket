@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-19T08:00:09.361Z",
+  "generated_at": "2026-09-19T08:47:33.167Z",
   "nodes": {
     "v4-tooriistad-ja-tarvikud": {
       "handle": "v4-tooriistad-ja-tarvikud",
@@ -21780,6 +21780,8 @@
       "image_source": "none",
       "concept_only": true,
       "fixed_l2": true,
+      "seisund_label_et": "Outlet toode",
+      "seisund_label_en": "Outlet product",
       "description_en": "Outlet — discounted, open-box and damaged-packaging products, full quality.",
       "description_et": "Outlet — soodushinnaga, avatud ja rikutud pakendiga tooted, täisväärtuslikud.",
       "tagline_en": "Outlet — discounted & open-box",

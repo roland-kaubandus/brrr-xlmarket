@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation"
 import { Product, formatPrice } from "@/lib/medusa"
 import { useCompare } from "./CompareContext"
 import { safeReadJSON, safeWriteJSON } from "@/lib/safe-storage"
-import { getOutletLabel } from "@/lib/outlet-labels"
+import { getOutletBadges } from "@/lib/outlet-labels"
 
 // TODO: add Stars component back when real ratings are available (see Huly XLM-???)
 // Previously rendered a deterministic hash-based fake rating (3.5–5.0). Removed
@@ -80,9 +80,11 @@ export default function VevorProductCard({ product, locale }: { product: Product
     ? Math.round((1 - price.calculated_amount / price.original_amount) * 100)
     : 0
 
-  // SEISUND-silt (Outlet): tuletatud toote kategooria-handle'itest (SSoT). Selgitab
-  // ristkuvamist — kui outlet-toode on ka oma tüübi-kategoorias, ütleb silt miks.
-  const outletLabel = getOutletLabel(
+  // SEISUND-sildid (Outlet): 2 silti, tuletatud toote kategooria-handle'itest (SSoT).
+  // ÜLDINE ("Outlet toode") + SPETSIIFILINE L2 ("Kahjustatud pakend"). Reisivad tootega:
+  // kui outlet-toode kuvatakse ka oma tüübi-kategoorias (Outlet=kodu, tüüp=lisakuvamine),
+  // sildid tulevad kaasa (union category_handles Meili hitis) ja selgitavad miks ta seal on.
+  const outletBadges = getOutletBadges(
     product.categories?.map((c) => c.handle),
     resolvedLocale
   )
@@ -118,13 +120,19 @@ export default function VevorProductCard({ product, locale }: { product: Product
           </svg>
         </button>
 
-        {/* Top-left badge stack: SEISUND (Outlet condition) above discount, so
-            they never overlap when an outlet product is also discounted. */}
-        {(outletLabel || discount > 0) && (
+        {/* Top-left badge stack: SEISUND (Outlet) — üldine "Outlet toode" (tume brand)
+            KÕRGEIMAL, siis spetsiifiline L2 (amber), siis allahindlus (punane). Virn, et
+            need ei kattuks, kui outlet-toode on ka allahinnatud. */}
+        {(outletBadges.generic || outletBadges.specific || discount > 0) && (
           <div className="absolute top-3 left-3 z-10 flex flex-col items-start gap-1.5">
-            {outletLabel && (
+            {outletBadges.generic && (
+              <span className="px-2.5 py-1 bg-[#1a1a2e] text-white text-[11px] font-bold rounded-md shadow-sm">
+                {outletBadges.generic}
+              </span>
+            )}
+            {outletBadges.specific && (
               <span className="px-2.5 py-1 bg-[#B45309] text-white text-[11px] font-bold rounded-md shadow-sm">
-                {outletLabel}
+                {outletBadges.specific}
               </span>
             )}
             {discount > 0 && (

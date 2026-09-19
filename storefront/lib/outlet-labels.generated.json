@@ -1,5 +1,11 @@
 {
-  "generated_at": "2026-09-19T08:00:09.361Z",
+  "generated_at": "2026-09-19T08:47:33.167Z",
+  "mains": {
+    "v4-outlet": {
+      "et": "Outlet toode",
+      "en": "Outlet product"
+    }
+  },
   "labels": {
     "v4-outlet-rikutud-pakend": {
       "et": "Kahjustatud pakend",
