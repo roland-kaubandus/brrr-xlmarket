@@ -31,6 +31,18 @@ ENV_FILE="${PIPELINE_ENV_FILE:-/opt/eumotors-tasks/.env}"
 env_get() { grep -E "^$1=" "$ENV_FILE" 2>/dev/null | tail -1 | cut -d= -f2- \
   | sed -e 's/^"//' -e 's/"$//' -e "s/^'//" -e "s/'\$//"; }
 
+# Kuma push dead-man (TEINE kiht): wrapper pingib igal jooksul. rc=0 → up, rc!=0 → down.
+# Kui cron EI JOOKSE üldse (scheduler surnud), kuma 25h-heartbeat aegub → kuma alertib ISE.
+# --resolve → ei sõltu xlrent.eu DNS-ist (sama muster kui /root/backup.sh dead-man).
+KUMA_PUSH_TOKEN="da2479e8e9d37bc5d17c17ac4158e50d"
+kuma_push() {  # $1=up|down  $2=msg
+  local status="$1" msg="$2"
+  command -v curl >/dev/null 2>&1 || return 0
+  curl -fsS -m 10 --retry 2 --resolve status.xlrent.eu:443:65.21.126.235 \
+    "https://status.xlrent.eu/api/push/${KUMA_PUSH_TOKEN}?status=${status}&msg=$(printf '%s' "$msg" | sed 's/ /%20/g')" \
+    >/dev/null 2>&1 || echo "kuma_push: ping nurjus ($status)" >&2
+}
+
 # Iseseisev Telegram-alert (ei sõltu import-pipeline.sh sisemisest fail-loud'ist ega source'ist).
 tg_alert() {
   local token chat msg payload
@@ -65,12 +77,15 @@ echo "=== CRON import-pipeline END rc=$RC $(date -u +%FT%TZ) ===" | tee -a "$LOG
 # kas pipeline jõudis oma sisemise alertini. Katab env-source-aegse tõrke (see, mis vaigistas
 # 17.-19. sept). Loeb võtmed grep|cut'iga → katkine .env EI vaigista seda alerti.
 if [ "$RC" -ne 0 ]; then
+  kuma_push down "pipeline-fail-rc$RC"
   TAIL="$(grep -vE '^\s*$' "$LOG" | tail -4 | sed 's/[[:cntrl:]]//g')"
   tg_alert "🔴 XLM öine import-pipeline KUKKUS (rc=$RC) $(date -u +%FT%TZ)
 Host: $(hostname) · CEST $(date '+%F %T')
 Viimased read:
 $TAIL
 Logi: $LOG"
+else
+  kuma_push up "pipeline-ok"
 fi
 
 # Masinloetav STATUS (hommikune ülevaatus ilma logi lehitsemata)
