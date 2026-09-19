@@ -22,6 +22,27 @@ set -uo pipefail
 export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+ENV_FILE="${PIPELINE_ENV_FILE:-/opt/eumotors-tasks/.env}"
+
+# SOURCE-KINDEL võtme-lugemine .env-ist (grep|cut, EI source'i). KRIITILINE: 2026-09-17..19
+# suri pipeline 3 ööd VAIKSELT, sest tõrge oli `source .env`-is (Sanctum-toru + `>` prügiread)
+# ENNE kui pipeline sai alerti saata. See wrapper PEAB saama alertida ka siis, kui .env source
+# katki — seega loeme TELEGRAM-võtmed robustselt (jutumärgid maha), MITTE `source`-iga.
+env_get() { grep -E "^$1=" "$ENV_FILE" 2>/dev/null | tail -1 | cut -d= -f2- \
+  | sed -e 's/^"//' -e 's/"$//' -e "s/^'//" -e "s/'\$//"; }
+
+# Iseseisev Telegram-alert (ei sõltu import-pipeline.sh sisemisest fail-loud'ist ega source'ist).
+tg_alert() {
+  local token chat msg payload
+  token="$(env_get TELEGRAM_BOT_TOKEN)"; chat="$(env_get TELEGRAM_CHAT_ID)"
+  [ -n "$token" ] && [ -n "$chat" ] || { echo "tg_alert: TELEGRAM-võti puudub ($ENV_FILE)" >&2; return 0; }
+  msg="$1"
+  payload="$(MSG="$msg" CHAT="$chat" node -e 'process.stdout.write(JSON.stringify({chat_id:process.env.CHAT,text:process.env.MSG,disable_web_page_preview:true}))' 2>/dev/null)" || return 0
+  wget -qO- --header="content-type: application/json" --post-data="$payload" \
+    "https://api.telegram.org/bot${token}/sendMessage" >/dev/null 2>&1 \
+    || echo "tg_alert: Telegram saatmine nurjus" >&2
+}
+
 LOGDIR="${XLM_PIPELINE_LOGDIR:-/var/log/xlm}"
 mkdir -p "$LOGDIR"
 TS="$(date +%Y%m%dT%H%M%S)"
@@ -39,6 +60,18 @@ echo "=== CRON import-pipeline START $(date -u +%FT%TZ) (host $(date '+%Z %F %T'
 bash "$ROOT/scripts/import-pipeline.sh" --execute >>"$LOG" 2>&1
 RC=$?
 echo "=== CRON import-pipeline END rc=$RC $(date -u +%FT%TZ) ===" | tee -a "$LOG"
+
+# 🔴 ISESEISEV FAIL-LOUD (wrapper-tasand): saada Telegram rc!=0 puhul SÕLTUMATA sellest,
+# kas pipeline jõudis oma sisemise alertini. Katab env-source-aegse tõrke (see, mis vaigistas
+# 17.-19. sept). Loeb võtmed grep|cut'iga → katkine .env EI vaigista seda alerti.
+if [ "$RC" -ne 0 ]; then
+  TAIL="$(grep -vE '^\s*$' "$LOG" | tail -4 | sed 's/[[:cntrl:]]//g')"
+  tg_alert "🔴 XLM öine import-pipeline KUKKUS (rc=$RC) $(date -u +%FT%TZ)
+Host: $(hostname) · CEST $(date '+%F %T')
+Viimased read:
+$TAIL
+Logi: $LOG"
+fi
 
 # Masinloetav STATUS (hommikune ülevaatus ilma logi lehitsemata)
 NEW_SKUS="$(grep 'UUSI' "$LOG" | tail -1 | grep -oE '[0-9]+$' || true)"
