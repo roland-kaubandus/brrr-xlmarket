@@ -191,6 +191,9 @@ function buildTree(doc) {
     // the conceptOnly-style param). Homepage box shows ALL L2 of this main (even
     // empty) — see getHomepageL1Nodes. Orthogonal to concept_only (image layer).
     if (isObj && node.fixed_l2 === true) attrs.fixed_l2 = true
+    // seisund_label (Osa 48): üldine SEISUND-toote-silt (per fixed_l2 main).
+    if (isObj && node.seisund_label_et != null) attrs.seisund_label_et = node.seisund_label_et
+    if (isObj && node.seisund_label_en != null) attrs.seisund_label_en = node.seisund_label_en
     if (isObj && node.description_en != null) attrs.description_en = node.description_en
     if (isObj && node.description_et != null) attrs.description_et = node.description_et
     if (isObj && node.tagline_en != null) attrs.tagline_en = node.tagline_en
@@ -344,17 +347,29 @@ function main() {
   // Defektiga toode / Leiunurk), mitte sügavamat tüüpi. Toode päritakse handle'i
   // (stabiilne slug) järgi; nimi tuleb SSoT-st → ümbernimetus levib ise.
   const outletLabels = {}
+  const outletMains = {}
   for (const h of tree.order) {
     const n = tree.nodes[h]
     if (n.fixed_l2 !== true) continue
+    // Üldine main-silt ("Outlet toode"): fallback = maini nimi, kui seisund_label puudub.
+    outletMains[h] = {
+      et: n.seisund_label_et || n.name_et || n.name_en,
+      en: n.seisund_label_en || n.name_en,
+    }
     for (const ch of n.child_handles) {
       const c = tree.nodes[ch]
       if (!c) continue
       outletLabels[ch] = { et: c.name_et || c.name_en, en: c.name_en, main: h }
     }
   }
-  writeFileSync(OUTLET_LABELS_PATH, JSON.stringify({ generated_at: tree.generated_at, labels: outletLabels }, null, 2) + "\n")
-  console.log("Wrote " + Object.keys(outletLabels).length + " SEISUND labels to " + OUTLET_LABELS_PATH)
+  writeFileSync(
+    OUTLET_LABELS_PATH,
+    JSON.stringify({ generated_at: tree.generated_at, mains: outletMains, labels: outletLabels }, null, 2) + "\n"
+  )
+  console.log(
+    "Wrote " + Object.keys(outletMains).length + " SEISUND main(s) + " +
+    Object.keys(outletLabels).length + " L2 labels to " + OUTLET_LABELS_PATH
+  )
 
   report(tree)
 }

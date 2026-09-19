@@ -8178,6 +8178,12 @@ l1:
     # AINULT getHomepageL1Nodes esilehe-filtrit — mitte pilti (concept_only teeb
     # seda eraldi), mitte kategooria-lehe karusselli (jääb count>0), mitte mega-menu.
     fixed_l2: true
+    # seisund_label (Tarmo 2026-09-19, Osa 48): ÜLDINE toote-silt, mida iga selle
+    # maini alla kuuluv toode kannab AUTOMAATSELT (kategooria-tuletatud) — kuvatakse
+    # KOOS spetsiifilise L2-sildiga (Kahjustatud pakend / Defektiga toode / Leiunurk).
+    # Silt reisib tootega: kui outlet-toode kuvatakse ka tüüp-kategoorias, ütleb silt miks.
+    seisund_label_et: "Outlet toode"
+    seisund_label_en: "Outlet product"
     tagline_en: "Outlet — discounted & open-box"
     tagline_et: "Outlet — soodushinnaga ja avatud pakend"
     description_en: "Outlet — discounted, open-box and damaged-packaging products, full quality."
