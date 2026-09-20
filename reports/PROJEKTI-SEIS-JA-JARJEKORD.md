@@ -92,15 +92,15 @@ Kõik LIVE storefront-konteineris (tag 93c1f8b3):
 
 ## 2. POOLELI (alustatud, EI lõpetatud — mis TÄPSELT puudu)
 
-### P1. 🔴 CRITICAL — Öine import-pipeline: fix rakendatud, aga EI ole veel elus-jooksuga tõestatud
+### P1. ✅ SULETUD (2026-09-20) — Öine import-pipeline: elus-jooksuga TÕESTATUD terve
 - **Seis:** `/opt/eumotors-tasks/.env` oli katki (bare `>` read + jutumärgita `COOLIFY_TOKEN` Sanctum-toru `9|…`) → `source .env` kukkus → import-pipeline **rc=2 FAIL 17.-19. sept** (3 ööd vaikselt). Fix tehtud 2026-09-19 (Osa 49): .env parandatud + wrapper source-kindel Telegram-alert + kuma dead-man'id.
-- **TÕESTATUD nüüd:** `.env` sources puhtalt (rc=0, 4 võtit); backup `.env.bak-20260919` olemas.
-- **AGA:** `/var/log/xlm/STATUS` näitab endiselt **viimane jooks = rc=2 FAIL** (2026-09-19 03:00, mis oli ENNE fix'i rakendust). **Esimene tõeline verifikatsioon = 2026-09-20 03:00 öine jooks.**
-- **PUUDU lõpetamiseks:** hommikul 2026-09-20 kontrolli `cat /var/log/xlm/STATUS` (oota rc=0 result=OK) + Telegram-digest saabus. Kui FAIL → uuri logi `/var/log/xlm/import-pipeline-latest.log`.
+- **✅ VERIFITSEERITUD 2026-09-20 03:00 scheduled jooks: rc=0 result=OK** (03:00:01→03:16:13, logi 21KB vs 3 surnud öö 226B). Kõik sammud läbisid: [1] reindeks docs=18606 · [3] CREATED=84 · [3.5] title-strip FAILED=0 · [4] classify 69 auto + 15 review · [5] 120 hinda · [6] spec 100% kate · [6.5] sisu-gen hook applied=69 fail=0. Telegram ei tulnud (rc=0 → ainult FAIL alertib) = õige. `/var/log/xlm/STATUS`: new_candidates=99 created=84 dup_skipped=15 review_waiting=15.
+- **Järelm:** review-bucketis 15 toodet / 8 klastrit ootab inimese-otsust (propose-not-create, nähtavus-vajadus).
 
 ### P2. 🔴 CRITICAL — FAAS 1 SAMM 3: Sisu-generaator backfill POOLELI (5347 puudu)
 - **Seis:** täis-batch-jooks (18733 toodet, Sonnet 5, Batch API) käivitati 2026-08-25, aga **kukkus osaliselt krediidi otsasaamisel** (~29%). DB: `content_gen_hash` olemas **13259**, NULL **5347**.
-- **KÄIVITATUD 2026-09-19 õhtul** (Osa 53, Tarmo otsus "saldo pole blokeerija" — Batch maksab ainult edukate eest, Telegram fail-loud, hash-guard resume). `bash scripts/run-content-backfill.sh` → 3 chunki esitatud (2000+2000+1347). Chunk 1/3 VALMIS (2000 ok, **0 krediidi-viga** — erinevalt 08-25-st), 2-3 protsessivad. Krediit peab. Lõpul → sisu 100%.
+- **JOOKS VALMIS 2026-09-20 (99.99%):** `bash scripts/run-content-backfill.sh` → 3 chunki (2000+2000+1347). Tulem **5346/5347 ok, 0 krediidi-viga** (~$171, krediit pidas terve jooksu). DB nüüd: `content_gen_hash` olemas **18674 / 18675** (kate 99.995%).
+- **⚠️ 1 toode jäi:** `prod_01KNXXNXC53QZEVBWS1P2VTXQN` (SKU TZZGHTZZJ85IVTML8001V0, "Headrest Paper Rolls 25-Pack", mode=rich). Viga **N3 truncation** (`SyntaxError: Unterminated string @ pos 7214`, output_tokens=8000=`maxTokens`-lagi) — MITTE krediit/transient. Kordub öises hookis iga suure rich-toote juures. **Fix ootab otsust:** truncation-retry jagatud `generateContent`-teel (content-gen.mjs, kaitseb backfill+hook HARD RULE #5) → siis mopp `--skus <id> --write` → sisu 100%.
 - **Verifitseeri pärast:** `content_gen_hash` NULL → 0 (või lähedal); STATUS=OK (mitte PARTIAL). Batch fail-loud garantii "VALMIS ⟺ errored==0" on ehitatud (`reports/multi-feed-valmidus.md` #5).
 - **Tõestus:** DB 5347; Osa 10-15; mälu `sisu-kihid-vana-tolge-asendatakse.md`.
 - **Seotud pooleli-detail:** description_et jääb VEVOR-toorest tõlkest kuni generaator selle asendab (title_et on juba strippitud). Vana juuni-tõlke kiht asendub generaatoriga, EI lapita.
