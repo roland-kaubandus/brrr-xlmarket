@@ -203,6 +203,15 @@ export function parseMessage(json) {
   return { parsed, parseErr, raw: parsed ? undefined : (textBlock?.text || '').slice(0, 500) };
 }
 
+// N3 TRUNCATION: mudel jäi max_tokens-lakke → JSON katkes poolelt (Unterminated string).
+// EI ole krediit/transient — rich-toode ületas maxTokens-i. Kordub iga suure toote juures
+// (backfill JA öine hook). Jagatud detektor: parse kukkus JA stop_reason=max_tokens.
+// Kõrgem lagi retry-le (16000 vs 8000 vaikimisi) — kaitseb JAGATUD generateContent + batch-resubmit.
+export const RETRY_MAX_TOKENS = 16000;
+export function isTruncated(json, parsed) {
+  return !parsed && json?.stop_reason === 'max_tokens';
+}
+
 export async function generateContent(product, opts = {}) {
   const {
     apiKey = process.env.ANTHROPIC_API_KEY,
@@ -214,7 +223,10 @@ export async function generateContent(product, opts = {}) {
   if (!apiKey) return { ok: false, error: 'ANTHROPIC_API_KEY puudub' };
   if (!termBlock) return { ok: false, error: 'termBlock puudub (buildGlossaryAssets)' };
 
-  const { body, mode } = buildRequestBody(product, { model, termBlock, useVision, maxTokens });
+  // Truncation-retry: kui vastus katkeb max_tokens-lakkes, tõsta lagi ja ehita päring uuesti.
+  let curMaxTokens = maxTokens;
+  let truncRetried = false;
+  let { body, mode } = buildRequestBody(product, { model, termBlock, useVision, maxTokens: curMaxTokens });
 
   const maxAttempts = 6;
   let lastErr;
@@ -245,6 +257,14 @@ export async function generateContent(product, opts = {}) {
       const json = await res.json();
       if (!res.ok) return { ok: false, error: `HTTP ${res.status}: ${JSON.stringify(json).slice(0, 300)}`, ms, mode };
       const { parsed, parseErr, raw } = parseMessage(json);
+      // N3 TRUNCATION → tõsta lagi + proovi ÜKS kord uuesti (mitte jäta poolikuks). EI kuluta attempt-i.
+      if (isTruncated(json, parsed) && !truncRetried && curMaxTokens < RETRY_MAX_TOKENS) {
+        truncRetried = true;
+        curMaxTokens = RETRY_MAX_TOKENS;
+        ({ body } = buildRequestBody(product, { model, termBlock, useVision, maxTokens: curMaxTokens }));
+        attempt--;  // truncation-retry ei tohi kulutada HTTP-retry eelarvet
+        continue;
+      }
       return {
         ok: !!parsed,
         stop_reason: json.stop_reason,
@@ -253,6 +273,7 @@ export async function generateContent(product, opts = {}) {
         content: parsed,
         parseErr,
         raw,
+        truncRetried,
       };
     } catch (e) {
       lastErr = String(e);

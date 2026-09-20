@@ -19,7 +19,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { execFileSync } from 'node:child_process';
-import { loadGlossary, buildGlossaryAssets, generateContent, buildRequestBody, parseMessage, detectSourceMode, DEFAULT_MODEL } from './lib/content-gen.mjs';
+import { loadGlossary, buildGlossaryAssets, generateContent, buildRequestBody, parseMessage, detectSourceMode, DEFAULT_MODEL, isTruncated, RETRY_MAX_TOKENS } from './lib/content-gen.mjs';
 import { filterNeedsGen, writeRecords, dbContainer, psqlJSON } from './lib/content-write.mjs';
 import { submitBatch, pollBatch, retrieveResults, chunk as chunkArr } from './lib/content-batch.mjs';
 
@@ -208,13 +208,25 @@ async function main() {
       process.stdout.write('\n');
       const results = await retrieveResults(ended, KEY);
       const chunkRecs = [];
+      const truncated = [];  // N3 truncation batchis → heal jagatud generateContent-teel (kõrgem lagi)
       for (const r of results) {
         const p = byIdAll.get(r.custom_id); if (!p) continue;
         const mode = detectSourceMode(p.sanitized_rich_description);
         if (!r.ok) { pushRec({ product: p, mode, ok: false, error: `batch ${r.errorType}: ${r.error}`, usage: {} }); continue; }
         const { parsed, parseErr } = parseMessage(r.message);
+        if (isTruncated(r.message, parsed)) { truncated.push(p); continue; }  // ära märgi fail — heal all
         const rec = { product: p, mode, ok: !!parsed, parseErr, content: parsed, usage: r.message.usage || {} };
         pushRec(rec); if (rec.ok) chunkRecs.push(rec);
+      }
+      // Heal truncatud tooted JAGATUD generateContent-teel (sama retry-loogika kui öine hook) — kõrgem lagi.
+      if (truncated.length) {
+        console.log(`  [poll ${s.ci + 1}] ${truncated.length} truncatud → heal generateContent (lagi ${RETRY_MAX_TOKENS})…`);
+        for (const p of truncated) {
+          const hr = await generateContent(p, { apiKey: KEY, model, termBlock, useVision, maxTokens: RETRY_MAX_TOKENS });
+          const rec = { product: p, mode: hr.mode, ok: hr.ok, error: hr.error, parseErr: hr.parseErr, content: hr.content, usage: hr.usage || {} };
+          pushRec(rec); if (rec.ok) chunkRecs.push(rec);
+          console.log(`    heal ${p.sku || p.id} ok=${hr.ok} out=${hr.usage?.output_tokens}${hr.ok ? '' : ' ERR=' + (hr.error || hr.parseErr)}`);
+        }
       }
       if (doWrite && chunkRecs.length) {
         const w = writeRecords(chunkRecs, { execute: true });
