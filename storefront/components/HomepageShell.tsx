@@ -40,18 +40,25 @@ const CATEGORY_FONT_FAMILY = "'Mulish', system-ui, sans-serif"
 // misleads the customer ("Outlet = turbines?"). Outlet is concept_only=true in
 // taxonomy.yaml → gen-tree forces image_source=none → it renders the % icon
 // (BadgePercent, correct "discount" message). A dedicated atmosphere scene
-// ("brown package -20%") can replace the icon later (Osa 42, Tarmo). Elektroonika,
-// Peoinventar, Büroo, Põllumajandus still await a dedicated AI atmosphere scene;
-// Kodumasinad points at `kitchen` as a placeholder — its dedicated image is part of that batch.
+// ("brown package -20%") can replace the icon later (Osa 42, Tarmo).
+// Osa 58: Elektroonika, Büroo, Peoinventar, Põllumajandus, Kodumasinad said now
+// dedicated AI atmosphere scene'id; Outlet L1 sai üld-soodus bänneri (v4-outlet).
+// Outlet L2 (Kahjustatud pakend, Defektiga toode, Leiunurk) jäävad esialgu concept-%
+// ikoonideks — nende pildi-render on eraldi samm. Tööriistad = hele poe-stseen (proov).
 const ATMOSPHERE_BANNERS: Record<string, string> = {
-  "v4-tooriistad-ja-tarvikud": "/images/cat-atmosphere/tools.webp",
+  "v4-tooriistad-ja-tarvikud": "/images/cat-atmosphere/tools-shop.webp", // Osa 58: hele tööriista-poe stseen (proov)
   "v4-garaaziseadmed-ja-autoremont": "/images/cat-atmosphere/automotive-workshop.webp",
   "v4-suurkoogiseadmed": "/images/cat-atmosphere/horeca-food-service.webp",
-  "v4-kodumasinad-ja-kodutehnika": "/images/cat-atmosphere/kitchen.webp", // placeholder — dedicated image pending (Osa 41)
+  "v4-kodumasinad-ja-kodutehnika": "/images/cat-atmosphere/home-appliances.webp", // Osa 58: dedicated stseen (asendas kitchen placeholder)
   "v4-moobel-ja-sisustus": "/images/cat-atmosphere/office-commercial-interiors.webp",
   "v4-aed-ja-aiatehnika": "/images/cat-atmosphere/backyard-landscaping-farm.webp",
   "v4-telgid-varjualused-ja-kasvuhooned": "/images/cat-atmosphere/outdoor-living.webp",
-  "v4-autovaruosad-ja-tarvikud": "/images/cat-atmosphere/automotive.webp",
+  "v4-autovaruosad-ja-tarvikud": "/images/cat-atmosphere/automotive-parts.webp", // Osa 58: soe varuosade stseen
+  "v4-elektroonika-ja-multimeedia": "/images/cat-atmosphere/electronics-multimedia.webp", // Osa 58
+  "v4-buroo-ja-kontoritarvikud": "/images/cat-atmosphere/office-supplies.webp", // Osa 58
+  "v4-peoinventar-ja-dekoratsioonid": "/images/cat-atmosphere/party-decor.webp", // Osa 58
+  "v4-pollumajandus-ja-loomakasvatus": "/images/cat-atmosphere/agriculture-livestock.webp", // Osa 58
+  "v4-outlet": "/images/cat-atmosphere/outlet-open-box.webp", // Osa 58: üld-soodus stseen (L1 bänner; L2 concept-ikoonid eraldi)
   "v4-sport-ja-vaba-aeg": "/images/cat-atmosphere/fitness-sports-recreation.webp",
   "v4-ehitus-ja-remont": "/images/cat-atmosphere/construction-building.webp",
   "v4-elektritarvikud-ja-valgustus": "/images/cat-atmosphere/electrical-energy.webp",
