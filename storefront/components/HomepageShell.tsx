@@ -4,6 +4,7 @@ import { useEffect, useState, useRef, useMemo } from "react"
 import SafeLink from "@/components/SafeLink"
 import { categoryPath, branchPath, type Locale } from "@/lib/i18n"
 import { V3_ICONS } from "@/lib/taxonomy-v3"
+import { CONCEPT_CATEGORY_IMAGES } from "@/lib/concept-banners"
 import type { HomepageL1Node } from "@/lib/menu-data"
 import type { CmsSlide, CmsPromo } from "@/lib/cms"
 import SeasonSpecial from "@/components/SeasonSpecial"
@@ -516,8 +517,11 @@ export default function HomepageShell({ locale, l1Nodes, slides, promos, navShor
                   {featured.map((child) => {
                     // image_path may be null (concept_only / imageless subtree) —
                     // the card still renders, falling back to the L1 icon, so the
-                    // card grid always mirrors the sublist (Osa 45).
-                    const imgSrc = child.image_path ? decodeURIComponent(child.image_path) : null
+                    // card grid always mirrors the sublist (Osa 45). Concept_only
+                    // Outlet L2 saab dedicated atmosphere-stseeni (Osa 58).
+                    const imgSrc = child.image_path
+                      ? decodeURIComponent(child.image_path)
+                      : (CONCEPT_CATEGORY_IMAGES[child.handle] ?? null)
                     const childEt = (child as { name_et?: string }).name_et
                     const childName = loc === "et" && childEt ? childEt : child.name_en
                     return (
