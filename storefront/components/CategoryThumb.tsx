@@ -21,6 +21,7 @@
  */
 
 import { V3_ICONS } from "@/lib/taxonomy-v3"
+import { CONCEPT_CATEGORY_IMAGES } from "@/lib/concept-banners"
 import CategoryThumbImage from "./CategoryThumbImage"
 
 interface CategoryThumbProps {
@@ -46,13 +47,16 @@ export default function CategoryThumb({
   image_path,
   l1_handle,
 }: CategoryThumbProps) {
-  if (image_path) {
+  // Concept_only kategooriad (Outlet + L2) → dedicated atmosphere-stseen (Osa 58),
+  // muidu image_path=null ja renderduks BadgePercent-ikoon.
+  const resolvedImage = image_path ?? CONCEPT_CATEGORY_IMAGES[handle] ?? null
+  if (resolvedImage) {
     return (
       <span
         className={`flex-shrink-0 rounded-md bg-[#F8FAFC] border border-[#ECEEF1] overflow-hidden flex items-center justify-center ${className}`}
         style={{ width: size, height: size }}
       >
-        <CategoryThumbImage src={image_path} alt={alt} size={size} l1_handle={l1_handle} />
+        <CategoryThumbImage src={resolvedImage} alt={alt} size={size} l1_handle={l1_handle} />
       </span>
     )
   }
