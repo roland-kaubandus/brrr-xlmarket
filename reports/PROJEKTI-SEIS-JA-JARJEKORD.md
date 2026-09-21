@@ -118,8 +118,8 @@ Kõik LIVE storefront-konteineris (tag 93c1f8b3):
 
 ### P5. VAJA ÄRA TEHA — Outlet atmosphere-pildid (6 uut AI-pilti)
 - **Seis:** Elektroonika, Peoinventar, Büroo, Põllumajandus, Kodumasinad (+ Outlet, aga Outlet = %-ikoon lõplik) tahavad ilusamat atmosphere-stseeni. Praegu pärivad toote-thumbi/ikooni (töötab).
-- **PUUDU (blokk):** `GEMINI_API_KEY` puudub + nano-banana tööriist pole sellel hostil (Osa 49: 🔴). Vaja key + tööriist VÕI Tarmo annab pildid.
-- **Tõestus:** Osa 41, 49.
+- ~~**PUUDU (blokk):** `GEMINI_API_KEY` puudub + nano-banana tööriist pole sellel hostil (Osa 49: 🔴).~~ ✅ **DEBLOKEERITUD 2026-09-21 (Osa 57):** võti .env-is (project-2a682354, …aojQ), pipeline host-taastatud (`gemini-image.py` otse-API), **€20 prepaid AI Studio Credit balance'is** (Auto-reload On) → smoke-test PASS (2048×2048 pilt). Billing-lõks lahendatud (vt [[gemini-billing-2-ambrit]]). Pildi-tööd nüüd võimalikud (see P5 + gallery-lünk ~887).
+- **Tõestus:** Osa 41, 49, **57**.
 
 ### P6. VAJA ÄRA TEHA — Feed condition-väli → automaatne outlet-routing (LAHTINE)
 - **Seis:** `vevor-feed.ts` `condition?` väli (r14) kasutamata. Automaatne (tagastatud/rikutud → Outletisse) käiks feed-importeris.
