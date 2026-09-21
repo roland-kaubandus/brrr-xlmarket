@@ -247,12 +247,47 @@ else
   [ "$CREDIT_OK" = "1" ] && echo "  klassifitseeritud SKU-loend puudub → sisu-gen vahele" || echo "  krediit/API maas → sisu-gen SKIP (degrade)"
 fi
 
+# ── [6.6] SÜNONÜÜMID (host) — HARD RULE #5 HOOK (otsingu sünonüümid+variandid, ENNE reindeks) ─
+# SAMA transform+write kui backfill (synonym-gen-run.mjs --all). DELTA-peal (classify-skus.txt).
+# ASUKOHT: peale [6.5] (title_et olemas → parem sünonüüm), ENNE [7] reindeks. Meili sync = [7.5] PÄRAST.
+# FAIL-LOUD: süsteemne → fail(); krediit (rc=3) → degrade; üksik chunk → skip+count.
+echo "[6.6/7] sünonüümid (otsingu sünonüümid + kirjapildi-variandid uutele)"
+if [ "$CREDIT_OK" = "1" ] && [ -s /tmp/classify-skus.txt ]; then
+  SY_OUT=$(node "$ROOT/scripts/pipeline-synonyms.mjs" --skus /tmp/classify-skus.txt \
+    $([ "$EXECUTE" = "1" ] && echo --execute || echo --dry) 2>&1) && SY_RC=0 || SY_RC=$?
+  echo "$SY_OUT" | sed 's/^/  /'
+  SY_REVIEW=$( { echo "$SY_OUT" | grep -oE 'REVIEW=[0-9]+' | tail -1 | cut -d= -f2; } || true); SY_REVIEW=${SY_REVIEW:-0}
+  SY_PENDING=$( { echo "$SY_OUT" | grep -oE 'CREDIT_PENDING=[0-9]+' | tail -1 | cut -d= -f2; } || true); SY_PENDING=${SY_PENDING:-0}
+  case "$SY_RC" in
+    0)
+      [ "$SY_REVIEW" -gt 0 ] && slack "⚠️ XLM sünonüümid [6.6]: $SY_REVIEW terminit review-bucketis (synonym_review) — madal kindlus, vaata üle" ;;
+    3)
+      echo "  ⚠️ [6.6] KREDIIT-DEGRADE — sünonüümid vahele, [7] reindeks JÄTKUB (${SY_PENDING} ootab)"
+      slack "⚠️ XLM sünonüümid [6.6] KREDIIT-DEGRADE (HOIATUS, mitte FAIL): ${SY_PENDING} chunki ootab (krediit maas). Reindeks JÄTKUS. Sünonüümid täidab: 'bash scripts/run-synonym-backfill.sh' või järgmine öö." ;;
+    *)
+      fail "synonyms" "pipeline-synonyms.mjs rc=$SY_RC (süsteemne — API/DB maas?)" ;;
+  esac
+else
+  [ "$CREDIT_OK" = "1" ] && echo "  klassifitseeritud SKU-loend puudub → sünonüümid vahele" || echo "  krediit/API maas → sünonüümid SKIP (degrade)"
+fi
+
 # ── [7] REINDEX (konteiner) — ainult EXECUTE (uued tooted + hinnad nähtavaks) ─
 echo "[7/7] reindeks Meili"
 if [ "$EXECUTE" = "1" ]; then
   docker exec "$MEDUSA_NAME" node scripts/index-meilisearch.mjs || fail "reindex" "index-meilisearch.mjs rc!=0"
 else
   echo "  [DRY] reindeks vahele (kirjutust polnud)"
+fi
+
+# ── [7.5] SYNC-SYNONYMS (konteiner) — KRIITILINE: reindeks [7] KUSTUTAB Meili synonyms ──
+# Taasta synonyms DB product_synonym'ist (word+synonyms+variants, täis-ühendatud). PEAB olema PÄRAST [7].
+# Mitte-fataalne: sync-viga ≠ pood katki (otsing töötab, sünonüümid puudu kuni järgmine sync) → HOIATUS.
+echo "[7.5/7] sync-synonyms (taasta Meili synonyms — reindeks kustutas)"
+if [ "$EXECUTE" = "1" ]; then
+  docker exec "$MEDUSA_NAME" node scripts/sync-synonyms.mjs 2>&1 | sed 's/^/  /' \
+    || slack "⚠️ XLM sync-synonyms [7.5] nurjus — Meili synonyms puudu kuni järgmine sync (otsing töötab, aga sünonüümid/variandid ei laienda). Käsitsi: docker exec \$MEDUSA node scripts/sync-synonyms.mjs"
+else
+  echo "  [DRY] sync vahele (reindeksit polnud)"
 fi
 
 # ── review-bucket nähtavus (alati — ka DRY) ──────────────────────────────────
