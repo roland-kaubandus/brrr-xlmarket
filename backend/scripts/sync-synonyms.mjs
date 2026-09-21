@@ -30,21 +30,24 @@ async function meili(path, method = "GET", body) {
   await db.connect()
   let rows
   try {
+    // word + synonyms + variants (A2 kirjapildi-variandid: õ→o, kokku/lahku) — KÕIK lähevad Meili gruppi.
     ;({ rows } = await db.query(
-      "SELECT word, synonyms FROM product_synonym WHERE synonyms IS NOT NULL AND array_length(synonyms,1) > 0"
+      "SELECT word, synonyms, COALESCE(variants, '{}') AS variants FROM product_synonym " +
+      "WHERE word IS NOT NULL AND word <> ''"
     ))
   } finally {
     await db.end()
   }
-  const m = new Map()
+  // TÄIS-ÜHENDATUD (kahesuunaline): iga vorm grupis → kõik teised. Meili synonyms EI ole vaikimisi
+  // sümmeetriline — kui otsid sünonüümi, peab ka tema → word olema kirjas. Ehita graaf per grupp.
+  const m = new Map() // form → Set(muud vormid)
+  const add = (a, b) => { if (!m.has(a)) m.set(a, new Set()); if (b !== a) m.get(a).add(b) }
   for (const r of rows) {
-    const k = String(r.word).toLowerCase().trim()
-    if (!k) continue
-    if (!m.has(k)) m.set(k, new Set())
-    for (const s of r.synonyms) {
-      const x = String(s).toLowerCase().trim()
-      if (x && x !== k) m.get(k).add(x)
-    }
+    const forms = [r.word, ...(r.synonyms || []), ...(r.variants || [])]
+      .map((s) => String(s).toLowerCase().trim()).filter(Boolean)
+    const uniq = [...new Set(forms)]
+    if (uniq.length < 2) continue
+    for (const a of uniq) for (const b of uniq) add(a, b)
   }
   const out = {}
   for (const [w, s] of m) if (s.size) out[w] = [...s]
