@@ -305,6 +305,16 @@ async function captureCrStatus(c: Client, productIds: string[]): Promise<Record<
   return out
 }
 
+// jäädvusta toote elukäigu-staatus (draft/published) undo jaoks.
+// assign_existing avaldab toote (draft→published); ilma selleta undo jätaks toote
+// published+kodutuks. Salvestame KÕIGIS otsustes (robustsus) → undo taastab kui olemas.
+async function captureProductStatus(c: Client, productIds: string[]): Promise<Record<string, string>> {
+  const r = await c.query(`SELECT id, status FROM product WHERE id=ANY($1)`, [productIds])
+  const out: Record<string, string> = {}
+  for (const row of r.rows) out[row.id] = row.status
+  return out
+}
+
 export const POST = async (req: MedusaRequest, res: MedusaResponse) => {
   const actor = requireAdmin(req, res)
   if (!actor) return
@@ -338,6 +348,15 @@ export const POST = async (req: MedusaRequest, res: MedusaResponse) => {
             `UPDATE classification_review SET status=$2, updated_at=now() WHERE product_id=$1`,
             [a.product_id, a.prev_status || "pending"]
           )
+          // taasta toote elukäigu-staatus (draft/published) — assign_existing avaldab draft'i.
+          // Tagasiühilduv: vanad logid ilma prev_product_status'ita → jäta puutumata.
+          if (a.prev_product_status) {
+            await c.query(
+              `UPDATE product SET status=$2, updated_at=now()
+                WHERE id=$1 AND status IS DISTINCT FROM $2`,
+              [a.product_id, a.prev_product_status]
+            )
+          }
         }
         await c.query(
           `UPDATE review_decision_log SET status='undone', undone_at=now(), undone_by=$2 WHERE id=$1`,
@@ -362,6 +381,7 @@ export const POST = async (req: MedusaRequest, res: MedusaResponse) => {
         if (!catId) throw new Error(`Kategooriat ei leitud: ${target}`)
         const prev = await capturePrev(c, productIds)
         const crStatus = await captureCrStatus(c, productIds)
+        const prodStatus = await captureProductStatus(c, productIds)
 
         const affected: any[] = []
         for (const pid of productIds) {
@@ -374,7 +394,11 @@ export const POST = async (req: MedusaRequest, res: MedusaResponse) => {
           await c.query(
             `UPDATE classification_review SET status='resolved', updated_at=now() WHERE product_id=$1`, [pid]
           )
-          affected.push({ product_id: pid, prev_category_ids: prev[pid] || [], prev_status: crStatus[pid] || "pending" })
+          affected.push({
+            product_id: pid, prev_category_ids: prev[pid] || [],
+            prev_status: crStatus[pid] || "pending",
+            prev_product_status: prodStatus[pid] || null,
+          })
         }
         const log = await c.query(
           `INSERT INTO review_decision_log (actor, bucket_type, action, concept_key, target_handle, status, affected)
@@ -400,6 +424,7 @@ export const POST = async (req: MedusaRequest, res: MedusaResponse) => {
         const l2 = await resolveCategoryId(c, l2_handle)
         if (!l2) throw new Error(`L2 kodu ei leitud: ${l2_handle}`)
         const crStatus = await captureCrStatus(c, productIds)
+        const prodStatus = await captureProductStatus(c, productIds)
         // märgi tooted approved_build (lahkuvad pending-klastritest)
         await c.query(
           `UPDATE classification_review SET status='approved_build', updated_at=now() WHERE product_id=ANY($1)`,
@@ -407,6 +432,7 @@ export const POST = async (req: MedusaRequest, res: MedusaResponse) => {
         )
         const affected = productIds.map((pid) => ({
           product_id: pid, prev_category_ids: [], prev_status: crStatus[pid] || "pending",
+          prev_product_status: prodStatus[pid] || null,
         }))
         const log = await c.query(
           `INSERT INTO review_decision_log
@@ -425,7 +451,11 @@ export const POST = async (req: MedusaRequest, res: MedusaResponse) => {
       const out = await withPg(async (c) => {
         await assertLogTable(c)
         const crStatus = await captureCrStatus(c, productIds)
-        const affected = productIds.map((pid) => ({ product_id: pid, prev_category_ids: [], prev_status: crStatus[pid] || "pending" }))
+        const prodStatus = await captureProductStatus(c, productIds)
+        const affected = productIds.map((pid) => ({
+          product_id: pid, prev_category_ids: [], prev_status: crStatus[pid] || "pending",
+          prev_product_status: prodStatus[pid] || null,
+        }))
         await c.query(
           `UPDATE classification_review SET status=$2, updated_at=now() WHERE product_id=ANY($1)`,
           [productIds, newStatus]
