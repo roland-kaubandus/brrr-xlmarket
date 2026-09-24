@@ -301,8 +301,9 @@ node "$ROOT/scripts/pipeline-review-digest.mjs" \
 echo ""
 echo "=== IMPORT-PIPELINE DONE ($MODE) $(date -u +%FT%TZ) — kestus $(( $(date -u +%s) - RUN_START ))s ==="
 if [ "$EXECUTE" = "1" ]; then
-  REVIEW_N=$(dbq "SELECT count(*) FROM classification_review WHERE status='pending'" 2>/dev/null || echo "?")
+  # Review-bucket kogusumma = klassifikaator + sünonüümid (sama, mida digest näitab). 2>/dev/null||? = fail-safe.
+  REVIEW_N=$(dbq "SELECT (SELECT count(*) FROM classification_review WHERE status='pending') + (SELECT count(*) FROM synonym_review WHERE status='pending')" 2>/dev/null || echo "?")
   DUR=$(( $(date -u +%s) - RUN_START ))
-  slack "$(printf '✅ XLM import-pipeline OK (%ss)\nUusi tooteid: %s · dup-skip: %s · Review-bucketis ootab: %s' "$DUR" "${CREATED_N:-0}" "${SKIPPED_N:-0}" "$REVIEW_N")"
+  slack "$(printf '✅ XLM import-pipeline OK (%ss)\nUusi tooteid: %s · dup-skip: %s · Review-bucketis ootab: %s (sünon+klass)' "$DUR" "${CREATED_N:-0}" "${SKIPPED_N:-0}" "$REVIEW_N")"
 fi
 trap - EXIT
