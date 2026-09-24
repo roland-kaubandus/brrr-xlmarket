@@ -30,6 +30,9 @@ export default async function AdminLayout({ children }: { children: React.ReactN
           <Link href="/xl-admin/taxonomy-health" className="hover:text-[#FDE68A]">
             Taxonomy Health
           </Link>
+          <Link href="/xl-admin/review-bucket" className="hover:text-[#FDE68A]">
+            Review-bucket
+          </Link>
           <Link href="/xl-admin/categorization-queue" className="hover:text-[#FDE68A]">
             Categorization Queue
           </Link>
