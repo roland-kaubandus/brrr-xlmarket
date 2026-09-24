@@ -25,8 +25,9 @@
  * `pending_build` sektsioon (GET) hoiab need NÄHTAVAL — ei ole vaikne ämber.
  *
  * Otsuste-logi (`review_decision_log`, append-only) = tagasivõtmise alus. Tabel tuleb
- * migratsioonist `scripts/migrations/007-review-decision-log.sql`; ensureLogTable siin =
- * turvavõrk (idempotentne), et funktsioon töötaks ka enne migratsiooni jooksu.
+ * AINULT migratsioonist `scripts/migrations/007-review-decision-log.sql`. Route EI loo
+ * tabelit vaikselt (varasem ensureLogTable eemaldatud) — puuduv tabel = SELGE viga
+ * (assertLogTable), et deploy-lünka ei maskeeritaks.
  */
 
 import type { MedusaRequest, MedusaResponse } from "@medusajs/framework/http"
@@ -62,26 +63,14 @@ function requireAdmin(req: MedusaRequest, res: MedusaResponse): string | null {
   return String(actor)
 }
 
-// review_decision_log — turvavõrk (migratsioon 007 loob prod-is; siin idempotentne).
-async function ensureLogTable(c: Client): Promise<void> {
-  await c.query(`
-    CREATE TABLE IF NOT EXISTS review_decision_log (
-      id            bigserial PRIMARY KEY,
-      created_at    timestamptz NOT NULL DEFAULT now(),
-      actor         text NOT NULL,
-      bucket_type   text NOT NULL,              -- 'classification' | 'synonym'
-      action        text NOT NULL,              -- assign_existing | create_l3 | quarantine | reject
-      concept_key   text,
-      target_handle text,
-      target_l2     text,
-      new_l3_name   text,
-      status        text NOT NULL DEFAULT 'applied',  -- applied | approved_pending_build | undone
-      affected      jsonb NOT NULL DEFAULT '[]',
-      meta          jsonb,
-      undone_at     timestamptz,
-      undone_by     text
+// review_decision_log peab tulema migratsioonist 007. Puudub → SELGE viga (mitte vaikne loomine).
+async function assertLogTable(c: Client): Promise<void> {
+  const r = await c.query(`SELECT to_regclass('public.review_decision_log') IS NOT NULL AS ok`)
+  if (!r.rows[0]?.ok) {
+    throw new Error(
+      "review_decision_log tabel puudub — jooksuta migratsioon scripts/migrations/007-review-decision-log.sql"
     )
-  `)
+  }
 }
 
 // ── kontsepti-võti (title → normaliseeritud tüübi-signatuur) ─────────
@@ -250,7 +239,8 @@ export const GET = async (req: MedusaRequest, res: MedusaResponse) => {
       let pending_build: any[] = []
       let recent: any[] = []
       const logEx = await c.query(`SELECT to_regclass('public.review_decision_log') IS NOT NULL AS ok`)
-      if (logEx.rows[0]?.ok) {
+      const logTableExists = !!logEx.rows[0]?.ok
+      if (logTableExists) {
         // KINNITATUD, OOTAB STRUKTUURI-BUILDI (approved_pending_build, mitte tagasi võetud)
         pending_build = (await c.query(
           `SELECT id AS log_id, created_at, new_l3_name, target_l2, concept_key,
@@ -275,7 +265,7 @@ export const GET = async (req: MedusaRequest, res: MedusaResponse) => {
         )).rows
       }
 
-      return { table_exists: true, total, by_bucket: byBucketRows.rows, clusters, pending_build, recent_decisions: recent }
+      return { table_exists: logTableExists, total, by_bucket: byBucketRows.rows, clusters, pending_build, recent_decisions: recent }
     })
     return res.json(data)
   } catch (err: any) {
@@ -327,7 +317,7 @@ export const POST = async (req: MedusaRequest, res: MedusaResponse) => {
       const { log_id } = body
       if (!log_id) return res.status(400).json({ message: "log_id required" })
       const result = await withPg(async (c) => {
-        await ensureLogTable(c)
+        await assertLogTable(c)
         const lr = await c.query(`SELECT * FROM review_decision_log WHERE id=$1`, [log_id])
         const log = lr.rows[0]
         if (!log) throw new Error(`log ${log_id} not found`)
@@ -367,7 +357,7 @@ export const POST = async (req: MedusaRequest, res: MedusaResponse) => {
       const target = body.target_handle
       if (!target) return res.status(400).json({ message: "target_handle required" })
       const out = await withPg(async (c) => {
-        await ensureLogTable(c)
+        await assertLogTable(c)
         const catId = await resolveCategoryId(c, target)
         if (!catId) throw new Error(`Kategooriat ei leitud: ${target}`)
         const prev = await capturePrev(c, productIds)
@@ -406,7 +396,7 @@ export const POST = async (req: MedusaRequest, res: MedusaResponse) => {
         return res.status(400).json({ message: "l2_handle ja new_l3_name nõutud" })
       }
       const out = await withPg(async (c) => {
-        await ensureLogTable(c)
+        await assertLogTable(c)
         const l2 = await resolveCategoryId(c, l2_handle)
         if (!l2) throw new Error(`L2 kodu ei leitud: ${l2_handle}`)
         const crStatus = await captureCrStatus(c, productIds)
@@ -433,7 +423,7 @@ export const POST = async (req: MedusaRequest, res: MedusaResponse) => {
     if (action === "quarantine" || action === "reject") {
       const newStatus = action === "quarantine" ? "quarantined" : "rejected"
       const out = await withPg(async (c) => {
-        await ensureLogTable(c)
+        await assertLogTable(c)
         const crStatus = await captureCrStatus(c, productIds)
         const affected = productIds.map((pid) => ({ product_id: pid, prev_category_ids: [], prev_status: crStatus[pid] || "pending" }))
         await c.query(
