@@ -35,6 +35,7 @@ let _db;
 const getDB = () => (_db ||= execSync("docker ps --format '{{.Names}}' | grep '^db-k33g' | head -1", { encoding: "utf8" }).trim());
 const q = (sql) => execSync(`docker exec -i ${getDB()} psql -U xlmarket -d xlmarket -tA -v ON_ERROR_STOP=1 -f -`, { input: sql, encoding: "utf8", maxBuffer: 1 << 30 });
 const q1 = (sql) => q(sql).trim();
+const qLines = (sql) => q(sql).trim().split("\n").filter(Boolean);
 const int = (s) => parseInt(String(s).trim() || "0", 10) || 0;
 const tableExists = (t) => { try { return q1(`SELECT to_regclass('public.${t}') IS NOT NULL`) === "t"; } catch { return false; } };
 
@@ -91,6 +92,27 @@ try {
   homeless = int(q1(`SELECT count(*) FROM product p WHERE p.deleted_at IS NULL AND p.status='published'
     AND NOT EXISTS (SELECT 1 FROM product_category_product pcp WHERE pcp.product_id=p.id)`));
 } catch { homeless = null; }
+
+// ===================== "Kinnitatud, ootab struktuuri-buildi" (approved_pending_build) =====
+// create_l3 otsus EI loo L3-d live (propose-not-create) → tooted ootavad struktuuri-buildi.
+// EI TOHI olla vaikne ämber: näita arvu + vanim vanus + lävend-signaal (sama loogika).
+const build = { n: 0, clusters: 0, oldest: 0, rows: [] };
+if (tableExists("review_decision_log")) {
+  try {
+    const r = q1(`SELECT coalesce(sum(jsonb_array_length(affected)),0)||'|'||count(*)||'|'||coalesce(now()::date - min(created_at)::date,0)
+      FROM review_decision_log
+      WHERE bucket_type='classification' AND action='create_l3'
+        AND status='approved_pending_build' AND undone_at IS NULL`).split("|").map(int);
+    [build.n, build.clusters, build.oldest] = r;
+    if (build.clusters) {
+      build.rows = qLines(`SELECT new_l3_name||' → @'||coalesce(target_l2,'?')||' ('||jsonb_array_length(affected)||')'
+        FROM review_decision_log
+        WHERE bucket_type='classification' AND action='create_l3'
+          AND status='approved_pending_build' AND undone_at IS NULL
+        ORDER BY created_at ASC LIMIT 6`);
+    }
+  } catch { /* logi-tabel vana skeem — jäta vahele */ }
+}
 
 // ===================== Lävend-signaalid (§b) =================================
 // vanim pending · kasvu-trend (7p vs eelmise 8–30p baas, ainult kui span≥30p) · lahendamata-suhe.
@@ -152,6 +174,12 @@ if (items.length) {
     M.push(`   ${tag} ${c.name} — ${c.items.length}${home}`);
   }
 }
+if (build.n) {
+  M.push("");
+  M.push(`🏗 Kinnitatud, ootab struktuuri-buildi: ${build.n} toodet / ${build.clusters} L3 · vanim ${build.oldest}p${build.oldest > 14 ? " 🔴" : ""}`);
+  for (const line of build.rows) M.push(`   • ${line}`);
+  M.push(`   (create_l3 otsused; L3 luuakse genyM + 4-sammu deployl, siis tooted määratakse)`);
+}
 if (homeless != null) {
   M.push("");
   M.push(`🏚 Kodutud (live, kategooriata, navis nähtamatu): ${homeless}`);
@@ -169,7 +197,7 @@ console.log(text);
 
 // Masinloetav rida cron STATUS + hommiku-ülevaatuse jaoks (LOGis, EI lähe Telegrami `text`-i).
 // import-pipeline-cron.sh greppib 'REVIEW-BUCKET — N' → review_waiting = KOGUSUMMA (sünon+klass).
-console.log(`REVIEW-BUCKET — ${totalWaiting} toodet (masinloetav; sünon ${syn.total || 0} + klass ${items.length})`);
+console.log(`REVIEW-BUCKET — ${totalWaiting} toodet (masinloetav; sünon ${syn.total || 0} + klass ${items.length} · ootab-buildi ${build.n})`);
 
 // ===================== Telegram (valikuline) — sama bot/chat mis Uptime Kuma =
 if (TELEGRAM) {
