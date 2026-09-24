@@ -281,6 +281,18 @@ services:
       MEILISEARCH_HOST: http://meili:7700
       MEILI_INTERNAL_URL: http://meili:7700
       NEXT_PUBLIC_DEFAULT_REGION: ee
+      # xl-admin auth (2026-09-24, 1f0a tee A) — server-side, EI ole NEXT_PUBLIC (ei leki brauserisse).
+      # Väärtused Coolify app-env'ist (${...}), MITTE git'is. Ilma nendeta xl-admin FAIL-LOUD (lib/admin-env.ts).
+      #   - ADMIN_SESSION_SECRET  JWT allkiri admin-cookie'le (≥32 märki)
+      #   - TARMO_ADMIN_EMAIL/PASS UI-värava login (Tarmo sisestab PASS ise Coolify UI-s)
+      #   - MEDUSA_ADMIN_EMAIL/PASSWORD  storefront→Medusa teenuskonto (emailpass)
+      #   - MEDUSA_BACKEND_URL  literaal (sama muster kui NEXT_PUBLIC_MEDUSA_URL) → EI vaja Coolify env-i
+      ADMIN_SESSION_SECRET: ${ADMIN_SESSION_SECRET}
+      TARMO_ADMIN_EMAIL: ${TARMO_ADMIN_EMAIL}
+      TARMO_ADMIN_PASS: ${TARMO_ADMIN_PASS}
+      MEDUSA_ADMIN_EMAIL: ${MEDUSA_ADMIN_EMAIL}
+      MEDUSA_ADMIN_PASSWORD: ${MEDUSA_ADMIN_PASSWORD}
+      MEDUSA_BACKEND_URL: http://medusa:9000
     depends_on:
       medusa:
         condition: service_started

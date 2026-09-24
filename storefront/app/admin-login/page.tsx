@@ -1,5 +1,7 @@
 import { redirect } from "next/navigation"
 import { readAdminSession } from "@/lib/admin-session"
+import { getMissingAdminEnv } from "@/lib/admin-env"
+import AdminEnvError from "@/components/AdminEnvError"
 import LoginForm from "./LoginForm"
 
 export const dynamic = "force-dynamic"
@@ -24,6 +26,10 @@ export default async function AdminLoginPage({
 }: {
   searchParams: Promise<{ next?: string }>
 }) {
+  // FAIL-LOUD: puuduvad env-id → selge vea-ekraan, MITTE 500 login-lehel.
+  const missingEnv = getMissingAdminEnv()
+  if (missingEnv.length) return <AdminEnvError missing={missingEnv} />
+
   const session = await readAdminSession()
   const params = await searchParams
   const next = safeNext(params.next)

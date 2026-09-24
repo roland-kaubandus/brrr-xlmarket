@@ -13,11 +13,26 @@
 import { NextRequest, NextResponse } from "next/server"
 import { readAdminSession } from "@/lib/admin-session"
 import { medusaAdminFetch } from "@/lib/medusa-admin"
+import { getMissingAdminEnv } from "@/lib/admin-env"
 
 export const dynamic = "force-dynamic"
 export const runtime = "nodejs"
 
+// FAIL-LOUD: puuduvad env-id → selge 503 koos nimedega (mitte 502 ähmase throw'ga).
+function envGuard(): NextResponse | null {
+  const missing = getMissingAdminEnv()
+  if (missing.length) {
+    return NextResponse.json(
+      { ok: false, error: `Serveri seadistus puudulik. Puuduvad env-id: ${missing.join(", ")}` },
+      { status: 503 }
+    )
+  }
+  return null
+}
+
 export async function GET(req: NextRequest) {
+  const envErr = envGuard()
+  if (envErr) return envErr
   const session = await readAdminSession()
   if (!session) return NextResponse.json({ ok: false, error: "Unauthorized" }, { status: 401 })
   try {
@@ -39,6 +54,8 @@ export async function GET(req: NextRequest) {
 const ALLOWED = new Set(["assign_existing", "create_l3", "quarantine", "reject", "undo"])
 
 export async function POST(req: NextRequest) {
+  const envErr = envGuard()
+  if (envErr) return envErr
   const session = await readAdminSession()
   if (!session) return NextResponse.json({ ok: false, error: "Unauthorized" }, { status: 401 })
 

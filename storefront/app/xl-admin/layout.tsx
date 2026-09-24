@@ -11,6 +11,8 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import { redirect } from "next/navigation"
 import { readAdminSession } from "@/lib/admin-session"
+import { getMissingAdminEnv } from "@/lib/admin-env"
+import AdminEnvError from "@/components/AdminEnvError"
 
 export const metadata: Metadata = {
   robots: "noindex, nofollow",
@@ -20,6 +22,11 @@ export const metadata: Metadata = {
 export const dynamic = "force-dynamic"
 
 export default async function AdminLayout({ children }: { children: React.ReactNode }) {
+  // FAIL-LOUD: puuduvad env-id → selge vea-ekraan (nimekiri), MITTE 500 ega vaikne katkine leht.
+  // Layout ei renderda {children} → alamlehe medusaAdminFetch ei käivitu.
+  const missingEnv = getMissingAdminEnv()
+  if (missingEnv.length) return <AdminEnvError missing={missingEnv} />
+
   const session = await readAdminSession()
   if (!session) redirect("/admin-login")
   return (

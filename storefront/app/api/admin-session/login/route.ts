@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server"
 import { ADMIN_COOKIE_OPTIONS, checkCredentials, signAdminToken } from "@/lib/admin-session"
+import { getMissingAdminEnv } from "@/lib/admin-env"
 
 export const dynamic = "force-dynamic"
 
@@ -9,6 +10,15 @@ interface LoginBody {
 }
 
 export async function POST(req: NextRequest) {
+  // FAIL-LOUD: puuduvad env-id → selge 503 koos nimedega (mitte 500 signAdminToken'ist).
+  const missingEnv = getMissingAdminEnv()
+  if (missingEnv.length) {
+    return NextResponse.json(
+      { ok: false, error: `Serveri seadistus puudulik. Puuduvad env-id: ${missingEnv.join(", ")}` },
+      { status: 503 }
+    )
+  }
+
   let body: LoginBody
   try {
     body = (await req.json()) as LoginBody
