@@ -1,6 +1,7 @@
 # XL e-pood — PROJEKTI SEIS JA JÄRJEKORD (ankur-dokument)
 
-> **Koostatud:** 2026-09-19 · **Eesmärk:** täielik, aus projekti seis, et ei hüppaks üle faaside ega
+> **Koostatud:** 2026-09-19 · **Uuendatud:** 2026-09-24 (A2 sünonüümid+variandid ✅ VALMIS+LIVE — §1.11) ·
+> **Eesmärk:** täielik, aus projekti seis, et ei hüppaks üle faaside ega
 > unustaks pooleliolevat. Iga väide on TÕESTATUD (git SHA / DB-päring / report). Oletused on märgitud
 > "⚠️ TÕESTAMATA".
 >
@@ -88,6 +89,34 @@ Kõik LIVE storefront-konteineris (tag 93c1f8b3):
 - **Tõestus:** `reports/cutover-valmidus-audit.md` (git main, commitid `0f575cf3`, `8a749571`); mälu `cutover-strateegia-a-otsus.md`.
 - **NB:** see on OTSUS + audit, MITTE teostus. Cutover ise = ALUSTAMATA (vt §3).
 
+### 1.11 A2 — Otsingu-sünonüümid + kirjapildi-variandid — ✅ VALMIS + LIVE (2026-09-24)
+- **Arhitektuur (HARD RULE #5, üks transform kaks kutsujat):** `scripts/lib/synonym-gen.mjs` = ÜKS transform.
+  **Sünonüümid = LLM (Haiku 4.5, `claude-haiku-4-5`, CLI→API migreeritud)** — annab AINULT word+synonyms+confidence+review.
+  **Variandid = DETERMINISTLIK ASCII-fold KOOD** (õ→o, ü→u JA ü→y, ä→a, ö→o, š→s + kokku/lahku glue) — LLM
+  EI leiuta variante (tõestatud: LLM-variandid 50% praht). Bränd-agnostiline (`deriveBrandSlug` SSoT).
+  Propose-not-create: conf ≥0.85 → auto, alla → review-bucket (`synonym_review`).
+- **Tegelikud numbrid (DB/Meili kontroll 2026-09-24):**
+
+  | Mõõt | Väärtus | Allikas |
+  |---|---|---|
+  | Auto-sünonüümid (`product_synonym` sg-v1) | **32653** rida / 18502 toodet | DB-päring |
+  | Kirjapildi-variandid | **111717** | DB `unnest(variants)` |
+  | Review-bucket (`synonym_review` pending) | **3828** / 3602 toodet | DB-päring |
+  | Meili synonym-võtmed | **91844** | Meili settings/synonyms |
+  | Vana juuni-praht purgitud | **17202** rida (backup `product_synonym_null_purge_backup`) | DB-päring |
+  | NULL gen_version alles | **0** | DB-päring (puhas) |
+
+  *(Numbrid veidi kõrgemad kui deploy-hetk 32583/111384/3821/91673 — öine [6.6] hook lisas 3 öö delta-tooteid → tõestab hook töötab live'is.)*
+- **Öine ahel LIVE:** `import-pipeline.sh` samm **[6.6] SÜNONÜÜMID** (delta `/tmp/classify-skus.txt`, fail-loud
+  Telegram, credit-degrade rc=3, review-bucket) + **[7.5] SYNC-SYNONYMS** (KRIITILINE: PÄRAST [7] reindeksit,
+  sest reindeks kustutab Meili synonyms). Konteineris püsivalt (Coolify build `12ffb805`).
+- **Valideeritud otsing:** `tankur → kütusepaak` (117 tabamust), `õhktõstuk → air jack` (55); ASCII-variandid
+  Meilis (`kutusepaak`/`kytusepaak`/`vinuuliloikur`/`ohkpadjatostuk`) — 0 kirillitsat.
+- **Tõestus:** kood-commit `0eb4a94b` (v4) / `7032d494` (main); logi-commitid kuni `be8d9f48` (v4) / `13a5f3eb` (main);
+  Coolify deploy HTTP 200, build `12ffb805` finished; mälu sessioonilogi `2026-09-21-xl.md`.
+- **⚠️ LAHTINE (A2 järelm):** review-bucket **3828** vajab nähtavust (teade + klastri-ülevaatuse UI — muidu
+  täitub vaikselt). Vt §2 P7 + §5.
+
 ---
 
 ## 2. POOLELI (alustatud, EI lõpetatud — mis TÄPSELT puudu)
@@ -126,6 +155,13 @@ Kõik LIVE storefront-konteineris (tag 93c1f8b3):
 - **PUUDU:** teadmine mis väärtusi condition sisaldab (vaja feedi elus kontrollida) → siis importeri-loogika.
 - **Tõestus:** Osa 48 Q6.
 
+### P7. VAJA ÄRA TEHA — Review-bucket nähtavus (sünonüümid + klassifikaator) — **JÄRGMISENA #1**
+- **Seis:** A2 (§1.11) täitis `synonym_review` = **3828 pending** madala kindluse sünonüümi + klassifikaatori
+  review-bucket täitub öösel. Andmed olemas, aga **nähtavus PUUDUB** → täitub vaikselt, inimene ei näe.
+- **PUUDU:** (1) teade (nt nädalane "N uut terminit/klastrit ootab"), (2) ülevaatus KLASTRITE kaupa (mitte
+  rea-kaupa), (3) klastri kohta: tüüp · mitu · sobiv L2 · DUP-värav (kas lähedane L3 olemas). Propose-not-create.
+- **Tõestus:** DB `synonym_review` 3828; CLAUDE.md AUTO-KLASSIFIKAATOR §"REVIEW-BUCKET VAJAB NÄHTAVUST".
+
 ---
 
 ## 3. ALUSTAMATA (plaanis / üle hüpatud)
@@ -133,8 +169,10 @@ Kõik LIVE storefront-konteineris (tag 93c1f8b3):
 ### A1. Sisu-generaator SAMM 3 — kvaliteedi-jääk-otsad (glossary-koristus, B-monitor)
 - "Thoughtful Tool" (locked, turundus-fluff) → glossary-koristus. B-scoped adherence-monitor täisrakendus (scoping + review-loendur → STATUS/Telegram). Adherence-piloot = 76.9% raw → ~93-95% pärast klassifitseerimist (`reports/adherence-latest.md`). ALUSTAMATA.
 
-### A2. Sünonüümid (ET Meili search synonyms) — ALUSTAMATA
-- Generaator = `claude -p haiku` OAuth (Max-tellimus, mitte pay-API). Pretsedent `sync-existing-synonyms.mjs`. Backlog 🟢 LLM-vaba (Osa 28). CLAUDE.md loeb seda cutover-eelseks auguks.
+### A2. Sünonüümid (ET Meili search synonyms) — ✅ VALMIS + LIVE (2026-09-24) → vt §1.11
+- Teostatud: LLM-sünonüümid (Haiku 4.5 API) + deterministlikud ASCII-fold variandid + öine [6.6] hook +
+  [7.5] Meili-sync + review-bucket. 32653 auto + 111717 varianti + 3828 review; Meili 91844 võtit.
+  Vana juuni-praht (17202) purgitud enne live'i. **Detailid: §1.11.**
 
 ### A3. Rich-sisu lünk (~4329 toodet PIKK turundus-prose) — ALUSTAMATA
 - EI ole feed-parandatav (VEVOR xlsx kärbib CSS-cap'i juures). Vajab generaatorit (spec+pilt) VÕI VEVOR web/API täis-HTML. Sisu-generaator (P2) katab title/description/selling-points; PIKK rich-plokk on eraldi. Mälu `sisu-generaator-skoop.md`.
@@ -168,11 +206,28 @@ Kõik LIVE storefront-konteineris (tag 93c1f8b3):
 | FAAS | Sisu | Seis | Tõestus |
 |---|---|---|---|
 | **FAAS 1** | Sisu-töö vundament: SAMM 1 title-strip · SAMM 2 glossary · SAMM 3 sisu-generaator | SAMM 1-2 ✓ · SAMM 3 **POOLELI (5347 puudu)** | §1.2-1.3, §P2 |
-| **FAAS 2-4** | Ülejäänud sisu-töö: sisu-generaator / **sünonüümid** / **pildid** (Osa 27 sõnastus) | pildid ✓ (§1.8) · sünonüümid ALUSTAMATA (§A2) · sisu-gen pooleli | Osa 27 rida 465 |
+| **FAAS 2-4** | Ülejäänud sisu-töö: sisu-generaator / **sünonüümid** / **pildid** (Osa 27 sõnastus) | pildid ✓ (§1.8) · **sünonüümid ✅ VALMIS (§1.11)** · sisu-gen ✓ (§P2) | Osa 27 rida 465 |
 | **FAAS 5** | Cutover (k33g → prod) | strateegia A kinnitatud, teostus ALUSTAMATA; runbook ootab FAAS 4 lõppu | §1.10, §A8 |
 
 - ⚠️ **Ebakindlus:** FAAS 2, 3, 4 sisu ei ole allikates eraldi lahti kirjutatud — Osa 27 loetleb "FAAS 2-4 sisu-töö (sisu-generaator/sünonüümid/pildid)" ühe plokina. Täpne 2 vs 3 vs 4 piir on määramata. **FAAS 6-11 EI EKSISTEERI allikates.**
-- **Praktiline tegelik järjekord (mida allikad tegelikult järgivad):** (1) lõpeta sisu-generaator [P2] → (2) sünonüümid [A2] → (3) pildid ✓ tehtud → (4) rich-sisu jääk [A3] valikuline → (5) cutover [A8]. Multi-feed / topelt-ladu / Opus-klassifikaator = **Phase-2 PÄRAST launchi**, väljaspool FAAS 1-5 kaart.
+- **Praktiline tegelik järjekord:** (1) sisu-generaator ✅ [P2] → (2) sünonüümid ✅ [A2/§1.11] → (3) pildid ✅ →
+  (4) rich-sisu jääk [A3] valikuline → (5) cutover [A8]. Multi-feed / topelt-ladu / Opus-klassifikaator =
+  **Phase-2 PÄRAST launchi**, väljaspool FAAS 1-5 kaart.
+
+### 🔜 LAHTISTE JÄRJEKORD (mis JÄRGMISENA — sisu-vundament valmis)
+1. **Review-bucket nähtavus** [§P7] — 3828 sünonüümi + klassifikaator ootavad; teade + klastri-UI. **#1.**
+2. **#3 glossary uus-termin hook** [§A1 laiend] — uus termin sisus → glossary-kandidaat automaatselt (A2 järg,
+   sama transform+backfill+hook muster). Forward-only, propose-not-create.
+3. **Outlet ristkuvamine aktiveerimine** [§P4] — `outlet-crossdisplay.mjs execute` + reindeks (backend üleval).
+4. **Outlet L2-pildid** [§P5] — Gemini deblokeeritud (Osa 57); atmosphere-stseenid.
+
+### 🤖 MASINA-AUTOMAATIKA SEIS (öine import-pipeline)
+- **~85% automaatne:** [1] reindeks → [3] import → [3.5] title-strip → [4] classify → [5] hind → [6] spec →
+  [6.5] sisu-gen → **[6.6] sünonüümid+variandid** → [7] reindeks → **[7.5] Meili sync-synonyms**. Kõik delta-põhised,
+  fail-loud Telegram, credit-degrade-teadlikud.
+- **Puuduv ~15% (augud):** (a) **review-bucket nähtavus** (andmed kogunevad, inimene ei näe) · (b) **#3 glossary
+  uus-termin hook** (uued terminid ei jõua glossarysse automaatselt) · (c) **Outlet ristkuvamine** (skript valmis,
+  jooksutamata). Need 3 = viimane automaatika-vundamendi lünk enne cutoverit.
 
 ---
 
@@ -186,7 +241,8 @@ Kõik LIVE storefront-konteineris (tag 93c1f8b3):
 | P4 | Outlet ristkuvamine | VAJA ÄRA TEHA | `node scripts/outlet-crossdisplay.mjs execute` (medusa exec, ILMA `--`) + `index-meilisearch.mjs` | Backend üleval (Osa 49 ✓) |
 | P5 | 6 outlet atmosphere-pilti | VAJA ÄRA TEHA | GEMINI_API_KEY + nano-banana tööriist VÕI Tarmo pildid → ATMOSPHERE_BANNERS kirjed | Pildi-tööriist puudub |
 | P6 | Feed condition-routing | VAJA ÄRA TEHA | Kontrolli feed condition-väärtused (feed elus) → importeri-loogika | Feed elus |
-| A2 | Sünonüümid ET | VAJA ÄRA TEHA | `claude -p haiku` OAuth generaator (Max) → `sync-existing-synonyms.mjs` muster → Meili | LLM-vaba, cutover-eelne |
+| A2 | Sünonüümid ET | ✅ **VALMIS (2026-09-24)** | LLM (Haiku) sünonüümid + ASCII-fold variandid + [6.6] hook + [7.5] sync + review-bucket. 32653 auto / 111717 var / 91844 Meili-võtit. Vt §1.11 | — |
+| P7 | Review-bucket nähtavus | VAJA ÄRA TEHA (**#1**) | Teade (nädalane) + klastri-ülevaatuse UI (tüüp/arv/L2/DUP-värav); 3828 sünonüümi ootab | A2 tegi bucketi täis |
 | A4 | Opus-klassifikaator (B) | VAJA ÄRA TEHA | Opus = primaar feed-cron'is, resolver-v2 → fallback; propose-not-create + review-bucket teade | Pärast 956-importi |
 | A8 | Cutover teostus | VAJA ÄRA TEHA | Kirjuta runbook (strateegia A): `.eu` 301 + LE bare-domeen + uo28 backup + E2E Montonio smoke | Pärast FAAS 4 (sisu 100%) |
 | 1.4 | Weight-surcharge kontroll | VAJA ÄRA TEHA | Kontrolli `pricing-engine.mjs` + `pricing-rules.yaml` — kui weight-surcharge enabled → DISABLE (tarne hinnast väljas) | Enne impordi-hinna-jooksu |
