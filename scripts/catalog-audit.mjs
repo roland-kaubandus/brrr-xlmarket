@@ -18,7 +18,7 @@
  */
 import fs from "node:fs";
 import { clusterize, judgeClassifyClusters, rateClassifyReferenceClusters,
-  buildClusterJudgeBody, buildClusterRefBody } from "./lib/judge.mjs";
+  buildClusterJudgeBody, buildClusterRefBody, resolveJudgeBatch } from "./lib/judge.mjs";
 import { createChain } from "./lib/classify-chain.mjs";
 import { runChunk, chunk as chunkArr } from "./lib/content-batch.mjs";
 
@@ -415,47 +415,51 @@ async function stageFull() {
   console.log(`  piir $${CAP}. Live-valve peatab kui ületab.`);
   if (estTotal > CAP) { console.error(`🛑 projektsioon $${estTotal.toFixed(0)} > piir $${CAP} → EI submit. Suurenda chunk'i (vähem list-write) VÕI tõsta AUDIT_CAP.`); throw new Error("COST_CAP"); }
 
+  // VÕTME-VERIFITSEERITUD batch (judge.mjs SSoT, HARD RULE #5 — sama kontroll mis öine hook):
+  //   iga chunk: väljundi võtmed == sisendi võtmed; võõras võti → visatakse + loendur; puuduv VÕI
+  //   stop_reason=max_tokens → POOLITA chunk & korda (rekursiivne, max 3 taset), siis fail-loud (unresolved).
+  const auditClusters = CLUSTERS.map((c) => ({ cluster_key: c.ck, items: buildItems(c) }));
+  const mkLog = (nimi) => ({ usage: (m, u) => addUsage(m, u), log: (s) => console.error(`  ${s}`),
+    tick: (s) => { const rc = s.request_counts || {}; process.stderr.write(`  ${nimi} batch ${s.processing_status}: done ${rc.succeeded || 0} err ${rc.errored || 0}\r`); } });
+
   // ── STAGE A.1 — KOHTUNIK batch (Opus) ──
-  const jReq = groups.map((g, i) => ({ custom_id: `j${i}`,
-    params: buildClusterJudgeBody(g.map((c) => ({ cluster_key: c.ck, items: buildItems(c) })), candidateL3s, { maxTokens: AUDIT_MAXTOK }) }));
-  console.log(`\n[A.1] kohtunik-batch: ${jReq.length} päringut submit…`);
-  const jBatch = await runChunk(jReq, KEY, { onTick: (s) => {
-    const rc = s.request_counts || {}; process.stderr.write(`  kohtunik batch ${s.processing_status}: done ${rc.succeeded || 0}/${jReq.length} err ${rc.errored || 0}\r`); } });
-  const jByKey = new Map();
-  let jFail = 0;
-  for (const r of jBatch.results) {
-    if (!r.ok) { jFail++; continue; }
-    addUsage("claude-opus-4-8", r.message?.usage);
-    for (const v of parseBatchMessage(r.message)) jByKey.set(v.cluster_key, v);
-  }
-  console.log(`\n[A.1] kohtunik valmis: ${jByKey.size} otsust, ${jFail} päring-viga  → kulu $${COST.usd.toFixed(2)} (batch id ${jBatch.batchId})`);
+  console.log(`\n[A.1] kohtunik-batch: ${groups.length} päringut submit…`);
+  const jRes = await resolveJudgeBatch({ clusters: auditClusters, candidateL3s, apiKey: KEY, runChunk,
+    chunkSize: AUDIT_CHUNK, maxTokens: AUDIT_MAXTOK, role: "judge", onLog: mkLog("kohtunik") });
+  const jByKey = jRes.byKey;
+  console.log(`\n[A.1] kohtunik valmis: ${jByKey.size} otsust | võõr ${jRes.foreign.length}, dup-konflikt ${jRes.duplicates.filter((d) => d.conflict).length}, LAHENDAMATA ${jRes.unresolved.length}, päring-viga ${jRes.reqFail} (poolitus-tasemeid ${jRes.levels})  → kulu $${COST.usd.toFixed(2)}`);
   guard("judge-batch");
 
   // ── STAGE A.2 — REFERENTS batch (Sonnet) ──
-  const rReq = groups.map((g, i) => ({ custom_id: `r${i}`,
-    params: buildClusterRefBody(g.map((c) => ({ cluster_key: c.ck, items: buildItems(c) })), candidateL3s, { maxTokens: AUDIT_MAXTOK }) }));
-  console.log(`\n[A.2] referents-batch: ${rReq.length} päringut submit…`);
-  const rBatch = await runChunk(rReq, KEY, { onTick: (s) => {
-    const rc = s.request_counts || {}; process.stderr.write(`  referents batch ${s.processing_status}: done ${rc.succeeded || 0}/${rReq.length} err ${rc.errored || 0}\r`); } });
-  const rByKey = new Map();
-  let rFail = 0;
-  for (const r of rBatch.results) {
-    if (!r.ok) { rFail++; continue; }
-    addUsage("claude-sonnet-5", r.message?.usage);
-    for (const v of parseBatchMessage(r.message)) rByKey.set(v.id, v);   // ref id = cluster_key
-  }
-  console.log(`\n[A.2] referents valmis: ${rByKey.size} otsust, ${rFail} päring-viga  → kulu $${COST.usd.toFixed(2)} (batch id ${rBatch.batchId})`);
+  console.log(`\n[A.2] referents-batch: ${groups.length} päringut submit…`);
+  const rRes = await resolveJudgeBatch({ clusters: auditClusters, candidateL3s, apiKey: KEY, runChunk,
+    chunkSize: AUDIT_CHUNK, maxTokens: AUDIT_MAXTOK, role: "ref", onLog: mkLog("referents") });
+  const rByKey = rRes.byKey;   // ref id → cluster_key (ingestClusterResults loeb v.cluster_key ?? v.id)
+  console.log(`\n[A.2] referents valmis: ${rByKey.size} otsust | võõr ${rRes.foreign.length}, dup-konflikt ${rRes.duplicates.filter((d) => d.conflict).length}, LAHENDAMATA ${rRes.unresolved.length}, päring-viga ${rRes.reqFail} (poolitus-tasemeid ${rRes.levels})  → kulu $${COST.usd.toFixed(2)}`);
   guard("ref-batch");
+  const keyIntegrity = { judge: { foreign: jRes.foreign, duplicates: jRes.duplicates, unresolved: jRes.unresolved, reqFail: jRes.reqFail },
+    ref: { foreign: rRes.foreign, duplicates: rRes.duplicates, unresolved: rRes.unresolved, reqFail: rRes.reqFail } };
 
   // ── STAGE B — resolveChain sünkr (Fable AINULT lahkhelil) ──
-  console.log(`\n[B] resolveChain ${CLUSTERS.length} klastril (Fable lahkhelil)…`);
+  // 🔒 DB-VAIKUSE AKEN (Europe/Tallinn 02:45–04:30): Stage B on TÄIELIKULT OFFLINE — loeb ainult
+  //    audit-clusters.json dump'i + category-tree.generated.json, teeb LLM-kutseid, 0 DB-lugemist.
+  //    Seega vaikuse-aken on automaatselt austatud (ahel ei puutu DB-d üldse).
+  console.log(`\n[B] resolveChain ${CLUSTERS.length} klastril (Fable lahkhelil)… [offline, 0 DB-lugemist]`);
   const CHAIN_ACTIONS = new Set(["assign_existing", "new_l3"]);
   const chain = createChain({ nodes: NODES, apiKey: KEY, cache: { __v2: true }, fresh: true });
   const results = new Map();
-  let done = 0, fableClusters = 0, nonChain = 0, chainErr = 0;
+  const decisions = [];   // TÄIELIK otsuse-provenance — execute saab taaskasutada ILMA uute API-kutseteta (nagu synonym --from)
+  let done = 0, fableClusters = 0, nonChain = 0, chainErr = 0, stopped = false;
   for (const c of CLUSTERS) {
     const jv = jByKey.get(c.ck), rv = rByKey.get(c.ck);
-    if (!jv || !CHAIN_ACTIONS.has(jv.action)) { results.set(c.ck, { nonChain: true, path: jv ? `kohtunik=${jv.action}` : "otsuseta" }); nonChain++; continue; }
+    if (!jv || !CHAIN_ACTIONS.has(jv.action)) {
+      results.set(c.ck, { nonChain: true, path: jv ? `kohtunik=${jv.action}` : "otsuseta" });
+      decisions.push({ ck: c.ck, n: c.n, currentL3: c.currentL3, currentMain: mainOf(c.currentL3),
+        currentName: L3META[c.currentL3]?.name, judge_raw: jv || null, ref_raw: rv || null, fable: null,
+        path: jv ? `nonChain:${jv.action}` : "otsuseta", final_handle: c.currentL3,
+        final_decision: `keep:${jv?.action || "none"}`, changed: false });
+      nonChain++; continue;
+    }
     const judgeTarget = jv.target_handle || null;
     const candidates = [...new Set([...(jv.considered_l3s || []), judgeTarget, rv?.target_handle].filter(Boolean))];
     const cc = { ck: c.ck, n: c.n, items: buildItems(c), titles: c.titles,
@@ -467,19 +471,36 @@ async function stageFull() {
       if (chain.fableUsage.calls > fBefore) fableClusters++;
       const finalDec = r.decisionFinal || r.decision;
       const isNew = finalDec === "new_l3" || (r.decision === "new_l3" && !r.decisionFinal);
-      results.set(c.ck, { decisionHandle: isNew ? "NEW" : parseAssignHandle(finalDec), path: r.path,
+      const finalHandle = isNew ? "NEW" : parseAssignHandle(finalDec);
+      results.set(c.ck, { decisionHandle: finalHandle, path: r.path,
         newName: r.finalName || r.newName || null, parentL2: r.parentL2 || null, signal: !!r.signal,
         gate: r.gate ? { allPass: r.gate.allPass, blocking: r.gate.blocking } : null });
-    } catch (e) { results.set(c.ck, { nonChain: true, failed: true, path: "VIGA:" + String(e.message || e).slice(0, 50) }); chainErr++; }
-    // Fable-kulu + valve inkrementaalselt (stop $160)
+      const { _cluster, ...rClean } = r;   // _cluster = sisend (buildItems jm) → ära dubleeri
+      decisions.push({ ck: c.ck, n: c.n, currentL3: c.currentL3, currentMain: mainOf(c.currentL3),
+        currentName: L3META[c.currentL3]?.name,
+        judge_raw: jv, ref_raw: rv,
+        fable: { kinnitus: cc.fableConf || null, viigimurdja: cc.fable || null, votes: r.fableVotes || [] },
+        resolution: rClean,
+        final_handle: finalHandle, final_decision: finalDec,
+        newName: r.finalName || r.newName || null, parentL2: r.parentL2 || null,
+        gate: r.gate || null, signal: !!r.signal,
+        changed: finalHandle === "NEW" ? true : (!!finalHandle && finalHandle !== c.currentL3) });
+    } catch (e) {
+      results.set(c.ck, { nonChain: true, failed: true, path: "VIGA:" + String(e.message || e).slice(0, 50) });
+      decisions.push({ ck: c.ck, n: c.n, currentL3: c.currentL3, judge_raw: jv, ref_raw: rv, failed: true,
+        path: "VIGA:" + String(e.message || e).slice(0, 80), final_handle: c.currentL3, changed: false });
+      chainErr++;
+    }
+    // Fable-kulu + live-valve inkrementaalselt — piir $CAP → PEATU + SALVESTA SEIS (mitte throw)
     addUsage("claude-fable-5", { input_tokens: chain.fableUsage.input, output_tokens: chain.fableUsage.output });
     chain.fableUsage.input = 0; chain.fableUsage.output = 0;   // ära topelt-loe
-    if ((++done) % 200 === 0) { process.stderr.write(`  resolveChain ${done}/${CLUSTERS.length}  Fable-klastreid ${fableClusters}  $${COST.usd.toFixed(2)}\r`); guard("resolve"); }
+    done++;
+    if (done % 200 === 0) process.stderr.write(`  resolveChain ${done}/${CLUSTERS.length}  Fable-klastreid ${fableClusters}  $${COST.usd.toFixed(2)}\r`);
+    if (COST.usd > CAP) { console.error(`\n🛑 KULUPIIR $${CAP} ÜLETATUD ($${COST.usd.toFixed(2)}) @ resolveChain ${done}/${CLUSTERS.length} → STOPP + salvesta töödeldud seis`); stopped = true; break; }
   }
-  guard("resolve-end");
-  console.log(`\n[B] valmis: Fable-klastreid ${fableClusters}/${CLUSTERS.length} (${(100 * fableClusters / CLUSTERS.length).toFixed(1)}%), nonChain/keep ${nonChain}, ahela-vigu ${chainErr}`);
+  console.log(`\n[B] ${stopped ? "PEATATUD (kulupiir)" : "valmis"}: töödeldud ${done}/${CLUSTERS.length}, Fable-klastreid ${fableClusters} (${(100 * fableClusters / Math.max(1, done)).toFixed(1)}%), nonChain/keep ${nonChain}, ahela-vigu ${chainErr}`);
 
-  // ── LEIUD ──
+  // ── LEIUD (ainult töödeldud klastrid; stop korral = osaline) ──
   const findings = [];
   for (const c of CLUSTERS) {
     const t = results.get(c.ck); if (!t || t.nonChain) continue;
@@ -513,8 +534,22 @@ async function stageFull() {
   const gardenFindings = findings.filter((f) => f.garden);
   const gardenProducts = gardenFindings.reduce((s, f) => s + (f.n || 1), 0);
 
+  // ── PÜSIV OTSUSTE-FAIL (taaskasutuseks execute'is ILMA uute API-kutseteta) ──
+  const DECISIONS_FILE = `${REPO}/reports/audit-full-decisions-2026-10-07.json`;
+  fs.writeFileSync(DECISIONS_FILE, JSON.stringify({
+    generated_at: new Date().toISOString(), mode: "full-chain-batch", dry_run: true,
+    cap_usd: CAP, stopped, processed: done, n_clusters: CLUSTERS.length,
+    key_integrity: keyIntegrity,
+    note: "DRY audit. 'decisions[]' = täielik ahela-provenance per klaster (judge_raw + ref_raw + fable + resolution + final_handle). Execute: loe 'changed:true' read, rakenda final_handle/newName/parentL2 — ILMA uute LLM-kutseteta.",
+    decisions,
+  }, null, 2));
+
   const out = { generated_at: new Date().toISOString(), mode: "full-chain-batch", cap_usd: CAP,
-    n_clusters: CLUSTERS.length, judge_ok: jByKey.size, ref_ok: rByKey.size, judge_fail: jFail, ref_fail: rFail,
+    stopped, processed: done, coverage_pct: +(100 * done / CLUSTERS.length).toFixed(1),
+    n_clusters: CLUSTERS.length, judge_ok: jByKey.size, ref_ok: rByKey.size,
+    judge_fail: jRes.reqFail, ref_fail: rRes.reqFail,
+    judge_unresolved: jRes.unresolved.length, ref_unresolved: rRes.unresolved.length,
+    judge_foreign: jRes.foreign.length, ref_foreign: rRes.foreign.length,
     fable_clusters: fableClusters, nonchain_keep: nonChain, chain_errors: chainErr,
     n_findings: findings.length, moves: moves.length, moves_products: prodMoves,
     new_l3: newL3.length, new_l3_products: prodNew,
@@ -522,13 +557,15 @@ async function stageFull() {
     garden_findings: gardenFindings.length, garden_products: gardenProducts,
     cost_usd: +COST.usd.toFixed(2), cost_by_model: Object.fromEntries(Object.entries(COST.byModel).map(([k, v]) => [k, +v.toFixed(2)])),
     cache_read_tok: COST.cacheReadTok, cache_write_tok: COST.cacheWriteTok, calls: COST.calls,
-    batch_ids: { judge: jBatch.batchId, ref: rBatch.batchId },
-    overlaps, findings };
+    key_integrity: keyIntegrity,
+    decisions_file: DECISIONS_FILE, overlaps, findings };
   fs.writeFileSync(`${SP}/audit-full.json`, JSON.stringify(out, null, 2));
-  console.log(`\n── TÄIS-AUDIT TULEMUS ──`);
+  console.log(`\n── TÄIS-AUDIT TULEMUS ${stopped ? "(PEATATUD — OSALINE)" : "(TÄIELIK)"} ──`);
+  console.log(`kaetud: ${done}/${CLUSTERS.length} (${out.coverage_pct}%)`);
   console.log(`leide: ${out.n_findings}  (liiguta: ${moves.length} = ${prodMoves} toodet · uus-L3 shadow: ${newL3.length} = ${prodNew} toodet)`);
   console.log(`cross-main liigutusi: ${out.cross_main_moves} · garden-leide: ${gardenFindings.length} (${gardenProducts} toodet)`);
   console.log(`KULU KOKKU $${out.cost_usd}  (cache_read ${COST.cacheReadTok} tok, cache_write ${COST.cacheWriteTok} tok, kutseid ${COST.calls})`);
+  console.log(`otsused salvestatud: ${DECISIONS_FILE} (${decisions.length} kirjet, taaskasutuseks execute'is)`);
   return out;
 }
 
