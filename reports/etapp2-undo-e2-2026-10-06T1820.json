@@ -1,0 +1,235 @@
+{
+  "batch_id": "e2-2026-10-06T1820",
+  "created_at": "2026-10-06T18:20:52.106Z",
+  "actor": "claude-code-test",
+  "new_l3": [
+    {
+      "id": "pcat_e2_lumberstorageracks",
+      "handle": "v4-ladu-riiulid-restid-pika-materjali-hoiuriiulid",
+      "name": "Pika materjali hoiuriiulid",
+      "parent_id": "pcat_22shelf"
+    },
+    {
+      "id": "pcat_e2_solarpanelstoragebags",
+      "handle": "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-paikesepaneelide-hoiu-ja-kandekotid",
+      "name": "Päikesepaneelide hoiu- ja kandekotid",
+      "parent_id": "pcat_v4_l11_2"
+    },
+    {
+      "id": "pcat_e2_energystoragebatteries",
+      "handle": "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-energiasalvestusakud",
+      "name": "Energiasalvestusakud",
+      "parent_id": "pcat_v4_l11_2"
+    },
+    {
+      "id": "pcat_e2_utilitycordsparacord",
+      "handle": "v4-sport-ja-vaba-aeg-matkavarustus-ja-telkimine-universaalnoorid-ja-paracord",
+      "name": "Universaalnöörid ja paracord",
+      "parent_id": "pcat_v4_l12_5"
+    }
+  ],
+  "attach": [
+    {
+      "product_id": "prod_01M35WHGGMD39TCEE3AENPEN3P",
+      "cat_id": "pcat_e2_lumberstorageracks"
+    },
+    {
+      "product_id": "prod_01M35WHGGMHATQ74AR4F8K54X5",
+      "cat_id": "pcat_e2_lumberstorageracks"
+    },
+    {
+      "product_id": "prod_01M35WHGSMRNV05C4HJSST6SJQ",
+      "cat_id": "pcat_e2_lumberstorageracks"
+    },
+    {
+      "product_id": "prod_01M35WHGGMY9XQ68VN6KXP1BXA",
+      "cat_id": "pcat_e2_lumberstorageracks"
+    },
+    {
+      "product_id": "prod_01M35WHGGMNCF2CSRDMJHVB7M9",
+      "cat_id": "pcat_e2_lumberstorageracks"
+    },
+    {
+      "product_id": "prod_01M35WHGGMY986JEZE92VK5HKW",
+      "cat_id": "pcat_e2_lumberstorageracks"
+    },
+    {
+      "product_id": "prod_01M35WHGSM6AY9W7TT5ZR01EFJ",
+      "cat_id": "pcat_e2_lumberstorageracks"
+    },
+    {
+      "product_id": "prod_01M35WHGGMDCRK18KKXJPZWWSB",
+      "cat_id": "pcat_e2_lumberstorageracks"
+    },
+    {
+      "product_id": "prod_01M35WHGGMKGAJACMQF5GX4FDF",
+      "cat_id": "pcat_e2_lumberstorageracks"
+    },
+    {
+      "product_id": "prod_01M47BPXRCN3N8RNJMKGGCQ9YP",
+      "cat_id": "pcat_e2_solarpanelstoragebags"
+    },
+    {
+      "product_id": "prod_01M47BPXRCFD3A7DJP84NWMW4J",
+      "cat_id": "pcat_e2_solarpanelstoragebags"
+    },
+    {
+      "product_id": "prod_01M47BPXRCPXDMRA0K1XX7FJK0",
+      "cat_id": "pcat_e2_solarpanelstoragebags"
+    },
+    {
+      "product_id": "prod_01M47BPXRCVD75VBZJRMPH212W",
+      "cat_id": "pcat_e2_solarpanelstoragebags"
+    },
+    {
+      "product_id": "prod_01M2Y5BB4WEYKFR2B8K0265SCE",
+      "cat_id": "pcat_e2_energystoragebatteries"
+    },
+    {
+      "product_id": "prod_01M2Y5BB4XG10FXSN6QFG29SR7",
+      "cat_id": "pcat_e2_energystoragebatteries"
+    },
+    {
+      "product_id": "prod_01M2Y5BB4WQWBEVEKBMTA95N49",
+      "cat_id": "pcat_e2_energystoragebatteries"
+    },
+    {
+      "product_id": "prod_01M38EY888NMVK3YVDC54C1PP4",
+      "cat_id": "pcat_e2_utilitycordsparacord"
+    },
+    {
+      "product_id": "prod_01M2Y5BB4XSPPBDF81BG64PS0K",
+      "cat_id": "pcat_e2_utilitycordsparacord"
+    },
+    {
+      "product_id": "prod_01M2Y5BB4X7V02CKTGCKD73WWZ",
+      "cat_id": "pcat_e2_utilitycordsparacord"
+    },
+    {
+      "product_id": "prod_01M3ZMGQTAZ5ZAEDQ40KPQTQJS",
+      "cat_id": "pcat_el_12x11_2"
+    },
+    {
+      "product_id": "prod_01M3ZMGQTAHPYDMQTSGVCXVQEJ",
+      "cat_id": "pcat_el_12x11_2"
+    },
+    {
+      "product_id": "prod_01M3ZMGQTAYR3F2WG19TQSDQF7",
+      "cat_id": "pcat_el_12x11_2"
+    },
+    {
+      "product_id": "prod_01M3ZMGQTAH25H95FS2S0MGR15",
+      "cat_id": "pcat_el_12x11_2"
+    },
+    {
+      "product_id": "prod_01M3ZMGQTASRT83QDJ3FPX9FP5",
+      "cat_id": "pcat_el_12x11_2"
+    },
+    {
+      "product_id": "prod_01M3ZMGQTA5P6K0XAHAYN9A369",
+      "cat_id": "pcat_el_12x11_2"
+    },
+    {
+      "product_id": "prod_01M47BPXRBW1BKG4VHBE9A5JX7",
+      "cat_id": "pcat_el_12x11_2"
+    },
+    {
+      "product_id": "prod_01M47BPXRBYT6YHSAZA6ZNAAJE",
+      "cat_id": "pcat_el_12x11_2"
+    },
+    {
+      "product_id": "prod_01M2Y5BB4Y2ERSXC1P7SA1PRTD",
+      "cat_id": "pcat_t3f_12_9"
+    },
+    {
+      "product_id": "prod_01M3QXAMRZPAHEKQKFQM0F28JF",
+      "cat_id": "pcat_t3f_12_9"
+    },
+    {
+      "product_id": "prod_01M2Y5BBY2RM5W4EMKMDRW176E",
+      "cat_id": "pcat_el_12x1_31"
+    },
+    {
+      "product_id": "prod_01M2Y5BBY2A8R43D55R21P4K0D",
+      "cat_id": "pcat_el_12x1_31"
+    },
+    {
+      "product_id": "prod_01M3B1AZAG9RSYV48SPTVXGPB2",
+      "cat_id": "pcat_1pack"
+    },
+    {
+      "product_id": "prod_01M38EY8895X412YYPPQ3GMDVN",
+      "cat_id": "pcat_1pack"
+    },
+    {
+      "product_id": "prod_01M44SA6VQ3TBTWAM72T8D33ZM",
+      "cat_id": "pcat_ks_5x2_2"
+    },
+    {
+      "product_id": "prod_01M44SA6VQF83HMTPWYMRXZ5QP",
+      "cat_id": "pcat_ks_5x2_2"
+    },
+    {
+      "product_id": "prod_01M2Y5BBPQ0CKPSAYPQAYJTDKS",
+      "cat_id": "pcat_el_12x1_16"
+    },
+    {
+      "product_id": "prod_01M2Y5BBPQAWHNCNEGK17W4TTG",
+      "cat_id": "pcat_el_12x1_16"
+    },
+    {
+      "product_id": "prod_01M3TFQAYVF7R8TANTJZ6KAKJ1",
+      "cat_id": "pcat_el_12x2_11"
+    },
+    {
+      "product_id": "prod_01M3X2426XY0WJF1DQMNF0R0BM",
+      "cat_id": "pcat_t3f_1_7"
+    },
+    {
+      "product_id": "prod_01M33A4RHBS2GBDAE4VXDK5RVE",
+      "cat_id": "pcat_mv_6x4_8"
+    }
+  ],
+  "product_ids": [
+    "prod_01M35WHGGMD39TCEE3AENPEN3P",
+    "prod_01M35WHGGMHATQ74AR4F8K54X5",
+    "prod_01M35WHGSMRNV05C4HJSST6SJQ",
+    "prod_01M35WHGGMY9XQ68VN6KXP1BXA",
+    "prod_01M35WHGGMNCF2CSRDMJHVB7M9",
+    "prod_01M35WHGGMY986JEZE92VK5HKW",
+    "prod_01M35WHGSM6AY9W7TT5ZR01EFJ",
+    "prod_01M35WHGGMDCRK18KKXJPZWWSB",
+    "prod_01M35WHGGMKGAJACMQF5GX4FDF",
+    "prod_01M47BPXRCN3N8RNJMKGGCQ9YP",
+    "prod_01M47BPXRCFD3A7DJP84NWMW4J",
+    "prod_01M47BPXRCPXDMRA0K1XX7FJK0",
+    "prod_01M47BPXRCVD75VBZJRMPH212W",
+    "prod_01M2Y5BB4WEYKFR2B8K0265SCE",
+    "prod_01M2Y5BB4XG10FXSN6QFG29SR7",
+    "prod_01M2Y5BB4WQWBEVEKBMTA95N49",
+    "prod_01M38EY888NMVK3YVDC54C1PP4",
+    "prod_01M2Y5BB4XSPPBDF81BG64PS0K",
+    "prod_01M2Y5BB4X7V02CKTGCKD73WWZ",
+    "prod_01M3ZMGQTAZ5ZAEDQ40KPQTQJS",
+    "prod_01M3ZMGQTAHPYDMQTSGVCXVQEJ",
+    "prod_01M3ZMGQTAYR3F2WG19TQSDQF7",
+    "prod_01M3ZMGQTAH25H95FS2S0MGR15",
+    "prod_01M3ZMGQTASRT83QDJ3FPX9FP5",
+    "prod_01M3ZMGQTA5P6K0XAHAYN9A369",
+    "prod_01M47BPXRBW1BKG4VHBE9A5JX7",
+    "prod_01M47BPXRBYT6YHSAZA6ZNAAJE",
+    "prod_01M2Y5BB4Y2ERSXC1P7SA1PRTD",
+    "prod_01M3QXAMRZPAHEKQKFQM0F28JF",
+    "prod_01M2Y5BBY2RM5W4EMKMDRW176E",
+    "prod_01M2Y5BBY2A8R43D55R21P4K0D",
+    "prod_01M3B1AZAG9RSYV48SPTVXGPB2",
+    "prod_01M38EY8895X412YYPPQ3GMDVN",
+    "prod_01M44SA6VQ3TBTWAM72T8D33ZM",
+    "prod_01M44SA6VQF83HMTPWYMRXZ5QP",
+    "prod_01M2Y5BBPQ0CKPSAYPQAYJTDKS",
+    "prod_01M2Y5BBPQAWHNCNEGK17W4TTG",
+    "prod_01M3TFQAYVF7R8TANTJZ6KAKJ1",
+    "prod_01M3X2426XY0WJF1DQMNF0R0BM",
+    "prod_01M33A4RHBS2GBDAE4VXDK5RVE"
+  ]
+}

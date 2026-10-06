@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-19T08:47:33.167Z",
+  "generated_at": "2026-10-06T18:21:57.591Z",
   "nodes": {
     "v4-tooriistad-ja-tarvikud": {
       "handle": "v4-tooriistad-ja-tarvikud",
@@ -12407,7 +12407,8 @@
         "v4-sport-ja-vaba-aeg-matkavarustus-ja-telkimine-matkatooriistad-ja-labidad",
         "v4-sport-ja-vaba-aeg-matkavarustus-ja-telkimine-matkavalgustid-ja-laternad",
         "v4-sport-ja-vaba-aeg-matka-hadaabi-ellujaamisvarustus",
-        "v4-sport-ja-vaba-aeg-matkavarustus-ja-telkimine-matkavoodid-ja-madratsid"
+        "v4-sport-ja-vaba-aeg-matkavarustus-ja-telkimine-matkavoodid-ja-madratsid",
+        "v4-sport-ja-vaba-aeg-matkavarustus-ja-telkimine-universaalnoorid-ja-paracord"
       ],
       "image_path": "/cat-thumbs/v4-sport-ja-vaba-aeg-matkavarustus-ja-telkimine-matkalauad-ja-koogijaamad.webp",
       "image_source": "inherited",
@@ -12581,6 +12582,16 @@
       "parent_handle": "v4-sport-ja-vaba-aeg-matkavarustus-ja-telkimine",
       "child_handles": [],
       "image_path": "/cat-thumbs/v4-sport-ja-vaba-aeg-matkavarustus-ja-telkimine-matkavoodid-ja-madratsid.webp",
+      "image_source": "direct"
+    },
+    "v4-sport-ja-vaba-aeg-matkavarustus-ja-telkimine-universaalnoorid-ja-paracord": {
+      "handle": "v4-sport-ja-vaba-aeg-matkavarustus-ja-telkimine-universaalnoorid-ja-paracord",
+      "name_en": "Universaalnöörid ja paracord",
+      "name_et": "Universaalnöörid ja paracord",
+      "level": 3,
+      "parent_handle": "v4-sport-ja-vaba-aeg-matkavarustus-ja-telkimine",
+      "child_handles": [],
+      "image_path": "/cat-thumbs/v4-sport-ja-vaba-aeg-matkavarustus-ja-telkimine-universaalnoorid-ja-paracord.webp",
       "image_source": "direct"
     },
     "v4-sport-ja-vaba-aeg-ouetegevus-ja-hobi": {
@@ -15101,7 +15112,9 @@
         "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-inverterid",
         "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-kaasaskantavad-elektrijaamad",
         "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-tuulegeneraatorid",
-        "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-generaatori-katted"
+        "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-generaatori-katted",
+        "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-energiasalvestusakud",
+        "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-paikesepaneelide-hoiu-ja-kandekotid"
       ],
       "image_path": "/cat-thumbs/v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-paikeseenergia-komplektid.webp",
       "image_source": "inherited",
@@ -15225,6 +15238,26 @@
       "parent_handle": "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid",
       "child_handles": [],
       "image_path": "/cat-thumbs/v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-generaatori-katted.webp",
+      "image_source": "direct"
+    },
+    "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-energiasalvestusakud": {
+      "handle": "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-energiasalvestusakud",
+      "name_en": "Energiasalvestusakud",
+      "name_et": "Energiasalvestusakud",
+      "level": 3,
+      "parent_handle": "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid",
+      "child_handles": [],
+      "image_path": "/cat-thumbs/v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-energiasalvestusakud.webp",
+      "image_source": "direct"
+    },
+    "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-paikesepaneelide-hoiu-ja-kandekotid": {
+      "handle": "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-paikesepaneelide-hoiu-ja-kandekotid",
+      "name_en": "Päikesepaneelide hoiu- ja kandekotid",
+      "name_et": "Päikesepaneelide hoiu- ja kandekotid",
+      "level": 3,
+      "parent_handle": "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid",
+      "child_handles": [],
+      "image_path": "/cat-thumbs/v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-paikesepaneelide-hoiu-ja-kandekotid.webp",
       "image_source": "direct"
     },
     "v4-elektritarvikud-ja-valgustus-mootorid-ja-osad": {
@@ -16627,13 +16660,13 @@
         "v4-ladu-kaupluse-sisustus",
         "v4-ladu-pakendamine"
       ],
-      "image_path": "/cat-thumbs/v4-ladu-metallriiulid.webp",
+      "image_path": "/cat-thumbs/v4-ladu-veepudelite-hoidikud-riiulid.webp",
       "image_source": "inherited",
       "description_en": "Ladu, hoiustamine ja pakendamine — products.",
       "description_et": "Ladu, hoiustamine ja pakendamine — tooted.",
       "tagline_en": "Ladu, hoiustamine ja pakendamine",
       "tagline_et": "Ladu, hoiustamine ja pakendamine",
-      "image_donor": "v4-ladu-metallriiulid"
+      "image_donor": "v4-ladu-veepudelite-hoidikud-riiulid"
     },
     "v4-ladu-riiulid-restid": {
       "handle": "v4-ladu-riiulid-restid",
@@ -16648,10 +16681,12 @@
         "v4-ladu-veepudelite-hoidikud-riiulid",
         "v4-ladu-filamendi-kunstirestid",
         "v4-ladu-lae-hoiustamisrestid",
-        "v4-ladu-riiulid-kaubaalused"
+        "v4-ladu-riiulid-kaubaalused",
+        "v4-ladu-riiulid-restid-pika-materjali-hoiuriiulid"
       ],
-      "image_path": "/cat-thumbs/v4-suurkoogiseadmed-hoiustamine-ja-riiulid-porandariiulid-ja-ladustamisrestid.webp",
-      "image_source": "fuzzy"
+      "image_path": "/cat-thumbs/v4-ladu-metallriiulid.webp",
+      "image_source": "inherited",
+      "image_donor": "v4-ladu-metallriiulid"
     },
     "v4-ladu-metallriiulid": {
       "handle": "v4-ladu-metallriiulid",
@@ -16721,6 +16756,16 @@
       "parent_handle": "v4-ladu-riiulid-restid",
       "child_handles": [],
       "image_path": "/cat-thumbs/v4-ladu-riiulid-kaubaalused.webp",
+      "image_source": "direct"
+    },
+    "v4-ladu-riiulid-restid-pika-materjali-hoiuriiulid": {
+      "handle": "v4-ladu-riiulid-restid-pika-materjali-hoiuriiulid",
+      "name_en": "Pika materjali hoiuriiulid",
+      "name_et": "Pika materjali hoiuriiulid",
+      "level": 3,
+      "parent_handle": "v4-ladu-riiulid-restid",
+      "child_handles": [],
+      "image_path": "/cat-thumbs/v4-ladu-riiulid-restid-pika-materjali-hoiuriiulid.webp",
       "image_source": "direct"
     },
     "v4-ladu-mobiilsed-karud": {
@@ -21764,61 +21809,6 @@
       "child_handles": [],
       "image_path": "/cat-thumbs/v4-tooriied-ja-isikukaitse-kukkumiskaitse-ja-korgustoo-ohutuskoied-lifelined.webp",
       "image_source": "direct"
-    },
-    "v4-outlet": {
-      "handle": "v4-outlet",
-      "name_en": "Outlet",
-      "name_et": "Outlet",
-      "level": 1,
-      "parent_handle": null,
-      "child_handles": [
-        "v4-outlet-rikutud-pakend",
-        "v4-outlet-defektiga-toode",
-        "v4-outlet-leiunurk"
-      ],
-      "image_path": null,
-      "image_source": "none",
-      "concept_only": true,
-      "fixed_l2": true,
-      "seisund_label_et": "Outlet toode",
-      "seisund_label_en": "Outlet product",
-      "description_en": "Outlet — discounted, open-box and damaged-packaging products, full quality.",
-      "description_et": "Outlet — soodushinnaga, avatud ja rikutud pakendiga tooted, täisväärtuslikud.",
-      "tagline_en": "Outlet — discounted & open-box",
-      "tagline_et": "Outlet — soodushinnaga ja avatud pakend"
-    },
-    "v4-outlet-rikutud-pakend": {
-      "handle": "v4-outlet-rikutud-pakend",
-      "name_en": "Damaged packaging",
-      "name_et": "Kahjustatud pakend",
-      "level": 2,
-      "parent_handle": "v4-outlet",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none",
-      "concept_only": true
-    },
-    "v4-outlet-defektiga-toode": {
-      "handle": "v4-outlet-defektiga-toode",
-      "name_en": "Defective product",
-      "name_et": "Defektiga toode",
-      "level": 2,
-      "parent_handle": "v4-outlet",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none",
-      "concept_only": true
-    },
-    "v4-outlet-leiunurk": {
-      "handle": "v4-outlet-leiunurk",
-      "name_en": "Lost & found",
-      "name_et": "Leiunurk",
-      "level": 2,
-      "parent_handle": "v4-outlet",
-      "child_handles": [],
-      "image_path": null,
-      "image_source": "none",
-      "concept_only": true
     }
   },
   "order": [
@@ -22942,6 +22932,7 @@
     "v4-sport-ja-vaba-aeg-matkavarustus-ja-telkimine-matkavalgustid-ja-laternad",
     "v4-sport-ja-vaba-aeg-matka-hadaabi-ellujaamisvarustus",
     "v4-sport-ja-vaba-aeg-matkavarustus-ja-telkimine-matkavoodid-ja-madratsid",
+    "v4-sport-ja-vaba-aeg-matkavarustus-ja-telkimine-universaalnoorid-ja-paracord",
     "v4-sport-ja-vaba-aeg-ouetegevus-ja-hobi",
     "v4-sport-ja-vaba-aeg-ouetegevus-toukerattad",
     "v4-sport-ja-vaba-aeg-ouetegevus-ja-hobi-rebounderid-ja-tagasiloogivorgud",
@@ -23177,6 +23168,8 @@
     "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-kaasaskantavad-elektrijaamad",
     "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-tuulegeneraatorid",
     "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-generaatori-katted",
+    "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-energiasalvestusakud",
+    "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-paikesepaneelide-hoiu-ja-kandekotid",
     "v4-elektritarvikud-ja-valgustus-mootorid-ja-osad",
     "v4-elektritarvikud-ja-valgustus-mootorid-ja-osad-lineaaraktuaatorid",
     "v4-elektritarvikud-ja-valgustus-mootorid-ja-osad-harjadeta-alalisvoolumootorid",
@@ -23309,6 +23302,7 @@
     "v4-ladu-filamendi-kunstirestid",
     "v4-ladu-lae-hoiustamisrestid",
     "v4-ladu-riiulid-kaubaalused",
+    "v4-ladu-riiulid-restid-pika-materjali-hoiuriiulid",
     "v4-ladu-mobiilsed-karud",
     "v4-ladu-teenindus-utility-karud",
     "v4-ladu-mobiilsed-hoiustusrestid-karud",
@@ -23750,10 +23744,6 @@
     "v4-tooriied-ja-isikukaitse-kukkumiskaitse-ja-korgustoo",
     "v4-tooriied-ja-isikukaitse-kukkumiskaitse-ja-korgustoo-kolmjalad-paastestatiivid",
     "v4-tooriied-ja-isikukaitse-kukkumiskaitse-ja-korgustoo-fliplinid-kukkumissummutid",
-    "v4-tooriied-ja-isikukaitse-kukkumiskaitse-ja-korgustoo-ohutuskoied-lifelined",
-    "v4-outlet",
-    "v4-outlet-rikutud-pakend",
-    "v4-outlet-defektiga-toode",
-    "v4-outlet-leiunurk"
+    "v4-tooriied-ja-isikukaitse-kukkumiskaitse-ja-korgustoo-ohutuskoied-lifelined"
   ]
 }
