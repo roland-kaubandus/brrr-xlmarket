@@ -1,5 +1,6 @@
 {
-  "spu:10280": {
+  "__v2": true,
+  "vote:spu:10280:0": {
     "action": "new_l3",
     "target_handle": null,
     "new_l3_name": "Puiduriiulid",
@@ -28,7 +29,7 @@
       "inference_geo": "global"
     }
   },
-  "spu:15229": {
+  "vote:spu:15229:0": {
     "action": "new_l3",
     "target_handle": null,
     "new_l3_name": "LiFePO4 energiasalvestusakud",
@@ -55,7 +56,7 @@
       "inference_geo": "global"
     }
   },
-  "spu:16937": {
+  "vote:spu:16937:0": {
     "action": "new_l3",
     "target_handle": null,
     "new_l3_name": "Mängulauad",
@@ -77,7 +78,7 @@
       "inference_geo": "global"
     }
   },
-  "spu:17113": {
+  "vote:spu:17113:0": {
     "action": "assign_existing",
     "target_handle": "v4-suurkook-peo-serveerimisdispenserid",
     "new_l3_name": null,
@@ -99,7 +100,7 @@
       "inference_geo": "global"
     }
   },
-  "spu:16546": {
+  "vote:spu:16546:0": {
     "action": "assign_existing",
     "target_handle": "v4-sport-ja-vaba-aeg-manguasjad-lastele-mangukoogid-ja-toidumangud",
     "reason": "Mänguasi-ostukäru on osa poe- ja toidumängu rollimängust — sama funktsioon ja mängutulem kui mänguköökidel/toidumängudel, erineb vaid vormilt, seega variant mitte eraldi L3.",
@@ -118,5 +119,137 @@
       "service_tier": "standard",
       "inference_geo": "global"
     }
+  },
+  "vote:spu:10280:1": {
+    "action": "assign_existing",
+    "target_handle": "v4-ladu-seinale-kinnitatavad-hoiususteemid",
+    "new_l3_name": null,
+    "parent_l2_handle": null,
+    "reason": "Seinale kinnitatav konsool-puiduhoidik on funktsioonilt ja väljundilt (esemete hoiustamine seinakinnitusega riiulisüsteemil) sama mis olemasolev «Seinale kinnitatavad hoiusüsteemid» L3 — erineb vaid hoiustatava materjali (puit) ja vormi poolest, mis on variant, mitte eri tüüp."
+  },
+  "vote:spu:10280:2": {
+    "action": "new_l3",
+    "target_handle": null,
+    "new_l3_name": "Puidu- ja torumaterjali hoidikud",
+    "parent_l2_handle": "v4-ladu",
+    "considered_l3s": [
+      "v4-ladu-seinale-kinnitatavad-hoiususteemid",
+      "v4-ladu-metallriiulid",
+      "v4-garaaziseadmed-garaazi-hoiustamine-rehviriiulid-ja-hoidikud"
+    ],
+    "considered_reason": "Seinale kinnitatavad hoiusüsteemid on tasapinnalised/üldotstarbelised; lumber rack on konsool-tüüpi (kandekäpad) pika puidu/torude horisontaalseks hoiustamiseks — ostja otsib seda eraldi, nagu näitab ka õde-L3 rehviriiulite olemasolu sarnase spetsialiseerituse tasemel.",
+    "reason": "Konsool-käppadega puiduhoidiku funktsioon ja väljund (pika materjali horisontaalne kandmine) erineb üldistest seinariiulitest/hoiusüsteemidest piisavalt, et ostja otsiks seda eraldi kategooriana — vastab täpselt reegli näitele 'konsool-puiduriiul ≠ seinariiul'."
+  },
+  "confirm:spu:17277": {
+    "action": "new_l3",
+    "target_handle": null,
+    "new_l3_name": "Päikesepaneelide hoiukotid",
+    "parent_l2_handle": "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid",
+    "considered_l3s": [
+      "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-paikesepaneelid",
+      "v4-ladu-veekindlad-kohvrid",
+      "v4-sport-ja-vaba-aeg-reisikotid-ja-kohvrid-pehmed-kohvrid"
+    ],
+    "considered_reason": "Päikesepaneelid on energiatootmisseade, mitte hoiutarvik; veekindlad kohvrid on jäigad universaalkohvrid ja pehmed kohvrid reisipagas — ostja otsib spetsiifiliselt kokkupandavate paneelide mõõtudele sobivat kaitsekotti, mida ükski neist ei asenda.",
+    "reason": "Päikesepaneelide hoiukott on funktsioonilt (paneelide kaitse ja transport) eraldi tootetüüp, mida ei kata ei paneelide ega üldkohvrite kategooriad, seega väärib oma L3 taastuvenergia tarvikuna."
+  },
+  "vote:spu:15229:1": {
+    "action": "new_l3",
+    "target_handle": null,
+    "new_l3_name": "LiFePO4 energiasalvestusakud",
+    "parent_l2_handle": "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid",
+    "reason": "LiFePO4 süvatsükli-aku on tsüklilise energiasalvestuse toode (RV/paat/päikesesüsteem), mille funktsioon ja väljund erinevad põhimõtteliselt käivitusvoolu andvast sõidukiakust ning valmis-elektrijaamast; considered_l3s: [v4-autovaruosad-ja-tarvikud-aku-soiduki-ja-mootorrattaakud, v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-kaasaskantavad-elektrijaamad] — kumbki ei kata eraldiseisvat salvestusakut, mida ostja otsib eraldi."
+  },
+  "vote:spu:15229:2": {
+    "action": "new_l3",
+    "target_handle": null,
+    "new_l3_name": "LiFePO4 energiasalvestusakud",
+    "parent_l2_handle": "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid",
+    "reason": "LiFePO4 süvatsükli-salvestusaku (4000+ tsüklit, BMS) funktsioon on tsükliline energiasalvestus (RV/paat/päikeseenergia), mitte käivitusvool nagu sõidukiakudel ega valmis-elektrijaam — ostja ei saa neid omavahel asendada, seega semantiline kaugus mõlemast kaalutud L3-st on liiga suur."
+  },
+  "confirm:spu:16941": {
+    "action": "new_l3",
+    "target_handle": null,
+    "new_l3_name": "Paracord-nöörid",
+    "parent_l2_handle": "v4-sport-ja-vaba-aeg-matka",
+    "reason": "Paracord erineb funktsioonilt nii terastrossidest (pole tõstevahend) kui ka ellujäämiskomplektidest (on nöörimaterjal, mitte varustuskomplekt), mistõttu ostja otsib seda eraldi matka-/ellujäämisnöörina.",
+    "considered_l3s": [
+      "v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine-trossikoied",
+      "v4-sport-ja-vaba-aeg-matka-hadaabi-ellujaamisvarustus"
+    ],
+    "considered_reason": "Trossiköied on tõstmiseks mõeldud terastrossid (erinev funktsioon ja kandevõime-sertifikaat); ellujäämisvarustus on komplektid/tarvikud, mitte rullides nöörimaterjal — semantiline kaugus mõlemast on suurem kui õdede-L3-de tüüpiline kaugus."
+  },
+  "vote:spu:16937:1": {
+    "action": "new_l3",
+    "target_handle": null,
+    "new_l3_name": "Mängulauad",
+    "parent_l2_handle": "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud",
+    "reason": "Mängulaud on mööbliese (laud mängimiseks ja söömiseks), mitte lauamäng ise — ostja, kes otsib mängulauda, ei saa seda asendada malekomplekti või lauamänguga, seega semantiline kaugus lähimast L3-st (lauamängud ja malekomplektid) on funktsiooni ja väljundi mõttes liiga suur."
+  },
+  "vote:spu:16937:2": {
+    "action": "new_l3",
+    "target_handle": null,
+    "new_l3_name": "Mängulauad",
+    "parent_l2_handle": "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud",
+    "reason": "Mängulaud on mööbliese (laud mängimiseks ja söömiseks), mitte lauamäng ise — ostja, kes otsib lauamängulauda, ei saa seda asendada malekomplekti või lauamänguga, seega funktsioon ja väljund erinevad lähimast L3-st piisavalt eraldi kategooria jaoks."
+  },
+  "name:spu:10280": {
+    "ok": true,
+    "finalName": "Saematerjali hoiuriiulid",
+    "attempts": [
+      {
+        "name": "Puiduriiulid",
+        "ok": false,
+        "reason": "Eesti klient loeb «Puiduriiulid» kui puidust valmistatud mööbliriiulid, aga tegelikult on tooted seinale kinnitatavad konsoolriiulid saematerjali ja puidu hoiustamiseks.",
+        "confusable_with": "puidust tehtud riiulid (materjal=puit, mööbel)",
+        "proposed": "Saematerjali hoiuriiulid"
+      },
+      {
+        "name": "Saematerjali hoiuriiulid",
+        "ok": true,
+        "reason": "Nimi «Saematerjali hoiuriiulid» ütleb üheselt, et tegu on riiulitega saematerjali/puidu hoiustamiseks, mis vastab täpselt tegelikele toodetele (lumber rack'id).",
+        "confusable_with": null,
+        "proposed": null
+      }
+    ]
+  },
+  "name:spu:17277": {
+    "ok": true,
+    "finalName": "Päikesepaneelide hoiu- ja kandekotid",
+    "attempts": [
+      {
+        "name": "Päikesepaneelide hoiu- ja kandekotid",
+        "ok": true,
+        "reason": "Nimi ütleb üheselt, et tegu on päikesepaneelide hoiustamiseks ja kandmiseks mõeldud kottidega, mis vastab täpselt tegelikele toodetele (kokkupandavate paneelide hoiukotid).",
+        "confusable_with": null,
+        "proposed": null
+      }
+    ]
+  },
+  "name:spu:15229": {
+    "ok": true,
+    "finalName": "LiFePO4 energiasalvestusakud",
+    "attempts": [
+      {
+        "name": "LiFePO4 energiasalvestusakud",
+        "ok": true,
+        "reason": "Nimi kirjeldab tooteid täpselt – kõik on LiFePO4 akud energiasalvestuseks ning «energiasalvestusakud» teeb otstarbe selgeks ka neile, kes keemiatüüpi ei tunne.",
+        "confusable_with": null,
+        "proposed": null
+      }
+    ]
+  },
+  "name:spu:16941": {
+    "ok": true,
+    "finalName": "Paracord ja universaalnöörid",
+    "attempts": [
+      {
+        "name": "Paracord ja universaalnöörid",
+        "ok": true,
+        "reason": "Nimi ütleb selgelt, et tegu on nööride/paracordiga, ja klient saab kohe aru, et seal on tugevad universaalkasutusega nöörid; ei ole segi aetav ühegi kõrvalkategooriaga ega tavakeele muu tähendusega.",
+        "confusable_with": null,
+        "proposed": null
+      }
+    ]
   }
 }
