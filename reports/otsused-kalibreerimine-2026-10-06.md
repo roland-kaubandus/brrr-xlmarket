@@ -104,3 +104,38 @@ Kui kohtunik + referents valivad SAMALE tootele **eri olemas-L3** → paar salve
 ## Failid + harud
 Kood: `scripts/lib/judge.mjs` · `scripts/lib/overlap-signal.mjs` · `scripts/calibration-reference.mjs` · `scripts/synonym-backfill.mjs` · `scripts/synonym-backfill-undo.mjs` · `scripts/import-pipeline.sh [6.7]`.
 Raportid: see fail · `reports/syn-backfill-dry-full.json` · `reports/calib-reference-classify-POST.md` · `reports/calib-classify.PRE-dupgate.json`.
+
+---
+
+## A — EXECUTE TEHTUD (2026-10-06, Tarmo kinnitus, tingimused 1–7)
+
+- **#1 DRY taaskasutus:** `synonym-backfill.mjs --from reports/syn-backfill-dry-full.json --execute` → **0 API-kutset** (verdiktid DRY-JSON-ist).
+- **#2 varukoopia:** `backups/product_synonym-pre-synconsensus-20261006-1712.dump` (2.3M, 32910 rida). Hook [6.7] aktiivne, asub ENNE [7] reindeksit (rida 280 < 297).
+- **#3 kirjutatud:**
+
+| tegevus | arv | staatus |
+|---|---|---|
+| product_synonym lisatud | **+2668** | (2675 consensus_ok, 7 juba olemas → NOT EXISTS skip) |
+| synonym_review resolved | 2675 | |
+| synonym_review rejected | 814 | |
+| synonym_review safe_default | 365 | |
+| **synonym_review pending** | **0** | ✓ |
+
+- **batch_id:** `synbf-2026-10-06T15-14-07-939Z` · review_decision_log actor_detail=`auto-judge` channel=`pipeline` status=applied · undo: `node scripts/synonym-backfill-undo.mjs synbf-2026-10-06T15-14-07-939Z`
+- **#4 Meili sync:** 101894 sõna.
+- **#5 otsingu kontroll (enne → pärast, 0 kirillitsat, 0 regressiooni):**
+
+| termin | enne | pärast | |
+|---|---|---|---|
+| tankur | 140 | 140 | = |
+| rollaator | 246 | 246 | = |
+| õhktõstuk | 55 | 55 | = |
+| ohktostuk | 55 | 55 | = |
+| sign cutter | 122 | **130** | ↑ |
+| crankcase splitter | 2 | 2 | = |
+| pool handrail | 433 | 433 | = |
+| puksite pressimise vahend | 5 | 5 | = |
+| gym handle | 266 | 266 | = |
+
+→ **ükski ei halvenenud**, sign cutter paranes +8, 0 kirillitsat, top-tooted asjakohased → **PASS, undo EI vaja**.
+- **#6 digest dry-run:** `sünon 0` (sünonüümide 🔴 kadunud; pending=0). Klassifikaator jääb DRY (40 ootel).
