@@ -154,13 +154,16 @@ else
   echo "  0 uut SKU-d → strip vahele"
 fi
 
-# ── [4] CLASSIFY (host, propose-not-create) ──────────────────────────────────
-echo "[4/7] classify (Opus propose-not-create)"
+# ── [4] CLASSIFY (host, Opus-ahel: assign LIVE + uus-L3 SHADOW) ───────────────
+echo "[4/7] classify (Opus-ahel — assign LIVE, uus-L3 SHADOW → auto-create ise)"
+# pipeline-classify-chain.mjs = SAMA otsustusahel kui ETAPP1 dry-run (scripts/lib/classify-chain.mjs, HARD RULE #5).
+# Variant 1 "shadow enne": olemas-L3 assign → LIVE kohe; UUS L3 → SHADOW (väravad läbib, EI loo) kuni auto-create
+#   ISE sisse lülitub (shadow-ledger evaluateTransition, HARD RULE #6 — inimene EI otsusta).
 # source=unhomed: kata VÄRSKED draftid [3] + olemas-backlog (kõik kategooriata, draft VÕI published).
-# KREDIIT-DEGRADE: probe maas → SKIP + tühjenda classify-skus (kaskaad [6]/[6.5] skip); mid-run krediit (rc=3)
+# KREDIIT/API-DEGRADE: probe maas → SKIP + tühjenda classify-skus (kaskaad [6]/[6.5] skip); mid-run (rc=3)
 #   → degrade HOIATUS, laoseis/hind/reindeks JÄTKUB. Muu rc → süsteemne fail.
 if [ "$CREDIT_OK" = "1" ]; then
-  CL_OUT=$(node "$ROOT/scripts/pipeline-classify.mjs" --source unhomed $EXFLAG --out /tmp/pipeline-classify-results.json 2>&1) && CL_RC=0 || CL_RC=$?
+  CL_OUT=$(node "$ROOT/scripts/pipeline-classify-chain.mjs" --source unhomed $EXFLAG --out /tmp/pipeline-classify-chain-results.json 2>&1) && CL_RC=0 || CL_RC=$?
   echo "$CL_OUT" | sed 's/^/  /'
   CL_PENDING=$( { echo "$CL_OUT" | grep -oE 'CREDIT_PENDING=[0-9]+' | tail -1 | cut -d= -f2; } || true); CL_PENDING=${CL_PENDING:-0}
   case "$CL_RC" in

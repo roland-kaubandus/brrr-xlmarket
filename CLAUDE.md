@@ -466,6 +466,13 @@ Kõik 4 rakendavad 9-punkti sisu-reeglit. **Uue maini / feed-impordi järel: joo
 
 > Kinnitatud siht: **Opus-klassifikaator jääb tootmises, resolver-v2 asendub** (resolver-v2 ei tunne uusi tüüpe → kalastus/ladu/SDS satuvad review-bucketisse, ja jääb VEVOR-sortimeni kasvades aina kaugemale). Täisspets (koodita): `reports/b-klassifikaator-taisautomaatika-spets.md`.
 
+> **✅ SEIS 2026-10-06 (ETAPP2 + öine hook EHITATUD):**
+> - **ETAPP2 backfill VALMIS** — batch `e2-2026-10-06T1820`, 4 uut L3 (40 toodet), undo `node scripts/classifier-undo.mjs e2-2026-10-06T1820`.
+> - **ÖINE HOOK EHITATUD + torus** (`scripts/pipeline-classify-chain.mjs`, import-pipeline.sh **[4]**). HARD RULE #5 täidetud: **SAMA otsustusahel** (`scripts/lib/classify-chain.mjs`) jookseb nii ETAPP1 dry-runis (`classify-chain-dryrun.mjs`) kui öises hookis — üks transform, kaks kutsujat.
+> - **VARIANT 1 "shadow enne" AKTIIVNE:** olemas-L3 assign → **LIVE kohe**; **UUS L3 → SHADOW** (masin läbib kõik väravad, logib "oleks loonud" `classifier_shadow_ledger`-isse + Telegram, AGA EI loo). **MITTE inimese järjekorda, MITTE review-bucketi.**
+> - **AUTO-ÜLEMINEK (HARD RULE #6, inimene EI otsusta):** auto-create lülitub ISE sisse, kui ≥3 PÄRIS uut-tüüpi (DISTINCT cluster_key) läbisid kõik väravad stabiilselt + 0 koodiviga (`shadow-ledger.evaluateTransition`, kriteerium KOODIS mitte ööde-arv). Koodiviga väravas → shadow tagasi + Telegram. Seis staging-DB-s: `classifier_config.auto_create_enabled=false` (shadow-režiim, ohutu algseis).
+> - **SSoT-moodulid git-is:** `scripts/lib/classify-chain.mjs` (ahel §2c asümm-kindlus + väravad), `scripts/lib/l3-gates.mjs` (nimi/SEO/pilt/täielikkus), `scripts/lib/shadow-ledger.mjs` (shadow + transition), `judge.rateClassifyReferenceClusters` (klastri-tasandi pime referents).
+
 **🔄 REEGLI-MUUTUS 2026-10-06 (HARD RULE #6 kooskõla):** vana 2026-07-22 "cron EI LOO L3, inimene kinnitab" on **ASENDATUD**. Uus:
 
 **🔒 PÕHIREEGEL — cron LOOB L3-sid ISE, väravatega.** Masin töötab ise (HARD RULE #6); nähtavus + tagasipööratavus asendavad eel-kinnituse:
