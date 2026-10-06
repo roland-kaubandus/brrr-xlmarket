@@ -189,9 +189,10 @@ M.push("⏱ Lävendid:");
 if (sSyn) M.push(sigLine("sünon.", sSyn));
 if (sClsf) M.push(sigLine("klass.", sClsf));
 if (!sSyn && !sClsf) M.push("   (midagi ei oota)");
-// NB: linkLine (env XL_ADMIN_BASE_URL + fail-loud) on arvutatud ülal, aga EI kuvata veel —
-// link aktiveeritakse sammus 2, kui xl-admin/review-bucket leht on olemas. Env+fail-loud jäävad koodi.
-void linkLine;
+// Ülevaatuse link (AKTIVEERITUD 2026-10-06 — xl-admin/review-bucket leht olemas, XL_ADMIN_BASE_URL .env-is).
+// ADMIN_BASE seatud → 👉 link; puudu → fail-loud (ülal) + hoiatus-rida, EI vaikimisi prod-domeen.
+M.push("");
+M.push(linkLine);
 const text = M.join("\n");
 console.log(text);
 
