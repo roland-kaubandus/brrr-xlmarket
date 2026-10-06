@@ -157,9 +157,10 @@ Kõik ÜHES transaktsioonis (BEGIN…COMMIT); iga värav = enne-commit kontroll.
 |---|---|---|
 | 1 | **DUP-värav** (semantiline "kas L3 juba olemas mujal?" — B2 considered_l3s + cross-main) | leitakse vaste → **EI loo**, assign sinna L3-sse |
 | 2 | **Über-frag guard L2** ([[over-frag-guard-l2]]) — ei loo uut L2 ühe L3 jaoks | kinnita olemas-L2 alla; pole sobivat L2 → HOLD + signaal |
-| 3 | **Nime-reegel + KLIENDI-ARUSAAMINE** — parim Eesti nimi LOOMISHETKEL (Eesti etalon: 1a.ee/ajtooted.ee/…) **JA** kliendi-arusaamise kontroll (vt all) | nimi kukub → mudel pakub uue, värav kontrollib uuesti (max 3×); ikka kukub → fallback olemas-koju |
+| 3 | **Nime-reegel + KLIENDI-ARUSAAMINE** — parim Eesti nimi LOOMISHETKEL (Eesti etalon: 1a.ee/ajtooted.ee/…) **JA** kliendi-arusaamise kontroll: (1) seg-aetavus (2) **termin-ees-keeld (3a)** (3) **sirvimistasand (3b)** (vt all) | nimi kukub → mudel pakub uue, värav kontrollib uuesti (max 3×); ikka kukub → fallback olemas-koju |
+| 3.5 | **TÄIELIKKUS-VÄRAV (HARD RULE #5, Tarmo 2026-10-06)** — uus L3 saab AUTOMAATSELT KÕIK, mis olemas-L3-del on (vt all: pilt·ET+EN·slug·SEO·nav·Meili) | ükskõik mis puudu → **värav kukub, L3 jääb LOOMATA, tooted olemas-koju**. Mitte poolikut kategooriat poodi. |
 | 4 | **DB-migratsioon** — loo L3 mpath+handle (transaktsioonis, ON_ERROR_STOP) | SQL-viga → ROLLBACK |
-| 5 | **`inv-taxonomy.mjs`** (23 invariant: SEG/DUP/STRUCT/NAME/WIDTH/ORPHAN/COMPLETE) | FAIL → ROLLBACK + Telegram |
+| 5 | **invariandid** (23 kontrolli: SEG/DUP/STRUCT/NAME/WIDTH/ORPHAN/COMPLETE + pilt INV-20/21/26) — **PÄRIS-FAIL: `scripts/check-taxonomy-invariants.mjs`** (`inv-taxonomy.mjs` on spetsis kasutatud alias, seda faili EI OLE — ehita `check-taxonomy-invariants.mjs` vastu) | FAIL → ROLLBACK + Telegram |
 | 6 | **`lock-harness.mjs post`** (distinct säilinud · mpath terve · struktuur-muutus→push · Meili värske) | FAIL → ROLLBACK + Telegram |
 | 7 | **`grab-bag-judge.mjs`** uuel L3-l (kas tahtmatult heterogeenne?) | WARN (ei blokeeri; logi) |
 | 8 | **`merge-judge.mjs`** uus L3 vs õed (kas üle-fragmenteerisime?) | KÕRGE verdikt → **REVERT loomine**, assign lähimasse õde-L3 (nagu Piirdepostid-pretsedent) |
@@ -172,11 +173,48 @@ Kõik ÜHES transaktsioonis (BEGIN…COMMIT); iga värav = enne-commit kontroll.
 
 **Näide, mida värav PEAB püüdma:** «Puiduriiulid» — klient loeb "puidust **tehtud** riiulid" (riiul kui mööbel, materjal=puit), aga tegelikult on **puitmaterjali/saematerjali HOIUSTUS-riiulid** (konsool-käpad lauale/saematerjalile). Tähendus on seg-aetav → **FAIL** → mudel pakub selgema nime (nt «Saematerjali hoiuriiulid» / «Puidu laoriiulid»).
 
+**(3a) TEHNILINE TERMIN/LÜHEND EI ALUSTA NIME (Tarmo 2026-10-06):** nime **esimene sõna** peab olema tavakeelne ja mõistetav — klient peab esimese sõna põhjal aru saama, mis tooted seal on. Tehniline termin/lühend/mudel-kood (LiFePO4, IP65, BMS, SKU-stiil) **EI tohi olla nime alguses**; kui vaja, läheb see täpsustusena **taha** (nt «LiFePO4 energiasalvestusakud» → **«Energiasalvestusakud (LiFePO4)»** — esimene sõna «Energiasalvestusakud» on arusaadav). *Põhjus: sirvija loeb vasakult; lühend ees = tühi pilk.*
+
+**(3b) NIMI SIRVIMISTASANDIL, MITTE ÜHE TOOTETÜÜBI JÄRGI (Tarmo 2026-10-06):** nimi peab **mahutama tulevased sarnased tooted**, mitte kirjeldama ainult praegust ainsat alltüüpi. Kui kitsas nimi välistaks naaber-variandid, mille feed tõenäoliselt toob → laienda sirvimistasandi nimeni **AINULT kui DUP-värav lubab** (laiem nimi ei tohi kokku joosta olemas-L3-ga). Nt «Päikesepaneelide hoiu- ja kandekotid» → **«Päikesepaneelide tarvikud»** (mahutab hoidikud/kinnitused/juhtmed), kui ükski olemas-L3 pole juba «…tarvikud». Kui laiendus tekitaks DUP-i → jää kitsa (aga arusaadava) nime juurde.
+
+**Need 3 alakontrolli (seg-aetavus · termin-ees · sirvimistasand) jooksevad SAMAS Fable-kutses** (üks nime-hindamine, kolm kriteeriumi). Kukub ükskõik milline → mudel pakub uue → recheck.
+
 **Tsükkel:** kukkunud nimi → mudel pakub uue → värav kontrollib uuesti, **max 3 korda**. Kui 3 katse järel ikka segane → **fallback olemas-koju** (ei loo L3 segase nimega; toode müügis, signaal kogub kuni selge nimi tekib). Sama konservatiivsus nagu §2c: parem olemas-kodu kui segane uus struktuur.
 
 **Undo:** iga auto-loomine logib ÜHE `review_decision_log` rea (actor=`auto-classifier`, channel=`pipeline`, batch_id, affected=loodud L3 + paigutatud tooted). `classifier-undo <batch_id>` → kustutab loodud L3, tooted tagasi HOLD-i, log `undone`. Sama muster nagu sünonüüm-undo (A).
 
 **Kukkumis-granulaarsus (HARD RULE #5):** üksik toode/klaster kukub → **skip + jätka**, EI peata kogu pipeline'i. Süsteemne viga (API maas, kogu partii) → `exit!=0` + Telegram + degrade (laoseis jätkub, [[api-maas-degrade-otsus]]).
+
+---
+
+## 4.5 TÄIELIKKUS-VÄRAV — uus L3 saab AUTOMAATSELT KÕIK (HARD RULE #5, gate #3.5 detail)
+
+> **Põhimõte (Tarmo 2026-10-06):** uus L3 EI tohi jõuda poodi poolikuna. Ta peab saama **automaatselt** kõik, mis olemas-L3-del on — muidu on tootel hind + import, aga kodu on katki (pildita kaart, tühi SEO, puuduv nav/facet) → **praktikas müügil olematu**. Täielikkus-värav kontrollib, et iga vara on **enne commit'i olemas**; ükski puudu → **ROLLBACK + tooted olemas-koju**, mitte poolik kategooria.
+
+**Mida "täielik L3" tähendab (kontrollitud koodist, mitte oletus) — 11 kohustuslikku vara:**
+
+| # | Vara | Allikas / väli | Kuidas uus L3 selle AUTOMAATSELT saab | Kontroll (invariant / fail) |
+|---|---|---|---|---|
+| 1 | **Handle/slug** (v4-scoped, unikaalne) | `product_category.handle` + generated.json `handle` | deriveeri L2-vanemast + ASCII-slug nimest (sama muster kui olemas-L3) | INV-03 (unikaalne handle) · STRUCT-01 |
+| 2 | **ET nimi** | `taxonomy_node_translation` (et) + generated.json `name_et` | nimeväravast (gate #3, kinnitatud) | NAME-01 (pole inglise) |
+| 3 | **EN nimi** | `taxonomy_node_translation` (en) + generated.json `name_en` | Fable tõlge ET→EN (sama kutse kui SEO, vt all) | — |
+| 4 | **Nav-struktuur** (parent + level + lapsed) | generated.json `parent_handle`/`level`/`child_handles` | über-frag värav (gate #2) resolvib kehtiva L2 → `gen-category-tree.mjs` ehitab puu | INV-04 (puu = yaml) |
+| 5 | **Pilt (hele valge taust)** | generated.json `image_path` + `image_source` (≠`none`) | **primaar:** `build-cat-thumbs-l3.mjs` → L3 top-toote pilt Meili/VEVOR CDN-ist → webp 400×400 valge taust (sharp flatten); **fallback:** Gemini `image-pipeline/orchestrator.mjs` (valge taust "#FFFFFF seamless"). Uuel L3-l on ALATI ≥3 toodet → top-toote pilt olemas → thumb deriveerub | **INV-20** (100% pilt) · **INV-21** (webp kettal) · **INV-26** (image_source≠none) |
+| 6 | **webp-fail kettal** | `storefront/public/cat-thumbs/<handle>.webp` | samm 5 kirjutab faili | INV-21 |
+| 7 | **SEO-tekst (ET+EN kirjeldus + tagline)** | generated.json `description_et/en` + `tagline_et/en` | **Fable-generaator** (uus samm — yaml-is on ainult placeholder "— products."): üks Fable-kutse → `{name_en, description_et, description_en, tagline_et, tagline_en}` nime+toodete põhjal | täielikkus-värav: kõik 4 välja mitte-tühjad + ≠placeholder |
+| 8 | **Meili facet** (ancestors indekseeritud) | Meili `products` index `category_handles`/`ancestors` | tooted bind'itakse L3-le → `index-meilisearch.mjs` reindeks → facet tekib | INV-14 (Meili ancestors) · lehe tootearv Meili'st |
+| 9 | **DB product_category rida** (mpath) | `product_category` + `taxonomy_node_meta` (v4-marker) | `seed-taxonomy-from-yaml.mjs` muster / otse-INSERT transaktsioonis (gate #4) | INV-04 · lock-harness mpath-terve |
+| 10 | **Tooted seotud** (≥1, carousel ei peida) | `product_category_product` | §4 paigutus bind'ib klastri tooted uude L3-sse | INV-25 (carousel peidab 0-toote L3) |
+| 11 | **Täis-deploy** (nav+Meili+git mõlemad harud) | 4-sammu deploy (§4 gate #9, §4b) | genyM SSoT-regen → Meili → push → redeploy | §4b D4 tervisekontroll |
+
+**Värava loogika (enne §4 commit'i, transaktsiooni sees):**
+1. Genereeri kõik varad **mällu/ajutisse** (SEO-tekst Fable'ist, EN-nimi, pildi-allikas resolve'itud, handle deriveeritud).
+2. **Pilt-pre-check:** kas L3 top-tootel on Meili/CDN pilt (primaar) VÕI Gemini suudab genereerida (fallback)? Kumbki ei õnnestu → **värav kukub**.
+3. **SEO-pre-check:** Fable tagastas 4 mitte-tühja välja (≠placeholder)? Ei → **värav kukub**.
+4. Ükski vara puudu / genereerimata → **ROLLBACK (transaktsioon pole commit'itud), tooted → olemas-koju (LCA/assign), Telegram** («L3 X jäi loomata: puudu <vara>»).
+5. Kõik 11 olemas → jätka gate #4 (DB-migratsioon) → … → gate #9 deploy. **Alles siis on L3 "valmis".**
+
+**Jõustus (meta-reegel — reegel ilma kontrollita ei tööta):** täielikkus = `check-taxonomy-invariants.mjs` INV-20/21/26 (pilt) + INV-04/14 (nav/Meili) + INV-25 (0-toote) + `lock-harness.mjs post` (mpath+distinct+Meili-värske). Kui mõni invariant FAIL pärast loomist → §4 ROLLBACK + §4b D4 auto-rollback. **Proosa-lubadus "saab kõik" EI piisa — INV-d peatavad pool, enne kui pood seda näeb.**
 
 ---
 

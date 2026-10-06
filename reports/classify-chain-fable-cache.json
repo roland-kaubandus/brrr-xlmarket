@@ -251,5 +251,113 @@
         "proposed": null
       }
     ]
+  },
+  "name2:spu:10280": {
+    "ok": true,
+    "finalName": "Pika materjali hoiuriiulid",
+    "attempts": [
+      {
+        "name": "Puiduriiulid",
+        "ok": false,
+        "reason": "Nimi on segi aetav puitmööbliga, sest tooted on seina- ja keevitatud riiulid saematerjali/puidu ladustamiseks, mitte puidust riiulid.",
+        "confusable_with": "Tavakeeles loetakse «puidust TEHTUD riiulid» (mööbel) ja kõrvalkategooria «Metallriiulid» tugevdab materjalipõhist tõlgendust, kuigi tooted on saematerjali HOIUSTAMISE riiulid",
+        "term_at_start": false,
+        "browse_ok": true,
+        "broader": null,
+        "broaden_applied": null,
+        "broaden_dup_blocked": null,
+        "proposed": "Saematerjali hoiuriiulid"
+      },
+      {
+        "name": "Saematerjali hoiuriiulid",
+        "ok": true,
+        "reason": "Nimi ütleb selgelt, et tegu on saematerjali hoiustamise riiulitega (mitte puidust mööbliriiulitega) ega kattu kõrval-L3-dega; kuna osa tooteid hoiustab ka torusid (Wood Pipe Storage), võiks tulevikus kaaluda laiemat nime pikkade materjalide (latid, torud, profiilid) jaoks.",
+        "confusable_with": null,
+        "term_at_start": false,
+        "browse_ok": true,
+        "broader": "Pika materjali hoiuriiulid",
+        "broaden_applied": "Pika materjali hoiuriiulid",
+        "broaden_dup_blocked": null,
+        "proposed": null
+      }
+    ]
+  },
+  "name2:spu:17277": {
+    "ok": true,
+    "finalName": "Päikesepaneelide hoiu- ja kandekotid",
+    "attempts": [
+      {
+        "name": "Päikesepaneelide hoiu- ja kandekotid",
+        "ok": true,
+        "reason": "Nimi on arusaadav ja algab tavakeelse sõnaga, kuid on kitsas ainult kottidele — laiem «Päikesepaneelide tarvikud» mahutaks ka tulevased sarnased tooted (nt puhastus- ja kaitsevahendid).",
+        "confusable_with": null,
+        "term_at_start": false,
+        "browse_ok": false,
+        "broader": "Päikesepaneelide tarvikud",
+        "broaden_applied": null,
+        "broaden_dup_blocked": "Päikesepaneelide tarvikud",
+        "proposed": null
+      }
+    ]
+  },
+  "name2:spu:15229": {
+    "ok": true,
+    "finalName": "Energiasalvestusakud",
+    "attempts": [
+      {
+        "name": "LiFePO4 energiasalvestusakud",
+        "ok": false,
+        "reason": "Tehniline lühend LiFePO4 on nime alguses (rikub 3a) ja keemia-põhine kitsendus välistaks tulevased muud akutüübid, seega termin tahapoole ja sirvimiseks laiem «Energiasalvestusakud».",
+        "confusable_with": null,
+        "term_at_start": true,
+        "browse_ok": false,
+        "broader": "Energiasalvestusakud",
+        "broaden_applied": null,
+        "broaden_dup_blocked": "Energiasalvestusakud",
+        "proposed": "Energiasalvestusakud (LiFePO4)"
+      },
+      {
+        "name": "Energiasalvestusakud (LiFePO4)",
+        "ok": true,
+        "reason": "Nimi algab tavakeelse sõnaga ja LiFePO4 täpsustus on taga, kuid sulgudes olev keemiatüüp kitsendab kategooria ainult ühele akutüübile — laiem «Energiasalvestusakud» mahutaks tulevikus ka teisi akukeemiaid (nt AGM, geel).",
+        "confusable_with": null,
+        "term_at_start": false,
+        "browse_ok": false,
+        "broader": "Energiasalvestusakud",
+        "broaden_applied": "Energiasalvestusakud",
+        "broaden_dup_blocked": null,
+        "proposed": null
+      }
+    ]
+  },
+  "name2:spu:16941": {
+    "ok": true,
+    "finalName": "Universaalnöörid ja paracord",
+    "attempts": [
+      {
+        "name": "Paracord ja universaalnöörid",
+        "ok": false,
+        "reason": "Nimi algab võõrterminiga «Paracord», mis rikub (3a) reeglit — tavakeelne «universaalnöörid» ette ja termin täpsustusena taha; sisu on muidu arusaadav ega ole segi aetav kõrval-kategooriatega.",
+        "confusable_with": null,
+        "term_at_start": true,
+        "browse_ok": true,
+        "broader": "Nöörid ja köied",
+        "broaden_applied": null,
+        "broaden_dup_blocked": "Nöörid ja köied",
+        "proposed": "Universaalnöörid ja paracord"
+      },
+      {
+        "name": "Universaalnöörid ja paracord",
+        "ok": true,
+        "reason": "Esimene sõna «universaalnöörid» on tavakeelne ja arusaadav, «paracord» on täpsustusena taga; nimi mahutab nii praegused paracord-tooted kui ka tulevased muud matkanöörid ega ole segi aetav ühegi kõrval-L3-ga.",
+        "confusable_with": null,
+        "term_at_start": false,
+        "browse_ok": true,
+        "broader": null,
+        "broaden_applied": null,
+        "broaden_dup_blocked": null,
+        "proposed": null
+      }
+    ]
   }
 }

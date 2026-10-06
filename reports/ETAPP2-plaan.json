@@ -1,0 +1,419 @@
+{
+  "generated_at": "2026-10-06T17:16:31.965Z",
+  "mode": "plan",
+  "usage": {
+    "input": 2737,
+    "output": 1893,
+    "calls": 4
+  },
+  "plans": [
+    {
+      "ck": "spu:10280",
+      "name_et": "Pika materjali hoiuriiulid",
+      "name_en": "Lumber Storage Racks",
+      "handle": "v4-ladu-riiulid-restid-pika-materjali-hoiuriiulid",
+      "handleCollisionResolved": false,
+      "parentL2": "v4-ladu-riiulid-restid",
+      "parentL2_name": "Riiulid ja restid",
+      "n": 9,
+      "origin": "viigimurdja",
+      "path": "viigimurdja→new_l3 (3× hääletus: 2/3 ✓)",
+      "products": [
+        {
+          "id": "prod_01M35WHGGMD39TCEE3AENPEN3P",
+          "title": "Lumber Rack, 4-Tier 2-Pack 100 kg per Tier, Welded Wood Pipe Storage,"
+        },
+        {
+          "id": "prod_01M35WHGGMHATQ74AR4F8K54X5",
+          "title": "Lumber Rack, 4-Tier 2-Pack 50 kg per Tier, Foldable Wood Storage, Wall"
+        },
+        {
+          "id": "prod_01M35WHGSMRNV05C4HJSST6SJQ",
+          "title": "Lumber Rack, 6-Tier 2-Pack 50 kg per Tier, Foldable Wood Storage, Wall"
+        },
+        {
+          "id": "prod_01M35WHGGMY9XQ68VN6KXP1BXA",
+          "title": "Lumber Rack, 3-Tier 4-Pack 100 kg per Tier, Welded Wood Pipe Storage,"
+        },
+        {
+          "id": "prod_01M35WHGGMNCF2CSRDMJHVB7M9",
+          "title": "Lumber Rack, 3-Tier 2-Pack 50 kg per Tier, Foldable Wood Storage, Wall"
+        },
+        {
+          "id": "prod_01M35WHGGMY986JEZE92VK5HKW",
+          "title": "Lumber Rack, 3-Tier 4-Pack 50 kg per Tier, Foldable Wood Storage, Wall"
+        },
+        {
+          "id": "prod_01M35WHGSM6AY9W7TT5ZR01EFJ",
+          "title": "Lumber Rack, 4-Tier 4-Pack 50 kg per Tier, Foldable Wood Storage, Wall"
+        },
+        {
+          "id": "prod_01M35WHGGMDCRK18KKXJPZWWSB",
+          "title": "Lumber Rack, 3-Tier 3-Pack 50 kg per Tier, Foldable Wood Storage, Wall"
+        },
+        {
+          "id": "prod_01M35WHGGMKGAJACMQF5GX4FDF",
+          "title": "Lumber Rack, 3-Tier 6-Pack 50 kg per Tier, Foldable Wood Storage, Wall"
+        }
+      ],
+      "assets": {
+        "name_en": "Lumber Storage Racks",
+        "description_et": "Seinale kinnitatavad hoiuriiulid puidu, torude, liistude ja muu pika materjali korrastatud hoiustamiseks töökojas või garaažis. Sobivad nii hobimeistrile kui ka professionaalile, kes soovib põranda vabaks hoida. Ostul pane tähele riiulitasandite arvu, kandevõimet tasandi kohta (50–100 kg) ja seina tüüpi, kuhu riiul kinnitatakse.",
+        "description_en": "Wall-mounted storage racks for keeping lumber, pipes, mouldings and other long materials neatly organised in your workshop or garage. Suitable for both hobbyists and professionals who want to keep the floor clear. When buying, check the number of tiers, load capacity per tier (50–100 kg) and the type of wall the rack will be mounted on.",
+        "tagline_et": "Pikk materjal seinale – põrand vabaks!",
+        "tagline_en": "Long materials on the wall – floor space freed!",
+        "image_desc_et": "Heledal valgel taustal seinale kinnitatud mitmetasandiline metallist hoiuriiul, millel lebavad puitlauad ja -liistud."
+      },
+      "completeness": {
+        "checks": [
+          {
+            "n": "1 handle unikaalne",
+            "pass": true,
+            "note": "v4-ladu-riiulid-restid-pika-materjali-hoiuriiulid"
+          },
+          {
+            "n": "2 name_et (nimevärav)",
+            "pass": true,
+            "note": "Pika materjali hoiuriiulid"
+          },
+          {
+            "n": "3 name_en (Fable)",
+            "pass": true,
+            "note": "Lumber Storage Racks"
+          },
+          {
+            "n": "4 nav parent-L2 kehtiv",
+            "pass": true,
+            "note": "v4-ladu-riiulid-restid"
+          },
+          {
+            "n": "5 pilt (CDN primaar / Gemini fallback)",
+            "pass": true,
+            "note": "9 toodet → top-toote CDN-pilt → webp valge taust"
+          },
+          {
+            "n": "6 webp genereeritav",
+            "pass": true,
+            "note": "cat-thumbs/v4-ladu-riiulid-restid-pika-materjali-hoiuriiulid.webp (build-cat-thumbs-l3.mjs)"
+          },
+          {
+            "n": "7 SEO (ET+EN kirjeldus + tagline)",
+            "pass": true,
+            "note": "4/4 välja täidetud"
+          },
+          {
+            "n": "8 Meili facet",
+            "pass": true,
+            "note": "tooted bind → reindeks → facet"
+          },
+          {
+            "n": "9 DB product_category rida",
+            "pass": true,
+            "note": "seed/INSERT transaktsioonis (gate #4)"
+          },
+          {
+            "n": "10 tooted seotud (≥1)",
+            "pass": true,
+            "note": "9 toodet"
+          },
+          {
+            "n": "11 täis-deploy",
+            "pass": true,
+            "note": "genyM → Meili → push mõlemad → redeploy (§4b)"
+          }
+        ],
+        "pass": true,
+        "fails": []
+      }
+    },
+    {
+      "ck": "spu:17277",
+      "name_et": "Päikesepaneelide hoiu- ja kandekotid",
+      "name_en": "Solar Panel Storage Bags",
+      "handle": "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-paikesepaneelide-hoiu-ja-kandekotid",
+      "handleCollisionResolved": false,
+      "parentL2": "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid",
+      "parentL2_name": "Taastuvenergia ja generaatorid",
+      "n": 4,
+      "origin": "konsensus",
+      "path": "konsensus→new_l3 (1× kinnitus ✓)",
+      "products": [
+        {
+          "id": "prod_01M47BPXRCN3N8RNJMKGGCQ9YP",
+          "title": "Solar Panel Storage Bag for 2 x 200W Foldable Solar Panels, Waterproof"
+        },
+        {
+          "id": "prod_01M47BPXRCFD3A7DJP84NWMW4J",
+          "title": "Solar Panel Storage Bag Holds up to 2 x 200W Foldable Solar Panels, Li"
+        },
+        {
+          "id": "prod_01M47BPXRCPXDMRA0K1XX7FJK0",
+          "title": "Solar Panel Storage Bag for 2 x 400W Foldable Solar Panels, Waterproof"
+        },
+        {
+          "id": "prod_01M47BPXRCVD75VBZJRMPH212W",
+          "title": "Solar Panel Storage Bag for 5 x 300W Foldable Solar Panels, Waterproof"
+        }
+      ],
+      "assets": {
+        "name_en": "Solar Panel Storage Bags",
+        "description_et": "Siit leiad vastupidavad hoiu- ja kandekotid kokkupandavatele päikesepaneelidele. Veekindlad kotid kaitsevad paneele niiskuse, tolmu ja kriimustuste eest nii transpordil kui ka hoiustamisel. Koti valikul jälgi paneelide arvu ja võimsust (nt 200 W või 400 W), et mahutavus sobiks sinu komplektiga.",
+        "description_en": "Durable storage and carrying bags for foldable solar panels. Waterproof bags protect your panels from moisture, dust and scratches during transport and storage. When choosing a bag, check the panel count and wattage (e.g. 200W or 400W) to ensure the right fit for your setup.",
+        "tagline_et": "Kaitse oma päikesepaneele teel ja laos!",
+        "tagline_en": "Protect your solar panels on the go!",
+        "image_desc_et": "Hele valgel taustal must veekindel kandekott, milles on kokkupandav päikesepaneel, nähtavad on tugevad käepidemed ja tõmblukk."
+      },
+      "completeness": {
+        "checks": [
+          {
+            "n": "1 handle unikaalne",
+            "pass": true,
+            "note": "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-paikesepaneelide-hoiu-ja-kandekotid"
+          },
+          {
+            "n": "2 name_et (nimevärav)",
+            "pass": true,
+            "note": "Päikesepaneelide hoiu- ja kandekotid"
+          },
+          {
+            "n": "3 name_en (Fable)",
+            "pass": true,
+            "note": "Solar Panel Storage Bags"
+          },
+          {
+            "n": "4 nav parent-L2 kehtiv",
+            "pass": true,
+            "note": "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid"
+          },
+          {
+            "n": "5 pilt (CDN primaar / Gemini fallback)",
+            "pass": true,
+            "note": "4 toodet → top-toote CDN-pilt → webp valge taust"
+          },
+          {
+            "n": "6 webp genereeritav",
+            "pass": true,
+            "note": "cat-thumbs/v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-paikesepaneelide-hoiu-ja-kandekotid.webp (build-cat-thumbs-l3.mjs)"
+          },
+          {
+            "n": "7 SEO (ET+EN kirjeldus + tagline)",
+            "pass": true,
+            "note": "4/4 välja täidetud"
+          },
+          {
+            "n": "8 Meili facet",
+            "pass": true,
+            "note": "tooted bind → reindeks → facet"
+          },
+          {
+            "n": "9 DB product_category rida",
+            "pass": true,
+            "note": "seed/INSERT transaktsioonis (gate #4)"
+          },
+          {
+            "n": "10 tooted seotud (≥1)",
+            "pass": true,
+            "note": "4 toodet"
+          },
+          {
+            "n": "11 täis-deploy",
+            "pass": true,
+            "note": "genyM → Meili → push mõlemad → redeploy (§4b)"
+          }
+        ],
+        "pass": true,
+        "fails": []
+      }
+    },
+    {
+      "ck": "spu:15229",
+      "name_et": "Energiasalvestusakud",
+      "name_en": "Energy Storage Batteries",
+      "handle": "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-energiasalvestusakud",
+      "handleCollisionResolved": false,
+      "parentL2": "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid",
+      "parentL2_name": "Taastuvenergia ja generaatorid",
+      "n": 3,
+      "origin": "viigimurdja",
+      "path": "viigimurdja→new_l3 (3× hääletus: 3/3 ✓)",
+      "products": [
+        {
+          "id": "prod_01M2Y5BB4WEYKFR2B8K0265SCE",
+          "title": "24V 100Ah LiFePO4 Lithium Battery 4000+ Cycles 100A BMS with Bluetooth"
+        },
+        {
+          "id": "prod_01M2Y5BB4XG10FXSN6QFG29SR7",
+          "title": "24V 50Ah LiFePO4 Lithium Battery 4000+ Cycles 50A BMS with Bluetooth,"
+        },
+        {
+          "id": "prod_01M2Y5BB4WQWBEVEKBMTA95N49",
+          "title": "24V 100Ah LiFePO4 Lithium Battery 4000+ Cycles Built-in 100A BMS, Lith"
+        }
+      ],
+      "assets": {
+        "name_en": "Energy Storage Batteries",
+        "description_et": "Siit leiad kvaliteetsed LiFePO4-liitiumakud päikeseenergia salvestamiseks, matkaautodele, paatidele ja autonoomsetele elektrisüsteemidele. Pika elueaga akud (4000+ laadimistsüklit) on varustatud sisseehitatud BMS-kaitsega ning paljudel mudelitel ka Bluetooth-jälgimisega. Enne ostu veendu, et aku pinge (12V/24V/48V) ja mahtuvus vastaksid sinu süsteemi vajadustele.",
+        "description_en": "Here you'll find quality LiFePO4 lithium batteries for solar energy storage, campervans, boats and off-grid power systems. Long-life batteries (4000+ charge cycles) come with built-in BMS protection, and many models feature Bluetooth monitoring. Before purchasing, make sure the battery voltage (12V/24V/48V) and capacity match your system's needs.",
+        "tagline_et": "Salvesta energia täna, kasuta homme!",
+        "tagline_en": "Store energy today, use it tomorrow!",
+        "image_desc_et": "Heledal valgel taustal sinine LiFePO4-liitiumaku klemmide ja Bluetooth-ikooniga esipaneelil."
+      },
+      "completeness": {
+        "checks": [
+          {
+            "n": "1 handle unikaalne",
+            "pass": true,
+            "note": "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-energiasalvestusakud"
+          },
+          {
+            "n": "2 name_et (nimevärav)",
+            "pass": true,
+            "note": "Energiasalvestusakud"
+          },
+          {
+            "n": "3 name_en (Fable)",
+            "pass": true,
+            "note": "Energy Storage Batteries"
+          },
+          {
+            "n": "4 nav parent-L2 kehtiv",
+            "pass": true,
+            "note": "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid"
+          },
+          {
+            "n": "5 pilt (CDN primaar / Gemini fallback)",
+            "pass": true,
+            "note": "3 toodet → top-toote CDN-pilt → webp valge taust"
+          },
+          {
+            "n": "6 webp genereeritav",
+            "pass": true,
+            "note": "cat-thumbs/v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-energiasalvestusakud.webp (build-cat-thumbs-l3.mjs)"
+          },
+          {
+            "n": "7 SEO (ET+EN kirjeldus + tagline)",
+            "pass": true,
+            "note": "4/4 välja täidetud"
+          },
+          {
+            "n": "8 Meili facet",
+            "pass": true,
+            "note": "tooted bind → reindeks → facet"
+          },
+          {
+            "n": "9 DB product_category rida",
+            "pass": true,
+            "note": "seed/INSERT transaktsioonis (gate #4)"
+          },
+          {
+            "n": "10 tooted seotud (≥1)",
+            "pass": true,
+            "note": "3 toodet"
+          },
+          {
+            "n": "11 täis-deploy",
+            "pass": true,
+            "note": "genyM → Meili → push mõlemad → redeploy (§4b)"
+          }
+        ],
+        "pass": true,
+        "fails": []
+      }
+    },
+    {
+      "ck": "spu:16941",
+      "name_et": "Universaalnöörid ja paracord",
+      "name_en": "Utility Cords & Paracord",
+      "handle": "v4-sport-ja-vaba-aeg-matkavarustus-ja-telkimine-universaalnoorid-ja-paracord",
+      "handleCollisionResolved": false,
+      "parentL2": "v4-sport-ja-vaba-aeg-matkavarustus-ja-telkimine",
+      "parentL2_name": "Matkavarustus ja telkimine",
+      "n": 3,
+      "origin": "konsensus",
+      "path": "konsensus→new_l3 (1× kinnitus ✓)",
+      "products": [
+        {
+          "id": "prod_01M38EY888NMVK3YVDC54C1PP4",
+          "title": "Paracord Rope 4.7 mm x 305 m Nylon Parachute Cord 550 Tactical, Surviv"
+        },
+        {
+          "id": "prod_01M2Y5BB4XSPPBDF81BG64PS0K",
+          "title": "Paracord Rope 4 mm x 60 m Nylon Parachute Cord 550 Tactical, Survival"
+        },
+        {
+          "id": "prod_01M2Y5BB4X7V02CKTGCKD73WWZ",
+          "title": "Paracord Rope 4 mm x 305 m Nylon Parachute Cord 550 Tactical, Survival"
+        }
+      ],
+      "assets": {
+        "name_en": "Utility Cords & Paracord",
+        "description_et": "Siit leiad vastupidavad universaalnöörid ja klassikalise 550 paracordi matkale, ellujäämisvarustusse ja igapäevasteks töödeks. Nailonist punutud nöör talub suurt koormust, ei mädane niiskuses ja sobib nii telgi kinnitamiseks, varustuse sidumiseks kui ka käevõrude punumiseks. Ostul jälgi nööri läbimõõtu, rulli pikkust ja tõmbetugevust – 550-tüüpi paracord kannatab kuni u 250 kg koormust.",
+        "description_en": "Durable utility cords and classic 550 paracord for hiking, survival kits and everyday tasks. Braided nylon cord handles heavy loads, resists moisture and works for securing tents, lashing gear or weaving bracelets. When buying, check the cord diameter, spool length and tensile strength – type 550 paracord holds up to approx. 250 kg.",
+        "tagline_et": "Tugev nöör igaks olukorraks – matkal ja kodus",
+        "tagline_en": "Strong cord for every situation – outdoors and at home",
+        "image_desc_et": "Heledal valgel taustal korralikult keritud roheline paracord-nööri rull, mille ots on lahtiselt esiplaanil nähtaval."
+      },
+      "completeness": {
+        "checks": [
+          {
+            "n": "1 handle unikaalne",
+            "pass": true,
+            "note": "v4-sport-ja-vaba-aeg-matkavarustus-ja-telkimine-universaalnoorid-ja-paracord"
+          },
+          {
+            "n": "2 name_et (nimevärav)",
+            "pass": true,
+            "note": "Universaalnöörid ja paracord"
+          },
+          {
+            "n": "3 name_en (Fable)",
+            "pass": true,
+            "note": "Utility Cords & Paracord"
+          },
+          {
+            "n": "4 nav parent-L2 kehtiv",
+            "pass": true,
+            "note": "v4-sport-ja-vaba-aeg-matkavarustus-ja-telkimine"
+          },
+          {
+            "n": "5 pilt (CDN primaar / Gemini fallback)",
+            "pass": true,
+            "note": "3 toodet → top-toote CDN-pilt → webp valge taust"
+          },
+          {
+            "n": "6 webp genereeritav",
+            "pass": true,
+            "note": "cat-thumbs/v4-sport-ja-vaba-aeg-matkavarustus-ja-telkimine-universaalnoorid-ja-paracord.webp (build-cat-thumbs-l3.mjs)"
+          },
+          {
+            "n": "7 SEO (ET+EN kirjeldus + tagline)",
+            "pass": true,
+            "note": "4/4 välja täidetud"
+          },
+          {
+            "n": "8 Meili facet",
+            "pass": true,
+            "note": "tooted bind → reindeks → facet"
+          },
+          {
+            "n": "9 DB product_category rida",
+            "pass": true,
+            "note": "seed/INSERT transaktsioonis (gate #4)"
+          },
+          {
+            "n": "10 tooted seotud (≥1)",
+            "pass": true,
+            "note": "3 toodet"
+          },
+          {
+            "n": "11 täis-deploy",
+            "pass": true,
+            "note": "genyM → Meili → push mõlemad → redeploy (§4b)"
+          }
+        ],
+        "pass": true,
+        "fails": []
+      }
+    }
+  ]
+}
