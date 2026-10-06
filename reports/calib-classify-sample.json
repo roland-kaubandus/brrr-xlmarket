@@ -1,6 +1,6 @@
 {
   "kind": "classify",
-  "generated_at": "2026-10-06T09:33:46.100Z",
+  "generated_at": "2026-10-06T11:16:51.264Z",
   "seed": "xlm",
   "dry": true,
   "decisions": [
@@ -13,13 +13,12 @@
       "judge": {
         "id": "prod_01M35WHGGMD39TCEE3AENPEN3P",
         "action": "keep",
-        "new_l3_name": "Puiduhoiuriiulid (lumber rack)",
-        "parent_l2_handle": "v4-ladu",
-        "confidence": 0.6,
-        "reason": "[KOOSKÕLAVÄRAV] klaster ebajärjekindel (9 toodet, 5 erinevat otsust) → jääb ämbrisse. Seinale kinnitatav kantileverkätega puidu hoiuriiul; pole täpset L3, seinahoiusüsteemid ei kata puidu-spetsiifilist riiulit. DUP teiste lumber rack kirjetega.",
+        "group_key": "puiduhoiuriiulid-lumber-rack",
+        "confidence": 0.78,
+        "reason": "[KOOSKÕLAVÄRAV] klaster ebajärjekindel (9 toodet, 3 erinevat otsust) → jääb ämbrisse. Seinale kinnitatav kantilever-puiduhoiuriiul (lumber rack); korduv kontseptsioon mitmes kirjes, DUP-värav → ühine grupp enne new_l3.",
         "gate": "inconsistent_cluster",
-        "judge_action_orig": "new_l3",
-        "judge_target_orig": "Puiduhoiuriiulid (lumber rack)"
+        "judge_action_orig": "group",
+        "judge_target_orig": "puiduhoiuriiulid-lumber-rack"
       }
     },
     {
@@ -31,13 +30,12 @@
       "judge": {
         "id": "prod_01M35WHGGMHATQ74AR4F8K54X5",
         "action": "keep",
-        "new_l3_name": "Puiduhoiuriiulid (lumber rack)",
-        "parent_l2_handle": "v4-ladu",
-        "confidence": 0.6,
-        "reason": "[KOOSKÕLAVÄRAV] klaster ebajärjekindel (9 toodet, 5 erinevat otsust) → jääb ämbrisse. Kokkupandav seinale kinnitatav puidu hoiuriiul; sama kontseptsioon kui teised lumber rack kirjed, vajab oma L3-d.",
+        "group_key": "puiduhoiuriiulid-lumber-rack",
+        "confidence": 0.78,
+        "reason": "[KOOSKÕLAVÄRAV] klaster ebajärjekindel (9 toodet, 3 erinevat otsust) → jääb ämbrisse. Kokkupandav seinale kinnitatav puiduhoiuriiul; sama kontseptsioon kui teistel lumber rack kirjetel.",
         "gate": "inconsistent_cluster",
-        "judge_action_orig": "new_l3",
-        "judge_target_orig": "Puiduhoiuriiulid (lumber rack)"
+        "judge_action_orig": "group",
+        "judge_target_orig": "puiduhoiuriiulid-lumber-rack"
       }
     },
     {
@@ -48,13 +46,24 @@
       "cluster_key": "spu:10706",
       "judge": {
         "id": "prod_01M2Y5BB4Y2ERSXC1P7SA1PRTD",
-        "action": "keep",
-        "target_handle": "v4-ladu-teenindus-utility-karu",
-        "confidence": 0.55,
-        "reason": "[KOOSKÕLAVÄRAV] klaster ebajärjekindel (2 toodet, 2 erinevat otsust) → jääb ämbrisse. Luua/mopi hoidik koristustarvikute organiseerija ratastel — teenindus/utility-käru. Quarantine-põhjus uncertainty, andmed olemas.",
-        "gate": "inconsistent_cluster",
-        "judge_action_orig": "assign_existing",
-        "judge_target_orig": "v4-ladu-teenindus-utility-karu"
+        "action": "assign_existing",
+        "target_handle": "v4-tooriistad-ja-tarvikud-puhastustehnika-ja-tarvikud-koristuskarud",
+        "confidence": 0.72,
+        "reason": "Luua/mopi hoidik koristustarvikute organiseerijaga ratastel = koristuskäru tüüp; info piisav, quarantine põhjus ebakindlus."
+      }
+    },
+    {
+      "id": "prod_01M44SA6VQ3TBTWAM72T8D33ZM",
+      "title": "Professional 304 Stainless Steel Whipped Cream Dispenser 1000ml, Leak-",
+      "bucket": "new_l3",
+      "proposed": "v4-suurkoogiseadmed-koogitarvikud-ja-noud-kokteili-ja-baaritarvikud",
+      "cluster_key": "spu:17113",
+      "judge": {
+        "id": "prod_01M44SA6VQ3TBTWAM72T8D33ZM",
+        "action": "group",
+        "group_key": "vahukoore-dispenserid",
+        "confidence": 0.7,
+        "reason": "Roostevabast terasest vahukoore dispenser (N2O); köögitarvik, täpset L3 nimekirjas pole, korduv → grupp."
       }
     },
     {
@@ -66,13 +75,26 @@
       "judge": {
         "id": "prod_01M35WHGSMRNV05C4HJSST6SJQ",
         "action": "keep",
-        "new_l3_name": "Puiduhoiuriiulid (lumber rack)",
-        "parent_l2_handle": "v4-ladu",
-        "confidence": 0.6,
-        "reason": "[KOOSKÕLAVÄRAV] klaster ebajärjekindel (9 toodet, 5 erinevat otsust) → jääb ämbrisse. 6-astmeline seinale kinnitatav puidu hoiuriiul; sama kontseptsioon, vajab oma L3 ettepanekut.",
+        "group_key": "puiduhoiuriiulid-lumber-rack",
+        "confidence": 0.78,
+        "reason": "[KOOSKÕLAVÄRAV] klaster ebajärjekindel (9 toodet, 3 erinevat otsust) → jääb ämbrisse. Kokkupandav seinale kinnitatav puiduhoiuriiul; sama kontseptsioon kui teistel lumber rack kirjetel.",
         "gate": "inconsistent_cluster",
-        "judge_action_orig": "new_l3",
-        "judge_target_orig": "Puiduhoiuriiulid (lumber rack)"
+        "judge_action_orig": "group",
+        "judge_target_orig": "puiduhoiuriiulid-lumber-rack"
+      }
+    },
+    {
+      "id": "prod_01M44SA6VQF83HMTPWYMRXZ5QP",
+      "title": "Professional 304 Stainless Steel Whipped Cream Dispenser 500ml, Leak-F",
+      "bucket": "new_l3",
+      "proposed": "v4-suurkoogiseadmed-koogitarvikud-ja-noud-kokteili-ja-baaritarvikud",
+      "cluster_key": "spu:17113",
+      "judge": {
+        "id": "prod_01M44SA6VQF83HMTPWYMRXZ5QP",
+        "action": "group",
+        "group_key": "vahukoore-dispenserid",
+        "confidence": 0.7,
+        "reason": "500ml roostevabast terasest vahukoore dispenser; sama kontseptsioon kui 1000ml variant, DUP-värav → grupp."
       }
     },
     {
@@ -86,7 +108,7 @@
         "action": "assign_existing",
         "target_handle": "v4-sport-ja-vaba-aeg-jalgrattad-ja-tarvikud-jalgrattad",
         "confidence": 0.8,
-        "reason": "Laste jalgratas; eraldi laste-jalgratta L3 puudub, üldine jalgratad on sisuliselt õige tüüp."
+        "reason": "Laste jalgratas (14-tolline), sobib jalgrataste üldkategooriasse; eraldi laste-jalgratta L3 puudub."
       }
     },
     {
@@ -99,8 +121,8 @@
         "id": "prod_01M2Y5BBY2RM5W4EMKMDRW176E",
         "action": "assign_existing",
         "target_handle": "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-lauamangud-ja-malekomplektid",
-        "confidence": 0.5,
-        "reason": "Kahese kasutusega lauamängu-/söögilaud; peamine funktsioon mängulaud, sobib lauamängud-kategooriasse."
+        "confidence": 0.55,
+        "reason": "Lauamängu-/söögilaud kombineeritud, põhifunktsioon board game; sobib lauamängude kategooriasse."
       }
     },
     {
@@ -113,8 +135,8 @@
         "id": "prod_01M2Y5BBY2A8R43D55R21P4K0D",
         "action": "assign_existing",
         "target_handle": "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-lauamangud-ja-malekomplektid",
-        "confidence": 0.7,
-        "reason": "2-in-1 mängulaud lauamängudele (ja söögilaud); sobib lauamängude ja -komplektide alla."
+        "confidence": 0.55,
+        "reason": "Sama kontseptsioon, suurem board game / dining laud; sobib lauamängude kategooriasse."
       }
     },
     {
@@ -127,11 +149,29 @@
         "id": "prod_01M2Y5BB4WEYKFR2B8K0265SCE",
         "action": "keep",
         "target_handle": "v4-autovaruosad-ja-tarvikud-aku-soiduki-ja-mootorrattaakud",
+        "quarantine_cause": "uncertainty",
         "confidence": 0.55,
-        "reason": "[KOOSKÕLAVÄRAV] klaster ebajärjekindel (3 toodet, 2 erinevat otsust) → jääb ämbrisse. quarantine=uncertainty; LiFePO4 24V aku RV/marine/solar-rakendusele, sobib sõidukiakude alla. Info piisav.",
+        "reason": "[KOOSKÕLAVÄRAV] klaster ebajärjekindel (3 toodet, 2 erinevat otsust) → jääb ämbrisse. LiFePO4 aku RV/marine/solar jaoks; sobib sõidukiakude kategooriasse, kuigi ka solar-kasutus. Sõidukiaku on lähim.",
         "gate": "inconsistent_cluster",
         "judge_action_orig": "assign_existing",
         "judge_target_orig": "v4-autovaruosad-ja-tarvikud-aku-soiduki-ja-mootorrattaakud"
+      }
+    },
+    {
+      "id": "prod_01M3B1AZAG9RSYV48SPTVXGPB2",
+      "title": "Water-Activated Tape Dispenser, Automatic Kraft Gummed Tape Dispenser,",
+      "bucket": "new_l3",
+      "proposed": "v4-ladu-pakkimis-sidumismasinad",
+      "cluster_key": "spu:17092",
+      "judge": {
+        "id": "prod_01M3B1AZAG9RSYV48SPTVXGPB2",
+        "action": "keep",
+        "target_handle": "v4-ladu-pakkimis-sidumismasinad",
+        "confidence": 0.6,
+        "reason": "[KOOSKÕLAVÄRAV] klaster ebajärjekindel (2 toodet, 2 erinevat otsust) → jääb ämbrisse. Elektriline vee-aktiveeritava teibi dosaator kastide sulgemiseks; sobib pakkimis-/sidumismasinate alla.",
+        "gate": "inconsistent_cluster",
+        "judge_action_orig": "assign_existing",
+        "judge_target_orig": "v4-ladu-pakkimis-sidumismasinad"
       }
     },
     {
@@ -143,11 +183,46 @@
       "judge": {
         "id": "prod_01M47BPXRCN3N8RNJMKGGCQ9YP",
         "action": "keep",
-        "confidence": 0.6,
-        "reason": "[KOOSKÕLAVÄRAV] klaster ebajärjekindel (4 toodet, 3 erinevat otsust) → jääb ämbrisse. Päikesepaneeli kandekott/hoiukott — sobivat L3-d nimekirjas pole; päikesepaneelide L3 on paneelidele mitte kottidele. Jääb inimesele.",
+        "confidence": 0.5,
+        "reason": "[KOOSKÕLAVÄRAV] klaster ebajärjekindel (4 toodet, 2 erinevat otsust) → jääb ämbrisse. Päikesepaneeli kandekott/hoiukott; täpset L3 pole, paigutamine päikesepaneelide alla eksitav. Jääb inimesele.",
         "gate": "inconsistent_cluster",
         "judge_action_orig": "keep",
         "judge_target_orig": null
+      }
+    },
+    {
+      "id": "prod_01M38EY8895X412YYPPQ3GMDVN",
+      "title": "Water-Activated Tape Dispenser 4–40 Inch Kraft Gummed Tape Cutter, 10.",
+      "bucket": "new_l3",
+      "proposed": "v4-suurkook-etiketi-margistusmasinad",
+      "cluster_key": "spu:17092",
+      "judge": {
+        "id": "prod_01M38EY8895X412YYPPQ3GMDVN",
+        "action": "keep",
+        "confidence": 0.5,
+        "reason": "[KOOSKÕLAVÄRAV] klaster ebajärjekindel (2 toodet, 2 erinevat otsust) → jääb ämbrisse. Vee-aktiveeritava teibi käsidosaator/lõikur kartongi sulgemiseks — nimekirjas pole sobivat tüüpi (pakketeip on tarbematerjal, mitte dosaator). Tõeliselt ebakindel, jääb inimesele.",
+        "gate": "inconsistent_cluster",
+        "judge_action_orig": "keep",
+        "judge_target_orig": null
+      }
+    },
+    {
+      "id": "prod_01M38EY888NMVK3YVDC54C1PP4",
+      "title": "Paracord Rope 4.7 mm x 305 m Nylon Parachute Cord 550 Tactical, Surviv",
+      "bucket": "new_l3",
+      "proposed": "v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine-trossikoied",
+      "cluster_key": "spu:16941",
+      "judge": {
+        "id": "prod_01M38EY888NMVK3YVDC54C1PP4",
+        "action": "keep",
+        "new_l3_name": "Paracord ja universaalnöörid",
+        "parent_l2_handle": "v4-sport-ja-vaba-aeg-matkavarustus-ja-telkimine",
+        "quarantine_cause": "n/a",
+        "confidence": 0.6,
+        "reason": "[KOOSKÕLAVÄRAV] klaster ebajärjekindel (3 toodet, 2 erinevat otsust) → jääb ämbrisse. Nailon-paracord universaalnöör matka/käsitöö jaoks. Trossiköied L3 on tõstmise/kinnitamise omad — ei sobi õhukesele paracordile. Ettepanek uueks L3-ks.",
+        "gate": "inconsistent_cluster",
+        "judge_action_orig": "new_l3",
+        "judge_target_orig": "Paracord ja universaalnöörid"
       }
     },
     {
@@ -160,11 +235,10 @@
         "id": "prod_01M35WHGGMY9XQ68VN6KXP1BXA",
         "action": "keep",
         "target_handle": "v4-ladu-seinale-kinnitatavad-hoiususteemid",
-        "group_key": "lumber-rack-wall-mounted",
-        "confidence": 0.75,
-        "reason": "[KOOSKÕLAVÄRAV] klaster ebajärjekindel (9 toodet, 5 erinevat otsust) → jääb ämbrisse. Seinale kinnitatav puidu/materjali kandekäe-hoiusüsteem; sama kontseptsioon korduv (3-Tier lumber rack). Sobib seinale kinnitatavate hoiusüsteemide alla.",
+        "confidence": 0.72,
+        "reason": "[KOOSKÕLAVÄRAV] klaster ebajärjekindel (9 toodet, 3 erinevat otsust) → jääb ämbrisse. Seinale kinnitatav kandekäe-hoiurest puidu/materjalide hoiuks garaažis/laos — sobib seinale kinnitatavad hoiusüsteemid.",
         "gate": "inconsistent_cluster",
-        "judge_action_orig": "group",
+        "judge_action_orig": "assign_existing",
         "judge_target_orig": "v4-ladu-seinale-kinnitatavad-hoiususteemid"
       }
     },
@@ -178,8 +252,27 @@
         "id": "prod_01M3ZMGQTAHPYDMQTSGVCXVQEJ",
         "action": "assign_existing",
         "target_handle": "v4-sport-ja-vaba-aeg-jalgrattad-ja-tarvikud-jalgrattad",
-        "confidence": 0.8,
-        "reason": "Laste jalgratas 16-tolline; kuulub jalgrataste kategooriasse."
+        "confidence": 0.85,
+        "reason": "Laste jalgratas (16-tolline) — kuulub jalgrataste kategooriasse."
+      }
+    },
+    {
+      "id": "prod_01M2Y5BB4XSPPBDF81BG64PS0K",
+      "title": "Paracord Rope 4 mm x 60 m Nylon Parachute Cord 550 Tactical, Survival",
+      "bucket": "review",
+      "proposed": "v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine-trossikoied",
+      "cluster_key": "spu:16941",
+      "judge": {
+        "id": "prod_01M2Y5BB4XSPPBDF81BG64PS0K",
+        "action": "keep",
+        "new_l3_name": "Paracord ja universaalnöörid",
+        "parent_l2_handle": "v4-sport-ja-vaba-aeg-matkavarustus-ja-telkimine",
+        "quarantine_cause": "n/a",
+        "confidence": 0.6,
+        "reason": "[KOOSKÕLAVÄRAV] klaster ebajärjekindel (3 toodet, 2 erinevat otsust) → jääb ämbrisse. Sama kontseptsioon kui teine paracord — nailon-universaalnöör matka/käsitöö jaoks. Ettepanek uueks L3-ks (DUP).",
+        "gate": "inconsistent_cluster",
+        "judge_action_orig": "new_l3",
+        "judge_target_orig": "Paracord ja universaalnöörid"
       }
     },
     {
@@ -192,11 +285,10 @@
         "id": "prod_01M35WHGGMNCF2CSRDMJHVB7M9",
         "action": "keep",
         "target_handle": "v4-ladu-seinale-kinnitatavad-hoiususteemid",
-        "group_key": "lumber-rack-wall-mounted",
-        "confidence": 0.75,
-        "reason": "[KOOSKÕLAVÄRAV] klaster ebajärjekindel (9 toodet, 5 erinevat otsust) → jääb ämbrisse. Seinale kinnitatav kokkupandav puidu-hoiurest; sama kontseptsioon kui teine lumber rack. Sobib seinale kinnitatavate hoiusüsteemide alla.",
+        "confidence": 0.72,
+        "reason": "[KOOSKÕLAVÄRAV] klaster ebajärjekindel (9 toodet, 3 erinevat otsust) → jääb ämbrisse. Seinale kinnitatav kokkupandav puidu-hoiurest garaažile/laole — sobib seinale kinnitatavad hoiusüsteemid.",
         "gate": "inconsistent_cluster",
-        "judge_action_orig": "group",
+        "judge_action_orig": "assign_existing",
         "judge_target_orig": "v4-ladu-seinale-kinnitatavad-hoiususteemid"
       }
     },
@@ -210,9 +302,9 @@
         "id": "prod_01M47BPXRCFD3A7DJP84NWMW4J",
         "action": "keep",
         "new_l3_name": "Päikesepaneelide hoiu- ja kandekotid",
-        "parent_l2_handle": "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-paikesepaneelid",
-        "confidence": 0.75,
-        "reason": "[KOOSKÕLAVÄRAV] klaster ebajärjekindel (4 toodet, 3 erinevat otsust) → jääb ämbrisse. Päikesepaneeli kandekott; nimekirjas pole kandekottide L3-d, ainult paneelid ise",
+        "parent_l2_handle": "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid",
+        "confidence": 0.7,
+        "reason": "[KOOSKÕLAVÄRAV] klaster ebajärjekindel (4 toodet, 2 erinevat otsust) → jääb ämbrisse. Päikesepaneeli kandekott/hoiukott – pole olemas spetsiifilist L3-d kandekottidele, päikesepaneelide L3 on paneelid ise, mitte kotid.",
         "gate": "inconsistent_cluster",
         "judge_action_orig": "new_l3",
         "judge_target_orig": "Päikesepaneelide hoiu- ja kandekotid"
@@ -229,7 +321,7 @@
         "action": "assign_existing",
         "target_handle": "v4-sport-ja-vaba-aeg-jalgrattad-ja-tarvikud-jalgrattad",
         "confidence": 0.9,
-        "reason": "Laste jalgratas 18\"; kuulub jalgrataste L3-sse"
+        "reason": "18-tolline laste jalgratas – kuulub jalgrataste L3-sse."
       }
     },
     {
@@ -242,8 +334,8 @@
         "id": "prod_01M35WHGGMY986JEZE92VK5HKW",
         "action": "keep",
         "target_handle": "v4-ladu-seinale-kinnitatavad-hoiususteemid",
-        "confidence": 0.82,
-        "reason": "[KOOSKÕLAVÄRAV] klaster ebajärjekindel (9 toodet, 5 erinevat otsust) → jääb ämbrisse. Seinale kinnitatav kokkupandav puidu-hoiurest konsool-kätega; seinahoiusüsteemid",
+        "confidence": 0.72,
+        "reason": "[KOOSKÕLAVÄRAV] klaster ebajärjekindel (9 toodet, 3 erinevat otsust) → jääb ämbrisse. Seinale kinnitatav kokkupandav puidu-hoiurest, konsoolkäpad – seinale kinnitatav hoiusüsteem.",
         "gate": "inconsistent_cluster",
         "judge_action_orig": "assign_existing",
         "judge_target_orig": "v4-ladu-seinale-kinnitatavad-hoiususteemid"
@@ -258,14 +350,13 @@
       "judge": {
         "id": "prod_01M47BPXRCPXDMRA0K1XX7FJK0",
         "action": "keep",
-        "group_key": "paikesepaneeli-kandekotid",
         "new_l3_name": "Päikesepaneelide hoiu- ja kandekotid",
-        "parent_l2_handle": "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-paikesepaneelid",
-        "confidence": 0.75,
-        "reason": "[KOOSKÕLAVÄRAV] klaster ebajärjekindel (4 toodet, 3 erinevat otsust) → jääb ämbrisse. Sama kontseptsioon kui teine paneelikandekott; DUP-värav grupeerib uue L3 ettepanekusse",
+        "parent_l2_handle": "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid",
+        "confidence": 0.7,
+        "reason": "[KOOSKÕLAVÄRAV] klaster ebajärjekindel (4 toodet, 2 erinevat otsust) → jääb ämbrisse. Päikesepaneeli Faraday-kandekott – sama kontseptsioon kui esimene, uus L3 vajalik kandekottidele.",
         "gate": "inconsistent_cluster",
-        "judge_action_orig": "group",
-        "judge_target_orig": "paikesepaneeli-kandekotid"
+        "judge_action_orig": "new_l3",
+        "judge_target_orig": "Päikesepaneelide hoiu- ja kandekotid"
       }
     },
     {
@@ -279,7 +370,7 @@
         "action": "assign_existing",
         "target_handle": "v4-sport-ja-vaba-aeg-jalgrattad-ja-tarvikud-jalgrattad",
         "confidence": 0.9,
-        "reason": "Laste jalgratas 20\"; kuulub jalgrataste L3-sse"
+        "reason": "20-tolline laste jalgratas – kuulub jalgrataste L3-sse."
       }
     },
     {
@@ -293,7 +384,7 @@
         "action": "assign_existing",
         "target_handle": "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-taispuhutavad-porke-ja-zorb-pallid",
         "confidence": 0.95,
-        "reason": "Täispuhutav põrkepall (bumper/zorb ball); täpne L3 olemas"
+        "reason": "Täispuhutav põrkepall (bumper/zorb ball) – täpselt vastav L3 olemas."
       }
     },
     {
@@ -304,13 +395,10 @@
       "cluster_key": "spu:10706",
       "judge": {
         "id": "prod_01M3QXAMRZPAHEKQKFQM0F28JF",
-        "action": "keep",
+        "action": "assign_existing",
         "target_handle": "v4-tooriistad-ja-tarvikud-puhastustehnika-ja-tarvikud-koristuskarud",
-        "confidence": 0.72,
-        "reason": "[KOOSKÕLAVÄRAV] klaster ebajärjekindel (2 toodet, 2 erinevat otsust) → jääb ämbrisse. Ratastega koristustarvete organiseerija/käru mopihoidikuga — koristuskärude L3. Quarantine-põhjus klassifitseerimise ebakindlus, info piisav.",
-        "gate": "inconsistent_cluster",
-        "judge_action_orig": "assign_existing",
-        "judge_target_orig": "v4-tooriistad-ja-tarvikud-puhastustehnika-ja-tarvikud-koristuskarud"
+        "confidence": 0.7,
+        "reason": "Ratastega koristustarvete organiseerija/käru mopihoidikuga - sobib koristuskärude alla. Andmed piisavad, quarantine-põhjus ebakindlus.quarantine_cause=uncertainty"
       }
     },
     {
@@ -322,12 +410,12 @@
       "judge": {
         "id": "prod_01M2Y5BB4XG10FXSN6QFG29SR7",
         "action": "keep",
-        "target_handle": "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-paikese-akulaadijad",
-        "confidence": 0.4,
-        "reason": "[KOOSKÕLAVÄRAV] klaster ebajärjekindel (3 toodet, 2 erinevat otsust) → jääb ämbrisse. LiFePO4 24V solar/RV/marine aku — pole auto/mootorrattaaku, vaid taastuvenergia-salvestusaku; sobivaim puudub, ebakindel.",
+        "target_handle": "v4-autovaruosad-ja-tarvikud-aku-soiduki-ja-mootorrattaakud",
+        "confidence": 0.6,
+        "reason": "[KOOSKÕLAVÄRAV] klaster ebajärjekindel (3 toodet, 2 erinevat otsust) → jääb ämbrisse. LiFePO4 aku RV/marine/solar jaoks - sobib sõiduki- ja mootorrattaakude alla. Ebakindlus, mitte andmeauk.",
         "gate": "inconsistent_cluster",
         "judge_action_orig": "assign_existing",
-        "judge_target_orig": "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-paikese-akulaadijad"
+        "judge_target_orig": "v4-autovaruosad-ja-tarvikud-aku-soiduki-ja-mootorrattaakud"
       }
     },
     {
@@ -339,13 +427,26 @@
       "judge": {
         "id": "prod_01M47BPXRCVD75VBZJRMPH212W",
         "action": "keep",
-        "new_l3_name": "Päikesepaneelide hoiu- ja kandekotid",
-        "parent_l2_handle": "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-paikesepaneelid",
-        "confidence": 0.6,
-        "reason": "[KOOSKÕLAVÄRAV] klaster ebajärjekindel (4 toodet, 3 erinevat otsust) → jääb ämbrisse. Päikesepaneelide veekindel kandekott (Faraday) — pole hoiukottide L3-d, ettepanek uueks.",
+        "confidence": 0.55,
+        "reason": "[KOOSKÕLAVÄRAV] klaster ebajärjekindel (4 toodet, 2 erinevat otsust) → jääb ämbrisse. Veekindel Faraday-kott päikesepaneelidele; pole täpset L3 (hoiukott/kandekott) - nimekirjas puudub sobiv hoiukoti tüüp, jääb inimesele.",
         "gate": "inconsistent_cluster",
-        "judge_action_orig": "new_l3",
-        "judge_target_orig": "Päikesepaneelide hoiu- ja kandekotid"
+        "judge_action_orig": "keep",
+        "judge_target_orig": null
+      }
+    },
+    {
+      "id": "prod_01M3TFQAYVF7R8TANTJZ6KAKJ1",
+      "title": "Shopping Cart for Kids, Wooden, Toy Shopping Cart with Extra Storage,",
+      "bucket": "new_l3",
+      "proposed": "v4-sport-ja-vaba-aeg-manguasjad-lastele-toopingid-ja-remondimanguasjad",
+      "cluster_key": "spu:16546",
+      "judge": {
+        "id": "prod_01M3TFQAYVF7R8TANTJZ6KAKJ1",
+        "action": "new_l3",
+        "new_l3_name": "Laste rolli- ja poemängud",
+        "parent_l2_handle": "v4-sport-ja-vaba-aeg-manguasjad-lastele",
+        "confidence": 0.5,
+        "reason": "Puidust laste mängu-ostukäru rollimäng; nimekirjas pole sobivat rolli-/poemängu L3 (tööpingid ei sobi sisult)."
       }
     },
     {
@@ -358,8 +459,24 @@
         "id": "prod_01M3ZMGQTASRT83QDJ3FPX9FP5",
         "action": "assign_existing",
         "target_handle": "v4-sport-ja-vaba-aeg-jalgrattad-ja-tarvikud-jalgrattad",
-        "confidence": 0.9,
-        "reason": "Laste jalgratas — kuulub jalgrataste L3-sse."
+        "confidence": 0.85,
+        "reason": "Laste jalgratas (18\") - sobib üldisesse jalgrataste L3-sse."
+      }
+    },
+    {
+      "id": "prod_01M2Y5BB4X7V02CKTGCKD73WWZ",
+      "title": "Paracord Rope 4 mm x 305 m Nylon Parachute Cord 550 Tactical, Survival",
+      "bucket": "review",
+      "proposed": "v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine-trossikoied",
+      "cluster_key": "spu:16941",
+      "judge": {
+        "id": "prod_01M2Y5BB4X7V02CKTGCKD73WWZ",
+        "action": "keep",
+        "confidence": 0.5,
+        "reason": "[KOOSKÕLAVÄRAV] klaster ebajärjekindel (3 toodet, 2 erinevat otsust) → jääb ämbrisse. Nailon-paracord köis (utility rope) - ei ole tõstetross ega terastross; sobiva köie-L3 puudumise tõttu jääb inimesele.",
+        "gate": "inconsistent_cluster",
+        "judge_action_orig": "keep",
+        "judge_target_orig": null
       }
     },
     {
@@ -371,13 +488,12 @@
       "judge": {
         "id": "prod_01M35WHGSM6AY9W7TT5ZR01EFJ",
         "action": "keep",
-        "group_key": "lumber-rack-seinale",
-        "parent_l2_handle": "v4-ladu-seinale-kinnitatavad-hoiususteemid",
-        "confidence": 0.7,
-        "reason": "[KOOSKÕLAVÄRAV] klaster ebajärjekindel (9 toodet, 5 erinevat otsust) → jääb ämbrisse. Seinale kinnitatav kokkupandav puidu-hoiurest (4-tier) — sama kontseptsioon kui 3-tier variant; DUP-grupp seinale kinnitatavasse hoiusüsteemi.",
+        "group_key": "puidu-hoiuriiul-seinale",
+        "confidence": 0.8,
+        "reason": "[KOOSKÕLAVÄRAV] klaster ebajärjekindel (9 toodet, 3 erinevat otsust) → jääb ämbrisse. Seinale kinnitatav kokkupandav puidu/lumber hoiurest — sama kontseptsioon kordub mitmes kirjes; sobib seinale kinnitatavasse hoiusüsteemi.parent_l2_handle target_handle v4-ladu-seinale-kinnitatavad-hoiususteemid",
         "gate": "inconsistent_cluster",
         "judge_action_orig": "group",
-        "judge_target_orig": "lumber-rack-seinale"
+        "judge_target_orig": "puidu-hoiuriiul-seinale"
       }
     },
     {
@@ -389,13 +505,12 @@
       "judge": {
         "id": "prod_01M35WHGGMDCRK18KKXJPZWWSB",
         "action": "keep",
-        "group_key": "lumber-rack-seinale",
-        "parent_l2_handle": "v4-ladu-seinale-kinnitatavad-hoiususteemid",
-        "confidence": 0.72,
-        "reason": "[KOOSKÕLAVÄRAV] klaster ebajärjekindel (9 toodet, 5 erinevat otsust) → jääb ämbrisse. Seinale kinnitatav kokkupandav puidu-hoiurest (3-tier) — sama kontseptsioon kui 4-tier; kuulub seinale kinnitatavate hoiusüsteemide L3-sse.",
+        "group_key": "puidu-hoiuriiul-seinale",
+        "confidence": 0.82,
+        "reason": "[KOOSKÕLAVÄRAV] klaster ebajärjekindel (9 toodet, 3 erinevat otsust) → jääb ämbrisse. Seinale kinnitatav kokkupandav puidu-hoiurest, identne kontseptsioon — DUP-värav; sobib seinale kinnitatavasse hoiusüsteemi",
         "gate": "inconsistent_cluster",
         "judge_action_orig": "group",
-        "judge_target_orig": "lumber-rack-seinale"
+        "judge_target_orig": "puidu-hoiuriiul-seinale"
       }
     },
     {
@@ -408,9 +523,8 @@
         "id": "prod_01M3ZMGQTA5P6K0XAHAYN9A369",
         "action": "assign_existing",
         "target_handle": "v4-sport-ja-vaba-aeg-jalgrattad-ja-tarvikud-jalgrattad",
-        "group_key": "laste-jalgratas",
-        "confidence": 0.72,
-        "reason": "14-tolline laste jalgratas tugirattatega - päris jalgratas, kuulub jalgrataste alla."
+        "confidence": 0.75,
+        "reason": "14-tolline laste jalgratas tugiratastega — jalgratas, sobib jalgrataste kategooriasse (puudub eraldi laste jalgrataste L3)"
       }
     },
     {
@@ -422,10 +536,9 @@
       "judge": {
         "id": "prod_01M33A4RHBS2GBDAE4VXDK5RVE",
         "action": "assign_existing",
-        "target_handle": "v4-ladu-teenindus-utility-karud",
-        "quarantine_cause": "uncertainty",
-        "confidence": 0.6,
-        "reason": "Mobiilne lukustatavate ratastega utility-käru kontori dokumentidele - teenindus/utility-käru."
+        "target_handle": "v4-buroo-raamatukarud",
+        "confidence": 0.5,
+        "reason": "Mobiilne toimiku-/dokumendikäru kontorile — lähim sobiv on raamatu- ja raamatukogukärud; alternatiiv teenindus-utility kärud, mõõdukas kindlus"
       }
     },
     {
@@ -437,12 +550,12 @@
       "judge": {
         "id": "prod_01M35WHGGMKGAJACMQF5GX4FDF",
         "action": "keep",
-        "target_handle": "v4-ladu-seinariiulid",
-        "confidence": 0.6,
-        "reason": "[KOOSKÕLAVÄRAV] klaster ebajärjekindel (9 toodet, 5 erinevat otsust) → jääb ämbrisse. Seinale kinnitatav konsool-tüüpi puidu/materjali hoiuriiul - seinariiul.",
+        "group_key": "puidu-hoiuriiul-seinale",
+        "confidence": 0.82,
+        "reason": "[KOOSKÕLAVÄRAV] klaster ebajärjekindel (9 toodet, 3 erinevat otsust) → jääb ämbrisse. Seinale kinnitatav kokkupandav puidu-hoiurest, sama kontseptsioon — DUP-värav; seinale kinnitatav hoiusüsteem",
         "gate": "inconsistent_cluster",
-        "judge_action_orig": "assign_existing",
-        "judge_target_orig": "v4-ladu-seinariiulid"
+        "judge_action_orig": "group",
+        "judge_target_orig": "puidu-hoiuriiul-seinale"
       }
     },
     {
@@ -455,9 +568,8 @@
         "id": "prod_01M47BPXRBW1BKG4VHBE9A5JX7",
         "action": "assign_existing",
         "target_handle": "v4-sport-ja-vaba-aeg-jalgrattad-ja-tarvikud-jalgrattad",
-        "group_key": "laste-jalgratas",
-        "confidence": 0.7,
-        "reason": "16-tolline laste jalgratas tugirattatega - päris jalgratas, sama tüüp kui teine kirje."
+        "confidence": 0.72,
+        "reason": "16-tolline laste jalgratas tugiratastega — tegelik jalgratas, sobib jalgrataste kategooriasse (mitte pedaalauto/mänguasi)"
       }
     },
     {
@@ -471,7 +583,7 @@
         "action": "assign_existing",
         "target_handle": "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-taispuhutavad-porke-ja-zorb-pallid",
         "confidence": 0.95,
-        "reason": "Täispuhutav põrkepall (bumper/zorb ball) - sobib täpselt kategooriasse."
+        "reason": "Täispuhutav bumper/Zorb-pall - sobib täpselt põrke- ja Zorb-pallide kategooriasse"
       }
     },
     {
@@ -484,8 +596,8 @@
         "id": "prod_01M3X2426XY0WJF1DQMNF0R0BM",
         "action": "assign_existing",
         "target_handle": "v4-tooriistad-ja-tarvikud-kasitooriistad-plaadiloikurid",
-        "confidence": 0.72,
-        "reason": "Märg plaadisaag plaatide ja kivi lõikamiseks - plaadilõikur."
+        "confidence": 0.88,
+        "reason": "Märg plaadisaag plaatide ja kivi lõikamiseks - plaadilõikurite kategooria"
       }
     },
     {
@@ -497,16 +609,12 @@
       "judge": {
         "id": "prod_01M2Y5BB4WQWBEVEKBMTA95N49",
         "action": "keep",
-        "target_handle": "v4-autovaruosad-ja-tarvikud-aku-soiduki-ja-mootorrattaakud",
-        "group_key": "",
-        "new_l3_name": "",
-        "parent_l2_handle": "",
-        "quarantine_cause": "uncertainty",
-        "confidence": 0.72,
-        "reason": "[KOOSKÕLAVÄRAV] klaster ebajärjekindel (3 toodet, 2 erinevat otsust) → jääb ämbrisse. LiFePO4 sõidukiaku RV/marine/solar jaoks — sobib sõiduki- ja mootorrattaakude alla; andmed piisavad, ebakindlus klassifitseerimises.",
+        "target_handle": "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-kaasaskantavad-elektrijaamad",
+        "confidence": 0.4,
+        "reason": "[KOOSKÕLAVÄRAV] klaster ebajärjekindel (3 toodet, 2 erinevat otsust) → jääb ämbrisse. LiFePO4 aku RV/marine/solar jaoks; ei ole sõidukistardi-aku ega akutööriista aku. Ebakindel, kuid taastuvenergia/solar-aku lähim; parem jätta inimesele",
         "gate": "inconsistent_cluster",
         "judge_action_orig": "assign_existing",
-        "judge_target_orig": "v4-autovaruosad-ja-tarvikud-aku-soiduki-ja-mootorrattaakud"
+        "judge_target_orig": "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-kaasaskantavad-elektrijaamad"
       }
     },
     {
@@ -519,12 +627,8 @@
         "id": "prod_01M47BPXRBYT6YHSAZA6ZNAAJE",
         "action": "assign_existing",
         "target_handle": "v4-sport-ja-vaba-aeg-jalgrattad-ja-tarvikud-jalgrattad",
-        "group_key": "",
-        "new_l3_name": "",
-        "parent_l2_handle": "",
-        "quarantine_cause": "n/a",
-        "confidence": 0.75,
-        "reason": "20-tolline laste jalgratas (BMX-stiil, trumpidur) on tõeline jalgratas — kuulub jalgrataste L3-sse, mitte pedaalautode/mänguasjade alla."
+        "confidence": 0.7,
+        "reason": "20-tolline laste jalgratas - tegeliku toote tüüp on jalgratas, sobib jalgrataste kategooriasse; eraldi uut L3 pole vaja"
       }
     }
   ]

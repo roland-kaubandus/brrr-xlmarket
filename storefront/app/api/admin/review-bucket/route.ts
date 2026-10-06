@@ -70,9 +70,12 @@ export async function POST(req: NextRequest) {
   }
 
   try {
+    // ACTOR-PARANDUS (migratsioon 009): edasta TEGELIK tegija + kanal backendile.
+    // Backend `actor` jääb teenuskontoks (auth), aga actor_detail = sisselogitud e-post,
+    // channel = 'ui'. Nii logib review_decision_log kes päriselt klõpsas (mitte teenuskonto).
     const result = await medusaAdminFetch("/admin/review-bucket", {
       method: "POST",
-      body,
+      body: { ...body, actor_detail: session.email, channel: "ui" },
       cache: "no-store",
     })
     return NextResponse.json({ ok: true, actor: session.email, result })
