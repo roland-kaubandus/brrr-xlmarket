@@ -1,0 +1,320 @@
+{
+  "summary": {
+    "generated_at": "2026-10-06T15:49:37.064Z",
+    "dry": true,
+    "clusters": 13,
+    "products": 40,
+    "fable_calls": 5,
+    "fable_usage": {
+      "input": 7789,
+      "output": 3174,
+      "calls": 5
+    },
+    "fable_cost_usd": 0.2366,
+    "muugis": 40,
+    "nahtamatu": 0,
+    "new_l3_clusters": 5
+  },
+  "clusters": [
+    {
+      "ck": "spu:10280",
+      "n": 9,
+      "titles": [
+        "Lumber Rack, 4-Tier 2-Pack 50 kg per Tier, Foldable Wood Storage, Wall",
+        "Lumber Rack, 6-Tier 2-Pack 50 kg per Tier, Foldable Wood Storage, Wall",
+        "Lumber Rack, 3-Tier 4-Pack 100 kg per Tier, Welded Wood Pipe Storage,",
+        "Lumber Rack, 3-Tier 2-Pack 50 kg per Tier, Foldable Wood Storage, Wall",
+        "Lumber Rack, 3-Tier 4-Pack 50 kg per Tier, Foldable Wood Storage, Wall",
+        "Lumber Rack, 3-Tier 3-Pack 50 kg per Tier, Foldable Wood Storage, Wall",
+        "Lumber Rack, 3-Tier 6-Pack 50 kg per Tier, Foldable Wood Storage, Wall",
+        "Lumber Rack, 4-Tier 2-Pack 100 kg per Tier, Welded Wood Pipe Storage,",
+        "Lumber Rack, 4-Tier 4-Pack 50 kg per Tier, Foldable Wood Storage, Wall"
+      ],
+      "judge": "assign_existing → v4-ladu-seinale-kinnitatavad-hoiususteemid",
+      "ref": "new_l3",
+      "fable": "new_l3 («Puiduriiulid») — Konsool-tüüpi puiduhoidik (kandekäpad pika saematerjali jaoks) erineb väljundilt tavalisest seinahoiusüsteemist ning ostja otsib 'lumber rack' eraldi — semantiline kaugus võrdub õdede-L3-de omaga (nt rehviriiulid).",
+      "path": "2-of-3 (NEW)",
+      "decision": "new_l3",
+      "gate": {
+        "gates": {
+          "dup": {
+            "pass": true,
+            "note": "4 kaalutud L3; ükski ei sobinud"
+          },
+          "uberfrag": {
+            "pass": true,
+            "note": "parent-L2 «v4-ladu» olemas, ? õde-L3 → L3 lisandub olemas-L2-le (uut L2 EI looda)"
+          },
+          "name": {
+            "pass": true,
+            "note": "nimi: «Puiduriiulid»",
+            "name": "Puiduriiulid"
+          },
+          "merge_grab": {
+            "pass": null,
+            "note": "DRY: merge-judge + grab-bag jookseks PÄRAST loomist (ETAPP 2), siin ei käivitata"
+          }
+        },
+        "allPass": true,
+        "blocking": []
+      }
+    },
+    {
+      "ck": "spu:13762",
+      "n": 8,
+      "titles": [
+        "Kids Bike, 16 Inch Children Bicycle, Training Wheels BMX Style Blue, f",
+        "Kids Bike, 18 Inch Children Bicycle, Kickstand Princess Style Pink, fo",
+        "Kids Bike, 20 in Children Bicycle, Kickstand Princess Style Pink, for",
+        "Kids Bike, 14 Inch Children Bicycle, Training Wheels Princess Pink, fo",
+        "Kids Bike, 16 Inch Children Bicycle, Training Wheels Princess Pink, fo",
+        "Kids Bike, 20 in Children Bicycle, with Kickstand BMX Style Blue, for",
+        "Kids Bike, 14 Inch Children Bicycle, Training Wheels BMX Style Blue, f",
+        "Kids Bike, 18 in Children Bicycle, with Kickstand BMX Style Blue, for"
+      ],
+      "judge": "assign_existing → v4-sport-ja-vaba-aeg-jalgrattad-ja-tarvikud-jalgrattad",
+      "ref": "assign_existing → v4-sport-ja-vaba-aeg-jalgrattad-ja-tarvikud-jalgrattad",
+      "path": "konsensus→assign",
+      "decision": "assign:v4-sport-ja-vaba-aeg-jalgrattad-ja-tarvikud-jalgrattad",
+      "fable": null
+    },
+    {
+      "ck": "spu:17277",
+      "n": 4,
+      "titles": [
+        "Solar Panel Storage Bag for 2 x 200W Foldable Solar Panels, Waterproof",
+        "Solar Panel Storage Bag Holds up to 2 x 200W Foldable Solar Panels, Li",
+        "Solar Panel Storage Bag for 2 x 400W Foldable Solar Panels, Waterproof",
+        "Solar Panel Storage Bag for 5 x 300W Foldable Solar Panels, Waterproof"
+      ],
+      "judge": "new_l3",
+      "ref": "new_l3",
+      "path": "konsensus→new_l3",
+      "decision": "new_l3",
+      "fable": null,
+      "gate": {
+        "gates": {
+          "dup": {
+            "pass": true,
+            "note": "3 kaalutud L3; ükski ei sobinud"
+          },
+          "uberfrag": {
+            "pass": true,
+            "note": "parent-L2 «Taastuvenergia ja generaatorid» olemas, 12 õde-L3 → L3 lisandub olemas-L2-le (uut L2 EI looda)"
+          },
+          "name": {
+            "pass": true,
+            "note": "nimi: «Päikesepaneelide hoiu- ja kandekotid»",
+            "name": "Päikesepaneelide hoiu- ja kandekotid"
+          },
+          "merge_grab": {
+            "pass": null,
+            "note": "DRY: merge-judge + grab-bag jookseks PÄRAST loomist (ETAPP 2), siin ei käivitata"
+          }
+        },
+        "allPass": true,
+        "blocking": []
+      }
+    },
+    {
+      "ck": "spu:15229",
+      "n": 3,
+      "titles": [
+        "24V 100Ah LiFePO4 Lithium Battery 4000+ Cycles 100A BMS with Bluetooth",
+        "24V 50Ah LiFePO4 Lithium Battery 4000+ Cycles 50A BMS with Bluetooth,",
+        "24V 100Ah LiFePO4 Lithium Battery 4000+ Cycles Built-in 100A BMS, Lith"
+      ],
+      "judge": "assign_existing → v4-autovaruosad-ja-tarvikud-aku-soiduki-ja-mootorrattaakud",
+      "ref": "new_l3",
+      "fable": "new_l3 («LiFePO4 energiasalvestusakud») — LiFePO4 süvatsükli-aku on tsükliline energiasalvesti (RV/paat/päikesesüsteem), mille funktsioon ja väljund erinevad nii käivitusakudest kui valmis-elektrijaamadest — ostja otsib seda eraldi tootetüübina.",
+      "path": "2-of-3 (NEW)",
+      "decision": "new_l3",
+      "gate": {
+        "gates": {
+          "dup": {
+            "pass": true,
+            "note": "2 kaalutud L3; ükski ei sobinud"
+          },
+          "uberfrag": {
+            "pass": true,
+            "note": "parent-L2 «Taastuvenergia ja generaatorid» olemas, 12 õde-L3 → L3 lisandub olemas-L2-le (uut L2 EI looda)"
+          },
+          "name": {
+            "pass": true,
+            "note": "nimi: «LiFePO4 energiasalvestusakud»",
+            "name": "LiFePO4 energiasalvestusakud"
+          },
+          "merge_grab": {
+            "pass": null,
+            "note": "DRY: merge-judge + grab-bag jookseks PÄRAST loomist (ETAPP 2), siin ei käivitata"
+          }
+        },
+        "allPass": true,
+        "blocking": []
+      }
+    },
+    {
+      "ck": "spu:16941",
+      "n": 3,
+      "titles": [
+        "Paracord Rope 4.7 mm x 305 m Nylon Parachute Cord 550 Tactical, Surviv",
+        "Paracord Rope 4 mm x 60 m Nylon Parachute Cord 550 Tactical, Survival",
+        "Paracord Rope 4 mm x 305 m Nylon Parachute Cord 550 Tactical, Survival"
+      ],
+      "judge": "new_l3",
+      "ref": "new_l3",
+      "path": "konsensus→new_l3",
+      "decision": "new_l3",
+      "fable": null,
+      "gate": {
+        "gates": {
+          "dup": {
+            "pass": true,
+            "note": "2 kaalutud L3; ükski ei sobinud"
+          },
+          "uberfrag": {
+            "pass": true,
+            "note": "parent-L2 «Matkavarustus ja telkimine» olemas, 17 õde-L3 → L3 lisandub olemas-L2-le (uut L2 EI looda)"
+          },
+          "name": {
+            "pass": true,
+            "note": "nimi: «Paracord ja universaalnöörid»",
+            "name": "Paracord ja universaalnöörid"
+          },
+          "merge_grab": {
+            "pass": null,
+            "note": "DRY: merge-judge + grab-bag jookseks PÄRAST loomist (ETAPP 2), siin ei käivitata"
+          }
+        },
+        "allPass": true,
+        "blocking": []
+      }
+    },
+    {
+      "ck": "spu:10706",
+      "n": 2,
+      "titles": [
+        "Broom Holder with Cleaning Supplies Organizer, Garage Storage Metal, C",
+        "Broom Holder with Cleaning Supplies Organizer, Metal Garage Storage, C"
+      ],
+      "judge": "assign_existing → v4-tooriistad-ja-tarvikud-puhastustehnika-ja-tarvikud-koristuskarud",
+      "ref": "assign_existing → v4-tooriistad-ja-tarvikud-puhastustehnika-ja-tarvikud-koristuskarud",
+      "path": "konsensus→assign",
+      "decision": "assign:v4-tooriistad-ja-tarvikud-puhastustehnika-ja-tarvikud-koristuskarud",
+      "fable": null
+    },
+    {
+      "ck": "spu:16937",
+      "n": 2,
+      "titles": [
+        "Board Game Table 2-in-1 Gaming and Dining Table 1.2 x 0.6 x 0.45 m, Ro",
+        "Board Game Table 2-in-1 Gaming and Dining Table 1.6 x 1 x 0.76 m, Room"
+      ],
+      "judge": "assign_existing → v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-lauamangud-ja-malekomplektid",
+      "ref": "new_l3",
+      "fable": "new_l3 («Mängulauad») — Kaalutud lähim L3 «Lauamängud ja malekomplektid» sisaldab mänge endid, kuid see toode on mööbliese (laud) — funktsioon ja väljund erinevad täielikult, ostja ei saa lauamänguga asendada mängulauda, seega semantiline kaugus nõuab oma L3.",
+      "path": "2-of-3 (NEW)",
+      "decision": "new_l3",
+      "gate": {
+        "gates": {
+          "dup": {
+            "pass": false,
+            "note": "considered_l3s < 2 → DUP-väravat ei saa kinnitada → HOLD"
+          },
+          "uberfrag": {
+            "pass": true,
+            "note": "parent-L2 «v4-sport-ja-vaba-aeg-ouesport-ja-valimangud» olemas, ? õde-L3 → L3 lisandub olemas-L2-le (uut L2 EI looda)"
+          },
+          "name": {
+            "pass": true,
+            "note": "nimi: «Mängulauad»",
+            "name": "Mängulauad"
+          },
+          "merge_grab": {
+            "pass": null,
+            "note": "DRY: merge-judge + grab-bag jookseks PÄRAST loomist (ETAPP 2), siin ei käivitata"
+          }
+        },
+        "allPass": false,
+        "blocking": [
+          "dup"
+        ]
+      }
+    },
+    {
+      "ck": "spu:17092",
+      "n": 2,
+      "titles": [
+        "Water-Activated Tape Dispenser, Automatic Kraft Gummed Tape Dispenser,",
+        "Water-Activated Tape Dispenser 4–40 Inch Kraft Gummed Tape Cutter, 10."
+      ],
+      "judge": "assign_existing → v4-ladu-pakkimis-sidumismasinad",
+      "ref": "assign_existing → v4-ladu-pakkimis-sidumismasinad",
+      "path": "konsensus→assign",
+      "decision": "assign:v4-ladu-pakkimis-sidumismasinad",
+      "fable": null
+    },
+    {
+      "ck": "spu:17113",
+      "n": 2,
+      "titles": [
+        "Professional 304 Stainless Steel Whipped Cream Dispenser 1000ml, Leak-",
+        "Professional 304 Stainless Steel Whipped Cream Dispenser 500ml, Leak-F"
+      ],
+      "judge": "assign_existing → v4-suurkoogiseadmed-koogitarvikud-ja-noud-kokteili-ja-baaritarvikud",
+      "ref": "assign_existing → v4-suurkook-peo-serveerimisdispenserid",
+      "fable": "assign_existing → v4-suurkook-peo-serveerimisdispenserid — Vahukoore dosaator on funktsioonilt serveerimisdispenser (vahukoore väljastamine serveerimiseks), mitte kokteili-/baaritarvik, seega semantiliselt lähim olemas-L3 on peo- ja serveerimisdispenserid.",
+      "path": "2-of-3 (ASSIGN:v4-suurkook-peo-serveerimisdispenserid)",
+      "decision": "assign:v4-suurkook-peo-serveerimisdispenserid"
+    },
+    {
+      "ck": "spu:17166",
+      "n": 2,
+      "titles": [
+        "2-Pack Inflatable Bumper Balls 0.9m Human Bubble for Kids Transparent,",
+        "2-Pack Inflatable Bumper Balls 0.9m Human Bubble for Kids Blue+Red, fo"
+      ],
+      "judge": "assign_existing → v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-taispuhutavad-porke-ja-zorb-pallid",
+      "ref": "assign_existing → v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-taispuhutavad-porke-ja-zorb-pallid",
+      "path": "konsensus→assign",
+      "decision": "assign:v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-taispuhutavad-porke-ja-zorb-pallid",
+      "fable": null
+    },
+    {
+      "ck": "spu:16546",
+      "n": 1,
+      "titles": [
+        "Shopping Cart for Kids, Wooden, Toy Shopping Cart with Extra Storage,"
+      ],
+      "judge": "assign_existing → v4-sport-ja-vaba-aeg-manguasjad-lastele-mangukoogid-ja-toidumangud",
+      "ref": "new_l3",
+      "fable": "assign_existing → v4-sport-ja-vaba-aeg-manguasjad-lastele-mangukoogid-ja-toidumangud — Mänguasi-ostukäru on osa poe- ja toidumängu rollimängust — sama funktsioon ja mängutulem kui mänguköökidel/toidumängudel, erineb vaid vormilt, seega variant mitte eraldi L3.",
+      "path": "2-of-3 (ASSIGN:v4-sport-ja-vaba-aeg-manguasjad-lastele-mangukoogid-ja-toidumangud)",
+      "decision": "assign:v4-sport-ja-vaba-aeg-manguasjad-lastele-mangukoogid-ja-toidumangud"
+    },
+    {
+      "ck": "spu:17106",
+      "n": 1,
+      "titles": [
+        "Wet Tile Saw 180 mm 65Mn Steel Blade 3000 RPM Tile Cutter Wet Saw, for"
+      ],
+      "judge": "assign_existing → v4-tooriistad-ja-tarvikud-kasitooriistad-plaadiloikurid",
+      "ref": "assign_existing → v4-tooriistad-ja-tarvikud-kasitooriistad-plaadiloikurid",
+      "path": "konsensus→assign",
+      "decision": "assign:v4-tooriistad-ja-tarvikud-kasitooriistad-plaadiloikurid",
+      "fable": null
+    },
+    {
+      "ck": "spu:17290",
+      "n": 1,
+      "titles": [
+        "Rolling File Cart 2-Tier Mobile Wire Mail Cart with Lockable Wheels, f"
+      ],
+      "judge": "assign_existing → v4-ladu-teenindus-utility-karud",
+      "ref": "assign_existing → v4-ladu-teenindus-utility-karud",
+      "path": "konsensus→assign",
+      "decision": "assign:v4-ladu-teenindus-utility-karud",
+      "fable": null
+    }
+  ]
+}
