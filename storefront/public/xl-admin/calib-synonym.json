@@ -1,261 +1,1764 @@
 {
   "kind": "synonym",
-  "generated_at": "2026-10-06T08:24:19.356Z",
-  "seed": "calib",
+  "generated_at": "2026-10-06T09:44:36.048Z",
+  "seed": "xlm",
   "dry": true,
   "decisions": [
     {
-      "id": "0e780e5e-9416-41f1-82b1-576ccfb98b1c",
-      "word": "ultraheliline puhastus",
-      "synonyms": [
-        "ultrasonic cleaning"
-      ],
-      "title_en": "3L Ultrasonic Cleaner, Professional Ultrasonic Cleaner Machine with Knob Control, Stainless Steel Cleaning Machine with Basket and Cleaning Ball, for Watches, Razors, Jewelry, Coins and More",
-      "title_et": "3L ultrahelipuhasti roostevabast terasest – korv ja puhastuskuul",
-      "category": "Ultrahelipuhastid",
-      "gen_confidence": 0.85,
+      "id": "0d3bad50-5af7-4ea8-9622-ea729a38a0be",
+      "word": "jalgpallimängude harjutusseade",
+      "synonyms": [],
+      "title_en": "Soccer Rebounder Rebound Net, 40\"x35\"x37\" Portable Football Training Gifts, Fully Adjustable Angles Goal Net, Aids & Equipment for Kids Teens & All Ages, Easy Set Up & Perfect Storage",
+      "title_et": "Jalgpalli tagasipõrkevõrk 40x35x37\", reguleeritava nurgaga",
+      "category": "Rebounderid ja tagasilöögivõrgud",
+      "gen_confidence": 0.75,
       "verdict": "OK",
-      "reason": "Toode on ultrahelipuhasti, mis vastab täpselt otsingule.",
+      "reason": "Klient, kes otsib jalgpalli treeningseadet, ootaks tagasipõrkevõrku.",
       "action": {
         "status": "resolved",
         "write_synonym": true
       }
     },
     {
-      "id": "84bc46a9-550c-4fa2-af34-ddf61871f9bc",
-      "word": "autokere parandusseade",
+      "id": "f8dc81f0-074d-4592-9935-7e7ec135c98d",
+      "word": "kanalisatsionimasin",
       "synonyms": [
-        "car repair equipment"
+        "sewer machine",
+        "toru aukude puurija"
       ],
-      "title_en": "Auto Body Frame Puller Straightener, 6T Tension Car Body Repair Equipment with 3T Airbag Jack & 6000PSI Hydraulic Foot Pump, Include 16 Straightening Tools, for Auto Repair Shop Sedan SUV Pickup",
-      "title_et": "Auto kere sirgestusseade 6T, 3T õhkpadja tõstuk, 16 tarvikut",
-      "category": "Autokere sirgendusseadmed",
+      "title_en": "Drain Cleaner Machine 30.5m x 9.5mm Auto Feed with Wheels & 8 Cutters",
+      "title_et": "Torupuhastusmasin 30,5m x 9,5mm, automaatsöödu, ratastel",
+      "category": "Kanalisatsiooni puhastusmasinad",
+      "gen_confidence": 0.87,
+      "verdict": "OK",
+      "reason": "Kanalisatsioonimasin vastab torupuhastusmasinale, mida klient otsiks.",
+      "action": {
+        "status": "resolved",
+        "write_synonym": true
+      }
+    },
+    {
+      "id": "1a3a8654-12b3-47fa-935e-44f35cf35f75",
+      "word": "pealuu mudel",
+      "synonyms": [
+        "pealuumudeltest",
+        "skull model"
+      ],
+      "title_en": "Human Skull Model, 22 Parts Human Skull Anatomy, Life-Size Painted Anatomy Skull Model, PVC Anatomical Skull, Detachable Learning Skull Model, for Professional Teaching, Researching and Learning",
+      "title_et": "Inimese pealuu anatoomiline mudel, 22 osa, 1:1, lahtivõetav, PVC",
+      "category": "Anatoomilised õppemudelid",
       "gen_confidence": 0.8,
       "verdict": "OK",
-      "reason": "Autokere sirgestusseade on autoremondiseade, mis vastab otsingule.",
+      "reason": "Pealuu mudel vastab täpselt anatoomilisele pealuu mudelile.",
       "action": {
         "status": "resolved",
         "write_synonym": true
       }
     },
     {
-      "id": "3f3f104a-600a-48e5-8ca2-4ba45af4e85e",
-      "word": "pakkimismasin",
+      "id": "8cf65dbb-0992-46db-9b08-0c312e2a7f2f",
+      "word": "pallide transportkott",
       "synonyms": [
-        "wrapper machine"
+        "ball bag",
+        "pallide kott"
       ],
-      "title_en": "EURO Coin Sorter, Coin Counter Machine for 8 Kinds of Euro Coins, Coin Sorter and Wrapper Machine Holds up to 850 Coins, Large LCD Display Coin Storage Included 5 Coin Tubes and Boxes",
-      "title_et": "Euro müntide sorteerimis- ja pakkimismasin, kuni 850 münti",
-      "category": "Raha- ja mündiloendusmasinad",
+      "title_en": "Bowling Ball Bag, 3 Ball Double Roller Bowling Bag with Wheels, Featuring a Separate Compartment for Shoes (Up To US Size 16) & Oversized Accessory Pocket, Retractable Handle Extends to 1050 mm",
+      "title_et": "Bowlingukott 3 pallile ratastega, eraldi jalatsi- ja tarvikutaskuga",
+      "category": "Bowlingukoti vankrid",
       "gen_confidence": 0.75,
+      "verdict": "OK",
+      "reason": "Pallide transportkott vastab bowlingukotile, mis on mõeldud pallide transportimiseks.",
+      "action": {
+        "status": "resolved",
+        "write_synonym": true
+      }
+    },
+    {
+      "id": "5c2fc224-7bcc-4714-9194-1e2b2f0dd31c",
+      "word": "pdr vahendid",
+      "synonyms": [
+        "plekitöö vahendid",
+        "dent repair tools"
+      ],
+      "title_en": "Rods Dent Removal Kit, 13 Pcs Paintless Dent Repair Tool, 5 Pcs Stainless Steel Dent Rods, 8 Pcs Tapper Heads, Professional Hail Dent Removal Tool for Minor Dents, Door Dings and Hail Damage",
+      "title_et": "Lohkude eemaldamise komplekt 13 tk, roostevabast terasest vardad",
+      "category": "Plekitööde ja lohkude eemalduskomplektid (PDR)",
+      "gen_confidence": 0.8,
+      "verdict": "OK",
+      "reason": "PDR vahendid vastavad lohkude eemaldamise komplektile.",
+      "action": {
+        "status": "resolved",
+        "write_synonym": true
+      }
+    },
+    {
+      "id": "876e6929-f060-4058-b9eb-f4cb9f00d1cf",
+      "word": "tööpink",
+      "synonyms": [
+        "work bench",
+        "töö pink"
+      ],
+      "title_en": "Benchtop Router Table, 610 x 400 mm / 24 in x 15.7 in, Bench Top Routing Table with Adjustable Fence, MDF Top, Sturdy Metal Base, 2-1/2 in Dust Collection Port, Compatible with Routes & Various Drill Bits",
+      "title_et": "Freisilaud 610 x 400 mm, reguleeritava piirdega ja MDF-pinnaga",
+      "category": "Freesimislauad ja freesimistarvikud",
+      "gen_confidence": 0.85,
       "verdict": "VALE",
-      "reason": "Klient, kes otsib üldist pakkimismasinat, ei ootaks mündisorteerimis- ja -pakkimismasinat.",
+      "reason": "Tööpink tähendab üldiselt töölauda, mitte spetsiifilist freesimislauda, mida toode kujutab.",
       "action": {
         "status": "rejected",
         "write_synonym": false
       }
     },
     {
-      "id": "1e48c163-20a4-428c-8abe-55be0a1c9e36",
-      "word": "magnetsahtlid",
+      "id": "d4e9067d-6be6-4803-8f24-55000a34a6e2",
+      "word": "mutri eemaldaja",
       "synonyms": [
-        "magnetic tray",
-        "magnetic storage"
+        "poltide eemaldaja",
+        "nut remover",
+        "rooste lahti tegemise tööriist"
       ],
-      "title_en": "Miniatures Storage Case, Fits for 1:1750-1:2000 Scale Models, Wooden Miniatures Display Holder with 5 Tray & 13 Slots, Clear View Miniature Transport Case for Collectibles (Minis Not Included)",
-      "title_et": "Miniatuuride hoiukarp, 5 magnetsahtlit ja 13 pesa (1:1750-1:2000)",
-      "category": "Miniatuuride hoiukohvrid ja wargaming",
+      "title_en": "Induction Heater Bolt Removal, 1100W 230V Magnetic Induction Heater Kit, Handheld Nut Buster Tool, Mini Heating Machine for Rusty Screw Removing, Car Garage Repairing Tools with 3 Coil",
+      "title_et": "Induktsioonkuumuti 1100W, roostes poltide ja mutrite eemaldamiseks",
+      "category": "Induktsioonkuumutid",
       "gen_confidence": 0.8,
       "verdict": "OK",
-      "reason": "Toote enda eestikeelne nimetus kinnitab, et sahtlid on magnetilised, vastab otsingule.",
+      "reason": "Mutri eemaldaja vastab induktsioonkuumutile, mis aitab roostes mutreid eemaldada.",
       "action": {
         "status": "resolved",
         "write_synonym": true
       }
     },
     {
-      "id": "e4a52bf2-7e3c-4ce1-9100-ebd8d930bf8a",
-      "word": "kaksik haamer",
+      "id": "058997d3-1304-41bd-9ce1-90f009469b86",
+      "word": "roostevaba toidunõu",
       "synonyms": [
-        "twin hammer"
+        "toidualus",
+        "serveerimisnõu"
       ],
-      "title_en": "1-Inch Air Impact Wrench, Twin Hammer Air Impact Gun, Up to 1626N.m Reverse Torque, 4600RPM 6-Speed Pneumatic Wrench for Heavy Duty Auto Repairs and Maintenance",
-      "title_et": "Pneumaatiline löökmutrivõti 1\", kaksikhaamer, kuni 1626 N·m",
-      "category": "Pneumaatilised löökmutrivõtmed ja -keerajad",
-      "gen_confidence": 0.85,
-      "verdict": "OK",
-      "reason": "Kaksikhaamer on löökmutrivõtme tehniline omadus, mida otsitakse õigesti.",
-      "action": {
-        "status": "resolved",
-        "write_synonym": true
-      }
-    },
-    {
-      "id": "0684b3e9-648b-4d92-90e8-29f544d2e9c1",
-      "word": "liikuv organiseerija",
-      "synonyms": [
-        "mobile organizer",
-        "sahtlisüsteem ratastega"
-      ],
-      "title_en": "Plastic Storage Drawers Cart, 3 Drawers Storage Organizer with Wheels, Rolling Closet Organization and Storage Dividers, Dresser Organizer Clear Bins for Office Supplies, Craft Rooms, Classrooms",
-      "title_et": "Plastik sahtlikäru rataste ja 3 sahtliga, 17L/sahtel",
-      "category": "Teenindus- ja utility-kärud",
-      "gen_confidence": 0.86,
-      "verdict": "OK",
-      "reason": "Ratastega sahtlikäru vastab liikuva organiseerija kirjeldusele.",
-      "action": {
-        "status": "resolved",
-        "write_synonym": true
-      }
-    },
-    {
-      "id": "13d2594a-843f-440a-91d2-db1c1061ddc8",
-      "word": "nööpmärgid",
-      "synonyms": [
-        "button maker supplies",
-        "nööbi komplekt",
-        "badges"
-      ],
-      "title_en": "Button Maker Supplies 200 Sets 2.28 in / 58 mm Pin Back Button Parts, with Metal Backs, Metal Shells, Clear Mylar Films, and Blank Circle Papers, for Home DIY, School Events, and Custom Studio",
-      "title_et": "Nööpmärkide tarvikukomplekt 58 mm, 200 komplekti",
-      "category": "Nööpide ja märkide valmistamise masinad",
-      "gen_confidence": 0.85,
-      "verdict": "OK",
-      "reason": "Nööpmärkide tarvikukomplekt vastab otsingule 'nööpmärgid'.",
-      "action": {
-        "status": "resolved",
-        "write_synonym": true
-      }
-    },
-    {
-      "id": "ac3d67d2-25b4-4b09-8c62-7f3b74677e53",
-      "word": "põrandaramp",
-      "synonyms": [
-        "kanaliga ramp",
-        "channel ramp"
-      ],
-      "title_en": "Cable Protector Ramp, 9,979 kg/axle Capacity, 2 Channel Heavy Duty Rubber Cord Hose Wire Cover, 32 x 31 mm Channel, Traffic Speed Bump with Flip-Open Top Cover, for Indoor Outdoor Use, 1 Pack",
-      "title_et": "Kaablikaitseramp, 2 kanalit, kandevõime 9979 kg/telg",
-      "category": "Kaablikaitsjad ja põrandarambid",
-      "gen_confidence": 0.85,
-      "verdict": "OK",
-      "reason": "Kaablikaitseramp on tüüpiline põrandaramp, mis vastab otsingule.",
-      "action": {
-        "status": "resolved",
-        "write_synonym": true
-      }
-    },
-    {
-      "id": "d4821992-8968-4f29-847c-75cb997e75da",
-      "word": "riba eesriie",
-      "synonyms": [],
-      "title_en": "Clear PVC Strip Curtain, 45.7 m Length x 20 cm Width, Plastic Door Strip Bulk Roll, Walk in Freezer Cooler Curtain Strips for Doorways of Supermarket, Garage, Warehouse, Barn, Pet Animal House",
-      "title_et": "Läbipaistev PVC ribakardin, 45,7 m x 20 cm, rullina",
-      "category": "PVC ribakardinad ja -eesriided",
+      "title_en": "Countertop Food Serving Display Container, 5 Pan Stainless Steel Food Serving Tray, Buffet Condiment Dispenser Display Rack with Clear Lid & 3 Freezer Boxes, for Restaurant Hotel Kitchen Party",
+      "title_et": "Roostevaba terase toiduserveerimisalus, 5 kambrit, läbipaistev kaas",
+      "category": "Kondimentide serveerimisnõud",
       "gen_confidence": 0.8,
       "verdict": "OK",
-      "reason": "PVC ribakardin vastab täpselt otsingusõnale 'riba eesriie'.",
+      "reason": "Roostevaba toidunõu vastab roostevabast terasest toiduserveerimisalusele.",
       "action": {
         "status": "resolved",
         "write_synonym": true
       }
     },
     {
-      "id": "e2d3d28a-67b6-47b0-a980-83012d63b59e",
-      "word": "treningvarustus",
+      "id": "26a1fd1e-fc49-4262-8419-c030e5da2960",
+      "word": "pulmakaunistus",
       "synonyms": [
-        "fitness equipment",
-        "treeningbarr"
+        "pulmadekooratsioon",
+        "wedding decoration"
       ],
-      "title_en": "Ballet Barre, Freestanding Portable Barre Bar, Home Fitness Exercise Equipment for Abs, Arms, Strength, and Cardio, Easy to Store Foldable Stretching Dance Bars, 4 Level Height Adjustable",
-      "title_et": "Kokkupandav balletitoru, 4 kõrgusastet, kandevõime 113 kg",
-      "category": "Balletitangid (barre)",
-      "gen_confidence": 0.75,
+      "title_en": "4PCS 35.43inch /90cm Tall Crystal Wedding Flowers Stand, Luxurious Centerpieces Flower Vases Crystal Gold Vase Metal, Perfect for T-stage Wedding Party Ceremony Dinner Event Hotel Home Decor",
+      "title_et": "Kristall-pulmalillestatiivid 90 cm, 4 tk, kuldne metall",
+      "category": "Pulma-lillestatiivid",
+      "gen_confidence": 0.88,
       "verdict": "OK",
-      "reason": "Balletitangid on treeningvarustuse osa, mis vastab üldisele otsingule.",
+      "reason": "Pulmakaunistus vastab pulma-lillestatiividele, mis on pulmadekoratsioon.",
       "action": {
         "status": "resolved",
         "write_synonym": true
       }
     },
     {
-      "id": "196b38c7-f123-4e83-a7a6-1b02756c1e32",
-      "word": "kliimaseadme",
+      "id": "a272facc-84c2-4540-8f8f-710c06d0b44e",
+      "word": "dj lahter",
       "synonyms": [
-        "ac pump",
-        "hvac pump"
+        "dj desk",
+        "mikseri laud",
+        "audio mixer stand"
       ],
-      "title_en": "Vacuum Pump 117 L/min(1.8CFM), Vacuum Devices Manifold Gauge Set for HVAC/Car AC Refrigerant Charging",
-      "title_et": "Vaakumpump 50 L/min (1.8CFM) manomeetrikomplektiga HVAC ja autole",
-      "category": "AC-vaakumpumbad",
+      "title_en": "DJ Table Stand, 32\" x 20\" Portable DJ Laptop and Controller Stand, Lightweight DJ Desk DJ Booth Adjustable Height DJ Stand, Foldable Double-X Braced Keyboard Stand & Tabletop, Audio Mixer Stand",
+      "title_et": "Kokkupandav DJ-laua alus 820 x 460 mm, reguleeritava kõrgusega",
+      "category": "DJ-lauad ja -statiivid",
       "gen_confidence": 0.85,
       "verdict": "EBAKINDEL",
-      "reason": "Vaakumpump on mõeldud külmaaine süsteemi evakueerimiseks, mitte otseselt 'ac pump' tähenduses ringlev pump, mis võib tekitada ootuste lahknevuse.",
+      "reason": "Sõna 'lahter' ei ole tavapärane eestikeelne väljend DJ-lauale, mistõttu klient ei pruugi seda otsida.",
       "action": {
         "status": "pending",
         "write_synonym": false
       }
     },
     {
-      "id": "533ac241-142f-4b23-bad0-14afdec64cb2",
-      "word": "võrguga värav",
-      "synonyms": [],
-      "title_en": "Retractable Baby Gate, 86.9 cm Tall Mesh Baby Gate, Extends up to 294.9 cm Wide Retractable Gate for Kids or Pets, Retractable Dog Gates for Indoor Stairs, Doorways, Hallways, Playrooms, Black",
-      "title_et": "Väljatõmmatav turvavärav 86,9 cm, laieneb kuni 294,9 cm",
-      "category": "Turvaväravad",
+      "id": "db674e91-9875-4a5a-bf06-776fbdc9b57d",
+      "word": "traktori kopp",
+      "synonyms": [
+        "traktorikopa kaitse",
+        "tractor bucket"
+      ],
+      "title_en": "Tractor Bucket Protector, 2PCS Heavy Duty Steel Bucket Edge Protectors, Edge Tamer Anti-Skid Device with Double Hexagon Lock Nuts and Bolts, for Snow, Leave Removal & Spreading Gravel (Orange)",
+      "title_et": "Traktori kopa servakaitsmed 2tk, süsinikterasest, oranž",
+      "category": "Traktori lisaseadmed ja tarvikud",
+      "gen_confidence": 0.88,
+      "verdict": "VALE",
+      "reason": "Klient, kes otsib 'traktori kopp', ootab tegelikku koppa, mitte selle servakaitsmeid.",
+      "action": {
+        "status": "rejected",
+        "write_synonym": false
+      }
+    },
+    {
+      "id": "fc9ab13d-14b0-4b19-bd6e-85122c01603c",
+      "word": "survepesu harjapea",
+      "synonyms": [
+        "rotary surface cleaner",
+        "survepesu harjad"
+      ],
+      "title_en": "Surface Cleaner, 4000 psi Pressure Surface Cleaner, 18\" Pressure Washer Surface Cleaner 1/4\" QC Pressure Washing Surface Cleaner Stainless Steel Pressure Cleaner for Decks with Twin Rotary Arm",
+      "title_et": "Survepesu pindapuhastaja 18\" 4000 PSI, roostevaba teras",
+      "category": "Survepesuri pinnapuhastid",
+      "gen_confidence": 0.85,
+      "verdict": "OK",
+      "reason": "Pöörleva survepesu pindapuhasti sobib hästi 'survepesu harjapea' otsinguga.",
+      "action": {
+        "status": "resolved",
+        "write_synonym": true
+      }
+    },
+    {
+      "id": "b1344065-f599-4752-8336-703314ac2ce9",
+      "word": "dokumendiseinaorgan",
+      "synonyms": [
+        "dokumendiriiul",
+        "wall file holder"
+      ],
+      "title_en": "File Wall Rack, Two-Piece 10 Pockets Mesh Wall File Holder, Wall Mounted Magazine Mail Paper & Document Storage Folder, Metal Wall File Organizer with Nametag Label, for Office Home & School",
+      "title_et": "Metallist seinariiul dokumentidele, 10 taskuga, 2 tk",
+      "category": "Dokumendisorteerijad ja -organisaatorid",
+      "gen_confidence": 0.85,
+      "verdict": "OK",
+      "reason": "Metallist seinariiul dokumentidele vastab täpselt dokumendiseina organaiseri otsingule.",
+      "action": {
+        "status": "resolved",
+        "write_synonym": true
+      }
+    },
+    {
+      "id": "ee1c7683-a8a2-4dda-ad7a-f88e30b7e13c",
+      "word": "kullapesuseade",
+      "synonyms": [
+        "sluice",
+        "mining equipment"
+      ],
+      "title_en": "High Banker Gold Sluice, 1270 mm 2-in-1 Folding Highbanker Sluice Box, Aluminum Alloy, Portable Mining Equipment with Drawstring Backpack and Gloves, for Gold Prospecting in Creek, High Bank",
+      "title_et": "Kokkupandav High Banker sluice box, 1270 mm, alumiiniumisulam",
+      "category": "Kullapesu- ja liivaotsimisseadmed",
       "gen_confidence": 0.8,
       "verdict": "OK",
-      "reason": "Toode on võrgust (mesh) turvavärav, mis vastab otsingusõnale 'võrguga värav'.",
+      "reason": "Sluice box on klassikaline kullapesuseade ja vastab otsingule.",
       "action": {
         "status": "resolved",
         "write_synonym": true
       }
     },
     {
-      "id": "2ba3eae5-4ffa-42e9-8591-3f9fd760e4c8",
-      "word": "taktikaline relvakohver",
-      "synonyms": [],
-      "title_en": "Rifle Bag, 36 inch Tactical Double Long Gun Bag, Soft Rifle Case with Lockable Zipper, Portable Handle & Shoulder Strap, 3 Large Storage Pockets Rifle Case for Two 34\" Rifles & 2 Pistols, Brown",
-      "title_et": "Taktikaline relvakohver 36\" kahele vintrelvale ja 2 püstolile",
-      "category": "Relvakohvrid ja -kastid",
-      "gen_confidence": 0.82,
-      "verdict": "OK",
-      "reason": "Toode on täpselt taktikaline relvakohver kahele vintrelvale, mis vastab täpselt otsingusõnale.",
-      "action": {
-        "status": "resolved",
-        "write_synonym": true
-      }
-    },
-    {
-      "id": "7d0bc27f-94a6-4e7a-a2d9-a4139793eebe",
-      "word": "mängulauale kate",
+      "id": "2cb3575c-69f8-4cf5-b5d0-c7c566b44e42",
+      "word": "press-komplekt",
       "synonyms": [
-        "poker mat"
+        "pressing tool kit",
+        "installation kit"
       ],
-      "title_en": "Poker Table Top, 70 x 35 Inch Poker Mat for Table, 6-8 Players Foldable Poker Table Top with Carrying Bag, Folding Poker Table Topper for Poker Games, Poker Room, Round, Black",
-      "title_et": "Pokkerimatt lauale 1800 x 900 mm, 6-8 mängijale, kandekotiga",
-      "category": "Pokerilauad ja lauakatted",
+      "title_en": "26 PCS Pull and Press Sleeve Kit, Steel Bush Bearing Removal and Installation Set, Bush Removal Insertion Sleeve Tools with Carrying Case, Multi-Vehicle Compatibility for LCV and HGV Engines",
+      "title_et": "26-osaline puksi tõmbamise ja pressimise komplekt LCV/HGV mootoritele",
+      "category": "Laagri- ja tihendiväljavõtjad ning press-tööriistad",
+      "gen_confidence": 0.85,
+      "verdict": "OK",
+      "reason": "Pressimis- ja paigalduskomplekt laagrite jaoks vastab 'press-komplekt' otsingule.",
+      "action": {
+        "status": "resolved",
+        "write_synonym": true
+      }
+    },
+    {
+      "id": "ab1532b4-7f04-4d25-9a8f-da502b9a30fe",
+      "word": "taimekaitse",
+      "synonyms": [
+        "taimekaitsepuur",
+        "plant protector",
+        "kaitsevõrk"
+      ],
+      "title_en": "4 Pack Plant Protector from Animals, 13.4'' x 13.4'' Chicken Wire Plant Protector, Plant Cages for Outdoor Plants, Flowers & Vegetables, Keeps Bunny Chicken Squirrels Out, 16pcs Metal Mesh",
+      "title_et": "Taimekaitsepuur loomade eest, 340×340×315 mm, 4 tk",
+      "category": "Taimede kaitsevõrgud ja -puurid",
+      "gen_confidence": 0.8,
+      "verdict": "EBAKINDEL",
+      "reason": "Sõna 'taimekaitse' viitab eesti keeles tavaliselt taimekaitsevahenditele (kemikaalidele), mitte füüsilisele kaitsepuurile.",
+      "action": {
+        "status": "pending",
+        "write_synonym": false
+      }
+    },
+    {
+      "id": "0aae4249-6a8b-495d-882b-76f1d2896eb1",
+      "word": "metalllõikur",
+      "synonyms": [
+        "lõikemasin",
+        "cutting machine"
+      ],
+      "title_en": "Plasma Cutter, 65A Non-Touch Pilot Arc Plasma Cutting Machine, 220V Digital Display IGBT Inverter with 2T/4T Function & Adjustable PA/PT Time for Home Repairs, Workshops",
+      "title_et": "Plasmalõikur 65A, 220V IGBT, kuni 20 mm lõikepaksus",
+      "category": "Plasmalõikurid",
+      "gen_confidence": 0.8,
+      "verdict": "OK",
+      "reason": "Plasmalõikur on metalllõikamiseks mõeldud seade, mis vastab otsingule 'metalllõikur'.",
+      "action": {
+        "status": "resolved",
+        "write_synonym": true
+      }
+    },
+    {
+      "id": "76e7efea-0b77-4c75-a498-0a0d70ba7b0c",
+      "word": "programmeeritav led-paneeli",
+      "synonyms": [
+        "led reklaam",
+        "scrolling led display",
+        "flexible led panel"
+      ],
+      "title_en": "Programmable LED Sign, P10 Full Color Flexible Digital Scrolling Panel, DIY Custom Text Pattern GIF Display Board, Bluetooth APP Control Message Shop Sign for Store Business Advertising, 40x8 in",
+      "title_et": "P10 täisvärviline LED-reklaamtahvel, Bluetooth-juhtimine, 40x8 in",
+      "category": "Reklaamvalgustid ja -ekraanid",
+      "gen_confidence": 0.88,
+      "verdict": "OK",
+      "reason": "Programmeeritav LED-reklaamtahvel vastab täpselt otsingule.",
+      "action": {
+        "status": "resolved",
+        "write_synonym": true
+      }
+    },
+    {
+      "id": "8b20069e-b0c6-4024-919f-a599b63fe2b7",
+      "word": "autokatus",
+      "synonyms": [
+        "roof rack"
+      ],
+      "title_en": "Roof Rack Cargo Carrier, 48 x 40 x 5.6 in, Universal Rooftop Cargo Basket, Car Top Luggage Holder with 150 lbs Max Load Capacity, 4.1 in Fence, Anti-Rust Alloy Steel, Wind Fairing, for SUV Car",
+      "title_et": "Universaalne katusekorv autole, 122 x 102 cm, kandevõime 68 kg",
+      "category": "Katuseboksid ja -kohvrid",
+      "gen_confidence": 0.85,
+      "verdict": "VALE",
+      "reason": "Sõna 'autokatus' tähendab auto katust, mitte katusekorvi (roof rack), mistõttu see võib klienti eksitada.",
+      "action": {
+        "status": "rejected",
+        "write_synonym": false
+      }
+    },
+    {
+      "id": "b945eb2d-c30c-427c-a821-755d50564690",
+      "word": "ronimismäng",
+      "synonyms": [
+        "climbing equipment",
+        "outdoor play structure"
+      ],
+      "title_en": "Climbing Dome, 10FT Geometric Dome Climber with Hammock and Swing, for Kids 3 to 10 Years Old, Jungle Gym Supports 750LBS and Easy Assembly, with Climbing Grip, Outdoor Backyard Play Equipment",
+      "title_et": "Geomeetriline ronimiskuppel 10FT, hängematt ja kiik, kuni 340 kg",
+      "category": "Ronimismänguasjad ja ronimiskomplektid",
       "gen_confidence": 0.75,
       "verdict": "OK",
-      "reason": "Pokkerimatt on mänguloauale pandav kate, mis vastab otsingusõnale 'mängulauale kate'.",
+      "reason": "Ronimiskuppel koos kiige ja hängematiga vastab 'ronimismäng' otsingule.",
       "action": {
         "status": "resolved",
         "write_synonym": true
       }
     },
     {
-      "id": "d5e171da-33b6-45b6-a6c4-e7b97fcf93f0",
-      "word": "ratastega riiul",
+      "id": "2c220e6a-86da-46f3-ae96-ba03cb89b082",
+      "word": "vorstite sealing",
       "synonyms": [
-        "teisaldatav hoidja",
-        "mobile display stand"
+        "sausage sealing machine"
       ],
-      "title_en": "Brochure Display Rack, Narrow 6-Tier Magazine Literature Display Stand with Wheels, Metal Floor Standing Magazine Rack, Movable Newspaper Catalog Holders for Shop Exhibitions Office (6 Pockets)",
-      "title_et": "6-tasandiline metallist brošüürihoidja ratastega, kandevõime 15 kg",
-      "category": "Brošüüri- ja ajakirjahoidikud",
+      "title_en": "Manual U-shape Sausage Clipper Clipping Machine Food Clipping Maker for Sausage Packing Sealing with 1 Box of Buckles 5000pcs",
+      "title_et": "Käsitsi vorstiklipsimasin, kroomitud teras, 5000 klambrit",
+      "category": "Vorstimasinad ja -täitjad",
+      "gen_confidence": 0.75,
+      "verdict": "OK",
+      "reason": "Vorstiklipsimasin vastab vorstite sulgemise/tihendamise otsingule.",
+      "action": {
+        "status": "resolved",
+        "write_synonym": true
+      }
+    },
+    {
+      "id": "2164b653-0749-4f2a-adda-f68757259bfb",
+      "word": "hoiulaudade riiuli",
+      "synonyms": [],
+      "title_en": "Ironing Board with Bottom Storage Tray, Thickened 4 Layers Iron Board with Heat Resistant Cover and 100% Cotton Cover, 10 Adjustable Heights Ironing Board for Home Laundry Room Use (Size 55x15)",
+      "title_et": "Triikimislaud hoiuriiuliga, 4-kihiline, 10 kõrgusastet (140x37 cm)",
+      "category": "Aurutid ja triikimine",
+      "gen_confidence": 0.7,
+      "verdict": "EBAKINDEL",
+      "reason": "Termin viitab riiulile hoiulaudade jaoks, kuid toode on hoopis triikimislaud hoiuriiuliga, mis tekitab segadust.",
+      "action": {
+        "status": "pending",
+        "write_synonym": false
+      }
+    },
+    {
+      "id": "7b7316c9-a668-4c46-b763-f028540d27e1",
+      "word": "vorstivajutaja",
+      "synonyms": [
+        "vorstitäitja",
+        "sausage stuffer"
+      ],
+      "title_en": "Electric Stuffer, 10L Large Capacity, 200W Vertical Sausage Stuffer with Speed Stepless, 304 Stainless Steel Sausage Machine with 4 Stuffing Tubes, Foot Pedal for Household or Commercial Use",
+      "title_et": "Elektriline vorstivajutaja 10L, 200W, roostevaba SUS304 teras",
+      "category": "Vorstimasinad ja -täitjad",
+      "gen_confidence": 0.85,
+      "verdict": "OK",
+      "reason": "Vorstivajutaja ja vorstitäitja vastavad otseselt elektrilisele vorstivajutajale.",
+      "action": {
+        "status": "resolved",
+        "write_synonym": true
+      }
+    },
+    {
+      "id": "88dba4f5-bd00-447a-b596-cacb112a2f1b",
+      "word": "laopüstol",
+      "synonyms": [
+        "warehouse rack",
+        "tööriistade riiul"
+      ],
+      "title_en": "Storage Shelves, 4-Tier Garage Shelving Wheels 76.2 x 31.3 x 160 cm, for Garage, Basement, Warehouse, Kitchen, 362.9 kg Static Load, Heavy-Duty Metal Unit, Adjustable Racks, with Gloves, White",
+      "title_et": "4-tasandiline teras riiul ratastel, kandevõime 362.9 kg",
+      "category": "Metallriiulid",
+      "gen_confidence": 0.84,
+      "verdict": "VALE",
+      "reason": "Laopüstol viitab tööriistale (nt hinnapüstolile), mitte riiulisüsteemile.",
+      "action": {
+        "status": "rejected",
+        "write_synonym": false
+      }
+    },
+    {
+      "id": "4f957fc3-8e1f-45ee-844a-a57d0f012d66",
+      "word": "aerodünaamiline tiib",
+      "synonyms": [
+        "racing wing",
+        "gt wing"
+      ],
+      "title_en": "GT Wing Car Spoiler, 43.3 inch Universal Spoiler with Single Deck, Adjustable Lightweight Aluminum, Car Rear Spoiler Wing, Racing Spoiler BGW/JDM Drift Black",
+      "title_et": "GT spoiler autole, 1100 mm, reguleeritav alumiiniumist tiib",
+      "category": "Spoilerid ja aerodünaamika",
       "gen_confidence": 0.8,
       "verdict": "OK",
-      "reason": "Ratastega metallist brošüürihoidja vastab otsingule 'ratastega riiul', kuna tegemist on liigutatava riiuliga.",
+      "reason": "Aerodünaamiline tiib, racing wing ja gt wing vastavad GT spoilerile.",
+      "action": {
+        "status": "resolved",
+        "write_synonym": true
+      }
+    },
+    {
+      "id": "5aa04b6b-52c5-4fcf-8439-2390c80f821b",
+      "word": "elektripuurpress",
+      "synonyms": [
+        "drilling machine",
+        "industrial drill"
+      ],
+      "title_en": "Magnetic Drill Press, 1400 W, 50 mm Boring Diameter, 0-850 RPM Speed, Reversible Direction, Mag Drill Press with 6 Core Bits, Electric Drilling Machine for Industrial and Home Improvement",
+      "title_et": "Magnetpuurpink 1400 W, 50 mm ava, 0-850 RPM, pöörduv",
+      "category": "Magnetpuurid",
+      "gen_confidence": 0.82,
+      "verdict": "OK",
+      "reason": "Elektripuurpress ja tööstuslik puur vastavad magnetpuurpingile.",
+      "action": {
+        "status": "resolved",
+        "write_synonym": true
+      }
+    },
+    {
+      "id": "d32fb37d-5392-4ab5-93a5-7917a2b985d4",
+      "word": "toru puhastus",
+      "synonyms": [
+        "toruaukur",
+        "pipe cleaner"
+      ],
+      "title_en": "Drain Cleaner Machine Drain Auger 2286 cm x 9.5 mm Manual Feed & 4 Cutters",
+      "title_et": "Kanalisatsioonipuhastusmasin 2286 cm x 9,5 mm, käsijuhtimine, 4 lõikurit",
+      "category": "Kanalisatsiooni puhastusmasinad",
+      "gen_confidence": 0.8,
+      "verdict": "OK",
+      "reason": "Toru puhastus ja toruaukur vastavad kanalisatsioonipuhastusmasinale.",
+      "action": {
+        "status": "resolved",
+        "write_synonym": true
+      }
+    },
+    {
+      "id": "fe067eca-4df8-4ec7-8d42-1b310af25e6e",
+      "word": "tara pikendaja",
+      "synonyms": [
+        "fence height extender",
+        "aiahõlm"
+      ],
+      "title_en": "Fence Post Extender, 12 Packs 815 mm Barbed Wire Arm, Sturdy Steel Fence Height Extender, Flat or Surface Mounted  Barbed Wire Extension Arms, Protect Privacy and Prevent Pets Jumping Off",
+      "title_et": "Aiaposti pikendaja 815 mm, 12 tk, tugevast terasest",
+      "category": "Aiapostid ja -ankrud",
+      "gen_confidence": 0.8,
+      "verdict": "OK",
+      "reason": "Tara pikendaja ja fence height extender vastavad aiaposti pikendajale.",
+      "action": {
+        "status": "resolved",
+        "write_synonym": true
+      }
+    },
+    {
+      "id": "496402c3-d8ef-4dc4-b235-fc3927cb21e3",
+      "word": "kaheksanurkne mängutelaud",
+      "synonyms": [
+        "octagonal gaming table"
+      ],
+      "title_en": "Foldable Poker Table, 8 Player 1220 mm Folding Casino Leisure Table with Padded Rails & Cup Holders, Octagonal Portable Game Tables with Felt & Metal Legs, for Texas Hold'em Game and Blackjack",
+      "title_et": "Kokkupandav pokkerilaud 8 mängijale, 1220 mm, filts ja metalljalad",
+      "category": "Pokerilauad ja lauakatted",
+      "gen_confidence": 0.8,
+      "verdict": "OK",
+      "reason": "Kaheksanurkne mängutelaud vastab oktagonaalsele pokkerilauale.",
+      "action": {
+        "status": "resolved",
+        "write_synonym": true
+      }
+    },
+    {
+      "id": "123c8845-7707-4d16-ba69-5c989a91cf3d",
+      "word": "väljalaske",
+      "synonyms": [
+        "exhaust vent",
+        "õhuväljalaske"
+      ],
+      "title_en": "Gable Mount Fan, 30.5 cm Solar Attic Vent Exhaust Fan Carbon Steel, 900 CFM Cooling and Ventilation for Roof, Greenhouse, Garage, Shop, Small Spaces, with Thermostat and Power Adapter, Orange",
+      "title_et": "Solar-toitel katuseviilu ventilaator 30,5 cm, 900 CFM, termostaadiga",
+      "category": "Väljalaske- ja katuseventilaatorid",
+      "gen_confidence": 0.8,
+      "verdict": "OK",
+      "reason": "Väljalaske ja exhaust vent vastavad katuseventilaatorile, mis on mõeldud õhu väljalaskeks.",
+      "action": {
+        "status": "resolved",
+        "write_synonym": true
+      }
+    },
+    {
+      "id": "e2a87a8b-993a-4ed9-a7a5-980784ba1360",
+      "word": "alumiiniumpropeller",
+      "synonyms": [
+        "metal propeller"
+      ],
+      "title_en": "Outboard Propeller, Replace for OEM 3817468, 3-Blade 14.5\\\" x 19\\\" Pitch Aluminium Boat Propeller, Compatible with Volvo Penta SX Drive All Models, with 19 Tooth Splines, RH",
+      "title_et": "Alumiiniumist paadipropeller 3-labaline, 14,5\" x 19\", OEM 3817468",
+      "category": "Paadi sõukruvid (propellerid)",
+      "gen_confidence": 0.8,
+      "verdict": "OK",
+      "reason": "Metallist propeller vastab täpselt alumiiniumist paadipropellerile.",
+      "action": {
+        "status": "resolved",
+        "write_synonym": true
+      }
+    },
+    {
+      "id": "dd6ad18a-6d3b-48b8-a041-1c9149b04c72",
+      "word": "tõstmisüksus",
+      "synonyms": [
+        "lifting unit",
+        "tõstepump"
+      ],
+      "title_en": "Mophorn Hydraulic Pump Double Acting Hydraulic Power Unit 4L Steel Tank Hydraulic Pump Power Unit 12V DC for Dump Trailer Car Lifting",
+      "title_et": "Hüdrauliline pump 4L paagiga, 12V DC, kahesuunaline tõstmiseks",
+      "category": "Hüdroagregaadid",
+      "gen_confidence": 0.8,
+      "verdict": "OK",
+      "reason": "Hüdrauliline tõstepump/-üksus sobib hüdroagregaadi otsinguga.",
+      "action": {
+        "status": "resolved",
+        "write_synonym": true
+      }
+    },
+    {
+      "id": "f12a0277-e38f-4d8e-9191-28540c961f42",
+      "word": "või traktorile",
+      "synonyms": [
+        "traktorile kiinnituv vahend",
+        "tractor attachment"
+      ],
+      "title_en": "Hay Spear 49\" Bale Spear 4500 lbs Capacity, Bale Spike Quick Attach Square Hay Bale Spears 1 3/4\" wide, Red Coated Bale Forks, Bale Hay Spike with Hex Nut & Sleeve for Buckets Tractors Loaders",
+      "title_et": "Heinapalli oder 49\" (125 cm), kandevõime 4500 lbs, kiirkinnitusega",
+      "category": "Heinatöö ja pallikäsitlus",
+      "gen_confidence": 0.75,
+      "verdict": "EBAKINDEL",
+      "reason": "Otsingusõna on lause katkend, ebaselge kas klient otsiks sellega just heinapalli odrat.",
+      "action": {
+        "status": "pending",
+        "write_synonym": false
+      }
+    },
+    {
+      "id": "b3f60e23-52aa-4dd9-8f03-f02d7a4d5bb7",
+      "word": "neljaajaline telk",
+      "synonyms": [
+        "4 season tent",
+        "all season tent"
+      ],
+      "title_en": "Camping Hot Tent, Lightweight Bushcraft Tent with Stove Jack & 2 Tarp Poles, Waterproof Winter Hot Tents Shelters, Portable 4 Season Tents for 2 Persons Hiking Fishing Hunting Backpacking",
+      "title_et": "Talvine matkatelk ahjukorstnaga, 2 inimesele, 3,3×1,5×1,2 m",
+      "category": "Bell- ja glämpingtelgid",
+      "gen_confidence": 0.83,
+      "verdict": "OK",
+      "reason": "Toode on tõepoolest 4-hooajaline talvine matkatelk.",
+      "action": {
+        "status": "resolved",
+        "write_synonym": true
+      }
+    },
+    {
+      "id": "b7d12e7a-6fea-46c4-ad11-24a9f97a09dc",
+      "word": "korvpalliring kaitsepadi",
+      "synonyms": [
+        "basketball pole pad"
+      ],
+      "title_en": "Basketball Pole Pad, 64\" Tall and 2\" Thick Heavy Duty Wrap Around Pole Padding, Fits 6x6 - 7x7 inch Diameter Square Pole, All-weather Waterproof Protective Pad for Basement Garage Playground",
+      "title_et": "Korvpallipostipadi, 163 cm x 120 mm, ümbermähitav kaitse",
+      "category": "Korvpallirõngad, -korvid ja tarvikud",
+      "gen_confidence": 0.88,
+      "verdict": "OK",
+      "reason": "Korvpallipostipadi vastab täpselt basketball pole pad tootele.",
+      "action": {
+        "status": "resolved",
+        "write_synonym": true
+      }
+    },
+    {
+      "id": "68e5774e-65ad-40f7-bb3e-27dd94f6f0f3",
+      "word": "pinjoon tõmmits",
+      "synonyms": [
+        "pinion bearing puller",
+        "pinion puller"
+      ],
+      "title_en": "Carrier & Pinion Bearing Puller, Compatible with Dana 30,40,50,60,70, 80, Ford 10.25\" Bearings, Pinion Puller Tool with 3 Clamshells, 45# Steel Clamshell Bearing Puller for Auto Repair",
+      "title_et": "Kandur- ja pinjoonlaagri tõmmits, 3 kladushti, 45# teras",
+      "category": "Laagri- ja tihendiväljavõtjad ning press-tööriistad",
+      "gen_confidence": 0.85,
+      "verdict": "OK",
+      "reason": "Pinjoonlaagri tõmmits vastab tootele täpselt.",
+      "action": {
+        "status": "resolved",
+        "write_synonym": true
+      }
+    },
+    {
+      "id": "20133cbb-97ce-43a9-abe2-635606b626a3",
+      "word": "kunstikas topiaaria",
+      "synonyms": [
+        "artificial topiaries",
+        "dekoratiivaed"
+      ],
+      "title_en": "Artificial Topiaries Boxwood Trees, 50.8 cm Tall (2 Pieces), Ball-Shape Faux Topiaries Plant, All-year Green Feaux Plant Decorative Balls for Backyard, Balcony, Garden, Wedding and Home Décor",
+      "title_et": "Kunstlikud palli kujuga topiaaria puksipuud, 50,8 cm, 2 tk",
+      "category": "Kunsttaimed ja -puud",
+      "gen_confidence": 0.82,
+      "verdict": "OK",
+      "reason": "Kunsttopiaaria puksipuud vastavad otsesele terminile.",
+      "action": {
+        "status": "resolved",
+        "write_synonym": true
+      }
+    },
+    {
+      "id": "3f9809e0-e45c-484a-b757-1f7adb64a278",
+      "word": "võrguta inverter",
+      "synonyms": [
+        "off-grid inverter"
+      ],
+      "title_en": "4000W Hybrid Solar Inverter, 24V DC to 230V AC, Pure Sine Wave Power Inverter Charger, with Built-in 120A MPPT Solar Controller, WiFi Module, Single-Phase, for Lead Acid Lithium Battery Off-Grid",
+      "title_et": "Hübriidinverter 4000W, 24V/230V, MPPT 120A päikesekontrolleriga",
+      "category": "Inverterid",
+      "gen_confidence": 0.91,
+      "verdict": "OK",
+      "reason": "Toode on selgelt off-grid hübriidinverter.",
+      "action": {
+        "status": "resolved",
+        "write_synonym": true
+      }
+    },
+    {
+      "id": "50f0c4d7-2e05-4f47-8ef5-07fc60befc41",
+      "word": "disko dekoratsioon",
+      "synonyms": [
+        "peegel dekoratsioon",
+        "party decoration"
+      ],
+      "title_en": "Mirror Disco Ball 500 mm Silver Reflective Ball with Hanging Ring, for Party Home Decoration Stage Props DJ Dance Club, 2 Mirror Tile Sizes, Reflects Light, Large Wedding Music Birthday Decor",
+      "title_et": "Disko peegelkuul 500 mm, hõbedane, riputusrõngaga",
+      "category": "Peegel-diskokerad",
+      "gen_confidence": 0.8,
+      "verdict": "OK",
+      "reason": "Disko peegelkuul on pidudekoratsioon, vastab otsingule.",
+      "action": {
+        "status": "resolved",
+        "write_synonym": true
+      }
+    },
+    {
+      "id": "943d3b5e-ccf3-4853-b930-72ca0ca2eb9d",
+      "word": "kliimaseadme pumpab",
+      "synonyms": [
+        "ac vacuum pump",
+        "kliima pumpab"
+      ],
+      "title_en": "Vacuum Pump, 5 CFM 142 L/min, HVAC Two Stage Rotary Vane AC Vacuum Pump, for R134a R22 R410a Systems, 4 Pole Motor, for Automotive Air Conditioner Maintenance Resin Degassing, Oil Included",
+      "title_et": "Vaakumpump 142 L/min (5 CFM), kaheastmeline, kliimaseadmetele",
+      "category": "AC-vaakumpumbad",
+      "gen_confidence": 0.8,
+      "verdict": "OK",
+      "reason": "Vaakumpump kliimaseadmetele vastab otsingule, kuigi sõnastus on kohmakas.",
+      "action": {
+        "status": "resolved",
+        "write_synonym": true
+      }
+    },
+    {
+      "id": "3dfc7906-2296-4f11-aadf-246f1e85786c",
+      "word": "leekivalgustaja",
+      "synonyms": [
+        "tuletarvik",
+        "fire accessory"
+      ],
+      "title_en": "Fireplace Tool Set, 5 PCS Fire Tool Set and Holder with Four-Prong Stand, Tongs, Ash Shovel, Brush, Fire Place Poker, Wrought Iron Fireplace Accessories for Campfire Indoor/Outdoor, Black",
+      "title_et": "Kaminatarvikute komplekt 5 tk, sepisrauast, seisutoega, must",
+      "category": "Kaminatööriistad",
+      "gen_confidence": 0.75,
+      "verdict": "VALE",
+      "reason": "Klient otsiks \"leekivalgustaja\" all pigem tule süütamise/valgustamise vahendit, mitte kaminatarvikute komplekti.",
+      "action": {
+        "status": "rejected",
+        "write_synonym": false
+      }
+    },
+    {
+      "id": "c1260aef-33ec-4830-9767-513ba10d67a5",
+      "word": "kokkupandav tool",
+      "synonyms": [
+        "folding chair",
+        "camping tool"
+      ],
+      "title_en": "Floor Chair, 14 Adjustable Positions Folding Floor Gaming Chair with Back Support, Sturdy Metal Frame with Recycled Foam and Coral Fleece Surface, Multifunctional for Reading, Relaxing, Gray",
+      "title_et": "Kokkupandav põrandatool reguleeritava seljatoega, 14 asendit, hall",
+      "category": "Tugitoolid",
+      "gen_confidence": 0.85,
+      "verdict": "OK",
+      "reason": "\"Kokkupandav tool\" vastab täpselt kokkupandavale põrandatoolile.",
+      "action": {
+        "status": "resolved",
+        "write_synonym": true
+      }
+    },
+    {
+      "id": "5648b931-28e1-4201-9870-801ca8957c1e",
+      "word": "maasturi uksed",
+      "synonyms": [
+        "off-road doors",
+        "jeep doors"
+      ],
+      "title_en": "Jeep Tube Doors, 4-Door, Compatible with 2018-2026 Wrangler JL JLU & 2020-2026 Gladiator JT, Steel Off Road Front & Rear Tubular Half Doors with DOT Certified Side View Mirrors and Rubber Pads",
+      "title_et": "Terasest toruuksed Jeep Wrangler JL JLU & Gladiator JT, 4 tk",
+      "category": "Jeep/maasturi välisosad",
+      "gen_confidence": 0.85,
+      "verdict": "OK",
+      "reason": "\"Maasturi uksed\" sobib Jeep'i terasuste komplektiga.",
+      "action": {
+        "status": "resolved",
+        "write_synonym": true
+      }
+    },
+    {
+      "id": "d5a73e6d-046b-4d62-856b-2b1dfffd51bf",
+      "word": "turbolaaduri testija",
+      "synonyms": [
+        "turbo tester"
+      ],
+      "title_en": "Turbo Boost Leak Tester Kit, 0-80 PSI Valve Gauge Range, Turbo System Leakage Tester Set with 4 Pairs of Stepped Adapters & 4 Pairs of Standard Air Fittings for Intercooler & Intake Piping Test",
+      "title_et": "Turbolaaduri lekketesti komplekt, 0-80 PSI mõõdik, 8 adapterit",
+      "category": "Mootorite kompressiooni- ja survetestrid",
+      "gen_confidence": 0.85,
+      "verdict": "OK",
+      "reason": "\"Turbolaaduri testija\" vastab turbo lekketesti komplektile.",
+      "action": {
+        "status": "resolved",
+        "write_synonym": true
+      }
+    },
+    {
+      "id": "8937b692-4746-4e35-8a3a-eea1f904fa96",
+      "word": "puiduliite komplekt",
+      "synonyms": [
+        "pocket hole kit",
+        "woodworking jig"
+      ],
+      "title_en": "Pocket Hole Jig, 56 Pcs Mini Jig Pocket Hole System with 22.9 cm C-clamp, Step Drill, Wrench, Drill Stop Ring, Square Drive Bit, and Screws, for DIY Carpentry Projects",
+      "title_et": "Taskuavade puurimisšabloon, 56-osaline komplekt, 22,9 cm C-klambriga",
+      "category": "Taskuaukude puurimisšabloonid",
+      "gen_confidence": 0.8,
+      "verdict": "OK",
+      "reason": "\"Puiduliite komplekt\" sobib taskuaukude puurimisšablooniga, mida kasutatakse puiduliidete tegemiseks.",
+      "action": {
+        "status": "resolved",
+        "write_synonym": true
+      }
+    },
+    {
+      "id": "9c9c1db3-0f69-4200-a5cd-fc1840fdf772",
+      "word": "paadikäru trepp",
+      "synonyms": [
+        "boat trailer stair",
+        "paaditrepp"
+      ],
+      "title_en": "Boat Trailer Steps, 3-Step, Heavy-Duty Boat Trailer Steps with Handle, Non-Slip Surface, 3 Mounting Angle Options, Steel Ladder for 76.2 x 76.2/76.2 x 127/101.6 x 101.6 mm Frame, Side Mounting",
+      "title_et": "Paadikäru trepp 3 astmega, käepideme ja libisemiskindla pinnaga",
+      "category": "Paadihaagiku tarvikud",
+      "gen_confidence": 0.75,
+      "verdict": "OK",
+      "reason": "\"Paadikäru trepp\" vastab paadihaagiku treppidele.",
+      "action": {
+        "status": "resolved",
+        "write_synonym": true
+      }
+    },
+    {
+      "id": "79c4e641-28ea-4c47-9670-a48a070f9439",
+      "word": "karavaani tasanduskiilud",
+      "synonyms": [
+        "camper leveling blocks",
+        "rv leveling kit"
+      ],
+      "title_en": "Trailer Jack Blocks, 6\" High Heavy Duty RV Leveling Blocks, Each with 6000 lbs Capacity, as RV Jack Stand, Stool, Camper Accessories, for Travel Trailers, 5th Wheels Class A/C Motorhomes, 2 Pcs",
+      "title_et": "RV tasandusplokid 152 mm, kandevõime 2721,6 kg, 2 tk",
+      "category": "Tasandusplokid ja -kiilud",
+      "gen_confidence": 0.85,
+      "verdict": "OK",
+      "reason": "\"Karavaani tasanduskiilud\" vastab RV tasandusplokkidele.",
+      "action": {
+        "status": "resolved",
+        "write_synonym": true
+      }
+    },
+    {
+      "id": "8a233e44-bf77-48f8-8206-52fb5eea7f8e",
+      "word": "puksipress",
+      "synonyms": [
+        "bush removal tool",
+        "sleeve press"
+      ],
+      "title_en": "27 PCS Pull and Press Sleeve Kit, 45 # Steel Removal Installation Bushes Bearings Tool Kit, Bush Removal Insertion Sleeve Tool Set Works on Most Cars and LCV, HGV Engines",
+      "title_et": "Puksi- ja laagripressi komplekt 27 tk, 45# teras",
+      "category": "Puksi- ja laagritööriistad",
+      "gen_confidence": 0.9,
+      "verdict": "OK",
+      "reason": "\"Puksipress\" vastab puksi- ja laagripressi komplektile.",
+      "action": {
+        "status": "resolved",
+        "write_synonym": true
+      }
+    },
+    {
+      "id": "2d119324-71f0-446c-8eb2-fc845d9b27df",
+      "word": "lauarill",
+      "synonyms": [
+        "stove top griddle",
+        "bbq griddle",
+        "grillimisplaat"
+      ],
+      "title_en": "Stove Top Griddle, 23.5\"x16\" Pre-Seasoned Stainless Steel Griddle, Rectangular Double Burner Griddle Pan, Non-Stick Family Pan Cookware with Handles and Oil Groove, for BBQ, Gas Grills, Silver",
+      "title_et": "Roostevaba terasest grillplaat 23.5x16, mitteanahkuv, gaasigrillile",
+      "category": "Lauagrillid ja grillplaadid",
+      "gen_confidence": 0.8,
+      "verdict": "OK",
+      "reason": "\"Lauarill\" sobib grillplaadiga, mida kasutatakse grillimiseks laual või gaasigrillil.",
+      "action": {
+        "status": "resolved",
+        "write_synonym": true
+      }
+    },
+    {
+      "id": "7fbda198-7559-4595-8dad-b57089f40c5b",
+      "word": "õlapadi",
+      "synonyms": [
+        "neck wrap",
+        "shoulder pad"
+      ],
+      "title_en": "Red Light Therapy for Shoulder Neck, 660nm & 850nm Wearable Light Therapy Pad with Timer, 10Hz Pulse & 3 Intensities, Cordless Light Therapy Wrap Device for Upper Back Pain Relief, Muscle Relax",
+      "title_et": "Kantav punavalgusteraapia padi õlgadele ja kaelale, 660nm/850nm",
+      "category": "Valgusteraapiaseadmed",
+      "gen_confidence": 0.82,
+      "verdict": "EBAKINDEL",
+      "reason": "\"Õlapadi\" võib tähendada ka tavalist õlapolstrit, mitte kindlasti valgusteraapia seadet, seega vajab täiendavat konteksti.",
+      "action": {
+        "status": "pending",
+        "write_synonym": false
+      }
+    },
+    {
+      "id": "34d81a4d-4b01-4f39-b9de-b32360806ec0",
+      "word": "katusehoidja",
+      "synonyms": [
+        "roof storage lift"
+      ],
+      "title_en": "Hard Top Remover Lift, 200 lbs, Jeep Hardtop Removal and Storage System, Easy One-Person Operation, Compatible with Jeep Wranglers 2 & 4 Door YJ, TJ, JK, JL & 4XE and Ford Bronco 4 Door & 6 Gen+",
+      "title_et": "Jeep hardtopi eemaldamise tõstuk, kandevõime 200 lbs",
+      "category": "Katuse- ja uksehoiukärud",
+      "gen_confidence": 0.75,
+      "verdict": "VALE",
+      "reason": "Katusehoidja viitab tavaliselt auto katuseraamile lasti vedamiseks, mitte hardtopi eemaldamise ja hoiustamise tõstukile.",
+      "action": {
+        "status": "rejected",
+        "write_synonym": false
+      }
+    },
+    {
+      "id": "758ea943-3401-46ca-bd03-b5369f26897c",
+      "word": "koommertsriisikeetja",
+      "synonyms": [
+        "commercial rice cooker",
+        "suur riisikeetja"
+      ],
+      "title_en": "Commercial Rice Cooker, 45-Cup Rice Cooker, 9 Liter Large Rice Cooker and Warmer with Nonstick Inner Pot, Fast Cooking and 12-Hour Keep Warm, with Rice Cup and Paddle, for Restaurant",
+      "title_et": "Suur riisikeetja 9L, 45 tassi riisile, 12h soojendus",
+      "category": "Riisikeetjad",
+      "gen_confidence": 0.9,
+      "verdict": "OK",
+      "reason": "Vaatamata kirjaveale vastab sünonüüm (commercial rice cooker, suur riisikeetja) täpselt tootele.",
+      "action": {
+        "status": "resolved",
+        "write_synonym": true
+      }
+    },
+    {
+      "id": "1d5c8fac-0e7b-45a9-b293-425df0a47ea4",
+      "word": "tuhk-lapp",
+      "synonyms": [
+        "tuhkur",
+        "ash shovel"
+      ],
+      "title_en": "Fireplace Tool Set, 4 PCS Fire Tool Set and Holder with Three-Prong Stand, Ash Shovel, Brush, Fire Place Poker, Wrought Iron Fireplace Accessories for Campfire Indoor/Outdoor, Black",
+      "title_et": "Kaminatarvikute komplekt, 4 tk, kolmeharulise alusega, must",
+      "category": "Kaminatööriistad",
+      "gen_confidence": 0.75,
+      "verdict": "EBAKINDEL",
+      "reason": "Termin 'tuhk-lapp' ja sünonüüm 'tuhkur' on segased ning ei vasta selgelt kaminatarvikute komplektile.",
+      "action": {
+        "status": "pending",
+        "write_synonym": false
+      }
+    },
+    {
+      "id": "6aa18c2a-8dd0-471b-8d27-d72338569d3f",
+      "word": "sarrusekääride tera",
+      "synonyms": [
+        "rebar cutter blade",
+        "armatuurilõikuri tera",
+        "lõiketerad"
+      ],
+      "title_en": "Rebar Cutter Blades, 6 Pcs Replacement Jaw Blades for 1-1/4 Inch 32mm #10 Electric Rebar Cutter, Double-sided, CR12MOV High-Hardness Steel, Fast Efficient with Screws and Spring Washer",
+      "title_et": "Sarrusekäärile sobivad lõiketerad 32mm, 6 tk, Cr12MoV teras",
+      "category": "Sarraua- ja armatuurilõikuri terad",
+      "gen_confidence": 0.85,
+      "verdict": "OK",
+      "reason": "Sünonüümid vastavad täpselt sarrusekääride lõiketeradele.",
+      "action": {
+        "status": "resolved",
+        "write_synonym": true
+      }
+    },
+    {
+      "id": "85cabaf3-1fb3-4521-809e-e426c9fe9f4b",
+      "word": "nisurohu mahl",
+      "synonyms": [
+        "wheatgrass juice",
+        "nisurohu extract"
+      ],
+      "title_en": "Manual Wheatgrass Juicer Extractor Portable Manual Juicer Extractor with 3 Sieves Stainless Steel Wheatgrass Extractor Squeezer Machine for Vegetables Fruits Wheatgrass",
+      "title_et": "Käsitsi nisurohu mahlapress, 304 roostevaba teras, Φ86 mm",
+      "category": "Mahlapressid",
+      "gen_confidence": 0.8,
+      "verdict": "VALE",
+      "reason": "Klient otsib nisurohu mahla (jooki), aga toode on mahlapress, mitte valmis mahl.",
+      "action": {
+        "status": "rejected",
+        "write_synonym": false
+      }
+    },
+    {
+      "id": "65c4b4cc-11c6-4443-b982-ddc43b723176",
+      "word": "kunsttaim",
+      "synonyms": [
+        "faux plant",
+        "kunstlik taim"
+      ],
+      "title_en": "Artificial Grass Plant, 686mm Faux Onion Grass Fake Greenery Shrubs Plant, Premium PVC for Indoor Outdoor House Home Garden Office Room Décor, Housewarming, 8 Pack Green",
+      "title_et": "Kunstlik sibulrohi 686 mm, PVC materjal, 8 tk komplekt",
+      "category": "Kunsttaimed ja -puud",
+      "gen_confidence": 0.8,
+      "verdict": "OK",
+      "reason": "Kunsttaim ja faux plant vastavad hästi kunstlikule taimele.",
+      "action": {
+        "status": "resolved",
+        "write_synonym": true
+      }
+    },
+    {
+      "id": "6d0c4eb5-4902-4dfa-becf-a24058359480",
+      "word": "vasejäätmed",
+      "synonyms": [
+        "vanem progi",
+        "copper scrap",
+        "progi ümbertöötlus"
+      ],
+      "title_en": "Electric Wire Stripping Machine Φ1.5mm~Φ25mm Portable Automatic Wire Stripper Cable 180W Wire Stripping Machine Tool for Scrap Copper Recycling",
+      "title_et": "Elektriline juhtmekoorimismasin 1,5-25mm 180W vasejäätmete koorimiseks",
+      "category": "Juhtmekoorimismasinad",
+      "gen_confidence": 0.75,
+      "verdict": "VALE",
+      "reason": "Klient otsib vasejäätmeid (toorainet), kuid toode on juhtmekoorimismasin, mitte vase jäägid ise.",
+      "action": {
+        "status": "rejected",
+        "write_synonym": false
+      }
+    },
+    {
+      "id": "812d5d78-66c2-43a5-818a-5b5013bc2b0c",
+      "word": "72v mootor",
+      "synonyms": [],
+      "title_en": "Electric Brushless DC Motor 72V 3000W Brushless Electric Motor 4900RPM Brushless Motor Kit with Controller and Throttle Grip for Electric Scooter E Bike Engine Motorcycle DIY Part Conversion Kit",
+      "title_et": "Harjadeta DC-mootor 72V 3000W, 4900 RPM, kontrolleri ja gaasikäepidemega",
+      "category": "Harjadeta alalisvoolumootorid ja -komplektid",
+      "gen_confidence": 0.9,
+      "verdict": "OK",
+      "reason": "72V mootor vastab täpselt tootele.",
+      "action": {
+        "status": "resolved",
+        "write_synonym": true
+      }
+    },
+    {
+      "id": "2ac79237-e038-4366-b29f-89fc0a9cb369",
+      "word": "pöörlev nurgariiuli",
+      "synonyms": [
+        "pöörlevriiul",
+        "rotating corner shelf"
+      ],
+      "title_en": "28\" Kidney Shaped Chrome Corner Organizer, 360° Rotatble Kitchen Base Cabinet Blind Corner, 2 Tier Height Adjustable Storage Rack, Carbon Steel Lazy Susan Replacement Shelf for Cabinet Corner",
+      "title_et": "28\" neerukujuline kroomitud nurgariiul, 360° pöörlev, 2-tasandiline",
+      "category": "Nurgakapi-organiserid",
+      "gen_confidence": 0.84,
+      "verdict": "OK",
+      "reason": "Pöörlev nurgariiul vastab täpselt kroomitud nurgaorganiserile.",
+      "action": {
+        "status": "resolved",
+        "write_synonym": true
+      }
+    },
+    {
+      "id": "8fe6bf9d-832d-4a4a-bfc9-02a1c5496033",
+      "word": "gaasitank",
+      "synonyms": [
+        "võisusilinder",
+        "cylinder tank",
+        "pressure vessel"
+      ],
+      "title_en": "Refrigerant Recovery Tank, 50 LBS Capacity, 400 psi Portable Cylinder Tank with Y-Valve for Liquid/Vapor, High-sealing Recovery Can for R22/R134A/R410A, Orange+Gray",
+      "title_et": "Külmaaine kogumismahuti, 50 lbs, 400 psi, Y-klapiga",
+      "category": "Külmaaine-taastustankid",
+      "gen_confidence": 0.8,
+      "verdict": "EBAKINDEL",
+      "reason": "Gaasitank on liiga üldine termin, mis võib viidata erinevatele gaasimahutitele, mitte spetsiifiliselt külmaaine kogumismahutile.",
+      "action": {
+        "status": "pending",
+        "write_synonym": false
+      }
+    },
+    {
+      "id": "378c66df-66ca-4deb-ab6a-552b134bc146",
+      "word": "haagise tõstesüsteem",
+      "synonyms": [
+        "trailer lift",
+        "dump trailer pump"
+      ],
+      "title_en": "3.8 L Single Acting Hydraulic Pump Dump Trailer Lifting Remote Crane",
+      "title_et": "3.8 L üksiktoimeline hüdraulikapump haagiste tõstmiseks",
+      "category": "Hüdropumbad ja -mootorid",
+      "gen_confidence": 0.85,
+      "verdict": "OK",
+      "reason": "Hüdraulikapump on mõeldud just haagise tõstmiseks, mis vastab otsingule.",
+      "action": {
+        "status": "resolved",
+        "write_synonym": true
+      }
+    },
+    {
+      "id": "1e69039b-114d-4f38-97ec-efe5c7af0575",
+      "word": "kohvikandi pump",
+      "synonyms": [
+        "coffee maker pump",
+        "survepump"
+      ],
+      "title_en": "3.8 L Water Dispenser Pump 40psi Coffee Maker Auto Pressure High Reputation",
+      "title_et": "Joogiveepump 3,8 L/min, 40 psi automaatrõhuga, vaikne töö",
+      "category": "Joogivee- ja pudelipumbad",
+      "gen_confidence": 0.8,
+      "verdict": "VALE",
+      "reason": "Toode on üldine joogiveepump, mitte spetsiifiline kohvikannu pump.",
+      "action": {
+        "status": "rejected",
+        "write_synonym": false
+      }
+    },
+    {
+      "id": "017ff81c-3375-480b-80bc-677ffb80d467",
+      "word": "kohvimasin alus",
+      "synonyms": [
+        "elektritehnika libisemisalus",
+        "seadmete käru"
+      ],
+      "title_en": "Appliance Slider, Medium 13 x 16-inch, Rolling Sliding Tray with Rubber Wheels & Hollow Handle, Easy to Clean, Appliance Rolling Tray for Coffee Maker, Kitchen Countertop, Natural Wood",
+      "title_et": "Köögitehnika libisemisalus 330 x 406 mm, kummirataste ja käepidemega",
+      "category": "Seadmete libistusalused",
+      "gen_confidence": 0.75,
+      "verdict": "OK",
+      "reason": "Libisemisalus sobib kohvimasina alla kerimiseks, vastab otsingule.",
+      "action": {
+        "status": "resolved",
+        "write_synonym": true
+      }
+    },
+    {
+      "id": "2c654a94-a259-4a08-9710-50b77bcc91c3",
+      "word": "suurendusklaas juveliirile",
+      "synonyms": [
+        "micro inlaid mirror",
+        "vaatlusseade juveliirile"
+      ],
+      "title_en": "Micro Inlaid Mirror Multi-directional Micro-setting Microscope 76mm Lens Spring Bracket Jewelry Tools 7X-4.5X",
+      "title_et": "Juveliiri stereomikroskoop vedrukinnitusega, 0,7X-4,5X",
+      "category": "Juveelimikroskoobid",
+      "gen_confidence": 0.75,
+      "verdict": "OK",
+      "reason": "Juveliiri mikroskoop toimib suurendusklaasina ja vastab otsingu eesmärgile.",
+      "action": {
+        "status": "resolved",
+        "write_synonym": true
+      }
+    },
+    {
+      "id": "aeb7ba68-b618-4ca9-95ca-decf289195ea",
+      "word": "peotehk",
+      "synonyms": [
+        "party tent",
+        "õhkpeotelk"
+      ],
+      "title_en": "Inflatable Nightclub, 5.4 x 5 x 4.2 m Inflatable Party Tent with 680W Blower & Sandbag, Ventilated Blow up Night Club with 2 Windows, Air Cube House for Event Birthday Wedding Party",
+      "title_et": "Puhutav õhktelk peoks 5,4 x 5 x 4,2 m, 680W puhuriga",
+      "category": "Peotelgid",
+      "gen_confidence": 0.88,
+      "verdict": "OK",
+      "reason": "Õhkpeotelk vastab otsingule \"peotelk\" hoolimata kirjaveast.",
+      "action": {
+        "status": "resolved",
+        "write_synonym": true
+      }
+    },
+    {
+      "id": "51ac9204-f591-44ca-b462-de5712932848",
+      "word": "maisimasin",
+      "synonyms": [
+        "popcorn popper"
+      ],
+      "title_en": "Popcorn Maker, 300W Popcorn Popper Machine, 2.5 Oz Kettle Makes 4 QT per Batch, Tabletop Popcorn Maker with PP Door, Includes 2 Scoops and Tray, Movie Theater Style, Black",
+      "title_et": "Popcornimasin 300W – 2,5 oz katel, kuni 4 QT portsjon",
+      "category": "Popkorni- ja suhkruvatimasinad",
+      "gen_confidence": 0.8,
+      "verdict": "EBAKINDEL",
+      "reason": "\"Maisimasin\" võib tähendada ka maisikoorijat, mitte ainult popkornimasinat.",
+      "action": {
+        "status": "pending",
+        "write_synonym": false
+      }
+    },
+    {
+      "id": "d619575c-fcb2-4fd8-8723-0f53b96e0b41",
+      "word": "reisidvd",
+      "synonyms": [
+        "portable video player"
+      ],
+      "title_en": "Portable DVD Player, 7 inch HD Swivel Display Screen, 4 Hours Built-in Rechargeable Battery, Dual Speakers, Support Sync TV/USB/SD Card/CD/DVD, Car Charger, AC Power Adapter, Remote Control",
+      "title_et": "Kaasaskantav DVD-mängija 7-tollise pööratava HD-ekraaniga",
+      "category": "Kaasaskantavad DVD-mängijad",
+      "gen_confidence": 0.75,
+      "verdict": "OK",
+      "reason": "Kaasaskantav DVD-mängija vastab reisi-DVD otsingule.",
+      "action": {
+        "status": "resolved",
+        "write_synonym": true
+      }
+    },
+    {
+      "id": "5c52619a-3e47-459f-aa0a-a7ecfba299f6",
+      "word": "puukäru",
+      "synonyms": [
+        "küttepuu käru",
+        "wood rack"
+      ],
+      "title_en": "Firewood Log Rack, 2.44 m Firewood Rack Outdoor, Black Firewood Rack Stand, Steel Outdoor Wood Rack, Firewood Log Holder with Load Capacity 590 kg, Firewood Rack with Cover & Fireplace Tool Set",
+      "title_et": "Küttepuuriiul 2,44 m, teras, kandevõime 590 kg, kate ja tarvikud",
+      "category": "Küttepuude hoidikud ja kärud",
+      "gen_confidence": 0.88,
+      "verdict": "VALE",
+      "reason": "Toode on statsionaarne küttepuuriiul, mitte ratastega käru.",
+      "action": {
+        "status": "rejected",
+        "write_synonym": false
+      }
+    },
+    {
+      "id": "ddd6dfe6-6c12-40f1-8469-f70b4edcc0df",
+      "word": "kodumasina postament",
+      "synonyms": [],
+      "title_en": "Washing Machine Stand 121.9x63.5 cm, Washing Machine Stand Base Heavy 267.6 kg for Washer and Dryer Stand Aluminum Washing Machine Base with Two 29.9 kg Trays with 4 Adjustable Feet(Single Tray)",
+      "title_et": "Alumiiniumist pesumasina alus 63,5x63,5 cm, kandevõime 136 kg",
+      "category": "Kodumasinate alused",
+      "gen_confidence": 0.7,
+      "verdict": "OK",
+      "reason": "Pesumasina alus vastab \"kodumasina postament\" otsingule.",
+      "action": {
+        "status": "resolved",
+        "write_synonym": true
+      }
+    },
+    {
+      "id": "3eaa58cf-164c-45a5-b44b-29292fad63da",
+      "word": "alumiiniumne tugi",
+      "synonyms": [],
+      "title_en": "Roof Rack Cross Bars, 100 kg Load Capacity, 1350 mm Length, Heavy Duty Aluminum Alloy Crossbar Racks Rail Rooftop Luggage Canoe Cargo Basket Carrier (Crossbar Only, Mounting Feet Not Included)",
+      "title_et": "Katuseraami ristkang alumiiniumsulamist, 1350 mm, 100 kg",
+      "category": "Katusekandurid",
+      "gen_confidence": 0.82,
+      "verdict": "EBAKINDEL",
+      "reason": "Üldine \"alumiiniumne tugi\" võib viidata paljudele erinevatele toodetele, mitte ainult katusekandurile.",
+      "action": {
+        "status": "pending",
+        "write_synonym": false
+      }
+    },
+    {
+      "id": "8b758428-b158-4e20-a5c5-d5b87b14ead1",
+      "word": "muruhooldus",
+      "synonyms": [],
+      "title_en": "Lawn Drop Spreader, 22.6 kg Capacity, Walk-Behind Push Spreader, 460 mm Spreading Width, All Terrain Pneumatic Tires, Lawn Spreaders with Hopper Grate, for Seed, Fertilizer, Salt, Ice Melt",
+      "title_et": "Lükatav muruväetiselaotur, 22,6 kg mahutavus, 460 mm laotuslaius",
+      "category": "Väetise- ja seemnelaotajad",
+      "gen_confidence": 0.85,
+      "verdict": "OK",
+      "reason": "Muruväetiselaotur on muruhoolduse tööriist, mida klient ootaks selle otsinguga leida.",
+      "action": {
+        "status": "resolved",
+        "write_synonym": true
+      }
+    },
+    {
+      "id": "833b60ab-1a10-4c5c-a64f-e8715618c49b",
+      "word": "töölauale sahtel",
+      "synonyms": [
+        "työpöydän laatikko",
+        "lockable drawer",
+        "workstation storage"
+      ],
+      "title_en": "13\" Wide Under Desk Drawer Slide Out, Under Desk Mounted Pull-out Drawer Attachment, Hidden Desktop Storage Organizer, Lockable Under Table Pencil Drawer for Sit Stand Workstation, 14x13x7 in",
+      "title_et": "Lukustatav lauaalune sahtel, 13\" laiune, Q235 teras",
+      "category": "Lauasahtlid ja -alused",
+      "gen_confidence": 0.8,
+      "verdict": "OK",
+      "reason": "Lauaalune sahtel vastab täpselt otsingule 'töölauale sahtel' ja sünonüümidele.",
+      "action": {
+        "status": "resolved",
+        "write_synonym": true
+      }
+    },
+    {
+      "id": "dfd5f2e5-10a8-4214-9b8b-e724c7bdcf55",
+      "word": "drenaaž",
+      "synonyms": [
+        "drainage machine"
+      ],
+      "title_en": "Drain Cleaner Machine 75FT x 1/2 Inch, Auto Feed Sewer Snake Drain Auger on Wheels, Portable Drain Cleaning Machine with 8 Cutters & Air-activated Foot Switch for 2\" to 4\" Pipes",
+      "title_et": "Torupuhastusmasin 75FT x 1/2\" kaabliga, ratastel, 8 lõikuriga",
+      "category": "Kanalisatsiooni puhastusmasinad",
+      "gen_confidence": 0.75,
+      "verdict": "VALE",
+      "reason": "'Drenaaž' viitab tavaliselt maa- või veesüsteemide drenaažile, mitte kanalisatsiooni puhastusmasinale.",
+      "action": {
+        "status": "rejected",
+        "write_synonym": false
+      }
+    },
+    {
+      "id": "2d9505e7-95a4-43ec-83b5-a0144177d690",
+      "word": "magnetläätseline prill",
+      "synonyms": [
+        "vahetatava läätsega prill",
+        "magnetic lens goggles"
+      ],
+      "title_en": "Frameless Ski Goggles, Magnet Cylindrical Lens with Pink Revo Coating, OTG Anti fog Snow Goggles for Men Women Youth, TPU Frame & Ventilation Structure, Fit for Skiing, Skating, Snowboarding",
+      "title_et": "Raamivabad suusaprillid magnetläätsega, Pink Revo kate, OTG",
+      "category": "Suusa- ja kaitseprillid",
+      "gen_confidence": 0.85,
+      "verdict": "OK",
+      "reason": "Magnetläätsega suusaprillid vastavad otsingule 'magnetläätseline prill'.",
+      "action": {
+        "status": "resolved",
+        "write_synonym": true
+      }
+    },
+    {
+      "id": "9da4f983-fdd3-4780-85e9-e5306489506c",
+      "word": "katedraalus",
+      "synonyms": [],
+      "title_en": "Chafing Dish Buffet Set, 5 Qt 4 Pack, Stainless Steel Chafer with 4 Full Size Pan, Round Catering Warmer Server with Glass Lid Water Pan Folding Stand Fuel Holder, for Wedding Party Banquet, Gold",
+      "title_et": "Toidusoojendusalused 5 Qt (4,7L), 4 tk, roostevaba teras, kuldne",
+      "category": "Toidusoojendajad (chafing dish)",
+      "gen_confidence": 0.7,
+      "verdict": "EBAKINDEL",
+      "reason": "Sõna 'katedraalus' on ebatavaline ja selle tähendus pole üheselt selge, et seostada toidusoojendusalusega.",
+      "action": {
+        "status": "pending",
+        "write_synonym": false
+      }
+    },
+    {
+      "id": "d8128d9d-5ac5-4050-90a7-2d426f2402c8",
+      "word": "hüdropinju",
+      "synonyms": [
+        "hüdrauliline painutaja",
+        "hydraulic bender"
+      ],
+      "title_en": "Electric Tube Bending Machine, 750W Electric Tubing Bender with 6L Hydraulic Cylinder, Movable Pipe Bender Machine with Casters, 3 Dies & 180° Max Bending Angle, Suitable for 3/4 to 2 inch Pipes",
+      "title_et": "Elektriline torupainutaja 750W, 6L hüdrosilinder, ratastel",
+      "category": "Torupainutajad",
+      "gen_confidence": 0.8,
+      "verdict": "OK",
+      "reason": "Hüdrauliline torupainutaja vastab otsingule 'hüdropinju' ja sünonüümile 'hüdrauliline painutaja'.",
+      "action": {
+        "status": "resolved",
+        "write_synonym": true
+      }
+    },
+    {
+      "id": "fbd5e918-ab26-4e08-962c-28336f4de8a6",
+      "word": "minikeg",
+      "synonyms": [
+        "mini keg"
+      ],
+      "title_en": "Beer Growler Tap System, 64Oz 1.89L Mini Keg, 304 Stainless Steel Pressurized Beer Growler, Keg Growler with Pressure Display, CO2 Regulator Faucet, Leak-Proof Ring For Draft Homebrew Craft Beer",
+      "title_et": "Surveõllevaat kraanisüsteemiga, 1,89L, 304 roostevaba teras",
+      "category": "Õllesüsteemid ja -tornid",
+      "gen_confidence": 0.85,
+      "verdict": "OK",
+      "reason": "Toode on mini õllevaat, mis vastab täpselt otsingule 'minikeg'.",
+      "action": {
+        "status": "resolved",
+        "write_synonym": true
+      }
+    },
+    {
+      "id": "89c4a860-d770-4590-a371-74ff84fc9d07",
+      "word": "kupimasin",
+      "synonyms": [
+        "joogikausi pesumasin",
+        "cup washer",
+        "commercial glass washer"
+      ],
+      "title_en": "Electric Commercial Glass Washer, 5-Brush Bar Glass Cleaner, 600 Cups/Hour Wine Glass Cleaning Machine, Bar Glass Washer for Champagne Glasses, Beer Cups, Mugs, Perfect for Bars and Cafes",
+      "title_et": "Elektriline klaasipesumasin, 5 harjaga, 600 klaasi/h",
+      "category": "Klaasipesumasinad",
+      "gen_confidence": 0.82,
+      "verdict": "OK",
+      "reason": "Klaasipesumasin vastab sünonüümile 'cup washer' ja otsingule 'kupimasin'.",
+      "action": {
+        "status": "resolved",
+        "write_synonym": true
+      }
+    },
+    {
+      "id": "79da588c-c766-43f5-be20-9220f1c7d1b9",
+      "word": "avatav päikesekatuse",
+      "synonyms": [
+        "pöörduv päikeseseifi",
+        "retractable awning",
+        "sun shade"
+      ],
+      "title_en": "Manual RV Awning Complete Kit, 18' Retractable Awning with Aluminum Alloy Frame, Outdoor Trailer Awning, Fit for Most RVs(Black Fade)",
+      "title_et": "Matkaauto käsitsi avatav varikatus, 5,49 m (18 ft), alumiiniumraam",
+      "category": "Matka- ja haagissuvila markiisid",
+      "gen_confidence": 0.86,
+      "verdict": "VALE",
+      "reason": "'Avatav päikesekatus' viitab tavaliselt auto päikesekatusele, mitte RV markiisile.",
+      "action": {
+        "status": "rejected",
+        "write_synonym": false
+      }
+    },
+    {
+      "id": "7a7fd295-266c-4205-8e70-832af0428f2b",
+      "word": "riputatav taim",
+      "synonyms": [
+        "hanging plant",
+        "fake hanging plant"
+      ],
+      "title_en": "Artificial Ferns 2 Pcs, Natural Spread Diameter 31-34 Inch, Large Hanging Artificial Boston Ferns, Fake Plant Wall Decor with 30 Branches, Faux Fern for Home and Office (Flowerpot Unincluded)",
+      "title_et": "Kunstlikud sõnajalad 2 tk, laotus 31-34 tolli, 30 haruga",
+      "category": "Taimeseinad ja haljasseinad",
+      "gen_confidence": 0.8,
+      "verdict": "OK",
+      "reason": "Riputatav kunstlik taim vastab otsingule 'riputatav taim'.",
+      "action": {
+        "status": "resolved",
+        "write_synonym": true
+      }
+    },
+    {
+      "id": "cc25e279-e911-4c5c-a2ec-c7837444ed9a",
+      "word": "hobuse sügamishari",
+      "synonyms": [
+        "horse brush",
+        "scratching brush"
+      ],
+      "title_en": "Livestock Scratching Brush, 4 Pcs Horse Brush with 8 Screws, 17.1 x 7.5 in Cow Scratcher, for Back Itch Relief & Keep Cleaning, Grooming & Scratching Post Brush for Horse, Pig, Cattle Supplies",
+      "title_et": "Loomade sügamishari 43,5 x 19 cm, 4 tk, kruvidega komplekt",
+      "category": "Kariloomade sügamisharjad",
+      "gen_confidence": 0.85,
+      "verdict": "OK",
+      "reason": "Hobuse sügamishari vastab täpselt kariloomade sügamisharja tootele.",
+      "action": {
+        "status": "resolved",
+        "write_synonym": true
+      }
+    },
+    {
+      "id": "ddfa4295-794c-4645-a472-20e3f2c83cd4",
+      "word": "isase koera mähkmed",
+      "synonyms": [
+        "koera kõhupaela",
+        "male dog diaper"
+      ],
+      "title_en": "Disposable Male Dog Diapers, Super Absorbent Male Dog Wraps, 360 ° Leak-Proof Belly Bands with Wetness Indicator for Doggies in Heat, Training, Incontinence - M, 96 Count (2 Packs of 48)",
+      "title_et": "Ühekordsed isaste koerte mähkmed, M-suurus, 96 tk",
+      "category": "Koerte ühekordsed mähkmed",
+      "gen_confidence": 0.8,
+      "verdict": "OK",
+      "reason": "Isase koera mähkmed ja kõhupael viitavad samale tootele - isaste koerte ühekordsed mähkmed.",
+      "action": {
+        "status": "resolved",
+        "write_synonym": true
+      }
+    },
+    {
+      "id": "b0dc0bbd-51ec-4981-a042-1f8a7d856b43",
+      "word": "sügavpuurmasin",
+      "synonyms": [],
+      "title_en": "Core Drill Machine 2.03-18 cm Dia 2600W Handheld Core Drill Rig for Mixing",
+      "title_et": "Kroonpuurmasin 2600W, Ø20-180 mm – puurimiseks ja segamiseks",
+      "category": "Teemantpuurmasinad",
+      "gen_confidence": 0.7,
+      "verdict": "VALE",
+      "reason": "Sügavpuurmasin viitab spetsiifilisele metalli sügavpuurimise masinale, mitte kroonpuurmasinale ehitusmaterjalide puurimiseks.",
+      "action": {
+        "status": "rejected",
+        "write_synonym": false
+      }
+    },
+    {
+      "id": "158cfe2f-2dc8-4219-8162-b57c81313ed9",
+      "word": "kojutehtud-joogi aparaat",
+      "synonyms": [],
+      "title_en": "Silver Water Distiller Machine 750W Adjustable Temperature Water Distiller 4L Wine Making Set Brewing Kit Stainless Steel Inner Distiller with Adjustable Temperature for Kitchen Homes",
+      "title_et": "Veedestilleerija 4L, 750W, reguleeritava temperatuuriga, roostevaba teras",
+      "category": "Veedestillaatorid",
+      "gen_confidence": 0.6,
+      "verdict": "EBAKINDEL",
+      "reason": "Kojutehtud-joogi aparaat on ebatavaline ja ebaselge termin, mis võib sobida veedestillaatoriga vaid osaliselt (veini valmistamiseks), kuid mitte otseselt joogivalmistamisseadmega.",
+      "action": {
+        "status": "pending",
+        "write_synonym": false
+      }
+    },
+    {
+      "id": "4b573da9-dd16-4776-84c8-fc9f89af6b2c",
+      "word": "viski destilleerimisaparaat",
+      "synonyms": [],
+      "title_en": "Alcohol Still, 8 Gal / 30 L Stainless Steel Water Alcohol Distiller with Copper Coil, Home Brewing Refining Fermentation Kit with Thermometer, for Wine Whisky Brandy, Silver",
+      "title_et": "Alkoholidestillaator 30L roostevabast terasest, vaskspiraaliga",
+      "category": "Piiritus- ja destilleerimisaparaadid",
+      "gen_confidence": 0.8,
+      "verdict": "OK",
+      "reason": "Viski destilleerimisaparaat vastab alkoholidestillaatorile, mida kasutatakse ka viski valmistamiseks.",
+      "action": {
+        "status": "resolved",
+        "write_synonym": true
+      }
+    },
+    {
+      "id": "f02232b5-e373-47b9-9c69-7b5328e5872b",
+      "word": "vinüülplaatide hoiustamine",
+      "synonyms": [
+        "vinyl storage",
+        "record storage"
+      ],
+      "title_en": "Record Player Stand with Charging Station & USB Ports, Holds up to 200 Albums, 3-Tier Turntable Stand with Vinyl Record Storage, Record Player Table with Display Shelf for Bedroom, Living Room",
+      "title_et": "Plaadimängija alus laadimisjaamaga, mahutab kuni 200 plaati",
+      "category": "Vinüülplaatide hoiustamine",
+      "gen_confidence": 0.85,
+      "verdict": "OK",
+      "reason": "Vinüülplaatide hoiustamine vastab plaadimängija alusele, mis on mõeldud plaatide hoiustamiseks.",
+      "action": {
+        "status": "resolved",
+        "write_synonym": true
+      }
+    },
+    {
+      "id": "0f81e55d-3c10-4dee-b82b-98783e3741ae",
+      "word": "tarvikukomplekt",
+      "synonyms": [
+        "komplekt",
+        "accessory set"
+      ],
+      "title_en": "Easel Accessory Set, 32 PCS Kid's Art Easel Painting Kit Including Chalks, Dry-Erase Markers & Paper Rolls, Supplies Set for Standing Art Easel, Painting Accessories for Toddlers Boys and Girls",
+      "title_et": "Maaliiseli tarvikukomplekt lastele, 32 tk: kriidid, markerid, paber",
+      "category": "Kunsti- ja joonistustarvikud",
+      "gen_confidence": 0.85,
+      "verdict": "EBAKINDEL",
+      "reason": "Tarvikukomplekt on liiga üldine termin, mis võib viidata paljudele erinevatele toodetele, mitte ainult lastele mõeldud maaliiseli komplektile.",
+      "action": {
+        "status": "pending",
+        "write_synonym": false
+      }
+    },
+    {
+      "id": "62111495-a1b9-4880-bd06-4450790667b8",
+      "word": "pillipink",
+      "synonyms": [
+        "instrument bench",
+        "music bench",
+        "klaveripink"
+      ],
+      "title_en": "Adjustable Piano Keyboard Bench Storage Padded Seat Wooden Bookcase Stool 750x360x515mm",
+      "title_et": "Reguleeritav klaveripink pehme istme ja hoiuruumiga, 750 x 360 x 515 mm",
+      "category": "Pillitarvikud",
+      "gen_confidence": 0.85,
+      "verdict": "OK",
+      "reason": "Pillipink vastab klaveripingile, mis on spetsiifiline pillitarvik.",
+      "action": {
+        "status": "resolved",
+        "write_synonym": true
+      }
+    },
+    {
+      "id": "1587a93c-f091-4a52-8db0-7a70ae75a7fb",
+      "word": "buffeti nõu",
+      "synonyms": [
+        "toidudisplei",
+        "serveerimisnõu"
+      ],
+      "title_en": "Countertop Food Serving Display Container, 1 x 1 Pan Stainless Steel Food Serving Tray, Buffet Condiment Dispenser Display Rack with Clear Lid & 3 Ice Trays, for Restaurant Hotel Kitchen Party",
+      "title_et": "Roostevabast terasest toidunõu läbipaistva kaanega, 2L",
+      "category": "Kondimentide serveerimisnõud",
+      "gen_confidence": 0.8,
+      "verdict": "OK",
+      "reason": "Buffeti nõu vastab toidunõule, mis on mõeldud serveerimiseks ja displeiks.",
+      "action": {
+        "status": "resolved",
+        "write_synonym": true
+      }
+    },
+    {
+      "id": "4bc76c0e-a5d3-4cd4-be80-5644b1eb7b97",
+      "word": "lihamördistaja",
+      "synonyms": [
+        "meat mallet"
+      ],
+      "title_en": "Commercial Meat Tenderizer, Heavy Duty 304 Stainless Steel Kitchen Tool with Meat Tong, Cleaning Brush, and Tray, 750W Electric Meat Tenderizer Machine for Beef, Turkey, Chicken, Pork, and Fish",
+      "title_et": "Elektriline lihapehmendaja 750W, 304 roostevaba teras, 67 tera",
+      "category": "Lihamördistajad",
+      "gen_confidence": 0.8,
+      "verdict": "OK",
+      "reason": "Lihamördistaja vastab elektrilisele lihapehmendajale, mis on sarnane funktsioon.",
+      "action": {
+        "status": "resolved",
+        "write_synonym": true
+      }
+    },
+    {
+      "id": "4da44567-eb46-4342-b019-4c84757ceb99",
+      "word": "oliivipuu",
+      "synonyms": [],
+      "title_en": "Artificial Olive Tree, 1.5 m Tall Faux Plant, Secure PE Material & Anti-Tip Tilt Protection Low-Maintenance Plant, Lifelike Green Fake Potted Tree for Home Office Warehouse Decor Indoor Outdoor",
+      "title_et": "Kunstlik oliivipuu 1,5 m, PE-materjal, kaldekindel alus",
+      "category": "Kunsttaimed ja -puud",
+      "gen_confidence": 0.85,
+      "verdict": "OK",
+      "reason": "Otsija, kes sisestab 'oliivipuu', ootab täpselt sellist kunstlikku oliivipuud.",
+      "action": {
+        "status": "resolved",
+        "write_synonym": true
+      }
+    },
+    {
+      "id": "6b153a9d-85c3-407d-8848-be4b09bbed62",
+      "word": "torukaitse survemõõtja",
+      "synonyms": [
+        "pressure tester",
+        "toru lekketestija",
+        "hydrostatic tester"
+      ],
+      "title_en": "Hydrostatic Test Pump 6.06 L Hydraulic Manual Water Pressure Tester, Dual Valve Hydrostatic Water Pipe Leakage Pressure Test Pump Kit with Gauge & Tank, 0-30 Bar Range, for Pipeline Heating",
+      "title_et": "Hüdrostaatiline survekatsepump 6.06 L, manomeetriga, 0-30 bar",
+      "category": "Surve- ja lekketestrid",
+      "gen_confidence": 0.85,
+      "verdict": "OK",
+      "reason": "Termin ja sünonüümid vastavad toru survetestimise seadmele.",
+      "action": {
+        "status": "resolved",
+        "write_synonym": true
+      }
+    },
+    {
+      "id": "ae302e05-2698-4c62-b910-6359e60a216b",
+      "word": "seljavõnk",
+      "synonyms": [
+        "back stretcher",
+        "decompression table"
+      ],
+      "title_en": "Inversion Table, 300lbs Capacity Heavy Duty Inversion Table, Decompression Back Stretcher Machine, Strength Training Equipment with Headrest, Ankle Lock, Adjustable Protective Belt, Orange/Black",
+      "title_et": "Inversioonilaud, kandevõime 136 kg, kokkupandav disain",
+      "category": "Inversioonlauad",
+      "gen_confidence": 0.8,
+      "verdict": "OK",
+      "reason": "'Seljavõnk' viitab selgroo venitusseadmele, mis vastab inversioonilauale.",
+      "action": {
+        "status": "resolved",
+        "write_synonym": true
+      }
+    },
+    {
+      "id": "ef1e19cb-9499-4a69-b0d5-8e25327071cc",
+      "word": "tulekahur",
+      "synonyms": [
+        "fire pit",
+        "bonfire",
+        "tuleaseme"
+      ],
+      "title_en": "Fire Pit Heat Deflector for Solo Stove Yukon, 685.8 mm Bonfire Round for Wood Burning Fire Pit, 304 Stainless Steel Heat Diffuser, Detachable Burner Cover Camping Accessories",
+      "title_et": "Tuleaseme soojuspeegel Solo Stove Yukonile, Ø685.8 mm, roostevaba teras",
+      "category": "Soojussuunajad",
+      "gen_confidence": 0.75,
+      "verdict": "VALE",
+      "reason": "Klient, kes otsib 'tulekahur', ootab tulease, mitte selle lisaseadet soojuspeeglit.",
+      "action": {
+        "status": "rejected",
+        "write_synonym": false
+      }
+    },
+    {
+      "id": "b8f4cc16-45a1-41bf-941e-15056be8f347",
+      "word": "null gravity tehe",
+      "synonyms": [],
+      "title_en": "Zero Gravity Chair, 33 inch Zero Gravity Recliner Lounge Chair for Indoor and Outdoor, Adjustable Anti Gravity Chair with Cushion, Headrest, Footrest, and Cupholder, 500 lbs, Black",
+      "title_et": "Zero Gravity lamamistool 33 tolli, padi, peatugi, kandevõime 226,8 kg",
+      "category": "Päikesetoolid ja lamamistoolid",
+      "gen_confidence": 0.85,
+      "verdict": "VALE",
+      "reason": "'Null gravity tehe' on keeleliselt mõttetu termin ega vasta loomulikule otsingusõnale lamamistoolile.",
+      "action": {
+        "status": "rejected",
+        "write_synonym": false
+      }
+    },
+    {
+      "id": "c9109715-5ad3-49b9-b1fb-52e8189b6a7a",
+      "word": "kokkupandav töölava",
+      "synonyms": [
+        "folding work platform"
+      ],
+      "title_en": "Forklift Safety Cage, 544.3 kg Load Capacity, 91.4 x 91.4 cm, Folding Forklift Work Platform with Lockable Swivel Wheels, Drain Hole & Device Chain, Holds 1 to 2 Adults, Perfect for Aerial Work",
+      "title_et": "Kokkupandav tõstukiplatvorm, kandevõime 544 kg, 91,4 x 91,4 cm",
+      "category": "Kahveltõstuki lisaseadmed",
+      "gen_confidence": 0.8,
+      "verdict": "OK",
+      "reason": "'Kokkupandav töölava' vastab kokkupandavale tõstukiplatvormile.",
+      "action": {
+        "status": "resolved",
+        "write_synonym": true
+      }
+    },
+    {
+      "id": "1876d5ad-321c-48d6-8724-afa5fd8e47a6",
+      "word": "jõutreeningu seade",
+      "synonyms": [
+        "kiiruse treeningu kelk",
+        "fitness sled"
+      ],
+      "title_en": "Weight Training Pull Sled, Fitness Strength Speed Training Sled with Handle, Steel Power Sled Workout Equipment for Athletic Exercise & Speed Improvement, Suitable for 1\"&2\" Weight Plate, Black",
+      "title_et": "Treeningkelk jõu- ja kiirustreeninguks, kandevõime 227 kg",
+      "category": "Treeningkelgud ja -saanid",
+      "gen_confidence": 0.88,
+      "verdict": "OK",
+      "reason": "'Jõutreeningu seade' on üldine termin, mis sobib treeningkelgu kirjeldamiseks.",
+      "action": {
+        "status": "resolved",
+        "write_synonym": true
+      }
+    },
+    {
+      "id": "b87ed3d7-f391-413e-b8d9-6e10c8d5c5ef",
+      "word": "roostevabast terasest pann",
+      "synonyms": [
+        "stainless steel steam pan"
+      ],
+      "title_en": "6 Pack Hotel Pans, 1/3 Size Anti-Jam Steam Pan, 0.8mm Thick Stainless Steel Restaurant Steam Table Pan, 4-Inch Deep Commercial Table Pan, Catering Storage Food Pan, for Industrial & Scientific",
+      "title_et": "1/3 gastronormanumad 6 tk, roostevabast terasest, 101,6 mm sügavus",
+      "category": "Gastronoomianõud (hotel pan)",
+      "gen_confidence": 0.89,
+      "verdict": "VALE",
+      "reason": "'Roostevabast terasest pann' viitab tavaliselt praepannile, mitte gastronormanumatele.",
+      "action": {
+        "status": "rejected",
+        "write_synonym": false
+      }
+    },
+    {
+      "id": "23c87686-8ae2-4d1b-816e-d70101d023c8",
+      "word": "lumehelbejää",
+      "synonyms": [
+        "snowflake ice",
+        "helbejää"
+      ],
+      "title_en": "Commercial Snowflake Ice Machine, 397LBS/24H Snowflake Ice Maker, Stainless Steel Ice Shaver Machine, Electric Snow Cone Maker, Liquid Cooling System for Rapid Heat Dissipation, Ice Cream",
+      "title_et": "Kommertslik lumehelbejäämasin, 180 kg/24h, roostevabast terasest",
+      "category": "Helbejäämasinad",
+      "gen_confidence": 0.85,
+      "verdict": "OK",
+      "reason": "'Lumehelbejää' vastab lumehelbejäämasina loodavale jääle.",
+      "action": {
+        "status": "resolved",
+        "write_synonym": true
+      }
+    },
+    {
+      "id": "e4dc4443-9886-44ef-a782-75a18445719d",
+      "word": "doseerimispump",
+      "synonyms": [],
+      "title_en": "Diesel Heater Fuel Pump, 12V DC Car Air Heater Diesel Fuel Dosing Pump, 22ML Aluminum Air Diesels Parking Heaters Pumps Fits for 2KW 5KW 8KW Diesels Heaters, Quiet Design, Pulse Technology",
+      "title_et": "Diisliküti kütusepump 12V, 22ML/1000 tsüklit, vaikne",
+      "category": "Diiselsoojendi osad",
+      "gen_confidence": 0.8,
+      "verdict": "OK",
+      "reason": "'Doseerimispump' vastab diisliküti kütuse doseerimispumbale.",
       "action": {
         "status": "resolved",
         "write_synonym": true
