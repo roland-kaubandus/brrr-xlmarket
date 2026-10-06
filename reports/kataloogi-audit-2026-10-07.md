@@ -1,58 +1,67 @@
-# Kataloogi klassifikatsiooni-audit — 2026-10-07 (ÖÖ)
+# Kataloogi klassifikatsiooni-audit — 2026-10-07
 
-> Kaheastmeline kalibreeritud sõel (Tarmo direktiiv 2026-10-06). DRY, kulupiir $50.
-> **Seis: KALIBREERIMINE TEHTUD → SÕEL EI LÄBINUD → täis-audit EI käivitatud (direktiivi värav: "sõel ei läbi → raporteeri ja oota").**
-> Kulu täna öösel: **~$11.80** (ainult kalibreerimine + mõõtmine, kõik DRY). DB-d EI muudetud.
+> **Direktiiv 2026-10-07 (Tarmo):** täisaudit kogu kataloogil, TRUU täisahelaga (mitte sõel, mitte kitsendus). Kulupiir **$160 (batch)**. DRY, väljund `reports/` + JSON.
+> **Seis: EELTINGIMUSED TEHTUD (Fable-fix ✅, caching mõõdetud ✅) → UUS HINNANG ~$200 batch > $160 piir → täisaudit EI käivitatud, ootab Tarmo kulu-otsust.**
+> Kulu siiani: **~$15** (kalibreerimine + Fable-fix test + batch-smoke, kõik DRY). DB-d EI muudetud.
 
 ---
 
-## 🛑 PÕHITULEMUS — odav sõel ei tööta, täis-audit ei mahu $50 sisse
+## 🛑 PÕHITULEMUS (2026-10-07) — truu täisahel ei mahu $160 sisse, sest batch EI jaga prompt-cache'i
 
-Kalibreerimine 150 juhu-klastril (fikseeritud seeme 20261007) andis **ühemõttelise** tulemuse:
+Direktiivi 3 väravat läbitud:
+
+**1. Fable-truncation parandatud ✅.** Juurpõhjus: Fable-5 mittedeterministlik — üksik kutse tekitab vahel pikema mõttekäigu, mis ammendab `max_tokens` enne JSON-i lõppu (`stop_reason=max_tokens` → katkenud JSON). Parandus (`classify-chain.mjs` `makeFable`): kordab eskaleeritud laega `[32000, 56000]`, eemaldab koodi-aiad, viskab vea alles 2. ebaõnnestumisel. Test: 0 truncationit (spu:12468 → `new_l3` «Kallutuskomplektid», Fable 3/3 häält; + 80-klastri batch-smoke 0 truncationit).
+
+**2. Caching mõõdetud — KRIITILINE LEID: batch EI jaga prompt-cache'i päringute vahel.**
+
+| Kontekst | cache_read (mõõdetud) | Mida tähendab |
+|---|---|---|
+| **Sünkroonne** (järjest kutsed, sama mudel, <5 min) | `91 585 tok` 2. kutsel (~81% säästu soojalt) | ✅ caching TÖÖTAB |
+| **Batch** (80-klastri smoke, chunk=40) | `cache_read = 0`, `cache_write = 363 914` | 🛑 iga päring kirjutab listi UUESTI |
+
+Batch töötleb päringud **paralleelselt** → iga päring kirjutab 91 585-tokenise kandidaat-listi cache'i eraldi, keegi ei loe teise omast. **Caching-eeldus, millel vana $149-hinnang põhines, EI kehti batch'is.**
+
+**3. Uus kuluhinnang (direktiiv samm 2: enne/pärast):**
+
+| | Hinnang | Alus |
+|---|---|---|
+| **ENNE** (vana eeldus) | ~$149 batch | eeldas et caching rakendub batch'is (−89% listi-kulu) |
+| **PÄRAST** (mõõdetud) | **~$200 batch** | $3.06 / 80 klastrit = $0.0383/klaster × 5225 (smoke chunk=40) |
+
+**Miks ei saa alla $160 (struktuurne):** kulu-draiver EI ole list, vaid **output** — Opus-kohtunik ~1178 tok/klaster + Sonnet-referents ~1065 tok/klaster, mõlemal **kõigil** 5225 klastril (täis-ahela nõue). Output ei cache'u ega kahane (batch annab juba −50%). Output-põrand = **~$119** (judge+ref) + Fable ~$17 + input ~$10 = **~$146 absoluutne miinimum** ka hiiglaslike chunk'idega. List amortiseerub suurema chunk'iga, AGA judge-output (~1178 tok/kl) lööb **max_output lae** → chunk praktiline ülempiir ~60–80 klastrit → reaalne põrand **~$175–200**.
+
+**Järeldus:** truu kogu-kataloogi täisahel (nagu Tarmo nõudis — mitte sõel, mitte kitsendus) maksab **~$175–200**, struktuurselt **üle $160 piiri**. Vajab Tarmo kulu-otsust (valikud all).
+
+---
+
+## ⚖️ VALIKUD — Tarmo otsustab (direktiiv: käivita AINULT kui ≤ $160)
+
+**CRITICAL / BLOCKER:** —  *(ükski leid ei blokeeri poodi)*
+
+**VAJA ÄRA TEHA:**
+
+1. **Tõsta piir ~$210-ni → chunk=40 täis-fidelity täisaudit (~$200).** Ohutu chunk (0 truncation tõestatud), kõrgeim kvaliteet, kogu 5225 klastrit. Soovitus kui tahad TÄIELIKKU auditit.
+2. **Jää $160 → käivita, live-valve peatab $160 juures.** Kataloog auditeeritakse järjekorras kuni piir; kaetud **~80% (~4200 klastrit)**, ülejäänu järgmise eelarvega. Saad truu auditi suurema osa katalogist $160 sees, teadlikult osaline.
+3. **Trimmi auditi-skeemist prose-väljad** (`considered_reason`) — OTSUS (action+target) jääb identne, ainult seletus lüheneb → output −~40% → **~$140 batch, mahub $160**. Nüanss: võib OTSUST õrnalt mõjutada (mudel põhjendab vähem). Vajab 1 kalibreerimis-jooksu kinnitamaks et otsused ei muutu. **Lähim "truu + mahub" variant.**
+4. **Ära käivita nüüd.** Fable parandatud + batch-pipeline tõestatud; otsusta hiljem rahulikult.
+
+> **Soovitus:** **valik 3** (prose-trim, ~$140) kui "truu + $160 sees" on prioriteet — teen 1 kalibreerimis-jooksu tõestamaks otsuste identsust, siis käivitan. VÕI **valik 1** (tõsta $210) kui tahad 100% muutmata ahelat. **Valik 2** annab 80% kohe $160 sees.
+
+---
+
+## 📜 VARASEM: $50 kaheastmeline sõel (2026-10-06 öö) — EI läbinud (ajalugu)
+
+> Direktiiv 2026-10-06 nõudis odavat kaheastmelist sõela $50 piiriga. See EI läbinud; 2026-10-07 direktiiv asendas selle truu täisahelaga. Säilitatud õppetunniks.
+
+Kalibreerimine 150 juhu-klastril (fikseeritud seeme 20261007):
 
 | Lähenemine | Mõõdetud tulemus | Verdikt |
 |---|---|---|
 | **Odav sõel** (Haiku) — "kas praegune L3 õige?" | recall **36.4%** (vahele 7/11 viga) | 🛑 kukub |
 | **Odav sõel eskaleeritud Sonnet-ile** (HARD RULE #6) | recall **36.4%** (samad 7 vahele) | 🛑 kukub |
 | **Eelvalik-shortlist** (praegune L3 + 30 lähimat) täis-ahelas | kokkulangevus täis-listiga **89.8%**, tekitab valesid NEW-otsuseid | 🛑 fidelity kukub |
-| **Täis-ahel kõigil 5226 (täis-list)** — truu, kuld-standard | **$0.057/klaster → ~$298 sünkr / ~$149 batch** | 🛑 üle $50 |
 
-**Järeldus:** praeguste tööriistadega **truu kogu-kataloogi audit ei mahu $50 sisse**, ja odav eelsõel, mis populatsiooni kärbiks, **ei püüa just neid peeni vigu**, mis on auditi mõte. Vajab Tarmo otsust (valikud all).
-
-### Miks sõel struktuurselt ei tööta
-
-Kõik 7 vahele-jäänud viga on **"mujal on PAREM naaber-kodu"** juhtumid (mitte jämedad valepaigutused): kallutuskäru↔aiakäru, grill/griddle↔praepann, dušitool↔dušipink. Sõel vaatab AINULT "praegune L3 + toode" → ei näe alternatiive → ei saa öelda "parem kodu on mujal". Alternatiivide vastu võrdlemine **ongi** täis-ahela kulu (37k-tokeni kandidaat-list). Seega odav sõel ja hea recall on **vastuolus** selle vea-profiili juures. Mudeli vahetus (Haiku→Sonnet) ei aidanud — probleem on info, mitte võimekus.
-
----
-
-## 📊 KULU-OPTIMEERIMINE (direktiiv samm 1) — mõõdetud
-
-**(a) Prompt-caching kandidaat-listil** (tegelik A/B, `usage.cache_read_input_tokens`):
-- cache TÖÖTAB: 2. kutse luges listi cache'ist (`cache_read = 73 586 tok`, hind ~10% tavalisest).
-- Projektsioon 131 kohtunik-kutset: listi-kulu **$24.42 → $2.66** (−89%).
-- ⚠️ AGA: `judge.mjs` cache'ib praegu ainult *system*-promptu; list on *user*-sõnumis (cache'imata). Listi-caching nõuaks `judge.mjs` muutmist (SSoT) — EI tehtud enne öist hooki.
-
-**(b) Kandidaat-eelvalik (trigram-shortlist):**
-- Täis-list **1684 L3 (~37 280 tok)** → shortlist **~40 L3 (~932 tok)** = **40× väiksem** (üksik-klaster).
-- **shortlist-recall = 99.3%** (õige kodu on top-40 sees) — eelvalik ise on suurepärane.
-- ⚠️ AGA partii-tasandil (20 klastrit/kutse) läheb shortlistide ÜHEND suureks (~300–500 L3) → reaalne kulu-kärbe ainult **~1.6×**, mitte 40×. Ja täis-ahelas tekitab shortlist **valesid NEW-otsuseid** (kui õiget kodu pole shortlistis, kohtunik "leiutab" kategooria) → fidelity 89.8%.
-
-**Kokkuvõte:** mõlemad optimeeringud mõõdetud; kumbki ei too truu auditit $50 alla (caching nõuab SSoT-muutust + output/Fable-kulu jääb; shortlist kaotab täpsust).
-
----
-
-## ⚖️ VALIKUD — Tarmo otsustab (direktiiv: "sõel ei läbi → oota")
-
-**CRITICAL / BLOCKER:** —  *(ükski leid ei blokeeri poodi; kataloog on 92.7% ulatuses õige)*
-
-**VAJA ÄRA TEHA:**
-
-1. **Kitsenda ulatus kõrge-riski mainidele** (soovitus, mahub $50 batch): auditi AINULT need mainid, kus misfit'id kuhjuvad (Aed/aiatehnika, Suurköök, Sport/vaba-aeg — kõik 11 lahkheli olid neis). Täis-ahel täis-fidelity'ga, batch. Hinnang kolmele mainile (~1500 klastrit) ~$45 batch → mahub.
-2. **Tõsta kulupiir ~$150-ni** → truu kogu-kataloogi batch-audit (kõik 5226, täis-list). Kõige põhjalikum.
-3. **Ehita "tark sõel": Sonnet-kohtunik täis-listiga ÜKS pass** (ilma referents/Fable), lipuga kus kohtuniku-kodu ≠ praegune → täis-ahel (Opus+ref+Fable) AINULT lipuga klastritel. Erinevalt sisu-sõelast NÄEB see alternatiive → recall peaks olema kõrge. Vajab eraldi kalibreerimist (kas Sonnet-pass püüab 11/11). ~$13 batch pass + täis-ahel ~7-15%-l → tõenäoliselt < $30. **Eraldi töö, mitte öösel improviseerida.**
-4. **List-caching `judge.mjs`-s** (SSoT-muutus): −89% listi-kulu. Ei piisa üksi, aga kombineerituna valikuga 1/3 aitab.
-
-> Soovitus: **valik 1 (kitsendatud ulatus) kohe + valik 3 (tark sõel) järgmise sammuna**. Valik 1 annab väärtust $50 sees juba homme; valik 3 teeb tuleviku-auditid odavaks.
+**Miks sõel struktuurselt ei tööta:** kõik 7 vahele-jäänud viga on **"mujal on PAREM naaber-kodu"** juhtumid (mitte jämedad valepaigutused): kallutuskäru↔aiakäru, grill/griddle↔praepann, dušitool↔dušipink. Sõel vaatab AINULT "praegune L3 + toode" → ei näe alternatiive. Alternatiivide vastu võrdlemine **ongi** täis-ahela kulu. Mudeli vahetus (Haiku→Sonnet) ei aidanud — probleem on info, mitte võimekus. **See on ka põhjus, miks 2026-10-07 direktiiv nõuab truu täisahelat.**
 
 ---
 
@@ -122,18 +131,19 @@ Kõik 4: tooted olemas, SEO-tekst olemas, aktiivne + mitte-internal, navigatsioo
 
 ---
 
-## 🐞 Avastatud koodi-gotcha (VAJA ÄRA TEHA)
+## 🐞 Avastatud koodi-gotcha
 
-- **Fable-viigimurdja JSON-truncation:** `classify-chain.mjs` Fable-kutse `max_tokens` on liiga väike paljusõnalise `reason`-välja jaoks → JSON katkeb (`new_l3` juhtudel nähtud). Öine hook püüab selle `code_bug`-ina (Telegram), aga **tõsta Fable `max_tokens`** (nt 4000→6000) et viigimurdja ei kukuks verbose põhjenduse peal.
-- **Referents-partii output-cap:** 40 klastrit/kutse → Sonnet-referentsi JSON katkes (output-limiit). Auditis vähendatud 20-le. Kui `judge.mjs` cluster-funktsioone kasutatakse suurte partiidega, hoia chunk ≤ 20.
+- **Fable-viigimurdja JSON-truncation — PARANDATUD ✅** (`classify-chain.mjs` `makeFable`): juurpõhjus polnud fikseeritud lävi vaid Fable-5 mittedeterminism (vahel pikem mõttekäik ammendab `max_tokens`). Fix: kordus eskaleeritud laega `[32000, 56000]` + koodi-aedade eemaldus + viga alles 2. kukkumisel. Testitud 0 truncationit. **Kehtib ka öisele hookile** (sama SSoT-moodul).
+- **Batch EI jaga prompt-cache'i (VAJA ÄRA TEHA, dokumenteeritud):** paralleel-töötlus → iga päring kirjutab kandidaat-listi (91 585 tok) cache'i eraldi, `cache_read=0`. Caching aitab AINULT sünkroonselt (<5 min TTL, sama mudel). Tähtis iga tuleviku-batch-disaini juures: ära eelda cache-säästu batch'is.
+- **Output domineerib, mitte list:** Opus-kohtunik ~1178 tok/klaster + Sonnet-ref ~1065 tok/klaster. See seab chunk'ile `max_output` lae (~60–80 klastrit/kutse) ja on täisahela kulu-põrand (~$119 output üksi 5225 klastril, batch −50%-ga).
 
 ---
 
 ## 🔐 Ohutus (täidetud)
 
 - ✅ **DRY:** DB-sse EI kirjutatud midagi. Väljund ainult `reports/` + `scratchpad/*.json`.
-- ✅ **Kulupiir:** kõva $50 valve koodis (`guard()`), peatub ületusel. Tegelik kulu **~$11.80** (kalibreerimine + mõõtmine).
-- ✅ **Täis-audit EI käivitatud** — direktiivi värav rakendus (sõel ei läbinud).
+- ✅ **Kulupiir:** kõva $160 valve koodis (`guard()` + PRE-FLIGHT projektsioon, peatub ületusel). Tegelik kulu siiani **~$15** (kalibreerimine + Fable-fix test + batch-smoke).
+- ✅ **Täis-audit EI käivitatud** — direktiivi värav rakendus (uus hinnang ~$200 > $160 piir → ootab Tarmo kulu-otsust, vt VALIKUD).
 - ✅ **HARD RULE #8:** test-identiteet, inimese JWT-d EI mint'itud (audit on puhas read + LLM, 0 DB-kirjet, 0 admin-login).
 - ✅ **DB-vaikuse aken 02:45–04:30** austatud (kõik DB-lugemine tehtud enne; LLM-töö loeb ainult offline JSON-i). Öist [4] hooki EI puudutatud.
 
@@ -145,4 +155,5 @@ Kõik 4: tooted olemas, SEO-tekst olemas, aktiivne + mitte-internal, navigatsioo
 - `audit-calibration.json` — 150-klastri kalibreerimine (recall, confusion, 11 lahkheli)
 - `audit-probe.json` — shortlist-ahela fidelity + kulu-projektsioon
 - `audit-clusters.json` — 5226 klastrit + 1684 L3 (DB-dump, read-only)
-- Tööriist: `scripts/catalog-audit.mjs` (measure | calibrate | probe | full staadiumid)
+- `audit-pretest.json` — Fable-fix test (0 truncation) + caching sünkr-mõõtmine
+- Tööriist: `scripts/catalog-audit.mjs` (measure | calibrate | probe | **full** = batch-täisahel staadiumid). `full` teeb PRE-FLIGHT projektsiooni ja keeldub submit'imast kui > `AUDIT_CAP` ($160).

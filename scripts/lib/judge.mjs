@@ -24,15 +24,25 @@ export const JUDGE_VERSION = "judge-v1";
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 /** Üldine Anthropic-kutse json_schema väljundiga + retry (sama muster kui synonym-gen). */
-async function callJudge({ apiKey, model, system, user, schema, maxTokens = 4000, timeoutMs = 120000, retries = 5 }) {
-  if (!apiKey) return { ok: false, error: "ANTHROPIC_API_KEY puudub" };
-  const body = {
+// buildJudgeBody — ÜKS päring-keha-ehitaja, mida kasutavad NII sünkroonne callJudge KUI batch-builderid
+// (HARD RULE #5: üks transform, kaks kutsujat). candsBlock (valikuline) = muutumatu kandidaat-list OMA
+// cache'itud user-blokis → kordus-kutsel loetakse cache'ist (~10% hinda). Items jäävad cache'imata (muutuvad).
+export function buildJudgeBody({ model, system, candsBlock, user, schema, maxTokens = 4000 }) {
+  const content = candsBlock
+    ? [{ type: "text", text: candsBlock, cache_control: { type: "ephemeral" } }, { type: "text", text: user }]
+    : user;
+  return {
     model,
     max_tokens: maxTokens,
     system: [{ type: "text", text: system, cache_control: { type: "ephemeral" } }],
-    messages: [{ role: "user", content: user }],
+    messages: [{ role: "user", content }],
     output_config: { format: { type: "json_schema", schema } },
   };
+}
+
+async function callJudge({ apiKey, model, system, candsBlock, user, schema, maxTokens = 4000, timeoutMs = 120000, retries = 5 }) {
+  if (!apiKey) return { ok: false, error: "ANTHROPIC_API_KEY puudub" };
+  const body = buildJudgeBody({ model, system, candsBlock, user, schema, maxTokens });
   for (let attempt = 1; attempt <= retries; attempt++) {
     const ctrl = new AbortController();
     const to = setTimeout(() => ctrl.abort(), timeoutMs);
@@ -321,6 +331,30 @@ export function clusterize(rows) {
     .sort((a, b) => b.items.length - a.items.length || a.cluster_key.localeCompare(b.cluster_key));
 }
 
+// candsListText — muutumatu kandidaat-L3-list (cache'itav blokk). Sama tekst judge + ref jaoks.
+export function candsListText(candidateL3s) {
+  const cands = candidateL3s.map((c) => `  ${c.handle}${c.name ? ` — ${c.name}` : ""}`).join("\n");
+  return `OLEMASOLEVAD L3-KANDIDAADID (target_handle PEAB olema siit):\n${cands}`;
+}
+
+function clusterItemsText(clusters) {
+  const blocks = clusters.map((cl) => {
+    const rep = cl.items[0];
+    const buckets = [...new Set(cl.items.map((i) => i.bucket).filter(Boolean))].join(", ") || "?";
+    const titles = [...new Set(cl.items.map((i) => i.title).filter(Boolean))].slice(0, 4);
+    const proposed = [...new Set(cl.items.map((i) => i.proposed_l3).filter(Boolean))].join(", ") || "-";
+    const names = [...new Set(cl.items.map((i) => i.suggest_name).filter(Boolean))].join(", ") || "-";
+    const l2s = [...new Set(cl.items.map((i) => i.suggest_l2).filter(Boolean))].join(", ") || "-";
+    return `KLASTER ${cl.cluster_key}  (liikmeid: ${cl.items.length}, ämbrid: ${buckets})
+  esindaja title: ${rep.title || "?"}
+  esindaja title_et: ${rep.title_et || "?"}
+  liikmete pealkirjad: ${titles.join(" · ") || "?"}
+  esindaja kirjeldus: ${(rep.description || "").slice(0, 400) || "(puudub)"}
+  klassifikaator pakkus: L3=${proposed} nimi=${names} L2=${l2s}`;
+  }).join("\n\n");
+  return `HINNATAVAD KLASTRID (üks otsus KLASTRI kohta):\n\n${blocks}`;
+}
+
 function clusterUserMsg(clusters, candidateL3s) {
   const cands = candidateL3s.map((c) => `  ${c.handle}${c.name ? ` — ${c.name}` : ""}`).join("\n");
   const blocks = clusters.map((cl) => {
@@ -347,11 +381,17 @@ function clusterUserMsg(clusters, candidateL3s) {
  */
 export async function judgeClassifyClusters(clusters, candidateL3s, { apiKey, model = CLSF_JUDGE_MODEL, timeoutMs, retries } = {}) {
   const res = await callJudge({
-    apiKey, model, system: CLUSTER_CLSF_SYSTEM, user: clusterUserMsg(clusters, candidateL3s),
-    schema: CLUSTER_CLSF_SCHEMA, maxTokens: 6000, timeoutMs, retries,
+    apiKey, model, system: CLUSTER_CLSF_SYSTEM, candsBlock: candsListText(candidateL3s),
+    user: clusterItemsText(clusters), schema: CLUSTER_CLSF_SCHEMA, maxTokens: 6000, timeoutMs, retries,
   });
   if (!res.ok) return res;
   return { ok: true, results: res.parsed.results || [], usage: res.usage };
+}
+
+// buildClusterJudgeBody — batch-päring-keha klastri-kohtunikule (sama prompt+caching kui sünkroonne).
+export function buildClusterJudgeBody(clusters, candidateL3s, { model = CLSF_JUDGE_MODEL, maxTokens = 6000 } = {}) {
+  return buildJudgeBody({ model, system: CLUSTER_CLSF_SYSTEM, candsBlock: candsListText(candidateL3s),
+    user: clusterItemsText(clusters), schema: CLUSTER_CLSF_SCHEMA, maxTokens });
 }
 
 /**
@@ -441,14 +481,31 @@ const REF_CLSF_SCHEMA = {
   additionalProperties: false,
 };
 
-function refClsfUserMsg(batch, candidateL3s) {
-  const cands = candidateL3s.map((c) => `  ${c.handle}${c.name ? ` — ${c.name}` : ""}`).join("\n");
-  // PIME: EI sisalda kohtuniku action/target/reason ega klassifikaatori proposed_l3 (et mitte ankurdada).
+// PIME referents: EI sisalda kohtuniku action/target/reason ega klassifikaatori proposed_l3 (et mitte ankurdada).
+function refItemsText(batch) {
   const items = batch.map((r) => `[${r.id}]
   title: ${r.title || "?"}
   title_et: ${r.title_et || "?"}
   kirjeldus: ${(r.description || "").slice(0, 400) || "(puudub)"}`).join("\n\n");
-  return `OLEMASOLEVAD L3-KANDIDAADID (target_handle PEAB olema siit):\n${cands}\n\n────────\n\nHINNATAVAD TOOTED (otsusta sõltumatult, kas kuulub mõnda kategooriasse):\n\n${items}`;
+  return `HINNATAVAD TOOTED (otsusta sõltumatult, kas kuulub mõnda kategooriasse):\n\n${items}`;
+}
+function refClsfUserMsg(batch, candidateL3s) {
+  return `${candsListText(candidateL3s)}\n\n────────\n\n${refItemsText(batch)}`;
+}
+// klastri-batch-rea ehitaja (sama kui rateClassifyReferenceClusters sees) → jagatud sünkroon + batch.
+export function clusterRefBatch(clusters) {
+  return clusters.map((cl) => {
+    const rep = cl.items[0];
+    const memberTitles = [...new Set(cl.items.map((i) => i.title).filter(Boolean))].slice(0, 3);
+    const desc = (rep.description || "").slice(0, 400) || "(puudub)";
+    const widthNote = memberTitles.length > 1 ? `\n(sama toote variandid: ${memberTitles.join(" · ")})` : "";
+    return { id: cl.cluster_key, title: rep.title, title_et: rep.title_et, description: desc + widthNote };
+  });
+}
+// buildClusterRefBody — batch-päring-keha klastri-referentsile (sama prompt+caching kui sünkroonne).
+export function buildClusterRefBody(clusters, candidateL3s, { model = REF_MODEL_CLSF, maxTokens = 6000 } = {}) {
+  return buildJudgeBody({ model, system: REF_CLSF_SYSTEM, candsBlock: candsListText(candidateL3s),
+    user: refItemsText(clusterRefBatch(clusters)), schema: REF_CLSF_SCHEMA, maxTokens });
 }
 
 /**
@@ -458,8 +515,8 @@ function refClsfUserMsg(batch, candidateL3s) {
  */
 export async function rateClassifyReference(batch, candidateL3s, { apiKey, model = REF_MODEL, timeoutMs, retries } = {}) {
   const res = await callJudge({
-    apiKey, model, system: REF_CLSF_SYSTEM, user: refClsfUserMsg(batch, candidateL3s),
-    schema: REF_CLSF_SCHEMA, maxTokens: 6000, timeoutMs, retries,
+    apiKey, model, system: REF_CLSF_SYSTEM, candsBlock: candsListText(candidateL3s),
+    user: refItemsText(batch), schema: REF_CLSF_SCHEMA, maxTokens: 6000, timeoutMs, retries,
   });
   if (!res.ok) return res;
   return { ok: true, results: res.parsed.results || [], usage: res.usage };

@@ -95,19 +95,33 @@ export function makeTree(NODES) {
 
 // ---- Fable toor-kutse (kasutuse-loendusega) ----
 export function makeFable(apiKey, usage) {
+  // Fable-5 thinking on ALATI sees (adaptive) + mittedeterministlik → thinking-pikkus kõigub kutsete
+  // vahel. Üksik kutse võib thinking'uga ammendada max_tokens'i ENNE JSON-väljundi lõppu (stop=max_tokens)
+  // → truncatud JSON ("Fable JSON puudub"). HARD RULE #6: üks mittedeterministlik kutse EI TOHI olla
+  // surmav → tuvasta truncation (stop_reason) ja proovi uuesti ESKALEERITUD cap'iga. Alles 2. kukkumine → throw.
+  const CAPS = [32000, 56000]; // 1. katse, siis eskaleeritud (cap, mitte kasutus — maksab ainult kui thinking päriselt kulub)
   return async function fableRaw(system, user) {
-    const res = await fetch("https://api.anthropic.com/v1/messages", {
-      method: "POST",
-      headers: { "x-api-key": apiKey, "anthropic-version": "2023-06-01", "content-type": "application/json" },
-      body: JSON.stringify({ model: FABLE, max_tokens: 8000, system, messages: [{ role: "user", content: user }] }),
-    });
-    if (!res.ok) throw new Error(`Fable HTTP ${res.status}: ${(await res.text()).slice(0, 300)}`);
-    const j = await res.json();
-    if (j.usage) { usage.input += j.usage.input_tokens || 0; usage.output += j.usage.output_tokens || 0; usage.calls++; }
-    const raw = (j.content || []).find(c => c.type === "text")?.text || "";
-    const m = raw.match(/\{[\s\S]*\}/);
-    if (!m) throw new Error(`Fable JSON puudub: ${raw.slice(0, 200)}`);
-    return JSON.parse(m[0]);
+    let lastRaw = "", lastStop = "";
+    for (let attempt = 0; attempt < CAPS.length; attempt++) {
+      const res = await fetch("https://api.anthropic.com/v1/messages", {
+        method: "POST",
+        headers: { "x-api-key": apiKey, "anthropic-version": "2023-06-01", "content-type": "application/json" },
+        body: JSON.stringify({ model: FABLE, max_tokens: CAPS[attempt], system, messages: [{ role: "user", content: user }] }),
+      });
+      if (!res.ok) throw new Error(`Fable HTTP ${res.status}: ${(await res.text()).slice(0, 300)}`);
+      const j = await res.json();
+      if (j.usage) { usage.input += j.usage.input_tokens || 0; usage.output += j.usage.output_tokens || 0; usage.calls++; }
+      lastStop = j.stop_reason || "";
+      const raw = ((j.content || []).find(c => c.type === "text")?.text || "")
+        .replace(/```(?:json)?/gi, "").trim(); // strip code-fence, kui Fable mähkis JSON-i ```json ... ```
+      lastRaw = raw;
+      // truncatud thinking'u tõttu → stop=max_tokens; proovi uuesti kõrgema cap'iga
+      if (j.stop_reason === "max_tokens" && attempt < CAPS.length - 1) continue;
+      const m = raw.match(/\{[\s\S]*\}/);
+      if (m) { try { return JSON.parse(m[0]); } catch { /* parse-viga → eskaleeri kui veel katseid */ if (attempt < CAPS.length - 1) continue; } }
+      if (attempt < CAPS.length - 1) continue;
+    }
+    throw new Error(`Fable JSON puudub (stop=${lastStop}): ${lastRaw.slice(0, 200)}`);
   };
 }
 

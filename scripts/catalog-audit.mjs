@@ -17,13 +17,15 @@
  *   VÄRSKELT (nagu kodutu toode), siis võrdleme praeguse L3-ga = sõltumatu audit.
  */
 import fs from "node:fs";
-import { clusterize, judgeClassifyClusters, rateClassifyReferenceClusters } from "./lib/judge.mjs";
+import { clusterize, judgeClassifyClusters, rateClassifyReferenceClusters,
+  buildClusterJudgeBody, buildClusterRefBody } from "./lib/judge.mjs";
 import { createChain } from "./lib/classify-chain.mjs";
+import { runChunk, chunk as chunkArr } from "./lib/content-batch.mjs";
 
 const SP = "/tmp/claude-0/-opt-xlmarket-github/8966820c-cfb5-4418-ab04-7e331739a85c/scratchpad";
 const REPO = "/opt/xlmarket-github";
 const KEY = process.env.ANTHROPIC_API_KEY;
-const CAP = 50.0;
+const CAP = Number(process.env.AUDIT_CAP || 160.0);   // Tarmo 2026-10-07: täisaudit batch'ina, piir $160
 const SEED = 20261007;
 const STAGE = process.argv[2] || "calibrate";   // measure | calibrate | probe | full
 const SIEVE_MODEL = process.argv.includes("--sonnet-sieve") ? "claude-sonnet-5" : "claude-haiku-4-5";
@@ -35,7 +37,9 @@ const D = JSON.parse(fs.readFileSync(`${SP}/audit-clusters.json`, "utf8"));
 const NODES = JSON.parse(fs.readFileSync(`${REPO}/storefront/lib/category-tree.generated.json`, "utf8")).nodes;
 const candidateL3s = D.candidateL3s;
 const L3META = D.l3meta;
-const CLUSTERS = D.clusters.filter((c) => c.currentL3);   // audit ainult praeguse-L3-ga klastreid
+const _ALLCL = D.clusters.filter((c) => c.currentL3);     // audit ainult praeguse-L3-ga klastreid
+const _LIMIT = Number(process.env.AUDIT_LIMIT || 0);       // smoke-test: piira klastrite arvu (0 = kõik)
+const CLUSTERS = _LIMIT > 0 ? _ALLCL.slice(0, _LIMIT) : _ALLCL;
 
 // ───────────────── KULU-ARVESTUS (standard-hind; cache-väljad arvesse) ─────────────────
 const PRICE = { "claude-opus-4-8": { in: 5, out: 25 }, "claude-sonnet-5": { in: 3, out: 15 },
@@ -106,6 +110,16 @@ function shortlist(cluster, k = 30) {
   for (const s of (L2SIBS[parentL2of(cluster.currentL3)] || [])) picked.add(s);  // + L2-õed
   return [...picked];
 }
+
+// ───────────────── main (L1) tuvastus NODES-ist (garden-jaotus + kattuvused) ─────────────────
+const NBYH = NODES; // objekt handle → {handle, name_et, name_en, level, parent_handle}
+function mainOf(handle) {
+  let n = NBYH[handle], guard = 0;
+  while (n && n.parent_handle && guard++ < 12) n = NBYH[n.parent_handle];
+  return n ? n.handle : null;
+}
+function mainName(handle) { const m = mainOf(handle); return m ? (NBYH[m]?.name_et || NBYH[m]?.name_en || m) : "?"; }
+const isGardenMain = (handle) => { const m = mainOf(handle); return !!m && /aed/.test(m); }; // v4-aed-* / v4-aed-ja-aiatehnika
 
 // ───────────────── ahela-abi: ehita items + resolveChain-klastrid ─────────────────
 function buildItems(c) {
@@ -368,32 +382,153 @@ async function stageProbe(N = 60) {
   return out;
 }
 
-// ═══════════════════════ STAGE: full (kogu kataloog) ═══════════════════════
+// ═══════════════════════ STAGE: full (kogu kataloog, TRUU täisahel, BATCH) ═══════════════════════
+// Tarmo 2026-10-07: TRUU täisahel KÕIGIL klastritel (MITTE sõel, MITTE kitsendus). Batch (−50%) → ≤ $160.
+//   Stage A (batch): kohtunik (Opus) + referents (Sonnet) KÕIGIL klastritel, chunk-kaupa batch-päringud.
+//   Stage B (sünkr): resolveChain tarbib eel-täidetud kohtunik+referents → Fable AINULT lahkhelil (§2c).
+// Sama prompt+caching mis öine hook (buildClusterJudgeBody/buildClusterRefBody) → HARD RULE #5.
+// Batch EI jaga list-cache'i päringute vahel (paralleelne töötlus → iga päring kirjutab listi uuesti).
+// → list-kirjutus (91585 tok × 1.25) DOMINEERIB → vähenda päringute arvu SUUREMA chunk'iga (vähem list-write'i).
+const AUDIT_CHUNK = Number(process.env.AUDIT_CHUNK || 40);    // klastrit / batch-päring (amortiseeri list)
+const AUDIT_MAXTOK = Number(process.env.AUDIT_MAXTOK || 14000); // output-cap (40×~290 tok + margin)
+
+// batch-tulemuste parse: message → {results:[...]} (JSON text-blokist)
+function parseBatchMessage(message) {
+  const txt = (message?.content || []).find((b) => b.type === "text")?.text || "{}";
+  try { return JSON.parse(txt).results || []; } catch { return []; }
+}
+
 async function stageFull() {
-  console.log(`\n═══ TÄIS-AUDIT — ${CLUSTERS.length} klastrit, sõel=${SIEVE_MODEL} ═══`);
-  const sieve = await runSieve(CLUSTERS);
-  console.log(`\nsõel valmis  $${COST.usd.toFixed(2)}`);
-  const suspects = CLUSTERS.filter((c) => { const s = sieve.get(c.ck); return s && s.correct === false; });
-  console.log(`kahtlasi: ${suspects.length}/${CLUSTERS.length} (${(100 * suspects.length / CLUSTERS.length).toFixed(1)}%)`);
-  // kulu-projektsioon enne täisahelat
-  const projPerCluster = (COST.usd / CLUSTERS.length);  // sõela osa
-  console.log(`sõel-kulu $${COST.usd.toFixed(2)}; täisahel ~${suspects.length} klastril…`);
-  const truth = await runChain(suspects);
-  console.log(`\ntäisahel valmis  $${COST.usd.toFixed(2)}`);
-  const findings = [];
-  for (const c of suspects) {
-    const t = truth.get(c.ck); if (!t || t.nonChain) continue;
-    const home = t.decisionHandle;
-    if (home === "NEW") { findings.push({ type: "new_l3", ck: c.ck, title: c.rep.title, current: c.currentL3,
-      currentName: L3META[c.currentL3]?.name, newName: t.newName, parentL2: t.parentL2, n: c.n, gate: t.gate, path: t.path, skus: c.skus.slice(0, 5) }); }
-    else if (home && home !== c.currentL3) { findings.push({ type: "move", ck: c.ck, title: c.rep.title, n: c.n,
-      current: c.currentL3, currentName: L3META[c.currentL3]?.name, proposed: home, proposedName: L3META[home]?.name, path: t.path, skus: c.skus.slice(0, 5) }); }
+  console.log(`\n═══ TÄIS-AUDIT (TRUU täisahel, BATCH) — ${CLUSTERS.length} klastrit, chunk=${AUDIT_CHUNK}, piir $${CAP} ═══`);
+  const groups = chunkArr(CLUSTERS, AUDIT_CHUNK);
+  console.log(`${groups.length} chunk'i × ${AUDIT_CHUNK} → ${groups.length} kohtunik-päringut + ${groups.length} referents-päringut (batch)`);
+
+  // ── PRE-FLIGHT kuluhinnang (MÕÕDETUD numbrid: output DOMINEERIB, mitte list) ──
+  // Batch EI jaga list-cache'i → list kirjutatakse iga päring. Output ~1178 tok/kl judge, ~1065 ref (mõõdetud).
+  const listTokJ = 91585, listTokR = 90372, outJ = 1178, outR = 1065, userPerCl = 350;
+  const nReq = groups.length, nCl = CLUSTERS.length;
+  const estJudge = (nReq * (listTokJ * 1.25 + AUDIT_CHUNK * userPerCl) * 5 + nCl * outJ * 25) / 1e6 * 0.5;
+  const estRef = (nReq * (listTokR * 1.25 + AUDIT_CHUNK * userPerCl) * 3 + nCl * outR * 15) / 1e6 * 0.5;
+  const fableEst = nCl * 0.075 * 0.045;  // ~7.5% lahkheli × ~$0.045 Fable/klaster (mõõdetud)
+  const estTotal = estJudge + estRef + fableEst;
+  console.log(`\n[PRE-FLIGHT] projektsioon (mõõdetud output-maht): judge $${estJudge.toFixed(0)} + ref $${estRef.toFixed(0)} + Fable ~$${fableEst.toFixed(0)} = ~$${estTotal.toFixed(0)}`);
+  console.log(`  piir $${CAP}. Live-valve peatab kui ületab.`);
+  if (estTotal > CAP) { console.error(`🛑 projektsioon $${estTotal.toFixed(0)} > piir $${CAP} → EI submit. Suurenda chunk'i (vähem list-write) VÕI tõsta AUDIT_CAP.`); throw new Error("COST_CAP"); }
+
+  // ── STAGE A.1 — KOHTUNIK batch (Opus) ──
+  const jReq = groups.map((g, i) => ({ custom_id: `j${i}`,
+    params: buildClusterJudgeBody(g.map((c) => ({ cluster_key: c.ck, items: buildItems(c) })), candidateL3s, { maxTokens: AUDIT_MAXTOK }) }));
+  console.log(`\n[A.1] kohtunik-batch: ${jReq.length} päringut submit…`);
+  const jBatch = await runChunk(jReq, KEY, { onTick: (s) => {
+    const rc = s.request_counts || {}; process.stderr.write(`  kohtunik batch ${s.processing_status}: done ${rc.succeeded || 0}/${jReq.length} err ${rc.errored || 0}\r`); } });
+  const jByKey = new Map();
+  let jFail = 0;
+  for (const r of jBatch.results) {
+    if (!r.ok) { jFail++; continue; }
+    addUsage("claude-opus-4-8", r.message?.usage);
+    for (const v of parseBatchMessage(r.message)) jByKey.set(v.cluster_key, v);
   }
-  const out = { generated_at: new Date().toISOString(), n_clusters: CLUSTERS.length, n_suspects: suspects.length,
-    n_findings: findings.length, moves: findings.filter((f) => f.type === "move").length, new_l3: findings.filter((f) => f.type === "new_l3").length,
-    cost_usd: +COST.usd.toFixed(2), cost_by_model: COST.byModel, findings };
+  console.log(`\n[A.1] kohtunik valmis: ${jByKey.size} otsust, ${jFail} päring-viga  → kulu $${COST.usd.toFixed(2)} (batch id ${jBatch.batchId})`);
+  guard("judge-batch");
+
+  // ── STAGE A.2 — REFERENTS batch (Sonnet) ──
+  const rReq = groups.map((g, i) => ({ custom_id: `r${i}`,
+    params: buildClusterRefBody(g.map((c) => ({ cluster_key: c.ck, items: buildItems(c) })), candidateL3s, { maxTokens: AUDIT_MAXTOK }) }));
+  console.log(`\n[A.2] referents-batch: ${rReq.length} päringut submit…`);
+  const rBatch = await runChunk(rReq, KEY, { onTick: (s) => {
+    const rc = s.request_counts || {}; process.stderr.write(`  referents batch ${s.processing_status}: done ${rc.succeeded || 0}/${rReq.length} err ${rc.errored || 0}\r`); } });
+  const rByKey = new Map();
+  let rFail = 0;
+  for (const r of rBatch.results) {
+    if (!r.ok) { rFail++; continue; }
+    addUsage("claude-sonnet-5", r.message?.usage);
+    for (const v of parseBatchMessage(r.message)) rByKey.set(v.id, v);   // ref id = cluster_key
+  }
+  console.log(`\n[A.2] referents valmis: ${rByKey.size} otsust, ${rFail} päring-viga  → kulu $${COST.usd.toFixed(2)} (batch id ${rBatch.batchId})`);
+  guard("ref-batch");
+
+  // ── STAGE B — resolveChain sünkr (Fable AINULT lahkhelil) ──
+  console.log(`\n[B] resolveChain ${CLUSTERS.length} klastril (Fable lahkhelil)…`);
+  const CHAIN_ACTIONS = new Set(["assign_existing", "new_l3"]);
+  const chain = createChain({ nodes: NODES, apiKey: KEY, cache: { __v2: true }, fresh: true });
+  const results = new Map();
+  let done = 0, fableClusters = 0, nonChain = 0, chainErr = 0;
+  for (const c of CLUSTERS) {
+    const jv = jByKey.get(c.ck), rv = rByKey.get(c.ck);
+    if (!jv || !CHAIN_ACTIONS.has(jv.action)) { results.set(c.ck, { nonChain: true, path: jv ? `kohtunik=${jv.action}` : "otsuseta" }); nonChain++; continue; }
+    const judgeTarget = jv.target_handle || null;
+    const candidates = [...new Set([...(jv.considered_l3s || []), judgeTarget, rv?.target_handle].filter(Boolean))];
+    const cc = { ck: c.ck, n: c.n, items: buildItems(c), titles: c.titles,
+      judgeAction: jv.action, judgeTarget, refAction: rv?.action || "keep", refTarget: rv?.target_handle || null,
+      refReason: rv?.reason || "", judgeNewL3Name: jv.new_l3_name || null, judgeParentL2: jv.parent_l2_handle || null, candidates };
+    const fBefore = chain.fableUsage.calls;
+    try {
+      const [r] = await chain.resolveChain([cc]);
+      if (chain.fableUsage.calls > fBefore) fableClusters++;
+      const finalDec = r.decisionFinal || r.decision;
+      const isNew = finalDec === "new_l3" || (r.decision === "new_l3" && !r.decisionFinal);
+      results.set(c.ck, { decisionHandle: isNew ? "NEW" : parseAssignHandle(finalDec), path: r.path,
+        newName: r.finalName || r.newName || null, parentL2: r.parentL2 || null, signal: !!r.signal,
+        gate: r.gate ? { allPass: r.gate.allPass, blocking: r.gate.blocking } : null });
+    } catch (e) { results.set(c.ck, { nonChain: true, failed: true, path: "VIGA:" + String(e.message || e).slice(0, 50) }); chainErr++; }
+    // Fable-kulu + valve inkrementaalselt (stop $160)
+    addUsage("claude-fable-5", { input_tokens: chain.fableUsage.input, output_tokens: chain.fableUsage.output });
+    chain.fableUsage.input = 0; chain.fableUsage.output = 0;   // ära topelt-loe
+    if ((++done) % 200 === 0) { process.stderr.write(`  resolveChain ${done}/${CLUSTERS.length}  Fable-klastreid ${fableClusters}  $${COST.usd.toFixed(2)}\r`); guard("resolve"); }
+  }
+  guard("resolve-end");
+  console.log(`\n[B] valmis: Fable-klastreid ${fableClusters}/${CLUSTERS.length} (${(100 * fableClusters / CLUSTERS.length).toFixed(1)}%), nonChain/keep ${nonChain}, ahela-vigu ${chainErr}`);
+
+  // ── LEIUD ──
+  const findings = [];
+  for (const c of CLUSTERS) {
+    const t = results.get(c.ck); if (!t || t.nonChain) continue;
+    const home = t.decisionHandle;
+    if (home === "NEW") findings.push({ type: "new_l3", ck: c.ck, title: c.rep.title, n: c.n,
+      current: c.currentL3, currentName: L3META[c.currentL3]?.name, currentMain: mainName(c.currentL3),
+      newName: t.newName, parentL2: t.parentL2, parentL2Name: L3META[t.parentL2]?.name || NBYH[t.parentL2]?.name_et,
+      gate: t.gate, path: t.path, garden: isGardenMain(c.currentL3), skus: (c.skus || []).slice(0, 5) });
+    else if (home && home !== c.currentL3) findings.push({ type: "move", ck: c.ck, title: c.rep.title, n: c.n,
+      current: c.currentL3, currentName: L3META[c.currentL3]?.name, currentMain: mainName(c.currentL3),
+      proposed: home, proposedName: L3META[home]?.name, proposedMain: mainName(home),
+      crossMain: mainOf(c.currentL3) !== mainOf(home), path: t.path,
+      garden: isGardenMain(c.currentL3) || isGardenMain(home), skus: (c.skus || []).slice(0, 5) });
+  }
+  const moves = findings.filter((f) => f.type === "move");
+  const newL3 = findings.filter((f) => f.type === "new_l3");
+  const prodMoves = moves.reduce((s, f) => s + (f.n || 1), 0);
+  const prodNew = newL3.reduce((s, f) => s + (f.n || 1), 0);
+
+  // kattuvused: cross-main liigutused grupeeritud (currentMain → proposedMain)
+  const overlapMap = new Map();
+  for (const f of moves.filter((m) => m.crossMain)) {
+    const k = `${f.currentMain} → ${f.proposedMain}`;
+    if (!overlapMap.has(k)) overlapMap.set(k, { pair: k, clusters: 0, products: 0, examples: [] });
+    const o = overlapMap.get(k); o.clusters++; o.products += f.n || 1;
+    if (o.examples.length < 4) o.examples.push({ title: (f.title || "").slice(0, 50), from: f.currentName, to: f.proposedName });
+  }
+  const overlaps = [...overlapMap.values()].sort((a, b) => b.products - a.products);
+
+  // garden-jaotus
+  const gardenFindings = findings.filter((f) => f.garden);
+  const gardenProducts = gardenFindings.reduce((s, f) => s + (f.n || 1), 0);
+
+  const out = { generated_at: new Date().toISOString(), mode: "full-chain-batch", cap_usd: CAP,
+    n_clusters: CLUSTERS.length, judge_ok: jByKey.size, ref_ok: rByKey.size, judge_fail: jFail, ref_fail: rFail,
+    fable_clusters: fableClusters, nonchain_keep: nonChain, chain_errors: chainErr,
+    n_findings: findings.length, moves: moves.length, moves_products: prodMoves,
+    new_l3: newL3.length, new_l3_products: prodNew,
+    cross_main_moves: moves.filter((m) => m.crossMain).length,
+    garden_findings: gardenFindings.length, garden_products: gardenProducts,
+    cost_usd: +COST.usd.toFixed(2), cost_by_model: Object.fromEntries(Object.entries(COST.byModel).map(([k, v]) => [k, +v.toFixed(2)])),
+    cache_read_tok: COST.cacheReadTok, cache_write_tok: COST.cacheWriteTok, calls: COST.calls,
+    batch_ids: { judge: jBatch.batchId, ref: rBatch.batchId },
+    overlaps, findings };
   fs.writeFileSync(`${SP}/audit-full.json`, JSON.stringify(out, null, 2));
-  console.log(`\nleide: ${out.n_findings} (liiguta: ${out.moves}, uus-L3: ${out.new_l3})  kulu $${out.cost_usd}`);
+  console.log(`\n── TÄIS-AUDIT TULEMUS ──`);
+  console.log(`leide: ${out.n_findings}  (liiguta: ${moves.length} = ${prodMoves} toodet · uus-L3 shadow: ${newL3.length} = ${prodNew} toodet)`);
+  console.log(`cross-main liigutusi: ${out.cross_main_moves} · garden-leide: ${gardenFindings.length} (${gardenProducts} toodet)`);
+  console.log(`KULU KOKKU $${out.cost_usd}  (cache_read ${COST.cacheReadTok} tok, cache_write ${COST.cacheWriteTok} tok, kutseid ${COST.calls})`);
   return out;
 }
 
