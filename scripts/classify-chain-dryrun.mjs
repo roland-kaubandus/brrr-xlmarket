@@ -144,20 +144,34 @@ Otsusta: assign_existing (vali täpne target_handle ülalt) VÕI new_l3 (anna ee
   return fableRaw(system, user);
 }
 
-// ---- NIMEVÄRAV — kliendi-arusaamine (§4 gate #3, LLM) ----
+// ---- broaden-DUP: kas sirvimistasandi (laiem) nimi põrkuks olemas-L3-ga? (§4 3b, deterministlik) ----
+const normName = (s) => (s || "").toLowerCase().normalize("NFKD").replace(/[^\p{L}\p{N} ]/gu, "").replace(/\s+/g, " ").trim();
+const ALL_L3_NAMES = Object.entries(NODES).filter(([, x]) => x.level === 3).map(([, x]) => normName(x.name_et || x.name_en));
+function broadenDupOk(name) {
+  const n = normName(name);
+  if (!n) return false;
+  // põrge kui mõni olemas-L3 nimi on identne VÕI üks on teise sisaldus (laiem nimi neelaks kitsama olemas-L3)
+  for (const ex of ALL_L3_NAMES) { if (ex === n || ex.includes(n) || n.includes(ex)) return false; }
+  return true;
+}
+
+// ---- NIMEVÄRAV — kliendi-arusaamine + termin-ees + sirvimistasand (§4 gate #3 / 3a / 3b, LLM) ----
 async function fableNameCheck(name, cluster, siblingNames) {
   const titles = cluster.titles.slice(0, 5).map(t => `  • ${t}`).join("\n");
   const sibs = siblingNames.length ? siblingNames.map(s => `  - ${s}`).join("\n") : "  (pole)";
-  const system = `Sa hindad UUE L3-kategooria nime arusaadavust Eesti e-poe kliendile. KAKS küsimust:
-(1) Kas Eesti klient saab nimest KOHE õigesti aru, MIS TOOTED seal on?
-(2) Kas nimi on segi aetav mõne OLEMAS-kategooriaga või TAVAKEELE tähendusega?
+  const system = `Sa hindad UUE L3-kategooria nime Eesti e-poe kliendile. KOLM kriteeriumi:
 
-NÄIDE HALVAST NIMEST: «Puiduriiulid» — klient loeb "puidust TEHTUD riiulid" (riiul kui mööbel, materjal=puit),
-aga tegelikult on tooted puitmaterjali/saematerjali HOIUSTUS-riiulid (konsool-käpad). Tähendus seg-aetav → ok=false,
-pakutud parem nimi nt «Saematerjali hoiuriiulid» või «Puidu laoriiulid».
+(1) ARUSAADAVUS + SEG-AETAVUS: kas klient saab nimest KOHE õigesti aru, MIS TOOTED seal on? Kas nimi on segi aetav mõne OLEMAS-kategooriaga või TAVAKEELE tähendusega?
+   NÄIDE HALVAST: «Puiduriiulid» → klient loeb "puidust TEHTUD riiulid" (mööbel), aga tegelikult puitmaterjali HOIUSTUS-riiulid → seg-aetav → paku «Saematerjali hoiuriiulid».
 
-Hinda ANGI nime tegelike toodete vastu. Kui nimi on selge ja üheselt mõistetav → ok=true.
-Tagasta AINULT JSON: {"ok":true|false,"reason":"<1 lause>","confusable_with":"<millega segi või null>","proposed_name":"<selgem eesti nimi või null>"}`;
+(3a) TERMIN EES KEELD: nime ESIMENE sõna peab olema TAVAKEELNE ja mõistetav. Tehniline termin/lühend/mudel-kood (LiFePO4, IP65, BMS) EI tohi olla nime ALGUSES — kui vaja, läheb täpsustusena TAHA.
+   NÄIDE HALVAST: «LiFePO4 energiasalvestusakud» → lühend ees → paku «Energiasalvestusakud (LiFePO4)».
+
+(3b) SIRVIMISTASAND: kas nimi mahutab tulevased SARNASED tooted, mitte ainult praegust ainsat alltüüpi? Kui kitsas nimi välistaks naaber-variandid, paku LAIEM sirvimistasandi nimi "broader" väljale.
+   NÄIDE: «Päikesepaneelide hoiu- ja kandekotid» → kitsas → broader «Päikesepaneelide tarvikud». (Laiendust kontrollime eraldi DUP vastu — sina AINULT paku.)
+
+Hinda nime tegelike toodete vastu. Tagasta AINULT JSON:
+{"understandable":true|false,"confusable_with":"<millega või null>","term_at_start":true|false,"browse_ok":true|false,"broader":"<laiem nimi või null>","proposed_name":"<parandatud nimi kui (1)/(3a) kukub, muidu null>","reason":"<1 lause>"}`;
   const user = `PAKUTUD NIMI: «${name}»
 
 TEGELIKUD TOOTED selles L3-s:
@@ -166,8 +180,19 @@ ${titles}
 KÕRVAL-L3-d samas L2-s (segadus-kontroll):
 ${sibs}
 
-Kas Eesti klient saab «${name}» nimest kohe õigesti aru? Kas seg-aetav?`;
-  return fableRaw(system, user);
+Hinda «${name}»: (1) arusaadav+mitte-segi? (3a) termin ees? (3b) kas mahutab tulevased sarnased või peaks laiem olema?`;
+  const v = await fableRaw(system, user);
+  // normaliseeri: hard-fail (1)/(3a) → ok=false + proposed; (3b) laiendus → broader (DUP-kontroll kutsujas)
+  const hardFail = (v.understandable === false) || (v.term_at_start === true);
+  return {
+    ok: !hardFail,
+    reason: v.reason || "",
+    confusable_with: v.confusable_with || null,
+    term_at_start: v.term_at_start === true,
+    browse_ok: v.browse_ok !== false,
+    broader: v.broader || null,
+    proposed_name: v.proposed_name || null,
+  };
 }
 
 // ---- klastrite koostamine ----
@@ -227,15 +252,26 @@ async function cachedConfirm(ck, cluster) {
   const v = await fableVote(cluster); cache[key] = v; saveCache(); return v;
 }
 async function cachedName(ck, startName, cluster, sibs) {
-  const key = `name:${ck}`;
+  const key = `name2:${ck}`;   // 3a/3b reeglite versioon (name: oli vana 2-kriteeriumi)
   if (!FRESH && cache[key]) return cache[key];
   const attempts = []; let name = startName; let ok = false, finalName = null;
   for (let i = 0; i < 3; i++) {
     const v = await fableNameCheck(name, cluster, sibs);
-    attempts.push({ name, ok: !!v.ok, reason: v.reason, confusable_with: v.confusable_with || null, proposed: v.proposed_name || null });
-    if (v.ok) { ok = true; finalName = name; break; }
-    if (!v.proposed_name || v.proposed_name === name) break;
-    name = v.proposed_name;
+    // (3b) sirvimistasand: kui mudel pakub laiema nime JA see ei põrku olemas-L3-ga → adopt (DUP lubab)
+    let broadenApplied = null;
+    if (v.ok && v.broader && v.broader !== name) {
+      if (broadenDupOk(v.broader)) { broadenApplied = v.broader; }
+    }
+    attempts.push({
+      name, ok: !!v.ok, reason: v.reason, confusable_with: v.confusable_with,
+      term_at_start: v.term_at_start, browse_ok: v.browse_ok,
+      broader: v.broader || null, broaden_applied: broadenApplied,
+      broaden_dup_blocked: (v.broader && !broadenApplied) ? v.broader : null,
+      proposed: v.proposed_name || null,
+    });
+    if (v.ok) { ok = true; finalName = broadenApplied || name; break; }  // hard-fail puudub → valmis (laiendus kui lubab)
+    if (!v.proposed_name || v.proposed_name === name) break;             // hard-fail aga pole uut ettepanekut → katkesta
+    name = v.proposed_name;                                              // hard-fail (1)/(3a) → proovi parandatud nime
   }
   const out = { ok, finalName, attempts };
   cache[key] = out; saveCache(); return out;
