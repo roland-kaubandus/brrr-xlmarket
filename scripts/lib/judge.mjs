@@ -133,6 +133,21 @@ export function synActionOf(verdict) {
   return { status: "pending", write_synonym: false }; // EBAKINDEL → jääb inimesele
 }
 
+/**
+ * synConsensus — A1 TOOTMISREEGEL (Tarmo 2026-10-06): sünonüüm → product_synonym AINULT kui
+ *   Sonnet-kohtunik OK JA Opus-referents OK. Kõik muu (lahkheli / EBAKINDEL / VALE) → EI kirjutata
+ *   (ohutu vaikimisi: EI lähe otsingusse), MITTE inimese järjekorda.
+ * Tagastab { write, bucket, status }:
+ *   - bucket 'consensus_ok'  → write=true,  status='resolved'    (mõlemad OK)
+ *   - bucket 'vale'          → write=false, status='rejected'    (kumbki VALE → kindel müra)
+ *   - bucket 'disagreement'  → write=false, status='safe_default'(lahkheli/EBAKINDEL → ohutu vaikimisi)
+ */
+export function synConsensus(judgeVerdict, refVerdict) {
+  if (judgeVerdict === "OK" && refVerdict === "OK") return { write: true, bucket: "consensus_ok", status: "resolved" };
+  if (judgeVerdict === "VALE" || refVerdict === "VALE") return { write: false, bucket: "vale", status: "rejected" };
+  return { write: false, bucket: "disagreement", status: "safe_default" };
+}
+
 // ════════════════════════════ 2. KLASSIFIKAATORI-KOHTUNIK ═══════════════════════
 
 const CLSF_SYSTEM = `Oled xlmarket.ee taksonoomia-KOHTUNIK. Sulle antakse tooteid, mille automaat-klassifikaator
@@ -238,6 +253,16 @@ Iga KLASTRI kohta vali TEGEVUS:
                     (new_l3_name eesti keeles + parent_l2_handle + põhjus). Inimene/väravad kinnitavad.
 - keep            : tõeliselt ebakindel → klaster jääb ootele (ohutu vaikimisi).
 
+🚪 TUGEVDATUD DUP-VÄRAV (B2, Tarmo 2026-10-06) — new_l3 on VIIMANE abinõu:
+   ENNE kui pakud "new_l3", pead TÕESTAMA, et sobivat olemas-L3 EI OLE. Kohustuslik:
+   1. Vaata nimekirjast läbi KÕIK semantiliselt lähedased L3-d (sama tüüp võib olla TEISE nimega —
+      masintõlge/tootja-nimi eksitab; otsusta SISUST, mitte sõnast).
+   2. Täida väli "considered_l3s" = 2-5 kõige lähedasema olemas-L3 handle, mida kaalusid.
+   3. Täida "considered_reason" = miks ükski neist EI sobi (lühike eestikeelne lause).
+   Kui "considered_l3s" on tühi või mõni loetletud L3 sobiks tegelikult → see EI ole new_l3, vaid
+   assign_existing sinna. Üle-pakutud new_l3 (kui kodu juba olemas) = DUP-viga, mida me VÄLDIME.
+   (considered_l3s/considered_reason on soovitatav ka assign_existing juures, kui valik oli tihe.)
+
 ⚠️ QUARANTINE-REEGEL: kui klaster on quarantine-ämbris, tuvasta ESMALT põhjus:
    - quarantine_cause="uncertainty" → klassifitseerimise ebakindlus → tohid anda assign/new_l3.
    - quarantine_cause="data_quality" → toote-info puudu/katki → tegevus PEAB olema "keep" + märgi põhjus.
@@ -265,6 +290,8 @@ const CLUSTER_CLSF_SCHEMA = {
           group_key: { type: "string" },
           new_l3_name: { type: "string" },
           parent_l2_handle: { type: "string" },
+          considered_l3s: { type: "array", items: { type: "string" } },
+          considered_reason: { type: "string" },
           quarantine_cause: { type: "string", enum: ["uncertainty", "data_quality", "n/a"] },
           confidence: { type: "number" },
           reason: { type: "string" },
@@ -341,6 +368,7 @@ export function fanoutClusterDecisions(clusters, results) {
     const judge = v
       ? { action: v.action, target_handle: v.target_handle || null, group_key: v.group_key || null,
           new_l3_name: v.new_l3_name || null, parent_l2_handle: v.parent_l2_handle || null,
+          considered_l3s: v.considered_l3s || [], considered_reason: v.considered_reason || "",
           quarantine_cause: v.quarantine_cause || "n/a", confidence: v.confidence ?? 0,
           reason: v.reason || "", cluster_level: true }
       : { action: "keep", confidence: 0, cluster_level: true, gate: "no_cluster_verdict",
@@ -363,7 +391,14 @@ export function fanoutClusterDecisions(clusters, results) {
 //   KLASSIFIKAATOR: eraldi PIME hindaja (allpool) — valib SÕLTUMATULT kodu kandidaat-nimekirjast,
 //             kriteerium "Kas see toode kuulub sellesse kategooriasse?". EI näe kohtuniku target_handle't.
 
-export const REF_MODEL = "claude-opus-4-8";
+// B1 (Tarmo 2026-10-06): referents peab olema kohtunikust SÕLTUMATU mudel.
+//   SÜNONÜÜM: kohtunik = Sonnet → referents = Opus (REF_MODEL_SYN).
+//   KLASSIFIKAATOR: kohtunik = Opus → referents PEAB olema muu kui Opus → Sonnet-5 (REF_MODEL_CLSF).
+//   (Kaalutud valikud: Sonnet-5 = sõltumatu + tugev + odavam ✓ valitud; Fable-5 = kõige võimekam aga
+//    Opusist kallim + erinev API; Haiku-4.5 = sõltumatu aga liiga nõrk tõsiseltvõetavaks referentsiks.)
+export const REF_MODEL = "claude-opus-4-8";       // tagasiühilduvus (sünonüümi-referents)
+export const REF_MODEL_SYN = "claude-opus-4-8";   // sünonüüm: kohtunik Sonnet → referents Opus
+export const REF_MODEL_CLSF = "claude-sonnet-5";  // klassifikaator: kohtunik Opus → referents Sonnet-5 (sõltumatu)
 
 const REF_CLSF_SYSTEM = `Oled xlmarket.ee taksonoomia SÕLTUMATU REFERENTS-HINDAJA. Sulle antakse tooteid +
 NIMEKIRI olemasolevatest L3-kategooriatest. Sa EI näe ühegi teise mudeli ega kohtuniku otsust — hindad PIMESI.

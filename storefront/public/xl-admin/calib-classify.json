@@ -1,6 +1,6 @@
 {
   "kind": "classify",
-  "generated_at": "2026-10-06T11:45:44.694Z",
+  "generated_at": "2026-10-06T12:24:14.290Z",
   "seed": "xlm",
   "dry": true,
   "decisions": [
@@ -10,14 +10,21 @@
       "title": "Lumber Rack, 4-Tier 2-Pack 100 kg per Tier, Welded Wood Pipe Storage,",
       "bucket": "review",
       "judge": {
-        "action": "new_l3",
-        "target_handle": null,
+        "action": "assign_existing",
+        "target_handle": "v4-ladu-seinale-kinnitatavad-hoiususteemid",
         "group_key": null,
-        "new_l3_name": "Puiduhoiuriiulid (lumber rack)",
-        "parent_l2_handle": "v4-ladu",
+        "new_l3_name": null,
+        "parent_l2_handle": null,
+        "considered_l3s": [
+          "v4-ladu-seinale-kinnitatavad-hoiususteemid",
+          "v4-ladu-metallriiulid",
+          "v4-garaaziseadmed-garaazi-hoiustamine-rehviriiulid-ja-hoidikud",
+          "v4-ladu-lae-hoiustamisrestid"
+        ],
+        "considered_reason": "Puiduhoiuriiul on seinale kinnitatav konsool-hoiusüsteem; eraldi puidu-riiuli L3 puudub.",
         "quarantine_cause": "n/a",
         "confidence": 0.72,
-        "reason": "Seinale kinnitatav puidu/materjali kantileverriiul (lumber rack) — spetsiifiline tüüp, mida nimekirjas pole; lähim üldine on seinahoiusüsteemid, aga tüüp väärib oma L3.",
+        "reason": "Seinale kinnitatav puidu/materjali hoiusüsteem sobib seinale kinnitatavate hoiusüsteemide alla.",
         "cluster_level": true
       },
       "proposed": "v4-ladu-seinale-kinnitatavad-hoiususteemid"
@@ -28,14 +35,21 @@
       "title": "Lumber Rack, 4-Tier 2-Pack 50 kg per Tier, Foldable Wood Storage, Wall",
       "bucket": "new_l3",
       "judge": {
-        "action": "new_l3",
-        "target_handle": null,
+        "action": "assign_existing",
+        "target_handle": "v4-ladu-seinale-kinnitatavad-hoiususteemid",
         "group_key": null,
-        "new_l3_name": "Puiduhoiuriiulid (lumber rack)",
-        "parent_l2_handle": "v4-ladu",
+        "new_l3_name": null,
+        "parent_l2_handle": null,
+        "considered_l3s": [
+          "v4-ladu-seinale-kinnitatavad-hoiususteemid",
+          "v4-ladu-metallriiulid",
+          "v4-garaaziseadmed-garaazi-hoiustamine-rehviriiulid-ja-hoidikud",
+          "v4-ladu-lae-hoiustamisrestid"
+        ],
+        "considered_reason": "Puiduhoiuriiul on seinale kinnitatav konsool-hoiusüsteem; eraldi puidu-riiuli L3 puudub.",
         "quarantine_cause": "n/a",
         "confidence": 0.72,
-        "reason": "Seinale kinnitatav puidu/materjali kantileverriiul (lumber rack) — spetsiifiline tüüp, mida nimekirjas pole; lähim üldine on seinahoiusüsteemid, aga tüüp väärib oma L3.",
+        "reason": "Seinale kinnitatav puidu/materjali hoiusüsteem sobib seinale kinnitatavate hoiusüsteemide alla.",
         "cluster_level": true
       },
       "proposed": "v4-garaaziseadmed-garaazi-hoiustamine-rehviriiulid-ja-hoidikud"
@@ -46,14 +60,21 @@
       "title": "Lumber Rack, 6-Tier 2-Pack 50 kg per Tier, Foldable Wood Storage, Wall",
       "bucket": "new_l3",
       "judge": {
-        "action": "new_l3",
-        "target_handle": null,
+        "action": "assign_existing",
+        "target_handle": "v4-ladu-seinale-kinnitatavad-hoiususteemid",
         "group_key": null,
-        "new_l3_name": "Puiduhoiuriiulid (lumber rack)",
-        "parent_l2_handle": "v4-ladu",
+        "new_l3_name": null,
+        "parent_l2_handle": null,
+        "considered_l3s": [
+          "v4-ladu-seinale-kinnitatavad-hoiususteemid",
+          "v4-ladu-metallriiulid",
+          "v4-garaaziseadmed-garaazi-hoiustamine-rehviriiulid-ja-hoidikud",
+          "v4-ladu-lae-hoiustamisrestid"
+        ],
+        "considered_reason": "Puiduhoiuriiul on seinale kinnitatav konsool-hoiusüsteem; eraldi puidu-riiuli L3 puudub.",
         "quarantine_cause": "n/a",
         "confidence": 0.72,
-        "reason": "Seinale kinnitatav puidu/materjali kantileverriiul (lumber rack) — spetsiifiline tüüp, mida nimekirjas pole; lähim üldine on seinahoiusüsteemid, aga tüüp väärib oma L3.",
+        "reason": "Seinale kinnitatav puidu/materjali hoiusüsteem sobib seinale kinnitatavate hoiusüsteemide alla.",
         "cluster_level": true
       },
       "proposed": "v4-garaaziseadmed-garaazi-hoiustamine-rehviriiulid-ja-hoidikud"
@@ -64,14 +85,21 @@
       "title": "Lumber Rack, 3-Tier 4-Pack 100 kg per Tier, Welded Wood Pipe Storage,",
       "bucket": "review",
       "judge": {
-        "action": "new_l3",
-        "target_handle": null,
+        "action": "assign_existing",
+        "target_handle": "v4-ladu-seinale-kinnitatavad-hoiususteemid",
         "group_key": null,
-        "new_l3_name": "Puiduhoiuriiulid (lumber rack)",
-        "parent_l2_handle": "v4-ladu",
+        "new_l3_name": null,
+        "parent_l2_handle": null,
+        "considered_l3s": [
+          "v4-ladu-seinale-kinnitatavad-hoiususteemid",
+          "v4-ladu-metallriiulid",
+          "v4-garaaziseadmed-garaazi-hoiustamine-rehviriiulid-ja-hoidikud",
+          "v4-ladu-lae-hoiustamisrestid"
+        ],
+        "considered_reason": "Puiduhoiuriiul on seinale kinnitatav konsool-hoiusüsteem; eraldi puidu-riiuli L3 puudub.",
         "quarantine_cause": "n/a",
         "confidence": 0.72,
-        "reason": "Seinale kinnitatav puidu/materjali kantileverriiul (lumber rack) — spetsiifiline tüüp, mida nimekirjas pole; lähim üldine on seinahoiusüsteemid, aga tüüp väärib oma L3.",
+        "reason": "Seinale kinnitatav puidu/materjali hoiusüsteem sobib seinale kinnitatavate hoiusüsteemide alla.",
         "cluster_level": true
       },
       "proposed": "v4-ladu-seinale-kinnitatavad-hoiususteemid"
@@ -82,14 +110,21 @@
       "title": "Lumber Rack, 3-Tier 2-Pack 50 kg per Tier, Foldable Wood Storage, Wall",
       "bucket": "review",
       "judge": {
-        "action": "new_l3",
-        "target_handle": null,
+        "action": "assign_existing",
+        "target_handle": "v4-ladu-seinale-kinnitatavad-hoiususteemid",
         "group_key": null,
-        "new_l3_name": "Puiduhoiuriiulid (lumber rack)",
-        "parent_l2_handle": "v4-ladu",
+        "new_l3_name": null,
+        "parent_l2_handle": null,
+        "considered_l3s": [
+          "v4-ladu-seinale-kinnitatavad-hoiususteemid",
+          "v4-ladu-metallriiulid",
+          "v4-garaaziseadmed-garaazi-hoiustamine-rehviriiulid-ja-hoidikud",
+          "v4-ladu-lae-hoiustamisrestid"
+        ],
+        "considered_reason": "Puiduhoiuriiul on seinale kinnitatav konsool-hoiusüsteem; eraldi puidu-riiuli L3 puudub.",
         "quarantine_cause": "n/a",
         "confidence": 0.72,
-        "reason": "Seinale kinnitatav puidu/materjali kantileverriiul (lumber rack) — spetsiifiline tüüp, mida nimekirjas pole; lähim üldine on seinahoiusüsteemid, aga tüüp väärib oma L3.",
+        "reason": "Seinale kinnitatav puidu/materjali hoiusüsteem sobib seinale kinnitatavate hoiusüsteemide alla.",
         "cluster_level": true
       },
       "proposed": "v4-ladu-seinale-kinnitatavad-hoiususteemid"
@@ -100,14 +135,21 @@
       "title": "Lumber Rack, 3-Tier 4-Pack 50 kg per Tier, Foldable Wood Storage, Wall",
       "bucket": "review",
       "judge": {
-        "action": "new_l3",
-        "target_handle": null,
+        "action": "assign_existing",
+        "target_handle": "v4-ladu-seinale-kinnitatavad-hoiususteemid",
         "group_key": null,
-        "new_l3_name": "Puiduhoiuriiulid (lumber rack)",
-        "parent_l2_handle": "v4-ladu",
+        "new_l3_name": null,
+        "parent_l2_handle": null,
+        "considered_l3s": [
+          "v4-ladu-seinale-kinnitatavad-hoiususteemid",
+          "v4-ladu-metallriiulid",
+          "v4-garaaziseadmed-garaazi-hoiustamine-rehviriiulid-ja-hoidikud",
+          "v4-ladu-lae-hoiustamisrestid"
+        ],
+        "considered_reason": "Puiduhoiuriiul on seinale kinnitatav konsool-hoiusüsteem; eraldi puidu-riiuli L3 puudub.",
         "quarantine_cause": "n/a",
         "confidence": 0.72,
-        "reason": "Seinale kinnitatav puidu/materjali kantileverriiul (lumber rack) — spetsiifiline tüüp, mida nimekirjas pole; lähim üldine on seinahoiusüsteemid, aga tüüp väärib oma L3.",
+        "reason": "Seinale kinnitatav puidu/materjali hoiusüsteem sobib seinale kinnitatavate hoiusüsteemide alla.",
         "cluster_level": true
       },
       "proposed": "v4-ladu-seinale-kinnitatavad-hoiususteemid"
@@ -118,14 +160,21 @@
       "title": "Lumber Rack, 4-Tier 4-Pack 50 kg per Tier, Foldable Wood Storage, Wall",
       "bucket": "new_l3",
       "judge": {
-        "action": "new_l3",
-        "target_handle": null,
+        "action": "assign_existing",
+        "target_handle": "v4-ladu-seinale-kinnitatavad-hoiususteemid",
         "group_key": null,
-        "new_l3_name": "Puiduhoiuriiulid (lumber rack)",
-        "parent_l2_handle": "v4-ladu",
+        "new_l3_name": null,
+        "parent_l2_handle": null,
+        "considered_l3s": [
+          "v4-ladu-seinale-kinnitatavad-hoiususteemid",
+          "v4-ladu-metallriiulid",
+          "v4-garaaziseadmed-garaazi-hoiustamine-rehviriiulid-ja-hoidikud",
+          "v4-ladu-lae-hoiustamisrestid"
+        ],
+        "considered_reason": "Puiduhoiuriiul on seinale kinnitatav konsool-hoiusüsteem; eraldi puidu-riiuli L3 puudub.",
         "quarantine_cause": "n/a",
         "confidence": 0.72,
-        "reason": "Seinale kinnitatav puidu/materjali kantileverriiul (lumber rack) — spetsiifiline tüüp, mida nimekirjas pole; lähim üldine on seinahoiusüsteemid, aga tüüp väärib oma L3.",
+        "reason": "Seinale kinnitatav puidu/materjali hoiusüsteem sobib seinale kinnitatavate hoiusüsteemide alla.",
         "cluster_level": true
       },
       "proposed": "v4-garaaziseadmed-garaazi-hoiustamine-rehviriiulid-ja-hoidikud"
@@ -136,14 +185,21 @@
       "title": "Lumber Rack, 3-Tier 3-Pack 50 kg per Tier, Foldable Wood Storage, Wall",
       "bucket": "review",
       "judge": {
-        "action": "new_l3",
-        "target_handle": null,
+        "action": "assign_existing",
+        "target_handle": "v4-ladu-seinale-kinnitatavad-hoiususteemid",
         "group_key": null,
-        "new_l3_name": "Puiduhoiuriiulid (lumber rack)",
-        "parent_l2_handle": "v4-ladu",
+        "new_l3_name": null,
+        "parent_l2_handle": null,
+        "considered_l3s": [
+          "v4-ladu-seinale-kinnitatavad-hoiususteemid",
+          "v4-ladu-metallriiulid",
+          "v4-garaaziseadmed-garaazi-hoiustamine-rehviriiulid-ja-hoidikud",
+          "v4-ladu-lae-hoiustamisrestid"
+        ],
+        "considered_reason": "Puiduhoiuriiul on seinale kinnitatav konsool-hoiusüsteem; eraldi puidu-riiuli L3 puudub.",
         "quarantine_cause": "n/a",
         "confidence": 0.72,
-        "reason": "Seinale kinnitatav puidu/materjali kantileverriiul (lumber rack) — spetsiifiline tüüp, mida nimekirjas pole; lähim üldine on seinahoiusüsteemid, aga tüüp väärib oma L3.",
+        "reason": "Seinale kinnitatav puidu/materjali hoiusüsteem sobib seinale kinnitatavate hoiusüsteemide alla.",
         "cluster_level": true
       },
       "proposed": "v4-ladu-seinale-kinnitatavad-hoiususteemid"
@@ -154,14 +210,21 @@
       "title": "Lumber Rack, 3-Tier 6-Pack 50 kg per Tier, Foldable Wood Storage, Wall",
       "bucket": "review",
       "judge": {
-        "action": "new_l3",
-        "target_handle": null,
+        "action": "assign_existing",
+        "target_handle": "v4-ladu-seinale-kinnitatavad-hoiususteemid",
         "group_key": null,
-        "new_l3_name": "Puiduhoiuriiulid (lumber rack)",
-        "parent_l2_handle": "v4-ladu",
+        "new_l3_name": null,
+        "parent_l2_handle": null,
+        "considered_l3s": [
+          "v4-ladu-seinale-kinnitatavad-hoiususteemid",
+          "v4-ladu-metallriiulid",
+          "v4-garaaziseadmed-garaazi-hoiustamine-rehviriiulid-ja-hoidikud",
+          "v4-ladu-lae-hoiustamisrestid"
+        ],
+        "considered_reason": "Puiduhoiuriiul on seinale kinnitatav konsool-hoiusüsteem; eraldi puidu-riiuli L3 puudub.",
         "quarantine_cause": "n/a",
         "confidence": 0.72,
-        "reason": "Seinale kinnitatav puidu/materjali kantileverriiul (lumber rack) — spetsiifiline tüüp, mida nimekirjas pole; lähim üldine on seinahoiusüsteemid, aga tüüp väärib oma L3.",
+        "reason": "Seinale kinnitatav puidu/materjali hoiusüsteem sobib seinale kinnitatavate hoiusüsteemide alla.",
         "cluster_level": true
       },
       "proposed": "v4-ladu-seinale-kinnitatavad-hoiususteemid"
@@ -172,14 +235,19 @@
       "title": "Kids Bike, 14 Inch Children Bicycle, Training Wheels BMX Style Blue, f",
       "bucket": "review",
       "judge": {
-        "action": "new_l3",
-        "target_handle": null,
+        "action": "assign_existing",
+        "target_handle": "v4-sport-ja-vaba-aeg-jalgrattad-ja-tarvikud-jalgrattad",
         "group_key": null,
-        "new_l3_name": "Laste jalgrattad",
-        "parent_l2_handle": "v4-sport-ja-vaba-aeg-jalgrattad-ja-tarvikud-jalgrattad",
+        "new_l3_name": null,
+        "parent_l2_handle": null,
+        "considered_l3s": [
+          "v4-sport-ja-vaba-aeg-jalgrattad-ja-tarvikud-jalgrattad",
+          "v4-sport-ja-vaba-aeg-manguasjad-lastele-laste-soidukid-ja-pedaalautod"
+        ],
+        "considered_reason": "Laste jalgratas on päris jalgratas (pidurid, raam), mitte pedaalauto-mänguasi.",
         "quarantine_cause": "n/a",
-        "confidence": 0.7,
-        "reason": "Laste 14-20\" jalgrattad abiratastega — üldine 'Jalgrattad' sobiks, kuid laste segment on eristuv; soovitan oma L3.",
+        "confidence": 0.72,
+        "reason": "Laste jalgratas kuulub jalgrataste alla; eraldi laste-jalgratta L3 puudub.",
         "cluster_level": true
       },
       "proposed": "v4-sport-ja-vaba-aeg-jalgrattad-ja-tarvikud-jalgrattad"
@@ -190,14 +258,19 @@
       "title": "Kids Bike, 16 Inch Children Bicycle, Training Wheels BMX Style Blue, f",
       "bucket": "review",
       "judge": {
-        "action": "new_l3",
-        "target_handle": null,
+        "action": "assign_existing",
+        "target_handle": "v4-sport-ja-vaba-aeg-jalgrattad-ja-tarvikud-jalgrattad",
         "group_key": null,
-        "new_l3_name": "Laste jalgrattad",
-        "parent_l2_handle": "v4-sport-ja-vaba-aeg-jalgrattad-ja-tarvikud-jalgrattad",
+        "new_l3_name": null,
+        "parent_l2_handle": null,
+        "considered_l3s": [
+          "v4-sport-ja-vaba-aeg-jalgrattad-ja-tarvikud-jalgrattad",
+          "v4-sport-ja-vaba-aeg-manguasjad-lastele-laste-soidukid-ja-pedaalautod"
+        ],
+        "considered_reason": "Laste jalgratas on päris jalgratas (pidurid, raam), mitte pedaalauto-mänguasi.",
         "quarantine_cause": "n/a",
-        "confidence": 0.7,
-        "reason": "Laste 14-20\" jalgrattad abiratastega — üldine 'Jalgrattad' sobiks, kuid laste segment on eristuv; soovitan oma L3.",
+        "confidence": 0.72,
+        "reason": "Laste jalgratas kuulub jalgrataste alla; eraldi laste-jalgratta L3 puudub.",
         "cluster_level": true
       },
       "proposed": "v4-sport-ja-vaba-aeg-jalgrattad-ja-tarvikud-jalgrattad"
@@ -208,14 +281,19 @@
       "title": "Kids Bike, 18 Inch Children Bicycle, Kickstand Princess Style Pink, fo",
       "bucket": "review",
       "judge": {
-        "action": "new_l3",
-        "target_handle": null,
+        "action": "assign_existing",
+        "target_handle": "v4-sport-ja-vaba-aeg-jalgrattad-ja-tarvikud-jalgrattad",
         "group_key": null,
-        "new_l3_name": "Laste jalgrattad",
-        "parent_l2_handle": "v4-sport-ja-vaba-aeg-jalgrattad-ja-tarvikud-jalgrattad",
+        "new_l3_name": null,
+        "parent_l2_handle": null,
+        "considered_l3s": [
+          "v4-sport-ja-vaba-aeg-jalgrattad-ja-tarvikud-jalgrattad",
+          "v4-sport-ja-vaba-aeg-manguasjad-lastele-laste-soidukid-ja-pedaalautod"
+        ],
+        "considered_reason": "Laste jalgratas on päris jalgratas (pidurid, raam), mitte pedaalauto-mänguasi.",
         "quarantine_cause": "n/a",
-        "confidence": 0.7,
-        "reason": "Laste 14-20\" jalgrattad abiratastega — üldine 'Jalgrattad' sobiks, kuid laste segment on eristuv; soovitan oma L3.",
+        "confidence": 0.72,
+        "reason": "Laste jalgratas kuulub jalgrataste alla; eraldi laste-jalgratta L3 puudub.",
         "cluster_level": true
       },
       "proposed": "v4-sport-ja-vaba-aeg-jalgrattad-ja-tarvikud-jalgrattad"
@@ -226,14 +304,19 @@
       "title": "Kids Bike, 20 in Children Bicycle, Kickstand Princess Style Pink, for",
       "bucket": "review",
       "judge": {
-        "action": "new_l3",
-        "target_handle": null,
+        "action": "assign_existing",
+        "target_handle": "v4-sport-ja-vaba-aeg-jalgrattad-ja-tarvikud-jalgrattad",
         "group_key": null,
-        "new_l3_name": "Laste jalgrattad",
-        "parent_l2_handle": "v4-sport-ja-vaba-aeg-jalgrattad-ja-tarvikud-jalgrattad",
+        "new_l3_name": null,
+        "parent_l2_handle": null,
+        "considered_l3s": [
+          "v4-sport-ja-vaba-aeg-jalgrattad-ja-tarvikud-jalgrattad",
+          "v4-sport-ja-vaba-aeg-manguasjad-lastele-laste-soidukid-ja-pedaalautod"
+        ],
+        "considered_reason": "Laste jalgratas on päris jalgratas (pidurid, raam), mitte pedaalauto-mänguasi.",
         "quarantine_cause": "n/a",
-        "confidence": 0.7,
-        "reason": "Laste 14-20\" jalgrattad abiratastega — üldine 'Jalgrattad' sobiks, kuid laste segment on eristuv; soovitan oma L3.",
+        "confidence": 0.72,
+        "reason": "Laste jalgratas kuulub jalgrataste alla; eraldi laste-jalgratta L3 puudub.",
         "cluster_level": true
       },
       "proposed": "v4-sport-ja-vaba-aeg-jalgrattad-ja-tarvikud-jalgrattad"
@@ -244,14 +327,19 @@
       "title": "Kids Bike, 18 in Children Bicycle, with Kickstand BMX Style Blue, for",
       "bucket": "review",
       "judge": {
-        "action": "new_l3",
-        "target_handle": null,
+        "action": "assign_existing",
+        "target_handle": "v4-sport-ja-vaba-aeg-jalgrattad-ja-tarvikud-jalgrattad",
         "group_key": null,
-        "new_l3_name": "Laste jalgrattad",
-        "parent_l2_handle": "v4-sport-ja-vaba-aeg-jalgrattad-ja-tarvikud-jalgrattad",
+        "new_l3_name": null,
+        "parent_l2_handle": null,
+        "considered_l3s": [
+          "v4-sport-ja-vaba-aeg-jalgrattad-ja-tarvikud-jalgrattad",
+          "v4-sport-ja-vaba-aeg-manguasjad-lastele-laste-soidukid-ja-pedaalautod"
+        ],
+        "considered_reason": "Laste jalgratas on päris jalgratas (pidurid, raam), mitte pedaalauto-mänguasi.",
         "quarantine_cause": "n/a",
-        "confidence": 0.7,
-        "reason": "Laste 14-20\" jalgrattad abiratastega — üldine 'Jalgrattad' sobiks, kuid laste segment on eristuv; soovitan oma L3.",
+        "confidence": 0.72,
+        "reason": "Laste jalgratas kuulub jalgrataste alla; eraldi laste-jalgratta L3 puudub.",
         "cluster_level": true
       },
       "proposed": "v4-sport-ja-vaba-aeg-jalgrattad-ja-tarvikud-jalgrattad"
@@ -262,14 +350,19 @@
       "title": "Kids Bike, 14 Inch Children Bicycle, Training Wheels Princess Pink, fo",
       "bucket": "review",
       "judge": {
-        "action": "new_l3",
-        "target_handle": null,
+        "action": "assign_existing",
+        "target_handle": "v4-sport-ja-vaba-aeg-jalgrattad-ja-tarvikud-jalgrattad",
         "group_key": null,
-        "new_l3_name": "Laste jalgrattad",
-        "parent_l2_handle": "v4-sport-ja-vaba-aeg-jalgrattad-ja-tarvikud-jalgrattad",
+        "new_l3_name": null,
+        "parent_l2_handle": null,
+        "considered_l3s": [
+          "v4-sport-ja-vaba-aeg-jalgrattad-ja-tarvikud-jalgrattad",
+          "v4-sport-ja-vaba-aeg-manguasjad-lastele-laste-soidukid-ja-pedaalautod"
+        ],
+        "considered_reason": "Laste jalgratas on päris jalgratas (pidurid, raam), mitte pedaalauto-mänguasi.",
         "quarantine_cause": "n/a",
-        "confidence": 0.7,
-        "reason": "Laste 14-20\" jalgrattad abiratastega — üldine 'Jalgrattad' sobiks, kuid laste segment on eristuv; soovitan oma L3.",
+        "confidence": 0.72,
+        "reason": "Laste jalgratas kuulub jalgrataste alla; eraldi laste-jalgratta L3 puudub.",
         "cluster_level": true
       },
       "proposed": "v4-sport-ja-vaba-aeg-jalgrattad-ja-tarvikud-jalgrattad"
@@ -280,14 +373,19 @@
       "title": "Kids Bike, 16 Inch Children Bicycle, Training Wheels Princess Pink, fo",
       "bucket": "new_l3",
       "judge": {
-        "action": "new_l3",
-        "target_handle": null,
+        "action": "assign_existing",
+        "target_handle": "v4-sport-ja-vaba-aeg-jalgrattad-ja-tarvikud-jalgrattad",
         "group_key": null,
-        "new_l3_name": "Laste jalgrattad",
-        "parent_l2_handle": "v4-sport-ja-vaba-aeg-jalgrattad-ja-tarvikud-jalgrattad",
+        "new_l3_name": null,
+        "parent_l2_handle": null,
+        "considered_l3s": [
+          "v4-sport-ja-vaba-aeg-jalgrattad-ja-tarvikud-jalgrattad",
+          "v4-sport-ja-vaba-aeg-manguasjad-lastele-laste-soidukid-ja-pedaalautod"
+        ],
+        "considered_reason": "Laste jalgratas on päris jalgratas (pidurid, raam), mitte pedaalauto-mänguasi.",
         "quarantine_cause": "n/a",
-        "confidence": 0.7,
-        "reason": "Laste 14-20\" jalgrattad abiratastega — üldine 'Jalgrattad' sobiks, kuid laste segment on eristuv; soovitan oma L3.",
+        "confidence": 0.72,
+        "reason": "Laste jalgratas kuulub jalgrataste alla; eraldi laste-jalgratta L3 puudub.",
         "cluster_level": true
       },
       "proposed": "v4-sport-ja-vaba-aeg-manguasjad-lastele-laste-soidukid-ja-pedaalautod"
@@ -298,14 +396,19 @@
       "title": "Kids Bike, 20 in Children Bicycle, with Kickstand BMX Style Blue, for",
       "bucket": "new_l3",
       "judge": {
-        "action": "new_l3",
-        "target_handle": null,
+        "action": "assign_existing",
+        "target_handle": "v4-sport-ja-vaba-aeg-jalgrattad-ja-tarvikud-jalgrattad",
         "group_key": null,
-        "new_l3_name": "Laste jalgrattad",
-        "parent_l2_handle": "v4-sport-ja-vaba-aeg-jalgrattad-ja-tarvikud-jalgrattad",
+        "new_l3_name": null,
+        "parent_l2_handle": null,
+        "considered_l3s": [
+          "v4-sport-ja-vaba-aeg-jalgrattad-ja-tarvikud-jalgrattad",
+          "v4-sport-ja-vaba-aeg-manguasjad-lastele-laste-soidukid-ja-pedaalautod"
+        ],
+        "considered_reason": "Laste jalgratas on päris jalgratas (pidurid, raam), mitte pedaalauto-mänguasi.",
         "quarantine_cause": "n/a",
-        "confidence": 0.7,
-        "reason": "Laste 14-20\" jalgrattad abiratastega — üldine 'Jalgrattad' sobiks, kuid laste segment on eristuv; soovitan oma L3.",
+        "confidence": 0.72,
+        "reason": "Laste jalgratas kuulub jalgrataste alla; eraldi laste-jalgratta L3 puudub.",
         "cluster_level": true
       },
       "proposed": "v4-sport-ja-vaba-aeg-manguasjad-lastele-laste-soidukid-ja-pedaalautod"
@@ -320,10 +423,16 @@
         "target_handle": null,
         "group_key": null,
         "new_l3_name": "Päikesepaneelide hoiu- ja kandekotid",
-        "parent_l2_handle": "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-paikesepaneelid",
+        "parent_l2_handle": "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid",
+        "considered_l3s": [
+          "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-paikesepaneelid",
+          "v4-ladu-veekindlad-kohvrid",
+          "v4-sport-ja-vaba-aeg-reisikotid-ja-kohvrid-pehmed-kohvrid"
+        ],
+        "considered_reason": "Päikesepaneelide spetsiifiline kandekott ei sobi paneelide endi ega üldkohvrite alla.",
         "quarantine_cause": "n/a",
-        "confidence": 0.7,
-        "reason": "Kokkupandavate päikesepaneelide kandekotid — tarvik, mitte paneel ise; sobivat L3 pole, ettepanek uueks.",
+        "confidence": 0.6,
+        "reason": "Spetsiifiline päikesepaneelide kandekott; sobivat olemas-L3 pole.",
         "cluster_level": true
       },
       "proposed": "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-paikesepaneelid"
@@ -338,10 +447,16 @@
         "target_handle": null,
         "group_key": null,
         "new_l3_name": "Päikesepaneelide hoiu- ja kandekotid",
-        "parent_l2_handle": "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-paikesepaneelid",
+        "parent_l2_handle": "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid",
+        "considered_l3s": [
+          "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-paikesepaneelid",
+          "v4-ladu-veekindlad-kohvrid",
+          "v4-sport-ja-vaba-aeg-reisikotid-ja-kohvrid-pehmed-kohvrid"
+        ],
+        "considered_reason": "Päikesepaneelide spetsiifiline kandekott ei sobi paneelide endi ega üldkohvrite alla.",
         "quarantine_cause": "n/a",
-        "confidence": 0.7,
-        "reason": "Kokkupandavate päikesepaneelide kandekotid — tarvik, mitte paneel ise; sobivat L3 pole, ettepanek uueks.",
+        "confidence": 0.6,
+        "reason": "Spetsiifiline päikesepaneelide kandekott; sobivat olemas-L3 pole.",
         "cluster_level": true
       },
       "proposed": "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-paikesepaneelid"
@@ -356,10 +471,16 @@
         "target_handle": null,
         "group_key": null,
         "new_l3_name": "Päikesepaneelide hoiu- ja kandekotid",
-        "parent_l2_handle": "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-paikesepaneelid",
+        "parent_l2_handle": "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid",
+        "considered_l3s": [
+          "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-paikesepaneelid",
+          "v4-ladu-veekindlad-kohvrid",
+          "v4-sport-ja-vaba-aeg-reisikotid-ja-kohvrid-pehmed-kohvrid"
+        ],
+        "considered_reason": "Päikesepaneelide spetsiifiline kandekott ei sobi paneelide endi ega üldkohvrite alla.",
         "quarantine_cause": "n/a",
-        "confidence": 0.7,
-        "reason": "Kokkupandavate päikesepaneelide kandekotid — tarvik, mitte paneel ise; sobivat L3 pole, ettepanek uueks.",
+        "confidence": 0.6,
+        "reason": "Spetsiifiline päikesepaneelide kandekott; sobivat olemas-L3 pole.",
         "cluster_level": true
       },
       "proposed": "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-paikesepaneelid"
@@ -374,10 +495,16 @@
         "target_handle": null,
         "group_key": null,
         "new_l3_name": "Päikesepaneelide hoiu- ja kandekotid",
-        "parent_l2_handle": "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-paikesepaneelid",
+        "parent_l2_handle": "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid",
+        "considered_l3s": [
+          "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-paikesepaneelid",
+          "v4-ladu-veekindlad-kohvrid",
+          "v4-sport-ja-vaba-aeg-reisikotid-ja-kohvrid-pehmed-kohvrid"
+        ],
+        "considered_reason": "Päikesepaneelide spetsiifiline kandekott ei sobi paneelide endi ega üldkohvrite alla.",
         "quarantine_cause": "n/a",
-        "confidence": 0.7,
-        "reason": "Kokkupandavate päikesepaneelide kandekotid — tarvik, mitte paneel ise; sobivat L3 pole, ettepanek uueks.",
+        "confidence": 0.6,
+        "reason": "Spetsiifiline päikesepaneelide kandekott; sobivat olemas-L3 pole.",
         "cluster_level": true
       },
       "proposed": "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-paikesepaneelid"
@@ -393,9 +520,14 @@
         "group_key": null,
         "new_l3_name": null,
         "parent_l2_handle": null,
+        "considered_l3s": [
+          "v4-autovaruosad-ja-tarvikud-aku-soiduki-ja-mootorrattaakud",
+          "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-kaasaskantavad-elektrijaamad"
+        ],
+        "considered_reason": "LiFePO4 24V aku RV/paadi/soolar jaoks on sõidukiaku-tüüpi; sobib sõidukiakude alla.",
         "quarantine_cause": "uncertainty",
-        "confidence": 0.68,
-        "reason": "24V LiFePO4 aku RV/marine/solar jaoks — sõiduki/süvatsüklilise aku tüüp, sobib sõiduki- ja mootorrattaakude alla.",
+        "confidence": 0.6,
+        "reason": "LiFePO4 veosüsteemiaku sobib sõiduki- ja mootorrattaakude kategooriasse.",
         "cluster_level": true
       },
       "proposed": "v4-autovaruosad-ja-tarvikud-aku-soiduki-ja-mootorrattaakud"
@@ -411,9 +543,14 @@
         "group_key": null,
         "new_l3_name": null,
         "parent_l2_handle": null,
+        "considered_l3s": [
+          "v4-autovaruosad-ja-tarvikud-aku-soiduki-ja-mootorrattaakud",
+          "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-kaasaskantavad-elektrijaamad"
+        ],
+        "considered_reason": "LiFePO4 24V aku RV/paadi/soolar jaoks on sõidukiaku-tüüpi; sobib sõidukiakude alla.",
         "quarantine_cause": "uncertainty",
-        "confidence": 0.68,
-        "reason": "24V LiFePO4 aku RV/marine/solar jaoks — sõiduki/süvatsüklilise aku tüüp, sobib sõiduki- ja mootorrattaakude alla.",
+        "confidence": 0.6,
+        "reason": "LiFePO4 veosüsteemiaku sobib sõiduki- ja mootorrattaakude kategooriasse.",
         "cluster_level": true
       },
       "proposed": "v4-autovaruosad-ja-tarvikud-aku-soiduki-ja-mootorrattaakud"
@@ -429,9 +566,14 @@
         "group_key": null,
         "new_l3_name": null,
         "parent_l2_handle": null,
+        "considered_l3s": [
+          "v4-autovaruosad-ja-tarvikud-aku-soiduki-ja-mootorrattaakud",
+          "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-kaasaskantavad-elektrijaamad"
+        ],
+        "considered_reason": "LiFePO4 24V aku RV/paadi/soolar jaoks on sõidukiaku-tüüpi; sobib sõidukiakude alla.",
         "quarantine_cause": "uncertainty",
-        "confidence": 0.68,
-        "reason": "24V LiFePO4 aku RV/marine/solar jaoks — sõiduki/süvatsüklilise aku tüüp, sobib sõiduki- ja mootorrattaakude alla.",
+        "confidence": 0.6,
+        "reason": "LiFePO4 veosüsteemiaku sobib sõiduki- ja mootorrattaakude kategooriasse.",
         "cluster_level": true
       },
       "proposed": "v4-autovaruosad-ja-tarvikud-aku-soiduki-ja-mootorrattaakud"
@@ -442,14 +584,19 @@
       "title": "Paracord Rope 4.7 mm x 305 m Nylon Parachute Cord 550 Tactical, Surviv",
       "bucket": "new_l3",
       "judge": {
-        "action": "assign_existing",
-        "target_handle": "v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine-trossikoied",
+        "action": "new_l3",
+        "target_handle": null,
         "group_key": null,
-        "new_l3_name": null,
-        "parent_l2_handle": null,
+        "new_l3_name": "Paracord ja universaalnöörid",
+        "parent_l2_handle": "v4-sport-ja-vaba-aeg-matkavarustus-ja-telkimine",
+        "considered_l3s": [
+          "v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine-trossikoied",
+          "v4-sport-ja-vaba-aeg-matka-hadaabi-ellujaamisvarustus"
+        ],
+        "considered_reason": "Paracord on kerge matka/ellujäämise nöör, mitte tõstetrossiköis; sobivat L3 pole.",
         "quarantine_cause": "n/a",
-        "confidence": 0.6,
-        "reason": "Paracord nailonnöör — universaalne köis/nöör; lähim olemasolev on trossiköied. Paigutuse määramatus mõõdukas.",
+        "confidence": 0.55,
+        "reason": "Nailon-paracord utiliit/ellujäämisnöör; olemas-L3 ei kata seda tüüpi.",
         "cluster_level": true
       },
       "proposed": "v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine-trossikoied"
@@ -460,14 +607,19 @@
       "title": "Paracord Rope 4 mm x 60 m Nylon Parachute Cord 550 Tactical, Survival",
       "bucket": "review",
       "judge": {
-        "action": "assign_existing",
-        "target_handle": "v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine-trossikoied",
+        "action": "new_l3",
+        "target_handle": null,
         "group_key": null,
-        "new_l3_name": null,
-        "parent_l2_handle": null,
+        "new_l3_name": "Paracord ja universaalnöörid",
+        "parent_l2_handle": "v4-sport-ja-vaba-aeg-matkavarustus-ja-telkimine",
+        "considered_l3s": [
+          "v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine-trossikoied",
+          "v4-sport-ja-vaba-aeg-matka-hadaabi-ellujaamisvarustus"
+        ],
+        "considered_reason": "Paracord on kerge matka/ellujäämise nöör, mitte tõstetrossiköis; sobivat L3 pole.",
         "quarantine_cause": "n/a",
-        "confidence": 0.6,
-        "reason": "Paracord nailonnöör — universaalne köis/nöör; lähim olemasolev on trossiköied. Paigutuse määramatus mõõdukas.",
+        "confidence": 0.55,
+        "reason": "Nailon-paracord utiliit/ellujäämisnöör; olemas-L3 ei kata seda tüüpi.",
         "cluster_level": true
       },
       "proposed": "v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine-trossikoied"
@@ -478,14 +630,19 @@
       "title": "Paracord Rope 4 mm x 305 m Nylon Parachute Cord 550 Tactical, Survival",
       "bucket": "review",
       "judge": {
-        "action": "assign_existing",
-        "target_handle": "v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine-trossikoied",
+        "action": "new_l3",
+        "target_handle": null,
         "group_key": null,
-        "new_l3_name": null,
-        "parent_l2_handle": null,
+        "new_l3_name": "Paracord ja universaalnöörid",
+        "parent_l2_handle": "v4-sport-ja-vaba-aeg-matkavarustus-ja-telkimine",
+        "considered_l3s": [
+          "v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine-trossikoied",
+          "v4-sport-ja-vaba-aeg-matka-hadaabi-ellujaamisvarustus"
+        ],
+        "considered_reason": "Paracord on kerge matka/ellujäämise nöör, mitte tõstetrossiköis; sobivat L3 pole.",
         "quarantine_cause": "n/a",
-        "confidence": 0.6,
-        "reason": "Paracord nailonnöör — universaalne köis/nöör; lähim olemasolev on trossiköied. Paigutuse määramatus mõõdukas.",
+        "confidence": 0.55,
+        "reason": "Nailon-paracord utiliit/ellujäämisnöör; olemas-L3 ei kata seda tüüpi.",
         "cluster_level": true
       },
       "proposed": "v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine-trossikoied"
@@ -501,9 +658,14 @@
         "group_key": null,
         "new_l3_name": null,
         "parent_l2_handle": null,
+        "considered_l3s": [
+          "v4-tooriistad-ja-tarvikud-puhastustehnika-ja-tarvikud-koristuskarud",
+          "v4-ladu-seinale-kinnitatavad-hoiususteemid"
+        ],
+        "considered_reason": "Ratastega luuahoidja + puhastustarvete organiseerija on sisuliselt mobiilne koristuskäru.",
         "quarantine_cause": "uncertainty",
-        "confidence": 0.62,
-        "reason": "Ratastega luuahoidja ja koristustarvete organiseerija ratastel — sobib koristuskärude alla.",
+        "confidence": 0.6,
+        "reason": "Ratastega koristustarvete käru sobib koristuskärude alla.",
         "cluster_level": true
       },
       "proposed": ""
@@ -519,9 +681,14 @@
         "group_key": null,
         "new_l3_name": null,
         "parent_l2_handle": null,
+        "considered_l3s": [
+          "v4-tooriistad-ja-tarvikud-puhastustehnika-ja-tarvikud-koristuskarud",
+          "v4-ladu-seinale-kinnitatavad-hoiususteemid"
+        ],
+        "considered_reason": "Ratastega luuahoidja + puhastustarvete organiseerija on sisuliselt mobiilne koristuskäru.",
         "quarantine_cause": "uncertainty",
-        "confidence": 0.62,
-        "reason": "Ratastega luuahoidja ja koristustarvete organiseerija ratastel — sobib koristuskärude alla.",
+        "confidence": 0.6,
+        "reason": "Ratastega koristustarvete käru sobib koristuskärude alla.",
         "cluster_level": true
       },
       "proposed": "v4-tooriistad-ja-tarvikud-puhastustehnika-ja-tarvikud-koristuskarud"
@@ -537,9 +704,11 @@
         "group_key": null,
         "new_l3_name": null,
         "parent_l2_handle": null,
+        "considered_l3s": [],
+        "considered_reason": "",
         "quarantine_cause": "n/a",
         "confidence": 0.82,
-        "reason": "2-in-1 lauamängu- ja söögilaud; sobib lauamängude ja malekomplektide kategooriasse.",
+        "reason": "2-in-1 lauamängu- ja söögilaud mängumatiga — sobib lauamängude kategooriasse.",
         "cluster_level": true
       },
       "proposed": "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-lauamangud-ja-malekomplektid"
@@ -555,9 +724,11 @@
         "group_key": null,
         "new_l3_name": null,
         "parent_l2_handle": null,
+        "considered_l3s": [],
+        "considered_reason": "",
         "quarantine_cause": "n/a",
         "confidence": 0.82,
-        "reason": "2-in-1 lauamängu- ja söögilaud; sobib lauamängude ja malekomplektide kategooriasse.",
+        "reason": "2-in-1 lauamängu- ja söögilaud mängumatiga — sobib lauamängude kategooriasse.",
         "cluster_level": true
       },
       "proposed": "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-lauamangud-ja-malekomplektid"
@@ -573,9 +744,15 @@
         "group_key": null,
         "new_l3_name": null,
         "parent_l2_handle": null,
+        "considered_l3s": [
+          "v4-ladu-pakkimis-sidumismasinad",
+          "v4-ladu-pakkimis-koitmistarvikud",
+          "v4-pakketeip"
+        ],
+        "considered_reason": "Automaatne karbisulgemise teibidosaator on pakkimismasin — sobib olemasolevasse pakkimis-/sidumismasinate kodusse, uut L3 pole vaja.",
         "quarantine_cause": "n/a",
-        "confidence": 0.8,
-        "reason": "Veeaktiveeritava teibi dosaator/lõikur karbi sulgemiseks — pakkimis- ja sidumismasin; olemasolev L3 sobib, uut pole vaja.",
+        "confidence": 0.72,
+        "reason": "Vee-aktiveeritava teibi dosaator = pakkimismasin karbisulgemiseks.",
         "cluster_level": true
       },
       "proposed": "v4-ladu-pakkimis-sidumismasinad"
@@ -591,9 +768,15 @@
         "group_key": null,
         "new_l3_name": null,
         "parent_l2_handle": null,
+        "considered_l3s": [
+          "v4-ladu-pakkimis-sidumismasinad",
+          "v4-ladu-pakkimis-koitmistarvikud",
+          "v4-pakketeip"
+        ],
+        "considered_reason": "Automaatne karbisulgemise teibidosaator on pakkimismasin — sobib olemasolevasse pakkimis-/sidumismasinate kodusse, uut L3 pole vaja.",
         "quarantine_cause": "n/a",
-        "confidence": 0.8,
-        "reason": "Veeaktiveeritava teibi dosaator/lõikur karbi sulgemiseks — pakkimis- ja sidumismasin; olemasolev L3 sobib, uut pole vaja.",
+        "confidence": 0.72,
+        "reason": "Vee-aktiveeritava teibi dosaator = pakkimismasin karbisulgemiseks.",
         "cluster_level": true
       },
       "proposed": "v4-suurkook-etiketi-margistusmasinad"
@@ -609,9 +792,14 @@
         "group_key": null,
         "new_l3_name": null,
         "parent_l2_handle": null,
+        "considered_l3s": [
+          "v4-suurkoogiseadmed-koogitarvikud-ja-noud-kokteili-ja-baaritarvikud",
+          "v4-suurkook-peo-serveerimisdispenserid"
+        ],
+        "considered_reason": "Vahukoore dispenser on köögi-/baaritarvik; eraldi L3 ei ole vajalik, sobib baaritarvikute alla.",
         "quarantine_cause": "n/a",
-        "confidence": 0.7,
-        "reason": "Vahukoore dispenser on köögi-/baaritarvik; uue L3 loomist pole vaja, sobib olemasolevasse.",
+        "confidence": 0.68,
+        "reason": "Vahukoore dispenser — köögi/baaritarvik.",
         "cluster_level": true
       },
       "proposed": "v4-suurkoogiseadmed-koogitarvikud-ja-noud-kokteili-ja-baaritarvikud"
@@ -627,9 +815,14 @@
         "group_key": null,
         "new_l3_name": null,
         "parent_l2_handle": null,
+        "considered_l3s": [
+          "v4-suurkoogiseadmed-koogitarvikud-ja-noud-kokteili-ja-baaritarvikud",
+          "v4-suurkook-peo-serveerimisdispenserid"
+        ],
+        "considered_reason": "Vahukoore dispenser on köögi-/baaritarvik; eraldi L3 ei ole vajalik, sobib baaritarvikute alla.",
         "quarantine_cause": "n/a",
-        "confidence": 0.7,
-        "reason": "Vahukoore dispenser on köögi-/baaritarvik; uue L3 loomist pole vaja, sobib olemasolevasse.",
+        "confidence": 0.68,
+        "reason": "Vahukoore dispenser — köögi/baaritarvik.",
         "cluster_level": true
       },
       "proposed": "v4-suurkoogiseadmed-koogitarvikud-ja-noud-kokteili-ja-baaritarvikud"
@@ -645,9 +838,11 @@
         "group_key": null,
         "new_l3_name": null,
         "parent_l2_handle": null,
+        "considered_l3s": [],
+        "considered_reason": "",
         "quarantine_cause": "n/a",
         "confidence": 0.95,
-        "reason": "Täispuhutavad bumper/bubble pallid — otsene vaste täispuhutavate põrke- ja Zorb-pallide kategooriaga.",
+        "reason": "Täispuhutavad bumper/bubble pallid — täpselt zorb-pallide kategooria.",
         "cluster_level": true
       },
       "proposed": "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-taispuhutavad-porke-ja-zorb-pallid"
@@ -663,9 +858,11 @@
         "group_key": null,
         "new_l3_name": null,
         "parent_l2_handle": null,
+        "considered_l3s": [],
+        "considered_reason": "",
         "quarantine_cause": "n/a",
         "confidence": 0.95,
-        "reason": "Täispuhutavad bumper/bubble pallid — otsene vaste täispuhutavate põrke- ja Zorb-pallide kategooriaga.",
+        "reason": "Täispuhutavad bumper/bubble pallid — täpselt zorb-pallide kategooria.",
         "cluster_level": true
       },
       "proposed": "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-taispuhutavad-porke-ja-zorb-pallid"
@@ -681,9 +878,15 @@
         "group_key": null,
         "new_l3_name": null,
         "parent_l2_handle": null,
+        "considered_l3s": [
+          "v4-sport-ja-vaba-aeg-manguasjad-lastele-mangukoogid-ja-toidumangud",
+          "v4-sport-ja-vaba-aeg-manguasjad-lastele-toopingid-ja-remondimanguasjad",
+          "v4-sport-ja-vaba-aeg-manguasjad-lastele-mangu-ja-tegevuslauad"
+        ],
+        "considered_reason": "Laste mängu-ostukäru koos mängutoiduga on rollimäng/toidumäng — sobib mänguköögi ja toidumängude alla, mitte tööpinkide.",
         "quarantine_cause": "n/a",
-        "confidence": 0.72,
-        "reason": "Laste mängu-ostukäru koos mängutoidu ja skanneriga — poemäng; sobib mänguköökide ja toidumängude alla, uut L3 pole vaja.",
+        "confidence": 0.6,
+        "reason": "Laste mängu-ostukäru mängutoiduga = poe-/toidurollimäng.",
         "cluster_level": true
       },
       "proposed": "v4-sport-ja-vaba-aeg-manguasjad-lastele-toopingid-ja-remondimanguasjad"
@@ -699,9 +902,11 @@
         "group_key": null,
         "new_l3_name": null,
         "parent_l2_handle": null,
+        "considered_l3s": [],
+        "considered_reason": "",
         "quarantine_cause": "n/a",
-        "confidence": 0.75,
-        "reason": "Märg-plaadisaag plaatide ja kivi lõikamiseks — sobib plaadilõikurite kategooriasse.",
+        "confidence": 0.9,
+        "reason": "Märg-plaadilõikur (wet tile saw) plaatide ja kivide lõikamiseks — sobib plaadilõikurite alla.",
         "cluster_level": true
       },
       "proposed": "v4-tooriistad-ja-tarvikud-kasitooriistad-plaadiloikurid"
@@ -717,9 +922,17 @@
         "group_key": null,
         "new_l3_name": null,
         "parent_l2_handle": null,
-        "quarantine_cause": "n/a",
+        "considered_l3s": [
+          "v4-ladu-teenindus-utility-karud",
+          "v4-buroo-raamatukarud",
+          "v4-ladu-tookarud",
+          "v4-ladu-mobiilsed-hoiustusrestid-karud",
+          "v4-ladu-toimiku-dokumendikapid"
+        ],
+        "considered_reason": "Tegu on mobiilse 2-korruselise utility/mail-käruga lukustatavate ratastega; raamatukäru on kitsam kontoriraamatute jaoks, utility-käru on täpsem.",
+        "quarantine_cause": "uncertainty",
         "confidence": 0.72,
-        "reason": "Rolling file cart / utility wagon lukustatavate ratastega – mobiilne teeninduskäru. Sobib teenindus- ja utility-kärude alla; büroo-raamatukäru on kitsam.",
+        "reason": "Rullik-/utility-käru kontoridokumentide ja üldiseks teisaldamiseks sobib kõige paremini teenindus-/utility-kärude alla.",
         "cluster_level": true
       },
       "proposed": "v4-buroo-raamatukarud"
@@ -729,8 +942,8 @@
     "clusters": 13,
     "verdicts": 13,
     "distribution": {
-      "new_l3": 3,
-      "assign_existing": 10
+      "assign_existing": 11,
+      "new_l3": 2
     },
     "cluster_sizes": {
       "singletons": 3,
