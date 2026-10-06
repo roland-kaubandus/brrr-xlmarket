@@ -45,6 +45,7 @@ const q = (sql) => execSync(`docker exec -i ${db()} psql -U xlmarket -d xlmarket
 // jsonRows: iga DB-rida = ÜKS jsonb_build_object → ÜKS väljund-rida (reavahetus-kindel; description sisaldab \n).
 const jsonRows = (sql) => q(sql).trim().split("\n").filter((l) => l.startsWith("{")).map((l) => JSON.parse(l));
 const chunk = (a, n) => { const o = []; for (let i = 0; i < a.length; i += n) o.push(a.slice(i, i + n)); return o; };
+let classifyClusterMeta = null; // klastri-tasandi dry-run meta (RAPORT + JSON)
 
 async function runSynonym() {
   const { judgeSynonyms, synActionOf, SYN_JUDGE_MODEL } = await import("./lib/judge.mjs");
@@ -78,14 +79,16 @@ async function runSynonym() {
 }
 
 async function runClassify() {
-  const { judgeClassify, CLSF_JUDGE_MODEL, clusterKeyOf, enforceClassifyConsistency } = await import("./lib/judge.mjs");
+  // Point 3 (Tarmo 2026-10-06): KLASSIFIKAATORI-KOHTUNIK töötab KLASTRI tasandil —
+  // üks otsus klastri kohta (clusterKeyOf), laotatud kõigile liikmetele → vastuolu ehituslikult võimatu.
+  const { judgeClassifyClusters, clusterize, fanoutClusterDecisions, CLSF_JUDGE_MODEL, enforceClassifyConsistency } = await import("./lib/judge.mjs");
   // kandidaadid = v4 LEHT-L3-d (tree nodes ilma lasteta) + nimi DB-st
   const tree = JSON.parse(fs.readFileSync(new URL("../storefront/lib/category-tree.generated.json", import.meta.url)));
   const leafHandles = Object.values(tree.nodes).filter((n) => !(n.child_handles && n.child_handles.length)).map((n) => n.handle);
   const nameMap = {};
   for (const nr of jsonRows(`SELECT jsonb_build_object('h',handle,'n',name)::text FROM product_category WHERE handle LIKE 'v4-%'`)) nameMap[nr.h] = nr.n;
   const candidateL3s = leafHandles.map((h) => ({ handle: h, name: nameMap[h] || "" }));
-  console.log(`[KLASSIFIKAATORI-KOHTUNIK dry-run] mudel=${CLSF_JUDGE_MODEL} kandidaate(L3)=${candidateL3s.length}`);
+  console.log(`[KLASSIFIKAATORI-KOHTUNIK dry-run · KLASTRI-TASAND] mudel=${CLSF_JUDGE_MODEL} kandidaate(L3)=${candidateL3s.length}`);
 
   const data = jsonRows(`
     SELECT jsonb_build_object(
@@ -100,24 +103,44 @@ async function runClassify() {
     WHERE cr.status='pending'
     ORDER BY md5(cr.product_id || '${SEED}')
     LIMIT ${SAMPLE}`);
-  console.log(`valim=${data.length} batch=${BATCH}\n`);
-  const decisions = [];
-  for (const b of chunk(data, BATCH)) {
-    const res = await judgeClassify(b, candidateL3s, { apiKey: API_KEY });
-    if (!res.ok) { console.error(`  ⚠️ batch kukkus: ${res.error} (kirjed jäävad pending — fail-loud)`); continue; }
-    const byId = Object.fromEntries(res.results.map((r) => [r.id, r]));
-    for (const row of b) {
-      const v = byId[row.id] || { action: "keep", reason: "kohtunik ei tagastanud", confidence: 0 };
-      decisions.push({ id: row.id, title: row.title, bucket: row.bucket, proposed: row.proposed_l3 || row.suggest_name, cluster_key: clusterKeyOf(row), judge: v });
-    }
+
+  // 1) deterministlik klasterdus (LLM-vaba) — enne kohtunikku
+  const clusters = clusterize(data);
+  console.log(`valim=${data.length} tooted → ${clusters.length} klastrit (batch ${BATCH} klastrit/päring)\n`);
+
+  // 2) kohtunik otsustab KLASTRI kohta (üks otsus / klaster)
+  const clVerdicts = [];
+  for (const b of chunk(clusters, BATCH)) {
+    const res = await judgeClassifyClusters(b, candidateL3s, { apiKey: API_KEY });
+    if (!res.ok) { console.error(`  ⚠️ klastri-batch kukkus: ${res.error} (klastrid jäävad pending — fail-loud)`); continue; }
+    clVerdicts.push(...res.results);
   }
-  // KOOSKÕLAVÄRAV (deterministlik): ebajärjekindel klaster → kogu klaster keep + lipp
+
+  // 3) laota klastri-otsus kõigile liikmetele → per-toode otsused (vastuolu võimatu)
+  const decisions = fanoutClusterDecisions(clusters, clVerdicts).map((d) => ({
+    ...d, proposed: (data.find((r) => r.id === d.id) || {}).proposed_l3 || (data.find((r) => r.id === d.id) || {}).suggest_name || "",
+  }));
+
+  // 4) KOOSKÕLAVÄRAV = TURVAVÕRK: pärast klastri-fan-out'i on iga klaster ühe-signatuuriga
+  //    → see EI tohi enam vallanduda. Kui vallandub, on fan-out katki → fail-loud.
   const { flaggedClusters } = enforceClassifyConsistency(decisions);
   if (flaggedClusters.length) {
-    console.log(`\n⚖️  KOOSKÕLAVÄRAV: ${flaggedClusters.length} ebajärjekindlat klastrit → sunnitud keep:`);
-    for (const fc of flaggedClusters) console.log(`   ${fc.cluster_key}  (${fc.count} toodet) otsused: ${fc.signatures.join(" | ")}`);
-    console.log("");
+    console.error(`\n🔴 OOTAMATU: kooskõlavärav vallandus KLASTRI-tasandil (${flaggedClusters.length}) — fan-out katki?`);
+    for (const fc of flaggedClusters) console.error(`   ${fc.cluster_key}  (${fc.count} toodet) otsused: ${fc.signatures.join(" | ")}`);
+  } else {
+    console.log(`⚖️  Kooskõlavärav (turvavõrk): 0 vallandumist — klastri-tasand tagab järjekindluse ehituslikult. ✓\n`);
   }
+
+  // klastri-tasandi dry-run kokkuvõte (RAPORT: klastrite arv + otsuste jaotus)
+  const clDist = clVerdicts.reduce((a, v) => (a[v.action] = (a[v.action] || 0) + 1, a), {});
+  console.log(`📦 KLASTRI-TASANDI OTSUSED: ${clVerdicts.length}/${clusters.length} klastrit otsustatud`);
+  console.log(`   jaotus: assign ${clDist.assign_existing || 0} · group ${clDist.group || 0} · new_l3 ${clDist.new_l3 || 0} · keep ${clDist.keep || 0}`);
+  const sizes = clusters.map((c) => c.items.length);
+  console.log(`   klastri-suurused: 1-toote ${sizes.filter((s) => s === 1).length} · 2+ ${sizes.filter((s) => s >= 2).length} (suurim ${Math.max(...sizes)})\n`);
+  classifyClusterMeta = {
+    clusters: clusters.length, verdicts: clVerdicts.length, distribution: clDist,
+    cluster_sizes: { singletons: sizes.filter((s) => s === 1).length, multi: sizes.filter((s) => s >= 2).length, largest: Math.max(...sizes) },
+  };
   return decisions;
 }
 
@@ -151,6 +174,8 @@ if (KIND === "synonym") {
 }
 
 if (JSON_OUT) {
-  fs.writeFileSync(JSON_OUT, JSON.stringify({ kind: KIND, generated_at: new Date().toISOString(), seed: SEED, dry: DRY, decisions }, null, 2));
+  const payload = { kind: KIND, generated_at: new Date().toISOString(), seed: SEED, dry: DRY, decisions };
+  if (classifyClusterMeta) payload.cluster_meta = classifyClusterMeta;
+  fs.writeFileSync(JSON_OUT, JSON.stringify(payload, null, 2));
   console.log(`💾 ${decisions.length} otsust → ${JSON_OUT} (kalibreerimislehe sisend)`);
 }

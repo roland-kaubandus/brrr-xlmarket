@@ -79,7 +79,9 @@
 
 **⚠️ QUARANTINE-REEGEL:** kohtunik vaatab quarantine-kirje üle **AINULT kui põhjus = klassifitseerimise ebakindlus**. **Kui põhjus = FEEDI ANDMEKVALITEET** (puudu/katki title, tühi kirjeldus) → **jääb välja** + digest-trend ("⚠️ N quarantine = andmekvaliteet, vajab andme-parandust"). Kohtunik klassifitseerib quarantine puhul ESMALT põhjuse.
 
-**Mudel:** `claude-opus-4-8`. Batch ~6 toodet/päring; kogu-ämbri grupeerimine eel-sammus (40 korraga → klastrid → adjudikeeri).
+**Mudel:** `claude-opus-4-8`.
+
+**🔑 KLASTRI-TASANDI OTSUS (Tarmo 2026-10-06, point 3):** kohtunik otsustab **KLASTRI tasandil** — üks otsus kogu klastri kohta (`clusterKeyOf`: vevor_spu → vevor_product_type → normaliseeritud title), mis laotatakse KÕIGILE klastri liikmetele (`fanoutClusterDecisions`). Nii on klastri-sisene vastuolu **EHITUSLIKULT võimatu** (pole enam N per-toode otsust, mis lahkneksid). Kooskõlavärav (`enforceClassifyConsistency`) jääb **TURVAVÕRGUKS** — pärast klastri-fan-out'i ei saa ta enam vallanduda, aga kaitseb juhuks, kui mõni tee hoolimata per-toode otsuseid ehitaks. Klaster, millele kohtunik otsust ei anna → ohutu vaikimisi `keep`. *See on EELTINGIMUS klassifikaatori-kalibreerimisele (§5) — klastri-tasand enne, siis kalibreeri.*
 
 ---
 
@@ -113,26 +115,30 @@
 
 ---
 
-## 5. KALIBREERIMINE — ÜKSKORDNE (inimene) + triivikontroll AUTOMAATNE (masin)
+## 5. KALIBREERIMINE — TÄISAUTOMAATNE Opus-REFERENTSIGA (inimene EI hinda)
 
-> **Muudatus 2026-10-06 (HARD RULE #6):** kalibreerimine = **inimese ühekordne** värav enne live'i. Jooksev triivikontroll = **täisautomaatne mudel-audit**, inimene EI hinda kuus.
+> **Muudatus 2026-10-06 (HARD RULE #6, Tarmo otsus):** kalibreerimine tehakse **AUTOMAATSELT**, mitte Tarmo käsitsi. Varasem "Tarmo hindab pimesi 140 kirjet" oli korduv/pudelikaela-inimtöö → VALE lahendus (HARD RULE #6). Inimese asemel hindab **sõltumatu Opus-REFERENTS**. Inimene kaasatakse AINULT kui lävend ületatud (= äärmuslik erand).
 
-### 5.1 Ühekordne kalibreerimine (inimene — ainus inimtöö kogu plaanis)
-1. **Dry-run valim:** kohtunik `--dry` juhuvalimil — **100 sünonüümi** (kogu pending seast, seed=xlm) + **kõik 40 klassifikaatorit**. Väljund salvestatud (verdikt+põhjus+kindlus), **EI kirjuta DB-sse**.
-2. **🙈 Tarmo hindab PIMESI** xl-admin **kalibreerimislehel** (`/xl-admin/kalibreerimine`) — kohtuniku vastus PEIDETUD kuni kõik hinnatud (väldib ankurdamist). Hinnangud salvestuvad DB-sse (`calibration_rating`) → **korratav/auditeeritav**.
-3. **Automaatne võrdlustabel:** Tarmo vs kohtunik, kaks veamäära:
-   - **VALE-OK/VALE-assign määr** (kohtunik OK/assign, Tarmo VALE) — **KRIITILINE** (kirjutab vigase live'i).
-   - **Liiga-ettevaatlik määr** (kohtunik jättis, Tarmo oleks otsustanud) — ohutu, ainult efektiivsus.
+### 5.1 Ühekordne kalibreerimine (Opus-referents — MASIN, mitte inimene)
+1. **Dry-run valim:** kohtunik `--dry` juhuvalimil — **100 sünonüümi** (kogu pending seast, seed=xlm) + **40 klassifikaatorit** (klastri-tasandil, §3). Väljund salvestatud (`calib-<kind>.json`), **EI kirjuta kohtuniku-otsust DB-sse**.
+2. **🤖 Opus-REFERENTS hindab SAMA valimi SÕLTUMATULT ja PIMESI** (`scripts/calibration-reference.mjs`) — ei näe Sonneti/kohtuniku vastuseid. Sama kriteerium:
+   - sünonüüm: *"Kas klient, kes kirjutab selle sõna otsingusse, ootaks näha seda toodet?"* (→ OK/VALE/EBAKINDEL, mudel Opus — sõltumatu Sonnetist).
+   - klassifikaator: *"Kas see toode kuulub sellesse kategooriasse?"* (→ assign_existing/new_l3/keep, pime: ei näe kohtuniku target_handle't ega klassifikaatori ettepanekut).
+   - Hinnangud → `calibration_rating` **actor='opus-reference'** → korratav/auditeeritav (UNIQUE kind,seed,item,actor → eksisteerib inimese ratingute kõrval, kui neid oleks).
+3. **Automaatne võrdlustabel:** kohtunik vs referents, kaks veamäära:
+   - **VALE-OK/VALE-assign määr** (kohtunik OK/assign, referents mitte) — **KRIITILINE** (kirjutaks vigase live'i).
+   - **Kokkulangevus** (agreed) — üldine kooskõla.
 4. **Lävendid (Tarmo kinnitatud):** sünonüüm **VALE-OK ≤5%** · klassifikaator **VALE-assign ≤2,5%** (≤1/40). Üle läve → prompt paraneb, valim korratakse (ikka dry).
-5. **See on ÜKSKORDNE.** Kui lävend läbitud → automaatrežiim käivitub ja Tarmo EI hinda enam rutiinselt.
+5. **🛡 KUS MUDELID EI NÕUSTU → OHUTU VAIKIMISI, MITTE inimene:** lahkuminek (kohtunik ≠ referents) → **ohutu vaikimisi** (sünonüüm EI lähe otsingusse; toode JÄÄB OOTELE). Lahkuminek ei jõua inimese järjekorda — see on masina konservatiivne vaikekäitumine.
+6. **See on ÜKSKORDNE.** Lävend läbitud → automaatrežiim käivitub. Inimene EI hinda rutiinselt.
 
 ### 5.2 Triivikontroll — TÄISAUTOMAATNE (kord kuus, mudel auditeerib, mitte inimene)
 - Cron võtab **juhuvalimi 30 live-otsust** eelmisest kuust.
-- **Teine, sõltumatu mudel (audiitor)** hindab need samade kriteeriumitega — **inimest EI kaasata**.
+- **Opus-referents (sama kui §5.1 audiitor)** hindab need samade kriteeriumitega — **inimest EI kaasata**.
 - Audiitori-lahkuminek kohtunikust > lävi → **automaatrežiim peatub + Telegram-hoiatus** ("🔴 triiv: VALE-OK 8% > 5%, auto-režiim pausil, vaata [link]"). Alla läve → vaikne roheline (digest-trend).
 - **Inimene kaasatakse AINULT kui triiv ületab läve** (= äärmuslik erand). Normaaljuhul kuine kontroll on nähtamatu masina-taustatöö.
 
-**NB:** mudeli-kulu EI ole piirav (§7) — **korrektsus on**. Kalibreerimine = kriitiline ühekordne värav, triivikontroll = automaatne kaitse.
+**NB:** mudeli-kulu EI ole piirav (§7) — **korrektsus on**. Kalibreerimine (Opus-referents) + triivikontroll = mõlemad automaatsed; inimene ainult lävendi-ületuse erandis.
 
 ---
 
@@ -199,7 +205,8 @@
 ## 10. OTSUSTATUD (Tarmo 2026-10-06) + ETAPIVIISILINE TEOSTUS
 
 **Kinnitatud (HARD RULE #6 kooskõlas):**
-- ☑ **Kalibreerimine ÜKSKORDNE** (inimene hindab üks kord); kuine triivikontroll **AUTOMAATNE** (audiitor-mudel, häire ainult üle läve).
+- ☑ **Kalibreerimine TÄISAUTOMAATNE** (Opus-REFERENTS hindab pimesi, mitte inimene); kuine triivikontroll **AUTOMAATNE** (audiitor-mudel, häire ainult üle läve). Lahkuminek → ohutu vaikimisi, mitte inimese järjekord.
+- ☑ **Klassifikaatori-kohtunik KLASTRI tasandil** (üks otsus/klaster, vastuolu ehituslikult võimatu) — eeltingimus kalibreerimisele.
 - ☑ **Uued L3-d AUTOMAATSELT** väravatega (DUP · lock-harness · INV · merge-judge) + Telegram + undo. **Tarmo kinnitust EI nõuta.**
 - ☑ **EBAKINDEL → eskaleeru Opus-ile** → endiselt ebakindel → **ohutu vaikimisi** (sünonüüm ei lähe otsingusse; toode jääb draft). **Mitte inimese järjekord.**
 - ☑ **Review-UI = ainult häireolukorra turvavõrk.** Digest näitab ainult trendi.
@@ -208,7 +215,7 @@
 
 **Teostus-etapid:**
 1. `lib/judge.mjs` — transform-funktsioonid (sünonüüm + klassifikaator + **eskalatsiooni-loogika**), bränd-agnostilised, sama kood backfill+hook.
-2. Dry-run runner + **ühekordne kalibreerimis-valim** (§5.1) → Tarmo hindab → lävend. *(Kalibreerimisleht + DB-püsivus `calibration_rating` juba ehitatud.)*
+2. Dry-run runner + **ühekordne kalibreerimis-valim** (§5.1) → **Opus-referents hindab pimesi** (`calibration-reference.mjs`) → lävend. *(Kalibreerimisleht + DB-püsivus `calibration_rating` juba ehitatud; referents-hindaja ehitatud 2026-10-06.)*
 3. Lävend OK → backfill (Batch) → audit review_decision_log'ist.
 4. Öine hook ([4] ja [6.6] järele) + **eskalatsioon** + digest-trend.
 5. **Build-bridge cron** (§4) — automaatne L3-loomine väravatega + Telegram + undo. (Olemas `create_l3` ettepaneku-logi → laienda proposed→build.)
