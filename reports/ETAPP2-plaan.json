@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-10-06T17:16:31.965Z",
+  "generated_at": "2026-10-06T17:41:24.939Z",
   "mode": "plan",
   "usage": {
-    "input": 2737,
-    "output": 1893,
+    "input": 4385,
+    "output": 1689,
     "calls": 4
   },
   "plans": [
@@ -58,11 +58,16 @@
       ],
       "assets": {
         "name_en": "Lumber Storage Racks",
-        "description_et": "Seinale kinnitatavad hoiuriiulid puidu, torude, liistude ja muu pika materjali korrastatud hoiustamiseks töökojas või garaažis. Sobivad nii hobimeistrile kui ka professionaalile, kes soovib põranda vabaks hoida. Ostul pane tähele riiulitasandite arvu, kandevõimet tasandi kohta (50–100 kg) ja seina tüüpi, kuhu riiul kinnitatakse.",
-        "description_en": "Wall-mounted storage racks for keeping lumber, pipes, mouldings and other long materials neatly organised in your workshop or garage. Suitable for both hobbyists and professionals who want to keep the floor clear. When buying, check the number of tiers, load capacity per tier (50–100 kg) and the type of wall the rack will be mounted on.",
-        "tagline_et": "Pikk materjal seinale – põrand vabaks!",
-        "tagline_en": "Long materials on the wall – floor space freed!",
-        "image_desc_et": "Heledal valgel taustal seinale kinnitatud mitmetasandiline metallist hoiuriiul, millel lebavad puitlauad ja -liistud."
+        "description_et": "Pika materjali hoiuriiulid aitavad hoida lauad, prussid, torud ja muud pikad materjalid korras ning seinalt kergesti kättesaadavana. Sobivad töökotta, garaaži või lattu nii hobimeistritele kui ka professionaalidele. Valikul tasub jälgida sobivat tasandite arvu, paigaldusviisi ja materjali vastupidavust.",
+        "description_en": "Lumber storage racks keep boards, beams, pipes and other long materials organised and easily accessible on the wall. Ideal for workshops, garages and warehouses, suiting both hobbyists and professionals. When choosing, consider the number of tiers, mounting type and material durability.",
+        "tagline_et": "Pikad materjalid korras ja käepärast",
+        "tagline_en": "Keep long materials tidy and within reach",
+        "image_desc_et": "Heledal valgel taustal seinale kinnitatav mitmetasandiline metallist hoiuriiul, millel lebavad puitlauad.",
+        "_seoGate": {
+          "pass": true,
+          "offenders": [],
+          "attempts": 1
+        }
       },
       "completeness": {
         "checks": [
@@ -97,9 +102,9 @@
             "note": "cat-thumbs/v4-ladu-riiulid-restid-pika-materjali-hoiuriiulid.webp (build-cat-thumbs-l3.mjs)"
           },
           {
-            "n": "7 SEO (ET+EN kirjeldus + tagline)",
+            "n": "7 SEO (ET+EN kirj.+tagline, kategooria-tasand, 0 numbrit/lubadust)",
             "pass": true,
-            "note": "4/4 välja täidetud"
+            "note": "4/4 täidetud · SEO-värav läbib"
           },
           {
             "n": "8 Meili facet",
@@ -157,11 +162,16 @@
       ],
       "assets": {
         "name_en": "Solar Panel Storage Bags",
-        "description_et": "Siit leiad vastupidavad hoiu- ja kandekotid kokkupandavatele päikesepaneelidele. Veekindlad kotid kaitsevad paneele niiskuse, tolmu ja kriimustuste eest nii transpordil kui ka hoiustamisel. Koti valikul jälgi paneelide arvu ja võimsust (nt 200 W või 400 W), et mahutavus sobiks sinu komplektiga.",
-        "description_en": "Durable storage and carrying bags for foldable solar panels. Waterproof bags protect your panels from moisture, dust and scratches during transport and storage. When choosing a bag, check the panel count and wattage (e.g. 200W or 400W) to ensure the right fit for your setup.",
-        "tagline_et": "Kaitse oma päikesepaneele teel ja laos!",
-        "tagline_en": "Protect your solar panels on the go!",
-        "image_desc_et": "Hele valgel taustal must veekindel kandekott, milles on kokkupandav päikesepaneel, nähtavad on tugevad käepidemed ja tõmblukk."
+        "description_et": "Siit leiad hoiu- ja kandekotid kokkupandavate päikesepaneelide mugavaks transportimiseks ja kaitsmiseks. Need sobivad matkajatele, haagissuvilaga reisijatele ja kõigile, kes kasutavad kaasaskantavaid päikesepaneele teel olles. Vali kott vastavalt oma paneelide suurusele ja arvule ning pööra tähelepanu materjali vastupidavusele.",
+        "description_en": "Here you will find storage and carrying bags for transporting and protecting foldable solar panels. They suit campers, caravan travellers and anyone using portable solar panels on the go. Choose a bag according to the size and number of your panels and pay attention to material durability.",
+        "tagline_et": "Kaitse ja kanna oma päikesepaneele mugavalt",
+        "tagline_en": "Protect and carry your solar panels with ease",
+        "image_desc_et": "Tume vastupidav kandekott kokkupandava päikesepaneeli jaoks, käepidemete ja tõmblukuga, heledal valgel taustal.",
+        "_seoGate": {
+          "pass": true,
+          "offenders": [],
+          "attempts": 1
+        }
       },
       "completeness": {
         "checks": [
@@ -196,9 +206,9 @@
             "note": "cat-thumbs/v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-paikesepaneelide-hoiu-ja-kandekotid.webp (build-cat-thumbs-l3.mjs)"
           },
           {
-            "n": "7 SEO (ET+EN kirjeldus + tagline)",
+            "n": "7 SEO (ET+EN kirj.+tagline, kategooria-tasand, 0 numbrit/lubadust)",
             "pass": true,
-            "note": "4/4 välja täidetud"
+            "note": "4/4 täidetud · SEO-värav läbib"
           },
           {
             "n": "8 Meili facet",
@@ -252,11 +262,16 @@
       ],
       "assets": {
         "name_en": "Energy Storage Batteries",
-        "description_et": "Siit leiad kvaliteetsed LiFePO4-liitiumakud päikeseenergia salvestamiseks, matkaautodele, paatidele ja autonoomsetele elektrisüsteemidele. Pika elueaga akud (4000+ laadimistsüklit) on varustatud sisseehitatud BMS-kaitsega ning paljudel mudelitel ka Bluetooth-jälgimisega. Enne ostu veendu, et aku pinge (12V/24V/48V) ja mahtuvus vastaksid sinu süsteemi vajadustele.",
-        "description_en": "Here you'll find quality LiFePO4 lithium batteries for solar energy storage, campervans, boats and off-grid power systems. Long-life batteries (4000+ charge cycles) come with built-in BMS protection, and many models feature Bluetooth monitoring. Before purchasing, make sure the battery voltage (12V/24V/48V) and capacity match your system's needs.",
-        "tagline_et": "Salvesta energia täna, kasuta homme!",
-        "tagline_en": "Store energy today, use it tomorrow!",
-        "image_desc_et": "Heledal valgel taustal sinine LiFePO4-liitiumaku klemmide ja Bluetooth-ikooniga esipaneelil."
+        "description_et": "Siit leiad energiasalvestusakud päikesesüsteemidele, haagissuvilatele, paatidele ja autonoomsetele lahendustele. Sobivad nii koduseks varutoiteks kui ka võrguvabaks elektrivarustuseks. Valikul tasub jälgida, et aku sobiks sinu süsteemi pinge ja kasutusotstarbega.",
+        "description_en": "Discover energy storage batteries for solar systems, campervans, boats and off-grid setups. Suitable for home backup power as well as independent energy solutions. When choosing, make sure the battery matches your system voltage and intended use.",
+        "tagline_et": "Kindel energiavaru sinu süsteemile",
+        "tagline_en": "Reliable stored power for your system",
+        "image_desc_et": "Heledal valgel taustal kompaktne energiasalvestusaku puhta korpuse ja klemmidega.",
+        "_seoGate": {
+          "pass": true,
+          "offenders": [],
+          "attempts": 1
+        }
       },
       "completeness": {
         "checks": [
@@ -291,9 +306,9 @@
             "note": "cat-thumbs/v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-energiasalvestusakud.webp (build-cat-thumbs-l3.mjs)"
           },
           {
-            "n": "7 SEO (ET+EN kirjeldus + tagline)",
+            "n": "7 SEO (ET+EN kirj.+tagline, kategooria-tasand, 0 numbrit/lubadust)",
             "pass": true,
-            "note": "4/4 välja täidetud"
+            "note": "4/4 täidetud · SEO-värav läbib"
           },
           {
             "n": "8 Meili facet",
@@ -347,11 +362,16 @@
       ],
       "assets": {
         "name_en": "Utility Cords & Paracord",
-        "description_et": "Siit leiad vastupidavad universaalnöörid ja klassikalise 550 paracordi matkale, ellujäämisvarustusse ja igapäevasteks töödeks. Nailonist punutud nöör talub suurt koormust, ei mädane niiskuses ja sobib nii telgi kinnitamiseks, varustuse sidumiseks kui ka käevõrude punumiseks. Ostul jälgi nööri läbimõõtu, rulli pikkust ja tõmbetugevust – 550-tüüpi paracord kannatab kuni u 250 kg koormust.",
-        "description_en": "Durable utility cords and classic 550 paracord for hiking, survival kits and everyday tasks. Braided nylon cord handles heavy loads, resists moisture and works for securing tents, lashing gear or weaving bracelets. When buying, check the cord diameter, spool length and tensile strength – type 550 paracord holds up to approx. 250 kg.",
-        "tagline_et": "Tugev nöör igaks olukorraks – matkal ja kodus",
-        "tagline_en": "Strong cord for every situation – outdoors and at home",
-        "image_desc_et": "Heledal valgel taustal korralikult keritud roheline paracord-nööri rull, mille ots on lahtiselt esiplaanil nähtaval."
+        "description_et": "Siit leiad mitmekülgsed universaalnöörid ja paracordi, mis sobivad matkamiseks, telkimiseks, ellujäämisvarustuseks ja igapäevasteks töödeks kodus või aias. Sobib varustuse kinnitamiseks, telgi pingutamiseks, asjade sidumiseks ja loominguliseks punumiseks. Valikul jälgi sobivat pikkust, jämedust ja kasutusotstarvet.",
+        "description_en": "Discover versatile utility cords and paracord suitable for hiking, camping, survival kits and everyday tasks at home or in the garden. Ideal for securing gear, guying tents, tying down loads and creative braiding projects. When choosing, consider the right length, thickness and intended use.",
+        "tagline_et": "Tugev nöör igaks seikluseks ja tööks",
+        "tagline_en": "Strong cord for every adventure and task",
+        "image_desc_et": "Heledal valgel taustal korralikult kokku keritud värviline paracord-nööri rull.",
+        "_seoGate": {
+          "pass": true,
+          "offenders": [],
+          "attempts": 1
+        }
       },
       "completeness": {
         "checks": [
@@ -386,9 +406,9 @@
             "note": "cat-thumbs/v4-sport-ja-vaba-aeg-matkavarustus-ja-telkimine-universaalnoorid-ja-paracord.webp (build-cat-thumbs-l3.mjs)"
           },
           {
-            "n": "7 SEO (ET+EN kirjeldus + tagline)",
+            "n": "7 SEO (ET+EN kirj.+tagline, kategooria-tasand, 0 numbrit/lubadust)",
             "pass": true,
-            "note": "4/4 välja täidetud"
+            "note": "4/4 täidetud · SEO-värav läbib"
           },
           {
             "n": "8 Meili facet",

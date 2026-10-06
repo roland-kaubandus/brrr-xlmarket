@@ -18,7 +18,8 @@ const [, , phase, ...rest] = process.argv;
 let DB = "";
 try { DB = execSync("docker ps --format '{{.Names}}' | grep '^db-k33g' | head -1", { encoding: "utf8" }).trim(); } catch {}
 const psql = (sql) => execSync(`docker exec -i ${DB} psql -U xlmarket -d xlmarket -At -f -`, { input: sql, encoding: "utf8" }).trim();
-const runInv = () => { try { execSync(`node ${resolve(HERE, "inv-taxonomy.mjs")}`, { stdio: "pipe" }); return true; } catch { return false; } };
+// inv-taxonomy.mjs → check-taxonomy-invariants.mjs (kanooniline invariant-runner; --ci = exit 1 FAIL/WARN korral)
+const runInv = () => { try { execSync(`node ${resolve(HERE, "check-taxonomy-invariants.mjs")} --ci`, { stdio: "pipe" }); return true; } catch { return false; } };
 
 const checks = [];
 const ok = (name, pass, detail = "") => { checks.push({ name, pass, detail }); console.log(`  ${pass ? "✅" : "🔴"} ${name}${detail ? " — " + detail : ""}`); };
@@ -98,29 +99,6 @@ else if (phase === "post") {
     const mn = JSON.parse(mres).estimatedTotalHits;
     ok("Meili värske (sample-kategooria DB≈Meili)", Math.abs(dbn - mn) <= 2, `DB=${dbn} Meili=${mn}`);
   } catch (e) { console.log("  ℹ️  Meili-kontroll vahele (ei saanud päringut teha)"); }
-  // grab-bag INKREMENTAALNE (WARN, mitte FAIL — LLM pole deterministlik, inimene otsustab):
-  // judge AINULT lukus puudutatud L3-d (~$0.01). Vahele kui ANTHROPIC_API_KEY puudub.
-  if (process.env.ANTHROPIC_API_KEY && migratePath && fs.existsSync(migratePath)) {
-    const catIds = [...new Set((fs.readFileSync(migratePath, "utf8").match(/pcat_[a-zA-Z0-9_]+/g) || []))].slice(0, 40);
-    if (catIds.length) {
-      try {
-        const o = execSync(`node ${resolve(HERE, "grab-bag-judge.mjs")} --ids ${catIds.join(",")}`, { encoding: "utf8", env: process.env });
-        const g = +((o.match(/GRAB:\s*(\d+)/) || [])[1] || 0);
-        console.log(`  ${g ? "🟡" : "✅"} grab-bag inkrementaalne: ${g} GRAB ${catIds.length} puudutatud L3-s ${g ? "(WARN — vt reports/grab-judge-ids-tulem.md, inimene otsustab)" : ""}`);
-      } catch (e) { console.log("  ℹ️  grab-bag judge vahele: " + String(e.message).slice(0, 60)); }
-    }
-  } else console.log("  ℹ️  grab-bag inkrementaalne vahele (ANTHROPIC_API_KEY/migrate puudub) — jooksuta käsitsi vajadusel");
-  // intra-QA INKREMENTAALNE (WARN, mitte FAIL): toode vales L3-s samas mainis, puudutatud L3-del.
-  if (process.env.ANTHROPIC_API_KEY && migratePath && fs.existsSync(migratePath)) {
-    const catIds = [...new Set((fs.readFileSync(migratePath, "utf8").match(/pcat_[a-zA-Z0-9_]+/g) || []))].slice(0, 40);
-    if (catIds.length) {
-      try {
-        const o = execSync(`node ${resolve(HERE, "intra-qa-judge.mjs")} --ids ${catIds.join(",")}`, { encoding: "utf8", env: process.env });
-        const g = +((o.match(/Misfite:\s*(\d+)/) || [])[1] || 0);
-        console.log(`  ${g ? "🟡" : "✅"} intra-QA inkrementaalne: ${g} misfit ${catIds.length} puudutatud L3-s ${g ? "(WARN — vt reports/intra-qa-test-tulem.md, inimene otsustab)" : ""}`);
-      } catch (e) { console.log("  ℹ️  intra-QA vahele: " + String(e.message).slice(0, 60)); }
-    }
-  }
 }
 
 else { console.error("Kasuta: lock-harness.mjs pre <kaart.md> [<migrate.sql>]  |  post <migrate.sql> <baseline_distinct> <baseline_l3>"); process.exit(2); }

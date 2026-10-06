@@ -4664,6 +4664,10 @@ l1:
             name_en: "Matkavoodid ja madratsid"
             name_et: "Matkavoodid ja madratsid"
             product_count: 0
+          - slug: v4-sport-ja-vaba-aeg-matkavarustus-ja-telkimine-universaalnoorid-ja-paracord
+            name_en: "Universaalnöörid ja paracord"
+            name_et: "Universaalnöörid ja paracord"
+            product_count: 0
       - slug: v4-sport-ja-vaba-aeg-ouetegevus-ja-hobi
         name_en: "Õuetegevus ja hobi"
         name_et: "Õuetegevus ja hobi"
@@ -5649,6 +5653,14 @@ l1:
             name_en: "Generaatori katted"
             name_et: "Generaatori katted"
             product_count: 0
+          - slug: v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-energiasalvestusakud
+            name_en: "Energiasalvestusakud"
+            name_et: "Energiasalvestusakud"
+            product_count: 0
+          - slug: v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-paikesepaneelide-hoiu-ja-kandekotid
+            name_en: "Päikesepaneelide hoiu- ja kandekotid"
+            name_et: "Päikesepaneelide hoiu- ja kandekotid"
+            product_count: 0
       - slug: v4-elektritarvikud-ja-valgustus-mootorid-ja-osad
         name_en: "Mootorid ja osad"
         name_et: "Mootorid ja osad"
@@ -6209,6 +6221,10 @@ l1:
           - slug: v4-ladu-riiulid-kaubaalused
             name_en: "Kaubaalused"
             name_et: "Kaubaalused"
+            product_count: 0
+          - slug: v4-ladu-riiulid-restid-pika-materjali-hoiuriiulid
+            name_en: "Pika materjali hoiuriiulid"
+            name_et: "Pika materjali hoiuriiulid"
             product_count: 0
       - slug: v4-ladu-mobiilsed-karud
         name_en: "Mobiilsed hoiukärud ja -restid"
@@ -8142,65 +8158,3 @@ l1:
             name_en: "Ohutusköied ja lifeline'd"
             name_et: "Ohutusköied ja lifeline'd"
             product_count: 0
-  # ═══════ 26. OUTLET (Tarmo 2026-07-20; taastatud nähtavaks 2026-09-17) ═══════
-  # Käsitsi-hallatav (mitte-VEVOR-feed).
-  #
-  # 3 L2 (Tarmo lõplik struktuur 2026-09-17, Osa 46) — SAMA loogika kui teised
-  # mainid, POLE erijuht:
-  #   1. "Avatud/kahjustatud pakend" (v4-outlet-rikutud-pakend, slug säilib et
-  #      Wind Turbine seos + URL ei katkeks) — nähtav, count>0 (Wind Turbine siin).
-  #      Jaguneb L3-ks vajadusel (Avatud + Kahjustatud).
-  #   2. "Defektiga toode" (v4-outlet-defektiga-toode) — tootel defekt, muidu
-  #      korras. Tühi, ootab tooteid.
-  #   3. "Leiunurk" (v4-outlet-leiunurk) — segakaubad. Tühi, ootab tooteid.
-  # Tühjad L2 (2 + 3): count>0 loogika peidab kategooria-lehe karussellist kuni
-  # tooteid, AGA struktuuris olemas (generated.json → getNode leiab → EI 404-i,
-  # näitab 0 toodet). Tahtlikult struktuuris, "lisa vajadusel, struktuur paigas".
-  # Kast kasvab automaatselt kui L2-d täituvad (top-6 count>0, Osa 45).
-  #
-  # concept_only (Tarmo 2026-09-17): Outlet = SEISUND (rikutud pakend, ükskõik
-  # mis toode), MITTE tüüp. EI tohi pärida toote-pilti (nagu 25 tüüp-kat) —
-  # ühe toote pilt (nt tuulik) EI esinda "outletit" ja eksitab klienti
-  # ("Outlet = tuulikud?"). Vajab KONTSEPTUAALSET pilti: %-ikoon (BadgePercent,
-  # nüüd) või atmosphere ("pruun pakend -20%", hiljem). L2-pildid hiljem.
-  # gen-category-tree sunnib kogu selle alampuu image_source=none → ikoon.
-  # INV-20/26 aktsepteerivad concept_only=true ilma pildita (nagu productless).
-  - slug: v4-outlet
-    name_en: "Outlet"
-    name_et: "Outlet"
-    short_slug: outlet
-    concept_only: true
-    # fixed_l2 (Tarmo 2026-09-17, Osa 46): esilehe-kast näitab KÕIK Outleti L2
-    # (ka tühjad) — need on tahtlikud kureeritud SEISUND-ämbrid (Avatud/kahjustatud,
-    # Defektiga, Leiunurk), mis "ootavad tooteid", mitte feed-müra. Tavamainidel
-    # (feed-veetud) EI ole seda lippu → count>0 filter jääb (tühi L2 ei raiska
-    # slotti, suuruselt järgmine täidab). Lipp on AINULT L1-l (ei päri), puudutab
-    # AINULT getHomepageL1Nodes esilehe-filtrit — mitte pilti (concept_only teeb
-    # seda eraldi), mitte kategooria-lehe karusselli (jääb count>0), mitte mega-menu.
-    fixed_l2: true
-    # seisund_label (Tarmo 2026-09-19, Osa 48): ÜLDINE toote-silt, mida iga selle
-    # maini alla kuuluv toode kannab AUTOMAATSELT (kategooria-tuletatud) — kuvatakse
-    # KOOS spetsiifilise L2-sildiga (Kahjustatud pakend / Defektiga toode / Leiunurk).
-    # Silt reisib tootega: kui outlet-toode kuvatakse ka tüüp-kategoorias, ütleb silt miks.
-    seisund_label_et: "Outlet toode"
-    seisund_label_en: "Outlet product"
-    tagline_en: "Outlet — discounted & open-box"
-    tagline_et: "Outlet — soodushinnaga ja avatud pakend"
-    description_en: "Outlet — discounted, open-box and damaged-packaging products, full quality."
-    description_et: "Outlet — soodushinnaga, avatud ja rikutud pakendiga tooted, täisväärtuslikud."
-    hero_img: /images/branches/horeca.webp
-    hero_gradient: from-stone-950/80 via-stone-900/40 to-transparent
-    product_count: 1
-    subs:
-      - slug: v4-outlet-rikutud-pakend
-        name_en: "Damaged packaging"
-        name_et: "Kahjustatud pakend"
-        product_count: 1
-      - slug: v4-outlet-defektiga-toode
-        name_en: "Defective product"
-        name_et: "Defektiga toode"
-        product_count: 0
-      - slug: v4-outlet-leiunurk
-        name_en: "Lost & found"
-        name_et: "Leiunurk"
-        product_count: 0

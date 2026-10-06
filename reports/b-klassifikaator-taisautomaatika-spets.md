@@ -201,7 +201,7 @@ Kõik ÜHES transaktsioonis (BEGIN…COMMIT); iga värav = enne-commit kontroll.
 | 4 | **Nav-struktuur** (parent + level + lapsed) | generated.json `parent_handle`/`level`/`child_handles` | über-frag värav (gate #2) resolvib kehtiva L2 → `gen-category-tree.mjs` ehitab puu | INV-04 (puu = yaml) |
 | 5 | **Pilt (hele valge taust)** | generated.json `image_path` + `image_source` (≠`none`) | **primaar:** `build-cat-thumbs-l3.mjs` → L3 top-toote pilt Meili/VEVOR CDN-ist → webp 400×400 valge taust (sharp flatten); **fallback:** Gemini `image-pipeline/orchestrator.mjs` (valge taust "#FFFFFF seamless"). Uuel L3-l on ALATI ≥3 toodet → top-toote pilt olemas → thumb deriveerub | **INV-20** (100% pilt) · **INV-21** (webp kettal) · **INV-26** (image_source≠none) |
 | 6 | **webp-fail kettal** | `storefront/public/cat-thumbs/<handle>.webp` | samm 5 kirjutab faili | INV-21 |
-| 7 | **SEO-tekst (ET+EN kirjeldus + tagline)** | generated.json `description_et/en` + `tagline_et/en` | **Fable-generaator** (uus samm — yaml-is on ainult placeholder "— products."): üks Fable-kutse → `{name_en, description_et, description_en, tagline_et, tagline_en}` nime+toodete põhjal | täielikkus-värav: kõik 4 välja mitte-tühjad + ≠placeholder |
+| 7 | **SEO-tekst (ET+EN kirjeldus + tagline)** | generated.json `description_et/en` + `tagline_et/en` | **Fable-generaator** (uus samm — yaml-is on ainult placeholder "— products."): üks Fable-kutse → `{name_en, description_et, description_en, tagline_et, tagline_en}` nime+toodete põhjal. **Kirjeldab KATEGOORIAT TERVIKUNA** (vt SEO-REEGEL all) | täielikkus-värav: kõik 4 välja mitte-tühjad + ≠placeholder + **SEO-värav läbib (0 numbrit/lubadust)** |
 | 8 | **Meili facet** (ancestors indekseeritud) | Meili `products` index `category_handles`/`ancestors` | tooted bind'itakse L3-le → `index-meilisearch.mjs` reindeks → facet tekib | INV-14 (Meili ancestors) · lehe tootearv Meili'st |
 | 9 | **DB product_category rida** (mpath) | `product_category` + `taxonomy_node_meta` (v4-marker) | `seed-taxonomy-from-yaml.mjs` muster / otse-INSERT transaktsioonis (gate #4) | INV-04 · lock-harness mpath-terve |
 | 10 | **Tooted seotud** (≥1, carousel ei peida) | `product_category_product` | §4 paigutus bind'ib klastri tooted uude L3-sse | INV-25 (carousel peidab 0-toote L3) |
@@ -210,11 +210,17 @@ Kõik ÜHES transaktsioonis (BEGIN…COMMIT); iga värav = enne-commit kontroll.
 **Värava loogika (enne §4 commit'i, transaktsiooni sees):**
 1. Genereeri kõik varad **mällu/ajutisse** (SEO-tekst Fable'ist, EN-nimi, pildi-allikas resolve'itud, handle deriveeritud).
 2. **Pilt-pre-check:** kas L3 top-tootel on Meili/CDN pilt (primaar) VÕI Gemini suudab genereerida (fallback)? Kumbki ei õnnestu → **värav kukub**.
-3. **SEO-pre-check:** Fable tagastas 4 mitte-tühja välja (≠placeholder)? Ei → **värav kukub**.
+3. **SEO-pre-check (DIRECTIVE task 1, 2026-10-06):** Fable tagastas 4 mitte-tühja välja (≠placeholder) JA **SEO-värav läbib** (0 numbrit, 0 lubadust)? Ei → **regen (max 3×), siis värav kukub**.
+3b. **Pildi-heledus-pre-check (DIRECTIVE task 2):** genereeritud/valitud webp serva-pikslite keskmine luminants ≥ läviväärtus (hele valge taust)? Ei → regen (Gemini valge taust), siis värav kukub.
 4. Ükski vara puudu / genereerimata → **ROLLBACK (transaktsioon pole commit'itud), tooted → olemas-koju (LCA/assign), Telegram** («L3 X jäi loomata: puudu <vara>»).
 5. Kõik 11 olemas → jätka gate #4 (DB-migratsioon) → … → gate #9 deploy. **Alles siis on L3 "valmis".**
 
-**Jõustus (meta-reegel — reegel ilma kontrollita ei tööta):** täielikkus = `check-taxonomy-invariants.mjs` INV-20/21/26 (pilt) + INV-04/14 (nav/Meili) + INV-25 (0-toote) + `lock-harness.mjs post` (mpath+distinct+Meili-värske). Kui mõni invariant FAIL pärast loomist → §4 ROLLBACK + §4b D4 auto-rollback. **Proosa-lubadus "saab kõik" EI piisa — INV-d peatavad pool, enne kui pood seda näeb.**
+**🔑 SEO-REEGEL — kategooria-tekst kirjeldab KATEGOORIAT TERVIKUNA (DIRECTIVE task 1, Tarmo 2026-10-06):** iga kategooria SEO-kirjeldus+tagline (olemas- JA uued L3) kirjeldab kogu kategooriat, mitte üksik-toodet, ja **PEAB vastama L3 nimele/laiusele**.
+- **KEELATUD:** konkreetsed numbrid (nt «4000 tsüklit», «50–100 kg», «12V/24V/48V», «200 W», «250 kg») JA tehnilised lubadused (tsüklid, mahud, pinged, **kaitsed** — «veekindel», «BMS», «LiFePO4», «kandevõime», «mahtuvus», «tõmbetugevus»), mis **ei kehti KÕIGILE võimalikele toodetele** selles kategoorias. *Põhjus: üks toode kategoorias on 200 W, teine 400 W — kategooria-tekst «200 W» on vale pooltele; «veekindel» on vale neile, mis pole.*
+- **LUBATUD:** üldine tüübi-/otstarbe-/sihtrühma-kirjeldus + üldised valiku-juhised ILMA arvudeta («jälgi sobivat suurust ja materjali», MITTE «jälgi mahtuvust 200 Wh»).
+- **AUTOMAAT-KONTROLL (mõõdetav, mitte silma järgi):** `seoClaimGate()` → number (`\d`) VÕI lubadus-sõna (regex `SEO_CLAIM_RE`) ükskõik millises 4 väljas → **värav kukub → regen** (Fable kutsutakse uuesti, kinnitatud reegli + leitud rikkujate-nimekirjaga, max 3×). Jõustus: `scripts/classify-etapp2-create.mjs` `seoClaimGate` + `genAssetsGated`; täielikkus-värav vara #7 sisaldab SEO-värava tulemust.
+
+**Jõustus (meta-reegel — reegel ilma kontrollita ei tööta):** täielikkus = `check-taxonomy-invariants.mjs` INV-20/21/26 (pilt) + INV-04/14 (nav/Meili) + INV-25 (0-toote) + `lock-harness.mjs post` (mpath+distinct+Meili-värske) + **SEO-värav `seoClaimGate` (numbrid/lubadused) + pildi-heledus `imageBrightnessCheck` (serva-luminants ≥ lävi)**. Kui mõni invariant FAIL pärast loomist → §4 ROLLBACK + §4b D4 auto-rollback. **Proosa-lubadus "saab kõik" EI piisa — INV-d peatavad pool, enne kui pood seda näeb.**
 
 ---
 
