@@ -33,11 +33,12 @@ const LIMIT = parseInt(val("--limit", "0"), 10);       // 0 = kõik pending
 const BATCH = parseInt(val("--batch", "10"), 10);
 const CONC = parseInt(val("--conc", "8"), 10);         // paralleelsed API-kutsed (töö-aeg: 772 järjest = timeout)
 const SKUS_FILE = val("--skus", "");                   // HARD RULE #5 delta: ainult need product_id-d (öine hook)
+const FROM = val("--from", "");                        // rakenda OLEMAS DRY-matchlist JSON-ist, ILMA API-kutseta (Tarmo tingimus #1)
 const OUT = val("--out", `reports/syn-backfill-${EXECUTE ? "exec" : "dry"}.json`);
 const BATCH_ID = val("--batch-id", `synbf-${new Date().toISOString().replace(/[:.]/g, "-")}`);
 
 const API_KEY = process.env.ANTHROPIC_API_KEY;
-if (!API_KEY) { console.error("ANTHROPIC_API_KEY puudub — set -a; . /opt/eumotors-tasks/.env; set +a"); process.exit(2); }
+if (!API_KEY && !FROM) { console.error("ANTHROPIC_API_KEY puudub — set -a; . /opt/eumotors-tasks/.env; set +a"); process.exit(2); }
 
 let _db;
 const db = () => (_db ||= execSync("docker ps --format '{{.Names}}' | grep '^db-k33g' | head -1", { encoding: "utf8" }).trim());
@@ -61,6 +62,19 @@ const PRICE = { "claude-opus-4-8": { in: 5, out: 25 }, "claude-sonnet-5": { in: 
 
 async function main() {
   const { judgeSynonyms, synConsensus, SYN_JUDGE_MODEL, REF_MODEL_SYN } = await import("./lib/judge.mjs");
+
+  // --from: rakenda OLEMAS DRY-tulemused (matchlist JSON), ILMA mudeli-kutseta. Verdiktid on JSON-is juba.
+  if (FROM) {
+    const p = JSON.parse(fs.readFileSync(FROM, "utf8"));
+    const rows = p.rows || [];
+    const dist = { consensus_ok: 0, disagreement: 0, vale: 0 };
+    for (const r of rows) dist[r.bucket] = (dist[r.bucket] || 0) + 1;
+    console.log(`[FROM matchlist] ${EXECUTE ? "🔴 EXECUTE" : "DRY-vaade"} · ${FROM} · ridu=${rows.length} · batch_id=${BATCH_ID}`);
+    console.log(`   consensus_ok ${dist.consensus_ok} · disagreement ${dist.disagreement} · vale ${dist.vale} · (API EI kutsutud — DRY taaskasutus)\n`);
+    if (!EXECUTE) { console.log("(DRY-vaade — DB puutumata. Lisa --execute rakendamiseks.)"); return; }
+    applyBatch(rows, BATCH_ID, { judgeModel: p.judge_model, refModel: p.ref_model, source: `from:${FROM}` });
+    return;
+  }
 
   // HARD RULE #5 delta: öine hook annab --skus (tonight's touched SKUs) → judge AINULT nende review-ridu,
   // MITTE kogu pending-backlogi. Ilma --skus (backfill) → kõik pending.
