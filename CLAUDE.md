@@ -99,6 +99,23 @@ kui taxonomy-v4 SHA sisaldab fix'i.**
 
 ---
 
+## 🛑 HARD RULE #8 — CLAUDE CODE EI LOGI KUNAGI SISSE TARMO (ega ühegi inimese) KONTOGA
+
+> Lisatud 2026-10-06 (Tarmo korraldus, pärast actor-paranduse testi).
+
+**Claude Code EI tohi KUNAGI autentida inimese identiteedina** — ei mint'i Tarmo (ega ühegi admin'i) JWT-d/sessiooni, ei kasuta inimese e-posti test-klõpsudel, ei teeskle inimest üheski logis.
+
+**Testimiseks kasuta eraldi test-identiteeti:** `claude-code-test` (e-post `claude-code-test@xlmarket.ee`, kanal `api`/`test`). Iga test-tegevus (reject/undo/assign vms) logitakse selle identiteediga → `review_decision_log.actor_detail = 'claude-code-test'`, mitte inimese e-post.
+
+**Why:** 2026-10-06 actor-paranduse testis mintis Claude Code ekslikult **Tarmo JWT** → `review_decision_log` rida 8 sai `actor_detail/undone_by = tarmo@naissaar.eu`, kuigi tegija oli masin. Logi = tõe-allikas intsidendi-uurimisel (HARD RULE #7); kui masin esineb inimesena, on logi **vale** ja uurimine eksitatud. Rida 8 meta-s on nüüd append-only parandus-märge (`meta.actor_correction`, real_actor=claude-code-test) — rida EI kustutatud, aususe nimel.
+
+**Kuidas:**
+- Test-sessioon admin-proxy vastu → mint `claude-code-test@xlmarket.ee` session (mitte inimese oma); backend `actor_detail` tuleb sellest.
+- Kui test nõuab olemas-admin'i (nt getAdminUsers lubab ainult Tarmo) → **ÄRA** mint Tarmo't; selle asemel testi backend-service-tokeniga (`channel='api'`, actor_detail skripti-nimi) VÕI lisa test-identiteet eraldi, mitte inimese arvelt.
+- Vana test-tõend (rida 8) jääb append-only parandusega; uusi inimese-identiteedi-logisid EI teki.
+
+---
+
 ## Sessioon 2026-05-02 muudatused (hommikune pool)
 
 **Sessioonilogi:** `xlmarket/memory/sessions/2026-05-02-xl.md`

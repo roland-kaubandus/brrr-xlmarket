@@ -212,6 +212,224 @@ export async function judgeClassify(batch, candidateL3s, { apiKey, model = CLSF_
   return { ok: true, results: res.parsed.results || [], usage: res.usage };
 }
 
+// ───────────── KLASTRI-TASANDI KOHTUNIK (vastuolu ehituslikult võimatu) ─────────────
+//
+// Point 3 (Tarmo 2026-10-06): klassifikaatori-kohtunik otsustab KLASTRI tasandil —
+// ÜKS otsus kogu klastri kohta (clusterKeyOf järgi), mis rakendatakse KÕIGILE liikmetele.
+// Nii on klastri-sisene vastuolu EHITUSLIKULT võimatu (pole enam N otsust, mis lahkneksid).
+// Kooskõlavärav (enforceClassifyConsistency) jääb TURVAVÕRGUKS — pärast fan-out'i ei saa ta
+// kunagi vallanduda, aga kaitseb juhuks, kui mõni tee hoolimata ehitab per-toode otsuseid.
+
+const CLUSTER_CLSF_SYSTEM = `Oled xlmarket.ee taksonoomia-KOHTUNIK. Sulle antakse KLASTRID — iga klaster on
+KOKKU KUULUV grupp tooteid (sama VEVOR SPU / sama tootetüüp / sama normaliseeritud pealkiri),
+mis ON JUBA tuvastatud SAMA TOOTENA (variandid: suurus/värv/kogus). Klassifikaator jättis need
+ebakindlaks (review / new_l3 / quarantine ämber), + NIMEKIRI olemasolevatest L3-kategooriatest.
+
+🔑 OTSUSTAD KLASTRI KOHTA ÜHE OTSUSE — see rakendatakse KÕIGILE klastri liikmetele korraga.
+   Klastri liikmed EI saa minna eri kodudesse (nad on sama toode) → üks kodu kogu klastrile.
+
+Rakenda 9-punkti SISU-reeglit (otsusta toote SISUST — title/spets/kirjeldus — MITTE nimest/tõlkest) ja
+reegli-pingerida: EKSKLUSIIVSUS-värav → TÜÜP+DOMEEN → DUP-värav → seotud-tüübid → hübriid → variant/laius.
+
+Iga KLASTRI kohta vali TEGEVUS:
+- assign_existing : klaster sobib semantiliselt ÜHTE olemas-L3-sse (anna target_handle nimekirjast). Eelista seda.
+- group           : sama kontseptsioon kordub mitmes klastris → märgi ühine group_key (DUP-värav enne new_l3).
+- new_l3          : AINULT kui kogu nimekirjas POLE sobivat tüüpi. Sa EI loo seda ise — koostad ETTEPANEKU
+                    (new_l3_name eesti keeles + parent_l2_handle + põhjus). Inimene/väravad kinnitavad.
+- keep            : tõeliselt ebakindel → klaster jääb ootele (ohutu vaikimisi).
+
+⚠️ QUARANTINE-REEGEL: kui klaster on quarantine-ämbris, tuvasta ESMALT põhjus:
+   - quarantine_cause="uncertainty" → klassifitseerimise ebakindlus → tohid anda assign/new_l3.
+   - quarantine_cause="data_quality" → toote-info puudu/katki → tegevus PEAB olema "keep" + märgi põhjus.
+
+RANGED REEGLID:
+1. target_handle PEAB olema täpselt nimekirjast (ära leiuta). Sobivat pole → new_l3 või keep.
+2. Parem keep kui vale assign — vale paigutus on nähtav ja eksitab ostjat.
+3. confidence 0.0-1.0 = kui kindel oled tegevuses kogu klastri kohta.
+4. reason = lühike eestikeelne põhjendus (mis tüüp + miks see kodu).
+5. cluster_key PEAB olema täpselt see, mis sisendis anti.
+
+Vasta AINULT etteantud JSON-skeemis — ÜKS kirje iga klastri kohta.`;
+
+const CLUSTER_CLSF_SCHEMA = {
+  type: "object",
+  properties: {
+    results: {
+      type: "array",
+      items: {
+        type: "object",
+        properties: {
+          cluster_key: { type: "string" },
+          action: { type: "string", enum: ["assign_existing", "group", "new_l3", "keep"] },
+          target_handle: { type: "string" },
+          group_key: { type: "string" },
+          new_l3_name: { type: "string" },
+          parent_l2_handle: { type: "string" },
+          quarantine_cause: { type: "string", enum: ["uncertainty", "data_quality", "n/a"] },
+          confidence: { type: "number" },
+          reason: { type: "string" },
+        },
+        required: ["cluster_key", "action", "confidence", "reason"],
+        additionalProperties: false,
+      },
+    },
+  },
+  required: ["results"],
+  additionalProperties: false,
+};
+
+/**
+ * clusterize — rühmita toorread klastriteks clusterKeyOf järgi (deterministlik, LLM-vaba).
+ * Tagastab [{ cluster_key, items:[row,...] }] — stabiilses järjekorras (suurim klaster ees).
+ */
+export function clusterize(rows) {
+  const by = new Map();
+  for (const r of rows) {
+    const ck = clusterKeyOf(r);
+    if (!by.has(ck)) by.set(ck, []);
+    by.get(ck).push(r);
+  }
+  return [...by.entries()]
+    .map(([cluster_key, items]) => ({ cluster_key, items }))
+    .sort((a, b) => b.items.length - a.items.length || a.cluster_key.localeCompare(b.cluster_key));
+}
+
+function clusterUserMsg(clusters, candidateL3s) {
+  const cands = candidateL3s.map((c) => `  ${c.handle}${c.name ? ` — ${c.name}` : ""}`).join("\n");
+  const blocks = clusters.map((cl) => {
+    const rep = cl.items[0];
+    const buckets = [...new Set(cl.items.map((i) => i.bucket).filter(Boolean))].join(", ") || "?";
+    const titles = [...new Set(cl.items.map((i) => i.title).filter(Boolean))].slice(0, 4);
+    const proposed = [...new Set(cl.items.map((i) => i.proposed_l3).filter(Boolean))].join(", ") || "-";
+    const names = [...new Set(cl.items.map((i) => i.suggest_name).filter(Boolean))].join(", ") || "-";
+    const l2s = [...new Set(cl.items.map((i) => i.suggest_l2).filter(Boolean))].join(", ") || "-";
+    return `KLASTER ${cl.cluster_key}  (liikmeid: ${cl.items.length}, ämbrid: ${buckets})
+  esindaja title: ${rep.title || "?"}
+  esindaja title_et: ${rep.title_et || "?"}
+  liikmete pealkirjad: ${titles.join(" · ") || "?"}
+  esindaja kirjeldus: ${(rep.description || "").slice(0, 400) || "(puudub)"}
+  klassifikaator pakkus: L3=${proposed} nimi=${names} L2=${l2s}`;
+  }).join("\n\n");
+  return `OLEMASOLEVAD L3-KANDIDAADID (target_handle PEAB olema siit):\n${cands}\n\n────────\n\nHINNATAVAD KLASTRID (üks otsus KLASTRI kohta):\n\n${blocks}`;
+}
+
+/**
+ * judgeClassifyClusters — hinda KLASTREID (mitte üksik-tooteid). Üks otsus iga klastri kohta.
+ * Sisend: clusters [{cluster_key, items:[row]}] (clusterize väljund) + candidateL3s.
+ * Tagastab { ok, results:[{cluster_key, action, ...}], usage }. EI kirjuta DB-sse.
+ */
+export async function judgeClassifyClusters(clusters, candidateL3s, { apiKey, model = CLSF_JUDGE_MODEL, timeoutMs, retries } = {}) {
+  const res = await callJudge({
+    apiKey, model, system: CLUSTER_CLSF_SYSTEM, user: clusterUserMsg(clusters, candidateL3s),
+    schema: CLUSTER_CLSF_SCHEMA, maxTokens: 6000, timeoutMs, retries,
+  });
+  if (!res.ok) return res;
+  return { ok: true, results: res.parsed.results || [], usage: res.usage };
+}
+
+/**
+ * fanoutClusterDecisions — laota ÜKS klastri-otsus KÕIGILE liikmetele → per-toode otsused.
+ * Nii on klastri-sisene vastuolu EHITUSLIKULT võimatu (kõik liikmed = sama signatuur).
+ * Sisend: clusters (clusterize) + results (judgeClassifyClusters). Tagastab [{id, cluster_key, title, bucket, judge:{...}}].
+ * Klaster, millele kohtunik otsust ei andnud → ohutu vaikimisi "keep" (ei kao vaikselt).
+ */
+export function fanoutClusterDecisions(clusters, results) {
+  const byKey = new Map(results.map((r) => [r.cluster_key, r]));
+  const out = [];
+  for (const cl of clusters) {
+    const v = byKey.get(cl.cluster_key);
+    const judge = v
+      ? { action: v.action, target_handle: v.target_handle || null, group_key: v.group_key || null,
+          new_l3_name: v.new_l3_name || null, parent_l2_handle: v.parent_l2_handle || null,
+          quarantine_cause: v.quarantine_cause || "n/a", confidence: v.confidence ?? 0,
+          reason: v.reason || "", cluster_level: true }
+      : { action: "keep", confidence: 0, cluster_level: true, gate: "no_cluster_verdict",
+          reason: "[OHUTU VAIKIMISI] kohtunik ei tagastanud klastrile otsust → jääb ootele." };
+    for (const row of cl.items) {
+      out.push({ id: row.id, cluster_key: cl.cluster_key, title: row.title, bucket: row.bucket, judge: { ...judge } });
+    }
+  }
+  return out;
+}
+
+// ═══════════════ 3. REFERENTS-HINDAJA (Opus, PIME) — kalibreerimine ILMA inimeseta ═══════════════
+//
+// Point 1 (Tarmo 2026-10-06, HARD RULE #6): kalibreerimine tehakse AUTOMAATSELT.
+// Opus-referents hindab SAMA valimi SÕLTUMATULT ja PIMESI (ei näe Sonneti/kohtuniku vastuseid),
+// mängides inimese (Tarmo) rolli kalibreerimises. actor='opus-reference' calibration_rating-tabelis.
+//
+//   SÜNONÜÜM: referents = judgeSynonyms Opus-mudeliga. Sisend (synUserMsg) EI sisalda kohtuniku
+//             verdikti → juba pime. Sama kriteerium ("kas klient ootaks seda toodet?").
+//   KLASSIFIKAATOR: eraldi PIME hindaja (allpool) — valib SÕLTUMATULT kodu kandidaat-nimekirjast,
+//             kriteerium "Kas see toode kuulub sellesse kategooriasse?". EI näe kohtuniku target_handle't.
+
+export const REF_MODEL = "claude-opus-4-8";
+
+const REF_CLSF_SYSTEM = `Oled xlmarket.ee taksonoomia SÕLTUMATU REFERENTS-HINDAJA. Sulle antakse tooteid +
+NIMEKIRI olemasolevatest L3-kategooriatest. Sa EI näe ühegi teise mudeli ega kohtuniku otsust — hindad PIMESI.
+
+Sinu AINUS kriteerium iga toote kohta:
+**"Kas see toode KUULUB mõnda olemasolevasse kategooriasse — ja kui, siis MILLISESSE?"**
+
+Otsusta toote SISUST (title/title_et/kirjeldus) — MITTE tootja-nimest ega masintõlkest.
+
+Vali iga toote kohta TEGEVUS:
+- assign_existing : toode KUULUB selgelt ÜHTE olemas-L3-sse → anna target_handle (TÄPSELT nimekirjast).
+- new_l3          : ükski olemas-L3 ei sobi — vajaks UUT kategooriat (sa ei nimeta seda, märgi ainult vajadus).
+- keep            : ei suuda kindlalt otsustada / toote-info puudulik → jääb ootele (ohutu vaikimisi).
+
+RANGE: parem "keep" kui vale "assign_existing". Vale kodu on nähtav ja eksitab ostjat.
+target_handle PEAB olema täpselt nimekirjast. reason = üks lühike eestikeelne lause.
+
+Vasta AINULT etteantud JSON-skeemis.`;
+
+const REF_CLSF_SCHEMA = {
+  type: "object",
+  properties: {
+    results: {
+      type: "array",
+      items: {
+        type: "object",
+        properties: {
+          id: { type: "string" },
+          action: { type: "string", enum: ["assign_existing", "new_l3", "keep"] },
+          target_handle: { type: "string" },
+          confidence: { type: "number" },
+          reason: { type: "string" },
+        },
+        required: ["id", "action", "confidence", "reason"],
+        additionalProperties: false,
+      },
+    },
+  },
+  required: ["results"],
+  additionalProperties: false,
+};
+
+function refClsfUserMsg(batch, candidateL3s) {
+  const cands = candidateL3s.map((c) => `  ${c.handle}${c.name ? ` — ${c.name}` : ""}`).join("\n");
+  // PIME: EI sisalda kohtuniku action/target/reason ega klassifikaatori proposed_l3 (et mitte ankurdada).
+  const items = batch.map((r) => `[${r.id}]
+  title: ${r.title || "?"}
+  title_et: ${r.title_et || "?"}
+  kirjeldus: ${(r.description || "").slice(0, 400) || "(puudub)"}`).join("\n\n");
+  return `OLEMASOLEVAD L3-KANDIDAADID (target_handle PEAB olema siit):\n${cands}\n\n────────\n\nHINNATAVAD TOOTED (otsusta sõltumatult, kas kuulub mõnda kategooriasse):\n\n${items}`;
+}
+
+/**
+ * rateClassifyReference — PIME Opus-referents klassifikaatori-valimile. Valib kodu SÕLTUMATULT
+ * (ei näe kohtuniku otsust ega klassifikaatori ettepanekut → ankurdamist pole).
+ * Tagastab { ok, results:[{id,action,target_handle,confidence,reason}], usage }. EI kirjuta DB-sse.
+ */
+export async function rateClassifyReference(batch, candidateL3s, { apiKey, model = REF_MODEL, timeoutMs, retries } = {}) {
+  const res = await callJudge({
+    apiKey, model, system: REF_CLSF_SYSTEM, user: refClsfUserMsg(batch, candidateL3s),
+    schema: REF_CLSF_SCHEMA, maxTokens: 6000, timeoutMs, retries,
+  });
+  if (!res.ok) return res;
+  return { ok: true, results: res.parsed.results || [], usage: res.usage };
+}
+
 // ──────────────── KOOSKÕLAVÄRAV (deterministlik, prompt-vaba) ────────────────
 
 /**
