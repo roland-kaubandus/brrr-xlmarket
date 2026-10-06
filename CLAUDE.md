@@ -462,15 +462,18 @@ Kõik 4 rakendavad 9-punkti sisu-reeglit. **Uue maini / feed-impordi järel: joo
 
 ---
 
-## 🤖 AUTO-KLASSIFIKAATOR (feed-cron) — PROPOSE-NOT-CREATE (Tarmo, 2026-07-22)
+## 🤖 AUTO-KLASSIFIKAATOR (feed-cron) — TÄISAUTOMAATIKA (Tarmo, 2026-10-06; asendab 2026-07-22 propose-not-create)
 
-> Kinnitatud siht: **Opus-klassifikaator jääb tootmises, resolver-v2 asendub** (resolver-v2 ei tunne uusi tüüpe → kalastus/ladu/SDS satuvad review-bucketisse, ja jääb VEVOR-sortimeni kasvades aina kaugemale). Ehitatakse **pärast** 956-backlogi importi (see = eraldi B-etapp).
+> Kinnitatud siht: **Opus-klassifikaator jääb tootmises, resolver-v2 asendub** (resolver-v2 ei tunne uusi tüüpe → kalastus/ladu/SDS satuvad review-bucketisse, ja jääb VEVOR-sortimeni kasvades aina kaugemale). Täisspets (koodita): `reports/b-klassifikaator-taisautomaatika-spets.md`.
 
-**🔒 PÕHIREEGEL — cron EI LOO L3-sid ise.** Sama propose-not-create reegel, mis kogu taksonoomia-töös:
-- Cron **auto-paigutab AINULT olemas-L3-desse** (auto ≥0.85).
-- **Uus tüüp / madal kindlus → review-bucket → INIMENE otsustab** L3-loomise.
-- Cron ei kasvata struktuuri ise. Muidu triivib teistpidi — mitte paigutus, vaid kontrollimatu kategooria-plahvatus (täpselt see, mille vältimiseks taksonoomia korrastati).
-- **Jõustus:** INV-STRUCT-01 keelab tühja L3 → cron ei saaks niikuinii tühja L3 luua; + `--defer/propose` režiim ei kirjuta struktuuri.
+**🔄 REEGLI-MUUTUS 2026-10-06 (HARD RULE #6 kooskõla):** vana 2026-07-22 "cron EI LOO L3, inimene kinnitab" on **ASENDATUD**. Uus:
+
+**🔒 PÕHIREEGEL — cron LOOB L3-sid ISE, väravatega.** Masin töötab ise (HARD RULE #6); nähtavus + tagasipööratavus asendavad eel-kinnituse:
+- Cron **auto-paigutab olemas-L3-desse** (konsensus Opus+Sonnet) JA **loob puuduvad L3-d automaatselt** (lahkheli → Fable-viigimurdja → 2/3 enamus → auto-create).
+- **Auto-loomise väravad (KÕIK kohustuslikud, transaktsioonis):** DUP-värav → über-frag-guard L2 → nime-reegel → inv-taxonomy → lock-harness → merge-judge → 4-sammu deploy → **Telegram-teade + undo**. Värav kukub → ROLLBACK + HOLD + Telegram.
+- **Tarmo kinnitust EI nõuta** L3-loomiseks. Inimene = turvavõrk AINULT äärmuslikuks juhuks (kõik väravad kukkusid / kõik 3 mudelit eri meelt → HOLD = ohutu vaikimisi).
+- **Triivi-kaitse EI ole enam "ära loo", vaid "loo + väravad + undo":** suhteline granulaarsus-lävi (mitte fikseeritud arv) + merge-judge isekohandus hoiab kategooria-plahvatust (vt spets §4–§6).
+- **Jõustus:** INV-STRUCT-01 (tühi L3 keeld) + lock-harness + merge-judge revert + `classifier-undo <batch_id>`.
 
 **👁 REVIEW-BUCKET VAJAB NÄHTAVUST** (Tarmo lisa — muidu täitub vaikselt: tooted imporditud + hinnaga, aga kodutud = otsingus/kategoorias puudu = praktikas müügil olematud):
 1. **Teade** kui bucketisse tuleb (nt nädalane kokkuvõte "12 uut tüüpi ootab").
