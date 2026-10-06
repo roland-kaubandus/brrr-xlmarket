@@ -187,12 +187,14 @@ Praegune digest näitab "ootab otsust X". Uus digest:
 
 ---
 
-## 9. AVATUD OTSUSED + ETAPIVIISILINE TEOSTUS
+## 9. OTSUSTATUD (Tarmo 2026-10-06) + ETAPIVIISILINE TEOSTUS
 
-**Tarmo otsustab:**
-- ☐ Punkt 5 lävendid OK? (sünonüüm VALE-OK ≤5%, klassifikaator VALE-assign ≤2-3%) — või kitsamad?
-- ☐ Uue L3 kinnituse-partii sagedus (nädalas korra kõik kinnitatud → 4-sammu deploy? või kohe igaüks?)
-- ☐ Kas kohtunik tohib ka quarantine (6) üle vaadata assign-kandidaadiks, või quarantine jääb alati inimesele?
+**Tarmo on kinnitanud (enam mitte avatud):**
+- ☑ Lävendid: sünonüüm **VALE-OK ≤5%**, klassifikaator **VALE-assign ≤2,5%** (≤1/40). Kuine triivivalim 30.
+- ☑ Uue L3 partii: **iganädalane TÄIESTI automaatne build-bridge** (§4) — mitte käsitsi, mitte kohe-igaüks.
+- ☑ Quarantine: kohtunik tohib üle vaadata **AINULT kui põhjus = klassifitseerimise ebakindlus**; feedi andmekvaliteet → jääb välja + digest-märge (§3).
+- ☑ Sünonüümi-kohtunik katab **KOGU pending** (ka ≥0.85+review:true), mitte ainult sub-0.85.
+- ☑ Kalibreerimine **PIMESI** xl-admin lehel, **100 sünonüümi + 40 klassifikaatorit**.
 
 **Teostus-etapid (pärast kinnitust):**
 1. `lib/judge.mjs` — transform-funktsioonid (sünonüüm + klassifikaator), bränd-agnostilised, sama kood backfill+hook.
@@ -205,6 +207,6 @@ Praegune digest näitab "ootab otsust X". Uus digest:
 **Riskid:**
 - Kohtunik-generaator sama-viga (sünonüüm): leevendus = eri mudel (Sonnet vs Haiku).
 - new_l3 plahvatus: leevendus = PROPOSE-NOT-CREATE + inimese-kinnitus + INV-STRUCT-01.
-- Kalibreerimine liiga väike valim: 50+40 on miinimum; kahtluse korral suurenda.
+- Kalibreerimine liiga väike valim: 100+40 (Tarmo kinnitatud); kahtluse korral suurenda.
 - Batch API latentsus öises torus: lahendatud (hook = sync, backfill = batch).
 ```
