@@ -1,0 +1,43 @@
+{
+  "generated_at": "2026-10-06T20:05:30.492Z",
+  "scope": {
+    "classified_products": 18902,
+    "products_with_l3": 18893,
+    "clusters": 5226
+  },
+  "prompt_sizes_chars": {
+    "candidate_list": 149120,
+    "sys_judge": 2844,
+    "sys_ref": 971,
+    "avg_cluster_block": 633
+  },
+  "candidate_l3_count": 1684,
+  "calls": {
+    "judge": 131,
+    "referent": 131,
+    "fable_est": 1961,
+    "clusters_per_call": 40
+  },
+  "tokens": {
+    "judge_in": 5806153,
+    "judge_out": 576400,
+    "ref_in": 5744812,
+    "ref_out": 576400,
+    "fable_in": 1486966,
+    "fable_out": 784400
+  },
+  "cost_standard": {
+    "judge": 43.44076385954841,
+    "referent": 25.880436065729047,
+    "fable": 54.0896633677765,
+    "total": 123.41086329305395
+  },
+  "cost_batch": {
+    "total": 61.705431646526975,
+    "judge": 21.720381929774206,
+    "referent": 12.940218032864523,
+    "fable": 27.04483168388825
+  },
+  "cap_usd": 50,
+  "under_cap": false
+}
