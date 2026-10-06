@@ -550,6 +550,113 @@ export async function rateClassifyReferenceClusters(clusters, candidateL3s, { ap
   return { ok: true, results, usage: res.usage };
 }
 
+// ──────────────── VÕTME-TERVIKLUS + REKURSIIVNE POOLITAMINE (SSoT — audit + öine [4] hook) ────────────────
+// Tarmo 2026-10-07 (pärast kataloogi-auditi 47-klastri auku + j100 fantoom-ülekirjutust):
+//   batch/sünkr LLM-väljund EI tohi klastreid vaikselt kaotada ega võõraid võtmeid neelata.
+//   (a) väljundi võtmed == sisendi võtmed  (b) võõras võti → viska + loenda  (c) puuduv/max_tokens → POOLITA & korda
+//   (d) max sügavus → FAIL-LOUD (unresolved → pending + Telegram). HARD RULE #5: SAMA kood audit + [4] hook.
+function _chunk(a, n) { const o = []; for (let i = 0; i < a.length; i += n) o.push(a.slice(i, i + n)); return o; }
+
+/**
+ * ingestClusterResults — kontrolli LLM-väljundi võtmed sisendi vastu (PUHAS, I/O-ta → testitav).
+ * parsed: [{cluster_key|id, action, ...}] (judge kasutab cluster_key, ref id); expectedKeys: Set|array.
+ * Tagastab { byKey:Map(ESIMENE esinemine), foreign:[võõrad — EI ingestita], duplicates:[{key,conflict,first,second}], missing:[] }.
+ * Dup → säilita ESIMENE + liputa konflikt (action/target erineb; vaikne "viimane võidab" = kadu). Võõras võti → EI byKey'sse.
+ */
+export function ingestClusterResults(parsed, expectedKeys) {
+  const expected = expectedKeys instanceof Set ? expectedKeys : new Set(expectedKeys);
+  const byKey = new Map(); const foreign = []; const duplicates = [];
+  for (const v of parsed || []) {
+    const k = v?.cluster_key ?? v?.id;
+    if (k == null) continue;
+    if (!expected.has(k)) { foreign.push({ key: k, action: v.action || null, target: v.target_handle || null }); continue; }
+    if (byKey.has(k)) {
+      const p = byKey.get(k);
+      const conflict = (p.action !== v.action) || ((p.target_handle || null) !== (v.target_handle || null));
+      duplicates.push({ key: k, conflict, kept: "first", first: { action: p.action, target: p.target_handle || null }, second: { action: v.action, target: v.target_handle || null } });
+      continue;
+    }
+    byKey.set(k, v);
+  }
+  const missing = [...expected].filter((k) => !byKey.has(k));
+  return { byKey, foreign, duplicates, missing };
+}
+
+/**
+ * resolveJudgeBatch — BATCH-tee (audit): submit kõik chunk'id ÜHEKS batch'iks → ingest+kontrolli iga chunk →
+ * puuduvad VÕI stop_reason=max_tokens → POOLITA (chunk/2) & korda järgmise batch-tasemena, kuni kõik lahendatud VÕI maxDepth → FAIL-LOUD.
+ * role: "judge" | "ref". runChunk injekteeritud (judge.mjs ei sõltu content-batch'ist). onLog={log,tick} valikuline.
+ * Tagastab { byKey, foreign, duplicates, unresolved, reqFail, levels }.
+ */
+export async function resolveJudgeBatch({ clusters, candidateL3s, apiKey, runChunk, chunkSize = 40, maxTokens = 14000, model, role = "judge", maxDepth = 3, onLog } = {}) {
+  const build = role === "ref" ? buildClusterRefBody : buildClusterJudgeBody;
+  const mdl = model || (role === "ref" ? REF_MODEL_CLSF : CLSF_JUDGE_MODEL);
+  const byKey = new Map(); const foreign = []; const duplicates = []; const unresolved = [];
+  let reqFail = 0, levels = 0;
+  async function level(cls, size, depth) {
+    levels++;
+    const groups = _chunk(cls, size);
+    const reqs = groups.map((g, i) => ({ custom_id: `${role}_${depth}_${i}`, params: build(g, candidateL3s, { model: mdl, maxTokens }) }));
+    const batch = await runChunk(reqs, apiKey, { onTick: onLog?.tick });
+    const byCid = new Map(batch.results.map((r) => [r.custom_id, r]));
+    const retry = [];
+    for (let i = 0; i < groups.length; i++) {
+      const r = byCid.get(`${role}_${depth}_${i}`);
+      const expected = new Set(groups[i].map((c) => c.cluster_key));
+      if (!r || !r.ok) {
+        reqFail++;
+        if (depth < maxDepth && size > 1) retry.push(...groups[i]);
+        else unresolved.push(...groups[i].map((c) => c.cluster_key));
+        continue;
+      }
+      onLog?.usage?.(mdl, r.message?.usage);   // kulu-jälgimine kutsujale (audit addUsage; ka poolitus-tasemed)
+      const txt = (r.message?.content || []).find((b) => b.type === "text")?.text || "{}";
+      let parsed = []; try { parsed = JSON.parse(txt).results || []; } catch {}
+      const ing = ingestClusterResults(parsed, expected);
+      for (const [k, v] of ing.byKey) if (!byKey.has(k)) byKey.set(k, v);
+      foreign.push(...ing.foreign); duplicates.push(...ing.duplicates);
+      const trunc = r.message?.stop_reason === "max_tokens";
+      if (ing.missing.length) {
+        if (depth < maxDepth && size > 1) { retry.push(...groups[i].filter((c) => ing.missing.includes(c.cluster_key))); onLog?.log?.(`[${role}] d${depth}_${i} puudu ${ing.missing.length}${trunc ? " (max_tokens)" : ""} → poolita`); }
+        else unresolved.push(...ing.missing);
+      }
+    }
+    if (retry.length) { onLog?.log?.(`[${role}] tase ${depth}: ${retry.length} klastrit kordusse (chunk ${size}→${Math.max(1, Math.floor(size / 2))})`); await level(retry, Math.max(1, Math.floor(size / 2)), depth + 1); }
+  }
+  await level(clusters, chunkSize, 0);
+  if (unresolved.length) onLog?.log?.(`🛑 FAIL-LOUD [${role}]: ${unresolved.length} klastrit lahendamata pärast ${maxDepth} taset`);
+  return { byKey, foreign, duplicates, unresolved, reqFail, levels };
+}
+
+/**
+ * resolveClustersSyncVerified — SÜNKR-tee (öine [4] hook): kutsu callFn chunk-kaupa, kontrolli võtmed,
+ * puuduvad → POOLITA & korda kuni maxDepth → unresolved (pending). callFn(clusters) → { ok, results, error }
+ * (judgeClassifyClusters | rateClassifyReferenceClusters). callFn kukub (krediit/API) → ok=false → kutsuja degrade.
+ * Tagastab { ok, byKey, foreign, duplicates, unresolved, firstError }.
+ */
+export async function resolveClustersSyncVerified(clusters, { callFn, chunkSize = 12, maxDepth = 3, onLog } = {}) {
+  const byKey = new Map(); const foreign = []; const duplicates = []; const unresolved = [];
+  let firstError = null;
+  async function level(cls, size, depth) {
+    for (const g of _chunk(cls, size)) {
+      const expected = new Set(g.map((c) => c.cluster_key));
+      const res = await callFn(g);
+      if (!res.ok) { if (!firstError) firstError = res.error || "callFn ei õnnestunud"; return false; }
+      const ing = ingestClusterResults(res.results || [], expected);
+      for (const [k, v] of ing.byKey) if (!byKey.has(k)) byKey.set(k, v);
+      foreign.push(...ing.foreign); duplicates.push(...ing.duplicates);
+      if (ing.missing.length) {
+        if (depth < maxDepth && size > 1) { const m = g.filter((c) => ing.missing.includes(c.cluster_key)); onLog?.(`puudu ${ing.missing.length} → poolita (${size}→${Math.max(1, Math.floor(size / 2))})`); if (!(await level(m, Math.max(1, Math.floor(size / 2)), depth + 1))) return false; }
+        else unresolved.push(...ing.missing);
+      }
+    }
+    return true;
+  }
+  const ok = await level(clusters, chunkSize, 0);
+  if (unresolved.length) onLog?.(`🛑 FAIL-LOUD: ${unresolved.length} klastrit lahendamata (pending)`);
+  return { ok: ok && !firstError, byKey, foreign, duplicates, unresolved, firstError };
+}
+
 // ──────────────── KOOSKÕLAVÄRAV (deterministlik, prompt-vaba) ────────────────
 
 /**

@@ -35,7 +35,7 @@
 import { execSync } from "node:child_process";
 import fs from "node:fs";
 import { isCreditError } from "./lib/credit-guard.mjs";
-import { clusterize, judgeClassifyClusters, rateClassifyReferenceClusters } from "./lib/judge.mjs";
+import { clusterize, judgeClassifyClusters, rateClassifyReferenceClusters, resolveClustersSyncVerified } from "./lib/judge.mjs";
 import { createChain } from "./lib/classify-chain.mjs";
 import {
   ensureShadowSchema, getConfig, recordShadowProposal, recordCodeBug,
@@ -145,21 +145,37 @@ if (!targets.length) {
 const clusters = clusterize(targets);
 console.log(`klastreid: ${clusters.length}`);
 
-// ---- 2. KOHTUNIK (Opus, klastri-tasand) ----
-const jr = await judgeClassifyClusters(clusters, candidateL3s, { apiKey: KEY });
-if (!jr.ok) {
-  const cause = isCreditError(String(jr.error || "")) ? "krediit maas (kohtunik)" : `kohtunik-LLM maas: ${String(jr.error || "").slice(0, 120)}`;
+// ---- 2. KOHTUNIK (Opus, klastri-tasand) — VÕTME-VERIFITSEERITUD + poolitamine (HARD RULE #5) ----
+// Tarmo 2026-10-07: puuduv/max_tokens → poolita & korda; võõras võti → viska; dup-konflikt → säilita esimene + loenda.
+const jVer = await resolveClustersSyncVerified(clusters, {
+  callFn: (g) => judgeClassifyClusters(g, candidateL3s, { apiKey: KEY }),
+  onLog: (m) => console.error(`  [kohtunik-verify] ${m}`),
+});
+if (!jVer.ok) {
+  const cause = isCreditError(String(jVer.firstError || "")) ? "krediit maas (kohtunik)" : `kohtunik-LLM maas: ${String(jVer.firstError || "").slice(0, 120)}`;
   degrade(targets.length, cause);
 }
-const judgeByKey = new Map((jr.results || []).map((r) => [r.cluster_key, r]));
+const judgeByKey = jVer.byKey;
+const judgeUnresolved = new Set(jVer.unresolved);   // kärpe-auk pärast poolitamist → pending (MITTE vaikne keep)
 
-// ---- 3. REFERENTS (Sonnet-5, PIME, klastri-tasand) ----
-const rr = await rateClassifyReferenceClusters(clusters, candidateL3s, { apiKey: KEY });
-if (!rr.ok) {
-  const cause = isCreditError(String(rr.error || "")) ? "krediit maas (referents)" : `referents-LLM maas: ${String(rr.error || "").slice(0, 120)}`;
+// ---- 3. REFERENTS (Sonnet-5, PIME, klastri-tasand) — VÕTME-VERIFITSEERITUD ----
+const rVer = await resolveClustersSyncVerified(clusters, {
+  callFn: (g) => rateClassifyReferenceClusters(g, candidateL3s, { apiKey: KEY }),
+  onLog: (m) => console.error(`  [referents-verify] ${m}`),
+});
+if (!rVer.ok) {
+  const cause = isCreditError(String(rVer.firstError || "")) ? "krediit maas (referents)" : `referents-LLM maas: ${String(rVer.firstError || "").slice(0, 120)}`;
   degrade(targets.length, cause);
 }
-const refByKey = new Map((rr.results || []).map((r) => [r.cluster_key, r]));
+const refByKey = rVer.byKey;
+
+// võtme-terviklus-loendurid (Telegram/raport — vaikne kadu EI juhtu)
+const keyIntegrity = {
+  judge_pending: jVer.unresolved.length, judge_foreign: jVer.foreign.length, judge_dup_conflicts: jVer.duplicates.filter((d) => d.conflict).length,
+  ref_pending: rVer.unresolved.length, ref_foreign: rVer.foreign.length, ref_dup_conflicts: rVer.duplicates.filter((d) => d.conflict).length,
+};
+if (Object.values(keyIntegrity).some((x) => x > 0))
+  console.error(`  🔑 võtme-terviklus: kohtunik(pending ${keyIntegrity.judge_pending}, võõr ${keyIntegrity.judge_foreign}, dup-konflikt ${keyIntegrity.judge_dup_conflicts}) referents(pending ${keyIntegrity.ref_pending}, võõr ${keyIntegrity.ref_foreign}, dup-konflikt ${keyIntegrity.ref_dup_conflicts})`);
 
 // ---- 4. EHITA AHELA-KLASTRID + eralda ahel-mitte-sobivad (keep/group → review) ----
 const CHAIN_ACTIONS = new Set(["assign_existing", "new_l3"]);
@@ -170,7 +186,11 @@ for (const cl of clusters) {
   const rv = refByKey.get(cl.cluster_key);
   const judgeAction = jv?.action || null;
   if (!jv || !CHAIN_ACTIONS.has(judgeAction)) {
-    reviewClusters.push({ cl, jv, rv, reason: jv ? `kohtunik=${judgeAction}` : "kohtunik ei andnud otsust" });
+    // hindamata-kärpe-auk (poolitamine ammendus) → PENDING, mitte vaikne "otsuseta"; Telegram-loendur all
+    const noVerdictReason = judgeUnresolved.has(cl.cluster_key)
+      ? "pending: hindamata-kärpe-auk (poolitamine ammendus → järgmine öö)"
+      : "kohtunik ei andnud otsust";
+    reviewClusters.push({ cl, jv, rv, reason: jv ? `kohtunik=${judgeAction}` : noVerdictReason, pending: !jv && judgeUnresolved.has(cl.cluster_key) });
     continue;
   }
   const judgeTarget = jv.target_handle || null;
@@ -297,6 +317,8 @@ const summary = {
   live_assign_products: homedIds.length, live_assign_targets: Object.keys(handleIdOf).length,
   shadow_new_l3: shadowNew.length, review_products: reviewRows.length,
   code_bugs: codeBugHit, credit_hit: creditHit,
+  key_integrity: keyIntegrity,
+  pending_clusters: reviewClusters.filter((r) => r.pending).length,   // hindamata-kärpe-augud (ei "otsuseta")
   shadow_names: shadowNew.map((s) => ({ ck: s.ck, name: s.name, parentL2: s.parentL2, n: s.n, origin: s.origin })),
 };
 fs.writeFileSync(OUT, JSON.stringify({ summary, results: results.map(({ _cluster, ...r }) => r) }, null, 1));
@@ -304,6 +326,8 @@ console.log(`\n=== KOKKUVÕTE ===`);
 console.log(`LIVE-assign: ${homedIds.length} toodet → ${Object.keys(handleIdOf).length} olemas-L3`);
 console.log(`SHADOW (uus L3, oleks loonud): ${shadowNew.length}${shadowNew.map((s) => `\n   • «${s.name}» (${s.origin}) ×${s.n} → ${s.parentL2}`).join("")}`);
 console.log(`REVIEW-bucket: ${reviewRows.length} toodet | koodivigu: ${codeBugHit} | krediit-hit: ${creditHit}`);
+if (summary.pending_clusters || Object.values(keyIntegrity).some((x) => x > 0))
+  console.log(`VÕTME-TERVIKLUS: pending ${summary.pending_clusters} klastrit | kohtunik(võõr ${keyIntegrity.judge_foreign}, dup-konflikt ${keyIntegrity.judge_dup_conflicts}) referents(võõr ${keyIntegrity.ref_foreign}, dup-konflikt ${keyIntegrity.ref_dup_conflicts})`);
 
 if (DRY) {
   console.log(`\n[DRY] EI kirjutatud DB-sse. Tulemused: ${OUT}`);
@@ -412,6 +436,9 @@ lines.push(`• review-bucket ${reviewRows.length} toodet (nähtamatu/HOLD/keep 
 if (created) lines.push(`• ✅ AUTO-CREATE: ${created} uut L3 loodud (väravad + deploy + undo)`);
 else if (shadowNew.length) lines.push(`• 🌓 SHADOW: oleks loonud ${shadowNew.length} uut L3 (väravad läbitud, EI loodud): ${shadowNew.map((s) => `«${s.name}»`).join(", ")}`);
 if (codeBugHit) lines.push(`• 🐞 ${codeBugHit} koodiviga ahelas → shadow tagasi (mod 4)`);
+if (summary.pending_clusters) lines.push(`• ⏳ PENDING ${summary.pending_clusters} klastrit hindamata (kärpe-auk, poolitamine ammendus) → re-proov järgmisel ööl, MITTE vaikne kadu`);
+if (keyIntegrity.judge_foreign || keyIntegrity.ref_foreign) lines.push(`• 🔑 võõr-võtmeid visatud: kohtunik ${keyIntegrity.judge_foreign}, referents ${keyIntegrity.ref_foreign}`);
+if (keyIntegrity.judge_dup_conflicts || keyIntegrity.ref_dup_conflicts) lines.push(`• 🔑 dup-konflikte (esimene säilitatud): kohtunik ${keyIntegrity.judge_dup_conflicts}, referents ${keyIntegrity.ref_dup_conflicts}`);
 if (trans.changed && trans.enabled) lines.push(`• 🚀 ÜLEMINEK: auto-L3 loomine AKTIVEERITUD — ${trans.reason}`);
 else if (trans.changed && !trans.enabled) lines.push(`• ⏮ ÜLEMINEK: auto-create VÄLJA (${trans.reason})`);
 else if (!cfg0.auto_create_enabled) lines.push(`• shadow-režiim jätkub (${trans.cleanCount}/${MIN_CLEAN} puhast ettepanekut auto-create'ini)`);
