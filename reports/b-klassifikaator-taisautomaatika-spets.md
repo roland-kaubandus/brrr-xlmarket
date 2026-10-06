@@ -88,6 +88,28 @@ Kui 3 mudelit valivad eri L3 (või eri new_l3), aga nende valikutel on **ühine 
 
 ---
 
+## 2c. ASÜMMEETRILINE KINDLUS — struktuuri muutev otsus nõuab stabiilsust, toote paigutus mitte (Tarmo 2026-10-06)
+
+> **Põhiprintsiip:** toote PAIGUTAMINE olemas-L3-sse on tagasipööratav üksik-liigutus (undo = üks `UPDATE`). Uue L3 LOOMINE muudab STRUKTUURI (nav-puu, Meili-skeem, deploy mõlemale harule) — eksitus siin on kallis ja levib. Seega: **mida püsivam on otsuse tagajärg, seda rohkem sõltumatut kinnitust nõuame.** Fable on mittedeterministlik (tõestatud ETAPP 1-s: sama klaster andis järjestikustel jooksudel eri vastuse) → üksik Fable-kutse on viigimurdja, MITTE tõe-allikas; struktuuri-otsus ei tohi sõltuda ühest mündiviskest.
+
+**Kolm rada, kolm kindlus-nõuet:**
+
+| otsus | päritolu | Fable-nõue | kui nõue ei täitu |
+|---|---|---|---|
+| **assign_existing** | konsensus (kohtunik+referents sama L3) | **0 kutset** | — (kohe assign) |
+| **assign_existing** | 2/3 enamus (lahkheli, viigimurdja = assign) | **1 kutse** (viigimurdja) | — (paigutus ei vaja stabiilsust) |
+| **new_l3** | konsensus (kohtunik+referents MÕLEMAD new_l3) | **1 kutse** (kinnitus) | kinnitus = assign → konservatiivne fallback olemas-koju (Fable pakutud target või LCA) + signaal |
+| **new_l3** | viigimurdja (lahkheli, viigimurdja = new_l3) | **3 kutset, enamus** (≥2/3 new_l3) | enamust pole → toode olemas-koju (assign-enamus või LCA) + signaal kogunema, **MITTE uus L3** |
+
+**Loogika sõnades:**
+- **Paigutus on odav ja pöörduv** → üks Fable-hääl piisab (või konsensus ilma Fableta).
+- **Struktuur on kallis ja püsiv** → `new_l3` viigimurdja kaudu (= ainult ÜKS inim-proxy mudel tahtis uut L3) nõuab **3× sõltumatut Fable-häält, enamus otsustab**. Kui 3 jooksu ei anna ≥2 new_l3 → mittedeterminism tähendab, et tüüp **pole piisavalt stabiilselt eristuv** → toode läheb olemas-koju (Fable assign-enamus VÕI LCA §2b) ja **taksonoomia-signaal (§5) kogub**, kuni muster on selge → siis auto-loomine.
+- **Konsensus-`new_l3`** (mõlemad inim-proxy mudelid juba nõus) on tugev → piisab **1× Fable-kinnitusest**. Kui kinnitus vaidleb vastu (ütleb assign) → konservatiivne: ära loo, pane olemas-koju + signaal.
+
+**Why (HARD RULE #6 kooskõla):** masin töötab ise, aga struktuuri-plahvatus on peamine triivi-oht. Asümmeetria hoiab auto-paigutuse sujuva (odav rada, enamik tooteid) JA struktuuri-muutuse stabiilse (kallis rada, 3× hääl). Mittedeterminism ei tekita enam juhuslikke L3-sid — ta lükkab kahtluse signaali-kuhjumisse (nähtav, tagasipööratav), mitte inimese järjekorda.
+
+---
+
 ## 3. L3-GRANULAARSUSE REEGEL (prompt-tekst — MÕLEMAD mudelid kasutavad identset)
 
 > Lisatakse `scripts/lib/judge.mjs` klassifikaatori-prompti JA referentsi-prompti **sõna-sõnalt sama tekstina** — mõlemad mudelid mõõdavad sama mõõdupuuga (nõue b). Viigimurdja Fable saab sama teksti.
@@ -135,7 +157,7 @@ Kõik ÜHES transaktsioonis (BEGIN…COMMIT); iga värav = enne-commit kontroll.
 |---|---|---|
 | 1 | **DUP-värav** (semantiline "kas L3 juba olemas mujal?" — B2 considered_l3s + cross-main) | leitakse vaste → **EI loo**, assign sinna L3-sse |
 | 2 | **Über-frag guard L2** ([[over-frag-guard-l2]]) — ei loo uut L2 ühe L3 jaoks | kinnita olemas-L2 alla; pole sobivat L2 → HOLD + signaal |
-| 3 | **Nime-reegel** — parim Eesti nimi LOOMISHETKEL (Eesti etalon: 1a.ee/ajtooted.ee/…); piiripealne → märgi nime-faasi | nimi puudu/kahtlane → loo `proposed_name`, lipp nime-ülevaatuseks (ei blokeeri) |
+| 3 | **Nime-reegel + KLIENDI-ARUSAAMINE** — parim Eesti nimi LOOMISHETKEL (Eesti etalon: 1a.ee/ajtooted.ee/…) **JA** kliendi-arusaamise kontroll (vt all) | nimi kukub → mudel pakub uue, värav kontrollib uuesti (max 3×); ikka kukub → fallback olemas-koju |
 | 4 | **DB-migratsioon** — loo L3 mpath+handle (transaktsioonis, ON_ERROR_STOP) | SQL-viga → ROLLBACK |
 | 5 | **`inv-taxonomy.mjs`** (23 invariant: SEG/DUP/STRUCT/NAME/WIDTH/ORPHAN/COMPLETE) | FAIL → ROLLBACK + Telegram |
 | 6 | **`lock-harness.mjs post`** (distinct säilinud · mpath terve · struktuur-muutus→push · Meili värske) | FAIL → ROLLBACK + Telegram |
@@ -143,6 +165,14 @@ Kõik ÜHES transaktsioonis (BEGIN…COMMIT); iga värav = enne-commit kontroll.
 | 8 | **`merge-judge.mjs`** uus L3 vs õed (kas üle-fragmenteerisime?) | KÕRGE verdikt → **REVERT loomine**, assign lähimasse õde-L3 (nagu Piirdepostid-pretsedent) |
 | 9 | **4-sammu deploy** (CLAUDE.md): SSoT-regen `genyM` → Meili reindeks → `git push taxonomy-v4` → Coolify redeploy | samm puudu → nav stale; harness samm 6 püüab push-lünka |
 | 10 | **Telegram-teade + undo-handle** (L3 nimi · L2-vanem · N toodet · kandidaadid · batch_id) | — |
+
+**🔤 NIMEVÄRAV — KLIENDI-ARUSAAMINE (gate #3 laiendus, Tarmo 2026-10-06):** lisaks eestikeelsuse-kontrollile hindab värav (LLM, Fable) iga uue L3-nime:
+- **(1) Kas Eesti klient saab nimest KOHE õigesti aru, mis tooted seal on?**
+- **(2) Kas nimi on segi aetav mõne OLEMAS-kategooriaga või tavakeele tähendusega?**
+
+**Näide, mida värav PEAB püüdma:** «Puiduriiulid» — klient loeb "puidust **tehtud** riiulid" (riiul kui mööbel, materjal=puit), aga tegelikult on **puitmaterjali/saematerjali HOIUSTUS-riiulid** (konsool-käpad lauale/saematerjalile). Tähendus on seg-aetav → **FAIL** → mudel pakub selgema nime (nt «Saematerjali hoiuriiulid» / «Puidu laoriiulid»).
+
+**Tsükkel:** kukkunud nimi → mudel pakub uue → värav kontrollib uuesti, **max 3 korda**. Kui 3 katse järel ikka segane → **fallback olemas-koju** (ei loo L3 segase nimega; toode müügis, signaal kogub kuni selge nimi tekib). Sama konservatiivsus nagu §2c: parem olemas-kodu kui segane uus struktuur.
 
 **Undo:** iga auto-loomine logib ÜHE `review_decision_log` rea (actor=`auto-classifier`, channel=`pipeline`, batch_id, affected=loodud L3 + paigutatud tooted). `classifier-undo <batch_id>` → kustutab loodud L3, tooted tagasi HOLD-i, log `undone`. Sama muster nagu sünonüüm-undo (A).
 

@@ -2,28 +2,31 @@
 /**
  * classify-chain-dryrun.mjs — B-klassifikaatori otsustusahela ETAPP 1 DRY-run.
  *
- * Spec: reports/b-klassifikaator-taisautomaatika-spets.md §10 (ETAPP 1 AINULT).
+ * Spec: reports/b-klassifikaator-taisautomaatika-spets.md §2c + §4 + §10 (ETAPP 1 AINULT).
  * EI kirjuta DB-sse, EI deploy'i, EI loo päris L3-sid. Ainult simulatsioon + raport.
  *
- * Ahel (§2 + §2b):
- *   KOHTUNIK (Opus-4.8, taaskasut. calib-classify.json)
- *     → REFERENTS (Sonnet-5, taaskasut. calibration_rating → calib-rows.json)
- *     → [lahkheli] VIIGIMURDJA Fable-5 (sama granulaarsuse-prompt §3)
- *     → 2/3 enamus
- *     → [kõik eri meelt] MADALAIM ÜHINE ÜLEM (LCA, §2b)
+ * Ahel (§2 + §2b + §2c ASÜMMEETRILINE KINDLUS):
+ *   KOHTUNIK (Opus-4.8) → REFERENTS (Sonnet-5) → [lahkheli] VIIGIMURDJA Fable-5 → 2/3 enamus.
  *
- * Väravad (§4) DRY-run new_l3-lahenduse klastritel (DUP · über-frag · nime-reegel · merge/grab märge).
+ *   ⚖️ ASÜMMEETRIA (§2c):
+ *     • assign (konsensus)            → 0 Fable-kutset
+ *     • assign (2/3, viigimurdja)     → 1 Fable-kutse
+ *     • new_l3 (konsensus mõlemad)    → 1 Fable-KINNITUS (vaidleb vastu → fallback)
+ *     • new_l3 (viigimurdja kaudu)    → 3 Fable-häält, enamus ≥2/3; muidu olemas-koju + signaal
+ *
+ * Väravad (§4): DUP · über-frag · NIMEVÄRAV (eestikeelsus + KLIENDI-ARUSAAMINE, LLM, max 3× ümber-pakkumist) · merge/grab märge.
  *
  * Kasutus:
  *   set -a; . /opt/eumotors-tasks/.env; set +a   # ANTHROPIC_API_KEY (väärtust EI logi)
- *   node scripts/classify-chain-dryrun.mjs --out reports/classify-chain-dryrun.json
+ *   node scripts/classify-chain-dryrun.mjs --out reports/classify-chain-dryrun-v2.json [--fresh]
  */
 import fs from "node:fs";
 
 const REPO = "/opt/xlmarket-github";
 const SCRATCH = "/tmp/claude-0/-opt-xlmarket-github/8966820c-cfb5-4418-ab04-7e331739a85c/scratchpad";
 const val = (f, d) => { const i = process.argv.indexOf(f); return i > 0 ? process.argv[i + 1] : d; };
-const OUT = val("--out", `${REPO}/reports/classify-chain-dryrun.json`);
+const FRESH = process.argv.includes("--fresh");
+const OUT = val("--out", `${REPO}/reports/classify-chain-dryrun-v2.json`);
 const FABLE = "claude-fable-5";
 const API_KEY = process.env.ANTHROPIC_API_KEY;
 if (!API_KEY) { console.error("❌ ANTHROPIC_API_KEY puudub (set -a; . /opt/eumotors-tasks/.env; set +a)"); process.exit(2); }
@@ -34,41 +37,41 @@ const NODES = tree.nodes;
 const rows = JSON.parse(fs.readFileSync(`${SCRATCH}/calib-rows.json`, "utf8"));           // judge+ref verdiktid (40)
 const classify = JSON.parse(fs.readFileSync(`${REPO}/storefront/public/xl-admin/calib-classify.json`, "utf8")); // kohtuniku täisotsus + considered_l3s
 
-// cluster_key → kohtuniku rikas otsus (considered_l3s, parent_l2_handle, new_l3_name)
 const judgeByCk = {};
-for (const d of classify.decisions) {
-  if (!judgeByCk[d.cluster_key]) judgeByCk[d.cluster_key] = d.judge;
-}
+for (const d of classify.decisions) { if (!judgeByCk[d.cluster_key]) judgeByCk[d.cluster_key] = d.judge; }
 
 // ---- puu-helperid (LCA) ----
 function ancestors(handle) {
-  // tagastab [handle, parent, ..., L1] (handle kaasa arvatud)
-  const out = [];
-  let h = handle;
-  const seen = new Set();
-  while (h && NODES[h] && !seen.has(h)) {
-    seen.add(h);
-    out.push(h);
-    h = NODES[h].parent_handle || null;
-  }
+  const out = []; let h = handle; const seen = new Set();
+  while (h && NODES[h] && !seen.has(h)) { seen.add(h); out.push(h); h = NODES[h].parent_handle || null; }
   return out;
 }
-function nodeLevel(h) { return NODES[h]?.level ?? null; }
-function nodeName(h) { return NODES[h]?.name_et || NODES[h]?.name_en || h; }
-
+const nodeLevel = (h) => NODES[h]?.level ?? null;
+const nodeName = (h) => NODES[h]?.name_et || NODES[h]?.name_en || h;
 function lca(anchors) {
-  // anchors = handlete massiiv (L3 või L2). Tagastab {handle, level} sügavaima ühise ülema.
   const chains = anchors.filter(Boolean).map(ancestors);
   if (chains.length < 2) return null;
-  // ühisosa, säilita 1. keti järjekord (juurest-alla pole; keti algus = sügavaim)
   let common = chains[0].filter(h => chains.every(c => c.includes(h)));
   if (!common.length) return null;
-  // sügavaim ühine = suurim level
   common.sort((a, b) => (nodeLevel(b) || 0) - (nodeLevel(a) || 0));
   return { handle: common[0], level: nodeLevel(common[0]) };
 }
+const l3Children = (parentL2) => parentL2 && NODES[parentL2]
+  ? Object.entries(NODES).filter(([, x]) => x.parent_handle === parentL2 && x.level === 3) : [];
+const siblingsL3 = (parentL2) => l3Children(parentL2).map(([h, x]) => x.name_et || x.name_en || h);
+// päris L2 = NODES-is olemas, level 2, vähemalt 1 L3-laps (ei looda uut L2 ühe L3 jaoks)
+const isRealL2 = (h) => !!(h && NODES[h] && NODES[h].level === 2 && l3Children(h).length >= 1);
+const parentL2of = (h) => { let cur = h; const seen = new Set(); while (cur && NODES[cur] && !seen.has(cur)) { seen.add(cur); if (NODES[cur].level === 2) return cur; cur = NODES[cur].parent_handle; } return null; };
+// deterministlik parent-L2: valideeri mudeli pakutu; muidu tuleta anchor-L3-de enamus-L2 (Fable vaba-tekst ei ole usaldusväärne — tõest. «v4-ladu» ei eksisteeri)
+function resolveParentL2(proposed, anchorHandles) {
+  if (isRealL2(proposed)) return proposed;
+  const tally = {};
+  for (const a of anchorHandles.filter(Boolean)) { const l2 = parentL2of(a); if (isRealL2(l2)) tally[l2] = (tally[l2] || 0) + 1; }
+  const top = Object.entries(tally).sort((a, b) => b[1] - a[1])[0];
+  return top ? top[0] : null;
+}
 
-// ---- Fable viigimurdja (§3 granulaarsus-prompt sõna-sõnalt) ----
+// ---- §3 granulaarsus-prompt (sõna-sõnalt) ----
 const GRANULAR = `L3-GRANULAARSUS — millal toode väärib OMA uut L3 vs olemas-naaber-L3:
 
 Küsi: kas see tüüp erineb LÄHIMAST olemas-L3-st OSTJA-otsingu ja
@@ -97,7 +100,26 @@ funktsiooni/VÄLJUNDI mõttes nii palju, et ostja otsiks seda eraldi?
 • EKSKLUSIIVSUS- ja HÜBRIID-reeglid kehtivad granulaarsuse EES:
   ainult-laps/ainult-kommerts → segment-kodu; päris-kaheti → primaar sisust.`;
 
-async function fableTiebreak(cluster) {
+// ---- Fable toor-kutse (kasutuse-loendusega) ----
+let fableUsage = { input: 0, output: 0, calls: 0 };
+async function fableRaw(system, user) {
+  const res = await fetch("https://api.anthropic.com/v1/messages", {
+    method: "POST",
+    headers: { "x-api-key": API_KEY, "anthropic-version": "2023-06-01", "content-type": "application/json" },
+    // Fable: thinking always-on sööb eelarvet → anna ruumi, et JSON ei katkeks
+    body: JSON.stringify({ model: FABLE, max_tokens: 8000, system, messages: [{ role: "user", content: user }] }),
+  });
+  if (!res.ok) throw new Error(`Fable HTTP ${res.status}: ${(await res.text()).slice(0, 300)}`);
+  const j = await res.json();
+  if (j.usage) { fableUsage.input += j.usage.input_tokens || 0; fableUsage.output += j.usage.output_tokens || 0; fableUsage.calls++; }
+  const raw = (j.content || []).find(c => c.type === "text")?.text || "";
+  const m = raw.match(/\{[\s\S]*\}/);
+  if (!m) throw new Error(`Fable JSON puudub: ${raw.slice(0, 200)}`);
+  return JSON.parse(m[0]);
+}
+
+// ---- Fable üks sõltumatu granulaarsuse-hääl (viigimurdja / 3×-hääletus / kinnitus) ----
+async function fableVote(cluster) {
   const cands = cluster.candidates.map(h => `  - ${h}  («${nodeName(h)}», L${nodeLevel(h) ?? "?"})`).join("\n");
   const titles = cluster.titles.slice(0, 4).map(t => `  • ${t}`).join("\n");
   const system = `Sa oled sõltumatu taksonoomia-viigimurdja XL e-poe tootekataloogis (VEVOR-tooted).
@@ -119,198 +141,294 @@ KAALUTAVAD OLEMAS-L3-d (DUP-värav — kas mõni sobib?):
 ${cands || "  (kohtunik ei pakkunud considered_l3s)"}
 
 Otsusta: assign_existing (vali täpne target_handle ülalt) VÕI new_l3 (anna eesti nimi + parent_l2_handle).`;
+  return fableRaw(system, user);
+}
 
-  const body = {
-    model: FABLE,
-    max_tokens: 8000, // Fable: thinking always-on sööb eelarvet → anna ruumi, et JSON ei katkeks
-    system,
-    messages: [{ role: "user", content: user }],
-  };
-  const res = await fetch("https://api.anthropic.com/v1/messages", {
-    method: "POST",
-    headers: { "x-api-key": API_KEY, "anthropic-version": "2023-06-01", "content-type": "application/json" },
-    body: JSON.stringify(body),
-  });
-  if (!res.ok) throw new Error(`Fable HTTP ${res.status}: ${(await res.text()).slice(0, 300)}`);
-  const j = await res.json();
-  const textBlock = (j.content || []).find(c => c.type === "text");
-  const raw = textBlock?.text || "";
-  const m = raw.match(/\{[\s\S]*\}/);
-  if (!m) throw new Error(`Fable JSON puudub: ${raw.slice(0, 200)}`);
-  const parsed = JSON.parse(m[0]);
-  parsed._usage = j.usage;
-  return parsed;
+// ---- NIMEVÄRAV — kliendi-arusaamine (§4 gate #3, LLM) ----
+async function fableNameCheck(name, cluster, siblingNames) {
+  const titles = cluster.titles.slice(0, 5).map(t => `  • ${t}`).join("\n");
+  const sibs = siblingNames.length ? siblingNames.map(s => `  - ${s}`).join("\n") : "  (pole)";
+  const system = `Sa hindad UUE L3-kategooria nime arusaadavust Eesti e-poe kliendile. KAKS küsimust:
+(1) Kas Eesti klient saab nimest KOHE õigesti aru, MIS TOOTED seal on?
+(2) Kas nimi on segi aetav mõne OLEMAS-kategooriaga või TAVAKEELE tähendusega?
+
+NÄIDE HALVAST NIMEST: «Puiduriiulid» — klient loeb "puidust TEHTUD riiulid" (riiul kui mööbel, materjal=puit),
+aga tegelikult on tooted puitmaterjali/saematerjali HOIUSTUS-riiulid (konsool-käpad). Tähendus seg-aetav → ok=false,
+pakutud parem nimi nt «Saematerjali hoiuriiulid» või «Puidu laoriiulid».
+
+Hinda ANGI nime tegelike toodete vastu. Kui nimi on selge ja üheselt mõistetav → ok=true.
+Tagasta AINULT JSON: {"ok":true|false,"reason":"<1 lause>","confusable_with":"<millega segi või null>","proposed_name":"<selgem eesti nimi või null>"}`;
+  const user = `PAKUTUD NIMI: «${name}»
+
+TEGELIKUD TOOTED selles L3-s:
+${titles}
+
+KÕRVAL-L3-d samas L2-s (segadus-kontroll):
+${sibs}
+
+Kas Eesti klient saab «${name}» nimest kohe õigesti aru? Kas seg-aetav?`;
+  return fableRaw(system, user);
 }
 
 // ---- klastrite koostamine ----
 const clustersMap = {};
-for (const r of rows) {
-  (clustersMap[r.ck] ||= []).push(r);
-}
+for (const r of rows) (clustersMap[r.ck] ||= []).push(r);
 const clusters = Object.entries(clustersMap).map(([ck, items]) => {
   const j = judgeByCk[ck] || {};
-  const judgeAction = items[0].judge;
   const judgeTarget = items[0].jt || j.target_handle || null;
-  const refAction = items[0].ref;
   const refTarget = items[0].rt || null;
-  const refReason = items.find(i => i.rr)?.rr || "";
   const candidates = (j.considered_l3s || []).slice();
   if (judgeTarget && !candidates.includes(judgeTarget)) candidates.unshift(judgeTarget);
   if (refTarget && !candidates.includes(refTarget)) candidates.push(refTarget);
   return {
-    ck, n: items.length, items,
-    titles: items.map(i => i.title),
-    judgeAction, judgeTarget, refAction, refTarget, refReason,
-    judgeNewL3Name: j.new_l3_name || null,
-    judgeParentL2: j.parent_l2_handle || null,
-    candidates,
+    ck, n: items.length, items, titles: items.map(i => i.title),
+    judgeAction: items[0].judge, judgeTarget, refAction: items[0].ref, refTarget,
+    refReason: items.find(i => i.rr)?.rr || "",
+    judgeNewL3Name: j.new_l3_name || null, judgeParentL2: j.parent_l2_handle || null, candidates,
   };
 });
+const voteKey = (action, target) => action === "new_l3" ? "NEW" : `ASSIGN:${target || "?"}`;
 
-// ---- hääle-võti ----
-function voteKey(action, target) {
-  return action === "new_l3" ? "NEW" : `ASSIGN:${target || "?"}`;
-}
-
-// ---- über-frag + DUP + nime värava DRY simulatsioon (§4) ----
-function gateDryRun(cluster, parentL2) {
+// ---- über-frag + DUP + merge/grab märge (nimevärav eraldi, LLM) ----
+function structGates(cluster, parentL2) {
   const gates = {};
-  // DUP-värav: considered_l3s olemas?
   gates.dup = (cluster.candidates && cluster.candidates.length >= 2)
     ? { pass: true, note: `${cluster.candidates.length} kaalutud L3; ükski ei sobinud` }
     : { pass: false, note: "considered_l3s < 2 → DUP-väravat ei saa kinnitada → HOLD" };
-  // über-frag-guard: kas parent-L2-l on juba ≥2 L3? (ei loo uut L2 ühe L3 jaoks)
-  let siblingCount = null;
-  if (parentL2 && NODES[parentL2]) {
-    siblingCount = Object.values(NODES).filter(x => x.parent_handle === parentL2 && x.level === 3).length;
+  if (!parentL2) {
+    gates.uberfrag = { pass: false, note: "parent_l2_handle puudub → über-frag ebaselge → HOLD" };
+  } else if (!isRealL2(parentL2)) {
+    gates.uberfrag = { pass: false, note: `parent-L2 «${parentL2}» EI ole kehtiv L2 (puudub NODES-is / vale level / 0 L3-last) → ei looda uut L2 → HOLD` };
+  } else {
+    gates.uberfrag = { pass: true, note: `parent-L2 «${nodeName(parentL2)}» (L2, ${l3Children(parentL2).length} õde-L3) → L3 lisandub olemas-L2-le` };
   }
-  gates.uberfrag = parentL2
-    ? { pass: siblingCount === null || siblingCount >= 1, note: `parent-L2 «${nodeName(parentL2)}» olemas, ${siblingCount ?? "?"} õde-L3 → L3 lisandub olemas-L2-le (uut L2 EI looda)` }
-    : { pass: false, note: "parent_l2_handle puudub → über-frag kontroll ebaselge → HOLD" };
-  // nime-reegel (NAME-01): nimi peab olema eestikeelne. DRY: inglise-sõna-blokilist
-  // (prod = glossary/LLM semantiline kontroll). Eesti liitsõnad (Mängulauad) EI tohi lipituda.
-  const EN = new Set(["rope","ropes","table","tables","battery","batteries","storage","rack","racks","game","games","gaming","dining","cart","carts","wagon","shelf","shelves","holder","solar","panel","panels","bag","bags","cord","board","lumber","wood","steel","for","with","and","the","kids","tier","foldable","wall","mobile","cutter","saw","tile"]);
-  const nm = cluster.judgeNewL3Name || cluster.fable?.new_l3_name;
-  const enHit = nm ? nm.toLowerCase().split(/[\s\-/]+/).filter(w => EN.has(w)) : [];
-  gates.name = nm
-    ? { pass: enHit.length === 0, note: enHit.length ? `nimi «${nm}» sisaldab ingliskeelseid sõnu (${enHit.join(", ")}) → nime-reegel FAIL` : `nimi: «${nm}»`, name: nm }
-    : { pass: false, note: "eestikeelne L3-nimi puudub → nime-reegel FAIL → HOLD" };
-  // merge/grab: DRY — ei jookse (API), ainult märge et jookseks peale loomist
-  gates.merge_grab = { pass: null, note: "DRY: merge-judge + grab-bag jookseks PÄRAST loomist (ETAPP 2), siin ei käivitata" };
-  const blocking = Object.entries(gates).filter(([k, g]) => g.pass === false).map(([k]) => k);
-  return { gates, allPass: blocking.length === 0, blocking };
+  return gates;
 }
 
-// ---- Fable vahemälu (DRY: ära kutsu API-t uuesti) ----
+// ---- vahemälu ----
 const CACHE = `${REPO}/reports/classify-chain-fable-cache.json`;
-let fableCache = {};
-try { fableCache = JSON.parse(fs.readFileSync(CACHE, "utf8")); } catch {}
+let cache = {};
+try { cache = JSON.parse(fs.readFileSync(CACHE, "utf8")); } catch {}
+// migratsioon: vana skeem {ck: verdict} → vote:ck:0
+if (!cache.__v2) {
+  const mig = { __v2: true };
+  for (const [k, v] of Object.entries(cache)) if (v && v.action) mig[`vote:${k}:0`] = v;
+  cache = mig;
+}
+const saveCache = () => fs.writeFileSync(CACHE, JSON.stringify(cache, null, 2));
+async function cachedVote(ck, i, cluster) {
+  const key = `vote:${ck}:${i}`;
+  if (!FRESH && cache[key]) return cache[key];
+  const v = await fableVote(cluster); cache[key] = v; saveCache(); return v;
+}
+async function cachedConfirm(ck, cluster) {
+  const key = `confirm:${ck}`;
+  if (!FRESH && cache[key]) return cache[key];
+  const v = await fableVote(cluster); cache[key] = v; saveCache(); return v;
+}
+async function cachedName(ck, startName, cluster, sibs) {
+  const key = `name:${ck}`;
+  if (!FRESH && cache[key]) return cache[key];
+  const attempts = []; let name = startName; let ok = false, finalName = null;
+  for (let i = 0; i < 3; i++) {
+    const v = await fableNameCheck(name, cluster, sibs);
+    attempts.push({ name, ok: !!v.ok, reason: v.reason, confusable_with: v.confusable_with || null, proposed: v.proposed_name || null });
+    if (v.ok) { ok = true; finalName = name; break; }
+    if (!v.proposed_name || v.proposed_name === name) break;
+    name = v.proposed_name;
+  }
+  const out = { ok, finalName, attempts };
+  cache[key] = out; saveCache(); return out;
+}
 
-// ---- peamine ahel ----
+// ---- helper: assign-enamuse / LCA fallback uue-l3-tagasilükke jaoks ----
+function fallbackHome(cluster, votes) {
+  const assignVotes = [];
+  if (cluster.judgeAction !== "new_l3" && cluster.judgeTarget) assignVotes.push(cluster.judgeTarget);
+  if (cluster.refAction !== "new_l3" && cluster.refTarget) assignVotes.push(cluster.refTarget);
+  for (const v of votes) if (v.action !== "new_l3" && v.target_handle) assignVotes.push(v.target_handle);
+  const tally = {}; for (const t of assignVotes) tally[t] = (tally[t] || 0) + 1;
+  const top = Object.entries(tally).sort((a, b) => b[1] - a[1])[0];
+  if (top && top[1] >= 2) return { kind: "assign", target: top[0], note: `assign-enamus (${top[1]}×)` };
+  // ei ole assign-enamust → LCA
+  const anchorOf = (action, target, parentL2) => action === "new_l3" ? (parentL2 || null) : target;
+  const anchors = [
+    anchorOf(cluster.judgeAction, cluster.judgeTarget, cluster.judgeParentL2),
+    anchorOf(cluster.refAction, cluster.refTarget, null),
+    ...votes.map(v => anchorOf(v.action, v.target_handle, v.parent_l2_handle)),
+  ].filter(Boolean);
+  const common = lca(anchors);
+  if (assignVotes.length) return { kind: "assign", target: assignVotes[0], note: "assign-kodu (üksik mudel)" };
+  if (common && common.level === 2) return { kind: "lca", target: common.handle, level: 2, note: "LCA L2-muud" };
+  if (common && common.level === 1) return { kind: "lca", target: common.handle, level: 1, note: "LCA L1-muud" };
+  return { kind: "invisible", note: "ühist ülemat pole → nähtamatu + digest" };
+}
+
+// ---- peamine ahel (§2c asümmeetriline kindlus) ----
 const results = [];
-let fableUsage = { input: 0, output: 0, calls: 0 };
-
 for (const c of clusters) {
-  const r = { ck: c.ck, n: c.n, titles: c.titles, judge: `${c.judgeAction}${c.judgeTarget ? " → " + c.judgeTarget : ""}`, ref: `${c.refAction}${c.refTarget ? " → " + c.refTarget : ""}` };
+  const r = {
+    ck: c.ck, n: c.n, titles: c.titles,
+    judge: `${c.judgeAction}${c.judgeTarget ? " → " + c.judgeTarget : ""}`,
+    ref: `${c.refAction}${c.refTarget ? " → " + c.refTarget : ""}`,
+    fableVotes: [],
+  };
   const jKey = voteKey(c.judgeAction, c.judgeTarget);
   const rKey = voteKey(c.refAction, c.refTarget);
 
   if (jKey === rKey) {
-    // KONSENSUS (2 mudelit nõus) — Fable pole vaja
-    r.path = c.judgeAction === "new_l3" ? "konsensus→new_l3" : "konsensus→assign";
-    r.decision = c.judgeAction === "new_l3" ? "new_l3" : `assign:${c.judgeTarget}`;
-    r.fable = null;
-  } else {
-    // LAHKHELI → Fable viigimurdja (vahemälust kui olemas)
-    let f;
-    if (fableCache[c.ck]) {
-      f = fableCache[c.ck];
-    } else {
-      f = await fableTiebreak(c);
-      if (f._usage) { fableUsage.input += f._usage.input_tokens || 0; fableUsage.output += f._usage.output_tokens || 0; fableUsage.calls++; }
-      fableCache[c.ck] = f;
-      fs.writeFileSync(CACHE, JSON.stringify(fableCache, null, 2));
-    }
-    c.fable = f;
-    const fKey = voteKey(f.action, f.target_handle);
-    r.fable = `${f.action}${f.target_handle ? " → " + f.target_handle : f.new_l3_name ? " («" + f.new_l3_name + "»)" : ""} — ${f.reason}`;
-    // 2/3 enamus
-    const votes = [jKey, rKey, fKey];
-    const tally = {};
-    for (const v of votes) tally[v] = (tally[v] || 0) + 1;
-    const win = Object.entries(tally).sort((a, b) => b[1] - a[1])[0];
-    if (win[1] >= 2) {
-      r.path = `2-of-3 (${win[0]})`;
-      if (win[0] === "NEW") { r.decision = "new_l3"; }
-      else { r.decision = win[0].replace("ASSIGN:", "assign:"); }
-    } else {
-      // KÕIK ERI MEELT → LCA
-      const anchorOf = (action, target, parentL2) => action === "new_l3" ? (parentL2 || null) : target;
-      const anchors = [
-        anchorOf(c.judgeAction, c.judgeTarget, c.judgeParentL2),
-        anchorOf(c.refAction, c.refTarget, null),
-        anchorOf(f.action, f.target_handle, f.parent_l2_handle),
-      ].filter(Boolean);
-      const common = lca(anchors);
-      if (common && common.level === 2) {
-        r.path = "ühine ülem (L2)";
-        r.decision = `LCA-müügis: ${common.handle}-muud (holding-L3 «${nodeName(common.handle)} / muud»)`;
-      } else if (common && common.level === 1) {
-        r.path = "ühine ülem (L1)";
-        r.decision = `LCA-müügis: ${common.handle}-muud (L1 «${nodeName(common.handle)}» muud)`;
+    if (c.judgeAction === "new_l3") {
+      // KONSENSUS new_l3 → 1× Fable KINNITUS (§2c)
+      const f = await cachedConfirm(c.ck, c);
+      c.fableConf = f;
+      r.fableVotes.push({ role: "kinnitus", v: `${f.action}${f.target_handle ? " → " + f.target_handle : f.new_l3_name ? " («" + f.new_l3_name + "»)" : ""}` });
+      if (f.action === "new_l3") {
+        r.path = "konsensus→new_l3 (1× kinnitus ✓)";
+        r.decision = "new_l3"; r.newOrigin = "konsensus";
+        r.newName = c.judgeNewL3Name || f.new_l3_name || null;
+        r.parentL2 = c.judgeParentL2 || f.parent_l2_handle || null;
       } else {
-        r.path = "nähtamatu";
-        r.decision = "NÄHTAMATU (ühist ülemat pole ka L1-s) → digest-trend";
+        // kinnitus vaidleb vastu → konservatiivne fallback (§2c)
+        const fb = fallbackHome(c, [f]);
+        r.path = "konsensus→new_l3 → kinnitus VASTU → fallback";
+        r.decision = fb.kind === "assign" ? `assign:${fb.target}` : fb.kind === "lca" ? `LCA-müügis: ${fb.target}-muud (L${fb.level})` : "NÄHTAMATU";
+        r.signal = true; r.fallbackReason = `konsensus-new_l3 kinnitus=assign → ${fb.note}`;
       }
-      r.lca_anchors = anchors;
+    } else {
+      // KONSENSUS assign → 0 Fable
+      r.path = "konsensus→assign"; r.decision = `assign:${c.judgeTarget}`;
+    }
+  } else {
+    // LAHKHELI → 1 viigimurdja-hääl
+    const f1 = await cachedVote(c.ck, 0, c);
+    c.fable = f1;
+    r.fableVotes.push({ role: "viigimurdja", v: `${f1.action}${f1.target_handle ? " → " + f1.target_handle : f1.new_l3_name ? " («" + f1.new_l3_name + "»)" : ""} — ${f1.reason}` });
+    const votes1 = [jKey, rKey, voteKey(f1.action, f1.target_handle)];
+    const tally1 = {}; for (const v of votes1) tally1[v] = (tally1[v] || 0) + 1;
+    const win1 = Object.entries(tally1).sort((a, b) => b[1] - a[1])[0];
+
+    if (win1[0] === "NEW" && win1[1] >= 2) {
+      // new_l3 VIIGIMURDJA kaudu → 3× Fable-hääletus (§2c)
+      const v2 = await cachedVote(c.ck, 1, c);
+      const v3 = await cachedVote(c.ck, 2, c);
+      const votes3 = [f1, v2, v3];
+      for (const [i, v] of [[2, v2], [3, v3]]) r.fableVotes.push({ role: `hääl ${i}`, v: `${v.action}${v.target_handle ? " → " + v.target_handle : v.new_l3_name ? " («" + v.new_l3_name + "»)" : ""}` });
+      const newCount = votes3.filter(v => v.action === "new_l3").length;
+      r.vote3 = `${newCount}/3 new_l3`;
+      if (newCount >= 2) {
+        r.path = `viigimurdja→new_l3 (3× hääletus: ${newCount}/3 ✓)`;
+        r.decision = "new_l3"; r.newOrigin = "viigimurdja";
+        const newNames = votes3.filter(v => v.action === "new_l3" && v.new_l3_name).map(v => v.new_l3_name);
+        r.newName = newNames[0] || c.judgeNewL3Name || null;
+        r.parentL2 = votes3.find(v => v.action === "new_l3" && v.parent_l2_handle)?.parent_l2_handle || c.judgeParentL2 || null;
+      } else {
+        // enamust pole → olemas-koju + signaal (§2c), MITTE uus L3
+        const fb = fallbackHome(c, votes3);
+        r.path = `viigimurdja→new_l3 (3× hääletus: ${newCount}/3 — enamust POLE) → fallback + signaal`;
+        r.decision = fb.kind === "assign" ? `assign:${fb.target}` : fb.kind === "lca" ? `LCA-müügis: ${fb.target}-muud (L${fb.level})` : "NÄHTAMATU";
+        r.signal = true; r.fallbackReason = `3× ei andnud new_l3-enamust → ${fb.note}`;
+      }
+    } else if (win1[1] >= 2) {
+      // assign 2/3 → 1 kutse piisab (§2c)
+      r.path = `2-of-3 (${win1[0]})`;
+      r.decision = win1[0].replace("ASSIGN:", "assign:");
+    } else {
+      // kõik eri meelt → LCA (§2b)
+      const fb = fallbackHome(c, [f1]);
+      r.path = fb.kind === "lca" ? `ühine ülem (L${fb.level})` : fb.kind === "assign" ? "kõik-eri → assign-kodu" : "nähtamatu";
+      r.decision = fb.kind === "assign" ? `assign:${fb.target}` : fb.kind === "lca" ? `LCA-müügis: ${fb.target}-muud (L${fb.level})` : "NÄHTAMATU (ühist ülemat pole)";
+      if (fb.kind !== "assign") r.signal = true;
     }
   }
   results.push({ ...r, _cluster: c });
 }
 
-// ---- väravad new_l3-lahenduse klastritel ----
-const newl3Clusters = results.filter(r => r.decision === "new_l3");
-for (const r of newl3Clusters) {
+// ---- NIMEVÄRAV + struktuur-väravad new_l3-otsuse klastritel ----
+for (const r of results) {
+  if (r.decision !== "new_l3") continue;
   const c = r._cluster;
-  const parentL2 = c.judgeParentL2 || c.fable?.parent_l2_handle || null;
-  r.gate = gateDryRun(c, parentL2);
+  const proposed = r.parentL2 || c.judgeParentL2 || null;
+  const anchors = [...new Set([...(c.candidates || []), c.judgeTarget, c.refTarget].filter(Boolean))];
+  const parentL2 = resolveParentL2(proposed, anchors);
+  r.parentL2 = parentL2; r.parentL2_proposed = proposed;
+  const gates = structGates(c, parentL2);
+  // nimevärav (LLM, kliendi-arusaamine, max 3×)
+  const sibs = siblingsL3(parentL2);
+  const startName = r.newName || c.judgeNewL3Name;
+  let nameGate;
+  if (!startName) {
+    nameGate = { ok: false, finalName: null, attempts: [], note: "eestikeelne nimi puudub" };
+  } else if (!gates.dup.pass) {
+    nameGate = { ok: null, finalName: null, attempts: [], note: "DUP-värav kukkus enne → nime-kontrolli ei jõutud" };
+  } else {
+    nameGate = await cachedName(c.ck, startName, c, sibs);
+  }
+  gates.name = {
+    pass: nameGate.ok === true ? true : nameGate.ok === null ? null : false,
+    note: nameGate.ok === true
+      ? (nameGate.finalName === startName ? `nimi «${nameGate.finalName}» selge` : `nimi parandati «${startName}» → «${nameGate.finalName}» (segadus-kaitse)`)
+      : nameGate.note || `nimi «${startName}» jäi segaseks 3 katse järel → FAIL`,
+    startName, finalName: nameGate.finalName, attempts: nameGate.attempts,
+  };
+  gates.merge_grab = { pass: null, note: "DRY: merge-judge + grab-bag jookseks PÄRAST loomist (ETAPP 2)" };
+  const blocking = Object.entries(gates).filter(([, g]) => g.pass === false).map(([k]) => k);
+  r.gate = { gates, allPass: blocking.length === 0, blocking };
+
+  if (nameGate.ok === true && nameGate.finalName) r.finalName = nameGate.finalName;
+
+  // kui DUP või über-frag kukub → fallback olemas-koju (toode müügis)
+  if (!gates.dup.pass || !gates.uberfrag.pass) {
+    const home = c.judgeAction !== "new_l3" ? c.judgeTarget : (c.candidates[0] || null);
+    r.decisionFinal = home ? `assign:${home} (värav-blokk → turvaline fallback)` : "HOLD";
+    r.blockedBy = blocking;
+  } else if (!gates.name.pass && gates.name.pass !== null) {
+    // nimevärav kukkus 3× → fallback olemas-koju (§4 gate #3)
+    const home = c.candidates[0] || c.judgeTarget || null;
+    r.decisionFinal = home ? `assign:${home} (nimi segane 3× → fallback)` : "HOLD";
+    r.signal = true; r.blockedBy = ["name"];
+  }
 }
 
-// ---- müügis vs nähtamatu loendus (toote-tasemel) ----
+// ---- müügis vs nähtamatu ----
 let muugis = 0, nahtamatu = 0;
 for (const r of results) {
-  if (r.path === "nähtamatu") nahtamatu += r.n; else muugis += r.n;
+  const dec = r.decisionFinal || r.decision;
+  if (dec && dec.startsWith("NÄHTAMATU")) nahtamatu += r.n; else muugis += r.n;
 }
 
 // ---- väljund ----
+const newl3Final = results.filter(r => (r.decisionFinal || r.decision) === "new_l3");
 const summary = {
-  generated_at: new Date().toISOString(),
-  dry: true,
-  clusters: results.length,
-  products: rows.length,
-  fable_calls: fableUsage.calls,
-  fable_usage: fableUsage,
+  generated_at: new Date().toISOString(), dry: true,
+  clusters: results.length, products: rows.length,
+  fable_calls: fableUsage.calls, fable_usage: fableUsage,
   fable_cost_usd: +((fableUsage.input / 1e6) * 10 + (fableUsage.output / 1e6) * 50).toFixed(4),
   muugis, nahtamatu,
-  new_l3_clusters: newl3Clusters.length,
+  new_l3_created: newl3Final.length,
+  new_l3_names: newl3Final.map(r => ({ ck: r.ck, name: r.finalName || r.newName, parentL2: r.parentL2, n: r.n, origin: r.newOrigin })),
 };
 const clean = results.map(({ _cluster, ...r }) => r);
 fs.writeFileSync(OUT, JSON.stringify({ summary, clusters: clean }, null, 2));
 
 // ---- konsool ----
-console.log("\n═══ ETAPP 1 DRY-RUN — otsustusahel 40 toote peal (13 klastrit) ═══\n");
+console.log("\n═══ ETAPP 1 DRY-RUN v2 — asümmeetriline kindlus + nimevärav ═══\n");
 for (const r of clean) {
   console.log(`▸ ${r.ck}  ×${r.n}  [${r.path}]`);
-  console.log(`   "${r.titles[0].slice(0, 60)}"`);
-  console.log(`   kohtunik: ${r.judge}`);
-  console.log(`   referents: ${r.ref}`);
-  if (r.fable) console.log(`   Fable: ${r.fable}`);
-  console.log(`   → OTSUS: ${r.decision}`);
-  if (r.gate) console.log(`   VÄRAV: ${r.gate.allPass ? "✅ KÕIK OK" : "🛑 BLOKK: " + r.gate.blocking.join(", ")}  ${Object.entries(r.gate.gates).map(([k, g]) => `${k}=${g.pass === null ? "—" : g.pass ? "✓" : "✗"}`).join(" ")}`);
+  console.log(`   "${r.titles[0].slice(0, 58)}"`);
+  console.log(`   kohtunik: ${r.judge}   referents: ${r.ref}`);
+  for (const fv of r.fableVotes) console.log(`   Fable[${fv.role}]: ${fv.v}`);
+  if (r.vote3) console.log(`   3×-hääletus: ${r.vote3}`);
+  console.log(`   → OTSUS: ${r.decisionFinal || r.decision}`);
+  if (r.signal) console.log(`   ⚑ signaal kogub (§5)${r.fallbackReason ? " — " + r.fallbackReason : ""}`);
+  if (r.gate) {
+    console.log(`   VÄRAV: ${r.gate.allPass ? "✅ KÕIK OK" : "🛑 BLOKK: " + r.gate.blocking.join(", ")}  ${Object.entries(r.gate.gates).map(([k, g]) => `${k}=${g.pass === null ? "—" : g.pass ? "✓" : "✗"}`).join(" ")}`);
+    if (r.gate.gates.name?.attempts?.length) for (const a of r.gate.gates.name.attempts) console.log(`      nimi «${a.name}» → ${a.ok ? "✓ selge" : "✗ " + (a.reason || "")}${a.proposed ? "  ⇒ pakub «" + a.proposed + "»" : ""}`);
+  }
   console.log("");
 }
 console.log("─────────────────────────────────────────────");
 console.log(`Fable kutseid: ${summary.fable_calls}  (in ${fableUsage.input} / out ${fableUsage.output} tok, ~$${summary.fable_cost_usd})`);
-console.log(`new_l3-lahendusega klastreid: ${summary.new_l3_clusters}`);
-console.log(`MÜÜGIS: ${muugis} toodet   NÄHTAMATU: ${nahtamatu} toodet  (kokku ${rows.length})`);
+console.log(`UUS L3 loodaks: ${summary.new_l3_created}`);
+for (const n of summary.new_l3_names) console.log(`   • «${n.name}» (${n.origin}) ×${n.n} → ${n.parentL2}`);
+console.log(`MÜÜGIS: ${muugis}   NÄHTAMATU: ${nahtamatu}  (kokku ${rows.length})`);
 console.log(`💾 ${OUT}`);
