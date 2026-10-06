@@ -98,11 +98,14 @@ async function refSynonym() {
 
 // ───────────────────────── KLASSIFIKAATOR ─────────────────────────
 async function refClassify() {
-  const { rateClassifyReference, REF_MODEL } = await import("./lib/judge.mjs");
+  // B1: klassifikaatori-kohtunik on Opus → referents PEAB olema SÕLTUMATU mudel (Sonnet-5).
+  const { rateClassifyReference, REF_MODEL_CLSF } = await import("./lib/judge.mjs");
+  const { ensureOverlapSchema, recordOverlap } = await import("./lib/overlap-signal.mjs");
+  ensureOverlapSchema(q);
   const calib = readCalib("classify");
   const seed = calib.seed || "xlm";
   const items = calib.decisions;
-  console.log(`\n🏷 KLASSIFIKAATOR-REFERENTS (PIME, Opus ${REF_MODEL}) — valim=${items.length} seed=${seed}`);
+  console.log(`\n🏷 KLASSIFIKAATOR-REFERENTS (PIME, SÕLTUMATU mudel ${REF_MODEL_CLSF}) — valim=${items.length} seed=${seed}`);
 
   // kandidaadid = v4 LEHT-L3-d (sama nimekiri mis kohtunikul)
   const tree = JSON.parse(fs.readFileSync(`${ROOT}/storefront/lib/category-tree.generated.json`, "utf8"));
@@ -122,12 +125,12 @@ async function refClassify() {
   const refById = {};
   for (const b of chunk(items, 6)) {
     const batch = b.map((d) => ({ id: d.id, title: prodById[d.id]?.title || d.title, title_et: prodById[d.id]?.title_et || "", description: prodById[d.id]?.description || "" }));
-    const res = await rateClassifyReference(batch, candidateL3s, { apiKey: API_KEY, model: REF_MODEL });
+    const res = await rateClassifyReference(batch, candidateL3s, { apiKey: API_KEY, model: REF_MODEL_CLSF });
     if (!res.ok) { console.error(`  ⚠️ referents-batch kukkus: ${res.error}`); continue; }
     for (const r of res.results) refById[r.id] = r;
   }
 
-  let agree = 0, valeAssign = 0, safeDefault = 0, rated = 0;
+  let agree = 0, valeAssign = 0, safeDefault = 0, rated = 0, overlaps = 0;
   const rows = [];
   for (const d of items) {
     const ref = refById[d.id];
@@ -144,14 +147,27 @@ async function refClassify() {
     const sameAssign = judgeAction === "assign_existing" && refAction === "assign_existing" && judgeTarget === refTarget;
     const isValeAssign = judgeAction === "assign_existing" && !sameAssign;
     if (isValeAssign) valeAssign++;
-    saveRating({ kind: "classify", seed, item_id: d.id, reference_verdict: refAction, judge_verdict: judgeAction, agreed, meta: { title: d.title, judge_target: judgeTarget, reference_target: refTarget, vale_assign: isValeAssign, reference_reason: ref.reason, cluster_key: d.cluster_key } });
-    rows.push({ title: d.title, judgeAction, judgeTarget, refAction, refTarget, agreed, isValeAssign, reason: ref.reason });
+    // B3: mõlemad assign_existing aga ERI target → taksonoomia-kattuvuse signaal (auto-kogu, mitte inimene).
+    let overlapPair = null;
+    if (judgeAction === "assign_existing" && refAction === "assign_existing" && judgeTarget && refTarget && judgeTarget !== refTarget) {
+      overlapPair = { a: judgeTarget, b: refTarget };
+      recordOverlap(q, {
+        handleA: judgeTarget, handleB: refTarget, nameA: nameMap[judgeTarget] || "", nameB: nameMap[refTarget] || "",
+        example: { product_id: d.id, title: (d.title || "").slice(0, 80), judge_target: judgeTarget, ref_target: refTarget },
+        source: "calibration",
+      });
+      overlaps++;
+    }
+    saveRating({ kind: "classify", seed, item_id: d.id, reference_verdict: refAction, judge_verdict: judgeAction, agreed, meta: { title: d.title, judge_target: judgeTarget, reference_target: refTarget, vale_assign: isValeAssign, overlap_pair: overlapPair, reference_reason: ref.reason, cluster_key: d.cluster_key } });
+    rows.push({ title: d.title, judgeAction, judgeTarget, refAction, refTarget, agreed, isValeAssign, overlapPair, reason: ref.reason });
   }
   // OHUTU VAIKIMISI = assign-otsused, kus referents EI kinnita → EI paigutata (jääb ootele), mitte inimese järjekord.
   safeDefault = rows.filter((r) => r.judgeAction === "assign_existing" && r.isValeAssign).length;
   const pct = (x) => rated ? ((x / rated) * 100).toFixed(1) : "0.0";
-  const verdict = { kind: "classify", seed, n: rated, agree, agreePct: pct(agree), valeAssign, valeAssignPct: pct(valeAssign), threshold: 2.5, pass: rated ? (valeAssign / rated) * 100 <= 2.5 : false, safeDefault, rows };
-  console.log(`   kokkulangevus ${agree}/${rated} (${pct(agree)}%) · VALE-assign ${valeAssign}/${rated} (${pct(valeAssign)}%) lävi ≤2,5% → ${verdict.pass ? "✅ LÄBITUD" : "🔴 ÜLETATUD"} · ohutu vaikimisi ${safeDefault}`);
+  // leitud kattuvus-paarid (agregeeritud, näitamiseks raportis)
+  const overlapPairs = [...jsonRows(`SELECT jsonb_build_object('a',handle_a,'b',handle_b,'na',name_a,'nb',name_b,'hits',hits)::text FROM taxonomy_overlap_signal ORDER BY hits DESC, last_seen DESC LIMIT 30`)];
+  const verdict = { kind: "classify", seed, n: rated, agree, agreePct: pct(agree), valeAssign, valeAssignPct: pct(valeAssign), threshold: 2.5, pass: rated ? (valeAssign / rated) * 100 <= 2.5 : false, safeDefault, overlaps, overlapPairs, refModel: (await import("./lib/judge.mjs")).REF_MODEL_CLSF, rows };
+  console.log(`   kokkulangevus ${agree}/${rated} (${pct(agree)}%) · VALE-assign ${valeAssign}/${rated} (${pct(valeAssign)}%) lävi ≤2,5% → ${verdict.pass ? "✅ LÄBITUD" : "🔴 ÜLETATUD"} · ohutu vaikimisi ${safeDefault} · kattuvus-signaale ${overlaps}`);
   return verdict;
 }
 
@@ -175,11 +191,17 @@ function writeReport(verdicts) {
         md += `\n`;
       }
     } else {
-      md += `## 🏷 Klassifikaator — kohtunik (klastri-tasand, Opus) vs referents (Opus, pime)\n\n`;
+      md += `## 🏷 Klassifikaator — kohtunik (klastri-tasand, Opus) vs referents (SÕLTUMATU ${v.refModel}, pime)\n\n`;
       md += `| mõõdik | väärtus | lävi | verdikt |\n|---|---|---|---|\n`;
       md += `| Kokkulangevus (tegevus) | ${v.agree}/${v.n} (${v.agreePct}%) | — | — |\n`;
       md += `| **VALE-assign** (kohtunik paigutas, referents mitte samasse) | ${v.valeAssign}/${v.n} (${v.valeAssignPct}%) | ≤2,5% | ${v.pass ? "✅ LÄBITUD" : "🔴 ÜLETATUD"} |\n`;
-      md += `| Ohutu vaikimisi (jääb ootele) | ${v.safeDefault} | — | mitte inimese järjekord |\n\n`;
+      md += `| Ohutu vaikimisi (jääb ootele) | ${v.safeDefault} | — | mitte inimese järjekord |\n`;
+      md += `| Taksonoomia-kattuvuse signaalid (eri L3 valik) | ${v.overlaps} | — | auto-kogutud, mitte inimene |\n\n`;
+      if (v.overlapPairs && v.overlapPairs.length) {
+        md += `### 🔗 Leitud L3-kattuvused (taxonomy_overlap_signal — võimalik merge/selgituse kandidaat)\n\n| L3 A | L3 B | hits |\n|---|---|---|\n`;
+        for (const p of v.overlapPairs) md += `| ${p.na || p.a} | ${p.nb || p.b} | ${p.hits} |\n`;
+        md += `\n`;
+      }
       const dis = v.rows.filter((r) => !r.agreed || r.isValeAssign);
       if (dis.length) {
         md += `### Lahknevused (→ ohutu vaikimisi)\n\n| toode | kohtunik | referents | VALE-assign? | referentsi põhjus |\n|---|---|---|---|---|\n`;

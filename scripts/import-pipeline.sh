@@ -271,6 +271,28 @@ else
   [ "$CREDIT_OK" = "1" ] && echo "  klassifitseeritud SKU-loend puudub → sünonüümid vahele" || echo "  krediit/API maas → sünonüümid SKIP (degrade)"
 fi
 
+# ── [6.7] SÜNONÜÜMI-KONSENSUS (host) — A6 HOOK (Tarmo 2026-10-06), HARD RULE #5+#6 ──
+# [6.6] generaator paneb madal-kindluse terminid synonym_review'sse (status=pending). SEE samm
+# hindab need KAHE mudeliga (Sonnet-kohtunik + Opus-referents → synConsensus): mõlemad OK → läheb
+# product_synonym'i (otsingusse); muu → ohutu vaikimisi (EI otsingusse), MITTE inimese järjekorda.
+# SAMA transform kui backfill (synonym-backfill.mjs). DELTA-peal (--skus classify-skus.txt — ainult
+# öine delta, MITTE kogu backlog). FAIL-LOUD: süsteemne → fail(); krediit maas → skip (degrade).
+echo "[6.7/7] sünonüümi-konsensus (Sonnet+Opus → product_synonym; ohutu vaikimisi muidu)"
+if [ "$CREDIT_OK" = "1" ] && [ -s /tmp/classify-skus.txt ]; then
+  SC_OUT=$(node "$ROOT/scripts/synonym-backfill.mjs" --skus /tmp/classify-skus.txt \
+    $([ "$EXECUTE" = "1" ] && echo --execute || echo --dry) \
+    --out "$ROOT/reports/syn-consensus-hook-$(date +%Y%m%d).json" 2>&1) && SC_RC=0 || SC_RC=$?
+  echo "$SC_OUT" | sed 's/^/  /'
+  if [ "$SC_RC" != "0" ]; then
+    fail "synonym-consensus" "synonym-backfill.mjs rc=$SC_RC (süsteemne — API/DB maas?)"
+  fi
+  # üksik-chunki kukkumised lähevad kirjetele EBAKINDEL → ohutu vaikimisi (ei otsingusse); teata kui disagreement-bucket suur
+  SC_DIS=$( { echo "$SC_OUT" | grep -oE 'disagreement.*\) ([0-9]+)' | grep -oE '[0-9]+' | head -1; } || true); SC_DIS=${SC_DIS:-0}
+  [ "$SC_DIS" -gt 0 ] && slack "ℹ️ XLM sünonüümi-konsensus [6.7]: $SC_DIS terminit lahkheli/EBAKINDEL → ohutu vaikimisi (EI otsingusse). Kattuvus-signaalid digestis."
+else
+  [ "$CREDIT_OK" = "1" ] && echo "  klassifitseeritud SKU-loend puudub → konsensus vahele" || echo "  krediit/API maas → konsensus SKIP (degrade)"
+fi
+
 # ── [7] REINDEX (konteiner) — ainult EXECUTE (uued tooted + hinnad nähtavaks) ─
 echo "[7/7] reindeks Meili"
 if [ "$EXECUTE" = "1" ]; then
