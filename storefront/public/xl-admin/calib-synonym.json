@@ -1,0 +1,265 @@
+{
+  "kind": "synonym",
+  "generated_at": "2026-10-06T08:24:19.356Z",
+  "seed": "calib",
+  "dry": true,
+  "decisions": [
+    {
+      "id": "0e780e5e-9416-41f1-82b1-576ccfb98b1c",
+      "word": "ultraheliline puhastus",
+      "synonyms": [
+        "ultrasonic cleaning"
+      ],
+      "title_en": "3L Ultrasonic Cleaner, Professional Ultrasonic Cleaner Machine with Knob Control, Stainless Steel Cleaning Machine with Basket and Cleaning Ball, for Watches, Razors, Jewelry, Coins and More",
+      "title_et": "3L ultrahelipuhasti roostevabast terasest – korv ja puhastuskuul",
+      "category": "Ultrahelipuhastid",
+      "gen_confidence": 0.85,
+      "verdict": "OK",
+      "reason": "Toode on ultrahelipuhasti, mis vastab täpselt otsingule.",
+      "action": {
+        "status": "resolved",
+        "write_synonym": true
+      }
+    },
+    {
+      "id": "84bc46a9-550c-4fa2-af34-ddf61871f9bc",
+      "word": "autokere parandusseade",
+      "synonyms": [
+        "car repair equipment"
+      ],
+      "title_en": "Auto Body Frame Puller Straightener, 6T Tension Car Body Repair Equipment with 3T Airbag Jack & 6000PSI Hydraulic Foot Pump, Include 16 Straightening Tools, for Auto Repair Shop Sedan SUV Pickup",
+      "title_et": "Auto kere sirgestusseade 6T, 3T õhkpadja tõstuk, 16 tarvikut",
+      "category": "Autokere sirgendusseadmed",
+      "gen_confidence": 0.8,
+      "verdict": "OK",
+      "reason": "Autokere sirgestusseade on autoremondiseade, mis vastab otsingule.",
+      "action": {
+        "status": "resolved",
+        "write_synonym": true
+      }
+    },
+    {
+      "id": "3f3f104a-600a-48e5-8ca2-4ba45af4e85e",
+      "word": "pakkimismasin",
+      "synonyms": [
+        "wrapper machine"
+      ],
+      "title_en": "EURO Coin Sorter, Coin Counter Machine for 8 Kinds of Euro Coins, Coin Sorter and Wrapper Machine Holds up to 850 Coins, Large LCD Display Coin Storage Included 5 Coin Tubes and Boxes",
+      "title_et": "Euro müntide sorteerimis- ja pakkimismasin, kuni 850 münti",
+      "category": "Raha- ja mündiloendusmasinad",
+      "gen_confidence": 0.75,
+      "verdict": "VALE",
+      "reason": "Klient, kes otsib üldist pakkimismasinat, ei ootaks mündisorteerimis- ja -pakkimismasinat.",
+      "action": {
+        "status": "rejected",
+        "write_synonym": false
+      }
+    },
+    {
+      "id": "1e48c163-20a4-428c-8abe-55be0a1c9e36",
+      "word": "magnetsahtlid",
+      "synonyms": [
+        "magnetic tray",
+        "magnetic storage"
+      ],
+      "title_en": "Miniatures Storage Case, Fits for 1:1750-1:2000 Scale Models, Wooden Miniatures Display Holder with 5 Tray & 13 Slots, Clear View Miniature Transport Case for Collectibles (Minis Not Included)",
+      "title_et": "Miniatuuride hoiukarp, 5 magnetsahtlit ja 13 pesa (1:1750-1:2000)",
+      "category": "Miniatuuride hoiukohvrid ja wargaming",
+      "gen_confidence": 0.8,
+      "verdict": "OK",
+      "reason": "Toote enda eestikeelne nimetus kinnitab, et sahtlid on magnetilised, vastab otsingule.",
+      "action": {
+        "status": "resolved",
+        "write_synonym": true
+      }
+    },
+    {
+      "id": "e4a52bf2-7e3c-4ce1-9100-ebd8d930bf8a",
+      "word": "kaksik haamer",
+      "synonyms": [
+        "twin hammer"
+      ],
+      "title_en": "1-Inch Air Impact Wrench, Twin Hammer Air Impact Gun, Up to 1626N.m Reverse Torque, 4600RPM 6-Speed Pneumatic Wrench for Heavy Duty Auto Repairs and Maintenance",
+      "title_et": "Pneumaatiline löökmutrivõti 1\", kaksikhaamer, kuni 1626 N·m",
+      "category": "Pneumaatilised löökmutrivõtmed ja -keerajad",
+      "gen_confidence": 0.85,
+      "verdict": "OK",
+      "reason": "Kaksikhaamer on löökmutrivõtme tehniline omadus, mida otsitakse õigesti.",
+      "action": {
+        "status": "resolved",
+        "write_synonym": true
+      }
+    },
+    {
+      "id": "0684b3e9-648b-4d92-90e8-29f544d2e9c1",
+      "word": "liikuv organiseerija",
+      "synonyms": [
+        "mobile organizer",
+        "sahtlisüsteem ratastega"
+      ],
+      "title_en": "Plastic Storage Drawers Cart, 3 Drawers Storage Organizer with Wheels, Rolling Closet Organization and Storage Dividers, Dresser Organizer Clear Bins for Office Supplies, Craft Rooms, Classrooms",
+      "title_et": "Plastik sahtlikäru rataste ja 3 sahtliga, 17L/sahtel",
+      "category": "Teenindus- ja utility-kärud",
+      "gen_confidence": 0.86,
+      "verdict": "OK",
+      "reason": "Ratastega sahtlikäru vastab liikuva organiseerija kirjeldusele.",
+      "action": {
+        "status": "resolved",
+        "write_synonym": true
+      }
+    },
+    {
+      "id": "13d2594a-843f-440a-91d2-db1c1061ddc8",
+      "word": "nööpmärgid",
+      "synonyms": [
+        "button maker supplies",
+        "nööbi komplekt",
+        "badges"
+      ],
+      "title_en": "Button Maker Supplies 200 Sets 2.28 in / 58 mm Pin Back Button Parts, with Metal Backs, Metal Shells, Clear Mylar Films, and Blank Circle Papers, for Home DIY, School Events, and Custom Studio",
+      "title_et": "Nööpmärkide tarvikukomplekt 58 mm, 200 komplekti",
+      "category": "Nööpide ja märkide valmistamise masinad",
+      "gen_confidence": 0.85,
+      "verdict": "OK",
+      "reason": "Nööpmärkide tarvikukomplekt vastab otsingule 'nööpmärgid'.",
+      "action": {
+        "status": "resolved",
+        "write_synonym": true
+      }
+    },
+    {
+      "id": "ac3d67d2-25b4-4b09-8c62-7f3b74677e53",
+      "word": "põrandaramp",
+      "synonyms": [
+        "kanaliga ramp",
+        "channel ramp"
+      ],
+      "title_en": "Cable Protector Ramp, 9,979 kg/axle Capacity, 2 Channel Heavy Duty Rubber Cord Hose Wire Cover, 32 x 31 mm Channel, Traffic Speed Bump with Flip-Open Top Cover, for Indoor Outdoor Use, 1 Pack",
+      "title_et": "Kaablikaitseramp, 2 kanalit, kandevõime 9979 kg/telg",
+      "category": "Kaablikaitsjad ja põrandarambid",
+      "gen_confidence": 0.85,
+      "verdict": "OK",
+      "reason": "Kaablikaitseramp on tüüpiline põrandaramp, mis vastab otsingule.",
+      "action": {
+        "status": "resolved",
+        "write_synonym": true
+      }
+    },
+    {
+      "id": "d4821992-8968-4f29-847c-75cb997e75da",
+      "word": "riba eesriie",
+      "synonyms": [],
+      "title_en": "Clear PVC Strip Curtain, 45.7 m Length x 20 cm Width, Plastic Door Strip Bulk Roll, Walk in Freezer Cooler Curtain Strips for Doorways of Supermarket, Garage, Warehouse, Barn, Pet Animal House",
+      "title_et": "Läbipaistev PVC ribakardin, 45,7 m x 20 cm, rullina",
+      "category": "PVC ribakardinad ja -eesriided",
+      "gen_confidence": 0.8,
+      "verdict": "OK",
+      "reason": "PVC ribakardin vastab täpselt otsingusõnale 'riba eesriie'.",
+      "action": {
+        "status": "resolved",
+        "write_synonym": true
+      }
+    },
+    {
+      "id": "e2d3d28a-67b6-47b0-a980-83012d63b59e",
+      "word": "treningvarustus",
+      "synonyms": [
+        "fitness equipment",
+        "treeningbarr"
+      ],
+      "title_en": "Ballet Barre, Freestanding Portable Barre Bar, Home Fitness Exercise Equipment for Abs, Arms, Strength, and Cardio, Easy to Store Foldable Stretching Dance Bars, 4 Level Height Adjustable",
+      "title_et": "Kokkupandav balletitoru, 4 kõrgusastet, kandevõime 113 kg",
+      "category": "Balletitangid (barre)",
+      "gen_confidence": 0.75,
+      "verdict": "OK",
+      "reason": "Balletitangid on treeningvarustuse osa, mis vastab üldisele otsingule.",
+      "action": {
+        "status": "resolved",
+        "write_synonym": true
+      }
+    },
+    {
+      "id": "196b38c7-f123-4e83-a7a6-1b02756c1e32",
+      "word": "kliimaseadme",
+      "synonyms": [
+        "ac pump",
+        "hvac pump"
+      ],
+      "title_en": "Vacuum Pump 117 L/min(1.8CFM), Vacuum Devices Manifold Gauge Set for HVAC/Car AC Refrigerant Charging",
+      "title_et": "Vaakumpump 50 L/min (1.8CFM) manomeetrikomplektiga HVAC ja autole",
+      "category": "AC-vaakumpumbad",
+      "gen_confidence": 0.85,
+      "verdict": "EBAKINDEL",
+      "reason": "Vaakumpump on mõeldud külmaaine süsteemi evakueerimiseks, mitte otseselt 'ac pump' tähenduses ringlev pump, mis võib tekitada ootuste lahknevuse.",
+      "action": {
+        "status": "pending",
+        "write_synonym": false
+      }
+    },
+    {
+      "id": "533ac241-142f-4b23-bad0-14afdec64cb2",
+      "word": "võrguga värav",
+      "synonyms": [],
+      "title_en": "Retractable Baby Gate, 86.9 cm Tall Mesh Baby Gate, Extends up to 294.9 cm Wide Retractable Gate for Kids or Pets, Retractable Dog Gates for Indoor Stairs, Doorways, Hallways, Playrooms, Black",
+      "title_et": "Väljatõmmatav turvavärav 86,9 cm, laieneb kuni 294,9 cm",
+      "category": "Turvaväravad",
+      "gen_confidence": 0.8,
+      "verdict": "OK",
+      "reason": "Toode on võrgust (mesh) turvavärav, mis vastab otsingusõnale 'võrguga värav'.",
+      "action": {
+        "status": "resolved",
+        "write_synonym": true
+      }
+    },
+    {
+      "id": "2ba3eae5-4ffa-42e9-8591-3f9fd760e4c8",
+      "word": "taktikaline relvakohver",
+      "synonyms": [],
+      "title_en": "Rifle Bag, 36 inch Tactical Double Long Gun Bag, Soft Rifle Case with Lockable Zipper, Portable Handle & Shoulder Strap, 3 Large Storage Pockets Rifle Case for Two 34\" Rifles & 2 Pistols, Brown",
+      "title_et": "Taktikaline relvakohver 36\" kahele vintrelvale ja 2 püstolile",
+      "category": "Relvakohvrid ja -kastid",
+      "gen_confidence": 0.82,
+      "verdict": "OK",
+      "reason": "Toode on täpselt taktikaline relvakohver kahele vintrelvale, mis vastab täpselt otsingusõnale.",
+      "action": {
+        "status": "resolved",
+        "write_synonym": true
+      }
+    },
+    {
+      "id": "7d0bc27f-94a6-4e7a-a2d9-a4139793eebe",
+      "word": "mängulauale kate",
+      "synonyms": [
+        "poker mat"
+      ],
+      "title_en": "Poker Table Top, 70 x 35 Inch Poker Mat for Table, 6-8 Players Foldable Poker Table Top with Carrying Bag, Folding Poker Table Topper for Poker Games, Poker Room, Round, Black",
+      "title_et": "Pokkerimatt lauale 1800 x 900 mm, 6-8 mängijale, kandekotiga",
+      "category": "Pokerilauad ja lauakatted",
+      "gen_confidence": 0.75,
+      "verdict": "OK",
+      "reason": "Pokkerimatt on mänguloauale pandav kate, mis vastab otsingusõnale 'mängulauale kate'.",
+      "action": {
+        "status": "resolved",
+        "write_synonym": true
+      }
+    },
+    {
+      "id": "d5e171da-33b6-45b6-a6c4-e7b97fcf93f0",
+      "word": "ratastega riiul",
+      "synonyms": [
+        "teisaldatav hoidja",
+        "mobile display stand"
+      ],
+      "title_en": "Brochure Display Rack, Narrow 6-Tier Magazine Literature Display Stand with Wheels, Metal Floor Standing Magazine Rack, Movable Newspaper Catalog Holders for Shop Exhibitions Office (6 Pockets)",
+      "title_et": "6-tasandiline metallist brošüürihoidja ratastega, kandevõime 15 kg",
+      "category": "Brošüüri- ja ajakirjahoidikud",
+      "gen_confidence": 0.8,
+      "verdict": "OK",
+      "reason": "Ratastega metallist brošüürihoidja vastab otsingule 'ratastega riiul', kuna tegemist on liigutatava riiuliga.",
+      "action": {
+        "status": "resolved",
+        "write_synonym": true
+      }
+    }
+  ]
+}
