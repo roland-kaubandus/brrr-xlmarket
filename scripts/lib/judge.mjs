@@ -465,6 +465,34 @@ export async function rateClassifyReference(batch, candidateL3s, { apiKey, model
   return { ok: true, results: res.parsed.results || [], usage: res.usage };
 }
 
+/**
+ * rateClassifyReferenceClusters — KLASTRI-tasandi pime Sonnet-5 referents (vastab judgeClassifyClusters'ile).
+ * Kohtunik otsustab klastri kohta ÜHE otsuse → referents peab samuti olema klastri-tasandil (mitte N per-toode),
+ * et §2c ahelas saaks võrrelda sama granulaarsust (voteKey). Ehitab ühe esindaja-rea klastri kohta:
+ *   id = cluster_key (→ mapitav tagasi), title/title_et/kirjeldus = esindaja + kuni 3 liikme pealkirja (klastri laius).
+ * Sisend: clusters [{cluster_key, items:[row]}] (clusterize väljund) + candidateL3s.
+ * Tagastab { ok, results:[{cluster_key, action, target_handle, confidence, reason}], usage }. EI kirjuta DB-sse.
+ */
+export async function rateClassifyReferenceClusters(clusters, candidateL3s, { apiKey, model = REF_MODEL_CLSF, timeoutMs, retries } = {}) {
+  // üks esindaja-rida klastri kohta; id = cluster_key (pime referents ei tea, et see on klaster)
+  const batch = clusters.map((cl) => {
+    const rep = cl.items[0];
+    const memberTitles = [...new Set(cl.items.map((i) => i.title).filter(Boolean))].slice(0, 3);
+    const desc = (rep.description || "").slice(0, 400) || "(puudub)";
+    // lisa liikmete pealkirjad kirjeldusse → referents näeb klastri laiust (variandid), mitte ainult esindajat
+    const widthNote = memberTitles.length > 1 ? `\n(sama toote variandid: ${memberTitles.join(" · ")})` : "";
+    return { id: cl.cluster_key, title: rep.title, title_et: rep.title_et, description: desc + widthNote };
+  });
+  const res = await rateClassifyReference(batch, candidateL3s, { apiKey, model, timeoutMs, retries });
+  if (!res.ok) return res;
+  // map id (= cluster_key) tagasi
+  const results = (res.results || []).map((r) => ({
+    cluster_key: r.id, action: r.action, target_handle: r.target_handle || null,
+    confidence: r.confidence, reason: r.reason,
+  }));
+  return { ok: true, results, usage: res.usage };
+}
+
 // ──────────────── KOOSKÕLAVÄRAV (deterministlik, prompt-vaba) ────────────────
 
 /**

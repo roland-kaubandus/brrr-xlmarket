@@ -18,6 +18,11 @@
  */
 import fs from "node:fs";
 import { execSync } from "node:child_process";
+// VARA-VÄRAVAD SSoT (HARD RULE #5 — sama kood siin JA öises shadow-hookis, ei lahkne)
+import {
+  norm, slug, slugId, deriveHandle, seoClaimGate, SEO_NUM_RE, SEO_CLAIM_RE,
+  genAssetsGated, IMG_BRIGHT_MIN, brightCheckScript, completenessCheck,
+} from "./lib/l3-gates.mjs";
 
 const REPO = "/opt/xlmarket-github";
 const val = (f, d) => { const i = process.argv.indexOf(f); return i > 0 ? process.argv[i + 1] : d; };
@@ -25,6 +30,9 @@ const EXECUTE = process.argv.includes("--execute");
 const DRYJSON = val("--in", `${REPO}/reports/classify-chain-dryrun-v2.json`);
 const OUT_MD = val("--out", `${REPO}/reports/ETAPP2-plaan.md`);
 const OUT_JSON = OUT_MD.replace(/\.md$/, ".json");
+// --products <json>: öine shadow-hook annab prodsByCk OTSE (ck → [{id,title}]) ÜLE calib-classify.json.
+// Kui antud → create-ONLY (hook teeb assignid ise LIVE); ASSIGNS jäetakse tühjaks. Vt Task 5 design.
+const PRODUCTS_FILE = val("--products", null);
 const FABLE = "claude-fable-5";
 const API_KEY = process.env.ANTHROPIC_API_KEY;
 if (!API_KEY) { console.error("❌ ANTHROPIC_API_KEY puudub (set -a; . /opt/eumotors-tasks/.env; set +a)"); process.exit(2); }
@@ -33,35 +41,27 @@ if (!API_KEY) { console.error("❌ ANTHROPIC_API_KEY puudub (set -a; . /opt/eumo
 const tree = JSON.parse(fs.readFileSync(`${REPO}/storefront/lib/category-tree.generated.json`, "utf8"));
 const NODES = tree.nodes;
 const dry = JSON.parse(fs.readFileSync(DRYJSON, "utf8"));
-const classify = JSON.parse(fs.readFileSync(`${REPO}/storefront/public/xl-admin/calib-classify.json`, "utf8"));
 
-// tooted klastri kaupa (prod_id + title)
+// tooted klastri kaupa (prod_id + title) — allikas: --products override VÕI calib-classify.json
 const prodsByCk = {};
-for (const d of classify.decisions) {
-  (prodsByCk[d.cluster_key] ||= []).push({ id: d.id, title: d.title });
+const SKIP_ASSIGNS = !!PRODUCTS_FILE;   // hook-create-only: assignid teeb hook ise, mitte see skript
+if (PRODUCTS_FILE) {
+  const provided = JSON.parse(fs.readFileSync(PRODUCTS_FILE, "utf8"));
+  for (const [ck, prods] of Object.entries(provided)) {
+    prodsByCk[ck] = prods.map(p => ({ id: p.id, title: p.title }));
+  }
+} else {
+  const classify = JSON.parse(fs.readFileSync(`${REPO}/storefront/public/xl-admin/calib-classify.json`, "utf8"));
+  for (const d of classify.decisions) {
+    (prodsByCk[d.cluster_key] ||= []).push({ id: d.id, title: d.title });
+  }
 }
 
-// ---- helperid ----
+// ---- helperid (norm/slug/deriveHandle/SEO/image/completeness → scripts/lib/l3-gates.mjs) ----
 const nodeName = (h) => NODES[h]?.name_et || NODES[h]?.name_en || h;
 const existingHandles = new Set(Object.keys(NODES));
-const existingNamesNorm = new Set(
-  Object.values(NODES).filter(n => n.level === 3).map(n => norm(n.name_et || n.name_en))
-);
-function norm(s) { return (s || "").toLowerCase().normalize("NFKD").replace(/[^\p{L}\p{N} ]/gu, "").replace(/\s+/g, " ").trim(); }
-function slug(s) {
-  return (s || "").toLowerCase()
-    .replace(/ä/g, "a").replace(/ö/g, "o").replace(/õ/g, "o").replace(/ü/g, "u").replace(/š/g, "s").replace(/ž/g, "z")
-    .normalize("NFKD").replace(/[̀-ͯ]/g, "")
-    .replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
-}
-function deriveHandle(parentL2, name) {
-  let base = `${parentL2}-${slug(name)}`;
-  if (!existingHandles.has(base)) return { handle: base, collision: false };
-  let i = 2; while (existingHandles.has(`${base}-${i}`)) i++;
-  return { handle: `${base}-${i}`, collision: true };
-}
 
-// ---- Fable toor-kutse ----
+// ---- Fable toor-kutse (callback l3-gates genAssetsGated jaoks) ----
 let usage = { input: 0, output: 0, calls: 0 };
 async function fableRaw(system, user) {
   const res = await fetch("https://api.anthropic.com/v1/messages", {
@@ -76,110 +76,6 @@ async function fableRaw(system, user) {
   const m = raw.match(/\{[\s\S]*\}/);
   if (!m) throw new Error(`Fable JSON puudub: ${raw.slice(0, 200)}`);
   return JSON.parse(m[0]);
-}
-
-// ---- SEO-VÄRAV (DIRECTIVE task 1): kategooria-tekst kirjeldab KATEGOORIAT TERVIKUNA ----
-// KEELATUD kategooria-SEO-s: konkreetsed numbrid + tehnilised lubadused (tsüklid, mahud,
-// pinged, kaitsed), mis EI kehti kõigile võimalikele toodetele selles kategoorias.
-// Mõõdetav automaat-kontroll: number või lubadus-sõna SEO-väljas → värav kukub → regen.
-const SEO_NUM_RE = /\d/;                              // iga number (50–100 kg, 4000+, 12V, 200 W, 550, 250)
-const SEO_CLAIM_RE = /\b(bms|lifepo4|li-?ion|ni-?mh|ip\d{1,2}|veekind\w*|vee-?kind\w*|waterproof|weatherproof|niiskuskind\w*|ilmastikukind\w*|roostevaba|roostekind\w*|tsükl\w*|cycle\w*|mahtuvus\w*|capacit\w*|kandevõim\w*|load[- ]?capacit\w*|tõmbetugevus\w*|tensile\w*|voolu?tugevus\w*)\b/i;
-function seoClaimGate(assets) {
-  const fields = ["description_et", "description_en", "tagline_et", "tagline_en"];
-  const offenders = [];
-  for (const f of fields) {
-    const v = assets?.[f] || "";
-    if (SEO_NUM_RE.test(v)) { const m = v.match(/[\d][\d .,–\-\/]*\s*[a-zA-Z%°]*/); offenders.push(`${f}: number «${(m && m[0] || "").trim()}»`); }
-    const cm = v.match(SEO_CLAIM_RE);
-    if (cm) offenders.push(`${f}: lubadus «${cm[0]}»`);
-  }
-  return { pass: offenders.length === 0, offenders };
-}
-
-// ---- SEO + EN-nimi + pildi-kirjeldus ÜHE kutsega (§4.5 vara #3, #7, #5-kirjeldus) ----
-const SEO_RULE = `🔑 SEO-REEGEL (kohustuslik): kirjeldus+tagline kirjeldavad KATEGOORIAT TERVIKUNA, mitte üksik-toodet.
-KEELATUD: KÕIK konkreetsed numbrid (nt «4000 tsüklit», «50–100 kg», «12V/24V/48V», «200 W», «550», «250 kg») JA tehnilised lubadused, mis ei kehti KÕIGILE toodetele kategoorias (nt «veekindel», «BMS-kaitse», «LiFePO4», «mahtuvus», «kandevõime», «tõmbetugevus»).
-Kirjelda ÜLDISELT: mis TÜÜPI tooted, kellele, mis otstarve, mida üldiselt vaadata (ilma arvude/lubadusteta — nt «jälgi sobivat suurust ja materjali», MITTE «jälgi mahtuvust 200 Wh»).`;
-async function genAssets(nameEt, parentEt, titles, avoidNote) {
-  const system = `Sa oled XL e-poe (xlmarket.ee, Eesti) kategooria-toimetaja. Genereerid UUE tootekategooria metaandmed.
-Kirjuta loomulikus, müügivalmis eesti keeles (EI masintõlge). Lühike, konkreetne, ostjale suunatud.
-
-${SEO_RULE}
-
-Tagasta AINULT JSON (ilma muu tekstita):
-{
-  "name_en": "<kategooria ingliskeelne nimi, 1-4 sõna>",
-  "description_et": "<2-3 lauset KATEGOORIA kohta: mis TÜÜPI tooted siin on, kellele, mida üldiselt arvestada — ILMA numbrite/lubadusteta>",
-  "description_en": "<sama inglise keeles, samad reeglid>",
-  "tagline_et": "<1 lühike müügilause, kuni 8 sõna, ilma numbriteta>",
-  "tagline_en": "<sama inglise keeles>",
-  "image_desc_et": "<1 lause: mida kategooria-pisipilt (hele valge taust) kujutab — tüüpiline toode sellest kategooriast>"
-}`;
-  const user = `UUS KATEGOORIA (eesti nimi): «${nameEt}»
-VANEM-KATEGOORIA: «${parentEt}»
-NÄIDISTOOTED (ingliskeelsed pealkirjad):
-${titles.slice(0, 6).map(t => `  • ${t}`).join("\n")}
-${avoidNote ? `\n⚠️ EELMINE KATSE KUKKUS SEO-VÄRAVAST. ${avoidNote}` : ""}
-Genereeri metaandmed. name_en = kategooria üldnimi (MITTE toote pealkiri). Kirjeldused müügivalmis, KATEGOORIA-tasandil, ilma numbrite/konkreetsete lubadusteta.`;
-  return fableRaw(system, user);
-}
-
-// Regen-loop: genereeri kuni SEO-värav läbib (max 3 katset), muidu märgi kukkunuks.
-async function genAssetsGated(nameEt, parentEt, titles) {
-  let avoid = "", assets, gate;
-  for (let attempt = 1; attempt <= 3; attempt++) {
-    assets = await genAssets(nameEt, parentEt, titles, avoid);
-    gate = seoClaimGate(assets);
-    assets._seoGate = { pass: gate.pass, offenders: gate.offenders, attempts: attempt };
-    if (gate.pass) break;
-    avoid = `Eemalda KÕIK: ${gate.offenders.join("; ")}. ÄRA kasuta ühtegi numbrit ega tehnilist lubadust — kirjelda kategooriat üldiselt.`;
-  }
-  return assets;
-}
-
-// ---- PILDI-HELEDUS-KONTROLL (DIRECTIVE task 2): mõõdetav, MITTE silma järgi ----
-// Loeb webp-faili, võtab serva-pikslid (taust) ja arvutab keskmise luminantsi 0..255.
-// Hele/valge taust → luma kõrge. Tume taust → madal → värav kukub → regen (Gemini valge taust).
-// Lävi 225/255: tüüpiline valge-tausta katalogipilt ~245-255; tume ~<150.
-const IMG_BRIGHT_MIN = 225;
-async function imageBrightnessCheck(filePath) {
-  const sharp = (await import("sharp")).default;
-  // 64×64 raw RGB; mõõda ainult serva-raami (2px) = taust, mitte toode keskel
-  const W = 64, H = 64, B = 3;
-  const { data } = await sharp(filePath).resize(W, H, { fit: "fill" }).removeAlpha().raw().toBuffer({ resolveWithObject: true });
-  let sum = 0, n = 0;
-  for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
-    if (x >= B && x < W - B && y >= B && y < H - B) continue; // ainult serv
-    const i = (y * W + x) * 3;
-    sum += 0.2126 * data[i] + 0.7152 * data[i + 1] + 0.0722 * data[i + 2]; n++;
-  }
-  const luma = n ? sum / n : 0;
-  return { pass: luma >= IMG_BRIGHT_MIN, luma: Math.round(luma), min: IMG_BRIGHT_MIN };
-}
-
-// ---- §4.5 täielikkus-pre-check: kas KÕIK 11 vara on resolvitav? ----
-function completenessCheck(plan) {
-  const c = [];
-  const ok = (n, pass, note) => c.push({ n, pass, note });
-  ok("1 handle unikaalne", !existingHandles.has(plan.handle) || plan.handleCollisionResolved, plan.handle);
-  ok("2 name_et (nimevärav)", !!plan.name_et && norm(plan.name_et).length > 2, plan.name_et);
-  ok("3 name_en (Fable)", !!plan.assets?.name_en, plan.assets?.name_en || "—");
-  ok("4 nav parent-L2 kehtiv", !!(NODES[plan.parentL2] && NODES[plan.parentL2].level === 2), plan.parentL2);
-  ok("5 pilt (CDN primaar / Gemini fallback)", plan.n >= 1, `${plan.n} toodet → top-toote CDN-pilt → webp valge taust`);
-  ok("6 webp genereeritav", plan.n >= 1, `cat-thumbs/${plan.handle}.webp (build-cat-thumbs-l3.mjs)`);
-  const seoFilled = ["description_et", "description_en", "tagline_et", "tagline_en"].every(k => {
-    const v = plan.assets?.[k]; return v && !/^[\s—-]*products?\.?\s*$/i.test(v) && v.length > 5;
-  });
-  const seoClaim = plan.assets ? seoClaimGate(plan.assets) : { pass: false, offenders: ["puudub"] };
-  const seoOk = seoFilled && seoClaim.pass;
-  ok("7 SEO (ET+EN kirj.+tagline, kategooria-tasand, 0 numbrit/lubadust)", seoOk,
-    seoOk ? "4/4 täidetud · SEO-värav läbib" : (!seoFilled ? "placeholder/tühi" : "SEO-värav: " + seoClaim.offenders.join("; ")));
-  ok("8 Meili facet", plan.n >= 1, "tooted bind → reindeks → facet");
-  ok("9 DB product_category rida", true, "seed/INSERT transaktsioonis (gate #4)");
-  ok("10 tooted seotud (≥1)", plan.n >= 1, `${plan.n} toodet`);
-  ok("11 täis-deploy", true, "genyM → Meili → push mõlemad → redeploy (§4b)");
-  const fails = c.filter(x => !x.pass);
-  return { checks: c, pass: fails.length === 0, fails };
 }
 
 // ---- main ----
@@ -203,19 +99,19 @@ if (EXECUTE && fs.existsSync(OUT_JSON)) {
   for (const c of newL3) {
     const parentL2 = c.parentL2;
     const name_et = c.finalName || c.newName;
-    const { handle, collision } = deriveHandle(parentL2, name_et);
+    const { handle, collision } = deriveHandle(parentL2, name_et, existingHandles);
     const prods = prodsByCk[c.ck] || [];
     const titles = c.titles || prods.map(p => p.title);
     process.stdout.write(`  • «${name_et}» (${c.n}) → ${nodeName(parentL2)} … Fable SEO`);
     let assets;
-    try { assets = await genAssetsGated(name_et, nodeName(parentL2), titles); process.stdout.write(assets._seoGate?.pass ? ` ✓ (SEO ${assets._seoGate.attempts}×)\n` : ` ⚠ SEO-värav kukub\n`); }
+    try { assets = await genAssetsGated(fableRaw, name_et, nodeName(parentL2), titles); process.stdout.write(assets._seoGate?.pass ? ` ✓ (SEO ${assets._seoGate.attempts}×)\n` : ` ⚠ SEO-värav kukub\n`); }
     catch (e) { process.stdout.write(` ✗ ${e.message}\n`); assets = { error: e.message }; }
     const plan = {
       ck: c.ck, name_et, name_en: assets.name_en || null, handle, handleCollisionResolved: collision,
       parentL2, parentL2_name: nodeName(parentL2), n: c.n, origin: c.newOrigin, path: c.path,
       products: prods.map(p => ({ id: p.id, title: p.title })), assets,
     };
-    plan.completeness = completenessCheck(plan);
+    plan.completeness = completenessCheck(plan, { NODES, existingHandles });
     plans.push(plan);
   }
 
@@ -292,12 +188,12 @@ const sqlStr = (s) => `'${String(s).replace(/'/g, "''")}'`;
 const NOTIFY = `${REPO}/scripts/lib/notify-telegram.sh`;
 function telegram(msg) { try { execSync(`${NOTIFY}`, { input: msg, encoding: "utf8", stdio: ["pipe", "ignore", "ignore"] }); } catch {} console.log(`📨 Telegram:\n${msg}`); }
 
-// ---- id/handle resolutsioon ----
-const slugId = (s) => "pcat_e2_" + slug(s).replace(/-/g, "").slice(0, 24);
+// ---- id/handle resolutsioon (slug/slugId → scripts/lib/l3-gates.mjs) ----
 // ASSIGNS tuletatakse OTSE dry-run'ist (SSoT, mitte käsitsi fail): 8 otse-assign + 1 värav-blokk-fallback
 // (spu:16937 Mängulauad: decision=new_l3 aga DUP-värav blokeeris → decisionFinal=assign lauamangud).
+// SKIP_ASSIGNS (--products / shadow-hook-create-only) → hook teeb assignid ise LIVE → siin tühi.
 const parseAssign = (s) => s.slice(7).replace(/\s*\(.*$/, "").trim(); // "assign:<handle> (märkus)" → handle
-const ASSIGNS = dry.clusters
+const ASSIGNS = SKIP_ASSIGNS ? [] : dry.clusters
   .map(c => {
     const dec = (c.decision || "").startsWith("assign:") ? c.decision
       : (c.decision === "new_l3" && !(c.gate && c.gate.allPass === true) && c.decisionFinal) ? c.decisionFinal : null;
@@ -462,15 +358,8 @@ try {
   // cwd=/app → sharp resolvib; MEILISEARCH_HOST tuleb konteineri env-ist, KEY fallback MEILI_MASTER_KEY-le
   sh(`docker exec ${SF} sh -c 'cd /app && MEILISEARCH_KEY="\${MEILISEARCH_KEY:-$MEILI_MASTER_KEY}" node bct-e2.mjs --tree /app/minitree-e2.json --out /app/public/cat-thumbs --only ${onlyArg}'`);
   // heledus-värav konteineris (host-il pole sharp) — serva-luma iga webp kohta, lävi 225. Samuti /app-st (require sharp).
-  const brightScript = `
-    const sharp=require('/app/node_modules/sharp'),fs=require('fs');
-    const handles=${JSON.stringify(defs.map(d => d.handle))};
-    (async()=>{const out=[];for(const h of handles){const f='/app/public/cat-thumbs/'+h+'.webp';
-      if(!fs.existsSync(f)){out.push({h,missing:true});continue;}
-      const W=64,H=64,B=3;const{data}=await sharp(f).resize(W,H,{fit:'fill'}).removeAlpha().raw().toBuffer({resolveWithObject:true});
-      let s=0,n=0;for(let y=0;y<H;y++)for(let x=0;x<W;x++){if(x>=B&&x<W-B&&y>=B&&y<H-B)continue;const i=(y*W+x)*3;s+=0.2126*data[i]+0.7152*data[i+1]+0.0722*data[i+2];n++;}
-      out.push({h,luma:Math.round(s/n)});}
-    console.log(JSON.stringify(out));})();`;
+  // brightCheckScript SSoT (scripts/lib/l3-gates.mjs) → SAMA lävi/loogika shadow-hookiga.
+  const brightScript = brightCheckScript(defs.map(d => d.handle));
   const brightFile = `/tmp/etapp2-bright-${BATCH}.cjs`;
   fs.writeFileSync(brightFile, brightScript);
   sh(`docker cp ${brightFile} ${SF}:/app/bright-e2.cjs`);
