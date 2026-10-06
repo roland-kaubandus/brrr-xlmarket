@@ -1,212 +1,221 @@
-# AUTO-JUDGE plaan — review-ämbrid masin otsustab, inimene ainult erandid
+# AUTO-JUDGE plaan — masin otsustab ja loob ise, inimene = ainult äärmuslik erand
 
-> Koostatud 2026-10-06. **AINULT PLAAN — koodi ei kirjutatud.** Otsustajale (Tarmo: punktid 4, 5, 8) + teostajale (XL).
-> Suunamuutus: review-ämbreid EI töödelda käsitsi. Masin (kohtunik) otsustab, inimene kinnitab ainult uued L3-d + auditeerib. UI jääb turvavõrguks.
+> Koostatud 2026-10-06. Uuendatud 2026-10-06 (õhtul) **HARD RULE #6 "masin töötab ise"** järgi — kõik korduv inimtöö eemaldatud.
+> **Põhimõte (HARD RULE #6):** masin töötab ise ilma inimese sekkumiseta; inimene on AINULT äärmuslik erand; iga funktsioon peab skaleeruma 10×–100× ilma inimeseta; kui lahendus eeldab inimese *korduvat* tööd, on see VALE lahendus.
 
 ---
 
 ## 0. Taust ja eesmärk
 
-**Praegune backlog (2026-10-06, keegi pole ühtki käsitsi-otsust teinud — review_decision_log = 2 rida, mõlemad testid):**
+**Backlog (2026-10-06):**
 
 | Ämber | Pending | Vanim | Signaal |
 |---|---|---|---|
 | synonym_review | **3854** | 15p | 🔴 >14p, lahendamata 100% |
 | classification_review | **40** (review 19 · new_l3 15 · quarantine 6) | 16p | 🔴 >14p, trend 1.6× |
 
-**Probleem:** ämbrid täituvad öise impordiga, aga käsitsi-läbivaatuseni ei jõua kunagi → vaikne kvaliteedi-lagunemine (sünonüümid puudu otsingust, tooted kodutud = navis nähtamatud). **Lahendus:** kaks LLM-kohtunikku, mis otsustavad automaatselt olemasoleva review-bucket API kaudu (kõik tagasivõetav), ja jätavad inimesele ainult (a) uue L3 kinnituse ja (b) tõeliselt ebakindla jäägi.
+**Probleem:** ämbrid täituvad öise impordiga; käsitsi-läbivaatuseni ei jõua KUNAGI (keegi pole 15p jooksul ühtki otsust teinud) → vaikne kvaliteedi-lagunemine. **Käsitsi-ämber on juba tõestatult vale lahendus** — ta ei skaleeru. **Lahendus:** kaks LLM-kohtunikku otsustavad **täisautomaatselt**, loovad vajadusel ka uued L3-d **automaatselt läbi väravate**, ja ebakindel jääk **ei lähe inimese järjekorda** vaid saab **ohutu vaikimisi** kohtlemise.
 
-**Võtmepõhimõte säilib — PROPOSE-NOT-CREATE:** kohtunik paigutab AINULT olemas-L3-desse ja kirjutab sünonüüme; **uut struktuuri (L3/L2) kohtunik ISE ei loo** — see läbib inimese-kinnituse (punkt 4). INV-STRUCT-01 (tühja L3 keeld) jõustab seda andmetasandil.
+**Säilivad invariandid (jõustatud, mitte proosa):**
+- **PROPOSE→AUTO-CREATE läbi väravate:** kohtunik paigutab olemas-L3-desse JA — kui sobivat pole — uue L3 loomine on **automaatne**, aga AINULT kui kõik väravad (DUP · lock-harness · INV · merge-judge) läbivad. Väravad asendavad inimese-kinnituse. Mitte "kohtunik loob suvalise L3" — "kohtunik loob L3 ainult kui andme-väravad tõestavad, et see on turvaline".
+- **Tagasipööratavus:** iga automaatne tegevus (assign, L3-loomine, sünonüüm) logitakse `review_decision_log`-i + **undo** + Telegram-teade. Nähtavus + undo asendavad eel-kinnituse.
+- **Ohutu vaikimisi:** kui ka tugevaim mudel (Opus) jääb ebakindlaks → **mitte-tegevus on ohutu** (sünonüüm EI lähe otsingusse; toode jääb draft'i, mitte vale koju). Ebakindlus ei jõua kunagi inimese rutiinsesse järjekorda.
 
 ---
 
-## 1. Arhitektuuri ülevaade — kaks kohtunikku, kus pipeline-s
+## 1. Arhitektuuri ülevaade — kaks kohtunikku + eskalatsioon
 
 ```
-                       GENERAATOR (olemas)              KOHTUNIK (uus)
-  sünonüümid   Haiku → conf≥0.85 → product_synonym      Sonnet → KOGU synonym_review pending üle:
-  [6.6]               conf<0.85 → synonym_review ─────→   OK→product_synonym / VALE→rejected / ebakindel→jääb
-  klassifikaator  Opus → auto≥0.85 → assign+publish      Opus → review/new_l3/quarantine üle:
-  [4]                  muu → classification_review ───→    assign_existing / grupeeri / new_l3- ettepanek / jääb
+                   GENERAATOR (olemas)            KOHTUNIK (Sonnet/Opus)        EBAKINDEL → ESKALATSIOON
+  sünonüümid  Haiku → conf≥0.85 → synonym          Sonnet üle KOGU pending:       Opus (tugevaim) →
+  [6.6]              conf<0.85 → synonym_review ──→  OK→synonym / VALE→rejected ──→  endiselt ebakindel?
+                                                     ebakindel ─────────────────→   → OHUTU VAIKIMISI
+                                                                                     (rejected_safe, EI otsingusse)
+  klassifikaator Opus → auto≥0.85 → assign          Opus üle ämbri:                Opus-eskalatsioon (teine
+  [4]                 muu → classification_review ─→  assign / grupeeri / AUTO-new_l3  prompt, täispuu) → ebakindel?
+                                                     ebakindel ─────────────────→   → jääb draft (EI vale koju)
 ```
 
-- **Kohtunik = TEINE kiht generaatori järel.** Odav generaator teeb massi; targem kohtunik adjudikeeerib ebakindla sabaosa. Kohtunik töötab ämbrisse-jäänud kirjete peal (mitte kogu korpust uuesti).
-- **⭐ Sünonüümi-kohtunik katab KOGU synonym_review pending ämbri** (Tarmo parandus 2026-10-06) — mitte ainult generaatori sub-0.85 jääki, vaid KA 1344 kirjet, mis on `≥0.85 + review:true` (generaator oli kindel, aga märkis ülevaatuseks). Ehk kõik 3854 pending-terminit läbivad kohtuniku, mitte ainult madal-kindluse osa.
-- **Kaks kutsujat, sama kood (HARD RULE #5):** backfill-runner (kogu praegune backlog, ühekordne, Batch API) + öine pipeline-hook (ainult delta, synchroonne). Sama transform-funktsioon mõlemale.
-- **Sünonüümi-kohtunik mudel ≠ generaator:** generaator Haiku → kohtunik **Sonnet** (teine mudel = sõltumatu teine arvamus, mitte sama viga; + odavam kui Opus suure mahu juures).
-- **Klassifikaatori-kohtunik = Opus** (sama mudel kui klassifikaator, aga **teine ülesanne**): klassifikaator näeb 6 toodet/batch; kohtunik näeb **kõiki ämbri-kirjeid korraga** + loeb kandidaat-L3-de kirjeldusi → suudab grupeerida cross-klastri dupe (lumber rack ×2, paracord) ja rakendada eksklusiivsus-/dup-väravaid, mida ühe-batchi klassifikaator ei näe.
+- **Kolm kihti, iga ebakindlus eskaleerub, mitte ei peatu inimese ees:** (1) odav generaator teeb massi → (2) kohtunik adjudikeerib → (3) **ebakindel eskaleerub tugevaimale mudelile (Opus)**; mis sealtki jääb → **ohutu vaikimisi**, MITTE inimese järjekord.
+- **Sünonüümi-kohtunik katab KOGU synonym_review pending** (ka 1344 kirjet `≥0.85+review:true`), mitte ainult sub-0.85 jääki.
+- **Kaks kutsujat, sama kood (HARD RULE #5):** backfill-runner (kogu backlog, ühekordne, Batch API) + öine pipeline-hook (ainult delta, sync). Sama transform mõlemale.
+- **Kohtunik-mudel ≠ generaator:** generaator Haiku → kohtunik **Sonnet** (sõltumatu teine arvamus). Klassifikaatori-kohtunik **Opus** (sama mudel, teine ülesanne: näeb kogu ämbrit + kandidaat-L3-de kirjeldusi → grupeerib cross-klastri dupe + rakendab eksklusiivsus-/dup-väravaid).
 
 ---
 
 ## 2. SÜNONÜÜMI-KOHTUNIK
 
-**Ulatus (Tarmo parandus):** katab **KOGU synonym_review pending ämbri** = 3854 kirjet, sh 1344 "≥0.85 + review:true" (mitte ainult sub-0.85). Generaatori kindlus on sisend-signaal, aga EI vabasta kirjet kohtunikust.
+**Ulatus:** KOGU synonym_review pending = 3854 kirjet (sh 1344 "≥0.85+review:true"). Generaatori kindlus = sisend-signaal, ei vabasta kohtunikust.
 
-**Sisend (per termin, synonym_review-st):** `word` + toote EN pealkiri + ET pealkiri (`title_et`) + L3 nimi/path + lühikirjeldus (~1-2 lauset) + generaatori `confidence` + `reason`.
+**Sisend (per termin):** `word` + toote EN + ET pealkiri + L3 nimi/path + lühikirjeldus + generaatori `confidence` + `reason`.
 
-**Kriteerium (prompt-süda):** *"Kas klient, kes otsingusse kirjutab selle sõna, ootaks NÄHA seda toodet?"* → `OK` / `VALE` + lühi-põhjus eesti keeles.
+**Kriteerium (prompt-süda):** *"Kas klient, kes otsingusse kirjutab selle sõna, ootaks NÄHA seda toodet?"* → `OK` / `VALE` / `EBAKINDEL` + lühi-põhjus eesti keeles.
 
-**Väljund → tegevus:**
+**Väljund → tegevus (täisautomaatne):**
 | Verdikt | Tegevus |
 |---|---|
-| OK (kõrge kindlus) | → `product_synonym` (sama kirje, mida auto≥0.85 oleks kirjutanud); synonym_review.status='resolved' |
-| VALE | → synonym_review.status='rejected' + põhjus (ei kirjutata product_synonym'i) |
-| EBAKINDEL | → jääb pending (väike jääk — see on ainus, mis inimeseni jõuab) |
+| OK | → `product_synonym` (sama, mida auto≥0.85 kirjutaks); status='resolved' |
+| VALE | → status='rejected' + põhjus (ei kirjutata synonym'i) |
+| EBAKINDEL | → **eskaleeru Opus-ile** (§2.1). **EI jää inimese järjekorda.** |
 
-**Mudel:** `claude-sonnet-5`. **Maht:** grupeeri ~10 terminit päringu kohta (prompt-cache süsteemi-osale). **Fail-loud:** kui kohtunik-batch kukub (API/krediit) → termin jääb pending, Telegram raporteerib skipitud-arvu (ei peata pipeline'i üksiku pärast — HARD RULE #5 kukkumis-granulaarsus).
+### 2.1 EBAKINDEL → automaatne eskalatsioon → ohutu vaikimisi
+- Sonnet "EBAKINDEL" → **sama termin Opus-ile** (tugevam mudel, sama kriteerium).
+- Opus OK → synonym kirjutatakse. Opus VALE → rejected.
+- **Opus endiselt EBAKINDEL → OHUTU VAIKIMISI:** `status='rejected_safe'` — **sünonüüm EI lähe otsingusse** (konservatiivne: parem puuduv sünonüüm kui vale otsingutulemus). **Mitte** pending, **mitte** inimese järjekord. Digestis ainult trendina ("N rejected_safe — kohtunik+Opus ei suutnud kinnitada").
 
-**NB sünonüümide eripära:** generaator genereerib ainult sünonüüme, variandid (kirjapildi-kombinatsioonid) tulevad koodist (100% õiged, `buildRows`). Kohtunik hindab AINULT sünonüüme, variante ei puutu.
+**Mudel:** `claude-sonnet-5` (→ eskalatsioon `claude-opus-4-8`). Grupeeri ~10 terminit/päring (prompt-cache). **Fail-loud:** batch kukub → termin jääb **pending** (API-viga ≠ ebakindlus — eristus oluline), Telegram raporteerib skip-arvu.
 
 ---
 
 ## 3. KLASSIFIKAATORI-KOHTUNIK
 
-**Sisend:** toote andmed (title_en, title_et, kirjeldus, tehniline spets, pilt-URL, praegune bucket + classifier `proposed_l3`/`suggest_name`/`suggest_l2`/`confidence`) + **KOGU v4-taksonoomia** (L3-handle + nimi + kirjeldus-profiil, prompt-cache'itud).
+**Sisend:** toote andmed (title_en/title_et/kirjeldus/spets/pilt-URL/bucket + classifier `proposed_l3`/`suggest_name`/`suggest_l2`/`confidence`) + **KOGU v4-taksonoomia** (L3-handle+nimi+kirjeldus-profiil, cache'itud).
 
 **Otsustusloogika (9-punkti sisu-reegel + reegli-pingerida CLAUDE.md-st):**
-1. **assign_existing** — kui ämbris olev toode sobib semantiliselt OLEMAS-L3-sse (klassifikaator oli madala kindlusega, aga kohtunik kinnitab kogu-puu-vaatega). *Suurim kiirvõit: 19 "review" (olemas-L3, conf 0.60–0.85) + osa quarantine'st.*
-2. **Grupeeri ise** — sama kontseptsioon mitmes klastris (nt "Puidu hoiuriiulid" + "Puiduhoiuriiulid" lumber rack; paracord ×N) → üks ühine otsus, mitte N eraldi. DUP-värav ENNE new_l3.
-3. **new_l3-ettepanek** — AINULT kui kogu puus pole sobivat tüüpi (tõestatud). → **EI loo ise**, koostab ettepaneku inimesele (punkt 4).
-4. **jääb** — tõeliselt ebakindel → pending (väike jääk).
+1. **assign_existing** — sobib OLEMAS-L3-sse (kohtunik kinnitab kogu-puu-vaatega). *Kiirvõit: 19 "review" + osa quarantine.*
+2. **Grupeeri ise** — sama kontsept mitmes klastris → üks otsus (DUP-värav ENNE loomist).
+3. **AUTO-new_l3** — sobivat tüüpi pole → **loo automaatselt läbi väravate (§4)**. Mitte inimese-kinnitus.
+4. **EBAKINDEL → eskaleeru Opus-teisele-promptile** (täispuu, karmim kriteerium) → endiselt ebakindel → **jääb draft** (toode EI lähe vale koju; ohutu vaikimisi) + digest-trend.
 
-**Tegevused API kaudu:** `assign_existing` (publitseerib draft'i + seob kategooria, undo taastab), `create_l3` ainult ettepaneku-logina (PROPOSE-NOT-CREATE — ei muuda live-puud).
+**⚠️ QUARANTINE-REEGEL:** kohtunik vaatab quarantine-kirje üle **AINULT kui põhjus = klassifitseerimise ebakindlus**. **Kui põhjus = FEEDI ANDMEKVALITEET** (puudu/katki title, tühi kirjeldus) → **jääb välja** + digest-trend ("⚠️ N quarantine = andmekvaliteet, vajab andme-parandust"). Kohtunik klassifitseerib quarantine puhul ESMALT põhjuse.
 
-**⚠️ QUARANTINE-REEGEL (Tarmo parandus 2026-10-06):** kohtunik tohib quarantine-kirje (6 tk) määrata assign/new_l3-ettepanekuks **AINULT kui quarantine põhjus on klassifitseerimise ebakindlus** (classifier ei suutnud otsustada). **Kui põhjus on FEEDI ANDMEKVALITEET** (puudu/katki title, tühi kirjeldus, vigane spets) → **jääb välja** (kohtunik ei arva andmeauku täis) + **eraldi märge digestis** ("⚠️ N quarantine = feedi andmekvaliteet, vajab andme-parandust, mitte paigutust"). Kohtunik peab seega quarantine puhul esmalt **klassifitseerima põhjuse** (ebakindlus vs andmeviga) ja alles siis otsustama.
-
-**Mudel:** `claude-opus-4-8`. **Maht:** batch ~6 toodet/päring (nagu klassifikaator), kogu-ämbri grupeerimine tehakse eel-sammus (kõik 40 korraga ühte prompti → leia klastrid → siis adjudikeeri).
+**Mudel:** `claude-opus-4-8`. Batch ~6 toodet/päring; kogu-ämbri grupeerimine eel-sammus (40 korraga → klastrid → adjudikeeri).
 
 ---
 
-## 4. UUE L3 LOOMINE — variant (b), Tarmo valitud
+## 4. UUE L3 LOOMINE — TÄISAUTOMAATNE läbi väravate (ei Tarmo-kinnitust)
 
-**Masin koostab ettepaneku-paketi, Tarmo kinnitab ühe vajutusega.** Ettepanek sisaldab:
-- **Nimi** (õige eesti nimi kohe sünnihetkel — NIME-REEGEL, Eesti müüjate etalonide järgi, mitte masintõlge)
-- **Vanem-L2** (kuhu alla)
-- **Tooted** (mis ämbri-kirjed sinna lähevad, N tk)
-- **Põhjendus** (miks olemas-L3 ei sobi — 9-punkti sisu-reegel)
-- **DUP-kontroll tehtud** (kohtunik on tõestanud: ükski olemas-L3 ei kata)
-- **Soovituslik merge/split-kontroll** (kas kõrval-L2-s on sama tüüp → merge-kandidaat)
+> **Muudatus 2026-10-06 (HARD RULE #6):** varasem "UI üks-nupp, Tarmo kinnitab" on EEMALDATUD. Käsitsi-kinnitus iga uue L3 kohta EI skaleeru feed-kasvul (Powermat/BlackTools/KraftDele toovad uusi tüüpe pidevalt). **Uus L3 luuakse automaatselt — väravad asendavad inimese-kinnituse, undo + Telegram asendavad eel-ülevaate.**
 
-### Telegrami nupp vs UI üks-nupp — soovitus: **UI üks-nupp** ✅
+**Kohtunik koostab L3-ettepaneku-paketi** (nimi õige eesti nimega sünnihetkel — NIME-REEGEL; vanem-L2; tooted; põhjendus; DUP-tõend; merge/split-signaal). Pakett läheb **otse build-bridge'i**, mitte inimese ette.
 
-| | Telegrami inline-nupp | UI üks-nupp (xl-admin) |
-|---|---|---|
-| **Vajab uut infra?** | **JAH** — callback-vastuvõtja (webhook või long-polling bot-protsess). Praegu pipeline ainult SAADAB Telegrami (`notify-telegram.sh`, ühesuunaline) | **EI** — xl-admin UI + review-bucket API + `create_l3` tegevus + auth + undo **juba olemas** (categorization-queue leht) |
-| **Audit/jälg** | Nupuvajutus pole iseenesest auditeeritav ilma lisa-logita | Logib review_decision_log'i (actor, põhjus, undo) automaatselt |
-| **Konteksti-maht** | Telegram näitab lühi-teksti; pikk põhjendus + tootenimekiri kohmakas | UI näitab täis-paketi (tooted, pildid, kandidaat-L3-de kirjeldused) |
-| **Turvavõrk** | — | **UI ongi see turvavõrk/audit**, mille Tarmo tahab säilitada |
+### 🌉 BUILD-BRIDGE — iganädalane täisautomaatne struktuuri-build
 
-**KINNITATUD (Tarmo 2026-10-06): UI üks-nupp + Telegrami teavitus lingiga.** Põhjus: kogu vajalik (API `create_l3`, auth teenuskonto, undo, queue-leht) on **juba ehitatud** — lisada tuleb vaid "Kinnita ettepanek" nupp, mis kutsub olemas-`create_l3`. Telegram **teavitab** ("🆕 3 uut L3-ettepanekut ootab kinnitust → [link UI-sse]") deep-lingiga. **Telegram teavitab, UI kinnitab** — null uut infra, täis-audit.
+**Cron (nt pühapäeva öö) — samm-sammult:**
+1. **Loe kohtuniku L3-ettepanekud** — `review_decision_log action='create_l3' status='proposed'`, mida pole veel ehitatud (meta.built != true). *(Kohtunik kirjutab need ise — inimese-klõpsu ei oodata.)*
+2. **genyM** — lisa uued L3-d SSoT-i (`taxonomy-*.yaml`); auto-värskendab dumbid DB-st (stale-dump gotcha lahendatud).
+3. **🔒 VÄRAVAD (KÕIK peavad läbima, muidu peatu):**
+   - **DUP-värav** — semantiline "kas siht juba olemas mujal?" (kohtuniku tõend + cross-main re-skänn).
+   - `lock-harness.mjs pre` (kaart+backup+baseline-inv).
+   - DB-migratsioon (transaktsioon, ON_ERROR_STOP).
+   - `inv-taxonomy.mjs` (0 FAIL — SEG/DUP/STRUCT/NAME/WIDTH/ORPHAN/COMPLETE).
+   - `merge-judge.mjs` uute L3 kõrval-L2-l (üle-fragmenteerimise kontroll).
+   - `lock-harness.mjs post` (distinct säilinud, mpath terve, struktuur, Meili värske).
+4. **Määra klastri tooted** uude L3-sse (ettepaneku `affected` → product_category_product).
+5. **4-sammu deploy:** DB-migratsioon ✓ + Meili reindeks + `git push origin taxonomy-v4` + Coolify redeploy (nav rebuild).
+6. **Telegram tulemus + undo-link:** "✅ Build: 2 uut L3, 14 toodet, nav uuendatud · undo: [link]" VÕI "🔴 Build PEATUS väraval INV-SEG-01 — midagi ei deploy'tud, [link]".
 
-### 🌉 BUILD-BRIDGE — iganädalane TÄIESTI AUTOMAATNE struktuuri-build (Tarmo parandus 2026-10-06)
+**🔒 KÕIK-VÕI-MITTE-MIDAGI:** iga värav FAIL → **peatu KOHE, ära deploy'i poolikult**, Telegram-alert. Pooleldi-build (DB õige, nav vana) KEELATUD. Sama 4-sammu-distsipliin mis käsitsi-lukkudel, aga automatiseeritud + väravatega.
 
-`create_l3` on PROPOSE-NOT-CREATE → kinnitus LOGIB kavatsuse, L3 materialiseerub alles 4-sammu deploy'ga. Tarmo otsus: **kinnitatud ettepanekute → live viimine on TÄIESTI automaatne cron, mitte käsitsi XL-töö.**
+**Miks partii (nädalas), mitte kohe-igaüks:** SSoT-regen + redeploy kallis (build-time bundle) → üks nädalane partii = üks deploy kõigile uutele L3-dele, deterministlik.
 
-**Cron (nt pühapäeva öö) — build-bridge samm-sammult:**
-1. **Loe kinnitatud ettepanekud** — review_decision_log `action='create_l3' AND status='applied'` (Tarmo kinnitas UI-s), mida pole veel live-puusse viidud (meta.built != true).
-2. **genyM** — lisa uued L3-d SSoT-i (`taxonomy-*.yaml`), auto-värskendab dumbid DB-st (stale-dump gotcha lahendatud).
-3. **VÄRAVAD (kõik peavad läbima):** `lock-harness.mjs pre` (kaart+backup+baseline) → DB-migratsioon → `inv-taxonomy.mjs` (0 FAIL) → `lock-harness.mjs post` (distinct säilinud, struktuur, Meili värske). Lisaks merge-judge uute L3 kõrval-L2-l (üle-fragmenteerimise kontroll).
-4. **Määra klastri tooted** uude L3-sse (ettepaneku `affected` product_ids → product_category_product).
-5. **4-sammu deploy:** DB-migratsioon ✓ + Meili reindeks + `git push origin taxonomy-v4` + Coolify storefront redeploy (nav-puu rebuild).
-6. **Telegram tulemus:** "✅ Build: 2 uut L3 loodud, 14 toodet määratud, nav uuendatud" VÕI "🔴 Build PEATUS väraval INV-SEG-01 — midagi ei deploy'tud, vaata [link]".
-
-**🔒 KÕIK-VÕI-MITTE-MIDAGI:** iga värav (INV/harness/merge-judge FAIL) → **peatu KOHE, ära deploy'i poolikult**, Telegram-alert. Transaktsioon (ON_ERROR_STOP) + "kas kõik 4 sammu tehtud" kontroll luku lõpus. Pooleldi-build (DB õige, nav vana) on KEELATUD seis. See on sama 4-sammu-distsipliin mis käsitsi-lukkudel, aga automatiseeritud ja väravatega kaitstud.
-
-**Miks partii (nädalas), mitte kohe-igaüks:** SSoT-regen + redeploy on kallis (build-time bundle) → üks nädalane partii = üks deploy kõigile kinnitatud L3-dele, deterministlik, väldib N redeploy'd nädalas.
+**Inimene siin AINULT siis kui:** värav blokeerib KORDUVALT sama ettepaneku (nt merge-judge kõrge + INV konflikt, mida masin ei lahenda) → Telegram tõstab ERANDINA esile. See = äärmuslik erand, mitte töövoog.
 
 ---
 
-## 5. KALIBREERIMINE (enne kui kohtunik otsustab päriselt)
+## 5. KALIBREERIMINE — ÜKSKORDNE (inimene) + triivikontroll AUTOMAATNE (masin)
 
-**Samm-sammult (Tarmo parandus — PIME hindamine):**
-1. **Dry-run valim:** kohtunik jookseb `--dry` režiimis juhuslikul valimil — **100 sünonüümi** (synonym_review-st, kogu pending seast) + **kõik 40 klassifikaatori kirjet**. Väljund salvestatakse (verdikt + põhjus + kindlus), **EI kirjuta DB-sse**.
-2. **🙈 Tarmo hindab PIMESI** — xl-admin **kalibreerimisleht**, kus iga kirje kohta on OK/VALE (sünonüüm) või assign-kuhu / new_l3 / jääk (klassifikaator) nupp. **Kohtuniku vastus on PEIDETUD**, kuni Tarmo on kõik hinnanud (väldib ankurdamist kohtuniku otsusele). Progress "47/140 hinnatud".
-3. **Automaatne võrdlustabel** pärast viimast hinnangut: Tarmo vs kohtunik kõrvuti, lahkuminekud esile tõstetud, kaks veamäära arvutatud:
-   - **VALE-OK määr** (kohtunik OK/assign, Tarmo VALE) — **KRIITILINE**, kirjutab vigase andmise live'i.
-   - **Liiga-ettevaatlik määr** (kohtunik jättis jääki, Tarmo oleks otsustanud) — ohutu, ainult efektiivsus.
-4. **Lävendid KINNITATUD (Tarmo 2026-10-06):**
-   - Sünonüümi-kohtunik: **VALE-OK ≤ 5%** → luba auto-kirjutus.
-   - Klassifikaatori-kohtunik: **VALE-assign ≤ 2,5%** (= **≤ 1 viga 40-st**) → luba auto-assign.
-   - Üle läve → kohtunik jääb dry-run/propose-režiimi, prompti parandatakse, korratakse valim.
-5. **Perioodiline triivi-kontroll:** juhuslik valim **30 kirjet kord kuus** (sama pime-leht) → kui VALE-OK/VALE-assign tõuseb üle läve → **automaatrežiim peatub + Telegram-hoiatus**.
+> **Muudatus 2026-10-06 (HARD RULE #6):** kalibreerimine = **inimese ühekordne** värav enne live'i. Jooksev triivikontroll = **täisautomaatne mudel-audit**, inimene EI hinda kuus.
 
-**Kalibreerimislehe välimus** (xl-admin/kalibreerimine) — vt eraldi näidis-mockup ehitussammu raportis.
+### 5.1 Ühekordne kalibreerimine (inimene — ainus inimtöö kogu plaanis)
+1. **Dry-run valim:** kohtunik `--dry` juhuvalimil — **100 sünonüümi** (kogu pending seast, seed=xlm) + **kõik 40 klassifikaatorit**. Väljund salvestatud (verdikt+põhjus+kindlus), **EI kirjuta DB-sse**.
+2. **🙈 Tarmo hindab PIMESI** xl-admin **kalibreerimislehel** (`/xl-admin/kalibreerimine`) — kohtuniku vastus PEIDETUD kuni kõik hinnatud (väldib ankurdamist). Hinnangud salvestuvad DB-sse (`calibration_rating`) → **korratav/auditeeritav**.
+3. **Automaatne võrdlustabel:** Tarmo vs kohtunik, kaks veamäära:
+   - **VALE-OK/VALE-assign määr** (kohtunik OK/assign, Tarmo VALE) — **KRIITILINE** (kirjutab vigase live'i).
+   - **Liiga-ettevaatlik määr** (kohtunik jättis, Tarmo oleks otsustanud) — ohutu, ainult efektiivsus.
+4. **Lävendid (Tarmo kinnitatud):** sünonüüm **VALE-OK ≤5%** · klassifikaator **VALE-assign ≤2,5%** (≤1/40). Üle läve → prompt paraneb, valim korratakse (ikka dry).
+5. **See on ÜKSKORDNE.** Kui lävend läbitud → automaatrežiim käivitub ja Tarmo EI hinda enam rutiinselt.
 
-**NB:** mudeli-kulu EI ole piirav tegur (vt punkt 7) — **korrektsus on**. Kalibreerimine on selle plaani kriitiline värav, mitte formaalsus.
+### 5.2 Triivikontroll — TÄISAUTOMAATNE (kord kuus, mudel auditeerib, mitte inimene)
+- Cron võtab **juhuvalimi 30 live-otsust** eelmisest kuust.
+- **Teine, sõltumatu mudel (audiitor)** hindab need samade kriteeriumitega — **inimest EI kaasata**.
+- Audiitori-lahkuminek kohtunikust > lävi → **automaatrežiim peatub + Telegram-hoiatus** ("🔴 triiv: VALE-OK 8% > 5%, auto-režiim pausil, vaata [link]"). Alla läve → vaikne roheline (digest-trend).
+- **Inimene kaasatakse AINULT kui triiv ületab läve** (= äärmuslik erand). Normaaljuhul kuine kontroll on nähtamatu masina-taustatöö.
+
+**NB:** mudeli-kulu EI ole piirav (§7) — **korrektsus on**. Kalibreerimine = kriitiline ühekordne värav, triivikontroll = automaatne kaitse.
 
 ---
 
 ## 6. HARD RULE #5 — backfill + hook + multi-feed
 
-**Üks transform-funktsioon, kaks kutsujat** (sama kood → backfill ja hook ei lahkne):
-
-1. **BACKFILL (ühekordne, kogu praegune backlog):** 3854 sünonüümi + 40 klassifikaatori kirjet. Batch API (−50%, latentsus OK). Runner: `auto-judge-run.mjs --all --batch` (muster nagu `synonym-gen-run.mjs --all --batch`).
-
-2. **ÖINE HOOK (delta):** uued kirjed, mis öine import ämbrisse lisas.
-   - **Sünonüümi-kohtunik:** peale `[6.6] sünonüümid` → töötab AINULT selle öö sub-0.85 terminite peal (generaator just lisas), MITTE kogu 3854.
-   - **Klassifikaatori-kohtunik:** peale `[4] classify` → töötab AINULT öö review/new_l3/quarantine kirjete peal (`/tmp/classify-skus.txt` delta).
-   - **Synchroonne** (mitte batch) — pipeline peab samas jooksus assign'ima + reindekseerima; delta väike → sync-kulu tühine (batch-latentsus 24h ei sobi öisesse torusse).
-
-3. **MULTI-FEED (bränd-agnostiline):** kohtunik otsustab **sisust** (title/spets/kirjeldus), MITTE tootja-nimest → loomu poolest bränd-immuunne (Powermat/BlackTools/KraftDele "garden wagon" = "beach cart" = sama tüüp). Title-strip (`deriveBrandSlug` SSoT, `scripts/lib/brand-strip.mjs`) toimub juba [3.5]-s ENNE classify't → kohtunik saab puhta sisendi. **Kohtunikus EI tohi olla VEVOR-hardcode't.**
-
-4. **FAIL-LOUD:** kohtunik-samm kukub (API/krediit/timeout) → üksik kirje skip + jätka, kogu-partii kukub → exit≠0 → Telegram. Krediit-degrade: järgib olemas-mustrit ([4] CREDIT_PENDING) — kohtunik skip, laoseis+reindeks JÄTKUB.
+**Üks transform, kaks kutsujat:**
+1. **BACKFILL (ühekordne):** 3854 sünonüümi + 40 klassifikaatorit, Batch API (−50%). Runner `auto-judge-run.mjs --all --batch`.
+2. **ÖINE HOOK (delta):**
+   - Sünonüüm: peale `[6.6]` → AINULT öö sub-0.85 terminid (+ eskalatsioon), MITTE 3854.
+   - Klassifikaator: peale `[4]` → AINULT öö review/new_l3/quarantine (`/tmp/classify-skus.txt` delta).
+   - **Sync** (mitte batch) — pipeline assign'ib + reindekseerib samas jooksus; delta väike.
+3. **MULTI-FEED (bränd-agnostiline):** kohtunik otsustab **sisust**, mitte tootja-nimest → loomu poolest bränd-immuunne. Title-strip (`deriveBrandSlug` SSoT) juba [3.5]-s ENNE classify. **Kohtunikus EI tohi olla VEVOR-hardcode't.**
+4. **FAIL-LOUD:** üksik kirje kukub → skip+jätka; kogu-partii → exit≠0 → Telegram. Krediit-degrade: kohtunik skip, laoseis+reindeks JÄTKUB.
 
 ---
 
 ## 7. KULUHINNANG
 
-> Mudeli-hinnad (2026-10, per 1M tokenit): Sonnet 5 $3/$15 · Opus 4.8 $5/$25. **Batch API −50%:** Sonnet $1.50/$7.50 · Opus $2.50/$12.50.
+> Hinnad per 1M (2026-10): Sonnet 5 $3/$15 · Opus 4.8 $5/$25. Batch −50%.
 
-| Töö | Maht | Mudel/režiim | Hinnang |
+| Töö | Maht | Mudel | Hinnang |
 |---|---|---|---|
-| Sünonüümi backfill | 3854 terminit (~150 in / 40 out per termin) | Sonnet Batch | **~€3–5** |
-| Klassifikaatori backfill | 40 toodet (~18 klastrit, puu cache'itud) | Opus Batch | **~€0.5–1** |
-| **BACKFILL kokku (ühekordne)** | | | **< €6** |
-| Öine hook — sünonüümid | ~30–80 sub-0.85 terminit/öö | Sonnet sync | ~€0.08/öö |
-| Öine hook — klassifikaator | ~18–40 kirjet/öö (puu cache) | Opus sync | ~€0.10–0.20/öö |
-| **ÖINE HOOK kokku** | | | **~€6–10/kuu** |
+| Sünonüümi backfill | 3854 (+eskalatsioon ~10%) | Sonnet+Opus Batch | **~€4–6** |
+| Klassifikaatori backfill | 40 (~18 klastrit) | Opus Batch | **~€0.5–1** |
+| **BACKFILL kokku** | | | **< €7** |
+| Öine hook sünonüümid | ~30–80/öö | Sonnet sync | ~€0.08/öö |
+| Öine hook klassifikaator | ~18–40/öö | Opus sync | ~€0.10–0.20/öö |
+| Kuine triivi-audit | 30 kirjet | audiitor-mudel | ~€0.10/kuu |
+| **JOOKSEV kokku** | | | **~€6–10/kuu** |
 
-**Järeldus:** kulu on tühine (backfill alla €6, jooksev alla €10/kuu). **Pudelikael pole raha, vaid kalibreerimise-korrektsus** (punkt 5). Batch API annab backfillil 50% kokkuhoiu latentsuse-hinnaga (≤24h) — öises torus batch EI sobi (sync vajalik reindeksi jaoks), aga seal on maht niikuinii väike.
+**Järeldus:** kulu tühine (backfill <€7, jooksev <€10/kuu). Eskalatsioon Opus-ile lisab marginaalselt. **Pudelikael = kalibreerimise-korrektsus, mitte raha.**
 
 ---
 
-## 8. DIGEST PÄRAST
+## 8. DIGEST — ainult trend (mitte "ootab otsust")
 
-Praegune digest näitab "ootab otsust X". Uus digest:
+> **Muudatus 2026-10-06:** digest EI näita enam "ootab Tarmo kinnitust" (pole enam inimese-kinnitust). Digest näitab **trendi** — kas masin töötab tervelt.
 
 ```
 🤖 AUTO-JUDGE 2026-XX-XX
-   🔤 sünonüümid: kohtunik OK 72 · VALE 11 · jääk 6   (jääk 🟢 kahanev)
-   🏷 klassifikaator: assign 14 · grupeeritud 3 · new_l3-ettepanek 2 (ootab kinnitust) · jääk 1
-   🆕 L3-ettepanekud ootavad Tarmo kinnitust: 2 → [link UI-sse]
+   🔤 sünonüümid: OK 72 · VALE 11 · eskaleeritud→OK 4 · rejected_safe 2
+   🏷 klassifikaator: assign 14 · grupeeritud 3 · auto-L3 2 (ehitatud ✓) · jäi-draft 1
+   🌉 build-bridge: 2 uut L3, 14 toodet, nav ✓ · undo: [link]
+   📊 triiv (viim. kuu-audit): VALE-OK 3% 🟢
 ```
 
-- **🔴 AINULT kui:** jääk KASVAB (kohtunik ei suuda otsustada — triiv/uus tüüpide laine) VÕI kohtunik ISE ebaõnnestub (API/krediit maas, batch kukkus).
-- Roheline = kohtunik töötab, jääk kahaneb/stabiilne, 0 kohtuniku-viga.
-- new_l3-ettepanekud alati nähtavad (Tarmo kinnituse-ootel) — deep-link UI-sse.
+- **🔴 AINULT kui:** jääk/rejected_safe KASVAB (triiv/uus tüüpide laine) VÕI kohtunik ebaõnnestub (API/krediit) VÕI build-bridge värav blokeeris VÕI kuine triiv > lävi.
+- Roheline = masin töötab, auto-L3-d ehitatud, triiv all läve.
+- **Deep-link UI-sse ainult ERANDI korral** (blokeeritud build / triiv-alarm) — mitte rutiinse kinnituse jaoks.
 
 ---
 
-## 9. OTSUSTATUD (Tarmo 2026-10-06) + ETAPIVIISILINE TEOSTUS
+## 9. REVIEW-UI = AINULT HÄIREOLUKORRA TURVAVÕRK
 
-**Tarmo on kinnitanud (enam mitte avatud):**
-- ☑ Lävendid: sünonüüm **VALE-OK ≤5%**, klassifikaator **VALE-assign ≤2,5%** (≤1/40). Kuine triivivalim 30.
-- ☑ Uue L3 partii: **iganädalane TÄIESTI automaatne build-bridge** (§4) — mitte käsitsi, mitte kohe-igaüks.
-- ☑ Quarantine: kohtunik tohib üle vaadata **AINULT kui põhjus = klassifitseerimise ebakindlus**; feedi andmekvaliteet → jääb välja + digest-märge (§3).
-- ☑ Sünonüümi-kohtunik katab **KOGU pending** (ka ≥0.85+review:true), mitte ainult sub-0.85.
-- ☑ Kalibreerimine **PIMESI** xl-admin lehel, **100 sünonüümi + 40 klassifikaatorit**.
+> **Muudatus 2026-10-06 (HARD RULE #6, punkt 4):** review-UI (`/xl-admin/review-bucket`, categorization-queue) EI ole enam rutiinne töövoog. See on **turvavõrk äärmuslikuks juhuks**:
+- Masin blokeeritud (build-bridge värav korduvalt FAIL, mida masin ei lahenda).
+- Triivi-alarm (kuine audit > lävi) → auto-režiim pausil, inimene uurib + taaskäivitab.
+- Andmekvaliteedi-quarantine (feed katki) → inimene parandab andmed, mitte paigutuse.
 
-**Teostus-etapid (pärast kinnitust):**
-1. `lib/judge.mjs` — transform-funktsioonid (sünonüüm + klassifikaator), bränd-agnostilised, sama kood backfill+hook.
-2. Dry-run runner + **kalibreerimise-valim** (punkt 5) → Tarmo hindab → lävend.
-3. Lävend OK → backfill (Batch API) → audit review_decision_log'ist.
-4. Öine hook pipeline'i ([4] ja [6.6] järele) + digest-uuendus.
-5. UI "Kinnita L3-ettepanek" nupp (olemas-`create_l3` peale) + Telegram deep-link.
-6. Perioodiline triivi-kontroll (kuine valim).
+**Normaaljuhul UI-sse ei logita keegi.** Kui UI täitub rutiinselt otsustega, on disain katki (HARD RULE #6) — siis projekteeri kohtunik/eskalatsioon ümber, mitte ära lisa inimtööd.
 
-**Riskid:**
-- Kohtunik-generaator sama-viga (sünonüüm): leevendus = eri mudel (Sonnet vs Haiku).
-- new_l3 plahvatus: leevendus = PROPOSE-NOT-CREATE + inimese-kinnitus + INV-STRUCT-01.
-- Kalibreerimine liiga väike valim: 100+40 (Tarmo kinnitatud); kahtluse korral suurenda.
-- Batch API latentsus öises torus: lahendatud (hook = sync, backfill = batch).
-```
+---
+
+## 10. OTSUSTATUD (Tarmo 2026-10-06) + ETAPIVIISILINE TEOSTUS
+
+**Kinnitatud (HARD RULE #6 kooskõlas):**
+- ☑ **Kalibreerimine ÜKSKORDNE** (inimene hindab üks kord); kuine triivikontroll **AUTOMAATNE** (audiitor-mudel, häire ainult üle läve).
+- ☑ **Uued L3-d AUTOMAATSELT** väravatega (DUP · lock-harness · INV · merge-judge) + Telegram + undo. **Tarmo kinnitust EI nõuta.**
+- ☑ **EBAKINDEL → eskaleeru Opus-ile** → endiselt ebakindel → **ohutu vaikimisi** (sünonüüm ei lähe otsingusse; toode jääb draft). **Mitte inimese järjekord.**
+- ☑ **Review-UI = ainult häireolukorra turvavõrk.** Digest näitab ainult trendi.
+- ☑ Lävendid: sünonüüm VALE-OK ≤5%, klassifikaator VALE-assign ≤2,5%. Kuine triivivalim 30.
+- ☑ Sünonüümi-kohtunik katab KOGU pending. Kalibreerimine PIMESI, 100+40.
+
+**Teostus-etapid:**
+1. `lib/judge.mjs` — transform-funktsioonid (sünonüüm + klassifikaator + **eskalatsiooni-loogika**), bränd-agnostilised, sama kood backfill+hook.
+2. Dry-run runner + **ühekordne kalibreerimis-valim** (§5.1) → Tarmo hindab → lävend. *(Kalibreerimisleht + DB-püsivus `calibration_rating` juba ehitatud.)*
+3. Lävend OK → backfill (Batch) → audit review_decision_log'ist.
+4. Öine hook ([4] ja [6.6] järele) + **eskalatsioon** + digest-trend.
+5. **Build-bridge cron** (§4) — automaatne L3-loomine väravatega + Telegram + undo. (Olemas `create_l3` ettepaneku-logi → laienda proposed→build.)
+6. **Kuine triivi-audit cron** (§5.2) — audiitor-mudel, auto-paus + alarm.
+
+**Riskid + leevendus:**
+- Kohtunik-generaator sama-viga (sünonüüm) → eri mudel (Sonnet vs Haiku) + Opus-eskalatsioon.
+- Auto-L3 plahvatus → **väravad** (DUP + INV-STRUCT-01 + merge-judge) peatavad; KÕIK-VÕI-MITTE-MIDAGI build.
+- Ebakindel vale-positiiv → **ohutu vaikimisi** (konservatiivne: pigem puuduv sünonüüm / draft kui vale live).
+- Triiv aja jooksul → kuine automaat-audit + auto-paus.

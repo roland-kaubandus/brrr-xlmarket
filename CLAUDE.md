@@ -66,6 +66,39 @@ kui taxonomy-v4 SHA sisaldab fix'i.**
 
 ---
 
+## 🛑 HARD RULE #6 — MASIN TÖÖTAB ISE (inimene = ainult äärmuslik erand)
+
+> Lisatud 2026-10-06 (Tarmo strateegiline põhimõte).
+
+**Masin töötab ise, ilma inimese sekkumiseta. Inimene on AINULT äärmuslik erandiolukord.**
+
+- **Iga uus funktsioon peab töötama automaatselt ka siis, kui maht kasvab 10× või 100×.**
+- **Kui lahendus eeldab inimese korduvat tööd, on see VALE lahendus.** Projekteeri ümber nii, et korduv samm kaob.
+- **Inimese järjekord (review-UI, kinnitused, käsitsi-hindamine) = turvavõrk äärmuslikuks juhuks**, mitte normaalne töövoog. Kui miski satub inimese ette *rutiinselt*, on disain katki.
+
+**Kuidas rakendada (iga uue funktsiooni/plaani juures):**
+- Küsi ENNE ehitust: "kas see skaleerub 100× ilma inimeseta?" Kui ei → projekteeri ümber.
+- EBAKINDEL / madal-kindlus → **eskaleeru automaatselt tugevamale mudelile** (Opus), mitte inimese järjekorda. Mis sealtki jääb → **ohutu vaikimisi** (nt sünonüüm EI lähe otsingusse), mitte käsitsi-otsus.
+- Ühekordne inimtöö (nt kalibreerimine) on OK; **korduv** inimtöö ei ole.
+- Automaatsel tegevusel ALATI: valideerimisväravad (DUP/INV/lock-harness) + Telegram-teade + **undo**. Nähtavus + tagasipööratavus asendavad eel-kinnituse.
+
+---
+
+## 🛑 HARD RULE #7 — INTSIDENDI KAHTLUSE KORRAL: ÄRA REDEPLOY ENNE LOGIDE SALVESTAMIST
+
+> Lisatud 2026-10-06 (pärast 2026-10-06 intsidendi-uurimist).
+
+**Kui kahtlustad intsidenti (ootamatud DB-read, võõrad otsused, kahtlane tegevus) — ÄRA tee redeploy'd ega konteineri-restarti ENNE, kui asjakohased logid on salvestatud.**
+
+**Why:** Coolify redeploy **taasloob konteinerid** (`docker recreate`) → json-file logid (route/IP/user-agent/admin-login) **hävivad**. *Tõestatud 2026-10-06: redeploy 09:49 hävitas 06:51 UTC logid, mis oleks lahendanud kanali (brauser vs curl) küsimuse — tõend kadus pöördumatult.*
+
+**Kuidas:**
+1. Intsidendi-kahtlus → KÕIGEPEALT salvesta asjakohane aken: `docker logs <konteiner> --since <algus> --until <lõpp> > /tmp/incident-<ts>.log` (medusa + storefront + proxy).
+2. Alles SIIS tee muudatused/redeploy.
+3. Kahtluse korral küsi, mitte ära oleta — ja **ära hävita tõendit mugavuse pärast**.
+
+---
+
 ## Sessioon 2026-05-02 muudatused (hommikune pool)
 
 **Sessioonilogi:** `xlmarket/memory/sessions/2026-05-02-xl.md`

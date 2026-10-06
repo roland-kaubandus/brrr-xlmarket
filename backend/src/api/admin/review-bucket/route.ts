@@ -63,6 +63,20 @@ function requireAdmin(req: MedusaRequest, res: MedusaResponse): string | null {
   return String(actor)
 }
 
+// TEGELIK tegija + kanal (migratsioon 009). `actor` (auth_context) on proxy kaudu ALATI
+// teenuskonto → ei erista algatajat. Proxy edastab body's tegeliku tegija + kanali:
+//   actor_detail = sisselogitud e-post | 'auto-judge' | skripti nimi
+//   channel      = 'ui' (proxy/brauser) | 'api' (otse) | 'pipeline' (cron)
+// Puudub (nt otse-curl ilma väljata) → aus fallback, mitte vale väide.
+const CHANNELS = new Set(["ui", "api", "pipeline"])
+function provenance(body: any, actorId: string): { actor_detail: string; channel: string } {
+  const detail = typeof body?.actor_detail === "string" && body.actor_detail.trim()
+    ? body.actor_detail.trim().slice(0, 200)
+    : actorId // fallback: Medusa actor_id (teenuskonto) — aus, teame ainult seda
+  const ch = typeof body?.channel === "string" && CHANNELS.has(body.channel) ? body.channel : "api"
+  return { actor_detail: detail, channel: ch }
+}
+
 // review_decision_log peab tulema migratsioonist 007. Puudub → SELGE viga (mitte vaikne loomine).
 async function assertLogTable(c: Client): Promise<void> {
   const r = await c.query(`SELECT to_regclass('public.review_decision_log') IS NOT NULL AS ok`)
@@ -257,8 +271,8 @@ export const GET = async (req: MedusaRequest, res: MedusaResponse) => {
             ORDER BY created_at ASC`
         )).rows
         recent = (await c.query(
-          `SELECT id, created_at, actor, action, concept_key, target_handle, new_l3_name,
-                  status, jsonb_array_length(affected) AS n_affected, undone_at
+          `SELECT id, created_at, actor, actor_detail, channel, action, concept_key, target_handle, new_l3_name,
+                  status, jsonb_array_length(affected) AS n_affected, undone_at, undone_by
              FROM review_decision_log
             WHERE bucket_type='classification'
             ORDER BY id DESC LIMIT 20`
@@ -320,6 +334,7 @@ export const POST = async (req: MedusaRequest, res: MedusaResponse) => {
   if (!actor) return
   const body = (req.body || {}) as any
   const action = body.action
+  const prov = provenance(body, actor) // tegelik tegija + kanal (migratsioon 009)
 
   try {
     // ── UNDO ──────────────────────────────────────────────────────
@@ -358,9 +373,10 @@ export const POST = async (req: MedusaRequest, res: MedusaResponse) => {
             )
           }
         }
+        // undone_by = TEGELIK undo-tegija (sisselogitud e-post kui proxy edastab), mitte teenuskonto
         await c.query(
           `UPDATE review_decision_log SET status='undone', undone_at=now(), undone_by=$2 WHERE id=$1`,
-          [log_id, actor]
+          [log_id, prov.actor_detail]
         )
         return { undone: affected.length }
       })
@@ -401,9 +417,9 @@ export const POST = async (req: MedusaRequest, res: MedusaResponse) => {
           })
         }
         const log = await c.query(
-          `INSERT INTO review_decision_log (actor, bucket_type, action, concept_key, target_handle, status, affected)
-           VALUES ($1,'classification','assign_existing',$2,$3,'applied',$4) RETURNING id`,
-          [actor, conceptKey_, target, JSON.stringify(affected)]
+          `INSERT INTO review_decision_log (actor, actor_detail, channel, bucket_type, action, concept_key, target_handle, status, affected)
+           VALUES ($1,$5,$6,'classification','assign_existing',$2,$3,'applied',$4) RETURNING id`,
+          [actor, conceptKey_, target, JSON.stringify(affected), prov.actor_detail, prov.channel]
         )
         return { log_id: log.rows[0].id, moved: affected.length, target_category_id: catId }
       })
@@ -436,10 +452,11 @@ export const POST = async (req: MedusaRequest, res: MedusaResponse) => {
         }))
         const log = await c.query(
           `INSERT INTO review_decision_log
-             (actor, bucket_type, action, concept_key, target_l2, new_l3_name, status, affected, meta)
-           VALUES ($1,'classification','create_l3',$2,$3,$4,'approved_pending_build',$5,$6) RETURNING id`,
+             (actor, actor_detail, channel, bucket_type, action, concept_key, target_l2, new_l3_name, status, affected, meta)
+           VALUES ($1,$7,$8,'classification','create_l3',$2,$3,$4,'approved_pending_build',$5,$6) RETURNING id`,
           [actor, conceptKey_, l2_handle, new_l3_name, JSON.stringify(affected),
-           JSON.stringify({ note: "L3 luuakse struktuuri-buildil (genyM + 4-sammu deploy); tooted määratakse siis" })]
+           JSON.stringify({ note: "L3 luuakse struktuuri-buildil (genyM + 4-sammu deploy); tooted määratakse siis" }),
+           prov.actor_detail, prov.channel]
         )
         return { log_id: log.rows[0].id, approved: affected.length, pending_build: true }
       })
@@ -461,9 +478,9 @@ export const POST = async (req: MedusaRequest, res: MedusaResponse) => {
           [productIds, newStatus]
         )
         const log = await c.query(
-          `INSERT INTO review_decision_log (actor, bucket_type, action, concept_key, status, affected)
-           VALUES ($1,'classification',$2,$3,'applied',$4) RETURNING id`,
-          [actor, action, conceptKey_, JSON.stringify(affected)]
+          `INSERT INTO review_decision_log (actor, actor_detail, channel, bucket_type, action, concept_key, status, affected)
+           VALUES ($1,$5,$6,'classification',$2,$3,'applied',$4) RETURNING id`,
+          [actor, action, conceptKey_, JSON.stringify(affected), prov.actor_detail, prov.channel]
         )
         return { log_id: log.rows[0].id, updated: affected.length }
       })
