@@ -78,7 +78,7 @@ async function runSynonym() {
 }
 
 async function runClassify() {
-  const { judgeClassify, CLSF_JUDGE_MODEL } = await import("./lib/judge.mjs");
+  const { judgeClassify, CLSF_JUDGE_MODEL, clusterKeyOf, enforceClassifyConsistency } = await import("./lib/judge.mjs");
   // kandidaadid = v4 LEHT-L3-d (tree nodes ilma lasteta) + nimi DB-st
   const tree = JSON.parse(fs.readFileSync(new URL("../storefront/lib/category-tree.generated.json", import.meta.url)));
   const leafHandles = Object.values(tree.nodes).filter((n) => !(n.child_handles && n.child_handles.length)).map((n) => n.handle);
@@ -92,7 +92,8 @@ async function runClassify() {
       'id', cr.product_id, 'title', coalesce(nullif(trim(cr.title),''),p.title,''),
       'title_et', coalesce(p.metadata->>'title_et',''), 'description', left(coalesce(p.description,''),400),
       'bucket', cr.bucket, 'proposed_l3', coalesce(cr.proposed_l3,''), 'suggest_name', coalesce(cr.suggest_name,''),
-      'suggest_l2', coalesce(cr.suggest_l2,''), 'confidence', cr.confidence, 'reason', coalesce(cr.reason,'')
+      'suggest_l2', coalesce(cr.suggest_l2,''), 'confidence', cr.confidence, 'reason', coalesce(cr.reason,''),
+      'meta', jsonb_build_object('vevor_spu', p.metadata->>'vevor_spu', 'vevor_product_type', p.metadata->>'vevor_product_type')
     )::text
     FROM classification_review cr
     LEFT JOIN product p ON p.id = cr.product_id
@@ -107,8 +108,15 @@ async function runClassify() {
     const byId = Object.fromEntries(res.results.map((r) => [r.id, r]));
     for (const row of b) {
       const v = byId[row.id] || { action: "keep", reason: "kohtunik ei tagastanud", confidence: 0 };
-      decisions.push({ id: row.id, title: row.title, bucket: row.bucket, proposed: row.proposed_l3 || row.suggest_name, judge: v });
+      decisions.push({ id: row.id, title: row.title, bucket: row.bucket, proposed: row.proposed_l3 || row.suggest_name, cluster_key: clusterKeyOf(row), judge: v });
     }
+  }
+  // KOOSKÕLAVÄRAV (deterministlik): ebajärjekindel klaster → kogu klaster keep + lipp
+  const { flaggedClusters } = enforceClassifyConsistency(decisions);
+  if (flaggedClusters.length) {
+    console.log(`\n⚖️  KOOSKÕLAVÄRAV: ${flaggedClusters.length} ebajärjekindlat klastrit → sunnitud keep:`);
+    for (const fc of flaggedClusters) console.log(`   ${fc.cluster_key}  (${fc.count} toodet) otsused: ${fc.signatures.join(" | ")}`);
+    console.log("");
   }
   return decisions;
 }

@@ -1,6 +1,6 @@
 {
   "kind": "classify",
-  "generated_at": "2026-10-06T07:50:01.599Z",
+  "generated_at": "2026-10-06T09:33:46.100Z",
   "seed": "xlm",
   "dry": true,
   "decisions": [
@@ -9,13 +9,17 @@
       "title": "Lumber Rack, 4-Tier 2-Pack 100 kg per Tier, Welded Wood Pipe Storage,",
       "bucket": "review",
       "proposed": "v4-ladu-seinale-kinnitatavad-hoiususteemid",
+      "cluster_key": "spu:10280",
       "judge": {
         "id": "prod_01M35WHGGMD39TCEE3AENPEN3P",
-        "action": "assign_existing",
-        "target_handle": "v4-ladu-seinale-kinnitatavad-hoiususteemid",
-        "group_key": "lumber-rack",
+        "action": "keep",
+        "new_l3_name": "Puiduhoiuriiulid (lumber rack)",
+        "parent_l2_handle": "v4-ladu",
         "confidence": 0.6,
-        "reason": "Seinale kinnitatav kandekäe-puiduhoiusüsteem; sobib seinale kinnitatavate hoiusüsteemide alla. Sama kontseptsioon kordub ämbris."
+        "reason": "[KOOSKÕLAVÄRAV] klaster ebajärjekindel (9 toodet, 5 erinevat otsust) → jääb ämbrisse. Seinale kinnitatav kantileverkätega puidu hoiuriiul; pole täpset L3, seinahoiusüsteemid ei kata puidu-spetsiifilist riiulit. DUP teiste lumber rack kirjetega.",
+        "gate": "inconsistent_cluster",
+        "judge_action_orig": "new_l3",
+        "judge_target_orig": "Puiduhoiuriiulid (lumber rack)"
       }
     },
     {
@@ -23,13 +27,17 @@
       "title": "Lumber Rack, 4-Tier 2-Pack 50 kg per Tier, Foldable Wood Storage, Wall",
       "bucket": "new_l3",
       "proposed": "v4-garaaziseadmed-garaazi-hoiustamine-rehviriiulid-ja-hoidikud",
+      "cluster_key": "spu:10280",
       "judge": {
         "id": "prod_01M35WHGGMHATQ74AR4F8K54X5",
-        "action": "assign_existing",
-        "target_handle": "v4-ladu-seinale-kinnitatavad-hoiususteemid",
-        "group_key": "lumber-rack",
+        "action": "keep",
+        "new_l3_name": "Puiduhoiuriiulid (lumber rack)",
+        "parent_l2_handle": "v4-ladu",
         "confidence": 0.6,
-        "reason": "Seinale kinnitatav kokkupandav puiduhoiuriiul; sama tüüp kui teised lumber rack kirjed, sobib seinale kinnitatavate hoiusüsteemide alla."
+        "reason": "[KOOSKÕLAVÄRAV] klaster ebajärjekindel (9 toodet, 5 erinevat otsust) → jääb ämbrisse. Kokkupandav seinale kinnitatav puidu hoiuriiul; sama kontseptsioon kui teised lumber rack kirjed, vajab oma L3-d.",
+        "gate": "inconsistent_cluster",
+        "judge_action_orig": "new_l3",
+        "judge_target_orig": "Puiduhoiuriiulid (lumber rack)"
       }
     },
     {
@@ -37,12 +45,16 @@
       "title": "Broom Holder with Cleaning Supplies Organizer, Garage Storage Metal, C",
       "bucket": "quarantine",
       "proposed": "",
+      "cluster_key": "spu:10706",
       "judge": {
         "id": "prod_01M2Y5BB4Y2ERSXC1P7SA1PRTD",
-        "action": "assign_existing",
-        "target_handle": "v4-ladu-teenindus-utility-karud",
-        "confidence": 0.6,
-        "reason": "Ratastega koristustarvikute organiseerija/käru luua- ja mopihoidikuga; teenindus-utility-käru. Quarantine-põhjus klassifitseerimise ebakindlus, info piisav."
+        "action": "keep",
+        "target_handle": "v4-ladu-teenindus-utility-karu",
+        "confidence": 0.55,
+        "reason": "[KOOSKÕLAVÄRAV] klaster ebajärjekindel (2 toodet, 2 erinevat otsust) → jääb ämbrisse. Luua/mopi hoidik koristustarvikute organiseerija ratastel — teenindus/utility-käru. Quarantine-põhjus uncertainty, andmed olemas.",
+        "gate": "inconsistent_cluster",
+        "judge_action_orig": "assign_existing",
+        "judge_target_orig": "v4-ladu-teenindus-utility-karu"
       }
     },
     {
@@ -50,13 +62,17 @@
       "title": "Lumber Rack, 6-Tier 2-Pack 50 kg per Tier, Foldable Wood Storage, Wall",
       "bucket": "new_l3",
       "proposed": "v4-garaaziseadmed-garaazi-hoiustamine-rehviriiulid-ja-hoidikud",
+      "cluster_key": "spu:10280",
       "judge": {
         "id": "prod_01M35WHGSMRNV05C4HJSST6SJQ",
-        "action": "assign_existing",
-        "target_handle": "v4-ladu-seinale-kinnitatavad-hoiususteemid",
-        "group_key": "lumber-rack",
+        "action": "keep",
+        "new_l3_name": "Puiduhoiuriiulid (lumber rack)",
+        "parent_l2_handle": "v4-ladu",
         "confidence": 0.6,
-        "reason": "Seinale kinnitatav kokkupandav puiduhoiuriiul kantileverkätega; sama tüüp kui teised lumber rack kirjed."
+        "reason": "[KOOSKÕLAVÄRAV] klaster ebajärjekindel (9 toodet, 5 erinevat otsust) → jääb ämbrisse. 6-astmeline seinale kinnitatav puidu hoiuriiul; sama kontseptsioon, vajab oma L3 ettepanekut.",
+        "gate": "inconsistent_cluster",
+        "judge_action_orig": "new_l3",
+        "judge_target_orig": "Puiduhoiuriiulid (lumber rack)"
       }
     },
     {
@@ -64,12 +80,13 @@
       "title": "Kids Bike, 14 Inch Children Bicycle, Training Wheels BMX Style Blue, f",
       "bucket": "review",
       "proposed": "v4-sport-ja-vaba-aeg-jalgrattad-ja-tarvikud-jalgrattad",
+      "cluster_key": "spu:13762",
       "judge": {
         "id": "prod_01M3ZMGQTAZ5ZAEDQ40KPQTQJS",
         "action": "assign_existing",
         "target_handle": "v4-sport-ja-vaba-aeg-jalgrattad-ja-tarvikud-jalgrattad",
         "confidence": 0.8,
-        "reason": "Laste jalgratas; eraldi laste-jalgratta L3 puudub, üldine jalgrattad sobib."
+        "reason": "Laste jalgratas; eraldi laste-jalgratta L3 puudub, üldine jalgratad on sisuliselt õige tüüp."
       }
     },
     {
@@ -77,12 +94,13 @@
       "title": "Board Game Table 2-in-1 Gaming and Dining Table 1.2 x 0.6 x 0.45 m, Ro",
       "bucket": "review",
       "proposed": "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-lauamangud-ja-malekomplektid",
+      "cluster_key": "spu:16937",
       "judge": {
         "id": "prod_01M2Y5BBY2RM5W4EMKMDRW176E",
         "action": "assign_existing",
         "target_handle": "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-lauamangud-ja-malekomplektid",
-        "confidence": 0.55,
-        "reason": "Kahese kasutusega lauamängu- ja söögilaud mängumatiga; lauamängude laud sobib kõige paremini."
+        "confidence": 0.5,
+        "reason": "Kahese kasutusega lauamängu-/söögilaud; peamine funktsioon mängulaud, sobib lauamängud-kategooriasse."
       }
     },
     {
@@ -90,12 +108,13 @@
       "title": "Board Game Table 2-in-1 Gaming and Dining Table 1.6 x 1 x 0.76 m, Room",
       "bucket": "review",
       "proposed": "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-lauamangud-ja-malekomplektid",
+      "cluster_key": "spu:16937",
       "judge": {
         "id": "prod_01M2Y5BBY2A8R43D55R21P4K0D",
         "action": "assign_existing",
         "target_handle": "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-lauamangud-ja-malekomplektid",
-        "confidence": 0.72,
-        "reason": "Board game / dining 2-in-1 mängulaud lööginõusega, sobib lauamängude ja mängulaudade kategooriasse."
+        "confidence": 0.7,
+        "reason": "2-in-1 mängulaud lauamängudele (ja söögilaud); sobib lauamängude ja -komplektide alla."
       }
     },
     {
@@ -103,12 +122,16 @@
       "title": "24V 100Ah LiFePO4 Lithium Battery 4000+ Cycles 100A BMS with Bluetooth",
       "bucket": "quarantine",
       "proposed": "v4-autovaruosad-ja-tarvikud-aku-soiduki-ja-mootorrattaakud",
+      "cluster_key": "spu:15229",
       "judge": {
         "id": "prod_01M2Y5BB4WEYKFR2B8K0265SCE",
-        "action": "assign_existing",
+        "action": "keep",
         "target_handle": "v4-autovaruosad-ja-tarvikud-aku-soiduki-ja-mootorrattaakud",
-        "confidence": 0.6,
-        "reason": "24V LiFePO4 aku RV/marine kasutuseks; quarantine-põhjus uncertainty, sobib sõidukiakude alla.quarantine_cause=uncertainty.Andmed olemas.Sobib sõidukiakude L3."
+        "confidence": 0.55,
+        "reason": "[KOOSKÕLAVÄRAV] klaster ebajärjekindel (3 toodet, 2 erinevat otsust) → jääb ämbrisse. quarantine=uncertainty; LiFePO4 24V aku RV/marine/solar-rakendusele, sobib sõidukiakude alla. Info piisav.",
+        "gate": "inconsistent_cluster",
+        "judge_action_orig": "assign_existing",
+        "judge_target_orig": "v4-autovaruosad-ja-tarvikud-aku-soiduki-ja-mootorrattaakud"
       }
     },
     {
@@ -116,13 +139,15 @@
       "title": "Solar Panel Storage Bag for 2 x 200W Foldable Solar Panels, Waterproof",
       "bucket": "new_l3",
       "proposed": "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-paikesepaneelid",
+      "cluster_key": "spu:17277",
       "judge": {
         "id": "prod_01M47BPXRCN3N8RNJMKGGCQ9YP",
-        "action": "new_l3",
-        "new_l3_name": "Päikesepaneelide hoiu- ja kandekotid",
-        "parent_l2_handle": "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-paikesepaneelid",
+        "action": "keep",
         "confidence": 0.6,
-        "reason": "Päikesepaneeli veekindel kandekott; olemasolevates L3-des pole sobivat kotikategooriat, paneelide L3 oleks vale tüüp."
+        "reason": "[KOOSKÕLAVÄRAV] klaster ebajärjekindel (4 toodet, 3 erinevat otsust) → jääb ämbrisse. Päikesepaneeli kandekott/hoiukott — sobivat L3-d nimekirjas pole; päikesepaneelide L3 on paneelidele mitte kottidele. Jääb inimesele.",
+        "gate": "inconsistent_cluster",
+        "judge_action_orig": "keep",
+        "judge_target_orig": null
       }
     },
     {
@@ -130,12 +155,17 @@
       "title": "Lumber Rack, 3-Tier 4-Pack 100 kg per Tier, Welded Wood Pipe Storage,",
       "bucket": "review",
       "proposed": "v4-ladu-seinale-kinnitatavad-hoiususteemid",
+      "cluster_key": "spu:10280",
       "judge": {
         "id": "prod_01M35WHGGMY9XQ68VN6KXP1BXA",
-        "action": "assign_existing",
+        "action": "keep",
         "target_handle": "v4-ladu-seinale-kinnitatavad-hoiususteemid",
-        "confidence": 0.7,
-        "reason": "Seinale kinnitatav konsool-tüüpi puidu-/materjalihoiurest garaažile; sobib seinale kinnitatavate hoiusüsteemide alla."
+        "group_key": "lumber-rack-wall-mounted",
+        "confidence": 0.75,
+        "reason": "[KOOSKÕLAVÄRAV] klaster ebajärjekindel (9 toodet, 5 erinevat otsust) → jääb ämbrisse. Seinale kinnitatav puidu/materjali kandekäe-hoiusüsteem; sama kontseptsioon korduv (3-Tier lumber rack). Sobib seinale kinnitatavate hoiusüsteemide alla.",
+        "gate": "inconsistent_cluster",
+        "judge_action_orig": "group",
+        "judge_target_orig": "v4-ladu-seinale-kinnitatavad-hoiususteemid"
       }
     },
     {
@@ -143,11 +173,12 @@
       "title": "Kids Bike, 16 Inch Children Bicycle, Training Wheels BMX Style Blue, f",
       "bucket": "review",
       "proposed": "v4-sport-ja-vaba-aeg-jalgrattad-ja-tarvikud-jalgrattad",
+      "cluster_key": "spu:13762",
       "judge": {
         "id": "prod_01M3ZMGQTAHPYDMQTSGVCXVQEJ",
         "action": "assign_existing",
         "target_handle": "v4-sport-ja-vaba-aeg-jalgrattad-ja-tarvikud-jalgrattad",
-        "confidence": 0.75,
+        "confidence": 0.8,
         "reason": "Laste jalgratas 16-tolline; kuulub jalgrataste kategooriasse."
       }
     },
@@ -156,12 +187,17 @@
       "title": "Lumber Rack, 3-Tier 2-Pack 50 kg per Tier, Foldable Wood Storage, Wall",
       "bucket": "review",
       "proposed": "v4-ladu-seinale-kinnitatavad-hoiususteemid",
+      "cluster_key": "spu:10280",
       "judge": {
         "id": "prod_01M35WHGGMNCF2CSRDMJHVB7M9",
-        "action": "assign_existing",
+        "action": "keep",
         "target_handle": "v4-ladu-seinale-kinnitatavad-hoiususteemid",
-        "confidence": 0.7,
-        "reason": "Seinale kinnitatav kokkupandav konsool-hoiurest puidu jaoks; sobib seinale kinnitatavate hoiusüsteemide alla."
+        "group_key": "lumber-rack-wall-mounted",
+        "confidence": 0.75,
+        "reason": "[KOOSKÕLAVÄRAV] klaster ebajärjekindel (9 toodet, 5 erinevat otsust) → jääb ämbrisse. Seinale kinnitatav kokkupandav puidu-hoiurest; sama kontseptsioon kui teine lumber rack. Sobib seinale kinnitatavate hoiusüsteemide alla.",
+        "gate": "inconsistent_cluster",
+        "judge_action_orig": "group",
+        "judge_target_orig": "v4-ladu-seinale-kinnitatavad-hoiususteemid"
       }
     },
     {
@@ -169,13 +205,17 @@
       "title": "Solar Panel Storage Bag Holds up to 2 x 200W Foldable Solar Panels, Li",
       "bucket": "new_l3",
       "proposed": "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-paikesepaneelid",
+      "cluster_key": "spu:17277",
       "judge": {
         "id": "prod_01M47BPXRCFD3A7DJP84NWMW4J",
-        "action": "new_l3",
+        "action": "keep",
         "new_l3_name": "Päikesepaneelide hoiu- ja kandekotid",
         "parent_l2_handle": "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-paikesepaneelid",
-        "confidence": 0.7,
-        "reason": "Päikesepaneeli kandekott — pole täpset L3-d; paneelide alla ei sobi (tüüp=kott, mitte paneel)"
+        "confidence": 0.75,
+        "reason": "[KOOSKÕLAVÄRAV] klaster ebajärjekindel (4 toodet, 3 erinevat otsust) → jääb ämbrisse. Päikesepaneeli kandekott; nimekirjas pole kandekottide L3-d, ainult paneelid ise",
+        "gate": "inconsistent_cluster",
+        "judge_action_orig": "new_l3",
+        "judge_target_orig": "Päikesepaneelide hoiu- ja kandekotid"
       }
     },
     {
@@ -183,12 +223,13 @@
       "title": "Kids Bike, 18 Inch Children Bicycle, Kickstand Princess Style Pink, fo",
       "bucket": "review",
       "proposed": "v4-sport-ja-vaba-aeg-jalgrattad-ja-tarvikud-jalgrattad",
+      "cluster_key": "spu:13762",
       "judge": {
         "id": "prod_01M3ZMGQTAYR3F2WG19TQSDQF7",
         "action": "assign_existing",
         "target_handle": "v4-sport-ja-vaba-aeg-jalgrattad-ja-tarvikud-jalgrattad",
         "confidence": 0.9,
-        "reason": "Laste jalgratas (18 tolli) — kuulub jalgrataste L3 alla"
+        "reason": "Laste jalgratas 18\"; kuulub jalgrataste L3-sse"
       }
     },
     {
@@ -196,12 +237,16 @@
       "title": "Lumber Rack, 3-Tier 4-Pack 50 kg per Tier, Foldable Wood Storage, Wall",
       "bucket": "review",
       "proposed": "v4-ladu-seinale-kinnitatavad-hoiususteemid",
+      "cluster_key": "spu:10280",
       "judge": {
         "id": "prod_01M35WHGGMY986JEZE92VK5HKW",
-        "action": "assign_existing",
+        "action": "keep",
         "target_handle": "v4-ladu-seinale-kinnitatavad-hoiususteemid",
-        "confidence": 0.78,
-        "reason": "Seinale kinnitatav kokkupandav puidu-hoiurest — seinale kinnitatavate hoiusüsteemide tüüp"
+        "confidence": 0.82,
+        "reason": "[KOOSKÕLAVÄRAV] klaster ebajärjekindel (9 toodet, 5 erinevat otsust) → jääb ämbrisse. Seinale kinnitatav kokkupandav puidu-hoiurest konsool-kätega; seinahoiusüsteemid",
+        "gate": "inconsistent_cluster",
+        "judge_action_orig": "assign_existing",
+        "judge_target_orig": "v4-ladu-seinale-kinnitatavad-hoiususteemid"
       }
     },
     {
@@ -209,13 +254,18 @@
       "title": "Solar Panel Storage Bag for 2 x 400W Foldable Solar Panels, Waterproof",
       "bucket": "new_l3",
       "proposed": "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-paikesepaneelid",
+      "cluster_key": "spu:17277",
       "judge": {
         "id": "prod_01M47BPXRCPXDMRA0K1XX7FJK0",
-        "action": "new_l3",
+        "action": "keep",
+        "group_key": "paikesepaneeli-kandekotid",
         "new_l3_name": "Päikesepaneelide hoiu- ja kandekotid",
         "parent_l2_handle": "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-paikesepaneelid",
-        "confidence": 0.7,
-        "reason": "Päikesepaneeli hoiukott (Faraday) — sama kontseptsioon kui esimene; vajab uut L3"
+        "confidence": 0.75,
+        "reason": "[KOOSKÕLAVÄRAV] klaster ebajärjekindel (4 toodet, 3 erinevat otsust) → jääb ämbrisse. Sama kontseptsioon kui teine paneelikandekott; DUP-värav grupeerib uue L3 ettepanekusse",
+        "gate": "inconsistent_cluster",
+        "judge_action_orig": "group",
+        "judge_target_orig": "paikesepaneeli-kandekotid"
       }
     },
     {
@@ -223,12 +273,13 @@
       "title": "Kids Bike, 20 in Children Bicycle, Kickstand Princess Style Pink, for",
       "bucket": "review",
       "proposed": "v4-sport-ja-vaba-aeg-jalgrattad-ja-tarvikud-jalgrattad",
+      "cluster_key": "spu:13762",
       "judge": {
         "id": "prod_01M3ZMGQTAH25H95FS2S0MGR15",
         "action": "assign_existing",
         "target_handle": "v4-sport-ja-vaba-aeg-jalgrattad-ja-tarvikud-jalgrattad",
         "confidence": 0.9,
-        "reason": "Laste jalgratas (20 tolli) — kuulub jalgrataste L3 alla"
+        "reason": "Laste jalgratas 20\"; kuulub jalgrataste L3-sse"
       }
     },
     {
@@ -236,12 +287,13 @@
       "title": "2-Pack Inflatable Bumper Balls 0.9m Human Bubble for Kids Transparent,",
       "bucket": "review",
       "proposed": "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-taispuhutavad-porke-ja-zorb-pallid",
+      "cluster_key": "spu:17166",
       "judge": {
         "id": "prod_01M2Y5BBPQ0CKPSAYPQAYJTDKS",
         "action": "assign_existing",
         "target_handle": "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-taispuhutavad-porke-ja-zorb-pallid",
         "confidence": 0.95,
-        "reason": "Täispuhutav põrkepall (bumper/zorb ball) — täpne vaste olemas"
+        "reason": "Täispuhutav põrkepall (bumper/zorb ball); täpne L3 olemas"
       }
     },
     {
@@ -249,12 +301,16 @@
       "title": "Broom Holder with Cleaning Supplies Organizer, Metal Garage Storage, C",
       "bucket": "quarantine",
       "proposed": "v4-tooriistad-ja-tarvikud-puhastustehnika-ja-tarvikud-koristuskarud",
+      "cluster_key": "spu:10706",
       "judge": {
         "id": "prod_01M3QXAMRZPAHEKQKFQM0F28JF",
-        "action": "assign_existing",
+        "action": "keep",
         "target_handle": "v4-tooriistad-ja-tarvikud-puhastustehnika-ja-tarvikud-koristuskarud",
         "confidence": 0.72,
-        "reason": "Ratastega koristustarvete organiseerija/käru mopihoidikuga — sobib koristuskärude alla. Quarantine-põhjus klassifitseerimise ebakindlus, mitte andmeauk.quarantine_cause=uncertainty.(uncertainty)"
+        "reason": "[KOOSKÕLAVÄRAV] klaster ebajärjekindel (2 toodet, 2 erinevat otsust) → jääb ämbrisse. Ratastega koristustarvete organiseerija/käru mopihoidikuga — koristuskärude L3. Quarantine-põhjus klassifitseerimise ebakindlus, info piisav.",
+        "gate": "inconsistent_cluster",
+        "judge_action_orig": "assign_existing",
+        "judge_target_orig": "v4-tooriistad-ja-tarvikud-puhastustehnika-ja-tarvikud-koristuskarud"
       }
     },
     {
@@ -262,12 +318,16 @@
       "title": "24V 50Ah LiFePO4 Lithium Battery 4000+ Cycles 50A BMS with Bluetooth,",
       "bucket": "quarantine",
       "proposed": "v4-autovaruosad-ja-tarvikud-aku-soiduki-ja-mootorrattaakud",
+      "cluster_key": "spu:15229",
       "judge": {
         "id": "prod_01M2Y5BB4XG10FXSN6QFG29SR7",
-        "action": "assign_existing",
-        "target_handle": "v4-autovaruosad-ja-tarvikud-aku-soiduki-ja-mootorrattaakud",
-        "confidence": 0.6,
-        "reason": "LiFePO4 24V aku RV/marine/solar jaoks — sõidukiaku kategooria sobivaim olemasolev. quarantine_cause=uncertainty.(uncertainty)"
+        "action": "keep",
+        "target_handle": "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-paikese-akulaadijad",
+        "confidence": 0.4,
+        "reason": "[KOOSKÕLAVÄRAV] klaster ebajärjekindel (3 toodet, 2 erinevat otsust) → jääb ämbrisse. LiFePO4 24V solar/RV/marine aku — pole auto/mootorrattaaku, vaid taastuvenergia-salvestusaku; sobivaim puudub, ebakindel.",
+        "gate": "inconsistent_cluster",
+        "judge_action_orig": "assign_existing",
+        "judge_target_orig": "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-paikese-akulaadijad"
       }
     },
     {
@@ -275,12 +335,17 @@
       "title": "Solar Panel Storage Bag for 5 x 300W Foldable Solar Panels, Waterproof",
       "bucket": "new_l3",
       "proposed": "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-paikesepaneelid",
+      "cluster_key": "spu:17277",
       "judge": {
         "id": "prod_01M47BPXRCVD75VBZJRMPH212W",
-        "action": "assign_existing",
-        "target_handle": "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-paikesepaneelid",
-        "confidence": 0.55,
-        "reason": "Päikesepaneeli hoiu- ja kandekott; täpset hoiukoti-L3 pole, lähim seotud kategooria on päikesepaneelid."
+        "action": "keep",
+        "new_l3_name": "Päikesepaneelide hoiu- ja kandekotid",
+        "parent_l2_handle": "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-paikesepaneelid",
+        "confidence": 0.6,
+        "reason": "[KOOSKÕLAVÄRAV] klaster ebajärjekindel (4 toodet, 3 erinevat otsust) → jääb ämbrisse. Päikesepaneelide veekindel kandekott (Faraday) — pole hoiukottide L3-d, ettepanek uueks.",
+        "gate": "inconsistent_cluster",
+        "judge_action_orig": "new_l3",
+        "judge_target_orig": "Päikesepaneelide hoiu- ja kandekotid"
       }
     },
     {
@@ -288,12 +353,13 @@
       "title": "Kids Bike, 18 in Children Bicycle, with Kickstand BMX Style Blue, for",
       "bucket": "review",
       "proposed": "v4-sport-ja-vaba-aeg-jalgrattad-ja-tarvikud-jalgrattad",
+      "cluster_key": "spu:13762",
       "judge": {
         "id": "prod_01M3ZMGQTASRT83QDJ3FPX9FP5",
         "action": "assign_existing",
         "target_handle": "v4-sport-ja-vaba-aeg-jalgrattad-ja-tarvikud-jalgrattad",
         "confidence": 0.9,
-        "reason": "Laste jalgratas — kuulub jalgrataste L3 alla."
+        "reason": "Laste jalgratas — kuulub jalgrataste L3-sse."
       }
     },
     {
@@ -301,12 +367,17 @@
       "title": "Lumber Rack, 4-Tier 4-Pack 50 kg per Tier, Foldable Wood Storage, Wall",
       "bucket": "new_l3",
       "proposed": "v4-garaaziseadmed-garaazi-hoiustamine-rehviriiulid-ja-hoidikud",
+      "cluster_key": "spu:10280",
       "judge": {
         "id": "prod_01M35WHGSM6AY9W7TT5ZR01EFJ",
-        "action": "group",
-        "group_key": "lumber-rack",
-        "confidence": 0.8,
-        "reason": "Seinale kinnitatav kokkupandav puidu-hoiurest (cantilever). Sama kontseptsioon kordub teise kirjega; DUP-värav."
+        "action": "keep",
+        "group_key": "lumber-rack-seinale",
+        "parent_l2_handle": "v4-ladu-seinale-kinnitatavad-hoiususteemid",
+        "confidence": 0.7,
+        "reason": "[KOOSKÕLAVÄRAV] klaster ebajärjekindel (9 toodet, 5 erinevat otsust) → jääb ämbrisse. Seinale kinnitatav kokkupandav puidu-hoiurest (4-tier) — sama kontseptsioon kui 3-tier variant; DUP-grupp seinale kinnitatavasse hoiusüsteemi.",
+        "gate": "inconsistent_cluster",
+        "judge_action_orig": "group",
+        "judge_target_orig": "lumber-rack-seinale"
       }
     },
     {
@@ -314,12 +385,17 @@
       "title": "Lumber Rack, 3-Tier 3-Pack 50 kg per Tier, Foldable Wood Storage, Wall",
       "bucket": "review",
       "proposed": "v4-ladu-seinale-kinnitatavad-hoiususteemid",
+      "cluster_key": "spu:10280",
       "judge": {
         "id": "prod_01M35WHGGMDCRK18KKXJPZWWSB",
-        "action": "group",
-        "group_key": "lumber-rack",
-        "confidence": 0.8,
-        "reason": "Seinale kinnitatav kokkupandav puidu-hoiurest, variant (3-tier) — sama kontseptsioon kui 4-tier, grupeerida. Sobib v4-ladu-seinale-kinnitatavad-hoiususteemid."
+        "action": "keep",
+        "group_key": "lumber-rack-seinale",
+        "parent_l2_handle": "v4-ladu-seinale-kinnitatavad-hoiususteemid",
+        "confidence": 0.72,
+        "reason": "[KOOSKÕLAVÄRAV] klaster ebajärjekindel (9 toodet, 5 erinevat otsust) → jääb ämbrisse. Seinale kinnitatav kokkupandav puidu-hoiurest (3-tier) — sama kontseptsioon kui 4-tier; kuulub seinale kinnitatavate hoiusüsteemide L3-sse.",
+        "gate": "inconsistent_cluster",
+        "judge_action_orig": "group",
+        "judge_target_orig": "lumber-rack-seinale"
       }
     },
     {
@@ -327,13 +403,14 @@
       "title": "Kids Bike, 14 Inch Children Bicycle, Training Wheels Princess Pink, fo",
       "bucket": "review",
       "proposed": "v4-sport-ja-vaba-aeg-jalgrattad-ja-tarvikud-jalgrattad",
+      "cluster_key": "spu:13762",
       "judge": {
         "id": "prod_01M3ZMGQTA5P6K0XAHAYN9A369",
         "action": "assign_existing",
         "target_handle": "v4-sport-ja-vaba-aeg-jalgrattad-ja-tarvikud-jalgrattad",
-        "group_key": "laste-jalgrattad",
-        "confidence": 0.7,
-        "reason": "Laste jalgratas (14 tolli, tugirattad) — tõeline jalgratas, kuulub jalgrataste alla. Sama kontseptsioon kordub mitmes kirjes."
+        "group_key": "laste-jalgratas",
+        "confidence": 0.72,
+        "reason": "14-tolline laste jalgratas tugirattatega - päris jalgratas, kuulub jalgrataste alla."
       }
     },
     {
@@ -341,13 +418,14 @@
       "title": "Rolling File Cart 2-Tier Mobile Wire Mail Cart with Lockable Wheels, f",
       "bucket": "quarantine",
       "proposed": "v4-buroo-raamatukarud",
+      "cluster_key": "spu:17290",
       "judge": {
         "id": "prod_01M33A4RHBS2GBDAE4VXDK5RVE",
         "action": "assign_existing",
-        "target_handle": "v4-buroo-raamatukarud",
+        "target_handle": "v4-ladu-teenindus-utility-karud",
         "quarantine_cause": "uncertainty",
-        "confidence": 0.55,
-        "reason": "Mobiilne traatkäru kontori dokumentidele — sobib raamatu-/dokumendikärude alla. Alternatiiv puudub lähemalt."
+        "confidence": 0.6,
+        "reason": "Mobiilne lukustatavate ratastega utility-käru kontori dokumentidele - teenindus/utility-käru."
       }
     },
     {
@@ -355,12 +433,16 @@
       "title": "Lumber Rack, 3-Tier 6-Pack 50 kg per Tier, Foldable Wood Storage, Wall",
       "bucket": "review",
       "proposed": "v4-ladu-seinale-kinnitatavad-hoiususteemid",
+      "cluster_key": "spu:10280",
       "judge": {
         "id": "prod_01M35WHGGMKGAJACMQF5GX4FDF",
-        "action": "assign_existing",
-        "target_handle": "v4-ladu-seinale-kinnitatavad-hoiususteemid",
-        "confidence": 0.7,
-        "reason": "Seinale kinnitatav kokkupandav puidu-hoiuriiul konsoolidega — seinale kinnitatav hoiusüsteem."
+        "action": "keep",
+        "target_handle": "v4-ladu-seinariiulid",
+        "confidence": 0.6,
+        "reason": "[KOOSKÕLAVÄRAV] klaster ebajärjekindel (9 toodet, 5 erinevat otsust) → jääb ämbrisse. Seinale kinnitatav konsool-tüüpi puidu/materjali hoiuriiul - seinariiul.",
+        "gate": "inconsistent_cluster",
+        "judge_action_orig": "assign_existing",
+        "judge_target_orig": "v4-ladu-seinariiulid"
       }
     },
     {
@@ -368,13 +450,14 @@
       "title": "Kids Bike, 16 Inch Children Bicycle, Training Wheels Princess Pink, fo",
       "bucket": "new_l3",
       "proposed": "v4-sport-ja-vaba-aeg-manguasjad-lastele-laste-soidukid-ja-pedaalautod",
+      "cluster_key": "spu:13762",
       "judge": {
         "id": "prod_01M47BPXRBW1BKG4VHBE9A5JX7",
         "action": "assign_existing",
         "target_handle": "v4-sport-ja-vaba-aeg-jalgrattad-ja-tarvikud-jalgrattad",
-        "group_key": "laste-jalgrattad",
+        "group_key": "laste-jalgratas",
         "confidence": 0.7,
-        "reason": "Laste jalgratas (16 tolli, tugirattad) — tõeline jalgratas, kuulub jalgrataste alla, mitte mängusõiduk. Sama grupp kui teine laste jalgratas."
+        "reason": "16-tolline laste jalgratas tugirattatega - päris jalgratas, sama tüüp kui teine kirje."
       }
     },
     {
@@ -382,12 +465,13 @@
       "title": "2-Pack Inflatable Bumper Balls 0.9m Human Bubble for Kids Blue+Red, fo",
       "bucket": "review",
       "proposed": "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-taispuhutavad-porke-ja-zorb-pallid",
+      "cluster_key": "spu:17166",
       "judge": {
         "id": "prod_01M2Y5BBPQAWHNCNEGK17W4TTG",
         "action": "assign_existing",
         "target_handle": "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-taispuhutavad-porke-ja-zorb-pallid",
         "confidence": 0.95,
-        "reason": "Täispuhutav põrkepall (bumper/bubble ball) — täpne vaste olemasolevas kategoorias."
+        "reason": "Täispuhutav põrkepall (bumper/zorb ball) - sobib täpselt kategooriasse."
       }
     },
     {
@@ -395,12 +479,13 @@
       "title": "Wet Tile Saw 180 mm 65Mn Steel Blade 3000 RPM Tile Cutter Wet Saw, for",
       "bucket": "review",
       "proposed": "v4-tooriistad-ja-tarvikud-kasitooriistad-plaadiloikurid",
+      "cluster_key": "spu:17106",
       "judge": {
         "id": "prod_01M3X2426XY0WJF1DQMNF0R0BM",
         "action": "assign_existing",
         "target_handle": "v4-tooriistad-ja-tarvikud-kasitooriistad-plaadiloikurid",
-        "confidence": 0.6,
-        "reason": "Märgplaadisaag plaatide ja kivi lõikamiseks — sobib plaadilõikurite alla (puudub eraldi märgsaag-kategooria)."
+        "confidence": 0.72,
+        "reason": "Märg plaadisaag plaatide ja kivi lõikamiseks - plaadilõikur."
       }
     },
     {
@@ -408,13 +493,20 @@
       "title": "24V 100Ah LiFePO4 Lithium Battery 4000+ Cycles Built-in 100A BMS, Lith",
       "bucket": "quarantine",
       "proposed": "v4-autovaruosad-ja-tarvikud-aku-soiduki-ja-mootorrattaakud",
+      "cluster_key": "spu:15229",
       "judge": {
         "id": "prod_01M2Y5BB4WQWBEVEKBMTA95N49",
-        "action": "assign_existing",
+        "action": "keep",
         "target_handle": "v4-autovaruosad-ja-tarvikud-aku-soiduki-ja-mootorrattaakud",
+        "group_key": "",
+        "new_l3_name": "",
+        "parent_l2_handle": "",
         "quarantine_cause": "uncertainty",
         "confidence": 0.72,
-        "reason": "24V LiFePO4 aku RV/marine/solar jaoks — sõiduki- ja mootorrattaakude kategooria sobib kõige paremini. Andmed on täielikud, quarantine on klassifitseerimise ebakindlus."
+        "reason": "[KOOSKÕLAVÄRAV] klaster ebajärjekindel (3 toodet, 2 erinevat otsust) → jääb ämbrisse. LiFePO4 sõidukiaku RV/marine/solar jaoks — sobib sõiduki- ja mootorrattaakude alla; andmed piisavad, ebakindlus klassifitseerimises.",
+        "gate": "inconsistent_cluster",
+        "judge_action_orig": "assign_existing",
+        "judge_target_orig": "v4-autovaruosad-ja-tarvikud-aku-soiduki-ja-mootorrattaakud"
       }
     },
     {
@@ -422,12 +514,17 @@
       "title": "Kids Bike, 20 in Children Bicycle, with Kickstand BMX Style Blue, for",
       "bucket": "new_l3",
       "proposed": "v4-sport-ja-vaba-aeg-manguasjad-lastele-laste-soidukid-ja-pedaalautod",
+      "cluster_key": "spu:13762",
       "judge": {
         "id": "prod_01M47BPXRBYT6YHSAZA6ZNAAJE",
         "action": "assign_existing",
         "target_handle": "v4-sport-ja-vaba-aeg-jalgrattad-ja-tarvikud-jalgrattad",
-        "confidence": 0.8,
-        "reason": "20-tolline laste jalgratas pidurite ja raamiga on tegelik jalgratas — sobib Jalgrattad L3-sse, mitte mänguasjade/pedaalautode alla."
+        "group_key": "",
+        "new_l3_name": "",
+        "parent_l2_handle": "",
+        "quarantine_cause": "n/a",
+        "confidence": 0.75,
+        "reason": "20-tolline laste jalgratas (BMX-stiil, trumpidur) on tõeline jalgratas — kuulub jalgrataste L3-sse, mitte pedaalautode/mänguasjade alla."
       }
     }
   ]

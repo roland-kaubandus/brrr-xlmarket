@@ -54,26 +54,46 @@ const THRESHOLD: Record<Kind, { metric: string; max: number; note: string }> = {
 export default function CalibrationClient() {
   const [kind, setKind] = useState<Kind>("synonym")
   const [items, setItems] = useState<(SynItem | ClsfItem)[]>([])
+  const [seed, setSeed] = useState<string>("xlm")
   const [loadErr, setLoadErr] = useState<string | null>(null)
   const [ratings, setRatings] = useState<Record<string, string>>({})
   const [revealed, setRevealed] = useState(false)
+  const [dbStatus, setDbStatus] = useState<"idle" | "saving" | "saved" | "error">("idle")
 
   const lsKey = `xlm-calib-${kind}`
+
+  // kohtuniku otsus kirje kohta (audit-snapshot → DB-sse agreed arvutuseks)
+  const judgeVerdictOf = (it: SynItem | ClsfItem): string =>
+    kind === "synonym" ? (it as SynItem).verdict : (it as ClsfItem).judge.action
 
   useEffect(() => {
     setRevealed(false)
     setItems([])
     setLoadErr(null)
+    let curSeed = "xlm"
     fetch(`/xl-admin/calib-${kind}.json`, { cache: "no-store" })
       .then((r) => (r.ok ? r.json() : Promise.reject(new Error(`HTTP ${r.status} — jooksuta dry-run runner --json`))))
-      .then((d) => setItems(d.decisions || []))
+      .then((d) => {
+        curSeed = d.seed || "xlm"
+        setSeed(curSeed)
+        setItems(d.decisions || [])
+        // DB on TÕE-ALLIKAS (localStorage ainult sama-brauseri mugavus) → DB võidab kui vastab.
+        return fetch(`/api/admin/calibration?kind=${kind}&seed=${encodeURIComponent(curSeed)}`, { cache: "no-store" })
+          .then((r) => (r.ok ? r.json() : null))
+          .catch(() => null)
+      })
+      .then((db) => {
+        let ls: Record<string, string> = {}
+        try {
+          const saved = localStorage.getItem(lsKey)
+          ls = saved ? JSON.parse(saved) : {}
+        } catch {
+          /* privaatrežiim */
+        }
+        const dbRatings: Record<string, string> = db?.ok ? db.data?.ratings || {} : {}
+        setRatings({ ...ls, ...dbRatings }) // DB kirjutab localStorage'i üle
+      })
       .catch((e) => setLoadErr(String(e.message || e)))
-    try {
-      const saved = localStorage.getItem(lsKey)
-      setRatings(saved ? JSON.parse(saved) : {})
-    } catch {
-      setRatings({})
-    }
   }, [kind, lsKey])
 
   const rate = (id: string, choice: string) => {
@@ -86,6 +106,22 @@ export default function CalibrationClient() {
       }
       return next
     })
+    // salvesta DB-sse (upsert) — audit/korratavus. Viga → näita, aga ära blokeeri hindamist.
+    const it = items.find((x) => x.id === id)
+    setDbStatus("saving")
+    fetch(`/api/admin/calibration`, {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({
+        kind,
+        seed,
+        item_id: id,
+        tarmo_verdict: choice,
+        judge_verdict: it ? judgeVerdictOf(it) : null,
+      }),
+    })
+      .then((r) => setDbStatus(r.ok ? "saved" : "error"))
+      .catch(() => setDbStatus("error"))
   }
   const resetRatings = () => {
     setRatings({})
@@ -154,6 +190,9 @@ export default function CalibrationClient() {
         <div className="flex items-center justify-between mb-2">
           <span className="text-sm font-medium text-slate-700">
             Hinnatud {rated}/{items.length} <span className="text-slate-400">(pimesi — kohtuniku vastus peidetud)</span>
+            {dbStatus === "saving" && <span className="ml-2 text-xs text-slate-400">salvestan…</span>}
+            {dbStatus === "saved" && <span className="ml-2 text-xs text-emerald-600">✓ DB-s</span>}
+            {dbStatus === "error" && <span className="ml-2 text-xs text-amber-600">⚠ DB-salvestus ebaõnnestus (localStorage OK)</span>}
           </span>
           <div className="flex gap-2">
             {allRated && !revealed && (

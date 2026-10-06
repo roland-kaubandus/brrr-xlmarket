@@ -211,3 +211,56 @@ export async function judgeClassify(batch, candidateL3s, { apiKey, model = CLSF_
   if (!res.ok) return res;
   return { ok: true, results: res.parsed.results || [], usage: res.usage };
 }
+
+// ──────────────── KOOSKÕLAVÄRAV (deterministlik, prompt-vaba) ────────────────
+
+/**
+ * clusterKeyOf — deterministlik klaster-võti tootele (EI sõltu promptist/LLM-ist).
+ * Eelistus: vevor_spu (SPU = sama toode, eri variant) → vevor_product_type → normaliseeritud title.
+ * Tühja signaali korral → oma singleton (id-põhine) → ei grupeeri valesti kokku.
+ */
+export function clusterKeyOf(row) {
+  const m = row.meta || {};
+  if (m.vevor_spu) return "spu:" + m.vevor_spu;
+  if (m.vevor_product_type) return "vpt:" + m.vevor_product_type;
+  const base = String(row.title || "").toLowerCase()
+    .replace(/\b\d+([.,]\d+)?\s*(tier|pack|kg|lbs|mm|cm|m|in|inch|")/g, " ") // variant-tokenid
+    .replace(/\d+/g, " ").replace(/[^a-zäöüõ ]/g, " ").replace(/\s+/g, " ").trim();
+  return base ? "title:" + base : "id:" + row.id;
+}
+
+/** signatureOf — otsuse "pool", mille järgi kooskõla hinnatakse. */
+function signatureOf(j) {
+  if (j.action === "assign_existing") return "assign:" + (j.target_handle || "?");
+  if (j.action === "group") return "group:" + (j.group_key || "?");
+  if (j.action === "new_l3") return "new_l3:" + (j.new_l3_name || "?") + "@" + (j.parent_l2_handle || "?");
+  return "keep";
+}
+
+/**
+ * enforceClassifyConsistency — kui sama klastri (vevor_spu jne) tooted said ERINEVAD otsused
+ * → kogu klaster → keep + lipp "inconsistent_cluster". Masin EI vali ise poolt (ka mitte enamust).
+ * Digest näitab lippu. Sama kood jookseb backfillis ja hookis (HARD RULE #5).
+ *
+ * Sisend: decisions [{id, cluster_key, judge:{action,...}}]. Muudab kohapeal + tagastab { decisions, flaggedClusters }.
+ */
+export function enforceClassifyConsistency(decisions) {
+  const byCluster = {};
+  for (const d of decisions) (byCluster[d.cluster_key] ||= []).push(d);
+  const flaggedClusters = [];
+  for (const [ck, items] of Object.entries(byCluster)) {
+    if (items.length < 2) continue;
+    const sigs = new Set(items.map((d) => signatureOf(d.judge)));
+    if (sigs.size <= 1) continue; // kõik sama otsus → järjekindel, jäta
+    flaggedClusters.push({ cluster_key: ck, count: items.length, signatures: [...sigs] });
+    for (const d of items) {
+      d.judge = {
+        ...d.judge, action: "keep", gate: "inconsistent_cluster",
+        judge_action_orig: d.judge.action,
+        judge_target_orig: d.judge.target_handle || d.judge.group_key || d.judge.new_l3_name || null,
+        reason: `[KOOSKÕLAVÄRAV] klaster ebajärjekindel (${items.length} toodet, ${sigs.size} erinevat otsust) → jääb ämbrisse. ` + (d.judge.reason || ""),
+      };
+    }
+  }
+  return { decisions, flaggedClusters };
+}

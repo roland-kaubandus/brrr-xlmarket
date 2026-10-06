@@ -46,6 +46,9 @@ export default async function AdminLayout({ children }: { children: React.ReactN
           <Link href="/xl-admin/categories" className="hover:text-[#FDE68A]">
             Kategooriad
           </Link>
+          <Link href="/xl-admin/kalibreerimine" className="hover:text-[#FDE68A]">
+            Kalibreerimine
+          </Link>
         </nav>
       </header>
       <main className="max-w-[1280px] mx-auto px-6 py-8">{children}</main>
