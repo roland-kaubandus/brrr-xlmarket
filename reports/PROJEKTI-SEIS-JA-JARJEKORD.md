@@ -1,6 +1,6 @@
 # XL e-pood — PROJEKTI SEIS JA JÄRJEKORD (ankur-dokument)
 
-> **Koostatud:** 2026-09-19 · **Uuendatud:** 2026-09-24 (A2 sünonüümid+variandid ✅ VALMIS+LIVE — §1.11) ·
+> **Koostatud:** 2026-09-19 · **Uuendatud:** 2026-10-06 (A konsensus-sünonüümid ✅ EXECUTE+LIVE — §1.12; B klassifikaatori täisautomaatika = JÄRGMINE, spets koodita valmis — §A4) · 2026-09-24 (A2 sünonüümid+variandid ✅ VALMIS+LIVE — §1.11) ·
 > **Eesmärk:** täielik, aus projekti seis, et ei hüppaks üle faaside ega
 > unustaks pooleliolevat. Iga väide on TÕESTATUD (git SHA / DB-päring / report). Oletused on märgitud
 > "⚠️ TÕESTAMATA".
@@ -117,6 +117,14 @@ Kõik LIVE storefront-konteineris (tag 93c1f8b3):
 - **⚠️ LAHTINE (A2 järelm):** review-bucket **3828** vajab nähtavust (teade + klastri-ülevaatuse UI — muidu
   täitub vaikselt). Vt §2 P7 + §5.
 
+### 1.12 A — Sünonüüm-KONSENSUS (Sonnet+Opus) execute — ✅ VALMIS + LIVE (2026-10-06)
+- **Reegel (`judge.mjs#synConsensus`):** sünonüüm → `product_synonym` AINULT kui Sonnet-kohtunik OK JA Opus-referents OK; muu → ohutu vaikimisi (EI otsingusse, EI inimene). Kogu 3854-backlogi DRY: 69.4% consensus_ok / 9.5% disagreement / 21.1% vale.
+- **Execute (Tarmo "A KINNITATUD"):** batch_id `synbf-2026-10-06T15-14-07-939Z` → product_synonym **+2668** (2675 consensus_ok, 7 juba olemas), synonym_review resolved=2675/rejected=814/safe_default=365, **pending=0**. Varukoopia `backups/product_synonym-pre-synconsensus-20261006-1712.dump`.
+- **Otsing (fail-loud) PASS:** 0 regressiooni, sign cutter +8, 0 kirillitsat → undo EI vaja. Digest: sünon 🔴 kadunud.
+- **Öine hook LIVE:** `import-pipeline.sh [6.7]` SAMA runner, delta, fail-loud (ENNE [7] reindeksit).
+- **Undo:** `node scripts/synonym-backfill-undo.mjs synbf-2026-10-06T15-14-07-939Z`.
+- **Tõestus:** commit v4 `995ddad6` / main `d2453e3e`; raport `reports/otsused-kalibreerimine-2026-10-06.md`.
+
 ---
 
 ## 2. POOLELI (alustatud, EI lõpetatud — mis TÄPSELT puudu)
@@ -177,8 +185,11 @@ Kõik LIVE storefront-konteineris (tag 93c1f8b3):
 ### A3. Rich-sisu lünk (~4329 toodet PIKK turundus-prose) — ALUSTAMATA
 - EI ole feed-parandatav (VEVOR xlsx kärbib CSS-cap'i juures). Vajab generaatorit (spec+pilt) VÕI VEVOR web/API täis-HTML. Sisu-generaator (P2) katab title/description/selling-points; PIKK rich-plokk on eraldi. Mälu `sisu-generaator-skoop.md`.
 
-### A4. Auto-klassifikaator: Opus asendab resolver-v2 (B-etapp) — ALUSTAMATA
-- Praegu 2 paigutajat: resolver-v2 (4h feed-sync) + guard-parandused. Siht: Opus = primaar, resolver-v2 = fallback. Propose-not-create + review-bucket nähtavus (nädalane teade). Ehitada PÄRAST 956-backlogi importi. Mälu `b-disain-opus-klassifikaator-feed.md`.
+### A4. Auto-klassifikaator: Opus asendab resolver-v2 (B-etapp) — 🔜 JÄRGMINE (spets koodita VALMIS)
+- **Siht (uuendatud 2026-10-06):** Opus-klassifikaator = ainus primaar-paigutaja + **loob L3-d ISE väravatega** (ei propose-not-create). Otsustusahel: Opus-kohtunik → Sonnet-5-referents → (lahkheli) Fable-5-viigimurdja → 2/3 enamus; kõik eri meelt → HOLD + taksonoomia-signaal. resolver-v2 → fallback.
+- **TÄISSPETS (koodita):** `reports/b-klassifikaator-taisautomaatika-spets.md` — otsustusahel-joonis, granulaarsuse prompt-tekst (mõlemad mudelid), auto-L3 10-värava ahel, kalibreerimis-plaan (kuldvalim + Fable-mõõdik), HARD RULE #5 backfill+hook+multi-feed, 4 kandidaadi käsitlus, kuluhinnang ~$3.5/öö.
+- **Reegli-muutus:** CLAUDE.md §AUTO-KLASSIFIKAATOR uuendatud (propose-not-create → täisautomaatika + väravad, HARD RULE #6 kooskõla).
+- **Ootab:** Tarmo spetsi-kinnitust → ehitus (järjekord spets §10). Kalibreerimise alus (A) juba ehitatud: DUP-värav 21→7, sõltumatu Sonnet-5 referents, `taxonomy_overlap_signal`. Mälu `b-disain-opus-klassifikaator-feed.md` + `syn-konsensus-klassifikaator-kalibreerimine.md`.
 - **NB:** SEG-01 kids-guard on ehitatud (`9d302918`/`2b06f116`, Osa 30) — üksik-parandus, mitte täis-B.
 
 ### A5. 956-backlog import — ALUSTAMATA (eraldi äriotsus)
