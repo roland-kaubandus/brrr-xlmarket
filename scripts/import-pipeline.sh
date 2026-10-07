@@ -179,6 +179,27 @@ else
   : > /tmp/classify-skus.txt          # tagab [6]/[6.5] skip (vana loend ei tohi lekkida)
 fi
 
+# ── [4.5] NAABRITE ÜLEHINDAMINE (host; HARD RULE #5 HOOK) ─────────────────────
+# pipeline-neighbor-chain.mjs = SAMA tuum kui backfill/DRY (scripts/lib/neighbor-core.mjs). DELTA-peal:
+# iga selle öö UUE L3 (klassifikaatori shadow_names) naabrid loetakse LIVE DB-st → sama ahel →
+# kas mõni lõksus-naaber-toode kuulub uude L3-sse PARIMA koduna. SHADOW (logib "oleks liigutanud")
+# kuni auto_create_enabled flipib → siis LIVE (neighbor-execute.mjs, kõik väravad).
+# FAIL-LOUD mitte-blokeeriv: rc=3 degrade (api/krediit), muu rc → Slack-hoiatus + JÄTKA (kvaliteedi-optimeering,
+# EI ole laoseisu/hinna-kriitiline → EI peata pipeline'i ühe naaber-vea pärast).
+if [ "$CREDIT_OK" = "1" ]; then
+  NB_OUT=$(node "$ROOT/scripts/pipeline-neighbor-chain.mjs" --from-classify /tmp/pipeline-classify-chain-results.json $EXFLAG --out /tmp/pipeline-neighbor-chain-results.json 2>&1) && NB_RC=0 || NB_RC=$?
+  echo "[4.5/7] naaber-reeval (uue L3 sünnil — SHADOW kuni auto_create)"
+  echo "$NB_OUT" | sed 's/^/  /'
+  case "$NB_RC" in
+    0) : ;;
+    3) echo "  ⚠️ [4.5] api/krediit-DEGRADE — naaber-reeval pooleli (re-run järgmisel ööl, idempotentne)" ;;
+    *) echo "  ⚠️ [4.5] rc=$NB_RC — naaber-reeval ebaõnnestus, AGA pipeline JÄTKUB (kvaliteedi-optimeering, mitte stock/hind)"
+       slack "⚠️ XLM naaber-reeval [4.5] rc=$NB_RC (HOIATUS, mitte FAIL): uue L3 naaber-ülehindamine kukkus. Laoseis+hind+reindeks JÄTKUB. Vt /tmp/pipeline-neighbor-chain-results.json" ;;
+  esac
+else
+  echo "[4.5/7] naaber-reeval SKIP (krediit/API maas)"
+fi
+
 # ── FEED-SNAPSHOT ÜHTLUSTUS (gap-fix 2026-07-25) ─────────────────────────────
 # [3] import loeb /data/vevor-feed-cache.json; [5] reprice loeb xlsx-i. MÕLEMAD peavad
 # tulema SAMAST allikast — /data/vevor-571.xlsx, mille [1] refresh laadis JA millest cache
