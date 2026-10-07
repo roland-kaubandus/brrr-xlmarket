@@ -214,7 +214,7 @@ const CLSF_SCHEMA = {
 };
 
 function clsfUserMsg(batch, candidateL3s) {
-  const cands = candidateL3s.map((c) => `  ${c.handle}${c.name ? ` — ${c.name}` : ""}`).join("\n");
+  const cands = candidateL3s.map(candLine).join("\n");
   const items = batch.map((r) => `[${r.id}] (ämber: ${r.bucket})
   title: ${r.title || "?"}
   title_et: ${r.title_et || "?"}
@@ -331,10 +331,20 @@ export function clusterize(rows) {
     .sort((a, b) => b.items.length - a.items.length || a.cluster_key.localeCompare(b.cluster_key));
 }
 
+// candLine — üks kandidaat-rida. Kui L3-l on l3meta `description` (PIIRIREEGEL, ETAPP 2),
+// lisa see → kohtunik loeb reeglit, MITTE ainult nime (HARD RULE #5: üks reegel, kõik ööd).
+// description tuleb LIVE DB-st (pipeline-classify-chain buildib candidateL3s'i otse product_category'st),
+// seega uus l3meta-reegel jõuab igaöisesse otsustamisse KOHE, ilma rebuild'ita.
+export function candLine(c) {
+  const base = `  ${c.handle}${c.name ? ` — ${c.name}` : ""}`;
+  const d = (c.description || "").trim();
+  return d ? `${base}\n     ↳ piir: ${d.slice(0, 400)}` : base;
+}
+
 // candsListText — muutumatu kandidaat-L3-list (cache'itav blokk). Sama tekst judge + ref jaoks.
 export function candsListText(candidateL3s) {
-  const cands = candidateL3s.map((c) => `  ${c.handle}${c.name ? ` — ${c.name}` : ""}`).join("\n");
-  return `OLEMASOLEVAD L3-KANDIDAADID (target_handle PEAB olema siit):\n${cands}`;
+  const cands = candidateL3s.map(candLine).join("\n");
+  return `OLEMASOLEVAD L3-KANDIDAADID (target_handle PEAB olema siit; "↳ piir" = piirireegel, järgi seda):\n${cands}`;
 }
 
 function clusterItemsText(clusters) {
@@ -356,7 +366,7 @@ function clusterItemsText(clusters) {
 }
 
 function clusterUserMsg(clusters, candidateL3s) {
-  const cands = candidateL3s.map((c) => `  ${c.handle}${c.name ? ` — ${c.name}` : ""}`).join("\n");
+  const cands = candidateL3s.map(candLine).join("\n");
   const blocks = clusters.map((cl) => {
     const rep = cl.items[0];
     const buckets = [...new Set(cl.items.map((i) => i.bucket).filter(Boolean))].join(", ") || "?";
