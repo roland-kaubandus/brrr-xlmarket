@@ -359,6 +359,11 @@ const summary = {
   key_integrity: keyIntegrity,
   pending_clusters: reviewClusters.filter((r) => r.pending).length,   // hindamata-kärpe-augud (ei "otsuseta")
   shadow_names: shadowNew.map((s) => ({ ck: s.ck, name: s.name, parentL2: s.parentL2, n: s.n, origin: s.origin })),
+  // created_l3s — PÄRIS-HANDLE TEE (Tarmo 2026-10-07): kui auto-create TEGELIKULT loob L3-d, salvestab SIIA
+  // iga loodud L3 PÄRIS DB-handle'i ({ck, handle, name, parentL2, n}). Naabrite-hook (pipeline-neighbor-chain.mjs
+  // loadNewL3s) loeb seda AUTORITEETSE allikana → liigutab lõksus-tooted PÄRIS handle'iga, MITTE sünteetilisega.
+  // Praegu alati tühi (shadowNew → ainult logi, EI loo; vt rida ~310). Auto-create loomiskood PEAB selle täitma.
+  created_l3s: [],
 };
 fs.writeFileSync(OUT, JSON.stringify({ summary, results: results.map(({ _cluster, ...r }) => r) }, null, 1));
 console.log(`\n=== KOKKUVÕTE ===`);

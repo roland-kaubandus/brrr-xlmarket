@@ -35,6 +35,9 @@ CREATE TABLE IF NOT EXISTS classifier_config (
 INSERT INTO classifier_config (id, auto_create_enabled, reason)
   VALUES ('singleton', false, 'algseis — shadow-režiim (Variant 1)')
   ON CONFLICT (id) DO NOTHING;
+-- OHUTUS-VÄRAV (Tarmo 2026-10-07): auto_create EI tohi flippida enne kui naabrite-hook'i
+-- päris-handle tee (auto-create loodud L3 → neighbor-execute õige handle, MITTE sünteetiline) on TESTITUD.
+ALTER TABLE classifier_config ADD COLUMN IF NOT EXISTS neighbor_realhandle_verified boolean NOT NULL DEFAULT false;
 
 CREATE TABLE IF NOT EXISTS classifier_shadow_ledger (
   id               bigserial PRIMARY KEY,
@@ -55,19 +58,35 @@ CREATE INDEX IF NOT EXISTS idx_shadow_ledger_bug     ON classifier_shadow_ledger
 `, false);
 }
 
-/** getConfig → { auto_create_enabled:boolean, reason, updated_at } */
+/** getConfig → { auto_create_enabled:boolean, neighbor_realhandle_verified:boolean, reason, updated_at } */
 export function getConfig(q) {
-  const out = q(`SELECT auto_create_enabled::text, coalesce(reason,''), updated_at::text
+  const out = q(`SELECT auto_create_enabled::text, neighbor_realhandle_verified::text, coalesce(reason,''), updated_at::text
                  FROM classifier_config WHERE id='singleton'`).trim();
-  if (!out) return { auto_create_enabled: false, reason: "", updated_at: null };
-  const [en, reason, updated_at] = out.split("\t");
-  return { auto_create_enabled: en === "t" || en === "true", reason, updated_at };
+  if (!out) return { auto_create_enabled: false, neighbor_realhandle_verified: false, reason: "", updated_at: null };
+  const [en, nrv, reason, updated_at] = out.split("\t");
+  return {
+    auto_create_enabled: en === "t" || en === "true",
+    neighbor_realhandle_verified: nrv === "t" || nrv === "true",
+    reason, updated_at,
+  };
 }
 
 /** setAutoCreate — lülita lipp + liiguta updated_at (resettib akna). */
 export function setAutoCreate(q, enabled, reason) {
   q(`UPDATE classifier_config
        SET auto_create_enabled=${enabled ? "true" : "false"}, reason=${escN(reason)}, updated_at=now()
+     WHERE id='singleton'`, false);
+}
+
+/**
+ * setRealhandleVerified — märgi naabrite-hook'i päris-handle tee KINNITATUKS (ohutus-värav avaneb).
+ * Kutsutakse AINULT pärast testi, mis tõestab: auto-create loodud L3 PÄRIS DB-handle jõuab neighbor-hook'i
+ * (MITTE sünteetiline `shadow:` handle). EI liiguta updated_at (ei resetti puhas-akent).
+ */
+export function setRealhandleVerified(q, verified, reason) {
+  q(`UPDATE classifier_config
+       SET neighbor_realhandle_verified=${verified ? "true" : "false"},
+           reason=${escN(reason || (verified ? "naabrite päris-handle tee TESTITUD → ohutus-värav avatud" : "ohutus-värav suletud"))}
      WHERE id='singleton'`, false);
 }
 
@@ -130,6 +149,15 @@ export function evaluateTransition(q, { minClean = MIN_CLEAN_DEFAULT } = {}) {
       reason: `shadow jätkub — koodiviga ootel (${bugSince}×), puhas-arvestus ei edene`, cleanCount, bugSince };
   }
   if (cleanCount >= minClean) {
+    // OHUTUS-VÄRAV (Tarmo 2026-10-07): isegi kui puhas-akna kriteerium on täidetud, EI tohi auto_create'i
+    // flippida enne kui naabrite-hook'i PÄRIS-handle tee on testitud. Muidu auto-create loodud L3-d saaksid
+    // neighbor-hook'is SÜNTEETILISE `shadow:` handle → neighbor-execute ei leia DB-st → lõksus-tooted jäävad kodutuks.
+    if (!cfg.neighbor_realhandle_verified) {
+      return { changed: false, enabled: false, blockedUnverified: true, cleanCount, bugSince,
+        reason: `KVALIFITSEERUB (${cleanCount}/${minClean} puhast, 0 bugi) AGA auto-create BLOKEERITUD — ` +
+                `naabrite päris-handle tee testimata (neighbor_realhandle_verified=false). ` +
+                `Käivita test → setRealhandleVerified(q,true) → siis flipib järgmisel hindamisel.` };
+    }
     const reason = `${cleanCount} puhast shadow-ettepanekut (≥${minClean}), 0 koodiviga, kõik väravad stabiilselt läbitud → auto-L3 loomine AKTIVEERITUD (mod 3)`;
     setAutoCreate(q, true, reason);
     return { changed: true, enabled: true, reason, cleanCount, bugSince };
