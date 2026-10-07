@@ -1,159 +1,212 @@
-# Kataloogi klassifikatsiooni-audit — 2026-10-07
+# Kataloogi täis-audit — 2026-10-07
 
-> **Direktiiv 2026-10-07 (Tarmo):** täisaudit kogu kataloogil, TRUU täisahelaga (mitte sõel, mitte kitsendus). Kulupiir **$160 (batch)**. DRY, väljund `reports/` + JSON.
-> **Seis: EELTINGIMUSED TEHTUD (Fable-fix ✅, caching mõõdetud ✅) → UUS HINNANG ~$200 batch > $160 piir → täisaudit EI käivitatud, ootab Tarmo kulu-otsust.**
-> Kulu siiani: **~$15** (kalibreerimine + Fable-fix test + batch-smoke, kõik DRY). DB-d EI muudetud.
-
----
-
-## 🛑 PÕHITULEMUS (2026-10-07) — truu täisahel ei mahu $160 sisse, sest batch EI jaga prompt-cache'i
-
-Direktiivi 3 väravat läbitud:
-
-**1. Fable-truncation parandatud ✅.** Juurpõhjus: Fable-5 mittedeterministlik — üksik kutse tekitab vahel pikema mõttekäigu, mis ammendab `max_tokens` enne JSON-i lõppu (`stop_reason=max_tokens` → katkenud JSON). Parandus (`classify-chain.mjs` `makeFable`): kordab eskaleeritud laega `[32000, 56000]`, eemaldab koodi-aiad, viskab vea alles 2. ebaõnnestumisel. Test: 0 truncationit (spu:12468 → `new_l3` «Kallutuskomplektid», Fable 3/3 häält; + 80-klastri batch-smoke 0 truncationit).
-
-**2. Caching mõõdetud — KRIITILINE LEID: batch EI jaga prompt-cache'i päringute vahel.**
-
-| Kontekst | cache_read (mõõdetud) | Mida tähendab |
-|---|---|---|
-| **Sünkroonne** (järjest kutsed, sama mudel, <5 min) | `91 585 tok` 2. kutsel (~81% säästu soojalt) | ✅ caching TÖÖTAB |
-| **Batch** (80-klastri smoke, chunk=40) | `cache_read = 0`, `cache_write = 363 914` | 🛑 iga päring kirjutab listi UUESTI |
-
-Batch töötleb päringud **paralleelselt** → iga päring kirjutab 91 585-tokenise kandidaat-listi cache'i eraldi, keegi ei loe teise omast. **Caching-eeldus, millel vana $149-hinnang põhines, EI kehti batch'is.**
-
-**3. Uus kuluhinnang (direktiiv samm 2: enne/pärast):**
-
-| | Hinnang | Alus |
-|---|---|---|
-| **ENNE** (vana eeldus) | ~$149 batch | eeldas et caching rakendub batch'is (−89% listi-kulu) |
-| **PÄRAST** (mõõdetud) | **~$200 batch** | $3.06 / 80 klastrit = $0.0383/klaster × 5225 (smoke chunk=40) |
-
-**Miks ei saa alla $160 (struktuurne):** kulu-draiver EI ole list, vaid **output** — Opus-kohtunik ~1178 tok/klaster + Sonnet-referents ~1065 tok/klaster, mõlemal **kõigil** 5225 klastril (täis-ahela nõue). Output ei cache'u ega kahane (batch annab juba −50%). Output-põrand = **~$119** (judge+ref) + Fable ~$17 + input ~$10 = **~$146 absoluutne miinimum** ka hiiglaslike chunk'idega. List amortiseerub suurema chunk'iga, AGA judge-output (~1178 tok/kl) lööb **max_output lae** → chunk praktiline ülempiir ~60–80 klastrit → reaalne põrand **~$175–200**.
-
-**Järeldus:** truu kogu-kataloogi täisahel (nagu Tarmo nõudis — mitte sõel, mitte kitsendus) maksab **~$175–200**, struktuurselt **üle $160 piiri**. Vajab Tarmo kulu-otsust (valikud all).
+> **Kellele:** Tarmo (poe strateeg/omanik). **Režiim:** TRUU täisahel (kohtunik Opus-4.8 → referents Sonnet-5 pime → viigimurdja Fable-5), **AINULT DRY — ühtegi DB-muudatust ei tehtud.** Kulupiir $210, tegelik kulu **$194.27**.
+> **Otsuste-fail (taaskasutus execute'is, ilma uute API-kutseteta):** `reports/audit-full-decisions-2026-10-07.json` (5225 kirjet, iga kirje: kohtunik + referents + Fable + lõppotsus + ahela-tee).
 
 ---
 
-## ⚖️ VALIKUD — Tarmo otsustab (direktiiv: käivita AINULT kui ≤ $160)
+## Kokkuvõte
 
-**CRITICAL / BLOCKER:** —  *(ükski leid ei blokeeri poodi)*
+| Mõõdik | Väärtus |
+|---|--:|
+| Klastreid kokku (currentL3-ga) | **5225** |
+| **Lõplik kohtuniku-katvus** | **5225 / 5225 (100%)** |
+| Põhijooks ahelas | 5156 / 5225 (98.7%) |
+| Täiendav partii (auk täidetud) | +54 (49 puudu + 5 parandatud) |
+| Ahela-vigu | **0** |
+| Referents-katvus (sisend=väljund) | **5225 / 5225 ✓** |
+| Fable viigimurdjat kasutati | 969 klastril (~18.5%) |
+| nonChain/keep (ahelasse ei läinud) | 69 |
+| **Leide kokku** | **582** (1636 toodet) |
+| — liiguta (move) | 530 (1502 toodet) |
+| — uus-L3 shadow | 52 (134 toodet) |
+| — neist cross-main | 252 klastrit (723 toodet) |
+| — neist garden | 54 klastrit (163 toodet) |
+| Kattuvusi (overlaps) | 100 paari |
+| **Kulu** | **$194.27** (piir $210) |
 
-**VAJA ÄRA TEHA:**
-
-1. **Tõsta piir ~$210-ni → chunk=40 täis-fidelity täisaudit (~$200).** Ohutu chunk (0 truncation tõestatud), kõrgeim kvaliteet, kogu 5225 klastrit. Soovitus kui tahad TÄIELIKKU auditit.
-2. **Jää $160 → käivita, live-valve peatab $160 juures.** Kataloog auditeeritakse järjekorras kuni piir; kaetud **~80% (~4200 klastrit)**, ülejäänu järgmise eelarvega. Saad truu auditi suurema osa katalogist $160 sees, teadlikult osaline.
-3. **Trimmi auditi-skeemist prose-väljad** (`considered_reason`) — OTSUS (action+target) jääb identne, ainult seletus lüheneb → output −~40% → **~$140 batch, mahub $160**. Nüanss: võib OTSUST õrnalt mõjutada (mudel põhjendab vähem). Vajab 1 kalibreerimis-jooksu kinnitamaks et otsused ei muutu. **Lähim "truu + mahub" variant.**
-4. **Ära käivita nüüd.** Fable parandatud + batch-pipeline tõestatud; otsusta hiljem rahulikult.
-
-> **Soovitus:** **valik 3** (prose-trim, ~$140) kui "truu + $160 sees" on prioriteet — teen 1 kalibreerimis-jooksu tõestamaks otsuste identsust, siis käivitan. VÕI **valik 1** (tõsta $210) kui tahad 100% muutmata ahelat. **Valik 2** annab 80% kohe $160 sees.
-
----
-
-## 📜 VARASEM: $50 kaheastmeline sõel (2026-10-06 öö) — EI läbinud (ajalugu)
-
-> Direktiiv 2026-10-06 nõudis odavat kaheastmelist sõela $50 piiriga. See EI läbinud; 2026-10-07 direktiiv asendas selle truu täisahelaga. Säilitatud õppetunniks.
-
-Kalibreerimine 150 juhu-klastril (fikseeritud seeme 20261007):
-
-| Lähenemine | Mõõdetud tulemus | Verdikt |
-|---|---|---|
-| **Odav sõel** (Haiku) — "kas praegune L3 õige?" | recall **36.4%** (vahele 7/11 viga) | 🛑 kukub |
-| **Odav sõel eskaleeritud Sonnet-ile** (HARD RULE #6) | recall **36.4%** (samad 7 vahele) | 🛑 kukub |
-| **Eelvalik-shortlist** (praegune L3 + 30 lähimat) täis-ahelas | kokkulangevus täis-listiga **89.8%**, tekitab valesid NEW-otsuseid | 🛑 fidelity kukub |
-
-**Miks sõel struktuurselt ei tööta:** kõik 7 vahele-jäänud viga on **"mujal on PAREM naaber-kodu"** juhtumid (mitte jämedad valepaigutused): kallutuskäru↔aiakäru, grill/griddle↔praepann, dušitool↔dušipink. Sõel vaatab AINULT "praegune L3 + toode" → ei näe alternatiive. Alternatiivide vastu võrdlemine **ongi** täis-ahela kulu. Mudeli vahetus (Haiku→Sonnet) ei aidanud — probleem on info, mitte võimekus. **See on ka põhjus, miks 2026-10-07 direktiiv nõuab truu täisahelat.**
+**NB:** kõik 582 leidu on DRY-ETTEPANEKUD. Midagi ei ole veel poodi rakendatud. Rakendamine (execute) toimub eraldi otsuste-failist, ilma uute kohtuniku-kutseteta.
 
 ---
 
-## 🔎 11 KONKREETSET LAHKHELI (kalibreerimis-valimist — tegelik auditi-signaal juba praegu)
+## 🛑 CRITICAL / BLOCKER
 
-Need on 150-klastri valimi tegelikud leiud (täis-ahel otsustas värskelt, võrdlus praeguse L3-ga). Enamik on **piiripealsed** (mõlemad kodud usutavad) — just seepärast sõel neid ei püüa. 92.7% valimist oli ÕIGES kohas.
+### [PARANDATUD] Vaikne otsuste-kadu kohtuniku-batchis (HARD RULE #5 rikkumine)
 
-| Toode | Praegune L3 | Ahela ettepanek |
-|---|---|---|
-| Wheelbarrow Cart, 5 Cu.Ft 397 lbs | Kallutuskärud | **Aiakärud** |
-| Art Easel for Kids, 2-in-1 Wooden | Kunsti- ja joonistustarvikud | **Tegevustahvlid** (lastekaubad) |
-| Reversible Grill/Griddle 14×8.5" | Lauagrillid ja grillplaadid | **Praepannid ja pannikomplektid** |
-| Rice Warmer Stand 14×14" Restaurant | Soemarmiidid ja bain-marie | **Roostevabast terasest töölauad** |
-| Folding Shower Seat 34.5×32.5 cm | Dušitoolid ja -pingid | **Dušipingid ja -istmed** |
-| Outdoor Park Style Grill 16×16" | Grillrestid ja lõkkegrillid | **Söe- ja gaasigrillid** |
-| Golf Storage Garage Organizer | Golfikäru-katted ja -tarvikud | **Pallihoidjad ja spordivarustuse kärud** |
-| Hydraulic Dump Lift Kit 22 000 lb | Hüdroagregaadid | **UUS: «Hüdraulilised kallutuskomplektid»** |
-| Go Kart Wheels Rain Tires Set of 4 | ATV tarvikud | **Golfikäru ja go-kart osad** |
-| Infrared Sauna Blanket 71×32" | Saunatarvikud | **Infrapunasaunad** |
-| Artificial Plant Wall 4 PCS | Taimeseinad ja haljasseinad | **Privaatsusekraanid ja kunsthekid** |
+Sinu 47-klastri küsimus avas **süsteemse vaikse kao**, mis puudutas **nii auditit kui öist [4] hook'i**:
 
-Ekstrapoleerides 7.3% lahkheli-määra kogu kataloogile: **~380 klastrit** (~mitu sada toodet) võiks olla paremas kodus. Enamik piiripealsed, mitte jämedad vead.
+- **Põhjus 1 — kärbe:** 1 chunk (j84, 40 klastrit) lõikas `max_tokens` (14000) peale → kogu chunk kadus parsimisel.
+- **Põhjus 2 — mudel-väljajätted:** ~9 klastrit üle 7 chunk'i jäid kohtuniku vastusest lihtsalt välja.
+- **Põhjus 3 — fantoom-võtmed:** j100 tagastas 42/40 → 2 hallutsineeritud võtit (spu:07513, spu:07548) + 1 võõras võti (spu:07547, kuulus j18-le), mis **kirjutas üle** teise chunk'i päris otsuse (last-wins Map).
+- **Põhjus 4 — chunk-sisesed dup-konfliktid:** 4 klastril (spu:17284 / 00684 / 11663 / 10573) andis mudel 2 rida sama võtmega → Map võttis vaikselt viimase.
 
----
+**Miks CRITICAL:** öine hook kasutas sama koodi → iga öö oleks osa uusi tooteid saanud **vaikselt "otsuseta"** (kodutuks jäänud = otsingus/kategoorias puudu = praktikas müügil olematud), ilma ühegi hoiatuseta. Täpselt see muster, mille vastu HARD RULE #5 (fail-loud) on kirjutatud.
 
-## 🌱 Aiatoodete kontroll (direktiiv samm 4)
+**Parandus (SSoT, commit — vt lõpp):** `scripts/lib/judge.mjs` kolm uut funktsiooni, mida kasutavad **nii audit kui öine hook** (üks transform, kaks kutsujat):
+- `ingestClusterResults` — väljundi võtmed **peavad** võrduma sisendi võtmetega; võõras võti → ei ingestita + loendur; dup → säilita **esimene** + liputa konflikt (mitte last-wins).
+- `resolveJudgeBatch` (batch-tee, audit) / `resolveClustersSyncVerified` (sünkr-tee, öine hook) — puuduv VÕI `max_tokens` → **rekursiivne chunk-poolitamine** (max 3 taset), siis fail-loud.
+- Öises hook'is: hindamata klaster → **PENDING + Telegram-loendur** (re-proov järgmisel ööl), **mitte vaikne kadu**.
 
-DB-heuristika (read-only, enne DB-vaikust) leidis **tegeliku misfit'i**:
-- **Kultivaatorid/mullafreesid** (`rototillers & cultivators`, gas/electric tillers) istuvad osaliselt `v4-pollumajandus-ja-loomakasvatus-talutehnika-lohistatavad-akked` (= äkked/randaalid) all → vale tüüp (freesid ≠ äkked).
-- **Mururullid** (`lawn rollers`) jagunevad `muruvaltsid` ja `lohistatavad-akked` vahel → sama L3 peaks koondama.
+**Tõestus, et auk EI olnud kahjutu:** täiendav partii taastas **8 päris-leidu** (varem kaotatud), sh 2 dup-konflikti-parandust, mis olid tegelikud liigutused:
+- spu:17284 (4 toodet): *Basseini äravooluvoolikud* → **Survepesuri voolikud ja otsakud**
+- spu:00684 (3 toodet): *Kontoritoolid* → **Taburetid ja töötoolid ratastega**
 
-*(See kinnitab valiku 1 loogikat: Aed/aiatehnika main on misfit-tihe → esmane audit-sihtmärk.)*
+Fantoom-ülekirjutus spu:07547 (6 toodet) kontrolliti: mõju **madal** — nii j18 õige otsus kui fantoom viisid "jääb paigale" (Hüdraulilised mulgustustööriistad). Kadu polnud siin sisuline, aga muster oli ohtlik.
 
 ---
 
-## ✅ Eile loodud 4 uut L3 — verifitseeritud (direktiiv samm 5, OSA 2)
+## ✅ VAJA ÄRA TEHA — 582 kategooria-paranduse ettepanekut (DRY)
 
-Batch `e2-2026-10-06T1820`, kõik **LIVE ja terviklikud** (undo: `node scripts/classifier-undo.mjs e2-2026-10-06T1820`):
+> HARD RULE #2: siin ei ole "low/medium". Kõik alljärgnev on "vaja ära teha" — prioriteet tootearvu järgi. Rakendamise otsustad sina; masin suudab execute'ida otsuste-failist.
 
-| L3 | Tooteid | SEO | active/internal | nav-puu | pilt |
-|---|---|---|---|---|---|
-| Pika materjali hoiuriiulid | 9 | 329 t | ✅ / ❌ | JAH | ✅ |
-| Päikesepaneelide hoiu- ja kandekotid | 4 | 263 t | ✅ / ❌ | JAH | ✅ |
-| Energiasalvestusakud | 3 | 301 t | ✅ / ❌ | JAH | ✅ |
-| Universaalnöörid ja paracord | 3 | ~290 t | ✅ / ❌ | JAH | ✅ |
+### Cross-main liigutused (lähtemain → sihtmain) — 252 klastrit / 723 toodet
 
-Kõik 4: tooted olemas, SEO-tekst olemas, aktiivne + mitte-internal, navigatsioonis nähtav, pilt olemas. **pending = 0.**
+Suurimad vood (täisnimekiri all data-failis):
+
+| Lähtemain → Sihtmain | Klastreid | Tooteid |
+|---|--:|--:|
+| Garaažiseadmed ja autoremont → Tööriistad ja tarvikud | 15 | 38 |
+| Tööriistad ja tarvikud → Garaažiseadmed ja autoremont | 16 | 34 |
+| Autovaruosad ja -tarvikud → Garaažiseadmed ja autoremont | 11 | 32 |
+| Reklaami-, trüki- ja graveerimisseadmed → Tööriistad ja tarvikud | 9 | 27 |
+| Tööriistad ja tarvikud → Sport ja vaba aeg | 2 | 23 |
+| Ehitus ja remont → Aed ja aiatehnika | 2 | 19 |
+| Peoinventar ja dekoratsioonid → Sport ja vaba aeg | 4 | 19 |
+| Kodumasinad ja kodutehnika → Suurköögiseadmed | 10 | 19 |
+| Ehitus ja remont → Tööriistad ja tarvikud | 3 | 18 |
+| Mööbel ja sisustus → Tervis, hooldus ja ilu | 4 | 17 |
+| Tööriistad ja tarvikud → Autovaruosad ja -tarvikud | 8 | 17 |
+| Lastekaubad ja mänguasjad → Sport ja vaba aeg | 4 | 17 |
+
+**Muster:** suurim segadus on **Tööriistad ↔ Garaažiseadmed ↔ Autovaruosad** kolmnurgas (autoremondi vs üldtööriista piir) ja **Reklaami-/graveerimisseadmed → Tööriistad** (lineaarjuhikud, CNC-komponendid tootja-kataloogist valesse maini). Täisnimekiri (104 vooguma) data-failis.
+
+### Intra-main liigutused (sama main, õigem L3) — 271 klastrit / 758 toodet
+
+| Main | Klastreid | Tooteid |
+|---|--:|--:|
+| Tööriistad ja tarvikud | 64 | 165 |
+| Mööbel ja sisustus | 29 | 102 |
+| Sport ja vaba aeg | 31 | 85 |
+| Autovaruosad ja -tarvikud | 23 | 67 |
+| Aed ja aiatehnika | 24 | 50 |
+| Santehnika, küte ja ventilatsioon | 12 | 45 |
+| Garaažiseadmed ja autoremont | 15 | 40 |
+| Lastekaubad ja mänguasjad | 10 | 36 |
+| (ülejäänud 15 maini) | … | … |
+
+### Suurimad üksik-leiud (top 15 tootearvu järgi)
+
+| Tooteid | Tüüp | Praegu | Pakutud | Cross |
+|--:|---|---|---|:-:|
+| 17 | move | Tööriistad / Joonte märgistusmasinad | Sport / Väljakumärgistajad | ✓ |
+| 13 | move | Santehnika / Kanal- ja renn-äravool | Santehnika / Lineaarsed dušitrapid | |
+| 13 | move | Reklaamiseadmed / Lineaarjuhikud ja liikumissüsteemid | Tööriistad / Lineaarjuhikud | ✓ |
+| 13 | move | Mööbel / Peeglid | Tervis, hooldus ja ilu / Meigipeeglid | ✓ |
+| 13 | move | Mööbel / TV-alused | Mööbel / Raamaturiiulid | |
+| 12 | new_l3 | Mööbel / Kott-toolid | **Põrandatoolid** | |
+| 11 | move | Tööriistad / Terastrossid | Ehitus / Kaabel- ja trosspiirded | ✓ |
+| 11 | move | Ehitus / Kääriturvaväravad | Ehitus / Turvavõred ja kokkupandavad väravad | |
+| 11 | move | Sport / Rebounderid | Sport / Jalgpalli viske- ja treeningvõrgud | |
+| 11 | move | Meditsiin / Vannitoa ülekandeabivahendid | Meditsiin / Dušitoolid ja -pingid | |
+| 11 | move | Põllumajandus / Mullaharimine | Aed / Murutasandusrehad | ✓ |
+| 11 | new_l3 | Aed / Basseinikatted | **Mullivanni katted** | |
+| 10 | move | Ehitus / Greiferid ja haaratsid | Aed / Palkide tõsteriistad ja konksud | ✓ |
+| 10 | move | Ehitus / Pallikahvlid | Tööriistad / Kahveltõstuki lisaseadmed | ✓ |
+| 10 | new_l3 | Mööbel / Vaibad | **Vaipplaadid** | |
 
 ---
 
-## 🤖 Klassifikaatori seis (read-only)
+## 🌱 Garden-tooted (aed ja aiatehnika) — 54 klastrit / 163 toodet
 
-| | |
-|---|---|
-| `classifier_config.auto_create_enabled` | **false** (shadow-režiim, Variant 1 — ohutu algseis) |
-| `classifier_shadow_ledger` | **0 rida** (öist uut-L3 shadow'i veel ei ole) |
-| `taxonomy_overlap_signal` | OLEMAS, **1 rida** |
+| Voog | Klastreid | Tooteid |
+|---|--:|--:|
+| Aed → Aed (sama main, õigem L3) | 24 | 50 |
+| Ehitus ja remont → Aed | 2 | 19 |
+| Peoinventar → Aed | 3 | 13 |
+| Põllumajandus → Aed | 2 | 12 |
+| Aed → Tööriistad | 2 | 10 |
+| Tööriistad → Aed | 3 | 8 |
+| Suurköögiseadmed → Aed (väligrillid/-köök) | 3 | 6 |
+| (ülejäänud väiksemad vood) | 15 | 45 |
 
----
-
-## 🌙 Öine import-pipeline [4] tulemus (direktiiv samm 5, OSA 1)
-
-**Seis: OOTEL** — pipeline jookseb 03:00 CEST (praegu kirjutamise hetk 23:07 CEST = pipeline pole veel jooksnud). DB-vaikuse aken 02:45–04:30.
-**Kogutakse pärast 04:30** (ajastatud äratus) ja lisatakse siia: kas [4] ahel-hook jooksis, auto-assign/LCA/shadow arvud, koodivead.
-
-<!-- PIPELINE-[4]-TULEMUS-SIIA -->
+Suurim aia-sissevool: **Ehitus → Aed** (katusepaneelid/kasvuhoone-elemendid) ja **Põllumajandus → Aed** (mullafreesid, kultivaatorid — ostja otsib aiatehnikast).
 
 ---
 
-## 🐞 Avastatud koodi-gotcha
+## 🆕 Uus-L3 shadow-kandidaadid — 52 tüüpi / 134 toodet
 
-- **Fable-viigimurdja JSON-truncation — PARANDATUD ✅** (`classify-chain.mjs` `makeFable`): juurpõhjus polnud fikseeritud lävi vaid Fable-5 mittedeterminism (vahel pikem mõttekäik ammendab `max_tokens`). Fix: kordus eskaleeritud laega `[32000, 56000]` + koodi-aedade eemaldus + viga alles 2. kukkumisel. Testitud 0 truncationit. **Kehtib ka öisele hookile** (sama SSoT-moodul).
-- **Batch EI jaga prompt-cache'i (VAJA ÄRA TEHA, dokumenteeritud):** paralleel-töötlus → iga päring kirjutab kandidaat-listi (91 585 tok) cache'i eraldi, `cache_read=0`. Caching aitab AINULT sünkroonselt (<5 min TTL, sama mudel). Tähtis iga tuleviku-batch-disaini juures: ära eelda cache-säästu batch'is.
-- **Output domineerib, mitte list:** Opus-kohtunik ~1178 tok/klaster + Sonnet-ref ~1065 tok/klaster. See seab chunk'ile `max_output` lae (~60–80 klastrit/kutse) ja on täisahela kulu-põrand (~$119 output üksi 5225 klastril, batch −50%-ga).
+> Need on **SHADOW** (VARIANT 1 "shadow enne" režiim): masin läbis kõik väravad ja logis "oleks loonud", **AGA EI loonud**. Inimene/auto-üleminek otsustab, kas luua. Top tootearvu järgi:
+
+| Pakutud L3 nimi | Tooteid | Näidis |
+|---|--:|---|
+| Põrandatoolid | 12 | Floor Chair, 5 Adjustable Positions Folding |
+| Mullivanni katted | 11+2 | Outdoor Hot Tub Cover 90×90×20in |
+| Vaipplaadid | 10 | Carpet Tiles Peel and Stick 18″×18″ |
+| Aktiivse istumise istmed | 8 | Wobble Chair, Height-Adjustable |
+| Raskustekid | 5 | Weighted Blanket, 25 lbs King Size |
+| Kasvuhoone ventilaatorid | 5 | Solar Powered Fan 15W |
+| Põlvitustoolid | 5 | Ergonomic Kneeling Chair |
+| Metallkatuseplaadid | 4 | Metal Roof Panels, galvanized steel |
+| Kokkupandavad külalisvoodid | 4 | Rollaway Bed 38×75in |
+| Jalamassöörid ja -stimulaatorid | 4 | Foot Circulation Stimulator EMS/TENS |
+| Mootorfreesid ja kultivaatorid | 3 | Tiller Cultivator Gas 43CC |
+| Põlvekäimistoed (põlveskuutrid) | 3 | Folding Knee Scooter |
+| Hoiusahtlikapid | 3 | Plastic Storage Drawers Cart 4 Drawers |
+| Jalgratta transpordikotid ja -kohvrid | 3 | Triathlon Bike Travel Bag |
+| Külmkohvi süsteemid (nitro cold brew) | 3 | Nitro Cold Brew Coffee Maker 0.5L |
+| (ülejäänud 37 tüüpi, 1–2 toodet igaüks) | ~55 | vt data-fail |
+
+**Tähelepanek:** mitu kandidaati on **meditsiini/ergonoomika-istmed** (vereproovitoolid, infusioonitoolid, dušitoolid) ja **aktiivistmed** (wobble/kneeling/floor) — kui need kokku grupeerida, võib tekkida laiem "Ergonoomilised/teraapiatoolid" muster. Täisnimekiri (52) data-failis.
 
 ---
 
-## 🔐 Ohutus (täidetud)
+## 🔁 Kattuvused (overlaps) — 100 paari
 
-- ✅ **DRY:** DB-sse EI kirjutatud midagi. Väljund ainult `reports/` + `scratchpad/*.json`.
-- ✅ **Kulupiir:** kõva $160 valve koodis (`guard()` + PRE-FLIGHT projektsioon, peatub ületusel). Tegelik kulu siiani **~$15** (kalibreerimine + Fable-fix test + batch-smoke).
-- ✅ **Täis-audit EI käivitatud** — direktiivi värav rakendus (uus hinnang ~$200 > $160 piir → ootab Tarmo kulu-otsust, vt VALIKUD).
-- ✅ **HARD RULE #8:** test-identiteet, inimese JWT-d EI mint'itud (audit on puhas read + LLM, 0 DB-kirjet, 0 admin-login).
-- ✅ **DB-vaikuse aken 02:45–04:30** austatud (kõik DB-lugemine tehtud enne; LLM-töö loeb ainult offline JSON-i). Öist [4] hooki EI puudutatud.
+Mõlemasuunalised vood = mainide-piir on sisuliselt hägune ja vajab reeglit (mitte ükshaaval liigutamist):
+
+| Paar | Klastreid | Tooteid |
+|---|--:|--:|
+| Garaažiseadmed ↔ Tööriistad | 15+16 | 72 |
+| Autovaruosad → Garaažiseadmed | 11 | 32 |
+| Reklaamiseadmed → Tööriistad | 9 | 27 |
+| Kodumasinad → Suurköögiseadmed | 10 | 19 |
+| Mööbel → Tervis, hooldus ja ilu | 4 | 17 |
+| Mööbel → Ladu | 5 | 15 |
+| Meditsiin → Santehnika | 5 | 14 |
+
+**Soovitus:** suurimad kahesuunalised (Garaaž↔Tööriist, Auto→Garaaž) väärivad **domeeni-reeglit** (CLAUDE.md universaalne paigutus-reegel), mitte 72 üksik-liigutust — muidu feed toob sama segaduse uuesti.
 
 ---
 
-## Masinloetavad väljundid (scratchpad)
+## 📋 Tarmo nõutud eraldi read
 
-- `audit-measure.json` — caching + eelvalik mõõtmised
-- `audit-calibration.json` — 150-klastri kalibreerimine (recall, confusion, 11 lahkheli)
-- `audit-probe.json` — shortlist-ahela fidelity + kulu-projektsioon
-- `audit-clusters.json` — 5226 klastrit + 1684 L3 (DB-dump, read-only)
-- `audit-pretest.json` — Fable-fix test (0 truncation) + caching sünkr-mõõtmine
-- Tööriist: `scripts/catalog-audit.mjs` (measure | calibrate | probe | **full** = batch-täisahel staadiumid). `full` teeb PRE-FLIGHT projektsiooni ja keeldub submit'imast kui > `AUDIT_CAP` ($160).
+- **Täiendav partii:** 54 klastrit (49 kohtuniku-vastusest puudu + 5 ülekirjutatud/dup-konfliktist parandatud), chunk=10, Fable 10. Lahendamata **0**, poolitus-tasemeid 1. Lisandus **8 päris-leidu**, mis olid varem vaikselt kadunud.
+- **Fantoomid:** **3 ära visatud** — spu:07513 (hallutsinatsioon, kehtetu võti), spu:07548 (hallutsinatsioon, kehtetu võti), spu:07547 (kehtiv võti, kuulus j18-le, ekslikult j100 all). Ükski ei kirjutanud üle päris-otsust pärast parandust (first-wins). 07547 sisuline mõju: madal (jääb paigale nii või teisiti).
+- **Dup-konfliktid:** 4 klastrit (spu:17284 / 00684 / 11663 / 10573) — first-wins taastas esimese otsuse; neist 2 (17284, 00684) olid päris liigutused, 2 (11663, 10573) jäid ahela-konsensuses paigale.
+- **Lõplik katvus:** **5225 / 5225 (100%)** kohtunik + **5225 / 5225** referents. Auku ei ole.
+- **Referents-kontroll (sisend vs väljund):** 5225 sisse, 5225 välja — klapib täpselt, referentsil auku polnud.
+
+---
+
+## 💰 Kulu
+
+| Mudel | Kulu |
+|---|--:|
+| Opus-4.8 (kohtunik) | $89.87 |
+| Sonnet-5 (referents) | $56.32 |
+| Fable-5 (viigimurdja) | $48.08 |
+| **KOKKU** | **$194.27** (piir $210) |
+
+Kutseid 5418 · cache-read 7.92M tok · cache-write 15.9M tok. Live-guard $210 juures ei rakendunud (jäime alla). Täiendava partii kulu mahtus sama piiri sisse ($0 batch-taaskasutus + väike chunk=10).
+
+---
+
+## ♻️ Taaskasutus (execute ilma uute kutseteta)
+
+`reports/audit-full-decisions-2026-10-07.json` sisaldab iga 5225 klastri kohta: kohtunik-raw, referents-raw, Fable-otsus, lõppotsus (`final_decision`), sihtkäepide, värav/signaal. Execute-skript loeb siit (nagu sünonüüm `--from`) — **ühtegi uut API-kutset pole vaja**. Täienduse metaandmed failis `meta.supplement`.
+
+---
+
+## ➡️ Järgmine samm
+
+Naabrite-ülehindamise ehitus (spets `reports/naabrite-ulehindamine-spets.md`, kinnitatud). **EI alusta enne, kui sina selle raporti üle vaatad** ja ütled, kas rakendame mõne leiu-ploki või liigume otse naabrite-ehitusele.
