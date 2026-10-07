@@ -583,12 +583,57 @@ export function ingestClusterResults(parsed, expectedKeys) {
 }
 
 /**
+ * validateTargetHandles — valideeri iga otsuse target_handle LIVE-taksonoomia vastu (PUHAS, I/O-ta → testitav).
+ * HARD RULE #5 juurpõhjuse-parandus (Tarmo 2026-10-07): kohtuniku/referentsi/Fable target_handle
+ * võib viidata STALE/olematule handle'ile (kandidaat-nimekiri = SSoT-snapshot, mis lagunenud live-DB-st).
+ * SAMA kontroll audit-tees (resolveJudgeBatch) JA öises [4] hookis (resolveClustersSyncVerified) — üks transform.
+ *
+ * Reegel (ainult action='assign_existing', mis annab target_handle):
+ *   (1) target_handle ∈ liveHandleSet            → OK (kehtiv).
+ *   (2) olematu handle → leia handle NIMI (handleToName; kandidaat-nimekirjast) → nameToHandles[name]:
+ *         TÄPSELT ÜKS live-vaste → paranda target_handle + logi 'corrected'.
+ *   (3) muidu (handle puudub / nime ei leia / 0 VÕI mitu nimevastet) → otsus KEHTETU:
+ *         action='keep' + invalid_handle=true + logi 'invalid'. Klaster → review-bucket (otsuseta,
+ *         OHUTU VAIKIMISI — MITTE kodutu toode). Digesti loendur: 'kehtetu handle: N'.
+ *
+ * byKey: Map(cluster_key → decision). Muudab otsust KOHAPEAL (target_handle/action/invalid_handle).
+ * ctx: { liveHandleSet:Set<handle>, handleToName:Map<handle,name>, nameToHandles:Map<name,[handle]> }.
+ * ctx puudub → kontroll vahele (kutsuja vastutab; tagastab tühjad massiivid).
+ * Tagastab { corrected:[{key,from,to,name}], invalid:[{key,handle,reason}] }.
+ */
+export function validateTargetHandles(byKey, ctx) {
+  const { liveHandleSet, handleToName, nameToHandles } = ctx || {};
+  const corrected = []; const invalid = [];
+  if (!liveHandleSet) return { corrected, invalid };
+  for (const [key, d] of byKey) {
+    if (!d || d.action !== "assign_existing") continue;   // target_handle't annab ainult assign_existing
+    const h = d.target_handle || null;
+    if (h && liveHandleSet.has(h)) continue;              // (1) kehtiv live-handle
+    const name = h ? (handleToName?.get(h) || null) : null;
+    const cands = name ? (nameToHandles?.get(name) || []) : [];
+    if (cands.length === 1) {                             // (2) ühene nimevaste → paranda
+      corrected.push({ key, from: h, to: cands[0], name });
+      d.target_handle = cands[0];
+      continue;
+    }
+    // (3) kehtetu → otsus KEHTETU → keep (ohutu vaikimisi, review-bucket)
+    const reason = !h ? "target_handle puudub"
+      : !name ? "handle live-taksonoomias puudub + nime kandidaadist ei leia"
+      : cands.length === 0 ? `nimevaste puudub (nimi='${name}')`
+      : `nimevaste mitmene (${cands.length}× '${name}')`;
+    invalid.push({ key, handle: h, reason });
+    d.action = "keep"; d.target_handle = null; d.invalid_handle = true;
+  }
+  return { corrected, invalid };
+}
+
+/**
  * resolveJudgeBatch — BATCH-tee (audit): submit kõik chunk'id ÜHEKS batch'iks → ingest+kontrolli iga chunk →
  * puuduvad VÕI stop_reason=max_tokens → POOLITA (chunk/2) & korda järgmise batch-tasemena, kuni kõik lahendatud VÕI maxDepth → FAIL-LOUD.
  * role: "judge" | "ref". runChunk injekteeritud (judge.mjs ei sõltu content-batch'ist). onLog={log,tick} valikuline.
  * Tagastab { byKey, foreign, duplicates, unresolved, reqFail, levels }.
  */
-export async function resolveJudgeBatch({ clusters, candidateL3s, apiKey, runChunk, chunkSize = 40, maxTokens = 14000, model, role = "judge", maxDepth = 3, onLog } = {}) {
+export async function resolveJudgeBatch({ clusters, candidateL3s, apiKey, runChunk, chunkSize = 40, maxTokens = 14000, model, role = "judge", maxDepth = 3, onLog, validate } = {}) {
   const build = role === "ref" ? buildClusterRefBody : buildClusterJudgeBody;
   const mdl = model || (role === "ref" ? REF_MODEL_CLSF : CLSF_JUDGE_MODEL);
   const byKey = new Map(); const foreign = []; const duplicates = []; const unresolved = [];
@@ -625,7 +670,11 @@ export async function resolveJudgeBatch({ clusters, candidateL3s, apiKey, runChu
   }
   await level(clusters, chunkSize, 0);
   if (unresolved.length) onLog?.log?.(`🛑 FAIL-LOUD [${role}]: ${unresolved.length} klastrit lahendamata pärast ${maxDepth} taset`);
-  return { byKey, foreign, duplicates, unresolved, reqFail, levels };
+  // JUURPÕHJUSE-PARANDUS (HARD RULE #5): valideeri target_handle live-taksonoomia vastu VASTUVÕTMISEL
+  const vh = validateTargetHandles(byKey, validate);
+  if (vh.corrected.length) onLog?.log?.(`[${role}] handle-triiv parandatud (nimevaste): ${vh.corrected.length}`);
+  if (vh.invalid.length) onLog?.log?.(`🔴 [${role}] kehtetu handle: ${vh.invalid.length} → otsus kehtetu (keep/review)`);
+  return { byKey, foreign, duplicates, unresolved, reqFail, levels, corrected: vh.corrected, invalid: vh.invalid };
 }
 
 /**
@@ -634,7 +683,7 @@ export async function resolveJudgeBatch({ clusters, candidateL3s, apiKey, runChu
  * (judgeClassifyClusters | rateClassifyReferenceClusters). callFn kukub (krediit/API) → ok=false → kutsuja degrade.
  * Tagastab { ok, byKey, foreign, duplicates, unresolved, firstError }.
  */
-export async function resolveClustersSyncVerified(clusters, { callFn, chunkSize = 12, maxDepth = 3, onLog } = {}) {
+export async function resolveClustersSyncVerified(clusters, { callFn, chunkSize = 12, maxDepth = 3, onLog, validate } = {}) {
   const byKey = new Map(); const foreign = []; const duplicates = []; const unresolved = [];
   let firstError = null;
   async function level(cls, size, depth) {
@@ -654,7 +703,11 @@ export async function resolveClustersSyncVerified(clusters, { callFn, chunkSize 
   }
   const ok = await level(clusters, chunkSize, 0);
   if (unresolved.length) onLog?.(`🛑 FAIL-LOUD: ${unresolved.length} klastrit lahendamata (pending)`);
-  return { ok: ok && !firstError, byKey, foreign, duplicates, unresolved, firstError };
+  // JUURPÕHJUSE-PARANDUS (HARD RULE #5): valideeri target_handle live-taksonoomia vastu VASTUVÕTMISEL
+  const vh = validateTargetHandles(byKey, validate);
+  if (vh.corrected.length) onLog?.(`handle-triiv parandatud (nimevaste): ${vh.corrected.length}`);
+  if (vh.invalid.length) onLog?.(`🔴 kehtetu handle: ${vh.invalid.length} → otsus kehtetu (keep/review)`);
+  return { ok: ok && !firstError, byKey, foreign, duplicates, unresolved, firstError, corrected: vh.corrected, invalid: vh.invalid };
 }
 
 // ──────────────── KOOSKÕLAVÄRAV (deterministlik, prompt-vaba) ────────────────
