@@ -21,6 +21,10 @@ backend/data/feeds/vevor-feed-cache.json
 reports/*.csv
 reports/image-gen-*/
 reports/spu-split-*
+reports/audit-full-decisions-*.json
+reports/content-*.ndjson
+reports/content-*.matchlist.json
+reports/content-*.batches.json
 
 # Backups — large DB/meili dumps, NEVER in git (HANDBOOK §5)
 archive/
