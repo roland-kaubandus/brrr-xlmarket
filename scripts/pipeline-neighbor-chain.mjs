@@ -82,24 +82,57 @@ function buildL3Meta() {
   return meta;
 }
 
-// ── DELTA: selle öö uued L3-d (shadow-ettepanekud VÕI auto-create loodud) ──
+// ── DELTA: selle öö uued L3-d (auto-create loodud = PÄRIS handle; shadow-ettepanek = sünteetiline) ──
+// PÄRIS-HANDLE TEE (Tarmo 2026-10-07 ohutus-parandus): auto-create loodud L3 PÄRIS DB-handle PEAB jõudma
+// siia (MITTE sünteetiline `shadow:…`), muidu neighbor-execute ei leia sihtkohta DB-st → lõksus-tooted jäävad
+// kodutuks (vaikne no-op). Allikad eelistusjärjekorras: (0) summary.created_l3s [auto-create salvestas PÄRIS
+// handle], (1) --new-l3 arg [test/taasjooks], (2) shadow_names → proovi resolvida PÄRIS handle L3META-st
+// nime+L2 järgi (kui auto-create lõi); muidu sünteetiline (ohutu AINULT SHADOW/DRY-s — LIVE-värav skipib).
 function loadNewL3s(L3META) {
-  // (1) käsitsi --new-l3 h1,h2 (test / taas-jooks)
+  const norm = (s) => (s || "").trim().toLowerCase();
+  const nameIdx = new Map();   // normaliseeritud nimi → [{handle,l2}] (päris DB L3-d)
+  for (const [h, m] of Object.entries(L3META)) {
+    const k = norm(m.name); if (!k) continue;
+    if (!nameIdx.has(k)) nameIdx.set(k, []);
+    nameIdx.get(k).push({ handle: h, l2: m.l2 });
+  }
+  const resolveReal = (name, parentL2) => {
+    const cands = nameIdx.get(norm(name)) || [];
+    if (cands.length === 1) return cands[0].handle;               // üheselt tuvastatav
+    const underL2 = cands.filter((c) => c.l2 === parentL2);
+    if (underL2.length === 1) return underL2[0].handle;           // üheselt sama L2 all
+    return null;                                                   // pole või mitmene → ei resolvi
+  };
+
+  // (1) käsitsi --new-l3 h1,h2 (test / taas-jooks) — handle'id on juba päris
   if (NEW_L3_ARG) {
     return NEW_L3_ARG.split(",").map((s) => s.trim()).filter(Boolean).map((h) => ({
       handle: h, name: L3META[h]?.name || h, l2: L3META[h]?.l2 || NODES[h]?.parent_handle || null, synthetic: !L3META[h],
     }));
   }
-  // (2) klassifikaatori väljundist (shadow_names = "oleks loonud"; auto-create aktiivne → samad handle'id DB-s)
   if (!fs.existsSync(FROM_CLASSIFY)) { console.log(`ℹ️ klassifikaatori väljund puudub (${FROM_CLASSIFY}) — 0 uut L3.`); return []; }
   let J; try { J = JSON.parse(fs.readFileSync(FROM_CLASSIFY, "utf8")); } catch { return []; }
+
+  // (0) created_l3s — auto-create TEGELIKULT lõi L3-d + salvestas PÄRIS handle (autoriteetne allikas)
+  const created = J.summary?.created_l3s || [];
+  if (created.length) {
+    return created.map((c) => ({
+      handle: c.handle,
+      name: c.name || L3META[c.handle]?.name || c.handle,
+      l2: c.parentL2 || L3META[c.handle]?.l2 || null,
+      ck: c.ck,
+      synthetic: !L3META[c.handle],   // PÄRIS handle DB-s (ootuspärane) → false
+    }));
+  }
+
+  // (2) shadow_names — proovi resolvida PÄRIS handle (auto-create võis loonud olla) → muidu sünteetiline
   const names = J.summary?.shadow_names || [];
   return names.map((s) => {
-    // slug proposed_name'ist (ainult sünteetiline H-id; päris handle tekib alles auto-create's)
-    const slug = (s.name || s.ck || "uus").toLowerCase().normalize("NFKD").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
     const parentL2 = s.parentL2 || null;
-    const synthH = `shadow:${parentL2 || "?"}:${slug}`;
-    return { handle: synthH, name: s.name, l2: parentL2, synthetic: true, ck: s.ck };
+    const real = resolveReal(s.name, parentL2);
+    if (real) return { handle: real, name: s.name, l2: parentL2, synthetic: false, ck: s.ck };
+    const slug = (s.name || s.ck || "uus").toLowerCase().normalize("NFKD").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+    return { handle: `shadow:${parentL2 || "?"}:${slug}`, name: s.name, l2: parentL2, synthetic: true, ck: s.ck };
   });
 }
 
@@ -133,10 +166,35 @@ function loadNeighborClusters(neighborHandles) {
 
 // ── MAIN ──
 const cfg = (() => { try { ensureShadowSchema(q); return getConfig(q); } catch { return { auto_create_enabled: false }; } })();
+// NEIGHBOR_HOOK_FORCE_AUTOCREATE=1 → simuleeri auto_create=true (test: päris-handle tee DRY-s, Tarmo 2026-10-07).
+const autoCreate = cfg.auto_create_enabled || process.env.NEIGHBOR_HOOK_FORCE_AUTOCREATE === "1";
 const L3META = buildL3Meta();
-const newL3s = loadNewL3s(L3META);
-console.log(`=== NAABRITE ÜLEHINDAMISE HOOK (${DRY ? "DRY" : EXECUTE ? "EXECUTE" : ""}) — ${cfg.auto_create_enabled ? "auto_create AKTIIVNE → LIVE-liigutus" : "SHADOW (auto_create väljas → logib oleks-liigutanud)"} ===`);
-console.log(`delta uusi L3: ${newL3s.length}${newL3s.map((x) => `\n   • «${x.name}» (${x.synthetic ? "sünteetiline/shadow" : "päris"}, L2=${x.l2 || "?"})`).join("")}`);
+let newL3s = loadNewL3s(L3META);
+console.log(`=== NAABRITE ÜLEHINDAMISE HOOK (${DRY ? "DRY" : EXECUTE ? "EXECUTE" : ""}) — ${autoCreate ? "auto_create AKTIIVNE → LIVE-liigutus" : "SHADOW (auto_create väljas → logib oleks-liigutanud)"} ===`);
+console.log(`delta uusi L3: ${newL3s.length}${newL3s.map((x) => `\n   • «${x.name}» (${x.synthetic ? "sünteetiline/shadow" : "PÄRIS handle=" + x.handle}, L2=${x.l2 || "?"})`).join("")}`);
+
+// LIVE OHUTUS-VÄRAV (Tarmo 2026-10-07): auto_create aktiivne + mõni uus L3 jäi SÜNTEETILISEKS (päris DB-handle
+// ei resolvunud) → EI tohi targetida olematut `shadow:` handle't neighbor-execute's → SKIP + LOUD (Telegram).
+if (autoCreate) {
+  const synth = newL3s.filter((x) => x.synthetic);
+  if (synth.length) {
+    newL3s = newL3s.filter((x) => !x.synthetic);
+    const names = synth.map((x) => `«${x.name}»`).join(", ");
+    console.error(`🛑 LIVE: ${synth.length} uut L3 jäi sünteetiliseks (päris DB-handle ei resolvunud) → SKIP: ${names}`);
+    telegram(`🛑 XL naaber-hook: auto_create AKTIIVNE, aga ${synth.length} uut L3 PÄRIS-handle ei resolvunud DB-st → naaber-liigutus SKIP (ohutus). L3: ${names}. Kontrolli: kas auto-create lõi L3 + salvestas summary.created_l3s päris handle'iga?`);
+  }
+}
+
+// RESOLVE-ONLY test-režiim (NEIGHBOR_HOOK_RESOLVE_ONLY=1): väljasta resolvitud handle'id + välju ENNE ahelat
+// (0 API-kulu). Tõestab päris-handle tee: kas created_l3s/shadow_names → PÄRIS DB-handle jõuab hooki.
+if (process.env.NEIGHBOR_HOOK_RESOLVE_ONLY === "1") {
+  const resolved = newL3s.map((x) => ({ handle: x.handle, name: x.name, l2: x.l2, synthetic: x.synthetic, isReal: !x.synthetic && !x.handle.startsWith("shadow:") }));
+  fs.writeFileSync(OUT, JSON.stringify({ resolveOnly: true, autoCreate, newL3s: resolved }, null, 1));
+  console.log(`\n[RESOLVE-ONLY] ${resolved.length} L3 resolvitud → ${OUT}`);
+  console.log(resolved.map((r) => `   ${r.isReal ? "✅ PÄRIS" : "⚠️ sünteetiline"}  ${r.handle}  «${r.name}»`).join("\n"));
+  process.exit(0);
+}
+
 if (!newL3s.length) { console.log("0 uut L3 → naaber-reeval vahele (idempotentne)."); fs.writeFileSync(OUT, JSON.stringify({ newL3s: 0, report: [] }, null, 1)); process.exit(0); }
 
 const BATCH_ID = `nbr-hook-${new Date().toISOString().replace(/[:.]/g, "").slice(0, 15)}`;
@@ -173,7 +231,7 @@ for (const nl of newL3s) {
   }
 }
 
-fs.writeFileSync(OUT, JSON.stringify({ batch_id: BATCH_ID, dry: DRY, auto_create: cfg.auto_create_enabled, newL3s: newL3s.length, failedL3, report }, null, 1));
+fs.writeFileSync(OUT, JSON.stringify({ batch_id: BATCH_ID, dry: DRY, auto_create: autoCreate, newL3s: newL3s.length, failedL3, report }, null, 1));
 
 const totPull = report.reduce((s, r) => s + (r.pull?.length || 0), 0);
 const totPullN = report.reduce((s, r) => s + (r.pull || []).reduce((a, p) => a + p.n, 0), 0);
@@ -195,7 +253,7 @@ for (const r of report) {
 
 if (DRY) { console.log(`\n[DRY] EI kirjutatud DB-sse. Tulemused: ${OUT}`); process.exit(0); }
 
-if (!cfg.auto_create_enabled) {
+if (!autoCreate) {
   // SHADOW: logi "oleks liigutanud" (nähtavus, HARD RULE #6) — EI liiguta
   if (allMoves.length) {
     const vals = allMoves.map((m) => {
