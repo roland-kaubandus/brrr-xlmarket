@@ -79,9 +79,21 @@ function telegram(msg) {
 // --- SSoT: NODES (ahela-puu + kandidaat-L3-d) --------------------------------
 const tree = JSON.parse(fs.readFileSync(`${REPO}/storefront/lib/category-tree.generated.json`, "utf8"));
 const NODES = tree.nodes;
+// handle'id tulevad SSoT-snapshotist (stabiilne puu); PIIRIREEGLID (l3meta description)
+// tulevad LIVE DB-st → ETAPP 2 uus reegel jõuab igaöisesse kohtunikku KOHE, ilma rebuild'ita (punkt 5).
+const liveDesc = new Map();
+try {
+  const rows = q(`SELECT handle, coalesce(description,'') FROM product_category WHERE deleted_at IS NULL AND description IS NOT NULL AND description<>''`);
+  for (const line of rows.trim().split("\n")) {
+    if (!line) continue;
+    const i = line.indexOf("|"); if (i < 0) continue;
+    liveDesc.set(line.slice(0, i), line.slice(i + 1));
+  }
+} catch (e) { console.error(`⚠️ l3meta kirjelduste lugemine ebaõnnestus (jätkan nimedega): ${e.message.slice(0, 120)}`); }
 const candidateL3s = Object.entries(NODES)
   .filter(([, n]) => n.level === 3)
-  .map(([h, n]) => ({ handle: h, name: n.name_et || n.name_en || h }));
+  .map(([h, n]) => ({ handle: h, name: n.name_et || n.name_en || h, description: liveDesc.get(h) || "" }));
+console.log(`kandidaat-L3 piirireegliga (l3meta desc, live DB): ${candidateL3s.filter((c) => c.description).length}`);
 
 // --- VALIDATE-KONTEKST (JUURPÕHJUSE-PARANDUS, HARD RULE #5) -------------------
 // target_handle valideeritakse LIVE-DB vastu VASTUVÕTMISEL (olematu → ühene nimevaste → parandus; muidu kehtetu→review).
