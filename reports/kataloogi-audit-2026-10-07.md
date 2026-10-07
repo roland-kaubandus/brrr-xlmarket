@@ -27,6 +27,21 @@
 
 **NB:** kõik 582 leidu on DRY-ETTEPANEKUD. Midagi ei ole veel poodi rakendatud. Rakendamine (execute) toimub eraldi otsuste-failist, ilma uute kohtuniku-kutseteta.
 
+### Kindlustase — 582 leidu kolme ämbrisse (otsuse-tee järgi)
+
+> Iga leid on märgistatud ahela-teega: kas kaks sõltumatut mudelit (kohtunik + referents) olid **nõus** (kõrge kindlus), või läksid **lahku** ja Fable-viigimurdja pidi otsustama (keskmine), või olid **kõik kolm eri meelt** → langes konservatiivselt olemas-koju (nõrgim, kõige tõenäolisem inimese-vaatamist vajav).
+
+| Kindlustase | Otsuse-tee | Klastreid | Tooteid |
+|---|---|--:|--:|
+| **🟢 KINNITATUD** | konsensus (kohtunik = referents nõus) | **258** | **797** |
+| **🟡 VAIDLUSALUNE** | lahkheli → Fable-viigimurdja enamus otsustas (2/3 või 3/3) | **244** | **658** |
+| **🔴 VÕIMALIK VIGA** | kõik 3 eri meelt → konservatiivne olemas-koju fallback | **80** | **181** |
+| | **KOKKU** | **582** | **1636** |
+
+- 🟢 **Kinnitatud (258/797):** turvaline rakendada partiidena — kaks sõltumatut mudelit jõudsid sama tulemuseni.
+- 🟡 **Vaidlusalune (244/658):** Fable murdis viigi; neist **70 on uus-L3-ettepanekud** (66 Fable ühehäälne 3/3 + 4 enamus 2/3) ja 174 olemas-L3-liigutused 2/3-enamusega. Soovitus: rakenda, aga vaata uus-L3-plokk (shadow) eraldi üle.
+- 🔴 **Võimalik viga (80/181):** kõik kolm mudelit lahknesid → asümm. kindlus (§2c) keelas uue L3 ja langes olemas-koju. **Need väärivad inimese pilku enne rakendamist** — siin on kõige suurem oht, et pakutud kodu pole parim. (Sisaldab 2 klastrit, kus Fable 1/3 ei andnud enamust → fallback + signaal kogunema.)
+
 ---
 
 ## 🛑 CRITICAL / BLOCKER
