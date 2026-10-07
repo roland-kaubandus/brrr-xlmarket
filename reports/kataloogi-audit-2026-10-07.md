@@ -55,6 +55,42 @@ Fantoom-ülekirjutus spu:07547 (6 toodet) kontrolliti: mõju **madal** — nii j
 
 ---
 
+## 🌙 Öine import-pipeline [4] classify-hook — elus tõend (2026-10-07 03:00 CEST)
+
+> **Direktiivi samm 5, OSA 1.** Pärast HARD RULE #5 SSoT-parandust jooksis öine `import-pipeline.sh` [4] classify-chain esimest korda sama koodiahelaga, mida audit kasutas. **Eesmärk:** kinnitada, et parandatud ahel töötab tootmises puhtalt (0 koodiviga, 0 vaikset kadu, võtme-terviklus täielik).
+
+**Jooks:** START `2026-10-07T01:00:02Z` (03:00:02 CEST) → END `rc=0`, kestus **390s**. Krediit OK (HTTP 200), krediit-hit **false**. Logi: `/var/log/xlm/import-pipeline-20261007T030002.log`.
+
+| [4] classify-chain mõõdik | Väärtus |
+|---|--:|
+| **Kas [4] jooksis** | **JAH** (rc=0, EXECUTE) |
+| Kandidaat-L3 | 1684 |
+| Delta-sihtmärke (öine delta) | **8 toodet** |
+| Klastreid | 5 (kõik ahel-sobivad) |
+| **LIVE auto-assign** | **8 toodet → 5 olemas-L3** |
+| — konsensus (kohtunik = referents) | **4 klastrit** |
+| — lahkheli → LCA / olemas-kodu fallback | **1 klaster** (spu:11577) |
+| **SHADOW (uus-L3 "oleks loonud")** | **0** |
+| Review-bucketisse (klass, keep/group) | **0 toodet** |
+| **Koodivead (sh Fable JSON-truncation)** | **0** |
+| Võtme-terviklus (judge+ref: pending/foreign/dup) | **kõik 0 ✓** |
+| Pending-klastrid (hindamata) | **0** |
+| Ülemineku-kontroll | 0/3 puhast ettepanekut → shadow-režiim jätkub |
+
+**LCA-fallback näide (asümmeetriline kindlus elus):** spu:11577 (*Glow-in-the-Dark Fort Building Kit for Kids, 140PCS STEM*) — kohtunik: assign *Ronimismänguasjad*; referents: `new_l3`; Fable viigimurdja: *Magnet- ja ehitusklotsid*. **Kõik kolm eri meelt → struktuuri-otsust (`new_l3`) EI tehtud ühe mündiviske pealt** → langes konservatiivsesse olemas-koju (*Ronimismänguasjad ja ronimiskomplektid*). Täpselt nii, nagu §2c asümm. kindlus nõuab.
+
+**DB-kinnitus (read-only, teenuse-tasand psql, HARD RULE #8 — inimese JWT-d EI mintitud):**
+- `classifier_shadow_ledger`: **0 rida** (kunagi pole uut-L3 shadow'd kirjutatud — tänane shadow_new_l3=0 kinnitab).
+- `classification_review`: **0 pending** (92 resolved) — klass review-bucket tühi, kõik 8 läksid LIVE-assign.
+- `classifier_config.auto_create_enabled`: **false** (shadow-režiim, ohutu algseis — uuendatud 2026-10-06 19:42 UTC).
+- `synonym_review`: pending **3** (= öine Telegram-digest; kõik sünonüümid, mitte klass).
+
+**Allavoolu-sammud (terviklikkuse kontroll):** [3] import-new 8 päris-uut (DUP-värav skip 28 VEVOR-reformaati) · [3.5] title-strip 8 (per-bränd) · [5] hind 48 uuendatud, marginaali-alarm 0 · [6] spec 8/8 = 100% (5 uut malli) · [6.5] sisu-gen 8/8 · [6.6] sünon auto=13 review=3 · [7] Meili 18910 docs (oodatud 18910) · review-bucket kokku **3** (3 sünonüümi, **0 kodutut**, 0 klass).
+
+**Järeldus:** parandatud HARD RULE #5 ahel töötab öös **puhtalt** — 0 koodiviga, 0 vaikset kadu, võtme-terviklus 100%. Audit-raporti CRITICAL-parandus on **elus kinnitatud**.
+
+---
+
 ## ✅ VAJA ÄRA TEHA — 582 kategooria-paranduse ettepanekut (DRY)
 
 > HARD RULE #2: siin ei ole "low/medium". Kõik alljärgnev on "vaja ära teha" — prioriteet tootearvu järgi. Rakendamise otsustad sina; masin suudab execute'ida otsuste-failist.
