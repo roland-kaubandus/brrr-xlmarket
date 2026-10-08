@@ -11,13 +11,24 @@
  * Kasutus: node scripts/credit-probe.mjs [model]   (vaikimisi odav claude-haiku-4-5)
  */
 import { probeCredit } from "./lib/credit-guard.mjs";
-import { alertUsageLimit } from "./lib/spend-guard.mjs";
+import { alertUsageLimit, checkWorkspaceSpendAlert } from "./lib/spend-guard.mjs";
 
 const KEY = process.env.ANTHROPIC_API_KEY;
 const MODEL = process.argv[2] || "claude-haiku-4-5";
 
 const res = await probeCredit({ apiKey: KEY, model: MODEL });
-if (res.status === "ok") { console.log(`krediit OK (${res.detail})`); process.exit(0); }
+if (res.status === "ok") {
+  console.log(`krediit OK (${res.detail})`);
+  // 1a: AUTORITEETNE workspace-kulu kontroll (Admin API) — üks kord öö kohta, pipeline-alguses.
+  //   ≥80% → Telegram; admin-key puudub / API maas → "osaline" Telegram üks kord. EI blokeeri pipeline'i
+  //   (vaid hoiatab — degrade/laoseis jätkub nagunii; 1b react blokeerib päris cap-i korral).
+  try {
+    const ws = await checkWorkspaceSpendAlert({ ctx: "probe" });
+    if (ws.ok) console.log(`workspace-kulu $${(ws.usd || 0).toFixed(2)}/$${ws.limit} (${ws.pct}%)${ws.crossed ? " ⚠️ 80%+" : ""} · ${ws.scope}`);
+    else console.log(`workspace-kulu OSALINE: ${ws.reason}`);
+  } catch (e) { console.log(`workspace-kulu kontroll ebaõnnestus: ${String((e && e.message) || e).slice(0, 80)}`); }
+  process.exit(0);
+}
 if (res.status === "usage") {
   // 1b: workspace spend-cap täis → KOHE Telegram (eilne pimeala). Exit 3 = degrade (LLM skip, laoseis JÄTKUB).
   console.log(`usage-limit (${res.detail})`);
