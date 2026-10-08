@@ -37,9 +37,19 @@ const S = (s) => `'${String(s).replace(/'/g, "''")}'`;
 const nid = u.new_l3.map(l => S(l.id)).join(",");
 const pid = u.product_ids.map(S).join(",");
 
+// REPARENT-taaste (ETAPP3): tooted, millel oli ENNE partii vana v4-L3 kodu → taasta vana kodu + staatus,
+// MITTE draft (muidu juba-avaldatud toode kaoks poest). Ülejäänud (kodutud, öine) → draft + pending (vana käitumine).
+const reparent = Array.isArray(u.reparent) ? u.reparent.filter(r => (r.from_cat_ids || []).length) : [];
+const reparentIds = new Set(reparent.map(r => r.product_id));
+const homelessIds = u.product_ids.filter(id => !reparentIds.has(id));
+const restorePairs = reparent.flatMap(r => r.from_cat_ids.map(cid => `(${S(r.product_id)}, ${S(cid)})`));
+const pubRestore = reparent.filter(r => r.prev_status === "published").map(r => S(r.product_id));
+const draftRestore = reparent.filter(r => r.prev_status && r.prev_status !== "published").map(r => S(r.product_id));
+
 if (DRY) {
   console.log(`[DRY] kustutaks L3: ${u.new_l3.map(l => l.id).join(", ")}`);
-  console.log(`[DRY] lahutaks + draft/pending: ${u.product_ids.length} toodet`);
+  console.log(`[DRY] reparent-taaste (vana kodu + staatus): ${reparent.length} toodet`);
+  console.log(`[DRY] kodutu → draft/pending: ${homelessIds.length} toodet`);
   process.exit(0);
 }
 
@@ -47,13 +57,16 @@ psqlTx(`BEGIN;
   DELETE FROM product_category_product WHERE product_id IN (${pid});
   DELETE FROM taxonomy_node_meta WHERE node_id IN (${nid});
   DELETE FROM product_category WHERE id IN (${nid});
-  UPDATE product SET status='draft', updated_at=now() WHERE id IN (${pid});
-  UPDATE classification_review SET status='pending', updated_at=now() WHERE product_id IN (${pid});
+  ${restorePairs.length ? `INSERT INTO product_category_product (product_id, product_category_id) VALUES ${restorePairs.join(", ")} ON CONFLICT DO NOTHING;` : ""}
+  ${pubRestore.length ? `UPDATE product SET status='published', updated_at=now() WHERE id IN (${pubRestore.join(",")});` : ""}
+  ${draftRestore.length ? `UPDATE product SET status='draft', updated_at=now() WHERE id IN (${draftRestore.join(",")});` : ""}
+  ${homelessIds.length ? `UPDATE product SET status='draft', updated_at=now() WHERE id IN (${homelessIds.map(S).join(",")});
+  UPDATE classification_review SET status='pending', updated_at=now() WHERE product_id IN (${homelessIds.map(S).join(",")});` : ""}
   INSERT INTO review_decision_log (actor, actor_detail, channel, bucket_type, action, status, affected, meta)
     VALUES ('claude-code-test','claude-code-test','api','auto-classifier','undo','applied',
-      ${S(JSON.stringify(u.product_ids))}::jsonb, ${S(JSON.stringify({ batch_id: u.batch_id, undo_file: undoFile.replace(REPO + "/", "") }))}::jsonb);
+      ${S(JSON.stringify(u.product_ids))}::jsonb, ${S(JSON.stringify({ batch_id: u.batch_id, undo_file: undoFile.replace(REPO + "/", ""), reparent_restored: reparent.length, homeless_drafted: homelessIds.length }))}::jsonb);
   COMMIT;`);
-console.log("✓ DB taastatud (L3 kustutatud, tooted draft, review pending, undo logitud)");
+console.log(`✓ DB taastatud (L3 kustutatud · reparent-taaste ${reparent.length} · kodutu→draft ${homelessIds.length} · undo logitud)`);
 
 try { execSync(`docker exec ${MEDUSA} node /app/scripts/index-meilisearch.mjs`, { stdio: "inherit" }); }
 catch { sh(`cd ${REPO} && node backend/scripts/index-meilisearch.mjs`); }
