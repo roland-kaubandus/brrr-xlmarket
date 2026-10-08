@@ -23,6 +23,9 @@ import {
   norm, slug, slugId, deriveHandle, seoClaimGate, SEO_NUM_RE, SEO_CLAIM_RE,
   genAssetsGated, IMG_BRIGHT_MIN, brightCheckScript, completenessCheck,
 } from "./lib/l3-gates.mjs";
+// TÜÜBIPROFIIL-KIRJELDUS SSoT (HARD RULE #5 — SAMA transform kui backfill scripts/l3-desc-gen.mjs).
+// Uus L3 sünnib `product_category.description` = tüübiprofiil (internal kohtuniku-väli), MITTE SEO description_et.
+import { makeCaller, genValidatedDesc } from "./lib/l3-desc.mjs";
 
 const REPO = "/opt/xlmarket-github";
 const val = (f, d) => { const i = process.argv.indexOf(f); return i > 0 ? process.argv[i + 1] : d; };
@@ -78,6 +81,17 @@ async function fableRaw(system, user) {
   return JSON.parse(m[0]);
 }
 
+// ---- tüübiprofiil-kirjelduse kutsuja (SAMA lib-transform kui backfill; kulu eraldi arvestuses) ----
+const tpUsage = { "claude-opus-4-8": { in: 0, out: 0, cr: 0, cw: 0 }, "claude-sonnet-5": { in: 0, out: 0, cr: 0, cw: 0 }, "claude-fable-5": { in: 0, out: 0, cr: 0, cw: 0 } };
+const callApiTP = makeCaller({ apiKey: API_KEY, onUsage: (model, u) => {
+  if (!u || !tpUsage[model]) return;
+  tpUsage[model].in += u.input_tokens || 0; tpUsage[model].out += u.output_tokens || 0;
+  tpUsage[model].cr += u.cache_read_input_tokens || 0; tpUsage[model].cw += u.cache_creation_input_tokens || 0;
+} });
+// main (L1) nimi + naaber-L3 nimed parentL2 all (genValidatedDesc rea-kontekst)
+function mainNameOf(h) { let cur = h; while (cur && NODES[cur]?.parent_handle) cur = NODES[cur].parent_handle; return nodeName(cur || h); }
+function neighborNamesOf(parentL2) { return (NODES[parentL2]?.child_handles || []).map(ch => nodeName(ch)).filter(Boolean); }
+
 // ---- main ----
 // AINULT need, mis läbisid ETAPP 1 kõik väravad (dup/über-frag/nimi). decision="new_l3"
 // üksi EI piisa — nt Mängulaud hääletas 3/3 new_l3, aga DUP-värav blokeeris → fallback assign.
@@ -106,10 +120,19 @@ if (EXECUTE && fs.existsSync(OUT_JSON)) {
     let assets;
     try { assets = await genAssetsGated(fableRaw, name_et, nodeName(parentL2), titles); process.stdout.write(assets._seoGate?.pass ? ` ✓ (SEO ${assets._seoGate.attempts}×)\n` : ` ⚠ SEO-värav kukub\n`); }
     catch (e) { process.stdout.write(` ✗ ${e.message}\n`); assets = { error: e.message }; }
+    // TÜÜBIPROFIIL (SAMA lib-transform kui backfill): uus L3 sünnib internal kohtuniku-kirjeldusega.
+    // Üksik-kukk EI blokeeri (HARD RULE #5) — fallback tühi, backfill täidab hiljem; EI kirjuta SEO-teksti kohtuniku-välja.
+    let type_profile = null;
+    try {
+      const r = { id: slugId(assets.name_en || name_et), name: name_et, main: mainNameOf(parentL2), l2: nodeName(parentL2), n: c.n, naabrid: neighborNamesOf(parentL2), titles };
+      const tp = await genValidatedDesc(callApiTP, r, { regenMax: 2 });
+      type_profile = { description: tp.description, ok: tp.ok, consensus: tp.consensus, attempts: tp.attempts };
+      process.stdout.write(`    tüübiprofiil: ${tp.ok ? "OK" : "⚠ " + tp.consensus} (${tp.attempts}×)\n`);
+    } catch (e) { type_profile = { description: "", ok: false, consensus: "ERROR", error: e.message }; process.stdout.write(`    tüübiprofiil ✗ ${e.message}\n`); }
     const plan = {
       ck: c.ck, name_et, name_en: assets.name_en || null, handle, handleCollisionResolved: collision,
       parentL2, parentL2_name: nodeName(parentL2), n: c.n, origin: c.newOrigin, path: c.path,
-      products: prods.map(p => ({ id: p.id, title: p.title })), assets,
+      products: prods.map(p => ({ id: p.id, title: p.title })), assets, type_profile,
     };
     plan.completeness = completenessCheck(plan, { NODES, existingHandles });
     plans.push(plan);
@@ -215,10 +238,13 @@ for (const a of ASSIGNS) {
   if (!id) { console.error(`🛑 Assign-siht '${a.handle}' puudub DB-s`); process.exit(2); }
   assignIdOf[a.handle] = id;
 }
-// uute L3 defs (id, name, description=ET SEO, handle, parent_id)
+// uute L3 defs (id, name, description=TÜÜBIPROFIIL [internal kohtuniku-väli], handle, parent_id)
+// description = tüübiprofiil (SAMA väli, mida backfill + öine kohtunik loevad), MITTE SEO description_et.
+// tüübiprofiil-kukk → tühi (backfill täidab hiljem); EI kirjuta SEO-teksti kohtuniku-välja (vale-numbrid eksitaks kohtunikku).
 const defs = plans.map(p => ({
   id: slugId(p.name_en || p.name_et), name: p.name_et,
-  description: p.assets.description_et, handle: p.handle,
+  description: (p.type_profile && p.type_profile.ok && p.type_profile.description) ? p.type_profile.description : "",
+  handle: p.handle,
   parent_id: parentIdOf[p.parentL2], rank: 900,
 }));
 const newIdByCk = {}; plans.forEach((p, i) => { newIdByCk[p.ck] = defs[i].id; });

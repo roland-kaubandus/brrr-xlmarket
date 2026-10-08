@@ -23,14 +23,17 @@
  */
 import { execSync } from "node:child_process";
 import fs from "node:fs";
+// HARD RULE #5 — ÜKS TRANSFORM, KAKS KUTSUJAT: gen/gate/validate/regen = SSoT scripts/lib/l3-desc.mjs.
+//   Sama moodulit impordib ka classify-etapp2-create.mjs (öine auto-create birth-hook).
+import {
+  GEN_MODEL, JUDGE_MODEL, REF_MODEL, FABLE_MODEL,
+  makeCaller, genDescBatch, descClaimGate, validateDesc, regenGate,
+} from "./lib/l3-desc.mjs";
+export { descClaimGate };   // tagasiühilduvus (varasem test importis siit)
 
 const KEY = process.env.ANTHROPIC_API_KEY;
 if (!KEY) { console.error("🔴 ANTHROPIC_API_KEY puudub (set -a; . /opt/eumotors-tasks/.env; set +a)."); process.exit(2); }
 
-const GEN_MODEL   = "claude-opus-4-8";   // generaator (SSoT kvaliteet)
-const JUDGE_MODEL = "claude-opus-4-8";   // kohtunik
-const REF_MODEL   = "claude-sonnet-5";   // sõltumatu referents (sama kui REF_MODEL_CLSF)
-const FABLE_MODEL = "claude-fable-5";    // viigimurdja lahkheli korral
 // hinnad $/1M (in,out) — cache_r = in*0.1, cache_w = in*1.25
 const PRICE = {
   "claude-opus-4-8":  { in: 5,  out: 25 },
@@ -48,6 +51,7 @@ const SAMPLE = has("--sample") ? +(val("--sample", "0")) : 0;   // sämpeldus AI
 const IDS = has("--ids") ? val("--ids", "").split(",").map((s) => s.trim()).filter(Boolean) : null;
 const MIN_PROD = +(val("--min", "0"));   // KÕIK kirjelduseta L3 (ka <3 tootega) — Tarmo DIRECTIVE 2026-10-07
 const CAP = +(val("--cap", "40"));       // eelarve-lagi $ (fail-loud ületusel)
+const REGEN_MAX = +(val("--regen", "2")); // mitu regen-katset gate-kuku korral (lib regenGate)
 const TS = new Date().toISOString().replace(/[:.]/g, "-").slice(0, 19);
 const BATCH_ID = val("--batch-id", `l3desc-${TS}`);
 const ACTOR = "claude-code-test";        // HARD RULE #8 — EI inimese identiteet
@@ -155,136 +159,8 @@ function totalCost() {
   return c;
 }
 
-async function callApi(model, system, userText, { maxTokens = 2000, schema = null, cacheSystem = true, fable = false } = {}) {
-  const body = {
-    model, max_tokens: maxTokens,
-    thinking: fable ? undefined : { type: "adaptive" },
-    ...(fable ? {} : { output_config: { effort: "low" } }),
-    system: [{ type: "text", text: system, ...(cacheSystem ? { cache_control: { type: "ephemeral" } } : {}) }],
-    messages: [{ role: "user", content: [{ type: "text", text: userText }] }],
-  };
-  if (schema) body.output_config = { ...(body.output_config || {}), format: { type: "json_schema", schema } };
-  for (let attempt = 1; attempt <= 5; attempt++) {
-    const ctrl = new AbortController(); const to = setTimeout(() => ctrl.abort(), 120000);
-    try {
-      const r = await fetch("https://api.anthropic.com/v1/messages", {
-        method: "POST", signal: ctrl.signal,
-        headers: { "content-type": "application/json", "x-api-key": KEY, "anthropic-version": "2023-06-01" },
-        body: JSON.stringify(body),
-      });
-      clearTimeout(to);
-      if (!r.ok) {
-        const t = await r.text();
-        if ((r.status === 429 || r.status === 529 || r.status >= 500) && attempt < 5) { await new Promise((s) => setTimeout(s, Math.min(30000, 1000 * 2 ** attempt))); continue; }
-        throw new Error(`API ${r.status}: ${t.slice(0, 250)}`);
-      }
-      const j = await r.json(); acc(model, j.usage);
-      const txt = (j.content.find((b) => b.type === "text") || {}).text || "";
-      return txt;
-    } catch (e) { clearTimeout(to); if (attempt < 5) { await new Promise((s) => setTimeout(s, Math.min(30000, 1000 * 2 ** attempt))); continue; } throw e; }
-  }
-}
-
-// ──────────────────────────── 3. GENERAATOR (üks transform) ────────────────────────────
-const GEN_SYSTEM = `Oled XL e-poe (xlmarket.ee, Eesti) taksonoomia TÜÜBIPROFIILI-toimetaja. Iga L3 (leht-kategooria) jaoks
-kirjuta LÜHIKE funktsioonipõhine tüübiprofiil, mille öine klassifikaator-kohtunik loeb, et otsustada kas toode kuulub siia.
-
-EESMÄRK: profiil kirjeldab TÜÜPI (otstarve/funktsioon/väljund), MITTE nime ega turundust. Feed-toode mapitakse SELLE järgi.
-
-VORM (üks eesti lõik, kuni 360 tähemärki):
-"<Mis TÜÜPI tooted + otstarve>: <konkreetsed alamtüübid ET (english keyword)>. <Kui vajalik: mis EI kuulu / naaber-piir>."
-Näide-stiil: "Kahvad ja saagivõrgud kala veest tõstmiseks: teleskoopvarrega maandusvõrgud (landing net), heitevõrgud (cast net). EI sisalda püügivõrke (need: Võrgud ja mõrrad)."
-
-REEGLID:
-- FUNKTSIOONIPÕHINE, mitte turundus. EI "kvaliteetne", "parim", "soodne", "vastupidav".
-- KEELATUD konkreetsed toote-numbrid/lubadused, mis EI kehti kõigile toodetele (nt "200 W", "4000 tsüklit", "veekindel", "BMS", "LiFePO4", "kandevõime 250 kg"). Mõõtühiku NIMETAMINE üldiselt on OK ("mõõdab kiirust m/s"), AGA konkreetne spec-arv EI.
-- Lisa alamtüüpide ET nimi + (english feed-märksõna) — see aitab masintõlke-feed'i mappida.
-- Kui naabrid tekitavad segadust (sarnane tüüp kõrval), lisa 1 lühike piir-lause "EI sisalda X (need: <naaber>)".
-- Profiil peab VASTAMA L3 nimele JA näidistoodetele. Ära leiuta tüüpe, mida näidistes pole.
-
-Vasta AINULT JSON: {"items":[{"l3_id":"...","description":"<eesti tüübiprofiil, kuni 360 tähemärki>"}]}`;
-
-const GEN_SCHEMA = {
-  type: "object", additionalProperties: false, required: ["items"],
-  properties: { items: { type: "array", items: {
-    type: "object", additionalProperties: false, required: ["l3_id", "description"],
-    properties: { l3_id: { type: "string" }, description: { type: "string" } },
-  } } },
-};
-
-async function genDescBatch(batch) {
-  const blocks = batch.map((r) =>
-    `### L3 id=${r.id} — nimi="${r.name}" — peakategooria="${r.main}" — L2="${r.l2}" (${r.n} toodet)
-NAABER-L3-d samas L2: ${r.naabrid.join(", ") || "(pole)"}
-Näidistooted:\n${r.titles.length ? r.titles.map((t) => "  • " + t).join("\n") : "  (0 toodet praegu — tugine L3 NIMELE + naabritele; kirjelda tüüp, mida nimi lubab)"}`).join("\n\n");
-  const txt = await callApi(GEN_MODEL, GEN_SYSTEM, "GENEREERI TÜÜBIPROFIILID:\n\n" + blocks, { maxTokens: 4000, schema: GEN_SCHEMA });
-  const parsed = JSON.parse(txt);
-  return parsed.items || [];
-}
-
-// ──────────────────────────── 4. VÄRAV: numbrid/lubadused (tüübiprofiili-kohane) ────────────────────────────
-// LÕDVEM kui seoClaimGate: lubab üldise mõõtühiku-nimetuse + alamtüüp-loendi, AGA flag'b konkreetse spec-arvu
-// (number + ühik: "200 W", "250 kg", "4000 tsüklit") ja turundus/lubadus-sõnad.
-// MATERJAL/OMADUS-sõnad, mis VÕIVAD olla kategooria-defineerivad (kui nimes → lubatud, kehtib kõigile toodetele)
-const MATERIAL_RE = /\b(veekind\w*|vee-?kind\w*|waterproof|niiskuskind\w*|ilmastikukind\w*|roostevaba\w*|roostekind\w*|bms|lifepo4|li-?ion)\b/i;
-// PUHAS TURUNDUS — EI KUNAGI lubatud (ei defineeri tüüpi)
-const MARKETING_RE = /\b(parim|kvaliteet\w*|soodsa?\w*|vastupida\w*|professionaalse?\w*|ülitugev\w*)\b/i;
-const SPECNUM_RE = /\b\d[\d.,]*\s?(w|kw|v|a|ah|wh|kg|g|mm|cm|m|l|ml|bar|psi|rpm|tsükl\w*|cycle\w*|°c|hz|db|lm)\b/i;
-export function descClaimGate(text, nameCtx = "") {
-  const offenders = [];
-  const ctx = nameCtx.toLowerCase();
-  const inName = (w) => w && ctx.includes(w.toLowerCase().slice(0, 6));  // stem (6 tähte) nimes → kategooria-defineeriv
-  const mk = (text || "").match(MARKETING_RE); if (mk) offenders.push(`turundus «${mk[0]}»`);
-  const mat = (text || "").match(MATERIAL_RE); if (mat && !inName(mat[0])) offenders.push(`materjal/lubadus «${mat[0]}» (pole L3 nimes → ei kehti kõigile)`);
-  const sm = (text || "").match(SPECNUM_RE); if (sm) offenders.push(`spec-arv «${sm[0].trim()}»`);
-  if ((text || "").length > 400) offenders.push(`liiga pikk (${text.length}>400, kohtunik lõikab 400)`);
-  return { pass: offenders.length === 0, offenders };
-}
-
-// ──────────────────────────── 5. VALIDEERIMINE: kohtunik + referents (konsensus), lahkheli → Fable ────────────────────────────
-const VALIDATE_SYSTEM = `Oled taksonoomia-kirjelduse HINDAJA xlmarket.ee jaoks. Sulle antakse L3 (leht-kategooria) NIMI,
-näidistooted ja GENEREERITUD tüübiprofiil-kirjeldus. Hinda, kas kirjeldus on ÕIGE ja KASUTATAV öisele klassifikaator-kohtunikule.
-
-Kriteeriumid (KÕIK peavad kehtima → verdict "OK"):
-1. VASTAB NIMELE — kirjeldus kirjeldab sama tüüpi, mida L3 nimi lubab.
-2. VASTAB TOODETELE — näidistooted sobivad kirjelduse alla (ei leiutatud tüüpe).
-3. FUNKTSIOONIPÕHINE — otstarve/tüüp, MITTE turundus ("kvaliteetne"/"parim").
-4. EI VALE-LUBADUSI — ei konkreetseid spec-numbreid/lubadusi, mis ei kehti kõigile (nt "200 W", "veekindel", "BMS").
-
-Vasta AINULT JSON: {"verdict":"OK"|"NOT_OK","matches_name":true|false,"matches_products":true|false,"issues":"<lühike eesti põhjus või tühi>"}`;
-const VALIDATE_SCHEMA = {
-  type: "object", additionalProperties: false, required: ["verdict", "matches_name", "matches_products", "issues"],
-  properties: {
-    verdict: { type: "string", enum: ["OK", "NOT_OK"] },
-    matches_name: { type: "boolean" }, matches_products: { type: "boolean" },
-    issues: { type: "string" },
-  },
-};
-function validateUserMsg(r, description) {
-  return `L3 NIMI: «${r.name}»  (peakategooria: ${r.main} / L2: ${r.l2})
-NÄIDISTOOTED:\n${r.titles.length ? r.titles.map((t) => "  • " + t).join("\n") : "  (0 toodet praegu — hinda ainult nime-vastavust, matches_products=true kui kirjeldus nimele vastab)"}
-
-GENEREERITUD KIRJELDUS:\n«${description}»
-
-Hinda kirjeldust.`;
-}
-async function validateDesc(r, description) {
-  const [jTxt, rTxt] = await Promise.all([
-    callApi(JUDGE_MODEL, VALIDATE_SYSTEM, validateUserMsg(r, description), { maxTokens: 1200, schema: VALIDATE_SCHEMA }),
-    callApi(REF_MODEL, VALIDATE_SYSTEM, validateUserMsg(r, description), { maxTokens: 1200, schema: VALIDATE_SCHEMA }),
-  ]);
-  const judge = JSON.parse(jTxt), ref = JSON.parse(rTxt);
-  let consensus, fable = null;
-  if (judge.verdict === ref.verdict) {
-    consensus = judge.verdict;
-  } else {
-    // lahkheli → Fable viigimurdja
-    const fTxt = await callApi(FABLE_MODEL, VALIDATE_SYSTEM, validateUserMsg(r, description), { maxTokens: 1500, schema: VALIDATE_SCHEMA, fable: true });
-    fable = JSON.parse(fTxt);
-    consensus = fable.verdict;
-  }
-  return { judge, ref, fable, consensus };
-}
+// API-kutsuja lib'ist — usage voolab acc()-i (kulu-arvestus). gen/gate/validate/regen = lib (HARD RULE #5 SSoT).
+const callApi = makeCaller({ apiKey: KEY, onUsage: acc });
 
 // ──────────────────────────── 6. PÕHIVOOG ────────────────────────────
 (async () => {
@@ -333,7 +209,7 @@ async function validateDesc(r, description) {
     }
     const batch = targets.slice(i, i + BATCH);
     let gens = [];
-    try { gens = await genDescBatch(batch); }
+    try { gens = await genDescBatch(callApi, batch); }
     catch (e) {
       console.error(`  gen batch ${i} VIGA: ${e.message}`);
       for (const r of batch) { const w = writeOne(r, "", { pass: false, offenders: ["gen-viga: " + e.message] }, { error: e.message }); results.push({ ...r, description: "", error: e.message, ...w }); }
@@ -341,14 +217,19 @@ async function validateDesc(r, description) {
     }
     for (const r of batch) {
       const g = gens.find((x) => x.l3_id === r.id) || gens[batch.indexOf(r)];
-      const description = (g && g.description || "").trim();
-      const gate = descClaimGate(description, `${r.name} ${r.l2} ${r.main}`);
+      let description = (g && g.description || "").trim();
+      let gate = descClaimGate(description, `${r.name} ${r.l2} ${r.main}`);
+      let regenN = 0;
+      // REGEN gate-kuku korral (lib regenGate — tagasiside "väldi X", kuni läbib/ammendub). Säilitab batch-efektiivsuse.
+      if (!gate.pass && REGEN_MAX > 0) {
+        try { const re = await regenGate(callApi, r, description, gate, { regenMax: REGEN_MAX }); description = re.description; gate = re.gate; regenN = re.attempts; }
+        catch (e) { /* jää esialgse gate-kuku juurde */ }
+      }
       let validation = null;
-      try { validation = await validateDesc(r, description); }
-      catch (e) { validation = { error: e.message }; }
+      if (gate.pass) { try { validation = await validateDesc(callApi, r, description); } catch (e) { validation = { error: e.message }; } }
       const w = writeOne(r, description, gate, validation);
-      results.push({ ...r, description, gate, validation, ...w });
-      console.error(`  [${results.length}/${targets.length}] ${r.main} / ${r.name} → ${validation?.consensus || validation?.error || "?"}${gate.pass ? "" : " ⚠GATE"}${EXECUTE ? (w.written ? " ✍DB" : " ∅" ) : ""}`);
+      results.push({ ...r, description, gate, validation, regenN, ...w });
+      console.error(`  [${results.length}/${targets.length}] ${r.main} / ${r.name} → ${validation?.consensus || (gate.pass ? validation?.error || "?" : "GATE")}${gate.pass ? "" : " ⚠GATE"}${regenN ? ` (regen×${regenN})` : ""}${EXECUTE ? (w.written ? " ✍DB" : " ∅" ) : ""}`);
     }
   }
 
