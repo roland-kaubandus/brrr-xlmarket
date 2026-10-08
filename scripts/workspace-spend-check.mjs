@@ -41,5 +41,10 @@ if (r.ok) {
   console.log(`\nworkspace-kulu $${(r.usd || 0).toFixed(2)} / limiit $${r.limit} = ${r.pct}% (${r.scope})${r.crossed ? "  ⚠️ 80%+ → Telegram saadetud" : ""}`);
   process.exit(0);
 }
+if (r.adminless) {
+  // Individual Org: Admin API pole saadaval. 80%-hoiatus tuleb konsooli e-postist, EI Telegramist.
+  console.log(`\nℹ️ ${r.note}\n   (Admin API-t ei kasutata — ANTHROPIC_ADMIN_KEY puudub, Individual Org. 1b usage-limit-react Telegram töötab endiselt.)`);
+  process.exit(0);
+}
 console.log(`\n⚠️ OSALINE: ${r.reason}${r.alerted ? "  → Telegram saadetud (üks kord/kuu)" : "  (juba hoiatatud sel kuul)"}`);
 process.exit(1);
