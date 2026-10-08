@@ -65,7 +65,7 @@ async function callJudge({ apiKey, model, system, candsBlock, user, schema, maxT
         return { ok: false, error: `API ${r.status}: ${t.slice(0, 200)}` };
       }
       const j = await r.json();
-      recordSpend({ model, usage: j.usage });   // 1a: kuu-kulu liider + 80%-alert (jagatud SSoT)
+      recordSpend({ model, usage: j.usage });   // per-projekt kuu-kulu liider (raport); 80%-värav = checkWorkspaceSpendAlert
       const txt = (j.content.find((b) => b.type === "text") || {}).text || "{}";
       clearTimeout(to);
       return { ok: true, parsed: JSON.parse(txt), usage: j.usage };

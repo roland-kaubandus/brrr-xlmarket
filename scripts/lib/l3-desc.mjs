@@ -116,7 +116,7 @@ export function makeCaller({ apiKey, onUsage = null, timeoutMs = 120000 }) {
           throw new Error(`API ${r.status}: ${t.slice(0, 250)}`);
         }
         const j = await r.json();
-        recordSpend({ model, usage: j.usage });   // 1a: kuu-kulu liider + 80%-alert (jagatud SSoT)
+        recordSpend({ model, usage: j.usage });   // per-projekt kuu-kulu liider (raport); 80%-värav = checkWorkspaceSpendAlert
         if (onUsage) onUsage(model, j.usage);
         return (j.content.find((b) => b.type === "text") || {}).text || "";
       } catch (e) { clearTimeout(to); if (attempt < 5) { await new Promise((s) => setTimeout(s, Math.min(30000, 1000 * 2 ** attempt))); continue; } throw e; }

@@ -12,12 +12,15 @@
  *   ainult $5.39, cap oli MUJALT (EU Motors jagab sama workspace'i) täis. Alerti EI tulnud → töö suri
  *   vaikselt. See moodul teeb 2 asja, mida eile polnud:
  *     (1b) KOHE Telegram, kui API tagastab usage-limit vea (react — tõestatud blokeerija).
- *     (1a) Telegram, kui MEIE kumulatiivne kuu-kulu jõuab 80% seatud eelarvest (proaktiiv).
+ *     (1a) Telegram, kui workspace'i TEGELIK kuu-kulu (Anthropic Admin cost_report API) jõuab 80%
+ *          seatud XLM_SPEND_LIMIT_USD-st (= konsooli workspace'i piir). checkWorkspaceSpendAlert().
  *
- * ⚠️ 1a PIIRANG (aus): lokaalne tracker näeb AINULT MEIE kulu (selle API-võtmega). Jagatud workspace'i
- *   cap võib täituda MUJALT (EU Motors) enne kui meie 80% jõuame — nagu 2026-10-07. Seega 1a kaitseb
- *   MEIE jooksu-eest-ära-kulutamise vastu; jagatud-cap-pimealale on päris-lahendus 1b (react) + eraldi
- *   workspace (DIRECTIVE punkt 6). Admin-key puudub → workspace'i tegelikku limiiti/kulu API-st ei loe.
+ * ⚠️ MIKS ADMIN API (parandus 2026-10-08, DIRECTIVE id=1f0a): lokaalne per-kutse-tracker (recordSpend)
+ *   näeb AINULT MEIE kulu (selle võtmega) — nt $6.26 — aga workspace'i TEGELIK kuu-kulu võib olla $300
+ *   (EU Motors jagab sama workspace'i). Local-only 80% EI käivituks KUNAGI enne konsooli blokki → ohtlik
+ *   vale-kindlus. AUTORITEETNE allikas = Admin cost_report API (ANTHROPIC_ADMIN_KEY .env.xlmarket-is).
+ *   Admin-key puudub / API maas → Telegram ütleb ÜKS KORD/kuu "kulu-jälgimine osaline" (EI näita vaikselt 3%).
+ *   recordSpend jääb AINULT per-projekt raporti jaoks (ei käivita enam 80%-alertit).
  *
  * HARD RULE #5: üks transform, kõik kutsujad jagavad. HARD RULE #6: masin ise, fail-loud + nähtav.
  */
@@ -29,10 +32,28 @@ import { fileURLToPath } from "node:url";
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const NOTIFY = path.join(HERE, "notify-telegram.sh");
 const LEDGER_DIR = process.env.XLM_SPEND_LEDGER_DIR || "/opt/eumotors-tasks/reports";
-// MEIE kuu-eelarve $ (NB: mitte workspace'i tegelik cap — see pole API-loetav, admin-key puudub).
-// Seadista .env-is XLM_SPEND_LIMIT_USD=<n>; puudub → 1a välja (ei saa 80% arvutada), 1b töötab ikka.
+// XLM_SPEND_LIMIT_USD = konsooli workspace'i piir $ (Tarmo kinnitab; DIRECTIVE p3). Autoriteetne 80%-värav
+// (checkWorkspaceSpendAlert) võrdleb selle vastu workspace'i TEGELIKKU kulu (Admin API), MITTE local-trackeri.
 const LIMIT_USD = Number(process.env.XLM_SPEND_LIMIT_USD || 0);
 const THRESHOLD = Number(process.env.XLM_SPEND_ALERT_FRAC || 0.8);
+
+// Admin API võti eraldi xlmarketi env-failis (Tarmo kleebib ise; org-wide saladus → jagatud .env-ist eraldi).
+const XLM_ENV_FILE = process.env.XLM_ENV_FILE || "/opt/eumotors-tasks/.env.xlmarket";
+/** xlmEnv — loe võti process.env-ist, fallback .env.xlmarket failist (toimib ka ilma faili source'imata). */
+function xlmEnv(key) {
+  if (process.env[key] && String(process.env[key]).trim()) return String(process.env[key]).trim();
+  try {
+    const txt = fs.readFileSync(XLM_ENV_FILE, "utf8");
+    // NB: [ \t] (horisontaalne) — MITTE \s, mis haaraks reavahetuse ja loeks järgmise rea väärtuseks.
+    const m = txt.match(new RegExp(`^[ \\t]*${key}[ \\t]*=[ \\t]*([^\\n]*?)[ \\t]*$`, "m"));
+    if (m) return m[1].replace(/^["']|["']$/g, "").trim();
+  } catch { /* faili pole → "" */ }
+  return "";
+}
+/** resolveAdminKey — ANTHROPIC_ADMIN_KEY (sk-ant-admin…) env-ist või .env.xlmarket-ist; puudub → "". */
+export const resolveAdminKey = () => xlmEnv("ANTHROPIC_ADMIN_KEY");
+/** resolveLimit — XLM_SPEND_LIMIT_USD dünaamiliselt (process.env → .env.xlmarket → moodul-const). */
+function resolveLimit() { return Number(xlmEnv("XLM_SPEND_LIMIT_USD") || LIMIT_USD || 0); }
 
 // hinnad $/1M (in,out); cache_read = in×0.1, cache_write = in×1.25 (claude-api skill, 2026-06-24).
 const PRICE = {
@@ -111,40 +132,118 @@ function writeState(st) {
 }
 
 /**
- * recordSpend — lisa ühe kutse kulu kuu-liidrisse; 80%-läve ületusel KORRA Telegram.
+ * recordSpend — lisa ühe kutse kulu kuu-liidrisse (AINULT per-projekt raport, EI alerti).
  *   SÜNKROONNE read-modify-write (Node üheahelaline → protsessi-sisene RMW atomaarne; pipeline-sammud
- *   on eraldi protsessid, jooksevad järjest → ka risti ohutu). Puuduv LIMIT_USD → ainult arvesta, ei alerti.
- * @returns {{total:number, usd:number, crossed:boolean}}
+ *   on eraldi protsessid, jooksevad järjest → ka risti ohutu).
+ *   ⚠️ 80%-alert EI tule SIIT (parandus 2026-10-08): local näeb vaid MEIE kulu (nt $6.26), aga
+ *     workspace'i cap täitub jagatult → vale-kindlus. Autoriteetne 80%-värav = checkWorkspaceSpendAlert.
+ * @returns {{total:number, usd:number}}
  */
 export function recordSpend({ model, usage } = {}) {
   const usd = cost(model, usage);
   const mk = monthKey();
   const st = readState(mk);
-  const before = st.total_usd || 0;
-  st.total_usd = before + usd;
+  st.total_usd = (st.total_usd || 0) + usd;
   st.calls = (st.calls || 0) + 1;
   st.by_model[model] = +(((st.by_model[model] || 0) + usd).toFixed(6));
   st.updated = new Date().toISOString();
-  let crossed = false;
-  if (LIMIT_USD > 0 && !st.alerted80) {
-    const lvl = LIMIT_USD * THRESHOLD;
-    if (before < lvl && st.total_usd >= lvl) {
-      st.alerted80 = true;
-      crossed = true;
-    }
-  }
   writeState(st);
-  if (crossed) {
-    sendTelegram(`🟠 XLM kulu-hoiatus: MEIE ${mk} API-kulu jõudis ${Math.round(THRESHOLD * 100)}% eelarvest.
-Kulu seni: $${st.total_usd.toFixed(2)} / eelarve $${LIMIT_USD.toFixed(2)} (${(st.total_usd / LIMIT_USD * 100).toFixed(0)}%).
-NB: see on AINULT MEIE kulu selle võtmega — jagatud workspace'i cap võib täituda ka mujalt.`);
-  }
-  return { total: st.total_usd, usd, crossed };
+  return { total: st.total_usd, usd };
 }
 
-/** currentSpend — loe jooksva kuu kulu-seis (raportiks). */
+/**
+ * fetchWorkspaceCostUSD — workspace'i (või kogu org) TEGELIK kuu-kulu Anthropic Admin cost_report API-st.
+ *   ⚠️ `amount` on SENTIDES (decimal string, nt "123.45" = $1.2345) → USD = amount/100. Summeerib kõik
+ *     bucketid + resultid. XLM_WORKSPACE_ID seatud → group_by=workspace_id + filter; muidu kogu org summa
+ *     (ohutu ülemhinnang — fire earlier, ei jäta vaikselt vahele). Pagineerib has_more/next_page kaudu.
+ * @returns {Promise<{ok:boolean, usd?:number, reason?:string, month?:string, scope?:string}>}
+ */
+export async function fetchWorkspaceCostUSD({ adminKey = resolveAdminKey(), month = monthKey(), workspaceId = xlmEnv("XLM_WORKSPACE_ID"), timeoutMs = 20000, fetchImpl = fetch } = {}) {
+  if (!adminKey) return { ok: false, reason: "ANTHROPIC_ADMIN_KEY puudub" };
+  const [y, m] = month.split("-");
+  const startISO = `${y}-${m}-01T00:00:00Z`;
+  let total = 0, page = null, pages = 0;
+  try {
+    do {
+      const u = new URL("https://api.anthropic.com/v1/organizations/cost_report");
+      u.searchParams.set("starting_at", startISO);
+      u.searchParams.set("bucket_width", "1d");
+      u.searchParams.set("limit", "31");
+      if (workspaceId) u.searchParams.append("group_by[]", "workspace_id");
+      if (page) u.searchParams.set("page", page);
+      const ctrl = new AbortController();
+      const to = setTimeout(() => ctrl.abort(), timeoutMs);
+      let r, body;
+      try {
+        r = await fetchImpl(u, { headers: { "x-api-key": adminKey, "anthropic-version": "2023-06-01" }, signal: ctrl.signal });
+        body = await r.text();
+      } finally { clearTimeout(to); }
+      if (!r.ok) return { ok: false, reason: `HTTP ${r.status}: ${String(body).slice(0, 160)}` };
+      const j = JSON.parse(body);
+      for (const bucket of j.data || []) {
+        for (const item of bucket.results || []) {
+          if (workspaceId && item.workspace_id !== workspaceId) continue;
+          total += parseFloat(item.amount || "0") / 100; // sendid → USD
+        }
+      }
+      page = j.has_more ? j.next_page : null;
+    } while (page && ++pages < 12);
+    return { ok: true, usd: +total.toFixed(4), month, scope: workspaceId ? `workspace ${workspaceId}` : "kogu org" };
+  } catch (e) {
+    const kind = e && e.name === "AbortError" ? "timeout" : "network";
+    return { ok: false, reason: `${kind}: ${String((e && e.message) || e).slice(0, 80)}` };
+  }
+}
+
+function partialMsg(ctx, reason) {
+  return `⚠️ XLM kulu-jälgimine OSALINE${ctx ? ` (${ctx})` : ""} ${new Date().toISOString()}
+Workspace'i TEGELIKKU kuu-kulu EI saa lugeda: ${reason}
+→ 80%-hoiatus EI ole usaldusväärne, kuni ANTHROPIC_ADMIN_KEY on seatud: ${XLM_ENV_FILE}
+Local tracker näeb AINULT meie kulu — jagatud workspace võib olla ammu üle piiri. Palun lisa Admin-key.`;
+}
+
+/**
+ * checkWorkspaceSpendAlert — AUTORITEETNE 80%-värav: workspace'i tegelik kuu-kulu (Admin API) vs limiit.
+ *   Admin-key puudub / limiit seadmata / API maas → Telegram ÜKS KORD/kuu "osaline" (DIRECTIVE p4;
+ *     mitte vaikne vale-3%). Jooksuta pipeline-alguses (credit-probe) — üks autoriteetne kontroll öö kohta.
+ *   Dedup kuu-state-failis (ws_alerted80, partial_alerted); uus kuu = värske state = auto-reset.
+ * @returns {Promise<{ok:boolean, partial?:boolean, usd?:number, limit?:number, pct?:number, crossed?:boolean, reason?:string}>}
+ */
+export async function checkWorkspaceSpendAlert({ adminKey = resolveAdminKey(), limit = resolveLimit(), ctx = "" } = {}) {
+  const mk = monthKey();
+  const st = readState(mk);
+  const firePartial = (reason) => {
+    const first = !st.partial_alerted;
+    st.partial_alerted = true; writeState(st);
+    if (first) sendTelegram(partialMsg(ctx, reason));
+    return { ok: false, partial: true, reason, alerted: first };
+  };
+  if (!adminKey) return firePartial("ANTHROPIC_ADMIN_KEY puudub");
+  if (!(limit > 0)) return firePartial("XLM_SPEND_LIMIT_USD seadmata (ei saa 80% arvutada)");
+  const res = await fetchWorkspaceCostUSD({ adminKey });
+  if (!res.ok) return firePartial(res.reason);
+  // edu → nulli partial-lipp (kui API hiljem katki, alert kordub)
+  st.partial_alerted = false;
+  st.workspace_usd = res.usd; st.workspace_scope = res.scope; st.workspace_checked = new Date().toISOString();
+  const pct = res.usd / limit;
+  let crossed = false;
+  if (!st.ws_alerted80 && pct >= THRESHOLD) { st.ws_alerted80 = true; crossed = true; }
+  writeState(st);
+  if (crossed) {
+    sendTelegram(`🟠 XLM workspace-kulu ${Math.round(THRESHOLD * 100)}%+ ${mk}
+Tegelik kuu-kulu: $${res.usd.toFixed(2)} / limiit $${limit.toFixed(2)} (${(pct * 100).toFixed(0)}%) · ${res.scope}
+Allikas: Anthropic Admin cost_report (autoriteetne). Lähened konsooli workspace-piirile → LLM-sammud blokeeruvad piiril.`);
+  }
+  return { ok: true, partial: false, usd: res.usd, limit, pct: +(pct * 100).toFixed(1), crossed, scope: res.scope };
+}
+
+/** currentSpend — loe jooksva kuu kulu-seis (raportiks): MEIE local kulu + viimane workspace-mõõt. */
 export function currentSpend() {
   const mk = monthKey();
   const st = readState(mk);
-  return { month: mk, total_usd: st.total_usd || 0, calls: st.calls || 0, by_model: st.by_model || {}, limit_usd: LIMIT_USD, alerted80: !!st.alerted80 };
+  return {
+    month: mk, total_usd: st.total_usd || 0, calls: st.calls || 0, by_model: st.by_model || {},
+    limit_usd: resolveLimit(), ws_alerted80: !!st.ws_alerted80, partial_alerted: !!st.partial_alerted,
+    workspace_usd: st.workspace_usd, workspace_scope: st.workspace_scope, workspace_checked: st.workspace_checked,
+  };
 }
