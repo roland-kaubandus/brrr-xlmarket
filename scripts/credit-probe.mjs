@@ -25,7 +25,8 @@ if (res.status === "ok") {
   try {
     const ws = await checkWorkspaceSpendAlert({ ctx: "probe" });
     if (ws.ok) console.log(`workspace-kulu $${(ws.usd || 0).toFixed(2)}/$${ws.limit} (${ws.pct}%)${ws.crossed ? " ⚠️ 80%+" : ""} · ${ws.scope}`);
-    else console.log(`workspace-kulu OSALINE: ${ws.reason}`);
+    else if (ws.adminless) { if (ws.first) console.log(`ℹ️ ${ws.note}`); } // Individual Org: EI naga Telegramiga, logi kord
+    else console.log(`workspace-kulu OSALINE: ${ws.reason}`); // Admin-key olemas, aga API-viga → jääb nähtavaks
   } catch (e) { console.log(`workspace-kulu kontroll ebaõnnestus: ${String((e && e.message) || e).slice(0, 80)}`); }
   process.exit(0);
 }

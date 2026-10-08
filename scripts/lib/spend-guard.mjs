@@ -239,17 +239,18 @@ export async function resolveWorkspaceId({ adminKey = resolveAdminKey(), nameOrI
 
 function partialMsg(ctx, reason) {
   return `⚠️ XLM kulu-jälgimine OSALINE${ctx ? ` (${ctx})` : ""} ${new Date().toISOString()}
-Workspace'i TEGELIKKU kuu-kulu EI saa lugeda: ${reason}
-→ 80%-hoiatus EI ole usaldusväärne, kuni ANTHROPIC_ADMIN_KEY on seatud: ${XLM_ENV_FILE}
-Local tracker näeb AINULT meie kulu — jagatud workspace võib olla ammu üle piiri. Palun lisa Admin-key.`;
+Workspace'i TEGELIKKU kuu-kulu EI saa lugeda (Admin-key OLEMAS, aga): ${reason}
+→ 80%-värav EI ole usaldusväärne, kuni viga püsib. Vt konfig: ${XLM_ENV_FILE}`;
 }
 
 /**
  * checkWorkspaceSpendAlert — AUTORITEETNE 80%-värav: workspace'i tegelik kuu-kulu (Admin API) vs limiit.
- *   Admin-key puudub / limiit seadmata / API maas → Telegram ÜKS KORD/kuu "osaline" (DIRECTIVE p4;
- *     mitte vaikne vale-3%). Jooksuta pipeline-alguses (credit-probe) — üks autoriteetne kontroll öö kohta.
- *   Dedup kuu-state-failis (ws_alerted80, partial_alerted); uus kuu = värske state = auto-reset.
- * @returns {Promise<{ok:boolean, partial?:boolean, usd?:number, limit?:number, pct?:number, crossed?:boolean, reason?:string}>}
+ *   - Admin-key PUUDUB (Individual Org — sk-ant-admin pole loodav) → `{adminless:true}`, EI Telegramit;
+ *       80%-hoiatus tuleb Anthropic konsooli e-postist ($160). Logitakse kord (DIRECTIVE 2026-10-08 p1).
+ *   - Admin-key OLEMAS aga limiit seadmata / API maas / nime-lahendus katki → Telegram ÜKS KORD/kuu "osaline".
+ *   Jooksuta pipeline-alguses (credit-probe) — üks autoriteetne kontroll öö kohta.
+ *   Dedup kuu-state-failis (ws_alerted80, partial_alerted, adminless_noted); uus kuu = auto-reset.
+ * @returns {Promise<{ok:boolean, partial?:boolean, adminless?:boolean, first?:boolean, note?:string, usd?:number, limit?:number, pct?:number, crossed?:boolean, reason?:string}>}
  */
 export async function checkWorkspaceSpendAlert({ adminKey = resolveAdminKey(), limit = resolveLimit(), ctx = "" } = {}) {
   const mk = monthKey();
@@ -260,7 +261,15 @@ export async function checkWorkspaceSpendAlert({ adminKey = resolveAdminKey(), l
     if (first) sendTelegram(partialMsg(ctx, reason));
     return { ok: false, partial: true, reason, alerted: first };
   };
-  if (!adminKey) return firePartial("ANTHROPIC_ADMIN_KEY puudub");
+  if (!adminKey) {
+    // Individual Org: sk-ant-admin võtit EI SAA luua (konsoolis pole "Admin keys") → cost_report pole
+    //   kättesaadav. ÄRA naga igakuise Telegramiga (DIRECTIVE 2026-10-08 p1). 80%-hoiatus tuleb hoopis
+    //   Anthropic KONSOOLI enda e-posti-teavitusest ($160 = 80% × $200). Logi SEE kord (dedup kuu-state).
+    const note = `80% hoiatus = Anthropic konsooli e-posti teavitus ($${(THRESHOLD * (limit || 0)).toFixed(0)})`;
+    const first = !st.adminless_noted;
+    if (first) { st.adminless_noted = true; writeState(st); }
+    return { ok: false, adminless: true, first, note, limit };
+  }
   if (!(limit > 0)) return firePartial("XLM_SPEND_LIMIT_USD seadmata (ei saa 80% arvutada)");
   // nimi (nt "xlmarket.ee") → RAW workspace_id; "" → kogu org. Lahendus-viga → osaline.
   const wr = await resolveWorkspaceId({ adminKey });
