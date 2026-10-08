@@ -158,7 +158,7 @@ export function recordSpend({ model, usage } = {}) {
  *     (ohutu ülemhinnang — fire earlier, ei jäta vaikselt vahele). Pagineerib has_more/next_page kaudu.
  * @returns {Promise<{ok:boolean, usd?:number, reason?:string, month?:string, scope?:string}>}
  */
-export async function fetchWorkspaceCostUSD({ adminKey = resolveAdminKey(), month = monthKey(), workspaceId = xlmEnv("XLM_WORKSPACE_ID"), timeoutMs = 20000, fetchImpl = fetch } = {}) {
+export async function fetchWorkspaceCostUSD({ adminKey = resolveAdminKey(), month = monthKey(), workspaceId = "", timeoutMs = 20000, fetchImpl = fetch } = {}) {
   if (!adminKey) return { ok: false, reason: "ANTHROPIC_ADMIN_KEY puudub" };
   const [y, m] = month.split("-");
   const startISO = `${y}-${m}-01T00:00:00Z`;
@@ -195,6 +195,48 @@ export async function fetchWorkspaceCostUSD({ adminKey = resolveAdminKey(), mont
   }
 }
 
+/**
+ * listWorkspaces — org workspace'id + nimed (Admin /v1/organizations/workspaces). --list + nime-lahendus.
+ * @returns {Promise<{ok:boolean, workspaces?:Array<{id,name,archived}>, reason?:string}>}
+ */
+export async function listWorkspaces({ adminKey = resolveAdminKey(), fetchImpl = fetch, timeoutMs = 15000 } = {}) {
+  if (!adminKey) return { ok: false, reason: "ANTHROPIC_ADMIN_KEY puudub" };
+  try {
+    const u = new URL("https://api.anthropic.com/v1/organizations/workspaces");
+    u.searchParams.set("limit", "100");
+    const ctrl = new AbortController();
+    const to = setTimeout(() => ctrl.abort(), timeoutMs);
+    let r, body;
+    try {
+      r = await fetchImpl(u, { headers: { "x-api-key": adminKey, "anthropic-version": "2023-06-01" }, signal: ctrl.signal });
+      body = await r.text();
+    } finally { clearTimeout(to); }
+    if (!r.ok) return { ok: false, reason: `HTTP ${r.status}: ${String(body).slice(0, 120)}` };
+    const j = JSON.parse(body);
+    return { ok: true, workspaces: (j.data || []).map((w) => ({ id: w.id, name: w.name, archived: !!w.archived_at })) };
+  } catch (e) {
+    const kind = e && e.name === "AbortError" ? "timeout" : "network";
+    return { ok: false, reason: `${kind}: ${String((e && e.message) || e).slice(0, 80)}` };
+  }
+}
+
+/**
+ * resolveWorkspaceId — nimi-või-id → RAW workspace_id. "" → "" (skoopi pole, kogu org). `wrkspc_…` → tagasi
+ *   muutmata. Muidu loeb nime (nt "xlmarket.ee") workspace-listist (HARD RULE #6: Tarmo kirjutab nime, mitte id-d).
+ * @returns {Promise<{id:string, name?:string, error?:string}>}
+ */
+export async function resolveWorkspaceId({ adminKey = resolveAdminKey(), nameOrId = xlmEnv("XLM_WORKSPACE_ID"), fetchImpl = fetch } = {}) {
+  if (!nameOrId) return { id: "" };
+  if (/^wrkspc_/i.test(nameOrId)) return { id: nameOrId };
+  const r = await listWorkspaces({ adminKey, fetchImpl });
+  if (!r.ok) return { id: "", error: `workspace-nime lahendus ebaõnnestus: ${r.reason}` };
+  const lc = nameOrId.toLowerCase();
+  const m = r.workspaces.find((w) => w.name && w.name.toLowerCase() === lc && !w.archived)
+    || r.workspaces.find((w) => w.name && w.name.toLowerCase() === lc);
+  if (!m) return { id: "", error: `workspace nimega "${nameOrId}" ei leitud (vt: node scripts/workspace-spend-check.mjs --list)` };
+  return { id: m.id, name: m.name };
+}
+
 function partialMsg(ctx, reason) {
   return `⚠️ XLM kulu-jälgimine OSALINE${ctx ? ` (${ctx})` : ""} ${new Date().toISOString()}
 Workspace'i TEGELIKKU kuu-kulu EI saa lugeda: ${reason}
@@ -220,8 +262,12 @@ export async function checkWorkspaceSpendAlert({ adminKey = resolveAdminKey(), l
   };
   if (!adminKey) return firePartial("ANTHROPIC_ADMIN_KEY puudub");
   if (!(limit > 0)) return firePartial("XLM_SPEND_LIMIT_USD seadmata (ei saa 80% arvutada)");
-  const res = await fetchWorkspaceCostUSD({ adminKey });
+  // nimi (nt "xlmarket.ee") → RAW workspace_id; "" → kogu org. Lahendus-viga → osaline.
+  const wr = await resolveWorkspaceId({ adminKey });
+  if (wr.error) return firePartial(wr.error);
+  const res = await fetchWorkspaceCostUSD({ adminKey, workspaceId: wr.id });
   if (!res.ok) return firePartial(res.reason);
+  if (wr.name) res.scope = `workspace ${wr.name}`;
   // edu → nulli partial-lipp (kui API hiljem katki, alert kordub)
   st.partial_alerted = false;
   st.workspace_usd = res.usd; st.workspace_scope = res.scope; st.workspace_checked = new Date().toISOString();
