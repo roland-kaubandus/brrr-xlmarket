@@ -13,6 +13,8 @@
  *   kuni regenMax) → valideerimine (kohtunik Opus + referents Sonnet, lahkheli → Fable viigimurdja).
  */
 
+import { isUsageLimitError, alertUsageLimit, recordSpend } from "./spend-guard.mjs";
+
 export const GEN_MODEL = "claude-opus-4-8";   // generaator (SSoT kvaliteet)
 export const JUDGE_MODEL = "claude-opus-4-8";  // kohtunik
 export const REF_MODEL = "claude-sonnet-5";    // sõltumatu referents (= REF_MODEL_CLSF)
@@ -107,10 +109,15 @@ export function makeCaller({ apiKey, onUsage = null, timeoutMs = 120000 }) {
         clearTimeout(to);
         if (!r.ok) {
           const t = await r.text();
+          // 1b: workspace spend-cap / tier usage-limit → KOHE Telegram (üks kord/protsess). NB: ENNE retry-check'i,
+          //   sest usage-limit EI lahene retry'ga (transient per-minute 429 → isUsageLimitError=false → retry jätkub).
+          if (isUsageLimitError(t)) { alertUsageLimit(`API ${r.status}: ${t.slice(0, 250)}`, { ctx: "l3-desc" }); throw new Error(`API ${r.status}: ${t.slice(0, 250)}`); }
           if ((r.status === 429 || r.status === 529 || r.status >= 500) && attempt < 5) { await new Promise((s) => setTimeout(s, Math.min(30000, 1000 * 2 ** attempt))); continue; }
           throw new Error(`API ${r.status}: ${t.slice(0, 250)}`);
         }
-        const j = await r.json(); if (onUsage) onUsage(model, j.usage);
+        const j = await r.json();
+        recordSpend({ model, usage: j.usage });   // 1a: kuu-kulu liider + 80%-alert (jagatud SSoT)
+        if (onUsage) onUsage(model, j.usage);
         return (j.content.find((b) => b.type === "text") || {}).text || "";
       } catch (e) { clearTimeout(to); if (attempt < 5) { await new Promise((s) => setTimeout(s, Math.min(30000, 1000 * 2 ** attempt))); continue; } throw e; }
     }
