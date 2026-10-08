@@ -3,10 +3,13 @@
  * measure-l3desc-impact.mjs — LAINE 2 MÕÕTMINE (Tarmo DIRECTIVE punkt 4, 2026-10-07).
  *
  * EESMÄRK: mõõda L3-kirjelduste backfilli MÕJU klassifikaatori-otsustele.
- *   KOHTUNIK (Opus) saab kandidaat-L3-d KOOS LIVE `product_category.description`-ga (production-like:
- *     pipeline-classify-chain buildib candidateL3s'i samamoodi otse DB-st → kirjeldus jõuab candLine'i).
- *   REFERENTS (Sonnet) saab kandidaadid AINULT NIMEGA (pime — nagu kalibreerimine alati).
- *   → kokkulangevus (judge↔ref) ENNE backfilli (kirjeldused tühjad) vs PÄRAST (kirjeldused täis).
+ *   KOHTUNIK (Opus) JA REFERENTS (Sonnet) saavad MÕLEMAD kandidaat-L3-d KOOS LIVE
+ *     `product_category.description`-ga — PRODUCTION-TRUE: pipeline-classify-chain annab ref'ile
+ *     SAMA candidateL3s-listi (kirjeldustega) nagu kohtunikule. Sõltumatus = ERI MUDEL, mitte infopuudus.
+ *   (Vana harness pimestas ref'i ainult-nimega → tekitas KUNSTLIKU 85.4%→72.9% languse, kui ainult
+ *     kohtunik sai kirjeldused. Parandus 2026-10-08 (Tarmo DIRECTIVE p3): mõlemad informeeritud →
+ *     mõõdab PÄRIS production-kokkulangevust, mitte harness-artefakti.)
+ *   → kokkulangevus (judge↔ref) mõlemad kirjeldustega (DB nüüd ~99.5% täis).
  *
  * Backfill muudab AINULT DB-seisu (product_category.description). Harness loeb LIVE → ENNE/PÄRAST
  * vahe tuleb DB-seisust, mitte lipust. `--label before|after` ainult sildistab väljundi.
@@ -57,8 +60,8 @@ const { judgeClassifyClusters, rateClassifyReferenceClusters, clusterize, CLSF_J
 const tree = JSON.parse(fs.readFileSync(new URL("../storefront/lib/category-tree.generated.json", import.meta.url)));
 const leafHandles = new Set(Object.values(tree.nodes).filter((n) => !(n.child_handles && n.child_handles.length)).map((n) => n.handle));
 const catRows = jsonRows(`SELECT jsonb_build_object('h',handle,'n',name,'d',coalesce(description,''))::text FROM product_category WHERE handle LIKE 'v4-%'`);
-const candWithDesc = [];   // KOHTUNIK: nimi + kirjeldus (production-like)
-const candNameOnly = [];   // REFERENTS: ainult nimi (pime)
+const candWithDesc = [];   // MÕLEMAD (kohtunik + referents): nimi + kirjeldus (production-true)
+const candNameOnly = [];   // säilib valikuliseks blind-kontrolliks; vaikimisi EI kasutata (production annab ref'ile kirjeldused)
 let withDescN = 0;
 for (const r of catRows) {
   if (!leafHandles.has(r.h)) continue;
@@ -95,10 +98,10 @@ for (const b of chunk(clusters, BATCH)) {
   clVerdicts.push(...res.results);
   addCost(CLSF_JUDGE_MODEL, res.usage);
 }
-// ── 4) REFERENTS (ainult nimed, pime) ──
+// ── 4) REFERENTS (KA kirjeldustega — production-true; sõltumatus=eri mudel, mitte infopuudus) ──
 const refVerdicts = [];
 for (const b of chunk(clusters, BATCH)) {
-  const res = await rateClassifyReferenceClusters(b, candNameOnly, { apiKey: API_KEY });
+  const res = await rateClassifyReferenceClusters(b, candWithDesc, { apiKey: API_KEY });
   if (!res.ok) { console.error(`  ⚠️ referentsi-batch kukkus: ${res.error}`); continue; }
   refVerdicts.push(...res.results);
   addCost(REF_MODEL_CLSF, res.usage);

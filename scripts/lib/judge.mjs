@@ -16,6 +16,8 @@
  * Mudel ≠ generaator: sünonüüme teeb Haiku → kohtunik Sonnet (sõltumatu teine arvamus).
  */
 
+import { isUsageLimitError, alertUsageLimit, recordSpend } from "./spend-guard.mjs";
+
 const API_URL = "https://api.anthropic.com/v1/messages";
 export const SYN_JUDGE_MODEL = "claude-sonnet-5";
 export const CLSF_JUDGE_MODEL = "claude-opus-4-8";
@@ -54,6 +56,8 @@ async function callJudge({ apiKey, model, system, candsBlock, user, schema, maxT
       });
       if (!r.ok) {
         const t = await r.text();
+        // 1b: workspace spend-cap / tier usage-limit → KOHE Telegram (üks kord/protsess), ENNE retry-check'i.
+        if (isUsageLimitError(t)) { clearTimeout(to); alertUsageLimit(`API ${r.status}: ${t.slice(0, 200)}`, { ctx: "judge" }); return { ok: false, error: `API ${r.status}: ${t.slice(0, 200)}` }; }
         if ((r.status === 429 || r.status === 529 || r.status >= 500) && attempt < retries) {
           clearTimeout(to); await sleep(Math.min(30000, 1000 * 2 ** attempt)); continue;
         }
@@ -61,6 +65,7 @@ async function callJudge({ apiKey, model, system, candsBlock, user, schema, maxT
         return { ok: false, error: `API ${r.status}: ${t.slice(0, 200)}` };
       }
       const j = await r.json();
+      recordSpend({ model, usage: j.usage });   // 1a: kuu-kulu liider + 80%-alert (jagatud SSoT)
       const txt = (j.content.find((b) => b.type === "text") || {}).text || "{}";
       clearTimeout(to);
       return { ok: true, parsed: JSON.parse(txt), usage: j.usage };

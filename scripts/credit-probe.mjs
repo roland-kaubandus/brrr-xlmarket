@@ -11,11 +11,18 @@
  * Kasutus: node scripts/credit-probe.mjs [model]   (vaikimisi odav claude-haiku-4-5)
  */
 import { probeCredit } from "./lib/credit-guard.mjs";
+import { alertUsageLimit } from "./lib/spend-guard.mjs";
 
 const KEY = process.env.ANTHROPIC_API_KEY;
 const MODEL = process.argv[2] || "claude-haiku-4-5";
 
 const res = await probeCredit({ apiKey: KEY, model: MODEL });
 if (res.status === "ok") { console.log(`krediit OK (${res.detail})`); process.exit(0); }
+if (res.status === "usage") {
+  // 1b: workspace spend-cap täis → KOHE Telegram (eilne pimeala). Exit 3 = degrade (LLM skip, laoseis JÄTKUB).
+  console.log(`usage-limit (${res.detail})`);
+  alertUsageLimit(res.detail, { ctx: "probe" });
+  process.exit(3);
+}
 if (res.status === "credit") { console.log(`krediit maas (${res.detail})`); process.exit(3); }
 console.log(`API maas (${res.detail})`); process.exit(2);
