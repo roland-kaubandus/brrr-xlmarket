@@ -16,6 +16,7 @@
 import fs from "node:fs";
 import { execSync } from "node:child_process";
 import { acquireStackLock } from "./lib/stack-lock.mjs";
+import { conceptMoveJudge } from "./lib/concept-gate.mjs";
 
 const REPO = "/opt/xlmarket-github";
 const SP = process.env.SP || "/tmp/claude-0/-opt-xlmarket-github/8966820c-cfb5-4418-ab04-7e331739a85c/scratchpad";
@@ -70,7 +71,61 @@ for (const mv of rawMoves) {
   for (const pid of pids) undoMoves.push({ pid, fromId, toId });
   moveRows.push({ ...mv, fromId, toId, pids });
 }
-const movedProducts = undoMoves.length;
+let movedProducts = undoMoves.length;
+
+// ── 3.5 KONTSEPTSIOONI-VÄRAV (c) — Tarmo 2026-10-09 DUP-fix: iga liigutuse eel-kontroll ──
+// Semantiline kohtunik (a): kas liigutatud tooted KUULUVAD sihti (sama kliendikontseptsioon)?
+// TAGASI_ALLIKAS / OSALINE(back) + kindlus korge|kesk → EI liiguta neid tooteid (eemalda move'ist + signal).
+// Madal kindlus → ei blokeeri (range-enamus otsustas juba), AGA signaal inimese-ülevaatuseks (turvavõrk).
+// (b) morfoloogia-eelfilter pole siin vajalik — kõik liigutused lähevad niikuinii kohtunikku (kõik on
+//     juba "kandidaat-liigutused"); eelfilter säästab kutseid classify-chain broaden-DUP juures.
+// API-võti puudub → värav VAHELE (fail-open AINULT võtme puudumisel, nagu grab-bag) + selge LOG.
+const conceptSignals = [];
+if (!DRY && moveRows.length) {
+  const apiKey = process.env.ANTHROPIC_API_KEY;
+  if (!apiKey) {
+    console.error("⚠️ ANTHROPIC_API_KEY puudub → kontseptsiooni-värav (c) VAHELE (liigutused lähevad kontrollimata).");
+  } else {
+    const idName = new Map(q(`SELECT id, COALESCE(name,'') FROM product_category WHERE id IN (${[...new Set(moveRows.flatMap((m) => [m.fromId, m.toId]))].map(S).join(",")})`).trim().split("\n").filter(Boolean).map((l) => l.split("|")));
+    const titlesFor = (pids) => pids.length ? q(`SELECT COALESCE(title,'') FROM product WHERE id IN (${pids.slice(0, 12).map(S).join(",")}) AND deleted_at IS NULL`).trim().split("\n").filter(Boolean) : [];
+    const destExist = (toId, excl) => { const ex = new Set(excl); return q(`SELECT p.id, COALESCE(p.title,'') FROM product_category_product pcp JOIN product p ON p.id=pcp.product_id WHERE pcp.product_category_id=${S(toId)} AND p.deleted_at IS NULL LIMIT 120`).trim().split("\n").filter(Boolean).map((l) => l.split("|")).filter(([id]) => !ex.has(id)).slice(0, 6).map(([, t]) => t); };
+    const pairs = moveRows.map((mv, i) => ({ pair_id: `mv${i}`, _row: mv, sourceName: idName.get(mv.fromId) || mv.from, targetName: idName.get(mv.toId) || mv.to, movedTitles: titlesFor(mv.pids), targetExistingTitles: destExist(mv.toId, mv.pids) }));
+    console.log(`\n⚖️ kontseptsiooni-värav (c): hindan ${pairs.length} liigutust semantiliselt (Opus)…`);
+    let verdicts = new Map();
+    try { const { conceptMoveJudge } = await import("./lib/concept-gate.mjs"); for (let i = 0; i < pairs.length; i += 8) verdicts = new Map([...verdicts, ...(await conceptMoveJudge({ pairs: pairs.slice(i, i + 8).map(({ _row, ...p }) => p), apiKey }))]); }
+    catch (e) { console.error(`🔴 kontseptsiooni-värav kukkus (süsteemne): ${e.message}\n   → HARD RULE #5 fail-loud: EI rakenda. Lahenda enne.`); process.exit(4); }
+    const kept = [];
+    for (let i = 0; i < pairs.length; i++) {
+      const p = pairs[i]; const mv = p._row; const v = verdicts.get(`mv${i}`);
+      if (!v) { kept.push(mv); continue; }
+      const conf = v.kindlus === "korge" || v.kindlus === "kesk";
+      if (v.verdict === "OK_SIHT" || !conf) {
+        if (v.verdict !== "OK_SIHT" && conf === false) conceptSignals.push({ ck: mv.ck, from: mv.from, to: mv.to, verdict: v.verdict, kindlus: v.kindlus, note: "madal kindlus → liigutati, AGA märgitud ülevaatuseks", pohjus: v.pohjus });
+        kept.push(mv); continue;
+      }
+      // confident misfile
+      if (v.verdict === "TAGASI_ALLIKAS") {
+        conceptSignals.push({ ck: mv.ck, from: mv.from, to: mv.to, verdict: v.verdict, kindlus: v.kindlus, blocked: mv.pids.length, pohjus: v.pohjus });
+        console.log(`  ⛔ EI liiguta «${p.sourceName}»→«${p.targetName}» (${mv.pids.length}) — ${v.kindlus}: ${v.pohjus}`);
+        continue; // drop whole move
+      }
+      if (v.verdict === "OSALINE") {
+        const backSet = new Set(v.back_idx); const stayPids = mv.pids.filter((_, idx) => !backSet.has(idx)); const blockedPids = mv.pids.filter((_, idx) => backSet.has(idx));
+        conceptSignals.push({ ck: mv.ck, from: mv.from, to: mv.to, verdict: v.verdict, kindlus: v.kindlus, blocked: blockedPids.length, pohjus: v.pohjus });
+        console.log(`  ◐ OSALINE «${p.sourceName}»→«${p.targetName}»: ${blockedPids.length} jääb allikasse, ${stayPids.length} liigub — ${v.pohjus}`);
+        if (stayPids.length) kept.push({ ...mv, pids: stayPids });
+      }
+    }
+    // rebuild moveRows + undoMoves from kept
+    moveRows.length = 0; undoMoves.length = 0;
+    for (const mv of kept) { moveRows.push(mv); for (const pid of mv.pids) undoMoves.push({ pid, fromId: mv.fromId, toId: mv.toId }); }
+    movedProducts = undoMoves.length;
+    const blockedTotal = conceptSignals.reduce((s, x) => s + (x.blocked || 0), 0);
+    console.log(`⚖️ värav: ${moveRows.length} klastrit / ${movedProducts} toodet LÄBIS · ${blockedTotal} toodet BLOKEERITUD (jääb allikasse) · ${conceptSignals.filter((x) => x.note).length} madal-kindlus signaali`);
+    fs.writeFileSync(`${SP}/neighbor-concept-signals.json`, JSON.stringify(conceptSignals, null, 1));
+    if (!moveRows.length) { console.log("ℹ️ kontseptsiooni-värav blokeeris KÕIK liigutused — ei tee midagi."); process.exit(0); }
+  }
+}
 
 // ── 4. MIGRATE SQL (üks transaktsioon) ──
 let sql = "BEGIN;\n";
@@ -142,9 +197,10 @@ const tg = [`🧭 NAABRITE ÜLEHINDAMINE (${BATCH_ID})`,
   `  ↳ ${moveRows.filter((m) => m.kind === "pull").length} pull (lõksus-tooted → tühi L3) + ${moveRows.filter((m) => m.kind === "other").length} other`,
   `Väravad: inv ${lockOk ? "0 FAIL ✓" : "⚠️ vaata"} · distinct säilinud · Meili ${meiliOk ? "reindekseeritud ✓" : "⚠️ reindeks FAIL"}`,
   warns.length ? `⚠️ ${warns.length} merge-WARN (tühjaks-jäänud naaber)` : "✓ 0 merge-WARN",
+  (() => { const b = conceptSignals.reduce((s, x) => s + (x.blocked || 0), 0); const low = conceptSignals.filter((x) => x.note).length; return `⚖️ kontseptsiooni-värav (c): ${b} toodet blokeeritud${low ? ` · ${low} madal-kindlus ülevaatuseks` : ""}`; })(),
   `Undo: node scripts/neighbor-undo.mjs ${BATCH_ID}`].join("\n");
 try { execSync(`bash ${REPO}/scripts/lib/notify-telegram.sh`, { input: tg, encoding: "utf8", stdio: ["pipe", "ignore", "ignore"] }); console.log("📨 Telegram saadetud"); }
 catch { console.log("ℹ️ Telegram vahele (token/skript puudu)"); }
 
-fs.writeFileSync(`${SP}/neighbor-execute-done.json`, JSON.stringify({ batch_id: BATCH_ID, moveClusters: moveRows.length, moveProducts: movedProducts, skipped: skipped.length, warns, lockOk, meiliOk }, null, 1));
+fs.writeFileSync(`${SP}/neighbor-execute-done.json`, JSON.stringify({ batch_id: BATCH_ID, moveClusters: moveRows.length, moveProducts: movedProducts, skipped: skipped.length, conceptBlocked: conceptSignals.reduce((s, x) => s + (x.blocked || 0), 0), conceptSignals: conceptSignals.length, warns, lockOk, meiliOk }, null, 1));
 console.log(`\n✅ EXECUTE valmis — batch ${BATCH_ID}`);
