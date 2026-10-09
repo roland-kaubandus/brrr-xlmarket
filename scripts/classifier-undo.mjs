@@ -14,10 +14,17 @@
  */
 import fs from "node:fs";
 import { execSync } from "node:child_process";
+import { acquireStackLock } from "./lib/stack-lock.mjs";
 
 const REPO = "/opt/xlmarket-github";
 const argv = process.argv.slice(2);
 const DRY = argv.includes("--dry");
+
+// ── STACK-LUKK (item 1): undo kirjutab DB-sse + teeb --deploy → ei tohi deploy-recreate'iga põrkuda. ──
+if (!DRY) {
+  try { acquireStackLock({ holder: "classifier-undo", waitMs: Number(process.env.XL_DBWRITE_WAIT_MS) || 60_000 }); }
+  catch (e) { console.error(`🔴 ${e.message}\n   → deploy käib? proovi uuesti kui stack healthy.`); process.exit(3); }
+}
 const DEPLOY = argv.includes("--deploy");
 const fileArg = argv[argv.indexOf("--file") + 1];
 const batchId = argv.find(a => !a.startsWith("--") && a !== fileArg);

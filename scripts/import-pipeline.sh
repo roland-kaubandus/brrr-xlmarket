@@ -33,6 +33,14 @@ EXECUTE=0; [ "${1:-}" = "--execute" ] && EXECUTE=1
 MODE=$([ "$EXECUTE" = "1" ] && echo EXECUTE || echo DRY-RUN)
 EXFLAG=$([ "$EXECUTE" = "1" ] && echo "--execute" || echo "--dry")
 
+# ── STACK-LUKK (item 1): öine DB-kirjutav pipeline EI tohi käia keset deploy-recreate'i (ega vastupidi).
+# Ainult --execute. Ootab kuni 20min kui deploy käib, siis keeldub (öö-aknas deploy't niikuinii pole). ──
+if [ "$EXECUTE" = "1" ]; then
+  source "$ROOT/scripts/lib/stack-lock.sh"
+  xl_lock_acquire "import-pipeline" "${XL_DBWRITE_WAIT_S:-1200}" || { echo "❌ stack-lukk hõivatud (deploy käib?) — pipeline KEELDUB."; exit 1; }
+  trap xl_lock_release EXIT
+fi
+
 MEDUSA_NAME="$(docker ps --format '{{.Names}}' | grep '^medusa' | head -1 || true)"
 DB_NAME="$(docker ps --format '{{.Names}}' | grep '^db-k33g' | head -1 || true)"
 SLACK="${SLACK_WEBHOOK_URL:-}"

@@ -30,6 +30,7 @@ import { slugId, IMG_BRIGHT_MIN, brightCheckScript } from "./l3-gates.mjs";
 import { makeCaller } from "./l3-desc.mjs";
 import { granularityGate } from "./granularity-gate.mjs";
 import { ensureShadowSchema, recordShadowProposal } from "./shadow-ledger.mjs";
+import { acquireStackLock } from "./stack-lock.mjs";
 
 const REPO = "/opt/xlmarket-github";
 const sh = (cmd, opts = {}) => execSync(cmd, { encoding: "utf8", stdio: opts.capture ? "pipe" : "inherit", ...opts });
@@ -65,6 +66,13 @@ export async function createL3Batch({
   const C = resolveContainers();
   if (!C.ok) return { ok: false, reason: `Konteiner puudu: db=${!!C.DB} meili=${!!C.MEILI} medusa=${!!C.MEDUSA} sf=${!!C.SF}` };
   const { DB, MEILI, MEDUSA, SF } = C;
+  // ── STACK-LUKK (item 1, HARD RULE #5 — jagatud mootor = ETAPP + öine auto-create): live-write EI tohi
+  // käia keset deploy-recreate'i. Re-entrantne → runL3Batches'i mitu partiid hoiavad ÜHE luku (1. live-partii
+  // võtab, hoitakse exit'ini). dryRun-partii EI lukusta. Keeldub kiirelt kui deploy käib. ──
+  if (!dryRun) {
+    try { acquireStackLock({ holder: `l3-create:${label}`, waitMs: Number(process.env.XL_DBWRITE_WAIT_MS) || 60_000 }); }
+    catch (e) { return { ok: false, reason: `stack-lukk hõivatud (deploy käib?): ${e.message}` }; }
+  }
   const psql = (sql) => execSync(`docker exec -i ${DB} psql -U xlmarket -d xlmarket -tA -v ON_ERROR_STOP=1 -f -`, { input: sql, encoding: "utf8" }).trim();
   const psqlTx = (sql) => execSync(`docker exec -i ${DB} psql -U xlmarket -d xlmarket -q -v ON_ERROR_STOP=1 -f -`, { input: sql, encoding: "utf8" });
 

@@ -116,6 +116,29 @@ kui taxonomy-v4 SHA sisaldab fix'i.**
 
 ---
 
+## 🛑 HARD RULE #9 — STACK-LUKK: DB-KIRJUTAV TÖÖ JA DEPLOY EI KÄI KUNAGI KORRAGA
+
+> Lisatud 2026-10-09 (Tarmo, pärast naabrite-transaktsiooni krahhi).
+
+**Coolify redeploy = `docker compose up` → recreate KÕIK k33g-konteinerid (db/redis/meili/medusa/storefront/pgbouncer). API on ASÜNKROONE** (curl vastab 200 kohe, konteinerid recreate'ivad sekundeid-minuteid hiljem). Kui DB-kirjutav töö käib samal ajal → `docker exec <vana-konteiner-id>` sureb keset transaktsiooni.
+
+*Tõestatud 2026-10-09: Task 1c `classifier-undo --deploy` kutsus `coolify-deploy.sh` (async), lõpetas, käivitasin neighbor-execute — Coolify recreate'is db-k33g KESKEL naabrite transaktsiooni → exit 1. (DB jäi puutumata, kuna kukkus enne commit'i, AGA oleks võinud olla pooleli.)*
+
+**REEGEL: üks globaalne advisory-lukk, mille VÕTAVAD mõlemad pooled:**
+- **DB-kirjutav töö** (öine `import-pipeline.sh --execute`, `l3-create-engine` = ETAPP + öine auto-create, `neighbor-execute`, `classifier-undo`, audit-execute, iga uus DB-kirjutaja) võtab luku enne write'i → **deploy ootab/keeldub**, kuni vaba.
+- **Deploy** (`coolify-deploy.sh`) võtab luku enne trigger'it ja **HOIAB KUNI stack on tagasi healthy** (`xl_wait_stack_healthy`) → DB-töö ootab kogu recreate-akna vältel.
+- **Kehtib ka push'idele** (sh sessioonilogi): push ise täna EI auto-deploy'i (GitHub-webhook puudub, `manual_webhook_secret_github` tühi — kontrollitud 2026-10-09), AGA kui auto-deploy kunagi sisse lülitub, peab push samuti luku kaudu käima. **Commit/push ainult siis, kui DB-töö ei käi.**
+
+**Jõustus (SSoT, HARD RULE #5 — üks moodul, kõik kutsujad):**
+- `scripts/lib/stack-lock.mjs` (node) + `scripts/lib/stack-lock.sh` (bash) — **sama PID-faili skeem** (`/opt/eumotors-tasks/locks/xl-stack-write.lock`), interop node↔bash, re-entrantne protsessi sees, stale-steal surnud-pid korral, auto-release exit/SIGINT/krahh.
+- Node: `acquireStackLock({holder, waitMs})` või `withStackLock(opts, fn)`. Bash: `source lib/stack-lock.sh; xl_lock_acquire <holder> <wait_s>; trap xl_lock_release EXIT`.
+- DB-write keeldub kiirelt (60s) kui deploy käib (ei alusta transaktsiooni, mis tapetakse). Deploy ootab kaua (1200s) siis keeldub (DB-transaktsioonid lühikesed).
+- **DRY/read-only EI lukusta** (ainult `--execute`/write).
+
+**Iga UUS DB-kirjutav skript peab võtma stack-luku** (muidu race taastub). Kontroll: kas skript impordib `stack-lock` enne esimest `psqlTx`/`docker exec … psql`?
+
+---
+
 ## Sessioon 2026-05-02 muudatused (hommikune pool)
 
 **Sessioonilogi:** `xlmarket/memory/sessions/2026-05-02-xl.md`

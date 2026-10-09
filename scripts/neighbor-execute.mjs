@@ -15,6 +15,7 @@
  */
 import fs from "node:fs";
 import { execSync } from "node:child_process";
+import { acquireStackLock } from "./lib/stack-lock.mjs";
 
 const REPO = "/opt/xlmarket-github";
 const SP = process.env.SP || "/tmp/claude-0/-opt-xlmarket-github/8966820c-cfb5-4418-ab04-7e331739a85c/scratchpad";
@@ -24,6 +25,13 @@ const FROM = argv.includes("--from") ? argv[argv.indexOf("--from") + 1] : `${SP}
 
 if (!fs.existsSync(FROM)) { console.error(`🔴 sisend puudub: ${FROM}`); process.exit(1); }
 const R = JSON.parse(fs.readFileSync(FROM, "utf8"));
+
+// ── STACK-LUKK (Tarmo 2026-10-09 item 1): DB-write EI tohi käia keset deploy-recreate'i.
+// Ainult execute'il (--dry on read-only). Keeldub kiirelt kui deploy käib (ei alusta transaktsiooni, mis tapetakse). ──
+if (!DRY) {
+  try { acquireStackLock({ holder: "neighbor-execute", waitMs: Number(process.env.XL_DBWRITE_WAIT_MS) || 60_000 }); }
+  catch (e) { console.error(`🔴 ${e.message}\n   → deploy käib? proovi uuesti kui stack healthy.`); process.exit(3); }
+}
 
 const BATCH_ID = process.env.BATCH_ID || ("nbr-" + new Date().toISOString().replace(/[:.]/g, "").replace(/(T\d{6}).*/, "$1"));
 const DB = execSync("docker ps --format '{{.Names}}' | grep '^db-k33g' | head -1", { encoding: "utf8" }).trim();

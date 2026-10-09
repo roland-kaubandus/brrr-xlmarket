@@ -23,10 +23,22 @@ COOLIFY_TOKEN="${COOLIFY_TOKEN#<}"; COOLIFY_TOKEN="${COOLIFY_TOKEN%>}"
 
 FORCE="false"; [ "${1:-}" = "--force" ] && FORCE="true"
 
+# ── STACK-LUKK (Tarmo 2026-10-09 item 1): deploy EI tohi recreate'ida konteinereid
+# keset DB-kirjutavat tööd. Võta lukk → hoia KUNI stack tagasi healthy → siis vabasta.
+# Kui DB-write käib → ootab kuni 20min, siis KEELDUB (ei riku pooleliolevat transaktsiooni). ──
+source "$(dirname "$0")/lib/stack-lock.sh"
+xl_lock_acquire "coolify-deploy" "${XL_DEPLOY_WAIT_S:-1200}" || exit 1
+trap xl_lock_release EXIT
+
 echo "→ Coolify redeploy: $UUID (force=$FORCE)"
 code=$(curl -s -o /tmp/coolify-deploy-resp.json -w "%{http_code}" \
   -H "Authorization: Bearer $COOLIFY_TOKEN" \
   "$API?uuid=${UUID}&force=${FORCE}")
 echo "  HTTP $code"
 cat /tmp/coolify-deploy-resp.json 2>/dev/null; echo
-[ "$code" = "200" ] && echo "✅ Deploy käivitatud — jälgi Coolify UI-s." || { echo "❌ Ebaõnnestus (401=vale/aegunud token, 404=vale uuid)."; exit 1; }
+[ "$code" = "200" ] || { echo "❌ Ebaõnnestus (401=vale/aegunud token, 404=vale uuid)."; exit 1; }
+echo "✅ Deploy käivitatud (async) — hoian stack-luku kuni konteinerid tagasi healthy…"
+# Coolify API on asünkroonne: recreate juhtub SIIN, mitte curl'i ajal. Lukk hoiab DB-tööd eemal
+# kogu recreate-akna vältel (vt stack-lock EXIT-trap vabastab lõpus).
+xl_wait_stack_healthy "${XL_DEPLOY_HEALTH_WAIT_S:-300}" || true
+echo "✅ Deploy valmis — jälgi Coolify UI-s."
