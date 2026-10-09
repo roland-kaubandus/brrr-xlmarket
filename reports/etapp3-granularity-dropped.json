@@ -1,0 +1,145 @@
+{
+  "generated_at": "2026-10-09T06:12:29.769Z",
+  "dropped_count": 5,
+  "shadow_written": 5,
+  "shadow_err": null,
+  "rows": [
+    {
+      "batch_id": "e3-granularity-drop-2026-10-09T0612",
+      "cluster_key": "spu:14265",
+      "proposed_name": "Mullivanni katted",
+      "parent_l2_handle": "v4-aed-ja-aiatehnika-basseinid-ja-spaa",
+      "origin": "granularity-variant",
+      "n_products": 13,
+      "all_gates_pass": false,
+      "gates": {
+        "granularity": {
+          "pass": false,
+          "verdict": "variant",
+          "nearest": "Basseinikatted",
+          "reason": "Sama funktsioon ja väljund — veepinna/vanni katmine ja kaitse. Erineb vaid rakenduselt (mullivann vs bassein) ja suuruselt, mitte funktsioonilt."
+        },
+        "note": "üle-fragmenteerimise värav: variant olemas-õest / ebaselge → EI loodud, tooted jäävad currentL3-s"
+      }
+    },
+    {
+      "batch_id": "e3-granularity-drop-2026-10-09T0612",
+      "cluster_key": "spu:11410",
+      "proposed_name": "Vaipplaadid",
+      "parent_l2_handle": "v4-moobel-ja-sisustus-sisustusdekoor",
+      "origin": "granularity-variant",
+      "n_products": 10,
+      "all_gates_pass": false,
+      "gates": {
+        "granularity": {
+          "pass": false,
+          "verdict": "variant",
+          "nearest": "Vaibad",
+          "reason": "Vaipplaadid täidavad sama funktsiooni ja väljundi (põrandakate), erinedes vaid vormis (ruudukujulised isekleepuvad plaadid). Ostja otsib sama asja teises vormis."
+        },
+        "note": "üle-fragmenteerimise värav: variant olemas-õest / ebaselge → EI loodud, tooted jäävad currentL3-s"
+      }
+    },
+    {
+      "batch_id": "e3-granularity-drop-2026-10-09T0612",
+      "cluster_key": "spu:16471",
+      "proposed_name": "Kasvuhoone ventilaatorid",
+      "parent_l2_handle": "v4-santehnika-kute-ja-ventilatsioon-ventilatsioon-ja-ventilaatorid",
+      "origin": "granularity-variant",
+      "n_products": 3,
+      "all_gates_pass": false,
+      "gates": {
+        "granularity": {
+          "pass": false,
+          "verdict": "variant",
+          "nearest": "Väljalaske- ja katuseventilaatorid",
+          "reason": "Sama funktsioon — õhuvahetus/väljatõmme; erineb vaid energiaallikas (päikese) ja kasutuskoht, seega variant."
+        },
+        "note": "üle-fragmenteerimise värav: variant olemas-õest / ebaselge → EI loodud, tooted jäävad currentL3-s"
+      }
+    },
+    {
+      "batch_id": "e3-granularity-drop-2026-10-09T0612",
+      "cluster_key": "spu:10474",
+      "proposed_name": "Mullafreesid ja kultivaatorid",
+      "parent_l2_handle": "v4-pollumajandus-ja-loomakasvatus-talutehnika",
+      "origin": "granularity-variant",
+      "n_products": 5,
+      "all_gates_pass": false,
+      "gates": {
+        "granularity": {
+          "pass": false,
+          "verdict": "variant",
+          "nearest": "Mullaharimine (äkked ja kultivaatorid)",
+          "reason": "Sama funktsioon ja tulem — mulla harimine/kobestamine teradega; erineb vaid ajami/vormi poolest, ostja otsib sama tulemust."
+        },
+        "note": "üle-fragmenteerimise värav: variant olemas-õest / ebaselge → EI loodud, tooted jäävad currentL3-s"
+      }
+    },
+    {
+      "batch_id": "e3-granularity-drop-2026-10-09T0612",
+      "cluster_key": "spu:15377",
+      "proposed_name": "Hoiusahtlikapid",
+      "parent_l2_handle": "v4-moobel-ja-sisustus-kontorimoobel",
+      "origin": "granularity-variant",
+      "n_products": 2,
+      "all_gates_pass": false,
+      "gates": {
+        "granularity": {
+          "pass": false,
+          "verdict": "variant",
+          "nearest": "Lauasahtlid ja -alused",
+          "reason": "Sama funktsioon — kontoritarvete hoiustamine sahtlites; erineb vaid vormilt (ratastega eraldiseisev kapp vs lauaalune sahtel)."
+        },
+        "note": "üle-fragmenteerimise värav: variant olemas-õest / ebaselge → EI loodud, tooted jäävad currentL3-s"
+      }
+    }
+  ],
+  "detail": [
+    {
+      "ck": "spu:14265",
+      "name_et": "Mullivanni katted",
+      "parentL2_name": "Basseinid ja spaa",
+      "n": 13,
+      "verdict": "variant",
+      "nearest": "Basseinikatted",
+      "reason": "Sama funktsioon ja väljund — veepinna/vanni katmine ja kaitse. Erineb vaid rakenduselt (mullivann vs bassein) ja suuruselt, mitte funktsioonilt."
+    },
+    {
+      "ck": "spu:11410",
+      "name_et": "Vaipplaadid",
+      "parentL2_name": "Sisustusdekoor",
+      "n": 10,
+      "verdict": "variant",
+      "nearest": "Vaibad",
+      "reason": "Vaipplaadid täidavad sama funktsiooni ja väljundi (põrandakate), erinedes vaid vormis (ruudukujulised isekleepuvad plaadid). Ostja otsib sama asja teises vormis."
+    },
+    {
+      "ck": "spu:16471",
+      "name_et": "Kasvuhoone ventilaatorid",
+      "parentL2_name": "Ventilatsioon ja ventilaatorid",
+      "n": 3,
+      "verdict": "variant",
+      "nearest": "Väljalaske- ja katuseventilaatorid",
+      "reason": "Sama funktsioon — õhuvahetus/väljatõmme; erineb vaid energiaallikas (päikese) ja kasutuskoht, seega variant."
+    },
+    {
+      "ck": "spu:10474",
+      "name_et": "Mullafreesid ja kultivaatorid",
+      "parentL2_name": "Talutehnika",
+      "n": 5,
+      "verdict": "variant",
+      "nearest": "Mullaharimine (äkked ja kultivaatorid)",
+      "reason": "Sama funktsioon ja tulem — mulla harimine/kobestamine teradega; erineb vaid ajami/vormi poolest, ostja otsib sama tulemust."
+    },
+    {
+      "ck": "spu:15377",
+      "name_et": "Hoiusahtlikapid",
+      "parentL2_name": "Kontorimööbel",
+      "n": 2,
+      "verdict": "variant",
+      "nearest": "Lauasahtlid ja -alused",
+      "reason": "Sama funktsioon — kontoritarvete hoiustamine sahtlites; erineb vaid vormilt (ratastega eraldiseisev kapp vs lauaalune sahtel)."
+    }
+  ]
+}
