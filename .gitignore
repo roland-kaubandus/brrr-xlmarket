@@ -80,3 +80,7 @@ backups/
 reports/backups/
 *.bak-stale
 reports/credit-outage.state
+
+# Python bytecode (EI lähe git'i — git add -A pühkis sisse d346ea5d-s)
+__pycache__/
+*.pyc
