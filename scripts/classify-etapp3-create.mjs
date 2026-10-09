@@ -322,7 +322,8 @@ function writePlan(plans, refreshStats) {
   const results = await runL3Batches({
     allPlans: batchPlans, assigns: [], batchSize: BATCH_SIZE, mode,
     batchPrefix, label, neighbor: { enabled: true, capPer: CAP_PER, topcl: 40 },
-    extraGitPaths: ["reports/ETAPP3-plaan.md", "reports/ETAPP3-plaan.json", "reports/etapp3-kuluhinnang.md"],
+    granularity: { enabled: false }, // eel-filtreeritud SAMA mooduliga: scripts/apply-granularity-gate.mjs (40 alles, 5 variant drop)
+    extraGitPaths: ["reports/ETAPP3-plaan.md", "reports/ETAPP3-plaan.json", "reports/etapp3-kuluhinnang.md", "reports/etapp3-granularity-dropped.json"],
   });
   const okB = results.filter(r => r.ok && !r.dryRun).length;
   const dryB = results.filter(r => r.dryRun).length;

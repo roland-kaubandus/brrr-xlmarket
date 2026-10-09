@@ -27,6 +27,9 @@
 import fs from "node:fs";
 import { execSync } from "node:child_process";
 import { slugId, IMG_BRIGHT_MIN, brightCheckScript } from "./l3-gates.mjs";
+import { makeCaller } from "./l3-desc.mjs";
+import { granularityGate } from "./granularity-gate.mjs";
+import { ensureShadowSchema, recordShadowProposal } from "./shadow-ledger.mjs";
 
 const REPO = "/opt/xlmarket-github";
 const sh = (cmd, opts = {}) => execSync(cmd, { encoding: "utf8", stdio: opts.capture ? "pipe" : "inherit", ...opts });
@@ -52,6 +55,9 @@ export function resolveContainers() {
 export async function createL3Batch({
   plans, assigns = [], batchPrefix = "l3", dryRun = false,
   neighbor = { enabled: true, capPer: 3, topcl: 40 },
+  granularity = { enabled: true }, // spets §4 gate #8: suhteline granulaarsus-värav (variant olemas-õest → EI loo).
+                                   //  Kutsuja, kes juba eel-filtreeris SAMA mooduliga (ETAPP3 apply-granularity-gate),
+                                   //  annab {enabled:false}. Öine auto-create → default sees (pärib, HARD RULE #5).
   label = "L3-create", extraGitPaths = [],
   detachV4L3 = true, // ETAPP3 reparent: uude L3-sse pandav toode eemaldatakse KÕIGIST senistest v4-L3-dest
                      //  (ainus-kodu invariant). Kodutu toode (öine) → detach no-op. distinct-loend EI muutu.
@@ -65,6 +71,43 @@ export async function createL3Batch({
   // ---- PRE: plaan terviklik (completeness + SEO-värav) ----
   const badPlan = plans.filter(p => !(p.completeness?.pass && p.assets?._seoGate?.pass));
   if (badPlan.length) return { ok: false, reason: `${badPlan.length} L3 ei läbi plaani-väravat (completeness/SEO): ${badPlan.map(p => p.name_et).join(", ")}` };
+
+  // ---- PRE: GRANULAARSUS-VÄRAV (spets §4 gate #8, SUHTELINE — HARD RULE #5: öine auto-create pärib) ----
+  // Jagatud moodul granularity-gate.mjs (SAMA kui ETAPP3). Variant olemas-õest / ebaselge → EI loo, tooted
+  // jäävad koju, shadow-signaal (koguneb). Kutsuja eel-filter → {enabled:false} (väldib topelt-kutset).
+  if (granularity?.enabled !== false && !dryRun && plans.length) {
+    const apiKey = granularity?.apiKey || process.env.ANTHROPIC_API_KEY;
+    if (!apiKey) {
+      // HARD RULE #6 ohutu vaikimisi: semantilist kaugust ei saa hinnata → ÄRA loo, HOLD + Telegram.
+      telegram(`⚠️ XL ${label} — granulaarsus-väravat EI SAA jooksutada (ANTHROPIC_API_KEY puudub) → partii HOLD (ohutu vaikimisi). Tooted jäävad koju.`);
+      return { ok: false, reason: "granulaarsus-värav: API-võti puudub (ohutu HOLD)", baseline: null, created: [] };
+    }
+    try {
+      const gtree = JSON.parse(fs.readFileSync(`${REPO}/storefront/lib/category-tree.generated.json`, "utf8"));
+      const GN = gtree.nodes;
+      const siblingsOf = (l2) => ((GN[l2]?.child_handles) || []).map(h => GN[h]).filter(n => n && n.level === 3).map(n => ({ handle: n.handle, name_et: n.name_et || n.name_en, name_en: n.name_en }));
+      const cands = plans.map(p => ({ ck: p.ck, name_et: p.name_et, name_en: p.name_en || p.assets?.name_en, parentL2: p.parentL2, parentL2_name: p.parentL2_name, n: p.n, titles: (p.products || []).map(x => x.title).filter(Boolean) }));
+      const { results } = await granularityGate({ candidates: cands, siblingsOf, caller: makeCaller({ apiKey }) });
+      const gDropped = plans.filter(p => !results.get(p.ck)?.pass);
+      if (gDropped.length) {
+        try {
+          const q = (sql) => execSync(`docker exec -i ${DB} psql -U xlmarket -d xlmarket -tA -v ON_ERROR_STOP=1 -f -`, { input: sql, encoding: "utf8" });
+          ensureShadowSchema(q);
+          for (const d of gDropped) {
+            const v = results.get(d.ck);
+            recordShadowProposal(q, { batch_id: `${batchPrefix}-gran-drop`, cluster_key: d.ck, proposed_name: d.name_et, parent_l2_handle: d.parentL2, origin: v?.verdict === "unclear" ? "granularity-unclear" : "granularity-variant", n_products: d.n, all_gates_pass: false, gates: { granularity: v } });
+          }
+        } catch (e) { console.log(`⚠ granulaarsus shadow-kirjutus vahele: ${String(e.message).slice(0, 120)}`); }
+        telegram(`🔎 XL ${label} — granulaarsus-värav eemaldas ${gDropped.length}/${plans.length} (variant/ebaselge, tooted jäävad koju + shadow): ${gDropped.map(d => `«${d.name_et}»`).join(", ")}`);
+        plans = plans.filter(p => results.get(p.ck)?.pass);
+      }
+      if (!plans.length) return { ok: true, batch_id: null, created: [], baseline: null, note: "granulaarsus-värav: kõik kandidaadid variant/ebaselge → 0 loodud (tooted jäävad koju)", granularityDropped: gDropped.length };
+    } catch (e) {
+      // KOODIVIGA väravas (JS-exception, mitte legitiimne {pass:false}) → FAIL-LOUD + HOLD (HARD RULE #5).
+      telegram(`🛑 XL ${label} — granulaarsus-värav KUKKUS (koodiviga): ${String(e.message).slice(0, 180)} → partii HOLD.`);
+      return { ok: false, reason: `granulaarsus-värav koodiviga: ${String(e.message).slice(0, 150)}`, baseline: null, created: [] };
+    }
+  }
 
   // ---- parent-L2 + assign-siht id-d ----
   const parentIdOf = {};
@@ -351,7 +394,8 @@ export async function createL3Batch({
  */
 export async function runL3Batches({
   allPlans, assigns = [], batchSize = 10, mode = "dry-first",
-  batchPrefix = "l3", label = "L3-create", neighbor = { enabled: true, capPer: 3, topcl: 40 }, extraGitPaths = [],
+  batchPrefix = "l3", label = "L3-create", neighbor = { enabled: true, capPer: 3, topcl: 40 },
+  granularity = { enabled: true }, extraGitPaths = [],
 }) {
   const chunk = (a, n) => { const o = []; for (let i = 0; i < a.length; i += n) o.push(a.slice(i, i + n)); return o; };
   const batches = chunk(allPlans, batchSize);
@@ -364,7 +408,7 @@ export async function runL3Batches({
     console.log(`\n${"━".repeat(50)}\n▶ PARTII ${i + 1}/${batches.length} (${batches[i].length} L3)${isDry ? " — DRY" : ""}\n${"━".repeat(50)}`);
     const res = await createL3Batch({
       plans: batches[i], assigns: bAssigns, batchPrefix: `${batchPrefix}-b${i + 1}`,
-      dryRun: isDry, neighbor, label: `${label} p${i + 1}/${batches.length}`, extraGitPaths,
+      dryRun: isDry, neighbor, granularity, label: `${label} p${i + 1}/${batches.length}`, extraGitPaths,
     });
     results.push({ batch: i + 1, ...res });
     if (isDry) { console.log(`\n⏸ DRY esimene partii valmis — raporteeri + oota kinnitust ENNE execute'i.`); break; }
