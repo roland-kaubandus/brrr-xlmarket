@@ -56,7 +56,10 @@ xl_lock_release() {
 
 # Oota kuni KÕIK k33g-konteinerid on tagasi "healthy" (recreate-aken) — lukk hoitakse selle vältel.
 xl_wait_stack_healthy() {
-  local wait_s="${1:-300}" deadline=$(($(date +%s) + wait_s))
+  # NB: eraldi local-read — sama real `local wait_s=.. deadline=$((..wait_s))` annab `set -u` all
+  # "wait_s: unbound variable" (arg-laiendus enne esimese omistuse jõustumist).
+  local wait_s="${1:-300}"
+  local deadline=$(($(date +%s) + wait_s))
   echo "⏳ ootan k33g-stacki tervist (kuni ${wait_s}s)…"
   while :; do
     local total healthy
