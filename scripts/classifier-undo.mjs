@@ -21,8 +21,11 @@ const argv = process.argv.slice(2);
 const DRY = argv.includes("--dry");
 
 // ── STACK-LUKK (item 1): undo kirjutab DB-sse + teeb --deploy → ei tohi deploy-recreate'iga põrkuda. ──
+// NB: node-lukk VABASTATAKSE ENNE coolify-deploy.sh-d (vt allpool) — bash võtab oma luku, protsessi-ülest
+// re-entry EI OLE, muidu coolify-deploy.sh ootaks 1200s elus node-pid'i taga ja kukuks (deadlock).
+let releaseLock = null;
 if (!DRY) {
-  try { acquireStackLock({ holder: "classifier-undo", waitMs: Number(process.env.XL_DBWRITE_WAIT_MS) || 60_000 }); }
+  try { releaseLock = acquireStackLock({ holder: "classifier-undo", waitMs: Number(process.env.XL_DBWRITE_WAIT_MS) || 60_000 }); }
   catch (e) { console.error(`🔴 ${e.message}\n   → deploy käib? proovi uuesti kui stack healthy.`); process.exit(3); }
 }
 const DEPLOY = argv.includes("--deploy");
@@ -82,6 +85,9 @@ catch { sh(`cd ${REPO} && node backend/scripts/index-meilisearch.mjs`); }
 // Kehtib KÕIGILE reindeksi-kutsujatele (mootor, ETAPP2, öine pipeline, undo). Viga → exit!=0, MITTE skip.
 try { sh(`docker exec ${MEDUSA} node /app/scripts/sync-synonyms.mjs`); }
 catch (e) { console.error("🛑 sync-synonyms KUKKUS undo-reindeksi järel — Meili jääks ILMA sünonüümideta: " + String(e.message).slice(0, 180)); process.exit(1); }
+
+// VABASTA node-lukk ENNE coolify-deploy.sh — DB-write + reindeks on tehtud, bash võtab deploy jaoks oma luku.
+if (releaseLock) { releaseLock(); releaseLock = null; }
 
 if (DEPLOY) {
   sh(`node ${REPO}/scripts/genyM.mjs`);
