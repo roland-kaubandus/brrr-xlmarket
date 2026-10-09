@@ -1,0 +1,350 @@
+{
+  "batch_id": "e3-b2-2026-10-09T0805",
+  "created_at": "2026-10-09T08:05:06.688Z",
+  "actor": "claude-code-test",
+  "label": "ETAPP3 p2/4",
+  "new_l3": [
+    {
+      "id": "pcat_e2_storagebedliftmechanisms",
+      "handle": "v4-moobel-ja-sisustus-moobliosad-ja-komponendid-hoiuvoodi-tostemehhanismid",
+      "name": "Hoiuvoodi tõstemehhanismid",
+      "parent_id": "pcat_6osad"
+    },
+    {
+      "id": "pcat_e2_paintingdryingracks",
+      "handle": "v4-garaaziseadmed-varvimine-ja-viimistlus-varvimis-ja-kuivatusstatiivid",
+      "name": "Värvimis- ja kuivatusstatiivid",
+      "parent_id": "pcat_v4_l2_8"
+    },
+    {
+      "id": "pcat_e2_ashvacuums",
+      "handle": "v4-santehnika-kute-ja-ventilatsioon-kaminad-ja-korsten-tuhaimejad",
+      "name": "Tuhaimejad",
+      "parent_id": "pcat_v4_l10_4"
+    },
+    {
+      "id": "pcat_e2_bumpers",
+      "handle": "v4-autovaruosad-ja-tarvikud-valistarvikud-ja-rehvitarvikud-kaitserauad",
+      "name": "Kaitserauad",
+      "parent_id": "pcat_v4_l3_3"
+    },
+    {
+      "id": "pcat_e2_winecoolers",
+      "handle": "v4-moobel-ja-sisustus-riiulid-ja-hoiustamine-veinikulmikud",
+      "name": "Veinikülmikud",
+      "parent_id": "pcat_v4_l6_2"
+    },
+    {
+      "id": "pcat_e2_mattresstoppers",
+      "handle": "v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-kattemadratsid",
+      "name": "Kattemadratsid",
+      "parent_id": "pcat_v4_l6_5"
+    },
+    {
+      "id": "pcat_e2_dumphoistkits",
+      "handle": "v4-autovaruosad-ja-tarvikud-hudraulika-kallutuskomplektid",
+      "name": "Kallutuskomplektid",
+      "parent_id": "pcat_hyd"
+    },
+    {
+      "id": "pcat_e2_kidscrashpads",
+      "handle": "v4-tervis-hooldus-ja-ilu-beebi-ja-lapsetarbed-laste-maandumispadjad",
+      "name": "Laste maandumispadjad",
+      "parent_id": "pcat_v4_l15_2"
+    },
+    {
+      "id": "pcat_e2_stoneslabinstallationtoo",
+      "handle": "v4-tooriistad-ja-tarvikud-kasitooriistad-kiviplaatide-paigaldustooriistad",
+      "name": "Kiviplaatide paigaldustööriistad",
+      "parent_id": "pcat_t3l2_1"
+    },
+    {
+      "id": "pcat_e2_antennasatellitemounts",
+      "handle": "v4-elektroonika-vork-antenni-ja-satelliidikinnitused",
+      "name": "Antenni- ja satelliidikinnitused",
+      "parent_id": "pcat_23net"
+    }
+  ],
+  "attach": [
+    {
+      "product_id": "prod_01KNXX6DETT5S02H0Q5TM6B28P",
+      "cat_id": "pcat_e2_storagebedliftmechanisms"
+    },
+    {
+      "product_id": "prod_01KNXX6DFNVEMVKFYT559XRE6X",
+      "cat_id": "pcat_e2_storagebedliftmechanisms"
+    },
+    {
+      "product_id": "prod_01KNXXGHZFG92XCTTJNJ88JZ6E",
+      "cat_id": "pcat_e2_paintingdryingracks"
+    },
+    {
+      "product_id": "prod_01KNXXHPS4KY6BC5SHT2ZVBV56",
+      "cat_id": "pcat_e2_paintingdryingracks"
+    },
+    {
+      "product_id": "prod_01M3NAXSJGZYB0HZG98BDH3RYN",
+      "cat_id": "pcat_e2_ashvacuums"
+    },
+    {
+      "product_id": "prod_01M3TFQAYSHDPS3HWWRRZQFRYR",
+      "cat_id": "pcat_e2_ashvacuums"
+    },
+    {
+      "product_id": "prod_01KNXX91BNE6YRAP4PC4T4BFWZ",
+      "cat_id": "pcat_e2_ashvacuums"
+    },
+    {
+      "product_id": "prod_01KNXXG6F9R6Y39QJG5QCQYK90",
+      "cat_id": "pcat_e2_ashvacuums"
+    },
+    {
+      "product_id": "prod_01KNXXEK8YM44FJNA4WJBDR7KK",
+      "cat_id": "pcat_e2_bumpers"
+    },
+    {
+      "product_id": "prod_01KNXXEK8ZC137H7NJEKK9QK9S",
+      "cat_id": "pcat_e2_bumpers"
+    },
+    {
+      "product_id": "prod_01KNXXGBTWW1SZ0FVM45N1D3XG",
+      "cat_id": "pcat_e2_winecoolers"
+    },
+    {
+      "product_id": "prod_01KNXXGDK3A8TH8ABTDJYDJ9HZ",
+      "cat_id": "pcat_e2_winecoolers"
+    },
+    {
+      "product_id": "prod_01KNXXHC01TXF8G4J560YH8WF6",
+      "cat_id": "pcat_e2_mattresstoppers"
+    },
+    {
+      "product_id": "prod_01KNXXHDRPWMYC5Y81QPS1ZMVC",
+      "cat_id": "pcat_e2_mattresstoppers"
+    },
+    {
+      "product_id": "prod_01KNXXHDSVA5JDY1CCHSP3CE14",
+      "cat_id": "pcat_e2_mattresstoppers"
+    },
+    {
+      "product_id": "prod_01KNXXKC30X20SJ1ZXTWEC523E",
+      "cat_id": "pcat_e2_dumphoistkits"
+    },
+    {
+      "product_id": "prod_01KPJVD0VZ9X1579D0C9YEQCDY",
+      "cat_id": "pcat_e2_kidscrashpads"
+    },
+    {
+      "product_id": "prod_01KPJVD127A43HYRKHQ70XBAJD",
+      "cat_id": "pcat_e2_kidscrashpads"
+    },
+    {
+      "product_id": "prod_01KNXXND2771SY1V4P5S6K190W",
+      "cat_id": "pcat_e2_stoneslabinstallationtoo"
+    },
+    {
+      "product_id": "prod_01KNXXND30JFWHGWEGB7SP8ZXC",
+      "cat_id": "pcat_e2_stoneslabinstallationtoo"
+    },
+    {
+      "product_id": "prod_01KNXXQF0AYRBBSN6JESTBR2AH",
+      "cat_id": "pcat_e2_antennasatellitemounts"
+    },
+    {
+      "product_id": "prod_01KNXXQHPABF9714B1FVPN9GC4",
+      "cat_id": "pcat_e2_antennasatellitemounts"
+    },
+    {
+      "product_id": "prod_01KNXXQHNPJX5ABSV78RKW7AXK",
+      "cat_id": "pcat_e2_antennasatellitemounts"
+    }
+  ],
+  "product_ids": [
+    "prod_01KNXX6DETT5S02H0Q5TM6B28P",
+    "prod_01KNXX6DFNVEMVKFYT559XRE6X",
+    "prod_01KNXXGHZFG92XCTTJNJ88JZ6E",
+    "prod_01KNXXHPS4KY6BC5SHT2ZVBV56",
+    "prod_01M3NAXSJGZYB0HZG98BDH3RYN",
+    "prod_01M3TFQAYSHDPS3HWWRRZQFRYR",
+    "prod_01KNXX91BNE6YRAP4PC4T4BFWZ",
+    "prod_01KNXXG6F9R6Y39QJG5QCQYK90",
+    "prod_01KNXXEK8YM44FJNA4WJBDR7KK",
+    "prod_01KNXXEK8ZC137H7NJEKK9QK9S",
+    "prod_01KNXXGBTWW1SZ0FVM45N1D3XG",
+    "prod_01KNXXGDK3A8TH8ABTDJYDJ9HZ",
+    "prod_01KNXXHC01TXF8G4J560YH8WF6",
+    "prod_01KNXXHDRPWMYC5Y81QPS1ZMVC",
+    "prod_01KNXXHDSVA5JDY1CCHSP3CE14",
+    "prod_01KNXXKC30X20SJ1ZXTWEC523E",
+    "prod_01KPJVD0VZ9X1579D0C9YEQCDY",
+    "prod_01KPJVD127A43HYRKHQ70XBAJD",
+    "prod_01KNXXND2771SY1V4P5S6K190W",
+    "prod_01KNXXND30JFWHGWEGB7SP8ZXC",
+    "prod_01KNXXQF0AYRBBSN6JESTBR2AH",
+    "prod_01KNXXQHPABF9714B1FVPN9GC4",
+    "prod_01KNXXQHNPJX5ABSV78RKW7AXK"
+  ],
+  "reparent": [
+    {
+      "product_id": "prod_01KNXX6DETT5S02H0Q5TM6B28P",
+      "prev_status": "published",
+      "from_cat_ids": [
+        "pcat_mv_6x1_23"
+      ]
+    },
+    {
+      "product_id": "prod_01KNXX6DFNVEMVKFYT559XRE6X",
+      "prev_status": "published",
+      "from_cat_ids": [
+        "pcat_mv_6x1_23"
+      ]
+    },
+    {
+      "product_id": "prod_01KNXX91BNE6YRAP4PC4T4BFWZ",
+      "prev_status": "published",
+      "from_cat_ids": [
+        "pcat_t3f_12_2"
+      ]
+    },
+    {
+      "product_id": "prod_01KNXXEK8YM44FJNA4WJBDR7KK",
+      "prev_status": "published",
+      "from_cat_ids": [
+        "pcat_ag2_3x2_7"
+      ]
+    },
+    {
+      "product_id": "prod_01KNXXEK8ZC137H7NJEKK9QK9S",
+      "prev_status": "published",
+      "from_cat_ids": [
+        "pcat_ag2_3x2_7"
+      ]
+    },
+    {
+      "product_id": "prod_01KNXXG6F9R6Y39QJG5QCQYK90",
+      "prev_status": "published",
+      "from_cat_ids": [
+        "pcat_t3f_12_2"
+      ]
+    },
+    {
+      "product_id": "prod_01KNXXGBTWW1SZ0FVM45N1D3XG",
+      "prev_status": "published",
+      "from_cat_ids": [
+        "pcat_ks_4x1_5"
+      ]
+    },
+    {
+      "product_id": "prod_01KNXXGDK3A8TH8ABTDJYDJ9HZ",
+      "prev_status": "published",
+      "from_cat_ids": [
+        "pcat_ks_4x1_5"
+      ]
+    },
+    {
+      "product_id": "prod_01KNXXGHZFG92XCTTJNJ88JZ6E",
+      "prev_status": "published",
+      "from_cat_ids": [
+        "pcat_vk2"
+      ]
+    },
+    {
+      "product_id": "prod_01KNXXHC01TXF8G4J560YH8WF6",
+      "prev_status": "published",
+      "from_cat_ids": [
+        "pcat_mv_6x5_7"
+      ]
+    },
+    {
+      "product_id": "prod_01KNXXHDRPWMYC5Y81QPS1ZMVC",
+      "prev_status": "published",
+      "from_cat_ids": [
+        "pcat_mv_6x5_7"
+      ]
+    },
+    {
+      "product_id": "prod_01KNXXHDSVA5JDY1CCHSP3CE14",
+      "prev_status": "published",
+      "from_cat_ids": [
+        "pcat_mv_6x5_7"
+      ]
+    },
+    {
+      "product_id": "prod_01KNXXHPS4KY6BC5SHT2ZVBV56",
+      "prev_status": "published",
+      "from_cat_ids": [
+        "pcat_vk2"
+      ]
+    },
+    {
+      "product_id": "prod_01KNXXKC30X20SJ1ZXTWEC523E",
+      "prev_status": "published",
+      "from_cat_ids": [
+        "pcat_hyd_1"
+      ]
+    },
+    {
+      "product_id": "prod_01KNXXND2771SY1V4P5S6K190W",
+      "prev_status": "published",
+      "from_cat_ids": [
+        "pcat_t3f_1_8"
+      ]
+    },
+    {
+      "product_id": "prod_01KNXXND30JFWHGWEGB7SP8ZXC",
+      "prev_status": "published",
+      "from_cat_ids": [
+        "pcat_t3f_1_8"
+      ]
+    },
+    {
+      "product_id": "prod_01KNXXQF0AYRBBSN6JESTBR2AH",
+      "prev_status": "published",
+      "from_cat_ids": [
+        "pcat_el_11x1_4"
+      ]
+    },
+    {
+      "product_id": "prod_01KNXXQHNPJX5ABSV78RKW7AXK",
+      "prev_status": "published",
+      "from_cat_ids": [
+        "pcat_el_11x1_4"
+      ]
+    },
+    {
+      "product_id": "prod_01KNXXQHPABF9714B1FVPN9GC4",
+      "prev_status": "published",
+      "from_cat_ids": [
+        "pcat_el_11x1_4"
+      ]
+    },
+    {
+      "product_id": "prod_01KPJVD0VZ9X1579D0C9YEQCDY",
+      "prev_status": "published",
+      "from_cat_ids": [
+        "pcat_el_12x2_16"
+      ]
+    },
+    {
+      "product_id": "prod_01KPJVD127A43HYRKHQ70XBAJD",
+      "prev_status": "published",
+      "from_cat_ids": [
+        "pcat_el_12x2_16"
+      ]
+    },
+    {
+      "product_id": "prod_01M3NAXSJGZYB0HZG98BDH3RYN",
+      "prev_status": "published",
+      "from_cat_ids": [
+        "pcat_t3f_12_2"
+      ]
+    },
+    {
+      "product_id": "prod_01M3TFQAYSHDPS3HWWRRZQFRYR",
+      "prev_status": "published",
+      "from_cat_ids": [
+        "pcat_t3f_12_2"
+      ]
+    }
+  ]
+}
