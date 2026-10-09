@@ -3,11 +3,6 @@
  "name": "Aiatööriistade hoidikud",
  "fields": [
   {
-   "key": "pesa_arv",
-   "label_et": "Pesade arv",
-   "unit": "tk"
-  },
-  {
    "key": "materjal",
    "label_et": "Materjal",
    "unit": ""
@@ -18,29 +13,24 @@
    "unit": "kg"
   },
   {
-   "key": "maarimine",
-   "label_et": "Rattad",
+   "key": "slot_arv",
+   "label_et": "Pesade/kohade arv",
+   "unit": "tk"
+  },
+  {
+   "key": "korruseid",
+   "label_et": "Korruseid",
+   "unit": "tk"
+  },
+  {
+   "key": "rattad",
+   "label_et": "Ratasega liikuv",
    "unit": ""
   },
   {
-   "key": "korgus",
-   "label_et": "Kõrgus",
-   "unit": "cm"
-  },
-  {
-   "key": "laius",
-   "label_et": "Laius",
-   "unit": "cm"
-  },
-  {
-   "key": "seadmatud_konkid",
-   "label_et": "Seadmatud konkid",
-   "unit": "tk"
-  },
-  {
-   "key": "liigutavad_konkid",
-   "label_et": "Liigutavad konkid",
-   "unit": "tk"
+   "key": "kaitsereeling",
+   "label_et": "Kaitsereeling",
+   "unit": ""
   }
  ]
 }

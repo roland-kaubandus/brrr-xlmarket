@@ -3,44 +3,34 @@
  "name": "Hüdraulilised roolisüsteemid",
  "fields": [
   {
-   "key": "max_hp",
-   "label_et": "Maksimaalne võimsus",
-   "unit": "HP"
+   "key": "voimsus",
+   "label_et": "Mootorivõimsus",
+   "unit": "W",
+   "unit_orig": "HP"
   },
   {
    "key": "rohk",
-   "label_et": "Maksimaalne rõhk",
+   "label_et": "Maksimaalrõhk",
    "unit": "bar"
   },
   {
-   "key": "vooluhulk",
-   "label_et": "Väljundvool",
-   "unit": "L/min",
-   "unit_orig": "Lmin"
-  },
-  {
-   "key": "hose_length",
-   "label_et": "Torude pikkus",
+   "key": "torupaik",
+   "label_et": "Hüdraulika torupaik",
    "unit": "m"
   },
   {
-   "key": "kaal",
-   "label_et": "Netomass",
-   "unit": "kg"
-  },
-  {
-   "key": "materjal",
-   "label_et": "Peamised materjalid",
+   "key": "silinder_tyyp",
+   "label_et": "Silindri tüüp",
    "unit": ""
   },
   {
-   "key": "stroke",
-   "label_et": "Silindri käik",
-   "unit": "mm"
+   "key": "materjal",
+   "label_et": "Põhimaterjalid",
+   "unit": ""
   },
   {
-   "key": "systeem_tyyp",
-   "label_et": "Süsteemi tüüp",
+   "key": "motorite_arv",
+   "label_et": "Ühilduvad mootorid",
    "unit": ""
   }
  ]

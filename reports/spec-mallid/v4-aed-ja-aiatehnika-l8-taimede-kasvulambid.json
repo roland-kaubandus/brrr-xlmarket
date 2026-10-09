@@ -8,34 +8,29 @@
    "unit": "W"
   },
   {
-   "key": "spektri_ulatus",
-   "label_et": "Spektri ulatus",
+   "key": "valgusspekter",
+   "label_et": "Valgusspekter",
    "unit": "nm"
   },
   {
-   "key": "heleduse_astmed",
-   "label_et": "Heleduse reguleerimise astmed",
-   "unit": "tk"
+   "key": "katteala",
+   "label_et": "Kaetav pindala",
+   "unit": "cm²"
   },
   {
-   "key": "kate_pindala",
-   "label_et": "Katetava pindala",
-   "unit": "ft²"
+   "key": "valgustemperatuur",
+   "label_et": "Valgustemperatuur",
+   "unit": "K"
   },
   {
-   "key": "kael_voimalus",
-   "label_et": "Aheldamise võimalus",
-   "unit": "tk"
+   "key": "heleduse_reguleerimine",
+   "label_et": "Heleduse reguleerimine",
+   "unit": "%"
   },
   {
-   "key": "pinge",
-   "label_et": "Pinge",
-   "unit": "V"
-  },
-  {
-   "key": "kaal",
-   "label_et": "Kaal",
-   "unit": "kg"
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
   }
  ]
 }

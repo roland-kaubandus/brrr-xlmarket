@@ -8,29 +8,19 @@
    "unit": "mm"
   },
   {
-   "key": "kaal",
-   "label_et": "Kaal",
-   "unit": "kg"
-  },
-  {
-   "key": "materjal",
-   "label_et": "Materjalikomplekt",
+   "key": "material",
+   "label_et": "Materjal",
    "unit": ""
   },
   {
-   "key": "komplekti_kogus",
-   "label_et": "Komplektide/nööpide arv",
+   "key": "komplekti_sisaldus",
+   "label_et": "Komplekti osad (tk)",
    "unit": "tk"
   },
   {
-   "key": "kasutusvigurid",
-   "label_et": "Kasutusviis",
-   "unit": ""
-  },
-  {
-   "key": "maarimine",
-   "label_et": "Dimensioonid (L×K×S)",
-   "unit": "cm"
+   "key": "ergonomia",
+   "label_et": "Ergonoomiline kang",
+   "unit": "jah/ei"
   }
  ]
 }

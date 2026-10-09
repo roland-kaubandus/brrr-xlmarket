@@ -3,14 +3,24 @@
  "name": "Multimeediaseadmed",
  "fields": [
   {
-   "key": "ekraani_suurus_mm",
+   "key": "ekraani_suurus",
    "label_et": "Ekraani suurus",
-   "unit": "mm"
+   "unit": "tuumad"
   },
   {
-   "key": "ekraani_lahutus",
-   "label_et": "Ekraani lahutus",
+   "key": "eraldusvoime",
+   "label_et": "Eraldusvõime",
    "unit": "px"
+  },
+  {
+   "key": "aku_maht",
+   "label_et": "Aku maht",
+   "unit": "Wh"
+  },
+  {
+   "key": "aku_kestus",
+   "label_et": "Aku kestus",
+   "unit": "h"
   },
   {
    "key": "kaal",
@@ -18,24 +28,14 @@
    "unit": "kg"
   },
   {
-   "key": "kaamera_ees",
-   "label_et": "Esikaamerate tugi",
-   "unit": "bool"
+   "key": "ip_klass",
+   "label_et": "IP kaitseklass",
+   "unit": ""
   },
   {
-   "key": "kaamera_tagumine",
-   "label_et": "Tagakaamerate tugi",
-   "unit": "bool"
-  },
-  {
-   "key": "carplay_android_auto",
-   "label_et": "CarPlay ja Android Auto",
-   "unit": "bool"
-  },
-  {
-   "key": "juhe_pikkus",
-   "label_et": "Jõujuhe pikkus",
-   "unit": "m"
+   "key": "bluetooth_versioon",
+   "label_et": "Bluetooth versioon",
+   "unit": ""
   }
  ]
 }

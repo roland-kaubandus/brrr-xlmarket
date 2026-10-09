@@ -3,39 +3,44 @@
  "name": "Jääkalastustelgid",
  "fields": [
   {
-   "key": "maht",
-   "label_et": "Kalapüügi pindala",
-   "unit": "m²"
-  },
-  {
-   "key": "kaal",
-   "label_et": "Kaal",
-   "unit": "kg"
-  },
-  {
-   "key": "maarimine",
-   "label_et": "Mahutavus (inimesed)",
+   "key": "isikute_arv",
+   "label_et": "Isikute arv",
    "unit": "tk"
   },
   {
-   "key": "materjal",
-   "label_et": "Materjal",
-   "unit": ""
+   "key": "pindala",
+   "label_et": "Põrandapindala",
+   "unit": "m²"
   },
   {
-   "key": "pikkus",
+   "key": "mootmed_pikkus",
    "label_et": "Pikkus",
    "unit": "m"
   },
   {
-   "key": "laius",
+   "key": "mootmed_laius",
    "label_et": "Laius",
    "unit": "m"
   },
   {
-   "key": "korgus",
+   "key": "mootmed_korgus",
    "label_et": "Kõrgus",
    "unit": "m"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Kangase klass",
+   "unit": "D"
+  },
+  {
+   "key": "kangaste_kihid",
+   "label_et": "Kangaste kihid",
+   "unit": "tk"
+  },
+  {
+   "key": "soojustus",
+   "label_et": "Soojustus",
+   "unit": "jah/ei"
   }
  ]
 }

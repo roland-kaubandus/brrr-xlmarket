@@ -3,39 +3,29 @@
  "name": "Metallriiulid",
  "fields": [
   {
-   "key": "kogu_kandevoimsus",
-   "label_et": "Kogukanduvõime",
-   "unit": "kg"
-  },
-  {
-   "key": "shelf_kandevoimsus",
-   "label_et": "Kanduvõime riiuli kohta",
-   "unit": "kg"
-  },
-  {
-   "key": "kõrgus",
-   "label_et": "Kõrgus",
-   "unit": "mm"
-  },
-  {
-   "key": "laius",
-   "label_et": "Laius",
-   "unit": "mm"
-  },
-  {
-   "key": "sügavus",
-   "label_et": "Sügavus",
-   "unit": "mm"
-  },
-  {
    "key": "riiulite_arv",
    "label_et": "Riiulite arv",
    "unit": "tk"
   },
   {
    "key": "kaal",
-   "label_et": "Kaal",
+   "label_et": "Maksimaalne staatiline koormus",
    "unit": "kg"
+  },
+  {
+   "key": "laius",
+   "label_et": "Laius",
+   "unit": "cm"
+  },
+  {
+   "key": "sügavus",
+   "label_et": "Sügavus",
+   "unit": "cm"
+  },
+  {
+   "key": "korgus",
+   "label_et": "Kõrgus",
+   "unit": "cm"
   },
   {
    "key": "materjal",

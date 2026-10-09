@@ -8,34 +8,29 @@
    "unit": "L"
   },
   {
+   "key": "kaal",
+   "label_et": "Maksimaalne koormus",
+   "unit": "kg"
+  },
+  {
    "key": "materjal",
    "label_et": "Materjal",
    "unit": ""
   },
   {
-   "key": "kaal",
-   "label_et": "Kaal",
-   "unit": "kg"
-  },
-  {
-   "key": "kogus",
-   "label_et": "Pakis olevate konteinerite arv",
-   "unit": "tk"
-  },
-  {
-   "key": "õhukindel_kaas",
-   "label_et": "Õhukindel kaas",
+   "key": "kaaned_tyyp",
+   "label_et": "Kaane tüüp",
    "unit": ""
   },
   {
    "key": "rattad",
-   "label_et": "Liikumisrattad",
+   "label_et": "Rattad olemas",
    "unit": ""
   },
   {
-   "key": "mõõtekaussid",
-   "label_et": "Kaasas olevad mõõtekaussid",
-   "unit": "tk"
+   "key": "jarelmete_komplekt",
+   "label_et": "Järelmete komplekt",
+   "unit": ""
   }
  ]
 }

@@ -4,18 +4,8 @@
  "fields": [
   {
    "key": "maht",
-   "label_et": "Toidu-anuma maht",
+   "label_et": "Mahutavus",
    "unit": "L"
-  },
-  {
-   "key": "kaal",
-   "label_et": "Toote kaal",
-   "unit": "kg"
-  },
-  {
-   "key": "komplekti_kogus",
-   "label_et": "Komplektis olevate anumate arv",
-   "unit": "tk"
   },
   {
    "key": "materjal",
@@ -23,19 +13,24 @@
    "unit": ""
   },
   {
-   "key": "vesi_panni_maht",
-   "label_et": "Veepanni maht",
-   "unit": "L"
-  },
-  {
-   "key": "kujund",
-   "label_et": "Kujund",
+   "key": "kuju",
+   "label_et": "Kuju",
    "unit": ""
   },
   {
-   "key": "kaas_tip",
+   "key": "panide_arv",
+   "label_et": "Pannide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "kaas_tyyp",
    "label_et": "Kaane tüüp",
    "unit": ""
+  },
+  {
+   "key": "komplekti_osad",
+   "label_et": "Komplekti osad",
+   "unit": "tk"
   }
  ]
 }

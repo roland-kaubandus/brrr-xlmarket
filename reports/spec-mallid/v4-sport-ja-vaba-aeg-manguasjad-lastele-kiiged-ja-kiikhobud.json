@@ -3,44 +3,34 @@
  "name": "Kiiged",
  "fields": [
   {
-   "key": "maksimaalne_koormus",
-   "label_et": "Maksimaalne koormus",
-   "unit": "kg"
-  },
-  {
-   "key": "kaal",
-   "label_et": "Toote kaal",
+   "key": "max_kaal",
+   "label_et": "Maksimaalne kandevõime",
    "unit": "kg"
   },
   {
    "key": "materjal",
-   "label_et": "Raammaterjal",
+   "label_et": "Istme materjal",
    "unit": ""
   },
   {
-   "key": "istme_labamoot",
-   "label_et": "Istme läbimõõt/suurus",
-   "unit": "cm"
-  },
-  {
-   "key": "istmete_arv",
-   "label_et": "Istmete arv",
-   "unit": "tk"
-  },
-  {
-   "key": "soovitatud_vanus",
-   "label_et": "Soovitatud vanus",
-   "unit": "aastad"
-  },
-  {
-   "key": "tuge_tyyp",
-   "label_et": "Tugiraammi tüüp",
+   "key": "turvavöö_tüüp",
+   "label_et": "Turvavöö tüüp",
    "unit": ""
   },
   {
-   "key": "taielik_mootmed",
-   "label_et": "Mõõtmed (K x L x S)",
-   "unit": "cm"
+   "key": "režiimide_arv",
+   "label_et": "Režiimide arv",
+   "unit": ""
+  },
+  {
+   "key": "kasutuskohad",
+   "label_et": "Kasutuskohad",
+   "unit": ""
+  },
+  {
+   "key": "komplekti_kuuluvus",
+   "label_et": "Kaasasolev varustus",
+   "unit": ""
   }
  ]
 }

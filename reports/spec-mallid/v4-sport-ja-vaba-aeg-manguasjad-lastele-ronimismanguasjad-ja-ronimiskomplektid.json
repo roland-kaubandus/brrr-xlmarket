@@ -3,14 +3,14 @@
  "name": "Ronimismänguasjad ja ronimiskomplektid",
  "fields": [
   {
-   "key": "kaal",
-   "label_et": "Kaal",
-   "unit": "kg"
+   "key": "osa_kogus",
+   "label_et": "Osade arv",
+   "unit": "tk"
   },
   {
-   "key": "max_koormus",
-   "label_et": "Maksimaalne koormus",
-   "unit": "kg"
+   "key": "soovitatud_vanus",
+   "label_et": "Soovitatud vanus",
+   "unit": "aastat"
   },
   {
    "key": "materjal",
@@ -18,28 +18,18 @@
    "unit": ""
   },
   {
-   "key": "komplekti_mahtu",
-   "label_et": "Komplekti osad / Aksessuaarid",
-   "unit": "tk"
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
   },
   {
-   "key": "vanuse_piirkond",
-   "label_et": "Soovitatav vanus",
-   "unit": "a"
+   "key": "maht_salvestus",
+   "label_et": "Salvestuskotti maht",
+   "unit": "L"
   },
   {
-   "key": "seadistatud_suurus",
-   "label_et": "Seadistatud suurus",
-   "unit": "cm"
-  },
-  {
-   "key": "kasutajate_arv",
-   "label_et": "Samaaegsete kasutajate arv",
-   "unit": "tk"
-  },
-  {
-   "key": "paigutuse_tyyp",
-   "label_et": "Paigutuse tüüp",
+   "key": "funktsionaalsus",
+   "label_et": "Funktsioonid",
    "unit": ""
   }
  ]

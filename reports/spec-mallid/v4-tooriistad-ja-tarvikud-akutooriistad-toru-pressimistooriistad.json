@@ -3,39 +3,34 @@
  "name": "Toru pressimistööriistad",
  "fields": [
   {
-   "key": "pinge",
-   "label_et": "Pinge",
-   "unit": "V"
+   "key": "rohk",
+   "label_et": "Maksimaalne töörõhk",
+   "unit": "bar"
   },
   {
-   "key": "aku_maht",
-   "label_et": "Aku mahtuvus",
-   "unit": "Wh"
+   "key": "pressimisvoim",
+   "label_et": "Pressimiskraft",
+   "unit": "kN"
   },
   {
-   "key": "kaal",
+   "key": "kael",
    "label_et": "Kaal",
    "unit": "kg"
   },
   {
-   "key": "rohk",
-   "label_et": "Pressijõud",
-   "unit": "kN"
+   "key": "luo_arvk",
+   "label_et": "Pressimisotste arv",
+   "unit": "tk"
   },
   {
-   "key": "toru_diameetrid",
-   "label_et": "Toru diameetrid",
+   "key": "torusuurus_vahemik",
+   "label_et": "Torusuurus vahemik",
    "unit": "mm"
   },
   {
-   "key": "kramitud_ajad",
-   "label_et": "Pressimisaeg tsüklis",
-   "unit": "s"
-  },
-  {
-   "key": "seadme_tyyp",
-   "label_et": "Seadme tüüp",
-   "unit": "kategooria"
+   "key": "materjal",
+   "label_et": "Sopitavad materjalid",
+   "unit": ""
   }
  ]
 }

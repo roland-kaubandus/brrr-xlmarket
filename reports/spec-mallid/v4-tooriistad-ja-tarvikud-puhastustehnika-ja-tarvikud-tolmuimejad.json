@@ -13,14 +13,14 @@
    "unit": "L"
   },
   {
-   "key": "rohk",
-   "label_et": "Maksimaalne imemisrõhk",
-   "unit": "kPa"
+   "key": "ohuvool",
+   "label_et": "Imemisvõimsus",
+   "unit": "L/min"
   },
   {
-   "key": "pinge",
-   "label_et": "Pinge",
-   "unit": "V"
+   "key": "myra",
+   "label_et": "Müratase",
+   "unit": "dB"
   },
   {
    "key": "kaal",
@@ -28,14 +28,14 @@
    "unit": "kg"
   },
   {
-   "key": "ohuvool",
-   "label_et": "Õhuvool",
-   "unit": "L/min"
+   "key": "filtreerimine",
+   "label_et": "Filtreerimise aste",
+   "unit": "taseme arv"
   },
   {
-   "key": "poorlemiskiirus",
-   "label_et": "Mootori pöörlemiskiirus",
-   "unit": "RPM"
+   "key": "materjal",
+   "label_et": "Paagi materjal",
+   "unit": "tekst"
   }
  ]
 }

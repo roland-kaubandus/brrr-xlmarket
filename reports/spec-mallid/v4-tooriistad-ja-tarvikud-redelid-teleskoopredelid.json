@@ -3,23 +3,13 @@
  "name": "Teleskoopredelid",
  "fields": [
   {
-   "key": "max_korgus_cm",
-   "label_et": "Maksimaalne kõrgus",
+   "key": "max_pikkus",
+   "label_et": "Maksimaalne pikkus",
    "unit": "cm"
   },
   {
-   "key": "kokkupaigutatud_korgus_cm",
-   "label_et": "Kokkupaigutatud kõrgus",
-   "unit": "cm"
-  },
-  {
-   "key": "kaal",
-   "label_et": "Kaal",
-   "unit": "kg"
-  },
-  {
-   "key": "kandevoimsus_kg",
-   "label_et": "Kandevõimsus",
+   "key": "kandevoimekus",
+   "label_et": "Kandevõimekus",
    "unit": "kg"
   },
   {
@@ -28,19 +18,19 @@
    "unit": ""
   },
   {
-   "key": "astme_laius_cm",
-   "label_et": "Astme laius",
-   "unit": "cm"
-  },
-  {
-   "key": "astmete_arv",
-   "label_et": "Astmete arv",
+   "key": "astmete_tyyp",
+   "label_et": "Astmete tüüp",
    "unit": ""
   },
   {
-   "key": "astme_kaugus_cm",
-   "label_et": "Astmete vaheline kaugus",
-   "unit": "cm"
+   "key": "korgeuse_regulatsioon",
+   "label_et": "Kõrguse regulatsioon",
+   "unit": ""
+  },
+  {
+   "key": "turvaseadised",
+   "label_et": "Turvaseadised",
+   "unit": ""
   }
  ]
 }

@@ -3,14 +3,14 @@
  "name": "Laste tõukerattad",
  "fields": [
   {
-   "key": "rattade_arv",
-   "label_et": "Rataste arv",
-   "unit": "tk"
+   "key": "max_kaal",
+   "label_et": "Maksimaalne kasutaja kaal",
+   "unit": "kg"
   },
   {
-   "key": "maksimaalne_kaal",
-   "label_et": "Maksimaalne lubatud kaal",
-   "unit": "kg"
+   "key": "vanuseryhm",
+   "label_et": "Soovitatav vanuserühm",
+   "unit": "aastat"
   },
   {
    "key": "ketta_labamoot",
@@ -18,28 +18,18 @@
    "unit": "mm"
   },
   {
-   "key": "kaal",
-   "label_et": "Tõukeratta kaal",
-   "unit": "kg"
+   "key": "pikkus_reguleeritav",
+   "label_et": "Pikkuse reguleerimise vahemik",
+   "unit": "cm"
   },
   {
-   "key": "materjal",
-   "label_et": "Raam materjal",
+   "key": "jarv",
+   "label_et": "Värv",
    "unit": ""
   },
   {
-   "key": "voib_palistada",
-   "label_et": "Kokkupandav",
-   "unit": ""
-  },
-  {
-   "key": "valgustus",
-   "label_et": "Valgustusega rattad",
-   "unit": ""
-  },
-  {
-   "key": "reguleeritav_korgus",
-   "label_et": "Reguleeritav käepide",
+   "key": "pidurisysteem",
+   "label_et": "Piduri tüüp",
    "unit": ""
   }
  ]

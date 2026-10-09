@@ -9,28 +9,28 @@
   },
   {
    "key": "pinge",
-   "label_et": "Sisendpinge",
+   "label_et": "Nimipinge",
    "unit": "V"
   },
   {
-   "key": "kaal",
-   "label_et": "Kaal",
-   "unit": "kg"
-  },
-  {
-   "key": "keevitusprotsessid",
+   "key": "protsessid",
    "label_et": "Keevitusprotsessid",
    "unit": ""
   },
   {
-   "key": "keevituspaiskond",
-   "label_et": "Maksimaalne keevituspaiskond",
-   "unit": "mm"
+   "key": "inverter_tyyp",
+   "label_et": "Inverteri tüüp",
+   "unit": ""
   },
   {
-   "key": "tyybimuutuvus_astmeid",
-   "label_et": "Sisendvõimsus",
-   "unit": "kVA"
+   "key": "juhtimisrežiim",
+   "label_et": "Juhtimisrežiim",
+   "unit": ""
+  },
+  {
+   "key": "jahutus",
+   "label_et": "Jahutussüsteem",
+   "unit": ""
   }
  ]
 }

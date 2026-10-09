@@ -3,34 +3,29 @@
  "name": "Nahalõikus- ja pressimismasinad",
  "fields": [
   {
-   "key": "plaadi_suurus_mm",
-   "label_et": "Surve-plaadi suurus (mm)",
+   "key": "plaat_laius",
+   "label_et": "Plaadi laius",
+   "unit": "mm"
+  },
+  {
+   "key": "plaat_pikkus",
+   "label_et": "Plaadi pikkus",
    "unit": "mm"
   },
   {
    "key": "rohk",
    "label_et": "Maksimaalne surve",
-   "unit": "bar"
-  },
-  {
-   "key": "kaal",
-   "label_et": "Neto kaal",
    "unit": "kg"
   },
   {
-   "key": "max_lõike_paksus",
-   "label_et": "Maksimaalene lõike paksus",
+   "key": "takt",
+   "label_et": "Käigulaiendus",
    "unit": "mm"
   },
   {
-   "key": "insuldi_korgus",
-   "label_et": "Insuldi (käigu) kõrgus",
-   "unit": "mm"
-  },
-  {
-   "key": "materjal",
-   "label_et": "Plaadi materjal",
-   "unit": ""
+   "key": "temperatuur_kontroll",
+   "label_et": "Digitaalne temperatuurijuhtimine",
+   "unit": "jah/ei"
   }
  ]
 }

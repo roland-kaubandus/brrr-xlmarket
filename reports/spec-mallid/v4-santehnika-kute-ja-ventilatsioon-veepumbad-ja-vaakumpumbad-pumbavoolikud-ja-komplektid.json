@@ -3,44 +3,34 @@
  "name": "Pumbavoolikud ja -komplektid",
  "fields": [
   {
-   "key": "ketta_labamoot",
-   "label_et": "Voolikupesa läbimõõt",
+   "key": "voolik_diameetr_mm",
+   "label_et": "Vooliku sisediameeter",
    "unit": "mm"
   },
   {
-   "key": "pikkus",
-   "label_et": "Voolikupikkus",
+   "key": "voolik_pikkus_m",
+   "label_et": "Vooliku pikkus",
    "unit": "m"
   },
   {
-   "key": "rohk",
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "rohk_max_bar",
    "label_et": "Maksimaalne töörõhk",
    "unit": "bar"
   },
   {
-   "key": "voolikunaksusus",
-   "label_et": "Voolikuse seinapaisu",
-   "unit": "mm"
-  },
-  {
-   "key": "materjal",
-   "label_et": "Voolikuse materjal",
+   "key": "klamber_materjal",
+   "label_et": "Kinnitusklamber",
    "unit": ""
   },
   {
-   "key": "konnektori_materjal",
-   "label_et": "Konnektori materjal",
+   "key": "kasutusvaldkond",
+   "label_et": "Kasutusvaldkond",
    "unit": ""
-  },
-  {
-   "key": "komplekti_tyyp",
-   "label_et": "Komplekti koosseis",
-   "unit": ""
-  },
-  {
-   "key": "tootemperratuur",
-   "label_et": "Töötamistemperatuurivahemik",
-   "unit": "°C"
   }
  ]
 }

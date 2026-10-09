@@ -3,24 +3,9 @@
  "name": "Seinapehmendused",
  "fields": [
   {
-   "key": "pikkus_mm",
-   "label_et": "Pikkus",
-   "unit": "mm"
-  },
-  {
-   "key": "laius_mm",
-   "label_et": "Laius",
-   "unit": "mm"
-  },
-  {
-   "key": "paksus_mm",
-   "label_et": "Paksus",
-   "unit": "mm"
-  },
-  {
-   "key": "kaal",
-   "label_et": "Kaal",
-   "unit": "kg"
+   "key": "diameeter",
+   "label_et": "Läbimõõt",
+   "unit": "m"
   },
   {
    "key": "materjal",
@@ -28,8 +13,18 @@
    "unit": ""
   },
   {
-   "key": "vett_tolmlikkus",
-   "label_et": "Veekindlus",
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "kogus",
+   "label_et": "Komplekti kogus",
+   "unit": "tk"
+  },
+  {
+   "key": "sihtrühm",
+   "label_et": "Kasutajate vanuserühm",
    "unit": ""
   }
  ]

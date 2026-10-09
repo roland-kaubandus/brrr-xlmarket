@@ -4,23 +4,13 @@
  "fields": [
   {
    "key": "laius_mm",
-   "label_et": "Ukselehtede laius",
+   "label_et": "Kogu laius",
    "unit": "mm"
   },
   {
    "key": "korgus_mm",
-   "label_et": "Ukselehtede kõrgus",
+   "label_et": "Kõrgus",
    "unit": "mm"
-  },
-  {
-   "key": "kaal",
-   "label_et": "Kaal",
-   "unit": "kg"
-  },
-  {
-   "key": "materjal",
-   "label_et": "Materjal",
-   "unit": ""
   },
   {
    "key": "paneelide_arv",
@@ -28,13 +18,18 @@
    "unit": "tk"
   },
   {
-   "key": "paksus_mm",
-   "label_et": "Paksus",
-   "unit": "mm"
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
   },
   {
-   "key": "montaaz",
-   "label_et": "Montaaz",
+   "key": "klaasi_tyyp",
+   "label_et": "Klaasi tüüp",
+   "unit": ""
+  },
+  {
+   "key": "riistvara",
+   "label_et": "Riistvara",
    "unit": ""
   }
  ]

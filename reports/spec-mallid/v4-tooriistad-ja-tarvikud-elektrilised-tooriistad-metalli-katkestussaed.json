@@ -4,43 +4,29 @@
  "fields": [
   {
    "key": "voimsus",
-   "label_et": "Nimivõimsus",
+   "label_et": "Mootorivõimsus",
    "unit": "W"
   },
   {
-   "key": "poorlemiskiirus",
-   "label_et": "Käigukiirus",
-   "unit": "RPM"
-  },
-  {
    "key": "ketta_labamoot",
-   "label_et": "Ketasdiameeter",
+   "label_et": "Ketta läbimõõt",
    "unit": "mm"
   },
   {
-   "key": "maksimaalne_lõikesügavus",
-   "label_et": "Maksimaalne lõikesügavus",
-   "unit": "mm"
+   "key": "poorlemiskiirus",
+   "label_et": "Pöörlemiskiirus",
+   "unit": "RPM",
+   "unit_orig": "rpm"
   },
   {
-   "key": "maksimaalne_lõikelaius",
-   "label_et": "Maksimaalne lõikelaius",
-   "unit": "mm"
-  },
-  {
-   "key": "nurga_ulatus",
-   "label_et": "Nurga reguleerimise ulatus",
+   "key": "nurga_reguleeritavus",
+   "label_et": "Nurga reguleeritavus",
    "unit": "°"
   },
   {
-   "key": "kaal",
-   "label_et": "Netokaal",
-   "unit": "kg"
-  },
-  {
-   "key": "pinge",
-   "label_et": "Toitepinge",
-   "unit": "V"
+   "key": "mootorivool",
+   "label_et": "Mootorivool",
+   "unit": "A"
   }
  ]
 }

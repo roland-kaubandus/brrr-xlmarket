@@ -3,19 +3,14 @@
  "name": "Sahtlisiinid ja -liugurid",
  "fields": [
   {
-   "key": "pikkus",
-   "label_et": "Sahtli pikkus",
+   "key": "pikkus_cm",
+   "label_et": "Pikkus",
    "unit": "cm"
   },
   {
-   "key": "kandmisvoimsus",
-   "label_et": "Kandevõime",
+   "key": "kandevoimsus_kg",
+   "label_et": "Kandevõimekus",
    "unit": "kg"
-  },
-  {
-   "key": "ulevalik_pikkus",
-   "label_et": "Täielik väljatõmbe pikkus",
-   "unit": "cm"
   },
   {
    "key": "materjal",
@@ -23,19 +18,19 @@
    "unit": ""
   },
   {
-   "key": "paksus",
-   "label_et": "Jämedus",
-   "unit": "mm"
-  },
-  {
-   "key": "laius",
-   "label_et": "Sahtli laius",
-   "unit": "mm"
+   "key": "laiendamistyyp",
+   "label_et": "Laiendamise tüüp",
+   "unit": ""
   },
   {
    "key": "lukustus",
    "label_et": "Lukustus",
    "unit": ""
+  },
+  {
+   "key": "kogus",
+   "label_et": "Kogus (paarid)",
+   "unit": "tk"
   }
  ]
 }

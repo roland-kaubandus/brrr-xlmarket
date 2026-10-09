@@ -3,29 +3,14 @@
  "name": "Veoauto-kraanad",
  "fields": [
   {
-   "key": "max_load_capacity",
-   "label_et": "Maksimaalne koormusvõimsus",
+   "key": "kandevoimetus",
+   "label_et": "Kandevõime",
    "unit": "kg"
   },
   {
    "key": "kaal",
-   "label_et": "Toote kaal",
+   "label_et": "Kaal",
    "unit": "kg"
-  },
-  {
-   "key": "pöörlemiskiirus",
-   "label_et": "Pöörlemisnihe",
-   "unit": "°"
-  },
-  {
-   "key": "juhtimisviis",
-   "label_et": "Juhtimisviis",
-   "unit": ""
-  },
-  {
-   "key": "voim",
-   "label_et": "Tõstejõud",
-   "unit": "lbs"
   },
   {
    "key": "materjal",
@@ -33,8 +18,18 @@
    "unit": ""
   },
   {
-   "key": "paigaldamistyyp",
-   "label_et": "Paigaldamistüüp",
+   "key": "poom_tyyp",
+   "label_et": "Poomitüüp",
+   "unit": ""
+  },
+  {
+   "key": "paigutus",
+   "label_et": "Pööramisraadiuse nurk",
+   "unit": "°"
+  },
+  {
+   "key": "voltimine",
+   "label_et": "Kokkupandavus",
    "unit": ""
   }
  ]

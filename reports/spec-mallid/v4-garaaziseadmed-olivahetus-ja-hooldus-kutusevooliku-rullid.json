@@ -4,13 +4,13 @@
  "fields": [
   {
    "key": "ketta_labamoot",
-   "label_et": "Kütusevooliku läbimõõt",
+   "label_et": "Rulli läbimõõt",
    "unit": "mm"
   },
   {
-   "key": "maht",
-   "label_et": "Vooliku pikkus",
-   "unit": "m"
+   "key": "hosu_pikkus",
+   "label_et": "Toru/hosu pikkus",
+   "unit": "mm"
   },
   {
    "key": "rohk",
@@ -18,18 +18,18 @@
    "unit": "bar"
   },
   {
-   "key": "kaal",
-   "label_et": "Kaal",
-   "unit": "kg"
-  },
-  {
    "key": "materjal",
-   "label_et": "Konstruktsioonimaterja",
+   "label_et": "Materjal",
    "unit": ""
   },
   {
-   "key": "toetatud_kytused",
-   "label_et": "Toetatud kütused",
+   "key": "hosu_materjalal",
+   "label_et": "Hosu materjalal",
+   "unit": ""
+  },
+  {
+   "key": "mehhanism",
+   "label_et": "Lahti keritud mehhanism",
    "unit": ""
   }
  ]

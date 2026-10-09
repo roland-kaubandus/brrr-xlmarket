@@ -3,34 +3,34 @@
  "name": "Pudelitungrauad",
  "fields": [
   {
-   "key": "tootvus_ton",
-   "label_et": "Tõstevõimsus",
+   "key": "kandevoimasus",
+   "label_et": "Kandevõimekus",
    "unit": "ton"
   },
   {
-   "key": "tostukaugus_mm",
-   "label_et": "Tõstukaugus",
+   "key": "tostukorgus_min",
+   "label_et": "Tõstukõrgus (miinimum)",
    "unit": "mm"
   },
   {
-   "key": "kaal",
-   "label_et": "Kaal",
-   "unit": "kg"
+   "key": "tostukorgus_max",
+   "label_et": "Tõstukõrgus (maksimum)",
+   "unit": "mm"
+  },
+  {
+   "key": "tostukorgus_ulatus",
+   "label_et": "Tõstukõrguse ulatus",
+   "unit": "mm"
   },
   {
    "key": "materjal",
-   "label_et": "Materjalid",
+   "label_et": "Materjal",
    "unit": ""
   },
   {
-   "key": "reguleerimiskorgus_mm",
-   "label_et": "Reguleerimiskõrgus",
-   "unit": "mm"
-  },
-  {
-   "key": "sadula_laius_mm",
-   "label_et": "Sadula laius",
-   "unit": "mm"
+   "key": "kael_tyyp",
+   "label_et": "Käepideme tüüp",
+   "unit": ""
   }
  ]
 }

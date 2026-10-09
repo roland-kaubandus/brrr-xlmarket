@@ -3,44 +3,34 @@
  "name": "Klahvpillid",
  "fields": [
   {
-   "key": "klaviaturid",
-   "label_et": "Klaviatuuride arv",
+   "key": "klaviatuur_klahvide_arv",
+   "label_et": "Klaviatuuri klahvide arv",
    "unit": "tk"
   },
   {
-   "key": "klahvide_arv",
-   "label_et": "Klahvide arv",
+   "key": "helivarvi_arv",
+   "label_et": "Helivarvi arv",
    "unit": "tk"
   },
   {
-   "key": "tooniused",
-   "label_et": "Tooniuste arv",
-   "unit": "tk"
-  },
-  {
-   "key": "rütmid",
+   "key": "rütmide_arv",
    "label_et": "Rütmide arv",
    "unit": "tk"
   },
   {
-   "key": "polüfoonia",
-   "label_et": "Polüfoonia (samaaegsed helid)",
-   "unit": "tk"
+   "key": "klahvistik_tyyp",
+   "label_et": "Klahvistiku tüüp",
+   "unit": ""
+  },
+  {
+   "key": "varv",
+   "label_et": "Värvus",
+   "unit": ""
   },
   {
    "key": "kaal",
    "label_et": "Kaal",
    "unit": "kg"
-  },
-  {
-   "key": "aku_maht",
-   "label_et": "Aku mahtuvus",
-   "unit": "Wh"
-  },
-  {
-   "key": "klahvide_tüüp",
-   "label_et": "Klahvide tüüp",
-   "unit": "kategooria"
   }
  ]
 }

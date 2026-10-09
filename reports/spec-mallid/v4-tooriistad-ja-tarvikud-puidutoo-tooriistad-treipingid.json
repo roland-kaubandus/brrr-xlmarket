@@ -4,32 +4,32 @@
  "fields": [
   {
    "key": "voimsus",
-   "label_et": "Mootori võimsus",
+   "label_et": "Võimsus",
    "unit": "W"
   },
   {
    "key": "poorlemiskiirus",
-   "label_et": "Spindli kiirus (vahemik)",
+   "label_et": "Pöörlemiskiirus (vahemik)",
    "unit": "RPM"
   },
   {
-   "key": "pinge",
-   "label_et": "Sisendpinge",
-   "unit": "V"
-  },
-  {
-   "key": "ketta_labamoot",
-   "label_et": "Maksimaalne tooriku läbimõõt",
+   "key": "swing_over_bed",
+   "label_et": "Maksimaalne läbimõõt (Swing over bed)",
    "unit": "mm"
   },
   {
-   "key": "tsentrite_vahekaugus",
-   "label_et": "Tsentrite vahekaugus",
+   "key": "spindle_pikkus",
+   "label_et": "Spindle pikkus",
    "unit": "mm"
   },
   {
-   "key": "materjal",
-   "label_et": "Konstruktsiooni materjal",
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "tootsimismaterjalid",
+   "label_et": "Spindle materjal",
    "unit": ""
   }
  ]

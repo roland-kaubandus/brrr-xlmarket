@@ -4,42 +4,32 @@
  "fields": [
   {
    "key": "materjal",
-   "label_et": "Käepideme materjal",
+   "label_et": "Materjal",
    "unit": ""
   },
   {
-   "key": "uks_paksus_mm",
-   "label_et": "Sobiv ukse paksus",
-   "unit": "mm"
-  },
-  {
-   "key": "lukustus_tyyp",
-   "label_et": "Lukustuse tüüp",
+   "key": "viimistlus",
+   "label_et": "Viimistlus",
    "unit": ""
   },
   {
-   "key": "kohl_arv",
-   "label_et": "Kogus pakendis",
-   "unit": "tk"
+   "key": "kanduvus",
+   "label_et": "Kanduvus (rasked uksed)",
+   "unit": ""
   },
   {
-   "key": "kael_mm",
-   "label_et": "Käepideme pikkus",
-   "unit": "mm"
+   "key": "kaepideme_tyyp",
+   "label_et": "Käepideme tüüp",
+   "unit": ""
   },
   {
-   "key": "kaal",
-   "label_et": "Kaal",
-   "unit": "kg"
+   "key": "paigaldus",
+   "label_et": "Paigaldus",
+   "unit": ""
   },
   {
-   "key": "auk_kaugus_mm",
-   "label_et": "Reguleeritav aukude vahekaugus",
-   "unit": "mm"
-  },
-  {
-   "key": "varv",
-   "label_et": "Värvus",
+   "key": "komplekt",
+   "label_et": "Komplekt (kaks ust)",
    "unit": ""
   }
  ]

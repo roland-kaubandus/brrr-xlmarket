@@ -3,38 +3,33 @@
  "name": "Magnet- ja ehitusklotsid",
  "fields": [
   {
+   "key": "osade_arv",
+   "label_et": "Osade arv",
+   "unit": "tk"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "sihtryhm_vanus",
+   "label_et": "Sihtrühm (vanus)",
+   "unit": "aastat"
+  },
+  {
    "key": "kaal",
    "label_et": "Kaal",
    "unit": "kg"
   },
   {
-   "key": "kogus_uksused",
-   "label_et": "Kokku tükke",
-   "unit": "tk"
-  },
-  {
-   "key": "magnetiline_uksus",
-   "label_et": "Magnetilised plaadid",
-   "unit": "tk"
-  },
-  {
-   "key": "materjal",
-   "label_et": "Magnet materjal",
+   "key": "mitmekesisuus",
+   "label_et": "Kaasasolevad aksessuaarid",
    "unit": ""
   },
   {
-   "key": "max_suurus",
-   "label_et": "Max. mõõde",
-   "unit": "mm"
-  },
-  {
-   "key": "min_vanus",
-   "label_et": "Soovitatav vanus",
-   "unit": "a"
-  },
-  {
-   "key": "lisafunktsioon",
-   "label_et": "Lisaaccessooriumi tüüp",
+   "key": "kasutuskoht",
+   "label_et": "Kasutuskoht",
    "unit": ""
   }
  ]

@@ -3,29 +3,24 @@
  "name": "Välisköögi sahtlid ja kapid",
  "fields": [
   {
-   "key": "laius_mm",
+   "key": "laius",
    "label_et": "Laius",
-   "unit": "mm"
+   "unit": "cm"
   },
   {
-   "key": "korgus_mm",
+   "key": "korgus",
    "label_et": "Kõrgus",
-   "unit": "mm"
+   "unit": "cm"
   },
   {
-   "key": "sügavus_mm",
+   "key": "sügavus",
    "label_et": "Sügavus",
-   "unit": "mm"
+   "unit": "cm"
   },
   {
-   "key": "kaal",
-   "label_et": "Kaal",
-   "unit": "kg"
-  },
-  {
-   "key": "sahtlite_arv",
-   "label_et": "Sahtlite arv",
-   "unit": "tk"
+   "key": "maht",
+   "label_et": "Mahutavus",
+   "unit": "L"
   },
   {
    "key": "materjal",
@@ -33,8 +28,13 @@
    "unit": ""
   },
   {
-   "key": "max_koormuse_tier",
-   "label_et": "Max koormuse per sahtlit",
+   "key": "pind_tootlus",
+   "label_et": "Pinnatöötlus",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
    "unit": "kg"
   }
  ]

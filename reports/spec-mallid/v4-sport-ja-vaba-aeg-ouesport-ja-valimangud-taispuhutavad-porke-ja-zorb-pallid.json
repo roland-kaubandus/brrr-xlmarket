@@ -3,34 +3,34 @@
  "name": "Täispuhutavad põrke- ja Zorb-pallid",
  "fields": [
   {
-   "key": "diameter_m",
-   "label_et": "Läbimõõt",
-   "unit": "m"
+   "key": "pakendi_kogus",
+   "label_et": "Pakendi kogus (tk)",
+   "unit": "pcs"
   },
   {
-   "key": "kaal",
-   "label_et": "Kaal",
-   "unit": "kg"
+   "key": "palli_diameeter",
+   "label_et": "Palli läbimõõt",
+   "unit": "m"
   },
   {
    "key": "materjal",
    "label_et": "Materjal",
-   "unit": "mm paksus"
+   "unit": ""
   },
   {
-   "key": "kogus",
-   "label_et": "Paket kogus",
-   "unit": "tk"
+   "key": "vanus_kategooria",
+   "label_et": "Sihtrühm",
+   "unit": ""
+  },
+  {
+   "key": "kaas_komplektis",
+   "label_et": "Käepide/õlavarraste komplektis",
+   "unit": ""
   },
   {
    "key": "varv",
-   "label_et": "Värvid",
-   "unit": "valik"
-  },
-  {
-   "key": "voimsus",
-   "label_et": "Pump võimsus",
-   "unit": "W"
+   "label_et": "Värvus",
+   "unit": ""
   }
  ]
 }

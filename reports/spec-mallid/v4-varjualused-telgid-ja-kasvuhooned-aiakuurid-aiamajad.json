@@ -3,24 +3,9 @@
  "name": "Aiakuurid ja aiamajad",
  "fields": [
   {
-   "key": "korgus",
-   "label_et": "Kõrgus",
-   "unit": "mm"
-  },
-  {
-   "key": "laius",
-   "label_et": "Laius",
-   "unit": "mm"
-  },
-  {
-   "key": "sügavus",
-   "label_et": "Sügavus",
-   "unit": "mm"
-  },
-  {
-   "key": "kaal",
-   "label_et": "Kaal",
-   "unit": "kg"
+   "key": "maht",
+   "label_et": "Mahutavus",
+   "unit": "m³"
   },
   {
    "key": "materjal",
@@ -28,18 +13,23 @@
    "unit": ""
   },
   {
-   "key": "riiulite_arv",
-   "label_et": "Riiulite arv",
-   "unit": "tk"
+   "key": "varvaus",
+   "label_et": "Värvus",
+   "unit": ""
   },
   {
-   "key": "katuse_kandekoormus",
-   "label_et": "Katuse kandekoormus",
-   "unit": "kg/m²"
+   "key": "lukustamine",
+   "label_et": "Lukustamine",
+   "unit": ""
   },
   {
-   "key": "uks_lukustus",
-   "label_et": "Ukse lukustus",
+   "key": "veekindlus",
+   "label_et": "Veekindlus",
+   "unit": ""
+  },
+  {
+   "key": "reguleeritavad_riiulid",
+   "label_et": "Reguleeritavad riiulid",
    "unit": ""
   }
  ]

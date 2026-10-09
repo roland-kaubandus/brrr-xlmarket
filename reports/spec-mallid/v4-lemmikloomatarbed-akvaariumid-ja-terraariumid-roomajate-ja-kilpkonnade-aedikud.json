@@ -3,24 +3,29 @@
  "name": "Roomajate ja kilpkonnade aedikud",
  "fields": [
   {
-   "key": "pikkus_mm",
+   "key": "ruumide_arv",
+   "label_et": "Ruumide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "koruste_arv",
+   "label_et": "Koruste arv",
+   "unit": "tk"
+  },
+  {
+   "key": "pikkus",
    "label_et": "Pikkus",
-   "unit": "mm"
+   "unit": "cm"
   },
   {
-   "key": "laius_mm",
+   "key": "laius",
    "label_et": "Laius",
-   "unit": "mm"
+   "unit": "cm"
   },
   {
-   "key": "korgus_mm",
+   "key": "korgus",
    "label_et": "Kõrgus",
-   "unit": "mm"
-  },
-  {
-   "key": "kaal",
-   "label_et": "Kaal",
-   "unit": "kg"
+   "unit": "cm"
   },
   {
    "key": "materjal",
@@ -28,18 +33,13 @@
    "unit": ""
   },
   {
-   "key": "ruumide_arv",
-   "label_et": "Ruumide arv",
-   "unit": ""
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
   },
   {
-   "key": "valgustus_kaasas",
-   "label_et": "Valgustusjärg kaasas",
-   "unit": ""
-  },
-  {
-   "key": "liikumisvoimalus",
-   "label_et": "Liikumisalus (jalg/ratastega)",
+   "key": "lisavarustus",
+   "label_et": "Lisavarustus",
    "unit": ""
   }
  ]

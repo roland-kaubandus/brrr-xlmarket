@@ -3,19 +3,14 @@
  "name": "Töökojapressid",
  "fields": [
   {
-   "key": "nimikoormus",
-   "label_et": "Nimikoormus",
-   "unit": "t"
-  },
-  {
    "key": "rohk",
-   "label_et": "Töörõhk",
+   "label_et": "Maksimaalne töörõhk",
    "unit": "bar"
   },
   {
-   "key": "silindri_kang",
-   "label_et": "Silindri käik",
-   "unit": "mm"
+   "key": "rohk_tonni",
+   "label_et": "Pressimisjõud",
+   "unit": "t"
   },
   {
    "key": "kaal",
@@ -23,14 +18,19 @@
    "unit": "kg"
   },
   {
-   "key": "pindade_vahekaugus",
-   "label_et": "Plaatide max vahekaugus",
-   "unit": "mm"
+   "key": "maarimine",
+   "label_et": "Määrimine",
+   "unit": "tüüp"
   },
   {
    "key": "materjal",
-   "label_et": "Raam materjal",
-   "unit": ""
+   "label_et": "Raami materjal",
+   "unit": "tüüp"
+  },
+  {
+   "key": "reguleeritav_korgus",
+   "label_et": "Reguleeritava kõrguse ulatus",
+   "unit": "mm"
   }
  ]
 }

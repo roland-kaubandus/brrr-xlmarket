@@ -9,18 +9,13 @@
   },
   {
    "key": "vooluhulk",
-   "label_et": "Maksimaalne vooluhulk",
+   "label_et": "Vooluhulk",
    "unit": "L/min"
   },
   {
-   "key": "tõstekõrgus",
-   "label_et": "Maksimaalne tõstekõrgus",
-   "unit": "m"
-  },
-  {
-   "key": "pinge",
-   "label_et": "Pinge",
-   "unit": "V"
+   "key": "rohk",
+   "label_et": "Maksimaalne rõhk",
+   "unit": "bar"
   },
   {
    "key": "materjal",
@@ -31,6 +26,16 @@
    "key": "kaal",
    "label_et": "Kaal",
    "unit": "kg"
+  },
+  {
+   "key": "veekaitse_klass",
+   "label_et": "Veekaitse klass",
+   "unit": ""
+  },
+  {
+   "key": "ujurlüliti",
+   "label_et": "Ujurlüliti",
+   "unit": ""
   }
  ]
 }

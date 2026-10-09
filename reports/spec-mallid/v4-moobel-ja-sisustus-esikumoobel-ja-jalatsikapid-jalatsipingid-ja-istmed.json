@@ -3,44 +3,34 @@
  "name": "Jalatsipingid ja istmed",
  "fields": [
   {
-   "key": "koormus_mahutavus",
-   "label_et": "Maksimaalne koormus",
+   "key": "laius",
+   "label_et": "Laius",
+   "unit": "cm"
+  },
+  {
+   "key": "kaal_kannatus",
+   "label_et": "Maksimaalne koormuse võimsus",
    "unit": "kg"
   },
   {
-   "key": "pikkus",
-   "label_et": "Pikkus",
-   "unit": "mm"
+   "key": "materjalid",
+   "label_et": "Materjalid",
+   "unit": "-"
   },
   {
-   "key": "korgus",
-   "label_et": "Kõrgus",
-   "unit": "mm"
+   "key": "korruseid",
+   "label_et": "Riiulite/kihtide arv",
+   "unit": "tk"
   },
   {
-   "key": "sügavus",
-   "label_et": "Sügavus",
-   "unit": "mm"
+   "key": "sahtlid",
+   "label_et": "Sahtlite arv",
+   "unit": "tk"
   },
   {
-   "key": "materjal",
-   "label_et": "Raam materjal",
-   "unit": ""
-  },
-  {
-   "key": "kihid",
-   "label_et": "Salvestusastmeid",
-   "unit": ""
-  },
-  {
-   "key": "istmega",
-   "label_et": "Istmekohver",
-   "unit": ""
-  },
-  {
-   "key": "kaal",
-   "label_et": "Neto kaal",
-   "unit": "kg"
+   "key": "istekoht",
+   "label_et": "Pehme istmeistuja",
+   "unit": "jah/ei"
   }
  ]
 }

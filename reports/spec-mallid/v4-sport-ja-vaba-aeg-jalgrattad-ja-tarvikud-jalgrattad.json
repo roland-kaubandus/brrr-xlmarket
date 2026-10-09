@@ -3,19 +3,14 @@
  "name": "Jalgrattad",
  "fields": [
   {
-   "key": "rataste_labimaoot",
-   "label_et": "Rataste läbimõõt",
-   "unit": "in"
+   "key": "raami_suurus",
+   "label_et": "Raami suurus",
+   "unit": "cm"
   },
   {
-   "key": "kaal",
-   "label_et": "Kaal",
-   "unit": "kg"
-  },
-  {
-   "key": "maksimaalne_koormus",
-   "label_et": "Maksimaalne koormus",
-   "unit": "kg"
+   "key": "kiiruste_arv",
+   "label_et": "Kiiruste arv",
+   "unit": "tk"
   },
   {
    "key": "materjal",
@@ -23,23 +18,18 @@
    "unit": ""
   },
   {
-   "key": "kiirused",
-   "label_et": "Käigud",
-   "unit": "tk"
-  },
-  {
-   "key": "suspended_type",
-   "label_et": "Suspensiooni tüüp",
+   "key": "esisuspensoon",
+   "label_et": "Esisuspensoon",
    "unit": ""
   },
   {
-   "key": "pidurid",
-   "label_et": "Pidurite tüüp",
-   "unit": ""
+   "key": "tagaratta_labamoot",
+   "label_et": "Rehvi läbimõõt",
+   "unit": "mm"
   },
   {
-   "key": "bike_type",
-   "label_et": "Jalgratta tüüp",
+   "key": "pidurisysteem",
+   "label_et": "Pidurisüsteem",
    "unit": ""
   }
  ]

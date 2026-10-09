@@ -3,43 +3,33 @@
  "name": "Meditsiini- ja laborikärud",
  "fields": [
   {
-   "key": "max_load_capacity",
-   "label_et": "Maksimaalne koormusvõime",
+   "key": "maksimaalne_koormus",
+   "label_et": "Maksimaalne koormus",
    "unit": "kg"
   },
   {
    "key": "kaal",
-   "label_et": "Toote kaal",
+   "label_et": "Käru kaal",
    "unit": "kg"
   },
   {
-   "key": "shelves_drawers_count",
-   "label_et": "Riiulite ja sahtlite arv",
+   "key": "korgus_reguleeritav",
+   "label_et": "Kõrguse reguleerimise vahemik",
+   "unit": "mm"
+  },
+  {
+   "key": "platvorm_suurus",
+   "label_et": "Platvormi suurus",
+   "unit": "mm"
+  },
+  {
+   "key": "rataste_arv",
+   "label_et": "Rataste arv",
    "unit": "tk"
   },
   {
-   "key": "materjal",
-   "label_et": "Raammaterjal",
-   "unit": ""
-  },
-  {
-   "key": "dimensions_height",
-   "label_et": "Kõrgus",
-   "unit": "mm"
-  },
-  {
-   "key": "dimensions_width",
-   "label_et": "Laius",
-   "unit": "mm"
-  },
-  {
-   "key": "wheel_diameter",
-   "label_et": "Ratta läbimõõt",
-   "unit": "mm"
-  },
-  {
-   "key": "lockable_wheels",
-   "label_et": "Lukustatavad rattad",
+   "key": "salvestus_sahtlid",
+   "label_et": "Salvestuskohtade arv",
    "unit": "tk"
   }
  ]

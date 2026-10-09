@@ -8,34 +8,29 @@
    "unit": "mm"
   },
   {
-   "key": "hammaste_arv",
-   "label_et": "Hammaste arv",
+   "key": "hambaid",
+   "label_et": "Hambade arv",
    "unit": "tk"
   },
   {
    "key": "materjal",
-   "label_et": "Ketta materjal",
-   "unit": ""
+   "label_et": "Hambamaterjal",
+   "unit": "-"
   },
   {
-   "key": "paksus",
-   "label_et": "Ketta paksus",
+   "key": "lõikesügavus",
+   "label_et": "Lõikesügavus",
    "unit": "mm"
   },
   {
-   "key": "poorlemiskiirus",
-   "label_et": "Maksimaalne pöörlemiskiirus",
-   "unit": "RPM"
+   "key": "ressurss",
+   "label_et": "Ressurss (lõigete arv)",
+   "unit": "tk"
   },
   {
-   "key": "tarbimisotstarve",
-   "label_et": "Tarbimisotstarve",
-   "unit": ""
-  },
-  {
-   "key": "arbori_labamoot",
-   "label_et": "Arbori läbimõõt",
-   "unit": "mm"
+   "key": "otstarve",
+   "label_et": "Lõikealus",
+   "unit": "-"
   }
  ]
 }

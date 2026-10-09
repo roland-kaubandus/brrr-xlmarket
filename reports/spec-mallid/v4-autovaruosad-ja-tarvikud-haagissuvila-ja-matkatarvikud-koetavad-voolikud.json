@@ -8,28 +8,28 @@
    "unit": "m"
   },
   {
-   "key": "voimsus",
-   "label_et": "Võimsus",
-   "unit": "W"
+   "key": "sisemine_diameetr",
+   "label_et": "Sisemine läbimõõt",
+   "unit": "mm"
   },
   {
-   "key": "sisemine_diameet",
-   "label_et": "Sisemise diameetri (ID)",
-   "unit": "inch"
-  },
-  {
-   "key": "min_temp",
-   "label_et": "Minimaalne töötemperatuur",
-   "unit": "°C"
-  },
-  {
-   "key": "pinna_tyyp",
-   "label_et": "Pinna tüüp",
+   "key": "pind_tekstuur",
+   "label_et": "Pinna tekstuur",
    "unit": ""
   },
   {
-   "key": "materjal",
-   "label_et": "Materjal",
+   "key": "min_temp",
+   "label_et": "Minimaalne temperatuur",
+   "unit": "°C"
+  },
+  {
+   "key": "gfci_kaitse",
+   "label_et": "GFCI lekkekaitse",
+   "unit": ""
+  },
+  {
+   "key": "sisseehitatud_termostat",
+   "label_et": "Sisseehitatud termostat",
    "unit": ""
   }
  ]

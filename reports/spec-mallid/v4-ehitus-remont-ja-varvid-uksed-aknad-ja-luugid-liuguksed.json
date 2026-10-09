@@ -3,19 +3,24 @@
  "name": "Liuguksed",
  "fields": [
   {
-   "key": "uks_laius_mm",
-   "label_et": "Ukse laius",
+   "key": "laius_kokku",
+   "label_et": "Kogulaiusm",
    "unit": "mm"
   },
   {
-   "key": "uks_korgus_mm",
-   "label_et": "Ukse kõrgus",
+   "key": "korgus",
+   "label_et": "Kõrgus",
    "unit": "mm"
   },
   {
-   "key": "kaal",
-   "label_et": "Kaal (koos tarvikutega)",
-   "unit": "kg"
+   "key": "paneelide_arv",
+   "label_et": "Paneelide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "yhepaneeli_laius",
+   "label_et": "Ühe paneeli laiusm",
+   "unit": "mm"
   },
   {
    "key": "materjal",
@@ -23,23 +28,13 @@
    "unit": ""
   },
   {
-   "key": "paneeli_paksus_mm",
-   "label_et": "Paneeli paksus",
-   "unit": "mm"
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
   },
   {
-   "key": "raudtee_pikkus_mm",
-   "label_et": "Raudtee pikkus",
-   "unit": "mm"
-  },
-  {
-   "key": "kaardi_tyyp",
-   "label_et": "Kaardi tüüp",
-   "unit": ""
-  },
-  {
-   "key": "metallimaterjal",
-   "label_et": "Metalliosa materjal",
+   "key": "rada_komplektis",
+   "label_et": "Raja ja juhikud komplektis",
    "unit": ""
   }
  ]

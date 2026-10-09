@@ -3,44 +3,44 @@
  "name": "Kanapuurid ja aedikud",
  "fields": [
   {
-   "key": "pikkus_mm",
+   "key": "pikkus",
    "label_et": "Pikkus",
-   "unit": "mm"
+   "unit": "m"
   },
   {
-   "key": "laius_mm",
+   "key": "laius",
    "label_et": "Laius",
-   "unit": "mm"
+   "unit": "m"
   },
   {
-   "key": "korgus_mm",
+   "key": "korgus",
    "label_et": "Kõrgus",
-   "unit": "mm"
+   "unit": "m"
   },
   {
-   "key": "kaal",
-   "label_et": "Kaal",
-   "unit": "kg"
+   "key": "maht",
+   "label_et": "Maht",
+   "unit": "m³"
+  },
+  {
+   "key": "max_kanalid",
+   "label_et": "Maksimaal kanu",
+   "unit": "tk"
   },
   {
    "key": "materjal",
    "label_et": "Materjal",
-   "unit": ""
+   "unit": "materjal"
   },
   {
-   "key": "katus_tyyp",
-   "label_et": "Katus tüüp",
-   "unit": ""
+   "key": "kaetud",
+   "label_et": "Vesikaitsega kaetud",
+   "unit": "jah/ei"
   },
   {
-   "key": "kaitsevork_pikkus",
-   "label_et": "Kaitsevõrk pikkus",
-   "unit": "m"
-  },
-  {
-   "key": "ukseavamine",
-   "label_et": "Ukse avanemise laius",
-   "unit": "mm"
+   "key": "uksed",
+   "label_et": "Uste arv",
+   "unit": "tk"
   }
  ]
 }

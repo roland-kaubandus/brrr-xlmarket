@@ -3,9 +3,9 @@
  "name": "Mängumajad ja telgid",
  "fields": [
   {
-   "key": "vanuseryhm",
-   "label_et": "Soovitatav vanuserühm (aastad)",
-   "unit": "years"
+   "key": "materjal_raam",
+   "label_et": "Raami materjal",
+   "unit": ""
   },
   {
    "key": "kaal",
@@ -13,33 +13,33 @@
    "unit": "kg"
   },
   {
-   "key": "materjal",
-   "label_et": "Peamine materjal",
-   "unit": ""
-  },
-  {
-   "key": "kujund",
-   "label_et": "Mängumaja kujund",
-   "unit": ""
-  },
-  {
-   "key": "mootmed_pindala",
-   "label_et": "Mõõtmed (pikk × lai × kõrg)",
+   "key": "pikkus",
+   "label_et": "Pikkus",
    "unit": "cm"
   },
   {
-   "key": "aknad_uksed",
-   "label_et": "Aknad ja uksed (arv)",
-   "unit": ""
+   "key": "laius",
+   "label_et": "Laius",
+   "unit": "cm"
   },
   {
-   "key": "kaasas_tarvikud",
-   "label_et": "Kaasas olevad tarvikud",
-   "unit": ""
+   "key": "korgus",
+   "label_et": "Kõrgus",
+   "unit": "cm"
   },
   {
-   "key": "kasutuskoht",
-   "label_et": "Kasutuskoht (sise-/välistingimus)",
+   "key": "uksed",
+   "label_et": "Uksed/Sisseprääsid",
+   "unit": "tk"
+  },
+  {
+   "key": "aknad",
+   "label_et": "Aknad",
+   "unit": "tk"
+  },
+  {
+   "key": "varustus",
+   "label_et": "Varustus",
    "unit": ""
   }
  ]

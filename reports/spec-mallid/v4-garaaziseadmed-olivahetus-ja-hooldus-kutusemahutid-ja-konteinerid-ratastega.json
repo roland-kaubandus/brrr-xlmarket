@@ -8,18 +8,8 @@
    "unit": "L"
   },
   {
-   "key": "vooluhulk",
-   "label_et": "Max. vooluhulk",
-   "unit": "L/min"
-  },
-  {
-   "key": "voimsus",
-   "label_et": "Pump võimsus",
-   "unit": "W"
-  },
-  {
    "key": "materjal",
-   "label_et": "Mahuti materjal",
+   "label_et": "Materjal",
    "unit": ""
   },
   {
@@ -28,19 +18,19 @@
    "unit": "kg"
   },
   {
+   "key": "rattad_arv",
+   "label_et": "Rataste arv",
+   "unit": "tk"
+  },
+  {
    "key": "pump_tyyp",
-   "label_et": "Pump tüüp",
+   "label_et": "Pumba tüüp",
    "unit": ""
   },
   {
-   "key": "hos_pikkus",
-   "label_et": "Hos pikkus",
-   "unit": "m"
-  },
-  {
-   "key": "ratta_diameeter",
-   "label_et": "Ratta diameeter (taha)",
-   "unit": "cm"
+   "key": "maapinnahaare",
+   "label_et": "Maandusklips",
+   "unit": ""
   }
  ]
 }

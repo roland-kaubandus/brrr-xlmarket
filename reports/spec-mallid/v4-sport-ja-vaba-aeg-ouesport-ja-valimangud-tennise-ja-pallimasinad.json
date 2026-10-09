@@ -3,14 +3,24 @@
  "name": "Tennise pallimasinad ja -korvid",
  "fields": [
   {
-   "key": "palli_mahtuvus",
-   "label_et": "Pallide mahtuvus",
+   "key": "maht",
+   "label_et": "Pallimaht",
    "unit": "tk"
   },
   {
-   "key": "maksimaalne_palli_kiirus",
-   "label_et": "Maksimaalne pallide kiirus",
+   "key": "maksimaalne_kiirus",
+   "label_et": "Maksimaalne pallikiirus",
    "unit": "km/h"
+  },
+  {
+   "key": "aku_maht",
+   "label_et": "Akumaht",
+   "unit": "Wh"
+  },
+  {
+   "key": "tööaeg",
+   "label_et": "Tööaeg",
+   "unit": "h"
   },
   {
    "key": "kaal",
@@ -18,29 +28,14 @@
    "unit": "kg"
   },
   {
-   "key": "materjal",
-   "label_et": "Raam materjal",
-   "unit": ""
-  },
-  {
-   "key": "aku_maht",
-   "label_et": "Aku mahtuvus",
-   "unit": "Wh"
-  },
-  {
-   "key": "bluetooth_ulatus",
-   "label_et": "Bluetooth ühenduse ulatus",
-   "unit": "m"
-  },
-  {
-   "key": "voltimine",
-   "label_et": "Voltimine (masinad)",
+   "key": "treening_режимid",
+   "label_et": "Treeningurežiimide arv",
    "unit": "tk"
   },
   {
-   "key": "kokkupandav",
-   "label_et": "Kokkupandav disain",
-   "unit": ""
+   "key": "spin_kontroll",
+   "label_et": "Spin-kontroll",
+   "unit": "jah/ei"
   }
  ]
 }

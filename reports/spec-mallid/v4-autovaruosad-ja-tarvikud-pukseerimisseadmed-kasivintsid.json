@@ -3,39 +3,34 @@
  "name": "Käsivintsid",
  "fields": [
   {
-   "key": "tõmbejõud_kg",
-   "label_et": "Maksimaalne tõmbejõud",
+   "key": "koormus_kg",
+   "label_et": "Maksimaalne koormus",
    "unit": "kg"
   },
   {
-   "key": "kaal",
-   "label_et": "Toote kaal",
-   "unit": "kg"
+   "key": "nöör_pikkus",
+   "label_et": "Nööri/rihma pikkus",
+   "unit": "m"
   },
   {
-   "key": "nöör_pikkus_cm",
-   "label_et": "Nööri/kaabli pikkus",
-   "unit": "cm"
-  },
-  {
-   "key": "materjal",
-   "label_et": "Nööri/kaabli materjal",
+   "key": "nöör_materjal",
+   "label_et": "Nööri/rihma materjal",
    "unit": ""
   },
   {
-   "key": "ratšett_tüüp",
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "ratšett_suund",
    "label_et": "Ratšeti suunad",
    "unit": ""
   },
   {
-   "key": "kiirused",
-   "label_et": "Käigute arv",
+   "key": "kaevitus_tyyp",
+   "label_et": "Käsitsi käivitamise tüüp",
    "unit": ""
-  },
-  {
-   "key": "käepide_pikkus_mm",
-   "label_et": "Käepideme pikkus",
-   "unit": "mm"
   }
  ]
 }

@@ -8,34 +8,34 @@
    "unit": "tk"
   },
   {
+   "key": "paneelide_arv",
+   "label_et": "Paneelide arv",
+   "unit": "tk"
+  },
+  {
    "key": "kaal",
    "label_et": "Kaal",
    "unit": "kg"
   },
   {
-   "key": "pikkus",
-   "label_et": "Pikkus",
-   "unit": "mm"
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "soovituslik_vanus",
+   "label_et": "Soovituslik vanus",
+   "unit": "aasta"
+  },
+  {
+   "key": "kõrgus",
+   "label_et": "Kõrgus",
+   "unit": "cm"
   },
   {
    "key": "laius",
    "label_et": "Laius",
-   "unit": "mm"
-  },
-  {
-   "key": "sügavus",
-   "label_et": "Sügavus",
-   "unit": "mm"
-  },
-  {
-   "key": "soovitatud_vanus",
-   "label_et": "Soovitatud vanus",
-   "unit": "a"
-  },
-  {
-   "key": "materjal",
-   "label_et": "Materjal",
-   "unit": ""
+   "unit": "cm"
   }
  ]
 }

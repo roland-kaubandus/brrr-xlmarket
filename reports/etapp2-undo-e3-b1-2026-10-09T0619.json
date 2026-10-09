@@ -1,0 +1,578 @@
+{
+  "batch_id": "e3-b1-2026-10-09T0619",
+  "created_at": "2026-10-09T06:19:37.742Z",
+  "actor": "claude-code-test",
+  "label": "ETAPP3 p1/4",
+  "new_l3": [
+    {
+      "id": "pcat_e2_floorchairs",
+      "handle": "v4-moobel-ja-sisustus-elutoamoobel-porandatoolid",
+      "name": "Põrandatoolid",
+      "parent_id": "pcat_v4_l6_6"
+    },
+    {
+      "id": "pcat_e2_activesittingchairs",
+      "handle": "v4-moobel-ja-sisustus-toolid-ja-istmed-aktiivse-istumise-istmed",
+      "name": "Aktiivse istumise istmed",
+      "parent_id": "pcat_v4_l6_8"
+    },
+    {
+      "id": "pcat_e2_weightedblankets",
+      "handle": "v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-raskustekid",
+      "name": "Raskustekid",
+      "parent_id": "pcat_v4_l6_5"
+    },
+    {
+      "id": "pcat_e2_kneelingchairs",
+      "handle": "v4-moobel-ja-sisustus-toolid-ja-istmed-polvitustoolid",
+      "name": "Põlvitustoolid",
+      "parent_id": "pcat_v4_l6_8"
+    },
+    {
+      "id": "pcat_e2_metalroofpanels",
+      "handle": "v4-ehitus-remont-ja-varvid-katusematerjalid-metallkatuseplaadid",
+      "name": "Metallkatuseplaadid",
+      "parent_id": "pcat_v4_l9_14"
+    },
+    {
+      "id": "pcat_e2_foldingguestbeds",
+      "handle": "v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-kokkupandavad-kulalisvoodid",
+      "name": "Kokkupandavad külalisvoodid",
+      "parent_id": "pcat_v4_l6_5"
+    },
+    {
+      "id": "pcat_e2_footmassagersstimulators",
+      "handle": "v4-tervis-hooldus-ja-ilu-isikuhooldusseadmed-jalamassoorid-ja-stimulaatorid",
+      "name": "Jalamassöörid ja -stimulaatorid",
+      "parent_id": "pcat_v4_l15_1"
+    },
+    {
+      "id": "pcat_e2_kneescooters",
+      "handle": "v4-meditsiin-ja-liikumisabi-liikumisabi-polvekaimistoed-polveskuutrid",
+      "name": "Põlvekäimistoed (põlveskuutrid)",
+      "parent_id": "pcat_v4_l16_1"
+    },
+    {
+      "id": "pcat_e2_biketravelbagscases",
+      "handle": "v4-sport-ja-vaba-aeg-jalgrattad-ja-tarvikud-jalgratta-transpordikotid-ja-kohvrid",
+      "name": "Jalgratta transpordikotid ja -kohvrid",
+      "parent_id": "pcat_v4_l12_11"
+    },
+    {
+      "id": "pcat_e2_nitrocoldbrewsystems",
+      "handle": "v4-suurkook-kohviseadmed-kulmkohvi-valmistussusteemid-nitro-cold-brew",
+      "name": "Külmkohvi valmistussüsteemid (nitro cold brew)",
+      "parent_id": "pcat_5kohv"
+    }
+  ],
+  "attach": [
+    {
+      "product_id": "prod_01KNXXMHZETB07TGVZY686WKPF",
+      "cat_id": "pcat_e2_floorchairs"
+    },
+    {
+      "product_id": "prod_01KNXXMKTNCVVVFCDBC60PP6XJ",
+      "cat_id": "pcat_e2_floorchairs"
+    },
+    {
+      "product_id": "prod_01KNXXMTZC6QTAFJ8PQH9QHCMB",
+      "cat_id": "pcat_e2_floorchairs"
+    },
+    {
+      "product_id": "prod_01KNXXMTZE2ZSA00TJV8XEPN96",
+      "cat_id": "pcat_e2_floorchairs"
+    },
+    {
+      "product_id": "prod_01KNXXMYHVTESFPTQ0ST36CGRS",
+      "cat_id": "pcat_e2_floorchairs"
+    },
+    {
+      "product_id": "prod_01KY5EZWRHZ1P1ZK5CWAP91RJC",
+      "cat_id": "pcat_e2_floorchairs"
+    },
+    {
+      "product_id": "prod_01KY5F00XD7FNXT6NXC6GW4HAB",
+      "cat_id": "pcat_e2_floorchairs"
+    },
+    {
+      "product_id": "prod_01KNXXG5G2S5N7GXTZNPF6253A",
+      "cat_id": "pcat_e2_activesittingchairs"
+    },
+    {
+      "product_id": "prod_01KNXXGAXJYD4M30Z6GNG32509",
+      "cat_id": "pcat_e2_activesittingchairs"
+    },
+    {
+      "product_id": "prod_01KNXXGAYFJE648R6M6H1S38TV",
+      "cat_id": "pcat_e2_activesittingchairs"
+    },
+    {
+      "product_id": "prod_01KNXXGHYT5C21DJFT0JN8NW3Y",
+      "cat_id": "pcat_e2_activesittingchairs"
+    },
+    {
+      "product_id": "prod_01KNXXPEKGQ5E0X8PAY44BKRXN",
+      "cat_id": "pcat_e2_weightedblankets"
+    },
+    {
+      "product_id": "prod_01KNXXPFG5VBAFBZXRQ8QPZBGE",
+      "cat_id": "pcat_e2_weightedblankets"
+    },
+    {
+      "product_id": "prod_01KNXXPGCK118TKVCZJ5DYWNB2",
+      "cat_id": "pcat_e2_weightedblankets"
+    },
+    {
+      "product_id": "prod_01KNXXPGCXR3X7FCND0SDMKJRB",
+      "cat_id": "pcat_e2_weightedblankets"
+    },
+    {
+      "product_id": "prod_01KNXXPH8SGZF3FXE1YQDFPCY9",
+      "cat_id": "pcat_e2_weightedblankets"
+    },
+    {
+      "product_id": "prod_01KPJVGJCF08RM5F9FS8A17ZVF",
+      "cat_id": "pcat_e2_kneelingchairs"
+    },
+    {
+      "product_id": "prod_01KPJVGJJPD0NVD7S9B44M0Z9B",
+      "cat_id": "pcat_e2_kneelingchairs"
+    },
+    {
+      "product_id": "prod_01KPJVGJRYJH1FB9QQWBB6F3C7",
+      "cat_id": "pcat_e2_kneelingchairs"
+    },
+    {
+      "product_id": "prod_01KPJVGJZFHWT8YN9RV6BZKTHP",
+      "cat_id": "pcat_e2_kneelingchairs"
+    },
+    {
+      "product_id": "prod_01KPJVGK5WXJ14RBY2QA7Z2VNQ",
+      "cat_id": "pcat_e2_kneelingchairs"
+    },
+    {
+      "product_id": "prod_01KY5F0TEX6KHX2X1GBNZAQW0C",
+      "cat_id": "pcat_e2_metalroofpanels"
+    },
+    {
+      "product_id": "prod_01KY5F0TMZBEP2DST91RRB25V9",
+      "cat_id": "pcat_e2_metalroofpanels"
+    },
+    {
+      "product_id": "prod_01KY5F0VKAS0XQST0X7M8PQZYD",
+      "cat_id": "pcat_e2_metalroofpanels"
+    },
+    {
+      "product_id": "prod_01KY5F11CWYJCZ68TMSWAKXFVV",
+      "cat_id": "pcat_e2_metalroofpanels"
+    },
+    {
+      "product_id": "prod_01KNXXKCZY0F5XNYH3HPP30WYB",
+      "cat_id": "pcat_e2_foldingguestbeds"
+    },
+    {
+      "product_id": "prod_01KNXXKD00KTXZEZRGY6RRNFHJ",
+      "cat_id": "pcat_e2_foldingguestbeds"
+    },
+    {
+      "product_id": "prod_01KNXXKD02YH6YMSD88RMC9XNE",
+      "cat_id": "pcat_e2_foldingguestbeds"
+    },
+    {
+      "product_id": "prod_01KNXXKD0VKM83VR2Q3199P5SS",
+      "cat_id": "pcat_e2_foldingguestbeds"
+    },
+    {
+      "product_id": "prod_01KNXXGS5NDA0PWV9WA62R1P4Q",
+      "cat_id": "pcat_e2_footmassagersstimulators"
+    },
+    {
+      "product_id": "prod_01KNXXGT1F82TS8E4RWJQTKERY",
+      "cat_id": "pcat_e2_footmassagersstimulators"
+    },
+    {
+      "product_id": "prod_01KNXXGTYXDJ5JGT275KP0KXHM",
+      "cat_id": "pcat_e2_footmassagersstimulators"
+    },
+    {
+      "product_id": "prod_01KNXXHNXD0J6PR0CHN2PXRFJX",
+      "cat_id": "pcat_e2_footmassagersstimulators"
+    },
+    {
+      "product_id": "prod_01KNXXD2MJPFPGDY3TJM8Y4A7V",
+      "cat_id": "pcat_e2_kneescooters"
+    },
+    {
+      "product_id": "prod_01KNXXD2MQTEY4MT1YPKGTT9NC",
+      "cat_id": "pcat_e2_kneescooters"
+    },
+    {
+      "product_id": "prod_01KNXXD5E7WXSMTDW58XBPNJN7",
+      "cat_id": "pcat_e2_kneescooters"
+    },
+    {
+      "product_id": "prod_01KPJVCW34PZNAE0XHDFF42JTD",
+      "cat_id": "pcat_e2_biketravelbagscases"
+    },
+    {
+      "product_id": "prod_01KPJVCW9HG8YJTGPRQ03XSF7K",
+      "cat_id": "pcat_e2_biketravelbagscases"
+    },
+    {
+      "product_id": "prod_01KPJVCWF81GY8TDES43F6ZVEN",
+      "cat_id": "pcat_e2_biketravelbagscases"
+    },
+    {
+      "product_id": "prod_01KZ54MRJNKKG6ATEEPHKARJ36",
+      "cat_id": "pcat_e2_nitrocoldbrewsystems"
+    },
+    {
+      "product_id": "prod_01KZ54MRMEM7YTC0SKQWTD34GC",
+      "cat_id": "pcat_e2_nitrocoldbrewsystems"
+    },
+    {
+      "product_id": "prod_01M1QHC4HYDJMEBVAEQ1ZW4CYY",
+      "cat_id": "pcat_e2_nitrocoldbrewsystems"
+    }
+  ],
+  "product_ids": [
+    "prod_01KNXXMHZETB07TGVZY686WKPF",
+    "prod_01KNXXMKTNCVVVFCDBC60PP6XJ",
+    "prod_01KNXXMTZC6QTAFJ8PQH9QHCMB",
+    "prod_01KNXXMTZE2ZSA00TJV8XEPN96",
+    "prod_01KNXXMYHVTESFPTQ0ST36CGRS",
+    "prod_01KY5EZWRHZ1P1ZK5CWAP91RJC",
+    "prod_01KY5F00XD7FNXT6NXC6GW4HAB",
+    "prod_01KNXXG5G2S5N7GXTZNPF6253A",
+    "prod_01KNXXGAXJYD4M30Z6GNG32509",
+    "prod_01KNXXGAYFJE648R6M6H1S38TV",
+    "prod_01KNXXGHYT5C21DJFT0JN8NW3Y",
+    "prod_01KNXXPEKGQ5E0X8PAY44BKRXN",
+    "prod_01KNXXPFG5VBAFBZXRQ8QPZBGE",
+    "prod_01KNXXPGCK118TKVCZJ5DYWNB2",
+    "prod_01KNXXPGCXR3X7FCND0SDMKJRB",
+    "prod_01KNXXPH8SGZF3FXE1YQDFPCY9",
+    "prod_01KPJVGJCF08RM5F9FS8A17ZVF",
+    "prod_01KPJVGJJPD0NVD7S9B44M0Z9B",
+    "prod_01KPJVGJRYJH1FB9QQWBB6F3C7",
+    "prod_01KPJVGJZFHWT8YN9RV6BZKTHP",
+    "prod_01KPJVGK5WXJ14RBY2QA7Z2VNQ",
+    "prod_01KY5F0TEX6KHX2X1GBNZAQW0C",
+    "prod_01KY5F0TMZBEP2DST91RRB25V9",
+    "prod_01KY5F0VKAS0XQST0X7M8PQZYD",
+    "prod_01KY5F11CWYJCZ68TMSWAKXFVV",
+    "prod_01KNXXKCZY0F5XNYH3HPP30WYB",
+    "prod_01KNXXKD00KTXZEZRGY6RRNFHJ",
+    "prod_01KNXXKD02YH6YMSD88RMC9XNE",
+    "prod_01KNXXKD0VKM83VR2Q3199P5SS",
+    "prod_01KNXXGS5NDA0PWV9WA62R1P4Q",
+    "prod_01KNXXGT1F82TS8E4RWJQTKERY",
+    "prod_01KNXXGTYXDJ5JGT275KP0KXHM",
+    "prod_01KNXXHNXD0J6PR0CHN2PXRFJX",
+    "prod_01KNXXD2MJPFPGDY3TJM8Y4A7V",
+    "prod_01KNXXD2MQTEY4MT1YPKGTT9NC",
+    "prod_01KNXXD5E7WXSMTDW58XBPNJN7",
+    "prod_01KPJVCW34PZNAE0XHDFF42JTD",
+    "prod_01KPJVCW9HG8YJTGPRQ03XSF7K",
+    "prod_01KPJVCWF81GY8TDES43F6ZVEN",
+    "prod_01KZ54MRJNKKG6ATEEPHKARJ36",
+    "prod_01KZ54MRMEM7YTC0SKQWTD34GC",
+    "prod_01M1QHC4HYDJMEBVAEQ1ZW4CYY"
+  ],
+  "reparent": [
+    {
+      "product_id": "prod_01KNXXD2MJPFPGDY3TJM8Y4A7V",
+      "prev_status": "published",
+      "from_cat_ids": [
+        "pcat_f4_16x1_4"
+      ]
+    },
+    {
+      "product_id": "prod_01KNXXD2MQTEY4MT1YPKGTT9NC",
+      "prev_status": "published",
+      "from_cat_ids": [
+        "pcat_f4_16x1_4"
+      ]
+    },
+    {
+      "product_id": "prod_01KNXXD5E7WXSMTDW58XBPNJN7",
+      "prev_status": "published",
+      "from_cat_ids": [
+        "pcat_f4_16x1_4"
+      ]
+    },
+    {
+      "product_id": "prod_01KNXXG5G2S5N7GXTZNPF6253A",
+      "prev_status": "published",
+      "from_cat_ids": [
+        "pcat_mv_6x3_5"
+      ]
+    },
+    {
+      "product_id": "prod_01KNXXGAXJYD4M30Z6GNG32509",
+      "prev_status": "published",
+      "from_cat_ids": [
+        "pcat_mv_6x3_5"
+      ]
+    },
+    {
+      "product_id": "prod_01KNXXGAYFJE648R6M6H1S38TV",
+      "prev_status": "published",
+      "from_cat_ids": [
+        "pcat_mv_6x3_5"
+      ]
+    },
+    {
+      "product_id": "prod_01KNXXGHYT5C21DJFT0JN8NW3Y",
+      "prev_status": "published",
+      "from_cat_ids": [
+        "pcat_mv_6x3_5"
+      ]
+    },
+    {
+      "product_id": "prod_01KNXXGS5NDA0PWV9WA62R1P4Q",
+      "prev_status": "published",
+      "from_cat_ids": [
+        "pcat_15keha"
+      ]
+    },
+    {
+      "product_id": "prod_01KNXXGT1F82TS8E4RWJQTKERY",
+      "prev_status": "published",
+      "from_cat_ids": [
+        "pcat_15keha"
+      ]
+    },
+    {
+      "product_id": "prod_01KNXXGTYXDJ5JGT275KP0KXHM",
+      "prev_status": "published",
+      "from_cat_ids": [
+        "pcat_15keha"
+      ]
+    },
+    {
+      "product_id": "prod_01KNXXHNXD0J6PR0CHN2PXRFJX",
+      "prev_status": "published",
+      "from_cat_ids": [
+        "pcat_15keha"
+      ]
+    },
+    {
+      "product_id": "prod_01KNXXKCZY0F5XNYH3HPP30WYB",
+      "prev_status": "published",
+      "from_cat_ids": [
+        "pcat_mv_6x5_5"
+      ]
+    },
+    {
+      "product_id": "prod_01KNXXKD00KTXZEZRGY6RRNFHJ",
+      "prev_status": "published",
+      "from_cat_ids": [
+        "pcat_mv_6x5_5"
+      ]
+    },
+    {
+      "product_id": "prod_01KNXXKD02YH6YMSD88RMC9XNE",
+      "prev_status": "published",
+      "from_cat_ids": [
+        "pcat_mv_6x5_5"
+      ]
+    },
+    {
+      "product_id": "prod_01KNXXKD0VKM83VR2Q3199P5SS",
+      "prev_status": "published",
+      "from_cat_ids": [
+        "pcat_mv_6x5_5"
+      ]
+    },
+    {
+      "product_id": "prod_01KNXXMHZETB07TGVZY686WKPF",
+      "prev_status": "published",
+      "from_cat_ids": [
+        "pcat_mv_6x6_1"
+      ]
+    },
+    {
+      "product_id": "prod_01KNXXMKTNCVVVFCDBC60PP6XJ",
+      "prev_status": "published",
+      "from_cat_ids": [
+        "pcat_mv_6x6_1"
+      ]
+    },
+    {
+      "product_id": "prod_01KNXXMTZC6QTAFJ8PQH9QHCMB",
+      "prev_status": "published",
+      "from_cat_ids": [
+        "pcat_mv_6x6_1"
+      ]
+    },
+    {
+      "product_id": "prod_01KNXXMTZE2ZSA00TJV8XEPN96",
+      "prev_status": "published",
+      "from_cat_ids": [
+        "pcat_mv_6x6_1"
+      ]
+    },
+    {
+      "product_id": "prod_01KNXXMYHVTESFPTQ0ST36CGRS",
+      "prev_status": "published",
+      "from_cat_ids": [
+        "pcat_mv_6x6_1"
+      ]
+    },
+    {
+      "product_id": "prod_01KNXXPEKGQ5E0X8PAY44BKRXN",
+      "prev_status": "published",
+      "from_cat_ids": [
+        "pcat_mv_6x5_8"
+      ]
+    },
+    {
+      "product_id": "prod_01KNXXPFG5VBAFBZXRQ8QPZBGE",
+      "prev_status": "published",
+      "from_cat_ids": [
+        "pcat_mv_6x5_8"
+      ]
+    },
+    {
+      "product_id": "prod_01KNXXPGCK118TKVCZJ5DYWNB2",
+      "prev_status": "published",
+      "from_cat_ids": [
+        "pcat_mv_6x5_8"
+      ]
+    },
+    {
+      "product_id": "prod_01KNXXPGCXR3X7FCND0SDMKJRB",
+      "prev_status": "published",
+      "from_cat_ids": [
+        "pcat_mv_6x5_8"
+      ]
+    },
+    {
+      "product_id": "prod_01KNXXPH8SGZF3FXE1YQDFPCY9",
+      "prev_status": "published",
+      "from_cat_ids": [
+        "pcat_mv_6x5_8"
+      ]
+    },
+    {
+      "product_id": "prod_01KPJVCW34PZNAE0XHDFF42JTD",
+      "prev_status": "published",
+      "from_cat_ids": [
+        "pcat_el_12x11_4"
+      ]
+    },
+    {
+      "product_id": "prod_01KPJVCW9HG8YJTGPRQ03XSF7K",
+      "prev_status": "published",
+      "from_cat_ids": [
+        "pcat_el_12x11_4"
+      ]
+    },
+    {
+      "product_id": "prod_01KPJVCWF81GY8TDES43F6ZVEN",
+      "prev_status": "published",
+      "from_cat_ids": [
+        "pcat_el_12x11_4"
+      ]
+    },
+    {
+      "product_id": "prod_01KPJVGJCF08RM5F9FS8A17ZVF",
+      "prev_status": "published",
+      "from_cat_ids": [
+        "pcat_mv_6x3_5"
+      ]
+    },
+    {
+      "product_id": "prod_01KPJVGJJPD0NVD7S9B44M0Z9B",
+      "prev_status": "published",
+      "from_cat_ids": [
+        "pcat_mv_6x3_5"
+      ]
+    },
+    {
+      "product_id": "prod_01KPJVGJRYJH1FB9QQWBB6F3C7",
+      "prev_status": "published",
+      "from_cat_ids": [
+        "pcat_mv_6x3_5"
+      ]
+    },
+    {
+      "product_id": "prod_01KPJVGJZFHWT8YN9RV6BZKTHP",
+      "prev_status": "published",
+      "from_cat_ids": [
+        "pcat_mv_6x3_5"
+      ]
+    },
+    {
+      "product_id": "prod_01KPJVGK5WXJ14RBY2QA7Z2VNQ",
+      "prev_status": "published",
+      "from_cat_ids": [
+        "pcat_mv_6x3_5"
+      ]
+    },
+    {
+      "product_id": "prod_01KY5EZWRHZ1P1ZK5CWAP91RJC",
+      "prev_status": "published",
+      "from_cat_ids": [
+        "pcat_mv_6x6_1"
+      ]
+    },
+    {
+      "product_id": "prod_01KY5F00XD7FNXT6NXC6GW4HAB",
+      "prev_status": "published",
+      "from_cat_ids": [
+        "pcat_mv_6x6_1"
+      ]
+    },
+    {
+      "product_id": "prod_01KY5F0TEX6KHX2X1GBNZAQW0C",
+      "prev_status": "published",
+      "from_cat_ids": [
+        "pcat_es_9x14_2"
+      ]
+    },
+    {
+      "product_id": "prod_01KY5F0TMZBEP2DST91RRB25V9",
+      "prev_status": "published",
+      "from_cat_ids": [
+        "pcat_es_9x14_2"
+      ]
+    },
+    {
+      "product_id": "prod_01KY5F0VKAS0XQST0X7M8PQZYD",
+      "prev_status": "published",
+      "from_cat_ids": [
+        "pcat_es_9x14_2"
+      ]
+    },
+    {
+      "product_id": "prod_01KY5F11CWYJCZ68TMSWAKXFVV",
+      "prev_status": "published",
+      "from_cat_ids": [
+        "pcat_es_9x14_2"
+      ]
+    },
+    {
+      "product_id": "prod_01KZ54MRJNKKG6ATEEPHKARJ36",
+      "prev_status": "published",
+      "from_cat_ids": [
+        "pcat_ks_4x1_14"
+      ]
+    },
+    {
+      "product_id": "prod_01KZ54MRMEM7YTC0SKQWTD34GC",
+      "prev_status": "published",
+      "from_cat_ids": [
+        "pcat_ks_4x1_14"
+      ]
+    },
+    {
+      "product_id": "prod_01M1QHC4HYDJMEBVAEQ1ZW4CYY",
+      "prev_status": "published",
+      "from_cat_ids": [
+        "pcat_ks_4x1_14"
+      ]
+    }
+  ]
+}

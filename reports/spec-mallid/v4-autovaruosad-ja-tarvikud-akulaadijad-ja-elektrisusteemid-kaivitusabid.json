@@ -3,39 +3,34 @@
  "name": "Käivitusabid",
  "fields": [
   {
-   "key": "tippsool",
-   "label_et": "Tippsool",
+   "key": "käivituspinge",
+   "label_et": "Käivituspinge (peak)",
    "unit": "A"
   },
   {
    "key": "aku_maht",
-   "label_et": "Aku mahtuvus",
+   "label_et": "Akupank maht",
    "unit": "Wh"
   },
   {
-   "key": "pinge",
-   "label_et": "Pinge",
-   "unit": "V"
+   "key": "rohk",
+   "label_et": "Max rõhk (kompressor)",
+   "unit": "bar"
   },
   {
-   "key": "kaal",
-   "label_et": "Kaal",
-   "unit": "kg"
+   "key": "ohuvool",
+   "label_et": "Õhuvoolu (kompressor)",
+   "unit": "L/min"
   },
   {
-   "key": "bensiin_mootorite_ulatus",
-   "label_et": "Bensiinimootori ulatus",
+   "key": "bensiin_maht",
+   "label_et": "Bensiini mootori käivituse (max)",
    "unit": "L"
   },
   {
-   "key": "diisel_mootorite_ulatus",
-   "label_et": "Diiselmootori ulatus",
+   "key": "diisli_maht",
+   "label_et": "Diiselmootorite käivituse (max)",
    "unit": "L"
-  },
-  {
-   "key": "lisafunktsioonid",
-   "label_et": "Lisafunktsioonid",
-   "unit": ""
   }
  ]
 }

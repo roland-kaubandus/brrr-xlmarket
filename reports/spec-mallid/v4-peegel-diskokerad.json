@@ -3,24 +3,34 @@
  "name": "Peegel-diskokerad",
  "fields": [
   {
-   "key": "diameter_mm",
-   "label_et": "Läbimõõt",
+   "key": "ketta_labamoot",
+   "label_et": "Kuuli läbimõõt",
    "unit": "mm"
+  },
+  {
+   "key": "poorlemiskiirus",
+   "label_et": "Pöörlemiskiirus",
+   "unit": "RPM"
+  },
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "led_varvid",
+   "label_et": "LED värvid",
+   "unit": "tk"
+  },
+  {
+   "key": "kaugkaug_juhtimine",
+   "label_et": "Kaugjuhtimise tugi",
+   "unit": "jah/ei"
   },
   {
    "key": "kaal",
    "label_et": "Kaal",
    "unit": "kg"
-  },
-  {
-   "key": "materjal",
-   "label_et": "Materjal",
-   "unit": ""
-  },
-  {
-   "key": "varv",
-   "label_et": "Värvus",
-   "unit": ""
   }
  ]
 }

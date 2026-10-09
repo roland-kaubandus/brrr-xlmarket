@@ -4,43 +4,38 @@
  "fields": [
   {
    "key": "maht",
-   "label_et": "Täitemaht (ühe täituse kohta)",
-   "unit": "ml"
+   "label_et": "Mahutavus",
+   "unit": "L"
   },
   {
-   "key": "vooluhulk",
-   "label_et": "Maksimaalne vooluhulk",
-   "unit": "L/min"
+   "key": "kaalumispiirkond",
+   "label_et": "Täitmispiirkond",
+   "unit": "g"
   },
   {
-   "key": "kaal",
-   "label_et": "Seadme kaal",
-   "unit": "kg"
+   "key": "otsade_arv",
+   "label_et": "Otste arv",
+   "unit": "tk"
   },
   {
    "key": "materjal",
    "label_et": "Materjal",
-   "unit": "tekstiline"
+   "unit": ""
   },
   {
-   "key": "kontroll_tyyp",
-   "label_et": "Juhtimisviis",
-   "unit": "tekstiline"
+   "key": "temperatuurijuhtimine",
+   "label_et": "Temperatuurijuhtimine",
+   "unit": ""
   },
   {
-   "key": "noolide_arv",
-   "label_et": "Täitenoolide arv",
-   "unit": "tk"
+   "key": "kaalumismood",
+   "label_et": "Kaalumismood",
+   "unit": ""
   },
   {
-   "key": "rohk",
-   "label_et": "Töösurvepinge",
-   "unit": "bar"
-  },
-  {
-   "key": "taigsus",
-   "label_et": "Täitmise täpsus",
-   "unit": "%"
+   "key": "konveier",
+   "label_et": "Konveier",
+   "unit": ""
   }
  ]
 }

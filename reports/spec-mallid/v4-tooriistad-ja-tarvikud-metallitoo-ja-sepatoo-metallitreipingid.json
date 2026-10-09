@@ -4,33 +4,23 @@
  "fields": [
   {
    "key": "voimsus",
-   "label_et": "Mootori võimsus",
+   "label_et": "Võimsus",
    "unit": "W"
   },
   {
    "key": "poorlemiskiirus",
-   "label_et": "Spindli pöörlemiskiirus",
+   "label_et": "Max pöörlemiskiirus",
    "unit": "RPM"
   },
   {
-   "key": "chuck_diameter",
-   "label_et": "Chuck läbimõõt",
+   "key": "tooriku_laius",
+   "label_et": "Tooriku laius",
    "unit": "mm"
   },
   {
-   "key": "swing_over_bed",
-   "label_et": "Maksimaalne töödetava materjali läbimõõt",
+   "key": "tooriku_pikkus",
+   "label_et": "Tooriku pikkus",
    "unit": "mm"
-  },
-  {
-   "key": "centers_distance",
-   "label_et": "Keskpunktide vaheline kaugus",
-   "unit": "mm"
-  },
-  {
-   "key": "pinge",
-   "label_et": "Pinge",
-   "unit": "V"
   },
   {
    "key": "kaal",
@@ -38,9 +28,9 @@
    "unit": "kg"
   },
   {
-   "key": "spindle_bore",
-   "label_et": "Spindli auk",
-   "unit": "mm"
+   "key": "juhtimissusteem",
+   "label_et": "Juhtimissüsteem",
+   "unit": ""
   }
  ]
 }

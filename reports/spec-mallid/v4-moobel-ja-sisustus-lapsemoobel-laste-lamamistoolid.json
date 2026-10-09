@@ -3,19 +3,9 @@
  "name": "Laste lamamistoolid",
  "fields": [
   {
-   "key": "koormus_max",
-   "label_et": "Maksimaalne koormus",
+   "key": "kaal",
+   "label_et": "Kaal",
    "unit": "kg"
-  },
-  {
-   "key": "seljatugi_nurk_min",
-   "label_et": "Seljatugi minimaalne nurk",
-   "unit": "°"
-  },
-  {
-   "key": "seljatugi_nurk_max",
-   "label_et": "Seljatugi maksimaalne nurk",
-   "unit": "°"
   },
   {
    "key": "materjal",
@@ -23,19 +13,29 @@
    "unit": ""
   },
   {
-   "key": "koonuse_arv",
-   "label_et": "Koonuste arv",
-   "unit": "tk"
-  },
-  {
-   "key": "taskute_arv",
-   "label_et": "Taskute arv",
-   "unit": "tk"
+   "key": "selja_kaldenurk",
+   "label_et": "Seljatoe kaldenurk",
+   "unit": "°"
   },
   {
    "key": "laius",
-   "label_et": "Istme laius (101°-127° asendis)",
+   "label_et": "Istme laius",
    "unit": "cm"
+  },
+  {
+   "key": "sügavus",
+   "label_et": "Istme sügavus",
+   "unit": "cm"
+  },
+  {
+   "key": "korgus",
+   "label_et": "Kokku korgus",
+   "unit": "cm"
+  },
+  {
+   "key": "vanuseryhm",
+   "label_et": "Soovitatav vanuserühm",
+   "unit": ""
   }
  ]
 }

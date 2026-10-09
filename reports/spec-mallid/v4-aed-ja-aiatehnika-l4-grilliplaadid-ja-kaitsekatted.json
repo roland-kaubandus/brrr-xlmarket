@@ -3,24 +3,14 @@
  "name": "Grilliplaadid",
  "fields": [
   {
+   "key": "pindala",
+   "label_et": "Grillimispind",
+   "unit": "cm²"
+  },
+  {
    "key": "materjal",
    "label_et": "Materjal",
    "unit": ""
-  },
-  {
-   "key": "keetmispind_pikkus",
-   "label_et": "Keetmispinna pikkus",
-   "unit": "mm"
-  },
-  {
-   "key": "keetmispind_laius",
-   "label_et": "Keetmispinna laius",
-   "unit": "mm"
-  },
-  {
-   "key": "keetmispind_pindala",
-   "label_et": "Keetmispinna pindala",
-   "unit": "cm²"
   },
   {
    "key": "kaal",
@@ -28,9 +18,19 @@
    "unit": "kg"
   },
   {
-   "key": "max_temperatuur",
-   "label_et": "Maksimaalne temperatuur",
-   "unit": "°C"
+   "key": "soojuslevitamine",
+   "label_et": "Soojuse levitamine",
+   "unit": ""
+  },
+  {
+   "key": "kate",
+   "label_et": "Mittekleepuv kate",
+   "unit": ""
+  },
+  {
+   "key": "kasutusvaldkond",
+   "label_et": "Sobib kasutamiseks",
+   "unit": ""
   }
  ]
 }

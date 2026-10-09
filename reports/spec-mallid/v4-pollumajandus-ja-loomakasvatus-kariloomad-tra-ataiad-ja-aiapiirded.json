@@ -3,9 +3,24 @@
  "name": "Tarad ja võrgud",
  "fields": [
   {
-   "key": "kaal",
-   "label_et": "Netokaal",
-   "unit": "kg"
+   "key": "silma_suurus",
+   "label_et": "Silma suurus",
+   "unit": "mm"
+  },
+  {
+   "key": "laius",
+   "label_et": "Laiús",
+   "unit": "mm"
+  },
+  {
+   "key": "pikkus",
+   "label_et": "Pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "traadi_paksus",
+   "label_et": "Traadi paksus",
+   "unit": "gauge"
   },
   {
    "key": "materjal",
@@ -13,34 +28,9 @@
    "unit": ""
   },
   {
-   "key": "pinna_laius",
-   "label_et": "Laiusleht",
-   "unit": "mm"
-  },
-  {
-   "key": "pinna_pikkus",
-   "label_et": "Pikkusleht",
-   "unit": "mm"
-  },
-  {
-   "key": "silmade_suurus",
-   "label_et": "Silmade suurus",
-   "unit": "mm"
-  },
-  {
-   "key": "traadi_diameetr",
-   "label_et": "Traadi läbimõõt",
-   "unit": "mm"
-  },
-  {
-   "key": "pvc_paksus",
-   "label_et": "PVC katete paksus",
-   "unit": "mm"
-  },
-  {
-   "key": "maarimine",
-   "label_et": "Katted",
-   "unit": ""
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
   }
  ]
 }

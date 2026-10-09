@@ -3,24 +3,24 @@
  "name": "Närilistepuurid",
  "fields": [
   {
-   "key": "kaal",
-   "label_et": "Kaal",
-   "unit": "kg"
-  },
-  {
-   "key": "pikkus",
+   "key": "pikkus_mm",
    "label_et": "Pikkus",
    "unit": "mm"
   },
   {
-   "key": "laius",
+   "key": "laius_mm",
    "label_et": "Laius",
    "unit": "mm"
   },
   {
-   "key": "korgus",
+   "key": "korgus_mm",
    "label_et": "Kõrgus",
    "unit": "mm"
+  },
+  {
+   "key": "maht_l",
+   "label_et": "Mahutavus",
+   "unit": "L"
   },
   {
    "key": "materjal",
@@ -28,19 +28,14 @@
    "unit": ""
   },
   {
-   "key": "astmete_arv",
-   "label_et": "Astmete arv",
-   "unit": "tk"
+   "key": "kaal_kg",
+   "label_et": "Kaal",
+   "unit": "kg"
   },
   {
-   "key": "vaatamise_nurk",
-   "label_et": "Vaatamise nurk",
+   "key": "vaatelaud_aste",
+   "label_et": "Vaateaken",
    "unit": "°"
-  },
-  {
-   "key": "liikuvus",
-   "label_et": "Liikuvus (ratastega)",
-   "unit": ""
   }
  ]
 }

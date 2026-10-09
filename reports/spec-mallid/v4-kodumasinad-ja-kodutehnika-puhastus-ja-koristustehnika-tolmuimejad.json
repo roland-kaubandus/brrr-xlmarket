@@ -4,38 +4,33 @@
  "fields": [
   {
    "key": "voimsus",
-   "label_et": "Võimsus",
+   "label_et": "Mootori võimsus",
    "unit": "W"
   },
   {
-   "key": "rohk",
-   "label_et": "Imemisjõud (maksimaalne)",
+   "key": "imamisrohk",
+   "label_et": "Imamisrõhk",
    "unit": "kPa"
   },
   {
-   "key": "poorlemiskiirus",
-   "label_et": "Harjaste pöörlemiskiirus",
-   "unit": "RPM"
-  },
-  {
-   "key": "maht",
-   "label_et": "Tolmukoguja maht",
-   "unit": "mL"
-  },
-  {
-   "key": "myra",
-   "label_et": "Müra taseme",
-   "unit": "dB"
-  },
-  {
    "key": "aku_kestus",
-   "label_et": "Tööaeg (max režiim)",
+   "label_et": "Akutööaeg",
    "unit": "min"
   },
   {
-   "key": "materjal",
-   "label_et": "Peamaterjalid",
-   "unit": ""
+   "key": "harjade_arv",
+   "label_et": "Harjade arv",
+   "unit": "tk"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "myra",
+   "label_et": "Müra tase",
+   "unit": "dB"
   }
  ]
 }

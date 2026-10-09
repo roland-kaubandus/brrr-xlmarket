@@ -3,19 +3,14 @@
  "name": "Toiduveoki teenindusaknad",
  "fields": [
   {
-   "key": "avaamissuurus_pikkus_mm",
-   "label_et": "Avamise suurus pikkus",
+   "key": "laius",
+   "label_et": "Laius",
    "unit": "mm"
   },
   {
-   "key": "avaamissuurus_laius_mm",
-   "label_et": "Avamise suurus laius",
+   "key": "korgus",
+   "label_et": "Kõrgus",
    "unit": "mm"
-  },
-  {
-   "key": "kaal",
-   "label_et": "Kaal",
-   "unit": "kg"
   },
   {
    "key": "materjal",
@@ -23,19 +18,29 @@
    "unit": ""
   },
   {
-   "key": "sügavus_mm",
-   "label_et": "Sügavus",
-   "unit": "mm"
-  },
-  {
-   "key": "avamise_nurk_max",
+   "key": "avanemisurk",
    "label_et": "Maksimaalse avamise nurk",
    "unit": "°"
   },
   {
-   "key": "liuguaknete_arv",
-   "label_et": "Liuguaknete arv",
+   "key": "klaas_tyyp",
+   "label_et": "Klaas tüüp",
+   "unit": ""
+  },
+  {
+   "key": "siiber_arv",
+   "label_et": "Libisevate siiburite arv",
    "unit": "tk"
+  },
+  {
+   "key": "lukk_tyyp",
+   "label_et": "Lukk tüüp",
+   "unit": ""
+  },
+  {
+   "key": "vihm_kaitse",
+   "label_et": "Vihm- ja päikesekindlus",
+   "unit": ""
   }
  ]
 }

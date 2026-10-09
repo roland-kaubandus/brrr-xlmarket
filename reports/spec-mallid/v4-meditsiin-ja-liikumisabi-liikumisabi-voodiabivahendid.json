@@ -3,13 +3,8 @@
  "name": "Voodipiirded ja tugiraamid",
  "fields": [
   {
-   "key": "koormus_maht",
-   "label_et": "Maksimaalne koormus",
-   "unit": "kg"
-  },
-  {
-   "key": "kaal",
-   "label_et": "Toote kaal",
+   "key": "kandevoimsus",
+   "label_et": "Kandevõimekus",
    "unit": "kg"
   },
   {
@@ -18,23 +13,23 @@
    "unit": ""
   },
   {
-   "key": "pikkus",
-   "label_et": "Pikkus/Laius",
-   "unit": "cm"
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
   },
   {
-   "key": "korgus_reguleeritav",
-   "label_et": "Kõrguse reguleerimise vahemik",
-   "unit": "cm"
+   "key": "haardepikkus",
+   "label_et": "Haardepikkus (reguleeritav)",
+   "unit": "mm"
   },
   {
-   "key": "painduvus",
-   "label_et": "Painduvus (kokkupandav)",
+   "key": "voodimaht",
+   "label_et": "Sobib vooditüübile",
    "unit": ""
   },
   {
-   "key": "kahe_kae_tugi",
-   "label_et": "Kahe käe tugi (võrreldes ühele käele)",
+   "key": "kuju",
+   "label_et": "Kuju",
    "unit": ""
   }
  ]

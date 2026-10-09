@@ -3,15 +3,19 @@
  "name": "Kaasaskantavad ruumisoojendid",
  "fields": [
   {
-   "key": "voimsus",
-   "label_et": "Soojusväljund",
-   "unit": "W",
-   "unit_orig": "kW"
+   "key": "soojusvoimsus",
+   "label_et": "Soojusvõimsus",
+   "unit": "BTU/h"
   },
   {
-   "key": "maht",
-   "label_et": "Paagitüüp",
+   "key": "kaittel",
+   "label_et": "Kütusemaht",
    "unit": "L"
+  },
+  {
+   "key": "kytusityp",
+   "label_et": "Kütuse tüüp",
+   "unit": ""
   },
   {
    "key": "kaal",
@@ -19,23 +23,13 @@
    "unit": "kg"
   },
   {
-   "key": "kuumutus_pindala",
-   "label_et": "Soojustatud ruumi maht",
-   "unit": "m³"
+   "key": "myra",
+   "label_et": "Müra",
+   "unit": "dB"
   },
   {
-   "key": "pinge",
-   "label_et": "Pinge",
-   "unit": "V"
-  },
-  {
-   "key": "kusimisaeg",
-   "label_et": "Tööaeg paagiga",
-   "unit": "h"
-  },
-  {
-   "key": "materjal",
-   "label_et": "Konstruktsioon",
+   "key": "ohutusfunktsioonid",
+   "label_et": "Ohutusfunktsioonid",
    "unit": ""
   }
  ]

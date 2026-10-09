@@ -8,38 +8,28 @@
    "unit": "L"
   },
   {
-   "key": "kaal",
-   "label_et": "Neto kaal",
-   "unit": "kg"
-  },
-  {
-   "key": "maksimaalne_koormus",
-   "label_et": "Maksimaalne koormus",
-   "unit": "kg"
-  },
-  {
    "key": "materjal",
-   "label_et": "Materjal",
+   "label_et": "Materjaali",
    "unit": ""
   },
   {
-   "key": "seina_paksus",
-   "label_et": "Seina paksus",
-   "unit": "mm"
-  },
-  {
-   "key": "valismaad",
-   "label_et": "Välismõõdud (P×S×K)",
-   "unit": "mm"
-  },
-  {
-   "key": "lukustus_tyyp",
-   "label_et": "Lukustuse tüüp",
+   "key": "veetihedus",
+   "label_et": "Veekindlus",
    "unit": ""
   },
   {
-   "key": "veekindlus",
-   "label_et": "Veekindel",
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "lukk_tyyp",
+   "label_et": "Lukusüsteem",
+   "unit": ""
+  },
+  {
+   "key": "paigaldus",
+   "label_et": "Paigalduse tüüp",
    "unit": ""
   }
  ]

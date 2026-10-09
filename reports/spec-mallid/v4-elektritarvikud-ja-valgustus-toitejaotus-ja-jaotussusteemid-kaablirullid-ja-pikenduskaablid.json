@@ -3,9 +3,9 @@
  "name": "Kaablirullid ja pikenduskaablid",
  "fields": [
   {
-   "key": "voimsus",
-   "label_et": "Maksimaalne koormus",
-   "unit": "W"
+   "key": "kaabli_pikkus",
+   "label_et": "Kaabli pikkus",
+   "unit": "m"
   },
   {
    "key": "pinge",
@@ -13,28 +13,28 @@
    "unit": "V"
   },
   {
-   "key": "kaabli_pikkus",
-   "label_et": "Kaabli pikkus",
-   "unit": "m"
+   "key": "juhtmete_arv",
+   "label_et": "Juhtmete arv",
+   "unit": "tk"
   },
   {
    "key": "juhtme_ristloige",
    "label_et": "Juhtme ristlõige",
-   "unit": "mm²"
+   "unit": "AWG"
   },
   {
-   "key": "kaal",
-   "label_et": "Kaal",
-   "unit": "kg"
+   "key": "lubatud_vool",
+   "label_et": "Lubatud vool",
+   "unit": "A"
+  },
+  {
+   "key": "kontaktide_arv",
+   "label_et": "Kontaktide arv",
+   "unit": "tk"
   },
   {
    "key": "materjal",
-   "label_et": "Juhtme materjal",
-   "unit": ""
-  },
-  {
-   "key": "montaaz_tyyp",
-   "label_et": "Paigaldusviis",
+   "label_et": "Materjal",
    "unit": ""
   }
  ]

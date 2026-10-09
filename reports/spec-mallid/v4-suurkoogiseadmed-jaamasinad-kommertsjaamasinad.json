@@ -3,39 +3,29 @@
  "name": "Kommertsjäämasinad",
  "fields": [
   {
-   "key": "jaaatootmine_kg24h",
-   "label_et": "Jääatootmine 24h",
+   "key": "jaatootmine_24h",
+   "label_et": "Jää tootmine 24h",
    "unit": "kg"
   },
   {
-   "key": "jaaaladustus_kg",
-   "label_et": "Jääladustuse maht",
+   "key": "jaahoiustamine_maht",
+   "label_et": "Jää hoiustamise mahutavus",
    "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Konstruktsiooni materjal",
+   "unit": ""
+  },
+  {
+   "key": "valmistusaeg",
+   "label_et": "Jää valmistamise aeg",
+   "unit": "min"
   },
   {
    "key": "kaal",
    "label_et": "Seadme kaal",
    "unit": "kg"
-  },
-  {
-   "key": "myra",
-   "label_et": "Müra tase",
-   "unit": "dB"
-  },
-  {
-   "key": "jaakuubikute_arv",
-   "label_et": "Jääkuubikute arv",
-   "unit": "tk"
-  },
-  {
-   "key": "materjal",
-   "label_et": "Kere materjal",
-   "unit": ""
-  },
-  {
-   "key": "veetank_liitrid",
-   "label_et": "Veetangi maht",
-   "unit": "L"
   }
  ]
 }

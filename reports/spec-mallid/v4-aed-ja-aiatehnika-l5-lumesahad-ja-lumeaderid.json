@@ -3,14 +3,9 @@
  "name": "Lumesahad ja lumeaderid",
  "fields": [
   {
-   "key": "laba_laius",
-   "label_et": "Laba laius",
+   "key": "ketta_labamoot",
+   "label_et": "Labamoot",
    "unit": "mm"
-  },
-  {
-   "key": "kaal",
-   "label_et": "Kaal",
-   "unit": "kg"
   },
   {
    "key": "materjal",
@@ -18,19 +13,19 @@
    "unit": ""
   },
   {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "ühildusvus",
+   "label_et": "Ühildusvus",
+   "unit": ""
+  },
+  {
    "key": "reguleeritavus",
-   "label_et": "Kõrguse ja külgsuunalise reguleerimise võimalus",
-   "unit": ""
-  },
-  {
-   "key": "kiirjahtimine",
-   "label_et": "Kiirühendus/eraldus süsteem",
-   "unit": ""
-  },
-  {
-   "key": "kummiribad",
-   "label_et": "Kummiribad olemas",
-   "unit": ""
+   "label_et": "Laba reguleeritavus",
+   "unit": "mm"
   }
  ]
 }

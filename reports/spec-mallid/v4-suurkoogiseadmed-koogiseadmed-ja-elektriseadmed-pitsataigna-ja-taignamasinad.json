@@ -8,33 +8,28 @@
    "unit": "W"
   },
   {
+   "key": "leviuslaiuse",
+   "label_et": "Leviuslaiuse",
+   "unit": "cm"
+  },
+  {
    "key": "kaal",
    "label_et": "Kaal",
    "unit": "kg"
   },
   {
-   "key": "pizza_diameeter_max",
-   "label_et": "Maksimaalse pitsa läbimõõt",
-   "unit": "inch"
-  },
-  {
-   "key": "teigikindluse_ulatus",
-   "label_et": "Teigikindluse ulatus",
+   "key": "paksuse_reguleeritavus",
+   "label_et": "Paksuse reguleeritavus",
    "unit": "mm"
   },
   {
-   "key": "tootlikkus",
-   "label_et": "Tootlikkus",
-   "unit": "tükki/h"
-  },
-  {
-   "key": "materjal",
-   "label_et": "Peamised materjalid",
+   "key": "plaadi_materjal",
+   "label_et": "Pressplaadi materjal",
    "unit": ""
   },
   {
-   "key": "tyyp",
-   "label_et": "Käitamise tüüp",
+   "key": "keha_materjal",
+   "label_et": "Keha materjal",
    "unit": ""
   }
  ]

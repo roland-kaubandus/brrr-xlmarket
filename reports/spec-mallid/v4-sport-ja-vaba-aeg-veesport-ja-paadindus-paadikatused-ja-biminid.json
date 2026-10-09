@@ -3,24 +3,24 @@
  "name": "Paadikatused ja biminid",
  "fields": [
   {
-   "key": "pikkus_mm",
+   "key": "pikkus",
    "label_et": "Pikkus",
    "unit": "mm"
   },
   {
-   "key": "laius_mm",
+   "key": "laius",
    "label_et": "Laius",
    "unit": "mm"
   },
   {
-   "key": "korgus_mm",
-   "label_et": "Kõrgus",
-   "unit": "mm"
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
   },
   {
-   "key": "materjal",
-   "label_et": "Kangas/materjal",
-   "unit": "denier"
+   "key": "veetihedus",
+   "label_et": "Veekindlus (Denier)",
+   "unit": "D"
   },
   {
    "key": "kaal",
@@ -28,19 +28,9 @@
    "unit": "kg"
   },
   {
-   "key": "vihmakindlus",
-   "label_et": "Vihmakindlus",
-   "unit": "tase"
-  },
-  {
-   "key": "uv_kaitseaste",
-   "label_et": "UV-kaitseaste",
-   "unit": "UPF"
-  },
-  {
-   "key": "kaarte_arv",
-   "label_et": "Kaarte arv",
-   "unit": "tk"
+   "key": "varjestus",
+   "label_et": "UV-varjestus",
+   "unit": ""
   }
  ]
 }

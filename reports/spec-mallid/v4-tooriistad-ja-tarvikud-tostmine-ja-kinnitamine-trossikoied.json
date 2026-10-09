@@ -3,34 +3,34 @@
  "name": "Trossiköied",
  "fields": [
   {
-   "key": "pikkus_m",
-   "label_et": "Pikkus",
-   "unit": "m"
-  },
-  {
-   "key": "diameetr_mm",
+   "key": "laius",
    "label_et": "Läbimõõt",
    "unit": "mm"
   },
   {
-   "key": "purunemistugevus_kn",
-   "label_et": "Purunemistugevus",
-   "unit": "kN"
+   "key": "pikkus",
+   "label_et": "Pikkus",
+   "unit": "m"
   },
   {
-   "key": "tootud_koormus_kn",
-   "label_et": "Töötav koormus",
-   "unit": "kN"
+   "key": "purunemiskoormus",
+   "label_et": "Purunemiskoormus",
+   "unit": "kg"
   },
   {
    "key": "materjal",
    "label_et": "Materjal",
-   "unit": ""
+   "unit": "-"
   },
   {
-   "key": "kiudude_arv",
-   "label_et": "Kiudude arv",
+   "key": "keerdude_arv",
+   "label_et": "Keerdude arv",
    "unit": "tk"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
   }
  ]
 }

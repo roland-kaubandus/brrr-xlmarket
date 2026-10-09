@@ -3,23 +3,18 @@
  "name": "Seinariiulid ja ülariiulid",
  "fields": [
   {
-   "key": "pikkus_mm",
+   "key": "pikkus",
    "label_et": "Pikkus",
    "unit": "mm"
   },
   {
-   "key": "laius_mm",
+   "key": "laius",
    "label_et": "Laius",
    "unit": "mm"
   },
   {
-   "key": "korgus_mm",
-   "label_et": "Kõrgus",
-   "unit": "mm"
-  },
-  {
-   "key": "kaal_kg",
-   "label_et": "Kaal",
+   "key": "koormus_maht",
+   "label_et": "Maksimaalne koormus",
    "unit": "kg"
   },
   {
@@ -28,18 +23,13 @@
    "unit": ""
   },
   {
-   "key": "kandevoimsus_kg",
-   "label_et": "Kandevõimekus",
+   "key": "kaal",
+   "label_et": "Kaal",
    "unit": "kg"
   },
   {
-   "key": "konkid",
-   "label_et": "Konkide arv",
-   "unit": "tk"
-  },
-  {
-   "key": "riiulite_arv",
-   "label_et": "Riiulite arv",
+   "key": "komplekt_kogus",
+   "label_et": "Komplekti kogus",
    "unit": "tk"
   }
  ]

@@ -3,24 +3,19 @@
  "name": "Sahtlitega põhikapid",
  "fields": [
   {
-   "key": "laius_mm",
+   "key": "laius",
    "label_et": "Laius",
    "unit": "mm"
   },
   {
-   "key": "sügavus_mm",
+   "key": "sügavus",
    "label_et": "Sügavus",
    "unit": "mm"
   },
   {
-   "key": "korgus_mm",
+   "key": "korgus",
    "label_et": "Kõrgus",
    "unit": "mm"
-  },
-  {
-   "key": "kaal",
-   "label_et": "Kaal",
-   "unit": "kg"
   },
   {
    "key": "sahtlite_arv",
@@ -28,14 +23,14 @@
    "unit": "tk"
   },
   {
-   "key": "materjal",
-   "label_et": "Materjal",
-   "unit": ""
+   "key": "uste_arv",
+   "label_et": "Uste arv",
+   "unit": "tk"
   },
   {
-   "key": "sulgemismehhanism",
-   "label_et": "Sahtli sulgemismehhanism",
-   "unit": ""
+   "key": "reguleeritavad_riiulid",
+   "label_et": "Reguleeritavad riiulid",
+   "unit": "jah/ei"
   }
  ]
 }

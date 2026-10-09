@@ -3,29 +3,14 @@
  "name": "Basseini äravooluvoolikud",
  "fields": [
   {
+   "key": "diameeter_toll",
+   "label_et": "Voolikute sisediameeter",
+   "unit": "tolled (\")"
+  },
+  {
    "key": "pikkus_m",
-   "label_et": "Vooliku pikkus",
+   "label_et": "Voolikute pikkus",
    "unit": "m"
-  },
-  {
-   "key": "sisemine_diameetr_mm",
-   "label_et": "Sisemine läbimõõt",
-   "unit": "mm"
-  },
-  {
-   "key": "lame_laius_mm",
-   "label_et": "Lameda vooliku laius",
-   "unit": "mm"
-  },
-  {
-   "key": "rohk_bar",
-   "label_et": "Tööpaine",
-   "unit": "bar"
-  },
-  {
-   "key": "kaal_kg",
-   "label_et": "Kaal",
-   "unit": "kg"
   },
   {
    "key": "materjal",
@@ -33,14 +18,19 @@
    "unit": ""
   },
   {
-   "key": "armeeringud",
-   "label_et": "Tugevdusstruktuur",
+   "key": "rohk_bar",
+   "label_et": "Maksimaalne töörõhk",
+   "unit": "bar"
+  },
+  {
+   "key": "sobivus",
+   "label_et": "Rakendus",
    "unit": ""
   },
   {
-   "key": "temp_vahemik",
-   "label_et": "Töötemperatuuri vahemik",
-   "unit": "°C"
+   "key": "armatuur",
+   "label_et": "Kinnitusarmatuur",
+   "unit": ""
   }
  ]
 }

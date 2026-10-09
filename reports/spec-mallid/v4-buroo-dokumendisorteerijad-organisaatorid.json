@@ -3,9 +3,14 @@
  "name": "Dokumendisorteerijad ja -organisaatorid",
  "fields": [
   {
-   "key": "kaal",
-   "label_et": "Toote kaal",
-   "unit": "kg"
+   "key": "osakute_arv",
+   "label_et": "Osakute arv",
+   "unit": "tk"
+  },
+  {
+   "key": "vari",
+   "label_et": "Värvus",
+   "unit": ""
   },
   {
    "key": "materjal",
@@ -13,33 +18,13 @@
    "unit": ""
   },
   {
-   "key": "osakute_arv",
-   "label_et": "Osakute/sahtelite arv",
-   "unit": "tk"
+   "key": "reguleeritavad_riiulid",
+   "label_et": "Reguleeritavad riiulid",
+   "unit": ""
   },
   {
-   "key": "kandvoe_koormus",
-   "label_et": "Kandvõime ühe osaküe kohta",
-   "unit": "kg"
-  },
-  {
-   "key": "pohimootmed_laius",
-   "label_et": "Laius",
-   "unit": "mm"
-  },
-  {
-   "key": "pohimootmed_sygavus",
-   "label_et": "Sügavus",
-   "unit": "mm"
-  },
-  {
-   "key": "pohimootmed_korgus",
-   "label_et": "Kõrgus",
-   "unit": "mm"
-  },
-  {
-   "key": "reguleeritav_riiulitega",
-   "label_et": "Reguleeritavad riiul",
+   "key": "kandekaugen",
+   "label_et": "Kandekauged",
    "unit": ""
   }
  ]
