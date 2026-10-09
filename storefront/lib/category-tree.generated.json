@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-09T07:07:21.401Z",
+  "generated_at": "2026-10-09T08:06:31.401Z",
   "nodes": {
     "v4-tooriistad-ja-tarvikud": {
       "handle": "v4-tooriistad-ja-tarvikud",
@@ -70,7 +70,8 @@
         "v4-tooriistad-ja-tarvikud-kasitooriistad-betoonitooriistad",
         "v4-tooriistad-ja-tarvikud-kasitooriistad-postirammijad",
         "v4-tooriistad-ja-tarvikud-kasitooriistad-katuse-ja-sindlitooriistad",
-        "v4-tooriistad-ja-tarvikud-kasitooriistad-uldtooriistakomplektid"
+        "v4-tooriistad-ja-tarvikud-kasitooriistad-uldtooriistakomplektid",
+        "v4-tooriistad-ja-tarvikud-kasitooriistad-kiviplaatide-paigaldustooriistad"
       ],
       "image_path": "/cat-thumbs/v4-tooriistad-ja-tarvikud-kasitooriistad-lookpadrunite-komplektid.webp",
       "image_source": "inherited",
@@ -314,6 +315,16 @@
       "parent_handle": "v4-tooriistad-ja-tarvikud-kasitooriistad",
       "child_handles": [],
       "image_path": "/cat-thumbs/v4-tooriistad-ja-tarvikud-kasitooriistad-uldtooriistakomplektid.webp",
+      "image_source": "direct"
+    },
+    "v4-tooriistad-ja-tarvikud-kasitooriistad-kiviplaatide-paigaldustooriistad": {
+      "handle": "v4-tooriistad-ja-tarvikud-kasitooriistad-kiviplaatide-paigaldustooriistad",
+      "name_en": "Kiviplaatide paigaldustööriistad",
+      "name_et": "Kiviplaatide paigaldustööriistad",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-kasitooriistad",
+      "child_handles": [],
+      "image_path": "/cat-thumbs/v4-tooriistad-ja-tarvikud-kasitooriistad-kiviplaatide-paigaldustooriistad.webp",
       "image_source": "direct"
     },
     "v4-tooriistad-ja-tarvikud-elektrilised-tooriistad": {
@@ -4213,11 +4224,11 @@
         "v4-garaaziseadmed-varvimine-varvi-surveanumad",
         "v4-garaaziseadmed-varvimine-infrapuna-kuivatuslambid",
         "v4-garaaziseadmed-varvimine-airbrush-komplektid",
-        "v4-garaaziseadmed-varvimine-liivapritsimiskabiinid"
+        "v4-garaaziseadmed-varvimine-liivapritsimiskabiinid",
+        "v4-garaaziseadmed-varvimine-ja-viimistlus-varvimis-ja-kuivatusstatiivid"
       ],
-      "image_path": "/cat-thumbs/v4-varvimiskabiinid-ja-telgid.webp",
-      "image_source": "inherited",
-      "image_donor": "v4-varvimiskabiinid-ja-telgid"
+      "image_path": "/cat-thumbs/v4-garaaziseadmed-varvimine-ja-viimistlus-varvimis-ja-kuivatusstatiivid.webp",
+      "image_source": "fuzzy"
     },
     "v4-varvimiskabiinid-ja-telgid": {
       "handle": "v4-varvimiskabiinid-ja-telgid",
@@ -4267,6 +4278,16 @@
       "parent_handle": "v4-garaaziseadmed-varvimine-ja-viimistlus",
       "child_handles": [],
       "image_path": "/cat-thumbs/v4-garaaziseadmed-varvimine-liivapritsimiskabiinid.webp",
+      "image_source": "direct"
+    },
+    "v4-garaaziseadmed-varvimine-ja-viimistlus-varvimis-ja-kuivatusstatiivid": {
+      "handle": "v4-garaaziseadmed-varvimine-ja-viimistlus-varvimis-ja-kuivatusstatiivid",
+      "name_en": "Värvimis- ja kuivatusstatiivid",
+      "name_et": "Värvimis- ja kuivatusstatiivid",
+      "level": 3,
+      "parent_handle": "v4-garaaziseadmed-varvimine-ja-viimistlus",
+      "child_handles": [],
+      "image_path": "/cat-thumbs/v4-garaaziseadmed-varvimine-ja-viimistlus-varvimis-ja-kuivatusstatiivid.webp",
       "image_source": "direct"
     },
     "v4-garaaziseadmed-kutusekaitlus-ja-mahutid": {
@@ -6997,6 +7018,7 @@
         "v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-vooditelgid",
         "v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-voodipeatsid",
         "v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-raskustekid",
+        "v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-kattemadratsid",
         "v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-kokkupandavad-kulalisvoodid"
       ],
       "image_path": "/cat-thumbs/v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-kummutid-ja-sahtlikapid.webp",
@@ -7091,6 +7113,16 @@
       "parent_handle": "v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu",
       "child_handles": [],
       "image_path": "/cat-thumbs/v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-raskustekid.webp",
+      "image_source": "direct"
+    },
+    "v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-kattemadratsid": {
+      "handle": "v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-kattemadratsid",
+      "name_en": "Kattemadratsid",
+      "name_et": "Kattemadratsid",
+      "level": 3,
+      "parent_handle": "v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu",
+      "child_handles": [],
+      "image_path": "/cat-thumbs/v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-kattemadratsid.webp",
       "image_source": "direct"
     },
     "v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-kokkupandavad-kulalisvoodid": {
@@ -7406,7 +7438,8 @@
         "v4-moobel-ja-sisustus-riiulid-ja-hoiustamine-seinakapid",
         "v4-moobel-ja-sisustus-riiulid-ja-hoiustamine-koogiriiulid-ja-kapid",
         "v4-moobel-ja-sisustus-riiulid-ja-hoiustamine-lauariiulid",
-        "v4-moobel-ja-sisustus-riiulid-ja-hoiustamine-sahtlitega-pohikapid"
+        "v4-moobel-ja-sisustus-riiulid-ja-hoiustamine-sahtlitega-pohikapid",
+        "v4-moobel-ja-sisustus-riiulid-ja-hoiustamine-veinikulmikud"
       ],
       "image_path": "/cat-thumbs/v4-moobel-ja-sisustus-riiulid-ja-hoiustamine-vannitoakapid-ja-hoiustamine.webp",
       "image_source": "inherited",
@@ -7490,6 +7523,16 @@
       "parent_handle": "v4-moobel-ja-sisustus-riiulid-ja-hoiustamine",
       "child_handles": [],
       "image_path": "/cat-thumbs/v4-moobel-ja-sisustus-riiulid-ja-hoiustamine-sahtlitega-pohikapid.webp",
+      "image_source": "direct"
+    },
+    "v4-moobel-ja-sisustus-riiulid-ja-hoiustamine-veinikulmikud": {
+      "handle": "v4-moobel-ja-sisustus-riiulid-ja-hoiustamine-veinikulmikud",
+      "name_en": "Veinikülmikud",
+      "name_et": "Veinikülmikud",
+      "level": 3,
+      "parent_handle": "v4-moobel-ja-sisustus-riiulid-ja-hoiustamine",
+      "child_handles": [],
+      "image_path": "/cat-thumbs/v4-moobel-ja-sisustus-riiulid-ja-hoiustamine-veinikulmikud.webp",
       "image_source": "direct"
     },
     "v4-moobel-ja-sisustus-ruumijagajad-ja-akustika": {
@@ -7825,11 +7868,11 @@
         "v4-moobel-ja-sisustus-riiulid-ja-hoiustamine-riiulikandurid-ja-kinnitused",
         "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-seinavoodi-mehhanismid",
         "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-mooblirattad",
-        "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-kontoritooli-alused"
+        "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-kontoritooli-alused",
+        "v4-moobel-ja-sisustus-moobliosad-ja-komponendid-hoiuvoodi-tostemehhanismid"
       ],
-      "image_path": "/cat-thumbs/v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-lauajalad.webp",
-      "image_source": "inherited",
-      "image_donor": "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-lauajalad"
+      "image_path": "/cat-thumbs/v4-moobel-ja-sisustus-moobliosad-ja-komponendid-hoiuvoodi-tostemehhanismid.webp",
+      "image_source": "fuzzy"
     },
     "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-lauakaitsed-ja-kiled": {
       "handle": "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-lauakaitsed-ja-kiled",
@@ -7899,6 +7942,16 @@
       "parent_handle": "v4-moobel-ja-sisustus-moobliosad-ja-komponendid",
       "child_handles": [],
       "image_path": "/cat-thumbs/v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-kontoritooli-alused.webp",
+      "image_source": "direct"
+    },
+    "v4-moobel-ja-sisustus-moobliosad-ja-komponendid-hoiuvoodi-tostemehhanismid": {
+      "handle": "v4-moobel-ja-sisustus-moobliosad-ja-komponendid-hoiuvoodi-tostemehhanismid",
+      "name_en": "Hoiuvoodi tõstemehhanismid",
+      "name_et": "Hoiuvoodi tõstemehhanismid",
+      "level": 3,
+      "parent_handle": "v4-moobel-ja-sisustus-moobliosad-ja-komponendid",
+      "child_handles": [],
+      "image_path": "/cat-thumbs/v4-moobel-ja-sisustus-moobliosad-ja-komponendid-hoiuvoodi-tostemehhanismid.webp",
       "image_source": "direct"
     },
     "v4-aed-ja-aiatehnika": {
@@ -10589,7 +10642,8 @@
         "v4-autovaruosad-ja-tarvikud-hudraulika-voolikud-liitmikud",
         "v4-autovaruosad-ja-tarvikud-hudraulika-pumbad-mootorid",
         "v4-autovaruosad-ja-tarvikud-hudraulika-klapid-jagajad",
-        "v4-autovaruosad-ja-tarvikud-hudraulika-silindrid"
+        "v4-autovaruosad-ja-tarvikud-hudraulika-silindrid",
+        "v4-autovaruosad-ja-tarvikud-hudraulika-kallutuskomplektid"
       ],
       "image_path": "/cat-thumbs/v4-autovaruosad-ja-tarvikud-hudraulika-agregaadid.webp",
       "image_source": "inherited",
@@ -10643,6 +10697,16 @@
       "parent_handle": "v4-autovaruosad-ja-tarvikud-hudraulika",
       "child_handles": [],
       "image_path": "/cat-thumbs/v4-autovaruosad-ja-tarvikud-hudraulika-silindrid.webp",
+      "image_source": "direct"
+    },
+    "v4-autovaruosad-ja-tarvikud-hudraulika-kallutuskomplektid": {
+      "handle": "v4-autovaruosad-ja-tarvikud-hudraulika-kallutuskomplektid",
+      "name_en": "Kallutuskomplektid",
+      "name_et": "Kallutuskomplektid",
+      "level": 3,
+      "parent_handle": "v4-autovaruosad-ja-tarvikud-hudraulika",
+      "child_handles": [],
+      "image_path": "/cat-thumbs/v4-autovaruosad-ja-tarvikud-hudraulika-kallutuskomplektid.webp",
       "image_source": "direct"
     },
     "v4-autovaruosad-ja-tarvikud-soiduki-kute-ja-kliima": {
@@ -10997,7 +11061,8 @@
         "v4-autovaruosad-ja-tarvikud-valistarvikud-pukseerimispeeglid",
         "v4-ehitus-remont-ja-varvid-aarekivirambid",
         "v4-autovaruosad-ja-tarvikud-valistarvikud-ja-rehvitarvikud-autokatted-presendid",
-        "v4-autovaruosad-ja-tarvikud-valistarvikud-ja-rehvitarvikud-lumeharjad-jaakraabitsad"
+        "v4-autovaruosad-ja-tarvikud-valistarvikud-ja-rehvitarvikud-lumeharjad-jaakraabitsad",
+        "v4-autovaruosad-ja-tarvikud-valistarvikud-ja-rehvitarvikud-kaitserauad"
       ],
       "image_path": "/cat-thumbs/v4-autovaruosad-ja-tarvikud-valistarvikud-jeep-maasturi-valisosad.webp",
       "image_source": "inherited",
@@ -11111,6 +11176,16 @@
       "parent_handle": "v4-autovaruosad-ja-tarvikud-valistarvikud-ja-rehvitarvikud",
       "child_handles": [],
       "image_path": "/cat-thumbs/v4-autovaruosad-ja-tarvikud-valistarvikud-ja-rehvitarvikud-lumeharjad-jaakraabitsad.webp",
+      "image_source": "direct"
+    },
+    "v4-autovaruosad-ja-tarvikud-valistarvikud-ja-rehvitarvikud-kaitserauad": {
+      "handle": "v4-autovaruosad-ja-tarvikud-valistarvikud-ja-rehvitarvikud-kaitserauad",
+      "name_en": "Kaitserauad",
+      "name_et": "Kaitserauad",
+      "level": 3,
+      "parent_handle": "v4-autovaruosad-ja-tarvikud-valistarvikud-ja-rehvitarvikud",
+      "child_handles": [],
+      "image_path": "/cat-thumbs/v4-autovaruosad-ja-tarvikud-valistarvikud-ja-rehvitarvikud-kaitserauad.webp",
       "image_source": "direct"
     },
     "v4-autovaruosad-ja-tarvikud-veoauto-tarvikud": {
@@ -16524,11 +16599,11 @@
         "v4-santehnika-kute-kaminad-tooriistad-tuhaambrid",
         "v4-santehnika-kute-kaminad-ekraanid",
         "v4-santehnika-kute-kaminad-dekoorhalud",
-        "v4-santehnika-kute-kaminad-tuhaambrid"
+        "v4-santehnika-kute-kaminad-tuhaambrid",
+        "v4-santehnika-kute-ja-ventilatsioon-kaminad-ja-korsten-tuhaimejad"
       ],
-      "image_path": "/cat-thumbs/v4-santehnika-kute-korsten.webp",
-      "image_source": "inherited",
-      "image_donor": "v4-santehnika-kute-korsten"
+      "image_path": "/cat-thumbs/v4-santehnika-kute-ja-ventilatsioon-kaminad-ja-korsten-tuhaimejad.webp",
+      "image_source": "fuzzy"
     },
     "v4-santehnika-kute-korsten": {
       "handle": "v4-santehnika-kute-korsten",
@@ -16618,6 +16693,16 @@
       "parent_handle": "v4-santehnika-kute-ja-ventilatsioon-kaminad-ja-korsten",
       "child_handles": [],
       "image_path": "/cat-thumbs/v4-santehnika-kute-kaminad-tuhaambrid.webp",
+      "image_source": "direct"
+    },
+    "v4-santehnika-kute-ja-ventilatsioon-kaminad-ja-korsten-tuhaimejad": {
+      "handle": "v4-santehnika-kute-ja-ventilatsioon-kaminad-ja-korsten-tuhaimejad",
+      "name_en": "Tuhaimejad",
+      "name_et": "Tuhaimejad",
+      "level": 3,
+      "parent_handle": "v4-santehnika-kute-ja-ventilatsioon-kaminad-ja-korsten",
+      "child_handles": [],
+      "image_path": "/cat-thumbs/v4-santehnika-kute-ja-ventilatsioon-kaminad-ja-korsten-tuhaimejad.webp",
       "image_source": "direct"
     },
     "v4-santehnika-porandakute-kuttekaablid": {
@@ -18168,7 +18253,8 @@
         "v4-elektritarvikud-ja-valgustus-elektroonika-kaasaskantavad-monitorilaiendid"
       ],
       "image_path": "/cat-thumbs/v4-elektritarvikud-ja-valgustus-elektroonika-tv-seinakinnitused.webp",
-      "image_source": "fuzzy"
+      "image_source": "inherited",
+      "image_donor": "v4-elektritarvikud-ja-valgustus-elektroonika-tv-seinakinnitused"
     },
     "v4-elektritarvikud-ja-valgustus-elektroonika-tv-seinakinnitused": {
       "handle": "v4-elektritarvikud-ja-valgustus-elektroonika-tv-seinakinnitused",
@@ -18198,11 +18284,11 @@
       "parent_handle": "v4-elektroonika-ja-multimeedia",
       "child_handles": [
         "v4-elektritarvikud-ja-valgustus-elektroonika-satelliit-ja-vorgukaablid",
-        "v4-tooriistad-kiudoptika-jatkuseadmed"
+        "v4-tooriistad-kiudoptika-jatkuseadmed",
+        "v4-elektroonika-vork-antenni-ja-satelliidikinnitused"
       ],
-      "image_path": "/cat-thumbs/v4-elektritarvikud-ja-valgustus-elektroonika-satelliit-ja-vorgukaablid.webp",
-      "image_source": "inherited",
-      "image_donor": "v4-elektritarvikud-ja-valgustus-elektroonika-satelliit-ja-vorgukaablid"
+      "image_path": "/cat-thumbs/v4-elektroonika-vork-antenni-ja-satelliidikinnitused.webp",
+      "image_source": "fuzzy"
     },
     "v4-elektritarvikud-ja-valgustus-elektroonika-satelliit-ja-vorgukaablid": {
       "handle": "v4-elektritarvikud-ja-valgustus-elektroonika-satelliit-ja-vorgukaablid",
@@ -18222,6 +18308,16 @@
       "parent_handle": "v4-elektroonika-vork",
       "child_handles": [],
       "image_path": "/cat-thumbs/v4-tooriistad-kiudoptika-jatkuseadmed.webp",
+      "image_source": "direct"
+    },
+    "v4-elektroonika-vork-antenni-ja-satelliidikinnitused": {
+      "handle": "v4-elektroonika-vork-antenni-ja-satelliidikinnitused",
+      "name_en": "Antenni- ja satelliidikinnitused",
+      "name_et": "Antenni- ja satelliidikinnitused",
+      "level": 3,
+      "parent_handle": "v4-elektroonika-vork",
+      "child_handles": [],
+      "image_path": "/cat-thumbs/v4-elektroonika-vork-antenni-ja-satelliidikinnitused.webp",
       "image_source": "direct"
     },
     "v4-elektroonika-arvutiriistvara": {
@@ -19901,8 +19997,8 @@
       "parent_handle": "v4-lemmikloomatarbed",
       "child_handles": [
         "v4-lemmikloomatarbed-puurid-ja-aedikud-manguplatsid-ja-aedikud",
-        "v4-lemmikloomatarbed-puurid-ja-aedikud-kassipuurid-ja-aedikud",
         "v4-lemmikloomatarbed-puurid-ja-aedikud-linnupuurid",
+        "v4-lemmikloomatarbed-puurid-ja-aedikud-kassipuurid-ja-aedikud",
         "v4-lemmikloomatarbed-puurid-ja-aedikud-narilistepuurid",
         "v4-lemmikloomatarbed-puurid-ja-aedikud-poegimiskastid-ja-nurgad",
         "v4-lemmikloomatarbed-puurid-ja-aedikud-koerapuurid-ja-moobel"
@@ -19921,16 +20017,6 @@
       "image_path": "/cat-thumbs/v4-lemmikloomatarbed-puurid-ja-aedikud-manguplatsid-ja-aedikud.webp",
       "image_source": "direct"
     },
-    "v4-lemmikloomatarbed-puurid-ja-aedikud-kassipuurid-ja-aedikud": {
-      "handle": "v4-lemmikloomatarbed-puurid-ja-aedikud-kassipuurid-ja-aedikud",
-      "name_en": "Kassipuurid ja aedikud",
-      "name_et": "Kassipuurid ja aedikud",
-      "level": 3,
-      "parent_handle": "v4-lemmikloomatarbed-puurid-ja-aedikud",
-      "child_handles": [],
-      "image_path": "/cat-thumbs/v4-lemmikloomatarbed-puurid-ja-aedikud-kassipuurid-ja-aedikud.webp",
-      "image_source": "direct"
-    },
     "v4-lemmikloomatarbed-puurid-ja-aedikud-linnupuurid": {
       "handle": "v4-lemmikloomatarbed-puurid-ja-aedikud-linnupuurid",
       "name_en": "Linnupuurid",
@@ -19939,6 +20025,16 @@
       "parent_handle": "v4-lemmikloomatarbed-puurid-ja-aedikud",
       "child_handles": [],
       "image_path": "/cat-thumbs/v4-lemmikloomatarbed-puurid-ja-aedikud-linnupuurid.webp",
+      "image_source": "direct"
+    },
+    "v4-lemmikloomatarbed-puurid-ja-aedikud-kassipuurid-ja-aedikud": {
+      "handle": "v4-lemmikloomatarbed-puurid-ja-aedikud-kassipuurid-ja-aedikud",
+      "name_en": "Kassipuurid ja aedikud",
+      "name_et": "Kassipuurid ja aedikud",
+      "level": 3,
+      "parent_handle": "v4-lemmikloomatarbed-puurid-ja-aedikud",
+      "child_handles": [],
+      "image_path": "/cat-thumbs/v4-lemmikloomatarbed-puurid-ja-aedikud-kassipuurid-ja-aedikud.webp",
       "image_source": "direct"
     },
     "v4-lemmikloomatarbed-puurid-ja-aedikud-narilistepuurid": {
@@ -20962,7 +21058,8 @@
         "v4-tervis-manguaedikud",
         "v4-tervis-hooldus-ja-ilu-beebi-ja-lapsetarbed-pesapadjad-ja-pesad",
         "v4-tervis-hooldus-ja-ilu-beebi-lapsetarbed-beebikaalud",
-        "v4-tervis-hooldus-ja-ilu-huppetoolid-ja-kaimisabid"
+        "v4-tervis-hooldus-ja-ilu-huppetoolid-ja-kaimisabid",
+        "v4-tervis-hooldus-ja-ilu-beebi-ja-lapsetarbed-laste-maandumispadjad"
       ],
       "image_path": "/cat-thumbs/v4-tervis-hooldus-ja-ilu-beebi-ja-lapsetarbed-turvavaravad.webp",
       "image_source": "inherited",
@@ -21066,6 +21163,16 @@
       "parent_handle": "v4-tervis-hooldus-ja-ilu-beebi-ja-lapsetarbed",
       "child_handles": [],
       "image_path": "/cat-thumbs/v4-tervis-hooldus-ja-ilu-huppetoolid-ja-kaimisabid.webp",
+      "image_source": "direct"
+    },
+    "v4-tervis-hooldus-ja-ilu-beebi-ja-lapsetarbed-laste-maandumispadjad": {
+      "handle": "v4-tervis-hooldus-ja-ilu-beebi-ja-lapsetarbed-laste-maandumispadjad",
+      "name_en": "Laste maandumispadjad",
+      "name_et": "Laste maandumispadjad",
+      "level": 3,
+      "parent_handle": "v4-tervis-hooldus-ja-ilu-beebi-ja-lapsetarbed",
+      "child_handles": [],
+      "image_path": "/cat-thumbs/v4-tervis-hooldus-ja-ilu-beebi-ja-lapsetarbed-laste-maandumispadjad.webp",
       "image_source": "direct"
     },
     "v4-meditsiin-labor-ja-teadus": {
@@ -21947,6 +22054,7 @@
     "v4-tooriistad-ja-tarvikud-kasitooriistad-postirammijad",
     "v4-tooriistad-ja-tarvikud-kasitooriistad-katuse-ja-sindlitooriistad",
     "v4-tooriistad-ja-tarvikud-kasitooriistad-uldtooriistakomplektid",
+    "v4-tooriistad-ja-tarvikud-kasitooriistad-kiviplaatide-paigaldustooriistad",
     "v4-tooriistad-ja-tarvikud-elektrilised-tooriistad",
     "v4-tooriistad-ja-tarvikud-elektrilised-tooriistad-magnetpuurid",
     "v4-tooriistad-ja-tarvikud-elektrilised-tooriistad-teemantpuurmasinad",
@@ -22302,6 +22410,7 @@
     "v4-garaaziseadmed-varvimine-infrapuna-kuivatuslambid",
     "v4-garaaziseadmed-varvimine-airbrush-komplektid",
     "v4-garaaziseadmed-varvimine-liivapritsimiskabiinid",
+    "v4-garaaziseadmed-varvimine-ja-viimistlus-varvimis-ja-kuivatusstatiivid",
     "v4-garaaziseadmed-kutusekaitlus-ja-mahutid",
     "v4-garaaziseadmed-olivahetus-ja-hooldus-kutuse-ulepumpamis-ja-ulekandepumbad",
     "v4-garaaziseadmed-olivahetus-ja-hooldus-pneumaatilised-ja-membraanpumbad",
@@ -22552,6 +22661,7 @@
     "v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-vooditelgid",
     "v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-voodipeatsid",
     "v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-raskustekid",
+    "v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-kattemadratsid",
     "v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-kokkupandavad-kulalisvoodid",
     "v4-moobel-ja-sisustus-esikumoobel-ja-jalatsikapid",
     "v4-moobel-ja-sisustus-esikumoobel-ja-jalatsikapid-jalatsikapid",
@@ -22588,6 +22698,7 @@
     "v4-moobel-ja-sisustus-riiulid-ja-hoiustamine-koogiriiulid-ja-kapid",
     "v4-moobel-ja-sisustus-riiulid-ja-hoiustamine-lauariiulid",
     "v4-moobel-ja-sisustus-riiulid-ja-hoiustamine-sahtlitega-pohikapid",
+    "v4-moobel-ja-sisustus-riiulid-ja-hoiustamine-veinikulmikud",
     "v4-moobel-ja-sisustus-ruumijagajad-ja-akustika",
     "v4-moobel-ja-sisustus-ruumijagajad-ja-akustika-ruumijagajad",
     "v4-moobel-ja-sisustus-ruumijagajad-ja-akustika-vaheseinad",
@@ -22625,6 +22736,7 @@
     "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-seinavoodi-mehhanismid",
     "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-mooblirattad",
     "v4-moobel-ja-sisustus-sisustustarvikud-ja-dekoor-kontoritooli-alused",
+    "v4-moobel-ja-sisustus-moobliosad-ja-komponendid-hoiuvoodi-tostemehhanismid",
     "v4-aed-ja-aiatehnika",
     "v4-aed-ja-aiatehnika-aiatooriistad",
     "v4-aed-ja-aiatehnika-l1-vaetise-ja-seemnelaotajad",
@@ -22868,6 +22980,7 @@
     "v4-autovaruosad-ja-tarvikud-hudraulika-pumbad-mootorid",
     "v4-autovaruosad-ja-tarvikud-hudraulika-klapid-jagajad",
     "v4-autovaruosad-ja-tarvikud-hudraulika-silindrid",
+    "v4-autovaruosad-ja-tarvikud-hudraulika-kallutuskomplektid",
     "v4-autovaruosad-ja-tarvikud-soiduki-kute-ja-kliima",
     "v4-autovaruosad-ja-tarvikud-kute-soiduki-ohusoojendid",
     "v4-autovaruosad-ja-tarvikud-kute-diiselsoojendi-osad",
@@ -22910,6 +23023,7 @@
     "v4-ehitus-remont-ja-varvid-aarekivirambid",
     "v4-autovaruosad-ja-tarvikud-valistarvikud-ja-rehvitarvikud-autokatted-presendid",
     "v4-autovaruosad-ja-tarvikud-valistarvikud-ja-rehvitarvikud-lumeharjad-jaakraabitsad",
+    "v4-autovaruosad-ja-tarvikud-valistarvikud-ja-rehvitarvikud-kaitserauad",
     "v4-autovaruosad-ja-tarvikud-veoauto-tarvikud",
     "v4-autovaruosad-ja-tarvikud-veoauto-tarvikud-tooriistakastid",
     "v4-autovaruosad-ja-tarvikud-kutusekanistrid-ja-ohutuskanistrid",
@@ -23400,6 +23514,7 @@
     "v4-santehnika-kute-kaminad-ekraanid",
     "v4-santehnika-kute-kaminad-dekoorhalud",
     "v4-santehnika-kute-kaminad-tuhaambrid",
+    "v4-santehnika-kute-ja-ventilatsioon-kaminad-ja-korsten-tuhaimejad",
     "v4-santehnika-porandakute-kuttekaablid",
     "v4-santehnika-kute-ja-ventilatsioon-kuttekaablid-ja-lindid",
     "v4-santehnika-kute-poorandakutte-kollektorid",
@@ -23540,6 +23655,7 @@
     "v4-elektroonika-vork",
     "v4-elektritarvikud-ja-valgustus-elektroonika-satelliit-ja-vorgukaablid",
     "v4-tooriistad-kiudoptika-jatkuseadmed",
+    "v4-elektroonika-vork-antenni-ja-satelliidikinnitused",
     "v4-elektroonika-arvutiriistvara",
     "v4-elektritarvikud-ja-valgustus-elektroonika-arvutikorpused",
     "v4-elektritarvikud-ja-valgustus-elektroonika-protsessori-vedelikjahutid",
@@ -23687,8 +23803,8 @@
     "v4-lemmikloomatarbed-pesad-ja-asemed-inimsuuruses-koeravoodid",
     "v4-lemmikloomatarbed-puurid-ja-aedikud",
     "v4-lemmikloomatarbed-puurid-ja-aedikud-manguplatsid-ja-aedikud",
-    "v4-lemmikloomatarbed-puurid-ja-aedikud-kassipuurid-ja-aedikud",
     "v4-lemmikloomatarbed-puurid-ja-aedikud-linnupuurid",
+    "v4-lemmikloomatarbed-puurid-ja-aedikud-kassipuurid-ja-aedikud",
     "v4-lemmikloomatarbed-puurid-ja-aedikud-narilistepuurid",
     "v4-lemmikloomatarbed-puurid-ja-aedikud-poegimiskastid-ja-nurgad",
     "v4-lemmikloomatarbed-puurid-ja-aedikud-koerapuurid-ja-moobel",
@@ -23789,6 +23905,7 @@
     "v4-tervis-hooldus-ja-ilu-beebi-ja-lapsetarbed-pesapadjad-ja-pesad",
     "v4-tervis-hooldus-ja-ilu-beebi-lapsetarbed-beebikaalud",
     "v4-tervis-hooldus-ja-ilu-huppetoolid-ja-kaimisabid",
+    "v4-tervis-hooldus-ja-ilu-beebi-ja-lapsetarbed-laste-maandumispadjad",
     "v4-meditsiin-labor-ja-teadus",
     "v4-meditsiin-ja-liikumisabi-liikumisabi",
     "v4-meditsiin-ja-liikumisabi-liikumisabi-dusitoolid-ja-pingid",
