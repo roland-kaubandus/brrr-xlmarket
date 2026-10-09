@@ -327,7 +327,14 @@ function writePlan(plans, refreshStats) {
   });
   const okB = results.filter(r => r.ok && !r.dryRun).length;
   const dryB = results.filter(r => r.dryRun).length;
+  const skippedL3 = [...new Set(results.flatMap(r => r.allSkipped || []))];
+  const createdL3 = results.filter(r => r.ok && !r.dryRun).flatMap(r => (r.created || []).map(c => c.handle)).filter(h => !skippedL3.includes(h));
   console.log(`\n${"█".repeat(60)}\nETAPP3 ${mode}: ${okB} partii live · ${dryB} DRY · ${results.length} kokku`);
+  if (mode === "execute") {
+    console.log(`  Loodud L3: ${createdL3.length}${skippedL3.length ? ` · pildi-skip (tume taust → shadow): ${skippedL3.length} (${skippedL3.join(", ")})` : ""}`);
+    const undoBatches = results.filter(r => r.ok && !r.dryRun && r.batch_id).map(r => r.batch_id);
+    if (undoBatches.length) console.log(`  Undo: ${undoBatches.map(b => `node scripts/classifier-undo.mjs --file reports/etapp2-undo-${b}.json`).join(" · ")}`);
+  }
   if (mode === "dry-first") {
     const d = results[0];
     console.log(`\n⏸ DRY partii 1 (${d?.created?.length || 0} L3): ${JSON.stringify(d?.planned || {}, null, 1)}`);

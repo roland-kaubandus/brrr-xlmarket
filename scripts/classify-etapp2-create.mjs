@@ -370,7 +370,10 @@ try {
   console.log("[2/8] Meili reindeks (medusa-konteineris)");
   try { sh(`docker exec ${MEDUSA} node /app/scripts/index-meilisearch.mjs`); }
   catch { sh(`cd ${REPO} && node backend/scripts/index-meilisearch.mjs`); }
-  try { sh(`cd ${REPO} && node scripts/sync-existing-synonyms.mjs`); } catch (e) { console.log("    ℹ️ sync-synonyms vahele: " + String(e.message).slice(0, 80)); }
+  // Sünonüümid KANOONILISELT (backend/scripts/sync-synonyms.mjs, ~102k) + FAIL-LOUD — HARD RULE #5 (Tarmo 2026-10-09).
+  // MITTE vana sync-existing-synonyms.mjs (kahandaks ~102k → ~16.7k). Reindeks ilma sync'ita = otsing sünonüümideta.
+  try { sh(`docker exec ${MEDUSA} node /app/scripts/sync-synonyms.mjs`); }
+  catch (e) { rollback(`sünonüümide sync FAIL (fail-loud): ${String(e.message).slice(0, 120)}`); }
 
   // ====== 3. Pildid: build-cat-thumbs (konteineris, Meili-env) + heledus-värav ======
   console.log("[3/8] Pildid — build-cat-thumbs-l3 (storefront-konteineris) + heledus-kontroll");
