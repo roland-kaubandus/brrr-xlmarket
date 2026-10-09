@@ -71,16 +71,31 @@ console.log(`✓ DB taastatud (L3 kustutatud · reparent-taaste ${reparent.lengt
 try { execSync(`docker exec ${MEDUSA} node /app/scripts/index-meilisearch.mjs`, { stdio: "inherit" }); }
 catch { sh(`cd ${REPO} && node backend/scripts/index-meilisearch.mjs`); }
 
+// #0 (Tarmo 2026-10-09): reindeks ilma sync'ita jätab otsingu sünonüümideta → KANOONILINE sync FAIL-LOUD.
+// Kehtib KÕIGILE reindeksi-kutsujatele (mootor, ETAPP2, öine pipeline, undo). Viga → exit!=0, MITTE skip.
+try { sh(`docker exec ${MEDUSA} node /app/scripts/sync-synonyms.mjs`); }
+catch (e) { console.error("🛑 sync-synonyms KUKKUS undo-reindeksi järel — Meili jääks ILMA sünonüümideta: " + String(e.message).slice(0, 180)); process.exit(1); }
+
 if (DEPLOY) {
   sh(`node ${REPO}/scripts/genyM.mjs`);
   sh(`cp /opt/eumotors-tasks/v4-staging/taxonomy-music.yaml ${REPO}/backend/src/data/taxonomy.yaml`);
   sh(`node ${REPO}/scripts/gen-category-tree.mjs`);
   try {
     sh(`cd ${REPO} && git add -A && git commit -m ${JSON.stringify(`revert(taxonomy): undo klassifikaatori partii ${u.batch_id}\n\nCo-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>`)}`);
-    sh(`cd ${REPO} && git push origin taxonomy-v4`);
+    sh(`cd ${REPO} && git push origin taxonomy-v4`);  // Coolify build-allikas
+    // HARD RULE #4 — sama commit MÕLEMALE harule (main worktree cherry-pick, nagu mootor)
+    try {
+      const sha = execSync(`cd ${REPO} && git rev-parse HEAD`, { encoding: "utf8" }).trim();
+      const wt = `/tmp/xl-undo-main-${u.batch_id}`;
+      sh(`cd ${REPO} && git fetch -q origin main`);
+      sh(`cd ${REPO} && git worktree add --force ${wt} origin/main 2>&1 | tail -1 || true`);
+      try { sh(`cd ${wt} && git cherry-pick -x ${sha} && git push origin HEAD:main`); console.log("  main-sünk: ✓ (worktree cherry-pick)"); }
+      catch { try { sh(`cd ${wt} && git cherry-pick --abort`); } catch {} console.log("  main-sünk: ⚠️ konflikt — käsitsi cherry-pick"); }
+      try { sh(`cd ${REPO} && git worktree remove --force ${wt}`); } catch {}
+    } catch (e) { console.log("  main-sünk: ⚠️ " + String(e.message).slice(0, 100)); }
   } catch (e) { console.log("ℹ️ git: " + String(e.message).slice(0, 120)); }
   sh(`bash ${REPO}/scripts/coolify-deploy.sh`);
-  console.log("✓ SSoT regen + reindeks + push + redeploy");
+  console.log("✓ SSoT regen + reindeks + sync + push mõlemad + redeploy");
 } else {
   console.log("ℹ️ --deploy puudus: DB taastatud + reindeks tehtud, aga SSoT/nav/push/redeploy VAHELE. Lisa --deploy täis-taasteks.");
 }

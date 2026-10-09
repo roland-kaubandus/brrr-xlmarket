@@ -337,7 +337,10 @@ export async function createL3Batch({
           const miss = JSON.parse(missBak);
           if (!miss.some(m => m.handle === handle)) { miss.push({ handle, level: 3, name_en: nameEn }); fs.writeFileSync(MISSING, JSON.stringify(miss)); }
         }
-        sh(`cd ${REPO} && timeout 300 node scripts/image-pipeline/orchestrator.mjs --only ${handle} --limit 1 2>&1 | tail -4 || true`);
+        // --force (Tarmo 2026-10-09): ILMA selleta jättis orchestraator handle vahele kui state.done[handle]
+        // juba olemas (varasem orchestraatori-jooks sel handlel) → regen oli NO-OP, webp jäi tumedaks (nt
+        // trepivaibad ETAPP3-s). --force möödab state'ist + läheb otse nano-banana valge-taustale.
+        sh(`cd ${REPO} && timeout 300 node scripts/image-pipeline/orchestrator.mjs --only ${handle} --limit 1 --force 2>&1 | tail -4 || true`);
         if (fs.existsSync(`${CAT_THUMBS_HOST}/${handle}.webp`)) sh(`docker cp ${CAT_THUMBS_HOST}/${handle}.webp ${SF}:/app/public/cat-thumbs/${handle}.webp`);
       } catch (e) { console.log(`    ⚠️ regen ${handle}: ${String(e.message).slice(0, 100)}`); }
       finally { try { if (treeBak != null) fs.writeFileSync(TREE, treeBak); } catch {} try { if (missBak != null) fs.writeFileSync(MISSING, missBak); } catch {} }
