@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-09T12:54:10.604Z",
+  "generated_at": "2026-10-09T18:13:46.246Z",
   "nodes": {
     "v4-tooriistad-ja-tarvikud": {
       "handle": "v4-tooriistad-ja-tarvikud",
@@ -6911,8 +6911,8 @@
         "v4-moobel-ja-sisustus-toolid-ja-istmed-taburetid-ja-tootoolid-ratastega",
         "v4-moobel-ja-sisustus-toolid-ja-istmed-baaritoolid",
         "v4-moobel-ja-sisustus-toolid-ja-istmed-vannitoa-istmed",
-        "v4-moobel-ja-sisustus-toolid-ja-istmed-polvitustoolid",
-        "v4-moobel-ja-sisustus-toolid-ja-istmed-aktiivse-istumise-istmed"
+        "v4-moobel-ja-sisustus-toolid-ja-istmed-aktiivse-istumise-istmed",
+        "v4-moobel-ja-sisustus-toolid-ja-istmed-polvitustoolid"
       ],
       "image_path": "/cat-thumbs/v4-moobel-ja-sisustus-toolid-ja-istmed-soogitoolid.webp",
       "image_source": "inherited",
@@ -6958,16 +6958,6 @@
       "image_path": "/cat-thumbs/v4-moobel-ja-sisustus-toolid-ja-istmed-vannitoa-istmed.webp",
       "image_source": "direct"
     },
-    "v4-moobel-ja-sisustus-toolid-ja-istmed-polvitustoolid": {
-      "handle": "v4-moobel-ja-sisustus-toolid-ja-istmed-polvitustoolid",
-      "name_en": "Põlvitustoolid",
-      "name_et": "Põlvitustoolid",
-      "level": 3,
-      "parent_handle": "v4-moobel-ja-sisustus-toolid-ja-istmed",
-      "child_handles": [],
-      "image_path": "/cat-thumbs/v4-moobel-ja-sisustus-toolid-ja-istmed-polvitustoolid.webp",
-      "image_source": "direct"
-    },
     "v4-moobel-ja-sisustus-toolid-ja-istmed-aktiivse-istumise-istmed": {
       "handle": "v4-moobel-ja-sisustus-toolid-ja-istmed-aktiivse-istumise-istmed",
       "name_en": "Aktiivse istumise istmed",
@@ -6976,6 +6966,16 @@
       "parent_handle": "v4-moobel-ja-sisustus-toolid-ja-istmed",
       "child_handles": [],
       "image_path": "/cat-thumbs/v4-moobel-ja-sisustus-toolid-ja-istmed-aktiivse-istumise-istmed.webp",
+      "image_source": "direct"
+    },
+    "v4-moobel-ja-sisustus-toolid-ja-istmed-polvitustoolid": {
+      "handle": "v4-moobel-ja-sisustus-toolid-ja-istmed-polvitustoolid",
+      "name_en": "Põlvitustoolid",
+      "name_et": "Põlvitustoolid",
+      "level": 3,
+      "parent_handle": "v4-moobel-ja-sisustus-toolid-ja-istmed",
+      "child_handles": [],
+      "image_path": "/cat-thumbs/v4-moobel-ja-sisustus-toolid-ja-istmed-polvitustoolid.webp",
       "image_source": "direct"
     },
     "v4-moobel-ja-sisustus-lauad": {
@@ -7115,9 +7115,9 @@
         "v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-voodipohjad-ja-latialused",
         "v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-vooditelgid",
         "v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-voodipeatsid",
-        "v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-kattemadratsid",
         "v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-raskustekid",
-        "v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-kokkupandavad-kulalisvoodid"
+        "v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-kokkupandavad-kulalisvoodid",
+        "v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-kattemadratsid"
       ],
       "image_path": "/cat-thumbs/v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-kummutid-ja-sahtlikapid.webp",
       "image_source": "inherited",
@@ -7203,16 +7203,6 @@
       "image_path": "/cat-thumbs/v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-voodipeatsid.webp",
       "image_source": "direct"
     },
-    "v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-kattemadratsid": {
-      "handle": "v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-kattemadratsid",
-      "name_en": "Kattemadratsid",
-      "name_et": "Kattemadratsid",
-      "level": 3,
-      "parent_handle": "v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu",
-      "child_handles": [],
-      "image_path": "/cat-thumbs/v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-kattemadratsid.webp",
-      "image_source": "direct"
-    },
     "v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-raskustekid": {
       "handle": "v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-raskustekid",
       "name_en": "Raskustekid",
@@ -7231,6 +7221,16 @@
       "parent_handle": "v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu",
       "child_handles": [],
       "image_path": "/cat-thumbs/v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-kokkupandavad-kulalisvoodid.webp",
+      "image_source": "direct"
+    },
+    "v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-kattemadratsid": {
+      "handle": "v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-kattemadratsid",
+      "name_en": "Kattemadratsid",
+      "name_et": "Kattemadratsid",
+      "level": 3,
+      "parent_handle": "v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu",
+      "child_handles": [],
+      "image_path": "/cat-thumbs/v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-kattemadratsid.webp",
       "image_source": "direct"
     },
     "v4-moobel-ja-sisustus-esikumoobel-ja-jalatsikapid": {
@@ -11160,8 +11160,8 @@
         "v4-ehitus-remont-ja-varvid-aarekivirambid",
         "v4-autovaruosad-ja-tarvikud-valistarvikud-ja-rehvitarvikud-autokatted-presendid",
         "v4-autovaruosad-ja-tarvikud-valistarvikud-ja-rehvitarvikud-lumeharjad-jaakraabitsad",
-        "v4-autovaruosad-ja-tarvikud-valistarvikud-ja-rehvitarvikud-vertikaalselt-avanevate-uste-komplektid-lambo-stiilis",
-        "v4-autovaruosad-ja-tarvikud-valistarvikud-ja-rehvitarvikud-kaitserauad"
+        "v4-autovaruosad-ja-tarvikud-valistarvikud-ja-rehvitarvikud-kaitserauad",
+        "v4-autovaruosad-ja-tarvikud-valistarvikud-ja-rehvitarvikud-vertikaalselt-avanevate-uste-komplektid-lambo-stiilis"
       ],
       "image_path": "/cat-thumbs/v4-autovaruosad-ja-tarvikud-valistarvikud-jeep-maasturi-valisosad.webp",
       "image_source": "inherited",
@@ -11277,16 +11277,6 @@
       "image_path": "/cat-thumbs/v4-autovaruosad-ja-tarvikud-valistarvikud-ja-rehvitarvikud-lumeharjad-jaakraabitsad.webp",
       "image_source": "direct"
     },
-    "v4-autovaruosad-ja-tarvikud-valistarvikud-ja-rehvitarvikud-vertikaalselt-avanevate-uste-komplektid-lambo-stiilis": {
-      "handle": "v4-autovaruosad-ja-tarvikud-valistarvikud-ja-rehvitarvikud-vertikaalselt-avanevate-uste-komplektid-lambo-stiilis",
-      "name_en": "Vertikaalselt avanevate uste komplektid (Lambo-stiilis)",
-      "name_et": "Vertikaalselt avanevate uste komplektid (Lambo-stiilis)",
-      "level": 3,
-      "parent_handle": "v4-autovaruosad-ja-tarvikud-valistarvikud-ja-rehvitarvikud",
-      "child_handles": [],
-      "image_path": "/cat-thumbs/v4-autovaruosad-ja-tarvikud-valistarvikud-ja-rehvitarvikud-vertikaalselt-avanevate-uste-komplektid-lambo-stiilis.webp",
-      "image_source": "direct"
-    },
     "v4-autovaruosad-ja-tarvikud-valistarvikud-ja-rehvitarvikud-kaitserauad": {
       "handle": "v4-autovaruosad-ja-tarvikud-valistarvikud-ja-rehvitarvikud-kaitserauad",
       "name_en": "Kaitserauad",
@@ -11295,6 +11285,16 @@
       "parent_handle": "v4-autovaruosad-ja-tarvikud-valistarvikud-ja-rehvitarvikud",
       "child_handles": [],
       "image_path": "/cat-thumbs/v4-autovaruosad-ja-tarvikud-valistarvikud-ja-rehvitarvikud-kaitserauad.webp",
+      "image_source": "direct"
+    },
+    "v4-autovaruosad-ja-tarvikud-valistarvikud-ja-rehvitarvikud-vertikaalselt-avanevate-uste-komplektid-lambo-stiilis": {
+      "handle": "v4-autovaruosad-ja-tarvikud-valistarvikud-ja-rehvitarvikud-vertikaalselt-avanevate-uste-komplektid-lambo-stiilis",
+      "name_en": "Vertikaalselt avanevate uste komplektid (Lambo-stiilis)",
+      "name_et": "Vertikaalselt avanevate uste komplektid (Lambo-stiilis)",
+      "level": 3,
+      "parent_handle": "v4-autovaruosad-ja-tarvikud-valistarvikud-ja-rehvitarvikud",
+      "child_handles": [],
+      "image_path": "/cat-thumbs/v4-autovaruosad-ja-tarvikud-valistarvikud-ja-rehvitarvikud-vertikaalselt-avanevate-uste-komplektid-lambo-stiilis.webp",
       "image_source": "direct"
     },
     "v4-autovaruosad-ja-tarvikud-veoauto-tarvikud": {
@@ -19191,12 +19191,11 @@
         "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-graveerimispingid-ja-klambrid",
         "v4-hobi-ehtekunst-ehte-rullpressid",
         "v4-hobi-ehtekunst-juveelimikroskoobid",
-        "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-paindvolliga-lihvimismasinad",
         "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-vaakumvalamismasinad",
         "v4-tooriistad-ja-tarvikud-kasitooriistad-kellaparandustooriistad",
         "v4-tooriistad-ja-tarvikud-sulatustiiglid",
-        "v4-hobi-ehtekunst-graafikapressid",
-        "v4-hobi-ehtekunst-sormuste-suuruse-muutmise-tooriistad"
+        "v4-hobi-ehtekunst-sormuste-suuruse-muutmise-tooriistad",
+        "v4-hobi-ehtekunst-graafikapressid"
       ],
       "image_path": "/cat-thumbs/v4-tooriistad-ja-tarvikud-moote-vaakumkambrid.webp",
       "image_source": "inherited",
@@ -19262,16 +19261,6 @@
       "image_path": "/cat-thumbs/v4-hobi-ehtekunst-juveelimikroskoobid.webp",
       "image_source": "direct"
     },
-    "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-paindvolliga-lihvimismasinad": {
-      "handle": "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-paindvolliga-lihvimismasinad",
-      "name_en": "Paindvõlliga lihvimismasinad",
-      "name_et": "Paindvõlliga lihvimismasinad",
-      "level": 3,
-      "parent_handle": "v4-hobi-ehtekunst",
-      "child_handles": [],
-      "image_path": "/cat-thumbs/v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-paindvolliga-lihvimismasinad.webp",
-      "image_source": "direct"
-    },
     "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-vaakumvalamismasinad": {
       "handle": "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-vaakumvalamismasinad",
       "name_en": "Vaakumvalamismasinad",
@@ -19302,16 +19291,6 @@
       "image_path": "/cat-thumbs/v4-tooriistad-ja-tarvikud-sulatustiiglid.webp",
       "image_source": "direct"
     },
-    "v4-hobi-ehtekunst-graafikapressid": {
-      "handle": "v4-hobi-ehtekunst-graafikapressid",
-      "name_en": "Graafikapressid",
-      "name_et": "Graafikapressid",
-      "level": 3,
-      "parent_handle": "v4-hobi-ehtekunst",
-      "child_handles": [],
-      "image_path": "/cat-thumbs/v4-hobi-ehtekunst-graafikapressid.webp",
-      "image_source": "direct"
-    },
     "v4-hobi-ehtekunst-sormuste-suuruse-muutmise-tooriistad": {
       "handle": "v4-hobi-ehtekunst-sormuste-suuruse-muutmise-tooriistad",
       "name_en": "Sõrmuste suuruse muutmise tööriistad",
@@ -19320,6 +19299,16 @@
       "parent_handle": "v4-hobi-ehtekunst",
       "child_handles": [],
       "image_path": "/cat-thumbs/v4-hobi-ehtekunst-sormuste-suuruse-muutmise-tooriistad.webp",
+      "image_source": "direct"
+    },
+    "v4-hobi-ehtekunst-graafikapressid": {
+      "handle": "v4-hobi-ehtekunst-graafikapressid",
+      "name_en": "Graafikapressid",
+      "name_et": "Graafikapressid",
+      "level": 3,
+      "parent_handle": "v4-hobi-ehtekunst",
+      "child_handles": [],
+      "image_path": "/cat-thumbs/v4-hobi-ehtekunst-graafikapressid.webp",
       "image_source": "direct"
     },
     "v4-hobi-keraamika-ja-pottsepatoo": {
@@ -20181,8 +20170,8 @@
       "parent_handle": "v4-lemmikloomatarbed",
       "child_handles": [
         "v4-lemmikloomatarbed-puurid-ja-aedikud-manguplatsid-ja-aedikud",
-        "v4-lemmikloomatarbed-puurid-ja-aedikud-kassipuurid-ja-aedikud",
         "v4-lemmikloomatarbed-puurid-ja-aedikud-linnupuurid",
+        "v4-lemmikloomatarbed-puurid-ja-aedikud-kassipuurid-ja-aedikud",
         "v4-lemmikloomatarbed-puurid-ja-aedikud-narilistepuurid",
         "v4-lemmikloomatarbed-puurid-ja-aedikud-poegimiskastid-ja-nurgad",
         "v4-lemmikloomatarbed-puurid-ja-aedikud-koerapuurid-ja-moobel"
@@ -20201,16 +20190,6 @@
       "image_path": "/cat-thumbs/v4-lemmikloomatarbed-puurid-ja-aedikud-manguplatsid-ja-aedikud.webp",
       "image_source": "direct"
     },
-    "v4-lemmikloomatarbed-puurid-ja-aedikud-kassipuurid-ja-aedikud": {
-      "handle": "v4-lemmikloomatarbed-puurid-ja-aedikud-kassipuurid-ja-aedikud",
-      "name_en": "Kassipuurid ja aedikud",
-      "name_et": "Kassipuurid ja aedikud",
-      "level": 3,
-      "parent_handle": "v4-lemmikloomatarbed-puurid-ja-aedikud",
-      "child_handles": [],
-      "image_path": "/cat-thumbs/v4-lemmikloomatarbed-puurid-ja-aedikud-kassipuurid-ja-aedikud.webp",
-      "image_source": "direct"
-    },
     "v4-lemmikloomatarbed-puurid-ja-aedikud-linnupuurid": {
       "handle": "v4-lemmikloomatarbed-puurid-ja-aedikud-linnupuurid",
       "name_en": "Linnupuurid",
@@ -20219,6 +20198,16 @@
       "parent_handle": "v4-lemmikloomatarbed-puurid-ja-aedikud",
       "child_handles": [],
       "image_path": "/cat-thumbs/v4-lemmikloomatarbed-puurid-ja-aedikud-linnupuurid.webp",
+      "image_source": "direct"
+    },
+    "v4-lemmikloomatarbed-puurid-ja-aedikud-kassipuurid-ja-aedikud": {
+      "handle": "v4-lemmikloomatarbed-puurid-ja-aedikud-kassipuurid-ja-aedikud",
+      "name_en": "Kassipuurid ja aedikud",
+      "name_et": "Kassipuurid ja aedikud",
+      "level": 3,
+      "parent_handle": "v4-lemmikloomatarbed-puurid-ja-aedikud",
+      "child_handles": [],
+      "image_path": "/cat-thumbs/v4-lemmikloomatarbed-puurid-ja-aedikud-kassipuurid-ja-aedikud.webp",
       "image_source": "direct"
     },
     "v4-lemmikloomatarbed-puurid-ja-aedikud-narilistepuurid": {
@@ -22842,8 +22831,8 @@
     "v4-moobel-ja-sisustus-toolid-ja-istmed-taburetid-ja-tootoolid-ratastega",
     "v4-moobel-ja-sisustus-toolid-ja-istmed-baaritoolid",
     "v4-moobel-ja-sisustus-toolid-ja-istmed-vannitoa-istmed",
-    "v4-moobel-ja-sisustus-toolid-ja-istmed-polvitustoolid",
     "v4-moobel-ja-sisustus-toolid-ja-istmed-aktiivse-istumise-istmed",
+    "v4-moobel-ja-sisustus-toolid-ja-istmed-polvitustoolid",
     "v4-moobel-ja-sisustus-lauad",
     "v4-moobel-ja-sisustus-lauad-diivanilauad",
     "v4-moobel-ja-sisustus-lauad-konsoollauad",
@@ -22864,9 +22853,9 @@
     "v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-voodipohjad-ja-latialused",
     "v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-vooditelgid",
     "v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-voodipeatsid",
-    "v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-kattemadratsid",
     "v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-raskustekid",
     "v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-kokkupandavad-kulalisvoodid",
+    "v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-kattemadratsid",
     "v4-moobel-ja-sisustus-esikumoobel-ja-jalatsikapid",
     "v4-moobel-ja-sisustus-esikumoobel-ja-jalatsikapid-jalatsikapid",
     "v4-moobel-ja-sisustus-esikumoobel-ja-jalatsikapid-jalatsipingid-ja-istmed",
@@ -23227,8 +23216,8 @@
     "v4-ehitus-remont-ja-varvid-aarekivirambid",
     "v4-autovaruosad-ja-tarvikud-valistarvikud-ja-rehvitarvikud-autokatted-presendid",
     "v4-autovaruosad-ja-tarvikud-valistarvikud-ja-rehvitarvikud-lumeharjad-jaakraabitsad",
-    "v4-autovaruosad-ja-tarvikud-valistarvikud-ja-rehvitarvikud-vertikaalselt-avanevate-uste-komplektid-lambo-stiilis",
     "v4-autovaruosad-ja-tarvikud-valistarvikud-ja-rehvitarvikud-kaitserauad",
+    "v4-autovaruosad-ja-tarvikud-valistarvikud-ja-rehvitarvikud-vertikaalselt-avanevate-uste-komplektid-lambo-stiilis",
     "v4-autovaruosad-ja-tarvikud-veoauto-tarvikud",
     "v4-autovaruosad-ja-tarvikud-veoauto-tarvikud-tooriistakastid",
     "v4-autovaruosad-ja-tarvikud-kutusekanistrid-ja-ohutuskanistrid",
@@ -23933,12 +23922,11 @@
     "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-graveerimispingid-ja-klambrid",
     "v4-hobi-ehtekunst-ehte-rullpressid",
     "v4-hobi-ehtekunst-juveelimikroskoobid",
-    "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-paindvolliga-lihvimismasinad",
     "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-vaakumvalamismasinad",
     "v4-tooriistad-ja-tarvikud-kasitooriistad-kellaparandustooriistad",
     "v4-tooriistad-ja-tarvikud-sulatustiiglid",
-    "v4-hobi-ehtekunst-graafikapressid",
     "v4-hobi-ehtekunst-sormuste-suuruse-muutmise-tooriistad",
+    "v4-hobi-ehtekunst-graafikapressid",
     "v4-hobi-keraamika-ja-pottsepatoo",
     "v4-hobi-keraamika-pottsepakettad-ja-keraamikarattad",
     "v4-hobi-kunst-ja-maalimine",
@@ -24015,8 +24003,8 @@
     "v4-lemmikloomatarbed-pesad-ja-asemed-inimsuuruses-koeravoodid",
     "v4-lemmikloomatarbed-puurid-ja-aedikud",
     "v4-lemmikloomatarbed-puurid-ja-aedikud-manguplatsid-ja-aedikud",
-    "v4-lemmikloomatarbed-puurid-ja-aedikud-kassipuurid-ja-aedikud",
     "v4-lemmikloomatarbed-puurid-ja-aedikud-linnupuurid",
+    "v4-lemmikloomatarbed-puurid-ja-aedikud-kassipuurid-ja-aedikud",
     "v4-lemmikloomatarbed-puurid-ja-aedikud-narilistepuurid",
     "v4-lemmikloomatarbed-puurid-ja-aedikud-poegimiskastid-ja-nurgad",
     "v4-lemmikloomatarbed-puurid-ja-aedikud-koerapuurid-ja-moobel",

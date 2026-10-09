@@ -2577,13 +2577,13 @@ l1:
             name_en: "Vannitoa istmed"
             name_et: "Vannitoa istmed"
             product_count: 0
-          - slug: v4-moobel-ja-sisustus-toolid-ja-istmed-polvitustoolid
-            name_en: "Põlvitustoolid"
-            name_et: "Põlvitustoolid"
-            product_count: 0
           - slug: v4-moobel-ja-sisustus-toolid-ja-istmed-aktiivse-istumise-istmed
             name_en: "Aktiivse istumise istmed"
             name_et: "Aktiivse istumise istmed"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-toolid-ja-istmed-polvitustoolid
+            name_en: "Põlvitustoolid"
+            name_et: "Põlvitustoolid"
             product_count: 0
       - slug: v4-moobel-ja-sisustus-lauad
         name_en: "Lauad"
@@ -2667,10 +2667,6 @@ l1:
             name_en: "Voodipeatsid"
             name_et: "Voodipeatsid"
             product_count: 0
-          - slug: v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-kattemadratsid
-            name_en: "Kattemadratsid"
-            name_et: "Kattemadratsid"
-            product_count: 0
           - slug: v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-raskustekid
             name_en: "Raskustekid"
             name_et: "Raskustekid"
@@ -2678,6 +2674,10 @@ l1:
           - slug: v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-kokkupandavad-kulalisvoodid
             name_en: "Kokkupandavad külalisvoodid"
             name_et: "Kokkupandavad külalisvoodid"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-kattemadratsid
+            name_en: "Kattemadratsid"
+            name_et: "Kattemadratsid"
             product_count: 0
       - slug: v4-moobel-ja-sisustus-esikumoobel-ja-jalatsikapid
         name_en: "Esikumööbel ja jalatsikapid"
@@ -4183,13 +4183,13 @@ l1:
             name_en: "Lumeharjad ja jääkraabitsad"
             name_et: "Lumeharjad ja jääkraabitsad"
             product_count: 0
-          - slug: v4-autovaruosad-ja-tarvikud-valistarvikud-ja-rehvitarvikud-vertikaalselt-avanevate-uste-komplektid-lambo-stiilis
-            name_en: "Vertikaalselt avanevate uste komplektid (Lambo-stiilis)"
-            name_et: "Vertikaalselt avanevate uste komplektid (Lambo-stiilis)"
-            product_count: 0
           - slug: v4-autovaruosad-ja-tarvikud-valistarvikud-ja-rehvitarvikud-kaitserauad
             name_en: "Kaitserauad"
             name_et: "Kaitserauad"
+            product_count: 0
+          - slug: v4-autovaruosad-ja-tarvikud-valistarvikud-ja-rehvitarvikud-vertikaalselt-avanevate-uste-komplektid-lambo-stiilis
+            name_en: "Vertikaalselt avanevate uste komplektid (Lambo-stiilis)"
+            name_et: "Vertikaalselt avanevate uste komplektid (Lambo-stiilis)"
             product_count: 0
       - slug: v4-autovaruosad-ja-tarvikud-veoauto-tarvikud
         name_en: "Veoauto tarvikud"
@@ -7181,10 +7181,6 @@ l1:
             name_en: "Juveelimikroskoobid"
             name_et: "Juveelimikroskoobid"
             product_count: 0
-          - slug: v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-paindvolliga-lihvimismasinad
-            name_en: "Paindvõlliga lihvimismasinad"
-            name_et: "Paindvõlliga lihvimismasinad"
-            product_count: 0
           - slug: v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-vaakumvalamismasinad
             name_en: "Vaakumvalamismasinad"
             name_et: "Vaakumvalamismasinad"
@@ -7197,13 +7193,13 @@ l1:
             name_en: "Sulatustiiglid"
             name_et: "Sulatustiiglid"
             product_count: 0
-          - slug: v4-hobi-ehtekunst-graafikapressid
-            name_en: "Graafikapressid"
-            name_et: "Graafikapressid"
-            product_count: 0
           - slug: v4-hobi-ehtekunst-sormuste-suuruse-muutmise-tooriistad
             name_en: "Sõrmuste suuruse muutmise tööriistad"
             name_et: "Sõrmuste suuruse muutmise tööriistad"
+            product_count: 0
+          - slug: v4-hobi-ehtekunst-graafikapressid
+            name_en: "Graafikapressid"
+            name_et: "Graafikapressid"
             product_count: 0
       - slug: v4-hobi-keraamika-ja-pottsepatoo
         name_en: "Keraamika ja pottsepatöö"
@@ -7541,13 +7537,13 @@ l1:
             name_en: "Mänguplatsid ja aedikud"
             name_et: "Mänguplatsid ja aedikud"
             product_count: 0
-          - slug: v4-lemmikloomatarbed-puurid-ja-aedikud-kassipuurid-ja-aedikud
-            name_en: "Kassipuurid ja aedikud"
-            name_et: "Kassipuurid ja aedikud"
-            product_count: 0
           - slug: v4-lemmikloomatarbed-puurid-ja-aedikud-linnupuurid
             name_en: "Linnupuurid"
             name_et: "Linnupuurid"
+            product_count: 0
+          - slug: v4-lemmikloomatarbed-puurid-ja-aedikud-kassipuurid-ja-aedikud
+            name_en: "Kassipuurid ja aedikud"
+            name_et: "Kassipuurid ja aedikud"
             product_count: 0
           - slug: v4-lemmikloomatarbed-puurid-ja-aedikud-narilistepuurid
             name_en: "Närilistepuurid"
