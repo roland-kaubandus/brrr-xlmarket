@@ -101,17 +101,22 @@ export async function genAssetsGated(fableRaw, nameEt, parentEt, titles) {
 // Loeb webp-faili, võtab serva-pikslid (taust) ja arvutab keskmise luminantsi 0..255.
 // Hele/valge taust → luma kõrge. Tume → madal → värav kukub → regen (Gemini valge taust).
 export const IMG_BRIGHT_MIN = 225;
+// Mõõdab TAUSTA, mitte kogu pilti (Tarmo 2026-10-09): serva-pikslite MEDIAAN,
+// MITTE keskmine. Tume toode valgel taustal puudutab äärt → mean langeb alla läve
+// kuigi taust on valge; mediaan on robustne toote-serva vastu (valge taust domineerib).
+// *Tõestatud: Metallkatuseplaadid serv mean=196 (FAIL) AGA median=254 (PASS) — taust ongi valge.*
 export async function imageBrightnessCheck(filePath) {
   const sharp = (await import("sharp")).default;
   const W = 64, H = 64, B = 3;
   const { data } = await sharp(filePath).resize(W, H, { fit: "fill" }).removeAlpha().raw().toBuffer({ resolveWithObject: true });
-  let sum = 0, n = 0;
+  const vals = [];
   for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
-    if (x >= B && x < W - B && y >= B && y < H - B) continue; // ainult serv
+    if (x >= B && x < W - B && y >= B && y < H - B) continue; // ainult serv (taust)
     const i = (y * W + x) * 3;
-    sum += 0.2126 * data[i] + 0.7152 * data[i + 1] + 0.0722 * data[i + 2]; n++;
+    vals.push(0.2126 * data[i] + 0.7152 * data[i + 1] + 0.0722 * data[i + 2]);
   }
-  const luma = n ? sum / n : 0;
+  vals.sort((a, b) => a - b);
+  const luma = vals.length ? vals[Math.floor(vals.length / 2)] : 0;
   return { pass: luma >= IMG_BRIGHT_MIN, luma: Math.round(luma), min: IMG_BRIGHT_MIN };
 }
 
@@ -119,6 +124,7 @@ export async function imageBrightnessCheck(filePath) {
  * brightCheckScript — konteineri-sisene CJS heledus-skript (host-il pole sharp).
  * ETAPP2 --execute kasutab seda inline'is; eraldi export → shadow + execute sama lävi/loogika.
  * handles = massiiv webp-handle'id; väljund JSON [{h, luma}|{h,missing}].
+ * luma = serva-pikslite MEDIAAN (taust), MITTE keskmine — sama loogika kui imageBrightnessCheck.
  */
 export function brightCheckScript(handles, thumbsDir = "/app/public/cat-thumbs") {
   return `
@@ -127,8 +133,9 @@ export function brightCheckScript(handles, thumbsDir = "/app/public/cat-thumbs")
     (async()=>{const out=[];for(const h of handles){const f='${thumbsDir}/'+h+'.webp';
       if(!fs.existsSync(f)){out.push({h,missing:true});continue;}
       const W=64,H=64,B=3;const{data}=await sharp(f).resize(W,H,{fit:'fill'}).removeAlpha().raw().toBuffer({resolveWithObject:true});
-      let s=0,n=0;for(let y=0;y<H;y++)for(let x=0;x<W;x++){if(x>=B&&x<W-B&&y>=B&&y<H-B)continue;const i=(y*W+x)*3;s+=0.2126*data[i]+0.7152*data[i+1]+0.0722*data[i+2];n++;}
-      out.push({h,luma:Math.round(s/n)});}
+      const vals=[];for(let y=0;y<H;y++)for(let x=0;x<W;x++){if(x>=B&&x<W-B&&y>=B&&y<H-B)continue;const i=(y*W+x)*3;vals.push(0.2126*data[i]+0.7152*data[i+1]+0.0722*data[i+2]);}
+      vals.sort((a,b)=>a-b);const med=vals.length?vals[Math.floor(vals.length/2)]:0;
+      out.push({h,luma:Math.round(med)});}
     console.log(JSON.stringify(out));})();`;
 }
 

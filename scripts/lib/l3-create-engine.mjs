@@ -280,27 +280,95 @@ export async function createL3Batch({
       return { ok: false, batch_id: BATCH, reason: "DB post-kontroll", baseline, created };
     }
 
-    // 2. Meili reindeks
-    console.log("[2/9] Meili reindeks");
+    // 2. Meili reindeks + sünonüümide sync — FAIL-LOUD (Tarmo 2026-10-09):
+    //    reindeks (index-meilisearch) EI puuduta synonyms-settingut, AGA settings-PUT/-reindeks ajal võib
+    //    synonyms kaduda → sünkroniseeri ALATI reindeksi järel. Sync-viga = rollback + Telegram, MITTE vaikne skip.
+    //    KANOONILINE sync = backend/scripts/sync-synonyms.mjs (konteineris /app/scripts/sync-synonyms.mjs):
+    //    täis-bidirektsionaalne graaf + A2 kirjapildi-variandid (õ→o, kokku/lahku) → ~102k võtit.
+    //    SAMA skript, mida öine import-pipeline.sh [7.5] kutsub (üks transform, kõik reindeksi-kutsujad — HARD RULE #5).
+    //    NB: scripts/sync-existing-synonyms.mjs on VANA word-dedup subset (16.7k) — EI kasuta, kahandaks synonyms'i.
+    console.log("[2/9] Meili reindeks + sünonüümide sync (kanooniline, fail-loud)");
     try { sh(`docker exec ${MEDUSA} node /app/scripts/index-meilisearch.mjs`); } catch { sh(`cd ${REPO} && node backend/scripts/index-meilisearch.mjs`); }
-    try { sh(`cd ${REPO} && node scripts/sync-existing-synonyms.mjs`); } catch (e) { console.log("    ℹ️ sync-synonyms vahele: " + String(e.message).slice(0, 80)); }
+    try {
+      sh(`docker exec ${MEDUSA} node /app/scripts/sync-synonyms.mjs`);
+    } catch (e) {
+      rollback(`sünonüümide sync FAIL (fail-loud): ${String(e.message).slice(0, 120)}`);
+      return { ok: false, batch_id: BATCH, reason: "sync-synonyms FAIL", baseline, created };
+    }
 
-    // 3. Pildid + heledus-värav
-    console.log("[3/9] Pildid — build-cat-thumbs-l3 + heledus-kontroll");
-    const miniTree = { nodes: Object.fromEntries(defs.map(d => [d.handle, { handle: d.handle, name_et: d.name, name_en: plans.find(p => p.handle === d.handle)?.name_en || d.name, level: 3 }])) };
-    const miniFile = `/tmp/l3eng-minitree-${BATCH}.json`;
-    fs.writeFileSync(miniFile, JSON.stringify(miniTree));
-    sh(`docker cp ${REPO}/scripts/build-cat-thumbs-l3.mjs ${SF}:/app/bct-eng.mjs`);
-    sh(`docker cp ${miniFile} ${SF}:/app/minitree-eng.json`);
-    const onlyArg = defs.map(d => d.handle).join(",");
-    sh(`docker exec ${SF} sh -c 'cd /app && MEILISEARCH_KEY="\${MEILISEARCH_KEY:-$MEILI_MASTER_KEY}" node bct-eng.mjs --tree /app/minitree-eng.json --out /app/public/cat-thumbs --only ${onlyArg}'`);
-    const brightFile = `/tmp/l3eng-bright-${BATCH}.cjs`;
-    fs.writeFileSync(brightFile, brightCheckScript(defs.map(d => d.handle)));
-    sh(`docker cp ${brightFile} ${SF}:/app/bright-eng.cjs`);
-    const brightOut = JSON.parse(sh(`docker exec ${SF} node /app/bright-eng.cjs`, { capture: true }).trim());
-    console.log("    heledus: " + brightOut.map(b => b.missing ? `${b.h}:PUUDU` : `${b.h}:${b.luma}`).join(" · "));
-    const imgBad = brightOut.filter(b => b.missing || b.luma < IMG_BRIGHT_MIN);
-    if (imgBad.length) { rollback(`pildi-värav: ${imgBad.map(b => b.missing ? b.h + " puudub" : b.h + " luma=" + b.luma + "<" + IMG_BRIGHT_MIN).join(", ")}`); return { ok: false, batch_id: BATCH, reason: "pildi-värav", baseline, created }; }
+    // 3. Pildid + heledus-värav (TAUST-mediaan, Tarmo 2026-10-09):
+    //    värav mõõdab TAUSTA (serva-pikslite MEDIAAN), mitte kogu pilti → tume toode valgel taustal = OK.
+    //    PER-L3 (HARD RULE #5): tume TAUST → Gemini valge-taust regen (max 3×) → re-mõõt (mediaan).
+    //    Päästetud → jääb; ikka tume VÕI krediit puudu → SKIP just see L3 (shadow), ÜLEJÄÄNUD luuakse.
+    //    Kogu partii rollback AINULT süsteemse vea korral (thumb-build/mõõt kukub kõigil — allpool catch).
+    console.log("[3/9] Pildid — build-cat-thumbs-l3 + heledus-kontroll (taust-mediaan)");
+    const CAT_THUMBS_HOST = `${REPO}/storefront/public/cat-thumbs`;
+    const buildThumbs = (handles) => {
+      const mt = { nodes: Object.fromEntries(handles.map(h => { const p = plans.find(x => x.handle === h); return [h, { handle: h, name_et: p?.name_et || p?.name, name_en: p?.name_en || p?.assets?.name_en || p?.name, level: 3 }]; })) };
+      const mf = `/tmp/l3eng-minitree-${BATCH}.json`;
+      fs.writeFileSync(mf, JSON.stringify(mt));
+      sh(`docker cp ${REPO}/scripts/build-cat-thumbs-l3.mjs ${SF}:/app/bct-eng.mjs`);
+      sh(`docker cp ${mf} ${SF}:/app/minitree-eng.json`);
+      sh(`docker exec ${SF} sh -c 'cd /app && MEILISEARCH_KEY="\${MEILISEARCH_KEY:-$MEILI_MASTER_KEY}" node bct-eng.mjs --tree /app/minitree-eng.json --out /app/public/cat-thumbs --only ${handles.join(",")}'`);
+    };
+    const measureBright = (handles) => {
+      const bf = `/tmp/l3eng-bright-${BATCH}.cjs`;
+      fs.writeFileSync(bf, brightCheckScript(handles));
+      sh(`docker cp ${bf} ${SF}:/app/bright-eng.cjs`);
+      return JSON.parse(sh(`docker exec ${SF} node /app/bright-eng.cjs`, { capture: true }).trim());
+    };
+    // Gemini valge-taust regen — olemas-SSoT orkestraator (MITTE re-implementeeri). Orkestraator loeb
+    // name_en globaalsest category-tree.generated.json-ist; [3/9]-s pole uus handle veel SSoT-s (regen [4/9]),
+    // → patchime globaalse puu + missing-handles AJUTISELT, taastame finally's. Best-effort + timeout → kui
+    // miski kukub (krediit puudu / timeout), webp jääb tumedaks → re-mõõt skibib (ohutu vaikimisi, Tarmo #2).
+    const regenWhiteBg = (handle) => {
+      const p = plans.find(x => x.handle === handle);
+      const nameEn = p?.name_en || p?.assets?.name_en || p?.name;
+      const TREE = `${REPO}/storefront/lib/category-tree.generated.json`;
+      const MISSING = `${REPO}/reports/image-gen-2026-04-19/missing-handles.json`;
+      let treeBak = null, missBak = null;
+      try {
+        treeBak = fs.readFileSync(TREE, "utf8");
+        const tree = JSON.parse(treeBak);
+        tree.nodes[handle] = { ...(tree.nodes[handle] || {}), handle, name_en: nameEn, name_et: p?.name_et || nameEn, level: 3 };
+        fs.writeFileSync(TREE, JSON.stringify(tree));
+        if (fs.existsSync(MISSING)) {
+          missBak = fs.readFileSync(MISSING, "utf8");
+          const miss = JSON.parse(missBak);
+          if (!miss.some(m => m.handle === handle)) { miss.push({ handle, level: 3, name_en: nameEn }); fs.writeFileSync(MISSING, JSON.stringify(miss)); }
+        }
+        sh(`cd ${REPO} && timeout 300 node scripts/image-pipeline/orchestrator.mjs --only ${handle} --limit 1 2>&1 | tail -4 || true`);
+        if (fs.existsSync(`${CAT_THUMBS_HOST}/${handle}.webp`)) sh(`docker cp ${CAT_THUMBS_HOST}/${handle}.webp ${SF}:/app/public/cat-thumbs/${handle}.webp`);
+      } catch (e) { console.log(`    ⚠️ regen ${handle}: ${String(e.message).slice(0, 100)}`); }
+      finally { try { if (treeBak != null) fs.writeFileSync(TREE, treeBak); } catch {} try { if (missBak != null) fs.writeFileSync(MISSING, missBak); } catch {} }
+    };
+
+    buildThumbs(defs.map(d => d.handle));
+    let brightOut = measureBright(defs.map(d => d.handle));
+    console.log("    heledus(taust-mediaan): " + brightOut.map(b => b.missing ? `${b.h}:PUUDU` : `${b.h}:${b.luma}`).join(" · "));
+    const REGEN_MAX = 3;
+    let stillBad = brightOut.filter(b => b.missing || b.luma < IMG_BRIGHT_MIN).map(b => b.h);
+    for (let attempt = 1; attempt <= REGEN_MAX && stillBad.length; attempt++) {
+      console.log(`    🎨 Gemini valge-taust regen (katse ${attempt}/${REGEN_MAX}): ${stillBad.join(", ")}`);
+      for (const h of stillBad) regenWhiteBg(h);
+      const re = measureBright(stillBad);
+      console.log("    heledus(regen): " + re.map(b => b.missing ? `${b.h}:PUUDU` : `${b.h}:${b.luma}`).join(" · "));
+      stillBad = re.filter(b => b.missing || b.luma < IMG_BRIGHT_MIN).map(b => b.h);
+    }
+    // stillBad peale regen'i → SKIP just need L3 (shadow). Rollback (atomaarne) + runL3Batches loob ÜLEJÄÄNUD
+    // uuesti ilma skipituteta (per-L3 semantika, taaskasutab testitud atomaarset rollback'i). MITTE süsteemne stopp.
+    if (stillBad.length) {
+      try {
+        const q = (sql) => execSync(`docker exec -i ${DB} psql -U xlmarket -d xlmarket -tA -v ON_ERROR_STOP=1 -f -`, { input: sql, encoding: "utf8" });
+        ensureShadowSchema(q);
+        for (const h of stillBad) {
+          const p = plans.find(x => x.handle === h);
+          recordShadowProposal(q, { batch_id: `${BATCH}-img-skip`, cluster_key: p?.ck || h, proposed_name: p?.name_et || h, parent_l2_handle: p?.parentL2, origin: "image-dark-bg", n_products: p?.n || 0, all_gates_pass: false, gates: { image: { pass: false, reason: `tume taust peale ${REGEN_MAX}× regen` } } });
+        }
+      } catch (e) { console.log(`    ⚠ pildi-skip shadow vahele: ${String(e.message).slice(0, 120)}`); }
+      rollback(`pildi-skip: ${stillBad.length} L3 tume taust peale ${REGEN_MAX}× regen (${stillBad.join(", ")}) → shadow; ülejäänud luuakse uuesti`);
+      return { ok: false, batch_id: BATCH, reason: "pildi-skip", skipHandles: stillBad, baseline, created };
+    }
     for (const d of defs) sh(`docker cp ${SF}:/app/public/cat-thumbs/${d.handle}.webp ${REPO}/storefront/public/cat-thumbs/${d.handle}.webp`);
 
     // 4. SSoT regen
@@ -402,14 +470,37 @@ export async function runL3Batches({
   const results = [];
   console.log(`\n🧱 ${label}: ${allPlans.length} L3 → ${batches.length} partii (à ${batchSize}), režiim=${mode}`);
 
+  // pildi-skip retry (Tarmo 2026-10-09, PER-L3): kui partii kukub reason="pildi-skip" (mõni L3 tume taust
+  // peale 3× regen), filtreeri skipitud handled välja ja proovi partii ÜLEJÄÄNUD L3-dega uuesti (atomaarne
+  // rollback juba taastas DB). Kõik skipitud → EI süsteemne stopp, järgmine partii. Retry-lagi väldib lõputust.
+  const PILDI_RETRY_MAX = 3;
+  const allSkipped = [];
   for (let i = 0; i < batches.length; i++) {
     const isDry = mode === "dry-first" && i === 0;
-    const bAssigns = i === 0 ? assigns : []; // assignid lähevad esimese partiiga (ETAPP3-l tühi)
-    console.log(`\n${"━".repeat(50)}\n▶ PARTII ${i + 1}/${batches.length} (${batches[i].length} L3)${isDry ? " — DRY" : ""}\n${"━".repeat(50)}`);
-    const res = await createL3Batch({
-      plans: batches[i], assigns: bAssigns, batchPrefix: `${batchPrefix}-b${i + 1}`,
-      dryRun: isDry, neighbor, granularity, label: `${label} p${i + 1}/${batches.length}`, extraGitPaths,
-    });
+    let curPlans = batches[i];
+    let res = null;
+    for (let attempt = 0; attempt <= PILDI_RETRY_MAX; attempt++) {
+      const bAssigns = i === 0 ? assigns : []; // assignid lähevad esimese partiiga (ETAPP3-l tühi); rollback võttis maha → re-anna igal katsel
+      console.log(`\n${"━".repeat(50)}\n▶ PARTII ${i + 1}/${batches.length} (${curPlans.length} L3)${isDry ? " — DRY" : ""}${attempt ? ` — pildi-retry ${attempt}/${PILDI_RETRY_MAX}` : ""}\n${"━".repeat(50)}`);
+      res = await createL3Batch({
+        plans: curPlans, assigns: bAssigns, batchPrefix: `${batchPrefix}-b${i + 1}`,
+        dryRun: isDry, neighbor, granularity, label: `${label} p${i + 1}/${batches.length}`, extraGitPaths,
+      });
+      if (isDry || res.ok || res.reason !== "pildi-skip" || !Array.isArray(res.skipHandles)) break;
+      const skip = new Set(res.skipHandles);
+      allSkipped.push(...res.skipHandles);
+      const remain = curPlans.filter(p => !skip.has(p.handle));
+      if (remain.length === 0) {
+        console.log(`  ⏭ PARTII ${i + 1}: kõik ${skip.size} L3 skipitud (tume taust) → shadow, EI süsteemne stopp — järgmine partii.`);
+        res = { ...res, ok: true, allSkipped: res.skipHandles }; break;
+      }
+      if (attempt >= PILDI_RETRY_MAX) {
+        console.log(`  ⏭ PARTII ${i + 1}: pildi-retry ammendus, ${skip.size} jääb shadow'sse → ülejäänutega edasi ei proovi, järgmine partii.`);
+        res = { ...res, ok: true, allSkipped: res.skipHandles }; break;
+      }
+      console.log(`  🔁 PARTII ${i + 1}: ${skip.size} L3 skipitud (pildi-värav) → proovin ülejäänud ${remain.length} uuesti.`);
+      curPlans = remain;
+    }
     results.push({ batch: i + 1, ...res });
     if (isDry) { console.log(`\n⏸ DRY esimene partii valmis — raporteeri + oota kinnitust ENNE execute'i.`); break; }
     if (!res.ok) {
@@ -417,7 +508,8 @@ export async function runL3Batches({
       console.error(`\n🛑 Partii ${i + 1} kukkus (${res.reason}) → PEATAN batching'u.`);
       break;
     }
-    console.log(`✅ Partii ${i + 1} roheline → järgmine automaatselt.`);
+    console.log(`✅ Partii ${i + 1} roheline → järgmine automaatselt.${res.allSkipped ? ` (${res.allSkipped.length} L3 pildi-skip shadow'sse)` : ""}`);
   }
+  if (allSkipped.length) console.log(`\n⏭ KOKKU pildi-skip (tume taust, shadow'sse): ${allSkipped.length} L3 — ${[...new Set(allSkipped)].join(", ")}`);
   return results;
 }

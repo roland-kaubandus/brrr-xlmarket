@@ -19,6 +19,18 @@ try {
   }
 } catch {}
 
+// ⚠️ DEPRECATED (2026-10-09) — EI OLE kanooniline sünonüümi-sync.
+// See skript ehitab AINULT word→synonyms subseti (dedup sõna järgi, ~16.7k võtit) ja KIRJUTAB ÜLE
+// Meili synonyms-settingu → kahandab kanoonilise täis-bidirektsionaalse + A2-variantidega komplekti (~102k).
+// KANOONILINE: backend/scripts/sync-synonyms.mjs (konteineris: docker exec $MEDUSA node scripts/sync-synonyms.mjs).
+// Kõik reindeksi-kutsujad (mootor, ETAPP2, öine import-pipeline [7.5]) kasutavad kanoonilist (HARD RULE #5).
+if (process.env.ALLOW_LEGACY_SYNONYM_SYNC !== "1") {
+  console.error("✗ sync-existing-synonyms.mjs on DEPRECATED — kahandaks Meili synonyms'i (~102k → ~16.7k).")
+  console.error("  Kasuta kanoonilist: docker exec <medusa> node scripts/sync-synonyms.mjs")
+  console.error("  (Tõesti vaja vana subseti? → ALLOW_LEGACY_SYNONYM_SYNC=1)")
+  process.exit(1)
+}
+
 const MEILI = process.env.MEILISEARCH_HOST || "http://127.0.0.1:7700"
 const MEILI_KEY = process.env.MEILISEARCH_API_KEY || process.env.MEILISEARCH_KEY
 
