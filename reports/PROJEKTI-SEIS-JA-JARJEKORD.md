@@ -1,6 +1,6 @@
 # XL e-pood — PROJEKTI SEIS JA JÄRJEKORD (ankur-dokument)
 
-> **Koostatud:** 2026-09-19 · **Uuendatud:** 2026-10-06 (A konsensus-sünonüümid ✅ EXECUTE+LIVE — §1.12; B klassifikaatori täisautomaatika = JÄRGMINE, spets koodita valmis — §A4) · 2026-09-24 (A2 sünonüümid+variandid ✅ VALMIS+LIVE — §1.11) ·
+> **Koostatud:** 2026-09-19 · **Uuendatud:** 2026-10-09 (B klassifikaatori TÄISAUTOMAATIKA ✅ EHITATUD+torus — ETAPP 1–3, shadow-režiim, kontseptsioonivärav, deploy-lukk HARD RULE #9, kulude-jälgimine — §1.13; A4 nüüd EHITATUD) · 2026-10-06 (A konsensus-sünonüümid ✅ EXECUTE+LIVE — §1.12) · 2026-09-24 (A2 sünonüümid+variandid ✅ VALMIS+LIVE — §1.11) ·
 > **Eesmärk:** täielik, aus projekti seis, et ei hüppaks üle faaside ega
 > unustaks pooleliolevat. Iga väide on TÕESTATUD (git SHA / DB-päring / report). Oletused on märgitud
 > "⚠️ TÕESTAMATA".
@@ -125,6 +125,22 @@ Kõik LIVE storefront-konteineris (tag 93c1f8b3):
 - **Undo:** `node scripts/synonym-backfill-undo.mjs synbf-2026-10-06T15-14-07-939Z`.
 - **Tõestus:** commit v4 `995ddad6` / main `d2453e3e`; raport `reports/otsused-kalibreerimine-2026-10-06.md`.
 
+### 1.13 B — Auto-klassifikaatori TÄISAUTOMAATIKA (Opus, shadow-režiim) — ✅ EHITATUD + torus (2026-10-06…09)
+> Asendab A4 "spets koodita" seisu. Siht (CLAUDE.md §AUTO-KLASSIFIKAATOR): Opus = ainus primaar-paigutaja, loob L3-d ise väravatega; resolver-v2 → fallback. **Masin töötab ise (HARD RULE #6), inimene = turvavõrk.**
+
+- **Otsustusahel (SSoT, HARD RULE #5 — üks transform, mitu kutsujat):** `scripts/lib/classify-chain.mjs` jookseb nii ETAPP1 dry-runis (`classify-chain-dryrun.mjs`) kui öises hookis (`pipeline-classify-chain.mjs`, `import-pipeline.sh` **[4]**). Opus-kohtunik → Sonnet-referents → (lahkheli) **Fable-viigimurdja** → 2/3 enamus; kõik eri → HOLD.
+- **⚖️ ASÜMMEETRILINE KINDLUS (§2c):** `assign_existing` → 1 Fable-kutse; `new_l3` viigimurdja → **Fable 3× hääletus, ≥2/3 enamus**; `new_l3` konsensusega → 1× kinnitus. Struktuuri-otsus ei sõltu ühest mündiviskest.
+- **VÄRAVAD (`scripts/lib/l3-gates.mjs`, KÕIK kohustuslikud transaktsioonis):** DUP → über-frag L2 → **nimevärav = kliendi-arusaamine** (3 alakontrolli: segadus/tehniline-esisõna/sirvimistasand) → **SEO-reegel** (`seoClaimGate` — numbrid+lubadused keelatud, mõõdetav) → **pildi-heledus** (`imageBrightnessCheck`, webp serva-luminants ≥225) → **täielikkus** (pilt+ET/EN+slug+SEO+nav+facet) → inv-taxonomy → lock-harness → merge-judge. Kukub → ROLLBACK + HOLD + Telegram.
+- **VARIANT 1 "shadow enne" AKTIIVNE:** olemas-L3 assign → **LIVE kohe**; **UUS L3 → SHADOW** (`classifier_shadow_ledger`: masin läbib kõik väravad, logib "oleks loonud" + Telegram, AGA EI loo). MITTE inimese järjekorda.
+- **AUTO-ÜLEMINEK (HARD RULE #6, KOODIS mitte ööde-arv):** `shadow-ledger.evaluateTransition` lülitab auto-create ISE sisse, kui ≥3 PÄRIS uut-tüüpi (distinct cluster_key) läbisid kõik väravad stabiilselt + 0 koodiviga. Seis: `classifier_config.auto_create_enabled=false` (shadow, ohutu algseis).
+- **ETAPP-id:** ETAPP2 backfill VALMIS (batch `e2-2026-10-06T1820`, 4 uut L3 / 40 toodet). ETAPP3 re-granulaarsus-recheck (39 loodud L3 → 38 jääb, 1 variant-undo). `classifier-undo <batch_id>` iga partii kohta.
+- **GRANULAARSUS-värav (§2c õhuke-kinnitus):** `scripts/lib/granularity-gate.mjs` — THIN_N=2, õhuke-L3 → Fable 2. kohtunik; kinnitus≠distinct → flip variant. Jagatud → kehtib ka öisele auto-create'ile.
+- **NAABRITE ülehindamine + KONTSEPTSIOONIVÄRAV:** naabrite-paigutus (ledgerist, range-enamus) ülehindas → **(c) kontseptsioonivärav** `scripts/lib/concept-gate.mjs` (a: semantiline kohtunik peamine; b: eesti morfoloogia odav eelfilter) torus `neighbor-execute.mjs`-s. **Tagasiulatuv revert** (`concept-revert-execute.mjs`, üldistatud tööriist): batch 2 (nbr-…125959) → 63 toodet/15 klastrit algkoju + tühja dup-L3 kustutus; batch 1 (nbr-…142151) → 2 toodet algkoju (näksurid Plekikääridest Plekitöötlusmasinatesse). "Ei sama kliendikontseptsioon" → algkodu.
+- **🔒 DEPLOY-LUKK (HARD RULE #9):** `scripts/lib/stack-lock.{mjs,sh}` — üks globaalne advisory-lukk (`/opt/eumotors-tasks/locks/xl-stack-write.lock`), node↔bash interop. DB-kirjutav töö ja Coolify-deploy EI käi KUNAGI korraga. Iga uus DB-kirjutaja võtab luku enne write'i.
+- **💶 KULUDE-JÄLGIMINE:** `scripts/lib/spend-guard.mjs`, `XLM_SPEND_LIMIT_USD=350` (.env, dünaamiline, 80%-värav $280). Kuluhinnang ~$3.5/öö.
+- **Tõestus:** commitid granulaarsus `d346ea5d`/`476aaaad` · stack-lukk `74c6a055` (+ fix `5b8aea83`/`b649875a`) · kontseptsioonivärav `85059fa0` · concept-revert `e9cf9cb8`/`5da97352`; CLAUDE.md §AUTO-KLASSIFIKAATOR; spets `reports/b-klassifikaator-taisautomaatika-spets.md`; sessioonilogi `memory/sessions/2026-10-06-xl.md` + `2026-10-09-xl.md`.
+- **⚠️ LAHTINE:** auto-create on veel **shadow** (ootab `evaluateTransition` ≥3 stabiilset uut-tüüpi); shadow-ledger nähtavus (Telegram "oleks loonud" teade töötab, aga klastri-ülevaatuse UI puudub — vt §P7 laiend).
+
 ---
 
 ## 2. POOLELI (alustatud, EI lõpetatud — mis TÄPSELT puudu)
@@ -185,12 +201,12 @@ Kõik LIVE storefront-konteineris (tag 93c1f8b3):
 ### A3. Rich-sisu lünk (~4329 toodet PIKK turundus-prose) — ALUSTAMATA
 - EI ole feed-parandatav (VEVOR xlsx kärbib CSS-cap'i juures). Vajab generaatorit (spec+pilt) VÕI VEVOR web/API täis-HTML. Sisu-generaator (P2) katab title/description/selling-points; PIKK rich-plokk on eraldi. Mälu `sisu-generaator-skoop.md`.
 
-### A4. Auto-klassifikaator: Opus asendab resolver-v2 (B-etapp) — 🔜 JÄRGMINE (spets koodita VALMIS)
-- **Siht (uuendatud 2026-10-06):** Opus-klassifikaator = ainus primaar-paigutaja + **loob L3-d ISE väravatega** (ei propose-not-create). Otsustusahel: Opus-kohtunik → Sonnet-5-referents → (lahkheli) Fable-5-viigimurdja → 2/3 enamus; kõik eri meelt → HOLD + taksonoomia-signaal. resolver-v2 → fallback.
-- **TÄISSPETS (koodita):** `reports/b-klassifikaator-taisautomaatika-spets.md` — otsustusahel-joonis, granulaarsuse prompt-tekst (mõlemad mudelid), auto-L3 10-värava ahel, kalibreerimis-plaan (kuldvalim + Fable-mõõdik), HARD RULE #5 backfill+hook+multi-feed, 4 kandidaadi käsitlus, kuluhinnang ~$3.5/öö.
-- **Reegli-muutus:** CLAUDE.md §AUTO-KLASSIFIKAATOR uuendatud (propose-not-create → täisautomaatika + väravad, HARD RULE #6 kooskõla).
-- **Ootab:** Tarmo spetsi-kinnitust → ehitus (järjekord spets §10). Kalibreerimise alus (A) juba ehitatud: DUP-värav 21→7, sõltumatu Sonnet-5 referents, `taxonomy_overlap_signal`. Mälu `b-disain-opus-klassifikaator-feed.md` + `syn-konsensus-klassifikaator-kalibreerimine.md`.
-- **NB:** SEG-01 kids-guard on ehitatud (`9d302918`/`2b06f116`, Osa 30) — üksik-parandus, mitte täis-B.
+### A4. Auto-klassifikaator: Opus asendab resolver-v2 (B-etapp) — ✅ EHITATUD + torus (vt §1.13)
+- **SEIS 2026-10-09: EHITATUD + öises torus (shadow-režiim).** Täisdetailid → **§1.13**. Opus-klassifikaator = primaar-paigutaja, **loob olemas-L3-desse LIVE** + **uus L3 → SHADOW** (logib "oleks loonud", EI loo — kuni `evaluateTransition` ≥3 stabiilset uut-tüüpi → auto-create ISE sisse). resolver-v2 → fallback.
+- **SSoT-moodulid git-is:** `scripts/lib/classify-chain.mjs` (ahel + §2c asümm-kindlus), `l3-gates.mjs` (DUP/über-frag/nimi/SEO/pilt/täielikkus/inv/harness/merge), `shadow-ledger.mjs` (shadow + transition), `concept-gate.mjs` (naabrite ülehindamine), `stack-lock.{mjs,sh}` (deploy-lukk HARD RULE #9), `spend-guard.mjs` (XLM_SPEND_LIMIT_USD=350). Üks transform, kaks kutsujat (dry-run + öine hook) — HARD RULE #5.
+- **ETAPP-id:** ETAPP2 backfill VALMIS (`e2-2026-10-06T1820`, 4 L3 / 40 toodet) · ETAPP3 re-granulaarsus (39→38) · naabrite tagasiulatuv kontseptsiooni-revert (batch 2: 63/15 + L3-kustutus; batch 1: 2 toodet).
+- **TÄISSPETS:** `reports/b-klassifikaator-taisautomaatika-spets.md`. CLAUDE.md §AUTO-KLASSIFIKAATOR uuendatud (propose-not-create → täisautomaatika + väravad).
+- **⚠️ LAHTINE:** auto-create veel **shadow** (ootab ≥3 stabiilset uut-tüüpi); shadow-ledger klastri-ülevaatuse UI puudub (vt §P7).
 
 ### A5. 956-backlog import — ALUSTAMATA (eraldi äriotsus)
 - 956 uut toodet klassifitseeritud (auto 818, review 82, new_l3 41→9 päris uut, quarantine 15). EI ole DB-s (`--skip-new`). Import = launch-inventari-otsus. Mälu `956-autopaigutus-pipeline-leiud.md`.
@@ -225,12 +241,16 @@ Kõik LIVE storefront-konteineris (tag 93c1f8b3):
   (4) rich-sisu jääk [A3] valikuline → (5) cutover [A8]. Multi-feed / topelt-ladu / Opus-klassifikaator =
   **Phase-2 PÄRAST launchi**, väljaspool FAAS 1-5 kaart.
 
-### 🔜 LAHTISTE JÄRJEKORD (mis JÄRGMISENA — sisu-vundament valmis)
-1. **Review-bucket nähtavus** [§P7] — 3828 sünonüümi + klassifikaator ootavad; teade + klastri-UI. **#1.**
-2. **#3 glossary uus-termin hook** [§A1 laiend] — uus termin sisus → glossary-kandidaat automaatselt (A2 järg,
-   sama transform+backfill+hook muster). Forward-only, propose-not-create.
-3. **Outlet ristkuvamine aktiveerimine** [§P4] — `outlet-crossdisplay.mjs execute` + reindeks (backend üleval).
-4. **Outlet L2-pildid** [§P5] — Gemini deblokeeritud (Osa 57); atmosphere-stseenid.
+### 🔜 LAHTISTE JÄRJEKORD (mis JÄRGMISENA — klassifikaatori täisautomaatika ✅ valmis, vt §1.13)
+> Uuendatud 2026-10-09 handoff'i järgi. Klassifikaatori B-etapp (§A4/§1.13) VALMIS → järjekord nihkub.
+1. **#3 glossary uus-termin hook** [§A1 laiend] — uus feed → uued erialaterminid → masin pakub ET-vaste → kahe
+   mudeli konsensus → glossary'sse automaatselt väravatega (DUP, kehtivus); lahkheli → Fable; kõik eri → termin
+   jääb tõlkimata + signaal. **PLAAN:** `reports/glossary-uus-termin-hook-plaan.md`. HARD RULE #5 (backfill+hook+multi-feed), #6 (täisautomaatne). **#1 JÄRGMINE.**
+2. **Outlet ristkuvamine aktiveerimine** [§P4] — `outlet-crossdisplay.mjs execute` + reindeks (backend üleval).
+3. **Outlet L2-pildid** [§P5] — Gemini deblokeeritud (Osa 57); atmosphere-stseenid (Elektroonika/Peoinventar/Büroo/Põllumajandus/Kodumasinad).
+4. **FAAS 3 launch-blokeerijad** [§4/§A8] — cutover-eelsed päris augud: `.eu` routing (Traefik Host/301) · TLS/LE bare-domeenile · uo28 backup enne stop'i · E2E smoke prod-domeenil (Montonio) · feed-sync sihtmärk.
+5. **main ↔ taxonomy-v4 lahknevus enne cutover'it** — harud peavad enne cutoverit kokku viidama (HARD RULE #4 hoiab sünkroonis, aga pikaajaline lahknevus = cutover-risk). Kontroll: `git rev-parse origin/main` vs `origin/taxonomy-v4`.
+6. **Review-bucket / shadow-ledger nähtavus** [§P7] — klastri-UI (shadow "oleks loonud" + sünonüümid); Telegram-teade juba töötab, UI puudub.
 
 ### 🤖 MASINA-AUTOMAATIKA SEIS (öine import-pipeline)
 - **~85% automaatne:** [1] reindeks → [3] import → [3.5] title-strip → [4] classify → [5] hind → [6] spec →

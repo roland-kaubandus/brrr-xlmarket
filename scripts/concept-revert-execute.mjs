@@ -6,20 +6,21 @@
  * Tarmo: "kontrolli KÕIK klastrid uue kontseptsiooniväravaga. 'Ei ole sama kliendikontseptsioon' → revert
  * algsesse koju. DRY → raporteeri → execute. Stack-luku all, undo + Telegram."
  *
- * See skript LOEB retro-skänni verdiktid (scripts/lib/concept-gate.mjs conceptMoveJudge väljund) ja:
- *   - TAGASI_ALLIKAS (korge+kesk)  → KOGU klaster tagasi fromId-koju
+ * ÜLDISTATUD (HARD RULE #5 — üks transform, mitu kutsujat): sama tööriist iga naabrite-partii retro-kontrolliks.
+ * See skript LOEB retro-skänni verdiktid (scripts/lib/concept-gate.mjs conceptMoveJudge väljund, --verdicts <path>) ja:
+ *   - TAGASI_ALLIKAS (korge+kesk)  → KOGU klaster tagasi fromId-koju (WHERE pcat=toId → kaitseb kui juba mujal)
  *   - OSALINE (dušitrapid pcat_10lin→pcat_9drenrenn) → AINULT Shower Drain tagasi (title-põhine, Trench jääb)
- *   - OSALINE tühja back_idx-ga (dušitoolid→ülekanne kesk, töökärud madal) → SIGNAL, EI revert
- *   - LISAKS: soft-delete tühi dup-L3 pcat_f4_13x1_12 «Paindvõlliga lihvimismasinad» (Tarmo item-2 #3;
- *     dup «Painduva võlliga lihvmasinad» pcat_t3f_2_27-st; 0 toodet, 0 last → struktuuri-muutus).
+ *   - OSALINE tühja back_idx-ga → SIGNAL, EI revert
+ *   - VALIKULINE --del-l3 <id>: soft-delete tühi dup-L3 (batch 2 = pcat_f4_13x1_12) → STRUKTUURI-MUUTUS.
  *
- * STRUKTUUR MUUTUB (L3 kustutus) → TÄIS 4-sammu deploy (genyM → gen-category-tree → push mõlemad → coolify).
+ * DEPLOY-NÜANSS: --del-l3 antud = struktuur muutub → TÄIS 4-sammu deploy (genyM → gen-category-tree → push → coolify).
+ * --del-l3 PUUDU = moves-only (ainult toote-lingid) → struktuur ei muutu → AINULT Meili reindeks, deploy VAHELE.
  * Stack-lukk (HARD RULE #9): DB-transaktsioon + Meili luku ALL; lukk VABASTATAKSE ENNE coolify-deploy.sh-d
  * (bash võtab oma luku; node-lukk peab enne vabanema, muidu 1200s deadlock — ei ole protsessi-ülest re-entry).
  *
- * Käivita:  set -a; . /opt/eumotors-tasks/.env; set +a; node scripts/concept-revert-execute.mjs --dry
- *           ... node scripts/concept-revert-execute.mjs --deploy        (päris: DB + Meili + 4-sammu deploy)
- * Undo:     node scripts/concept-revert-execute.mjs --undo reports/backups/concept-revert-undo-<batch>.json --deploy
+ * Käivita:  set -a; . /opt/eumotors-tasks/.env; set +a; node scripts/concept-revert-execute.mjs --dry [--verdicts <path>]
+ *           ... node scripts/concept-revert-execute.mjs --deploy [--del-l3 <id>]   (päris: DB + Meili [+ 4-sammu deploy])
+ * Undo:     node scripts/concept-revert-execute.mjs --undo reports/backups/concept-revert-undo-<batch>.json [--deploy]
  */
 import fs from "node:fs";
 import { execSync } from "node:child_process";
@@ -33,7 +34,11 @@ const DEPLOY = argv.includes("--deploy");
 const UNDO = argv.includes("--undo") ? argv[argv.indexOf("--undo") + 1] : null;
 const VERDICTS = argv.includes("--verdicts") ? argv[argv.indexOf("--verdicts") + 1] : `${SP}/retro-verdicts.json`;
 const BATCH_ID = process.env.BATCH_ID || ("cr-" + new Date().toISOString().replace(/[:.]/g, "").replace(/(T\d{6}).*/, "$1"));
-const DEL_L3 = "pcat_f4_13x1_12"; // tühi dup «Paindvõlliga lihvimismasinad»
+// --del-l3 <id> (valikuline): soft-delete tühi dup-L3 (batch 2 = pcat_f4_13x1_12). Puudu → L3-kustutust EI tehta
+// → moves-only (struktuur ei muutu) → AINULT Meili reindeks, 4-sammu deploy VAHELE (CLAUDE.md deploy-nüanss).
+const DEL_L3 = argv.includes("--del-l3") ? argv[argv.indexOf("--del-l3") + 1] : null;
+const DEL_L3_NAME = process.env.DEL_L3_NAME || (DEL_L3 === "pcat_f4_13x1_12" ? "Paindvõlliga lihvimismasinad" : DEL_L3 || "");
+const STRUCT_CHANGE = !!DEL_L3; // ainult L3-kustutus = struktuuri-muutus; muidu moves-only
 
 const sh = (cmd) => execSync(cmd, { encoding: "utf8", stdio: "inherit" });
 const DB = execSync("docker ps --format '{{.Names}}' | grep '^db-k33g' | head -1", { encoding: "utf8" }).trim();
@@ -135,14 +140,16 @@ for (const r of V) {
 let sql = "BEGIN;\n";
 for (const r of reverts)
   sql += `UPDATE product_category_product SET product_category_id=${S(r.fromId)} WHERE product_id IN (${r.pids.map(S).join(",")}) AND product_category_id=${S(r.toId)};\n`;
-sql += `UPDATE product_category SET deleted_at=now(), updated_at=now() WHERE id=${S(DEL_L3)} AND deleted_at IS NULL AND NOT EXISTS (SELECT 1 FROM product_category_product x WHERE x.product_category_id=${S(DEL_L3)});\n`;
+if (DEL_L3)
+  sql += `UPDATE product_category SET deleted_at=now(), updated_at=now() WHERE id=${S(DEL_L3)} AND deleted_at IS NULL AND NOT EXISTS (SELECT 1 FROM product_category_product x WHERE x.product_category_id=${S(DEL_L3)});\n`;
 for (const r of reverts) {
   const meta = { batch_id: BATCH_ID, from: r.sourceName, to: r.targetName, kindlus: r.kindlus, verdict: r.verdict, note: r.note || null, resolved_by: "concept-gate-retro", reverted: r.pids.length };
   sql += `INSERT INTO review_decision_log (actor, actor_detail, channel, bucket_type, action, concept_key, target_handle, status, affected, meta)
     VALUES ('claude-code-test','claude-code-test','api','neighbor-concept-retro','revert',${S(r.toId)},${S(r.fromId)},'applied',${S(JSON.stringify(r.pids))}::jsonb,${S(JSON.stringify(meta))}::jsonb);\n`;
 }
-sql += `INSERT INTO review_decision_log (actor, actor_detail, channel, bucket_type, action, concept_key, status, affected, meta)
-  VALUES ('claude-code-test','claude-code-test','api','neighbor-concept-retro','delete',${S(DEL_L3)},'applied','[]'::jsonb,${S(JSON.stringify({ batch_id: BATCH_ID, reason: "tühi dup-L3 (Tarmo item-2 #3), dup pcat_t3f_2_27" }))}::jsonb);\n`;
+if (DEL_L3)
+  sql += `INSERT INTO review_decision_log (actor, actor_detail, channel, bucket_type, action, concept_key, status, affected, meta)
+  VALUES ('claude-code-test','claude-code-test','api','neighbor-concept-retro','delete',${S(DEL_L3)},'applied','[]'::jsonb,${S(JSON.stringify({ batch_id: BATCH_ID, reason: "tühi dup-L3, L3=" + DEL_L3_NAME }))}::jsonb);\n`;
 sql += "COMMIT;\n";
 fs.writeFileSync(`${SP}/concept-revert-migrate.sql`, sql);
 
@@ -153,7 +160,7 @@ const totalProducts = reverts.reduce((s, r) => s + r.pids.length, 0);
 const byConf = (k) => reverts.filter(r => r.kindlus === k);
 console.log(`\n═══ KONTSEPTSIOONI-REVERT ${DRY ? "(DRY)" : ""} | batch=${BATCH_ID} ═══`);
 console.log(`Revert: ${reverts.length} klastrit / ${totalProducts} toodet  (korge ${byConf("korge").length} · kesk ${byConf("kesk").length})`);
-console.log(`L3 kustutus: ${DEL_L3} «Paindvõlliga lihvimismasinad» (tühi dup)`);
+console.log(DEL_L3 ? `L3 kustutus: ${DEL_L3} «${DEL_L3_NAME}» (tühi dup) → STRUKTUURI-MUUTUS → 4-sammu deploy` : `L3 kustutus: — (moves-only → ainult Meili reindeks)`);
 console.log(`Signal (EI revert): ${signals.length} OSALINE ilma rakendatava indeksita`);
 const order = { korge: 0, kesk: 1, madal: 2 };
 for (const r of [...reverts].sort((a, b) => order[a.kindlus] - order[b.kindlus])) {
@@ -190,8 +197,9 @@ console.log(`💾 undo: node scripts/concept-revert-execute.mjs --undo ${undoFil
 console.log("⏳ transaktsioon…");
 psqlTx(sql);
 const newDistinct = distinct(), newL3 = l3count();
-console.log(`✅ RAKENDATUD: ${totalProducts} toodet / ${reverts.length} klastrit tagasi + L3 ${DEL_L3} kustutatud.`);
-console.log(`post: distinct=${newDistinct} (baseline ${baseDistinct}, säilinud=${newDistinct === baseDistinct ? "✓" : "⚠️"}) · l3=${newL3} (baseline ${baseL3}, -1 oodatud=${newL3 === baseL3 - 1 ? "✓" : "⚠️"})`);
+const expL3 = DEL_L3 ? baseL3 - 1 : baseL3;
+console.log(`✅ RAKENDATUD: ${totalProducts} toodet / ${reverts.length} klastrit tagasi${DEL_L3 ? ` + L3 ${DEL_L3} kustutatud` : " (moves-only)"}.`);
+console.log(`post: distinct=${newDistinct} (baseline ${baseDistinct}, säilinud=${newDistinct === baseDistinct ? "✓" : "⚠️"}) · l3=${newL3} (baseline ${baseL3}, ${DEL_L3 ? "-1" : "0"} oodatud=${newL3 === expL3 ? "✓" : "⚠️"})`);
 
 console.log("⏳ Meili reindeks + sünonüüm-sync…");
 const meiliOk = reindex();
@@ -204,16 +212,18 @@ catch { invOk = false; console.error("⚠️ POST inv-taxonomy FAIL — vaata ü
 // VABASTA node-lukk ENNE deploy'd (coolify-deploy.sh võtab oma bash-luku; node-lukk peab vabanema)
 if (releaseLock) { releaseLock(); releaseLock = null; }
 
-if (DEPLOY) deploy(`revert(taxonomy): kontseptsiooni-värav tagasiulatuv — ${reverts.length} klastrit/${totalProducts} toodet algkoju + kustuta tühi dup-L3 ${DEL_L3}`);
-else console.log("ℹ️ --deploy puudus: DB + Meili tehtud, AGA SSoT/nav/push/redeploy VAHELE (L3 jääb navi kuni deploy). Lisa --deploy.");
+// STRUKTUUR MUUTUB (L3 kustutus) → 4-sammu deploy. MOVES-ONLY → ainult Meili (juba tehtud), deploy VAHELE.
+if (STRUCT_CHANGE && DEPLOY) deploy(`revert(taxonomy): kontseptsiooni-värav tagasiulatuv — ${reverts.length} klastrit/${totalProducts} toodet algkoju + kustuta tühi dup-L3 ${DEL_L3}`);
+else if (STRUCT_CHANGE && !DEPLOY) console.log("ℹ️ --deploy puudus (struktuur muutus): DB + Meili tehtud, AGA SSoT/nav/push/redeploy VAHELE (L3 jääb navi kuni deploy). Lisa --deploy.");
+else console.log("ℹ️ moves-only (0 struktuuri-muutust) → AINULT Meili reindeks (tehtud). 4-sammu deploy VAHELE (CLAUDE.md deploy-nüanss — leht loeb arve Meili'st).");
 
 // Telegram
 const tg = [`🧭 KONTSEPTSIOONI-REVERT (tagasiulatuv · ${BATCH_ID})`,
   `Tagasi algkoju: ${totalProducts} toodet / ${reverts.length} klastrit (korge ${byConf("korge").length} · kesk ${byConf("kesk").length})`,
-  `L3 kustutatud: «Paindvõlliga lihvimismasinad» (tühi dup)`,
-  `Väravad: distinct ${newDistinct === baseDistinct ? "säilinud ✓" : "⚠️"} · inv ${invOk ? "0 FAIL ✓" : "⚠️ vaata"} · Meili ${meiliOk ? "✓" : "⚠️"} · deploy ${DEPLOY ? "4-sammu ✓" : "VAHELE"}`,
+  DEL_L3 ? `L3 kustutatud: «${DEL_L3_NAME}» (tühi dup)` : `L3 kustutus: — (moves-only)`,
+  `Väravad: distinct ${newDistinct === baseDistinct ? "säilinud ✓" : "⚠️"} · inv ${invOk ? "0 FAIL ✓" : "⚠️ vaata"} · Meili ${meiliOk ? "✓" : "⚠️"} · deploy ${STRUCT_CHANGE ? (DEPLOY ? "4-sammu ✓" : "VAHELE") : "moves-only: Meili ✓"}`,
   signals.length ? `⊘ ${signals.length} OSALINE signal (ülevaatuseks, ei reverditud)` : "",
-  `Undo: node scripts/concept-revert-execute.mjs --undo reports/backups/concept-revert-undo-${BATCH_ID}.json --deploy`].filter(Boolean).join("\n");
+  `Undo: node scripts/concept-revert-execute.mjs --undo reports/backups/concept-revert-undo-${BATCH_ID}.json${STRUCT_CHANGE ? " --deploy" : ""}`].filter(Boolean).join("\n");
 try { execSync(`bash ${REPO}/scripts/lib/notify-telegram.sh`, { input: tg, encoding: "utf8", stdio: ["pipe", "ignore", "ignore"] }); console.log("📨 Telegram saadetud"); }
 catch { console.log("ℹ️ Telegram vahele (token/skript puudu)"); }
 
