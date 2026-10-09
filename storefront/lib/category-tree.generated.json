@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-06T18:21:57.591Z",
+  "generated_at": "2026-10-09T07:07:21.401Z",
   "nodes": {
     "v4-tooriistad-ja-tarvikud": {
       "handle": "v4-tooriistad-ja-tarvikud",
@@ -5362,11 +5362,11 @@
         "v4-suurkoogiseadmed-kuumaseadmed-kohvikannud-pressid",
         "v4-suurkoogiseadmed-koogiseadmed-ja-elektriseadmed-kohviurnid",
         "v4-suurkoogiseadmed-koogiseadmed-ja-elektriseadmed-kohvimasinad-ja-urnid",
-        "v4-suurkoogiseadmed-kuumaseadmed-baristatarvikud-espressotarvikud"
+        "v4-suurkoogiseadmed-kuumaseadmed-baristatarvikud-espressotarvikud",
+        "v4-suurkook-kohviseadmed-kulmkohvi-valmistussusteemid-nitro-cold-brew"
       ],
-      "image_path": "/cat-thumbs/v4-suurkoogiseadmed-koogiseadmed-ja-elektriseadmed-kohviurnid.webp",
-      "image_source": "inherited",
-      "image_donor": "v4-suurkoogiseadmed-koogiseadmed-ja-elektriseadmed-kohviurnid"
+      "image_path": "/cat-thumbs/v4-suurkook-kohviseadmed-kulmkohvi-valmistussusteemid-nitro-cold-brew.webp",
+      "image_source": "fuzzy"
     },
     "v4-suurkoogiseadmed-kuumaseadmed-kohvikannud-pressid": {
       "handle": "v4-suurkoogiseadmed-kuumaseadmed-kohvikannud-pressid",
@@ -5406,6 +5406,16 @@
       "parent_handle": "v4-suurkook-kohviseadmed",
       "child_handles": [],
       "image_path": "/cat-thumbs/v4-suurkoogiseadmed-kuumaseadmed-baristatarvikud-espressotarvikud.webp",
+      "image_source": "direct"
+    },
+    "v4-suurkook-kohviseadmed-kulmkohvi-valmistussusteemid-nitro-cold-brew": {
+      "handle": "v4-suurkook-kohviseadmed-kulmkohvi-valmistussusteemid-nitro-cold-brew",
+      "name_en": "Külmkohvi valmistussüsteemid (nitro cold brew)",
+      "name_et": "Külmkohvi valmistussüsteemid (nitro cold brew)",
+      "level": 3,
+      "parent_handle": "v4-suurkook-kohviseadmed",
+      "child_handles": [],
+      "image_path": "/cat-thumbs/v4-suurkook-kohviseadmed-kulmkohvi-valmistussusteemid-nitro-cold-brew.webp",
       "image_source": "direct"
     },
     "v4-suurkoogiseadmed-noud": {
@@ -6674,7 +6684,8 @@
         "v4-moobel-ja-sisustus-elutoamoobel-kohvibaari-ja-baarikapid",
         "v4-moobel-ja-sisustus-elutoamoobel-tugitoolid",
         "v4-moobel-ja-sisustus-elutoamoobel-rotangmoobel",
-        "v4-moobel-ja-sisustus-elutoamoobel-kapid-ja-kummutid"
+        "v4-moobel-ja-sisustus-elutoamoobel-kapid-ja-kummutid",
+        "v4-moobel-ja-sisustus-elutoamoobel-porandatoolid"
       ],
       "image_path": "/cat-thumbs/v4-moobel-ja-sisustus-elutoamoobel-tv-alused.webp",
       "image_source": "inherited",
@@ -6760,6 +6771,16 @@
       "image_path": "/cat-thumbs/v4-moobel-ja-sisustus-elutoamoobel-kapid-ja-kummutid.webp",
       "image_source": "direct"
     },
+    "v4-moobel-ja-sisustus-elutoamoobel-porandatoolid": {
+      "handle": "v4-moobel-ja-sisustus-elutoamoobel-porandatoolid",
+      "name_en": "Põrandatoolid",
+      "name_et": "Põrandatoolid",
+      "level": 3,
+      "parent_handle": "v4-moobel-ja-sisustus-elutoamoobel",
+      "child_handles": [],
+      "image_path": "/cat-thumbs/v4-moobel-ja-sisustus-elutoamoobel-porandatoolid.webp",
+      "image_source": "direct"
+    },
     "v4-moobel-ja-sisustus-toolid-ja-istmed": {
       "handle": "v4-moobel-ja-sisustus-toolid-ja-istmed",
       "name_en": "Toolid ja istmed",
@@ -6770,7 +6791,9 @@
         "v4-moobel-ja-sisustus-toolid-ja-istmed-soogitoolid",
         "v4-moobel-ja-sisustus-toolid-ja-istmed-taburetid-ja-tootoolid-ratastega",
         "v4-moobel-ja-sisustus-toolid-ja-istmed-baaritoolid",
-        "v4-moobel-ja-sisustus-toolid-ja-istmed-vannitoa-istmed"
+        "v4-moobel-ja-sisustus-toolid-ja-istmed-vannitoa-istmed",
+        "v4-moobel-ja-sisustus-toolid-ja-istmed-polvitustoolid",
+        "v4-moobel-ja-sisustus-toolid-ja-istmed-aktiivse-istumise-istmed"
       ],
       "image_path": "/cat-thumbs/v4-moobel-ja-sisustus-toolid-ja-istmed-soogitoolid.webp",
       "image_source": "inherited",
@@ -6814,6 +6837,26 @@
       "parent_handle": "v4-moobel-ja-sisustus-toolid-ja-istmed",
       "child_handles": [],
       "image_path": "/cat-thumbs/v4-moobel-ja-sisustus-toolid-ja-istmed-vannitoa-istmed.webp",
+      "image_source": "direct"
+    },
+    "v4-moobel-ja-sisustus-toolid-ja-istmed-polvitustoolid": {
+      "handle": "v4-moobel-ja-sisustus-toolid-ja-istmed-polvitustoolid",
+      "name_en": "Põlvitustoolid",
+      "name_et": "Põlvitustoolid",
+      "level": 3,
+      "parent_handle": "v4-moobel-ja-sisustus-toolid-ja-istmed",
+      "child_handles": [],
+      "image_path": "/cat-thumbs/v4-moobel-ja-sisustus-toolid-ja-istmed-polvitustoolid.webp",
+      "image_source": "direct"
+    },
+    "v4-moobel-ja-sisustus-toolid-ja-istmed-aktiivse-istumise-istmed": {
+      "handle": "v4-moobel-ja-sisustus-toolid-ja-istmed-aktiivse-istumise-istmed",
+      "name_en": "Aktiivse istumise istmed",
+      "name_et": "Aktiivse istumise istmed",
+      "level": 3,
+      "parent_handle": "v4-moobel-ja-sisustus-toolid-ja-istmed",
+      "child_handles": [],
+      "image_path": "/cat-thumbs/v4-moobel-ja-sisustus-toolid-ja-istmed-aktiivse-istumise-istmed.webp",
       "image_source": "direct"
     },
     "v4-moobel-ja-sisustus-lauad": {
@@ -6952,7 +6995,9 @@
         "v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-voodiraamid-ja-baldahhiinvoodid",
         "v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-voodipohjad-ja-latialused",
         "v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-vooditelgid",
-        "v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-voodipeatsid"
+        "v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-voodipeatsid",
+        "v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-raskustekid",
+        "v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-kokkupandavad-kulalisvoodid"
       ],
       "image_path": "/cat-thumbs/v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-kummutid-ja-sahtlikapid.webp",
       "image_source": "inherited",
@@ -7036,6 +7081,26 @@
       "parent_handle": "v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu",
       "child_handles": [],
       "image_path": "/cat-thumbs/v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-voodipeatsid.webp",
+      "image_source": "direct"
+    },
+    "v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-raskustekid": {
+      "handle": "v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-raskustekid",
+      "name_en": "Raskustekid",
+      "name_et": "Raskustekid",
+      "level": 3,
+      "parent_handle": "v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu",
+      "child_handles": [],
+      "image_path": "/cat-thumbs/v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-raskustekid.webp",
+      "image_source": "direct"
+    },
+    "v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-kokkupandavad-kulalisvoodid": {
+      "handle": "v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-kokkupandavad-kulalisvoodid",
+      "name_en": "Kokkupandavad külalisvoodid",
+      "name_et": "Kokkupandavad külalisvoodid",
+      "level": 3,
+      "parent_handle": "v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu",
+      "child_handles": [],
+      "image_path": "/cat-thumbs/v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-kokkupandavad-kulalisvoodid.webp",
       "image_source": "direct"
     },
     "v4-moobel-ja-sisustus-esikumoobel-ja-jalatsikapid": {
@@ -12298,7 +12363,8 @@
         "v4-sport-ja-vaba-aeg-jalgrattad-ja-tarvikud-jalgratta-remondipukid",
         "v4-tooriistad-ja-tarvikud-turva-ja-objektivarustus-jalgrattalukud",
         "v4-sport-ja-vaba-aeg-jalgrattad-e-jalgratta-komplektid",
-        "v4-sport-ja-vaba-aeg-jalgrattad-ja-tarvikud-atv-tarvikud"
+        "v4-sport-ja-vaba-aeg-jalgrattad-ja-tarvikud-atv-tarvikud",
+        "v4-sport-ja-vaba-aeg-jalgrattad-ja-tarvikud-jalgratta-transpordikotid-ja-kohvrid"
       ],
       "image_path": "/cat-thumbs/v4-sport-ja-vaba-aeg-jalgrattad-ja-tarvikud-jalgrattad.webp",
       "image_source": "inherited",
@@ -12382,6 +12448,16 @@
       "parent_handle": "v4-sport-ja-vaba-aeg-jalgrattad-ja-tarvikud",
       "child_handles": [],
       "image_path": "/cat-thumbs/v4-sport-ja-vaba-aeg-jalgrattad-ja-tarvikud-atv-tarvikud.webp",
+      "image_source": "direct"
+    },
+    "v4-sport-ja-vaba-aeg-jalgrattad-ja-tarvikud-jalgratta-transpordikotid-ja-kohvrid": {
+      "handle": "v4-sport-ja-vaba-aeg-jalgrattad-ja-tarvikud-jalgratta-transpordikotid-ja-kohvrid",
+      "name_en": "Jalgratta transpordikotid ja -kohvrid",
+      "name_et": "Jalgratta transpordikotid ja -kohvrid",
+      "level": 3,
+      "parent_handle": "v4-sport-ja-vaba-aeg-jalgrattad-ja-tarvikud",
+      "child_handles": [],
+      "image_path": "/cat-thumbs/v4-sport-ja-vaba-aeg-jalgrattad-ja-tarvikud-jalgratta-transpordikotid-ja-kohvrid.webp",
       "image_source": "direct"
     },
     "v4-sport-ja-vaba-aeg-matkavarustus-ja-telkimine": {
@@ -14544,7 +14620,8 @@
       "parent_handle": "v4-ehitus-ja-remont",
       "child_handles": [
         "v4-ehitus-remont-ja-varvid-katusematerjalid-epdm-kummikatted",
-        "v4-ehitus-remont-ja-varvid-katusematerjalid-katuselabiviigu-tihendid"
+        "v4-ehitus-remont-ja-varvid-katusematerjalid-katuselabiviigu-tihendid",
+        "v4-ehitus-remont-ja-varvid-katusematerjalid-metallkatuseplaadid"
       ],
       "image_path": "/cat-thumbs/v4-ehitus-remont-ja-varvid-katusematerjalid-epdm-kummikatted.webp",
       "image_source": "inherited",
@@ -14568,6 +14645,16 @@
       "parent_handle": "v4-ehitus-remont-ja-varvid-katusematerjalid",
       "child_handles": [],
       "image_path": "/cat-thumbs/v4-ehitus-remont-ja-varvid-katusematerjalid-katuselabiviigu-tihendid.webp",
+      "image_source": "direct"
+    },
+    "v4-ehitus-remont-ja-varvid-katusematerjalid-metallkatuseplaadid": {
+      "handle": "v4-ehitus-remont-ja-varvid-katusematerjalid-metallkatuseplaadid",
+      "name_en": "Metallkatuseplaadid",
+      "name_et": "Metallkatuseplaadid",
+      "level": 3,
+      "parent_handle": "v4-ehitus-remont-ja-varvid-katusematerjalid",
+      "child_handles": [],
+      "image_path": "/cat-thumbs/v4-ehitus-remont-ja-varvid-katusematerjalid-metallkatuseplaadid.webp",
       "image_source": "direct"
     },
     "v4-ehitus-remont-ja-varvid-vihmaveesusteemid-ja-drenaaz": {
@@ -20566,7 +20653,8 @@
         "v4-tervis-hooldus-ja-ilu-isikuhooldusseadmed-hammaste-valgendusvahendid",
         "v4-tervis-hooldus-ja-ilu-isikuhooldusseadmed-kristallheli-teraapiavahendid",
         "v4-tervis-hooldus-ja-ilu-karvaeemaldus-ipl-ja-laser",
-        "v4-tervis-hooldus-ja-ilu-tatoveerimisseadmed"
+        "v4-tervis-hooldus-ja-ilu-tatoveerimisseadmed",
+        "v4-tervis-hooldus-ja-ilu-isikuhooldusseadmed-jalamassoorid-ja-stimulaatorid"
       ],
       "image_path": "/cat-thumbs/v4-tervis-hooldus-ja-ilu-isikuhooldusseadmed-juuksehooldusseadmed.webp",
       "image_source": "inherited",
@@ -20792,6 +20880,16 @@
       "image_path": "/cat-thumbs/v4-tervis-hooldus-ja-ilu-tatoveerimisseadmed.webp",
       "image_source": "direct"
     },
+    "v4-tervis-hooldus-ja-ilu-isikuhooldusseadmed-jalamassoorid-ja-stimulaatorid": {
+      "handle": "v4-tervis-hooldus-ja-ilu-isikuhooldusseadmed-jalamassoorid-ja-stimulaatorid",
+      "name_en": "Jalamassöörid ja -stimulaatorid",
+      "name_et": "Jalamassöörid ja -stimulaatorid",
+      "level": 3,
+      "parent_handle": "v4-tervis-hooldus-ja-ilu-isikuhooldusseadmed",
+      "child_handles": [],
+      "image_path": "/cat-thumbs/v4-tervis-hooldus-ja-ilu-isikuhooldusseadmed-jalamassoorid-ja-stimulaatorid.webp",
+      "image_source": "direct"
+    },
     "v4-tervis-hooldus-ja-ilu-salongi-ja-spaaseadmed": {
       "handle": "v4-tervis-hooldus-ja-ilu-salongi-ja-spaaseadmed",
       "name_en": "Salongi- ja spaaseadmed",
@@ -21011,7 +21109,8 @@
         "v4-voodi-trapetspoomid",
         "v4-meditsiin-ja-liikumisabi-liikumisabi-istmepadjad",
         "v4-meditsiin-ja-liikumisabi-liikumisabi-tugipostid",
-        "v4-meditsiin-ja-liikumisabi-liikumisabi-trepironimisabivahendid"
+        "v4-meditsiin-ja-liikumisabi-liikumisabi-trepironimisabivahendid",
+        "v4-meditsiin-ja-liikumisabi-liikumisabi-polvekaimistoed-polveskuutrid"
       ],
       "image_path": "/cat-thumbs/v4-meditsiin-ja-liikumisabi-liikumisabi-ratastooli-ja-laverampid.webp",
       "image_source": "inherited",
@@ -21175,6 +21274,16 @@
       "parent_handle": "v4-meditsiin-ja-liikumisabi-liikumisabi",
       "child_handles": [],
       "image_path": "/cat-thumbs/v4-meditsiin-ja-liikumisabi-liikumisabi-trepironimisabivahendid.webp",
+      "image_source": "direct"
+    },
+    "v4-meditsiin-ja-liikumisabi-liikumisabi-polvekaimistoed-polveskuutrid": {
+      "handle": "v4-meditsiin-ja-liikumisabi-liikumisabi-polvekaimistoed-polveskuutrid",
+      "name_en": "Põlvekäimistoed (põlveskuutrid)",
+      "name_et": "Põlvekäimistoed (põlveskuutrid)",
+      "level": 3,
+      "parent_handle": "v4-meditsiin-ja-liikumisabi-liikumisabi",
+      "child_handles": [],
+      "image_path": "/cat-thumbs/v4-meditsiin-ja-liikumisabi-liikumisabi-polvekaimistoed-polveskuutrid.webp",
       "image_source": "direct"
     },
     "v4-meditsiin-ja-liikumisabi-meditsiinitarvikud": {
@@ -22294,6 +22403,7 @@
     "v4-suurkoogiseadmed-koogiseadmed-ja-elektriseadmed-kohviurnid",
     "v4-suurkoogiseadmed-koogiseadmed-ja-elektriseadmed-kohvimasinad-ja-urnid",
     "v4-suurkoogiseadmed-kuumaseadmed-baristatarvikud-espressotarvikud",
+    "v4-suurkook-kohviseadmed-kulmkohvi-valmistussusteemid-nitro-cold-brew",
     "v4-suurkoogiseadmed-noud",
     "v4-suurkoogiseadmed-koogitarvikud-ja-noud-potid-ja-potikomplektid",
     "v4-suurkoogiseadmed-koogitarvikud-ja-noud-gastronoomianoud-hotel-pan",
@@ -22413,11 +22523,14 @@
     "v4-moobel-ja-sisustus-elutoamoobel-tugitoolid",
     "v4-moobel-ja-sisustus-elutoamoobel-rotangmoobel",
     "v4-moobel-ja-sisustus-elutoamoobel-kapid-ja-kummutid",
+    "v4-moobel-ja-sisustus-elutoamoobel-porandatoolid",
     "v4-moobel-ja-sisustus-toolid-ja-istmed",
     "v4-moobel-ja-sisustus-toolid-ja-istmed-soogitoolid",
     "v4-moobel-ja-sisustus-toolid-ja-istmed-taburetid-ja-tootoolid-ratastega",
     "v4-moobel-ja-sisustus-toolid-ja-istmed-baaritoolid",
     "v4-moobel-ja-sisustus-toolid-ja-istmed-vannitoa-istmed",
+    "v4-moobel-ja-sisustus-toolid-ja-istmed-polvitustoolid",
+    "v4-moobel-ja-sisustus-toolid-ja-istmed-aktiivse-istumise-istmed",
     "v4-moobel-ja-sisustus-lauad",
     "v4-moobel-ja-sisustus-lauad-diivanilauad",
     "v4-moobel-ja-sisustus-lauad-konsoollauad",
@@ -22438,6 +22551,8 @@
     "v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-voodipohjad-ja-latialused",
     "v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-vooditelgid",
     "v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-voodipeatsid",
+    "v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-raskustekid",
+    "v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-kokkupandavad-kulalisvoodid",
     "v4-moobel-ja-sisustus-esikumoobel-ja-jalatsikapid",
     "v4-moobel-ja-sisustus-esikumoobel-ja-jalatsikapid-jalatsikapid",
     "v4-moobel-ja-sisustus-esikumoobel-ja-jalatsikapid-jalatsipingid-ja-istmed",
@@ -22914,6 +23029,7 @@
     "v4-tooriistad-ja-tarvikud-turva-ja-objektivarustus-jalgrattalukud",
     "v4-sport-ja-vaba-aeg-jalgrattad-e-jalgratta-komplektid",
     "v4-sport-ja-vaba-aeg-jalgrattad-ja-tarvikud-atv-tarvikud",
+    "v4-sport-ja-vaba-aeg-jalgrattad-ja-tarvikud-jalgratta-transpordikotid-ja-kohvrid",
     "v4-sport-ja-vaba-aeg-matkavarustus-ja-telkimine",
     "v4-sport-ja-vaba-aeg-matkavarustus-ja-telkimine-matkatoolid-ja-lamamistoolid",
     "v4-sport-auto-katusetelgid",
@@ -23109,6 +23225,7 @@
     "v4-ehitus-remont-ja-varvid-katusematerjalid",
     "v4-ehitus-remont-ja-varvid-katusematerjalid-epdm-kummikatted",
     "v4-ehitus-remont-ja-varvid-katusematerjalid-katuselabiviigu-tihendid",
+    "v4-ehitus-remont-ja-varvid-katusematerjalid-metallkatuseplaadid",
     "v4-ehitus-remont-ja-varvid-vihmaveesusteemid-ja-drenaaz",
     "v4-ehitus-remont-ja-varvid-vihmaveesusteemid-ja-drenaaz-renni-ja-raastakaitsevorgud",
     "v4-ehitus-remont-ja-varvid-vihmavesi-drenaazirennid-ja-kanalid",
@@ -23655,6 +23772,7 @@
     "v4-tervis-hooldus-ja-ilu-isikuhooldusseadmed-kristallheli-teraapiavahendid",
     "v4-tervis-hooldus-ja-ilu-karvaeemaldus-ipl-ja-laser",
     "v4-tervis-hooldus-ja-ilu-tatoveerimisseadmed",
+    "v4-tervis-hooldus-ja-ilu-isikuhooldusseadmed-jalamassoorid-ja-stimulaatorid",
     "v4-tervis-hooldus-ja-ilu-salongi-ja-spaaseadmed",
     "v4-tervis-hooldus-ja-ilu-salongi-ja-spaaseadmed-salongimoobel",
     "v4-tervis-ratikusoojendid",
@@ -23689,6 +23807,7 @@
     "v4-meditsiin-ja-liikumisabi-liikumisabi-istmepadjad",
     "v4-meditsiin-ja-liikumisabi-liikumisabi-tugipostid",
     "v4-meditsiin-ja-liikumisabi-liikumisabi-trepironimisabivahendid",
+    "v4-meditsiin-ja-liikumisabi-liikumisabi-polvekaimistoed-polveskuutrid",
     "v4-meditsiin-ja-liikumisabi-meditsiinitarvikud",
     "v4-meditsiin-meditsiinikarud-lauad",
     "v4-meditsiin-ja-liikumisabi-meditsiinitarvikud-haiglavoodid-ja-madratsid",
