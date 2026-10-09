@@ -119,6 +119,10 @@ l1:
             name_en: "Kiviplaatide paigaldustööriistad"
             name_et: "Kiviplaatide paigaldustööriistad"
             product_count: 0
+          - slug: v4-tooriistad-ja-tarvikud-kasitooriistad-roolisusteemi-tooriistad
+            name_en: "Roolisüsteemi tööriistad"
+            name_et: "Roolisüsteemi tööriistad"
+            product_count: 0
       - slug: v4-tooriistad-ja-tarvikud-elektrilised-tooriistad
         name_en: "Elektrilised tööriistad"
         name_et: "Elektrilised tööriistad"
@@ -1100,6 +1104,10 @@ l1:
             name_en: "Vee deioniseerimissüsteemid"
             name_et: "Vee deioniseerimissüsteemid"
             product_count: 0
+          - slug: v4-tooriistad-ja-tarvikud-puhastustehnika-ja-tarvikud-kate-desinfitseerimise-dosaatorid-ja-jaamad
+            name_en: "Käte desinfitseerimise dosaatorid ja jaamad"
+            name_et: "Käte desinfitseerimise dosaatorid ja jaamad"
+            product_count: 0
       - slug: v4-tooriistad-ja-tarvikud-cnc-ja-lineaarkomponendid
         name_en: "CNC- ja lineaarkomponendid"
         name_et: "CNC- ja lineaarkomponendid"
@@ -1283,6 +1291,10 @@ l1:
           - slug: v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-puurpead-ja-siseavatooriistad
             name_en: "Puurpead ja siseavatööriistad"
             name_et: "Puurpead ja siseavatööriistad"
+            product_count: 0
+          - slug: v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-poordtooriista-tarvikud
+            name_en: "Pöördtööriista tarvikud"
+            name_et: "Pöördtööriista tarvikud"
             product_count: 0
       - slug: v4-tooriistad-ja-tarvikud-turva-ja-objektivarustus
         name_en: "Töökoha ohutus- ja hädaabivarustus"
@@ -1772,6 +1784,10 @@ l1:
             name_en: "Munakoorimismasinad"
             name_et: "Munakoorimismasinad"
             product_count: 0
+          - slug: v4-suurkoogiseadmed-ettevalmistus-ja-tootlus-tomatipressid-ja-kastmemasinad
+            name_en: "Tomatipressid ja kastmemasinad"
+            name_et: "Tomatipressid ja kastmemasinad"
+            product_count: 0
       - slug: v4-suurkoogiseadmed-kuum
         name_en: "Kuumaseadmed"
         name_et: "Kuumaseadmed"
@@ -2097,6 +2113,10 @@ l1:
           - slug: v4-suurkook-salativurrid-ja-koogiviljakuivatid
             name_en: "Salativurrid ja köögiviljakuivatid"
             name_et: "Salativurrid ja köögiviljakuivatid"
+            product_count: 0
+          - slug: v4-suurkoogiseadmed-noud-mereandide-tarvikud
+            name_en: "Mereandide tarvikud"
+            name_et: "Mereandide tarvikud"
             product_count: 0
       - slug: v4-suurkook-noudepesu
         name_en: "Nõudepesu"
@@ -2541,13 +2561,13 @@ l1:
             name_en: "Vannitoa istmed"
             name_et: "Vannitoa istmed"
             product_count: 0
-          - slug: v4-moobel-ja-sisustus-toolid-ja-istmed-polvitustoolid
-            name_en: "Põlvitustoolid"
-            name_et: "Põlvitustoolid"
-            product_count: 0
           - slug: v4-moobel-ja-sisustus-toolid-ja-istmed-aktiivse-istumise-istmed
             name_en: "Aktiivse istumise istmed"
             name_et: "Aktiivse istumise istmed"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-toolid-ja-istmed-polvitustoolid
+            name_en: "Põlvitustoolid"
+            name_et: "Põlvitustoolid"
             product_count: 0
       - slug: v4-moobel-ja-sisustus-lauad
         name_en: "Lauad"
@@ -2631,10 +2651,6 @@ l1:
             name_en: "Voodipeatsid"
             name_et: "Voodipeatsid"
             product_count: 0
-          - slug: v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-raskustekid
-            name_en: "Raskustekid"
-            name_et: "Raskustekid"
-            product_count: 0
           - slug: v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-kattemadratsid
             name_en: "Kattemadratsid"
             name_et: "Kattemadratsid"
@@ -2642,6 +2658,10 @@ l1:
           - slug: v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-kokkupandavad-kulalisvoodid
             name_en: "Kokkupandavad külalisvoodid"
             name_et: "Kokkupandavad külalisvoodid"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-raskustekid
+            name_en: "Raskustekid"
+            name_et: "Raskustekid"
             product_count: 0
       - slug: v4-moobel-ja-sisustus-esikumoobel-ja-jalatsikapid
         name_en: "Esikumööbel ja jalatsikapid"
@@ -4090,13 +4110,13 @@ l1:
             name_en: "Võidusõiduistmed"
             name_et: "Võidusõiduistmed"
             product_count: 0
-          - slug: v4-autovaruosad-ja-tarvikud-salongitarvikud-auto-konsoolid-ja-hoiukastid
-            name_en: "Auto konsoolid ja hoiukastid"
-            name_et: "Auto konsoolid ja hoiukastid"
-            product_count: 0
           - slug: v4-autovaruosad-ja-tarvikud-salongitarvikud-autoroolid
             name_en: "Autoroolid"
             name_et: "Autoroolid"
+            product_count: 0
+          - slug: v4-autovaruosad-ja-tarvikud-salongitarvikud-auto-konsoolid-ja-hoiukastid
+            name_en: "Auto konsoolid ja hoiukastid"
+            name_et: "Auto konsoolid ja hoiukastid"
             product_count: 0
       - slug: v4-autovaruosad-ja-tarvikud-valistarvikud-ja-rehvitarvikud
         name_en: "Välistarvikud ja rehvitarvikud"
@@ -4719,6 +4739,10 @@ l1:
           - slug: v4-sport-ja-vaba-aeg-matkavarustus-ja-telkimine-matkavoodid-ja-madratsid
             name_en: "Matkavoodid ja madratsid"
             name_et: "Matkavoodid ja madratsid"
+            product_count: 0
+          - slug: v4-sport-ja-vaba-aeg-matkavarustus-ja-telkimine-piknikutarvikud
+            name_en: "Piknikutarvikud"
+            name_et: "Piknikutarvikud"
             product_count: 0
           - slug: v4-sport-ja-vaba-aeg-matkavarustus-ja-telkimine-universaalnoorid-ja-paracord
             name_en: "Universaalnöörid ja paracord"
@@ -5713,13 +5737,13 @@ l1:
             name_en: "Generaatori katted"
             name_et: "Generaatori katted"
             product_count: 0
-          - slug: v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-energiasalvestusakud
-            name_en: "Energiasalvestusakud"
-            name_et: "Energiasalvestusakud"
-            product_count: 0
           - slug: v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-paikesepaneelide-hoiu-ja-kandekotid
             name_en: "Päikesepaneelide hoiu- ja kandekotid"
             name_et: "Päikesepaneelide hoiu- ja kandekotid"
+            product_count: 0
+          - slug: v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-energiasalvestusakud
+            name_en: "Energiasalvestusakud"
+            name_et: "Energiasalvestusakud"
             product_count: 0
       - slug: v4-elektritarvikud-ja-valgustus-mootorid-ja-osad
         name_en: "Mootorid ja osad"
@@ -6406,6 +6430,10 @@ l1:
           - slug: v4-ladu-ekspositsioonistendid
             name_en: "Ekspositsioonistendid ja display"
             name_et: "Ekspositsioonistendid ja display"
+            product_count: 0
+          - slug: v4-ladu-kaupluse-sisustus-riidepuud
+            name_en: "Riidepuud"
+            name_et: "Riidepuud"
             product_count: 0
       - slug: v4-ladu-pakendamine
         name_en: "Pakendamine"
@@ -7137,6 +7165,14 @@ l1:
             name_en: "Sulatustiiglid"
             name_et: "Sulatustiiglid"
             product_count: 0
+          - slug: v4-hobi-ehtekunst-sormuste-suuruse-muutmise-tooriistad
+            name_en: "Sõrmuste suuruse muutmise tööriistad"
+            name_et: "Sõrmuste suuruse muutmise tööriistad"
+            product_count: 0
+          - slug: v4-hobi-ehtekunst-graafikapressid
+            name_en: "Graafikapressid"
+            name_et: "Graafikapressid"
+            product_count: 0
       - slug: v4-hobi-keraamika-ja-pottsepatoo
         name_en: "Keraamika ja pottsepatöö"
         name_et: "Keraamika ja pottsepatöö"
@@ -7521,6 +7557,10 @@ l1:
           - slug: v4-lemmikloomatarbed-akvaariumid-ja-terraariumid-roomajate-ja-kilpkonnade-aedikud
             name_en: "Roomajate ja kilpkonnade aedikud"
             name_et: "Roomajate ja kilpkonnade aedikud"
+            product_count: 0
+          - slug: v4-lemmikloomatarbed-akvaariumid-ja-terraariumid-roomajate-inkubaatorid
+            name_en: "Roomajate inkubaatorid"
+            name_et: "Roomajate inkubaatorid"
             product_count: 0
       - slug: v4-lemmikloomatarbed-treening-ja-manguasjad
         name_en: "Treening ja mänguasjad"
