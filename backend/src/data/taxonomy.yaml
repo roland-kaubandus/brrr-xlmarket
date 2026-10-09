@@ -1997,6 +1997,10 @@ l1:
             name_en: "Baristatarvikud ja espressotarvikud"
             name_et: "Baristatarvikud ja espressotarvikud"
             product_count: 0
+          - slug: v4-suurkook-kohviseadmed-kulmkohvi-valmistussusteemid-nitro-cold-brew
+            name_en: "Külmkohvi valmistussüsteemid (nitro cold brew)"
+            name_et: "Külmkohvi valmistussüsteemid (nitro cold brew)"
+            product_count: 0
       - slug: v4-suurkoogiseadmed-noud
         name_en: "Nõud ja serveerimine"
         name_et: "Nõud ja serveerimine"
@@ -2504,6 +2508,10 @@ l1:
             name_en: "Kapid ja kummutid"
             name_et: "Kapid ja kummutid"
             product_count: 0
+          - slug: v4-moobel-ja-sisustus-elutoamoobel-porandatoolid
+            name_en: "Põrandatoolid"
+            name_et: "Põrandatoolid"
+            product_count: 0
       - slug: v4-moobel-ja-sisustus-toolid-ja-istmed
         name_en: "Toolid ja istmed"
         name_et: "Toolid ja istmed"
@@ -2524,6 +2532,14 @@ l1:
           - slug: v4-moobel-ja-sisustus-toolid-ja-istmed-vannitoa-istmed
             name_en: "Vannitoa istmed"
             name_et: "Vannitoa istmed"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-toolid-ja-istmed-polvitustoolid
+            name_en: "Põlvitustoolid"
+            name_et: "Põlvitustoolid"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-toolid-ja-istmed-aktiivse-istumise-istmed
+            name_en: "Aktiivse istumise istmed"
+            name_et: "Aktiivse istumise istmed"
             product_count: 0
       - slug: v4-moobel-ja-sisustus-lauad
         name_en: "Lauad"
@@ -2606,6 +2622,14 @@ l1:
           - slug: v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-voodipeatsid
             name_en: "Voodipeatsid"
             name_et: "Voodipeatsid"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-raskustekid
+            name_en: "Raskustekid"
+            name_et: "Raskustekid"
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-kokkupandavad-kulalisvoodid
+            name_en: "Kokkupandavad külalisvoodid"
+            name_et: "Kokkupandavad külalisvoodid"
             product_count: 0
       - slug: v4-moobel-ja-sisustus-esikumoobel-ja-jalatsikapid
         name_en: "Esikumööbel ja jalatsikapid"
@@ -4591,6 +4615,10 @@ l1:
             name_en: "ATV tarvikud"
             name_et: "ATV tarvikud"
             product_count: 0
+          - slug: v4-sport-ja-vaba-aeg-jalgrattad-ja-tarvikud-jalgratta-transpordikotid-ja-kohvrid
+            name_en: "Jalgratta transpordikotid ja -kohvrid"
+            name_et: "Jalgratta transpordikotid ja -kohvrid"
+            product_count: 0
       - slug: v4-sport-ja-vaba-aeg-matkavarustus-ja-telkimine
         name_en: "Matkavarustus ja telkimine"
         name_et: "Matkavarustus ja telkimine"
@@ -5399,6 +5427,10 @@ l1:
           - slug: v4-ehitus-remont-ja-varvid-katusematerjalid-katuselabiviigu-tihendid
             name_en: "Katuseläbiviigu tihendid"
             name_et: "Katuseläbiviigu tihendid"
+            product_count: 0
+          - slug: v4-ehitus-remont-ja-varvid-katusematerjalid-metallkatuseplaadid
+            name_en: "Metallkatuseplaadid"
+            name_et: "Metallkatuseplaadid"
             product_count: 0
       - slug: v4-ehitus-remont-ja-varvid-vihmaveesusteemid-ja-drenaaz
         name_en: "Vihmaveesüsteemid ja drenaaž"
@@ -7772,6 +7804,10 @@ l1:
             name_en: "Tätoveerimisseadmed"
             name_et: "Tätoveerimisseadmed"
             product_count: 0
+          - slug: v4-tervis-hooldus-ja-ilu-isikuhooldusseadmed-jalamassoorid-ja-stimulaatorid
+            name_en: "Jalamassöörid ja -stimulaatorid"
+            name_et: "Jalamassöörid ja -stimulaatorid"
+            product_count: 0
       - slug: v4-tervis-hooldus-ja-ilu-salongi-ja-spaaseadmed
         name_en: "Salongi- ja spaaseadmed"
         name_et: "Salongi- ja spaaseadmed"
@@ -7918,6 +7954,10 @@ l1:
           - slug: v4-meditsiin-ja-liikumisabi-liikumisabi-trepironimisabivahendid
             name_en: "Trepironimisabivahendid"
             name_et: "Trepironimisabivahendid"
+            product_count: 0
+          - slug: v4-meditsiin-ja-liikumisabi-liikumisabi-polvekaimistoed-polveskuutrid
+            name_en: "Põlvekäimistoed (põlveskuutrid)"
+            name_et: "Põlvekäimistoed (põlveskuutrid)"
             product_count: 0
       - slug: v4-meditsiin-ja-liikumisabi-meditsiinitarvikud
         name_en: "Meditsiinitarvikud"
