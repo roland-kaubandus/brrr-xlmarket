@@ -1,0 +1,206 @@
+{
+  "batch_id": "e3-b3-2026-10-09T0907",
+  "created_at": "2026-10-09T09:07:27.108Z",
+  "actor": "claude-code-test",
+  "label": "ETAPP3 p3/4",
+  "new_l3": [
+    {
+      "id": "pcat_e2_picnicaccessories",
+      "handle": "v4-sport-ja-vaba-aeg-matkavarustus-ja-telkimine-piknikutarvikud",
+      "name": "Piknikutarvikud",
+      "parent_id": "pcat_v4_l12_5"
+    },
+    {
+      "id": "pcat_e2_tomatostrainerssaucemake",
+      "handle": "v4-suurkoogiseadmed-ettevalmistus-ja-tootlus-tomatipressid-ja-kastmemasinad",
+      "name": "Tomatipressid ja kastmemasinad",
+      "parent_id": "pcat_5prep"
+    },
+    {
+      "id": "pcat_e2_ringsizingtools",
+      "handle": "v4-hobi-ehtekunst-sormuste-suuruse-muutmise-tooriistad",
+      "name": "Sõrmuste suuruse muutmise tööriistad",
+      "parent_id": "pcat_25ehte"
+    },
+    {
+      "id": "pcat_e2_seafoodtools",
+      "handle": "v4-suurkoogiseadmed-noud-mereandide-tarvikud",
+      "name": "Mereandide tarvikud",
+      "parent_id": "pcat_5noud"
+    },
+    {
+      "id": "pcat_e2_steeringsystemtools",
+      "handle": "v4-tooriistad-ja-tarvikud-kasitooriistad-roolisusteemi-tooriistad",
+      "name": "Roolisüsteemi tööriistad",
+      "parent_id": "pcat_t3l2_1"
+    },
+    {
+      "id": "pcat_e2_reptileincubators",
+      "handle": "v4-lemmikloomatarbed-akvaariumid-ja-terraariumid-roomajate-inkubaatorid",
+      "name": "Roomajate inkubaatorid",
+      "parent_id": "pcat_14aqua"
+    },
+    {
+      "id": "pcat_e2_handsanitizerdispenserss",
+      "handle": "v4-tooriistad-ja-tarvikud-puhastustehnika-ja-tarvikud-kate-desinfitseerimise-dosaatorid-ja-jaamad",
+      "name": "Käte desinfitseerimise dosaatorid ja jaamad",
+      "parent_id": "pcat_t3l2_12"
+    },
+    {
+      "id": "pcat_e2_printmakingpresses",
+      "handle": "v4-hobi-ehtekunst-graafikapressid",
+      "name": "Graafikapressid",
+      "parent_id": "pcat_25ehte"
+    },
+    {
+      "id": "pcat_e2_rotarytoolaccessories",
+      "handle": "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-poordtooriista-tarvikud",
+      "name": "Pöördtööriista tarvikud",
+      "parent_id": "pcat_t3l2_9"
+    },
+    {
+      "id": "pcat_e2_hangers",
+      "handle": "v4-ladu-kaupluse-sisustus-riidepuud",
+      "name": "Riidepuud",
+      "parent_id": "pcat_22retail"
+    }
+  ],
+  "attach": [
+    {
+      "product_id": "prod_01KNXXP7BG716XDVH7KJG04ZFJ",
+      "cat_id": "pcat_e2_picnicaccessories"
+    },
+    {
+      "product_id": "prod_01KNXXP88X31W4KQKQXS38ECG3",
+      "cat_id": "pcat_e2_picnicaccessories"
+    },
+    {
+      "product_id": "prod_01KNXX6HEXAGZCCV2RZA5ZF81R",
+      "cat_id": "pcat_e2_tomatostrainerssaucemake"
+    },
+    {
+      "product_id": "prod_01KNXX72556E2GPXZVTYAWW055",
+      "cat_id": "pcat_e2_ringsizingtools"
+    },
+    {
+      "product_id": "prod_01KNXXBG5M7G4X8G76A56CTRKC",
+      "cat_id": "pcat_e2_seafoodtools"
+    },
+    {
+      "product_id": "prod_01KNXXFWK9V38T752Y366MNFS6",
+      "cat_id": "pcat_e2_steeringsystemtools"
+    },
+    {
+      "product_id": "prod_01KNXX6FGZ0R1N16ARXTPNZ8AP",
+      "cat_id": "pcat_e2_reptileincubators"
+    },
+    {
+      "product_id": "prod_01KNXX79EJH0XWSQ5EW09HG9PT",
+      "cat_id": "pcat_e2_handsanitizerdispenserss"
+    },
+    {
+      "product_id": "prod_01KNXXAM946SAQW5YN85J1S1Y8",
+      "cat_id": "pcat_e2_printmakingpresses"
+    },
+    {
+      "product_id": "prod_01KNXX8SAK0SQB2EKT9J5MM3K8",
+      "cat_id": "pcat_e2_rotarytoolaccessories"
+    },
+    {
+      "product_id": "prod_01KNXXJBDPNG8XNBJD5QT0VFB6",
+      "cat_id": "pcat_e2_hangers"
+    }
+  ],
+  "product_ids": [
+    "prod_01KNXXP7BG716XDVH7KJG04ZFJ",
+    "prod_01KNXXP88X31W4KQKQXS38ECG3",
+    "prod_01KNXX6HEXAGZCCV2RZA5ZF81R",
+    "prod_01KNXX72556E2GPXZVTYAWW055",
+    "prod_01KNXXBG5M7G4X8G76A56CTRKC",
+    "prod_01KNXXFWK9V38T752Y366MNFS6",
+    "prod_01KNXX6FGZ0R1N16ARXTPNZ8AP",
+    "prod_01KNXX79EJH0XWSQ5EW09HG9PT",
+    "prod_01KNXXAM946SAQW5YN85J1S1Y8",
+    "prod_01KNXX8SAK0SQB2EKT9J5MM3K8",
+    "prod_01KNXXJBDPNG8XNBJD5QT0VFB6"
+  ],
+  "reparent": [
+    {
+      "product_id": "prod_01KNXX6FGZ0R1N16ARXTPNZ8AP",
+      "prev_status": "published",
+      "from_cat_ids": [
+        "pcat_ag_1_5"
+      ]
+    },
+    {
+      "product_id": "prod_01KNXX6HEXAGZCCV2RZA5ZF81R",
+      "prev_status": "published",
+      "from_cat_ids": [
+        "pcat_ks_4x1_3"
+      ]
+    },
+    {
+      "product_id": "prod_01KNXX72556E2GPXZVTYAWW055",
+      "prev_status": "published",
+      "from_cat_ids": [
+        "pcat_13roll"
+      ]
+    },
+    {
+      "product_id": "prod_01KNXX79EJH0XWSQ5EW09HG9PT",
+      "prev_status": "published",
+      "from_cat_ids": [
+        "pcat_f4_15x1_11"
+      ]
+    },
+    {
+      "product_id": "prod_01KNXX8SAK0SQB2EKT9J5MM3K8",
+      "prev_status": "published",
+      "from_cat_ids": [
+        "pcat_t3f_9_16"
+      ]
+    },
+    {
+      "product_id": "prod_01KNXXAM946SAQW5YN85J1S1Y8",
+      "prev_status": "published",
+      "from_cat_ids": [
+        "pcat_f4_13xtex_5"
+      ]
+    },
+    {
+      "product_id": "prod_01KNXXBG5M7G4X8G76A56CTRKC",
+      "prev_status": "published",
+      "from_cat_ids": [
+        "pcat_ks_5x2_24"
+      ]
+    },
+    {
+      "product_id": "prod_01KNXXFWK9V38T752Y366MNFS6",
+      "prev_status": "published",
+      "from_cat_ids": [
+        "pcat_2drive"
+      ]
+    },
+    {
+      "product_id": "prod_01KNXXJBDPNG8XNBJD5QT0VFB6",
+      "prev_status": "published",
+      "from_cat_ids": [
+        "pcat_mv_6x2_7"
+      ]
+    },
+    {
+      "product_id": "prod_01KNXXP7BG716XDVH7KJG04ZFJ",
+      "prev_status": "published",
+      "from_cat_ids": [
+        "pcat_el_12x5_12"
+      ]
+    },
+    {
+      "product_id": "prod_01KNXXP88X31W4KQKQXS38ECG3",
+      "prev_status": "published",
+      "from_cat_ids": [
+        "pcat_el_12x5_12"
+      ]
+    }
+  ]
+}
