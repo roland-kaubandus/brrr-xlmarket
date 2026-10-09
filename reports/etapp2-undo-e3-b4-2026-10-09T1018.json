@@ -1,0 +1,188 @@
+{
+  "batch_id": "e3-b4-2026-10-09T1018",
+  "created_at": "2026-10-09T10:18:31.767Z",
+  "actor": "claude-code-test",
+  "label": "ETAPP3 p4/4",
+  "new_l3": [
+    {
+      "id": "pcat_e2_bathtubdrainkits",
+      "handle": "v4-santehnika-kute-ja-ventilatsioon-aravool-ja-porandatrapid-vanni-aravoolukomplektid",
+      "name": "Vanni äravoolukomplektid",
+      "parent_id": "pcat_v4_l10_9"
+    },
+    {
+      "id": "pcat_e2_photostudiolightstands",
+      "handle": "v4-tooriistad-ja-tarvikud-moote-ja-markeriistad-fotostuudio-valgustistatiivid",
+      "name": "Fotostuudio valgustistatiivid",
+      "parent_id": "pcat_t3l2_8"
+    },
+    {
+      "id": "pcat_e2_infusionphlebotomychairs",
+      "handle": "v4-meditsiin-ja-liikumisabi-meditsiinitarvikud-infusiooni-ja-verevotutoolid",
+      "name": "Infusiooni- ja verevõtutoolid",
+      "parent_id": "pcat_v4_l16_2"
+    },
+    {
+      "id": "pcat_e2_tilesaws",
+      "handle": "v4-tooriistad-ja-tarvikud-elektrilised-tooriistad-plaadisaed",
+      "name": "Plaadisaed",
+      "parent_id": "pcat_t3l2_2"
+    },
+    {
+      "id": "pcat_e2_airpreparationequipment",
+      "handle": "v4-tooriistad-ja-tarvikud-suruohutooriistad-suruohu-ettevalmistusseadmed",
+      "name": "Suruõhu ettevalmistusseadmed",
+      "parent_id": "pcat_t3l2_4"
+    },
+    {
+      "id": "pcat_e2_verticaldoorkitslambosty",
+      "handle": "v4-autovaruosad-ja-tarvikud-valistarvikud-ja-rehvitarvikud-vertikaalselt-avanevate-uste-komplektid-lambo-stiilis",
+      "name": "Vertikaalselt avanevate uste komplektid (Lambo-stiilis)",
+      "parent_id": "pcat_v4_l3_3"
+    },
+    {
+      "id": "pcat_e2_boatgearstoragebags",
+      "handle": "v4-sport-ja-vaba-aeg-veesport-ja-ujuvvahendid-paadivarustuse-hoiukotid",
+      "name": "Paadivarustuse hoiukotid",
+      "parent_id": "pcat_v4_l12_4"
+    },
+    {
+      "id": "pcat_e2_monitormountsholders",
+      "handle": "v4-elektroonika-kinnitused-monitorikinnitused-ja-hoidikud",
+      "name": "Monitorikinnitused ja -hoidikud",
+      "parent_id": "pcat_23mount"
+    },
+    {
+      "id": "pcat_e2_drillattachmentcutters",
+      "handle": "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-puurile-kinnitatavad-loikurid",
+      "name": "Puurile kinnitatavad lõikurid",
+      "parent_id": "pcat_t3l2_9"
+    }
+  ],
+  "attach": [
+    {
+      "product_id": "prod_01KNXXK06HR0DEBZQCAN0NNV79",
+      "cat_id": "pcat_e2_bathtubdrainkits"
+    },
+    {
+      "product_id": "prod_01KNXXM69607BRE7HYFP6TAYJ9",
+      "cat_id": "pcat_e2_photostudiolightstands"
+    },
+    {
+      "product_id": "prod_01M0KFSVM8KWN9QBFWQVVF25B6",
+      "cat_id": "pcat_e2_infusionphlebotomychairs"
+    },
+    {
+      "product_id": "prod_01KNXXPDPFWG5PDD9ET39HCRYQ",
+      "cat_id": "pcat_e2_infusionphlebotomychairs"
+    },
+    {
+      "product_id": "prod_01M3X2426XY0WJF1DQMNF0R0BM",
+      "cat_id": "pcat_e2_tilesaws"
+    },
+    {
+      "product_id": "prod_01KNXXB4DW8K04M7JB9PJBNYCX",
+      "cat_id": "pcat_e2_airpreparationequipment"
+    },
+    {
+      "product_id": "prod_01KNXX6EJ433JEWJAVB7139EDC",
+      "cat_id": "pcat_e2_verticaldoorkitslambosty"
+    },
+    {
+      "product_id": "prod_01KNXX7NYE3TWX2B1843VX4CQ9",
+      "cat_id": "pcat_e2_boatgearstoragebags"
+    },
+    {
+      "product_id": "prod_01KNXX9JQQ1GKB90WN3XQSYFSR",
+      "cat_id": "pcat_e2_monitormountsholders"
+    },
+    {
+      "product_id": "prod_01KNXX8H25G9EM3GPXS6ENQ7PH",
+      "cat_id": "pcat_e2_drillattachmentcutters"
+    }
+  ],
+  "product_ids": [
+    "prod_01KNXXK06HR0DEBZQCAN0NNV79",
+    "prod_01KNXXM69607BRE7HYFP6TAYJ9",
+    "prod_01M0KFSVM8KWN9QBFWQVVF25B6",
+    "prod_01KNXXPDPFWG5PDD9ET39HCRYQ",
+    "prod_01M3X2426XY0WJF1DQMNF0R0BM",
+    "prod_01KNXXB4DW8K04M7JB9PJBNYCX",
+    "prod_01KNXX6EJ433JEWJAVB7139EDC",
+    "prod_01KNXX7NYE3TWX2B1843VX4CQ9",
+    "prod_01KNXX9JQQ1GKB90WN3XQSYFSR",
+    "prod_01KNXX8H25G9EM3GPXS6ENQ7PH"
+  ],
+  "reparent": [
+    {
+      "product_id": "prod_01KNXX6EJ433JEWJAVB7139EDC",
+      "prev_status": "published",
+      "from_cat_ids": [
+        "pcat_vt_3"
+      ]
+    },
+    {
+      "product_id": "prod_01KNXX7NYE3TWX2B1843VX4CQ9",
+      "prev_status": "published",
+      "from_cat_ids": [
+        "pcat_el_12x4_8"
+      ]
+    },
+    {
+      "product_id": "prod_01KNXX8H25G9EM3GPXS6ENQ7PH",
+      "prev_status": "published",
+      "from_cat_ids": [
+        "pcat_t3f_6_2"
+      ]
+    },
+    {
+      "product_id": "prod_01KNXX9JQQ1GKB90WN3XQSYFSR",
+      "prev_status": "published",
+      "from_cat_ids": [
+        "pcat_mv_6x3_10"
+      ]
+    },
+    {
+      "product_id": "prod_01KNXXB4DW8K04M7JB9PJBNYCX",
+      "prev_status": "published",
+      "from_cat_ids": [
+        "pcat_t3f_4_15"
+      ]
+    },
+    {
+      "product_id": "prod_01KNXXK06HR0DEBZQCAN0NNV79",
+      "prev_status": "published",
+      "from_cat_ids": [
+        "pcat_es_10x7_4"
+      ]
+    },
+    {
+      "product_id": "prod_01KNXXM69607BRE7HYFP6TAYJ9",
+      "prev_status": "published",
+      "from_cat_ids": [
+        "pcat_el_11x6_5"
+      ]
+    },
+    {
+      "product_id": "prod_01KNXXPDPFWG5PDD9ET39HCRYQ",
+      "prev_status": "published",
+      "from_cat_ids": [
+        "pcat_f4_16x2_12"
+      ]
+    },
+    {
+      "product_id": "prod_01M0KFSVM8KWN9QBFWQVVF25B6",
+      "prev_status": "published",
+      "from_cat_ids": [
+        "pcat_f4_16x2_12"
+      ]
+    },
+    {
+      "product_id": "prod_01M3X2426XY0WJF1DQMNF0R0BM",
+      "prev_status": "published",
+      "from_cat_ids": [
+        "pcat_t3f_1_7"
+      ]
+    }
+  ]
+}
