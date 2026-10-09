@@ -37,7 +37,7 @@ const l1Seeds = existsSync(L1_SEEDS) ? JSON.parse(readFileSync(L1_SEEDS, 'utf8')
 const args = parseArgs(process.argv.slice(2));
 
 function parseArgs(argv) {
-  const o = { limit: Infinity, level: null, only: null, dryRun: false, concurrency: 3 };
+  const o = { limit: Infinity, level: null, only: null, dryRun: false, concurrency: 3, force: false };
   for (let i = 0; i < argv.length; i++) {
     const a = argv[i];
     if (a === '--limit') o.limit = parseInt(argv[++i], 10);
@@ -45,6 +45,10 @@ function parseArgs(argv) {
     else if (a === '--only') o.only = argv[++i];
     else if (a === '--dry-run') o.dryRun = true;
     else if (a === '--concurrency') o.concurrency = parseInt(argv[++i], 10);
+    // --force (Tarmo 2026-10-09): regenereeri ISEGI kui state.done[handle] olemas (mujal no-op → regen kunagi
+    // ei jooksnud). Regen-kontekstis läheb OTSE nano-banana valge-tausta genereerimisele (VEVOR vahele) —
+    // muidu re-korjaks sama tumeda VEVOR-kandidaadi tagasi ja heledus-värav skibiks igavesti.
+    else if (a === '--force') o.force = true;
   }
   return o;
 }
@@ -157,7 +161,7 @@ function appendAlias(handle, legacySlug) {
   appendFileSync(join(REPORTS, 'alias-appends.txt'), line);
 }
 
-async function processHandle(handle, node, state) {
+async function processHandle(handle, node, state, force = false) {
   const nameEn = node.name_en;
   const label = `[L${node.level}] ${handle}`;
 
@@ -169,8 +173,9 @@ async function processHandle(handle, node, state) {
 
   let reasonHint = '';
 
-  // Strikes 1-3: VEVOR candidates (3 candidates, take best match first)
-  const vevorTries = Math.min(3, scout.candidates.length);
+  // VALGE-TAUST REGEN (--force): jäta VEVOR-kandidaadid vahele (re-korjaks sama tumeda pildi) → otse
+  // nano-banana valge-tausta genereerimisele. Tarmo 2026-10-09: regen eksisteerib heleduse jaoks.
+  const vevorTries = force ? 0 : Math.min(3, scout.candidates.length);
   for (let s = 0; s < vevorTries; s++) {
     const cand = scout.candidates[s];
     process.stderr.write(`${label}  strike ${s+1} VEVOR ${cand.url.slice(-50)}... `);
@@ -235,7 +240,7 @@ async function main() {
   const missing = JSON.parse(readFileSync(MISSING, 'utf8'));
 
   let queue = missing.filter(m => {
-    if (state.done[m.handle]) return false;
+    if (state.done[m.handle] && !args.force) return false; // --force: regenereeri ka juba-tehtut
     if (args.only) return m.handle === args.only;
     if (args.level !== null && m.level !== args.level) return false;
     return true;
@@ -263,7 +268,7 @@ async function main() {
       const item = queue[myIdx];
       const node = tree.nodes[item.handle];
       if (!node) continue;
-      const result = await processHandle(item.handle, node, state);
+      const result = await processHandle(item.handle, node, state, args.force);
       if (result.status === 'pass') {
         state.done[item.handle] = { source: result.source, strike: result.strike, detected: result.detected, ts: nowIso() };
       } else {

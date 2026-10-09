@@ -1,0 +1,20 @@
+{
+  "generated_at": "2026-10-09T12:44:25.290Z",
+  "created": 39,
+  "fail": 1,
+  "keep": 38,
+  "rows": [
+    {
+      "handle": "v4-tervis-hooldus-ja-ilu-isikuhooldusseadmed-jalamassoorid-ja-stimulaatorid",
+      "id": "pcat_e2_footmassagersstimulators",
+      "name_et": "Jalamassöörid ja -stimulaatorid",
+      "n": 4,
+      "parentL2": "v4-tervis-hooldus-ja-ilu-isikuhooldusseadmed",
+      "ck": "vpt:Health & Wellness > Wellness & Relaxation Products > Foot & Leg Massager",
+      "verdict": "variant",
+      "nearest": "Keha-massöörid",
+      "reason": "Sama funktsioon (massaaž/stimulatsioon valu leevendamiseks), erineb vaid sihtkehaosa poolest (jalad); ostja otsib sama tulemust keha-massööri kategoorias.",
+      "batch": "b1-2026-10-09T0706"
+    }
+  ]
+}

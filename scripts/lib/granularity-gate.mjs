@@ -12,9 +12,17 @@
  *
  * SUHTELINE, MITTE absoluutne: EI loe tooteid ("N tükki → L3"). Üks väga eristuv toode VÕIB ületada;
  * viis ähmast ei pruugi. Otsus = semantiline kaugus (LLM, Opus) — kood ei suuda deterministlikult (keyword-recall 0%).
+ *
+ * ÕHUKESE-KLASTRI KINNITUS 2026-10-09 (Tarmo §9 "1–2 tootega L3 ≠ automaatne L3" + §2c asümm-kindlus):
+ * tootearv EI ole lävi, AGA õhuke klaster (n ≤ THIN_N) annab 1. kohtunikule VÄHE tõendit → struktuuri-otsus
+ * õhukese tõendi peal on ebastabiilne. Seega: distinct + n≤THIN_N → nõua 2. SÕLTUMATU kohtuniku (Fable)
+ * kinnitust. Lahkheli (2. ei kinnita eristust) → KONSERVATIIVNE "variant" (jää koju). Jämedad klastrid
+ * (n>THIN_N) ei vaja 2. kohtunikku (1 kutse). Count gates AINULT kontrolli-rangust, MITTE otsust ennast.
  */
 
 export const GRAN_MODEL = "claude-opus-4-8";
+export const GRAN_CONFIRM_MODEL = "claude-fable-5"; // 2. sõltumatu kohtunik õhukestele (§2c)
+export const THIN_N = 2;                            // ≤2 toodet = õhuke → nõua kinnitust
 
 const GRAN_SCHEMA = {
   type: "object",
@@ -77,7 +85,7 @@ export async function granularityJudgeL2({ l2Name, candidates, siblings, caller,
   const user = buildGranularityUser(l2Name, candidates, siblings);
   let parsed;
   try {
-    const txt = await caller(model, GRAN_SYSTEM, user, { maxTokens: 3000, schema: GRAN_SCHEMA });
+    const txt = await caller(model, GRAN_SYSTEM, user, { maxTokens: 3000, schema: GRAN_SCHEMA, fable: /fable|mythos/i.test(model) });
     parsed = JSON.parse(txt);
   } catch (e) {
     // kohtunik kukkus (API/parse) → KONSERVATIIVNE: ära loo (jää koju + signaal), märgi ebaselgeks
@@ -99,18 +107,47 @@ export async function granularityJudgeL2({ l2Name, candidates, siblings, caller,
  * @param caller     makeCaller(...)
  * @returns { results: Map<ck,{pass,verdict,nearest,reason}>, apiCalls }
  */
-export async function granularityGate({ candidates, siblingsOf, caller, model = GRAN_MODEL, onL2 = null }) {
+export async function granularityGate({ candidates, siblingsOf, caller, model = GRAN_MODEL, confirmModel = GRAN_CONFIRM_MODEL, thinN = THIN_N, onL2 = null }) {
   const byL2 = new Map();
   for (const c of candidates) {
     if (!byL2.has(c.parentL2)) byL2.set(c.parentL2, []);
     byL2.get(c.parentL2).push(c);
   }
+  const nOf = new Map(candidates.map((c) => [c.ck, typeof c.n === "number" ? c.n : (Array.isArray(c.titles) ? c.titles.length : null)]));
   const results = new Map();
   let apiCalls = 0;
   for (const [l2, cands] of byL2) {
     const sibs = siblingsOf(l2) || [];
     const verdicts = await granularityJudgeL2({ l2Name: cands[0].parentL2_name || l2, candidates: cands, siblings: sibs, caller, model });
     apiCalls++;
+    // §2c ASÜMM-KINDLUS: õhuke distinct (n≤thinN) → 2. SÕLTUMATU kohtunik (Fable). Lahkheli → konservatiivne variant.
+    const thin = verdicts.filter((v) => v.verdict === "distinct" && (nOf.get(v.ck) ?? 99) <= thinN);
+    if (thin.length && confirmModel) {
+      const thinCands = cands.filter((c) => thin.some((v) => v.ck === c.ck));
+      let confirm = [];
+      try {
+        confirm = await granularityJudgeL2({ l2Name: cands[0].parentL2_name || l2, candidates: thinCands, siblings: sibs, caller, model: confirmModel });
+        apiCalls++;
+      } catch (e) {
+        // 2. kohtunik kukkus (API/parse) → KONSERVATIIVNE: käsitle kõiki õhukesi kinnitamata
+        confirm = thinCands.map((c) => ({ ck: c.ck, verdict: "unclear", nearest: null, reason: "2. kohtunik kukkus: " + String(e.message).slice(0, 100) }));
+      }
+      const cmap = new Map(confirm.map((v) => [v.ck, v]));
+      for (const v of verdicts) {
+        if (v.verdict !== "distinct") continue;
+        const c = cmap.get(v.ck);
+        if (!c) continue; // pole õhuke → kinnitust ei vaja
+        v.confirm = { model: confirmModel, verdict: c.verdict, nearest: c.nearest || null, reason: c.reason || "" };
+        v.n_products = nOf.get(v.ck) ?? null;
+        if (c.verdict !== "distinct") {
+          v.verdict = "variant";
+          v.pass = false;
+          v.nearest = c.nearest || v.nearest;
+          v.reason = `õhuke klaster (n≤${thinN}) — 2. kohtunik (${confirmModel}) ei kinnitanud eristust [${c.verdict}]: ${c.reason || ""}`.slice(0, 300);
+          v.thin_unconfirmed = true;
+        }
+      }
+    }
     for (const v of verdicts) results.set(v.ck, v);
     if (onL2) onL2(l2, cands, verdicts);
   }
