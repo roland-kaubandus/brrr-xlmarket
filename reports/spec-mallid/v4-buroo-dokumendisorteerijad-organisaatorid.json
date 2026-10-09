@@ -1,0 +1,31 @@
+{
+ "l3": "v4-buroo-dokumendisorteerijad-organisaatorid",
+ "name": "Dokumendisorteerijad ja -organisaatorid",
+ "fields": [
+  {
+   "key": "osakute_arv",
+   "label_et": "Osakute arv",
+   "unit": "tk"
+  },
+  {
+   "key": "vari",
+   "label_et": "Värvus",
+   "unit": ""
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "reguleeritavad_riiulid",
+   "label_et": "Reguleeritavad riiulid",
+   "unit": ""
+  },
+  {
+   "key": "kandekaugen",
+   "label_et": "Kandekauged",
+   "unit": ""
+  }
+ ]
+}

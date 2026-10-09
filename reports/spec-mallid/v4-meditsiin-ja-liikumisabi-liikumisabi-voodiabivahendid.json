@@ -1,0 +1,36 @@
+{
+ "l3": "v4-meditsiin-ja-liikumisabi-liikumisabi-voodiabivahendid",
+ "name": "Voodipiirded ja tugiraamid",
+ "fields": [
+  {
+   "key": "kandevoimsus",
+   "label_et": "Kandevõimekus",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "haardepikkus",
+   "label_et": "Haardepikkus (reguleeritav)",
+   "unit": "mm"
+  },
+  {
+   "key": "voodimaht",
+   "label_et": "Sobib vooditüübile",
+   "unit": ""
+  },
+  {
+   "key": "kuju",
+   "label_et": "Kuju",
+   "unit": ""
+  }
+ ]
+}

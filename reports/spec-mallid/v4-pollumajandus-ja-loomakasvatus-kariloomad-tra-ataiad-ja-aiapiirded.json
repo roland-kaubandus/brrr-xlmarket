@@ -1,0 +1,36 @@
+{
+ "l3": "v4-pollumajandus-ja-loomakasvatus-kariloomad-tra-ataiad-ja-aiapiirded",
+ "name": "Tarad ja võrgud",
+ "fields": [
+  {
+   "key": "silma_suurus",
+   "label_et": "Silma suurus",
+   "unit": "mm"
+  },
+  {
+   "key": "laius",
+   "label_et": "Laiús",
+   "unit": "mm"
+  },
+  {
+   "key": "pikkus",
+   "label_et": "Pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "traadi_paksus",
+   "label_et": "Traadi paksus",
+   "unit": "gauge"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  }
+ ]
+}

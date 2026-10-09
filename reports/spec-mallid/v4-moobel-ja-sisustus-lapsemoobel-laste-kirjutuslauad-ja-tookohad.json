@@ -1,0 +1,41 @@
+{
+ "l3": "v4-moobel-ja-sisustus-lapsemoobel-laste-kirjutuslauad-ja-tookohad",
+ "name": "Laste kirjutuslauad ja töökohad",
+ "fields": [
+  {
+   "key": "mootmed_laius",
+   "label_et": "Laua laius",
+   "unit": "cm"
+  },
+  {
+   "key": "mootmed_sygavus",
+   "label_et": "Laua sügavus",
+   "unit": "cm"
+  },
+  {
+   "key": "mootmed_korgus",
+   "label_et": "Laua kõrgus",
+   "unit": "cm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "sahrakohtade_arv",
+   "label_et": "Sahtlite arv",
+   "unit": "tk"
+  },
+  {
+   "key": "maksimaalne_koormused",
+   "label_et": "Maksimaalne koormus",
+   "unit": "kg"
+  }
+ ]
+}

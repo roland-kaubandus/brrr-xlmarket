@@ -1,0 +1,36 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-tsangid-ja-tsangihoidikud",
+ "name": "Tsangid ja tsangihoidikud",
+ "fields": [
+  {
+   "key": "tüüp",
+   "label_et": "Tsangi tüüp",
+   "unit": ""
+  },
+  {
+   "key": "poorlemiskiirus",
+   "label_et": "Maksimaalne pöörlemiskiirus",
+   "unit": "RPM"
+  },
+  {
+   "key": "kogus",
+   "label_et": "Tükkide arv komplektis",
+   "unit": "tk"
+  },
+  {
+   "key": "tir_tolerants",
+   "label_et": "TIR täpsus (välisringjoon)",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "klammi_suurus",
+   "label_et": "Klammimise vahemik",
+   "unit": "mm"
+  }
+ ]
+}

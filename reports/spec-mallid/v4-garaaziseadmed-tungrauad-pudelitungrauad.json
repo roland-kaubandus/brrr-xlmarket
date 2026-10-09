@@ -1,0 +1,36 @@
+{
+ "l3": "v4-garaaziseadmed-tungrauad-pudelitungrauad",
+ "name": "Pudelitungrauad",
+ "fields": [
+  {
+   "key": "kandevoimasus",
+   "label_et": "Kandevõimekus",
+   "unit": "ton"
+  },
+  {
+   "key": "tostukorgus_min",
+   "label_et": "Tõstukõrgus (miinimum)",
+   "unit": "mm"
+  },
+  {
+   "key": "tostukorgus_max",
+   "label_et": "Tõstukõrgus (maksimum)",
+   "unit": "mm"
+  },
+  {
+   "key": "tostukorgus_ulatus",
+   "label_et": "Tõstukõrguse ulatus",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kael_tyyp",
+   "label_et": "Käepideme tüüp",
+   "unit": ""
+  }
+ ]
+}

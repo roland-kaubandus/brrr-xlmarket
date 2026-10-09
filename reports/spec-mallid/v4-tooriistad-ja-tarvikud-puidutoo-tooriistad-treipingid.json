@@ -1,0 +1,36 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-puidutoo-tooriistad-treipingid",
+ "name": "Treipingid",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "poorlemiskiirus",
+   "label_et": "Pöörlemiskiirus (vahemik)",
+   "unit": "RPM"
+  },
+  {
+   "key": "swing_over_bed",
+   "label_et": "Maksimaalne läbimõõt (Swing over bed)",
+   "unit": "mm"
+  },
+  {
+   "key": "spindle_pikkus",
+   "label_et": "Spindle pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "tootsimismaterjalid",
+   "label_et": "Spindle materjal",
+   "unit": ""
+  }
+ ]
+}

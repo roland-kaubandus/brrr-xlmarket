@@ -1,0 +1,36 @@
+{
+ "l3": "v4-varjualused-telgid-ja-kasvuhooned-aiakuurid-aiamajad",
+ "name": "Aiakuurid ja aiamajad",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Mahutavus",
+   "unit": "m³"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "varvaus",
+   "label_et": "Värvus",
+   "unit": ""
+  },
+  {
+   "key": "lukustamine",
+   "label_et": "Lukustamine",
+   "unit": ""
+  },
+  {
+   "key": "veekindlus",
+   "label_et": "Veekindlus",
+   "unit": ""
+  },
+  {
+   "key": "reguleeritavad_riiulid",
+   "label_et": "Reguleeritavad riiulid",
+   "unit": ""
+  }
+ ]
+}

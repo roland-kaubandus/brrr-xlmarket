@@ -1,0 +1,26 @@
+{
+ "l3": "v4-ehitus-remont-ja-varvid-uksed-aknad-ja-luugid-pocket-ukse-raamikomplektid",
+ "name": "Pocket-ukse raamikomplektid",
+ "fields": [
+  {
+   "key": "raamlaius_mm",
+   "label_et": "Raamlaius",
+   "unit": "mm"
+  },
+  {
+   "key": "stutsid_tyyp",
+   "label_et": "Stutsid tüüp",
+   "unit": ""
+  },
+  {
+   "key": "pehme_sulgemine",
+   "label_et": "Pehme sulgemine",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  }
+ ]
+}

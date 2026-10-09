@@ -1,0 +1,41 @@
+{
+ "l3": "v4-moobel-ja-sisustus-lapsemoobel-laste-lamamistoolid",
+ "name": "Laste lamamistoolid",
+ "fields": [
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Istme materjal",
+   "unit": ""
+  },
+  {
+   "key": "selja_kaldenurk",
+   "label_et": "Seljatoe kaldenurk",
+   "unit": "°"
+  },
+  {
+   "key": "laius",
+   "label_et": "Istme laius",
+   "unit": "cm"
+  },
+  {
+   "key": "sügavus",
+   "label_et": "Istme sügavus",
+   "unit": "cm"
+  },
+  {
+   "key": "korgus",
+   "label_et": "Kokku korgus",
+   "unit": "cm"
+  },
+  {
+   "key": "vanuseryhm",
+   "label_et": "Soovitatav vanuserühm",
+   "unit": ""
+  }
+ ]
+}

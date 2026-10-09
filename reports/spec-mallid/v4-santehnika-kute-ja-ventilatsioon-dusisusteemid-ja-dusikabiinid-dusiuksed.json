@@ -1,0 +1,46 @@
+{
+ "l3": "v4-santehnika-kute-ja-ventilatsioon-dusisusteemid-ja-dusikabiinid-dusiuksed",
+ "name": "Dušiuksed",
+ "fields": [
+  {
+   "key": "laius_mm",
+   "label_et": "Ukseavaus laius",
+   "unit": "mm"
+  },
+  {
+   "key": "korgus_mm",
+   "label_et": "Ukseavaus kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "klaasi_paksus_mm",
+   "label_et": "Klaasi paksus",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Klaasi tüüp",
+   "unit": ""
+  },
+  {
+   "key": "konstruktsioon",
+   "label_et": "Konstruktsioon",
+   "unit": ""
+  },
+  {
+   "key": "avamise_nurk",
+   "label_et": "Avamise nurkade arv",
+   "unit": "°"
+  },
+  {
+   "key": "paneelide_arv",
+   "label_et": "Paneelide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "katte",
+   "label_et": "Klaasi katte",
+   "unit": ""
+  }
+ ]
+}

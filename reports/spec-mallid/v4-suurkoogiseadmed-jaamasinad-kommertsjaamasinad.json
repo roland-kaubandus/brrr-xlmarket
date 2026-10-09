@@ -1,0 +1,31 @@
+{
+ "l3": "v4-suurkoogiseadmed-jaamasinad-kommertsjaamasinad",
+ "name": "Kommertsjäämasinad",
+ "fields": [
+  {
+   "key": "jaatootmine_24h",
+   "label_et": "Jää tootmine 24h",
+   "unit": "kg"
+  },
+  {
+   "key": "jaahoiustamine_maht",
+   "label_et": "Jää hoiustamise mahutavus",
+   "unit": "kg"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Konstruktsiooni materjal",
+   "unit": ""
+  },
+  {
+   "key": "valmistusaeg",
+   "label_et": "Jää valmistamise aeg",
+   "unit": "min"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Seadme kaal",
+   "unit": "kg"
+  }
+ ]
+}

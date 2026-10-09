@@ -1,0 +1,36 @@
+{
+ "l3": "v4-kaasaskantavad-ruumisoojendid",
+ "name": "Kaasaskantavad ruumisoojendid",
+ "fields": [
+  {
+   "key": "soojusvoimsus",
+   "label_et": "Soojusvõimsus",
+   "unit": "BTU/h"
+  },
+  {
+   "key": "kaittel",
+   "label_et": "Kütusemaht",
+   "unit": "L"
+  },
+  {
+   "key": "kytusityp",
+   "label_et": "Kütuse tüüp",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "myra",
+   "label_et": "Müra",
+   "unit": "dB"
+  },
+  {
+   "key": "ohutusfunktsioonid",
+   "label_et": "Ohutusfunktsioonid",
+   "unit": ""
+  }
+ ]
+}

@@ -1,0 +1,31 @@
+{
+ "l3": "v4-tooriistad-survepesuri-pinnapuhastid",
+ "name": "Survepesuri pinnapuhastid",
+ "fields": [
+  {
+   "key": "rohk",
+   "label_et": "Maksimaalne rõhk",
+   "unit": "bar"
+  },
+  {
+   "key": "ketta_labamoot",
+   "label_et": "Puhastusplaat läbimõõt",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kiire_uhendus",
+   "label_et": "Kiire ühenduse suurus",
+   "unit": "toll"
+  },
+  {
+   "key": "kaarud",
+   "label_et": "Rattad",
+   "unit": ""
+  }
+ ]
+}

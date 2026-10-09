@@ -1,0 +1,36 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-akutooriistad-akupuurvasarad",
+ "name": "Akupuurvasarad",
+ "fields": [
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "aku_maht",
+   "label_et": "Aku maht",
+   "unit": "Wh"
+  },
+  {
+   "key": "lohkamisjoud",
+   "label_et": "Löökide arv minutis",
+   "unit": "IPM"
+  },
+  {
+   "key": "kael",
+   "label_et": "Kael",
+   "unit": "kg"
+  },
+  {
+   "key": "padrun_suurus",
+   "label_et": "Padrun suurus",
+   "unit": "in"
+  },
+  {
+   "key": "koormuseta_kiirus",
+   "label_et": "Pöörlemiskiirus",
+   "unit": "RPM"
+  }
+ ]
+}

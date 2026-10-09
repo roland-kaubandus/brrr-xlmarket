@@ -1,0 +1,41 @@
+{
+ "l3": "v4-ehitus-remont-ja-varvid-uksed-aknad-ja-luugid-liuguksed",
+ "name": "Liuguksed",
+ "fields": [
+  {
+   "key": "laius_kokku",
+   "label_et": "Kogulaiusm",
+   "unit": "mm"
+  },
+  {
+   "key": "korgus",
+   "label_et": "Kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "paneelide_arv",
+   "label_et": "Paneelide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "yhepaneeli_laius",
+   "label_et": "Ühe paneeli laiusm",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "rada_komplektis",
+   "label_et": "Raja ja juhikud komplektis",
+   "unit": ""
+  }
+ ]
+}

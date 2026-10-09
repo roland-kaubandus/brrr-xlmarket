@@ -1,0 +1,36 @@
+{
+ "l3": "v4-aed-ja-aiatehnika-l8-taimede-kasvulambid",
+ "name": "Taimede kasvulambid",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "valgusspekter",
+   "label_et": "Valgusspekter",
+   "unit": "nm"
+  },
+  {
+   "key": "katteala",
+   "label_et": "Kaetav pindala",
+   "unit": "cm²"
+  },
+  {
+   "key": "valgustemperatuur",
+   "label_et": "Valgustemperatuur",
+   "unit": "K"
+  },
+  {
+   "key": "heleduse_reguleerimine",
+   "label_et": "Heleduse reguleerimine",
+   "unit": "%"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  }
+ ]
+}

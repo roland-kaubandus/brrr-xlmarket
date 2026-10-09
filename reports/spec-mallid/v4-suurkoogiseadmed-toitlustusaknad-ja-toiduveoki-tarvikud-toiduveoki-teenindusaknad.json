@@ -1,0 +1,46 @@
+{
+ "l3": "v4-suurkoogiseadmed-toitlustusaknad-ja-toiduveoki-tarvikud-toiduveoki-teenindusaknad",
+ "name": "Toiduveoki teenindusaknad",
+ "fields": [
+  {
+   "key": "laius",
+   "label_et": "Laius",
+   "unit": "mm"
+  },
+  {
+   "key": "korgus",
+   "label_et": "Kõrgus",
+   "unit": "mm"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "avanemisurk",
+   "label_et": "Maksimaalse avamise nurk",
+   "unit": "°"
+  },
+  {
+   "key": "klaas_tyyp",
+   "label_et": "Klaas tüüp",
+   "unit": ""
+  },
+  {
+   "key": "siiber_arv",
+   "label_et": "Libisevate siiburite arv",
+   "unit": "tk"
+  },
+  {
+   "key": "lukk_tyyp",
+   "label_et": "Lukk tüüp",
+   "unit": ""
+  },
+  {
+   "key": "vihm_kaitse",
+   "label_et": "Vihm- ja päikesekindlus",
+   "unit": ""
+  }
+ ]
+}

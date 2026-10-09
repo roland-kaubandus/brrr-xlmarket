@@ -1,0 +1,680 @@
+{
+  "generated_at": "2026-09-21T20:11:49.559Z",
+  "mode": "--all",
+  "model": "claude-haiku-4-5",
+  "write": true,
+  "products": 18681,
+  "llm_ok": 18671,
+  "failed_chunks": 0,
+  "auto_terms": 32579,
+  "review_terms": 3692,
+  "variants": 111384,
+  "db": {
+    "autoWritten": 32579,
+    "reviewWritten": 3692,
+    "products": 18634,
+    "dry": false
+  },
+  "conf_auto": 0.85,
+  "sample": [
+    {
+      "sku": "PS12T7514INCHXNRRV0",
+      "title_et": "Hüdrauliline tungraud 12T, tõstekõrgus 190-355 mm",
+      "auto": [
+        {
+          "word": "hüdrauliline tungraud",
+          "synonyms": [
+            "tungraud",
+            "bottle jack",
+            "hydraulic jack"
+          ],
+          "variants": [
+            "hudrauliline tungraud",
+            "hydrauliline tungraud",
+            "hüdraulilinetungraud",
+            "hudraulilinetungraud",
+            "hydraulilinetungraud",
+            "bottlejack",
+            "hydraulicjack"
+          ],
+          "confidence": 0.95
+        },
+        {
+          "word": "pudelitungraud",
+          "synonyms": [
+            "hydraulic bottle jack"
+          ],
+          "variants": [
+            "hydraulicbottlejack"
+          ],
+          "confidence": 0.9
+        }
+      ],
+      "review": []
+    },
+    {
+      "sku": "BQYJHSLCJ60MMWIL4V0",
+      "title_et": "Jääkuulipress 60 mm, lennundusklassi alumiinium, tangide ja tilgaalusega",
+      "auto": [
+        {
+          "word": "jääkuulipress",
+          "synonyms": [
+            "jääkuuli press",
+            "ice ball maker",
+            "ice press"
+          ],
+          "variants": [
+            "jaakuulipress",
+            "jaakuuli press",
+            "iceballmaker",
+            "icepress"
+          ],
+          "confidence": 0.9
+        },
+        {
+          "word": "jääpress",
+          "synonyms": [
+            "jääkuulipress",
+            "ice press"
+          ],
+          "variants": [
+            "jaapress",
+            "jaakuulipress",
+            "icepress"
+          ],
+          "confidence": 0.85
+        }
+      ],
+      "review": []
+    },
+    {
+      "sku": "MNBXBSBLSK20LO5KSV2",
+      "title_et": "Mini külmik 20L/22 purki – jahutab ja soojendab, AC/DC",
+      "auto": [
+        {
+          "word": "mini külmik",
+          "synonyms": [
+            "väike külmik",
+            "portable cooler",
+            "compact refrigerator"
+          ],
+          "variants": [
+            "mini kulmik",
+            "mini kylmik",
+            "minikülmik",
+            "minikulmik",
+            "minikylmik",
+            "vaike kulmik",
+            "vaike kylmik",
+            "väikekülmik",
+            "vaikekulmik",
+            "vaikekylmik",
+            "portablecooler",
+            "compactrefrigerator"
+          ],
+          "confidence": 0.95
+        }
+      ],
+      "review": [
+        {
+          "word": "terassikülmik",
+          "synonyms": [
+            "mini fridge",
+            "portable refrigerator"
+          ],
+          "variants": [
+            "terassikulmik",
+            "terassikylmik",
+            "minifridge",
+            "portablerefrigerator"
+          ],
+          "confidence": 0.8,
+          "reason": "LLM review:true"
+        }
+      ]
+    },
+    {
+      "sku": "SXKKJPJJQMINIQHP4V0",
+      "title_et": "Taskuavade puurimisšabloon, 56-osaline komplekt, 22,9 cm C-klambriga",
+      "auto": [
+        {
+          "word": "taskuavade šabloon",
+          "synonyms": [
+            "pocket hole jig",
+            "taskuauade puurimisšabloon"
+          ],
+          "variants": [
+            "taskuavade sabloon",
+            "taskuavadešabloon",
+            "taskuavadesabloon",
+            "pocketholejig",
+            "taskuauade puurimissabloon",
+            "taskuauadepuurimisšabloon",
+            "taskuauadepuurimissabloon"
+          ],
+          "confidence": 0.85
+        }
+      ],
+      "review": [
+        {
+          "word": "puiduliite komplekt",
+          "synonyms": [
+            "pocket hole kit",
+            "woodworking jig"
+          ],
+          "variants": [
+            "puiduliitekomplekt",
+            "pocketholekit",
+            "woodworkingjig"
+          ],
+          "confidence": 0.8,
+          "reason": "LLM review:true"
+        }
+      ]
+    },
+    {
+      "sku": "YJSJSTCQYC62692CKV0",
+      "title_et": "Laste metallidetektor, 15.2 cm veekindel pool ja LCD ekraan",
+      "auto": [
+        {
+          "word": "metallidetektor",
+          "synonyms": [
+            "metal detector",
+            "metalliotsija"
+          ],
+          "variants": [
+            "metaldetector"
+          ],
+          "confidence": 0.95
+        }
+      ],
+      "review": [
+        {
+          "word": "kuldaotsija",
+          "synonyms": [
+            "gold detector",
+            "metalliotsija"
+          ],
+          "variants": [
+            "golddetector"
+          ],
+          "confidence": 0.8,
+          "reason": "LLM review:true"
+        }
+      ]
+    },
+    {
+      "sku": "FSBLSPVCPVC59AFTUV0",
+      "title_et": "PVC vettpidav tarp 5 x 9 m, tugevdatud servade ja aasadega",
+      "auto": [
+        {
+          "word": "tarp",
+          "synonyms": [
+            "telk-kate",
+            "vettpidav kate",
+            "tarpaulin"
+          ],
+          "variants": [
+            "telkkate",
+            "vettpidavkate"
+          ],
+          "confidence": 0.9
+        },
+        {
+          "word": "pvc kate",
+          "synonyms": [
+            "vettpidav lina",
+            "tarp",
+            "waterproof cover"
+          ],
+          "variants": [
+            "pvckate",
+            "vettpidavlina",
+            "waterproofcover"
+          ],
+          "confidence": 0.85
+        }
+      ],
+      "review": []
+    },
+    {
+      "sku": "MNMGCCMNY796W1WHYV2",
+      "title_et": "Mini puidutreipink 70×160 mm, 24V/96W, 7 kiirusastet",
+      "auto": [
+        {
+          "word": "mini treipink",
+          "synonyms": [
+            "puidutreipink",
+            "lathe machine",
+            "wood lathe"
+          ],
+          "variants": [
+            "minitreipink",
+            "lathemachine",
+            "woodlathe"
+          ],
+          "confidence": 0.9
+        },
+        {
+          "word": "puidutreipink",
+          "synonyms": [
+            "mini lathe",
+            "dreipink"
+          ],
+          "variants": [
+            "minilathe"
+          ],
+          "confidence": 0.85
+        }
+      ],
+      "review": []
+    },
+    {
+      "sku": "QJDZJD231AGVI2CF2V0",
+      "title_et": "Auto tõstekäpad, 3 tonni, reguleeritav kõrgus 275-415 mm",
+      "auto": [
+        {
+          "word": "tõstekäpad",
+          "synonyms": [
+            "auto tõstekäpad",
+            "jack stands",
+            "tugi"
+          ],
+          "variants": [
+            "tostekapad",
+            "auto tostekapad",
+            "autotõstekäpad",
+            "autotostekapad",
+            "jackstands"
+          ],
+          "confidence": 0.95
+        },
+        {
+          "word": "tugistatiiv",
+          "synonyms": [
+            "tõstekäpp",
+            "jack stand"
+          ],
+          "variants": [
+            "tostekapp",
+            "jackstand"
+          ],
+          "confidence": 0.85
+        }
+      ],
+      "review": []
+    },
+    {
+      "sku": "PQTOX2L18MMBQ0RHWV0",
+      "title_et": "Survepaagiga värvipihusti 2L, 1,8 mm otsik, max 45 PSI",
+      "auto": [
+        {
+          "word": "survepaagiga värvipihusti",
+          "synonyms": [
+            "värvipihusti",
+            "pressure pot sprayer",
+            "air paint gun"
+          ],
+          "variants": [
+            "survepaagiga varvipihusti",
+            "survepaagigavärvipihusti",
+            "survepaagigavarvipihusti",
+            "varvipihusti",
+            "pressurepotsprayer",
+            "airpaintgun"
+          ],
+          "confidence": 0.85
+        }
+      ],
+      "review": [
+        {
+          "word": "survepaak",
+          "synonyms": [
+            "pressure pot",
+            "surveanumat"
+          ],
+          "variants": [
+            "pressurepot"
+          ],
+          "confidence": 0.8,
+          "reason": "confidence 0.80 < 0.85"
+        }
+      ]
+    },
+    {
+      "sku": "FSBTMPVCPVC34R2I2V0",
+      "title_et": "Läbipaistev PVC tarp 3 x 4 m terrassi katmiseks, kinnitusrõngastega",
+      "auto": [
+        {
+          "word": "läbipaistev tarp",
+          "synonyms": [
+            "pvc tarp",
+            "terrassi kate",
+            "clear vinyl tarp"
+          ],
+          "variants": [
+            "labipaistev tarp",
+            "läbipaistevtarp",
+            "labipaistevtarp",
+            "pvctarp",
+            "terrassikate",
+            "clearvinyltarp"
+          ],
+          "confidence": 0.9
+        },
+        {
+          "word": "terrassi kate",
+          "synonyms": [
+            "patio enclosure",
+            "tarp"
+          ],
+          "variants": [
+            "terrassikate",
+            "patioenclosure"
+          ],
+          "confidence": 0.85
+        }
+      ],
+      "review": []
+    },
+    {
+      "sku": "YBOCHCP75045NTEHDV2",
+      "title_et": "Basseinipump 750 W (1 HP), kuni 15000 L/h, 50 mm ühendus",
+      "auto": [
+        {
+          "word": "basseinipump",
+          "synonyms": [
+            "basseinifilter",
+            "pool pump"
+          ],
+          "variants": [
+            "poolpump"
+          ],
+          "confidence": 0.95
+        }
+      ],
+      "review": [
+        {
+          "word": "ujulasusloodussust pump",
+          "synonyms": [],
+          "variants": [
+            "ujulasusloodussustpump"
+          ],
+          "confidence": 0,
+          "reason": "LLM review:true"
+        }
+      ]
+    },
+    {
+      "sku": "YBOCSPP150EHRWURGV2",
+      "title_et": "Basseinipump 750W (1 HP), kuni 19200 L/h, sõelkorviga",
+      "auto": [
+        {
+          "word": "basseinipump",
+          "synonyms": [
+            "basseinifilter",
+            "pool pump"
+          ],
+          "variants": [
+            "poolpump"
+          ],
+          "confidence": 0.95
+        }
+      ],
+      "review": []
+    },
+    {
+      "sku": "50TGXBSYT00000001V0",
+      "title_et": "Elastsed spandeksist toolikatted kokkupandavatele toolidele (50 tk)",
+      "auto": [
+        {
+          "word": "toolikat",
+          "synonyms": [
+            "tooliümbris",
+            "chair cover"
+          ],
+          "variants": [
+            "tooliumbris",
+            "tooliymbris",
+            "chaircover"
+          ],
+          "confidence": 0.92
+        },
+        {
+          "word": "spandeksist toolikat",
+          "synonyms": [
+            "elastne toolikat",
+            "stretch chair cover"
+          ],
+          "variants": [
+            "spandeksisttoolikat",
+            "elastnetoolikat",
+            "stretchchaircover"
+          ],
+          "confidence": 0.9
+        }
+      ],
+      "review": []
+    },
+    {
+      "sku": "4JTDCGXB000000001V0",
+      "title_et": "4tk kummist kaablikaitse ramp 102x15.5x3 cm, kandevõime 10000 kg",
+      "auto": [
+        {
+          "word": "kaablikaitse",
+          "synonyms": [
+            "kaabelikaitse",
+            "cable protector"
+          ],
+          "variants": [
+            "cableprotector"
+          ],
+          "confidence": 0.93
+        },
+        {
+          "word": "põrandararamp",
+          "synonyms": [
+            "kaableramp",
+            "cable ramp"
+          ],
+          "variants": [
+            "porandararamp",
+            "cableramp"
+          ],
+          "confidence": 0.88
+        }
+      ],
+      "review": []
+    },
+    {
+      "sku": "50TQBBSYT00000001V0",
+      "title_et": "Elastsed spandeksist toolikatted peosündmusteks, 50 tk, valged",
+      "auto": [
+        {
+          "word": "toolikat",
+          "synonyms": [
+            "tooliümbris",
+            "chair cover"
+          ],
+          "variants": [
+            "tooliumbris",
+            "tooliymbris",
+            "chaircover"
+          ],
+          "confidence": 0.92
+        }
+      ],
+      "review": [
+        {
+          "word": "peotoolikat",
+          "synonyms": [
+            "pidu toolikat",
+            "party chair cover"
+          ],
+          "variants": [
+            "pidutoolikat",
+            "partychaircover"
+          ],
+          "confidence": 0.85,
+          "reason": "LLM review:true"
+        }
+      ]
+    },
+    {
+      "sku": "CTDG24YC500B00001V0",
+      "title_et": "Raskekoormuslikud sahtliliugurid 610 mm, 226,8 kg, 1 paar",
+      "auto": [
+        {
+          "word": "sahtliluger",
+          "synonyms": [
+            "sahtliuigurid",
+            "drawer slide"
+          ],
+          "variants": [
+            "drawerslide"
+          ],
+          "confidence": 0.94
+        }
+      ],
+      "review": []
+    },
+    {
+      "sku": "1TZZJCCZH00000001V0",
+      "title_et": "Kolmepunkti-kahvelkinnitus traktorile, kandevõime 997,9 kg",
+      "auto": [
+        {
+          "word": "pallikahvel",
+          "synonyms": [
+            "kahvelkinnitus",
+            "pallet fork"
+          ],
+          "variants": [
+            "palletfork"
+          ],
+          "confidence": 0.93
+        },
+        {
+          "word": "traktorikahvel",
+          "synonyms": [
+            "traktori kahvelkinnitus",
+            "tractor fork attachment"
+          ],
+          "variants": [
+            "traktorikahvelkinnitus",
+            "tractorforkattachment"
+          ],
+          "confidence": 0.89
+        }
+      ],
+      "review": []
+    },
+    {
+      "sku": "LZLTFS3YCYGHSDLZ1V0",
+      "title_et": "Alumiiniumist käsipuu välistrepile, 91,4 cm, reguleeritav 0–60°",
+      "auto": [
+        {
+          "word": "käsipuu",
+          "synonyms": [
+            "trepikäsipuu",
+            "handrail"
+          ],
+          "variants": [
+            "kasipuu",
+            "trepikasipuu"
+          ],
+          "confidence": 0.94
+        },
+        {
+          "word": "välistrepikäsipuu",
+          "synonyms": [
+            "õuekäsipuu",
+            "outdoor stair railing"
+          ],
+          "variants": [
+            "valistrepikasipuu",
+            "ouekasipuu",
+            "outdoorstairrailing"
+          ],
+          "confidence": 0.91
+        }
+      ],
+      "review": []
+    },
+    {
+      "sku": "XZJYQ44MMWZMO43HXV0",
+      "title_et": "Käsitsi juhitav lõikepress 44 mm nööpide ja märkide tegemiseks",
+      "auto": [
+        {
+          "word": "lõikepress",
+          "synonyms": [
+            "nööbipress",
+            "punch press"
+          ],
+          "variants": [
+            "loikepress",
+            "noobipress",
+            "punchpress"
+          ],
+          "confidence": 0.9
+        }
+      ],
+      "review": [
+        {
+          "word": "nööbitegemise masin",
+          "synonyms": [
+            "märgipress",
+            "badge maker"
+          ],
+          "variants": [
+            "noobitegemise masin",
+            "nööbitegemisemasin",
+            "noobitegemisemasin",
+            "margipress",
+            "badgemaker"
+          ],
+          "confidence": 0.87,
+          "reason": "LLM review:true"
+        }
+      ]
+    },
+    {
+      "sku": "DCJJCK8YCHS000001V0",
+      "title_et": "Küttepuuriiul 2,44 m, teras, kandevõime 590 kg, kate ja tarvikud",
+      "auto": [
+        {
+          "word": "küttepuuriiul",
+          "synonyms": [
+            "puuhoidik",
+            "firewood rack"
+          ],
+          "variants": [
+            "kuttepuuriiul",
+            "kyttepuuriiul",
+            "firewoodrack"
+          ],
+          "confidence": 0.94
+        }
+      ],
+      "review": [
+        {
+          "word": "puukäru",
+          "synonyms": [
+            "küttepuu käru",
+            "wood rack"
+          ],
+          "variants": [
+            "puukaru",
+            "kuttepuu karu",
+            "kyttepuu karu",
+            "küttepuukäru",
+            "kuttepuukaru",
+            "kyttepuukaru",
+            "woodrack"
+          ],
+          "confidence": 0.88,
+          "reason": "LLM review:true"
+        }
+      ]
+    }
+  ]
+}

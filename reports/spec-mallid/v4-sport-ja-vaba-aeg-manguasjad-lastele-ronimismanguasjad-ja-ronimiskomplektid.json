@@ -1,0 +1,36 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-manguasjad-lastele-ronimismanguasjad-ja-ronimiskomplektid",
+ "name": "Ronimismänguasjad ja ronimiskomplektid",
+ "fields": [
+  {
+   "key": "osa_kogus",
+   "label_et": "Osade arv",
+   "unit": "tk"
+  },
+  {
+   "key": "soovitatud_vanus",
+   "label_et": "Soovitatud vanus",
+   "unit": "aastat"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "maht_salvestus",
+   "label_et": "Salvestuskotti maht",
+   "unit": "L"
+  },
+  {
+   "key": "funktsionaalsus",
+   "label_et": "Funktsioonid",
+   "unit": ""
+  }
+ ]
+}

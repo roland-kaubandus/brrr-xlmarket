@@ -1,0 +1,36 @@
+{
+ "l3": "v4-autovaruosad-ja-tarvikud-akulaadijad-ja-elektrisusteemid-kaivitusabid",
+ "name": "Käivitusabid",
+ "fields": [
+  {
+   "key": "käivituspinge",
+   "label_et": "Käivituspinge (peak)",
+   "unit": "A"
+  },
+  {
+   "key": "aku_maht",
+   "label_et": "Akupank maht",
+   "unit": "Wh"
+  },
+  {
+   "key": "rohk",
+   "label_et": "Max rõhk (kompressor)",
+   "unit": "bar"
+  },
+  {
+   "key": "ohuvool",
+   "label_et": "Õhuvoolu (kompressor)",
+   "unit": "L/min"
+  },
+  {
+   "key": "bensiin_maht",
+   "label_et": "Bensiini mootori käivituse (max)",
+   "unit": "L"
+  },
+  {
+   "key": "diisli_maht",
+   "label_et": "Diiselmootorite käivituse (max)",
+   "unit": "L"
+  }
+ ]
+}

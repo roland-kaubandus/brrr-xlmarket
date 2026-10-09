@@ -1,0 +1,36 @@
+{
+ "l3": "v4-ehitus-remont-ja-varvid-uksed-aknad-ja-luugid-ukselingid-ja-uksekaepidemed",
+ "name": "Ukselingid ja uksekäepidemed",
+ "fields": [
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "viimistlus",
+   "label_et": "Viimistlus",
+   "unit": ""
+  },
+  {
+   "key": "kanduvus",
+   "label_et": "Kanduvus (rasked uksed)",
+   "unit": ""
+  },
+  {
+   "key": "kaepideme_tyyp",
+   "label_et": "Käepideme tüüp",
+   "unit": ""
+  },
+  {
+   "key": "paigaldus",
+   "label_et": "Paigaldus",
+   "unit": ""
+  },
+  {
+   "key": "komplekt",
+   "label_et": "Komplekt (kaks ust)",
+   "unit": ""
+  }
+ ]
+}

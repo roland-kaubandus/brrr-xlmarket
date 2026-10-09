@@ -1,0 +1,46 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-jaht-ja-jahivarustus-jaakalastustelgid",
+ "name": "Jääkalastustelgid",
+ "fields": [
+  {
+   "key": "isikute_arv",
+   "label_et": "Isikute arv",
+   "unit": "tk"
+  },
+  {
+   "key": "pindala",
+   "label_et": "Põrandapindala",
+   "unit": "m²"
+  },
+  {
+   "key": "mootmed_pikkus",
+   "label_et": "Pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "mootmed_laius",
+   "label_et": "Laius",
+   "unit": "m"
+  },
+  {
+   "key": "mootmed_korgus",
+   "label_et": "Kõrgus",
+   "unit": "m"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Kangase klass",
+   "unit": "D"
+  },
+  {
+   "key": "kangaste_kihid",
+   "label_et": "Kangaste kihid",
+   "unit": "tk"
+  },
+  {
+   "key": "soojustus",
+   "label_et": "Soojustus",
+   "unit": "jah/ei"
+  }
+ ]
+}

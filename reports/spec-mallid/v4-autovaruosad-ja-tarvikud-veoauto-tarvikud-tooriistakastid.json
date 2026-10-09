@@ -1,0 +1,36 @@
+{
+ "l3": "v4-autovaruosad-ja-tarvikud-veoauto-tarvikud-tooriistakastid",
+ "name": "Tööriista- ja hoiukastid",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Mahutavus",
+   "unit": "L"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjaali",
+   "unit": ""
+  },
+  {
+   "key": "veetihedus",
+   "label_et": "Veekindlus",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "lukk_tyyp",
+   "label_et": "Lukusüsteem",
+   "unit": ""
+  },
+  {
+   "key": "paigaldus",
+   "label_et": "Paigalduse tüüp",
+   "unit": ""
+  }
+ ]
+}

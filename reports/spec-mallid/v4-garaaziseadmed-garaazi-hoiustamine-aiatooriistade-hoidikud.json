@@ -1,0 +1,36 @@
+{
+ "l3": "v4-garaaziseadmed-garaazi-hoiustamine-aiatooriistade-hoidikud",
+ "name": "Aiatööriistade hoidikud",
+ "fields": [
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "slot_arv",
+   "label_et": "Pesade/kohade arv",
+   "unit": "tk"
+  },
+  {
+   "key": "korruseid",
+   "label_et": "Korruseid",
+   "unit": "tk"
+  },
+  {
+   "key": "rattad",
+   "label_et": "Ratasega liikuv",
+   "unit": ""
+  },
+  {
+   "key": "kaitsereeling",
+   "label_et": "Kaitsereeling",
+   "unit": ""
+  }
+ ]
+}

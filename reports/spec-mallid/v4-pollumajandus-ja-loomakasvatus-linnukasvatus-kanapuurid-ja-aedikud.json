@@ -1,0 +1,46 @@
+{
+ "l3": "v4-pollumajandus-ja-loomakasvatus-linnukasvatus-kanapuurid-ja-aedikud",
+ "name": "Kanapuurid ja aedikud",
+ "fields": [
+  {
+   "key": "pikkus",
+   "label_et": "Pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "laius",
+   "label_et": "Laius",
+   "unit": "m"
+  },
+  {
+   "key": "korgus",
+   "label_et": "Kõrgus",
+   "unit": "m"
+  },
+  {
+   "key": "maht",
+   "label_et": "Maht",
+   "unit": "m³"
+  },
+  {
+   "key": "max_kanalid",
+   "label_et": "Maksimaal kanu",
+   "unit": "tk"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": "materjal"
+  },
+  {
+   "key": "kaetud",
+   "label_et": "Vesikaitsega kaetud",
+   "unit": "jah/ei"
+  },
+  {
+   "key": "uksed",
+   "label_et": "Uste arv",
+   "unit": "tk"
+  }
+ ]
+}

@@ -1,0 +1,36 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-keevitus-ja-jootmine-keevitusaparaadid",
+ "name": "Keevitusaparaadid",
+ "fields": [
+  {
+   "key": "keevitusvool",
+   "label_et": "Keevitusvool",
+   "unit": "A"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Nimipinge",
+   "unit": "V"
+  },
+  {
+   "key": "protsessid",
+   "label_et": "Keevitusprotsessid",
+   "unit": ""
+  },
+  {
+   "key": "inverter_tyyp",
+   "label_et": "Inverteri tüüp",
+   "unit": ""
+  },
+  {
+   "key": "juhtimisrežiim",
+   "label_et": "Juhtimisrežiim",
+   "unit": ""
+  },
+  {
+   "key": "jahutus",
+   "label_et": "Jahutussüsteem",
+   "unit": ""
+  }
+ ]
+}

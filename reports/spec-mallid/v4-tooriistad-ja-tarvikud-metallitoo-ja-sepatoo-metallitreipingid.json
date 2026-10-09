@@ -1,0 +1,36 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-metallitoo-ja-sepatoo-metallitreipingid",
+ "name": "Metallitreipingid",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "poorlemiskiirus",
+   "label_et": "Max pöörlemiskiirus",
+   "unit": "RPM"
+  },
+  {
+   "key": "tooriku_laius",
+   "label_et": "Tooriku laius",
+   "unit": "mm"
+  },
+  {
+   "key": "tooriku_pikkus",
+   "label_et": "Tooriku pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "juhtimissusteem",
+   "label_et": "Juhtimissüsteem",
+   "unit": ""
+  }
+ ]
+}

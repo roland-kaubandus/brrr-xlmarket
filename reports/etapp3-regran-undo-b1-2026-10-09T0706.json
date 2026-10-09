@@ -1,0 +1,68 @@
+{
+  "batch_id": "e3-b1-2026-10-09T0706-regran",
+  "created_at": "2026-10-09T12:52:59.573Z",
+  "actor": "claude-code-test",
+  "label": "regran-undo b1-2026-10-09T0706 (1 L3)",
+  "new_l3": [
+    {
+      "id": "pcat_e2_footmassagersstimulators",
+      "handle": "v4-tervis-hooldus-ja-ilu-isikuhooldusseadmed-jalamassoorid-ja-stimulaatorid",
+      "name": "Jalamassöörid ja -stimulaatorid",
+      "parent_id": "pcat_v4_l15_1"
+    }
+  ],
+  "attach": [
+    {
+      "product_id": "prod_01KNXXGS5NDA0PWV9WA62R1P4Q",
+      "cat_id": "pcat_e2_footmassagersstimulators"
+    },
+    {
+      "product_id": "prod_01KNXXGT1F82TS8E4RWJQTKERY",
+      "cat_id": "pcat_e2_footmassagersstimulators"
+    },
+    {
+      "product_id": "prod_01KNXXGTYXDJ5JGT275KP0KXHM",
+      "cat_id": "pcat_e2_footmassagersstimulators"
+    },
+    {
+      "product_id": "prod_01KNXXHNXD0J6PR0CHN2PXRFJX",
+      "cat_id": "pcat_e2_footmassagersstimulators"
+    }
+  ],
+  "product_ids": [
+    "prod_01KNXXGS5NDA0PWV9WA62R1P4Q",
+    "prod_01KNXXGT1F82TS8E4RWJQTKERY",
+    "prod_01KNXXGTYXDJ5JGT275KP0KXHM",
+    "prod_01KNXXHNXD0J6PR0CHN2PXRFJX"
+  ],
+  "reparent": [
+    {
+      "product_id": "prod_01KNXXGS5NDA0PWV9WA62R1P4Q",
+      "prev_status": "published",
+      "from_cat_ids": [
+        "pcat_15keha"
+      ]
+    },
+    {
+      "product_id": "prod_01KNXXGT1F82TS8E4RWJQTKERY",
+      "prev_status": "published",
+      "from_cat_ids": [
+        "pcat_15keha"
+      ]
+    },
+    {
+      "product_id": "prod_01KNXXGTYXDJ5JGT275KP0KXHM",
+      "prev_status": "published",
+      "from_cat_ids": [
+        "pcat_15keha"
+      ]
+    },
+    {
+      "product_id": "prod_01KNXXHNXD0J6PR0CHN2PXRFJX",
+      "prev_status": "published",
+      "from_cat_ids": [
+        "pcat_15keha"
+      ]
+    }
+  ]
+}

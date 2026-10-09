@@ -1,0 +1,46 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-manguasjad-lastele-mangumajad-ja-telgid",
+ "name": "Mängumajad ja telgid",
+ "fields": [
+  {
+   "key": "materjal_raam",
+   "label_et": "Raami materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "pikkus",
+   "label_et": "Pikkus",
+   "unit": "cm"
+  },
+  {
+   "key": "laius",
+   "label_et": "Laius",
+   "unit": "cm"
+  },
+  {
+   "key": "korgus",
+   "label_et": "Kõrgus",
+   "unit": "cm"
+  },
+  {
+   "key": "uksed",
+   "label_et": "Uksed/Sisseprääsid",
+   "unit": "tk"
+  },
+  {
+   "key": "aknad",
+   "label_et": "Aknad",
+   "unit": "tk"
+  },
+  {
+   "key": "varustus",
+   "label_et": "Varustus",
+   "unit": ""
+  }
+ ]
+}

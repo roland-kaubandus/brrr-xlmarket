@@ -1,6 +1,6 @@
 # ETAPP3 tagasiulatuv granulaarsus-re-check (parandatud värav, §2c)
 
-Genereeritud: 2026-10-09T12:44:25.290Z · kohtuniku-kutseid: 54
+Genereeritud: 2026-10-09T12:52:59.572Z · kohtuniku-kutseid: 54
 
 **39 loodud L3** → **38 distinct (jäävad)** · **1 variant/kinnitamata (undo)**
 
@@ -8,7 +8,7 @@ Genereeritud: 2026-10-09T12:44:25.290Z · kohtuniku-kutseid: 54
 
 | L3 | n | verdict | lähim õde | põhjus |
 |---|---|---|---|---|
-| «Jalamassöörid ja -stimulaatorid» | 4 | variant | Keha-massöörid | Sama funktsioon (massaaž/stimulatsioon valu leevendamiseks), erineb vaid sihtkehaosa poolest (jalad); ostja otsib sama tulemust keha-massööri kategoorias. |
+| «Jalamassöörid ja -stimulaatorid» | 4 | variant | Keha-massöörid | Sama funktsioon ja väljund (massaaž/stimulatsioon lihaste lõõgastuseks), erineb vaid kehapiirkonna/vormi poolest — ostja otsib sama tüüpi massöörit jalgadele. |
 
 ## ✅ JÄÄVAD distinct (38)
 

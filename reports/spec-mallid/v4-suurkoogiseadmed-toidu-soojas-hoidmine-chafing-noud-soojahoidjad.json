@@ -1,0 +1,36 @@
+{
+ "l3": "v4-suurkoogiseadmed-toidu-soojas-hoidmine-chafing-noud-soojahoidjad",
+ "name": "Toidusoojendajad (chafing dish)",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Mahutavus",
+   "unit": "L"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "kuju",
+   "label_et": "Kuju",
+   "unit": ""
+  },
+  {
+   "key": "panide_arv",
+   "label_et": "Pannide arv",
+   "unit": "tk"
+  },
+  {
+   "key": "kaas_tyyp",
+   "label_et": "Kaane tüüp",
+   "unit": ""
+  },
+  {
+   "key": "komplekti_osad",
+   "label_et": "Komplekti osad",
+   "unit": "tk"
+  }
+ ]
+}

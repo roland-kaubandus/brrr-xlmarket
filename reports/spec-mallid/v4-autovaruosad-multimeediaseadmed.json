@@ -1,0 +1,41 @@
+{
+ "l3": "v4-autovaruosad-multimeediaseadmed",
+ "name": "Multimeediaseadmed",
+ "fields": [
+  {
+   "key": "ekraani_suurus",
+   "label_et": "Ekraani suurus",
+   "unit": "tuumad"
+  },
+  {
+   "key": "eraldusvoime",
+   "label_et": "Eraldusvõime",
+   "unit": "px"
+  },
+  {
+   "key": "aku_maht",
+   "label_et": "Aku maht",
+   "unit": "Wh"
+  },
+  {
+   "key": "aku_kestus",
+   "label_et": "Aku kestus",
+   "unit": "h"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "ip_klass",
+   "label_et": "IP kaitseklass",
+   "unit": ""
+  },
+  {
+   "key": "bluetooth_versioon",
+   "label_et": "Bluetooth versioon",
+   "unit": ""
+  }
+ ]
+}

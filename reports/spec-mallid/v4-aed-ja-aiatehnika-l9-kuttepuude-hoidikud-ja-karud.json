@@ -1,0 +1,36 @@
+{
+ "l3": "v4-aed-ja-aiatehnika-l9-kuttepuude-hoidikud-ja-karud",
+ "name": "Küttepuude hoidikud ja kärud",
+ "fields": [
+  {
+   "key": "pikkus",
+   "label_et": "Pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "kandeavus",
+   "label_et": "Kandeavus",
+   "unit": "kg"
+  },
+  {
+   "key": "maht",
+   "label_et": "Mahutavus (Cord)",
+   "unit": "Cord"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "katus",
+   "label_et": "Veetihe katus",
+   "unit": "bool"
+  },
+  {
+   "key": "kasutuskoht",
+   "label_et": "Kasutuskoht",
+   "unit": ""
+  }
+ ]
+}

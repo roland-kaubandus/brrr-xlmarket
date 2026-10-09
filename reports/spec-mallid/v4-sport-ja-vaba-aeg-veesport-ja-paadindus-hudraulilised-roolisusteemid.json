@@ -1,0 +1,37 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-veesport-ja-paadindus-hudraulilised-roolisusteemid",
+ "name": "Hüdraulilised roolisüsteemid",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Mootorivõimsus",
+   "unit": "W",
+   "unit_orig": "HP"
+  },
+  {
+   "key": "rohk",
+   "label_et": "Maksimaalrõhk",
+   "unit": "bar"
+  },
+  {
+   "key": "torupaik",
+   "label_et": "Hüdraulika torupaik",
+   "unit": "m"
+  },
+  {
+   "key": "silinder_tyyp",
+   "label_et": "Silindri tüüp",
+   "unit": ""
+  },
+  {
+   "key": "materjal",
+   "label_et": "Põhimaterjalid",
+   "unit": ""
+  },
+  {
+   "key": "motorite_arv",
+   "label_et": "Ühilduvad mootorid",
+   "unit": ""
+  }
+ ]
+}

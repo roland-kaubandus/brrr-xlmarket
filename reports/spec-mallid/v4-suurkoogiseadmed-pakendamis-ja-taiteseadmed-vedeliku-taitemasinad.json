@@ -1,0 +1,41 @@
+{
+ "l3": "v4-suurkoogiseadmed-pakendamis-ja-taiteseadmed-vedeliku-taitemasinad",
+ "name": "Vedeliku täitemasinad",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Mahutavus",
+   "unit": "L"
+  },
+  {
+   "key": "kaalumispiirkond",
+   "label_et": "Täitmispiirkond",
+   "unit": "g"
+  },
+  {
+   "key": "otsade_arv",
+   "label_et": "Otste arv",
+   "unit": "tk"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "temperatuurijuhtimine",
+   "label_et": "Temperatuurijuhtimine",
+   "unit": ""
+  },
+  {
+   "key": "kaalumismood",
+   "label_et": "Kaalumismood",
+   "unit": ""
+  },
+  {
+   "key": "konveier",
+   "label_et": "Konveier",
+   "unit": ""
+  }
+ ]
+}

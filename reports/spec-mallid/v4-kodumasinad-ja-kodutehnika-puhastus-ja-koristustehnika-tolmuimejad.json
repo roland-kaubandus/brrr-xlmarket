@@ -1,0 +1,36 @@
+{
+ "l3": "v4-kodumasinad-ja-kodutehnika-puhastus-ja-koristustehnika-tolmuimejad",
+ "name": "Tolmuimejad",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Mootori võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "imamisrohk",
+   "label_et": "Imamisrõhk",
+   "unit": "kPa"
+  },
+  {
+   "key": "aku_kestus",
+   "label_et": "Akutööaeg",
+   "unit": "min"
+  },
+  {
+   "key": "harjade_arv",
+   "label_et": "Harjade arv",
+   "unit": "tk"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "myra",
+   "label_et": "Müra tase",
+   "unit": "dB"
+  }
+ ]
+}

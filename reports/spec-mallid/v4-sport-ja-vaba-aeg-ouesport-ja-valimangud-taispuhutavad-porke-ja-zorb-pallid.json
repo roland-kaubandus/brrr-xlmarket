@@ -1,0 +1,36 @@
+{
+ "l3": "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-taispuhutavad-porke-ja-zorb-pallid",
+ "name": "Täispuhutavad põrke- ja Zorb-pallid",
+ "fields": [
+  {
+   "key": "pakendi_kogus",
+   "label_et": "Pakendi kogus (tk)",
+   "unit": "pcs"
+  },
+  {
+   "key": "palli_diameeter",
+   "label_et": "Palli läbimõõt",
+   "unit": "m"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "vanus_kategooria",
+   "label_et": "Sihtrühm",
+   "unit": ""
+  },
+  {
+   "key": "kaas_komplektis",
+   "label_et": "Käepide/õlavarraste komplektis",
+   "unit": ""
+  },
+  {
+   "key": "varv",
+   "label_et": "Värvus",
+   "unit": ""
+  }
+ ]
+}

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-09T12:44:25.290Z",
+  "generated_at": "2026-10-09T12:52:59.572Z",
   "created": 39,
   "fail": 1,
   "keep": 38,
@@ -13,7 +13,7 @@
       "ck": "vpt:Health & Wellness > Wellness & Relaxation Products > Foot & Leg Massager",
       "verdict": "variant",
       "nearest": "Keha-massöörid",
-      "reason": "Sama funktsioon (massaaž/stimulatsioon valu leevendamiseks), erineb vaid sihtkehaosa poolest (jalad); ostja otsib sama tulemust keha-massööri kategoorias.",
+      "reason": "Sama funktsioon ja väljund (massaaž/stimulatsioon lihaste lõõgastuseks), erineb vaid kehapiirkonna/vormi poolest — ostja otsib sama tüüpi massöörit jalgadele.",
       "batch": "b1-2026-10-09T0706"
     }
   ]

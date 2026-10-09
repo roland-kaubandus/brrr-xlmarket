@@ -1,0 +1,41 @@
+{
+ "l3": "v4-tooriistad-ja-tarvikud-keevitus-ja-jootmine-keevituslauad",
+ "name": "Keevituslauad",
+ "fields": [
+  {
+   "key": "tooplaadi_pikkus",
+   "label_et": "Tööplaadi pikkus",
+   "unit": "mm"
+  },
+  {
+   "key": "tooplaadi_laius",
+   "label_et": "Tööplaadi laius",
+   "unit": "mm"
+  },
+  {
+   "key": "kandevoimasus",
+   "label_et": "Kandevõime",
+   "unit": "kg"
+  },
+  {
+   "key": "korguse_reguleeritavus",
+   "label_et": "Kõrguse reguleerimise tasemed",
+   "unit": "tk"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "tööriista_paikade_arv",
+   "label_et": "Tööriistaotsade arv",
+   "unit": "tk"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  }
+ ]
+}

@@ -1,0 +1,41 @@
+{
+ "l3": "v4-kodumasinad-koogi-ja-taignamikserid",
+ "name": "Köögi- ja taignamikserid",
+ "fields": [
+  {
+   "key": "maht",
+   "label_et": "Anuma maht",
+   "unit": "L"
+  },
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "poorlemiskiirus",
+   "label_et": "Poorlemiskiirus",
+   "unit": "RPM"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Anuma materjal",
+   "unit": ""
+  },
+  {
+   "key": "taignatajad",
+   "label_et": "Taignatajate arv",
+   "unit": "tk"
+  }
+ ]
+}

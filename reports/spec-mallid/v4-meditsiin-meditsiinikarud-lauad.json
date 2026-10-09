@@ -1,0 +1,36 @@
+{
+ "l3": "v4-meditsiin-meditsiinikarud-lauad",
+ "name": "Meditsiini- ja laborikärud",
+ "fields": [
+  {
+   "key": "maksimaalne_koormus",
+   "label_et": "Maksimaalne koormus",
+   "unit": "kg"
+  },
+  {
+   "key": "kaal",
+   "label_et": "Käru kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "korgus_reguleeritav",
+   "label_et": "Kõrguse reguleerimise vahemik",
+   "unit": "mm"
+  },
+  {
+   "key": "platvorm_suurus",
+   "label_et": "Platvormi suurus",
+   "unit": "mm"
+  },
+  {
+   "key": "rataste_arv",
+   "label_et": "Rataste arv",
+   "unit": "tk"
+  },
+  {
+   "key": "salvestus_sahtlid",
+   "label_et": "Salvestuskohtade arv",
+   "unit": "tk"
+  }
+ ]
+}

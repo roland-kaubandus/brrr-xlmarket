@@ -1,0 +1,41 @@
+{
+ "l3": "v4-santehnika-kute-ja-ventilatsioon-elektrilised-veesoojendid",
+ "name": "Elektrilised veesoojendid",
+ "fields": [
+  {
+   "key": "voimsus",
+   "label_et": "Võimsus",
+   "unit": "W"
+  },
+  {
+   "key": "pinge",
+   "label_et": "Pinge",
+   "unit": "V"
+  },
+  {
+   "key": "faaside_arv",
+   "label_et": "Faaside arv",
+   "unit": "tk"
+  },
+  {
+   "key": "temperatuur_min",
+   "label_et": "Minimaalne temperatuur",
+   "unit": "°C"
+  },
+  {
+   "key": "temperatuur_max",
+   "label_et": "Maksimaalne temperatuur",
+   "unit": "°C"
+  },
+  {
+   "key": "soojustusemement_materjal",
+   "label_et": "Kütteelemendi materjal",
+   "unit": ""
+  },
+  {
+   "key": "juhtimine",
+   "label_et": "Juhtimine",
+   "unit": ""
+  }
+ ]
+}

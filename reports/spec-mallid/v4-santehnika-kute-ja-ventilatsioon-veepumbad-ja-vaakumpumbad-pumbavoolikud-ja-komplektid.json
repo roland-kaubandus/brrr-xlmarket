@@ -1,0 +1,36 @@
+{
+ "l3": "v4-santehnika-kute-ja-ventilatsioon-veepumbad-ja-vaakumpumbad-pumbavoolikud-ja-komplektid",
+ "name": "Pumbavoolikud ja -komplektid",
+ "fields": [
+  {
+   "key": "voolik_diameetr_mm",
+   "label_et": "Vooliku sisediameeter",
+   "unit": "mm"
+  },
+  {
+   "key": "voolik_pikkus_m",
+   "label_et": "Vooliku pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "rohk_max_bar",
+   "label_et": "Maksimaalne töörõhk",
+   "unit": "bar"
+  },
+  {
+   "key": "klamber_materjal",
+   "label_et": "Kinnitusklamber",
+   "unit": ""
+  },
+  {
+   "key": "kasutusvaldkond",
+   "label_et": "Kasutusvaldkond",
+   "unit": ""
+  }
+ ]
+}

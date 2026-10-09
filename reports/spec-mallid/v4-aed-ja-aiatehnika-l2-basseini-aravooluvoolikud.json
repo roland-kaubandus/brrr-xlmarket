@@ -1,0 +1,36 @@
+{
+ "l3": "v4-aed-ja-aiatehnika-l2-basseini-aravooluvoolikud",
+ "name": "Basseini äravooluvoolikud",
+ "fields": [
+  {
+   "key": "diameeter_toll",
+   "label_et": "Voolikute sisediameeter",
+   "unit": "tolled (\")"
+  },
+  {
+   "key": "pikkus_m",
+   "label_et": "Voolikute pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "materjal",
+   "label_et": "Materjal",
+   "unit": ""
+  },
+  {
+   "key": "rohk_bar",
+   "label_et": "Maksimaalne töörõhk",
+   "unit": "bar"
+  },
+  {
+   "key": "sobivus",
+   "label_et": "Rakendus",
+   "unit": ""
+  },
+  {
+   "key": "armatuur",
+   "label_et": "Kinnitusarmatuur",
+   "unit": ""
+  }
+ ]
+}

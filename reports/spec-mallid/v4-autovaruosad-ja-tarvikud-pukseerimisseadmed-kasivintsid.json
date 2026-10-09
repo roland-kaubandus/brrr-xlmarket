@@ -1,0 +1,36 @@
+{
+ "l3": "v4-autovaruosad-ja-tarvikud-pukseerimisseadmed-kasivintsid",
+ "name": "Käsivintsid",
+ "fields": [
+  {
+   "key": "koormus_kg",
+   "label_et": "Maksimaalne koormus",
+   "unit": "kg"
+  },
+  {
+   "key": "nöör_pikkus",
+   "label_et": "Nööri/rihma pikkus",
+   "unit": "m"
+  },
+  {
+   "key": "nöör_materjal",
+   "label_et": "Nööri/rihma materjal",
+   "unit": ""
+  },
+  {
+   "key": "kaal",
+   "label_et": "Kaal",
+   "unit": "kg"
+  },
+  {
+   "key": "ratšett_suund",
+   "label_et": "Ratšeti suunad",
+   "unit": ""
+  },
+  {
+   "key": "kaevitus_tyyp",
+   "label_et": "Käsitsi käivitamise tüüp",
+   "unit": ""
+  }
+ ]
+}
