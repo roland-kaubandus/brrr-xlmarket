@@ -42,6 +42,9 @@ ok(fragmentGate({ en: "torque" }, { phraseEns: phrases }).pass === true, "torque
 ok(fragmentGate({ en: "duty" }, { phraseEns: [] }).pass === true, "fraase pole → fragment ei blokeeri");
 ok(fragmentGate({ en: "capacity" }, { phraseEns: ["capacity"] }).pass === true, "sama sõna (mitte mitmesõnaline vanem) → pass");
 ok(fragmentGate({ en: "part" }, { phraseEns: ["spare parts"] }).pass === true, "osaline-substring 'part'⊄'parts' TÄISSÕNANA → pass (parts ≠ part)");
+// Tarmo p1-PARANDUS (üleblokeerimine): vanem peab olema LUKUSTATUD — kukkunud kandidaat EI blokeeri
+ok(fragmentGate({ en: "steel" }, { phraseEns: ["heavy duty"] }).pass === true, "steel EI blokeeru kui 'stainless steel' POLE lukustatud-vanemate seas (ei üleblokeeri erialaterminit)");
+ok(fragmentGate({ en: "voltage" }, { phraseEns: ["load capacity", "net weight"] }).pass === true, "voltage läbib kui ükski lukustatud vanem seda ei sisalda");
 
 // ——— SPECIALIST-KOHTUNIK 3× HÄÄLETUS (Tarmo 2026-10-11 p2, mock-call) ———
 sec("classifyTermVoted (3× hääletus, mock)");
