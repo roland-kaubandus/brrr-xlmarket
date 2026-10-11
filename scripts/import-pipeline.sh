@@ -351,6 +351,29 @@ else
   [ "$CREDIT_OK" = "1" ] && echo "  klassifitseeritud SKU-loend puudub → konsensus vahele" || echo "  krediit/API maas → konsensus SKIP (degrade)"
 fi
 
+# ── [6.8] OUTLET-RISTKUVAMINE (host) — HARD RULE #5 HOOK (Outlet-tooted → ka tüüp-kategooriasse) ─
+# SAMA transform kui käsitsi (outlet-crossdisplay.mjs --execute). ERINEVUS teistest hookidest: EI ole
+# delta-peal — outlet-tooted luuakse KÄSITSI admin'is (mitte feed), seega neid POLE classify-skus deltas.
+# Outlet-korpus on pisike → skännib KÕIK outlet-tooted iga öö (additiivne, INSERT ON CONFLICT → idempotent).
+# ASUKOHT: ENNE [7] reindeks → lisatud tüüp-seosed indekseeritakse samal ööl (nähtavad kohe mõlemal lehel).
+# LUKK: pipeline hoiab bash-stack-lukku (rida 40) → XL_STACK_LOCK_HELD=1 → skript EI võta oma lukku
+#   (väldib PID-faili ummiku bash↔node, nagu classify/price/spec usaldavad bash-lukku).
+# FAIL-SOFT: ristkuvamine = rikastus (toode on Outletis niikuinii nähtav) → HOIATUS, MITTE hard-fail.
+# ⚠️ HARD RULE #6 JÄÄK: TYPE_DISPLAY = käsitsi lubaloend per tüüp → tundmatu uus outlet-TÜÜP ei ristkuva
+#   automaatselt (jääb ainult Outletisse, kahjutu). Skaleeruv lahendus = klassifikaator tuletab tüübi / outlet-move
+#   säilitab tüüp-lingi. VAJA ÄRA TEHA (vt sessioonilogi 2026-10-11).
+echo "[6.8/7] outlet-ristkuvamine (Outlet=kodu + tüüp-lisakuvamine; kõik outlet-tooted, idempotent)"
+if [ "$EXECUTE" = "1" ]; then
+  OC_OUT=$(XL_STACK_LOCK_HELD=1 node "$ROOT/scripts/outlet-crossdisplay.mjs" --execute 2>&1) && OC_RC=0 || OC_RC=$?
+  echo "$OC_OUT" | sed 's/^/  /'
+  if [ "$OC_RC" != "0" ]; then
+    echo "  ⚠️ [6.8] outlet-ristkuvamine rc=$OC_RC — HOIATUS (ei blokeeri): [7] reindeks JÄTKUB"
+    slack "⚠️ XLM outlet-ristkuvamine [6.8] rc=$OC_RC (HOIATUS, mitte FAIL): outlet-toodete tüüp-lisakuvamine kukkus. Outlet-tooted on Outletis endiselt nähtavad. Täidab järgmine öö / käsitsi: node scripts/outlet-crossdisplay.mjs --execute"
+  fi
+else
+  echo "  [DRY] outlet-ristkuvamine vahele (kirjutust polnud)"
+fi
+
 # ── [7] REINDEX (konteiner) — ainult EXECUTE (uued tooted + hinnad nähtavaks) ─
 echo "[7/7] reindeks Meili"
 if [ "$EXECUTE" = "1" ]; then
