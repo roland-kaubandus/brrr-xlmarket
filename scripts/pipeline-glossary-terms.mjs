@@ -8,7 +8,11 @@
  * POSITSIOON: import-pipeline.sh [6.4] — PÄRAST [6] spec, ENNE [6.5] sisu-gen (uued glossary-terminid lukus
  *   ENNE kui sisu-gen EN→ET tõlget teeb → sisu kasutab värsket glossaryt).
  *
- * KASUTUS: node scripts/pipeline-glossary-terms.mjs --skus /tmp/classify-skus.txt [--dry]
+ * KASUTUS: node scripts/pipeline-glossary-terms.mjs --skus /tmp/classify-skus.txt [--dry|--shadow]
+ *   --dry    = read-only, näita otsustusteed, EI kirjuta midagi.
+ *   --shadow = (Tarmo 2026-10-11) läbi KOGU ahel+väravad, logi "OLEKS lukustanud" glossary_shadow_ledger'isse,
+ *              AGA ÄRA kirjuta glossary.yaml'i (nähtavus ilma mõjuta — HARD RULE #6 ohutu algseis).
+ *   (vaikimisi = LIVE: kirjuta glossary.yaml + ledger — AINULT kui väravad kinnitatud ja Tarmo flip'ib live).
  *
  * FAIL-LOUD granulaarsus (HARD RULE #5):
  *   üksik termin kukub (defer/gate-fail) → SKIP + jätka (ei peata ööd ühe termini pärast); loe defer-arv.
@@ -22,13 +26,14 @@ import { execSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import { loadGlossary } from "./lib/content-gen.mjs";
 import { makeAnthropicCall, harvestCandidates, filterGlossaryWorthy, resolveGlossaryTerm } from "./lib/glossary-term-chain.mjs";
-import { appendTermsToYaml, writeLedger } from "./lib/glossary-write.mjs";
+import { appendTermsToYaml, writeLedger, writeShadowLedger } from "./lib/glossary-write.mjs";
 
 const REPO = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const GLOSSARY = `${REPO}/backend/src/data/glossary.yaml`;
 const args = process.argv.slice(2);
 const val = (f, d) => { const i = args.indexOf(f); return i >= 0 && args[i + 1] ? args[i + 1] : d; };
 const DRY = args.includes("--dry");
+const SHADOW = args.includes("--shadow");  // Tarmo 2026-10-11: väravate valideerimiseni shadow (ledger, ei kirjuta yaml)
 const SKUS_FILE = val("--skus", "/tmp/classify-skus.txt");
 
 const API_KEY = process.env.ANTHROPIC_API_KEY || "";
@@ -44,7 +49,8 @@ const q = (sql) => { DB = getDB(); return execSync(`docker exec -i ${DB} psql -U
 const esc = (s) => (s == null ? "" : String(s)).replace(/'/g, "''");
 
 (async () => {
-  console.log(`\n=== [6.4] GLOSSARY-HOOK (delta, ${DRY ? "DRY" : "EXECUTE"}) — ${skus.length} SKU ===`);
+  const MODE = DRY ? "DRY" : SHADOW ? "SHADOW" : "LIVE";
+  console.log(`\n=== [6.4] GLOSSARY-HOOK (delta, ${MODE}) — ${skus.length} SKU ===`);
   const entries = loadGlossary(GLOSSARY);
 
   // delta EN-sisu (AINULT puudutatud SKU-d)
@@ -54,6 +60,10 @@ const esc = (s) => (s == null ? "" : String(s)).replace(/'/g, "''");
   const enTexts = rows ? rows.split("\n") : [];
   console.log(`  delta EN-teksti: ${enTexts.length}`);
   if (!enTexts.length) { console.log("  (delta-tooteid ei leitud DB-st) → skip"); process.exit(0); }
+
+  // mõjuraadiuse jaoks: elus-toodete koguarv (korpuse suurus)
+  let corpusSize = 0;
+  try { corpusSize = parseInt(q(`SELECT count(*) FROM product WHERE deleted_at IS NULL`).trim(), 10) || 0; } catch { corpusSize = 0; }
 
   const usage = { in: 0, out: 0 };
   const opusCall = makeAnthropicCall(API_KEY, "claude-opus-4-8", usage);
@@ -66,16 +76,16 @@ const esc = (s) => (s == null ? "" : String(s)).replace(/'/g, "''");
   console.log(`  kandidaate: ${cand.length} · glossary-väärt: ${worthy.length}`);
 
   const sampleEnTexts = enTexts.slice(0, 120);
-  const locked = []; const defer = []; let hardErr = 0;
+  const locked = []; const defer = []; let hardErr = 0; let signalCnt = 0;
   for (const w of worthy) {
     const contexts = enTexts.filter((t) => t.toLowerCase().includes(w.en.toLowerCase())).slice(0, 3);
     try {
-      const r = await resolveGlossaryTerm({ en: w.en, contexts, opusCall, sonnetCall, fableCall, entries, sampleEnTexts, freq: w.freq });
-      if (r.decision === "locked") { locked.push(r); entries.push({ en: r.en, et: r.et, aliases: [], status: "locked", freq: r.freq || 1 }); }
-      else if (r.decision === "defer") defer.push(r);
+      const r = await resolveGlossaryTerm({ en: w.en, contexts, opusCall, sonnetCall, fableCall, entries, sampleEnTexts, freq: w.freq, corpusSize });
+      if (r.decision === "locked") { locked.push(r); entries.push({ en: r.en, et: r.et, aliases: r.aliases || [], status: "locked", freq: r.freq || 1 }); }
+      else if (r.decision === "defer") { defer.push(r); if (r.signal) signalCnt++; }
     } catch (e) { hardErr++; console.error(`  🔴 termin "${w.en}" kukkus: ${e.message}`); }  // üksik kukub → skip+jätka
   }
-  console.log(`  locked: ${locked.length} · defer: ${defer.length} · vigu: ${hardErr}`);
+  console.log(`  ${MODE === "SHADOW" ? "OLEKS lukustanud" : "locked"}: ${locked.length} · defer: ${defer.length}${signalCnt ? ` (sh ${signalCnt} mõjuraadius-signaal)` : ""} · vigu: ${hardErr}`);
   console.log(`  LLM-kulu (tokenid): in=${usage.in} out=${usage.out}`);
 
   // SÜSTEEMNE viga: oli kandidaate aga KÕIK kukkusid koodiveaga (API maas) → fail-loud (exit≠0)
@@ -85,6 +95,19 @@ const esc = (s) => (s == null ? "" : String(s)).replace(/'/g, "''");
   }
 
   if (DRY) { console.log("  🟡 DRY — glossary.yaml puutumata"); process.exit(0); }
+
+  if (SHADOW) {
+    // nähtavus ilma mõjuta: logi "oleks lukustanud" shadow-ledger'isse, ÄRA kirjuta yaml
+    if (locked.length) {
+      const { withStackLock } = await import("./lib/stack-lock.mjs");
+      await withStackLock({ holder: "glossary-hook-6.4-shadow", waitMs: 60000 }, async () => {
+        const batchId = `gloss-shadow-${new Date().toISOString().replace(/[:.]/g, "").slice(0, 15)}`;
+        writeShadowLedger(q, locked, batchId, "hook-6.4-shadow");
+        console.log(`  🟣 [6.4] SHADOW: ${locked.length} terminit OLEKS lukustanud (batch ${batchId}, glossary_shadow_ledger) — yaml PUUTUMATA.`);
+      });
+    } else console.log("  🟣 [6.4] SHADOW: 0 terminit läbis väravaid (midagi ei logita).");
+    process.exit(0);
+  }
 
   if (locked.length) {
     const { withStackLock } = await import("./lib/stack-lock.mjs");

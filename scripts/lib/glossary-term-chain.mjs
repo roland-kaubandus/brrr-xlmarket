@@ -17,7 +17,7 @@
  * Päris kutsujad: makeAnthropicCall(apiKey, model, usage). Võti EI logita KUNAGI (väärtust ei prindi).
  */
 
-import { runAllGates, normEn, buildMatchList, scanEnLongest } from "./glossary-gates.mjs";
+import { runAllGates, specialistGate, normEn, buildMatchList, scanEnLongest } from "./glossary-gates.mjs";
 
 const API_URL = "https://api.anthropic.com/v1/messages";
 
@@ -117,6 +117,10 @@ export function extractJson(text) {
   const cl = raw.match(/"cluster"\s*:\s*"([^"]*)"/); if (cl) obj.cluster = cl[1];
   const ph = raw.match(/"parent_l2_handle"\s*:\s*"([^"]*)"/); if (ph) obj.parent_l2_handle = ph[1];
   const rs = raw.match(/"reason"\s*:\s*"([^"]*)/); if (rs) obj.reason = rs[1];
+  const sp = raw.match(/"specialist"\s*:\s*(true|false)/i); if (sp) obj.specialist = sp[1].toLowerCase() === "true";
+  const am = raw.match(/"ambiguous"\s*:\s*(true|false)/i); if (am) obj.ambiguous = am[1].toLowerCase() === "true";
+  const eb = raw.match(/"en_base"\s*:\s*"([^"]*)"/); if (eb) obj.en_base = eb[1];
+  const tb = raw.match(/"et_base"\s*:\s*"([^"]*)"/); if (tb) obj.et_base = tb[1];
   return Object.keys(obj).length ? obj : null;
 }
 
@@ -172,16 +176,46 @@ Vali parim eesti vaste.`;
   return { winner: stable ? { et: top.et, cluster: top.cluster } : null, tally, picks, rounds, need, stable };
 }
 
+const CLASSIFY_SYS = `Sa oled XL e-poe (VEVOR tööriistad/kodu/aed) terminoloogia-kohtunik. Otsusta ÜHE inglise fraasi kohta:
+1. ERIALATERMIN? Kas see on eriala/tehniline termin, mille eesti vaste vajab kataloogis ÜHTLUSTAMIST (nt "pallet jack", "torque wrench", "angle grinder", "ratchet strap")? VÕI üldsõnavara, mida iga eestlane oskab tõlkida (door=uks, table=laud, base=alus, plastic=plast, aluminum=alumiinium, inches=tollid, steel=teras)? ÜLDSÕNAVARA EI vaja glossaryt → specialist=false.
+2. MITMETÄHENDUSLIK? Kas fraasil on selles kataloogis mitu ERINEVAT tähendust (nt "table"=laud VÕI tabel, "spring"=vedru VÕI kevad)? → ambiguous=true.
+Vasta AINULT JSON: {"specialist":true|false,"ambiguous":true|false,"reason":"<1 lause eesti keeles>"}`;
+
+/** classifyTerm — LLM-kohtunik: kas erialatermin (ühtlustamist vajav) + kas mitmetähenduslik. Odav eel-värav. */
+export async function classifyTerm(call, { en, contexts = [] }) {
+  const ctx = contexts.slice(0, 4).map((c) => `· ${c}`).join("\n");
+  const user = `Inglise fraas: "${en}"\nEsinemis-kontekstid:\n${ctx || "(pole)"}\n\nKas erialatermin (vajab ühtlustamist)? Kas mitmetähenduslik?`;
+  try { const r = await call(CLASSIFY_SYS, user, { maxTokens: 400 }); if (!r) return null; return { specialist: r.specialist === true, ambiguous: r.ambiguous === true, reason: r.reason || "" }; }
+  catch { return null; }
+}
+
+const BASEFORM_SYS = `Anna inglise termini ja selle eesti vaste ALGVORMID (lemma). EN: nimetav ainsus (inch, mitte inches; wheel, mitte wheels). ET: nimetav ainsus (toll, mitte tolli; plaat, mitte plaadid; alus, mitte alused). Kui on juba algvormis, korda. Vasta AINULT JSON: {"en_base":"<en lemma>","et_base":"<et lemma>"}`;
+
+/** toBaseForm — LLM lemmatiseerib EN + ET algvormi (toll, mitte tolli). Viga → tagasta originaalid. */
+export async function toBaseForm(call, { en, et }) {
+  const user = `EN: "${en}"\nET: "${et}"\nAnna mõlema algvorm (lemma, nimetav ainsus).`;
+  try { const r = await call(BASEFORM_SYS, user, { maxTokens: 300 }); if (!r) return { enBase: en, etBase: et }; return { enBase: (r.en_base || en).trim(), etBase: (r.et_base || et).trim() }; }
+  catch { return { enBase: en, etBase: et }; }
+}
+
 /**
  * resolveGlossaryTerm — ORKESTRAATOR (üks sissepääs). Tagastab otsuse + tee (audit/DRY-näit).
- *   { en, decision:'locked'|'defer', et|null, cluster|null, path:[sammud], origin, gates? }
- * entries = olemas glossary (gate'ideks); sampleEnTexts = match-ohutuse valim.
+ *   { en, decision:'locked'|'defer'|'skip', et|null, cluster|null, aliases, path:[sammud], origin, gates?, signal? }
+ * entries = olemas glossary (gate'ideks); sampleEnTexts = match-ohutuse + mõjuraadiuse valim; corpusSize = elus-toodete arv.
  */
-export async function resolveGlossaryTerm({ en, contexts = [], opusCall, sonnetCall, fableCall, entries = [], sampleEnTexts = [], freq = 1 }) {
+export async function resolveGlossaryTerm({ en, contexts = [], opusCall, sonnetCall, fableCall, entries = [], sampleEnTexts = [], freq = 1, corpusSize = 0 }) {
   const path = [];
   // 2. DUP (kiire, mudeli-eelne)
   const dupEntry = entries.find((e) => [e.en, ...(e.aliases || [])].some((f) => normEn(f) === normEn(en)));
   if (dupEntry) return { en, decision: "skip", et: dupEntry.et, cluster: dupEntry.cluster, path: ["DUP: juba glossarys"], origin: "dup-skip" };
+
+  // 2.5 ERIALATERMIN eel-värav (Tarmo 2026-10-11): üldsõnavara/mitmetähenduslik → defer ENNE kallist propose't.
+  const cls = await classifyTerm(sonnetCall, { en, contexts });
+  const isSpecialist = cls ? cls.specialist : undefined;
+  const isAmbiguous = cls ? cls.ambiguous : undefined;
+  path.push(`erialatermin? ${isSpecialist === undefined ? "?" : isSpecialist} · mitmetähenduslik? ${isAmbiguous === undefined ? "?" : isAmbiguous}${cls && cls.reason ? ` (${cls.reason})` : ""}`);
+  const sg = specialistGate({ en, isSpecialist, isAmbiguous });
+  if (!sg.pass) return { en, decision: "defer", et: null, cluster: null, path: [...path, `ERIALATERMIN värav: ${sg.note}`], origin: "not-specialist" };
 
   // 3. sõltumatud ettepanekud (pime, paralleelselt)
   const [opus, sonnet] = await Promise.all([proposeEt(opusCall, { en, contexts }), proposeEt(sonnetCall, { en, contexts })]);
@@ -214,9 +248,16 @@ export async function resolveGlossaryTerm({ en, contexts = [], opusCall, sonnetC
     else return { en, decision: "defer", et: null, cluster: null, path, origin: "single-rejected" };
   }
 
-  // 5. väravad
-  const g = runAllGates({ en, et: chosen.et, cluster: chosen.cluster, freq, aliases: [] }, { entries, sampleEnTexts });
+  // 4.5 ALGVORM (Tarmo 2026-10-11): lemmatiseeri EN + ET enne väravaid (salvesta algvorm).
+  const bf = await toBaseForm(sonnetCall, { en, et: chosen.et });
+  path.push(`algvorm: EN='${bf.enBase}' ET='${bf.etBase}'`);
+
+  // 5. väravad (DUP → erialatermin → algvorm → kehtivus → mõjuraadius → match-ohutus → freq)
+  const g = runAllGates(
+    { en, et: chosen.et, cluster: chosen.cluster, freq, aliases: [], isSpecialist, isAmbiguous, enBase: bf.enBase, etBase: bf.etBase, corpusSize },
+    { entries, sampleEnTexts }
+  );
   path.push(g.allPass ? `väravad OK → ${g.status}` : `värav kukkus: ${g.blocking.join("; ")}`);
-  if (!g.allPass) return { en, decision: "defer", et: chosen.et, cluster: chosen.cluster, path, origin: `${origin}+gate-fail`, gates: g.gates };
-  return { en, decision: g.status, et: chosen.et, cluster: chosen.cluster, path, origin, gates: g.gates };
+  if (!g.allPass) return { en, decision: "defer", et: g.canonicalEt || chosen.et, cluster: chosen.cluster, path, origin: `${origin}+gate-fail`, gates: g.gates, signal: g.signal === true };
+  return { en: g.canonicalEn || en, decision: g.status, et: g.canonicalEt || chosen.et, cluster: chosen.cluster, aliases: g.aliases || [], path, origin, gates: g.gates };
 }
