@@ -67,17 +67,20 @@ function log(...a) { console.log(...a); }
   const worthy = await filterGlossaryWorthy(sonnetCall, cand, { batch: 40 });
   log(`glossary-väärt (Sonnet-filter): ${worthy.length}`);
 
-  // match-ohutuse valim (esinduslik alamhulk — kiire)
+  // match-ohutuse + mõjuraadiuse valim (esinduslik alamhulk — kiire)
   const sampleEnTexts = enTexts.slice(0, 200);
+  // korpuse suurus mõjuraadiuse ekstrapolatsiooniks (SAMPLE korral loe kogu elus-arv eraldi)
+  let corpusSize = enTexts.length;
+  if (SAMPLE) { try { corpusSize = parseInt(q(`SELECT count(*) FROM product WHERE deleted_at IS NULL`).trim(), 10) || enTexts.length; } catch { /* jää valimile */ } }
 
   // 3. lahenda terminid (DRY: LIMIT; EXECUTE: kõik)
   const toResolve = LIMIT ? worthy.slice(0, LIMIT) : worthy;
-  log(`\n--- OTSUSED (${toResolve.length} terminit) ---`);
+  log(`\n--- OTSUSED (${toResolve.length} terminit, korpus ${corpusSize}) ---`);
   const results = [];
   for (const w of toResolve) {
     // paar konteksti (kus termin esineb)
     const contexts = enTexts.filter((t) => t.toLowerCase().includes(w.en.toLowerCase())).slice(0, 3);
-    const r = await resolveGlossaryTerm({ en: w.en, contexts, opusCall, sonnetCall, fableCall, entries, sampleEnTexts, freq: w.freq });
+    const r = await resolveGlossaryTerm({ en: w.en, contexts, opusCall, sonnetCall, fableCall, entries, sampleEnTexts, freq: w.freq, corpusSize });
     results.push(r);
     const mark = r.decision === "locked" ? "🟢 LOCKED" : r.decision === "defer" ? "🟡 DEFER" : "⚪ SKIP";
     log(`\n${mark}  "${r.en}"  →  ${r.et ? `«${r.et}» (${r.cluster})` : "(—)"}  [freq ${w.freq}]`);
