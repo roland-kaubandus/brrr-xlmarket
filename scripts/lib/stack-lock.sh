@@ -26,11 +26,22 @@ _xl_lock_stale() {
 
 xl_lock_acquire() {
   local holder="${1:-coolify-deploy}" wait_s="${2:-1200}"
+  # VANEMA-HOIDMISE TUVASTUS (Tarmo 2026-10-12): kui mõni vanemprotsess (nt import-pipeline.sh) hoiab
+  # juba reaalset lukku, pärandub XL_STACK_LOCK_HELD=1 keskkonnast KÕIGILE alamprotsessidele (bash + node).
+  # Siis acquire = re-entrant no-op (EI puutu PID-faili, EI vabasta vanema lukku) → ükski alam-samm ei saa
+  # samasse deadlock'i sattuda (glossary [6.4] latent-deadlock juurparandus, hard rule #5 — üks mehhanism kõigile).
+  if [ "${XL_STACK_LOCK_HELD:-}" = "1" ]; then
+    _XL_LOCK_INHERITED=1
+    echo "🔁 stack-lukk juba vanemprotsessi käes (XL_STACK_LOCK_HELD=1) — re-entrant no-op (holder='$holder')." >&2
+    return 0
+  fi
+  _XL_LOCK_INHERITED=0
   mkdir -p "$XL_LOCK_DIR"
   local deadline=$(($(date +%s) + wait_s)) warned=0 me
   me="{\"pid\":$$,\"holder\":\"$holder\",\"host\":\"$(hostname)\",\"ts\":$(date +%s%3N)}"
   while :; do
     if ( set -o noclobber; printf '%s' "$me" > "$XL_LOCKFILE" ) 2>/dev/null; then
+      export XL_STACK_LOCK_HELD=1  # pärandub alamprotsessidele → nende acquire = re-entrant no-op
       return 0  # lukk käes
     fi
     local cur; cur=$(cat "$XL_LOCKFILE" 2>/dev/null || echo "")
@@ -48,9 +59,12 @@ xl_lock_acquire() {
 }
 
 xl_lock_release() {
+  # Kui lukk oli PÄRITUD vanemalt → EI vabasta (vanem hoiab reaalset lukku edasi).
+  if [ "${_XL_LOCK_INHERITED:-0}" = "1" ]; then _XL_LOCK_INHERITED=0; return 0; fi
   local cur; cur=$(cat "$XL_LOCKFILE" 2>/dev/null || echo "")
   local pid; pid=$(printf '%s' "$cur" | grep -oE '"pid":[0-9]+' | grep -oE '[0-9]+' | head -1)
   [ "$pid" = "$$" ] && rm -f "$XL_LOCKFILE"
+  unset XL_STACK_LOCK_HELD
   return 0
 }
 

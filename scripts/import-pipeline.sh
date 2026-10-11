@@ -351,20 +351,21 @@ else
   [ "$CREDIT_OK" = "1" ] && echo "  klassifitseeritud SKU-loend puudub → konsensus vahele" || echo "  krediit/API maas → konsensus SKIP (degrade)"
 fi
 
-# ── [6.8] OUTLET-RISTKUVAMINE (host) — HARD RULE #5 HOOK (Outlet-tooted → ka tüüp-kategooriasse) ─
-# SAMA transform kui käsitsi (outlet-crossdisplay.mjs --execute). ERINEVUS teistest hookidest: EI ole
-# delta-peal — outlet-tooted luuakse KÄSITSI admin'is (mitte feed), seega neid POLE classify-skus deltas.
-# Outlet-korpus on pisike → skännib KÕIK outlet-tooted iga öö (additiivne, INSERT ON CONFLICT → idempotent).
-# ASUKOHT: ENNE [7] reindeks → lisatud tüüp-seosed indekseeritakse samal ööl (nähtavad kohe mõlemal lehel).
-# LUKK: pipeline hoiab bash-stack-lukku (rida 40) → XL_STACK_LOCK_HELD=1 → skript EI võta oma lukku
-#   (väldib PID-faili ummiku bash↔node, nagu classify/price/spec usaldavad bash-lukku).
+# ── [6.8] OUTLET-RISTKUVAMINE (host) — HARD RULE #5 HOOK + preservation-mudel (2026-10-12, directive B p2) ─
+# PRESERVATION: Outletisse tõstmisel säilib toote tüüp-kategooria seos (Medusa lubab mitut kategooriat) →
+#   toode jääb KA oma tüüp-L3-s → storefront ristkuvab union'ist AUTOMAATSELT (iga tüübiga, ILMA käsitsi
+#   TYPE_DISPLAY lubaloendita, mis on EEMALDATUD — hard rule #6: masin töötab ise, mitte inimese nimekiri).
+# SKÄNN: outlet-korpus pisike (admin-loodud, mitte feed) → skännib KÕIK outlet-tooted iga öö. Jaotab TYPED
+#   (tüüp-link säilinud → juba ristkuvatud, midagi teha pole) vs UNTYPED (ainult outlet-kodus → anomaalia).
+# READ-ONLY: typed-tooted on JUBA mõlemas kategoorias → skriptil POLE midagi INSERT'ida → ei kirjuta DB-sse
+#   → HARD RULE #9 järgi EI võta stack-lukku ega saa deadlock'ida. (Stack-lukk pärandub siiski rida 40-st, kui
+#   kunagi vaja — stack-lock teek tunneb XL_STACK_LOCK_HELD=1 ise ära.) UNTYPED → OHUTU VAIKIMISI: jääb Outletis
+#   nähtavaks (müügil), skript EI OLETA tüüpi → SIGNAALIB Telegrami (tüüp-link taastada admin/klassifikaator).
+# ASUKOHT: ENNE [7] reindeks (kui tüüp-seosed muutuvad, indekseeritakse samal ööl).
 # FAIL-SOFT: ristkuvamine = rikastus (toode on Outletis niikuinii nähtav) → HOIATUS, MITTE hard-fail.
-# ⚠️ HARD RULE #6 JÄÄK: TYPE_DISPLAY = käsitsi lubaloend per tüüp → tundmatu uus outlet-TÜÜP ei ristkuva
-#   automaatselt (jääb ainult Outletisse, kahjutu). Skaleeruv lahendus = klassifikaator tuletab tüübi / outlet-move
-#   säilitab tüüp-lingi. VAJA ÄRA TEHA (vt sessioonilogi 2026-10-11).
-echo "[6.8/7] outlet-ristkuvamine (Outlet=kodu + tüüp-lisakuvamine; kõik outlet-tooted, idempotent)"
+echo "[6.8/7] outlet-ristkuvamine (preservation-skänn: typed vs untyped; read-only + signaal)"
 if [ "$EXECUTE" = "1" ]; then
-  OC_OUT=$(XL_STACK_LOCK_HELD=1 node "$ROOT/scripts/outlet-crossdisplay.mjs" --execute 2>&1) && OC_RC=0 || OC_RC=$?
+  OC_OUT=$(node "$ROOT/scripts/outlet-crossdisplay.mjs" --execute 2>&1) && OC_RC=0 || OC_RC=$?
   echo "$OC_OUT" | sed 's/^/  /'
   if [ "$OC_RC" != "0" ]; then
     echo "  ⚠️ [6.8] outlet-ristkuvamine rc=$OC_RC — HOIATUS (ei blokeeri): [7] reindeks JÄTKUB"
