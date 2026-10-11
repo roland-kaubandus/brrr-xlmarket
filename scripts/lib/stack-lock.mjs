@@ -57,6 +57,13 @@ export function acquireStackLock({ holder = "unknown", waitMs = 60_000, pollMs =
     let done = false;
     return () => { if (!done) { done = true; _heldCount--; if (_heldCount === 0 && _heldFileRelease) { _heldFileRelease(); _heldFileRelease = null; } } };
   }
+  // VANEMA-HOIDMISE TUVASTUS (Tarmo 2026-10-12): kui mõni vanemprotsess (nt import-pipeline.sh bash-lukk või
+  // vanem-node) hoiab juba reaalset lukku, pärandub XL_STACK_LOCK_HELD=1 keskkonnast siia. Siis acquire =
+  // re-entrant no-op: EI võta PID-faili (väldib bash↔node PID-faili ummikut), EI vabasta vanema lukku.
+  // See on glossary [6.4] latent-deadlock'i JUURPARANDUS — üks mehhanism KÕIGILE alam-sammudele (hard rule #5).
+  if (process.env.XL_STACK_LOCK_HELD === "1") {
+    return () => {}; // no-op release: vanem vastutab reaalse luku vabastamise eest
+  }
   fs.mkdirSync(LOCK_DIR, { recursive: true });
   const me = { pid: process.pid, holder, host: os.hostname(), ts: Date.now() };
   const deadline = Date.now() + waitMs;
@@ -87,10 +94,12 @@ export function acquireStackLock({ holder = "unknown", waitMs = 60_000, pollMs =
       while (Date.now() - t < pollMs) { /* busy-wait väike (execSync-maailm, pole event-loopi) */ }
     }
   }
+  process.env.XL_STACK_LOCK_HELD = "1"; // pärandub spawn'itavatele alamprotsessidele → nende acquire = no-op
   let released = false;
   const fileRelease = () => {
     if (released) return; released = true;
     try { const cur = readLock(); if (cur && cur.pid === process.pid) fs.unlinkSync(LOCKFILE); } catch {}
+    delete process.env.XL_STACK_LOCK_HELD;
   };
   _heldCount = 1;
   _heldFileRelease = fileRelease;
