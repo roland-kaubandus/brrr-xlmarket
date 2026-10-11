@@ -299,3 +299,38 @@ export async function resolveGlossaryTerm({ en, contexts = [], opusCall, sonnetC
   if (!g.allPass) return { en, decision: "defer", et: g.canonicalEt || chosen.et, cluster: chosen.cluster, path, origin: `${origin}+gate-fail`, gates: g.gates, signal: g.signal === true };
   return { en: g.canonicalEn || en, decision: g.status, et: g.canonicalEt || chosen.et, cluster: chosen.cluster, aliases: g.aliases || [], path, origin, gates: g.gates };
 }
+
+/**
+ * resolveWorthyBatch — JAGATUD partii-orkestraator (backfill + hook, HARD RULE #5 SSoT — üks loogika, kaks kutsujat).
+ *
+ * Tarmo 2026-10-11 p1-PARANDUS (üleblokeerimine): fragment-VANEMAD = AINULT lukustatud/glossary mitmesõnalised
+ * terminid (NÜÜD mitte toor-kandidaadid). Varem phraseEns = kõik kandidaadid → "steel ⊂ 'stainless steel'" defer'is,
+ * kuigi 'stainless steel' ISE kukkus (ei lukustunud) → voltage/alloy-tüüpi erialaterminid oleks ekslikult kukkunud.
+ * NÜÜD: üksiksõna defer'ib fragmendina AINULT kui sisaldav mitmesõnaline on glossarys lukus VÕI lukustub sama partii.
+ *
+ * Kuidas: (1) seemne lockedPhrases glossary LUKUSTATUD mitmesõnalistest; (2) töötle MITMESÕNALISED ENNE üksiksõnu
+ * (stabiilne sort) → üksiksõna näeb sama-partii äsja-lukustatud vanemat; (3) iga lukustuv mitmesõnaline → lisa
+ * lockedPhrases'i. Mutērib `entries` (lukustatud → push → järgnevad DUP/match-ohutuse väravad näevad).
+ * Tagastab [{ w, r }] ORIGINAAL-järjekorras; r.freq propageeritud. Koodiviga → r.decision='error' (kutsuja loeb codeBug'iks).
+ */
+export async function resolveWorthyBatch({ worthy, contextsFor, opusCall, sonnetCall, fableCall, entries, sampleEnTexts = [], corpusSize = 0 }) {
+  const lockedPhrases = new Set();
+  const addPhrase = (en, aliases = []) => { for (const f of [en, ...(aliases || [])]) { const n = normEn(f); if (n && /\s/.test(n)) lockedPhrases.add(n); } };
+  for (const e of entries) if ((e.status || "locked") === "locked") addPhrase(e.en, e.aliases || []);
+  // mitmesõnalised ENNE üksiksõnu (stabiilne — säilita suhteline järjekord sama grupi sees)
+  const order = worthy.map((w, i) => ({ w, i })).sort((a, b) => ((/\s/.test(a.w.en) ? 0 : 1) - (/\s/.test(b.w.en) ? 0 : 1)) || (a.i - b.i));
+  const out = new Array(worthy.length);
+  for (const { w, i } of order) {
+    let r;
+    try {
+      r = await resolveGlossaryTerm({ en: w.en, contexts: contextsFor(w), opusCall, sonnetCall, fableCall, entries, sampleEnTexts, freq: w.freq, corpusSize, phraseEns: [...lockedPhrases] });
+    } catch (e) { r = { en: w.en, decision: "error", et: null, cluster: null, path: [`KOODIVIGA: ${e.message}`], origin: "code-bug", detail: String(e.message).slice(0, 200) }; }
+    if (r.decision === "locked") {
+      entries.push({ en: r.en, et: r.et, aliases: r.aliases || [], status: "locked", freq: w.freq || 1 });
+      addPhrase(r.en, r.aliases || []);  // kui mitmesõnaline → vanem järgnevatele üksiksõnadele
+    }
+    r.freq = w.freq;  // propageeri freq yaml-kirjutuseks
+    out[i] = { w, r };
+  }
+  return out;  // originaal-järjekorras
+}

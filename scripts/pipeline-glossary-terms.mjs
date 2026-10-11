@@ -27,7 +27,7 @@ import fs from "node:fs";
 import { execSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import { loadGlossary } from "./lib/content-gen.mjs";
-import { makeAnthropicCall, harvestCandidates, filterGlossaryWorthy, resolveGlossaryTerm } from "./lib/glossary-term-chain.mjs";
+import { makeAnthropicCall, harvestCandidates, filterGlossaryWorthy, resolveWorthyBatch } from "./lib/glossary-term-chain.mjs";
 import { appendTermsToYaml, writeLedger, writeShadowLedger } from "./lib/glossary-write.mjs";
 import { ensureGlossarySchema, getGlossaryConfig, evaluateGlossaryTransition, recordGlossaryCodeBug } from "./lib/glossary-shadow-ledger.mjs";
 import { sendTelegram } from "./lib/spend-guard.mjs";
@@ -82,18 +82,19 @@ const esc = (s) => (s == null ? "" : String(s)).replace(/'/g, "''");
   const worthy = await filterGlossaryWorthy(sonnetCall, cand, { batch: 40 });
   console.log(`  kandidaate: ${cand.length} · glossary-väärt: ${worthy.length}`);
 
-  // phraseEns (fragment-värava jaoks, Tarmo p1): KÕIK mitmesõnalised EN-vormid (kandidaadid + olemas glossary)
-  const phraseEns = [...new Set([...worthy.map((w) => w.en), ...entries.flatMap((e) => [e.en, ...(e.aliases || [])])])];
-
+  // JAGATUD orkestraator (HARD RULE #5 SSoT — sama kui backfill).
+  // fragment-vanemad = AINULT lukustatud/glossary mitmesõnalised (Tarmo p1-parandus, mitte toor-kandidaadid).
   const sampleEnTexts = enTexts.slice(0, 120);
+  const results = await resolveWorthyBatch({
+    worthy,
+    contextsFor: (w) => enTexts.filter((t) => t.toLowerCase().includes(w.en.toLowerCase())).slice(0, 3),
+    opusCall, sonnetCall, fableCall, entries, sampleEnTexts, corpusSize,
+  });
   const locked = []; const defer = []; let hardErr = 0; let signalCnt = 0; const codeBugs = [];
-  for (const w of worthy) {
-    const contexts = enTexts.filter((t) => t.toLowerCase().includes(w.en.toLowerCase())).slice(0, 3);
-    try {
-      const r = await resolveGlossaryTerm({ en: w.en, contexts, opusCall, sonnetCall, fableCall, entries, sampleEnTexts, freq: w.freq, corpusSize, phraseEns });
-      if (r.decision === "locked") { locked.push(r); entries.push({ en: r.en, et: r.et, aliases: r.aliases || [], status: "locked", freq: r.freq || 1 }); }
-      else if (r.decision === "defer") { defer.push(r); if (r.signal) signalCnt++; }
-    } catch (e) { hardErr++; codeBugs.push({ en: w.en, detail: String(e.message).slice(0, 200) }); console.error(`  🔴 termin "${w.en}" KOODIVIGA: ${e.message}`); }  // üksik kukub → skip+jätka (+ koodiviga-arvestus)
+  for (const { w, r } of results) {
+    if (r.decision === "locked") locked.push(r);  // entries'i push teeb orkestraator ise
+    else if (r.decision === "defer") { defer.push(r); if (r.signal) signalCnt++; }
+    else if (r.decision === "error") { hardErr++; codeBugs.push({ en: w.en, detail: r.detail }); console.error(`  🔴 termin "${w.en}" KOODIVIGA: ${r.detail}`); }  // üksik kukub → skip+jätka
   }
   console.log(`  ${MODE === "SHADOW" ? "OLEKS lukustanud" : "locked"}: ${locked.length} · defer: ${defer.length}${signalCnt ? ` (sh ${signalCnt} mõjuraadius-signaal)` : ""} · vigu: ${hardErr}`);
   console.log(`  LLM-kulu (tokenid): in=${usage.in} out=${usage.out}`);

@@ -20,7 +20,7 @@ import { execSync } from "node:child_process";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { loadGlossary } from "./lib/content-gen.mjs";
-import { makeAnthropicCall, harvestCandidates, filterGlossaryWorthy, resolveGlossaryTerm } from "./lib/glossary-term-chain.mjs";
+import { makeAnthropicCall, harvestCandidates, filterGlossaryWorthy, resolveWorthyBatch } from "./lib/glossary-term-chain.mjs";
 import { appendTermsToYaml, writeLedger } from "./lib/glossary-write.mjs";
 
 const REPO = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
@@ -73,20 +73,18 @@ function log(...a) { console.log(...a); }
   let corpusSize = enTexts.length;
   if (SAMPLE) { try { corpusSize = parseInt(q(`SELECT count(*) FROM product WHERE deleted_at IS NULL`).trim(), 10) || enTexts.length; } catch { /* jää valimile */ } }
 
-  // phraseEns (fragment-värava jaoks, Tarmo p1): KÕIK mitmesõnalised EN-vormid (kandidaadid + olemas glossary)
-  const phraseEns = [...new Set([...worthy.map((w) => w.en), ...entries.flatMap((e) => [e.en, ...(e.aliases || [])])])];
-
-  // 3. lahenda terminid (DRY: LIMIT; EXECUTE: kõik)
+  // 3. lahenda terminid (DRY: LIMIT; EXECUTE: kõik) — JAGATUD orkestraator (HARD RULE #5).
+  // fragment-vanemad = AINULT lukustatud/glossary mitmesõnalised (Tarmo p1-parandus, mitte toor-kandidaadid).
   const toResolve = LIMIT ? worthy.slice(0, LIMIT) : worthy;
   log(`\n--- OTSUSED (${toResolve.length} terminit, korpus ${corpusSize}) ---`);
-  const results = [];
-  for (const w of toResolve) {
-    // paar konteksti (kus termin esineb)
-    const contexts = enTexts.filter((t) => t.toLowerCase().includes(w.en.toLowerCase())).slice(0, 3);
-    const r = await resolveGlossaryTerm({ en: w.en, contexts, opusCall, sonnetCall, fableCall, entries, sampleEnTexts, freq: w.freq, corpusSize, phraseEns });
-    results.push(r);
-    const mark = r.decision === "locked" ? "🟢 LOCKED" : r.decision === "defer" ? "🟡 DEFER" : "⚪ SKIP";
-    log(`\n${mark}  "${r.en}"  →  ${r.et ? `«${r.et}» (${r.cluster})` : "(—)"}  [freq ${w.freq}]`);
+  const results = (await resolveWorthyBatch({
+    worthy: toResolve,
+    contextsFor: (w) => enTexts.filter((t) => t.toLowerCase().includes(w.en.toLowerCase())).slice(0, 3),
+    opusCall, sonnetCall, fableCall, entries, sampleEnTexts, corpusSize,
+  })).map(({ r }) => r);
+  for (const r of results) {
+    const mark = r.decision === "locked" ? "🟢 LOCKED" : r.decision === "defer" ? "🟡 DEFER" : r.decision === "error" ? "🔴 KOODIVIGA" : "⚪ SKIP";
+    log(`\n${mark}  "${r.en}"  →  ${r.et ? `«${r.et}» (${r.cluster})` : "(—)"}  [freq ${r.freq}]`);
     for (const p of r.path) log(`      · ${p}`);
   }
 

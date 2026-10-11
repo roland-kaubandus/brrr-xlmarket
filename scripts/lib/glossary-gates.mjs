@@ -122,11 +122,17 @@ export function specialistGate({ en, isSpecialist, isAmbiguous }) {
 }
 
 /**
- * fragmentGate — (Tarmo 2026-10-11 p1) FRAGMENT: ühesõnaline termin, mis on TÜKK mitmesõnalisest
- * lukustatud/kandideerivast terminist ("duty" ⊂ "heavy duty", "load" ⊂ "load capacity") → DEFER;
- * lukusta AINULT mitmesõnaline täistermin. phraseEns = kõik EN-vormid (olemas glossary + selle partii
- * kandidaadid). Mitmesõnaline en ise EI ole fragment. Üksiksõna, mis esineb TÄISSÕNANA mõnes
- * mitmesõnalises terminis → fail+defer (parent näidatud). Puhas, deterministlik — testitav.
+ * fragmentGate — (Tarmo 2026-10-11 p1 + p1-PARANDUS) FRAGMENT: ühesõnaline termin, mis on TÜKK
+ * LUKUSTATUD mitmesõnalisest terminist ("duty" ⊂ "heavy duty", "load" ⊂ "load capacity") → DEFER;
+ * lukusta AINULT mitmesõnaline täistermin.
+ *
+ * ⚠️ phraseEns = AINULT lukustatud/glossary mitmesõnalised VANEMAD (NÜÜD mitte toor-kandidaadid).
+ * Varem phraseEns sisaldas kõiki kandidaate → "steel ⊂ 'stainless steel'" defer'is, kuigi 'stainless steel'
+ * ISE kukkus (ei lukustunud) → üleblokeeris erialatermineid (voltage/alloy). Vanema-nimekirja koostab
+ * orkestraator (resolveWorthyBatch): glossary-lukud + sama-partii äsja-lukustatud mitmesõnalised.
+ *
+ * Mitmesõnaline en ise EI ole fragment. Üksiksõna, mis esineb TÄISSÕNANA lukustatud mitmesõnalises
+ * vanemas → fail+defer (parent näidatud). Puhas, deterministlik — testitav.
  */
 export function fragmentGate({ en }, { phraseEns = [] } = {}) {
   const n = normEn(en);
