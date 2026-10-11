@@ -6,13 +6,15 @@
  *   1. DUP           — termin (en + aliased, normaliseeritud) ei tohi juba olla; longest-match-ohutu.
  *   2. ERIALATERMIN  — (Tarmo 2026-10-11) AINULT eriala/tehniline termin (vaste-ühtlustamist vajav), MITTE
  *                      üldsõnavara (door/table/base/plastic/aluminum/inches); mitmetähenduslik → defer.
- *   3. ALGVORM       — (Tarmo 2026-10-11) salvesta lemma (toll, mitte tolli; inch, mitte inches); käände-/
+ *   3. FRAGMENT      — (Tarmo 2026-10-11 p1) ühesõnaline termin, mis on TÜKK mitmesõnalisest lukustatud/
+ *                      kandideerivast terminist ("duty" ⊂ "heavy duty") → DEFER; lukusta ainult mitmesõnaline.
+ *   4. ALGVORM       — (Tarmo 2026-10-11) salvesta lemma (toll, mitte tolli; inch, mitte inches); käände-/
  *                      mitmuse-aliased → adherence lubab käändevorme, mitte ei nõua täpset vormi.
- *   4. KEHTIVUS      — ET-vaste on päris eesti (mitte EN-koopia/translit), mitte tühi, cluster kehtiv, pole fluff.
- *   5. MÕJURAADIUS   — (Tarmo 2026-10-11) kui termin puudutaks SUURT osa kataloogist (SUHTELINE lävi) → DEFER
+ *   5. KEHTIVUS      — ET-vaste on päris eesti (mitte EN-koopia/translit), mitte tühi, cluster kehtiv, pole fluff.
+ *   6. MÕJURAADIUS   — (Tarmo 2026-10-11) kui termin puudutaks SUURT osa kataloogist (SUHTELINE lävi) → DEFER
  *                      + signaal (ära auto-regenereeri suurt osa); regen-kulu hinnang kaasas.
- *   6. MATCH-OHUTUS  — uue termini lisamine EI kaota olemas-adherence-matche (empiiriline enne/pärast skänn valimil).
- *   7. FREQ          — freq ≥1 → locked; 0 → defer (aktiveerub kui feed toob). Väldib fantoom-termineid.
+ *   7. MATCH-OHUTUS  — uue termini lisamine EI kaota olemas-adherence-matche (empiiriline enne/pärast skänn valimil).
+ *   8. FREQ          — freq ≥1 → locked; 0 → defer (aktiveerub kui feed toob). Väldib fantoom-termineid.
  */
 
 export const CLUSTERS = new Set(["tööriistad", "tehniline", "materjalid", "ühikud", "turundus"]);
@@ -120,6 +122,27 @@ export function specialistGate({ en, isSpecialist, isAmbiguous }) {
 }
 
 /**
+ * fragmentGate — (Tarmo 2026-10-11 p1) FRAGMENT: ühesõnaline termin, mis on TÜKK mitmesõnalisest
+ * lukustatud/kandideerivast terminist ("duty" ⊂ "heavy duty", "load" ⊂ "load capacity") → DEFER;
+ * lukusta AINULT mitmesõnaline täistermin. phraseEns = kõik EN-vormid (olemas glossary + selle partii
+ * kandidaadid). Mitmesõnaline en ise EI ole fragment. Üksiksõna, mis esineb TÄISSÕNANA mõnes
+ * mitmesõnalises terminis → fail+defer (parent näidatud). Puhas, deterministlik — testitav.
+ */
+export function fragmentGate({ en }, { phraseEns = [] } = {}) {
+  const n = normEn(en);
+  if (!n) return { pass: false, defer: true, note: "tühi EN-termin" };
+  if (/\s/.test(n)) return { pass: true, note: "mitmesõnaline → fragment-kontroll ei kehti" };
+  for (const p of phraseEns) {
+    const pn = normEn(p);
+    if (!pn || pn === n || !/\s/.test(pn)) continue;              // ainult mitmesõnalised vanem-terminid
+    if (pn.split(/\s+/).includes(n)) {
+      return { pass: false, defer: true, parent: pn, note: `fragment: '${en}' ⊂ mitmesõnaline '${p}' → lukusta ainult täistermin (defer)` };
+    }
+  }
+  return { pass: true, note: "pole fragment (ei esine üheski mitmesõnalises terminis)" };
+}
+
+/**
  * baseFormGate — (Tarmo 2026-10-11) glossary salvestab ALGVORMI (lemma): toll, mitte tolli; inch, mitte inches.
  * enBase/etBase = LLM-lemmad (chain arvutab). Normaliseerib salvestatava vormi algvormiks + lisab EN
  * käände-/mitmuse-aliased (originaal-vorm + lihtne mitmus) → adherence MATCHIB käändevorme (ei nõua täpset).
@@ -188,17 +211,20 @@ export function matchSafetyGate({ newEntry, entries, sampleEnTexts = [] }) {
 }
 
 /**
- * runAllGates — kõik väravad järjest (DUP → ERIALATERMIN → ALGVORM → KEHTIVUS → MÕJURAADIUS → MATCH-OHUTUS
- * → FREQ). Esimene kukkumine peatab. ALGVORM normaliseerib EN/ET lemmaks + lisab aliased → edasised väravad
- * kasutavad algvorme. Tagastab { allPass, status, gates, blocking, defer?, signal?, canonicalEn, canonicalEt, aliases }.
+ * runAllGates — kõik väravad järjest (DUP → ERIALATERMIN → FRAGMENT → ALGVORM → KEHTIVUS → MÕJURAADIUS →
+ * MATCH-OHUTUS → FREQ). Esimene kukkumine peatab. ALGVORM normaliseerib EN/ET lemmaks + lisab aliased →
+ * edasised väravad kasutavad algvorme. Tagastab { allPass, status, gates, blocking, defer?, signal?, canonicalEn, canonicalEt, aliases }.
  */
-export function runAllGates({ en, et, cluster, freq, aliases = [], isSpecialist, isAmbiguous, enBase, etBase, corpusSize = 0 }, { entries, sampleEnTexts = [] }) {
+export function runAllGates({ en, et, cluster, freq, aliases = [], isSpecialist, isAmbiguous, enBase, etBase, corpusSize = 0 }, { entries, sampleEnTexts = [], phraseEns = [] }) {
   const gates = {};
   gates.dup = dupGate({ en }, entries);
   if (!gates.dup.pass) return { allPass: false, status: null, gates, blocking: [`DUP: ${gates.dup.note}`] };
 
   gates.specialist = specialistGate({ en, isSpecialist, isAmbiguous });
   if (!gates.specialist.pass) return { allPass: false, status: null, gates, defer: true, blocking: [`ERIALATERMIN: ${gates.specialist.note}`] };
+
+  gates.fragment = fragmentGate({ en }, { phraseEns });
+  if (!gates.fragment.pass) return { allPass: false, status: null, gates, defer: true, blocking: [`FRAGMENT: ${gates.fragment.note}`] };
 
   gates.baseForm = baseFormGate({ en, et, enBase, etBase });
   if (!gates.baseForm.pass) return { allPass: false, status: null, gates, blocking: [`ALGVORM: ${gates.baseForm.note}`] };
