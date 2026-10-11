@@ -244,6 +244,26 @@ else
   [ "$CREDIT_OK" = "1" ] && echo "  klassifitseeritud SKU-loend puudub → spec vahele" || echo "  krediit/API maas → spec SKIP (degrade)"
 fi
 
+# ── [6.4] GLOSSARY-TERMID (host) — HARD RULE #5 HOOK (uued EN→ET terminid, ENNE sisu-gen) ─
+# SAMA otsustusahel (glossary-term-chain.mjs) kui backfill (glossary-term-backfill.mjs). DELTA-peal
+# (classify-skus.txt). ASUKOHT: PÄRAST [6] spec, ENNE [6.5] sisu-gen → uued glossary-terminid lukus
+# enne kui sisu-gen EN→ET tõlget teeb (sisu kasutab värsket glossaryt). Multi-feed: bränd-agnostiline
+# (loeb toote OMA EN-allikat). FAIL-LOUD: süsteemne (kõik terminid kukkusid, API maas) → script exit 1;
+# WRAPPER kohtleb seda HOIATUSENA (slack), MITTE hard-fail — glossary = rikastus, ei tohi blokeerida
+# laoseisu/hinda/reindeksit (sama põhimõte kui [6.5] krediit-degrade). Üksik termin kukub → skip inside.
+echo "[6.4/7] glossary-terminid (uued EN→ET terminid — ENNE sisu-gen)"
+if [ "$CREDIT_OK" = "1" ] && [ -s /tmp/classify-skus.txt ]; then
+  GT_OUT=$(node "$ROOT/scripts/pipeline-glossary-terms.mjs" --skus /tmp/classify-skus.txt \
+    $([ "$EXECUTE" = "1" ] || echo --dry) 2>&1) && GT_RC=0 || GT_RC=$?
+  echo "$GT_OUT" | sed 's/^/  /'
+  if [ "$GT_RC" != "0" ]; then
+    echo "  ⚠️ [6.4] glossary-hook rc=$GT_RC — HOIATUS (ei blokeeri): [6.5]+ JÄTKUB"
+    slack "⚠️ XLM glossary-hook [6.4] rc=$GT_RC (HOIATUS, mitte FAIL): uute terminite tuvastus kukkus (API maas?). Sisu-gen+reindeks JÄTKUS. Terminid täidab järgmine öö / backfill."
+  fi
+else
+  [ "$CREDIT_OK" = "1" ] && echo "  klassifitseeritud SKU-loend puudub → glossary-terminid vahele" || echo "  krediit/API maas → glossary-terminid SKIP (degrade)"
+fi
+
 # ── [6.5] SISU-GEN (host) — HARD RULE #5 HOOK (ET-sisu uutele, ENNE reindeks) ─
 # SAMA transform+write kui backfill (content-gen-run.mjs --all). DELTA-peal (classify-skus.txt,
 # sama kui [6] spec). Multi-feed: content-gen loeb toote OMA EN-allikat (bränd-agnostiline).

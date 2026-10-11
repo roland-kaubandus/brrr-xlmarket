@@ -687,8 +687,14 @@ export async function resolveJudgeBatch({ clusters, candidateL3s, apiKey, runChu
   if (unresolved.length) onLog?.log?.(`🛑 FAIL-LOUD [${role}]: ${unresolved.length} klastrit lahendamata pärast ${maxDepth} taset`);
   // JUURPÕHJUSE-PARANDUS (HARD RULE #5): valideeri target_handle live-taksonoomia vastu VASTUVÕTMISEL
   const vh = validateTargetHandles(byKey, validate);
-  if (vh.corrected.length) onLog?.log?.(`[${role}] handle-triiv parandatud (nimevaste): ${vh.corrected.length}`);
-  if (vh.invalid.length) onLog?.log?.(`🔴 [${role}] kehtetu handle: ${vh.invalid.length} → otsus kehtetu (keep/review)`);
+  if (vh.corrected.length) {
+    onLog?.log?.(`[${role}] handle-triiv parandatud (nimevaste): ${vh.corrected.length}`);
+    for (const c of vh.corrected) onLog?.log?.(`   ↳ parandus võti=${c.key} '${c.from || "(puudub)"}' → '${c.to}' (nimi='${c.name}')`);
+  }
+  if (vh.invalid.length) {
+    onLog?.log?.(`🔴 [${role}] kehtetu handle: ${vh.invalid.length} → otsus kehtetu (keep/review)`);
+    for (const iv of vh.invalid) onLog?.log?.(`   ↳ JUURPÕHJUS võti=${iv.key} handle='${iv.handle || "(puudub)"}' → ${iv.reason}`);
+  }
   return { byKey, foreign, duplicates, unresolved, reqFail, levels, corrected: vh.corrected, invalid: vh.invalid };
 }
 
@@ -720,8 +726,14 @@ export async function resolveClustersSyncVerified(clusters, { callFn, chunkSize 
   if (unresolved.length) onLog?.(`🛑 FAIL-LOUD: ${unresolved.length} klastrit lahendamata (pending)`);
   // JUURPÕHJUSE-PARANDUS (HARD RULE #5): valideeri target_handle live-taksonoomia vastu VASTUVÕTMISEL
   const vh = validateTargetHandles(byKey, validate);
-  if (vh.corrected.length) onLog?.(`handle-triiv parandatud (nimevaste): ${vh.corrected.length}`);
-  if (vh.invalid.length) onLog?.(`🔴 kehtetu handle: ${vh.invalid.length} → otsus kehtetu (keep/review)`);
+  if (vh.corrected.length) {
+    onLog?.(`handle-triiv parandatud (nimevaste): ${vh.corrected.length}`);
+    for (const c of vh.corrected) onLog?.(`   ↳ parandus võti=${c.key} '${c.from || "(puudub)"}' → '${c.to}' (nimi='${c.name}')`);
+  }
+  if (vh.invalid.length) {
+    onLog?.(`🔴 kehtetu handle: ${vh.invalid.length} → otsus kehtetu (keep/review)`);
+    for (const iv of vh.invalid) onLog?.(`   ↳ JUURPÕHJUS võti=${iv.key} handle='${iv.handle || "(puudub)"}' → ${iv.reason}`);
+  }
   return { ok: ok && !firstError, byKey, foreign, duplicates, unresolved, firstError, corrected: vh.corrected, invalid: vh.invalid };
 }
 
