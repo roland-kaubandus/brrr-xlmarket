@@ -17,7 +17,7 @@
  * Päris kutsujad: makeAnthropicCall(apiKey, model, usage). Võti EI logita KUNAGI (väärtust ei prindi).
  */
 
-import { runAllGates, specialistGate, normEn, buildMatchList, scanEnLongest } from "./glossary-gates.mjs";
+import { runAllGates, specialistGate, fragmentGate, normEn, buildMatchList, scanEnLongest } from "./glossary-gates.mjs";
 
 const API_URL = "https://api.anthropic.com/v1/messages";
 
@@ -178,15 +178,47 @@ Vali parim eesti vaste.`;
 
 const CLASSIFY_SYS = `Sa oled XL e-poe (VEVOR tööriistad/kodu/aed) terminoloogia-kohtunik. Otsusta ÜHE inglise fraasi kohta:
 1. ERIALATERMIN? Kas see on eriala/tehniline termin, mille eesti vaste vajab kataloogis ÜHTLUSTAMIST (nt "pallet jack", "torque wrench", "angle grinder", "ratchet strap")? VÕI üldsõnavara, mida iga eestlane oskab tõlkida (door=uks, table=laud, base=alus, plastic=plast, aluminum=alumiinium, inches=tollid, steel=teras)? ÜLDSÕNAVARA EI vaja glossaryt → specialist=false.
-2. MITMETÄHENDUSLIK? Kas fraasil on selles kataloogis mitu ERINEVAT tähendust (nt "table"=laud VÕI tabel, "spring"=vedru VÕI kevad)? → ambiguous=true.
+2. MITMETÄHENDUSLIK? Kas fraasil on selles kataloogis mitu ERINEVAT eesti tähendust, mis sõltuvad kontekstist? → ambiguous=true. NÄITED (need PEAVAD olema ambiguous=true):
+   - "load" = koormus (mehaaniline) VÕI last (veos) VÕI laadimine (tegevus)
+   - "construction" = konstruktsioon (ehitis-struktuur) VÕI ehitus (ehitamine)
+   - "duty" = vastupidavus (heavy duty) VÕI kohustus VÕI tollimaks
+   - "table" = laud VÕI tabel · "spring" = vedru VÕI kevad · "plant" = taim VÕI tehas
+   Kui sõna eesti vaste MUUTUB sõltuvalt sellest, mis tootega tegu → ambiguous=true (ühtne glossary-vaste eksitaks).
 Vasta AINULT JSON: {"specialist":true|false,"ambiguous":true|false,"reason":"<1 lause eesti keeles>"}`;
 
-/** classifyTerm — LLM-kohtunik: kas erialatermin (ühtlustamist vajav) + kas mitmetähenduslik. Odav eel-värav. */
+/** classifyTerm — LLM-kohtunik: kas erialatermin (ühtlustamist vajav) + kas mitmetähenduslik. Odav eel-värav (1 kutse). */
 export async function classifyTerm(call, { en, contexts = [] }) {
   const ctx = contexts.slice(0, 4).map((c) => `· ${c}`).join("\n");
   const user = `Inglise fraas: "${en}"\nEsinemis-kontekstid:\n${ctx || "(pole)"}\n\nKas erialatermin (vajab ühtlustamist)? Kas mitmetähenduslik?`;
   try { const r = await call(CLASSIFY_SYS, user, { maxTokens: 400 }); if (!r) return null; return { specialist: r.specialist === true, ambiguous: r.ambiguous === true, reason: r.reason || "" }; }
   catch { return null; }
+}
+
+/**
+ * classifyTermVoted — (Tarmo 2026-10-11 p2) SPECIALIST-KOHTUNIK 3× hääletus (§2c asümmeetriline kindlus).
+ * Glossary-termin on STRUKTUURNE (mõjutab kogu kataloogi tekste) → LUKUSTAMINE (permissiivne suund) nõuab
+ * STABIILSUST, mitte üksikut mündiviset. "net weight" kõikumine (defer↔lock) tõestas vajadust.
+ *   - specialist=true AINULT kui KÕIK vastanud ringid ühehäälselt specialist=true (ühehäälne, mitte 2/3).
+ *   - ambiguous=true kui VÄHEMALT ÜKS ring lipistab mitmetähenduslikkuse (restriktiivne suund → ohutu vaikimisi).
+ * Ebastabiilne specialist (kõik ringid ei nõustu) → specialist=false → DEFER (konservatiivne).
+ * Tagastab { specialist, ambiguous, votes:{sT,sF,aT,answered,rounds}, stable, reason }.
+ */
+export async function classifyTermVoted(call, { en, contexts = [] }, { rounds = 3 } = {}) {
+  let sT = 0, sF = 0, aT = 0, answered = 0; const reasons = [];
+  for (let i = 0; i < rounds; i++) {
+    const r = await classifyTerm(call, { en, contexts });
+    if (!r) continue;
+    answered++;
+    if (r.specialist) sT++; else sF++;
+    if (r.ambiguous) aT++;
+    if (r.reason) reasons.push(r.reason);
+  }
+  // LUKUSTAMINE nõuab ühehäälset specialist=true üle KÕIGI ringide (answered === rounds + sT === rounds).
+  const specialist = answered === rounds && sT === rounds;
+  // MITMETÄHENDUSLIKKUS: ükski lipp → ambiguous (ohutu vaikimisi, restriktiivne suund).
+  const ambiguous = aT >= 1;
+  const stable = answered === rounds && (sT === rounds || sF === rounds);
+  return { specialist, ambiguous, votes: { sT, sF, aT, answered, rounds }, stable, reason: reasons[0] || "" };
 }
 
 const BASEFORM_SYS = `Anna inglise termini ja selle eesti vaste ALGVORMID (lemma). EN: nimetav ainsus (inch, mitte inches; wheel, mitte wheels). ET: nimetav ainsus (toll, mitte tolli; plaat, mitte plaadid; alus, mitte alused). Kui on juba algvormis, korda. Vasta AINULT JSON: {"en_base":"<en lemma>","et_base":"<et lemma>"}`;
@@ -203,17 +235,23 @@ export async function toBaseForm(call, { en, et }) {
  *   { en, decision:'locked'|'defer'|'skip', et|null, cluster|null, aliases, path:[sammud], origin, gates?, signal? }
  * entries = olemas glossary (gate'ideks); sampleEnTexts = match-ohutuse + mõjuraadiuse valim; corpusSize = elus-toodete arv.
  */
-export async function resolveGlossaryTerm({ en, contexts = [], opusCall, sonnetCall, fableCall, entries = [], sampleEnTexts = [], freq = 1, corpusSize = 0 }) {
+export async function resolveGlossaryTerm({ en, contexts = [], opusCall, sonnetCall, fableCall, entries = [], sampleEnTexts = [], freq = 1, corpusSize = 0, phraseEns = [] }) {
   const path = [];
   // 2. DUP (kiire, mudeli-eelne)
   const dupEntry = entries.find((e) => [e.en, ...(e.aliases || [])].some((f) => normEn(f) === normEn(en)));
   if (dupEntry) return { en, decision: "skip", et: dupEntry.et, cluster: dupEntry.cluster, path: ["DUP: juba glossarys"], origin: "dup-skip" };
 
-  // 2.5 ERIALATERMIN eel-värav (Tarmo 2026-10-11): üldsõnavara/mitmetähenduslik → defer ENNE kallist propose't.
-  const cls = await classifyTerm(sonnetCall, { en, contexts });
-  const isSpecialist = cls ? cls.specialist : undefined;
-  const isAmbiguous = cls ? cls.ambiguous : undefined;
-  path.push(`erialatermin? ${isSpecialist === undefined ? "?" : isSpecialist} · mitmetähenduslik? ${isAmbiguous === undefined ? "?" : isAmbiguous}${cls && cls.reason ? ` (${cls.reason})` : ""}`);
+  // 2.4 FRAGMENT eel-värav (Tarmo 2026-10-11 p1): ühesõnaline tükk mitmesõnalisest ("duty" ⊂ "heavy duty")
+  //     → defer ENNE kallist classify/propose't. phraseEns = kogu partii + glossary EN-vormid.
+  const fg = fragmentGate({ en }, { phraseEns });
+  if (!fg.pass) return { en, decision: "defer", et: null, cluster: null, path: [`FRAGMENT värav: ${fg.note}`], origin: "fragment" };
+
+  // 2.5 ERIALATERMIN eel-värav (Tarmo 2026-10-11 p2/p3): 3× hääletus (struktuurne otsus → stabiilsus).
+  //     üldsõnavara / ebastabiilne specialist / mitmetähenduslik → defer ENNE kallist propose't.
+  const cls = await classifyTermVoted(sonnetCall, { en, contexts }, { rounds: 3 });
+  const isSpecialist = cls.specialist;
+  const isAmbiguous = cls.ambiguous;
+  path.push(`erialatermin-hääletus ${cls.votes.sT}/${cls.votes.answered} (ühehäälne vaja) → ${isSpecialist} · mitmetähenduslik-lipud ${cls.votes.aT}/${cls.votes.answered} → ${isAmbiguous}${cls.reason ? ` (${cls.reason})` : ""}`);
   const sg = specialistGate({ en, isSpecialist, isAmbiguous });
   if (!sg.pass) return { en, decision: "defer", et: null, cluster: null, path: [...path, `ERIALATERMIN värav: ${sg.note}`], origin: "not-specialist" };
 
@@ -255,7 +293,7 @@ export async function resolveGlossaryTerm({ en, contexts = [], opusCall, sonnetC
   // 5. väravad (DUP → erialatermin → algvorm → kehtivus → mõjuraadius → match-ohutus → freq)
   const g = runAllGates(
     { en, et: chosen.et, cluster: chosen.cluster, freq, aliases: [], isSpecialist, isAmbiguous, enBase: bf.enBase, etBase: bf.etBase, corpusSize },
-    { entries, sampleEnTexts }
+    { entries, sampleEnTexts, phraseEns }
   );
   path.push(g.allPass ? `väravad OK → ${g.status}` : `värav kukkus: ${g.blocking.join("; ")}`);
   if (!g.allPass) return { en, decision: "defer", et: g.canonicalEt || chosen.et, cluster: chosen.cluster, path, origin: `${origin}+gate-fail`, gates: g.gates, signal: g.signal === true };

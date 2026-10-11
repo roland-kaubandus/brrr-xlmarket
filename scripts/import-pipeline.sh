@@ -252,13 +252,15 @@ fi
 # WRAPPER kohtleb seda HOIATUSENA (slack), MITTE hard-fail — glossary = rikastus, ei tohi blokeerida
 # laoseisu/hinda/reindeksit (sama põhimõte kui [6.5] krediit-degrade). Üksik termin kukub → skip inside.
 #
-# ⚠️ SHADOW-REŽIIM (Tarmo 2026-10-11): hook EI kirjuta glossary.yaml'i, vaid logib "oleks lukustanud"
-# glossary_shadow_ledger'isse, kuni 3 väravat (erialatermin + algvorm + mõjuraadius) on DRY-s valideeritud
-# ja Tarmo flip'ib live (eemalda --shadow). HARD RULE #6 ohutu algseis — nähtavus ilma mõjuta.
-echo "[6.4/7] glossary-terminid (SHADOW — uued EN→ET terminid, ENNE sisu-gen)"
+# ⚠️ SHADOW/LIVE — DB-JUHITUD (Tarmo 2026-10-11 p4, HARD RULE #6 AUTO-ÜLEMINEK): režiimi otsustab
+# glossary_config.live_enabled (algseis false=SHADOW), MITTE kõva --shadow lipp. Hook hindab igal jooksul
+# evaluateGlossaryTransition → kui ≥3 stabiilset terminit üle ≥2 öö + 0 koodiviga, flipib ISE LIVE'i +
+# Telegram teatab. Koodiviga LIVE-is → tagasi SHADOW. Tarmo EI otsusta. --execute = "mitte-DRY" (DB-lipp
+# otsustab shadow vs live); --shadow saab manuaalselt sundida (hindamine siis vahele). Ohutu algseis = SHADOW.
+echo "[6.4/7] glossary-terminid (DB-juhitud SHADOW/LIVE — uued EN→ET terminid, ENNE sisu-gen)"
 if [ "$CREDIT_OK" = "1" ] && [ -s /tmp/classify-skus.txt ]; then
   GT_OUT=$(node "$ROOT/scripts/pipeline-glossary-terms.mjs" --skus /tmp/classify-skus.txt \
-    $([ "$EXECUTE" = "1" ] && echo --shadow || echo --dry) 2>&1) && GT_RC=0 || GT_RC=$?
+    $([ "$EXECUTE" = "1" ] || echo --dry) 2>&1) && GT_RC=0 || GT_RC=$?
   echo "$GT_OUT" | sed 's/^/  /'
   if [ "$GT_RC" != "0" ]; then
     echo "  ⚠️ [6.4] glossary-hook rc=$GT_RC — HOIATUS (ei blokeeri): [6.5]+ JÄTKUB"

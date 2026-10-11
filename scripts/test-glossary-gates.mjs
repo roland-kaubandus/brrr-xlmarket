@@ -5,8 +5,9 @@
  * Käivita: node scripts/test-glossary-gates.mjs
  */
 import {
-  specialistGate, baseFormGate, impactRadiusGate, runAllGates, COMMON_VOCAB,
+  specialistGate, fragmentGate, baseFormGate, impactRadiusGate, runAllGates, COMMON_VOCAB,
 } from "./lib/glossary-gates.mjs";
+import { classifyTermVoted } from "./lib/glossary-term-chain.mjs";
 
 let pass = 0, fail = 0;
 const ok = (c, m) => { if (c) { pass++; } else { fail++; console.error(`  ❌ ${m}`); } };
@@ -26,6 +27,35 @@ ok(specialistGate({ en: "torque wrench", isSpecialist: true }).pass === true, "t
 ok(specialistGate({ en: "spring", isAmbiguous: true }).pass === false, "spring mitmetähenduslik → fail");
 ok(specialistGate({ en: "widget", isSpecialist: false }).pass === false, "LLM specialist=false → fail");
 ok(specialistGate({ en: "ratchet strap" }).pass === true, "tundmatu liitfraas (verdikt puudub) → EI blokeeri üksi");
+
+// ——— FRAGMENT (Tarmo 2026-10-11 p1) ———
+sec("fragmentGate (üksiksõna ⊂ mitmesõnaline)");
+const phrases = ["heavy duty", "load capacity", "net weight", "angle grinder", "pallet jack"];
+ok(fragmentGate({ en: "duty" }, { phraseEns: phrases }).pass === false, "duty ⊂ 'heavy duty' → fail");
+ok(fragmentGate({ en: "duty" }, { phraseEns: phrases }).defer === true, "fragment → defer (mitte skip)");
+ok(fragmentGate({ en: "duty" }, { phraseEns: phrases }).parent === "heavy duty", "parent = 'heavy duty'");
+ok(fragmentGate({ en: "load" }, { phraseEns: phrases }).pass === false, "load ⊂ 'load capacity' → fail");
+ok(fragmentGate({ en: "weight" }, { phraseEns: phrases }).pass === false, "weight ⊂ 'net weight' → fail");
+ok(fragmentGate({ en: "heavy duty" }, { phraseEns: phrases }).pass === true, "mitmesõnaline 'heavy duty' ise → pass (pole fragment)");
+ok(fragmentGate({ en: "grinder" }, { phraseEns: phrases }).pass === false, "grinder ⊂ 'angle grinder' → fail");
+ok(fragmentGate({ en: "torque" }, { phraseEns: phrases }).pass === true, "torque (ei esine üheski fraasis) → pass");
+ok(fragmentGate({ en: "duty" }, { phraseEns: [] }).pass === true, "fraase pole → fragment ei blokeeri");
+ok(fragmentGate({ en: "capacity" }, { phraseEns: ["capacity"] }).pass === true, "sama sõna (mitte mitmesõnaline vanem) → pass");
+ok(fragmentGate({ en: "part" }, { phraseEns: ["spare parts"] }).pass === true, "osaline-substring 'part'⊄'parts' TÄISSÕNANA → pass (parts ≠ part)");
+
+// ——— SPECIALIST-KOHTUNIK 3× HÄÄLETUS (Tarmo 2026-10-11 p2, mock-call) ———
+sec("classifyTermVoted (3× hääletus, mock)");
+const mk = (seq) => { let i = 0; return async () => seq[i++ % seq.length]; };
+let v = await classifyTermVoted(mk([{ specialist: true, ambiguous: false }]), { en: "pallet jack" }, { rounds: 3 });
+ok(v.specialist === true && v.votes.sT === 3, "ühehäälne specialist=true 3× → specialist=true");
+ok(v.stable === true, "ühehäälne → stable");
+v = await classifyTermVoted(mk([{ specialist: true, ambiguous: false }, { specialist: false, ambiguous: false }, { specialist: true, ambiguous: false }]), { en: "net weight" }, { rounds: 3 });
+ok(v.specialist === false, "net weight kõigub (2T/1F) → specialist=false (pole ühehäälne → DEFER)");
+ok(v.stable === false, "kõikuv → stable=false");
+v = await classifyTermVoted(mk([{ specialist: true, ambiguous: false }, { specialist: true, ambiguous: true }, { specialist: true, ambiguous: false }]), { en: "load" }, { rounds: 3 });
+ok(v.ambiguous === true, "load: üks ring ambiguous → ambiguous=true (restriktiivne, DEFER)");
+v = await classifyTermVoted(async () => null, { en: "x" }, { rounds: 3 });
+ok(v.specialist === false && v.votes.answered === 0, "kõik ringid vaikisid → specialist=false (konservatiivne)");
 
 // ——— ALGVORM ———
 sec("baseFormGate (algvorm + käänded)");
@@ -65,6 +95,9 @@ const sample = ["pallet jack 5 ton", "garden hose reel", "wood table top", "kitc
 r = runAllGates({ en: "door", et: "uks", cluster: "tehniline", freq: 3, isSpecialist: true }, { entries, sampleEnTexts: sample });
 ok(r.allPass === false && r.blocking[0].startsWith("ERIALATERMIN"), "door peatub ERIALATERMIN-väraval");
 ok(r.defer === true, "üldsõnavara → defer-lipp");
+// FRAGMENT peatab üksiksõna, mis on tükk mitmesõnalisest kandidaadist (duty ⊂ heavy duty)
+r = runAllGates({ en: "duty", et: "vastupidavus", cluster: "tehniline", freq: 3, isSpecialist: true, isAmbiguous: false, enBase: "duty", etBase: "vastupidavus" }, { entries, sampleEnTexts: sample, phraseEns: ["heavy duty", "duty"] });
+ok(r.allPass === false && r.blocking[0].startsWith("FRAGMENT") && r.defer === true, "duty peatub FRAGMENT-väraval (⊂ heavy duty) → defer");
 // päris erialatermin läbib kõik
 r = runAllGates({ en: "pallet jack", et: "kaubaalus-tõstuk", cluster: "tööriistad", freq: 2, isSpecialist: true, isAmbiguous: false, enBase: "pallet jack", etBase: "kaubaalus-tõstuk" }, { entries, sampleEnTexts: sample });
 ok(r.allPass === true && r.status === "locked", "pallet jack läbib kõik väravad → locked");

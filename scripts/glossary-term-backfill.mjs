@@ -73,6 +73,9 @@ function log(...a) { console.log(...a); }
   let corpusSize = enTexts.length;
   if (SAMPLE) { try { corpusSize = parseInt(q(`SELECT count(*) FROM product WHERE deleted_at IS NULL`).trim(), 10) || enTexts.length; } catch { /* jää valimile */ } }
 
+  // phraseEns (fragment-värava jaoks, Tarmo p1): KÕIK mitmesõnalised EN-vormid (kandidaadid + olemas glossary)
+  const phraseEns = [...new Set([...worthy.map((w) => w.en), ...entries.flatMap((e) => [e.en, ...(e.aliases || [])])])];
+
   // 3. lahenda terminid (DRY: LIMIT; EXECUTE: kõik)
   const toResolve = LIMIT ? worthy.slice(0, LIMIT) : worthy;
   log(`\n--- OTSUSED (${toResolve.length} terminit, korpus ${corpusSize}) ---`);
@@ -80,7 +83,7 @@ function log(...a) { console.log(...a); }
   for (const w of toResolve) {
     // paar konteksti (kus termin esineb)
     const contexts = enTexts.filter((t) => t.toLowerCase().includes(w.en.toLowerCase())).slice(0, 3);
-    const r = await resolveGlossaryTerm({ en: w.en, contexts, opusCall, sonnetCall, fableCall, entries, sampleEnTexts, freq: w.freq, corpusSize });
+    const r = await resolveGlossaryTerm({ en: w.en, contexts, opusCall, sonnetCall, fableCall, entries, sampleEnTexts, freq: w.freq, corpusSize, phraseEns });
     results.push(r);
     const mark = r.decision === "locked" ? "🟢 LOCKED" : r.decision === "defer" ? "🟡 DEFER" : "⚪ SKIP";
     log(`\n${mark}  "${r.en}"  →  ${r.et ? `«${r.et}» (${r.cluster})` : "(—)"}  [freq ${w.freq}]`);
