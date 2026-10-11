@@ -36,7 +36,8 @@ import { execSync } from "node:child_process";
 import fs from "node:fs";
 import { isCreditError } from "./lib/credit-guard.mjs";
 import { clusterize, judgeClassifyClusters, rateClassifyReferenceClusters, resolveClustersSyncVerified } from "./lib/judge.mjs";
-import { createChain } from "./lib/classify-chain.mjs";
+import { createChain, makeFable } from "./lib/classify-chain.mjs";
+import { resolveStableParent } from "./lib/parent-l2-vote.mjs";
 import {
   ensureShadowSchema, getConfig, recordShadowProposal, recordCodeBug,
   evaluateTransition, MIN_CLEAN_DEFAULT,
@@ -212,6 +213,8 @@ const keyIntegrity = {
   // JUURPÕHJUSE-PARANDUS: handle-triivi parandus (nimevaste) + kehtetu handle (otsus kehtetu → review)
   handle_corrected: (jVer.corrected?.length || 0) + (rVer.corrected?.length || 0),
   invalid_handle: (jVer.invalid?.length || 0) + (rVer.invalid?.length || 0),
+  // JUURPÕHJUSE-DETAIL (Tarmo 2026-10-11): logi+raporteeri MILLINE handle ja MIKS (tüpo/kärbitud/olematu), mitte ainult loendur.
+  invalid_handle_detail: [...(jVer.invalid || []), ...(rVer.invalid || [])],
 };
 if (Object.values(keyIntegrity).some((x) => x > 0))
   console.error(`  🔑 võtme-terviklus: kohtunik(pending ${keyIntegrity.judge_pending}, võõr ${keyIntegrity.judge_foreign}, dup-konflikt ${keyIntegrity.judge_dup_conflicts}) referents(pending ${keyIntegrity.ref_pending}, võõr ${keyIntegrity.ref_foreign}, dup-konflikt ${keyIntegrity.ref_dup_conflicts}) handle(parandatud ${keyIntegrity.handle_corrected}, kehtetu ${keyIntegrity.invalid_handle})`);
@@ -331,6 +334,52 @@ for (const r of results) {
     id, sku: id2sku.get(id), title: "", bucket: "review",
     reason: (`[${dec || "?"}] ${r.fallbackReason || ""}`).slice(0, 118),
   });
+}
+
+// ---- 6b. VANEM-L2 KÕIKUMISE AUTO-LAHENDUS (Tarmo 2026-10-11, HARD RULE #5+#6) ----
+// Shadow-ettepanek, mille vanem-L2 kõigub öödest (nt «Lavavalgustid»: peoinventar↔muusika-DJ) → Fable 3× hääletus
+// AINULT vanem-L2 küsimuses → stabiilne enamus (≥2/3) → see on vanem; enamust pole → EI loo (defer + signaal).
+// Jookseb ka DRY-s (otsustee nähtav); ledger-kirjutus guarditud !DRY.
+const parentWaverDeferred = [];   // {name, candidates, tally} → digest-signaal
+if (shadowNew.length) {
+  const pl2Usage = { input: 0, output: 0, calls: 0 };
+  const pl2Fable = makeFable(KEY, pl2Usage);
+  const l2NameOf = (h) => NODES[h]?.name_et || NODES[h]?.name_en || h;
+  const stable = [];
+  for (const s of shadowNew) {
+    let res;
+    try {
+      res = await resolveStableParent(q, pl2Fable, {
+        cluster_key: s.ck, proposed_name: s.name, currentParentL2: s.parentL2,
+        sampleTitles: (itemsByCk.get(s.ck) || []).map((x) => x.title).filter(Boolean),
+        l2NameOf,
+      });
+    } catch (e) {
+      // koodiviga vanem-hääletuses → ohutu vaikimisi: EI loo sel ööl (defer), signaal
+      console.error(`  ⚠️ vanem-L2 hääletus KUKKUS «${s.name}»: ${String(e.message).slice(0, 120)} → defer`);
+      parentWaverDeferred.push({ name: s.name, candidates: [s.parentL2].filter(Boolean), reason: "hääletus-viga" });
+      continue;
+    }
+    if (!res.wavering) { stable.push(s); continue; }   // ei kõigu → jäta nagu on
+    if (res.stable) {
+      if (res.parent !== s.parentL2)
+        console.error(`  🗳  vanem-L2 kõikus «${s.name}» (${res.distinctParents.join(" vs ")}) → Fable 3× ⇒ STABIILNE «${l2NameOf(res.parent)}» ${JSON.stringify(res.tally)}`);
+      s.parentL2 = res.parent; s.origin = `${s.origin}+pL2-vote`;
+      stable.push(s);
+    } else {
+      console.error(`  🟡 vanem-L2 EBASTABIILNE «${s.name}» → ${res.reason}`);
+      parentWaverDeferred.push({ name: s.name, candidates: res.distinctParents, tally: res.tally });
+      if (!DRY) {   // defer → logi shadow'sse all_gates_pass=false (EI lähe puhta-arvestusse enne stabiliseerumist)
+        ensureShadowSchema(q);
+        recordShadowProposal(q, {
+          batch_id: BATCH_ID, cluster_key: s.ck, proposed_name: s.name,
+          parent_l2_handle: s.parentL2 || null, origin: "pL2-waver-defer",
+          n_products: s.n, all_gates_pass: false, gates: s.gate,
+        });
+      }
+    }
+  }
+  shadowNew.length = 0; shadowNew.push(...stable);   // ainult stabiilsed vanemad → loomisse; ebastabiilsed defer'itud
 }
 
 // ---- 7. LIVE-assign väravad: siht-handle PEAB DB-s olema (muidu → review, ohutu vaikimisi) ----
@@ -479,12 +528,13 @@ lines.push(`• auto-assign ${homedIds.length} toodet → ${Object.keys(handleId
 lines.push(`• review-bucket ${reviewRows.length} toodet (nähtamatu/HOLD/keep — ohutu vaikimisi)`);
 if (created) lines.push(`• ✅ AUTO-CREATE: ${created} uut L3 loodud (väravad + deploy + undo)`);
 else if (shadowNew.length) lines.push(`• 🌓 SHADOW: oleks loonud ${shadowNew.length} uut L3 (väravad läbitud, EI loodud): ${shadowNew.map((s) => `«${s.name}»`).join(", ")}`);
+if (parentWaverDeferred.length) lines.push(`• 🟡 vanem-L2 EBASTABIILNE (Fable ${3}× ei andnud enamust) → ${parentWaverDeferred.length} ettepanek DEFER (EI loodud): ${parentWaverDeferred.map((d) => `«${d.name}» (${(d.candidates || []).join(" vs ")})`).join(", ")}`);
 if (codeBugHit) lines.push(`• 🐞 ${codeBugHit} koodiviga ahelas → shadow tagasi (mod 4)`);
 if (summary.pending_clusters) lines.push(`• ⏳ PENDING ${summary.pending_clusters} klastrit hindamata (kärpe-auk, poolitamine ammendus) → re-proov järgmisel ööl, MITTE vaikne kadu`);
 if (keyIntegrity.judge_foreign || keyIntegrity.ref_foreign) lines.push(`• 🔑 võõr-võtmeid visatud: kohtunik ${keyIntegrity.judge_foreign}, referents ${keyIntegrity.ref_foreign}`);
 if (keyIntegrity.judge_dup_conflicts || keyIntegrity.ref_dup_conflicts) lines.push(`• 🔑 dup-konflikte (esimene säilitatud): kohtunik ${keyIntegrity.judge_dup_conflicts}, referents ${keyIntegrity.ref_dup_conflicts}`);
 if (keyIntegrity.handle_corrected) lines.push(`• 🔧 handle-triiv parandatud (ühene nimevaste): ${keyIntegrity.handle_corrected}`);
-if (keyIntegrity.invalid_handle) lines.push(`• 🔴 kehtetu handle: ${keyIntegrity.invalid_handle} → otsus kehtetu (keep → review-bucket, MITTE kodutu toode)`);
+if (keyIntegrity.invalid_handle) lines.push(`• 🔴 kehtetu handle: ${keyIntegrity.invalid_handle} → otsus kehtetu (keep → review-bucket, MITTE kodutu toode)` + (keyIntegrity.invalid_handle_detail?.length ? `\n   ↳ JUURPÕHJUS: ${keyIntegrity.invalid_handle_detail.map((iv) => `'${iv.handle || "(puudub)"}' → ${iv.reason}`).join("; ")}` : ""));
 if (trans.changed && trans.enabled) lines.push(`• 🚀 ÜLEMINEK: auto-L3 loomine AKTIVEERITUD — ${trans.reason}`);
 else if (trans.changed && !trans.enabled) lines.push(`• ⏮ ÜLEMINEK: auto-create VÄLJA (${trans.reason})`);
 else if (!cfg0.auto_create_enabled) lines.push(`• shadow-režiim jätkub (${trans.cleanCount}/${MIN_CLEAN} puhast ettepanekut auto-create'ini)`);
