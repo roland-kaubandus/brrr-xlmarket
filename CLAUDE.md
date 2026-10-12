@@ -264,7 +264,13 @@ Docker Compose — kõik teenused konteinerites
 
 ### Tootefeed
 - **Sync:** iga 4 tundi
-- **Hinnavalem:** algne_hind * 1.15 = lõpphind (käibemaksuga, erandit ei ole)
+- **Hinnavalem (tegelik, mitmeastmeline — EI ole lihtne ×1.15):**
+  `MAP ÷(1+source_vat) ×(1−discount) = cost_net → ×markup = retail_net → ×(1+sell_vat) = retail_gross (salvestatud, KM sees)`
+  - **source_vat** (tarnija-riigi KM, MAP seest maha) = VEVOR `0.22` (`config/suppliers.yaml`) — ⚠️ vt task 3 kontroll
+  - **discount** (edasimüüja-allahindlus) = VEVOR `0.05`
+  - **markup** = juurdehindlus **KULULE** (cost_net), astmeline (`config/pricing-rules.yaml`): 0–15€→1.60 · 15–40€→1.40 · 40–100€→1.28 · 100€+→1.15. **1.15 = juurdehindlus, MITTE käibemaks.**
+  - **sell_vat** (müügi-KM, Eesti) = **0.24** (24%, SSoT `pricing-rules.yaml:sell_vat_rate`) — lisandub **eraldi** lõpus. Medusa region on `is_tax_inclusive=true` → salvestatud hind sisaldab juba 24% KM.
+  - Mootor: `scripts/lib/cost-engine.mjs` + `scripts/lib/pricing-engine.mjs`; ainus autoriteetne UPDATE: `scripts/pipeline-reprice.mjs`
 - **Tooted:** ~16 046, 1 688 kategooriat
 
 ### Makselahendus
@@ -357,7 +363,7 @@ pm2 reload xlmarket-storefront
 
 - Pildid: kasuta VEVOR CDN URL-e, ara kopeeri serverisse
 - Tarmole peab admin olema lihtne ja eestikeelne
-- Tootehinnad ALATI * 1.15
+- Tootehinnad: mitmeastmeline hinnavalem (astmeline markup kulule + Eesti KM 24% eraldi) — vt **Tootefeed → Hinnavalem**. **EI ole lihtne ×1.15.** KM-määr SSoT: `config/pricing-rules.yaml:sell_vat_rate` (0.24).
 
 
 ---
