@@ -1,17 +1,22 @@
 import type { Metadata } from "next"
 import Link from "@/components/SafeLink"
 import { CmsMarkdown } from "@/components/CmsMarkdown"
-import { getPlainPage } from "@/lib/cms"
+import { CompanyInfoBlock } from "@/components/CompanyInfoBlock"
+import { getPlainPage, getGlobalCms, type GlobalContent } from "@/lib/cms"
 import fallback from "@/lib/cms-fallback/about.json"
+import globalFallback from "@/lib/cms-fallback/global.json"
 
 export const metadata: Metadata = {
-  title: "About Us — XLMARKET",
-  description: "XLMARKET — quality tools, equipment, and home goods at affordable prices. Operated by Roland Kaubandus OÜ.",
+  title: "Meist — XLMARKET",
+  description: "XLmarket (Roland Kaubandus OÜ) — üle 25 aasta kogemust tööriistade ja seadmete vahendamisel Eesti klientidele.",
 }
 
 export default async function AboutPage({ params }: { params: Promise<{ locale: string }> }) {
   const locale = (await params).locale
-  const page = (await getPlainPage("about", locale)) ?? (fallback as unknown as typeof fallback)
+  const [page, global] = await Promise.all([
+    getPlainPage("about", locale).then((p) => p ?? (fallback as unknown as typeof fallback)),
+    getGlobalCms(locale).then((g) => g ?? (globalFallback as GlobalContent)),
+  ])
 
   return (
     <div className="max-w-[1280px] mx-auto px-[16px] sm:px-[24px] py-[32px] sm:py-[48px]">
@@ -26,6 +31,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
       </h1>
 
       <CmsMarkdown body={page.body_md} />
+      <CompanyInfoBlock g={global} locale={locale} />
     </div>
   )
 }

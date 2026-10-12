@@ -71,7 +71,7 @@ const svg = `
     fill="white"
     opacity="0.5"
     letter-spacing="3"
-  >xlmarket.eu</text>
+  >xlmarket.ee</text>
 </svg>`;
 
 async function generate() {

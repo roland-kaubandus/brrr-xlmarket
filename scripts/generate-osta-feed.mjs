@@ -25,6 +25,7 @@ import { writeFileSync, mkdirSync } from "node:fs"
 import { join, dirname } from "node:path"
 import { fileURLToPath } from "node:url"
 import { fetchInStockIds } from "./lib/feed-instock.mjs"
+import { STORE_URL } from "./lib/site-config.mjs"
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const PROJECT_ROOT = join(__dirname, "..")
@@ -35,7 +36,6 @@ const API_KEY = process.env.MEDUSA_API_KEY
 if (!API_KEY) { console.error("MEDUSA_API_KEY env var is required"); process.exit(1) }
 const REGION_ID = process.env.MEDUSA_REGION_ID
 if (!REGION_ID) { console.error("MEDUSA_REGION_ID env var is required"); process.exit(1) }
-const STORE_URL = process.env.STORE_URL || "https://xlmarket.eu"
 const BATCH_SIZE = 200
 const OUTPUT_PATH = join(PROJECT_ROOT, "data", "feeds", "osta-ee.xml")
 

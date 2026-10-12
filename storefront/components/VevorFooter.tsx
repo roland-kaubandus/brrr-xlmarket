@@ -1,7 +1,11 @@
 import Link from "@/components/SafeLink"
 import CategoryTreeMenu from "@/components/CategoryTreeMenu"
+import { getGlobalCms, type GlobalContent } from "@/lib/cms"
+import globalFallback from "@/lib/cms-fallback/global.json"
 
-export default function VevorFooter({ locale = "en" }: { locale?: string }) {
+export default async function VevorFooter({ locale = "en" }: { locale?: string }) {
+  const g: GlobalContent = (await getGlobalCms(locale)) ?? (globalFallback as GlobalContent)
+  const et = locale === "et"
   return (
     <footer className="mt-20 bg-[#1a1a2e] text-[#CBD5E1]" style={{ padding: "64px 0 32px" }}>
       <div className="max-w-[1320px] mx-auto px-6">
@@ -78,9 +82,19 @@ export default function VevorFooter({ locale = "en" }: { locale?: string }) {
           </div>
         </div>
 
+        {/* Ettevõtte legaalandmed — SSoT (CMS global), samad andmed mis Meist/kontakt */}
+        <div className="border-t border-white/[.06] pt-6 mb-4 text-[12px] text-[#94A3B8] leading-relaxed">
+          <span className="text-[#CBD5E1]">{g.company_name}</span>
+          {g.reg_number && <> · {et ? "Reg nr" : "Reg. no"} {g.reg_number}</>}
+          {g.vat_number && <> · {et ? "KMKR" : "VAT"} {g.vat_number}</>}
+          {g.address && <> · {g.address}</>}
+          {g.phone && <> · <a href={`tel:${g.phone.replace(/\s/g, "")}`} className="hover:text-[#0ea5a0] transition-colors">{g.phone}</a></>}
+          {g.email_info && <> · <a href={`mailto:${g.email_info}`} className="hover:text-[#0ea5a0] transition-colors">{g.email_info}</a></>}
+        </div>
+
         {/* Bottom bar */}
-        <div className="border-t border-white/[.06] pt-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 text-[12px] text-[#94A3B8]">
-          <span>{locale === "et" ? "© 2026 Roland Kaubandus OÜ. Kõik õigused kaitstud." : "© 2026 Roland Kaubandus OÜ. All rights reserved."}</span>
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 text-[12px] text-[#94A3B8]">
+          <span>{locale === "et" ? `© 2026 ${g.company_name}. Kõik õigused kaitstud.` : `© 2026 ${g.company_name}. All rights reserved.`}</span>
           <div className="flex gap-5">
             <Link href={`/${locale}/privaatsus`} className="text-[#cbd5e1] hover:text-[#0ea5a0] transition-colors">{locale === "et" ? "Privaatsus" : "Privacy"}</Link>
             <Link href={`/${locale}/tingimused`} className="text-[#cbd5e1] hover:text-[#0ea5a0] transition-colors">{locale === "et" ? "Tingimused" : "Terms"}</Link>
