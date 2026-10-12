@@ -8306,3 +8306,25 @@ l1:
             name_en: "Ohutusköied ja lifeline'd"
             name_et: "Ohutusköied ja lifeline'd"
             product_count: 0
+
+# SEISUND-mains (Outlet) — toote-SEISUNDI kategooriad, mis elavad AINULT DB-s
+# (MITTE nav-l1 puus). Defineeritud siin SSoT-is, et badge-sildid
+# (outlet-labels.generated.json) genereeruksid DETERMINISTLIKULT (HARD RULE #6)
+# ILMA Outletit nav-puusse sundimata — nav jaab muutumatuks. Vastab DB-le
+# (v4-outlet + lapsed, kontrollitud 2026-10-12). Umbernimetus siin levib
+# snapshot-regeniga (scripts/gen-category-tree.mjs). getOutletBadges loeb:
+#   generic  = seisund_label (main v4-outlet)        -> "Outlet toode"
+#   specific = L2 nimi (rikutud-pakend/avatud-pakend) -> "Rikutud pakend" jne
+seisund_mains:
+  - slug: v4-outlet
+    name_en: "Outlet"
+    name_et: "Outlet"
+    seisund_label_en: "Outlet"
+    seisund_label_et: "Outlet toode"
+    subs:
+      - slug: v4-outlet-avatud-pakend
+        name_en: "Open box"
+        name_et: "Avatud pakend"
+      - slug: v4-outlet-rikutud-pakend
+        name_en: "Damaged packaging"
+        name_et: "Rikutud pakend"
