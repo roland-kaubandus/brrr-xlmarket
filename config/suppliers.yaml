@@ -40,14 +40,19 @@ suppliers:
       product_type: "Product type"
       availability: "Availability"
     price_includes_vat: true
-    source_vat_rate: 0.22        # VEVOR MAP = 22% KM sees
+    # VEVOR rahvusvahelise lehe (eur.vevor.com) MAP sisaldab 22% KM-i.
+    # KINNITATUD Tarmo 2026-08-25, uuesti 2026-10-12. EI ole feedist tuletatud (feed KM-infot ei kanna) — Tarmo ärikinnitus. Hindu EI muudeta.
+    source_vat_rate: 0.22
     currency: EUR
     discount_model: tiered_by_volume
-    discount_value: 0.05          # praegune PRO-tase (aste 2%..15%)
+    # VEVOR PRO allahindlus-programmi tase (praegu 5%). PRO-aste vahemik 2%..15%.
+    # KINNITATUD Tarmo. UUENDADA kui PRO-tase muutub.
+    discount_value: 0.05
     fulfillment_model: dropship
+    # VEVOR küsib tarne ERALDI → kassas eraldi rida, MITTE hinna sees (ei lisata cost_net-i).
     shipping_model: per_order
     default_location: null
-    markup_override: null         # → default_markup pricing-rules.yaml (1.15)
+    markup_override: null         # → astmeline markup pricing-rules.yaml (Tarmo ärotsus, praegused astmed kehtivad)
 
   # ── POWERMAT (ŠABLOON — täida kui koostöö algab; migratsiooni-tõestus #5) ──
   # Kõik allolev = KONF. Kood ei muutu (v.a eksootiline transport → adapters/powermat.mjs).

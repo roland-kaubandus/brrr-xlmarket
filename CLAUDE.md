@@ -266,9 +266,10 @@ Docker Compose — kõik teenused konteinerites
 - **Sync:** iga 4 tundi
 - **Hinnavalem (tegelik, mitmeastmeline — EI ole lihtne ×1.15):**
   `MAP ÷(1+source_vat) ×(1−discount) = cost_net → ×markup = retail_net → ×(1+sell_vat) = retail_gross (salvestatud, KM sees)`
-  - **source_vat** (tarnija-riigi KM, MAP seest maha) = VEVOR `0.22` (`config/suppliers.yaml`) — ⚠️ vt task 3 kontroll
-  - **discount** (edasimüüja-allahindlus) = VEVOR `0.05`
-  - **markup** = juurdehindlus **KULULE** (cost_net), astmeline (`config/pricing-rules.yaml`): 0–15€→1.60 · 15–40€→1.40 · 40–100€→1.28 · 100€+→1.15. **1.15 = juurdehindlus, MITTE käibemaks.**
+  - **source_vat** (tarnija-riigi KM, MAP seest maha) = VEVOR `0.22` (`config/suppliers.yaml`) — VEVOR rahvusvahelise lehe (eur.vevor.com) MAP sisaldab 22% KM-i. **KINNITATUD Tarmo 2026-08-25 + 2026-10-12, ärikinnitus (mitte feedist). Hindu EI muudeta. (task 3 SULETUD.)**
+  - **discount** (edasimüüja-allahindlus) = VEVOR `0.05` — VEVOR PRO allahindlus-programmi tase (vahemik 2%..15%). KINNITATUD Tarmo; uuendada kui PRO-tase muutub.
+  - **tarne** — VEVOR küsib tarne ERALDI → kassas eraldi, MITTE hinna sees.
+  - **markup** = juurdehindlus **KULULE** (cost_net), astmeline (`config/pricing-rules.yaml`): 0–15€→1.60 · 15–40€→1.40 · 40–100€→1.28 · 100€+→1.15. **1.15 = juurdehindlus, MITTE käibemaks.** Astmeline = Tarmo ärotsus, praegused astmed kehtivad.
   - **sell_vat** (müügi-KM, Eesti) = **0.24** (24%, SSoT `pricing-rules.yaml:sell_vat_rate`) — lisandub **eraldi** lõpus. Medusa region on `is_tax_inclusive=true` → salvestatud hind sisaldab juba 24% KM.
   - Mootor: `scripts/lib/cost-engine.mjs` + `scripts/lib/pricing-engine.mjs`; ainus autoriteetne UPDATE: `scripts/pipeline-reprice.mjs`
 - **Tooted:** ~16 046, 1 688 kategooriat
