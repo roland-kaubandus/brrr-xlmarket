@@ -92,8 +92,11 @@ export default function PaymentReturnPage() {
           res.ok && data.type !== "cart" && (data.order || data.id)
 
         if (succeeded) {
-          const resolvedId = data.order?.id || data.id || null
-          setOrderId(resolvedId)
+          const orderObj = data.order || data
+          const resolvedId = orderObj?.id || null
+          // Kuva kliendile sõbralik number (#23), mitte toores ULID (order_01M4R...).
+          const orderNumber = orderObj?.display_id ? `#${orderObj.display_id}` : resolvedId
+          setOrderId(orderNumber)
           setStatus("done")
           posthog.capture("order_completed", {
             order_id: resolvedId,
