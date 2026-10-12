@@ -348,6 +348,7 @@ function main() {
   // (stabiilne slug) järgi; nimi tuleb SSoT-st → ümbernimetus levib ise.
   const outletLabels = {}
   const outletMains = {}
+  // (A) fixed_l2 mains, mis ON nav-puus (kui mõni lisatakse kunagi l1-sse).
   for (const h of tree.order) {
     const n = tree.nodes[h]
     if (n.fixed_l2 !== true) continue
@@ -360,6 +361,22 @@ function main() {
       const c = tree.nodes[ch]
       if (!c) continue
       outletLabels[ch] = { et: c.name_et || c.name_en, en: c.name_en, main: h }
+    }
+  }
+  // (B) seisund_mains: SEISUND-mains, mis elavad AINULT DB-s (Outlet), MITTE nav-l1
+  //     puus. Loetakse taxonomy.yaml top-level `seisund_mains`-ist → badge-sildid
+  //     genereeruvad deterministlikult (HARD RULE #6) ilma Outletit navi sundimata.
+  //     Vt gotcha: Outlet = DB-only SEISUND-kat; nav jääb muutumatuks.
+  for (const m of (doc.seisund_mains || [])) {
+    const h = m.slug
+    if (!h) continue
+    outletMains[h] = {
+      et: m.seisund_label_et || m.name_et || m.name_en,
+      en: m.seisund_label_en || m.name_en,
+    }
+    for (const c of (m.subs || [])) {
+      if (!c?.slug) continue
+      outletLabels[c.slug] = { et: c.name_et || c.name_en, en: c.name_en, main: h }
     }
   }
   writeFileSync(

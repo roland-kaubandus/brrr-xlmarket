@@ -1,5 +1,21 @@
 {
-  "generated_at": "2026-10-09T18:13:46.246Z",
-  "mains": {},
-  "labels": {}
+  "generated_at": "2026-10-12T06:44:38.562Z",
+  "mains": {
+    "v4-outlet": {
+      "et": "Outlet toode",
+      "en": "Outlet"
+    }
+  },
+  "labels": {
+    "v4-outlet-avatud-pakend": {
+      "et": "Avatud pakend",
+      "en": "Open box",
+      "main": "v4-outlet"
+    },
+    "v4-outlet-rikutud-pakend": {
+      "et": "Rikutud pakend",
+      "en": "Damaged packaging",
+      "main": "v4-outlet"
+    }
+  }
 }
