@@ -7,7 +7,7 @@ import json, subprocess, re, sys
 from pathlib import Path
 
 MEDIA_DIR = Path("/var/www/xlmarket-media/products")
-BASE_URL = "https://xlmarket.eu/media/products"
+BASE_URL = "https://xlmarket.ee/media/products"
 
 def psql(query, params=None):
     cmd = ["docker", "exec", "xlmarket-db", "psql", "-U", "xlmarket", "-d", "xlmarket", "-t", "-A", "-c", query]

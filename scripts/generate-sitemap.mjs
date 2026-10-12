@@ -11,13 +11,13 @@
 import { writeFileSync, mkdirSync } from "node:fs"
 import { join, dirname } from "node:path"
 import { fileURLToPath } from "node:url"
+import { STORE_URL } from "./lib/site-config.mjs"
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const PROJECT_ROOT = join(__dirname, "..")
 
 const MEDUSA_URL = process.env.MEDUSA_URL || "http://127.0.0.1:9001"
 const API_KEY = process.env.MEDUSA_API_KEY || process.env.NEXT_PUBLIC_MEDUSA_KEY
-const STORE_URL = process.env.STORE_URL || "https://xlmarket.eu"
 const BATCH_SIZE = 200
 const OUTPUT_PATH = join(PROJECT_ROOT, "data", "feeds", "sitemap.xml")
 

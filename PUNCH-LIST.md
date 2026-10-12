@@ -7,8 +7,10 @@
 > Praegu CRITICAL avatud punkte EI ole (sait live, email töötab). Allolevad blokeerivad REAALSET MÜÜKI:
 
 - [x] **Montonio makse INTEGREERITUD** (2026-06-05/06) — custom Medusa 2.0 provider `pp_montonio_montonio` enabled + LIVE (a066f683, 60be26c9, e9f63531). Sandbox-võtmed env-s.
-- [ ] **Montonio end-to-end TESTIMATA** — päris sandbox-makset (korv→redirect→webhook→tellimus) pole kord testitud. *(blokeerib müügi avamise)*
-- [ ] **Õiguslikud lehed ainult EN + viitavad xlmarket.eu** — sisu+footer+render ✅, aga ET puudub + domeen vale (.eu→.ee). *(EU müügi nõue)*
+- [ ] **Montonio end-to-end TESTIMATA** — päris sandbox-makset (korv→redirect→webhook→tellimus) pole kord testitud. *(blokeerib müügi avamise)* — test-sammud: `outputs/faas3-launch-blokeerijad-2026-10-12.md` §4
+- [ ] **info@xlmarket.ee postkast EI EKSISTEERI veel** — SSoT (CMS global) + kõik lehed/jalus/e-kirjad kasutavad `info@xlmarket.ee`, aga postkasti pole loodud → kliendi kirjad kaovad. *(blokeerib launchi — enne prodi peab testkiri `info@xlmarket.ee`-le kohale jõudma)*
+- [x] **.eu → .ee PRIO1 VALMIS** (2026-10-12) — kõik 13 prod-mõjuga faili .ee: messages en/et.json · OG-pilt · 3 feed-skripti STORE_URL (→ `scripts/lib/site-config.mjs` SSoT, env-driven .ee default) · seed-cms-content.sh (18×) · migrate-images.py · legacy nginx (3) · CMS fallback global/about/contact · **surnud `email.js` kustutatud** (email.ts = kanooniline, .ee). **PRIO2 (admin-login `admin@/tarmo@xlmarket.eu`) EI muudetud** (Tarmo otsus — DB-kontod + feed-sync cron auth). PRIO3 (docs/ajalugu) = valikuline, saiti ei mõjuta.
+- [ ] **ET õiguslikud lehed** (privaatsus/tingimused/küpsised/tarne/tagastamine) — Meist+kontakt nüüd ET (CMS SSoT), ülejäänud õiguslikud lehed veel EN-only. *(EU müügi nõue)*
 - [ ] **xlmarket-maintenance konteiner kaaperdab route'i** — ajutiselt peatatud (restart=no), püsiv fix vaja (priority=200 võidab storefront'i IGAL redeploy'l)
 
 ## 📋 VAJA ÄRA TEHA
