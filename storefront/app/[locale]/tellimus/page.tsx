@@ -251,8 +251,11 @@ export default function CheckoutPage() {
         return
       }
 
-      const resolvedOrderId = orderData.order?.id || orderData.id || null
-      setOrderId(resolvedOrderId)
+      const orderObj = orderData.order || orderData
+      const resolvedOrderId = orderObj?.id || null
+      // Kuva kliendile sõbralik number (#23), mitte toores ULID (order_01M4R...).
+      const orderNumber = orderObj?.display_id ? `#${orderObj.display_id}` : resolvedOrderId
+      setOrderId(orderNumber)
       posthog.capture("order_completed", {
         order_id: resolvedOrderId,
         cart_id: cart.id,
@@ -600,7 +603,7 @@ export default function CheckoutPage() {
                 </button>
 
                 <p className="text-[12px] text-[#64748B] text-center mt-2.5">
-                  {locale === "et" ? "Makse: pangaülekanne (arve saadetakse e-postiga)" : "Payment: bank transfer (invoice sent via email)"}
+                  {locale === "et" ? "Turvaline makse pangalingi või kaardiga (Montonio)" : "Secure payment by bank link or card (Montonio)"}
                 </p>
               </div>
             </div>
