@@ -248,7 +248,13 @@ Kõik LIVE storefront-konteineris (tag 93c1f8b3):
    jääb tõlkimata + signaal. **PLAAN:** `reports/glossary-uus-termin-hook-plaan.md`. HARD RULE #5 (backfill+hook+multi-feed), #6 (täisautomaatne). **#1 JÄRGMINE.**
 2. **Outlet ristkuvamine aktiveerimine** [§P4] — `outlet-crossdisplay.mjs execute` + reindeks (backend üleval).
 3. **Outlet L2-pildid** [§P5] — Gemini deblokeeritud (Osa 57); atmosphere-stseenid (Elektroonika/Peoinventar/Büroo/Põllumajandus/Kodumasinad).
-4. **FAAS 3 launch-blokeerijad** [§4/§A8] — cutover-eelsed päris augud: `.eu` routing (Traefik Host/301) · TLS/LE bare-domeenile · uo28 backup enne stop'i · E2E smoke prod-domeenil (Montonio) · feed-sync sihtmärk.
+4. **FAAS 3 launch-blokeerijad** [§4/§A8] — cutover-eelsed päris augud: `.eu` routing (Traefik Host/301) · TLS/LE bare-domeenile · uo28 backup enne stop'i · E2E smoke prod-domeenil (Montonio) · feed-sync sihtmärk · **E-POST (vt 4b).**
+   - **4b. E-POST launch-blokeerija (lisatud 2026-10-12)** — tellimus/arve-kirjad on **koodis valmis** (`backend/src/lib/email.ts`: sendOrderConfirmation + sendInvoice + sendShippingConfirmation; subscriber `order-placed.ts` AKTIIVNE, kuulab `order.placed`). Staging'us blokeerib AINULT `EMAIL_DISABLED=true` (tahtlik kill-switch — staging-DB sisaldab päris klientide aadresse). **Enne launchi Tarmo peab otsustama/seadistama (NIMEKIRI, Claude ei seadista):**
+     1. **SMTP teenus** — praegu `mail.xlrent.eu:587` (user+pass JUBA env-is). Otsus: kas jääb xlrent relay, või eraldi teenus (nt oma relay / SendGrid / Zone mail)?
+     2. **Saatja-aadress** `info@xlmarket.ee` (EMAIL_FROM) — kas postkast/alias olemas ja saab saata läbi valitud relay?
+     3. **DNS xlmarket.ee domeenile** (deliverability, muidu kirjad → spam/bounce): **SPF** (TXT, mis lubab valitud relay IP/domeeni saata), **DKIM** (saatva serveri allkirja-võti xlmarket.ee jaoks), **DMARC** (TXT `_dmarc.xlmarket.ee`, policy + raport).
+     4. **info@xlmarket.ee postkast** — vastuvõtuks (kliendid vastavad kinnituskirjale) + EMAIL_ADMIN/EMAIL_INVOICE aadressid (praegu mõlemad `tarmo@naissaar.eu`).
+     5. **Prod cutoveril:** eemalda/`false` `EMAIL_DISABLED` (AINULT siis, kui 1–4 tehtud ja DB on päris-prod, mitte koopia testaadressidega).
 5. **main ↔ taxonomy-v4 lahknevus enne cutover'it** — harud peavad enne cutoverit kokku viidama (HARD RULE #4 hoiab sünkroonis, aga pikaajaline lahknevus = cutover-risk). Kontroll: `git rev-parse origin/main` vs `origin/taxonomy-v4`.
 6. **Review-bucket / shadow-ledger nähtavus** [§P7] — klastri-UI (shadow "oleks loonud" + sünonüümid); Telegram-teade juba töötab, UI puudub.
 
