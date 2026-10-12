@@ -10,9 +10,21 @@ export const GET = async (req: MedusaRequest, res: MedusaResponse) => {
     return
   }
 
-  const localeRaw = (req.query as Record<string, string | undefined>).locale
+  // Locale lugemine on tahtlikult robustne: Medusa store-pipeline VÕIB tundmatu
+  // query-võtme (locale) req.query'st eemaldada (tõestatud k33g-staging'us: ?locale=et
+  // jõudis handlerisse req.query'ta → fallback 'en' → ET-leht näitas EN-sisu). req.originalUrl
+  // säilitab aga alati täis-URL-i query-stringiga → loeme locale esmalt sealt. (Express ise
+  // edastab req.query korrektselt — seega see on Medusa-raamistiku eripära, mitte express-bug.)
+  const qLocale = (req.query as Record<string, string | undefined>)?.locale
+  let localeRaw: string | undefined =
+    typeof qLocale === "string" ? qLocale : undefined
+  if (!localeRaw) {
+    const rawUrl = (req.originalUrl || req.url || "") as string
+    const m = rawUrl.match(/[?&]locale=([a-zA-Z]{2})(?:&|$)/)
+    if (m) localeRaw = m[1]
+  }
   const locale = typeof localeRaw === "string" && /^[a-z]{2}$/.test(localeRaw)
-    ? localeRaw
+    ? localeRaw.toLowerCase()
     : "en"
 
   const page = await getPage(key, locale)
