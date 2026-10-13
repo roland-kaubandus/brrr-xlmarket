@@ -23,9 +23,34 @@ const transporter = nodemailer.createTransport({
 })
 
 const EMAIL_FROM = process.env.EMAIL_FROM || "info@xlmarket.ee"
+const EMAIL_REPLY_TO = (process.env.EMAIL_REPLY_TO || "").trim()
 const EMAIL_ADMIN = process.env.EMAIL_ADMIN || "tarmo@xlmarket.ee"
 const EMAIL_INVOICE = process.env.EMAIL_INVOICE || "tarmo@naissaar.eu"
 const STORE_URL = process.env.STORE_URL || "https://xlmarket.ee"
+
+// Staging-ohutus (HARD RULE #7): staging-DB on prod-koopia (päris klientide aadressid).
+// EMAIL_ALLOWLIST (komadega eraldatud) → saadame AINULT nendele, kõik muu blokeeritakse + logitakse.
+const EMAIL_ALLOWLIST = (process.env.EMAIL_ALLOWLIST || "")
+  .split(",")
+  .map((s) => s.trim().toLowerCase())
+  .filter(Boolean)
+
+// Üks värav kõigile saatmistele (SSoT). Tagastab kas lubada + põhjus (logiks + nähtavus).
+function emailGate(to: string): { allow: boolean; reason: string } {
+  const addr = (to || "").trim().toLowerCase()
+  // Allowlist peal → AINULT allowlist (tugevaim, täpseim värav; staging). Muu blokeeritud.
+  if (EMAIL_ALLOWLIST.length > 0) {
+    return EMAIL_ALLOWLIST.includes(addr)
+      ? { allow: true, reason: "allowlist-pass" }
+      : { allow: false, reason: "allowlist-block" }
+  }
+  // Allowlist tühi + kill-switch → blokeeri kõik.
+  if (process.env.EMAIL_DISABLED === "true") {
+    return { allow: false, reason: "email-disabled" }
+  }
+  // Prod: allowlist tühi, kill-switch maas → saada.
+  return { allow: true, reason: "send" }
+}
 
 interface SendEmailOptions {
   to: string
@@ -34,15 +59,17 @@ interface SendEmailOptions {
 }
 
 export async function sendEmail({ to, subject, html }: SendEmailOptions) {
-  // Staging kill-switch: EMAIL_DISABLED=true → ära saada ühtegi maili.
-  // Staging DB on prod-koopia (päris klientide aadressid) → MITTE saata. (HANDBOOK §7)
-  if (process.env.EMAIL_DISABLED === "true") {
-    console.log(`[EMAIL] disabled (EMAIL_DISABLED=true) — skip send to ${to}: ${subject}`)
+  // SSoT-värav: allowlist (staging) → kill-switch → prod. Blokk logitakse (nähtavus).
+  const gate = emailGate(to)
+  if (!gate.allow) {
+    console.log(`[EMAIL] BLOCKED (${gate.reason}) — to=${to} subject="${subject}"`)
     return
   }
+  console.log(`[EMAIL] SEND (${gate.reason}) — to=${to} subject="${subject}"`)
   await transporter.sendMail({
     from: `"XLMARKET" <${EMAIL_FROM}>`,
     to,
+    ...(EMAIL_REPLY_TO ? { replyTo: EMAIL_REPLY_TO } : {}),
     subject,
     html,
   })
