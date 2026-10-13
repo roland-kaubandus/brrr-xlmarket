@@ -13,6 +13,23 @@ XL_LOCK_STALE_S=$((45 * 60))
 
 _xl_lock_alive() { kill -0 "$1" 2>/dev/null; }  # 0 = elus
 
+# SIGNAALI-TRAP (Tarmo 2026-10-13): kutsuja EXIT-trap (`trap … EXIT`) EI kata INT/TERM/HUP-i, ja kutsuja
+# võib oma EXIT-trapi ka üle kirjutada (import-pipeline.sh rida 57 tegi just seda → release ei vallandunud
+# KUNAGI → lukk lekkis igal öisel jooksul, ainult 45min stale-steal päästis). Signaali-trap seatakse KESKSELT
+# siin luku-võtul → iga kutsuja (import-pipeline, coolify-deploy, tulevased) saab signaali-vabastuse ILMA oma
+# koodita (hard rule #5 — üks mehhanism kõigile). Signaali-trappe kutsuja EXIT-trap EI puutu ega kirjuta üle.
+_xl_lock_on_signal() {
+  local sig="$1"
+  xl_lock_release          # idempotentne (eemaldab ainult kui pid==$$ ja fail olemas)
+  trap - "$sig"            # taasta signaali vaikekäitumine
+  kill -s "$sig" "$$"      # re-raise → õige exit-staatus (128+n) + kutsuja EXIT-trap jookseb (release idempotentne)
+}
+_xl_lock_arm_signals() {
+  trap '_xl_lock_on_signal INT'  INT
+  trap '_xl_lock_on_signal TERM' TERM
+  trap '_xl_lock_on_signal HUP'  HUP
+}
+
 _xl_lock_stale() {
   # $1 = lockfile sisu (json). stale kui pid surnud VÕI ts vana.
   local pid ts now
@@ -42,6 +59,7 @@ xl_lock_acquire() {
   while :; do
     if ( set -o noclobber; printf '%s' "$me" > "$XL_LOCKFILE" ) 2>/dev/null; then
       export XL_STACK_LOCK_HELD=1  # pärandub alamprotsessidele → nende acquire = re-entrant no-op
+      _xl_lock_arm_signals         # keskne INT/TERM/HUP-vabastus (clobber-kindel, ei sõltu kutsuja EXIT-trapist)
       return 0  # lukk käes
     fi
     local cur; cur=$(cat "$XL_LOCKFILE" 2>/dev/null || echo "")
