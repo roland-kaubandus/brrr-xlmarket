@@ -59,8 +59,12 @@ export const SEO_RULE = `🔑 SEO-REEGEL (kohustuslik): kirjeldus+tagline kirjel
 KEELATUD: KÕIK konkreetsed numbrid (nt «4000 tsüklit», «50–100 kg», «12V/24V/48V», «200 W», «550», «250 kg») JA tehnilised lubadused, mis ei kehti KÕIGILE toodetele kategoorias (nt «veekindel», «BMS-kaitse», «LiFePO4», «mahtuvus», «kandevõime», «tõmbetugevus»).
 Kirjelda ÜLDISELT: mis TÜÜPI tooted, kellele, mis otstarve, mida üldiselt vaadata (ilma arvude/lubadusteta — nt «jälgi sobivat suurust ja materjali», MITTE «jälgi mahtuvust 200 Wh»).`;
 
-/** genAssets — üks Fable-kutse (fableRaw(system,user) antakse kutsujalt). */
-export async function genAssets(fableRaw, nameEt, parentEt, titles, avoidNote) {
+/**
+ * buildAssetsPrompt — SEO-prompt (system+user) EHITUS ilma käivitamata (SSoT).
+ * genAssets kutsub seda inline'is; en-pack-backfill kasutab sama prompti Batch API's
+ * (sama reegel backfill ja hook; HARD RULE #5). Käivitatav mudel = kutsuja valik (Sonnet batch'is).
+ */
+export function buildAssetsPrompt(nameEt, parentEt, titles, avoidNote) {
   const system = `Sa oled XL e-poe (xlmarket.ee, Eesti) kategooria-toimetaja. Genereerid UUE tootekategooria metaandmed.
 Kirjuta loomulikus, müügivalmis eesti keeles (EI masintõlge). Lühike, konkreetne, ostjale suunatud.
 
@@ -81,6 +85,12 @@ NÄIDISTOOTED (ingliskeelsed pealkirjad):
 ${titles.slice(0, 6).map(t => `  • ${t}`).join("\n")}
 ${avoidNote ? `\n⚠️ EELMINE KATSE KUKKUS SEO-VÄRAVAST. ${avoidNote}` : ""}
 Genereeri metaandmed. name_en = kategooria üldnimi (MITTE toote pealkiri). Kirjeldused müügivalmis, KATEGOORIA-tasandil, ilma numbrite/konkreetsete lubadusteta.`;
+  return { system, user };
+}
+
+/** genAssets — üks mudeli-kutse (fableRaw(system,user) antakse kutsujalt). */
+export async function genAssets(fableRaw, nameEt, parentEt, titles, avoidNote) {
+  const { system, user } = buildAssetsPrompt(nameEt, parentEt, titles, avoidNote);
   return fableRaw(system, user);
 }
 

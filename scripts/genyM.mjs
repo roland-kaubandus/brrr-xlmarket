@@ -18,12 +18,29 @@ try {
   console.error(`⚠️  dump-värskendus VAHELE (${e.message.slice(0,60)}) — kasutan olemasolevaid /tmp/x-l*.txt (VÕIVAD OLLA STALE!)`);
 }
 
+// ⚠️ EN-NIMI + SEO DB-st (EN-pakett SSoT, 2026-10-13): taxonomy_node_translation(locale='en') + taxonomy_node_seo.
+// handle→en_name ja handle→{desc/tagline et+en}. Puudub → fallback DB-ET-nimi + stub (idempotentne: tühi = vana käitumine).
+let enMap={}, seoMap={};
+try {
+  const DB2 = execSync("docker ps --format '{{.Names}}' | grep '^db-k33g' | head -1", { encoding: "utf8" }).trim();
+  if (!DB2) throw new Error("db-k33g puudub");
+  const q = (sql) => { const o = execSync(`docker exec -i ${DB2} psql -U xlmarket -d xlmarket -At`, { input: sql, encoding: "utf8", maxBuffer: 128*1024*1024 }).trim(); return o ? JSON.parse(o) : []; };
+  for (const r of q(`SELECT coalesce(json_agg(t),'[]') FROM (SELECT pc.handle, tr.name FROM taxonomy_node_translation tr JOIN product_category pc ON pc.id=tr.node_id WHERE tr.locale='en') t;`)) enMap[r.handle]=r.name;
+  for (const r of q(`SELECT coalesce(json_agg(t),'[]') FROM (SELECT pc.handle, s.description_et, s.description_en, s.tagline_et, s.tagline_en FROM taxonomy_node_seo s JOIN product_category pc ON pc.id=s.node_id) t;`)) seoMap[r.handle]=r;
+  console.error(`✅ EN/SEO DB-st: en=${Object.keys(enMap).length} seo=${Object.keys(seoMap).length}`);
+} catch (e) { console.error(`⚠️  EN/SEO dump VAHELE (${e.message.slice(0,50)}) — fallback DB-ET-nimi + stub`); }
+
 const J=s=>JSON.stringify(s);
 const dbL2={}; for(const l of fs.readFileSync("/tmp/x-l2.txt","utf8").trim().split("\n")){const[l1id,rank,h,n]=l.split("|");(dbL2[l1id]=dbL2[l1id]||[]).push({rank:+rank,h,n});}
 for(const k in dbL2)dbL2[k].sort((a,b)=>a.rank-b.rank);
 const dbL3={}; for(const l of fs.readFileSync("/tmp/x-l3.txt","utf8").trim().split("\n")){const[l2h,l3h,l3n]=l.split("|");(dbL3[l2h]=dbL3[l2h]||[]).push([l3h,l3n]);}
-function block(yl,h,name,short,count,subsFn){yl.push(`  - slug: ${h}`,`    name_en: ${J(name)}`,`    name_et: ${J(name)}`,`    short_slug: ${short}`,`    tagline_en: ${J(name)}`,`    tagline_et: ${J(name)}`,`    description_en: ${J(name+" — products.")}`,`    description_et: ${J(name+" — tooted.")}`,`    hero_img: /images/branches/horeca.webp`,`    hero_gradient: from-stone-950/80 via-stone-900/40 to-transparent`,`    product_count: ${count}`,`    subs:`);subsFn(yl);}
-function subsDB(y,l1id){for(const l2 of (dbL2[l1id]||[])){y.push(`      - slug: ${l2.h}`,`        name_en: ${J(l2.n)}`,`        name_et: ${J(l2.n)}`,`        product_count: 0`);const l3s=dbL3[l2.h]||[];if(l3s.length){y.push(`        subs:`);for(const[a,b] of l3s)y.push(`          - slug: ${a}`,`            name_en: ${J(b)}`,`            name_et: ${J(b)}`,`            product_count: 0`);}}}
+const enName=(h,fallback)=>enMap[h]||fallback;                    // EN-nimi DB-st, fallback ET
+// SEO-read (tagline+description en+et) handle'ile; seoMap puudub → fallback stub (ET-nimi põhjal).
+function seoLines(ind,h,name){const s=seoMap[h];const p=" ".repeat(ind);
+  return [`${p}tagline_en: ${J(s&&s.tagline_en||name)}`,`${p}tagline_et: ${J(s&&s.tagline_et||name)}`,
+    `${p}description_en: ${J(s&&s.description_en||name+" — products.")}`,`${p}description_et: ${J(s&&s.description_et||name+" — tooted.")}`];}
+function block(yl,h,name,short,count,subsFn){yl.push(`  - slug: ${h}`,`    name_en: ${J(enName(h,name))}`,`    name_et: ${J(name)}`,`    short_slug: ${short}`,...seoLines(4,h,name),`    hero_img: /images/branches/horeca.webp`,`    hero_gradient: from-stone-950/80 via-stone-900/40 to-transparent`,`    product_count: ${count}`,`    subs:`);subsFn(yl);}
+function subsDB(y,l1id){for(const l2 of (dbL2[l1id]||[])){y.push(`      - slug: ${l2.h}`,`        name_en: ${J(enName(l2.h,l2.n))}`,`        name_et: ${J(l2.n)}`,...seoLines(8,l2.h,l2.n),`        product_count: 0`);const l3s=dbL3[l2.h]||[];if(l3s.length){y.push(`        subs:`);for(const[a,b] of l3s)y.push(`          - slug: ${a}`,`            name_en: ${J(enName(a,b))}`,`            name_et: ${J(b)}`,...seoLines(12,a,b),`            product_count: 0`);}}}
 // 25 MAINI LÕPLIK JÄRJEKORD + nimi + slug (Tarmo nägemus 2026-07-19). SSoT = see massiiv (mitte snapshot).
 // Slug ilma v4- prefiksita (block lisab). Count = reaalne distinct tootearv DB-st (2026-07-19).
 const MAINS=[
