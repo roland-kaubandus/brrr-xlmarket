@@ -109,6 +109,7 @@ export function acquireStackLock({ holder = "unknown", waitMs = 60_000, pollMs =
   process.once("exit", () => fileRelease());
   process.once("SIGINT", () => { fileRelease(); process.exit(130); });
   process.once("SIGTERM", () => { fileRelease(); process.exit(143); });
+  process.once("SIGHUP", () => { fileRelease(); process.exit(129); }); // pariteet bash-pooga (2026-10-13)
   process.once("uncaughtException", (e) => { fileRelease(); console.error(e); process.exit(1); });
   return release;
 }

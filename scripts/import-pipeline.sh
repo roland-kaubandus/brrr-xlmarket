@@ -38,7 +38,8 @@ EXFLAG=$([ "$EXECUTE" = "1" ] && echo "--execute" || echo "--dry")
 if [ "$EXECUTE" = "1" ]; then
   source "$ROOT/scripts/lib/stack-lock.sh"
   xl_lock_acquire "import-pipeline" "${XL_DBWRITE_WAIT_S:-1200}" || { echo "❌ stack-lukk hõivatud (deploy käib?) — pipeline KEELDUB."; exit 1; }
-  trap xl_lock_release EXIT
+  # NB: release toimub _pipeline_atexit-is (ainus EXIT-trap) — EI tohi siin eraldi `trap … EXIT` seada,
+  # sest rida ~57 kirjutaks selle üle (bash trap = asendus, mitte liitmine) → vana leke. Signaalid: stack-lock.sh.
 fi
 
 MEDUSA_NAME="$(docker ps --format '{{.Names}}' | grep '^medusa' | head -1 || true)"
@@ -54,7 +55,15 @@ slack() {
   [ -x "$NOTIFY" ] && "$NOTIFY" "$1" >/dev/null 2>&1 || true
 }
 fail() { echo "❌ IMPORT-PIPELINE FAIL [$1]: $2" >&2; slack "❌ XLM import-pipeline FAIL [$1]: $2"; exit "${3:-1}"; }
-trap 'rc=$?; [ "$rc" -ne 0 ] && echo "❌ import-pipeline KATKES (rc=$rc) $(date -u +%FT%TZ)" >&2' EXIT
+# ÜKS EXIT-handler: (a) vea-teade kui rc!=0, (b) stack-luku vabastus ALATI (normaalne lõpp + viga).
+# Varem oli siin eraldi vea-print-trap, mis kirjutas üle rida ~41 release-trapi → lukk ei vabanenud KUNAGI
+# (rc=0 lõpus kustutas `trap - EXIT` kõik). Nüüd üks handler teeb mõlemad; signaalid katab stack-lock.sh.
+_pipeline_atexit() {
+  local rc=$?
+  [ "$rc" -ne 0 ] && echo "❌ import-pipeline KATKES (rc=$rc) $(date -u +%FT%TZ)" >&2
+  [ "$EXECUTE" = "1" ] && command -v xl_lock_release >/dev/null 2>&1 && xl_lock_release
+}
+trap _pipeline_atexit EXIT
 
 echo "=== IMPORT-PIPELINE START ($MODE) $(date -u +%FT%TZ) ==="
 echo "  medusa=$MEDUSA_NAME  db=$DB_NAME  root=$ROOT"
@@ -410,4 +419,5 @@ if [ "$EXECUTE" = "1" ]; then
   DUR=$(( $(date -u +%s) - RUN_START ))
   slack "$(printf '✅ XLM import-pipeline OK (%ss)\nUusi tooteid: %s · dup-skip: %s · Review-bucketis ootab: %s (sünon+klass)' "$DUR" "${CREATED_N:-0}" "${SKIPPED_N:-0}" "$REVIEW_N")"
 fi
-trap - EXIT
+# NB: EI tee enam `trap - EXIT` — _pipeline_atexit PEAB jooksma normaalse lõpu korral (rc=0), et stack-lukk
+# vabaneks. rc=0 → vea-teadet ei prindi (rc-kontroll handleris), ainult release. (Vana `trap - EXIT` oli leke.)
