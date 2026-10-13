@@ -139,6 +139,22 @@ kui taxonomy-v4 SHA sisaldab fix'i.**
 
 ---
 
+## 🛑 HARD RULE #10 — GIT-OPERATSIOONIDES EI KASUTATA KUNAGI GLOB'E (`git mv` / `git checkout` / `git add`)
+
+> Lisatud 2026-10-13 (Tarmo, pärast glob-õnnetust).
+
+**Üheski git-käsus (`git mv`, `git checkout`, `git restore`, `git add`, `git rm`) EI kasutata shell-glob'i (`*`, `v4-*.json`, `reports/**`) ega `git add -A`/`git add .`.** Loetle ALATI iga fail EKSPLITSIITSELT nime järgi.
+
+**Why:** 2026-10-13 `mv reports/spec-mallid/v4-*.json` (glob) haaras **90 faili 6 asemel** — shell laiendab glob'i KÕIGI vastete peale, mitte selle peale, mida mõtlesid. Git-operatsioon on raskesti tagasipööratav (staging/commit/rename) → valesti haaratud failid satuvad commit'i vaikselt. **6 untracked `reports/spec-mallid/*.json` on püsivalt commit'idest VÄLJAS** → glob tõmbaks need sisse.
+
+**Kuidas:**
+- `git add -- path/a.json path/b.json` (iga fail eraldi), MITTE `git add reports/*.json`.
+- `git mv vana.txt uus.txt` ühekaupa, MITTE `git mv dir/v4-*.json dest/`.
+- Enne iga `git add`/`commit` → `git status --porcelain` üle vaadata, et EI lähe kaasa soovimatut.
+- Deploy/automaat-skriptid: `git add -- <üks-ekspl.-path>` (vt `coolify-deploy.sh` regen-samm — commitib AINULT `storefront/lib/slug-redirects.generated.json`).
+
+---
+
 ## Sessioon 2026-05-02 muudatused (hommikune pool)
 
 **Sessioonilogi:** `xlmarket/memory/sessions/2026-05-02-xl.md`

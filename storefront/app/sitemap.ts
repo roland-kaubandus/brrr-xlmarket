@@ -1,8 +1,13 @@
 import type { MetadataRoute } from "next"
 import { allVerticalSlugs } from "@/lib/verticals"
 
-export const revalidate = 3600 // regenerate sitemap at most every 1 hour
-export const dynamic = "force-static"
+// DÜNAAMILINE / RUNTIME (Tarmo 2026-10-13): sitemap genereeritakse päringu-ajal medusa pealt,
+// MITTE build-ajal. JUURPÕHJUS: `force-static` prerenderdas build-ajal, kus medusa polnud
+// kättesaadav → ainult ~30 staatilist URL-i (0 toodet/kategooriat). `force-dynamic` EI prerenderda
+// build-ajal → ükski tühi versioon ei teki; runtime'is käib medusa (18968 toodet + 1688 kat) ja
+// sitemap täitub täielikult. Crawler'id küsivad sitemap'i harva → per-päring arvutus on OK.
+// Deploy-värav (coolify-deploy.sh) fail-loud'ib Telegrami, kui sitemap jääb ootamatult väikeseks.
+export const dynamic = "force-dynamic"
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://xlmarket.ee"
 const MEDUSA_URL = process.env.NEXT_PUBLIC_MEDUSA_URL!
@@ -61,7 +66,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }
   }
 
-  const deadline = Date.now() + 15_000 // 15s max for entire sitemap generation
+  // 60s: ~40 toote-päringut (18968/500) + kategooriad, iga 3s timeout'iga. 15s kärpis sitemap'i.
+  const deadline = Date.now() + 60_000
 
   try {
     // Categories (fetch in batches)
