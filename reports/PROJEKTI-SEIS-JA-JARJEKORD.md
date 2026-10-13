@@ -220,6 +220,11 @@ Kõik LIVE storefront-konteineris (tag 93c1f8b3):
 ### A8. Cutover teostus — ALUSTAMATA (strateegia A kinnitatud §1.10)
 - Runbook'i **teadlikult EI kirjutata enne FAAS 4 valmimist** (vananeks). Päris augud: (1) `.eu` routing puudub (Traefik Host / 301) · (2) TLS/LE bare-domeenile · (3) uo28 backup enne stop'i · (4) E2E smoke prod-domeenil (Montonio makse) · (5) feed-sync sihtmärk (juba k33g → A puhul muutmatu). 2 pisiauku: uptime-kuma `xlmarket.ee` monitor + k33g Meili snapshot.
 
+### A9. EN-pakett + mitmekeelsus — OSALISELT (A1/A2 valmis, B1 pooleli, A3/A4 PÄRAST launchi)
+- **A1+A2 ✅** (2026-10-13, commit taxonomy-v4 c916d53d): kategooria+vertical SEO-meta locale-teadlik (`description_et`→fallback `_en`) + hreflang alternate'id. (otsing=noindex, haru=301 → hreflang moot; sitemap xhtml:link üleliigne.)
+- **B1 🟡 pooleli:** L2/L3 SEO-tekstid (ET+EN), Sonnet Batch API, `seoClaimGate` (0 numbrit/lubadust), backfill+hook (HARD RULE #5). + **kategooria-nimede tõlge** (1970/1970 `name_en==name_et` eesti keeles — EI tõlgitud): konsensus Sonnet+Opus + glossary + nimevärav. **SSoT = DB** (`taxonomy_node_translation` locale='en' + UUS `taxonomy_node_seo`, migration 011); genyM õpib DB-st lugema (muidu klobberdab). Plaan+kulu: `reports/en-pakett-dry-kuluhinnang.md`, DRY-valim `reports/en-pakett-dry-valim.md`.
+- **A3+A4 🔜 PÄRAST launchi, eraldi "uue keele" projekt (Tarmo 2026-10-13):** A3 = 309 inline `locale==='et'?…:…` ternaari 44 failis → sõnastik (`messages/{et,en}.json` olemas, kasutusel 2 failis); DRY + 3. keele eeltingimus. A4 = 3. keele (ES/DE) generaliseerimine (choke: `i18n.ts` regex `(et|en)`, `getProductTitle`/`nodeName` binaarne, `_en`/`_et` 2 suffiksit, hreflang 2-võtme obj, OG `en_US`). Ei blokeeri EN-i (EN töötab). Vt mälu `en-pakett-otsused`.
+
 ---
 
 ## 4. FAASI-JÄRJEKORD (rekonstrueeritud) — ⚠️ NUMERATSIOON EBASELGE
