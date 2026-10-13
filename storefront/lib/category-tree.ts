@@ -36,8 +36,8 @@ export interface CategoryNode {
   fixed_l2?: boolean
   description_en?: string | null
   tagline_en?: string | null
-  // EN-only store — `*_et` fields stay optional so legacy JSON rows don't
-  // break, but no consumer reads them.
+  // `*_et` locale-väljad: `nodeName()` loeb `name_et` (ET-lehel), generateMetadata
+  // loeb `description_et`/`tagline_et` (A1). Optional, et legacy JSON ei katkeks.
   name_et?: string
   description_et?: string | null
   tagline_et?: string | null

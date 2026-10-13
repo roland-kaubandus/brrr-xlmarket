@@ -29,15 +29,31 @@ export async function generateStaticParams() {
 export async function generateMetadata(
   { params }: { params: Promise<{ locale: string; vertical: string }> },
 ): Promise<Metadata> {
-  const { vertical } = await params
+  const { locale, vertical } = await params
   const v = getVerticalBySlug(MODE, vertical)
   if (!v) return {}
+  // A1: locale-teadlik meta (ET-lehel ET, muidu EN-baseline) — nagu kategoorialeht.
+  const loc = localisedVertical(v, locale)
+  const metaTitle = locale === "et"
+    ? ((v as { meta_title_et?: string }).meta_title_et ?? v.meta_title_en ?? `${loc.name} — XLMarket`)
+    : (v.meta_title_en ?? `${v.name_en} — XLMarket`)
+  const metaDesc = locale === "et"
+    ? ((v as { meta_description_et?: string }).meta_description_et ?? loc.description ?? v.meta_description_en ?? v.description_en)
+    : (v.meta_description_en ?? v.description_en)
   return {
-    title: v.meta_title_en ?? `${v.name_en} — XLMarket`,
-    description: v.meta_description_en ?? v.description_en,
+    title: metaTitle,
+    description: metaDesc,
+    // A2: hreflang alternate'id (puudusid) — nagu kategooria/toode/layout.
+    alternates: {
+      canonical: `https://xlmarket.ee/${locale}/${MODE}/${vertical}`,
+      languages: {
+        et: `https://xlmarket.ee/et/${MODE}/${vertical}`,
+        en: `https://xlmarket.ee/en/${MODE}/${vertical}`,
+      },
+    },
     openGraph: {
-      title: v.meta_title_en ?? v.name_en,
-      description: v.meta_description_en ?? v.description_en,
+      title: metaTitle,
+      description: metaDesc,
       images: v.hero_img ? [v.hero_img] : undefined,
     },
   }

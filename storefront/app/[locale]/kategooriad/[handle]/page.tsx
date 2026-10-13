@@ -76,14 +76,28 @@ export async function generateMetadata({ params }: Props) {
   const displayName = node
     ? nodeName(node, locale)
     : (category?.name || humanize(handle))
-  const nodeDesc = node?.description_en ?? node?.tagline_en
+  // A1: loe SEO-tekst LOCALE-teadlikult (nagu nodeName). Enne luges alati *_en → ET-leht sai
+  // ingliskeelse meta. ET → _et (fallback _en), EN → _en. (Sisu täidab B1 SEO-generaator.)
+  const nodeDesc = locale === "et"
+    ? (node?.description_et ?? node?.tagline_et ?? node?.description_en ?? node?.tagline_en)
+    : (node?.description_en ?? node?.tagline_en)
   const desc =
     nodeDesc ||
-    `${displayName} — professional equipment at great prices. Fast delivery in Estonia.`
+    (locale === "et"
+      ? `${displayName} — professionaalne varustus soodsa hinnaga. Kiire tarne Eestis.`
+      : `${displayName} — professional equipment at great prices. Fast delivery in Estonia.`)
   const shouldNoindex = NOINDEX_HANDLES.has(handle)
   return {
     title: `${displayName} — XLMARKET`,
     description: desc,
+    // A2: hreflang alternate'id (nagu toode/layout) — kategooria-lehel puudusid.
+    alternates: {
+      canonical: `https://xlmarket.ee/${locale}/kategooriad/${handle}`,
+      languages: {
+        et: `https://xlmarket.ee/et/kategooriad/${handle}`,
+        en: `https://xlmarket.ee/en/kategooriad/${handle}`,
+      },
+    },
     openGraph: { title: `${displayName} — XLMARKET`, description: desc, type: "website" },
     robots: shouldNoindex ? { index: false, follow: false } : undefined,
   }
