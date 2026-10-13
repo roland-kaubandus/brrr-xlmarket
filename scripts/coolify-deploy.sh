@@ -24,7 +24,10 @@ COOLIFY_TOKEN="${COOLIFY_TOKEN#<}"; COOLIFY_TOKEN="${COOLIFY_TOKEN%>}"
 FORCE="false"; [ "${1:-}" = "--force" ] && FORCE="true"
 
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
-SITE_URL="${XL_SITE_URL:-https://xlmarket.ee}"
+# Deploy SIHIB STAGING-storefront'i (k33g COOLIFY_FQDN=staging.xlmarket.ee).
+# EI tohi olla xlmarket.ee — see on uo28 PROD coming-soon placeholder (külmutatud, 0 <loc>)
+# → sitemap-värav testiks vale hosti ja annaks vale-alarmi. Cutoveril muuda XL_SITE_URL-iga.
+SITE_URL="${XL_SITE_URL:-https://staging.xlmarket.ee}"
 
 # Telegram-muutujad samamoodi grep'iga (EI source'i — COOLIFY_TOKEN 'N|'-väärtus katkestaks).
 # Telegrami token 'digits:hash' → ':' on grep/cut-ohutu (lõikame '=' pealt). Väärtusi EI logita.
@@ -58,6 +61,14 @@ regen_slug_redirects() {
   local f="storefront/lib/slug-redirects.generated.json"
   if ! git -C "$ROOT" status --porcelain -- "$f" | grep -q .; then
     echo "  JSON muutumatu — commit pole vajalik."; return 0
+  fi
+  # `generatedAt`-ajatempel muutub IGAL jooksul → ilma selle filtrita committaks iga deploy (ka öine)
+  # müra-commit'i + tarbetu dual-branch cherry-pick'i. Kui AINULT generatedAt-rida muutus (redirect-SISU
+  # sama) → revert + skip. git diff -U0 näitab vaid muutunud read; väljenda ++/-- päised + generatedAt.
+  if [ -z "$(git -C "$ROOT" diff -U0 -- "$f" | grep '^[+-]' | grep -vE '^(\+\+\+|---)' | grep -v '"generatedAt"')" ]; then
+    echo "  Ainult generatedAt-ajatempel muutus (redirect-sisu sama) — revert + EI commiti."
+    git -C "$ROOT" checkout -- "$f" 2>/dev/null || true
+    return 0
   fi
   local br; br="$(git -C "$ROOT" rev-parse --abbrev-ref HEAD)"
   if [ "$br" != "main" ] && [ "$br" != "taxonomy-v4" ]; then
@@ -111,12 +122,14 @@ sitemap_gate() {
   echo "→ Sitemap-värav: tõmban $SITE_URL/sitemap.xml (oodatud ≥ $expected <loc>)…"
   local body loc
   body="$(curl -sk --max-time 90 "$SITE_URL/sitemap.xml" 2>/dev/null || true)"
-  loc="$(printf '%s' "$body" | grep -o '<loc>' | wc -l | tr -d '[:space:]')"
+  # grep -o 0-vastega → exit 1; `set -euo pipefail` all tapaks kogu skripti ENNE fail-loud tg()/exit 3.
+  # Mähi grep { … || true; }-sse → 0 vastet = "0", värav teeb korrektse fail-loud'i (mitte vaikse exit 1).
+  loc="$(printf '%s' "$body" | { grep -o '<loc>' || true; } | wc -l | tr -d '[:space:]')"
   # FLOOR: vähemalt ÜHE locale jagu tooteid (products). Tühja/katki (nt 30 URL-i) püüab kindlalt;
   # 2 locale + kategooriad teeb tegeliku arvu ~2×, nii et see on helde (isekohanduv) alumine lävi.
   if [ "${loc:-0}" -lt "$expected" ]; then
     echo "❌ SITEMAP KATKI: ainult ${loc:-0} <loc> (floor $expected). Tõenäoliselt tühi/truncated."
-    tg "❌ xlmarket.ee SITEMAP KATKI pärast deploy'd: ainult ${loc:-0} <loc>-kirjet (oodatud ≥ $expected toodet). Kontrolli sitemap.ts / medusa kättesaadavust."
+    tg "❌ $SITE_URL SITEMAP KATKI pärast deploy'd: ainult ${loc:-0} <loc>-kirjet (oodatud ≥ $expected toodet). Kontrolli sitemap.ts / medusa kättesaadavust."
     SITEMAP_FAIL=1
   else
     echo "✅ Sitemap OK: $loc <loc>-kirjet (floor $expected)."
