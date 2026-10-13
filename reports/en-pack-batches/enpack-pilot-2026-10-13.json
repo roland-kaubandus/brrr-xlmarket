@@ -1,0 +1,611 @@
+{
+  "batch_id": "enpack-pilot-2026-10-13",
+  "created_at": "2026-10-13T14:14:53.708Z",
+  "done": {
+    "v4-autovaruosad-ja-tarvikud-valistarvikud-ja-rehvitarvikud-lumeharjad-jaakraabitsad": {
+      "name_en": "Snow Brushes & Ice Scrapers",
+      "seo": true
+    },
+    "v4-autovaruosad-ja-tarvikud-autovaruosad-ohkvedrustuse-komplektid-ja-kompressorid": {
+      "name_en": "Air Suspension Kits & Compressors",
+      "seo": true
+    },
+    "v4-autovaruosad-autovalgustus-led-tuled": {
+      "name_en": "Automotive Lighting & LED Lights",
+      "seo": true
+    },
+    "v4-autovaruosad-ja-tarvikud-valistarvikud-astmelauad-ja-astmed": {
+      "name_en": "Running Boards & Steps",
+      "seo": true
+    },
+    "v4-autovaruosad-ja-tarvikud-pukseerimisseadmed-vintsi-trossid-ja-taasteplokid": {
+      "name_en": "Winch Ropes & Snatch Blocks",
+      "seo": true
+    },
+    "v4-lemmikloomatarbed-lemmiklooma-varavad": {
+      "name_en": "Pet Gates",
+      "seo": true
+    },
+    "v4-meditsiin-ja-liikumisabi-meditsiinitarvikud": {
+      "name_en": "Medical Supplies",
+      "seo": true
+    },
+    "v4-aed-ja-aiatehnika-l4-grilliplaadid-ja-kaitsekatted": {
+      "name_en": "Grill Griddles",
+      "seo": true
+    },
+    "v4-veekogu-umbrohurehad": {
+      "name_en": "Aquatic Weed Rakes",
+      "seo": true
+    },
+    "v4-garaaziseadmed-tungrauad-porta-power-komplektid": {
+      "name_en": "Porta Power Kits",
+      "seo": true
+    },
+    "v4-elektroonika-nutikodu": {
+      "name_en": "Smart Home & Weather",
+      "seo": true
+    },
+    "v4-santehnika-porandaliistkutte-katted": {
+      "name_en": "Baseboard Heater Covers",
+      "seo": true
+    },
+    "v4-aed-ja-aiatehnika-l1-vaetise-ja-seemnelaotajad": {
+      "name_en": "Spreaders & Seeders",
+      "seo": true
+    },
+    "v4-suurkook-jahutusega-ettevalmistusjaamad": {
+      "name_en": "Refrigerated Prep Tables",
+      "seo": true
+    },
+    "v4-ladu-ekspositsioonistendid": {
+      "name_en": "Display Stands & Fixtures",
+      "seo": true
+    },
+    "v4-tooriistad-ja-tarvikud-elektrilised-tooriistad-teritusmasinad": {
+      "name_en": "Drill Bit Sharpeners",
+      "seo": true
+    },
+    "v4-meditsiin-ja-liikumisabi-meditsiinitarvikud-geriaatrilised-toolid": {
+      "name_en": "Geriatric Chairs",
+      "seo": true
+    },
+    "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-suusa-ja-kaitseprillid": {
+      "name_en": "Ski & Snow Goggles",
+      "seo": true
+    },
+    "v4-tooriistad-ja-tarvikud-turva-ja-objektivarustus-signaali-blokeerivad-faraday-tarvikud": {
+      "name_en": "Faraday Bags & Signal Blocking Accessories",
+      "seo": true
+    },
+    "v4-autovaruosad-ja-tarvikud-pukseerimisseadmed-pukseerimisketid-ja-ahelad": {
+      "name_en": "Tow Chains",
+      "seo": true
+    }
+  },
+  "prev": {
+    "v4-autovaruosad-ja-tarvikud-valistarvikud-ja-rehvitarvikud-lumeharjad-jaakraabitsad": {
+      "node_id": "pcat_3snow",
+      "tr": null,
+      "seo": null
+    },
+    "v4-autovaruosad-ja-tarvikud-autovaruosad-ohkvedrustuse-komplektid-ja-kompressorid": {
+      "node_id": "pcat_ag2_3x4_4",
+      "tr": null,
+      "seo": null
+    },
+    "v4-autovaruosad-autovalgustus-led-tuled": {
+      "node_id": "pcat_vt_5",
+      "tr": null,
+      "seo": null
+    },
+    "v4-autovaruosad-ja-tarvikud-valistarvikud-astmelauad-ja-astmed": {
+      "node_id": "pcat_vt_8",
+      "tr": null,
+      "seo": null
+    },
+    "v4-autovaruosad-ja-tarvikud-pukseerimisseadmed-vintsi-trossid-ja-taasteplokid": {
+      "node_id": "pcat_ag2_3x1_13",
+      "tr": null,
+      "seo": null
+    },
+    "v4-lemmikloomatarbed-lemmiklooma-varavad": {
+      "node_id": "pcat_lp_1_2",
+      "tr": null,
+      "seo": null
+    },
+    "v4-meditsiin-ja-liikumisabi-meditsiinitarvikud": {
+      "node_id": "pcat_v4_l16_2",
+      "tr": null,
+      "seo": null
+    },
+    "v4-aed-ja-aiatehnika-l4-grilliplaadid-ja-kaitsekatted": {
+      "node_id": "pcat_t3a_4_1",
+      "tr": null,
+      "seo": null
+    },
+    "v4-veekogu-umbrohurehad": {
+      "node_id": "pcat_7weedrake",
+      "tr": null,
+      "seo": null
+    },
+    "v4-garaaziseadmed-tungrauad-porta-power-komplektid": {
+      "node_id": "pcat_ag2_2x3_14",
+      "tr": null,
+      "seo": null
+    },
+    "v4-elektroonika-nutikodu": {
+      "node_id": "pcat_23smart",
+      "tr": null,
+      "seo": null
+    },
+    "v4-santehnika-porandaliistkutte-katted": {
+      "node_id": "pcat_10cov",
+      "tr": null,
+      "seo": null
+    },
+    "v4-aed-ja-aiatehnika-l1-vaetise-ja-seemnelaotajad": {
+      "node_id": "pcat_t3a_1_6",
+      "tr": null,
+      "seo": null
+    },
+    "v4-suurkook-jahutusega-ettevalmistusjaamad": {
+      "node_id": "pcat_5n14",
+      "tr": null,
+      "seo": null
+    },
+    "v4-ladu-ekspositsioonistendid": {
+      "node_id": "pcat_22display",
+      "tr": null,
+      "seo": null
+    },
+    "v4-tooriistad-ja-tarvikud-elektrilised-tooriistad-teritusmasinad": {
+      "node_id": "pcat_t3f_2_7",
+      "tr": null,
+      "seo": null
+    },
+    "v4-meditsiin-ja-liikumisabi-meditsiinitarvikud-geriaatrilised-toolid": {
+      "node_id": "pcat_f4_16x2_12",
+      "tr": null,
+      "seo": null
+    },
+    "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-suusa-ja-kaitseprillid": {
+      "node_id": "pcat_el_12x1_14",
+      "tr": null,
+      "seo": null
+    },
+    "v4-tooriistad-ja-tarvikud-turva-ja-objektivarustus-signaali-blokeerivad-faraday-tarvikud": {
+      "node_id": "pcat_t3f_13_11",
+      "tr": null,
+      "seo": null
+    },
+    "v4-autovaruosad-ja-tarvikud-pukseerimisseadmed-pukseerimisketid-ja-ahelad": {
+      "node_id": "pcat_ag2_3x1_8",
+      "tr": null,
+      "seo": null
+    }
+  },
+  "skipped": {},
+  "samples": [
+    {
+      "handle": "v4-autovaruosad-ja-tarvikud-valistarvikud-ja-rehvitarvikud-lumeharjad-jaakraabitsad",
+      "id": "pcat_3snow",
+      "nameEt": "Lumeharjad ja jääkraabitsad",
+      "name_en": "Snow Brushes & Ice Scrapers",
+      "seo": {
+        "description_et": "Siit leiad lumeharjad, jääkraabitsad ja muud talvised abivahendid auto puhastamiseks lumest ja jääst. Sobivad sõiduautodele, maasturitele ja kaubikutele ning aitavad hoida klaasid ja peeglid nähtavad ka karmi ilmaga. Vali oma vajadusele ja auto suurusele sobiv mudel, pidades silmas käepikkust ja materjali vastupidavust.",
+        "description_en": "This category features snow brushes, ice scrapers and other winter tools for clearing snow and ice off your vehicle. Suitable for cars, SUVs and vans, helping keep windows and mirrors clear in harsh weather. Choose a model that fits your vehicle size and usage needs, considering handle length and build quality.",
+        "tagline_et": "Selge klaas igas ilmas",
+        "tagline_en": "Clear view in any weather",
+        "image_desc_et": "Heledal valgel taustal lumehari pika varrega ja integreeritud jääkraabitsaga, mis on tüüpiline selle kategooria toode."
+      },
+      "nameGate": {
+        "accurate": true,
+        "natural": true,
+        "term_at_start": false
+      },
+      "seoGate": {
+        "pass": true,
+        "offenders": []
+      }
+    },
+    {
+      "handle": "v4-autovaruosad-ja-tarvikud-autovaruosad-ohkvedrustuse-komplektid-ja-kompressorid",
+      "id": "pcat_ag2_3x4_4",
+      "nameEt": "Õhkvedrustuse komplektid ja kompressorid",
+      "name_en": "Air Suspension Kits & Compressors",
+      "seo": {
+        "description_et": "Siit leiad õhkvedrustuse komplektid, õhkpadjad ja kompressorid erinevatele veo- ja sõiduautodele, mis aitavad tasandada koormust ja vähendada sõidukõikumist. Sobivad nii raskema koorma vedajatele kui ka neile, kes soovivad stabiilsemat ja mugavamat sõiduomadust. Valikul tasub jälgida sobivust konkreetse sõidukimudeliga ning komplekti koostist ja materjali kvaliteeti.",
+        "description_en": "This category features air suspension kits, air springs and compressors for trucks and passenger vehicles, designed to level loads and smooth out ride vibrations. They suit both heavy-duty haulers and drivers seeking a steadier, more comfortable ride. When choosing, check compatibility with your specific vehicle model and the build quality of the components.",
+        "tagline_et": "Stabiilsem sõit iga koormaga",
+        "tagline_en": "Smoother ride under any load",
+        "image_desc_et": "Heledal valgel taustal kujutatud õhkvedrustuse komplekt koos õhkpatjade ja kompressoriga."
+      },
+      "nameGate": {
+        "accurate": true,
+        "natural": true,
+        "term_at_start": false
+      },
+      "seoGate": {
+        "pass": true,
+        "offenders": []
+      }
+    },
+    {
+      "handle": "v4-autovaruosad-autovalgustus-led-tuled",
+      "id": "pcat_vt_5",
+      "nameEt": "Autovalgustus ja LED-tuled",
+      "name_en": "Automotive Lighting & LED Lights",
+      "seo": {
+        "description_et": "Siit leiad erinevad LED-valgustuslahendused autodele, ATV-dele, UTV-dele ja muudele sõidukitele, sealhulgas vilkurpiitsad, lisatuled ja dekoratiivvalgustuse komplektid. Sobivad nii igapäevaseks kasutuseks kui ka maastikusõiduks, lisades nähtavust ja stiili. Valides tasub jälgida paigaldusviisi, juhtimisvõimalusi ning sobivust oma sõiduki tüübiga.",
+        "description_en": "This category features LED lighting solutions for cars, ATVs, UTVs and other vehicles, including whip lights, auxiliary lights and decorative lighting sets. Suitable for everyday driving as well as off-road use, adding visibility and style. When choosing, consider the mounting method, control options and compatibility with your vehicle type.",
+        "tagline_et": "Valgusta oma sõitu, näe ja paista",
+        "tagline_en": "Light up your ride, be seen",
+        "image_desc_et": "Heledal valgel taustal kujutatud paindlik LED-vilkurpiitsa valgusvarras koos kaugjuhtimispuldiga."
+      },
+      "nameGate": {
+        "accurate": true,
+        "natural": true,
+        "term_at_start": false
+      },
+      "seoGate": {
+        "pass": true,
+        "offenders": []
+      }
+    },
+    {
+      "handle": "v4-autovaruosad-ja-tarvikud-valistarvikud-astmelauad-ja-astmed",
+      "id": "pcat_vt_8",
+      "nameEt": "Astmelauad ja astmed",
+      "name_en": "Running Boards & Steps",
+      "seo": {
+        "description_et": "Siit leiad astmelauad, küljeastmed ja haakeastmed, mis lihtsustavad sisenemist sõidukisse ja väljumist sellest, samuti abistavad lasti laadimisel. Sobivad erinevatele veoautodele, maasturitele ja haagistele. Vali oma sõiduki tüübile ja kasutusotstarbele sobiv kinnitusviis ning materjal.",
+        "description_en": "This category features running boards, side steps and hitch-mounted steps that make entering, exiting and loading your vehicle easier. They fit a wide range of trucks, SUVs and trailers. Choose the mounting style and material that best suits your vehicle and needs.",
+        "tagline_et": "Mugav ja kindel ligipääs sõidukile",
+        "tagline_en": "Easy, secure access to your vehicle",
+        "image_desc_et": "Heledal valgel taustal metallist astmelaud või haakeaste, mis on tüüpiline näide sellest kategooriast."
+      },
+      "nameGate": {
+        "accurate": true,
+        "natural": true,
+        "term_at_start": false
+      },
+      "seoGate": {
+        "pass": true,
+        "offenders": []
+      }
+    },
+    {
+      "handle": "v4-autovaruosad-ja-tarvikud-pukseerimisseadmed-vintsi-trossid-ja-taasteplokid",
+      "id": "pcat_ag2_3x1_13",
+      "nameEt": "Vintsi trossid ja taasteplokid",
+      "name_en": "Winch Ropes & Snatch Blocks",
+      "seo": {
+        "description_et": "Siit leiad vintsitrossid ja taasteplokid maastikusõidukitele, veoautodele ning haagistele – nii süntureketest kui metallist variandid. Sobivad pukseerimiseks, väljavedamiseks ja koormuse suuna muutmiseks keerulistes oludes. Vali sõiduki ja kasutusotstarbe järgi õige trossi tüüp, pikkus ja materjal ning sobiv taasteplokk koos vajalike kinnitustega.",
+        "description_en": "This category features winch ropes and snatch blocks for off-road vehicles, trucks and trailers, available in both synthetic and steel versions. They are suited for towing, self-recovery and redirecting pulling force in demanding conditions. Choose the right rope type, length and material for your vehicle and task, along with a matching snatch block and necessary hardware.",
+        "tagline_et": "Jõuline abi pukseerimiseks ja väljavedamiseks",
+        "tagline_en": "Reliable gear for towing and recovery",
+        "image_desc_et": "Heledal valgel taustal keritud vintsitross koos metallist konksu ja taasteplokiga."
+      },
+      "nameGate": {
+        "accurate": true,
+        "natural": true,
+        "term_at_start": false
+      },
+      "seoGate": {
+        "pass": true,
+        "offenders": []
+      }
+    },
+    {
+      "handle": "v4-lemmikloomatarbed-lemmiklooma-varavad",
+      "id": "pcat_lp_1_2",
+      "nameEt": "Lemmiklooma-väravad",
+      "name_en": "Pet Gates",
+      "seo": {
+        "description_et": "Lemmiklooma-väravad aitavad piirata koera või kassi liikumist kodus ning hoida lemmiku eemal teatud ruumidest või trepikojast. Valikus on nii vabalt seisvad kui seina külge kinnitatavad lahendused erinevatele ukseavadele ja koridoridele. Valides tasub jälgida värava sobivust ruumi laiusega, materjali vastupidavust ja kinnitusviisi, mis sobib just sinu kodule.",
+        "description_en": "Pet gates help control where your dog or cat can roam around the home, keeping them away from certain rooms or staircases. The range includes both freestanding and wall-mounted options suited to different doorways and hallways. When choosing, consider how well the gate fits your space, the sturdiness of the material, and a mounting style that works for your home.",
+        "tagline_et": "Turvaline piir lemmikule kodus",
+        "tagline_en": "A safe boundary for your pet",
+        "image_desc_et": "Heledal valgel taustal seisev valge piirdevärav koerale või kassile avatud ukseava ees."
+      },
+      "nameGate": null,
+      "seoGate": {
+        "pass": true,
+        "offenders": []
+      }
+    },
+    {
+      "handle": "v4-meditsiin-ja-liikumisabi-meditsiinitarvikud",
+      "id": "pcat_v4_l16_2",
+      "nameEt": "Meditsiinitarvikud",
+      "name_en": "Medical Supplies",
+      "seo": {
+        "description_et": "Meditsiinitarvikute kategooriast leiad mitmekülgse valiku abivahendeid ja tarvikuid igapäevaseks hoolduseks, esmaabiks ning tervise jälgimiseks. Sobivad nii kodusele kasutajale kui ka tervishoiu- ja hooldusasutustele. Valikul tasub jälgida materjali kvaliteeti, sobivust kasutuseesmärgiga ning hügieeninõuete täitmist.",
+        "description_en": "The Medical Supplies category offers a versatile range of aids and accessories for everyday care, first aid, and health monitoring. Suitable for home use as well as healthcare and care facilities. When choosing, pay attention to material quality, suitability for the intended use, and hygiene standards.",
+        "tagline_et": "Usaldusväärsed abivahendid tervise heaks",
+        "tagline_en": "Reliable aids for your health",
+        "image_desc_et": "Heledal valgel taustal on kujutatud korrastatud meditsiinitarvikute komplekti, näiteks kinnaste, sidemete ja termomeetri kombinatsiooni."
+      },
+      "nameGate": null,
+      "seoGate": {
+        "pass": true,
+        "offenders": []
+      }
+    },
+    {
+      "handle": "v4-aed-ja-aiatehnika-l4-grilliplaadid-ja-kaitsekatted",
+      "id": "pcat_t3a_4_1",
+      "nameEt": "Grilliplaadid",
+      "name_en": "Grill Griddles",
+      "seo": {
+        "description_et": "Grilliplaadid on tasapinnalised metallist plaadid, mis sobivad gaasigrillidele ja välikeedualustele liha, köögiviljade ning teppanyaki-roogade valmistamiseks. Need sobivad nii koduseks grillimiseks kui ka matkadele, perepidudele ja äärelinnapidudele. Vali plaat, mis mahub sinu grilli peale ja mille materjal vastab kasutusviisile.",
+        "description_en": "Griddle plates are flat metal surfaces designed for gas grills and outdoor cooktops, perfect for preparing meat, vegetables and teppanyaki-style meals. They suit home grilling as well as camping trips, tailgating and family gatherings. Choose a plate that fits your grill size and matches your intended use.",
+        "tagline_et": "Tasane plaat, mitmekülgne grillimine",
+        "tagline_en": "Flat plate, versatile grilling",
+        "image_desc_et": "Pisipilt kujutab roostevabast terasest ristkülikukujulist grilliplaati käepidemetega, eredal valgel taustal."
+      },
+      "nameGate": {
+        "accurate": true,
+        "natural": true,
+        "term_at_start": false
+      },
+      "seoGate": {
+        "pass": true,
+        "offenders": []
+      }
+    },
+    {
+      "handle": "v4-veekogu-umbrohurehad",
+      "id": "pcat_7weedrake",
+      "nameEt": "Veekogu-umbrohurehad",
+      "name_en": "Aquatic Weed Rakes",
+      "seo": {
+        "description_et": "Veekogu-umbrohurehad on mõeldud tiikide, järvede ja väiksemate veekogude puhastamiseks vetikatest, vee-umbrohtudest ja muudast. Sobivad aiaomanikele ja veekogu hooldajatele, kes soovivad hoida kaldaala ja veepinda korras ilma keemiliste vahenditeta. Valides tasub jälgida rehapea materjali, käepideme pikkust ja kinnitusköie olemasolu, et tööriist sobiks just sinu veekogu suuruse ja kaldale ligipääsuga.",
+        "description_en": "Aquatic weed rakes are designed to clear ponds, lakes, and smaller water bodies of algae, water weeds, and debris. They suit garden owners and waterside caretakers who want to keep shorelines and water surfaces tidy without chemical treatments. When choosing one, consider the rake head material, handle length, and whether a tether rope is included, so the tool matches your water body's size and shoreline access.",
+        "tagline_et": "Puhas veepind ilma keemiata",
+        "tagline_en": "Clear water, no chemicals needed",
+        "image_desc_et": "Heledal valgel taustal metallist umbrohureha koos pikendatava käepideme ja kinnitusköiega, tüüpiline veekogu puhastustööriist."
+      },
+      "nameGate": {
+        "accurate": true,
+        "natural": true,
+        "term_at_start": false
+      },
+      "seoGate": {
+        "pass": true,
+        "offenders": []
+      }
+    },
+    {
+      "handle": "v4-garaaziseadmed-tungrauad-porta-power-komplektid",
+      "id": "pcat_ag2_2x3_14",
+      "nameEt": "Porta power komplektid",
+      "name_en": "Porta Power Kits",
+      "seo": {
+        "description_et": "Porta power komplektid on hüdraulilised tööriistakomplektid autokere ja raami parandustöödeks, mõeldud nii professionaalsele automehaanikule kui ka kodusele garaažimeistrile. Komplektis on tavaliselt pump, silinder ja erinevad otsikud ning voolikud, mis võimaldavad jõudu suunata ka raskesti ligipääsetavatesse kohtadesse. Valikul tasub jälgida komplekti suurust, kaasasolevaid tarvikuid ja sobivust kavandatava töö iseloomuga.",
+        "description_en": "Porta power kits are hydraulic tool sets designed for auto body and frame repair, suitable for both professional mechanics and home garage use. A typical kit includes a pump, ram cylinder, hose, and various attachments that allow force to be directed into hard-to-reach areas. When choosing a kit, consider its size, included accessories, and suitability for the intended repair work.",
+        "tagline_et": "Jõuline abiline autokere parandustöödeks",
+        "tagline_en": "Powerful help for auto body repairs",
+        "image_desc_et": "Heledal valgel taustal hüdrauliline porta power komplekt koos pumba, voolikute ja erinevate otsikutega kandekohvris."
+      },
+      "nameGate": null,
+      "seoGate": {
+        "pass": true,
+        "offenders": []
+      }
+    },
+    {
+      "handle": "v4-elektroonika-nutikodu",
+      "id": "pcat_23smart",
+      "nameEt": "Nutikodu ja ilm",
+      "name_en": "Smart Home & Weather",
+      "seo": {
+        "description_et": "Nutikodu ja ilmajaamade kategoorias leiad seadmed, mis aitavad kodu mugavamaks ja turvalisemaks muuta ning ilmaolusid jälgida. Sobivad nii tehnikahuvilisele kui ka igapäevasele kasutajale, kes soovib kodu kaugjuhtida või keskkonnatingimusi kontrolli all hoida. Valikul tasub mõelda, millist tüüpi seadet vajad ja kuidas see sinu kodu süsteemiga ühildub.",
+        "description_en": "The Smart Home & Weather category features devices that make your home more comfortable and secure while helping you track weather conditions. Suitable for both tech enthusiasts and everyday users who want to control their home remotely or monitor environmental conditions. When choosing, consider the type of device you need and how well it fits with your home setup.",
+        "tagline_et": "Nutikas kodu, kontrolli all ilm",
+        "tagline_en": "Smart home, weather under control",
+        "image_desc_et": "Heledal valgel taustal nutikas koduseade koos väikese ilmajaama ekraaniga, mis näitab ilmaandmeid."
+      },
+      "nameGate": {
+        "accurate": true,
+        "natural": true,
+        "term_at_start": false
+      },
+      "seoGate": {
+        "pass": true,
+        "offenders": []
+      }
+    },
+    {
+      "handle": "v4-santehnika-porandaliistkutte-katted",
+      "id": "pcat_10cov",
+      "nameEt": "Põrandaliistkütte katted",
+      "name_en": "Baseboard Heater Covers",
+      "seo": {
+        "description_et": "Põrandaliistkütte katted on terasest esipaneelid, mis sobivad vana või kahjustatud küttekatte asendamiseks ning küttekeha viimistletud väljanägemise andmiseks. Sobivad kodu, magamistoa või muu ruumi renoveerimiseks, kus soovitakse korrastada radiaatori välisilmet. Valikul tasub jälgida sobivat pikkust, kinnitusviisi ja materjali vastavust olemasolevale küttekehale.",
+        "description_en": "Baseboard heater covers are steel front panels designed to replace old or damaged heater covers and give heating units a clean, finished look. Ideal for home renovation projects in bedrooms or other rooms where the appearance of a radiator needs refreshing. When choosing, pay attention to matching length, mounting method and material compatibility with the existing heater.",
+        "tagline_et": "Uuenda oma küttekeha välisilmet lihtsalt",
+        "tagline_en": "Refresh your heater's look effortlessly",
+        "image_desc_et": "Valge terasest põrandaliistkütte kate heledal taustal, näidates selle siledat ja korrastatud viimistlust."
+      },
+      "nameGate": {
+        "accurate": true,
+        "natural": true,
+        "term_at_start": false
+      },
+      "seoGate": {
+        "pass": true,
+        "offenders": []
+      }
+    },
+    {
+      "handle": "v4-aed-ja-aiatehnika-l1-vaetise-ja-seemnelaotajad",
+      "id": "pcat_t3a_1_6",
+      "nameEt": "Väetise- ja seemnelaotajad",
+      "name_en": "Spreaders & Seeders",
+      "seo": {
+        "description_et": "Väetise- ja seemnelaotajad aitavad muru ja peenraid kiiresti ning ühtlaselt hooldada – sobivad nii seemnete külvamiseks kui väetise, soola või muu graanulmaterjali laialikandmiseks. Valikus on erineva konstruktsiooniga käsi- ja lükatavad mudelid, mis sobivad nii väiksema aia kui suurema krundi jaoks. Vali toode lähtuvalt oma maa-ala suurusest, pinnasest ja sellest, milliseid materjale plaanid laotada.",
+        "description_en": "Seed and fertilizer spreaders make lawn and garden care faster and more even, helping with everything from sowing seeds to spreading fertilizer, salt or other granular materials. The range includes various push and walk-behind designs suited for both small gardens and larger plots. Choose a model based on your area size, terrain and the materials you plan to spread.",
+        "tagline_et": "Ühtlane külv ja väetamine ilma vaevata",
+        "tagline_en": "Even seeding and feeding made easy",
+        "image_desc_et": "Heledal valgel taustal lükatav metallist väetise- ja seemnelaotaja koos käepideme ja rataste ning väetisemahutiga."
+      },
+      "nameGate": {
+        "accurate": true,
+        "natural": true,
+        "term_at_start": false
+      },
+      "seoGate": {
+        "pass": true,
+        "offenders": []
+      }
+    },
+    {
+      "handle": "v4-suurkook-jahutusega-ettevalmistusjaamad",
+      "id": "pcat_5n14",
+      "nameEt": "Jahutusega ettevalmistusjaamad",
+      "name_en": "Refrigerated Prep Tables",
+      "seo": {
+        "description_et": "Jahutusega ettevalmistusjaamad on köögimööbli ja külmaseadme ühendus, kus toorained püsivad käepärast ja samal ajal jahedana. Sobivad kohvikutele, pitseeriatele ja restoranidele, kus vaja kiiresti võileibu, salateid või pitsasid valmistada. Valikul tasub jälgida korpuse ja kaane materjali, pannide paigutust ning seadme üldmõõtu, et see sobiks köögi tööpinnaga.",
+        "description_en": "Refrigerated prep stations combine worktop convenience with built-in cooling, keeping ingredients fresh and within easy reach. They suit cafés, pizzerias and restaurants that need quick access to chilled toppings for sandwiches, salads or pizzas. When choosing one, consider the housing and lid material, pan layout and overall size to match your kitchen counter.",
+        "tagline_et": "Värsked lisandid käeulatuses, alati jahedana",
+        "tagline_en": "Fresh toppings at hand, always chilled",
+        "image_desc_et": "Roostevabast terasest jahutuslaud heledal taustal, mille pealispinnal on läbipaistva kaanega kaetud toidunõude read."
+      },
+      "nameGate": null,
+      "seoGate": {
+        "pass": true,
+        "offenders": []
+      }
+    },
+    {
+      "handle": "v4-ladu-ekspositsioonistendid",
+      "id": "pcat_22display",
+      "nameEt": "Ekspositsioonistendid ja display",
+      "name_en": "Display Stands & Fixtures",
+      "seo": {
+        "description_et": "Siit leiad ekspositsioonistendid ja display-lahendused kaupade esitlemiseks poes, turul või messil. Sobivad ehete, aksessuaaride ja väikekaupade väljapanekuks ning aitavad kaupa korrastatult ja silmatorkavalt esitleda. Vali oma ruumile ja kaubale sobiv kuju, materjal ning kinnitusviis.",
+        "description_en": "This category features display stands and exhibition racks for presenting goods in stores, markets or at trade shows. They suit jewelry, accessories and small items, helping to organize and showcase products attractively. Choose a shape, material and mounting style that fits your space and merchandise.",
+        "tagline_et": "Esitle kaupa stiilselt ja korrastatult",
+        "tagline_en": "Showcase your products with style",
+        "image_desc_et": "Mustast metallist pöörlev pulgastend, mis on fotografeeritud heledal valgel taustal."
+      },
+      "nameGate": null,
+      "seoGate": {
+        "pass": true,
+        "offenders": []
+      }
+    },
+    {
+      "handle": "v4-tooriistad-ja-tarvikud-elektrilised-tooriistad-teritusmasinad",
+      "id": "pcat_t3f_2_7",
+      "nameEt": "Puuritera-teritajad",
+      "name_en": "Drill Bit Sharpeners",
+      "seo": {
+        "description_et": "Puuritera-teritajad on elektrilised seadmed nüristunud puuriterade taasteritamiseks ja nurga korrigeerimiseks kodus või töökojas. Sobivad erinevat tüüpi ja materjalist puuriteradele ning aitavad pikendada nende kasutusiga, säästes raha uute terade pealt. Valikul tasub jälgida sobivat terade läbimõõdu vahemikku ja kaasasolevate hoidikute komplekti.",
+        "description_en": "Drill bit sharpeners are electric tools designed to restore sharpness and correct the cutting angle of worn drill bits at home or in the workshop. They work with various bit types and materials, helping extend tool life and save money on replacements. When choosing, pay attention to the supported bit size range and the included collet set.",
+        "tagline_et": "Teritab puuriterad taas töökorda",
+        "tagline_en": "Bring drill bits back to life",
+        "image_desc_et": "Kompaktne lauale asetatav puuritera-teritaja koos komplekti kuuluvate hoidikutega heledal valgel taustal."
+      },
+      "nameGate": {
+        "accurate": true,
+        "natural": true,
+        "term_at_start": false
+      },
+      "seoGate": {
+        "pass": true,
+        "offenders": []
+      }
+    },
+    {
+      "handle": "v4-meditsiin-ja-liikumisabi-meditsiinitarvikud-geriaatrilised-toolid",
+      "id": "pcat_f4_16x2_12",
+      "nameEt": "Geriaatrilised toolid",
+      "name_en": "Geriatric Chairs",
+      "seo": {
+        "description_et": "Geriaatrilised toolid on reguleeritava seljatoega tugitoolid eakatele ja piiratud liikumisvõimega patsientidele, mida kasutatakse haiglates, hooldekodudes ja kodustes tingimustes. Tooli valikul tasub jälgida istme ja seljatoe reguleerimisvõimalust, rataste olemasolu liikumiseks ning tooli üldist mugavust ja tuge kasutajale. Sobiv valik aitab hooldajal patsienti turvaliselt istutada, liigutada ja hoida mugavas asendis.",
+        "description_en": "Geriatric chairs are reclining support chairs designed for elderly or mobility-limited patients, used in hospitals, nursing homes, and home care settings. When choosing a chair, consider the range of seat and backrest adjustment, presence of wheels for mobility, and overall comfort and support offered to the user. The right choice helps caregivers safely seat, move, and position patients comfortably.",
+        "tagline_et": "Mugav ja turvaline tugitool hoolduseks",
+        "tagline_en": "Comfortable, safe support chair for care",
+        "image_desc_et": "Heledal valgel taustal kujutatud polsterdatud seljatoega geriaatriline tool ratastel ja laudlaudadega."
+      },
+      "nameGate": {
+        "accurate": true,
+        "natural": true,
+        "term_at_start": false
+      },
+      "seoGate": {
+        "pass": true,
+        "offenders": []
+      }
+    },
+    {
+      "handle": "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-suusa-ja-kaitseprillid",
+      "id": "pcat_el_12x1_14",
+      "nameEt": "Suusa- ja kaitseprillid",
+      "name_en": "Ski & Snow Goggles",
+      "seo": {
+        "description_et": "Suusa- ja kaitseprillid sobivad suusatamiseks, lumelauaga sõitmiseks, uisutamiseks ja teisteks talispordialadeks, kaitstes silmi tuule, külma ja päikese eest. Valikus on erineva kuju ja läätsevärviga mudelid nii meestele, naistele kui noortele, sealhulgas prillide peale sobivad variandid. Vali endale sobiv raam, läätse tüüp ja kate vastavalt ilmaoludele ja kasutusalale.",
+        "description_en": "Ski and protective goggles are designed for skiing, snowboarding, skating and other winter activities, shielding the eyes from wind, cold and sunlight. The range includes various frame shapes and lens tints for men, women and youth, including OTG-friendly options worn over glasses. Choose the right frame, lens type and coating based on weather conditions and intended use.",
+        "tagline_et": "Selge vaade igas lumeolukorras",
+        "tagline_en": "Clear vision in every snow condition",
+        "image_desc_et": "Heledal valgel taustal suusaprillid, mille sfääriline läätse peegeldab kerget värvitooni ja mille rihm on kergelt kaardus."
+      },
+      "nameGate": {
+        "accurate": true,
+        "natural": true,
+        "term_at_start": false
+      },
+      "seoGate": {
+        "pass": true,
+        "offenders": []
+      }
+    },
+    {
+      "handle": "v4-tooriistad-ja-tarvikud-turva-ja-objektivarustus-signaali-blokeerivad-faraday-tarvikud",
+      "id": "pcat_t3f_13_11",
+      "nameEt": "Signaali blokeerivad Faraday tarvikud",
+      "name_en": "Faraday Bags & Signal Blocking Accessories",
+      "seo": {
+        "description_et": "Siit leiad Faraday kotid, ümbrised ja karbid, mis varjestavad telefone, autovõtmeid, tahvleid ja muid seadmeid soovimatu signaali ja jälgimise eest. Sobivad neile, kes soovivad kaitsta oma seadmeid häkkimise, andmevarguse või kaugkäivituse eest nii kodus, autos kui ka reisil. Valides tasub jälgida materjali kvaliteeti ja sobivust oma seadme mõõtmetega.",
+        "description_en": "This category features Faraday bags, pouches and boxes designed to shield phones, car keys, tablets and other devices from unwanted signals and tracking. Ideal for anyone looking to protect their devices from hacking, data theft or remote access at home, in the car or on the go. When choosing, pay attention to material quality and fit for your device's size.",
+        "tagline_et": "Varjesta oma seadmed uudishimulike silmade eest",
+        "tagline_en": "Shield your devices from prying signals",
+        "image_desc_et": "Heledal valgel taustal must Faraday kott koos nutitelefoni ja autovõtmega selle kõrval."
+      },
+      "nameGate": {
+        "accurate": true,
+        "natural": true,
+        "term_at_start": false
+      },
+      "seoGate": {
+        "pass": true,
+        "offenders": []
+      }
+    },
+    {
+      "handle": "v4-autovaruosad-ja-tarvikud-pukseerimisseadmed-pukseerimisketid-ja-ahelad",
+      "id": "pcat_ag2_3x1_8",
+      "nameEt": "Pukseerimisketid ja -ahelad",
+      "name_en": "Tow Chains",
+      "seo": {
+        "description_et": "Pukseerimisketid ja -ahelad on tugevast terasest valmistatud lisavarustus sõidukite, haagiste ja koormate kinnitamiseks ning pukseerimiseks. Sobivad nii transpordi- kui ka päästetöödeks, kus on vaja usaldusväärset ja vastupidavat kinnituslahendust. Vali kett vastavalt konksude tüübile, keti pikkusele ja kasutusotstarbele, et tagada turvaline ning sobiv lahendus.",
+        "description_en": "Tow chains are heavy-duty steel accessories designed for securing and towing vehicles, trailers, and loads. Suitable for both transport and recovery tasks where a dependable, durable connection is required. Choose a chain based on hook type, length, and intended use to ensure a safe and proper fit.",
+        "tagline_et": "Tugevad ketid turvaliseks pukseerimiseks",
+        "tagline_en": "Strong chains for safe towing",
+        "image_desc_et": "Hele valge taust, millel on fotorealistlikult kujutatud roostevaba raske pukseerimiskett koos konksudega."
+      },
+      "nameGate": {
+        "accurate": true,
+        "natural": true,
+        "term_at_start": false
+      },
+      "seoGate": {
+        "pass": true,
+        "offenders": []
+      }
+    }
+  ]
+}
