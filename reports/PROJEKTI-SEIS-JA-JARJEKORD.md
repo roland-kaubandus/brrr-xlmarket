@@ -1,6 +1,6 @@
 # XL e-pood — PROJEKTI SEIS JA JÄRJEKORD (ankur-dokument)
 
-> **Koostatud:** 2026-09-19 · **Uuendatud:** 2026-10-09 (B klassifikaatori TÄISAUTOMAATIKA ✅ EHITATUD+torus — ETAPP 1–3, shadow-režiim, kontseptsioonivärav, deploy-lukk HARD RULE #9, kulude-jälgimine — §1.13; A4 nüüd EHITATUD) · 2026-10-06 (A konsensus-sünonüümid ✅ EXECUTE+LIVE — §1.12) · 2026-09-24 (A2 sünonüümid+variandid ✅ VALMIS+LIVE — §1.11) ·
+> **Koostatud:** 2026-09-19 · **Uuendatud:** 2026-10-13 (cutover-blokeerijate verifikatsioon — vt §4 lõpp VAHEKOKKUVÕTE) · 2026-10-09 (B klassifikaatori TÄISAUTOMAATIKA ✅ EHITATUD+torus — ETAPP 1–3, shadow-režiim, kontseptsioonivärav, deploy-lukk HARD RULE #9, kulude-jälgimine — §1.13; A4 nüüd EHITATUD) · 2026-10-06 (A konsensus-sünonüümid ✅ EXECUTE+LIVE — §1.12) · 2026-09-24 (A2 sünonüümid+variandid ✅ VALMIS+LIVE — §1.11) ·
 > **Eesmärk:** täielik, aus projekti seis, et ei hüppaks üle faaside ega
 > unustaks pooleliolevat. Iga väide on TÕESTATUD (git SHA / DB-päring / report). Oletused on märgitud
 > "⚠️ TÕESTAMATA".
@@ -250,13 +250,31 @@ Kõik LIVE storefront-konteineris (tag 93c1f8b3):
 3. **Outlet L2-pildid** [§P5] — Gemini deblokeeritud (Osa 57); atmosphere-stseenid (Elektroonika/Peoinventar/Büroo/Põllumajandus/Kodumasinad).
 4. **FAAS 3 launch-blokeerijad** [§4/§A8] — cutover-eelsed päris augud: `.eu` routing (Traefik Host/301) · TLS/LE bare-domeenile · uo28 backup enne stop'i · E2E smoke prod-domeenil (Montonio) · feed-sync sihtmärk · **E-POST (vt 4b).**
    - **4b. E-POST launch-blokeerija (lisatud 2026-10-12)** — tellimus/arve-kirjad on **koodis valmis** (`backend/src/lib/email.ts`: sendOrderConfirmation + sendInvoice + sendShippingConfirmation; subscriber `order-placed.ts` AKTIIVNE, kuulab `order.placed`). Staging'us blokeerib AINULT `EMAIL_DISABLED=true` (tahtlik kill-switch — staging-DB sisaldab päris klientide aadresse). **Enne launchi Tarmo peab otsustama/seadistama (NIMEKIRI, Claude ei seadista):**
-     1. **SMTP teenus** — praegu `mail.xlrent.eu:587` (user+pass JUBA env-is). Otsus: kas jääb xlrent relay, või eraldi teenus (nt oma relay / SendGrid / Zone mail)?
+     1. **SMTP teenus** — praegu `mail.xlrent.eu:587` (user+pass JUBA env-is). Otsus: kas jääb xlrent relay, või eraldi teenus. **NB (2026-10-13):** hostil (65.21.126.235) JUBA töötab **mailcow** (`/opt/mailcow-dockerized`, postfix:25 kuulab, netfilter-loop lahendatud 2026-06-12) → tugevaim kandidaat xlmarket.ee ametlikuks mail-serveriks (DKIM ise genereerida, postkastid hallata). AGA xlmarket.ee domeen EI ole veel mailcow's seadistatud. Lahtine äriotsus (mailcow vs xlrent), MITTE tehniline blokeerija.
      2. **Saatja-aadress** `info@xlmarket.ee` (EMAIL_FROM) — kas postkast/alias olemas ja saab saata läbi valitud relay?
      3. **DNS xlmarket.ee domeenile** (deliverability, muidu kirjad → spam/bounce): **SPF** (TXT, mis lubab valitud relay IP/domeeni saata), **DKIM** (saatva serveri allkirja-võti xlmarket.ee jaoks), **DMARC** (TXT `_dmarc.xlmarket.ee`, policy + raport).
      4. **info@xlmarket.ee postkast** — vastuvõtuks (kliendid vastavad kinnituskirjale) + EMAIL_ADMIN/EMAIL_INVOICE aadressid (praegu mõlemad `tarmo@naissaar.eu`).
      5. **Prod cutoveril:** eemalda/`false` `EMAIL_DISABLED` (AINULT siis, kui 1–4 tehtud ja DB on päris-prod, mitte koopia testaadressidega).
 5. **main ↔ taxonomy-v4 lahknevus enne cutover'it** — harud peavad enne cutoverit kokku viidama (HARD RULE #4 hoiab sünkroonis, aga pikaajaline lahknevus = cutover-risk). Kontroll: `git rev-parse origin/main` vs `origin/taxonomy-v4`.
 6. **Review-bucket / shadow-ledger nähtavus** [§P7] — klastri-UI (shadow "oleks loonud" + sünonüümid); Telegram-teade juba töötab, UI puudub.
+
+### 🧭 VAHEKOKKUVÕTE 2026-10-13 — cutover-blokeerijate verifikatsioon (read-only audit)
+
+Tarmo palve: iga cutover-blokeerija seis + tõend. Kõik read-only kontrollitud.
+
+| # | Blokeerija | Seis | Tõend |
+|---|---|---|---|
+| a | storefront semaphore hang (`getProduct`) | ✅ **LAHENDATUD** | `storefront/lib/medusa.ts:14-42` — juurpõhjus (`activeFetches++` handoff-harus → ratchet → hang) + fix (wait-haru ei inkrementi, releaseSlot annab slota otse) dokumenteeritud koodis. |
+| b | staging DB-skeem vs prod | ✅ **LAHENDATUD arhitektuuriga** | Vana mure = **vana .ee prod** data-only-restore (125/147 ILMA PK, 32 idx; 2026-06-04 logi). **k33g praegu (live-päring): 135/166 PK, 481 idx, 2 unique.** Strateegia A → k33g SAAB prodiks → see on õige DB. 31 PK-ta = Medusa link-tabelid (normaalne). |
+| c | migratsiooni-skriptide idempotentsus | ✅ **LAHENDATUD (muster)** | `v4-staging/*.sql`: `BEGIN; … ON CONFLICT DO NOTHING + status-guard … COMMIT;`, päis "Idempotentne"; `lock-harness.mjs` jõustab. |
+| d | 301-ümbersuunamised | 🟡 **OSALINE** | Toote-tasand VALMIS (soft-delete 365p `product_redirect`, `b4ea489d`). PUUDU = cutover A8: `.eu→.ee` domeeni-301 (Traefik) + handle-muutuste redirect. |
+| e | vana ingliskeelne kategooriapuu | ✅ **POLE live-mure** | Ainult külmutatud uo28-l (= 30p backup). k33g = v4 ET-puu, NAME-01 roheline. Strateegia A → uo28 hüljatakse. |
+| f | feed-sync Coolify cron | ✅ **JOOKSEB + valvatud** | Coolify feed-refresh 4h (kuma id=8) + host import-pipeline 03:00 (kuma id=7). 2026-10-13 öine jooks rc=0 OK (49 kand / 19 loodud). |
+| g | main ↔ taxonomy-v4 lahknevus | ⚠️ **ära tee midagi** | 697 commit'i main-is / 309 v4-s (cherry-pick muster, sama sisu eri SHA). Strateegia: jätka `cherry-pick -x` kuni cutover; cutoveril üks haru võidab (v4 = Coolify-build) → main ff/kustuta. Täis-merge EI. |
+
+**Hügieeni-leid (VAJA ÄRA TEHA):** 2026-10-13 öine import-pipeline lõpetas rc=0 OK, AGA jättis **aegunud stack-luku** (`/opt/eumotors-tasks/locks/xl-stack-write.lock`, pid 1128624 surnud) — auto-release-trap ei vallandunud. Stale-steal kaitseb korrektsust (järgmine DB-write varastab surnud-pid luku), aga exit-release vajab kontrolli (`stack-lock.sh` trap EXIT/SIGINT).
+
+**E-post:** `EMAIL_DISABLED=true` staging; infra koodis valmis; eilne nõuete-nimekiri TEHTUD (§4.4b); mailcow olemas hostil (kandidaat, seadistamata) — vt §4.4b.
 
 ### 🤖 MASINA-AUTOMAATIKA SEIS (öine import-pipeline)
 - **~85% automaatne:** [1] reindeks → [3] import → [3.5] title-strip → [4] classify → [5] hind → [6] spec →
