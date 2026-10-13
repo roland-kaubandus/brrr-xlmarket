@@ -70,3 +70,38 @@ Kliendile nähtav pood **töötab juba kakskeelselt** (`et` + `en`) koodi mõtte
 
 ## Leid (kõrval)
 - `storefront/lib/category-tree.ts:39-41` kommentaar on **vale/aegunud** ("ükski tarbija ei loe `*_et`") — `nodeName` (:58) loeb. Parandada kommentaar A1 käigus.
+
+---
+
+## TEOSTUSPLAAN (2026-10-13 õhtu, pärast infra-kaardistust)
+
+### Arhitektuuri-otsus — SSoT = DB (option a)
+**Leid:** EN-nimel ega päris-SEO-l pole püsivat kodu. `genyM.mjs` regenereerib `taxonomy.yaml` DB `product_category.name`-st igal jooksul → `name_en=name_et` (eesti) + stub-SEO (`"<nimi> — products."`). classify-etapp2-create genereerib juba name_en+SEO (`l3-gates.genAssetsGated`), AGA viskab plaani-raportisse (ei jõua ühtegi SSoT-i).
+
+**Otsus:** DB jääb SSoT (kooskõlas olemasoleva disainiga). Kirjutus → DB; genyM õpib DB-st lugema. Mitte otse taxonomy.yaml (klobberdaks).
+
+**Skeem (migration 011):**
+- `taxonomy_node_translation` (OLEMAS, migration 001): `node_id, locale∈{et,en,es}, name` — populeeri `locale='en'` tõlgitud nimega.
+- **UUS** `taxonomy_node_seo` (node_id, description_et/en, tagline_et/en, updated_at, source_batch) — SEO-l polnud DB-kodu.
+
+**genyM muudatus:** `block()/subsDB()` loevad name_en = `taxonomy_node_translation[en]` (fallback DB-nimi), SEO = `taxonomy_node_seo` (fallback stub). → idempotentne, backfill ei hävi regen'il. (Deploy-kriitiline: genyM = SSoT→nav pipeline; test enne.)
+
+### Kaks transformi (HARD RULE #5 — üks moodul, kaks kutsujat)
+
+**T1 — kategooria EN-nimi (konsensus + glossary + nimevärav):**
+- Sonnet + Opus tõlgivad ET→EN; nõus → aktsepteeri; lahku → Fable viigimurdja.
+- Glossary-adherence (`glossary-gates`) + nimevärav (`fableNameCheck`, 3 alakontrolli).
+- Kutsujad: (a) backfill `--all` (1970, Batch API); (b) hook — uue L3 sünnil classify-etapp2-create kirjutab name_en DB-sse (praegu viskab ära).
+
+**T2 — kategooria SEO (ET+EN, Sonnet batch):**
+- Taaskasuta `l3-gates`: `genAssets` prompt + `SEO_RULE` + `seoClaimGate` (keelab numbrid/lubadused, regen max 3×). Mudel = **Sonnet** (Tarmo otsus), Batch API (`content-batch`).
+- Kutsujad: (a) backfill `--all` (1921 L2/L3 + 25 L1); (b) hook — uue L3 sünnil (juba jookseb etapp2-create's, lisa DB-kirjutus).
+
+### Väravad + ohutus
+- `seoClaimGate` (SEO), nimevärav (nimi), glossary-adherence, stack-lukk (DB-write), Telegram fail-loud, `--all` batch-id → undo.
+- DRY vaikimisi; `--execute` kirjutab DB-sse (stack-lukk).
+
+### Samm-haaval (DRY-valim ENNE suurt jooksu)
+1. Migration 011 (SEO-tabel) — **kirjutatud, EI rakendatud enne go-ahead'i**.
+2. **DRY-valim ~15 kat** (nimi+SEO, 0 DB-write) → `reports/en-pakett-dry-valim.md`, näita Tarmole kvaliteet + tegelik token-kulu.
+3. Go-ahead → genyM-read + hook-kirjutus + täis-backfill (`--execute`, stack-lukk, undo).
