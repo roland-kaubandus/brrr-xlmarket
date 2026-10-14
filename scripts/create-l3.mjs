@@ -16,6 +16,12 @@ import fs from "node:fs"
 const argv = process.argv
 const defsFile = argv[argv.indexOf("--defs") + 1]
 const DRY = argv.includes("--dry")
+// HARD RULE #9: DB-write → stack-lukk (standalone kirjutaja; DRY EI lukusta). Fix 3.
+import { acquireStackLock } from "./lib/stack-lock.mjs"
+if (!DRY) {
+  try { acquireStackLock({ holder: "create-l3", waitMs: Number(process.env.XL_DBWRITE_WAIT_MS) || 60_000 }) }
+  catch (e) { console.error(`🔒 stack-lukk (deploy käib?): ${e.message}`); process.exit(1) }
+}
 if (argv.indexOf("--defs") < 0 || !defsFile || !fs.existsSync(defsFile)) { console.error("--defs <fail.json> puudub/vigane"); process.exit(1) }
 const defs = JSON.parse(fs.readFileSync(defsFile, "utf8"))
 if (!Array.isArray(defs) || !defs.length) { console.error("defs peab olema mitte-tühi massiiv"); process.exit(1) }

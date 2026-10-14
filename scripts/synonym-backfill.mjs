@@ -29,6 +29,12 @@ import fs from "node:fs";
 const argv = process.argv;
 const val = (f, d) => { const i = argv.indexOf(f); return i > 0 ? argv[i + 1] : d; };
 const EXECUTE = argv.includes("--execute");
+// HARD RULE #9: DB-write → stack-lukk (re-entrant: orkestraatori all no-op; standalone --execute kaitseb). DRY EI lukusta (Fix 3).
+import { acquireStackLock } from "./lib/stack-lock.mjs";
+if (EXECUTE) {
+  try { acquireStackLock({ holder: "synonym-backfill", waitMs: Number(process.env.XL_DBWRITE_WAIT_MS) || 60_000 }); }
+  catch (e) { console.error(`🔒 stack-lukk (deploy käib?): ${e.message}`); process.exit(1); }
+}
 const LIMIT = parseInt(val("--limit", "0"), 10);       // 0 = kõik pending
 const BATCH = parseInt(val("--batch", "10"), 10);
 const CONC = parseInt(val("--conc", "8"), 10);         // paralleelsed API-kutsed (töö-aeg: 772 järjest = timeout)

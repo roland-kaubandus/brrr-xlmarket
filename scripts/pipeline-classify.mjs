@@ -37,6 +37,12 @@ const argv = process.argv;
 const argVal = (n, d) => { const i = argv.indexOf(n); return i > 0 ? argv[i + 1] : d; };
 const EXECUTE = argv.includes("--execute");
 const DRY = !EXECUTE;                            // vaikimisi dry
+// HARD RULE #9: DB-write → stack-lukk (re-entrant: orkestraatori all no-op; standalone --execute kaitseb). DRY EI lukusta (Fix 3).
+import { acquireStackLock } from "./lib/stack-lock.mjs";
+if (EXECUTE) {
+  try { acquireStackLock({ holder: "pipeline-classify", waitMs: Number(process.env.XL_DBWRITE_WAIT_MS) || 60_000 }); }
+  catch (e) { console.error(`🔒 stack-lukk (deploy käib?): ${e.message}`); process.exit(1); }
+}
 const SOURCE = argVal("--source", "homeless");
 const SKUS_FILE = argVal("--skus");
 const LIMIT = parseInt(argVal("--limit", "0")) || 0;

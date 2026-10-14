@@ -20,6 +20,12 @@ const argVal = (n, d) => { const i = argv.indexOf(n); return i > 0 ? argv[i + 1]
 const SKUS_FILE = argVal("--skus")
 const CONC = parseInt(argVal("--concurrency", "5"))
 const DRY = argv.includes("--dry")
+// HARD RULE #9: DB-write → stack-lukk (re-entrant: orkestraatori all no-op; standalone kaitseb). DRY EI lukusta (Fix 3).
+import { acquireStackLock } from "./lib/stack-lock.mjs"
+if (!DRY) {
+  try { acquireStackLock({ holder: "spec-extract-skus", waitMs: Number(process.env.XL_DBWRITE_WAIT_MS) || 60_000 }) }
+  catch (e) { console.error(`🔒 stack-lukk (deploy käib?): ${e.message}`); process.exit(1) }
+}
 if (!SKUS_FILE || !fs.existsSync(SKUS_FILE)) { console.error("--skus <fail> puudub/vigane"); process.exit(1) }
 const SKUS = fs.readFileSync(SKUS_FILE, "utf8").split("\n").map(s => s.trim()).filter(Boolean)
 

@@ -46,6 +46,12 @@ const has = (f) => args.includes(f);
 const val = (f, d) => (has(f) ? args[args.indexOf(f) + 1] : d);
 const DRY = !has("--execute") && !has("--undo");
 const EXECUTE = has("--execute");
+// HARD RULE #9: DB-write → stack-lukk (--execute VÕI --undo kirjutab; DRY EI lukusta). Fix 3.
+import { acquireStackLock } from "./lib/stack-lock.mjs";
+if (!DRY) {
+  try { acquireStackLock({ holder: "l3-desc-gen", waitMs: Number(process.env.XL_DBWRITE_WAIT_MS) || 60_000 }); }
+  catch (e) { console.error(`🔒 stack-lukk (deploy käib?): ${e.message}`); process.exit(1); }
+}
 const UNDO = has("--undo") ? val("--undo", "") : null;   // --undo <batch_id>
 const SAMPLE = has("--sample") ? +(val("--sample", "0")) : 0;   // sämpeldus AINULT kui --sample antud (muidu KÕIK sihtmärgid — EXECUTE katab 1493)
 const IDS = has("--ids") ? val("--ids", "").split(",").map((s) => s.trim()).filter(Boolean) : null;

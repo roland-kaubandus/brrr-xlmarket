@@ -18,6 +18,12 @@ import { execSync } from "node:child_process";
 const REPO = "/opt/xlmarket-github";
 const SP = "/tmp/claude-0/-opt-xlmarket-github/8966820c-cfb5-4418-ab04-7e331739a85c/scratchpad";
 const DRY = process.argv.includes("--dry");
+// HARD RULE #9: DB-write → stack-lukk (standalone kirjutaja; DRY EI lukusta). Fix 3.
+import { acquireStackLock } from "./lib/stack-lock.mjs";
+if (!DRY) {
+  try { acquireStackLock({ holder: "etapp1-move-execute", waitMs: Number(process.env.XL_DBWRITE_WAIT_MS) || 60_000 }); }
+  catch (e) { console.error(`🔒 stack-lukk (deploy käib?): ${e.message}`); process.exit(1); }
+}
 const MS = JSON.parse(fs.readFileSync(SP + "/etapp1-moveset.json", "utf8"));
 
 const BATCH_ID = process.env.BATCH_ID || ("e1-" + new Date().toISOString().replace(/:/g, "").replace(/\..+/, "").replace("T", "T"));
