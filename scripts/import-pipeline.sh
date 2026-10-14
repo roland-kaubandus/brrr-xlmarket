@@ -73,6 +73,24 @@ echo "  medusa=$MEDUSA_NAME  db=$DB_NAME  root=$ROOT"
 
 dbq() { docker exec -i "$DB_NAME" psql -U xlmarket -d xlmarket -tA -v ON_ERROR_STOP=1 -c "$1"; }
 
+# ── DEFICIT (Fix 2 self-healing, Tarmo 2026-10-14) ───────────────────────────
+# Öine LLM-samm töötleb oma DEFICITi (tooted, millel väljund PUUDUB — sh eelmisel ööl kukkunud),
+# MITTE ainult selle-öö deltat → kukkunud toode jõuab järele järgmisel ööl ISE (HARD RULE #6).
+# Deficit ⊇ delta (uus toode = väljund puudub → sisaldub). READ-ONLY (SSoT scripts/lib/deficit.mjs) → EI luku.
+# Krediit = loomulik lagi (suur deficit → rc=3 degrade → jääk järgmine öö). Siin AINULT mõõda + Telegram kui suur.
+DEFICIT_WARN_N="${DEFICIT_WARN_N:-1000}"
+compute_deficit() {  # $1=step (spec|content|synonyms)  $2=outfile → kirjutab SKU-d faili; kaja: "n ~\$est"
+  local step="$1" out="$2" derr n est
+  derr=$(node "$ROOT/scripts/lib/deficit.mjs" --step "$step" --out "$out" 2>&1 >/dev/null) \
+    || { echo "  ⚠️ deficit($step) arvutus kukkus → samm vahele: $derr" >&2; : > "$out"; return 0; }
+  n=$(printf '%s' "$derr" | grep -oE 'DEFICIT_N=[0-9]+' | cut -d= -f2); n=${n:-0}
+  est=$(printf '%s' "$derr" | grep -oE 'EST_USD=[0-9.]+' | cut -d= -f2); est=${est:-0}
+  echo "  deficit($step): $n toodet · ~\$$est (self-healing: sh eelmistel öödel kukkunud)"
+  if [ "$n" -gt "$DEFICIT_WARN_N" ] && [ "$EXECUTE" = "1" ]; then
+    slack "⚠️ XLM $step deficit SUUR: $n toodet ootab (~\$$est). Töötleb kuni krediit-degrade → jääk järgmine öö (self-heal). Kui püsib → kontrolli krediiti/backfilli."
+  fi
+}
+
 # ── KREDIIT-PROBE (LLM-väravate eeltingimus, pipeline'i alguses) ──────────────
 # 1-token proov ENNE [4] → seab CREDIT_OK. Väldib 18k×retry ASJATUT API-katset kui krediit juba maas.
 # ERISTUS KRIITILINE ("ära aja segamini", Tarmo): krediit maas → DEGRADE (LLM skip, laoseis JÄTKUB);
@@ -236,10 +254,14 @@ echo "[5/7] price (computeRetail + Omnibus + marginaali-alarm)"
 node "$ROOT/scripts/pipeline-reprice.mjs" $EXFLAG ${FEED_XLSX_HOST:+--feed "$FEED_XLSX_HOST"} || fail "price" "pipeline-reprice.mjs rc!=0"
 
 # ── [6] SPEC (host) ──────────────────────────────────────────────────────────
-echo "[6/7] spec-extract (specita tooted)"
+echo "[6/7] spec-extract (DEFICIT: specita tooted — self-healing, Fix 2)"
 # KREDIIT-DEGRADE: CREDIT_OK=0 (probe/[4]) → skip; mid-run krediit (rc=3) → degrade HOIATUS + [7] JÄTKUB.
-if [ "$CREDIT_OK" = "1" ] && [ -s /tmp/classify-skus.txt ]; then
-  SP_OUT=$(node "$ROOT/scripts/spec-extract-skus.mjs" --skus /tmp/classify-skus.txt $([ "$EXECUTE" = "1" ] || echo --dry) 2>&1) && SP_RC=0 || SP_RC=$?
+# Fix 2: sisend = spec-DEFICIT (KÕIK specita, sh eelmisel ööl kukkunud), MITTE ainult classify-delta.
+if [ "$CREDIT_OK" = "1" ]; then
+  compute_deficit spec /tmp/deficit-spec.txt
+fi
+if [ "$CREDIT_OK" = "1" ] && [ -s /tmp/deficit-spec.txt ]; then
+  SP_OUT=$(node "$ROOT/scripts/spec-extract-skus.mjs" --skus /tmp/deficit-spec.txt $([ "$EXECUTE" = "1" ] || echo --dry) 2>&1) && SP_RC=0 || SP_RC=$?
   echo "$SP_OUT" | sed 's/^/  /'
   SP_PENDING=$( { echo "$SP_OUT" | grep -oE 'CREDIT_PENDING=[0-9]+' | tail -1 | cut -d= -f2; } || true); SP_PENDING=${SP_PENDING:-0}
   case "$SP_RC" in
@@ -250,7 +272,7 @@ if [ "$CREDIT_OK" = "1" ] && [ -s /tmp/classify-skus.txt ]; then
     *) fail "spec" "spec-extract-skus.mjs rc=$SP_RC (süsteemne — API/DB maas?)" ;;
   esac
 else
-  [ "$CREDIT_OK" = "1" ] && echo "  klassifitseeritud SKU-loend puudub → spec vahele" || echo "  krediit/API maas → spec SKIP (degrade)"
+  [ "$CREDIT_OK" = "1" ] && echo "  spec-deficit tühi → spec vahele (kõik tooted spec'itud)" || echo "  krediit/API maas → spec SKIP (degrade)"
 fi
 
 # ── [6.4] GLOSSARY-TERMID (host) — HARD RULE #5 HOOK (uued EN→ET terminid, ENNE sisu-gen) ─
@@ -283,11 +305,15 @@ fi
 # SAMA transform+write kui backfill (content-gen-run.mjs --all). DELTA-peal (classify-skus.txt,
 # sama kui [6] spec). Multi-feed: content-gen loeb toote OMA EN-allikat (bränd-agnostiline).
 # FAIL-LOUD: süsteemne (API maas / >50% kukub) → fail()/Telegram; üksik toode → skip+count.
-echo "[6.5/7] sisu-gen (ET-sisu uutele — title_et/description_et/selling_points/rich_et)"
+echo "[6.5/7] sisu-gen (DEFICIT: ET-sisu puuduolevatele — self-healing, Fix 2)"
 # KREDIIT-DEGRADE: CREDIT_OK=0 (probe/[4]/[6]) → skip KOHE (ei proovi ühtki API-katset).
-if [ "$CREDIT_OK" = "1" ] && [ -s /tmp/classify-skus.txt ]; then
+# Fix 2: sisend = sisu-DEFICIT (content_gen_hash puudu = kunagi genereeritud, sh eelmisel ööl kukkunud).
+if [ "$CREDIT_OK" = "1" ]; then
+  compute_deficit content /tmp/deficit-content.txt
+fi
+if [ "$CREDIT_OK" = "1" ] && [ -s /tmp/deficit-content.txt ]; then
   # RC-püüdmine set -e all: && RC=0 || RC=$? (muidu set -e katkestaks enne haru-valikut).
-  CG_OUT=$(node "$ROOT/scripts/pipeline-content-gen.mjs" --skus /tmp/classify-skus.txt \
+  CG_OUT=$(node "$ROOT/scripts/pipeline-content-gen.mjs" --skus /tmp/deficit-content.txt \
     $([ "$EXECUTE" = "1" ] && echo --execute || echo --dry) 2>&1) && CG_RC=0 || CG_RC=$?
   echo "$CG_OUT" | sed 's/^/  /'
   # || true: grep no-match (exit 1) + pipefail muidu katkestaks set -e all enne :-0 default'it.
@@ -311,16 +337,21 @@ if [ "$CREDIT_OK" = "1" ] && [ -s /tmp/classify-skus.txt ]; then
       ;;
   esac
 else
-  [ "$CREDIT_OK" = "1" ] && echo "  klassifitseeritud SKU-loend puudub → sisu-gen vahele" || echo "  krediit/API maas → sisu-gen SKIP (degrade)"
+  [ "$CREDIT_OK" = "1" ] && echo "  sisu-deficit tühi → sisu-gen vahele (kõigil ET-sisu olemas)" || echo "  krediit/API maas → sisu-gen SKIP (degrade)"
 fi
 
 # ── [6.6] SÜNONÜÜMID (host) — HARD RULE #5 HOOK (otsingu sünonüümid+variandid, ENNE reindeks) ─
 # SAMA transform+write kui backfill (synonym-gen-run.mjs --all). DELTA-peal (classify-skus.txt).
 # ASUKOHT: peale [6.5] (title_et olemas → parem sünonüüm), ENNE [7] reindeks. Meili sync = [7.5] PÄRAST.
 # FAIL-LOUD: süsteemne → fail(); krediit (rc=3) → degrade; üksik chunk → skip+count.
-echo "[6.6/7] sünonüümid (otsingu sünonüümid + kirjapildi-variandid uutele)"
-if [ "$CREDIT_OK" = "1" ] && [ -s /tmp/classify-skus.txt ]; then
-  SY_OUT=$(node "$ROOT/scripts/pipeline-synonyms.mjs" --skus /tmp/classify-skus.txt \
+echo "[6.6/7] sünonüümid (DEFICIT: ET-sünonüümita tooted — self-healing, Fix 2)"
+# Fix 2: sisend = sünonüüm-DEFICIT (NOT EXISTS product_synonym lang='et') → EI taasgenereeri juba-olemas
+# sünonüümidega tooteid (ei reset'i inimese review'sid) + jõuab eelmisel ööl kukkunud tooteni järele.
+if [ "$CREDIT_OK" = "1" ]; then
+  compute_deficit synonyms /tmp/deficit-synonyms.txt
+fi
+if [ "$CREDIT_OK" = "1" ] && [ -s /tmp/deficit-synonyms.txt ]; then
+  SY_OUT=$(node "$ROOT/scripts/pipeline-synonyms.mjs" --skus /tmp/deficit-synonyms.txt \
     $([ "$EXECUTE" = "1" ] && echo --execute || echo --dry) 2>&1) && SY_RC=0 || SY_RC=$?
   echo "$SY_OUT" | sed 's/^/  /'
   SY_REVIEW=$( { echo "$SY_OUT" | grep -oE 'REVIEW=[0-9]+' | tail -1 | cut -d= -f2; } || true); SY_REVIEW=${SY_REVIEW:-0}
@@ -335,7 +366,7 @@ if [ "$CREDIT_OK" = "1" ] && [ -s /tmp/classify-skus.txt ]; then
       fail "synonyms" "pipeline-synonyms.mjs rc=$SY_RC (süsteemne — API/DB maas?)" ;;
   esac
 else
-  [ "$CREDIT_OK" = "1" ] && echo "  klassifitseeritud SKU-loend puudub → sünonüümid vahele" || echo "  krediit/API maas → sünonüümid SKIP (degrade)"
+  [ "$CREDIT_OK" = "1" ] && echo "  sünonüüm-deficit tühi → sünonüümid vahele (kõigil ET-sünonüümid olemas)" || echo "  krediit/API maas → sünonüümid SKIP (degrade)"
 fi
 
 # ── [6.7] SÜNONÜÜMI-KONSENSUS (host) — A6 HOOK (Tarmo 2026-10-06), HARD RULE #5+#6 ──
@@ -344,9 +375,12 @@ fi
 # product_synonym'i (otsingusse); muu → ohutu vaikimisi (EI otsingusse), MITTE inimese järjekorda.
 # SAMA transform kui backfill (synonym-backfill.mjs). DELTA-peal (--skus classify-skus.txt — ainult
 # öine delta, MITTE kogu backlog). FAIL-LOUD: süsteemne → fail(); krediit maas → skip (degrade).
-echo "[6.7/7] sünonüümi-konsensus (Sonnet+Opus → product_synonym; ohutu vaikimisi muidu)"
-if [ "$CREDIT_OK" = "1" ] && [ -s /tmp/classify-skus.txt ]; then
-  SC_OUT=$(node "$ROOT/scripts/synonym-backfill.mjs" --skus /tmp/classify-skus.txt \
+echo "[6.7/7] sünonüümi-konsensus (DEFICIT: KÕIK pending synonym_review — self-healing, Fix 2)"
+# Fix 2: deficit = KÕIK status='pending' synonym_review (MITTE ainult selle-öö delta) → eelmisel ööl
+# jäänud pending-kirjed saavad konsensuse järgmisel ööl ISE. --skus ära jäetud = skript võtab kõik pending
+# (status!='pending' = inimese otsustatud → EI puututa). Krediit = lagi (rc=3 → jääk järgmine öö).
+if [ "$CREDIT_OK" = "1" ]; then
+  SC_OUT=$(node "$ROOT/scripts/synonym-backfill.mjs" \
     $([ "$EXECUTE" = "1" ] && echo --execute || echo --dry) \
     --out "$ROOT/reports/syn-consensus-hook-$(date +%Y%m%d).json" 2>&1) && SC_RC=0 || SC_RC=$?
   echo "$SC_OUT" | sed 's/^/  /'
@@ -357,7 +391,7 @@ if [ "$CREDIT_OK" = "1" ] && [ -s /tmp/classify-skus.txt ]; then
   SC_DIS=$( { echo "$SC_OUT" | grep -oE 'disagreement.*\) ([0-9]+)' | grep -oE '[0-9]+' | head -1; } || true); SC_DIS=${SC_DIS:-0}
   [ "$SC_DIS" -gt 0 ] && slack "ℹ️ XLM sünonüümi-konsensus [6.7]: $SC_DIS terminit lahkheli/EBAKINDEL → ohutu vaikimisi (EI otsingusse). Kattuvus-signaalid digestis."
 else
-  [ "$CREDIT_OK" = "1" ] && echo "  klassifitseeritud SKU-loend puudub → konsensus vahele" || echo "  krediit/API maas → konsensus SKIP (degrade)"
+  echo "  krediit/API maas → konsensus SKIP (degrade)"
 fi
 
 # ── [6.8] OUTLET-RISTKUVAMINE (host) — HARD RULE #5 HOOK + preservation-mudel (2026-10-12, directive B p2) ─
