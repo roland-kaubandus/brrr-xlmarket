@@ -12,7 +12,7 @@
  *   Üks definitsioon → sammud ei lahkne (nagu [6.5] hook + backfill jagavad transform'i).
  */
 
-import { isUsageLimitError } from "./spend-guard.mjs";
+import { isUsageLimitError, alertUsageLimit } from "./spend-guard.mjs";
 
 // Krediidi-/arve-tõrge. Anthropic tagastab HTTP 400 invalid_request_error "Your credit balance is too low".
 // (400/402 EI retry'ta — tuleb otse vea-stringina.) Regex katab ka billing/quota variandid + tulevased brändid.
@@ -22,6 +22,40 @@ export function isCreditError(err) {
   const s = String(err || "");
   if (isUsageLimitError(s)) return false; // usage-cap ≠ krediit-balance — eraldi käsitlus (spend-guard)
   return /credit balance|credit_balance|billing|insufficient.?(?:quota|funds|credit)|HTTP 40[23]|Plans & Billing|too low/i.test(s);
+}
+
+/**
+ * isDegradeError — ÜHINE mid-run degrade-värav: krediit-balance VÕI workspace spend-cap/tier.
+ *   MÕLEMAD → DEGRADE (exit 3: LLM-sammud skip, laoseis/hind/reindeks JÄTKUB — täpselt nagu 402).
+ *   Transient per-minute 429 EI ole degrade (isUsageLimitError tagastab false → makeCaller retry'b).
+ *
+ *   MIKS ERALDI isCreditError'ist (Tarmo 2026-10-14 Fix 1 CRITICAL): mid-run sammud ([4] classify,
+ *   [6] spec, [6.5] content-gen) kasutasid isCreditError'it, mis usage-cap'i (HTTP 400 "workspace
+ *   API usage limit" / 429 tier) puhul tagastab FALSE → kesk-jooksu spend-cap läks SÜSTEEMSEKS
+ *   abordiks (exit 1) → laoseis/hind/reindeks jäid TEGEMATA. Nüüd mid-run kasutab isDegradeError'it
+ *   → usage-cap = sama degrade-signaal kui krediit → exit 3, laoseis jätkub. Probe (probeCredit)
+ *   eristab endiselt usage vs credit (eri alert); mid-run vajab ainult "kas degrade-väärt billing-viga".
+ */
+export function isDegradeError(err) {
+  return isUsageLimitError(err) || isCreditError(err);
+}
+
+/** degradeKind — degrade liik: 'usage' (spend-cap/tier) | 'credit' (balance) | null. Mid-run alert-valikuks. */
+export function degradeKind(err) {
+  if (isUsageLimitError(err)) return "usage";
+  if (isCreditError(err)) return "credit";
+  return null;
+}
+
+/**
+ * alertDegradeOnce — mid-run FAIL-LOUD: usage-limit → alertUsageLimit (Telegram, 1×/protsess, dedup).
+ *   Krediit-balance → EI eraldi Telegram (sammu CREDIT_DEGRADE-logi + orkestraatori raport piisab;
+ *   per-toode alert oleks 18k×-spämm). Kutsu enne exit(3), kui degrade tuvastatud.
+ * @returns {'usage'|'credit'|null} tuvastatud liik
+ */
+export function alertDegradeOnce(err, { ctx = "" } = {}) {
+  if (isUsageLimitError(err)) { alertUsageLimit(err, { ctx }); return "usage"; }
+  return isCreditError(err) ? "credit" : null;
 }
 
 /**

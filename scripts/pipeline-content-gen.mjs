@@ -31,7 +31,7 @@ import path from "node:path";
 import { execFileSync } from "node:child_process";
 import { loadGlossary, buildGlossaryAssets, generateContent, DEFAULT_MODEL } from "./lib/content-gen.mjs";
 import { filterNeedsGen, writeRecords, dbContainer } from "./lib/content-write.mjs";
-import { isCreditError } from "./lib/credit-guard.mjs"; // ÜKS SSoT — jagatud [4]/[6]/[6.5]/probe (DRY)
+import { isDegradeError, alertDegradeOnce } from "./lib/credit-guard.mjs"; // ÜKS SSoT — jagatud [4]/[6]/[6.5]/probe (DRY). isDegradeError = krediit VÕI usage-cap (Fix 1)
 
 const ROOT = "/opt/xlmarket-github";
 const GLOSSARY = path.join(ROOT, "backend/src/data/glossary.yaml");
@@ -124,10 +124,10 @@ async function main() {
     }
   }, CONC);
 
-  // ── kukkumis-analüüs: KREDIIT (degrade) vs MUU süsteemne (API maas → peata) ──
+  // ── kukkumis-analüüs: BILLING-DEGRADE (krediit VÕI usage-cap) vs MUU süsteemne (API maas → peata) ──
   const failRatio = failedItems.length / toWrite.length;
-  const creditFails = failedItems.filter((f) => isCreditError(f.err)).length;
-  // enamik kukkumisi = krediit → DEGRADE (skip sisu, lase reindeks joosta), MITTE API-maas.
+  const creditFails = failedItems.filter((f) => isDegradeError(f.err)).length; // krediit VÕI usage-cap (Fix 1)
+  // enamik kukkumisi = billing-degrade → DEGRADE (skip sisu, lase reindeks joosta), MITTE API-maas.
   const creditDegrade = creditFails > 0 && creditFails >= failedItems.length * CREDIT_DOMINANT;
 
   // MUU SÜSTEEMNE (API täiesti maas / DB kaos, EI krediit) → exit 1 (peata, Telegram punane).
@@ -140,8 +140,9 @@ async function main() {
   // KREDIIT-DEGRADE: krediidi-tõrge ≠ API-maas. Sisu OOTAB, aga laoseis/hind/spec/reindeks JÄTKUB.
   //   (Sama muster kui B-fix: üksik/mitte-kriitiline tõrge ei peata kogu pipeline'i. Sisu re-run'iga hiljem.)
   if (creditDegrade) {
-    console.error(`⚠️ KREDIIT-DEGRADE: ${creditFails}/${toWrite.length} kukkus krediidi-veaga (${Math.round(failRatio * 100)}% kokku) — sisu OOTAB, laoseis/reindeks JÄTKUB. Näide:`);
-    const ex = failedItems.find((f) => isCreditError(f.err));
+    const ex = failedItems.find((f) => isDegradeError(f.err));
+    const kind = ex ? alertDegradeOnce(ex.err, { ctx: "[6.5] content-gen" }) : null; // usage-cap → Telegram (fail-loud)
+    console.error(`⚠️ ${kind === "usage" ? "USAGE-CAP" : "KREDIIT"}-DEGRADE: ${creditFails}/${toWrite.length} kukkus billing-veaga (${Math.round(failRatio * 100)}% kokku) — sisu OOTAB, laoseis/reindeks JÄTKUB. Näide:`);
     if (ex) console.error(`   💳 ${ex.sku || ex.id}: ${ex.err}`);
   } else if (failedItems.length) {
     console.log(`  ⚠️ ${failedItems.length} üksik-toodet kukkus → SKIP (review), EI peata:`);
