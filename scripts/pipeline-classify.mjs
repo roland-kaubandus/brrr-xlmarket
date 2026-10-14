@@ -21,11 +21,12 @@
 //   Vaikimisi = --dry (loeb + klassifitseerib + raport, EI kirjuta DB-sse).
 import { execSync } from "node:child_process";
 import fs from "node:fs";
-import { isCreditError } from "./lib/credit-guard.mjs";
+import { isDegradeError, alertDegradeOnce } from "./lib/credit-guard.mjs"; // isDegradeError = krediit VÕI usage-cap (Fix 1)
 
-// Mid-run krediidi-tõrge (probe läbis, aga krediit sai OTSA jooksu ajal) → DEGRADE (exit 3),
+// Mid-run billing-tõrge (probe läbis, aga krediit/usage-cap sai OTSA jooksu ajal) → DEGRADE (exit 3),
 // MITTE fail. Orkestraator [4] näeb rc=3 → tühjendab classify-skus.txt → [6]/[6.5] skibivad → laoseis JÄTKUB.
 let CREDIT_HIT = false;
+let CREDIT_ERR = ""; // esimene degrade-vea string (usage-cap alert'i detail)
 
 const KEY = process.env.ANTHROPIC_API_KEY;
 if (!KEY) { console.error("ANTHROPIC_API_KEY puudub (set -a; . /opt/eumotors-tasks/.env; set +a)"); process.exit(2); }
@@ -135,7 +136,7 @@ async function call(system, user, maxTok) {
       const j = await r.json();
       if (j.error) {
         // Krediidi-tõrge: EI retry'ta (pointless) — sea DEGRADE-lipp + katkesta kohe (return "").
-        if (isCreditError(JSON.stringify(j.error))) { CREDIT_HIT = true; console.error("💳 KREDIIT maas (mid-run) — DEGRADE"); return ""; }
+        { const es = JSON.stringify(j.error); if (isDegradeError(es)) { CREDIT_HIT = true; if (!CREDIT_ERR) CREDIT_ERR = es; console.error("💳 BILLING-degrade maas (mid-run: krediit/usage-cap) — DEGRADE"); return ""; } }
         console.error("API err:", JSON.stringify(j.error).slice(0, 160)); await new Promise(x => setTimeout(x, 2000 * (a + 1))); continue;
       }
       const u = j.usage || {};
@@ -263,7 +264,7 @@ if (reviewItems.length) {
 
 if (DRY) {
   console.log(`\n[DRY-RUN] EI kirjutatud. Tulemused: ${OUT}`);
-  if (CREDIT_HIT) { console.log(`CREDIT_DEGRADE=1\nCREDIT_PENDING=${targets.length}`); process.exit(3); }
+  if (CREDIT_HIT) { alertDegradeOnce(CREDIT_ERR, { ctx: "[4] classify" }); console.log(`CREDIT_DEGRADE=1\nCREDIT_PENDING=${targets.length}`); process.exit(3); }
   process.exit(0);
 }
 
@@ -319,8 +320,9 @@ console.log(`\nTulemused: ${OUT}`);
 // Shell [4] näeb rc=3 → tühjendab classify-skus.txt → [6]/[6.5] skibivad → [5]/[7] JÄTKUVAD.
 if (CREDIT_HIT) {
   const bkq = results.filter(r => r.bucket === "quarantine").length;
+  const kind = alertDegradeOnce(CREDIT_ERR, { ctx: "[4] classify" }); // usage-cap → Telegram (fail-loud)
   console.log(`CREDIT_DEGRADE=1`);
   console.log(`CREDIT_PENDING=${bkq}`);
-  console.error(`💳 KREDIIT-DEGRADE [4]: krediit sai jooksu ajal otsa — ${bkq} toodet ootab klassifikatsiooni (re-run kui krediit tagasi).`);
+  console.error(`💳 ${kind === "usage" ? "USAGE-CAP" : "KREDIIT"}-DEGRADE [4]: billing sai jooksu ajal otsa — ${bkq} toodet ootab klassifikatsiooni (re-run kui tagasi).`);
   process.exit(3);
 }

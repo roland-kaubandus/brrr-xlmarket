@@ -6,10 +6,11 @@
 // Käsk: node spec-extract-skus.mjs --skus <fail> [--concurrency 5] [--dry]
 import { execSync } from "node:child_process"
 import fs from "node:fs"
-import { isCreditError } from "./lib/credit-guard.mjs"
+import { isDegradeError, alertDegradeOnce } from "./lib/credit-guard.mjs" // isDegradeError = krediit VÕI usage-cap (Fix 1)
 
-// Mid-run krediidi-tõrge → DEGRADE (exit 3), MITTE fail. Shell [6] näeb rc=3 → laoseis [7] JÄTKUB.
+// Mid-run billing-tõrge (krediit VÕI usage-cap) → DEGRADE (exit 3), MITTE fail. Shell [6] näeb rc=3 → laoseis [7] JÄTKUB.
 let CREDIT_HIT = false
+let CREDIT_ERR = "" // esimene degrade-vea string (usage-cap alert'i detail)
 
 const KEY = process.env.ANTHROPIC_API_KEY
 if (!KEY) { console.error("ANTHROPIC_API_KEY puudub"); process.exit(1) }
@@ -59,7 +60,7 @@ async function llm(prompt, maxTok) {
   const j = await r.json()
   if (!j.content) {
     const em = JSON.stringify(j).slice(0, 200)
-    if (isCreditError(em)) { CREDIT_HIT = true }  // krediit → märgi degrade, throw allpool skibitakse
+    if (isDegradeError(em)) { CREDIT_HIT = true; if (!CREDIT_ERR) CREDIT_ERR = em }  // krediit/usage-cap → märgi degrade, throw allpool skibitakse
     throw new Error("API " + em.slice(0, 120))
   }
   return { txt: j.content.map(c => c.text || "").join(""), usage: j.usage }
@@ -145,8 +146,9 @@ if (newMalls.length) { console.log("\nUUED MALLID:"); for (const m of newMalls) 
 // jäänud (specs IS NULL) ootavad re-run'i. Shell [6] näeb rc=3 → laoseis [7] JÄTKUB (degrade-kaskaad).
 if (CREDIT_HIT) {
   const pending = totalP - specced
+  const kind = alertDegradeOnce(CREDIT_ERR, { ctx: "[6] spec-extract" }) // usage-cap → Telegram (fail-loud)
   console.log(`CREDIT_DEGRADE=1`)
   console.log(`CREDIT_PENDING=${pending}`)
-  console.error(`💳 KREDIIT-DEGRADE [6]: krediit sai jooksu ajal otsa — ${pending} toodet ootab spec-ekstraktsiooni (re-run kui krediit tagasi).`)
+  console.error(`💳 ${kind === "usage" ? "USAGE-CAP" : "KREDIIT"}-DEGRADE [6]: billing sai jooksu ajal otsa — ${pending} toodet ootab spec-ekstraktsiooni (re-run kui tagasi).`)
   process.exit(3)
 }
