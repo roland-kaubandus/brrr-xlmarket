@@ -5,6 +5,8 @@
 //   Iga valmis-chunk kirjutatakse KOHE DB-sse (kutsuja teeb writeRecords) → katkeb → tehtu püsib.
 //   Fail-loud: batch errored/expired/canceled → viga tagasi (kutsuja → Telegram).
 
+import { recordSpend } from './spend-guard.mjs';
+
 const API = 'https://api.anthropic.com/v1';
 const sleep = (ms) => new Promise(r => setTimeout(r, ms));
 
@@ -65,8 +67,12 @@ export async function retrieveResults(batch, apiKey) {
   for (const line of text.trim().split('\n').filter(Boolean)) {
     let rec; try { rec = JSON.parse(line); } catch { continue; }
     const r = rec.result || {};
-    if (r.type === 'succeeded') out.push({ custom_id: rec.custom_id, ok: true, message: r.message });
-    else out.push({ custom_id: rec.custom_id, ok: false, errorType: r.type, error: JSON.stringify(r).slice(0, 300) });
+    if (r.type === 'succeeded') {
+      // Fix 4 (Tarmo 2026-10-14): jälgi Batch-kulu kuu-liidrisse (üks koht → kõik Batch-kutsujad).
+      //   batch:true = −50% hind. Best-effort: jälgimise-tõrge EI katkesta tulemuste parsimist.
+      try { recordSpend({ model: r.message.model, usage: r.message.usage, batch: true }); } catch { /* ignore */ }
+      out.push({ custom_id: rec.custom_id, ok: true, message: r.message });
+    } else out.push({ custom_id: rec.custom_id, ok: false, errorType: r.type, error: JSON.stringify(r).slice(0, 300) });
   }
   return out;
 }
