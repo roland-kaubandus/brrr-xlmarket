@@ -59,26 +59,47 @@ function emailGate(to: string): { allow: boolean; reason: string } {
   return { allow: true, reason: "send" }
 }
 
+export interface EmailAttachment {
+  filename: string
+  content: Buffer
+  contentType?: string
+}
+
 interface SendEmailOptions {
   to: string
   subject: string
   html: string
+  bcc?: string | string[]
+  attachments?: EmailAttachment[]
 }
 
-export async function sendEmail({ to, subject, html }: SendEmailOptions) {
+export async function sendEmail({ to, subject, html, bcc, attachments }: SendEmailOptions) {
   // SSoT-värav: allowlist (staging) → kill-switch → prod. Blokk logitakse (nähtavus).
   const gate = emailGate(to)
   if (!gate.allow) {
     console.log(`[EMAIL] BLOCKED (${gate.reason}) — to=${to} subject="${subject}"`)
     return
   }
-  console.log(`[EMAIL] SEND (${gate.reason}) — to=${to} subject="${subject}"`)
+  // BCC-saajad (nt raamatupidamise arve-koopia) läbivad SAMA värava eraldi (SSoT) —
+  // mitte-lubatud bcc-aadress jäetakse VÄLJA + logitakse (staging ei leki päris aadressile).
+  const bccList: string[] = []
+  if (bcc) {
+    for (const addr of Array.isArray(bcc) ? bcc : [bcc]) {
+      const g = emailGate(addr)
+      if (g.allow) bccList.push(addr)
+      else console.log(`[EMAIL] BCC-DROP (${g.reason}) — bcc=${addr} subject="${subject}"`)
+    }
+  }
+  const att = attachments && attachments.length ? ` +${attachments.length} manus` : ""
+  console.log(`[EMAIL] SEND (${gate.reason}) — to=${to}${bccList.length ? ` bcc=${bccList.join(",")}` : ""}${att} subject="${subject}"`)
   await transporter.sendMail({
     from: `"${EMAIL_FROM_NAME}" <${EMAIL_FROM}>`,
     to,
+    ...(bccList.length ? { bcc: bccList } : {}),
     ...(EMAIL_REPLY_TO ? { replyTo: EMAIL_REPLY_TO } : {}),
     subject,
     html,
+    ...(attachments && attachments.length ? { attachments } : {}),
   })
 }
 
@@ -254,10 +275,32 @@ export async function sendInvoice(order: OrderData) {
     <p style="color: #6b7280; margin-top: 25px; font-size: 13px;">K&uuml;simuste korral kirjutage <a href="mailto:info@xlmarket.ee" style="color: #d97706;">info@xlmarket.ee</a></p>
   `)
 
+  // Arve PDF-manus (Tarmo 2026-10-14: "arve PDF-manusena, kui võimalik"). BEST-EFFORT:
+  // genereerimine kukub → saadame maili ILMA manuseta (arve-tekst on ka HTML-is). EI blokeeri kirja.
+  let attachments: EmailAttachment[] | undefined
+  try {
+    const { renderInvoicePdf } = await import("./invoice-pdf.js")
+    const pdf = await renderInvoicePdf(order, orderNum)
+    attachments = [{ filename: `arve-${orderNum}.pdf`, content: pdf, contentType: "application/pdf" }]
+  } catch (e) {
+    console.error(`[EMAIL] arve-PDF genereerimine kukkus (saadan ilma manuseta) — order=${orderNum}:`, e)
+  }
+
+  // Arve läheb KLIENDILE (order.email); koopia raamatupidamisse (EMAIL_INVOICE) BCC-na,
+  // et klient EI näeks sisemist aadressi. BCC AINULT kui EMAIL_INVOICE seatud JA erineb kliendist
+  // (muidu topelt-saatmine — nt homne test, kus klient = EMAIL_INVOICE = tarmo@naissaar.eu).
+  const invoiceBcc =
+    EMAIL_INVOICE &&
+    EMAIL_INVOICE.trim().toLowerCase() !== (order.email || "").trim().toLowerCase()
+      ? EMAIL_INVOICE
+      : undefined
+
   await sendEmail({
-    to: EMAIL_INVOICE,
+    to: order.email,
     subject: `Arve #${orderNum} — ${EMAIL_FROM_NAME}`,
     html,
+    ...(invoiceBcc ? { bcc: invoiceBcc } : {}),
+    ...(attachments ? { attachments } : {}),
   })
 }
 
