@@ -27,10 +27,12 @@
     "js-yaml": "^4.1.1",
     "jsonwebtoken": "^9.0.3",
     "nodemailer": "^8.0.4",
+    "pdfkit": "^0.15.1",
     "pg": "^8.20.0"
   },
   "devDependencies": {
     "@types/jsonwebtoken": "^9.0.10",
+    "@types/pdfkit": "^0.13.9",
     "typescript": "^5.9.3"
   }
 }
