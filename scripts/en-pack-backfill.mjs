@@ -109,13 +109,21 @@ function textOf(message) {
 }
 
 // ── Batch params builders ──
+// Fix 4 (Tarmo 2026-10-14): cache_control JAGATUD süsteemiplokile. Batch'is on system IDENTNE kõigil
+//   N päringul → esimene loob cache, ülejäänud loevad (−90% input selle prefiksi eest). Idempotentne:
+//   juba-array (blokk-)kujuga system jääb muutmata; alla min-prefiksi jääva system'i puhul API lihtsalt
+//   ei cache'i (kahjutu). Muster sama mis synonym-gen.mjs buildRequestParams.
+function sysBlock(system) {
+  if (Array.isArray(system)) return system;
+  return [{ type: "text", text: String(system), cache_control: { type: "ephemeral" } }];
+}
 function pName(model, system, user) {
-  const b = { model, max_tokens: 500, system, messages: [{ role: "user", content: user }] };
+  const b = { model, max_tokens: 500, system: sysBlock(system), messages: [{ role: "user", content: user }] };
   if (model === M_FABLE) b.max_tokens = 3000;
   return b;
 }
 function pSeo(system, user) {
-  return { model: M_SONNET, max_tokens: 1400, system, messages: [{ role: "user", content: user }] };
+  return { model: M_SONNET, max_tokens: 1400, system: sysBlock(system), messages: [{ role: "user", content: user }] };
 }
 
 // ── Targets DB-st ──

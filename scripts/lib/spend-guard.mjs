@@ -135,12 +135,14 @@ function writeState(st) {
  * recordSpend — lisa ühe kutse kulu kuu-liidrisse (AINULT per-projekt raport, EI alerti).
  *   SÜNKROONNE read-modify-write (Node üheahelaline → protsessi-sisene RMW atomaarne; pipeline-sammud
  *   on eraldi protsessid, jooksevad järjest → ka risti ohutu).
+ *   @param {boolean} [batch=false] Batch API kutse → −50% hind (Fix 4). content-batch.retrieveResults
+ *     seab selle automaatselt kõigile Batch-tulemustele; sünkroonsed kutsed jätavad vaikimisi false.
  *   ⚠️ 80%-alert EI tule SIIT (parandus 2026-10-08): local näeb vaid MEIE kulu (nt $6.26), aga
  *     workspace'i cap täitub jagatult → vale-kindlus. Autoriteetne 80%-värav = checkWorkspaceSpendAlert.
  * @returns {{total:number, usd:number}}
  */
-export function recordSpend({ model, usage } = {}) {
-  const usd = cost(model, usage);
+export function recordSpend({ model, usage, batch = false } = {}) {
+  const usd = cost(model, usage) * (batch ? 0.5 : 1); // Batch API = −50% (Fix 4, Tarmo 2026-10-14)
   const mk = monthKey();
   const st = readState(mk);
   st.total_usd = (st.total_usd || 0) + usd;
