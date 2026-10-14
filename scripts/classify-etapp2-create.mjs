@@ -32,6 +32,12 @@ import { styleNormalize } from "./lib/en-name.mjs";
 const REPO = "/opt/xlmarket-github";
 const val = (f, d) => { const i = process.argv.indexOf(f); return i > 0 ? process.argv[i + 1] : d; };
 const EXECUTE = process.argv.includes("--execute");
+// HARD RULE #9: DB-write → stack-lukk (re-entrant: orkestraatori all no-op; standalone --execute kaitseb). DRY EI lukusta (Fix 3).
+import { acquireStackLock } from "./lib/stack-lock.mjs";
+if (EXECUTE) {
+  try { acquireStackLock({ holder: "classify-etapp2-create", waitMs: Number(process.env.XL_DBWRITE_WAIT_MS) || 60_000 }); }
+  catch (e) { console.error(`🔒 stack-lukk (deploy käib?): ${e.message}`); process.exit(1); }
+}
 const DRYJSON = val("--in", `${REPO}/reports/classify-chain-dryrun-v2.json`);
 const OUT_MD = val("--out", `${REPO}/reports/ETAPP2-plaan.md`);
 const OUT_JSON = OUT_MD.replace(/\.md$/, ".json");

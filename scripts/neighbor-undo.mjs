@@ -21,6 +21,11 @@ if (!DB) { console.error("🔴 db-k33g puudub"); process.exit(2); }
 const S = (s) => `'${String(s).replace(/'/g, "''")}'`;
 const psqlTx = (sql) => execSync(`docker exec -i ${DB} psql -U xlmarket -d xlmarket -q -v ON_ERROR_STOP=1 -f -`, { input: sql, encoding: "utf8", stdio: ["pipe", "inherit", "inherit"] });
 
+// HARD RULE #9: undo = DB-write → stack-lukk (alati kirjutab; re-entrant no-op orkestraatori all). Fix 3.
+import { acquireStackLock } from "./lib/stack-lock.mjs";
+try { acquireStackLock({ holder: "neighbor-undo", waitMs: Number(process.env.XL_DBWRITE_WAIT_MS) || 60_000 }); }
+catch (e) { console.error(`🔒 stack-lukk (deploy käib?): ${e.message}`); process.exit(1); }
+
 let sql = "BEGIN;\n";
 for (const m of U.moves || []) {
   sql += `UPDATE product_category_product SET product_category_id=${S(m.fromId)} WHERE product_id=${S(m.pid)} AND product_category_id=${S(m.toId)};\n`;

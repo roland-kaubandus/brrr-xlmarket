@@ -14,6 +14,12 @@ import { execSync } from "node:child_process";
 const REPO = "/opt/xlmarket-github";
 const argv = process.argv.slice(2);
 const DRY = argv.includes("--dry");
+// HARD RULE #9: DB-write → stack-lukk (standalone kirjutaja; DRY EI lukusta). Fix 3.
+import { acquireStackLock } from "./lib/stack-lock.mjs";
+if (!DRY) {
+  try { acquireStackLock({ holder: "etapp1-move-undo", waitMs: Number(process.env.XL_DBWRITE_WAIT_MS) || 60_000 }); }
+  catch (e) { console.error(`🔒 stack-lukk (deploy käib?): ${e.message}`); process.exit(1); }
+}
 const batchId = argv.find((a) => !a.startsWith("--"));
 const undoFile = `${REPO}/reports/backups/etapp1-undo-${batchId}.json`;
 if (!batchId || !fs.existsSync(undoFile)) { console.error(`🔴 undo-fail puudub: ${undoFile}`); process.exit(1); }

@@ -5,6 +5,10 @@ import { execSync } from "node:child_process"
 import fs from "node:fs"
 const KEY = process.env.ANTHROPIC_API_KEY
 if (!KEY) { console.error("ANTHROPIC_API_KEY puudub"); process.exit(1) }
+// HARD RULE #9: DB-write (metadata.specs UPDATE) → stack-lukk (alati kirjutab; re-entrant no-op orkestraatori all). Fix 3.
+import { acquireStackLock } from "./lib/stack-lock.mjs"
+try { acquireStackLock({ holder: "spec-backfill-extract", waitMs: Number(process.env.XL_DBWRITE_WAIT_MS) || 60_000 }) }
+catch (e) { console.error(`🔒 stack-lukk (deploy käib?): ${e.message}`); process.exit(1) }
 const MODEL = "claude-haiku-4-5-20251001"
 const arg = (n, d) => { const i = process.argv.indexOf(n); return i > 0 ? parseInt(process.argv[i + 1]) : d }
 const LIMIT_L3 = arg("--limit-l3", Infinity)

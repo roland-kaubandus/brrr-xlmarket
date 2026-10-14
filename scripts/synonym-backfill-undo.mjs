@@ -13,6 +13,11 @@ import { execSync } from "node:child_process";
 const BATCH_ID = process.argv[2];
 if (!BATCH_ID) { console.error("Kasutus: node scripts/synonym-backfill-undo.mjs <batch_id>"); process.exit(2); }
 
+// HARD RULE #9: undo = DB-write → stack-lukk (alati kirjutab; re-entrant no-op orkestraatori all). Fix 3.
+import { acquireStackLock } from "./lib/stack-lock.mjs";
+try { acquireStackLock({ holder: "synonym-backfill-undo", waitMs: Number(process.env.XL_DBWRITE_WAIT_MS) || 60_000 }); }
+catch (e) { console.error(`🔒 stack-lukk (deploy käib?): ${e.message}`); process.exit(1); }
+
 const db = execSync("docker ps --format '{{.Names}}' | grep '^db-k33g' | head -1", { encoding: "utf8" }).trim();
 const q = (sql) => execSync(`docker exec -i ${db} psql -U xlmarket -d xlmarket -tA -v ON_ERROR_STOP=1 -f -`, { input: sql, encoding: "utf8", maxBuffer: 1 << 30 });
 const sqlLit = (s) => "'" + String(s).replace(/'/g, "''") + "'";

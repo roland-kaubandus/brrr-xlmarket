@@ -27,6 +27,12 @@ const argv = process.argv;
 const val = (f, d) => { const i = argv.indexOf(f); return i > 0 ? argv[i + 1] : d; };
 const KIND = val("--kind", "both");
 const DRY_RATING = argv.includes("--no-write"); // vaikimisi KIRJUTAB calibration_rating (mitte kohtuniku-otsust!)
+// HARD RULE #9: DB-write → stack-lukk (vaikimisi kirjutab; --no-write EI lukusta). Fix 3.
+import { acquireStackLock } from "./lib/stack-lock.mjs";
+if (!DRY_RATING) {
+  try { acquireStackLock({ holder: "calibration-reference", waitMs: Number(process.env.XL_DBWRITE_WAIT_MS) || 60_000 }); }
+  catch (e) { console.error(`🔒 stack-lukk (deploy käib?): ${e.message}`); process.exit(1); }
+}
 
 const API_KEY = process.env.ANTHROPIC_API_KEY;
 if (!API_KEY) { console.error("ANTHROPIC_API_KEY puudub — set -a; . /opt/eumotors-tasks/.env; set +a"); process.exit(2); }
