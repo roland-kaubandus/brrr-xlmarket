@@ -66,6 +66,7 @@ if (DRY) {
 psqlTx(`BEGIN;
   DELETE FROM product_category_product WHERE product_id IN (${pid});
   DELETE FROM taxonomy_node_meta WHERE node_id IN (${nid});
+  DELETE FROM taxonomy_node_translation WHERE node_id IN (${nid});
   DELETE FROM product_category WHERE id IN (${nid});
   ${restorePairs.length ? `INSERT INTO product_category_product (product_id, product_category_id) VALUES ${restorePairs.join(", ")} ON CONFLICT DO NOTHING;` : ""}
   ${pubRestore.length ? `UPDATE product SET status='published', updated_at=now() WHERE id IN (${pubRestore.join(",")});` : ""}

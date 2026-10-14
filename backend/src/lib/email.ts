@@ -36,19 +36,23 @@ const EMAIL_ALLOWLIST = (process.env.EMAIL_ALLOWLIST || "")
   .filter(Boolean)
 
 // Üks värav kõigile saatmistele (SSoT). Tagastab kas lubada + põhjus (logiks + nähtavus).
+// JÄRJEKORD (Tarmo 2026-10-13): JÄME eel-värav ENNE täpset väravat.
+// EMAIL_DISABLED blokib KÕIK (ka allowlisti) ja on esimene, sest tema eksimise hind on ODAV
+// (kiri jääb saatmata, näed kohe); allowlisti eksimine tähendaks kirja PÄRIS kliendile (staging-DB
+// = prod-koopia). Kaks sõltumatut kaitset: jäme (DISABLED) + täpne (allowlist).
 function emailGate(to: string): { allow: boolean; reason: string } {
   const addr = (to || "").trim().toLowerCase()
-  // Allowlist peal → AINULT allowlist (tugevaim, täpseim värav; staging). Muu blokeeritud.
+  // 1) JÄME eel-värav — kill-switch blokib KÕIK, ka allowlistitud aadressid.
+  if (process.env.EMAIL_DISABLED === "true") {
+    return { allow: false, reason: "email-disabled" }
+  }
+  // 2) Allowlist peal → AINULT allowlist (täpne staging-värav). Muu blokeeritud.
   if (EMAIL_ALLOWLIST.length > 0) {
     return EMAIL_ALLOWLIST.includes(addr)
       ? { allow: true, reason: "allowlist-pass" }
       : { allow: false, reason: "allowlist-block" }
   }
-  // Allowlist tühi + kill-switch → blokeeri kõik.
-  if (process.env.EMAIL_DISABLED === "true") {
-    return { allow: false, reason: "email-disabled" }
-  }
-  // Prod: allowlist tühi, kill-switch maas → saada.
+  // 3) Prod: allowlist tühi, kill-switch maas → saada.
   return { allow: true, reason: "send" }
 }
 
