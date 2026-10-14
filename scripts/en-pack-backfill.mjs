@@ -57,19 +57,35 @@ const M_FABLE = "claude-fable-5";
 const API_KEY = process.env.ANTHROPIC_API_KEY;
 if (!API_KEY) { console.error("🔴 ANTHROPIC_API_KEY puudub (set -a; . /opt/eumotors-tasks/.env; set +a)"); process.exit(2); }
 
-const DB = execSync("docker ps --format '{{.Names}}' | grep -E '^db-k33g' | head -1", { encoding: "utf8" }).trim();
-if (!DB) { console.error("🔴 db-k33g konteiner ei leitud"); process.exit(2); }
+// DB-konteineri id võib muutuda, kui Coolify stacki ümber loob (HARD RULE #7/#9 intsident
+// 2026-10-13 22:02: luku-väline redeploy kukutas backfilli keset osa 2). Re-resolvime + retry.
+function resolveDB() {
+  const n = execSync("docker ps --format '{{.Names}}' | grep -E '^db-k33g' | head -1", { encoding: "utf8" }).trim();
+  if (!n) { console.error("🔴 db-k33g konteiner ei leitud"); process.exit(2); }
+  return n;
+}
+let DB = resolveDB();
+const isStaleContainer = (e) => /No such container|is not running|Cannot connect to the Docker daemon/i.test(String(e?.message || e));
 
 // ── DB read helper — psql tagastab JSON (json_agg) → eraldaja-probleem puudub (tab/newline tiitlites turvaline) ──
 // SQL peab olema vormis: SELECT coalesce(json_agg(...), '[]') FROM (...) t;
 function psqlJson(sql) {
-  const out = execSync(`docker exec -i ${DB} psql -U xlmarket -d xlmarket -At`,
-    { input: sql, encoding: "utf8", maxBuffer: 512 * 1024 * 1024 }).trim();
-  return out ? JSON.parse(out) : [];
+  for (let a = 0; a < 2; a++) {
+    try {
+      const out = execSync(`docker exec -i ${DB} psql -U xlmarket -d xlmarket -At`,
+        { input: sql, encoding: "utf8", maxBuffer: 512 * 1024 * 1024 }).trim();
+      return out ? JSON.parse(out) : [];
+    } catch (e) { if (a === 0 && isStaleContainer(e)) { DB = resolveDB(); continue; } throw e; }
+  }
 }
 function psqlWrite(sqlText) {
-  execSync(`docker exec -i ${DB} psql -U xlmarket -d xlmarket -v ON_ERROR_STOP=1 --single-transaction`,
-    { input: sqlText, encoding: "utf8", stdio: ["pipe", "inherit", "inherit"] });
+  for (let a = 0; a < 2; a++) {
+    try {
+      execSync(`docker exec -i ${DB} psql -U xlmarket -d xlmarket -v ON_ERROR_STOP=1 --single-transaction`,
+        { input: sqlText, encoding: "utf8", stdio: ["pipe", "inherit", "inherit"] });
+      return;
+    } catch (e) { if (a === 0 && isStaleContainer(e)) { DB = resolveDB(); continue; } throw e; }
+  }
 }
 const sq = (s) => `'${String(s ?? "").replace(/'/g, "''")}'`;         // SQL string literal
 const sqN = (s) => s == null ? "NULL" : sq(s);                         // nullable
@@ -149,6 +165,31 @@ function loadLedger() {
   return { batch_id: BATCH_ID, created_at: new Date().toISOString(), done: {}, prev: {}, skipped: {}, samples: [] };
 }
 function saveLedger(l) { fs.mkdirSync(LEDGER_DIR, { recursive: true }); fs.writeFileSync(ledgerPath(), JSON.stringify(l, null, 2)); }
+
+// ── DB-vaikuse aken (öine pipeline 03:00; Tarmo: ära kirjuta 02:45–04:30) ──
+// LLM-batch-töö jookseb edasi (read-only API), AINULT DB-kirjutus ootab akna läbi.
+function quietWindowMsRemaining() {
+  const now = new Date();
+  const mins = now.getHours() * 60 + now.getMinutes();
+  const START = 2 * 60 + 45, END = 4 * 60 + 30;           // 02:45 .. 04:30 (local CEST)
+  if (mins >= START && mins < END) {
+    const end = new Date(now); end.setHours(4, 30, 0, 0);
+    return end.getTime() - now.getTime();
+  }
+  return 0;
+}
+async function waitOutQuietWindow(ledger) {
+  let rem = quietWindowMsRemaining();
+  if (rem <= 0) return;
+  const msg = `🟡 EN-backfill DB-vaikuse aknas (02:45–04:30) — DB-kirjutus OOTAB ~${Math.ceil(rem / 60000)} min (öine pipeline 03:00). Batch-LLM-töö tehtud, ainult kirjutus pausil.`;
+  console.log(msg);
+  if (EXECUTE) sendTelegram(msg);
+  saveLedger(ledger);                                      // checkpoint enne pausi
+  while (quietWindowMsRemaining() > 0 && !STOPPED) {
+    await new Promise(r => setTimeout(r, 60_000));
+  }
+  console.log("🟢 EN-backfill: vaikuse aken möödas, jätkan DB-kirjutust.");
+}
 
 // ── Usage-limit safe-stop ──
 let STOPPED = false;
@@ -341,6 +382,7 @@ async function writeChunk(grp, perCat, ledger) {
   }
   if (!stmts.length) return;
 
+  await waitOutQuietWindow(ledger);                        // Tarmo: ära kirjuta DB-vaikuse aknas (02:45–04:30)
   const release = acquireStackLock({ holder: "en-pack-backfill", waitMs: Number(process.env.XL_DBWRITE_WAIT_MS) || 60_000 });
   try {
     psqlWrite(stmts.join("\n"));
