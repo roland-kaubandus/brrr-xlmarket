@@ -334,7 +334,7 @@ pm2 reload xlmarket-storefront
 - **VEVOR CDN %2B:** Mõned failinimed sisaldavad `+` (%2B). ÄRA decodeURIComponent — CDN nõuab kodeeritud URL-e
 - **Medusa admin (Vite):** `allowedHosts: ["xlmarket.store"]` + `backendUrl: "https://xlmarket.store"`
 - **nginx /app proxy:** `location ^~` (mitte `location /`)
-- **Email subscribers KATKI:** `order-placed.ts` ja `order-shipped.ts` kommenteeritud välja
+- **Email subscribers AKTIIVSED (uuendatud 2026-10-14):** `order-placed.ts` (`order.placed` → `sendOrderConfirmation` + `sendInvoice`) ja `order-shipped.ts` (`order.fulfillment_created` → `sendShippingConfirmation`) EI OLE kommenteeritud. Saatmist kontrollib `email.ts#emailGate` (SSoT): (1) `EMAIL_DISABLED=true` → blokeerib KÕIK (jäme kill-switch, ESIMENE), (2) `EMAIL_ALLOWLIST` mittetühi → ainult allowlistitud aadressid (staging-kaitse), (3) prod (allowlist tühi, kill-switch maas) → saada. Staging praegu: `EMAIL_DISABLED=true` + allowlist=`tarmo@naissaar.eu`.
 - **CORS:** STORE_CORS, ADMIN_CORS, AUTH_CORS peavad sisaldama `https://xlmarket.store`
 - **Meili index WIPED (price/taxonomy puudu):** Medusa plugin kirjutab cron restart'i järel indeksi üle minimaalsete väljadega. Taastamine: `cd /home/brrr/xlmarket && set -a && source .env && set +a && unset DATABASE_URL && node backend/scripts/index-meilisearch.mjs && node scripts/sync-existing-synonyms.mjs` + `find /home/brrr/xlmarket/storefront/.next/cache -type f -delete` + `pm2 reload xlmarket-storefront`. feed-sync.sh EXIT trap + Slack alerts peaks nüüd kaitsma (2026-04-22 acff4d7).
 - **admin@xlmarket.eu jagab login + feed-sync cron auth:** Parooli vahetades UUENDA `.env` MEDUSA_ADMIN_PASS ka, muidu cron hängib [3/6] Medusa import sammu juures, [4/6] Meili reindex ei käivitu, sait näitab €0.00.

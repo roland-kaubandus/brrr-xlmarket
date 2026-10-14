@@ -26,6 +26,8 @@ import {
 // TÜÜBIPROFIIL-KIRJELDUS SSoT (HARD RULE #5 — SAMA transform kui backfill scripts/l3-desc-gen.mjs).
 // Uus L3 sünnib `product_category.description` = tüübiprofiil (internal kohtuniku-väli), MITTE SEO description_et.
 import { makeCaller, genValidatedDesc } from "./lib/l3-desc.mjs";
+// EN-NIME STIIL SSoT (HARD RULE #5 — uue L3 name_en sama deterministlik stiil kui en-pack-backfill).
+import { styleNormalize } from "./lib/en-name.mjs";
 
 const REPO = "/opt/xlmarket-github";
 const val = (f, d) => { const i = process.argv.indexOf(f); return i > 0 ? process.argv[i + 1] : d; };
@@ -285,6 +287,7 @@ function rollback(reason) {
     psqlTx(`BEGIN;
       DELETE FROM product_category_product WHERE product_id IN (${pid});
       DELETE FROM taxonomy_node_meta WHERE node_id IN (${nid});
+      DELETE FROM taxonomy_node_translation WHERE node_id IN (${nid});
       DELETE FROM product_category WHERE id IN (${nid});
       UPDATE product SET status='draft', updated_at=now() WHERE id IN (${pid});
       UPDATE classification_review SET status='pending', updated_at=now() WHERE product_id IN (${pid});
@@ -347,6 +350,34 @@ try {
   const defsFile = `/tmp/etapp2-defs-${BATCH}.json`;
   fs.writeFileSync(defsFile, JSON.stringify(defs, null, 2));
   sh(`node ${REPO}/scripts/create-l3.mjs --defs ${defsFile}`);
+
+  // ====== 1c. DB: name_en + SEO (HARD RULE #5 — uus L3 SÜNNIB EN-nime + SEO-ga) ======
+  // SAMA tabelid + skeem + värav kui en-pack-backfill (taxonomy_node_translation locale='en' +
+  // taxonomy_node_seo). Ilma selleta kogunevad öised L3-d EN-navis nimetuna + SEO-ta (vaikne lagunemine).
+  // seoClaimGate = SAMA värav (number/lubadus → SEO vahele, nimi jääb). source_batch = undo/stale-jälg.
+  console.log("[1c/8] DB — name_en (taxonomy_node_translation) + SEO (taxonomy_node_seo), SSoT = backfill");
+  {
+    const sqN = (v) => (v == null || v === "") ? "NULL" : sqlStr(v);
+    const stmts = [];
+    let nTr = 0, nSeo = 0, seoSkip = 0;
+    for (const p of plans) {
+      const nid = newIdByCk[p.ck];
+      const a = p.assets || {};
+      const nameEn = styleNormalize(a.name_en || p.name_en || "");
+      if (nameEn) {
+        stmts.push(`INSERT INTO taxonomy_node_translation (node_id, locale, name) VALUES (${sqlStr(nid)}, 'en', ${sqlStr(nameEn)}) ON CONFLICT (node_id, locale) DO UPDATE SET name=EXCLUDED.name, updated_at=NOW();`);
+        nTr++;
+      }
+      const sg = seoClaimGate(a);
+      if (sg.pass && a.description_et) {
+        stmts.push(`INSERT INTO taxonomy_node_seo (node_id, description_et, description_en, tagline_et, tagline_en, source_batch, seo_gate_pass) VALUES (${sqlStr(nid)}, ${sqN(a.description_et)}, ${sqN(a.description_en)}, ${sqN(a.tagline_et)}, ${sqN(a.tagline_en)}, ${sqlStr(BATCH)}, true) ON CONFLICT (node_id) DO UPDATE SET description_et=EXCLUDED.description_et, description_en=EXCLUDED.description_en, tagline_et=EXCLUDED.tagline_et, tagline_en=EXCLUDED.tagline_en, source_batch=EXCLUDED.source_batch, seo_gate_pass=true, updated_at=NOW();`);
+        nSeo++;
+      } else seoSkip++;
+    }
+    if (stmts.length) psqlTx(`BEGIN;\n${stmts.join("\n")}\nCOMMIT;`);
+    console.log(`  ✓ name_en: ${nTr} · SEO: ${nSeo}${seoSkip ? ` · SEO-skip (värav): ${seoSkip}` : ""}`);
+    if (seoSkip) telegram(`⚠️ XL ETAPP2 ${BATCH}: ${seoSkip} uue L3 SEO-värav kukkus → nimi loodud, SEO vahele. Fail-loud (HARD RULE #5).`);
+  }
 
   // ====== 1b. DB: sidumine + publish + review-resolve (üks transaktsioon) ======
   console.log("[1b/8] DB — seo 40 toodet + publish + review resolve (transaktsioon)");
