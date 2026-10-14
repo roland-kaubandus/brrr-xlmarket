@@ -23,6 +23,9 @@ const transporter = nodemailer.createTransport({
 })
 
 const EMAIL_FROM = process.env.EMAIL_FROM || "info@xlmarket.ee"
+// Saatja kuvatav nimi — env-ist (Tarmo 2026-10-14: "mitte koodis"). Vaikeväärtus = õige bränd-kuju
+// (EI "XLMARKET" suurtähtedega). Coolify EMAIL_FROM_NAME kirjutab üle.
+const EMAIL_FROM_NAME = process.env.EMAIL_FROM_NAME || "XLmarket.ee"
 const EMAIL_REPLY_TO = (process.env.EMAIL_REPLY_TO || "").trim()
 const EMAIL_ADMIN = process.env.EMAIL_ADMIN || "tarmo@xlmarket.ee"
 const EMAIL_INVOICE = process.env.EMAIL_INVOICE || "tarmo@naissaar.eu"
@@ -71,7 +74,7 @@ export async function sendEmail({ to, subject, html }: SendEmailOptions) {
   }
   console.log(`[EMAIL] SEND (${gate.reason}) — to=${to} subject="${subject}"`)
   await transporter.sendMail({
-    from: `"XLMARKET" <${EMAIL_FROM}>`,
+    from: `"${EMAIL_FROM_NAME}" <${EMAIL_FROM}>`,
     to,
     ...(EMAIL_REPLY_TO ? { replyTo: EMAIL_REPLY_TO } : {}),
     subject,
@@ -187,7 +190,7 @@ export async function sendOrderConfirmation(order: OrderData) {
 
   await sendEmail({
     to: order.email,
-    subject: `Aitäh tellimuse eest #${orderNum} — XLMARKET`,
+    subject: `Aitäh tellimuse eest #${orderNum} — ${EMAIL_FROM_NAME}`,
     html,
   })
 
@@ -253,7 +256,7 @@ export async function sendInvoice(order: OrderData) {
 
   await sendEmail({
     to: EMAIL_INVOICE,
-    subject: `Arve #${orderNum} — XLMARKET`,
+    subject: `Arve #${orderNum} — ${EMAIL_FROM_NAME}`,
     html,
   })
 }
@@ -271,7 +274,7 @@ export async function sendShippingConfirmation(order: OrderData, trackingNumber?
 
   await sendEmail({
     to: order.email,
-    subject: `Tellimus #${orderNum} saadetud — XLMARKET`,
+    subject: `Tellimus #${orderNum} saadetud — ${EMAIL_FROM_NAME}`,
     html,
   })
 }
