@@ -49,23 +49,23 @@ prod xl-admin ei avane (FAIL-LOUD kuvab puuduva nimekirja).
 | `SMTP_HOST` / `SMTP_PORT` | *(sisemine relay — Coolify UI)* | medusa + worker |
 | `EMAIL_FROM` | `tellimused@xlmarket.ee` | medusa + worker |
 | `EMAIL_REPLY_TO` | `info@xlmarket.ee` | medusa + worker |
-| `EMAIL_INVOICE` | raamatupidamise aadress (BCC-koopia; vt arve-muudatus 2026-10-14) | medusa + worker |
-| `EMAIL_ADMIN` | admin-teate aadress | medusa + worker |
+| `EMAIL_INVOICE` | `arved@xlmarket.ee` (arve BCC-koopia raamatupidamisse; vt arve-muudatus 2026-10-14) | medusa + worker |
+| `EMAIL_ADMIN` | `tellimused@xlmarket.ee` (uue-tellimuse admin-teade) | medusa + worker |
 | `EMAIL_FROM_NAME` | *(valikuline; puudu → koodi vaikeväärtus `XLmarket.ee`)* | medusa + worker |
 | `EMAIL_DISABLED` | **PUUDUB** (prod saadab) — kill-switch ainult staging'us | medusa + worker |
 | `EMAIL_ALLOWLIST` | **PUUDUB** (prod saadab kõigile) — allowlist ainult staging'us | medusa + worker |
 
-## ⚠️ Cutover-eelsed augud (leitud 2026-10-17 read-only auditis)
+## Coolify Production env — SEADISTATUD (Tarmo 2026-10-17)
 
-- **`EMAIL_REPLY_TO` EI OLE praegu Coolify uo28 env-is** (ei Production ega Preview plokis) →
-  cutover-redeploy'l jääks reply-to seadmata (koodi default = tühi, replyTo header puudub).
-  **VAJA ÄRA TEHA: lisa `EMAIL_REPLY_TO=info@xlmarket.ee` Coolify uo28 Production env-i ENNE cutover'it.**
+Tarmo seadis Production plokki (redeploy'd EI tehtud — jõustub cutover'iga):
+`SMTP_USER=noreply@xlmarket.ee` · `SMTP_PASSWORD` (räsi `deb7ef7a…`, app-parool) ·
+`EMAIL_FROM=tellimused@xlmarket.ee` · **`EMAIL_REPLY_TO=info@xlmarket.ee` (LISATUD — varasem auk lahendatud)** ·
+`EMAIL_ADMIN=tellimused@xlmarket.ee` · `EMAIL_INVOICE=arved@xlmarket.ee`.
+`EMAIL_ALLOWLIST` ja `EMAIL_DISABLED` **EI OLE seatud** (kontrollitud) → prod saadab.
+
 - **`EMAIL_FROM_NAME` EI OLE Coolifys** → saatja-nimeks jääb koodi default `XLmarket.ee`. Kui soovitakse muud → lisa.
-- **Coolify list-envs API maskib väärtused** (`value=None`) → staged SMTP_USER/EMAIL_FROM/SMTP_PASSWORD uued
-  väärtused EI OLE API-st loetavad. Olemas Coolify Production plokis (is_runtime=True): `SMTP_USER`,
-  `SMTP_PASSWORD`, `SMTP_HOST`, `SMTP_PORT`, `EMAIL_FROM`, `EMAIL_INVOICE`, `EMAIL_ADMIN`.
-  **Staged väärtuste õigsust (noreply@, tellimused@, räsi deb7ef7a) kontrolli Coolify UI-s (secrets shown-once)
-  JA lõplikult jooksvas konteineris cutover-redeploy järel (allpool).**
+- **Coolify list-envs API maskib väärtused** (`value=None`) → Coolifys staged väärtusi EI SAA API-st kinnitada;
+  õigsust näeb Coolify UI-s (secrets shown-once) JA lõplikult jooksvas konteineris cutover-redeploy järel (allpool).
 
 ## 📸 Hetkeseis — jooksev uo28 konteiner (2026-10-17, EI redeploy'tud, VANAD väärtused — ootuspärane)
 
@@ -75,12 +75,18 @@ prod xl-admin ei avane (FAIL-LOUD kuvab puuduva nimekirja).
 | `SMTP_PASSWORD` | sha256 `9a1b333e…` len=14 | sha256 `deb7ef7a…` |
 | `EMAIL_FROM` | `info@xlmarket.ee` | `tellimused@xlmarket.ee` |
 | `EMAIL_REPLY_TO` | *(puudub)* | `info@xlmarket.ee` |
-| `EMAIL_INVOICE` / `EMAIL_ADMIN` | `tarmo@naissaar.eu` / `tarmo@naissaar.eu` | raamatupidamine / admin |
+| `EMAIL_INVOICE` / `EMAIL_ADMIN` | `tarmo@naissaar.eu` / `tarmo@naissaar.eu` | `arved@xlmarket.ee` / `tellimused@xlmarket.ee` |
 | `EMAIL_DISABLED` / `EMAIL_ALLOWLIST` | *(puudub)* ✓ | *(puudub)* ✓ |
 
 > Konteiner = vanad väärtused on **õige seis** — uo28 pole redeploy'tud, env-muutus jõustub alles recreate'il.
 
 ## ✅ Cutover-JÄRGNE kontroll (pärast prod redeploy'd — KOHUSTUSLIK)
+
+> **🔑 ÕPPETUND (Tarmo 2026-10-17): kontrolli JOOKSVAT KONTEINERIT, mitte ainult Coolify väärtusi.**
+> Coolify salvestatud env ja jooksva konteineri env **VÕIVAD lahkneda ja mõlemad on omas kontekstis õiged** —
+> Coolify näitab *staged* (järgmise recreate'i) väärtust, konteiner *praegu kehtivat* (viimase recreate'i) väärtust.
+> Env-muutus jõustub AINULT konteineri recreate'il (redeploy), MITTE `docker restart`-il. Seega: ainult Coolify
+> väärtuse lugemine EI TÕESTA, et saatmine kasutab õiget kontot. **Tõe-allikas = jooksva konteineri env (räsi) + testkiri.**
 
 1. **Jooksva konteineri env** (väärtust printimata, parool räsina):
    ```bash
