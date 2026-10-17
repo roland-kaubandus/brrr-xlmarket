@@ -31,3 +31,70 @@ prod xl-admin ei avane (FAIL-LOUD kuvab puuduva nimekirja).
 5. Kontroll: `https://<prod>/xl-admin/review-bucket` avaneb pärast login'i (mitte FAIL-LOUD ekraan).
 
 > **Kontrollnimekiri = `storefront/.env.example`** (sama komplekt, nimed + kirjeldused).
+
+---
+
+# E-mail / SMTP env cutover'il (uo28 prod medusa + worker)
+
+> Lisatud 2026-10-17 (1f0a read-only audit). Erand header-reeglist: **mitte-saladus-väärtused** (aadressid)
+> on siin tahtlikult kirjas (cutover-sihtväärtused); **saladus (SMTP_PASSWORD) AINULT räsi-sõrmejäljena**,
+> mitte parool ise.
+
+## Prod SIHT-väärtused (mida uo28 peab cutover'i järel kandma)
+
+| Env | Prod siht-väärtus | Teenus |
+|---|---|---|
+| `SMTP_USER` | `noreply@xlmarket.ee` | medusa + worker |
+| `SMTP_PASSWORD` | *(saladus — Coolify UI)* **sha256 algab `deb7ef7a…`** | medusa + worker |
+| `SMTP_HOST` / `SMTP_PORT` | *(sisemine relay — Coolify UI)* | medusa + worker |
+| `EMAIL_FROM` | `tellimused@xlmarket.ee` | medusa + worker |
+| `EMAIL_REPLY_TO` | `info@xlmarket.ee` | medusa + worker |
+| `EMAIL_INVOICE` | raamatupidamise aadress (BCC-koopia; vt arve-muudatus 2026-10-14) | medusa + worker |
+| `EMAIL_ADMIN` | admin-teate aadress | medusa + worker |
+| `EMAIL_FROM_NAME` | *(valikuline; puudu → koodi vaikeväärtus `XLmarket.ee`)* | medusa + worker |
+| `EMAIL_DISABLED` | **PUUDUB** (prod saadab) — kill-switch ainult staging'us | medusa + worker |
+| `EMAIL_ALLOWLIST` | **PUUDUB** (prod saadab kõigile) — allowlist ainult staging'us | medusa + worker |
+
+## ⚠️ Cutover-eelsed augud (leitud 2026-10-17 read-only auditis)
+
+- **`EMAIL_REPLY_TO` EI OLE praegu Coolify uo28 env-is** (ei Production ega Preview plokis) →
+  cutover-redeploy'l jääks reply-to seadmata (koodi default = tühi, replyTo header puudub).
+  **VAJA ÄRA TEHA: lisa `EMAIL_REPLY_TO=info@xlmarket.ee` Coolify uo28 Production env-i ENNE cutover'it.**
+- **`EMAIL_FROM_NAME` EI OLE Coolifys** → saatja-nimeks jääb koodi default `XLmarket.ee`. Kui soovitakse muud → lisa.
+- **Coolify list-envs API maskib väärtused** (`value=None`) → staged SMTP_USER/EMAIL_FROM/SMTP_PASSWORD uued
+  väärtused EI OLE API-st loetavad. Olemas Coolify Production plokis (is_runtime=True): `SMTP_USER`,
+  `SMTP_PASSWORD`, `SMTP_HOST`, `SMTP_PORT`, `EMAIL_FROM`, `EMAIL_INVOICE`, `EMAIL_ADMIN`.
+  **Staged väärtuste õigsust (noreply@, tellimused@, räsi deb7ef7a) kontrolli Coolify UI-s (secrets shown-once)
+  JA lõplikult jooksvas konteineris cutover-redeploy järel (allpool).**
+
+## 📸 Hetkeseis — jooksev uo28 konteiner (2026-10-17, EI redeploy'tud, VANAD väärtused — ootuspärane)
+
+| Env | Jooksev konteiner (vana) | Prod siht (cutover) |
+|---|---|---|
+| `SMTP_USER` | `server@xlrent.eu` | `noreply@xlmarket.ee` |
+| `SMTP_PASSWORD` | sha256 `9a1b333e…` len=14 | sha256 `deb7ef7a…` |
+| `EMAIL_FROM` | `info@xlmarket.ee` | `tellimused@xlmarket.ee` |
+| `EMAIL_REPLY_TO` | *(puudub)* | `info@xlmarket.ee` |
+| `EMAIL_INVOICE` / `EMAIL_ADMIN` | `tarmo@naissaar.eu` / `tarmo@naissaar.eu` | raamatupidamine / admin |
+| `EMAIL_DISABLED` / `EMAIL_ALLOWLIST` | *(puudub)* ✓ | *(puudub)* ✓ |
+
+> Konteiner = vanad väärtused on **õige seis** — uo28 pole redeploy'tud, env-muutus jõustub alles recreate'il.
+
+## ✅ Cutover-JÄRGNE kontroll (pärast prod redeploy'd — KOHUSTUSLIK)
+
+1. **Jooksva konteineri env** (väärtust printimata, parool räsina):
+   ```bash
+   for C in $(docker ps --format '{{.Names}}' | grep -E 'medusa.*uo28|medusa-worker.*uo28'); do
+     echo "=== $C ==="
+     docker inspect --format '{{json .Config.Env}}' "$C" \
+       | python3 -I /opt/xlmarket-github/scripts/... (vt scratchpad env-reader muster)
+   done
+   ```
+   Oota: `SMTP_USER=noreply@xlmarket.ee`, `EMAIL_FROM=tellimused@xlmarket.ee`,
+   `EMAIL_REPLY_TO=info@xlmarket.ee`, **SMTP_PASSWORD sha256 algab `deb7ef7a`**,
+   `EMAIL_DISABLED`/`EMAIL_ALLOWLIST` PUUDUVAD.
+2. **Testkiri:** tee prod-is testtellimus (või käivita saatmine) → kinnitus + arve (PDF-manus) jõuab
+   kliendile, arve-koopia BCC raamatupidamisse. Kontrolli `From:` = `tellimused@xlmarket.ee`,
+   `Reply-To:` = `info@xlmarket.ee`.
+3. **Kui räsi ≠ deb7ef7a VÕI EMAIL_REPLY_TO puudub** → Coolify env vale/puudu → paranda + redeploy ENNE
+   kui prod päris kliente teenindab.
