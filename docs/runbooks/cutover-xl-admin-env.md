@@ -39,6 +39,9 @@ prod xl-admin ei avane (FAIL-LOUD kuvab puuduva nimekirja).
 > Lisatud 2026-10-17 (1f0a read-only audit). Erand header-reeglist: **mitte-saladus-väärtused** (aadressid)
 > on siin tahtlikult kirjas (cutover-sihtväärtused); **saladus (SMTP_PASSWORD) AINULT räsi-sõrmejäljena**,
 > mitte parool ise.
+>
+> **📍 Aadresside marsruutimine (alias→postkast), DNS (SPF/DKIM/DMARC), NDR-nähtavus:**
+> `docs/runbooks/email-aadressid.md`. Meili-kodu = mailcow `mail.xlrent.eu` (MX Zone→mailcow 2026-10-17).
 
 ## Prod SIHT-väärtused (mida uo28 peab cutover'i järel kandma)
 
