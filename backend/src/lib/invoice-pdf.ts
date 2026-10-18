@@ -1,5 +1,7 @@
 import PDFDocument from "pdfkit"
 import type { OrderData } from "./email.js"
+import { computeInvoiceTotals } from "./invoice-totals.js"
+import { getPage } from "../modules/cms/db.js"
 
 // Arve PDF-manus (Tarmo 2026-10-14: "arve PDF-manusena, kui võimalik").
 // pdfkit standard-font (Helvetica) = WinAnsi/Latin-1 kodeering → EI vaja väliseid font-faile
@@ -18,22 +20,13 @@ function sanitize(s: string | undefined | null): string {
     .replace(/[–—]/g, "-")
     .replace(/…/g, "...")
     .replace(/€/g, "EUR")
-    .replace(/ /g, " ")
+    .replace(/ /g, " ")
     .replace(/[^\x09\x0A\x0D\x20-\xFF]/g, "?") // muu Latin-1-väline → ?
 }
 
 function fmt(amount: number, currency = "EUR"): string {
   return (amount / 100).toFixed(2).replace(".", ",") + " " + currency
 }
-
-// Müüja rekvisiidid (Eesti arve seadusnõue: nimi, reg-nr, KMKR, aadress). Env kirjutab üle;
-// reg + KMKR = Tarmo kinnitatud (2026-10-18) → vaikeväärtus. AADRESS = ainult env-ist (EI leiuta
-// registrijärgset aadressi) — kui COMPANY_ADDRESS puudub, jäetakse aadressirida välja + hoiatus logis.
-const COMPANY_NAME = process.env.COMPANY_NAME || "Roland Kaubandus OÜ"
-const COMPANY_REG = process.env.COMPANY_REG || "10327682"
-const COMPANY_VAT = process.env.COMPANY_VAT || "EE100217007"
-const COMPANY_ADDRESS = (process.env.COMPANY_ADDRESS || "").trim()
-const COMPANY_EMAIL = process.env.EMAIL_INFO || "info@xlmarket.ee"
 
 // DD.MM.YYYY (Eesti formaat). created_at puudub → tänane kuupäev (makse kinnitatud = täna).
 function fmtDate(iso?: string): string {
@@ -43,8 +36,60 @@ function fmtDate(iso?: string): string {
   return `${p(d.getDate())}.${p(d.getMonth() + 1)}.${d.getFullYear()}`
 }
 
-export function renderInvoicePdf(order: OrderData, orderNum: string | number): Promise<Buffer> {
-  return new Promise((resolve, reject) => {
+// Müüja rekvisiidid (Eesti arve seadusnõue: nimi, reg-nr, KMKR, aadress) = CMS global SSoT
+// (Tarmo 2026-10-18: "üks allikas", MITTE env). Sama allikas, mida storefront (lib/cms.ts) +
+// JsonLd kasutavad. Loeme ET-rea (arve on eestikeelne); getPage fallbackib EN-ile. DB lugemine
+// kukub / rida puudu → viimase-õlekõrre vaikeväärtused (resilience, nagu storefront global.json
+// fallback) + VALJU hoiatus — arve peab ALATI renderduma (HARD RULE #6 ohutu vaikimisi).
+interface CompanyInfo {
+  name: string
+  reg: string
+  vat: string
+  address: string
+  email: string
+}
+
+const COMPANY_FALLBACK: CompanyInfo = {
+  name: "Roland Kaubandus OÜ",
+  reg: "10327682",
+  vat: "EE100217007",
+  address: "Pärnu mnt 211, 11624 Tallinn",
+  email: "info@xlmarket.ee",
+}
+
+async function loadCompany(orderNum: string | number): Promise<CompanyInfo> {
+  try {
+    const page = await getPage("global", "et")
+    const c = (page?.content || {}) as Record<string, unknown>
+    const s = (k: string) => (typeof c[k] === "string" ? (c[k] as string).trim() : "")
+    const info: CompanyInfo = {
+      name: s("company_name") || COMPANY_FALLBACK.name,
+      reg: s("reg_number") || COMPANY_FALLBACK.reg,
+      vat: s("vat_number") || COMPANY_FALLBACK.vat,
+      address: s("address") || COMPANY_FALLBACK.address,
+      email: s("email_info") || COMPANY_FALLBACK.email,
+    }
+    if (!page) {
+      console.error(
+        `[INVOICE] HOIATUS: CMS global puudub DB-s — kasutan müüja-rekvisiitide vaikeväärtusi (order=${orderNum})`
+      )
+    }
+    return info
+  } catch (e) {
+    console.error(
+      `[INVOICE] HOIATUS: CMS global lugemine kukkus — kasutan müüja-rekvisiitide vaikeväärtusi (order=${orderNum}): ${(e as Error)?.message || e}`
+    )
+    return COMPANY_FALLBACK
+  }
+}
+
+export async function renderInvoicePdf(order: OrderData, orderNum: string | number): Promise<Buffer> {
+  // Müüja andmed ENNE PDF-i ehitust (CMS global SSoT, async DB-lugemine).
+  const company = await loadCompany(orderNum)
+  const t = computeInvoiceTotals(order)
+  const cur = order.currency_code
+
+  return new Promise<Buffer>((resolve, reject) => {
     try {
       const doc = new PDFDocument({ size: "A4", margin: 50 })
       const chunks: Buffer[] = []
@@ -52,18 +97,12 @@ export function renderInvoicePdf(order: OrderData, orderNum: string | number): P
       doc.on("end", () => resolve(Buffer.concat(chunks)))
       doc.on("error", reject)
 
-      // Päis — müüja rekvisiidid (seadusnõue)
+      // Päis — müüja rekvisiidid (seadusnõue), CMS global SSoT-st
       doc.fontSize(22).fillColor("#111827").text("XLMARKET", 50, 50)
-      doc.fontSize(10).fillColor("#6b7280").text(sanitize(COMPANY_NAME))
-      doc.text(sanitize(`Reg-nr: ${COMPANY_REG}   KMKR: ${COMPANY_VAT}`))
-      if (COMPANY_ADDRESS) {
-        doc.text(sanitize(COMPANY_ADDRESS))
-      } else {
-        console.error(
-          `[INVOICE] HOIATUS: COMPANY_ADDRESS env puudub — müüja aadress jäetakse arvelt välja (order=${orderNum})`
-        )
-      }
-      doc.text(sanitize(`${COMPANY_EMAIL}  |  xlmarket.ee`))
+      doc.fontSize(10).fillColor("#6b7280").text(sanitize(company.name))
+      doc.text(sanitize(`Reg-nr: ${company.reg}   KMKR: ${company.vat}`))
+      doc.text(sanitize(company.address))
+      doc.text(sanitize(`${company.email}  |  xlmarket.ee`))
       doc.moveDown(1.5)
 
       // Arve pealkiri + kuupäev
@@ -84,29 +123,25 @@ export function renderInvoicePdf(order: OrderData, orderNum: string | number): P
         doc.moveDown()
       }
 
-      // Tooteread
+      // Tooteread — BRUTO (unit_price on bruto, KM sees)
       doc.fontSize(11).fillColor("#111827").text("Tooted:")
       doc.fontSize(10).fillColor("#4b5563")
       for (const it of order.items || []) {
-        const line = `${it.quantity} x ${it.title}  —  ${fmt(it.unit_price * it.quantity, it.currency_code || order.currency_code)}`
+        const line = `${it.quantity} x ${it.title}  —  ${fmt(it.unit_price * it.quantity, it.currency_code || cur)}`
         doc.text(sanitize(line))
       }
       doc.moveDown()
 
-      // Summad
+      // Summad — KÕIK BRUTO, NÄHTAVALT liituvad (SSoT computeInvoiceTotals):
+      //   Vahesumma (kaubad) + Tarne = Kokku tasutud.  "sh KM %" = sisalduv KM.
       doc.fillColor("#4b5563")
-      if (order.subtotal) doc.text(sanitize(`Vahesumma: ${fmt(order.subtotal, order.currency_code)}`))
-      if (order.shipping_total) doc.text(sanitize(`Tarne: ${fmt(order.shipping_total, order.currency_code)}`))
-      if (order.tax_total) {
-        // KM eraldi real + määr (%). Määr arvutatakse tegelikust (tax / neto) — EI hardcode'i,
-        // et vältida triivi; fallback 24% (Eesti sell_vat SSoT pricing-rules.yaml). Tax-inclusive:
-        // neto = total - tax.
-        const net = order.total - order.tax_total
-        const rate = net > 0 ? Math.round((order.tax_total / net) * 100) : 24
-        doc.text(sanitize(`KM ${rate}%: ${fmt(order.tax_total, order.currency_code)}`))
-      }
+      doc.text(sanitize(`Vahesumma (kaubad): ${fmt(t.itemsGross, cur)}`))
+      if (t.shippingGross) doc.text(sanitize(`Tarne: ${fmt(t.shippingGross, cur)}`))
       doc.moveDown(0.3)
-      doc.fontSize(13).fillColor("#111827").text(sanitize(`Kokku tasutud: ${fmt(order.total, order.currency_code)}`))
+      doc.fontSize(13).fillColor("#111827").text(sanitize(`Kokku tasutud: ${fmt(t.grandTotal, cur)}`))
+      if (t.vat) {
+        doc.fontSize(10).fillColor("#6b7280").text(sanitize(`sh KM ${t.vatRate}%: ${fmt(t.vat, cur)}`))
+      }
 
       doc.end()
     } catch (e) {

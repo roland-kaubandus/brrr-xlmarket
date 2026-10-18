@@ -1,5 +1,6 @@
 import nodemailer from "nodemailer"
 import { notifyTelegram } from "./telegram.js"
+import { computeInvoiceTotals } from "./invoice-totals.js"
 
 const SMTP_HOST = process.env.SMTP_HOST || "127.0.0.1"
 const SMTP_PORT = parseInt(process.env.SMTP_PORT || "25", 10)
@@ -142,7 +143,8 @@ function emailWrapper(content: string): string {
 export interface OrderItem {
   title: string
   quantity: number
-  unit_price: number
+  unit_price: number // BRUTO (tax-inclusive region) — KM sees
+  total?: number // rea bruto kokku (Medusa items.*); fallback unit_price*quantity
   currency_code?: string
 }
 
@@ -155,6 +157,7 @@ export interface OrderData {
   subtotal?: number
   shipping_total?: number
   tax_total?: number
+  discount_total?: number
   currency_code: string
   items: OrderItem[]
   payment_collections?: {
@@ -251,6 +254,8 @@ export async function sendInvoice(order: OrderData) {
   const name = order.shipping_address?.first_name || "Klient"
   const orderNum = order.display_id || order.id.slice(-8)
   const itemsHtml = renderOrderItems(order)
+  // Summad ÜHEST SSoT-st (computeInvoiceTotals) — SAMA arvutus mis PDF-il. Kõik BRUTO → liitub.
+  const t = computeInvoiceTotals(order)
 
   const html = emailWrapper(`
     <h1 style="font-size: 22px; color: #111827; margin: 0 0 20px;">Arve</h1>
@@ -270,10 +275,10 @@ export async function sendInvoice(order: OrderData) {
       <tbody>${itemsHtml}</tbody>
     </table>
     <div style="margin-top: 20px; padding-top: 15px; border-top: 2px solid #e5e7eb; text-align: right;">
-      ${order.subtotal ? `<p style="margin: 5px 0; color: #6b7280;">Vahesumma: ${formatPrice(order.subtotal, order.currency_code)}</p>` : ""}
-      ${order.shipping_total ? `<p style="margin: 5px 0; color: #6b7280;">Tarne: ${formatPrice(order.shipping_total, order.currency_code)}</p>` : ""}
-      ${order.tax_total ? `<p style="margin: 5px 0; color: #6b7280;">KM: ${formatPrice(order.tax_total, order.currency_code)}</p>` : ""}
-      <p style="margin: 5px 0; font-size: 18px; font-weight: 700; color: #111827;">Kokku tasutud: ${formatPrice(order.total, order.currency_code)}</p>
+      <p style="margin: 5px 0; color: #6b7280;">Vahesumma (kaubad): ${formatPrice(t.itemsGross, t.currency)}</p>
+      ${t.shippingGross ? `<p style="margin: 5px 0; color: #6b7280;">Tarne: ${formatPrice(t.shippingGross, t.currency)}</p>` : ""}
+      <p style="margin: 5px 0; font-size: 18px; font-weight: 700; color: #111827;">Kokku tasutud: ${formatPrice(t.grandTotal, t.currency)}</p>
+      ${t.vat ? `<p style="margin: 5px 0; color: #9ca3af; font-size: 13px;">sh KM ${t.vatRate}%: ${formatPrice(t.vat, t.currency)}</p>` : ""}
     </div>
     ${
       order.shipping_address
