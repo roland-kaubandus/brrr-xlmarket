@@ -15,6 +15,7 @@ export default async function orderPlacedHandler({
       fields: [
         "id",
         "display_id",
+        "created_at",
         "email",
         "total",
         "subtotal",
