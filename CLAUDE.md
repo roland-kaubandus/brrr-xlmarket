@@ -174,6 +174,8 @@ kui taxonomy-v4 SHA sisaldab fix'i.**
 
 **Kui saladust on vaja scripti/käsku:** kirjuta skript, mis loeb saladuse failist/env-ist muutujasse ja kasutab seda — käivita `-File`/heredoc, ÄRA interpoleeri väärtust käsureale, mida logitakse. Kahtlus → räsi.
 
+**🗄 VARUKOOPIATE RETENTSIOON (Tarmo 2026-10-18):** saladusi sisaldavaid varukoopiaid (`.env.bak-*`, `.env.*.save`, mis tahes saladuse-snapshot) hoitakse **MAX 1 (ainult kõige viimane)**, `chmod 600`. Vanem varukoopia → `shred -u` (mitte lihtne `rm` — saladus jääks ketas-blokki). Uut saladuse-koopiat luues kustuta eelmine samas sammus. **Perioodiline skänn:** `.env.bak-*`, `*.env*.bak*`, `.env.*.save`, `reports/backups/*.dump` (dumbid võivad sisaldada CMS/config-saladusi — kontrolli õigusi, EI tohi olla world-readable 644).
+
 ---
 
 ## Sessioon 2026-05-02 muudatused (hommikune pool)
