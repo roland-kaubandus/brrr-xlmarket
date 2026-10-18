@@ -155,6 +155,27 @@ kui taxonomy-v4 SHA sisaldab fix'i.**
 
 ---
 
+## 🛑 HARD RULE #11 — SALADUSE VÄÄRTUST EI KUVATA KUNAGI (ainult räsi/pikkus/maskitud)
+
+> Lisatud 2026-10-18 (pärast seda, kui Claude Code lekitas `printenv`-iga Telegram bot-tokeni väärtuse transkripti).
+
+**Ühegi saladuse (API-võti, token, parool, DB-URL krediitidega, JWT, secret) VÄÄRTUST ei kuvata KUNAGI** — ei terminali, logisse, raportisse, commit'i ega sessioonilogisse.
+
+**KEELATUD käsud saladuse peal:** `printenv VAR`, `echo "$VAR"`, `cat .env`, `cat secrets/*`, `env | grep`, `set` (kui env on laetud), `grep VÄÄRTUS fail` ilma maskita, saladuse panek `--arg`/URL-i, mida hiljem prinditakse.
+
+**LUBATUD saladuse kontrolliks (tõesta ilma paljastamata):**
+- **räsi:** `sha256sum` / `hashlib.sha256(val)[:8..12]` → võrdle räsisid, mitte väärtusi.
+- **pikkus + vorming:** `len(val)`, regex-match (`JAH/EI`), bot_id numbrite arv.
+- **maskitud grep:** `sed -E 's/(KEY=)[^ ]+/\1<MASKED>/g'`.
+- **API-kontroll:** kutsu teenust (nt Telegram `getMe`) → kuva ainult `ok`/`username`, MITTE URL-i/tokenit.
+- **failitöö:** loe saladus programmi muutujasse (python/node), kasuta, ÄRA `print`-i; kirjuta failidesse `re.sub` abil ilma stdout-i väärtust saatmata.
+
+**Why:** 2026-10-18 `printenv TELEGRAM_BOT_TOKEN TELEGRAM_CHAT_ID` printis tokeni-VÄÄRTUSE cleartext'ina (printenv kuvab ainult väärtuse, võtit mask ei püüdnud) → saladus transkriptis → nõudis rotatsiooni. Räsi/pikkus oleks sama tõestanud ilma lekketa.
+
+**Kui saladust on vaja scripti/käsku:** kirjuta skript, mis loeb saladuse failist/env-ist muutujasse ja kasutab seda — käivita `-File`/heredoc, ÄRA interpoleeri väärtust käsureale, mida logitakse. Kahtlus → räsi.
+
+---
+
 ## Sessioon 2026-05-02 muudatused (hommikune pool)
 
 **Sessioonilogi:** `xlmarket/memory/sessions/2026-05-02-xl.md`
