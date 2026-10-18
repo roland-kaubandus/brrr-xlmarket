@@ -2,6 +2,7 @@ import nodemailer from "nodemailer"
 import { notifyTelegram } from "./telegram.js"
 import { computeInvoiceTotals } from "./invoice-totals.js"
 import { resolveLocale, resolveBuyer, resolveInvoiceNumber, itemTitle, LABELS } from "./invoice-view.js"
+import type { InvoiceLocale } from "./invoice-view.js"
 
 const SMTP_HOST = process.env.SMTP_HOST || "127.0.0.1"
 const SMTP_PORT = parseInt(process.env.SMTP_PORT || "25", 10)
@@ -192,50 +193,114 @@ export interface OrderData {
   billing_address?: InvoiceAddress // arve-ostja aadress (eelistatud shipping ees)
 }
 
+// Kinnituskirja sildid (D2) — tellimuse keeles. Kliendi-kiri; admin-teade jääb eesti keelde.
+interface ConfirmLabels {
+  thankYou: string
+  greeting: (name: string) => string
+  order: string
+  product: string
+  qty: string
+  price: string
+  shipping: string
+  total: string
+  shippingAddress: string
+  phone: string
+  questions: (email: string) => string
+  subject: string
+  customer: string
+  // tarnekinnitus (sendShippingConfirmation)
+  shipped: string
+  shippedBody: (name: string, orderNum: string) => string
+  tracking: string
+}
+
+const CONFIRM_LABELS: Record<InvoiceLocale, ConfirmLabels> = {
+  et: {
+    thankYou: "Aitäh tellimuse eest",
+    greeting: (n) => `Tere, ${n}! Oleme teie tellimuse vastu võtnud.`,
+    order: "Tellimus",
+    product: "Toode",
+    qty: "Kogus",
+    price: "Hind",
+    shipping: "Tarne",
+    total: "Kokku",
+    shippingAddress: "Tarneaadress",
+    phone: "Tel",
+    questions: (e) => `Küsimuste korral kirjutage ${e}`,
+    subject: "Aitäh tellimuse eest",
+    customer: "Klient",
+    shipped: "Teie tellimus on teel",
+    shippedBody: (n, o) => `Tere, ${n}! Teie tellimus #${o} on teele pandud.`,
+    tracking: "Jälgimisnumber",
+  },
+  en: {
+    thankYou: "Thank you for your order",
+    greeting: (n) => `Hello, ${n}! We have received your order.`,
+    order: "Order",
+    product: "Product",
+    qty: "Qty",
+    price: "Price",
+    shipping: "Shipping",
+    total: "Total",
+    shippingAddress: "Shipping address",
+    phone: "Tel",
+    questions: (e) => `Questions? Write to ${e}`,
+    subject: "Thank you for your order",
+    customer: "Customer",
+    shipped: "Your order is on its way",
+    shippedBody: (n, o) => `Hello, ${n}! Your order #${o} has been shipped.`,
+    tracking: "Tracking number",
+  },
+}
+
 export async function sendOrderConfirmation(order: OrderData) {
-  const name = order.shipping_address?.first_name || "Klient"
+  // D2: kinnituskiri tellimuse keeles (resolveLocale = sama SSoT, mis arve). Kliendi-kiri
+  // lokaliseeritud ET/EN; admin-teade (allpool) jääb eesti keelde (sisemine, Tarmole).
+  const locale = resolveLocale(order)
+  const C = CONFIRM_LABELS[locale]
+  const name = order.shipping_address?.first_name || C.customer
   const orderNum = order.display_id || order.id.slice(-8)
-  const itemsHtml = renderOrderItems(order)
+  const itemsHtml = renderOrderItems(order, locale)
 
   const html = emailWrapper(`
-    <h1 style="font-size: 22px; color: #111827; margin: 0 0 20px;">Aitäh tellimuse eest</h1>
-    <p style="color: #4b5563; margin: 0 0 20px;">Tere, ${escapeHtml(name)}! Oleme teie tellimuse vastu võtnud.</p>
+    <h1 style="font-size: 22px; color: #111827; margin: 0 0 20px;">${C.thankYou}</h1>
+    <p style="color: #4b5563; margin: 0 0 20px;">${C.greeting(escapeHtml(name))}</p>
     <div style="background: #f9fafb; padding: 15px; margin-bottom: 20px;">
-      <p style="margin: 0; font-weight: 600;">Tellimus #${orderNum}</p>
+      <p style="margin: 0; font-weight: 600;">${C.order} #${orderNum}</p>
     </div>
     <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
       <thead>
         <tr style="border-bottom: 2px solid #e5e7eb;">
-          <th style="text-align: left; padding: 8px 0;">Toode</th>
-          <th style="text-align: center; padding: 8px 0;">Kogus</th>
-          <th style="text-align: right; padding: 8px 0;">Hind</th>
+          <th style="text-align: left; padding: 8px 0;">${C.product}</th>
+          <th style="text-align: center; padding: 8px 0;">${C.qty}</th>
+          <th style="text-align: right; padding: 8px 0;">${C.price}</th>
         </tr>
       </thead>
       <tbody>${itemsHtml}</tbody>
     </table>
     <div style="margin-top: 20px; padding-top: 15px; border-top: 2px solid #e5e7eb; text-align: right;">
-      ${order.shipping_total ? `<p style="margin: 5px 0; color: #6b7280;">Tarne: ${formatPrice(order.shipping_total, order.currency_code)}</p>` : ""}
-      <p style="margin: 5px 0; font-size: 18px; font-weight: 700; color: #111827;">Kokku: ${formatPrice(order.total, order.currency_code)}</p>
+      ${order.shipping_total ? `<p style="margin: 5px 0; color: #6b7280;">${C.shipping}: ${formatPrice(order.shipping_total, order.currency_code)}</p>` : ""}
+      <p style="margin: 5px 0; font-size: 18px; font-weight: 700; color: #111827;">${C.total}: ${formatPrice(order.total, order.currency_code)}</p>
     </div>
     ${
       order.shipping_address
         ? `<div style="margin-top: 25px; padding-top: 20px; border-top: 1px solid #e5e7eb;">
-          <h2 style="font-size: 16px; color: #111827; margin: 0 0 10px;">Tarneaadress</h2>
+          <h2 style="font-size: 16px; color: #111827; margin: 0 0 10px;">${C.shippingAddress}</h2>
           <p style="color: #4b5563; margin: 0; line-height: 1.6;">
             ${escapeHtml(order.shipping_address.first_name)} ${escapeHtml(order.shipping_address.last_name)}<br>
             ${escapeHtml(order.shipping_address.address_1)}<br>
             ${escapeHtml(order.shipping_address.postal_code)} ${escapeHtml(order.shipping_address.city)}
-            ${order.shipping_address.phone ? `<br>Tel: ${escapeHtml(order.shipping_address.phone)}` : ""}
+            ${order.shipping_address.phone ? `<br>${C.phone}: ${escapeHtml(order.shipping_address.phone)}` : ""}
           </p>
         </div>`
         : ""
     }
-    <p style="color: #6b7280; margin-top: 25px; font-size: 13px;">K&uuml;simuste korral kirjutage <a href="mailto:info@xlmarket.ee" style="color: #d97706;">info@xlmarket.ee</a></p>
+    <p style="color: #6b7280; margin-top: 25px; font-size: 13px;">${C.questions('<a href="mailto:info@xlmarket.ee" style="color: #d97706;">info@xlmarket.ee</a>')}</p>
   `)
 
   await sendEmail({
     to: order.email,
-    subject: `Aitäh tellimuse eest #${orderNum} — ${EMAIL_FROM_NAME}`,
+    subject: `${C.subject} #${orderNum} — ${EMAIL_FROM_NAME}`,
     html,
   })
 
@@ -438,29 +503,32 @@ export async function sendInvoice(order: OrderData) {
 }
 
 export async function sendShippingConfirmation(order: OrderData, trackingNumber?: string) {
-  const name = order.shipping_address?.first_name || "Klient"
+  // D2: tarnekinnitus tellimuse keeles (sama resolveLocale SSoT).
+  const locale = resolveLocale(order)
+  const C = CONFIRM_LABELS[locale]
+  const name = order.shipping_address?.first_name || C.customer
   const orderNum = order.display_id || order.id.slice(-8)
 
   const html = emailWrapper(`
-    <h1 style="font-size: 22px; color: #111827; margin: 0 0 20px;">Tellimus saadetud</h1>
-    <p style="color: #4b5563; margin: 0 0 20px;">Tere, ${escapeHtml(name)}! Teie tellimus #${orderNum} on teele pandud.</p>
-    ${trackingNumber ? `<div style="background: #f9fafb; padding: 15px; margin-bottom: 20px;"><p style="margin: 0;">J&auml;lgimisnumber: <strong>${escapeHtml(trackingNumber)}</strong></p></div>` : ""}
-    <p style="color: #6b7280; font-size: 13px;">K&uuml;simuste korral kirjutage <a href="mailto:info@xlmarket.ee" style="color: #d97706;">info@xlmarket.ee</a></p>
+    <h1 style="font-size: 22px; color: #111827; margin: 0 0 20px;">${C.shipped}</h1>
+    <p style="color: #4b5563; margin: 0 0 20px;">${C.shippedBody(escapeHtml(name), String(orderNum))}</p>
+    ${trackingNumber ? `<div style="background: #f9fafb; padding: 15px; margin-bottom: 20px;"><p style="margin: 0;">${C.tracking}: <strong>${escapeHtml(trackingNumber)}</strong></p></div>` : ""}
+    <p style="color: #6b7280; font-size: 13px;">${C.questions('<a href="mailto:info@xlmarket.ee" style="color: #d97706;">info@xlmarket.ee</a>')}</p>
   `)
 
   await sendEmail({
     to: order.email,
-    subject: `Tellimus #${orderNum} saadetud — ${EMAIL_FROM_NAME}`,
+    subject: `${C.order} #${orderNum} — ${C.shipped} — ${EMAIL_FROM_NAME}`,
     html,
   })
 }
 
-function renderOrderItems(order: OrderData): string {
+function renderOrderItems(order: OrderData, locale: InvoiceLocale = "et"): string {
   return order.items
     .map(
       (item) =>
         `<tr>
-          <td style="padding: 8px 0; border-bottom: 1px solid #f3f4f6;">${escapeHtml(item.title)}</td>
+          <td style="padding: 8px 0; border-bottom: 1px solid #f3f4f6;">${escapeHtml(itemTitle(item, locale))}</td>
           <td style="padding: 8px 0; border-bottom: 1px solid #f3f4f6; text-align: center;">${item.quantity}</td>
           <td style="padding: 8px 0; border-bottom: 1px solid #f3f4f6; text-align: right;">${formatPrice(item.unit_price * item.quantity, item.currency_code || order.currency_code)}</td>
         </tr>`

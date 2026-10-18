@@ -10,7 +10,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Invalid JSON" }, { status: 400 })
   }
 
-  const { cart_id, email, shipping_address, billing_address } = body
+  const { cart_id, email, shipping_address, billing_address, metadata } = body
 
   if (!isValidId(cart_id)) {
     return NextResponse.json({ error: "cart_id is required and must be a valid ID" }, { status: 400 })
@@ -22,6 +22,17 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "shipping_address is required" }, { status: 400 })
   }
 
+  // Cart-metadata whitelist (D1 ettevõte + D2 keel) — EI aktsepteeri suvalisi võtmeid kliendilt.
+  // Medusa kopeerib cart.metadata → order.metadata complete'il → arve resolveBuyer/resolveLocale loeb.
+  const META_KEYS = ["locale", "company_name", "company_reg", "company_vat"] as const
+  const safeMeta: Record<string, string> = {}
+  if (metadata && typeof metadata === "object") {
+    for (const k of META_KEYS) {
+      const v = (metadata as Record<string, unknown>)[k]
+      if (typeof v === "string" && v.trim()) safeMeta[k] = v.trim().slice(0, 200)
+    }
+  }
+
   try {
     // Update cart with customer info
     const updateRes = await medusaProxy(`/store/carts/${cart_id}`, {
@@ -30,6 +41,7 @@ export async function POST(req: NextRequest) {
         email,
         shipping_address,
         billing_address: billing_address || shipping_address,
+        ...(Object.keys(safeMeta).length ? { metadata: safeMeta } : {}),
       }),
     })
 
