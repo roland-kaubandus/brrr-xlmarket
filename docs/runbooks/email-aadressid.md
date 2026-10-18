@@ -102,18 +102,44 @@ Siis:
 täis-postkast, blokeering) tulevad **sinna**. Tagasipõrge = **kliendile kiri EI jõudnud**
 (nt tellimuse-kinnitus / arve ei kätte saanud).
 
-**Probleem:** `noreply@` postkasti **keegi ei jälgi rutiinselt** → tagasipõrked kogunevad nähtamatult
-→ vaikne "klient ei saanud arvet" (VAJA ÄRA TEHA — nähtavus puudub).
+**Probleem (oli kuni 18.10.2026):** `noreply@` postkasti **keegi ei jälginud rutiinselt** → tagasipõrked
+kogunesid nähtamatult → vaikne "klient ei saanud arvet". **Lahendatud allpool.**
 
-**Soovitus (EI ehitatud — Tarmo otsustab):**
-- **Lihtsaim:** mailcow'is lisa `noreply@` postkastile **edasisuunamine (alias/forward) → `info@`**,
-  et NDR-id oleksid keskpostkastis nähtavad. (Ettevaatust: säilita ka `noreply@` postkast ise, et
-  SMTP-auth ei katkeks; mailcow lubab postkastil olla + forward-koopia.)
-- **Robustsem (fail-loud, HARD RULE #5 vaimus):** väike cron-skript loeb `noreply@` IMAP-i,
-  tuvastab NDR-id (Content-Type `multipart/report; report-type=delivery-status`) → **Telegram-teade**
-  "X tellimuse-kirja põrkas tagasi" + kliendi-aadress. Nii jõuab tarne-läbikukkumine kohe nähtavaks,
-  mitte ei istu postkastis.
-- **Miinimum vahepeal:** lisa `noreply@` kontroll iganädalasse käsitsi-rutiini, kuni automaatika on.
+**✅ TEOSTATUD 18.10.2026 (vt `eumotors-tasks/OTSUSTE-LOGI.md` kanne O-64).**
+
+`noreply@xlmarket.ee` saadab nüüd iga saabuva kirja **koopia** keskpostkasti
+`info@xlmarket.ee` ja **jätab originaali alles**. Tehtud mailcow'i oma vahendiga —
+postkasti-põhine **sieve-eelfilter** (`sieve_filters` id=1, `filter_type=prefilter`):
+
+```
+require ["copy"];
+redirect :copy "info@xlmarket.ee";
+```
+
+**Miks sieve ja mitte alias, nagu soovitus ütles:** iga mailcow'i postkast *on* ise
+alias (rida `address = goto`), ja `functions.mailbox.inc.php:2743` eemaldab gotost
+aadressi, mis võrdub aliase enda omaga (`alias_goto_identical`). Aliase kaudu oleks
+tulemuseks **ainult** edasisuunamine — kohalik koopia oleks vaikselt kadunud, ilma et
+miski oleks hoiatanud. `:copy` on samal põhjusel kohustuslik: ilma selleta tühistab
+`redirect` implitsiitse `keep`-i. Postkast `noreply@` ja tema protokollid jäid
+puutumata, nii et SMTP-auth ei katkenud (nagu soovitus ette nägi).
+
+**Tõestatud** kahe testiga, mõlemad kontrollitud **mõlemast** postkastist: tavakiri
+ja **päris tagasipõrge** (kiri olematule aadressile domeenis `example.com`, millel on
+null-MX → postfix põrgatab ise, väljapoole ei lähe ühtegi paketti). Mõlemad kirjad
+on nii `noreply@`-s kui `info@`-s.
+
+**Kaasleid:** testimisel selgus, et sieve `redirect` oli **kogu mailcow-paigalduses**
+katki (dovecot valis `postfix:588` jaoks IPv6, postfix kuulab ainult IPv4) — ehk ka
+ükski puhkusevastus ega kasutaja-edasisuunamine ei oleks töötanud. Parandatud, vt O-64.
+
+**Jääb veel (valikuline, Tarmo otsustab):**
+- **Robustsem (fail-loud, HARD RULE #5 vaimus):** cron-skript loeb `info@` või `noreply@`
+  IMAP-i, tuvastab NDR-id (Content-Type `multipart/report; report-type=delivery-status`)
+  → **Telegram-teade** "X tellimuse-kirja põrkas tagasi" + kliendi-aadress. Nüüd vähem
+  pakiline, sest NDR-id on keskpostkastis nähtavad — aga *nähtavus* ei ole *teavitus*.
+- **Miinimum vahepeal:** `info@` lugemine katab ka NDR-id; eraldi `noreply@` rutiini
+  enam vaja ei ole.
 
 ---
 
