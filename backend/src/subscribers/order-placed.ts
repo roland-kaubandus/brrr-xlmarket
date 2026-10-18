@@ -22,8 +22,11 @@ export default async function orderPlacedHandler({
         "shipping_total",
         "tax_total",
         "currency_code",
+        "metadata",
         "items.*",
+        "items.product.metadata", // title_et → arve kuvab tootenime tellimuse keeles (#1)
         "shipping_address.*",
+        "billing_address.*", // arve-ostja aadress + ettevõtte-väljad (#2)
         "payment_collections.*",
       ],
       filters: { id: orderId },
@@ -34,8 +37,17 @@ export default async function orderPlacedHandler({
       return
     }
 
-    await sendOrderConfirmation(order as unknown as OrderData)
-    await sendInvoice(order as unknown as OrderData)
+    // Flatten title_et items.product.metadata-st rea-tasandile (arve-vaade loeb it.title_et).
+    const o = order as unknown as OrderData & {
+      items: (OrderData["items"][number] & { product?: { metadata?: Record<string, unknown> } })[]
+    }
+    for (const it of o.items || []) {
+      const et = it.product?.metadata?.title_et
+      if (typeof et === "string" && et.trim()) it.title_et = et.trim()
+    }
+
+    await sendOrderConfirmation(o as OrderData)
+    await sendInvoice(o as OrderData)
     logger.info(`[EMAIL] Thank-you email and invoice sent for ${orderId}`)
   } catch (err) {
     logger.error(`[EMAIL] Failed to send order email(s): ${(err as Error).message}`)

@@ -12,6 +12,7 @@ export interface InvoiceTotals {
   itemsGross: number // kaubad kokku bruto (= Σ unit_price*qty = order.total - tarne)
   shippingGross: number // tarne bruto
   grandTotal: number // kokku bruto (= order.total)
+  net: number // maksustatav väärtus = kokku - KM (KMS § 37 kokkuvõtteks)
   vat: number // sisalduv käibemaks (order.tax_total)
   vatRate: number // KM määr % (arvutatud tegelikust, fallback 24 = Eesti sell_vat SSoT)
   currency: string
@@ -35,5 +36,5 @@ export function computeInvoiceTotals(order: OrderData): InvoiceTotals {
   // Määr arvutatakse tegelikust (KM / neto) — EI hardcode'i, et vältida triivi; fallback 24%
   // (pricing-rules.yaml:sell_vat_rate). net<=0 → fallback.
   const vatRate = net > 0 && vat > 0 ? Math.round((vat / net) * 100) : 24
-  return { itemsGross, shippingGross, grandTotal, vat, vatRate, currency: order.currency_code }
+  return { itemsGross, shippingGross, grandTotal, net, vat, vatRate, currency: order.currency_code }
 }
