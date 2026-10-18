@@ -1,6 +1,7 @@
 import nodemailer from "nodemailer"
 import { notifyTelegram } from "./telegram.js"
 import { computeInvoiceTotals } from "./invoice-totals.js"
+import { resolveLocale, resolveBuyer, resolveInvoiceNumber, itemTitle, LABELS } from "./invoice-view.js"
 
 const SMTP_HOST = process.env.SMTP_HOST || "127.0.0.1"
 const SMTP_PORT = parseInt(process.env.SMTP_PORT || "25", 10)
@@ -116,7 +117,15 @@ function escapeHtml(str: string | undefined | null): string {
 }
 
 function formatPrice(amount: number, currency = "EUR"): string {
-  return (amount / 100).toFixed(2).replace(".", ",") + " " + currency
+  return (amount / 100).toFixed(2).replace(".", ",") + " " + (currency || "EUR").toUpperCase()
+}
+
+// DD.MM.YYYY (Eesti formaat); created_at puudub → tänane (makse kinnitatud = täna).
+function fmtDateHtml(iso?: string): string {
+  const d = iso ? new Date(iso) : new Date()
+  if (isNaN(d.getTime())) return fmtDateHtml()
+  const p = (n: number) => String(n).padStart(2, "0")
+  return `${p(d.getDate())}.${p(d.getMonth() + 1)}.${d.getFullYear()}`
 }
 
 function emailWrapper(content: string): string {
@@ -142,10 +151,21 @@ function emailWrapper(content: string): string {
 
 export interface OrderItem {
   title: string
+  title_et?: string // ET tootenimi (product.metadata.title_et); arve kuvab tellimuse keeles (vt invoice-view.ts)
   quantity: number
   unit_price: number // BRUTO (tax-inclusive region) — KM sees
   total?: number // rea bruto kokku (Medusa items.*); fallback unit_price*quantity
   currency_code?: string
+}
+
+interface InvoiceAddress {
+  first_name?: string
+  last_name?: string
+  company?: string
+  address_1?: string
+  city?: string
+  postal_code?: string
+  phone?: string
 }
 
 export interface OrderData {
@@ -160,17 +180,16 @@ export interface OrderData {
   discount_total?: number
   currency_code: string
   items: OrderItem[]
+  // Arve-lisad (vt invoice-view.ts). Kõik VALIKULISED — tagasi-ühilduv olemasolevate kutsujatega.
+  locale?: "et" | "en" // tellimuse keel (arve lokaliseerimiseks). PRAEGU kassa ei saada → fallback "et".
+  invoice_number?: string // eraldi arve-seeria number (#3); puudub → tellimuse nr
+  company?: { name?: string; reg?: string; vat?: string } // ettevõtte-ostja (#2)
+  metadata?: Record<string, unknown> // locale / company_* / invoice_number fallback-allikas
   payment_collections?: {
     status?: string
   }[]
-  shipping_address?: {
-    first_name?: string
-    last_name?: string
-    address_1?: string
-    city?: string
-    postal_code?: string
-    phone?: string
-  }
+  shipping_address?: InvoiceAddress
+  billing_address?: InvoiceAddress // arve-ostja aadress (eelistatud shipping ees)
 }
 
 export async function sendOrderConfirmation(order: OrderData) {
@@ -250,51 +269,138 @@ export async function sendOrderConfirmation(order: OrderData) {
   })
 }
 
-export async function sendInvoice(order: OrderData) {
-  const name = order.shipping_address?.first_name || "Klient"
-  const orderNum = order.display_id || order.id.slice(-8)
-  const itemsHtml = renderOrderItems(order)
-  // Summad ÜHEST SSoT-st (computeInvoiceTotals) — SAMA arvutus mis PDF-il. Kõik BRUTO → liitub.
-  const t = computeInvoiceTotals(order)
-
-  const html = emailWrapper(`
-    <h1 style="font-size: 22px; color: #111827; margin: 0 0 20px;">Arve</h1>
-    <p style="color: #4b5563; margin: 0 0 20px;">Tere, ${escapeHtml(name)}! Teie makse on kinnitatud. Allpool on arve teie tellimusele #${orderNum}.</p>
-    <div style="background: #f9fafb; padding: 15px; margin-bottom: 20px;">
-      <p style="margin: 0; font-weight: 600;">Arve #${orderNum}</p>
-      <p style="margin: 6px 0 0; color: #6b7280;">Makse on kinnitatud</p>
-    </div>
-    <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
-      <thead>
-        <tr style="border-bottom: 2px solid #e5e7eb;">
-          <th style="text-align: left; padding: 8px 0;">Toode</th>
-          <th style="text-align: center; padding: 8px 0;">Kogus</th>
-          <th style="text-align: right; padding: 8px 0;">Hind</th>
-        </tr>
-      </thead>
-      <tbody>${itemsHtml}</tbody>
-    </table>
-    <div style="margin-top: 20px; padding-top: 15px; border-top: 2px solid #e5e7eb; text-align: right;">
-      <p style="margin: 5px 0; color: #6b7280;">Vahesumma (kaubad): ${formatPrice(t.itemsGross, t.currency)}</p>
-      ${t.shippingGross ? `<p style="margin: 5px 0; color: #6b7280;">Tarne: ${formatPrice(t.shippingGross, t.currency)}</p>` : ""}
-      <p style="margin: 5px 0; font-size: 18px; font-weight: 700; color: #111827;">Kokku tasutud: ${formatPrice(t.grandTotal, t.currency)}</p>
-      ${t.vat ? `<p style="margin: 5px 0; color: #9ca3af; font-size: 13px;">sh KM ${t.vatRate}%: ${formatPrice(t.vat, t.currency)}</p>` : ""}
-    </div>
-    ${
-      order.shipping_address
-        ? `<div style="margin-top: 25px; padding-top: 20px; border-top: 1px solid #e5e7eb;">
-          <h2 style="font-size: 16px; color: #111827; margin: 0 0 10px;">Tarneaadress</h2>
-          <p style="color: #4b5563; margin: 0; line-height: 1.6;">
-            ${escapeHtml(order.shipping_address.first_name)} ${escapeHtml(order.shipping_address.last_name)}<br>
-            ${escapeHtml(order.shipping_address.address_1)}<br>
-            ${escapeHtml(order.shipping_address.postal_code)} ${escapeHtml(order.shipping_address.city)}
-            ${order.shipping_address.phone ? `<br>Tel: ${escapeHtml(order.shipping_address.phone)}` : ""}
-          </p>
-        </div>`
-        : ""
+// HTML-arve (Tarmo #6: "sama kujundus ka HTML-arvel"). Eraldiseisev valge dokument, mis peegeldab
+// PDF-i: bränd-wordmark, pealkiri ARVE, müüja + ostja plokid kõrvuti, toodete tabel
+// (Toode | Kogus | Ühikuhind | Summa), summad paremal, jalus ettevõtte andmetega (CMS global SSoT).
+// Jagatud andmekiht (resolveBuyer / itemTitle / LABELS) = SAMA mis PDF-il (HARD RULE #5).
+export async function renderInvoiceHtml(order: OrderData, orderNum: string | number): Promise<string> {
+  const { getPage } = await import("../modules/cms/db.js")
+  // Müüja CMS global SSoT-st (sama allikas mis PDF loadCompany + storefront). Fallback resilience.
+  let company = {
+    name: "Roland Kaubandus OÜ",
+    reg: "10327682",
+    vat: "EE100217007",
+    address: "Pärnu mnt 211, 11624 Tallinn",
+    email: "info@xlmarket.ee",
+  }
+  try {
+    const page = await getPage("global", "et")
+    const c = (page?.content || {}) as Record<string, unknown>
+    const s = (k: string, d: string) => (typeof c[k] === "string" && (c[k] as string).trim() ? (c[k] as string).trim() : d)
+    company = {
+      name: s("company_name", company.name),
+      reg: s("reg_number", company.reg),
+      vat: s("vat_number", company.vat),
+      address: s("address", company.address),
+      email: s("email_info", company.email),
     }
-    <p style="color: #6b7280; margin-top: 25px; font-size: 13px;">K&uuml;simuste korral kirjutage <a href="mailto:info@xlmarket.ee" style="color: #d97706;">info@xlmarket.ee</a></p>
-  `)
+  } catch {
+    /* fallback (arve peab alati renderduma) */
+  }
+
+  const locale = resolveLocale(order)
+  const L = LABELS[locale]
+  const buyer = resolveBuyer(order, locale)
+  const invNo = resolveInvoiceNumber(order, orderNum)
+  const t = computeInvoiceTotals(order)
+  const cur = order.currency_code
+
+  const rows = order.items
+    .map((it) => {
+      const lineGross = it.total ?? it.unit_price * it.quantity
+      return `<tr>
+        <td style="padding:8px 6px;border-bottom:1px solid #f3f4f6;color:#374151;">${escapeHtml(itemTitle(it, locale))}</td>
+        <td style="padding:8px 6px;border-bottom:1px solid #f3f4f6;text-align:center;color:#374151;">${it.quantity}</td>
+        <td style="padding:8px 6px;border-bottom:1px solid #f3f4f6;text-align:right;color:#374151;white-space:nowrap;">${formatPrice(it.unit_price, it.currency_code || cur)}</td>
+        <td style="padding:8px 6px;border-bottom:1px solid #f3f4f6;text-align:right;color:#374151;white-space:nowrap;">${formatPrice(lineGross, it.currency_code || cur)}</td>
+      </tr>`
+    })
+    .join("")
+
+  const buyerLines = [
+    buyer.regLine ? escapeHtml(buyer.regLine) : "",
+    ...buyer.lines.map((l) => escapeHtml(l)),
+    buyer.email ? escapeHtml(buyer.email) : "",
+    buyer.phone ? `${L.phone}: ${escapeHtml(buyer.phone)}` : "",
+  ]
+    .filter(Boolean)
+    .join("<br>")
+
+  return `<!DOCTYPE html>
+<html lang="${locale}">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width"></head>
+<body style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;margin:0;padding:0;background:#f5f5f5;">
+<div style="max-width:640px;margin:0 auto;background:#ffffff;padding:32px;">
+  <table style="width:100%;border-collapse:collapse;"><tr>
+    <td style="vertical-align:top;">
+      <span style="font-size:30px;font-weight:800;font-style:italic;color:#1a1a2e;">XL</span><span style="font-size:30px;font-weight:700;font-style:italic;color:#0ea5a0;">market</span>
+    </td>
+    <td style="vertical-align:top;text-align:right;">
+      <div style="font-size:26px;font-weight:800;color:#1a1a2e;letter-spacing:1px;">${L.invoice}</div>
+      <div style="font-size:12px;color:#6b7280;margin-top:6px;">${L.invoiceNo}: ${escapeHtml(invNo)}</div>
+      <div style="font-size:12px;color:#6b7280;">${L.date}: ${escapeHtml(fmtDateHtml(order.created_at))}</div>
+      <div style="font-size:12px;color:#0ea5a0;font-weight:600;">${L.paid}</div>
+    </td>
+  </tr></table>
+  <hr style="border:none;border-top:1px solid #e5e7eb;margin:18px 0;">
+  <table style="width:100%;border-collapse:collapse;font-size:13px;"><tr>
+    <td style="vertical-align:top;width:50%;padding-right:16px;">
+      <div style="font-size:10px;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:.5px;">${L.seller}</div>
+      <div style="font-size:14px;font-weight:700;color:#1a1a2e;margin-top:4px;">${escapeHtml(company.name)}</div>
+      <div style="color:#6b7280;line-height:1.6;">${L.regNr}: ${escapeHtml(company.reg)} &nbsp; ${L.vat}: ${escapeHtml(company.vat)}<br>${escapeHtml(company.address)}<br>${escapeHtml(company.email)}</div>
+    </td>
+    <td style="vertical-align:top;width:50%;">
+      <div style="font-size:10px;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:.5px;">${L.buyer}</div>
+      <div style="font-size:14px;font-weight:700;color:#1a1a2e;margin-top:4px;">${escapeHtml(buyer.name)}</div>
+      <div style="color:#6b7280;line-height:1.6;">${buyerLines}</div>
+    </td>
+  </tr></table>
+  <table style="width:100%;border-collapse:collapse;font-size:13px;margin-top:22px;">
+    <thead>
+      <tr style="background:#1a1a2e;color:#ffffff;">
+        <th style="text-align:left;padding:8px 6px;font-size:11px;">${L.colProduct}</th>
+        <th style="text-align:center;padding:8px 6px;font-size:11px;">${L.colQty}</th>
+        <th style="text-align:right;padding:8px 6px;font-size:11px;">${L.colUnit}</th>
+        <th style="text-align:right;padding:8px 6px;font-size:11px;">${L.colSum}</th>
+      </tr>
+    </thead>
+    <tbody>${rows}</tbody>
+  </table>
+  <p style="font-size:11px;color:#9ca3af;margin:6px 0 0;">${L.pricesInclVat}</p>
+  <table style="width:100%;border-collapse:collapse;font-size:13px;margin-top:16px;"><tr>
+    <td></td>
+    <td style="width:300px;">
+      <table style="width:100%;border-collapse:collapse;">
+        <tr><td style="padding:3px 0;color:#6b7280;text-align:right;">${L.subtotal}:</td><td style="padding:3px 0 3px 16px;text-align:right;color:#374151;white-space:nowrap;">${formatPrice(t.itemsGross, cur)}</td></tr>
+        ${t.shippingGross ? `<tr><td style="padding:3px 0;color:#6b7280;text-align:right;">${L.shipping}:</td><td style="padding:3px 0 3px 16px;text-align:right;color:#374151;white-space:nowrap;">${formatPrice(t.shippingGross, cur)}</td></tr>` : ""}
+        <tr><td colspan="2" style="border-top:1px solid #e5e7eb;padding-top:4px;"></td></tr>
+        <tr><td style="padding:3px 0;font-size:16px;font-weight:700;color:#1a1a2e;text-align:right;">${L.total}:</td><td style="padding:3px 0 3px 16px;font-size:16px;font-weight:700;color:#1a1a2e;text-align:right;white-space:nowrap;">${formatPrice(t.grandTotal, cur)}</td></tr>
+        ${
+          t.vat
+            ? `<tr><td colspan="2" style="padding-top:10px;"></td></tr>
+        <tr><td colspan="2" style="padding:0 0 4px;color:#9ca3af;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;text-align:right;">${L.vatSummaryTitle}</td></tr>
+        <tr><td style="padding:2px 0;color:#6b7280;text-align:right;">${L.netAmount}:</td><td style="padding:2px 0 2px 16px;text-align:right;color:#374151;white-space:nowrap;">${formatPrice(t.net, cur)}</td></tr>
+        <tr><td style="padding:2px 0;color:#6b7280;text-align:right;">${L.vatAmount(t.vatRate)}:</td><td style="padding:2px 0 2px 16px;text-align:right;color:#374151;white-space:nowrap;">${formatPrice(t.vat, cur)}</td></tr>
+        <tr><td style="padding:2px 0;color:#6b7280;text-align:right;">${L.grandTotal}:</td><td style="padding:2px 0 2px 16px;text-align:right;color:#374151;white-space:nowrap;">${formatPrice(t.grandTotal, cur)}</td></tr>`
+            : ""
+        }
+      </table>
+    </td>
+  </tr></table>
+  <hr style="border:none;border-top:1px solid #e5e7eb;margin:28px 0 12px;">
+  <p style="font-size:11px;color:#9ca3af;text-align:center;line-height:1.6;margin:0;">
+    ${escapeHtml(company.name)} &nbsp;·&nbsp; ${L.regNr}: ${escapeHtml(company.reg)} &nbsp;·&nbsp; ${L.vat}: ${escapeHtml(company.vat)} &nbsp;·&nbsp; ${escapeHtml(company.address)}<br>
+    ${escapeHtml(company.email)} &nbsp;·&nbsp; xlmarket.ee
+  </p>
+  <p style="font-size:12px;color:#6b7280;text-align:center;margin-top:14px;">${escapeHtml(L.questions(company.email))}</p>
+</div>
+</body>
+</html>`
+}
+
+export async function sendInvoice(order: OrderData) {
+  const orderNum = order.display_id || order.id.slice(-8)
+  const html = await renderInvoiceHtml(order, orderNum)
 
   // Arve PDF-manus (Tarmo 2026-10-14: "arve PDF-manusena, kui võimalik"). BEST-EFFORT:
   // genereerimine kukub → saadame maili ILMA manuseta (arve-tekst on ka HTML-is). EI blokeeri kirja.
