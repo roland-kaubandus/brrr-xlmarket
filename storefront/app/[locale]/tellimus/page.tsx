@@ -44,6 +44,12 @@ type FormData = {
   city: string
   postal_code: string
   country_code: string
+  // D1 "Ostan ettevõttena" — ettevõtte-ostja (nimi + reg-kood + KMKR). Jõuab arvele
+  // order.metadata.company_* + billing_address.company kaudu (vt invoice-view.ts resolveBuyer).
+  is_company: boolean
+  company_name: string
+  company_reg: string // Eesti äriregistri kood, 8 numbrit
+  company_vat: string // KMKR number, EE + 9 numbrit (valikuline — kõik firmad pole KM-kohustuslased)
 }
 
 const initialForm: FormData = {
@@ -55,6 +61,10 @@ const initialForm: FormData = {
   city: "",
   postal_code: "",
   country_code: "ee",
+  is_company: false,
+  company_name: "",
+  company_reg: "",
+  company_vat: "",
 }
 
 const inputClass = "w-full border border-[#E2E8F0] rounded-lg px-3 py-2.5 text-[13px] text-[#1a1a2e] bg-white focus:outline-none focus:border-[#0ea5a0] focus:ring-1 focus:ring-[#0ea5a0]/20 transition-colors"
@@ -124,6 +134,14 @@ export default function CheckoutPage() {
     if (!form.address_1.trim()) return locale === "et" ? "Aadress on kohustuslik" : "Address is required"
     if (!form.city.trim()) return locale === "et" ? "Linn on kohustuslik" : "City is required"
     if (!form.postal_code.trim() || !/^\d{5}$/.test(form.postal_code.trim())) return locale === "et" ? "Postiindeks peab olema 5-kohaline number" : "Postal code must be a 5-digit number"
+    // D1 ettevõtte-ostja vorming: nimi + reg-kood (8 numbrit) kohustuslikud; KMKR valikuline,
+    // aga täidetuna peab vastama vormingule EE + 9 numbrit (kõik firmad pole KM-kohustuslased).
+    if (form.is_company) {
+      if (!form.company_name.trim()) return locale === "et" ? "Ettevõtte nimi on kohustuslik" : "Company name is required"
+      if (!/^\d{8}$/.test(form.company_reg.trim())) return locale === "et" ? "Registrikood peab olema 8-kohaline number" : "Registry code must be an 8-digit number"
+      const vat = form.company_vat.trim().toUpperCase().replace(/\s+/g, "")
+      if (vat && !/^EE\d{9}$/.test(vat)) return locale === "et" ? "KMKR number peab olema kujul EE + 9 numbrit" : "VAT number must be in the format EE followed by 9 digits"
+    }
     return null
   }
 
@@ -148,21 +166,41 @@ export default function CheckoutPage() {
 
     try {
       // Step 1: Set customer info + address
+      const shippingAddress = {
+        first_name: form.first_name,
+        last_name: form.last_name,
+        phone: form.phone,
+        address_1: form.address_1,
+        city: form.city,
+        postal_code: form.postal_code,
+        country_code: form.country_code,
+      }
+      // D1 ettevõtte-ostja: company nimi läheb billing_address.company (Medusa standardväli),
+      // reg-kood + KMKR order.metadata'sse (neil pole Medusa standardkodu) → arve resolveBuyer loeb.
+      // D2 tellimuse keel → metadata.locale (arve + kinnituskiri selles keeles). Metadata pannakse
+      // cart'ile ENNE panka-suunamist → Medusa kopeerib cart.metadata → order.metadata complete'il,
+      // seega säilib nii otsemakse (Step 4) kui Montonio-redirect-tagasi-tee korral.
+      const isCompany = form.is_company && form.company_name.trim()
+      const vatNorm = form.company_vat.trim().toUpperCase().replace(/\s+/g, "")
+      const metadata: Record<string, string> = { locale }
+      if (isCompany) {
+        metadata.company_name = form.company_name.trim()
+        metadata.company_reg = form.company_reg.trim()
+        if (vatNorm) metadata.company_vat = vatNorm
+      }
+      const billingAddress = isCompany
+        ? { ...shippingAddress, company: form.company_name.trim() }
+        : undefined
+
       const checkoutRes = await fetch("/api/cart/checkout", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           cart_id: cart.id,
           email: form.email,
-          shipping_address: {
-            first_name: form.first_name,
-            last_name: form.last_name,
-            phone: form.phone,
-            address_1: form.address_1,
-            city: form.city,
-            postal_code: form.postal_code,
-            country_code: form.country_code,
-          },
+          shipping_address: shippingAddress,
+          ...(billingAddress ? { billing_address: billingAddress } : {}),
+          metadata,
         }),
       })
 
@@ -422,6 +460,70 @@ export default function CheckoutPage() {
                     />
                   </div>
                 </div>
+              </div>
+
+              {/* D1: Ostan ettevõttena */}
+              <div className="bg-white border border-[#E2E8F0] rounded-lg p-5">
+                <label htmlFor="is_company" className="flex items-center gap-2.5 cursor-pointer select-none">
+                  <input
+                    id="is_company"
+                    type="checkbox"
+                    checked={form.is_company}
+                    onChange={(e) => { setForm((prev) => ({ ...prev, is_company: e.target.checked })); setError(null) }}
+                    className="h-4 w-4 rounded border-[#CBD5E1] text-[#0ea5a0] focus:ring-[#0ea5a0]/30"
+                  />
+                  <span className="text-base font-semibold text-[#1a1a2e]">{locale === "et" ? "Ostan ettevõttena" : "Buying as a company"}</span>
+                </label>
+                {form.is_company && (
+                  <div className="mt-4 flex flex-col gap-4">
+                    <div>
+                      <label htmlFor="company_name" className={labelClass}>
+                        {locale === "et" ? "Ettevõtte nimi *" : "Company name *"}
+                      </label>
+                      <input
+                        id="company_name"
+                        type="text"
+                        required={form.is_company}
+                        value={form.company_name}
+                        onChange={(e) => updateField("company_name", e.target.value)}
+                        className={inputClass}
+                      />
+                    </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div>
+                        <label htmlFor="company_reg" className={labelClass}>
+                          {locale === "et" ? "Registrikood *" : "Registry code *"}
+                        </label>
+                        <input
+                          id="company_reg"
+                          type="text"
+                          inputMode="numeric"
+                          required={form.is_company}
+                          placeholder={locale === "et" ? "8 numbrit" : "8 digits"}
+                          value={form.company_reg}
+                          onChange={(e) => updateField("company_reg", e.target.value)}
+                          className={inputClass}
+                        />
+                      </div>
+                      <div>
+                        <label htmlFor="company_vat" className={labelClass}>
+                          {locale === "et" ? "KMKR number" : "VAT number"}
+                        </label>
+                        <input
+                          id="company_vat"
+                          type="text"
+                          placeholder="EE123456789"
+                          value={form.company_vat}
+                          onChange={(e) => updateField("company_vat", e.target.value)}
+                          className={inputClass}
+                        />
+                        <p className="mt-1 text-[11px] text-[#94A3B8]">
+                          {locale === "et" ? "Valikuline — täida, kui ettevõte on KM-kohustuslane" : "Optional — fill in if the company is VAT-registered"}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
 
               {/* Address */}
