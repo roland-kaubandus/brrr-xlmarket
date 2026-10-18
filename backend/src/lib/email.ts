@@ -1,4 +1,5 @@
 import nodemailer from "nodemailer"
+import { notifyTelegram } from "./telegram.js"
 
 const SMTP_HOST = process.env.SMTP_HOST || "127.0.0.1"
 const SMTP_PORT = parseInt(process.env.SMTP_PORT || "25", 10)
@@ -148,6 +149,7 @@ export interface OrderItem {
 export interface OrderData {
   id: string
   display_id?: number
+  created_at?: string
   email: string
   total: number
   subtotal?: number
@@ -297,7 +299,13 @@ export async function sendInvoice(order: OrderData) {
     const pdf = await renderInvoicePdf(order, orderNum)
     attachments = [{ filename: `arve-${orderNum}.pdf`, content: pdf, contentType: "application/pdf" }]
   } catch (e) {
-    console.error(`[EMAIL] arve-PDF genereerimine kukkus (saadan ilma manuseta) — order=${orderNum}:`, e)
+    // FAIL-LOUD (HARD RULE #5): PDF kukub → kiri läheb ikka (HTML-arve sees), AGA nähtav hoiatus
+    // (console.error + Telegram) tellimuse-numbriga. MITTE vaikne. Telegram ise ei tohi kirja blokeerida.
+    const msg = (e as Error)?.message || String(e)
+    console.error(`[EMAIL] arve-PDF genereerimine KUKKUS (saadan ilma manuseta) — order=${orderNum}: ${msg}`, e)
+    await notifyTelegram(
+      `🔴 XL arve-PDF genereerimine KUKKUS — tellimus #${orderNum}. Kiri saadeti ILMA manuseta (arve-tekst on HTML-is). Viga: ${msg}`
+    ).catch(() => {})
   }
 
   // Arve läheb KLIENDILE (order.email); koopia raamatupidamisse (EMAIL_INVOICE) BCC-na,

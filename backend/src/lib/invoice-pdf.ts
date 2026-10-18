@@ -26,6 +26,23 @@ function fmt(amount: number, currency = "EUR"): string {
   return (amount / 100).toFixed(2).replace(".", ",") + " " + currency
 }
 
+// Müüja rekvisiidid (Eesti arve seadusnõue: nimi, reg-nr, KMKR, aadress). Env kirjutab üle;
+// reg + KMKR = Tarmo kinnitatud (2026-10-18) → vaikeväärtus. AADRESS = ainult env-ist (EI leiuta
+// registrijärgset aadressi) — kui COMPANY_ADDRESS puudub, jäetakse aadressirida välja + hoiatus logis.
+const COMPANY_NAME = process.env.COMPANY_NAME || "Roland Kaubandus OÜ"
+const COMPANY_REG = process.env.COMPANY_REG || "10327682"
+const COMPANY_VAT = process.env.COMPANY_VAT || "EE100217007"
+const COMPANY_ADDRESS = (process.env.COMPANY_ADDRESS || "").trim()
+const COMPANY_EMAIL = process.env.EMAIL_INFO || "info@xlmarket.ee"
+
+// DD.MM.YYYY (Eesti formaat). created_at puudub → tänane kuupäev (makse kinnitatud = täna).
+function fmtDate(iso?: string): string {
+  const d = iso ? new Date(iso) : new Date()
+  if (isNaN(d.getTime())) return fmtDate()
+  const p = (n: number) => String(n).padStart(2, "0")
+  return `${p(d.getDate())}.${p(d.getMonth() + 1)}.${d.getFullYear()}`
+}
+
 export function renderInvoicePdf(order: OrderData, orderNum: string | number): Promise<Buffer> {
   return new Promise((resolve, reject) => {
     try {
@@ -35,15 +52,24 @@ export function renderInvoicePdf(order: OrderData, orderNum: string | number): P
       doc.on("end", () => resolve(Buffer.concat(chunks)))
       doc.on("error", reject)
 
-      // Päis
+      // Päis — müüja rekvisiidid (seadusnõue)
       doc.fontSize(22).fillColor("#111827").text("XLMARKET", 50, 50)
-      doc.fontSize(10).fillColor("#6b7280").text("Roland Kaubandus OU")
-      doc.text("info@xlmarket.ee  |  xlmarket.ee")
+      doc.fontSize(10).fillColor("#6b7280").text(sanitize(COMPANY_NAME))
+      doc.text(sanitize(`Reg-nr: ${COMPANY_REG}   KMKR: ${COMPANY_VAT}`))
+      if (COMPANY_ADDRESS) {
+        doc.text(sanitize(COMPANY_ADDRESS))
+      } else {
+        console.error(
+          `[INVOICE] HOIATUS: COMPANY_ADDRESS env puudub — müüja aadress jäetakse arvelt välja (order=${orderNum})`
+        )
+      }
+      doc.text(sanitize(`${COMPANY_EMAIL}  |  xlmarket.ee`))
       doc.moveDown(1.5)
 
-      // Arve pealkiri
+      // Arve pealkiri + kuupäev
       doc.fontSize(16).fillColor("#111827").text(sanitize(`Arve #${orderNum}`))
-      doc.fontSize(10).fillColor("#6b7280").text("Makse on kinnitatud")
+      doc.fontSize(10).fillColor("#6b7280").text(sanitize(`Kuupäev: ${fmtDate(order.created_at)}`))
+      doc.text("Makse on kinnitatud")
       doc.moveDown()
 
       // Tarneaadress
@@ -71,7 +97,14 @@ export function renderInvoicePdf(order: OrderData, orderNum: string | number): P
       doc.fillColor("#4b5563")
       if (order.subtotal) doc.text(sanitize(`Vahesumma: ${fmt(order.subtotal, order.currency_code)}`))
       if (order.shipping_total) doc.text(sanitize(`Tarne: ${fmt(order.shipping_total, order.currency_code)}`))
-      if (order.tax_total) doc.text(sanitize(`KM: ${fmt(order.tax_total, order.currency_code)}`))
+      if (order.tax_total) {
+        // KM eraldi real + määr (%). Määr arvutatakse tegelikust (tax / neto) — EI hardcode'i,
+        // et vältida triivi; fallback 24% (Eesti sell_vat SSoT pricing-rules.yaml). Tax-inclusive:
+        // neto = total - tax.
+        const net = order.total - order.tax_total
+        const rate = net > 0 ? Math.round((order.tax_total / net) * 100) : 24
+        doc.text(sanitize(`KM ${rate}%: ${fmt(order.tax_total, order.currency_code)}`))
+      }
       doc.moveDown(0.3)
       doc.fontSize(13).fillColor("#111827").text(sanitize(`Kokku tasutud: ${fmt(order.total, order.currency_code)}`))
 
