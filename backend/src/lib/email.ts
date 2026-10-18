@@ -215,13 +215,27 @@ export async function sendOrderConfirmation(order: OrderData) {
     html,
   })
 
-  // Admin notification
+  // Admin notification.
+  // "Vaata tellimust" link viib Medusa admin-paneeli (/app/orders/...). Baas-URL tuleb ENV-ist
+  // (ADMIN_URL eelistatud, siis MEDUSA_BACKEND_URL) — EI ole localhost-fallbacki: puuduv env →
+  // fail-loud logis + link JÄETAKSE kirjast VÄLJA (katkine localhost-link oleks hullem kui lingita).
+  // Prod (uo28): MEDUSA_BACKEND_URL=https://admin.xlmarket.ee. Staging: sea ADMIN_URL=staging admin URL.
+  const adminBase = (process.env.ADMIN_URL || process.env.MEDUSA_BACKEND_URL || "").trim().replace(/\/+$/, "")
+  if (!adminBase) {
+    console.error(
+      `[EMAIL] HOIATUS: ADMIN_URL/MEDUSA_BACKEND_URL puudub — admin-teate "Vaata tellimust" link jäetakse välja (order=${orderNum})`
+    )
+  }
+  const adminOrderLink = adminBase
+    ? `<p style="margin-top: 20px;"><a href="${adminBase}/app/orders/${order.id}" style="background: #f59e0b; color: white; padding: 10px 20px; text-decoration: none; font-weight: 600;">Vaata tellimust</a></p>`
+    : ""
+
   const adminHtml = emailWrapper(`
     <h1 style="font-size: 22px; color: #111827; margin: 0 0 20px;">Uus tellimus #${orderNum}</h1>
     <p style="color: #4b5563;">Klient: ${escapeHtml(name)} (${escapeHtml(order.email)})</p>
     <p style="color: #4b5563;">Tooted: ${order.items.length} tk</p>
     <p style="font-size: 18px; font-weight: 700; color: #111827;">Kokku: ${formatPrice(order.total, order.currency_code)}</p>
-    <p style="margin-top: 20px;"><a href="${process.env.MEDUSA_BACKEND_URL || "http://localhost:9001"}/app/orders/${order.id}" style="background: #f59e0b; color: white; padding: 10px 20px; text-decoration: none; font-weight: 600;">Vaata tellimust</a></p>
+    ${adminOrderLink}
   `)
 
   await sendEmail({

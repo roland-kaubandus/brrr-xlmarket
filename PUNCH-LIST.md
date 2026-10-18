@@ -16,6 +16,7 @@
 ## 📋 VAJA ÄRA TEHA
 
 ### Funktsioonid
+- [ ] **Kliendi tellimuse-staatuse leht (külalisele)** — turvalise tokeniga `/tellimus/<id>` leht + link kliendikinnitusse+arvesse (id+email-token, töötab ILMA kontota). **PÄRAST LAUNCH'I** (Tarmo 2026-10-18). Launch'iks piisab kliendikirjast (tellimus, summa, arve-PDF, kontakt). Admin-teate "Vaata tellimust" link juba env-põhine (`email.ts`, ADMIN_URL/MEDUSA_BACKEND_URL — admin-login, mitte külalis-link).
 - [ ] Tarne-teavituse email (`order-shipped.ts`) — kood taastatud, aktiveerub Variant 2-ga; vaja end-to-end testida
 - [ ] Toote hinnangud/tärnid (`ProductContent.tsx:58` — TODO, ootab Huly ticketit)
 
