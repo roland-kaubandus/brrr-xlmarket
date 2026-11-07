@@ -96,7 +96,9 @@ Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>" || { echo "  commit no-
 regen_slug_redirects
 
 echo "→ Coolify redeploy: $UUID (force=$FORCE)"
-code=$(curl -s -o /tmp/coolify-deploy-resp.json -w "%{http_code}" \
+# Coolify API muutus (~2026-11): /api/v1/deploy on nüüd POST (varem GET andis 405
+# "This endpoint has changed to a POST request."). uuid/force jäävad query-parameetritesse.
+code=$(curl -s -X POST -o /tmp/coolify-deploy-resp.json -w "%{http_code}" \
   -H "Authorization: Bearer $COOLIFY_TOKEN" \
   "$API?uuid=${UUID}&force=${FORCE}")
 echo "  HTTP $code"
