@@ -6,8 +6,11 @@
  *     shadow-režiim on töödelnud PÄRIS uusi-tüüpe + KÕIK läbisid väravad STABIILSELT. Kriteerium KOODIS (mitte ööde-arv).
  *   • mod 4: kui värav kukub KOODIVEA tõttu (JS-exception, MITTE {pass:false} legitiimne blokk) → shadow tagasi + Telegram.
  *
- * KOODIVIGA vs LEGITIIMNE BLOKK (kriitiline vahe):
- *   - JS-exception väravas (bug) → recordCodeBug() → auto-create keelatakse / lülitub tagasi shadow'sse.
+ * KOLM VEA-KATEGOORIAT (Tarmo 2026-11-07 — kriitiline vahe):
+ *   - KOODIVIGA (päris bug): JS-exception väravas → recordCodeBug() → code_bug=true → BLOKEERIB üleminekut (mod 4).
+ *   - INFRA-TRANSIENT: ajutine infrastruktuuri-viga (krediit/usage-limit 400/429, võrk, timeout, overloaded,
+ *     502/503/504) → EI OLE koodiviga → infra_transient=true, code_bug=false → EI blokeeri üleminekut.
+ *     recordCodeBug() tuvastab selle ISE (isInfraTransient) ja marsruudib õigesse kategooriasse (SSoT, üks koht).
  *   - {pass:false} värav (DUP/nimi/SEO/pilt töötab korrektselt) → recordShadowProposal(all_gates_pass=false):
  *     värav TÖÖTAB, EI ole koodiviga, EI takista üleminekut. Lihtsalt see ettepanek ei lähe "puhta" arvestusse.
  *
@@ -53,6 +56,9 @@ CREATE TABLE IF NOT EXISTS classifier_shadow_ledger (
   code_bug_detail  text,
   created_at       timestamptz NOT NULL DEFAULT now()
 );
+-- INFRA-TRANSIENT (Tarmo 2026-11-07): ajutine infraviga (krediit/429/võrk/timeout) EI ole code_bug.
+-- Eraldi lipp → bugSince arvestus jätab välja → ei blokeeri shadow→live üleminekut.
+ALTER TABLE classifier_shadow_ledger ADD COLUMN IF NOT EXISTS infra_transient boolean NOT NULL DEFAULT false;
 CREATE INDEX IF NOT EXISTS idx_shadow_ledger_created ON classifier_shadow_ledger (created_at);
 CREATE INDEX IF NOT EXISTS idx_shadow_ledger_bug     ON classifier_shadow_ledger (code_bug) WHERE code_bug;
 `, false);
@@ -103,13 +109,35 @@ export function recordShadowProposal(q, { batch_id, cluster_key, proposed_name, 
 }
 
 /**
- * recordCodeBug — logi KOODIVIGA (JS-exception väravas). Eraldi rida code_bug=true.
- * Kontroller näeb seda → keelab auto-create / lülitab tagasi shadow'sse (mod 4).
+ * isInfraTransient — kas vea-detail viitab AJUTISELE infrastruktuuri-veale (MITTE koodiveale)?
+ * Krediit/usage-limit (400/429), rate-limit, overloaded, timeout, võrk (ECONN/ETIMEDOUT/socket/fetch failed),
+ * gateway 502/503/504. Need taanduvad ise (krediit taastub, võrk tuleb tagasi) → EI tohi lukustada üleminekut.
+ * SSoT: üks muster-loend, kasutatav recordCodeBug'is ja vajadusel mujal.
+ */
+export function isInfraTransient(detail) {
+  const s = String(detail || "").toLowerCase();
+  if (!s) return false;
+  return (
+    /usage limit|usage limits|rate.?limit|too many requests|\b429\b/.test(s) ||
+    /\b(credit|quota|billing)\b.*\b(limit|exceed|insufficient|reached)\b|insufficient.*(credit|quota|balance)/.test(s) ||
+    /overloaded|service unavailable|\b50[234]\b/.test(s) ||
+    /timeout|timed out|etimedout|econnreset|econnrefused|enotfound|socket hang up|fetch failed|network/.test(s) ||
+    // Fable/Anthropic workspace usage-limit tuleb HTTP 400-ga, aga tekst sisaldab "usage limit" → ülal püütud.
+    /workspace api usage/.test(s)
+  );
+}
+
+/**
+ * recordCodeBug — logi väravas tekkinud viga. Tuvastab ISE kategooria (SSoT):
+ *   - INFRA-TRANSIENT (krediit/429/võrk/timeout) → infra_transient=true, code_bug=false → EI blokeeri üleminekut.
+ *   - PÄRIS KOODIVIGA (JS-exception) → code_bug=true → kontroller keelab auto-create / lülitab shadow'sse (mod 4).
  */
 export function recordCodeBug(q, { batch_id, cluster_key, detail }) {
+  const transient = isInfraTransient(detail);
+  const tag = transient ? "[infra_transient] " : "";
   q(`INSERT INTO classifier_shadow_ledger
-       (batch_id, cluster_key, all_gates_pass, code_bug, code_bug_detail)
-     VALUES (${escN(batch_id)}, ${escN(cluster_key)}, false, true, ${escN(detail)})`, false);
+       (batch_id, cluster_key, all_gates_pass, code_bug, infra_transient, code_bug_detail)
+     VALUES (${escN(batch_id)}, ${escN(cluster_key)}, false, ${transient ? "false" : "true"}, ${transient ? "true" : "false"}, ${escN(tag + (detail || ""))})`, false);
 }
 
 const countInt = (q, sql) => { const r = q(sql).trim(); const n = parseInt(r, 10); return Number.isFinite(n) ? n : 0; };
@@ -131,7 +159,8 @@ const countInt = (q, sql) => { const r = q(sql).trim(); const n = parseInt(r, 10
 export function evaluateTransition(q, { minClean = MIN_CLEAN_DEFAULT } = {}) {
   const cfg = getConfig(q);
   const since = cfg.updated_at ? `created_at > (SELECT updated_at FROM classifier_config WHERE id='singleton')` : "true";
-  const bugSince = countInt(q, `SELECT count(*) FROM classifier_shadow_ledger WHERE code_bug AND ${since}`);
+  // bugSince = AINULT päris koodivead. Infra-transient (krediit/429/võrk/timeout) EI blokeeri (Tarmo 2026-11-07).
+  const bugSince = countInt(q, `SELECT count(*) FROM classifier_shadow_ledger WHERE code_bug AND NOT infra_transient AND ${since}`);
   const cleanCount = countInt(q, `SELECT count(DISTINCT cluster_key) FROM classifier_shadow_ledger
                                    WHERE all_gates_pass AND NOT code_bug AND cluster_key IS NOT NULL AND ${since}`);
 
