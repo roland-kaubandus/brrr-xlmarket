@@ -14,8 +14,8 @@
 | PROD (uo28, xlmarket.ee) | ⚠️ coming-soon, KÜLMUTATUD | ~3 kuud stale → cutover peab üle kandma kogu staging'u |
 | Öine pipeline | ✅ LIVE, rc=0 kõik ööd | 24–31.10 krediit-degrade (taastus 01.11) |
 | Glossary-hook | ✅ auto-live (07.11 02:47) | HARD RULE #6 auto-üleminek töötas |
-| Classifier auto-create | ⏸ SHADOW (ei lülitunud) | 3 code_bug (14.10 Fable limit) lukustab üleminekut — EI ole cutover-blokeerija |
-| Backup | ✅ päevane, 0 errors (07.11) | restore-test PUUDUB · restic retention-lukk Access Denied |
+| Classifier auto-create | ⏸ SHADOW (ei lülitunud) | **Task 1 (07.11):** 14.10 infravead reklassitud `infra_transient` (ei blokeeri). Nüüd KVALIFITSEERUB (12 puhast klastrit, 0 koodiviga) AGA hoiab `neighbor_realhandle_verified=false` (ohutus-värav) — EI sunnitud |
+| Backup | ✅ päevane, 0 errors (07.11) | **Task 2b (07.11): taaste-test LÄBIS mõlemal** — Scaleway restic 13/0 ~4min · Storage Box staging 19780 toodet/19 tellimust ~16s · ⚠️ restic retention-lukk Access Denied (vt #13) |
 
 ---
 
@@ -86,9 +86,9 @@
 | # | Blokeerija | Seis | Vaja |
 |---|---|---|---|
 | 1 | **Montonio PÄRIS võtmed + live checkout e2e testimata** | test-võtmed olemas, live puudub | **Tarmo** live-võtmed + 1€ päris-makse test |
-| 2 | **Prod SMTP-mandaat VALE (553)** — kinnituskiri EI lähe, prodis puudub EMAIL_DISABLED kill-switch | mõõdetud 17.10 vale; mailcow MX liigutatud 17.10 | SMTP parandus (mail.xlrent.eu) + prod e-posti test |
+| 2 | **Prod SMTP-mandaat VALE (553)** — kinnituskiri EI lähe, prodis puudub EMAIL_DISABLED kill-switch | **553 päritolu kinnitatud (07.11):** mõõdetud 17.10 `testi-saatmine.sh` testiga, vana `server@xlrent.eu` mandaat (14-märg parool) → asendatakse cutover'il D1. Runbooki E2 lisatud GATE: testkiri ENNE poe avamist | SMTP parandus (mail.xlrent.eu) + prod e-posti test (runbook E2 värav) |
 | 3 | **Täis tellimusvoog testimata** (cart→makse→webhook→order→email) | subscriber aktiivne, voog testimata | brauseri-test prodis pärast E2 |
-| 4 | **Õiguslikud lehed puudu** (tingimused/privaatsus/tagastus/tarne) | CMS tühjad | seadusnõue — Tarmo tekst, Claude sisestab |
+| 4 | **Õiguslikud lehed** (tingimused/privaatsus/küpsised/tagastus/tarne) | **Task 3 (07.11): staging VALMIS** — 10/10 lehte HTTP 200 + päris-sisu renderdub (staging.xlmarket.ee, et+en). DB cms_page 10 juriidilist rida sisuga. Prod uo28 = coming-soon (EI OLE neid) → **C1 täis-DB dump kannab üle, eraldi sünki pole vaja** | ✅ staging done; prodi jõuab cutover C1-ga |
 
 ### VAJA ÄRA TEHA
 
@@ -101,9 +101,9 @@
 | 9 | Mobiilivaade test | brauseris |
 | 10 | Admin basic-auth (xl-admin) | — |
 | 11 | osta.ee XML + Facebook Commerce | kui vaja |
-| 12 | **Backup restore-test** | backup töötab, taaste MITTE KUNAGI testitud |
-| 13 | restic retention-lukk Access Denied | snapshot salvestub, prune ei puhasta lukku |
-| 14 | Classifier auto-create shadow→live | 3 code_bug (14.10 Fable limit) lukustab; EI blokeeri cutoverit, aga uued tüübid jäävad shadow'sse |
+| 12 | ~~Backup restore-test~~ | ✅ **LAHENDATUD 07.11 (Task 2b):** mõlemad varukoopiad taastatud eraldi/throwaway'sse — Scaleway restic 13 korras/0 prob (~4min, sha256 5/5, 6/6 dumpi), Storage Box staging-dump→throwaway postgres (169 tabelit/19780 toodet/19 tellimust/19718 title_et, ~16s). Taaste TÕESTATUD |
+| 13 | **restic retention-lukk Access Denied** | **Diagnoos (07.11):** append-only server-võtmel POLE DeleteObject (O-23, teadlik ransomware-kaitse) → restic ei saa oma lukke eemaldada → "Access Denied" (snapshot salvestub ikka, exit 0, mittefataalne). **Fix = Scaleway IAM: lisa `s3:DeleteObject` AINULT `locks/*` prefiksile** (andmed/snapshot'id jäävad muutumatuks) → restic haldab lukke ise iga jooks. **Tarmo tegevus** (Scaleway konsool; admin-võtit serveris pole/ei tohi olla). Retention (forget/prune) ise = kvartaalne admin-võti off-server, mitte katki |
+| 14 | Classifier auto-create shadow→live | **Task 1 (07.11):** 14.10 infravead (Fable usage-limit 400) ei ole koodiviga → `infra_transient` kategooria lisatud, ei blokeeri. Nüüd KVALIFITSEERUB (12 puhast klastrit ≥3, 0 koodiviga), AGA hoiab `neighbor_realhandle_verified=false` (eraldi ohutus-värav) → auto-create jääb VÄLJAS, EI sunnitud. Uued tüübid jäävad shadow'sse kuni naabrite-tee testitud |
 
 ---
 
