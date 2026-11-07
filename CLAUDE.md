@@ -178,6 +178,27 @@ kui taxonomy-v4 SHA sisaldab fix'i.**
 
 ---
 
+## 🛑 HARD RULE #12 — COOLIFY WRITE: STAGING ISE (logi+Telegram) · PROD AINULT TARMO LOAL
+
+> Lisatud 2026-11-07 (Tarmo, pärast read-only→write tokeni vahetust). COOLIFY_TOKEN-il on nüüd **write**-õigus (`/opt/eumotors-tasks/.env`, Sanctum `id|hash`, jutumärkides — vt [[env-coolify-token-pipe-quote]]).
+
+**Write-token = suurem vastutus. Kolm reeglit, eranditeta:**
+
+1. **STAGING (k33g, `k33g510dw19uyjau3ca7dqpi`) env/deploy — Claude Code võib ISE muuta.** AGA iga muudatus:
+   - **LOGITAKSE sessioonilogisse** (mis muutuja/mis deploy, vana→uus sha12 või boolean-väärtus, millal, miks),
+   - **+ TELEGRAM-teade** (`scripts/lib/notify-telegram.sh`) — nähtavus (HARD RULE #6: nähtavus+undo asendab eel-kinnituse).
+   - Saladuse-väärtust EI logita ega Telegrami (HARD RULE #11 — ainult sha12/pikkus/boolean-lipp nagu EMAIL_DISABLED).
+
+2. **PROD (uo28, `uo28ovobnflauslqjgxeohl0`) env/deploy — AINULT Tarmo SELGESÕNALISEL loal SAMA vestluse käigus.** Varasem luba ei kandu üle. Kahtlus → küsi. uo28 on külmutatud coming-soon; iga uo28 write on cutover-risk. Ilma loata: EI PATCH, EI POST deploy, EI env-muudatus uo28-le.
+
+3. **Piiritle iga write EKSPLITSIITSELT:** PATCH `…/applications/{app}/envs` → alati täpsusta `is_preview` (staging päris-deploy = `is_preview:false`); kontrolli pärast, et õige kirje `updated_at` muutus ja **vale app/env EI muutunud**. Massi-write (bulk) → loetle muutujad; EI pühi/loo muud, mis polnud palutud.
+
+**Jõustus (kontroll):** iga Coolify-write enne käivitamist — kas sihtrakendus on k33g (luba) või uo28 (nõua Tarmo luba samast vestlusest)? Write tehtud → sessioonilogi rida + Telegram ENNE järgmist sammu.
+
+**Vana token:** read-only COOLIFY_TOKEN (sha `0163cd16fbd5`) asendatud write-tokeniga (sha `07fcc9f24e1b`) 2026-11-07. **Tarmo tühistab vana tokeni Coolify UI-s** (Keys & Tokens) — Claude Code tuletab meelde.
+
+---
+
 ## Sessioon 2026-05-02 muudatused (hommikune pool)
 
 **Sessioonilogi:** `xlmarket/memory/sessions/2026-05-02-xl.md`
