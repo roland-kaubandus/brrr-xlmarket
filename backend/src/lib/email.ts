@@ -78,11 +78,14 @@ interface SendEmailOptions {
 }
 
 export async function sendEmail({ to, subject, html, bcc, attachments }: SendEmailOptions) {
-  // SSoT-värav: allowlist (staging) → kill-switch → prod. Blokk logitakse (nähtavus).
+  // SSoT-värav: allowlist (staging) → kill-switch → prod. Iga saaja (to JA bcc) läbib värava
+  // SÕLTUMATULT (SSoT). BUG-FIX 2026-11-07: `to` blokk EI tohi kaotada bcc-koopiat —
+  // nt staging'us ettevõtte-arve läheb kliendile (blokis) + raamatupidamise bcc-koopiale (lubatud);
+  // varem `to`-blokk return'is ENNE bcc-töötlust → arve-koopia kadus (D-test ettevõte #31).
   const gate = emailGate(to)
-  if (!gate.allow) {
-    console.log(`[EMAIL] BLOCKED (${gate.reason}) — to=${to} subject="${subject}"`)
-    return
+  const toAllowed = gate.allow
+  if (!toAllowed) {
+    console.log(`[EMAIL] TO-BLOCKED (${gate.reason}) — to=${to} subject="${subject}" (bcc-koopiat kontrollin eraldi)`)
   }
   // BCC-saajad (nt raamatupidamise arve-koopia) läbivad SAMA värava eraldi (SSoT) —
   // mitte-lubatud bcc-aadress jäetakse VÄLJA + logitakse (staging ei leki päris aadressile).
@@ -94,11 +97,17 @@ export async function sendEmail({ to, subject, html, bcc, attachments }: SendEma
       else console.log(`[EMAIL] BCC-DROP (${g.reason}) — bcc=${addr} subject="${subject}"`)
     }
   }
+  // Ükski saaja ei läbinud väravat → mitte midagi ei saadeta (nähtavus logis).
+  if (!toAllowed && bccList.length === 0) {
+    console.log(`[EMAIL] BLOCKED (kõik saajad väraval blokis) — subject="${subject}"`)
+    return
+  }
   const att = attachments && attachments.length ? ` +${attachments.length} manus` : ""
-  console.log(`[EMAIL] SEND (${gate.reason}) — to=${to}${bccList.length ? ` bcc=${bccList.join(",")}` : ""}${att} subject="${subject}"`)
+  const toField = toAllowed ? to : undefined
+  console.log(`[EMAIL] SEND (${gate.reason}) — to=${toField ?? "(blokis, ainult bcc)"}${bccList.length ? ` bcc=${bccList.join(",")}` : ""}${att} subject="${subject}"`)
   await transporter.sendMail({
     from: `"${EMAIL_FROM_NAME}" <${EMAIL_FROM}>`,
-    to,
+    ...(toField ? { to: toField } : {}),
     ...(bccList.length ? { bcc: bccList } : {}),
     ...(EMAIL_REPLY_TO ? { replyTo: EMAIL_REPLY_TO } : {}),
     subject,
@@ -303,8 +312,15 @@ export async function sendOrderConfirmation(order: OrderData) {
     subject: `${C.subject} #${orderNum} — ${EMAIL_FROM_NAME}`,
     html,
   })
+}
 
-  // Admin notification.
+// Admin-teade uuest tellimusest (sisemine, Tarmole; alati eesti keeles).
+// ERALDATUD sendOrderConfirmation-ist 2026-11-07 — subscriber kutsub 3 kirja (kinnitus/admin/arve)
+// SÕLTUMATULT (iga oma try/catch), et ühe kirja viga EI peataks teisi (HARD RULE #6 nähtavus + fail-loud).
+export async function sendAdminOrderNotification(order: OrderData) {
+  const name = order.shipping_address?.first_name || "Klient"
+  const orderNum = order.display_id || order.id.slice(-8)
+
   // "Vaata tellimust" link viib Medusa admin-paneeli (/app/orders/...). Baas-URL tuleb ENV-ist
   // (ADMIN_URL eelistatud, siis MEDUSA_BACKEND_URL) — EI ole localhost-fallbacki: puuduv env →
   // fail-loud logis + link JÄETAKSE kirjast VÄLJA (katkine localhost-link oleks hullem kui lingita).

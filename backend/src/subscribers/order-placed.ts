@@ -1,6 +1,6 @@
 import type { SubscriberArgs, SubscriberConfig } from "@medusajs/framework"
 import { Modules } from "@medusajs/framework/utils"
-import { sendInvoice, sendOrderConfirmation, type OrderData } from "../lib/email.js"
+import { sendInvoice, sendOrderConfirmation, sendAdminOrderNotification, type OrderData } from "../lib/email.js"
 import { allocateInvoiceNumber, invoiceSeriesEnabled } from "../lib/invoice-number.js"
 import { notifyTelegram } from "../lib/telegram.js"
 
@@ -72,11 +72,54 @@ export default async function orderPlacedHandler({
       }
     }
 
-    await sendOrderConfirmation(o as OrderData)
-    await sendInvoice(o as OrderData)
-    logger.info(`[EMAIL] Thank-you email and invoice sent for ${orderId}`)
+    // ISESEISVAD KIRJAD (Tarmo 2026-11-07, HARD RULE #6 nähtavus + fail-loud):
+    // kinnitus / admin-teade / arve — IGAÜKS oma try/catch. Ühe kirja viga EI tohi peatada teisi
+    // (varem olid kõik ÜHES try/catch-is → esimene viga tappis ülejäänud + Telegram EI läinud välja).
+    // Iga viga → logi tellimuse numbriga + Telegram (best-effort). Ükski ei re-throw'i.
+    const num = o.display_id || orderId
+    let ok = 0
+    const fail: string[] = []
+
+    try {
+      await sendOrderConfirmation(o as OrderData)
+      ok++
+    } catch (err) {
+      const msg = (err as Error).message
+      fail.push("kinnitus")
+      logger.error(`[EMAIL] Kinnituskiri KUKKUS tellimusel #${num} (${orderId}): ${msg}`)
+      await notifyTelegram(`📧❌ Kinnituskiri KUKKUS tellimusel #${num}: ${msg}`).catch(() => {})
+    }
+
+    try {
+      await sendAdminOrderNotification(o as OrderData)
+      ok++
+    } catch (err) {
+      const msg = (err as Error).message
+      fail.push("admin-teade")
+      logger.error(`[EMAIL] Admin-teade KUKKUS tellimusel #${num} (${orderId}): ${msg}`)
+      await notifyTelegram(`📧❌ Admin-teade KUKKUS tellimusel #${num}: ${msg}`).catch(() => {})
+    }
+
+    try {
+      await sendInvoice(o as OrderData)
+      ok++
+    } catch (err) {
+      const msg = (err as Error).message
+      fail.push("arve")
+      logger.error(`[EMAIL] Arve-kiri KUKKUS tellimusel #${num} (${orderId}): ${msg}`)
+      await notifyTelegram(`🧾❌ Arve-kiri KUKKUS tellimusel #${num}: ${msg}`).catch(() => {})
+    }
+
+    if (fail.length) {
+      logger.warn(`[EMAIL] Tellimus #${num}: ${ok}/3 kirja saadetud, KUKKUS: ${fail.join(", ")}`)
+    } else {
+      logger.info(`[EMAIL] Tellimus #${num}: kõik 3 kirja (kinnitus + admin + arve) saadetud`)
+    }
   } catch (err) {
-    logger.error(`[EMAIL] Failed to send order email(s): ${(err as Error).message}`)
+    // Väline catch = ootamatu viga ENNE kirja-samme (nt query/graph). Kirja-vead püütakse ülal.
+    const msg = (err as Error).message
+    logger.error(`[EMAIL] order.placed handler KUKKUS (${orderId}) enne kirja-samme: ${msg}`)
+    await notifyTelegram(`⚠️❌ order.placed handler KUKKUS tellimusel ${orderId} ENNE kirja-samme: ${msg}`).catch(() => {})
   }
 }
 
