@@ -105,7 +105,19 @@ Tarmo seadis Production plokki (redeploy'd EI tehtud — jõustub cutover'iga):
    Kui kumbki EI ole tühi → prod EI ole lõppseisus → eemalda + redeploy enne kui pood kliente teenindab.
 5. **Kui testkiri (samm 3) EBAÕNNESTUB:** sea `EMAIL_DISABLED=true` TAGASI + redeploy (kirjad uuesti blokeeritud), paranda mandaat, korda sammust 2. Pood võib jääda live'i (storefront töötab kill-switchiga, ainult kirjad ootel).
 
-> **Boolean, mitte saladus:** `EMAIL_DISABLED` väärtus (`true`/puudub) EI ole saladus → tohib logida/Telegrami (HARD RULE #11). SMTP_PASSWORD väärtust EI kuvata (ainult sha12). Iga prod-write logitakse sessioonilogisse + Telegram (HARD RULE #12 r1 analoog, prodil r2 = Tarmo luba).
+### ⚠️ Prod testtellimus (samm 3) = PÄRIS makse + PÄRIS arve
+
+Prod-is ei ole test-režiimi: samm 3 testtellimus on **päris Montonio makse** (raha liigub päriselt) ja **päris arve** (PDF kliendile + BCC raamatupidamisse). Kaks tagajärge tuleb pärast testi käsitseda — **Tarmo otsustab raamatupidajaga, kumb variant:**
+
+1. **Raha tagastus Montonios (ALATI, mõlemal variandil):** päris makse → tee Montonio partnerportaalis (või admin-tagastus, kui seadistatud) **refund** samale kaardile/kontole. Ilma selleta jääb test-raha kliendi (Tarmo) arvelt kinni.
+
+2. **Arve-pool — VARIANT A VÕI B (raamatupidaja otsus):**
+   - **VARIANT A — `INVOICE_SERIES_ENABLED` SEES testi ajal → KREEDITARVE.** Kui seeria on testi hetkel SEES, tarbib testtellimus **päris arve-numbri** (`XL-AAAA-00001`) → lünkadeta seeria eeldab, et seda ei "kustutata". Tühistamiseks väljasta **kreeditarve** (sama numbri storno) → raamatupidamine korras, esimene päris-klient saab `…-00002`.
+   - **VARIANT B — `INVOICE_SERIES_ENABLED` VÄLJAS testi ajal → lülita SISSE PÄRAST testi.** Kui seeria on testi hetkel VÄLJAS (praegune vaikeseis, kontrollitud 2026-11-09: prod+staging `INVOICE_SERIES_ENABLED=[]`), kasutab testtellimus tellimuse-nr fallback'i → **päris seeria-numbrit EI tarbita, kreeditarvet pole vaja**. Pärast edukat testi sea prod env `INVOICE_SERIES_ENABLED=true` + redeploy → esimene PÄRIS-klient saab puhta `XL-AAAA-00001`. (Montonio refund ikka vaja.)
+
+> **SSoT:** arve-number loogika `backend/src/lib/invoice-number.ts` (`invoiceSeriesEnabled()`, vaikimisi VÄLJAS — HARD RULE #6 ohutu vaikimisi). Lipu väärtus (`true`/puudub) EI ole saladus → tohib logida.
+
+> **Boolean, mitte saladus:** `EMAIL_DISABLED` ja `INVOICE_SERIES_ENABLED` väärtused (`true`/puudub) EI ole saladus → tohib logida/Telegrami (HARD RULE #11). SMTP_PASSWORD väärtust EI kuvata (ainult sha12). Iga prod-write logitakse sessioonilogisse + Telegram (HARD RULE #12 r1 analoog, prodil r2 = Tarmo luba).
 
 ## ✅ Cutover-JÄRGNE kontroll (pärast prod redeploy'd — KOHUSTUSLIK)
 

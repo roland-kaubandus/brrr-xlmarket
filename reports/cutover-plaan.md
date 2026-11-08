@@ -39,6 +39,7 @@
 | D1 | Akna algus: prod SMTP-mandaat (`server@xlrent.eu`→`noreply@xlmarket.ee` + 32-märg app-parool) **+ `EMAIL_DISABLED=true` kill-switch (AJUTINE)** | CUTOVER-PÄEV | Claude + Tarmo | ei |
 | D2 | Kontrollid kill-switchiga: jooksva konteineri env-räsi (sha `deb7ef7a`) + Montonio/order-voog (kirjad ootel) | CUTOVER-PÄEV | Claude | ei |
 | D3 | **Testkiri: EEMALDA `EMAIL_DISABLED`** + redeploy → prod testtellimus → kinnitus+arve saabub (From/Reply-To õiged). **Lõppseis: `EMAIL_DISABLED` JA `EMAIL_ALLOWLIST` MÕLEMAD PUUDUVAD** (kontrollsamm). Testkiri ebaõnnestub → kill-switch tagasi `true` | CUTOVER-PÄEV | Claude + **Tarmo** | ei |
+| D4 | **Test-tellimuse koristus (PÄRIS makse + arve!):** Montonio refund (ALATI) + arve-pool — VARIANT A kreeditarve (kui seeria SEES) VÕI VARIANT B `INVOICE_SERIES_ENABLED=true` pärast testi (kui seeria VÄLJAS). **Tarmo otsustab raamatupidajaga.** Vt runbook §D | CUTOVER-PÄEV | **Tarmo** (raamatupidaja) | ei |
 | **E. MAKSE (CRITICAL — vt §4)** |||||
 | E1 | Montonio PÄRIS (live) võtmed Vaultwardenist prodi | CUTOVER-PÄEV | **Tarmo** (võtmed) | ei |
 | E2 | Montonio live checkout end-to-end (päris 1€ makse → webhook → order → capture) | CUTOVER-PÄEV | Claude + **Tarmo** | ei |
