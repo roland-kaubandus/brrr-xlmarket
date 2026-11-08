@@ -87,7 +87,7 @@
 |---|---|---|---|
 | 1 | **Montonio PÄRIS võtmed + live checkout e2e testimata** | test-võtmed olemas, live puudub | **Tarmo** live-võtmed + 1€ päris-makse test |
 | 2 | **Prod SMTP-mandaat VALE (553)** — kinnituskiri EI lähe, prodis puudub EMAIL_DISABLED kill-switch | **553 päritolu kinnitatud (07.11):** mõõdetud 17.10 `testi-saatmine.sh` testiga, vana `server@xlrent.eu` mandaat (14-märg parool) → asendatakse cutover'il D1. Runbooki E2 lisatud GATE: testkiri ENNE poe avamist | SMTP parandus (mail.xlrent.eu) + prod e-posti test (runbook E2 värav) |
-| 3 | **Täis tellimusvoog testimata** (cart→makse→webhook→order→email) | subscriber aktiivne, voog testimata | brauseri-test prodis pärast E2 |
+| 3 | ~~**Täis tellimusvoog testimata**~~ (cart→makse→webhook→order→email) | ✅ **LAHENDATUD 08.11 (D-test):** täis tellimusvoog tõestatud **eraisik (#30) + ettevõte (#31)** — kõik 3 kirja (kinnitus + arve + admin) kohal mõlemal. Parandatud 2 bugi (BUG #1 bcc-drop ettevõtte-arvel, BUG #2 kirjade kaskaad ühes try/catch-is) → iseseisvad kirjad (iga kiri eraldi try/catch, fail-loud Telegram + tellimuse-nr) deploy'tud k33g. Ettevõtte-arve + BCC-raamatupidaja-koopia toimib | ✅ staging done; prodis E2 lõpp-suitsutest (kinnitus ENNE poe avamist) |
 | 4 | **Õiguslikud lehed** (tingimused/privaatsus/küpsised/tagastus/tarne) | **Task 3 (07.11): staging VALMIS** — 10/10 lehte HTTP 200 + päris-sisu renderdub (staging.xlmarket.ee, et+en). DB cms_page 10 juriidilist rida sisuga. Prod uo28 = coming-soon (EI OLE neid) → **C1 täis-DB dump kannab üle, eraldi sünki pole vaja** | ✅ staging done; prodi jõuab cutover C1-ga |
 
 ### VAJA ÄRA TEHA
@@ -133,4 +133,4 @@
 
 ---
 
-**JÄRELDUS:** infra + andmed + deploy on tehniliselt valmis (strateegia A). **4 CRITICAL blokeerijat** (Montonio live, prod SMTP, täis-voog test, õiguslikud lehed) peavad ENNE live'i lahenema. Seisak ~15–20 min + DNS TTL. Rollback = DNS tagasi uo28-le (vana prod 30p puutumata).
+**JÄRELDUS:** infra + andmed + deploy on tehniliselt valmis (strateegia A). **3 CRITICAL blokeerijat** (Montonio live, prod SMTP, õiguslikud lehed) peavad ENNE live'i lahenema — **täis-voog test LAHENDATUD 08.11 (D-test, eraisik + ettevõte)**. Seisak ~15–20 min + DNS TTL. Rollback = DNS tagasi uo28-le (vana prod 30p puutumata).
