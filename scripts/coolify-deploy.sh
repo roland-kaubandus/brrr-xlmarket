@@ -8,7 +8,8 @@ set -euo pipefail
 
 ENV_FILE="/opt/eumotors-tasks/.env"
 UUID="k33g510dw19uyjau3ca7dqpi"           # k33g compose-app uuid (= volume/projekti prefiks)
-API="http://localhost:8000/api/v1/deploy"
+API_BASE="http://localhost:8000/api/v1"
+API="$API_BASE/deploy"
 
 [ -f "$ENV_FILE" ] || { echo "❌ $ENV_FILE puudub"; exit 1; }
 # Loe token ILMA source-imata: Coolify token algab 'N|' mustriga ('|' = shell toru-operaator),
@@ -38,6 +39,65 @@ tg() { "$ROOT/scripts/lib/notify-telegram.sh" "$1" 2>/dev/null || true; }
 # Resolvi DB-konteiner DÜNAAMILISELT (recreate muudab suffiksit — fikseeritud nimi aeguks).
 resolve_db_container() {
   docker ps --format '{{.Names}}' | grep -E '^db-k33g' | head -1
+}
+resolve_medusa_container() {
+  docker ps --format '{{.Names}}' | grep -E '^medusa-k33g' | head -1
+}
+resolve_worker_container() {
+  docker ps --format '{{.Names}}' | grep -E '^medusa-worker-k33g' | head -1
+}
+
+# ── HEALTH-WAIT PARANDUS (2026-11-08, cutover-eeltingimus) ──────────────────────────────────
+# JUURPÕHJUS: Coolify API on asünkroonne. curl annab 200 kohe (deploy QUEUED); Coolify ehitab
+# image'i (npm build ~min) ja ALLES SIIS recreate'ib konteinerid. Vana `xl_wait_stack_healthy`
+# luges k33g terveid konteinereid vanu/uusi ERISTAMATA → build'i ajal nägi VANU terveid ja tuli
+# vara tagasi → lukk vabanes ENNE recreate'i (HARD RULE #9 race-aken) + "deployed" raporteeriti,
+# kuigi uus kood polnud elus. *Tõestatud 2026-11-07: e-maili fix redeploy "healthy" → konteineri
+# ajatempel muutumatu, fix-markereid built-koodis polnud; recreate juhtus alles mitu min hiljem.*
+#
+# PARANDUS: (1) oota Coolify deployment status=finished (build+recreate TÕESTI tehtud) →
+# (2) oota UUTE konteinerite tervist (medusa/worker nimi MUUTUNUD vanast + healthy). Lukk hoitakse
+# kogu akna vältel. deployment_uuid puudu → graceful fallback vanale (vähemalt ei jää rippuma).
+
+# Oota kuni Coolify deployment lahkub queued/in_progress staatusest (finished/failed/…).
+xl_wait_deployment_finished() {
+  local dep="$1" wait_s="${2:-900}"
+  local deadline=$(($(date +%s) + wait_s)) st
+  echo "⏳ ootan Coolify deployment '$dep' lõppu (build+recreate, kuni ${wait_s}s)…"
+  while :; do
+    st="$(curl -s -H "Authorization: Bearer $COOLIFY_TOKEN" "$API_BASE/deployments/$dep" \
+      | python3 -c "import json,sys; print(json.load(sys.stdin).get('status','?'))" 2>/dev/null || echo '?')"
+    case "$st" in
+      finished) echo "✅ deployment finished"; return 0 ;;
+      failed|error|cancelled|cancelled-by-force) echo "❌ deployment staatus=$st" >&2; return 1 ;;
+    esac
+    if [ "$(date +%s)" -ge "$deadline" ]; then
+      echo "⚠️  deployment ei lõppenud ${wait_s}s jooksul (viimane staatus=$st)" >&2; return 1
+    fi
+    sleep 10
+  done
+}
+
+# Oota kuni UUED konteinerid (medusa+worker nimi MUUTUNUD vanast) on healthy + kogu stack >=5.
+xl_wait_stack_recreated() {
+  local old_med="$1" old_wrk="$2" wait_s="${3:-300}"
+  local deadline=$(($(date +%s) + wait_s)) now_med now_wrk healthy
+  echo "⏳ ootan UUTE konteinerite tervist (vana medusa='$old_med', kuni ${wait_s}s)…"
+  while :; do
+    now_med="$(resolve_medusa_container)"; now_wrk="$(resolve_worker_container)"
+    healthy=$(docker ps --filter health=healthy --format '{{.Names}}' | grep -c '\-k33g' || echo 0)
+    if [ -n "$now_med" ] && [ "$now_med" != "$old_med" ] && [ -n "$now_wrk" ] && [ "$now_wrk" != "$old_wrk" ] \
+       && docker ps --filter health=healthy --format '{{.Names}}' | grep -q "^${now_med}$" \
+       && docker ps --filter health=healthy --format '{{.Names}}' | grep -q "^${now_wrk}$" \
+       && [ "$healthy" -ge 5 ]; then
+      echo "✅ uus stack healthy (medusa=$now_med, worker=$now_wrk, $healthy healthy)"; return 0
+    fi
+    if [ "$(date +%s)" -ge "$deadline" ]; then
+      echo "⚠️  uued konteinerid ei saanud ${wait_s}s jooksul healthy (medusa=$now_med, $healthy healthy) — vabastan luku, jälgi Coolify UI." >&2
+      return 1
+    fi
+    sleep 5
+  done
 }
 
 # ── STACK-LUKK (Tarmo 2026-10-09 item 1): deploy EI tohi recreate'ida konteinereid
@@ -96,6 +156,9 @@ Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>" || { echo "  commit no-
 regen_slug_redirects
 
 echo "→ Coolify redeploy: $UUID (force=$FORCE)"
+# Jäädvusta VANAD konteineri-nimed ENNE triggerit — recreated-värav võrdleb nende vastu.
+OLD_MED="$(resolve_medusa_container)"; OLD_WRK="$(resolve_worker_container)"
+echo "  vana medusa=$OLD_MED  vana worker=$OLD_WRK"
 # Coolify API muutus (~2026-11): /api/v1/deploy on nüüd POST (varem GET andis 405
 # "This endpoint has changed to a POST request."). uuid/force jäävad query-parameetritesse.
 code=$(curl -s -X POST -o /tmp/coolify-deploy-resp.json -w "%{http_code}" \
@@ -104,10 +167,26 @@ code=$(curl -s -X POST -o /tmp/coolify-deploy-resp.json -w "%{http_code}" \
 echo "  HTTP $code"
 cat /tmp/coolify-deploy-resp.json 2>/dev/null; echo
 [ "$code" = "200" ] || { echo "❌ Ebaõnnestus (401=vale/aegunud token, 404=vale uuid)."; exit 1; }
-echo "✅ Deploy käivitatud (async) — hoian stack-luku kuni konteinerid tagasi healthy…"
-# Coolify API on asünkroonne: recreate juhtub SIIN, mitte curl'i ajal. Lukk hoiab DB-tööd eemal
-# kogu recreate-akna vältel (vt stack-lock EXIT-trap vabastab lõpus).
-xl_wait_stack_healthy "${XL_DEPLOY_HEALTH_WAIT_S:-300}" || true
+# Parsi deployment_uuid vastusest (Coolify tagastab deployments[].deployment_uuid).
+DEP_UUID="$(python3 -c "import json,sys
+try: d=json.load(open('/tmp/coolify-deploy-resp.json'))
+except Exception: sys.exit(0)
+ds=d.get('deployments') or []
+print(ds[0].get('deployment_uuid','') if ds else d.get('deployment_uuid',''))" 2>/dev/null || true)"
+echo "✅ Deploy käivitatud (async, deployment_uuid=${DEP_UUID:-?}) — hoian stack-luku kuni UUED konteinerid healthy…"
+# Coolify API on asünkroonne: build+recreate juhtub SIIN (mitte curl'i ajal). Lukk hoiab DB-tööd
+# eemal kogu akna vältel (stack-lock EXIT-trap vabastab lõpus). PARANDUS 2026-11-08:
+# (1) oota deployment status=finished → (2) oota UUTE konteinerite tervist. VANA
+# xl_wait_stack_healthy tuli tagasi, niipea kui >=5 k33g-konteinerit (sh VANAD) olid healthy →
+# vale "deployed". deployment_uuid puudu → kukutakse tagasi vanale terviku-ootele (≥5 healthy).
+if [ -n "$DEP_UUID" ]; then
+  xl_wait_deployment_finished "$DEP_UUID" "${XL_DEPLOY_FINISH_WAIT_S:-900}" \
+    && xl_wait_stack_recreated "$OLD_MED" "$OLD_WRK" "${XL_DEPLOY_HEALTH_WAIT_S:-300}" \
+    || { echo "⚠️  health-wait ei kinnitanud uut stacki — jälgi Coolify UI-s."; tg "⚠️ deploy k33g: health-wait EI kinnitanud uusi konteinereid (deployment=$DEP_UUID) — kontrolli Coolify UI"; }
+else
+  echo "⚠️  deployment_uuid puudu vastusest — fallback: ootan ainult ≥5 healthy (vana käitumine)."
+  xl_wait_stack_healthy "${XL_DEPLOY_HEALTH_WAIT_S:-300}" || true
+fi
 
 # ── SITEMAP FAIL-LOUD VÄRAV (Tarmo 2026-10-13): kontrolli, et sitemap EI ole tühi/väike.
 # EI fikseeritud numbrit (valideerimis-värava gotcha) — võrdle ELAVA DB toote-arvuga + hälve.
