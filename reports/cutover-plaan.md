@@ -36,9 +36,9 @@
 | C1 | Värske pg dump + Meili dump staging'ust prodi (DB + 18k toodet + tõlked) | CUTOVER-PÄEV | Claude | **JAH** (külmuta kirjutamised) |
 | C2 | Meili reindeks prodis (`index-meilisearch.mjs`) | CUTOVER-PÄEV | Claude | osa seisakust |
 | **D. E-POST (CRITICAL — vt §4)** |||||
-| D1 | Prod SMTP-mandaat parandada (mailcow mail.xlrent.eu) + mõõta (mitte 553) | ENNE | Claude + Tarmo | ei |
-| D2 | Prod env: EMAIL_DISABLED kill-switch olemas + allowlist eemaldada live'iks | CUTOVER-PÄEV | Claude | ei |
-| D3 | Prod e-posti test (päris tellimus → kinnitus + arve saabub) | CUTOVER-PÄEV | Claude + **Tarmo** | ei |
+| D1 | Akna algus: prod SMTP-mandaat (`server@xlrent.eu`→`noreply@xlmarket.ee` + 32-märg app-parool) **+ `EMAIL_DISABLED=true` kill-switch (AJUTINE)** | CUTOVER-PÄEV | Claude + Tarmo | ei |
+| D2 | Kontrollid kill-switchiga: jooksva konteineri env-räsi (sha `deb7ef7a`) + Montonio/order-voog (kirjad ootel) | CUTOVER-PÄEV | Claude | ei |
+| D3 | **Testkiri: EEMALDA `EMAIL_DISABLED`** + redeploy → prod testtellimus → kinnitus+arve saabub (From/Reply-To õiged). **Lõppseis: `EMAIL_DISABLED` JA `EMAIL_ALLOWLIST` MÕLEMAD PUUDUVAD** (kontrollsamm). Testkiri ebaõnnestub → kill-switch tagasi `true` | CUTOVER-PÄEV | Claude + **Tarmo** | ei |
 | **E. MAKSE (CRITICAL — vt §4)** |||||
 | E1 | Montonio PÄRIS (live) võtmed Vaultwardenist prodi | CUTOVER-PÄEV | **Tarmo** (võtmed) | ei |
 | E2 | Montonio live checkout end-to-end (päris 1€ makse → webhook → order → capture) | CUTOVER-PÄEV | Claude + **Tarmo** | ei |

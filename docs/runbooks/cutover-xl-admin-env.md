@@ -55,8 +55,8 @@ prod xl-admin ei avane (FAIL-LOUD kuvab puuduva nimekirja).
 | `EMAIL_INVOICE` | `arved@xlmarket.ee` (arve BCC-koopia raamatupidamisse; vt arve-muudatus 2026-10-14) | medusa + worker |
 | `EMAIL_ADMIN` | `tellimused@xlmarket.ee` (uue-tellimuse admin-teade) | medusa + worker |
 | `EMAIL_FROM_NAME` | *(valikuline; puudu → koodi vaikeväärtus `XLmarket.ee`)* | medusa + worker |
-| `EMAIL_DISABLED` | **PUUDUB** (prod saadab) — kill-switch ainult staging'us | medusa + worker |
-| `EMAIL_ALLOWLIST` | **PUUDUB** (prod saadab kõigile) — allowlist ainult staging'us | medusa + worker |
+| `EMAIL_DISABLED` | **LÕPPSEIS: PUUDUB** (prod saadab). ⚠️ cutover-AKNA ajal AJUTISELT `true` → EEMALDATAKSE (vt §D e-maili kill-switch sekvents) | medusa + worker |
+| `EMAIL_ALLOWLIST` | **PUUDUB** (prod saadab kõigile) — allowlist ainult staging'us, prodis EI SEATA kunagi | medusa + worker |
 
 ## Coolify Production env — SEADISTATUD (Tarmo 2026-10-17)
 
@@ -82,6 +82,30 @@ Tarmo seadis Production plokki (redeploy'd EI tehtud — jõustub cutover'iga):
 | `EMAIL_DISABLED` / `EMAIL_ALLOWLIST` | *(puudub)* ✓ | *(puudub)* ✓ |
 
 > Konteiner = vanad väärtused on **õige seis** — uo28 pole redeploy'tud, env-muutus jõustub alles recreate'il.
+
+## §D — E-maili kill-switch cutover-akna sekvents (Tarmo 2026-11-08)
+
+> **Reegel (Tarmo):** `EMAIL_DISABLED` on prodis AINULT cutover-akna ajal (`true` kuni kontrollid + testkiri tehtud), siis EEMALDATAKSE. **LÕPPSEIS: `EMAIL_DISABLED` JA `EMAIL_ALLOWLIST` mõlemad PUUDUVAD** → prod saadab kõigile, ilma kaitseta. (Allowlisti prodis EI kasutata kunagi, ka akna ajal mitte.)
+>
+> **Miks ajutine kill-switch:** cutover-akna alguses läheb storefront live ja D1 SMTP-mandaat vahetub (`server@xlrent.eu`→`noreply@xlmarket.ee`). Kuni mandaadi + voo kontroll pole tehtud, EI tohi päris kliendile ekslik/pooleldi-seadistatud kiri välja minna. `EMAIL_DISABLED=true` = turvavõrk selle akna ajaks.
+
+**Sekvents (järjekorras, ükski samm ei tohi jääda):**
+
+1. **Akna algus — kill-switch SISSE.** Prod uo28 env (Coolify, Tarmo loal — HARD RULE #12 r2): sea `EMAIL_DISABLED=true` + D1 SMTP-mandaat (`SMTP_USER=noreply@xlmarket.ee`, `SMTP_PASSWORD` app-parool sha `deb7ef7a…`). Redeploy. Storefront läheb live, kirjad BLOKEERITUD.
+2. **Kontrollid (kill-switch veel `true`):** jooksva konteineri env-räsi (§ allpool samm 1) — `SMTP_USER=noreply@`, parool sha `deb7ef7a`, `EMAIL_FROM=tellimused@`, `EMAIL_REPLY_TO=info@`, `EMAIL_DISABLED=true` KEHTIB. Montonio/webhook/order-voog kontroll (E2) — tellimus TEKIB, aga kiri EI lähe (ootuspärane, kill-switch sees).
+3. **Testkiri — kill-switch VÄLJA.** EEMALDA `EMAIL_DISABLED` prod env-ist (kustuta muutuja, mitte `=false`) + redeploy. ⚠️ **testkiri saadetakse PÄRAST eemaldamist**, sest `EMAIL_DISABLED=true` blokeerib KÕIK (ka testi). Saada testkiri (prod testtellimus tarmo@naissaar.eu-le) → kinnitus + arve (PDF) jõuab, `From:`=`tellimused@xlmarket.ee`, `Reply-To:`=`info@xlmarket.ee`.
+4. **Lõppseis — KONTROLLSAMM (KOHUSTUSLIK):** kinnita jooksvast konteinerist, et **`EMAIL_DISABLED` JA `EMAIL_ALLOWLIST` MÕLEMAD PUUDUVAD**:
+   ```bash
+   for C in $(docker ps --format '{{.Names}}' | grep -E '^medusa(-worker)?-uo28'); do
+     echo "=== $C ==="
+     docker exec "$C" sh -c 'printf "EMAIL_DISABLED=[%s] EMAIL_ALLOWLIST=[%s]\n" "$(printenv EMAIL_DISABLED)" "$(printenv EMAIL_ALLOWLIST)"'
+   done
+   # OODATUD mõlemal: EMAIL_DISABLED=[] EMAIL_ALLOWLIST=[]  (mõlemad TÜHJAD = puuduvad)
+   ```
+   Kui kumbki EI ole tühi → prod EI ole lõppseisus → eemalda + redeploy enne kui pood kliente teenindab.
+5. **Kui testkiri (samm 3) EBAÕNNESTUB:** sea `EMAIL_DISABLED=true` TAGASI + redeploy (kirjad uuesti blokeeritud), paranda mandaat, korda sammust 2. Pood võib jääda live'i (storefront töötab kill-switchiga, ainult kirjad ootel).
+
+> **Boolean, mitte saladus:** `EMAIL_DISABLED` väärtus (`true`/puudub) EI ole saladus → tohib logida/Telegrami (HARD RULE #11). SMTP_PASSWORD väärtust EI kuvata (ainult sha12). Iga prod-write logitakse sessioonilogisse + Telegram (HARD RULE #12 r1 analoog, prodil r2 = Tarmo luba).
 
 ## ✅ Cutover-JÄRGNE kontroll (pärast prod redeploy'd — KOHUSTUSLIK)
 
