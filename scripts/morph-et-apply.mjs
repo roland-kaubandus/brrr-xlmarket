@@ -62,11 +62,17 @@ function containers() {
 
 // morph_et lähtetekst — SAMA loogika kui DRY-prototüüp ja indekseerija:
 //   tõlgitud toode → title_et (fallback title); tõlkimata → title_et-i AINULT kui olemas, muidu tühi.
+//   + KATEGOORIA-NIMED (L3/L2 leaf-nimed, mille sisse toode on lingitud): eesti liitsõna head
+//   (diiselsoojendid→soojendi, terrassisoojendid→soojendi) jõuab morph_et-i ka siis, kui title_et
+//   kasutab muud sõnavara (nt "õhukütteseade"). Kategooria on eestikeelne ka tõlkimata tootel →
+//   rahvakeelne otsing ("soojendi") leiab. Kategooria nimi on ÜHTLASI srcHash'is → L3 ümbernimetamine
+//   muudab allika → deficit-hook (self-healing) töötleb need tooted automaatselt (= rename-hook).
 function sourceText(row) {
   const te = (row.te || "").trim();
   const title = (row.title || "").trim();
-  if (row.tr === "true" || row.tr === true) return te || title;
-  return te || "";
+  const cats = (row.cats || "").trim();
+  const base = (row.tr === "true" || row.tr === true) ? (te || title) : te;
+  return [base, cats].filter(Boolean).join(" ");
 }
 const srcHash = s => createHash("sha256").update(s, "utf8").digest("hex").slice(0, 16);
 
@@ -79,9 +85,14 @@ function readProducts(medusa, tmp) {
       const c = new Client({ connectionString: process.env.DATABASE_URL });
       await c.connect();
       const r = await c.query(
-        "SELECT id, title, metadata->>'title_et' AS te, metadata->>'translated' AS tr, " +
-        "metadata->>'morph_et_h' AS h, metadata->>'vevor_sku' AS sku " +
-        "FROM product WHERE deleted_at IS NULL");
+        "SELECT p.id, p.title, p.metadata->>'title_et' AS te, p.metadata->>'translated' AS tr, " +
+        "p.metadata->>'morph_et_h' AS h, p.metadata->>'vevor_sku' AS sku, " +
+        "COALESCE(string_agg(DISTINCT pc.name, ' ') FILTER (WHERE pc.name IS NOT NULL), '') AS cats " +
+        "FROM product p " +
+        "LEFT JOIN product_category_product pcp ON pcp.product_id = p.id " +
+        "LEFT JOIN product_category pc ON pc.id = pcp.product_category_id AND pc.deleted_at IS NULL " +
+        "WHERE p.deleted_at IS NULL " +
+        "GROUP BY p.id, p.title, p.metadata");
       for (const row of r.rows) process.stdout.write(JSON.stringify(row) + "\\n");
       await c.end();
     })().catch(e => { console.error(e.message); process.exit(1); });
